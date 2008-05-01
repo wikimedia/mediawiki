@@ -4,6 +4,8 @@
  * @addtogroup Language
  *
  * @author MF-Warburg
+ * @author Malafaya
+ * @author MF-Warburg
  */
 
 $messages = array(
@@ -59,6 +61,7 @@ $messages = array(
 'mainpage'             => 'Pennfolenn/Penfolen',
 'mainpage-description' => 'Pennfolenn/Penfolen',
 'portal'               => 'Porth kemmynieth',
+'portal-url'           => 'Project:Porth Kemmynieth',
 'sitesupport'          => 'Riansow',
 
 'ok'          => 'Sur',

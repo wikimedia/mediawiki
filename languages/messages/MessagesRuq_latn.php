@@ -6,6 +6,10 @@
  * @author Макѕе
  * @author Кумулај Маркус
  * @author Siebrand
+ * @author Макѕе
+ * @author Кумулај Маркус
+ * @author Приетен тев
+ * @author Siebrand
  */
 
 $fallback = 'ro';
@@ -134,10 +138,11 @@ $messages = array(
 'viewsourcefor' => 'pentru $1',
 
 # Login and logout pages
-'yourname'   => "Nom d'utilizatoru:",
-'login'      => 'Prilasnaere',
-'userlogin'  => 'Prilasnaere / kreare nutilizatoru',
-'userlogout' => 'otlastaere',
+'yourname'                => "Nom d'utilizatoru:",
+'login'                   => 'Prilasnaere',
+'nav-login-createaccount' => 'Prilasnaere / Nažbe',
+'userlogin'               => 'Prilasnaere / kreare nutilizatoru',
+'userlogout'              => 'otlastaere',
 
 # Edit page toolbar
 'bold_sample'     => 'Eskrire aldin',
@@ -154,13 +159,14 @@ $messages = array(
 'math_tip'        => "Formula s'matematiks (LaTeX)",
 'nowiki_sample'   => 'Intorduca no-Wiki isi',
 'nowiki_tip'      => 'No-Wiki klaşu',
-'image_tip'       => 'Santigul',
+'image_tip'       => 'Santigul inserat',
 'media_tip'       => 'Legătul fişirul de media',
 'sig_tip'         => 'Utilizatorunom et data et temp',
 'hr_tip'          => 'Linia orizontala (esnidivale)',
 
 # Edit pages
 'summary'                => 'Sumar',
+'subject'                => 'Subjekt / titlur',
 'watchthis'              => 'klăaere ce pažu',
 'showdiff'               => 'Arată şumbărae',
 'newarticle'             => '(Nova)',
@@ -184,7 +190,7 @@ $messages = array(
 # Search results
 'noexactmatch' => "'''N'pažu vec l'nom \"\$1\" n'ķsistst.''' Pute [[:\$1|kreare ce pažu]].",
 'viewprevnext' => 'Vu ($1) ($2) ($3)',
-'powersearch'  => 'kaută',
+'powersearch'  => 'kaută avansata',
 
 # Preferences page
 'mypreferences' => 'Maj prefirenţu',
@@ -225,6 +231,9 @@ $messages = array(
 'specialpages' => 'Paži specalus',
 'newpages'     => 'Paži novi',
 
+# Book sources
+'booksources' => 'Surse de cărţi',
+
 # Special:Allpages
 'allpages'       => 'Toats paži',
 'alphaindexline' => '$1 vo $2',
@@ -247,6 +256,7 @@ $messages = array(
 'rollbacklink'   => 'revenire',
 
 # Namespace form on various pages
+'namespace'      => 'lSpaţi:',
 'invert'         => 'Ķskluda spaţul',
 'blanknamespace' => '(Principu)',
 
@@ -291,9 +301,11 @@ $messages = array(
 'tooltip-n-mainpage'        => "Visita l'pažu principu",
 'tooltip-n-portal'          => "Dajpul l'projectu, quelques pote faraere, o truves sabi.",
 'tooltip-n-recentchanges'   => "Lista des şumbǎrae recentae en l'wiki.",
+'tooltip-n-randompage'      => 'Donare npažu alaetoare',
 'tooltip-n-help'            => 'Ajutor truves isi.',
 'tooltip-n-sitesupport'     => 'Supora-nostre',
 'tooltip-t-contributions'   => "Vu lista de kontribuţi de c'utilizatoru",
+'tooltip-t-upload'          => 'Tremer fişirul',
 'tooltip-t-specialpages'    => 'Lista de toat paži specialus',
 'tooltip-ca-nstab-user'     => "Vu l'pažu d'utilizatoru",
 'tooltip-ca-nstab-project'  => "Vu l'pažu de projektu",

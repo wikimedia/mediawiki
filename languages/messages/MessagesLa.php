@@ -760,22 +760,19 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'userrights-available-remove-self' => 'Potes te removere ex {{PLURAL:$2|hac grege|his gregibus}}: $1.',
 
 # Groups
-'group'                => 'Grex:',
-'group-user'           => 'Usores',
-'group-emailconfirmed' => 'Usores quibus est inscriptio electronica adfirmata',
-'group-sysop'          => 'Magistratus',
-'group-bureaucrat'     => 'Grapheocrates',
-'group-all'            => '(omnes)',
+'group'            => 'Grex:',
+'group-user'       => 'Usores',
+'group-sysop'      => 'Magistratus',
+'group-bureaucrat' => 'Grapheocrates',
+'group-all'        => '(omnes)',
 
-'group-user-member'           => 'Usor',
-'group-emailconfirmed-member' => 'Usor cui est inscriptio electronica adfirmata',
-'group-sysop-member'          => 'Magistratus',
-'group-bureaucrat-member'     => 'Grapheocrates',
+'group-user-member'       => 'Usor',
+'group-sysop-member'      => 'Magistratus',
+'group-bureaucrat-member' => 'Grapheocrates',
 
-'grouppage-user'           => '{{ns:project}}:Usores',
-'grouppage-emailconfirmed' => '{{ns:project}}:Usores quibus est inscriptio electronica adfirmata',
-'grouppage-sysop'          => '{{ns:project}}:Magistratus',
-'grouppage-bureaucrat'     => '{{ns:project}}:Grapheocrates',
+'grouppage-user'       => '{{ns:project}}:Usores',
+'grouppage-sysop'      => '{{ns:project}}:Magistratus',
+'grouppage-bureaucrat' => '{{ns:project}}:Grapheocrates',
 
 # Rights
 'right-read'                 => 'Paginas legere',
@@ -1194,6 +1191,7 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'restriction-edit'   => 'Recensio',
 'restriction-move'   => 'Motio',
 'restriction-create' => 'Creatio',
+'restriction-upload' => 'Imponere',
 
 # Restriction levels
 'restriction-level-sysop'         => 'protecta',

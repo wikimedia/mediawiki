@@ -1103,6 +1103,11 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkratar',
 'grouppage-suppress'      => '{{ns:project}}:Historikkfjerning',
 
+# Rights
+'right-read'       => 'Sjå sider',
+'right-edit'       => 'Endre sider',
+'right-createpage' => 'Opprette sider (som ikkje er diskusjonssider)',
+
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
 'rightslogtext'  => 'Dette er ein logg over endringar av brukartilgang.',
@@ -1451,7 +1456,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Tilgangar for brukargrupper',
-'listgrouprights-summary'  => 'Lista nedanfor viser brukargruppene på denne wikien, med dei tilhøyrande tilgangane.',
+'listgrouprights-summary'  => 'Lista nedanfor viser brukargruppene på denne wikien, med dei tilhøyrande tilgangane. Meir informasjon om dei ulike typane tilgang kan ein finne [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
 'listgrouprights-group'    => 'Gruppe',
 'listgrouprights-rights'   => 'Tilgangar',
 'listgrouprights-helppage' => 'Help:Gruppetilgangar',

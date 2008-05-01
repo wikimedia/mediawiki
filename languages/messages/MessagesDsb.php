@@ -2326,11 +2326,17 @@ Serwer wótegronijo:$1',
 'confirmemail_loggedin'   => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
 'confirmemail_error'      => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
 'confirmemail_subject'    => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',
-'confirmemail_body'       => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z e-mailoweju adresu wutwórił.
+'confirmemail_body'       => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z toś teju e-mailoweju adresu zregistrěrował.
 
-Coš-lic to konto wobkšuśiś a wužywanje e-mailowych funkcijow zmóžniś na boce {{SITENAME}}, tłoc na wótkaz: $3
+Aby wobkšuśił, až toś to konto napšawdu śi słuša a aby e-mailowe funkcije na boce {{SITENAME}} aktiwěrował, wócyń toś ten wótkaz w swójim browserje:
 
-Jolic až *njejsy* to ty był, njetłoc. Toś to wobkšuśeńske gronidło płaśi do $4.',
+$3
+
+Jolic až *njejsy* toś to konto zregistrěrował, slěduj toś tomu wótkazoju, aby wobkśuśenje e-mejloweje adresy anulował: 
+
+$5
+
+Toś ten wobkšuśeński kod płaśi do $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Pśidawanje interwiki jo deaktiwěrowane]',

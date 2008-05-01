@@ -92,6 +92,7 @@ $messages = array(
 'printableversion' => 'Versão para impressão',
 'permalink'        => 'Ligaçon permanente',
 'edit'             => 'Editar',
+'editthispage'     => 'Editar yesta página',
 'delete'           => 'Apagar',
 'protect'          => 'Proteger',
 'newpage'          => 'Nuoba página',
@@ -147,18 +148,25 @@ $messages = array(
 'nstab-category' => 'Categoria',
 
 # General errors
-'viewsource'    => 'Ber código',
-'viewsourcefor' => 'para $1',
+'viewsource'     => 'Ber código',
+'viewsourcefor'  => 'para $1',
+'viewsourcetext' => 'Você puode ber i copiar l código desta página:',
 
 # Login and logout pages
 'yourname'                => 'Su nome de utilizador',
 'yourpassword'            => 'Palabra-chave',
 'login'                   => 'Entrar',
 'nav-login-createaccount' => 'Entrar / criar cuonta',
+'loginprompt'             => 'Tem que ter ls <i>cookies</i> activos para poder autenticar-se na {{SITENAME}}.',
 'userlogin'               => 'Entrar / criar cuonta',
 'logout'                  => 'Salir',
 'userlogout'              => 'Salir',
+'nologin'                 => 'Num tem ua cuonta? $1.',
+'nologinlink'             => 'Crear ua cuonta',
+'gotaccount'              => 'Ya tem ua cuonta? $1.',
 'gotaccountlink'          => 'Entrar',
+'yourrealname'            => 'Nome berdadeiro:',
+'nouserspecified'         => 'Tem que specificar um nome de outelizador.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo carregado',
@@ -185,6 +193,7 @@ $messages = array(
 'subject'                => 'Assunto/cabeçalho',
 'minoredit'              => 'Marcar como edição mínima',
 'watchthis'              => 'Observar esta página',
+'savearticle'            => 'Grabar página',
 'preview'                => 'Prever',
 'showpreview'            => 'Mostrar prebison',
 'showdiff'               => 'Mostrar alterações',
@@ -225,6 +234,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 # History pages
 'currentrev'       => 'Revison actual',
 'revisionasof'     => 'Revisão de $1',
+'revision-info'    => 'Revison de $1; $2',
 'previousrevision' => '← Versão anterior',
 'cur'              => 'act',
 'last'             => 'último',
@@ -243,12 +253,14 @@ Legenda: (actu) = diferenças da versão actual,
 'editundo'                => 'desfazer',
 
 # Search results
+'noexactmatch' => "'''Num eisiste ua página com l títalo \"\$1\".''' Você puode [[:\$1|criar tal página]].",
 'prevn'        => 'anteriores $1',
 'nextn'        => 'próximos $1',
 'viewprevnext' => 'Ber ($1) ($2) ($3)',
 'powersearch'  => 'Pesquisa avançada',
 
 # Preferences page
+'preferences'   => 'Preferencies',
 'mypreferences' => 'Las mies preferencias',
 
 # Recent changes
@@ -306,6 +318,8 @@ Legenda: (actu) = diferenças da versão actual,
 'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
 'nlinks'       => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'     => '$1 {{PLURAL:$1|membro|membros}}',
+'shortpages'   => 'Páginas curtas',
+'listusers'    => 'Lhista de outelizadores',
 'specialpages' => 'Páginas speciales',
 'newpages'     => 'Nuovas páginas',
 'move'         => 'Mover',
@@ -315,8 +329,10 @@ Legenda: (actu) = diferenças da versão actual,
 'booksources' => 'Fontes de lhibros',
 
 # Special:Log
-'log'           => 'Registos',
-'all-logs-page' => 'Todos os registos',
+'specialloguserlabel'  => 'Outelizador:',
+'speciallogtitlelabel' => 'Títalo:',
+'log'                  => 'Registos',
+'all-logs-page'        => 'Todos os registos',
 
 # Special:Allpages
 'allpages'       => 'Todas las páginas',
@@ -325,12 +341,13 @@ Legenda: (actu) = diferenças da versão actual,
 'allpagessubmit' => 'Ir',
 
 # Watchlist
-'mywatchlist'        => 'Artigos vigiados',
-'watchlistfor'       => "(para '''$1''')",
-'watch'              => 'Bigiar',
-'unwatch'            => 'Desinteressar-se',
-'wlshowlast'         => 'Ber últimas $1 horas $2 dias $3',
-'watchlist-hide-own' => 'çconder mies ediçons',
+'mywatchlist'          => 'Artigos vigiados',
+'watchlistfor'         => "(para '''$1''')",
+'watch'                => 'Bigiar',
+'unwatch'              => 'Desinteressar-se',
+'wlshowlast'           => 'Ber últimas $1 horas $2 dias $3',
+'watchlist-hide-own'   => 'çconder mies ediçons',
+'watchlist-hide-minor' => 'sconder ediçons menores',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigiando...',
@@ -344,6 +361,7 @@ Legenda: (actu) = diferenças da versão actual,
 'protectlogpage'          => 'Registo de protecção',
 'protect-legend'          => 'Confirmar protecçon',
 'protect-summary-cascade' => 'p. progressiva',
+'restriction-type'        => 'Permisson:',
 
 # Undelete
 'undeletebtn' => 'Restaurar',
@@ -375,6 +393,7 @@ Legenda: (actu) = diferenças da versão actual,
 'whatlinkshere-links' => '← andereços da anternet',
 
 # Block/unblock
+'blockip'      => 'Bloquear outelizador',
 'ipboptions'   => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'blocklink'    => 'bloquear',
 'contribslink' => 'contribs',
