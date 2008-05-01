@@ -162,97 +162,6 @@ class SpecialPage
 
 	static public $mAliases;
 	static public $mListInitialised = false;
-	/**
-	 * List of special pages, followed by what subtitle they should go under
-	 * at Special:SpecialPages
-	 */
-	static public $mGroupsList = array(
-		'DoubleRedirects'           => 'maintenance',
-		'BrokenRedirects'           => 'maintenance',
-		'Lonelypages'               => 'maintenance',
-		'Uncategorizedpages'        => 'maintenance',
-		'Uncategorizedcategories'   => 'maintenance',
-		'Uncategorizedimages'       => 'maintenance',
-		'Uncategorizedtemplates'    => 'maintenance',
-		'Unusedcategories'          => 'maintenance',
-		'Unusedimages'              => 'maintenance',
-		'Protectedpages'            => 'maintenance',
-		'Protectedtitles'           => 'maintenance',
-		'Unusedtemplates'           => 'maintenance',
-		'Withoutinterwiki'          => 'maintenance',
-		'Longpages'                 => 'maintenance',
-
-		'Userlogin'                 => 'login',
-		'Userlogout'                => 'login',
-		'CreateAccount'             => 'login',
-
-		'Recentchanges'             => 'changes',
-		'Recentchangeslinked'       => 'changes',
-		'Watchlist'                 => 'changes',
-		'Newimages'                 => 'changes',
-		'Newpages'                  => 'changes',
-		'Log'                       => 'changes',
-
-		'Upload'                    => 'media',
-		'Imagelist'                 => 'media',
-		'MIMEsearch'                => 'media',
-		'FileDuplicateSearch'       => 'media',
-		'Filepath'                  => 'media',
-
-		'Listusers'                 => 'users',
-		'Listgrouprights'           => 'users',
-		'Ipblocklist'               => 'users',
-		'Contributions'             => 'users',
-		'Emailuser'                 => 'users',
-		'Listadmins'                => 'users',
-		'Listbots'                  => 'users',
-
-		'Wantedpages'               => 'needy',
-		'Wantedcategories'          => 'needy',
-		'Shortpages'                => 'needy',
-		'Ancientpages'              => 'needy',
-		'Deadendpages'              => 'needy',
-
-		'Mostlinked'                => 'highuse',
-		'Mostlinkedcategories'      => 'highuse',
-		'Mostlinkedtemplates'       => 'highuse',
-		'Mostcategories'            => 'highuse',
-		'Mostimages'                => 'highuse',
-		'Mostrevisions'             => 'highuse',
-
-		'Userrights'                => 'permissions',
-		'Blockip'                   => 'permissions',
-
-		'Statistics'                => 'other',
-		'Fewestrevisions'           => 'other',
-		'Randompage'                => 'other',
-		'Disambiguations'           => 'other',
-		'Specialpages'              => 'other',
-		'Blockme'                   => 'other',
-		'Movepage'                  => 'other',
-		'MergeHistory'              => 'other',
-		'Lockdb'                    => 'other',
-		'Unlockdb'                  => 'other',
-		'Version'                   => 'other',
-		'Whatlinkshere'             => 'other',
-		'Booksources'               => 'other',
-		'Revisiondelete'            => 'other',
-		'Export'                    => 'other',
-		'Categories'                => 'other',
-		'Undelete'                  => 'other',
-		'Import'                    => 'other',
-		'Unwatchedpages'            => 'other',
-		'Randomredirect'            => 'other',
-		'Allpages'                  => 'other',
-		'Allmessages'               => 'other',
-		'Prefixindex'               => 'other',
-		'Listredirects'             => 'other',
-		'Preferences'               => 'other',
-		'Resetpass'                 => 'other',
-		'Mypage'                    => 'other',
-		'Mytalk'                    => 'other',
-		'Mycontributions'           => 'other',
-	);
 
 	/**#@-*/
 
@@ -370,11 +279,9 @@ class SpecialPage
 	 * @static
 	 */
 	static function setGroup( $page, $group ) {
-		if ( !self::$mListInitialised ) {
-			self::initList();
-		}
+		global $wgSpecialPageGroups;
 		$name = is_object($page) ? $page->mName : $page;
-		self::$mGroupsList[$name] = $group;
+		$wgSpecialPageGroups[$name] = $group;
 	}
 
 	/**
@@ -384,11 +291,9 @@ class SpecialPage
 	 * @static
 	 */
 	static function getGroup( &$page ) {
-		if ( !self::$mListInitialised ) {
-			self::initList();
-		}
-		$group = isset(self::$mGroupsList[$page->mName]) ?
-			self::$mGroupsList[$page->mName] : 'other';
+		global $wgSpecialPageGroups;
+		$group = isset($wgSpecialPageGroups[$page->mName]) ?
+			$wgSpecialPageGroups[$page->mName] : 'other';
 		return $group;
 	}
 
