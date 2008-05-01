@@ -2244,6 +2244,22 @@ function wfIsLocalURL( $url ) {
 	return Http::isLocalURL( $url );
 }
 
+function wfHttpOnlySafe() {
+	global $wgHttpOnlyBlacklist;
+	if( !version_compare("5.2", PHP_VERSION, "<") )
+		return false;
+	
+	if( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+		foreach( $wgHttpOnlyBlacklist as $regex ) {
+			if( preg_match( $regex, $_SERVER['HTTP_USER_AGENT'] ) ) {
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
 /**
  * Initialise php session
  */
@@ -2256,7 +2272,15 @@ function wfSetupSession() {
 		# application, it will end up failing. Try to recover.
 		ini_set ( 'session.save_handler', 'files' );
 	}
-	$httpOnlySafe = version_compare("5.2", PHP_VERSION, "<");
+	$httpOnlySafe = wfHttpOnlySafe();
+	wfDebugLog( 'cookie',
+		'session_set_cookie_params: "' . implode( '", "',
+			array(
+				0,
+				$wgCookiePath,
+				$wgCookieDomain,
+				$wgCookieSecure,
+				$httpOnlySafe && $wgCookieHttpOnly ) ) . '"' );
 	if( $httpOnlySafe && $wgCookieHttpOnly ) {
 		session_set_cookie_params( 0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 	} else {
