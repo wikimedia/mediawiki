@@ -1497,6 +1497,17 @@ $wgDisableCookieCheck = false;
  */
 $wgCookieHttpOnly = version_compare("5.2", PHP_VERSION, "<");
 
+/**
+ * If the requesting browser matches a regex in this blacklist, we won't
+ * send it cookies with HttpOnly mode, even if $wgCookieHttpOnly is on.
+ */
+$wgHttpOnlyBlacklist = array(
+	// Internet Explorer for Mac; sometimes the cookies work, sometimes
+	// they don't. It's difficult to predict, as combinations of path
+	// and expiration options affect its parsing.
+	'/^Mozilla\/4\.0 \(compatible; MSIE \d+\.\d+; Mac_PowerPC\)/',
+);
+
 /** A list of cookies that vary the cache (for use by extensions) */
 $wgCacheVaryCookies = array();
 

@@ -2006,8 +2006,17 @@ class User {
 		if( $exp == 0 ) {
 			$exp = time() + $wgCookieExpiration;
 		}
-		$httpOnlySafe = version_compare("5.2", PHP_VERSION, "<");
-		
+		$httpOnlySafe = wfHttpOnlySafe();
+		wfDebugLog( 'cookie',
+			'setcookie: "' . implode( '", "',
+				array(
+					$wgCookiePrefix . $name,
+					$value,
+					$exp,
+					'/',
+					$wgCookieDomain,
+					$wgCookieSecure,
+					$httpOnlySafe && $wgCookieHttpOnly ) ) . '"' );
 		if( $httpOnlySafe && isset( $wgCookieHttpOnly ) ) {
 			setcookie( $wgCookiePrefix . $name,
 				$value,

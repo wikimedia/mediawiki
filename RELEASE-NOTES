@@ -233,6 +233,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "show hidden categories" option on
 * (bug 13915) Undefined variable $wltsfield in includes/SpecialWatchlist.php
 * (bug 13913) Special:Whatlinkshere now has correct HTML markup
+* (bug 13905) Blacklist Mac IE from HttpOnly cookies; it eats them sometimes
 
 
 === API changes in 1.13 ===
