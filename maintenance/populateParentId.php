@@ -6,8 +6,6 @@
  * and to find new page edits by users.
  */
 
-define( 'BATCH_SIZE', 200 );
-
 require_once 'commandLine.inc';
 require_once 'populateParentId.inc';
 	
