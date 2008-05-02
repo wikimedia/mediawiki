@@ -550,7 +550,7 @@ abstract class File {
 			// Purge. Useful in the event of Core -> Squid connection failure or squid 
 			// purge collisions from elsewhere during failure. Don't keep triggering for 
 			// "thumbs" which have the main image URL though (bug 13776)
-			if ( $wgUseSquid && !$thumb->isError() && $thumb->getUrl() != $this->getURL() ) {
+			if ( $wgUseSquid && ($thumb->isError() || $thumb->getUrl() != $this->getURL()) ) {
 				SquidUpdate::purge( array( $thumbUrl ) );
 			}
 		} while (false);
