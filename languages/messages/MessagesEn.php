@@ -340,6 +340,7 @@ $magicWords = array(
 	'hiddencat'              => array( 1,    '__HIDDENCAT__'          ),
 	'pagesincategory'        => array( 1,    'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'               => array( 1,    'PAGESIZE'               ),
+	'gallerywidth'           => array( 1,    'GALLERYWIDTH:'          ),
 );
 
 /**
@@ -1716,7 +1717,7 @@ A click on a column header changes the sorting.',
 'shareddescriptionfollows'       => '-', # do not translate or duplicate this message to other languages
 'shareduploadduplicate'          => 'This file is a duplicate of $1 from shared repository.',
 'shareduploadduplicate-linktext' => 'another file',
-'shareduploadconflict'           => 'This file has the same name as $1 from shared repository has.',
+'shareduploadconflict'           => 'This file has the same name as $1 from the shared repository.',
 'shareduploadconflict-linktext'  => 'another file',
 'noimage'                        => 'No file by this name exists, you can $1.',
 'noimage-linktext'               => 'upload it',
