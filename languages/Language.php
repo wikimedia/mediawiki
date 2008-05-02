@@ -2188,7 +2188,7 @@ class Language {
 		$memcKey = wfMemcKey( 'fallback', $code );
 		$fbcode = $wgMemc->get( $memcKey );
 
-		if ( $fbcode !== false ) {
+		if ( $fbcode !== null ) {
 			wfDebug( __METHOD__ . ": got fallback for $code from memc: '$fbcode'\n" );
 			if ( $fbcode === '' ) $fbcode = false;
 			return $fbcode;
