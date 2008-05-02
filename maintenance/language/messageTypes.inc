@@ -280,7 +280,6 @@ $wgOptionalMessages = array(
 	'comma-separator',
 	'colon-separator',
 	'autocomment-prefix',
-	'activeusers-summary',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
