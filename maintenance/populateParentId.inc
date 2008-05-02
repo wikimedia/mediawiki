@@ -1,5 +1,7 @@
 <?php
 
+define( 'BATCH_SIZE', 200 );
+
 function populate_rev_parent_id( $db ) {
 	echo "Populating rev_parent_id column\n";
 	$start = $db->selectField( 'revision', 'MIN(rev_id)', false, __FUNCTION__ );
