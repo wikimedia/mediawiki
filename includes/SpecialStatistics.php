@@ -49,7 +49,7 @@ function wfSpecialStatistics( $par = '' ) {
 			$wgLang->formatNum( $users ),
 			$wgLang->formatNum( $admins ),
 			'[[' . wfMsgForContent( 'grouppage-sysop' ) . ']]', # TODO somehow remove, kept for backwards compatibility
-			$wgLang->formatNum( sprintf( '%.2f', $admins / $users * 100 ) ),
+			$wgLang->formatNum( @sprintf( '%.2f', $admins / $users * 100 ) ),
 			User::makeGroupLinkWiki( 'sysop' )
 		)."\n";
 
