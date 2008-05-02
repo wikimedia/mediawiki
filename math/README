@@ -1,46 +1,44 @@
 == About texvc ==
 
-texvc takes LaTeX-compatible equations and produces formatted output in
-HTML, MathML, and (via LaTeX/dvipng) rasterized PNG images.
-Input data is parsed and scrutinized for safety, and the output includes
-an estimate of whether the code is simple enough that HTML rendering will
-look acceptable.
+texvc takes LaTeX-compatible equations and produces formatted output in HTML,
+MathML, and (via LaTeX/dvipng) rasterized PNG images.
+Input data is parsed and scrutinized for safety, and the output includes an
+estimate of whether the code is simple enough that HTML rendering will look
+acceptable.
 
-The program was written by Tomasz Wegrzanowski for use with MediaWiki;
-it's included as part of the MediaWiki package (http://wikipedia.sf.net)
-and is under the GPL license.
+The program was written by Tomasz Wegrzanowski for use with MediaWiki; it's
+included as part of the MediaWiki package (http://www.mediawiki.org) and is
+under the GPL license.
 
-Please report bugs at: http://bugzilla.wikimedia.org/ (under "MediaWiki")
+Please report bugs at: https://bugzilla.wikimedia.org/ (under "MediaWiki")
 
 == Setup ==
 
 === Requirements ===
 
-OCaml 3.06 or later is required to compile texvc; this can be acquired
-from http://caml.inria.fr/ if your system doesn't have it available.
+OCaml 3.06 or later is required to compile texvc; this can be acquired from
+http://caml.inria.fr/ if your system doesn't have it available.
 
 The makefile requires GNU make.
 
-Rasterization is done via LaTeX, dvipng. These need
-to be installed and in the PATH: latex, dvipng
+Rasterization is done via LaTeX, dvipng. These need to be installed and in
+the PATH: latex, dvipng
 
-AMS* packages for LaTeX also need to be installed. Without AMS* some
-equations will render correctly while others won't render.
-Most distributions of TeX already contain AMS*.
-In Debian/Ubuntu you need to install tetex-extra.
+AMS* packages for LaTeX also need to be installed. Without AMS* some equations
+will render correctly while others won't render. Most distributions of TeX
+already contain AMS*. In Debian/Ubuntu you need to install tetex-extra.
 
-To work properly with rendering non-ASCII Unicode characters, a
-supplemental TeX package is needed (cjk-latex in Debian)
+To work properly with rendering non-ASCII Unicode characters, a supplemental TeX
+package is needed (cjk-latex in Debian)
 
 === Installation ===
 
 Run 'make' (or 'gmake' if GNU make is not your default make). This should
 produce the texvc executable.
 
-If you're using MediaWiki's install.php and have enabled $wgUseTeX in your
-LocalSettings.php, the installer will try to copy texvc into place, in the
-'math' subdirectory under where wiki.phtml is installed.
-
+Then you'll need to set $wgUseTeX to true in your LocalSettings.php. By default,
+MediaWiki will search in this directory for texvc, if you moved it elsewhere,
+you'll have to modify $wgTexvc and set it to the path of the texvc executable.
 
 == Usage ==
 
