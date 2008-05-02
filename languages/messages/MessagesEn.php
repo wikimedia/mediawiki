@@ -340,7 +340,6 @@ $magicWords = array(
 	'hiddencat'              => array( 1,    '__HIDDENCAT__'          ),
 	'pagesincategory'        => array( 1,    'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'               => array( 1,    'PAGESIZE'               ),
-	'gallerywidth'           => array( 1,    'GALLERYWIDTH:'          ),
 );
 
 /**
