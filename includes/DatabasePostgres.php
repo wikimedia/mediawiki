@@ -721,6 +721,10 @@ class DatabasePostgres extends Database {
 	function insert( $table, $args, $fname = 'DatabasePostgres::insert', $options = array() ) {
 		global $wgDBversion;
 
+		if ( !count( $args ) ) {
+			return true;
+		}
+
 		$table = $this->tableName( $table );
 		if (! isset( $wgDBversion ) ) {
 			$this->getServerVersion();
@@ -924,7 +928,7 @@ class DatabasePostgres extends Database {
 		return '';
 	}
 
-	function limitResult($sql, $limit,$offset=false) {
+	function limitResult($sql, $limit, $offset=false) {
 		return "$sql LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
 	}
 
