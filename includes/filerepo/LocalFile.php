@@ -1646,7 +1646,7 @@ class LocalFileRestoreBatch {
  * Helper class for file movement
  */
 class LocalFileMoveBatch {
-	var $file, $cur, $olds, $archive, $thumbs, $target, $db;
+	var $file, $cur, $olds, $oldcount, $archive, $thumbs, $target, $db;
 
 	function __construct( File $file, Title $target, Database $db ) {
 		$this->file = $file;
@@ -1693,9 +1693,10 @@ class LocalFileMoveBatch {
 	function addOlds() {
 		$archiveBase = 'archive';
 		$this->olds = array();
+		$this->oldcount = 0;
 
 		$result = $this->db->select( 'oldimage',
-			array( 'oi_archive_name' ),
+			array( 'oi_archive_name', 'oi_deleted' ),
 			array( 'oi_name' => $this->oldName ),
 			__METHOD__
 		);
@@ -1709,6 +1710,10 @@ class LocalFileMoveBatch {
 			list( $timestamp, $filename ) = $bits;
 			if( $this->oldName != $filename ) {
 				wfDebug( 'Invalid old file name:' . $oldName );
+				continue;
+			}
+			$this->oldcount++;
+			if( $row->oi_deleted & File::DELETED_FILE ) {
 				continue;
 			}
 			$this->olds[] = array(
@@ -1763,7 +1768,7 @@ class LocalFileMoveBatch {
 			__METHOD__
 		);
 		$affected = $dbw->affectedRows();
-		$total = count( $this->olds );
+		$total = $this->oldcount;
 		$status->successCount += $affected;
 		$status->failCount += $total - $affected;
 
@@ -1778,9 +1783,7 @@ class LocalFileMoveBatch {
 			__METHOD__
 		);
 		$affected = $dbw->affectedRows();
-		$total = count( $this->olds );
 		$status->successCount += $affected;
-		$status->failCount += $total - $affected;
 
 		return $status;
 	}
