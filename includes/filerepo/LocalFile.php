@@ -1772,19 +1772,6 @@ class LocalFileMoveBatch {
 		$status->successCount += $affected;
 		$status->failCount += $total - $affected;
 
-		// Update deleted images
-		$dbw->update(
-			'filearchive',
-			array(
-				'fa_name' => $this->newName,
-				'fa_archive_name = ' . $dbw->strreplace( 'fa_archive_name', $dbw->addQuotes($this->oldName), $dbw->addQuotes($this->newName) ),
-			),
-			array( 'fa_name' => $this->oldName ),
-			__METHOD__
-		);
-		$affected = $dbw->affectedRows();
-		$status->successCount += $affected;
-
 		return $status;
 	}
 
