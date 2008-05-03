@@ -1636,7 +1636,9 @@ END
 			$attribs = array( 'id' => 'wpTextbox1', 'name' => 'wpTextbox1', 'cols' => $cols, 'rows' => $rows, 'readonly' => 'readonly' );
 			$wgOut->addHtml( '<hr />' );
 			$wgOut->addWikiMsg( $first ? 'blockedoriginalsource' : 'blockededitsource', $this->mTitle->getPrefixedText() );
-			$wgOut->addHtml( wfOpenElement( 'textarea', $attribs ) . htmlspecialchars( $source ) . wfCloseElement( 'textarea' ) );
+			# Why we don't use Xml::element here?
+			# Is it because if $source is '', it returns <textarea />?
+			$wgOut->addHtml( Xml::openElement( 'textarea', $attribs ) . htmlspecialchars( $source ) . Xml::closeElement( 'textarea' ) );
 		}
 	}
 
@@ -1688,7 +1690,7 @@ END
 		$wgOut->addHtml( '<div id="spamprotected">' );
 		$wgOut->addWikiMsg( 'spamprotectiontext' );
 		if ( $match )
-			$wgOut->addWikiMsg( 'spamprotectionmatch',wfEscapeWikiText( $match ) );
+			$wgOut->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
 		$wgOut->addHtml( '</div>' );
 
 		$wgOut->returnToMain( false, $wgTitle );
@@ -1976,7 +1978,7 @@ END
 			'accesskey' => wfMsg('accesskey-save'),
 			'title'     => wfMsg( 'tooltip-save' ).' ['.wfMsg( 'accesskey-save' ).']',
 		);
-		$buttons['save'] = wfElement('input', $temp, '');
+		$buttons['save'] = Xml::element('input', $temp, '');
 
 		++$tabindex; // use the same for preview and live preview
 		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
@@ -1990,7 +1992,7 @@ END
 				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
 				'style'     => 'display: none;',
 			);
-			$buttons['preview'] = wfElement('input', $temp, '');
+			$buttons['preview'] = Xml::element('input', $temp, '');
 
 			$temp = array(
 				'id'        => 'wpLivePreview',
@@ -2002,7 +2004,7 @@ END
 				'title'     => '',
 				'onclick'   => $this->doLivePreviewScript(),
 			);
-			$buttons['live'] = wfElement('input', $temp, '');
+			$buttons['live'] = Xml::element('input', $temp, '');
 		} else {
 			$temp = array(
 				'id'        => 'wpPreview',
@@ -2013,7 +2015,7 @@ END
 				'accesskey' => wfMsg('accesskey-preview'),
 				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
 			);
-			$buttons['preview'] = wfElement('input', $temp, '');
+			$buttons['preview'] = Xml::element('input', $temp, '');
 			$buttons['live'] = '';
 		}
 
@@ -2026,7 +2028,7 @@ END
 			'accesskey' => wfMsg('accesskey-diff'),
 			'title'     => wfMsg( 'tooltip-diff' ).' ['.wfMsg( 'accesskey-diff' ).']',
 		);
-		$buttons['diff'] = wfElement('input', $temp, '');
+		$buttons['diff'] = Xml::element('input', $temp, '');
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons ) );
 		return $buttons;
