@@ -227,6 +227,7 @@ class OutputPage {
 	public function getHTMLTitle() { return $this->mHTMLtitle; }
 	public function getPageTitle() { return $this->mPagetitle; }
 	public function setSubtitle( $str ) { $this->mSubtitle = /*$this->parse(*/$str/*)*/; } // @bug 2514
+	public function appendSubtitle( $str ) { $this->mSubtitle .= /*$this->parse(*/$str/*)*/; } // @bug 2514
 	public function getSubtitle() { return $this->mSubtitle; }
 	public function isArticle() { return $this->mIsarticle; }
 	public function setPrintable() { $this->mPrintable = true; }
