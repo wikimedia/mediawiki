@@ -1506,6 +1506,7 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 'right-userrights'           => 'Edit all user rights',
 'right-userrights-interwiki' => 'Edit user rights of users in other wiki sites',
 'right-siteadmin'            => 'Lock and unlock the database',
+'right-patrolmarks'          => 'Use recent changes patrol features',
 
 # User rights log
 'rightslog'      => 'User rights log',
