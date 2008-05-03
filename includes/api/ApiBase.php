@@ -508,7 +508,10 @@ abstract class ApiBase {
 	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
 		if( trim($value) === "" )
 			return array();
-		$valuesList = explode('|', $value);
+		$valuesList = explode('|', $value,51); // some kind of limit is needed here!
+		if( count($valuesList) == 51 ) {
+			$junk = array_pop($valuesList); // kill last jumbled param
+		}
 		if (!$allowMultiple && count($valuesList) != 1) {
 			$possibleValues = is_array($allowedValues) ? "of '" . implode("', '", $allowedValues) . "'" : '';
 			$this->dieUsage("Only one $possibleValues is allowed for parameter '$valueName'", "multival_$valueName");
