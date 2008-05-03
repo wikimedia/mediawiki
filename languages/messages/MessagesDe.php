@@ -1107,7 +1107,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'right-delete'               => 'Seiten löschen',
 'right-bigdelete'            => 'Seiten löschen mit großer Versionsgeschichte',
 'right-deleterevision'       => 'Löschen und Wiederherstellen einzelner Versionen',
-'right-deletedhistory'       => 'Ansehen gelöschter Versionen in der Versionsgeschichte, ohne zugehörigen Text',
+'right-deletedhistory'       => 'Ansehen gelöschter Versionen in der Versionsgeschichte (ohne zugehörigen Text)',
 'right-browsearchive'        => 'Suche nach gelöschten Seiten',
 'right-undelete'             => 'Seiten wiederherstellen',
 'right-hiderevision'         => 'Ansehen und wiederherstellen von Versionen, die auch vor Administratoren verborgen sind',
@@ -1127,6 +1127,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'right-importupload'         => 'Import von Seiten über Dateihochladen',
 'right-patrol'               => 'Markiere Bearbeitungen als kontrolliert',
 'right-autopatrol'           => 'Markiere Bearbeitungen automatisch als kontrolliert',
+'right-patrolmarks'          => 'Ansehen der Kontrollmarkierungen in den letzten Änderungen',
 'right-unwatchedpages'       => 'Ansehen der Liste unbeobachteter Seiten',
 'right-trackback'            => 'Trackback übermitteln',
 'right-mergehistory'         => 'Versionsgeschichten von Seiten vereinen',
@@ -1959,7 +1960,9 @@ Die Seite „[[$1]]“ existiert bereits. Möchtest du diese löschen, um die Se
 'delete_and_move_reason'  => 'gelöscht, um Platz für Verschiebung zu machen',
 'selfmove'                => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
 'immobile_namespace'      => 'Der Quell- oder Zielnamensraum ist geschützt; Verschiebungen in diesen Namensraum hinein oder aus diesem heraus sind nicht möglich.',
-
+'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
+'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch ',
+ 
 # Export
 'export'            => 'Seiten exportieren',
 'exporttext'        => 'Mit dieser Spezialseite kannst du den Text (und die Bearbeitungs-/Versionsgeschichte) einzelner Seiten in eine XML-Datei exportieren.
