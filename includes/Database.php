@@ -1656,6 +1656,18 @@ class Database {
 	}
 
 	/**
+	 * Returns a comand for str_replace function in SQL query.
+	 * Uses REPLACE() in MySQL
+	 *
+	 * @param string $orig String or column to modify
+	 * @param string $old String or column to seek
+	 * @param string $new String or column to replace with
+	 */
+	function strreplace( $orig, $old, $new ) {
+		return "REPLACE({$orig}, {$old}, {$new})";
+	}
+
+	/**
 	 * Determines if the last failure was due to a deadlock
 	 */
 	function wasDeadlock() {

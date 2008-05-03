@@ -2388,6 +2388,19 @@ class Title {
 			return 'badarticleerror';
 		}
 
+		// Image-specific checks
+		if( $this->getNamespace() == NS_IMAGE ) {
+			$file = wfLocalFile( $this );
+			if( $file->exists() ) {
+				if( $nt->getNamespace() != NS_IMAGE ) {
+					return 'imagenocrossnamespace';
+				}
+				if( !File::checkExtesnionCompatibility( $file, $nt->getDbKey() ) ) {
+					return 'imagetypemismatch';
+				}
+			}
+		}
+
 		if ( $auth ) {
 			global $wgUser;
 			$errors = array_merge($this->getUserPermissionsErrors('move', $wgUser),
@@ -2439,11 +2452,14 @@ class Title {
 
 		$pageid = $this->getArticleID();
 		if( $nt->exists() ) {
-			$this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
+			$err = $this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
 			$pageCountChange = ($createRedirect ? 0 : -1);
 		} else { # Target didn't exist, do normal move.
-			$this->moveToNewTitle( $nt, $reason, $createRedirect );
+			$err = $this->moveToNewTitle( $nt, $reason, $createRedirect );
 			$pageCountChange = ($createRedirect ? 1 : 0);
+		}
+		if( is_string( $err ) ) {
+			return $err;
 		}
 		$redirid = $this->getArticleID();
 
@@ -2541,6 +2557,17 @@ class Title {
 		$oldid = $this->getArticleID();
 		$dbw = wfGetDB( DB_MASTER );
 
+		# Move an image if it is
+		if( $this->getNamespace() == NS_IMAGE ) {
+			$file = wfLocalFile( $this );
+			if( $file->exists() ) {
+				$status = $file->move( $nt );
+				if( !$status->isOk() ) {
+					return $status->getWikiText();
+				}
+			}
+		}
+
 		# Delete the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
 		# We have to remove it so that the next step doesn't trigger
@@ -2636,6 +2663,17 @@ class Title {
 		$dbw = wfGetDB( DB_MASTER );
 		$now = $dbw->timestamp();
 
+		# Move an image if it is
+		if( $this->getNamespace() == NS_IMAGE ) {
+			$file = wfLocalFile( $this );
+			if( $file->exists() ) {
+				$status = $file->move( $nt );
+				if( !$status->isOk() ) {
+					return $status->getWikiText();
+				}
+			}
+		}
+
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
@@ -2700,6 +2738,15 @@ class Title {
 
 		$fname = 'Title::isValidMoveTarget';
 		$dbw = wfGetDB( DB_MASTER );
+
+		# Is it an existsing file?
+		if( $nt->getNamespace() == NS_IMAGE ) {
+			$file = wfLocalFile( $nt );
+			if( $file->exists() ) {
+				wfDebug( __METHOD__ . ": file exists\n" );
+				return false;
+			}
+		}
 
 		# Is it a redirect?
 		$id  = $nt->getArticleID();

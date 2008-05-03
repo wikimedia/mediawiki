@@ -96,6 +96,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and local one
 * Update documentation links in auto-generated LocalSettings.php
 * (bug 13584) The new hook SkinTemplateToolboxEnd was added.
+* (bug 709) Cannot rename/move images and other media files [EXPERIMENTAL]
 
 === Bug fixes in 1.13 ===
 

@@ -910,6 +910,39 @@ class LocalFile extends File
 	/** wasDeleted inherited */
 
 	/**
+	 * Move file to the new title
+	 *
+	 * Move current, old version and all thumbnails
+	 * to the new filename. Old file is deleted.
+	 *
+	 * Cache purging is done; checks for validity
+	 * and logging are caller's responsibility
+	 *
+	 * @param $target Title New file name
+	 * @return FileRepoStatus object.
+	 */
+	function move( $target ) {
+		$this->lock();
+		$dbw = $this->repo->getMasterDB();
+		$batch = new LocalFileMoveBatch( $this, $target, $dbw );
+		$batch->addCurrent();
+		$batch->addOlds();
+		if( !$this->repo->canTransformVia404() ) {
+			$batch->addThumbs();
+		}
+
+		$status = $batch->execute();
+		$this->purgeEverything();
+		$this->unlock();
+
+		// Now switch the object and repurge
+		$this->title = $target;
+		unset( $this->name );
+		$this->purgeEverything();
+		return $status;
+	}
+
+	/**
 	 * Delete all versions of the file.
 	 *
 	 * Moves the files into an archive directory (or deletes them)
@@ -1604,5 +1637,162 @@ class LocalFileRestoreBatch {
 		}
 		$status = $this->file->repo->cleanupDeletedBatch( $this->cleanupBatch );
 		return $status;
+	}
+}
+
+#------------------------------------------------------------------------------
+
+/**
+ * Helper class for file movement
+ */
+class LocalFileMoveBatch {
+	var $file, $cur, $olds, $archive, $thumbs, $target, $db;
+
+	function __construct( File $file, Title $target, Database $db ) {
+		$this->file = $file;
+		$this->target = $target;
+		$this->oldHash = $this->file->repo->getHashPath( $this->file->getName() );
+		$this->newHash = $this->file->repo->getHashPath( $this->target->getDbKey() );
+		$this->oldName = $this->file->getName();
+		$this->newName = $this->file->repo->getNameFromTitle( $this->target );
+		$this->oldRel = $this->oldHash . $this->oldName;
+		$this->newRel = $this->newHash . $this->newName;
+		$this->db = $db;
+	}
+
+	function addCurrent() {
+		$this->cur = array( $this->oldRel, $this->newRel );
+	}
+
+	function addThumbs() {
+		$this->thumbs = array();
+		$repo = $this->file->repo;
+		$thumbDirRel = 'thumb/' . $this->oldRel;
+		$thumbDir = $repo->getZonePath( 'public' ) . '/' . $thumbDirRel;
+		$newThumbDirRel = 'thumb/' . $this->newRel;
+		if( !is_dir( $thumbDir ) || !is_readable( $thumbDir ) ) {
+			$this->thumbs = array();
+			return;
+		} else {
+			$files = scandir( $thumbDir );
+			foreach( $files as $file ) {
+				if( $file == '.' || $file == '..' ) continue;
+				if( preg_match( '/^(\d+)px-/', $file, $matches ) ) {
+					list( $unused, $width ) = $matches;
+					$this->thumbs[] = array(
+						$thumbDirRel . '/' . $file,
+						$newThumbDirRel . '/' . $width . 'px-' . $this->newName
+					);
+				} else {
+					wfDebug( 'Strange file in thumbnail directory: ' . $thumbDirRel . '/' . $file );
+				}
+			}
+		}
+	}
+
+	function addOlds() {
+		$archiveBase = 'archive';
+		$this->olds = array();
+
+		$result = $this->db->select( 'oldimage',
+			array( 'oi_archive_name' ),
+			array( 'oi_name' => $this->oldName ),
+			__METHOD__
+		);
+		while( $row = $this->db->fetchObject( $result ) ) {
+			$oldname = $row->oi_archive_name;
+			$bits = explode( '!', $oldname, 2 );
+			if( count( $bits ) != 2 ) {
+				wfDebug( 'Invalid old file name: ' . $oldname );
+				continue;
+			}
+			list( $timestamp, $filename ) = $bits;
+			if( $this->oldName != $filename ) {
+				wfDebug( 'Invalid old file name:' . $oldName );
+				continue;
+			}
+			$this->olds[] = array(
+				"{$archiveBase}/{$this->oldHash}{$oldname}",
+				"{$archiveBase}/{$this->oldHash}{$timestamp}!{$this->newName}"
+			);
+		}
+		$this->db->freeResult( $result );
+	}
+
+	function execute() {
+		$repo = $this->file->repo;
+		$status = $repo->newGood();
+		$triplets = $this->getMoveTriplets();
+
+		$statusDb = $this->doDBUpdates();
+		$statusMove = $repo->storeBatch( $triplets, FSRepo::DELETE_SOURCE );
+		if( !$statusMove->isOk() ) {
+			$this->db->rollback();
+		}
+		$status->merge( $statusDb );
+		$status->merge( $statusMove );
+		return $status;
+	}
+
+	function doDBUpdates() {
+		$repo = $this->file->repo;
+		$status = $repo->newGood();
+		$dbw = $this->db;
+
+		// Update current image
+		$dbw->update( 
+			'image',
+			array( 'img_name' => $this->newName ),
+			array( 'img_name' => $this->oldName ),
+			__METHOD__
+		);
+		if( $dbw->affectedRows() ) {
+			$status->successCount++;
+		} else {
+			$status->failCount++;
+		}
+
+		// Update old images
+		$dbw->update(
+			'oldimage',
+			array(
+				'oi_name' => $this->newName,
+				'oi_archive_name = ' . $dbw->strreplace( 'oi_archive_name', $dbw->addQuotes($this->oldName), $dbw->addQuotes($this->newName) ),
+			),
+			array( 'oi_name' => $this->oldName ),
+			__METHOD__
+		);
+		$affected = $dbw->affectedRows();
+		$total = count( $this->olds );
+		$status->successCount += $affected;
+		$status->failCount += $total - $affected;
+
+		// Update deleted images
+		$dbw->update(
+			'filearchive',
+			array(
+				'fa_name' => $this->newName,
+				'fa_archive_name = ' . $dbw->strreplace( 'fa_archive_name', $dbw->addQuotes($this->oldName), $dbw->addQuotes($this->newName) ),
+			),
+			array( 'fa_name' => $this->oldName ),
+			__METHOD__
+		);
+		$affected = $dbw->affectedRows();
+		$total = count( $this->olds );
+		$status->successCount += $affected;
+		$status->failCount += $total - $affected;
+
+		return $status;
+	}
+
+	// Generates triplets for FSRepo::storeBatch()
+	function getMoveTriplets() {
+		$moves = array_merge( array( $this->cur ), $this->olds, $this->thumbs );
+		$triplets = array();	// The format is: (srcUrl,destZone,desrUrl)
+		foreach( $moves as $move ) {
+			$srcUrl = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $move[0] );
+			$triplets[] = array( $srcUrl, 'public', $move[1] );
+		}
+		return $triplets;
 	}
 }
