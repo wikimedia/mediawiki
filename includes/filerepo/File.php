@@ -95,7 +95,7 @@ abstract class File {
 	 * @param $old File Old file
 	 * @param $new string New name
 	 */
-	static function checkExtesnionCompatibility( File $old, $new ) {
+	static function checkExtensionCompatibility( File $old, $new ) {
 		$oldMime = $old->getMimeType();
 		$n = strrpos( $new, '.' );
 		$newExt = self::normalizeExtension(
