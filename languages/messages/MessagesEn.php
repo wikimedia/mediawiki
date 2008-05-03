@@ -1500,13 +1500,13 @@ A * indicates that you cannot remove the group once you have added it, or vice v
 'right-importupload'         => 'Import pages from a file upload',
 'right-patrol'               => 'Mark edits as patrolled',
 'right-autopatrol'           => 'Have edits automatically marked as patrolled',
+'right-patrolmarks'          => 'View recent changes patrol marks',
 'right-unwatchedpages'       => 'View a list of unwatched pages',
 'right-trackback'            => 'Submit a trackback',
 'right-mergehistory'         => 'Merge the history of pages',
 'right-userrights'           => 'Edit all user rights',
 'right-userrights-interwiki' => 'Edit user rights of users in other wiki sites',
 'right-siteadmin'            => 'Lock and unlock the database',
-'right-patrolmarks'          => 'Use recent changes patrol features',
 
 # User rights log
 'rightslog'      => 'User rights log',
