@@ -692,7 +692,7 @@ function os_initHandlers(name, formname, element){
 	os_hookEvent(element, "focus", function(event) { os_eventFocus(event); });
 	element.setAttribute("autocomplete","off");
 	// stopping handler
-	os_hookEvent(document.getElementById(formname), "onsubmit", function(event){ return os_eventOnsubmit(event); });
+	os_hookEvent(document.getElementById(formname), "submit", function(event){ return os_eventOnsubmit(event); });
 	os_map[name] = r; 
 	// toggle link
 	if(document.getElementById(r.toggle) == null){
