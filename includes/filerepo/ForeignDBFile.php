@@ -28,7 +28,10 @@ class ForeignDBFile extends LocalFile {
 	function delete( /*...*/ ) {
 		$this->readOnlyError();
 	}
-
+	function move( /*...*/ ) {
+		$this->readOnlyError();
+	}
+	
 	function getDescriptionUrl() {
 		// Restore remote behaviour
 		return File::getDescriptionUrl();
