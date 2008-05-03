@@ -2423,7 +2423,7 @@ class Article {
 	 * doRollback() instead.
 	 */
 	public function commitRollback($fromP, $summary, $bot, &$resultDetails) {
-		global $wgUseRCPatrol, $wgUser;
+		global $wgUseRCPatrol, $wgUser, $wgLang;
 		$dbw = wfGetDB( DB_MASTER );
 
 		if( wfReadOnly() ) {
@@ -2488,15 +2488,17 @@ class Article {
 
 		# Generate the edit summary if necessary
 		$target = Revision::newFromId( $s->rev_id );
-		if( empty( $summary ) )
-		{
-			global $wgLang;
-			$summary = wfMsgForContent( 'revertpage',
-					 $target->getUserText(), $from,
-					 $s->rev_id, $wgLang->timeanddate(wfTimestamp(TS_MW, $s->rev_timestamp), true),
-					 $current->getId(), $wgLang->timeanddate($current->getTimestamp())
-			);
+		if( empty( $summary ) ){
+			$summary = wfMsgForContent( 'revertpage' );
 		}
+		
+		# Allow the custom summary to use the same args as the default message
+		$args = array(
+			$target->getUserText(), $from, $s->rev_id,
+			$wgLang->timeanddate(wfTimestamp(TS_MW, $s->rev_timestamp), true),
+			$current->getId(), $wgLang->timeanddate($current->getTimestamp())
+		);
+		$summary = wfMsgReplaceArgs( $summary, $args ); 
 
 		# Save
 		$flags = EDIT_UPDATE;
