@@ -2395,7 +2395,7 @@ class Title {
 				if( $nt->getNamespace() != NS_IMAGE ) {
 					return 'imagenocrossnamespace';
 				}
-				if( !File::checkExtesnionCompatibility( $file, $nt->getDbKey() ) ) {
+				if( !File::checkExtensionCompatibility( $file, $nt->getDbKey() ) ) {
 					return 'imagetypemismatch';
 				}
 			}
