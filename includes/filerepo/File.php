@@ -90,6 +90,21 @@ abstract class File {
 	}
 
 	/**
+	 * Checks if file extensions are compatible
+	 *
+	 * @param $old File Old file
+	 * @param $new string New name
+	 */
+	static function checkExtesnionCompatibility( File $old, $new ) {
+		$oldMime = $old->getMimeType();
+		$n = strrpos( $new, '.' );
+		$newExt = self::normalizeExtension(
+			$n ? substr( $new, $n + 1 ) : '' );
+		$mimeMagic = MimeMagic::singleton();
+		return $mimeMagic->isMatchingExtension( $newExt, $oldMime );
+	}
+
+	/**
 	 * Upgrade the database row if there is one
 	 * Called by ImagePage
 	 * STUB
@@ -915,6 +930,22 @@ abstract class File {
 		$title = $this->getTitle();
 		return $title && $title->isDeleted() > 0;
 	}
+
+	/**
+	 * Move file to the new title
+	 *
+	 * Move current, old version and all thumbnails
+	 * to the new filename. Old file is deleted.
+	 *
+	 * Cache purging is done; checks for validity
+	 * and logging are caller's responsibility
+	 *
+	 * @param $target Title New file name
+	 * @return FileRepoStatus object.
+	 */
+	 function move( $target ) {
+		$this->readOnlyError();
+	 }
 
 	/**
 	 * Delete all versions of the file.
