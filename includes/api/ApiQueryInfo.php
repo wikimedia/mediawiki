@@ -103,6 +103,77 @@ class ApiQueryInfo extends ApiQueryBase {
 				$protections[$row->pr_page][] = $a;
 			}
 			$db->freeResult($res);
+			
+			$imageIds = array();
+			foreach ($titles as $id => $title)
+				if ($title->getNamespace() == NS_IMAGE)
+					$imageIds[] = $id;
+			
+			if (count($imageIds) != count($titles)) {
+				// Check for cascading protection for non images
+				$this->resetQueryParams();
+				$this->addTables(array('page_restrictions', 'templatelinks'));
+				$this->addTables('page', 'page_source');
+				$this->addTables('page', 'page_target');
+				$this->addFields(array('pr_type', 'pr_level', 'pr_expiry', 
+						'page_target.page_id AS page_target_id',
+						'page_source.page_namespace AS page_source_namespace',
+						'page_source.page_title AS page_source_title'));
+				$this->addWhere(array('tl_from = pr_page', 
+						'page_target.page_namespace = tl_namespace', 
+						'page_target.page_title = tl_title',
+						'page_source.page_id = pr_page'
+				));
+				$this->addWhereFld('pr_cascade', 1);
+				$this->addWhereFld('page_target.page_id', array_diff(array_keys($titles), $imageIds));
+				
+				$res = $this->select(__METHOD__);
+				while($row = $db->fetchObject($res)) {
+					$source = Title::makeTitle($row->page_source_namespace, $row->page_source_title);
+					$a = array(
+						'type' => $row->pr_type,
+						'level' => $row->pr_level,
+						'expiry' => Block::decodeExpiry( $row->pr_expiry, TS_ISO_8601 ),
+						'source' => $source->getPrefixedText()
+					);
+					$protections[$row->page_target_id][] = $a;
+				}
+				$db->freeResult($res);
+			}
+
+			if (count($imageIds) != 0) {
+				// Check for cascading protection for non images
+				$this->resetQueryParams();
+				$this->addTables(array('page_restrictions', 'imagelinks'));
+				$this->addTables('page', 'page_source');
+				$this->addTables('page', 'page_target');
+				$this->addFields(array('pr_type', 'pr_level', 'pr_expiry', 
+						'page_target.page_id AS page_target_id',
+						'page_source.page_namespace AS page_source_namespace',
+						'page_source.page_title AS page_source_title'));
+				$this->addWhere(array('il_from = pr_page', 
+						'page_target.page_namespace = '.NS_IMAGE, 
+						'page_target.page_title = il_to',
+						'page_source.page_id = pr_page'
+				));
+				$this->addWhereFld('pr_cascade', 1);
+				$this->addWhereFld('page_target.page_id', $imageIds);
+				
+				$res = $this->select(__METHOD__);
+				while($row = $db->fetchObject($res)) {
+					$source = Title::makeTitle($row->page_source_namespace, $row->page_source_title);
+					$a = array(
+						'type' => $row->pr_type,
+						'level' => $row->pr_level,
+						'expiry' => Block::decodeExpiry( $row->pr_expiry, TS_ISO_8601 ),
+
+						'source' => $source->getPrefixedText()
+					);
+					$protections[$row->page_target_id][] = $a;
+				}
+				$db->freeResult($res);
+			}
+			
 		}
 		// We don't need to check for pt stuff if there are no nonexistent titles
 		if($fld_protection && !empty($missing))
