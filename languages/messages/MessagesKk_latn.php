@@ -362,7 +362,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'Derekqordı_qulıptamaw' ),
 	'Userrights'                => array( 'Qatıswşı_quqıqtarı' ),
 	'MIMEsearch'                => array( 'MIME_türimen_izdew' ),
-	'FileDuplicateSearch'       => array( 'Qaýtalanğan_faýldardı_izdew' ),
+	'FileDuplicateSearch'       => array( 'Faýl_telnusqasın_izdew', 'Qaýtalanğan_faýldardı_izdew' ),
 	'Unwatchedpages'            => array( 'Baqılanılmağan_better' ),
 	'Listredirects'             => array( 'Aýdatw_tizimi' ),
 	'Revisiondelete'            => array( 'Nusqanı_joyw' ),
@@ -1369,6 +1369,7 @@ Bos qabaşaq bolsa qatıswşı osı topqa kirmegenin körsetedi.
 'right-importupload'         => 'Faýl qotarwımen sırttan betterdi alw',
 'right-patrol'               => 'Tüzetwlerdi küzette dep belgilew',
 'right-autopatrol'           => 'Tüzetwlerdi küzette dep özdiktik belgilew',
+'right-patrolmarks'          => 'Jwıqtağı özgeristerdegi küzet belgilerin körw',
 'right-unwatchedpages'       => 'Baqılanılmağan bet tizimin körw',
 'right-trackback'            => 'Añıstawdı jöneltw',
 'right-mergehistory'         => 'Betterdiñ tarïxın qosıp berw',
@@ -1561,14 +1562,14 @@ Bağannıñ bas jolın nuqığanda surıptaw reti ozgertiledi.',
 'shareduploadwiki'               => 'Bılaýğı aqparat üşin $1 degendi qarañız.',
 'shareduploadwiki-desc'          => 'Bul $1 mälimetteri tömende körsetiledi.',
 'shareduploadwiki-linktext'      => 'faýldıñ sïpattama beti',
-'shareduploadduplicate'          => 'Bul faýl ortaq qoýmadağı $1 faýlınıñ qaýtalanğanı.',
+'shareduploadduplicate'          => 'Bul faýl ortaq qoýmadağı $1 faýlınıñ telnusqası.',
 'shareduploadduplicate-linktext' => 'basqa faýl',
 'shareduploadconflict'           => 'Bul faýl atı ortaq qoýmadağı $1 faýlımen däl keledi',
 'shareduploadconflict-linktext'  => 'basqa faýl',
 'noimage'                        => 'Bılaý atalğan faýl joq, $1 mümkindigiñiz bar.',
 'noimage-linktext'               => 'bunı qotarw',
 'uploadnewversion-linktext'      => 'Bul faýldıñ jaña nusqasın qotarw',
-'imagepage-searchdupe'           => 'Qaýtalanğan faýldardı izdew',
+'imagepage-searchdupe'           => 'Faýl telnusqaların izdew',
 
 # File reversion
 'filerevert'                => '$1 degendi qaýtarw',
@@ -1597,7 +1598,7 @@ Eñ aldınan eskilew nusqasına qaýtarıñız.',
 'filedelete-reason-otherlist' => 'Basqa sebep',
 'filedelete-reason-dropdown'  => '* Joywdıñ jalpı sebepteri
 ** Awtorlıq quqıqtarın buzw
-** Qaýtalanğan faýl',
+** Faýl telnusqası',
 'filedelete-edit-reasonlist'  => 'Joyw sebepterin öñdew',
 
 # MIME search
@@ -2214,6 +2215,8 @@ Jıljıtwğa jol berw üşin joyamız ba?',
 bet özine jıljıtılmaýdı.',
 'immobile_namespace'      => 'Qaýnar ne nısana atawı arnaýı türine jatadı;
 osındaý esim ayasına jäne esim ayasınan better jıljıtılmaýdı.',
+'imagenocrossnamespace'   => "Swret basqa esim ayasına jıljıtılmaýdı",
+'imagetypemismatch'       => "Jaña faýl keñeýtimi türine säýkes emes",
 
 # Export
 'export'            => 'Betterdi sırtqa berw',
@@ -2785,7 +2788,10 @@ Quptaw belgilemesiniñ merzimi bitetin kezi: $4.',
 'scarytranscludetoolong'  => '[URL jaýı tım uzın; ğafw etiñiz]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Bul bettiñ añıstawları:<br />$1</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">Bul bettiñ añıstawları:
+
+$1
+</div>',
 'trackbackremove'   => '([$1 Joyw])',
 'trackbacklink'     => 'Añıstaw',
 'trackbackdeleteok' => 'Añıstaw sätti joýıldı.',
@@ -2961,16 +2967,16 @@ Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qat
 Faýl atawın «{{ns:image}}:» degen bastawışsız eñgiziñiz.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'Qaýtalanğan faýldardı izdew',
-'fileduplicatesearch-summary'  => 'Qaýtalanğan faýldardı olardıñ xeş mağınası negizinde izdew.
+'fileduplicatesearch'          => 'Faýl telnusqaların izdew',
+'fileduplicatesearch-summary'  => 'Faýl xeşi mağınası negizinde telnusqaların izdew.
 
 Faýl atawın «{{ns:image}}:» degen bastawışsız engiziñiz.',
-'fileduplicatesearch-legend'   => 'Qaýtalanğandı izdew',
+'fileduplicatesearch-legend'   => 'Telnusqanı izdew',
 'fileduplicatesearch-filename' => 'Faýl atı:',
 'fileduplicatesearch-submit'   => 'İzde',
 'fileduplicatesearch-info'     => '$1 × $2 pïksel<br />Faýl mölşeri: $3<br />MIME türi: $4',
-'fileduplicatesearch-result-1' => '«$1» faýlına teñ qaýtalanğan joq.',
-'fileduplicatesearch-result-n' => '«$1» faýlına {{PLURAL:$2|1 teñ qaýtalanğan|$2 teñ qaýtalanğan}}.',
+'fileduplicatesearch-result-1' => '«$1» faýlına teñ telnusqası joq.',
+'fileduplicatesearch-result-n' => '«$1» faýlına {{PLURAL:$2|1 teñ telnusqası|$2 teñ telnusqası}} bar.',
 
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Qızmettik bayanattar',
