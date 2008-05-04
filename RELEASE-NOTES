@@ -298,6 +298,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13836) Fixed fatal errors resulting from combining iiprop=metadata with
   format=xml
 * (bug 13735) Added prop=categoryinfo module
+* (bug 13945) Retrieve cascading protection sources via inprop=protection
 
 === Languages updated in 1.13 ===
 
