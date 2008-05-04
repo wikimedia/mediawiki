@@ -98,6 +98,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13584) The new hook SkinTemplateToolboxEnd was added.
 * (bug 709) Cannot rename/move images and other media files [EXPERIMENTAL]
 * Custom rollback summaries now accept the same arguments as the default message
+* (bug 12542) Added hooks for expansion of Special:Listusers
 
 === Bug fixes in 1.13 ===
 
