@@ -240,6 +240,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13924) Fix bad HTML on power search form
 * (bug 13820) Fix updater for rev_parent_id population
 * (bug 13925) Fix bad HTML on search results list
+* (bug 13934) Fixing the link to GNU General Public License Version 2
 
 
 === API changes in 1.13 ===
