@@ -887,6 +887,7 @@ $2',
 'right-import'               => '由它wiki匯入頁',
 'right-importupload'         => '由品貢匯入頁',
 'right-patrol'               => '示纂作已巡查',
+'right-patrolmarks'          => '察近巡查記之易',
 'right-autopatrol'           => '將纂自示為已巡查',
 'right-unwatchedpages'       => '看未哨之頁',
 'right-trackback'            => '交一trackback',
@@ -1566,6 +1567,8 @@ $NEWPAGE
 'delete_and_move_reason'  => '為遷而刪之',
 'selfmove'                => '鄉遷同源，如未移也。',
 'immobile_namespace'      => '鄉遷其一，名冊特異，不可遷也。',
+'imagenocrossnamespace'   => '非勳圖至非圖名間',
+'imagetypemismatch'       => '其新副檔名非配其類也',
 
 # Export
 'export'            => '出匯',
