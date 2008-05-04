@@ -1,18 +1,22 @@
 // MediaWiki JavaScript support functions
 
 var clientPC = navigator.userAgent.toLowerCase(); // Get client info
-var is_gecko = ((clientPC.indexOf('gecko')!=-1) && (clientPC.indexOf('spoofer')==-1)
-                && (clientPC.indexOf('khtml') == -1) && (clientPC.indexOf('netscape/7.0')==-1));
-var is_safari = ((clientPC.indexOf('applewebkit')!=-1) && (clientPC.indexOf('spoofer')==-1));
-var is_khtml = (navigator.vendor == 'KDE' || ( document.childNodes && !document.all && !navigator.taintEnabled ));
-// For accesskeys
-var is_ff2_win = (clientPC.indexOf('firefox/2')!=-1 || clientPC.indexOf('minefield/3')!=-1) && clientPC.indexOf('windows')!=-1;
-var is_ff2_x11 = (clientPC.indexOf('firefox/2')!=-1 || clientPC.indexOf('minefield/3')!=-1) && clientPC.indexOf('x11')!=-1;
+var is_gecko = /gecko/.test( clientPC ) &&
+	!/khtml|spoofer|netscape\/7\.0/.test(clientPC);
+var is_safari = clientPC.indexOf('applewebkit') != -1 &&
+	clientPC.indexOf('spoofer') == -1;
+var is_khtml = navigator.vendor == 'KDE' ||
+	( document.childNodes && !document.all && !navigator.taintEnabled );
+// For accesskeys; note that FF3+ is included here!
+var is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
+// These aren't used here, but some custom scripts rely on them
+var is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
+var is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
 if (clientPC.indexOf('opera') != -1) {
 	var is_opera = true;
-	var is_opera_preseven = (window.opera && !document.childNodes);
-	var is_opera_seven = (window.opera && document.childNodes);
-	var is_opera_95 = (clientPC.search(/opera\/(9.[5-9]|[1-9][0-9])/)!=-1);
+	var is_opera_preseven = window.opera && !document.childNodes;
+	var is_opera_seven = window.opera && document.childNodes;
+	var is_opera_95 = /opera\/(9.[5-9]|[1-9][0-9])/.test( clientPC );
 }
 
 // Global external objects used by this script.
@@ -498,7 +502,7 @@ if (is_opera) {
 	   || navigator.userAgent.toLowerCase().indexOf('mac') != -1
 	   || navigator.userAgent.toLowerCase().indexOf('konqueror') != -1 ) {
 	tooltipAccessKeyPrefix = 'ctrl-';
-} else if (is_ff2_x11 || is_ff2_win) {
+} else if (is_ff2) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
 }
 var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?.\]$/;
