@@ -1619,6 +1619,20 @@ $wgDisableCounters = false;
 $wgDisableTextSearch = false;
 $wgDisableSearchContext = false;
 
+
+/**
+ * Set to true to have nicer highligted text in search results,
+ * by default off due to execution overhead  
+ */
+$wgAdvancedSearchHighlighting = false;
+
+/** 
+ * Regexp to match word boundaries, defaults for non-CJK languages
+ * should be empty for CJK since the words are not separate 
+ */
+$wgSearchHighlightBoundaries = version_compare("5.1", PHP_VERSION, "<")? '[\p{Z}\p{P}\p{C}]' 
+	: '[ ,.;:!?~!@#$%\^&*\(\)+=\-\\|\[\]"\'<>\n\r\/{}]'; // PHP 5.0 workaround
+
 /**
  * Template for OpenSearch suggestions, defaults to API action=opensearch
  * 

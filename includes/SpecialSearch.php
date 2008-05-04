@@ -374,6 +374,7 @@ class SpecialSearch {
 		//This is not quite safe, but better than showing excerpts from non-readable pages
 		//Note that hiding the entry entirely would screw up paging.
 		if (!$t->userCanRead()) {
+			wfProfileOut( $fname );
 			return "<li>{$link}</li>\n";
 		}
 
@@ -381,6 +382,7 @@ class SpecialSearch {
 		// The least confusing at this point is to drop the result.
 		// You may get less results, but... oh well. :P
 		if( $result->isMissingRevision() ) {
+			wfProfileOut( $fname );
 			return "<!-- missing page " .
 				htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
 		}

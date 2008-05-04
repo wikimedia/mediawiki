@@ -54,10 +54,10 @@ class SearchMySQL extends SearchEngine {
 					// Match the quoted term in result highlighting...
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
 				}
-				$this->searchTerms[] = "\b$regexp\b";
+				$this->searchTerms[] = $regexp;
 			}
 			wfDebug( "Would search with '$searchon'\n" );
-			wfDebug( 'Match with /\b' . implode( '\b|\b', $this->searchTerms ) . "\b/\n" );
+			wfDebug( 'Match with /' . implode( '|', $this->searchTerms ) . "/\n" );
 		} else {
 			wfDebug( "Can't understand search query '{$filteredText}'\n" );
 		}
