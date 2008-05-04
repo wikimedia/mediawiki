@@ -587,6 +587,19 @@ $wgCheckDBSchema = true;
 $wgSharedDB = null;
 
 /**
+ * List of database tables (without prefixes) to share when $wgSharedDB is enabled.
+ * This only includes the user table by default for backwards compatibility.
+ * However you may remove it so that you can enable extensions using the shared DB
+ * without having shared users. Or you can add in another table, such as interwiki
+ * to force MediaWiki to use the shared version of the table instead.
+ * 
+ * Be carefull with sharing tables. The images, revisions, pages, and many of the
+ * other tables may have bad side effects if you share them.
+ * EXPERIMENTAL
+ */
+$wgSharedDBtables = array( 'user' );
+
+/**
  * Database load balancer
  * This is a two-dimensional array, an array of server info structures
  * Fields are:
