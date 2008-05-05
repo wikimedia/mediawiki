@@ -87,7 +87,7 @@ class ImagePage extends Article {
 
 		$this->closeShowImage();
 		$this->imageHistory();
-		$this->imageLinks();
+		
 
 		if ( $showmeta ) {
 			global $wgStylePath, $wgStyleVersion;
@@ -111,10 +111,12 @@ class ImagePage extends Article {
 	 */
 	function showTOC( $metadata ) {
 		global $wgLang;
+		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere' );
+		$backlinksUrl = $wlh->getLocalUrl( 'hidelinks=1&hidetrans=1&target=' . urlencode( $this->mTitle->getFullText() ) );
 		$r = '<ul id="filetoc">
 			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
 			<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>
-			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . '</a></li>' .
+			<li><a href="' . $backlinksUrl . '">' . wfMsgHtml( 'imagelinks' ) . '</a></li>' .
 			($metadata ? ' <li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . '
 		</ul>';
 		return $r;
@@ -490,36 +492,6 @@ EOT
 			$this->uploadLinksBox();
 		}
 
-	}
-
-	function imageLinks()
-	{
-		global $wgUser, $wgOut;
-
-		$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'filelinks' ), wfMsg( 'imagelinks' ) ) . "\n" );
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-		$imagelinks = $dbr->tableName( 'imagelinks' );
-
-		$sql = "SELECT page_namespace,page_title FROM $imagelinks,$page WHERE il_to=" .
-		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=page_id";
-		$sql = $dbr->limitResult($sql, 500, 0);
-		$res = $dbr->query( $sql, "ImagePage::imageLinks" );
-
-		if ( 0 == $dbr->numRows( $res ) ) {
-			$wgOut->addHtml( '<p>' . wfMsg( "nolinkstoimage" ) . "</p>\n" );
-			return;
-		}
-		$wgOut->addHTML( '<p>' . wfMsg( 'linkstoimage' ) .  "</p>\n<ul>" );
-
-		$sk = $wgUser->getSkin();
-		while ( $s = $dbr->fetchObject( $res ) ) {
-			$name = Title::MakeTitle( $s->page_namespace, $s->page_title );
-			$link = $sk->makeKnownLinkObj( $name, "" );
-			$wgOut->addHTML( "<li>{$link}</li>\n" );
-		}
-		$wgOut->addHTML( "</ul>\n" );
 	}
 
 	/**

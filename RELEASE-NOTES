@@ -103,6 +103,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   shared when $wgSharedDB is enabled.
 * Drop-down AJAX search suggestions (turn on $wgEnableMWSuggest) 
 * More relevant search snippets (turn on $wgAdvancedSearchHighlighting)
+* Image links are now displayed using Special:Whatlinkshere
 
 === Bug fixes in 1.13 ===
 
