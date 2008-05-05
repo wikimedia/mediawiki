@@ -7,7 +7,6 @@
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  * @author Spacebirdy
- * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -804,7 +803,7 @@ Es dürfen nicht mehr als $2 Aufrufe sein, aktuell sind es $1 Aufrufe.',
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
 'undo-failure' => '<span class="error">Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
 'undo-norev'   => 'Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.',
-'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wurde rückgängig gemacht.',
+'undo-summary' => 'Änderung $1 von [[{{#special:Contributions}}/$2|$2]] ([[{{ns:User talk}}:$2|Diskussion]]) wurde rückgängig gemacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden',
@@ -1038,7 +1037,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'userrights-lookup-user'           => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname'         => 'Benutzername:',
 'editusergroup'                    => 'Benutzerrechte bearbeiten',
-'editinguser'                      => "Ändere Benutzerrechte von '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Ändere Benutzerrechte von '''[[{{ns:User}}:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[{{#Special:Contributions}}/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
 'saveusergroups'                   => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember'          => 'Mitglied von:',
@@ -1549,7 +1548,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 
 # E-mail user
 'mailnologin'     => 'Fehler beim E-Mail-Versand',
-'mailnologintext' => 'Du musst [[Special:Userlogin|angemeldet sein]] und eine [[Special:Confirmemail|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
+'mailnologintext' => 'Du musst [[{{#special:Userlogin}}|angemeldet sein]] und eine [[{{#special:Confirmemail}}|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser'       => 'E-Mail an diesen Benutzer',
 'emailpage'       => 'E-Mail an Benutzer',
 'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, kannst du ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus deinen Einstellungen eingetragen, damit der Benutzer dir antworten kann.',
@@ -1961,7 +1960,7 @@ Die Seite „[[$1]]“ existiert bereits. Möchtest du diese löschen, um die Se
 'selfmove'                => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
 'immobile_namespace'      => 'Der Quell- oder Zielnamensraum ist geschützt; Verschiebungen in diesen Namensraum hinein oder aus diesem heraus sind nicht möglich.',
 'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
-'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
+'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch ',
 
 # Export
 'export'            => 'Seiten exportieren',
