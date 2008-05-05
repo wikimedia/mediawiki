@@ -2422,8 +2422,8 @@ Do you want to delete it to make way for the move?',
 cannot move a page over itself.',
 'immobile_namespace'      => 'Source or destination title is of a special type;
 cannot move pages from and into that namespace.',
-'imagenocrossnamespace'   => "Cannot move file to non-file namespace",
-'imagetypemismatch'       => "The new file extension does not match its type",
+'imagenocrossnamespace'   => 'Cannot move file to non-file namespace',
+'imagetypemismatch'       => 'The new file extension does not match its type',
 
 # Export
 'export'            => 'Export pages',
