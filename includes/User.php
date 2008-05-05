@@ -2660,7 +2660,6 @@ class User {
 	/**
 	 * @param array $groups list of groups
 	 * @return array list of permission key names for given groups combined
-	 * @static
 	 */
 	static function getGroupPermissions( $groups ) {
 		global $wgGroupPermissions;
@@ -2677,7 +2676,6 @@ class User {
 	/**
 	 * @param string $group key name
 	 * @return string localized descriptive name for group, if provided
-	 * @static
 	 */
 	static function getGroupName( $group ) {
 		global $wgMessageCache;
@@ -2692,7 +2690,6 @@ class User {
 	/**
 	 * @param string $group key name
 	 * @return string localized descriptive name for member of a group, if provided
-	 * @static
 	 */
 	static function getGroupMember( $group ) {
 		global $wgMessageCache;
@@ -2706,11 +2703,10 @@ class User {
 
 	/**
 	 * Return the set of defined explicit groups.
-	 * The *, 'user', 'autoconfirmed' and 'emailconfirmed'
-	 * groups are not included, as they are defined
-	 * automatically, not in the database.
+	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
+	 * are not included, as they are defined automatically,
+	 * not in the database.
 	 * @return array
-	 * @static
 	 */
 	static function getAllGroups() {
 		global $wgGroupPermissions;
