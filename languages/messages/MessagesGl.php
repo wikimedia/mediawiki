@@ -2515,6 +2515,4 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'specialpages-group-users'       => 'Usuarios e dereitos',
 'specialpages-group-needy'       => 'Páxinas que precisan de traballo',
 'specialpages-group-highuse'     => 'Páxinas con máis uso',
-'specialpages-group-permissions' => 'Permisos de usuario',
-
 );

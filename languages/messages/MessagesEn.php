@@ -2247,14 +2247,12 @@ $1',
 'nolinkshere-ns'           => "No pages link to '''[[:$1]]''' in the chosen namespace.",
 'isredirect'               => 'redirect page',
 'istemplate'               => 'inclusion',
-'isimage'                  => 'file link',
 'whatlinkshere-prev'       => '{{PLURAL:$1|previous|previous $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|next $1}}',
 'whatlinkshere-links'      => '← links',
 'whatlinkshere-hideredirs' => '$1 redirects',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 links',
-'whatlinkshere-hideimages' => '$1 file links',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
@@ -2422,8 +2420,8 @@ Do you want to delete it to make way for the move?',
 cannot move a page over itself.',
 'immobile_namespace'      => 'Source or destination title is of a special type;
 cannot move pages from and into that namespace.',
-'imagenocrossnamespace'   => "Cannot move file to non-file namespace",
-'imagetypemismatch'       => "The new file extension does not match its type",
+'imagenocrossnamespace'   => 'Cannot move file to non-file namespace',
+'imagetypemismatch'       => 'The new file extension does not match its type',
 
 # Export
 'export'            => 'Export pages',

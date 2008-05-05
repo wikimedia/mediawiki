@@ -1589,6 +1589,4 @@ $1',
 'specialpages-group-users'       => 'Gebruikers en regte',
 'specialpages-group-needy'       => 'Bladsye wat werk nodig het',
 'specialpages-group-highuse'     => 'Baie gebruikte bladsye',
-'specialpages-group-permissions' => 'Gebruiker toestemmings',
-
 );

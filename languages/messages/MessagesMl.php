@@ -2222,6 +2222,4 @@ $1',
 'specialpages-group-users'       => 'ഉപയോക്താക്കളും അവകാശങ്ങളും',
 'specialpages-group-needy'       => 'പണികള്‍ വേണ്ട താളുകള്‍',
 'specialpages-group-highuse'     => 'കൂടുതല്‍ ഉപയോഗിക്കപ്പെട്ട താളുകള്‍',
-'specialpages-group-permissions' => 'ഉപയോക്തൃ അവകാശങ്ങള്‍',
-
 );

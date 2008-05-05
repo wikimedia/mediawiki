@@ -2411,6 +2411,4 @@ $1',
 'specialpages-group-users'       => 'Тиихне ди видексне',
 'specialpages-group-needy'       => 'Лопатне конатнень мархта эряви покадемс',
 'specialpages-group-highuse'     => 'Пяк эрявикс лопат',
-'specialpages-group-permissions' => 'Тиить мярьгоманза',
-
 );

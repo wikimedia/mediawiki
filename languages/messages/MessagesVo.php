@@ -2265,12 +2265,10 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 'fileduplicatesearch-info'     => 'pixels $1 × $2 <br />Ragivagretot: $3<br />MIME-sot: $4',
 
 # Special:SpecialPages
-'specialpages-group-other'       => 'Pads patik votik',
-'specialpages-group-login'       => 'Nunädön oki / jafön kali',
-'specialpages-group-changes'     => 'Votükams nulik e jenotaliseds',
-'specialpages-group-users'       => 'Gebans e gitäts',
-'specialpages-group-needy'       => 'Pads bevobami neodöls',
-'specialpages-group-highuse'     => 'Pads suvo pegeböls',
-'specialpages-group-permissions' => 'Gebanadäls',
-
+'specialpages-group-other'   => 'Pads patik votik',
+'specialpages-group-login'   => 'Nunädön oki / jafön kali',
+'specialpages-group-changes' => 'Votükams nulik e jenotaliseds',
+'specialpages-group-users'   => 'Gebans e gitäts',
+'specialpages-group-needy'   => 'Pads bevobami neodöls',
+'specialpages-group-highuse' => 'Pads suvo pegeböls',
 );

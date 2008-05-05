@@ -2330,6 +2330,4 @@ $1',
 'specialpages-group-users'       => 'பயனர்களும் உரிமைகளும்',
 'specialpages-group-needy'       => 'கவனம் தேவையான பக்கங்கள்',
 'specialpages-group-highuse'     => 'உயர் பயன்பாட்டு பக்கங்கள்',
-'specialpages-group-permissions' => 'பயனர் அனுமதிகள்',
-
 );
