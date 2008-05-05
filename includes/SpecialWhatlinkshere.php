@@ -51,7 +51,6 @@ class WhatLinksHerePage {
 		$opts->add( 'hideredirs', false );
 		$opts->add( 'hidetrans', false );
 		$opts->add( 'hidelinks', false );
-		$opts->add( 'hideimages', false );
 
 		$opts->fetchValuesFromRequest( $this->request );
 		$opts->validateIntBounds( 'limit', 0, 5000 );
@@ -95,7 +94,6 @@ class WhatLinksHerePage {
 		$hidelinks = $this->opts->getValue( 'hidelinks' );
 		$hideredirs = $this->opts->getValue( 'hideredirs' );
 		$hidetrans = $this->opts->getValue( 'hidetrans' );
-		$hideimages = $target->getNamespace() != NS_IMAGE || $this->opts->getValue( 'hideimages' );
 
 		$fetchlinks = !$hidelinks || !$hideredirs;
 
@@ -117,10 +115,6 @@ class WhatLinksHerePage {
 			'tl_title' => $target->getDBkey(),
 		);
 
-		$ilConds = array(
-			'page_id=il_from',
-			'il_to' => $target->getDBkey(),
-		);
 
 		$namespace = $this->opts->getValue( 'namespace' );
 		if ( is_int($namespace) ){
@@ -155,19 +149,13 @@ class WhatLinksHerePage {
 				$tlConds, __METHOD__, $options );
 		}
 
-		if( !$hideimages ) {
-			$options['ORDER BY'] = 'il_from';
-			$ilRes = $dbr->select( array( 'imagelinks', 'page' ), $fields,
-				$ilConds, __METHOD__, $options );
-		}
-
-		if( ( !$fetchlinks || !$dbr->numRows( $plRes ) ) && ( $hidetrans || !$dbr->numRows( $tlRes ) ) && ( $hideimages || !$dbr->numRows( $ilRes ) ) ) {
+		if( ( !$fetchlinks || !$dbr->numRows( $plRes ) ) && ( $hidetrans || !$dbr->numRows( $tlRes ) ) ) {
 			if ( 0 == $level ) {
 				$wgOut->addHTML( $this->whatlinkshereForm() );
 				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
 				$wgOut->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 				// Show filters only if there are links
-				if( $hidelinks || $hidetrans || $hideredirs || $hideimages )
+				if( $hidelinks || $hidetrans || $hideredirs )
 					$wgOut->addHTML( $this->getFilterPanel() );
 			}
 			return;
@@ -179,7 +167,6 @@ class WhatLinksHerePage {
 		if( $fetchlinks ) {
 			while ( $row = $dbr->fetchObject( $plRes ) ) {
 				$row->is_template = 0;
-				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 			$dbr->freeResult( $plRes );
@@ -188,18 +175,9 @@ class WhatLinksHerePage {
 		if( !$hidetrans ) {
 			while ( $row = $dbr->fetchObject( $tlRes ) ) {
 				$row->is_template = 1;
-				$row->is_image = 0;
 				$rows[$row->page_id] = $row;
 			}
 			$dbr->freeResult( $tlRes );
-		}
-		if( !$hideimages ) {
-			while ( $row = $dbr->fetchObject( $ilRes ) ) {
-				$row->is_template = 0;
-				$row->is_image = 1;
-				$rows[$row->page_id] = $row;
-			}
-			$dbr->freeResult( $ilRes );
 		}
 
 		// Sort by key and then change the keys to 0-based indices
@@ -259,7 +237,7 @@ class WhatLinksHerePage {
 		static $msgcache = null;
 		if ( $msgcache === null ) {
 			static $msgs = array( 'isredirect', 'istemplate', 'semicolon-separator',
-				'whatlinkshere-links', 'isimage' );
+				'whatlinkshere-links' );
 			$msgcache = array();
 			foreach ( $msgs as $msg ) {
 				$msgcache[$msg] = wfMsgHtml( $msg );
@@ -276,8 +254,6 @@ class WhatLinksHerePage {
 			$props[] = $msgcache['isredirect'];
 		if ( $row->is_template )
 			$props[] = $msgcache['istemplate'];
-		if( $row->is_image )
-			$props[] = $msgcache['isimage'];
 
 		if ( count( $props ) ) {
 			$propsText = '(' . implode( $msgcache['semicolon-separator'], $props ) . ')';
@@ -390,10 +366,7 @@ class WhatLinksHerePage {
 		unset($changed['target']); // Already in the request title
 
 		$links = array();
-		$types = array( 'hidetrans', 'hidelinks', 'hideredirs' );
-		if( $this->target->getNamespace() == NS_IMAGE )
-			$types[] = 'hideimages';
-		foreach( $types as $type ) {
+		foreach( array( 'hidetrans', 'hidelinks', 'hideredirs' ) as $type ) {
 			$chosen = $this->opts->getValue( $type );
 			$msg = wfMsgHtml( "whatlinkshere-{$type}", $chosen ? $show : $hide );
 			$overrides = array( $type => !$chosen );
