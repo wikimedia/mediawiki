@@ -1570,7 +1570,7 @@ class Parser
 			if ( preg_match( $e1, $line, $m ) ) { # page with normal text or alt
 				$text = $m[2];
 				# If we get a ] at the beginning of $m[3] that means we have a link that's something like:
-				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row fucks up,
+				# [[Image:Foo.jpg|[http://example.com desc]]] <- having three ] in a row messes up,
 				# the real problem is with the $e1 regex
 				# See bug 1300.
 				#

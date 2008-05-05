@@ -2020,8 +2020,6 @@ function wfRelativePath( $path, $from ) {
  * arrays to be randomly corrupted just because some of them consist
  * of numbers.
  *
- * Fuck you, PHP. Fuck you in the ear!
- *
  * @param array $array1, [$array2, [...]]
  * @return array
  */
