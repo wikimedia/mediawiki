@@ -1365,15 +1365,13 @@ class Database {
 	 * @param string $name database table name
 	 */
 	function tableName( $name ) {
-		global $wgSharedDB, $wgSharedDBtables;
+		global $wgSharedDB;
 		# Skip quoted literals
 		if ( $name{0} != '`' ) {
 			if ( $this->mTablePrefix !== '' &&  strpos( $name, '.' ) === false ) {
 				$name = "{$this->mTablePrefix}$name";
 			}
-			if ( isset( $wgSharedDB ) && isset( $wgSharedDBtables )
-			 && substr( $name, 0, strlen($this->mTablePrefix) ) == $this->mTablePrefix
-			 && in_array( substr( $name, strlen($this->mTablePrefix) ), $wgSharedDBtables ) ) {
+			if ( isset( $wgSharedDB ) && "{$this->mTablePrefix}user" == $name ) {
 				$name = "`$wgSharedDB`.`$name`";
 			} else {
 				# Standard quoting
