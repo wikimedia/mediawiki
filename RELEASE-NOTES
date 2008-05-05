@@ -99,8 +99,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 709) Cannot rename/move images and other media files [EXPERIMENTAL]
 * Custom rollback summaries now accept the same arguments as the default message
 * (bug 12542) Added hooks for expansion of Special:Listusers
-* Added new variable $wgSharedDBtables for altering the list of tables which are
-  shared when $wgSharedDB is enabled.
 * Drop-down AJAX search suggestions (turn on $wgEnableMWSuggest) 
 * More relevant search snippets (turn on $wgAdvancedSearchHighlighting)
 
