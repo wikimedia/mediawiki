@@ -213,7 +213,6 @@ Stellen Sie sicher, dass die Versionsgeschichte eines Artikels historisch korrek
 'searchsubtitleinvalid' => 'Ihre Suchanfrage: „$1“.',
 'noexactmatch'          => "'''Es existiert keine Seite mit dem Titel „$1“.'''
 
-Versuchen Sie es über die Volltextsuche.
 Alternativ können Sie auch den [[Special:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
 
 Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“ verfassen.",
