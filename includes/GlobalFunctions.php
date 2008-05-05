@@ -2479,16 +2479,29 @@ function wfBoolToStr( $value ) {
  * Load an extension messages file
  *
  * @param string $extensionName Name of extension to load messages from\for.
- * @param boolean $all Whether or not to load all languages.
+ * @param string $langcode Language to load messages for, or false for default
+ *                         behvaiour (en, content language and user language).
  */
-function wfLoadExtensionMessages( $extensionName, $all = false ) {
-	global $wgExtensionMessagesFiles, $wgMessageCache;
-	if ( !empty( $wgExtensionMessagesFiles[$extensionName] ) ) {
-		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesFiles[$extensionName], $all );
-		// Prevent double-loading if all the messages have been loaded.
-		if( $all ) {
-			$wgExtensionMessagesFiles[$extensionName] = false;
-		}
+function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
+	global $wgExtensionMessagesFiles, $wgMessageCache, $wgLang, $wgContLang;
+	
+	#For recording whether extension message files have been loaded in a given language.
+	static $loaded = array();
+	
+	if( !$langcode && !array_key_exists( '*', $loaded ) ) {
+		# Just do en, content language and user language.
+		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesFiles[$extensionName], false );
+		# Mark that they have been loaded.
+		$loaded['en'] = true;
+		$loaded[$wgLang->getCode()] = true;
+		$loaded[$wgContLang->getCode()] = true;
+		# Mark that this part has been done to avoid weird if statements.
+		$loaded['*'] = true;
+	} elseif( is_string( $langcode ) && !array_key_exists( $langcode, $loaded ) ) {
+		# Load messages for specified language.
+		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesFiles[$extensionName], $langcode );
+		# Mark that they have been loaded.
+		$loaded[$langcode] = true;
 	}
 }
 

@@ -714,21 +714,21 @@ class MessageCache {
 	 * Load messages from a given file
 	 * 
 	 * @param string $filename Filename of file to load.
-	 * @param boolean $all Whether or not to load all languages.
+	 * @param string $langcode Language to load messages for, or false for 
+     *                         default behvaiour (en, content language and user
+     *                         language).
 	 */
-	function loadMessagesFile( $filename, $all = false ) {
+	function loadMessagesFile( $filename, $langcode = false ) {
 		global $wgLang, $wgContLang;
 		$messages = $magicWords = false;
 		require( $filename );
 
-		if( $all ) {
-			# Load all messages, regardless of language.
-			$validCodes = array_keys( Language::getLanguageNames() );
-			foreach( $messages as $code => $array ) {
-				if( in_array( $code, $validCodes ) ) {
-					$this->processMessagesArray( $messages, $code );
-				}
-			}
+		$validCodes = Language::getLanguageNames();
+		if( is_string( $langcode ) && array_key_exists( $langcode, $validCodes ) ) {
+			# Load messages for given language code.
+			$this->processMessagesArray( $messages, $langcode );
+		} elseif( is_string( $langcode ) && !array_key_exists( $langcode, $validCodes ) ) {
+			wfDebug( "Invalid language '$langcode' code passed to MessageCache::loadMessagesFile()" );
 		} else {
 			# Load only languages that are usually used, and merge all
 			# fallbacks, except English.
@@ -748,10 +748,10 @@ class MessageCache {
 	 * Process an array of messages, loading it into the message cache.
 	 *
 	 * @param array $messages Messages array.
-	 * @param string $language Language code to process.
+	 * @param string $langcode Language code to process.
 	 */
-	function processMessagesArray( $messages, $language ) {
-		$fallbackCode = $language;
+	function processMessagesArray( $messages, $langcode ) {
+		$fallbackCode = $langcode;
 		$mergedMessages = array();
 		do {
 			if ( isset($messages[$fallbackCode]) ) {
@@ -761,7 +761,7 @@ class MessageCache {
 		} while( $fallbackCode && $fallbackCode !== 'en' );
 		
 		if ( !empty($mergedMessages) )
-			$this->addMessages( $mergedMessages, $language );
+			$this->addMessages( $mergedMessages, $langcode );
 	}
 
 }
