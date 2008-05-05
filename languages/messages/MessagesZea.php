@@ -1063,7 +1063,7 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 'mywatchlist'          => 'Mien volglieste',
 'watchlistfor'         => "(vò '''$1''')",
 'watchnologin'         => 'Je bin nie angemolde.',
-'watchnologintext'     => 'Je moe [[Speciaol:Userlogin|angemolde]] weze om je volglieste an te passen.',
+'watchnologintext'     => 'Je moe [[Special:Userlogin|angemolde]] weze om je volglieste an te passen.',
 'addedwatch'           => 'An de volglieste toegevoegd',
 'addedwatchtext'       => "De bladzie \"[[:\$1]]\" is an je [[Special:Watchlist|Volglieste]] toegevoegd.
 Veranderiengen an deêze bladzie en de overlegbladzie die-a d'rbie oort zulle ierop zichtbaer ore

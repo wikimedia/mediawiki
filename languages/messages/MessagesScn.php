@@ -1165,17 +1165,17 @@ PICT # arcuni
 # File reversion
 'filerevert'                => 'Riprìstina $1',
 'filerevert-legend'         => 'Riprìstina file',
-'filerevert-intro'          => '<span class="plainlinks">Stai pi ripristinari lu file \'\'\'[[Mèdia:$1|$1]]\'\'\' â [virsioni $4 dô $2, $3].</span>',
+'filerevert-intro'          => '<span class="plainlinks">Stai pi ripristinari lu file \'\'\'[[Media:$1|$1]]\'\'\' â [virsioni $4 dô $2, $3].</span>',
 'filerevert-comment'        => 'Oggettu:',
 'filerevert-defaultcomment' => 'Ripristinata la virsioni dô $1, $2',
 'filerevert-submit'         => 'Riprìstina',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'Lu file [[Mèdia:$1|$1]]\'\'\' hà statu ripristinatu â [$4 virsioni dô $2, $3].</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'Lu file [[Media:$1|$1]]\'\'\' hà statu ripristinatu â [$4 virsioni dô $2, $3].</span>',
 'filerevert-badversion'     => 'Nun esistanu virsiona locali pricidenti dô file cû timestamp richiestu.',
 
 # File deletion
 'filedelete'                  => 'Cancella $1',
 'filedelete-legend'           => 'Cancella lu file',
-'filedelete-intro'            => "Stai pi cancillari '''[[Mèdia:$1|$1]]'''.",
+'filedelete-intro'            => "Stai pi cancillari '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Stai cancillannu la virsioni di \'\'\'[[Mèdia:$1|$1]]\'\'\' dô [$4 $3, $2].</span>',
 'filedelete-comment'          => 'Mutivu:',
 'filedelete-submit'           => 'Cancella',
@@ -2364,6 +2364,5 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
 'specialpages-group-users'       => 'Utenti e diritti',
 'specialpages-group-highuse'     => 'Pàggini cchiù usati',
-'specialpages-group-permissions' => "Attribuzioni dî pirmessi pi l'utenti",
 
 );

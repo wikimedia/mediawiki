@@ -325,6 +325,7 @@ $1',
 
 Хэрэв ийм биш бол та программд алдаа олсон байж магадгүй.
 Үүнийг URL-тай нь хамт администраторд мэдэгдэнэ үү.',
+'missingarticle-rev'   => '(засвар#: $1)',
 'readonly_lag'         => 'Хоёрдогч серверүүд анхдагчдаа гүйцэж ирэх хүртэл мэдээллийн санг автоматаар түгжлээ.',
 'internalerror'        => 'Дотоод алдаа',
 'internalerror_info'   => 'Дотоод алдаа: $1',
@@ -2180,7 +2181,6 @@ $1',
 'fileduplicatesearch-info'     => '$1 × $2 пиксэл<br />Файлын хэмжээ: $3<br />MIME төрөл: $4',
 
 # Special:SpecialPages
-'specialpages-group-login'       => 'Нэвтрэх / бүртгүүлэх',
-'specialpages-group-permissions' => 'Хэрэглэгчийн зөвшөөрлүүд',
+'specialpages-group-login' => 'Нэвтрэх / бүртгүүлэх',
 
 );

@@ -780,7 +780,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'userinvalidcssjstitle'             => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                           => '(Uppdaterad)',
 'note'                              => '<strong>Obs!</strong>',
-'previewnote'                       => 'Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!',
+'previewnote'                       => '<strong>Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!</strong>',
 'previewconflict'                   => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
@@ -847,7 +847,7 @@ Antalet anrop borde vara mindre än $2, det är nu $1.',
 'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
 'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
 'undo-norev'   => 'Ändringen kan inte avlägsnas eftersom den inte finns eller har raderats.',
-'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[Användardiskussion:$2|diskussion]])',
+'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskussion]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -1263,7 +1263,7 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'large-file'                  => 'Filer bör inte vara större än $1 bytes, denna är $2 bytes',
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',
 'emptyfile'                   => 'Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.',
-'fileexists'                  => 'Det finns redan en fil med detta namn. Titta på $1, såvida du inte är säker på att du vill ändra den.',
+'fileexists'                  => 'Det finns redan en fil med detta namn. Titta på <strong><tt>$1</tt></strong>, såvida du inte är säker på att du vill ändra den.',
 'filepageexists'              => 'Beskrivningssidan för denna fil har redan skapats på <strong><tt>$1</tt></strong>, men just nu finns ingen fil med detta namn. Den sammanfattning du skriver här kommer inte visas på beskrivningssidan. För att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.',
 'fileexists-extension'        => 'En fil med ett liknande namn finns redan:<br />
 Namn på den fil du försöker ladda upp: <strong><tt>$1</tt></strong><br />
@@ -2680,6 +2680,5 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'specialpages-group-users'       => 'Användare och behörigheter',
 'specialpages-group-needy'       => 'Sidor som behöver åtgärdas',
 'specialpages-group-highuse'     => 'Sidor som används mycket',
-'specialpages-group-permissions' => 'Användarbehörigheter',
 
 );

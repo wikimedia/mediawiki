@@ -2803,6 +2803,5 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:image}}:”.',
 'specialpages-group-users'       => 'Użytkownicy i uprawnienia',
 'specialpages-group-needy'       => 'Strony wymagające poprawek',
 'specialpages-group-highuse'     => 'Strony często używane',
-'specialpages-group-permissions' => 'Uprawnienia użytkowników',
 
 );

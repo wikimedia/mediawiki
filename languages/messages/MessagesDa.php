@@ -683,7 +683,7 @@ Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
 'userinvalidcssjstitle'             => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/monobook.css'' og ikke ''{{ns:user}}:Hansen/Monobook.css''.",
 'updated'                           => '(Opdateret)',
 'note'                              => '<strong>Bemærk:</strong>',
-'previewnote'                       => 'Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!',
+'previewnote'                       => '<strong>Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!</strong>',
 'previewconflict'                   => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
 'session_fail_preview'              => '<strong>Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
 Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong>',
@@ -1087,7 +1087,7 @@ Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
 'large-file'                  => 'Filstørrelsen skal så vidt muligt ikke overstige $1. Denne fil er $2 stor.',
 'largefileserver'             => 'Filen er større end den på serveren indstillede maksimale størrelse.',
 'emptyfile'                   => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
-'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst $1 om du er sikker på du vil ændre den.',
+'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst <strong><tt>$1</tt></strong> om du er sikker på du vil ændre den.',
 'filepageexists'              => 'Beskrivelsessiden for denne fil er allerede oprettet i <strong><tt>$1</tt></strong>, men ingen fil med dette navn eksisterer på nuværende tidspunkt. Den beskrivelse som du indtaster vil ikke blive vist på beskrivelsessiden. For at få beskrivelsen vist her skal du manuelt redigere det.',
 'fileexists-extension'        => 'En fil med lignende navn findes allerede:<br />
 Navnet på den valgte fil: <strong><tt>$1</tt></strong><br />

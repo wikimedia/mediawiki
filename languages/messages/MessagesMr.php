@@ -698,7 +698,7 @@ $2',
 'userinvalidcssjstitle'             => "'''सावधान:''' \"\$1\" अशी त्वचा नाही.custom .css आणि .js पाने lowercase title वापरतात हे लक्षात घ्या, उदा. {{ns:user}}:Foo/monobook.css या विरूद्ध {{ns:user}}:Foo/Monobook.css.",
 'updated'                           => '(बदल झाला आहे.)',
 'note'                              => '<strong>सूचना:</strong>',
-'previewnote'                       => 'लक्षात ठेवा की ही फक्त झलक आहे, बदल अजून सुरक्षित केले नाहीत.',
+'previewnote'                       => '<strong>लक्षात ठेवा की ही फक्त झलक आहे, बदल अजून सुरक्षित केले नाहीत.</strong>',
 'previewconflict'                   => 'वरील संपादन क्षेत्रातील मजकूर जतन केल्यावर या झलकेप्रमाणे दिसेल.',
 'session_fail_preview'              => '<strong>क्षमस्व! सत्र विदेच्या क्षयामुळे आम्ही तुमची संपादन प्रक्रीया पार पाडू शकलो नाही.कृपया पुन्हा प्रयत्न करा.जर एवढ्याने काम झाले नाही तर सदस्य खात्यातून बाहेर पडून पुन्हा प्रवेश करून पहा.</strong>',
 'session_fail_preview_html'         => "<strong>क्षमस्व! सत्र विदेच्या क्षयामुळे आम्ही तुमची संपादन प्रक्रीया पार पाडू शकलो नाही.</strong>
@@ -2569,6 +2569,5 @@ $1',
 'specialpages-group-users'       => 'सदस्य व अधिकार',
 'specialpages-group-needy'       => 'योगदान पाहिजे असलेली पाने',
 'specialpages-group-highuse'     => 'सर्वात जास्त वापरली जाणारी पृष्ठे',
-'specialpages-group-permissions' => 'सदस्य परवानग्या',
 
 );

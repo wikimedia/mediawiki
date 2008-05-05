@@ -444,7 +444,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'filesource'           => 'Reixe:',
 'uploadedfiles'        => 'Papê caregæ',
 'badfilename'          => 'O nomme do papê o l\'è stæto cangioö in "$1".',
-'fileexists'           => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a $1 se non ti tei seguo de voleilo cangiâ.",
+'fileexists'           => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a <strong><tt>$1</tt></strong> se non ti tei seguo de voleilo cangiâ.",
 'fileexists-forbidden' => 'Un papê co sto nomme o existe de zà, pe piaxei vanni in derrê e carega sto papê co un ätro nomme. [[Image:$1|thumb|center|$1]]',
 'savefile'             => 'Sarva o papê',
 'uploadedimage'        => 'O s\'ha caregòu "[[$1]]"',

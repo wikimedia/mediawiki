@@ -5,6 +5,7 @@
  *
  * @author Mohau
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 
@@ -509,7 +510,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 
 # User rights
 'editusergroup'                    => 'Fetola sehlopha sa bašomiši',
-'editinguser'                      => 'Fetola mošomiši <b>$1</b>',
+'editinguser'                      => "Fetola mošomiši '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Fetola sehlopha sa bašomiši',
 'saveusergroups'                   => 'Boloko Dihlopha tša bašomiši',
 'userrights-groupsmember'          => 'Leloko la:',

@@ -413,7 +413,7 @@ Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet 
 * Æller [[Special:Search/{{PAGENAME}}|søĝe æfter {{PAGENAME}}]] i andre ertikler 
 ---- 
 * Ves du har åprettet denne ertikel endenfør de sedste få minutter, så ken de skyldes at der er ledt førsenkelse i'n åpdaterenge åf {{SITENAME}}s cache. Vent venligst og tjek igen senere'n ertikel'm dukker åp, enden du førsøĝer at åprette'n ertikel igen.",
-'previewnote'            => 'Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!',
+'previewnote'            => '<strong>Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!</strong>',
 'editing'                => 'Redigærer $1',
 'editingsection'         => 'Redigærer $1 (åfsnet)',
 'copyrightwarning'       => "<strong>Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!</strong><br />

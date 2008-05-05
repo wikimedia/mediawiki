@@ -475,7 +475,7 @@ Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in
 'newarticletext'         => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'noarticletext'          => 'Par cumò nol è nuie in cheste pagjine, tu puedis [[Special:Search/{{PAGENAME}}|cirî chest titul]] in altris pagjinis o [{{fullurl:{{FULLPAGENAME}}|action=edit}} cambiâ cheste pagjine].',
 'updated'                => '(Inzornât)',
-'previewnote'            => 'Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!',
+'previewnote'            => '<strong>Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!</strong>',
 'editing'                => 'Cambiament di $1',
 'editingsection'         => 'Cambiament di $1 (sezion)',
 'editconflict'           => 'Conflit inte modifiche: $1',
@@ -591,7 +591,7 @@ $2 Liste redirezions &nbsp; Cîr $3 $9',
 'default'                 => 'predeterminât',
 
 # User rights
-'editinguser' => 'Cambiament di $1',
+'editinguser' => "Cambiament di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 'grouppage-sysop' => '{{ns:project}}:Aministradôrs',
 

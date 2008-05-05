@@ -679,7 +679,7 @@ Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de e
 'whitelistreadtitle'                => 'É necessária a autentificação para poder visualizar',
 'whitelistreadtext'                 => 'Precisa de se [[Special:Userlogin|autenticar]] para poder visualizar páginas.',
 'whitelistacctitle'                 => 'Não lhe é permitido criar uma conta',
-'whitelistacctext'                  => 'De modo a poder criar contas de utilizador neste Wiki terá que se [[{{ns:special}}:Userlogin|autenticar]] e possuir as devidas permissões.',
+'whitelistacctext'                  => 'De modo a poder criar contas de utilizador neste Wiki terá que se [[Special:Userlogin|autenticar]] e possuir as devidas permissões.',
 'confirmedittitle'                  => 'Confirmação de e-mail requerida para editar',
 'confirmedittext'                   => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de utilizador]].',
@@ -1493,9 +1493,7 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',
-'mailnologintext' => 'Necessita de estar [[{{ns:special}}:Userlogin|autenticado]]
-e de possuir um endereço de e-mail válido nas suas [[{{ns:special}}:Preferences|preferências]]
-para poder enviar um e-mail a outros utilizadores.',
+'mailnologintext' => 'Necessita de estar [[Special:Userlogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros utilizadores.',
 'emailuser'       => 'Contactar este utilizador',
 'emailpage'       => 'Contactar utilizador',
 'emailpagetext'   => 'Se o utilizador introduziu um endereço válido de e-mail
@@ -1523,7 +1521,7 @@ para que o destinatário lhe possa responder.',
 'nowatchlist'          => 'A sua lista de vigiados não possui títulos.',
 'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de artigos vigiados.',
 'watchnologin'         => 'Não está autenticado',
-'watchnologintext'     => 'Você precisa estar [[{{ns:special}}:Userlogin|autenticado]] para modificar a sua lista de artigos vigiados.',
+'watchnologintext'     => 'Você precisa estar [[Special:Userlogin|autenticado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[{{ns:special}}:Watchlist|lista de vigiados]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[{{ns:special}}:Recentchanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.
@@ -1758,9 +1756,11 @@ $1',
 'nolinkshere-ns'           => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
 'isredirect'               => 'página de redireccionamento',
 'istemplate'               => 'inclusão',
+'isimage'                  => 'link de imagem',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links'      => '← links',
+'whatlinkshere-hideimages' => '$1 links de imagens',
 'whatlinkshere-hideredirs' => '$1 redireccionamentos',
 'whatlinkshere-hidetrans'  => '$1 transclusões',
 'whatlinkshere-hidelinks'  => '$1 ligações',
@@ -2616,6 +2616,5 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 'specialpages-group-users'       => 'Utilizadores e privilégios',
 'specialpages-group-needy'       => 'Páginas a necessitar de trabalho',
 'specialpages-group-highuse'     => 'Páginas muito usadas',
-'specialpages-group-permissions' => 'Permissões de utilizador',
 
 );

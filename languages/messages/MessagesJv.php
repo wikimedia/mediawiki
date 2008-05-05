@@ -566,7 +566,7 @@ Yèn ora sengaja tekan kéné, bisa ngeklik pencètan '''back''' waé ing panjla
 'userinvalidcssjstitle'             => "'''Pènget:''' Kulit \"\$1\" ora ditemokaké. Muga dipèngeti yèn kaca .css lan .js nggunakaké huruf cilik, conto {{ns:user}}:Foo/monobook.css lan dudu {{ns:user}}:Foo/Monobook.css.",
 'updated'                           => '(Dianyari)',
 'note'                              => '<strong>Cathetan:</strong>',
-'previewnote'                       => 'Muga digatèkaké menawa iki namung pratilik waé, durung disimpen!',
+'previewnote'                       => '<strong>Muga digatèkaké menawa iki namung pratilik waé, durung disimpen!</strong>',
 'previewconflict'                   => 'Pratilik iki nuduhaké tèks ing bagian dhuwur kothak suntingan tèks kayadéné bakal katon yèn panjenengan bakal simpen.',
 'session_fail_preview'              => "<strong>Nuwun sèwu, suntingan panjenengan ora bisa diolah amarga dhata sèsi kabusak.
 Coba kirim dhata manèh. Yèn tetep ora bisa, coba log metua lan mlebu log manèh.</strong>'''Amerga wiki iki marengaké panggunan kodhe HTML mentah, mula pratilik didhelikaké minangka pancegahan marang serangan JavaScript.'''
@@ -852,7 +852,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'userrights-lookup-user'           => 'Ngatur kelompok panganggo',
 'userrights-user-editname'         => 'Lebokna jeneng panganggo:',
 'editusergroup'                    => 'Sunting kelompok panganggo',
-'editinguser'                      => 'Nyunting $1',
+'editinguser'                      => "Nyunting '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Sunting kelompok panganggo',
 'saveusergroups'                   => 'Simpen kelompok panganggo',
 'userrights-groupsmember'          => 'Anggota saka:',
@@ -2432,6 +2432,5 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 'specialpages-group-users'       => 'Panganggo lan hak-haké',
 'specialpages-group-needy'       => 'Kaca-kaca sing kudu dibenakaké',
 'specialpages-group-highuse'     => 'Kaca-kaca sing akèh dienggo',
-'specialpages-group-permissions' => 'Idin-idin panganggo',
 
 );

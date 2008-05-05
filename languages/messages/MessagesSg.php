@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author sg.wikipedia.org sysops
+ * @author Siebrand
  */
 
 $messages = array(
@@ -40,7 +41,7 @@ $messages = array(
 'prefs-rc'      => 'Tanga ti yé so a gbion ya ni',
 
 # User rights
-'editinguser' => 'Mo fa na mbi nyîmbâ <b>$1</b>',
+'editinguser' => "Mo fa na mbi nyîmbâ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges' => 'Tanga ti yé so a gbion ya ni',

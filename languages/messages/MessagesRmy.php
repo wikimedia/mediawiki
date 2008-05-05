@@ -4,11 +4,10 @@
  * @addtogroup Language
  *
  * @author Niklas Laxström
- * @author G - ג
+ * @author לערי ריינהארט
  * @author Desiphral
  * @author Siebrand
- * @author Nike
- * @author לערי ריינהארט
+ * @author Jon Harald Søby
  */
 
 $fallback = 'ro';
@@ -304,7 +303,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 'files'                 => 'Failurya',
 
 # User rights
-'editinguser' => 'Editisaripen $1',
+'editinguser' => "Editisaripen '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Groups
 'group'            => 'Grupo:',

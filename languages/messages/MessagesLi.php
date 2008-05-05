@@ -594,7 +594,7 @@ Doe kans [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pazjena\'s
 'userinvalidcssjstitle'             => "'''Waorsjuwing:''' d'r is geine skin \"\$1\". Let op: dien eige .css- en .js-pazjena's beginne mèt  'ne kleine letter, bijveurbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
 'updated'                           => '(Biegewèrk)',
 'note'                              => '<strong>Opmirking:</strong>',
-'previewnote'                       => "Lèt op: dit is 'n controlepazjena; dien tèks is nog neet opgesjlage!",
+'previewnote'                       => "<strong>Lèt op: dit is 'n controlepazjena; dien tèks is nog neet opgesjlage!</strong>",
 'previewconflict'                   => "Dees versie toent wie de tèks in 't bôvesjte vèld oet git zeen es e zouws opsjlaon.",
 'session_fail_preview'              => "<strong>Sorry! Dien bewerking is neet verwerkt omdat sessiegegevens verlaore zeen gegaon.
 Probeer 't opnieuw. Als 't dan nog neet lukt, meldt dich dan aaf en weer aan.</strong>",
@@ -1070,7 +1070,7 @@ De letste link is bedoeld veur mediabestenj die gein aafbeilding zeen.",
 'large-file'                  => 'Aanbeveling: maak bestenj neet groter dan $1, dit bestand is $2.',
 'largefileserver'             => "'t Bestandj is groter dan de instelling van de server toestuit.",
 'emptyfile'                   => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
-'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek $1 of se dat besjtand mesjien wils vervange.",
+'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek <strong><tt>$1</tt></strong> of se dat besjtand mesjien wils vervange.",
 'filepageexists'              => "De besjrievingspazjena veur dit bestandj besteit al op <strong><tt>$1</tt></strong>, meh d'r besteit gein bestandj mit deze naam. De samevatting dae geer höb opgegaeve zal neet op de besjrievingspazjena versjiene. Bewèrk de pazjena handjmaotig óm uche besjrieving dao te toeane.",
 'fileexists-extension'        => "'n bestand met dezelfde naam bestuit al:<br />
 Naam van 't geüploade bestand: <strong><tt>$1</tt></strong><br />
@@ -2446,6 +2446,5 @@ Gaef de bestandjsnaam zónger \'t "{{ns:image}}:" veurvoogsel.',
 'specialpages-group-users'       => 'Gebroekers en rechte',
 'specialpages-group-needy'       => "Pazjena's die aandach neudig höbbe",
 'specialpages-group-highuse'     => "Väölgebroekde pazjena's",
-'specialpages-group-permissions' => 'Gebroekersrechte',
 
 );

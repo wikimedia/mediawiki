@@ -6,6 +6,7 @@
  * @author Harvzsf
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -137,7 +138,7 @@ $messages = array(
 'mainpage-description' => 'Syahan nga Pakli',
 'policy-url'           => 'Project:Polisiya',
 'portal'               => 'Ganghaan han Komunidad',
-'portal-url'           => 'Proyekto:Ganghaan han Komunidad',
+'portal-url'           => 'Project:Ganghaan han Komunidad',
 'sitesupport'          => 'Mga Donasyon',
 'sitesupport-url'      => 'Project:Mga Donasyon',
 

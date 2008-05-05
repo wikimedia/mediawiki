@@ -549,7 +549,7 @@ S'ài sighiddu lu cullegamentu pa un'errori, è suffizenti incalchà lu buttoni 
 'userinvalidcssjstitle'     => "'''Attinzioni:''' Nò isisthi nisciun aipettu gràficu \"\$1\". Amminta chi li pàgini pa li .css e .js passunari àni lu primu caràtteri di lu tìturu minori, cumenti {{ns:user}}:Foo/monobook.css e nò {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Aggiornaddu)',
 'note'                      => '<strong>NOTA:</strong>',
-'previewnote'               => "'''Attinzioni''': chistha è soru un'antiprimma. Li mudìfigghi a la pàgina '''NÒ''' so ancora isthaddi saivvaddi!",
+'previewnote'               => "<strong>Attinzioni: chistha è soru un'antiprimma. Li mudìfigghi a la pàgina NÒ so ancora isthaddi saivvaddi!</strong>",
 'previewconflict'           => "L'antiprimma curripundi a lu testhu prisenti i' la casella di mudìfigga superiori e musthra la pàgina cumenti apparirà si s'à gana di incalchà abà '''Sàivva la pàgina'''.",
 'session_fail_preview'      => '<strong>Semmu dipiazuddi, nò è isthaddu pussìbiri sàivva la mudìfiggà parchí sò andaddi pessi i dati reratibi a la sissioni. Si lu probrema continua, prubà a iscì e effettuà una noba intradda.</strong>',
 'session_fail_preview_html' => "<strong>Semmu dipiazuddi, no è isthaddu pussìbiri elaburà la mudìfigga parchì sò andaddi pessi li dati reratibi a la sissioni.</strong>
@@ -796,7 +796,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'userrights-lookup-user'      => 'Gisthioni di li gruppi utenti',
 'userrights-user-editname'    => "Insirì l'innòmu utenti:",
 'editusergroup'               => 'Mudìfigga gruppi utenti',
-'editinguser'                 => 'Mudifigga di $1',
+'editinguser'                 => "Mudifigga di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Mudìfigga gruppi utenti',
 'saveusergroups'              => 'Sàivva gruppi utenti',
 'userrights-groupsmember'     => 'Appartheni a li gruppi:',

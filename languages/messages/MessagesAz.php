@@ -3,6 +3,7 @@
  *
  * @addtogroup Language
  *
+ * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -307,7 +308,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 # User rights
 'userrights-lookup-user'   => 'İstifadəçi qruplarını idarə et',
 'userrights-user-editname' => 'İstifadəçi adınızı yazın:',
-'editinguser'              => 'Redaktə $1',
+'editinguser'              => "Redaktə '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges'     => 'Son dəyişikliklər',

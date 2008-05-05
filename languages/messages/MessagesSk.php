@@ -1206,7 +1206,7 @@ alebo pre priamy odkaz na súbor
 'large-file'                  => 'Odporúča sa aby veľkosť súborov neprekračovala $1; tento súbor má $2.',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
-'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte $1 ak nie ste si istý, či ho chcete zmeniť.',
+'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte <strong><tt>$1</tt></strong> ak nie ste si istý, či ho chcete zmeniť.',
 'filepageexists'              => 'Popisná stránka tohto súboru už bola vytvorená na <strong><tt>$1</tt></strong>, ale žiadny súbor s týmto názvom momentálne neexistuje. Zhrnutie, ktoré zadáte sa neobjaví na popisnej stránke. Aby sa zhrnutie objavilo na popisnej stránke, budete ho musieť ručne upraviť.',
 'fileexists-extension'        => 'Súbor s podobným názvom už existuje:<br />
 Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
@@ -1772,9 +1772,11 @@ $1',
 'nolinkshere-ns'           => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
 'isredirect'               => 'presmerovacia stránka',
 'istemplate'               => 'použitá',
+'isimage'                  => 'odkaz na obrázok',
 'whatlinkshere-prev'       => '{{PLURAL:$1|predchádzajúca|predchádzajúce $1|predchádzajúcich $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nasledujúca|nasledujúce $1|nasledujúcich $1}}',
 'whatlinkshere-links'      => '← odkazy',
+'whatlinkshere-hideimages' => '$1 odkazov na obrázok',
 'whatlinkshere-hideredirs' => '$1 presmerovania',
 'whatlinkshere-hidetrans'  => '$1 transklúzie',
 'whatlinkshere-hidelinks'  => '$1 odkazy',
@@ -2663,6 +2665,5 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'specialpages-group-users'       => 'Používatelia a skupiny',
 'specialpages-group-needy'       => 'Stránky, ktoré treba vylepšiť',
 'specialpages-group-highuse'     => 'Často používané stránky',
-'specialpages-group-permissions' => 'Oprávnenia používateľa',
 
 );

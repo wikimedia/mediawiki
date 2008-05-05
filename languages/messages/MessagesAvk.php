@@ -519,7 +519,7 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'userjspreview'                     => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code javascript et qu'il n'a pas encore été enregistré !'''",
 'updated'                           => '(Nuskeyen)',
 'note'                              => '<strong>Straga :</strong>',
-'previewnote'                       => 'Obral, bat krent anton tir abdinediks ise men tir giwayan !',
+'previewnote'                       => '<strong>Obral, bat krent anton tir abdinediks ise men tir giwayan !</strong>',
 'previewconflict'                   => 'Abdinedira nedir va krent ke batu bu inde in giwayanon titir.',
 'editing'                           => 'betara va $1',
 'editingsection'                    => 'betara va $1 (gabot)',
@@ -948,7 +948,7 @@ Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 'large-file'                  => 'Lokiewafa da lum ke man iyeltak tir lepinaf dam $1; bat iyeltak tir $2.',
 'largefileserver'             => 'Bat iyeltak tir pwertarsaf gu gotune ke zanisiko.',
 'emptyfile'                   => 'Kalvajan iyeltak nuvelar vlardaf. Lanon golde sutejen iyeltakyolt. Vay ageltal ede va bat iyeltak en djukalvajal !',
-'fileexists'                  => 'Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va $1. Til lanaf da va bat iyeltak djubetal ?',
+'fileexists'                  => 'Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va <strong><tt>$1</tt></strong>. Til lanaf da va bat iyeltak djubetal ?',
 'filepageexists'              => 'Pimtarabu ke bat iyeltak ixam al zo redur ko <strong><tt>$1</tt></strong>, vexe mek iyeltak dem man yolt ixam tir. Vildeks rinon suten moe pimtarabu me awitir. Ede djumel da in batlize co-awir, nubedon co-gobetal.',
 'fileexists-extension'        => 'Iyeltak dem nuxaf yolt tir :<br />
 Yolt ke kalvajayan iyeltak : <strong><tt>$1</tt></strong><br />
@@ -2152,12 +2152,11 @@ $1',
 'fileduplicatesearch-result-1' => '"$1" iyeltak va miltafa jontoloca me digir.',
 
 # Special:SpecialPages
-'specialpages-group-other'       => 'Ar aptabueem',
-'specialpages-group-login'       => 'Figara / dimfigara',
-'specialpages-group-changes'     => 'Noeltaf betakseem isu "log"',
-'specialpages-group-users'       => 'Favesikeem is rokeem',
-'specialpages-group-needy'       => 'Gonhofanu bu',
-'specialpages-group-highuse'     => 'Nhofapanu bu',
-'specialpages-group-permissions' => 'Favesiknovereem',
+'specialpages-group-other'   => 'Ar aptabueem',
+'specialpages-group-login'   => 'Figara / dimfigara',
+'specialpages-group-changes' => 'Noeltaf betakseem isu "log"',
+'specialpages-group-users'   => 'Favesikeem is rokeem',
+'specialpages-group-needy'   => 'Gonhofanu bu',
+'specialpages-group-highuse' => 'Nhofapanu bu',
 
 );

@@ -619,8 +619,7 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'userinvalidcssjstitle'     => "'''Upozorenje:''' Nema sučelja pod imenom \"\$1\". Ne zaboravite da imena stranica s .css and .js kodom počinju malim slovom, npr. {{ns:user}}:Mate/monobook.css, a ne {{ns:user}}:Mate/Monobook.css.",
 'updated'                   => '(Ažurirano)',
 'note'                      => '<strong>Napomena:</strong>',
-'previewnote'               => 'Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da
-stranica još nije snimljena!',
+'previewnote'               => '<strong>Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da stranica još nije snimljena!</strong>',
 'previewconflict'           => 'Ovaj pregled odražava stanje u gornjem polju za unos koje će biti sačuvano
 ako pritisnete "Sačuvaj stranicu".',
 'session_fail_preview'      => '<strong>Ispričavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi.
@@ -1094,7 +1093,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'large-file'                  => 'Preporučljivo je da datoteke ne prelaze $1; Ova datoteka je $2.',
 'largefileserver'             => 'Veličina ove datoteke veća je od one dopuštene postavkama poslužitelja.',
 'emptyfile'                   => 'Datoteka koju ste postavili je prazna. Možda se radi o krivo utipkanom imenu datoteke. Provjerite želite li zaista postaviti ovu datoteku.',
-'fileexists'                  => 'Datoteka s ovim imenom već postoji, pogledajte $1 ako niste sigurni želite li je uistinu promijeniti.',
+'fileexists'                  => 'Datoteka s ovim imenom već postoji, pogledajte <strong><tt>$1</tt></strong> ako niste sigurni želite li je uistinu promijeniti.',
 'filepageexists'              => 'Stranica s opisom za ovu datoteku je već napravljena na <strong><tt>$1</tt></strong>, ali trenutačno ne postoji datoteka s ovim imenom. Sažetak koji unesete se neće pojaviti na stranici s opisom. Kako bi se sažetak pojavio, morate ručno urediti stranicu.',
 'fileexists-extension'        => 'Već postoji datoteka sa sličnim imenom:<br />
 Ime datoteke koju postavljate: <strong><tt>$1</tt></strong><br />
@@ -2538,6 +2537,5 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'specialpages-group-users'       => 'Suradnici i suradnička prava',
 'specialpages-group-needy'       => 'Stranice s potrebom dorade',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
-'specialpages-group-permissions' => 'Suradnička prava',
 
 );

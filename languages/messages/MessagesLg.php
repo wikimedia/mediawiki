@@ -313,7 +313,7 @@ oba ku gano agali ku lupapula luno.<br />
 'searchresultshead' => 'Noonya',
 
 # User rights
-'editinguser' => 'Kukyuusa ebya memba <b>$1</b>',
+'editinguser' => "Kukyuusa ebya memba '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges'     => 'Ebyakakyuusibwa',

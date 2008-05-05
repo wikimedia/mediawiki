@@ -1332,7 +1332,7 @@ Toegelaten bestandstypes zijn \$2.",
 'emptyfile'                   => 'Het bestand dat u hebt geüpload lijkt leeg te zijn.
 Dit zou kunnen komen door een typefout in de bestandsnaam.
 Ga alstublieft na of u dit bestand werkelijk bedoelde te uploaden.',
-'fileexists'                  => 'Er bestaat al een bestand met deze naam. Controleer $1 als u niet zeker weet of u het huidige bestand wilt overschrijven.',
+'fileexists'                  => 'Er bestaat al een bestand met deze naam. Controleer <strong><tt>$1</tt></strong> als u niet zeker weet of u het huidige bestand wilt overschrijven.',
 'filepageexists'              => 'De beschrijvingspagina voor dit bestand bestaat al op <strong><tt>$1</tt></strong>, maar er bestaat geen bestand met deze naam.
 De samenvatting die u hebt opgegeven zal niet op de beschrijvingspagina verschijnen.
 Bewerk de pagina handmatig om uw beschrijving daar weer te geven.',
@@ -1894,9 +1894,11 @@ $1',
 'nolinkshere-ns'           => "Geen enkele pagina linkt naar '''[[:$1]]''' in de gekozen naamruimte.",
 'isredirect'               => 'doorverwijspagina',
 'istemplate'               => 'ingevoegd als sjabloon',
+'isimage'                  => 'bestandslink',
 'whatlinkshere-prev'       => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links'      => '← links daarnaar',
+'whatlinkshere-hideimages' => '$1 bestandslinks',
 'whatlinkshere-hideredirs' => 'doorverwijzingen $1',
 'whatlinkshere-hidetrans'  => 'transclusies $1',
 'whatlinkshere-hidelinks'  => 'verwijzingen $1',
@@ -2795,6 +2797,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'specialpages-group-users'       => 'Gebruikers en rechten',
 'specialpages-group-needy'       => "Pagina's die aandacht nodig hebben",
 'specialpages-group-highuse'     => "Veelgebruikte pagina's",
-'specialpages-group-permissions' => 'Gebruikersrechten',
 
 );

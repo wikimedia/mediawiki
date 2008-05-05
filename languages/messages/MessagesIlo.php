@@ -13,19 +13,20 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'        => 'Ugedan iti baba dagiti panilpo:',
-'tog-highlightbroken'  => 'Formaten dagiti nadadael a panilpo <a href="" class="new">a kas itoy</a> (alternative: like this<a href="" class="internal">?</a>).',
-'tog-justify'          => 'Limpiaen dagiti parapo',
-'tog-hideminor'        => 'Ilemmeng dagiti babasit a panagedit iti napalpalabas a panagbaliw',
-'tog-extendwatchlist'  => 'Ikalawa ti listaan ti bambantayan tapno maipakita amin a maiyannatup a panagbaliw',
-'tog-showtoolbar'      => 'Ipakita ti edit toolbar (JavaScript)',
-'tog-rememberpassword' => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
-'tog-watchcreations'   => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
-'tog-watchdefault'     => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
-'tog-watchmoves'       => 'Inayon dagiti inyakarko a pampanid iti listaan ti bambantayak',
-'tog-watchdeletion'    => 'Inayon dagiti inikkatko a pampanid iti listaan ti bambantayak',
-'tog-previewonfirst'   => 'Ipakita ti preview iti umuna a baliw',
-'tog-showhiddencats'   => 'Ipakita dagiti nakalemmeng a categoria',
+'tog-underline'         => 'Ugedan iti baba dagiti panilpo:',
+'tog-highlightbroken'   => 'Formaten dagiti nadadael a panilpo <a href="" class="new">a kas itoy</a> (alternative: like this<a href="" class="internal">?</a>).',
+'tog-justify'           => 'Limpiaen dagiti parapo',
+'tog-hideminor'         => 'Ilemmeng dagiti babasit a panagedit iti napalpalabas a panagbaliw',
+'tog-extendwatchlist'   => 'Ikalawa ti listaan ti bambantayan tapno maipakita amin a maiyannatup a panagbaliw',
+'tog-showtoolbar'       => 'Ipakita ti edit toolbar (JavaScript)',
+'tog-rememberpassword'  => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
+'tog-watchcreations'    => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
+'tog-watchdefault'      => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
+'tog-watchmoves'        => 'Inayon dagiti inyakarko a pampanid iti listaan ti bambantayak',
+'tog-watchdeletion'     => 'Inayon dagiti inikkatko a pampanid iti listaan ti bambantayak',
+'tog-previewonfirst'    => 'Ipakita ti preview iti umuna a baliw',
+'tog-watchlisthidebots' => 'Ilemmeng dagiti bot edits iti listaan ti bambantayan',
+'tog-showhiddencats'    => 'Ipakita dagiti nakalemmeng a categoria',
 
 'underline-always' => 'Kanayon',
 
@@ -86,6 +87,9 @@ $messages = array(
 'subcategories'                 => 'Dagiti subcategoria',
 'category-media-header'         => 'Media iti categoria "$1"',
 'hidden-category-category'      => 'Nailemmeng a categorias', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'        => 'tuloy.',
+
+'mainpagetext' => "<big>'''Sibaballigi a nainstolar ti MediaWiki.'''</big>",
 
 'about'          => 'Maipapan iti',
 'article'        => 'Panid ti linaon',
@@ -139,6 +143,7 @@ $messages = array(
 'otherlanguages'    => 'iti sabali a pagsasao',
 'protectedpage'     => 'Nasaluadan a panid',
 'jumpto'            => 'Mapan iti:',
+'jumptonavigation'  => 'pagdaliasatan',
 'jumptosearch'      => 'agbirok',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -652,8 +657,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 'version-software-product' => 'Produkto',
 
 # Special:SpecialPages
-'specialpages-group-users'       => 'Dagiti agar-aramat ken karkarbengan',
-'specialpages-group-needy'       => 'Pampanid a masapul a matrabaho',
-'specialpages-group-permissions' => 'Dagiti pammalubos ti agar-aramat',
+'specialpages-group-users' => 'Dagiti agar-aramat ken karkarbengan',
+'specialpages-group-needy' => 'Pampanid a masapul a matrabaho',
 
 );

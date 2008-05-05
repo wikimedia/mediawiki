@@ -575,7 +575,7 @@ Hark'ay huchhaykiqa $5 nisqam. Mañakuspaykiqa chay huchhata willay.",
 'userinvalidcssjstitle'             => "'''Paqtataq:''' Manam kanchu \"\$1\" qara. Yuyariy, kikinpa .css, .js p'anqankunaqa uchuy sanampa umalliyuqmi, ahinataq {{ns:user}}:Foo/monobook.css manataq  {{ns:user}}:Foo/Monobook.css nisqachu.",
 'updated'                           => '(Musuqchasqa)',
 'note'                              => '<strong>Musyay:</strong>',
-'previewnote'                       => 'Yuyaykuy: Kayqa manaraq waqaychaspa qhawariymi!',
+'previewnote'                       => '<strong>Yuyaykuy: Kayqa manaraq waqaychaspa qhawariymi!</strong>',
 'previewconflict'                   => "Rikuchkanki kay p'anqataqa, ima hinachus waqaychasqa kanqa.",
 'session_fail_preview'              => "<strong>Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi. Ama hina kaspa, musuqmanta ruraykachay. Mana atispaykiqa, lluqsispa musuqmanta yaykuy.</strong>",
 'session_fail_preview_html'         => "<strong>Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi.</strong>
@@ -2379,6 +2379,5 @@ Mana “{{ns:image}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'specialpages-group-users'       => 'Ruraqkuna hayñinkunapas',
 'specialpages-group-needy'       => "Llamk'apuna p'anqakuna",
 'specialpages-group-highuse'     => "Achka kuti llamk'achisqa p'anqakuna",
-'specialpages-group-permissions' => 'Imakunatataq ruraq atinpas',
 
 );

@@ -5,6 +5,7 @@
  *
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
+ * @author Siebrand
  */
 
 /**
@@ -857,7 +858,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'userrights-lookup-user'     => 'Metmaacher Jruppe verwalte',
 'userrights-user-editname'   => 'Metmaacher Name: <!-- -->',
 'editusergroup'              => 'Däm Metmaacher sing Jruppe Räächde bearbeide',
-'editinguser'                => 'Däm <b>$1</b> sing Metmaachersigg ändere',
+'editinguser'                => 'Däm <b>$1</b> sing Metmaachersigg ändere ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 'userrights-editusergroup'   => 'Metmaacher Jruppe aanpasse',
 'saveusergroups'             => 'Metmaacher Jruppe avspeichere',
 'userrights-groupsmember'    => 'Es en de Metmaacher Jruppe:<br />',
@@ -957,9 +958,7 @@ un dann muss de dat Dinge noch ens huhlade.',
 'emptyfile'                   => 'Wat De hee jetz huhjelade häs, hät kein Daate dren jehatt. Künnt sin, dat De Dich 
 verdon häs, un dä Name wo verkihrt jeschrevve. Luur ens ov De wirklich <strong>die</strong> Dateie hee 
 huhlade wells.',
-'fileexists'                  => 'Et jitt ald en Datei met däm Name. Wann De op „<span style="padding:2px; 
-background-color:#ddd; color:black">Datei avspeichere</span>“ klicks, weed se ersetz. Bes esu jod  un luur Der $1 
-aan, wann De nit 100% secher bes.',
+'fileexists'                  => 'Et jitt ald en Datei met däm Name. Wann De op „Datei avspeichere“ klicks, weed se ersetz. Bes esu jod  un luur Der <strong><tt>$1</tt></strong> aan, wann De nit 100% secher bes.',
 'fileexists-forbidden'        => 'Et jitt ald en Datei met däm Name. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Et jitt ald en Datei met däm Name em jemeinsame Speicher. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:image}}:$1|thumb|center|$1]]',
 'successfulupload'            => 'Et Huhlade hät jeflupp',

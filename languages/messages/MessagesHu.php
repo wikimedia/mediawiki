@@ -1599,9 +1599,7 @@ Az egyes csoportokról [[{{MediaWiki:Listgrouprights-helppage}}|itt]] találhat�
 
 # E-mail user
 'mailnologin'     => 'Nincs feladó',
-'mailnologintext' => 'Ahhoz hogy másoknak emailt küldhess
-[[Special:Userlogin|be kell jelentkezned]]
-és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
+'mailnologintext' => 'Ahhoz hogy másoknak emailt küldhess [[Special:Userlogin|be kell jelentkezned]] és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
 'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail címet adott meg,
@@ -2745,6 +2743,5 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'specialpages-group-users'       => 'Felhasználók és jogok',
 'specialpages-group-needy'       => 'Figyelmet igénylő lapok',
 'specialpages-group-highuse'     => 'Gyakran használt lapok',
-'specialpages-group-permissions' => 'Felhasználók jogai',
 
 );

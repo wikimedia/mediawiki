@@ -621,7 +621,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 कृपया ध्यान में रहें की बदली हुई .css और .js फ़ाईलें नीचे स्तरकी लिपी का इस्तेमाल करती हैं, उदा.  {{ns:user}}:Foo/monobook.css के विरुध {{ns:user}}:Foo/Monobook.css ।",
 'updated'                           => '(अद्यतनीत)',
 'note'                              => '<strong>सूचना:</strong>',
-'previewnote'                       => 'याद रखें, यह केवल एक झलक है और अभी तक सुरक्षित  नहीं किया गया है!',
+'previewnote'                       => '<strong>याद रखें, यह केवल एक झलक है और अभी तक सुरक्षित  नहीं किया गया है!</strong>',
 'previewconflict'                   => 'उपरी बदलाव संजोये जाने के बाद उपरी पाठ इस झलकके अनुसार दिखाया जायेगा।',
 'session_fail_preview'              => '<strong>माफ किजीयें! आपके बदलाव सेशन डाटा के नष्ट होने के कारण संजोयें नहीं गयें हैं।
 कृपया पुन: यत्न करें। अगर इसके बाद भी ऐसा ही होता हैं तो कॄपया लॉग आउट करके फिरसे लॉग इन करें।</strong>',
@@ -2635,6 +2635,5 @@ $1',
 'specialpages-group-users'       => 'सदस्य एवं अधिकार',
 'specialpages-group-needy'       => 'कार्य प्रयोजित पृष्ठ',
 'specialpages-group-highuse'     => 'अत्यधिक उपयोगी पृष्ठ',
-'specialpages-group-permissions' => 'सदस्य अनुमतियाँ',
 
 );

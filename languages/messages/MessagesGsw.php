@@ -3,11 +3,10 @@
  *
  * @addtogroup Language
  *
- * @author 80686
  * @author Helix84
- * @author Siebrand
+ * @author 80686
  * @author לערי ריינהארט
- * @author SPQRobin
+ * @author Siebrand
  * @author Jon Harald Søby
  */
 
@@ -378,7 +377,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'userjspreview'            => "== Vorschau Ihres Benutzer-Javascript. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'note'                     => '<strong>Achtung: </strong>',
-'previewnote'              => 'Das isch numen e Vorschau und nonig gspycheret!',
+'previewnote'              => '<strong>Das isch numen e Vorschau und nonig gspycheret!</strong>',
 'editing'                  => 'Bearbeite vo «$1»',
 'editingsection'           => 'Bearbeite vo «$1» (Absatz)',
 'editconflict'             => 'Bearbeitigs-Konflikt: «$1»',
@@ -476,7 +475,7 @@ $2 Zeige auch REDIRECTs   Suche nach $3 $9',
 'userrights'               => 'Benutzerrechtsverwaltung', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'   => 'Verwalte Gruppenzugehörigkeit',
 'editusergroup'            => 'Ändere vo Benutzerrächt',
-'editinguser'              => 'Bearbeite vo «$1»',
+'editinguser'              => "Bearbeite vo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
 'saveusergroups'           => 'Speichere Gruppenzugehörigkeit',
 

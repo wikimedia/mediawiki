@@ -3,9 +3,10 @@
  *
  * @addtogroup Language
  *
+ * @author Eukesh
  * @author SPQRobin
  * @author Siebrand
- * @author Eukesh
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -93,7 +94,7 @@ $messages = array(
 'mainpage-description' => 'मू पौ',
 'policy-url'           => 'Project:नीति',
 'portal'               => 'सामाजिक दबू',
-'portal-url'           => 'ज्याझ्वः:सामाजिक दबू',
+'portal-url'           => 'Project:सामाजिक दबू',
 'privacy'              => 'दुबिस्ता नियम',
 'sitesupport'          => 'दान',
 

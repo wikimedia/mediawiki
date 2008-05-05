@@ -3,19 +3,19 @@
  *
  * @addtogroup Language
  *
- * CHANGELOG
- * =========
- * Init - This localisation is based on a file kindly donated by the folks at MIMOS
- * http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
- * Sep 2007 - Rewritten by the folks at ms.wikipedia.org
  * @author לערי ריינהארט
  * @author Aviator
  * @author Siebrand
  * @author Aurora
  */
 
-# Uncomment line below to use space charecter as thousands separator
-# $separatorTransformTable = array(',', ' ');
+/**
+ * CHANGELOG
+ * =========
+ * Init - This localisation is based on a file kindly donated by the folks at MIMOS
+ * http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
+ * Sep 2007 - Rewritten by the folks at ms.wikipedia.org
+ */
 
 $defaultDateFormat = 'dmy';
 
@@ -1088,7 +1088,7 @@ Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
 'large-file'                  => 'Saiz fail ini ialah $2. Anda dinasihati supaya memuat naik fail yang tidak melebihi $1.',
 'largefileserver'             => 'Fail ini telah melebihi had muat naik pelayan web.',
 'emptyfile'                   => 'Fail yang dimuat naik adalah kosong. Ini mungkin disebabkan oleh kesilapan menaip nama fail. Sila pastikan bahawa anda betul-betul mahu memuat naik fail ini.',
-'fileexists'                  => 'Sebuah fail dengan nama ini telah pun wujud. Sila semak $1 sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.',
+'fileexists'                  => 'Sebuah fail dengan nama ini telah pun wujud. Sila semak <strong><tt>$1</tt></strong> sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.',
 'filepageexists'              => 'Sebuah lama (bukan imej) dengan nama ini telah pun wujud. Sila semak <strong><tt>$1</tt></strong> sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.',
 'fileexists-extension'        => 'Sebuah fail dengan nama yang sama telah pun wujud:<br />
 Nama fail yang dimuat naik: <strong><tt>$1</tt></strong><br />
