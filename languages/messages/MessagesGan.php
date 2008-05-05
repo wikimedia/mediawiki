@@ -518,7 +518,7 @@ $2',
 'userinvalidcssjstitle'     => "'''警告:''' 冇\"\$1\"嗰皮膚。請記到自定義嗰 .css 同 .js 頁要用小寫。就話，{{ns:user}}:Foo/monobook.css 伓等同 {{ns:user}}:Foo/Monobook.css。",
 'updated'                   => '(更新正嘍)',
 'note'                      => '<strong>注意:</strong>',
-'previewnote'               => '請記到箇單只係預覽，內容還冇保存！',
+'previewnote'               => '<strong>請記到箇單只係預覽，內容還冇保存！</strong>',
 'previewconflict'           => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
 'session_fail_preview'      => '<strong>對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。
 請試過吖。還係扤伓正嗰話，試吖退出後登入過。</strong>',

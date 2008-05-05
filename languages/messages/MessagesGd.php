@@ -5,9 +5,10 @@
  *
  * @author SPQRobin
  * @author לערי ריינהארט
+ * @author Siebrand
+ * @author Sionnach
  * @author Helix84
  * @author Nike
- * @author Sionnach
  * @author Raymond
  */
 
@@ -149,7 +150,7 @@ $1",
 'newarticle'        => '(Ùr)',
 'noarticletext'     => '(Chan eil teacsa anns an duilleig seo a-nis)',
 'updated'           => '(Nua-dheasaichte)',
-'previewnote'       => 'Cuimhnichibh nach e ach roi-shealladh a tha seo, agus chan eil e air a shàbhaladh fhathast!',
+'previewnote'       => '<strong>Cuimhnichibh nach e ach roi-shealladh a tha seo, agus chan eil e air a shàbhaladh fhathast!</strong>',
 'editing'           => "A'deasaicheadh $1",
 'editconflict'      => 'Mì-chòrdadh deasachaidh: $1',
 'explainconflict'   => "Tha cuideigin eile air an duilleig seo a mhùthadh o'n thòisich sibh fhèin a dheasaicheadh. Tha am bocsa teacsa shuas a'nochdadh na duilleig mar a tha e an dràsda. Tha na mùthaidhean agaibhse anns a'bhocsa shios. Feumaidh sibh na mùthaidhean agaibh a choimeasgachadh leis an teacsa làithreach. Cha tèid <b>ach an teacsa shuas</b> a shàbhaladh an uair a bhriogas sibh \"Sàbhail duilleag\".<p>",

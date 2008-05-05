@@ -4,11 +4,11 @@
  * @addtogroup Language
  *
  * @author Krice from Tyvanet.com
- * @author Sborsody
  * @author friends at tyvawiki.org
  * @author Nike
- * @author לערי ריינהארט
+ * @author Sborsody
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -378,7 +378,7 @@ $1',
 'files'              => 'файлдар',
 
 # User rights
-'editinguser' => '<b>$1</b> деп ажыглакчыны өскертип турар',
+'editinguser' => '<b>$1</b> деп ажыглакчыны өскертип турар ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 
 # Groups
 'group'     => 'Бөлүк:',

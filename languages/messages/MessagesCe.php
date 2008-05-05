@@ -7,6 +7,7 @@
  * @author Mega programmer
  * @author Chechenka
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $fallback = 'ru';
@@ -186,7 +187,7 @@ $messages = array(
 'textboxsize'     => 'Xийца',
 
 # User rights
-'editinguser' => 'Хийца юзер <b>$1</b>',
+'editinguser' => "Хийца юзер '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges' => 'Керла хийцамаш',

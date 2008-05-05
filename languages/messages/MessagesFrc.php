@@ -637,7 +637,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'mypreferences' => 'Mon réglage',
 
 # User rights
-'editinguser' => 'Changement de <b>$1</b>',
+'editinguser' => "Changement de '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Miscellaneous special pages
 'move'         => 'Renommer',

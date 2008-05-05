@@ -1,5 +1,5 @@
 <?php
-/** Chinese (Simplified) (‪中文 (简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @addtogroup Language
  *
@@ -623,7 +623,7 @@ $2',
 'userinvalidcssjstitle'             => "'''警告:''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
 'updated'                           => '(已更新)',
 'note'                              => '<strong>注意:</strong>',
-'previewnote'                       => '请记住这只是预览，内容还未保存！',
+'previewnote'                       => '<strong>请记住这只是预览，内容还未保存！</strong>',
 'previewconflict'                   => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
 'session_fail_preview'              => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请登出后重新登陆。</strong>',
 'session_fail_preview_html'         => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
@@ -1012,8 +1012,8 @@ $2',
 'right-import'               => '由其它wiki中导入页面',
 'right-importupload'         => '由文件上载中导入页面',
 'right-patrol'               => '标示编辑作已巡查的',
-'right-patrolmarks'          => '查看最近巡查标记更改',
 'right-autopatrol'           => '将编辑自动标示为已巡查的',
+'right-patrolmarks'          => '查看最近巡查标记更改',
 'right-unwatchedpages'       => '查看未监视之页面',
 'right-trackback'            => '递交一个trackback',
 'right-mergehistory'         => '合并页面历史',
@@ -2548,6 +2548,5 @@ $1
 'specialpages-group-users'       => '用户和权限',
 'specialpages-group-needy'       => '需要做事情的页面',
 'specialpages-group-highuse'     => '高度使用页面',
-'specialpages-group-permissions' => '用户权限',
 
 );

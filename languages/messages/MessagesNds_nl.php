@@ -802,7 +802,7 @@ Je kunnen \'t woord [[Special:Search/{{PAGENAME}}|opzeuken]] in aandere pagina\'
 'userinvalidcssjstitle'             => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet neet dat joew eigen .css- en .js-pagina's beginnen mit een kleine letter, bv. \"{{ns:user}}:Naam/'''m'''onobook.css\" in plaose van \"{{ns:user}}:Naam/'''M'''onobook.css\".",
 'updated'                           => '(Bewark)',
 'note'                              => '<strong>Opmarking:</strong>',
-'previewnote'                       => '<div style="font-size:110%">NB: je bin de pagina allinnig nog mar an \'t naokieken; de tekse is nog neet op-esleugen!</div>',
+'previewnote'                       => "<strong>NB: je bin de pagina allinnig nog mar an 't naokieken; de tekse is nog neet op-esleugen!</strong>",
 'previewconflict'                   => "Disse versie laot zien ho de tekse in 't bovenste veld deruut kump te zien a-j de tekse opslaon.",
 'session_fail_preview'              => "<strong>De bewarking kan neet verwark wonnen wegens een verlies an data. Prebeer 't laoter weer, as 't prebleem dan nog steeds veurkump, prebeer dan opniej an te melden.</strong>",
 'session_fail_preview_html'         => "<strong>Joew wieziging kon neet verwark wonnen wegens een verlies an sessiedata.</strong>
@@ -1067,7 +1067,7 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'userrights-lookup-user'     => 'Beheer gebrukersgroepen',
 'userrights-user-editname'   => 'Vul een gebrukersnaam in:',
 'editusergroup'              => 'Bewark gebrukersgroepen',
-'editinguser'                => 'Bewark: $1',
+'editinguser'                => "Bewark: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'   => 'Bewark gebrukersgroep',
 'saveusergroups'             => 'Gebrukergroepen opslaon',
 'userrights-groupsmember'    => 'Lid van:',
@@ -1160,7 +1160,7 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'large-file'                  => "'t Wonnen an-raojen dat bestanden neet groter bin as $1, dit bestand is $2.",
 'largefileserver'             => "'t Bestand is groter as dat de server toesteet.",
 'emptyfile'                   => "'t Bestand da-j toe-evoeg hemmen is leeg. Dit kan koemen deur een tikfout in de bestansnaam. Kiek effen nao of je dit bestand wel bedoelen.",
-'fileexists'                  => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't bestand onder een aandere naam toe te voegen. $1",
+'fileexists'                  => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't bestand onder een aandere naam toe te voegen. <strong><tt>$1</tt></strong>",
 'fileexists-extension'        => "Een bestand mit een soortgelieke naam besteet al:<br />
 Naam van 't bestand da-j toevoegen wollen: <strong><tt>$1</tt></strong><br />
 Naam van 't bestaonde bestand: <strong><tt>$2</tt></strong><br />

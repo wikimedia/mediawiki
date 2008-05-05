@@ -221,7 +221,7 @@ Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:Grouppage-sy
 'noarticletext'   => "(L'articolo è vuoto, potresti gentilmente iniziare l'articolo oppure richiedere la cancellazione di questa pagina)",
 'updated'         => '(Aggiornato)',
 'note'            => '<strong>Nota:</strong>',
-'previewnote'     => 'Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!',
+'previewnote'     => '<strong>Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!</strong>',
 'previewconflict' => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
 'editing'         => 'Modifica di $1',
 'editconflict'    => 'Conflitto di edizione: $1',
@@ -305,7 +305,7 @@ per poter personalizzare le tue preferenze.',
 'timezoneoffset'           => 'Offset',
 
 # User rights
-'editinguser' => 'Modifica di $1',
+'editinguser' => "Modifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges'   => 'Ultime Modifiche',

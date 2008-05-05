@@ -281,6 +281,7 @@ $messages = array(
 'disclaimers'          => 'ردادعاليکونه',
 'disclaimerpage'       => 'Project:ټولګړی ردادعاليک',
 'edithelp'             => 'د لارښود سماد',
+'edithelppage'         => 'لارښود:سمادېدنه',
 'helppage'             => 'Help:لړليک',
 'mainpage'             => 'لومړی مخ',
 'mainpage-description' => 'لومړی مخ',
@@ -689,7 +690,7 @@ $messages = array(
 'minlength1'           => 'پکار ده چې د دوتنو نومونه لږ تر لږه يو حرف ولري.',
 'badfilename'          => 'ددغې دوتنې نوم "$1" ته واوړېده.',
 'filetype-badmime'     => 'د MIME بڼې "$1" د دوتنو د پورته کولو اجازه نشته.',
-'fileexists'           => 'د پخوا نه پدې نوم يوه دوتنه شته، که تاسو ډاډه نه ياست او يا هم که تاسو غواړۍ چې بدلون پکې راولۍ، لطفاً $1 وګورۍ.',
+'fileexists'           => 'د پخوا نه پدې نوم يوه دوتنه شته، که تاسو ډاډه نه ياست او يا هم که تاسو غواړۍ چې بدلون پکې راولۍ، لطفاً <strong><tt>$1</tt></strong> وګورۍ.',
 'fileexists-extension' => 'په همدې نوم يوه بله دوتنه د پخوا نه شته:<br />
 د پورته کېدونکې دوتنې نوم: <strong><tt>$1</tt></strong><br />
 د پخوا نه شته دوتنه: <strong><tt>$2</tt></strong><br />
@@ -1054,6 +1055,11 @@ $messages = array(
 '''ګواښنه!'''
 يوه نوي نوم ته د مخونو د نوم بدلون کېدای شي چې په نامتو مخونو کې بنسټيزه او نه اټکل کېدونکی بدلونونه رامېنځ ته کړي;
 مخکې له دې نه چې پرمخ ولاړ شی، مهرباني وکړۍ لومړی خپل ځان په دې ډاډه کړی چې تاسو ددغې کړنې په پايلو ښه پوهېږۍ.",
+'movepagetalktext'        => "همدې مخ ته اړونده د خبرواترو مخ هم په اتوماتيک ډول لېږدول کېږي '''خو تر څو چې:'''
+*A non-empty talk page already exists under the new name, or
+*You uncheck the box below.
+
+In those cases, you will have to move or merge the page manually if desired.",
 'movearticle'             => 'مخ لېږدول',
 'movenologin'             => 'غونډال کې نه ياست ننوتي',
 'movenologintext'         => 'ددې لپاره چې يو مخ ولېږدوی، نو تاسو بايد يو ثبت شوی کارونکی او غونډال کې [[Special:Userlogin|ننوتي]] اوسۍ.',
@@ -1180,6 +1186,13 @@ $messages = array(
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'ساعتونه',
+
+# Bad image list
+'bad_image_list' => 'بڼه يې په لاندې توګه ده:
+
+يواځې د هغو توکيو لړليک راوړل (هغه ليکې چې پېلېږي پر *) کوم چې ګڼل کېږي.
+بايد چې په يوه کرښه کې لومړنۍ تړنه د يوې خرابې دوتنې سره وي.
+Any subsequent links on the same line are considered to be exceptions, i.e. pages where the file may occur inline.',
 
 # Metadata
 'metadata'          => 'مېټاډاټا',

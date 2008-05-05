@@ -326,7 +326,7 @@ Si tu es hic per error, simplemente clicca le button '''Retornar''' de tu naviga
 'noarticletext'    => '(Actualmente il non ha texto in iste pagina)',
 'updated'          => '(Actualisate)',
 'note'             => '<strong>Nota:</strong>',
-'previewnote'      => 'Rememora te que isto es solmente un previsualisation, tu modificationes ancora non ha essite salvate!',
+'previewnote'      => '<strong>Rememora te que isto es solmente un previsualisation, tu modificationes ancora non ha essite salvate!</strong>',
 'previewconflict'  => 'Iste previsualisation reflecte le apparentia final del texto in le area de redaction superior
 si tu opta pro salvar lo.',
 'editing'          => 'Modification de $1',
@@ -442,7 +442,7 @@ e illo del servitor (UTC).',
 'timezoneoffset'           => 'Differentia de fuso horari',
 
 # User rights
-'editinguser' => 'Modification de $1',
+'editinguser' => "Modification de '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 'grouppage-sysop'      => '{{ns:project}}:Administratores',
 'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrates',

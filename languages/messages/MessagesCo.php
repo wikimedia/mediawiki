@@ -4,6 +4,7 @@
  * @addtogroup Language
  *
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $messages = array(
@@ -223,7 +224,7 @@ $messages = array(
 'files'             => 'Schedarii',
 
 # User rights
-'editinguser'             => 'Mudifica di $1',
+'editinguser'             => "Mudifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-groupsmember' => 'Membru di:',
 
 # Groups

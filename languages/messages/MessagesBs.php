@@ -655,7 +655,7 @@ $2 Izlistajte preusmjerenja &nbsp; Tražite $3 $9',
 'defaultns'               => 'Uobičajeno tražite u ovim imenskim prostorima:',
 
 # User rights
-'editinguser' => 'Uređujete $1',
+'editinguser' => "Uređujete '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges'                  => 'Nedavne izmjene',
@@ -704,7 +704,7 @@ da bi ste slali fajlove.',
 'uploadedfiles'               => 'Poslati fajlovi',
 'badfilename'                 => 'Ime slike je promjenjeno u "$1".',
 'emptyfile'                   => 'Fajl koji ste poslali je prazan. Ovo je moguće zbog greške u imenu fajla. Molimo Vas da provjerite da li stvarno želite da pošaljete ovaj fajl.',
-'fileexists'                  => 'Fajl sa ovim imenom već postoji.  Molimo Vas da provjerite $1 ako niste sigurni da li želite da ga promjenite.',
+'fileexists'                  => 'Fajl sa ovim imenom već postoji.  Molimo Vas da provjerite <strong><tt>$1</tt></strong> ako niste sigurni da li želite da ga promjenite.',
 'fileexists-forbidden'        => 'Fajl sa ovim imenom već postoji; molimo Vas da se vratite i pošaljete ovaj fajl pod novim imenom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Fajl sa ovim imenom već postoji u zajedničkoj ostavi; molimo Vas da se vratite i pošaljete ovaj fajl pod novim imenom. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Uspješno slanje',
@@ -1273,6 +1273,5 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'specialpages-group-users'       => 'Korisnici i korisnička prava',
 'specialpages-group-needy'       => 'Stranice koje treba doraditi',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
-'specialpages-group-permissions' => 'Korisnička prava',
 
 );

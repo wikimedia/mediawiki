@@ -7,6 +7,7 @@
  * @author Magalahi
  * @author Nike
  * @author Jatrobat
+ * @author Siebrand
  */
 
 $messages = array(
@@ -185,7 +186,7 @@ $messages = array(
 'disclaimers'          => 'Diklarasion Inadahi',
 'disclaimerpage'       => 'Project:Diklarasion inadahi henerat',
 'edithelp'             => 'Ayudo tumulaika',
-'edithelppage'         => 'Ayudo:Tumulaika',
+'edithelppage'         => 'Help:Tumulaika',
 'helppage'             => 'Help:Guinaha',
 'mainpage'             => 'Fanhaluman',
 'mainpage-description' => 'Fanhaluman',

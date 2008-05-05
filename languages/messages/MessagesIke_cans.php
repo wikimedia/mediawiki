@@ -218,7 +218,7 @@ $messages = array(
 'searchresultshead'     => 'ᐃᕚᖅᐳᖅ',
 
 # User rights
-'editinguser' => 'ᓱᖁᓯᖅᐹ ᖃᑕᙳᑎ <b>$1</b>',
+'editinguser' => "ᓱᖁᓯᖅᐹ ᖃᑕᙳᑎ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges'   => 'ᐱᒋᕗᖅ ᐊᓯᐊᙳᑐᖅ',

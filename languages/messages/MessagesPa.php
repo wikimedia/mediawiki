@@ -6,6 +6,7 @@
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
  * @author AS Alam
+ *
  * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
@@ -536,7 +537,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'userrights-lookup-user'      => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਦੇਖਭਾਲ',
 'userrights-user-editname'    => 'ਇੱਕ ਯੂਜ਼ਰ ਨਾਂ ਦਿਓ:',
 'editusergroup'               => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
-'editinguser'                 => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
+'editinguser'                 => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 'userrights-editusergroup'    => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
 'saveusergroups'              => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੰਭਾਲੋ',
 'userrights-groupsmember'     => 'ਇਸ ਦਾ ਮੈਂਬਰ:',

@@ -700,7 +700,7 @@ dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di d
 'userjspreview'                     => "'''Denk doran, dat du blots en Vörschau vun dien JS ankiekst, dat is noch nich spiekert!'''",
 'updated'                           => '(Ännert)',
 'note'                              => '<strong>Wohrschau:</strong>',
-'previewnote'                       => 'Dit is blots en Vörschau, de Siet is noch nich spiekert!',
+'previewnote'                       => '<strong>Dit is blots en Vörschau, de Siet is noch nich spiekert!</strong>',
 'previewconflict'                   => 'Disse Vörschau wiest den Inholt vun dat Textfeld baven; so warrt de Siet utseihn, wenn du nu spiekerst.',
 'session_fail_preview'              => '<strong>Deit uns leed! Wi kunnen dien Ännern nich spiekern. Diene Sitzungsdaten weren weg.
 Versöök dat noch wedder. Wenn dat noch jümmer nich geiht, denn versöch di af- un denn wedder antomellen.</strong>',
@@ -757,7 +757,7 @@ Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Ut
 'expensive-parserfunction-category' => 'Sieden, de toveel opwännige Parserfunkschonen bruukt',
 
 # "Undo" feature
-'undo-summary' => 'Ännern $1 vun [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:User_talk}}:$2|Diskuschoon]]) trüchdreiht.',
+'undo-summary' => 'Ännern $1 vun [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskuschoon]]) trüchdreiht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brukerkonto kann nich anleggt warrn',
@@ -981,7 +981,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'userrights-lookup-user'           => 'Brukergruppen verwalten',
 'userrights-user-editname'         => 'Brukernaam ingeven:',
 'editusergroup'                    => 'Brukergruppen bearbeiden',
-'editinguser'                      => "Ännern vun Brukerrechten vun '''[[{{ns:User}}:$1|$1]]''' ([[{{ns:User talk}}:$1|{{int:talkpagelinktext}}]] | [[{{ns:Special}}:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Ännern vun Brukerrechten vun '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Brukergruppen ännern',
 'saveusergroups'                   => 'Brukergruppen spiekern',
 'userrights-groupsmember'          => 'Liddmaat vun:',
@@ -1115,7 +1115,7 @@ Alle Tieden sünd UTC.",
 'large-file'                 => 'Datein schöölt opbest nich grötter wesen as $1. Disse Datei is $2 groot.',
 'largefileserver'            => 'De Datei is grötter as de vun’n Server verlöövte Bövergrenz för de Grött.',
 'emptyfile'                  => 'De hoochladene Datei is leddig. De Grund kann en Tippfehler in de Dateinaam ween. Kontrolleer, of du de Datei redig hoochladen wullst.',
-'fileexists'                 => 'En Datei mit dissen Naam existeert al, prööv $1, wenn du di nich seker büst of du dat ännern wullst.',
+'fileexists'                 => 'En Datei mit dissen Naam existeert al, prööv <strong><tt>$1</tt></strong>, wenn du di nich seker büst of du dat ännern wullst.',
 'fileexists-thumb'           => "<center>'''Vörhannene Datei'''</center>",
 'fileexists-forbidden'       => 'En Datei mit dissen Naam gifft dat al; gah trüch un laad de Datei ünner en annern Naam hooch. [[Image:$1|thumb|center|$1]]',
 'successfulupload'           => 'Datei hoochladen hett Spood',
@@ -1368,7 +1368,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 
 # E-mail user
 'mailnologin'     => 'Du büst nich anmellt.',
-'mailnologintext' => 'Du musst [[Spezial:Userlogin|anmellt wesen]] un en güllige E-Mail-Adress hebben, dat du en annern Bruker en E-Mail sennen kannst.',
+'mailnologintext' => 'Du musst [[Special:Userlogin|anmellt wesen]] un en güllige E-Mail-Adress hebben, dat du en annern Bruker en E-Mail sennen kannst.',
 'emailuser'       => 'E-Mail an dissen Bruker',
 'emailpage'       => 'E-Mail an Bruker',
 'emailpagetext'   => 'Wenn disse Bruker en güllige E-Mail-Adress angeven hett, kannst du em mit den nerrn stahn Formular en E-Mail sennen. As Afsenner warrt de E-Mail-Adress ut dien Instellen indregen, dormit de Bruker di antern kann.',
@@ -1393,7 +1393,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'nowatchlist'          => 'Du hest kene Indreeg op dien Oppasslist.',
 'watchlistanontext'    => '$1, dat du dien Oppasslist ankieken oder ännern kannst.',
 'watchnologin'         => 'Du büst nich anmellt',
-'watchnologintext'     => 'Du must [[Spezial:Userlogin|anmellt]] wesen, wenn du dien Oppasslist ännern willst.',
+'watchnologintext'     => 'Du must [[Special:Userlogin|anmellt]] wesen, wenn du dien Oppasslist ännern willst.',
 'addedwatch'           => 'To de Oppasslist toföögt',
 'addedwatchtext'       => 'De Siet „<nowiki>$1</nowiki>“ is to diene [[Special:Watchlist|Oppasslist]] toföögt worrn.
 Ännern, de in Tokumst an disse Siet un an de tohörige Diskuschoonssiet maakt warrt, sünd dor op oplist un de Siet is op de [[Special:Recentchanges|List vun de letzten Ännern]] fett markt. Wenn du de Siet nich mehr op diene Oppasslist hebben willst, klick op „Nich mehr oppassen“.',
@@ -2370,6 +2370,5 @@ Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
 'specialpages-group-users'       => 'Brukers un Rechten',
 'specialpages-group-needy'       => 'Sieden, an de wat daan warrn mutt',
 'specialpages-group-highuse'     => 'Veel bruukte Sieden',
-'specialpages-group-permissions' => 'Brukerrechten',
 
 );

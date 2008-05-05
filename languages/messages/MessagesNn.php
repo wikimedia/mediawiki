@@ -778,7 +778,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'userinvalidcssjstitle'             => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/monobook.css, og ikkje {{ns:user}}:Døme/Monobook.css.",
 'updated'                           => '(Oppdatert)',
 'note'                              => '<strong>Merk:</strong>',
-'previewnote'                       => 'Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!',
+'previewnote'                       => '<strong>Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!</strong>',
 'previewconflict'                   => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview'              => '<strong>Beklagar! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
 'session_fail_preview_html'         => "<strong>Beklagar! Endringa di kunne ikkje lagrast.</strong>
@@ -1188,7 +1188,7 @@ For å lenkje direkte til fila, skriv:
 'large-file'                  => 'Det er tilrådd at filene ikkje er større enn $1, denne fila er $2.',
 'largefileserver'             => 'Denne fila er større enn det tenaren tillèt.',
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
-'fileexists'                  => 'Ei fil med dette namnet finst allereie, sjekk $1 om du ikkje er sikker på om du vil endre namnet.',
+'fileexists'                  => 'Ei fil med dette namnet finst allereie, sjekk <strong><tt>$1</tt></strong> om du ikkje er sikker på om du vil endre namnet.',
 'filepageexists'              => 'Skildringssida for denne fila finst allereie på <strong><tt>$1</tt></strong>, men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.',
 'fileexists-extension'        => 'Ei fil med eit liknande namn finst allereie:<br />
 Namnet på fila du lastar opp: <strong><tt>$1</tt></strong><br />
@@ -2505,12 +2505,11 @@ $1',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».',
 
 # Special:SpecialPages
-'specialpages-group-other'       => 'Andre spesialsider',
-'specialpages-group-login'       => 'Innlogging / registrering',
-'specialpages-group-changes'     => 'Siste endringar og loggar',
-'specialpages-group-users'       => 'Brukarar og brukartilgangar',
-'specialpages-group-needy'       => 'Sider som trengjer arbeid',
-'specialpages-group-highuse'     => 'Mykje brukte sider',
-'specialpages-group-permissions' => 'Brukartilgangar',
+'specialpages-group-other'   => 'Andre spesialsider',
+'specialpages-group-login'   => 'Innlogging / registrering',
+'specialpages-group-changes' => 'Siste endringar og loggar',
+'specialpages-group-users'   => 'Brukarar og brukartilgangar',
+'specialpages-group-needy'   => 'Sider som trengjer arbeid',
+'specialpages-group-highuse' => 'Mykje brukte sider',
 
 );

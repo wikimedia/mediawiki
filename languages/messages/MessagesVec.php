@@ -190,7 +190,7 @@ I seguenti colegamenti i xe in lengua inglese:
 'errorpagetitle'    => 'Erór',
 'returnto'          => 'Torna a $1.',
 'tagline'           => 'Da {{SITENAME}}.',
-'help'              => 'Ciacołe',
+'help'              => 'Ajuto',
 'search'            => 'Serca',
 'searchbutton'      => 'Serca',
 'go'                => 'Và',
@@ -589,7 +589,7 @@ Se te si rivà qua par sbaglio, basta che te machi el boton '''Indrio''' sul to 
 'userinvalidcssjstitle'             => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/monobook.css e no {{ns:user}}:Esenpio/Monobook.css.",
 'updated'                           => '(Agiornà)',
 'note'                              => '<strong>Nota:</strong>',
-'previewnote'                       => "Tegni presente che sta qua xè solo n'anteprima, e che la to version NO la xè stà gnancora salvà!",
+'previewnote'                       => "<strong>Tegni presente che sta qua xè solo n'anteprima, e che la to version NO la xè stà gnancora salvà!</strong>",
 'previewconflict'                   => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
 'session_fail_preview'              => '<strong>Purtropo no xè stà possibiłe salvar le to modifiche parché i dati de la sezion i xè andai persi. Par piaser, riproa da novo.<br />
 Se te rizevi sto messajo de erór pì olte, proa a scołegarte (struca su "và fora" in alto a destra) e a cołegarte novamente.</strong>',
@@ -964,6 +964,7 @@ N'asterisco (*) l'indica che no te pol cavar un utente da un grupo na olta che t
 'right-block'                => 'Bloca le modifiche da parte de altri utenti',
 'right-blockemail'           => 'Inpedìssighe a un utente de mandar e-mail',
 'right-hideuser'             => 'Bloca un nome utente, scondéndolo al publico',
+'right-ipblock-exempt'       => "Scavalca i blochi de l'IP, i auto-blochi e i blochi de grupi de IP",
 'right-proxyunbannable'      => 'Salta via i blochi sui proxy',
 'right-protect'              => 'Canbia i livèi de protezion',
 'right-editprotected'        => 'Modifica pagine protete',
@@ -975,6 +976,7 @@ N'asterisco (*) l'indica che no te pol cavar un utente da un grupo na olta che t
 'right-importupload'         => 'Inporta pagine da un caricamento de file',
 'right-patrol'               => 'Segna le modifiche come verificà',
 'right-autopatrol'           => 'Segna automaticamente le modifiche come verificà',
+'right-patrolmarks'          => 'Dòpara le funsionalità de patugliamento dei ultimi canbiamenti',
 'right-unwatchedpages'       => "Mostra na lista de pagine mìa tegnue d'ocio",
 'right-trackback'            => 'Spedissi un trackback',
 'right-mergehistory'         => 'Fondi insieme la cronologia de le pagine',
@@ -1065,7 +1067,7 @@ Par métar na imagine drento na pagina, te ghè da far un colegamento de sto tip
 'large-file'                  => 'Se racomanda de no superar mìa le dimension de $1 par ciascun file; sto file el xe grando $2.',
 'largefileserver'             => 'El file el supera le dimension consentìe da la configurazion del server.',
 'emptyfile'                   => 'El file che te ghè caricà xè apparentemente vuoto. Podaria essere par un errore nel nome del file. Per favore controlla se te vol veramente caricar stò file.',
-'fileexists'                  => 'Un file con sto nome el esiste de xà, par piaser controła $1 se no te sì sicuro de volerlo sovrascrìvar.',
+'fileexists'                  => 'Un file con sto nome el esiste de xà, par piaser controła <strong><tt>$1</tt></strong> se no te sì sicuro de volerlo sovrascrìvar.',
 'filepageexists'              => "La pagina de descrizion de sto file la xe zà stà creà a l'indirizo <strong><tt>$1</tt></strong>, anca se no ghe xe gnancora un file co sto nome. La descrizion de l'ogeto inserìa in fase de caricamento no la vegnarà mìa fora su la pagina de discussion. Par far sì che l'ogeto el conpaja su la pagina de discussion, sarà necessario modificarla a man",
 'fileexists-extension'        => 'Ghe xe zà un file co un nome che ghe someja a sto qua:<br />
 Nome del file cargà: <strong><tt>$1</tt></strong><br />
@@ -2461,6 +2463,5 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'specialpages-group-users'       => 'Utenti e diriti',
 'specialpages-group-needy'       => 'Pagine che ga bisogno de laori',
 'specialpages-group-highuse'     => 'Pagine doparà assè',
-'specialpages-group-permissions' => 'Permessi utenti',
 
 );

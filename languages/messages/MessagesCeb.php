@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Nike
  * @author Jordz
+ * @author Siebrand
  */
 
 $messages = array(
@@ -168,8 +169,8 @@ $messages = array(
 'currentevents'        => 'Mga bag-ong panghitabo',
 'disclaimers'          => 'Mga pagpasabot',
 'edithelp'             => 'Tabang sa pag-usab',
-'edithelppage'         => 'Tabang:Pag-usab',
-'helppage'             => 'Tabang:Mga sulod',
+'edithelppage'         => 'Help:Pag-usab',
+'helppage'             => 'Help:Mga sulod',
 'mainpage'             => 'Unang Panid',
 'mainpage-description' => 'Unang Panid',
 'portal'               => 'Tubaan',

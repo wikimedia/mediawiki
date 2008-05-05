@@ -113,7 +113,7 @@ $messages = array(
 'aboutpage'            => 'Project:Sobre',
 'copyrightpage'        => '{{ns:project}}:Direitos de autor',
 'currentevents'        => 'Amboras actuais',
-'currentevents-url'    => 'Proyecto:Amboras actuales',
+'currentevents-url'    => 'Project:Amboras actuales',
 'disclaimers'          => 'Alerta de Conteúdo',
 'disclaimerpage'       => 'Project:Aviso geral',
 'edithelp'             => 'Ajuda de edição',
@@ -122,9 +122,9 @@ $messages = array(
 'mainpage'             => 'Página principal',
 'mainpage-description' => 'Página principal',
 'portal'               => 'Portal da quemunidade',
-'portal-url'           => 'Proyecto:Portal da quemunidade',
+'portal-url'           => 'Project:Portal da quemunidade',
 'privacy'              => 'Política de privacidade',
-'privacypage'          => 'Projecto:Política de privacidade',
+'privacypage'          => 'Project:Política de privacidade',
 'sitesupport'          => 'Donativos',
 'sitesupport-url'      => 'Proyecto:Apoio',
 
@@ -150,6 +150,7 @@ $messages = array(
 'nstab-category' => 'Categoria',
 
 # General errors
+'badtitle'       => 'Títalo inválido',
 'viewsource'     => 'Ber código',
 'viewsourcefor'  => 'para $1',
 'viewsourcetext' => 'Você puode ber i copiar l código desta página:',
@@ -157,6 +158,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Su nome de utilizador',
 'yourpassword'            => 'Palabra-chave',
+'remembermypassword'      => 'Lhembrar la mie palabra-chave antre sessons neste computador.',
 'login'                   => 'Entrar',
 'nav-login-createaccount' => 'Entrar / criar cuonta',
 'loginprompt'             => 'Tem que ter ls <i>cookies</i> activos para poder autenticar-se na {{SITENAME}}.',
@@ -200,6 +202,7 @@ $messages = array(
 'showpreview'            => 'Mostrar prebison',
 'showdiff'               => 'Mostrar alterações',
 'anoneditwarning'        => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registado no histórico de edições desta página.",
+'summary-preview'        => 'Previson de sumário',
 'blockedtext'            => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
 
 O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
@@ -327,6 +330,7 @@ Legenda: (actu) = diferenças da versão actual,
 'nlinks'       => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'     => '$1 {{PLURAL:$1|membro|membros}}',
 'shortpages'   => 'Páginas curtas',
+'longpages'    => 'Páginas longas',
 'listusers'    => 'Lhista de outelizadores',
 'specialpages' => 'Páginas speciales',
 'newpages'     => 'Nuovas páginas',
@@ -356,6 +360,7 @@ Legenda: (actu) = diferenças da versão actual,
 'mywatchlist'          => 'Artigos vigiados',
 'watchlistfor'         => "(para '''$1''')",
 'watch'                => 'Bigiar',
+'watchthispage'        => 'Bigiar yesta página',
 'unwatch'              => 'Desinteressar-se',
 'wlshowlast'           => 'Ber últimas $1 horas $2 dias $3',
 'watchlist-hide-own'   => 'çconder mies ediçons',

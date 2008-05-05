@@ -4,9 +4,8 @@
  * @addtogroup Language
  *
  * @author Ggajendra
- * @author SPQRobin
- * @author GerardM
  * @author Siebrand
+ * @author SPQRobin
  */
 
 $fallback = 'hi';
@@ -93,7 +92,7 @@ $messages = array(
 'disclaimers'          => 'अनाधिकार घोषणा',
 'disclaimerpage'       => 'Project:अनाधिकार घोषणा',
 'edithelp'             => 'संपादन सहयोग',
-'edithelppage'         => 'सहायता:संपादन',
+'edithelppage'         => 'Help:संपादन',
 'mainpage'             => 'सम्मुख पन्ना',
 'mainpage-description' => 'सम्मुख पन्ना',
 'privacy'              => 'गोपनीयताक नियम',

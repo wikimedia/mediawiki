@@ -358,7 +358,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'localtime'          => 'Byjrehks tïjje',
 
 # User rights
-'editinguser' => 'Värrhtoedimmie nuhtjien <b>$1</b>',
+'editinguser' => "Värrhtoedimmie nuhtjien '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Groups
 'group'       => 'Tjïerte:',

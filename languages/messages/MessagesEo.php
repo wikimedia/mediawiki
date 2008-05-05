@@ -605,7 +605,7 @@ Via forbaro-identigo estas $5.  Bonvolu inkluzivi tiun identigon en iuj ajn dema
 'userinvalidcssjstitle'             => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/monobook.css kontraŭe  al {{ns:user}}:Foo/Monobook.css.",
 'updated'                           => '(Ŝanĝo registrita)',
 'note'                              => '<strong>Noto:</strong>',
-'previewnote'                       => 'Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!',
+'previewnote'                       => '<strong>Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!</strong>',
 'previewconflict'                   => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
 'session_fail_preview'              => '<strong>Bedaŭrinde ne eblis trakti vian redakton pro manko de sesiaj datenoj. Bonvolu provi refoje. Se ankoraŭ ne efikas post tio, elsalutu kaj poste re-ensalutu.</strong>',
@@ -1009,6 +1009,7 @@ Steleto (*) signifas ke vi ne povas forigi la grupon post vi aldonis ĝin, aŭ m
 'right-importupload'         => 'Importu paĝojn de dosiera alŝuto',
 'right-patrol'               => 'Marku redaktojn kiel patrolitajn',
 'right-autopatrol'           => 'Faru redaktojn aŭtomate markitajn kiel patrolitajn',
+'right-patrolmarks'          => 'Rigardi patrolmarkojn de lastaj ŝanĝoj',
 'right-unwatchedpages'       => 'Vidu la liston de nepriatentitaj paĝoj',
 'right-trackback'            => 'Enigu retrovojon',
 'right-mergehistory'         => 'Kunfandigu la historiojn de paĝoj',
@@ -1100,7 +1101,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'large-file'                  => 'Oni rekomendas, ke dosieroj ne superu grandon de $1 bitokoj; tiu ĉi enhavas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile'                   => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
-'fileexists'                  => 'Dosiero kun tia ĉi nomo jam ekzistas. Bonvolu kontroli $1 krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.',
+'fileexists'                  => 'Dosiero kun tia ĉi nomo jam ekzistas. Bonvolu kontroli <strong><tt>$1</tt></strong> krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.',
 'filepageexists'              => 'La priskriba paĝo por ĉi dosiero jam estis kreita ĉe <strong><tt>$1</tt></strong>, sed neniu dosiero kun ĉi nomo nune ekzistas. La resumo kiun vi entajpos ne aperos en la priskribo-paĝo. Por aperigi vian resumon, vi devos permane redakti ĝin.',
 'fileexists-extension'        => 'Dosiero kun simila nomo ekzistas:<br />
 Nomo de la alŝuta dosiero: <strong><tt>$1</tt></strong><br />
@@ -1816,6 +1817,8 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'delete_and_move_reason'  => 'Forigita por ebligi movon',
 'selfmove'                => 'Font- kaj cel-titoloj samas; ne eblas movi paĝon sur ĝin mem.',
 'immobile_namespace'      => 'La celtitolo estas de speciala speco; ne eblas movi paĝojn en tiun nomspacon.',
+'imagenocrossnamespace'   => 'Ne eblas movi dosieron al nedosiera nomspaco',
+'imagetypemismatch'       => 'La nova dosierfinaĵo ne kongruas ĝian dosiertipon.',
 
 # Export
 'export'            => 'Eksportu paĝojn',
@@ -2506,6 +2509,5 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 'specialpages-group-users'       => 'Uzantoj kaj rajtoj',
 'specialpages-group-needy'       => 'Paĝoj bezonantaj laboron',
 'specialpages-group-highuse'     => 'Plej uzitaj paĝoj',
-'specialpages-group-permissions' => 'Permesoj de uzantoj',
 
 );

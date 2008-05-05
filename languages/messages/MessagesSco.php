@@ -4,11 +4,11 @@
  * @addtogroup Language
  *
  * @author sco.wikipedia.org editors
- * @author SPQRobin
- * @author Nike
  * @author OchAyeTheNoo
- * @author לערי ריינהארט
+ * @author SPQRobin
  * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Nike
  * @author Malafaya
  */
 
@@ -206,31 +206,31 @@ $messages = array(
 'jumptosearch'      => 'rake',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Aboot {{SITENAME}}',
-'aboutpage'            => 'Project:Aboot',
-'bugreports'           => 'Mishanter reports',
-'bugreportspage'       => 'Project:Bug reports',
-'copyright'            => 'Aa text is available unner $1',
-'copyrightpagename'    => '{{SITENAME}} copyricht',
-'copyrightpage'        => '{{ns:project}}:Copyrichts',
-'currentevents'        => 'Gaun on the nou',
-'currentevents-url'    => 'Project:Gaun on the nou',
-'disclaimers'          => 'Disclamation',
-'disclaimerpage'       => 'Project:General_disclamation',
-'edithelp'             => 'Editin help',
-'edithelppage'         => 'Help:Editin',
-'faq'                  => 'ASQ',
-'faqpage'              => 'Project:ASQ',
-'helppage'             => 'Help:Contents',
-'mainpage'             => 'Main Page',
+'aboutsite'         => 'Aboot {{SITENAME}}',
+'aboutpage'         => 'Project:Aboot',
+'bugreports'        => 'Mishanter reports',
+'bugreportspage'    => 'Project:Bug reports',
+'copyright'         => 'Aa text is available unner $1',
+'copyrightpagename' => '{{SITENAME}} copyricht',
+'copyrightpage'     => '{{ns:project}}:Copyrichts',
+'currentevents'     => 'Gaun on the nou',
+'currentevents-url' => 'Project:Gaun on the nou',
+'disclaimers'       => 'Disclamation',
+'disclaimerpage'    => 'Project:General_disclamation',
+'edithelp'          => 'Editin help',
+'edithelppage'      => 'Help:Editin',
+'faq'               => 'ASQ',
+'faqpage'           => 'Project:ASQ',
+'helppage'          => 'Help:Contents',
+'mainpage'          => 'Main Page',
 'mainpage-description' => 'Main Page',
-'policy-url'           => 'Project:Policy',
-'portal'               => 'Commonty yett',
-'portal-url'           => 'Project:Commonty Yett',
-'privacy'              => 'Privacy policy',
-'privacypage'          => 'Project:Privacy policy',
-'sitesupport'          => 'Propines',
-'sitesupport-url'      => 'Project:Site support',
+'policy-url'        => 'Project:Policy',
+'portal'            => 'Commonty yett',
+'portal-url'        => 'Project:Commonty Yett',
+'privacy'           => 'Privacy policy',
+'privacypage'       => 'Project:Privacy policy',
+'sitesupport'       => 'Propines',
+'sitesupport-url'   => 'Project:Site support',
 
 'badaccess'        => 'Permeission mishanter',
 'badaccess-group0' => 'WARNIN: Ye arnae alloued tae dae whit you hae requestit!',
@@ -535,7 +535,7 @@ Yer block ID is $5. Please include this ID in ony argies ye mak.',
 'userinvalidcssjstitle'     => "'''Warnin:''' There isnae a skin \"\$1\". Mynd that yer ain .css an .js pages uise a lowercase teetle, e.g. {{ns:user}}:Foo/monobook.css instead o {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Updatit)',
 'note'                      => '<strong>Mynd:</strong>',
-'previewnote'               => 'Mynd that this is juist a scance-ower, an haesna been hained yet!',
+'previewnote'               => '<strong>Mynd that this is juist a scance-ower, an haesna been hained yet!</strong>',
 'previewconflict'           => 'This scance reflects the text in the upper text editin area like it will kythe gin ye chuise tae save.',
 'session_fail_preview'      => '<strong>Sairy! We culdnae process yer edit acause o a loss o term data.
 Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.</strong>',
@@ -698,7 +698,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'default'            => 'defaut',
 
 # User rights
-'editinguser'             => 'Editin uiser <b>$1</b>',
+'editinguser'             => "Editin uiser '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-groupsmember' => 'Member o:',
 
 # User rights log
@@ -740,7 +740,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'illegalfilename'             => 'The filename "$1" haes characters that isna alloud in page teitles. Please rename the file an gie uplaidin it anither shot.',
 'badfilename'                 => 'Eimage name haes been chynged tae "$1".',
 'largefileserver'             => 'This file is bigger nor the server is confeigurt tae allou.',
-'fileexists'                  => "A file wi this name exists aareadies, please check $1 gin ye'r no siccar that ye want tae chynge it.",
+'fileexists'                  => "A file wi this name exists aareadies, please check <strong><tt>$1</tt></strong> gin ye'r no siccar that ye want tae chynge it.",
 'fileexists-forbidden'        => 'A file wi this name aareadies exists; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file wi this name aareadies exists in the shared file depose; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
 'uploadwarning'               => 'Uplaid warnin',

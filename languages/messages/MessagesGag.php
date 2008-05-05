@@ -426,7 +426,7 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 'newarticletext'         => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
 'noarticletext'          => 'Bu sayfa boş. Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda yaki bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} var nicä yazmaa].',
 'updated'                => '(Enilendi)',
-'previewnote'            => 'Bu saadä bir ön siir, hem diişmäkler henez korunmadı!',
+'previewnote'            => '<strong>Bu saadä bir ön siir, hem diişmäkler henez korunmadı!</strong>',
 'editing'                => '"$1" sayfasın diiştirersiniz',
 'editingsection'         => '"$1" sayfasında bölüm diiştirersiniz',
 'editingcomment'         => '$1 sayfasına yorum ekleersiniz.',
@@ -513,7 +513,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'retypenew'     => 'Eni parolu tekrar girin',
 
 # User rights
-'editinguser' => '"$1" sayfasını diiştirersiniz',
+'editinguser' => '"$1" sayfasını diiştirersiniz ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 
 'grouppage-sysop' => '{{ns:project}}:Önderciler',
 

@@ -1015,7 +1015,7 @@ Plik pojawi śe na zajće, jak užyješ linka wedle jydnygo s nastympujůncych w
 'large-file'                  => 'Zaleco śe coby rozmjar plika ńy bůu wjynkšy jak $1 bajtůw. Tyn plik mo rozmjar $2 bajtůw.',
 'largefileserver'             => 'Plik je wjynkšy ńiž maksymalny dozwolůny rozmjar.',
 'emptyfile'                   => 'Wćepywany plik cheba je pusty. Može to być bez tůž, co žeś wklepou zuo buchštaba w jygo mjańe. Sprowdź, čy mjano kere žeś wklepou je poprawne.',
-'fileexists'                  => 'Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano ($1)! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.',
+'fileexists'                  => 'Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano (<strong><tt>$1</tt></strong>)! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.',
 'filepageexists'              => 'Je juž sam zajta uopisu tygo plika utwořůno <strong><tt>$1</tt></strong>, ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.',
 'fileexists-extension'        => 'Plik uo podobnym mjańe juž sam je:<br />
 Mjano wćepywanygo plika: <strong><tt>$1</tt></strong><br />
@@ -2435,6 +2435,5 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
 'specialpages-group-users'       => 'Užytkowńiki i uprawńyńa',
 'specialpages-group-needy'       => 'Zajty kere wymagajům poprawek',
 'specialpages-group-highuse'     => 'Zajty čynsto užywane',
-'specialpages-group-permissions' => 'Uprawńyńo užytkowńikůw',
 
 );

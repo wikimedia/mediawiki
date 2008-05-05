@@ -193,7 +193,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'searchresultshead'     => 'ivaaqpuq',
 
 # User rights
-'editinguser' => 'suqusiqpaa qatannguti <b>$1</b>',
+'editinguser' => "suqusiqpaa qatannguti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
 'recentchanges' => 'pigivuq asianngutuq',

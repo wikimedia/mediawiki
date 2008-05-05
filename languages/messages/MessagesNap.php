@@ -4,11 +4,12 @@
  * @addtogroup Language
  *
  * @author Carmine Colacino
- * @author E. abu Filumena
  * @author SabineCretella
  * @author Cryptex
+ * @author E. abu Filumena
  * @author SPQRobin
- * @author G - ג
+ * @author Siebrand
+ * @author לערי ריינהארט
  * @author Nike
  */
 
@@ -205,7 +206,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'loginreqpagetext'  => "Pe' veré ate ppaggene abbesognate $1.",
 'accmailtitle'      => "'O password è stato mannato.",
 'accmailtext'       => '\'A password pe ll\'utente "$1" fuje mannata ô nnerizzo $2.',
-'previewnote'       => "Chesta è sola n'anteprimma; 'e cagnamiénte â paggena NUN songo ancora sarvate!",
+'previewnote'       => "<strong>Chesta è sola n'anteprimma; 'e cagnamiénte â paggena NUN songo ancora sarvate!</strong>",
 'editing'           => "Cagnamiento 'e $1",
 'templatesused'     => "Template ausate 'a chesta paggena:",
 

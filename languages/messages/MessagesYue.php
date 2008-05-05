@@ -1,9 +1,8 @@
 <?php
-/**
-  * Cantonese (粵語/廣東話)
-  *
-  * @addtogroup Language
-  */
+/** Cantonese (粵語/廣東話)
+ *
+ * @addtogroup Language
+ */
 
 $skinNames = array(
 	'standard'    => '傳統', /* "Classic, Standard" */
@@ -681,8 +680,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userjspreview'                     => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
 'userinvalidcssjstitle'             => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                           => '(己更新)',
-'note'                              => "'''留意:'''",
-'previewnote'                       => "'''請記住呢個只係預覽；更改嘅内容重未儲存！'''",
+'note'                              => '<strong>留意:</strong>',
+'previewnote'                       => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'previewconflict'                   => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
 'session_fail_preview'              => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
 請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。'''",
@@ -722,7 +721,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'protectedpagewarning'              => "'''警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。'''",
 'semiprotectedpagewarning'          => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
 'cascadeprotectedwarning'           => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
-'titleprotectedwarning'             => "'''警告：呢一版已經鎖咗，只有一啲用戶先至可以開到。'''",
+'titleprotectedwarning'             => '<strong>警告：呢一版已經鎖咗，只有一啲用戶先至可以開到。</strong>',
 'templatesused'                     => '喺呢一頁所用嘅模：',
 'templatesusedpreview'              => '喺呢一次預覽所用嘅模：',
 'templatesusedsection'              => '喺呢一小節所用嘅模：',
@@ -1163,7 +1162,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'large-file'                  => '建議檔案嘅大細唔好大過$1 bytes，呢個檔案有$2 bytes',
 'largefileserver'             => '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile'                   => '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
-'fileexists'                  => "呢個檔名已經存在，如果你唔肯定係唔係要更改'''<tt>$1</tt>'''，請先檢查佢。",
+'fileexists'                  => '呢個檔名已經存在，如果你唔肯定係唔係要更改<strong><tt>$1</tt></strong>，請先檢查佢。',
 'filepageexists'              => "呢個檔嘅描述頁已經響'''<tt>$1</tt></strong>開咗，但係呢個名嘅檔案重未存在。你輸入咗嘅摘要係唔會顯示響個描述頁度。要令到個摘要響嗰度出現，你就要手動噉去編輯佢。'''",
 'fileexists-extension'        => "一個相似檔名嘅檔案已經存在:
 

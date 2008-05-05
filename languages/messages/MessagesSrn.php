@@ -526,7 +526,7 @@ A kan ben trowe efu dribi.
 'userrights-lookup-user'           => 'Masyinguru kenki',
 'userrights-user-editname'         => 'Wan masyinnen gi:',
 'editusergroup'                    => 'Masyinguru kenki',
-'editinguser'                      => 'Kenki fu lesi fu <b>$1</b>',
+'editinguser'                      => "Kenki fu lesi fu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Masyinguru kenki',
 'saveusergroups'                   => 'Masyinguru oponaki',
 'userrights-groupsmember'          => 'Masyin fu:',
