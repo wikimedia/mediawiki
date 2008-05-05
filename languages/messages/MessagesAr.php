@@ -2906,6 +2906,4 @@ $1',
 'specialpages-group-users'       => 'المستخدمون والصلاحيات',
 'specialpages-group-needy'       => 'صفحات بحاجة للعمل',
 'specialpages-group-highuse'     => 'صفحات استخدام عال',
-'specialpages-group-permissions' => 'صلاحيات المستخدم',
-
 );

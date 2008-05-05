@@ -2754,6 +2754,4 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'specialpages-group-users'       => 'Uživatelé a skupiny',
 'specialpages-group-needy'       => 'Stránky vyžadující úpravu',
 'specialpages-group-highuse'     => 'Často používané stránky',
-'specialpages-group-permissions' => 'Uživatelská oprávnění',
-
 );

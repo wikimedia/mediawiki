@@ -2524,6 +2524,4 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'specialpages-group-users'       => 'Usuarios y drechos',
 'specialpages-group-needy'       => 'Páxines que necesiten ameyoramientu',
 'specialpages-group-highuse'     => 'Páxines mui usaes',
-'specialpages-group-permissions' => "Permisos d'usuariu",
-
 );
