@@ -812,7 +812,7 @@ Legenda: (actu) = diferenças da versão actual,
 # Revision feed
 'history-feed-title'          => 'História de revisão',
 'history-feed-description'    => 'Histórico de revisões para esta página nesta wiki',
-'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-item-nocomment' => '$1 em $2', # user at time
 'history-feed-empty'          => 'A página requisitada não existe.
 Poderá ter sido eliminada da wiki ou renomeada.
 Tente [[{{ns:special}}:Search|pesquisar na wiki]] por páginas relevantes.',
@@ -1104,6 +1104,7 @@ Um * indica que não pode remover o grupo após o adicionar, ou vice-versa.',
 'right-importupload'         => 'Importar páginas de um ficheiro carregado',
 'right-patrol'               => 'Marcar edições como patrulhadas',
 'right-autopatrol'           => 'Ter edições automaticamente marcadas como patrulhadas',
+'right-patrolmarks'          => 'Usar funcionalidades de patrulhagem das mudanças recentes',
 'right-unwatchedpages'       => 'Ver uma lista de páginas não vigiadas',
 'right-trackback'            => "Submeter um 'trackback'",
 'right-mergehistory'         => 'Fundir o histórico de páginas',
@@ -1910,6 +1911,8 @@ A página de destino ("[[$1]]") já existe. Deseja eliminá-la de modo a poder m
 'delete_and_move_reason'  => 'Eliminada para poder mover outra página para este título',
 'selfmove'                => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
 'immobile_namespace'      => 'O título destinatário é de um tipo especial; não é possível mover páginas para esse espaço nominal.',
+'imagenocrossnamespace'   => 'Não é possível mover imagem para espaço nominal que não de imagens',
+'imagetypemismatch'       => 'A extensão do novo ficheiro não corresponde ao seu tipo',
 
 # Export
 'export'            => 'Exportação de páginas',

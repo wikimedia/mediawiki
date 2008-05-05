@@ -1212,12 +1212,16 @@ $NEWPAGE
 'importsuccess'         => '!אימפארט אדורכגעפירט מיט דערפאלג!',
 'importhistoryconflict' => 'קאנפליקטינג היסטאריע רעוויזיע עקזעסטירט (מעגליך אז די בלאט איז געווארן אימפארטעט שוין פון פריער)',
 
+# Import log
+'importlogpage'             => 'אימפארט לאג',
+'import-logentry-interwiki' => 'אריבערגעוויקיט $1',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'           => 'מיין באניצער בלאט',
-'tooltip-pt-anonuserpage'       => 'באניצער בלאט פון אנינונימער באניצער',
+'tooltip-pt-anonuserpage'       => 'באניצער בלאט פון  דעם אנאנימען באניצער',
 'tooltip-pt-mytalk'             => 'מיין רעדן בלאט',
 'tooltip-pt-anontalk'           => 'רעדן אויף אנינונימע באטייליגען',
-'tooltip-pt-preferences'        => 'מיינע פעיווערעטס',
+'tooltip-pt-preferences'        => 'מיינע פרעפערענצן',
 'tooltip-pt-watchlist'          => 'אויפפּאסן בלעטער',
 'tooltip-pt-mycontris'          => 'מיינע באטייליגונגן',
 'tooltip-pt-login'              => 'ביטע איינשרייבן, אבער עס איז נישט קיין חוב',
@@ -1228,13 +1232,15 @@ $NEWPAGE
 'tooltip-ca-addsection'         => 'לייג צו אייער הערה צו דעם שמועס',
 'tooltip-ca-viewsource'         => 'דאס איז א פארשלאסן בלאט, קענסט נאר קוקן איר מקור',
 'tooltip-ca-history'            => 'פריערדיגע ווערסיעס פון דעם בלאט.',
-'tooltip-ca-protect'            => 'באשיצט די בלאט',
+'tooltip-ca-protect'            => 'באשיצט דעם בלאט',
 'tooltip-ca-delete'             => 'אויסמעקן דעם בלאט',
 'tooltip-ca-undelete'           => 'צוריק דרייען די ענדערונגען פון דעם בלאט פארן מעקן',
 'tooltip-ca-move'               => 'באוועגט דעם בלאט',
 'tooltip-ca-watch'              => 'לייגט צו דעם בלאט אויפצופאסן',
 'tooltip-ca-unwatch'            => 'נעמט אראפ דעם בלאט פון אויפפאסן',
 'tooltip-search'                => 'זוכט אינעם סייט',
+'tooltip-search-go'             => 'גייט צו א בלאט מיט אט דעם נאמען, אויב ער עקסיסטירט',
+'tooltip-search-fulltext'       => 'זוכט דעם טעקסט אין די בלעטער',
 'tooltip-p-logo'                => 'הויפט זייט',
 'tooltip-n-mainpage'            => 'באזוכט דעם הויפט זייט',
 'tooltip-n-portal'              => 'גייט אריין אין די געמיינדע צו שמועסן',
@@ -1245,12 +1251,13 @@ $NEWPAGE
 'tooltip-n-sitesupport'         => 'שטיצט אונז',
 'tooltip-t-whatlinkshere'       => 'אלע בלעטער וואס פארבינדען צו דעם בלאט',
 'tooltip-t-recentchangeslinked' => 'אלע ענדערונגען פון בלעטער וואס זענען אהער פארבינדען',
-'tooltip-feed-rss'              => 'לייגט צו אן אטאמאטישער אפדעיט פון אר.עס.עס. RSS',
+'tooltip-feed-rss'              => 'דערהײַנטיגט אויטאמאטיש פון אר.עס.עס. RSS',
 'tooltip-feed-atom'             => 'לייג צו אן אטאמאטישער אפדעיט דורך אטאם Atom',
 'tooltip-t-contributions'       => 'אלע שרייבאכצער פון דעם באנוצער',
 'tooltip-t-emailuser'           => 'שיקט אן אימעיל פאר דעם באניצער',
 'tooltip-t-upload'              => 'לייגט ארויף פיילס און בילדער',
 'tooltip-t-specialpages'        => 'אלע ספעציעלע בלעטער',
+'tooltip-t-print'               => 'דרוק ווערסיע פון דעם בלאט',
 'tooltip-ca-nstab-main'         => 'זעהט די אינהאלט בלאט',
 'tooltip-ca-nstab-user'         => 'זעהט די באניצער בלאט',
 'tooltip-ca-nstab-media'        => 'קוקט אין די מידיע בלעטער',
@@ -1261,6 +1268,9 @@ $NEWPAGE
 'tooltip-ca-nstab-template'     => 'זעט דעם מוסטער',
 'tooltip-ca-nstab-help'         => 'זעהט די הילף בלעטער',
 'tooltip-ca-nstab-category'     => 'זעהט די קאטעגאריע בלאט',
+'tooltip-save'                  => 'היט אויף אייערע ענדערונגען',
+'tooltip-watch'                 => 'לייגט צו דעם בלאט צו אייער אויפֿפאסונג ליסטע',
+'tooltip-upload'                => 'הייב אן אויפלאדן',
 
 # Stylesheets
 'common.css'   => '/* CSS געשריבן דא וועט אפילירן און באיינפלוסן אלע סקינס */',
@@ -1272,7 +1282,19 @@ $NEWPAGE
 # Attribution
 'anonymous'        => 'אנינאנימעס באנוצער(ס) פון {{SITENAME}}',
 'lastmodifiedatby' => 'די לעצטע ענדערונג פון די בלאט איז געווען $2, $1 ביי $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'באזירט אויף ארבעט פון $1.',
+'others'           => 'אנדערע',
+'siteusers'        => 'באניצער(ס) {{SITENAME}} $1',
 'creditspage'      => 'בלאט קרעדיטס',
+
+# Info page
+'infosubtitle' => 'אינפארמאציע וועגן בלאט',
+'numedits'     => 'צאל פון רעדאקציעס (בלאט): $1',
+
+# Patrolling
+'markaspatrolleddiff' => 'באצייכנען אלס פאטראלירט',
+'markaspatrolledtext' => 'באצייכנען בלאט אלס פאטראלירט',
+'markedaspatrolled'   => 'באצייכנט אלס פאטראלירט',
 
 # Image deletion
 'deletedrevision' => 'אויסגעמעקט אלטע ווערסיע $1.',
@@ -1282,21 +1304,31 @@ $NEWPAGE
 'nextdiff'     => 'קומענדיקע אונטערשייד ←',
 
 # Special:Newimages
-'newimages'    => 'גאַלעריע אויף נײַע בילדער',
-'showhidebots' => '($1 ראָבאָמן)',
-'ilsubmit'     => 'זוכן',
-'bydate'       => 'לויטן דאטום',
+'newimages'         => 'גאַלעריע אויף נײַע בילדער',
+'imagelisttext'     => 'פאלגנד א ליסטע פון {{plural:$1|איין בילד|$1 בילדער}}, סארטירט $2:',
+'newimages-summary' => 'דער באזונדערער בלאט ווײַזט די לעצטע ארויפגעלאדענע טעקעס',
+'showhidebots'      => '($1 ראָבאָמן)',
+'noimages'          => 'נישטא קיין בילדער.',
+'ilsubmit'          => 'זוכן',
+'bydate'            => 'לויטן דאטום',
 
 # EXIF tags
+'exif-imagewidth'               => 'ברייט',
+'exif-imagelength'              => 'הייך',
 'exif-bitspersample'            => 'ביטס פער באשטאנדטייל',
 'exif-compression'              => 'צאמקוועטשן סקיעם',
 'exif-datetime'                 => 'פייל ענדערונג דאטום און צייט',
+'exif-imagedescription'         => 'בילד טיטל',
+'exif-make'                     => 'פֿאטא-אפאראט פֿאבריצירער',
+'exif-model'                    => 'פֿאטא-אפאראט מאדעל',
 'exif-copyright'                => 'קאפירעכטן האלטער',
 'exif-exifversion'              => 'Exif ווערסיע',
 'exif-flashpixversion'          => 'ווערסיע Flashpix סאפארטעד',
 'exif-colorspace'               => 'ספעיס קאליר',
 'exif-componentsconfiguration'  => 'מיינונג פון יעדן באשטאנדטייל',
 'exif-compressedbitsperpixel'   => 'בילד צוזאמקוועטשן מאוד',
+'exif-pixelydimension'          => 'גילטיגע ברייט פֿון בילד',
+'exif-pixelxdimension'          => 'גילטיגע הייך פֿון בילד',
 'exif-datetimeoriginal'         => 'דאטום און צייט פון פייל באשאפונג',
 'exif-datetimedigitized'        => 'דאטום און צייט פון דיזשיטייזונג',
 'exif-exposuretime'             => 'עקספאוזשער צייט',

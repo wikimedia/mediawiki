@@ -11,6 +11,7 @@
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'Cur linnaghyn fo chianglaghyn:',
+'tog-hideminor'        => "Follaghey myn-arraghyn ayns caghlaaghyn s'noa",
 'tog-rememberpassword' => "Cooinnee m'ockle arrey",
 'tog-watchcreations'   => 'Cur duillagyn ta crooit aym lesh my rolley arrey',
 'tog-watchdefault'     => 'Cur duillagyn ta reaghit aym lesh my rolley arrey',

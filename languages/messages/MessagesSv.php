@@ -1147,7 +1147,7 @@ En * markerar att du inte kan ta bort gruppen när du har lagt till den, eller v
 'right-purge'                => 'Rensa cachen för sidor',
 'right-autoconfirmed'        => 'Redigera halvlåsta sidor',
 'right-bot'                  => 'Bli behandlad som en automatisk process',
-'right-nominornewtalk'       => 'Inte ha mindre ändringar till diskussionssidor som startar det nya meddelandet omedelbart',
+'right-nominornewtalk'       => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
 'right-apihighlimits'        => 'Använd API höga gränser',
 'right-delete'               => 'Radera sidor',
 'right-bigdelete'            => 'Radera sidor med stor historik',
@@ -1172,6 +1172,7 @@ En * markerar att du inte kan ta bort gruppen när du har lagt till den, eller v
 'right-importupload'         => 'Importera sidor genom uppladdning',
 'right-patrol'               => 'Markera ändringar som patrullerade',
 'right-autopatrol'           => 'Markera automatiskt ändringar som patrullerade',
+'right-patrolmarks'          => 'Se markeringar av opatrullerade ändringar i senaste ändringarna',
 'right-unwatchedpages'       => 'Se listan över obevakade sidor',
 'right-trackback'            => 'Ge respons',
 'right-mergehistory'         => 'Sammanfoga sidhistoriker',
@@ -1974,6 +1975,8 @@ Den titel du vill flytta sidan till, "[[:$1|$1]]", finns redan. Vill du radera d
 'delete_and_move_reason'  => 'Raderad för att flytta hit en annan sida.',
 'selfmove'                => 'Ursprungstitel och destinationstitel är identiska. Sidan kan inte flyttas till sig själv.',
 'immobile_namespace'      => 'Namnrymden du försöker flytta sidan till eller från är av en speciell typ. Det går inte att flytta sidor till eller från den namnrymden.',
+'imagenocrossnamespace'   => 'Kan inte flytta bilder till andra namnrymder än bildnamnrymden',
+'imagetypemismatch'       => 'Den nya filändelsen motsvarar inte filtypen',
 
 # Export
 'export'            => 'Exportera sidor',

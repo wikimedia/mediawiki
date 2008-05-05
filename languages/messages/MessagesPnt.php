@@ -122,7 +122,7 @@ $messages = array(
 'category-file-count-limited'    => "{{PLURAL:$1|Τ' αρχείον|$1 Τ' αρχεία}} αφκά καικά είν' σην κατηγορίαν.",
 'listingcontinuesabbrev'         => 'συνεχίζεται...',
 
-'cancel'         => "Άφ'σον",
+'cancel'         => 'Χάτεμαν',
 'qbfind'         => 'Εύρον',
 'qbedit'         => 'Άλλαξον',
 'qbpageoptions'  => 'Ατή η σελίδαν',
@@ -134,6 +134,9 @@ $messages = array(
 'anontalk'       => "Καλάτσεμα για τ'ατό το IP",
 'and'            => 'και',
 
+# Metadata in edit box
+'metadata_help' => 'Μεταδογμένα:',
+
 'returnto'          => 'Επιστροφήν σο $1.',
 'tagline'           => 'Ασό {{SITENAME}}',
 'help'              => 'Βοήθειαν',
@@ -144,16 +147,17 @@ $messages = array(
 'history'           => 'Ιστορίαν τη σελίδας',
 'history_short'     => 'Ιστορίαν',
 'printableversion'  => 'Μορφή εκτύπωσης',
+'print'             => 'Τύπωμαν',
 'edit'              => 'Άλλαξον',
 'create'            => 'Ποίσον',
 'editthispage'      => 'Άλλαξον τη σελίδαν ατέν',
 'create-this-page'  => 'Ποίσον τη σελίδαν',
 'delete'            => 'Σβήσον',
 'deletethispage'    => 'Σβήσεμαν τη σελίδας',
-'protect'           => 'Ασπάλιγμα',
+'protect'           => 'Ασπάλιγμαν',
 'protect_change'    => "Άλλαγμα τ' ασπάλιγματη",
 'protectthispage'   => 'Ασπάλιγμα ατουνού τη σελίδας',
-'unprotect'         => 'Άνοιγμα',
+'unprotect'         => 'Άνοιγμαν',
 'unprotectthispage' => 'Άνοιγμα ατουνού τη σελίδας',
 'newpage'           => 'Νέον σελίδαν',
 'talkpage'          => 'Καλάτσεμαν για τη σελίδαν ατέν',
@@ -165,6 +169,11 @@ $messages = array(
 'views'             => 'Τερέματα',
 'toolbox'           => 'Εργαλεία',
 'userpage'          => 'Τέρεν σελίδαν χρήστε',
+'imagepage'         => 'Τέρεν σελίδαν δογμενίων',
+'mediawikipage'     => 'Τέρεν σελίδαν μενεματίων',
+'templatepage'      => 'Τέρεν σελίδαν προτυπίων',
+'viewhelppage'      => 'Τέρεν σελίδαν βοήθειας',
+'viewtalkpage'      => 'Τέρεν καλάτσεμα',
 'otherlanguages'    => "Σ' άλλα γλώσσας",
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
@@ -188,20 +197,21 @@ $messages = array(
 'privacy'              => 'Ωρίαγμαν δογμενίων',
 'sitesupport'          => 'Δωρεάς',
 
-'retrievedfrom'       => 'Ασο "$1"',
-'youhavenewmessages'  => 'Έχετε $1 ($2).',
-'newmessageslink'     => 'καινούρεα μενέματα',
-'newmessagesdifflink' => 'υστερνόν αλλαγήν',
-'editsection'         => 'άλλαξον',
-'editold'             => 'άλλαξον',
-'editsectionhint'     => 'Άλλαξον φελίν: $1',
-'toc'                 => 'Περιεχόμενα',
-'showtoc'             => 'δείξον',
-'hidetoc'             => 'κρύψον',
-'feedlinks'           => 'Ροή δογμενίων:',
-'site-rss-feed'       => '$1 RSS Συνδρομή',
-'site-atom-feed'      => '$1 Atom Συνδρομή',
-'page-rss-feed'       => '"$1" RSS Συνδρομή',
+'retrievedfrom'           => 'Ασο "$1"',
+'youhavenewmessages'      => 'Έχετε $1 ($2).',
+'newmessageslink'         => 'καινούρεα μενέματα',
+'newmessagesdifflink'     => 'υστερνόν αλλαγήν',
+'youhavenewmessagesmulti' => 'Έχετε καινούρεα μενέματα σο $1',
+'editsection'             => 'άλλαξον',
+'editold'                 => 'άλλαξον',
+'editsectionhint'         => "Άλλαξον κομμάτ': $1",
+'toc'                     => 'Περιεχόμενα',
+'showtoc'                 => 'δείξον',
+'hidetoc'                 => 'κρύψον',
+'feedlinks'               => 'Ροή δογμενίων:',
+'site-rss-feed'           => '$1 RSS Συνδρομή',
+'site-atom-feed'          => '$1 Atom Συνδρομή',
+'page-rss-feed'           => '"$1" RSS Συνδρομή',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Σελίδαν',
@@ -211,6 +221,7 @@ $messages = array(
 'nstab-image'     => 'Εικόναν',
 'nstab-mediawiki' => 'Μένεμα',
 'nstab-template'  => 'Πρότυπον',
+'nstab-help'      => 'Σελίδα βοήθειας',
 'nstab-category'  => 'Κατηγορίαν',
 
 # Main script and global functions
@@ -219,6 +230,8 @@ $messages = array(
 
 # General errors
 'laggedslavemode'   => "Ωρία: Η σελίδαν ίσως ξάι 'κ εχ' τα υστερνά τα αλλαγάς.",
+'readonly'          => 'Βάση δογμενίων εν ασπαλιζμένον',
+'enterlockreason'   => "Βαλέστεν λόγον για τ' ασπάλιγμαν και ους πότε θα εν ασπαλιγμένον",
 'badarticleerror'   => "Ατή η ενέργειαν 'κ επορεί να ίνεται σ'ατήν τη σελίδαν.",
 'viewsource'        => 'Τέρεν κωδικόν',
 'viewsourcefor'     => 'για $1',
@@ -247,6 +260,10 @@ $messages = array(
 'loginerror'              => 'Σφάλμα εγγραφής',
 'loginsuccesstitle'       => "Έντον τ' εσέβεμαν",
 'loginsuccess'            => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
+'nosuchuser'              => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "$1".
+Το γράψιμον ωρία ή ποίσον καινούρεον λογαρίαν.',
+'nosuchusershort'         => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "<nowiki>$1</nowiki>".
+Το γράψιμονις ωρία.',
 'mailmypassword'          => 'Αποστολή κωδικού',
 'accountcreated'          => 'Έντον η λογαρίαν',
 'createaccount-title'     => 'Δημιουργίαν λογαρίας για {{SITENAME}}',
@@ -271,11 +288,11 @@ $messages = array(
 'summary'                => 'Σύνοψη',
 'subject'                => 'Θέμα/επικεφαλίδα',
 'minoredit'              => 'Μικρόν αλλαγήν',
-'watchthis'              => 'Ωρία τη σελίδαν ατέν',
-'savearticle'            => 'Κρα τη σελίδαν',
+'watchthis'              => 'Ωρίαγμαν τη σελίδας',
+'savearticle'            => 'Αποθήκεμαν σελίδας',
 'preview'                => 'Πρώτον τέρεμα',
-'showpreview'            => 'Δείξον το πρώτον τέρεμα',
-'showdiff'               => "Δείξον τ' αλλαγάς",
+'showpreview'            => 'Πρώτον τέρεμαν',
+'showdiff'               => 'Αλλαγάς',
 'newarticle'             => '(Νέον)',
 'previewnote'            => "<strong>Ατό πα πρώτον τέρεμαν εν και μόνον.
 Τ' αλλαγάς 'κ εκρατέθαν!</strong>",
@@ -322,6 +339,7 @@ $messages = array(
 # Preferences page
 'preferences'   => 'Προτιμήσεις',
 'mypreferences' => "Τ' εμά τα προτιμήσεις",
+'retypenew'     => 'Γράψον ξαν το νέον σημάδιν:',
 
 # Recent changes
 'recentchanges'                  => 'Υστερνά αλλαγάς',
@@ -455,6 +473,8 @@ $messages = array(
 'mycontris'     => "Δουλείας ντ' εποίκα",
 'contribsub2'   => 'Για τον/την $1 ($2)',
 'uctop'         => '(υστερνά)',
+'month'         => 'Ασόν μήναν (και πριχού):',
+'year'          => 'Ασή χρονίαν (και πριχού):',
 
 'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαρίας',
 

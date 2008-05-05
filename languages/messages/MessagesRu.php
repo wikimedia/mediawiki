@@ -15,6 +15,7 @@
  * @author Kaganer
  * @author Kalan
  * @author Ahonc
+ * @author EugeneZelenko
  */
 
 /*
@@ -486,9 +487,9 @@ $messages = array(
 'feed-invalid'            => 'Неправильный тип канала для подписки.',
 'feed-unavailable'        => 'Ленты синдикации не доступны на сайте {{SITENAME}}',
 'site-rss-feed'           => '$1 — RSS-лента',
-'site-atom-feed'          => '$1 - Atom лента',
-'page-rss-feed'           => '«$1» - RSS лента',
-'page-atom-feed'          => '«$1» - Atom лента',
+'site-atom-feed'          => '$1 — Atom-лента',
+'page-rss-feed'           => '«$1» — RSS-лента',
+'page-atom-feed'          => '«$1» — Atom-лента',
 'red-link-title'          => '$1 (ещё не написано)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1170,6 +1171,7 @@ $3 указал следующую причину: ''$2''",
 'right-importupload'         => 'импорт страниц через загрузку файлов',
 'right-patrol'               => 'отметка правок как отпатрулированных',
 'right-autopatrol'           => 'правки автоматически отмечаются как патрулированные',
+'right-patrolmarks'          => 'просмотр отметок о патрулировании в свежих правках',
 'right-unwatchedpages'       => 'просмотр списка ненаблюдаемых страниц',
 'right-trackback'            => 'отправка Trackback',
 'right-mergehistory'         => 'объединение историй страниц',
@@ -1629,7 +1631,7 @@ PICT # различные
 'changed'                      => 'изменена',
 'created'                      => 'создана',
 'enotif_subject'               => 'Страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR',
-'enotif_lastvisited'           => 'См. $1 для просмотра всех изменений произошедших с вашего последнего посещения.',
+'enotif_lastvisited'           => 'См. $1 для просмотра всех изменений, произошедших с вашего последнего посещения.',
 'enotif_lastdiff'              => 'См. $1 для ознакомления с изменением.',
 'enotif_anon_editor'           => 'анонимный участник $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
@@ -1737,7 +1739,7 @@ $NEWPAGE
 'restriction-edit'   => 'Правка',
 'restriction-move'   => 'Переименование',
 'restriction-create' => 'Создание',
-'restriction-upload' => 'Загрузить',
+'restriction-upload' => 'Загрузка',
 
 # Restriction levels
 'restriction-level-sysop'         => 'полная защита',
@@ -1987,6 +1989,8 @@ IP-адреса.',
 'delete_and_move_reason'  => 'Удалено для возможности переименования',
 'selfmove'                => 'Невозможно переименовать страницу: исходное и новое имя страницы совпадают.',
 'immobile_namespace'      => 'Невозможно переименовать страницу: новое или старое имя содержит зарезервированное служебное слово.',
+'imagenocrossnamespace'   => 'Невозможно дать изображению имя из другого пространства имён',
+'imagetypemismatch'       => 'Новое расширение файла не соответствует его типу',
 
 # Export
 'export'            => 'Экспортирование статей',
@@ -2220,7 +2224,7 @@ $1',
 'imagemaxsize'         => 'Ограничивать изображения на странице изображений до:',
 'thumbsize'            => 'Размер уменьшенной версии изображения:',
 'widthheight'          => '$1 × $2',
-'widthheightpage'      => '$1 × $2, $3 страницы',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|страница|страницы|страниц}}',
 'file-info'            => '(размер файла: $1, MIME-тип: $2)',
 'file-info-size'       => '($1 × $2 пикселов, размер файла: $3, MIME-тип: $4)',
 'file-nohires'         => '<small>Нет версии с большим разрешением.</small>',

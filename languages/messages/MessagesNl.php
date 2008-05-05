@@ -1234,6 +1234,7 @@ Een "*" betekent dat u een gebruiker niet uit een groep kunt verwijderen nadat u
 'right-importupload'         => "Pagina's importeren uit een bestandsupload",
 'right-patrol'               => 'Bewerkingen als gecontroleerd markeren',
 'right-autopatrol'           => 'Bewerkingen worden automatisch als gecontroleerd gemarkeerd',
+'right-patrolmarks'          => 'Controletekens in recente wijzigingen bekijken',
 'right-unwatchedpages'       => "Een lijst met pagina's die niet op een volglijst staan bekijken",
 'right-trackback'            => 'Een trackback opgeven',
 'right-mergehistory'         => "De geschiedenis van pagina's samenvoegen",
@@ -2058,6 +2059,8 @@ Wilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?',
 'delete_and_move_reason'  => 'Verwijderd in verband met hernoeming',
 'selfmove'                => 'U kunt een pagina niet hernoemen naar dezelfde paginanaam.',
 'immobile_namespace'      => 'De gewenste paginanaam is van een speciaal type. Een pagina kan niet hernoemd worden naar die naamruimte.',
+'imagenocrossnamespace'   => 'Een mediabestand kan niet naar een andere naamruimte verplaatst worden',
+'imagetypemismatch'       => 'De nieuwe bestandsextensie is niet gelijk aan het bestandstype',
 
 # Export
 'export'            => 'Exporteren',

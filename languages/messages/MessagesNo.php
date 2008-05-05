@@ -1065,6 +1065,7 @@ En stjerne (*) betyr at du ikke kan fjerne gruppen etter at du har lagt den til,
 'right-importupload'         => 'Importere sider via opplasting',
 'right-patrol'               => 'Markere redigeringer som patruljerte',
 'right-autopatrol'           => 'Får sine egne redigeringer merket som patruljerte',
+'right-patrolmarks'          => 'Bruke patruljeringsfunksjoner i siste endringer',
 'right-unwatchedpages'       => 'Se listen over uovervåkede sider',
 'right-trackback'            => 'Gi tilbakemelding',
 'right-mergehistory'         => 'Flette sidehistorikker',
@@ -1851,6 +1852,8 @@ Målsiden «[[$1]]» finnes allerede. Vil du slette den så denne siden kan flyt
 'delete_and_move_reason'  => 'Slettet grunnet flytting',
 'selfmove'                => 'Kilde- og destinasjonstittel er den samme; kan ikke flytte siden.',
 'immobile_namespace'      => 'Sider kan ikke flyttes til dette navnerommet.',
+'imagenocrossnamespace'   => 'Kan ikke flytte bilder til andre navnerom enn bildenavnerommet',
+'imagetypemismatch'       => 'Den nye filendelsen tilsvarer ikke filtypen',
 
 # Export
 'export'            => 'Eksportsider',
