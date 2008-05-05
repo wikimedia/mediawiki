@@ -703,8 +703,7 @@ class MessageCache {
 		# Some register their messages in $wgExtensionMessagesFiles
 		foreach ( $wgExtensionMessagesFiles as $name => $file ) {
 			if ( $file ) {
-				$this->loadMessagesFile( $file );
-				$wgExtensionMessagesFiles[$name] = false;
+				wfLoadExtensionMessages( $file );
 			}
 		}
 		# Still others will respond to neither, they are EVIL. We sometimes need to know!
