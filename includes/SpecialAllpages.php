@@ -336,16 +336,20 @@ function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 
 		# Do we put a previous link ?
 		if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
-			$q = 'from=' . $prevTitle->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
-			$prevLink = $sk->makeKnownLinkObj( $self, wfMsgHTML( 'prevpage', $pt ), $q );
+			$q = 'from=' . $prevTitle->getPartialUrl()
+				. ( $namespace ? '&namespace=' . $namespace : '' );
+			$prevLink = $sk->makeKnownLinkObj( $self,
+				wfMsgHTML( 'prevpage', htmlspecialchars( $pt ) ), $q );
 			$out2 .= ' | ' . $prevLink;
 		}
 
 		if( $n == $this->maxPerPage && $s = $dbr->fetchObject($res) ) {
 			# $s is the first link of the next chunk
 			$t = Title::MakeTitle($namespace, $s->page_title);
-			$q = 'from=' . $t->getPartialUrl() . ( $namespace ? '&namespace=' . $namespace : '' );
-			$nextLink = $sk->makeKnownLinkObj( $self, wfMsgHtml( 'nextpage', $t->getText() ), $q );
+			$q = 'from=' . $t->getPartialUrl()
+				. ( $namespace ? '&namespace=' . $namespace : '' );
+			$nextLink = $sk->makeKnownLinkObj( $self,
+				wfMsgHtml( 'nextpage', htmlspecialchars( $t->getText() ) ), $q );
 			$out2 .= ' | ' . $nextLink;
 		}
 		$out2 .= "</td></tr></table><hr />";

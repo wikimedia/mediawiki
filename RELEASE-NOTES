@@ -247,7 +247,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13925) Fix bad HTML on search results list
 * (bug 13934) Fixing the link to GNU General Public License Version 2
 * Show correct accesskey prefix for Firefox 3 beta (Alt-Shift-, not Alt-)
-
+* (bug 13949) Special:PrefixIndex/AllPages paging links contain invalid XML
 
 === API changes in 1.13 ===
 
