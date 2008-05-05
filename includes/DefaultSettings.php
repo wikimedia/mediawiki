@@ -2626,6 +2626,8 @@ $wgSpecialPageGroups = array(
 	'Emailuser'                 => 'users',
 	'Listadmins'                => 'users',
 	'Listbots'                  => 'users',
+	'Userrights'                => 'users',
+	'Blockip'                   => 'users',
 
 	'Wantedpages'               => 'needy',
 	'Wantedcategories'          => 'needy',
@@ -2639,9 +2641,6 @@ $wgSpecialPageGroups = array(
 	'Mostcategories'            => 'highuse',
 	'Mostimages'                => 'highuse',
 	'Mostrevisions'             => 'highuse',
-
-	'Userrights'                => 'permissions',
-	'Blockip'                   => 'permissions',
 
 	'Statistics'                => 'other',
 	'Fewestrevisions'           => 'other',
