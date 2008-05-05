@@ -702,9 +702,7 @@ class MessageCache {
 		wfRunHooks( 'LoadAllMessages' );
 		# Some register their messages in $wgExtensionMessagesFiles
 		foreach ( $wgExtensionMessagesFiles as $name => $file ) {
-			if ( $file ) {
-				wfLoadExtensionMessages( $file );
-			}
+			wfLoadExtensionMessages( $name );
 		}
 		# Still others will respond to neither, they are EVIL. We sometimes need to know!
 	}
