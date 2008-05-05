@@ -2489,7 +2489,7 @@ function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
 	static $loaded = array();
 
 	if( !array_key_exists( $extensionName, $loaded ) ) {
-		$wgExtensionMessagesFiles[$extensionName] = array();
+		$loaded[$extensionName] = array();
 	}
 
 	if( !$langcode && !array_key_exists( '*', $loaded[$extensionName] ) ) {
