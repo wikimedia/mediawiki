@@ -316,8 +316,9 @@ class NewPagesForm {
 	protected function feedItemDesc( $row ) {
 		$revision = Revision::newFromId( $row->rev_id );
 		if( $revision ) {
-			return '<p>' . htmlspecialchars( wfMsg( 'summary' ) ) . ': ' .
-				htmlspecialchars( $revision->getComment() ) . "</p>\n<hr />\n<div>" .
+			return '<p>' . htmlspecialchars( $revision->getUserText() ) . ': ' .
+				htmlspecialchars( $revision->getComment() ) . 
+				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
 		}
 		return '';
