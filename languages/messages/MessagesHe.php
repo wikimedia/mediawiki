@@ -2793,6 +2793,5 @@ $1',
 'specialpages-group-users'       => 'משתמשים והרשאות',
 'specialpages-group-needy'       => 'דפים הדורשים עבודה',
 'specialpages-group-highuse'     => 'דפים בשימוש רב',
-'specialpages-group-permissions' => 'הרשאות משתמש',
 
 );
