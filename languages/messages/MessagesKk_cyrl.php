@@ -1271,7 +1271,7 @@ latex, dvips, gs және convert бағдарламаларының дұрыс 
 'userrights-lookup-user'           => 'Қатысушы топтарын реттеу',
 'userrights-user-editname'         => 'Қатысушы атын енгізіңіз:',
 'editusergroup'                    => 'Қатысушы топтарын өңдеу',
-'editinguser'                      => "Қатысушы құқықтарын өзгерту: '''User:$1|$1]]''' ([[User_talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Қатысушы құқықтарын өзгерту: '''[[User:$1|$1]]''' ([[User_talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Қатысушы топтарын өңдеу',
 'saveusergroups'                   => 'Қатысушы топтарын сақтау',
 'userrights-groupsmember'          => 'Мүшелігі:',
