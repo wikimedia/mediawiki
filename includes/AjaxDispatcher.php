@@ -58,6 +58,7 @@ class AjaxDispatcher {
 		break;
 
 		default:
+			wfProfileOut( __METHOD__ );
 			return;
 			# Or we could throw an exception:
 			#throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
