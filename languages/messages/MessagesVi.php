@@ -990,7 +990,7 @@ Dấu * có nghĩa là bạn sẽ không thể loại thành viên ra khỏi nh�
 
 # Groups
 'group'               => 'Nhóm:',
-'group-user'          => 'Nhóm thành viên thông thường',
+'group-user'          => 'Thành viên thông thường',
 'group-autoconfirmed' => 'Thành viên tự xác nhận',
 'group-bot'           => 'Robot',
 'group-sysop'         => 'Quản lý',
@@ -1054,6 +1054,7 @@ Dấu * có nghĩa là bạn sẽ không thể loại thành viên ra khỏi nh�
 'right-importupload'         => 'Nhập trang bằng tải tập tin',
 'right-patrol'               => 'Đánh dấu tuần tra sửa đổi',
 'right-autopatrol'           => 'Tự động đánh dấu tuần tra khi sửa đổi',
+'right-patrolmarks'          => 'Dùng tính năng tuần tra thay đổi gần đây',
 'right-unwatchedpages'       => 'Xem danh sách các trang chưa theo dõi',
 'right-trackback'            => 'Đăng trackback',
 'right-mergehistory'         => 'Trộn lịch sử trang',
@@ -1872,6 +1873,8 @@ Trang với tên “[[$1]]” đã tồn tại. Bạn có muốn xóa nó để 
 'delete_and_move_reason'  => 'Xóa để có chỗ đổi tên',
 'selfmove'                => 'Tên mới giống tên cũ; không đổi tên một trang thành chính nó.',
 'immobile_namespace'      => 'Tên mới hoặc tên cũ là loạiđặc biệt; không thể di chuyển từ/đến không gian tên đó.',
+'imagenocrossnamespace'   => 'Không được di chuyển tập tin ra khỏi không gian tên Tập tin',
+'imagetypemismatch'       => 'Phần mở rộng trong tên tập tin mới không hợp dạng của tập tin',
 
 # Export
 'export'            => 'Xuất các trang',

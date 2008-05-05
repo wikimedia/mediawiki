@@ -185,7 +185,7 @@ $messages = array(
 'mytalk'         => 'Gunemanku',
 'anontalk'       => 'Dhiskusi IP puniki',
 'navigation'     => 'Pandhu Arah',
-'and'            => 'lan',
+'and'            => 'Lan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -941,6 +941,7 @@ Tandha bintang * tegesé panjenengan ora bisa ngilangi grup iku yèn wis tau nam
 'right-importupload'         => 'Impor kaca-kaca saka sawijining pangunggahan berkas',
 'right-patrol'               => 'Tandhanana suntingan minangka wis dipatroli',
 'right-autopatrol'           => 'Gawé supaya suntingan-suntingan ditandhani minangka wis dipatroli',
+'right-patrolmarks'          => 'Ndeleng tandha-tandha patroli owah-owahan anyar',
 'right-unwatchedpages'       => 'Tuduhna daftar kaca-kaca sing ora diawasi',
 'right-trackback'            => 'Kirimna trackback',
 'right-mergehistory'         => 'Gabungna sajarah kaca-kaca',
@@ -1143,7 +1144,7 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'filedelete-legend'           => 'Mbusak berkas',
 'filedelete-intro'            => "Panjenengan mbusak '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Panjenengan mbusak vèrsi \'\'\'[[Media:$1|$1]]\'\'\' per [$4 $3, $2].</span>',
-'filedelete-comment'          => 'Komentar:',
+'filedelete-comment'          => 'Alesan mbusak:',
 'filedelete-submit'           => 'Busak',
 'filedelete-success'          => "'''$1''' wis dibusak.",
 'filedelete-success-old'      => '<span class="plainlinks">Vèrsi \'\'\'[[Media:$1|$1]]\'\'\' ing $3, $2 wis dibusak.</span>',
@@ -1302,7 +1303,7 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'allinnamespace'    => 'Kabeh kaca ($1 namespace)',
 'allnotinnamespace' => 'Sedaya kaca (mboten panggènan asma $1)',
 'allpagesprev'      => 'Sadèrèngipun',
-'allpagesnext'      => 'Salajengipun',
+'allpagesnext'      => 'Sabanjuré',
 'allpagessubmit'    => 'Madosi',
 'allpagesprefix'    => 'Kapacak kaca-kaca ingkang mawi ater-ater:',
 'allpagesbadtitle'  => 'Irah-irahan (judhul) ingkang dipun-gunaaken boten sah utawi nganggé ater-ater (awalan) antar-basa utawi antar-wiki. Irah-irahan punika saged ugi nganggé setunggal aksara utawi luwih ingkang boten saged kagunaaken dados irah-irahan.',
@@ -1433,7 +1434,7 @@ Umpan balik lan pitulung sabanjuré:
 'dellogpagetext'              => 'Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.',
 'deletionlog'                 => 'Cathetan sing dibusak',
 'reverted'                    => 'Dibalèkaké ing revisi sadurungé',
-'deletecomment'               => 'Alesan dipun-busak',
+'deletecomment'               => 'Alesan dibusak:',
 'deleteotherreason'           => 'Alesan liya utawa tambahan:',
 'deletereasonotherlist'       => 'Alesan liya',
 'deletereason-dropdown'       => '*Alesan pambusakan
@@ -1738,6 +1739,8 @@ Apa panjenengan kersa mbusak iku supaya kacané bisa dialihaké?',
 'selfmove'                => 'Pangalihan kaca ora bisa dilakoni amerga irah-irahan utawa judhul sumber lan tujuané padha.',
 'immobile_namespace'      => 'Irah-irahan sumber utawa tujuan kalebu tipe kusus; 
 ora bisa mindhahaké kaca saka lan menyang bilik nama iku.',
+'imagenocrossnamespace'   => 'Ora bisa mindhahaké gambar menyang bilik nama non-gambar',
+'imagetypemismatch'       => 'Èkstènsi anyar berkas ora cocog karo jenisé',
 
 # Export
 'export'            => 'Ekspor kaca',

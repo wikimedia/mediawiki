@@ -269,6 +269,7 @@ Non oblida personalisar {{SITENAME}} secundo tu preferentias.',
 'userexists'              => 'Le nomine de usator que tu selectionava ja es in uso. Per favor selectiona un nomine differente.',
 'youremail'               => 'Tu e-mail',
 'yourrealname'            => 'Nomine real:',
+'yourlanguage'            => 'Lingua:',
 'yournick'                => 'Tu pseudonymo (pro signaturas)',
 'loginerror'              => 'Error in le apertura del session',
 'noname'                  => 'Tu non specificava un nomine de usator valide.',
@@ -683,7 +684,8 @@ Tote le horas es in le fuso horari del servitor (UTC).',
 'rollback'          => 'Revocar modificationes',
 'rollbacklink'      => 'revocar',
 'cantrollback'      => 'Impossibile revocar le modification; le ultime contribuente es le unic autor de iste articulo.',
-'revertpage'        => 'Revertite al ultime modification per $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'        => 'Revertite modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])
+al ultime modification per [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Undelete
 'undelete'          => 'Restaurar pagina eliminate',

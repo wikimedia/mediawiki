@@ -103,6 +103,7 @@ $messages = array(
 'views'            => 'Bistas',
 'toolbox'          => 'Caixa de Ferramentas',
 'redirectedfrom'   => '(Redireccionado de <b>$1</b>)',
+'redirectpagesub'  => 'Página de redireccionamento',
 'jumpto'           => 'Saltar a:',
 'jumptonavigation' => 'navegaçon',
 'jumptosearch'     => 'pesquisa',
@@ -125,6 +126,7 @@ $messages = array(
 'privacy'              => 'Política de privacidade',
 'privacypage'          => 'Projecto:Política de privacidade',
 'sitesupport'          => 'Donativos',
+'sitesupport-url'      => 'Proyecto:Apoio',
 
 'retrievedfrom'       => 'Obtido an "$1"',
 'youhavenewmessages'  => 'Você tem $1 ($2).',
@@ -217,6 +219,7 @@ Para criá-la, screva l sue conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por angano, clique ne l boton '''boltar''' (o ''back'') de l sue navegador.",
 'editing'                => 'A editar $1',
+'editingsection'         => 'Editando $1 (secçon)',
 'copyrightwarning'       => 'Por fabor, note que todas las sues contribuiçons an {{SITENAME}} son consideradas cumo lhançadas ne ls termos de la lhicença $2 (ber $1 para detalhes). Se num deseija que o sue testo seija inexoravelmente editado i redistribuído de tal forma, num lo enbie.<br />
 Você está, al mesmo tempo, a garantir-nos que isto ye algo escrito por si, o algo copiado de unha fonte de testos an domínio público o similarmente de teor libre.
 <strong>NUM ENBIE TRABALHO PROTEGIDO POR DREITOS DE AUTOR SAN A DEBIDA PERMISSON!</strong>',
@@ -232,22 +235,27 @@ Certifique-se de que é adequado prosseguir a edição de esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
 
 # History pages
-'currentrev'       => 'Revison actual',
-'revisionasof'     => 'Revisão de $1',
-'revision-info'    => 'Revison de $1; $2',
-'previousrevision' => '← Versão anterior',
-'cur'              => 'act',
-'last'             => 'último',
-'page_first'       => 'purmeira',
-'page_last'        => 'última',
-'histlegend'       => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
+'viewpagelogs'        => 'Ber registos para yesta página',
+'currentrev'          => 'Revison actual',
+'revisionasof'        => 'Revisão de $1',
+'revision-info'       => 'Revison de $1; $2',
+'previousrevision'    => '← Versão anterior',
+'currentrevisionlink' => 'Ber berson actual',
+'cur'                 => 'act',
+'last'                => 'último',
+'page_first'          => 'purmeira',
+'page_last'           => 'última',
+'histlegend'          => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
 Legenda: (actu) = diferenças da versão actual,
 (ult) = diferença da versão precedente, m = edição menor',
+'histfirst'           => 'Mais antigas',
+'histlast'            => 'Mais recentes',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Diffs
+'history-title'           => 'Histórico de ediçons de "$1"',
 'lineno'                  => 'Linha $1:',
 'compareselectedversions' => 'Compare as versões seleccionadas',
 'editundo'                => 'desfazer',
@@ -340,7 +348,11 @@ Legenda: (actu) = diferenças da versão actual,
 'allarticles'    => 'Todas las páginas',
 'allpagessubmit' => 'Ir',
 
+# E-mail user
+'emailuser' => 'Contactar yeste outelizador',
+
 # Watchlist
+'watchlist'            => 'Artigos vigiados',
 'mywatchlist'          => 'Artigos vigiados',
 'watchlistfor'         => "(para '''$1''')",
 'watch'                => 'Bigiar',
@@ -368,6 +380,7 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Namespace form on various pages
 'namespace'      => 'Espaço de nomes:',
+'invert'         => 'Amberter selecçon',
 'blanknamespace' => '(Principal)',
 
 # Contributions
@@ -431,6 +444,7 @@ Legenda: (actu) = diferenças da versão actual,
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-move'                 => 'Mover esta página',
 'tooltip-ca-watch'                => 'Adicionar esta página als artigos vigiados',
+'tooltip-ca-unwatch'              => 'Remover yesta página de ls artigos vigiados',
 'tooltip-search'                  => 'Pesquisa {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Visitar la página principal',
 'tooltip-n-portal'                => 'Sobre l proyecto',
@@ -451,6 +465,7 @@ Legenda: (actu) = diferenças da versão actual,
 'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de gravar!',
 'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ber las diferenças antre las dues versons seleccionadas desta página.',
+'tooltip-watch'                   => 'Acrescentar yesta página a la sue lhista de artigos vigiados',
 
 # Browsing diffs
 'previousdiff' => '← Ber la alteraçom anterior',
@@ -481,6 +496,7 @@ Links subsequentes na mesma linha são considerados excepções, i.e. artigos on
 * focallength', # Do not translate list items
 
 # External editor support
+'edit-externally'      => 'Editar yeste ficheiro outelizando ua aplicaçon externa',
 'edit-externally-help' => 'Consulte as [http://meta.wikimedia.org/wiki/Help:External_editors instruções de instalação] para mais informação.',
 
 # 'all' in various places, this might be different for inflected languages

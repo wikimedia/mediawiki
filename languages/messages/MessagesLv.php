@@ -133,13 +133,16 @@ $messages = array(
 'dec'           => 'decembrī,',
 
 # Categories related messages
-'categories'             => '{{PLURAL:$1|Kategorija|Kategorijas}}',
-'categoriespagetext'     => 'Wiki ir atrodamas šādas kategorijas.',
-'pagecategories'         => '{{PLURAL:$1|Kategorija|Kategorijas}}',
-'category_header'        => 'Raksti, kas ietverti kategorijā "$1".',
-'subcategories'          => 'Apakškategorijas',
-'category-empty'         => "''Šī kategorija šobrīd nesatur ne lapas, ne failus''",
-'listingcontinuesabbrev' => ' (turpinājums)',
+'categories'                     => '{{PLURAL:$1|Kategorija|Kategorijas}}',
+'categoriespagetext'             => 'Wiki ir atrodamas šādas kategorijas.',
+'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorijas}}',
+'category_header'                => 'Raksti, kas ietverti kategorijā "$1".',
+'subcategories'                  => 'Apakškategorijas',
+'category-empty'                 => "''Šī kategorija šobrīd nesatur ne lapas, ne failus''",
+'category-subcat-count'          => '{{PLURAL:$2|Šajai kategorijai ir tikai viena apakškategorija.|Šajai kategorijai ir $2 apakškategorijas, no kurām ir {{PLURAL:$1|redzama viena|redzamas $1}}.}}',
+'category-article-count'         => '{{PLURAL:$2|Šī kategorija satur tikai šo vienu lapu.|Šajā kategorijā kopā ir $2 lapas, šobrīd ir {{PLURAL:$1|redzama viena no tām|redzamas $1 no tām}}.}}',
+'category-article-count-limited' => 'Šajā kategorijā ir {{PLURAL:$1|šī viena lapa|šīs $1 lapas}}.',
+'listingcontinuesabbrev'         => ' (turpinājums)',
 
 'mainpagetext' => "<big>'''MediaWiki veiksmīgi ieinstalēts'''</big>",
 

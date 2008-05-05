@@ -24,6 +24,7 @@ $messages = array(
 'tog-watchdefault'     => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
 'tog-watchmoves'       => 'Inayon dagiti inyakarko a pampanid iti listaan ti bambantayak',
 'tog-watchdeletion'    => 'Inayon dagiti inikkatko a pampanid iti listaan ti bambantayak',
+'tog-previewonfirst'   => 'Ipakita ti preview iti umuna a baliw',
 'tog-showhiddencats'   => 'Ipakita dagiti nakalemmeng a categoria',
 
 'underline-always' => 'Kanayon',

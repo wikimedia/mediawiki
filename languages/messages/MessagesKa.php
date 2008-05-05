@@ -804,8 +804,17 @@ $1 საათში.',
 'grouppage-bureaucrat' => '{{ns:project}}:ბიუროკრატები',
 
 # Rights
-'right-read' => 'გვერდების წაკითხვა',
-'right-edit' => 'გვერდების რედაქტირება',
+'right-read'          => 'გვერდების წაკითხვა',
+'right-edit'          => 'გვერდების რედაქტირება',
+'right-createpage'    => 'გვერდების შექმნა (არა განხილვის გვერდებისა)',
+'right-createtalk'    => 'განხილვის გვერდების შექმნა',
+'right-minoredit'     => 'ცვლილებების მითითება, როგორც "მცირე რედაქტირება"',
+'right-move'          => 'გვერდების გადატანა',
+'right-upload'        => 'ფაილების ატვირთვა',
+'right-delete'        => 'გვერდების წაშლა',
+'right-browsearchive' => 'წაშლილი გვერდების ძიება',
+'right-undelete'      => 'გვერდის აღდგენა',
+'right-editprotected' => 'დაცული გვერდების რედაქტირება (იერარქიული დაცვის გარეშე)',
 
 # User rights log
 'rightslog'  => 'მომხმარებლის უფლებების ჟურნალი',
@@ -847,7 +856,7 @@ $1 საათში.',
 'upload'                      => 'ფაილის დამატება',
 'uploadbtn'                   => 'ფაილის დამატება',
 'reupload'                    => 'ხელმეორედ ატვირთვა',
-'reuploaddesc'                => 'დაუბრუნდით ატვირთვის ფორმას.',
+'reuploaddesc'                => 'გააუქმეთ ატვირთვა და დაუბრუნდით ატვირთვის ფორმას.',
 'uploadnologin'               => 'რეგისტრაცია არ გაქვთ გავლილი',
 'uploadnologintext'           => 'ფაილის ატვირთვისთვის თქვენ უნდა [[Special:Userlogin|შეხვიდეთ]].',
 'upload_directory_read_only'  => 'ვებსერვერი ვერ იწერს ატვირთვის დირექტორიაში ($1).',
@@ -933,26 +942,31 @@ $1 საათში.',
 'imagelist_description' => 'აღწერილობა',
 
 # Image description page
-'filehist'                  => 'ფაილის ისტორია',
-'filehist-help'             => 'დააწკაპუნეთ თარიღზე/დროზე, რათა იხილოთ ფაილი, როგორც ის მაშინ გამოიყურებოდა.',
-'filehist-deleteall'        => 'წაშალე ყველა',
-'filehist-deleteone'        => 'ამის წაშლა',
-'filehist-revert'           => 'დააბრუნე',
-'filehist-current'          => 'მიმდინარე',
-'filehist-datetime'         => 'თარიღი/დრო',
-'filehist-user'             => 'მომხმარებელი',
-'filehist-dimensions'       => 'განზომილებები',
-'filehist-filesize'         => 'ფაილის ზომა',
-'filehist-comment'          => 'კომენტარი',
-'imagelinks'                => 'ბმულები',
-'linkstoimage'              => 'მომდევნო გვერდები ებმის ამ ფაილს:',
-'nolinkstoimage'            => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
-'sharedupload'              => 'ეს ფაილი ჩატვირთულია საერთო სარგებლობისათვის და შეიძლება გამოყენებულ იქნეს სხვა პროექტების მიერ.',
-'shareduploadwiki'          => 'გთხოვთ, იხილოთ $1 შემდგომი ინფორმაციის მისაღებად.',
-'shareduploadwiki-linktext' => 'ფაილის აღწერის გვერდი',
-'noimage'                   => 'ამ სახელის მქონე ფაილი არ არსებობს, თქვენ შეგიძლიათ $1.',
-'noimage-linktext'          => 'ფაილის ატვირთვა',
-'uploadnewversion-linktext' => 'ატვირთეთ ამ ფაილის ახალი ვერსია',
+'filehist'                       => 'ფაილის ისტორია',
+'filehist-help'                  => 'დააწკაპუნეთ თარიღზე/დროზე, რათა იხილოთ ფაილი, როგორც ის მაშინ გამოიყურებოდა.',
+'filehist-deleteall'             => 'წაშალე ყველა',
+'filehist-deleteone'             => 'ამის წაშლა',
+'filehist-revert'                => 'დააბრუნე',
+'filehist-current'               => 'მიმდინარე',
+'filehist-datetime'              => 'თარიღი/დრო',
+'filehist-user'                  => 'მომხმარებელი',
+'filehist-dimensions'            => 'განზომილებები',
+'filehist-filesize'              => 'ფაილის ზომა',
+'filehist-comment'               => 'კომენტარი',
+'imagelinks'                     => 'ბმულები',
+'linkstoimage'                   => 'მომდევნო გვერდები ებმის ამ ფაილს:',
+'nolinkstoimage'                 => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
+'sharedupload'                   => 'ეს ფაილი ჩატვირთულია საერთო სარგებლობისათვის და შეიძლება გამოყენებულ იქნეს სხვა პროექტების მიერ.',
+'shareduploadwiki'               => 'გთხოვთ, იხილოთ $1 შემდგომი ინფორმაციის მისაღებად.',
+'shareduploadwiki-linktext'      => 'ფაილის აღწერის გვერდი',
+'shareduploadduplicate'          => 'ეს ფაილი წარმოადგენს $1 დუბლიკატს საერთო საცავიდან.',
+'shareduploadduplicate-linktext' => 'სხვა ფაილის',
+'shareduploadconflict'           => 'ამ იგივე სახელწოდება აქვს, რაც $1 საერთო საცავიდან.',
+'shareduploadconflict-linktext'  => 'სხვა ფაილს',
+'noimage'                        => 'ამ სახელის მქონე ფაილი არ არსებობს, თქვენ შეგიძლიათ $1.',
+'noimage-linktext'               => 'ფაილის ატვირთვა',
+'uploadnewversion-linktext'      => 'ატვირთეთ ამ ფაილის ახალი ვერსია',
+'imagepage-searchdupe'           => 'ფაილების დუბლიკატების ძიება',
 
 # File reversion
 'filerevert'         => 'დააბრუნე $1',
@@ -972,6 +986,7 @@ $1 საათში.',
 'filedelete-iscurrent'        => 'თქვენ ცდილობთ ამ ფაილის ყველაზე ახალი ვერსიის წაშლას. გთხოვთ, ის ჯერ წინა ვერსიაზე გადაიტანოთ.',
 'filedelete-otherreason'      => 'სხვა/დამატებითი მიზეზი:',
 'filedelete-reason-otherlist' => 'სხვა მიზეზი',
+'filedelete-edit-reasonlist'  => 'წაშლის მიზეზების რედაქტირება',
 
 # MIME search
 'mimesearch' => 'MIME ძიება',
@@ -1118,7 +1133,10 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'listusers-noresult' => 'მომხმარებელი ვერ ვიპოვეთ.',
 
 # Special:Listgrouprights
-'listgrouprights-group' => 'ჯგუფი',
+'listgrouprights-group'    => 'ჯგუფი',
+'listgrouprights-rights'   => 'უფლებები',
+'listgrouprights-helppage' => 'Help:ჯგუფების უფლებები',
+'listgrouprights-members'  => '(წევრების სია)',
 
 # E-mail user
 'emailuser'       => 'გაუგზავნეთ იმეილი ამ მომხმარებელს',
@@ -1236,6 +1254,7 @@ $NEWPAGE
 ** ავტორის თხოვნით
 ** საავტორო უფლების დარღვევა
 ** ვანდალიზმი',
+'delete-edit-reasonlist'      => 'წაშლის მიზეზების რედაქტირება',
 'rollback'                    => 'რედაქტირების გაუქმება',
 'rollback_short'              => 'გაუქმება',
 'rollbacklink'                => 'გაუქმება',
@@ -1273,8 +1292,10 @@ $NEWPAGE
 'pagesize'                    => '(ბაიტი)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'რედაქტირება',
-'restriction-move' => 'გადატანა',
+'restriction-edit'   => 'რედაქტირება',
+'restriction-move'   => 'გადატანა',
+'restriction-create' => 'შექმნა',
+'restriction-upload' => 'ატვირთვა',
 
 # Restriction levels
 'restriction-level-sysop'         => 'სრული დაცვა',
@@ -1292,6 +1313,7 @@ $NEWPAGE
 'undeletehistorynoadmin'   => 'ეს სტატია წაშლილია. წაშლის მიზეზი ნაჩვენებია მოკლე ანოტაციაში ქვემოთ, იმ მომხმარებელთა დეტალებთან ერთად ვინც რედაქტირება გაუკეთა ამ გვერდს წაშლის წინ. იმ წაშლილი ტექსტების აქტუალური ვერსიები მიღწევადია მხოლოდ ადმინისტრატორებისათვის.',
 'undelete-nodiff'          => 'წინა ცვლილება ვერ ვიპოვეთ.',
 'undeletebtn'              => 'აღდგენა',
+'undeletelink'             => 'აღდგენა',
 'undeletereset'            => 'გადატვირთეთ',
 'undeletecomment'          => 'კომენტარი:',
 'undeletedarticle'         => 'აღდგენილია "[[$1]]"',
@@ -1342,6 +1364,7 @@ $NEWPAGE
 'whatlinkshere-links'      => '← ბმულები',
 'whatlinkshere-hideredirs' => 'გადამისამართების $1',
 'whatlinkshere-hidelinks'  => 'ბმულების $1',
+'whatlinkshere-filters'    => 'ფილტრები',
 
 # Block/unblock
 'blockip'                  => 'მომხმარებლის ან IP მისამართის ბლოკირება',
@@ -1766,7 +1789,9 @@ $NEWPAGE
 'confirmemail_send'       => 'დადასტურების კოდის გაგზავნა',
 'confirmemail_sent'       => 'დამადასტურებელი შეტყობინება გაგზავნილია.',
 'confirmemail_sendfailed' => 'შეუძლებელია დამადასტურებელი შეტყობინების გაგზავნა.
-გადაამოწმეთ მისამართის შემადგენელი სიმბოლოების სისწორე.',
+გადაამოწმეთ მისამართის შემადგენელი სიმბოლოების სისწორე.
+
+სერვერის პასუხი: $1',
 'confirmemail_invalid'    => 'არასწორი კოდი. შესაძლოა კოდი ძალადაკარგული იყოს.',
 'confirmemail_needlogin'  => 'თქვენ გჭირდებათ $1 თქვენი ელ-ფოსტის მისამართის დასადასტურებლად.',
 'confirmemail_success'    => 'თქვენი ელ. ფოსტის მისამართის დადასტურება მიღებულია. შეგიძლიათ ვიკიში შესვლა.',
@@ -1850,6 +1875,7 @@ $1',
 
 # Watchlist editor
 'watchlistedit-numitems'      => 'თქვენი კონტროლის სია $1 სათაურს შეიცავს, განხილვის გვერდების გარდა.',
+'watchlistedit-noitems'       => 'თქვენი კონტროლის სია ცარიელია.',
 'watchlistedit-normal-title'  => 'კონტროლის სიის რედაქტირება',
 'watchlistedit-normal-legend' => 'მოხსენით სათაურები კონტროლის სიიდან',
 'watchlistedit-normal-done'   => '$1 სათაური მოიხსნა თქვენი კონტროლის სიიდან.',
@@ -1875,5 +1901,15 @@ $1',
 
 # Special:Filepath
 'filepath-page' => 'ფაილი:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'ძიება',
+
+# Special:SpecialPages
+'specialpages-group-other'       => 'სხვა სპეციალური გვერდები',
+'specialpages-group-changes'     => 'ბოლო ცვლილებები და ჟურნალები',
+'specialpages-group-users'       => 'მომხმარებლები და უფლებები',
+'specialpages-group-needy'       => 'გვერდები, რომლებიც საჭიროებენ დამუშავებას',
+'specialpages-group-permissions' => 'მომხმარებლის უფლებები',
 
 );

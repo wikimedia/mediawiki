@@ -2223,6 +2223,7 @@ $1',
 Оттон бу туһунан тугу да билбэт буоллаххына бу ыйынньыгынан баран эл. почтаҕын сотон кэбис:
 
 $5',
+'invalidateemail'         => 'Эл. почта бигэргэтээһинин араарга',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding араҕыста]',
@@ -2355,13 +2356,25 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Хос билэлэри көрдөөһүн',
+'fileduplicatesearch-summary'  => 'Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.
+
+Билэ аатын "{{ns:image}}:" префикса суох киллэр.',
+'fileduplicatesearch-legend'   => 'Хатылааһыннары көрдөөһүн',
 'fileduplicatesearch-filename' => 'Билэ аата:',
+'fileduplicatesearch-submit'   => 'Бул',
+'fileduplicatesearch-info'     => '$1 × $2 пииксэл<br />Билэ кээмэйэ: $3<br />MIME-тиип: $4',
+'fileduplicatesearch-result-1' => '"$1" билэ хатылааһыннара суох эбит.',
+'fileduplicatesearch-result-n' => '"$1" билэ {{PLURAL:$2|1 хатылааһыннаах эбит|$2 хатылааһыннардаах эбит}}.',
 
 # Special:SpecialPages
+'specialpages-group-maintenance' => 'Техническэй отчуоттар',
 'specialpages-group-other'       => 'Атын аналлаах сирэйдэр',
 'specialpages-group-login'       => 'Киирии / бэлиэтэнии',
+'specialpages-group-changes'     => 'Саҥа уларытыылар уонна сурунааллар',
+'specialpages-group-media'       => 'Медиа отчуоттар уонна киллэриилэр',
 'specialpages-group-users'       => 'Кыттааччылар уонна бырааптара',
 'specialpages-group-needy'       => 'Үлэҕэ аналлаах сирэйдэр',
+'specialpages-group-highuse'     => 'Элбэхтик туттуллар сирэйдэр',
 'specialpages-group-permissions' => 'Кыттааччы туруоруулара',
 
 );

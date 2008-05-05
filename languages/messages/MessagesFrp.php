@@ -169,18 +169,24 @@ $messages = array(
 'dec'           => 'dèc',
 
 # Categories related messages
-'categories'                    => 'Catègories',
-'categoriespagetext'            => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
-'special-categories-sort-count' => 'tri per compto',
-'special-categories-sort-abc'   => 'tri alfabètico',
-'pagecategories'                => '{{PLURAL:$1|Catègorie |Catègories }}',
-'category_header'               => 'Pâges dens la catègorie « $1 »',
-'subcategories'                 => 'Sot-catègories',
-'category-media-header'         => 'Fichiérs multimèdia dens la catègorie « $1 »',
-'category-empty'                => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
-'hidden-categories'             => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
-'hidden-category-category'      => 'Catègories cachiês', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'        => '(suita)',
+'categories'                     => 'Catègories',
+'categoriespagetext'             => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
+'special-categories-sort-count'  => 'tri per compto',
+'special-categories-sort-abc'    => 'tri alfabètico',
+'pagecategories'                 => '{{PLURAL:$1|Catègorie|Catègories}}',
+'category_header'                => 'Pâges dens la catègorie « $1 »',
+'subcategories'                  => 'Sot-catègories',
+'category-media-header'          => 'Fichiérs multimèdia dens la catègorie « $1 »',
+'category-empty'                 => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
+'hidden-categories'              => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
+'hidden-category-category'       => 'Catègories cachiês', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Ceta catègorie at ren que de la sot-catègorie siuventa.|Ceta catègorie at de {{PLURAL:$1|sot-catègorie|$1 sot-catègories}}, sur una soma de $2.}}',
+'category-subcat-count-limited'  => 'Ceta catègorie at {{PLURAL:$1|de yona sot-catègorie|de $1 sot-catègories}}.',
+'category-article-count'         => '{{PLURAL:$2|Ceta catègorie contint ren que la pâge siuventa.|{{PLURAL:$1|La pâge siuventa figure|Les $1 pâges siuventes figuront}} dens ceta catègorie, sur una soma de $2.}}',
+'category-article-count-limited' => '{{PLURAL:$1|La pâge siuventa figure|Les $1 pâges siuventes figuront}} dens la presenta catègorie.',
+'category-file-count'            => '{{PLURAL:$2|Ceta catègorie contint ren que lo fichiér siuvent.|{{PLURAL:$1|Lo fichiér siuvent figure|Los $1 fichiérs siuvents figuront}} dens ceta catègorie, sur una soma de $2.}}',
+'category-file-count-limited'    => '{{PLURAL:$1|Lo fichiér siuvent figure|Los $1 fichiérs siuvents figuront}} dens la presenta catègorie.',
+'listingcontinuesabbrev'         => '(suita)',
 
 'mainpagetext'      => "<big>'''MediaWiki at étâ enstalâ avouéc reusséta.'''</big>",
 'mainpagedocfooter' => 'Consultâd lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
@@ -301,7 +307,7 @@ $messages = array(
 'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de les tropes $1.',
 
 'versionrequired'     => 'Vèrsion $1 de MediaWiki nècèssèra',
-'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge. Consultâd [[Special:Version]].',
+'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge. Consultâd [[Special:Version|la pâge de les vèrsions]].',
 
 'ok'                      => 'D’acôrd',
 'retrievedfrom'           => 'Rècupèrâ de « $1 »',
@@ -311,6 +317,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Vos avéd de mèssâjos novéls dessus $1.',
 'editsection'             => 'modifiar',
 'editold'                 => 'modifiar',
+'viewsourceold'           => 'vêre la sôrsa',
 'editsectionhint'         => 'Modifiar la sèccion : $1',
 'toc'                     => 'Somèro',
 'showtoc'                 => 'afichiér',
@@ -379,6 +386,8 @@ Cen est g·ènèralament diu a un dif pas més utilisâ ou un lim vers l’histo
 Se cen est pas lo câs, vos éd pôt-étre trovâ una cofierie dens la programeria.
 
 Volyéd raportar ceta èrror a un administrator, en lui endiquent l’adrèce de la pâge fôssa.',
+'missingarticle-rev'   => '(vèrsion # : $1)',
+'missingarticle-diff'  => '(Dif : $1, $2)',
 'readonly_lag'         => 'La bâsa de balyês at étâ ôtomaticament vèrrolyê pendent que los sèrviors secondèros ratrapont lor retârd sur lo sèrvior principâl.',
 'internalerror'        => 'Èrror de dedens',
 'internalerror_info'   => 'Èrror de dedens : $1',

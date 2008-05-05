@@ -35,7 +35,18 @@ $messages = array(
 'august-gen'   => 'auguste',
 'october-gen'  => 'oktobre',
 'december-gen' => 'desembre',
+'jan'          => 'jan',
+'feb'          => 'feb',
+'mar'          => 'mar',
+'apr'          => 'apr',
 'may'          => 'maye',
+'jun'          => 'jun',
+'jul'          => 'jul',
+'aug'          => 'aug',
+'sep'          => 'sep',
+'oct'          => 'okt',
+'nov'          => 'nov',
+'dec'          => 'des',
 
 # Categories related messages
 'categories'         => 'Kategories',
@@ -47,6 +58,7 @@ $messages = array(
 'article'        => 'Pagine de kontenaje',
 'newwindow'      => '(aperta in novi fenestre)',
 'cancel'         => 'Nihilisa',
+'qbedit'         => 'Modifika',
 'qbspecialpages' => 'Spesial pagines',
 'moredotdotdot'  => 'Plu...',
 'mypage'         => 'Men pagine',
@@ -85,16 +97,20 @@ $messages = array(
 'categorypage'     => 'Regarda kategorial pagine',
 'otherlanguages'   => 'Altri lingues',
 'lastmodifiedat'   => 'Disi pagine blid lastim modifika: $2 ye $1.', # $1 date, $2 time
+'jumptonavigation' => 'navigatione',
+'jumptosearch'     => 'sercha',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Pri {{SITENAME}}',
 'aboutpage'            => 'Project:Pri',
 'currentevents'        => 'Nuni eventes',
+'currentevents-url'    => 'Project:Nuni eventes',
 'edithelp'             => 'Helpo pri modifiko de pagines',
 'helppage'             => 'Help:Kontenaje',
 'mainpage'             => 'Chefi pagine',
 'mainpage-description' => 'Chefi pagine',
 'portal'               => 'Li komun chambre',
+'portal-url'           => 'Project:Li komun chambre',
 'sitesupport'          => 'Donationes',
 
 'badaccess' => 'Permisione erore',
@@ -103,6 +119,8 @@ $messages = array(
 'newmessageslink'         => 'novi mesajes',
 'newmessagesdifflink'     => 'lasti chanjo',
 'youhavenewmessagesmulti' => 'Vu have novi mesajes pri $1',
+'editsection'             => 'modifika',
+'editold'                 => 'modifika',
 'restorelink'             => '{{PLURAL:$1|unu ekartati modifiko|$1 ekartati modifikos}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -229,7 +247,8 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'imagelist_description' => 'Deskriptione',
 
 # Image description page
-'imagelinks' => 'Linkes',
+'filehist-user' => 'Usere',
+'imagelinks'    => 'Linkes',
 
 # Random page
 'randompage' => 'Arbitriari pagine',
@@ -322,7 +341,8 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'sp-contributions-submit'  => 'Sercha',
 
 # What links here
-'whatlinkshere' => 'Tum kel kupla hir',
+'whatlinkshere'      => 'Tum kel kupla hir',
+'whatlinkshere-page' => 'Pagine:',
 
 # Block/unblock
 'badipaddress' => 'Non-valid IP adrese',
@@ -348,7 +368,10 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'allmessagesmodified' => 'Montra nur modifikates',
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => 'Eksignata',
+'tooltip-pt-mytalk'      => 'Men parla-pagine',
+'tooltip-pt-preferences' => 'Men preferos',
+'tooltip-pt-logout'      => 'Eksignata',
+'tooltip-p-logo'         => 'Chefi pagine',
 
 # Info page
 'infosubtitle' => 'Informatione pri pagine',
@@ -377,6 +400,8 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'autosumm-new'     => 'Novi pagine: $1',
 
 # Special:Version
-'version' => 'Versione', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versione', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Spesial pagines',
+'version-software-version' => 'Versione',
 
 );

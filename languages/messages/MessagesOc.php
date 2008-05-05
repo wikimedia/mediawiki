@@ -338,7 +338,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Aquesta categoria dispausa {{PLURAL:$1|d’una soscategoria|de $1 soscategorias}}.',
 'category-article-count'         => '{{PLURAL:$2|Aquesta categoria conten unicament la pagina seguenta.|{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins aquesta categoria, sus una soma de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins la presenta categoria.',
-'category-file-count'            => '{{PLURAL:$2|Aquesta categoria conten unicament lo fichièr seguent.|{{PLURAL:$1|Lo fichièr seguent figura|los $1 fichièrs seguents figuran}} dins aquesta categoria, sus una soma de $2.}}',
+'category-file-count'            => '{{PLURAL:$2|Aquesta categoria conten unicament lo fichièr seguent.|{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins aquesta categoria, sus una soma de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins la presenta categoria.',
 'listingcontinuesabbrev'         => '(seguida)',
 
@@ -456,9 +456,9 @@ $messages = array(
 
 'badaccess'        => 'Error de permission',
 'badaccess-group0' => 'Avètz pas los dreches sufisents per realizar l’accion que demandatz.',
-'badaccess-group1' => "L'accion qu'ensajatz de realizar es accessibla pas qu'als utilizaires del grop $1.",
-'badaccess-group2' => "L'accion qu'ensajatz de realizar es accessibla pas qu'als utilizaires dels gropes $1.",
-'badaccess-groups' => "L'accion qu'ensajatz de realizar es accessibla pas qu'als utilizaires dels gropes $1.",
+'badaccess-group1' => "L’accion qu'ensajatz de realizar es pas accessibla qu’als utilizaires del grop $1.",
+'badaccess-group2' => "L’accion qu'ensajatz de realizar es pas accessibla qu’als utilizaires dels gropes $1.",
+'badaccess-groups' => "L’accion qu'ensajatz de realizar es pas accessibla qu’als utilizaires dels gropes $1.",
 
 'versionrequired'     => 'Version $1 de MediaWiki necessària',
 'versionrequiredtext' => 'La version $1 de MediaWiki es necessària per utilizar aquesta pagina. Consultatz [[Special:Version|la pagina de las versions]]',
@@ -1136,6 +1136,7 @@ Una * indica que podretz pas levar aqueste grop un còp que l'auretz apondut e v
 'right-importupload'         => 'Importar de paginas dempuèi un fichièr',
 'right-patrol'               => 'Marcar de cambiaments coma verificats',
 'right-autopatrol'           => 'Aver sos cambiaments marcats automaticament coma verificats',
+'right-patrolmarks'          => 'Utilizar las foncionalitats de la patrolha dels darrièrs cambiaments',
 'right-unwatchedpages'       => 'Veire la tièra de las paginas pas seguidas',
 'right-trackback'            => 'Fusionar los istorics de las paginas',
 'right-mergehistory'         => 'Fusionar los istorics de las paginas',
@@ -1952,6 +1953,8 @@ Volètz lo suprimir per permetre lo renomenatge ?',
 'delete_and_move_reason'  => 'Pagina suprimida per permetre un renomenatge',
 'selfmove'                => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
 'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas vèrs aqueste espaci de noms.',
+'imagenocrossnamespace'   => 'Pòt pas desplaçar un imatge vèrs un espaci de nomenatge que siá pas un imatge.',
+'imagetypemismatch'       => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
 
 # Export
 'export'            => 'Exportar de paginas',

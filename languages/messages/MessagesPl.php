@@ -1189,6 +1189,7 @@ Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub do
 'right-importupload'         => 'Import stron poprzez przesłanie pliku',
 'right-patrol'               => 'Oznaczanie edycji jako „sprawdzone”',
 'right-autopatrol'           => 'Edycje zostaną automatycznie oznaczone jako „sprawdzone”',
+'right-patrolmarks'          => 'Podgląd znaczników patrolowania ostatnich zmian – oznaczania jako „sprawdzone”',
 'right-unwatchedpages'       => 'Podgląd listy stron nieobserwowanych',
 'right-trackback'            => 'Wysyłanie trackback',
 'right-mergehistory'         => 'Łączenie historii edycji stron',
@@ -2055,6 +2056,8 @@ Czy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?',
 Strony nie można przenieść na nią samą.',
 'immobile_namespace'      => 'Strona źródłowa lub strona docelowa są specjalnego typu.
 Nie można przenieść z lub do tej przestrzeni nazw.',
+'imagenocrossnamespace'   => 'Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik',
+'imagetypemismatch'       => 'Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość',
 
 # Export
 'export'            => 'Eksport stron',

@@ -22,6 +22,7 @@
  * @author Guillom
  * @author Jon Harald Søby
  * @author IAlex
+ * @author Esbardu
  */
 
 $skinNames = array(
@@ -338,7 +339,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Cette catégorie dispose {{PLURAL:$1|d’une sous-catégorie|de $1 sous-catégories}}.',
 'category-article-count'         => '{{PLURAL:$2|Cette catégorie contient uniquement la page suivante.|{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans cette catégorie, sur un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans la présente catégorie.',
-'category-file-count'            => '{{PLURAL:$2|Cette catégorie contient uniquement le fichier suivant.|{{PLURAL:$1|Le fichier suivant figure|les $1 fichiers suivants figurent}} dans cette catégorie, sur un total de $2.}}',
+'category-file-count'            => '{{PLURAL:$2|Cette catégorie contient uniquement le fichier suivant.|{{PLURAL:$1|Le fichier suivant figure|Les $1 fichiers suivants figurent}} dans cette catégorie, sur un total de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Le fichier suivant figure|Les $1 fichiers suivants figurent}} dans la présente catégorie.',
 'listingcontinuesabbrev'         => '(suite)',
 
@@ -1134,6 +1135,7 @@ Une * indique que vous ne pouvez pas retirer ce groupe une fois que vous l'ayez 
 'right-importupload'         => 'Importer des pages depuis un fichier',
 'right-patrol'               => 'Marquer des modification comme vérifiées',
 'right-autopatrol'           => 'Avoir ses modification marqués automatiquement comme vérifiées',
+'right-patrolmarks'          => 'Utiliser les fonctionnalités de la patrouille des modifications récentes',
 'right-unwatchedpages'       => 'Voir la liste des pages non suivies',
 'right-trackback'            => 'Ajouter des rétroliens',
 'right-mergehistory'         => 'Fusionner les historiques des pages',
@@ -1946,6 +1948,8 @@ L’article de destination « [[$1]] » existe déjà. Voulez-vous le supprimer 
 'delete_and_move_reason'  => 'Page supprimée automatiquement pour permettre un renommage',
 'selfmove'                => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
 'immobile_namespace'      => 'Le titre de destination est d’un type spécial ; il est impossible de renommer des pages vers cet espace de noms.',
+'imagenocrossnamespace'   => 'Ne peut déplacer une image vers un espace de nommage qui ne soit pas une image.',
+'imagetypemismatch'       => 'La nouvelle extension de ce fichier ne reconnaît pas ce format.',
 
 # Export
 'export'            => 'Exporter des pages',

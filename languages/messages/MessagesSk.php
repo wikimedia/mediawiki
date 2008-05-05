@@ -1114,6 +1114,7 @@ Nezaškrtnuté pole znamená, že používateľ nie je v skupine.
 'right-importupload'         => 'Importovať stránky nahraním súboru',
 'right-patrol'               => 'Označiť úpravy ako strážené',
 'right-autopatrol'           => 'Nechať úpravy automaticky označiť ako strážené',
+'right-patrolmarks'          => 'Používať možnosti stráženia posledných úprav',
 'right-unwatchedpages'       => 'Zobraziť zoznam nesledovaných stránok',
 'right-trackback'            => 'Poslať trackback',
 'right-mergehistory'         => 'Zlučovať histórie stránok',
@@ -1946,6 +1947,8 @@ Cieľová stránka „[[$1]]“ už existuje. Chcete ho vymazať a vytvoriť tak
 'delete_and_move_reason'  => 'Vymazať, aby sa umožnil presun',
 'selfmove'                => 'Zdrojový a cieľový názov sú rovnaké; nemôžem presunúť stránku na seba samú.',
 'immobile_namespace'      => 'Cieľový názov je špeciálneho typu; nemôžem presunúť stránku do tohto menného priestoru.',
+'imagenocrossnamespace'   => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
+'imagetypemismatch'       => 'Nová prípona súboru nezodpovedá jeho typu',
 
 # Export
 'export'            => 'Export stránok',

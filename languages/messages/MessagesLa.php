@@ -269,7 +269,7 @@ $messages = array(
 'qbspecialpages' => 'Paginae speciales',
 'moredotdotdot'  => 'Plus...',
 'mypage'         => 'Pagina mea',
-'mytalk'         => 'Disputatum meum',
+'mytalk'         => 'Disputatio mea',
 'anontalk'       => 'Disputatio huius IP',
 'navigation'     => 'Navigatio',
 'and'            => 'et',
@@ -316,7 +316,7 @@ $messages = array(
 'templatepage'      => 'Videre formulam',
 'viewhelppage'      => 'Videre auxilium',
 'categorypage'      => 'Videre categoriam',
-'viewtalkpage'      => 'Videre disputatum',
+'viewtalkpage'      => 'Videre disputationem',
 'otherlanguages'    => 'Linguis aliis',
 'redirectedfrom'    => '(Redirectum de $1)',
 'redirectpagesub'   => 'Pagina redirectionis',
@@ -1387,7 +1387,7 @@ Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic mo
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Pagina usoris mea',
-'tooltip-pt-mytalk'               => 'Disputatum meum',
+'tooltip-pt-mytalk'               => 'Pagina disputationis mea',
 'tooltip-pt-preferences'          => 'Praeferentiae meae',
 'tooltip-pt-watchlist'            => 'Paginae quae custodis ut eorum mutationes facilius vides',
 'tooltip-pt-mycontris'            => 'Index conlationum mearum',
