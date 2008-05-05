@@ -3365,6 +3365,5 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'specialpages-group-users'       => 'Users and rights',
 'specialpages-group-needy'       => 'Pages in need of work',
 'specialpages-group-highuse'     => 'High use pages',
-'specialpages-group-permissions' => 'User permissions',
 
 );
