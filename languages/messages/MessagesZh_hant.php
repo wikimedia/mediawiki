@@ -1802,7 +1802,7 @@ $1',
 'delete_and_move_reason'  => '刪除以便移動',
 'selfmove'                => '原始標題與目標標題相同，您不能移動一頁覆蓋本身。',
 'immobile_namespace'      => '目標標題屬於特別類型；不能將頁面移入這個名字空間。',
-'imagenocrossnamespace'   => '不可以移動圖片到非圖像名字空間',
+'imagenocrossnamespace'   => '不可以移動檔案到非檔案名字空間',
 'imagetypemismatch'       => '該新副檔名不匹配它的類型',
 
 # Export
