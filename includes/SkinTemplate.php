@@ -269,6 +269,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href']);
 		$tpl->set( 'userlang', $wgLang->getCode() );
 		$tpl->set( 'pagecss', $this->setupPageCss() );
+		$tpl->set( 'printcss', $this->getPrintCss() );
 		$tpl->setRef( 'usercss', $this->usercss);
 		$tpl->setRef( 'userjs', $this->userjs);
 		$tpl->setRef( 'userjsprev', $this->userjsprev);
@@ -1056,10 +1057,8 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * returns css with user-specific options
-	 * @public
 	 */
-
-	function getUserStylesheet() {
+	public function getUserStylesheet() {
 		$fname = 'SkinTemplate::getUserStylesheet';
 		wfProfileIn( $fname );
 
@@ -1067,6 +1066,17 @@ class SkinTemplate extends Skin {
 		$s .= $this->reallyDoGetUserStyles();
 		wfProfileOut( $fname );
 		return $s;
+	}
+
+	/**
+	 * Returns the print stylesheet for this skin.  In all default skins this
+	 * is just commonPrint.css, but third-party skins may want to modify it.
+	 *
+	 * @return string
+	 */
+	public function getPrintCss() {
+		global $wgStylePath;
+		return $wgStylePath . "/common/commonPrint.css";
 	}
 
 	/**

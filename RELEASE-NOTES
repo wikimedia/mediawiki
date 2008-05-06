@@ -101,7 +101,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12542) Added hooks for expansion of Special:Listusers
 * Drop-down AJAX search suggestions (turn on $wgEnableMWSuggest) 
 * More relevant search snippets (turn on $wgAdvancedSearchHighlighting)
-* (bug 13950) Allow users to watch the user/user talk pages of users they block.
+* (bug 13950) Allow users to watch the user/talk pages of users they block.
+* (bug 13970) Allow MonoBook-based skins to specify their own print stylesheet
 
 === Bug fixes in 1.13 ===
 
