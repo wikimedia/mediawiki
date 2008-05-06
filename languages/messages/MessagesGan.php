@@ -11,6 +11,8 @@
  * @author Jon Harald Søby
  */
 
+$fallback = 'zh-hant';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => '下劃連結',
