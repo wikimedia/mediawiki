@@ -2547,6 +2547,10 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
  * @return null
  */
 function wfDeprecated( $function ) {
+	global $wgDebugLogFile;
+	if ( !$wgDebugLogFile ) {
+		return;
+	}
 	$callers = wfDebugBacktrace();
 	if( isset( $callers[2] ) ){
 		$callerfunc = $callers[2];
@@ -2560,10 +2564,11 @@ function wfDeprecated( $function ) {
 		if( isset( $callerfunc['class'] ) )
 			$func .= $callerfunc['class'] . '::';
 		$func .= @$callerfunc['function'];
-		trigger_error( "Use of $function is deprecated. Called from $func in $file", E_USER_NOTICE );
+		$msg = "Use of $function is deprecated. Called from $func in $file";
 	} else {
-		trigger_error( "Use of $function is deprecated.", E_USER_NOTICE );
+		$msg = "Use of $function is deprecated.";
 	}
+	wfDebug( "$msg\n" );
 }
 
 /**
