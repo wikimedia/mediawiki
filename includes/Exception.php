@@ -100,8 +100,8 @@ class MWException extends Exception {
 			return $this->getMessage() .
 				"\nBacktrace:\n" . $this->getTraceAsString() . "\n";
 		} else {
-			return "<p>Set <tt>\$wgShowExceptionDetails = true;</tt> " .
-				"in LocalSettings.php to show detailed debugging information.</p>";
+			return "Set \$wgShowExceptionDetails = true; " .
+				"in LocalSettings.php to show detailed debugging information.\n";
 		}
 	}
 
