@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @addtogroup Language
  *
@@ -1674,6 +1674,7 @@ $1',
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附帶原因:',
 'ipbhidename'                 => '在查封日誌、活躍查封列表以及用戶列表中隱藏用戶名',
+'ipbwatchuser'                => '監視這位用戶的用戶頁面以及其對話頁面',
 'badipaddress'                => 'IP地址不正確。',
 'blockipsuccesssub'           => '查封成功',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]已經被查封。
