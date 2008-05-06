@@ -1546,6 +1546,7 @@ $wgMessageStructure = array(
 		'ipbotheroption',
 		'ipbotherreason',
 		'ipbhidename',
+		'ipbwatchuser',
 		'badipaddress',
 		'blockipsuccesssub',
 		'blockipsuccesstext',
