@@ -1891,11 +1891,16 @@ class Title {
 		return $this->mLength;
 	}
 
-	public function getLatestRevID() {
+	/**
+	 * What is the page_latest field for this page?
+	 * @param int $flags a bit field; may be GAID_FOR_UPDATE to select for update
+	 * @return int
+	 */
+	public function getLatestRevID( $flags = 0 ) {
 		if ($this->mLatestID !== false)
 			return $this->mLatestID;
 
-		$db = wfGetDB(DB_SLAVE);
+		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB(DB_MASTER) : wfGetDB(DB_SLAVE);
 		return $this->mLatestID = $db->selectField( 'revision',
 			"max(rev_id)",
 			array('rev_page' => $this->getArticleID()),
