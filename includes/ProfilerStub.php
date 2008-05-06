@@ -1,24 +1,47 @@
 <?php
+/**
+ * Stub profiling functions
+ * @addtogroup Profiler
+ */
 
-# Stub profiling functions
+/** backward compatibility */
+$wgProfiling = false;
 
-$haveProctitle=function_exists("setproctitle");
+/** is setproctitle function aviable ? */
+$haveProctitle = function_exists( 'setproctitle' );
+
+/**
+ * Begin profiling of a function
+ * @param string $fn
+ */
 function wfProfileIn( $fn = '' ) {
 	global $hackwhere, $wgDBname, $haveProctitle;
-	if ($haveProctitle) {
+	if( $haveProctitle ){
 		$hackwhere[] = $fn;
-		setproctitle($fn . " [$wgDBname]");
+		setproctitle( $fn . " [$wgDBname]" );
 	}
 }
+
+/**
+ * Stop profiling of a function
+ * @param string $fn
+ */
 function wfProfileOut( $fn = '' ) {
 	global $hackwhere, $wgDBname, $haveProctitle;
-	if (!$haveProctitle)
+	if( !$haveProctitle )
 		return;
-	if (count($hackwhere))
-		array_pop($hackwhere);
-	if (count($hackwhere))
-		setproctitle($hackwhere[count($hackwhere)-1] . " [$wgDBname]");
+	if( count( $hackwhere ) )
+		array_pop( $hackwhere );
+	if( count( $hackwhere ) )
+		setproctitle( $hackwhere[count( $hackwhere )-1] . " [$wgDBname]" );
 }
+
+/**
+ * Does nothing, just for compatibility 
+ */
 function wfGetProfilingOutput( $s, $e ) {}
+
+/**
+ * Does nothing, just for compatibility 
+ */
 function wfProfileClose() {}
-$wgProfiling = false;
