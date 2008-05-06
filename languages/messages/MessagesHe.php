@@ -1915,6 +1915,7 @@ $1',
 'ipbotheroption'              => 'אחר',
 'ipbotherreason'              => 'סיבה אחרת/נוספת:',
 'ipbhidename'                 => 'הסתרת שם המשתמש מיומן החסימות, רשימת המשתמשים החסומים ורשימת המשתמשים',
+'ipbwatchuser'                => 'מעקב אחרי דפי המשתמש והשיחה של משתמש זה',
 'badipaddress'                => 'משתמש או כתובת IP שגויים.',
 'blockipsuccesssub'           => 'החסימה הושלמה בהצלחה',
 'blockipsuccesstext'          => 'המשתמש [[Special:Contributions/$1|$1]] נחסם.
