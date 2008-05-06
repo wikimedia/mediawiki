@@ -62,6 +62,7 @@ class IPBlockForm {
 		$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', $byDefault );
 		$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', $byDefault );
 		$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
+		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
 		# Re-check user's rights to hide names, very serious, defaults to 0
 		$this->BlockHideName = ( $wgRequest->getBool( 'wpHideName', 0 ) && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
 	}
@@ -226,13 +227,25 @@ class IPBlockForm {
 				</tr>"
 			);
 		}
+		
+		# Watchlist their user page?
+		$wgOut->addHTML("
+			<tr id='wpEnableWatchUser'>
+				<td>&nbsp;</td>
+				<td class='mw-input'>" .
+					Xml::checkLabel( wfMsg( 'ipbwatchuser' ),
+						'wpWatchUser', 'wpWatchUser', $this->BlockWatchUser,
+						array( 'tabindex' => '11' ) ) . "
+				</td>
+			</tr>"
+		);
 
 		$wgOut->addHTML("
 			<tr>
 				<td style='padding-top: 1em'>&nbsp;</td>
 				<td  class='mw-submit' style='padding-top: 1em'>" .
 					Xml::submitButton( wfMsg( 'ipbsubmit' ),
-						array( 'name' => 'wpBlock', 'tabindex' => '11' ) ) . "
+						array( 'name' => 'wpBlock', 'tabindex' => '12' ) ) . "
 				</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
@@ -349,6 +362,10 @@ class IPBlockForm {
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
 			$this->BlockEmail);
 
+		if ( $this->BlockWatchUser ) { 
+			$wgUser->addWatch ( Title::makeTitle( NS_USER, $this->BlockAddress ) );
+		}
+		
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
 			if ( !$block->insert() ) {

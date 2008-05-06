@@ -2284,6 +2284,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbotheroption'              => 'other',
 'ipbotherreason'              => 'Other/additional reason:',
 'ipbhidename'                 => 'Hide username from the block log, active block list and user list',
+'ipbwatchuser'                => "Watch this user's user and talk pages",
 'badipaddress'                => 'Invalid IP address',
 'blockipsuccesssub'           => 'Block succeeded',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] has been blocked.<br />
