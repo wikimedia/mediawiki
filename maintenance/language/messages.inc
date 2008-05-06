@@ -1522,10 +1522,10 @@ $wgMessageStructure = array(
 		'whatlinkshere-prev',
 		'whatlinkshere-next',
 		'whatlinkshere-links',
-		'whatlinkshere-hideimages',
 		'whatlinkshere-hideredirs',
 		'whatlinkshere-hidetrans',
 		'whatlinkshere-hidelinks',
+		'whatlinkshere-hideimages',
 		'whatlinkshere-filters',
 	),
 	'block' => array(
