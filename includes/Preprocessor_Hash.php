@@ -1222,7 +1222,7 @@ class PPNode_Hash_Tree implements PPNode {
 		}
 	}
 
-	function newWithText( $name, $text ) {
+	static function newWithText( $name, $text ) {
 		$obj = new self( $name );
 		$obj->addChild( new PPNode_Hash_Text( $text ) );
 		return $obj;
