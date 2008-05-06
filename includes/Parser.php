@@ -3249,7 +3249,8 @@ class Parser
 						$output = call_user_func_array( $this->mTagHooks[$name],
 							array( $content, $attributes, $this ) );
 					} else {
-						throw new MWException( "Invalid call hook $name" );
+						$output = '<span class="error">Invalid tag extension name: ' .
+							htmlspecialchars( $name ) . '</span>';
 					}
 			}
 		} else {
