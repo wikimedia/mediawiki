@@ -1065,7 +1065,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @return string
 	 */
-	private function getPrintCss() {
+	protected function getPrintCss() {
 		global $wgStylePath;
 		return $wgStylePath . "/common/commonPrint.css";
 	}
