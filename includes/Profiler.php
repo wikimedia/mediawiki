@@ -1,31 +1,44 @@
 <?php
 /**
  * This file is only included if profiling is enabled
+ * @addtogroup Profiler
  */
 
+/** backward compatibility */
 $wgProfiling = true;
 
 /**
+ * Begin profiling of a function
  * @param $functioname name of the function we will profile
  */
-function wfProfileIn($functionname) {
+function wfProfileIn( $functionname ) {
 	global $wgProfiler;
-	$wgProfiler->profileIn($functionname);
+	$wgProfiler->profileIn( $functionname );
 }
 
 /**
+ * Stop profiling of a function
  * @param $functioname name of the function we have profiled
  */
-function wfProfileOut($functionname = 'missing') {
+function wfProfileOut( $functionname = 'missing' ) {
 	global $wgProfiler;
-	$wgProfiler->profileOut($functionname);
+	$wgProfiler->profileOut( $functionname );
 }
 
-function wfGetProfilingOutput($start, $elapsed) {
+/**
+ * Returns a profiling output to be stored in debug file
+ *
+ * @param float $start
+ * @param float $elapsed time elapsed since the beginning of the request
+ */
+function wfGetProfilingOutput( $start, $elapsed ) {
 	global $wgProfiler;
-	return $wgProfiler->getOutput($start, $elapsed);
+	return $wgProfiler->getOutput( $start, $elapsed );
 }
 
+/**
+ * Closed opened profiling section
+ */
 function wfProfileClose() {
 	global $wgProfiler;
 	$wgProfiler->close();
@@ -57,38 +70,48 @@ class Profiler {
 		}
 	}
 
-	function profileIn($functionname) {
+	/**
+	 * Called by wfProfieIn()
+	 * @param string $functionname
+	 */
+	function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
-		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
-			wfDebug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
+
+		if( $wgDebugFunctionEntry ){
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) ) . 'Entering ' . $functionname . "\n" );
 		}
-		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), $this->getTime(), memory_get_usage());
+
+		$this->mWorkStack[] = array( $functionname, count( $this->mWorkStack ), $this->getTime(), memory_get_usage() );
 	}
 
+	/**
+	 * Called by wfProfieOut()
+	 * @param string $functionname
+	 */
 	function profileOut($functionname) {
+		global $wgDebugFunctionEntry;
+
 		$memory = memory_get_usage();
 		$time = $this->getTime();
 
-		global $wgDebugFunctionEntry;
-
-		if ($wgDebugFunctionEntry && function_exists('wfDebug')) {
-			wfDebug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");
+		if( $wgDebugFunctionEntry ){
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
 		}
 
 		$bit = array_pop($this->mWorkStack);
 
 		if (!$bit) {
-			wfDebug("Profiling error, !\$bit: $functionname\n");
+			$this->debug("Profiling error, !\$bit: $functionname\n");
 		} else {
-			//if ($wgDebugProfiling) {
-				if ($functionname == 'close') {
+			//if( $wgDebugProfiling ){
+				if( $functionname == 'close' ){
 					$message = "Profile section ended by close(): {$bit[0]}";
-					wfDebug( "$message\n" );
+					$this->debug( "$message\n" );
 					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
 				}
-				elseif ($bit[0] != $functionname) {
+				elseif( $bit[0] != $functionname ){
 					$message = "Profiling error: in({$bit[0]}), out($functionname)";
-					wfDebug( "$message\n" );
+					$this->debug( "$message\n" );
 					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
 				}
 			//}
@@ -98,70 +121,86 @@ class Profiler {
 		}
 	}
 
+	/**
+	 * called by wfProfileClose()
+	 */
 	function close() {
-		while (count($this->mWorkStack)) {
-			$this->profileOut('close');
+		while( count( $this->mWorkStack ) ){
+			$this->profileOut( 'close' );
 		}
 	}
 
+	/**
+	 * called by wfGetProfilingOutput()
+	 */
 	function getOutput() {
-		global $wgDebugFunctionEntry;
+		global $wgDebugFunctionEntry, $wgProfileCallTree;
 		$wgDebugFunctionEntry = false;
 
-		if (!count($this->mStack) && !count($this->mCollated)) {
+		if( !count( $this->mStack ) && !count( $this->mCollated ) ){
 			return "No profiling output\n";
 		}
 		$this->close();
 
-		global $wgProfileCallTree;
-		if ($wgProfileCallTree) {
+		if( $wgProfileCallTree ){
 			return $this->getCallTree();
 		} else {
 			return $this->getFunctionReport();
 		}
 	}
 
-	function getCallTree($start = 0) {
-		return implode('', array_map(array (& $this, 'getCallTreeLine'), $this->remapCallTree($this->mStack)));
+	/**
+	 * returns a tree of function call instead of a list of functions
+	 */
+	function getCallTree() {
+		return implode( '', array_map( array( &$this, 'getCallTreeLine' ), $this->remapCallTree( $this->mStack ) ) );
 	}
 
-	function remapCallTree($stack) {
-		if (count($stack) < 2) {
+	/**
+	 * Recursive function the format the current profiling array into a tree
+	 *
+	 * @param array $stack profiling array
+	 */
+	function remapCallTree( $stack ) {
+		if( count( $stack ) < 2 ){
 			return $stack;
 		}
 		$outputs = array ();
-		for ($max = count($stack) - 1; $max > 0;) {
+		for( $max = count( $stack ) - 1; $max > 0; ){
 			/* Find all items under this entry */
 			$level = $stack[$max][1];
 			$working = array ();
-			for ($i = $max -1; $i >= 0; $i --) {
-				if ($stack[$i][1] > $level) {
+			for( $i = $max -1; $i >= 0; $i-- ){
+				if( $stack[$i][1] > $level ){
 					$working[] = $stack[$i];
 				} else {
 					break;
 				}
 			}
-			$working = $this->remapCallTree(array_reverse($working));
-			$output = array ();
-			foreach ($working as $item) {
-				array_push($output, $item);
+			$working = $this->remapCallTree( array_reverse( $working ) );
+			$output = array();
+			foreach( $working as $item ){
+				array_push( $output, $item );
 			}
-			array_unshift($output, $stack[$max]);
+			array_unshift( $output, $stack[$max] );
 			$max = $i;
 
-			array_unshift($outputs, $output);
+			array_unshift( $outputs, $output );
 		}
-		$final = array ();
-		foreach ($outputs as $output) {
-			foreach ($output as $item) {
+		$final = array();
+		foreach( $outputs as $output ){
+			foreach( $output as $item ){
 				$final[] = $item;
 			}
 		}
 		return $final;
 	}
 
+	/**
+	 * Callback to get a formatted line for the call tree
+	 */
 	function getCallTreeLine($entry) {
-		list ($fname, $level, $start, /* $x */, $end) = $entry;
+		list( $fname, $level, $start, /* $x */, $end)  = $entry;
 		$delta = $end - $start;
 		$space = str_repeat(' ', $level);
 
@@ -182,66 +221,72 @@ class Profiler {
 		return $ru['ru_utime.tv_sec'].' '.$ru['ru_utime.tv_usec'] / 1e6;
 	}
 
+	/**
+	 * Returns a list of profiled functions.
+	 * Also log it into the database if $wgProfileToDatabase is set to true.
+	 */
 	function getFunctionReport() {
+		global $wgProfileToDatabase;
+
 		$width = 140;
 		$nameWidth = $width - 65;
 		$format =      "%-{$nameWidth}s %6d %13.3f %13.3f %13.3f%% %9d  (%13.3f -%13.3f) [%d]\n";
 		$titleFormat = "%-{$nameWidth}s %6s %13s %13s %13s %9s\n";
 		$prof = "\nProfiling data\n";
-		$prof .= sprintf($titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem');
+		$prof .= sprintf( $titleFormat, 'Name', 'Calls', 'Total', 'Each', '%', 'Mem' );
 		$this->mCollated = array ();
 		$this->mCalls = array ();
 		$this->mMemory = array ();
 
 		# Estimate profiling overhead
 		$profileCount = count($this->mStack);
-		wfProfileIn('-overhead-total');
-		for ($i = 0; $i < $profileCount; $i ++) {
-			wfProfileIn('-overhead-internal');
-			wfProfileOut('-overhead-internal');
+		wfProfileIn( '-overhead-total' );
+		for( $i = 0; $i < $profileCount; $i ++ ){
+			wfProfileIn( '-overhead-internal' );
+			wfProfileOut( '-overhead-internal' );
 		}
-		wfProfileOut('-overhead-total');
+		wfProfileOut( '-overhead-total' );
 
 		# First, subtract the overhead!
-		foreach ($this->mStack as $entry) {
+		foreach( $this->mStack as $entry ){
 			$fname = $entry[0];
 			$start = $entry[2];
 			$end = $entry[4];
 			$elapsed = $end - $start;
 			$memory = $entry[5] - $entry[3];
 
-			if ($fname == '-overhead-total') {
+			if( $fname == '-overhead-total' ){
 				$overheadTotal[] = $elapsed;
 				$overheadMemory[] = $memory;
 			}
-			elseif ($fname == '-overhead-internal') {
+			elseif( $fname == '-overhead-internal' ){
 				$overheadInternal[] = $elapsed;
 			}
 		}
-		$overheadTotal = array_sum($overheadTotal) / count($overheadInternal);
-		$overheadMemory = array_sum($overheadMemory) / count($overheadInternal);
-		$overheadInternal = array_sum($overheadInternal) / count($overheadInternal);
+		$overheadTotal = array_sum( $overheadTotal ) / count( $overheadInternal );
+		$overheadMemory = array_sum( $overheadMemory ) / count( $overheadInternal );
+		$overheadInternal = array_sum( $overheadInternal ) / count( $overheadInternal );
 
 		# Collate
-		foreach ($this->mStack as $index => $entry) {
+		foreach( $this->mStack as $index => $entry ){
 			$fname = $entry[0];
 			$start = $entry[2];
 			$end = $entry[4];
 			$elapsed = $end - $start;
 
 			$memory = $entry[5] - $entry[3];
-			$subcalls = $this->calltreeCount($this->mStack, $index);
+			$subcalls = $this->calltreeCount( $this->mStack, $index );
 
-			if (!preg_match('/^-overhead/', $fname)) {
+			if( !preg_match( '/^-overhead/', $fname ) ){
 				# Adjust for profiling overhead (except special values with elapsed=0
-				if ( $elapsed ) {
+				if( $elapsed ) {
 					$elapsed -= $overheadInternal;
 					$elapsed -= ($subcalls * $overheadTotal);
 					$memory -= ($subcalls * $overheadMemory);
 				}
 			}
 
-			if (!array_key_exists($fname, $this->mCollated)) {
+			if( !array_key_exists( $fname, $this->mCollated ) ){
 				$this->mCollated[$fname] = 0;
 				$this->mCalls[$fname] = 0;
 				$this->mMemory[$fname] = 0;
@@ -258,20 +303,19 @@ class Profiler {
 			$this->mOverhead[$fname] += $subcalls;
 		}
 
-		$total = @ $this->mCollated['-total'];
+		$total = @$this->mCollated['-total'];
 		$this->mCalls['-overhead-total'] = $profileCount;
 
 		# Output
-		arsort($this->mCollated, SORT_NUMERIC);
-		foreach ($this->mCollated as $fname => $elapsed) {
+		arsort( $this->mCollated, SORT_NUMERIC );
+		foreach( $this->mCollated as $fname => $elapsed ){
 			$calls = $this->mCalls[$fname];
 			$percent = $total ? 100. * $elapsed / $total : 0;
 			$memory = $this->mMemory[$fname];
 			$prof .= sprintf($format, substr($fname, 0, $nameWidth), $calls, (float) ($elapsed * 1000), (float) ($elapsed * 1000) / $calls, $percent, $memory, ($this->mMin[$fname] * 1000.0), ($this->mMax[$fname] * 1000.0), $this->mOverhead[$fname]);
 
-			global $wgProfileToDatabase;
-			if ($wgProfileToDatabase) {
-				Profiler :: logToDB($fname, (float) ($elapsed * 1000), $calls, (float) ($memory) );
+			if( $wgProfileToDatabase ){
+				self::logToDB($fname, (float) ($elapsed * 1000), $calls, (float) ($memory) );
 			}
 		}
 		$prof .= "\nTotal: $total\n\n";
@@ -298,23 +342,27 @@ class Profiler {
 	}
 
 	/**
-	 * @static
+	 * Log a function into the database.
+	 *
+	 * @param string $name function name
+	 * @param float $timeSum
+	 * @param int $eventCount number of times that function was called
 	 */
-	function logToDB($name, $timeSum, $eventCount, $memorySum) {
+	static function logToDB( $name, $timeSum, $eventCount, $memorySum ){
 		# Do not log anything if database is readonly (bug 5375)
 		if( wfReadOnly() ) { return; }
 
 		# Warning: $wguname is a live patch, it should be moved to Setup.php
 		global $wguname, $wgProfilePerHost;
 
-		$dbw = wfGetDB(DB_MASTER);
-		if (!is_object($dbw))
+		$dbw = wfGetDB( DB_MASTER );
+		if( !is_object( $dbw ) )
 			return false;
 		$errorState = $dbw->ignoreErrors( true );
 
 		$name = substr($name, 0, 255);
 
-		if ($wgProfilePerHost) {
+		if( $wgProfilePerHost ){
 			$pfhost = $wguname['nodename'];
 		} else {
 			$pfhost = '';
@@ -355,10 +403,14 @@ class Profiler {
 	 * Get the function name of the current profiling section
 	 */
 	function getCurrentSection() {
-		$elt = end($this->mWorkStack);
+		$elt = end( $this->mWorkStack );
 		return $elt[0];
 	}
 
+	/**
+	 * Get function caller
+	 * @param int $level
+	 */
 	static function getCaller( $level ) {
 		$backtrace = wfDebugBacktrace();
 		if ( isset( $backtrace[$level] ) ) {
@@ -373,4 +425,13 @@ class Profiler {
 		return $caller;
 	}
 
+	/**
+	 * Add an entry in the debug log file
+	 * @param string $s string to output
+	 */
+	function debug( $s ) {
+		if( function_exists( 'wfDebug' ) ) {
+			wfDebug( $s );
+		}
+	}
 }

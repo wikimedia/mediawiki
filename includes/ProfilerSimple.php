@@ -12,7 +12,7 @@ class ProfilerSimple extends Profiler {
 	var $mProfileID = false;
 
 	function __construct() {
-		global $wgRequestTime,$wgRUstart;
+		global $wgRequestTime, $wgRUstart;
 		if (!empty($wgRequestTime) && !empty($wgRUstart)) {
 			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime,$this->getCpuTime($wgRUstart));
 
@@ -118,11 +118,5 @@ class ProfilerSimple extends Profiler {
 			return microtime(true);
 		list($a,$b)=explode(" ",$time);
 		return (float)($a+$b);
-	}
-
-	function debug( $s ) {
-		if (function_exists( 'wfDebug' ) ) {
-			wfDebug( $s );
-		}
 	}
 }

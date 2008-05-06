@@ -1,6 +1,5 @@
 <?php
 
-require_once(dirname(__FILE__).'/Profiler.php');
 require_once(dirname(__FILE__).'/ProfilerSimple.php');
 
 /**
@@ -10,8 +9,7 @@ require_once(dirname(__FILE__).'/ProfilerSimple.php');
  */
 class ProfilerSimpleUDP extends ProfilerSimple {
 	function getFunctionReport() {
-		global $wgUDPProfilerHost;
-		global $wgUDPProfilerPort;
+		global $wgUDPProfilerHost, $wgUDPProfilerPort;
 
 		if ( $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
 			# Less than minimum, ignore
