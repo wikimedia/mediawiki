@@ -1743,6 +1743,7 @@ $1',
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附加嘅原因:',
 'ipbhidename'                 => '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名',
+'ipbwatchuser'                => '監視呢位用戶嘅用戶頁同埋佢嘅討論頁',
 'badipaddress'                => '無效嘅IP地址',
 'blockipsuccesssub'           => '封鎖成功',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]]已經封鎖。<br />

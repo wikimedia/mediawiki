@@ -1463,6 +1463,7 @@ $NEWPAGE
 'ipbotheroption'              => '它',
 'ipbotherreason'              => '補證、加證曰',
 'ipbhidename'                 => '簿名隱乎誌禁、表禁、點簿。',
+'ipbwatchuser'                => '哨該簿之齋與議',
 'badipaddress'                => 'IP不格',
 'blockipsuccesssub'           => '禁焉',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]]禁焉。表禁<br />見[[{{ns:special}}:Ipblocklist|此]]。',
