@@ -508,8 +508,9 @@ abstract class ApiBase {
 	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
 		if( trim($value) === "" )
 			return array();
-		$valuesList = explode('|', $value,51); // some kind of limit is needed here!
-		if( count($valuesList) == 51 ) {
+		$sizeLimit = $this->mMainModule->canApiHighLimits() ? 501 : 51;
+		$valuesList = explode('|', $value,$sizeLimit);
+		if( count($valuesList) == $sizeLimit ) {
 			$junk = array_pop($valuesList); // kill last jumbled param
 		}
 		if (!$allowMultiple && count($valuesList) != 1) {
