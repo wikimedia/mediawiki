@@ -135,9 +135,20 @@ class SpecialVersion {
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
 
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
+					if ( isset( $extension['version'] ) ) {
+						$version = $extension['version'];
+					} elseif ( isset( $extension['svn-revision'] ) && 
+						preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/', 
+							$extension['svn-revision'], $m ) ) 
+					{
+						$version = 'r' . $m[1];
+					} else {
+						$version = null;
+					}
+
 					$out .= $this->formatCredits(
 						isset ( $extension['name'] )           ? $extension['name']        : '',
-						isset ( $extension['version'] )        ? $extension['version']     : null,
+						$version,
 						isset ( $extension['author'] )         ? $extension['author']      : '',
 						isset ( $extension['url'] )            ? $extension['url']         : null,
 						isset ( $extension['description'] )    ? $extension['description'] : '',
