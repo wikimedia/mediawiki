@@ -37,7 +37,7 @@ function wfGetProfilingOutput( $start, $elapsed ) {
 }
 
 /**
- * Closed opened profiling section
+ * Close opened profiling sections
  */
 function wfProfileClose() {
 	global $wgProfiler;
