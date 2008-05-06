@@ -24,6 +24,8 @@ class SkinSimple extends SkinTemplate {
 		$this->template  = 'MonoBookTemplate';
 	}
 
+	protected function getPrintCss() { return "afasfsdasdsa"; }
+
 	function reallyDoGetUserStyles() {
 		global $wgUser;
 		$s = '';
