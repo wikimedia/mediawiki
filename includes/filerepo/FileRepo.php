@@ -94,12 +94,14 @@ abstract class FileRepo {
 			return $img;
 		}
 		# Now try an old version of the file
-		$img = $this->newFile( $title, $time );
-		if ( $img->exists() ) {
-			if ( !$img->isDeleted(File::DELETED_FILE) ) {
-				return $img;
-			} else if ( ($flags & FileRepo::FIND_PRIVATE) && $img->userCan(File::DELETED_FILE) ) {
-				return $img;
+		if ( $time !== false ) {
+			$img = $this->newFile( $title, $time );
+			if ( $img->exists() ) {
+				if ( !$img->isDeleted(File::DELETED_FILE) ) {
+					return $img;
+				} else if ( ($flags & FileRepo::FIND_PRIVATE) && $img->userCan(File::DELETED_FILE) ) {
+					return $img;
+				}
 			}
 		}
 		# Now try redirects
