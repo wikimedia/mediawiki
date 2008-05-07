@@ -187,6 +187,9 @@ wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
 wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-SetupSession' );
 
+# Set default shared prefix
+if( $wgSharedPrefix === false ) $wgSharedPrefix = $wgDBprefix;
+
 if ( $wgDBprefix ) {
 	$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
 } elseif ( $wgSharedDB ) {
