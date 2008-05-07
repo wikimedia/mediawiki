@@ -1355,30 +1355,55 @@ class Database {
 	/**
 	 * Format a table name ready for use in constructing an SQL query
 	 *
-	 * This does two important things: it quotes table names which as necessary,
-	 * and it adds a table prefix if there is one.
+	 * This does two important things: it quotes the table names to clean them up,
+	 * and it adds a table prefix if only given a table name with no quotes.
 	 *
 	 * All functions of this object which require a table name call this function
 	 * themselves. Pass the canonical name to such functions. This is only needed
 	 * when calling query() directly.
 	 *
 	 * @param string $name database table name
+	 * @return string full database name
 	 */
 	function tableName( $name ) {
-		global $wgSharedDB;
-		# Skip quoted literals
-		if ( $name{0} != '`' ) {
-			if ( $this->mTablePrefix !== '' &&  strpos( $name, '.' ) === false ) {
-				$name = "{$this->mTablePrefix}$name";
-			}
-			if ( isset( $wgSharedDB ) && "{$this->mTablePrefix}user" == $name ) {
-				$name = "`$wgSharedDB`.`$name`";
-			} else {
-				# Standard quoting
-				$name = "`$name`";
-			}
+		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
+		# Skip the entire process when we have a string quoted on both ends.
+		# Note that we check the end so that we will still quote any use of
+		# use of `database`.table. But won't break things if someone wants
+		# to query a database table with a dot in the name.
+		if ( $name[0] == '`' && substr( $name, -1, 1 ) == '`' ) return $name;
+		
+		# Split database and table into proper variables.
+		# We reverse the explode so that database.table and table both output
+		# the correct table.
+		@list( $table, $database ) = array_reverse( explode( '.', $name, 2 ) );
+		$prefix = $this->mTablePrefix; # Default prefix
+		
+		# A database name has been specified in input. Quote the table name
+		# because we don't want any prefixes added.
+		if( isset($database) ) $table = ( $table[0] == '`' ? $table : "`{$table}`" );
+		
+		# Note that we use the long format because php will complain in in_array if
+		# the input is not an array, and will complain in is_array if it is not set.
+		if( !isset( $database ) # Don't use shared database if pre selected.
+		 && isset( $wgSharedDB ) # We have a shared database
+		 && $table[0] != '`' # Paranoia check to prevent shared tables listing '`table`'
+		 && isset( $wgSharedTables )
+		 && is_array( $wgSharedTables )
+		 && in_array( $table, $wgSharedTables ) ) { # A shared table is selected
+			$database = $wgSharedDB;
+			$prefix   = isset( $wgSharedprefix ) ? $wgSharedprefix : $prefix;
 		}
-		return $name;
+		
+		# Quote the $database and $table and apply the prefix if not quoted.
+		if( isset($database) ) $database = ( $database[0] == '`' ? $database : "`{$database}`" );
+		$table = ( $table[0] == '`' ? $table : "`{$prefix}{$table}`" );
+		
+		# Merge our database and table into our final table name.
+		$tableName = ( isset($database) ? "{$database}.{$table}" : "{$table}" );
+		
+		# We're finished, return.
+		return $tableName;
 	}
 
 	/**
