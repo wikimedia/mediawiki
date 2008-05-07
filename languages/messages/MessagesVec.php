@@ -782,7 +782,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 
 # Search results
 'searchresults'             => 'Risultato de la riçerca',
-'searchresulttext'          => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].',
+'searchresulttext'          => 'Par verghe piassè informassion su la riçerca interna de {{SITENAME}}, varda [[{{MediaWiki:Helppage}}|Riçerca in {{SITENAME}}]].',
 'searchsubtitle'            => "Te ghè çercà '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Te ghè çercà '''$1'''",
 'noexactmatch'              => "'''La pàxena \"\$1\" no ła esiste.''' Te pol [[:\$1|crearla desso]].",
@@ -1638,6 +1638,7 @@ $1',
 'ipbotheroption'              => 'altro',
 'ipbotherreason'              => 'Altri motivi/detagli:',
 'ipbhidename'                 => "Scondi el nome utente dal registro dei blochi, da l'elenco dei blochi ativi e da l'elenco utenti.",
+'ipbwatchuser'                => "Tien d'ocio la pagina utente e la pagina de discussion de sto utente",
 'badipaddress'                => "L'indirisso IP indicà no'l xè mìa coreto.",
 'blockipsuccesssub'           => 'Blocco eseguio',
 'blockipsuccesstext'          => 'L\'indirizzo IP "$1" l\'è sta bloccà.

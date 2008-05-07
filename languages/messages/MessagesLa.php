@@ -1269,6 +1269,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'ipboptions'               => '2 horas:2 hours,1 diem:1 day,3 dies:3 days,1 hebdomadem:1 week,2 hebdomades:2 weeks,1 mensem:1 month,3 menses:3 months,6 menses:6 months,1 annum:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'           => 'alius',
 'ipbotherreason'           => 'Causa alia vel explicatio:',
+'ipbwatchuser'             => 'Paginam usoris disputationisque huius usoris custodire',
 'badipaddress'             => 'Locus IP male formatus',
 'blockipsuccesssub'        => 'Locus prospere obstructus est',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] obstructus est.

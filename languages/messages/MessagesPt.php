@@ -1756,12 +1756,14 @@ $1',
 'nolinkshere-ns'           => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",
 'isredirect'               => 'página de redireccionamento',
 'istemplate'               => 'inclusão',
+'isimage'                  => 'link de imagem',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|próximo|próximos $1}}',
 'whatlinkshere-links'      => '← links',
 'whatlinkshere-hideredirs' => '$1 redireccionamentos',
 'whatlinkshere-hidetrans'  => '$1 transclusões',
 'whatlinkshere-hidelinks'  => '$1 ligações',
+'whatlinkshere-hideimages' => '$1 links de imagens',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
@@ -1792,6 +1794,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbotheroption'              => 'outro',
 'ipbotherreason'              => 'Outro motivo/motivo adicional:',
 'ipbhidename'                 => 'Ocultar utilizador/IP do registo de bloqueios, lista de bloqueios e lista de utilizadores',
+'ipbwatchuser'                => 'Vigiar as páginas de utilizador e de discussão deste utilizador',
 'badipaddress'                => 'Endereço de IP inválido',
 'blockipsuccesssub'           => 'Bloqueio bem sucedido',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] foi bloqueado.<br />Consulte a [[Special:Ipblocklist|lista de IPs bloqueados]] para rever os bloqueios.',
@@ -2614,4 +2617,5 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 'specialpages-group-users'       => 'Utilizadores e privilégios',
 'specialpages-group-needy'       => 'Páginas a necessitar de trabalho',
 'specialpages-group-highuse'     => 'Páginas muito usadas',
+
 );

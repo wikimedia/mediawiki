@@ -8,6 +8,9 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-rememberpassword' => 'Dumdumon ang akon pagsulod sa sini nga kompyuter',
+
 # Dates
 'sunday'        => 'Domingo',
 'monday'        => 'Lunes',
@@ -20,6 +23,7 @@ $messages = array(
 'february'      => 'Pebrero',
 'march'         => 'Marso',
 'april'         => 'Abril',
+'may_long'      => 'Mayo',
 'june'          => 'Hunyo',
 'july'          => 'Hulyo',
 'august'        => 'Agosto',
@@ -39,7 +43,18 @@ $messages = array(
 'october-gen'   => 'Oktubre',
 'november-gen'  => 'Nobiyembre',
 'december-gen'  => 'Disyimbre',
-'may'           => 'Mayo',
+'jan'           => 'Ene',
+'feb'           => 'Peb',
+'mar'           => 'Mar',
+'apr'           => 'Abr',
+'may'           => 'May',
+'jun'           => 'Hun',
+'jul'           => 'Hul',
+'aug'           => 'Ago',
+'sep'           => 'Sep',
+'oct'           => 'Okt',
+'nov'           => 'Nob',
+'dec'           => 'Dis',
 
 'cancel'         => 'Kanselahon',
 'qbedit'         => 'Ilisan',
@@ -47,6 +62,7 @@ $messages = array(
 'mytalk'         => 'Akon paghisayranay',
 'navigation'     => 'Nabigayson',
 
+'tagline'          => 'Halin sa {{SITENAME}}',
 'help'             => 'Bulig',
 'search'           => 'Pangita-a',
 'searchbutton'     => 'Pangita-a',
@@ -58,44 +74,83 @@ $messages = array(
 'edit'             => 'Ilisan',
 'delete'           => 'Panason',
 'protect'          => 'Pangapinan',
+'talkpagelinktext' => 'Hisayranay',
+'personaltools'    => 'Mga kinaugalingon nga galamiton',
 'talk'             => 'Paghisayranay',
+'views'            => 'Mga talanawon',
 'toolbox'          => 'Mga galamiton',
 'otherlanguages'   => 'Sa iban nga lenguahe',
+'jumpto'           => 'Lumpat sa:',
 'jumptonavigation' => 'nabigayson',
 'jumptosearch'     => 'Pangita-a',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Nahanungod sa {{SITENAME}}',
+'aboutpage'            => 'Proyekto:Nahanungod',
 'currentevents'        => 'Mga Hitabo Subong',
+'disclaimers'          => 'Diskleymer',
+'disclaimerpage'       => 'Proyekto:Kabilogan nga diskleymer',
+'edithelp'             => 'Bulig sa pag Ilis',
 'mainpage'             => 'Mayor nga Panid',
 'mainpage-description' => 'Mayor nga Panid',
 'portal'               => 'Portal sang Banwa',
+'privacy'              => 'Polisa sa Pribisidad',
+'privacypage'          => 'Proyekto:Polisa sa Pribisidad',
 'sitesupport'          => 'Donasyon',
 
-'editsection' => 'ilisan',
-'editold'     => 'ilisan',
+'retrievedfrom'           => 'Ginkuha halin sa "$1"',
+'youhavenewmessages'      => 'Ikaw may $1 ($2).',
+'newmessageslink'         => 'mga bag-ong mensahe',
+'youhavenewmessagesmulti' => 'May mga bag-ong mensahe ka sa $1',
+'editsection'             => 'ilisan',
+'editold'                 => 'ilisan',
+'editsectionhint'         => 'Islan ining bahin: $1',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user' => 'Panid sang Manog-gamit',
+
+# General errors
+'viewsource' => 'Lantawon ang ginhalinan',
 
 # Login and logout pages
-'login'          => 'Mag sulod',
-'userlogin'      => 'Mag sulod / maghimo account',
-'userlogout'     => 'Mag guha',
-'notloggedin'    => 'Wala naka-sulod',
-'nologinlink'    => 'Maghimo account',
-'createaccount'  => 'Maghimo Account',
-'gotaccountlink' => 'Mag sulod',
+'welcomecreation'         => '== Pagtamyaw, $1! == 
+Ang imo account nahimo na. 
+Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
+'yourname'                => 'Ngalan sang Manog-gamit:',
+'yourpassword'            => 'Kontra-senyas:',
+'yourpasswordagain'       => 'Suliton ang kontra-senyas:',
+'remembermypassword'      => 'Dumdumon ang akon pagsulod sa sini nga kompyuter',
+'login'                   => 'Mag sulod',
+'nav-login-createaccount' => 'Magsulod / maghimo account',
+'userlogin'               => 'Mag sulod / maghimo account',
+'userlogout'              => 'Mag guha',
+'notloggedin'             => 'Wala naka-sulod',
+'nologinlink'             => 'Maghimo account',
+'createaccount'           => 'Maghimo Account',
+'gotaccountlink'          => 'Mag sulod',
+'youremail'               => 'E-mail:',
+'username'                => 'Ngalan sang Manog-gamit:',
+'email'                   => 'E-mail',
 
 # Edit pages
-'summary'      => 'Kabilogan',
-'minoredit'    => 'Ini menor nga pag-ilis',
-'watchthis'    => 'Bantayan ining panid',
-'savearticle'  => 'Tiponon ining panid',
-'showpreview'  => 'Ipakita nga daan',
-'showdiff'     => 'Ipakita ang inislan',
-'loginreqlink' => 'mag sulod',
+'summary'            => 'Kabilogan',
+'minoredit'          => 'Ini menor nga pag-ilis',
+'watchthis'          => 'Bantayan ining panid',
+'savearticle'        => 'Tiponon ining panid',
+'showpreview'        => 'Ipakita nga daan',
+'showdiff'           => 'Ipakita ang inislan',
+'whitelistedittitle' => 'Ang pag sulod kinahanglan agud maka ilis',
+'loginreqlink'       => 'mag sulod',
 
 # History pages
 'currentrev'          => 'Mga Inislan Subong',
 'currentrevisionlink' => 'Mga Inislan Subong',
+
+# Search results
+'powersearch'        => 'Abanse nga pagpangita',
+'powersearch-legend' => 'Abanse nga pagpangita',
 
 # Preferences page
 'mypreferences'     => 'Akon pagpalabi',
@@ -127,15 +182,19 @@ $messages = array(
 'brokenredirects-delete' => '(panason)',
 
 # Miscellaneous special pages
-'specialpages' => 'Pinasahi nga mga panid',
-'move'         => 'Saylohon',
-'movethispage' => 'Saylohon ining panid',
+'specialpages'      => 'Pinasahi nga mga panid',
+'newpages-username' => 'Ngalan sang Manog-gamit:',
+'move'              => 'Saylohon',
+'movethispage'      => 'Saylohon ining panid',
 
 # Book sources
 'booksources-go' => 'Lakat',
 
 # Special:Log
 'log-search-submit' => 'Lakat',
+
+# Special:Allpages
+'alphaindexline' => '$1 sa $2',
 
 # Watchlist
 'watchlist'     => 'Akon Ginabantayan',
@@ -155,7 +214,7 @@ $messages = array(
 'undelete-search-submit' => 'Pangita-a',
 
 # Contributions
-'mycontris' => 'Akon amot',
+'mycontris' => 'Akon contribusyon',
 
 'sp-contributions-submit' => 'Pangita-a',
 
@@ -165,6 +224,7 @@ $messages = array(
 # Block/unblock
 'ipbreason'          => 'Rason:',
 'ipblocklist-submit' => 'Pangita-a',
+'contribslink'       => 'contribuyson',
 
 # Move page
 'move-page-legend' => 'Saylohon ining panid',
@@ -176,10 +236,24 @@ $messages = array(
 '1movedto2'        => '[[$1]] gin saylo na sa [[$2]]',
 'movereason'       => 'Rason:',
 
+# Namespace 8 related
+'allmessages' => 'Mga mensahe sang sistema',
+
 # Tooltip help for the actions
-'tooltip-pt-preferences' => 'Akon pagpalabi',
-'tooltip-ca-move'        => 'Saylohon ining panid',
-'tooltip-p-logo'         => 'Mayor nga Panid',
+'tooltip-pt-preferences'  => 'Akon pagpalabi',
+'tooltip-pt-login'        => 'Gina-abi-abi ikaw nga man magsulod paagi sa pag log-in, apang indi ini kinahanglan gid buhaton',
+'tooltip-ca-talk'         => 'Paghisayranay nahanungod sini nga panid',
+'tooltip-ca-move'         => 'Saylohon ining panid',
+'tooltip-search'          => 'Pangita-a sa {{SITENAME}}',
+'tooltip-p-logo'          => 'Mayor nga Panid',
+'tooltip-n-mainpage'      => 'Magdu-aw sa Mayor nga Panid',
+'tooltip-n-portal'        => 'Nahanungod sa poryekto, ano ang imo mahimo, di-in makatukib',
+'tooltip-n-recentchanges' => 'Ang listahan sang mga bag-o inislan sa wiki.',
+'tooltip-n-randompage'    => 'Magbasa sang isa ka panid paagi sa lagpat',
+'tooltip-n-help'          => 'Ang lugar para maka tukib.',
+'tooltip-n-sitesupport'   => 'Sakdaga kami',
+'tooltip-t-upload'        => 'Mag karga mga files',
+'tooltip-t-specialpages'  => 'Lista sang tanan nga espesyal nga panid',
 
 # Special:Newimages
 'ilsubmit' => 'Pangita-a',

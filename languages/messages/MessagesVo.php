@@ -1025,7 +1025,7 @@ El * sinifon, das no kanol moükön grupi posä iläükol oni, u güo.',
 'rcshowhidemine'                    => '$1 redakamis obik',
 'rclinks'                           => 'Jonolöd votükamis lätik $1 ün dels lätik $2<br />$3',
 'diff'                              => 'dif',
-'hist'                              => 'jenotem',
+'hist'                              => 'jen',
 'hide'                              => 'Klänedolöd',
 'show'                              => 'Jonolöd',
 'minoreditletter'                   => 'p',
@@ -1246,7 +1246,7 @@ Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL
 Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
 
 Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$7'''.",
-'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5{{PLURAL:$2||s}}.",
+'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5.",
 'statistics-mostpopular' => 'Pads suvüno palogöls:',
 
 'disambiguations'      => 'Telplänovapads',
@@ -2271,4 +2271,5 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 'specialpages-group-users'   => 'Gebans e gitäts',
 'specialpages-group-needy'   => 'Pads bevobami neodöls',
 'specialpages-group-highuse' => 'Pads suvo pegeböls',
+
 );

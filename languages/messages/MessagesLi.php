@@ -1643,6 +1643,7 @@ $1",
 'ipbotheroption'              => 'anger verloup',
 'ipbotherreason'              => 'Angere/eventuele rejer:',
 'ipbhidename'                 => "Verberg gebroekersnaam van 't blokkeerlogbook, de actieve blokkeerlies en de gebroekerslies",
+'ipbwatchuser'                => 'Gebroekerspazjena en euverlèkpazjena op vólglies plaatse',
 'badipaddress'                => "'t IP-adres haet 'n ongeldige opmaak.",
 'blockipsuccesssub'           => 'Blokkaad gelök',
 'blockipsuccesstext'          => '\'t IP-adres "$1" is geblokkeerd.<br />

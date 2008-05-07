@@ -14,13 +14,23 @@ $messages = array(
 # User preference toggles
 'tog-underline'            => "Na'raya i inachetton:",
 'tog-highlightbroken'      => 'Tulaika na minayulang na links <a href="" class="new">taiguini</a> (Pat: taiguini<a href="" class="internal">?</a>).',
+'tog-hideminor'            => "Nå'na' i mandikike' na tinilaika siha gi påhinan tinilaika gi halacha",
+'tog-extendwatchlist'      => "Na'ladångkolu i listan pinilan para u na'annok i manaplikayon na tinilaika siha",
+'tog-usenewrc'             => "I manmana'lamaolek na tinilaika (JavaScript)",
 'tog-rememberpassword'     => 'Hasso iyo-ku login gi este na komputadora.',
 'tog-watchcreations'       => "Po'lo i påhina siha ni fina'tinas-hu gi iyo-ku listan pinilan.",
 'tog-watchdefault'         => "Po'lo i påhina siha ni hu tulaika gi iyo-ku listan pinilan.",
 'tog-watchmoves'           => "Po'lo i påhina siha ni hu muebi gi iyo-ku listan pinilan.",
 'tog-watchdeletion'        => "Po'lo i påhina siha ni hu na'suha gi iyo-ku listan pinilan.",
+'tog-minordefault'         => "Matka mamo'lo todu i tinilaika siha dikike'.",
+'tog-previewontop'         => "Na'annok i ripasu gi me'na i kahon tinilaika",
+'tog-previewonfirst'       => "Na'annok i ripasu gi i fine'nena na tinilaika",
 'tog-enotifwatchlistpages' => "E-mail yu' anggen guåha matulaika gi iyo-ku listan pinilan",
 'tog-enotifusertalkpages'  => "E-mail yu' anngen guåha matulaika gi påhinan kombetsasion-hu.",
+'tog-enotifminoredits'     => "E-mail yu' lokkue' ni mandikike' na tinilaika gi påhina siha.",
+'tog-enotifrevealaddr'     => "Na'annok iyo-ku e-mail address gi notifikasion e-mail.",
+'tog-shownumberswatching'  => "Na'annok i numirun muna'sesetbi siha ni mana'atan.",
+'tog-showjumplinks'        => "Na'sedi i ina'chetton ni \"ta'yoki guatu\"",
 'tog-watchlisthideown'     => "Nå'na' tinilaika-hu gi listan pinilan",
 'tog-watchlisthidebots'    => "Nå'na' i tinilaikan bot gi listan pinilan",
 'tog-watchlisthideminor'   => "Nå'na' i mandikike' na tinilaika gi listan pinilan",
@@ -89,7 +99,7 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Katigoria',
 'categoriespagetext'             => 'Guåha påhina pat media gi halom i sigiente katigoria.',
-'pagecategories'                 => '{{PLURAL:$1|na Kategoria|na Kategoria siha}}',
+'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategoria}}',
 'category_header'                => 'Påhina siha gi katigoria "$1"',
 'subcategories'                  => 'Ni dibision katigoria siha',
 'category-media-header'          => 'Media siha gi katigoria "$1"',
@@ -121,6 +131,9 @@ $messages = array(
 'navigation'     => 'Nabegasion',
 'and'            => 'yan',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
 'errorpagetitle'    => 'Linachi',
 'returnto'          => 'Hånao tåtte para $1.',
 'tagline'           => 'Ginen {{SITENAME}}',
@@ -131,6 +144,7 @@ $messages = array(
 'searcharticle'     => 'Hånao',
 'history'           => 'Historian påhina',
 'history_short'     => 'Historia',
+'updatedmarker'     => "maribisa desde i må'pos na bisita-hu",
 'info_short'        => 'Infotmasion',
 'printableversion'  => 'Ribision imprentayon',
 'permalink'         => 'Inachetton petmanente',
@@ -242,10 +256,17 @@ $messages = array(
 'nosuchspecialpage' => "Tåya' na påhinan espesiat taiguenao",
 
 # General errors
-'badtitle'       => 'Båba na titulo',
-'viewsource'     => 'Atan i code',
-'viewsourcefor'  => 'para $1',
-'viewsourcetext' => "Siña un li'e' yan kopia i code ni påhina:",
+'filecopyerror'        => 'Ti siña u kopia i atkibu "$1" para "$2".',
+'filerenameerror'      => 'Ti siña u tulaika i na\'an atkibu "$1" para "$2".',
+'filedeleteerror'      => 'Ti siña u na\'suha i atkibu "$1".',
+'directorycreateerror' => 'Ti siña u fa\'tinas i direktorio "$1".',
+'filenotfound'         => 'Ti siña u sodda\' i atkibu "$1".',
+'fileexistserror'      => 'Ti siña u tuge\' i atkibu "$1": guåha esta i atkibu',
+'unexpected'           => 'Ti ma\'antisipa i guinaha: "$1"="$2".',
+'badtitle'             => 'Båba na titulo',
+'viewsource'           => 'Atan i code',
+'viewsourcefor'        => 'para $1',
+'viewsourcetext'       => "Siña un li'e' yan kopia i code ni påhina:",
 
 # Login and logout pages
 'logouttitle'             => "Logout ni muna'sesetbi",
@@ -365,7 +386,7 @@ Anggen lachi finatto-mu mågi, yemme' i batunes '''back''' ni iyo-mu browser.",
 ti masåtba trabiha i tinilaika-mu!</strong>',
 'editing'               => 'Tumulaika $1',
 'editingsection'        => 'Tumulaika $1 (patte)',
-'copyrightwarning'      => "Pot fabot, fanapunta fan na makonsidera manmasotta todus i kontribusion gi {{SITENAME}} (atan $1 para i attikulu siha).
+'copyrightwarning'      => "Pot fabot, fanapunta fan na makonsidera manmasotta todus i kontribusion gi {{SITENAME}} papa' i $2 (atan $1 para i attikulu siha).
 Yanggen munga hao na matulaika i tinige'-mu yan malamaña ya mana'apåttao ta'lo maseha månu, pues munga ma po'lu guini.<br />
 Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat publika pat otru na lugat dibåtde.
 <strong>MUNGA MANFA'BURESI NA GAIDIRECHU I MANTITUGE'!</strong>",
@@ -553,6 +574,7 @@ Siña un [[:\$1|fa'tinas i påhina]].",
 'allpagesfrom'   => "Fa'nu'i i påhina siha tumutuhon gi:",
 'allarticles'    => 'Todu i påhina siha',
 'allpagessubmit' => 'Hånao',
+'allpagesprefix' => "Na'annok i påhina siha yan i kla'an mo'na:",
 
 # E-mail user
 'emailuser' => "Na'e-mail i muna'sesetbi este",
@@ -760,6 +782,13 @@ Ayek fan otru nå'an-ña.",
 # Special:Newimages
 'newimages' => 'Galarian atkibu mannuebu siha',
 'ilsubmit'  => 'Aligao',
+
+# Bad image list
+'bad_image_list' => "Estague' i plantiyas:
+
+I manmana'lista na attikulu siha ha' (i liña siha yan * gi sanme'na) para u konsidera.
+Nesesario ha' na'chetton i fine'nena na liña yan un atkibu båba.
+Ti mantattiyi i areklo ni sigienten ina'chetton siha gi mismo liña, i.e. i påhina siha ni masedi mamo'lu atkibu gi halom i liña.",
 
 # Metadata
 'metadata'          => 'Metadata',

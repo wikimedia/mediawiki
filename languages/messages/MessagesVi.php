@@ -1747,6 +1747,7 @@ $1',
 'ipbotheroption'              => 'khác',
 'ipbotherreason'              => 'Lý do khác',
 'ipbhidename'                 => 'Giấu tên người dùng khỏi nhật trình cấm, danh sách cấm và danh sách thành viên hiện tại',
+'ipbwatchuser'                => 'Theo dõi trang thành viên và thảo luận thành viên của thành viên này',
 'badipaddress'                => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'           => 'Cấm thành công',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] đã bị cấm.

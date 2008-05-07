@@ -157,14 +157,13 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|O seguinte ficheiro está|Os seguintes $1 ficheiros están}} na categoría actual.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => "<big>'''Programa Wiki instalado con éxito.'''</big>",
-'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do Usuario] para máis información sobre como usar o software wiki.
+'mainpagetext'      => "<big>'''O programa Wiki foi instalado con éxito.'''</big>",
+'mainpagedocfooter' => 'Consulte a [http://meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
 
-== Comezar ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opcións de configuración]
-* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas Frecuentes sobre MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo das edicións de MediaWiki]',
+== Comezando ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listaxe de opcións de configuración]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes sobre MediaWiki]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listaxe de correo das edicións de MediaWiki]',
 
 'about'          => 'Acerca de',
 'article'        => 'Artigo',
@@ -831,10 +830,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'nonefound'                 => "'''Nota''': as procuras sen éxito son causadas usualmente por procurar usando palabras usuais como \"ter\" e \"desde\", que non están incluídas no índice da base de datos, ou por especificar máis dunha palabra de procura (só van aparecer no resultado as páxinas que teñan todas as palabras).",
 'powersearch'               => 'Procurar',
 'powersearch-legend'        => 'Busca avanzada',
-'powersearchtext'           => 'Procurar nos espazos de nomes:<br />
-$1<br />
-$2 Lista de redireccións<br />
-Procurar $3 $9',
+'powersearchtext'           => 'Procurar nos espazos de nomes:<br />$1<br />$2 Listaxe de redireccións<br />Procurar por $3 $9',
 'search-external'           => 'Procura externa',
 'searchdisabled'            => '<p style="margin: 1.5em 2em 1em">As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento. Mentres tanto pode procurar usando o Google.
 <span style="font-size: 89%; display: block; margin-left: .2em">Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.</span></p>',
@@ -1012,16 +1008,16 @@ Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e 
 'recentchanges'                     => 'Cambios recentes',
 'recentchangestext'                 => 'Seguir as modificacións máis recentes no wiki nesta páxina.',
 'recentchanges-feed-description'    => 'Seguir as mudanzas máis recentes deste wiki con esta fonte de noticias.',
-'rcnote'                            => "Abaixo {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata $3.",
+'rcnote'                            => "Abaixo {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $3.",
 'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
-'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
+'rclistfrom'                        => 'Mostrar os cambios novos desde as $1',
 'rcshowhideminor'                   => '$1 as edicións pequenas',
 'rcshowhidebots'                    => '$1 os bots',
 'rcshowhideliu'                     => '$1 os usuarios rexistrados',
 'rcshowhideanons'                   => '$1 os usuarios anónimos',
 'rcshowhidepatr'                    => '$1 edicións revisadas',
 'rcshowhidemine'                    => '$1 as edicións propias',
-'rclinks'                           => 'Mostrar os últimos $1 cambios dos últimos $2 días.<br /> $3',
+'rclinks'                           => 'Mostrar os últimos $1 cambios nos últimos $2 días.<br />$3',
 'diff'                              => 'dif',
 'hist'                              => 'hist',
 'hide'                              => 'Agochar',
@@ -1179,7 +1175,7 @@ Premendo nun cabezallo da columna cambia a ordenación.',
 'filehist-comment'               => 'Comentario',
 'imagelinks'                     => 'Ligazóns da imaxe',
 'linkstoimage'                   => 'As seguintes páxinas ligan con esta imaxe:',
-'nolinkstoimage'                 => 'Ningunha páxina liga con esta imaxe.',
+'nolinkstoimage'                 => 'Ningunha páxina liga con este ficheiro.',
 'sharedupload'                   => 'Este ficheiro é un envío compartido e pode ser usado por outros proxectos.',
 'shareduploadwiki'               => 'Por favor vexa $1 para máis información.',
 'shareduploadwiki-desc'          => 'A descrición na $1 móstrase embaixo.',
@@ -1638,20 +1634,22 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',
-'whatlinkshere-title'      => 'Páxinas que ligan con $1',
+'whatlinkshere-title'      => 'Páxinas que ligan con "$1"',
 'whatlinkshere-page'       => 'Páxina:',
-'linklistsub'              => '(Lista de ligazóns)',
+'linklistsub'              => '(Listaxe de ligazóns)',
 'linkshere'                => "As seguintes páxinas ligan con '''[[:$1]]''':",
 'nolinkshere'              => "Ningunha páxina liga con '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Ningunha páxina liga con '''[[:$1]]''' no espazo de nomes elixido.",
 'isredirect'               => 'páxina redirixida',
 'istemplate'               => 'inclusión',
+'isimage'                  => 'ligazón á imaxe',
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|seguinte|$1 seguintes}}',
 'whatlinkshere-links'      => '← ligazóns',
 'whatlinkshere-hideredirs' => '$1 as redireccións',
 'whatlinkshere-hidetrans'  => '$1 as inclusións',
 'whatlinkshere-hidelinks'  => '$1 as ligazóns',
+'whatlinkshere-hideimages' => '$1 as ligazóns á imaxe',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
@@ -1684,6 +1682,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbotheroption'              => 'outra',
 'ipbotherreason'              => 'Outros motivos adicionais:',
 'ipbhidename'                 => 'Agochar nome de usuario no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
+'ipbwatchuser'                => 'Vixiar as páxinas de usuario e a de conversa deste usuario',
 'badipaddress'                => 'O enderezo IP non é válido',
 'blockipsuccesssub'           => 'Bloqueo con éxito',
 'blockipsuccesstext'          => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
@@ -1758,7 +1757,7 @@ Por favor confirme que isto é o que quere facer.',
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
 
 # Move page
-'move-page'               => 'Mover $1',
+'move-page'               => 'Mover "$1"',
 'move-page-legend'        => 'Mover páxina',
 'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
@@ -2043,7 +2042,7 @@ $1',
 'noimages'              => 'Non hai imaxes para ver.',
 'ilsubmit'              => 'Procurar',
 'bydate'                => 'por data',
-'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando por $1 ás $2',
+'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando polo $1 ás $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'minutes-abbrev' => 'min',
@@ -2515,4 +2514,5 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'specialpages-group-users'       => 'Usuarios e dereitos',
 'specialpages-group-needy'       => 'Páxinas que precisan de traballo',
 'specialpages-group-highuse'     => 'Páxinas con máis uso',
+
 );
