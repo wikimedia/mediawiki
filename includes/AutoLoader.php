@@ -40,6 +40,7 @@ function __autoload($className) {
 		'DatabaseMysql' => 'includes/Database.php',
 		'DatabaseOracle' => 'includes/DatabaseOracle.php',
 		'DatabasePostgres' => 'includes/DatabasePostgres.php',
+		'DatabaseSqlite' => 'includes/DatabaseSqlite.php',
 		'DateFormatter' => 'includes/DateFormatter.php',
 		'DBABagOStuff' => 'includes/BagOStuff.php',
 		'DBLockForm' => 'includes/SpecialLockdb.php',
