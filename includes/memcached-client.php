@@ -984,9 +984,7 @@ class memcached
 
       if ($this->_debug)
       {
-         if ($flags & memcached::COMPRESSED)
-            $val = 'compressed data';
-         $this->_debugprint(sprintf("MemCache: %s %s => %s (%s)\n", $cmd, $key, $val, $line));
+         $this->_debugprint(sprintf("%s %s (%s)\n", $cmd, $key, $line));
       }
       if ($line == "STORED")
          return true;
