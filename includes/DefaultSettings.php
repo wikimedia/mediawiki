@@ -1282,6 +1282,13 @@ $wgAutopromote = array(
  */
 $wgAddGroups = $wgRemoveGroups = array();
 
+
+/**
+ * A list of available rights, in addition to the ones defined by the core. 
+ * For extensions only.
+ */
+$wgAvailableRights = array();
+
 /**
  * Optional to restrict deletion of pages with higher revision counts
  * to users with the 'bigdelete' permission. (Default given to sysops.)

@@ -84,30 +84,6 @@ define( 'MW_MATH_MODERN', 4 );
 define( 'MW_MATH_MATHML', 5 );
 /**#@-*/
 
-/**
- * User rights list
- * @deprecated
- */
-$wgAvailableRights = array(
-	'block',
-	'bot',
-	'createaccount',
-	'delete',
-	'edit',
-	'editinterface',
-	'import',
-	'importupload',
-	'move',
-	'patrol',
-	'protect',
-	'read',
-	'rollback',
-	'siteadmin',
-	'unwatchedpages',
-	'upload',
-	'userrights',
-);
-
 /**#@+
  * Cache type
  */
