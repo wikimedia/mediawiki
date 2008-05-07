@@ -591,7 +591,7 @@ $wgCheckDBSchema = true;
  * EXPERIMENTAL
  */
 $wgSharedDB     = null;
-$wgSharedPrefix = $wgDBprefix;
+$wgSharedPrefix = false; # Defaults to $wgDBprefix
 $wgSharedTables = array( 'user' );
 
 /**
