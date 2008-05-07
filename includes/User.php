@@ -106,6 +106,52 @@ class User {
 	);
 
 	/**
+	 * Core rights
+	 * Each of these should have a corresponding message of the form "right-$right"
+	 */
+	static $mCoreRights = array(
+		'apihighlimits',
+		'autoconfirmed',
+		'autopatrol',
+		'bigdelete',
+		'block',
+		'blockemail',
+		'bot',
+		'browsearchive',
+		'createaccount',
+		'createpage',
+		'createtalk',
+		'delete',
+		'deletedhistory',
+		'edit',
+		'editinterface',
+		'editusercssjs',
+		'import',
+		'importupload',
+		'ipblock-exempt',
+		'markbotedits',
+		'minoredit',
+		'move',
+		'nominornewtalk',
+		'patrol',
+		'protect',
+		'proxyunbannable',
+		'purge',
+		'read',
+		'reupload',
+		'reupload-shared',
+		'rollback',
+		'suppressredirect',
+		'trackback',
+		'undelete',
+		'unwatchedpages',
+		'upload',
+		'upload_by_url',
+		'userrights',
+	);
+	static $mAllRights = false;
+
+	/**
 	 * The cache variable declarations
 	 */
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
@@ -2714,6 +2760,22 @@ class User {
 			array_keys( $wgGroupPermissions ),
 			self::getImplicitGroups()
 		);
+	}
+
+	/**
+	 * Get a list of all available permissions
+	 */
+	static function getAllRights() {
+		if ( self::$mAllRights === false ) {
+			global $wgAvailableRights;
+			if ( count( $wgAvailableRights ) ) {
+				self::$mAllRights = array_unique( array_merge( self::$mCoreRights, $wgAvailableRights ) );
+			} else {
+				self::$mAllRights = self::$mCoreRights;
+			}
+			wfRunHooks( 'UserGetAllRights', array( &self::$mAllRights ) );
+		}
+		return self::$mAllRights;
 	}
 
 	/**

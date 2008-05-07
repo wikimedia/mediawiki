@@ -2608,23 +2608,3 @@ function wfWaitForSlaves( $maxLag ) {
 
  	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }
-
-/**
- * Generate a list of all available rights.
- * @todo Doesn't list any rights which aren't assigned to a group.
- */
-function wfGetAvailableRights() {
-	global $wgGroupPermissions;
-	
-	$rights = array();
-	
-	foreach( $wgGroupPermissions as $permissions ) {
-		$rights = array_merge( array_keys($permissions),$rights );
-	}
-	
-	$rights = array_unique($rights);
-	
-	wfRunHooks( 'GetAvailableRights', array( &$rights ) );
-	
-	return $rights;
-}
