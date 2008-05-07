@@ -251,6 +251,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show correct accesskey prefix for Firefox 3 beta (Alt-Shift-, not Alt-)
 * (bug 13949) Special:PrefixIndex/AllPages paging links contain invalid XML
 * (bug 13770) Use Preprocessor_Hash by default to avoid missing DOM module errors
+* (bug 13982) Disable ccmeonemails preference when user-to-user mails disabled
+
 
 === API changes in 1.13 ===
 

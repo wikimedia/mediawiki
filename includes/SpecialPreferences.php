@@ -737,10 +737,13 @@ class PreferencesForm {
 
 			$moreEmail = '';
 			if ($wgEnableUserEmail) {
+				// fixme -- the "allowemail" pseudotoggle is a hacked-together
+				// inversion for the "disableemail" preference.
 				$emf = wfMsg( 'allowemail' );
 				$disabled = $disableEmailPrefs ? ' disabled="disabled"' : '';
 				$moreEmail =
-				"<input type='checkbox' $emfc $disabled value='1' name='wpEmailFlag' id='wpEmailFlag' /> <label for='wpEmailFlag'>$emf</label>";
+					"<input type='checkbox' $emfc $disabled value='1' name='wpEmailFlag' id='wpEmailFlag' /> <label for='wpEmailFlag'>$emf</label>" .
+					$this->getToggle( 'ccmeonemails', '', $disableEmailPrefs );
 			}
 
 
@@ -752,8 +755,7 @@ class PreferencesForm {
 					$enotifwatchlistpages.
 					$enotifusertalkpages.
 					$enotifminoredits.
-					$moreEmail.
-					$this->getToggle( 'ccmeonemails' )
+					$moreEmail
 				)
 			);
 		}
