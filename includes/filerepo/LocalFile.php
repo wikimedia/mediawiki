@@ -935,10 +935,16 @@ class LocalFile extends File
 		$this->purgeEverything();
 		$this->unlock();
 
-		// Now switch the object and repurge
-		$this->title = $target;
-		unset( $this->name );
-		$this->purgeEverything();
+		if ( $status->isOk() ) {
+			// Now switch the object
+			$this->title = $target;
+			// Force regeneration of the name and hashpath
+			unset( $this->name );
+			unset( $this->hashPath );
+			// Purge the new image
+			$this->purgeEverything();
+		}
+		
 		return $status;
 	}
 
@@ -1665,29 +1671,8 @@ class LocalFileMoveBatch {
 	}
 
 	function addThumbs() {
+		// Thumbnails are purged, so no need to move them
 		$this->thumbs = array();
-		$repo = $this->file->repo;
-		$thumbDirRel = 'thumb/' . $this->oldRel;
-		$thumbDir = $repo->getZonePath( 'public' ) . '/' . $thumbDirRel;
-		$newThumbDirRel = 'thumb/' . $this->newRel;
-		if( !is_dir( $thumbDir ) || !is_readable( $thumbDir ) ) {
-			$this->thumbs = array();
-			return;
-		} else {
-			$files = scandir( $thumbDir );
-			foreach( $files as $file ) {
-				if( $file == '.' || $file == '..' ) continue;
-				if( preg_match( '/^(\d+)px-/', $file, $matches ) ) {
-					list( $unused, $width ) = $matches;
-					$this->thumbs[] = array(
-						$thumbDirRel . '/' . $file,
-						$newThumbDirRel . '/' . $width . 'px-' . $this->newName
-					);
-				} else {
-					wfDebug( 'Strange file in thumbnail directory: ' . $thumbDirRel . '/' . $file );
-				}
-			}
-		}
 	}
 
 	function addOlds() {
@@ -1713,6 +1698,7 @@ class LocalFileMoveBatch {
 				continue;
 			}
 			$this->oldcount++;
+			// Do we want to add those to oldcount?
 			if( $row->oi_deleted & File::DELETED_FILE ) {
 				continue;
 			}
@@ -1778,8 +1764,9 @@ class LocalFileMoveBatch {
 	// Generates triplets for FSRepo::storeBatch()
 	function getMoveTriplets() {
 		$moves = array_merge( array( $this->cur ), $this->olds, $this->thumbs );
-		$triplets = array();	// The format is: (srcUrl,destZone,desrUrl)
+		$triplets = array();	// The format is: (srcUrl, destZone, destUrl)
 		foreach( $moves as $move ) {
+			// $move: (oldRelativePath, newRelativePath)
 			$srcUrl = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $move[0] );
 			$triplets[] = array( $srcUrl, 'public', $move[1] );
 		}
