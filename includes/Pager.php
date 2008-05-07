@@ -273,12 +273,21 @@ abstract class IndexPager implements Pager {
 	/**
 	 * Make a self-link
 	 */
-	function makeLink($text, $query = null) {
+	function makeLink($text, $query = null, $type=null) {
 		if ( $query === null ) {
 			return $text;
 		}
+		if( $type == 'prev' || $type == 'next' ) {
+			$attrs = "rel=\"$type\"";
+		} elseif( $type == 'first' ) {
+			$attrs = "rel=\"start\"";
+		} else {
+			# HTML 4 has no rel="end" . . .
+			$attrs = '';
+		}
 		return $this->getSkin()->makeKnownLinkObj( $this->getTitle(), $text,
-				wfArrayToCGI( $query, $this->getDefaultQuery() ) );
+				wfArrayToCGI( $query, $this->getDefaultQuery() ), '', '',
+				$attrs );
 	}
 
 	/**
@@ -389,7 +398,7 @@ abstract class IndexPager implements Pager {
 		$links = array();
 		foreach ( $queries as $type => $query ) {
 			if ( $query !== false ) {
-				$links[$type] = $this->makeLink( $linkTexts[$type], $queries[$type] );
+				$links[$type] = $this->makeLink( $linkTexts[$type], $queries[$type], $type );
 			} elseif ( isset( $disabledTexts[$type] ) ) {
 				$links[$type] = $disabledTexts[$type];
 			} else {
