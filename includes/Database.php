@@ -2212,7 +2212,7 @@ class Blob {
  */
 class MySQLField {
 	private $name, $tablename, $default, $max_length, $nullable,
-		$is_pk, $is_unique, $is_key, $type;
+		$is_pk, $is_unique, $is_multiple, $is_key, $type;
 	function __construct ($info) {
 		$this->name = $info->name;
 		$this->tablename = $info->table;

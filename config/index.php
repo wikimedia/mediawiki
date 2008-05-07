@@ -67,6 +67,12 @@ $ourdb['postgres']['compile']    = 'pgsql';
 $ourdb['postgres']['bgcolor']    = '#aaccff';
 $ourdb['postgres']['rootuser']   = 'postgres';
 
+$ourdb['sqlite']['fullname']      = 'SQLite';
+$ourdb['sqlite']['havedriver']    = 0;
+$ourdb['sqlite']['compile']       = 'pdo_sqlite';
+$ourdb['sqlite']['bgcolor']       = '#b1ebb1';
+$ourdb['sqlite']['rootuser']      = 'root';
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -828,11 +834,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 			if( !$ok ) { continue; }
 
-		} else /* not mysql */ {
+		} else { # not mysql
 			error_reporting( E_ALL );
 			$wgSuperUser = '';
 			## Possible connect as a superuser
-			if( $useRoot ) {
+			if( $useRoot && $conf->DBtype != 'sqlite' ) {
 				$wgDBsuperuser = $conf->RootUser;
 				echo( "<li>Attempting to connect to database \"postgres\" as superuser \"$wgDBsuperuser\"..." );
 				$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBsuperuser, $conf->RootPW, "postgres", 1);
@@ -852,8 +858,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			} else {
 				$myver = $wgDatabase->getServerVersion();
 			}
-			$wgDatabase->initial_setup('', $wgDBname);
-		}
+			if (is_callable(array($wgDatabase, 'initial_setup'))) $wgDatabase->initial_setup('', $wgDBname);
+		} 
 
 		if ( !$wgDatabase->isOpen() ) {
 			$errs["DBserver"] = "Couldn't connect to database";
@@ -1006,7 +1012,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			if ($conf->DBtype == 'mysql') {
 				dbsource( "../maintenance/tables.sql", $wgDatabase );
 				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
-			} else if ($conf->DBtype == 'postgres') {
+			} elseif (is_callable(array($wgDatabase, 'setup_database'))) {
 				$wgDatabase->setup_database();
 			}
 			else {
