@@ -100,7 +100,7 @@ class MonoBookTemplate extends QuickTemplate {
 		<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 		<h1 class="firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></h1>
 		<div id="bodyContent">
-			<h3 id="siteSub"><?php $this->msgWiki('tagline') ?></h3>
+			<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
 			<div id="contentSub"><?php $this->html('subtitle') ?></div>
 			<?php if($this->data['undelete']) { ?><div id="contentSub2"><?php     $this->html('undelete') ?></div><?php } ?>
 			<?php if($this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html('newtalk')  ?></div><?php } ?>
