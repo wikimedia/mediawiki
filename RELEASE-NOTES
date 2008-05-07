@@ -33,6 +33,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed the emailconfirmed implicit group by default. To re-add it, use:
     $wgAutopromote['emailconfirmed'] = APCOND_EMAILCONFIRMED;
   in your LocalSettings.php.
+* (bug 2396) New shared database configuration variables. $wgSharedPrefix allows
+  you to use a shared database with a different prefix. Or you can now use a local
+  database and use prefixes to separate wiki and the shared tables. And the new
+  $wgSharedTables variable allows you to specify a list of tables to share.
+  
 
 === New features in 1.13 ===
 

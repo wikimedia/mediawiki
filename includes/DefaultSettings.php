@@ -579,12 +579,20 @@ $wgCheckDBSchema = true;
 
 
 /**
- * Shared database for multiple wikis. Presently used for storing a user table
+ * Shared database for multiple wikis. Commonly used for storing a user table
  * for single sign-on. The server for this database must be the same as for the
  * main database.
+ * For backwards compatibility the shared prefix is set to the same as the local
+ * prefix, and the user table is listed in the default list of shared tables.
+ * 
+ * $wgSharedTables may be customized with a list of tables to share in the shared
+ * datbase. However it is advised to limit what tables you do share as many of
+ * MediaWiki's tables may have side effects if you try to share them.
  * EXPERIMENTAL
  */
-$wgSharedDB = null;
+$wgSharedDB     = null;
+$wgSharedPrefix = $wgDBprefix;
+$wgSharedTables = array( 'user' );
 
 /**
  * Database load balancer
