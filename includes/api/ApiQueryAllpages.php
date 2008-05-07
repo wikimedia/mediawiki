@@ -60,8 +60,9 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		if (!$this->addWhereIf('page_is_redirect = 1', $params['filterredir'] === 'redirects'))
 			$this->addWhereIf('page_is_redirect = 0', $params['filterredir'] === 'nonredirects');
 		$this->addWhereFld('page_namespace', $params['namespace']);
-		if (!is_null($params['from']))
-			$this->addWhere('page_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
+		$dir = ($params['dir'] == 'descending' ? 'older' : 'newer');
+		$from = (is_null($params['from']) ? null : ApiQueryBase::titleToKey($params['from']));
+		$this->addWhereRange('page_title', $dir, $from, null);
 		if (isset ($params['prefix']))
 			$this->addWhere("page_title LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
 
@@ -124,9 +125,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
-		$this->addOption('ORDER BY', 'page_namespace, page_title' .
-						($params['dir'] == 'descending' ? ' DESC' : ''));
-
 		$res = $this->select(__METHOD__);
 
 		$data = array ();
