@@ -313,6 +313,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13735) Added prop=categoryinfo module
 * (bug 13945) Retrieve cascading protection sources via inprop=protection
 * (bug 13965) Hardcoded 51 limit on titles is too limiting
+* (bug 13993) apfrom doesn't work with apdir=descending
 
 === Languages updated in 1.13 ===
 
