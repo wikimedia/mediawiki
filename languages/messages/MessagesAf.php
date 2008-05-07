@@ -411,7 +411,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'nologinlink'                => "Skep gerus 'n rekening",
 'createaccount'              => 'Skep nuwe rekening',
 'gotaccount'                 => "Het u reeds 'n rekening? $1.",
-'gotaccountlink'             => 'Teken gerus aan',
+'gotaccountlink'             => 'Teken in',
 'createaccountmail'          => 'deur e-pos',
 'badretype'                  => 'Die ingetikte wagwoorde is nie dieselfde nie.',
 'userexists'                 => "Die gebruikersnaam wat jy gebruik het, is alreeds gebruik. Kies asseblief 'n ander gebruikersnaam.",
@@ -691,7 +691,7 @@ $2 List redirects   Search for $3 $9',
 om voorkeure te spesifiseer.',
 'prefsreset'               => 'Voorkeure is herstel.',
 'qbsettings'               => 'Snelbalkvoorkeure',
-'qbsettings-none'          => 'Geen.',
+'qbsettings-none'          => 'Geen',
 'qbsettings-fixedleft'     => 'Links vas.',
 'qbsettings-fixedright'    => 'Regs vas.',
 'qbsettings-floatingleft'  => 'Dryf links.',
@@ -1165,8 +1165,9 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'pagesize'                    => '(grepe)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Wysig',
-'restriction-move' => 'Skuif',
+'restriction-edit'   => 'Wysig',
+'restriction-move'   => 'Skuif',
+'restriction-create' => 'Skep',
 
 # Undelete
 'undelete'                 => 'Herstel geskrapte bladsy',
@@ -1446,13 +1447,13 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'bydate'        => 'volgens datum',
 
 # EXIF tags
-'exif-imagewidth'          => 'Breedte',
+'exif-imagewidth'          => 'Wydte',
 'exif-imagelength'         => 'Hoogte',
 'exif-orientation'         => 'Oriëntasie',
 'exif-xresolution'         => 'Horisontale resolusie',
 'exif-yresolution'         => 'Vertikale resolusie',
 'exif-imagedescription'    => 'Beeldtitel',
-'exif-artist'              => 'Bewerker',
+'exif-artist'              => 'Outeur',
 'exif-colorspace'          => 'Kleurruimte',
 'exif-exposuretime'        => 'Beligtingstyd',
 'exif-exposuretime-format' => '$1 sek ($2)',
@@ -1484,6 +1485,8 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Portret',
+
+'exif-gaincontrol-0' => 'Geen',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Noorderbreedte',
@@ -1580,6 +1583,9 @@ $1',
 'filepath-page'   => 'Lêer:',
 'filepath-submit' => 'Pad',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Soek',
+
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
@@ -1589,4 +1595,5 @@ $1',
 'specialpages-group-users'       => 'Gebruikers en regte',
 'specialpages-group-needy'       => 'Bladsye wat werk nodig het',
 'specialpages-group-highuse'     => 'Baie gebruikte bladsye',
+
 );

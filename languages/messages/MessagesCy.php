@@ -1552,8 +1552,9 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'proxyblocker-disabled'       => 'Analluogwyd y swyddogaeth hon.',
 'proxyblockreason'            => "Mae eich cyfeiriad IP wedi'i flocio gan ei fod yn ddirprwy agored (open proxy). Cysylltwch â'ch gweinyddwr rhyngrwyd neu gymorth technegol er mwyn eu hysbysu am y broblem ddifrifol yma.",
 'proxyblocksuccess'           => 'Wedi llwyddo.',
-'sorbsreason'                 => 'Mae eich cyfeiriad IP wedi cael ei osod ar Restr Twll-du DNS fel dirprwy agored.',
-'sorbs_create_account_reason' => 'Mae eich cyfeiriad IP wedi cael ei osod ar Restr Twll-du DNS fel dirprwy agored. Ni chaniateir creu cyfrif.',
+'sorbsreason'                 => 'Mae eich cyfeiriad IP wedi cael ei osod ymhlith y dirprwyon agored ar y Rhestr DNS Gwaharddedig a ddefnyddir gan {{SITENAME}}.',
+'sorbs_create_account_reason' => 'Mae eich cyfeiriad IP wedi cael ei osod ymhlith y dirprwyon agored ar y Rhestr DNS Gwaharddedig a ddefnyddir gan {{SITENAME}}.
+Ni allwch greu cyfrif.',
 
 # Developer tools
 'lockdb'              => "Cloi'r databas",

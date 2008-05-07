@@ -1772,12 +1772,14 @@ $1',
 'nolinkshere-ns'           => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
 'isredirect'               => 'presmerovacia stránka',
 'istemplate'               => 'použitá',
+'isimage'                  => 'odkaz na obrázok',
 'whatlinkshere-prev'       => '{{PLURAL:$1|predchádzajúca|predchádzajúce $1|predchádzajúcich $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nasledujúca|nasledujúce $1|nasledujúcich $1}}',
 'whatlinkshere-links'      => '← odkazy',
 'whatlinkshere-hideredirs' => '$1 presmerovania',
 'whatlinkshere-hidetrans'  => '$1 transklúzie',
 'whatlinkshere-hidelinks'  => '$1 odkazy',
+'whatlinkshere-hideimages' => '$1 odkazov na obrázok',
 'whatlinkshere-filters'    => 'Filtre',
 
 # Block/unblock
@@ -1809,6 +1811,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbotheroption'              => 'iný čas',
 'ipbotherreason'              => 'Iný/ďalší dôvod',
 'ipbhidename'                 => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
+'ipbwatchuser'                => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
 'badipaddress'                => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'           => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'          => '„$1“ bol/a zablokovaný/á.<br />

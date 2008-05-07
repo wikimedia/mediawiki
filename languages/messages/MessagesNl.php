@@ -1894,12 +1894,14 @@ $1',
 'nolinkshere-ns'           => "Geen enkele pagina linkt naar '''[[:$1]]''' in de gekozen naamruimte.",
 'isredirect'               => 'doorverwijspagina',
 'istemplate'               => 'ingevoegd als sjabloon',
+'isimage'                  => 'bestandslink',
 'whatlinkshere-prev'       => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links'      => '← links daarnaar',
 'whatlinkshere-hideredirs' => 'doorverwijzingen $1',
 'whatlinkshere-hidetrans'  => 'transclusies $1',
 'whatlinkshere-hidelinks'  => 'verwijzingen $1',
+'whatlinkshere-hideimages' => '$1 bestandslinks',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
@@ -1930,6 +1932,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbotheroption'              => 'ander verloop',
 'ipbotherreason'              => 'Andere/eventuele reden:',
 'ipbhidename'                 => 'Gebruiker in het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
+'ipbwatchuser'                => 'Gebruikerspagina en overlegpagina op volglijst plaatsen',
 'badipaddress'                => 'Geen geldig IP-adres',
 'blockipsuccesssub'           => 'Blokkering geslaagd',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
@@ -2795,4 +2798,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'specialpages-group-users'       => 'Gebruikers en rechten',
 'specialpages-group-needy'       => "Pagina's die aandacht nodig hebben",
 'specialpages-group-highuse'     => "Veelgebruikte pagina's",
+
 );

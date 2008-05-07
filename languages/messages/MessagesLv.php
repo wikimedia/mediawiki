@@ -180,6 +180,7 @@ $messages = array(
 'permalink'         => 'Pastāvīgā saite',
 'print'             => 'Drukāt',
 'edit'              => 'Izmainīt šo lapu',
+'create'            => 'Izveidot',
 'editthispage'      => 'Izmainīt šo lapu',
 'delete'            => 'Dzēst',
 'deletethispage'    => 'Dzēst šo lapu',

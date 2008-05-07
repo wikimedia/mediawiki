@@ -3,12 +3,10 @@
  *
  * @addtogroup Language
  *
- * @author RonaldPanaligan, Harvzsf (September 2007)
  * @author RonaldPanaligan
+ * @author Jose77
  * @author Harvzsf
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -199,7 +197,92 @@ $messages = array(
 'viewsource'           => 'Turukun ang ginhalinan',
 
 # Login and logout pages
-'nologinlink'   => "Himo ka sangka ''account''",
-'createaccount' => "Himo ka ''account''",
+'remembermypassword' => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer''",
+'nologinlink'        => "Himo ka sangka ''account''",
+'createaccount'      => "Himo ka ''account''",
+'youremail'          => 'E-mail:',
+'email'              => 'E-mail',
+
+# Edit pages
+'preview' => 'Bilid',
+
+# Preferences page
+'searchresultshead' => 'Sagap',
+
+# Recent changes
+'hide' => 'Itago',
+'show' => 'Ipakita',
+
+'upload-file-error' => 'Sayup internal',
+
+# Special:Imagelist
+'imgfile' => 'inayap',
+
+# File deletion
+'filedelete-submit' => 'Para',
+
+'brokenredirects-edit'   => '(Iislan)',
+'brokenredirects-delete' => '(para)',
+
+'withoutinterwiki-submit' => 'Ipakita',
+
+# Miscellaneous special pages
+'specialpages' => 'Manga espesyal nga pahina',
+
+# Book sources
+'booksources-go' => 'Agto',
+
+# Special:Log
+'log-search-submit' => 'Agto',
+
+# Special:Listusers
+'listusers-submit' => 'Ipakita',
+
+# E-mail user
+'emailmessage' => 'Mensahe',
+
+# Delete/protect/revert
+'delete-legend' => 'Para',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Iislan',
+
+# Undelete
+'undelete-search-submit' => 'Sagap',
+
+'sp-contributions-submit' => 'Sagap',
+
+# What links here
+'whatlinkshere-page' => 'Pahina:',
+'isredirect'         => 'idaho ang pahina',
+
+# Block/unblock
+'ipblocklist-submit' => 'Sagap',
+
+# Tooltip help for the actions
+'tooltip-ca-protect' => 'Amligan ang dya nga pahina',
+'tooltip-ca-delete'  => 'Paraun ang dya nga Pahina',
+'tooltip-p-logo'     => 'Pono nga Pahina',
+
+# Special:Newimages
+'ilsubmit' => 'Sagap',
+
+# action=purge
+'confirm_purge_button' => 'OK dun',
+
+# Multipage image navigation
+'imgmultigo' => 'Agto!',
+
+# Table pager
+'table_pager_limit_submit' => 'Agto',
+
+# Special:Version
+'version-specialpages' => 'Manga espesyal nga pahina',
+
+# Special:Filepath
+'filepath-page' => 'Inayap:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Sagap',
 
 );

@@ -1991,6 +1991,7 @@ $1',
 'ipbotheroption'              => 'غير ذلك',
 'ipbotherreason'              => 'سبب إضافي:',
 'ipbhidename'                 => 'أخف اسم المستخدم من سجل المنع، قائمة المنع النشطة وقائمة المستخدمين',
+'ipbwatchuser'                => 'راقب صفحتي المستخدم والنقاش لهذا المستخدم',
 'badipaddress'                => 'عنوان أيبي غير صحيح',
 'blockipsuccesssub'           => 'تم المنع بنجاح',
 'blockipsuccesstext'          => 'تم منع [[Special:Contributions/$1|$1]].
@@ -2116,6 +2117,7 @@ $1',
 'delete_and_move_reason'  => 'تم الحذف لإفساح مجال للنقل',
 'selfmove'                => 'لا يوجد اختلاف في عنوان المصدر و الهدف؛ لا يمكن نقل الصفحة على نفسها.',
 'immobile_namespace'      => 'لا يمكن النقل إلى العنوان المراد؛ النطاق غير مسموح بالنقل إليه.',
+'imagenocrossnamespace'   => 'لا يمكن نقل الملف إلى نطاق غير نطاق الملفات',
 
 # Export
 'export'            => 'تصدير صفحات',
@@ -2906,4 +2908,5 @@ $1',
 'specialpages-group-users'       => 'المستخدمون والصلاحيات',
 'specialpages-group-needy'       => 'صفحات بحاجة للعمل',
 'specialpages-group-highuse'     => 'صفحات استخدام عال',
+
 );

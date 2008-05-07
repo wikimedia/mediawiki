@@ -468,7 +468,7 @@ A kan ben trowe efu dribi.
 'prevn'                 => 'fos $1',
 'nextn'                 => 'tra $1',
 'viewprevnext'          => '($1) ($2) ($3) libi si.',
-'powersearch'           => 'Suku',
+'powersearch'           => 'Gu suku',
 
 # Preferences page
 'preferences'              => 'Wana',
@@ -587,7 +587,9 @@ A kan ben trowe efu dribi.
 'recentchangeslinked'          => 'Saamga kenki',
 'recentchangeslinked-title'    => 'Saamga kenki nanga "$1"',
 'recentchangeslinked-noresult' => 'Da ben no kenki ini a gi ten opo den peprewoysi dy fu dyaso skaki sey.',
-'recentchangeslinked-summary'  => "Disi spesyal papira libi den bakaseywan kenki opo peprewoysi dy ben skaki fu disi papira si. Peprewoysi opo [[Special:Watchlist|yu sirey]] ben '''deki'''.",
+'recentchangeslinked-summary'  => "Disi spesyal papira libi den bakaseywan kenki opo peprewoysi dy ben skaki fu disi papira si, efru fu peprewoysi ini wan gi papira efru guru. 
+
+Peprewoysi opo [[Special:Watchlist|yu sirey]] ben '''deki'''.",
 
 # Upload
 'upload'            => 'Uploti',

@@ -1671,7 +1671,7 @@ $NEWPAGE
 'actioncomplete'              => 'Действие выполнено',
 'deletedtext'                 => '«<nowiki>$1</nowiki>» была удалена.
 См. $2 для просмотра списка последних удалений.',
-'deletedarticle'              => 'удалена «[[$1]]»',
+'deletedarticle'              => 'удалил «[[$1]]»',
 'suppressedarticle'           => 'скрыл «[[$1]]»',
 'dellogpage'                  => 'Список удалений',
 'dellogpagetext'              => 'Ниже приведён список последних удалений.',
