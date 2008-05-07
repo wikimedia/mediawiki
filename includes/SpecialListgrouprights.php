@@ -100,8 +100,10 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 		}
 		sort( $r );
-		$r = implode( wfMsg( 'comma-separator' ), $r );
-
-		return $r;
+		if( empty( $r ) ) {
+			return '';
+		} else {
+			return '<ul><li>' . implode( "</li>\n<li>", $r ) . '</li></ul>';
+		}
 	}
 }
