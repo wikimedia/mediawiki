@@ -94,10 +94,16 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			if ((isset ($show['minor']) && isset ($show['!minor']))
 					|| (isset ($show['bot']) && isset ($show['!bot']))
 					|| (isset ($show['anon']) && isset ($show['!anon']))
-					|| (isset ($show['redirect']) && isset ($show['!redirect']))) {
+					|| (isset ($show['redirect']) && isset ($show['!redirect']))
+					|| (isset ($show['patrolled']) && isset ($show['!patrolled']))) {
 
 				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
 			}
+			
+			// Check permissions
+			global $wgUser;
+			if((isset($show['patrolled']) || isset($show['!patrolled'])) && !$wgUser->isAllowed('patrol'))
+				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 
 			/* Add additional conditions to query depending upon parameters. */
 			$this->addWhereIf('rc_minor = 0', isset ($show['!minor']));
@@ -106,6 +112,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addWhereIf('rc_bot != 0', isset ($show['bot']));
 			$this->addWhereIf('rc_user = 0', isset ($show['anon']));
 			$this->addWhereIf('rc_user != 0', isset ($show['!anon']));
+			$this->addWhereIf('rc_patrolled = 0', isset($show['!patrolled']));
+			$this->addWhereIf('rc_patrolled != 0', isset($show['patrolled']));
 			$this->addWhereIf('page_is_redirect = 1', isset ($show['redirect']));
 			// Don't throw log entries out the window here
 			$this->addWhereIf('page_is_redirect = 0 OR page_is_redirect IS NULL', isset ($show['!redirect']));
@@ -352,7 +360,9 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'anon',
 					'!anon',
 					'redirect',
-					'!redirect'
+					'!redirect',
+					'patrolled',
+					'!patrolled'
 				)
 			),
 			'limit' => array (
