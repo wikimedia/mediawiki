@@ -298,7 +298,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgOut, $wgScript;
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'name' => 'uluser', 'id' => 'mw-userrights-form1' ) ) .
-			Xml::hidden( 'title',  $this->getTitle() ) .
+			Xml::hidden( 'title',  $this->getTitle()->getPrefixedText() ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-lookup-user' ) ) .
 			Xml::inputLabel( wfMsg( 'userrights-user-editname' ), 'user', 'username', 30, $this->mTarget ) . ' ' .
@@ -440,9 +440,9 @@ class UserrightsPage extends SpecialPage {
 			$checkbox = $disabled ? Xml::tags( 'span', array( 'class' => 'mw-userrights-disabled' ), $checkbox ) : $checkbox;
 
 			if ($disabled) {
-				$unsettable_col .= "$checkbox<br/>\n";
+				$unsettable_col .= "$checkbox<br />\n";
 			} else {
-				$settable_col .= "$checkbox<br/>\n";
+				$settable_col .= "$checkbox<br />\n";
 			}
 		}
 
