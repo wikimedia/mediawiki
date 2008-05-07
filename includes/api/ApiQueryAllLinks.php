@@ -66,6 +66,18 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		$this->addTables('pagelinks');
 		$this->addWhereFld('pl_namespace', $params['namespace']);
+		
+		if (!is_null($params['from']) && !is_null($params['continue']))
+			$this->dieUsage('alcontinue and alfrom cannot be used together', 'params');
+		if (!is_null($params['continue']))
+		{
+			$arr = explode('|', $params['continue']);
+			if(count($arr) != 2)
+				$this->dieUsage("Invalid continue parameter", 'badcontinue');
+			$params['from'] = $arr[0]; // Handled later
+			$id = intval($arr[1]);
+			$this->addWhere("pl_from >= $id");
+		}		
 
 		if (!is_null($params['from']))
 			$this->addWhere('pl_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
@@ -75,9 +87,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
 				'pl_namespace',
-				'pl_title'
+				'pl_title',
+				'pl_from'
 			));
-			$this->addFieldsIf('pl_from', $fld_ids);
 		} else {
 			$this->addFields('pl_from');
 			$pageids = array();
@@ -86,7 +98,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$this->addOption('USE INDEX', 'pl_namespace');
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
-		$this->addOption('ORDER BY', 'pl_namespace, pl_title');
+		$this->addOption('ORDER BY', 'pl_title');
 
 		$res = $this->select(__METHOD__);
 
@@ -96,7 +108,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->pl_title));
+				$this->setContinueEnumParameter('continue', ApiQueryBase :: keyToTitle($row->pl_title) . "|" . $row->pl_from);
 				break;
 			}
 
@@ -127,6 +139,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		return array (
+			'continue' => null,
 			'from' => null,
 			'prefix' => null,
 			'unique' => false,
