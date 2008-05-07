@@ -1416,10 +1416,10 @@ please see math/README to configure.',
 'userrights-groupsmember'          => 'Member of:',
 'userrights-groupsremovable'       => 'Removable groups:',
 'userrights-groupsavailable'       => 'Available groups:',
-'userrights-groups-help'           => 'You may alter the groups this user is in.
-A checked box means the user is in that group.
-An unchecked box means the user is not in that group.
-A * indicates that you cannot remove the group once you have added it, or vice versa.',
+'userrights-groups-help'           => 'You may alter the groups this user is in:
+* A checked box means the user is in that group.
+* An unchecked box means the user is not in that group.
+* A * indicates that you cannot remove the group once you have added it, or vice versa.',
 'userrights-reason'                => 'Reason for change:',
 'userrights-available-none'        => 'You may not alter group membership.',
 'userrights-available-add'         => 'You can add any user to {{PLURAL:$2|this group|these groups}}: $1.',
