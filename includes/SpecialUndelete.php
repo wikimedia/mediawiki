@@ -587,7 +587,7 @@ class UndeleteForm {
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mComment = $request->getText( 'wpComment' );
-		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $wgUser->isAllowed( 'suppress' );
+		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $wgUser->isAllowed( 'hiderevision' );
 
 		if( $par != "" ) {
 			$this->mTarget = $par;
@@ -966,7 +966,7 @@ class UndeleteForm {
 		if( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
-			if( $wgUser->isAllowed( 'suppress' ) ) {
+			if( $wgUser->isAllowed( 'hiderevision' ) ) {
 				$unsuppressBox =
 					"<tr>
 						<td>&nbsp;</td>
