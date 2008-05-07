@@ -1429,12 +1429,14 @@ $NEWPAGE
 'nolinkshere-ns'           => "名冊內無頁取佐'''[[:$1]]'''。",
 'isredirect'               => '渡',
 'istemplate'               => '含',
+'isimage'                  => '檔佐',
 'whatlinkshere-prev'       => '前$1',
 'whatlinkshere-next'       => '次$1',
 'whatlinkshere-links'      => '←佐',
 'whatlinkshere-hideredirs' => '$1轉',
 'whatlinkshere-hidetrans'  => '$1含',
 'whatlinkshere-hidelinks'  => '$1佐',
+'whatlinkshere-hideimages' => '$1檔佐',
 'whatlinkshere-filters'    => '濾',
 
 # Block/unblock
