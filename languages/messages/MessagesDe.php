@@ -1043,10 +1043,10 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'userrights-groupsmember'          => 'Mitglied von:',
 'userrights-groupsremovable'       => 'Entfernbare Gruppen:',
 'userrights-groupsavailable'       => 'Verfügbare Gruppen:',
-'userrights-groups-help'           => 'Du kannst du Gruppenzugehörigkeit für diesen Benutzer ändern.
-	Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
-	Ein unmarkiertes Kästchen, dass er kein Mitglied ist.
-	Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
+'userrights-groups-help'           => 'Du kannst du Gruppenzugehörigkeit für diesen Benutzer ändern:
+* Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
+* Ein unmarkiertes Kästchen, dass er kein Mitglied ist.
+* Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
 'userrights-reason'                => 'Grund:',
 'userrights-available-none'        => 'Du darst keine Benutzerrechte verändern.',
 'userrights-available-add'         => 'Du kannst Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} hinzufügen: $1.',
