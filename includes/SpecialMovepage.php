@@ -144,8 +144,6 @@ class MovePageForm {
 			$wgOut->addHTML( $errMsg );
 		}
 
-		$moveTalkChecked = $this->moveTalk ? ' checked="checked"' : '';
-
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
@@ -183,7 +181,7 @@ class MovePageForm {
 				<tr>
 					<td></td>
 					<td class='mw-input'>" .
-						Xml::checkLabel( wfMsg( 'movetalk' ), 'wpMovetalk', 'wpMovetalk', $moveTalkChecked ) .
+						Xml::checkLabel( wfMsg( 'movetalk' ), 'wpMovetalk', 'wpMovetalk', $this->moveTalk ) .
 					"</td>
 				</tr>"
 			);
