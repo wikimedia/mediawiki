@@ -21,7 +21,7 @@ dist: $(DIST_TARGETS)
 clean:
 	rm -f $(ALL_TARGETS)
 
-Utf8Case.ser : ../includes/Utf8Case.php
+Utf8Case.ser : ../includes/normal/Utf8Case.php
 	php serialize.php -o $@ $<
 
 Messages%.ser : ../languages/messages/Messages%.php ../languages/messages/MessagesEn.php
