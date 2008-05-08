@@ -110,6 +110,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13970) Allow MonoBook-based skins to specify their own print stylesheet
 * Show image links on Special:Whatlinkshere
 * Use rel="start", "prev", "next" appropriately on Pager-based pages
+* Add support for SQLite
 
 === Bug fixes in 1.13 ===
 
