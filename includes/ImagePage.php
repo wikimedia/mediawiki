@@ -44,6 +44,9 @@ class ImagePage extends Article {
 	function view() {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
 
+		if ( $this->img->getRedirected() )
+			return Article::view();
+
 		$diff = $wgRequest->getVal( 'diff' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
@@ -99,6 +102,15 @@ class ImagePage extends Article {
 				"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?$wgStyleVersion\"></script>\n" .
 				"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
 		}
+	}
+	
+	public function getRedirectTarget() {
+		if ( $this->img->isLocal() )
+			return parent::getRedirectTarget();
+		
+		// Foreign image page
+		$from = $this->img->getRedirected();
+		return $this->mRedirectTarget = Title::makeTitle( NS_IMAGE, $from );
 	}
 
 	/**

@@ -252,10 +252,6 @@ class MediaWiki {
 
 		switch( $title->getNamespace() ) {
 		case NS_IMAGE:
-			$file = wfFindFile( $title );
-			if( $file && $file->getRedirected() ) {
-				return new Article( $title );
-			}
 			return new ImagePage( $title );
 		case NS_CATEGORY:
 			return new CategoryPage( $title );
