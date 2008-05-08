@@ -1020,9 +1020,9 @@ $2 Llista redireccions   Cerca $3 $9',
 'userrights-groupsremovable'       => 'Grups dels quals us podeu treure:',
 'userrights-groupsavailable'       => 'Grups disponibles:',
 'userrights-groups-help'           => "Podeu modificar els grups als quals pertany aquest usuari.
-Els requadres marcats indiquen que l'usuari és dins del grup.
-Els requadres sense macar indiquen que l'usuari no hi pertany.
-Un asterisc (*) indica que no el podeu treure del grup una vegada l'hàgiu afegit o viceversa.",
+* Els requadres marcats indiquen que l'usuari és dins del grup.
+* Els requadres sense macar indiquen que l'usuari no hi pertany.
+* Un asterisc (*) indica que no el podeu treure del grup una vegada l'hàgiu afegit o viceversa.",
 'userrights-reason'                => 'Motiu del canvi:',
 'userrights-available-none'        => "No podeu alterar l'afiliació al grup.",
 'userrights-available-add'         => 'Podeu afegir usuaris {{PLURAL:$2|al grup|als grups:}} $1.',

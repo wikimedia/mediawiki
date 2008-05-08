@@ -896,9 +896,9 @@ pakilawe me ing math/README ba meng i-configure.',
 'userrights-groupsremovable'       => 'Grupung maliaring ilako:',
 'userrights-groupsavailable'       => 'Grupung makabusni (available groups):',
 'userrights-groups-help'           => 'Maliari mong alilan deng grupu nung nu ya kayabe ing talagamit.
-Nung maka-check ya ing kahun, atyu king grupung ita ing talagamit.
-Nung e maka-check ing kahun, ala yu king grupung ita ing talagamit.
-Ing buri nang sabian ning *, e mu ne alako ing grupu kabud adagdag me, o vice versa.',
+* Nung maka-check ya ing kahun, atyu king grupung ita ing talagamit.
+* Nung e maka-check ing kahun, ala yu king grupung ita ing talagamit.
+* Ing buri nang sabian ning *, e mu ne alako ing grupu kabud adagdag me, o vice versa.',
 'userrights-reason'                => 'Sangkan king pamanalili:',
 'userrights-available-none'        => 'E mu maliaring alilan ing panga-miembru/pamiyanib king grupu.',
 'userrights-available-add'         => 'Maliari meng idagdag ing ninumang talagamit {{PLURAL:$2|king grupung iti|kareng grupung deti}}: $1.',

@@ -7,6 +7,7 @@
  * @author Nike
  * @author SPQRobin
  * @author Siebrand
+ * @author Malafaya
  */
 
 
@@ -241,6 +242,8 @@ $messages = array(
 'nstab-category' => 'Categoria',
 
 # General errors
+'error'          => 'Era',
+'internalerror'  => 'Era interna',
 'badtitle'       => 'Titulo es mal',
 'badtitletext'   => 'La titulo de la paje tu ia desira ia es nonlegal, es vacua, o es un titulo intervici o interlingual no liada coreta. Es posable ce es un o plu simboles ce no pote es usada en titulos.',
 'viewsource'     => 'Vide la orijin',
@@ -264,6 +267,7 @@ $messages = array(
 'gotaccount'              => 'Tu ave ja un conta? $1.',
 'gotaccountlink'          => 'Sinia per entra',
 'yourrealname'            => 'Nom vera:',
+'yourlanguage'            => 'Lingua:',
 'prefs-help-realname'     => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
 'loginsuccesstitle'       => 'Entra susedente',
 'loginsuccess'            => "'''Tu ia entrada aora a {{SITENAME}} como \"\$1\".'''",
@@ -303,8 +307,8 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'math_tip'        => 'Formula matematical (LaTeX)',
 'nowiki_sample'   => 'Introdui testo nonformida asi',
 'nowiki_tip'      => 'Iniora la forma de la vici',
-'image_tip'       => 'Imaje interna',
-'media_tip'       => 'Lia a fix de medio',
+'image_tip'       => 'Fix interna',
+'media_tip'       => 'Lia a fix',
 'sig_tip'         => 'Tu sinia con la primi de la ora',
 'hr_tip'          => 'Linia orizonal (usa nonfrecuente)',
 
@@ -388,25 +392,39 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'diff-multi'              => '({{PLURAL:$1|$1 revise|$1 revises}} medial no mostrada.)',
 
 # Search results
-'searchresults' => 'Resultas de xerca',
-'noexactmatch'  => "'''Es no paje clamada \"\$1\".''' Tu pote [[:\$1|crea esta paje]].",
-'prevn'         => '$1 presedente',
-'nextn'         => '$1 seguente',
-'viewprevnext'  => 'Vide ($1) ($2) ($3)',
-'powersearch'   => 'Xerca',
+'searchresults'            => 'Resultas de xerca',
+'noexactmatch'             => "'''Es no paje clamada \"\$1\".''' Tu pote [[:\$1|crea esta paje]].",
+'prevn'                    => '$1 presedente',
+'nextn'                    => '$1 seguente',
+'viewprevnext'             => 'Vide ($1) ($2) ($3)',
+'search-interwiki-default' => 'Resultas de $1:',
+'searchall'                => 'tota',
+'powersearch'              => 'Xerca avansada',
 
 # Preferences page
 'preferences'       => 'Preferis',
 'mypreferences'     => 'Me preferis',
+'math'              => 'Matematica',
 'saveprefs'         => 'Fisa',
 'retypenew'         => 'Re-entra tu sinia secreta nova:',
+'rows'              => 'Linias:',
+'columns'           => 'Colonas:',
 'searchresultshead' => 'Xerca',
 'savedprefs'        => 'Tu preferis es fisada',
+'files'             => 'Fixes',
 
 # User rights
 'userrights'     => 'Dirije de la diretos de usores', # Not used as normal message but as header for the special page itself
 'saveusergroups' => 'Fisa la grupo de usores',
 
+# Groups
+'group'      => 'Grupo:',
+'group-user' => 'Usores',
+'group-all'  => '(tota)',
+
+'group-user-member' => 'Usor',
+
+'grouppage-user'  => '{{ns:project}}:Usores',
 'grouppage-sysop' => '{{ns:project}}:Dirijores',
 
 # User rights log
@@ -434,12 +452,15 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
+'rc_categories_any'              => 'Cualce',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambias relateda',
 'recentchangeslinked-title'    => 'Cambias relatada a "$1"',
 'recentchangeslinked-noresult' => 'No cambias de pajes liada entre esta periodo.',
-'recentchangeslinked-summary'  => "Esta paje spesial es un lista de la cambias plu resente de es liada. Pajes a tu lista de pajes oservada es en leteras '''forte'''.",
+'recentchangeslinked-summary'  => "Esta paje spesial es un lista de la cambias plu resente de es liada.
+Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'''.",
+'recentchangeslinked-page'     => 'Nom de la paje:',
 
 # Upload
 'upload'        => 'Envia fixes',
@@ -448,8 +469,12 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'savefile'      => 'Fisa fix',
 'uploadedimage' => '"[[$1]]" es enviada',
 
+'upload-file-error' => 'Era interna',
+
 # Special:Imagelist
-'imagelist' => 'Lista de imajes',
+'imgfile'        => 'fix',
+'imagelist'      => 'Lista de imajes',
+'imagelist_name' => 'Nom',
 
 # Image description page
 'filehist'                  => 'Istoria de fix',
@@ -503,7 +528,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'lonelypages'             => 'Pajes orfanida',
 'uncategorizedpages'      => 'Pajes sin categoria',
 'uncategorizedcategories' => 'Categorias sin categoria',
-'uncategorizedimages'     => 'Imajes sin categoria',
+'uncategorizedimages'     => 'Fixes sin categoria',
 'uncategorizedtemplates'  => 'Modeles sin categoria',
 'unusedcategories'        => 'Categorias nonusada',
 'unusedimages'            => 'Images nonusada',
@@ -514,7 +539,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'mostlinkedcategories'    => 'Categorias a ce es la plu lias',
 'mostlinkedtemplates'     => 'Modeles a ce es la plu lias',
 'mostcategories'          => 'Pajes con la plu categorias',
-'mostimages'              => 'Imajes a ce es la plu lias',
+'mostimages'              => 'Fixes a ce es la plu lias',
 'mostrevisions'           => 'Pajes con la plu revisas',
 'prefixindex'             => 'Catalogo de prefises',
 'shortpages'              => 'Pajes corta',
@@ -533,13 +558,15 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'unusedcategoriestext'    => 'La categorias seguente esiste sin es usada par otra articles o categorias.',
 
 # Book sources
-'booksources' => 'Orijines de libros',
+'booksources'    => 'Orijines de libros',
+'booksources-go' => 'Vade',
 
 # Special:Log
 'specialloguserlabel'  => 'Usor:',
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Lista de atas',
 'all-logs-page'        => 'Tota catalogos',
+'log-search-submit'    => 'Vade',
 
 # Special:Allpages
 'allpages'       => 'Tota pajes',
@@ -553,8 +580,13 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'allpagessubmit' => 'Vade',
 'allpagesprefix' => 'Mostra pajes con prefis:',
 
+# Special:Listgrouprights
+'listgrouprights-group' => 'Grupo',
+
 # E-mail user
 'emailuser' => 'Envia un eposta a esta usor',
+'emailfrom' => 'De',
+'emailto'   => 'Per',
 
 # Watchlist
 'watchlist'            => 'Pajes oservada',
@@ -625,8 +657,9 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'restriction-level'           => 'Nivel de restrinje:',
 
 # Undelete
-'undelete'    => 'Restora paje sutraeda',
-'undeletebtn' => 'Restora',
+'undelete'               => 'Restora paje sutraeda',
+'undeletebtn'            => 'Restora',
+'undelete-search-submit' => 'Xerca',
 
 # Namespace form on various pages
 'namespace'      => 'Loca de nom:',
@@ -643,10 +676,12 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 
 'sp-contributions-newbies-sub' => 'Per contas nova',
 'sp-contributions-blocklog'    => 'Impedi arcivo',
+'sp-contributions-submit'      => 'Xerca',
 
 # What links here
 'whatlinkshere'       => 'Ce es liada a asi',
 'whatlinkshere-title' => 'Pajes ci lia a $1',
+'whatlinkshere-page'  => 'Paje:',
 'linklistsub'         => '(Lista de lias)',
 'linkshere'           => "Esta pajes lia a '''[[:$1]]''':",
 'nolinkshere'         => "No pajes lia a '''[[:$1]]'''.",
@@ -657,18 +692,19 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'whatlinkshere-links' => '← lias',
 
 # Block/unblock
-'blockip'           => 'Impedi usor',
-'ipbreason'         => 'Razona:',
-'ipbsubmit'         => 'Impedi esta usor',
-'ipboptions'        => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
-'blockipsuccesssub' => 'La impedi susede',
-'ipusubmit'         => 'Desimpedi esta dirije',
-'ipblocklist'       => 'Liste de usores impedida',
-'blocklink'         => 'impedi',
-'unblocklink'       => 'desimpedi',
-'contribslink'      => 'contribuis',
-'blocklogpage'      => 'impedi arcivo',
-'blocklogentry'     => 'impedida [[$1]] con un tempo de fini de $2 $3',
+'blockip'            => 'Impedi usor',
+'ipbreason'          => 'Razona:',
+'ipbsubmit'          => 'Impedi esta usor',
+'ipboptions'         => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
+'blockipsuccesssub'  => 'La impedi susede',
+'ipusubmit'          => 'Desimpedi esta dirije',
+'ipblocklist'        => 'Liste de usores impedida',
+'ipblocklist-submit' => 'Xerca',
+'blocklink'          => 'impedi',
+'unblocklink'        => 'desimpedi',
+'contribslink'       => 'contribuis',
+'blocklogpage'       => 'impedi arcivo',
+'blocklogentry'      => 'impedida [[$1]] con un tempo de fini de $2 $3',
 
 # Move page
 'move-page-legend' => 'Move paje',
@@ -752,11 +788,11 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'tooltip-t-whatlinkshere'         => 'Lista de tota pajes de vici ce lia a asi',
 'tooltip-t-contributions'         => 'Vide la lista de contribuis de esta usor',
 'tooltip-t-emailuser'             => 'Envia un eposta a esta usor',
-'tooltip-t-upload'                => 'Envia imajes o arcivos de medio',
+'tooltip-t-upload'                => 'Envia fixes',
 'tooltip-t-specialpages'          => 'Lista de tota pajes spesial',
 'tooltip-ca-nstab-user'           => 'Vide la paje de usor',
 'tooltip-ca-nstab-project'        => 'Vide la paje de la projeta',
-'tooltip-ca-nstab-image'          => 'Vide la paje de imaje',
+'tooltip-ca-nstab-image'          => 'Vide la paje de fix',
 'tooltip-ca-nstab-template'       => 'Mostra la model',
 'tooltip-ca-nstab-help'           => 'Vide la paje de aida',
 'tooltip-ca-nstab-category'       => 'Vide la paje de la categoria',
@@ -775,6 +811,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'nextdiff'     => 'Difere seguente →',
 
 # Media information
+'widthheightpage'      => '$1×$2, $3 pajes',
 'file-info-size'       => '($1 × $2 pixel, grandia de fix: $3, MIME tipo: $4)',
 'file-nohires'         => '<small>No plu densia posable.</small>',
 'svg-long-desc'        => '(SVG fix, per nom $1 × $2 pixeles, grandia de fix: $3)',
@@ -786,14 +823,16 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'ilsubmit'  => 'Xerca',
 
 # Bad image list
-'bad_image_list' => 'La forma es...
+'bad_image_list' => 'La forma es la seguente:
 
-Sola linias de un lista (ce comensa con *) es considerada. La lia prima a la linia nesesa es un lia a un mal imaje.
-Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do la imaje pote aveni enlinia.',
+Sola linias de un lista (ce comensa con *) es considerada.
+La lia prima a la linia nesesa es un lia a un mal fix.
+Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do la fix pote aveni enlinia.',
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Esta fix conteni plu informa, posable juntada de un camera dijital o un scanador usada per crea o dijiti el. Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en la image cambiada.',
+'metadata-help'     => 'Esta fix conteni plu informa, posable juntada de un camera dijital o un scanador usada per crea o dijiti el.
+Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en la fix cambiada.',
 'metadata-expand'   => 'Mostra detalias estendente',
 'metadata-collapse' => 'Asconde detalias estendeda',
 'metadata-fields'   => 'Campos de EXIF metadata listada en esta mesaje va es inclui cuando la table de metadata es minimida.
@@ -803,6 +842,9 @@ Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do
 * exposuretime
 * fnumber
 * focallength', # Do not translate list items
+
+# EXIF tags
+'exif-exposuretime-format' => '$1 sec. ($2)',
 
 # External editor support
 'edit-externally'      => 'Edita esta fix con un programa esterna',
@@ -820,5 +862,8 @@ Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do
 
 # Special:Version
 'version' => 'Varia', # Not used as normal message but as header for the special page itself
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Xerca',
 
 );

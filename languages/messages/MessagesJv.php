@@ -859,9 +859,9 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'userrights-groupsremovable'       => 'Grup sing bisa dijabel:',
 'userrights-groupsavailable'       => 'Grup sing bisa diwènèhaké:',
 'userrights-groups-help'           => 'Panjenengan bisa ngowahi grup-grup sing ana panganggoné iki.
-Kothak sing dicèk tegesé panganggo iki ana sajroné grup iku.
-Kothak sing ora dicèk tegesé panganggo iku ora ana ing grup iku.
-Tandha bintang * tegesé panjenengan ora bisa ngilangi grup iku yèn wis tau nambah, utawa sawalikané.',
+* Kothak sing dicenthang tegesé panganggo iki ana sajroné grup iku.
+* Kothak sing ora dicenthang tegesé panganggo iku ora ana ing grup iku.
+* Tandha bintang * tegesé panjenengan ora bisa ngilangi grup iku yèn wis tau nambah, utawa sawalikané.',
 'userrights-reason'                => 'Alesané ngowahi:',
 'userrights-available-none'        => 'Panjenengan ora pareng ngowahi kaanggotan kelompok.',
 'userrights-available-add'         => 'Panjenengan bisa nglebokaké panganggo ing {{PLURAL:$2|grup|grup-grup}}: $1.',

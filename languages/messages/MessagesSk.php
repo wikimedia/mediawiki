@@ -1032,9 +1032,9 @@ $2 Zoznam presmerovaní &nbsp; Hľadanie pre $3 $9',
 'userrights-groupsremovable'       => 'Odstrániteľné skupiny:',
 'userrights-groupsavailable'       => 'Dostupné skupiny:',
 'userrights-groups-help'           => 'Môžete zmeniť, v ktorých skupinách sa používateľ nachádza.
-Zaškrtnuté pole znamená, že používateľ je v skupine.
-Nezaškrtnuté pole znamená, že používateľ nie je v skupine.
-„*“ znamená, že nemôžete odstrániť skupinu, keď ste ju už pridali resp. naopak.',
+* Zaškrtnuté pole znamená, že používateľ je v skupine.
+* Nezaškrtnuté pole znamená, že používateľ nie je v skupine.
+* „*“ znamená, že nemôžete odstrániť skupinu, keď ste ju už pridali resp. naopak.',
 'userrights-reason'                => 'Dôvod zmeny:',
 'userrights-available-none'        => 'Nie ste oprávnený meniť členstvo v skupine.',
 'userrights-available-add'         => 'Môžete pridať ľubovoľného používateľa do {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',

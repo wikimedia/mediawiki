@@ -892,7 +892,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'showingresults'            => "Dưới đây là {{PLURAL:$1|'''1'''|'''$1'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'         => "Dưới đây là {{PLURAL:$3|'''1'''|'''$3'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultstotal'       => "Dưới đây là kết quả từ '''$1 - $2''' trong tổng số '''$3'''",
-'nonefound'                 => "'''Chú ý''': Tìm kiếm thường thất bại khi tìm những từ phổ biến như “thì” và “là”, những từ này không được đánh chỉ mục, hoặc bạn đã ghi nhiều từ khóa tìm kiếm (chỉ có những trang chứa tất cả các từ khóa mới xuất hiện trong kết quả).",
+'nonefound'                 => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (bầng tiếng Anh, ví dụ, Tiêu bản là Template, Thể loại là Category...).",
 'powersearch'               => 'Tìm kiếm nâng cao',
 'powersearch-legend'        => 'Tìm kiếm nâng cao',
 'powersearchtext'           => 'Tìm trong không gian tên:<br />$1<br />$2 gồm cả trang đổi hướng<br />Tìm $3 $9',
@@ -971,10 +971,10 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'userrights-groupsmember'          => 'Thuộc nhóm:',
 'userrights-groupsremovable'       => 'Các nhóm có thể xóa được:',
 'userrights-groupsavailable'       => 'Các nhóm hiện nay:',
-'userrights-groups-help'           => 'Bạn có thể xếp thành viên này vào nhóm khác.
-Hộp kiểm được đánh dấu có nghĩa rằng thành viên thuộc về nhóm đó
-Hộp không được đánh dấu có nghĩa rằng thành viên không thuộc về nhóm đó.
-Dấu * có nghĩa là bạn sẽ không thể loại thành viên ra khỏi nhóm một khi bạn đã đưa thành viên vào, hoặc ngược lại.',
+'userrights-groups-help'           => 'Bạn có thể xếp thành viên này vào nhóm khác:
+* Hộp kiểm được đánh dấu có nghĩa rằng thành viên thuộc về nhóm đó.
+* Hộp không được đánh dấu có nghĩa rằng thành viên không thuộc về nhóm đó.
+* Dấu * có nghĩa là bạn sẽ không thể loại thành viên ra khỏi nhóm một khi bạn đã đưa thành viên vào, hoặc ngược lại.',
 'userrights-reason'                => 'Lý do thay đổi:',
 'userrights-available-none'        => 'Có thể bạn không được thay đổi thành viên trong nhóm.',
 'userrights-available-add'         => 'Bạn có thể thêm thành viên vào {{PLURAL:$2|nhóm|các nhóm}}: $1.',
@@ -1030,7 +1030,7 @@ Dấu * có nghĩa là bạn sẽ không thể loại thành viên ra khỏi nh�
 'right-autoconfirmed'        => 'Sửa trang bị nửa khóa',
 'right-bot'                  => 'Được đối xử như tác vụ tự động',
 'right-nominornewtalk'       => 'Không báo về tin nhắn mới khi trang thảo luận chỉ được sửa đổi nhỏ',
-'right-apihighlimits'        => 'Sửa dụng giới hạn cao API',
+'right-apihighlimits'        => 'Sử dụng giới hạn API cao hơn',
 'right-delete'               => 'Xóa trang',
 'right-bigdelete'            => 'Xóa trang có lịch sử lớn',
 'right-deleterevision'       => 'Xóa và phục hồi phiên bản nào đó của trang',
@@ -1314,7 +1314,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 Trong số đó có các trang “thảo luận”, trang liên quan đến {{SITENAME}}, các trang “sơ khai” ngắn, và những trang khác không tính là trang có nội dung.
 Nếu không tính đến các trang đó, có {{PLURAL:$2|'''1'''|'''$2'''}} trang là những trang có nội dung tốt.
 
-Có '''$8''' đã được tải lên.
+Có '''$8''' tập tin đã được tải lên.
 
 Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
 
@@ -1644,7 +1644,7 @@ Cũng chú ý rằng các giới hạn áp dụng lên các phiên bản tập t
 Trong trường hợp đó, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất.',
 'undeletehistorynoadmin'       => 'Trang này đã bị xóa.
 Lý do xóa trang được hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này trước khi bị xóa.
-Chỉ cóngười quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
+Chỉ có người quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
 'undelete-revision'            => 'Phiên bản của $1 do $3 xóa (vào lúc $2):',
 'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
 'undelete-nodiff'              => 'Không tìm thấy phiên bản cũ hơn.',
@@ -1706,12 +1706,14 @@ $1',
 'nolinkshere-ns'           => "Không có trang nào liên kết đến '''[[:$1]]''' trong không gian tên đã chọn.",
 'isredirect'               => 'trang đổi hướng',
 'istemplate'               => 'được nhúng vào',
+'isimage'                  => 'liên kết hình',
 'whatlinkshere-prev'       => '{{PLURAL:$1|kết quả trước|$1 kết quả trước}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|kết quả sau|$1 kết quả sau}}',
 'whatlinkshere-links'      => '← liên kết',
 'whatlinkshere-hideredirs' => '$1 trang đổi hướng',
 'whatlinkshere-hidetrans'  => '$1 trang nhúng',
 'whatlinkshere-hidelinks'  => '$1 liên kết',
+'whatlinkshere-hideimages' => '$1 liên kết hình',
 'whatlinkshere-filters'    => 'Bộ lọc',
 
 # Block/unblock

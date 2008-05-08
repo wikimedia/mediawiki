@@ -844,7 +844,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'search-section'            => '(diläd: $1)',
 'search-suggest'            => 'Ediseinol-li: $1 ?',
 'search-interwiki-caption'  => 'Svistaproyegs',
-'search-interwiki-default'  => 'seks se $1:',
+'search-interwiki-default'  => 'Seks se $1:',
 'search-interwiki-more'     => '(pluikos)',
 'search-mwsuggest-enabled'  => 'sa mobs',
 'search-mwsuggest-disabled' => 'nen mobs',
@@ -935,9 +935,9 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'userrights-groupsremovable'       => 'Grups moükovik:',
 'userrights-groupsavailable'       => 'Grups gebidik:',
 'userrights-groups-help'           => 'Dalol votükön grupis, lü kels geban at duton.
-Bügil fulik sinifon, das geban duton lü grup tefik.
-Bügil vagik sinifon, das geban no duton lü grup tefik.
-El * sinifon, das no kanol moükön grupi posä iläükol oni, u güo.',
+* Bügil fulik sinifon, das geban duton lü grup tefik.
+* Bügil vagik sinifon, das geban no duton lü grup tefik.
+* El * sinifon, das no kanol moükön grupi posä iläükol oni, u güo.',
 'userrights-reason'                => 'Kod votükama:',
 'userrights-available-none'        => 'No dalol votükön grupalimanami.',
 'userrights-available-add'         => 'Dalol lüükön gebani alseimik {{PLURAL:$2|grupe|grupes}} at: $1.',

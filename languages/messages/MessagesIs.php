@@ -954,9 +954,9 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'userrights-groupsremovable'  => 'Færanlegir hópar:',
 'userrights-groupsavailable'  => 'Tiltækir flokkar:',
 'userrights-groups-help'      => 'Þú getur breytt hópunum sem að þessi notandi er í.
-Valinn reitur þýðir að notandinn er í hópnum.
-Óvalinn reitur þýðir að notandinn er ekki í hópnum.
-Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
+* Valinn reitur þýðir að notandinn er í hópnum.
+* Óvalinn reitur þýðir að notandinn er ekki í hópnum.
+* Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
 'userrights-reason'           => 'Ástæða fyrir breytingunni:',
 'userrights-available-none'   => 'Þú getur ekki breytt notendaréttindum.',
 'userrights-available-add'    => 'Þú getur bætt notendum við {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',

@@ -929,7 +929,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'search-section'            => '(secção $1)',
 'search-suggest'            => 'Será que quis dizer: $1',
 'search-interwiki-caption'  => 'Projectos irmãos',
-'search-interwiki-default'  => '$1 resultados:',
+'search-interwiki-default'  => 'Resultados de $1:',
 'search-interwiki-more'     => '(mais)',
 'search-mwsuggest-enabled'  => 'com sugestões',
 'search-mwsuggest-disabled' => 'sem sugestões',
@@ -1021,10 +1021,10 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Grupos com remoção possível:',
 'userrights-groupsavailable'       => 'Grupos disponíveis:',
-'userrights-groups-help'           => 'Pode alterar os grupos em que este utilizador se encontra.
-Uma caixa de selecção seleccionada significa que o utilizador se encontra naquele grupo.
-Uma caixa de selecção desseleccionada significa que o utilizador não se encontra naquele grupo.
-Um * indica que não pode remover o grupo após o adicionar, ou vice-versa.',
+'userrights-groups-help'           => 'Pode alterar os grupos em que este utilizador se encontra:
+* Uma caixa de selecção seleccionada significa que o utilizador se encontra no grupo.
+* Uma caixa de selecção desseleccionada significa que o utilizador não se encontra no grupo.
+* Um * indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
 'userrights-reason'                => 'Motivo de alterações:',
 'userrights-available-none'        => 'Não será possível alterar o grupo de acesso.',
 'userrights-available-add'         => 'Pode adicionar qualquer utilizador a {{PLURAL:$2|este grupo|estes grupos}}: $1',
@@ -2158,7 +2158,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 
 # Metadata
 'metadata'          => 'Metadados',
-'metadata-help'     => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizar a imagem. Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
+'metadata-help'     => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizá-lo.
+Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
 'metadata-expand'   => 'Mostrar restantes detalhes',
 'metadata-collapse' => 'Esconder detalhes restantes',
 'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.

@@ -884,9 +884,9 @@ $2 Pusapunakunata rikuchiy<br />Maskay: $3 $9",
 'userrights-groupsremovable'       => 'Qichunalla huñukuna:',
 'userrights-groupsavailable'       => 'Makihawa huñukuna:',
 'userrights-groups-help'           => 'Ima huñukunapichus kay ruraq kachkan, chaytam hukchayta atinki.
-Sananchasqa kahacha niyta munan, ruraqqa kay huñupim kachkan, nispa.
-Mana sananchasqa kahachataq niyta munan, ruraqqa manam kay huñupichu kachkan, nispa.
-<nowiki>*</nowiki> quyllurchataq niyta munan, yaparqaspaykiqa manam atinkichu huñuta qichuyta, qichurqaspaykitaq manam atinkichu yapayta, nispa.',
+* Sananchasqa kahacha niyta munan, ruraqqa kay huñupim kachkan, nispa.
+* Mana sananchasqa kahachataq niyta munan, ruraqqa manam kay huñupichu kachkan, nispa.
+* <nowiki>*</nowiki> quyllurchataq niyta munan, yaparqaspaykiqa manam atinkichu huñuta qichuyta, qichurqaspaykitaq manam atinkichu yapayta, nispa.',
 'userrights-reason'                => 'Imarayku hukchasqa:',
 'userrights-available-none'        => 'Manam saqillasunkichu ruraqpa huñunman kapuy hukchayta.',
 'userrights-available-add'         => 'Ima ruraqtapas kay {{PLURAL:$2|huñumanmi|huñukunamanmi}} yapayta atinki: $1.',

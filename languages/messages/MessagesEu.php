@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author Malafaya
  * @author Bengoa
+ * @author Kaustubh
  */
 
 $skinNames = array(
@@ -1191,6 +1192,7 @@ Laguntza:
 'deletionlog'                 => 'ezabaketa erregistroa',
 'reverted'                    => 'Lehenagoko berrikuspen batera itzuli da',
 'deletecomment'               => 'Ezabatzeko arrazoia',
+'deleteotherreason'           => 'Arrazoi gehigarria:',
 'deletereasonotherlist'       => 'Beste arrazoi bat',
 'deletereason-dropdown'       => '*Ezabatzeko ohiko arrazoiak
 ** Egileak eskatuta

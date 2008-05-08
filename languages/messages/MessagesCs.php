@@ -1142,9 +1142,9 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'userrights-groupsremovable'       => 'Odebratelné skupiny:',
 'userrights-groupsavailable'       => 'Dostupné skupiny:',
 'userrights-groups-help'           => 'Můžete měnit skupiny, do nichž je uživatel zařazen.
-Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
-Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
-Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
+* Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
+* Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
+* Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
 'userrights-reason'                => 'Zdůvodnění:',
 'userrights-available-none'        => 'Nemůžete měnit zařazení do skupin.',
 'userrights-available-add'         => 'Kteréhokoliv uživatele můžete přidat do {{PLURAL:$2|této skupiny|těchto skupin|těchto skupin}}: $1.',
@@ -2754,4 +2754,5 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'specialpages-group-users'       => 'Uživatelé a skupiny',
 'specialpages-group-needy'       => 'Stránky vyžadující úpravu',
 'specialpages-group-highuse'     => 'Často používané stránky',
+
 );

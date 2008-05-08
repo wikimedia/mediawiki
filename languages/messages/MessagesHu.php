@@ -1125,9 +1125,8 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'userrights-groupsremovable'       => 'Eltávolítható csoportok:',
 'userrights-groupsavailable'       => 'Létező csoportok:',
 'userrights-groups-help'           => 'Beállíthatod, hogy a felhasználó mely csoportokba tartozik.
-A bepipált doboz azt jelenti, hogy a felhasználó benne van a csoportban,
-az üres azt, hogy nem.
-A * az olyan csoportokat jelöli, amelyeket ha egyszer hozzáadtál, nem távolíthatod el, vagy nem adhatod hozzá.',
+* A bepipált doboz azt jelenti, hogy a felhasználó benne van a csoportban, az üres azt, hogy nem.
+* A * az olyan csoportokat jelöli, amelyeket ha egyszer hozzáadtál, nem távolíthatod el, vagy nem adhatod hozzá.',
 'userrights-reason'                => 'A változtatás indoka:',
 'userrights-available-none'        => 'A csoporttagságot nem módosíthatod.',
 'userrights-available-add'         => 'A következő {{PLURAL:$2|csoportokhoz|csoporthoz}} adhatsz hozzá felhasználókat: $1.',
@@ -2037,6 +2036,7 @@ Az átnevezés céljaként megadott „[[$1]]” szócikk már létezik.  Ha az 
 'delete_and_move_reason'  => 'átnevezendő lap célneve felszabadítva',
 'selfmove'                => 'A cikk jelenlegi címe megegyezik azzal, amire át szeretnéd mozgatni. Egy szócikket saját magára mozgatni nem lehet.',
 'immobile_namespace'      => 'A forrás- vagy a célcím speciális típusú; nem helyezetsz át lapokat abba a névtérbe vagy onnan.',
+'imagenocrossnamespace'   => 'A fájlok nem helyezhetőek át más névtérbe',
 'imagetypemismatch'       => 'Az új kiterjesztés nem egyezik meg a fájl típusával',
 
 # Export

@@ -1051,9 +1051,9 @@ $2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'userrights-groupsremovable'       => 'Groupes supprimables :',
 'userrights-groupsavailable'       => 'Groupes disponibles :',
 'userrights-groups-help'           => "Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
-Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
-Une case non cochée signifie qu'il ne s’y trouve pas.
-Une * indique que vous ne pouvez pas retirer ce groupe une fois que vous l'ayez ajouté et vice-versa.",
+* Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
+* Une case non cochée signifie qu'il ne s’y trouve pas.
+* Une * indique que vous ne pouvez pas retirer ce groupe une fois que vous l'ayez ajouté et vice-versa.",
 'userrights-reason'                => 'Motif du changement :',
 'userrights-available-none'        => 'Vous ne pouvez pas changer l’appartenance aux différents groupes.',
 'userrights-available-add'         => '* Le paramètre $1 est la liste des groupes dont un utilisateur est autorisé pour y ajouter les autres.

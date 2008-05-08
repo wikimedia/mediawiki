@@ -1054,9 +1054,9 @@ per modificar vòstras preferéncias d'utilizaire.",
 'userrights-groupsremovable'       => 'Gropes suprimibles :',
 'userrights-groupsavailable'       => 'Gropes disponibles :',
 'userrights-groups-help'           => "Podètz modificar los gropes alsquals aparten aqueste utilizaire.
-Una casa marcada significa que l'utilizaire se tròba dins aqueste grop.
-Una casa pas marcada significa, al contrari, que s’i tròba pas.
-Una * indica que podretz pas levar aqueste grop un còp que l'auretz apondut e vice-versa.",
+* Una casa marcada significa que l'utilizaire se tròba dins aqueste grop.
+* Una casa pas marcada significa, al contrari, que s’i tròba pas.
+* Una * indica que podretz pas levar aqueste grop un còp que l'auretz apondut e vice-versa.",
 'userrights-reason'                => 'Motiu del cambiament :',
 'userrights-available-none'        => 'Podètz pas cambiar l’apartenéncia als diferents gropes.',
 'userrights-available-add'         => "Podètz apondre d'utilizaires a {{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.",

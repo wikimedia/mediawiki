@@ -10,6 +10,7 @@
  * @author Siebrand
  * @author M.M.S.
  * @author Jack Phoenix
+ * @author Str4nd
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -685,10 +686,9 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'newarticle'                        => '(uusi)',
 'newarticletext'                    => 'Linkki toi sivulle, jota ei vielä ole. Voit luoda sivun kirjoittamalla alla olevaan tilaan. Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext'                  => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:Userlogin|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
-'noarticletext'                     => "<big>'''{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.'''</big>
+'noarticletext'                     => "{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.
 * Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta.
-* Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''
-* Jos olet luonut sivun tällä nimellä, se on saatettu poistaa – katso [[Special:Log/delete|poistoloki]].",
+* Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''",
 'userpage-userdoesnotexist'         => 'Käyttäjätunnusta $1 ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
 'clearyourcache'                    => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
 *'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
@@ -988,9 +988,9 @@ $1 | $2',
 'userrights-groupsremovable'       => 'Poistettavat ryhmät',
 'userrights-groupsavailable'       => 'Saatavilla olevat ryhmät',
 'userrights-groups-help'           => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on.
-Merkattu valintaruu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
-Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.
-<nowiki>*</nowiki> tarkoittaa, että et pysty kumoamaan kyseistä operaatiota.',
+* Merkattu valintaruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
+* Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.
+* <nowiki>*</nowiki> tarkoittaa, että et pysty kumoamaan kyseistä operaatiota.',
 'userrights-reason'                => 'Kommentti',
 'userrights-available-none'        => 'Et voi muuttaa ryhmäjäsenyyksiä.',
 'userrights-available-add'         => 'Voit lisätä käyttäjiä {{PLURAL:$2|ryhmään|ryhmiin}} $1.',
@@ -1065,6 +1065,7 @@ Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhm�
 'right-rollback'             => 'Palauttaa nopeasti käyttäjän viimeisimmät muokkaukset sivuun',
 'right-import'               => 'Tuoda sivuja muista wikeistä',
 'right-importupload'         => 'Tuoda sivuja tiedostosta',
+'right-patrol'               => 'Merkitse muokkaukset tarkastetuiksi',
 'right-unwatchedpages'       => 'Tarkastella listaa tarkkailemattomista sivuista',
 'right-trackback'            => 'Lähettää trackback',
 'right-mergehistory'         => 'Yhdistää sivujen historioita',

@@ -17,6 +17,7 @@
  * @author Stigmj
  * @author Kph
  * @author H92
+ * @author Jóna Þórunn
  */
 
 $skinNames = array(
@@ -903,7 +904,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'showingresults'            => "Nedenfor vises opptil {{PLURAL:$1|'''ett''' resultat|'''$1''' resultater}} fra og med nummer <b>$2</b>.",
 'showingresultsnum'         => "Nedenfor vises {{PLURAL:$3|'''ett''' resultat|'''$3''' resultater}} fra og med nummer '''$2'''.",
 'showingresultstotal'       => "Viser resultat '''$1–$2''' av '''$3''' nedenfor",
-'nonefound'                 => "'''Merk:''' Søk uten resultat skyldes ofte at man søker etter alminnelige ord som «i» eller «på», som ikke er indeksert, eller ved å spesifisere mer enn et søkeord (da kun sider som inneholder alle søkeordene blir funnet).",
+'nonefound'                 => "'''Merk:''' Som standard søkes det kun i enkelte navnerom. For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler etc.), eller bruk det ønskede navnerommet som prefiks.",
 'powersearch'               => 'Avansert søk',
 'powersearch-legend'        => 'Avansert søk',
 'powersearchtext'           => 'Søk i navnerom:<br />$1<br />$2 List opp omdirigeringer<br />Søk etter $3 $9',
@@ -984,8 +985,9 @@ se math/README for oppsett.',
 'userrights-groupsremovable'       => 'Fjernbare grupper:',
 'userrights-groupsavailable'       => 'Tilgjengelige grupper:',
 'userrights-groups-help'           => 'Du kan endre hvilke grupper denne brukeren er medlem av.
-Når en boks er merket betyr det at brukeren er medlem av den gruppen.
-En stjerne (*) betyr at du ikke kan fjerne gruppen etter at du har lagt den til, eller motsatt.',
+* En avkrysset boks indikerer at brukeren er medlem av gruppen.
+* En uavkrysset boks indikerer at brukeren ikke er medlem av gruppen.
+* En * betyr at du ikke kan fjerne gruppemedlemskapet når du har lagt det til, eller vice versa.',
 'userrights-reason'                => 'Endringsgrunn:',
 'userrights-available-none'        => 'Du kan ikke endre gruppemedlemsskaper.',
 'userrights-available-add'         => 'Du kan legge til brukere i {{PLURAL:$2|denne gruppa|disse gruppene}}: $1.',
@@ -1387,7 +1389,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'listusers'               => 'Brukerliste',
 'specialpages'            => 'Spesialsider',
 'spheading'               => 'Spesialsider for alle brukere',
-'restrictedpheading'      => 'Spesialsider for administratorer',
+'restrictedpheading'      => 'Begrensede spesialsider',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',
@@ -2195,7 +2197,7 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'exif-sharpness'                   => 'Skarphet',
 'exif-devicesettingdescription'    => 'Beskrivelse av apparatets innstilling',
 'exif-subjectdistancerange'        => 'Avstandsintervall til motiv',
-'exif-imageuniqueid'               => 'Unikk bilde-ID',
+'exif-imageuniqueid'               => 'Unik bilde-ID',
 'exif-gpsversionid'                => 'Versjon for GPS-tagger',
 'exif-gpslatituderef'              => 'nordlig eller sørlig breddegrad',
 'exif-gpslatitude'                 => 'Breddegrad',

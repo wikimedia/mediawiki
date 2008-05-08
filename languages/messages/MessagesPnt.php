@@ -256,7 +256,10 @@ $messages = array(
 'gotaccountlink'          => 'Εμπάτε',
 'badretype'               => "Τα σημάδε ντ' εγράψετεν 'κ ταιριάζνε.",
 'username'                => 'Όνεμα χρήστε:',
+'yourrealname'            => 'Πραματικόν όνεμαν:',
 'yourlanguage'            => "Τ' εσόν η γώσσαν:",
+'prefs-help-realname'     => "'Κ επρέπ' να βάλετεν τεσέτερον πραματικόν τ' όνεμαν.
+Άμα αν βάλετεν ατό, αμπορεί πα ν' αναγνωρίζκεται τεσέτερον η δουλείαν.",
 'loginerror'              => 'Σφάλμα εγγραφής',
 'loginsuccesstitle'       => "Έντον τ' εσέβεμαν",
 'loginsuccess'            => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
@@ -345,6 +348,8 @@ $messages = array(
 'recentchanges'                  => 'Υστερνά αλλαγάς',
 'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
 'rcshowhideminor'                => '$1 τα μικρά αλλαγάς',
+'rcshowhideliu'                  => '$1 χρήστες με λογαρίαν',
+'rcshowhideanons'                => '$1 αναγνώριμοι χρήστες',
 'rcshowhidemine'                 => "$1 τ' επεξεργασίων ιμ",
 'rclinks'                        => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
 'diff'                           => 'διαφορά',
@@ -373,9 +378,13 @@ $messages = array(
 'filehist-comment'    => 'Σχόλιον',
 'imagelinks'          => 'Σύνδεσμοι',
 'linkstoimage'        => "Ατά τα σελίδας δεκνίζ'νε σην εικόναν:",
+'nolinkstoimage'      => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
 
 # MIME search
 'mimesearch' => 'Αράεμαν MIME',
+
+# Unused templates
+'unusedtemplates' => "Πρότυπα ντο 'κ μεταχειρίσκουνταν",
 
 # Random page
 'randompage' => 'Τυχαίον σελίδα',
@@ -383,13 +392,18 @@ $messages = array(
 # Statistics
 'statistics' => 'Στατιστικήν',
 
+'withoutinterwiki' => "Σελίδας ντο κ' έχνε συνδέσμ",
+
 # Miscellaneous special pages
 'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμος|συνδέσμ}}',
 'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
 'lonelypages'             => 'Ορφανά σελίδας',
 'uncategorizedpages'      => "Σελίδας ντο 'κ έχνε κατηγορίαν",
 'uncategorizedcategories' => "Κατηγορίας ντο 'κ έχνε κατηγορίας",
+'uncategorizedimages'     => "Εικόνας ντο κ' έχνε κατηγορίαν",
+'uncategorizedtemplates'  => "Πρότυπα ντο κ' έχνε κατηγορίαν",
 'unusedcategories'        => 'Εύκαιρα κατηγορίας',
+'unusedimages'            => "Εικόνας ντο κ' μεταχειρίσκουνταν",
 'wantedcategories'        => 'Κατηγορίας το θέλουμε',
 'wantedpages'             => 'Σελίδας το θέλουμε',
 'mostcategories'          => "Σελίδας με τ' ασ' όλτς πολλά κατηγορίας",
@@ -457,6 +471,8 @@ $messages = array(
 'protect-default'         => '(προεπιλεγμένον)',
 'protect-summary-cascade' => 'διαδοχικόν',
 'protect-expiring'        => 'λήγει στις $1 (UTC)',
+'protect-cascade'         => "Ασπάλιγμαν σελιδίων ντ' είν απές σ' αβούτεν σελίδαν (διαδοχικόν προστασίαν)",
+'protect-cantedit'        => "'Κι έχετε δικαίωμαν ν' αλλάζετε τ' επίπεδον ασπάλιγματι τ' ατεινές σελίδας.",
 'restriction-type'        => 'Δικαίωμαν:',
 'restriction-level'       => 'Επίπεδον περιορισμού:',
 
