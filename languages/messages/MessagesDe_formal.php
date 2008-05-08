@@ -218,7 +218,7 @@ Alternativ können Sie auch den [[Special:Allpages|alphabetischen Index]] nach �
 Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“ verfassen.",
 'toomanymatches'        => 'Es Anzahl der Suchergnisse ist zu groß, bitte versuchen Sie eine andere Abfrage.',
 'search-suggest'        => 'Meinten Sie „$1“?',
-'nonefound'             => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setzen Sie ''all:'' vor Ihren Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.',
+'nonefound'             => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setzen Sie ''all:'' vor Ihren Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
