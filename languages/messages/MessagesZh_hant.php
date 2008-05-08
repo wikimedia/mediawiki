@@ -826,7 +826,7 @@ $2',
 'showingresults'            => '下面顯示從第<b>$2</b>條開始的<b>$1</b>條結果:',
 'showingresultsnum'         => '下面顯示從第<b>$2</b>條開始的<b>$3</b>條結果:',
 'showingresultstotal'       => "下面顯示從'''$1 - $2'''，總共'''$3'''項之結果",
-'nonefound'                 => '<strong>注意：</strong>失敗的搜索往往是由於試圖搜索諸如「的」或「和」之類的常見字所引起。',
+'nonefound'                 => "'''注意''': 只有一些名字空間是會作為預設搜尋。嘗試''all:''去搜尋全部的頁面（包埋討論頁面、模板等），或可用需要的名字空間作為前綴。",
 'powersearch'               => '進階搜索',
 'powersearch-legend'        => '進階搜索',
 'powersearchtext'           => '
@@ -906,10 +906,10 @@ $2',
 'userrights-groupsmember'          => '屬於:',
 'userrights-groupsremovable'       => '可移除群組:',
 'userrights-groupsavailable'       => '可用群組:',
-'userrights-groups-help'           => '您可以改動這位用戶所屬的群組。
-已剔選的核取方塊代表該用戶屬於該群組。
-未剔選的核取方塊代表該用戶不是屬於該群組。
-一個 * 表示當您加入群組之後更不能移除它，反之亦然。',
+'userrights-groups-help'           => '您可以改動這位用戶所屬的群組:
+* 已剔選的核取方塊代表該用戶屬於該群組。
+* 未剔選的核取方塊代表該用戶不是屬於該群組。
+* 一個 * 表示當您加入群組之後更不能移除它，反之亦然。',
 'userrights-reason'                => '更改原因:',
 'userrights-available-none'        => '您不可以更改組別成員。',
 'userrights-available-add'         => '您可以加入任何用戶到{{PLURAL:$2|一個|多個}}組中: $1。',

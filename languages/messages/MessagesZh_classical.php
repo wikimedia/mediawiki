@@ -743,6 +743,7 @@ $2',
 'showingresults'            => "見'''$1'''尋，自'''$2'''始：",
 'showingresultsnum'         => "見'''$3'''尋，自'''$2'''始：",
 'showingresultstotal'       => "見'''$1至$2'''共'''$3'''尋",
+'nonefound'                 => "'''注'''：部名冊預尋也。。試''all:''尋全名刪之頁（含議模等），或可用要之名冊為前綴也。",
 'powersearch'               => '尋',
 'powersearch-legend'        => '尋',
 'search-external'           => '外尋',
@@ -806,10 +807,10 @@ $2',
 'userrights-groupsmember'          => '有員：',
 'userrights-groupsremovable'       => '社可治無：',
 'userrights-groupsavailable'       => '社可治有：',
-'userrights-groups-help'           => '爾動員之社也。
-選解員之社屬。
-未選則非社屬。
-一＊即選屬後無倒之，反亦之。',
+'userrights-groups-help'           => '爾動員之社也：
+* 選解員之社屬。
+* 未選則非社屬。
+* 一＊即選屬後無倒之，反亦之。',
 'userrights-reason'                => '因：',
 'userrights-available-none'        => '爾非改組員也。',
 'userrights-available-add'         => '爾可加任簿至{{PLURAL:$2|單組|數組}}也：$1。',
