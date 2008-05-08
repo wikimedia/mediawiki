@@ -80,13 +80,13 @@ if (!defined('MEDIAWIKI')) {
 
 		if(isset($this->prop['groups'])) {
 			$ug = $db->tableName('user_groups');
-			$tables = "$tables LEFT JOIN $ug ON `ug_user`=`u1`.`user_id`";
+			$tables = "$tables LEFT JOIN $ug ON ug_user=u1.user_id";
 			$this->addFields('ug_group');
 		}
 		if(isset($this->prop['blockinfo'])) {
 			$ipb = $db->tableName('ipblocks');
-			$tables = "$tables LEFT JOIN $ipb ON `ipb_user`=`u1`.`user_id`";
-			$tables = "$tables LEFT JOIN $userTable AS u2 ON `ipb_by`=`u2`.`user_id`";
+			$tables = "$tables LEFT JOIN $ipb ON ipb_user=u1.user_id";
+			$tables = "$tables LEFT JOIN $userTable AS u2 ON ipb_by=u2.user_id";
 			$this->addFields(array('ipb_reason', 'u2.user_name AS blocker_name'));
 		}
 		$this->addTables($tables);
