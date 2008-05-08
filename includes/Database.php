@@ -1668,7 +1668,7 @@ class Database {
 		if( !is_numeric($limit) ) {
 			throw new DBUnexpectedError( $this, "Invalid non-numeric limit passed to limitResult()\n" );
 		}
-		return " $sql LIMIT "
+		return "$sql LIMIT "
 				. ( (is_numeric($offset) && $offset != 0) ? "{$offset}," : "" )
 				. "{$limit} ";
 	}
