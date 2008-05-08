@@ -137,9 +137,7 @@ class DatabaseSqlite extends Database {
 	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
 	 */
 	function tableName($name) {
-		$t = parent::tableName($name);
-		if (!empty($t)) $t = substr($t,1,-1);
-		return $t;
+		return str_replace('`','',parent::tableName($name));
 	}
 
 	/**
