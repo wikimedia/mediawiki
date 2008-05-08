@@ -967,9 +967,9 @@ Sich no: $3 $9',
 'userrights-groupsremovable'       => 'Gruppen déi geläscht kënne ginn:',
 'userrights-groupsavailable'       => "Et ginn d'Gruppen:",
 'userrights-groups-help'           => "Dir kënnt d'Gruppen zu denen dëse Benutzer gehéiert änneren. 
-Een ugekräizten Haischen bedeit, datt de Benotzer Member vun dësem Grupp ass.
-Een ugekräizten Haischen bedeit, datt de Benotzer net Member vun dësem Grupp ass.
-E * bedeit datt Dir de Grupp net méi ewech huele kënnt wann e bis eemol derbäigesat ass oder gouf.",
+* Een ugekräizten Haischen bedeit, datt de Benotzer Member vun dësem Grupp ass.
+* Een ugekräizten Haischen bedeit, datt de Benotzer net Member vun dësem Grupp ass.
+* E * bedeit datt Dir de Grupp net méi ewech huele kënnt wann e bis eemol derbäigesat ass oder gouf.",
 'userrights-reason'                => 'Grond:',
 'userrights-available-none'        => 'Dir däerft keng Benotzerrechter änneren.',
 'userrights-available-add'         => 'Dir kënnt Benotzer an {{PLURAL:$2|dëse Grupp|dës Grupppen}} derbäisetzen: $1.',

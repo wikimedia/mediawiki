@@ -1743,8 +1743,8 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'spamprotectiontext'  => "Mae'r dudalen wedi methu cadw, yn fwy na thebyg oherwydd bod cysylltiad allanol ar y dudalen wedi'i flocio gan yr hidlydd sbam.
 
 Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
-'spamprotectionmatch' => 'Dyma beth gychwynnodd ein hidlydd amddiffyn rhag sbam: $1',
-'spambot_username'    => 'Teclyn clirio sbam MediaWici',
+'spamprotectionmatch' => "Dyma'r hyn gychwynnodd ein hidlydd amddiffyn rhag sbam: $1",
+'spambot_username'    => 'Teclyn clirio sbam MediaWiki',
 'spam_reverting'      => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
 'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
 

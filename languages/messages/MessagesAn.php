@@ -967,9 +967,9 @@ Mirar $3 $9',
 'userrights-groupsremovable'       => 'Collas sacables:',
 'userrights-groupsavailable'       => 'Collas disponibles:',
 'userrights-groups-help'           => "Puede cambiar as collas an que bi ye iste usuario.
-Un caxa siñalata sinnifica que l'usuario bi ye en ixa colla.
-Una caxa no siñalata sinnifica que l'usuario no ye en ixa colla.
-Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa.",
+* Un caxa siñalata sinnifica que l'usuario bi ye en ixa colla.
+* Una caxa no siñalata sinnifica que l'usuario no ye en ixa colla.
+* Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa.",
 'userrights-reason'                => 'Razón ta o cambeo:',
 'userrights-available-none'        => "No puede cambiar a pertenenzia á las collas d'usuarios.",
 'userrights-available-add'         => 'Puede adibir cualsiquier usuario ta {{PLURAL:$2|ista colla|istas collas}}: $1.',

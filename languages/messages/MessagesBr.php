@@ -911,9 +911,9 @@ $2 Lakaat ivez ar pajennoù adkas &nbsp; Klask $3 $9',
 'userrights-groupsremovable'       => "Strolladoù a c'haller diverkañ :",
 'userrights-groupsavailable'       => 'Strolladoù zo :',
 'userrights-groups-help'           => "Cheñch strollad an implijer a c'hallit ober.
-Ul log asket a verk emañ an implijer er strollad.
-Ul log diask a verk n'emañ ket an implijer er strollad.
-Ur * a verk n'hallit ket dilemel ar strollad ur wech bet ouzhpennet, pe ar c'hontrol.",
+* Ul log asket a verk emañ an implijer er strollad.
+* Ul log diask a verk n'emañ ket an implijer er strollad.
+* Ur * a verk n'hallit ket dilemel ar strollad ur wech bet ouzhpennet, pe ar c'hontrol.",
 'userrights-reason'                => 'Abeg kemmañ :',
 'userrights-available-none'        => "N'hallit ket cheñch roll perzhidi ar strollad",
 'userrights-available-add'         => "Gallout a rit ouzhpennañ implijerien d'ar {{PLURAL:$2|strolladoù-mañ|strollad-mañ}} : $1.",

@@ -1012,7 +1012,7 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'search-section'            => '(sekcja $1)',
 'search-suggest'            => 'Czy chodziło Ci o: $1',
 'search-interwiki-caption'  => 'Projekty siostrzane',
-'search-interwiki-default'  => '$1 {{PLURAL:$1|wynik|wyniki|wyników}}:',
+'search-interwiki-default'  => 'Wyniki dla $1:',
 'search-interwiki-more'     => '(więcej)',
 'search-mwsuggest-enabled'  => 'z dynamicznymi propozycjami',
 'search-mwsuggest-disabled' => 'bez dynamicznych propozycji',
@@ -1106,10 +1106,10 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'userrights-groupsmember'          => 'Należy do:',
 'userrights-groupsremovable'       => 'Usuwalny z grup:',
 'userrights-groupsavailable'       => 'Dostępne grupy:',
-'userrights-groups-help'           => 'Możesz modyfikować przynależność tego użytkownika do podanych grup.
-Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
-Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
-Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
+'userrights-groups-help'           => 'Możesz zmienić przynależność tego użytkownika do podanych grup:
+* Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
+* Nie zaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
+* Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
 'userrights-reason'                => 'Powód zmiany',
 'userrights-available-none'        => 'Nie możesz zmieniać przynależności do grup.',
 'userrights-available-add'         => 'Możesz dodać dowolnego użytkownika do {{PLURAL:$2|grupy|grup}}: $1.',
@@ -1883,12 +1883,14 @@ $1',
 'nolinkshere-ns'           => "Żadna strona nie odwołuje się do '''[[:$1]]''' w wybranej przestrzeni nazw.",
 'isredirect'               => 'strona przekierowująca',
 'istemplate'               => 'dołączony szablon',
+'isimage'                  => 'odnośnik z grafiki',
 'whatlinkshere-prev'       => '{{PLURAL:$1|poprzednie|poprzednie $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|następne|następne $1}}',
 'whatlinkshere-links'      => '← linkujące',
-'whatlinkshere-hideredirs' => '$1 {{PLURAL:$1|przekierowanie|przekierowania|przekierowań}}',
-'whatlinkshere-hidetrans'  => '$1 {{PLURAL:$1|dołączenie|dołączenia|dołączeń}}',
-'whatlinkshere-hidelinks'  => '$1 {{PLURAL:$1|link|linki|linków}}',
+'whatlinkshere-hideredirs' => '$1 przekierowania',
+'whatlinkshere-hidetrans'  => '$1 dołączenia',
+'whatlinkshere-hidelinks'  => '$1 linki',
+'whatlinkshere-hideimages' => '$1 linki z grafik',
 'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock
@@ -1922,6 +1924,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbotheroption'              => 'inny',
 'ipbotherreason'              => 'Inne uzasadnienie',
 'ipbhidename'                 => 'Ukryj nazwę użytkownika/adres IP w rejestrze blokad, na liście aktywnych blokad i liście użytkowników',
+'ipbwatchuser'                => 'Obserwuj stronę osobistą i dyskusji tego użytkownika',
 'badipaddress'                => 'Niepoprawny adres IP',
 'blockipsuccesssub'           => 'Zablokowanie powiodło się',
 'blockipsuccesstext'          => 'Użytkownik [[Special:Contributions/$1|$1]] został zablokowany.<br />

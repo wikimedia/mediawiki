@@ -930,9 +930,9 @@ za podešavanje suradničkih postavki.',
 'userrights-groupsremovable'       => 'Uklonjive grupe:',
 'userrights-groupsavailable'       => 'Dostupne skupine:',
 'userrights-groups-help'           => 'Možete promjeniti skupine za ovog suradnika.
-Označena kućica pokazuje da suradnik pripada skupini.
-Neoznačena kućica pokazuje da suradnik ne pripada skupini.
-Zvjezdica * označava da ne možete ukloniti skupinu kad ju jednom dodate, ili obratno.',
+* Označena kućica pokazuje da suradnik pripada skupini.
+* Neoznačena kućica pokazuje da suradnik ne pripada skupini.
+* Zvjezdica * označava da ne možete ukloniti skupinu kad ju jednom dodate, ili obratno.',
 'userrights-reason'                => 'Razlog za promjenu:',
 'userrights-available-none'        => 'Ne možete mijenjati prava grupe.',
 'userrights-available-add'         => 'Možete dodavati suradnike {{PLURAL:$2|grupi|grupama}}: $1.',
@@ -1695,6 +1695,7 @@ vandalizirane).',
 'ipbotheroption'              => 'drugo',
 'ipbotherreason'              => 'Drugi/dodatni razlog:',
 'ipbhidename'                 => 'Sakrij suradničko ime iz evidencije blokiranja, popisa blokiranja i popisa suradnika',
+'ipbwatchuser'                => 'Prati suradničku stranicu i stranicu za razgovor ovog suradnika',
 'badipaddress'                => 'Nevaljana IP adresa.',
 'blockipsuccesssub'           => 'Uspješno blokirano',
 'blockipsuccesstext'          => 'Suradnik [[{{ns:special}}:Contributions/$1|$1]] je blokiran.

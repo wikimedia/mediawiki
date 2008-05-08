@@ -1006,7 +1006,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'showingresults'            => "Nedan visas upp till '''$1''' resultat från och med nummer #'''$2'''.",
 'showingresultsnum'         => "Nedan visas '''$3''' resultat från och med #'''$2'''.",
 'showingresultstotal'       => "Nedan visas resultat '''$1 - $2''' av '''$3'''",
-'nonefound'                 => '<strong>Observera:</strong>: Sökningar utan träffar beror ofta på att man försöker söka efter vanliga ord som "har" och "från", dessa ord indexeras inte och fungerar inte som söktermer. En annan orsak kan vara att du söker på flera ord, då visas bara sidor som innehåller alla orden bland sökresultaten.',
+'nonefound'                 => "'''Observera:''' Som standard sker sökning endast i vissa namnrymder. Du kan pröva att skriva ''all:'' i början av din sökning om du vill söka i alla sidor (inklusive diskussionssidor, mallar, m.m.), eller så kan du att börja din sökning med namnet på den namnrymd du vill söka i.",
 'powersearch'               => 'Sök',
 'powersearch-legend'        => 'Avancerad sökning',
 'powersearchtext'           => 'Sök i namnrymderna :<br />
@@ -1090,9 +1090,9 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'userrights-groupsremovable'       => 'Grupper som kan tas bort:',
 'userrights-groupsavailable'       => 'Tillgängliga grupper:',
 'userrights-groups-help'           => 'Du kan ändra vilka grupper denna användare är medlem i.
-En ikryssad ruta betyder användaren är medlem i den gruppen.
-En okryssad ruta betyder att användaren inte är medlem i den gruppen.
-En * markerar att du inte kan ta bort gruppen när du har lagt till den, eller vice versa.',
+* En ikryssad ruta betyder användaren är medlem i den gruppen.
+* En okryssad ruta betyder att användaren inte är medlem i den gruppen.
+* En asterisk (*) markerar att du inte kan ta bort gruppen när du har lagt till den, eller vice versa.',
 'userrights-reason'                => 'Anledning till ändringen:',
 'userrights-available-none'        => 'Du kan inte ändra några grupptillhörigheter.',
 'userrights-available-add'         => 'Du kan lägga till användare i {{PLURAL:$2|denna grupp|dessa grupper}}: $1.',

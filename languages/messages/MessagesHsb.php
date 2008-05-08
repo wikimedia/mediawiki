@@ -964,9 +964,9 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'userrights-groupsremovable'       => 'Wotstronjomne skupiny:',
 'userrights-groupsavailable'       => 'K dispoziciji stejace skupiny:',
 'userrights-groups-help'           => 'Móžeš skupiny změnić, w kotrychž wužiwar je.
-Markěrowany kašćik woznamjenja, zo wužiwar je w tej skupinje.
-Njemarkěrowany kašćik woznamjenja, zo wužiwar w tej skupinje njeje.
-"*" podawa, zo njemóžeš skupinu wotstronić, tak ruče kaž sy ju přidał abo nawopak.',
+* Markěrowany kašćik woznamjenja, zo wužiwar je w tej skupinje.
+* Njemarkěrowany kašćik woznamjenja, zo wužiwar w tej skupinje njeje.
+* "*" podawa, zo njemóžeš skupinu wotstronić, tak ruče kaž sy ju přidał abo nawopak.',
 'userrights-reason'                => 'Přičina:',
 'userrights-available-none'        => 'Njesměš wužiwarske prawa změnić.',
 'userrights-available-add'         => 'Móžeš wužiwarja k {{PLURAL:$2|tutej skupinje|tutymaj skupinomaj|tutym skupinam|tutym skupinam}} přidać: $1.',
@@ -1721,12 +1721,14 @@ $1',
 'nolinkshere-ns'           => "Žane strony njewotkazuja na '''[[:$1]]''' we wubranym mjenowym rumje.",
 'isredirect'               => 'daleposrědkowanje',
 'istemplate'               => 'zapřijeće předłohi',
+'isimage'                  => 'wobrazowy wotkaz',
 'whatlinkshere-prev'       => '{{PLURAL:$1|předchadny|předchadnej|předchadne|předchadne $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|přichodny|přichodnej|přichodne|přichodne $1}}',
 'whatlinkshere-links'      => '← wotkazy',
 'whatlinkshere-hideredirs' => 'Daleposrědkowanja $1',
-'whatlinkshere-hidetrans'  => 'Zapołoženki předłohow $1',
+'whatlinkshere-hidetrans'  => 'Zapřijeća $1',
 'whatlinkshere-hidelinks'  => 'Wotkazy $1',
+'whatlinkshere-hideimages' => 'wobrazowe wotkazy $1',
 'whatlinkshere-filters'    => 'Filtry',
 
 # Block/unblock

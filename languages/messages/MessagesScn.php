@@ -926,8 +926,9 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'userrights-groupsremovable'       => 'Gruppi eliminabili:',
 'userrights-groupsavailable'       => 'Gruppi dispunìbbili:',
 'userrights-groups-help'           => "È pussibili canciari li gruppi cui è assegnatu l'utenti.
-Na casedda di spunta silizzionata ndica l'appartinenza dill'utenti ô gruppu; na casedda di spunta nun silizzionata ndica la sou mancata appartinenza ô gruppu.
-Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avirla junciuta (o vici versa).",
+* Na casedda di spunta silizzionata ndica l'appartinenza dill'utenti ô gruppu
+* Na casedda di spunta nun silizzionata ndica la sou mancata appartinenza ô gruppu.
+* Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avirla junciuta (o vici versa).",
 'userrights-reason'                => 'Mutivu dû canciu:',
 'userrights-available-none'        => "Nun è cunzintitu canciari l'appartinenza a li gruppi.",
 'userrights-available-add'         => "Poi assuciari l'utenti {{PLURAL:$2|a lu gruppu|a li gruppi}}: $1.",

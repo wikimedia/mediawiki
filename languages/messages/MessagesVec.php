@@ -812,7 +812,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'showingresults'            => "Qua de soto vien mostrà al massimo {{PLURAL:$1|'''1''' risultato|'''$1''' risultati}} a partir dal nùmaro '''$2'''.",
 'showingresultsnum'         => "Qua soto ghe xe {{PLURAL:$3|'''1''' risultato|'''$3''' risultati}} a partir da #'''$2'''.",
 'showingresultstotal'       => "De seguito vien mostrà i risultati da '''$1''' a '''$2''' su un totale de '''$3'''",
-'nonefound'                 => "'''Ocio''': la riçerca de parole massa comuni, come \"in\" o \"da\", che no le xe sono indicizà, la pol causare un esito negativo, così come indicar più de un termine da çercar (solo le pagine che contegna tuti i termini riçercai la vegnarìa fate védar fra i risultati).",
+'nonefound'                 => "'''Ocio''': la riçerca la vien fata in automatico solo in çerti namespace. Se te voli sercar tra tuti i contenuti (conprese pagine de discussion, template, etc.) zónteghe ''all:'' davanti al testo che te serchi, o senò specifica el namespace in cui sercar.",
 'powersearch'               => 'Riçerca avansada',
 'powersearch-legend'        => 'Riçerca avanzada',
 'powersearchtext'           => 'Çerca fra i canpi :<br />
@@ -895,8 +895,9 @@ par poder personalixare le to preferense.',
 'userrights-groupsremovable'       => 'Grupi eliminabili:',
 'userrights-groupsavailable'       => 'Grupi disponibili:',
 'userrights-groups-help'           => "Se pol modificar i grupi a cui l'utente l'è assegnà.
-Na casela de spunta selezionà la indica l'apartenenza de l'utente al grupo; na casela de spunta deselezionà la indica la so mancata apartenenza al grupo.
-N'asterisco (*) l'indica che no te pol cavar un utente da un grupo na olta che te l'è zontà, o viceversa.",
+* Na casela de spunta selezionà la indica l'apartenenza de l'utente al grupo.
+* Na casela de spunta deselezionà la indica la so mancata apartenenza al grupo.
+* N'asterisco (*) l'indica che no te pol cavar un utente da un grupo na olta che te l'è zontà, o viceversa.",
 'userrights-reason'                => 'Motivo de la modifica:',
 'userrights-available-none'        => "No se pol modificar l'apartenenza ai grupi.",
 'userrights-available-add'         => 'Se pol associar i utenti {{PLURAL:$2|al grupo|ai grupi}}: $1.',
@@ -1603,12 +1604,14 @@ $1',
 'nolinkshere-ns'           => "No ghe xe pagine che punta a '''[[:$1]]''' nel namespace selezionà.",
 'isredirect'               => 'pagina de reindirizamento',
 'istemplate'               => 'inclusion',
+'isimage'                  => 'colegamento a imagine',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedenti $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sucessivo|sucessivi $1}}',
 'whatlinkshere-links'      => '← colegamenti',
 'whatlinkshere-hideredirs' => '$1 i redirect',
 'whatlinkshere-hidetrans'  => '$1 le inclusion',
 'whatlinkshere-hidelinks'  => '$1 i colegamenti',
+'whatlinkshere-hideimages' => '$1 colegamenti a imagini',
 'whatlinkshere-filters'    => 'Filtri',
 
 # Block/unblock

@@ -895,9 +895,9 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'userrights-groupsremovable'       => 'Verwiederbare groepe:',
 'userrights-groupsavailable'       => 'Besjikbare gruup:',
 'userrights-groups-help'           => 'Doe kans de gruup wiezige wo deze gebroeker lid van is.
-Een aangekruusd vinkvakje beteikent det de gebroeker lid is van de groep.
-Een neet aangekruusd vinkvakje beteikent det de gebroeker gein lid is van de groep.
-Een "*" beteikent detse \'ne gebroeker neet oet \'ne groep kans verwiederen naodetse die höbs toegevoeg, of vice versa.',
+* Een aangekruusd vinkvakje beteikent det de gebroeker lid is van de groep.
+* Een neet aangekruusd vinkvakje beteikent det de gebroeker gein lid is van de groep.
+* Een "*" beteikent detse \'ne gebroeker neet oet \'ne groep kans verwiederen naodetse die höbs toegevoeg, of vice versa.',
 'userrights-reason'                => "Reje veur 't verangere:",
 'userrights-available-none'        => 'Doe moogs gein gebroekersrechte verangere.',
 'userrights-available-add'         => 'Doe kins gebroekers toevoege aan {{PLURAL:$2|deze groep|dees gruup}}: $1.',
@@ -1608,12 +1608,14 @@ $1",
 'nolinkshere-ns'           => "Geine inkele pazjena link nao '''[[:$1]]''' in de gekaoze naamruumde.",
 'isredirect'               => 'redirect pazjena',
 'istemplate'               => 'ingevoeg es sjabloon',
+'isimage'                  => 'bestandjslink',
 'whatlinkshere-prev'       => '{{PLURAL:$1|vörge|vörge $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links'      => '← links daonao',
 'whatlinkshere-hideredirs' => '$1 redirects',
 'whatlinkshere-hidetrans'  => '$1 transclusies',
 'whatlinkshere-hidelinks'  => '$1 links',
+'whatlinkshere-hideimages' => '$1 bestandjslinker',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock

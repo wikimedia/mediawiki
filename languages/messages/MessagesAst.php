@@ -924,9 +924,9 @@ resultáu les páxines que contengan tolos términos de la busca).",
 'userrights-groupsremovable'       => "Grupos d'onde pue ser elimináu:",
 'userrights-groupsavailable'       => 'Grupos disponibles:',
 'userrights-groups-help'           => "Pues camudar los grupos a los que pertenez esti usuariu.
-Un caxellu marcáu significa que l'usuariu ta nesi grupu.
-Un caxellu non marcáu significa que l'usuariu nun ta nesi grupu.
-Un * indica que nun pues eliminalu del grupu una vegada tea inxeríu, o viceversa.",
+* Un caxellu marcáu significa que l'usuariu ta nesi grupu.
+* Un caxellu non marcáu significa que l'usuariu nun ta nesi grupu.
+* Un * indica que nun pues eliminalu del grupu una vegada tea inxeríu, o viceversa.",
 'userrights-reason'                => 'Motivu del cambéu:',
 'userrights-available-none'        => 'Nun pues modificar la pertenencia a un grupu.',
 'userrights-available-add'         => 'Pues añader cualesquier usuariu a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
@@ -2524,4 +2524,5 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'specialpages-group-users'       => 'Usuarios y drechos',
 'specialpages-group-needy'       => 'Páxines que necesiten ameyoramientu',
 'specialpages-group-highuse'     => 'Páxines mui usaes',
+
 );

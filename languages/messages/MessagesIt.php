@@ -984,8 +984,9 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-groupsremovable'       => 'Gruppi eliminabili:',
 'userrights-groupsavailable'       => 'Gruppi disponibili:',
 'userrights-groups-help'           => "È possibile modificare i gruppi cui è assegnato l'utente.
-Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo; una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.
-Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o vice versa).",
+* Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo
+* Una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.
+* Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o vice versa).",
 'userrights-reason'                => 'Motivo della modifica:',
 'userrights-available-none'        => "Non è consentito modificare l'appartenenza ai gruppi.",
 'userrights-available-add'         => 'È possibile associare gli utenti {{PLURAL:$2|al gruppo|ai gruppi}}: $1.',

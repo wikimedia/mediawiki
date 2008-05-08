@@ -907,10 +907,10 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'userrights-groupsmember'          => 'Membro de:',
 'userrights-groupsremovable'       => 'Grupos eliminábeis:',
 'userrights-groupsavailable'       => 'Grupos dispoñíbeis:',
-'userrights-groups-help'           => 'Pode cambiar os grupos aos que o usuario pertence.
-Se a caixa ten un sinal (✓) significa que o usuario pertence a ese grupo.
-Se pola contra non o ten, significa que non pertence.
-Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.',
+'userrights-groups-help'           => 'Pode cambiar os grupos aos que o usuario pertence:
+* Se a caixa ten un sinal (✓) significa que o usuario pertence a ese grupo.
+* Se, pola contra, non o ten, significa que non pertence.
+* Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.',
 'userrights-reason'                => 'Razón para a modificación:',
 'userrights-available-none'        => 'Non pode mudar a pertenza ao grupo.',
 'userrights-available-add'         => 'Pode engadir calquera usuario a {{PLURAL:$2|este grupo|estes grupos}}: $1.',

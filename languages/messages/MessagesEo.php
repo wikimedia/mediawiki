@@ -665,7 +665,7 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'recreate-deleted-warn'             => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
 
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
-Jen la loglibro de forigoj por via oportuno:",
+Jen la protokolo de forigoj por via oportuno:",
 'expensive-parserfunction-warning'  => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
 
 Ĝi havu malpli ol $2, sed nun estas $1.',
@@ -684,7 +684,7 @@ Jen la loglibro de forigoj por via oportuno:",
 La kialo donata de $3 estas ''$2''.",
 
 # History pages
-'viewpagelogs'        => 'Vidu la loglibrojn por tiu ĉi paĝo',
+'viewpagelogs'        => 'Rigardi la protokolojn por tiu ĉi paĝo',
 'nohistory'           => 'Ne ekzistas historio de redaktoj por ĉi tiu paĝo.',
 'revnotfound'         => 'Ne ekzistas malnova versio de la artikolo',
 'revnotfoundtext'     => 'Ne eblis trovi malnovan version de la artikolo kiun vi petis.
@@ -927,9 +927,9 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-groupsremovable'       => 'Forigeblaj grupoj:',
 'userrights-groupsavailable'       => 'Disponeblaj grupoj:',
 'userrights-groups-help'           => 'Vi povas modifi la grupojn kiun ĉi uzanto enestas.
-Markita markbutono signifas ke la uzanto estas en tiu grupo.
-Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.
-Steleto (*) signifas ke vi ne povas forigi la grupon post vi aldonis ĝin, aŭ male.',
+* Markita markbutono signifas ke la uzanto estas en tiu grupo.
+* Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.
+* Steleto (*) signifas ke vi ne povas forigi la grupon post vi aldonis ĝin, aŭ male.',
 'userrights-reason'                => 'Kialo por ŝanĝo:',
 'userrights-available-none'        => 'Vi ne eblas ŝanĝi membrecon de grupoj.',
 'userrights-available-add'         => 'Vi povas aldoni iujn ajn uzantojn al {{PLURAL:$2|ĉi tiu grupo|ĉi tiuj grupoj}}: $1.',
@@ -1018,7 +1018,7 @@ Steleto (*) signifas ke vi ne povas forigi la grupon post vi aldonis ĝin, aŭ m
 'right-siteadmin'            => 'Ŝlosu kaj malŝlosu la datumbazo',
 
 # User rights log
-'rightslog'      => 'Loglibro de uzanto-rajtoj',
+'rightslog'      => 'Protokolo de uzanto-rajtoj',
 'rightslogtext'  => 'Ĉi tio estas loglibro pri la ŝanĝoj de uzantorajtoj.',
 'rightslogentry' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
 'rightsnone'     => '(nenia)',
@@ -1080,7 +1080,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'upload-preferred'            => 'Preferitaj dosiertipoj: $1.',
 'upload-prohibited'           => 'Malpermesitaj dosiero-tipoj: $1.',
 'uploadlog'                   => 'loglibro de alŝutaĵoj',
-'uploadlogpage'               => 'Loglibro de alŝutaĵoj',
+'uploadlogpage'               => 'Protokolo de alŝutoj',
 'uploadlogpagetext'           => 'Jen la plej laste alŝutitaj dosieroj.
 Ĉiuj tempoj montriĝas laŭ la horzono UTC.',
 'filename'                    => 'Dosiernomo',
@@ -1352,8 +1352,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 # Special:Log
 'specialloguserlabel'  => 'Uzanto:',
 'speciallogtitlelabel' => 'Titolo:',
-'log'                  => 'Loglibroj',
-'all-logs-page'        => 'Ĉiuj loglibroj',
+'log'                  => 'Protokoloj',
+'all-logs-page'        => 'Ĉiuj protokoloj',
 'log-search-legend'    => 'Serĉu loglibrojn',
 'log-search-submit'    => 'Ek',
 'alllogstext'          => 'Suma kompilaĵo de ĉiuj alŝutoj, forigoj, protektoj, blokadoj kaj agoj de administrantoj. Vi povas pliprecizigi la kompilaĵon laŭ loglibra tipo, **** vikipediista **** nomo aŭ koncernita paĝo.',
@@ -1497,7 +1497,7 @@ Reagoj kaj plia helpo :
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletedarticle'              => 'forigis "$1"',
 'suppressedarticle'           => '"[[$1]]" estas subigita',
-'dellogpage'                  => 'Loglibro de forigoj',
+'dellogpage'                  => 'Protokolo de forigoj',
 'dellogpagetext'              => 'Jen listo de la plej lastaj forigoj el la datumaro.
 Ĉiuj tempoj sekvas la horzonon UTC.',
 'deletionlog'                 => 'loglibro de forigoj',
@@ -1524,7 +1524,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'sessionfailure'              => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
-'protectlogpage'              => 'Protektloglibro',
+'protectlogpage'              => 'Protokolo de protektoj',
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
 Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj.',
 'protectedarticle'            => 'protektita [[:$1]]',
@@ -1629,7 +1629,7 @@ $1',
 
 'sp-contributions-newbies'     => 'Montru kontribuojn nur de novaj kontoj',
 'sp-contributions-newbies-sub' => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
-'sp-contributions-blocklog'    => 'Blokada loglibro',
+'sp-contributions-blocklog'    => 'Protokolo de forbaroj',
 'sp-contributions-search'      => 'Serĉado de kontribuoj',
 'sp-contributions-username'    => 'IP-adreso aŭ uzantonomo:',
 'sp-contributions-submit'      => 'Serĉu',
@@ -1644,12 +1644,14 @@ $1',
 'nolinkshere-ns'           => "Neniuj paĝoj ligas al '''[[:$1]]''' en la elektita nomspaco.",
 'isredirect'               => 'alidirekto',
 'istemplate'               => 'inkludo',
+'isimage'                  => 'ligilo al bildo',
 'whatlinkshere-prev'       => '{{PLURAL:$1|antaŭa|antaŭa $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|posta|posta $1}}',
 'whatlinkshere-links'      => '← ligiloj',
 'whatlinkshere-hideredirs' => '$1 alidirektiloj',
 'whatlinkshere-hidetrans'  => '$1 transinkluzivaĵoj',
 'whatlinkshere-hidelinks'  => '$1 ligiloj',
+'whatlinkshere-hideimages' => '$1 ligiloj al bildo',
 'whatlinkshere-filters'    => 'Filtriloj',
 
 # Block/unblock
@@ -1711,7 +1713,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'unblocklink'                 => 'malforbaru',
 'contribslink'                => 'kontribuoj',
 'autoblocker'                 => 'Provizore forbarita aŭtomate pro tio, ke vi uzas la saman IP-adreson kiel "$1", kiu estis forbarita pro : "$2".',
-'blocklogpage'                => 'Forbarlibro',
+'blocklogpage'                => 'Protokolo de forbaroj',
 'blocklogentry'               => 'forbaris [[$1]] por daŭro de $2 $3',
 'blocklogtext'                => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry'             => '$1 estis malbarita',
@@ -1806,7 +1808,7 @@ Bonvolu permane kunigi ilin.',
 'talkpagenotmoved'        => 'La diskutpaĝo <strong>ne</strong> estas movita.',
 '1movedto2'               => '[[$1]] movita al [[$2]]',
 '1movedto2_redir'         => '[[$1]] movita al [[$2]], redirekto lasita',
-'movelogpage'             => 'Loglibro de paĝmovoj',
+'movelogpage'             => 'Protokolo de paĝmovoj',
 'movelogpagetext'         => 'Jen listo de movitaj paĝoj',
 'movereason'              => 'Kialo:',
 'revertmove'              => 'restarigu',
@@ -1883,7 +1885,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'xml-error-string'           => '$1 ĉe linio $2, kolumno $3 (bitiko $4): $5',
 
 # Import log
-'importlogpage'                    => 'Loglibro de importaĵoj',
+'importlogpage'                    => 'Protokolo de importoj',
 'importlogpagetext'                => 'Administrantecaj importoj de paĝoj kun redakto-historio de aliaj vikioj.',
 'import-logentry-upload'           => 'importita [[$1]] de dosiera alŝuto',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizio|revizioj}}',

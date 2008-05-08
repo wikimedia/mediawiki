@@ -17,6 +17,7 @@ $messages = array(
 'tog-hideminor'            => "Nå'na' i mandikike' na tinilaika siha gi påhinan tinilaika gi halacha",
 'tog-extendwatchlist'      => "Na'ladångkolu i listan pinilan para u na'annok i manaplikayon na tinilaika siha",
 'tog-usenewrc'             => "I manmana'lamaolek na tinilaika (JavaScript)",
+'tog-showtoc'              => "Na'annok i fañodda'an (annai guåha mas ki 3 na titulo gi påhina)",
 'tog-rememberpassword'     => 'Hasso iyo-ku login gi este na komputadora.',
 'tog-watchcreations'       => "Po'lo i påhina siha ni fina'tinas-hu gi iyo-ku listan pinilan.",
 'tog-watchdefault'         => "Po'lo i påhina siha ni hu tulaika gi iyo-ku listan pinilan.",
@@ -31,6 +32,7 @@ $messages = array(
 'tog-enotifrevealaddr'     => "Na'annok iyo-ku e-mail address gi notifikasion e-mail.",
 'tog-shownumberswatching'  => "Na'annok i numirun muna'sesetbi siha ni mana'atan.",
 'tog-showjumplinks'        => "Na'sedi i ina'chetton ni \"ta'yoki guatu\"",
+'tog-forceeditsummary'     => "Na'tungo' yu' annai mamo'lu yu' summaria gueku",
 'tog-watchlisthideown'     => "Nå'na' tinilaika-hu gi listan pinilan",
 'tog-watchlisthidebots'    => "Nå'na' i tinilaikan bot gi listan pinilan",
 'tog-watchlisthideminor'   => "Nå'na' i mandikike' na tinilaika gi listan pinilan",
@@ -99,6 +101,8 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Katigoria',
 'categoriespagetext'             => 'Guåha påhina pat media gi halom i sigiente katigoria.',
+'special-categories-sort-count'  => 'såttea pot tinefong',
+'special-categories-sort-abc'    => 'såttea pot i atfabetu',
 'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategoria}}',
 'category_header'                => 'Påhina siha gi katigoria "$1"',
 'subcategories'                  => 'Ni dibision katigoria siha',
@@ -106,6 +110,7 @@ $messages = array(
 'category-empty'                 => "''Taya' na påhina pat media siha gi halom este na katigoria.''",
 'hidden-categories'              => '{{PLURAL:$1|Hinemme na katigoria|Manhinemme na kategoria siha}}',
 'hidden-category-category'       => 'Manhinemme na katigoria siha', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Guåha i sigiente na dibision kategoria gi halom este na kategoria.|Guåha i sigiente {{PLURAL:$1|na dibision kategoria|$1 na dibision kategoria siha}}, ginen $2.}}',
 'category-subcat-count-limited'  => 'Guåha i sigiente {{PLURAL:$1|dibision katigoria|$1 dibision katigoria siha}} gi halom este na katigoria.',
 'category-article-count'         => "{{PLURAL:$2|I sigiente na påhina ha' gi este na katigoria.|Guåha {{PLURAL:$1|ha' na påhina|$1 na påhina siha}} ginen $2 gi este na katigoria.}}",
 'category-article-count-limited' => 'Gi este na katigoria guåha {{PLURAL:$1|na påhina|$1 na påhina siha}}.',
@@ -212,10 +217,14 @@ $messages = array(
 'sitesupport'          => "Nina'i siha",
 'sitesupport-url'      => 'Project:Supotta website',
 
+'badaccess'        => 'Lachi gi petmisu',
 'badaccess-group0' => "Ti siña un cho'gue i aksion ni finaisen-mu.",
 'badaccess-group1' => "Solamente masedi i grupun $1 chumo'gue i aksion ni finaisen-mu.",
 'badaccess-group2' => "Solamente masedi i muna'sesetbi ni grupun $1 chumo'gue i aksion ni finaisen-mu.",
 'badaccess-groups' => "Solamente masedi i muna'sesetbi ni grupun $1 chumo'gue i aksion ni finaisen-mu.",
+
+'versionrequired'     => 'Manesita i rebision $1 MediaWiki',
+'versionrequiredtext' => 'Manesita i rebision $1 MediaWiki para un usa i påhina. Taitai [[Special:Version|i påhinan rebision]].',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Ginen "$1"',
@@ -225,6 +234,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Guåha nuebu mensahe-mu gi $1',
 'editsection'             => 'tulaika',
 'editold'                 => 'tulaika',
+'viewsourceold'           => 'atan i code',
 'editsectionhint'         => 'Tulaika i patte: $1',
 'toc'                     => 'Guihana',
 'showtoc'                 => "na'anok",
@@ -425,6 +435,7 @@ Leyendu: (på'go) = i diferensia yan i rebision på'go,
 'lineno'                  => 'Liña $1:',
 'compareselectedversions' => "Akompara i tinilaika siha ma'ayek",
 'editundo'                => 'funas',
+'diff-multi'              => "({{PLURAL:$1|Ti mana'a'annok unu na tinilaika gi talo'|Ti manmana'a'annok $1 na tinilaika siha gi talo'}}.)",
 
 # Search results
 'noexactmatch'       => "'''Taya' na påhina mafa'na'an \"\$1\".'''
@@ -675,8 +686,8 @@ Estague taiguini i nibet i påhina <strong>$1</strong>:',
 'blocklink'          => 'futot',
 'unblocklink'        => "båsta machomma'",
 'contribslink'       => 'kontrib',
-'blocklogpage'       => "Chomma' i log",
-'blocklogentry'      => "machomma' [[$1]] ya u funhayan gi $2 $3",
+'blocklogpage'       => "Log ni manmachomma'",
+'blocklogentry'      => "ha chomma' [[$1]] ya u funhayan gi $2 $3",
 
 # Move page
 'movepagetext'     => "Anggen un usa i sigiente fotma, para un tulaika i na'an i påhina, kontodu historia-ña.
@@ -776,6 +787,7 @@ Ayek fan otru nå'an-ña.",
 # Media information
 'file-info-size'       => '($1 × $2 na pixel, mineddong atkibu: $3, MIME klåsi: $4)',
 'file-nohires'         => "<small>Tåya' mas takhilo' na risolusion.</small>",
+'svg-long-desc'        => '(Atkibu SVG, $1 × $2 na pixels, mineddong atkibu: $3)',
 'show-big-image'       => 'Magåhet mineddong-ña',
 'show-big-image-thumb' => '<small>Mineddong i ripasu: $1 × $2 pixels</small>',
 

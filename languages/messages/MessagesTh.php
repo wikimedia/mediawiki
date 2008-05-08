@@ -1553,7 +1553,9 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|ถัดไป|ถัดไป $1 หน้า}}',
 'whatlinkshere-links'      => '← ลิงก์',
 'whatlinkshere-hideredirs' => '$1 หน้าเปลี่ยนทาง',
+'whatlinkshere-hidetrans'  => '$1 ถูกรวมอยู่',
 'whatlinkshere-hidelinks'  => '$1 ลิงก์',
+'whatlinkshere-hideimages' => '$1 ภาพที่ลิงก์',
 
 # Block/unblock
 'blockip'                     => 'บล็อกผู้ใช้',
@@ -1764,6 +1766,7 @@ $1',
 'import-parse-failure'       => 'มีข้อผิดพลาดในการแปลโครงสร้างของข้อมูลนำเข้า XML',
 'import-noarticle'           => 'ไม่มีข้อมูลหน้าให้นำเข้า!',
 'import-nonewrevisions'      => 'ทุกรุ่นมาจากการนำเข้าข้อมูล (import)ก่อนหน้านี้',
+'xml-error-string'           => '$1 ที่แถว $2 หลักที่ $3 (ไบต์ $4): $5',
 
 # Import log
 'importlogpage'                    => 'บันทึกการรับข้าม',
@@ -2371,11 +2374,13 @@ $1',
 'fileduplicatesearch-submit'   => 'ค้นหา',
 
 # Special:SpecialPages
-'specialpages-group-other'   => 'หน้าพิเศษอื่น ๆ',
-'specialpages-group-login'   => 'ล็อกอิน / สร้างบัญชีผู้ใช้ใหม่',
-'specialpages-group-changes' => 'ปรับปรุงล่าสุดและปูมต่าง ๆ',
-'specialpages-group-media'   => 'รายงานเรื่องสื่อและการอัปโหลด',
-'specialpages-group-users'   => 'ผู้ใช้และสิทธิ์',
-'specialpages-group-highuse' => 'หน้าที่มีการใช้สูง',
+'specialpages-group-maintenance' => 'รายงานการเก็บกวาด',
+'specialpages-group-other'       => 'หน้าพิเศษอื่น ๆ',
+'specialpages-group-login'       => 'ล็อกอิน / สร้างบัญชีผู้ใช้ใหม่',
+'specialpages-group-changes'     => 'ปรับปรุงล่าสุดและปูมต่าง ๆ',
+'specialpages-group-media'       => 'รายงานเรื่องสื่อและการอัปโหลด',
+'specialpages-group-users'       => 'ผู้ใช้และสิทธิ์',
+'specialpages-group-needy'       => 'หน้าที่ต้องการดูแล',
+'specialpages-group-highuse'     => 'หน้าที่มีการใช้สูง',
 
 );

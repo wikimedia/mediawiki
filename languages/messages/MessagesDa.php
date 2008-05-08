@@ -12,6 +12,7 @@
  * @author Siebrand
  * @author H92
  * @author S.Örvarr.S
+ * @author Jan Friberg
  */
 
 $namespaceNames = array(
@@ -451,6 +452,8 @@ MySQL returnerede fejlen "$3: $4".',
 Siden er måske slettet eller flyttet.
 
 Hvis det ikke er tilfældet, har du måske fundet en fejl i programmet. Meld det til en [[{{MediaWiki:Grouppage-sysop}}|Administrator]] med angivelse af adressen.',
+'missingarticle-rev'   => '(version $1)',
+'missingarticle-diff'  => '(forskel: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slavedatabaseserverne synkroniserer med master databasen',
 'internalerror'        => 'Intern fejl',
 'internalerror_info'   => 'Internal fejl: $1',
@@ -749,6 +752,7 @@ Det burde være mindre end $2, der er nu $1.',
 # "Undo" feature
 'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
 'undo-failure' => '<span class="error">Ændringen kunne ikke annulleres, da det pågældende afsnit i mellemtiden er ændret.</span>',
+'undo-norev'   => 'Redigeringen kunne ikke fjernes fordi den ikke eksistere eller er slettet.',
 'undo-summary' => 'Ændring af $1 [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskussion]]) blev annulleret.',
 
 # Account creation failure
@@ -824,6 +828,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 'revdelete-content'           => 'indhold',
 'revdelete-summary'           => 'beskrivelse',
 'revdelete-uname'             => 'brugernavn',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|version|versioner}}',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
@@ -863,34 +868,38 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'diff-multi'              => "<span style='font-size: smaller'>(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)</span>",
 
 # Search results
-'searchresults'         => 'Søgeresultater',
-'searchresulttext'      => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Til din søgning „[[:$1]]“.',
-'searchsubtitleinvalid' => 'Til din søgning „$1“.',
-'noexactmatch'          => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]].',
-'noexactmatch-nocreate' => "'''Der er ingen side med navnet \"\$1\".'''",
-'toomanymatches'        => 'Der blev returneret for mange resultater, prøv en anden søgning',
-'titlematches'          => 'Artikeltitler der opfyldte forespørgslen',
-'notitlematches'        => 'Ingen artikeltitler opfyldte forespørgslen',
-'textmatches'           => 'Artikeltekster der opfyldte forespørgslen',
-'notextmatches'         => 'Ingen artikeltekster opfyldte forespørgslen',
-'prevn'                 => 'forrige $1',
-'nextn'                 => 'næste $1',
-'viewprevnext'          => 'Vis ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
-'search-result-score'   => 'Relevans: $1&nbsp;%',
-'search-redirect'       => '(omdirigering $1)',
-'search-section'        => '(sektion $1)',
-'search-suggest'        => 'Mente du: $1',
-'searchall'             => 'alle',
-'showingresults'        => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
-'showingresultsnum'     => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
-'showingresultstotal'   => "Viser resultat '''$1–$2''' af '''$3''' nedenfor",
-'nonefound'             => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',
-'powersearch'           => 'Søg',
-'powersearch-legend'    => 'Avanceret søg',
-'powersearchtext'       => 'Søg i navnerum:<br />$1<br />$2 List omdirigeringer &nbsp; Søg efter $3 $9',
-'searchdisabled'        => '<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>',
+'searchresults'            => 'Søgeresultater',
+'searchresulttext'         => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'           => 'Til din søgning „[[:$1]]“.',
+'searchsubtitleinvalid'    => 'Til din søgning „$1“.',
+'noexactmatch'             => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]].',
+'noexactmatch-nocreate'    => "'''Der er ingen side med navnet \"\$1\".'''",
+'toomanymatches'           => 'Der blev returneret for mange resultater, prøv en anden søgning',
+'titlematches'             => 'Artikeltitler der opfyldte forespørgslen',
+'notitlematches'           => 'Ingen artikeltitler opfyldte forespørgslen',
+'textmatches'              => 'Artikeltekster der opfyldte forespørgslen',
+'notextmatches'            => 'Ingen artikeltekster opfyldte forespørgslen',
+'prevn'                    => 'forrige $1',
+'nextn'                    => 'næste $1',
+'viewprevnext'             => 'Vis ($1) ($2) ($3).',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
+'search-result-score'      => 'Relevans: $1&nbsp;%',
+'search-redirect'          => '(omdirigering $1)',
+'search-section'           => '(sektion $1)',
+'search-suggest'           => 'Mente du: $1',
+'search-interwiki-caption' => 'Søsterprojekter',
+'search-interwiki-more'    => '(mere)',
+'mwsuggest-disable'        => 'Slå AJAX-forslag fra',
+'searchall'                => 'alle',
+'showingresults'           => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
+'showingresultsnum'        => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
+'showingresultstotal'      => "Viser resultat '''$1–$2''' af '''$3''' nedenfor",
+'nonefound'                => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',
+'powersearch'              => 'Søg',
+'powersearch-legend'       => 'Avanceret søg',
+'powersearchtext'          => 'Søg i navnerum:<br />$1<br />$2 List omdirigeringer &nbsp; Søg efter $3 $9',
+'search-external'          => 'Ekstern søgning',
+'searchdisabled'           => '<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>',
 
 # Preferences page
 'preferences'              => 'Indstillinger',
@@ -967,14 +976,16 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'userrights-groupsavailable'       => 'Tilgængelige grupper:',
 'userrights-reason'                => 'Årsag:',
 'userrights-available-none'        => 'Du kan ikke ændre gruppetilhørsforhold.',
-'userrights-available-add'         => 'Du kan tilføje medlemmer til {{PLURAL:$2|denne gruppe|disse grupper}}: $1.',
-'userrights-available-remove'      => 'Du kan fjerne medlemmer fra {{PLURAL:$2|denne gruppe|disse grupper}}: $1.',
+'userrights-available-add'         => 'Du kan tilføje brugere til {{PLURAL:$2|denne gruppe|disse grupper}}: $1.',
+'userrights-available-remove'      => 'Du kan fjerne brugere fra {{PLURAL:$2|denne gruppe|disse grupper}}: $1.',
 'userrights-available-add-self'    => 'Du kan tilføje dig selv til {{PLURAL:$2|denne gruppe|disse grupper}}: $1',
 'userrights-available-remove-self' => 'Du kan fjerne dig selv fra {{PLURAL:$2|denne gruppe|disse grupper}}: $1',
 'userrights-no-interwiki'          => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
 'userrights-nodatabase'            => 'Databasen $1 eksisterer ikke lokalt.',
 'userrights-nologin'               => 'Du skal [[Special:Userlogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
 'userrights-notallowed'            => 'Din konto har ikke andgang til at ændre brugerrettigheder.',
+'userrights-changeable-col'        => 'Grupper du kan ændre',
+'userrights-unchangeable-col'      => 'Grupper du ikke kan ændre',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -983,6 +994,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'group-bot'           => 'Robotter',
 'group-sysop'         => 'Administratorer',
 'group-bureaucrat'    => 'Bureaukrater',
+'group-suppress'      => 'Oversightere',
 'group-all'           => '(alle)',
 
 'group-user-member'          => 'Bruger',
@@ -990,12 +1002,26 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bureaukrat',
+'group-suppress-member'      => 'Oversight',
 
 'grouppage-user'          => '{{ns:project}}:Brugere',
 'grouppage-autoconfirmed' => '{{ns:project}}:Registrerede brugere',
 'grouppage-bot'           => '{{ns:project}}:Robotter',
 'grouppage-sysop'         => '{{ns:project}}:Administratorer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bureaukrater',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
+
+# Rights
+'right-read'          => 'Se sider',
+'right-edit'          => 'Redigere sider',
+'right-createpage'    => 'Oprette sider (som ikke er diskussionssider)',
+'right-createtalk'    => 'Oprette diskussionssider',
+'right-createaccount' => 'Oprette nye brugerkontoer',
+'right-minoredit'     => 'Marker redigeringer som mindre',
+'right-move'          => 'Flytte sider',
+'right-upload'        => 'Lægge filer op',
+'right-autoconfirmed' => 'Redigér semi-beskyttede sider',
+'right-delete'        => 'Slette sider',
 
 # User rights log
 'rightslog'      => 'Rettigheds-logbog',
@@ -1269,6 +1295,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 
 'withoutinterwiki'         => 'Sider uden henvisninger til andre sprog',
 'withoutinterwiki-summary' => 'De følgende sider henviser ikke til andre sprogversioner:',
+'withoutinterwiki-legend'  => 'Præfiks',
 'withoutinterwiki-submit'  => 'Vis',
 
 'fewestrevisions'         => 'Sider med de færreste versioner',
@@ -1385,6 +1412,13 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'listusersfrom'      => 'Vis brugere fra:',
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen bruger fundet.',
+
+# Special:Listgrouprights
+'listgrouprights'          => 'Rettigheder for brugergrupper',
+'listgrouprights-group'    => 'Gruppe',
+'listgrouprights-rights'   => 'Rettigheder',
+'listgrouprights-helppage' => 'Help:Grupperettigheder',
+'listgrouprights-members'  => '(liste over medlemmer)',
 
 # E-mail user
 'mailnologin'     => 'Du er ikke logget på',
@@ -1552,6 +1586,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'restriction-edit'   => 'Ændring',
 'restriction-move'   => 'Flytting',
 'restriction-create' => 'Opret',
+'restriction-upload' => 'Læg op',
 
 # Restriction levels
 'restriction-level-sysop'         => 'beskyttet (kun administratorer)',
@@ -1628,19 +1663,22 @@ $1',
 'sp-contributions-submit'      => 'Søg',
 
 # What links here
-'whatlinkshere'         => 'Hvad henviser hertil',
-'whatlinkshere-title'   => 'Sider der henviser til $1',
-'whatlinkshere-summary' => 'Denne specialside viser alle interne henvisninger til en bestemt side. De mulige tilføjelser „(skabelonmedtagning)“ og „(omdirigeringsside)“ viser, at siden ikke er henvist med et normalt Wikilink. ',
-'whatlinkshere-page'    => 'Side:',
-'linklistsub'           => '(Henvisningsliste)',
-'linkshere'             => "De følgende sider henviser til '''„[[:$1]]“''':",
-'nolinkshere'           => "Ingen sider henviser til '''„[[:$1]]“'''.",
-'nolinkshere-ns'        => "Ingen side henviser til '''„[[:$1]]“''' i det valgte navnerum.",
-'isredirect'            => 'omdirigeringsside',
-'istemplate'            => 'Skabelonmedtagning',
-'whatlinkshere-prev'    => '{{PLURAL:$1|forrige|forrige $1}}',
-'whatlinkshere-next'    => '{{PLURAL:$1|næste|næste $1}}',
-'whatlinkshere-links'   => '← henvisninger',
+'whatlinkshere'            => 'Hvad henviser hertil',
+'whatlinkshere-title'      => 'Sider der henviser til $1',
+'whatlinkshere-summary'    => 'Denne specialside viser alle interne henvisninger til en bestemt side. De mulige tilføjelser „(skabelonmedtagning)“ og „(omdirigeringsside)“ viser, at siden ikke er henvist med et normalt Wikilink. ',
+'whatlinkshere-page'       => 'Side:',
+'linklistsub'              => '(Henvisningsliste)',
+'linkshere'                => "De følgende sider henviser til '''„[[:$1]]“''':",
+'nolinkshere'              => "Ingen sider henviser til '''„[[:$1]]“'''.",
+'nolinkshere-ns'           => "Ingen side henviser til '''„[[:$1]]“''' i det valgte navnerum.",
+'isredirect'               => 'omdirigeringsside',
+'istemplate'               => 'Skabelonmedtagning',
+'isimage'                  => 'billedelink',
+'whatlinkshere-prev'       => '{{PLURAL:$1|forrige|forrige $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|næste|næste $1}}',
+'whatlinkshere-links'      => '← henvisninger',
+'whatlinkshere-hidelinks'  => '$1 links',
+'whatlinkshere-hideimages' => '$1 fillenker',
 
 # Block/unblock
 'blockip'                     => 'Bloker bruger',
@@ -2301,34 +2339,37 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'monthsall'        => 'alle',
 
 # E-mail address confirmation
-'confirmemail'            => 'Bekræft e-mail-adressen',
-'confirmemail_noemail'    => 'Du har ikke angivet en gyldig E-mail-adresse i din [[Special:Preferences|brugerprofil]].',
-'confirmemail_text'       => '{{SITENAME}} kræver, at du bekræfter en E-mail-adresse (autentificering), før du kan bruge de udvidede E-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en E-mail til dig. Denne E-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at E-mail-adressen er gyldig.',
-'confirmemail_pending'    => '<div class="error">En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.</div>',
-'confirmemail_send'       => 'Send bekræftelseskode',
-'confirmemail_sent'       => 'Bekræftelses-e-amil afsendt.',
-'confirmemail_oncreate'   => 'En bekræftelseskode er sendt til din E-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af E-mail-funktionerne indenfor Wikien.',
-'confirmemail_sendfailed' => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at E-mail-adressen er korrekt.
+'confirmemail'             => 'Bekræft e-mail-adressen',
+'confirmemail_noemail'     => 'Du har ikke angivet en gyldig E-mail-adresse i din [[Special:Preferences|brugerprofil]].',
+'confirmemail_text'        => '{{SITENAME}} kræver, at du bekræfter en E-mail-adresse (autentificering), før du kan bruge de udvidede E-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en E-mail til dig. Denne E-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at E-mail-adressen er gyldig.',
+'confirmemail_pending'     => '<div class="error">En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.</div>',
+'confirmemail_send'        => 'Send bekræftelseskode',
+'confirmemail_sent'        => 'Bekræftelses-e-amil afsendt.',
+'confirmemail_oncreate'    => 'En bekræftelseskode er sendt til din E-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af E-mail-funktionerne indenfor Wikien.',
+'confirmemail_sendfailed'  => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at E-mail-adressen er korrekt.
 
 Rückmeldung des Mailservers: $1',
-'confirmemail_invalid'    => 'Ugyldig bekræftelseskode. Kodens gyldighed er muligvis udløbet.',
-'confirmemail_needlogin'  => 'Du skal $1 for at bekræfte E-mail-adressen.',
-'confirmemail_success'    => 'E-mail-adressen er nu bekræftet. Du kan nu logge på.',
-'confirmemail_loggedin'   => 'E-mail-adressen er nu bekræftet.',
-'confirmemail_error'      => 'Der skete en fejl ved bekræftelsen af E-mail-adressen.',
-'confirmemail_subject'    => '[{{SITENAME}}] - bekræftelse af E-mail-adressen',
-'confirmemail_body'       => 'Hej,
+'confirmemail_invalid'     => 'Ugyldig bekræftelseskode. Kodens gyldighed er muligvis udløbet.',
+'confirmemail_needlogin'   => 'Du skal $1 for at bekræfte E-mail-adressen.',
+'confirmemail_success'     => 'E-mail-adressen er nu bekræftet. Du kan nu logge på.',
+'confirmemail_loggedin'    => 'E-mail-adressen er nu bekræftet.',
+'confirmemail_error'       => 'Der skete en fejl ved bekræftelsen af E-mail-adressen.',
+'confirmemail_subject'     => '[{{SITENAME}}] - bekræftelse af E-mail-adressen',
+'confirmemail_body'        => 'Nogen med IP-adresse $1, sandsynligvis dig, har oprettet en en brugerkonto "$2" med denne mailadresse på {{SITENAME}}.
 
-Nogen med IP-adresse $1, sandsynligvis dig, har bestilt en bekræftelse af denne E-mail-adresse til brugerkontoen "$2" på {{SITENAME}}.
+For at aktivere E-mail-funktionen på {{SITENAME}} og for at bekræfte, at denne brugerkonto virkelig hører til din E-mail-adresse og dermed til dig, bedes du åbne det følgende link i din browser:
 
-For at aktivere E-mail-funktionen for {{SITENAME}} (igen) og for at bekræfte, at denne brugerkonto virkelig hører til din E-mail-adresse og dermed til dig, bedes du åbne det følgende link i din browser: $3
+$3
 
-Bekræftelseskoden er gyldig indtil følgende tidspunkt: $4
+Bekræftelseskoden er gyldig indtil følgende tidspunkt: 
 
-Hvis denne E-mail-adresse *ikke* hører til den anførte brugerkonto, skal du *ikke* trykke på dette link.
+$4
 
---
-{{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
+Hvis denne E-mail-adresse *ikke* hører til den anførte brugerkonto, skal du trykke på nedenstående dette link for at afbryde godkendelsen af mailadressen:
+
+$5',
+'confirmemail_invalidated' => 'Bekræftelse af e-mail-adresse er afbrudt',
+'invalidateemail'          => 'Afbryd bekræftelse af e-mail-adresse',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-tilkobling er deaktiveret]',
@@ -2461,5 +2502,15 @@ Indtast filnavnet uden "{{ns:image}}:" præfiks.',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Filstørrelse: $3<br />MIME-Typ: $4',
 'fileduplicatesearch-result-1' => 'Filen "$1" har ingen identiske dubletter.',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dublet|$2 identiske dubletter}}.',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Vedligeholdelsesrapporter',
+'specialpages-group-other'       => 'Øvrige specielle sider',
+'specialpages-group-login'       => 'Opret en konto / log på',
+'specialpages-group-changes'     => 'Seneste ændringer og logs',
+'specialpages-group-media'       => 'Medierapporter og uplaods',
+'specialpages-group-users'       => 'Brugere og rettigheder',
+'specialpages-group-needy'       => 'Sider som har brug for indsats',
+'specialpages-group-highuse'     => 'Meget brugte sider',
 
 );
