@@ -264,7 +264,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14042) Calling Database::limitResult() misplaced the comment in the log file
 * (bug 14047) Fix regression in installer which hid DB-specific options.
   Also makes SQLite path configurable in the installer.
-
+* (bug 13546) Follow image redirects on image page
 
 === API changes in 1.13 ===
 
