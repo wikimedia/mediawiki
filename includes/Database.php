@@ -1380,7 +1380,7 @@ class Database {
 		# Note that we use a whitespace test rather than a \b test to avoid
 		# any remote case where a word like on may be inside of a table name
 		# surrounded by symbols which may be considered word breaks.
-		if( preg_match( '/(^|\s)(JOIN|ON)(\s|$)/i', $name ) !== 0 ) return $name;
+		if( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) return $name;
 		
 		# Split database and table into proper variables.
 		# We reverse the explode so that database.table and table both output
