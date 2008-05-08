@@ -2594,11 +2594,12 @@ class Article {
 	 * @private
 	 */
 	function viewUpdates() {
-		global $wgDeferredUpdateList;
+		global $wgDeferredUpdateList, $wgUser;
 
 		if ( 0 != $this->getID() ) {
+			# Don't update page view counters on views from bot users (bug 14044)
 			global $wgDisableCounters;
-			if( !$wgDisableCounters ) {
+			if( !$wgDisableCounters && !$wgUser->isAllowed( 'bot' ) ) {
 				Article::incViewCount( $this->getID() );
 				$u = new SiteStatsUpdate( 1, 0, 0 );
 				array_push( $wgDeferredUpdateList, $u );
@@ -2606,7 +2607,6 @@ class Article {
 		}
 
 		# Update newtalk / watchlist notification status
-		global $wgUser;
 		$wgUser->clearNotification( $this->mTitle );
 	}
 
