@@ -7,6 +7,7 @@
 abstract class FileRepo {
 	const DELETE_SOURCE = 1;
 	const FIND_PRIVATE = 1;
+	const FIND_IGNORE_REDIRECT = 2;
 	const OVERWRITE = 2;
 	const OVERWRITE_SAME = 4;
 
@@ -104,8 +105,10 @@ abstract class FileRepo {
 				}
 			}
 		}
+				
 		# Now try redirects
-		$redir = $this->checkRedirect( $title );
+		if ( $flags & FileRepo::FIND_IGNORE_REDIRECT ) return false;
+		$redir = $this->checkRedirect( $title );		
 		if( $redir && $redir->getNamespace() == NS_IMAGE) {
 			$img = $this->newFile( $redir );
 			if( !$img ) {
