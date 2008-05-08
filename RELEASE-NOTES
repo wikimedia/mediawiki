@@ -258,6 +258,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13949) Special:PrefixIndex/AllPages paging links contain invalid XML
 * (bug 13770) Use Preprocessor_Hash by default to avoid missing DOM module errors
 * (bug 13982) Disable ccmeonemails preference when user-to-user mails disabled
+* (bug 13615) Update case mappings and normalization to Unicode 5.1.0
+  Note that case mappings will only be used if mbstring extension is not present.
 
 
 === API changes in 1.13 ===
