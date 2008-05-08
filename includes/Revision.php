@@ -536,7 +536,7 @@ class Revision {
 	 * @return Revision
 	 */
 	public function getPrevious() {
-		$prev = $this->mTitle->getPreviousRevisionID( $this->mId );
+		$prev = $this->getTitle()->getPreviousRevisionID( $this->mId );
 		if( $prev ) {
 			return Revision::newFromTitle( $this->mTitle, $prev );
 		} else {
@@ -548,7 +548,7 @@ class Revision {
 	 * @return Revision
 	 */
 	public function getNext() {
-		$next = $this->mTitle->getNextRevisionID( $this->mId );
+		$next = $this->getTitle()->getNextRevisionID( $this->mId );
 		if ( $next ) {
 			return Revision::newFromTitle( $this->mTitle, $next );
 		} else {
