@@ -6,7 +6,7 @@
 #BASE=http://www.unicode.org/Public/UNIDATA
 
 # Explicitly using Unicode 5.0
-BASE=http://www.unicode.org/Public/5.0.0/ucd/
+BASE=http://www.unicode.org/Public/5.0.0/ucd
 
 # Can override to php-cli or php5 or whatevah
 PHP=php
