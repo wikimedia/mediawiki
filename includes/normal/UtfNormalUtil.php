@@ -26,6 +26,7 @@
  */
 
 /** */
+require_once dirname(__FILE__).'/UtfNormalDefines.php';
 
 /**
  * Return UTF-8 sequence for a given Unicode code point.
