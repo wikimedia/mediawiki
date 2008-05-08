@@ -72,24 +72,41 @@ if (!defined('MEDIAWIKI')) {
 			return $retval;
 
 		$db = $this->getDb();
-		$userTable = $db->tableName('user');
-		$tables = "$userTable AS u1";
 		$this->addFields('u1.user_name');
 		$this->addWhereFld('u1.user_name', $goodNames);
 		$this->addFieldsIf('u1.user_editcount', isset($this->prop['editcount']));
 
+		$join = false;
+		$tables = array('user');
+		$types = array();
+		$conds = array();
+		$aliases = array('u1');
 		if(isset($this->prop['groups'])) {
-			$ug = $db->tableName('user_groups');
-			$tables = "$tables LEFT JOIN $ug ON ug_user=u1.user_id";
+			$join = true;
+			$tables[] = 'user_groups';
+			$types[] = ApiQueryBase::LEFT_JOIN;
+			$conds[] = 'ug_user=u1.user_id';
+			$aliases[] = null;
 			$this->addFields('ug_group');
 		}
 		if(isset($this->prop['blockinfo'])) {
-			$ipb = $db->tableName('ipblocks');
-			$tables = "$tables LEFT JOIN $ipb ON ipb_user=u1.user_id";
-			$tables = "$tables LEFT JOIN $userTable AS u2 ON ipb_by=u2.user_id";
+			$join = true;
+			$tables[] = 'ipblocks';
+			$types[] = ApiQueryBase::LEFT_JOIN;
+			$conds[] = 'ipb_user=u1.user_id';
+			$aliases[] = null;
+			
+			$tables[] = 'user';
+			$types[] = ApiQueryBase::LEFT_JOIN;
+			$conds[] = 'ipb_by=u2.user_id';
+			$aliases[] = 'u2';
 			$this->addFields(array('ipb_reason', 'u2.user_name AS blocker_name'));
 		}
-		$this->addTables($tables);
+		
+		if($join)
+			$this->addJoin($tables, $types, $conds, $aliases);
+		else
+			$this->addTables('user', 'u1');
 
 		$data = array();
 		$res = $this->select(__METHOD__);

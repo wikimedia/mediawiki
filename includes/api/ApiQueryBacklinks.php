@@ -101,8 +101,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		 * LIMIT 11 ORDER BY pl_from
 		 */
 		$db = $this->getDb();
-		list($tblpage, $tbllinks) = $db->tableNamesN('page', $this->bl_table);
-		$this->addTables("$tbllinks JOIN $tblpage ON {$this->bl_from}=page_id");
+		$this->addTables(array($this->bl_table, 'page'));
+		$this->addWhere("{$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace'));
 		else
@@ -129,8 +129,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		 * LIMIT 11 ORDER BY pl_namespace, pl_title, pl_from
 		 */
 		$db = $this->getDb();
-		list($tblpage, $tbllinks) = $db->tableNamesN('page', $this->bl_table);
-		$this->addTables("$tbllinks JOIN $tblpage ON {$this->bl_from}=page_id");
+		$this->addTables(array($this->bl_table, 'page'));
+		$this->addWhere("{$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace', 'page_is_redirect'));
 		else
