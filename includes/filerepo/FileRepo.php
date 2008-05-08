@@ -115,7 +115,7 @@ abstract class FileRepo {
 				return false;
 			}
 			if( $img->exists() ) {
-				$img->redirectedFrom( $title->getText() );
+				$img->redirectedFrom( $title->getDBkey() );
 				return $img;
 			}
 		}
