@@ -431,8 +431,7 @@ class WatchlistEditor {
 	 * @return int
 	 */
 	public static function getMode( $request, $par ) {
-		if (($mode = $par) === "")
-			$mode = strtolower( $request->getVal( 'action', "" ) );
+		$mode = strtolower( $request->getVal( 'action', $par ) );
 		switch( $mode ) {
 			case 'clear':
 				return self::EDIT_CLEAR;
