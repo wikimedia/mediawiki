@@ -265,6 +265,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14047) Fix regression in installer which hid DB-specific options.
   Also makes SQLite path configurable in the installer.
 * (bug 13546) Follow image redirects on image page
+* (bug 12644) Template list on edit page now sorted on preview
 
 === API changes in 1.13 ===
 
