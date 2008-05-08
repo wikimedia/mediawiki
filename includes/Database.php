@@ -1373,6 +1373,15 @@ class Database {
 		# to query a database table with a dot in the name.
 		if ( $name[0] == '`' && substr( $name, -1, 1 ) == '`' ) return $name;
 		
+		# Lets test for any bits of text that should never show up in a table
+		# name. Basically anything like JOIN or ON which are actually part of
+		# SQL queries, but may end up inside of the table value to combine
+		# sql. Such as how the API is doing.
+		# Note that we use a whitespace test rather than a \b test to avoid
+		# any remote case where a word like on may be inside of a table name
+		# surrounded by symbols which may be considered word breaks.
+		if( preg_match( '/(^|\s)(JOIN|ON)(\s|$)/i', $name ) !== false ) return $name;
+		
 		# Split database and table into proper variables.
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
