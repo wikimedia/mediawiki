@@ -56,19 +56,20 @@ class RepoGroup {
 	 * @param mixed $title Title object or string
 	 * @param mixed $time The 14-char timestamp the file should have
 	 *                    been uploaded, or false for the current version
+	 * @param mixed $flags FileRepo::FIND_ flags
 	 * @return File object or false if it is not found
 	 */
-	function findFile( $title, $time = false ) {
+	function findFile( $title, $time = false, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
 
-		$image = $this->localRepo->findFile( $title, $time );
+		$image = $this->localRepo->findFile( $title, $time, $flags );
 		if ( $image ) {
 			return $image;
 		}
 		foreach ( $this->foreignRepos as $repo ) {
-			$image = $repo->findFile( $title, $time );
+			$image = $repo->findFile( $title, $time, $flags );
 			if ( $image ) {
 				return $image;
 			}

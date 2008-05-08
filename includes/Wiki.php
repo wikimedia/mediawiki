@@ -277,11 +277,17 @@ class MediaWiki {
 
 		$action = $this->getVal( 'action' );
 		$article = self::articleFromTitle( $title );
-
+		
+		wfDebug("Article: ".$title->getPrefixedText()."\n");
+		
 		// Namespace might change when using redirects
-		if( ( $action == 'view' || $action == 'render' ) && !$request->getVal( 'oldid' ) &&
-						$request->getVal( 'redirect' ) != 'no' &&
-						!( $title->getNamespace() == NS_IMAGE && wfFindFile( $title->getText() ) ) ) {
+		// Check for redirects ...
+		if( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
+					&& !$request->getVal( 'oldid' ) && 			// ... and are not old revisions
+					$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
+					// ... and the article is not an image page with associated file
+					!( $title->getNamespace() == NS_IMAGE && wfFindFile( $title->getText(), false,
+							FileRepo::FIND_IGNORE_REDIRECT ) ) ) { // ... unless it is really an image redirect
 
 			$dbr = wfGetDB( DB_SLAVE );
 			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );

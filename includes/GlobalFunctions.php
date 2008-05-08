@@ -2425,10 +2425,11 @@ function &wfGetLBFactory() {
  * @param mixed $time Requested time for an archived image, or false for the
  *                    current version. An image object will be returned which
  *                    was created at the specified time.
+ * @param mixed $flags FileRepo::FIND_ flags
  * @return File, or false if the file does not exist
  */
-function wfFindFile( $title, $time = false ) {
-	return RepoGroup::singleton()->findFile( $title, $time );
+function wfFindFile( $title, $time = false, $flags = 0 ) {
+	return RepoGroup::singleton()->findFile( $title, $time, $flags );
 }
 
 /**
