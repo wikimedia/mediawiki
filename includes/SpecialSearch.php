@@ -102,6 +102,8 @@ class SpecialSearch {
 				return;
 			}
 		}
+
+		$wgOut->wrapWikiMsg( "==$1==\n", 'notitlematches' );
 		if( $t->quickUserCan( 'create' ) && $t->quickUserCan( 'edit' ) ) {
 			$wgOut->addWikiMsg( 'noexactmatch', wfEscapeWikiText( $term ) );
 		} else {
@@ -231,8 +233,6 @@ class SpecialSearch {
 			if( $titleMatches->numRows() ) {
 				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
 				$wgOut->addHTML( $this->showMatches( $titleMatches ) );
-			} else {
-				$wgOut->wrapWikiMsg( "==$1==\n", 'notitlematches' );
 			}
 			$titleMatches->free();
 		}
