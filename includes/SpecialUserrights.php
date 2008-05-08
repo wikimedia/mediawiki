@@ -360,8 +360,7 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .
 			Xml::tags( 'p', null, $this->groupCheckboxes( $groups ) ) .
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
-				"</tr>
-				<tr>
+				"<tr>
 					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'userrights-reason' ), 'wpReason' ) .
 					"</td>
