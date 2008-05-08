@@ -564,6 +564,9 @@ $wgDBprefix         = '';
 /** MySQL table options to use during installation or update */
 $wgDBTableOptions = 'TYPE=InnoDB';
 
+/** To override default SQLite data directory ($docroot/../data) */
+$wgSQLiteDataDir = '';
+
 /**
  * Make all database connections secretly go to localhost. Fool the load balancer
  * thinking there is an arbitrarily large cluster of servers to connect to.

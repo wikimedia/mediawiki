@@ -262,6 +262,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Note that case mappings will only be used if mbstring extension is not present.
 * (bug 14044) Don't increment page view counters on views from bot users
 * (bug 14042) Calling Database::limitResult() misplaced the comment in the log file
+* (bug 14047) Fix regression in installer which hid DB-specific options.
+  Also makes SQLite path configurable in the installer.
+
 
 === API changes in 1.13 ===
 
