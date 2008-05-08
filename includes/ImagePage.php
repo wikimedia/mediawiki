@@ -91,6 +91,7 @@ class ImagePage extends Article {
 		$this->closeShowImage();
 		$this->imageHistory();
 		$this->imageLinks();
+		if ( $this->img->isLocal() ) $this->imageRedirects();
 
 		if ( $showmeta ) {
 			global $wgStylePath, $wgStyleVersion;
@@ -539,6 +540,40 @@ EOT
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul>\n" );
+	}
+	
+	function imageRedirects() 
+	{
+		global $wgUser, $wgOut;
+		
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			array( 'redirect', 'page' ),
+			array( 'page_title' ),
+			array(
+				'rd_namespace' => NS_IMAGE,
+				'rd_title' => $this->mTitle->getDBkey(),
+				'page_namespace' => NS_IMAGE,
+				'rd_from = page_id'
+			)
+		);
+		
+
+		if ( 0 == $dbr->numRows( $res ) ) 
+			return;
+
+		$wgOut->addHTML( '<p>' . wfMsg( 'redirectstofile' ) .  "</p>\n<ul>" );
+
+		$sk = $wgUser->getSkin();
+		while ( $row = $dbr->fetchObject( $res ) ) {
+			$name = Title::makeTitle( NS_IMAGE, $row->page_title );
+			$link = $sk->makeKnownLinkObj( $name, "" );
+			wfDebug("Image redirect: {$row->page_title}\n");
+			$wgOut->addHTML( "<li>{$link}</li>\n" );
+		}
+		$wgOut->addHTML( "</ul>\n" );
+		
+		$res->free();
 	}
 
 	/**
