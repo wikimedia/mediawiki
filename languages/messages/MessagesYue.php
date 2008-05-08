@@ -910,7 +910,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'showingresults'            => "'自#'''$2'''起顯示最多'''$1'''個結果。",
 'showingresultsnum'         => "自#'''$2'''起顯示'''$3'''個結果。",
 'showingresultstotal'       => "下面顯示緊由'''$1 - $2'''，總共'''$3'''項嘅結果",
-'nonefound'                 => "'''注意'''：搵嘢結果為空通常係因為你搵嘅係\"have\"、\"from\"等太常用而唔會被索引入數據庫嘅詞，又或者係你指定咗太多嘅關鍵字（只有包含所有你指定嘅關鍵字嘅頁面先至會被搵到出嚟）。",
+'nonefound'                 => "'''注意''': 只有一啲空間名係會作預設搵嘢。試吓''all:''去搵全部嘅嘢（包埋討論版、模等），或用需要嘅空間名做前綴。",
 'powersearch'               => '進階搵嘢',
 'powersearch-legend'        => '進階搵嘢',
 'powersearchtext'           => '喺以下嘅空間名度搵 :<br />$1<br />$2 彈去清單 &nbsp; $3 嘅搜尋 $9',
@@ -989,10 +989,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-groupsmember'          => '屬於：',
 'userrights-groupsremovable'       => '拎得走嘅組：',
 'userrights-groupsavailable'       => '可用嘅組：',
-'userrights-groups-help'           => '你可以改嘅位用戶所屬嘅組。
-剔咗嘅盒代表個用戶係屬於嗰組。
-未剔嘅盒代表個用戶唔係屬於嗰組。
-一個 * 表示你加入咗佢之後唔可以拎走，反之亦然。',
+'userrights-groups-help'           => '你可以改呢位用戶所屬嘅組:
+* 剔咗嘅盒代表個用戶係屬於嗰組。
+* 未剔嘅盒代表個用戶唔係屬於嗰組。
+* 一個 * 表示你加入咗佢之後唔可以拎走，反之亦然。',
 'userrights-reason'                => '更改嘅原因:',
 'userrights-available-none'        => '你唔可以改組成員。',
 'userrights-available-add'         => '你可以加入任何用戶到{{PLURAL:$2|呢一組|呢幾組}}: $1。',
