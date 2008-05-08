@@ -2936,6 +2936,17 @@ class Title {
 	}
 
 	/**
+	 * Callback for usort() to do title sorts by (namespace, title)
+	 */
+	static function compare( $a, $b ) {
+		if( $a->getNamespace() == $b->getNamespace() ) {
+			return strcmp( $a->getText(), $b->getText() );
+		} else {
+			return $a->getNamespace() - $b->getNamespace();
+		}
+	}
+
+	/**
 	 * Return a string representation of this title
 	 *
 	 * @return string
