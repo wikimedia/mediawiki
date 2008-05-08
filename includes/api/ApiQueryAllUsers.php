@@ -65,7 +65,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		if (!is_null($params['group'])) {
 			// Filter only users that belong to a given group
 			$tblName = $db->tableName('user_groups');
-			$tables = "$tables INNER JOIN $tblName ug1 ON `ug1`.`ug_user`=`user_id`";
+			$tables = "$tables INNER JOIN $tblName ug1 ON ug1.ug_user=user_id";
 			$this->addWhereFld('ug1.ug_group', $params['group']);
 		}
 
@@ -76,7 +76,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$sqlLimit = $limit+$groupCount+1;
 
 			$tblName = $db->tableName('user_groups');
-			$tables = "$tables LEFT JOIN $tblName ug2 ON `ug2`.`ug_user`=`user_id`";
+			$tables = "$tables LEFT JOIN $tblName ug2 ON ug2.ug_user=user_id";
 			$this->addFields('ug2.ug_group ug_group2');
 		} else {
 			$sqlLimit = $limit+1;
