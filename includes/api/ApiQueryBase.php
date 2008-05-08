@@ -37,6 +37,9 @@ if (!defined('MEDIAWIKI')) {
 abstract class ApiQueryBase extends ApiBase {
 
 	private $mQueryModule, $mDb, $tables, $where, $fields, $options;
+	
+	const LEFT_JOIN = 1;
+	const RIGHT_JOIN = 2;
 
 	public function __construct($query, $moduleName, $paramPrefix = '') {
 		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
@@ -63,6 +66,35 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->tables[] = $tables;
 		}
 	}
+
+	protected function addJoin($tables, $types, $onClauses, $aliases = null) {
+		if(is_null($aliases))
+			foreach($tables as $unused)
+				$aliases[] = null;
+		if(!is_array($tables) || !is_array($types) || !is_array($onClauses) || !is_array($aliases))
+			ApiBase::dieDebug(__METHOD__, 'This function only takes arrays as parameters');
+		$sql = $this->getDB()->tableName($tables[0]) . (is_null($aliases[0]) ? "" : " {$aliases[0]}");
+		for($i = 0; $i < count($tables) - 1; $i++)
+		{
+			if($types[$i] == self::LEFT_JOIN)
+				$join = "LEFT JOIN";
+			else if($types[$i] == self::RIGHT_JOIN)
+				$join = "RIGHT JOIN";
+			else
+				ApiBase::dieDebug(__METHOD__, "Invalid join type {$types[$i]}");
+			
+			if(is_array($onClauses[$i]))
+				$on = $this->getDB()->makeList($onClauses[$i], LIST_AND);
+			else
+				$on = $onClauses[$i];
+			$alias = $aliases[$i+1];
+			$tblname = $this->getDB()->tableName($tables[$i+1]) . (is_null($alias) ? "" : " $alias");
+			$sql = "$sql $join $tblname ON $on";
+		}
+		$this->addTables($sql);
+	}
+		
+		
 
 	protected function addFields($value) {
 		if (is_array($value))

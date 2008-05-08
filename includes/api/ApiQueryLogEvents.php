@@ -57,11 +57,16 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$hideLogs = LogEventsList::getExcludeClause($db);
 		if($hideLogs !== false)
 			$this->addWhere($hideLogs);
-
-		$this->addOption('STRAIGHT_JOIN');
-		$this->addTables("$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
-		"log_namespace=page_namespace AND log_title=page_title " .
-		"INNER JOIN $tbl_user ON user_id=log_user");
+		
+		$this->addTables('user');
+		$this->addWhere('user_id=log_user');
+		$this->addJoin(
+				array('logging', 'page'),
+				array(ApiQueryBase::LEFT_JOIN),
+				array(
+					array(	'log_title=page_title',
+						'log_namespace=page_namespace'
+					)));
 
 		$this->addFields(array (
 			'log_type',

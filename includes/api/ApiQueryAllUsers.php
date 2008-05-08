@@ -54,7 +54,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		$limit = $params['limit'];
-		$tables = $db->tableName('user');
 
 		if( !is_null( $params['from'] ) )
 			$this->addWhere( 'user_name >= ' . $db->addQuotes( self::keyToTitle( $params['from'] ) ) );
@@ -64,21 +63,23 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if (!is_null($params['group'])) {
 			// Filter only users that belong to a given group
-			$tblName = $db->tableName('user_groups');
-			$tables = "$tables INNER JOIN $tblName ug1 ON ug1.ug_user=user_id";
+			$this->addTables('user_groups', 'ug1');
+			$this->addWhere('ug1.ug_user=user_id');
 			$this->addWhereFld('ug1.ug_group', $params['group']);
 		}
-
 		if ($fld_groups) {
 			// Show the groups the given users belong to
 			// request more than needed to avoid not getting all rows that belong to one user
 			$groupCount = count(User::getAllGroups());
 			$sqlLimit = $limit+$groupCount+1;
-
-			$tblName = $db->tableName('user_groups');
-			$tables = "$tables LEFT JOIN $tblName ug2 ON ug2.ug_user=user_id";
+			$this->addJoin(
+				array('user', 'user_groups'),
+				array(ApiQueryBase::LEFT_JOIN),
+				array('ug2.ug_user=user_id'),
+				array(null, 'ug2'));
 			$this->addFields('ug2.ug_group ug_group2');
 		} else {
+			$this->addTables('user');
 			$sqlLimit = $limit+1;
 		}
 
@@ -86,7 +87,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addFields('user_registration');
 
 		$this->addOption('LIMIT', $sqlLimit);
-		$this->addTables($tables);
 
 		$this->addFields('user_name');
 		$this->addFieldsIf('user_editcount', $fld_editcount);
