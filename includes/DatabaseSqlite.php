@@ -335,10 +335,10 @@ class DatabaseSqlite extends Database {
 		$wgDBTableOptions = '';
 		$mysql_tmpl  = "$IP/maintenance/tables.sql";
 		$mysql_iw    = "$IP/maintenance/interwiki.sql";
-		$sqlite_tmpl = "$wgSQLiteDataDir/tables.sql";
+		$sqlite_tmpl = "$IP/maintenance/sqlite/tables.sql";
 
 		# Make an SQLite template file if it doesn't exist (based on the same one MySQL uses to create a new wiki db)
-		if (1 || !file_exists($sqlite_tmpl)) { # todo: make this conditional again
+		if (!file_exists($sqlite_tmpl)) { # todo: make this conditional again
 			$sql = file_get_contents($mysql_tmpl);
 			$sql = preg_replace('/^\s*--.*?$/m','',$sql); # strip comments
 			$sql = preg_replace('/^\s*(UNIQUE)?\s*(PRIMARY)?\s*KEY.+?$/m','',$sql);
