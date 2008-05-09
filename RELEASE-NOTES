@@ -324,6 +324,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13993) apfrom doesn't work with apdir=descending
 * (bug 14018) Introduced alcontinue to list=alllinks to improve paging
 * (bug 14013) Added rcshow=patrolled to list=recentchanges
+* (bug 14028) Added language attribute to interwiki map in meta=siteinfo
 
 === Languages updated in 1.13 ===
 

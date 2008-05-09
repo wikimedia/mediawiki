@@ -170,13 +170,16 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$res = $this->select(__METHOD__);
 
 		$data = array();
+		$langNames = Language::getLanguageNames();
 		while($row = $db->fetchObject($res))
 		{
 			$val = array();
 			$val['prefix'] = $row->iw_prefix;
-			if ($row->iw_local == '1')
+			if($row->iw_local == '1')
 				$val['local'] = '';
 //			$val['trans'] = intval($row->iw_trans);	// should this be exposed?
+			if(isset($langNames[$row->iw_prefix]))
+				$val['language'] = $langNames[$row->iw_prefix];
 			$val['url'] = $row->iw_url;
 
 			$data[] = $val;
