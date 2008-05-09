@@ -418,4 +418,46 @@ class languages {
 
 }
 
-?>
+class extensionLanguages extends languages {
+	private $mMessageGroup; # The message group
+
+	/**
+	 * Load the messages group.
+	 * @param $group The messages group.
+	 */
+	function __construct( MessageGroup $group ) {
+		$this->mMessageGroup = $group;
+
+		$bools = $this->mMessageGroup->getBools();
+		$this->mIgnoredMessages = $bools['ignored'];
+		$this->mOptionalMessages = $bools['optional'];
+	}
+
+	/**
+	 * Get the extension name.
+	 *
+	 * @return The extension name.
+	 */
+	public function name() {
+		return $this->mMessageGroup->getLabel();
+	}
+
+	/**
+	 * Load the raw messages for a specific language.
+	 *
+	 * @param $code The language code.
+	 */
+	protected function loadRawMessages( $code ) {
+		if ( isset( $this->mRawMessages[$code] ) ) {
+			return;
+		}
+		$definitions = $this->mMessageGroup->getDefinitions();
+		$this->mRawMessages[$code] = array();
+		foreach( $definitions as $key => $value ) {
+			$message = $this->mMessageGroup->getMessage( $key, $code );
+			if( $message !== null ) {
+				$this->mRawMessages[$code][$key] = $message;
+			}
+		}
+	}
+}
