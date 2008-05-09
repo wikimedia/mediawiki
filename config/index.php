@@ -75,7 +75,7 @@ $ourdb['sqlite']['rootuser']      = '';
 
 $ourdb['mssql']['fullname']      = 'MSSQL';
 $ourdb['mssql']['havedriver']    = 0;
-$ourdb['mssql']['compile']       = 'mssql not ready yet'; # Change to 'mssql' after includes/DatabaseMssql.php added;
+$ourdb['mssql']['compile']       = 'mssql'; # Change to 'mssql' after includes/DatabaseMssql.php added;
 $ourdb['mssql']['bgcolor']       = '#ffc0cb';
 $ourdb['mssql']['rootuser']      = 'administrator';
 
