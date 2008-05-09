@@ -97,11 +97,11 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		}
 
 		if($params['filterlanglinks'] == 'withoutlanglinks') {
-			$this->addJoin(
-				array('page', 'langlinks'),
-				array(ApiQueryBase::LEFT_JOIN),
-				array('page_id=ll_from'));
+			$pageName = $this->getDB()->tableName('page');
+			$llName = $this->getDB()->tableName('langlinks');
+			$tables = "$pageName LEFT JOIN $llName ON page_id=ll_from";
 			$this->addWhere('ll_from IS NULL');
+			$this->addTables($tables);
 			$forceNameTitleIndex = false;
 		} else if($params['filterlanglinks'] == 'withlanglinks') {
 			$this->addTables(array('page', 'langlinks'));

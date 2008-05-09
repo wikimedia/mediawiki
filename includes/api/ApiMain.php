@@ -546,10 +546,6 @@ class ApiMain extends ApiBase {
 		return $this->mIsSysop;
 	}
 
-	/**
-	 * Check whether the current user is allowed to use high limits
-	 * @return bool
-	 */
 	public function canApiHighLimits() {
 		if (!isset($this->mCanApiHighLimits)) {
 			global $wgUser;
@@ -559,10 +555,6 @@ class ApiMain extends ApiBase {
 		return $this->mCanApiHighLimits;
 	}
 
-	/**
-	 * Check whether the user wants us to show version information in the API help
-	 * @return bool
-	 */
 	public function getShowVersions() {
 		return $this->mShowVersions;
 	}

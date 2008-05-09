@@ -101,8 +101,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		 * LIMIT 11 ORDER BY pl_from
 		 */
 		$db = $this->getDb();
-		$this->addTables(array($this->bl_table, 'page'));
-		$this->addWhere("{$this->bl_from}=page_id");
+		list($tblpage, $tbllinks) = $db->tableNamesN('page', $this->bl_table);
+		$this->addTables("$tbllinks JOIN $tblpage ON {$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace'));
 		else
@@ -129,8 +129,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		 * LIMIT 11 ORDER BY pl_namespace, pl_title, pl_from
 		 */
 		$db = $this->getDb();
-		$this->addTables(array($this->bl_table, 'page'));
-		$this->addWhere("{$this->bl_from}=page_id");
+		list($tblpage, $tbllinks) = $db->tableNamesN('page', $this->bl_table);
+		$this->addTables("$tbllinks JOIN $tblpage ON {$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace', 'page_is_redirect'));
 		else
@@ -260,14 +260,20 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	protected function processContinue() {
+		$pageSet = $this->getPageSet();
+		$count = $pageSet->getTitleCount();
+
 		if (!is_null($this->params['continue']))
 			$this->parseContinueParam();
 		else {
 			$title = $this->params['title'];
 			if (!is_null($title)) {
 				$this->rootTitle = Title :: newFromText($title);
-			} else {
-				$this->dieUsageMsg(array('missingparam', "title"));
+			} else {  // This case is obsolete. Will support this for a while
+				if ($count !== 1)
+					$this->dieUsage("The {$this->getModuleName()} query requires one title to start", 'bad_title_count');
+				$this->rootTitle = current($pageSet->getTitles()); // only one title there
+				$this->setWarning('Using titles parameter is obsolete for this list. Use ' . $this->encodeParamName('title') . ' instead.');
 			}
 		}
 
