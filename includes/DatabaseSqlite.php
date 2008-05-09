@@ -338,7 +338,7 @@ class DatabaseSqlite extends Database {
 		$sqlite_tmpl = "$IP/maintenance/sqlite/tables.sql";
 
 		# Make an SQLite template file if it doesn't exist (based on the same one MySQL uses to create a new wiki db)
-		if (!file_exists($sqlite_tmpl)) { # todo: make this conditional again
+		if (!file_exists($sqlite_tmpl)) {
 			$sql = file_get_contents($mysql_tmpl);
 			$sql = preg_replace('/^\s*--.*?$/m','',$sql); # strip comments
 			$sql = preg_replace('/^\s*(UNIQUE)?\s*(PRIMARY)?\s*KEY.+?$/m','',$sql);
