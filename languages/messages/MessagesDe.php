@@ -1305,6 +1305,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'imagelinks'                     => 'Verwendung',
 'linkstoimage'                   => 'Die folgenden Seiten benutzen diese Datei:',
 'nolinkstoimage'                 => 'Keine Seite benutzt diese Datei.',
+'redirectstofile'                => 'Die folgenden Dateien leiten auf diese Datei weiter:',
 'sharedupload'                   => 'Diese Datei ist ein gemeinsam genutzter Upload und kann von anderen Projekten verwendet werden.',
 'shareduploadwiki'               => 'Für weitere Informationen siehe die $1.',
 'shareduploadwiki-desc'          => 'Es folgt der Inhalt der $1.',
@@ -1963,7 +1964,7 @@ Die Seite „[[$1]]“ existiert bereits. Möchtest du diese löschen, um die Se
 'selfmove'                => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
 'immobile_namespace'      => 'Der Quell- oder Zielnamensraum ist geschützt; Verschiebungen in diesen Namensraum hinein oder aus diesem heraus sind nicht möglich.',
 'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
-'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch ',
+'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
 
 # Export
 'export'            => 'Seiten exportieren',
