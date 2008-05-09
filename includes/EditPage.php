@@ -1463,10 +1463,8 @@ END
 	 * of the preview button
 	 */
 	function doLivePreviewScript() {
-		global $wgStylePath, $wgJsMimeType, $wgStyleVersion, $wgOut, $wgTitle;
-		$wgOut->addHTML( '<script type="'.$wgJsMimeType.'" src="' .
-			htmlspecialchars( "$wgStylePath/common/preview.js?$wgStyleVersion" ) .
-			'"></script>' . "\n" );
+		global $wgOut, $wgTitle;
+		$wgOut->addScriptFile( 'preview.js' );
 		$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
 		return "return !lpDoPreview(" .
 			"editform.wpTextbox1.value," .

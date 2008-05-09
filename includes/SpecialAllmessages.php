@@ -41,6 +41,7 @@ function wfSpecialAllmessages() {
 	wfProfileOut( __METHOD__ . '-setup' );
 
 	wfProfileIn( __METHOD__ . '-output' );
+	$wgOut->addScriptFile( 'allmessages.js' );
 	if ( $ot == 'php' ) {
 		$navText .= wfAllMessagesMakePhp( $messages );
 		$wgOut->addHTML( 'PHP | <a href="' . $wgTitle->escapeLocalUrl( 'ot=html' ) . '">HTML</a> | ' .
