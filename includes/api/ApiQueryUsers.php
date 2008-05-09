@@ -72,42 +72,24 @@ if (!defined('MEDIAWIKI')) {
 			return $retval;
 
 		$db = $this->getDb();
+		$userTable = $db->tableName('user');
+		$tables = "$userTable AS u1";
 		$this->addFields('u1.user_name');
 		$this->addWhereFld('u1.user_name', $goodNames);
 		$this->addFieldsIf('u1.user_editcount', isset($this->prop['editcount']));
-		$this->addFieldsIf('u1.user_registration', isset($this->prop['registration']));
 
-		$join = false;
-		$tables = array('user');
-		$types = array();
-		$conds = array();
-		$aliases = array('u1');
 		if(isset($this->prop['groups'])) {
-			$join = true;
-			$tables[] = 'user_groups';
-			$types[] = ApiQueryBase::LEFT_JOIN;
-			$conds[] = 'ug_user=u1.user_id';
-			$aliases[] = null;
+			$ug = $db->tableName('user_groups');
+			$tables = "$tables LEFT JOIN $ug ON ug_user=u1.user_id";
 			$this->addFields('ug_group');
 		}
 		if(isset($this->prop['blockinfo'])) {
-			$join = true;
-			$tables[] = 'ipblocks';
-			$types[] = ApiQueryBase::LEFT_JOIN;
-			$conds[] = 'ipb_user=u1.user_id';
-			$aliases[] = null;
-			
-			$tables[] = 'user';
-			$types[] = ApiQueryBase::LEFT_JOIN;
-			$conds[] = 'ipb_by=u2.user_id';
-			$aliases[] = 'u2';
+			$ipb = $db->tableName('ipblocks');
+			$tables = "$tables LEFT JOIN $ipb ON ipb_user=u1.user_id";
+			$tables = "$tables LEFT JOIN $userTable AS u2 ON ipb_by=u2.user_id";
 			$this->addFields(array('ipb_reason', 'u2.user_name AS blocker_name'));
 		}
-		
-		if($join)
-			$this->addJoin($tables, $types, $conds, $aliases);
-		else
-			$this->addTables('user', 'u1');
+		$this->addTables($tables);
 
 		$data = array();
 		$res = $this->select(__METHOD__);
@@ -115,8 +97,6 @@ if (!defined('MEDIAWIKI')) {
 			$data[$r->user_name]['name'] = $r->user_name;
 			if(isset($this->prop['editcount']))
 				$data[$r->user_name]['editcount'] = $r->user_editcount;
-			if(isset($this->prop['registration']))
-				$data[$r->user_name]['registration'] = wfTimestamp(TS_ISO_8601, $r->user_registration);
 			if(isset($this->prop['groups']))
 				// This row contains only one group, others will be added from other rows
 				if(!is_null($r->ug_group))
@@ -149,8 +129,7 @@ if (!defined('MEDIAWIKI')) {
 				ApiBase :: PARAM_TYPE => array (
 					'blockinfo',
 					'groups',
-					'editcount',
-					'registration'
+					'editcount'
 				)
 			),
 			'users' => array(

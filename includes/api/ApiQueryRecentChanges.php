@@ -164,19 +164,14 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
 			if($this->fld_redirect || isset($show['redirect']) || isset($show['!redirect']))
 			{
-				$this->addJoin(
-					array('page', 'recentchanges'),
-					array(ApiQueryBase::RIGHT_JOIN),
-					array(array(
-						'page_namespace=rc_namespace',
-						'page_title=rc_title')));
+				$page = $db->tableName('page');
+				$tables = "$page RIGHT JOIN $rc FORCE INDEX(rc_timestamp) ON page_namespace=rc_namespace AND page_title=rc_title";
 				$this->addFields('page_is_redirect');
-			} else {
-				$this->addTables('recentchanges');
 			}
-		} else {
-			$this->addTables('recentchanges');
 		}
+		if(!isset($tables))
+			$tables = "$rc FORCE INDEX(rc_timestamp)";
+		$this->addTables($tables);
 		/* Specify the limit for our query. It's $limit+1 because we (possibly) need to
 		 * generate a "continue" parameter, to allow paging. */
 		$this->addOption('LIMIT', $limit +1);
