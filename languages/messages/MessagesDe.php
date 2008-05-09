@@ -2672,4 +2672,5 @@ Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 'specialpages-group-users'       => 'Benutzer und Rechte',
 'specialpages-group-needy'       => 'Seiten, die bearbeitet werden sollten',
 'specialpages-group-highuse'     => 'Häufig benutzte Seiten',
+
 );
