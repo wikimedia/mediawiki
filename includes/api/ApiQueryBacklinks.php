@@ -260,20 +260,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	protected function processContinue() {
-		$pageSet = $this->getPageSet();
-		$count = $pageSet->getTitleCount();
-
 		if (!is_null($this->params['continue']))
 			$this->parseContinueParam();
 		else {
 			$title = $this->params['title'];
 			if (!is_null($title)) {
 				$this->rootTitle = Title :: newFromText($title);
-			} else {  // This case is obsolete. Will support this for a while
-				if ($count !== 1)
-					$this->dieUsage("The {$this->getModuleName()} query requires one title to start", 'bad_title_count');
-				$this->rootTitle = current($pageSet->getTitles()); // only one title there
-				$this->setWarning('Using titles parameter is obsolete for this list. Use ' . $this->encodeParamName('title') . ' instead.');
+			} else {
+				$this->dieUsageMsg(array('missingparam', "title"));
 			}
 		}
 

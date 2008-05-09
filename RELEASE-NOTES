@@ -326,6 +326,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14013) Added rcshow=patrolled to list=recentchanges
 * (bug 14028) Added language attribute to interwiki map in meta=siteinfo
 * (bug 14022) Added usprop=registration and auprop=blockinfo
+* (bug 14021) Removed titles= support from list=backlinks (has been obsolete for ages)
 
 === Languages updated in 1.13 ===
 
