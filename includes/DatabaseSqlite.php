@@ -354,6 +354,10 @@ class DatabaseSqlite extends Database {
 			$sql = str_replace(' unsigned','',$sql);
 			$sql = str_replace(' int ',' INTEGER ',$sql);
 			$sql = str_replace('NOT NULL','',$sql);
+
+			# Tidy up and write file
+			$sql = preg_replace('/^\s*^/m','',$sql); # Remove empty lines
+			$sql = preg_replace('/;$/m',";\n",$sql); # Separate each statement with an empty line
 			file_put_contents($sqlite_tmpl,$sql);
 		}
 
