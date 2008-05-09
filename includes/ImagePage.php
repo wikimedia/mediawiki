@@ -521,31 +521,45 @@ EOT
 	function imageLinks()
 	{
 		global $wgUser, $wgOut;
+		
+		$limit = 100;
 
 		$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'filelinks' ), wfMsg( 'imagelinks' ) ) . "\n" );
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$page = $dbr->tableName( 'page' );
-		$imagelinks = $dbr->tableName( 'imagelinks' );
 
-		$sql = "SELECT page_namespace,page_title FROM $imagelinks,$page WHERE il_to=" .
-		  $dbr->addQuotes( $this->mTitle->getDBkey() ) . " AND il_from=page_id";
-		$sql = $dbr->limitResult($sql, 500, 0);
-		$res = $dbr->query( $sql, "ImagePage::imageLinks" );
+		$res = $dbr->select(
+			array( 'imagelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array( 'il_to' => $this->mTitle->getDBkey(), 'il_from = page_id' ),
+			__METHOD__,
+			array( 'LIMIT' => $limit + 1)	
+		);
 
 		if ( 0 == $dbr->numRows( $res ) ) {
-			$wgOut->addHtml( '<p>' . wfMsg( "nolinkstoimage" ) . "</p>\n" );
+			$wgOut->addHtml( Xml::element('p', null ,wfMsg( "nolinkstoimage" ) )."\n" );
 			return;
 		}
-		$wgOut->addHTML( '<p>' . wfMsg( 'linkstoimage' ) .  "</p>\n<ul>" );
+		$wgOut->addHTML( Xml::element('p', null, wfMsg( 'linkstoimage' ) )."\n" );
+		$wgOut->addHTML( Xml::openElement( 'ul' ));
 
 		$sk = $wgUser->getSkin();
-		while ( $s = $dbr->fetchObject( $res ) ) {
-			$name = Title::MakeTitle( $s->page_namespace, $s->page_title );
-			$link = $sk->makeKnownLinkObj( $name, "" );
-			$wgOut->addHTML( "<li>{$link}</li>\n" );
+		$count = 0;
+		while ( $s = $res->fetchObject() ) {
+			$count++;
+			if ( $count <= $limit ) {
+				// We have not yet reached the extra one that tells us there is more to fetch
+				$name = Title::makeTitle( $s->page_namespace, $s->page_title );
+				$link = $sk->makeKnownLinkObj( $name, "" );
+				$wgOut->addHTML( "<li>{$link}</li>\n" );
+			}
 		}
 		$wgOut->addHTML( "</ul>\n" );
+		$res->free();
+		
+		// Add a links to [[Special:Whatlinkshere]]
+		if ( $count > $limit )
+			$wgOut->addWikiText( wfMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() ) );
 	}
 	
 	function imageRedirects() 
@@ -561,7 +575,8 @@ EOT
 				'rd_title' => $this->mTitle->getDBkey(),
 				'page_namespace' => NS_IMAGE,
 				'rd_from = page_id'
-			)
+			),
+			__METHOD__
 		);
 		
 
