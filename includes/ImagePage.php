@@ -120,9 +120,9 @@ class ImagePage extends Article {
 		$from = $this->img->getRedirected();
 		return Title::makeTitle( NS_IMAGE, $from );		
 	}
-	public function isRedirect() {
+	public function isRedirect( $text = false ) {
 		if ( $this->img->isLocal() )
-			return parent::isRedirect();
+			return parent::isRedirect( $text );
 			
 		return (bool)$this->img->getRedirected();
 	}
