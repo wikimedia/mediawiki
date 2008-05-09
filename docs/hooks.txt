@@ -469,7 +469,7 @@ $isbn: ISBN to show information for
 $output: OutputPage object in use
 
 'BrokenLink': Before the HTML is created for a broken (i.e. red) link
-&$this: Linker instance
+&$linker: Linker instance
 $nt: the page title
 $query: the URL query string passed in
 &$u: the URL of this link
@@ -612,9 +612,6 @@ $title: title object to the file
 $fileVersions: array of undeleted versions. Empty if all versions were restored
 $user: user who performed the undeletion
 $reason: reason
-
-'GetAvailableRights': after calculating a list of all available rights
-&$rights: Array of rights, which may be added to.
 
 'GetBlockedStatus': after loading blocking status of an user from the database
 $user: user (object) being checked
@@ -1147,6 +1144,9 @@ $template: SimpleTemplate instance for the form
 'UserEffectiveGroups': Called in User::getEffectiveGroups()
 $user: User to get groups for
 &$groups: Current effective groups
+
+'UserGetAllRights': after calculating a list of all available rights
+&$rights: Array of rights, which may be added to.
 
 'UserGetEmail': called when getting an user email address
 $user: User object
