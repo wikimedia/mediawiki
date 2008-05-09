@@ -1335,18 +1335,24 @@ END
 <input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n
 <input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n" );
 
+		$encodedtext = htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) );
+		if( $encodedtext !== '' ) {
+			// Ensure there's a newline at the end, otherwise adding lines
+			// is awkward.
+			// But don't add a newline if the ext is empty, or Firefox in XHTML
+			// mode will show an extra newline. A bit annoying.
+			$encodedtext .= "\n";
+		}
+
 		$wgOut->addHTML( <<<END
 $recreate
 {$commentsubject}
 {$subjectpreview}
 {$this->editFormTextBeforeContent}
 <textarea tabindex='1' accesskey="," name="wpTextbox1" id="wpTextbox1" rows='{$rows}'
-cols='{$cols}'{$ew} $hidden>
+cols='{$cols}'{$ew} $hidden>{$encodedtext}</textarea>
 END
-. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) ) .
-"
-</textarea>
-		" );
+);
 
 		$wgOut->wrapWikiMsg( "<div id=\"editpage-copywarn\">\n$1\n</div>", $copywarnMsg );
 		$wgOut->addHTML( $this->editFormTextAfterWarn );
