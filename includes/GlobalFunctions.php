@@ -983,40 +983,25 @@ function wfSetBit( &$dest, $bit, $state = true ) {
 }
 
 /**
- * This function takes one or two arrays, objects, or strings as input, and returns a CGI-style string, e.g.
+ * This function takes two arrays as input, and returns a CGI-style string, e.g.
  * "days=7&limit=100". Options in the first array override options in the second.
  * Options set to "" will not be output.
- * @depreciated
  */
-function wfArrayToCGI( $query1, $query2 = null ) {
-	if( is_null($query2) ) wfBuildQuery( $query1 );
-	else wfBuildQuery( $query2, $query1 );
-}
-/**
- * wfBuildQuery is a improved wrapper for http_build_query.
- * We support a defaults array which the query may be merged with. As well we also support
- * arrays, objects, and strings as input.
- */
-function wfBuildQuery( $query, $defaults = null ) {
-	if( !is_null($defaults) ) {
-		## If either array is a string, then parse it and make sure to fix magic quotes.
-		foreach( array( 'query', 'defaults' ) as $var ) {
-			if( is_string($$var) ) {
-				$arr = array();
-				parse_str($$var, &$arr);
-				if( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-					global $wgRequest;
-					$wgRequest->fix_magic_quotes( $arr );
-				}
-				$$var = $arr;
-			}
-		}
-		# Merge, make sure they are arrays, not objects.
-		$query = ((array)$defaults) + ((array)$query);
+function wfArrayToCGI( $array1, $array2 = NULL )
+{
+	if ( !is_null( $array2 ) ) {
+		$array1 = $array1 + $array2;
 	}
-	
-	# Note that we must specify & because the default is sometimes &amp;
-	$cgi = is_string($query) ? $query : http_build_query( $query, null, '&' );
+
+	$cgi = '';
+	foreach ( $array1 as $key => $value ) {
+		if ( '' !== $value ) {
+			if ( '' != $cgi ) {
+				$cgi .= '&';
+			}
+			$cgi .= urlencode( $key ) . '=' . urlencode( $value );
+		}
+	}
 	return $cgi;
 }
 
@@ -2352,8 +2337,13 @@ function wfFormatStackFrame($frame) {
  * Get a cache key
  */
 function wfMemcKey( /*... */ ) {
+	global $wgDBprefix, $wgDBname;
 	$args = func_get_args();
-	$key = wfWikiID() . ':' . implode( ':', $args );
+	if ( $wgDBprefix ) {
+		$key = "$wgDBname-$wgDBprefix:" . implode( ':', $args );
+	} else {
+		$key = $wgDBname . ':' . implode( ':', $args );
+	}
 	return $key;
 }
 
@@ -2362,7 +2352,11 @@ function wfMemcKey( /*... */ ) {
  */
 function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
 	$args = array_slice( func_get_args(), 2 );
-	wfForeignWikiID($db,$prefix) . ':' . implode( ':', $args );
+	if ( $prefix ) {
+		$key = "$db-$prefix:" . implode( ':', $args );
+	} else {
+		$key = $db . ':' . implode( ':', $args );
+	}
 	return $key;
 }
 
@@ -2371,27 +2365,11 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
  * This is used as a prefix in memcached keys
  */
 function wfWikiID() {
-	global $wgDBname, wgDBprefix;
+	global $wgDBprefix, $wgDBname;
 	if ( $wgDBprefix ) {
 		return "$wgDBname-$wgDBprefix";
 	} else {
 		return $wgDBname;
-	}
-}
-
-/**
- * Get an ASCII string identifying a foreign wiki or shared db
- * This is used as a prefix in foreign memcached keys
- */
-function wfForeignWikiID( $db = null, $prefix = null ) {
-	global $wgSharedDB, $wgSharedPrefix, $wgDBname, $wgDBprefix;
-	if( !isset($db) ) $db = (isset($wgSharedDB) ? $wgSharedDB, $wgDBname);
-	if( !isset($prefix) ) $prefix = ($wgSharedPrefix ? $wgSharedPrefix, $wgDBprefix);
-	
-	if ( $prefix ) {
-		return "$db-$prefix";
-	} else {
-		return $db;
 	}
 }
 

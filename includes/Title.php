@@ -761,12 +761,10 @@ class Title {
 	 */
 	public function getFullURL( $query = '', $variant = false ) {
 		global $wgContLang, $wgServer, $wgRequest;
-		
-		$query = wfBuildQuery( $query ); # Support query input other than strings.
-		
+
 		if ( '' == $this->mInterwiki ) {
 			$url = $this->getLocalUrl( $query, $variant );
-			
+
 			// Ugly quick hack to avoid duplicate prefixes (bug 4571 etc)
 			// Correct fix would be to move the prepending elsewhere.
 			if ($wgRequest->getVal('action') != 'render') {
@@ -774,7 +772,7 @@ class Title {
 			}
 		} else {
 			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
-			
+
 			$namespace = wfUrlencode( $this->getNsText() );
 			if ( '' != $namespace ) {
 				# Can this actually happen? Interwikis shouldn't be parsed.
@@ -803,16 +801,14 @@ class Title {
 	public function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
 		global $wgVariantArticlePath, $wgContLang, $wgUser;
-		
-		$query = wfBuildQuery( $query ); # Support query input other than strings.
-		
+
 		// internal links should point to same variant as current page (only anonymous users)
 		if($variant == false && $wgContLang->hasVariants() && !$wgUser->isLoggedIn()){
 			$pref = $wgContLang->getPreferredVariant(false);
 			if($pref != $wgContLang->getCode())
 				$variant = $pref;
 		}
-		
+
 		if ( $this->isExternal() ) {
 			$url = $this->getFullURL();
 			if ( $query ) {
@@ -848,7 +844,7 @@ class Title {
 						$query = $matches[1];
 						if( isset( $matches[4] ) ) $query .= $matches[4];
 						$url = str_replace( '$1', $dbkey, $wgActionPaths[$action] );
-						$url = wfAppendQuery( $url, $query );
+						if( $query != '' ) $url .= '?' . $query;
 					}
 				}
 				if ( $url === false ) {
@@ -858,7 +854,7 @@ class Title {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
-			
+
 			// FIXME: this causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
 			if ($wgRequest->getVal('action') == 'render') {
