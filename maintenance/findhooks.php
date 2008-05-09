@@ -7,6 +7,9 @@
  * - hooks names in hooks.txt are at the beginning of a line and single quoted.
  * - hooks names in code are the first parameter of wfRunHooks.
  *
+ * if --online option is passed, the script will compare the hooks in the code
+ * with the ones at http://www.mediawiki.org/wiki/Manual:Hooks
+ *
  * Any instance of wfRunHooks that doesn't meet these parameters will be noted.
  *
  * @addtogroup Maintenance
@@ -30,10 +33,15 @@ $pathinc = array( $IP.'/includes/', $IP.'/includes/api/', $IP.'/includes/filerep
  * @return array of documented hooks
  */
 function getHooksFromDoc() {
-	global $doc;
-	$content = file_get_contents( $doc );
+	global $doc, $options;
 	$m = array();
-	preg_match_all( "/\n'(.*?)'/", $content, $m);
+	if( isset( $options['online'] ) ){
+		$content = Http::get( 'http://www.mediawiki.org/w/index.php?title=Manual:Hooks&action=raw' );
+		preg_match_all( '/\[\[\/([a-zA-Z0-9-_:]+)\|/', $content, $m );
+	} else {
+		$content = file_get_contents( $doc );
+		preg_match_all( "/\n'(.*?)'/", $content, $m );
+	}
 	return $m[1];
 }
 
