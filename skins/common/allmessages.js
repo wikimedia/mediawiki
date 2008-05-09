@@ -20,14 +20,14 @@ function allmessagesfilter_do() {
 	if ( !allmessages_nodelist )
 		return;
 
-	var text = document.getElementById('allmessagesinput').value;
+	var text = document.getElementById('allmessagesinput').value.toLowerCase();
 	var nodef = allmessages_modified;
 
 	allmessages_running = true;
 
 	for ( var name in allmessages_nodelist ) {
 		var nodes = allmessages_nodelist[name];
-		var display = ( name.indexOf( text ) == -1 ? 'none' : '' );
+		var display = ( name.toLowerCase().indexOf( text ) == -1 ? 'none' : '' );
 
 		for ( var i = 0; i < nodes.length; i++)
 			nodes[i].style.display =
@@ -35,7 +35,7 @@ function allmessagesfilter_do() {
 				  ? 'none' : display );
 	}
 
-	if ( text != document.getElementById('allmessagesinput').value ||
+	if ( text != document.getElementById('allmessagesinput').value.toLowerCase() ||
 	     nodef != allmessages_modified )
 		allmessagesfilter_do();  // repeat
 
