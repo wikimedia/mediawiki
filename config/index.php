@@ -170,15 +170,15 @@ $ourdb['sqlite']['rootuser']      = 'root';
 	<!--
 	function hideall() {
 		<?php foreach (array_keys($ourdb) as $db) {
-		echo "\n		document.getElementById('$db').style.display='none';";
+		echo "\n		var i = document.getElementById('$db'); if (i) i.style.display='none';";
 		}
 		?>
 
 	}
 	function toggleDBarea(id,defaultroot) {
 		hideall();
-		var dbarea = document.getElementById(id).style;
-		dbarea.display = (dbarea.display == 'none') ? 'block' : 'none';
+		var dbarea = document.getElementById(id);
+		if (dbarea) dbarea.style.display = (dbarea.style.display == 'none') ? 'block' : 'none';
 		var db = document.getElementById('RootUser');
 		if (defaultroot) {
 <?php foreach (array_keys($ourdb) as $db) {
