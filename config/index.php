@@ -71,7 +71,13 @@ $ourdb['sqlite']['fullname']      = 'SQLite';
 $ourdb['sqlite']['havedriver']    = 0;
 $ourdb['sqlite']['compile']       = 'pdo_sqlite';
 $ourdb['sqlite']['bgcolor']       = '#b1ebb1';
-$ourdb['sqlite']['rootuser']      = 'root';
+$ourdb['sqlite']['rootuser']      = '';
+
+$ourdb['mssql']['fullname']      = 'MSSQL';
+$ourdb['mssql']['havedriver']    = 0;
+$ourdb['mssql']['compile']       = 'mssql not ready yet'; # Change to 'mssql' after includes/DatabaseMssql.php added;
+$ourdb['mssql']['bgcolor']       = '#ffc0cb';
+$ourdb['mssql']['rootuser']      = 'administrator';
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -1436,6 +1442,9 @@ if( count( $errs ) ) {
 	</fieldset>
 
 	<?php database_switcher('sqlite'); ?>
+	<div class="config-desc">
+		<b>NOTE:</b> SQLite only uses the <i>Database name</i> setting above, the user, password and root settings are ignored.
+	</div>
 	<div class="config-input"><?php
 		aField( $conf, "SQLiteDataDir", "SQLite data directory:" );
 	?></div>
@@ -1445,6 +1454,19 @@ if( count( $errs ) ) {
 		the parent of your document root will be used.</p>
 		
 		<p>This directory must exist and be writable by the web server.</p>
+	</div>
+	</fieldset>
+
+	<?php database_switcher('mssql'); ?>
+	<div class="config-input"><?php
+		aField( $conf, "DBprefix", "Database table prefix:" );
+	?></div>
+	<div class="config-desc">
+		<p>If you need to share one database between multiple wikis, or
+		between MediaWiki and another web application, you may choose to
+		add a prefix to all the table names to avoid conflicts.</p>
+
+		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
 	</div>
 	</fieldset>
 
