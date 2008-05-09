@@ -289,7 +289,7 @@ class MediaWiki {
 			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
 
 			// Follow redirects only for... redirects
-			if( $article->mIsRedirect ) {
+			if( $article->isRedirect() ) {
 				$target = $article->followRedirect();
 				if( is_string( $target ) ) {
 					if( !$this->getVal( 'DisableHardRedirects' ) ) {
@@ -301,14 +301,14 @@ class MediaWiki {
 					// Rewrite environment to redirected article
 					$rarticle = self::articleFromTitle( $target );
 					$rarticle->loadPageData( $rarticle->pageDataFromTitle( $dbr, $target ) );
-					if ( $rarticle->mTitle->exists() ) {
+					if ( $rarticle->getTitle()->exists() ) {
 						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
 						$title = $target;
 					}
 				}
 			} else {
-				$title = $article->mTitle;
+				$title = $article->getTitle();
 			}
 		}
 		wfProfileOut( __METHOD__ );

@@ -35,6 +35,7 @@ class Article {
 	var $mUser;				//!<
 	var $mUserText;			//!<
 	var $mRedirectTarget;		//!<
+	var $mIsRedirect;
 	/**@}}*/
 
 	/**
@@ -541,6 +542,10 @@ class Article {
 	 */
 	function isRedirect( $text = false ) {
 		if ( $text === false ) {
+			if ( $this->mDataLoaded ) 
+				return $this->mIsRedirect;
+			
+			// Apparently loadPageData was never called
 			$this->loadContent();
 			$titleObj = Title::newFromRedirect( $this->fetchContent() );
 		} else {
