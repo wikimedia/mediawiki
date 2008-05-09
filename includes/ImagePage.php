@@ -120,6 +120,12 @@ class ImagePage extends Article {
 		$from = $this->img->getRedirected();
 		return Title::makeTitle( NS_IMAGE, $from );		
 	}
+	public function isRedirect() {
+		if ( $this->img->isLocal() )
+			return parent::isRedirect();
+			
+		return (bool)$this->img->getRedirected();
+	}
 
 	/**
 	 * Create the TOC
