@@ -3699,7 +3699,7 @@ class Parser
 		#
 		global $wgLegalTitleChars;
 		$tc = "[$wgLegalTitleChars]";
-		$nc = '[ _0-9A-Za-z\x80-\xff]'; # Namespaces can use non-ascii!
+		$nc = '[ _0-9A-Za-z\x80-\xff-]'; # Namespaces can use non-ascii!
 
 		$p1 = "/\[\[(:?$nc+:|:|)($tc+?)( \\($tc+\\))\\|]]/";		# [[ns:page (context)|]]
 		$p3 = "/\[\[(:?$nc+:|:|)($tc+?)( \\($tc+\\)|)(, $tc+|)\\|]]/";	# [[ns:page (context), context|]]
