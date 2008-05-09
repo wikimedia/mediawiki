@@ -525,6 +525,7 @@ class PreferencesForm {
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->addScriptFile( 'prefs.js' );
 
 		$wgOut->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
 
