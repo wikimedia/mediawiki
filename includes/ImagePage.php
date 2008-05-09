@@ -537,11 +537,11 @@ EOT
 		);
 
 		if ( 0 == $dbr->numRows( $res ) ) {
-			$wgOut->addHtml( Xml::element('p', null ,wfMsg( "nolinkstoimage" ) )."\n" );
+			$wgOut->addWikiMsg( 'nolinkstoimage' );
 			return;
 		}
-		$wgOut->addHTML( Xml::element('p', null, wfMsg( 'linkstoimage' ) )."\n" );
-		$wgOut->addHTML( Xml::openElement( 'ul' ));
+		$wgOut->addWikiMsg( 'linkstoimage' );
+		$wgOut->addHTML( "<ul>\n" );
 
 		$sk = $wgUser->getSkin();
 		$count = 0;
@@ -559,7 +559,7 @@ EOT
 		
 		// Add a links to [[Special:Whatlinkshere]]
 		if ( $count > $limit )
-			$wgOut->addWikiText( wfMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() ) );
+			$wgOut->addWikiMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() );
 	}
 	
 	function imageRedirects() 
@@ -583,7 +583,8 @@ EOT
 		if ( 0 == $dbr->numRows( $res ) ) 
 			return;
 
-		$wgOut->addHTML( '<p>' . wfMsg( 'redirectstofile' ) .  "</p>\n<ul>" );
+		$wgOut->addWikiMsg( 'redirectstofile' );
+		$wgOut->addHTML( "<ul>\n" );
 
 		$sk = $wgUser->getSkin();
 		while ( $row = $dbr->fetchObject( $res ) ) {
