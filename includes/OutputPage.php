@@ -91,6 +91,21 @@ class OutputPage {
 	}
 
 	/**
+	 * Add a JavaScript file out of skins/common, or a given relative path.
+	 * @param string $file filename in skins/common or complete on-server path (/foo/bar.js)
+	 */
+	function addScriptFile( $file ) {
+		global $wgStylePath, $wgStyleVersion, $wgJsMimeType;
+		if( substr( $file, 0, 1 ) == '/' ) {
+			$path = $file;
+		} else {
+			$path =  "{$wgStylePath}/common/{$file}";
+		}
+		$encPath = htmlspecialchars( $path );
+		$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"$path?$wgStyleVersion\"></script>\n" );
+	}
+	
+	/**
 	 * Add a self-contained script tag with the given contents
 	 * @param string $script JavaScript text, no <script> tags
 	 */
@@ -671,8 +686,8 @@ class OutputPage {
 	public function output() {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
-		global $wgJsMimeType, $wgStylePath, $wgUseAjax, $wgAjaxSearch, $wgAjaxWatch;
-		global $wgServer, $wgStyleVersion, $wgEnableMWSuggest;
+		global $wgJsMimeType, $wgUseAjax, $wgAjaxSearch, $wgAjaxWatch;
+		global $wgServer, $wgEnableMWSuggest;
 
 		if( $this->mDoNothing ){
 			return;
@@ -762,21 +777,21 @@ class OutputPage {
 		$sk = $wgUser->getSkin();
 
 		if ( $wgUseAjax ) {
-			$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajax.js?$wgStyleVersion\"></script>\n" );
+			$this->addScriptFile( 'ajax.js' );
 
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
 			if( $wgAjaxSearch && $wgUser->getBoolOption( 'ajaxsearch' ) ) {
-				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxsearch.js?$wgStyleVersion\"></script>\n" );
+				$this->addScriptFile( 'ajaxsearch.js' );
 				$this->addScript( "<script type=\"{$wgJsMimeType}\">hookEvent(\"load\", sajax_onload);</script>\n" );
 			}
 
 			if( $wgAjaxWatch && $wgUser->isLoggedIn() ) {
-				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/ajaxwatch.js?$wgStyleVersion\"></script>\n" );
+				$this->addScriptFile( 'ajaxwatch.js' );
 			}
 			
 			if ( $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ){
-				$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/mwsuggest.js?$wgStyleVersion\"></script>\n" );					
+				$this->addScriptFile( 'mwsuggest.js' );
 			}
 		}
 
