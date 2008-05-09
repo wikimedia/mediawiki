@@ -358,9 +358,14 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 				}
 			}
 		} else {
-			$group = MessageGroup::getGroup( 'ext-' . $extension );
-			$extension = new extensionLanguages( $group );
-			$this->extensions = array( $extension );
+			$group = MessageGroups::getGroup( 'ext-' . $extension );
+			if( $group ) {
+				$extension = new extensionLanguages( $group );
+				$this->extensions = array( $extension );
+			} else {
+				print "No such extension $extension.\n";
+				$this->extensions = array();
+			}
 		}
 	}
 
