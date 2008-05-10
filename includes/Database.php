@@ -931,9 +931,11 @@ class Database {
 	 * @param string $fname   Calling function name (use __METHOD__) for logs/profiling
 	 * @param array  $options Associative array of options (e.g. array('GROUP BY' => 'page_title')),
 	 *                        see Database::makeSelectOptions code for list of supported stuff
+	 * @param array $join_conds Associative array of table join conditions (optional)
+	 *                        (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
 	 * @return mixed Database result resource (feed to Database::fetchObject or whatever), or false on failure
 	 */
-	function select( $table, $vars, $conds='', $fname = 'Database::select', $options = array() )
+	function select( $table, $vars, $conds='', $fname = 'Database::select', $options = array(), $join_conds = array() )
 	{
 		if( is_array( $vars ) ) {
 			$vars = implode( ',', $vars );
@@ -942,8 +944,8 @@ class Database {
 			$options = array( $options );
 		}
 		if( is_array( $table ) ) {
-			if ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
-				$from = ' FROM ' . $this->tableNamesWithUseIndex( $table, $options['USE INDEX'] );
+			if ( !empty($join_conds) || (isset($options['USE INDEX']) && is_array($options['USE INDEX'])) )
+				$from = ' FROM ' . $this->tableNamesWithUseIndexOrJOIN( $table, $options['USE INDEX'], $join_conds );
 			else
 				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
 		} elseif ($table!='') {
@@ -1454,16 +1456,38 @@ class Database {
 	/**
 	 * @private
 	 */
-	function tableNamesWithUseIndex( $tables, $use_index ) {
+	function tableNamesWithUseIndexOrJOIN( $tables, $use_index = array(), $join_conds = array() ) {
 		$ret = array();
-
-		foreach ( $tables as $table )
-			if ( @$use_index[$table] !== null )
-				$ret[] = $this->tableName( $table ) . ' ' . $this->useIndexClause( implode( ',', (array)$use_index[$table] ) );
-			else
-				$ret[] = $this->tableName( $table );
-
-		return implode( ',', $ret );
+		$retJOIN = array();
+		$use_index_safe = is_array($use_index) ? $use_index : array();
+		$join_conds_safe = is_array($join_conds) ? $join_conds : array();
+		foreach ( $tables as $table ) {
+			// Is there a JOIN and INDEX clause for this table?
+			if ( isset($join_conds_safe[$table]) && isset($use_index_safe[$table]) ) {
+				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
+				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
+				$tableClause .= ' ON (' . $join_conds_safe[$table][1] . ')';
+				$retJOIN[] = $tableClause;
+			// Is there an INDEX clause?
+			} else if ( isset($use_index_safe[$table]) ) {
+				$tableClause = $this->tableName( $table );
+				$tableClause .= ' ' . $this->useIndexClause( implode( ',', (array)$use_index_safe[$table] ) );
+				$ret[] = $tableClause;
+			// Is there a JOIN clause?
+			} else if ( isset($join_conds_safe[$table]) ) {
+				$tableClause = $join_conds_safe[$table][0] . ' ' . $this->tableName( $table );
+				$tableClause .= ' ON (' . $join_conds_safe[$table][1] . ')';
+				$retJOIN[] = $tableClause;
+			} else {
+				$tableClause = $this->tableName( $table );
+				$ret[] = $tableClause;
+			}
+		}
+		// We can't separate explicit JOIN clauses with ',', use ' ' for those
+		$straightJoins = !empty($ret) ? implode( ',', $ret ) : "";
+		$otherJoins = !empty($retJOIN) ? implode( ' ', $retJOIN ) : "";
+		// Compile our final table clause
+		return implode(' ',array($straightJoins,$otherJoins) );
 	}
 
 	/**
