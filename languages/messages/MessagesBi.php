@@ -135,9 +135,6 @@ $messages = array(
 'namespacesall'    => 'olgeta',
 'monthsall'        => 'olgeta',
 
-# Multipage image navigation
-'imgmultigotopre' => 'Go long pej',
-
 # Table pager
 'table_pager_first' => 'Nambawan pej',
 

@@ -1847,7 +1847,6 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '&larr; წინა გვერდი',
 'imgmultipagenext' => 'შემდეგი გვერდი &rarr;',
-'imgmultigotopre'  => 'გადადი გვერდზე',
 
 # Table pager
 'table_pager_next'         => 'შემდეგი გვერდი',

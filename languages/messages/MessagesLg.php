@@ -553,8 +553,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'confirm_purge_button' => 'Kale',
 
 # Multipage image navigation
-'imgmultigo'      => 'Nona!',
-'imgmultigotopre' => 'Genda ku lupapula',
+'imgmultigo' => 'Nona!',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Kebera ebikyuse',

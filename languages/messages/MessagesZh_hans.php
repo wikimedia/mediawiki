@@ -2445,8 +2445,6 @@ $1
 'imgmultipageprev' => '← 上一页',
 'imgmultipagenext' => '下一页 →',
 'imgmultigo'       => '确定！',
-'imgmultigotopre'  => '到第',
-'imgmultigotopost' => '页',
 
 # Table pager
 'ascending_abbrev'         => '升',

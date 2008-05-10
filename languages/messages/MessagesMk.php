@@ -1923,7 +1923,6 @@ $1',
 'imgmultipageprev' => '&larr; претходна страница',
 'imgmultipagenext' => 'следна страница &rarr;',
 'imgmultigo'       => 'Оди!',
-'imgmultigotopre'  => 'Оди на страница',
 
 # Table pager
 'ascending_abbrev'         => 'раст',

@@ -2420,8 +2420,6 @@ $1
 'imgmultipageprev' => '← 上一頁',
 'imgmultipagenext' => '下一頁 →',
 'imgmultigo'       => '確定！',
-'imgmultigotopre'  => '到第',
-'imgmultigotopost' => '頁',
 
 # Table pager
 'ascending_abbrev'         => '遞增',

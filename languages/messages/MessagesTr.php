@@ -1894,7 +1894,6 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'imgmultipageprev' => '← önceki sayfa',
 'imgmultipagenext' => 'sonraki sayfa →',
 'imgmultigo'       => 'Git!',
-'imgmultigotopre'  => 'Sayfaya git',
 
 # Table pager
 'ascending_abbrev'         => 'küçükten büyüğe',

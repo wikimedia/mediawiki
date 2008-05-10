@@ -1891,8 +1891,6 @@ $1',
 'imgmultipageprev' => '←前頁',
 'imgmultipagenext' => '次頁→',
 'imgmultigo'       => '往',
-'imgmultigotopre'  => '往第',
-'imgmultigotopost' => '頁',
 
 # Table pager
 'ascending_abbrev'         => '升冪',

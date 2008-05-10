@@ -2048,7 +2048,6 @@ $1',
 'imgmultipageprev' => '← mineväne leht',
 'imgmultipagenext' => 'järgmäne leht →',
 'imgmultigo'       => 'Mineq!',
-'imgmultigotopre'  => 'Mineq lehe pääle',
 
 # Table pager
 'ascending_abbrev'         => 'ülespoolõ',

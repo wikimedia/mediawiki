@@ -891,8 +891,7 @@ $messages = array(
 'articletitles'    => "ບົດຄວາມ ເລີ່ມດ້ວຍ ''$1''",
 
 # Multipage image navigation
-'imgmultigo'      => 'ໄປ!',
-'imgmultigotopre' => 'ໄປ ຫາ ໜ້າ',
+'imgmultigo' => 'ໄປ!',
 
 # Auto-summaries
 'autosumm-blank'   => 'ພວມລຶບ ທຸກໆເນື້ອໃນ ຈາກ ໜ້ານີ້',

@@ -1512,7 +1512,6 @@ Por favor, escolha outro título.',
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'próxima página →',
 'imgmultigo'       => 'Ir!',
-'imgmultigotopre'  => 'Mostrar página',
 
 # Auto-summaries
 'autosumm-blank'   => 'Foi removido o conteúdo completo desta página',

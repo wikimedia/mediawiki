@@ -991,7 +991,6 @@ to upload files.',
 'imgmultipageprev' => '← ਪੇਜ਼ ਪਿੱਛੇ',
 'imgmultipagenext' => 'ਪੇਜ਼ ਅੱਗੇ →',
 'imgmultigo'       => 'ਜਾਓ!',
-'imgmultigotopre'  => 'ਪੇਜ਼ ਉੱਤੇ ਜਾਓ',
 
 # Table pager
 'table_pager_next'         => 'ਪੇਜ਼ ਅੱਗੇ',

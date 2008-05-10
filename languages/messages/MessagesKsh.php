@@ -1738,7 +1738,6 @@ $1',
 'imgmultipageprev' => 'â† de Sigg dovör',
 'imgmultipagenext' => 'de Sigg donoh â†’',
 'imgmultigo'       => 'Loss jonn!',
-'imgmultigotopre'  => 'Jangk op de Sigg',
 
 # Table pager
 'ascending_abbrev'         => 'opwääts zoteet',

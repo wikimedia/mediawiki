@@ -381,7 +381,6 @@ $1',
 # Multipage image navigation
 'imgmultipagenext' => 'ontombok ya bolong →',
 'imgmultigo'       => 'Ula!',
-'imgmultigotopre'  => 'Ula ed bolong',
 
 # Table pager
 'table_pager_next'         => 'Ontombok ya bolong',

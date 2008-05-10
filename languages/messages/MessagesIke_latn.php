@@ -360,7 +360,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'imgmultipageprev' => '← tunullipaaq mappitaq',
 'imgmultipagenext' => 'tagga mappitaq →',
 'imgmultigo'       => 'aivuq!',
-'imgmultigotopre'  => 'aivuk ikiaq mappitaq',
 
 # Table pager
 'table_pager_limit_submit' => 'aivuk',

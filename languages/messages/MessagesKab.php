@@ -1542,7 +1542,6 @@ $1',
 'imgmultipageprev' => '← asebter ssabeq',
 'imgmultipagenext' => 'asebter ameḍfir →',
 'imgmultigo'       => 'Ruḥ!',
-'imgmultigotopre'  => 'Ruḥ s asebtar',
 
 # Table pager
 'ascending_abbrev'         => 'asawen',
