@@ -111,20 +111,28 @@ class ImagePage extends Article {
 		
 		// Foreign image page
 		$from = $this->img->getRedirected();
-		return $this->mRedirectTarget = Title::makeTitle( NS_IMAGE, $from );
+		$to = $this->img->getName();
+		if ($from == $to) return null; 
+		return $this->mRedirectTarget = Title::makeTitle( NS_IMAGE, $to );
 	}
 	public function followRedirect() {
 		if ( $this->img->isLocal() )
 			return parent::followRedirect();
 			
 		$from = $this->img->getRedirected();
-		return Title::makeTitle( NS_IMAGE, $from );		
+		$to = $this->img->getName();
+		if ($from == $to) return false; 
+		return Title::makeTitle( NS_IMAGE, $to );	
 	}
 	public function isRedirect( $text = false ) {
 		if ( $this->img->isLocal() )
 			return parent::isRedirect( $text );
 			
 		return (bool)$this->img->getRedirected();
+	}
+	
+	public function isLocal() {
+		return $this->img->isLocal();
 	}
 
 	/**
