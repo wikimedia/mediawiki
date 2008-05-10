@@ -1,7 +1,7 @@
 <?php
 
 class ForeignDBFile extends LocalFile {
-	static function newFromTitle( $title, $repo ) {
+	static function newFromTitle( $title, $repo, $unused = null ) {
 		return new self( $title, $repo );
 	}
 
@@ -15,20 +15,21 @@ class ForeignDBFile extends LocalFile {
 		}
 	}
 
-	function publish( /*...*/ ) {
+	function publish( $srcPath, $flags = 0 ) {
 		$this->readOnlyError();
 	}
 
-	function recordUpload( /*...*/ ) {
+	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
+		$watch = false, $timestamp = false ) {
 		$this->readOnlyError();
 	}
-	function restore(  /*...*/  ) {
+	function restore( $versions = array(), $unsuppress = false ) {
 		$this->readOnlyError();
 	}
-	function delete( /*...*/ ) {
+	function delete( $reason, $suppress = false ) {
 		$this->readOnlyError();
 	}
-	function move( /*...*/ ) {
+	function move( $target ) {
 		$this->readOnlyError();
 	}
 	
