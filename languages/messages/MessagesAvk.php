@@ -2068,7 +2068,6 @@ $1',
 'imgmultipageprev' => '← abduebu',
 'imgmultipagenext' => 'radimebu →',
 'imgmultigo'       => 'Askí !',
-'imgmultigotopre'  => 'Grablera kal bu',
 
 # Table pager
 'ascending_abbrev'         => 'tid-',

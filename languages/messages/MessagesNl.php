@@ -273,8 +273,8 @@ $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Links onderstrepen:',
-'tog-highlightbroken'         => 'Links naar lege pagina’s <a href="" class="new">zo weergeven</a> (alternatief: zo weergeven<a href="" class="internal">?</a>).',
+'tog-underline'               => 'Verwijzingen onderstrepen:',
+'tog-highlightbroken'         => 'Verwijzingen naar lege pagina’s <a href="" class="new">zo weergeven</a> (alternatief: zo weergeven<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafen uitvullen',
 'tog-hideminor'               => 'Kleine wijzigingen verbergen in recente wijzigingen',
 'tog-extendwatchlist'         => 'Uitgebreide volglijst',
@@ -300,10 +300,10 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
-'tog-fancysig'                => 'Ondertekenen zonder link naar gebruikerspagina',
+'tog-fancysig'                => 'Ondertekenen zonder verwijzing naar gebruikerspagina',
 'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken',
-'tog-showjumplinks'           => '“ga naar”-toegankelijkheidslinks inschakelen',
+'tog-showjumplinks'           => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
 'tog-uselivepreview'          => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
 'tog-forceeditsummary'        => 'Een melding geven bij een lege samenvatting',
 'tog-watchlisthideown'        => 'Eigen bewerkingen op mijn volglijst verbergen',
@@ -435,7 +435,7 @@ $messages = array(
 'updatedmarker'     => 'bewerkt sinds mijn laatste bezoek',
 'info_short'        => 'Informatie',
 'printableversion'  => 'Printervriendelijke versie',
-'permalink'         => 'Permanente link',
+'permalink'         => 'Permanente verwijzing',
 'print'             => 'Afdrukken',
 'edit'              => 'Bewerken',
 'create'            => 'Aanmaken',
@@ -584,7 +584,7 @@ $1',
 De beheerder heeft de volgende reden opgegeven: $1',
 'missingarticle'       => 'In de database is geen tekst aangetroffen voor een pagina met de naam “$1”.
 
-Dit wordt meestal veroorzaakt door het volgen van een link in een vergelijkings- of geschiedenispagina naar een pagina die verwijderd is.
+Dit wordt meestal veroorzaakt door het volgen van een verwijzing in een vergelijkings- of geschiedenispagina naar een pagina die verwijderd is.
 
 Als dit niet het geval is, dan hebt u een fout in de software gevonden.
 Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
@@ -604,7 +604,8 @@ Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
 'badarticleerror'      => 'Deze handeling kan niet op deze pagina worden uitgevoerd.',
 'cannotdelete'         => 'De pagina of het bestand kon niet verwijderd worden. Mogelijk is deze al door iemand anders verwijderd.',
 'badtitle'             => 'Ongeldige paginanaam',
-'badtitletext'         => 'De titel van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerd gelinkte intertaal- of interwikinaam. Wellicht bevat de titel niet toegestane karakters.',
+'badtitletext'         => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
+Wellicht bevat de paginanaam niet toegestane karakters.',
 'perfdisabled'         => 'Sorry! Deze functionaliteit is tijdelijk uitgeschakeld, omdat deze de database zo langzaam maakt dat niemand de wiki kan gebruiken.',
 'perfcached'           => 'De gegevens komen uit een cache en zijn mogelijk niet actueel.',
 'perfcachedts'         => 'De gegevens komen uit een cache en zijn voor het laatst bijgewerkt op $1.',
@@ -737,9 +738,9 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'italic_sample'   => 'Schuingedrukte tekst',
 'italic_tip'      => 'Schuin',
 'link_sample'     => 'Onderwerp',
-'link_tip'        => 'Interne link',
-'extlink_sample'  => 'http://www.voorbeeld.com linktekst',
-'extlink_tip'     => 'Externe link (vergeet http:// niet)',
+'link_tip'        => 'Interne verwijzing',
+'extlink_sample'  => 'http://www.voorbeeld.com verwijzingstekst',
+'extlink_tip'     => 'Externe verwijzing (vergeet http:// niet)',
 'headline_sample' => 'Deelonderwerp',
 'headline_tip'    => 'Tussenkopje (hoogste niveau)',
 'math_sample'     => 'Voer de formule in',
@@ -749,7 +750,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'image_sample'    => 'Voorbeeld.png',
 'image_tip'       => 'Mediabestand',
 'media_sample'    => 'Voorbeeld.ogg',
-'media_tip'       => 'Link naar bestand',
+'media_tip'       => 'Verwijzing naar bestand',
 'sig_tip'         => 'Uw handtekening met datum en tijd',
 'hr_tip'          => 'Horizontale lijn (gebruik spaarzaam)',
 
@@ -1011,7 +1012,9 @@ Zorg dat u deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 'mergehistory-from'                => 'Bronpagina:',
 'mergehistory-into'                => 'Bestemmingspagina:',
 'mergehistory-list'                => 'Samenvoegbare bewerkingsgeschiedenis',
-'mergehistory-merge'               => 'De volgende versies van [[:$1]] kunnen samengevoegd worden naar [[:$2]]. Gebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de aangegeven tijd samen te voegen. Let op dat het gebruiken van de navigatielinks deze kolom zal herinstellen.',
+'mergehistory-merge'               => 'De volgende versies van [[:$1]] kunnen samengevoegd worden naar [[:$2]].
+Gebruik de kolom met keuzerondjes om alleen de versies gemaakt op en voor de aangegeven tijd samen te voegen.
+Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt.',
 'mergehistory-go'                  => 'Samenvoegbare bewerkingen bekijken',
 'mergehistory-submit'              => 'Versies samenvoegen',
 'mergehistory-empty'               => 'Er zijn geen versies die samengevoegd kunnen worden.',
@@ -1070,7 +1073,7 @@ Zorg dat u deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 'showingresults'            => "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 'showingresultsnum'         => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
 'showingresultstotal'       => "Hieronder worden de resultaten '''$1 tot $2''' van '''$3''' weergegeven",
-'nonefound'                 => "'''Opmerking''': mislukte zoekopdrachten worden vaak veroorzaakt door zoeken naar veelvoorkomende woorden als \"van\" en \"het\", die niet in de indexen worden opgenomen, of door meer dan één zoekterm op te geven. Alleen pagina's die alle zoektermen bevatten worden opgenomen in de resultaten.",
+'nonefound'                 => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht. Als u in uw zoekopdracht als voorvoegsel \"''all:''\" gebruikt worden alle pagina's doorzocht (inclusief overlegpagina's, sjablonen, enzovoort). U kunt ook een naamruimte als voorvoegsel gebruiken.",
 'powersearch'               => 'Uitgebreid zoeken',
 'powersearch-legend'        => 'Uitgebreid zoeken',
 'powersearchtext'           => 'Zoeken in naamruimten:<br />$1<br />$2 Doorverwijzingen weergeven<br />Zoeken naar $3 $9',
@@ -1210,7 +1213,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'right-autoconfirmed'        => 'Behandeld worden als een geregistreerde gebruiker',
 'right-bot'                  => 'Behandeld worden als een geautomatiseerd proces',
 'right-nominornewtalk'       => "Kleine bewerkingen aan een overlegpagina leiden niet tot een melding 'nieuwe berichten'",
-'right-apihighlimits'        => 'Hoge API-limieten gebruiken',
+'right-apihighlimits'        => 'Hogere limieten in API-zoekopdrachten gebruiken',
 'right-delete'               => "Pagina's verwijderen",
 'right-bigdelete'            => "Pagina's met een grote geschiedenis verwijderen",
 'right-deleterevision'       => "Versies van pagina's verbergen",
@@ -1278,11 +1281,11 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 # Recent changes linked
 'recentchangeslinked'          => 'Verwante wijzigingen',
 'recentchangeslinked-title'    => 'Wijzigingen verwant aan "$1"',
-'recentchangeslinked-noresult' => "Er zijn geen bewerkingen in de gegeven periode geweest op de pagina's die vanaf hier gelinkt worden.",
-'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's die gelinkt worden een aangegeven pagina, of vanuit pagina's in een aangegeven pagina een categorie.
+'recentchangeslinked-noresult' => "Er zijn in de opgegeven periode geen bewerkingen geweest op de pagina's waarheen vanaf hier verwezen wordt.",
+'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's die waarheen verwezen wordt vanaf een aangegeven pagina, of vanuit pagina's in een aangegeven pagina een categorie.
 Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
 'recentchangeslinked-page'     => 'Paginanaam:',
-'recentchangeslinked-to'       => "Wijzigingen aan pagina's met links naar deze pagina weergeven",
+'recentchangeslinked-to'       => "Wijzigingen aan pagina's met verwijzingen naar deze pagina bekijken",
 
 # Upload
 'upload'                      => 'Bestand uploaden',
@@ -1303,7 +1306,7 @@ Om het bestand in te voegen in een pagina kunt u een van de volgende codes gebru
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.png|alternatieve tekst]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestand.ogg]]</nowiki>'''
 
-De laatste link is bedoeld voor mediabestanden die geen afbeelding zijn.",
+De laatste verwijzing is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'upload-permitted'            => 'Toegelaten bestandstypes: $1.',
 'upload-preferred'            => 'Aangewezen bestandstypes: $1.',
 'upload-prohibited'           => 'Verboden bestandstypes: $1.',
@@ -1422,10 +1425,10 @@ Klikken op een kolomkop verandert de sortering.',
 # Image description page
 'filehist'                       => 'Bestandsgeschiedenis',
 'filehist-help'                  => 'Klik op een datum/tijd om het bestand te zien zoals het destijds was.',
-'filehist-deleteall'             => 'alles verwijderen',
-'filehist-deleteone'             => 'dit verwijderen',
+'filehist-deleteall'             => 'alle versies verwijderen',
+'filehist-deleteone'             => 'deze bestandsversie verwijderen',
 'filehist-revert'                => 'terugdraaien',
-'filehist-current'               => 'huidig',
+'filehist-current'               => 'huidige versie',
 'filehist-datetime'              => 'Datum/tijd',
 'filehist-user'                  => 'Gebruiker',
 'filehist-dimensions'            => 'Afmetingen',
@@ -1434,9 +1437,11 @@ Klikken op een kolomkop verandert de sortering.',
 'imagelinks'                     => 'Bestandsverwijzingen',
 'linkstoimage'                   => "Dit bestand wordt op de volgende pagina's gebruikt:",
 'nolinkstoimage'                 => 'Geen enkele pagina gebruikt dit bestand.',
+'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Meer verwijzingen]] naar dit bestand bekijken.',
+'redirectstofile'                => 'De volgende bestanden verwijzen door naar dit bestand:',
 'sharedupload'                   => 'Dit bestand is een gedeelde upload en kan ook door andere projecten gebruikt worden.',
 'shareduploadwiki'               => 'Zie $1 voor verdere informatie.',
-'shareduploadwiki-desc'          => 'De $1 daar wordt hieronder weergegeven.',
+'shareduploadwiki-desc'          => 'De $1 in de gedeelde bestandsbank wordt hieronder weergegeven.',
 'shareduploadwiki-linktext'      => 'bestandsbeschrijving',
 'shareduploadduplicate'          => 'Dit bestand is een duplicaat van $1 in de gedeelde mediabank.',
 'shareduploadduplicate-linktext' => 'een ander bestand',
@@ -1491,8 +1496,9 @@ U kunt het $1.',
 
 # Unused templates
 'unusedtemplates'     => 'Ongebruikte sjablonen',
-'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte sjabloon die op geen enkele pagina gebruikt worden. Vergeet niet de "Links naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
-'unusedtemplateswlh'  => 'andere links',
+'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte sjabloon die op geen enkele pagina gebruikt worden.
+Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
+'unusedtemplateswlh'  => 'andere verwijzingen',
 
 # Random page
 'randompage'         => 'Willekeurige pagina',
@@ -1521,18 +1527,22 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 
 'disambiguations'      => "Doorverwijspagina's",
 'disambiguationspage'  => 'Template:Doorverwijspagina',
-'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''. Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen. <br />Een pagina wordt gezien als dooverwijspagina als er een sjabloon op staat dat gelinkt is vanaf [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''.
+Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.
+<br />Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Dubbele doorverwijzingen',
-'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's. Elke rij bevat links naar de eerste en de tweede doorverwijspagina en een link naar de doelpagina van de tweede doorverwijspagina. Meestal is de laatste pagina het eigenlijke doel.",
+'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
+Elke rij bevat verwijzingen naar de eerste en de tweede doorverwijspagina en een verwijzing naar de doelpagina van de tweede doorverwijspagina.
+Meestal is de laatste pagina het eigenlijke doel.",
 
 'brokenredirects'        => 'Onjuiste doorverwijzingen',
 'brokenredirectstext'    => "Hieronder staan doorverwijspagina's die een doorverwijzing bevatten naar een niet-bestaande pagina.",
 'brokenredirects-edit'   => '(bewerken)',
 'brokenredirects-delete' => '(verwijderen)',
 
-'withoutinterwiki'         => "Pagina's zonder links naar andere talen",
-'withoutinterwiki-summary' => "De volgende pagina's linken niet naar versies in een andere taal:",
+'withoutinterwiki'         => "Pagina's zonder verwijzingen naar andere talen",
+'withoutinterwiki-summary' => "De volgende pagina's verwijzen niet naar versies in een andere taal:",
 'withoutinterwiki-legend'  => 'Voorvoegsel',
 'withoutinterwiki-submit'  => 'Bekijken',
 
@@ -1566,7 +1576,7 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'prefixindex'             => "Alle pagina's op voorvoegsel",
 'shortpages'              => "Korte pagina's",
 'longpages'               => "Lange pagina's",
-'deadendpages'            => "Pagina's zonder links",
+'deadendpages'            => "Pagina's zonder verwijzingen",
 'deadendpagestext'        => "De onderstaande pagina's verwijzen niet naar andere pagina's in deze wiki.",
 'protectedpages'          => "Beveiligde pagina's",
 'protectedpages-indef'    => 'Alleen blokkades zonder verloopdatum',
@@ -1584,7 +1594,9 @@ De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is ''
 'ancientpages'            => "Oudste pagina's",
 'move'                    => 'Hernoemen',
 'movethispage'            => 'Deze pagina hernoemen',
-'unusedimagestext'        => 'Let op! Het is mogelijk dat er via een directe link verwezen wordt naar een bestand. Een bestand kan hier dus ten onrechte opgenomen zijn.',
+'unusedimagestext'        => 'Let op!
+Het is mogelijk dat er direct verwezen wordt naar een bestand.
+Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'unusedcategoriestext'    => 'Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.',
 'notargettitle'           => 'Geen doelpagina',
 'notargettext'            => 'U hebt niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.',
@@ -1885,23 +1897,23 @@ $1',
 'sp-contributions-submit'      => 'Bekijken',
 
 # What links here
-'whatlinkshere'            => 'Links naar deze pagina',
+'whatlinkshere'            => 'Verwijzingen naar deze pagina',
 'whatlinkshere-title'      => "Pagina's die verwijzen naar $1",
 'whatlinkshere-page'       => 'Pagina:',
 'linklistsub'              => '(Lijst van verwijzingen)',
 'linkshere'                => "De volgende pagina's verwijzen naar '''[[:$1]]''':",
 'nolinkshere'              => "Geen enkele pagina verwijst naar '''[[:$1]]'''.",
-'nolinkshere-ns'           => "Geen enkele pagina linkt naar '''[[:$1]]''' in de gekozen naamruimte.",
+'nolinkshere-ns'           => "Geen enkele pagina in de gekozen naamruimte verwijst naar '''[[:$1]]'''.",
 'isredirect'               => 'doorverwijspagina',
 'istemplate'               => 'ingevoegd als sjabloon',
-'isimage'                  => 'bestandslink',
+'isimage'                  => 'bestandsverwijzing',
 'whatlinkshere-prev'       => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
-'whatlinkshere-links'      => '← links daarnaar',
+'whatlinkshere-links'      => '← verwijzingen naar deze pagina',
 'whatlinkshere-hideredirs' => 'doorverwijzingen $1',
 'whatlinkshere-hidetrans'  => 'transclusies $1',
 'whatlinkshere-hidelinks'  => 'verwijzingen $1',
-'whatlinkshere-hideimages' => 'bestandslinks $1',
+'whatlinkshere-hideimages' => 'bestandsverwijzingen $1',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
@@ -1917,7 +1929,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbreason-dropdown'          => "*Veel voorkomende redenen voor blokkades
 ** Foutieve informatie invoeren
 ** Verwijderen van informatie uit pagina's
-** Spamlinks naar externe websites
+** Spamverwijzing naar externe websites
 ** Invoegen van nonsens in pagina's
 ** Intimiderend gedrag
 ** Misbruik door meerdere gebruikers
@@ -2072,7 +2084,7 @@ Dit exportbestand is daarna te importeren in een andere MediaWiki via de [[Speci
 
 Geef in het onderstaande veld de namen van de te exporteren pagina\'s op, één pagina per regel, en geef aan of u alle versies met de bewerkingssamenvatting of alleen de huidige versies met de bewerkingssamenvatting wilt exporteren.
 
-In het laatste geval kunt u ook een link gebruiken, bijvoorbeeld [[Special:Export/{{Mediawiki:Mainpage}}]] voor de pagina "{{Mediawiki:Mainpage}}".',
+In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[Special:Export/{{Mediawiki:Mainpage}}]] voor de pagina "{{Mediawiki:Mainpage}}".',
 'exportcuronly'     => 'Alleen de laatste versie, niet de volledige geschiedenis',
 'exportnohistory'   => "----
 '''Let op:''' het exporteren van de gehele geschiedenis is uitgeschakeld wegens prestatieredenen.",
@@ -2118,7 +2130,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'importfailed'               => 'Import is mislukt: $1',
 'importunknownsource'        => 'Onbekend importbrontype',
 'importcantopen'             => 'Kon het importbestand niet openen',
-'importbadinterwiki'         => 'Verkeerde interwikilink',
+'importbadinterwiki'         => 'Verkeerde interwikiverwijzing',
 'importnotext'               => 'Leeg of geen tekst',
 'importsuccess'              => 'Import afgerond!',
 'importhistoryconflict'      => 'Er zijn conflicten in de geschiedenis van de pagina (is misschien eerder geïmporteerd)',
@@ -2176,7 +2188,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-n-help'                  => 'Hulpinformatie over deze wiki',
 'tooltip-n-sitesupport'           => 'Ondersteun ons financieel',
 'tooltip-t-whatlinkshere'         => "Lijst van alle pagina's die naar deze pagina verwijzen",
-'tooltip-t-recentchangeslinked'   => "Recente wijzigingen in pagina's gelinkt vanaf deze pagina",
+'tooltip-t-recentchangeslinked'   => "Recente wijzigingen in pagina's waar deze pagina naar verwijst",
 'tooltip-feed-rss'                => 'RSS-feed voor deze pagina',
 'tooltip-feed-atom'               => 'Atom-feed voor deze pagina',
 'tooltip-t-contributions'         => 'Bijdragen van deze gebruiker',
@@ -2184,7 +2196,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-t-upload'                => 'Bestanden uploaden',
 'tooltip-t-specialpages'          => "Lijst van alle speciale pagina's",
 'tooltip-t-print'                 => 'Printvriendelijke versie van deze pagina',
-'tooltip-t-permalink'             => 'Permanente link naar deze versie van de pagina',
+'tooltip-t-permalink'             => 'Permanente verwijzing naar deze versie van de pagina',
 'tooltip-ca-nstab-main'           => 'Inhoudspagina bekijken',
 'tooltip-ca-nstab-user'           => 'Gebruikerspagina bekijken',
 'tooltip-ca-nstab-media'          => 'Mediapagina bekijken',
@@ -2229,11 +2241,11 @@ U kunt wel de broncode bekijken.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spamfilter',
-'spamprotectiontext'  => 'De pagina die u wilde opslaan is geblokkeerd door het spamfilter. Meestal wordt dit door een externe link veroorzaakt.',
+'spamprotectiontext'  => 'De pagina die u wilde opslaan is geblokkeerd door het spamfilter. Meestal wordt dit door een externe verwijzing veroorzaakt.',
 'spamprotectionmatch' => 'De volgende tekst veroorzaakte een alarm van de spamfilter: $1',
 'spambot_username'    => 'MediaWiki opschoning spam',
 'spam_reverting'      => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
-'spam_blanking'       => 'Alle wijzigingen met een link naar $1 worden verwijderd',
+'spam_blanking'       => 'Alle wijzigingen met een verwijzing naar $1 worden verwijderd',
 
 # Info page
 'infosubtitle'   => 'Informatie voor pagina',
@@ -2288,7 +2300,7 @@ $1',
 'imagemaxsize'         => 'Maximale grootte beelden op beschrijvingspagina:',
 'thumbsize'            => 'Grootte thumbnail:',
 'widthheight'          => '$1x$2',
-'widthheightpage'      => "$1×$2, $3 pagina's",
+'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'            => '(bestandsgrootte: $1, MIME-type: $2)',
 'file-info-size'       => '($1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4)',
 'file-nohires'         => '<small>Geen hogere resolutie beschikbaar.</small>',
@@ -2312,8 +2324,9 @@ $1',
 # Bad image list
 'bad_image_list' => "De opmaak is als volgt:
 
-Alleen regels in een lijst (regels die beginnen met *) worden verwerkt. De eerste link op een regel moet een link zijn naar een ongewenst bestand.
-Alle volgende links die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop het bestand in de tekst is opgenomen.",
+Alleen regels in een lijst (regels die beginnen met *) worden verwerkt.
+De eerste verwijzing op een regel moet een verwijzing zijn naar een ongewenst bestand.
+Alle volgende verwijzingen die op dezelfde regel staan, worden behandeld als uitzondering, zoals bijvoorbeeld pagina's waarop het bestand in de tekst is opgenomen.",
 
 # Metadata
 'metadata'          => 'Metadata',
@@ -2597,8 +2610,8 @@ Alle volgende links die op dezelfde regel staan, worden behandeld als uitzonderi
 'confirmemail_noemail'     => 'U hebt geen geldig e-mailadres ingegeven in uw [[Special:Preferences|gebruikersvoorkeuren]].',
 'confirmemail_text'        => '{{SITENAME}} eist bevestiging van uw e-mailadres voordat u de e-mailmogelijkheden kunt gebruiken.
 Klik op de onderstaande knop om een bevestigingsbericht te ontvangen.
-Dit bericht bevat een link met een code.
-Open die link om uw e-mailadres te bevestigen.',
+Dit bericht bevat een verwijzing met een code.
+Open die verwijzing om uw e-mailadres te bevestigen.',
 'confirmemail_pending'     => '<div class="error">Er is al een bevestigingsbericht aan u verzonden.
 Als u recentelijk uw gebruiker hebt aangemaakt, wacht dan een paar minuten totdat die aankomt voordat u opnieuw een e-mail laat sturen.</div>',
 'confirmemail_send'        => 'Een bevestigingscode verzenden',
@@ -2617,11 +2630,11 @@ U kunt zich nu aanmelden en {{SITENAME}} gebruiken.',
 'confirmemail_subject'     => 'Bevestiging e-mailadres voor {{SITENAME}}',
 'confirmemail_body'        => 'Iemand, waarschijnlijk u, met het IP-adres $1, heeft zich met dit e-mailadres geregistreerd als gebruiker "$2" op {{SITENAME}}.
 
-Open de volgende link om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} te activeren:
+Open de volgende verwijzing om te bevestigen dat u deze gebruiker bent en om de e-mailmogelijkheden op {{SITENAME}} te activeren:
 
 $3
 
-Als u uzelf *niet* hebt aangemeld, volg dan de volgende link om de bevestiging van uw e-mailadres te annuleren:
+Als u uzelf *niet* hebt aangemeld, volg dan de volgende verwijzing om de bevestiging van uw e-mailadres te annuleren:
 
 $5
 
@@ -2669,7 +2682,7 @@ $1',
 'imgmultipageprev' => '← vorige pagina',
 'imgmultipagenext' => 'volgende pagina →',
 'imgmultigo'       => 'OK',
-'imgmultigotopre'  => 'Gaan naar pagina',
+'imgmultigoto'     => 'Ga naar pagina $1',
 
 # Table pager
 'ascending_abbrev'         => 'opl.',

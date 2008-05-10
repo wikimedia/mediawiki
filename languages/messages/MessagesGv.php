@@ -979,8 +979,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'confirm_purge_button' => 'OK',
 
 # Multipage image navigation
-'imgmultigo'      => 'Gow!',
-'imgmultigotopre' => 'Gow gys duillag',
+'imgmultigo' => 'Gow!',
 
 # Table pager
 'table_pager_first'        => 'Yn chied duillag',

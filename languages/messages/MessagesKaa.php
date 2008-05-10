@@ -1461,7 +1461,6 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 'imgmultipageprev' => "← aldıng'ı bet",
 'imgmultipagenext' => 'keyingi bet →',
 'imgmultigo'       => "O'tin'!",
-'imgmultigotopre'  => "Betke o'tiw",
 
 # Table pager
 'ascending_abbrev'         => "o's.",

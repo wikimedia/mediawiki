@@ -266,6 +266,11 @@ $messages = array(
 'nosuchspecialpage' => "Tåya' na påhinan espesiat taiguenao",
 
 # General errors
+'error'                => 'Linachi',
+'laggedslavemode'      => "Adahi: Buente ha' tataigue i tinilaika gi halacha.",
+'missingarticle-rev'   => '(tinilaika#: $1)',
+'missingarticle-diff'  => '(Dif: $1, $2)',
+'internalerror'        => 'Linachi sanhalom',
 'filecopyerror'        => 'Ti siña u kopia i atkibu "$1" para "$2".',
 'filerenameerror'      => 'Ti siña u tulaika i na\'an atkibu "$1" para "$2".',
 'filedeleteerror'      => 'Ti siña u na\'suha i atkibu "$1".',
@@ -277,57 +282,91 @@ $messages = array(
 'viewsource'           => 'Atan i code',
 'viewsourcefor'        => 'para $1',
 'viewsourcetext'       => "Siña un li'e' yan kopia i code ni påhina:",
+'namespaceprotected'   => "Ti nahong nibet-mu petmisu tumulaika i påhina siha ni mafa'na'an '''$1'''.",
+'ns-specialprotected'  => 'Ti siña un tulaika i manespesiat na påhina.',
+'titleprotected'       => "Prinetehi este na titulo ginen fina'tinas-ña as  [[User:$1|$1]].
+Ha nå'i i rason ''$2''.",
 
 # Login and logout pages
-'logouttitle'             => "Logout ni muna'sesetbi",
-'yourname'                => "Nå'an ni muna'setbi:",
-'yourpassword'            => 'Password:',
-'remembermypassword'      => "Na'hasso iyo-ku login gi este na komputer",
-'login'                   => 'Log in',
-'nav-login-createaccount' => "Hålom / fa'tinas kuenta-mu",
-'userlogin'               => "Hålom / fa'tinas kuenta-mu",
-'logout'                  => 'Log out',
-'userlogout'              => 'Log out',
-'nologin'                 => "Tåya' iyo-mu login? $1.",
-'nologinlink'             => "Fama'tinas kuenta",
-'createaccount'           => "Fa'tinas kuenta-hu",
-'gotaccount'              => 'Guåha esta kuenta-mu? $1.',
-'gotaccountlink'          => 'Log in',
-'yourrealname'            => "Minagahet nå'an-mu:",
-'yourlanguage'            => 'Lengguahe:',
-'yournick'                => "Fa'na'an:",
-'email'                   => 'E-mail',
-'prefs-help-realname'     => "Ti nesisario i na'an-mu mågahet.
+'logouttitle'                => "Logout ni muna'sesetbi",
+'logouttext'                 => "<strong>Malog-out hao på'go.</strong>
+
+Siña hao kumontinua manu'usa {{SITENAME}} sin nå'an, pat siña uma'log ta'lo pat siña un usa otra na nå'an muna'sesetbi.
+Fanapunta na pålu na påhina siha para u na'annok na ma'log-in hao, asta ki un funas iyo-mu browser cache.",
+'welcomecreation'            => "== Bienbenido, $1! ==
+Mafa'tinas i kuenta-mu.
+Munga mamalefa tumulaika ga'ña-mu {{SITENAME}}.",
+'loginpagetitle'             => "Login muna'sesetbi",
+'yourname'                   => "Nå'an ni muna'setbi:",
+'yourpassword'               => 'Password:',
+'yourpasswordagain'          => "Taip ta'lo i password:",
+'remembermypassword'         => "Na'hasso iyo-ku login gi este na komputer",
+'yourdomainname'             => 'Lugat-mu:',
+'loginproblem'               => "<b>Guåha problema gi iyo-mu login.</b><br />Chagi ta'lo!",
+'login'                      => 'Log in',
+'nav-login-createaccount'    => "Hålom / fa'tinas kuenta-mu",
+'userlogin'                  => "Hålom / fa'tinas kuenta-mu",
+'logout'                     => 'Log out',
+'userlogout'                 => 'Log out',
+'notloggedin'                => 'Ti malogin',
+'nologin'                    => "Tåya' iyo-mu login? $1.",
+'nologinlink'                => "Fama'tinas kuenta",
+'createaccount'              => "Fa'tinas kuenta-hu",
+'gotaccount'                 => 'Guåha esta kuenta-mu? $1.',
+'gotaccountlink'             => 'Log in',
+'createaccountmail'          => 'gi e-mail',
+'badretype'                  => "Ti parehu i password siha ni un po'lo.",
+'userexists'                 => "Esta guåha na u'usa enao na nå'an muna'sesetbi.
+Ayek fan otru na nå'an.",
+'youremail'                  => 'E-mail:',
+'username'                   => "Nå'an muna'sesetbi:",
+'uid'                        => "ID muna'sesetbi:",
+'yourrealname'               => "Minagahet nå'an-mu:",
+'yourlanguage'               => 'Lengguahe:',
+'yournick'                   => "Fa'na'an:",
+'badsiglength'               => "Mampos anakko'-ña i na'an; na'lakadada' $1 na simbolo siha.",
+'email'                      => 'E-mail',
+'prefs-help-realname'        => "Ti nesisario i na'an-mu mågahet.
 Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'cho'-mu.",
-'loginsuccesstitle'       => 'Munhåyan i login',
-'loginsuccess'            => "'''Esta ma'log in hao gi {{SITENAME}}: \"\$1\".'''",
-'nosuchuser'              => 'Tåya\' na muna\'sesetbi as "$1".
+'loginerror'                 => 'Lachi gi login',
+'prefs-help-email'           => "Ti nesesario i e-mail address, lao ha na'sede otru na taotao siha kumentusi hao ni påhina-mu muna'sesetbi/kombetsasion sin mana'annoki siha ni aidentifikasion-mu.",
+'prefs-help-email-required'  => 'Nesisario i e-mail address.',
+'noname'                     => "Ti mangge' hao ni na'an muna'sesetbi ni ma'sedi.",
+'loginsuccesstitle'          => 'Munhåyan i login',
+'loginsuccess'               => "'''Esta ma'log in hao gi {{SITENAME}}: \"\$1\".'''",
+'nosuchuser'                 => 'Tåya\' na muna\'sesetbi as "$1".
 Chek fan i dineletrea, pat fa\'tinas un kuenta nuebu.',
-'nosuchusershort'         => 'Tåya\' na muna\'sesetbi as "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Tåya\' na muna\'sesetbi as "<nowiki>$1</nowiki>".
 Chek fan i dineletrea.',
-'nouserspecified'         => "Un nesita manayek i na'an muna'sesetbi.",
-'wrongpassword'           => "Lachi i password ni tinige'-mu. Pot fabot, chagi fan ta'lo.",
-'wrongpasswordempty'      => "Ti mamo'lu hao password. Pot fabot, chagi fan ta'lo.",
-'passwordtooshort'        => "Lachi pat mampos kadada' iyo-mu password.
+'nouserspecified'            => "Un nesita manayek i na'an muna'sesetbi.",
+'wrongpassword'              => "Lachi i password ni tinige'-mu. Pot fabot, chagi fan ta'lo.",
+'wrongpasswordempty'         => "Ti mamo'lu hao password. Pot fabot, chagi fan ta'lo.",
+'passwordtooshort'           => "Lachi pat mampos kadada' iyo-mu password.
 Na'seguro na mas ki $1 letras ha' ya ti parehu ha' yan i na'an-mu ni muna'setbi.",
-'mailmypassword'          => "Na'e-mail password",
-'passwordremindertitle'   => 'I nuebu na password temporårio para {{SITENAME}}',
-'passwordremindertext'    => 'Guåha na mamaisen (hågu ha\' buente, ginen i IP $1)
+'mailmypassword'             => "Na'e-mail password",
+'passwordremindertitle'      => 'I nuebu na password temporårio para {{SITENAME}}',
+'passwordremindertext'       => 'Guåha na mamaisen (hågu ha\' buente, ginen i IP $1)
 na para in na\'hanague hao ni password nuebu para {{SITENAME}} ($4).
 Matulaika i password i muna\'sesetbi as "$2" para "$3".
 Debi di un log in ya un tulaika i password ensigidas.
 
 Yanggen ti hagu ha\' na mamaisen pat yanggen un hasso ni password (ya munga hao tumulaika), siña un iknora este na mensahe ya un usa i password-mu mas bihu.',
-'noemail'                 => "Tåya' e-mail address tinige' papa' ni muna'sesetbi as \"\$1\".",
-'passwordsent'            => 'Mana\'hanague hao ni password nuebu gi iyo-mu e-mail address ni marehistra nu "$1".
+'noemail'                    => "Tåya' e-mail address tinige' papa' ni muna'sesetbi as \"\$1\".",
+'passwordsent'               => 'Mana\'hanague hao ni password nuebu gi iyo-mu e-mail address ni marehistra nu "$1".
 Pot fabot na\'log in despues di un recibi ha\'.',
-'eauthentsent'            => "Mana'hanague i e-mail address ni tinige'-mu ni konfitmasion.
+'eauthentsent'               => "Mana'hanague i e-mail address ni tinige'-mu ni konfitmasion.
 Åntes di mana'hanague i kuenta ni otru e-mail, debi di un tattiyi i chinachalani gi halom e-mail, para mankonfotme na magahet na kuenta-mu ha.",
-'emailconfirmlink'        => 'Konfitme iyo-mu e-mail',
-'accountcreated'          => "Mafa'tinas i kuenta",
-'accountcreatedtext'      => "Mafa'tinas i kuentan muna'sesetbi nu $1.",
-'createaccount-title'     => "Nina'huyong kuenta nu {{SITENAME}}",
-'loginlanguagelabel'      => 'Lengguahe: $1',
+'acct_creation_throttle_hit' => "Despensa, guåha esta $1 na kuenta-mu.
+Ti siña hao fama'tinas mas.",
+'emailauthenticated'         => "Mana'seguro iyo-mu e-mail address gi $1.",
+'emailnotauthenticated'      => "Ti mana'seguro iyo-mu e-mail address trabiha.
+Ti para u na'hanao ni sigienti na inayek siha.",
+'noemailprefs'               => "Ayek fan e-mail address para un na'sedi este na inayek siha.",
+'emailconfirmlink'           => 'Konfitme iyo-mu e-mail',
+'accountcreated'             => "Mafa'tinas i kuenta",
+'accountcreatedtext'         => "Mafa'tinas i kuentan muna'sesetbi nu $1.",
+'createaccount-title'        => "Nina'huyong kuenta nu {{SITENAME}}",
+'loginlanguagelabel'         => 'Lengguahe: $1',
 
 # Edit page toolbar
 'bold_sample'     => "Tinige' potpot",

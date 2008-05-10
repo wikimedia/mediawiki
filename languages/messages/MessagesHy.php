@@ -2100,7 +2100,6 @@ $1',
 'imgmultipageprev' => '← նախորդ էջ',
 'imgmultipagenext' => 'հաջորդ էջ →',
 'imgmultigo'       => 'Անցնե՜լ',
-'imgmultigotopre'  => 'Անցնել էջին',
 
 # Table pager
 'ascending_abbrev'         => 'աճմ. կարգ.',

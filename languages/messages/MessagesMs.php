@@ -2411,7 +2411,6 @@ $1',
 'imgmultipageprev' => '← halaman sebelumnya',
 'imgmultipagenext' => 'halaman berikutnya →',
 'imgmultigo'       => 'Pergi!',
-'imgmultigotopre'  => 'Buka halaman',
 
 # Table pager
 'ascending_abbrev'         => 'menaik',

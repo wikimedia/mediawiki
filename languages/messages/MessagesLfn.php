@@ -47,6 +47,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Asconde editas par bot de la lista de pajes oservada',
 'tog-watchlisthideminor'      => 'Asconde editas minor de la lista de pajes oservada',
 'tog-ccmeonemails'            => 'Envia copias de la epostas ce me envia a otras a me ance',
+'tog-showhiddencats'          => 'Mostra categorias ascondeda',
 
 'underline-always'  => 'A tota tempo',
 'underline-never'   => 'A no tempo',
@@ -107,14 +108,16 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'             => 'Categorias',
-'categoriespagetext'     => 'Es la categorias seguente en la vici.',
-'pagecategories'         => '{{PLURAL:$1|Categoria|Categorias}}',
-'category_header'        => 'Articles en categoria "$1"',
-'subcategories'          => 'Sucategorias',
-'category-media-header'  => 'Medio en catagoria "$1"',
-'category-empty'         => "''Aora, esta categoria no conteni pajes o medio.''",
-'listingcontinuesabbrev' => 'cont.',
+'categories'               => 'Categorias',
+'categoriespagetext'       => 'Es la categorias seguente en la vici.',
+'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'          => 'Articles en categoria "$1"',
+'subcategories'            => 'Sucategorias',
+'category-media-header'    => 'Medio en catagoria "$1"',
+'category-empty'           => "''Aora, esta categoria no conteni pajes o medio.''",
+'hidden-categories'        => '{{PLURAL:$1|Categoria|Categorias}} ascondeda',
+'hidden-category-category' => 'Categorias ascondeda', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'cont.',
 
 'mainpagetext'      => "<big>'''MediaWiki es aora instalada.'''</big>",
 'mainpagedocfooter' => 'Atenda la [http://meta.wikimedia.org/wiki/Help:Contents Gida per Usores] per informa supra la usa de la programa de vici.
@@ -162,7 +165,9 @@ $messages = array(
 'permalink'         => 'Lia permanente',
 'print'             => 'Primi',
 'edit'              => 'Cambia',
+'create'            => 'Crea',
 'editthispage'      => 'Cambia esta paje',
+'create-this-page'  => 'Crea esta paje',
 'delete'            => 'Sutrae',
 'deletethispage'    => 'Sutrae esta paje',
 'undelete_short'    => 'Desutrae {{PLURAL:$1|edita|editas}}',
@@ -192,6 +197,7 @@ $messages = array(
 'otherlanguages'    => 'En otra linguas',
 'redirectedfrom'    => '(Redirijeda de $1)',
 'redirectpagesub'   => 'Redireta la paje',
+'viewcount'         => 'Esta paje es asesada a $1 {{PLURAL:$1|ves|veses}}.',
 'protectedpage'     => 'Paje protejeda',
 'jumpto'            => 'Salta a:',
 'jumptonavigation'  => 'naviga',
@@ -230,30 +236,39 @@ $messages = array(
 'toc'                 => 'Contenida',
 'showtoc'             => 'mostra',
 'hidetoc'             => 'asconde',
+'viewdeleted'         => 'Vide $1?',
 'site-rss-feed'       => '$1 RSS Flue',
 'site-atom-feed'      => '$1 Atom Flue',
 'page-rss-feed'       => '"$1" RSS Flue',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'     => 'Paje de usor',
-'nstab-project'  => 'Paje de projeta',
-'nstab-image'    => 'Fix',
-'nstab-template' => 'Model',
-'nstab-category' => 'Categoria',
+'nstab-main'      => 'Paje',
+'nstab-user'      => 'Paje de usor',
+'nstab-special'   => 'Spesial',
+'nstab-project'   => 'Paje de projeta',
+'nstab-image'     => 'Fix',
+'nstab-mediawiki' => 'Mesaje',
+'nstab-template'  => 'Model',
+'nstab-help'      => 'Paje de aida',
+'nstab-category'  => 'Categoria',
 
 # General errors
-'error'          => 'Era',
-'internalerror'  => 'Era interna',
-'badtitle'       => 'Titulo es mal',
-'badtitletext'   => 'La titulo de la paje tu ia desira ia es nonlegal, es vacua, o es un titulo intervici o interlingual no liada coreta. Es posable ce es un o plu simboles ce no pote es usada en titulos.',
-'viewsource'     => 'Vide la orijin',
-'viewsourcefor'  => 'per $1',
-'viewsourcetext' => 'Tu pote vide e copia la orijin de esta paje:',
+'error'               => 'Era',
+'databaseerror'       => 'Era de base de datos',
+'missingarticle-diff' => '(Difere: $1, $2)',
+'internalerror'       => 'Era interna',
+'internalerror_info'  => 'Era interna: $1',
+'badtitle'            => 'Titulo es mal',
+'badtitletext'        => 'La titulo de la paje tu ia desira ia es nonlegal, es vacua, o es un titulo intervici o interlingual no liada coreta. Es posable ce es un o plu simboles ce no pote es usada en titulos.',
+'viewsource'          => 'Vide la orijin',
+'viewsourcefor'       => 'per $1',
+'viewsourcetext'      => 'Tu pote vide e copia la orijin de esta paje:',
 
 # Login and logout pages
 'logouttitle'             => 'Sinia per retira',
 'yourname'                => 'Nom de usor:',
 'yourpassword'            => 'Sinia de entra:',
+'yourpasswordagain'       => 'Retape la sinia:',
 'remembermypassword'      => 'Memora me sinia de entra a esta computador',
 'login'                   => 'Sinia per entra',
 'nav-login-createaccount' => 'Sinia per entra',
@@ -379,9 +394,14 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 (presedente) = difere con varia presedente, M = edita minor.',
 'histfirst'           => 'Prima',
 'histlast'            => 'Ultima',
+'historysize'         => '({{PLURAL:$1|1 otuple|$1 otuples}})',
+'historyempty'        => '(vacua)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
+
+# Revision deletion
+'rev-delundel' => 'mostra/asconde',
 
 # Diffs
 'history-title'           => 'Istoria de cambias de "$1"',
@@ -854,6 +874,9 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 'watchlistall2' => 'tota',
 'namespacesall' => 'tota',
 'monthsall'     => 'tota',
+
+# action=purge
+'confirm_purge_button' => 'Oce',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vide cambias pertinente',

@@ -7,6 +7,7 @@
  * @author Huslåke
  * @author Siebrand
  * @author Nike
+ * @author M.M.S.
  */
 
 $fallback = 'da';
@@ -245,6 +246,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Der er nye meddelelser til dig: $1',
 'editsection'             => 'redigær',
 'editold'                 => 'redigær',
+'viewsourceold'           => 'ves æ kelde',
 'editsectionhint'         => 'Redigær åfsnet: $1',
 'toc'                     => 'Endholtsførtegnelse',
 'showtoc'                 => 'ves',
@@ -337,6 +339,7 @@ Førespørgsel: $2',
 'createaccount'           => 'Åpret en ny konto',
 'gotaccount'              => 'Du har ålerede en brugerkonto? $1.',
 'gotaccountlink'          => 'Loĝ på',
+'youremail'               => 'E-mail:',
 'yourrealname'            => 'Dit rigtege navn*',
 'prefs-help-realname'     => '* <strong>Dit rigtege navn</strong> (valgfrit): Hves du vælger at åplyse dit navn hvil dette bleve brugt til at tilskreve dig dit arbejde.',
 'loginsuccesstitle'       => 'Du er nu loĝget på',

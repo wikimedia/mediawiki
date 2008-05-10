@@ -2230,7 +2230,6 @@ $1',
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'siguiente página →',
 'imgmultigo'       => '¡Ir!',
-'imgmultigotopre'  => 'Ir a la página',
 
 # Table pager
 'table_pager_next'         => 'Página siguiente',

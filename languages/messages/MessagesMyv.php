@@ -1196,8 +1196,7 @@ $messages = array(
 'confirm_purge_button' => 'ОК',
 
 # Multipage image navigation
-'imgmultigo'      => 'Адя!',
-'imgmultigotopre' => 'Адя лопас $1',
+'imgmultigo' => 'Адя!',
 
 # Table pager
 'table_pager_first'        => 'Васень лопась',

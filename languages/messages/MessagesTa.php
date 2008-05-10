@@ -2224,7 +2224,6 @@ $1',
 'imgmultipageprev' => '← முந்தைய பக்கம்',
 'imgmultipagenext' => 'அடுத்தப் பக்கம் →',
 'imgmultigo'       => 'செல்!',
-'imgmultigotopre'  => 'பக்கத்துக்குச் செல்',
 
 # Table pager
 'ascending_abbrev'         => 'ஏறு',

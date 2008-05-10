@@ -2272,8 +2272,6 @@ $1',
 'imgmultipageprev' => '&larr; 前ページ',
 'imgmultipagenext' => '次ページ &rarr;',
 'imgmultigo'       => '表示',
-'imgmultigotopre'  => 'このページへ',
-'imgmultigotopost' => 'ページ目を',
 
 # Table pager
 'ascending_abbrev'         => '昇順',

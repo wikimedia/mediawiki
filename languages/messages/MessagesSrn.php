@@ -1052,8 +1052,7 @@ Ala trawan skaki dy opo se lina ben, ben awroko leki spesyal, leki fru eksempre 
 'confirm_purge_button' => 'oki',
 
 # Multipage image navigation
-'imgmultigo'      => 'Go!',
-'imgmultigotopre' => 'Go na papira',
+'imgmultigo' => 'Go!',
 
 # Table pager
 'ascending_abbrev'         => 'opo.',

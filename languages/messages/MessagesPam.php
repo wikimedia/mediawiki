@@ -2345,7 +2345,6 @@ $1',
 'imgmultipageprev' => '← minunang bulung',
 'imgmultipagenext' => 'tutuking bulung →',
 'imgmultigo'       => 'Sulung!',
-'imgmultigotopre'  => 'Munta king bulung',
 
 # Table pager
 'table_pager_next'         => 'Tutuking bulung',

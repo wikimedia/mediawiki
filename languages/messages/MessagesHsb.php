@@ -1232,6 +1232,8 @@ PICT # misc.
 'imagelinks'                     => 'Wotkazy',
 'linkstoimage'                   => 'Dataja so na slědowacych stronach wužiwa:',
 'nolinkstoimage'                 => 'Njejsu strony, kotrež na tutu dataju wotkazuja.',
+'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Dalše wotkazy]] k tutej dataji wobhladać.',
+'redirectstofile'                => 'Slědowace dataje k tutej dataji dale posrědkuja:',
 'sharedupload'                   => 'Tuta dataja je zhromadne nahraće a móže so přez druhe projekty wužiwać.',
 'shareduploadwiki'               => 'Za dalše informacije hlej $1.',
 'shareduploadwiki-desc'          => 'Wopisanje na $1 so deleka pokazuje.',
@@ -2457,7 +2459,6 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'imgmultipageprev' => '← předchadna strona',
 'imgmultipagenext' => 'přichodna strona →',
 'imgmultigo'       => 'Dźi!',
-'imgmultigotopre'  => 'dźi k stronje',
 
 # Table pager
 'ascending_abbrev'         => 'postupowacy',

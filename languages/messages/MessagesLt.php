@@ -2379,7 +2379,6 @@ $1',
 'imgmultipageprev' => '← ankstesnis puslapis',
 'imgmultipagenext' => 'kitas puslapis →',
 'imgmultigo'       => 'Eiti!',
-'imgmultigotopre'  => 'Pereiti į puslapį',
 
 # Table pager
 'ascending_abbrev'         => 'didėjanti tvarka',

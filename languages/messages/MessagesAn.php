@@ -2439,7 +2439,6 @@ $1",
 'imgmultipageprev' => '← pachina anterior',
 'imgmultipagenext' => 'pachina siguient →',
 'imgmultigo'       => 'Ir-ie!',
-'imgmultigotopre'  => "Ir t'a pachina",
 
 # Table pager
 'ascending_abbrev'         => 'asz',

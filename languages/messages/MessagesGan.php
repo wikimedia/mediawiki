@@ -2081,7 +2081,6 @@ $1',
 'imgmultipageprev' => '← 上頁',
 'imgmultipagenext' => '下頁 →',
 'imgmultigo'       => '確定！',
-'imgmultigotopre'  => '去到第',
 
 # Table pager
 'ascending_abbrev'         => '增',

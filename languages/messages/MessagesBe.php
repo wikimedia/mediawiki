@@ -2125,7 +2125,6 @@ $1',
 'imgmultipageprev' => '← папярэдняя старонка',
 'imgmultipagenext' => 'наступная старонка →',
 'imgmultigo'       => 'Ісці!',
-'imgmultigotopre'  => 'Ісці на старонку',
 
 # Table pager
 'ascending_abbrev'         => 'да больш.',

@@ -1239,6 +1239,8 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'imagelinks'                     => 'Liên kết',
 'linkstoimage'                   => 'Các trang sau có liên kết đến hình:',
 'nolinkstoimage'                 => 'Không có trang nào chứa liên kết đến hình.',
+'morelinkstoimage'               => 'Xem [[Special:Whatlinkshere/$1|thêm liên kết]] đến tập tin này.',
+'redirectstofile'                => 'Các tập tin sau chuyển hướng đến tập tin này:',
 'sharedupload'                   => 'Tập tin này được tải lên để dùng chung và có thể dùng ở các dự án khác.',
 'shareduploadwiki'               => 'Xin xem $1 để biết thêm thông tin về tập tin.',
 'shareduploadwiki-desc'          => 'Dưới đây có lời miêu tả của nó, được sao chép từ $1.',
@@ -2478,7 +2480,6 @@ $1',
 'imgmultipageprev' => '← trang trước',
 'imgmultipagenext' => 'trang sau →',
 'imgmultigo'       => 'Xem',
-'imgmultigotopre'  => 'Xem trang',
 
 # Table pager
 'ascending_abbrev'         => 'tăng',

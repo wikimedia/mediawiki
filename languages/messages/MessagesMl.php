@@ -2132,7 +2132,6 @@ $1',
 'imgmultipageprev' => '← മുന്‍പത്തെ താള്‍',
 'imgmultipagenext' => 'അടുത്ത താള്‍ →',
 'imgmultigo'       => 'പോകൂ!',
-'imgmultigotopre'  => 'ഈ താളിലേക്കു പോവുക',
 
 # Table pager
 'ascending_abbrev'         => 'ആരോഹണം',

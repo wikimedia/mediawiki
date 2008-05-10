@@ -1085,7 +1085,6 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 'imgmultipageprev' => '← kona petulo',
 'imgmultipagenext' => 'lila petulo →',
 'imgmultigo'       => 'Afi!',
-'imgmultigotopre'  => 'Yezi petulo',
 
 # Table pager
 'ascending_abbrev'         => 'asendin',

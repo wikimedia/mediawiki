@@ -1283,7 +1283,6 @@ $1 | $2',
 'imgmultipageprev' => '← ovddit siidu',
 'imgmultipagenext' => 'čuovvovaš siidu →',
 'imgmultigo'       => 'Mana!',
-'imgmultigotopre'  => 'Mana siidui',
 
 # Table pager
 'ascending_abbrev'         => 'loktaneaddji',

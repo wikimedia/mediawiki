@@ -1076,6 +1076,23 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'grouppage-sysop'         => '{{ns:project}}:Pengurus',
 'grouppage-bureaucrat'    => '{{ns:project}}:Birokrat',
 
+# Rights
+'right-read'             => 'Membaca halaman',
+'right-edit'             => 'Menyunting halaman',
+'right-createpage'       => 'Membuat halaman baru (yang bukan halaman pembicaraan)',
+'right-createtalk'       => 'Membuat halaman pembicaraan',
+'right-createaccount'    => 'Membuat akun baru',
+'right-minoredit'        => 'Menandai suntingan sebagai minor',
+'right-move'             => 'Memindahkan halaman',
+'right-suppressredirect' => 'Tidak membuat sebuah pengalihan dari nama lama ketika memindahkan halaman',
+'right-upload'           => 'Memuat berkas',
+'right-reupload'         => 'Menimpa berkas yang sudah ada',
+'right-reupload-own'     => 'Menimpa berkas yang sudah ada yang dimuat oleh pengguna yang sama',
+'right-purge'            => 'Menghapus singgahan suatu halaman tanpa halaman konfirmasi',
+'right-autoconfirmed'    => 'Menyunting halaman yang semi dilindungi',
+'right-bot'              => 'Diperlakukan sebagai sebuah proses otomatis',
+'right-autopatrol'       => 'Menyunting dengan status suntingan secara otomatis ditandai terpantau',
+
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
 'rightslogtext'  => 'Di bawah ini adalah log perubahan terhadap hak-hak pengguna.',
@@ -1416,6 +1433,9 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'listusers-submit'   => 'Tampilkan',
 'listusers-noresult' => 'Pengguna tidak ditemukan.',
 
+# Special:Listgrouprights
+'listgrouprights' => 'Hak-hak grup pengguna',
+
 # E-mail user
 'mailnologin'     => 'Tidak ada alamat surat-e',
 'mailnologintext' => 'Anda harus [[Special:Userlogin|masuk log]] dan mempunyai alamat surat-e yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surat-e kepada pengguna lain.',
@@ -1690,6 +1710,7 @@ $1',
 'ipbotheroption'              => 'lainnya',
 'ipbotherreason'              => 'Alasan lain/tambahan:',
 'ipbhidename'                 => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
+'ipbwatchuser'                => 'Pantau halaman pengguna dan pembicaraan pengguna ini',
 'badipaddress'                => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'           => 'Pemblokiran sukses',
 'blockipsuccesstext'          => 'Alamat IP atau pengguna "$1" telah diblokir. <br />Lihat [[{{ns:special}}:Ipblocklist|Daftar IP dan pengguna diblokir]] untuk melihat kembali pemblokiran.',
@@ -2372,7 +2393,6 @@ $1",
 'imgmultipageprev' => '&larr; halaman sebelumnya',
 'imgmultipagenext' => 'halaman selanjutnya &rarr;',
 'imgmultigo'       => 'Cari!',
-'imgmultigotopre'  => 'Ke halaman',
 
 # Table pager
 'ascending_abbrev'         => 'naik',

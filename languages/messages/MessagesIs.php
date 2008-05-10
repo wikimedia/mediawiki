@@ -579,9 +579,9 @@ Spurn: $2',
 'logouttitle'                => 'Útskráning notanda',
 'logouttext'                 => 'Þú hefur verið skráð(ur) út.
 Þú getur þó haldið áfram að nota {{SITENAME}} nafnlaust og þú getur skráð þig inn sem annar notandi. Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá innskráður, hægt er að koma í veg fyrir það með því að hreinsa biðminnið í vafranum.',
-'welcomecreation'            => '== Velkomin(n) $1 ==
-
-Aðgangur þinn hefur verið búinn til. Ekki gleyma að breyta [[Special:Preferences|stillingunum]] þínum að vild.',
+'welcomecreation'            => '== Velkomin(n), $1 ==
+Aðgangurinn þinn hefur verið búinn til.
+Ekki gleyma að breyta stillingunum þínum.',
 'loginpagetitle'             => 'Innskráning notanda',
 'yourname'                   => 'Notandanafn',
 'yourpassword'               => 'Lykilorð',
@@ -753,7 +753,7 @@ Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappi í vaf
 'anontalkpagetext'         => "----''Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang ennþá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það kemur fyrir að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. Vinsamlegast [[Special:Userlogin|skráðu þig sem notanda]] til að koma í veg fyrir slíkan misskilning.''",
 'noarticletext'            => 'Hér er engin texti enn sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
 'clearyourcache'           => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiminni vafrans til að sjá þær. Í '''Internet Explorer''': ýttu ''Ctrl-F5'', '''Mozilla''': haltu niðri ''Shift'' og smelltu á Reload (eða ýttu á ''Ctrl-Shift-R''), '''Opera'''/'''Konqueror''': ýttu á ''F5'', '''Safari''': ýttu á ''Cmd-Opt-E''.",
-'usercssjsyoucanpreview'   => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript kóða áður en hann er vistaður.',
+'usercssjsyoucanpreview'   => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript-kóða áður en hann er vistaður.',
 'usercsspreview'           => "'''Hafðu í huga að þú ert aðeins að forskoða CSS-kóðann þinn, hann hefur ekki enn verið vistaður!'''",
 'updated'                  => '(Uppfært)',
 'note'                     => '<strong>Athugið:</strong>',
@@ -866,26 +866,32 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'diff-multi'              => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}}.)',
 
 # Search results
-'searchresults'         => 'Leitarniðurstöður',
-'searchresulttext'      => 'Fyrir frekari upplýsingar um leit á {{SITENAME}} farið á [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Þú leitaðir að '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Þú leitaðir að '''$1'''",
-'noexactmatch'          => "'''Engin síða ber nafnið „$1“.''' Þú getur [[:$1|búið hana til]].",
-'noexactmatch-nocreate' => "'''Það er engin síða sem ber nafnið „$1“.'''",
-'titlematches'          => 'Titlar greina sem pössuðu við fyrirspurnina',
-'notitlematches'        => 'Engir greinartitlar pössuðu við fyrirspurnina',
-'textmatches'           => 'Leitarorð fannst/fundust í innihaldi eftirfarandi greina',
-'notextmatches'         => 'Engar samsvaranir á texta í síðum',
-'prevn'                 => 'síðustu $1',
-'nextn'                 => 'næstu $1',
-'viewprevnext'          => 'Skoða ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 orð|$2 orð}})',
-'showingresults'        => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
-'showingresultsnum'     => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
-'nonefound'             => "'''Athugaðu''': Leitir misheppnast oft þegar leitað er að algengum orðum eins og „hafa“ og „frá“, sem eru ekki skráð, eða með því að tilgreina fleiri en eitt leitarorð. Aðeins síður með öll tilgreind leitarorð munu koma á listann.",
-'powersearch'           => 'Ítarleg leit',
-'powersearch-legend'    => 'Ítarlegri leit',
-'powersearchtext'       => 'Leita í eftirfarandi nafnrýmum :<br />$1<br />$2 Sýna tilvísarnir<br />Leita að $3 $9',
+'searchresults'            => 'Leitarniðurstöður',
+'searchresulttext'         => 'Fyrir frekari upplýsingar um leit á {{SITENAME}} farið á [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'           => "Þú leitaðir að '''[[:$1]]'''",
+'searchsubtitleinvalid'    => "Þú leitaðir að '''$1'''",
+'noexactmatch'             => "'''Engin síða ber nafnið „$1“.''' Þú getur [[:$1|búið hana til]].",
+'noexactmatch-nocreate'    => "'''Það er engin síða sem ber nafnið „$1“.'''",
+'titlematches'             => 'Titlar greina sem pössuðu við fyrirspurnina',
+'notitlematches'           => 'Engir greinartitlar pössuðu við fyrirspurnina',
+'textmatches'              => 'Leitarorð fannst/fundust í innihaldi eftirfarandi greina',
+'notextmatches'            => 'Engar samsvaranir á texta í síðum',
+'prevn'                    => 'síðustu $1',
+'nextn'                    => 'næstu $1',
+'viewprevnext'             => 'Skoða ($1) ($2) ($3).',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 orð|$2 orð}})',
+'search-result-score'      => 'Gildi: $1%',
+'search-redirect'          => '(tilvísun $1)',
+'search-section'           => '(hluti $1)',
+'search-suggest'           => 'Varstu að leita af: $1',
+'search-interwiki-caption' => 'Systurverkefni',
+'search-interwiki-default' => '$1 útkomur:',
+'showingresults'           => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
+'showingresultsnum'        => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
+'nonefound'                => "'''Athugaðu''': Leitir misheppnast oft þegar leitað er að algengum orðum eins og „hafa“ og „frá“, sem eru ekki skráð, eða með því að tilgreina fleiri en eitt leitarorð. Aðeins síður með öll tilgreind leitarorð munu koma á listann.",
+'powersearch'              => 'Ítarleg leit',
+'powersearch-legend'       => 'Ítarlegri leit',
+'powersearchtext'          => 'Leita í eftirfarandi nafnrýmum :<br />$1<br />$2 Sýna tilvísarnir<br />Leita að $3 $9',
 
 # Preferences page
 'preferences'             => 'Stillingar',
@@ -1369,6 +1375,7 @@ sé í samræmi við [[{{MediaWiki:Policy-url}}]].',
 ** Að beiðni höfundar
 ** Höfundaréttarbrot
 ** Skemmdarverk',
+'delete-edit-reasonlist'      => 'Breyta eyðingarástæðum',
 'rollback'                    => 'Taka aftur breytingar',
 'rollback_short'              => 'Taka aftur',
 'rollbacklink'                => 'taka aftur',
@@ -1381,7 +1388,8 @@ Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
 'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
 'protectlogpage'              => 'Verndunarskrá',
-'protectlogtext'              => 'Þetta er skrá yfir verndunar- og afverndunaraðgerðir. Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
+'protectlogtext'              => 'Fyrir neðan er listi yfir síðuverndanir og -afverndanir.
+Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
 'protectedarticle'            => 'verndaði „[[$1]]“',
 'unprotectedarticle'          => 'afverndaði „[[$1]]“',
 'protect-title'               => 'Vernda „$1“',
@@ -1479,21 +1487,21 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 # Block/unblock
 'blockip'                     => 'Banna notanda',
 'blockip-legend'              => 'Banna notanda',
-'blockiptext'                 => 'Hægt er koma í veg fyrir breytingar á {{SITENAME}} frá einstökum notendum eða vistföngum.  Aðeins ætti að banna notendur fyrir skemmdarverk og í samræmi við [[{{MediaWiki:Policy-url}}|reglur]] {{SITENAME}}.
-
-Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).',
+'blockiptext'                 => 'Notaðu eyðublaðið hér að neðan til þess að banna ákveðið vistfang eða notandanafn.
+Þetta ætti einungis að gera til þess að koma í veg fyrir skemmdarverk, og í samræmi við [[{{MediaWiki:Policy-url}}|samþykktir]].
+Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær síður sem skemmdar voru).',
 'ipaddress'                   => 'Vistfang:',
 'ipadressorusername'          => 'Vistfang eða notandanafn:',
 'ipbexpiry'                   => 'Bannið rennur út:',
 'ipbreason'                   => 'Ástæða:',
 'ipbreasonotherlist'          => 'Aðrar ástæður',
-'ipbreason-dropdown'          => '*Algengar bannástæður
-** Skjalafals
-** Síðutæmingar
-** Rusltenglar á aðrar vefsíður
-** Setur inn bull á síður
-** Slæm framkoma við aðra notendur
-** Fjöldi notendanafna
+'ipbreason-dropdown'          => '* Algengar bannástæður
+** Setur inn rangar upplýsingar
+** Fjarlægir efni af síðum
+** Setur inn rusltengla á utanaðkomandi síður
+** Setur inn vitleysu/þvaður á síður
+** Yfirþyrmandi framkoma/áreitni
+** Misnotkun á fjölda notandanafna
 ** Óásættanlegt notandanafn',
 'ipbanononly'                 => 'Banna einungis ónafngreinda notendur',
 'ipbcreateaccount'            => 'Banna nýskráningu notanda',
@@ -1505,7 +1513,7 @@ Gefðu ástæðu fyrir banninu (meðal annars að nefna síðu sem var skemmd).'
 'ipbotheroption'              => 'annar',
 'ipbotherreason'              => 'Önnur/auka ástæða:',
 'ipbhidename'                 => 'Fela notandanafn/vistfang úr bannskrá og notandaskrá',
-'ipbwatchuser'                => 'Vakta notenda- og spjallsíðurnar þessa notanda',
+'ipbwatchuser'                => 'Vakta notanda- og spjallsíður þessa notanda',
 'badipaddress'                => 'Ógilt vistfang',
 'blockipsuccesssub'           => 'Bann tókst',
 'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] hefur verið bannaður/bönnuð.
@@ -1929,7 +1937,6 @@ $1',
 'imgmultipageprev' => '← fyrri síða',
 'imgmultipagenext' => 'næsta síða →',
 'imgmultigo'       => 'Áfram!',
-'imgmultigotopre'  => 'Fara á síðuna',
 
 # Table pager
 'ascending_abbrev'         => 'hækkandi',

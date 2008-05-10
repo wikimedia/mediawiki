@@ -2077,7 +2077,6 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina anterioară',
 'imgmultipagenext' => 'pagina următoare →',
-'imgmultigotopre'  => 'Mergi la pagina',
 
 # Table pager
 'table_pager_next'  => 'Pagina următoare',

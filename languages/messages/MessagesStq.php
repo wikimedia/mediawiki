@@ -2217,7 +2217,6 @@ $1',
 'imgmultipageprev' => '← foarige Siede',
 'imgmultipagenext' => 'naiste Siede →',
 'imgmultigo'       => 'OK',
-'imgmultigotopre'  => 'Gung tou Siede',
 
 # Table pager
 'ascending_abbrev'         => 'ap',

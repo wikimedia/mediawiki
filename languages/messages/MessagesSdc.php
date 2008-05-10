@@ -1911,7 +1911,6 @@ $1',
 'imgmultipageprev' => '← pàgina prizzidenti',
 'imgmultipagenext' => 'pàgina sighenti →',
 'imgmultigo'       => 'Vai',
-'imgmultigotopre'  => 'Vai a la pàgina',
 
 # Table pager
 'ascending_abbrev'         => 'crisc',

@@ -2138,7 +2138,6 @@ $1',
 'imgmultipageprev' => '← өмнөх хуудас',
 'imgmultipagenext' => 'дараагийн хуудас →',
 'imgmultigo'       => 'Үргэлжлүүл!',
-'imgmultigotopre'  => 'Хуудас руу очих',
 
 # Table pager
 'table_pager_next'         => 'Дараагийн хуудас',

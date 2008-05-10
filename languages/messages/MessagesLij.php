@@ -144,6 +144,8 @@ $messages = array(
 'currentevents-url'    => 'Project:Attualitæ',
 'disclaimers'          => 'Avvertense',
 'disclaimerpage'       => 'Project:Avvertense generâli',
+'edithelp'             => "Agiûtto pe l'edission",
+'edithelppage'         => 'Agiûtto:Modiffica',
 'helppage'             => 'Help:Contegnûi',
 'mainpage'             => 'Paggina prinçipâ',
 'mainpage-description' => 'Paggina prinçipâ',
@@ -259,6 +261,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 # Edit page toolbar
 'bold_sample'     => 'Grascietto',
 'bold_tip'        => 'Grascietto',
+'italic_sample'   => 'Testo in corsciva',
 'italic_tip'      => 'Corscivo',
 'link_sample'     => "Nomme de l'inganço",
 'link_tip'        => 'Inganço interno',
@@ -277,6 +280,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'hr_tip'          => 'Linnia orissontâ',
 
 # Edit pages
+'summary'               => 'Oggetto',
 'subject'               => 'Argomento (tittolo)',
 'minoredit'             => 'Cangiamento minô (m)',
 'watchthis'             => 'Azzonze a li osservæ speçiâli',
@@ -465,10 +469,12 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 # Image description page
 'filehist'                  => "Cronologîa de l'archivvio",
 'filehist-help'             => "Sciacca inscie 'n grûppo data/ôa pe vedde l'archivvio comme o se presentâva into momento indicòu.",
+'filehist-current'          => 'Corrente',
 'filehist-datetime'         => 'Data/Ôa',
 'filehist-user'             => 'Ûtente',
 'filehist-dimensions'       => 'Dimensioîn',
 'filehist-filesize'         => "Dimension de l'archivvio",
+'filehist-comment'          => 'Commenti',
 'imagelinks'                => "Collegamenti a l'immaggine",
 'linkstoimage'              => "E paggine seguenti appontan a 'st'archivvio",
 'nolinkstoimage'            => "No gh'è nisciûnn-a paggina collegâa con 'st'archivvio.",
@@ -813,7 +819,7 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'tooltip-t-whatlinkshere'         => 'Lista de tûtte e paggine che son collegæ a questa chì.',
 'tooltip-t-contributions'         => "Lista de-e contribûssioîn de quest'ûtente",
 'tooltip-t-emailuser'             => "Inviâ 'n messaggio e-mail a quest'ûtente",
-'tooltip-t-upload'                => 'Caregâ immagini òu archivvi multimedia',
+'tooltip-t-upload'                => 'Caregâ immagini ou archivi multimedia',
 'tooltip-t-specialpages'          => 'Lista de tûtte e paggine speçiâli',
 'tooltip-ca-nstab-user'           => "Veddi a paggina d'ûtente",
 'tooltip-ca-nstab-project'        => 'Veddi a paggina de servissio',
@@ -853,8 +859,9 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 
 # Bad image list
 'bad_image_list' => "O formato o l'è coscì:
-
-Vegnan conscideræ solo i elenchi puntæ (righe che comensan co-o carattere *). O primmo inganço insce ciaschedûnn-a riga o deive ese 'n inganço a 'n'imaggine indesciderâa. L'ingançi succescivi, inscia mæxima riga, son conscideræ eccescioîn (paggine donde l'imaggine a pêu ese reciammâa normalmente).",
+Van conscideræ solo e righe che comensan co-o carattere *.
+O primmo inganço insce ògni riga o deiv'ese 'n inganço a 'n'immaggine indesciderâa.
+L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (paggine donde l'imaggine a pêu ese reciammâa normalmente).",
 
 # Metadata
 'metadata-help'     => "'St'archivvio o contegne informassioîn azzontive, fòscia azzonte da-a fotocamera o da-o scanner ûsæ pe creâla o digitalissâla. Se l'archivvio o l'è stæto modificòu, çerti dettaggi porieivan no corisponde a-e modiffiche apportæ.",
@@ -891,7 +898,6 @@ Vegnan conscideræ solo i elenchi puntæ (righe che comensan co-o carattere *). 
 'imgmultipageprev' => '← Pagina de primma',
 'imgmultipagenext' => 'Proscima pagina →',
 'imgmultigo'       => 'Vanni!',
-'imgmultigotopre'  => 'Vanni a a pagina',
 
 # Table pager
 'ascending_abbrev'         => 'cresc',

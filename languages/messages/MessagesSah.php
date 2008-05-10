@@ -2266,7 +2266,6 @@ $1',
 'imgmultipageprev' => '← инники сирэй',
 'imgmultipagenext' => 'аныгыскы сирэй →',
 'imgmultigo'       => 'Көс!',
-'imgmultigotopre'  => 'Бу сирэйгэ көс',
 
 # Table pager
 'ascending_abbrev'         => 'улаатыннар',

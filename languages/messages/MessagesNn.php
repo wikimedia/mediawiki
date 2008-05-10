@@ -2431,7 +2431,6 @@ $1',
 'imgmultipageprev' => '← førre side',
 'imgmultipagenext' => 'neste side →',
 'imgmultigo'       => 'Gå!',
-'imgmultigotopre'  => 'Gå til side',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',

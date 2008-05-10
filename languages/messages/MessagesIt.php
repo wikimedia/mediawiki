@@ -2442,7 +2442,6 @@ $1',
 'imgmultipageprev' => '← pagina precedente',
 'imgmultipagenext' => 'pagina seguente →',
 'imgmultigo'       => 'Vai',
-'imgmultigotopre'  => 'Vai alla pagina',
 
 # Table pager
 'ascending_abbrev'         => 'cresc',

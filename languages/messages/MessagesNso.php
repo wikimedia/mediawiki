@@ -1043,7 +1043,6 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 # Multipage image navigation
 'imgmultipageprev' => '← letlakala la go feta',
 'imgmultipagenext' => 'letlakala lago latela →',
-'imgmultigotopre'  => 'Eya letlakaleng',
 
 # Table pager
 'table_pager_next'  => 'Letlakala la go latela',
