@@ -99,8 +99,8 @@ class ImagePage extends Article {
 			$collapse = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-collapse' ) ) );
 			$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'metadata' ), wfMsg( 'metadata' ) ). "\n" );
 			$wgOut->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
+			$wgOut->addScriptFile( 'metadata.js' );
 			$wgOut->addHTML(
-				"<script type=\"text/javascript\" src=\"$wgStylePath/common/metadata.js?$wgStyleVersion\"></script>\n" .
 				"<script type=\"text/javascript\">attachMetadataToggle('mw_metadata', '$expand', '$collapse');</script>\n" );
 		}
 	}
