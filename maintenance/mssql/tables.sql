@@ -4,29 +4,29 @@ CREATE TABLE /*$wgDBprefix*/user (
   user_real_name varchar(255) NOT NULL default '',
   user_password text NOT NULL,
   user_newpassword text NOT NULL,
-  user_newpass_time binary(14),
+  user_newpass_time varchar(5) NULL,
   user_email text NOT NULL,
   user_options text NOT NULL,
-  user_touched binary(14) NOT NULL default 0,
-  user_token binary(32) NOT NULL default 0,
-  user_email_authenticated binary(14),
-  user_email_token binary(32),
-  user_email_token_expires binary(14),
-  user_registration binary(14),
+  user_touched varchar(5) NOT NULL default '',
+  user_token varchar(10) NOT NULL default '',
+  user_email_authenticated varchar(5) NULL,
+  user_email_token varchar(10) NULL,
+  user_email_token_expires varchar(5) NULL,
+  user_registration varchar(5) NULL,
   user_editcount int,
   PRIMARY KEY (user_id)
 );
 
 CREATE TABLE /*$wgDBprefix*/user_groups (
   ug_user int NOT NULL default '0',
-  ug_group varbinary(16) NOT NULL default 0,
+  ug_group varchar(5) NOT NULL default '',
   PRIMARY KEY (ug_user,ug_group)
 );
 
 CREATE TABLE /*$wgDBprefix*/user_newtalk (
   user_id int NOT NULL default '0',
-  user_ip varbinary(40) NOT NULL default 0,
-  user_last_timestamp binary(14) NOT NULL default 0
+  user_ip varchar(13) NOT NULL default '',
+  user_last_timestamp varchar(5) NOT NULL default ''
 );
 
 CREATE TABLE /*$wgDBprefix*/page (
@@ -38,7 +38,7 @@ CREATE TABLE /*$wgDBprefix*/page (
   page_is_redirect tinyint NOT NULL default '0',
   page_is_new tinyint NOT NULL default '0',
   page_random real NOT NULL,
-  page_touched binary(14) NOT NULL default 0,
+  page_touched varchar(5) NOT NULL default '',
   page_latest int NOT NULL,
   page_len int NOT NULL,
   PRIMARY KEY (page_id)
@@ -51,7 +51,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_comment text NOT NULL,
   rev_user int NOT NULL default '0',
   rev_user_text varchar(255) NOT NULL default '',
-  rev_timestamp binary(14) NOT NULL default 0,
+  rev_timestamp varchar(5) NOT NULL default '',
   rev_minor_edit tinyint NOT NULL default '0',
   rev_deleted tinyint NOT NULL default '0',
   rev_len int,
@@ -73,7 +73,7 @@ CREATE TABLE /*$wgDBprefix*/archive (
   ar_comment text NOT NULL,
   ar_user int NOT NULL default '0',
   ar_user_text varchar(255) NOT NULL,
-  ar_timestamp binary(14) NOT NULL default 0,
+  ar_timestamp varchar(5) NOT NULL default '',
   ar_minor_edit tinyint NOT NULL default '0',
   ar_flags text NOT NULL,
   ar_rev_id int,
@@ -126,7 +126,7 @@ CREATE TABLE /*$wgDBprefix*/externallinks (
 
 CREATE TABLE /*$wgDBprefix*/langlinks (
   ll_from int NOT NULL default '0',
-  ll_lang varbinary(20) NOT NULL default 0,
+  ll_lang varchar(7) NOT NULL default '',
   ll_title varchar(255) NOT NULL default ''
 );
 
@@ -152,12 +152,12 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   ipb_by int NOT NULL default '0',
   ipb_by_text varchar(255) NOT NULL default '',
   ipb_reason text NOT NULL,
-  ipb_timestamp binary(14) NOT NULL default 0,
+  ipb_timestamp varchar(5) NOT NULL default '',
   ipb_auto bit NOT NULL default 0,
   ipb_anon_only bit NOT NULL default 0,
   ipb_create_account bit NOT NULL default 1,
   ipb_enable_autoblock bit NOT NULL default '1',
-  ipb_expiry varbinary(14) NOT NULL default 0,
+  ipb_expiry varchar(5) NOT NULL default '',
   ipb_range_start text NOT NULL,
   ipb_range_end text NOT NULL,
   ipb_deleted bit NOT NULL default 0,
@@ -174,12 +174,12 @@ CREATE TABLE /*$wgDBprefix*/image (
   img_bits int NOT NULL default '0',
   img_media_type TEXT default NULL,
   img_major_mime TEXT NOT NULL default "unknown",
-  img_minor_mime varbinary(32) NOT NULL default 0,
+  img_minor_mime varchar(10) NOT NULL default "unknown",
   img_description text NOT NULL,
   img_user int NOT NULL default '0',
   img_user_text varchar(255) NOT NULL,
-  img_timestamp varbinary(14) NOT NULL default 0,
-  img_sha1 varbinary(32) NOT NULL default 0,
+  img_timestamp varchar(5) NOT NULL default '',
+  img_sha1 varchar(10) NOT NULL default '',
   PRIMARY KEY (img_name)
 );
 
@@ -193,23 +193,23 @@ CREATE TABLE /*$wgDBprefix*/oldimage (
   oi_description text NOT NULL,
   oi_user int NOT NULL default '0',
   oi_user_text varchar(255) NOT NULL,
-  oi_timestamp binary(14) NOT NULL default 0,
+  oi_timestamp varchar(5) NOT NULL default '',
   oi_metadata text NOT NULL,
   oi_media_type TEXT default NULL,
   oi_major_mime TEXT NOT NULL default "unknown",
-  oi_minor_mime varbinary(32) NOT NULL default 0,
+  oi_minor_mime varchar(10) NOT NULL default "unknown",
   oi_deleted tinyint NOT NULL default '0',
-  oi_sha1 varbinary(32) NOT NULL default 0
+  oi_sha1 varchar(10) NOT NULL default ''
 );
 
 CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_id int NOT NULL IDENTITY(1,1),
   fa_name varchar(255) NOT NULL default '',
-  fa_archive_name varchar(255) default '',
-  fa_storage_group varbinary(16),
-  fa_storage_key varbinary(64) default 0,
+  fa_archive_name varchar(255) NULL default '',
+  fa_storage_group varchar(5) NULL,
+  fa_storage_key varchar(17) NULL default '',
   fa_deleted_user int,
-  fa_deleted_timestamp binary(14) default 0,
+  fa_deleted_timestamp varchar(5) NULL default '',
   fa_deleted_reason text,
   fa_size int default '0',
   fa_width int default '0',
@@ -218,19 +218,19 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   fa_bits int default '0',
   fa_media_type TEXT default NULL,
   fa_major_mime TEXT default "unknown",
-  fa_minor_mime varbinary(32) default 0,
+  fa_minor_mime varchar(10) NULL default "unknown",
   fa_description text,
   fa_user int default '0',
-  fa_user_text varchar(255),
-  fa_timestamp binary(14) default 0,
+  fa_user_text varchar(255) NULL,
+  fa_timestamp varchar(5) NULL default '',
   fa_deleted tinyint NOT NULL default '0',
   PRIMARY KEY (fa_id)
 );
 
 CREATE TABLE /*$wgDBprefix*/recentchanges (
   rc_id int NOT NULL IDENTITY(1,1),
-  rc_timestamp varbinary(14) NOT NULL default 0,
-  rc_cur_time varbinary(14) NOT NULL default 0,
+  rc_timestamp varchar(5) NOT NULL default '',
+  rc_cur_time varchar(5) NOT NULL default '',
   rc_user int NOT NULL default '0',
   rc_user_text varchar(255) NOT NULL,
   rc_namespace int NOT NULL default '0',
@@ -246,13 +246,13 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   rc_moved_to_ns tinyint NOT NULL default '0',
   rc_moved_to_title varchar(255) NOT NULL default '',
   rc_patrolled tinyint NOT NULL default '0',
-  rc_ip varbinary(40) NOT NULL default 0,
+  rc_ip varchar(13) NOT NULL default '',
   rc_old_len int,
   rc_new_len int,
   rc_deleted tinyint NOT NULL default '0',
   rc_logid int NOT NULL default '0',
-  rc_log_type varbinary(255) NULL default NULL,
-  rc_log_action varbinary(255) NULL default NULL,
+  rc_log_type varchar(17) NULL default NULL,
+  rc_log_action varchar(17) NULL default NULL,
   rc_params text NULL,
   PRIMARY KEY (rc_id)
 );
@@ -261,12 +261,12 @@ CREATE TABLE /*$wgDBprefix*/watchlist (
   wl_user int NOT NULL,
   wl_namespace int NOT NULL default '0',
   wl_title varchar(255) NOT NULL default '',
-  wl_notificationtimestamp varbinary(14)
+  wl_notificationtimestamp varchar(5) NULL
 );
 
 CREATE TABLE /*$wgDBprefix*/math (
-  math_inputhash varbinary(16) NOT NULL,
-  math_outputhash varbinary(16) NOT NULL,
+  math_inputhash varchar(5) NOT NULL,
+  math_outputhash varchar(5) NOT NULL,
   math_html_conservativeness tinyint NOT NULL,
   math_html text,
   math_mathml text
@@ -286,29 +286,29 @@ CREATE TABLE /*$wgDBprefix*/interwiki (
 );
 
 CREATE TABLE /*$wgDBprefix*/querycache (
-  qc_type varbinary(32) NOT NULL,
+  qc_type varchar(10) NOT NULL,
   qc_value int NOT NULL default '0',
   qc_namespace int NOT NULL default '0',
   qc_title varchar(255) NOT NULL default ''
 );
 
 CREATE TABLE /*$wgDBprefix*/objectcache (
-  keyname varbinary(255) NOT NULL default 0,
+  keyname varchar(17) NOT NULL default '',
   value text,
   exptime datetime
 );
 
 CREATE TABLE /*$wgDBprefix*/transcache (
-  tc_url varbinary(255) NOT NULL,
+  tc_url varchar(17) NOT NULL,
   tc_contents text,
   tc_time int NOT NULL
 );
 
 CREATE TABLE /*$wgDBprefix*/logging (
   log_id int NOT NULL IDENTITY(1,1),
-  log_type varbinary(10) NOT NULL default 0,
-  log_action varbinary(10) NOT NULL default 0,
-  log_timestamp binary(14) NOT NULL default 0,
+  log_type varchar(4) NOT NULL default '',
+  log_action varchar(4) NOT NULL default '',
+  log_timestamp varchar(5) NOT NULL default '19700101000000',
   log_user int NOT NULL default 0,
   log_namespace int NOT NULL default 0,
   log_title varchar(255) NOT NULL default '',
@@ -324,13 +324,13 @@ CREATE TABLE /*$wgDBprefix*/trackbacks (
   tb_title varchar(255) NOT NULL,
   tb_url text NOT NULL,
   tb_ex text,
-  tb_name varchar(255),
+  tb_name varchar(255) NULL,
   PRIMARY KEY (tb_id)
 );
 
 CREATE TABLE /*$wgDBprefix*/job (
   job_id int NOT NULL IDENTITY(1,1),
-  job_cmd varbinary(60) NOT NULL default 0,
+  job_cmd varchar(17) NOT NULL default '',
   job_namespace int NOT NULL,
   job_title varchar(255) NOT NULL,
   job_params text NOT NULL,
@@ -338,8 +338,8 @@ CREATE TABLE /*$wgDBprefix*/job (
 );
 
 CREATE TABLE /*$wgDBprefix*/querycache_info (
-  qci_type varbinary(32) NOT NULL default 0,
-  qci_timestamp binary(14) NOT NULL default 0
+  qci_type varchar(10) NOT NULL default '',
+  qci_timestamp varchar(5) NOT NULL default '19700101000000'
 );
 
 CREATE TABLE /*$wgDBprefix*/redirect (
@@ -350,7 +350,7 @@ CREATE TABLE /*$wgDBprefix*/redirect (
 );
 
 CREATE TABLE /*$wgDBprefix*/querycachetwo (
-  qcc_type varbinary(32) NOT NULL,
+  qcc_type varchar(10) NOT NULL,
   qcc_value int NOT NULL default '0',
   qcc_namespace int NOT NULL default '0',
   qcc_title varchar(255) NOT NULL default '',
@@ -360,11 +360,11 @@ CREATE TABLE /*$wgDBprefix*/querycachetwo (
 
 CREATE TABLE /*$wgDBprefix*/page_restrictions (
   pr_page int NOT NULL,
-  pr_type varbinary(60) NOT NULL,
-  pr_level varbinary(60) NOT NULL,
+  pr_type varchar(17) NOT NULL,
+  pr_level varchar(17) NOT NULL,
   pr_cascade tinyint NOT NULL,
   pr_user int NULL,
-  pr_expiry varbinary(14) NULL,
+  pr_expiry varchar(5) NULL,
   pr_id int NOT NULL IDENTITY(1,1),
   PRIMARY KEY (pr_page,pr_type)
 );
@@ -374,15 +374,15 @@ CREATE TABLE /*$wgDBprefix*/protected_titles (
   pt_title varchar(255) NOT NULL,
   pt_user int NOT NULL,
   pt_reason text,
-  pt_timestamp binary(14) NOT NULL,
-  pt_expiry varbinary(14) NOT NULL default 0,
-  pt_create_perm varbinary(60) NOT NULL,
+  pt_timestamp varchar(5) NOT NULL,
+  pt_expiry varchar(5) NOT NULL default '',
+  pt_create_perm varchar(17) NOT NULL,
   PRIMARY KEY (pt_namespace,pt_title)
 );
 
 CREATE TABLE /*$wgDBprefix*/page_props (
   pp_page int NOT NULL,
-  pp_propname varbinary(60) NOT NULL,
+  pp_propname varchar(17) NOT NULL,
   pp_value text NOT NULL,
   PRIMARY KEY (pp_page,pp_propname)
 );
