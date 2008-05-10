@@ -63,7 +63,7 @@ for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 		if ( in_array( $option, $optionsWithArgs ) ) {
 			$param = next( $argv );
 			if ( $param === false ) {
-				echo "$arg needs an value after it\n";
+				echo "$arg needs a value after it\n";
 				die( -1 );
 			}
 			$options[$option] = $param;
@@ -84,7 +84,7 @@ for( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
 			if ( in_array( $option, $optionsWithArgs ) ) {
 				$param = next( $argv );
 				if ( $param === false ) {
-					echo "$arg needs an value after it\n";
+					echo "$arg needs a value after it\n";
 					die( -1 );
 				}
 				$options[$option] = $param;
