@@ -345,7 +345,6 @@ class DatabaseSqlite extends Database {
 			$sql = preg_replace('/^\s*(UNIQUE )?INDEX.+?$/m','',$sql); # These indexes should be created with a CREATE INDEX query
 			$sql = preg_replace('/^\s*FULLTEXT.+?$/m','',$sql);        # Full text indexes
 			$sql = preg_replace('/ENUM\(.+?\)/','TEXT',$sql); # Make ENUM's into TEXT's
-			$sql = preg_replace('/ENUM\(.+?\)/','TEXT',$sql); # Make ENUM's into TEXT's
 			$sql = preg_replace('/binary\(\d+\)/','BLOB',$sql);
 			$sql = preg_replace('/(TYPE|MAX_ROWS|AVG_ROW_LENGTH)=\w+/','',$sql);
 			$sql = preg_replace('/,\s*\)/s',')',$sql); # removing previous items may leave a trailing comma
