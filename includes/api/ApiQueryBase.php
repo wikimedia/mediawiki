@@ -45,6 +45,9 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->resetQueryParams();
 	}
 
+	/**
+	 * Blank the internal arrays with query parameters
+	 */
 	protected function resetQueryParams() {
 		$this->tables = array ();
 		$this->where = array ();
@@ -52,6 +55,11 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->options = array ();
 	}
 
+	/**
+	 * Add a set of tables to the internal array
+	 * @param mixed $tables Table name or array of table names
+	 * @param mixed $alias Table alias, or null for no alias. Cannot be used with multiple tables
+	 */
 	protected function addTables($tables, $alias = null) {
 		if (is_array($tables)) {
 			if (!is_null($alias))
@@ -64,6 +72,10 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 	}
 
+	/**
+	 * Add a set of fields to select to the internal array
+	 * @param mixed $value Field name or array of field names
+	 */
 	protected function addFields($value) {
 		if (is_array($value))
 			$this->fields = array_merge($this->fields, $value);
@@ -71,6 +83,12 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->fields[] = $value;
 	}
 
+	/**
+	 * Same as addFields(), but add the fields only if a condition is met
+	 * @param mixed $value See addFields()
+	 * @param bool $condition If false, do nothing
+	 * @return bool $condition
+	 */
 	protected function addFieldsIf($value, $condition) {
 		if ($condition) {
 			$this->addFields($value);
@@ -79,6 +97,15 @@ abstract class ApiQueryBase extends ApiBase {
 		return false;
 	}
 
+	/**
+	 * Add a set of WHERE clauses to the internal array.
+	 * Clauses can be formatted as 'foo=bar' or array('foo' => 'bar'),
+	 * the latter only works if the value is a constant (i.e. not another field)
+	 *
+	 * For example, array('foo=bar', 'baz' => 3, 'bla' => 'foo') translates
+	 * to "foo=bar AND baz='3' AND bla='foo'"
+	 * @param mixed $value String or array
+	 */
 	protected function addWhere($value) {
 		if (is_array($value))
 			$this->where = array_merge($this->where, $value);
@@ -86,6 +113,12 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->where[] = $value;
 	}
 
+	/**
+	 * Same as addWhere(), but add the WHERE clauses only if a condition is met
+	 * @param mixed $value See addWhere()
+	 * @param bool $condition If false, do nothing
+	 * @return bool $condition
+	 */
 	protected function addWhereIf($value, $condition) {
 		if ($condition) {
 			$this->addWhere($value);
@@ -94,11 +127,24 @@ abstract class ApiQueryBase extends ApiBase {
 		return false;
 	}
 
+	/**
+	 * Equivalent to addWhere(array($field => $value))
+	 * @param string $field Field name
+	 * @param string $value Value; ignored if nul;
+	 */
 	protected function addWhereFld($field, $value) {
 		if (!is_null($value))
 			$this->where[$field] = $value;
 	}
 
+	/**
+	 * Add a WHERE clause corresponding to a range, and an ORDER BY
+	 * clause to sort in the right direction
+	 * @param string $field Field name
+	 * @param string $dir If 'newer', sort in ascending order, otherwise sort in descending order
+	 * @param string $start Value to start the list at. If $dir == 'newer' this is the lower boundary, otherwise it's the upper boundary
+	 * @param string $end Value to end the list at. If $dir == 'newer' this is the upper boundary, otherwise it's the lower boundary
+	 */
 	protected function addWhereRange($field, $dir, $start, $end) {
 		$isDirNewer = ($dir === 'newer');
 		$after = ($isDirNewer ? '>=' : '<=');
@@ -118,6 +164,11 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->addOption('ORDER BY', $this->options['ORDER BY'] . ', ' . $order);
 	}
 
+	/**
+	 * Add an option such as LIMIT or USE INDEX
+	 * @param string $name Option name
+	 * @param string $value Option value
+	 */
 	protected function addOption($name, $value = null) {
 		if (is_null($value))
 			$this->options[] = $name;
@@ -125,6 +176,11 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->options[$name] = $value;
 	}
 
+	/**
+	 * Execute a SELECT query based on the values in the internal arrays
+	 * @param string $method Function the query should be attributed to. You should usually use __METHOD__ here
+	 * @return ResultWrapper
+	 */
 	protected function select($method) {
 
 		// getDB has its own profileDBIn/Out calls
@@ -137,6 +193,11 @@ abstract class ApiQueryBase extends ApiBase {
 		return $res;
 	}
 
+	/**
+	 * Estimate the row count for the SELECT query that would be run if we
+	 * called select() right now, and check if it's acceptable.
+	 * @return bool true if acceptable, false otherwise
+	 */
 	protected function checkRowCount() {
 		$db = $this->getDB();
 		$this->profileDBIn();
@@ -149,6 +210,12 @@ abstract class ApiQueryBase extends ApiBase {
 		return true;
 	}
 
+	/**
+	 * Add information (title and namespace) about a Title object to a result array
+	 * @param array $arr Result array à la ApiResult
+	 * @param Title $title Title object
+	 * @param string $prefix Module prefix
+	 */
 	public static function addTitleInfo(&$arr, $title, $prefix='') {
 		$arr[$prefix . 'ns'] = intval($title->getNamespace());
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
@@ -157,19 +224,23 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Override this method to request extra fields from the pageSet
 	 * using $pageSet->requestField('fieldName')
+	 * @param ApiPageSet $pageSet
 	 */
 	public function requestExtraData($pageSet) {
 	}
 
 	/**
 	 * Get the main Query module
+	 * @return ApiQuery
 	 */
 	public function getQuery() {
 		return $this->mQueryModule;
 	}
 
 	/**
-	 * Add sub-element under the page element with the given pageId.
+	 * Add a sub-element under the page element with the given page ID
+	 * @param int $pageId Page ID
+	 * @param array $data Data array à la ApiResult 
 	 */
 	protected function addPageSubItems($pageId, $data) {
 		$result = $this->getResult();
@@ -179,19 +250,21 @@ abstract class ApiQueryBase extends ApiBase {
 			$data);
 	}
 
+	/**
+	 * Set a query-continue value
+	 * @param $paramName Parameter name
+	 * @param $paramValue Parameter value
+	 */
 	protected function setContinueEnumParameter($paramName, $paramValue) {
 
 		$paramName = $this->encodeParamName($paramName);
 		$msg = array( $paramName => $paramValue );
-
-//		This is an alternative continue format as a part of the URL string
-//		ApiResult :: setContent($msg, $paramName . '=' . urlencode($paramValue));
-
 		$this->getResult()->addValue('query-continue', $this->getModuleName(), $msg);
 	}
 
 	/**
 	 * Get the Query database connection (readonly)
+	 * @return Database
 	 */
 	protected function getDB() {
 		if (is_null($this->mDb))
@@ -204,6 +277,10 @@ abstract class ApiQueryBase extends ApiBase {
 	 * If no such connection has been requested before, it will be created.
 	 * Subsequent calls with the same $name will return the same connection
 	 * as the first, regardless of $db or $groups new values.
+	 * @param string $name Name to assign to the database connection
+	 * @param int $db One of the DB_* constants
+	 * @param array $groups Query groups
+	 * @return Database 
 	 */
 	public function selectNamedDB($name, $db, $groups) {
 		$this->mDb = $this->getQuery()->getNamedDB($name, $db, $groups);
@@ -211,7 +288,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Get the PageSet object to work on
-	 * @return ApiPageSet data
+	 * @return ApiPageSet
 	 */
 	protected function getPageSet() {
 		return $this->getQuery()->getPageSet();
@@ -221,15 +298,29 @@ abstract class ApiQueryBase extends ApiBase {
 	 * This is a very simplistic utility function
 	 * to convert a non-namespaced title string to a db key.
 	 * It will replace all ' ' with '_'
+	 * @param string $title Page title with spaces
+	 * @return string Page title with underscores
 	 */
 	public static function titleToKey($title) {
 		return str_replace(' ', '_', $title);
 	}
 
+	/**
+	 * The inverse of titleToKey()
+	 * @param string $key Page title with underscores
+	 * @return string Page title with spaces
+	 */
 	public static function keyToTitle($key) {
 		return str_replace('_', ' ', $key);
 	}
 
+	/**
+	 * Check whether the current user requested a certain token and 
+	 * is actually allowed to request it.
+	 * @param array $tokenArr Array of tokens the user requested
+	 * @param string $action Action to check for
+	 * @return bool true if the user requested the token and is allowed to, false otherwise
+	 */
 	public function getTokenFlag($tokenArr, $action) {
 		if ($this->getMain()->getRequest()->getVal('callback') !== null) {
 			// Don't do any session-specific data.
@@ -245,6 +336,10 @@ abstract class ApiQueryBase extends ApiBase {
 		return false;
 	}
 
+	/**
+	 * Get version string for use in the API help output
+	 * @return string
+	 */
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';
 	}
@@ -262,6 +357,10 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 		$this->mIsGenerator = false;
 	}
 
+	/**
+	 * Switch this module to generator mode. By default, generator mode is
+	 * switched off and the module acts like a normal query module.
+	 */
 	public function setGeneratorMode() {
 		$this->mIsGenerator = true;
 	}
