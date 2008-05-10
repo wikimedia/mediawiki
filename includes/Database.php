@@ -945,7 +945,7 @@ class Database {
 		}
 		if( is_array( $table ) ) {
 			if ( !empty($join_conds) || (isset($options['USE INDEX']) && is_array($options['USE INDEX'])) )
-				$from = ' FROM ' . $this->tableNamesWithUseIndexOrJOIN( $table, $options['USE INDEX'], $join_conds );
+				$from = ' FROM ' . $this->tableNamesWithUseIndexOrJOIN( $table, @$options['USE INDEX'], $join_conds );
 			else
 				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
 		} elseif ($table!='') {
