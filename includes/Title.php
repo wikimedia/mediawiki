@@ -2179,6 +2179,13 @@ class Title {
 			return false;
 		}
 
+		// Normalise special page names
+		if ( $this->mNamespace == NS_SPECIAL ) {
+			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $dbkey );
+			$dbkey = SpecialPage::getLocalNameFor( $name, $subpage );
+		}
+
+
 		# Fill fields
 		$this->mDbkeyform = $dbkey;
 		$this->mUrlform = wfUrlencode( $dbkey );
