@@ -36,7 +36,7 @@ if (!defined('MEDIAWIKI')) {
  */
 abstract class ApiQueryBase extends ApiBase {
 
-	private $mQueryModule, $mDb, $tables, $where, $fields, $options;
+	private $mQueryModule, $mDb, $tables, $where, $fields, $options, $join_conds;
 
 	public function __construct($query, $moduleName, $paramPrefix = '') {
 		parent :: __construct($query->getMain(), $moduleName, $paramPrefix);
@@ -53,6 +53,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$this->where = array ();
 		$this->fields = array ();
 		$this->options = array ();
+		$this->join_conds = array ();
 	}
 
 	/**
@@ -67,9 +68,32 @@ abstract class ApiQueryBase extends ApiBase {
 			$this->tables = array_merge($this->tables, $tables);
 		} else {
 			if (!is_null($alias))
-				$tables = $this->getDB()->tableName($tables) . ' ' . $alias;
+				$tables = $this->getAliasedName($tables, $alias);
 			$this->tables[] = $tables;
 		}
+	}
+	
+	/**
+	 * Get the SQL for a table name with alias
+	 * @param string $table Table name
+	 * @param string $alias Alias
+	 * @return string SQL
+	 */
+	protected function getAliasedName($table, $alias) {
+		return $this->getDB()->tableName($table) . ' ' . $alias;
+	}
+	
+	/**
+	 * Add a set of JOIN conditions to the internal array
+	 *
+	 * JOIN conditions are formatted as array( tablename => array(jointype, conditions)
+	 * e.g. array('page' => array('LEFT JOIN', 'page_id=rev_page'))
+	 * @param array $join_conds JOIN conditions
+	 */
+	protected function addJoinConds($join_conds) {
+		if(!is_array($join_conds))
+			ApiBase::dieDebug(__METHOD__, 'Join conditions have to be arrays');
+		$this->join_conds = array_merge($this->join_conds, $join_conds);
 	}
 
 	/**
@@ -187,7 +211,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$db = $this->getDB();
 
 		$this->profileDBIn();
-		$res = $db->select($this->tables, $this->fields, $this->where, $method, $this->options);
+		$res = $db->select($this->tables, $this->fields, $this->where, $method, $this->options, $this->join_conds);
 		$this->profileDBOut();
 
 		return $res;

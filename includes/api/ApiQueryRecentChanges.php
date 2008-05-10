@@ -55,12 +55,13 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		extract($this->extractRequestParams());
 
 		/* Build our basic query. Namely, something along the lines of:
-		 * SELECT * from recentchanges WHERE rc_timestamp > $start
+		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
 		 * 		AND rc_timestamp < $end AND rc_namespace = $namespace
 		 * 		AND rc_deleted = '0'
 		 */
 		$db = $this->getDB();
-		$rc = $db->tableName('recentchanges');
+		$this->addTables('recentchanges');
+		$this->addOption('USE INDEX', array('recentchanges' => 'rc_timestamp'));
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('rc_namespace', $namespace);
 		$this->addWhereFld('rc_deleted', 0);
@@ -164,14 +165,11 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
 			if($this->fld_redirect || isset($show['redirect']) || isset($show['!redirect']))
 			{
-				$page = $db->tableName('page');
-				$tables = "$page RIGHT JOIN $rc FORCE INDEX(rc_timestamp) ON page_namespace=rc_namespace AND page_title=rc_title";
+				$this->addTables('page');
+				$this->addJoinConds(array('page' => array('RIGHT JOIN', array('page_namespace=rc_namespace', 'page_title=rc_title'))));
 				$this->addFields('page_is_redirect');
 			}
 		}
-		if(!isset($tables))
-			$tables = "$rc FORCE INDEX(rc_timestamp)";
-		$this->addTables($tables);
 		/* Specify the limit for our query. It's $limit+1 because we (possibly) need to
 		 * generate a "continue" parameter, to allow paging. */
 		$this->addOption('LIMIT', $limit +1);
