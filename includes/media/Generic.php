@@ -418,7 +418,7 @@ abstract class ImageHandler extends MediaHandler {
 		$pages = $file->pageCount();
 		$width = $wgLang->formatNum( $file->getWidth() );
 		$height = $wgLang->formatNum( $file->getHeight() );
-		$pagesFmt = $wgLang->formatNum( $pages )
+		$pagesFmt = $wgLang->formatNum( $pages );
 
 		if ( $pages > 1 ) {
 			return wfMsgExt( 'widthheightpage', 'parsemag', $width, $height, $pagesFmt );
