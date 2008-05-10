@@ -75,7 +75,7 @@ class Xml {
 		return self::element( $element, $attribs, $contents );
 	}
 
-	/** This open an XML element */
+	/** This opens an XML element */
 	public static function openElement( $element, $attribs = null ) {
 		return '<' . $element . self::expandAttributes( $attribs ) . '>';
 	}
