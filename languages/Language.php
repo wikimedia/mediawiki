@@ -2183,21 +2183,35 @@ class Language {
 	 * Get the fallback for a given language
 	 */
 	static function getFallbackFor( $code ) {
+		// Shortcut
 		if ( $code === 'en' ) return false;
 
+		// Local cache
+		static $cache = array();
+		// Quick return
+		if ( isset($cache[$code]) ) return $cache[$code];
+
+		// Try memcache
 		global $wgMemc;
 		$memcKey = wfMemcKey( 'fallback', $code );
 		$fbcode = $wgMemc->get( $memcKey );
 
 		if ( is_string($fbcode) ) {
-			wfDebug( __METHOD__ . ": got fallback for $code from memc: '$fbcode'\n" );
+			// False is stored as a string to detect failures in memcache properly
 			if ( $fbcode === '' ) $fbcode = false;
+
+			// Update local cache and return
+			$cache[$code] = $fbcode;
 			return $fbcode;
 		}
-		
+
+		// Nothing in caches, load and and update both caches
 		self::loadLocalisation( $code );
 		$fbcode = self::$mLocalisationCache[$code]['fallback'];
+
+		$cache[$code] = $fbcode;
 		$wgMemc->set( $memcKey, (string) $fbcode );
+
 		return $fbcode;
 	}
 
