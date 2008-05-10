@@ -2383,8 +2383,7 @@ $wgMessageStructure = array(
 		'imgmultipageprev',
 		'imgmultipagenext',
 		'imgmultigo',
-		'imgmultigotopre',
-		'imgmultigotopost',
+		'imgmultigoto',
 	),
 	'tablepager' => array(
 		'ascending_abbrev',

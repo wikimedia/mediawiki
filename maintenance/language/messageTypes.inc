@@ -114,7 +114,6 @@ $wgIgnoredMessages = array(
 
 /** Optional messages, which may be translated only if changed in the other language. */
 $wgOptionalMessages = array(
-	'imgmultigotopost',
 	'linkprefix',
 	'editsection-brackets',
 	'feed-atom',
