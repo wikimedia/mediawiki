@@ -3202,3 +3202,11 @@ $wgExpensiveParserFunctionLimit = 100;
  * if one is to be generated for all namespaces.
  */
 $wgSitemapNamespaces = false;
+
+
+/**
+ * If user doesn't specify any edit summary when making a an edit,
+ * MediaWiki will try to automatically create one. This feature can
+ * be disabled by setting this variable false.
+ */
+$wgUseAutomaticEditSummaries = true;
