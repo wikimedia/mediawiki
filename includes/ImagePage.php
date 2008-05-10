@@ -314,22 +314,30 @@ class ImagePage extends Article {
 					}
 
 					global $wgScript;
-					$select = '<form name="pageselector" action="' .
-						htmlspecialchars( $wgScript ) .
-						'" method="get" onchange="document.pageselector.submit();">' .
-						Xml::hidden( 'title', $this->getTitle()->getPrefixedDbKey() );
-					$select .= $wgOut->parse( wfMsg( 'imgmultigotopre' ), false ) .
-						' <select id="pageselector" name="page">';
-					for ( $i=1; $i <= $count; $i++ ) {
-						$select .= Xml::option( $wgLang->formatNum( $i ), $i,
-							$i == $page );
-					}
-					$select .= '</select>' . $wgOut->parse( wfMsg( 'imgmultigotopost' ), false ) .
-						'<input type="submit" value="' .
-						htmlspecialchars( wfMsg( 'imgmultigo' ) ) . '"></form>';
 
-					$wgOut->addHTML( '</td><td><div class="multipageimagenavbox">' .
-						"$select<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>" );
+					$formParams = array(
+						'name' => 'pageselector',
+						'action' => $wgScript,
+						'onchange' => 'document.pageselector.submit();',
+					);
+
+					$option = array();
+					for ( $i=1; $i <= $count; $i++ ) {
+						$options[] = Xml::option( $wgLang->formatNum($i), $i, $i == $page );
+					}
+					$select = Xml::tags( 'select',
+						array( 'id' => 'pageselector', 'name' => 'page' ),
+						implode( "\n", $options ) );
+
+					$wgOut->addHTML(
+						'</td><td><div class="multipageimagenavbox">' .
+						Xml::openElement( 'form', $formParams ) .
+						Xml::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
+						wfMsgExt( 'imgmultigoto', array( 'parseinline', 'replaceafter' ), $select ) .
+						Xml::submitButton( wfMsg( 'imgmultigo' ) ) .
+						Xml::closeElement( 'form' ) .
+						"<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>"
+					);
 				}
 			} else {
 				#if direct link is allowed but it's not a renderable image, show an icon.

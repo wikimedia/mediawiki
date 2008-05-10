@@ -3181,8 +3181,7 @@ $1',
 'imgmultipageprev' => '← previous page',
 'imgmultipagenext' => 'next page →',
 'imgmultigo'       => 'Go!',
-'imgmultigotopre'  => 'Go to page',
-'imgmultigotopost' => '', # only translate this message to other languages if you have to change it
+'imgmultigoto'  => 'Go to page $1',
 
 # Table pager
 'ascending_abbrev'         => 'asc',
