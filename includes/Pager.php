@@ -215,6 +215,7 @@ abstract class IndexPager implements Pager {
 		$fields = $info['fields'];
 		$conds = isset( $info['conds'] ) ? $info['conds'] : array();
 		$options = isset( $info['options'] ) ? $info['options'] : array();
+		$join_conds = isset( $info['join_conds'] ) ? $info['join_conds'] : array();
 		if ( $descending ) {
 			$options['ORDER BY'] = $this->mIndexField;
 			$operator = '>';
@@ -226,7 +227,7 @@ abstract class IndexPager implements Pager {
 			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
 		}
 		$options['LIMIT'] = intval( $limit );
-		$res = $this->mDb->select( $tables, $fields, $conds, $fname, $options );
+		$res = $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 		return new ResultWrapper( $this->mDb, $res );
 	}
 
