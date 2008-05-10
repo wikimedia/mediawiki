@@ -77,6 +77,7 @@ require_once( "$preIP/includes/Defines.php" );
 # the wiki installer need to be launched or the generated file moved from
 # ./config/ to ./
 if( !file_exists( "$preIP/LocalSettings.php" ) ) {
+	$IP = $preIP;
 	require_once( "$preIP/includes/DefaultSettings.php" ); # used for printing the version
 	require_once( "$preIP/includes/templates/NoLocalSettings.php" );
 	die();
