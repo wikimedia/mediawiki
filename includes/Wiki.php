@@ -278,12 +278,13 @@ class MediaWiki {
 		
 		// Namespace might change when using redirects
 		// Check for redirects ...
+		$file = $title->getNamespace() == NS_IMAGE ? $article->getFile() : null;
 		if( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
 					&& !$request->getVal( 'oldid' ) && 			// ... and are not old revisions
 					$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
 					// ... and the article is not an image page with associated file
-					!( $title->getNamespace() == NS_IMAGE && wfFindFile( $title->getText(), false,
-							FileRepo::FIND_IGNORE_REDIRECT ) ) ) { // ... unless it is really an image redirect
+					!( is_object( $file ) && $file->exists() &&
+							!$file->getRedirected() ) ) { // ... unless it is really an image redirect
 
 			$dbr = wfGetDB( DB_SLAVE );
 			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
@@ -303,8 +304,8 @@ class MediaWiki {
 					$rarticle = self::articleFromTitle( $target );
 					$rarticle->loadPageData( $rarticle->pageDataFromTitle( $dbr, $target ) );
 					if ( $rarticle->getTitle()->exists() || 
-								( $title->getNamespace() == NS_IMAGE && 
-								!$article->isLocal() ) ) {
+								( is_object( $file ) && 
+								!$file->isLocal() ) ) {
 						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
 						$title = $target;
