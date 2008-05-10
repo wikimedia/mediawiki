@@ -66,24 +66,24 @@ unset( $IP );
 define( 'MEDIAWIKI', true );
 
 # Start profiler
-require_once( './StartProfiler.php' );
+$preIP = dirname( __FILE__ )  . '/..';
+require_once( "$preIP/StartProfiler.php" );
 wfProfileIn( 'WebStart.php-conf' );
 
 # Load up some global defines.
-require_once( './includes/Defines.php' );
+require_once( "$preIP/includes/Defines.php" );
 
 # LocalSettings.php is the per site customization file. If it does not exit
 # the wiki installer need to be launched or the generated file moved from
 # ./config/ to ./
-if( !file_exists( './LocalSettings.php' ) ) {
-	$IP = '.';
-	require_once( './includes/DefaultSettings.php' ); # used for printing the version
-	require_once( './includes/templates/NoLocalSettings.php' );
+if( !file_exists( "$preIP/LocalSettings.php" ) ) {
+	require_once( "$preIP/includes/DefaultSettings.php" ); # used for printing the version
+	require_once( "$preIP/includes/templates/NoLocalSettings.php" );
 	die();
 }
 
 # Include this site setttings
-require_once( './LocalSettings.php' );
+require_once( "$preIP/LocalSettings.php" ); // $IP available after this
 wfProfileOut( 'WebStart.php-conf' );
 wfProfileIn( 'WebStart.php-ob_start' );
 
@@ -92,12 +92,12 @@ if ( ob_get_level() ) {
 	# Someone's been mixing configuration data with code!
 	# How annoying.
 } elseif ( !defined( 'MW_NO_OUTPUT_BUFFER' ) ) {
-	require_once( './includes/OutputHandler.php' );
+	require_once( "$IP/includes/OutputHandler.php" );
 	ob_start( 'wfOutputHandler' );
 }
 
 wfProfileOut( 'WebStart.php-ob_start' );
 
 if ( !defined( 'MW_NO_SETUP' ) ) {
-	require_once( './includes/Setup.php' );
+	require_once( "$IP/includes/Setup.php" );
 }
