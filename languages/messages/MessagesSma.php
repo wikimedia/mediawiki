@@ -868,7 +868,6 @@ $1',
 'imgmultipageprev' => '← övtebe bielie',
 'imgmultipagenext' => 'minngebe bielie →',
 'imgmultigo'       => 'Vaadtsa!',
-'imgmultigotopre'  => 'Vaadtsa gåajkoe bielie',
 
 # Table pager
 'table_pager_next'         => 'Minngebe bielie',

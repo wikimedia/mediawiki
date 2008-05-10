@@ -1975,7 +1975,6 @@ $1',
 'imgmultipageprev' => '&larr; prethodna stranica',
 'imgmultipagenext' => 'sledeća stranica &rarr;',
 'imgmultigo'       => 'Idi!',
-'imgmultigotopre'  => 'Idi na stranicu',
 
 # Table pager
 'ascending_abbrev'         => 'rast',

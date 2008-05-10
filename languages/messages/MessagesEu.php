@@ -1841,7 +1841,6 @@ $1',
 'imgmultipageprev' => '&larr; aurreko orrialdea',
 'imgmultipagenext' => 'hurrengo orrialdea &rarr;',
 'imgmultigo'       => 'Joan!',
-'imgmultigotopre'  => 'Orrialdera jo',
 
 # Table pager
 'ascending_abbrev'         => 'gor',

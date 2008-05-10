@@ -2220,8 +2220,8 @@ Jıljıtwğa jol berw üşin joyamız ba?',
 bet özine jıljıtılmaýdı.',
 'immobile_namespace'      => 'Qaýnar ne nısana atawı arnaýı türine jatadı;
 osındaý esim ayasına jäne esim ayasınan better jıljıtılmaýdı.',
-'imagenocrossnamespace'   => "Swret faýl emes basqa esim ayasına jıljıtılmaýdı",
-'imagetypemismatch'       => "Faýldıñ jaña keñeýtimi bunıñ türine säýkes emes",
+'imagenocrossnamespace'   => 'Swret faýl emes basqa esim ayasına jıljıtılmaýdı',
+'imagetypemismatch'       => 'Faýldıñ jaña keñeýtimi bunıñ türine säýkes emes',
 
 # Export
 'export'            => 'Betterdi sırtqa berw',

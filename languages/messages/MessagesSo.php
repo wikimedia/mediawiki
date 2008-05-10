@@ -614,8 +614,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'articletitles'    => "Maqaalada ka bilaawdo ''$1''",
 
 # Multipage image navigation
-'imgmultigo'      => 'Soco!',
-'imgmultigotopre' => 'Aad boga',
+'imgmultigo' => 'Soco!',
 
 # Auto-summaries
 'autosumm-new' => 'Bog cusub: $1',

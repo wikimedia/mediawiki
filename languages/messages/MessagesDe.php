@@ -2562,7 +2562,6 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'imgmultipageprev' => '← vorige Seite',
 'imgmultipagenext' => 'nächste Seite →',
 'imgmultigo'       => 'OK',
-'imgmultigotopre'  => 'Gehe zu Seite',
 
 # Table pager
 'ascending_abbrev'         => 'auf',

@@ -395,7 +395,6 @@ $messages = array(
 'imgmultipageprev' => '← ᑐᓄᓪᓕᐹᖅ  ᒪᑉᐱᑕᖅ',
 'imgmultipagenext' => 'ᑕᒡᒐ ᒪᑉᐱᑕᖅ →',
 'imgmultigo'       => 'ᐊᐃᕗᖅ!',
-'imgmultigotopre'  => 'ᐊᐃᕗᖅ ᐃᑭᐊᖅ ᒪᑉᐱᑕᖅ',
 
 # Table pager
 'table_pager_limit_submit' => 'ᐊᐃᕗᖅ',

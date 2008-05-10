@@ -402,7 +402,6 @@ $messages = array(
 'imgmultipageprev' => '← පෙර පිටුව',
 'imgmultipagenext' => 'ඊළඟ පිටුව →',
 'imgmultigo'       => 'යන්න!',
-'imgmultigotopre'  => 'පිටුවට යන්න',
 
 # Table pager
 'table_pager_next'         => 'ඊළඟ පිටුව',

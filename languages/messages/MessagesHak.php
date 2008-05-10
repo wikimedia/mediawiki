@@ -1569,7 +1569,6 @@ $1',
 'imgmultipageprev' => '← sông yit-chông',
 'imgmultipagenext' => 'hâ yit-chông →',
 'imgmultigo'       => 'Khok-thin!',
-'imgmultigotopre'  => 'To-thi',
 
 # Table pager
 'ascending_abbrev'         => 'Suk-siá chen',

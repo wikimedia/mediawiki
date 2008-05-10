@@ -698,7 +698,6 @@ $1',
 'imgmultipageprev' => '← бүрүнгү арын',
 'imgmultipagenext' => 'соонда арын →',
 'imgmultigo'       => 'Чоруур',
-'imgmultigotopre'  => 'Арынже чоруур',
 
 # Table pager
 'table_pager_next'         => 'Соонда арын',

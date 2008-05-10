@@ -290,7 +290,6 @@ $messages = array(
 'imgmultipageprev' => '← pajina anterior',
 'imgmultipagenext' => 'siguiente pajina →',
 'imgmultigo'       => 'Ir!',
-'imgmultigotopre'  => 'Ir a la pajina',
 
 # Table pager
 'table_pager_next'         => 'Pajina siguiente',
