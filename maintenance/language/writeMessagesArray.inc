@@ -53,7 +53,7 @@ class MessageWriter {
 				}
 			}
 		} else {
-			echo "Generated messages for language $code. There seems to be no messages array in the file.\n";
+			echo "Generated messages for language $code. There seem to be no messages array in the file.\n";
 		}
 	}
 
