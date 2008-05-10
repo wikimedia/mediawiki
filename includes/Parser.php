@@ -2835,7 +2835,9 @@ class Parser
 					}
 					$result = call_user_func_array( $callback, $allArgs );
 					$found = true;
-
+					$noparse = true;
+					$preprocessFlags = 0;
+					
 					if ( is_array( $result ) ) {
 						if ( isset( $result[0] ) ) {
 							$text = $result[0];
@@ -2847,6 +2849,10 @@ class Parser
 						extract( $result );
 					} else {
 						$text = $result;
+					}
+					if ( !$noparse ) {
+						$text = $this->preprocessToDom( $text, $preprocessFlags );
+						$isChildObj = true;
 					}
 				}
 			}
