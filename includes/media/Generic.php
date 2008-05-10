@@ -416,10 +416,14 @@ abstract class ImageHandler extends MediaHandler {
 	function getDimensionsString( $file ) {
 		global $wgLang;
 		$pages = $file->pageCount();
+		$width = $wgLang->formatNum( $file->getWidth() );
+		$height = $wgLang->formatNum( $file->getHeight() );
+		$pagesFmt = $wgLang->formatNum( $pages )
+
 		if ( $pages > 1 ) {
-			return wfMsg( 'widthheightpage', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ), $wgLang->formatNum( $pages ) );
+			return wfMsgExt( 'widthheightpage', 'parsemag', $width, $height, $pagesFmt );
 		} else {
-			return wfMsg( 'widthheight', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ) );
+			return wfMsg( 'widthheight', $width, $height );
 		}
 	}
 }
