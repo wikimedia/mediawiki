@@ -192,12 +192,13 @@ class Title {
 	 *       but not used for anything else
 	 *
 	 * @param int $id the page_id corresponding to the Title to create
+	 * @param int $flags, use FOR_UPDATE to use master
 	 * @return Title the new object, or NULL on an error
 	 */
-	public static function newFromID( $id ) {
+	public static function newFromID( $id, $flags = 0 ) {
 		$fname = 'Title::newFromID';
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'page', array( 'page_namespace', 'page_title' ),
+		$db = ($flags & FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$row = $db->selectRow( 'page', array( 'page_namespace', 'page_title' ),
 			array( 'page_id' => $id ), $fname );
 		if ( $row !== false ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
