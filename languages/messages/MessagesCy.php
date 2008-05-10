@@ -37,7 +37,7 @@ $skinNames = array(
 	'cologneblue' => 'Glas Cwlen',
 );
 
-$datePreferences = false;
+$defaultDateFormat = 'dmy';
 
 $bookstoreList = array(
 	"AddALL" => "http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN",
