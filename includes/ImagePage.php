@@ -134,6 +134,10 @@ class ImagePage extends Article {
 	public function isLocal() {
 		return $this->img->isLocal();
 	}
+	
+	public function getFile() {
+		return $this->img;
+	}
 
 	/**
 	 * Create the TOC
