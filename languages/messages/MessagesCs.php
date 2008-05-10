@@ -2606,7 +2606,6 @@ $1',
 'imgmultipageprev' => '← předchozí stránka',
 'imgmultipagenext' => 'následující stránka →',
 'imgmultigo'       => 'Jít!',
-'imgmultigotopre'  => 'Přejít na stránku',
 
 # Table pager
 'ascending_abbrev'         => 'vzestupně',

@@ -2150,7 +2150,6 @@ $1',
 'imgmultipageprev' => '← পূর্ববর্তী পাতা',
 'imgmultipagenext' => 'পরবর্তী পাতা →',
 'imgmultigo'       => 'চলো!',
-'imgmultigotopre'  => 'পাতায় চলো',
 
 # Table pager
 'ascending_abbrev'         => 'আরোহণ',

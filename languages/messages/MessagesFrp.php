@@ -2302,7 +2302,6 @@ $1',
 'imgmultipageprev' => '← pâge prècèdenta',
 'imgmultipagenext' => 'pâge siuventa →',
 'imgmultigo'       => 'Accèdar !',
-'imgmultigotopre'  => 'Arrevar a la pâge',
 
 # Table pager
 'ascending_abbrev'         => 'crès',

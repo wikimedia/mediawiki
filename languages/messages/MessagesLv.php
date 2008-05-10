@@ -80,6 +80,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Paslēpt botu labojumus manā uzraugāmo sarakstā.',
 'tog-watchlisthideminor'      => 'Paslēpt maznozīmīgos labojumus manā uzraugāmo sarakstā',
 'tog-ccmeonemails'            => 'Sūtīt sev, citiem lietotājiem nosūtīto epastu, kopijas',
+'tog-showhiddencats'          => 'Rādīt slēptās kategorijas',
 
 'underline-always'  => 'vienmēr',
 'underline-never'   => 'nekad',
@@ -139,6 +140,7 @@ $messages = array(
 'category_header'                => 'Raksti, kas ietverti kategorijā "$1".',
 'subcategories'                  => 'Apakškategorijas',
 'category-empty'                 => "''Šī kategorija šobrīd nesatur ne lapas, ne failus''",
+'hidden-category-category'       => 'Slēptās kategorijas', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Šajai kategorijai ir tikai viena apakškategorija.|Šajai kategorijai ir $2 apakškategorijas, no kurām ir {{PLURAL:$1|redzama viena|redzamas $1}}.}}',
 'category-article-count'         => '{{PLURAL:$2|Šī kategorija satur tikai šo vienu lapu.|Šajā kategorijā kopā ir $2 lapas, šobrīd ir {{PLURAL:$1|redzama viena no tām|redzamas $1 no tām}}.}}',
 'category-article-count-limited' => 'Šajā kategorijā ir {{PLURAL:$1|šī viena lapa|šīs $1 lapas}}.',
@@ -182,6 +184,7 @@ $messages = array(
 'edit'              => 'Izmainīt šo lapu',
 'create'            => 'Izveidot',
 'editthispage'      => 'Izmainīt šo lapu',
+'create-this-page'  => 'Izveidot šo lapu',
 'delete'            => 'Dzēst',
 'deletethispage'    => 'Dzēst šo lapu',
 'undelete_short'    => 'Atjaunot $1 {{PLURAL:$1|versiju|versijas}}',
@@ -696,6 +699,9 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 # Random page
 'randompage' => 'Nejauša lapa',
 
+# Random redirect
+'randomredirect' => 'Nejauša pāradresācijas lapa',
+
 # Statistics
 'statistics'    => 'Statistika',
 'sitestats'     => '{{grammar:ģenitīvs|{{SITENAME}}}} statistika',
@@ -752,6 +758,8 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'move'                    => 'Pārvietot',
 'movethispage'            => 'Pārvietot šo lapu',
 'unusedcategoriestext'    => 'Šīs kategorijas eksistē, tomēr nevienā rakstā vai kategorijās tās nav izmantotas.',
+'pager-newer-n'           => '{{PLURAL:$1|jaunāko 1|jaunākās $1}}',
+'pager-older-n'           => '{{PLURAL:$1|senāko 1|senākās $1}}',
 
 # Book sources
 'booksources' => 'Grāmatu avoti',
@@ -762,6 +770,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'log'                  => 'Reģistri',
 'alllogstext'          => 'Augšupielādes, dzēšanas, aizsargāšanas, bloķēšanas un adminu reģistru apvienotais reģistrs.
 Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu.',
+'logempty'             => 'Reģistrā nav atbilstošu ierakstu.',
 
 # Special:Allpages
 'allpages'       => 'Visas lapas',
@@ -826,6 +835,8 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'excontentauthor'       => 'saturs bija: "$1" (vienīgais autors: [[Special:Contributions/$2|$2]])',
 'exbeforeblank'         => "lapas saturs pirms satura dzēšanas bija šāds: '$1'",
 'exblank'               => 'lapa bija tukša',
+'delete-confirm'        => 'Dzēst "$1"',
+'delete-legend'         => 'Dzēšana',
 'historywarning'        => 'Brīdinājums: Tu dzēsīsi lapu, kurai ir saglabātas iepriekšējas versijas.',
 'confirmdeletetext'     => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[Project:Vadlīnijas|vadlīnijām]].',
 'actioncomplete'        => 'Darbība pabeigta',
@@ -935,6 +946,7 @@ Visus blokus var apskatīties [[Special:Ipblocklist|IP bloku sarakstā]].',
 'proxyblocksuccess'  => 'Darīts.',
 
 # Move page
+'move-page'        => 'Pārvietot $1',
 'move-page-legend' => 'Pārvietot lapu',
 'movepagetext'     => "Šajā lapā tu vari pārdēvēt vai pārvietot lapu, kopā tās izmaiņu hronoloģiju pārvietojot to uz citu nosaukumu.
 Iepriekšējā lapa kļūs par lapu, kas pāradresēs uz jauno lapu.

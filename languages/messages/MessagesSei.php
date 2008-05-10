@@ -1118,8 +1118,7 @@ iitom e-iitomde diijömde caitóm.',
 'confirm_purge_button' => 'ton',
 
 # Multipage image navigation
-'imgmultigo'      => 'Caátemöx!',
-'imgmultigotopre' => 'Caátemöx páhina',
+'imgmultigo' => 'Caátemöx!',
 
 # Table pager
 'table_pager_limit_submit' => 'Caátemöx',

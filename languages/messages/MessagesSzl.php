@@ -2327,7 +2327,6 @@ $1',
 'imgmultipageprev' => '← popředńo zajta',
 'imgmultipagenext' => 'nostympno zajta →',
 'imgmultigo'       => 'Přyńdź',
-'imgmultigotopre'  => 'Přyńdź na zajta',
 
 # Table pager
 'ascending_abbrev'         => 'rosn.',

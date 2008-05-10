@@ -20,6 +20,7 @@
  * @author Lokal Profil
  * @author Micke
  * @author Leo Johannes
+ * @author S.Örvarr.S
  */
 
 $skinNames = array(
@@ -875,7 +876,7 @@ Anledningen till blockeringen var "$2".',
 'deletedrev'          => '[raderad]',
 'histfirst'           => 'Första',
 'histlast'            => 'Senaste',
-'historysize'         => '($1 byte)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 byte}})',
 'historyempty'        => '(tom)',
 
 # Revision feed
@@ -1148,7 +1149,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-autoconfirmed'        => 'Redigera halvlåsta sidor',
 'right-bot'                  => 'Bli behandlad som en automatisk process',
 'right-nominornewtalk'       => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
-'right-apihighlimits'        => 'Använd API höga gränser',
+'right-apihighlimits'        => 'Använda högre gränser i API-frågor',
 'right-delete'               => 'Radera sidor',
 'right-bigdelete'            => 'Radera sidor med stor historik',
 'right-deleterevision'       => 'Radera och återställa enskilda sidversioner',
@@ -1361,9 +1362,11 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'imagelinks'                     => 'Bildlänkar',
 'linkstoimage'                   => 'Följande sidor länkar till denna bild:',
 'nolinkstoimage'                 => 'Inga sidor länkar till den här bilden.',
+'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|mer länkar]] till den här filen.',
+'redirectstofile'                => 'Följande filer är omdirigeringar till den här filen:',
 'sharedupload'                   => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'               => 'Vänligen se $1 för mer information.',
-'shareduploadwiki-desc'          => 'Beskrivningen på $1 visas nedan.',
+'shareduploadwiki-desc'          => 'Innehållet på $1 i den gemensamma filförvaringen visas nedan.',
 'shareduploadwiki-linktext'      => 'filens beskrivningssida',
 'shareduploadduplicate'          => 'Den här filen är en dubblett till $1 i den delade filförvaringen.',
 'shareduploadduplicate-linktext' => 'en fil',
@@ -2200,7 +2203,7 @@ $1',
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
 'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
 'thumbsize'            => 'Storlek på minibild:',
-'widthheightpage'      => '$1×$2, $3 sidor',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
 'file-info-size'       => '($1 × $2 pixel, filstorlek: $3, MIME-typ: $4)',
 'file-nohires'         => '<small>Det finns ingen version med högre upplösning.</small>',
@@ -2569,7 +2572,7 @@ $1',
 'imgmultipageprev' => '← föregående sida',
 'imgmultipagenext' => 'nästa sida →',
 'imgmultigo'       => 'Gå',
-'imgmultigotopre'  => 'Gå till sida',
+'imgmultigoto'     => 'Gå till sidan $1',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',

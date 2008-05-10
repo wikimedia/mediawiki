@@ -2322,7 +2322,6 @@ $1',
 'imgmultipageprev' => '← మునుపటి పేజీ',
 'imgmultipagenext' => 'తరువాతి పేజీ →',
 'imgmultigo'       => 'వెళ్ళు!',
-'imgmultigotopre'  => 'ఈ పేజీకి వెళ్ళు',
 
 # Table pager
 'ascending_abbrev'         => 'ఆరోహణ',

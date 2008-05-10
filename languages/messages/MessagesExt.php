@@ -2162,7 +2162,6 @@ $1',
 'imgmultipageprev' => '← páhina anteriol',
 'imgmultipagenext' => 'páhina siguienti →',
 'imgmultigo'       => 'Dil!',
-'imgmultigotopre'  => 'Dil a la páhina',
 
 # Table pager
 'table_pager_next'         => 'Páhina siguienti',

@@ -2340,7 +2340,6 @@ $1',
 'imgmultipageprev' => '&larr; pajenn gent',
 'imgmultipagenext' => "pajenn war-lerc'h &rarr;",
 'imgmultigo'       => 'Mont !',
-'imgmultigotopre'  => "Mont d'ar bajenn",
 
 # Table pager
 'ascending_abbrev'         => 'pignat',

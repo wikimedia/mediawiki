@@ -301,6 +301,9 @@ Edit section: $1',
 'restorelink'             => '$1 redaktime të grisura',
 'feedlinks'               => 'Ushqyes:',
 'feed-invalid'            => 'Lloji i burimit të pajtimit është i pavlefshëm.',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+'page-rss-feed'           => '"$1" RSS Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulli',
@@ -494,7 +497,14 @@ You are not logged in. Your IP address will be recorded in this page's edit hist
 'missingcommenttext'       => 'Ju lutemi shtoni një koment në vazhdim.',
 'summary-preview'          => 'Parapamja e përmbledhjes',
 'blockedtitle'             => 'Përdoruesi është bllokuar',
-'blockedtext'              => 'Emri juaj ose adresa e IP-së është bllokuar nga $1. Arsyeja e dhënë është kjo:<br />\'\'$2\'\'<br />Mund të kontaktoni $1 ose një nga [[{{MediaWiki:Grouppage-sysop}}|administruesit]] e tjerë për të diskutuar bllokimin.
+'blockedtext'              => 'Emri juaj ose adresa e IP-së është bllokuar nga $1. Arsyeja e dhënë është kjo:<br />
+\'\'$2\'\'<br />
+
+*Fillimi i bllokimit: $8
+*Skadimi i bllokimit: $6
+*I bllokuari i shënjestruar: $7
+
+Mund të kontaktoni $1 ose një nga [[{{MediaWiki:Grouppage-sysop}}|administruesit]] e tjerë për të diskutuar bllokimin.
 
 Vini re se nuk mund të përdorni "dërgoji email këtij përdoruesi" n.q.s. nuk keni një adresë të saktë të rregjistruar në [[Special:Preferences|parapëlqimet e përdoruesit]].
 
@@ -635,6 +645,7 @@ Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i gri
 'revdelete-logentry'          => 'Pamja e versionit u ndryshua për [[$1]]',
 
 # Diffs
+'history-title'           => 'Historiku i redaktimeve te "$1"',
 'difference'              => '(Ndryshime midis versioneve)',
 'lineno'                  => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhura',
@@ -765,10 +776,11 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'rightsnone'     => '(asgjë)',
 
 # Recent changes
+'nchanges'                          => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',
 'recentchanges'                     => 'Ndryshime së fundmi',
 'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
-'rcnote'                            => 'Më poshtë janë <strong>$1</strong> ndryshime së fundmi gjatë <strong>$2</strong> ditëve sipas të dhënave nga $3.',
+'rcnote'                            => "Më poshtë {{PLURAL:$1|është '''1''' ndryshim| janë '''$1''' ndryshime së fundmi gjatë <strong>$2</strong> ditëve}} sipas të dhënave nga $3.",
 'rcnotefrom'                        => 'Më poshtë janë ndryshime së fundmi nga <b>$2</b> (treguar deri në <b>$1</b>).',
 'rclistfrom'                        => 'Tregon ndryshime së fundmi duke filluar nga $1',
 'rcshowhideminor'                   => '$1 redaktimet e vogla',
@@ -790,8 +802,9 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'rc_categories_any'                 => 'Të gjitha',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Ndryshimet fqinje',
-'recentchangeslinked-title' => 'Ndryshimet në lidhje me "$1"',
+'recentchangeslinked'          => 'Ndryshimet fqinje',
+'recentchangeslinked-title'    => 'Ndryshimet në lidhje me "$1"',
+'recentchangeslinked-noresult' => 'Nuk ka pasur ndryshime tek faqet e lidhura gjatë kohës së dhënë.',
 
 # Upload
 'upload'                      => 'Ngarkoni skeda',
@@ -867,9 +880,13 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 
 # Image description page
 'filehist'                  => 'Historiku i dosjes',
+'filehist-help'             => 'Shtypni një datë/kohë për ta parë skedën ashtu si dukej në atë kohë.',
+'filehist-current'          => 'e tanishme',
 'filehist-datetime'         => 'Data/Ora',
 'filehist-user'             => 'Përdoruesi',
 'filehist-dimensions'       => 'Dimensionet',
+'filehist-filesize'         => 'Madhësia e skedës',
+'filehist-comment'          => 'Koment',
 'imagelinks'                => 'Lidhje skedash',
 'linkstoimage'              => 'Këto faqe lidhen tek kjo skedë:',
 'nolinkstoimage'            => 'Asnjë faqe nuk lidhet tek kjo skedë.',
@@ -937,10 +954,10 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'fewestrevisions' => 'Artikuj më të paredaktuar',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 bytes',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories'             => '$1 kategori',
-'nlinks'                  => '$1 lidhje',
-'nmembers'                => '$1 anëtarë',
+'nlinks'                  => '$1 {{PLURAL:$1|lidhje|lidhje}}',
+'nmembers'                => '{{PLURAL:$1|anëtarë|anëtarë}}',
 'nrevisions'              => '$1 redaktime',
 'nviews'                  => '$1 shikime',
 'specialpage-empty'       => 'Kjo faqe është boshe.',
@@ -949,6 +966,7 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'uncategorizedpages'      => 'Artikuj të pakategorizuar',
 'uncategorizedcategories' => 'Kategori të pakategorizuara',
 'uncategorizedimages'     => 'Figura pa kategori',
+'uncategorizedtemplates'  => 'Stampa të pakategorizuara',
 'unusedcategories'        => 'Kategori të papërdorura',
 'unusedimages'            => 'Figura të papërdorura',
 'popularpages'            => 'Artikuj të frekuentuar shpesh',
@@ -992,6 +1010,7 @@ një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto 
 'specialloguserlabel'  => 'Përdoruesi:',
 'speciallogtitlelabel' => 'Titulli:',
 'log'                  => 'Regjistrat',
+'all-logs-page'        => 'Të gjitha regjistrat',
 'alllogstext'          => 'Kjo faqe tregon një pamje të përmbledhur të regjistrave të ngarkimeve, grisjeve, mbrojtjeve, bllokimeve, dhe të veprimeve administrative. Mundeni të kufizoni informactionin sipas tipit të regjistrit, emrit të përdoruesit, si dhe faqes në çështje.',
 'logempty'             => 'Nuk ka asnjë përputhje në regjistër.',
 
@@ -1056,7 +1075,7 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'unwatchthispage'      => 'Mos e mbikqyr',
 'notanarticle'         => 'Nuk është artikull',
 'watchnochange'        => 'Asnjë nga artikujt nën mbikqyrje nuk është redaktuar gjatë kohës së dhënë.',
-'watchlist-details'    => "'''$1''' faqe nën mbikqyrje duke mos numëruar faqet e diskutimit.",
+'watchlist-details'    => "{{PLURAL:$1|'''$1''' faqe|'''$1''' faqe}} nën mbikqyrje duke mos numëruar faqet e diskutimit.",
 'wlheader-enotif'      => '* Njoftimi me email është lejuar.',
 'wlheader-showupdated' => "* Faqet që kanë ndryshuar nga vizita juaj e fundit do të tregohen të '''trasha'''",
 'watchmethod-recent'   => 'duke parë ndryshime së fundmi për faqe nën mbikqyrje',
@@ -1065,6 +1084,13 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'iteminvalidname'      => "Problem me artikullin '$1', titull jo i saktë...",
 'wlnote'               => 'Më poshtë janë $1 ndryshimet e <b>$2</b> orëve së fundmi.',
 'wlshowlast'           => 'Trego $1 orët $2 ditët $3',
+'watchlist-hide-bots'  => 'Fshih redaktimet e robotëve',
+'watchlist-hide-own'   => 'Fshih redaktimet e mia',
+'watchlist-hide-minor' => 'Fshih redaktimet e vogla',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Duke mbikqyrur...',
+'unwatching' => 'Duke çmbikqyrur...',
 
 'enotif_mailer'      => 'Postieri njoftues i {{SITENAME}}',
 'enotif_reset'       => 'Markoi të gjitha faqet e vizituara',
@@ -1113,6 +1139,8 @@ Të gjitha kohët janë sipas orës së shërbyesit (UTC).',
 'deletionlog'                 => 'regjistrin e grisjeve',
 'reverted'                    => 'Kthehu tek një version i vjetër',
 'deletecomment'               => 'Arsyeja',
+'deleteotherreason'           => 'Arsye tjetër:',
+'deletereasonotherlist'       => 'Arsyeja tjetër',
 'rollback'                    => 'Riktheji mbrapsh redaktimet',
 'rollback_short'              => 'Riktheje',
 'rollbacklink'                => 'riktheje',
@@ -1132,14 +1160,19 @@ Redaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|Diskutim]])
 'protect-legend'              => 'Konfirmoni',
 'protectcomment'              => 'Arsyeja:',
 'protectexpiry'               => 'Afati',
+'protect_expiry_invalid'      => 'Data e skadimit është e gabuar.',
+'protect_expiry_old'          => 'Data e skadencës është në të shkuarën.',
 'protect-unchain'             => 'Ndrysho lejen e zhvendosjeve',
 'protect-text'                => 'Këtu mund të shikoni dhe ndryshoni nivelin e mbrojtjes për faqen <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Nuk mund të ndryshoni nivelet e mbrojtjes duke qenë i bllokuar. Kufizimet e kësaj faqeje janë <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Nivelet e mbrojtjes nuk mund të ndryshohen pasi regjistri është i bllokuar. Kufizimet e kësaj faqeje janë <strong>$1</strong>:',
 'protect-locked-access'       => 'Llogaria juaj nuk ka privilegjet e nevojitura për të ndryshuar nivelin e mbrojtjes. Kufizimet e kësaj faqeje janë <strong>$1</strong>:',
 'protect-default'             => '(parazgjedhje)',
+'protect-fallback'            => 'Kërko "$1" leje',
 'protect-level-autoconfirmed' => 'Blloko përdoruesit pa llogari',
 'protect-level-sysop'         => 'Lejo vetëm administruesit',
+'protect-summary-cascade'     => 'të varura',
+'protect-expiring'            => 'skadon me $1 (UTC)',
 'protect-cascade'             => 'Mbrojtje e ndërlidhur - mbro çdo faqe që përfshihet në këtë faqe.',
 'protect-cantedit'            => 'Nuk mund ta ndryshoni nivelin e mbrojtjes të kësaj faqeje sepse nuk keni leje për këtë.',
 'restriction-type'            => 'Lejet:',
@@ -1194,6 +1227,8 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'contribsub2'   => 'Për $1 ($2)',
 'nocontribs'    => 'Nuk ka asnjë ndryshim që përputhet me këto kritere.',
 'uctop'         => ' (sipër)',
+'month'         => 'Nga muaji (dhe më herët):',
+'year'          => 'Nga viti (dhe më herët):',
 
 'sp-contributions-newbies'     => 'Trego vetëm redaktimet e llogarive të reja',
 'sp-contributions-newbies-sub' => 'Për newbies',
@@ -1206,10 +1241,12 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'whatlinkshere'       => 'Lidhjet këtu',
 'whatlinkshere-title' => 'Faqe që lidhin me $1',
 'linklistsub'         => '(Listë lidhjesh)',
-'linkshere'           => 'Faqet e mëposhtme lidhen këtu:',
-'nolinkshere'         => 'Asnjë faqe nuk lidhet këtu.',
+'linkshere'           => "Faqet e mëposhtme lidhen këtu '''[[:$1]]''':",
+'nolinkshere'         => "Asnjë faqe nuk lidhet tek '''[[:$1]]'''.",
 'isredirect'          => 'faqe përcjellëse',
 'istemplate'          => 'përfshirë',
+'whatlinkshere-prev'  => '{{PLURAL:$1|e kaluara|të kaluarat $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|tjetra|tjerat $1}}',
 'whatlinkshere-links' => '← lidhje',
 
 # Block/unblock
@@ -1264,7 +1301,7 @@ një përdoruesi ose IP adreseje të bllokuar.",
 'contribslink'                => 'kontribute',
 'autoblocker'                 => 'I bllokuar automatikisht sepse përdor të njëjtën IP adresë si "$1". Arsye "$2".',
 'blocklogpage'                => 'Regjistri i bllokimeve',
-'blocklogentry'               => 'bllokoi [[$1]] për një kohë prej: $2',
+'blocklogentry'               => 'bllokoi [[$1]] për një kohë prej: $2 $3',
 'blocklogtext'                => 'Ky është një regjistër bllokimesh dhe çbllokimesh të përdoruesve. IP-të e bllokuara automatikisht nuk janë të dhëna. Shikoni dhe [[Special:Ipblocklist|listën e IP-ve të bllokuara]] për një listë të bllokimeve të tanishme.',
 'unblocklogentry'             => 'çbllokoi "$1"',
 'range_block_disabled'        => 'Mundësia e administruesve për të bllokuar me shtrirje është çaktivizuar.',
@@ -1317,6 +1354,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'move-watch'              => 'Mbikqyre këtë faqe',
 'movepagebtn'             => 'Zhvendose faqen',
 'pagemovedsub'            => 'Zhvendosja doli me sukses',
+'movepage-moved'          => '<big>\'\'\'"$1" u zhvendos tek "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Një faqe me atë titull ekziston, ose titulli që zgjodhët nuk është i saktë. Ju lutem zgjidhni një tjetër.',
 'talkexists'              => 'Faqja për vete u zhvendos, ndërsa faqja e diskutimit nuk u zhvendos sepse një e tillë ekziston tek titulli i ri. Ju lutem, përpuqini vetë.',
 'movedto'                 => 'zhvendosur tek',
@@ -1492,10 +1530,14 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'nextdiff'     => 'Ndryshimi më pas →',
 
 # Media information
-'mediawarning'   => "'''Kujdes''': Kjo skedë mund të ketë përmbajtje të dëmshme, duke e përdorur sistemi juaj mund të rrezikohet.<hr />",
-'imagemaxsize'   => 'Kufizo pamjen e figurave në faqet përshkruese në rezolucionin:',
-'thumbsize'      => 'Madhësia fotove përmbledhëse:',
-'show-big-image' => 'Rezolucion i plotë',
+'mediawarning'         => "'''Kujdes''': Kjo skedë mund të ketë përmbajtje të dëmshme, duke e përdorur sistemi juaj mund të rrezikohet.<hr />",
+'imagemaxsize'         => 'Kufizo pamjen e figurave në faqet përshkruese në rezolucionin:',
+'thumbsize'            => 'Madhësia fotove përmbledhëse:',
+'file-info-size'       => '($1 × $2 pixel, madhësia e skedës: $3, MIME type: $4)',
+'file-nohires'         => '<small>Nuk ka rezolucion më të madh.</small>',
+'svg-long-desc'        => '(skedë SVG, fillimisht $1 × $2 pixel, madhësia e skedës: $3)',
+'show-big-image'       => 'Rezolucion i plotë',
+'show-big-image-thumb' => '<small>Madhësia e këtij shikimi: $1 × $2 pixel</small>',
 
 # Special:Newimages
 'newimages'             => 'Galeria e figurave të reja',
@@ -1506,8 +1548,17 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'bydate'                => 'datës',
 'sp-newimages-showfrom' => 'duke filluar nga $1',
 
+# Bad image list
+'bad_image_list' => 'Formati është si vijon:<br /><br />
+
+Vetëm elementet e listuara ( rreshtat duhet të fillojnë me * ) mirren parasysh.<br />
+Lidhja e parë nërresht duhet të lidhet tek një skedë e keqe.<br />
+Çdo lidhje pasuese në rreshtin e njëjtë konsiderohen si përjashtime.<br />',
+
 # Metadata
-'metadata-help'     => 'Kjo skedë përmban hollësira të tjera të cilat mund të jenë shtuar nga kamera ose skaneri dixhital që është përdorur për ta krijuar. Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mund të mos pasqyrojnë skedën e tanishme.',
+'metadata'          => 'Metadata',
+'metadata-help'     => 'Kjo skedë përmban hollësira të tjera të cilat mund të jenë shtuar nga kamera ose skaneri dixhital që është përdorur për ta krijuar. 
+Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mund të mos pasqyrojnë versionin e tanishëm.',
 'metadata-expand'   => 'Tregoji detajet',
 'metadata-collapse' => 'Fshehi detajet',
 
@@ -1717,7 +1768,6 @@ $1',
 'imgmultipageprev' => '← faqja e kaluar',
 'imgmultipagenext' => 'faqja tjetër →',
 'imgmultigo'       => 'Shko!',
-'imgmultigotopre'  => 'Shko tek kjo faqe',
 
 # Table pager
 'table_pager_next'         => 'Faqja më pas',
@@ -1742,6 +1792,7 @@ $1',
 'watchlistedit-raw-titles'    => 'Titujt:',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Shih ndryshimet e rëndësishme',
 'watchlisttools-edit' => 'Shih dhe redakto listën mbikqyrëse.',
 
 # Special:Version

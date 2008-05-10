@@ -1603,7 +1603,6 @@ $1',
 'imgmultipageprev' => '← rûpela berî vê',
 'imgmultipagenext' => 'rûpela din →',
 'imgmultigo'       => 'Dê!',
-'imgmultigotopre'  => 'Here rûpelê',
 
 # Table pager
 'table_pager_next'         => 'Rûpelê din',

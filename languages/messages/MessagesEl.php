@@ -2449,7 +2449,6 @@ $1',
 'imgmultipageprev' => '← προηγούμενη σελίδα',
 'imgmultipagenext' => 'επόμενη σελίδα →',
 'imgmultigo'       => 'Πήγαινε!',
-'imgmultigotopre'  => 'Πήγαινε στη σελίδα',
 
 # Table pager
 'ascending_abbrev'         => 'αυξ',

@@ -2751,7 +2751,6 @@ $1',
 'imgmultipageprev' => '← الصفحة السابقة',
 'imgmultipagenext' => 'الصفحة التالية →',
 'imgmultigo'       => 'اذهب!',
-'imgmultigotopre'  => 'اذهب إلى صفحة',
 
 # Table pager
 'ascending_abbrev'         => 'تصاعدي',

@@ -2351,7 +2351,6 @@ $1",
 'imgmultipageprev' => "← ñawpaq p'anqa",
 'imgmultipagenext' => "qatiq p'anqa →",
 'imgmultigo'       => 'Riy!',
-'imgmultigotopre'  => "Riy p'anqaman",
 
 # Table pager
 'ascending_abbrev'         => 'wich',

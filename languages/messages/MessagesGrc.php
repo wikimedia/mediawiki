@@ -11,6 +11,7 @@
  * @author Nike
  * @author Yannos
  * @author Siebrand
+ * @author Nychus
  */
 
 $dateFormats = array(
@@ -51,6 +52,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'Δεικνύναι ἀριθμὸν παρακολουθούντων χρηστῶν',
 'tog-watchlisthideown'        => 'Οὐ δηλοῦν τὰς ἐμὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
 'tog-watchlisthideminor'      => 'Οὐ δηλοῦν τὰς μικρὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
+'tog-showhiddencats'          => 'Κεκρυμμένας κατηγορίας δηλοῦν',
 
 'underline-always' => 'Ἀεὶ',
 'underline-never'  => 'Οὔποτε',
@@ -162,9 +164,11 @@ $messages = array(
 'talkpage'          => 'Διαλέγε τήνδε τὴν δέλτον',
 'talkpagelinktext'  => 'Διαλέγεσθαι',
 'specialpage'       => 'Εἰδικὴ δέλτος',
+'personaltools'     => 'Ἴδια ἐργαλεῖα',
 'articlepage'       => 'Χρήματος δέλτον ὁρᾶν',
 'talk'              => 'Διάλεξις',
 'views'             => 'Ποσάκις ἔσκεπται',
+'toolbox'           => 'Σιδηριοκάδος',
 'userpage'          => 'Ὁρᾶν δέλτον χρωμένου',
 'imagepage'         => 'Ὁρᾶν εἰκόνος δέλτον',
 'mediawikipage'     => 'Ὁρᾶν δέλτον μηνυμάτων',
@@ -272,6 +276,7 @@ $messages = array(
 
 # History pages
 'currentrevisionlink' => 'Τὰ νῦν',
+'cur'                 => 'ἡ νῦν',
 'next'                => 'ἡ ἐχομένη',
 'last'                => 'ἡ ὑστάτη',
 'page_first'          => 'πρώτη',
@@ -282,11 +287,15 @@ $messages = array(
 # Revision deletion
 'rev-delundel' => 'δεικνύναι/κρύπτειν',
 
+# Diffs
+'lineno'   => 'Γραμμή $1·',
+'editundo' => 'ἀγένητον τιθέναι',
+
 # Search results
 'prevn'        => 'πρότερον $1',
 'nextn'        => 'τὸ $1 τὸ ἐχόμενον',
 'viewprevnext' => 'Ἐπισκοπεῖν ($1) ($2) ($3)',
-'powersearch'  => 'Ζητεῖν',
+'powersearch'  => 'Ζητεῖν ἀναλυτικῶς',
 
 # Preferences page
 'preferences'        => 'Αἱρέσεις',
@@ -326,6 +335,7 @@ $messages = array(
 'show'            => 'Δεικνύναι',
 'minoreditletter' => 'μ',
 'newpageletter'   => 'Ν',
+'boteditletter'   => 'β',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Οἰκεῖαι μεταβολαί',
@@ -362,6 +372,7 @@ $messages = array(
 'brokenredirects-delete' => '(διαγράφειν)',
 
 # Miscellaneous special pages
+'nbytes'       => '$1 {{PLURAL:$1|βαίς|βαίτα}}',
 'ncategories'  => '$1 {{PLURAL:$1|Γένος|Γένη}}',
 'shortpages'   => 'Δέλτοι μικραί',
 'longpages'    => 'Δέλτοι μακραί',
@@ -417,6 +428,9 @@ $messages = array(
 'viewdeletedpage'        => 'Δεικνύναι διαγραφείσας δέλτους',
 'undelete-search-submit' => 'Ζητεῖν',
 
+# Namespace form on various pages
+'blanknamespace' => '(Κυρία γραφή)',
+
 # Contributions
 'contributions' => 'Ἔρανοι χρωμένου',
 'mycontris'     => 'Ἔρανοί μου',
@@ -465,6 +479,8 @@ $messages = array(
 'tooltip-search'            => 'Ζητεῖν {{SITENAME}}',
 'tooltip-p-logo'            => 'Δέλτος Μεγίστη',
 'tooltip-n-mainpage'        => 'Πορεύεσθαι τὴν κυρίαν Δέλτον',
+'tooltip-n-randompage'      => 'Τινὰ γραφὴν χύδην δηλοῦν.',
+'tooltip-n-help'            => 'Μάθησις περὶ τῆσδε Οὐίκεως',
 'tooltip-n-sitesupport'     => 'Τρέφειν ἡμᾶς',
 'tooltip-ca-nstab-main'     => 'χρῆμα δέλτον ὁρᾶν',
 'tooltip-ca-nstab-user'     => 'Δέλτος χρωμένου ὁρᾶν',
@@ -478,6 +494,9 @@ $messages = array(
 # Browsing diffs
 'previousdiff' => '← ἡ μεταβολὴ ἡ προτέρη',
 'nextdiff'     => 'ἡ μεταβολὴ ἡ ἐχομένη →',
+
+# Media information
+'show-big-image-thumb' => '<small>Τοῦδε προεπισκοπεῖν μέγεθος: $1 × $2 εἰκονοστοιχεία</small>',
 
 # Special:Newimages
 'ilsubmit' => 'Ζητεῖν',
@@ -500,7 +519,6 @@ $messages = array(
 'imgmultipageprev' => '← Δέλτος προτέρα',
 'imgmultipagenext' => 'Δέλτος ἡ ἐχομένη →',
 'imgmultigo'       => 'Ἰέναι!',
-'imgmultigotopre'  => 'Προσιέναι πρὸς τὴν δέλτον',
 
 # Table pager
 'table_pager_next'         => 'Δέλτος ἡ ἐχομένη',

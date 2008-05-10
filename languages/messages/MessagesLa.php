@@ -912,6 +912,8 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'imagelinks'                => 'Nexus',
 'linkstoimage'              => 'Hae paginae ad hunc fasciculum nectunt:',
 'nolinkstoimage'            => 'Nullae paginae ad hunc fasciculum nectunt.',
+'morelinkstoimage'          => 'Videre [[Special:Whatlinkshere/$1|plures nexus]] ad hunc fasciculum.',
+'redirectstofile'           => 'Fasciculi sequentes ad hunc fasciculum redirigunt:',
 'noimage'                   => 'Fasciculus huius nominis non est. $1 potes.',
 'noimage-linktext'          => 'Fasciculum huius nominis imponere',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
@@ -1538,7 +1540,6 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'imgmultipageprev' => '← pagina superior',
 'imgmultipagenext' => 'pagina proxima →',
 'imgmultigo'       => 'I!',
-'imgmultigotopre'  => 'Ire ad paginam',
 
 # Table pager
 'table_pager_next'         => 'Pagina proxima',

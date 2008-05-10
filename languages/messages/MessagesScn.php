@@ -2297,7 +2297,6 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'imgmultipageprev' => '← pàggina pricidenti',
 'imgmultipagenext' => 'pàggina siquenti →',
 'imgmultigo'       => "Va'",
-'imgmultigotopre'  => "Va' â pàggina",
 
 # Table pager
 'ascending_abbrev'         => 'crisc',

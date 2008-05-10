@@ -2319,7 +2319,6 @@ $1',
 'imgmultipageprev' => '← pàgina andré',
 'imgmultipagenext' => 'pàgina anans →',
 'imgmultigo'       => 'Va',
-'imgmultigotopre'  => 'Va a pàgina',
 
 # Table pager
 'ascending_abbrev'         => 'a chërse',

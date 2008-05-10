@@ -4,9 +4,9 @@
  * @addtogroup Language
  *
  * @author Sky Harbor
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Felipe Aira
+ * @author Siebrand
  */
 
 $messages = array(
@@ -106,14 +106,16 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'            => 'Mga kategorya',
-'categoriespagetext'    => 'Ang mga sumusunod na kategorya ay naglalaman ng mga pahina o midya.',
-'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
-'category_header'       => 'Mga pahina sa kategoryang "$1"',
-'subcategories'         => 'Mga subkategorya',
-'category-media-header' => 'Mga midya sa kategoryang "$1"',
-'category-empty'        => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
-'hidden-categories'     => '{{PLURAL:$1|Nakatagong kategorya|Mga nakatagong kategorya}}',
+'categories'                  => 'Mga kategorya',
+'categoriespagetext'          => 'Ang mga sumusunod na kategorya ay naglalaman ng mga pahina o midya.',
+'pagecategories'              => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
+'category_header'             => 'Mga pahina sa kategoryang "$1"',
+'subcategories'               => 'Mga subkategorya',
+'category-media-header'       => 'Mga midya sa kategoryang "$1"',
+'category-empty'              => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
+'hidden-categories'           => '{{PLURAL:$1|Nakatagong kategorya|Mga nakatagong kategorya}}',
+'hidden-category-category'    => 'Mga nakatagong kategorya', # Name of the category where hidden categories will be listed
+'category-file-count-limited' => 'Ang sumusunod na {{PLURAL:$1|talaksan ay|$1 mga talaksan}} ay nasa kasalukuyang kategorya.',
 
 'mainpagetext'      => "<big>'''Matagumpay na ininstala ang MediaWiki.'''</big>",
 'mainpagedocfooter' => "Silipin ang [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa kaalaman sa paggamit ng wiking ''software''.
@@ -263,12 +265,12 @@ $messages = array(
 'nosuchactiontext'  => 'Hindi kinikilala ng wiki
 ang gawang itinakda ng URL',
 'nosuchspecialpage' => 'Walang ganoong natatanging pahina',
-'nospecialpagetext' => "<big>'''Humiling ka ng isang walang-kabuluhang natatanging pahina.'''</big>
+'nospecialpagetext' => "<big>'''Humiling ka ng isang natatanging pahina na walang saysay.'''</big>
 
-Isang tala ng mga may-kabuluhang natatanging pahina ay matatagpuan sa [[Special:Specialpages]].",
+Isang tala ng mga natatanging pahina na may saysay ay matatagpuan sa [[Special:Specialpages]].",
 
 # General errors
-'error'                => 'Pagkakamali',
+'error'                => 'Kamalian',
 'databaseerror'        => 'Kamalian sa kalipunan ng datos',
 'dberrortext'          => 'Naganap isang pagkakamali sa usisang palaugnayan sa kalipunan ng datos.
 Maaaring magpakita ito ng kakamaian sa \'\'software\'\'.
@@ -310,7 +312,7 @@ Nagbigay ng sumusunod na dahilan ang tagapangasiwang nangandado nito: $1',
 'viewsourcetext'       => 'Maaari mong tingnan at kopyahin ang pinagmulan ng pahinang ito:',
 'namespaceprotected'   => "Wala kang pahintulot na magbago ng mga pahinang nasa ngalan-espasyong '''$1'''.",
 'customcssjsprotected' => 'Wala kang pahintulot na baguhin ang pahinang ito, dahil naglalaman ito ng mga kagustuhang pansarili ng ibang manggagamit.',
-'ns-specialprotected'  => 'Hindi maaaring baguhin ang mga pahinang nasa ngalan-espasyong {{ns:special}}.',
+'ns-specialprotected'  => 'Hindi pwedeng baguhin ang mga natatanging pahina.',
 
 # Login and logout pages
 'welcomecreation'           => '== Maligayang pagdating, $1! ==

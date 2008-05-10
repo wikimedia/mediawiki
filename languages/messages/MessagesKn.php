@@ -1836,7 +1836,6 @@ $5
 'imgmultipageprev' => '← ಹಿಂದಿನ ಪುಟ',
 'imgmultipagenext' => 'ಮುಂದಿನ ಪುಟ →',
 'imgmultigo'       => 'ಹೋಗು!',
-'imgmultigotopre'  => 'ಪುಟಕ್ಕೆ ಹೋಗು',
 
 # Table pager
 'ascending_abbrev'         => 'ಏರು',

@@ -16,6 +16,7 @@
  * @author Kalan
  * @author Ahonc
  * @author EugeneZelenko
+ * @author Innv
  */
 
 /*
@@ -1357,6 +1358,8 @@ PICT # различные
 'imagelinks'                     => 'Ссылки',
 'linkstoimage'                   => 'Следующие страницы ссылаются на данный файл:',
 'nolinkstoimage'                 => 'Нет страниц, ссылающихся на данный файл.',
+'morelinkstoimage'               => 'Просмотреть [[Special:Whatlinkshere/$1|остальные ссылки]] на этот файл.',
+'redirectstofile'                => 'Следующие файлы перенаправляются на этот файл:',
 'sharedupload'                   => 'Этот файл загружен в общее для нескольких проектов хранилище.',
 'shareduploadwiki'               => 'Дополнительную информацию можно найти на $1.',
 'shareduploadwiki-desc'          => 'Содержимое его $1 показано ниже.',
@@ -1672,9 +1675,9 @@ $NEWPAGE
 'deletedtext'                 => '«<nowiki>$1</nowiki>» была удалена.
 См. $2 для просмотра списка последних удалений.',
 'deletedarticle'              => 'удалил «[[$1]]»',
-'suppressedarticle'           => 'скрыл «[[$1]]»',
+'suppressedarticle'           => 'скрыл(-а) «[[$1]]»',
 'dellogpage'                  => 'Журнал удалений',
-'dellogpagetext'              => 'Ниже приведён список последних удалений.',
+'dellogpagetext'              => 'Ниже приведён журнал последних удалений.',
 'deletionlog'                 => 'журнал удалений',
 'reverted'                    => 'Откачено к ранней версии',
 'deletecomment'               => 'Причина удаления:',
@@ -2623,7 +2626,6 @@ $1',
 'imgmultipageprev' => '← предыдущая страница',
 'imgmultipagenext' => 'следующая страница →',
 'imgmultigo'       => 'Перейти!',
-'imgmultigotopre'  => 'Перейти на страницу',
 
 # Table pager
 'ascending_abbrev'         => 'возр',

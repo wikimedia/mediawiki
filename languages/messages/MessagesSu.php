@@ -1991,7 +1991,6 @@ $1',
 'imgmultipageprev' => '&larr; kaca saacana',
 'imgmultipagenext' => 'kaca salajeungna &rarr;',
 'imgmultigo'       => 'Téang!',
-'imgmultigotopre'  => 'Ka kaca',
 
 # Table pager
 'ascending_abbrev'         => 'naék',

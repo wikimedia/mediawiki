@@ -607,7 +607,7 @@ Lekérdezés: $2',
 'actionthrottledtext'  => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
 'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',
 'viewsourcetext'       => 'Megtekintheted és másolhatod a lap forrását:',
-'protectedinterface'   => 'Ez a lap a honlap felületéhez szolgáltat szöveget a szoftver számára, és a visszaélések elkerülése végett le van zárva. A vitalapon javasolhatsz módosításokat.',
+'protectedinterface'   => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése végett le van zárva.',
 'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felhasználói felületéthez tarzozik. A lap megváltoztatása hatással lesz más felhasználók számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Main_Page?setlang=hu Betawikit].",
 'sqlhidden'            => '(rejtett SQL lekérdezés)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
@@ -720,7 +720,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'italic_tip'      => 'Dőlt szöveg',
 'link_sample'     => 'Belső hivatkozás',
 'link_tip'        => 'Belső hivatkozás',
-'extlink_sample'  => 'http://www.példa.hu hivatkozás címe',
+'extlink_sample'  => 'http://www.példa-hivatkozás.hu hivatkozás címe',
 'extlink_tip'     => 'Külső hivatkozás (ne felejtsd el a http:// előtagot)',
 'headline_sample' => 'Alfejezet címe',
 'headline_tip'    => 'Alfejezetcím',
@@ -859,7 +859,7 @@ egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'templatesusedpreview'              => 'Az előnézetben használt sablonok:',
 'templatesusedsection'              => 'Szakaszban használt sablonok:',
 'template-protected'                => '(védett)',
-'template-semiprotected'            => '(félig-védett)',
+'template-semiprotected'            => '(félig védett)',
 'hiddencategories'                  => 'Ez a lap {{PLURAL:$1|egy|$1}} rejtett kategóriába tartozik:',
 'edittools'                         => '<!-- Ez a szöveg a szerkesztés és a feltöltés űrlap alatt lesz látható. -->',
 'nocreatetitle'                     => 'A laplétrehozás korlátozott',
@@ -1300,7 +1300,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 A feltöltendő fájl neve: <strong><tt>$1</tt></strong><br />
 A létező fájl neve: <strong><tt>$2</tt></strong><br />
 Kérjük, hogy válassz másik nevet.',
-'fileexists-thumb'            => "<center>Ilyen nevű fájl már van</center>'''",
+'fileexists-thumb'            => "<center>'''Ilyen nevű fájl már van'''</center>",
 'fileexists-thumbnail-yes'    => 'A fájl egy csökkentett méretű képnek <i>(bélyegképnek)</i> tűnik. Kérjük, hogy ellenőrizd a(z) <strong><tt>$1</tt></strong> fájlt.<br />
 Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor a bélyegképet nem kell külön feltöltened.',
 'file-thumbnail-no'           => 'A fájlnév a(z) <strong><tt>$1</tt></strong> karakterlánccal kezdődik. Úgy tűnik, hogy ez egy csökkentett méretű kép <i>(bélyegkép)</i>.
@@ -1388,6 +1388,8 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'imagelinks'                     => 'Képhivatkozások',
 'linkstoimage'                   => 'Az alábbi lapok hivatkoznak erre a képre:',
 'nolinkstoimage'                 => 'Erre a képre nem hivatkozik lap.',
+'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|További hivatkozások]] megtekintése',
+'redirectstofile'                => 'A következő fájlok vannak átirányítva ide:',
 'sharedupload'                   => 'Ez a fájlt egy megosztott feltöltés, és más projektek használhatják.',
 'shareduploadwiki'               => 'Lásd a [$1 fájl leírólapját] a további információkért.',
 'shareduploadwiki-desc'          => 'A $1 található leírás alább látható.',
@@ -1601,11 +1603,7 @@ Az egyes csoportokról [[{{MediaWiki:Listgrouprights-helppage}}|itt]] találhat�
 'mailnologintext' => 'Ahhoz hogy másoknak emailt küldhess [[Special:Userlogin|be kell jelentkezned]] és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
-'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail címet adott meg,
-akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni.
-Feladóként a beállításaid között megadott e-mail címed
-fog szerepelni,
-hogy a címzett válaszolni tudjon.',
+'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail-címet adott meg, akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni. Feladóként a beállításaid között megadott e-mail-címed fog szerepelni, hogy a címzett válaszolni tudjon.',
 'usermailererror' => 'A postázó objektum által visszaadott hiba:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Nincs e-mail cím',
@@ -1700,7 +1698,7 @@ Visszajelzés és további segítség:
 'confirm'                     => 'Megerősítés',
 'excontent'                   => 'a lap tartalma: „$1”',
 'excontentauthor'             => 'a lap tartalma: „$1” (és csak „$2” szerkesztette)',
-'exbeforeblank'               => 'az eltávolítás előtti tartalom: $1',
+'exbeforeblank'               => 'az eltávolítás előtti tartalom: „$1”',
 'exblank'                     => 'a lap üres volt',
 'delete-confirm'              => '$1 törlése',
 'delete-legend'               => 'Törlés',
@@ -1737,7 +1735,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'alreadyrolled'               => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|Vita]] | [[Special:Contributions/$2|Szerkesztései]] | [[Special:blockip/$2|Blokkolás]]) általi szerkesztését nem lehet visszavonni: időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]) végezte.',
-'editcomment'                 => 'A változtatás összefoglalója "<i>$1</i>" volt.', # only shown if there is an edit comment
+'editcomment'                 => 'A változtatás összefoglalója „<i>$1</i>” volt.', # only shown if there is an edit comment
 'revertpage'                  => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]] szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
 'sessionfailure'              => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
@@ -1906,6 +1904,7 @@ $1',
 'ipbotheroption'              => 'Más időtartam',
 'ipbotherreason'              => 'Más/további ok:',
 'ipbhidename'                 => 'A felhasználónév/IP elrejtése a blokkolási naplóból, az aktív blokkolási listából és a felhasználólistából',
+'ipbwatchuser'                => 'A felhasználó lapjának és vitalapjának figyelése',
 'badipaddress'                => 'Érvénytelen IP-cím',
 'blockipsuccesssub'           => 'Sikeres blokkolás',
 'blockipsuccesstext'          => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
@@ -2637,7 +2636,6 @@ $1',
 'imgmultipageprev' => '← előző oldal',
 'imgmultipagenext' => 'következő oldal →',
 'imgmultigo'       => 'Menj',
-'imgmultigotopre'  => 'Oldalra',
 
 # Table pager
 'ascending_abbrev'         => 'növ',

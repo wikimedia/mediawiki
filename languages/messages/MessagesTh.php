@@ -2291,7 +2291,6 @@ $1',
 'imgmultipageprev' => '← หน้าก่อนหน้า',
 'imgmultipagenext' => 'หน้าถัดไป →',
 'imgmultigo'       => 'ไป!',
-'imgmultigotopre'  => 'ไปที่หน้า',
 
 # Table pager
 'ascending_abbrev'         => 'หน้าไปหลัง',

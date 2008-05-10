@@ -1780,7 +1780,6 @@ $1',
 'imgmultipageprev' => '← эвельки саифе',
 'imgmultipagenext' => 'сонъраки саифе →',
 'imgmultigo'       => 'Бар',
-'imgmultigotopre'  => 'Бу саифеге бар',
 
 # Table pager
 'ascending_abbrev'         => 'кичиктен буюкке',

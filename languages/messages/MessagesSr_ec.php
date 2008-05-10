@@ -2393,7 +2393,6 @@ $1',
 'imgmultipageprev' => '&larr; претходна страна',
 'imgmultipagenext' => 'следећа страна &rarr;',
 'imgmultigo'       => 'Иди!',
-'imgmultigotopre'  => 'Иди на страницу',
 
 # Table pager
 'ascending_abbrev'         => 'раст',

@@ -3,10 +3,10 @@
  *
  * @addtogroup Language
  *
- * @author SPQRobin
  * @author Singularity
- * @author Siebrand
+ * @author SPQRobin
  * @author Node ue
+ * @author Siebrand
  */
 
 
@@ -16,9 +16,17 @@ $messages = array(
 'tog-underline'          => 'Kahalalo i nā loulou:',
 'tog-justify'            => 'Ho‘okaulihi i nā paukū',
 'tog-hideminor'          => 'E hūnā i nā ho‘opololei iki ma nā loli hou',
+'tog-showtoc'            => 'Hō‘ike i ka papa kuhikuhi',
 'tog-rememberpassword'   => 'Ho‘omana‘o i ko‘u hua‘ōlelo huna i loko o kēia kamepuila',
+'tog-watchcreations'     => 'Ho‘ohui i nā ‘ao‘ao i hana ai au i ka‘u papa nānā pono',
+'tog-watchdefault'       => 'Ho‘ohui i nā ‘ao‘ao i ho‘opololei ai au i ka‘u papa nānā pono',
+'tog-watchmoves'         => 'Ho‘ohui i nā ‘ao‘ao i ne‘e ai au i ka‘u papa nānā pono',
+'tog-watchdeletion'      => 'Ho‘ohui i nā ‘ao‘ao i kāpae ai au i ka‘u papa nānā pono',
+'tog-previewontop'       => 'Hō‘ike i ka nāmua mamua o ke kau ho‘opololei',
+'tog-previewonfirst'     => 'Hō‘ike i ka nāmua ma ka ho‘opololei mua',
 'tog-watchlisthideown'   => 'E hūnā i ko‘u mau ho‘opololei ma ka papa nānā pono',
 'tog-watchlisthideminor' => 'E hūnā i nā ho‘opololei iki ma ka papa nānā pono',
+'tog-showhiddencats'     => 'Hō‘ike i nā mahele huna',
 
 'underline-always' => 'Mau',
 'underline-never'  => '‘A‘ole loa',

@@ -2191,7 +2191,6 @@ $1',
 'imgmultipageprev' => '← pad büik',
 'imgmultipagenext' => 'pad sököl →',
 'imgmultigo'       => 'Gololöd!',
-'imgmultigotopre'  => 'Golön lü pad',
 
 # Table pager
 'ascending_abbrev'         => 'löpio',

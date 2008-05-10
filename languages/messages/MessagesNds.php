@@ -2267,7 +2267,6 @@ $1',
 'imgmultipageprev' => '← vörige Siet',
 'imgmultipagenext' => 'nächste Siet →',
 'imgmultigo'       => 'Los!',
-'imgmultigotopre'  => 'Gah na de Siet',
 
 # Table pager
 'ascending_abbrev'         => 'op',
