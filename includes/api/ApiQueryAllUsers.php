@@ -46,26 +46,27 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$prop = $params['prop'];
 		if (!is_null($prop)) {
 			$prop = array_flip($prop);
+			$fld_blockinfo = isset($prop['blockinfo']);
 			$fld_editcount = isset($prop['editcount']);
 			$fld_groups = isset($prop['groups']);
 			$fld_registration = isset($prop['registration']);
-		} else {
-			$fld_editcount = $fld_groups = $fld_registration = false;
+		} else { 
+			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = false;
 		}
 
 		$limit = $params['limit'];
-		$tables = $db->tableName('user');
+		$this->addTables('user', 'u1');
 
 		if( !is_null( $params['from'] ) )
-			$this->addWhere( 'user_name >= ' . $db->addQuotes( self::keyToTitle( $params['from'] ) ) );
+			$this->addWhere( 'u1.user_name >= ' . $db->addQuotes( self::keyToTitle( $params['from'] ) ) );
 
 		if( isset( $params['prefix'] ) )
-			$this->addWhere( 'user_name LIKE "' . $db->escapeLike( self::keyToTitle( $params['prefix'] ) ) . '%"' );
+			$this->addWhere( 'u1.user_name LIKE "' . $db->escapeLike( self::keyToTitle( $params['prefix'] ) ) . '%"' );
 
 		if (!is_null($params['group'])) {
 			// Filter only users that belong to a given group
-			$tblName = $db->tableName('user_groups');
-			$tables = "$tables INNER JOIN $tblName ug1 ON ug1.ug_user=user_id";
+			$this->addTables('user_groups', 'ug1');
+			$this->addWhere('ug1.ug_user=u1.user_id');
 			$this->addWhereFld('ug1.ug_group', $params['group']);
 		}
 
@@ -75,23 +76,30 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$groupCount = count(User::getAllGroups());
 			$sqlLimit = $limit+$groupCount+1;
 
-			$tblName = $db->tableName('user_groups');
-			$tables = "$tables LEFT JOIN $tblName ug2 ON ug2.ug_user=user_id";
+			$this->addTables('user_groups', 'ug2');
+			$tname = $this->getAliasedName('user_groups', 'ug2');
+			$this->addJoinConds(array($tname => array('LEFT JOIN', 'ug2.ug_user=u1.user_id')));
 			$this->addFields('ug2.ug_group ug_group2');
 		} else {
 			$sqlLimit = $limit+1;
 		}
-
-		if ($fld_registration)
-			$this->addFields('user_registration');
+		if ($fld_blockinfo) {
+			$this->addTables('ipblocks');
+			$this->addTables('user', 'u2');
+			$u2 = $this->getAliasedName('user', 'u2');
+			$this->addJoinConds(array(
+				'ipblocks' => array('LEFT JOIN', 'ipb_user=u1.user_id'),
+				$u2 => array('LEFT JOIN', 'ipb_by=u2.user_id')));
+			$this->addFields(array('ipb_reason', 'u2.user_name blocker_name'));
+		}
 
 		$this->addOption('LIMIT', $sqlLimit);
-		$this->addTables($tables);
 
-		$this->addFields('user_name');
-		$this->addFieldsIf('user_editcount', $fld_editcount);
+		$this->addFields('u1.user_name');
+		$this->addFieldsIf('u1.user_editcount', $fld_editcount);
+		$this->addFieldsIf('u1.user_registration', $fld_registration);
 
-		$this->addOption('ORDER BY', 'user_name');
+		$this->addOption('ORDER BY', 'u1.user_name');
 
 		$res = $this->select(__METHOD__);
 
@@ -131,6 +139,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				// Record new user's data
 				$lastUser = $row->user_name;
 				$lastUserData = array( 'name' => $lastUser );
+				if ($fld_blockinfo) {
+					$lastUserData['blockedby'] = $row->blocker_name;
+					$lastUserData['blockreason'] = $row->ipb_reason;
+				}
 				if ($fld_editcount)
 					$lastUserData['editcount'] = intval($row->user_editcount);
 				if ($fld_registration)
@@ -168,9 +180,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
-					'editcount',
+					'blockinfo',
 					'groups',
-					'registration',
+					'editcount',
+					'registration'
 				)
 			),
 			'limit' => array (

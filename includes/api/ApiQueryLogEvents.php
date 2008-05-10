@@ -58,10 +58,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if($hideLogs !== false)
 			$this->addWhere($hideLogs);
 
-		$this->addOption('STRAIGHT_JOIN');
-		$this->addTables("$tbl_logging LEFT OUTER JOIN $tbl_page ON " .
-		"log_namespace=page_namespace AND log_title=page_title " .
-		"INNER JOIN $tbl_user ON user_id=log_user");
+		// Order is significant here
+		$this->addTables(array('user', 'page', 'logging'));
+		$this->addJoinConds(array(
+			'page' => array('LEFT JOIN',
+				array(	'log_namespace=page_namespace',
+					'log_title=page_title'))));
+		$this->addWhere('user_id=log_user');
+		$this->addOption('USE INDEX', array('logging' => 'times'));
 
 		$this->addFields(array (
 			'log_type',
@@ -78,7 +82,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf('log_title', $this->fld_title);
 		$this->addFieldsIf('log_comment', $this->fld_comment);
 		$this->addFieldsIf('log_params', $this->fld_details);
-
 
 		$this->addWhereFld('log_deleted', 0);
 		$this->addWhereFld('log_type', $params['type']);

@@ -57,6 +57,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		// Page filters
+		$this->addTables('page');
 		if (!$this->addWhereIf('page_is_redirect = 1', $params['filterredir'] === 'redirects'))
 			$this->addWhereIf('page_is_redirect = 0', $params['filterredir'] === 'nonredirects');
 		$this->addWhereFld('page_namespace', $params['namespace']);
@@ -97,18 +98,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		}
 
 		if($params['filterlanglinks'] == 'withoutlanglinks') {
-			$pageName = $this->getDB()->tableName('page');
-			$llName = $this->getDB()->tableName('langlinks');
-			$tables = "$pageName LEFT JOIN $llName ON page_id=ll_from";
+			$this->addTables('langlinks');
+			$this->addJoinConds(array('langlinks' => array('LEFT JOIN', 'page_id=ll_from')));
 			$this->addWhere('ll_from IS NULL');
-			$this->addTables($tables);
 			$forceNameTitleIndex = false;
 		} else if($params['filterlanglinks'] == 'withlanglinks') {
-			$this->addTables(array('page', 'langlinks'));
+			$this->addTables('langlinks');
 			$this->addWhere('page_id=ll_from');
 			$forceNameTitleIndex = false;
-		} else {
-			$this->addTables('page');
 		}
 		if ($forceNameTitleIndex)
 			$this->addOption('USE INDEX', 'name_title');

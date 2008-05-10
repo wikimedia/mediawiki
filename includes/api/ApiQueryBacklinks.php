@@ -96,13 +96,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private function prepareFirstQuery($resultPageSet = null) {
 		/* SELECT page_id, page_title, page_namespace, page_is_redirect
-		 * FROM pagelinks JOIN page ON pl_from=page_id
-		 * WHERE pl_title='Foo' AND pl_namespace=0
+		 * FROM pagelinks, page WHERE pl_from=page_id
+		 * AND pl_title='Foo' AND pl_namespace=0
 		 * LIMIT 11 ORDER BY pl_from
 		 */
 		$db = $this->getDb();
-		list($tblpage, $tbllinks) = $db->tableNamesN('page', $this->bl_table);
-		$this->addTables("$tbllinks JOIN $tblpage ON {$this->bl_from}=page_id");
+		$this->addTables(array('page', $this->bl_table));
+		$this->addWhere("{$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace'));
 		else
@@ -124,13 +124,13 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private function prepareSecondQuery($resultPageSet = null) {
 		/* SELECT page_id, page_title, page_namespace, page_is_redirect, pl_title, pl_namespace
-		 * FROM pagelinks JOIN page ON pl_from=page_id
-		 * WHERE (pl_title='Foo' AND pl_namespace=0) OR (pl_title='Bar' AND pl_namespace=1)
+		 * FROM pagelinks, page WHERE pl_from=page_id
+		 * AND (pl_title='Foo' AND pl_namespace=0) OR (pl_title='Bar' AND pl_namespace=1)
 		 * LIMIT 11 ORDER BY pl_namespace, pl_title, pl_from
 		 */
 		$db = $this->getDb();
-		list($tblpage, $tbllinks) = $db->tableNamesN('page', $this->bl_table);
-		$this->addTables("$tbllinks JOIN $tblpage ON {$this->bl_from}=page_id");
+		$this->addTables(array('page', $this->bl_table));
+		$this->addWhere("{$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace', 'page_is_redirect'));
 		else
@@ -260,20 +260,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	protected function processContinue() {
-		$pageSet = $this->getPageSet();
-		$count = $pageSet->getTitleCount();
-
 		if (!is_null($this->params['continue']))
 			$this->parseContinueParam();
 		else {
 			$title = $this->params['title'];
 			if (!is_null($title)) {
 				$this->rootTitle = Title :: newFromText($title);
-			} else {  // This case is obsolete. Will support this for a while
-				if ($count !== 1)
-					$this->dieUsage("The {$this->getModuleName()} query requires one title to start", 'bad_title_count');
-				$this->rootTitle = current($pageSet->getTitles()); // only one title there
-				$this->setWarning('Using titles parameter is obsolete for this list. Use ' . $this->encodeParamName('title') . ' instead.');
+			} else {
+				$this->dieUsageMsg(array('missingparam', 'title'));
 			}
 		}
 
