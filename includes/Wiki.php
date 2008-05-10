@@ -297,11 +297,14 @@ class MediaWiki {
 						return $target;
 					}
 				}
+				
 				if( is_object( $target ) ) {
 					// Rewrite environment to redirected article
 					$rarticle = self::articleFromTitle( $target );
 					$rarticle->loadPageData( $rarticle->pageDataFromTitle( $dbr, $target ) );
-					if ( $rarticle->getTitle()->exists() ) {
+					if ( $rarticle->getTitle()->exists() || 
+								( $title->getNamespace() == NS_IMAGE && 
+								!$article->isLocal() ) ) {
 						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
 						$title = $target;

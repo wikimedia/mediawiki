@@ -268,6 +268,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12644) Template list on edit page now sorted on preview
 * (bug 14058) Support pipe trick for namespaces and interwikis with "-"
 * Message name filter on Special:Allmessages now case-insensitive
+* (bug 13943) Fix image redirect behaviour on image pages
 
 === API changes in 1.13 ===
 
