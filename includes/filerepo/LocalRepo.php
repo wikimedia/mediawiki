@@ -15,6 +15,10 @@ class LocalRepo extends FSRepo {
 		return wfGetDB( DB_MASTER );
 	}
 
+	function getMemcKey( $key ) {
+		return wfWikiID( $this->getSlaveDB() ) . ":{$key}";
+	}
+
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) ) {
 			return LocalFile::newFromRow( $row, $this );
@@ -104,7 +108,7 @@ class LocalRepo extends FSRepo {
 			$title = Title::makeTitle( NS_IMAGE, $title->getText() );
 		}
 
-		$memcKey = wfMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
+		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
 		$cachedValue = $wgMemc->get( $memcKey );
 		if( $cachedValue ) {
 			return Title::newFromDbKey( $cachedValue );
@@ -135,7 +139,7 @@ class LocalRepo extends FSRepo {
 
 	function invalidateImageRedirect( $title ) {
 		global $wgMemc;
-		$memcKey = wfMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
+		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
 		$wgMemc->delete( $memcKey );
 	}
 }

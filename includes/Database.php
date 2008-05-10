@@ -226,6 +226,14 @@ class Database {
 		return $this->$name;
 	}
 
+	function getWikiID() {
+		if( $this->mTablePrefix ) {
+			return "{$this->mDBname}-{$this->mTablePrefix}";
+		} else {
+			return $this->mDBname;
+		}
+	}
+
 #------------------------------------------------------------------------------
 # Other functions
 #------------------------------------------------------------------------------

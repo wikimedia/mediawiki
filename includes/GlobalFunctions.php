@@ -2337,13 +2337,8 @@ function wfFormatStackFrame($frame) {
  * Get a cache key
  */
 function wfMemcKey( /*... */ ) {
-	global $wgDBprefix, $wgDBname;
 	$args = func_get_args();
-	if ( $wgDBprefix ) {
-		$key = "$wgDBname-$wgDBprefix:" . implode( ':', $args );
-	} else {
-		$key = $wgDBname . ':' . implode( ':', $args );
-	}
+	$key = wfWikiID() . ':' . implode( ':', $args );
 	return $key;
 }
 
@@ -2364,12 +2359,16 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  */
-function wfWikiID() {
-	global $wgDBprefix, $wgDBname;
-	if ( $wgDBprefix ) {
-		return "$wgDBname-$wgDBprefix";
+function wfWikiID( $db = null ) {
+	if( $db instanceof Database ) {
+		return $db->getWikiID();
 	} else {
-		return $wgDBname;
+	global $wgDBprefix, $wgDBname;
+		if ( $wgDBprefix ) {
+			return "$wgDBname-$wgDBprefix";
+		} else {
+			return $wgDBname;
+		}
 	}
 }
 

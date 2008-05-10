@@ -5,7 +5,7 @@
 /**
  * Bump this number when serialized cache records may be incompatible.
  */
-define( 'MW_FILE_VERSION', 7 );
+define( 'MW_FILE_VERSION', 8 );
 
 /**
  * Class to represent a local file in the wiki's own database
