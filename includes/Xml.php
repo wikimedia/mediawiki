@@ -557,7 +557,7 @@ class Xml {
 	}
 }
 
-class XMLSelect {
+class XmlSelect {
 	protected $options = array();
 	protected $default = false;
 	protected $attributes = array();
