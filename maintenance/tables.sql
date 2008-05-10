@@ -1100,7 +1100,7 @@ CREATE TABLE /*$wgDBprefix*/logging (
 
 CREATE TABLE /*$wgDBprefix*/trackbacks (
   tb_id int auto_increment,
-  tb_page int REFERENCES page(page_id) ON DELETE CASCADE,
+  tb_page int REFERENCES /*$wgDBprefix*/page(page_id) ON DELETE CASCADE,
   tb_title varchar(255) NOT NULL,
   tb_url blob NOT NULL,
   tb_ex text,
