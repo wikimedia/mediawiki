@@ -3314,6 +3314,8 @@ class Article {
 	* @return string An appropriate autosummary, or an empty string.
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
+		global $wgUseAutomaticEditSummaries;
+		if ( !$wgUseAutomaticEditSummaries ) return '';
 
 		# This code is UGLY UGLY UGLY.
 		# Somebody PLEASE come up with a more elegant way to do it.
