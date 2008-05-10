@@ -264,9 +264,15 @@ class Xml {
 	 * @return string HTML
 	 */
 	public static function inputLabel( $label, $name, $id, $size=false, $value=false, $attribs=array() ) {
-		return Xml::label( $label, $id ) .
-			'&nbsp;' .
-			self::input( $name, $size, $value, array( 'id' => $id ) + $attribs );
+		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
+		return $label . '&nbsp;' . $input;
+	}
+
+	public static function inputLabelSep( $label, $name, $id, $size=false, $value=false, $attribs=array() ) {
+		return array(
+			Xml::label( $label, $id ),
+			self::input( $name, $size, $value, array( 'id' => $id ) + $attribs )
+		);
 	}
 
 	/**
@@ -549,4 +555,34 @@ class Xml {
 	
 		return $form;
 	}
+}
+
+class XMLSelect {
+	protected $options = array();
+	protected $default = false;
+	protected $attributes = array();
+
+	public function __construct( $name = false, $id = false, $default = false ) {
+		if ( $name ) $this->setAttribute( 'name', $name );
+		if ( $id ) $this->setAttribute( 'id', $id );
+		if ( $default ) $this->default = $default;
+	}
+
+	public function setDefault( $default ) {
+		$this->default = $default;
+	}
+
+	public function setAttribute( $name, $value ) {
+		$this->attributes[$name] = $value;
+	}
+
+	public function addOption( $name, $value = false ) {
+		$value = $value ? $value : $name;
+		$this->options[] = Xml::option( $name, $value, $value === $this->default );
+	}
+
+	public function getHTML() {
+		return Xml::tags( 'select', $this->attributes, implode( "\n", $this->options ) );
+	}
+
 }
