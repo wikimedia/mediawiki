@@ -1467,41 +1467,35 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		$uts=time();
 	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D',$ts,$da)) {
 		# TS_DB
-		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
-			    (int)$da[2],(int)$da[3],(int)$da[1]);
 	} elseif (preg_match('/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d):(\d\d)$/D',$ts,$da)) {
 		# TS_EXIF
-		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
-			(int)$da[2],(int)$da[3],(int)$da[1]);
 	} elseif (preg_match('/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D',$ts,$da)) {
 		# TS_MW
-		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
-			    (int)$da[2],(int)$da[3],(int)$da[1]);
-	} elseif (preg_match('/^(\d{1,13})$/D',$ts,$da)) {
+	} elseif (preg_match('/^\d{1,13}$/D',$ts)) {
 		# TS_UNIX
 		$uts = $ts;
-	} elseif (preg_match('/^(\d{1,2})-(...)-(\d\d(\d\d)?) (\d\d)\.(\d\d)\.(\d\d)/', $ts, $da)) {
+	} elseif (preg_match('/^\d{1,2}-...-\d\d(?:\d\d)? \d\d\.\d\d\.\d\d/', $ts)) {
 		# TS_ORACLE
 		$uts = strtotime(preg_replace('/(\d\d)\.(\d\d)\.(\d\d)(\.(\d+))?/', "$1:$2:$3",
 				str_replace("+00:00", "UTC", $ts)));
 	} elseif (preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})Z$/', $ts, $da)) {
 		# TS_ISO_8601
-		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
-			(int)$da[2],(int)$da[3],(int)$da[1]);
 	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)[\+\- ](\d\d)$/',$ts,$da)) {
 		# TS_POSTGRES
-		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
-		(int)$da[2],(int)$da[3],(int)$da[1]);
 	} elseif (preg_match('/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d) GMT$/',$ts,$da)) {
 		# TS_POSTGRES
-		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
-		(int)$da[2],(int)$da[3],(int)$da[1]);
 	} else {
 		# Bogus value; fall back to the epoch...
 		wfDebug("wfTimestamp() fed bogus time value: $outputtype; $ts\n");
 		$uts = 0;
 	}
 
+	if (count( $da ) ) {
+		// Warning! gmmktime() acts oddly if the month or day is set to 0
+		// We may want to handle that explicitly at some point
+		$uts=gmmktime((int)$da[4],(int)$da[5],(int)$da[6],
+			(int)$da[2],(int)$da[3],(int)$da[1]);
+	}
 
  	switch($outputtype) {
 		case TS_UNIX:
