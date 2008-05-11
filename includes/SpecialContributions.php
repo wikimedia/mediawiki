@@ -20,7 +20,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$year = intval($year);
 		$month = intval($month);
 
-		$this->year = ($year > 0 && $year < 10000) ? $year : false;
+		$this->year = $year > 0 ? $year : false;
 		$this->month = ($month > 0 && $month < 13) ? $month : false;
 		$this->getDateCond();
 
@@ -38,7 +38,6 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		list( $index, $userCond ) = $this->getUserCond();
 		$conds = array_merge( array('page_id=rev_page'), $userCond, $this->getNamespaceCond() );
-
 		return array(
 			'tables' => array( 'page', 'revision' ),
 			'fields' => array(
@@ -74,30 +73,50 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function getDateCond() {
-		if ( $this->year || $this->month ) {
-			// Assume this year if only a month is given
-			if ( $this->year ) {
-				$year_start = $this->year;
-			} else {
-				$year_start = substr( wfTimestampNow(), 0, 4 );
-				$thisMonth = gmdate( 'n' );
-				if( $this->month > $thisMonth ) {
-					// Future contributions aren't supposed to happen. :)
-					$year_start--;
-				}
-			}
+		// Given an optional year and month, we need to generate a timestamp
+		// to use as "WHERE rev_timestamp <= result"
+		// Examples: year = 2006 equals < 20070101 (+000000)
+		// year=2005, month=1    equals < 20050201
+		// year=2005, month=12   equals < 20060101
 
-			if ( $this->month ) {
-				$month_end = str_pad($this->month + 1, 2, '0', STR_PAD_LEFT);
-				$year_end = $year_start;
-			} else {
-				$month_end = 0;
-				$year_end = $year_start + 1;
-			}
-			$ts_end = str_pad($year_end . $month_end, 14, '0' );
+		if (!$this->year && !$this->month)
+			return;
 
-			$this->mOffset = $ts_end;
+		if ( $this->year ) {
+			$year = $this->year;
 		}
+		else {
+			// If no year given, assume the current one
+			$year = gmdate( 'Y' );
+			// If this month hasn't happened yet this year, go back to last year's month
+			if( $this->month > gmdate( 'n' ) ) {
+				$year--;
+			}
+		}
+
+		if ( $this->month ) {
+			$month = $this->month + 1;
+			// For December, we want January 1 of the next year
+			if ($month > 12) {
+				$month = 1;
+				$year++;
+			}
+		}
+		else {
+			// No month implies we want up to the end of the year in question
+			$month = 1;
+			$year++;
+		}
+
+		if ($year > 2032)
+			$year = 2032;
+		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
+
+		// Y2K38 bug
+		if ($ymd > 20320101)
+			$ymd = 20320101;
+
+		$this->mOffset = $this->mDb->timestamp( "${ymd}000000" );
 	}
 
 	function getIndexField() {
@@ -147,7 +166,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 
 		}
-		# Is there a visable previous revision?
+		# Is there a visible previous revision?
 		if( $rev->userCan(Revision::DELETED_TEXT) ) {
 			$difftext = '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
 		} else {
