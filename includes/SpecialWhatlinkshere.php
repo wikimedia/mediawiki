@@ -55,6 +55,8 @@ class WhatLinksHerePage {
 
 		$opts->fetchValuesFromRequest( $this->request );
 		$opts->validateIntBounds( 'limit', 0, 5000 );
+
+		// Give precedence to subpage syntax
 		if ( isset($this->par) ) {
 			$opts->setValue( 'target', $this->par );
 		}
@@ -67,11 +69,11 @@ class WhatLinksHerePage {
 			$wgOut->addHTML( $this->whatlinkshereForm() );
 			return;
 		}
-		$this->selfTitle = Title::makeTitleSafe( NS_SPECIAL,
-			'Whatlinkshere/' . $this->target->getPrefixedDBkey() );
 
-		$wgOut->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
-		$wgOut->setSubtitle( wfMsg( 'linklistsub' ) );
+		$this->selfTitle = SpecialPage::getTitleFor( 'Whatlinkshere', $this->target->getPrefixedDBkey() );
+
+		$wgOut->setPageTitle( wfMsgExt( 'whatlinkshere-title', 'escape', $this->target->getPrefixedText() ) );
+		$wgOut->setSubtitle( wfMsgHtml( 'linklistsub' ) );
 
 		$wgOut->addHTML( wfMsgExt( 'whatlinkshere-barrow', array( 'escapenoentities') ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
 
@@ -222,7 +224,7 @@ class WhatLinksHerePage {
 		$prevId = $from;
 
 		if ( $level == 0 ) {
-			$wgOut->addHTML( $this->whatlinkshereForm( ) );
+			$wgOut->addHTML( $this->whatlinkshereForm() );
 			$wgOut->addHTML( $this->getFilterPanel() );
 			$wgOut->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
 
@@ -352,7 +354,7 @@ class WhatLinksHerePage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 
 		# Build up the form
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
 		
 		# Values that should not be forgotten
 		$f .= Xml::hidden( 'title', $wgTitle->getPrefixedText() );
@@ -360,8 +362,7 @@ class WhatLinksHerePage {
 			$f .= Xml::hidden( $name, $value );
 		}
 
-		$f .= Xml::openElement( 'fieldset' );
-		$f .= Xml::element( 'legend', null, wfMsg( 'whatlinkshere' ) );
+		$f .= Xml::fieldset( wfMsg( 'whatlinkshere' ) );
 
 		# Target input
 		$f .= Xml::inputLabel( wfMsg( 'whatlinkshere-page' ), 'target',
@@ -399,9 +400,6 @@ class WhatLinksHerePage {
 			$overrides = array( $type => !$chosen );
 			$links[] = $this->makeSelfLink( $msg, wfArrayToCGI( $overrides, $changed ) );
 		}
-		return Xml::tags( 'fieldset', null,
-			Xml::element( 'legend', null, wfMsg( 'whatlinkshere-filters' ) ) .
-			implode( '&nbsp;|&nbsp;', $links )
-		);
+		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), implode( '&nbsp;|&nbsp;', $links ) );
 	}
 }
