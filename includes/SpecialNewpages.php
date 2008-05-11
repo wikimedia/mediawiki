@@ -159,6 +159,7 @@ class NewPagesForm {
 		global $wgOut, $wgEnableNewpagesUserFilter, $wgScript;
 
 		// Consume values
+		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW
 		$namespace = $this->opts->consumeValue( 'namespace' );
 		$username = $this->opts->consumeValue( 'username' );
 
