@@ -397,6 +397,26 @@ class Xml {
 	}
 
 	/**
+	 * Shortcut for creating fieldsets.
+	 *
+	 * @param mixed $legend Legend of the fieldset. If evaluates to false, legend is not added.
+	 * @param mixed $content Pre-escaped content for the fieldset. If null, only open fieldset is returned.
+	 * @param mixed $attribs Any attributes to fieldset-element.
+	 */
+	public static function fieldset( $legend = false, $content = false, $attribs = array() ) {
+		$s = Xml::openElement( 'fieldset', $attribs ) . "\n";
+		if ( $legend ) {
+			$s .= Xml::element( 'legend', null, $legend ) . "\n";
+		}
+		if ( $content !== false ) {
+			$s .= $content . "\n";
+			$s .= Xml::closeElement( 'fieldset' ) . "\n";
+		}
+
+		return $s;
+	}
+
+	/**
 	 * Returns an escaped string suitable for inclusion in a string literal
 	 * for JavaScript source code.
 	 * Illegal control characters are assumed not to be present.
