@@ -670,7 +670,7 @@ abstract class File {
 	 * @param $end timestamp Only revisions newer than $end will be returned
 	 */
 	function getHistory($limit = null, $start = null, $end = null) {
-		return false;
+		return array();
 	}
 
 	/**
