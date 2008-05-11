@@ -44,8 +44,17 @@ class ImagePage extends Article {
 	function view() {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
 
-		if ( $this->img->getRedirected() )
-			return Article::view();
+		if ( $this->img->getRedirected() ) {
+			if ( $this->mTitle->getDBkey() == $this->img->getName() ) {
+				return Article::view();
+			} else {
+				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+				$this->viewRedirect( Title::makeTitle( NS_IMAGE, $this->img->getName() ),
+					/* $overwriteSubtitle */ true, /* $forceKnown */ true );
+				$this->viewUpdates();
+				return;
+			}
+		}
 
 		$diff = $wgRequest->getVal( 'diff' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
