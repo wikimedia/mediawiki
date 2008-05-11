@@ -860,18 +860,8 @@ class Article {
 			}
 
 			elseif ( $rt = Title::newFromRedirect( $text ) ) {
-				# Display redirect
-				$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
-				$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
 				# Don't overwrite the subtitle if this was an old revision
-				if( !$wasRedirected && $this->isCurrent() ) {
-					$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
-				}
-				$link = $sk->makeLinkObj( $rt, htmlspecialchars( $rt->getFullText() ) );
-
-				$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
-				  '<span class="redirectText">'.$link.'</span>' );
-
+				$this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() );
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
 				$wgOut->addParserOutputNoText( $parseout );
 			} else if ( $pcache ) {
@@ -932,6 +922,27 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( __METHOD__ );
+	}
+	
+	protected function viewRedirect( $target, $overwriteSubtitle = true, $forceKnown = false ) {
+		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
+		
+		# Display redirect
+		$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+		$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
+		
+		if( $overwriteSubtitle ) {
+			$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
+		}
+		$sk = $wgUser->getSkin();
+		if ( $forceKnown )
+			$link = $sk->makeKnownLinkObj( $target, htmlspecialchars( $target->getFullText() ) );
+		else
+			$link = $sk->makeLinkObj( $target, htmlspecialchars( $target->getFullText() ) );
+
+		$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
+			'<span class="redirectText">'.$link.'</span>' );
+		
 	}
 
 	function addTrackbacks() {
