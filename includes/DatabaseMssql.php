@@ -4,7 +4,7 @@
  * - Licenced under LGPL (http://www.gnu.org/copyleft/lesser.html)
  * - Author:  [http://www.organicdesign.co.nz/nad User:Nad]
  *
- * {{php}}{{category:Extensions|DatabaseMssql.php}}
+ * See maintenance/mssql/README for development notes and other specific information
  */
 
 /**
@@ -14,6 +14,8 @@ class DatabaseMssql extends Database {
 
 	var $mAffectedRows;
 	var $mLastResult;
+	var $mLastError;
+	var $mLastErrorNo;
 	var $mDatabaseFile;
 
 	/**
@@ -135,11 +137,20 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * MSSQL doesn't seem to do buffered results
+	 * - MSSQL doesn't seem to do buffered results
+	 * - the trasnaction syntax is modified here to avoid having to replicate
+	 *   Database::query which uses BEGIN, COMMIT, ROLLBACK
 	 */
 	function doQuery($sql) {
-		print "<pre>\n$sql\n</pre>";
+		if ($sql == 'BEGIN' || $sql == 'COMMIT' || $sql == 'ROLLBACK') return true; # $sql .= ' TRANSACTION';
+		$sql = preg_replace('|[^\x07-\x7e]|','?',$sql); # TODO: need to fix unicode - just removing it here while testing
 		$ret = mssql_query($sql, $this->mConn);
+		if ($ret === false) {
+			$err = mssql_get_last_message();
+			if ($err) $this->mlastError = $err;
+			$row = mssql_fetch_row(mssql_query('select @@ERROR'));
+			if ($row[0]) $this->mlastErrorNo = $row[0];
+		} else $this->mlastErrorNo = false;
 		return $ret;
 	}
 
@@ -172,7 +183,7 @@ class DatabaseMssql extends Database {
 			$res = $res->result;
 		}
 		@/**/$row = mssql_fetch_object( $res );
-		if( $this->lastErrno() ) {
+		if ( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $row;
@@ -205,7 +216,7 @@ class DatabaseMssql extends Database {
 			$res = $res->result;
 		}
 		@/**/$n = mssql_num_rows( $res );
-		if( $this->lastErrno() ) {
+		if ( $this->lastErrno() ) {
 			throw new DBUnexpectedError( $this, 'Error in numRows(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $n;
@@ -264,16 +275,14 @@ class DatabaseMssql extends Database {
 	 * Get the last error number
 	 */
 	function lastErrno() {
-		$row = mssql_fetch_row(mssql_query('select @@ERROR'));
-		return $row[0];
+		return $this->mlastErrorNo;
 	}
 
 	/**
 	 * Get a description of the last error
 	 */
 	function lastError() {
-		return mssql_get_last_message();
-		return $error;
+		return $this->mlastError;
 	}
 
 	/**
@@ -600,7 +609,7 @@ class DatabaseMssql extends Database {
 				# If multiple and ignore, then do each row as a separate conditional insert
 				foreach ($a as $row) {
 					$prival = $row[$keys[0]];
-					$sql = "IF NOT EXISTS (SELECT * FROM $table WHERE $keys[0] = $prival) $sql";
+					$sql = "IF NOT EXISTS (SELECT * FROM $table WHERE $keys[0] = '$prival') $sql";
 					if (!$this->query("$sql (".$this->makeListWithoutNulls($row).')', $fname)) return false;
 				}
 				return true;
@@ -614,7 +623,7 @@ class DatabaseMssql extends Database {
 		} else {
 			if ($ignore) {
 				$prival = $a[$keys[0]];
-				$sql = "IF NOT EXISTS (SELECT * FROM $table WHERE $keys[0] = $prival) $sql";
+				$sql = "IF NOT EXISTS (SELECT * FROM $table WHERE $keys[0] = '$prival') $sql";
 			}
 			$sql .= '('.$this->makeListWithoutNulls($a).')';
 		}
@@ -681,10 +690,10 @@ class DatabaseMssql extends Database {
 	}
 
 	/**
-	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
+	 * MSSQL has a problem with the backtick quoting, so all this does is ensure the prefix is added exactly once
 	 */
 	function tableName($name) {
-		return str_replace('`','',parent::tableName($name));
+		return strpos($name, $this->mTablePrefix) === 0 ? $name : "{$this->mTablePrefix}$name";
 	}
 
 	/**
@@ -867,31 +876,6 @@ class DatabaseMssql extends Database {
 
 	/**
 	 * Begin a transaction, committing any previously open transaction
-	 */
-	function begin( $fname = 'Database::begin' ) {
-		$this->query( 'BEGIN TRANSACTION', $fname );
-		$this->mTrxLevel = 1;
-	}
-
-	/**
-	 * End a transaction
-	 */
-	function commit( $fname = 'Database::commit' ) {
-		$this->query( 'COMMIT TRANSACTION', $fname );
-		$this->mTrxLevel = 0;
-	}
-
-	/**
-	 * Rollback a transaction.
-	 * No-op on non-transactional databases.
-	 */
-	function rollback( $fname = 'Database::rollback' ) {
-		$this->query( 'ROLLBACK TRANSACTION', $fname, true );
-		$this->mTrxLevel = 0;
-	}
-
-	/**
-	 * Begin a transaction, committing any previously open transaction
 	 * @deprecated use begin()
 	 */
 	function immediateBegin( $fname = 'Database::immediateBegin' ) {
@@ -972,7 +956,7 @@ class DatabaseMssql extends Database {
 		$mssql_tmpl = "$IP/maintenance/mssql/tables.sql";
 
 		# Make an MSSQL template file if it doesn't exist (based on the same one MySQL uses to create a new wiki db)
-		if (1 || !file_exists($mssql_tmpl)) { # todo: make this conditional again
+		if (!file_exists($mssql_tmpl)) { # todo: make this conditional again
 			$sql = file_get_contents($mysql_tmpl);
 			$sql = preg_replace('/^\s*--.*?$/m','',$sql); # strip comments
 			$sql = preg_replace('/^\s*(UNIQUE )?(INDEX|KEY|FULLTEXT).+?$/m', '', $sql); # These indexes should be created with a CREATE INDEX query
