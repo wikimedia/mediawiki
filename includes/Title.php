@@ -192,7 +192,7 @@ class Title {
 	 *       but not used for anything else
 	 *
 	 * @param int $id the page_id corresponding to the Title to create
-	 * @param int $flags, use FOR_UPDATE to use master
+	 * @param int $flags, use GAID_FOR_UPDATE to use master
 	 * @return Title the new object, or NULL on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
