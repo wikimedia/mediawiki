@@ -1059,6 +1059,10 @@ wgUploadAutoFill = {$autofill};
 
 		$encComment = htmlspecialchars( $this->mComment );
 
+		if( !isset( $extensionsList ) ) {
+			$extensionsList = '';
+		}
+
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL(),
 				 'enctype' => 'multipart/form-data', 'id' => 'mw-upload-form' ) ) .
