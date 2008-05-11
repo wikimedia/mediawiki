@@ -900,6 +900,11 @@ class UploadForm {
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
 		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview;
 
+		// Initilaize $extensionList here in case it is not set later on
+		// (which would cause a E_NOTICE) and it must not be set only if it
+		// isn't set to avoid a possible register_globals issue.
+		$extensionList = '';
+
 		$adc = wfBoolToStr( $useAjaxDestCheck );
 		$alp = wfBoolToStr( $useAjaxLicensePreview );
 		$autofill = wfBoolToStr( $this->mDesiredDestName == '' );
@@ -1058,10 +1063,6 @@ wgUploadAutoFill = {$autofill};
 		}
 
 		$encComment = htmlspecialchars( $this->mComment );
-
-		if( !isset( $extensionsList ) ) {
-			$extensionsList = '';
-		}
 
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL(),
