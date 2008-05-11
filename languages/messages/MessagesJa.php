@@ -16,6 +16,7 @@
  * @author Kkkdc
  * @author JtFuruhata
  * @author Mzm5zbC3
+ * @author Iwai.masaharu
  */
 
 $skinNames = array(
@@ -1051,7 +1052,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'nolinkstoimage'            => 'このファイルにリンクしているページはありません。',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'          => '詳しい情報は$1を参照してください。',
-'shareduploadwiki-desc'     => '$1にあるこのファイルの説明は以下の通りです。',
+'shareduploadwiki-desc'     => '共有リポジトリ内の$1にあるこのファイルの説明は以下の通りです。',
 'shareduploadwiki-linktext' => 'ファイルの詳細ページ',
 'noimage'                   => '同名のファイルは存在しません。「$1」リンクをクリックしてください。',
 'noimage-linktext'          => 'このファイル名でアップロードする',

@@ -1227,8 +1227,8 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'filename-bad-prefix'         => 'O nome do ficheiro que você está enviando começa com <strong>"$1"</strong>, um nome pouco esclarecedor, comumente associado de forma automática por câmeras digitais. Por gentileza, escolha um nome de ficheiro mais explicativo.',
 'filename-prefix-blacklist'   => ' #<!-- deixe esta linha exactamente como está --> <pre>
 # A sintaxe é a seguinte:
-#   * Tudo a partir do caracter "#" character até ao fim da linha é um comentário
-#   * Todas as linhas não vazias é um prefixo para nomes de ficheiro típicos atribuídos automaticamente por câmaras digitais
+#   * Tudo a partir do caractere "#" até ao fim da linha é um comentário
+#   * Todas as linhas não vazias são um prefixo para nomes de ficheiros típicos atribuídos automaticamente por câmaras digitais
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji

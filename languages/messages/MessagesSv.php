@@ -1362,7 +1362,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'imagelinks'                     => 'Bildlänkar',
 'linkstoimage'                   => 'Följande sidor länkar till denna bild:',
 'nolinkstoimage'                 => 'Inga sidor länkar till den här bilden.',
-'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|mer länkar]] till den här filen.',
+'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|fler länkar]] till den här filen.',
 'redirectstofile'                => 'Följande filer är omdirigeringar till den här filen:',
 'sharedupload'                   => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'               => 'Vänligen se $1 för mer information.',
@@ -2572,7 +2572,7 @@ $1',
 'imgmultipageprev' => '← föregående sida',
 'imgmultipagenext' => 'nästa sida →',
 'imgmultigo'       => 'Gå',
-'imgmultigoto'     => 'Gå till sidan $1',
+'imgmultigoto'     => 'Gå till sida $1',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',

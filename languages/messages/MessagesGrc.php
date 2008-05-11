@@ -176,6 +176,7 @@ $messages = array(
 'categorypage'      => 'Ὁρᾶν γένους δέλτον',
 'viewtalkpage'      => 'Ὁρᾶν διάλεκτον',
 'otherlanguages'    => 'Βαρβαριστὶ',
+'redirectedfrom'    => '(Ἀποστελτὸν παρὰ $1)',
 'lastmodifiedat'    => 'Ἥδε ἡ δέλτος ὕστατον μετεβλήθη $2, $1.', # $1 date, $2 time
 'protectedpage'     => 'Πεφυλαγμένη δέλτος',
 'jumpto'            => 'Πηδᾶν πρὸς:',
@@ -214,17 +215,23 @@ $messages = array(
 'showtoc'             => 'δεικνύναι',
 'hidetoc'             => 'κρύπτειν',
 'viewdeleted'         => 'Ὁρᾶν $1;',
+'site-rss-feed'       => 'Ἡ τοῦ $1 Ρ.Σ.Σ.-παρασκευή',
+'site-atom-feed'      => 'Ἡ τοῦ $1 Ἀτομο-παρασκευή',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Χρῆμα',
 'nstab-user'      => 'Δέλτος χρωμένου',
+'nstab-image'     => 'Εἰκών',
 'nstab-mediawiki' => 'Ἀγγελία',
+'nstab-template'  => 'Πρότυπον',
 'nstab-help'      => 'Βοήθεια',
 'nstab-category'  => 'Γένος',
 
 # General errors
-'error'        => 'Σφάλμα',
-'filenotfound' => 'Γραφὴ "$1" οὐχ ηὑρέθη',
+'error'         => 'Σφάλμα',
+'filenotfound'  => 'Γραφὴ "$1" οὐχ ηὑρέθη',
+'viewsource'    => 'Πηγήν διασκοπεῖν',
+'viewsourcefor' => 'Ὑπὲρ τοῦ $1',
 
 # Login and logout pages
 'welcomecreation'         => '== Χαῖρε, $1! ==
@@ -327,6 +334,7 @@ $messages = array(
 # Recent changes
 'recentchanges'   => 'Αἱ νέαι μεταβολαί',
 'rcshowhideminor' => '$1 μικραὶ μεταβολαὶ',
+'rcshowhidebots'  => '$1 αὐτόματα',
 'rcshowhideliu'   => '$1 χρωμένους συνδεδεμένους',
 'rcshowhidemine'  => '$1 μεταβολὰς μου',
 'diff'            => 'διαφ.',
@@ -335,7 +343,7 @@ $messages = array(
 'show'            => 'Δεικνύναι',
 'minoreditletter' => 'μ',
 'newpageletter'   => 'Ν',
-'boteditletter'   => 'β',
+'boteditletter'   => 'α',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Οἰκεῖαι μεταβολαί',
@@ -355,9 +363,11 @@ $messages = array(
 'imagelist_description' => 'Διέξοδος',
 
 # Image description page
-'filehist-user'    => 'Χρώμενος',
-'filehist-comment' => 'Σχόλιον',
-'imagelinks'       => 'Σύνδεσμοι',
+'filehist'          => 'Τοῦ ἀρχείου συγγραφή',
+'filehist-user'     => 'Χρώμενος',
+'filehist-filesize' => 'Μέγεθος',
+'filehist-comment'  => 'Σχόλιον',
+'imagelinks'        => 'Σύνδεσμοι',
 
 # MIME search
 'mimesearch' => 'MIME Ζητεῖν',
@@ -378,6 +388,7 @@ $messages = array(
 'longpages'    => 'Δέλτοι μακραί',
 'specialpages' => ' Εἰδικαὶ δέλτοι',
 'newpages'     => 'Δέλτοι νέαι',
+'ancientpages' => 'Αἱ παλαιόταται δέλτοι',
 'move'         => 'κινεῖν',
 'movethispage' => 'Κινεῖν τήνδε τὴν δέλτον',
 
@@ -385,11 +396,13 @@ $messages = array(
 'booksources-go' => 'Ἰέναι',
 
 # Special:Log
-'log-search-submit' => 'Ἰέναι',
+'specialloguserlabel' => 'Χρήστης·',
+'log-search-submit'   => 'Ἰέναι',
 
 # Special:Allpages
 'allpages'       => 'Πᾶσαι αἱ δέλτοι',
 'alphaindexline' => '$1 ἕως $2',
+'allarticles'    => 'Πάντες γραφαί',
 'allpagessubmit' => 'Ἰέναι',
 
 # E-mail user
@@ -405,16 +418,18 @@ $messages = array(
 'watchthispage'        => 'Ἐφορᾶν τήνδε τὴν δέλτον',
 'unwatch'              => 'Ἀνεφορᾶν',
 'notanarticle'         => 'οὐ χρῆμα δέλτος',
+'watchlist-hide-bots'  => 'Κρύπτειν τὰς ὑπ᾿ αὐτομάτων μεταβολάς',
 'watchlist-show-own'   => 'Δεικνύναι τοὺς ἐράνους μου',
 'watchlist-hide-own'   => 'Κρύπτειν τὰς ὑπ᾿ ἐμοῦ μεταβολάς',
 'watchlist-show-minor' => 'Δεικνύναι τὰς μικρὰς μεταβολάς',
 'watchlist-hide-minor' => 'Κρύπτειν τὰς μικρὰς μεταβολάς',
 
 # Delete/protect/revert
-'deletepage'     => 'Διαγράφειν τὴν δέλτον',
-'confirm'        => 'Κυροῦν',
-'exblank'        => 'δέλτος κενὴ ἦν',
-'protectcomment' => 'Σχόλιον:',
+'deletepage'      => 'Διαγράφειν τὴν δέλτον',
+'confirm'         => 'Κυροῦν',
+'exblank'         => 'δέλτος κενὴ ἦν',
+'protectcomment'  => 'Σχόλιον:',
+'protect-default' => '(κριτήριον)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Μεταγράφειν',
@@ -426,6 +441,7 @@ $messages = array(
 
 # Undelete
 'viewdeletedpage'        => 'Δεικνύναι διαγραφείσας δέλτους',
+'undeletebtn'            => 'Ἀνορθοῦν',
 'undelete-search-submit' => 'Ζητεῖν',
 
 # Namespace form on various pages
@@ -434,6 +450,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Ἔρανοι χρωμένου',
 'mycontris'     => 'Ἔρανοί μου',
+'uctop'         => '(ἄκρον)',
 'month'         => 'Μήν:',
 'year'          => 'Ἔτος:',
 
@@ -442,12 +459,16 @@ $messages = array(
 # What links here
 'whatlinkshere'       => 'Τὰ ἐνθάδε ἄγοντα',
 'whatlinkshere-title' => 'Δέλτοι ἐζεύγμεναι ὑπο $1',
+'whatlinkshere-prev'  => '{{PLURAL:$1|πρότερον|Τὰ $1 πρότερα}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|ἑξῆς|οἱ $1 ἑξαῖ}}',
 'whatlinkshere-links' => '← σύνδεσμοι',
 
 # Block/unblock
+'ipboptions'         => 'βʹ ὥραι:2 hours,αʹ ἡμέρα day:1 day,γʹ ἡμέραι:3 days,ζʹ ἡμέραι:1 week,ιδʹ ἡμέραι:2 weeks,αʹ μήν:1 month,γʹ μήνες:3 months,ϝʹ μήνες:6 months,αʹ ἔτος:1 year,ἄπειρον:infinite', # display1:time1,display2:time2,...
 'ipblocklist-submit' => 'Ζητεῖν',
 'infiniteblock'      => 'ἄπειρον',
 'blocklink'          => 'ἀποκλῃειν',
+'unblocklink'        => 'χαλᾶν',
 'contribslink'       => 'Ἔρανοι',
 
 # Move page
@@ -508,6 +529,7 @@ $messages = array(
 'imagelistall'     => 'Πᾶσαι',
 'watchlistall2'    => 'Πάντα',
 'namespacesall'    => 'πάντα',
+'monthsall'        => 'ἅπαντες',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Διαγράφειν])',

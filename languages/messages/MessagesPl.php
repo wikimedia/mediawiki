@@ -1096,7 +1096,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'files'                    => 'Pliki',
 
 # User rights
-'userrights'                       => 'Zarządzaj prawami użytkowników', # Not used as normal message but as header for the special page itself
+'userrights'                       => 'Zarządzaj uprawnieniami użytkowników', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Zarządzaj grupami użytkownika',
 'userrights-user-editname'         => 'Wprowadź nazwę użytkownika',
 'editusergroup'                    => 'Edytuj grupy użytkownika',
@@ -2632,8 +2632,8 @@ Kod zawarty w linku straci ważność $4.',
 'invalidateemail'          => 'Anulowanie potwierdzenia adresu e-mail',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Dołączanie przez interwiki jest wyłączone]',
-'scarytranscludefailed'   => '[Nie powiodło się pobranie szablonu dla $1]',
+'scarytranscludedisabled' => '[Transkluzja przez interwiki jest wyłączona]',
+'scarytranscludefailed'   => '[Pobranie szablonu dla $1 nie powiodło się]',
 'scarytranscludetoolong'  => '[zbyt długi adres URL]',
 
 # Trackbacks

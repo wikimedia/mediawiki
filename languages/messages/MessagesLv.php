@@ -527,8 +527,10 @@ m = maznozīmīgs labojums.',
 'viewprevnext'          => 'Skatīt ($1) ($2) ($3 vienā lapā).',
 'showingresults'        => 'Šobrīd ir redzamas <b>$1</b> {{PLURAL:$1|lapa|lapas}}, sākot ar #<b>$2</b>.',
 'showingresultsnum'     => 'Šobrīd ir redzamas <b>$3</b> {{PLURAL:$1|lapa|lapas}}, sākot ar #<b>$2</b>.',
-'nonefound'             => '<strong>Piezīme:</strong> bieži vien meklēšana ir neveiksmīga, meklējot plaši izplatītus vārdus, piemēram, "un" vai "ir", jo tie netiek iekļauti meklēšanas datubāzē, vai arī meklējot vairāk par vienu vārdu (jo rezultātos parādīsies tikai lapas, kurās ir visi meklētie vārdi).',
-'powersearch'           => 'Meklēt',
+'showingresultstotal'   => "Rāda rezultātus '''$1 - $2''' no '''$3'''",
+'nonefound'             => "'''Piezīme:''' bieži vien meklēšana ir neveiksmīga, meklējot plaši izplatītus vārdus, piemēram, \"un\" vai \"ir\", jo tie netiek iekļauti meklēšanas datubāzē, vai arī meklējot vairāk par vienu vārdu (jo rezultātos parādīsies tikai lapas, kurās ir visi meklētie vārdi). Vēl, pēc noklusējuma, pārmeklē tikai dažas ''namespaces''. Lai meklētu visās, meklēšanas pieprasījumam priekšā jāieliek ''all:'', vai arī analogā veidā jānorāda pārmeklējamo ''namespaci''.",
+'powersearch'           => 'Izvērstā meklēšana',
+'powersearch-legend'    => 'Izvērstā meklēšana',
 'powersearchtext'       => 'Meklēt šādās palīglapās :<br />
 $1<br />
 $2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
@@ -614,7 +616,7 @@ $2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
 'upload'               => 'Augšuplādēt failu',
 'uploadbtn'            => 'Augšuplādēt',
 'reupload'             => 'Vēlreiz augšuplādēt',
-'reuploaddesc'         => 'Atgriezties pie augšupielādes veidnes.',
+'reuploaddesc'         => 'Atcelt augšupielādi un atgriezties pie augšupielādes veidnes.',
 'uploadnologin'        => 'Neesi iegājis',
 'uploadnologintext'    => 'Tev jābūt [[Special:Userlogin|iegājušam]], lai augšuplādētu failus.',
 'uploaderror'          => 'Augšupielādes kļūda',
@@ -650,7 +652,7 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'filedesc'             => 'Kopsavilkums',
 'fileuploadsummary'    => 'Informācija par failu:',
 'filestatus'           => 'Autortiesību statuss:',
-'filesource'           => 'Izejas kods',
+'filesource'           => 'Izejas kods:',
 'uploadedfiles'        => 'Augšupielādēja failus',
 'ignorewarning'        => 'Ignorēt brīdinājumu un saglabāt failu',
 'ignorewarnings'       => 'Ignorēt visus brīdinājumus',
@@ -775,6 +777,8 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 # Special:Allpages
 'allpages'       => 'Visas lapas',
 'alphaindexline' => 'no $1 līdz $2',
+'nextpage'       => 'Nākamā lapa ($1)',
+'prevpage'       => 'Iepriekšējā lapa ($1)',
 'allpagesfrom'   => 'Parādīt lapas sākot ar:',
 'allarticles'    => 'Visi raksti',
 'allpagessubmit' => 'Aiziet!',
@@ -875,15 +879,19 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protect-cascade'       => "Aizsargāt šajā lapā iekļautās lapas (veidnes) ''(cascading protection)''",
 
 # Undelete
-'undelete'           => 'Atjaunot dzēstu lapu',
-'undeletepage'       => 'Skatīt un atjaunot dzēstās lapas',
-'undeletepagetext'   => 'Šīs lapas ir dzēstas, bet ir saglabātas arhīvā. Tās ir iespējams atjaunot, bet ņemiet vērā, ka arhīvs reizēm tiek tīrīts.',
-'undeleterevisions'  => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|arhivēta|arhivētas}}',
-'undeletehistory'    => 'Ja tu atjauno lapu, visas versijas tiks atjaunotas tās hronoloģijā.
-Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta.',
-'undeletebtn'        => 'Atjaunot!',
-'undeletedarticle'   => 'atjaunoju "$1"',
-'undeletedrevisions' => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
+'undelete'               => 'Atjaunot dzēstu lapu',
+'undeletepage'           => 'Skatīt un atjaunot dzēstās lapas',
+'undeletepagetext'       => 'Šīs lapas ir dzēstas, bet ir saglabātas arhīvā. Tās ir iespējams atjaunot, bet ņemiet vērā, ka arhīvs reizēm tiek tīrīts.',
+'undeleterevisions'      => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|arhivēta|arhivētas}}',
+'undeletehistory'        => 'Ja tu atjauno lapu, visas versijas tiks atjaunotas tās hronoloģijā.
+Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta. 
+Tas arī var ietekmēt failu versiju aizsardzības līmeni.',
+'undeletehistorynoadmin' => 'Šī lapa ir tikusi izdzēsta. 
+Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par lietotājiem, kas bija rediģējuši šo lapu pirs tās izdzēšanas. 
+Šo izdzēsto versiju teksts ir pieejams tikai administratoriem.',
+'undeletebtn'            => 'Atjaunot!',
+'undeletedarticle'       => 'atjaunoju "$1"',
+'undeletedrevisions'     => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
 
 # Namespace form on various pages
 'namespace'      => 'Lapas veids:',
@@ -901,15 +909,20 @@ Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās
 'sp-contributions-username' => 'IP adrese vai lietotāja vārds:',
 
 # What links here
-'whatlinkshere'       => 'Norādes uz šo rakstu',
-'linklistsub'         => '(Saišu uzskaitījums)',
-'linkshere'           => "Šajās lapās ir norādes uz lapu '''[[:$1]]''':",
-'nolinkshere'         => "Nevienā lapā nav norāžu uz lapu '''[[:$1]]'''.",
-'isredirect'          => 'pāradresācijas lapa',
-'istemplate'          => 'izsaukts',
-'whatlinkshere-prev'  => '{{PLURAL:$1|iepriekšējo|iepriekšējos $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|nākamo|nākamos $1}}',
-'whatlinkshere-links' => '← saites',
+'whatlinkshere'            => 'Norādes uz šo rakstu',
+'whatlinkshere-title'      => 'Lapas, kurās ir saites uz lapu $1',
+'whatlinkshere-page'       => 'Lapa:',
+'linklistsub'              => '(Saišu uzskaitījums)',
+'linkshere'                => "Šajās lapās ir norādes uz lapu '''[[:$1]]''':",
+'nolinkshere'              => "Nevienā lapā nav norāžu uz lapu '''[[:$1]]'''.",
+'isredirect'               => 'pāradresācijas lapa',
+'istemplate'               => 'izsaukts',
+'whatlinkshere-prev'       => '{{PLURAL:$1|iepriekšējo|iepriekšējos $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|nākamo|nākamos $1}}',
+'whatlinkshere-links'      => '← saites',
+'whatlinkshere-hideredirs' => '$1 pāradresācijas',
+'whatlinkshere-hidelinks'  => '$1 saites',
+'whatlinkshere-filters'    => 'Filtri',
 
 # Block/unblock
 'blockip'            => 'Bloķēt lietotāju',
@@ -1074,7 +1087,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'nextdiff'     => 'Salīdzināt ar nākamo versiju →',
 
 # Media information
-'imagemaxsize'         => 'Attēlu apraksta lappusēs parādāmo attēlu maksimālais izmērs:',
+'imagemaxsize'         => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
 'thumbsize'            => 'Sīkbildes (<i>thumbnail</i>) izmērs:',
 'file-nohires'         => '<small>Augstāka izšķirtspēja nav pieejama.</small>',
 'show-big-image-thumb' => '<small>Šī priekšskata izmērs: $1 × $2 pikseļi</small>',
@@ -1123,7 +1136,10 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 
 # E-mail address confirmation
 'confirmemail'            => 'Apstiprini e-pasta adresi',
-'confirmemail_text'       => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas. Spied uz zemāk esošās pogas, lai uz tavu e-pasta adresi nosūtītu apstiprināšanas e-pastu. Tajā būs saite ar kodu; spied uz tās saites vai atver to savā interneta pārlūkā, lai apstiprinātu tavas e-pasta adreses derīgumu.',
+'confirmemail_text'       => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas. 
+Spied uz zemāk esošās pogas, lai uz tavu e-pasta adresi nosūtītu apstiprināšanas e-pastu. 
+Tajā būs saite ar kodu; spied uz tās saites vai atver to savā interneta pārlūkā, 
+lai apstiprinātu tavas e-pasta adreses derīgumu.',
 'confirmemail_send'       => 'Nosūtīt apstiprināšanas kodu',
 'confirmemail_sent'       => 'Apstiprināšanas e-pasts nosūtīts.',
 'confirmemail_sendfailed' => 'Nevarējām nosūtīt apstiprināšanas e-pastu. Pārbaudi, vai adresē nav kāds nepareizs simbols.
@@ -1157,9 +1173,20 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 'articletitles'    => "Raksti, kas sākas ar ''$1''",
 'hideresults'      => 'Paslēpt rezultātus',
 
+# Multipage image navigation
+'imgmultipageprev' => '← iepriekšējā lapa',
+'imgmultipagenext' => 'nākamā lapa →',
+
+# Table pager
+'table_pager_next' => 'Nākamā lapa',
+'table_pager_prev' => 'Iepriekšējā lapa',
+
 # Auto-summaries
 'autoredircomment' => 'Pāradresē uz [[$1]]',
 'autosumm-new'     => 'Jauna lapa: $1',
+
+# Live preview
+'livepreview-loading' => 'Ielādējas…',
 
 # Special:Version
 'version' => 'Versija', # Not used as normal message but as header for the special page itself

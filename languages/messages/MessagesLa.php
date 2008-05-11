@@ -1467,8 +1467,9 @@ Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic mo
 'nextdiff'     => 'Dissimilitudo proxima →',
 
 # Media information
-'imagemaxsize' => 'Terminare imagines in paginis imaginum ad:',
-'thumbsize'    => 'Magnitudo pollicisunguis:',
+'imagemaxsize'    => 'Terminare imagines in paginis imaginum ad:',
+'thumbsize'       => 'Magnitudo pollicisunguis:',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
 
 # Special:Newimages
 'newimages'     => 'Fasciculi novi',
@@ -1540,6 +1541,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'imgmultipageprev' => '← pagina superior',
 'imgmultipagenext' => 'pagina proxima →',
 'imgmultigo'       => 'I!',
+'imgmultigoto'     => 'Ire ad paginam $1',
 
 # Table pager
 'table_pager_next'         => 'Pagina proxima',

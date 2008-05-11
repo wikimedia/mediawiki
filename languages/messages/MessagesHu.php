@@ -621,7 +621,7 @@ $2',
 'logouttitle'                => 'Kijelentkezés',
 'logouttext'                 => '<strong>Kijelentkeztél.</strong>
 
-Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy ismét bejelentkezhetsz ugyanezzel, vagy egy másik felhasználói névvel. Néhány oldalon lehet, hogy továbbra is azt látod, hogy bejelentkezve vagy, mindaddig, amíg nem üríted ki a böngésződ gyorsítótárát.',
+Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy ismét bejelentkezhetsz ugyanezzel, vagy egy másik felhasználói névvel. Néhány oldalon lehet, hogy továbbra is azt látod, hogy be vagy jelentkezve, mindaddig, amíg nem üríted ki a böngésződ gyorsítótárát.',
 'welcomecreation'            => '== Köszöntünk, $1! ==
 
 A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személyes beállításaidat.',
@@ -696,7 +696,7 @@ Lépj be a levélben található adatokkal.',
 'invalidemailaddress'        => 'A megadott e-mail cím érvénytelen formátumú. Kérlek, adj meg egy helyesen formázott e-mail címet vagy hagyd üresen azt a mezőt.',
 'accountcreated'             => 'Felhasználói fiók létrehozva',
 'accountcreatedtext'         => '$1 felhasználói fiókja sikeresen létrejött.',
-'createaccount-title'        => 'Új {{SITENAME}}-fiók létrehozása',
+'createaccount-title'        => 'Új {{SITENAME}}-azonosító létrehozása',
 'createaccount-text'         => '$1 létrehozott számodra egy „$2” nevű {{SITENAME}}-azonosítót ($4). A hozzátartozó jelszó "$3", melyet minél előbb változtass meg.
 
 Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugodtan hagyd figyelmen kívül.',
@@ -1057,7 +1057,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'mypreferences'            => 'beállításaim',
 'prefs-edits'              => 'Szerkesztések száma:',
 'prefsnologin'             => 'Nem jelentkeztél be',
-'prefsnologintext'         => 'Ahhoz, hogy a beállításaidat rögzíthesd, [[Special:Userlogin|be kell lépned]].',
+'prefsnologintext'         => 'Ahhoz, hogy a beállításaidat rögzíthesd, [[Special:Userlogin|be kell jelentkezned]].',
 'prefsreset'               => 'A beállítások visszaállításra kerültek a tárolóból.',
 'qbsettings'               => 'Gyorsmenü beállítások',
 'qbsettings-none'          => 'Nincs',
@@ -1111,7 +1111,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'allowemail'               => 'E-mail engedélyezése más felhasználóktól',
 'defaultns'                => 'Alapértelmezett keresés az alábbi névterekben:',
 'default'                  => 'alapértelmezés',
-'files'                    => 'Képek',
+'files'                    => 'Fájlok',
 
 # User rights
 'userrights'                       => 'Felhasználói jogok kezelése', # Not used as normal message but as header for the special page itself
@@ -1393,7 +1393,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'sharedupload'                   => 'Ez a fájlt egy megosztott feltöltés, és más projektek használhatják.',
 'shareduploadwiki'               => 'Lásd a [$1 fájl leírólapját] a további információkért.',
 'shareduploadwiki-desc'          => 'A $1 található leírás alább látható.',
-'shareduploadwiki-linktext'      => 'fájl leírólapját',
+'shareduploadwiki-linktext'      => 'fájl leírólapján',
 'shareduploadduplicate'          => 'Ez a megosztott tárhelyen lévő $1 duplikátuma.',
 'shareduploadduplicate-linktext' => 'másik fájl',
 'shareduploadconflict'           => 'Ez a fájl megegyezik az egyik közös tárhelyen lévő $1.',
@@ -1514,7 +1514,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'wantedpages'             => 'Keresett lapok',
 'mostlinked'              => 'Legtöbbet hivatkozott lapok',
 'mostlinkedcategories'    => 'Legtöbbet hivatkozott kategóriák',
-'mostlinkedtemplates'     => 'Legtöbbet szerkesztett lapok',
+'mostlinkedtemplates'     => 'Legtöbbet hivatkozott sablonok',
 'mostcategories'          => 'Legtöbb kategóriába tartozó lapok',
 'mostimages'              => 'Legtöbbet hivatkozott fájlok',
 'mostrevisions'           => 'Legtöbb változattal rendelkező szócikkek',
@@ -1600,7 +1600,7 @@ Az egyes csoportokról [[{{MediaWiki:Listgrouprights-helppage}}|itt]] találhat�
 
 # E-mail user
 'mailnologin'     => 'Nincs feladó',
-'mailnologintext' => 'Ahhoz hogy másoknak emailt küldhess [[Special:Userlogin|be kell jelentkezned]] és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
+'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:Userlogin|be kell jelentkezned]] és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
 'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail-címet adott meg, akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni. Feladóként a beállításaid között megadott e-mail-címed fog szerepelni, hogy a címzett válaszolni tudjon.',
@@ -1702,7 +1702,7 @@ Visszajelzés és további segítség:
 'exblank'                     => 'a lap üres volt',
 'delete-confirm'              => '$1 törlése',
 'delete-legend'               => 'Törlés',
-'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, története van:',
+'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, több változata van:',
 'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti
 végleges törlésére készülsz.
 Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni,
@@ -1922,7 +1922,7 @@ $1',
 'ipblocklist'                 => 'Blokkolt IP-címek listája',
 'ipblocklist-legend'          => 'Blokkolt felhasználó keresése',
 'ipblocklist-username'        => 'Felhasználónév vagy IP-cím:',
-'ipblocklist-summary'         => 'Lásd még a [[Special:log/block|blokkolási naplót]].',
+'ipblocklist-summary'         => 'Lásd még a [[Special:Log/block|blokkolási naplót]].',
 'ipblocklist-submit'          => 'Keresés',
 'blocklistline'               => '$1, $2 blokkolta $3 felhasználót (lejárat: $4)',
 'infiniteblock'               => 'végtelen',
@@ -1932,7 +1932,7 @@ $1',
 'createaccountblock'          => 'új felhasználó létrehozása blokkolva',
 'emailblock'                  => 'e-mail cím blokkolva',
 'ipblocklist-empty'           => 'A blokkoltak listája üres.',
-'ipblocklist-no-results'      => 'A kért IP-cím vagy felhazsnálónév nem blokkolt.',
+'ipblocklist-no-results'      => 'A kért IP-cím vagy felhasználónév nem blokkolt.',
 'blocklink'                   => 'Blokkolás',
 'unblocklink'                 => 'blokk feloldása',
 'contribslink'                => 'Szerkesztései',
@@ -2230,7 +2230,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'markaspatrolledtext'                 => 'Ellenőriztem',
 'markedaspatrolled'                   => 'Ellenőrzöttnek jelölve',
 'markedaspatrolledtext'               => 'A kiválasztott változatot ellenőrzöttnek jelölted.',
-'rcpatroldisabled'                    => 'A Friss Változtatások Ellenőrzése kikapcsolva',
+'rcpatroldisabled'                    => 'A friss változtatások járőrözése kikapcsolva',
 'rcpatroldisabledtext'                => 'A Friss Változtatások Ellenőrzése jelenleg nincs engedélyezve.',
 'markedaspatrollederror'              => 'Nem lehet ellenőrzöttnek jelölni',
 'markedaspatrollederrortext'          => 'Meg kell adnod egy ellenőrzöttként megjelölt változatot.',
@@ -2257,7 +2257,7 @@ $1',
 'nextdiff'     => 'Következő változtatások →',
 
 # Media information
-'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, aminek futtatása kárt tehet a számítógépes rendszeredben.<hr />",
+'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, futtatása során kárt tehet a számítógépedben.<hr />",
 'imagemaxsize'         => 'A kép leírólapján mutatott legnagyobb képméret:',
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, $3 oldal',
@@ -2636,6 +2636,7 @@ $1',
 'imgmultipageprev' => '← előző oldal',
 'imgmultipagenext' => 'következő oldal →',
 'imgmultigo'       => 'Menj',
+'imgmultigoto'     => 'Ugrás a(z) $1. oldalra',
 
 # Table pager
 'ascending_abbrev'         => 'növ',
