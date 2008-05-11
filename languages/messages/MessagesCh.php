@@ -354,6 +354,7 @@ Yanggen ti hagu ha\' na mamaisen pat yanggen un hasso ni password (ya munga hao 
 'noemail'                    => "Tåya' e-mail address tinige' papa' ni muna'sesetbi as \"\$1\".",
 'passwordsent'               => 'Mana\'hanague hao ni password nuebu gi iyo-mu e-mail address ni marehistra nu "$1".
 Pot fabot na\'log in despues di un recibi ha\'.',
+'blocked-mailpassword'       => "Machomma' i IP-mu tumulaika påhina, ya ti masedi ha usa i fonksion manlaknos password ya u fanåtaha mama'baba.",
 'eauthentsent'               => "Mana'hanague i e-mail address ni tinige'-mu ni konfitmasion.
 Åntes di mana'hanague i kuenta ni otru e-mail, debi di un tattiyi i chinachalani gi halom e-mail, para mankonfotme na magahet na kuenta-mu ha.",
 'acct_creation_throttle_hit' => "Despensa, guåha esta $1 na kuenta-mu.
@@ -431,10 +432,13 @@ Pot fabot, na'hålom i ID gi todus i finaisen-mu siha.",
 Para un fa'tinas i påhina, fångge' gi sanpapa' na kahon (bisita i [[{{MediaWiki:Helppage}}|påhinan ayudo]] para mas infotmasion).
 Anggen lachi finatto-mu mågi, yemme' i batunes '''back''' ni iyo-mu browser.",
 'noarticletext'         => "Tåya' tinige'-ña i påhina este, siña un [[Special:Search/{{PAGENAME}}|aligao i titulon påhina]] gi halom otru na påhina siha pat [{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika i påhina].",
+'note'                  => '<strong>Fanapunta:</strong>',
 'previewnote'           => '<strong>Annok este para manripasa;
 ti masåtba trabiha i tinilaika-mu!</strong>',
 'editing'               => 'Tumulaika $1',
 'editingsection'        => 'Tumulaika $1 (patte)',
+'editingcomment'        => 'Tulalaika $1 (komentu)',
+'editconflict'          => 'Tulaika i problema: $1',
 'copyrightwarning'      => "Pot fabot, fanapunta fan na makonsidera manmasotta todus i kontribusion gi {{SITENAME}} papa' i $2 (atan $1 para i attikulu siha).
 Yanggen munga hao na matulaika i tinige'-mu yan malamaña ya mana'apåttao ta'lo maseha månu, pues munga ma po'lu guini.<br />
 Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat publika pat otru na lugat dibåtde.

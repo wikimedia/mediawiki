@@ -2516,6 +2516,7 @@ $1',
 'imgmultipageprev' => '← предишна страница',
 'imgmultipagenext' => 'следваща страница →',
 'imgmultigo'       => 'Отиване',
+'imgmultigoto'     => 'Отиване на страница $1',
 
 # Table pager
 'ascending_abbrev'         => 'възх',

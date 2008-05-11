@@ -338,7 +338,7 @@ MySQL retornou o erro "$3: $4".',
 'noconnect'            => 'Sentímolo! O wiki está experimentando algunhas dificultades técnicas e non se pode contactar co servidor da base de datos. <br /> $1',
 'nodb'                 => 'Non se pode seleccionar a base de datos $1',
 'cachederror'          => 'Esta é unha copia gardada da páxina requirida e pode non estar ao día.',
-'laggedslavemode'      => "Aviso: A páxina '''non''' contén actualizacións recentes.",
+'laggedslavemode'      => 'Aviso: a páxina pode non conter actualizacións recentes.',
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
 'readonlytext'         => 'Nestes momentos a base de datos está fechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento da base de datos, tras as que voltará á normalidade.
@@ -381,7 +381,9 @@ Procura: $2',
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
 'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
-'editinginterface'     => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software. Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios. Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl Betawiki], o proxecto de localización de Mediawiki.",
+'editinginterface'     => "'''Aviso:''' está editando unha páxina usada para fornecer o texto da interface do software.
+Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios.
+Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl Betawiki], o proxecto de localización de Mediawiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
 'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
@@ -462,8 +464,8 @@ Se foi alguén diferente quen o pediu ou se xa lembra o seu contrasinal e non o 
 Por favor, rexístrese de novo tras recibilo.',
 'blocked-mailpassword'       => 'O seu enderezo IP está bloqueado e ten restrinxida a edición de artigos. Tampouco se lle permite usar a función de recuperación do contrasinal para evitar abusos do sistema.',
 'eauthentsent'               => 'Enviouse un correo electrónico de configuración ao enderezo mencionado. Antes de enviar outro a esta conta terá que seguir as instrucións que aparecen no correo para confirmar que a conta é realmente súa.',
-'throttled-mailpassword'     => 'Enviouse un aviso co contrasinal nas últimas $1 horas. Para evitar o abuso do sistema só se envía unha mensaxe cada
-$1 horas.',
+'throttled-mailpassword'     => 'Enviouse un aviso co contrasinal nas últimas $1 horas.
+Para evitar o abuso do sistema só se envía unha mensaxe cada $1 horas.',
 'mailerror'                  => 'Produciuse un erro ao enviar un correo electrónico: $1',
 'acct_creation_throttle_hit' => 'Sentímolo, pero xa ten creadas $1 contas. Non pode crear máis.',
 'emailauthenticated'         => 'O seu enderezo de correo electrónico foi autentificado ($1).',
@@ -523,12 +525,13 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'showpreview'                       => 'Mostrar a vista previa',
 'showlivepreview'                   => 'Vista previa',
 'showdiff'                          => 'Mostrar os cambios',
-'anoneditwarning'                   => "'''Aviso:''' Non está dentro do sistema.
+'anoneditwarning'                   => "'''Aviso:''' non accedeu ao sistema.
 O seu enderezo IP quedará rexistrado no historial das revisións desta páxina.",
-'missingsummary'                    => "'''Aviso:''' Esqueceu incluír o texto do campo resumo.
+'missingsummary'                    => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
 Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'                => 'Por favor escriba un comentario a continuación.',
-'missingcommentheader'              => "'''Aviso:''' Non escribiu ningún texto no asunto/cabeceira deste comentario. Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
+'missingcommentheader'              => "'''Aviso:''' non escribiu ningún texto no asunto/cabeceira deste comentario.
+Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'                   => 'Vista previa do resumo',
 'subject-preview'                   => 'Vista previa do asunto/cabeceira',
 'blockedtitle'                      => 'O usuario está bloqueado',
@@ -583,8 +586,8 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'anontalkpagetext'                  => "---- ''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:Userlogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'                     => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist'         => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
-'clearyourcache'                    => "'''Nota:''' Despois de gravar, cómpre limpar a memoria caché do seu navegador para ver os cambios. '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (''Cmd-Maiúsculas-R'' nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'' ou prema ''Ctrl-F5''; '''Konqueror:''' simplemente faga clic no botón ''Recargar'' ou prema ''F5''; os usuarios de '''Opera''' pode que teñan que limpar completamente a caché en ''Ferramentas→Preferencias''.",
-'usercssjsyoucanpreview'            => '<strong>Nota:</strong> Use o botón "Mostrar a vista previa" para verificar o novo CSS/JS antes de gardalo.',
+'clearyourcache'                    => "'''Nota:''' despois de gravar, cómpre limpar a memoria caché do seu navegador para ver os cambios. '''Mozilla/Firefox/Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'' ou ''Ctrl-Shift-R'' (''Cmd-Maiúsculas-R'' nos Apple Mac); '''IE:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'' ou prema ''Ctrl-F5''; '''Konqueror:''' simplemente faga clic no botón ''Recargar'' ou prema ''F5''; os usuarios de '''Opera''' pode que teñan que limpar completamente a súa memoria caché en ''Ferramentas→Preferencias''.",
+'usercssjsyoucanpreview'            => '<strong>Nota:</strong> use o botón "Mostrar a vista previa" para verificar o novo CSS/JS antes de gardalo.',
 'usercsspreview'                    => "'''Lembre que só está avaliando o uso do css, non foi aínda gardado!'''",
 'userjspreview'                     => "'''Lembre que só está testando/previsualizando o seu javascript de usuario, non foi aínda gardado!'''",
 'userinvalidcssjstitle'             => "'''Aviso:''' Non hai ningún tema \"\$1\". Lembre que as páxinas .css e .js utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/monobook.css no canto de {{ns:user}}:Foo/Monobook.css.",
@@ -593,7 +596,7 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'previewnote'                       => '<strong>Lembre que esta é só unha vista previa
 e que os seus cambios aínda non foron gardados!</strong>',
 'previewconflict'                   => 'Esta vista previa amosa o texto na área superior tal e como aparecerá se escolle gardar.',
-'session_fail_preview'              => '<strong>Sentímolo! O sistema non pode procesar a súa edición porque se perderon os datos da sesión.
+'session_fail_preview'              => '<strong>Sentímolo! O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, ténteo de novo. Se segue sen funcionar, probe a saír do sistema e volver entrar.</strong>',
 'session_fail_preview_html'         => "<strong>Sentímolo! O sistema non pode procesar a súa edición porque se perderon os datos da sesión.</strong>
 
@@ -614,8 +617,9 @@ Pode mesturar os seus cambios co texto existente.
 '''Só''' se gardará o texto na área superior cando prema \"Gardar a páxina\".",
 'yourtext'                          => 'O seu texto',
 'storedversion'                     => 'Versión gardada',
-'nonunicodebrowser'                 => '<strong>ATENCIÓN: O seu navegador non soporta Unicode. Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.</strong>',
-'editingold'                        => '<strong>ATENCIÓN: Está editando unha revisión non actualizada desta páxina.
+'nonunicodebrowser'                 => '<strong>ATENCIÓN: o seu navegador non soporta Unicode.
+Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.</strong>',
+'editingold'                        => '<strong>ATENCIÓN: está editando unha revisión non actualizada desta páxina.
 Se a garda, perderanse os cambios realizados tras esta revisión.</strong>',
 'yourdiff'                          => 'Diferenzas',
 'copyrightwarning'                  => 'Por favor, teña en conta que todas as contribucións a {{SITENAME}} considéranse publicadas baixo a $2 (vexa $1 para máis detalles). Se non quere que o que escriba se edite sen piedade e se redistribúa sen límites, entón non o envíe aquí.<br />
@@ -624,18 +628,18 @@ Ao mesmo tempo, prométanos que o que escribiu é da súa autoría ou que está 
 'copyrightwarning2'                 => 'Por favor, decátese de que todas as súas contribucións a {{SITENAME}} poden ser editadas, alteradas ou eliminadas por outras persoas. Se non quere que os seus escritos sexan editados sen piedade, non os publique aquí.<br />
 Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (vexa $1 para detalles).
 <strong>NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!</strong>',
-'longpagewarning'                   => '<strong>ATENCIÓN: Esta páxina ten $1 kilobytes;
+'longpagewarning'                   => '<strong>ATENCIÓN: esta páxina ten $1 kilobytes;
 algúns navegadores poden ter problemas editando páxinas de 32kb ou máis.
 Por favor, considere partir a páxina en seccións máis pequenas.</strong>',
 'longpageerror'                     => '<strong>ERRO: O texto que pretende gardar supera en $1 kilobytes o permitido.
 Hai un límite máximo de $2 kilobytes;
 polo tanto, non se pode gardar.</strong>',
-'readonlywarning'                   => '<strong>ATENCIÓN: A base de datos foi fechada para facer mantemento,
-polo que non vai poder gardar as súas edicións polo de agora. Se cadra pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.</strong>',
-'protectedpagewarning'              => '<strong>ATENCIÓN: Esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.</strong>',
-'semiprotectedpagewarning'          => "'''Nota:''' Esta páxina foi bloqueada e só os usuarios rexistrados poden editala.",
-'cascadeprotectedwarning'           => "'''Aviso:''' Esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina|nas seguintes páxinas}} protexidas coa opción \"protección en serie\" activada:",
-'titleprotectedwarning'             => '<strong>AVISO: Bloqueouse esta páxina para que só algúns usuarios a poidan crear.</strong>',
+'readonlywarning'                   => '<strong>ATENCIÓN: a base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.
+Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.</strong>',
+'protectedpagewarning'              => '<strong>ATENCIÓN: esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.</strong>',
+'semiprotectedpagewarning'          => "'''Nota:''' esta páxina foi bloqueada e só os usuarios rexistrados poden editala.",
+'cascadeprotectedwarning'           => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina|nas seguintes páxinas}} protexidas coa opción \"protección en serie\" activada:",
+'titleprotectedwarning'             => '<strong>AVISO: bloqueouse esta páxina para que só algúns usuarios a poidan crear.</strong>',
 'templatesused'                     => 'Modelos usados nesta páxina:',
 'templatesusedpreview'              => 'Modelos usados nesta vista previa:',
 'templatesusedsection'              => 'Modelos usados nesta sección:',
@@ -649,11 +653,11 @@ Pode volver atrás e editar unha páxina que xa existe ou, se non, [[Special:Use
 'nocreate-loggedin'                 => 'Non dispón de permiso para crear páxinas novas en {{SITENAME}}.',
 'permissionserrors'                 => 'Erros de permisos',
 'permissionserrorstext'             => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
-'recreate-deleted-warn'             => "'''Atención: Vai volver crear unha páxina que xa se eliminou anteriormente.'''
+'recreate-deleted-warn'             => "'''Atención: vai volver crear unha páxina que xa se eliminou anteriormente.'''
 
 Debe considerar se é apropiado continuar a editar esta páxina.
-Velaquí o rexistro de eliminación desta páxina, por se quere consultalo:",
-'expensive-parserfunction-warning'  => 'Aviso: Esta páxina contén moitos analizadores de funcións de chamadas moi caros.
+Velaquí o rexistro de borrado desta páxina, por se quere consultalo:",
+'expensive-parserfunction-warning'  => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
 
 Debe ter menos de $2, e agora hai $1.',
 'expensive-parserfunction-category' => 'Páxinas con moitos analizadores de funcións de chamadas moi caros',
@@ -800,7 +804,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchresulttext'          => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "A súa busca de '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "A súa busca de '''$1'''",
-'noexactmatch'              => "'''Non hai ningunha páxina titulada \"\$1\".''' Pode [[:\$1|creala]].",
+'noexactmatch'              => "'''Non hai ningunha páxina titulada \"\$1\".'''
+Se quere, pode [[:\$1|creala]].",
 'noexactmatch-nocreate'     => "'''Non hai ningunha páxina titulada \"\$1\".'''",
 'toomanymatches'            => 'Demasiadas coincidencias foron devoltas, por favor tente unha consulta diferente',
 'titlematches'              => 'O título do artigo coincide',
@@ -1111,9 +1116,10 @@ Se dispón dunha versión desta imaxe de maior resolución, envíe esta última.
 'watchthisupload'             => 'Vixiar esta páxina',
 'filewasdeleted'              => 'Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado.
 Debe comprobar o $1 antes de proceder a cargalo outra vez.',
-'upload-wasdeleted'           => "'''Aviso: Está enviando un ficheiro que foi previamente borrado.'''
+'upload-wasdeleted'           => "'''Aviso: está enviando un ficheiro que foi previamente borrado.'''
 
-Debe considerar se é apropiado continuar enviando este ficheiro. O rexistro do seu borrado proporciónase aquí para a súa comodidade.",
+Debe considerar se é apropiado continuar enviando este ficheiro.
+O rexistro de borrado proporciónase aquí por se quere consultalo:",
 'filename-bad-prefix'         => 'O nome do ficheiro que está cargando comeza con <strong>"$1"</strong>, que é un típico nome non descritivo asignado automaticamente polas cámaras dixitais. Por favor, escolla un nome máis descritivo para o seu ficheiro.',
 'filename-prefix-blacklist'   => ' #<!-- deixa esta liña exactamente como está --> <pre>
 # A sintaxe é a seguinte:
@@ -1376,7 +1382,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome de usuario 
 # Special:Listusers
 'listusersfrom'      => 'Mostrar os usuarios comezando por:',
 'listusers-submit'   => 'Amosar',
-'listusers-noresult' => 'Non se atoparon usuarios. Comprobe tamén variantes con maiúsculas e minúsculas.',
+'listusers-noresult' => 'Non se atopou ningún usuario. Comprobe tamén as variantes con maiúsculas e minúsculas.',
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Dereitos dun usuario segundo o seu grupo',
@@ -1447,7 +1453,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watching'   => 'Vixiando...',
 'unwatching' => 'Deixando de vixiar...',
 
-'enotif_mailer'                => 'Correo de aviso da {{SITENAME}}',
+'enotif_mailer'                => 'Correo de aviso de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar todas as páxinas como visitadas',
 'enotif_newpagetext'           => 'Esta é unha páxina nova.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
@@ -1471,7 +1477,7 @@ wiki: $PAGEEDITOR_WIKI
 
 Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina. Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa listaxe de vixilancia.
 
-             O sistema de aviso da {{SITENAME}}
+             O sistema de aviso de {{SITENAME}}
 
 --
 Para cambiar a súa listaxe de vixilancia, visite
@@ -1489,7 +1495,7 @@ Feedback e axuda:
 'exblank'                     => 'a páxina estaba baleira',
 'delete-confirm'              => 'Borrar "$1"',
 'delete-legend'               => 'Borrar',
-'historywarning'              => 'Atención: A páxina que vai borrar ten un historial:',
+'historywarning'              => 'Atención: a páxina que vai borrar ten un historial:',
 'confirmdeletetext'           => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'              => 'A acción foi completada',
@@ -1820,7 +1826,7 @@ Para exportar páxinas, insira os títulos na caixa de texto que está máis aba
 No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]], para a páxina "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluír só a revisión actual, non o historial completo',
 'exportnohistory'   => "----
-'''Aviso:''' Foi desactivada a exportación do historial completo das páxinas con este formulario debido a razóns relacionadas co rendemento do servidor.",
+'''Aviso:''' foi desactivada a exportación do historial completo das páxinas con este formulario debido a razóns relacionadas co rendemento do servidor.",
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Engadir páxinas da categoría:',
 'export-addcat'     => 'Engadir',
@@ -2027,8 +2033,7 @@ $1',
 'nextdiff'     => 'Ir ao seguinte dif →',
 
 # Media information
-'mediawarning'         => "'''Aviso''': Este ficheiro pode conter código malicioso; o seu sistema pode quedar comprometido se chega a executalo.
-<hr />",
+'mediawarning'         => "'''Aviso''': este ficheiro pode conter código malicioso; o seu sistema pode quedar comprometido se chega a executalo.<hr />",
 'imagemaxsize'         => 'Limitar as imaxes nas páxinas de descrición de ficheiros a:',
 'thumbsize'            => 'Tamaño da miniatura (thumbnail):',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|páxina|páxinas}}',
@@ -2382,7 +2387,7 @@ $1
 'trackbackdeleteok' => 'Eliminouse o trackback sen problemas.',
 
 # Delete conflict
-'deletedwhileediting' => 'Aviso: Esta páxina foi borrada despois de que vostede comezase a editala!',
+'deletedwhileediting' => 'Aviso: esta páxina foi borrada despois de que vostede comezase a editala!',
 'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|disc.]]) borrou este artigo despois de que vostede comezara a editalo, polo seguinte motivo:
 : ''$2'' 
 Por favor confirme que realmente quere crear o artigo de novo.",
