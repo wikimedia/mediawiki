@@ -8,52 +8,23 @@
  * @todo document
  */
 function wfSpecialEmailuser( $par ) {
-	global $wgUser, $wgOut, $wgRequest, $wgEnableEmail, $wgEnableUserEmail;
+	global $wgRequest, $wgUser, $wgOut;
 
-	if( !( $wgEnableEmail && $wgEnableUserEmail ) ) {
-		$wgOut->showErrorPage( "nosuchspecialpage", "nospecialpagetext" );
+	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );	
+	$error = EmailUserForm::getPermissionsError( $target );
+	if ( $error ) {
+		$wgOut->showErrorPage( $error[0], $error[1] );
 		return;
 	}
 
-	if( !$wgUser->canSendEmail() ) {
-		wfDebug( "User can't send.\n" );
-		$wgOut->showErrorPage( "mailnologin", "mailnologintext" );
-		return;
-	}
-
+	$form = EmailUserForm::newFromURL( $target,
+			$wgRequest->getText( 'wpText' ),
+			$wgRequest->getText( 'wpSubject' ),
+			$wgRequest->getBool( 'wpCCMe' ) );
+	
 	$action = $wgRequest->getVal( 'action' );
-	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
-	if ( "" == $target ) {
-		wfDebug( "Target is empty.\n" );
-		$wgOut->showErrorPage( "notargettitle", "notargettext" );
-		return;
-	}
-
-	$nt = Title::newFromURL( $target );
-	if ( is_null( $nt ) ) {
-		wfDebug( "Target is invalid title.\n" );
-		$wgOut->showErrorPage( "notargettitle", "notargettext" );
-		return;
-	}
-
-	$nu = User::newFromName( $nt->getText() );
-	if( is_null( $nu ) || !$nu->canReceiveEmail() ) {
-		wfDebug( "Target is invalid user or can't receive.\n" );
-		$wgOut->showErrorPage( "noemailtitle", "noemailtext" );
-		return;
-	}
-
-	if ( $wgUser->isBlockedFromEmailUser() ) {
-		// User has been blocked from sending e-mail. Show the std blocked form.
-		wfDebug( "User is blocked from sending e-mail.\n" );
-		$wgOut->blockedPage();
-		return;
-	}
-
-	$f = new EmailUserForm( $nu );
-
 	if ( "success" == $action ) {
-		$f->showSuccess( $nu );
+		$form->showSuccess();
 	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
 				$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) )
 	{
@@ -63,9 +34,18 @@ function wfSpecialEmailuser( $par ) {
 			return;
 		}
 
-		$f->doSubmit();
+		$result = $form->doSubmit();
+		
+		if ( !is_null( $result ) ) {
+			$wgOut->addHTML( wfMsg( "usermailererror" ) .
+					' ' . htmlspecialchars( $result->getMessage() ) );
+		} else {
+			$titleObj = SpecialPage::getTitleFor( "Emailuser" );
+			$encTarget = wfUrlencode( $form->getTarget()->getName() );
+			$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
+		}
 	} else {
-		$f->showForm();
+		$form->showForm();
 	}
 }
 
@@ -82,12 +62,11 @@ class EmailUserForm {
 	/**
 	 * @param User $target
 	 */
-	function EmailUserForm( $target ) {
-		global $wgRequest;
+	function EmailUserForm( $target, $text, $subject, $cc_me ) {
 		$this->target = $target;
-		$this->text = $wgRequest->getText( 'wpText' );
-		$this->subject = $wgRequest->getText( 'wpSubject' );
-		$this->cc_me = $wgRequest->getBool( 'wpCCMe' );
+		$this->text = $text;
+		$this->subject = $subject;
+		$this->cc_me = $cc_me;
 	}
 
 	function showForm() {
@@ -143,8 +122,13 @@ class EmailUserForm {
 
 	}
 
+	/*
+	 * Really send a mail. Permissions should have been checked using 
+	 * EmailUserForm::getPermissionsError. It is probably also a good idea to
+	 * check the edit token and ping limiter in advance.
+	 */
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgUserEmailUseReplyTo;
+		global $wgUser, $wgUserEmailUseReplyTo;
 
 		$to = new MailAddress( $this->target );
 		$from = new MailAddress( $wgUser );
@@ -183,8 +167,8 @@ class EmailUserForm {
 			$mailResult = UserMailer::send( $to, $mailFrom, $subject, $this->text, $replyTo );
 
 			if( WikiError::isError( $mailResult ) ) {
-				$wgOut->addHTML( wfMsg( "usermailererror" ) .
-					' ' . htmlspecialchars( $mailResult->getMessage() ) );
+				return $mailResult;			
+				
 			} else {
 
 				// if the user requested a copy of this mail, do this now,
@@ -199,27 +183,68 @@ class EmailUserForm {
 							// We can either show them an error, or we can say everything was fine,
 							// or we can say we sort of failed AND sort of succeeded. Of these options,
 							// simply saying there was an error is probably best.
-							$wgOut->addHTML( wfMsg( "usermailererror" ) .
-								' ' . htmlspecialchars( $ccResult->getMessage() ) );
-							return;
+							return $ccResult->getMessage();
 						}
 					}
 				}
 
-				$titleObj = SpecialPage::getTitleFor( "Emailuser" );
-				$encTarget = wfUrlencode( $this->target->getName() );
-				$wgOut->redirect( $titleObj->getFullURL( "target={$encTarget}&action=success" ) );
 				wfRunHooks( 'EmailUserComplete', array( $to, $from, $subject, $this->text ) );
+				return;
 			}
 		}
 	}
 
-	function showSuccess( &$user ) {
+	function showSuccess( &$user = null ) {
 		global $wgOut;
+		
+		if ( is_null($user) )
+			$user = $this->target;
 
 		$wgOut->setPagetitle( wfMsg( "emailsent" ) );
 		$wgOut->addHTML( wfMsg( "emailsenttext" ) );
 
 		$wgOut->returnToMain( false, $user->getUserPage() );
+	}
+	
+	function getTarget() {
+		return $this->target;
+	}
+	
+	static function getPermissionsError ( $target ) {
+		global $wgUser, $wgRequest, $wgEnableEmail, $wgEnableUserEmail;
+
+		if( !( $wgEnableEmail && $wgEnableUserEmail ) ) 
+			return array( "nosuchspecialpage", "nospecialpagetext" );
+	
+		if( !$wgUser->canSendEmail() ) {
+			wfDebug( "User can't send.\n" );
+			return array( "mailnologin", "mailnologintext" );
+		}
+	
+		if ( "" == $target ) {
+			wfDebug( "Target is empty.\n" );
+			return array( "notargettitle", "notargettext" );
+		}
+	
+		$nt = Title::newFromURL( $target );
+		if ( is_null( $nt ) ) {
+			wfDebug( "Target is invalid title.\n" );
+			return array( "notargettitle", "notargettext" );
+		}
+	
+		$nu = User::newFromName( $nt->getText() );
+		if( is_null( $nu ) || !$nu->canReceiveEmail() ) {
+			wfDebug( "Target is invalid user or can't receive.\n" );
+			return array( "noemailtitle", "noemailtext" );
+		}
+		
+		return;
+	}
+	
+	static function newFromURL( $target, $text, $subject, $cc_me )
+	{
+		$nt = Title::newFromURL( $target );
+		$nu = User::newFromName( $nt->getText() );
+		return new EmailUserForm( $nu, $text, $subject, $cc_me );
 	}
 }
