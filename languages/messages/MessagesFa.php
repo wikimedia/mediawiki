@@ -2246,13 +2246,13 @@ $1',
 'mw_math_mathml' => 'استفاده از MathML در صورت امکان (آزمایشی)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'برجسب گشت بزن',
-'markaspatrolledtext'                 => 'به این مقاله برجسب گشت بزن',
+'markaspatrolleddiff'                 => 'برچسب گشت بزن',
+'markaspatrolledtext'                 => 'به این صفحه برچسب گشت بزن',
 'markedaspatrolled'                   => 'برچسب گشت زده شد',
 'markedaspatrolledtext'               => 'به نسخهٔ مورد نظر برچسب گشت زده شد.',
 'rcpatroldisabled'                    => 'گشت تغییرات اخیر غیر فعال است',
 'rcpatroldisabledtext'                => 'امکان گشت تغییرات اخیر در حال حاضر غیر فعال است.',
-'markedaspatrollederror'              => 'برجسب گشت زده نشد',
+'markedaspatrollederror'              => 'برچسب گشت زده نشد',
 'markedaspatrollederrortext'          => 'باید یک نسخه را مشخص کنید تا برچسب گشت بخورد.',
 'markedaspatrollederror-noautopatrol' => 'شما نمی‌توانید به تغییرات انجام شده توسط خودتان برچسب گشت بزنید.',
 
