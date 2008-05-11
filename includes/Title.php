@@ -197,7 +197,7 @@ class Title {
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
 		$fname = 'Title::newFromID';
-		$db = ($flags & FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$row = $db->selectRow( 'page', array( 'page_namespace', 'page_title' ),
 			array( 'page_id' => $id ), $fname );
 		if ( $row !== false ) {
