@@ -844,10 +844,9 @@ aŭ ĉar oni petas tro da serĉvortoj (nur paĝoj kiuj enhavas ĉiun serĉvorton
 montriĝos en la rezulto).',
 'powersearch'               => 'Progresa trovilo',
 'powersearch-legend'        => 'Progresa serĉo',
-'powersearchtext'           => '
-Serĉu en sekcioj: :<br />
-$1<br />
-$2 Kun alidirektiloj   Serĉu $3 $9',
+'powersearchtext-ns'        => 'Serĉi en nomspacoj:<br />$1<br />',
+'powersearchtext-redir'     => 'Listigi alidirektilojn',
+'powersearchtext-field'     => 'Serĉi $1 $2',
 'search-external'           => 'Ekstera serĉo',
 'searchdisabled'            => '<p>Oni provizore malŝaltis serĉadon per la plenteksta
 indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> aŭ per <i>jahu!</i>:</p>',

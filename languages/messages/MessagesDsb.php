@@ -899,7 +899,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'nonefound'                 => "'''Pokazka''': Jano někótare mjenjowe rumy se standarnje pytaju. Wopytaj za swóje wótpšašanje prefiks ''all:'' wužywać, aby cełe wopśimjeśe pytał (inkluziwnje diskusijnych bokow, pśedłogi atd.) abo wužyj póžedany mjenjowy rum ako prefiks.",
 'powersearch'               => 'Rozšyrjone pytanje',
 'powersearch-legend'        => 'Rozšyrjone pytanje',
-'powersearchtext'           => 'W mjenjowych rumach pytaś:<br />$1<br />$2 dalejpósrědnjenja pokazaś<br />Pytaś za: $3 $9',
+'powersearchtext-ns'        => 'W mjenjowych rumach pytaś:<br />$1<br />',
 'search-external'           => 'Eksterne pytanje',
 'searchdisabled'            => 'Pytanje we {{SITENAME}} jo se deaktiwěrowało. Tak dłujko móžoš w googlu pytaś. Pšosym wobmysli, až móžo pytanski indeks za {{SITENAME}} njeaktualny byś.',
 

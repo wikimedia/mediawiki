@@ -1023,9 +1023,9 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'nonefound'                 => '<strong>Let wel:</strong> as een zeukopdrachte mislok kump dat vake deur gebruuk van veulveurkoemmende woorden as "de" en "het", dee neet eïndexeerd bin.',
 'powersearch'               => 'Zeuk',
 'powersearch-legend'        => 'Uut-ebreid zeuken',
-'powersearchtext'           => "Zeuk in naamruumtes:<br />
-$1<br />
-$2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
+'powersearchtext-ns'        => 'Zeuk in de naamruumtes:<br />$1<br />',
+'powersearchtext-redir'     => 'Deurverwiezingen weergeven',
+'powersearchtext-field'     => 'Zeuken naor $1 $2',
 'search-external'           => 'Extern zeuken',
 'searchdisabled'            => 'Zeuken in {{SITENAME}} is neet meugelijk. Je kunnen gebruukmaken van Google. De gegevens over {{SITENAME}} bin meugelijk neet bie-ewörk.',
 
@@ -1203,7 +1203,7 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'recentchanges'                     => 'Recente wiezigingen',
 'recentchangestext'                 => 'Op disse pagina ku-j de leste wiezigingen van disse wiki bekieken.',
 'recentchanges-feed-description'    => 'Zeuk naor de alderleste wiezingen op disse wiki in disse feed.',
-'rcnote'                            => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} dee edaon bin in de of-eleupen {{PLURAL:$2|dag|'''$2''' dagen}}, op $3.",
+'rcnote'                            => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de of-eleupen {{PLURAL:$2|dag|'''$2''' dagen}} (stand: $3).",
 'rcnotefrom'                        => 'Dit bin de wiezigingen sins <b>$2</b> (maximum van <b>$1</b> wiezigingen).',
 'rclistfrom'                        => 'Teun wiezigingen vanof $1',
 'rcshowhideminor'                   => '$1 kleine wiezigingen',
@@ -1212,7 +1212,7 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'rcshowhideanons'                   => '$1 annenieme gebrukers',
 'rcshowhidepatr'                    => '$1 nao-ekeken bewarkingen',
 'rcshowhidemine'                    => '$1 mien bewarkingen',
-'rclinks'                           => 'Bekiek de leste $1 wiezigingen in de of-eleupen $2 dagen<br>$3',
+'rclinks'                           => 'Bekiek de leste $1 wiezigingen van de of-eleupen $2 dagen<br>$3',
 'diff'                              => 'wiezig',
 'hist'                              => 'gesch',
 'hide'                              => 'verbarg',
@@ -1231,6 +1231,7 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'recentchangeslinked-noresult' => 'Gien wiezigingen of pagina waornaor verwezen wonnen in disse periode.',
 'recentchangeslinked-summary'  => "Op disse speciale pagina steet een lieste mit de leste wieziginen op pagina's waornaor verwezen wonnen. Pagina's op joew volglieste staon '''vet-edrok'''.",
 'recentchangeslinked-page'     => 'Paginanaam:',
+'recentchangeslinked-to'       => "Bekiek wiezigingen op pagina's mit verwiezingen naor disse pagina",
 
 # Upload
 'upload'                      => 'Bestand toevoegen',
@@ -1241,6 +1242,17 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'uploadnologintext'           => 'Je mutten [[Special:Userlogin|an-emeld]] ween um bestanden toe te kunnen voegen.',
 'upload_directory_read_only'  => "Op 't mement ku-j gien bestanden toevoegen wegens technische rejens ($1).",
 'uploaderror'                 => "Fout bie 't toevoegen van 't bestand",
+'uploadtext'                  => "Gebruuk 't onderstaonde formelier um bestanden toe te voegen.
+Um eerder toe-evoegen bestanden te bekieken of te zeuken ku-j naor de [[Special:Imagelist|bestanslieste]] gaon.
+Toe-evoegen bestanden en media dee vort-edaon bin wonnen bie-ehuilen in 't [[Special:Log/upload|logboek mit toe-evoegen bestanden]].
+
+Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken:
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.png|alternatieve tekst]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestand.ogg]]</nowiki>''' drekte verwiezing naor een bestand.",
+'upload-permitted'            => 'Toe-estaone bestanstypes: $1.',
+'upload-preferred'            => 'An-ewezen bestanstypes: $1.',
+'upload-prohibited'           => 'Verbeujen bestanstypes: $1.',
 'uploadlog'                   => 'Toe-evoegen bestanden',
 'uploadlogpage'               => 'Toe-evoegen bestanden',
 'uploadlogpagetext'           => 'Hieronder steet een lieste mit bestanden dee net niej bin.',
@@ -1263,6 +1275,9 @@ $2 Teun deurverwiespagina's &nbsp; zeuk: $3 $9",
 'largefileserver'             => "'t Bestand is groter as dat de server toesteet.",
 'emptyfile'                   => "'t Bestand da-j toe-evoeg hemmen is leeg. Dit kan koemen deur een tikfout in de bestansnaam. Kiek effen nao of je dit bestand wel bedoelen.",
 'fileexists'                  => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't bestand onder een aandere naam toe te voegen. <strong><tt>$1</tt></strong>",
+'filepageexists'              => 'De beschrievingspagina veur dit bestand bestung al op <strong><tt>$1</tt></strong>, mar der besteet nog gien bestand mit disse naam.
+De samenvatting dee-j op-egeven hemmen zal neet op de beschrievingspagina koemen.
+Bewark de pagina haandmaotig um joew beschrieving daor weer te geven.',
 'fileexists-extension'        => "Een bestand mit een soortgelieke naam besteet al:<br />
 Naam van 't bestand da-j toevoegen wollen: <strong><tt>$1</tt></strong><br />
 Naam van 't bestaonde bestand: <strong><tt>$2</tt></strong><br />
@@ -1287,12 +1302,20 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'uploadvirus'                 => "'t Bestand bevat een virus! Details: $1",
 'sourcefilename'              => 'Oorspronkelijk bestansnaam',
 'destfilename'                => 'Opslaon as (optioneel)',
+'upload-maxfilesize'          => 'Maximale bestansgrootte: $1',
 'watchthisupload'             => 'Volg ofbeeldingspagina',
 'filewasdeleted'              => "Een bestand mit disse naam is al eerder vort-edaon. Kiek 't $1 nao veurda-j 't opniej toevoegen.",
+'upload-wasdeleted'           => "'''Waorschuwing: je bin een bestand an 't toevoegen dee eerder al vort-edaon is.'''
 
-'upload-proto-error'     => 'Verkeerde protocol',
-'upload-misc-error'      => "Onbekende fout bie 't toevoegen van joew bestand",
-'upload-misc-error-text' => "Der is bie toevoegen van 't bestand een onbekende fout op-etrejen. Kiek effen nao of de verwiezing 't wel dut en prebeer 't opniej. As 't prebleem anhuilt, neem dan kontak op mit één van de systeembeheerders.",
+Bedenk eers of 't inderdaod de bedoeling is dat dit bestand toe-evoeg wonnen.
+'t Logboek mit vort-edaone pagina's ku-j hier vienen:",
+'filename-bad-prefix'         => 'De naam van \'t bestand da-j an \'t toevoegen bin begint mit <strong>"$1"</strong>, wat een neet-beschrievende naam is dee meestentieds autematisch deur een digitale camera egeven wonnen. Kies een dudelijke naam veur \'t bestand.',
+
+'upload-proto-error'      => 'Verkeerde protocol',
+'upload-proto-error-text' => 'Um op disse meniere bestanden toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
+'upload-file-error'       => 'Interne fout',
+'upload-misc-error'       => "Onbekende fout bie 't toevoegen van joew bestand",
+'upload-misc-error-text'  => "Der is bie toevoegen van 't bestand een onbekende fout op-etrejen. Kiek effen nao of de verwiezing 't wel dut en prebeer 't opniej. As 't prebleem anhuilt, neem dan kontak op mit één van de systeembeheerders.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon webadres neet bereiken',
@@ -1303,13 +1326,17 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'license'            => 'Licentie',
 'nolicense'          => 'Gien licentie ekeuzen',
 'license-nopreview'  => '(Naokieken is neet meugelijk)',
+'upload_source_url'  => ' (een geldig, pebliek toegankelijk webadres)',
 'upload_source_file' => ' (een bestand op joew computer)',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'Zeuk op ofbeeldingnaam:',
+'imgfile'               => 'bestand',
 'imagelist'             => 'Ofbeeldingenlieste',
 'imagelist_date'        => 'Daotum',
+'imagelist_name'        => 'Naam',
 'imagelist_user'        => 'Gebruker',
+'imagelist_size'        => 'Grootte (bytes)',
 'imagelist_description' => 'Beschrieving',
 
 # Image description page
@@ -1662,16 +1689,21 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 'sp-contributions-submit'      => 'Zeuk',
 
 # What links here
-'whatlinkshere'       => 'Verwiezingen naor disse pagina',
-'whatlinkshere-title' => "Pagina's dee verwiezen naor $1",
-'whatlinkshere-page'  => 'Pagina:',
-'linklistsub'         => '(lieste van verwiezingen)',
-'nolinkshere-ns'      => "Gien enkele pagina verwiest naor '''[[:$1]]''' in de ekeuzen naamruumte.",
-'isredirect'          => 'deurverwiezing',
-'istemplate'          => 'in-evoeg as sjabloon',
-'whatlinkshere-prev'  => '{{PLURAL:$1|veurige|veurige $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|volgende|volgende $1}}',
-'whatlinkshere-links' => '← verwiezingen',
+'whatlinkshere'            => 'Verwiezingen naor disse pagina',
+'whatlinkshere-title'      => "Pagina's dee verwiezen naor $1",
+'whatlinkshere-page'       => 'Pagina:',
+'linklistsub'              => '(lieste van verwiezingen)',
+'nolinkshere-ns'           => "Gien enkele pagina verwiest naor '''[[:$1]]''' in de ekeuzen naamruumte.",
+'isredirect'               => 'deurverwiezing',
+'istemplate'               => 'in-evoeg as sjabloon',
+'whatlinkshere-prev'       => '{{PLURAL:$1|veurige|veurige $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
+'whatlinkshere-links'      => '← verwiezingen',
+'whatlinkshere-hideredirs' => '$1 deurverwiezingen',
+'whatlinkshere-hidetrans'  => '$1 in-evoegen sjablonen',
+'whatlinkshere-hidelinks'  => '$1 verwiezingen',
+'whatlinkshere-hideimages' => '$1 bestansverwiezingen',
+'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
 'blockip'                     => 'Gebruker blokkeren',

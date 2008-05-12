@@ -849,10 +849,6 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'nonefound'                 => '<b>Napomena</b>: pretrage su neuspješne ako tražite česte riječi koje ne indeksiramo, ili u upitu navedete previše pojmova (u rezultatu se pojavlju samo stranice koje sadrže sve tražene pojmove).',
 'powersearch'               => 'Traženje',
 'powersearch-legend'        => 'Napredno pretraživanje',
-'powersearchtext'           => '
-Traženje u prostoru :<br />
-$1<br />
-$2 Popis se preusmjerava   Traženje za $3 $9',
 'search-external'           => 'Vanjski pretraživač',
 'searchdisabled'            => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
 
@@ -1005,6 +1001,7 @@ za podešavanje suradničkih postavki.',
 'right-rollback'             => 'Brzo uklanjanje izmjena zadnjeg suradnika na određenoj stranici',
 'right-markbotedits'         => 'Označavanje uklonjenih izmjena kao izmjenu bota',
 'right-import'               => 'Uvoženje stranica s drugih wikija',
+'right-importupload'         => 'Uvoženje stranica kao datoteke',
 'right-patrol'               => 'Označavanje izmjena pregledanim',
 'right-autopatrol'           => 'Izmjene su automatski označene kao pregledane',
 'right-patrolmarks'          => 'Vidljive oznake pregledavanja u nedavnim promjenama',

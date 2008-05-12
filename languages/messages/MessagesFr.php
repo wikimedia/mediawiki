@@ -971,9 +971,6 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'nonefound'                 => '<strong>Note</strong> : l’absence de résultat est souvent due à l’emploi de termes de recherche trop courants, comme « à » ou « de », qui ne sont pas indexés, ou à l’emploi de plusieurs termes de recherche (seules les pages contenant tous les termes apparaissent dans les résultats).',
 'powersearch'               => 'Rechercher',
 'powersearch-legend'        => 'Recherche avancée',
-'powersearchtext'           => 'Rechercher dans les espaces de noms :<br />
-$1<br />
-$2 Inclure les pages de redirection<br /> Rechercher $3 $9',
 'search-external'           => 'Recherche externe',
 'searchdisabled'            => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu {{SITENAME}} peut ne pas être à jour.',
 
@@ -1249,7 +1246,7 @@ Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez ch
 Veuillez vérifer le fichier.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'sourcefilename'              => 'Nom du fichier source :',
-'destfilename'                => 'Nom sous lequel le fichier sera enregistré&nbsp;:',
+'destfilename'                => 'Nom sous lequel le fichier sera enregistré :',
 'upload-maxfilesize'          => 'Taille maximale du fichier : $1',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été copié, puis supprimé. Vous devriez vérifier le $1 avant de procéder à une nouvelle copie.',

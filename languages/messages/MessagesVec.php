@@ -655,7 +655,7 @@ Dovarìa èssarghene manco de $2, ghe ne xe $1.',
 'undo-summary' => 'Anulà la modifica $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Inpossibile registrar un utente',
+'cantcreateaccounttitle' => "Inpossibile registrar l'utente",
 'cantcreateaccount-text' => "La creazion de account novi a partir da sto indirizo IP ('''$1''') la xe stà blocà da [[User:$3|$3]].
 
 La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
@@ -815,9 +815,6 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'nonefound'                 => "'''Ocio''': la riçerca la vien fata in automatico solo in çerti namespace. Se te voli sercar tra tuti i contenuti (conprese pagine de discussion, template, etc.) zónteghe ''all:'' davanti al testo che te serchi, o senò specifica el namespace in cui sercar.",
 'powersearch'               => 'Riçerca avansada',
 'powersearch-legend'        => 'Riçerca avanzada',
-'powersearchtext'           => 'Çerca fra i canpi :<br />
-$1<br />
-$2 Elenca i redirects &nbsp; çerca par $3 $9',
 'search-external'           => 'Riçerca esterna',
 'searchdisabled'            => 'La riçerca interna de {{SITENAME}} no la xe ativa; par intanto te pol proár a doparar un motore de riçerca esterno come Google. (Nota però che i contenuti de {{SITENAME}} presenti in sti motori i podarìa èssar mìà agiornà.)',
 
@@ -1320,7 +1317,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'all-logs-page'        => 'Tuti i registri',
 'log-search-legend'    => 'Riçerca nei registri',
 'log-search-submit'    => 'Và',
-'alllogstext'          => 'Vixualixazion unificà de i registri de caricamento, scancełazion, protezin, blochi e de aministrazin. Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, nome utente, o la pàxena interessà.',
+'alllogstext'          => 'Vixualixazion unificà de i registri de caricamento, scancełazion, protezion, blochi e aministrazion del sito. Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, nome utente, o la pàxena interessà.',
 'logempty'             => "El registro no'l contien mìa elementi corispondenti a la riçerca.",
 'log-title-wildcard'   => 'Riçerca dei titoli che scuminsia con',
 
@@ -1996,7 +1993,7 @@ $1',
 # Bad image list
 'bad_image_list' => 'El formato el xe el seguente:
 
-Vien considerà solo i elenchi puntati (righe che scuminsi col caratere *).
+Vien considerà solo i elenchi puntati (righe che scuminsia col caratere *).
 El primo colegamento su ogni riga el gà da èssar un colegamento a un file indesiderà.
 I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè pagine in do che el file el pode èssar riciamà normalmente).',
 

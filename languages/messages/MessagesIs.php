@@ -903,7 +903,6 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'nonefound'                 => "'''Athugaðu''': Það er aðeins leitað í sumum nafnrýmum sjálfkrafa. Prófaðu að setja forskeytið ''all:'' í fyrirspurnina til að leita í öllu efni (þar á meðal notandaspjallsíðum, sniðum, o.s.frv.), eða notaðu tileigandi nafnrými sem forskeyti.",
 'powersearch'               => 'Ítarleg leit',
 'powersearch-legend'        => 'Ítarlegri leit',
-'powersearchtext'           => 'Leita í eftirfarandi nafnrýmum :<br />$1<br />$2 Sýna tilvísarnir<br />Leita að $3 $9',
 
 # Preferences page
 'preferences'             => 'Stillingar',
@@ -1453,7 +1452,8 @@ Núverandi staða síðunnar er <strong>$1</strong>:',
 
 # Undelete
 'undelete'                 => 'Endurvekja eydda síðu',
-'undeletepage'             => 'Skoða og endurvekja síður',
+'undeletepage'             => 'Skoða og endurvekja eyddar síður',
+'undeletepagetitle'        => "'''Eftirfarandi er samansafn af eyddum breytingum á [[:$1|$1]]'''.",
 'viewdeletedpage'          => 'Skoða eyddar síður',
 'undeletepagetext'         => 'Eftirfarandi síðum hefur verið eitt en eru þó enn í gagnagrunninum og geta verið endurvaknar. Athugið að síður þessar eru reglulega fjarlægðar endanlega úr gagnagrunninum.',
 'undeleterevisions'        => '$1 {{PLURAL:$1|breyting|breytingar}}',
@@ -1722,15 +1722,17 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'tooltip-ca-history'              => 'Eldri útgáfur af síðunni.',
 'tooltip-ca-protect'              => 'Vernda þessa síðu',
 'tooltip-ca-delete'               => 'Eyða þessari síðu',
-'tooltip-ca-undelete'             => 'Endurvekja breytingar á síðu þessari fyrir en henni var tortímt',
+'tooltip-ca-undelete'             => 'Endurvekja breytingar á þessari síðu áður en að henni var eytt',
 'tooltip-ca-move'                 => 'Færa þessa síðu',
 'tooltip-ca-watch'                => 'Bæta þessari síðu við á vaktlistann',
 'tooltip-ca-unwatch'              => 'Fjarlægja þessa síðu af vaktlistanum',
 'tooltip-search'                  => 'Leit á þessari Wiki',
+'tooltip-search-go'               => 'Fara á síðu með einmitt þetta nafn ef hún er til',
+'tooltip-search-fulltext'         => 'Leita á síðunum eftir þessum texta',
 'tooltip-p-logo'                  => 'Forsíða',
 'tooltip-n-mainpage'              => 'Forsíða {{SITENAME}}',
 'tooltip-n-portal'                => 'Um verkefnið, hvernig er hægt að hjálpa og hvar á að byrja',
-'tooltip-n-currentevents'         => 'Líðandi stund',
+'tooltip-n-currentevents'         => 'Finna upplýsingar um líðandi stund',
 'tooltip-n-recentchanges'         => 'Listi yfir nýlegar breytingar.',
 'tooltip-n-randompage'            => 'Handahófsvalin síða',
 'tooltip-n-help'                  => 'Efnisyfirlit yfir hjálparsíður.',
@@ -1743,6 +1745,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'tooltip-t-emailuser'             => 'Senda notanda þessum póst',
 'tooltip-t-upload'                => 'Hlaða inn skrám',
 'tooltip-t-specialpages'          => 'Listi yfir kerfissíður',
+'tooltip-t-print'                 => 'Prentanleg útgáfa af þessari síðu',
 'tooltip-t-permalink'             => 'Varanlegur tengill',
 'tooltip-ca-nstab-main'           => 'Sýna síðuna',
 'tooltip-ca-nstab-user'           => 'Sýna notandasíðuna',
@@ -1775,6 +1778,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'siteuser'         => '{{SITENAME}} notandi $1',
 'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Byggt á verkum $1.',
+'others'           => 'aðrir',
 'siteusers'        => '{{SITENAME}} notandi/notendur $1',
 
 # Info page
@@ -1820,7 +1824,8 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'nextdiff'     => 'Næsta breyting →',
 
 # Media information
-'imagemaxsize'         => 'Takmarka stærðir mynda á myndasíðum við:',
+'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.<hr/>",
+'imagemaxsize'         => 'Takmarka myndir á skráarlýsingasíðum við:',
 'thumbsize'            => 'Stærð smámynda:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
 'file-info'            => '(stærð skráar: $1, MIME-tegund: $2)',
@@ -1831,13 +1836,14 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 
 # Special:Newimages
-'newimages'         => 'Myndasafn nýlegra skráa',
-'imagelisttext'     => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
-'newimages-summary' => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár',
-'showhidebots'      => '($1 vélmenni)',
-'noimages'          => 'Ekkert að sjá.',
-'ilsubmit'          => 'Leita',
-'bydate'            => 'eftir dagsetningu',
+'newimages'             => 'Myndasafn nýlegra skráa',
+'imagelisttext'         => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
+'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár',
+'showhidebots'          => '($1 vélmenni)',
+'noimages'              => 'Ekkert að sjá.',
+'ilsubmit'              => 'Leita',
+'bydate'                => 'eftir dagsetningu',
+'sp-newimages-showfrom' => 'Leita af nýjum skráum frá $2, $1',
 
 # Metadata
 'metadata'          => 'Lýsigögn',
@@ -1880,6 +1886,7 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kílómetra á klukkustund',
 'exif-gpsspeed-m' => 'Mílur á klukkustund',
+'exif-gpsspeed-n' => 'Hnútar',
 
 # External editor support
 'edit-externally' => 'Breyta þessari skrá með utanaðkomandi hugbúnaði',
@@ -1892,29 +1899,29 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'monthsall'        => 'allir',
 
 # E-mail address confirmation
-'confirmemail'            => 'Staðfesta netfang',
-'confirmemail_noemail'    => 'Þú hefur ekki gefið upp gilt netfang í [[{{ns:special}}:Preferences|notandastillingum]] þínum.',
-'confirmemail_text'       => '{{SITENAME}} krefst þess að þú staðfestir netfangið þitt áður en að þú getur notað eiginleika tengt því. Smelltu á hnappinn að neðan til að fá staðfestingarpóst sendan á netfangið. Pósturinn mun innihalda tengil með kóða í sér; opnaðu tengilinn í vafranum til að staðfesta að netfangið sé rétt.',
-'confirmemail_pending'    => '<div class="error">
+'confirmemail'             => 'Staðfesta netfang',
+'confirmemail_noemail'     => 'Þú hefur ekki gefið upp gilt netfang í [[{{ns:special}}:Preferences|notandastillingum]] þínum.',
+'confirmemail_text'        => '{{SITENAME}} krefst þess að þú staðfestir netfangið þitt áður en að þú getur notað eiginleika tengt því. Smelltu á hnappinn að neðan til að fá staðfestingarpóst sendan á netfangið. Pósturinn mun innihalda tengil með kóða í sér; opnaðu tengilinn í vafranum til að staðfesta að netfangið sé rétt.',
+'confirmemail_pending'     => '<div class="error">
 Þú hefur nú þegar fengið staðfestingarpóst sendann; ef það er stutt síðan
 þú bjóst til aðganginn þinn, væri ráð að býða í nokkrar mínútur eftir póstinum
 áður en að þú byður um að fá nýjan kóða sendann.
 </div>',
-'confirmemail_send'       => 'Senda staðfestingarkóða með tölvupósti',
-'confirmemail_sent'       => 'Staðfestingartölvupóstur sendur.',
-'confirmemail_oncreate'   => 'Staðfestingarkóði hefur verði sendur á netfangið.
+'confirmemail_send'        => 'Senda staðfestingarkóða með tölvupósti',
+'confirmemail_sent'        => 'Staðfestingartölvupóstur sendur.',
+'confirmemail_oncreate'    => 'Staðfestingarkóði hefur verði sendur á netfangið.
 Þennan kóða þarf ekki að staðfesta til að skrá sig inn, en þú munt þurfa gefa hann upp áður
 en opnað verður fyrir valmöguleika tengda netfanginu á þessu wiki-verkefni.',
-'confirmemail_sendfailed' => 'Gat ekki sent staðfestingarkóða. Athugaðu hvort netfangið sé rétt.
+'confirmemail_sendfailed'  => 'Gat ekki sent staðfestingarkóða. Athugaðu hvort netfangið sé rétt.
 
 Póstþjónninn gaf eftirfarandi skilaboð: $1',
-'confirmemail_invalid'    => 'Ógildur staðfestingarkóði. Hann gæti verið útrunninn.',
-'confirmemail_needlogin'  => 'Þú verður að $1 til að staðfesta netfangið þitt.',
-'confirmemail_success'    => 'Netfang þitt hefur verið staðfest. Þú getur nú skráð þig inn og vafrað um wiki-kerfið.',
-'confirmemail_loggedin'   => 'Netfang þitt hefur verið staðfest.',
-'confirmemail_error'      => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
-'confirmemail_subject'    => '{{SITENAME}} netfangs-staðfesting',
-'confirmemail_body'       => 'Einhver, sennilega þú, með vistfangið $1 hefur skráð sig á {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
+'confirmemail_invalid'     => 'Ógildur staðfestingarkóði. Hann gæti verið útrunninn.',
+'confirmemail_needlogin'   => 'Þú verður að $1 til að staðfesta netfangið þitt.',
+'confirmemail_success'     => 'Netfang þitt hefur verið staðfest. Þú getur nú skráð þig inn og vafrað um wiki-kerfið.',
+'confirmemail_loggedin'    => 'Netfang þitt hefur verið staðfest.',
+'confirmemail_error'       => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
+'confirmemail_subject'     => '{{SITENAME}} netfangs-staðfesting',
+'confirmemail_body'        => 'Einhver, sennilega þú, með vistfangið $1 hefur skráð sig á {{SITENAME}} undir notandanafninu „$2“ og gefið upp þetta netfang.
 
 Til að staðfesta að það hafi verið þú sem skráðir þig undir þessu nafni, og til þess að virkja póstsendingar í gegnum {{SITENAME}}, skaltu opna þennan tengil í vafranum þínum:
 
@@ -1925,6 +1932,8 @@ Ef þú ert *ekki* sá/sú sem skráði þetta notandanafn, skaltu opna þennan 
 $5
 
 Þessi staðfestingarkóði rennur út $4.',
+'confirmemail_invalidated' => 'Staðfesting netfangs aflýst',
+'invalidateemail'          => 'Hætta við staðfestingu netfangs',
 
 # Scary transclusion
 'scarytranscludefailed'  => '[Gat ekki sótt snið fyrir $1; því miður]',
@@ -1965,6 +1974,7 @@ $1',
 'imgmultipageprev' => '← fyrri síða',
 'imgmultipagenext' => 'næsta síða →',
 'imgmultigo'       => 'Áfram!',
+'imgmultigoto'     => 'Fara á síðu $1',
 
 # Table pager
 'ascending_abbrev'         => 'hækkandi',
@@ -2015,11 +2025,14 @@ $1',
 
 # Special:Version
 'version'                  => 'Útgáfa', # Not used as normal message but as header for the special page itself
+'version-extensions'       => 'Uppsettar viðbætur',
 'version-specialpages'     => 'Kerfissíður',
 'version-variables'        => 'Breytur',
+'version-other'            => 'Önnur',
 'version-version'          => 'Útgáfa',
 'version-license'          => 'Leyfi',
 'version-software'         => 'Uppsettur hugbúnaður',
+'version-software-product' => 'Vara',
 'version-software-version' => 'Útgáfa',
 
 # Special:Filepath
@@ -2031,7 +2044,7 @@ $1',
 'fileduplicatesearch-legend'   => 'Leita að afriti',
 'fileduplicatesearch-filename' => 'Skráarnafn:',
 'fileduplicatesearch-submit'   => 'Leita',
-'fileduplicatesearch-info'     => '$1 × $2 myndeining<br/>Skráarstærð: $3<br/>MIME-gerð: $4',
+'fileduplicatesearch-info'     => '$1 × $2 myndeining<br />Skráarstærð: $3<br />MIME-gerð: $4',
 'fileduplicatesearch-result-1' => 'Skráin „$1“ hefur engin nákvæmlega eins afrit.',
 'fileduplicatesearch-result-n' => 'Skráin „$1“ hefur {{PLURAL:$2|1 nákvæmlega eins afrit|$2 nákvæmlega eins afrit}}.',
 

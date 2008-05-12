@@ -1076,7 +1076,9 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'nonefound'                 => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht. Als u in uw zoekopdracht als voorvoegsel \"''all:''\" gebruikt worden alle pagina's doorzocht (inclusief overlegpagina's, sjablonen, enzovoort). U kunt ook een naamruimte als voorvoegsel gebruiken.",
 'powersearch'               => 'Uitgebreid zoeken',
 'powersearch-legend'        => 'Uitgebreid zoeken',
-'powersearchtext'           => 'Zoeken in naamruimten:<br />$1<br />$2 Doorverwijzingen weergeven<br />Zoeken naar $3 $9',
+'powersearchtext-ns'        => 'Zoeken in naamruimten:<br />$1<br />',
+'powersearchtext-redir'     => 'Doorverwijzingen weergeven',
+'powersearchtext-field'     => 'Zoeken naar $1 $2',
 'search-external'           => 'Extern zoeken',
 'searchdisabled'            => 'Zoeken in {{SITENAME}} is niet mogelijk.
 U kunt gebruik maken van Google.
