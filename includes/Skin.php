@@ -544,12 +544,6 @@ END;
 
 		}
 		$a['onload'] = $wgOut->getOnloadHandler();
-		if( $wgUser->getOption( 'editsectiononrightclick' ) ) {
-			if( $a['onload'] != '' ) {
-				$a['onload'] .= ';';
-			}
-			$a['onload'] .= 'setupRightClickEdit()';
-		}
 		$a['class'] =
 			'mediawiki ns-'.$wgTitle->getNamespace().
 			' '.($wgContLang->isRTL() ? "rtl" : "ltr").

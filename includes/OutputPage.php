@@ -794,6 +794,10 @@ class OutputPage {
 				$this->addScriptFile( 'mwsuggest.js' );
 			}
 		}
+		
+		if( $wgUser->getBoolOption( 'editsectiononrightclick' ) ) {
+			$this->addScriptFile( 'rightclickedit.js' );
+		}
 
 
 		# Buffer output; final headers may depend on later processing
