@@ -13,7 +13,11 @@ Changes since 1.12.0:
 * (bug 13532) Use proper timestamp call when reverting images
 * (bug 13649) Bad call to wfTimestamp()
 * (bug 13770) Use Preprocessor_Hash by default to avoid missing DOM module errors
-
+* (bug 13442) Missing pages in prop=langlinks and prop=extlinks are now 
+  handled properly.
+* (bug 13482) Disabled search types handled properly
+* (bug 13836) Fixed fatal errors resulting from combining iiprop=metadata with
+  format=xml
 
 == MediaWiki 1.12.0 ==
 

@@ -40,6 +40,9 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function execute() {
+		if ( $this->getPageSet()->getGoodTitleCount() == 0 )
+			return;
+	
 		$this->addFields(array (
 			'll_from',
 			'll_lang',
