@@ -104,7 +104,8 @@ class SpecialVersion {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
 		$svn = self::getSvnRevision( $IP );
-		$version = $svn ? "$wgVersion (r$svn)" : $wgVersion;
+		$viewvc = 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/?pathrev=';
+		$version = $svn ? "$wgVersion ([{$viewvc}{$svn} r$svn])" : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
