@@ -900,11 +900,6 @@ class UploadForm {
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
 		$useAjaxLicensePreview = $wgUseAjax && $wgAjaxLicensePreview;
 
-		// Initilaize $extensionList here in case it is not set later on
-		// (which would cause a E_NOTICE) and it must not be set only if it
-		// isn't set to avoid a possible register_globals issue.
-		$extensionList = '';
-
 		$adc = wfBoolToStr( $useAjaxDestCheck );
 		$alp = wfBoolToStr( $useAjaxLicensePreview );
 		$autofill = wfBoolToStr( $this->mDesiredDestName == '' );
@@ -985,6 +980,9 @@ wgUploadAutoFill = {$autofill};
 					wfMsgWikiHtml( 'upload-prohibited', implode( $wgFileBlacklist, $delim ) ) .
 					"</div>\n";
 			}
+		} else {
+			# Everything is permitted.
+			$extensionsList = '';
 		}
 
 		# Get the maximum file size from php.ini as $wgMaxUploadSize works for uploads from URL via CURL only
