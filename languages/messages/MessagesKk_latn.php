@@ -1206,7 +1206,9 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 'nonefound'                 => "'''Añğartpa''': Bastapqıdan izdew tek keýbir esim ayalarda boladı. Barlıq mağlumattı (sonıñ işinde talqılaw betterdi, ülgilerdi t.b.) izdew üşin suranımıñızdı ''barlıq:'' dep bastañız, nemese qalağan esim ayasın bastawış esebinde qoldanıñız.",
 'powersearch'               => 'Keñeýtilgen izdew',
 'powersearch-legend'        => 'Keñeýtilgen izdew',
-'powersearchtext'           => 'Mına esim ayalarda izdew:<br />$1<br />$2 Aýdatwlardı tizimdew<br />İzdew suranımı: $3 $9',
+'powersearchtext-ns'        => 'Mına esim ayalarda izdew:<br />$1<br />',
+'powersearchtext-redir'     => 'Aýdatwlardı tizimdew',
+'powersearchtext-field'     => 'İzdew suranımı: $1 $2',
 'search-external'           => 'Sırtqı izdegiş',
 'searchdisabled'            => '{{SITENAME}} izdew qızmeti öşirilgen.
 Äzirşe Google arqılı izdewge boladı.
@@ -1338,10 +1340,10 @@ baptaw üşin math/README qujatın qarañız.',
 'right-suppressredirect'     => 'Tïisti atawğa betti jıljıtqanda aýdatwdı joyw',
 'right-upload'               => 'Faýldardı qotarıp berw',
 'right-reupload'             => 'Bar faýl üstine jazw',
-'right-reupload-own'         => 'Qatıswşınıñ özi qotarğan bar faýl üstine jazw',
+'right-reupload-own'         => 'Özi qotarğan bar faýl üstine jazw',
 'right-reupload-shared'      => 'Taspa ortaq qoýmasındağı faýldardı jergiliktilermen asırw',
 'right-upload_by_url'        => 'Faýldı URL jaýımen qotarıp berw',
-'right-purge'                => 'Toraptağı quptaw beti joq bet üşin aralıq qaltasın tazartw',
+'right-purge'                => 'Betti torap aralıq qaltasınan quptawsız tazartw',
 'right-autoconfirmed'        => 'Jartılaý qorğalğan betterdi öñdew',
 'right-bot'                  => 'Özdiktik üdiris dep eseptelw',
 'right-nominornewtalk'       => 'Talqılaw betterdegi şağın öñdemelerdi jaña xabar dep eseptemew',
@@ -1363,18 +1365,18 @@ baptaw üşin math/README qujatın qarañız.',
 'right-editprotected'        => 'Qorğalğan betterdi öñdew (bawlı qorğawlarsız)',
 'right-editinterface'        => 'Paýdalanwşılıq tildesiwin öñdew',
 'right-editusercssjs'        => 'Basqa qatıswşılardıñ CSS jäne JS faýldarın öñdew',
-'right-rollback'             => 'Belgili betti öñdegen soñğı qatıswşınıñ tüzetwlerinen jıldam qaýtarw',
-'right-markbotedits'         => 'Qaýtarılğan öñdemelerrdi bottar jasağan dep belgilew',
+'right-rollback'             => 'Belgili betti öñdegen soñğı qatıswşınıñ öñdemelerinen jıldam şegindirw',
+'right-markbotedits'         => 'Şegindirlgen öñdemelerdi bottardiki dep belgilew',
 'right-import'               => 'Basqa wïkïlerden betterdi sırttan alw',
 'right-importupload'         => 'Faýl qotarwımen betterdi sırttan alw',
-'right-patrol'               => 'Öñdemelerdi küzette dep belgilew',
-'right-autopatrol'           => 'Öñdemelerdi küzette dep özdiktik belgilew',
+'right-patrol'               => 'Basqarardıñ öñdemelerin küzette dep belgilew',
+'right-autopatrol'           => 'Öz öñdemelerin küzette dep özdiktik belgilew',
 'right-patrolmarks'          => 'Jwıqtağı özgeristerdegi küzet belgilerin körw',
 'right-unwatchedpages'       => 'Baqılanılmağan bet tizimin körw',
 'right-trackback'            => 'Añıstawdı jöneltw',
 'right-mergehistory'         => 'Betterdiñ tarïxın qosıp berw',
 'right-userrights'           => 'Qatıswşılardıñ barlıq quqıqtarın öñdew',
-'right-userrights-interwiki' => 'Basqa üïkï toraptarındağı qatıswşılardıñ quqıqtarın öñdew',
+'right-userrights-interwiki' => 'Basqa üïkïlerdegi qatıswşılardıñ quqıqtarın öñdew',
 'right-siteadmin'            => 'Derekqordı qulıptaw jäne qulıptawın öşirw',
 
 # User rights log
@@ -1901,14 +1903,14 @@ Bundaý betterdiñ joywı {{SITENAME}} torabın äldeqalaý üzip tastawına bö
 'delete-warning-toobig'       => 'Bul bette baýtaq tüzetw tarïxı bar, $1 tüzetwden astam.
 Bunıñ joywı {{SITENAME}} torabındağı derekqor äreketterdi üzip tastawın mümkin;
 bunı abaýlap ötkiziñiz.',
-'rollback'                    => 'Öñdemelerdi keri qaýtarw',
-'rollback_short'              => 'Keri qaýtarw',
-'rollbacklink'                => 'keri qaýtarw',
-'rollbackfailed'              => 'Keri qaýtarw sätsiz bitti',
-'cantrollback'                => 'Öñdeme qaýtarılmaýdı;
-bul bettiñ awtorı tek soñğı ülesker bolğan.',
-'alreadyrolled'               => '[[:$1]] betiniñ [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) soñğı öñdemesi keri qaýtarılmadı;
-basqa birew betti aldaqaşan öñdegen ne qaýtarğan.
+'rollback'                    => 'Öñdemelerdi şegindirw',
+'rollback_short'              => 'Şegindirw',
+'rollbacklink'                => 'şegindirw',
+'rollbackfailed'              => 'Şegindirw sätsiz bitti',
+'cantrollback'                => 'Öñdeme qaýtarılmadı;
+soñğı üleskeri tek osı bettiñ bastawşısı boldı.',
+'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) istegen [[:$1]] soñğı öñdemesi şegindirilmedi;
+basqa birew bul betti aldaqaşan öñdegen ne şegindirgen.
 
 soñğı öñdemesin [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.',
 'editcomment'                 => 'Bolğan öñdeme mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
@@ -2262,10 +2264,10 @@ Eger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [http://www.mediawi
 
 # Special:Import
 'import'                     => 'Betterdi sırttan alw',
-'importinterwiki'            => 'Wïkï-tasımaldap sırttan alw',
+'importinterwiki'            => 'Wïkï aradan tasımaldap sırttan alw',
 'import-interwiki-text'      => 'Sırttan alatın wïkï jobasın jäne bet atawın bölekteñiz.
 Tüzetw kün-aýı jäne öñdewşi esimderi saqtaladı.
-Barlıq wïkï arasındağı sırttan alw äreketter [[{{#special:Log}}/import|sırttan alw jwrnalına]] jazılıp alınadı.',
+Wïkï aradan tasımaldap sırttan alw barlıq äreketter [[{{#special:Log}}/import|sırttan alw jwrnalına]] jazılıp alınadı.',
 'import-interwiki-history'   => 'Osı bettiñ barlıq tarïxï nusqaların köşirw',
 'import-interwiki-submit'    => 'Sırttan alw',
 'import-interwiki-namespace' => 'Mına esim ayasına betterdi tasımaldaw:',
@@ -2280,7 +2282,7 @@ Barlıq wïkï arasındağı sırttan alw äreketter [[{{#special:Log}}/import|s
 'importnotext'               => 'Bostı, ne mätini joq',
 'importsuccess'              => 'Sırttan alwı ayaqtaldı!',
 'importhistoryconflict'      => 'Tüzetw tarıxınıñ tartısı bar (bul betti aldında sırttan alınğan sïyaqtı)',
-'importnosources'            => 'Eşqandaý wïkï-tasımaldap sırttan alw qaýnarı belgilenmegen, jäne tarïxın tikeleý qotarwı öşirilgen.',
+'importnosources'            => 'Eşqandaý wïkï aradan tasımaldap sırttan alw qaýnarı belgilenmegen, jäne tarïxın tikeleý qotarwı öşirilgen.',
 'importnofile'               => 'Sırttan alınatın faýl qotarılğan joq.',
 'importuploaderrorsize'      => 'Sırttan alınatın faýldıñ qotarwı sätsiz ötti. Faýl mölşeri qotarwğa rwqsat etilgennen artıq.',
 'importuploaderrorpartial'   => 'Sırttan alınatın faýldıñ qotarwı sätsiz ötti. Osı faýldıñ tek bölikteri qotarıldı.',
@@ -2295,7 +2297,7 @@ Barlıq wïkï arasındağı sırttan alw äreketter [[{{#special:Log}}/import|s
 'importlogpagetext'                => 'Basqa wïkïlerden tüzetw tarïxımen birge betterdi äkimşilik retinde sırttan alw.',
 'import-logentry-upload'           => 'faýl qotarwımen sırttan «[[$1]]» beti alındı',
 'import-logentry-upload-detail'    => '$1 tüzetw',
-'import-logentry-interwiki'        => 'wïkï arasınan alınğan $1',
+'import-logentry-interwiki'        => 'wïkï aradan tasımaldap alınğan $1',
 'import-logentry-interwiki-detail' => '$2 degennen $1 tüzetw',
 
 # Tooltip help for the actions
