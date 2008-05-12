@@ -2491,6 +2491,7 @@ $1',
 'imgmultipageprev' => '← 上一版',
 'imgmultipagenext' => '下一版 →',
 'imgmultigo'       => '去!',
+'imgmultigoto'     => '去第$1版',
 
 # Table pager
 'ascending_abbrev'         => '增',
