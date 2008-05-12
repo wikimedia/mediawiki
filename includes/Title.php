@@ -2440,7 +2440,8 @@ class Title {
 			}
 		} else {
 			$tp = $nt->getTitleProtection();
-			if ( $tp and !$wgUser->isAllowed( $tp['pt_create_perm'] ) ) {
+			$right = ( $tp['pt_create_perm'] == 'sysop' ) ? 'protect' : $tp['pt_create_perm'];
+			if ( $tp and !$wgUser->isAllowed( $right ) ) {
 				return 'cantmove-titleprotected';
 			}
 		}
