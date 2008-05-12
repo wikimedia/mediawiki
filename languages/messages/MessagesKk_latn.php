@@ -177,7 +177,7 @@ $magicWords = array(
 	'nogallery'              => array( 0,    '__QOÝMASIZ__', '__QSIZ__', '__NOGALLERY__' ),
 	'forcetoc'               => array( 0,    '__MAZMUNDATQIZW__', '__MQIZW__', '__FORCETOC__' ),
 	'toc'                    => array( 0,    '__MAZMUNI__', '__MZMN__', '__TOC__' ),
-	'noeditsection'          => array( 0,    '__BÖLİMÖNDETKİZBEW__', '__NOEDITSECTION__' ),
+	'noeditsection'          => array( 0,    '__BÖLİDİMÖNDEMEW__', '__BÖLİMÖNDETKİZBEW__', '__NOEDITSECTION__' ),
 	'currentmonth'           => array( 1,    'AĞIMDAĞIAÝ', 'CURRENTMONTH' ),
 	'currentmonthname'       => array( 1,    'AĞIMDAĞIAÝATAWI', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'    => array( 1,    'AĞIMDAĞIAÝİLİKATAWI', 'CURRENTMONTHNAMEGEN' ),
@@ -202,7 +202,7 @@ $magicWords = array(
 	'numberofarticles'       => array( 1,    'MAQALASANI', 'NUMBEROFARTICLES' ),
 	'numberoffiles'          => array( 1,    'FAÝLSANI', 'NUMBEROFFILES' ),
 	'numberofusers'          => array( 1,    'QATISWŞISANI', 'NUMBEROFUSERS' ),
-	'numberofedits'          => array( 1,    'TÜZETWSANI', 'NUMBEROFEDITS' ),
+	'numberofedits'          => array( 1,    'ÖÑDEMESANI', 'TÜZETWSANI', 'NUMBEROFEDITS' ),
 	'pagename'               => array( 1,    'BETATAWI', 'PAGENAME' ),
 	'pagenamee'              => array( 1,    'BETATAWI2', 'PAGENAMEE' ),
 	'namespace'              => array( 1,    'ESİMAYASI', 'NAMESPACE' ),
@@ -259,12 +259,12 @@ $magicWords = array(
 	'currentdow'             => array( 1,    'AĞIMDAĞIAPTAKÜNİ', 'CURRENTDOW' ),
 	'localweek'              => array( 1,    'JERGİLİKTİAPTASI', 'JERGİLİKTİAPTA', 'LOCALWEEK' ),
 	'localdow'               => array( 1,    'JERGİLİKTİAPTAKÜNİ', 'LOCALDOW' ),
-	'revisionid'             => array( 1,    'NUSQANÖMİRİ', 'REVISIONID' ),
-	'revisionday'            => array( 1,    'NUSQAKÜNİ' , 'REVISIONDAY' ),
-	'revisionday2'           => array( 1,    'NUSQAKÜNİ2', 'REVISIONDAY2' ),
-	'revisionmonth'          => array( 1,    'NUSQAAÝI', 'REVISIONMONTH' ),
-	'revisionyear'           => array( 1,    'NUSQAJILI', 'REVISIONYEAR' ),
-	'revisiontimestamp'      => array( 1,    'NUSQAWAQITTÜÝİNDEMESİ', 'REVISIONTIMESTAMP' ),
+	'revisionid'             => array( 1,    'TÜZETWNÖMİRİ', 'NUSQANÖMİRİ', 'REVISIONID' ),
+	'revisionday'            => array( 1,    'TÜZETWKÜNİ','NUSQAKÜNİ', 'REVISIONDAY' ),
+	'revisionday2'           => array( 1,    'TÜZETWKÜNİ2', 'NUSQAKÜNİ2', 'REVISIONDAY2' ),
+	'revisionmonth'          => array( 1,    'TÜZETWAÝI', 'NUSQAAÝI', 'REVISIONMONTH' ),
+	'revisionyear'           => array( 1,    'TÜZETWJILI', 'NUSQAJILI', 'REVISIONYEAR' ),
+	'revisiontimestamp'      => array( 1,    'TÜZETWWAQITITAÑBASI', 'NUSQAWAQITTÜÝİNDEMESİ', 'REVISIONTIMESTAMP' ),
 	'plural'                 => array( 0,    'KÖPŞETÜRİ:','KÖPŞE:', 'PLURAL:' ),
 	'fullurl'                => array( 0,    'TOLIQJAÝI:', 'TOLIQJAÝ:', 'FULLURL:' ),
 	'fullurle'               => array( 0,    'TOLIQJAÝI2:', 'TOLIQJAÝ2:', 'FULLURLE:' ),
@@ -329,7 +329,7 @@ $specialPageAliases = array(
 	'Mostlinkedtemplates'       => array( 'Eñ_köp_paýdalanılğan_ülgiler', 'Eñ_köp_siltengen_ülgiler' ),
 	'Mostcategories'            => array( 'Eñ_köp_sanattar_barı' ),
 	'Mostimages'                => array( 'Eñ_köp_paýdalanılğan_swretter', 'Eñ_köp_swretter_barı' ),
-	'Mostrevisions'             => array( 'Eñ_köp_nusqalar_barı' ),
+	'Mostrevisions'             => array( 'Eñ_köp_tüzetilgen', 'Eñ_köp_nusqalar_barı' ),
 	'Fewestrevisions'           => array( 'Eñ_az_tüzetilgen ' ),
 	'Shortpages'                => array( 'Qısqa_better' ),
 	'Longpages'                 => array( 'Uzın_better', 'Ülken_better' ),
@@ -365,7 +365,7 @@ $specialPageAliases = array(
 	'FileDuplicateSearch'       => array( 'Faýl_telnusqasın_izdew', 'Qaýtalanğan_faýldardı_izdew' ),
 	'Unwatchedpages'            => array( 'Baqılanılmağan_better' ),
 	'Listredirects'             => array( 'Aýdatw_tizimi' ),
-	'Revisiondelete'            => array( 'Nusqanı_joyw' ),
+	'Revisiondelete'            => array( 'Tüzetw_joyw', 'Nusqanı_joyw' ),
 	'Unusedtemplates'           => array( 'Paýdalanılmağan_ülgiler' ),
 	'Randomredirect'            => array( 'Kedeýsoq_aýdatw' ),
 	'Mypage'                    => array( 'Jeke_betim' ),
@@ -391,7 +391,7 @@ $messages = array(
 'tog-underline'               => 'Siltemeniñ astın sız:',
 'tog-highlightbroken'         => 'Jaramsız siltemelerdi <a href="" class="new">bılaý sïyaqtı</a> pişimde (balaması: bılaý sïyaqtı<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ejelerdi eni boýınşa twralaw',
-'tog-hideminor'               => 'Jwıqtağı özgeristerden şağındarın jasır',
+'tog-hideminor'               => 'Jwıqtağı özgeristerden şağın öñdemelerdi jasır',
 'tog-extendwatchlist'         => 'Baqılaw tizimdi ulğaýt (barlıq jaramdı özgeristerdi körset)',
 'tog-usenewrc'                => 'Keñeýtilgen jwıqtağı özgerister (JavaScript)',
 'tog-numberheadings'          => 'Bas joldardı özdiktik nomirle',
@@ -406,13 +406,13 @@ $messages = array(
 'tog-watchdefault'            => 'Men öñdegen betterdi baqılaw tizimime üste',
 'tog-watchmoves'              => 'Men jıljıtqan betterdi baqılaw tizimime üste',
 'tog-watchdeletion'           => 'Men joýğan betterdi baqılaw tizimime üste',
-'tog-minordefault'            => 'Ädepkiden barlıq tüzetwlerdi şağın dep belgile',
+'tog-minordefault'            => 'Ädepkiden barlıq öñdemelerdi şağın dep belgile',
 'tog-previewontop'            => 'Qarap şığw awmağı öñdew awmağı aldında',
 'tog-previewonfirst'          => 'Birinşi öñdegende qarap şığw',
 'tog-nocache'                 => 'Aralıq qaltada bet saqtawın öşir',
 'tog-enotifwatchlistpages'    => 'Baqılanğan bet özgergende mağan xat jiber',
 'tog-enotifusertalkpages'     => 'Talqılawım özgergende mağan xat jiber',
-'tog-enotifminoredits'        => 'Şağın tüzetw twralı da mağan xat jiber',
+'tog-enotifminoredits'        => 'Şağın öñdeme twralı da mağan xat jiber',
 'tog-enotifrevealaddr'        => 'E-poşta jaýımdı eskertw xatta aşıq körset',
 'tog-shownumberswatching'     => 'Baqılap turğan qatıswşılardıñ sanın körset',
 'tog-fancysig'                => 'Qam qoltañba (özdiktik siltemesiz;)',
@@ -420,10 +420,10 @@ $messages = array(
 'tog-externaldiff'            => 'Sırtqı aýırmağıştı ädepkiden qoldan',
 'tog-showjumplinks'           => '«Ötip ketw» qatınaw siltemelerin qos',
 'tog-uselivepreview'          => 'Twra qarap şığwdı qoldanw (JavaScript) (Sınaqtama)',
-'tog-forceeditsummary'        => 'Öñdew sïpattaması bos qalğanda mağan eskert',
-'tog-watchlisthideown'        => 'Tüzetwimdi baqılaw tizimnen jasır',
-'tog-watchlisthidebots'       => 'Bot tüzetwin baqılaw tizimnen jasır',
-'tog-watchlisthideminor'      => 'Şağın tüzetwlerdi baqılaw tiziminde körsetpe',
+'tog-forceeditsummary'        => 'Öñdeme sïpattaması bos qalğanda mağan eskert',
+'tog-watchlisthideown'        => 'Öñdemelerimdi baqılaw tizimnen jasır',
+'tog-watchlisthidebots'       => 'Bot öñdemelerin baqılaw tizimnen jasır',
+'tog-watchlisthideminor'      => 'Şağın öñdemelerdi baqılaw tiziminde körsetpe',
 'tog-nolangconversion'        => 'Til türi awdarısın öşir',
 'tog-ccmeonemails'            => 'Basqa qatıswşığa jibergen xatımnıñ köşirmesin mağan da jönelt',
 'tog-diffonly'                => 'Aýırma astında bet mağlumatın körsetpe',
@@ -523,7 +523,7 @@ $messages = array(
 'qbbrowse'       => 'Şolw',
 'qbedit'         => 'Öñdew',
 'qbpageoptions'  => 'Bul bet',
-'qbpageinfo'     => 'Mätin aralığı',
+'qbpageinfo'     => 'Aýnala',
 'qbmyoptions'    => 'Betterim',
 'qbspecialpages' => 'Arnaýı better',
 'moredotdotdot'  => 'Köbirek…',
@@ -557,7 +557,7 @@ $messages = array(
 'create-this-page'  => 'Jaña bet bastaw',
 'delete'            => 'Joyw',
 'deletethispage'    => 'Betti joyw',
-'undelete_short'    => '$1 tüzetw joywın boldırmaw',
+'undelete_short'    => '$1 öñdeme joywın boldırmaw',
 'protect'           => 'Qorğaw',
 'protect_change'    => 'qorğawdı özgertw',
 'protectthispage'   => 'Betti qorğaw',
@@ -643,7 +643,7 @@ $messages = array(
 'hidetoc'                 => 'jasır',
 'thisisdeleted'           => 'Qaraw, ne qalpına keltirw me?: $1',
 'viewdeleted'             => 'Qaraw ma?: $1',
-'restorelink'             => 'joýılğan $1 tüzetw',
+'restorelink'             => 'joýılğan $1 öñdeme',
 'feedlinks'               => 'Arna:',
 'feed-invalid'            => 'Jaramsız jazılımdı arna türi.',
 'feed-unavailable'        => '{{SITENAME}} jobasında taratılatın arnalar joq',
@@ -676,13 +676,13 @@ Jaramdı arnaýı bet tizimin [[{{#special:Specialpages}}]] degennen taba alası
 # General errors
 'error'                => 'Qate',
 'databaseerror'        => 'Derekqor qatesi',
-'dberrortext'          => 'Derekqor suranımında sïntaksïs qatesi boldı.
+'dberrortext'          => 'Derekqor suranımında söýlem jüýesiniñ qatesi boldı.
 Bul bağdarlama qatesin belgilewi mümkin.
 Soñğı bolğan derekqor suranımı:
 <blockquote><tt>$1</tt></blockquote>
 mına jeteden «<tt>$2</tt>».
 MySQL qaýtarğan qatesi «<tt>$3: $4</tt>».',
-'dberrortextcl'        => 'Derekqor suranımında sïntaksïs qatesi boldı.
+'dberrortextcl'        => 'Derekqor suranımında söýlem jüýesiniñ qatesi boldı.
 Soñğı bolğan derekqor suranımı:
 «$1»
 mına jeteden: «$2».
@@ -703,7 +703,7 @@ Bul dağdıda eskirgen aýırma siltemesine nemese joýılğan bet tarïxınıñ
 
 Eger bul boljam durıs sebep bolmasa, bağdarlamamızdağı qatege tap bolwıñız mümkin.
 Bul twralı naqtı URL jaýına añğartıp, äkimşige esepteme jiberiñiz.',
-'missingarticle-rev'   => '(nusqa n-i: $1)',
+'missingarticle-rev'   => '(tüzetw n-i: $1)',
 'missingarticle-diff'  => '(Aýrm.: $1, $2)',
 'readonly_lag'         => 'Jetek derekqor serverler bastawışpen qadamlanğanda osı derekqor özdiktik qulıptalınğan',
 'internalerror'        => 'İşki qate',
@@ -737,9 +737,9 @@ Birneşe mïnöttan qaýta baýqap köriñiz.',
 'protectedpagetext'    => 'Öñdewdi qaqpaýlaw üşin bul bet qulıptalınğan.',
 'viewsourcetext'       => 'Bul bettiñ qaýnarın qarawıñızğa jäne köşirip alwñızğa boladı:',
 'protectedinterface'   => 'Bul bet bağdarlamanıñ tildesw mätinin jetistiredi, sondıqtan qïyanattı qaqpaýlaw üşin özgertwi qulıptalğan.',
-'editinginterface'     => "'''Qulaqtandırw:''' Bağdarlamağa tildesw mätinin jetistiretin betin öñdep jatırsız.
+'editinginterface'     => "'''Qulaqtandırw:''' Bağdarlama jasaqtamanıñ tildesw mätinin jetistiretin betin öñdep jatırsız.
 Bul bettiñ özgertwi basqa qatıswşılarğa paýdalanwşılıq tildeswi qalaý körinetine äser etedi.
-Awdarw üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.net/wiki/Main_Page?setlang=kk Betawiki jobasın] paýdalanwı jan-jağın qarap köriñiz.",
+Awdarmalar üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.net/wiki/Main_Page?setlang=kk Betawiki jobası] arqılı qarap şeşiñiz.",
 'sqlhidden'            => '(SQL suranımı jasırılğan)',
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi kelesi «bawlı qorğawı» qosılğan {{PLURAL:$1|betke|betterge}} kiristirilgen:
 $2',
@@ -757,7 +757,7 @@ Jüýege kirmesten {{SITENAME}} jobasın paýdalanwın jalğastıra alasız, nem
 Añğartpa: Keýbir better şolğıştıñ aralıq qaltasın bosatqanşa deýin äli de jüýege kirgeniñizdeý körinwi mümkin.',
 'welcomecreation'            => '== Qoş keldiñiz, $1! ==
 Jaña tirkelgiñiz jasaldı.
-{{SITENAME}} baptawıñızdı qalawıñızben özgertwdi umıtpañız.',
+{{SITENAME}} baptaw özgertwin umıtpañız.',
 'loginpagetitle'             => 'Qatıswşı kirwi',
 'yourname'                   => 'Qatıswşı atıñız:',
 'yourpassword'               => 'Qupïya söziñiz:',
@@ -821,15 +821,15 @@ Eñ keminde $1 ärip jäne qatıswşı atıñızdan basqa bolwı kerek.',
 'passwordremindertext'       => 'Keýbirew (IP jaýı: $1, bälkim öziñiz bolarsız)
 sizge {{SITENAME}} üşin jaña qupïya söz jöneletwin bizden surağan ($4).
 «$2» qatıswşınıñ qupïya sözi «$3» boldı endi.
-Qazir kirwiñiz jäne qupïya söziñizdi awıstrwıñız kerek.
+Qazir kirwiñiz jäne qupïya sözdi özgertwiñiz kerek.
 
-Eger basqa birew bunı suratılğan bolsa, nemese qupïya söziñizdi umıtsañız da, jäne bunı özgertkiñiz kelmese de, osı xabarlamağa añğarmawıñızğa da boladı, eski qupïya söziñizdi äriğaraý qoldanıp.',
+Eger bul suranımdı basqa birew istese, ne qupïya sözdi eske tüsirsip endi özgertkiñiz kelmese, eski qupïya söz qoldanwın jağastırıp osı xatqa añğarmawıñızğa da boladı.',
 'noemail'                    => 'Mında «$1» qatıswşınıñ e-poştası joq.',
 'passwordsent'               => 'Jaña qupïya söz «$1» üşin tirkelgen e-poşta jaýına jöneltildi.
 Qabıldağannan keýin kirgende sonı engiziñiz.',
 'blocked-mailpassword'       => 'IP jaýıñızdan öñdew buğattalğan, sondıqtan qïyanattı qaqpaýlaw üşin qupïya sözdi qalpına keltirw jetesin qoldanwına ruqsat etilmeýdi.',
 'eauthentsent'               => 'Quptaw xatı atalmış e-poşta jaýına jöneltildi.
-Basqa e-poşta xatın jöneltw aldınan, tirkelgi şınınan sizdiki ekenin quptaw üşin xattağı nusqawlarğa eriwñiz jön.',
+Basqa e-poşta xatın jöneltw aldınan, tirkelgi şınınan sizdiki ekenin quptaw üşin xattağı nusqamalarğa eriwñiz jön.',
 'throttled-mailpassword'     => 'Soñğı $1 sağatta qupïya söz eskertw xatı aldaqaşan jöneltildi.
 Qïyanattı qaqpaýlaw üşin, $1 sağat saýın tek bir ğana qupïya söz eskertw xatı jöneltiledi.',
 'mailerror'                  => 'Xat jöneltw qatesi: $1',
@@ -886,7 +886,7 @@ Mümkin qupïya söziñizdi aldaqaşan sätti özgertken bolarsız nemese jaña 
 # Edit pages
 'summary'                           => 'Sïpattaması',
 'subject'                           => 'Taqırıbı/bas jolı',
-'minoredit'                         => 'Bul şağın tüzetw',
+'minoredit'                         => 'Bul şağın öñdeme',
 'watchthis'                         => 'Betti baqılaw',
 'savearticle'                       => 'Betti saqta!',
 'preview'                           => 'Qarap şığw',
@@ -894,12 +894,12 @@ Mümkin qupïya söziñizdi aldaqaşan sätti özgertken bolarsız nemese jaña 
 'showlivepreview'                   => 'Twra qarap şıq',
 'showdiff'                          => 'Özgeristerdi körset',
 'anoneditwarning'                   => "'''Qulaqtandırw:''' Siz jüýege kirmegensiz.
-IP jaýıñız bul bettiñ öñdew tarïxında jazılıp alınadı.",
-'missingsummary'                    => "'''Eskertpe:''' Tüzetw sïpattamasın engizbepsiz.
-«Saqtaw» tüýmesin tağı bassañız, tüzetwiñiz mändemesiz saqtaladı.",
+IP jaýıñız bul bettiñ tüzetw tarïxında jazılıp alınadı.",
+'missingsummary'                    => "'''Eskertpe:''' Öñdeme sïpattamasın engizbepsiz.
+«Saqtaw» tüýmesin tağı bassañız, öñdenmeñiz mändemesiz saqtaladı.",
 'missingcommenttext'                => 'Tömende mändemeñizdi engiziñiz.',
 'missingcommentheader'              => "'''Eskertpe:''' Bul mändemege taqırıp/basjol jetistirmepsiz.
-Eger tağı da Saqtaw tüýmesin nuqısañız, tüzetwiñiz solsız saqtaladı.",
+Eger tağı da Saqtaw tüýmesin nuqısañız, öñdemeñiz solsız saqtaladı.",
 'summary-preview'                   => 'Sïpattamasın qarap şığw',
 'subject-preview'                   => 'Taqırıbın/bas jolın qarap şığw',
 'blockedtitle'                      => 'Qatıswşı buğattalğan',
@@ -930,19 +930,19 @@ Buğataw nömiriñiz: $5.
 Bul nömirdi ärbir suranımıñızdarğa kiristiriñiz.",
 'blockednoreason'                   => 'eş sebebi keltirilmegen',
 'blockedoriginalsource'             => "'''$1''' degenniñ qaýnarı tömende körsetiledi:",
-'blockededitsource'                 => "'''$1''' degenge jasalğan '''tüzetwleriñizdiñ''' mätini tömende körsetiledi:",
+'blockededitsource'                 => "'''$1''' degenge jasalğan '''öñdemeleriñizdiñ''' mätini tömende körsetiledi:",
 'whitelistedittitle'                => 'Öñdew üşin kirwiñiz jön.',
 'whitelistedittext'                 => 'Betterdi öñdew üşin $1 jön.',
 'whitelistreadtitle'                => 'Oqw üşin kirwiñiz jön',
 'whitelistreadtext'                 => 'Betterdi oqw üşin [[{{#special:Userlogin}}|kirwiñiz]] jön.',
 'whitelistacctitle'                 => 'Tirkelgi jasawıñızğa ruqsat berilmegen',
 'whitelistacctext'                  => '{{SITENAME}} jobasına tirkelgi jasaw üşin [[{{#special:Userlogin}}|kirwiñiz]] kerek jäne janasımdı ruqsattarıñız bolw kerek.',
-'confirmedittitle'                  => 'E-poşta jaýın quptaw xatı qaýta öñdelwi kerek',
+'confirmedittitle'                  => 'Quptaw xatı qaýta öñdelwi jön',
 'confirmedittext'                   => 'Betterdi öñdew üşin aldın ala E-poşta jaýıñızdı quptawıñız kerek.
 Jaýıñızdı [[{{#special:Preferences}}|qatıswşı baptawı]] arqılı qoýıñız da jaramdılığın tekserip şığıñız.',
 'nosuchsectiontitle'                => 'Bundaý bölim joq',
 'nosuchsectiontext'                 => 'Joq bölimdi öñdewdi talap etipsiz.
-Mında $1 degen bölim joq eken, öñdewleriñizdi saqtaw üşin orın joq.',
+Mında $1 degen bölim joq eken, öñdemeñizdi saqtaw üşin orın joq.',
 'loginreqtitle'                     => 'Kirwiñiz kerek',
 'loginreqlink'                      => 'kirw',
 'loginreqpagetext'                  => 'Basqa betterdi körw üşin siz $1 bolwıñız kerek.',
@@ -955,7 +955,7 @@ Eger jañılğannan osında kelgen bolsañız, şolğışıñız «Artqa» degen
 'anontalkpagetext'                  => "----''Bul tirkelgisiz (nemese tirkelgisin qoldanbağan) qatıswşı talqılaw beti.
 Osı qatıswşını biz tek sandıq IP jaýımen teñdestiremiz. Osındaý IP jaýlar birneşe qatıswşığa ortaq bolwı mümkin.
 Eger siz tirkelgisiz qatıswşı bolsañız jäne sizge qatıssız mändemeler jiberilgenin sezseñiz, basqa tirkelgisiz qatıswşılarmen aralastırmawı üşin [[{{#special:Userlogin}}|tirkeliñiz ne kiriñiz]].''",
-'noarticletext'                     => 'Bul bette ağımda eş mätin joq, basqa betterden osı bet atawın [[{{#special:Search}}/{{PAGENAME}}|izdep körwiñizge]] nemese osı betti [{{fullurl:{{FULLPAGENAME}}|action=edit}} tüzetwiñizge] boladı.',
+'noarticletext'                     => 'Bul bette ağımda eş mätin joq, degenmen basqa betterden [[{{#special:Search}}/{{PAGENAME}}|bul bet atawın izdeý]] ne [{{fullurl:{{FULLPAGENAME}}|action=edit}} bul betti öñdeý] alasız.',
 'userpage-userdoesnotexist'         => '«$1» qatıswşı tirkelgisi jazıp alınbağan. Bul betti bastaw/öñdew talabıñızdı tekserip şığıñız.',
 'clearyourcache'                    => "'''Añğartpa:''' Saqtağannan keýin, özgeristerdi körw üşin şolğış aralıq qaltasınan orağıtw ıqtïmal. '''Mozilla / Firefox / Safari:''' ''Qaýta jüktew'' batırmasın nuqığanda ''Shift'' tutıñız, ne ''Ctrl-Shift-R'' basıñız (Apple Mac — ''Cmd-Shift-R''); '''IE:''' ''Jañartw'' batırmasın nuqığanda ''Ctrl'' tutıñız, ne ''Ctrl-F5'' basıñız; '''Konqueror:''': ''Jañartw'' batırmasın jaý nuqıñız, ne ''F5'' basıñız; '''Opera''' paýdanwşıları aralıq qaltasın tolıq tazartw üşin ''Quraldar→Baptaw'' degenge barw jön.",
 'usercssjsyoucanpreview'            => '<strong>Aqıl-keñes:</strong> Jaña CSS/JS faýlın saqtaw aldında «Qarap şığw» batırmasın qoldanıp sınaqtañız.',
@@ -966,22 +966,22 @@ Qatıswşınıñ .css jäne .js faýl atawı kişi äripppen jazılw tïisti eke
 'updated'                           => '(Jañartılğan)',
 'note'                              => '<strong>Añğartpa:</strong>',
 'previewnote'                       => '<strong>Mınaw tek qarap şığw ekenin umıtpañız;
-tüzetwler äli saqtalğan joq!</strong>',
+özgerister äli saqtalğan joq!</strong>',
 'previewconflict'                   => 'Bul qarap şığw joğarıdağı öñdew awmağındağı mätinge saqtağan kezindegi deý ıqpal etedi.',
-'session_fail_preview'              => '<strong>Ğafw etiñiz! Sessïya derekteri ısırap qalğandıqtan öñdewiñizdi jöndeý almaýmız.
+'session_fail_preview'              => '<strong>Ğafw etiñiz! Sessïya derekteri ısırap qalğandıqtan öñdemeñizdi jürgize almaýmız.
 Qaýta baýqap köriñiz. Eger bul äli istemese, şığwdı jäne qaýta kirwdi baýqap köriñiz.</strong>',
-'session_fail_preview_html'         => "<strong>Ğafw etiñiz! Sessïya derekteri ısırap qalğandıqtan öñdewiñizdi jöndeý almaýmız.</strong>
+'session_fail_preview_html'         => "<strong>Ğafw etiñiz! Sessïya derekteri ısırap qalğandıqtan öñdemeñizdi jürgize almaýmız.</strong>
 
 ''{{SITENAME}} jobasında qam HTML qosılğan, JavaScript şabwıldardan qorğanw üşin aldın ala qarap şığw jasırılğan.''
 
-<strong>Eger bul öñdew adal talap bolsa, qaýta baýqap köriñiz. Eger bul äli istemese, şığwdı jäne qaýta kirwdi baýqap köriñiz.</strong>",
-'token_suffix_mismatch'             => '<strong>Tüzetwiñiz taýdırıldı, sebebi tutınğışıñız öñdew nışanında emle tañbaların keskilep tastadı.
-Bet mätini bülinbew üşin tüzetwiñiz taýdırıladı.
-Bul ğalamtorğa negizdelingen qate tolğan tirkelwi joq proksï-serverdi paýdalanğan bolwı mümkin.</strong>',
+<strong>Eger bul öñdeme adal talap bolsa, qaýta baýqap köriñiz. Eger bul äli istemese, şığwdı jäne qaýta kirwdi baýqap köriñiz.</strong>",
+'token_suffix_mismatch'             => '<strong>Öñdemeñiz taýdırıldı, sebebi tapsırıskeriñiz öñdeme derekter bwmasındağı tınıs belgilerin büldirtti.
+Bet mätini bülinbew üşin öñdemeñiz taýdırıladı.
+Bul keý waqıtta qatesi tolğan veb-negizinde tirkelwi joq proksï-serverdi paýdalanğan bolwı mümkin.</strong>',
 'editing'                           => 'Öñdelwde: $1',
 'editingsection'                    => 'Öñdelwde: $1 (bölimi)',
 'editingcomment'                    => 'Öñdelwde: $1 (mändemesi)',
-'editconflict'                      => 'Öñdew qaqtığısı: $1',
+'editconflict'                      => 'Öñdeme tartısı: $1',
 'explainconflict'                   => "Osı betti siz öñdeý bastağanda basqa birew betti özgertken.
 Joğarğı awmaqta bettiñ ağımdıq mätini bar.
 Tömengi awmaqta siz özgertken mätini körsetiledi.
@@ -990,16 +990,16 @@ Tömengi awmaqta siz özgertken mätini körsetiledi.
 'yourtext'                          => 'Mätiniñiz',
 'storedversion'                     => 'Saqtalğan nusqası',
 'nonunicodebrowser'                 => '<strong>QULAQTANDIRW: Şolğışıñız Unicode belgilewine üýlesimdi emes, sondıqtan latın emes äripteri bar betterdi öñdew zil bolw mümkin.
-Jumıs istewge ıqtïmaldıq berw üşin, tömengi öñdew awmağında ASCII emes äripter onaltılıq sanımen körsetiledi</strong>.',
-'editingold'                        => '<strong>QULAQTANDIRW: Osı bettiñ erterek nusqasın öñdep jatırsız.
-Bunı saqtasañız, osı nwsqadan soñğı barlıq özgerister joýıladı.</strong>',
+Jumıs istewge ıqtïmaldıq berw üşin, tömengi öñdew awmağında ASCII emes äripter onaltılıq san belgilemesimen körsetiledi</strong>.',
+'editingold'                        => '<strong>QULAQTANDIRW: Osı bettiñ erterek tüzetwin öñdep jatırsız.
+Bunı saqtasañız, osı tüzetwden keýingi barlıq özgerister joýıladı.</strong>',
 'yourdiff'                          => 'Aýırmalar',
 'copyrightwarning'                  => 'Añğartpa: {{SITENAME}} jobasına berilgen barlıq ülester $2 (köbirek aqparat üşin: $1) qujatına saý dep sanaladı.
-Eger jazwıñızdıñ erkin tüzetilwin jäne aqısız köpşilikke taratwın qalamasañız, mında jarïyalamawıñız jön.<br />
+Eger jazwıñızdıñ erkin öñdelwin jäne aqısız köpşilikke taratwın qalamasañız, mında jarïyalamawıñız jön.<br />
 Tağı da, bul mağlumat öziñiz jazğanıñızğa, ne qoğam qazınasınan nemese sondaý aşıq qaýnarlardan köşirilgenine bizge wäde beresiz.
 <strong>AWTORLIQ QUQIQPEN QORĞAWLI MAĞLUMATTI RUQSATSIZ JARÏYALAMAÑIZ!</strong>',
-'copyrightwarning2'                 => 'Añğartpa: {{SITENAME}} jobasına berilgen barlıq ülesterdi basqa üleskerler tüzetwge, özgertwge, ne alastawğa mümkin.
-Eger jazwıñızdıñ erkin tüzetilwin qalamasañız, mında jarïyalamawıñız jön.<br />
+'copyrightwarning2'                 => 'Añğartpa: {{SITENAME}} jobasına berilgen barlıq ülesterdi basqa üleskerler öñdewge, özgertwge, ne alastawğa mümkin.
+Eger jazwıñızdıñ erkin öñdelwin qalamasañız, mında jarïyalamawıñız jön.<br />
 Tağı da, bul mağlumat öziñiz jazğanıñızğa, ne qoğam qazınasınan nemese sondaý aşıq qaýnarlardan köşirilgenine bizge wäde beresiz (köbirek aqparat üşin $1 qwjatın qarañız).
 <strong>AWTORLIQ QUQIQPEN QORĞAWLI MAĞLUMATTI RUQSATSIZ JARÏYALAMAÑIZ!</strong>',
 'longpagewarning'                   => '<strong>QULAQTANDIRW: Bul bettiñ mölşeri — $1 KB;
@@ -1007,9 +1007,9 @@ keýbir şolğıştarda bet mölşeri 32 KB jetse ne onı assa öñdew kürdeli 
 Betti birneşe kişkin bölimderge bölip köriñiz.</strong>',
 'longpageerror'                     => '<strong>QATELİK: Jiberetin mätiniñizdin mölşeri — $1 KB, eñ köbi $2 KB ruqsat etilgen mölşerinen asqan.
 Bul saqtaý alınbaýdı.</strong>',
-'readonlywarning'                   => '<strong>QULAQTANDIRW: Derekqor jöndetw üşin qulıptalğan, sondıqtan däl qazir tüzetwiñizdi saqtaý almaýsız.
-Sosın qoldanwğa üşin mätäniñizdi köşirip, öz kompüteriñizde faýlğa saqtañız.</strong>',
-'protectedpagewarning'              => '<strong>QULAQTANDIRW: Bul bet qorğalğan. Tek äkimşi ruqsatı bar qatıswşılar öñdew jasaý aladı.</strong>',
+'readonlywarning'                   => '<strong>QULAQTANDIRW: Derekqor jöndetw üşin qulıptalğan, sondıqtan däl qazir öñdemeñizdi saqtaý almaýsız.
+Keýin qoldanw üşin mätändi qýıp alıp jäne qoýıp, mätin faýlına saqtawñızğa boladı.</strong>',
+'protectedpagewarning'              => '<strong>QULAQTANDIRW: Bul bet qorğalğan. Tek äkimşi quqıqtarı bar qatıswşılar öñdeý aladı.</strong>',
 'semiprotectedpagewarning'          => "'''Añğartpa:''' Bet jartılaý qorğalğan, sondıqtan osını tek tirkelgen qatıswşılar öñdeý aladı.",
 'cascadeprotectedwarning'           => "'''Qulaqtandırw''': Bul bet qulıptalğan, endi tek äkimşi quqıqtarı bar qatıswşılar bunı öñdeý aladı.Bunıñ sebebi: bul bet «bawlı qorğawı» bar kelesi {{PLURAL:$1|betke|betterge}} kiristirilgen:",
 'titleprotectedwarning'             => '<strong>QULAQTANDIRW:  Bul bet qulıptalğan, sondıqtan tek birqatar qatıswşılar bunı bastaý aladı.</strong>',
@@ -1035,10 +1035,10 @@ Bunıñ şaması $2 sanınan kem bolwı kerek, Mında qazir $1 sanı.',
 'expensive-parserfunction-category' => 'Tım köp şığıs alatın qurılım taldatqış jeteleriniñ şaqırımı bar better',
 
 # "Undo" feature
-'undo-success' => 'Bul tüzetw joqqa şığarılwı mümkin. Talabıñızdı bilip turıp aldın ala tömendegi salıstırwdı tekserip şığıñız da, tüzetwdiñ joqqa şığarwın bitirw üşin tömendegi özgeristerdi saqtañız.',
-'undo-failure' => 'Bul tüzetw joqqa şığarılmaýdı, sebebi arada qaqtığıs jasaýtın tüzetwler bar.',
-'undo-norev'   => 'Bul tüzetw joqqa şığarılmaýdı, sebebi bul joq ne joýılğan.',
-'undo-summary' => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) istegen nömir $1 nusqasın joqqa şığardı',
+'undo-success' => 'Bul öñdeme joqqa şığarılwı mümkin. Talabıñızdı quptap aldın ala tömendegi salıstırwdı tekserip şığıñız da, öñdemeni joqqa şığarwın bitirw üşin tömendegi özgeristerdi saqtañız.',
+'undo-failure' => 'Bul öñdeme joqqa şığarılmaýdı, sebebi tartıstı aralıq öñdemeler bar.',
+'undo-norev'   => 'Bul öñdeme joqqa şığarılmaýdı, sebebi bul joq nemese joýılğan.',
+'undo-summary' => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) istegen nömir $1 tüzetwin joqqa şığardı',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Jaña tirkelgi jasalmadı',
@@ -1047,16 +1047,16 @@ Bunıñ şaması $2 sanınan kem bolwı kerek, Mında qazir $1 sanı.',
 $3 keltirilgen sebebi: ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Osı betke qatıstı jwrnaldardı qaraw',
-'nohistory'           => 'Osı bettiniñ nusqalar tarïxı joq.',
-'revnotfound'         => 'Nusqa tabılmadı',
-'revnotfoundtext'     => 'Osı suranısqan bettiñ eski nusqası tabılğan joq. Osı betti aşwğa paýdalanğan URL jaýın qaýta tekserip şığıñız.',
-'currentrev'          => 'Ağımdıq nusqası',
-'revisionasof'        => '$1 kezindegi nusqası',
-'revision-info'       => '$1 kezindegi $2 jasağan nusqası',
-'previousrevision'    => '← Eskilew nusqası',
-'nextrevision'        => 'Jañalaw nusqası →',
-'currentrevisionlink' => 'Ağımdıq nusqası',
+'viewpagelogs'        => 'Bul betiñ jwrnaldarın qaraw',
+'nohistory'           => 'Mında bul bettiniñ tüzetw tarïxı joq.',
+'revnotfound'         => 'Tüzetw tabılmadı',
+'revnotfoundtext'     => 'Bul bettiñ suralğan eski tüzetwi tabılğan joq. Osı betti aşwğa paýdalanğan URL jaýın qaýta tekserip şığıñız.',
+'currentrev'          => 'Ağımdıq tüzetw',
+'revisionasof'        => '$1 kezindegi tüzetw',
+'revision-info'       => '$1 kezindegi $2 şstegen tüzetw',
+'previousrevision'    => '← Eskilew tüzetwi',
+'nextrevision'        => 'Jañalaw tüzetwi →',
+'currentrevisionlink' => 'Ağımdıq tüzetwi',
 'cur'                 => 'ağım.',
 'next'                => 'kel.',
 'last'                => 'soñ.',
@@ -1064,7 +1064,7 @@ $3 keltirilgen sebebi: ''$2''",
 'page_last'           => 'soñğısına',
 'histlegend'          => 'Aýırmasın bölektew: salıstıramın degen nusqalardı aýırıp-qosqışpen belgilep jäne de <Enter> pernesin basıñız, nemese astındağı batırmanı nuqıñız.<br />
 Şarttı belgiler: (ağım.) = ağımdıq nusqamen aýırması,
-(soñ.) = aldıñğı nusqamen aýırması, ş = şağın tüzetw',
+(soñ.) = aldıñğı nusqamen aýırması, ş = şağın öñdeme',
 'deletedrev'          => '[joýılğan]',
 'histfirst'           => 'Eñ alğaşqısına',
 'histlast'            => 'Eñ soñğısına',
@@ -1072,8 +1072,8 @@ $3 keltirilgen sebebi: ''$2''",
 'historyempty'        => '(bos)',
 
 # Revision feed
-'history-feed-title'          => 'Nusqa tarïxı',
-'history-feed-description'    => 'Mına wïkïdegi bul bettiñ nusqa tarïxı',
+'history-feed-title'          => 'Tüzetw tarïxı',
+'history-feed-description'    => 'Mına wïkïdegi bul bettiñ tüzetw tarïxı',
 'history-feed-item-nocomment' => '$2 kezindegi $1 degen', # user at time
 'history-feed-empty'          => 'Suratılğan bet joq boldı.
 Ol mına wïkïden joýılğan, nemese atawı awıstırılğan.
@@ -1084,48 +1084,48 @@ Osığan qatıstı jaña betterdi [[{{#special:Search}}|bul wïkïden izdewdi]] 
 'rev-deleted-user'            => '(qatıswşı atı alastaldı)',
 'rev-deleted-event'           => '(jwrnal jazbası alastaldı)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Osı bettiñ nusqası jarïya murağattarınan alastalğan.
-Bul jaýtqa [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälimetteri bolwı mümkin.</div>',
+Bul bettiñ tüzetwi barşa murağattarınan alastalğan.
+Mında [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälimetteri bolwı mümkin.</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Osı bettiñ nusqası jarïya murağattarınan alastalğan.
+Osı bettiñ tüzetwi barşa murağattarınan alastalğan.
 {{SITENAME}} äkimşisi bop sonı köre alasız;
 [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälmetteri bolwı mümkin.</div>',
 'rev-delundel'                => 'körset/jasır',
-'revisiondelete'              => 'Nusqalardı joyw/joywdı boldırmaw',
-'revdelete-nooldid-title'     => 'Nısana nusqası joq',
-'revdelete-nooldid-text'      => 'Bul jeteni orındaw üşin aqırğı nusqasın ne nusqaların engizbepsiz,
-keltirilgen nusqa joq, ne ağımdıq nusqanı jasırw äreketin jasadıñız.',
-'revdelete-selected'          => '[[:$1]] degenniñ bölektengen {{PLURAL:$2|nusqası|nusqaları}}:',
-'logdelete-selected'          => 'Bölektengen jwrnal {{PLURAL:$1|oqïğası|oqïğaları}}:',
-'revdelete-text'              => 'Joýılğan nusqalar men jazbalardı äli de bet tarïxında jäne jwrnaldarda tabwğa boladı, biraq olardıñ mağlumat bölşekteri barşağa qatınalmaýdı.
+'revisiondelete'              => 'Tüzetwlerdi joyw/joywdı boldırmaw',
+'revdelete-nooldid-title'     => 'Nısana tüzetwi joq',
+'revdelete-nooldid-text'      => 'Bul jeteni orındaw üşin nısana tüzetwin/tüzetwlerin keltirilmepsiz,
+keltirilgen tüzetw joq, ne ağımdıq tüzetwdi jasırw üşin ärekettenip kördiñiz.',
+'revdelete-selected'          => '[[:$1]] degenniñ bölektengen {{PLURAL:$2|tüzetwi|tüzetwleri}}:',
+'logdelete-selected'          => 'Bölektengen {{PLURAL:$1|jwrnal oqïğası|jwrnal oqïğaları}}:',
+'revdelete-text'              => 'Joýılğan tüzetwler men oqïğalardı äli de bet tarïxında jäne jwrnaldarda tabwğa boladı, biraq olardıñ mağlumat bölşekteri barşağa qatınalmaýdı.
 
 {{SITENAME}} jobasınıñ basqa äkimşileri jasırın mağlumatqa qatınaý aladı, jäne qosımşa tïımdar qoýılğanşa deýin, osı tildesw arqılı joywdı boldırmawı mümkin.',
 'revdelete-legend'            => 'Körinis tïımdarın qoyw:',
-'revdelete-hide-text'         => 'Nusqa mätinin jasır',
-'revdelete-hide-name'         => 'Äreket pen maqsatın jasır',
-'revdelete-hide-comment'      => 'Tüzetw mändemesin jasır',
+'revdelete-hide-text'         => 'Tüzetw mätinin jasır',
+'revdelete-hide-name'         => 'Äreket pen nısanasın jasır',
+'revdelete-hide-comment'      => 'Öñdeme mändemesin jasır',
 'revdelete-hide-user'         => 'Öñdewşi atın (IP jaýın) jasır',
 'revdelete-hide-restricted'   => 'Osı tïımdardı barşağa sïyaqtı äkimşilerge de qoldanw',
 'revdelete-suppress'          => 'Äkimşiler jasağan mağlumattı basqalarşa perdelew',
 'revdelete-hide-image'        => 'Faýl mağlumatın jasır',
-'revdelete-unsuppress'        => 'Qalpına keltirilgen nusqalardan tïımdardı alastaw',
+'revdelete-unsuppress'        => 'Qalpına keltirilgen tüzetwler tïımdarın alastaw',
 'revdelete-log'               => 'Jwrnal mändemesi:',
-'revdelete-submit'            => 'Bölektengen nusqağa qoldanw',
-'revdelete-logentry'          => '[[$1]] degenniñ nusqa körinisin özgertti',
-'logdelete-logentry'          => '[[$1]] degenniñ jazba körinisin özgertti',
-'revdelete-success'           => "'''Nusqa körinisi sätti qoýıldı.'''",
+'revdelete-submit'            => 'Bölektengen tüzetwge qoldanw',
+'revdelete-logentry'          => '[[$1]] degenniñ tüzetw körinisin özgertti',
+'logdelete-logentry'          => '[[$1]] degenniñ oqïğa körinisin özgertti',
+'revdelete-success'           => "'''Tüzetw körinisi sätti qoýıldı.'''",
 'logdelete-success'           => "'''Jwrnal körinisi sätti qoýıldı.'''",
 'revdel-restore'              => 'Körinisin özgertw',
 'pagehist'                    => 'Bet tarïxı',
-'deletedhist'                 => 'Joýılğan tarïx',
+'deletedhist'                 => 'Joýılğan tarïxı',
 'revdelete-content'           => 'mağlumat',
-'revdelete-summary'           => 'tüzetw mändemesi',
+'revdelete-summary'           => 'öñdeme mändemesi',
 'revdelete-uname'             => 'qatıswşı atı',
 'revdelete-restricted'        => 'äkimşilerge tïımdar qoldadı',
 'revdelete-unrestricted'      => 'äkimşilerden tïımdardı alastadı',
 'revdelete-hid'               => '$1 jasırdı',
 'revdelete-unhid'             => '$1 aştı',
-'revdelete-log-message'       => '$2 nusqa üşin $1',
+'revdelete-log-message'       => '$2 tüzetw üşin $1',
 'logdelete-log-message'       => '$2 oqïğa üşin $1',
 
 # Suppression log
@@ -1135,19 +1135,19 @@ Ağımda ärekettegi tïım men buğattaw tizimi üşin [[{{#special:Ipblocklist
 
 # History merging
 'mergehistory'                     => 'Better tarïxın biriktirw',
-'mergehistory-header'              => 'Bul bet arqılı bir qaýnar bettiñ nusqalar tarïxın jaña betke biriktirwge mümkindik beredi.
+'mergehistory-header'              => 'Bul bet arqılı bir qaýnar bettiñ tüzetwler tarïxın jaña betke biriktirwge mümkindik beredi.
 Osı özgeris bettiñ tarïxï jalğastırwşılığın qoştaýtınına köziñiz jetsin.',
-'mergehistory-box'                 => 'Eki bettiñ nusqaların biriktirw:',
+'mergehistory-box'                 => 'Eki bettiñ tüzetwlerin biriktirw:',
 'mergehistory-from'                => 'Qaýnar beti:',
 'mergehistory-into'                => 'Nısana beti:',
 'mergehistory-list'                => 'Biriktirletin tüzetw tarïxı',
-'mergehistory-merge'               => '[[:$1]] degenniñ kelesi nusqaları [[:$2]] degenge biriktirilwi mümkin.
-Biriktirwge tek engizilgen waqıtqa deýin jasalğan nusqalardı aýırıp-qosqış bağandı qoldanıñız.
+'mergehistory-merge'               => '[[:$1]] degenniñ kelesi tüzetwleri [[:$2]] degenge biriktirilwi mümkin.
+Biriktirwge tek engizilgen waqıtqa deýin jasalğan tüzetwlerdi aýırıp-qosqış bağandı qoldanıñız.
 Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.',
 'mergehistory-go'                  => 'Biriktirletin tüzetwlerdi körset',
-'mergehistory-submit'              => 'Nusqalardı biriktirw',
-'mergehistory-empty'               => 'Eş nusqalar biriktirilmeýdi',
-'mergehistory-success'             => '[[:$1]] degenniñ $3 nusqası [[:$2]] degenge sätti biriktirildi.',
+'mergehistory-submit'              => 'Tüzetwlerdi biriktirw',
+'mergehistory-empty'               => 'Eş tüzetwler biriktirilmeýdi',
+'mergehistory-success'             => '[[:$1]] degenniñ $3 tüzetwi [[:$2]] degenge sätti biriktirildi.',
 'mergehistory-fail'                => 'Tarïx biriktirwi orındalmadı, bet pen waqıt baptalımdarın qaýta tekserip şığıñız.',
 'mergehistory-no-source'           => '$1 degen qaýnar beti joq.',
 'mergehistory-no-destination'      => '$1 degen nısana beti joq.',
@@ -1158,20 +1158,20 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 
 # Merge log
 'mergelog'           => 'Biriktirw jwrnalı',
-'pagemerge-logentry' => '[[$1]] degen [[$2]] degenge biriktirildi ($3 deýingi nusqaları)',
+'pagemerge-logentry' => '[[$1]] degen [[$2]] degenge biriktirildi ($3 deýingi tüzetwleri)',
 'revertmerge'        => 'Biriktirwdi boldırmaw',
 'mergelogpagetext'   => 'Tömende bir bettiñ tarïxı basqa betke eñ soñğı biriktirw tizimi keltiriledi.',
 
 # Diffs
-'history-title'           => '«$1» degenniñ nusqa tarïxı',
-'difference'              => '(Nusqalar arasındağı aýırmaşılıq)',
+'history-title'           => '«$1» degenniñ tüzetw tarïxı',
+'difference'              => '(Tüzetwler arasındağı aýırmaşılıq)',
 'lineno'                  => 'Jol nömiri $1:',
 'compareselectedversions' => 'Bölektengen nusqalardı salıstırw',
 'editundo'                => 'joqqa şığarw',
-'diff-multi'              => '(Aradağı $1 nusqa körsetilmegen.)',
+'diff-multi'              => '(Aradağı $1 tüzetw körsetilmegen.)',
 
 # Search results
-'searchresults'             => 'İzdestirw nätïjeleri',
+'searchresults'             => 'İzdew nätïjeleri',
 'searchresulttext'          => '{{SITENAME}} jobasında izdew twralı köbirek aqparat üşin, [[{{{{ns:mediawiki}}:helppage}}|{{int:help}}]] qarañız.',
 'searchsubtitle'            => "İzdegeniñiz: '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "İzdegeniñiz: '''$1'''",
@@ -1215,7 +1215,7 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 # Preferences page
 'preferences'              => 'Baptaw',
 'mypreferences'            => 'Baptawım',
-'prefs-edits'              => 'Tüzetw sanı:',
+'prefs-edits'              => 'Öñdeme sanı:',
 'prefsnologin'             => 'Kirmegensiz',
 'prefsnologintext'         => 'Baptawıñızdı qoyw üşin [[{{#special:Userlogin}}|kirwiñiz]] tïisti.',
 'prefsreset'               => 'Baptaw arqawdan qaýta qoýıldı.',
@@ -1234,19 +1234,19 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'math_failure'             => 'Qurılımın taldatwı sätsiz bitti',
 'math_unknown_error'       => 'belgisiz qate',
 'math_unknown_function'    => 'belgisiz jete',
-'math_lexing_error'        => 'leksïka qatesi',
-'math_syntax_error'        => 'sïntaksïs qatesi',
+'math_lexing_error'        => 'söz keniniñ qatesi',
+'math_syntax_error'        => 'söýlem jüýesiniñ qatesi',
 'math_image_error'         => 'PNG awdarısı sätsiz bitti;
 latex, dvips, gs jäne convert bağdarlamalarınıñ durıs ornatwın tekserip şığıñız',
 'math_bad_tmpdir'          => 'math degen waqıtşa qaltasına jazılmadı, ne qalta qurılmadı',
 'math_bad_output'          => 'math degen beris qaltasına jazılmadı, ne qalta qurılmadı',
-'math_notexvc'             => 'texvc bağdarlaması joğaltılğan;
+'math_notexvc'             => 'texvc atqararlığı tabılmadı;
 baptaw üşin math/README qujatın qarañız.',
 'prefs-personal'           => 'Jeke derekteri',
 'prefs-rc'                 => 'Jwıqtağı özgerister',
 'prefs-watchlist'          => 'Baqılaw',
 'prefs-watchlist-days'     => 'Baqılaw tiziminde körsetetin künder sanı:',
-'prefs-watchlist-edits'    => 'Keñeýtilgen baqılaw tiziminde körsetetin eñ köp tüzetwleri:',
+'prefs-watchlist-edits'    => 'Keñeýtilgen baqılawlarda körsetetin özgeristerdiñ eñ köbi:',
 'prefs-misc'               => 'Qosımşa',
 'saveprefs'                => 'Saqta',
 'resetprefs'               => 'Saqtalmağan özgeristerdi tazart',
@@ -1262,7 +1262,7 @@ baptaw üşin math/README qujatın qarañız.',
 'contextchars'             => 'Jol saýın nışan sanı:',
 'stub-threshold'           => '<a href="#" class="stub">Biteme siltemesin</a> pişimdew tabaldırığı (baýt):',
 'recentchangesdays'        => 'Jüıqtağı özgeristerdegi körsetiletin künder:',
-'recentchangescount'       => 'Jwıqtağı özgeristerdegi körsetiletin tüzetwler:',
+'recentchangescount'       => 'Jwıqtağı özgeristerdegi körsetiletin öñdemeler:',
 'savedprefs'               => 'Baptawıñız saqtaldı.',
 'timezonelegend'           => 'Waqıt beldewi',
 'timezonetext'             => '¹ Jergilikti waqıtıñız ben server waqıtınıñ (UTC) arasındağı sağat sanı.',
@@ -1300,8 +1300,8 @@ baptaw üşin math/README qujatın qarañız.',
 'userrights-nodatabase'            => '$1 derekqorı joq ne jergilikti emes.',
 'userrights-nologin'               => 'Qatıswşı quqıqtarın tağaýındaw üşin äkimşi tirkelgisimen [[{{#special:Userlogin}}|kirwiñiz]] jön.',
 'userrights-notallowed'            => 'Qatıswşı quqıqtarın tağaýındaw üşin tirkelgiñizde ruqsat joq.',
-'userrights-changeable-col'        => 'Awıstıra alatın toptar',
-'userrights-unchangeable-col'      => 'Awıstıra almaýtın toptar',
+'userrights-changeable-col'        => 'Özgerte alatın toptar',
+'userrights-unchangeable-col'      => 'Özgerte almaýtın toptar',
 
 # Groups
 'group'               => 'Top:',
@@ -1333,7 +1333,7 @@ baptaw üşin math/README qujatın qarañız.',
 'right-createpage'           => 'Talqılaw emes betterdi bastaw',
 'right-createtalk'           => 'Talqılaw betterdi bastaw',
 'right-createaccount'        => 'Jaña qatıswşı tirkelgisin jasaw',
-'right-minoredit'            => 'Tüzetwlerdi şağın dep belgilew',
+'right-minoredit'            => 'Öñdemelerdi şağın dep belgilew',
 'right-move'                 => 'Betterdi jıljıtw',
 'right-suppressredirect'     => 'Tïisti atawğa betti jıljıtqanda aýdatwdı joyw',
 'right-upload'               => 'Faýldardı qotarıp berw',
@@ -1344,15 +1344,15 @@ baptaw üşin math/README qujatın qarañız.',
 'right-purge'                => 'Toraptağı quptaw beti joq bet üşin aralıq qaltasın tazartw',
 'right-autoconfirmed'        => 'Jartılaý qorğalğan betterdi öñdew',
 'right-bot'                  => 'Özdiktik üdiris dep eseptelw',
-'right-nominornewtalk'       => 'Talqılaw betterdegi şağın tüzetwlerdi jaña xabar dep eseptemew',
+'right-nominornewtalk'       => 'Talqılaw betterdegi şağın öñdemelerdi jaña xabar dep eseptemew',
 'right-apihighlimits'        => 'API suranımdarınıñ joğarı şektelimderin paýdalanw',
 'right-delete'               => 'Betterdi joyw',
 'right-bigdelete'            => 'Uzaq tarïxı bar betterdi joyw',
-'right-deleterevision'       => 'Betterdiñ özindik nusqaların joyw ne joywın boldırmaw',
+'right-deleterevision'       => 'Betterdiñ özindik tüzetwlerin joyw ne joywın boldırmaw',
 'right-deletedhistory'       => 'Joýılğan tarïx danaların (baýlanıstı mätinsiz) körw',
 'right-browsearchive'        => 'Joýılğan betterdi izdew',
 'right-undelete'             => 'Bettiñ jywın boldırmaw',
-'right-hiderevision'         => 'Äkimşilerden jasırılğan nusqalardı şolw jäne qalpına keltirw',
+'right-hiderevision'         => 'Äkimşilerden jasırılğan tüzetwlerdi şolıp şığw jäne qalpına keltirw',
 'right-suppress'             => 'Jekelik jwrnaldardı körw',
 'right-block'                => 'Basqa qatıswşılardı öñdewden buğattaw',
 'right-blockemail'           => 'Qatıswşınıñ xat jöneltwin buğattaw',
@@ -1364,18 +1364,18 @@ baptaw üşin math/README qujatın qarañız.',
 'right-editinterface'        => 'Paýdalanwşılıq tildesiwin öñdew',
 'right-editusercssjs'        => 'Basqa qatıswşılardıñ CSS jäne JS faýldarın öñdew',
 'right-rollback'             => 'Belgili betti öñdegen soñğı qatıswşınıñ tüzetwlerinen jıldam qaýtarw',
-'right-markbotedits'         => 'Qaýtarılğan tüzetwlerdi bottar jasağan dep belgilew',
-'right-import'               => 'Basqa sırtqı wïkïlerden betterdi alw',
-'right-importupload'         => 'Faýl qotarwımen sırttan betterdi alw',
-'right-patrol'               => 'Tüzetwlerdi küzette dep belgilew',
-'right-autopatrol'           => 'Tüzetwlerdi küzette dep özdiktik belgilew',
+'right-markbotedits'         => 'Qaýtarılğan öñdemelerrdi bottar jasağan dep belgilew',
+'right-import'               => 'Basqa wïkïlerden betterdi sırttan alw',
+'right-importupload'         => 'Faýl qotarwımen betterdi sırttan alw',
+'right-patrol'               => 'Öñdemelerdi küzette dep belgilew',
+'right-autopatrol'           => 'Öñdemelerdi küzette dep özdiktik belgilew',
 'right-patrolmarks'          => 'Jwıqtağı özgeristerdegi küzet belgilerin körw',
 'right-unwatchedpages'       => 'Baqılanılmağan bet tizimin körw',
 'right-trackback'            => 'Añıstawdı jöneltw',
 'right-mergehistory'         => 'Betterdiñ tarïxın qosıp berw',
-'right-userrights'           => 'Qatıswşılardıñ barlıq quqıqtarın özgertw',
-'right-userrights-interwiki' => 'Basqa üïkï toraptarındağı qatıswşılardıñ quqıqtarın özgertw',
-'right-siteadmin'            => 'Derekqordı qulıptaw jäne qulıptamaw',
+'right-userrights'           => 'Qatıswşılardıñ barlıq quqıqtarın öñdew',
+'right-userrights-interwiki' => 'Basqa üïkï toraptarındağı qatıswşılardıñ quqıqtarın öñdew',
+'right-siteadmin'            => 'Derekqordı qulıptaw jäne qulıptawın öşirw',
 
 # User rights log
 'rightslog'      => 'Qatıswşı quqıqtarı jwrnalı',
@@ -1391,12 +1391,12 @@ baptaw üşin math/README qujatın qarañız.',
 'rcnote'                            => "$3 kezine deýin — tömende soñğı {{PLURAL:$2|kündegi|'''$2''' kündegi}}, soñğı '''$1''' özgeris körsetiledi.",
 'rcnotefrom'                        => "'''$2''' kezinen beri — tömende '''$1''' jetkenşe deýin özgerister körsetiledi.",
 'rclistfrom'                        => '$1 kezinen beri — jaña özgeristerdi körset.',
-'rcshowhideminor'                   => 'Şağın tüzetwdi $1',
+'rcshowhideminor'                   => 'Şağın öñdemelerdi $1',
 'rcshowhidebots'                    => 'Bottardı $1',
-'rcshowhideliu'                     => 'Tirkelgendi $1',
-'rcshowhideanons'                   => 'Tirkelgisizdi $1',
-'rcshowhidepatr'                    => 'Küzettegi tüzetwlerdi $1',
-'rcshowhidemine'                    => 'Tüzetwimdi $1',
+'rcshowhideliu'                     => 'Kirgenderdi $1',
+'rcshowhideanons'                   => 'Tirkelgisizderdi $1',
+'rcshowhidepatr'                    => 'Küzettegi öñdemelerdi $1',
+'rcshowhidemine'                    => 'Öñdemelerimdi $1',
 'rclinks'                           => 'Soñğı $2 künde bolğan, soñğı $1 özgeristi körset<br />$3',
 'diff'                              => 'aýırm.',
 'hist'                              => 'tar.',
@@ -1414,10 +1414,10 @@ baptaw üşin math/README qujatın qarañız.',
 'recentchangeslinked'          => 'Qatıstı özgerister',
 'recentchangeslinked-title'    => '«$1» degenge qatıstı özgerister',
 'recentchangeslinked-noresult' => 'Siltelgen betterde keltirilgen merzimde eşqandaý özgeris bolmağan.',
-'recentchangeslinked-summary'  => "Bul tizimde körsetilgen betten siltelgen betterdegi (ne körsetilgen sanat müşelerindegi) jwıqtağı jasalğan özgerister beriledi.
+'recentchangeslinked-summary'  => "Bul tizimde özindik betten siltelgen betterdegi (ne özindik sanat müşelerindegi) istelgen jwıqtağı özgerister beriledi.
 [[{{#special:Watchlist}}|Baqılaw tizimiñizdegi]] better '''jwan''' bolıp belgilenedi.",
 'recentchangeslinked-page'     => 'Bet atawı:',
-'recentchangeslinked-to'       => 'Ornına keltirilgen betke siltelgen betterdegi özgeristerdi körsetw',
+'recentchangeslinked-to'       => 'Bunıñ ornına keltirilgen betke siltelgen betterdegi özgeristerdi körset',
 
 # Upload
 'upload'                      => 'Faýl qotarw',
@@ -1533,7 +1533,7 @@ Talabıñızdı qol tïgen kezinde qaýta baýqap körwiñiz mümkin.',
 # Special:Imagelist
 'imagelist-summary'     => 'Bul arnaýı bette barlıq qotarılğan faýldar körsetiledi.
 Ädepkiden soñğı qotarılğan faýldar tizimniñ wstinde körsetiledi.
-Bağannıñ bas jolın nuqığanda surıptaw reti ozgertiledi.',
+Bağannıñ bas jolın nuqığanda surıptaw reti özgertiledi.',
 'imagelist_search_for'  => 'Taspa atawın izdew:',
 'imgfile'               => 'faýl',
 'imagelist'             => 'Faýl tizimi',
@@ -1640,8 +1640,8 @@ Solardı esepten şığarğanda, mında mağlumat {{PLURAL:$2|beti|betteri}} dep
 
 Qotarılğan '''$8''' faýl saqtaladı.
 
-{{SITENAME}} ornatılğannan beri better {{PLURAL:$3|'''1'''|jalpı '''$3'''}} ret qaralğan, jäne better '''$4''' ret tüzetilgen.
-Bunıñ nätïjesinde ortaşa eseppen ärbir betke '''$5''' ret tüzetw keledi, jäne ärbir tüzetwge '''$6''' ret qaraw keledi.
+{{SITENAME}} ornatılğannan beri better {{PLURAL:$3|'''1'''|jalpı '''$3'''}} ret qaralğan, jäne better '''$4''' ret öñdelgen.
+Bunıñ nätïjesinde ortaşa eseppen ärbir betke '''$5''' öñdeme keledi, jäne ärbir öñdemege '''$6''' qaraw keledi.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Tapsırımalar kezeginiñ] uzındığı: '''$7'''.",
 'userstatstext'          => "Mında '''$1''' [[{{#special:Listusers}}|tirkelgen qatıswşı]] bar, sonıñ işinde '''$2''' (ne '''$4 %''') qatıswşısında $5 quqıqtarı bar",
@@ -1672,8 +1672,8 @@ Eger [[{{ns:mediawiki}}:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet
 'nbytes'                  => '$1 baýt',
 'ncategories'             => '$1 sanat',
 'nlinks'                  => '$1 silteme',
-'nmembers'                => '$1 bwın',
-'nrevisions'              => '$1 nusqa',
+'nmembers'                => '$1 müşe',
+'nrevisions'              => '$1 tüzetw',
 'nviews'                  => '$1 ret qaralğan',
 'specialpage-empty'       => 'Bul bayanatqa eş nätïje joq.',
 'lonelypages'             => 'Eş betten siltelmegen better',
@@ -1796,13 +1796,13 @@ Qatıswşı baptawıñızda engizgen e-poşta jaýıñız «Kimnen» degen bas j
 'watchlist'            => 'Baqılaw tizimi',
 'mywatchlist'          => 'Baqılawım',
 'watchlistfor'         => "('''$1''' baqılawları)",
-'nowatchlist'          => 'Baqılaw tizimiñizde eşbir dana joq',
+'nowatchlist'          => 'Baqılaw tizimiñizde eş dana joq',
 'watchlistanontext'    => 'Baqılaw tizimiñizdegi danalardı qaraw, ne öñdew üşin $1 kerek.',
 'watchnologin'         => 'Kirmegensiz',
 'watchnologintext'     => 'Baqılaw tizimiñizdi özgertw üşin [[{{#special:Userlogin}}|kirwiñiz]] jön.',
 'addedwatch'           => 'Baqılaw tizimine üsteldi',
 'addedwatchtext'       => "«[[:$1]]» beti [[{{#special:Watchlist}}|baqılaw tizimiñizge]] üsteldi.
-Osı bettiñ jäne sonıñ talqılaw betiniñ keleşektegi özgeristeri mında tizimdelinedi de, jäne bettiñ atawın tabwğa jeñildetw üşin [[{{#special:Recentchanges}}|jwıqtağı özgerister tiziminde]] '''jwan ärpimen''' körsetiledi.",
+Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mında tizimdelinedi de, jäne bettiñ atawı jeñil tabılw üşin [[{{#special:Recentchanges}}|jwıqtağı özgerister tiziminde]] '''jwan ärpimen''' körsetiledi.",
 'removedwatch'         => 'Baqılaw tizimiñizden alastaldı',
 'removedwatchtext'     => '«[[:$1]]» beti baqılaw tizimiñizden alastaldı.',
 'watch'                => 'Baqılaw',
@@ -1810,23 +1810,23 @@ Osı bettiñ jäne sonıñ talqılaw betiniñ keleşektegi özgeristeri mında t
 'unwatch'              => 'Baqılamaw',
 'unwatchthispage'      => 'Baqılawdı toqtatw',
 'notanarticle'         => 'Mağlumat beti emes',
-'notvisiblerev'        => 'Nusqa joýıldı',
+'notvisiblerev'        => 'Tüzetw joýıldı',
 'watchnochange'        => 'Körsetilgen merzimde eş baqılanğan dana öñdelgen joq.',
 'watchlist-details'    => 'Talqılaw betterin sanamağanda $1 bet baqlanıladı.',
 'wlheader-enotif'      => '* Eskertw xat jiberwi qosılğan.',
 'wlheader-showupdated' => "* Soñğı kelip-ketwiñizden beri özgertilgen betterdi '''jwan''' qaripimen körset",
-'watchmethod-recent'   => 'baqılawlı betterdiñ jwıqtağı özgeristerin tekserw',
-'watchmethod-list'     => 'jwıqtağı özgeristerde baqılawlı betterdi tekserw',
+'watchmethod-recent'   => 'baqılawlı better üşin jwıqtağı özgeristerdi tekserw',
+'watchmethod-list'     => 'jwıqtağı özgerister üşin baqılawlı betterdi tekserw',
 'watchlistcontains'    => 'Baqılaw tizimiñizde $1 bet bar.',
 'iteminvalidname'      => "'$1' danasınıñ jaramsız atawınan şataq twdı…",
 'wlnote'               => "Tömende soñğı {{PLURAL:$2|sağatta|'''$2''' sağatta}} bolğan, {{PLURAL:$1|jwıqtağı özgeris|jwıqtağı '''$1''' özgeris}} körsetiledi.",
 'wlshowlast'           => 'Soñğı $1 sağattağı, $2 kündegi, $3 bolğan özgeristi körsetw',
-'watchlist-show-bots'  => 'Bottardı körset',
-'watchlist-hide-bots'  => 'Bottardı jasır',
-'watchlist-show-own'   => 'Tüzetwimdi körset',
-'watchlist-hide-own'   => 'Tüzetwimdi jasır',
-'watchlist-show-minor' => 'Şağın tüzetwdi körset',
-'watchlist-hide-minor' => 'Şağın tüzetwdi jasır',
+'watchlist-show-bots'  => 'Bot öñdemelerin körset',
+'watchlist-hide-bots'  => 'Bot öñdemelerin jasır',
+'watchlist-show-own'   => 'Öñdemelerimdi körset',
+'watchlist-hide-own'   => 'Öñdemelerimdi jasır',
+'watchlist-show-minor' => 'Şağın öñdemelerdi körset',
+'watchlist-hide-minor' => 'Şağın öñdemelerdi jasır',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Baqılaw…',
@@ -1837,7 +1837,7 @@ Osı bettiñ jäne sonıñ talqılaw betiniñ keleşektegi özgeristeri mında t
 'enotif_newpagetext'           => 'Mınaw jaña bet.',
 'enotif_impersonal_salutation' => '{{SITENAME}} qatıswşısı',
 'changed'                      => 'özgertti',
-'created'                      => 'qurılttı',
+'created'                      => 'bastadı',
 'enotif_subject'               => '{{SITENAME}} jobasında $PAGEEDITOR $PAGETITLE atawlı betti $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Soñğı kelip-ketwiñizden beri bolğan özgerister üşin $1 degendi qarañız.',
 'enotif_lastdiff'              => 'Osı özgeris üşin $1 degendi qarañız.',
@@ -1849,7 +1849,7 @@ Osı bettiñ jäne sonıñ talqılaw betiniñ keleşektegi özgeristeri mında t
 
 $NEWPAGE
 
-Öñdewşi tüýindemesi: $PAGESUMMARY $PAGEMINOREDIT
+Öñdewşi sïpattaması: $PAGESUMMARY $PAGEMINOREDIT
 
 Öñdewşimen qatınasw:
 e-poşta: $PAGEEDITOR_EMAIL
@@ -1887,7 +1887,7 @@ Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
 'dellogpage'                  => 'Joyw_jwrnalı',
 'dellogpagetext'              => 'Tömende jwıqtağı joywlardıñ tizimi berilgen.',
 'deletionlog'                 => 'joyw jwrnalı',
-'reverted'                    => 'Erterek nusqasına qaýtarılğan',
+'reverted'                    => 'Erterek tüzetwine qaýtarılğan',
 'deletecomment'               => 'Joywdıñ sebebi:',
 'deleteotherreason'           => 'Basqa/qosımşa sebep:',
 'deletereasonotherlist'       => 'Basqa sebep',
@@ -1896,25 +1896,25 @@ Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
 ** Awtorlıq quqıqtarın buzw
 ** Buzaqılıq',
 'delete-edit-reasonlist'      => 'Joyw sebepterin öñdew',
-'delete-toobig'               => 'Bul bette baýtaq öñdew tarïxı bar, $1 nusqadan astam.
+'delete-toobig'               => 'Bul bette baýtaq tüzetw tarïxı bar, $1 tüzetwden astam.
 Bundaý betterdiñ joywı {{SITENAME}} torabın äldeqalaý üzip tastawına böget salw üşin tïımdalğan.',
-'delete-warning-toobig'       => 'Bul bette baýtaq öñdew tarïxı bar, $1 nusqadan astam.
+'delete-warning-toobig'       => 'Bul bette baýtaq tüzetw tarïxı bar, $1 tüzetwden astam.
 Bunıñ joywı {{SITENAME}} torabındağı derekqor äreketterdi üzip tastawın mümkin;
 bunı abaýlap ötkiziñiz.',
-'rollback'                    => 'Tüzetwlerdi keri qaýtarw',
+'rollback'                    => 'Öñdemelerdi keri qaýtarw',
 'rollback_short'              => 'Keri qaýtarw',
 'rollbacklink'                => 'keri qaýtarw',
 'rollbackfailed'              => 'Keri qaýtarw sätsiz bitti',
-'cantrollback'                => 'Tüzetw qaýtarılmaýdı;
+'cantrollback'                => 'Öñdeme qaýtarılmaýdı;
 bul bettiñ awtorı tek soñğı ülesker bolğan.',
-'alreadyrolled'               => '[[:$1]] betiniñ [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) soñğı tüzetwi keri qaýtarılmadı;
+'alreadyrolled'               => '[[:$1]] betiniñ [[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) soñğı öñdemesi keri qaýtarılmadı;
 basqa birew betti aldaqaşan öñdegen ne qaýtarğan.
 
-[[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) soñğı öñdewin istegen.',
-'editcomment'                 => 'Bolğan tüzetw mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) tüzetwlerinen qaýtarğan;
+soñğı öñdemesin [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.',
+'editcomment'                 => 'Bolğan öñdeme mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
+'revertpage'                  => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen qaýtarğan;
 [[{{ns:user}}:$1|$1]] soñğı nusqasına özgertti.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 tüzetwlerinen qaýtarğan;
+'rollback-success'            => '$1 öñdemelerinen qaýtarğan;
 $2 soñğı nusqasına özgertti.',
 'sessionfailure'              => 'Kirw sessïyasında şataq bolğan sïyaqtı;
 sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.
@@ -1969,32 +1969,32 @@ Bul bettiñ qorğaw deñgeýin özgerte alasız, biraq bul bawlı qorğawğa ıq
 # Undelete
 'undelete'                     => 'Joýılğan betterdi qaraw',
 'undeletepage'                 => 'Joýılğan betterdi qaraw jäne qalpına keltirw',
-'undeletepagetitle'            => "'''Kelesi tizim [[:$1|$1]] degenniñ joýılğan nusqalarınan turadı'''.",
+'undeletepagetitle'            => "'''Kelesi tizim [[:$1|$1]] degenniñ joýılğan tüzetwlerinen turadı'''.",
 'viewdeletedpage'              => 'Joýılğan betterdi qaraw',
 'undeletepagetext'             => 'Kelesi better joýıldı dep belgilengen, biraq mağlumatı murağatta bar
 jäne qalpına keltirwge mümkin. Murağat merzim boýınşa tazalanıp turwı mümkin.',
 'undeleteextrahelp'            => "Bükil betti qalpına keltirw üşin, barlıq şarşılardı qusbelgilerden bosatıp '''''Qalpına keltir!''''' batırmasın nuqıñız.
-Bölektewmen qalpına keltirw orındaw üşin, keltiremin degen nusqalarına säýkes qabaşaqtarın belgileñiz de, jäne '''''Qalpına keltir!''''' tüýmesin nuqıñız. '''''Qaýta qoý''''' tüýmesin nuqığanda mändeme awmağı tazartadı jäne barlıq şarşılardı qusbelgilerden bosatadı.",
-'undeleterevisions'            => '$1 nusqa murağattaldı',
-'undeletehistory'              => 'Eger bet mağlumatın qalpına keltirseñiz, tarïxında barlıq nusqalar da
-qaýtarıladı. Eger joywdan soñ däl solaý atawımen jaña bet bastalsa, qalpına keltirilgen nusqalar
-tarïxtıñ aldında körsetiledi. Tağı da faýl nusqalarınıñ qalpına keltirgende tïımdarı joýılatın umıtpañız.',
-'undeleterevdel'               => 'Eger bettiñ üstiñgi nusqası jarım-jartılaý joýılğan bolsa joyw boldırmawı atqarılmaýdı.
-Osındaý jağdaýlarda, eñ jaña joýılğan nusqa belgilewin nemese jasırwın boldırmañız. Körwiñizge ruqsat etilmegen faýl nusqaları qalpına keltirilmeýdi.',
+Bölektewmen qalpına keltirw orındaw üşin, keltiremin degen tüzetwlerine säýkes qabaşaqtarın belgileñiz de, jäne '''''Qalpına keltir!''''' tüýmesin nuqıñız. '''''Qaýta qoý''''' tüýmesin nuqığanda mändeme awmağı tazartadı jäne barlıq şarşılardı qusbelgilerden bosatadı.",
+'undeleterevisions'            => '$1 tüzetw murağattaldı',
+'undeletehistory'              => 'Eger bet mağlumatın qalpına keltirseñiz, tarïxında barlıq tüzetwler da
+qaýtarıladı. Eger joywdan soñ däl solaý atawımen jaña bet bastalsa, qalpına keltirilgen tüzetwler
+tarïxtıñ aldında körsetiledi. Tağı da faýl tüzetwlerin qalpına keltirgende tïımdarı joýılatın eskeriñiz.',
+'undeleterevdel'               => 'Eger bul üstiñgi bette ayaqtalsa, ne faýl tüzetwi jarım-jartılaý joýılğan bolsa, joyw boldırmawı orındalmaýdı.
+Osındaý jağdaýlarda, eñ jaña joýılğan tüzetw belgilewin nemese jasırwın boldırmañız.',
 'undeletehistorynoadmin'       => 'Bul bet joýılğan.
 Joyw sebebi aldındağı öñdegen qatıswşılar egjeý-tegjeýlerimen birge tömendegi sïpattamasında körsetilgen.
-Mına joýılğan nusqalardıñ kökeýkesti mätini tek äkimşilerge qatınawlı.',
-'undelete-revision'            => '$2 kezindegi $1 degenniñ nusqası ($3 joýğan):',
-'undeleterevision-missing'     => 'Jaramsız ne joğalğan nusqa. Siltemeñiz jaramsız bolwı mümkin, ne
-nusqa aldaqaşan qalpına keltirilgen nemese murağattan alastalğan.',
-'undelete-nodiff'              => 'Eş aldıñğı nusqa tabılmadı.',
+Mına joýılğan tüzetwlerin kökeýkesti mätini tek äkimşilerge jetimdi.',
+'undelete-revision'            => '$2 kezindegi $3 joýğan $1 degenniñ joýılğan tüzetwi:',
+'undeleterevision-missing'     => 'Jaramsız ne joğalğan tüzetw.
+Siltemeñiz jaramsız, ne tüzetw qalpına keltirilgen, nemese murağattan alastalğan bolwı mümkin.',
+'undelete-nodiff'              => 'Eş aldıñğı tüzetw tabılmadı.',
 'undeletebtn'                  => 'Qalpına keltir!',
 'undeletelink'                 => 'qalpına keltirw',
 'undeletereset'                => 'Qaýta qoý',
 'undeletecomment'              => 'Mändemesi:',
 'undeletedarticle'             => '«[[$1]]» qalpına keltirildi',
-'undeletedrevisions'           => '$1 nusqa qalpına keltirildi',
-'undeletedrevisions-files'     => '$1 nusqa jäne $2 faýl qalpına keltirildi',
+'undeletedrevisions'           => '$1 tüzetw qalpına keltirildi',
+'undeletedrevisions-files'     => '$1 tüzetw jäne $2 faýl qalpına keltirildi',
 'undeletedfiles'               => '$1 faýl qalpına keltirildi',
 'cannotundelete'               => 'Joyw boldırmawı sätsiz bitti;
 basqa birew alğaşında bettiñ joywdıñ boldırmawı mümkin.',
@@ -2006,8 +2006,8 @@ Jwıqtağı joywlar men qalpına keltirwler jöninde [[{{#special:Log}}/delete|j
 'undelete-search-prefix'       => 'Mınadan bastalğan betterdi körset:',
 'undelete-search-submit'       => 'İzdew',
 'undelete-no-results'          => 'Joyw murağatında eşqandaý säýkes better tabılmadı.',
-'undelete-filename-mismatch'   => '$1 waqıt belgisimen faýl nusqası joywdı boldırmaw atqarılmadı: faýl atı säýkessiz',
-'undelete-bad-store-key'       => '$1 waqıt belgisimen faýl nusqası joywdı boldırmaw atqarılmadı: joywdıñ aldınan faýl joq bolğan.',
+'undelete-filename-mismatch'   => '$1 kezindegi faýl tüzetwiniñ joywı boldırmadı: faýl atı säýkessiz',
+'undelete-bad-store-key'       => '$1 kezindegi faýl tüzetwiniñ joywı boldırmadı: joywdıñ aldınan faýl joq bolğan.',
 'undelete-cleanup-error'       => '«$1» paýdalanılmağan murağattalğan faýl joyw qatesi.',
 'undelete-missing-filearchive' => 'Murağattalğan faýl (nömiri $1) qalpına keltirilmedi, sebebi ol derekqorda joq.
 Bunıñ joywın boldırmawı aldaqaşan bolğanı mümkin.',
@@ -2220,18 +2220,18 @@ Jıljıtwğa jol berw üşin joyamız ba?',
 bet özine jıljıtılmaýdı.',
 'immobile_namespace'      => 'Qaýnar ne nısana atawı arnaýı türine jatadı;
 osındaý esim ayasına jäne esim ayasınan better jıljıtılmaýdı.',
-'imagenocrossnamespace'   => 'Swret faýl emes basqa esim ayasına jıljıtılmaýdı',
-'imagetypemismatch'       => 'Faýldıñ jaña keñeýtimi bunıñ türine säýkes emes',
+'imagenocrossnamespace'   => "Swret faýl emes basqa esim ayasına jıljıtılmaýdı",
+'imagetypemismatch'       => "Faýldıñ jaña keñeýtimi bunıñ türine säýkes emes",
 
 # Export
 'export'            => 'Betterdi sırtqa berw',
 'exporttext'        => 'XML pişimine qaptalğan bölek bet ne better bwması mätiniñ jäne öñdew tarïxın sırtqa bere alasız. 
 MediaWiki jüýesiniñ [[{{#special:Import}}|sırttan alw betin]] paýdalanıp, bunı basqa wïkïge alwğa boladı.
 
-Betterdi sırtqa berw üşin, atawların tömendegi mätin awmağına engiziñiz (bir jolda bir ataw), jäne de bölekteñiz: ne ağımdıq nusqasın, barlıq eski nusqaları men jäne tarïxı joldarı men birge, nemese däl ağımdıq nusqasın, soñğı öñdew twralı aqparatı men birge.
+Betterdi sırtqa berw üşin, atawların tömendegi mätin awmağına engiziñiz (bir jolda bir ataw), jäne de bölekteñiz: ne ağımdıq nusqasın, barlıq eski nusqaları men jäne tarïxı joldarı men birge, nemese däl ağımdıq nusqasın, soñğı öñdemew twralı aqparatı men birge.
 
 Soñğı jağdaýda siltemeni de, mısalı «{{{{ns:mediawiki}}:Mainpage}}» beti üşin [[{{#special:Export}}/{{MediaWiki:Mainpage}}]] qoldanwğa boladı.',
-'exportcuronly'     => 'Tolıq tarïxın emes, tek ağımdıq nusqasın kiristiriñiz',
+'exportcuronly'     => 'Tolıq tarïxın emes, tek ağımdıq tüzetwin kiristiriñiz',
 'exportnohistory'   => "----
 '''Añğartpa:''' Önimdilik äseri sebepterinen, betterdiñ tolıq tarïxın bul pişinmen sırtqa berwi öşirilgen.",
 'export-submit'     => 'Sırtqa ber',
@@ -2264,14 +2264,14 @@ Eger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [http://www.mediawi
 'import'                     => 'Betterdi sırttan alw',
 'importinterwiki'            => 'Wïkï-tasımaldap sırttan alw',
 'import-interwiki-text'      => 'Sırttan alatın wïkï jobasın jäne bet atawın bölekteñiz.
-Nusqa kün-aýı jäne öñdewşi attarı saqtaladı.
-Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{#special:Log}}/import|sırttan alw jwrnalına]] jazılıp alınadı.',
+Tüzetw kün-aýı jäne öñdewşi esimderi saqtaladı.
+Barlıq wïkï arasındağı sırttan alw äreketter [[{{#special:Log}}/import|sırttan alw jwrnalına]] jazılıp alınadı.',
 'import-interwiki-history'   => 'Osı bettiñ barlıq tarïxï nusqaların köşirw',
 'import-interwiki-submit'    => 'Sırttan alw',
 'import-interwiki-namespace' => 'Mına esim ayasına betterdi tasımaldaw:',
 'importtext'                 => 'Qaýnar wïkïden «{{#special:Export}}» qwralın qoldanıp, faýldı sırtqa beriñiz, dïskiñizge saqtañız, sosın mında qotarıñız.',
 'importstart'                => 'Betterdi sırttan alwı…',
-'import-revision-count'      => '$1 nusqa',
+'import-revision-count'      => '$1 tüzetw',
 'importnopages'              => 'Sırttan alınatın better joq.',
 'importfailed'               => 'Sırttan alw sätsiz bitti: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Cırttan alw qaýnar türi tanımalsız',
@@ -2279,7 +2279,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{#special:Log}}/import|sı
 'importbadinterwiki'         => 'Jaramsız wïkï-aralıq silteme',
 'importnotext'               => 'Bostı, ne mätini joq',
 'importsuccess'              => 'Sırttan alwı ayaqtaldı!',
-'importhistoryconflict'      => 'Tarïxınıñ eges nusqaları bar (bul betti aldında sırttan alınğan sïyaqtı)',
+'importhistoryconflict'      => 'Tüzetw tarıxınıñ tartısı bar (bul betti aldında sırttan alınğan sïyaqtı)',
 'importnosources'            => 'Eşqandaý wïkï-tasımaldap sırttan alw qaýnarı belgilenmegen, jäne tarïxın tikeleý qotarwı öşirilgen.',
 'importnofile'               => 'Sırttan alınatın faýl qotarılğan joq.',
 'importuploaderrorsize'      => 'Sırttan alınatın faýldıñ qotarwı sätsiz ötti. Faýl mölşeri qotarwğa rwqsat etilgennen artıq.',
@@ -2287,22 +2287,22 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{#special:Log}}/import|sı
 'importuploaderrortemp'      => 'Sırttan alınatın faýldıñ qotarwı sätsiz ötti. Waqıtşa qalta tabılmadı.',
 'import-parse-failure'       => 'Sırttan alğanda XML öndetwi buzıldı',
 'import-noarticle'           => 'Sırttan alatın eş bet joq!',
-'import-nonewrevisions'      => 'Barlıq nusqaları aldında sırttan alınğan.',
+'import-nonewrevisions'      => 'Barlıq tüzetwleri aldında sırttan alınğan.',
 'xml-error-string'           => '$1 nömir $2 jolda, bağan $3 (baýt $4): $5',
 
 # Import log
 'importlogpage'                    => 'Sırttan alw jwrnalı',
-'importlogpagetext'                => 'Basqa wïkïlerden öñdew tarïxımen birge betterdi äkimşilik retinde sırttan alw.',
+'importlogpagetext'                => 'Basqa wïkïlerden tüzetw tarïxımen birge betterdi äkimşilik retinde sırttan alw.',
 'import-logentry-upload'           => 'faýl qotarwımen sırttan «[[$1]]» beti alındı',
-'import-logentry-upload-detail'    => '$1 nusqa',
-'import-logentry-interwiki'        => 'wïkï arasınan tasımaldanğan $1',
-'import-logentry-interwiki-detail' => '$2 degennen $1 nusqa',
+'import-logentry-upload-detail'    => '$1 tüzetw',
+'import-logentry-interwiki'        => 'wïkï arasınan alınğan $1',
+'import-logentry-interwiki-detail' => '$2 degennen $1 tüzetw',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Jeke betim',
-'tooltip-pt-anonuserpage'         => 'Osı IP jaýdıñ jeke beti',
+'tooltip-pt-anonuserpage'         => 'Bul IP jaýdıñ jeke beti',
 'tooltip-pt-mytalk'               => 'Talqılaw betim',
-'tooltip-pt-anontalk'             => 'Osı IP jaý tüzetwlerin talqılaw',
+'tooltip-pt-anontalk'             => 'Bul IP jaý öñdemelerin talqılaw',
 'tooltip-pt-preferences'          => 'Baptawım',
 'tooltip-pt-watchlist'            => 'Özgeristerin baqılap turğan better tizimim.',
 'tooltip-pt-mycontris'            => 'Ülesterimdiñ tizimi',
@@ -2316,7 +2316,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{#special:Log}}/import|sı
 'tooltip-ca-history'              => 'Bul bettin jwıqtağı nusqaları.',
 'tooltip-ca-protect'              => 'Bul betti qorğaw',
 'tooltip-ca-delete'               => 'Bul betti joyw',
-'tooltip-ca-undelete'             => 'Bul bettiñ joywdıñ aldındağı bolğan tüzetwlerin qalpına keltirw',
+'tooltip-ca-undelete'             => 'Bul bettiñ joywdıñ aldındağı bolğan öñdemelerin qalpına keltirw',
 'tooltip-ca-move'                 => 'Bul betti jıljıtw',
 'tooltip-ca-watch'                => 'Bul betti baqılaw tizimiñizge üstew',
 'tooltip-ca-unwatch'              => 'Bul betti baqılaw tizimiñizden alastaw',
@@ -2351,7 +2351,7 @@ Barlıq wïkï-tasımaldap sırttan alw äreketter [[{{#special:Log}}/import|sı
 'tooltip-ca-nstab-template'       => 'Ülgini qaraw',
 'tooltip-ca-nstab-help'           => 'Anıqtıma betin qaraw',
 'tooltip-ca-nstab-category'       => 'Sanat betin qaraw',
-'tooltip-minoredit'               => 'Osını şağın tüzetw dep belgilew',
+'tooltip-minoredit'               => 'Bunı şağın öñdeme dep belgilew',
 'tooltip-save'                    => 'Jasağan özgeristeriñizdi saqtaw',
 'tooltip-preview'                 => 'Saqtawdıñ aldınan jasağan özgeristeriñizdi qarap şığıñız!',
 'tooltip-diff'                    => 'Mätinge qandaý özgeristerdi jasağanıñızdı qaraw.',
@@ -2382,12 +2382,12 @@ Bunıñ sebebi sırtqı torap siltemesinen bolwı mümkin.',
 'spamprotectionmatch' => 'Kelesi «spam» mätini süzgilengen: $1',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => '$1 degenge siltemesi joq soñğı nusqasına qaýtarıldı',
-'spam_blanking'       => '$1 degenge siltemesi bar barlıq nusqalar tazartıldı',
+'spam_blanking'       => '$1 degenge siltemesi bar barlıq tüzetwler tazartıldı',
 
 # Info page
 'infosubtitle'   => 'Bet twralı mälimet',
-'numedits'       => 'Tüzetw sanı (bet): $1',
-'numtalkedits'   => 'Tüzetw sanı (talqılaw beti): $1',
+'numedits'       => 'Öñdeme sanı (bet): $1',
+'numtalkedits'   => 'Öñdeme sanı (talqılaw beti): $1',
 'numwatchers'    => 'Baqılawşı sanı: $1',
 'numauthors'     => 'Ärtürli awtorlar sanı (bet): $1',
 'numtalkauthors' => 'Ärtürli awtor sanı (talqılaw beti): $1',
@@ -2402,14 +2402,14 @@ Bunıñ sebebi sırtqı torap siltemesinen bolwı mümkin.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Küzette dep belgilew',
-'markaspatrolledtext'                 => 'Osı betti küzetwde dep belgilew',
+'markaspatrolledtext'                 => 'Bul betti küzetwde dep belgilew',
 'markedaspatrolled'                   => 'Küzette dep belgilendi',
-'markedaspatrolledtext'               => 'Talğanğan nusqa küzette dep belgilendi.',
+'markedaspatrolledtext'               => 'Bölektengen tüzetw küzette dep belgilendi.',
 'rcpatroldisabled'                    => 'Jwıqtağı özgerister Küzeti öşirilgen',
 'rcpatroldisabledtext'                => 'Jwıqtağı özgerister Küzeti mümkindigi ağımda öşirilgen.',
 'markedaspatrollederror'              => 'Küzette dep belgilenbeýdi',
-'markedaspatrollederrortext'          => 'Küzette dep belgilew üşin nusqasın engiziñiz.',
-'markedaspatrollederror-noautopatrol' => 'Öziñiz jasağan özgeristeriñizdi küzetke qoya almaýsız.',
+'markedaspatrollederrortext'          => 'Küzette dep belgilew üşin tüzetwdi keltiriñiz.',
+'markedaspatrollederror-noautopatrol' => 'Öz özgeristeriñizdi küzette dep belgileý almaýsız.',
 
 # Patrol log
 'patrol-log-page' => 'Küzet jwrnalı',
@@ -2418,15 +2418,15 @@ Bunıñ sebebi sırtqı torap siltemesinen bolwı mümkin.',
 'patrol-log-diff' => 'nömir $1',
 
 # Image deletion
-'deletedrevision'                 => 'Mına eski nusqasın joýdı: $1',
+'deletedrevision'                 => 'Eski tüzetwin joýdı: $1',
 'filedeleteerror-short'           => 'Faýl joyw qatesi: $1',
-'filedeleteerror-long'            => 'Mına faýldı joýğanda qateler kezdesti:
+'filedeleteerror-long'            => 'Faýldı joýğanda qateler kezdesti:
 
 $1',
 'filedelete-missing'              => '«$1» faýlı joýılmaýdı, sebebi ol joq.',
-'filedelete-old-unregistered'     => 'Faýldın keltirilgen «$1» nusqası derekqorda joq.',
-'filedelete-current-unregistered' => 'Keltirilgen «$1» faýl derekqorda joq.',
-'filedelete-archive-read-only'    => '«$1» degen murağat qaltasına vebserver jaza almaýdı.',
+'filedelete-old-unregistered'     => '«$1» faýldıñ keltirilgen tüzetwi derekqorda joq.',
+'filedelete-current-unregistered' => '«$1» faýldıñ keltirilgen atawı derekqorda joq.',
+'filedelete-archive-read-only'    => '«$1» murağat qaltasına veb-server jaza almaýdı.',
 
 # Browsing diffs
 'previousdiff' => '← Aldıñğı aýırm.',
@@ -2542,7 +2542,7 @@ Basqaları ädepkiden jasırıladı.
 'exif-exposurebiasvalue'           => 'Ustalım ötemi',
 'exif-maxaperturevalue'            => 'Barınşa sañılaw aşwı',
 'exif-subjectdistance'             => 'Nısana qaşıqtığı',
-'exif-meteringmode'                => 'Ölşew tärtibi',
+'exif-meteringmode'                => 'Ölşew ädisi',
 'exif-lightsource'                 => 'Jarıq közi',
 'exif-flash'                       => 'Jarqıldağış',
 'exif-focallength'                 => 'Şoğırlaw alşaqtığı',
@@ -2552,7 +2552,7 @@ Basqaları ädepkiden jasırıladı.
 'exif-focalplanexresolution'       => 'X boýınşa şoğırlaw jaýpaqtıqtıñ ajıratılımdığı',
 'exif-focalplaneyresolution'       => 'Y boýınşa şoğırlaw jaýpaqtıqtıñ ajıratılımdığı',
 'exif-focalplaneresolutionunit'    => 'Şoğırlaw jaýpaqtıqtıñ ajıratılımdıq ölşemi',
-'exif-subjectlocation'             => 'Nısana mekendewi',
+'exif-subjectlocation'             => 'Nısana ornalaswı',
 'exif-exposureindex'               => 'Ustalım aýqındawı',
 'exif-sensingmethod'               => 'Sensordiñ ölşew ädisi',
 'exif-filesource'                  => 'Faýl qaýnarı',
@@ -2735,8 +2735,8 @@ Basqaları ädepkiden jasırıladı.
 'exif-gpsdirection-m' => 'Magnïttı bağıt',
 
 # External editor support
-'edit-externally'      => 'Bul faýldı sırtqı qural/bağdarlama arqılı öñdew',
-'edit-externally-help' => 'Köbirek aqparat üşin [http://meta.wikimedia.org/wiki/Help:External_editors ornatw nusqawların] qarañız.',
+'edit-externally'      => 'Bul faýldı sırtqı qondırma arqılı öñdew',
+'edit-externally-help' => 'Köbirek aqparat üşin [http://meta.wikimedia.org/wiki/Help:External_editors ornatw nusqamaların] qarañız.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'barlığın',
@@ -2882,7 +2882,7 @@ Tağı da [[{{#special:Watchlist}}/raw|qam tizimdi öñdeý]] alasız.',
 'watchlistedit-raw-explain'    => 'Baqılaw tizimiñizdegi atawlar tömende körsetiledi, jäne de tizmge üstep jäne tizmden alastap öñdewge boladı;
 bir jolda bir ataw keledi.
 Bitirgennen soñ Baqılaw tizimdi jañartw degendi nuqıñız.
-Tağı da [[{{#special:Watchlist}}/edit|qalıptı öñdewişti paýdalana]] alasız.',
+Tağı da [[{{#special:Watchlist}}/edit|qalıpalğan öñdewişti paýdalana]] alasız.',
 'watchlistedit-raw-titles'     => 'Atawlar:',
 'watchlistedit-raw-submit'     => 'Baqılaw tizimdi jañartw',
 'watchlistedit-raw-done'       => 'Baqılaw tizimiñiz jañartıldı.',
