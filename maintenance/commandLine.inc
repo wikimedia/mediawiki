@@ -111,7 +111,8 @@ if (!isset( $wgUseNormalUser ) ) {
 
 if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$wgWikiFarm = true;
-	$cluster = trim( file_get_contents( '/etc/cluster' ) );
+	#$cluster = trim( file_get_contents( '/etc/cluster' ) );
+	$cluster = 'pmtpa';
 	require_once( "$IP/includes/SiteConfiguration.php" );
 
 	# Get $wgConf
@@ -152,6 +153,10 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$DP = $IP;
 	ini_set( 'include_path', ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
 
+	if ( $lang == 'test' && $site == 'wikipedia' ) {
+		define( 'TESTWIKI', 1 );
+	}
+	
 	#require_once( $IP.'/includes/ProfilerStub.php' );
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $IP.'/CommonSettings.php' );
@@ -208,6 +213,10 @@ if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
 			$wgDBservers[$i]['user'] = $wgDBuser;
 			$wgDBservers[$i]['password'] = $wgDBpassword;
 		}
+	}
+	if( isset( $wgLBFactoryConf['serverTemplate'] ) ) {
+		$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
+		$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 	}
 }
 
