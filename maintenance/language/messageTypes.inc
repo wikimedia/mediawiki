@@ -279,6 +279,7 @@ $wgOptionalMessages = array(
 	'comma-separator',
 	'colon-separator',
 	'autocomment-prefix',
+	'listgrouprights-right-display',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
