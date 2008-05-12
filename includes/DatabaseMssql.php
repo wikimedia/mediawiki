@@ -1,8 +1,6 @@
 <?php
 /**
  * This script is the MSSQL Server database abstraction layer
- * - Licenced under LGPL (http://www.gnu.org/copyleft/lesser.html)
- * - Author:  [http://www.organicdesign.co.nz/nad User:Nad]
  *
  * See maintenance/mssql/README for development notes and other specific information
  */
