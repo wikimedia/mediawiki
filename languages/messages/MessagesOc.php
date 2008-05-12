@@ -972,9 +972,6 @@ que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las pagi
 contenon totes los tèrmes apareisson dins los resultats).',
 'powersearch'               => 'Recèrca avançada',
 'powersearch-legend'        => 'Recèrca avançada',
-'powersearchtext'           => 'Recercar dins los espacis :<br />
-$1<br />
-$2 Enclure las paginas de redireccions   Recercar $3 $9',
 'search-external'           => 'Recèrca extèrna',
 'searchdisabled'            => 'La recèrca sus {{SITENAME}} es desactivada.
 En esperant la reactivacion, podètz efectuar una recèrca via Google.
@@ -1436,13 +1433,13 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'uncategorizedcategories'         => 'Categorias sens categorias',
 'uncategorizedcategories-summary' => "Aquesta pagina especiala lista totas las categorias qu'an pas de categoria parenta. A l'excepcion de la categoria rasiga, totas las categorias deurián èsser elas-meteissas inclusas dins una autra categoria per formar una arborescéncia (vejatz [[Ajuda:Categoria]]).",
 'uncategorizedimages'             => 'Fichièrs sens categorias',
-'uncategorizedimages-summary'     => "Aquesta pagina especiala dona una lista dels imatges sens categorias. Çaquelà, totes los [[Project:Lista dels bendèls de licéncia|bendèls de licéncia]] incluisson l'imatge dins al mens una categoria ; los imatges çaijós an doncas probablament pas de licéncia.",
+'uncategorizedimages-summary'     => "Aquesta pagina especiala dona una lista dels imatges sens categorias. Çaquelà, totes los bendèls de licéncia incluisson l'imatge dins al mens una categoria ; los imatges çaijós an doncas probablament pas de licéncia.",
 'uncategorizedtemplates'          => 'Modèls sens categoria',
 'unusedcategories'                => 'Categorias inutilizadas',
 'unusedimages'                    => 'Imatges orfanèls',
 'popularpages'                    => 'Paginas mai consultadas',
 'wantedcategories'                => 'Categorias mai demandadas',
-'wantedcategories-summary'        => "Aquesta pagina compta totes los ligams, e tanben los que son inserits via de modèls de navigacion. Per una lista dels articles mai demandats, vejatz [[Project:Articles mai demandats]], que comptabiliza pas que las referéncias provenent de l'espaci de nom dels articles.",
+'wantedcategories-summary'        => "!!FUZZ!!Aquesta pagina compta totes los ligams, e tanben los que son inserits via de modèls de navigacion. Per una lista dels articles mai demandats, vejatz articles mai demandats, que comptabiliza pas que las referéncias provenent de l'espaci de nom dels articles.",
 'wantedpages'                     => 'Paginas mai demandadas',
 'mostlinked'                      => 'Paginas mai ligadas',
 'mostlinkedcategories'            => 'Categorias mai utilizadas',

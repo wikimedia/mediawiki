@@ -9,7 +9,12 @@
 
 $messages = array(
 # User preference toggles
+'tog-underline'        => 'Kuritan sa idalom ang mga tabid:',
+'tog-highlightbroken'  => 'Dagwayi ang utod nga tabid <a href="" class="new">nga nagaka anggid sini </a> (alternatibo: anggid sini<a href="" class="internal">?</a>).',
+'tog-justify'          => 'Tadlongon ang mga parapo',
 'tog-rememberpassword' => 'Dumdumon ang akon pagsulod sa sini nga kompyuter',
+
+'skinpreview' => '(Ipakita subong)',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -19,6 +24,13 @@ $messages = array(
 'thursday'      => 'Huebes',
 'friday'        => 'Biyernes',
 'saturday'      => 'Sabado',
+'sun'           => 'Dom',
+'mon'           => 'Lun',
+'tue'           => 'Mar',
+'wed'           => 'Miy',
+'thu'           => 'Hue',
+'fri'           => 'Biy',
+'sat'           => 'Sab',
 'january'       => 'Enero',
 'february'      => 'Pebrero',
 'march'         => 'Marso',
@@ -56,11 +68,15 @@ $messages = array(
 'nov'           => 'Nob',
 'dec'           => 'Dis',
 
+'about'          => 'Nahanungod',
 'cancel'         => 'Kanselahon',
+'qbfind'         => 'Pangita',
 'qbedit'         => 'Ilisan',
+'qbpageoptions'  => 'Ining panid',
 'qbspecialpages' => 'Pinasahi nga mga panid',
 'mytalk'         => 'Akon paghisayranay',
 'navigation'     => 'Nabigayson',
+'and'            => 'kag',
 
 'tagline'          => 'Halin sa {{SITENAME}}',
 'help'             => 'Bulig',
@@ -147,6 +163,11 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # History pages
 'currentrev'          => 'Mga Inislan Subong',
 'currentrevisionlink' => 'Mga Inislan Subong',
+'cur'                 => 'karon',
+'last'                => 'ulihi',
+
+# Diffs
+'editundo' => 'bawi-on ang pag ilis',
 
 # Search results
 'powersearch'        => 'Abanse nga pagpangita',
@@ -160,6 +181,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 
 # Recent changes
 'recentchanges' => 'Mga Bag-o nga Inislan',
+'newpageletter' => 'B',
 
 # Recent changes linked
 'recentchangeslinked' => 'May labot nga pag-ilis',
@@ -195,6 +217,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 
 # Special:Allpages
 'alphaindexline' => '$1 sa $2',
+'allpagessubmit' => 'Sige',
 
 # Watchlist
 'watchlist'     => 'Akon Ginabantayan',
@@ -219,7 +242,8 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'sp-contributions-submit' => 'Pangita-a',
 
 # What links here
-'whatlinkshere' => 'Ang naga-tabid diri',
+'whatlinkshere'       => 'Ang naga-tabid diri',
+'whatlinkshere-title' => 'Mga panid nga naga tabid sa $1',
 
 # Block/unblock
 'ipbreason'          => 'Rason:',
@@ -240,9 +264,12 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'allmessages' => 'Mga mensahe sang sistema',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'     => 'Akon panid',
+'tooltip-pt-mytalk'       => 'Akon panid sang paghisayranay',
 'tooltip-pt-preferences'  => 'Akon pagpalabi',
 'tooltip-pt-login'        => 'Gina-abi-abi ikaw nga man magsulod paagi sa pag log-in, apang indi ini kinahanglan gid buhaton',
 'tooltip-ca-talk'         => 'Paghisayranay nahanungod sini nga panid',
+'tooltip-ca-edit'         => 'Puede nimo islan ang unod sang sini nga panid. Palihog gamit sang preview button antes permanentehon ang gin ilisan.',
 'tooltip-ca-move'         => 'Saylohon ining panid',
 'tooltip-search'          => 'Pangita-a sa {{SITENAME}}',
 'tooltip-p-logo'          => 'Mayor nga Panid',
@@ -252,11 +279,19 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'tooltip-n-randompage'    => 'Magbasa sang isa ka panid paagi sa lagpat',
 'tooltip-n-help'          => 'Ang lugar para maka tukib.',
 'tooltip-n-sitesupport'   => 'Sakdaga kami',
+'tooltip-t-whatlinkshere' => 'Listahan sang tanan nga panid sang wiki nga naga tabid diri',
 'tooltip-t-upload'        => 'Mag karga mga files',
 'tooltip-t-specialpages'  => 'Lista sang tanan nga espesyal nga panid',
+'tooltip-save'            => 'Permanentehon ang imo gin islan',
+
+# Media information
+'show-big-image' => 'Kabilogan nga resolusyon',
 
 # Special:Newimages
 'ilsubmit' => 'Pangita-a',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'tanan',
 
 # Multipage image navigation
 'imgmultigo' => 'Lakat',

@@ -887,10 +887,6 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'nonefound'                 => "'''Pare cuenta''': Os fallos en mirar pachinas son causatos á ormino por prebar de mirar palabras masiau comuns como \"o\", \"a\" u \"de\", que no i son en o endize, u por escribir más d'una palabra ta mirar (sólo amaneixen en o resultau as pachinas que contiengan todas as palabras).",
 'powersearch'               => 'Busca abanzata',
 'powersearch-legend'        => 'Busca abanzata',
-'powersearchtext'           => 'Mirar en o espazio de nombres:<br />
-$1<br />
-$2 Fer lista de reendrezeras <br />
-Mirar $3 $9',
 'search-external'           => 'Busca externa',
 'searchdisabled'            => 'A busca en {{SITENAME}} ye temporalment desautibata. Entremistanto, puede mirar en {{SITENAME}} fendo serbir buscadors esternos, pero pare cuenta que os suyos endizes de {{SITENAME}} puede no estar esbiellatos.',
 
