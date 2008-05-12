@@ -592,7 +592,8 @@ class SpecialSearch {
 					Xml::closeElement( 'span' ) . "\n";
 		}
 
-		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1' ) );
+		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
+		$redirectLabel = Xml::label( wfMsg( 'powersearchtext-redir' ), 'redirs' );
 		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
 		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' ) ) . "\n";
 
@@ -600,10 +601,11 @@ class SpecialSearch {
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array( ), wfMsg( 'powersearch-legend' ) ) .
 			Xml::hidden( 'title', 'Special:Search' ) .
-			wfMsgExt( 'powersearchtext', array( 'parse', 'replaceafter' ),
-				$namespaces, $redirect, $searchField,
-				'', '', '', '', '', # Dummy placeholders
-				$searchButton ) .
+			wfMsgExt( 'powersearchtext-ns', array( 'parse', 'replaceafter' ), $namespaces) .
+			Xml::openElement( 'p' ) .
+			$redirect . " " . $redirectLabel .
+			Xml::closeElement( 'p') .
+			wfMsgExt( 'powersearchtext-field', array( 'parse', 'replaceafter' ), $searchField, $searchButton) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 

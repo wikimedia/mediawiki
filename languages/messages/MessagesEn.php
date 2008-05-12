@@ -1318,7 +1318,9 @@ You can [[:\$1|create this page]].",
 'nonefound'                 => "'''Note''': Only some namespaces are searched by default. Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.",
 'powersearch'               => 'Advanced search',
 'powersearch-legend'        => 'Advanced search',
-'powersearchtext'           => 'Search in namespaces:<br />$1<br />$2 List redirects<br />Search for $3 $9',
+'powersearchtext-ns'        => 'Search in namespaces:<br />$1<br />',
+'powersearchtext-redir'     => 'List redirects',
+'powersearchtext-field'     => 'Search for $1 $2',
 'search-external'           => 'External search',
 'searchdisabled'            => '{{SITENAME}} search is disabled.
 You can search via Google in the meantime.
