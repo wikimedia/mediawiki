@@ -142,6 +142,7 @@ $wgMysqlUpdates = array(
 	array( 'do_populate_parent_id' ),
 	array( 'check_bin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
 	array( 'maybe_do_profiling_memory_update' ),
+	array( 'do_filearchive_indices_update' ),
 );
 
 
@@ -970,6 +971,7 @@ function do_backlinking_indices_update() {
 		!index_has_field('imagelinks', 'il_to', 'il_from'))
 	{	
 		dbsource( archive( 'patch-backlinkindexes.sql' ) );
+		echo( "...backlinking indices updated\n" );
 	}
 }
 
@@ -978,6 +980,18 @@ function do_categorylinks_indices_update() {
 	if (!index_has_field('categorylinks', 'cl_sortkey', 'cl_from'))
 	{	
 		dbsource( archive( 'patch-categorylinksindex.sql' ) );
+		echo( "...categorylinks indices updated\n" );
+	}
+}
+
+function do_filearchive_indices_update() {
+	global $wgDatabase;
+	echo( "Checking filearchive indices...\n" );
+	$info = $wgDatabase->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
+	if ( !$info )
+	{	
+		dbsource( archive( 'patch-filearhive-user-index.sql' ) );
+		echo( "...filearchive indices updated\n" );
 	}
 }
 

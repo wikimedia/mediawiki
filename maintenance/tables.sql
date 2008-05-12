@@ -841,7 +841,7 @@ CREATE TABLE /*$wgDBprefix*/filearchive (
   INDEX (fa_name, fa_timestamp),             -- pick out by image name
   INDEX (fa_storage_group, fa_storage_key),  -- pick out dupe files
   INDEX (fa_deleted_timestamp),              -- sort by deletion time
-  INDEX (fa_deleted_user)                    -- sort by deleter
+  INDEX fa_user_timestamp (fa_user_text,fa_timestamp) -- sort by uploader
 
 ) /*$wgDBTableOptions*/;
 
