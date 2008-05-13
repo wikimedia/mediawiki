@@ -139,9 +139,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$vals = array();
 
 		if ($this->fld_ids) {
-			// FIXME: Fake out log_id for now until the column is live on Wikimedia
-			// $vals['logid'] = intval($row->log_id);
-			$vals['logid'] = 0;
+			$vals['logid'] = intval($row->log_id);
 			$vals['pageid'] = intval($row->page_id);
 		}
 
