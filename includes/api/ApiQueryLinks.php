@@ -96,6 +96,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		// pl_namespace is always constant
 		$order[] = "{$this->prefix}_title";
 		$this->addOption('ORDER BY', implode(", ", $order));
+		$this->addOption('USE INDEX', "{$this->prefix}_from");
 
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
