@@ -271,6 +271,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13943) Fix image redirect behaviour on image pages
 * (bug 14093) Do 'sysop' => 'protect' magic in Title::isValidMoveOperation
 * (bug 14063) Power search form missing <label> for redirects check
+* (bug 14111) Similar filename warning links now lead to correct page
+
 
 === API changes in 1.13 ===
 
