@@ -138,7 +138,7 @@ class NewPagesForm {
 			unset($hidelinks['hideliu']);
 
 		if ( $wgUser->useNPPatrol() )
-			unset($hidelinks['hidepatrolled']);
+			unset($filters['hidepatrolled']);
 
 		$links = array();
 		$changed = $this->opts->getChangedValues();
@@ -386,12 +386,13 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 		$conds[] = 'page_id = rc_cur_id';
 		$conds['page_is_redirect'] = 0;
-
-		# If anons cannot make new pages, don't query for it!
-		if( $wgGroupPermissions['*']['createpage'] && $this->opts->getValue( 'hideliu' ) ) {
-			$conds['rc_user'] = 0;
-		} elseif ( $user ) {
+		# $wgEnableNewpagesUserFilter - temp WMF hack
+		if( $wgEnableNewpagesUserFilter && $user ) {
 			$conds['rc_user_text'] = $user->getText();
+			$rcIndexes = 'rc_user_text';
+		# If anons cannot make new pages, don't "exclude logged in users"!
+		} elseif( $wgGroupPermissions['*']['createpage'] && $this->opts->getValue( 'hideliu' ) ) {
+			$conds['rc_user'] = 0;
 		}
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
 		if( $this->opts->getValue( 'hidepatrolled' ) && $wgUser->useNPPatrol() ) {
@@ -399,11 +400,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 		if( $this->opts->getValue( 'hidebots' ) ) {
 			$conds['rc_bot'] = 0;
-		}
-		# $wgEnableNewpagesUserFilter - temp WMF hack
-		if( $wgEnableNewpagesUserFilter && $user ) {
-			$conds['rc_user_text'] = $user->getText();
-			$rcIndexes = 'rc_user_text';
 		}
 
 		return array(
