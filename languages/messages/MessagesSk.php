@@ -2555,6 +2555,7 @@ $1',
 'imgmultipageprev' => '&larr; predošlá stránka',
 'imgmultipagenext' => 'ďalšia stránka &rarr;',
 'imgmultigo'       => 'Vykonať',
+'imgmultigoto'     => 'Prejsť na stránku $1',
 
 # Table pager
 'ascending_abbrev'         => 'vzostupne',

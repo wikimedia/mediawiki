@@ -147,12 +147,12 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'redirect'            => array( '0', '#REDIRECT', '#ÁTIRÁNYÍTÁS' ),
+	'redirect'            => array( '0', '#ÁTIRÁNYÍTÁS', '#REDIRECT' ),
 	'notoc'               => array( '0', '__NOTOC__', '__NINCSTARTALOMJEGYZÉK__', '__NINCSTJ__' ),
 	'nogallery'           => array( '0', '__NOGALLERY__', '__NINCSGALÉRIA__' ),
-	'forcetoc'            => array( '0', '__FORCETOC__', '__LEGYENTARTALOMJEGYZÉK__' ),
+	'forcetoc'            => array( '0', '__FORCETOC__', '__LEGYENTARTALOMJEGYZÉK__', '__LEGYENTJ__' ),
 	'toc'                 => array( '0', '__TOC__', '__TARTALOMJEGYZÉK__', '__TJ__' ),
-	'noeditsection'       => array( '0', '__NOEDITSECTION__', '__NINCSSZERKESZTÉS__' ),
+	'noeditsection'       => array( '0', '__NOEDITSECTION__', '__NINCSSZERKESZTÉS__', '__NINCSSZERK__' ),
 	'currentmonth'        => array( '1', 'CURRENTMONTH', 'JELENLEGIHÓNAP' ),
 	'currentmonthname'    => array( '1', 'CURRENTMONTHNAME', 'JELENLEGIHÓNAPNEVE' ),
 	'currentmonthabbrev'  => array( '1', 'CURRENTMONTHABBREV', 'JELENLEGIHÓNAPRÖVID' ),
@@ -173,7 +173,7 @@ $magicWords = array(
 	'localhour'           => array( '1', 'LOCALHOUR', 'HELYIÓRA' ),
 	'numberofpages'       => array( '1', 'NUMBEROFPAGES', 'OLDALAKSZÁMA', 'LAPOKSZÁMA' ),
 	'numberofarticles'    => array( '1', 'NUMBEROFARTICLES', 'SZÓCIKKEKSZÁMA' ),
-	'numberoffiles'       => array( '1', 'NUMBEROFFILES', 'FÁJLOKSZÁMA' ),
+	'numberoffiles'       => array( '1', 'NUMBEROFFILES', 'FÁJLOKSZÁMA', 'KÉPEKSZÁMA' ),
 	'numberofusers'       => array( '1', 'NUMBEROFUSERS', 'SZERKESZTŐKSZÁMA' ),
 	'numberofedits'       => array( '1', 'NUMBEROFEDITS', 'SZERKESZTÉSEKSZÁMA' ),
 	'pagename'            => array( '1', 'PAGENAME', 'OLDALNEVE' ),
@@ -193,7 +193,7 @@ $magicWords = array(
 	'talkpagename'        => array( '1', 'TALKPAGENAME', 'VITALAPNEVE' ),
 	'talkpagenamee'       => array( '1', 'TALKPAGENAMEE', 'VITALAPNEVEE' ),
 	'subjectpagename'     => array( '1', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SZÓCIKKNEVE' ),
-	'subjectpagenamee'    => array( '1', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME', 'SZÓCIKKNEVEE' ),
+	'subjectpagenamee'    => array( '1', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE', 'SZÓCIKKNEVEE' ),
 	'msg'                 => array( '0', 'MSG:', 'ÜZENET:', 'ÜZ:' ),
 	'subst'               => array( '0', 'SUBST:', 'BEILLESZT:', 'BEMÁSOL:' ),
 	'img_thumbnail'       => array( '1', 'thumbnail', 'thumb', 'bélyegkép', 'bélyeg' ),
@@ -238,8 +238,8 @@ $magicWords = array(
 	'fullurle'            => array( '0', 'FULLURLE:', 'TELJESURLE:' ),
 	'lcfirst'             => array( '0', 'LCFIRST:', 'KISKEZDŐ:', 'KISKEZDŐBETŰ:' ),
 	'ucfirst'             => array( '0', 'UCFIRST:', 'NAGYKEZDŐ:', 'NAGYKEZDŐBETŰ:' ),
-	'lc'                  => array( '0', 'LC:', 'KISBETŰ:', 'KISBETŰK:', 'KB:' ),
-	'uc'                  => array( '0', 'UC:', 'NAGYBETŰ:', 'NAGYBETŰK', 'NB:' ),
+	'lc'                  => array( '0', 'LC:', 'KISBETŰ:', 'KISBETŰK:', 'KB:', 'KISBETŰS:' ),
+	'uc'                  => array( '0', 'UC:', 'NAGYBETŰ:', 'NAGYBETŰK', 'NB:', 'NAGYBETŰS:' ),
 	'displaytitle'        => array( '1', 'DISPLAYTITLE', 'MEGJELENÍTENDŐCÍM', 'CÍM' ),
 	'newsectionlink'      => array( '1', '__NEWSECTIONLINK__', '__ÚJSZAKASZLINK__' ),
 	'currentversion'      => array( '1', 'CURRENTVERSION', 'JELENLEGIVÁLTOZAT' ),
@@ -256,6 +256,7 @@ $magicWords = array(
 	'special'             => array( '0', 'special', 'speciális' ),
 	'defaultsort'         => array( '1', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:', 'RENDEZÉS:', 'KULCS:' ),
 	'filepath'            => array( '0', 'FILEPATH:', 'ELÉRÉSIÚT:' ),
+	'hiddencat'           => array( '1', '__HIDDENCAT__', '__REJTETTKAT__', '__REJTETTKATEGÓRIA__' ),
 );
 
 $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
@@ -1012,7 +1013,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Search results
 'searchresults'             => 'A keresés eredménye',
-'searchresulttext'          => 'A {{SITENAME}} keresésével kapcsolatos további információ a [[{{MediaWiki:Helppage}}|{{int:súgóban}}]].',
+'searchresulttext'          => 'A keresésről a [[{{MediaWiki:Helppage}}|{{int:help}}]] lapon találhatsz további információkat.',
 'searchsubtitle'            => 'Erre kerestél: „[[:$1]]”',
 'searchsubtitleinvalid'     => 'A "$1" kereséshez',
 'noexactmatch'              => "Nincs '''$1''' nevű lap. Készíthetsz egy [[:$1|új oldalt]] ezen a néven.",
@@ -1718,7 +1719,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletionlog'                 => 'törlési napló',
 'reverted'                    => 'Visszaállítva a korábbi változatra',
 'deletecomment'               => 'A törlés oka',
-'deleteotherreason'           => 'Az FV-ben megjelenő indoklás:',
+'deleteotherreason'           => 'További indoklás:',
 'deletereasonotherlist'       => 'Egyéb indok',
 'deletereason-dropdown'       => '*Gyakori törlési okok
 ** Szerző kérésére

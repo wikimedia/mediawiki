@@ -1062,10 +1062,6 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'nonefound'                 => '<strong>Poznámka</strong>: neúspěšná hledání jsou často důsledkem zadání slov, která nejsou indexována, nebo uvedením mnoha slov najednou (ve výsledku se objeví jen ty stránky, které obsahují všechna zadaná slova).',
 'powersearch'               => 'Hledání',
 'powersearch-legend'        => 'Rozšířené vyhledávání',
-'powersearchtext'           => '
-Hledat ve jmenných prostorech:<br />
-$1<br />
-$2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'search-external'           => 'Externí hledání',
 'searchdisabled'            => '<p>Omlouváme se. Plnotextové vyhledávání je dočasně nedostupné. Zatím můžete zkusit vyhledávání Googlem; je ale možné, že jeho výsledky nemusí být aktuální.</p>',
 
@@ -1200,7 +1196,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'right-autoconfirmed'        => 'Editace polozamčených stránek',
 'right-bot'                  => 'Být považován za automatický proces',
 'right-nominornewtalk'       => 'Nevypisování oznámení o nové zprávě po malých úpravách diskusní stránky',
-'right-apihighlimits'        => 'Používání vyšších API limitů',
+'right-apihighlimits'        => 'Používání vyšších limitů v API dotazech',
 'right-delete'               => 'Mazání stránek',
 'right-bigdelete'            => 'Mazání stránek s dlouhou historií',
 'right-deleterevision'       => 'Mazání a obnovování konkrétních revizí stránky',

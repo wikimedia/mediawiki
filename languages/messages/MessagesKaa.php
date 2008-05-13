@@ -662,7 +662,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'viewprevnext'          => "Ko'riw: ($1) ($2) ($3)",
 'powersearch'           => "Ken'eytilgen izlew",
 'powersearch-legend'    => "Ken'eytilgen izlew",
-'powersearchtext'       => "Mına isimler ko'pliginde izlew:<br />$1<br />$2 Burıwshılardı dizimlew<br />İzlew sorawı: $3 $9",
 'search-external'       => 'Sırtqı izlewshi',
 
 # Preferences page
