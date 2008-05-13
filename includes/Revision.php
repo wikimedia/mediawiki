@@ -258,6 +258,27 @@ class Revision {
 			'rev_parent_id'
 		);
 	}
+	
+	/**
+	 * Return the list of text fields that should be selected to read the 
+	 * revision text
+	 */
+	static function selectTextFields() {
+		return array(
+			'old_text',
+			'old_flags'
+		);
+	}
+	/**
+	 * Return the list of page fields that should be selected from page table
+	 */
+	static function selectPageFields() {
+		return array(
+			'page_namespace',
+			'page_title',
+			'page_latest'
+		);
+	}
 
 	/**
 	 * @param object $row

@@ -333,6 +333,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14022) Added usprop=registration and auprop=blockinfo
 * (bug 14021) Removed titles= support from list=backlinks (has been obsolete for ages)
 * (bug 13829) Expose parse tree via action=expandtemplates
+* ApiQueryRevisions now uses the Revision backend
 
 === Languages updated in 1.13 ===
 
