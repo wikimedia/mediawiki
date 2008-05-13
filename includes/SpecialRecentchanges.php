@@ -102,11 +102,8 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	if ( $limit < 0 || $limit > 5000 ) $limit = $defaults['limit'];
 
-
 	# Database connection and caching
 	$dbr = wfGetDB( DB_SLAVE );
-	list( $recentchanges, $watchlist ) = $dbr->tableNamesN( 'recentchanges', 'watchlist' );
-
 
 	$cutoff_unixtime = time() - ( $days * 86400 );
 	$cutoff_unixtime = $cutoff_unixtime - ($cutoff_unixtime % 86400);
