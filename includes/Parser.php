@@ -3082,6 +3082,11 @@ class Parser
 			}
 			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
 			$rev_id = $rev ? $rev->getId() : 0;
+			// If there is no current revision, there is no page
+			if( $id === false && !$rev ) {
+				$linkCache = LinkCache::singleton();
+				$linkCache->addBadLinkObj( $title );
+			}
 
 			$deps[] = array(
 				'title' => $title,
