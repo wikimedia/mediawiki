@@ -40,6 +40,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function execute() {
+		throw new MWException( "This query breaks database servers. It will be restored to service when it works reliably." );
+		
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
 
