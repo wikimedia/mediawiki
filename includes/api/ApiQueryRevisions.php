@@ -165,6 +165,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			// Get all revision IDs
 			$this->addWhereFld('rev_id', array_keys($pageSet->getRevisionIDs()));
+			$this->addWhere('page_id=rev_page');
 
 			// assumption testing -- we should never get more then $revCount rows.
 			$limit = $revCount;
