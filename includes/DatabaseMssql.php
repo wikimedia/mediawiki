@@ -992,7 +992,7 @@ class DatabaseMssql extends Database {
 			$line = fgets($f,1024);
 			$matches = array();
 			if (!preg_match('/^\s*(\(.+?),(\d)\)/', $line, $matches)) continue;
-			#$this->query("$sql $matches[1],$matches[2])");
+			$this->query("$sql $matches[1],$matches[2])");
 		}
 	}
 
