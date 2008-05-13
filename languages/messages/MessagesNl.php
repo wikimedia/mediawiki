@@ -1076,9 +1076,9 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'nonefound'                 => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht. Als u in uw zoekopdracht als voorvoegsel \"''all:''\" gebruikt worden alle pagina's doorzocht (inclusief overlegpagina's, sjablonen, enzovoort). U kunt ook een naamruimte als voorvoegsel gebruiken.",
 'powersearch'               => 'Uitgebreid zoeken',
 'powersearch-legend'        => 'Uitgebreid zoeken',
-'powersearchtext-ns'        => 'Zoeken in naamruimten:<br />$1<br />',
-'powersearchtext-redir'     => 'Doorverwijzingen weergeven',
-'powersearchtext-field'     => 'Zoeken naar $1 $2',
+'powersearch-ns'            => 'Zoeken in naamruimten:',
+'powersearch-redir'         => 'Doorverwijzingen weergeven',
+'powersearch-field'         => 'Zoeken naar',
 'search-external'           => 'Extern zoeken',
 'searchdisabled'            => 'Zoeken in {{SITENAME}} is niet mogelijk.
 U kunt gebruik maken van Google.
@@ -1647,7 +1647,7 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Rechten van gebruikersgroepen',
-'listgrouprights-summary'  => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten. Meer informatie over individuele rechten is [[{{MediaWiki:Listgrouprights-helppage}}|hier]] te vinden.',
+'listgrouprights-summary'  => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten. Voor meer informatie over individuele rechten, zie [[{{MediaWiki:Listgrouprights-helppage}}]].',
 'listgrouprights-group'    => 'Groep',
 'listgrouprights-rights'   => 'Rechten',
 'listgrouprights-helppage' => 'Help:Gebruikersrechten',

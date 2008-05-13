@@ -849,7 +849,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'nonefound'                 => "'''Nota''': arcuni palori cumuni ntâ lingua ngrisa, comu \"have\" o \"from\", nun sunnu indicizzati e ponnu quinni dari locu a risurtati nulli, accussì comu l'indicazzioni di cchiù tèrmini a ricircari (sulu li pàggini ca cuntèninu tutti li tèrmini richiesti vèninu visualizzati tra li risurtati).",
 'powersearch'               => 'Arriscedi',
 'powersearch-legend'        => 'Ricerca avanzata',
-'powersearchtext'           => 'Circata ntê namespace siquenti:<br />$1<br />$2 Ammustra li redirect<br />Criteri di circata: $3 $9',
 'search-external'           => 'Ricerca sterna',
 'searchdisabled'            => 'La circata nterna di {{SITENAME}} hà statu disabbilitata. Nta stu mentri, poi usari la circata supra Google o supra àutri motori di ricerca. Accura ca li loru innici dê cuntinuti di {{SITENAME}} ponnu nun èssiri aggiurnati.',
 
@@ -1946,7 +1945,7 @@ $1',
 'mediawarning'         => "'''Accura''': Stu file pò cuntèniri còdici malignu, esiquènnulu lu vostru sistema putisi vèniri cumprumissu. <hr />",
 'imagemaxsize'         => 'Diminzioni màssima dî mmàggini supra li rilativi pàggini di o:',
 'thumbsize'            => 'Grannizza dî miniaturi:',
-'widthheightpage'      => '$1×$2, $3 pàggini',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàggina|pàggini}}',
 'file-info'            => '(Diminzioni: $1, tipu MIME: $2)',
 'file-info-size'       => '($1 × $2 pixel, diminzioni: $3, tipu MIME: $4)',
 'file-nohires'         => '<small>Nun sunnu dispunìbbili virsioni a risuluzzioni cchiù elivata.</small>',
@@ -2297,6 +2296,7 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'imgmultipageprev' => '← pàggina pricidenti',
 'imgmultipagenext' => 'pàggina siquenti →',
 'imgmultigo'       => "Va'",
+'imgmultigoto'     => 'Vai a pàggina $1',
 
 # Table pager
 'ascending_abbrev'         => 'crisc',
@@ -2348,6 +2348,8 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 
 # Special:Version
 'version'                  => 'virsioni', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Pàggini spiciali',
+'version-variables'        => 'Variabili',
 'version-license'          => 'Licenza',
 'version-software'         => 'Software nstallatu',
 'version-software-product' => 'Prodottu',
@@ -2362,7 +2364,9 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
 'specialpages-group-other'       => 'Autri pàggini spiciali',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
+'specialpages-group-changes'     => 'Ùrtimi canciamenti e riggistri',
 'specialpages-group-users'       => 'Utenti e diritti',
+'specialpages-group-needy'       => 'Pàggini n cerca di manutenzioni',
 'specialpages-group-highuse'     => 'Pàggini cchiù usati',
 
 );

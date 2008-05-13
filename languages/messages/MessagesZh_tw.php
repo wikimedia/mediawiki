@@ -6,6 +6,7 @@
  * @author BobChao
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Roc michael
  */
 
 $fallback = 'zh-hant';
@@ -85,6 +86,7 @@ $messages = array(
 'tog-nolangconversion'        => '不進行用字轉換',
 'tog-ccmeonemails'            => '當我寄電子郵件給其他使用者時，也寄一份複本到我的信箱。',
 'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示頁面內容',
+'tog-showhiddencats'          => '顯示隱藏分類',
 
 'underline-always'  => '總是使用',
 'underline-never'   => '從不使用',
@@ -145,14 +147,21 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'             => '頁面分類',
-'categoriespagetext'     => '以下列出所有的頁面分類。',
-'pagecategories'         => '$1個分類',
-'category_header'        => '類別「$1」中的頁面',
-'subcategories'          => '子分類',
-'category-media-header'  => '"$1"分類中的媒體',
-'category-empty'         => "''這個分類中尚未包含任何頁面或媒體。''",
-'listingcontinuesabbrev' => '續',
+'categories'                    => '頁面分類',
+'categoriespagetext'            => '以下列出所有的頁面分類。',
+'special-categories-sort-count' => '按數量排列',
+'special-categories-sort-abc'   => '按字母排列',
+'pagecategories'                => '$1個分類',
+'category_header'               => '類別「$1」中的頁面',
+'subcategories'                 => '子分類',
+'category-media-header'         => '"$1"分類中的媒體',
+'category-empty'                => "''這個分類中尚未包含任何頁面或媒體。''",
+'hidden-categories'             => '$1個隱藏分類',
+'hidden-category-category'      => '隱藏分類', # Name of the category where hidden categories will be listed
+'category-subcat-count'         => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
+'category-subcat-count-limited' => '這個分類下有$1個子分類。',
+'category-article-count'        => '{{PLURAL:$2|這個分類中只有以下的頁面。|這個分類中有以下的$1個頁面，共有$2個頁面。}}',
+'listingcontinuesabbrev'        => '續',
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 使用者手冊] 以獲得使用此 wiki 軟體的訊息！
@@ -739,8 +748,6 @@ $2',
 'showingresultsnum'     => '下面顯示從第<b>$2</b>條開始的<b>$3</b>條結果:',
 'nonefound'             => '<strong>注意：</strong>失敗的搜尋往往是由於試圖搜尋諸如「的」或「和」之類的常見字所引起。',
 'powersearch'           => '搜尋',
-'powersearchtext'       => '
-搜尋名字空間：<br />$1<br />$2列出重定向頁面；搜尋$3 $9',
 'searchdisabled'        => '{{SITENAME}}由於性能方面的原因，全文搜尋已被暫時停用。您可以暫時透過Google搜尋。請留意他們的索引可能會過時。',
 
 # Preferences page

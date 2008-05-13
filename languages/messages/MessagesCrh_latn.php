@@ -782,7 +782,6 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 'showingresultsnum'     => "Aşağıda №&nbsp;'''$2'''den başlap {{PLURAL:$3|'''1''' netice|'''$3''' netice}} buluna.",
 'nonefound'             => "'''Tenbi''': Muvafaqiyetsiz qıdıruvnıñ sebebi indeksirlenip olamağan \"bu\" ve \"da\" kibi sözlerni qıdıruv ya da birden ziyade qıdırılğan sözni qullanuv ola bile (tek qıdıruv içün kirsetilgen bütün sözleri olğan saifeler kösterile).",
 'powersearch'           => 'Qıdır',
-'powersearchtext'       => 'Qıdıruv yapılacaq isim fezalarnı saylañız:<br />$1<br />$2 yollanmalarnı cedvelle<br />Qıdırılacaq: $3 $9',
 'searchdisabled'        => '{{SITENAME}} saytında qıdıruv yapma vaqtınca toqtatıldı. Bu arada Google qullanıp {{SITENAME}} içinde qıdıruv yapıp olasıñız. Qıdıruv saytlarında indekslemeleriniñ biraz eski qalğan ola bilecegini köz ögüne alıñız.',
 
 # Preferences page
@@ -956,6 +955,7 @@ Lütfen, keri qaytıñız, fayl ismini deñiştirip yañıdan yükleñiz. [[Imag
 'uploadvirus'                 => 'Bu fayl viruslıdır! $1 baqıñız',
 'sourcefilename'              => 'Yüklemege istegeniñiz fayl:',
 'destfilename'                => 'Faylnıñ istenilgen adı:',
+'upload-maxfilesize'          => 'Maksimal fayl büyükligi: $1',
 'watchthisupload'             => 'Bu faylnı közetüv cedveline kirset',
 'filewasdeleted'              => 'Bu isimde bir fayl mevcüt edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.',
 'upload-wasdeleted'           => "'''Diqqat: Evelde yoq etilgen faylnı yüklemektesiñiz.'''

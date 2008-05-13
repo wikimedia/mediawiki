@@ -887,7 +887,9 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'nonefound'                 => '<b>Kedźbu:</b> Pytanja bjez wuspěcha so často z pytanjom za powšitkownymi słowami zawinuja, kotrež so njeindicěruja abo přez podaće wjace hač jednoho pytanskeho wuraza. Jenož strony, kotrež wšě pytanske wurazy wobsahuja, so w lisćinje wuslědkow zjewja. W tym padźe spytaj ličbu pytanskich wurazow pomjeńšić.',
 'powersearch'               => 'Pytać',
 'powersearch-legend'        => 'Rozšěrjene pytanje',
-'powersearchtext'           => 'W mjenowych rumach pytać:<br />$1<br />$2 Daleposrědkowanja naličeć<br />Za wurazom pytać: $3 $9',
+'powersearch-ns'            => 'W mjenowych rumach pytać:',
+'powersearch-redir'         => 'Daleposrědkowanja nalistować',
+'powersearch-field'         => 'Pytać za:',
 'search-external'           => 'Eksterne pytanje',
 'searchdisabled'            => 'Pytanje w {{GRAMMAR:lokatiw|{{SITENAME}}}} tuchwilu móžne njeje. Móžeš mjeztym z Google pytać. Wobkedźbuj, zo móža wuslědki z wobsaha {{GRAMMAR:genitiw|{{SITENAME}}}} zestarjene być.',
 
