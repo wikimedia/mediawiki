@@ -1,12 +1,8 @@
 <?php
 /**
- * This script is the SQLite database abstraction layer, see http://www.organicdesign.co.nz/Extension_talk:MediaWikiLite.php
- * - Licenced under LGPL (http://www.gnu.org/copyleft/lesser.html){{php}}
- * - Author:  [http://www.organicdesign.co.nz/nad User:Nad]
- * - Started: 2007-12-17
- * - Last update: 2008-01-20
+ * This script is the SQLite database abstraction layer
  *
- * {{php}}{{category:Extensions|DatabaseSqlite.php}}
+ * See maintenance/sqlite/README for development notes and other specific information
  */
 
 /**
