@@ -40,8 +40,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	public function execute() {
-		throw new MWException( "This query breaks database servers. It will be restored to service when it works reliably." );
-		
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
 
@@ -67,7 +65,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				array(	'log_namespace=page_namespace',
 					'log_title=page_title'))));
 		$this->addWhere('user_id=log_user');
-		$this->addOption('USE INDEX', array('logging' => 'times'));
+		$this->addOption('USE INDEX', array('logging' => 'times')); // default, may change
 
 		$this->addFields(array (
 			'log_type',
@@ -75,8 +73,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_timestamp',
 		));
 
-		// FIXME: Fake out log_id for now until the column is live on Wikimedia
-		// $this->addFieldsIf('log_id', $this->fld_ids);
+		$this->addFieldsIf('log_id', $this->fld_ids);
 		$this->addFieldsIf('page_id', $this->fld_ids);
 		$this->addFieldsIf('log_user', $this->fld_user);
 		$this->addFieldsIf('user_name', $this->fld_user);
@@ -86,7 +83,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf('log_params', $this->fld_details);
 
 		$this->addWhereFld('log_deleted', 0);
-		$this->addWhereFld('log_type', $params['type']);
+		
+		if( !is_null($params['type']) ) {
+			$this->addWhereFld('log_type', $params['type']);
+			$this->addOption('USE INDEX', array('logging' => array('type_time')));
+		}
+		
 		$this->addWhereRange('log_timestamp', $params['dir'], $params['start'], $params['end']);
 
 		$limit = $params['limit'];
@@ -100,6 +102,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if (!$userid)
 				$this->dieUsage("User name $user not found", 'param_user');
 			$this->addWhereFld('log_user', $userid);
+			$this->addOption('USE INDEX', array('logging' => array('user_time','page_time')));
 		}
 
 		$title = $params['title'];
@@ -109,6 +112,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$this->dieUsage("Bad title value '$title'", 'param_title');
 			$this->addWhereFld('log_namespace', $titleObj->getNamespace());
 			$this->addWhereFld('log_title', $titleObj->getDBkey());
+			$this->addOption('USE INDEX', array('logging' => array('user_time','page_time')));
 		}
 
 		$data = array ();
