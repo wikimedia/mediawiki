@@ -124,7 +124,7 @@ class ApiQuery extends ApiBase {
 	public function getDB() {
 		if (!isset ($this->mSlaveDB)) {
 			$this->profileDBIn();
-			$this->mSlaveDB = wfGetDB(DB_SLAVE);
+			$this->mSlaveDB = wfGetDB(DB_SLAVE,'api');
 			$this->profileDBOut();
 		}
 		return $this->mSlaveDB;
