@@ -173,7 +173,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem = is_null($namespace) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 	
 	// Is there either one namespace selected or excluded?
-	// Also, if this is the main namespace, just use timestamp index.
+	// Also, if this is "all" or main namespace, just use timestamp index.
 	if( is_null($namespace) || $invert || $namespace == NS_MAIN ) {
 		$res = $dbr->select( $tables, '*',
 			array( "rc_timestamp >= '{$cutoff}' {$hidem}" ),
