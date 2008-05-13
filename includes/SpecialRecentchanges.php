@@ -159,22 +159,51 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 		}
 	}
 
-	# Namespace filtering
-	$hidem .= is_null( $namespace ) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
-
-	// This is the big thing!
-
+	// JOIN on watchlist for users
 	$uid = $wgUser->getID();
-
-	// Perform query
-	$forceclause = $dbr->useIndexClause("rc_timestamp");
-	$sql2 = "SELECT * FROM $recentchanges $forceclause".
-	  ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") .
-	  "WHERE rc_timestamp >= '{$cutoff}' {$hidem} " .
-	  "ORDER BY rc_timestamp DESC";
-	$sql2 = $dbr->limitResult($sql2, $limit, 0);
-	$res = $dbr->query( $sql2, $fname );
-
+	if( $uid ) {
+		$tables = array( 'recentchanges', 'watchlist' );
+		$join_conds = array( 'watchlist' => array('LEFT JOIN',"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace") );
+	} else {
+		$tables = array( 'recentchanges' );
+		$join_conds = array();
+	}
+	
+	# Namespace filtering
+	$hidem = is_null($namespace) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
+	
+	// Is there either one namespace selected or excluded?
+	// Also, if this is the main namespace, just use timestamp index.
+	if( is_null($namespace) || $invert || $namespace == NS_MAIN ) {
+		$res = $dbr->select( $tables, '*',
+			array( "rc_timestamp >= '{$cutoff}' {$hidem}" ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit, 
+				'USE INDEX' => array('recentchanges' => 'rc_timestamp') ),
+			$join_conds );
+	// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!
+	} else {
+		// New pages
+		$sqlNew = $dbr->selectSQLText( $tables, '*',
+			array( 'rc_new' => 1,
+				"rc_timestamp >= '{$cutoff}' {$hidem}" ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit, 
+				'USE INDEX' =>  array('recentchanges' => 'new_name_timestamp') ),
+			$join_conds );
+		// Old pages
+		$sqlOld = $dbr->selectSQLText( $tables, '*',
+			array( 'rc_new' => 0,
+				"rc_timestamp >= '{$cutoff}' {$hidem}" ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit, 
+				'USE INDEX' =>  array('recentchanges' => 'new_name_timestamp') ),
+			$join_conds );
+		# Join the two fast queries, and sort the result set
+		$sql = "($sqlNew) UNION ($sqlOld) ORDER BY rc_timestamp DESC LIMIT $limit";
+		$res = $dbr->query( $sql, __METHOD__ );
+	}
+	
 	// Fetch results, prepare a batch link existence check query
 	$rows = array();
 	$batch = new LinkBatch;
