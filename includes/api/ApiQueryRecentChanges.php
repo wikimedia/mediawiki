@@ -166,7 +166,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			if($this->fld_redirect || isset($show['redirect']) || isset($show['!redirect']))
 			{
 				$this->addTables('page');
-				$this->addJoinConds(array('page' => 'LEFT JOIN', array('rc_namespace=page_namespace', 'rc_title=page_title')));
+				$this->addJoinConds(array('page' => array('LEFT JOIN', array('rc_namespace=page_namespace', 'rc_title=page_title'))));
 				$this->addFields('page_is_redirect');
 			}
 		}
