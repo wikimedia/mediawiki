@@ -244,9 +244,9 @@ class NewPagesForm {
 		$ulink = $this->skin->userLink( $result->rc_user, $result->rc_user_text ) . ' ' .
 			$this->skin->userToolLinks( $result->rc_user, $result->rc_user_text );
 		$comment = $this->skin->commentBlock( $result->rc_comment );
-		$css = $this->patrollable( $result ) ? 'not-patrolled' : '';
+		$css = $this->patrollable( $result ) ? " class='not-patrolled'" : '';
 
-		return "<li class='$css'>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}</li>\n";
+		return "<li{$css}>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}</li>\n";
 	}
 
 	/**
