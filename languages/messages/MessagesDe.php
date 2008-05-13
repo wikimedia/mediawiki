@@ -966,9 +966,9 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'nonefound'                 => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setze ''all:'' vor deinen Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'powersearch'               => 'Erweiterte Suche',
 'powersearch-legend'        => 'Erweiterte Suche',
-'powersearchtext-ns'        => 'Suche in Namensräumen:<br />$1<br />',
-'powersearchtext-redir'     => 'Weiterleitungen anzeigen',
-'powersearchtext-field'     => 'Suche nach: $1 $2',
+'powersearch-ns'            => 'Suche in Namensräumen:',
+'powersearch-redir'         => 'Weiterleitungen anzeigen',
+'powersearch-field'         => 'Suche nach:',
 'search-external'           => 'Externe Suche',
 'searchdisabled'            => 'Die {{SITENAME}}-Suche ist deaktiviert. Du kannst unterdessen mit Google suchen. Bitte bedenke, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
