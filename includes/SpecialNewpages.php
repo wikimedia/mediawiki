@@ -135,7 +135,7 @@ class NewPagesForm {
 
 		// Disable some if needed
 		if ( $wgGroupPermissions['*']['createpage'] !== true )
-			unset($hidelinks['hideliu']);
+			unset($filters['hideliu']);
 
 		if ( $wgUser->useNPPatrol() )
 			unset($filters['hidepatrolled']);
