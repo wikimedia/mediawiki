@@ -962,7 +962,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'searchall'                 => 'alle',
 'showingresults'            => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
 'showingresultsnum'         => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
-'showingresultstotal'       => "Es folgen die Suchergebnisse '''$1–$2''' von '''$3''':",
+'showingresultstotal'       => "Es folgen die Suchergebnisse '''$1–$2''' von '''$3:'''",
 'nonefound'                 => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setze ''all:'' vor deinen Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'powersearch'               => 'Erweiterte Suche',
 'powersearch-legend'        => 'Erweiterte Suche',
