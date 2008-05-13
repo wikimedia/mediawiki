@@ -88,6 +88,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ( $this->tok_rollback || ( $this->fld_content && $this->expandTemplates ) || $pageCount > 0) {
 			$this->addTables( 'page' );
+			$this->addWhere('page_id=rev_page');
 			$this->addFields( Revision::selectPageFields() );
 		}
 
@@ -165,7 +166,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			// Get all revision IDs
 			$this->addWhereFld('rev_id', array_keys($pageSet->getRevisionIDs()));
-			$this->addWhere('page_id=rev_page');
 
 			// assumption testing -- we should never get more then $revCount rows.
 			$limit = $revCount;
