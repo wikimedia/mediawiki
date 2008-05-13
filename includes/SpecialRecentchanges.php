@@ -167,7 +167,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	}
 	
 	# Namespace filtering
-	$hidem = is_null($namespace) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
+	$hidem .= is_null($namespace) ?  '' : ' AND rc_namespace' . ($invert ? '!=' : '=') . $namespace;
 	
 	// Is there either one namespace selected or excluded?
 	// Also, if this is "all" or main namespace, just use timestamp index.
