@@ -212,7 +212,7 @@ class SpecialSearch {
 			} else {
 				$top = wfShowingResultsNum( $this->offset, $this->limit, $num );
 			}
-			$wgOut->addHTML( "<p>{$top}</p>\n" );
+			$wgOut->addHTML( "<p class='mw-search-numberresults'>{$top}</p>\n" );
 		}
 
 		// prev/next links
@@ -223,7 +223,7 @@ class SpecialSearch {
 					$this->powerSearchOptions(),
 					array( 'search' => $term ) ),
 					($num < $this->limit) );
-			$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
+			$wgOut->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
 			wfRunHooks( 'SpecialSearchResults', array( $term, $titleMatches, $textMatches ) );
 		} else {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
@@ -254,7 +254,7 @@ class SpecialSearch {
 			// show results
 			if( $textMatches->numRows() )
 				$wgOut->addHTML( $this->showMatches( $textMatches ) );
-				
+
 			$textMatches->free();
 		}
 
@@ -262,7 +262,7 @@ class SpecialSearch {
 			$wgOut->addWikiMsg( 'nonefound' );
 		}
 		if( $num || $this->offset ) {
-			$wgOut->addHTML( "<p>{$prevnext}</p>\n" );
+			$wgOut->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
 		$wgOut->addHTML( $this->powerSearchBox( $term ) );
 		wfProfileOut( $fname );
