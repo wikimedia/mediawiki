@@ -596,7 +596,7 @@ class UploadForm {
 			// extensions (eg 'jpg' rather than 'JPEG').
 			//
 			// Check for another file using the normalized form...
-			$nt_lc = Title::newFromText( $partname . '.' . $file->getExtension() );
+			$nt_lc = Title::makeTitle( NS_IMAGE, $partname . '.' . $file->getExtension() );
 			$file_lc = wfLocalFile( $nt_lc );
 		} else {
 			$file_lc = false;
@@ -635,7 +635,10 @@ class UploadForm {
 				$dlink2 = '';
 			}
 
-			$warning .= '<li>' . wfMsgExt( 'fileexists-extension', 'parsemag', $file->getName(), $dlink ) . '</li>' . $dlink2;
+			$warning .= '<li>' .
+				wfMsgExt( 'fileexists-extension', 'parsemag',
+					$file->getTitle()->getPrefixedText(), $dlink ) .
+				'</li>' . $dlink2;
 
 		} elseif ( ( substr( $partname , 3, 3 ) == 'px-' || substr( $partname , 2, 3 ) == 'px-' )
 			&& ereg( "[0-9]{2}" , substr( $partname , 0, 2) ) )
