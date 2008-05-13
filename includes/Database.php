@@ -945,6 +945,24 @@ class Database {
 	 */
 	function select( $table, $vars, $conds='', $fname = 'Database::select', $options = array(), $join_conds = array() )
 	{
+		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		return $this->query( $sql, $fname );
+	}
+	
+	/**
+	 * SELECT wrapper
+	 *
+	 * @param mixed  $table   Array or string, table name(s) (prefix auto-added)
+	 * @param mixed  $vars    Array or string, field name(s) to be retrieved
+	 * @param mixed  $conds   Array or string, condition(s) for WHERE
+	 * @param string $fname   Calling function name (use __METHOD__) for logs/profiling
+	 * @param array  $options Associative array of options (e.g. array('GROUP BY' => 'page_title')),
+	 *                        see Database::makeSelectOptions code for list of supported stuff
+	 * @param array $join_conds Associative array of table join conditions (optional)
+	 *                        (e.g. array( 'page' => array('LEFT JOIN','page_latest=rev_id') )
+	 * @return string, the SQL text
+	 */
+	function selectSQLText( $table, $vars, $conds='', $fname = 'Database::select', $options = array(), $join_conds = array() ) {
 		if( is_array( $vars ) ) {
 			$vars = implode( ',', $vars );
 		}
@@ -985,7 +1003,7 @@ class Database {
 		if (isset($options['EXPLAIN'])) {
 			$sql = 'EXPLAIN ' . $sql;
 		}
-		return $this->query( $sql, $fname );
+		return $sql;
 	}
 
 	/**
