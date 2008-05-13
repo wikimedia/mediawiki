@@ -82,11 +82,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_comment = isset ($prop['comment']);
 		$this->fld_size = isset ($prop['size']);
 		$this->tok_rollback = false; // Prevent PHP undefined property notice
-		// Uh... where if $token set?
 		if(!is_null($token))
-		{
 			$this->tok_rollback = $this->getTokenFlag($token, 'rollback');
-		}
 		$this->fld_user = isset ($prop['user']);
 
 		if ( $this->tok_rollback || ( $this->fld_content && $this->expandTemplates ) || $pageCount > 0) {
