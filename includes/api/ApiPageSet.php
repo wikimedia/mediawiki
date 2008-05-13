@@ -381,7 +381,8 @@ class ApiPageSet extends ApiQueryBase {
 		$res = $db->select('page', $this->getPageTableFields(), $set, __METHOD__);
 		$this->profileDBOut();
 
-		$this->initFromQueryResult($db, $res, array_flip($pageids), false);	// process PageIDs
+		$remaining = array_flip($pageids);
+		$this->initFromQueryResult($db, $res, $remaining, false);	// process PageIDs
 
 		// Resolve any found redirects
 		$this->resolvePendingRedirects();
