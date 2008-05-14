@@ -639,19 +639,16 @@ EOT
 		global $wgOut, $wgUser;		
 	
 		if ( !( $hash = $this->img->getSha1() ) ) return;
-		// Should find a proper way to link to foreign files
-		// Deprecates checkSharedConflict
-		//$dupes = RepoGroup::singleton()->findBySha1( $hash );
-		$dupes = RepoGroup::singleton()->getLocalRepo()->findBySha1( $hash );
+		// Probably deprecates checkSharedConflict?
+		$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		//$dupes = RepoGroup::singleton()->getLocalRepo()->findBySha1( $hash );
 		
 		// Don't dupe with self
-		$index = 0;
 		$self = $this->img->getRepoName().':'.$this->img->getName();
-		foreach ( $dupes as $file ) {
+		foreach ( $dupes as $index => $file ) {
 			$key = $file->getRepoName().':'.$file->getName();
 			if ( $key == $self )
 				unset( $dupes[$index] );
-			$index++;
 		}
 		if ( count( $dupes ) == 0 ) return;
 		
@@ -660,7 +657,11 @@ EOT
 		
 		$sk = $wgUser->getSkin();
 		foreach ( $dupes as $file ) {
-			$link = $sk->makeKnownLinkObj( $file->getTitle(), "" );
+			if ( $file->isLocal() )
+				$link = $sk->makeKnownLinkObj( $file->getTitle(), "" );
+			else
+				$link = $sk->makeExternalLink( $file->getDescriptionUrl(), 
+					$file->getTitle()->getPrefixedText() );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul>\n" );
