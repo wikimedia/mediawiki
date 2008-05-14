@@ -760,10 +760,8 @@ class Title {
 	 * @param string $variant language variant of url (for sr, zh..)
 	 * @return string the URL
 	 */
-	public function getFullURL( $query = null, $variant = false ) {
+	public function getFullURL( $query = '', $variant = false ) {
 		global $wgContLang, $wgServer, $wgRequest;
-		
-		$query = wfBuildQuery( $query );
 
 		if ( '' == $this->mInterwiki ) {
 			$url = $this->getLocalUrl( $query, $variant );
@@ -801,12 +799,10 @@ class Title {
 	 * @param string $variant language variant of url (for sr, zh..)
 	 * @return string the URL
 	 */
-	public function getLocalURL( $query = null, $variant = false ) {
+	public function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
 		global $wgVariantArticlePath, $wgContLang, $wgUser;
-		
-		$query = wfBuildQuery( $query );
-		
+
 		// internal links should point to same variant as current page (only anonymous users)
 		if($variant == false && $wgContLang->hasVariants() && !$wgUser->isLoggedIn()){
 			$pref = $wgContLang->getPreferredVariant(false);
