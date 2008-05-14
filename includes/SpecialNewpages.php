@@ -35,7 +35,7 @@ class NewPagesForm {
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidebots', false );
 		$opts->add( 'limit', 50 );
-		$opts->add( 'offset', 0 );
+		$opts->add( 'offset', '' );
 		$opts->add( 'namespace', '0' );
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
@@ -72,7 +72,8 @@ class NewPagesForm {
 			$m = array();
 			if ( preg_match( '/^limit=(\d+)$/', $bit, $m ) )
 				$this->opts->setValue( 'limit', intval($m[1]) );
-			if ( preg_match( '/^offset=(\d+)$/', $bit, $m ) )
+			// PG offsets not just digits!
+			if ( preg_match( '/^offset=([^=]+)$/', $bit, $m ) )
 				$this->opts->setValue( 'offset',  intval($m[1]) );
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$ns = $wgLang->getNsIndex( $m[1] );
