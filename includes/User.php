@@ -1002,6 +1002,13 @@ class User {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__.": checking...\n" );
 
+		// Initialize data...
+		// Otherwise something ends up stomping on $this->mBlockedby when
+		// things get lazy-loaded later, causing false positive block hits
+		// due to -1 !== 0. Probably session-related... Nothing should be
+		// overwriting mBlockedby, surely?
+		$this->load();
+		
 		$this->mBlockedby = 0;
 		$this->mHideName = 0;
 		$ip = wfGetIP();
