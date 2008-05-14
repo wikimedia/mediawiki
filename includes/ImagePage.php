@@ -103,7 +103,11 @@ class ImagePage extends Article {
 
 		$this->closeShowImage();
 		$this->imageHistory();
+		// TODO: Cleanup the following
 		$this->imageLinks();
+		$this->imageDupes();
+		// TODO: We may want to find local images redirecting to a foreign 
+		// file: "The following local files redirect to this file"
 		if ( $this->img->isLocal() ) $this->imageRedirects();
 
 		if ( $showmeta ) {
@@ -629,6 +633,37 @@ EOT
 		$wgOut->addHTML( "</ul>\n" );
 		
 		$res->free();
+	}
+	
+	function imageDupes() {
+		global $wgOut, $wgUser;		
+	
+		if ( !( $hash = $this->img->getSha1() ) ) return;
+		// Should find a proper way to link to foreign files
+		// Deprecates checkSharedConflict
+		//$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		$dupes = RepoGroup::singleton()->getLocalRepo()->findBySha1( $hash );
+		
+		// Don't dupe with self
+		$index = 0;
+		$self = $this->img->getRepoName().':'.$this->img->getName();
+		foreach ( $dupes as $file ) {
+			$key = $file->getRepoName().':'.$file->getName();
+			if ( $key == $self )
+				unset( $dupes[$index] );
+			$index++;
+		}
+		if ( count( $dupes ) == 0 ) return;
+		
+		$wgOut->addWikiMsg( 'duplicatesoffile' );
+		$wgOut->addHTML( "<ul>\n" );
+		
+		$sk = $wgUser->getSkin();
+		foreach ( $dupes as $file ) {
+			$link = $sk->makeKnownLinkObj( $file->getTitle(), "" );
+			$wgOut->addHTML( "<li>{$link}</li>\n" );
+		}
+		$wgOut->addHTML( "</ul>\n" );
 	}
 
 	/**

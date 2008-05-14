@@ -73,6 +73,28 @@ class LocalFile extends File
 		$file->loadFromRow( $row );
 		return $file;
 	}
+	
+	/**
+	 * Fields in the image table
+	 */
+	static function selectFields() {
+		return array(
+			'img_name',
+			'img_size',
+			'img_width',
+			'img_height',
+			'img_metadata',
+			'img_bits',
+			'img_media_type',
+			'img_major_mime',
+			'img_minor_mime',
+			'img_description',
+			'img_user',
+			'img_user_text',
+			'img_timestamp',
+			'img_sha1',
+		);
+	}
 
 	/**
 	 * Constructor.
