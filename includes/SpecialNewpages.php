@@ -56,6 +56,7 @@ class NewPagesForm {
 	}
 
 	protected function parseParams( $par ) {
+		global $wgLang;
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
 			if ( 'shownav' == $bit )
