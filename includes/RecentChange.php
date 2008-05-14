@@ -283,7 +283,7 @@ class RecentChange
 			'rc_title'	=> $title->getDBkey(),
 			'rc_type'	=> RC_EDIT,
 			'rc_minor'	=> $minor ? 1 : 0,
-			'rc_cur_id'	=> $action === 'delete' ? 0 : $target->getArticleID(),
+			'rc_cur_id'	=> $title->getArticleID(),
 			'rc_user'	=> $user->getID(),
 			'rc_user_text'	=> $user->getName(),
 			'rc_comment'	=> $comment,
