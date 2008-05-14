@@ -97,6 +97,17 @@ class RepoGroup {
 		}
 		return false;
 	}
+	
+	function findBySha1( $hash ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+		
+		$result = $this->localRepo->findBySha1( $hash );
+		foreach ( $this->foreignRepos as $repo )
+			$result = array_merge( $result, $repo->findBySha1( $hash ) );
+		return $result;		
+	}
 
 	/**
 	 * Get the repo instance with a given key.

@@ -449,4 +449,8 @@ abstract class FileRepo {
 	 */
 	function invalidateImageRedirect( $title ) {
 	}
+	
+	function findBySha1( $hash ) {
+		return array();
+	}
 }

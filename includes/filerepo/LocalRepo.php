@@ -142,4 +142,19 @@ class LocalRepo extends FSRepo {
 		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
 		$wgMemc->delete( $memcKey );
 	}
+	
+	function findBySha1( $hash ) {
+		$dbr = $this->getSlaveDB();
+		$res = $dbr->select(
+			'image',
+			LocalFile::selectFields(),
+			array( 'img_sha1' => $hash )
+		);
+		
+		$result = array();
+		while ( $row = $res->fetchObject() )
+			$result[] = $this->newFileFromRow( $row );
+		$res->free();
+		return $result;
+	}
 }
