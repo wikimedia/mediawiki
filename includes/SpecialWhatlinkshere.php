@@ -99,7 +99,7 @@ class WhatLinksHerePage {
 		$hidetrans = $this->opts->getValue( 'hidetrans' );
 		$hideimages = $target->getNamespace() != NS_IMAGE || $this->opts->getValue( 'hideimages' );
 
-		$fetchlinks = !$hidelinks || !$hideredirs;
+		$fetchlinks = (!$hidelinks || !$hideredirs);
 
 		// Make the query
 		$plConds = array(
@@ -125,7 +125,7 @@ class WhatLinksHerePage {
 		);
 
 		$namespace = $this->opts->getValue( 'namespace' );
-		if ( is_int($namespace) ){
+		if ( is_int($namespace) ) {
 			$plConds['page_namespace'] = $namespace;
 			$tlConds['page_namespace'] = $namespace;
 		}
@@ -133,12 +133,13 @@ class WhatLinksHerePage {
 		if ( $from ) {
 			$tlConds[] = "tl_from >= $from";
 			$plConds[] = "pl_from >= $from";
+			$ilConds[] = "il_from >= $from";
 		}
 
 		// Read an extra row as an at-end check
 		$queryLimit = $limit + 1;
 
-		// enforce join order, sometimes namespace selector may
+		// Enforce join order, sometimes namespace selector may
 		// trigger filesorts which are far less efficient than scanning many entries
 		$options[] = 'STRAIGHT_JOIN';
 
@@ -163,7 +164,7 @@ class WhatLinksHerePage {
 				$ilConds, __METHOD__, $options );
 		}
 
-		if( ( !$fetchlinks || !$dbr->numRows( $plRes ) ) && ( $hidetrans || !$dbr->numRows( $tlRes ) ) && ( $hideimages || !$dbr->numRows( $ilRes ) ) ) {
+		if( ( !$fetchlinks || !$dbr->numRows($plRes) ) && ( $hidetrans || !$dbr->numRows($tlRes) ) && ( $hideimages || !$dbr->numRows($ilRes) ) ) {
 			if ( 0 == $level ) {
 				$wgOut->addHTML( $this->whatlinkshereForm() );
 				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
