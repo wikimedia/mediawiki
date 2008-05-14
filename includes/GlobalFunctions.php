@@ -989,20 +989,100 @@ function wfSetBit( &$dest, $bit, $state = true ) {
  */
 function wfArrayToCGI( $array1, $array2 = NULL )
 {
-	if ( !is_null( $array2 ) ) {
-		$array1 = $array1 + $array2;
-	}
+    if ( !is_null( $array2 ) ) {
+        $array1 = $array1 + $array2;
+    }
+	
+    $cgi = '';
+    foreach ( $array1 as $key => $value ) {
+        if ( '' !== $value ) {
+            if ( '' != $cgi ) {
+                $cgi .= '&';
+            }
+            $cgi .= urlencode( $key ) . '=' . urlencode( $value );
+        }
+    }
+    return $cgi;
+}
+/**
+ * Build a query string from complex data input and return.
+ * 
+ * @param mixed $query The query data to build the string from
+ * @param string $prefix A prefix to add to numeric keys to make them valid
+ * @param string $dataKey A key name to use on the data
+ * @return string The query string
+ */
+function wfBuildQuery( $query, $prefix = null, $dataKey = null ) {
+	# Passthrough strings and blank data
+	if( is_null($query) || is_string($query) ) return (string) $query;
+	
+	# Recursively build the query.
+	$data = array();
+	$keyNum = 0;
+	foreach( (array) $query as $key => $value ) {
+		if( is_int($key) && $prefix != null ) {
+			# Prefix numeric keys when given a prefix.
+			$key = "{$prefix}{$key}";
+		}
+		if( isset($dataKey) && $dataKey != '' ) {
+			# Add array type data to keys when needed
+			# but don't add the key inside the [] when they are sequential
+			if( $keyNum === $key ) $key = "{$dataKey}[]"; 
+			else $key = "{$dataKey}[{$key}]";
+			
+		}
+		# Push the data onto the end of the array recursing if needed.
+		array_push($data,
+			is_array($value) || is_object($value)
+			? wfBuildQuery($value,null,$key)
+			: urlencode($key)."=".urlencode($value) );
+		$keyNum++;
+	};
+	# Implode and return.
+	return implode('&', $data);
+};
 
-	$cgi = '';
-	foreach ( $array1 as $key => $value ) {
-		if ( '' !== $value ) {
-			if ( '' != $cgi ) {
-				$cgi .= '&';
+/**
+ * Parse a query string into an array.
+ * 
+ * @param mixed $query The query string to parse
+ * @return array The array data for the query
+ */
+function wfParseQuery( $query ) {
+	# Passthrough non-strings.
+	if( !is_string($query) ) return $query;
+	
+	$data = array();
+	# Separate all name-value pairs
+	$pairs = explode('&', $query);
+	foreach($pairs as $pair) {
+		# Pull out the names and the values
+		list($name, $value) = explode('=', $pair, 2);
+		# Decode the variable name and look for arrays
+		$m = array();
+		$name = urldecode($name);
+		if( preg_match('/^(.*?)((\[.*?\])+)$/S', $name, $m) !== 0 ) {
+			$name  = $m[1];
+			$braces = $m[2];
+			$indexes = explode( '][', substr( $braces, 1, -1 ) );
+			
+			if(!isset($data[$name])) $data[$name] = array();
+			$recursive =& $data[$name];
+			foreach( $indexes as $index ) {
+				if( $index != "" ) {
+					if(!isset($recursive[$index])) $recursive[$index] = array();
+					$recursive =& $recursive[$index];
+				} else {
+					$i = array_push( $recursive, array() ) - 1;
+					$recursive =& $recursive[$i];
+				}
 			}
-			$cgi .= urlencode( $key ) . '=' . urlencode( $value );
+			$recursive = urldecode($value);
+		} else {
+			$data[$name] = urldecode($value);
 		}
 	}
-	return $cgi;
+	return $data;
 }
 
 /**
