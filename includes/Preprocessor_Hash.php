@@ -40,7 +40,6 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @private
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
-		wfDebug( __METHOD__."\n" . $text . "\n" );
 		wfProfileIn( __METHOD__ );
 
 		$rules = array(
@@ -1357,11 +1356,9 @@ class PPNode_Hash_Tree implements PPNode {
 	 * Split a <template> or <tplarg> node
 	 */
 	function splitTemplate() {
-		// wfDebug( 'Template: ' . var_export( $this, true ) );
 		$parts = array();
 		$bits = array( 'lineStart' => '' );
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
-			// wfDebug( 'Child: ' . var_export( $child, true ) );
 			if ( !isset( $child->name ) ) {
 				continue;
 			}
