@@ -111,6 +111,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Show image links on Special:Whatlinkshere
 * Use rel="start", "prev", "next" appropriately on Pager-based pages
 * Add support for SQLite
+* AutoAuthenticate hook renamed to UserLoadFromSession
 
 === Bug fixes in 1.13 ===
 

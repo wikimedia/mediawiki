@@ -408,9 +408,6 @@ $article: target article (object)
 Gives a chance for an extension to set it programattically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
-'AutoAuthenticate': called to authenticate users on external/environmental means
-$user: writes user object to this parameter
-
 'AutopromoteCondition': check autopromote condition for user.
 $type: condition type
 $args: arguments
@@ -1162,6 +1159,10 @@ $user: User object
 'UserGetRights': Called in User::getRights()
 $user: User to get rights for
 &$rights: Current rights
+
+'UserLoadFromSession': called to authenticate users on external/environmental means
+$user: user object being loaded
+&$result: set this to a boolean value to abort the normal authentification process
 
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
