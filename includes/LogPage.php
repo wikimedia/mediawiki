@@ -223,8 +223,14 @@ class LogPage {
 				}
 			}
 		} else {
-			wfDebug( "LogPage::actionText - unknown action $key\n" );
-			$rv = "$action";
+			global $wgLogActionsHandlers;
+			if( isset( $wgLogActionsHandlers[$key] ) ) {
+				$args = func_get_args();
+				$rv = call_user_func_array( $wgLogActionsHandlers[$key], $args );
+			} else {
+				wfDebug( "LogPage::actionText - unknown action $key\n" );
+				$rv = "$action";
+			}
 		}
 		if( $filterWikilinks ) {
 			$rv = str_replace( "[[", "", $rv );
