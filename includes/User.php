@@ -767,6 +767,12 @@ class User {
 	private function loadFromSession() {
 		global $wgMemc, $wgCookiePrefix;
 
+		$result = null;
+		wfRunHooks( 'UserLoadFromSession', array( $this, &$result ) );
+		if ( $result !== null ) {
+			return $result;
+		}
+
 		if ( isset( $_SESSION['wsUserID'] ) ) {
 			if ( 0 != $_SESSION['wsUserID'] ) {
 				$sId = $_SESSION['wsUserID'];
@@ -1238,10 +1244,8 @@ class User {
 
 	/**
 	 * Set the user and reload all fields according to that ID
-	 * @deprecated use User::newFromId()
 	 */
 	function setID( $v ) {
-		wfDeprecated( __METHOD__ );
 		$this->mId = $v;
 		$this->clearInstanceCache( 'id' );
 	}
