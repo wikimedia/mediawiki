@@ -5,6 +5,17 @@ class ForeignDBFile extends LocalFile {
 		return new self( $title, $repo );
 	}
 
+	/**
+	 * Create a ForeignDBFile from a title
+	 * Do not call this except from inside a repo class.
+	 */
+	static function newFromRow( $row, $repo ) {
+		$title = Title::makeTitle( NS_IMAGE, $row->img_name );
+		$file = new self( $title, $repo );
+		$file->loadFromRow( $row );
+		return $file;
+	}
+
 	function getCacheKey() {
 		if ( $this->repo->hasSharedCache ) {
 			$hashedName = md5($this->name);
