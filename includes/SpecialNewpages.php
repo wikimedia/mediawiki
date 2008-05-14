@@ -30,6 +30,7 @@ class NewPagesForm {
 
 		// Options
 		$opts = new FormOptions();
+		$this->opts = $opts; // bind
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidebots', false );
@@ -50,7 +51,6 @@ class NewPagesForm {
 		}
 
 		// Store some objects
-		$this->opts = $opts;
 		$this->skin = $wgUser->getSkin();
 		$this->title = SpecialPage::getTitleFor( 'NewPages' );
 	}
@@ -96,10 +96,10 @@ class NewPagesForm {
 		$this->showNavigation = !$including; // Maybe changed in setup
 		$this->setup( $par );
 
-		// Settings
-		$this->form();
+		if( !$including ) {
+			// Settings
+			$this->form();
 
-		if( !$including ){
 			$this->setSyndicated();
 			$feedType = $this->opts->getValue( 'feed' );
 			if( $feedType ) {
@@ -244,9 +244,9 @@ class NewPagesForm {
 		$ulink = $this->skin->userLink( $result->rc_user, $result->rc_user_text ) . ' ' .
 			$this->skin->userToolLinks( $result->rc_user, $result->rc_user_text );
 		$comment = $this->skin->commentBlock( $result->rc_comment );
-		$css = $this->patrollable( $result ) ? " class='not-patrolled'" : '';
+		$css = $this->patrollable( $result ) ? 'not-patrolled' : '';
 
-		return "<li{$css}>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}</li>\n";
+		return "<li class='$css'>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}</li>\n";
 	}
 
 	/**
