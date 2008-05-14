@@ -31,8 +31,6 @@ var os_autoload_forms = new Array('searchform', 'searchform2', 'powersearch', 's
 var os_is_stopped = false;
 // max lines to show in suggest table
 var os_max_lines_per_suggest = 7;
-// if we are about to focus the searchbox for the first time
-var os_first_focus = true;
 
 /** Timeout timer class that will fetch the results */ 
 function os_Timer(id,r,query){
@@ -534,12 +532,6 @@ function os_eventKeydown(e){
 		return; // not our event
 			
 	os_mouse_moved = false;
-		
-	if(os_first_focus){
-		// firefox bug, focus&defocus to make autocomplete=off valid
-		targ.blur(); targ.focus();
-		os_first_focus = false;
-	}
 
 	os_cur_keypressed = (window.Event) ? e.which : e.keyCode;
 	os_last_keypress = 0;
@@ -548,8 +540,6 @@ function os_eventKeydown(e){
 
 /** Event: loss of focus of input box */
 function os_eventBlur(e){	
-	if(os_first_focus)
-		return; // we are focusing/defocusing
 	var targ = os_getTarget(e);
 	var r = os_map[targ.id];
 	if(r == null)
@@ -559,9 +549,8 @@ function os_eventBlur(e){
 }
 
 /** Event: focus (catch only when stopped) */
-function os_eventFocus(e){	
-	if(os_first_focus)
-		return; // we are focusing/defocusing
+function os_eventFocus(e){
+	// nothing happens here?
 }
 
 
