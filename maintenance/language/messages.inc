@@ -1054,6 +1054,7 @@ $wgMessageStructure = array(
 		'nolinkstoimage',
 		'morelinkstoimage',
 		'redirectstofile',
+		'duplicatesoffile',
 		'sharedupload',
 		'shareduploadwiki',
 		'shareduploadwiki-desc',
