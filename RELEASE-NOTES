@@ -273,6 +273,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14093) Do 'sysop' => 'protect' magic in Title::isValidMoveOperation
 * (bug 14063) Power search form missing <label> for redirects check
 * (bug 14111) Similar filename warning links now lead to correct page
+* (bug 14082) Fix for complex text input vs AJAX suggestions on some browsers
 
 
 === API changes in 1.13 ===

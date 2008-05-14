@@ -619,8 +619,11 @@ class SpecialSearch {
 	}
 
 	function powerSearchFocus() {
-		return "<script type='text/javascript'>" .
-			"document.getElementById('powerSearchText').focus();" .
+		global $wgJsMimeType;
+		return "<script type=\"$wgJsMimeType\">" .
+			"hookEvent(\"load\", function(){" .
+				"document.getElementById('powerSearchText').focus();" .
+			"});" .
 			"</script>";
 	}
 
