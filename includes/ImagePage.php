@@ -44,10 +44,14 @@ class ImagePage extends Article {
 	function view() {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
 
-		if ( $this->img->getRedirected() ) {
+		if ( $this->mTitle->getNamespace() == NS_IMAGE && $this->img->getRedirected() ) {
 			if ( $this->mTitle->getDBkey() == $this->img->getName() ) {
+				// mTitle is the same as the redirect target so ask Article
+				// to perform the redirect for us.
 				return Article::view();
 			} else {
+				// mTitle is not the same as the redirect target so it is 
+				// probably the redirect page itself. Fake the redirect symbol
 				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 				$this->viewRedirect( Title::makeTitle( NS_IMAGE, $this->img->getName() ),
 					/* $overwriteSubtitle */ true, /* $forceKnown */ true );
