@@ -87,7 +87,7 @@ class Autopromote {
 				if( User::isValidEmailAddr( $user->getEmail() ) ) {
 					global $wgEmailAuthentication;
 					if( $wgEmailAuthentication ) {
-						return $user->getEmailAuthenticationTimestamp() ? true : false;
+						return boolval( $user->getEmailAuthenticationTimestamp() );
 					} else {
 						return true;
 					}

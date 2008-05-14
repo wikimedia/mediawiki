@@ -2592,6 +2592,12 @@ $wgLogActions = array(
 );
 
 /**
+ * The same as above, but here values are names of functions,
+ * not messages
+ */
+$wgLogActionsHandlers = array();
+
+/**
  * List of special pages, followed by what subtitle they should go under
  * at Special:SpecialPages
  */
