@@ -560,6 +560,10 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'accountcreated'             => 'De Kont gouf geschaf',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 'createaccount-title'        => 'Opmaache vun engem Benotzerkont op {{SITENAME}}',
+'createaccount-text'         => 'Et gouf e Benotzerkont "$2" fir iech op {{SITENAME}} ($4) ugeluecht mat dem Passwuert "$3".
+Dir sollt iech aloggen an ärt Passwuert elo änneren.
+
+Falls dëse Benotzerkonto ongewollt ugeluecht ginn ass kënnt Dir dës Noriicht einfach ignoréieren.',
 'loginlanguagelabel'         => 'Sprooch: $1',
 
 # Password reset dialog
@@ -892,6 +896,9 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'nonefound'                 => "'''Opgepasst''': Nëmmen e puer Nimmraim gi ''par default'' duerchsicht. Versicht an ärer Ufro ''all:'' anzestellen fir de dsamte contenu (inklusiv Diskussiounssäiten, Schablonen, ...), oder benotzed déi gwënscht Nimmräim als Virastellung.",
 'powersearch'               => 'Erweidert Sich',
 'powersearch-legend'        => 'Erweidert Sich',
+'powersearch-ns'            => 'Sich an den Nimmraim:',
+'powersearch-redir'         => 'Viruleedungen weisen',
+'powersearch-field'         => 'Sich no:',
 'search-external'           => 'Extern Sich',
 'searchdisabled'            => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat H!ellef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
@@ -1016,6 +1023,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'right-reupload'             => 'E Fichier iwwerschreiwen',
 'right-reupload-own'         => 'E Fichier iwwerschreiwen dee vum selweschte Benotzer eropgeluede gouf',
 'right-upload_by_url'        => 'E Fichier vun enger URL-Adress eroplueden',
+'right-purge'                => 'De Säitecache eidelmaachen ouni nozefroen',
 'right-autoconfirmed'        => 'Hallef-protegéiert Säiten änneren',
 'right-nominornewtalk'       => 'Kleng Ännerungen op Diskussiounssäite léisen de Banner vun de neie Messagen net aus',
 'right-apihighlimits'        => 'Benotzt déi héich Limite an den API Ufroen',
@@ -1035,6 +1043,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'right-editprotected'        => 'Protegéiert Säiten (ouni Kaskadeprotectioun) änneren',
 'right-editinterface'        => 'De Benotzerinterface änneren',
 'right-editusercssjs'        => 'Anere Benotzer hir CSS a JS Fichieren änneren',
+'right-rollback'             => "Ännerunge vum läschte Benotzer vun enger spezieller Säit séier z'récksetzen ''(rollback)''",
 'right-markbotedits'         => 'Annuléiert Ännerungen als Botännerungen uweisen',
 'right-import'               => 'Säite vun anere Wikien importéieren',
 'right-importupload'         => 'Säite vun engem eropgeluedene Ficher importéieren',
@@ -1056,7 +1065,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'recentchangestext'                 => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– nei Säiten; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
-'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximum '''$1''' Ännerunge gi gewisen).",
+'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
 'rclistfrom'                        => 'Nëmmen Ännerungen zënter $1 weisen.',
 'rcshowhideminor'                   => 'Kleng Ännerunge $1',
 'rcshowhidebots'                    => 'Botte $1',
@@ -1155,6 +1164,10 @@ gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[Image:$1
 'upload-maxfilesize'          => 'Maximal Fichiersgréisst: $1',
 'watchthisupload'             => 'Dës Säit iwwerwaachen',
 'filewasdeleted'              => 'E Fichier matt dësem Numm gouf schonn eemol eropgelueden an duerno nees geläscht. kuckt w.e.g op $1 no, ier Dir dee Fichier nach eng Kéier eroplued.',
+'upload-wasdeleted'           => "'''Opgepasst: Dir lued e Fichier erop, dee schonn eng Kéier geläscht ginn ass.'''
+
+Kuckt w.e.g. genee no, ob d'dat erneit Eroplueden de Richtlinnen entsprecht.
+Zu ärer Informatioun steett hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
 'filename-bad-prefix'         => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
 'upload-proto-error'      => 'Falsche Protokoll',
@@ -1177,7 +1190,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Special:Imagelist
-'imagelist-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als öischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
+'imagelist-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als éischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
 'imagelist_search_for'  => 'Sicht nom Fichier:',
 'imgfile'               => 'Fichier',
 'imagelist'             => 'Lëscht vun de Fichieren',
@@ -1308,6 +1321,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 
 'withoutinterwiki'         => 'Säiten ouni Interwiki-Linken',
 'withoutinterwiki-summary' => 'Op dëser Spezialsäit stinn all déi Säiten déi keng Interwikilinken hunn.',
+'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Weisen',
 
 'fewestrevisions'         => 'Säite mat de mannsten Ännerungen',
@@ -2092,6 +2106,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-datetimeoriginal'            => 'Erfaassungszäitpunkt',
 'exif-datetimedigitized'           => 'Digitaliséierungszäitpunkt',
 'exif-subsectime'                  => 'Späicherzäitpunkt (1/100 s)',
+'exif-subsectimeoriginal'          => 'Erfaassungszäitpunkt (1/100 s)',
 'exif-subsectimedigitized'         => 'Digitaliséirungszäitpunkt (1/100 s)',
 'exif-exposuretime'                => 'Beliichtungsdauer',
 'exif-exposuretime-format'         => '$1 Sekonnen ($2)',

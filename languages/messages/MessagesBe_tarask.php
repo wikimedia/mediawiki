@@ -6,6 +6,7 @@
  * @author Red Winged Duck
  * @author EugeneZelenko
  * @author Siebrand
+ * @author Jim-by
  */
 
 $skinNames = array(
@@ -256,16 +257,22 @@ $messages = array(
 'tog-previewontop'            => 'Паказваць папярэдні прагляд артыкула над полем рэдагаваньня',
 'tog-previewonfirst'          => 'Папярэдні прагляд пры першым рэдагаваньні',
 'tog-nocache'                 => 'Адключыць кэшаваньне старонак',
+'tog-enotifwatchlistpages'    => 'Паведамляць па электроннай пошце пра зьмены старонак ў маім сьпісе назіраньня',
+'tog-enotifusertalkpages'     => 'Паведамляць па электроннай пошце пра зьмены маёй старонкі размоваў',
+'tog-enotifminoredits'        => 'Паведамляць па электроннай пошце таксама пра дробныя зьмены старонак',
+'tog-enotifrevealaddr'        => 'Не хаваць мой адрас электроннай пошты ў паведамленьнях',
 'tog-shownumberswatching'     => 'Паказваць колькасьць назіральнікаў',
 'tog-fancysig'                => 'Просты подпіс (без аўтаматычнай спасылкі)',
 'tog-externaleditor'          => 'Па змоўчаньні выкарыстоўваць зьнешні рэдактар',
 'tog-externaldiff'            => 'Выкарыстоўваць па змоўчаньні вонкавую праграму параўнаньня вэрсіяў',
 'tog-showjumplinks'           => 'Актываваць дапаможныя спасылкі «перайсьці да»',
 'tog-uselivepreview'          => 'Выкарыстоўваць хуткі папярэдні прагляд (JavaScript, экспэрымэнтальны)',
+'tog-forceeditsummary'        => 'Папярэджваць пра прапушчаная кароткае апісаньне зьменаў',
 'tog-watchlisthideown'        => 'Хаваць мае праўкі ў сьпісе назіраньня',
 'tog-watchlisthidebots'       => 'Хаваць праўкі робатаў у сьпісе назіраньня',
 'tog-watchlisthideminor'      => 'Хаваць дробныя праўкі ў сьпісе назіраньня',
 'tog-ccmeonemails'            => 'Дасылаць мне копіі лістоў, якія я дасылаю іншым удзельнікам і ўдзельніцам',
+'tog-diffonly'                => 'Не паказваць зьмест старонкі пад параўнаньнем зьменаў',
 'tog-showhiddencats'          => 'Паказваць схаваныя катэгорыі',
 
 'underline-always'  => 'Заўсёды',
@@ -327,19 +334,23 @@ $messages = array(
 'dec'           => '12',
 
 # Categories related messages
-'categories'                    => 'Катэгорыі',
-'categoriespagetext'            => 'У {{GRAMMAR:месны|{{SITENAME}}}} існуюць наступныя катэгорыі:',
-'special-categories-sort-count' => 'сартаваць паводле колькасьці',
-'special-categories-sort-abc'   => 'сартаваць паводле альфабэту',
-'pagecategories'                => '{{PLURAL:$1|Катэгорыя|Катэгорыі|Катэгорыі}}',
-'category_header'               => 'Старонкі ў катэгорыі «$1»',
-'subcategories'                 => 'Падкатэгорыі',
-'category-media-header'         => 'Файлы ў катэгорыі «$1»',
-'category-empty'                => "''Гэтая катэгорыя ня ўтрымлівае ні старонак, ні файлаў.''",
-'hidden-categories'             => '{{PLURAL:$1|Схаваная катэгорыя|||Схаваныя катэгорыі}}',
-'hidden-category-category'      => 'Схаваныя катэгорыі', # Name of the category where hidden categories will be listed
-'category-subcat-count-limited' => 'У гэтай катэгорыі $1 {{PLURAL:$1|падкатэгорыя|падкатэгорыі|падкатэгорыяў}}.',
-'listingcontinuesabbrev'        => ' (працяг)',
+'categories'                     => 'Катэгорыі',
+'categoriespagetext'             => 'У {{GRAMMAR:месны|{{SITENAME}}}} існуюць наступныя катэгорыі:',
+'special-categories-sort-count'  => 'сартаваць паводле колькасьці',
+'special-categories-sort-abc'    => 'сартаваць паводле альфабэту',
+'pagecategories'                 => '{{PLURAL:$1|Катэгорыя|Катэгорыі|Катэгорыі}}',
+'category_header'                => 'Старонкі ў катэгорыі «$1»',
+'subcategories'                  => 'Падкатэгорыі',
+'category-media-header'          => 'Файлы ў катэгорыі «$1»',
+'category-empty'                 => "''Гэтая катэгорыя ня ўтрымлівае ні старонак, ні файлаў.''",
+'hidden-categories'              => '{{PLURAL:$1|Схаваная катэгорыя|||Схаваныя катэгорыі}}',
+'hidden-category-category'       => 'Схаваныя катэгорыі', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Гэта катэгорыя зьмяшчае наступныя падкатэгорыі.|Гэта катэгорыя зьмяшчае наступныя {{PLURAL:$1|падкатэгорыя|$1 падкатэгорыі}}, з агульнай колькасьці $2.}}',
+'category-subcat-count-limited'  => 'У гэтай катэгорыі $1 {{PLURAL:$1|падкатэгорыя|падкатэгорыі|падкатэгорыяў}}.',
+'category-article-count'         => '{{PLURAL:$2|Гэта катэгорыя ўтрымлівае толькі наступную старонку.|Гэта катэгорыя ўтрымлівае {{PLURAL:$1|старонка |$1 старонак}} з агульнай колькасьці $2.}}',
+'category-article-count-limited' => 'У гэтай катэгорыі ёсьць наступн{{PLURAL:$1|ая старонка|ыя $1 старонкі}}.',
+'category-file-count'            => '{{PLURAL:$2|Гэта катэгорыя ўтрымлівае толькі адзін файл.|Гэта катэгорыя ўтрымлівае толькі {{PLURAL:$1| файл|$1 файлаў}} з агульнай колькасьці $2.}}',
+'listingcontinuesabbrev'         => ' (працяг)',
 
 'mainpagetext' => "<big>'''MediaWiki пасьпяхова ўсталяваная.'''</big>",
 

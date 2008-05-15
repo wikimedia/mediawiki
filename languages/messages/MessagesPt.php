@@ -944,7 +944,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 que não são indexadas, ou pela especificação de mais de um termo (somente as páginas contendo todos os termos aparecerão nos resultados).',
 'powersearch'               => 'Pesquisa avançada',
 'powersearch-legend'        => 'Pesquisa avançada',
-'powersearchtext'           => 'Pesquisar nos espaços nominais:<br />$1<br />$2 Listar redireccionamentos<br />Pesquisar por $3 $9',
+'powersearch-ns'            => 'Pesquisar nos espaços nominais:',
+'powersearch-redir'         => 'Listar redireccionamentos',
+'powersearch-field'         => 'Pesquisar',
 'search-external'           => 'Pesquisa externa',
 'searchdisabled'            => 'O motor de pesquisa na {{SITENAME}} foi desactivado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
 Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desactualizados.',
@@ -1289,6 +1291,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'nolinkstoimage'                 => 'Nenhuma página aponta para este ficheiro.',
 'morelinkstoimage'               => 'Ver [[Special:Whatlinkshere/$1|mais ligações]] para este ficheiro.',
 'redirectstofile'                => 'Os seguintes ficheiros redireccionam para este ficheiro:',
+'duplicatesoffile'               => 'Os seguintes ficheiros são duplicações deste ficheiro:',
 'sharedupload'                   => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
 'shareduploadwiki'               => 'Por favor, consulte a $1 para mais informações.',
 'shareduploadwiki-desc'          => 'A descrição na sua $1 do repositório partilhado é mostrada abaixo.',
@@ -1369,7 +1372,7 @@ Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma pá
 Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado.
 Isso nos leva a aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
 
-O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é de actualmente '''\$7'''.",
+O tamanho actual da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é '''\$7'''.",
 'userstatstext'          => "Há actualmente {{PLURAL:$1|'''$1''' utilizador registado|'''$1''' utilizadores registados}}, dentre os quais '''$2''' (ou '''$4%''') {{PLURAL:$2|é|são}} $5.",
 'statistics-mostpopular' => 'Páginas mais vistas',
 

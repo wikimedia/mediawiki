@@ -13,6 +13,7 @@
  * @author SPQRobin
  * @author ToePeu
  * @author Jon Harald Søby
+ * @author Ficell
  */
 
 $namespaceNames = array(
@@ -399,7 +400,7 @@ $2',
 계정이 만들어졌습니다. [[Special:Preferences|사용자 환경 설정]]에서 당신의 {{SITENAME}} 사용자 환경 설정을 바꿀 수 있습니다.',
 'loginpagetitle'             => '로그인',
 'yourname'                   => '이름',
-'yourpassword'               => '암호',
+'yourpassword'               => '비밀번호:',
 'yourpasswordagain'          => '암호 확인',
 'remembermypassword'         => '로그인 상태를 저장하기',
 'yourdomainname'             => '도메인 이름',
@@ -523,7 +524,7 @@ $2',
 * 차단이 만료되는 시간: $6
 * 차단된 사용자: $7
 
-$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 연락할 수 있습니다. [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 \'이메일 보내기\' 기능을 사용할 수 있습니다. 당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다. 이메일을 보낼 때에 이 주소를 같이 알려주세요.',
+$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다. [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 \'이메일 보내기\' 기능을 사용할 수 있습니다. 당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다. 문의할 때에 이 정보를 같이 알려주세요.',
 'autoblockedtext'           => "당신의 IP 주소는 $1이 차단한 사용자가 사용했던 IP이기 때문에, 자동으로 차단되었습니다. 차단된 이유는 다음과 같습니다:
 
 :$2
@@ -531,11 +532,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 * 차단이 시작된 시간: $8
 * 차단이 만료되는 시간: $6
 
-$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 연락할 수 있습니다.
+$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.
 
 [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
 
-당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다. 이메일을 보낼 때에 이 주소를 같이 알려주세요.",
+당신의 차단 ID는 #$5입니다. 문의할 때에 이 ID를 같이 알려주세요.",
 'blockedoriginalsource'     => "아래에 '''$1'''의 내용이 나와 있습니다:",
 'blockededitsource'         => "아래에 '''$1'''에서의 '''당신의 편집'''이 나와 있습니다:",
 'whitelistedittitle'        => '편집하려면 로그인 필요',
@@ -691,7 +692,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nonefound'             => "'''참고''': ‘have’, ‘from’과 같은 일반적인 단어는 검색 색인에 들어가지 않아서, 이런 단어를 포함한 경우 검색이 효과적이지 않을 수 있습니다. 또는 여러 단어를 동시에 검색한 경우에도 효과적인 검색이 되지 않습니다(검색하려는 단어가 모두 들어 있는 문서만이 결과에 나타납니다).",
 'powersearch'           => '찾기',
 'powersearch-legend'    => '더 찾아보기',
-'powersearchtext'       => '다음의 네임스페이스에서 찾기:<br />$1<br />$2 넘겨주기 표시<br />$3를 $9',
 'searchdisabled'        => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
 # Preferences page
@@ -1118,7 +1118,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'prevpage'          => '이전 문서 ($1)',
 'allpagesfrom'      => '다음으로 시작하는 문서들을 보여주기:',
 'allarticles'       => '모든 문서',
-'allinnamespace'    => '$1 네임스페이스의 모든 문서',
+'allinnamespace'    => '$1 이름공간의 모든 문서',
 'allnotinnamespace' => '$1 네임스페이스를 제외한 모든 문서 목록',
 'allpagesprev'      => '이전',
 'allpagesnext'      => '다음',
@@ -1425,6 +1425,7 @@ $1',
 'unblocklogentry'             => '$1을 차단 해제했습니다.',
 'block-log-flags-anononly'    => 'IP만 막음',
 'block-log-flags-nocreate'    => '계정 생성 막음',
+'block-log-flags-noautoblock' => '자동 차단 비활성화됨',
 'block-log-flags-noemail'     => '이메일 막음',
 'range_block_disabled'        => 'IP 범위 차단 기능이 비활성화되어 있습니다.',
 'ipb_expiry_invalid'          => '차단 기간이 잘못되었습니다.',
@@ -1522,8 +1523,7 @@ $1',
 'allmessagesname'           => '이름',
 'allmessagesdefault'        => '기본 내용',
 'allmessagescurrent'        => '현재 내용',
-'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다.
-미디어위키를 번역하려면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화(영어)] 문서나 [http://translatewiki.net 베타위키(영어)]를 찾아주세요.',
+'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으시면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net 베타위키]에 참가해주세요.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 '''{{ns:special}}:Allmessages'''를 사용할 수 없습니다.",
 'allmessagesfilter'         => '다음 메시지만 보이기:',
 'allmessagesmodified'       => '변경된 것만 보여주기',

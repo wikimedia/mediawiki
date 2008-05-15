@@ -1236,6 +1236,7 @@ PICT # misc.
 'nolinkstoimage'                 => 'Njejsu strony, kotrež na tutu dataju wotkazuja.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Dalše wotkazy]] k tutej dataji wobhladać.',
 'redirectstofile'                => 'Slědowace dataje k tutej dataji dale posrědkuja:',
+'duplicatesoffile'               => 'Slědowace dataje su duplikaty tuteje dataje:',
 'sharedupload'                   => 'Tuta dataja je zhromadne nahraće a móže so přez druhe projekty wužiwać.',
 'shareduploadwiki'               => 'Za dalše informacije hlej $1.',
 'shareduploadwiki-desc'          => 'Wopisanje na $1 so deleka w zhromadnym składźišću pokazuje.',

@@ -49,9 +49,9 @@ $messages = array(
 'tog-justify'                 => 'Paragrafları iki yana yasla',
 'tog-hideminor'               => '"Son değişiklikler" sayfasında küçük değişiklikleri gizle',
 'tog-extendwatchlist'         => 'İzleme listesini genişlet',
-'tog-usenewrc'                => 'Gelişmiş son değişiklikler listesi (her tarayıcı için uygun değil)',
+'tog-usenewrc'                => 'Gelişmiş son değişiklikler (JavaScript)',
 'tog-numberheadings'          => 'Başlıkları otomatik numaralandır',
-'tog-showtoolbar'             => 'Değişiklik yaparken yardımcı düğmeleri göster. (JavaScript)',
+'tog-showtoolbar'             => 'Değişiklik yaparken araç çubuğunu göster (JavaScript)',
 'tog-editondblclick'          => 'Sayfayı çift tıklayarak değiştirmeye başla (JavaScript)',
 'tog-editsection'             => 'Bölümleri [değiştir] bağlantıları ile değiştirme hakkı ver',
 'tog-editsectiononrightclick' => 'Bölüm başlığına sağ tıklayarak bölümde değişikliğe izin ver.(JavaScript)',
@@ -741,9 +741,6 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'showingresultsnum'        => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
 'powersearch'              => 'Gelişmiş arama',
 'powersearch-legend'       => 'Gelişmiş arama',
-'powersearchtext'          => 'Arama yapılacak alanları seçin :<br />
-$1<br />
-$2 yönlendirmeleri listele &nbsp; Aranacak: $3 $9',
 'searchdisabled'           => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde indekslemelerinin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
 
 # Preferences page

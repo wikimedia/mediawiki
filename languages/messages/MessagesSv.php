@@ -1381,6 +1381,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'nolinkstoimage'                 => 'Inga sidor länkar till den här bilden.',
 'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|fler länkar]] till den här filen.',
 'redirectstofile'                => 'Följande filer är omdirigeringar till den här filen:',
+'duplicatesoffile'               => 'Följande filer är dubbletter till den här filen:',
 'sharedupload'                   => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'               => 'Vänligen se $1 för mer information.',
 'shareduploadwiki-desc'          => 'Innehållet på $1 i den gemensamma filförvaringen visas nedan.',
