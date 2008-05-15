@@ -38,6 +38,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   database and use prefixes to separate wiki and the shared tables. And the new
   $wgSharedTables variable allows you to specify a list of tables to share.
 * Automatic edit summaries can be disabled with $wgUseAutomaticEditSummaries  
+* Duplicates of images are now shown on the image page.
 
 === New features in 1.13 ===
 
