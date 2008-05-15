@@ -86,7 +86,7 @@ class SpecialVersion {
 				</tr>\n
 				<tr>
 					<td>[http://www.mediawiki.org/ MediaWiki]</td>
-					<td>" . self::getVersion() . "</td>
+					<td>" . self::getVersionLinked() . "</td>
 				</tr>\n
 				<tr>
 					<td>[http://www.php.net/ PHP]</td>
@@ -101,6 +101,16 @@ class SpecialVersion {
 
 	/** Return a string of the MediaWiki version with SVN revision if available */
 	public static function getVersion() {
+		global $wgVersion, $IP;
+		wfProfileIn( __METHOD__ );
+		$svn = self::getSvnRevision( $IP );
+		$version = $svn ? "$wgVersion (r$svn)" : $wgVersion;
+		wfProfileOut( __METHOD__ );
+		return $version;
+	}
+	
+	/** Return a string of the MediaWiki version with a link to SVN revision if available */
+	public static function getVersionLinked() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
 		$svn = self::getSvnRevision( $IP );
