@@ -1118,7 +1118,7 @@ class ImportStreamSource {
 		}
 	}
 
-	function newFromURL( $url, $method = 'GET' ) {
+	static function newFromURL( $url, $method = 'GET' ) {
 		wfDebug( __METHOD__ . ": opening $url\n" );
 		# Use the standard HTTP fetch function; it times out
 		# quicker and sorts out user-agent problems which might
