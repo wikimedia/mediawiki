@@ -13,8 +13,13 @@ function wfSpecialEmailuser( $par ) {
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );	
 	$error = EmailUserForm::getPermissionsError( $target );
 	if ( $error ) {
-		$wgOut->showErrorPage( $error[0], $error[1] );
-		return;
+		if ( $error[0] === "blockedemailuser" ) {
+			$wgOut->blockedPage();
+			return;
+		} else {
+			$wgOut->showErrorPage( $error[0], $error[1] );
+			return;
+		}
 	}
 
 	$form = EmailUserForm::newFromURL( $target,
@@ -219,6 +224,11 @@ class EmailUserForm {
 		if( !$wgUser->canSendEmail() ) {
 			wfDebug( "User can't send.\n" );
 			return array( "mailnologin", "mailnologintext" );
+		}
+		
+		if( $wgUser->isBlockedFromEmailuser() ) {
+			wfDebug( "User is blocked from sending e-mail.\n" );
+			return array( "blockedemailuser", "" );
 		}
 	
 		if ( "" == $target ) {
