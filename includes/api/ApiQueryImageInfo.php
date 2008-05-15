@@ -129,12 +129,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$thumb = $f->getThumbnail($this->urlwidth, $this->urlheight);
 				if($thumb)
 				{
-					$vals['thumburl'] = $thumb->getURL();
+					$vals['thumburl'] = Http::makeFullUrl( $thumb->getURL() );
 					$vals['thumbwidth'] = $thumb->getWidth();
 					$vals['thumbheight'] = $thumb->getHeight();
 				}
 			}
-			$vals['url'] = $f->getURL();
+			$vals['url'] = Http::makeFullUrl( $f->getURL() );
 		}
 		if($this->fld_comment)
 			$vals['comment'] = $f->getDescription();
