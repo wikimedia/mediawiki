@@ -904,6 +904,12 @@ abstract class File {
 	function getRepoName() {
 		return $this->repo ? $this->repo->getName() : 'unknown';
 	}
+	/*
+	 * Returns the repository
+	 */
+	function getRepo() {
+		return $this->repo;
+	}
 
 	/**
 	 * Returns true if the image is an old version
