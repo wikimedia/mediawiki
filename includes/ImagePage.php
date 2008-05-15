@@ -577,7 +577,7 @@ EOT
 			$wgOut->addWikiMsg( 'nolinkstoimage' );
 			return;
 		}
-		$wgOut->addWikiMsg( 'linkstoimage' );
+		$wgOut->addHTML( Xml::element( 'h5', null, wfMsg( 'linkstoimage' ) ) . "\n" );
 		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 
 		$sk = $wgUser->getSkin();
@@ -615,12 +615,11 @@ EOT
 			),
 			__METHOD__
 		);
-		
 
 		if ( 0 == $dbr->numRows( $res ) ) 
 			return;
 
-		$wgOut->addWikiMsg( 'redirectstofile' );
+		$wgOut->addHTML( Xml::element( 'h5', null, wfMsg( 'redirectstofile' ) ) . "\n" );
 		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
 
 		$sk = $wgUser->getSkin();
@@ -652,7 +651,7 @@ EOT
 		}
 		if ( count( $dupes ) == 0 ) return;
 
-		$wgOut->addWikiMsg( 'duplicatesoffile' );
+		$wgOut->addHTML( Xml::element( 'h5', null, wfMsg( 'duplicatesoffile' ) ) . "\n" );
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
 		$sk = $wgUser->getSkin();
