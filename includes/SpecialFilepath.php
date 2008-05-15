@@ -13,8 +13,7 @@ function wfSpecialFilepath( $par ) {
 	} else {
 		$file = wfFindFile( $title );
 		if ( $file && $file->exists() ) {
-			// Force a real 30x so the real url is always exposed		
-			$wgOut->redirect( Http::makeFullURL( $file->getURL() ) );
+			$wgOut->redirect( $file->getURL() );
 		} else {
 			$wgOut->setStatusCode( 404 );
 			$cform = new FilepathForm( $title );
