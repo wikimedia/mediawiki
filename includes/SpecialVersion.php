@@ -99,7 +99,11 @@ class SpecialVersion {
 			Xml::closeElement( 'table' );
 	}
 
-	/** Return a string of the MediaWiki version with SVN revision if available */
+	/**
+	 * Return a string of the MediaWiki version with SVN revision if available
+	 *
+	 * @return mixed
+	 */
 	public static function getVersion() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
@@ -109,7 +113,12 @@ class SpecialVersion {
 		return $version;
 	}
 	
-	/** Return a string of the MediaWiki version with a link to SVN revision if available */
+	/**
+	 * Return a string of the MediaWiki version with a link to SVN revision if
+	 * available
+	 *
+	 * @return mixed
+	 */
 	public static function getVersionLinked() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
