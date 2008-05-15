@@ -2602,7 +2602,3 @@ function wfGenerateToken( $salt = '' ) {
 
  	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }
-
-function boolval( $val ) {
-	return $val ? true : false;
-}
