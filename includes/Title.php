@@ -2884,11 +2884,12 @@ class Title {
 	 * Get the revision ID of the previous revision
 	 *
 	 * @param integer $revision  Revision ID. Get the revision that was before this one.
+	 * @param integer $flags, GAID_FOR_UPDATE
 	 * @return integer $oldrevision|false
 	 */
-	public function getPreviousRevisionID( $revision ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'revision', 'rev_id',
+	public function getPreviousRevisionID( $revision, $flags=0 ) {
+		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		return $db->selectField( 'revision', 'rev_id',
 			'rev_page=' . intval( $this->getArticleId() ) .
 			' AND rev_id<' . intval( $revision ) . ' ORDER BY rev_id DESC' );
 	}
@@ -2897,11 +2898,12 @@ class Title {
 	 * Get the revision ID of the next revision
 	 *
 	 * @param integer $revision  Revision ID. Get the revision that was after this one.
+	 * @param integer $flags, GAID_FOR_UPDATE
 	 * @return integer $oldrevision|false
 	 */
-	public function getNextRevisionID( $revision ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'revision', 'rev_id',
+	public function getNextRevisionID( $revision, $flags=0 ) {
+		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		return $db->selectField( 'revision', 'rev_id',
 			'rev_page=' . intval( $this->getArticleId() ) .
 			' AND rev_id>' . intval( $revision ) . ' ORDER BY rev_id' );
 	}
