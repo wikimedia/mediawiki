@@ -117,20 +117,4 @@ class Http {
 		}
 		return false;
 	}
-	
-	/*
-	 * Return the full url of something relative to $wgScriptPath or root
-	 */
-	static function makeFullURL( $url ) {
-		global $wgServer, $wgScriptPath;
-		
-		// This is a full url
-		if ( strpos( $url, '://' ) !== false ) return $url;
-		
-		// This is a relative path
-		if ( substr( $url, 0, 1 ) != '/' )
-			$url = $wgScriptPath.'/'.$url;		
-		
-		return $wgServer.$url;
-	}
 }
