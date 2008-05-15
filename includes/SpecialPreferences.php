@@ -925,7 +925,7 @@ class PreferencesForm {
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
-			Xml::element( 'div', array( 'class' => 'prefsectiontip' ), wfMsg( 'timezonetext' ) ).
+			Xml::tags( 'div', array( 'class' => 'prefsectiontip' ), wfMsgExt( 'timezonetext', 'parseinline' ) ).
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'fieldset' ) . "\n\n"
 		);
