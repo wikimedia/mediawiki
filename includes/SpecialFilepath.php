@@ -13,7 +13,7 @@ function wfSpecialFilepath( $par ) {
 	} else {
 		$file = wfFindFile( $title );
 		if ( $file && $file->exists() ) {
-			$wgOut->redirect( $file->getURL() );
+			$wgOut->redirect( wfExpandUrl( $file->getURL() ) );
 		} else {
 			$wgOut->setStatusCode( 404 );
 			$cform = new FilepathForm( $title );
