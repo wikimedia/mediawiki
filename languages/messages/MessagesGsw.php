@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Jon Harald Søby
+ * @author Spacebirdy
  */
 
 $fallback = 'de';
@@ -429,10 +430,6 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'nextn'                 => 'nächschti $1',
 'viewprevnext'          => '($1) ($2) aazeige; ($3) uf ds Mal',
 'powersearch'           => 'Suechi',
-'powersearchtext'       => '
-Suche in Namensräumen :<br />
-$1<br />
-$2 Zeige auch REDIRECTs   Suche nach $3 $9',
 'searchdisabled'        => '<p>Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie entweder folgende Google- oder Yahoo-Suche verwenden, die allerdings nicht den aktuellen Stand widerspiegeln.</p>',
 
 # Preferences page
@@ -710,7 +707,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'blocklink'       => 'spärre',
 'contribslink'    => 'Byträg',
 'blocklogpage'    => 'Sperrigs-Protokoll',
-'blocklogentry'   => 'sperrt [[User:$1]] - ([[Special:Contributions/$1|Biiträg]]) für d Ziit vo: $2',
+'blocklogentry'   => 'sperrt [[$1]] für d Ziit vo: $2 $3',
 'blocklogtext'    => 'Des ischs Logbuech yber Sperrunge un Entsperrunge vun Bnutzer. Automatisch blockti IP-Adresse werre nit erfasst. Lueg au [[Special:Ipblocklist|IP-Block Lischt]] fyr ä Lischt vun gsperrti Bnutzer.',
 'unblocklogentry' => 'Blockade von [[User:$1]] aufgehoben',
 

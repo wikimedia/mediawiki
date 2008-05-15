@@ -198,6 +198,8 @@ $messages = array(
 'loginlanguagelabel'      => 'ნინა: $1',
 
 # Edit page toolbar
+'bold_sample'     => 'რუმე ტექსტ',
+'bold_tip'        => 'რუმე ტექსტ',
 'italic_sample'   => 'კურსივ',
 'italic_tip'      => 'კურსივ',
 'link_sample'     => 'ბუნილიშ სახელ',
@@ -206,28 +208,32 @@ $messages = array(
 'extlink_tip'     => 'გალე ბუნილ (ქორშუდათი http:// პრეფიქს)',
 'headline_sample' => 'სათაურიშ ტექსტ',
 'headline_tip'    => 'ქვესათაურ',
+'math_sample'     => 'ქინახუნეთ ფორმულა თაქ',
 'math_tip'        => 'მათემატიკურ ფორმულა (LaTeX)',
+'nowiki_sample'   => 'ქინახუნეთ უგუფორმატებუ ტექსტ თაქ',
 'nowiki_tip'      => 'ვიკიშ ფორმატირებიშ იგნორირება',
+'image_tip'       => 'დინოხუნაფილ სურათ',
 'media_tip'       => 'ბუნილ ფაილს',
 'sig_tip'         => 'თქვან ხემოჭარა დო დრო',
 'hr_tip'          => 'ჰორიზონტალურ ხაზ (ნუ გამოიყენებთ ხშირას)',
 
 # Edit pages
-'summary'          => 'რეზიუმე',
-'subject'          => 'თემა/სახელ',
-'minoredit'        => 'ჭიჭე რედაქტირება',
-'watchthis'        => 'თე ხასილაშ კონტროლ',
-'savearticle'      => 'ჩუალა',
-'showpreview'      => 'ოწმახ ძირა',
-'showdiff'         => 'თირაფეფიშ ძირაფა',
-'newarticle'       => '(ახალ)',
-'noarticletext'    => 'ასე თე ხასილას ტექსტ ვარე, [[Special:Search/{{PAGENAME}}|მიგორეთ თე ხასილაშ სახელ]] შხვა ხასილებს ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა ხასილა].',
-'editing'          => 'რედაქტირება - $1',
-'editingsection'   => 'რედაქტირება - $1 (სექცია)',
-'yourtext'         => 'თქვან ტექსტ',
-'copyrightwarning' => 'თოლჸუჯი ქიმეჩით: ნამდგა ვა რდას თიამიშნაღელი ხასილას {{SITENAME}} $2 ლიცენზიას ათოჸუნს(ძირით $1 დეტალეფშოთ). ვა გოკონა თქვან ნახანდიშ დუდშულო გოფაჩუა დო თიშ უდუნდებელ რედაქტირაფა და, თიწკუმა ვა მიშეჸონათ თინა თაქ.<br />
+'summary'            => 'რეზიუმე',
+'subject'            => 'თემა/სახელ',
+'minoredit'          => 'ჭიჭე რედაქტირება',
+'watchthis'          => 'თე ხასილაშ კონტროლ',
+'savearticle'        => 'ჩუალა',
+'showpreview'        => 'ოწმახ ძირა',
+'showdiff'           => 'თირაფეფიშ ძირაფა',
+'newarticle'         => '(ახალ)',
+'noarticletext'      => 'ასე თე ხასილას ტექსტ ვარე, [[Special:Search/{{PAGENAME}}|მიგორეთ თე ხასილაშ სახელ]] შხვა ხასილებს ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა ხასილა].',
+'editing'            => 'რედაქტირება - $1',
+'editingsection'     => 'რედაქტირება - $1 (სექცია)',
+'yourtext'           => 'თქვან ტექსტ',
+'copyrightwarning'   => 'თოლჸუჯი ქიმეჩით: ნამდგა ვა რდას თიამიშნაღელი ხასილას {{SITENAME}} $2 ლიცენზიას ათოჸუნს(ძირით $1 დეტალეფშოთ). ვა გოკონა თქვან ნახანდიშ დუდშულო გოფაჩუა დო თიშ უდუნდებელ რედაქტირაფა და, თიწკუმა ვა მიშეჸონათ თინა თაქ.<br />
 თქვა ხოლო პიჯალას დუთმოდვანთ, ნამდა თენა თქვან ნაჭარა რე, ვარა გინოღალირ რე ოირკოჩე დომენშე, დო ვარა თიშ მანგურ დუდშულ წყუშე. 
 <strong> ვა მიშეღათ ოავტორე უფლებებით თხილერ ნახანდი ავტორიშ ქოჸიაშ უმშო!</strong>',
+'template-protected' => '(თხილერი)',
 
 # History pages
 'viewpagelogs'     => 'თე ხასილაშა სარეგისტრაციე ჟურნალეფიშ ძირაფა',
@@ -290,7 +296,8 @@ $messages = array(
 'boteditletter'   => 'რ',
 
 # Recent changes linked
-'recentchangeslinked' => 'აკოხვალამირი თირაფეფი',
+'recentchangeslinked'       => 'აკოხვალამირი თირაფეფი',
+'recentchangeslinked-title' => '"$1"-წკუმა მებუნაფილ თირაფეფი',
 
 # Upload
 'upload'        => 'ფაილიშ გეთება',
@@ -302,11 +309,15 @@ $messages = array(
 
 # Image description page
 'filehist'            => 'ფაილიშ ისტორია',
+'filehist-help'       => 'ქოგეუნჭირით ბორჯის, ნამდა ქოძირათ ფაილი თეშ, მუჭოთ თინა თიწკუმა კილეძირედუ.',
+'filehist-current'    => 'მიმალ',
+'filehist-datetime'   => 'ბორჯი',
 'filehist-user'       => 'მომხმარებელ',
 'filehist-dimensions' => 'განზომილებეფ',
 'filehist-filesize'   => 'ფაილიშ ზომა',
 'filehist-comment'    => 'კომენტარ',
 'imagelinks'          => 'ბუნილეფ',
+'linkstoimage'        => 'გეჸვენჯი ხასილეფ მორცხუ თე ფაილს',
 'noimage'             => 'ფაილ თე სახელით ვაარსეენც, თქვან შეგილებუნთ $1.',
 
 # MIME search

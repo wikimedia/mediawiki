@@ -988,7 +988,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'nonefound'                => "'''Merk''': søk utan resultat kan komma av at du leitar etter alminnelege engelske ord som ikkje blir indekserte, eller det kan komma av at du har gjeve meir enn eitt søkjeord (berre sider som inneheld alle søkjeorda vil bli funne).",
 'powersearch'              => 'Søk',
 'powersearch-legend'       => 'Avansert søk',
-'powersearchtext'          => 'Søk i namnerom:<br />$1<br />$2<br />List omdirigeringar &nbsp; Søk etter: $3 $9',
 'search-external'          => 'Eksternt søk',
 'searchdisabled'           => 'Søkjefunksjonen på {{SITENAME}} er slått av akkurat no.
 I mellomtida kan du søkje gjennom Google.
@@ -1913,6 +1912,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 
 # Import log
 'importlogpage'                    => 'Importeringslogg',
+'import-logentry-upload'           => 'importerte [[$1]] frå opplasta fil',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versjon|versjonar}} frå $2',
 

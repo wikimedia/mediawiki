@@ -972,6 +972,9 @@ que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las pagi
 contenon totes los tèrmes apareisson dins los resultats).',
 'powersearch'               => 'Recèrca avançada',
 'powersearch-legend'        => 'Recèrca avançada',
+'powersearch-ns'            => 'Recercar dins los espacis de nom :',
+'powersearch-redir'         => 'Lista de las redireccions',
+'powersearch-field'         => 'Recercar per',
 'search-external'           => 'Recèrca extèrna',
 'searchdisabled'            => 'La recèrca sus {{SITENAME}} es desactivada.
 En esperant la reactivacion, podètz efectuar una recèrca via Google.

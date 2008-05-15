@@ -398,6 +398,9 @@ Ti para u na'hanao ni sigienti na inayek siha.",
 'showdiff'              => "Na'annok tinilaika",
 'anoneditwarning'       => "'''Adahi:''' Ti ma log-in hao.
 Mausa iyo-mu IP address sempre para tumulaika i historian påhina este.",
+'missingcommenttext'    => "Nå'ye kommentu gi papa'.",
+'missingcommentheader'  => "'''Nina'hasso:''' Ti un tuge' suhetu/titulon må'gas para i kommentu.
+Yanggen un yemme' \"Såtba\" ta'lo, masåtba tinilaika-mu sin titulo.",
 'summary-preview'       => 'Ripasun sumaria',
 'subject-preview'       => 'Ripasun suhetu/titulo',
 'blockedtitle'          => "Machoma' i muna'sesetbi",
@@ -427,10 +430,26 @@ Ti siña un usa i ramientan 'e-mail i muna'sesetbi,' solo guåha e-mail address 
 Machomma' i ID #$5.
 Pot fabot, na'hålom i ID gi todus i finaisen-mu siha.",
 'blockednoreason'       => "ti mana'i rason",
+'blockedoriginalsource' => "Ma'a'annok i code '''$1''' gi papa':",
+'blockededitsource'     => "Ma'a'annok gi papa' i tinige' '''tinilaika-mu''' gi '''$1''':",
+'whitelistedittitle'    => 'Nesesario malogin para tumulaika',
+'whitelistedittext'     => 'Un nesisita ma$1 para tumulaika påhina.',
+'whitelistreadtitle'    => 'Nesisario malogin para manaitai',
+'whitelistreadtext'     => 'Un nesisita [[Special:Userlogin|lumogin]] para manaitai.',
+'whitelistacctitle'     => "Ti masedi hao mama'tinas kuenta",
+'whitelistacctext'      => "Ti masedi hao mama'tinas kuenta gi {{SITENAME}}, un nesita [[Special:Userlogin|lumogin]] yan un nesita i petmisu propiu siha.",
+'loginreqtitle'         => 'Manesita login',
+'loginreqlink'          => 'log in',
+'loginreqpagetext'      => "Debi di un $1 para manli'e' påhina.",
+'accmailtitle'          => "Mana'hanague ni password.",
+'accmailtext'           => 'Mana\'hanague $2 ni password "$1".',
 'newarticle'            => '(Nuebu)',
 'newarticletext'        => "Tåya' na påhina trabiha ni inachetton ni un yemme'.
 Para un fa'tinas i påhina, fångge' gi sanpapa' na kahon (bisita i [[{{MediaWiki:Helppage}}|påhinan ayudo]] para mas infotmasion).
 Anggen lachi finatto-mu mågi, yemme' i batunes '''back''' ni iyo-mu browser.",
+'anontalkpagetext'      => "----''Este na påhinan kombetsasion muna'sesetbi taina'an ni ti ha fa'tinas kuenta-ña pat ti ha u'usa i kuenta. Entonses na in i'isa i numiron IP para in aidentifika gue'.
+Buente ha' na guåha unos kuantos na muna'sesetbi ni ma u'usa i enao na IP.
+An un muna'sesetbi taina'an hao ya manñiente hao na guåha na kommentu ti prisisu ni manadirihiyi hao, pot fabot [[Special:Userlogin|fa'tinas kuenta-mu pat log in]] para mansuhayi yinaoyao yan i otru na muna'sesetbi siha.''",
 'noarticletext'         => "Tåya' tinige'-ña i påhina este, siña un [[Special:Search/{{PAGENAME}}|aligao i titulon påhina]] gi halom otru na påhina siha pat [{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika i påhina].",
 'note'                  => '<strong>Fanapunta:</strong>',
 'previewnote'           => '<strong>Annok este para manripasa;
@@ -439,6 +458,16 @@ ti masåtba trabiha i tinilaika-mu!</strong>',
 'editingsection'        => 'Tumulaika $1 (patte)',
 'editingcomment'        => 'Tulalaika $1 (komentu)',
 'editconflict'          => 'Tulaika i problema: $1',
+'explainconflict'       => "Guåha otru na tinilaika gi påhina ginen i tiempon tumutuhon hao tumulaika.
+Ma'annok i tinige' gi hilo' komu på'go.
+Ma'annok i tinilaika-mu gi papa'.
+Para un nesita muna'daña i tinilaika-mu yan i guinaha.
+'''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"Såtba i påhina\".",
+'yourtext'              => "Tinige'-mu",
+'storedversion'         => 'Tinilaika masåtba',
+'editingold'            => "<strong>ADAHI: Un tulalaika un ribision påhina gus bihu.
+Yanggen un såtba ha', para u fana'malingu i tinilaika siha despues di enao na ribision.</strong>",
+'yourdiff'              => 'Diferensia',
 'copyrightwarning'      => "Pot fabot, fanapunta fan na makonsidera manmasotta todus i kontribusion gi {{SITENAME}} papa' i $2 (atan $1 para i attikulu siha).
 Yanggen munga hao na matulaika i tinige'-mu yan malamaña ya mana'apåttao ta'lo maseha månu, pues munga ma po'lu guini.<br />
 Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat publika pat otru na lugat dibåtde.
@@ -698,7 +727,7 @@ Estague taiguini i nibet i påhina <strong>$1</strong>:',
 'blanknamespace' => '(Fanhaluman)',
 
 # Contributions
-'contributions' => "Kotribusion siha ni muna'sesetbi",
+'contributions' => "Kontribusion siha ni muna'sesetbi",
 'mycontris'     => 'Kontribusion-hu',
 'contribsub2'   => 'Para $1 ($2)',
 'uctop'         => "(sanhilo')",

@@ -474,6 +474,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Þín bíða ný skilaboð á $1',
 'editsection'             => 'breyta',
 'editold'                 => 'breyta',
+'viewsourceold'           => 'skoða wikikóða',
 'editsectionhint'         => 'Breyti hluta: $1',
 'toc'                     => 'Efnisyfirlit',
 'showtoc'                 => 'sýna',
@@ -1423,6 +1424,8 @@ Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núvera
 'protect-legend'              => 'Verndunarstaðfesting',
 'protectcomment'              => 'Ástæða',
 'protectexpiry'               => 'Rennur út:',
+'protect_expiry_invalid'      => 'Varanleiki er ónýting.',
+'protect_expiry_old'          => 'Varaleiki had þegar ögra.',
 'protect-unchain'             => 'Opna fyrir færslur',
 'protect-text'                => 'Hér getur þú skoðað og breytt verndunarstigi síðunnar <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Þú hefur ekki heimild til þess að vernda eða afvernda síður.
@@ -1889,7 +1892,8 @@ Allir innflutningar eru skráð í [[{{ns:special}}:Log/import|innflutningsskrá
 'exif-gpsspeed-n' => 'Hnútar',
 
 # External editor support
-'edit-externally' => 'Breyta þessari skrá með utanaðkomandi hugbúnaði',
+'edit-externally'      => 'Breyta þessari skrá með utanaðkomandi hugbúnaði',
+'edit-externally-help' => 'Sjá [http://meta.wikimedia.org/wiki/Help:External_editors leiðbeiningar] fyrir meiri upplýsingar.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'allt',
