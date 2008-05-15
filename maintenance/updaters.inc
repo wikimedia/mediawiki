@@ -1485,6 +1485,7 @@ function do_postgres_updates() {
 		array("recentchanges","rc_new",          "smallint", "rc_new::smallint DEFAULT 0"),
 		array("recentchanges","rc_type",         "smallint", "rc_type::smallint DEFAULT 0"),
 		array("recentchanges","rc_patrolled",    "smallint", "rc_patrolled::smallint DEFAULT 0"),
+		array("revision",     "rev_deleted",     "smallint", "rev_deleted::smallint DEFAULT 0"),
 		array("revision",     "rev_minor_edit",  "smallint", "rev_minor_edit::smallint DEFAULT 0"),
 		array("templatelinks","tl_namespace",    "smallint", "tl_namespace::smallint"),
 		array("user_newtalk", "user_ip",         "text",     "host(user_ip)"),
