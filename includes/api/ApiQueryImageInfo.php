@@ -134,7 +134,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$vals['thumbheight'] = $thumb->getHeight();
 				}
 			}
-			$vals['url'] = wfExpandUrl( $f->getURL() );
+			$vals['url'] = $f->getFullURL();
 		}
 		if($this->fld_comment)
 			$vals['comment'] = $f->getDescription();
