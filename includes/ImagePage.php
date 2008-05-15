@@ -578,7 +578,7 @@ EOT
 			return;
 		}
 		$wgOut->addWikiMsg( 'linkstoimage' );
-		$wgOut->addHTML( "<ul>\n" );
+		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 
 		$sk = $wgUser->getSkin();
 		$count = 0;
@@ -621,7 +621,7 @@ EOT
 			return;
 
 		$wgOut->addWikiMsg( 'redirectstofile' );
-		$wgOut->addHTML( "<ul>\n" );
+		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
 
 		$sk = $wgUser->getSkin();
 		while ( $row = $dbr->fetchObject( $res ) ) {
@@ -651,10 +651,10 @@ EOT
 				unset( $dupes[$index] );
 		}
 		if ( count( $dupes ) == 0 ) return;
-		
+
 		$wgOut->addWikiMsg( 'duplicatesoffile' );
-		$wgOut->addHTML( "<ul>\n" );
-		
+		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
+
 		$sk = $wgUser->getSkin();
 		foreach ( $dupes as $file ) {
 			if ( $file->isLocal() )
