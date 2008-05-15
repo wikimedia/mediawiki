@@ -3126,12 +3126,25 @@ class Title {
 		return MWNamespace::isContent( $this->getNamespace() );
 	}
 
-	public function getRedirectsHere() {
+	public function getRedirectsHere( $ns = null ) {
 		$redirs = array();
-		$dbr = wfGetDB( DB_SLAVE );
-		list($page,$redirect) = $dbr->tableNamesN( 'page', 'redirect' );
-		$result = $dbr->query( "SELECT page_title, page_namespace FROM $page JOIN $redirect ON page_id = rd_from WHERE rd_title = "
-			. $dbr->addQuotes( $this->getDBKey() ) . " AND rd_namespace = " . $this->getNamespace(), __METHOD__ );
+		
+		$dbr = wfGetDB( DB_SLAVE );	
+		$where = array(
+			'rd_namespace' => $this->getNamespace(),
+			'rd_title' => $this->getDBkey(),
+			'rd_from = page_id'
+		);
+		if ( !is_null($ns) ) $where['page_namespace'] = $ns;
+		
+		$result = $dbr->select(
+			array( 'redirect', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			$where,
+			__METHOD__
+		);
+
+
 		while( $row = $dbr->fetchObject( $result ) ) {
 			$redirs[] = self::newFromRow( $row );
 		}

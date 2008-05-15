@@ -18,6 +18,7 @@ class ImagePage extends Article {
 	/* private */ var $img;  // Image object this page is shown for
 	/* private */ var $repo;
 	var $mExtraDescription = false;
+	var $dupes;
 
 	function __construct( $title, $time = false ) {
 		parent::__construct( $title );
@@ -28,7 +29,8 @@ class ImagePage extends Article {
 		} else {
 			$this->current = $time ? wfLocalFile( $this->mTitle ) : $this->img;
 		}
-		$this->repo = $this->img->repo;
+		$this->repo = $this->img->getRepo();
+		$this->dupes = null;
 	}
 
 	/**
@@ -104,11 +106,15 @@ class ImagePage extends Article {
 		$this->closeShowImage();
 		$this->imageHistory();
 		// TODO: Cleanup the following
-		$this->imageLinks();
+		
+		$wgOut->addHTML( Xml::element( 'h2', 
+			array( 'id' => 'filelinks' ), 
+			wfMsg( 'imagelinks' ) ) . "\n" );
 		$this->imageDupes();
 		// TODO: We may want to find local images redirecting to a foreign 
 		// file: "The following local files redirect to this file"
-		if ( $this->img->isLocal() ) $this->imageRedirects();
+		if ( $this->img->isLocal() ) $this->imageRedirects();		
+		$this->imageLinks();
 
 		if ( $showmeta ) {
 			global $wgStylePath, $wgStyleVersion;
@@ -155,6 +161,28 @@ class ImagePage extends Article {
 	public function getFile() {
 		return $this->img;
 	}
+	
+	public function getDuplicates() {
+		if ( !is_null($this->dupes) ) return $this->dupes;
+		
+		if ( !( $hash = $this->img->getSha1() ) ) 
+			return $this->dupes = array();
+		$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		
+		// Remove duplicates with self and non matching file sizes
+		$self = $this->img->getRepoName().':'.$this->img->getName();
+		$size = $this->img->getSize();
+		foreach ( $dupes as $index => $file ) {
+			$key = $file->getRepoName().':'.$file->getName();
+			if ( $key == $self )
+				unset( $dupes[$index] );
+			if ( $file->getSize() != $size )
+				unset( $dupes[$index] );
+		}
+		return $this->dupes = $dupes;
+		
+	}
+	
 
 	/**
 	 * Create the TOC
@@ -438,6 +466,9 @@ EOT
 		}
 	}
 
+	/*
+	 * Check for files with the same name on the foreign repos.
+	 */
 	function checkSharedConflict() {
 		global $wgOut, $wgUser;
 		$repoGroup = RepoGroup::singleton();
@@ -561,8 +592,6 @@ EOT
 		
 		$limit = 100;
 
-		$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'filelinks' ), wfMsg( 'imagelinks' ) ) . "\n" );
-
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$res = $dbr->select(
@@ -603,53 +632,26 @@ EOT
 	{
 		global $wgUser, $wgOut;
 		
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			array( 'redirect', 'page' ),
-			array( 'page_title' ),
-			array(
-				'rd_namespace' => NS_IMAGE,
-				'rd_title' => $this->mTitle->getDBkey(),
-				'page_namespace' => NS_IMAGE,
-				'rd_from = page_id'
-			),
-			__METHOD__
-		);
+		$redirects = $this->getTitle()->getRedirectsHere( NS_IMAGE );
+		if ( count( $redirects ) == 0 ) return;
 		
-
-		if ( 0 == $dbr->numRows( $res ) ) 
-			return;
 
 		$wgOut->addWikiMsg( 'redirectstofile' );
 		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
 
 		$sk = $wgUser->getSkin();
-		while ( $row = $dbr->fetchObject( $res ) ) {
-			$name = Title::makeTitle( NS_IMAGE, $row->page_title );
-			$link = $sk->makeKnownLinkObj( $name, "" );
-			wfDebug("Image redirect: {$row->page_title}\n");
+		foreach ( $redirects as $title ) {
+			$link = $sk->makeKnownLinkObj( $title, "" );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul>\n" );
-		
-		$res->free();
+
 	}
 	
 	function imageDupes() {
 		global $wgOut, $wgUser;		
 	
-		if ( !( $hash = $this->img->getSha1() ) ) return;
-		// Probably deprecates checkSharedConflict?
-		$dupes = RepoGroup::singleton()->findBySha1( $hash );
-		//$dupes = RepoGroup::singleton()->getLocalRepo()->findBySha1( $hash );
-		
-		// Don't dupe with self
-		$self = $this->img->getRepoName().':'.$this->img->getName();
-		foreach ( $dupes as $index => $file ) {
-			$key = $file->getRepoName().':'.$file->getName();
-			if ( $key == $self )
-				unset( $dupes[$index] );
-		}
+		$dupes = $this->getDuplicates();
 		if ( count( $dupes ) == 0 ) return;
 
 		$wgOut->addWikiMsg( 'duplicatesoffile' );
