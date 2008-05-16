@@ -289,6 +289,12 @@ class NewPagesForm {
 			$this->title->getFullUrl() );
 
 		$pager = new NewPagesPager( $this, $this->opts );
+		$limit = $this->opts->getValue( 'limit' );
+		global $wgFeedLimit;
+		if( $limit > $wgFeedLimit ) {
+			$limit = $wgFeedLimit;
+		}
+		$pager->mLimit = $limit;
 
 		$feed->outHeader();
 		if( $pager->getNumRows() > 0 ) {

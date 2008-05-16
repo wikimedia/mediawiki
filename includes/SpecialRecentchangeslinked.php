@@ -15,7 +15,6 @@ require_once( 'SpecialRecentchanges.php' );
  */
 function wfSpecialRecentchangeslinked( $par = NULL ) {
 	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle, $wgScript;
-	$fname = 'wfSpecialRecentchangeslinked';
 
 	$days = $wgRequest->getInt( 'days' );
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
@@ -57,7 +56,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$wgOut->setSyndicated();
 	$wgOut->setFeedAppendQuery( "target=" . urlencode( $target ) );
 
-	if ( ! $days ) {
+	if ( !$days ) {
 		$days = (int)$wgUser->getOption( 'rcdays', 7 );
 	}
 	list( $limit, /* offset */ ) = wfCheckLimits( 100, 'rclimit' );
@@ -83,49 +82,39 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	    $dbr->tableNamesN( 'recentchanges', 'categorylinks', 'pagelinks', "watchlist" );
 
 	$uid = $wgUser->getID();
-
-	$GROUPBY = "
-	GROUP BY rc_cur_id,rc_namespace,rc_title,
+	// The fields we are selecting
+	$fields = "rc_cur_id,rc_namespace,rc_title,
 		rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,rc_log_type,rc_log_action,rc_params,rc_deleted,
-		rc_new, rc_id, rc_this_oldid, rc_last_oldid, rc_bot, rc_patrolled, rc_type, rc_old_len, rc_new_len
-" . ($uid ? ",wl_user" : "") . "
-		ORDER BY rc_timestamp DESC
-	LIMIT {$limit}";
+		rc_new, rc_id, rc_this_oldid, rc_last_oldid, rc_bot, rc_patrolled, rc_type, rc_old_len, rc_new_len";
+	$fields .= $uid ? ",wl_user" : "";
+
+	// Check if this should be a feed
+	$feed = false;
+	global $wgSitename, $wgFeedClasses, $wgContLanguageCode, $wgFeedLimit;
+	$feedFormat = $wgRequest->getVal( 'feed' );
+	if( $feedFormat && isset( $wgFeedClasses[$feedFormat] ) ) {
+		$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchangeslinked-title', $nt->getPrefixedText() ) . 
+			' [' . $wgContLanguageCode . ']';
+		$feed = new $wgFeedClasses[$feedFormat]( $feedTitle, 
+			htmlspecialchars( wfMsgForContent('recentchangeslinked') ), $wgTitle->getFullUrl() );
+		# Sanity check
+		if( $limit > $wgFeedLimit ) {
+			$limit = $wgFeedLimit;
+		}
+	}
 
 	// If target is a Category, use categorylinks and invert from and to
 	if( $nt->getNamespace() == NS_CATEGORY ) {
 		$catkey = $dbr->addQuotes( $nt->getDBkey() );
-		$sql = "SELECT /* wfSpecialRecentchangeslinked */
-				rc_id,
-				rc_cur_id,
-				rc_namespace,
-				rc_title,
-				rc_this_oldid,
-				rc_last_oldid,
-				rc_user,
-				rc_comment,
-				rc_user_text,
-				rc_timestamp,
-				rc_minor,
-				rc_bot,
-				rc_new,
-				rc_patrolled,
-				rc_type,
-				rc_old_len,
-				rc_new_len,
-				rc_log_type,
-				rc_log_action,
-				rc_params,
-				rc_deleted
-" . ($uid ? ",wl_user" : "") . "
-	    FROM $categorylinks, $recentchanges
-" . ($uid ? "LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
-	   WHERE rc_timestamp > '{$cutoff}'
-	     {$cmq}
-	     AND cl_from=rc_cur_id
-	     AND cl_to=$catkey
-$GROUPBY
- ";
+		# The table clauses
+		$tables = "$categorylinks, $recentchanges";
+		$tables .= $uid ? "LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
+
+		$sql = "SELECT /* wfSpecialRecentchangeslinked */ $fields FROM $tables 
+			WHERE rc_timestamp > '{$cutoff}' {$cmq} 
+			AND cl_from=rc_cur_id 
+			AND cl_to=$catkey 
+			GROUP BY $fields ORDER BY rc_timestamp DESC LIMIT {$limit}"; // Shitty-ass GROUP BY by for postgres apparently
 	} else {
 		if( $showlinkedto ) {
 			$ns = $dbr->addQuotes( $nt->getNamespace() );
@@ -134,41 +123,40 @@ $GROUPBY
 		} else {
 			$joinConds = "AND pl_namespace=rc_namespace AND pl_title=rc_title AND pl_from=$id";
 		}
+		# The table clauses
+		$tables = "$pagelinks, $recentchanges";
+		$tables .= $uid ? "LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
 
-		$sql =
-"SELECT /* wfSpecialRecentchangeslinked */
-			rc_id,
-			rc_cur_id,
-			rc_namespace,
-			rc_title,
-			rc_user,
-			rc_comment,
-			rc_user_text,
-			rc_this_oldid,
-			rc_last_oldid,
-			rc_timestamp,
-			rc_minor,
-			rc_bot,
-			rc_new,
-			rc_patrolled,
-			rc_type,
-			rc_old_len,
-			rc_new_len,
-			rc_log_type,
-			rc_log_action,
-			rc_params,
-			rc_deleted
-" . ($uid ? ",wl_user" : "") . "
-   FROM $pagelinks, $recentchanges
-" . ($uid ? " LEFT OUTER JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "") . "
-   WHERE rc_timestamp > '{$cutoff}'
-	{$cmq}
-    {$joinConds}
-$GROUPBY
-";
+		$sql = "SELECT /* wfSpecialRecentchangeslinked */ $fields FROM $tables
+			WHERE rc_timestamp > '{$cutoff}' {$cmq}
+			{$joinConds}
+			GROUP BY $fields ORDER BY rc_timestamp DESC LIMIT {$limit}"; // Shitty-ass GROUP BY by for postgres apparently
 	}
-	$res = $dbr->query( $sql, $fname );
-
+	# Actually do the query
+	$res = $dbr->query( $sql, __METHOD__ );
+	$count = $dbr->numRows( $res );
+	$rchanges = array();
+	# Output feeds now and be done with it!
+	if( $feed ) {
+		if( $count ) {
+			$counter = 1;
+			while ( $limit ) {
+				if ( 0 == $count ) { break; }
+				$obj = $dbr->fetchObject( $res );
+				--$count;
+				$rc = RecentChange::newFromRow( $obj );
+				$rc->counter = $counter++;
+				--$limit;
+				$rchanges[] = $obj;
+			}
+		}
+		require_once( "SpecialRecentchanges.php" );
+		$wgOut->disable();
+		rcDoOutputFeed( $rchanges, $feed );
+		return;
+	}
+	
+	# Otherwise, carry on with regular output...
 	$wgOut->addHTML("&lt; ".$sk->makeLinkObj($nt, "", "redirect=no" )."<br />\n");
 	$note = wfMsgExt( "rcnote", array ( 'parseinline' ), $limit, $days, $wgLang->timeAndDate( wfTimestampNow(), true ) );
 	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
@@ -181,9 +169,7 @@ $GROUPBY
 
 	$list = ChangesList::newFromUser( $wgUser );
 	$s = $list->beginRecentChangesList();
-	$count = $dbr->numRows( $res );
 
-	$rchanges = array();
 	if ( $count ) {
 		$counter = 1;
 		while ( $limit ) {
@@ -194,7 +180,6 @@ $GROUPBY
 			$rc->counter = $counter++;
 			$s .= $list->recentChangesLine( $rc , !empty( $obj->wl_user) );
 			--$limit;
-			$rchanges[] = $obj;
 		}
 	} else {
 		$wgOut->addWikiMsg('recentchangeslinked-noresult');
@@ -203,16 +188,4 @@ $GROUPBY
 
 	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
-
-	global $wgSitename, $wgFeedClasses, $wgContLanguageCode;
-	$feedFormat = $wgRequest->getVal( 'feed' );
-	if( $feedFormat && isset( $wgFeedClasses[$feedFormat] ) ) {
-		$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchangeslinked-title', $nt->getPrefixedText() ) . ' [' . $wgContLanguageCode . ']';
-		$feed = new $wgFeedClasses[$feedFormat]( $feedTitle,
-			htmlspecialchars( wfMsgForContent('recentchangeslinked') ), $wgTitle->getFullUrl() );
-
-		require_once( "SpecialRecentchanges.php" );
-		$wgOut->disable();
-		rcDoOutputFeed( $rchanges, $feed );
-	}
 }

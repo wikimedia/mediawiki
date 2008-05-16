@@ -454,6 +454,11 @@ class QueryPage {
 			$wgOut->addWikiMsg( 'feed-unavailable' );
 			return;
 		}
+		
+		global $wgFeedLimit;
+		if( $limit > $wgFeedLimit ) {
+			$limit = $wgFeedLimit;
+		}
 
 		if( isset($wgFeedClasses[$class]) ) {
 			$feed = new $wgFeedClasses[$class](
