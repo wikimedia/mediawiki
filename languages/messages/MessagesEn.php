@@ -1909,6 +1909,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
+'nopagetitle'                     => 'No such target page',
+'nopagetext'                      => 'The target page you have specified does not exist.',
 'pager-newer-n'                   => '{{PLURAL:$1|newer 1|newer $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|older 1|older $1}}',
 'suppress'                        => 'Oversight',

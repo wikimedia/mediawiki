@@ -73,6 +73,10 @@ class MovePageForm {
 			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 			return;
 		}
+		if( !$ot->exists() ) {
+			$wgOut->showErrorPage( 'nopagetitle', 'nopagetext' );
+			return;
+		}
 
 		$sk = $wgUser->getSkin();
 
