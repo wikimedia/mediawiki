@@ -1444,7 +1444,7 @@ class Article {
 					) );
 
 				$dbw->begin();
-				$revisionId = $revision->insertOn( $dbw );
+				$revisionId = $revision->insertOn( $dbw, true );
 
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
@@ -1512,7 +1512,7 @@ class Article {
 				'minor_edit' => $isminor,
 				'text'       => $text
 				) );
-			$revisionId = $revision->insertOn( $dbw );
+			$revisionId = $revision->insertOn( $dbw, true );
 
 			$this->mTitle->resetArticleID( $newid );
 

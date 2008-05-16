@@ -707,9 +707,10 @@ class Revision {
 	 * number on success and dies horribly on failure.
 	 *
 	 * @param Database $dbw
+	 * @param bool $edit, was this a new edit? (optional)
 	 * @return int
 	 */
-	public function insertOn( &$dbw ) {
+	public function insertOn( &$dbw, $edit=false ) {
 		global $wgDefaultExternalStore;
 
 		wfProfileIn( __METHOD__ );
@@ -772,7 +773,7 @@ class Revision {
 
 		$this->mId = !is_null($rev_id) ? $rev_id : $dbw->insertId();
 		
-		wfRunHooks( 'RevisionInsertComplete', array( &$this ) );
+		wfRunHooks( 'RevisionInsertComplete', array( &$this, $edit ) );
 		
 		wfProfileOut( __METHOD__ );
 		return $this->mId;

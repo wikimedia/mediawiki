@@ -919,6 +919,7 @@ $user: the User object to load preferences from
 
 'RevisionInsertComplete': called after a revision is inserted into the DB
 $revision: the Revision
+$edit: was this a new edit?
 
 'SavePreferences': called at the end of PreferencesForm::savePreferences; 
                    returning false prevents the preferences from being saved.
