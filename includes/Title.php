@@ -1445,7 +1445,9 @@ class Title {
 			 * Check for explicit whitelisting
 			 */
 			$name = $this->getPrefixedText();
-			if( in_array( $name, $wgWhitelistRead, true ) )
+			$dbName = $this->getPrefixedDBKey();
+			// Check with and without underscores
+			if( in_array($name,$wgWhitelistRead,true) || in_array($dbName,$wgWhitelistRead,true) )
 				return true;
 
 			/**
