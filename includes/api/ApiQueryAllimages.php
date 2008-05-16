@@ -52,6 +52,9 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 	}
 
 	private function run($resultPageSet = null) {
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		if ( !is_a( $repo, 'LocalRepo' ) )
+			$this->dieUsage('Local file repository does not support querying all images', 'unsupportedrepo');
 
 		$db = $this->getDB();
 
@@ -84,11 +87,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		$this->addTables('image');
 
 		$prop = array_flip($params['prop']);
-		$this->addFields('img_name');
-		$this->addFieldsIf('img_size', isset($prop['size']));
-		$this->addFieldsIf(array('img_width', 'img_height'), isset($prop['dimensions']));
-		$this->addFieldsIf(array('img_major_mime', 'img_minor_mime'), isset($prop['mime']));
-		$this->addFieldsIf('img_timestamp', isset($prop['timestamp']));
+		$this->addFields( LocalFile::selectFields() );
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
@@ -108,7 +107,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			}
 
 			if (is_null($resultPageSet)) {
-				$file = wfLocalFile( $row->img_name );
+				$file = $repo->newFileFromRow( $row );
 				$item['name'] = $row->img_name;
 				if(isset($prop['size']))
 					$item['size'] = $file->getSize();
@@ -118,13 +117,13 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 					$item['height'] = $file->getHeight();
 				}
 				if(isset($prop['mime']))
-					$item['mime'] = $row->img_major_mime . '/' . $row->img_minor_mime;
+					$item['mime'] = $file->getMimeType();
 				if(isset($prop['sha1']))
 					$item['sha1'] = wfBaseConvert($file->getSha1(), 36, 16, 31);
 				if(isset($prop['timestamp']))
 					$item['timestamp'] = wfTimestamp(TS_ISO_8601, $file->getTimestamp());
 				if(isset($prop['url']))
-					$item['url'] = $file->getUrl();
+					$item['url'] = $file->getFullUrl();
 				$data[] = $item;
 			} else {
 				$data[] = Title::makeTitle( NS_IMAGE, $row->img_name );
