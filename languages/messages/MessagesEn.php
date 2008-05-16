@@ -879,7 +879,7 @@ Please choose a different name.',
 'yourrealname'               => 'Real name:',
 'yourlanguage'               => 'Language:',
 'yourvariant'                => 'Variant:', # only translate this message to other languages if you have to change it
-'yournick'                   => 'Nickname:',
+'yournick'                   => 'Signature:',
 'badsig'                     => 'Invalid raw signature; check HTML tags.',
 'badsiglength'               => 'Nickname too long; must be under $1 characters.',
 'email'                      => 'E-mail',
