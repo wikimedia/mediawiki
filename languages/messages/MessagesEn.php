@@ -881,7 +881,8 @@ Please choose a different name.',
 'yourvariant'                => 'Variant:', # only translate this message to other languages if you have to change it
 'yournick'                   => 'Signature:',
 'badsig'                     => 'Invalid raw signature; check HTML tags.',
-'badsiglength'               => 'Nickname too long; must be under $1 characters.',
+'badsiglength'               => 'The signature is too long.
+It must be under $1 characters.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
