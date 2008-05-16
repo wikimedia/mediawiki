@@ -54,7 +54,7 @@ class ApiFeedWatchlist extends ApiBase {
 	 */
 	public function execute() {
 
-		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
+		global $wgFeedClasses, $wgFeedLimit, $wgSitename, $wgContLanguageCode;
 
 		try {
 			$params = $this->extractRequestParams();
@@ -72,7 +72,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'wlprop' => 'title|user|comment|timestamp',
 				'wldir' => 'older',		// reverse order - from newest to oldest
 				'wlend' => $dbr->timestamp($endTime),	// stop at this time
-				'wllimit' => 50
+				'wllimit' => (50 > $wgFeedLimit) ? $wgFeedLimit : 50
 			);
 
 			// Check for 'allrev' parameter, and if found, show all revisions to each page on wl.

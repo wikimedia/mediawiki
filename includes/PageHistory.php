@@ -108,6 +108,10 @@ class PageHistory {
 		 */
 		if ( $wgRequest->getText("go") == 'first' ) {
 			$limit = $wgRequest->getInt( 'limit', 50 );
+			global $wgFeedLimit;
+			if( $limit > $wgFeedLimit ) {
+				$limit = $wgFeedLimit;
+			}
 			$wgOut->redirect( $wgTitle->getLocalURL( "action=history&limit={$limit}&dir=prev" ) );
 			return;
 		}
