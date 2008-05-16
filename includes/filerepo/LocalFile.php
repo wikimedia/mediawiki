@@ -518,25 +518,21 @@ class LocalFile extends File
 	 * Get all thumbnail names previously generated for this file
 	 */
 	function getThumbnails() {
-		if ( $this->isHashed() ) {
-			$this->load();
-			$files = array();
-			$dir = $this->getThumbPath();
+		$this->load();
+		$files = array();
+		$dir = $this->getThumbPath();
 
-			if ( is_dir( $dir ) ) {
-				$handle = opendir( $dir );
+		if ( is_dir( $dir ) ) {
+			$handle = opendir( $dir );
 
-				if ( $handle ) {
-					while ( false !== ( $file = readdir($handle) ) ) {
-						if ( $file{0} != '.' ) {
-							$files[] = $file;
-						}
+			if ( $handle ) {
+				while ( false !== ( $file = readdir($handle) ) ) {
+					if ( $file{0} != '.' ) {
+						$files[] = $file;
 					}
-					closedir( $handle );
 				}
+				closedir( $handle );
 			}
-		} else {
-			$files = array();
 		}
 
 		return $files;
