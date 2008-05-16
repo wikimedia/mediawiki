@@ -1239,6 +1239,8 @@ $wgMessageStructure = array(
 		'unusedcategoriestext',
 		'notargettitle',
 		'notargettext',
+		'nopagetitle',
+		'nopagetext',
 		'pager-newer-n',
 		'pager-older-n',
 		'suppress',
