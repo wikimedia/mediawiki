@@ -72,8 +72,6 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			$messages_target = $messages_filtered;
 		}
 
-		$wgMessageCache->disableTransform();
-
 		//Get all requested messages
 		$messages = array();
 		foreach( $messages_target as $message ) {
