@@ -708,9 +708,10 @@ class Revision {
 	 *
 	 * @param Database $dbw
 	 * @param bool $edit, was this a new edit? (optional)
+	 * @param integer $baseID, what revision was this based on? (optional)
 	 * @return int
 	 */
-	public function insertOn( &$dbw, $edit=false ) {
+	public function insertOn( &$dbw, $edit = false, $baseID = false ) {
 		global $wgDefaultExternalStore;
 
 		wfProfileIn( __METHOD__ );
@@ -773,7 +774,7 @@ class Revision {
 
 		$this->mId = !is_null($rev_id) ? $rev_id : $dbw->insertId();
 		
-		wfRunHooks( 'RevisionInsertComplete', array( &$this, $edit ) );
+		wfRunHooks( 'RevisionInsertComplete', array( &$this, $edit, $baseID ) );
 		
 		wfProfileOut( __METHOD__ );
 		return $this->mId;

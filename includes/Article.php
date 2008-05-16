@@ -1362,10 +1362,11 @@ class Article {
 	 * EDIT_NEW is specified and the article does exist, a duplicate key error will cause an exception
 	 * to be thrown from the Database. These two conditions are also possible with auto-detection due
 	 * to MediaWiki's performance-optimised locking strategy.
+	 * @param integer $baseRevID, the revision ID this is based off
 	 *
 	 * @return bool success
 	 */
-	function doEdit( $text, $summary, $flags = 0 ) {
+	function doEdit( $text, $summary, $flags = 0, $baseRevID = false ) {
 		global $wgUser, $wgDBtransactions;
 
 		wfProfileIn( __METHOD__ );
@@ -1444,7 +1445,7 @@ class Article {
 					) );
 
 				$dbw->begin();
-				$revisionId = $revision->insertOn( $dbw, true );
+				$revisionId = $revision->insertOn( $dbw, true, $baseRevID );
 
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
@@ -2524,7 +2525,7 @@ class Article {
 
 		if( $bot && ($wgUser->isAllowed('markbotedits') || $wgUser->isAllowed('bot')) )
 			$flags |= EDIT_FORCE_BOT;
-		$this->doEdit( $target->getText(), $summary, $flags );
+		$this->doEdit( $target->getText(), $summary, $flags, $target->getId() );
 
 		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target ) );
 
