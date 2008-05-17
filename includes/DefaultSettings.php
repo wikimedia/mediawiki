@@ -1933,6 +1933,18 @@ $wgPutIPinRC = true;
  */
 $wgRCMaxAge = 7 * 24 * 3600;
 
+/**
+ * Filter $wgRCLinkDays by $wgRCMaxAge to avoid showing links for numbers higher than what will be stored.
+ * Note that this is disabled by default because we sometimes do have RC data which is beyond the limit
+ * for some reason, and some users may use the high numbers to display that data which is still there.
+ */
+$wgRCFilterByAge = false;
+
+/**
+ * List of Days and Limits options to list in the Special:Recentchanges and Special:Recentchangeslinked pages.
+ */
+$wgRCLinkLimits = array( 50, 100, 250, 500 );
+$wgRCLinkDays   = array( 1, 3, 7, 14, 30 );
 
 # Send RC updates via UDP
 $wgRC2UDPAddress = false;

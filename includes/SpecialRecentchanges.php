@@ -477,24 +477,26 @@ function rcDoOutputFeed( $rows, &$feed ) {
 /**
  *
  */
-function rcCountLink( $lim, $d, $page='Recentchanges', $more='' ) {
+function rcCountLink( $lim, $d, $page='Recentchanges', $more='', $active = false ) {
 	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
 	  ($lim ? $wgLang->formatNum( "{$lim}" ) : wfMsg( 'recentchangesall' ) ), "{$more}" .
-	  ($d ? "days={$d}&" : '') . 'limit='.$lim );
+	  ($d ? "days={$d}&" : '') . 'limit='.$lim, '', '',
+	  $active ? 'style="font-weight: bold;"' : '' );
 	return $s;
 }
 
 /**
  *
  */
-function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
+function rcDaysLink( $lim, $d, $page='Recentchanges', $more='', $active = false ) {
 	global $wgUser, $wgLang, $wgContLang;
 	$sk = $wgUser->getSkin();
 	$s = $sk->makeKnownLink( $wgContLang->specialPage( $page ),
 	  ($d ? $wgLang->formatNum( "{$d}" ) : wfMsg( 'recentchangesall' ) ), $more.'days='.$d .
-	  ($lim ? '&limit='.$lim : '') );
+	  ($lim ? '&limit='.$lim : ''), '', '',
+	  $active ? 'style="font-weight: bold;"' : '' );
 	return $s;
 }
 
@@ -503,19 +505,31 @@ function rcDaysLink( $lim, $d, $page='Recentchanges', $more='' ) {
  */
 function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall = false, $minorLink = '',
 	$botLink = '', $liuLink = '', $patrLink = '', $myselfLink = '' ) {
+	global $wgRCLinkLimits, $wgRCLinkDays;
 	if ($more != '') $more .= '&';
-	$cl = rcCountLink( 50, $days, $page, $more ) . ' | ' .
-	  rcCountLink( 100, $days, $page, $more  ) . ' | ' .
-	  rcCountLink( 250, $days, $page, $more  ) . ' | ' .
-	  rcCountLink( 500, $days, $page, $more  ) .
-	  ( $doall ? ( ' | ' . rcCountLink( 0, $days, $page, $more ) ) : '' );
-	$dl = rcDaysLink( $limit, 1, $page, $more  ) . ' | ' .
-	  rcDaysLink( $limit, 3, $page, $more  ) . ' | ' .
-	  rcDaysLink( $limit, 7, $page, $more  ) . ' | ' .
-	  rcDaysLink( $limit, 14, $page, $more  ) . ' | ' .
-	  rcDaysLink( $limit, 30, $page, $more  ) .
-	  ( $doall ? ( ' | ' . rcDaysLink( $limit, 0, $page, $more ) ) : '' );
-
+	
+	# Sort data for display and make sure it's unique after we've added user data.
+	$wgRCLinkLimits[] = $limit;
+	$wgRCLinkDays[] = $days;
+	sort(&$wgRCLinkLimits);
+	sort(&$wgRCLinkDays);
+	$wgRCLinkLimits = array_unique($wgRCLinkLimits);
+	$wgRCLinkDays = array_unique($wgRCLinkDays);
+	
+	$cl = array();
+	foreach( $wgRCLinkLimits as $countLink ) {
+		$cl[] = rcCountLink( $countLink, $days, $page, $more, $countLink == $limit );
+	}
+	if( $doall ) $cl[] = rcCountLink( 0, $days, $page, $more );
+	$cl = implode( ' | ', $cl);
+	
+	$dl = array();
+	foreach( $wgRCLinkDays as $daysLink ) {
+		$dl[] = rcDaysLink( $limit, $daysLink, $page, $more, $daysLink == $days );
+	}
+	if( $doall ) $dl[] = rcDaysLink( $limit, 0, $page, $more );
+	$dl = implode( ' | ', $dl);
+	
 	$linkParts = array( 'minorLink' => 'minor', 'botLink' => 'bots', 'liuLink' => 'liu', 'patrLink' => 'patr', 'myselfLink' => 'mine' );
 	foreach( $linkParts as $linkVar => $linkMsg ) {
 		if( $$linkVar != '' )
@@ -534,11 +548,12 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
  * @param $override
  * @param $options
  */
-function makeOptionsLink( $title, $override, $options ) {
+function makeOptionsLink( $title, $override, $options, $active = false ) {
 	global $wgUser, $wgContLang;
 	$sk = $wgUser->getSkin();
 	return $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchanges' ),
-		htmlspecialchars( $title ), wfArrayToCGI( $override, $options ) );
+		htmlspecialchars( $title ), wfArrayToCGI( $override, $options ), '', '',
+		$active ? 'style="font-weight: bold;"' : '' );
 }
 
 /**
@@ -547,7 +562,7 @@ function makeOptionsLink( $title, $override, $options ) {
  * @param $nondefaults
  */
 function rcOptionsPanel( $defaults, $nondefaults ) {
-	global $wgLang, $wgUser;
+	global $wgLang, $wgUser, $wgRCLinkLimits, $wgRCLinkDays;
 
 	$options = $nondefaults + $defaults;
 
@@ -561,19 +576,25 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 			$wgLang->formatNum( $options['days'] ),
 			$wgLang->timeAndDate( wfTimestampNow(), true ) );
 
+	# Sort data for display and make sure it's unique after we've added user data.
+	$wgRCLinkLimits[] = $options['limit'];
+	$wgRCLinkDays[] = $options['days'];
+	sort(&$wgRCLinkLimits);
+	sort(&$wgRCLinkDays);
+	$wgRCLinkLimits = array_unique($wgRCLinkLimits);
+	$wgRCLinkDays = array_unique($wgRCLinkDays);
+	
 	// limit links
-	$options_limit = array(50, 100, 250, 500);
-	foreach( $options_limit as $value ) {
+	foreach( $wgRCLinkLimits as $value ) {
 		$cl[] = makeOptionsLink( $wgLang->formatNum( $value ),
-			array( 'limit' => $value ), $nondefaults) ;
+			array( 'limit' => $value ), $nondefaults, $value == $options['limit'] ) ;
 	}
 	$cl = implode( ' | ', $cl);
 
 	// day links, reset 'from' to none
-	$options_days = array(1, 3, 7, 14, 30);
-	foreach( $options_days as $value ) {
+	foreach( $wgRCLinkDays as $value ) {
 		$dl[] = makeOptionsLink( $wgLang->formatNum( $value ),
-			array( 'days' => $value, 'from' => ''  ), $nondefaults) ;
+			array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] ) ;
 	}
 	$dl = implode( ' | ', $dl);
 

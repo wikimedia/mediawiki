@@ -159,6 +159,19 @@ if ( $wgCommandLineMode ) {
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
 }
 
+if( $wgRCFilterByAge ) {
+	## Trim down $wgRCLinkDays so that it only lists links which are valid
+	## as determined by $wgRCMaxAge.
+	## Note that we allow 1 link higher than the max for things like 56 days but a 60 day link.
+	sort($wgRCLinkDays);
+	for( $i = 0; $i < count($wgRCLinkDays); $i++ ) {
+		if( $wgRCLinkDays[$i] >= $wgRCMaxAge / ( 3600 * 24 ) ) {
+			$wgRCLinkDays = array_slice( $wgRCLinkDays, 0, $i+1, false );
+			break;
+		}
+	}
+}
+
 if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
