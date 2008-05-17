@@ -39,6 +39,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgSharedTables variable allows you to specify a list of tables to share.
 * Automatic edit summaries can be disabled with $wgUseAutomaticEditSummaries  
 * Duplicates of images are now shown on the image page.
+* $wgRCFilterByAge allows for the list of dates in recent changes special pages to
+  be filtered to only those within the range of $wgRCMaxAge.
+* $wgRCLinkLimits and $wgRCLinkDays allow for customization of the list and limits
+  displayed on the recent changes special pages.
 
 === New features in 1.13 ===
 
