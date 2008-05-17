@@ -16,8 +16,8 @@ class MediaWiki {
 	 * Stores key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
 	 *
-	 * @param String $key key to store
-	 * @param mixed $value value to put for the key
+	 * @param $key String: key to store
+	 * @param $value Mixed: value to put for the key
 	 */
 	function setVal( $key, &$value ) {
 		$key = strtolower( $key );
@@ -28,8 +28,8 @@ class MediaWiki {
 	 * Retrieves key/value pairs to circumvent global variables
 	 * Note that keys are case-insensitive!
 	 *
-	 * @param String $key key to get
-	 * @param mixed $default default value if if the key doesn't exist
+	 * @param $key String: key to get
+	 * @param $default Mixed: default value if if the key doesn't exist
 	 */
 	function getVal( $key, $default = '' ) {
 		$key = strtolower( $key );
@@ -43,11 +43,11 @@ class MediaWiki {
 	 * Initialization of ... everything
 	 * Performs the request too
 	 *
-	 * @param Title $title
-	 * @param Article $article
-	 * @param OutputPage $output
-	 * @param User $user
-	 * @param WebRequest $request
+	 * @param $title Title
+	 * @param $article Article
+	 * @param $output OutputPage
+	 * @param $user User
+	 * @param $request WebRequest
 	 */
 	function initialize( &$title, &$article, &$output, &$user, $request ) {
 		wfProfileIn( __METHOD__ );
@@ -70,8 +70,8 @@ class MediaWiki {
 	 * Check if the maximum lag of database slaves is higher that $maxLag, and
 	 * if it's the case, output an error message
 	 *
-	 * @param int $maxLag maximum lag allowed for the request, as supplied by
-	 *                    the client
+	 * @param $maxLag int: maximum lag allowed for the request, as supplied by
+	 *                the client
 	 * @return bool true if the request can continue
 	 */
 	function checkMaxLag( $maxLag ) {
@@ -89,8 +89,8 @@ class MediaWiki {
 	 * Checks some initial queries
 	 * Note that $title here is *not* a Title object, but a string!
 	 *
-	 * @param String $title
-	 * @param String $action
+	 * @param $title String
+	 * @param $action String
 	 * @return Title object to be $wgTitle
 	 */
 	function checkInitialQueries( $title, $action ) {
@@ -128,9 +128,9 @@ class MediaWiki {
 	/**
 	 * Checks for search query and anon-cannot-read case
 	 *
-	 * @param Title $title
-	 * @param OutputPage $output
-	 * @param WebRequest $request
+	 * @param $title Title
+	 * @param $output OutputPage
+	 * @param $request WebRequest
 	 */
 	function preliminaryChecks( &$title, &$output, $request ) {
 
@@ -161,9 +161,9 @@ class MediaWiki {
 	 * - redirect loop
 	 * - special pages
 	 *
-	 * @param Title $title
-	 * @param OutputPage $output
-	 * @param WebRequest $request
+	 * @param $title Title
+	 * @param $output OutputPage
+	 * @param $request WebRequest
 	 * @return bool true if the request is already executed
 	 */
 	function initializeSpecialCases( &$title, &$output, $request ) {
@@ -235,7 +235,7 @@ class MediaWiki {
 	/**
 	 * Create an Article object of the appropriate class for the given page.
 	 *
-	 * @param Title $title
+	 * @param $title Title
 	 * @return Article object
 	 */
 	static function articleFromTitle( &$title ) {
@@ -264,8 +264,8 @@ class MediaWiki {
 	 * Initialize the object to be known as $wgArticle for "standard" actions
 	 * Create an Article object for the page, following redirects if needed.
 	 *
-	 * @param Title $title
-	 * @param Request $request
+	 * @param $title Title
+	 * @param $request WebRequest
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
 	function initializeArticle( &$title, $request ) {
@@ -322,8 +322,8 @@ class MediaWiki {
 	/**
 	 * Cleaning up by doing deferred updates, calling LBFactory and doing the output
 	 *
-	 * @param Array $deferredUpdates array of updates to do
-	 * @param OutputPage $output
+	 * @param $deferredUpdates array of updates to do
+	 * @param $output OutputPage
 	 */
 	function finalCleanup ( &$deferredUpdates, &$output ) {
 		wfProfileIn( __METHOD__ );
@@ -342,7 +342,7 @@ class MediaWiki {
 	 * Note that for page saves, the client will wait until the script exits
 	 * anyway before following the redirect.
 	 *
-	 * @param Array $updates array of objects that hold an update to do
+	 * @param $updates array of objects that hold an update to do
 	 */
 	function doUpdates( &$updates ) {
 		wfProfileIn( __METHOD__ );
@@ -409,11 +409,11 @@ class MediaWiki {
 	/**
 	 * Perform one of the "standard" actions
 	 *
-	 * @param OutputPage $output
-	 * @param Article $article
-	 * @param Title $title
-	 * @param User $user
-	 * @param WebRequest $request
+	 * @param $output OutputPage
+	 * @param $article Article
+	 * @param $title Title
+	 * @param $user User
+	 * @param $request WebRequest
 	 */
 	function performAction( &$output, &$article, &$title, &$user, &$request ) {
 		wfProfileIn( __METHOD__ );
