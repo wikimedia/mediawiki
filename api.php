@@ -83,3 +83,6 @@ wfDoUpdates();
 wfProfileOut('api.php');
 wfLogProfilingData();
 
+// Shut down the database
+wfGetLBFactory()->shutdown();
+

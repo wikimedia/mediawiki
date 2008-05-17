@@ -223,7 +223,7 @@ class ApiLogin extends ApiBase {
 		return wfMemcKey( 'apilogin', 'badlogin', 'ip', wfGetIP() );
 	}
 
-	//public function mustBePosted() { return true; }
+	public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {
 		return array (

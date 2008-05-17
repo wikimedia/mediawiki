@@ -199,10 +199,9 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Schedule a database commit
+	 * @deprecated
 	 */
-	public function scheduleCommit() {
-		$this->mCommit = true;
-	}
+	public function scheduleCommit() {}
 
 	/**
 	 * Execute api request. Any errors will be handled if the API was called by the remote client.
@@ -213,11 +212,7 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 		else
 			$this->executeActionWithErrorHandling();
-		if($this->mCommit)
-		{
-			$dbw = wfGetDb(DB_MASTER);
-			$dbw->immediateCommit();
-		}
+	
 		$this->profileOut();
 	}
 
