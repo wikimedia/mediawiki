@@ -435,7 +435,6 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'showingresultsnum' => "ʻOku ʻasi ʻi lalo ha fua ʻe '''$3''', ʻoku kamata mo e #'''$2'''.",
 'nonefound'         => "'''Tokanga''': ko e ngaahi kumi ʻikai ke siaʻa, ko e ʻuhinga tuʻo lahi ia ko e ngāueʻaki he ʻū foʻi lea fuʻu noa pe he ʻū foʻi lea fuʻu lahi (ko e ngaahi peesi mo e ʻū foʻi lea kotoa ʻi loto, ʻe ʻasi mai pē).",
 'powersearch'       => 'Kumi',
-'powersearchtext'   => 'Kumi ʻi he vā hingoa:<br />$1<br />$2 Hokohoko leʻei<br />Kumi $3 $9',
 
 # Preferences page
 'preferences'           => 'Faʻiteliha',

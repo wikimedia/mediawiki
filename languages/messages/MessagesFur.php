@@ -546,10 +546,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'showingresults'        => 'Ca sot a son fin a <b>$1</b> risultâts scomençant dal #<b>$2</b>.',
 'showingresultsnum'     => 'Ca sot a son <b>$3</b> risultâts scomençant dal #<b>$2</b>.',
 'powersearch'           => 'Cîr',
-'powersearchtext'       => '
-Cîr tai nons dai spazis :<br />
-$1<br />
-$2 Liste redirezions &nbsp; Cîr $3 $9',
 'searchdisabled'        => 'La ricercje in {{SITENAME}} no je ative. Tu puedis doprâ Google intant. Sta atent che i lôr indis sul contignût di {{SITENAME}} a puedin jessi pôc inzornâts.',
 
 # Preferences page

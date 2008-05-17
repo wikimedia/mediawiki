@@ -777,7 +777,6 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 mer esu janz jewöhnliche Wööd, wie „hät“, „alsu“, „wääde“, un „sin“, uew. jar nit esu en de Daatebank dren han, 
 dat se jefonge wääde künnte.',
 'powersearch'           => 'Söke',
-'powersearchtext'       => 'Sök en de Appachtemengs:<br />$1<br />$2 Zeich Ömleitunge<br />Sök noh $3 $9',
 'searchdisabled'        => 'Dat Söke hee op de {{SITENAME}} es em Momang avjeschalt.
 Dat weed vun dänne Sörver ad ens jemaat, domet de Lass op inne nit ze jroß weed,
 un winnichstens dat normale Sigge Oprofe flöck jenoch jeiht.

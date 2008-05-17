@@ -599,9 +599,6 @@ Možete '''[[:$1|da napravite članak sa tim naslovom]]''' ili [[{{MediaWiki:Hel
 koje nisu indeksirane, ili navođenjem više od jednog izraza za traženje (samo stranice
 koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'powersearch'           => 'Traži',
-'powersearchtext'       => 'Pretraga u imenskim prostorima :<br />
-$1<br />
-$2 Izlistajte preusmjerenja &nbsp; Tražite $3 $9',
 'searchdisabled'        => '<p>Izvinjavamo se!  Puno pretraga teksta je privremeno onemogućena.  U međuvremenu, možete koristiti Google za pretragu.  Indeks može biti stariji.',
 
 # Preferences page

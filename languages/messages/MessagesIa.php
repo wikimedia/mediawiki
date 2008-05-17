@@ -395,10 +395,6 @@ que non es includite in le indice, o per le specification de plure
 terminos de recerca (solmente le paginas que contine tote le terminos
 de recerca apparera in le resultato).',
 'powersearch'           => 'Recercar',
-'powersearchtext'       => '
-Recerca in contextos :<br />
-$1<br />
-$2 Listar redireciones &nbsp; Recercar pro $3 $9',
 
 # Preferences page
 'preferences'              => 'Preferentias',

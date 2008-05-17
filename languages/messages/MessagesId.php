@@ -972,7 +972,6 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum dalam bahasa Inggris, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu kriteria pencarian (hanya halaman yang mengandung semua kriteria pencarianlah yang akan ditampilkan dalam hasil pencarian)",
 'powersearch'           => 'Pencarian lanjut',
 'powersearch-legend'    => 'Pencarian lanjut',
-'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Juga tampilkan peralihan<br />Cari $3 $9',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja. Anda dapat mencari melalui Google untuk sementara waktu. <span style="font-size: 89%; display: block; margin-left: .2em">Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui. Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.</span></p>',
 
 # Preferences page

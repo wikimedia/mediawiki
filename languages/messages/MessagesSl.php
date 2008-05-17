@@ -595,10 +595,6 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'showingresultsnum'     => "Prikazujem '''$3''' {{plural:$1|zadetek|zadetka|zadetke|zadetkov|zadetkov}}, začenši s št. '''$2'''.",
 'nonefound'             => "'''Opomba''': neuspešna poizvedovanja so pogosta ob iskanju vsakdanjih besed, na primer ''imeti'' in ''iz'', ki jih ni na seznamu. Ker gre za zelo pogoste besede, boste skoraj zagotovo iskali uspešneje z zožitvijo tematskega področja.",
 'powersearch'           => 'Iskanje',
-'powersearchtext'       => '
-Iskanje v imenskem prostoru :<br />
-$1<br />
-$2 Seznam se preusmerja   Iskanje za $3 $9',
 'searchdisabled'        => '<p>Zaradi hitrejšega delovanja {{GRAMMAR:rodilnik|{{SITENAME}}}} je iskanje po vsej zbirki podatkov začasno onemogočeno. Uporabite lahko Googlov ali Yahoojev iskalnik, vendar so njihovi podatki morda že zastareli.</p>',
 
 # Preferences page

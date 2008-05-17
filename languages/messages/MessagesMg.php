@@ -459,9 +459,6 @@ fampiasanao teny miasa matetika toy ny \"izay\" sy ny \"tsy\",
 na ny fanomezanao teny mihoatra ny iray (ny pejy ahitana ny teny rehetra hokarohina
 ihany no miseho amin'ny vokatry ny karoka).",
 'powersearch'       => 'Fitadiavana',
-'powersearchtext'   => "Tadiavo ao amin'ny sokajy :<br />
-$1<br />
-$2 No hita &nbsp; Mitady ny $3 $9",
 'searchdisabled'    => "Tsy nalefa ny karoka eto amin'i {{SITENAME}}. Afaka mampiasa an'i Google aloha ianao mandra-paha. Nefa fantaro fa mety ho efa lany daty ny valiny omeny.",
 
 # Preferences page
