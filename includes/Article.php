@@ -1362,10 +1362,11 @@ class Article {
 	 * EDIT_NEW is specified and the article does exist, a duplicate key error will cause an exception
 	 * to be thrown from the Database. These two conditions are also possible with auto-detection due
 	 * to MediaWiki's performance-optimised locking strategy.
+	 * @param $baseRevId, the revision ID this edit was based off, if any
 	 *
 	 * @return bool success
 	 */
-	function doEdit( $text, $summary, $flags = 0 ) {
+	function doEdit( $text, $summary, $flags = 0, $baseRevId = false ) {
 		global $wgUser, $wgDBtransactions;
 
 		wfProfileIn( __METHOD__ );
@@ -1445,6 +1446,8 @@ class Article {
 
 				$dbw->begin();
 				$revisionId = $revision->insertOn( $dbw );
+				
+				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, $baseRevId) );
 
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
@@ -1513,6 +1516,8 @@ class Article {
 				'text'       => $text
 				) );
 			$revisionId = $revision->insertOn( $dbw );
+			
+			wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 
 			$this->mTitle->resetArticleID( $newid );
 
@@ -1865,6 +1870,8 @@ class Article {
 				# Insert a null revision
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
 				$nullRevId = $nullRevision->insertOn( $dbw );
+				
+				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $nullRevision, false) );
 
 				# Update page record
 				$dbw->update( 'page',
@@ -2524,7 +2531,7 @@ class Article {
 
 		if( $bot && ($wgUser->isAllowed('markbotedits') || $wgUser->isAllowed('bot')) )
 			$flags |= EDIT_FORCE_BOT;
-		$this->doEdit( $target->getText(), $summary, $flags );
+		$this->doEdit( $target->getText(), $summary, $flags, $target->getId() );
 
 		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target ) );
 
@@ -2967,6 +2974,7 @@ class Article {
 			'minor_edit' => $minor ? 1 : 0,
 			) );
 		$revision->insertOn( $dbw );
+		wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
 
