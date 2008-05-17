@@ -130,11 +130,15 @@ class ApiLogin extends ApiBase {
 			case LoginForm :: EMPTY_PASS :
 				$result['result'] = 'EmptyPass';
 				break;
+			case LoginForm :: CREATE_BLOCKED :
+				$result['result'] = 'CreateBlocked';
+				$result['details'] = 'Your IP address is blocked from account creation';
+				break;
 			default :
 				ApiBase :: dieDebug(__METHOD__, 'Unhandled case value');
 		}
 
-		if ($result['result'] != 'Success') {
+		if ($result['result'] != 'Success' && !isset( $result['details'] ) ) {
 			$delay = $this->cacheBadLogin();
 			$result['wait'] = $delay;
 			$result['details'] = "Please wait " . $delay . " seconds before next log-in attempt";
@@ -219,7 +223,7 @@ class ApiLogin extends ApiBase {
 		return wfMemcKey( 'apilogin', 'badlogin', 'ip', wfGetIP() );
 	}
 
-	public function mustBePosted() { return true; }
+	//public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {
 		return array (
