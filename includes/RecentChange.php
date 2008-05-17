@@ -224,8 +224,15 @@ class RecentChange
 		# E-mail notifications
 		global $wgUseEnotif, $wgUser;
 		if( $wgUseEnotif ) {
-			$editor = ($wgUser->getID() == $this->mAttribs['rc_user']) ? 
-				$wgUser : User::newFromID( $this->mAttribs['rc_user'] );
+			// Users
+			if( $this->mAttribs['rc_user'] ) {
+				$editor = ($wgUser->getID() == $this->mAttribs['rc_user']) ? 
+					$wgUser : User::newFromID( $this->mAttribs['rc_user'] );
+			// Anons
+			} else {
+				$editor = ($wgUser->getName() == $this->mAttribs['rc_user_text']) ? 
+					$wgUser : User::newFromName( $this->mAttribs['rc_user_text'], false );
+			}
 			# FIXME: this would be better as an extension hook
 			$enotif = new EmailNotification();
 			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
