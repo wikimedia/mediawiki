@@ -218,7 +218,7 @@ class ImportReporter {
 			$dbw = wfGetDB( DB_MASTER );
 			$nullRevision = Revision::newNullRevision(
 				$dbw, $title->getArticleId(), $comment, true );
-			$nullRevision->insertOn( $dbw, true );
+			$nullRevision->insertOn( $dbw );
 			# Update page record
 			$article = new Article( $title );
 			$article->updateRevisionOn( $dbw, $nullRevision );
