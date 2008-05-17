@@ -404,6 +404,10 @@ $create: Whether or not the restoration caused the page to be created
 'ArticleViewRedirect': before setting "Redirected from ..." subtitle when follwed an redirect
 $article: target article (object)
 
+'AuthPluginAutoCreate': Called when creating a local account for an user logged
+in from an external authentication method
+$user: User object created locally
+
 'AuthPluginSetup': update or replace authentication plugin object ($wgAuth)
 Gives a chance for an extension to set it programattically to a variable class.
 &$auth: the $wgAuth object, probably a stub
