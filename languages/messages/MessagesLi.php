@@ -817,7 +817,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'nonefound'                 => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'               => 'Zeuke',
 'powersearch-legend'        => 'Oetgebrèd zeuke',
-'powersearchtext'           => 'Zeuk in naamruumdes:<br />$1<br />$2 Tuin redirects<br />Zeuk nao $3 $9',
 'search-external'           => 'Extern zeuke',
 'searchdisabled'            => '<p style="margin: 1.5em 2em 1em">Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit. Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
 <span style="font-size: 89%; display: block; margin-left: .2em">Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.</span></p>',

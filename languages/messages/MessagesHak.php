@@ -599,7 +599,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'showingresultsnum'     => 'Ha-mien hién-sṳ chhiùng thi-<b>$2</b>-thiàu khôi-sṳ́ ke <b>$3</b>-thiàu kiet-kó:',
 'nonefound'             => '<strong>Chu-yi：</strong> Sṳt-phai ke sêu-chhà vông-vông he chhut-yì chhṳ-thù sêu-chhà chû-yì "ke" fe̍t-chá "lâu" chṳ̂-lui ke sòng-kien-sṳ só yîn-hí.',
 'powersearch'           => 'Chhìm-cháu',
-'powersearchtext'       => 'Sêu-chhà miàng-sṳ khûng-kiên：<br />$1<br />$2 lie̍t-chhut chhûng-thin hiong vùn-chông: Sêu-chhà $3 $9',
 'searchdisabled'        => '{{SITENAME}} sin-nèn fông-mien ke ngièn-yîn, chhiòn-vùn chhìm-cháu yí-kîn pûn chhiam-sṳ̀ thìn-yung. Ngì khó-yî chhiam-sṳ̀ theu-ko Google chhà-chhìm. Chhiáng liù-yi sok-yîn khó-nèn voi ko-sṳ̀.',
 
 # Preferences page

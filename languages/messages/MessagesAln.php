@@ -598,6 +598,9 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'tooltip-diff'                    => 'Trego ndryshimet që Ju i keni bá tekstit.',
 'tooltip-compareselectedversions' => 'Shikoni krahasimin midis dy versioneve të zgjedhme të kësaj faqe.',
 
+# Browsing diffs
+'previousdiff' => '← Nryshimi ma përpara',
+
 # Media information
 'file-nohires'   => '<small>Rezolucioni i plotë.</small>',
 'show-big-image' => 'Rezolucion i plotë',

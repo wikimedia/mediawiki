@@ -688,9 +688,6 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'showingresults'        => '<b>$1</b> encam, bi #<b>$2</b> dest pê dike.',
 'showingresultsnum'     => '<b>$3</b> encam, bi #<b>$2</b> dest pê dike.',
 'powersearch'           => 'Lê bigere',
-'powersearchtext'       => 'Lêgerîn di nav cihên navan de:<br />
-$1<br />
-$2 Ragihandinan nîşan bide &amp;nbsp; Lêbigere: $3 $9',
 'searchdisabled'        => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
 </p>',
 

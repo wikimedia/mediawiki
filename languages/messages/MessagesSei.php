@@ -638,7 +638,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'nextn'                 => 'hun $1',
 'viewprevnext'          => 'Cohuatlöx ($1) ($2) ($3)',
 'powersearch'           => 'Yahöx',
-'powersearchtext'       => 'Yahöx ipartuatl iti:<br />$1<br />$2 List redirects<br />Search for $3 $9',
 
 # Preferences page
 'preferences'           => 'Quáatlaác',

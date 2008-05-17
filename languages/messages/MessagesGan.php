@@ -691,7 +691,6 @@ $2',
 'showingresultsnum'     => '底下從第<b>$2</b>條顯示起先嗰<b>$3</b>條結果:',
 'nonefound'             => '<strong>注意：</strong>尋伓到往往係因為搜索夾到像“嗰”或“同”之類嗰常用字扤得。',
 'powersearch'           => '高級尋',
-'powersearchtext'       => '到空間名裡度尋：<br />$1<br />$2彈出重定向頁面；尋$3 $9',
 'searchdisabled'        => '{{SITENAME}}嗰搜索功能已經關閉。倷可以用Google尋吖。但係佢嗰索引可能係早先嗰。',
 
 # Preferences page

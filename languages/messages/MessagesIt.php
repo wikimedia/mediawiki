@@ -907,7 +907,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'nonefound'                 => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
 'powersearch'               => 'Ricerca',
 'powersearch-legend'        => 'Ricerca avanzata',
-'powersearchtext'           => 'Ricerca nei seguenti namespace:<br />$1<br />$2 Mostra i redirect<br />Criteri di ricerca: $3 $9',
 'search-external'           => 'Ricerca esterna',
 'searchdisabled'            => 'La ricerca interna di {{SITENAME}} non è attiva; nel frattempo si può provare ad usare un motore di ricerca esterno come Google. (Si noti però che i contenuti di {{SITENAME}} presenti in tali motori potrebbero non essere aggiornati.)',
 

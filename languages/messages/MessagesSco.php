@@ -666,7 +666,6 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'showingresultsnum'     => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",
 'nonefound'             => "'''Mynd''': unsuccessfu rakes is afttimes caused bi rakin for common words like \"hae\" an \"frae\", that isna indexed, or bi specifeein mair nor ae rake term (juist pages haudin aa the rake terms will kythe in the result).",
 'powersearch'           => 'Rake',
-'powersearchtext'       => 'Rake in namespaces :<br /> $1<br /> $2 Leet reguidals &nbsp; Rake for $3 $9',
 'searchdisabled'        => 'Rakin throu {{SITENAME}} is disabled for performance raesons. Ye can rake via Google juist nou. Mynd that thair indexes o {{SITENAME}} content micht be oot o date.',
 
 # Preferences page

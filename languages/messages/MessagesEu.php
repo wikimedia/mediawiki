@@ -80,6 +80,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Aldaeren arteko konbertsioa ezgaitu',
 'tog-ccmeonemails'            => 'Beste erabiltzaileei bidaltzen dizkiedan mezuen kopiak niri ere bidali',
 'tog-diffonly'                => "''Diff''-ak agertzen direnean, orrialdearen edukiera ezkutatu",
+'tog-showhiddencats'          => 'Ikusi kategoria ezkutuak',
 
 'underline-always'  => 'Beti',
 'underline-never'   => 'Inoiz ez',
@@ -140,14 +141,15 @@ $messages = array(
 'dec'           => 'Abe',
 
 # Categories related messages
-'categories'             => '{{PLURAL:$1|Kategoria|Kategoriak}}',
-'categoriespagetext'     => 'Hurrengo kategoriak daude wiki honetan:',
-'pagecategories'         => '{{PLURAL:$1|Kategoria|Kategoriak}}',
-'category_header'        => '"$1" kategoriako artikuluak',
-'subcategories'          => 'Azpikategoriak',
-'category-media-header'  => 'Media "$1" kategorian',
-'category-empty'         => "''Kategoria honek ez dauka artikulurik uneotan.''",
-'listingcontinuesabbrev' => 'jarr.',
+'categories'               => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'categoriespagetext'       => 'Hurrengo kategoriak daude wiki honetan:',
+'pagecategories'           => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'category_header'          => '"$1" kategoriako artikuluak',
+'subcategories'            => 'Azpikategoriak',
+'category-media-header'    => 'Media "$1" kategorian',
+'category-empty'           => "''Kategoria honek ez dauka artikulurik uneotan.''",
+'hidden-category-category' => 'Kategoria ezkutuak', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'jarr.',
 
 'mainpagetext'      => "<big>'''MediaWiki arrakastaz instalatu da.'''</big>",
 'mainpagedocfooter' => 'Ikus [http://meta.wikimedia.org/wiki/Help:Contents Erabiltzaile Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.
@@ -689,7 +691,6 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'showingresultsnum'     => 'Hasieran #<b>$2</b> duten <b>$3</b> emaitza erakusten dira jarraian.',
 'nonefound'             => "'''Oharra''': Arrakastarik gabeko bilaketen arrazoi nagusietako bat \"dute\" eta \"da\" bezalako hitz arruntak bilatzea izan ohi da, edo baita bilaketan hitz gehiegi zehazteagatik ere (emaitzetan hitz guztiak dituzten emaitzak baino ez dira azalduko).",
 'powersearch'           => 'Bilatu',
-'powersearchtext'       => 'Izen-tarte hauetan bilatu:<br />$1<br />$2 Birzuzenketen zerrenda<br />$3 $9 bilatu',
 'searchdisabled'        => '{{SITENAME}}(e)n ezgaituta dago bilaketa. Dena dela, Google erabiliz ere egin dezakezu bilaketa. Kontuan izan bertan dituzten {{SITENAME}}(e)ko emaitzak zaharkituta egon daitezkeela.',
 
 # Preferences page

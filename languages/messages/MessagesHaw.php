@@ -93,6 +93,7 @@ $messages = array(
 'category-media-header' => 'Nā pāpaho maloko o ka mahele "$1"',
 'category-empty'        => "''‘A‘ohe mau mo‘olelo o kēia mahele.''",
 
+'about'         => 'E pili ana',
 'cancel'        => 'Ho‘ōki',
 'qbedit'        => "E ho'opololei",
 'moredotdotdot' => 'Hou...',
@@ -168,7 +169,7 @@ $2',
 # Login and logout pages
 'welcomecreation'    => '== E komo mai, $1! ==
 
-Ua hana ‘ia kāu mea ho‘ohana. Mai poina e loli kāu {{SITENAME}} makemake.',
+He mea ho‘ohana ‘oe. Mai poina e loli kāu makemake ma {{SITENAME}}.',
 'yourname'           => "Inoa mea ho'ohana",
 'yourpassword'       => "Hua'ōlelo huna",
 'yourpasswordagain'  => "Hua'ōlelo huna hou",

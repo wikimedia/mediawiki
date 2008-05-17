@@ -1304,6 +1304,8 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'unusedcategoriestext'    => 'Le pàxene de łe categorie indicàe de seguito łe xè stà creàe ma no le contien nissuna pàxena né sotocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => 'No te ghè indicà na pagina o un utente su cui eseguir sta operazion.',
+'nopagetitle'             => 'Pagina de destinassion non esistente',
+'nopagetext'              => 'La pagina de destinassion che ti gà indicà no la esiste mìa.',
 'pager-newer-n'           => '{{PLURAL:$1|1 piassè reçente|$1 piassè reçenti}}',
 'pager-older-n'           => '{{PLURAL:$1|1 manco reçente|$1 manco reçenti}}',
 'suppress'                => 'Supervision',

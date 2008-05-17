@@ -472,6 +472,10 @@ Yanggen un såtba ha', para u fana'malingu i tinilaika siha despues di enao na r
 Yanggen munga hao na matulaika i tinige'-mu yan malamaña ya mana'apåttao ta'lo maseha månu, pues munga ma po'lu guini.<br />
 Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat publika pat otru na lugat dibåtde.
 <strong>MUNGA MANFA'BURESI NA GAIDIRECHU I MANTITUGE'!</strong>",
+'copyrightwarning2'     => "Pot fabot, fanapunta fan na siña i otru na muna'sesetbi siha tumulaika/munasuha todus i kontribusion gi {{SITENAME}}.
+Yanggen munga hao na matulaika i tinige'-mu yan malamaña ya mana'apåttao ta'lo maseha månu, pues munga ma po'lu guini.<br />
+Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat publika pat otru na lugat dibåtde (atan $1 para i attikulu siha).
+<strong>MUNGA MANFA'BURESI NA GAIDIRECHU I MANTITUGE'!</strong>",
 'templatesused'         => "I plantiyas siha ni ma'usa gi påhina:",
 'templatesusedpreview'  => "I plantiyas ni ma'usa gi ripasu:",
 'template-protected'    => '(maprotehi)',

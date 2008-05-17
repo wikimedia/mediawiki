@@ -467,7 +467,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'showingresultsnum'     => "Montrante infre {{PLURAL:$3|'''1''' rezulto|'''$3''' rezulti}}, qui komencas kun numero #'''$2'''.",
 'nonefound'             => 'La nesucesoza sercho ofte produktesas pro serchar vorti tro komuna quale "havar" e "di", qui ne esas indexizita, o pro serchar plu kam un vorto (En la rezulto aparos nur la pagini qui kontenas omna vorti serchata).',
 'powersearch'           => 'Avancita serchuro',
-'powersearchtext'       => 'Serchar en nomari: <br> $1<br> $2 ridirektili-listo <br> Serchar $3 $9',
 'searchdisabled'        => 'La sercho en la kompleta texto desaktivigesis temporale pro superkargo dil servanto. Ni esperas riaktivigar ol pos facar ula proxima aktualigi. Dum ica tempo, vu povas serchar per Google.',
 
 # Preferences page

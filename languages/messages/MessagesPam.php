@@ -818,7 +818,6 @@ Malyari meng [[:\$1|lalangan ing bulung a iti]].",
 'nonefound'                 => '\'\'\'Kapabaluan\'\'\': Keraklan, ala lang resulta deng pamanintun uling kayabe la kareng paintunan deng karaniwan a kataya antimo ing "maki/ating" ("have") o "ibat king" ("from"), a e maka-index, o nung maigit yang metung ing katayang paintunan (search term). Deta mung bulung nung nu la ngan makabili deng katayang paintunan ding lunto ketang resulta.',
 'powersearch'               => 'Espesial a pamanintun',
 'powersearch-legend'        => 'Espesial a pamanintun',
-'powersearchtext'           => 'Maintun kareng pirinan lagyu:<br />$1<br />$2 Ilista la reng miyalilan direksiun (redirect)<br />Paintunan ya ing $3 $9',
 'search-external'           => 'Pamanintun king kilual',
 'searchdisabled'            => 'Makapatda/e gagana ing pamanintun king {{SITENAME}}.
 Samantala, maliari kang maintun kapamilatan ning Google.

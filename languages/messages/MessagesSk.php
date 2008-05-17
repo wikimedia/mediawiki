@@ -550,9 +550,10 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'yourrealname'               => 'Skutočné meno *:',
 'yourlanguage'               => 'Jazyk:',
 'yourvariant'                => 'Variant jazyka:',
-'yournick'                   => 'Prezývka:',
+'yournick'                   => 'Podpis:',
 'badsig'                     => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML značky.',
-'badsiglength'               => 'Používateľské meno je príliš dlhé; musí mať menej ako $1 znakov.',
+'badsiglength'               => 'Podpis je príliš dlhý.
+Musí obsahovať menej ako $1 znakov.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie vašej práce.',
 'loginerror'                 => 'Chyba pri prihlasovaní',

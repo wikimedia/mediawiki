@@ -787,10 +787,6 @@ Legenda: (atu) = diferenças da versão atual,
 'nonefound'             => '<strong>Nota</strong>: pesquisas mal sucedidas são geralmente causadas devido o uso de palavras muito comuns como "tem" e "de",
 que não são indexadas, ou pela especificação de mais de um termo (somente as páginas contendo todos os termos aparecerão nos resultados).',
 'powersearch'           => 'Pesquisa avançada',
-'powersearchtext'       => '
-Procurar nos namespaces :<br />
-$1<br />
-$2 Lista redireciona &nbsp; Procura por $3 $9',
 
 # Preferences page
 'preferences'           => 'Preferências',

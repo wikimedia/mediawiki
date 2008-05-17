@@ -111,6 +111,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sobre {{SITENAME}}',
 'aboutpage'            => 'Project:Sobre',
+'bugreports'           => 'Reportar bugs',
 'copyrightpage'        => '{{ns:project}}:Direitos de autor',
 'currentevents'        => 'Amboras actuais',
 'currentevents-url'    => 'Project:Amboras actuales',
@@ -221,6 +222,7 @@ O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um
 Para criá-la, screva l sue conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por angano, clique ne l boton '''boltar''' (o ''back'') de l sue navegador.",
+'previewnote'            => '<strong>Isto ye apenas unha prebison. Las alteraçons inda num foram grabadas!</strong>',
 'editing'                => 'A editar $1',
 'editingsection'         => 'Editando $1 (secçon)',
 'copyrightwarning'       => 'Por fabor, note que todas las sues contribuiçons an {{SITENAME}} son consideradas cumo lhançadas ne ls termos de la lhicença $2 (ber $1 para detalhes). Se num deseija que o sue testo seija inexoravelmente editado i redistribuído de tal forma, num lo enbie.<br />
@@ -229,6 +231,7 @@ Você está, al mesmo tempo, a garantir-nos que isto ye algo escrito por si, o a
 'longpagewarning'        => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
 navegadores possuem problemas em editar páginas maiores que 32kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
+'templatesused'          => 'Predefiniçons utilizadas nesta página:',
 'templatesusedpreview'   => 'Templates usados nesta previsão:',
 'template-protected'     => '(protegida)',
 'template-semiprotected' => '(semi-protegida)',
@@ -259,6 +262,7 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Diffs
 'history-title'           => 'Histórico de ediçons de "$1"',
+'difference'              => '(Diferença entre revisões)',
 'lineno'                  => 'Linha $1:',
 'compareselectedversions' => 'Compare as versões seleccionadas',
 'editundo'                => 'desfazer',
@@ -301,6 +305,7 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Upload
 'upload'        => 'Carregar ficheiro',
+'uploadbtn'     => 'Carregar ficheiro',
 'uploadlogpage' => 'Registo de carregamento',
 'uploadedimage' => 'carregou "[[$1]]"',
 
@@ -309,6 +314,7 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Image description page
 'filehist'            => 'Histórico de l ficheiro',
+'filehist-help'       => 'Clique an unha data/horário para ber l ficheiro tal como eilhe se encontraba an tal momento.',
 'filehist-current'    => 'actual',
 'filehist-datetime'   => 'Data/Hora',
 'filehist-user'       => 'Utilizador',
@@ -317,7 +323,11 @@ Legenda: (actu) = diferenças da versão actual,
 'filehist-comment'    => 'Comentário',
 'imagelinks'          => 'Ligaçons (andereços web)',
 'linkstoimage'        => 'As seguintes páginas apontam para este ficheiro:',
+'nolinkstoimage'      => 'Nenhuma página aponta para yeste ficheiro.',
 'sharedupload'        => 'Este ficheiro encontra-se partilhado i puode ser usado por otros proyectos.',
+
+# MIME search
+'mimesearch' => 'Pesquisa MIME',
 
 # Random page
 'randompage' => 'Página aleatória',
@@ -349,6 +359,9 @@ Legenda: (actu) = diferenças da versão actual,
 # Special:Allpages
 'allpages'       => 'Todas las páginas',
 'alphaindexline' => '$1 a $2',
+'nextpage'       => 'Próxima página ($1)',
+'prevpage'       => 'Página anterior ($1)',
+'allpagesfrom'   => 'Mostrar páginas começando an:',
 'allarticles'    => 'Todas las páginas',
 'allpagessubmit' => 'Ir',
 
@@ -372,6 +385,7 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Delete/protect/revert
 'deletepage'              => 'Apagar página',
+'actioncomplete'          => 'Acção terminada',
 'deletedarticle'          => 'apagado "[[$1]]"',
 'dellogpage'              => 'Registo de eliminação',
 'rollbacklink'            => 'voltar',
@@ -404,6 +418,7 @@ Legenda: (actu) = diferenças da versão actual,
 'whatlinkshere-title' => 'Páginas que apontam para $1',
 'linklistsub'         => '(Lista de ligações)',
 'linkshere'           => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
+'nolinkshere'         => "Num eisistem ligaçons para '''[[:$1]]'''.",
 'isredirect'          => 'página de redireccionamento',
 'istemplate'          => 'incluson',
 'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|$1 anteriores}}',
@@ -415,6 +430,7 @@ Legenda: (actu) = diferenças da versão actual,
 'ipboptions'   => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'blocklink'    => 'bloquear',
 'contribslink' => 'contribs',
+'blocklogpage' => 'Registo de bloqueio',
 
 # Move page
 'move-page-legend' => 'Mover página',
@@ -459,6 +475,7 @@ Legenda: (actu) = diferenças da versão actual,
 'tooltip-n-help'                  => 'Local com informação auxiliar.',
 'tooltip-n-sitesupport'           => 'Ayude-nos',
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas que se lhigam a yesta',
+'tooltip-t-contributions'         => 'Ber las contribuiçons de yeste outelizador',
 'tooltip-t-upload'                => 'Carregar imagens ou ficheiros',
 'tooltip-t-specialpages'          => 'Lista de páginas especiais',
 'tooltip-ca-nstab-user'           => 'Ber a página de l utilizador',
@@ -466,6 +483,7 @@ Legenda: (actu) = diferenças da versão actual,
 'tooltip-ca-nstab-image'          => 'Ber la página de l ficheiro',
 'tooltip-ca-nstab-template'       => 'Ber l modelo',
 'tooltip-ca-nstab-category'       => 'Ber la página da categoria',
+'tooltip-minoredit'               => 'Marcar como ediçon menor',
 'tooltip-save'                    => 'Grabar sues alterações',
 'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de gravar!',
 'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
@@ -474,6 +492,7 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Browsing diffs
 'previousdiff' => '← Ber la alteraçom anterior',
+'nextdiff'     => 'Ber la alteraçon posterior →',
 
 # Media information
 'file-info-size'       => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',
@@ -490,6 +509,8 @@ Links subsequentes na mesma linha são considerados excepções, i.e. artigos on
 
 # Metadata
 'metadata'          => 'Metadados',
+'metadata-help'     => 'Yeste ficheiro contém anformaçon adicional, probablemente adicionada a partir de la câmara digital o de l scanner usado para lo criar.
+Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns detalhes poderon num reflectir completamente las mudanças efectuadas.',
 'metadata-expand'   => 'Mostrar restantes detalhes',
 'metadata-collapse' => 'Esconder detalhes restantes',
 'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
@@ -508,5 +529,8 @@ Links subsequentes na mesma linha são considerados excepções, i.e. artigos on
 'watchlistall2' => 'todas',
 'namespacesall' => 'todas',
 'monthsall'     => 'todos',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Ber alteraçons amportantes',
 
 );

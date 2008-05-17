@@ -735,7 +735,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'showingresultsnum'     => "Pigpapahiling sa babâ {{PLURAL:$3|'''1''' resulta|'''$3''' mga resulta}} poon sa #'''$2'''.",
 'nonefound'             => "'''Pagiromdom''': An mga prakasong paghanap pirmeng kawsa kan paghanap kan mga tataramon na komún arog kan \"may\" asin \"sa\", huli ta an mga ini dai nakaíndise, o sa pagpili kan sobra sa sarong tataramon (an mga páhina sana na igwá kan gabos na pighahanap na tataramon an maipapahiling sa resulta).",
 'powersearch'           => 'Hanápon',
-'powersearchtext'       => 'Hanápon sa mga ngaran-espacio:<br />$1<br />$2 Ilista an mga redirekta<br />Hanápon an $3 $9',
 'searchdisabled'        => 'Pigpopogolan mûna an paghanap sa {{SITENAME}}. Mientras tanto, pwede ka man maghanap sa Google. Giromdomon tabî na an mga indise kan laog ninda sa {{SITENAME}} pwede ser na lumâ na.',
 
 # Preferences page

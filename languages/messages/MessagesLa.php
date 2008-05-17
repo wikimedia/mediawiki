@@ -457,9 +457,10 @@ Ratio tua iam creata est. Noli oblivisci praeferentias tuas mutare.',
 'yourrealname'               => 'Nomen tuum verum:',
 'yourlanguage'               => 'Lingua tua:',
 'yourvariant'                => 'Differentia:',
-'yournick'                   => 'Agnomen tuum (in subscriptionibus):',
+'yournick'                   => 'Subscriptio:',
 'badsig'                     => 'Subscriptio cruda non est valida; scrutina HTML textos.',
-'badsiglength'               => 'Agnomen nimis longum; $1 litterae sunt longitudo maxima.',
+'badsiglength'               => 'Subscriptio nimis longa est.
+$1 litterae sunt longitudo maxima.',
 'email'                      => 'Litterae electronicae',
 'prefs-help-realname'        => 'Nomen verum non necesse est.
 Si vis id dare, opera tua tibi ascribantur.',
@@ -696,7 +697,6 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'nonefound'             => "'''Nota''': investigationes saepe infelices sunt propter verba frequentes huiusmodi \"que\" et \"illo\", aut quod plus unum verba quaerere designavisti (solae paginae qui tota verba investigationis continent in evento apparebit).",
 'powersearch'           => 'Quaerere',
 'powersearch-legend'    => 'Quaerere',
-'powersearchtext'       => 'Quaerere in spatiis nominalibus:<br />$1<br />$2 Monstrare redirectiones<br />Quaerere $3 $9',
 'searchdisabled'        => 'Per {{grammar:accusative|{{SITENAME}}}} ad tempus non potes quaerere. Interea per [http://www.google.com Googlem] quaeras. Nota indices {{grammar:genitive|{{SITENAME}}}} contentorum apud Googlem fortasse antiquiores esse.',
 
 # Preferences page
@@ -901,7 +901,7 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'filehist'                  => 'Historia fasciculi',
 'filehist-help'             => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
 'filehist-deleteall'        => 'delere omnes emendationes',
-'filehist-deleteone'        => 'delere hanc emendationem',
+'filehist-deleteone'        => 'delere',
 'filehist-revert'           => 'revertere',
 'filehist-current'          => 'recentissima',
 'filehist-datetime'         => 'Dies/Tempus',

@@ -492,9 +492,10 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'yourrealname'               => 'Eich enw cywir*',
 'yourlanguage'               => 'Iaith rhyngwyneb',
 'yourvariant'                => 'Amrywiad',
-'yournick'                   => 'Eich llysenw (fel llofnod)',
+'yournick'                   => 'Eich llysenw (fel llofnod):',
 'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
-'badsiglength'               => "Mae'r llysenw'n rhy hir; rhaid iddo fod yn llai na $1 llythyren o hyd.",
+'badsiglength'               => "Mae'r llysenw'n rhy hir. 
+Rhaid iddo fod yn llai na $1 llythyren o hyd.",
 'email'                      => 'E-bost',
 'prefs-help-realname'        => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei ddefnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',
 'loginerror'                 => 'Problem mewngofnodi',
@@ -817,12 +818,12 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'showingresults'            => "Yn dangos $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 'showingresultsnum'         => "Yn dangos $3 {{PLURAL:$3|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
 'showingresultstotal'       => "Yn dangos canlyniadau '''$1 - $2''' o'r cyfanswm '''$3'''",
-'nonefound'                 => "'''Nodyn''': Mae'r rhesymau bod chwiliad yn aflwyddiannus yn cynnwys chwilio am fwy nag un gair ar y tro (dim ond tudalennau sy'n cynnwys holl eiriau'r chwiliad a gaiff eu dychwelyd os na fydd OR rhyngddynt).",
+'nonefound'                 => "'''Sylwer''': Dim ond rhai parthau sy'n cael eu chwilio'n ddiofyn. Os ydych am chwilio'r holl barthau (gan gynnwys tudalennau sgwrs, nodiadau, ayb) teipiwch ''all:'' o flaen yr enw. Os am chwilio parth arbennig teipiwch ''enw'r parth:'' o flaen yr enw.",
 'powersearch'               => 'Chwilio',
 'powersearch-legend'        => 'Chwiliad uwch',
-'powersearchtext'           => 'Chwilio yn y parthau:<br />
-$1<br />
-$2 Rhestri ailgyfeiriadau<br />Chwilio am $3 $9',
+'powersearch-ns'            => 'Chwilio yn y parthau:',
+'powersearch-redir'         => 'Rhestru ailgyfeiriadau',
+'powersearch-field'         => 'Chwilier am',
 'search-external'           => 'Chwiliad allanol',
 'searchdisabled'            => "Mae'r teclyn chwilio ar {{SITENAME}} wedi'i analluogi dros dro.
 Yn y cyfamser gallwch chwilio drwy Google.
@@ -889,11 +890,11 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'files'                    => 'Ffeiliau',
 
 # User rights
-'userrights'                       => 'Rheoli hawliau defnyddwyr', # Not used as normal message but as header for the special page itself
+'userrights'                       => 'Rheoli galluoedd defnyddwyr', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Rheoli grwpiau defnyddiwr',
 'userrights-user-editname'         => 'Rhowch enw defnyddiwr:',
 'editusergroup'                    => 'Golygu Grwpiau Defnyddwyr',
-'editinguser'                      => "Yn golygu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                      => "Newid galluoedd y defnyddiwr '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Golygu grwpiau defnyddwyr',
 'saveusergroups'                   => "Cadw'r Grwpiau Defnyddwyr",
 'userrights-groupsmember'          => 'Yn aelod o:',
@@ -903,6 +904,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'userrights-available-remove'      => "Gallwch dynnu defnyddiwr o'r {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
 'userrights-available-add-self'    => "Gallwch ychwanegu'ch hunan at y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
 'userrights-available-remove-self' => "Gallwch dynnu'ch hunan oddi ar y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
+'userrights-changeable-col'        => 'Grwpiau y gallwch eu newid',
+'userrights-unchangeable-col'      => 'Grwpiau na allwch eu newid',
 
 # Groups
 'group'               => 'Grŵp:',
@@ -1066,9 +1069,9 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'linkstoimage'              => "Mae'r tudalennau isod yn cysylltu i'r ddelwedd hon:",
 'nolinkstoimage'            => 'Nid oes cyswllt ar unrhyw dudalen yn arwain at y ffeil hon.',
 'sharedupload'              => "Mae'r ffeil hon ar gael i'w rannu, felly gall fod ar waith ar brosiectau eraill.",
-'shareduploadwiki'          => 'Gwelwch y [$1 tudalen disgrifiad ffeil] am fwy o fanylion.',
-'shareduploadwiki-desc'     => 'Dangosir isod y disgrifiad ar y $1 yno.',
-'shareduploadwiki-linktext' => 'tudalen disgrifiad ffeil',
+'shareduploadwiki'          => 'Cyrchwch $1 am fwy o fanylion.',
+'shareduploadwiki-desc'     => 'Dangosir isod y disgrifiad sydd ar $1 yn y gronfa ar y cyd.',
+'shareduploadwiki-linktext' => 'dudalen disgrifiad y ffeil',
 'noimage'                   => "Does dim ffeil a'r enw hwn i gael; gallwch $1.",
 'noimage-linktext'          => 'ei uwchlwytho',
 'uploadnewversion-linktext' => "Uwchlwytho fersiwn newydd o'r ffeil hon",

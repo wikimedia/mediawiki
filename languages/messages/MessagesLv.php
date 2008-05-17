@@ -531,9 +531,6 @@ m = maznozīmīgs labojums.',
 'nonefound'             => "'''Piezīme:''' bieži vien meklēšana ir neveiksmīga, meklējot plaši izplatītus vārdus, piemēram, \"un\" vai \"ir\", jo tie netiek iekļauti meklēšanas datubāzē, vai arī meklējot vairāk par vienu vārdu (jo rezultātos parādīsies tikai lapas, kurās ir visi meklētie vārdi). Vēl, pēc noklusējuma, pārmeklē tikai dažas ''namespaces''. Lai meklētu visās, meklēšanas pieprasījumam priekšā jāieliek ''all:'', vai arī analogā veidā jānorāda pārmeklējamo ''namespaci''.",
 'powersearch'           => 'Izvērstā meklēšana',
 'powersearch-legend'    => 'Izvērstā meklēšana',
-'powersearchtext'       => 'Meklēt šādās palīglapās :<br />
-$1<br />
-$2 Parādīt pāradresācijas lapas   Meklēt $3 $9',
 'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Meklēšana {{grammar:lokatīvs|{{SITENAME}}}} šobrīd ir atslēgta darbības traucējumu dēļ. Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 <span style="font-size: 89%; display: block; margin-left: .2em">Ņem vērā, ka meklētāju indeksētais {{grammar:ģenitīvs|{{SITENAME}}}} saturs var būt novecojis.</span></p>',
 
@@ -819,6 +816,7 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'unwatchthispage'      => 'Pārtraukt uzraudzīšanu',
 'watchnochange'        => 'Neviena no tevis uzraudzītajām lapām nav mainīta parādītajā laika posmā.',
 'watchlist-details'    => '(Tu uzraugi $1 {{PLURAL:$1|lapu|lapas}}, neieskaitot diskusiju lapas.)',
+'wlheader-showupdated' => "* Lapas, kuras ir tikušas izmainītas, kopš tu tās pēdējoreiz apskatījies, te rādās ar '''pustrekniem''' burtiem",
 'watchlistcontains'    => 'Tavā uzraugāmo lapu sarakstā ir $1 {{PLURAL:$1|lapa|lapas}}.',
 'wlshowlast'           => 'Parādīt izmaiņas pēdējo $1 stundu laikā vai $2 dienu laikā, vai arī $3.',
 'watchlist-show-bots'  => 'Parādīt botu izmaiņas',

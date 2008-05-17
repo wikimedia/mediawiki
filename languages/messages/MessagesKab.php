@@ -668,7 +668,6 @@ d ilmen awalen am \"ala\" and \"seg\",
 awalen-agi mačči deg tasmult, neɣ tefkiḍ kter n yiwen n wawal (ala isebtar
 i yesɛan akk awalen i banen-d).",
 'powersearch'           => 'Nadi',
-'powersearchtext'       => 'Nadi deg yismawen n taɣult:<br />$1<br />$2 Umuɣ n yisemmimḍen<br />Nadi ɣef $3 $9',
 'searchdisabled'        => 'Anadi deg {{SITENAME}} yettwakkes. Tzemreḍ ad tnadiḍ s Google. Meɛna ur tettuḍ ara, tasmult n google taqdimt.',
 
 # Preferences page

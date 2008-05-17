@@ -612,10 +612,6 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 et väga sageli esinevaid sõnu ei võta süsteem otsimisel arvesse. Teine põhjus võib olla
 mitme otsingusõna kasutamine (tulemusena ilmuvad ainult leheküljed, mis sisaldavad kõiki otsingusõnu).',
 'powersearch'           => 'Otsi',
-'powersearchtext'       => '
-Otsing nimeruumidest :<br />
-$1<br />
-$2 Loetle ümbersuunamisi &nbsp; Otsi $3 $9',
 'searchdisabled'        => "<p>Vabandage! Otsing vikist on ajutiselt peatatud, et säilitada muude teenuste normaalne töökiirus. Otsimiseks võite kasutada allpool olevat Google'i otsinguvormi, kuid sellelt saadavad tulemused võivad olla vananenud.</p>",
 
 # Preferences page

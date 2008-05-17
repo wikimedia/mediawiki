@@ -826,7 +826,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'nonefound'             => "'''Opmerkieng''': mislukte zoekopdrachten worn vaok veroôrzaekt deur zoekn ni vee voekomm'nde woôrn as \"van\" en \"de\", die an nie in de indexen worn openoom'n, of deur meêr dan eên zoekterm op te heven. Allin pagina's die an aolle zoektermen bevatt'n worn openoom'n in de resultaoten.",
 'powersearch'           => 'Uutebreid zoeken',
 'powersearch-legend'    => 'Uutebreid zoeken',
-'powersearchtext'       => "Zoeken in naemruum'n:<br />$1<br />$2 Deurverwieziengen weerheven<br />Zoeken ni $3 $9",
 'search-external'       => 'Extern zoeken',
 'searchdisabled'        => "Zoeken in {{SITENAME}} is nie meuhlijk.
 Je kan gebruuk maeken van Google.

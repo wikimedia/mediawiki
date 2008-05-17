@@ -760,7 +760,6 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'showingresultsnum'     => "Hier {{PLURAL:$3|is '''1''' Resultoat|sunt '''$1''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
 'nonefound'             => "<strong>Waiwiesenge:</strong> Säikanfroagen sunnerÄrfoulch wäide oafte feruurseeked truch dän Fersäik, ätter 'gewöönelke' Woude tou säiken; do sunt nit indizierd.",
 'powersearch'           => 'Säik',
-'powersearchtext'       => 'Säik in do Noomensruume:<br />$1<br />$2 Wies uk Fäärelaitengen<br />Säike ätter: $3 $9',
 'searchdisabled'        => 'Ju {{SITENAME}} Fultextsäike is weegen Uurläästenge apstuuns deaktivierd. Du koast insteede deerfon ne Google- of Yahoo-Säike startje. Do Resultoate foar {{SITENAME}} speegelje oawers nit uunbedingd dän aktuällen Stand wier.',
 
 # Preferences page
