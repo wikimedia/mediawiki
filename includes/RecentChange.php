@@ -222,10 +222,9 @@ class RecentChange
 		}
 
 		# E-mail notifications
-		global $wgUseEnotif;
-		if( $wgUseEnotif ) {
-			# this would be better as an extension hook
-			global $wgUser;
+		global $wgUseEnotif, $wgUser;
+		if( $wgUseEnotif && $this->mAttribs['rc_user'] != $wgUser->getID() ) {
+			# FIXME: this would be better as an extension hook
 			$enotif = new EmailNotification;
 			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
 			$enotif->notifyOnPageChange( $wgUser, $title,
