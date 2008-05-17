@@ -511,8 +511,8 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	# Sort data for display and make sure it's unique after we've added user data.
 	$wgRCLinkLimits[] = $limit;
 	$wgRCLinkDays[] = $days;
-	sort(&$wgRCLinkLimits);
-	sort(&$wgRCLinkDays);
+	sort($wgRCLinkLimits);
+	sort($wgRCLinkDays);
 	$wgRCLinkLimits = array_unique($wgRCLinkLimits);
 	$wgRCLinkDays = array_unique($wgRCLinkDays);
 	
@@ -579,8 +579,8 @@ function rcOptionsPanel( $defaults, $nondefaults ) {
 	# Sort data for display and make sure it's unique after we've added user data.
 	$wgRCLinkLimits[] = $options['limit'];
 	$wgRCLinkDays[] = $options['days'];
-	sort(&$wgRCLinkLimits);
-	sort(&$wgRCLinkDays);
+	sort($wgRCLinkLimits);
+	sort($wgRCLinkDays);
 	$wgRCLinkLimits = array_unique($wgRCLinkLimits);
 	$wgRCLinkDays = array_unique($wgRCLinkDays);
 	
