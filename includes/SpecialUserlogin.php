@@ -698,10 +698,9 @@ class LoginForm {
 		$block_reason = $wgUser->mBlock->mReason;
 
 		if ( strval( $block_reason ) === '' ) {
-			$wgOut->addWikiMsg( 'cantcreateaccount-no-reason', $ip, $blocker );
-		} else {
-			$wgOut->addWikiMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker );
+			$block_reason = wfMsg( 'blockednoreason' );
 		}
+		$wgOut->addWikiMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker );
 		$wgOut->returnToMain( false );
 	}
 
