@@ -675,9 +675,6 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'showingresultsnum'     => 'Tregohen më poshtë <b>$3</b> rezultate duke filluar me #<b>$2</b>.',
 'nonefound'             => '<strong>Shënim</strong>: Kërkimet pa rezultate ndodhin kur kërkoni për fjalë që rastisen shpesh si "ke" dhe "nga", të cilat nuk janë të futura në regjistër, ose duke dhënë më shumë se një fjalë (vetëm faqet që i kanë të gjitha ato fjalë do të tregohen si rezultate).',
 'powersearch'           => 'Kërko',
-'powersearchtext'       => 'Kërko në hapësirën:<br>
-$1<br />
-$2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 'searchdisabled'        => '<p>Kërkimi me tekst të plotë është bllokuar tani për tani ngaqë shërbyesi është shumë i ngarkuar; shpresojmë ta nxjerrim prapë në gjendje normale pas disa punimeve. Deri atëherë mund të përdorni Google-in për kërkime:</p>',
 
 # Preferences page

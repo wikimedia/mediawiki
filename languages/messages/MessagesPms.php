@@ -789,9 +789,6 @@ Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.",
 'nonefound'             => '<strong>Nòta</strong>: l\'arserchè dle paròle soèns dovrà, coma "avej" ò "esse", che a son pa indicisà, a peul dé n\'arsultà negativ, tan-me buté pì che na paròla da arserché (che a ven-o fòra mach cole pàgine andoa le paròle arsercà a-i son tute ansema).',
 'powersearch'           => 'Arserca',
 'powersearch-legend'    => 'Arsërca avansà',
-'powersearchtext'       => 'Sërca antra jë spassi nominaj:<br />
-$1<br />
-$2 Elenca le ridiression &nbsp; sërca për $3 $9',
 'searchdisabled'        => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a present che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
 
 # Preferences page

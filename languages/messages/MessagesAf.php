@@ -675,10 +675,6 @@ woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (sle
 bevat, word gewys).",
 'powersearch'               => 'Soek',
 'powersearch-legend'        => 'Gevorderde soektog',
-'powersearchtext'           => '
-Search in namespaces :<br />
-$1<br />
-$2 List redirects   Search for $3 $9',
 'search-external'           => 'Eksterne soektog',
 'searchdisabled'            => '{{SITENAME}} se soekfunksie is tans afgeskakel ter wille van werkverrigting. Gebruik gerus intussen Google of Yahoo! Let daarop dat hulle indekse van die {{SITENAME}}-inhoud verouderd mag wees.',
 

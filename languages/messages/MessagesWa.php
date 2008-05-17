@@ -633,7 +633,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'showingresultsnum'     => 'Chal pa dzo <b>$3</b> rizultats a pårti do limero <b>$2</b>.',
 'nonefound'             => "'''Note''': des cweraedjes ki n' dinèt nou rzultat c' est sovint li cweraedje di ptits mots trop corants (come «les», «des») ki n' sont nén indecsés, oudonbén des cweraedjes di pus d' on mot (seulmint les pådjes avou tos les mots dmandés sront håynêyes dins l' rizultat do cweraedje).",
 'powersearch'           => 'Cweri',
-'powersearchtext'       => 'Cweraedje ezès espåces di nos:<br />$1<br />$2 Håyner les redjiblaedjes &nbsp; Cweri après $3 $9',
 'searchdisabled'        => "Mande escuzes! Li cweraedje å dvins des årtikes a stî dismetou pol moumint, cåze ki l' sierveu est fortcherdjî. Tot ratindant, vos ploz eployî Google po fé les rcweraedjes so {{SITENAME}}, mins çoula pout esse ene miete vî.",
 
 # Preferences page

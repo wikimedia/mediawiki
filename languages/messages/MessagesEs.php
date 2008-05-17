@@ -829,10 +829,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'powersearch'           => 'Búsqueda',
 'powersearch-legend'    => 'Búsqueda avanzada',
-'powersearchtext'       => '
-Buscar en espacio de nombres:<br />
-$1<br />
-$2 Listar redirecciones   Buscar $3 $9',
 'search-external'       => 'Búsqueda externa',
 'searchdisabled'        => 'Las búsquedas en {{SITENAME}} está temporalmente deshabilitadas. Mientras tanto puede buscar mediante buscadores externos, pero tenga en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
 

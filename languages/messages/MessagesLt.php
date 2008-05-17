@@ -858,7 +858,6 @@ neindeksuojami, arba nurodžius daugiau nei vieną paieškos žodį (rezultatuos
 bus tik tie puslapiai, kuriuose bus visi paieškos žodžiai).",
 'powersearch'               => 'Ieškoti',
 'powersearch-legend'        => 'Išplėstinė paieška',
-'powersearchtext'           => 'Ieškoti šiose vardų srityse:<br />$1<br />$2 Rodyti peradresavimus<br />Ieškoti $3 $9',
 'search-external'           => 'Išorinė paieška',
 'searchdisabled'            => 'Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.',
 

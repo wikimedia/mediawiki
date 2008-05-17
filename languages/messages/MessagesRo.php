@@ -750,10 +750,6 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'showingresultsnum'     => 'Mai jos apar <b>$3</b> rezultate începând cu #<b>$2</b>.',
 'nonefound'             => "'''Notă''': căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
 'powersearch'           => 'Căutare avansată',
-'powersearchtext'       => 'Caută în secţiunile:<br />
-$1<br />
-$2 Redirecţionări<br />
-Căutări după $3 $9',
 'searchdisabled'        => '<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanţă. Între timp puteţi folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>',
 
 # Preferences page

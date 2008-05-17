@@ -858,7 +858,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'nonefound'                 => "'''Noet''': Suks no benosekiks suvo pakodons dub steifüls ad tuvön vödis suvik äs „binon“ u „at“, tefü kels komataibs no padunons, u dub suk vöda plu bala. Te pads labü vöds pasuköl valiks polisedons.",
 'powersearch'               => 'Suk',
 'powersearch-legend'        => 'Suk komplitikum',
-'powersearchtext'           => 'Suk in nemaspad:<br />$1<br />$2 Lisedön lüodükömis<br />Sukazeil: $3 $9',
 'search-external'           => 'Suk plödik',
 'searchdisabled'            => 'Suk in {{SITENAME}} penemogükon. Vütimo kanol sukön yufü el Google. Demolös, das liseds onik tefü ninäd in {{SITENAME}} ba no binon anuik.',
 

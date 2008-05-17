@@ -812,9 +812,6 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 coment « a » ou « de », que sont pas endèxâs, ou ben a l’usâjo de plusiors tèrmos de rechèrche
 (solètes les pâges contegnent tôs los tèrmos aparèssont dens los rèsultats).',
 'powersearch'           => 'Rechèrche avanciê',
-'powersearchtext'       => 'Rechèrchiér dens los èspâços de nom :<br />
-$1<br />
-$2 Encllure les pâges de redirèccion<br /> Rechèrchiér $3 $9',
 'searchdisabled'        => 'La rechèrche dessus {{SITENAME}} est dèsactivâ. En atendent la rèactivacion, vos pouede fâre una rechèrche per Google.
 Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 

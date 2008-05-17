@@ -765,7 +765,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'nonefound'             => "'''Nota''': Los landeus sin resurtaus suelis proucilsi al landeal parabras cumu \"la\" u \"de\", que nu están nel éndici, u pol escrebil mas duna parabra pa landeal (solu apaicirán nel resurtau las páhinas que contengan tolas parabras landeás).",
 'powersearch'           => 'Landeal',
 'powersearch-legend'    => 'Landeu avançau',
-'powersearchtext'       => "Landeal n'espaciu e nombris:<br />$1<br />$2 Listal redirecionis<br />Landeal $3 $9",
 'searchdisabled'        => 'Los landeus en {{SITENAME}} están temporalmenti desativaus. Mentris tantu, pueis landeal meyanti landerus esternus, inque ten en cuenta que los sus éndicis concernientis a {{SITENAME}} puein nu estal atualizaus.',
 
 # Preferences page

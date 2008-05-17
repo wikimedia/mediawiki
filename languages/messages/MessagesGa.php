@@ -690,10 +690,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 a nach bhfuil innéacsaítear, nó nuair a ceisteann tú níos mó ná téarma amháin (ní
 taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí cuardaigh).',
 'powersearch'           => 'Cuardaigh',
-'powersearchtext'       => '
-Cuardaigh sna hainmspásanna :<br />
-$1<br />
-$2 Cuir athsheolaidh in áireamh   Cuardaigh ar $3 $9',
 'searchdisabled'        => "Tá brón orainn! Mhíchumasaíodh an cuardach téacs iomlán go sealadach chun luas an tsuímh a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.",
 
 # Preferences page
@@ -924,7 +920,7 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'nlinks'                  => '{{PLURAL:$1|nasc amháin|$1 naisc}}',
 'nmembers'                => '$1 {{PLURAL:$1|comhalta|comhaltaí}}',
 'nviews'                  => '{{PLURAL:$1|radharc amháin|$1 radhairc}}',
-'lonelypages'             => 'Leathanaigh dhílleachtacha',
+'lonelypages'             => 'Leathanaigh aonair',
 'uncategorizedpages'      => 'Leathanaigh gan catagóir',
 'uncategorizedcategories' => 'Catagóirí gan catagórú',
 'uncategorizedimages'     => 'Íomhánna gan chatagóir',

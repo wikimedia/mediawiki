@@ -724,7 +724,6 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik otsiduq sõnaq).',
 'powersearch'               => 'Otsminõ',
 'powersearch-legend'        => 'Laendõt otsminõ',
-'powersearchtext'           => 'Otsitas nimeruumõn:<br />$1<br />$2 List redirects<br />Otsitas $3 $9',
 'search-external'           => 'Väline otsminõ',
 'searchdisabled'            => "{{SITENAME}} otsminõ parhillaq ei tüütäq. Niikavva, ku otsminõ jälq tüüle saa, võit pruukiq otsmisõs alanolõvat Google'i otsikasti, a näide teedüs {{SITENAME}} sisust pruugi-i ollaq alasi kõgõ värskimb.",
 

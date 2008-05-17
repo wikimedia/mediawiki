@@ -613,10 +613,6 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 wurde kin om wurden as "it" en "in", om\'t dy net byhâlden wurde, en dat as der mear
 wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn wurde.',
 'powersearch'           => 'Sykje',
-'powersearchtext'       => '
-Sykje in nammeromten :<br />
-$1<br />
-$2 List trochferwizings &nbsp; Sykje nei "$3" "$9"',
 'searchdisabled'        => "<p>Op it stuit stjit it trochsykjen fan tekst net oan, om't de
 tsjinner it net oankin. Mei't we nije apparatuer krije wurdt it nei alle gedanken wer
 mooglik. Foar now kinne jo sykje fia Google:</p>",

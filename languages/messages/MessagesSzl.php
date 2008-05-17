@@ -767,7 +767,6 @@ Možyš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańa.",
 'nonefound'                 => "'''Uwaga''': brak rezultatůw šnupańo čynsto wystympuje bez tůž, co šnupańy je za čynsto užywanymi suowůma, jak \"je\" abo \"ńy\", kere ńy sům indeksowane, abo w raźe wklupańo wjyncyj jak jydnygo suowa uoroz we pole \"šnupej\" (na li'śće znejdźůnych zajtůn sům ino te, do kerych pasujům wšyjstke suowa užyte we šnupańu).",
 'powersearch'               => 'Šnupańe zaawansowane',
 'powersearch-legend'        => 'Šnupańe zaawansowane',
-'powersearchtext'           => 'Šnupej w přestřyńach mjan:<br />$1<br />$2 Pokož překerowańa<br />Šukany tekst $3 $9',
 'search-external'           => 'Šnupańy zewnyntřne',
 'searchdisabled'            => 'Šnupańy we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostouo zawarte. Zańim go zouůnčům, možeš sprůbować šnupańo bez Google. Ino zauwaž, co informacyje uo treśći {{GRAMMAR:MS.lp|{{SITENAME}}}} můgům być we Google ńyakuratne.',
 

@@ -53,9 +53,9 @@ $messages = array(
 'tog-numberheadings'          => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar'             => 'Değişiklik yaparken araç çubuğunu göster (JavaScript)',
 'tog-editondblclick'          => 'Sayfayı çift tıklayarak değiştirmeye başla (JavaScript)',
-'tog-editsection'             => 'Bölümleri [değiştir] bağlantıları ile değiştirme hakkı ver',
-'tog-editsectiononrightclick' => 'Bölüm başlığına sağ tıklayarak bölümde değişikliğe izin ver.(JavaScript)',
-'tog-showtoc'                 => 'İçindekiler tablosunu oluştur<br />(3 taneden fazla başlığı olan sayfalar için)',
+'tog-editsection'             => 'Bölümleri [değiştir] bağlantıları ile değiştirebilme olanağı ver',
+'tog-editsectiononrightclick' => 'Bölümleri bölüm başlığına sağ tıklayarak değiştirebilme olanağı ver (JavaScript)',
+'tog-showtoc'                 => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
 'tog-rememberpassword'        => 'Parolayı hatırla',
 'tog-editwidth'               => 'Yazma alanı tam genişlikte olsun',
 'tog-watchcreations'          => 'Yaratmış olduğum sayfaları izleme listeme ekle',
@@ -81,7 +81,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'İzleme listemden bot değişikliklerini gizle',
 'tog-watchlisthideminor'      => 'İzleme listemden küçük değişiklikleri gizle',
 'tog-ccmeonemails'            => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
-'tog-diffonly'                => 'Geçmişin altındaki sayfaların içeriğini gösterme.',
+'tog-diffonly'                => 'Sayfa içeriğini sürüm farklarının aşağısında gösterme',
 'tog-showhiddencats'          => 'Gizli kategorileri göster',
 
 'underline-always'  => 'Daima',
@@ -426,7 +426,8 @@ Kullanıcı adınız Türkçe karakter, boşluk '''içerebilir'''. Kullanıcı a
 'yourvariant'                => 'Sizce:',
 'yournick'                   => 'İmzalarda gözükmesini istediğiniz isim',
 'badsig'                     => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
-'badsiglength'               => 'Kullanıcı adı çok uzun; $1 karakterin altında olmalı.',
+'badsiglength'               => 'İmza çok uzun
+$1 karakterin altında olmalı.',
 'email'                      => 'E-posta',
 'prefs-help-realname'        => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
 'loginerror'                 => 'Oturum açma hatası.',
@@ -824,17 +825,17 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'group'            => 'Grup:',
 'group-user'       => 'Kullanıcılar',
 'group-bot'        => 'Botlar',
-'group-sysop'      => 'Yöneticiler',
+'group-sysop'      => 'Hizmetliler',
 'group-bureaucrat' => 'Bürokratlar',
 'group-all'        => '(hepsi)',
 
 'group-user-member'       => 'Kullanıcı',
 'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Yönetici',
+'group-sysop-member'      => 'Hizmetli',
 'group-bureaucrat-member' => 'Bürokrat',
 
 'grouppage-bot'        => '{{ns:project}}:Botlar',
-'grouppage-sysop'      => '{{ns:project}}:Yöneticiler',
+'grouppage-sysop'      => '{{ns:project}}:Hizmetliler',
 'grouppage-bureaucrat' => '{{ns:project}}:Bürokratlar',
 
 # User rights log
@@ -1389,7 +1390,7 @@ $1',
 'ipaddress'                   => 'IP Adresi',
 'ipadressorusername'          => 'IP adresi veya kullanıcı adı',
 'ipbexpiry'                   => 'Bitiş süresi',
-'ipbreason'                   => 'Sebep',
+'ipbreason'                   => 'Neden:',
 'ipbreasonotherlist'          => 'Başka sebep',
 'ipbanononly'                 => 'Sadece anonim kullanıcıları engelle',
 'ipbsubmit'                   => 'Bu kullanıcıyı engelle',
@@ -1448,6 +1449,7 @@ $1',
 'databasenotlocked'   => 'Veritabanı kilitli değil.',
 
 # Move page
+'move-page'               => '$1 taşınıyor',
 'move-page-legend'        => 'İsim değişikliği',
 'movepagetext'            => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir.
 Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır.
@@ -1488,7 +1490,7 @@ Lütfen başka bir isim deneyiniz.',
 '1movedto2_redir'         => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
 'movelogpage'             => 'İsim değişikliği kayıtları',
 'movelogpagetext'         => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
-'movereason'              => 'Sebep',
+'movereason'              => 'Neden:',
 'revertmove'              => 'geriye al',
 'delete_and_move'         => 'Sil ve taşı',
 'delete_and_move_text'    => '==Silinmesi gerekiyor==
@@ -1957,6 +1959,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Dosya adı:',
 'fileduplicatesearch-submit'   => 'Ara',
+'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Dosya boyutu: $3<br />MIME tipi: $4',
 
 # Special:SpecialPages
 'specialpages-group-maintenance' => 'Bakım raporları',

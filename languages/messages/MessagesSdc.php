@@ -727,7 +727,6 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'showingresultsnum'     => "Accó {{PLURAL:$3|'''1''' risulthaddu |li '''$3''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
 'nonefound'             => "'''Nota''': Zerthuni paràuri di la linga ingresa, cumenti \"zero\" o \"more\", nò so indizizzabiri e pudiani dunca nò frunì risulthaddi, cumenti l'indicazioni di più tèimmini da zirchà (soru li pàgini chi cuntenani tutti i tèimmini sciubaraddi sò visuarizzaddi i' li risulthaddi).",
 'powersearch'           => 'Zercha',
-'powersearchtext'       => "Zercha i' li sighenti namespaces:<br />$1<br />$2 Musthra i rinvii <br />Critéri pa zirchà: $3 $9",
 'searchdisabled'        => 'Abà no pói zirchà in {{SITENAME}}; proba cun [http://www.google.it/search?q=site%3Asdc.wikipedia.org Google] o sìmiri, ma ammèntaddi chi li cuntinuddi di {{SITENAME}} poni assé no aggiornaddi.',
 
 # Preferences page

@@ -678,7 +678,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'showingresultsnum'     => "ከ#'''$2''' ጀምሮ {{PLURAL:$3|'''1''' ውጤት|'''$3''' ውጤቶች}} ከዚህ ታች ማየት ይቻላል።",
 'powersearch'           => 'ፍለጋ',
 'powersearch-legend'    => 'ተጨማሪ ፍለጋ',
-'powersearchtext'       => 'ፍለጋው በታች ባመለከቱት ክፍለ-ዊኪዎች ውስጥ ይደረጋል።<br />$1<br />$2 መምሪያ መንገዶችም ይታዩ<br />ልክ በዚሁ አጻጻፍ፦ $3 $9',
 'searchdisabled'        => '{{SITENAME}} ፍለጋ አሁን እንዳይሠራ ተደርጓል። ለጊዜው ግን በGoogle ላይ መፈልግ ይችላሉ። የ{{SITENAME}} ይዞታ ማውጫ በዚያ እንዳልታደሰ ማቻሉ ያስታውሱ።',
 
 # Preferences page

@@ -740,9 +740,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'showingresultsnum'        => 'Di handap ieu némbongkeun <b>$3</b> hasil tina #<b>$2</b>.',
 'nonefound'                => '<strong>Catetan</strong>: panéangan nu teu hasil mindeng disababkeun ku néang kecap umum kawas "ti" nu teu diasupkeun kana indéks, atawa alatan nangtukeun leuwih ti hiji istilah panéang (ngan kaca-kaca nu ngandung sakabéh istilah panéang nu bakal némbongan).',
 'powersearch'              => 'Sungsi',
-'powersearchtext'          => 'Sungsi na ngaranspasi:<br />
-$1<br />
-$2 Daptarkeun alihan &nbsp; Sungsi $3 $9',
 'searchdisabled'           => 'Punten! Néangan téks lengkep di {{SITENAME}} kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu. Catet yén indéxna ngeunaan eusi {{SITENAME}} bisa jadi teu mutahir.',
 
 # Preferences page

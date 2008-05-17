@@ -781,7 +781,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'nonefound'                 => "'''Cathetan''': Namung sawetara bilik nama sing digolèki sacara baku. Coba seselana mawa awalan ''all:'' kanggo golèk kabèh isi (kalebu kaca dhiskusi, cithakan lsp.), utawa nganggo bilik nama sing dipèngèni minangka préfiks.",
 'powersearch'               => 'Golèk',
 'powersearch-legend'        => "Panggolèkan sabanjuré (''advance search'')",
-'powersearchtext'           => "Golèk ing bilik jeneng (''namespace''):<br />$1<br />$2 Uga tuduhna kaca pangalihan<br />Golèk $3 $9",
 'search-external'           => 'Panggolèkan èkstèrnal',
 'searchdisabled'            => 'Sawetara wektu iki panjenengan ora bisa nggolèk mawa fungsi golèk {{SITENAME}}. Kanggo saiki mangga panjenengan bisa golèk nganggo Google. Nanging isi indèks Google kanggo {{SITENAME}} bisa waé lawas lan durung dianyari.',
 

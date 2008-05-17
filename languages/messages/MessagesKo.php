@@ -14,6 +14,7 @@
  * @author ToePeu
  * @author Jon Harald Søby
  * @author Ficell
+ * @author Pi.C.Noizecehx
  */
 
 $namespaceNames = array(
@@ -791,6 +792,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'grouppage-sysop'      => '{{ns:project}}:관리자',
 'grouppage-bureaucrat' => '{{ns:project}}:뷰로크랫',
 
+# Rights
+'right-hiderevision' => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
+
 # User rights log
 'rightslog'      => '사용자 권한 기록',
 'rightslogtext'  => '사용자 권한 조정 기록입니다.',
@@ -1523,7 +1527,7 @@ $1',
 'allmessagesname'           => '이름',
 'allmessagesdefault'        => '기본 내용',
 'allmessagescurrent'        => '현재 내용',
-'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으시면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net 베타위키]에 참가해주세요.',
+'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으시다면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net 베타위키]에 참가해주세요.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 '''{{ns:special}}:Allmessages'''를 사용할 수 없습니다.",
 'allmessagesfilter'         => '다음 메시지만 보이기:',
 'allmessagesmodified'       => '변경된 것만 보여주기',
