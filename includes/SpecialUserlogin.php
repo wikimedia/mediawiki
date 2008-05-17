@@ -32,6 +32,7 @@ class LoginForm {
 	const EMPTY_PASS = 6;
 	const RESET_PASS = 7;
 	const ABORTED = 8;
+	const CREATE_BLOCKED = 9;
 
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
@@ -370,25 +371,28 @@ class LoginForm {
 		if ( '' == $this->mName ) {
 			return self::NO_NAME;
 		}
+
+		// Load $wgUser now, and check to see if we're logging in as the same name. 
+		// This is necessary because loading $wgUser (say by calling getName()) calls
+		// the UserLoadFromSession hook, which potentially creates the user in the 
+		// database. Until we load $wgUser, checking for user existence using 
+		// User::newFromName($name)->getId() below will effectively be using stale data.
+		if ( $wgUser->getName() === $this->mName ) {
+			wfDebug( __METHOD__.": already logged in as {$this->mName}\n" );
+			return self::SUCCESS;
+		}
 		$u = User::newFromName( $this->mName );
 		if( is_null( $u ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
 		}
+
+		$isAutoCreated = false;
 		if ( 0 == $u->getID() ) {
-			global $wgAuth;
-			/**
-			 * If the external authentication plugin allows it,
-			 * automatically create a new account for users that
-			 * are externally defined but have not yet logged in.
-			 */
-			if ( $wgAuth->autoCreate() && $wgAuth->userExists( $u->getName() ) ) {
-				if ( $wgAuth->authenticate( $u->getName(), $this->mPassword ) ) {
-					$u = $this->initUser( $u, true );
-				} else {
-					return self::WRONG_PLUGIN_PASS;
-				}
+			$status = $this->attemptAutoCreate( $u );
+			if ( $status !== self::SUCCESS ) {
+				return $status;
 			} else {
-				return self::NOT_EXISTS;
+				$isAutoCreated = true;
 			}
 		} else {
 			$u->load();
@@ -438,10 +442,48 @@ class LoginForm {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
 
+			if ( $isAutoCreated ) {
+				// Must be run after $wgUser is set, for correct new user log
+				wfRunHooks( 'AuthPluginAutoCreate', array( $wgUser ) );
+			}
+
 			$retval = self::SUCCESS;
 		}
 		wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $retval ) );
 		return $retval;
+	}
+
+	/**
+	 * Attempt to automatically create a user on login.
+	 * Only succeeds if there is an external authentication method which allows it.
+	 * @return integer Status code
+	 */
+	function attemptAutoCreate( $user ) {
+		global $wgAuth, $wgUser;
+		/**
+		 * If the external authentication plugin allows it,
+		 * automatically create a new account for users that
+		 * are externally defined but have not yet logged in.
+		 */
+		if ( !$wgAuth->autoCreate() ) {
+			return self::NOT_EXISTS;
+		}
+		if ( !$wgAuth->userExists( $user->getName() ) ) {
+			wfDebug( __METHOD__.": user does not exist\n" );
+			return self::NOT_EXISTS;
+		}
+		if ( !$wgAuth->authenticate( $user->getName(), $this->mPassword ) ) {
+			wfDebug( __METHOD__.": \$wgAuth->authenticate() returned false, aborting\n" );
+			return self::WRONG_PLUGIN_PASS;
+		}
+		if ( $wgUser->isBlockedFromCreateAccount() ) {
+			wfDebug( __METHOD__.": user is blocked from account creation\n" );
+			return self::CREATE_BLOCKED;
+		}
+
+		wfDebug( __METHOD__.": creating account\n" );
+		$user = $this->initUser( $user, true );
+		return self::SUCCESS;
 	}
 
 	function processLogin() {
@@ -494,6 +536,9 @@ class LoginForm {
 				break;
 			case self::RESET_PASS:
 				$this->resetLoginForm( wfMsg( 'resetpass_announce' ) );
+				break;
+			case self::CREATE_BLOCKED:
+				$this->userBlockedMessage();
 				break;
 			default:
 				throw new MWException( "Unhandled case value" );
@@ -652,7 +697,11 @@ class LoginForm {
 		$blocker = User::whoIs( $wgUser->mBlock->mBy );
 		$block_reason = $wgUser->mBlock->mReason;
 
-		$wgOut->addWikiMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker );
+		if ( strval( $block_reason ) === '' ) {
+			$wgOut->addWikiMsg( 'cantcreateaccount-no-reason', $ip, $blocker );
+		} else {
+			$wgOut->addWikiMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker );
+		}
 		$wgOut->returnToMain( false );
 	}
 
