@@ -39,7 +39,6 @@ class ZhConverter extends LanguageConverter {
 	}
 }
 
-
 /* class that handles both Traditional and Simplified Chinese
    right now it only distinguish zh_hans, zh_hant, zh_cn, zh_tw, zh_sg and zh_hk.
 */
@@ -64,7 +63,6 @@ class LanguageZh extends LanguageZh_hans {
 
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
-
 
 	# this should give much better diff info
 	function segmentForDiff( $text ) {
@@ -108,5 +106,4 @@ class LanguageZh extends LanguageZh_hans {
 		$ret = array_unique( explode('|', $terms) );
 		return $ret;
 	}
-
 }

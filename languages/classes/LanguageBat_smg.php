@@ -22,5 +22,4 @@ class LanguageBat_smg extends Language {
 			return $forms[3];
 		}
 	}
-
 }

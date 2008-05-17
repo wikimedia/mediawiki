@@ -96,7 +96,7 @@ class LanguageDsb extends Language {
 				}
 				break;
 			}
-		
+
 		return $word; # this will return the original value for 'nominatiw' (nominativ) and all undefined case values
 	}
 

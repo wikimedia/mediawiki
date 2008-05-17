@@ -11,6 +11,4 @@ class LanguageAz extends Language {
 			return parent::ucfirst( $string );
 		}
 	}
-
 }
-

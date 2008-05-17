@@ -104,5 +104,3 @@ class LanguageRu extends Language {
 		}
 	}
 }
-
-

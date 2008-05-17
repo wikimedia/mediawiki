@@ -24,6 +24,4 @@ class LanguageAr extends Language {
 		}
 		return $forms[$index];
 	}
-
 }
-

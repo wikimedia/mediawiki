@@ -5,7 +5,6 @@
 
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );
 
-
 /**
  * Converts Tajiki to latin orthography
  */
@@ -102,4 +101,3 @@ class LanguageTg extends Language {
 		$this->mConverter = new TgConverter( $this, 'tg', $variants );
 	}
 }
-

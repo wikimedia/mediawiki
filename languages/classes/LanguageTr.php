@@ -12,6 +12,4 @@ class LanguageTr extends Language {
 			return parent::ucfirst( $string );
 		}
 	}
-
 }
-

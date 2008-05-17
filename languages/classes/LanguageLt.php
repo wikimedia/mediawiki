@@ -24,4 +24,3 @@ class LanguageLt extends Language {
 		return $forms[2];
 	}
 }
-

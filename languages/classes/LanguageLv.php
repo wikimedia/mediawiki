@@ -45,15 +45,13 @@ class LanguageLv extends Language {
 		$wgGrammarForms['lv']['akuzatīvs']['Vikivārdnīca'] = 'Vikivārdnīcu';
 		$wgGrammarForms['lv']['lokatīvs' ]['Vikipēdija']   = 'Vikipēdijā';
 		$wgGrammarForms['lv']['lokatīvs' ]['Vikivārdnīca'] = 'Vikivārdnīcā';
-	
+
 		if ( isset($wgGrammarForms['lv'][$case][$word]) ) {
 			return $wgGrammarForms['lv'][$case][$word];
 		}
 
 		return $word;
-
 	}
-
 }
 
 

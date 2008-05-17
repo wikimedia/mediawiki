@@ -75,8 +75,4 @@ class LanguageLa extends Language {
 			return $word;
 		}
 	}
-
 }
-
-
-

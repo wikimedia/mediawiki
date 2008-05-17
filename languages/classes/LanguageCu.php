@@ -47,6 +47,4 @@ class LanguageCu extends Language {
 			default: return $forms[3];
 		}
 	}
-
 }
-

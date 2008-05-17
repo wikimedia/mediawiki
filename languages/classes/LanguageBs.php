@@ -132,7 +132,4 @@ class LanguageBs extends Language {
 
 		return $word; # this will return the original value for 'nominativ' (nominative) and all undefined case values
 	}
-
 }
-
-

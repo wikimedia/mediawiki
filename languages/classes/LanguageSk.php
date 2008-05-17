@@ -89,6 +89,4 @@ class LanguageSk extends Language {
 		}
 		return $forms[$index];
 	}
-
 }
-

@@ -90,5 +90,4 @@ class LanguageCs extends Language {
 			default: return $forms[2];
 		}
 	}
-
 }

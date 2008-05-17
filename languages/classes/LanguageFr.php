@@ -15,6 +15,4 @@ class LanguageFr extends Language {
 
 		return ($count <= 1) ? $forms[0] : $forms[1];
 	}
-
 }
-
