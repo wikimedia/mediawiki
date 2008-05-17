@@ -599,7 +599,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'showingresults'        => "Žemiau ruodoma lėgė '''$1''' rezoltatu pradedant #'''$2'''.",
 'showingresultsnum'     => "Žemiau ruodoma '''$3''' {{PLURAL:$3|rezoltata|rezoltatu|rezoltatu}} pradedant #'''$2'''.",
 'powersearch'           => 'Ėiškuotė',
-'powersearchtext'       => 'Ėiškoutė tuosė vardū srėtīsė:<br />$1<br /><label>$2 Ruodītė paradresavėmos</label><br />Ėiškoutė $3 $9',
 
 # Preferences page
 'preferences'           => 'Nustatīmā',

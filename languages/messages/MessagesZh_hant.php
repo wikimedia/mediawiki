@@ -829,8 +829,6 @@ $2',
 'nonefound'                 => "'''注意''': 只有一些名字空間是會作為預設搜尋。嘗試''all:''去搜尋全部的頁面（包埋討論頁面、模板等），或可用需要的名字空間作為前綴。",
 'powersearch'               => '進階搜索',
 'powersearch-legend'        => '進階搜索',
-'powersearchtext'           => '
-搜索名字空間：<br />$1<br />$2列出重定向頁面；搜索$3 $9',
 'search-external'           => '外部搜索',
 'searchdisabled'            => '{{SITENAME}}由於性能方面的原因，全文搜索已被暫時停用。您可以暫時透過Google搜索。請留意他們的索引可能會過時。',
 

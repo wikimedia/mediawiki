@@ -853,8 +853,6 @@ $2',
 'nonefound'                 => "'''注意''': 只有一些名字空间是会作为预设搜寻。尝试''all:''去搜寻全部的页面（包埋讨论页面、模板等），或可用需要的名字空间作为前缀。",
 'powersearch'               => '高级搜索',
 'powersearch-legend'        => '高级搜索',
-'powersearchtext'           => '
-搜索名字空间：<br />$1<br />$2列出重定向页面；搜索$3 $9',
 'search-external'           => '外部搜索',
 'searchdisabled'            => '{{SITENAME}}由于性能方面的原因，全文搜索已被暂时禁用。您可以暂时通过Google搜索。请留意他们的索引可能会过时。',
 

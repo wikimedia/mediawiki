@@ -905,7 +905,6 @@ dan \"dari\" yang tidak diindekskan, atau disebabkan oleh pencarian lebih
 daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan ditunjukkan).",
 'powersearch'           => 'Cari',
 'powersearch-legend'    => 'Gelintar maju',
-'powersearchtext'       => 'Cari dalam ruang nama:<br />$1<br />$2 Senaraikan pelencongan<br />Cari $3 $9',
 'searchdisabled'        => 'Ciri pencarian dalam {{SITENAME}} dimatikan. Anda boleh mencari melalui Google. Sila ambil perhatian bahawa indeks dalam Google mungkin bukan yang terkini.',
 
 # Preferences page

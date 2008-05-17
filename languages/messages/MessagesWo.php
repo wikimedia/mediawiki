@@ -702,9 +702,6 @@ wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.',
 'nonefound'             => '<strong>Karmat</strong> : liy waral ñakkug ay ngérte yenn saa yi, mooy jëfandikoo ab baatu ceet bu gàtt, niki « am » walla « jëm », walla jëfandikoo baati ceet yu bari (xët yi ëmb baat yi nga bind yépp, rekk ñooy feeñ).',
 'powersearch'           => 'Seet',
 'powersearch-legend'    => 'Seet gu xóot',
-'powersearchtext'       => 'Seet ci barabi tur yi :<br />
-$1<br />
-$2 boole ci xëti yoonalaat yi<br /> Seet $3 $9',
 'searchdisabled'        => 'Ceet gi ci {{SITENAME}} doxul. Ci négandiku doxal gi, man nga seet ci Google. Jàppal ne, xéj-na ëmbiti {{SITENAME}} gi ci bii seetukaay yeesaluñ leen.',
 
 # Preferences page

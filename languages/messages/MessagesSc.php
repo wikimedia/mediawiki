@@ -267,10 +267,6 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.',
 'showingresults'        => 'Qui di seguito <b>$1</b> risultati, partendo dal numero #<b>$2</b>.',
 'nonefound'             => '<strong>Nota</strong>: la ricerca di parole troppo comuni, come "avere" o "essere", che non sono indicizzate, può causare un esito negativo, così come indicare più di un termine da ricercare (solo le pagine che contengano tutti i termini ricercati verrebbero infatti visualizzate fra i risultati).',
 'powersearch'           => 'Ricerca',
-'powersearchtext'       => '
-Cerca fra i campi :<br />
-$1<br />
-$2 Elenca i redirects &nbsp; cerca per $3 $9',
 
 # Preferences page
 'preferences'              => 'Preferenze',

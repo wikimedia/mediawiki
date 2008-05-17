@@ -382,7 +382,6 @@ $messages = array(
 'showingresults'    => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
 'showingresultsnum' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
 'powersearch'       => 'Kiám-sek',
-'powersearchtext'   => 'Chhiau-chhōe chiah ê miâ-khong-kan:<br /> $1<br /> $2 Lia̍t chhut choán-ia̍h &nbsp; Chhōe $3 $9',
 
 # Preferences page
 'preferences'           => 'Siat-tēng',
