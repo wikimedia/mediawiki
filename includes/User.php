@@ -2006,13 +2006,12 @@ class User {
 	 * @public
 	 */
 	function clearAllNotifications( $currentUser ) {
-		global $wgUseEnotif;
-		if ( !$wgUseEnotif ) {
+		global $wgUseEnotif, $wgShowUpdatedMarker;
+		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
 			$this->setNewtalk( false );
 			return;
 		}
 		if( $currentUser != 0 )  {
-
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 				array( /* SET */
@@ -2021,8 +2020,7 @@ class User {
 					'wl_user' => $currentUser
 				), __METHOD__
 			);
-
-		# 	we also need to clear here the "you have new message" notification for the own user_talk page
+		# 	We also need to clear here the "you have new message" notification for the own user_talk page
 		#	This is cleared one page view later in Article::viewUpdates();
 		}
 	}

@@ -45,7 +45,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$uid = $wgUser->getId();
-	if( $wgEnotifWatchlist && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
+	if( ($wgEnotifWatchlist || $wgShowUpdatedMarker) && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
 		$wgUser->clearAllNotifications( $uid );
 		$wgOut->redirect( $specialTitle->getFullUrl() );
 		return;
@@ -154,7 +154,7 @@ function wfSpecialWatchlist( $par ) {
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
 		$header .= wfMsg( 'wlheader-enotif' ) . "\n";
 	}
-	if ( $wgEnotifWatchlist && $wgShowUpdatedMarker ) {
+	if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
 		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
 	}
 
@@ -175,7 +175,7 @@ function wfSpecialWatchlist( $par ) {
 	if( ( $lag = $dbr->getLag() ) > 0 )
 		$wgOut->showLagWarning( $lag );
 
-	if ( $wgEnotifWatchlist && $wgShowUpdatedMarker ) {
+	if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
 		$wgOut->addHTML( '<form action="' .
 			$specialTitle->escapeLocalUrl() .
 			'" method="post"><input type="submit" name="dummy" value="' .
