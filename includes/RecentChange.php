@@ -224,10 +224,12 @@ class RecentChange
 		# E-mail notifications
 		global $wgUseEnotif, $wgUser;
 		if( $wgUseEnotif ) {
+			$editor = ($wgUser->getID() == $this->mAttribs['rc_user']) ? 
+				$wgUser : User::newFromID( $this->mAttribs['rc_user'] );
 			# FIXME: this would be better as an extension hook
 			$enotif = new EmailNotification();
 			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
-			$enotif->notifyOnPageChange( $wgUser, $title,
+			$enotif->notifyOnPageChange( $editor, $title,
 				$this->mAttribs['rc_timestamp'],
 				$this->mAttribs['rc_comment'],
 				$this->mAttribs['rc_minor'],
