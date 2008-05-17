@@ -222,8 +222,8 @@ class RecentChange
 		}
 
 		# E-mail notifications
-		global $wgUseEnotif, $wgUser;
-		if( $wgUseEnotif ) {
+		global $wgUseEnotif, $wgShowUpdatedMarker, $wgUser;
+		if( $wgUseEnotif || $wgShowUpdatedMarker ) {
 			// Users
 			if( $this->mAttribs['rc_user'] ) {
 				$editor = ($wgUser->getID() == $this->mAttribs['rc_user']) ? 
