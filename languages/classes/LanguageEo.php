@@ -69,5 +69,3 @@ class LanguageEo extends Language {
 		$wgEditEncoding = 'x';
 	}
 }
-
-

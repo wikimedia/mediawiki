@@ -37,5 +37,3 @@ class LanguageJa extends Language {
 		return $text;
 	}
 }
-
-

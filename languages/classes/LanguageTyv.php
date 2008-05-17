@@ -24,7 +24,6 @@ class LanguageTyv extends Language {
 			return $wgGrammarForms['tyv'][$case][$word];
 		}
 
-
 	// Set up some constants...
 		$allVowels = array("е", "и", "э", "ө", "ү", "а", "ё", "о", "у", "ы", "ю", "я", "a", "e", "i", "o", "ö", "u", "ü", "y");
 		$frontVowels = array("е", "и", "э", "ө", "ү", "e", "i", "ö", "ü");
@@ -229,4 +228,3 @@ class LanguageTyv extends Language {
 		return $word;
 	}
 }
-

@@ -59,10 +59,7 @@ class LanguageGsw extends Language {
                    $word = 'd Wikiquälle';
                }
                break;
-       } 
+       }
        return $word;
    }
-
 }
-
-

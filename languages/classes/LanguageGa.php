@@ -45,7 +45,4 @@ class LanguageGa extends Language {
 		}
 		return $word;
 	}
-
 }
-
-

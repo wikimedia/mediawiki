@@ -88,7 +88,4 @@ class LanguageSl extends Language {
 		}
 		return $forms[$index];
 	}
-
-
 }
-

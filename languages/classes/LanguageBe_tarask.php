@@ -97,7 +97,4 @@ class LanguageBe_tarask extends Language {
 
 		return $word; # this will return the original value for 'назоўны' (nominative) and all undefined case values
 	}
-
 }
-
-

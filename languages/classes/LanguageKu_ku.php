@@ -1,10 +1,8 @@
 <?php
 /** Kurdish
-  *
-  *
-  * @addtogroup Language
-  */
-
+ *
+ * @addtogroup Language
+ */
 
 class LanguageKu_ku extends Language {
 
@@ -31,5 +29,3 @@ class LanguageKu_ku extends Language {
 		}
 	}
 }
-
-

@@ -34,4 +34,3 @@ class LanguageKsh extends Language {
 		}
 	}
 }
-

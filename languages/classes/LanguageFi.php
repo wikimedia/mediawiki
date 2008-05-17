@@ -131,7 +131,4 @@ class LanguageFi extends Language {
 
 		return htmlspecialchars( trim( $final ) );
 	}
-
 }
-
-

@@ -27,13 +27,13 @@ class LanguageWa extends Language {
 		       $d = substr($ts, 0, 4). '-' . substr($ts, 4, 2). '-' .substr($ts, 6, 2);
 		       return $d;
 		}
-		
+
 		# dd/mm/YYYY format
 		if ( $datePreference == 'walloon short' ) {
 		       $d = substr($ts, 6, 2). '/' . substr($ts, 4, 2). '/' .substr($ts, 0, 4);
 		       return $d;
 		}
-		
+
 		# Walloon format
 		#
 		# we output this in all other cases
@@ -61,10 +61,8 @@ class LanguageWa extends Language {
 		if ( $datePreference == 'ISO 8601' ) {
 			return parent::timeanddate( $ts, $adj, $format, $tc );
 		} else {
-			return $this->date( $ts, $adj, $format, $tc ) . ' a ' . 
+			return $this->date( $ts, $adj, $format, $tc ) . ' a ' .
 				$this->time( $ts, $adj, $format, $tc );
 		}
 	}
 }
-
-

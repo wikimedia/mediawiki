@@ -68,5 +68,3 @@ class LanguageRmy extends Language {
 		return $word; # this will return the original value for 'nominative' and all undefined case values
 	}
 }
-
-
