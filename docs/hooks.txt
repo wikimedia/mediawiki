@@ -800,6 +800,11 @@ for all 'SkinTemplate'-type skins, use the SkinTemplateToolboxEnd hook
 instead.
 $tools: array of tools
 
+'newRevisionFromEditComplete': called when a revision was inserted due to an edit
+$title: the page title
+$rev: the new revision
+$baseID: the revision ID this was based off, if any
+
 'OutputPageBeforeHTML': a page has been processed by the parser and
 the resulting HTML is about to be displayed.  
 $parserOutput: the parserOutput (object) that corresponds to the page 

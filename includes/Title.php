@@ -2599,6 +2599,7 @@ class Title {
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
+		wfRunHooks( 'newRevisionFromEditComplete', array($nt, $nullRevision, false) );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -2625,6 +2626,7 @@ class Title {
 				'comment' => $comment,
 				'text'    => $redirectText ) );
 			$redirectRevision->insertOn( $dbw );
+			wfRunHooks( 'newRevisionFromEditComplete', array($this, $redirectRevision, false) );
 			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
 			# Now, we record the link from the redirect to the new title.
@@ -2686,6 +2688,7 @@ class Title {
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
+		wfRunHooks( 'newRevisionFromEditComplete', array($nt, $nullRevision, false) );
 
 		# Rename page entry
 		$dbw->update( 'page',
@@ -2712,6 +2715,7 @@ class Title {
 				'comment' => $comment,
 				'text'    => $redirectText ) );
 			$redirectRevision->insertOn( $dbw );
+			wfRunHooks( 'newRevisionFromEditComplete', array($this, $redirectRevision, false) );
 			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
 			# Record the just-created redirect's linking to the page
