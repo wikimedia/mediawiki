@@ -514,7 +514,7 @@ class PageArchive {
 				'deleted' 	 => $unsuppress ? 0 : $row->ar_deleted,
 				'len'        => $row->ar_len
 				) );
-			$revision->insertOn( $dbw, false );
+			$revision->insertOn( $dbw );
 			$restored++;
 
 			wfRunHooks( 'ArticleRevisionUndeleted', array( &$this->title, $revision, $row->ar_page_id ) );
