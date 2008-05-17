@@ -284,6 +284,7 @@ class EmailNotification {
 		if ($wgEnotifUseJobQ) {
 			$params = array(
 				"editor" => $editor->getName(),
+				"editorID" => $editor->getID(),
 				"timestamp" => $timestamp,
 				"summary" => $summary,
 				"minorEdit" => $minorEdit,
@@ -352,13 +353,12 @@ class EmailNotification {
 				}
 			}
 
-
 			if ( $wgEnotifWatchlist ) {
 				// Send updates to watchers other than the current editor
-				$userCondition = 'wl_user <> ' . intval( $editor->getId() );
+				$userCondition = 'wl_user != ' . $editor->getID();
 				if ( $userTalkId !== false ) {
 					// Already sent an email to this person
-					$userCondition .= ' AND wl_user <> ' . intval( $userTalkId );
+					$userCondition .= ' AND wl_user != ' . intval( $userTalkId );
 				}
 				$dbr = wfGetDB( DB_SLAVE );
 
@@ -395,8 +395,9 @@ class EmailNotification {
 		$this->sendMails();
 
 		if ( $wgShowUpdatedMarker || $wgEnotifWatchlist ) {
-			# mark the changed watch-listed page with a timestamp, so that the page is
-			# listed with an "updated since your last visit" icon in the watch list, ...
+			# Mark the changed watch-listed page with a timestamp, so that the page is
+			# listed with an "updated since your last visit" icon in the watch list. Do
+			# not do this to users for their own edits.
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 				array( /* SET */
@@ -404,7 +405,8 @@ class EmailNotification {
 				), array( /* WHERE */
 					'wl_title' => $title->getDBkey(),
 					'wl_namespace' => $title->getNamespace(),
-					'wl_notificationtimestamp IS NULL'
+					'wl_notificationtimestamp IS NULL',
+					'wl_user != ' . $editor->getID()
 				), __METHOD__
 			);
 		}
