@@ -378,6 +378,8 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
+		
+		$wgOut->addScriptFile( 'edit.js' );
 
 		if( wfReadOnly() ) {
 			$this->readOnlyPage( $this->getContent() );

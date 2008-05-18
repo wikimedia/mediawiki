@@ -911,9 +911,9 @@ class UploadForm {
 wgAjaxUploadDestCheck = {$adc};
 wgAjaxLicensePreview = {$alp};
 wgUploadAutoFill = {$autofill};
-</script>
-<script type=\"text/javascript\" src=\"{$wgStylePath}/common/upload.js?{$wgStyleVersion}\"></script>
-		" );
+</script>" );
+		$wgOut->addScriptFile( 'upload.js' );
+		$wgOut->addScriptFile( 'edit.js' ); // For <charinsert> support
 
 		if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) )
 		{
