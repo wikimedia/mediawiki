@@ -1474,7 +1474,6 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'listusers'                       => 'Lista dels participants',
 'listusers-summary'               => "Aquesta pagina aficha la lista de totes los comptes d'utilizaires, qu'ajan efectuats de contribucions o pas. La causida del « grop » correspond als [[Projet:Estatuts dels utilizaires|diferents estatuts possibles]].",
 'specialpages'                    => 'Paginas especialas',
-'specialpages-summary'            => '{{ajuda contextuala|Ajuda:Paginas especialas}}',
 'spheading'                       => 'Paginas especialas',
 'restrictedpheading'              => 'Paginas especialas reservadas',
 'newpages'                        => 'Paginas novèlas',
