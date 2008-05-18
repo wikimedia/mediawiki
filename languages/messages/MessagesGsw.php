@@ -843,12 +843,9 @@ sollte umgehend ein Administrator informiert werden!',
 
 # EXIF tags
 'exif-orientation'       => 'Orientierung',
-'exif-copyright'         => 'Copyright',
 'exif-pixelxdimension'   => 'Valind image height',
 'exif-fnumber'           => 'F-Wert',
 'exif-isospeedratings'   => 'Filmempfindlichkeit (ISO)',
-'exif-shutterspeedvalue' => 'Shutter Speed Value',
-'exif-brightnessvalue'   => 'Brightness Value',
 
 # External editor support
 'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
@@ -861,7 +858,6 @@ sollte umgehend ein Administrator informiert werden!',
 'confirmemail_text'       => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die e-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die e-Mail-Adrässe dyni isch.',
 'confirmemail_send'       => 'Bestätigungs-Mail verschicke',
 'confirmemail_sent'       => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',
-'confirmemail_sendfailed' => 'Could not send confirmation mail due to misconfigured server or invalid characters in e-mail address.',
 'confirmemail_success'    => 'Dyni e-Mail-Adrässen isch bestätiget worde. Du chasch di jitz ylogge.',
 'confirmemail_loggedin'   => 'Dyni e-Mail-Adrässen isch jitz bestätiget.',
 'confirmemail_subject'    => '{{SITENAME}} e-Mail-Adrässbestätigung',
