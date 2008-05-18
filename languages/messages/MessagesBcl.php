@@ -315,7 +315,7 @@ $messages = array(
 'nosuchspecialpage' => 'Mayong siring na espesyal na páhina',
 'nospecialpagetext' => "<big>'''Dai pwede an pahinang espesyal na pinilî mo.'''</big>
 
-Pwede mong mahiling an lista nin mga marhay na pahina sa [[Special:Specialpages]].",
+Pwede mong mahiling an lista nin mga marhay na pahina sa [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Salâ',

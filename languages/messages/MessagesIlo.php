@@ -17,8 +17,9 @@ $messages = array(
 'tog-justify'              => 'Limpiaen dagiti parapo',
 'tog-hideminor'            => 'Ilemmeng dagiti babasit a panagedit iti napalpalabas a panagbaliw',
 'tog-extendwatchlist'      => 'Ikalawa ti listaan ti bambantayan tapno maipakita amin a maiyannatup a panagbaliw',
-'tog-showtoolbar'          => 'Ipakita ti edit toolbar (JavaScript)',
-'tog-editondblclick'       => 'Editen dagiti pampanid no idobole nga iklik (JavaScript)',
+'tog-showtoolbar'          => 'Ipakita ti toolbar ti panagedit (JavaScript)',
+'tog-editondblclick'       => 'Editen dagiti pampanid no idoble nga iklik (JavaScript)',
+'tog-editsection'          => 'Pagmayaten ti panagedit iti benneg babaen ti [edit] a panilpo',
 'tog-rememberpassword'     => 'Laglagipen ti iseserrekko kadaytoy a kompiuter',
 'tog-watchcreations'       => 'Inayon dagiti inaramidko a pampanid iti listaan ti bambantayak',
 'tog-watchdefault'         => 'Inayon dagiti ed-editek a pampanid iti listaan ti bambantayak',
@@ -31,7 +32,10 @@ $messages = array(
 'tog-enotifwatchlistpages' => 'Emailandak no adda mabaliwan a panid iti listaan dagiti bambantayak a pampanid',
 'tog-enotifusertalkpages'  => 'Emailandak no mabaliwan ti panidko a tungtongan ti agar-aramat',
 'tog-enotifminoredits'     => 'Emailandak met kadagiti minor edits ti pampanid',
+'tog-enotifrevealaddr'     => 'Iparang ti email addressko iti panangpalagip nga e-mails',
 'tog-shownumberswatching'  => 'Ipakita ti bilang dagiti agbambantay nga agar-aramat',
+'tog-uselivepreview'       => 'Usaren ti live a preview (JavaScript) (Experimental)',
+'tog-forceeditsummary'     => 'Pakaammuannak no serkek ti blanko a pakabuklan ti edit',
 'tog-watchlisthideown'     => 'Ilemmeng dagiti panangbaliwko iti listaan ti bambantayan',
 'tog-watchlisthidebots'    => 'Ilemmeng dagiti bot edits iti listaan ti bambantayan',
 'tog-watchlisthideminor'   => 'Ilemmeng dagiti minor nga edits manipud iti listaan dagiti bambantayan',
@@ -109,6 +113,7 @@ $messages = array(
 'category-empty'                 => "''Daytoy a categoria ket awanan pampanid wenno media iti agdama.''",
 'hidden-categories'              => '{{PLURAL:$1|Nakalemmeng a categoria|Nakalemmeng a categorias}}',
 'hidden-category-category'       => 'Nailemmeng a categorias', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Daytoy a categoria ket addaan laeng iti sumaganad a subcategoria.|Daytoy a categoria ket addaan iti sumaganad a {{PLURAL:$1|subcategoria|$1 subcategorias}}, manipud iti dagup a $2.}}',
 'category-subcat-count-limited'  => 'Daytoy a categoria ket addaan kadagiti sumaganad a {{PLURAL:$1|subcategoria|$1 subcategorias}}.',
 'category-article-count-limited' => 'Ti sumaganad a {{PLURAL:$1|panid ket|$1 pampanid ket}} adda iti agdama a categoria.',
 'category-file-count-limited'    => 'Ti sumaganad a {{PLURAL:$1|file|$1 files}} ket adda iti agdama a categoria.',
@@ -186,6 +191,7 @@ $messages = array(
 'redirectedfrom'    => '(Naibaw-ing manipud iti $1)',
 'redirectpagesub'   => 'Ibaw-ing ti panid',
 'lastmodifiedat'    => 'Naudi a nabaliwan daytoy a panid idi $2, $1', # $1 date, $2 time
+'viewcount'         => 'Naaksesen daytoy a panid iti {{PLURAL:$1|naminsan|$1 a daras}}.',
 'protectedpage'     => 'Nasaluadan a panid',
 'jumpto'            => 'Mapan iti:',
 'jumptonavigation'  => 'pagdaliasatan',
@@ -206,8 +212,8 @@ $messages = array(
 'edithelp'             => 'Tulong iti panagedit',
 'edithelppage'         => 'Help:Panagedit',
 'faq'                  => 'FAQ',
-'faqpage'              => 'Projecto:FAQ',
-'helppage'             => 'Tulong:Dagiti Linaon',
+'faqpage'              => 'Project:FAQ',
+'helppage'             => 'Help:Dagiti Linaon',
 'mainpage'             => 'Umuna a Panid',
 'mainpage-description' => 'Umuna a Panid',
 'policy-url'           => 'Project:Annuroten',
@@ -271,6 +277,8 @@ $messages = array(
 # General errors
 'error'                => 'Biddut',
 'databaseerror'        => 'Biddut iti database',
+'noconnect'            => 'Pasensiakan! Adda sumagmamano a teknikal a pakarikutan ti wiki ita, ket saan a makontak ti server ti database.<br />
+$1',
 'nodb'                 => 'Di mapili ti database a $1',
 'cachederror'          => 'Ti sumaganad ket nakalebben a kopia ti nakiddaw a panid, ket mabalin a saan a napabaro daytoy.',
 'laggedslavemode'      => 'Ballaag: Mabalin a ti panid ket awanan laon a naudi a panagpabaro.',
@@ -289,88 +297,103 @@ $messages = array(
 'badtitle'             => 'Saan a mayat a titulo',
 'badtitletext'         => 'Ti nakiddaw a titulo ti panid ket saan a mabalin, blanko, wenno saan nga umno a naislpo a titulo nga inter-language wenno inter-wiki.
 Mabalin nga addaan iti maysa wenno ad-adu pay a karakter a saan a mabalin nga usaren iti titulo.',
+'perfcached'           => 'Ti sumaganad a data ket naka-cached ket mabalin a saan a napabaro.',
+'perfcachedts'         => 'Ti sumaganad a data ken naka-cached, ken naudi a napabaro idi $1.',
+'wrong_wfQuery_params' => 'Kammali a parameters iti wfQuery()<br />
+Function: $1<br />
+Query: $2',
 'viewsource'           => 'Kitaen ti source',
 'viewsourcefor'        => 'para iti $1',
 'protectedpagetext'    => 'Narikpan daytoy a panid tapno maliklikan ti panangbaliw',
 'viewsourcetext'       => 'Mabalinmo a kitaen ken kopiaen ti taudan daytoy a panid:',
+'editinginterface'     => "'''Ballaag:''' Ed-editem ti maysa a panid a maar-aramat a mangted iti texto ti interface para iti software.
+Dagiti panangbalbaliw iti daytoy a panid ket apektaranna ti langa ti user interface ti sabsabali nga agar-aramat.
+Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatewiki.net/wiki/Main_Page?setlang=ilo Betawiki], ti MediaWiki localisation project.",
+'sqlhidden'            => '(nakalemmeng ti SQL query)',
 'namespaceprotected'   => "Awananka iti pammalubos a mangbaliw kadagiti panid iti '''$1''' a namespace.",
 'ns-specialprotected'  => 'Saan a mabalin  a baliwan dagiti espesial a panid.',
+'titleprotected'       => "Sinaluadan daytoy a titulo manipud iti pannakaparnuay ni [[User:$1|$1]].
+Ti naited a rason ket ''$2''.",
 
 # Login and logout pages
-'logouttitle'               => 'Rummuar ti agar-aramat',
-'logouttext'                => "<strong>Nakaruarkan.</strong>
+'logouttitle'                => 'Rummuar ti agar-aramat',
+'logouttext'                 => "<strong>Nakaruarkan.</strong>
 
 Mabalinmo nga ituloy ti agaramat iti {{SITENAME}} a kas di am-ammo, wenno makastrek manen a kas iti sigud wenno kas sabali nga agar-aramat.
 Laglagipem a sumagmamano a pampanid ti mabalin a nakaparang latta a kasla nakaloginka pay laeng, agingga a dim' pay dalusan ti cache ti browsermo.",
-'welcomecreation'           => '== Dumanonka, $1! ==
+'welcomecreation'            => '== Dumanonka, $1! ==
 Naparnuayen ti accountmo.
 Dimo liplipatan a sukatan dagiti preferenciam iti {{SITENAME}}.',
-'loginpagetitle'            => 'Pagserkan ti agar-aramat',
-'yourname'                  => 'Nagan:',
-'yourpassword'              => 'Pasesbalikas:',
-'yourpasswordagain'         => 'Uliten ti pasesbalikas',
-'remembermypassword'        => 'Laglagipennak',
-'yourdomainname'            => 'Ti bukodmo a domain:',
-'loginproblem'              => '<b>Adda a parikut iti panag-loginmo.</b><br />Padasem manen!',
-'login'                     => 'Sumrek',
-'nav-login-createaccount'   => 'Mangaramid iti account wenno ag-login',
-'loginprompt'               => 'Nasken a naka-enable dagiti cookies ti browser tapno maka-login iti {{SITENAME}}.',
-'userlogin'                 => 'Mangaramid iti account wenno ag-login',
-'logout'                    => 'Rummuar',
-'userlogout'                => 'Rummuar',
-'notloggedin'               => 'Saan a naka-logged in',
-'nologin'                   => 'Awan pay ti pagserrekmo? $1.',
-'nologinlink'               => 'Mangaramid iti account',
-'createaccount'             => 'Mangaramid iti baro nga account',
-'gotaccount'                => 'Addaanka kadin iti account? $1.',
-'gotaccountlink'            => 'Sumrek',
-'createaccountmail'         => 'babaen ti e-mail',
-'badretype'                 => 'Saan nga agparis dagiti impanmo a pasesbalikas.',
-'userexists'                => 'Maus-usaren ti nagan nga impanmo.
+'loginpagetitle'             => 'Pagserkan ti agar-aramat',
+'yourname'                   => 'Nagan:',
+'yourpassword'               => 'Pasesbalikas:',
+'yourpasswordagain'          => 'Uliten ti pasesbalikas',
+'remembermypassword'         => 'Laglagipennak',
+'yourdomainname'             => 'Ti bukodmo a domain:',
+'loginproblem'               => '<b>Adda a parikut iti panag-loginmo.</b><br />Padasem manen!',
+'login'                      => 'Sumrek',
+'nav-login-createaccount'    => 'Mangaramid iti account wenno ag-login',
+'loginprompt'                => 'Nasken a naka-enable dagiti cookies ti browser tapno maka-login iti {{SITENAME}}.',
+'userlogin'                  => 'Mangaramid iti account wenno ag-login',
+'logout'                     => 'Rummuar',
+'userlogout'                 => 'Rummuar',
+'notloggedin'                => 'Saan a naka-logged in',
+'nologin'                    => 'Awan pay ti pagserrekmo? $1.',
+'nologinlink'                => 'Mangaramid iti account',
+'createaccount'              => 'Mangaramid iti baro nga account',
+'gotaccount'                 => 'Addaanka kadin iti account? $1.',
+'gotaccountlink'             => 'Sumrek',
+'createaccountmail'          => 'babaen ti e-mail',
+'badretype'                  => 'Saan nga agparis dagiti impanmo a pasesbalikas.',
+'userexists'                 => 'Maus-usaren ti nagan nga impanmo.
 Pangngaasim ta mangpilika sabali a nagan.',
-'youremail'                 => 'E-mail:',
-'username'                  => 'Nagan ti agar-aramat:',
-'uid'                       => 'ID ti agar-aramat:',
-'yourrealname'              => 'Pudno a nagan:',
-'yourlanguage'              => 'Pagsasao:',
-'yournick'                  => 'Birngas:',
-'badsiglength'              => 'Atiddog unay ti palayawmo.
+'youremail'                  => 'E-mail:',
+'username'                   => 'Nagan ti agar-aramat:',
+'uid'                        => 'ID ti agar-aramat:',
+'yourrealname'               => 'Pudno a nagan:',
+'yourlanguage'               => 'Pagsasao:',
+'yournick'                   => 'Birngas:',
+'badsiglength'               => 'Atiddog unay ti palayawmo.
 Nasken a nababbaba ngem $1 a karakter.',
-'email'                     => 'E-mail',
-'prefs-help-realname'       => 'Saan a nasken ti pudno a nagan.
+'email'                      => 'E-mail',
+'prefs-help-realname'        => 'Saan a nasken ti pudno a nagan.
 Ngem no kayatmo nga ited, maaramat daytoy kas pammadayaw ken pangpatalged iti obram.',
-'loginerror'                => 'Biddut ti login',
-'prefs-help-email-required' => 'Masapul ti email address.',
-'noname'                    => 'Saanka a nangipan iti mabalin a nagan ti agar-aramat.',
-'loginsuccesstitle'         => 'Balligi ti panagserrek',
-'loginsuccess'              => "'''Nakastrekkan iti {{SITENAME}} a kas ni \"\$1\".'''",
-'nosuchuser'                => 'Awan ti agar-aramat nga agnagan iti "$1". Kitaem ti espelingmo, wenno mangaramidka laengen iti baro nga account.',
-'nosuchusershort'           => 'Awan ti agar-aramat nga addaan iti nagan a "<nowiki>$1</nowiki>".
+'loginerror'                 => 'Biddut ti login',
+'prefs-help-email-required'  => 'Masapul ti email address.',
+'noname'                     => 'Saanka a nangipan iti mabalin a nagan ti agar-aramat.',
+'loginsuccesstitle'          => 'Balligi ti panagserrek',
+'loginsuccess'               => "'''Nakastrekkan iti {{SITENAME}} a kas ni \"\$1\".'''",
+'nosuchuser'                 => 'Awan ti agar-aramat nga agnagan iti "$1". Kitaem ti espelingmo, wenno mangaramidka laengen iti baro nga account.',
+'nosuchusershort'            => 'Awan ti agar-aramat nga addaan iti nagan a "<nowiki>$1</nowiki>".
 Kitaem ti espelingmo.',
-'nouserspecified'           => 'Nasken a mangipanka iti nagan.',
-'wrongpassword'             => 'Biddut (wenno awan) ti password nga impanmo. Padasem koma manen, apo.',
-'wrongpasswordempty'        => 'Blanko ti impanmo a pasesbalikas. Padasem koma manen.',
-'passwordtooshort'          => 'Ababa unay ti impanmo a pasesbalikas. Masapul nga addaan iti uray la koma $1 a karkarakter.',
-'mailmypassword'            => 'Emailandak iti baro a pasesbalikas',
-'passwordremindertitle'     => 'Baro a temporario a pasesbalikas para iti {{SITENAME}}',
-'passwordremindertext'      => 'Adda nagkiddaw (mabalin a sika met laeng, manipud iti IP address a $1)
+'nouserspecified'            => 'Nasken a mangipanka iti nagan.',
+'wrongpassword'              => 'Biddut (wenno awan) ti password nga impanmo. Padasem koma manen, apo.',
+'wrongpasswordempty'         => 'Blanko ti impanmo a pasesbalikas. Padasem koma manen.',
+'passwordtooshort'           => 'Ababa unay ti impanmo a pasesbalikas. Masapul nga addaan iti uray la koma $1 a karkarakter.',
+'mailmypassword'             => 'Emailandak iti baro a pasesbalikas',
+'passwordremindertitle'      => 'Baro a temporario a pasesbalikas para iti {{SITENAME}}',
+'passwordremindertext'       => 'Adda nagkiddaw (mabalin a sika met laeng, manipud iti IP address a $1)
 nga ipatulodmi kenka ti baro a pasesbalikas para iti {{SITENAME}} ($4).
 Ti pasesbalikas para iti agar-aramat a ni "$2" ket "$3" itan.
 Masapul nga ag-loginka itan ket suktam ti pasesbalikasmo.
 
 No sabali ti nagkiddaw wenno no malagipmo pay ti pasesbalikasmo ket dimon kayat a suktan daytoy, mabalin a dimo lattan ikankano daytoy a mensahe ket itultuloymo latta nga usaren ti daan a pasesbalikasmo.',
-'noemail'                   => 'Awan ti email address a nakarekord iti agar-aramat a ni "$1".',
-'passwordsent'              => 'Naipatulod ti baro a pasesbalikas iti email address a nairehistro ken "$1".
+'noemail'                    => 'Awan ti email address a nakarekord iti agar-aramat a ni "$1".',
+'passwordsent'               => 'Naipatulod ti baro a pasesbalikas iti email address a nairehistro ken "$1".
 Ag-loginka koma manen kalpasan a maawatmo daytoy a baro a pasesbalikas.',
-'eauthentsent'              => 'Naipatuloden ti pammasingked nga email iti naited nga email address.
+'eauthentsent'               => 'Naipatuloden ti pammasingked nga email iti naited nga email address.
 Sakbay nga ania man nga email ti maipatulod iti account, masapul a surotem dagiti instruksion iti email, tapno mapasingkedan a ti account ket talaga a kukuam.',
-'mailerror'                 => 'Biddut iti panagipatulod iti email: $1',
-'emailconfirmlink'          => 'Kompirmaem ti e-mail addressmo',
-'accountcreated'            => 'Naaramiden ti account',
-'accountcreatedtext'        => 'Naaramiden ti account a pagaramat ni $1.',
-'loginlanguagelabel'        => 'Lengguahe: $1',
+'mailerror'                  => 'Biddut iti panagipatulod iti email: $1',
+'acct_creation_throttle_hit' => 'Pasensiakan, nakaaramidkan iti $1 nga accounts.
+Saankan a makaaramid pay.',
+'emailauthenticated'         => 'Napasingkedan ti email addressmo iti $1.',
+'emailconfirmlink'           => 'Kompirmaem ti e-mail addressmo',
+'accountcreated'             => 'Naaramiden ti account',
+'accountcreatedtext'         => 'Naaramiden ti account a pagaramat ni $1.',
+'loginlanguagelabel'         => 'Lengguahe: $1',
 
 # Password reset dialog
+'resetpass'           => 'Sukatan ti pasesbalikas ti account',
 'resetpass_header'    => 'Sukatan ti pasesbalikas',
 'resetpass_success'   => 'Sibaballigi a nabaliwan ti pasesbalikasmo! Sumsumrekkan...',
 'resetpass_forbidden' => 'Saan a mabalin a baliwan dagiti pasesbalikas iti {{SITENAME}}',

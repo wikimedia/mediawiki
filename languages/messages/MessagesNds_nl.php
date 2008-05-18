@@ -539,7 +539,7 @@ $messages = array(
 'nosuchspecialpage' => 'Der besteet gien speciale pagina mit disse naam',
 'nospecialpagetext' => "<big>'''Disse speciale pagina wonnen neet herkend deur de pregrammetuur.'''</big>
 
-Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:Specialpages|Speciaal:Speciale pagina’s]].",
+Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Foutmelding',

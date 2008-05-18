@@ -333,7 +333,7 @@ reconocida pola wiki",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
 'nospecialpagetext' => "<big>'''Pidisti una páxina especial non válida.'''</big>
 
-Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages]].",
+Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',

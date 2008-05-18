@@ -318,7 +318,7 @@ $messages = array(
 'nosuchspecialpage' => 'Pa gen paj especial konsa',
 'nospecialpagetext' => "<big>'''Paj espesial ou demande-a envalid.'''</big>
 
-Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages]].",
+Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'           => 'Erè',

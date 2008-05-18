@@ -352,7 +352,7 @@ $messages = array(
 'nosuchspecialpage' => 'Чунин саҳифаи вижа вуҷуд надорад',
 'nospecialpagetext' => "<big>'''Шумо саҳифаи вижаеро дархост кардаед, ки нодуруст аст.'''</big>
 
-Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:Specialpages]] нигаред.",
+Феҳристи саҳифаҳои вижаи дурустро метавонед дар инҷо [[Special:Specialpages|{{int:specialpages}}]] нигаред.",
 
 # General errors
 'error'                => 'Иштибоҳ',

@@ -192,7 +192,7 @@ Mitaky version $1-n'i MediaWiki",
 'nosuchactiontext'  => "
 Ny asa voafaritra tao amin'ny URL dia tsy fantatr'ity wiki ity",
 'nosuchspecialpage' => 'Tsy misy io pejy manokana io',
-'nospecialpagetext' => 'Nangataka pejy manokana tsy misy ianao, azonao jerena eto [[Special:Specialpages]] ny lisitry ny pejy manokana.',
+'nospecialpagetext' => 'Nangataka pejy manokana tsy misy ianao, azonao jerena eto [[Special:Specialpages|{{int:specialpages}}]] ny lisitry ny pejy manokana.',
 
 # General errors
 'error'           => 'Tsy mety',

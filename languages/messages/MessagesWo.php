@@ -290,7 +290,9 @@ $messages = array(
 'nosuchaction'      => 'Jëf ji xameesu ko',
 'nosuchactiontext'  => 'Jëf ji ñu biral ci bii URL wiki bi xammeewu ko.',
 'nosuchspecialpage' => 'Xëtu jagleel wu amul',
-'nospecialpagetext' => 'Da nga laaj aw xëtu jagleel wu wiki bi xamul. Ab limu xëti jagleel yépp, ma nees na koo gis ci [[{{ns:special}}:Specialpages]]',
+'nospecialpagetext' => "<big>'''Da nga laaj aw xëtu jagleel wu wiki bi xamul.'''</big>
+
+Ab limu xëti jagleel yépp, ma nees na koo gis ci [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Njuumte',

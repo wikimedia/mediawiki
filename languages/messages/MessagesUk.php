@@ -500,7 +500,7 @@ $messages = array(
 'nosuchspecialpage' => 'Такої спеціальної сторінки нема',
 'nospecialpagetext' => "<big>'''Така спеціальна сторінка не існує.'''</big>
 
-Див. [[{{ns:special}}:Specialpages|список спеціальних сторінок]].",
+Див. [[Special:Specialpages|список спеціальних сторінок]].",
 
 # General errors
 'error'                => 'Помилка',
@@ -1198,7 +1198,7 @@ $3 зазначив наступну причину: ''$2''",
 # User rights log
 'rightslog'      => 'Журнал прав користувача',
 'rightslogtext'  => 'Це протокол зміни прав користувачів.',
-'rightslogentry' => 'Користувачу $1 змінено права доступу: з $2 на $3',
+'rightslogentry' => 'змінив права доступу для користувача $1 з $2 на $3',
 'rightsnone'     => '(нема)',
 
 # Recent changes

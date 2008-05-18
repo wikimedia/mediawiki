@@ -348,7 +348,7 @@ $messages = array(
 'nosuchspecialpage' => 'Bunday arnawlı bet joq',
 'nospecialpagetext' => "<big>'''Siz sorag'an bunday arnawlı bet joq.'''</big>
 
-Arnawlı betlerdin' dizimin [[{{ns:special}}:Specialpages]] betinen tabıwın'ızg'a boladı.",
+Arnawlı betlerdin' dizimin [[Special:Specialpages|{{int:specialpages}}]] betinen tabıwın'ızg'a boladı.",
 
 # General errors
 'error'                => "Qa'telik",

@@ -282,7 +282,7 @@ $messages = array(
 'nosuchspecialpage' => 'Nae sic byordinar page',
 'nospecialpagetext' => "<big>'''Ye hae requestit an invalid byordinar page.'''</big>
 
-A leet o valid byordinar pages can be funnd at [[Special:Specialpages]].",
+A leet o valid byordinar pages can be funnd at [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',

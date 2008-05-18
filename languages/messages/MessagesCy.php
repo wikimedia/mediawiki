@@ -219,9 +219,11 @@ $messages = array(
 # Categories related messages
 'categories'                     => 'Categorïau',
 'categoriespagetext'             => "Mae'r categorïau isod yn y wici.",
+'special-categories-sort-count'  => 'trefnu yn ôl nifer',
+'special-categories-sort-abc'    => 'trefnu yn ôl yr wyddor',
 'pagecategories'                 => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
 'category_header'                => 'Erthyglau yn y categori "$1"',
-'subcategories'                  => 'Is-categorïau',
+'subcategories'                  => 'Is-gategorïau',
 'category-media-header'          => "Cyfryngau yn y categori '$1'",
 'category-empty'                 => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 'hidden-categories'              => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
@@ -293,7 +295,7 @@ $messages = array(
 'newpage'           => 'Tudalen newydd',
 'talkpage'          => "Sgwrsio amdano'r tudalen hon",
 'talkpagelinktext'  => 'Sgwrs',
-'specialpage'       => 'Tudalen arbennig',
+'specialpage'       => 'Tudalen Arbennig',
 'personaltools'     => 'Offer personol',
 'postcomment'       => 'Postiwch sylw',
 'articlepage'       => 'Dangos tudalen yn y prif barth',
@@ -573,7 +575,7 @@ Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwne
 
 # Edit pages
 'summary'                   => 'Crynodeb',
-'subject'                   => 'Testun/pennawd',
+'subject'                   => 'Pwnc/pennawd',
 'minoredit'                 => 'Golygiad bychan yw hwn',
 'watchthis'                 => 'Gwyliwch erthygl hon',
 'savearticle'               => "Cadw'r dudalen",
@@ -661,7 +663,7 @@ Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.
 Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes.
 '''Dim ond''' y testun yn yr ardal testun <b>uchaf</b> fydd yn cael ei roi ar gadw pan wasgwch y botwm \"Cadw'r dudalen\".",
 'yourtext'                  => 'Eich testun',
-'storedversion'             => 'Fersiwn wedi cadw',
+'storedversion'             => "Fersiwn o'r storfa",
 'nonunicodebrowser'         => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
 'editingold'                => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon.<br />Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli!</strong>",
 'yourdiff'                  => 'Gwahaniaethau',
@@ -875,6 +877,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'resultsperpage'           => 'Cyfradd taro fesul tudalen:',
 'contextlines'             => "Nifer y llinellau i'w dangos ar gyfer pob hit:",
 'contextchars'             => 'Characters of context per line',
+'stub-threshold'           => 'Trothwy ar gyfer fformatio <a href="#" class="stub">cyswllt eginyn</a> (beitiau):',
 'recentchangesdays'        => "Nifer y diwrnodau i'w dangos yn 'newidiadau diweddar':",
 'recentchangescount'       => "Nifer y golygiadau i'w dangos yn newidiadau diweddar:",
 'savedprefs'               => 'Mae eich dewisiadau wedi cael eu cadw.',
@@ -1015,7 +1018,7 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'fileexists-forbidden'        => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; ewch nôl ac uwchlwythwch y ffeil o dan enw newydd.
 [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Mae ffeil gyda'r enw hwn eisoes yn bodoli yn y storfa ffeiliau cyfrannol; ewch nôl ac uwchlwythwch y ffeil o dan enw newydd. [[Image:$1|thumb|center|$1]]",
-'successfulupload'            => 'Llwyth i fynu yn llwyddiannus',
+'successfulupload'            => 'Wedi llwyddo uwchlwytho',
 'uploadwarning'               => 'Rhybudd llwytho i fynu',
 'savefile'                    => "Cadw'r ffeil",
 'uploadedimage'               => '"[[$1]]" wedi llwytho',
@@ -1119,10 +1122,10 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'randomredirect-nopages' => 'Does dim tudalennau ailgyfeirio yn y parth hwn.',
 
 # Statistics
-'statistics'    => 'Ystadegau',
-'sitestats'     => 'Ystadegau {{SITENAME}}',
-'userstats'     => 'Ystadegau defnyddwyr',
-'sitestatstext' => "Mae '''\$1''' {{PLURAL:\$1|tudalen i gyd|tudalen|dudalen i gyd|tudalen i gyd|thudalen i gyd|o dudalennau i gyd}} ar y databas.
+'statistics'             => 'Ystadegau',
+'sitestats'              => 'Ystadegau {{SITENAME}}',
+'userstats'              => 'Ystadegau defnyddwyr',
+'sitestatstext'          => "Mae '''\$1''' {{PLURAL:\$1|tudalen i gyd|tudalen|dudalen i gyd|tudalen i gyd|thudalen i gyd|o dudalennau i gyd}} ar y databas.
 Mae hyn yn cynnwys tudalennau \"sgwrs\", tudalennau ynglŷn â {{SITENAME}}, egin erthyglau cwta, ailgyfeiriadau, a thudalennau eraill nad ydynt yn erthyglau go iawn. Ag eithrio'r rhain, mae'n debyg bod yna '''\$2''' {{PLURAL:\$2|erthygl|erthygl|erthygl|erthygl|erthygl|erthygl}} yn y wici.
 
 {{PLURAL:\$1|Ni chafodd unrhyw ffeil ei|Cafodd '''\$8''' ffeil ei|Cafodd '''\$8''' ffeil eu|Cafodd '''\$8''' ffeil eu|Cafodd '''\$8''' ffeil eu|Cafodd '''\$8''' ffeil eu}} huwchlwytho.
@@ -1131,8 +1134,9 @@ Ers sefydlu'r meddalwedd {{PLURAL:\$3|ni chafwyd unrhyw|cafwyd '''\$3'''|cafwyd 
 Ar gyfartaledd felly, bu '''\$5''' golygiad i bob tudalen, a '''\$6''' ymweliad â thudalen ar gyfer pob golygiad.
 
 Hyd y [http://meta.wikimedia.org/wiki/Help:Job_queue rhes dasgau] yw '''\$7'''.",
-'userstatstext' => "Mae '''$1''' {{PLURAL:$1|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|ddefnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]}} ar y cofrestr defnyddwyr.
+'userstatstext'          => "Mae '''$1''' {{PLURAL:$1|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|ddefnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]|[[Special:Listusers|defnyddiwr]]}} ar y cofrestr defnyddwyr.
 Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
+'statistics-mostpopular' => "Tudalennau sy'n derbyn ymweliad amlaf",
 
 'disambiguations'      => 'Tudalennau gwahaniaethu',
 'disambiguations-text' => "Mae'r tudalennau canlynol yn cysylltu â thudalennau gwahaniaethu. Yn hytrach dylent gysylltu'n syth â'r erthygl briodol.<br />Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
@@ -1158,7 +1162,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'nmembers'                => '$1 {{PLURAL:$1|aelod|aelod|aelod|aelod|aelod|aelod}}',
 'nrevisions'              => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'nviews'                  => '$1 {{PLURAL:$1|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad}}',
-'specialpage-empty'       => "Mae'r dudalen hon yn wag.",
+'specialpage-empty'       => "Ni chafwyd canlyniadau i'w hadrodd.",
 'lonelypages'             => 'Erthyglau heb gysylltiadau iddynt',
 'lonelypagestext'         => 'Nid oes cysylltiad yn arwain at y tudalennau canlynol oddi wrth unrhyw dudalen arall yn {{SITENAME}}.',
 'uncategorizedpages'      => 'Tudalennau heb gategori',
@@ -1189,7 +1193,7 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'protectedtitlesempty'    => "Ar hyn o bryd nid oes unrhyw deitlau wedi eu diogelu a'r paramedrau hyn.",
 'listusers'               => 'Rhestr defnyddwyr',
 'specialpages'            => 'Tudalennau arbennig',
-'spheading'               => 'Erthyglau arbennig',
+'spheading'               => 'Tudalennau arbennig ar gyfer pob defnyddiwr',
 'restrictedpheading'      => 'Tudalennau arbennig cyfyngedig',
 'newpages'                => 'Erthyglau newydd',
 'newpages-username'       => 'Enw defnyddiwr:',
@@ -1743,10 +1747,8 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 
 # Spam protection
 'spamprotectiontitle' => 'Hidlydd amddiffyn rhag sbam',
-'spamprotectiontext'  => "Mae'r dudalen wedi methu cadw, yn fwy na thebyg oherwydd bod cysylltiad allanol ar y dudalen wedi'i flocio gan yr hidlydd sbam.
-
-Edrychwch drwy'r canlynol am batrymau sy'n cael eu blocio:",
-'spamprotectionmatch' => "Dyma'r hyn gychwynnodd ein hidlydd amddiffyn rhag sbam: $1",
+'spamprotectiontext'  => 'Ataliwyd y dudalen rhag ei rhoi ar gadw gan yr hidlydd sbam, yn fwy na thebyg oherwydd bod cysylltiad allanol ar y dudalen.',
+'spamprotectionmatch' => "Dyma'r testun gyneuodd ein hidlydd amddiffyn rhag sbam: $1",
 'spambot_username'    => 'Teclyn clirio sbam MediaWiki',
 'spam_reverting'      => "Yn troi nôl i'r diwygiad diweddaraf sydd ddim yn cynnwys cysylltiadau i $1",
 'spam_blanking'       => 'Roedd cysylltiadau i $1 gan bob golygiad, yn blancio',
@@ -1947,11 +1949,34 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'watchlisttools-raw'  => "Golygu'r rhestr gwylio syml",
 
 # Special:Version
-'version'              => 'Fersiwn', # Not used as normal message but as header for the special page itself
-'version-specialpages' => 'Tudalennau arbennig',
+'version'                  => 'Fersiwn', # Not used as normal message but as header for the special page itself
+'version-extensions'       => 'Estyniadau gosodedig',
+'version-specialpages'     => 'Tudalennau arbennig',
+'version-variables'        => 'Newidynnau',
+'version-other'            => 'Arall',
+'version-hooks'            => 'Bachau',
+'version-version'          => 'Fersiwn',
+'version-license'          => 'Trwydded',
+'version-software-version' => 'Fersiwn',
+
+# Special:Filepath
+'filepath'         => 'Llwybr y ffeil',
+'filepath-page'    => 'Ffeil:',
+'filepath-submit'  => 'Llwybr',
+'filepath-summary' => 'Mae\'r dudalen arbennig hon yn adrodd llwybr ffeil yn gyfan.
+Dangosir delweddau ar eu llawn maint, dechreuir ffeiliau o fathau eraill yn uniongyrchol gan y rhaglen cysylltiedig.
+
+Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:image}}:".',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Chwilio am ffeiliau dyblyg',
+'fileduplicatesearch-summary'  => 'Chwilier am ffeiliau dyblyg ar sail ei werth stwnsh.
+
+Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Chwilio am ddyblygeb',
+'fileduplicatesearch-filename' => "Enw'r ffeil:",
 'fileduplicatesearch-submit'   => 'Chwilier',
+'fileduplicatesearch-info'     => '$1 × $2 picsel<br />Maint y ffeil: $3<br />math MIME: $4',
 'fileduplicatesearch-result-1' => 'Nid oes yr un ffeil i gael sydd yn union yr un fath â\'r ffeil "$1".',
 'fileduplicatesearch-result-n' => '{{PLURAL:$2|Nid oes yr un ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|Mae $2 ffeil|}} i gael sydd yn union yr un fath â\'r ffeil "$1".',
 

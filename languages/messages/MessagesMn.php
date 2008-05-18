@@ -295,7 +295,7 @@ $messages = array(
 'nosuchspecialpage' => 'Тийм тусгай хуудас байхгүй байна',
 'nospecialpagetext' => "<big>'''Та хүчингүй тусгай хуудас руу орох гэсэн үйлдлийг хийлээ.'''</big>
 
-Тусгай хуудсуудын жагсаалтыг [[Special:Specialpages]] хуудаснаас харна уу.",
+Тусгай хуудсуудын жагсаалтыг [[Special:Specialpages|{{int:specialpages}}]] хуудаснаас харна уу.",
 
 # General errors
 'error'                => 'Aлдаа',

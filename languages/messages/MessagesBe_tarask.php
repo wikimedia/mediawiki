@@ -516,7 +516,7 @@ $messages = array(
 'nosuchspecialpage' => 'Такой спэцыяльнай старонкі не існуе',
 'nospecialpagetext' => "<big>'''Вы зьвярнуліся на неіснуючую спэцыяльную старонку.'''</big>
 
-Сьпіс існуючых спэцыяльных старонак ёсьць на [[Special:Specialpages]].",
+Сьпіс існуючых спэцыяльных старонак ёсьць на [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Памылка',

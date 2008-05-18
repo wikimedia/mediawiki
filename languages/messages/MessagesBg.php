@@ -506,7 +506,7 @@ $messages = array(
 'nosuchaction'      => 'Няма такова действие',
 'nosuchactiontext'  => 'Действието, указано от мрежовия адрес, не се разпознава от системата.',
 'nosuchspecialpage' => 'Няма такава специална страница',
-'nospecialpagetext' => 'Отправихте заявка за невалидна [[{{ns:special}}:Specialpages|специална страница]].',
+'nospecialpagetext' => 'Отправихте заявка за невалидна [[Special:Specialpages|специална страница]].',
 
 # General errors
 'error'                => 'Грешка',

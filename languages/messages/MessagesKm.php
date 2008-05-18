@@ -411,7 +411,7 @@ $messages = array(
 'nosuchspecialpage' => 'មិនមានទំព័រពិសេសបែបនេះទេ',
 'nospecialpagetext' => "<big>'''អ្នកបានស្នើរក​ទំព័រពិសេសមួយ ដែលមិនត្រូវបាន​ទទួលស្គាល់​ដោយ វិគី។'''</big>
 
-បញ្ជី​នៃ​ទំព័រពិសេស​អាចត្រូវបាន​រកឃើញ​នៅ [[Special:Specialpages]]។",
+បញ្ជី​នៃ​ទំព័រពិសេស​អាចត្រូវបាន​រកឃើញ​នៅ [[Special:Specialpages|{{int:specialpages}}]]។",
 
 # General errors
 'error'                => 'កំហុស',

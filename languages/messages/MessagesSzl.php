@@ -294,7 +294,9 @@ $messages = array(
 'nosuchaction'      => 'Ńy ma takiy uoperacje',
 'nosuchactiontext'  => 'Uoprogramowańe ńy rozpoznowo uoperacje takiy jak podano w URL',
 'nosuchspecialpage' => 'Ńy ma takiy extra zajty',
-'nospecialpagetext' => 'Uoprogramowańe ńy rozpoznaje takiy extra zajty. Lista extra zajtůw znejdzieš na [[{{ns:special}}:Specialpages]]',
+'nospecialpagetext' => "<big>'''Uoprogramowańe ńy rozpoznaje takiy extra zajty.'''</big>
+
+Lista extra zajtůw znejdzieš na [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Feler',

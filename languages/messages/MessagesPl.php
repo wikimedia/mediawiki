@@ -1240,7 +1240,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'recentchangeslinked-summary'  => "Poniżej znajduje się lista ostatnich zmian na stronach linkowanych z podanej strony (lub we wszystkich stronach należących do podanej kategorii).
 Strony z [[Special:Watchlist|listy obserwowanych]] są '''wytłuszczone'''.",
 'recentchangeslinked-page'     => 'Tytuł strony',
-'recentchangeslinked-to'       => 'Pokaż zmiany, nie na stronach linkowanych, a na stronach linkujących do podanej strony',
+'recentchangeslinked-to'       => 'Pokaż zmiany nie na stronach linkowanych, a na stronach linkujących do podanej strony',
 
 # Upload
 'upload'                      => 'Prześlij plik',

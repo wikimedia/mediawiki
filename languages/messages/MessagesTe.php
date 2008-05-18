@@ -344,7 +344,7 @@ $messages = array(
 'nosuchspecialpage' => 'అటువంటి ప్రత్యేక పేజీ లేదు',
 'nospecialpagetext' => "<big>'''మీరు అడిగిన ప్రత్యేకపేజీ సరైనది కాదు.'''</big>
 
-సరైన ప్రత్యేకపేజీల జాబితా [[Special:Specialpages]] వద్ద ఉంది.",
+సరైన ప్రత్యేకపేజీల జాబితా [[Special:Specialpages|{{int:specialpages}}]] వద్ద ఉంది.",
 
 # General errors
 'error'                => 'లోపం',

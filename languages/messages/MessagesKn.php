@@ -332,7 +332,7 @@ $messages = array(
 'nosuchspecialpage' => 'ಆ ಹೆಸರಿನ ವಿಶೇಷ ಪುಟ ಇಲ್ಲ',
 'nospecialpagetext' => "<big>'''ನೀವು ಅಸ್ಥಿತ್ವದಲ್ಲಿರದ ವಿಶೇಷ ಪುಟವನ್ನು ಕೋರಿರುವಿರಿ.'''</big>
 
-ಅಸ್ಥಿತ್ವದಲ್ಲಿರುವ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ [[Special:Specialpages]] ಅಲ್ಲಿದೆ.",
+ಅಸ್ಥಿತ್ವದಲ್ಲಿರುವ ವಿಶೇಷ ಪುಟಗಳ ಪಟ್ಟಿ [[Special:Specialpages|{{int:specialpages}}]] ಅಲ್ಲಿದೆ.",
 
 # General errors
 'error'                => 'ದೋಷ',

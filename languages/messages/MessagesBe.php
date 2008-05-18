@@ -342,7 +342,7 @@ $messages = array(
 'nosuchspecialpage' => 'Няма такой адмысловай старонкі',
 'nospecialpagetext' => "<big>'''Вы звярнуліся па няправільную адмысловую старонку.'''</big>
 
-Пералік правільных адмысловых старонак ёсць на [[{{ns:Special}}:Specialpages]].",
+Пералік правільных адмысловых старонак ёсць на [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Памылка',

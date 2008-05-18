@@ -274,7 +274,7 @@ $messages = array(
 'nosuchaction'      => 'Bölä bir işlem yok',
 'nosuchactiontext'  => 'URL tarafınnan tanınan işlem Viki tarafınnan kabledilmedi.',
 'nosuchspecialpage' => 'Bu adda bir maasus sayfa yok',
-'nospecialpagetext' => 'Bir maasus sayfaya girdiniz angısı bulunmêêr. Var olan hepsi maasus sayfaları yakışêr sizä görmää [[Special:Specialpages]] sayfasında.',
+'nospecialpagetext' => 'Bir maasus sayfaya girdiniz angısı bulunmêêr. Var olan hepsi maasus sayfaları yakışêr sizä görmää [[Special:Specialpages|{{int:specialpages}}]] sayfasında.',
 
 # General errors
 'error'              => 'Kusurluk',

@@ -320,7 +320,7 @@ $messages = array(
 'nosuchspecialpage' => 'სპეციალური გვერდი არ არსებობს',
 'nospecialpagetext' => "<big>'''თქვენ არასწორი სპეციალური გვერდი მოითხოვეთ.'''</big>
 
-სწორი სპეციალური გვერდების სია შეგიძლიათ იხილოთ აქ: [[Special:Specialpages]].",
+სწორი სპეციალური გვერდების სია შეგიძლიათ იხილოთ აქ: [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'შეცდომა',

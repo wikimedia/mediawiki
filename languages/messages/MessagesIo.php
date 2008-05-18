@@ -246,7 +246,7 @@ $messages = array(
 'nosuchspecialpage' => 'Ne existas tala specala pagino',
 'nospecialpagetext' => "<big>'''Vu demandis specala pagino qua ne existas.'''</big>
 
-A list of valid special pages can be found at [[Special:Specialpages]].<!-- please translate -->",
+A list of valid special pages can be found at [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'               => 'Eroro',
