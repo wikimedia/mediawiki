@@ -224,7 +224,7 @@ $magicWords = array(
 	'displaytitle'        => array( '1', 'عرض_العنوان', 'عرض_عنوان', 'DISPLAYTITLE' ),
 	'rawsuffix'           => array( '1', 'أر', 'آر', 'R' ),
 	'newsectionlink'      => array( '1', '__وصلة_قسم_جديد__', '__NEWSECTIONLINK__' ),
-	'currentversion'      => array( '1', 'إصدار_حالي', 'CURRENTVERSION' ),
+	'currentversion'      => array( '1', 'نسخة_حالية', 'CURRENTVERSION' ),
 	'urlencode'           => array( '0', 'كود_المسار:', 'كود_مسار:', 'URLENCODE:' ),
 	'anchorencode'        => array( '0', 'كود_الأنكور', 'كود_أنكور', 'ANCHORENCODE' ),
 	'currenttimestamp'    => array( '1', 'طابع_الوقت_الحالي', 'طابع_وقت_حالي', 'CURRENTTIMESTAMP' ),
@@ -323,7 +323,7 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'مصادر_كتاب' ),
 	'Categories'                => array( 'تصنيفات' ),
 	'Export'                    => array( 'تصدير' ),
-	'Version'                   => array( 'إصدار' ),
+	'Version'                   => array( 'نسخة' ),
 	'Allmessages'               => array( 'كل_الرسائل' ),
 	'Log'                       => array( 'سجل', 'سجلات' ),
 	'Blockip'                   => array( 'منع_أيبي' ),
@@ -591,7 +591,7 @@ $messages = array(
 'badaccess-groups' => 'الفعل الذي طلبته مقصور على المستخدمين في إحدى المجموعات $1.',
 
 'versionrequired'     => 'تلزم نسخة $1 من ميدياويكي',
-'versionrequiredtext' => 'يلزم الإصدار $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة الإصدار]]',
+'versionrequiredtext' => 'يلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]',
 
 'ok'                      => 'موافق',
 'retrievedfrom'           => 'تم الاسترجاع من "$1"',
