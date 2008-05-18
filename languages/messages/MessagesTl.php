@@ -267,7 +267,7 @@ ang gawang itinakda ng URL',
 'nosuchspecialpage' => 'Walang ganoong natatanging pahina',
 'nospecialpagetext' => "<big>'''Humiling ka ng isang natatanging pahina na walang saysay.'''</big>
 
-Isang tala ng mga natatanging pahina na may saysay ay matatagpuan sa [[Special:Specialpages]].",
+Isang tala ng mga natatanging pahina na may saysay ay matatagpuan sa [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Kamalian',

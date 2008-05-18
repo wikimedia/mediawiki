@@ -507,7 +507,7 @@ $messages = array(
 'nosuchspecialpage' => 'Page spéciale inexistante',
 'nospecialpagetext' => "<big>'''Vous avez demandé une page spéciale qui n’est pas reconnue par le wiki.'''</big>
 
-Une liste des pages spéciales peut être trouvée sur [[{{ns:special}}:Specialpages]].",
+Une liste des pages spéciales peut être trouvée sur [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erreur',

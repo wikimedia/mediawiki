@@ -225,7 +225,8 @@ $messages = array(
 # General errors
 'error'             => 'Errô',
 'databaseerror'     => 'Errô da a base de i dæti',
-'noconnect'         => "Scûsa! 'Sto scîto o g'ha di problemmi tecnixi e o no pêu connettâse co-a base.",
+'noconnect'         => "Scûsa! 'Sto scîto o g'ha di problemmi tecnixi e o no pêu connettâse co-a base.<br />
+$1",
 'cachederror'       => "Questa a l'è una copia da pagina ceh ti te çercoö, e a peu esê vegia.",
 'readonly'          => 'Database bloccòu',
 'internalerror'     => 'Errô interno',
@@ -262,7 +263,7 @@ O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe 
 'gotaccount'                 => "Ti g'hæ zà 'n conto d'accesso? $1.",
 'gotaccountlink'             => 'Intra',
 'badretype'                  => "E paròlle d'ordine che t'hæ scrîo son despægie.",
-'userexists'                 => "O nomme d'ûtente inserîo o l'è zà in ûso.<br/>
+'userexists'                 => "O nomme d'ûtente inserîo o l'è zà in ûso.<br />
 Pe piaxei prêuva a scellie 'n âtro.",
 'youremail'                  => 'Posta elettronega:',
 'username'                   => "Nomme d'ûtente",

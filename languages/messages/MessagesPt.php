@@ -435,7 +435,7 @@ $messages = array(
 'nosuchspecialpage' => 'Não existe a página especial requisitada',
 'nospecialpagetext' => "<big>'''Você requisitou uma página especial inválida.'''</big>
 
-Uma lista de páginas especiais válidas poderá ser encontrada em [[{{ns:special}}:Specialpages]].",
+Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erro',
@@ -1445,6 +1445,8 @@ O tamanho actual da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de taref
 'unusedcategoriestext'    => 'As seguintes categorias existem, embora nenhuma página ou categoria faça uso delas.',
 'notargettitle'           => 'Sem alvo',
 'notargettext'            => 'Você não especificou uma página alvo ou um utilizador para executar esta função.',
+'nopagetitle'             => 'Página alvo não existe',
+'nopagetext'              => 'A página alvo especificada não existe.',
 'pager-newer-n'           => '{{PLURAL:$1|1 recente|$1 recentes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 antiga|$1 antigas}}',
 'suppress'                => 'Oversight',

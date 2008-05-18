@@ -39,7 +39,7 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subliñar ligazóns:',
-'tog-highlightbroken'         => 'Dar formato ás ligazóns crebadas <a href="" class="new">deste xeito</a> (alternativa: así<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Darlles formato ás ligazóns crebadas <a href="" class="new">deste xeito</a> (alternativa: así<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Xustificar parágrafos',
 'tog-hideminor'               => 'Agochar as edicións pequenas na páxina de cambios recentes',
 'tog-extendwatchlist'         => 'Listaxe de vixilancia estendida',
@@ -1266,7 +1266,7 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 Isto inclúe as páxinas de \"conversa\", as páxinas acerca de {{SITENAME}}, as páxinas de \"contido mínimo\", as redireccións e outras que probabelmente non deberían considerarse como páxinas con contido.
 Excluíndo todo isto, hai {{PLURAL:\$2|'''1''' páxina que é|'''\$2''' páxinas que son}}, probabelmente, {{PLURAL:\$2|páxina|páxinas}} con contido lexítimo.
 
-'''\$8''' {{PLURAL:\$8|ficheiro foi cargado|ficheiros foron cargados}}.
+{{PLURAL:\$8|Foi cargado|Foron cargados}} '''\$8''' {{PLURAL:\$8|ficheiro|ficheiros}}.
 
 Houbo un total de '''\$3''' {{PLURAL:\$3|páxina vista|páxinas vistas}} e '''\$4''' {{PLURAL:\$4|edición|edicións}} desque se creou {{SITENAME}}.
 Isto resulta nunha media de '''\$5''' edicións por páxina e '''\$6''' visionados por edición.
@@ -1429,9 +1429,9 @@ Se quere máis información acerca dos dereitos individuais pode atopala [[{{Med
 'watchnologintext'     => 'Para modificar a súa listaxe de vixilancia debe estar [[Special:Userlogin|rexistrado]].',
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
-Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados aquí, e a páxina aparecerá en '''negra''' na [[Special:Recentchanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
+Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:Recentchanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
 'removedwatch'         => 'Quitado da listaxe de vixilancia',
-'removedwatchtext'     => 'A páxina "[[:$1]]" foi quitada da súa listaxe de vixilancia.',
+'removedwatchtext'     => 'A páxina "[[:$1]]" foi eliminada da súa listaxe de vixilancia.',
 'watch'                => 'Vixiar',
 'watchthispage'        => 'Vixiar esta páxina',
 'unwatch'              => 'Deixar de vixiar',

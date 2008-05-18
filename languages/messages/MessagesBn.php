@@ -307,7 +307,7 @@ $messages = array(
 'nosuchspecialpage' => 'এমন কোন বিশেষ পাতা নেই',
 'nospecialpagetext' => "<big>'''আপনি একটি অবৈধ বিশেষ পাতা অনুরোধ করেছেন।'''</big>
 
-[[Special:Specialpages]]-এ বৈধ বিশেষ পাতাগুলির একটি তালিকা পাবেন।",
+[[Special:Specialpages|{{int:specialpages}}]]-এ বৈধ বিশেষ পাতাগুলির একটি তালিকা পাবেন।",
 
 # General errors
 'error'                => 'ত্রুটি',

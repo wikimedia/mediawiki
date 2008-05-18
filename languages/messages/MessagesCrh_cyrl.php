@@ -392,7 +392,7 @@ $messages = array(
 'nosuchspecialpage' => 'Бу исимде бир махсус саифе ёкъ',
 'nospecialpagetext' => "'''<big>Тапылмагъан бир махсус саифеге кирдинъиз.</big>'''
 
-Бар олгъан бутюн махсус саифелерни [[{{ns:special}}:Specialpages]] саифесинде корип олурсынъыз.",
+Бар олгъан бутюн махсус саифелерни [[Special:Specialpages|{{int:specialpages}}]] саифесинде корип олурсынъыз.",
 
 # General errors
 'error'                => 'Хата',

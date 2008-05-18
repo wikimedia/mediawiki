@@ -291,7 +291,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'nosuchspecialpage' => 'Alang bulung a makabukud/espesial a anti kanian',
 'nospecialpagetext' => "<big>'''E ustu ing aduan mung bulung a makabukud.'''</big>
 
-Ating tala da reng bulung a makabukud king [[Special:Specialpages]].",
+Ating tala da reng bulung a makabukud king [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Mali',

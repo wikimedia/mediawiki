@@ -288,7 +288,7 @@ $messages = array(
 'nosuchspecialpage' => 'እንዲህ የተባለ ልዩ ገጽ የለም',
 'nospecialpagetext' => "<big>'''ለማይኖር ልዩ ገጽ ጠይቀዋል።'''</big>
 
-የሚኖሩ ልዩ ገጾች ዝርዝር በ[[Special:Specialpages]] ሊገኝ ይችላል።",
+የሚኖሩ ልዩ ገጾች ዝርዝር በ[[Special:Specialpages|{{int:specialpages}}]] ሊገኝ ይችላል።",
 
 # General errors
 'error'                => 'ስኅተት',

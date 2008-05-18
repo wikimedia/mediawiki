@@ -438,7 +438,7 @@ ktorú vyžadujete pomocou URL.',
 'nosuchspecialpage' => 'Takáto špeciálna stránka neexistuje',
 'nospecialpagetext' => "<big>'''Vyžiadali ste si neplatnú špeciálnu stránku.'''</big>
 
-Zoznam platných špeciálnych stránok nájdete na [[Special:Specialpages]].",
+Zoznam platných špeciálnych stránok nájdete na [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Chyba',

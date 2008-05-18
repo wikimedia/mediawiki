@@ -399,7 +399,7 @@ $messages = array(
 'nosuchspecialpage' => 'No esiste ixa pachina espezial',
 'nospecialpagetext' => "<big>'''A pachina espezial que ha demandato no esiste.'''</big>
 
-Puede trobar una lista de pachinas espezials en [[Special:Specialpages]].",
+Puede trobar una lista de pachinas espezials en [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',

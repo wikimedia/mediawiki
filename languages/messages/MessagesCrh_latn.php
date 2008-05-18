@@ -391,7 +391,7 @@ $messages = array(
 'nosuchspecialpage' => 'Bu isimde bir mahsus saife yoq',
 'nospecialpagetext' => "<big>'''Tapılmağan bir mahsus saifege kirdiñiz.'''</big>
 
-Bar olğan bütün mahsus saifelerni [[{{ns:special}}:Specialpages]] saifesinde körip olursıñız.",
+Bar olğan bütün mahsus saifelerni [[Special:Specialpages|{{int:specialpages}}]] saifesinde körip olursıñız.",
 
 # General errors
 'error'                => 'Hata',

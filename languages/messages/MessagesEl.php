@@ -508,7 +508,7 @@ $messages = array(
 'nosuchspecialpage' => 'Δεν υπάρχει τέτοια σελίδα λειτουργιών.',
 'nospecialpagetext' => "<big>'''Ζητήσατε μια άκυρη σελίδα λειτουργιών.'''</big>
 
-Ένας κατάλογος έγκυρων σελίδων λειτουργιών βρίσκεται στο [[Special:Specialpages]].",
+Ένας κατάλογος έγκυρων σελίδων λειτουργιών βρίσκεται στο [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Σφάλμα',

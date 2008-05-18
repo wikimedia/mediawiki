@@ -232,7 +232,7 @@ $messages = array(
 'nosuchspecialpage' => 'Ахæм сæрмагонд фарс нæй',
 'nospecialpagetext' => "<big>'''Нæй ахæм сæрмагонд фарс.'''</big>
 
-Кæс [[{{ns:special}}:Specialpages|æппæт сæрмагонд фæрсты номхыгъд]].",
+Кæс [[Special:Specialpages|æппæт сæрмагонд фæрсты номхыгъд]].",
 
 # General errors
 'error'               => 'Рæдыд',

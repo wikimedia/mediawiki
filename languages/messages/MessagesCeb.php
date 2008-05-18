@@ -217,7 +217,7 @@ $messages = array(
 'nosuchspecialpage' => 'Walay maong espesyal nga panid',
 'nospecialpagetext' => "<big>'''Mihangyo ikaw sa inbalidong espesyal nga panid.'''</big>
 
-Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:Specialpages]].",
+Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'noconnect'          => "Pasayloa, adunay problemang teknikal sa karon ang kini nga wiki, ug dili makakontak sa serber sa ''database''.<br />

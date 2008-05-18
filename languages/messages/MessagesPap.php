@@ -6,6 +6,7 @@
  * @author Kamizu
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $messages = array(
@@ -122,7 +123,7 @@ $messages = array(
 'nosuchspecialpage' => 'E página spesial no ta eksistí',
 'nospecialpagetext' => "<big>'''Bo a pidi un página spesial inválido.'''</big>
 
-Bo por haña un lista di tur página spesial [[Special:Specialpages|aki]].",
+Bo por haña un lista di tur [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'         => 'Eror',

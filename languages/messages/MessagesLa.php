@@ -697,6 +697,9 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'nonefound'             => "'''Nota''': investigationes saepe infelices sunt propter verba frequentes huiusmodi \"que\" et \"illo\", aut quod plus unum verba quaerere designavisti (solae paginae qui tota verba investigationis continent in evento apparebit).",
 'powersearch'           => 'Quaerere',
 'powersearch-legend'    => 'Quaerere',
+'powersearch-ns'        => 'Quaerere in spatiis nominalibus:',
+'powersearch-redir'     => 'Monstrare redirectiones',
+'powersearch-field'     => 'Quaerere',
 'searchdisabled'        => 'Per {{grammar:accusative|{{SITENAME}}}} ad tempus non potes quaerere. Interea per [http://www.google.com Googlem] quaeras. Nota indices {{grammar:genitive|{{SITENAME}}}} contentorum apud Googlem fortasse antiquiores esse.',
 
 # Preferences page

@@ -438,7 +438,7 @@ $messages = array(
 'nosuchaction'      => 'Funksjonen finnes ikke',
 'nosuchactiontext'  => 'MediaWiki-programvaren kjenner ikke igjen funksjonen som er spesifisert i URL-en.',
 'nosuchspecialpage' => 'En slik spesialside finnes ikke',
-'nospecialpagetext' => 'Du ba om en ugyldig spesialside; en liste over gyldige spesialsider finnes på [[Special:Specialpages]].',
+'nospecialpagetext' => 'Du ba om en ugyldig spesialside; en liste over gyldige spesialsider finnes på [[Special:Specialpages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Feil',

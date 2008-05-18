@@ -440,7 +440,7 @@ $messages = array(
 'nosuchspecialpage' => 'असे कोणतेही विशेष पृष्ठ अस्तित्वात नाही',
 'nospecialpagetext' => "<big>'''आपण केलेली विनंती अयोग्य विशेषपानासंबंधी आहे.'''</big>
 
-योग्य विशेषपानांची यादी  [[Special:Specialpages]] येथे उपलब्ध होऊ शकते.",
+योग्य विशेषपानांची यादी  [[Special:Specialpages|{{int:specialpages}}]] येथे उपलब्ध होऊ शकते.",
 
 # General errors
 'error'                => 'त्रुटी',

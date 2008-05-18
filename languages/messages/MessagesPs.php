@@ -336,7 +336,7 @@ $messages = array(
 'nosuchspecialpage' => 'داسې هېڅ کوم ځانګړی مخ نشته',
 'nospecialpagetext' => "<big>'''تاسو د يو ناسم ځانګړي مخ غوښتنه کړې.'''</big>
 
-تاسو کولای شی چې د سمو ځانګړو مخونو لړليک په [[ځانګړی:ځانګړې پاڼې]] کې ومومۍ.",
+تاسو کولای شی چې د سمو ځانګړو مخونو لړليک په [[Special:Specialpages|{{int:specialpages}}]] کې ومومۍ.",
 
 # General errors
 'error'                => 'تېروتنه',
