@@ -2857,7 +2857,7 @@ class Title {
 	  	$stack = array();
 		$parents = $this->getParentCategories();
 
-		if($parents != '') {
+		if( $parents ) {
 			foreach($parents as $parent => $current) {
 				if ( array_key_exists( $parent, $children ) ) {
 					# Circular reference
