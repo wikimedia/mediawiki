@@ -91,7 +91,6 @@ class ApiBlock extends ApiBase {
 		if(!empty($retval))
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg($retval);
-		$this->getMain()->scheduleCommit();
 
 		$res['user'] = $params['user'];
 		$res['userID'] = $userID;

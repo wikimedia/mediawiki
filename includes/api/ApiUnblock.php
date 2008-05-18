@@ -74,7 +74,6 @@ class ApiUnblock extends ApiBase {
 		if(!empty($retval))
 			$this->dieUsageMsg($retval);
 
-		$this->getMain()->scheduleCommit();
 		$res['id'] = $id;
 		$res['user'] = $user;
 		$res['reason'] = $reason;

@@ -95,7 +95,7 @@ class ApiMain extends ApiBase {
 		'dbgfm' => 'ApiFormatDbg'
 	);
 
-	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames, $mCommit;
+	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
 	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
 
 	/**
@@ -196,12 +196,6 @@ class ApiMain extends ApiBase {
 	public function createPrinterByName($format) {
 		return new $this->mFormats[$format] ($this, $format);
 	}
-
-	/**
-	 * Schedule a database commit
-	 * @deprecated
-	 */
-	public function scheduleCommit() {}
 
 	/**
 	 * Execute api request. Any errors will be handled if the API was called by the remote client.
