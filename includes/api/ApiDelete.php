@@ -76,7 +76,6 @@ class ApiDelete extends ApiBase {
 			$articleObj->doWatch();
 		else if($params['unwatch'])
 			$articleObj->doUnwatch();
-		$this->getMain()->scheduleCommit();
 		$r = array('title' => $titleObj->getPrefixedText(), 'reason' => $reason);
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}

@@ -94,7 +94,6 @@ class ApiProtect extends ApiBase {
 			// This is very weird. Maybe the article was deleted or the user was blocked/desysopped in the meantime?
 			// Just throw an unknown error in this case, as it's very likely to be a race condition
 			$this->dieUsageMsg(array());
-		$this->getMain()->scheduleCommit();
 		$res = array('title' => $titleObj->getPrefixedText(), 'reason' => $params['reason']);
 		if($expiry == Block::infinity())
 			$res['expiry'] = 'infinity';

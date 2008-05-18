@@ -116,7 +116,6 @@ class ApiMove extends ApiBase {
 			$wgUser->removeWatch($fromTitle);
 			$wgUser->removeWatch($toTitle);
 		}
-		$this->getMain()->scheduleCommit();
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
 

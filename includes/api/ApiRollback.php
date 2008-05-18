@@ -68,7 +68,6 @@ class ApiRollback extends ApiBase {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($retval));
 
-		$this->getMain()->scheduleCommit();
 		$current = $target = $summary = NULL;
 		extract($details);
 

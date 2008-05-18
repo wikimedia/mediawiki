@@ -552,7 +552,6 @@ class ApiPageSet extends ApiQueryBase {
 				$this->mRedirectTitles[$title->getPrefixedText()] = $rt->getPrefixedText();
 				unset($this->mPendingRedirectIDs[$id]);
 			}
-			$this->getMain()->scheduleCommit();
 		}
 		return $lb;
 	}
