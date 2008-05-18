@@ -762,7 +762,7 @@ XHTML id names.
 'nosuchspecialpage' => 'No such special page',
 'nospecialpagetext' => "<big>'''You have requested an invalid special page.'''</big>
 
-A list of valid special pages can be found at [[Special:Specialpages]].",
+A list of valid special pages can be found at [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',
