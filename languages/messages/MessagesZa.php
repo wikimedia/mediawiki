@@ -4,7 +4,7 @@
  * @addtogroup Language
  */
 
-$fallback = 'zh-cn';
+$fallback = 'zh-hans';
 
 $messages = array(
 # Dates
