@@ -30,9 +30,10 @@
  * backends for local hash array and SQL table included:
  * <code>
  *   $bag = new HashBagOStuff();
- *   $bag = new MysqlBagOStuff($tablename); # connect to db first
+ *   $bag = new MediaWikiBagOStuff($tablename); # connect to db first
  * </code>
  *
+ * @atttogroup Cache
  */
 class BagOStuff {
 	var $debugmode;
@@ -167,14 +168,12 @@ class BagOStuff {
 
 /**
  * Functional versions!
- * @todo document
+ * This is a test of the interface, mainly. It stores things in an associative
+ * array, which is not going to persist between program runs.
+ *
+ * @atttogroup Cache
  */
 class HashBagOStuff extends BagOStuff {
-	/*
-	   This is a test of the interface, mainly. It stores
-	   things in an associative array, which is not going to
-	   persist between program runs.
-	*/
 	var $bag;
 
 	function __construct() {
@@ -213,24 +212,20 @@ class HashBagOStuff extends BagOStuff {
 	}
 }
 
-/*
-CREATE TABLE objectcache (
-  keyname char(255) binary not null default '',
-  value mediumblob,
-  exptime datetime,
-  unique key (keyname),
-  key (exptime)
-);
-*/
-
 /**
- * @todo document
- * @abstract
+ * Generic class to store objects in a database
+ *
+ * @atttogroup Cache
  */
 abstract class SqlBagOStuff extends BagOStuff {
 	var $table;
 	var $lastexpireall = 0;
 
+	/**
+	 * Constructor
+	 *
+	 * @param string $tablename name of the table to use
+	 */
 	function __construct($tablename = 'objectcache') {
 		$this->table = $tablename;
 	}
@@ -262,7 +257,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 	}
 
 	function set($key,$value,$exptime=0) {
-		if ( wfReadOnly() ) {
+		if ( $this->_readonly() ) {
 			return false;
 		}
 		$exptime = intval($exptime);
@@ -284,7 +279,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 	}
 
 	function delete($key,$time=0) {
-		if ( wfReadOnly() ) {
+		if ( $this->_readonly() ) {
 			return false;
 		}
 		$this->_query(
@@ -340,6 +335,8 @@ abstract class SqlBagOStuff extends BagOStuff {
 	abstract function _doinsert($table, $vals);
 	abstract function _doquery($sql);
 
+	abstract function _readonly();
+
 	function _freeresult($result) {
 		/* stub */
 		return false;
@@ -367,7 +364,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 
 	function expireall() {
 		/* Remove any items that have expired */
-		if ( wfReadOnly() ) {
+		if ( $this->_readonly() ) {
 			return false;
 		}
 		$now = $this->_fromunixtime( time() );
@@ -376,7 +373,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 
 	function deleteall() {
 		/* Clear *all* items from cache table */
-		if ( wfReadOnly() ) {
+		if ( $this->_readonly() ) {
 			return false;
 		}
 		$this->_query( "DELETE FROM $0" );
@@ -417,31 +414,33 @@ abstract class SqlBagOStuff extends BagOStuff {
 }
 
 /**
- * @todo document
+ * Stores objects in the main database of the wiki
+ *
+ * @atttogroup Cache
  */
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	var $tableInitialised = false;
 
+	function _getDB(){
+		static $db;
+		if( !isset( $db ) )
+			$db = wfGetDB( DB_MASTER );
+		return $db;
+	}
 	function _doquery($sql) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->query($sql, 'MediaWikiBagOStuff::_doquery');
+		return $this->_getDB()->query( $sql, __METHOD__ );
 	}
 	function _doinsert($t, $v) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->insert($t, $v, 'MediaWikiBagOStuff::_doinsert',
-			array( 'IGNORE' ) );
+		return $this->_getDB()->insert($t, $v, __METHOD__, array( 'IGNORE' ) );
 	}
 	function _fetchobject($result) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->fetchObject($result);
+		return $this->_getDB()->fetchObject($result);
 	}
 	function _freeresult($result) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->freeResult($result);
+		return $this->_getDB()->freeResult($result);
 	}
 	function _dberror($result) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->lastError();
+		return $this->_getDB()->lastError();
 	}
 	function _maxdatetime() {
 		if ( time() > 0x7fffffff ) {
@@ -451,24 +450,23 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 		}
 	}
 	function _fromunixtime($ts) {
-		$dbw = wfGetDB(DB_MASTER);
-		return $dbw->timestamp($ts);
+		return $this->_getDB()->timestamp($ts);
+	}
+	function _readonly(){
+		return wfReadOnly();
 	}
 	function _strencode($s) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->strencode($s);
+		return $this->_getDB()->strencode($s);
 	}
 	function _blobencode($s) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->encodeBlob($s);
+		return $this->_getDB()->encodeBlob($s);
 	}
 	function _blobdecode($s) {
-		$dbw = wfGetDB( DB_MASTER );
-		return $dbw->decodeBlob($s);
+		return $this->_getDB()->decodeBlob($s);
 	}
 	function getTableName() {
 		if ( !$this->tableInitialised ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->_getDB();
 			/* This is actually a hack, we should be able
 			   to use Language classes here... or not */
 			if (!$dbw)
@@ -493,6 +491,7 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
  * that Turck's serializer is faster, so a possible future extension would be
  * to use it for arrays but not for objects.
  *
+ * @atttogroup Cache
  */
 class TurckBagOStuff extends BagOStuff {
 	function get($key) {
@@ -527,6 +526,7 @@ class TurckBagOStuff extends BagOStuff {
 /**
  * This is a wrapper for APC's shared memory functions
  *
+ * @atttogroup Cache
  */
 class APCBagOStuff extends BagOStuff {
 	function get($key) {
@@ -555,6 +555,7 @@ class APCBagOStuff extends BagOStuff {
  * This is basically identical to the Turck MMCache version,
  * mostly because eAccelerator is based on Turck MMCache.
  *
+ * @atttogroup Cache
  */
 class eAccelBagOStuff extends BagOStuff {
 	function get($key) {
@@ -589,6 +590,8 @@ class eAccelBagOStuff extends BagOStuff {
 /**
  * Wrapper for XCache object caching functions; identical interface
  * to the APC wrapper
+ *
+ * @atttogroup Cache
  */
 class XCacheBagOStuff extends BagOStuff {
 
@@ -634,6 +637,7 @@ class XCacheBagOStuff extends BagOStuff {
 
 /**
  * @todo document
+ * @atttogroup Cache
  */
 class DBABagOStuff extends BagOStuff {
 	var $mHandler, $mFile, $mReader, $mWriter, $mDisabled;
