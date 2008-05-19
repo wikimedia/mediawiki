@@ -1634,7 +1634,7 @@ $NEWPAGE
 'deletepage'                  => 'Изтриване',
 'confirm'                     => 'Потвърждаване',
 'excontent'                   => 'съдържанието беше: „$1“',
-'excontentauthor'             => 'съдържанието беше: „$1“ (като единственият автор беше „[[Special:Contributions/$2|$2]]“)',
+'excontentauthor'             => 'съдържанието беше: „$1“ (като единственият автор беше [[Special:Contributions/$2|$2]])',
 'exbeforeblank'               => 'премахнато преди това съдържание: „$1“',
 'exblank'                     => 'страницата беше празна',
 'delete-confirm'              => 'Изтриване на „$1“',

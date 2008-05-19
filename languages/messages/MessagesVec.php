@@ -319,7 +319,9 @@ I seguenti colegamenti i xe in lengua inglese:
 'nosuchaction'      => 'Operazion mìa riconossùa',
 'nosuchactiontext'  => "L'operazion richiesta con la URL inserìa no la xe stà riconossiùa dal software MediaWiki",
 'nosuchspecialpage' => 'No xè disponibiłe nissuna pàxena speciałe co sto nome',
-'nospecialpagetext' => 'Te ghè richiesto na pagina speciale che no la xe stà riconossiùa dal software MediaWiki, o che no la xe disponibile.',
+'nospecialpagetext' => "<big>'''Te ghè richiesto na pagina speciale mìa esistente.'''</big>
+
+Te podi catar na lista de le pagine speciali esistenti in [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erór',
@@ -430,9 +432,10 @@ Par piaser siegli un nome difarente.",
 'yourrealname'               => 'El to vero nome:',
 'yourlanguage'               => 'Lengua:',
 'yourvariant'                => 'Variante de linguaggio:',
-'yournick'                   => 'El to soranome (par łe firme)',
+'yournick'                   => 'Firma:',
 'badsig'                     => 'Erór ne ła firma non standard, verifica i tag HTML.',
-'badsiglength'               => 'El sopranome sielto el xe massa longo; el pol verghe al massimo $1 caràteri.',
+'badsiglength'               => 'La firma la xe massa longa.
+La gà da verghe al massimo $1 caràteri.',
 'email'                      => 'Indirizo e-mail',
 'prefs-help-realname'        => 'Indicar el proprio nome vero no xe obligatorio; se te siegli de inserirlo, el vegnarà doparà par atribuir la paternità dei contenuti invià.',
 'loginerror'                 => "Eror ne l'acesso",
@@ -1138,7 +1141,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'filehist'                       => 'Cronologia del file',
 'filehist-help'                  => 'Maca su un grupo data/ora par védar el file come el se presentava nel momento indicà.',
 'filehist-deleteall'             => 'scancela tuto',
-'filehist-deleteone'             => 'scancela sta version',
+'filehist-deleteone'             => 'scancela',
 'filehist-revert'                => 'ripristina',
 'filehist-current'               => 'corente',
 'filehist-datetime'              => 'Data/Ora',

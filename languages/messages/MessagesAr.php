@@ -591,7 +591,7 @@ $messages = array(
 'badaccess-groups' => 'الفعل الذي طلبته مقصور على المستخدمين في إحدى المجموعات $1.',
 
 'versionrequired'     => 'تلزم نسخة $1 من ميدياويكي',
-'versionrequiredtext' => 'يلزم الإصدار $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة الإصدار]]',
+'versionrequiredtext' => 'تلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]',
 
 'ok'                      => 'موافق',
 'retrievedfrom'           => 'تم الاسترجاع من "$1"',

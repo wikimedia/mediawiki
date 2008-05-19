@@ -112,6 +112,7 @@ $messages = array(
 'aboutsite'            => 'Sobre {{SITENAME}}',
 'aboutpage'            => 'Project:Sobre',
 'bugreports'           => 'Reportar bugs',
+'bugreportspage'       => 'Project:Relatos_de_bugs',
 'copyrightpage'        => '{{ns:project}}:Direitos de autor',
 'currentevents'        => 'Amboras actuais',
 'currentevents-url'    => 'Project:Amboras actuales',
@@ -168,10 +169,13 @@ $messages = array(
 'userlogout'              => 'Salir',
 'nologin'                 => 'Num tem ua cuonta? $1.',
 'nologinlink'             => 'Crear ua cuonta',
+'createaccount'           => 'Criar nuoba cuonta',
 'gotaccount'              => 'Ya tem ua cuonta? $1.',
 'gotaccountlink'          => 'Entrar',
 'yourrealname'            => 'Nome berdadeiro:',
+'loginsuccesstitle'       => 'Login bem sucedido',
 'nouserspecified'         => 'Tem que specificar um nome de outelizador.',
+'mailmypassword'          => 'Ambiar ua nuoba palabra-chabe por correio electrónico',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo carregado',
@@ -246,6 +250,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'revisionasof'        => 'Revisão de $1',
 'revision-info'       => 'Revison de $1; $2',
 'previousrevision'    => '← Versão anterior',
+'nextrevision'        => 'Verson posterior →',
 'currentrevisionlink' => 'Ber berson actual',
 'cur'                 => 'act',
 'last'                => 'último',
@@ -301,7 +306,7 @@ Legenda: (actu) = diferenças da versão actual,
 'recentchangeslinked'          => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são mostradas a '''carregado'''.",
+'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são mostradas a '''negrito'''.",
 
 # Upload
 'upload'        => 'Carregar ficheiro',
@@ -325,6 +330,7 @@ Legenda: (actu) = diferenças da versão actual,
 'linkstoimage'        => 'As seguintes páginas apontam para este ficheiro:',
 'nolinkstoimage'      => 'Nenhuma página aponta para yeste ficheiro.',
 'sharedupload'        => 'Este ficheiro encontra-se partilhado i puode ser usado por otros proyectos.',
+'noimage-linktext'    => 'upload it',
 
 # MIME search
 'mimesearch' => 'Pesquisa MIME',
@@ -336,16 +342,20 @@ Legenda: (actu) = diferenças da versão actual,
 'statistics' => 'Çtatísticas',
 
 # Miscellaneous special pages
-'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
-'nlinks'       => '$1 {{PLURAL:$1|link|links}}',
-'nmembers'     => '$1 {{PLURAL:$1|membro|membros}}',
-'shortpages'   => 'Páginas curtas',
-'longpages'    => 'Páginas longas',
-'listusers'    => 'Lhista de outelizadores',
-'specialpages' => 'Páginas speciales',
-'newpages'     => 'Nuovas páginas',
-'move'         => 'Mover',
-'movethispage' => 'Mover esta página',
+'nbytes'         => '$1 {{PLURAL:$1|byte|bytes}}',
+'nlinks'         => '$1 {{PLURAL:$1|link|links}}',
+'nmembers'       => '$1 {{PLURAL:$1|membro|membros}}',
+'mostcategories' => 'Páginas de conteúdo com mais categories',
+'prefixindex'    => 'Índice de prefixo',
+'shortpages'     => 'Páginas curtas',
+'longpages'      => 'Páginas longas',
+'protectedpages' => 'Páginas protegidas',
+'listusers'      => 'Lhista de outelizadores',
+'specialpages'   => 'Páginas speciales',
+'newpages'       => 'Nuovas páginas',
+'ancientpages'   => 'Páginas mais antigas',
+'move'           => 'Mover',
+'movethispage'   => 'Mover esta página',
 
 # Book sources
 'booksources' => 'Fontes de lhibros',
@@ -388,9 +398,12 @@ Legenda: (actu) = diferenças da versão actual,
 'actioncomplete'          => 'Acção terminada',
 'deletedarticle'          => 'apagado "[[$1]]"',
 'dellogpage'              => 'Registo de eliminação',
+'deletereasonotherlist'   => 'Outro motivo',
 'rollbacklink'            => 'voltar',
 'protectlogpage'          => 'Registo de protecção',
 'protect-legend'          => 'Confirmar protecçon',
+'protect-default'         => '(padron)',
+'protect-level-sysop'     => 'Apenas administradores',
 'protect-summary-cascade' => 'p. progressiva',
 'restriction-type'        => 'Permisson:',
 
@@ -426,11 +439,13 @@ Legenda: (actu) = diferenças da versão actual,
 'whatlinkshere-links' => '← andereços da anternet',
 
 # Block/unblock
-'blockip'      => 'Bloquear outelizador',
-'ipboptions'   => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
-'blocklink'    => 'bloquear',
-'contribslink' => 'contribs',
-'blocklogpage' => 'Registo de bloqueio',
+'blockip'       => 'Bloquear outelizador',
+'ipboptions'    => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
+'ipblocklist'   => 'Lhista de IPs i outelizadores bloqueados',
+'blocklink'     => 'bloquear',
+'contribslink'  => 'contribs',
+'blocklogpage'  => 'Registo de bloqueio',
+'blocklogentry' => '"[[$1]]" fue bloqueado com um tiempo de expiraçon de $2 $3',
 
 # Move page
 'move-page-legend' => 'Mover página',
@@ -440,6 +455,7 @@ Legenda: (actu) = diferenças da versão actual,
 'movedto'          => 'movido para',
 '1movedto2'        => '[[$1]] foi movido para [[$2]]',
 'movelogpage'      => 'Registo de movimentos',
+'movereason'       => 'Motivo:',
 'revertmove'       => 'reverter',
 
 # Export
@@ -448,6 +464,9 @@ Legenda: (actu) = diferenças da versão actual,
 # Thumbnails
 'thumbnail-more'  => 'Aumentar',
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
+
+# Import log
+'importlogpage' => 'Registo de amportaçons',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La mie página d'utilizador",
@@ -476,6 +495,7 @@ Legenda: (actu) = diferenças da versão actual,
 'tooltip-n-sitesupport'           => 'Ayude-nos',
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas que se lhigam a yesta',
 'tooltip-t-contributions'         => 'Ber las contribuiçons de yeste outelizador',
+'tooltip-t-emailuser'             => 'Enbiar um e-mail a yeste outelizador',
 'tooltip-t-upload'                => 'Carregar imagens ou ficheiros',
 'tooltip-t-specialpages'          => 'Lista de páginas especiais',
 'tooltip-ca-nstab-user'           => 'Ber a página de l utilizador',
@@ -500,6 +520,9 @@ Legenda: (actu) = diferenças da versão actual,
 'svg-long-desc'        => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
 'show-big-image'       => 'Resoluçon completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
+
+# Special:Newimages
+'newimages' => 'Galeria de nuobos ficheiros',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -532,5 +555,6 @@ Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns d
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ber alteraçons amportantes',
+'watchlisttools-raw'  => 'Ediçon bruta da lhista de ls bigiados',
 
 );

@@ -853,6 +853,7 @@ $2',
 'showingresultstotal'      => "ខាងក្រោមកំពុងបង្ហាញលទ្ឋផលពីលេខ '''$1 - $2''' ក្នុងចំនោមលទ្ឋផលសរុប '''$3'''",
 'powersearch'              => 'ស្វែងរកថ្នាក់ខ្ពស់',
 'powersearch-legend'       => 'ស្វែងរកថ្នាក់ខ្ពស់',
+'powersearch-ns'           => 'ស្វែងរកក្នុងលំហឈ្មោះ:',
 'search-external'          => 'ស្វែងរកនៅខាងក្រៅ',
 
 # Preferences page
@@ -1428,15 +1429,15 @@ $NEWPAGE
 'deletedarticle'              => 'បានលុប"[[$1]]"',
 'dellogpage'                  => 'កំនត់ហេតុនៃការលុប',
 'dellogpagetext'              => 'ខាងក្រោម ជាបញ្ជី នៃ ការលុបចេញថ្មីៗ បំផុត។',
-'deletionlog'                 => 'កំណត់ហេតុ នៃ ការលុបចេញ',
+'deletionlog'                 => 'កំនត់ហេតុនៃការលុប',
 'reverted'                    => 'បានត្រឡប់ ទៅកំណែមុន',
 'deletecomment'               => 'មូលហេតុ៖',
 'deleteotherreason'           => 'មូលហេតុបន្ថែមផ្សេងទៀត៖',
 'deletereasonotherlist'       => 'មូលហេតុផ្សេងទៀត',
-'deletereason-dropdown'       => '*ហេតុផលលុបចេញ ជារួម
-** សំណើ របស់អ្នកនិពន្ធ
-** បំពាន សិទ្ធិអ្នកនិពន្ធ
-** អំពើបំផ្លាញ ទ្រព្យសម្បត្តិ ឯកជន ឬ សាធារណៈ',
+'deletereason-dropdown'       => '*ហេតុផលលុបជាទូទៅ
+** សំណើរបស់អ្នកនិពន្ធ
+** បំពានសិទ្ធិអ្នកនិពន្ធ
+** អំពើបំផ្លាញទ្រព្យសម្បត្តិឯកជនឬសាធារណៈ',
 'delete-edit-reasonlist'      => 'ពិនិត្យផ្ទៀងផ្ទាត់ហេតុផលនៃការលុប',
 'rollbacklink'                => 'rollback',
 'cantrollback'                => 'មិនអាចត្រឡប់កំណែប្រែ។ អ្នករួមចំណែកចុងក្រោយទើបជាអ្នកនិពន្ធ​របស់ទំព័រនេះ។',
@@ -1829,8 +1830,8 @@ $1',
 'mw_math_mathml' => 'MathML បើអាចទៅរួច (ពិសោធ)',
 
 # Patrolling
-'markaspatrolleddiff'    => 'ចំណាំ ថា បានល្បាត',
-'markaspatrolledtext'    => 'ចំណាំទំព័រនេះ ថា បានល្បាត',
+'markaspatrolleddiff'    => 'ចំនាំថាបានល្បាត',
+'markaspatrolledtext'    => 'ចំនាំទំព័រនេះថាបានល្បាត',
 'markedaspatrolled'      => 'បានចំណាំថា បានល្បាត',
 'rcpatroldisabled'       => 'បំលាស់ប្តូរថ្មីៗនៃការតាមដានមិនត្រូវបានអនុញ្ញាតទេ',
 'markedaspatrollederror' => 'មិនអាចគូសចំនាំថាបានល្បាត',

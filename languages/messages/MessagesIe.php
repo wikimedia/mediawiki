@@ -117,6 +117,7 @@ $messages = array(
 'redirectedfrom'   => '(Redirectet de $1)',
 'viewcount'        => 'Ti págine ha esset consultat {{PLURAL:$1|un vez|$1 vezes}}.',
 'protectedpage'    => 'Un protectet págine',
+'jumptonavigation' => 'navigation',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Apropó de {{SITENAME}}',
@@ -139,6 +140,7 @@ $messages = array(
 'editsection'        => 'modificar',
 'editold'            => 'redacter',
 'toc'                => 'Tabelle de contenetes',
+'showtoc'            => 'monstrar',
 'hidetoc'            => 'celar',
 'viewdeleted'        => 'Vider $1?',
 
@@ -230,6 +232,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'recentchanges'     => 'Recent modificationes',
 'recentchangestext' => 'Seque sur ti-ci págine li ultim modificationes al wiki.',
 'rclistfrom'        => 'Monstrar li nov modificationes desde $1.',
+'rcshowhideminor'   => '$1 modificationes minori',
 'rcshowhidemine'    => '$1 mi redactiones',
 'rclinks'           => 'Monstrar li $1 ultim modificationes fat durante li $2 ultim dies<br/ >$3.',
 'diff'              => 'dif',
@@ -280,6 +283,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'booksources' => 'Librari fontes',
 
 # Special:Log
+'specialloguserlabel'  => 'Usator:',
 'speciallogtitlelabel' => 'Titul:',
 
 # Special:Allpages
@@ -288,11 +292,14 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'allpagessubmit' => 'Vade',
 
 # Watchlist
-'watchlist'      => 'Liste de sequet págines',
-'addedwatch'     => 'Adjuntet al liste',
-'addedwatchtext' => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:Recentchanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
-'watch'          => 'Sequer',
-'watchthispage'  => 'Sequer ti págine',
+'watchlist'            => 'Liste de sequet págines',
+'addedwatch'           => 'Adjuntet al liste',
+'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:Recentchanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
+'watch'                => 'Sequer',
+'watchthispage'        => 'Sequer ti págine',
+'watchlist-hide-bots'  => 'Celar modificationes de bot',
+'watchlist-hide-own'   => 'Celar mi modificationes',
+'watchlist-hide-minor' => 'Celar modificationes minori',
 
 # Delete/protect/revert
 'deletepage'            => 'Deleter págine',
@@ -301,6 +308,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'deleteotherreason'     => 'Altri/suplementari motive:',
 'deletereasonotherlist' => 'Altri motive',
 'protectcomment'        => 'Comenta:',
+'restriction-type'      => 'Permission:',
 
 # Namespace form on various pages
 'blanknamespace' => '(Principal)',
@@ -319,6 +327,8 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'movearticle' => 'Moer págine:',
 'movenologin' => 'Vu ne ha intrat',
 'movepagebtn' => 'Moer págine',
+'movedto'     => 'moet a',
+'1movedto2'   => '[[$1]] moet a [[$2]]',
 'movereason'  => 'Motive:',
 
 # Export
@@ -333,6 +343,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'tooltip-ca-delete'      => 'Deleter ti págine',
 'tooltip-ca-move'        => 'Moer ti págine',
 'tooltip-n-mainpage'     => 'Visita li Principal págine',
+'tooltip-t-specialpages' => 'Liste de omni special págines',
 
 # Special:Newimages
 'newimages' => 'Galerie de nov images',
