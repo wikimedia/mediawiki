@@ -1020,9 +1020,9 @@ class Database {
 	 *
 	 * @todo migrate documentation to phpdocumentor format
 	 */
-	function selectRow( $table, $vars, $conds, $fname = 'Database::selectRow', $options = array() ) {
+	function selectRow( $table, $vars, $conds, $fname = 'Database::selectRow', $options = array(), $join_conds = array() ) {
 		$options['LIMIT'] = 1;
-		$res = $this->select( $table, $vars, $conds, $fname, $options );
+		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
 		if ( $res === false )
 			return false;
 		if ( !$this->numRows($res) ) {
