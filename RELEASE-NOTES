@@ -280,7 +280,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14111) Similar filename warning links now lead to correct page
 * (bug 14082) Fix for complex text input vs AJAX suggestions on some browsers
 * (bug 13693) Categories sometimes claim to have a negative number of members
-
+* (bug 1701) Korean Hangul syllables now broken down properly in Category lists
+  even if the wiki's overall content language is not Korean
 
 === API changes in 1.13 ===
 
