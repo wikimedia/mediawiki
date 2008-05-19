@@ -837,7 +837,7 @@ class ImageHistoryList {
 		$row .= '&nbsp;' . htmlspecialchars( $dims );
 
 		// File size
-		$row .= "&nbsp;<span style='white-space: nowrap;'>(" . $this->skin->formatSize( $size ) . ')</span>';
+		$row .= " <span style='white-space: nowrap;'>(" . $this->skin->formatSize( $size ) . ')</span>';
 
 		// Uploading user
 		$row .= '</td><td>';
