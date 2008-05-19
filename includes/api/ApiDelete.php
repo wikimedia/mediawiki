@@ -64,20 +64,43 @@ class ApiDelete extends ApiBase {
 		if(!$titleObj->exists())
 			$this->dieUsageMsg(array('notanarticle'));
 
-		$articleObj = new Article($titleObj);
 		$reason = (isset($params['reason']) ? $params['reason'] : NULL);
-		$retval = self::delete($articleObj, $params['token'], $reason);
+		if ($titleObj->getNamespace() == NS_IMAGE) {
+			$retval = self::deletefile($params['token'], $titleObj, $params['oldimage'], $reason, false);
+			if(!empty($retval))
+				// We don't care about multiple errors, just report one of them
+				$this->dieUsageMsg(current($retval));
+		} else {
+			$articleObj = new Article($titleObj);
+			$retval = self::delete($articleObj, $params['token'], $reason);
+			
+			if(!empty($retval))
+				// We don't care about multiple errors, just report one of them
+				$this->dieUsageMsg(current($retval));
+			
+			if($params['watch'] || $wgUser->getOption('watchdeletion'))
+				$articleObj->doWatch();
+			else if($params['unwatch'])
+				$articleObj->doUnwatch();
+		}
 
-		if(!empty($retval))
-			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg(current($retval));
-
-		if($params['watch'] || $wgUser->getOption('watchdeletion'))
-			$articleObj->doWatch();
-		else if($params['unwatch'])
-			$articleObj->doUnwatch();
 		$r = array('title' => $titleObj->getPrefixedText(), 'reason' => $reason);
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
+	}
+
+	private static function getPermissionsError(&$title, $token) {
+		global $wgUser;
+		// Check wiki readonly
+		if (wfReadOnly()) return array(array('readonlytext'));
+		
+		// Check permissions
+		$errors = $title->getUserPermissionsErrors('delete', $wgUser);
+		if (count($errors) > 0) return $errors;
+		
+		// Check token
+		if(!$wgUser->matchEditToken($token))
+			return array(array('sessionfailure'));
+		return array();
 	}
 
 	/**
@@ -90,25 +113,14 @@ class ApiDelete extends ApiBase {
 	 */
 	public static function delete(&$article, $token, &$reason = NULL)
 	{
-		global $wgUser;
-
-		// Check permissions
-		$errors = $article->mTitle->getUserPermissionsErrors('delete', $wgUser);
-		if(!empty($errors))
-			return $errors;
-		if(wfReadOnly())
-			return array(array('readonlytext'));
-		if($wgUser->isBlocked())
-			return array(array('blocked'));
-
-		// Check token
-		if(!$wgUser->matchEditToken($token))
-			return array(array('sessionfailure'));
+		$errors = self::getPermissionsError($article->getTitle(), $token);
+		if (count($errors)) return $errors;
 
 		// Auto-generate a summary, if necessary
 		if(is_null($reason))
 		{
-			$reason = $article->generateReason($hasHistory);
+			// $hasHistory = false;
+			$reason = $article->generateReason(false);
 			if($reason === false)
 				return array(array('cannotdelete'));
 		}
@@ -119,6 +131,31 @@ class ApiDelete extends ApiBase {
 		return array(array('cannotdelete', $article->mTitle->getPrefixedText()));
 	}
 
+	public static function deleteFile($token, &$title, $oldimage, &$reason = NULL, $suppress = false)
+	{
+		$errors = self::getPermissionsError($title, $token);
+		if (count($errors)) return $errors;
+
+		if( $oldimage && !FileDeleteForm::isValidOldSpec($oldimage) )
+			return array(array('invalidoldimage'));
+
+		$file = wfFindFile($title);
+		$oldfile = false;
+		
+		if( $oldimage )
+			$oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $oldimage );
+			
+		if( !FileDeleteForm::haveDeletableFile($file, $oldfile, $oldimage) )
+			return array(array('nofile'));
+
+		$status = FileDeleteForm::doDelete( $title, $file, $oldimage, $reason, $suppress );
+				
+		if( !$status->isGood() )
+			return array(array('cannotdelete', $title->getPrefixedText()));
+			
+		return array();
+	}
+	
 	public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {
@@ -127,7 +164,8 @@ class ApiDelete extends ApiBase {
 			'token' => null,
 			'reason' => null,
 			'watch' => false,
-			'unwatch' => false
+			'unwatch' => false,
+			'oldimage' => null
 		);
 	}
 
@@ -137,7 +175,8 @@ class ApiDelete extends ApiBase {
 			'token' => 'A delete token previously retrieved through prop=info',
 			'reason' => 'Reason for the deletion. If not set, an automatically generated reason will be used.',
 			'watch' => 'Add the page to your watchlist',
-			'unwatch' => 'Remove the page from your watchlist'
+			'unwatch' => 'Remove the page from your watchlist',
+			'oldimage' => 'The name of the old image to delete as provided by iiprop=archivename'
 		);
 	}
 
