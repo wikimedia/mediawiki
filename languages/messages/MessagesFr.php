@@ -814,7 +814,7 @@ Il devrait en avoir moins de $2 sur le nombre actuel $1.',
 'expensive-parserfunction-category' => 'Pages avec trop d’appels dispendieux de fonctions parseurs',
 'post-expand-template-inclusion-warning'	=> "Attention : Cette page contient trop d'inclusions de modèles. Certaines inclusions ne seront pas effectuées.",
 'post-expand-template-inclusion-category'	=> "Pages contenant trop d'inclusions de modèles",
-'post-expand-template-argument-warning'		=> "Attention : Cette page contient au moins un paramètre de modèle dont l'inclusion est rendue impossible. Après extension, celui-ci aurait produit un résultat trop long, il n'a donc pas été inclut"
+'post-expand-template-argument-warning'		=> "Attention : Cette page contient au moins un paramètre de modèle dont l'inclusion est rendue impossible. Après extension, celui-ci aurait produit un résultat trop long, il n'a donc pas été inclut",
 'post-expand-template-argument-category'	=> "Pages contenant au moins un paramètre de modèle non évalué",
 
 # "Undo" feature
