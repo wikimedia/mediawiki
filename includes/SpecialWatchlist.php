@@ -289,7 +289,6 @@ function wfSpecialWatchlist( $par ) {
 		if ( $wgShowUpdatedMarker ) {
 			$updated = $obj->wl_notificationtimestamp;
 		} else {
-			// Same visual appearance as MW 1.4
 			$updated = false;
 		}
 
