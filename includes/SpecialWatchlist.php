@@ -290,7 +290,7 @@ function wfSpecialWatchlist( $par ) {
 			$updated = $obj->wl_notificationtimestamp;
 		} else {
 			// Same visual appearance as MW 1.4
-			$updated = true;
+			$updated = false;
 		}
 
 		if ($wgRCShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
