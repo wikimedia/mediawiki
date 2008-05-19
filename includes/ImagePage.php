@@ -739,7 +739,14 @@ class ImageHistoryList {
 		global $wgOut, $wgUser;
 		return Xml::element( 'h2', array( 'id' => 'filehistory' ), wfMsg( 'filehist' ) )
 			. $wgOut->parse( wfMsgNoTrans( 'filehist-help' ) )
-			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n";
+			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n"
+			. '<tr><td></td>'
+			. ( $this->img->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
+			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
+			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
+			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>' 
+			. '<th>' . wfMsgHtml( 'filehist-comment' ) . '</th>' 	 
+			. "</tr>\n";
 	}
 
 	public function endImageHistoryList() {
@@ -763,21 +770,24 @@ class ImageHistoryList {
 
 		// Deletion link
 		if( $local && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ) {
+			$row .= '<td>';
 			# Link to remove from history
 			if( $wgUser->isAllowed( 'delete' ) ) {
 				$q = array();
 				$q[] = 'action=delete';
 				if( !$iscur )
 					$q[] = 'oldimage=' . urlencode( $img );
-				$row .= '<td>' . $this->skin->makeKnownLinkObj(
+				$row .= $this->skin->makeKnownLinkObj(
 					$this->title,
 					wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
 					implode( '&', $q )
 				);
-				$row .= '</td>';
 			}
 			# Link to hide content
 			if( $wgUser->isAllowed( 'deleterevision' ) ) {
+				if( $wgUser->isAllowed('delete') ) {
+					$row .= '<br/>';
+				}
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// If file is top revision or locked from this user, don't link
 				if( $iscur || !$file->userCan(File::DELETED_RESTRICTED) ) {
@@ -792,8 +802,9 @@ class ImageHistoryList {
 					if( $file->isDeleted(File::DELETED_RESTRICTED) )
 						$del = "<strong>$del</strong>";
 				}
-				$row .= "<td style='white-space: nowrap;'><tt><small>$del</small></tt></td>";
+				$row .= "<tt style='white-space: nowrap;'><small>$del</small></tt>";
 			}
+			$row .= '</td>';
 		}
 
 		// Reversion link/current indicator
@@ -834,7 +845,7 @@ class ImageHistoryList {
 		$row .= "</td><td>";
 
 		// Image dimensions
-		$row .= '&nbsp;' . htmlspecialchars( $dims );
+		$row .= htmlspecialchars( $dims );
 
 		// File size
 		$row .= " <span style='white-space: nowrap;'>(" . $this->skin->formatSize( $size ) . ')</span>';
@@ -843,20 +854,22 @@ class ImageHistoryList {
 		$row .= '</td><td>';
 		if( $local ) {
 			// Hide deleted usernames
-			if( $file->isDeleted(File::DELETED_USER) )
+			if( $file->isDeleted(File::DELETED_USER) ) {
 				$row .= '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
-			else
-				$row .= $this->skin->userLink( $user, $usertext ) .
-					$this->skin->userToolLinks( $user, $usertext );
+			} else {
+				$row .= $this->skin->userLink( $user, $usertext ) . " <span style='white-space: nowrap;'>" . 
+					$this->skin->userToolLinks( $user, $usertext ) . "</span>";
+			}
 		} else {
 			$row .= htmlspecialchars( $usertext );
 		}
+		$row .= '</td><td>';
 
 		// Don't show deleted descriptions
 		if ( $file->isDeleted(File::DELETED_COMMENT) ) {
-			$row .= '&nbsp;<span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span>';
+			$row .= '<span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span>';
 		} else {
-			$row .= '&nbsp;' . $this->skin->commentBlock( $description, $this->title );
+			$row .= $this->skin->commentBlock( $description, $this->title );
 		}
 		$row .= '</td>';
 
