@@ -74,8 +74,11 @@ abstract class MediaTransformOutput {
 		}
 	}
 
-	function getDescLinkAttribs( $alt = false ) {
+	function getDescLinkAttribs( $alt = false, $params = '' ) {
 		$query = $this->page ? ( 'page=' . urlencode( $this->page ) ) : '';
+		if( $params ) {
+			$query .= $query ? '&'.$params : $params;
+		}
 		$title = $this->file->getTitle();
 		if ( strval( $alt ) === '' ) {
 			$alt = $title->getText();
@@ -125,6 +128,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     file-link    Boolean, show a file download link
 	 *     valign       vertical-align property, if the output is an inline element
 	 *     img-class    Class applied to the <img> tag, if there is such a tag
+	 *     desc-query   String, description link query params
 	 *
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
@@ -138,8 +142,9 @@ class ThumbnailImage extends MediaTransformOutput {
 		}
 
 		$alt = empty( $options['alt'] ) ? '' : $options['alt'];
+		$query = empty($options['desc-query'])  ? '' : $options['desc-query'];
 		if ( !empty( $options['desc-link'] ) ) {
-			$linkAttribs = $this->getDescLinkAttribs( $alt );
+			$linkAttribs = $this->getDescLinkAttribs( $alt, $query );
 		} elseif ( !empty( $options['file-link'] ) ) {
 			$linkAttribs = array( 'href' => $this->file->getURL() );
 		} else {

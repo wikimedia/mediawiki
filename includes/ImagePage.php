@@ -22,6 +22,10 @@ class ImagePage extends Article {
 
 	function __construct( $title, $time = false ) {
 		parent::__construct( $title );
+
+		global $wgRequest;
+		$time = $time ? $time : $wgRequest->getVal( 'filetimestamp' );
+
 		$this->img = wfFindFile( $this->mTitle, $time );
 		if ( !$this->img ) {
 			$this->img = wfLocalFile( $this->mTitle );
@@ -561,7 +565,7 @@ EOT
 		$sk = $wgUser->getSkin();
 
 		if ( $this->img->exists() ) {
-			$list = new ImageHistoryList( $sk, $this->current );
+			$list = new ImageHistoryList( $sk, $this->current, $this->img );
 			$file = $this->current;
 			$dims = $file->getDimensionsString();
 			$s = $list->beginImageHistoryList();
@@ -729,8 +733,9 @@ class ImageHistoryList {
 
 	protected $img, $skin, $title, $repo;
 
-	public function __construct( $skin, $img ) {
+	public function __construct( $skin, $curimg, $img ) {
 		$this->skin = $skin;
+		$this->current = $curimg;
 		$this->img = $img;
 		$this->title = $img->getTitle();
 	}
@@ -741,7 +746,7 @@ class ImageHistoryList {
 			. $wgOut->parse( wfMsgNoTrans( 'filehist-help' ) )
 			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n"
 			. '<tr><td></td>'
-			. ( $this->img->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
+			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>' 
@@ -765,8 +770,8 @@ class ImageHistoryList {
 		$dims = $file->getDimensionsString();
 		$sha1 = $file->getSha1();
 
-		$local = $this->img->isLocal();
-		$row = $css = '';
+		$local = $this->current->isLocal();
+		$row = $css = $selected = '';
 
 		// Deletion link
 		if( $local && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ) {
@@ -827,7 +832,10 @@ class ImageHistoryList {
 		$row .= '</td>';
 
 		// Date/time and image link
-		$row .= "<td style='white-space: nowrap;'>";
+		if( $file->getTimestamp() === $this->img->getTimestamp() ) {
+			$selected = "class='filehistory-selected'";
+		}
+		$row .= "<td $selected style='white-space: nowrap;'>";
 		if( !$file->userCan(File::DELETED_FILE) ) {
 			# Don't link to unviewable files
 			$row .= '<span class="history-deleted">' . $wgLang->timeAndDate( $timestamp, true ) . '</span>';
@@ -835,10 +843,10 @@ class ImageHistoryList {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			# Make a link to review the image
 			$url = $this->skin->makeKnownLinkObj( $revdel, $wgLang->timeAndDate( $timestamp, true ),
-				"target=".$wgTitle->getPrefixedText()."&file=$sha1.".$this->img->getExtension() );
+				"target=".$wgTitle->getPrefixedText()."&file=$sha1.".$this->current->getExtension() );
 			$row .= '<span class="history-deleted">'.$url.'</span>';
 		} else {
-			$url = $iscur ? $this->img->getUrl() : $this->img->getArchiveUrl( $img );
+			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
 			$row .= Xml::element( 'a', array( 'href' => $url ), $wgLang->timeAndDate( $timestamp, true ) );
 		}
 
@@ -874,8 +882,8 @@ class ImageHistoryList {
 		$row .= '</td>';
 
 		wfRunHooks( 'ImagePageFileHistoryLine', array( &$file, &$row, &$css ) );
-		$tagCSS = $css ? " class='$css'" : "";
- 
-		return "<tr{$tagCSS}>{$row}</tr>\n";
+		$trCSS = $css ? " class='$css'" : "";
+
+		return "<tr{$trCSS}>{$row}</tr>\n";
 	}
 }

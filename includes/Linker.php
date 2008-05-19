@@ -511,9 +511,10 @@ class Linker {
 	 * @param array $handlerParams Associative array of media handler parameters, to be passed
 	 *       to transform(). Typical keys are "width" and "page".
 	 * @param string $time, timestamp of the file, set as false for current
+	 * @param string $query, query params for desc url
 	 * @return string HTML for an image, with links, wrappers, etc.
 	 */
-	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false ) {
+	function makeImageLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false, $query = "" ) {
 		$res = null;
 		if( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$this, &$title,
 		&$file, &$frameParams, &$handlerParams, &$time, &$res ) ) ) {
@@ -580,7 +581,7 @@ class Linker {
 			if ( $fp['align'] == '' ) {
 				$fp['align'] = $wgContLang->isRTL() ? 'left' : 'right';
 			}
-			return $prefix.$this->makeThumbLink2( $title, $file, $fp, $hp, $time ).$postfix;
+			return $prefix.$this->makeThumbLink2( $title, $file, $fp, $hp, $time, $query ).$postfix;
 		}
 
 		if ( $file && isset( $fp['frameless'] ) ) {
@@ -604,6 +605,7 @@ class Linker {
 		} else {
 			$s = $thumb->toHtml( array(
 				'desc-link' => true,
+				'desc-query' => $query,
 				'alt' => $fp['alt'],
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ,
 				'img-class' => isset( $fp['border'] ) ? 'thumbborder' : false ) );
@@ -630,7 +632,7 @@ class Linker {
 		return $this->makeThumbLink2( $title, $file, $frameParams, $params );
 	}
 
-	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false ) {
+	function makeThumbLink2( Title $title, $file, $frameParams = array(), $handlerParams = array(), $time = false, $query = "" ) {
 		global $wgStylePath, $wgContLang;
 		$exists = $file && $file->exists();
 
@@ -683,7 +685,9 @@ class Linker {
 			}
 		}
 
-		$query = $page ? 'page=' . urlencode( $page ) : '';
+		if( $page ) {
+			$query = $query ? '&page=' . urlencode( $page ) : 'page=' . urlencode( $page );
+		}
 		$url = $title->getLocalURL( $query );
 
 		$more = htmlspecialchars( wfMsg( 'thumbnail-more' ) );
@@ -699,7 +703,8 @@ class Linker {
 			$s .= $thumb->toHtml( array(
 				'alt' => $fp['alt'],
 				'img-class' => 'thumbimage',
-				'desc-link' => true ) );
+				'desc-link' => true,
+				'desc-query' => $query ) );
 			if ( isset( $fp['framed'] ) ) {
 				$zoomicon="";
 			} else {

@@ -4443,8 +4443,8 @@ class Parser
 		$sk = $this->mOptions->getSkin();
 
 		# Give extensions a chance to select the file revision for us
-		$skip = $time = false;
-		wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$title, &$skip, &$time ) );
+		$skip = $time = $descQuery = false;
+		wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$title, &$skip, &$time, &$descQuery ) );
 
 		if ( $skip ) {
 			return $sk->makeLinkObj( $title );
@@ -4540,7 +4540,7 @@ class Parser
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
 
 		# Linker does the rest
-		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'], $time );
+		$ret = $sk->makeImageLink2( $title, $file, $params['frame'], $params['handler'], $time, $descQuery );
 
 		# Give the handler a chance to modify the parser object
 		if ( $handler ) {

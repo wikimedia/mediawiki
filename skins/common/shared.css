@@ -47,6 +47,10 @@ table.filehistory th.mw-imagepage-filesize {
 	white-space:nowrap;
 }
 
+table.filehistory td.filehistory-selected {
+	font-weight: bold;
+}
+
 /*
  * rev_deleted stuff
  */

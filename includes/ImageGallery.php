@@ -242,8 +242,8 @@ class ImageGallery
 			$text = $pair[1];
 
 			# Give extensions a chance to select the file revision for us
-			$time = false;
-			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time ) );
+			$time = $descQuery = false;
+			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time, &$descQuery ) );
 
 			$img = wfFindFile( $nt, $time );
 
@@ -268,7 +268,7 @@ class ImageGallery
 					# handlers since they may emit block-level elements as opposed to simple <img> tags.
 					# ref http://css-discuss.incutio.com/?page=CenteringBlockElement
 					. '<div style="margin-left: auto; margin-right: auto; width: ' .$this->mWidths.'px;">'
-					. $thumb->toHtml( array( 'desc-link' => true ) ) . '</div></div>';
+					. $thumb->toHtml( array( 'desc-link' => true, 'desc-query' => $descQuery ) ) . '</div></div>';
 
 				// Call parser transform hook
 				if ( $this->mParser && $img->getHandler() ) {
