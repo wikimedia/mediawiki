@@ -394,14 +394,7 @@ class Parser
 		}
 		global $wgExpensiveParserFunctionLimit;
 		if ( $this->mExpensiveFunctionCount > $wgExpensiveParserFunctionLimit ) {
-			if ( is_callable( array( $this->mOutput, 'addWarning' ) ) ) {
-				$warning = wfMsg( 'expensive-parserfunction-warning', $this->mExpensiveFunctionCount, $wgExpensiveParserFunctionLimit );
-				$this->mOutput->addWarning( $warning );
-				$cat = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( 'expensive-parserfunction-category' ) );
-				if ( $cat ) {
-					$this->mOutput->addCategory( $cat->getDBkey(), $this->getDefaultSort() );
-				}
-			}
+			$this->limitationWarn( 'expensive-parserfunction', $this->mExpensiveFunctionCount, $wgExpensiveParserFunctionLimit );
 		}
 
 		wfRunHooks( 'ParserAfterTidy', array( &$this, &$text ) );
@@ -2703,6 +2696,28 @@ class Parser
 	}
 
 	/**
+	 * Warn the user when a parser limitation is reached
+	 * Will warn at most once the user per limitation type
+	 *
+	 * @param string $limitationType, should be one of :
+     *   'expensive-parserfunction'
+	 *   'post-expand-template-argument'
+	 *	 'post-expand-template-inclusion'
+	 * @params int $current, $max When an explicit limit has been
+	 *	 exceeded, provide the values (optional)
+	 */
+	function limitationWarn( $limitationType, $current=null, $max=null) {
+		$msgName = $limitationType . '-warning';
+		//does no harm if $current and $max are present but are unnecessary for the message
+		$warning = wfMsg( $msgName, $current, $max); 
+		$this->mOutput->addWarning( $warning );
+		$cat = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( $limitationType . '-category' ) );
+		if ( $cat ) {
+			$this->mOutput->addCategory( $cat->getDBkey(), $this->getDefaultSort() );
+		}
+	}
+
+	/**
 	 * Return the text of a template, after recursively
 	 * replacing any variables or templates within the template.
 	 *
@@ -2988,6 +3003,7 @@ class Parser
 			# Error, oversize inclusion
 			$text = "[[$originalTitle]]" .
 				$this->insertStripItem( '<!-- WARNING: template omitted, post-expand include size too large -->' );
+			$this->limitationWarn( 'post-expand-template-inclusion' );
 		}
 
 		if ( $isLocalObj ) {
@@ -3186,6 +3202,7 @@ class Parser
 		}
 		if ( !$this->incrementIncludeSize( 'arg', strlen( $text ) ) ) {
 			$error = '<!-- WARNING: argument omitted, expansion size too large -->';
+			$this->limitationWarn( 'post-expand-template-argument' );
 		}
 
 		if ( $text === false && $object === false ) {

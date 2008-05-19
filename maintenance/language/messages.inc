@@ -561,6 +561,10 @@ $wgMessageStructure = array(
 		'recreate-deleted-warn',
 		'expensive-parserfunction-warning',
 		'expensive-parserfunction-category',
+		'post-expand-template-inclusion-warning',
+		'post-expand-template-inclusion-category',
+		'post-expand-template-argument-warning',
+		'post-expand-template-argument-category',
 	),
 	'undo' => array(
 		'undo-success',

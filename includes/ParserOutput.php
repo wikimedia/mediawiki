@@ -21,7 +21,7 @@ class ParserOutput
 		$mNoGallery,        # No gallery on category page? (__NOGALLERY__)
 		$mHeadItems,        # Items to put in the <head> section
 		$mOutputHooks,      # Hook tags as per $wgParserOutputHooks
-		$mWarnings,         # Warning text to be returned to the user. Wikitext formatted.
+		$mWarnings,         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections,         # Table of contents
 		$mProperties;       # Name/value pairs to be cached in the DB
 
@@ -68,7 +68,7 @@ class ParserOutput
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getSubtitle()               { return $this->mSubtitle; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
-	function getWarnings()               { return isset( $this->mWarnings ) ? $this->mWarnings : array(); }
+	function getWarnings()               { return array_keys( $this->mWarnings ); }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -82,7 +82,7 @@ class ParserOutput
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
 	function addExternalLink( $url )     { $this->mExternalLinks[$url] = 1; }
-	function addWarning( $s )            { $this->mWarnings[] = $s; }
+	function addWarning( $s )            { $this->mWarnings[$s] = 1; }
 
 	function addOutputHook( $hook, $data = false ) {
 		$this->mOutputHooks[] = array( $hook, $data );
