@@ -72,11 +72,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['messages'] = '';
 		}
 		if (isset($this->prop['groups'])) {
-			$vals['groups'] = $wgUser->getGroups();
+			$vals['groups'] = array_values( $wgUser->getGroups() );
 			$result->setIndexedTagName($vals['groups'], 'g');	// even if empty
 		}
 		if (isset($this->prop['rights'])) {
-			$vals['rights'] = $wgUser->getRights();
+			$vals['rights'] = array_values( $wgUser->getRights() );
 			$result->setIndexedTagName($vals['rights'], 'r');	// even if empty
 		}
 		if (isset($this->prop['options'])) {
