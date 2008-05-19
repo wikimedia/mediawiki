@@ -311,6 +311,7 @@ Dagiti panangbalbaliw iti daytoy a panid ket apektaranna ti langa ti user interf
 Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatewiki.net/wiki/Main_Page?setlang=ilo Betawiki], ti MediaWiki localisation project.",
 'sqlhidden'            => '(nakalemmeng ti SQL query)',
 'namespaceprotected'   => "Awananka iti pammalubos a mangbaliw kadagiti panid iti '''$1''' a namespace.",
+'customcssjsprotected' => 'Awananka iti pammalubos a mangedit iti daytoy a panid, agsipud ta adda linaonna a personal a settings ti sabali nga agar-aramat.',
 'ns-specialprotected'  => 'Saan a mabalin  a baliwan dagiti espesial a panid.',
 'titleprotected'       => "Sinaluadan daytoy a titulo manipud iti pannakaparnuay ni [[User:$1|$1]].
 Ti naited a rason ket ''$2''.",
@@ -390,6 +391,7 @@ Saankan a makaaramid pay.',
 'emailconfirmlink'           => 'Kompirmaem ti e-mail addressmo',
 'accountcreated'             => 'Naaramiden ti account',
 'accountcreatedtext'         => 'Naaramiden ti account a pagaramat ni $1.',
+'createaccount-title'        => 'Panagaramid iti account para iti {{SITENAME}}',
 'loginlanguagelabel'         => 'Lengguahe: $1',
 
 # Password reset dialog
@@ -455,6 +457,8 @@ Ti agdama nga IP addressmo ket $3, ket ti block ID ket #$5. Pangngaasim ta irama
 'whitelistacctext'          => 'Tapno mapalubosanka a mangaramid iti accounts iti {{SITENAME}} masapul a [[Special:Userlogin|sumrekka]] ken maaddaan kadagiti mainugot a pammalubos.',
 'confirmedittitle'          => 'Masapul ti pammasingked ti email tapno makaedit',
 'nosuchsectiontitle'        => 'Awan ti kasta a benneg',
+'nosuchsectiontext'         => 'Pinadasmo nga editen ti maysa a benneg nga awan pay.
+Ket agsipud ta awan ti $1 a benneg, awan ti pangidulinan iti editmo.',
 'loginreqtitle'             => 'Masapul ti panag-login',
 'loginreqlink'              => 'sumrek',
 'loginreqpagetext'          => 'Nasken a $1 ka tapno makakitaka iti sabsabali a pampanid.',

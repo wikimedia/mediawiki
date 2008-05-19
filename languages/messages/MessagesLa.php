@@ -393,7 +393,9 @@ $messages = array(
 'nosuchaction'      => 'Actio non est',
 'nosuchactiontext'  => 'Actio in URL designata non agnoscitur a hoc vici.',
 'nosuchspecialpage' => 'Pagina specialis non est',
-'nospecialpagetext' => 'Paginam specialem invalidam petivisti. Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{MediaWiki:Specialpages}}]].',
+'nospecialpagetext' => "<big>'''Paginam specialem invalidam petivisti.'''</big>
+
+Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erratum',

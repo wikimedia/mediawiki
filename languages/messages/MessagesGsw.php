@@ -842,10 +842,10 @@ sollte umgehend ein Administrator informiert werden!',
 'ilsubmit'      => 'Suech',
 
 # EXIF tags
-'exif-orientation'       => 'Orientierung',
-'exif-pixelxdimension'   => 'Valind image height',
-'exif-fnumber'           => 'F-Wert',
-'exif-isospeedratings'   => 'Filmempfindlichkeit (ISO)',
+'exif-orientation'     => 'Orientierung',
+'exif-pixelxdimension' => 'Valind image height',
+'exif-fnumber'         => 'F-Wert',
+'exif-isospeedratings' => 'Filmempfindlichkeit (ISO)',
 
 # External editor support
 'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
@@ -854,14 +854,14 @@ sollte umgehend ein Administrator informiert werden!',
 'watchlistall2' => 'alli',
 
 # E-mail address confirmation
-'confirmemail'            => 'Bschtätigung vo Ihre E-Bost-Adräss',
-'confirmemail_text'       => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die e-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die e-Mail-Adrässe dyni isch.',
-'confirmemail_send'       => 'Bestätigungs-Mail verschicke',
-'confirmemail_sent'       => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',
-'confirmemail_success'    => 'Dyni e-Mail-Adrässen isch bestätiget worde. Du chasch di jitz ylogge.',
-'confirmemail_loggedin'   => 'Dyni e-Mail-Adrässen isch jitz bestätiget.',
-'confirmemail_subject'    => '{{SITENAME}} e-Mail-Adrässbestätigung',
-'confirmemail_body'       => 'Hallo
+'confirmemail'          => 'Bschtätigung vo Ihre E-Bost-Adräss',
+'confirmemail_text'     => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die e-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die e-Mail-Adrässe dyni isch.',
+'confirmemail_send'     => 'Bestätigungs-Mail verschicke',
+'confirmemail_sent'     => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',
+'confirmemail_success'  => 'Dyni e-Mail-Adrässen isch bestätiget worde. Du chasch di jitz ylogge.',
+'confirmemail_loggedin' => 'Dyni e-Mail-Adrässen isch jitz bestätiget.',
+'confirmemail_subject'  => '{{SITENAME}} e-Mail-Adrässbestätigung',
+'confirmemail_body'     => 'Hallo
 
 {{SITENAME}}-BenutzerIn «$2» — das bisch allwäg du — het sech vor IP-Adrässen $1 uus mit deren e-Mail-Adrässe bi {{SITENAME}} aagmäldet.
 
