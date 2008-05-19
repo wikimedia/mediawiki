@@ -31,7 +31,11 @@ if (!window.onloadFuncts) {
 
 function addOnloadHook(hookFunct) {
 	// Allows add-on scripts to add onload functions
-	onloadFuncts[onloadFuncts.length] = hookFunct;
+	if(!doneOnloadHook) {
+		onloadFuncts[onloadFuncts.length] = hookFunct;
+	} else {
+		hookFunct();  // bug in MSIE script loading
+	}
 }
 
 function hookEvent(hookName, hookFunct) {
@@ -40,6 +44,41 @@ function hookEvent(hookName, hookFunct) {
 	} else if (window.attachEvent) {
 		window.attachEvent("on" + hookName, hookFunct);
 	}
+}
+
+function importScript(page) {
+	return importScriptURI(wgScript + '?action=raw&ctype=text/javascript&title=' + encodeURIComponent(page.replace(/ /g,'_')));
+}
+ 
+var loadedScripts = {}; // included-scripts tracker
+function importScriptURI(url) {
+	if (loadedScripts[url]) {
+		return;
+	}
+	loadedScripts[url] = true;
+	var s = document.createElement('script');
+	s.setAttribute('src',url);
+	s.setAttribute('type','text/javascript');
+	document.getElementsByTagName('head')[0].appendChild(s);
+	return s;
+}
+ 
+function importStylesheet(page) {
+	return importStylesheetURI(wgScript + '?action=raw&ctype=text/css&title=' + encodeURIComponent(page.replace(/ /g,'_')));
+}
+ 
+function importStylesheetURI(url) {
+	return document.createStyleSheet ? document.createStyleSheet(url) : appendCSS('@import "' + url + '";');
+}
+ 
+function appendCSS(text) {
+	var s = document.createElement('style');
+	s.type = 'text/css';
+	s.rel = 'stylesheet';
+	if (s.styleSheet) s.styleSheet.cssText = text //IE
+	else s.appendChild(document.createTextNode(text + '')) //Safari sometimes borks on null
+	document.getElementsByTagName('head')[0].appendChild(s);
+	return s;
 }
 
 // document.write special stylesheet links

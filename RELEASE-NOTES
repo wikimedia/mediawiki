@@ -117,6 +117,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use rel="start", "prev", "next" appropriately on Pager-based pages
 * Add support for SQLite
 * AutoAuthenticate hook renamed to UserLoadFromSession
+* (bug 13232) importScript(), importStylesheet() funcs available to custom JS
+
 
 === Bug fixes in 1.13 ===
 
@@ -282,6 +284,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13693) Categories sometimes claim to have a negative number of members
 * (bug 1701) Korean Hangul syllables now broken down properly in Category lists
   even if the wiki's overall content language is not Korean
+* (bug 12773) addOnloadHook() now calls functions immediately when scripts are
+  loaded after the primary page completion, instead of dropping them
+
 
 === API changes in 1.13 ===
 
