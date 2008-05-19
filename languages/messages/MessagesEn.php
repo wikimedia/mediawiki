@@ -1964,6 +1964,10 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 It may contain one or more characters which cannot be used in titles.',
 'allpages-bad-ns'   => '{{SITENAME}} does not have namespace "$1".',
 
+# Special:Categories
+'categoriesfrom' => 'Display categories starting at:',
+
+
 # Special:Listusers
 'listusersfrom'      => 'Display users starting at:',
 'listusers-submit'   => 'Show',

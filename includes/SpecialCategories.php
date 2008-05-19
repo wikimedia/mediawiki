@@ -5,13 +5,14 @@
  */
 
 function wfSpecialCategories() {
-	global $wgOut;
+	global $wgOut, $wgRequest;
 
 	$cap = new CategoryPager();
 	$wgOut->addHTML(
 		wfMsgExt( 'categoriespagetext', array( 'parse' ) ) .
-		$cap->getNavigationBar()
-		. '<ul>' . $cap->getBody() . '</ul>' .
+		$cap->getStartForm( str_replace( '_', ' ', $wgRequest->getVal( 'offset' ) ) ) .
+		$cap->getNavigationBar() .
+		'<ul>' . $cap->getBody() . '</ul>' .
 		$cap->getNavigationBar()
 	);
 }
@@ -72,5 +73,19 @@ class CategoryPager extends AlphabeticPager {
 		$count = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
 				$wgLang->formatNum( $result->cat_pages ) );
 		return Xml::tags('li', null, "$titleText ($count)" ) . "\n";
+	}
+	
+	public function getStartForm( $from='' ) {
+		global $wgScript;
+		$t = SpecialPage::getTitleFor( 'Categories' );
+	
+		return
+			Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
+				Xml::hidden( 'title', $t->getPrefixedText() ) .
+				Xml::fieldset( wfMsg( 'categories' ),
+					Xml::inputLabel( wfMsg( 'categoriesfrom' ),
+						'offset', 'offset', 20, $from ) .
+					' ' .
+					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) ) );
 	}
 }
