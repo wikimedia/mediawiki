@@ -361,7 +361,7 @@ $messages = array(
 'nosuchspecialpage' => '此特殊页面不存在',
 'nospecialpagetext' => "<big>'''您请求的特殊页面无效。'''</big>
 
-[[Special:Specialpages]]载有所有有效特殊页面的列表。",
+[[Special:Specialpages|{{int:specialpages}}]]中载有所有有效特殊页面的列表。",
 
 # General errors
 'error'                => '错误',
@@ -470,9 +470,10 @@ $2',
 'yourrealname'               => '真实姓名:',
 'yourlanguage'               => '界面语言:',
 'yourvariant'                => '字体变换:',
-'yournick'                   => '昵称:',
+'yournick'                   => '签名:',
 'badsig'                     => '错误的原始签名；请检查HTML标签。',
-'badsiglength'               => '昵称过长；它的长度必须在$1个字符以下。',
+'badsiglength'               => '签名过长。
+它的长度必须在$1个字符以下。',
 'email'                      => '电子邮箱',
 'prefs-help-realname'        => '真实姓名是可选的。
 如果您选择提供它，那它便用以对您的贡献署名。',
@@ -679,10 +680,17 @@ $2',
 为方便起见，这一个页面的删除记录已经在下面提供:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => '警告: 这个页面有太多耗费的语法功能呼叫。
+'expensive-parserfunction-warning'        => '警告: 这个页面有太多耗费的语法功能呼叫。
 
 它应该少过$2，现在有$1。',
-'expensive-parserfunction-category' => '页面中有太多耗费的语法功能呼叫',
+'expensive-parserfunction-category'       => '页面中有太多耗费的语法功能呼叫',
+'post-expand-template-inclusion-warning'  => '警告: 包含模板大小过大。
+一些模板将不会包含。',
+'post-expand-template-inclusion-category' => '模板包含上限已经超过的页面',
+'post-expand-template-argument-warning'   => '警告: 这个页面有最少一个模参数有过大扩展大小。
+这些参数会被略过。',
+'post-expand-template-argument-category'  => '包含着略过模板参数的页面',
+
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下对比以核实这正是您想做的，然后保存以下更改以完成撤销编辑。',
@@ -851,6 +859,9 @@ $2',
 'nonefound'                 => "'''注意''': 只有一些名字空间是会作为预设搜寻。尝试''all:''去搜寻全部的页面（包埋讨论页面、模板等），或可用需要的名字空间作为前缀。",
 'powersearch'               => '高级搜索',
 'powersearch-legend'        => '高级搜索',
+'powersearch-ns'            => '在以下的名字空间中搜索:',
+'powersearch-redir'         => '重定向列表',
+'powersearch-field'         => '搜索',
 'search-external'           => '外部搜索',
 'searchdisabled'            => '{{SITENAME}}由于性能方面的原因，全文搜索已被暂时禁用。您可以暂时通过Google搜索。请留意他们的索引可能会过时。',
 
@@ -1171,7 +1182,7 @@ $2',
 'filehist'                       => '文件历史',
 'filehist-help'                  => '点击日期／时间以查看当时出现过的文件。',
 'filehist-deleteall'             => '删除全部',
-'filehist-deleteone'             => '删除这个',
+'filehist-deleteone'             => '删除',
 'filehist-revert'                => '恢复',
 'filehist-current'               => '当前',
 'filehist-datetime'              => '日期／时间',
@@ -1184,6 +1195,7 @@ $2',
 'nolinkstoimage'                 => '没有页面链接到本文件。',
 'morelinkstoimage'               => '查看连接到这个文件的[[Special:Whatlinkshere/$1|更多连结]]。',
 'redirectstofile'                => '以下的文件重新定向到这个文件:',
+'duplicatesoffile'               => '以下的文件是跟这个文件重覆:',
 'sharedupload'                   => '该文件是一个共享上传，它可能在其它项目中被应用。',
 'shareduploadwiki'               => '请参阅在共享文件库上的$1以了解其相关信息。',
 'shareduploadwiki-desc'          => '它在$1上的描述于下面显示。',
@@ -1345,6 +1357,8 @@ Template:消除歧義',
 'unusedcategoriestext'    => '虽然没有被其它页面或者分类所采用，但列表中的分类页依然存在。',
 'notargettitle'           => '无目标',
 'notargettext'            => '您还没有指定一个目标页面或用户以进行此项操作。',
+'nopagetitle'             => '无目标页面',
+'nopagetext'              => '您所指定的目标页面并不存在。',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '旧$1次',
 'suppress'                => '监督',
@@ -1386,6 +1400,7 @@ Template:消除歧義',
 # Special:Categories
 'categories'                    => '页面分类',
 'categoriespagetext'            => '以下的分类中包含了页面或媒体。',
+'categoriesfrom'                => '显示由此项起之分类:',
 'special-categories-sort-count' => '按数量排列',
 'special-categories-sort-abc'   => '按字母排列',
 
