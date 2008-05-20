@@ -1134,16 +1134,18 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
-'expensive-parserfunction-warning'  => 'Warning: This page contains too many expensive parser function calls.
+
+# Parser/template warnings
+'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
 
 It should have less than $2, there are now $1.',
-'expensive-parserfunction-category' => 'Pages with too many expensive parser function calls',
-'post-expand-template-inclusion-warning'	=> "Warning: Template include size is too large.
+'expensive-parserfunction-category'       => 'Pages with too many expensive parser function calls',
+'post-expand-template-inclusion-warning'  => "Warning: Template include size is too large.
 Some templates will not be included.",
-'post-expand-template-inclusion-category'	=> "Pages where template include size is exceeded",
-'post-expand-template-argument-warning'		=> "Warning: This page contains at least one template argument which has a too large expansion size.
+'post-expand-template-inclusion-category' => "Pages where template include size is exceeded",
+'post-expand-template-argument-warning'   => "Warning: This page contains at least one template argument which has a too large expansion size.
 These arguments have been omitted.",
-'post-expand-template-argument-category'	=> "Pages containing omitted template arguments",
+'post-expand-template-argument-category'  => "Pages containing omitted template arguments",
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',
