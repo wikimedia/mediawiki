@@ -122,6 +122,7 @@ $wgOptionalMessages = array(
 	'unit-pixel',
 	'allpages-summary',
 	'booksources-summary',
+	'categories-summary',
 	'ipblocklist-summary',
 	'protectedtitles-summary',
 	'listusers-summary',
