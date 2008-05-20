@@ -90,7 +90,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 								$this->setContinueEnumParameter('start', $oldie->getTimestamp());
 							break;
 						}
-						$data[] = $this->getInfo( $oldie, $prop, $result );
+						$data[] = self::getInfo( $oldie, $prop, $result );
 					}
 				}
 
