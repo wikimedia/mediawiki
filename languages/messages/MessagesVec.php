@@ -137,10 +137,6 @@ $messages = array(
 'dec'           => 'Diç',
 
 # Categories related messages
-'categories'                     => '{{PLURAL:$1|Categoria|Categorie}}',
-'categoriespagetext'             => 'Elenco par intiero de le categorie presenti sul sito.',
-'special-categories-sort-count'  => 'ordina par nùmaro',
-'special-categories-sort-abc'    => 'ordina alfabeticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header'                => 'Voçi n\'te ła categoria "$1"',
 'subcategories'                  => 'Sotocategorie',
@@ -511,23 +507,23 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'hr_tip'          => 'Linea orizontal (dòparela con giudizio)',
 
 # Edit pages
-'summary'                           => 'Ogeto',
-'subject'                           => 'Argomento (intestazion)',
-'minoredit'                         => "Sta quà l'è na modifica minore",
-'watchthis'                         => "Tegni d'ocio sta voçe",
-'savearticle'                       => 'Salva la pagina',
-'preview'                           => 'Anteprima',
-'showpreview'                       => 'Mostra anteprima',
-'showlivepreview'                   => "Funzion ''Live preview''",
-'showdiff'                          => 'Mostra canbiamenti',
-'anoneditwarning'                   => "'''Ocio:''' Acesso mìa efetuà. Ne ła cronołogia de ła pàxena vegnarà registrà l'indirizo IP.",
-'missingsummary'                    => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
-'missingcommenttext'                => 'Inserissi un comento qua soto.',
-'missingcommentheader'              => "'''Ocio:''' No te ghè specificà l'intestazion de sto commento. Macando de novo '''Salva la pagina''' la modifica la vegnarà salvà senza intestazion.",
-'summary-preview'                   => 'Anteprima ogeto',
-'subject-preview'                   => 'Anteprima ogeto/intestazion',
-'blockedtitle'                      => 'Utente blocà',
-'blockedtext'                       => "<big>'''Sto nome utente o indirizo IP i xe stà blocà.'''</big>
+'summary'                   => 'Ogeto',
+'subject'                   => 'Argomento (intestazion)',
+'minoredit'                 => "Sta quà l'è na modifica minore",
+'watchthis'                 => "Tegni d'ocio sta voçe",
+'savearticle'               => 'Salva la pagina',
+'preview'                   => 'Anteprima',
+'showpreview'               => 'Mostra anteprima',
+'showlivepreview'           => "Funzion ''Live preview''",
+'showdiff'                  => 'Mostra canbiamenti',
+'anoneditwarning'           => "'''Ocio:''' Acesso mìa efetuà. Ne ła cronołogia de ła pàxena vegnarà registrà l'indirizo IP.",
+'missingsummary'            => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
+'missingcommenttext'        => 'Inserissi un comento qua soto.',
+'missingcommentheader'      => "'''Ocio:''' No te ghè specificà l'intestazion de sto commento. Macando de novo '''Salva la pagina''' la modifica la vegnarà salvà senza intestazion.",
+'summary-preview'           => 'Anteprima ogeto',
+'subject-preview'           => 'Anteprima ogeto/intestazion',
+'blockedtitle'              => 'Utente blocà',
+'blockedtext'               => "<big>'''Sto nome utente o indirizo IP i xe stà blocà.'''</big>
 
 El bloco el xe stà messo da $1. La motivazion del bloco la xe sta qua: ''$2''
 
@@ -540,7 +536,7 @@ Se te vol, te pol contatar $1 o n'altro [[{{MediaWiki:Grouppage-sysop}}|aministr
 Nota che la funzion 'Scrivi a l'utente' no la xe mìa ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[{{ns:special}}:Preferences|preferenze]].
 
 Se prega de specificare l'indirizo IP atuale ($3) o el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
-'autoblockedtext'                   => "Sto indirizo IP el xe stà blocà automaticamente parché condiviso con n'altro utente, a so volta blocà da $1.
+'autoblockedtext'           => "Sto indirizo IP el xe stà blocà automaticamente parché condiviso con n'altro utente, a so volta blocà da $1.
 La motivazion del blocco la xe sta qua:
 
 :''$2''
@@ -553,99 +549,101 @@ Se pol contatar $1 o n'altro [[{{MediaWiki:Grouppage-sysop}}|aministrador]] par 
 Nota che la funzion 'Scrivi a l'utente' no la xe ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[Special:Preferences|preferenze]].
 
 Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
-'blockednoreason'                   => 'nissuna motivazion indicà',
-'blockedoriginalsource'             => "El còdese sorgente de '''$1''' el vien mostrà de seguito:",
-'blockededitsource'                 => "El testo de le '''to modifiche''' a '''$1''' el xe mostrà qua soto:",
-'whitelistedittitle'                => 'Bisogna èssar registrà par poder modificar la pàxena.',
-'whitelistedittext'                 => 'Par modificar łe pàxene ghe xè bisogno de $1.',
-'whitelistreadtitle'                => 'Bisogna èssar registrà par lèxar ła pàxena',
-'whitelistreadtext'                 => 'Xe necessario effettuar el [[Special:Userlogin|login]] par lexere i articoli.',
-'whitelistacctitle'                 => 'No te ghè el permesso de creare un account',
-'whitelistacctext'                  => 'To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
-'confirmedittitle'                  => 'Ghe vole ła conferma e-mail par scrivare',
-'confirmedittext'                   => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
-'nosuchsectiontitle'                => 'Sta sezion no la esiste',
-'nosuchsectiontext'                 => 'Te ghè çercà de modificar na sezion inesistente. No se pol mìa salvar le modifiche in quanto la sezion $1 no la esiste.',
-'loginreqtitle'                     => "Par modificar sta pagina bisogna prima eseguir l'acesso al sito.",
-'loginreqlink'                      => 'login',
-'loginreqpagetext'                  => 'Par védar altre pagine bisogna $1.',
-'accmailtitle'                      => 'Password spedia.',
-'accmailtext'                       => "La password par '$1' l'è sta spedia a $2.",
-'newarticle'                        => '(Novo)',
-'newarticletext'                    => "El cołegamento che te ghè 'pena seguìo el corisponde a na pàxena gnancora esistente.
+'blockednoreason'           => 'nissuna motivazion indicà',
+'blockedoriginalsource'     => "El còdese sorgente de '''$1''' el vien mostrà de seguito:",
+'blockededitsource'         => "El testo de le '''to modifiche''' a '''$1''' el xe mostrà qua soto:",
+'whitelistedittitle'        => 'Bisogna èssar registrà par poder modificar la pàxena.',
+'whitelistedittext'         => 'Par modificar łe pàxene ghe xè bisogno de $1.',
+'whitelistreadtitle'        => 'Bisogna èssar registrà par lèxar ła pàxena',
+'whitelistreadtext'         => 'Xe necessario effettuar el [[Special:Userlogin|login]] par lexere i articoli.',
+'whitelistacctitle'         => 'No te ghè el permesso de creare un account',
+'whitelistacctext'          => 'To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
+'confirmedittitle'          => 'Ghe vole ła conferma e-mail par scrivare',
+'confirmedittext'           => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
+'nosuchsectiontitle'        => 'Sta sezion no la esiste',
+'nosuchsectiontext'         => 'Te ghè çercà de modificar na sezion inesistente. No se pol mìa salvar le modifiche in quanto la sezion $1 no la esiste.',
+'loginreqtitle'             => "Par modificar sta pagina bisogna prima eseguir l'acesso al sito.",
+'loginreqlink'              => 'login',
+'loginreqpagetext'          => 'Par védar altre pagine bisogna $1.',
+'accmailtitle'              => 'Password spedia.',
+'accmailtext'               => "La password par '$1' l'è sta spedia a $2.",
+'newarticle'                => '(Novo)',
+'newarticletext'            => "El cołegamento che te ghè 'pena seguìo el corisponde a na pàxena gnancora esistente.
 Se te desideri crear ła pàxena desso, basta che te tachi a scrìvar el testo ne ła caseła qua soto
 (fà riferimento a łe [[{{MediaWiki:Helppage}}|pàxene de ajuto]] par majori informassion).
 Se te si rivà qua par sbaglio, basta che te machi el boton '''Indrio''' sul to browser.",
-'anontalkpagetext'                  => "----
+'anontalkpagetext'          => "----
 
 
 
 
 
 ---- ''Sta quà l'è la pàxena de discussion de un utente anonimo che no'l se gà gnancora registrà o che no l'efetua el login. De conseguenza xè necessario identificarlo tramite l'[[Indirizo IP|indirizo IP]] numerico. Sto indirizo el pode èssar condivixo da diversi utenti. Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te podi [[Special:Userlogin|registrarte o efetuar el login]] par evitar confuxion con altri utenti in futuro.''",
-'noarticletext'                     => 'In sto momento ła pàxena richiesta la xè voda. Se pol [[Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre pàxene del sito opure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła pàxena desso].',
-'userpage-userdoesnotexist'         => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
-'clearyourcache'                    => "'''Nota:''' dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti: '''Mozilla:''' schiza su ''reload'' (opure ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
-'usercssjsyoucanpreview'            => "<strong>Sugerimento:</strong> se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
-'usercsspreview'                    => "'''Sta qua la xe solo n'anteprima del proprio CSS personal; le modifiche no le xe gnancora stà salvà!'''",
-'userjspreview'                     => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
-'userinvalidcssjstitle'             => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/monobook.css e no {{ns:user}}:Esenpio/Monobook.css.",
-'updated'                           => '(Agiornà)',
-'note'                              => '<strong>Nota:</strong>',
-'previewnote'                       => "<strong>Tegni presente che sta qua xè solo n'anteprima, e che la to version NO la xè stà gnancora salvà!</strong>",
-'previewconflict'                   => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
-'session_fail_preview'              => '<strong>Purtropo no xè stà possibiłe salvar le to modifiche parché i dati de la sezion i xè andai persi. Par piaser, riproa da novo.<br />
+'noarticletext'             => 'In sto momento ła pàxena richiesta la xè voda. Se pol [[Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre pàxene del sito opure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła pàxena desso].',
+'userpage-userdoesnotexist' => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
+'clearyourcache'            => "'''Nota:''' dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti: '''Mozilla:''' schiza su ''reload'' (opure ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'usercssjsyoucanpreview'    => "<strong>Sugerimento:</strong> se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
+'usercsspreview'            => "'''Sta qua la xe solo n'anteprima del proprio CSS personal; le modifiche no le xe gnancora stà salvà!'''",
+'userjspreview'             => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
+'userinvalidcssjstitle'     => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/monobook.css e no {{ns:user}}:Esenpio/Monobook.css.",
+'updated'                   => '(Agiornà)',
+'note'                      => '<strong>Nota:</strong>',
+'previewnote'               => "<strong>Tegni presente che sta qua xè solo n'anteprima, e che la to version NO la xè stà gnancora salvà!</strong>",
+'previewconflict'           => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
+'session_fail_preview'      => '<strong>Purtropo no xè stà possibiłe salvar le to modifiche parché i dati de la sezion i xè andai persi. Par piaser, riproa da novo.<br />
 Se te rizevi sto messajo de erór pì olte, proa a scołegarte (struca su "và fora" in alto a destra) e a cołegarte novamente.</strong>',
-'session_fail_preview_html'         => "<strong>Semo spiacenti, ma no xe mìa stà possibile elaborar la modifica parché xe 'ndà persi i dati relativi a la session.</strong>
+'session_fail_preview_html' => "<strong>Semo spiacenti, ma no xe mìa stà possibile elaborar la modifica parché xe 'ndà persi i dati relativi a la session.</strong>
 
 ''Dato che in sto sito xe abilità l'uso de HTML senza limitazion, l'anteprima no la vien visualizà; se tratta de na misura de sicureza contro i atachi JavaScript.''
 
 <strong>Se el problema el persiste, te pol proár a scolegarte e efetuar da novo l'acesso.</strong>",
-'token_suffix_mismatch'             => "<strong>La modifica no la xe mìa stà salvà parché el client el gà mostrà de gestir in maniera sbaglià i caràteri de puntegiatura nel token associà a la stessa. Par evitar na possibile coruzion del testo de la pagina, xe stà rifiutà l'intera modifica. Sta situazion la pode verificarse, a olte, quando vien doparà çerti servizi de proxy anonimi via web che presenta dei bug.</strong>",
-'editing'                           => 'Modifica de $1',
-'editingsection'                    => 'Modifica $1 (sezion)',
-'editingcomment'                    => 'Modifica de $1 (comento)',
-'editconflict'                      => 'Conflito de edizion: $1',
-'explainconflict'                   => "Qualcun altro el ga salvà na so version de ła voçe nel tempo in cui te stavi preparando ła to version.
+'token_suffix_mismatch'     => "<strong>La modifica no la xe mìa stà salvà parché el client el gà mostrà de gestir in maniera sbaglià i caràteri de puntegiatura nel token associà a la stessa. Par evitar na possibile coruzion del testo de la pagina, xe stà rifiutà l'intera modifica. Sta situazion la pode verificarse, a olte, quando vien doparà çerti servizi de proxy anonimi via web che presenta dei bug.</strong>",
+'editing'                   => 'Modifica de $1',
+'editingsection'            => 'Modifica $1 (sezion)',
+'editingcomment'            => 'Modifica de $1 (comento)',
+'editconflict'              => 'Conflito de edizion: $1',
+'explainconflict'           => "Qualcun altro el ga salvà na so version de ła voçe nel tempo in cui te stavi preparando ła to version.
 La casela de modifica de sora contegne el testo de la voçe ne ła so forma atuałe (el testo atualmente online).
 Le to modifiche łe xè inveçe contegnue ne ła caseła de modifica de soto.
 Te dovarè inserire, se te vołi, le to modifiche nel testo esistente, e perciò scrivarle ne ła caseła de sora.
 '''Soltanto''' el testo ne ła caseła de sora el sarà salvà se te struchi el botón \"Salva\".",
-'yourtext'                          => 'El to testo',
-'storedversion'                     => 'Version in archivio',
-'nonunicodebrowser'                 => '<strong>OCIO: Te stè doparando un browser mìa conpatibile coi caràteri Unicode. Par consentir la modifica de le pagine senza crear inconvenienti, i caràteri non ASCII i vien mostrà ne la casela de modifica soto forma de codici esadecimali.</strong>',
-'editingold'                        => '<strong>Ocio: Te stè modificando na version de ła voçe non agiornà. Se te la salvi cussì, tuti i canbiamenti apportai dopo sta version i vegnarà persi.</strong>',
-'yourdiff'                          => 'Difarense',
-'copyrightwarning'                  => "Nota: tuti i contributi a {{SITENAME}} i se considera rilasià nei termini de la licenza d'uso $2 (varda $1 par savérghene piessè). Se no te voli che i to testi i possa èssar modificà e redistribuìi da chiunque senza nissuna limitazion, no sta inviarli a {{SITENAME}}.<br />
+'yourtext'                  => 'El to testo',
+'storedversion'             => 'Version in archivio',
+'nonunicodebrowser'         => '<strong>OCIO: Te stè doparando un browser mìa conpatibile coi caràteri Unicode. Par consentir la modifica de le pagine senza crear inconvenienti, i caràteri non ASCII i vien mostrà ne la casela de modifica soto forma de codici esadecimali.</strong>',
+'editingold'                => '<strong>Ocio: Te stè modificando na version de ła voçe non agiornà. Se te la salvi cussì, tuti i canbiamenti apportai dopo sta version i vegnarà persi.</strong>',
+'yourdiff'                  => 'Difarense',
+'copyrightwarning'          => "Nota: tuti i contributi a {{SITENAME}} i se considera rilasià nei termini de la licenza d'uso $2 (varda $1 par savérghene piessè). Se no te voli che i to testi i possa èssar modificà e redistribuìi da chiunque senza nissuna limitazion, no sta inviarli a {{SITENAME}}.<br />
 Con l'invio del testo te dichiari inoltre, soto la to responsabilità, che el testo el xe stà scrito da ti personalmente opure che el xe stà copià da na fonte de publico dominio o analogamente lìbara.
 <strong>NO STA INVIAR MATERIALE CUERTO DA DIRITO D'AUTOR SENZA AUTORIZAZION!</strong>",
-'copyrightwarning2'                 => 'Ocio che tuti i contributi a {{SITENAME}} i pode èssar editai, alterai, o rimossi da altri contributori.
+'copyrightwarning2'         => 'Ocio che tuti i contributi a {{SITENAME}} i pode èssar editai, alterai, o rimossi da altri contributori.
 Se no te voli che i to scriti i vegna modificà sensa pietà, alora no sta inserirli qua.<br />
 Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o copià da na fonte de publico dominio o similarmente lìbara (varda $1 par i detagli).
 <strong>NO STA INSERIR OPERE PROTETE DA COPYRIGHT SENZA PERMESSO!</strong>',
-'longpagewarning'                   => "<strong>OCIO: Sta pàxena la xè longa $1 kilobyte; çerti browser i podarìa verghe dei problemi ne ła modifega de pàxene che se aviçina o supera i 32 KB. Valuta l'oportunità de sudivìdar ła pàxena in sezion pìassè picenine.</strong>",
-'longpageerror'                     => '<strong>ERROR: The text you have submitted is $1 kilobytes 
+'longpagewarning'           => "<strong>OCIO: Sta pàxena la xè longa $1 kilobyte; çerti browser i podarìa verghe dei problemi ne ła modifega de pàxene che se aviçina o supera i 32 KB. Valuta l'oportunità de sudivìdar ła pàxena in sezion pìassè picenine.</strong>",
+'longpageerror'             => '<strong>ERROR: The text you have submitted is $1 kilobytes 
 long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
-'readonlywarning'                   => '<strong>OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento. Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.</strong>',
-'protectedpagewarning'              => '<strong>OCIO: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.</strong>',
-'semiprotectedpagewarning'          => "'''Nota:''' Sta pàxena la xè stà blocà in modo che solo i utenti registrài i poda modefegarla.",
-'cascadeprotectedwarning'           => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
-'titleprotectedwarning'             => '<strong>OCIO:  Sta pagina la xe stà blocà in modo che solo çerte categorie de utenti le possa crearla.</strong>',
-'templatesused'                     => 'Template doparà in sta pagina:',
-'templatesusedpreview'              => 'Template doparà in sta anteprima:',
-'templatesusedsection'              => 'Template doparà in sta sezion:',
-'template-protected'                => '(proteto)',
-'template-semiprotected'            => '(semiproteto)',
-'hiddencategories'                  => 'Sta pagina la fa parte de {{PLURAL:$1|una categoria sconta|$1 categorie sconte}}:',
-'nocreatetitle'                     => 'Creazion de le pagine limitada',
-'nocreatetext'                      => 'La possibilità de crear pagine nóve su {{SITENAME}} la xe stà limità ai soli utenti registrà. Se pol tornar indrìo e modificar na pagina esistente, opure [[Special:Userlogin|entrar o crear un nóvo acesso]].',
-'nocreate-loggedin'                 => 'No te ghè i permessi necessari a crear nove pagine su {{SITENAME}}.',
-'permissionserrors'                 => 'Eror nei permessi',
-'permissionserrorstext'             => "No te ghè i permessi necessari ad eseguir l'azion richiesta, par {{PLURAL:$1|el seguente motivo|i seguenti motivi}}:",
-'recreate-deleted-warn'             => "'''Ocio: te stè par ricrear na pagina zà scancelà precedentemente.'''
+'readonlywarning'           => '<strong>OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento. Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.</strong>',
+'protectedpagewarning'      => '<strong>OCIO: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.</strong>',
+'semiprotectedpagewarning'  => "'''Nota:''' Sta pàxena la xè stà blocà in modo che solo i utenti registrài i poda modefegarla.",
+'cascadeprotectedwarning'   => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
+'titleprotectedwarning'     => '<strong>OCIO:  Sta pagina la xe stà blocà in modo che solo çerte categorie de utenti le possa crearla.</strong>',
+'templatesused'             => 'Template doparà in sta pagina:',
+'templatesusedpreview'      => 'Template doparà in sta anteprima:',
+'templatesusedsection'      => 'Template doparà in sta sezion:',
+'template-protected'        => '(proteto)',
+'template-semiprotected'    => '(semiproteto)',
+'hiddencategories'          => 'Sta pagina la fa parte de {{PLURAL:$1|una categoria sconta|$1 categorie sconte}}:',
+'nocreatetitle'             => 'Creazion de le pagine limitada',
+'nocreatetext'              => 'La possibilità de crear pagine nóve su {{SITENAME}} la xe stà limità ai soli utenti registrà. Se pol tornar indrìo e modificar na pagina esistente, opure [[Special:Userlogin|entrar o crear un nóvo acesso]].',
+'nocreate-loggedin'         => 'No te ghè i permessi necessari a crear nove pagine su {{SITENAME}}.',
+'permissionserrors'         => 'Eror nei permessi',
+'permissionserrorstext'     => "No te ghè i permessi necessari ad eseguir l'azion richiesta, par {{PLURAL:$1|el seguente motivo|i seguenti motivi}}:",
+'recreate-deleted-warn'     => "'''Ocio: te stè par ricrear na pagina zà scancelà precedentemente.'''
 
 Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pagina.
 L'elenco de le relative scancelazion el vien riportà qua de seguito par comodità:",
+
+# Parser/template warnings
 'expensive-parserfunction-warning'  => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.
 
 Dovarìa èssarghene manco de $2, ghe ne xe $1.',
@@ -1345,6 +1343,12 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'allpagesprefix'    => 'Mostra łe voçi che scuminsia con:',
 'allpagesbadtitle'  => "El titolo indicà par la pagina no'l xe mìa valido o el contien prefissi interlengua o interwiki. El podarìa inoltre contegner uno o più caràteri che no se pole doparar nei titoli.",
 'allpages-bad-ns'   => 'El namespace "$1" no l\'esiste mìa su {{SITENAME}}.',
+
+# Special:Categories
+'categories'                    => '{{PLURAL:$1|Categoria|Categorie}}',
+'categoriespagetext'            => 'Elenco par intiero de le categorie presenti sul sito.',
+'special-categories-sort-count' => 'ordina par nùmaro',
+'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
 # Special:Listusers
 'listusersfrom'      => 'Mostra i utenti tacando da:',

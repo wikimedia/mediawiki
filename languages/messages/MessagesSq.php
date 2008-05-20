@@ -157,8 +157,6 @@ $messages = array(
 'dec'           => 'Dhj',
 
 # Categories related messages
-'categories'             => 'Kategori',
-'categoriespagetext'     => 'Ndodhen këto kategori:',
 'pagecategories'         => '{{PLURAL:$1|Kategoria|Kategoritë}}',
 'category_header'        => 'Artikuj në kategorinë "$1"',
 'subcategories'          => 'Nën-kategori',
@@ -1024,6 +1022,10 @@ një figurë me një URL në mënyrë direkte, kështuqë ka mundësi që këto 
 'allpagesnext'      => 'Më pas',
 'allpagessubmit'    => 'Shko',
 'allpagesprefix'    => 'Trego faqet me parashtesë:',
+
+# Special:Categories
+'categories'         => 'Kategori',
+'categoriespagetext' => 'Ndodhen këto kategori:',
 
 # Special:Listusers
 'listusersfrom'      => 'Trego përdoruesit duke filluar prej te:',

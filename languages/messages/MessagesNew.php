@@ -56,7 +56,6 @@ $messages = array(
 'february' => 'फेब्रुवरी',
 
 # Categories related messages
-'categories'     => 'पुचःत',
 'category-empty' => "''थ्व पुचले आःईले पौ वा मिदिया मदु।''",
 
 'about'         => 'विषयक',
@@ -189,6 +188,9 @@ $messages = array(
 'allpages'    => 'सकल पौत',
 'nextpage'    => 'मेगु पौ ($1)',
 'allarticles' => 'सकल च्वसुत',
+
+# Special:Categories
+'categories' => 'पुचःत',
 
 # Restrictions (nouns)
 'restriction-edit' => 'सम्पादन',

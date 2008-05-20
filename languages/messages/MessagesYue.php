@@ -237,10 +237,6 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'                     => '類',
-'categoriespagetext'             => '下面嘅類有版或媒體。',
-'special-categories-sort-count'  => '跟數量排',
-'special-categories-sort-abc'    => '跟字母排',
 'pagecategories'                 => '屬於$1類',
 'category_header'                => '"$1" 類中嘅版',
 'subcategories'                  => '分類',
@@ -608,23 +604,23 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'hr_tip'          => '橫線（請小心用）',
 
 # Edit pages
-'summary'                           => '摘要',
-'subject'                           => '主題／標題',
-'minoredit'                         => '呢個係小修改',
-'watchthis'                         => '睇實呢一頁',
-'savearticle'                       => '儲存呢頁',
-'preview'                           => '預覽',
-'showpreview'                       => '顯示預覽',
-'showlivepreview'                   => '實時預覽',
-'showdiff'                          => '顯示差異',
-'anoneditwarning'                   => "'''警告：'''你重未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
-'missingsummary'                    => "'''提醒：''' 你未提供編輯摘要。如果你再撳多一下儲存嘅話，咁你儲存嘅編輯就會無摘要。",
-'missingcommenttext'                => '請輸入一個註解。',
-'missingcommentheader'              => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就會無題。",
-'summary-preview'                   => '摘要預覽',
-'subject-preview'                   => '標題／頭條預覽',
-'blockedtitle'                      => '用戶已經封鎖',
-'blockedtext'                       => "<big>你嘅用戶名或者 IP 位址已經被 $1 封咗。</big>
+'summary'                   => '摘要',
+'subject'                   => '主題／標題',
+'minoredit'                 => '呢個係小修改',
+'watchthis'                 => '睇實呢一頁',
+'savearticle'               => '儲存呢頁',
+'preview'                   => '預覽',
+'showpreview'               => '顯示預覽',
+'showlivepreview'           => '實時預覽',
+'showdiff'                  => '顯示差異',
+'anoneditwarning'           => "'''警告：'''你重未登入。你嘅 IP 位址會喺呢個頁面嘅修訂歷史中記錄落嚟。",
+'missingsummary'            => "'''提醒：''' 你未提供編輯摘要。如果你再撳多一下儲存嘅話，咁你儲存嘅編輯就會無摘要。",
+'missingcommenttext'        => '請輸入一個註解。',
+'missingcommentheader'      => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就會無題。",
+'summary-preview'           => '摘要預覽',
+'subject-preview'           => '標題／頭條預覽',
+'blockedtitle'              => '用戶已經封鎖',
+'blockedtext'               => "<big>你嘅用戶名或者 IP 位址已經被 $1 封咗。</big>
 
 呢次封鎖係由$1所封嘅。當中嘅原因係''$2''。
 
@@ -636,7 +632,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
 你現時嘅 IP 位址係 $3 ，而個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個位址同埋／或者個封鎖 ID 。",
-'autoblockedtext'                   => "你嘅IP地址已經被自動封鎖，由於之前嘅另一位用戶係畀$1封咗。
+'autoblockedtext'           => "你嘅IP地址已經被自動封鎖，由於之前嘅另一位用戶係畀$1封咗。
 而封鎖嘅原因係：
 
 :''$2''
@@ -649,96 +645,98 @@ MySQL 嘅錯誤回應 "$3: $4"',
 除非你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，否則你係唔可以用「電郵呢個用戶」嘅功能。當設定咗一個有效嘅電郵地址之後，呢個功能係唔會封鎖嘅。
 
 你個封鎖 ID 係 #$5。 請你喺所有查詢都註明呢個封鎖 ID 。",
-'blockednoreason'                   => '無原因畀低',
-'blockedoriginalsource'             => "有關'''$1'''嘅原始碼響下面列示：",
-'blockededitsource'                 => "有關'''你'''對'''$1'''嘅'''編輯'''文字響下面列示：",
-'whitelistedittitle'                => '需要登入之後先至可以編輯',
-'whitelistedittext'                 => '你需要$1去編輯呢頁。',
-'whitelistreadtitle'                => '登入咗至睇到',
-'whitelistreadtext'                 => '你需要[[Special:Userlogin|登入]]先可以去睇呢頁。',
-'whitelistacctitle'                 => '你唔可以開一個新戶口',
-'whitelistacctext'                  => '要喺{{SITENAME}}開戶口，你要[[Special:Userlogin|登入]]同提供適當嘅許可。',
-'confirmedittitle'                  => '要用電郵確定咗先可以改',
-'confirmedittext'                   => '你個電郵地址要確定咗先可以編輯。唔該先去[[Special:Preferences|喜好設定]]填咗電郵地址，並做埋確認手續。',
-'nosuchsectiontitle'                => '無呢個小節',
-'nosuchsectiontext'                 => '你嘗試編輯嘅小節並唔存在。之不過呢度係無第$1小節，所以係無一個地方去儲存你嘅編輯。',
-'loginreqtitle'                     => '需要登入',
-'loginreqlink'                      => '登入',
-'loginreqpagetext'                  => '你一定$1去睇其它嘅頁面。',
-'accmailtitle'                      => '密碼寄咗喇。',
-'accmailtext'                       => '「$1」嘅密碼已經寄咗去 $2。',
-'newarticle'                        => '(新)',
-'newarticletext'                    => "你連連過嚟嘅頁面重未存在。
+'blockednoreason'           => '無原因畀低',
+'blockedoriginalsource'     => "有關'''$1'''嘅原始碼響下面列示：",
+'blockededitsource'         => "有關'''你'''對'''$1'''嘅'''編輯'''文字響下面列示：",
+'whitelistedittitle'        => '需要登入之後先至可以編輯',
+'whitelistedittext'         => '你需要$1去編輯呢頁。',
+'whitelistreadtitle'        => '登入咗至睇到',
+'whitelistreadtext'         => '你需要[[Special:Userlogin|登入]]先可以去睇呢頁。',
+'whitelistacctitle'         => '你唔可以開一個新戶口',
+'whitelistacctext'          => '要喺{{SITENAME}}開戶口，你要[[Special:Userlogin|登入]]同提供適當嘅許可。',
+'confirmedittitle'          => '要用電郵確定咗先可以改',
+'confirmedittext'           => '你個電郵地址要確定咗先可以編輯。唔該先去[[Special:Preferences|喜好設定]]填咗電郵地址，並做埋確認手續。',
+'nosuchsectiontitle'        => '無呢個小節',
+'nosuchsectiontext'         => '你嘗試編輯嘅小節並唔存在。之不過呢度係無第$1小節，所以係無一個地方去儲存你嘅編輯。',
+'loginreqtitle'             => '需要登入',
+'loginreqlink'              => '登入',
+'loginreqpagetext'          => '你一定$1去睇其它嘅頁面。',
+'accmailtitle'              => '密碼寄咗喇。',
+'accmailtext'               => '「$1」嘅密碼已經寄咗去 $2。',
+'newarticle'                => '(新)',
+'newarticletext'            => "你連連過嚟嘅頁面重未存在。
 要起版新嘅，請你喺下面嗰格度輸入。(睇睇[[{{MediaWiki:Helppage}}|自助版]]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
-'anontalkpagetext'                  => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
-'noarticletext'                     => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
-'userpage-userdoesnotexist'         => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
-'clearyourcache'                    => "'''注意：'''喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-Shift-R''（喺蘋果Mac中㩒''Cmd-Shift-R''掣）； '''IE:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera'''嘅用戶可能需要先喺''工具→喜好設定''之中清佢哋嘅快取。",
-'usercssjsyoucanpreview'            => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。",
-'usercsspreview'                    => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表，內容仍未儲存！'''",
-'userjspreview'                     => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
-'userinvalidcssjstitle'             => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
-'updated'                           => '(己更新)',
-'note'                              => '<strong>留意:</strong>',
-'previewnote'                       => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
-'previewconflict'                   => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
-'session_fail_preview'              => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
+'anontalkpagetext'          => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
+'noarticletext'             => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
+'userpage-userdoesnotexist' => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
+'clearyourcache'            => "'''注意：'''喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-Shift-R''（喺蘋果Mac中㩒''Cmd-Shift-R''掣）； '''IE:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera'''嘅用戶可能需要先喺''工具→喜好設定''之中清佢哋嘅快取。",
+'usercssjsyoucanpreview'    => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。",
+'usercsspreview'            => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表，內容仍未儲存！'''",
+'userjspreview'             => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
+'userinvalidcssjstitle'     => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
+'updated'                   => '(己更新)',
+'note'                      => '<strong>留意:</strong>',
+'previewnote'               => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
+'previewconflict'           => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
+'session_fail_preview'      => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
 請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。'''",
-'session_fail_preview_html'         => "'''對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
+'session_fail_preview_html' => "'''對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
 
 ''由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
 
 '''如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先登出然後再登入。'''",
-'token_suffix_mismatch'             => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。
+'token_suffix_mismatch'     => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。
 當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。'''",
-'editing'                           => '而家喺度編輯$1',
-'editingsection'                    => '而家喺度編輯$1 （小節）',
-'editingcomment'                    => '而家喺度編輯$1 （評論）',
-'editconflict'                      => '編輯衝突：$1',
-'explainconflict'                   => "有其他人喺你開始編輯之後已經更改呢一頁。
+'editing'                   => '而家喺度編輯$1',
+'editingsection'            => '而家喺度編輯$1 （小節）',
+'editingcomment'            => '而家喺度編輯$1 （評論）',
+'editconflict'              => '編輯衝突：$1',
+'explainconflict'           => "有其他人喺你開始編輯之後已經更改呢一頁。
 喺上面嗰個空間而家現存嘅頁面文字。
 你嘅更改會喺下面嘅文字空間顯示。
 你需要合併你嘅更改到原有嘅文字。
 喺你撳「儲存頁面」之後，'''只有'''喺上面嘅文字區會被儲存。",
-'yourtext'                          => '你嘅文字',
-'storedversion'                     => '已經儲存咗嘅版本',
-'nonunicodebrowser'                 => "'''警告：你嘅瀏覽器係唔係用緊 Unicode 。而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。'''",
-'editingold'                        => "'''警告：你而家係編輯緊喺呢一頁嘅過時版本。如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。'''",
-'yourdiff'                          => '差異',
-'copyrightwarning'                  => "請留意喺{{SITENAME}}度，所有喺呢度嘅貢獻會被考慮到喺$2之下發出（睇$1有更詳細嘅資訊）。如果你係唔想你編輯嘅文字無喇喇咁被分發，咁就唔好喺呢度遞交。
+'yourtext'                  => '你嘅文字',
+'storedversion'             => '已經儲存咗嘅版本',
+'nonunicodebrowser'         => "'''警告：你嘅瀏覽器係唔係用緊 Unicode 。而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。'''",
+'editingold'                => "'''警告：你而家係編輯緊喺呢一頁嘅過時版本。如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。'''",
+'yourdiff'                  => '差異',
+'copyrightwarning'          => "請留意喺{{SITENAME}}度，所有喺呢度嘅貢獻會被考慮到喺$2之下發出（睇$1有更詳細嘅資訊）。如果你係唔想你編輯嘅文字無喇喇咁被分發，咁就唔好喺呢度遞交。
 
 你亦都要同我哋保證啲文字係你自己寫嘅，或者係由公有領域或相似嘅自由資源複製落嚟。
 '''喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！'''",
-'copyrightwarning2'                 => "請留意喺{{SITENAME}}度，所有嘅貢獻可能會被其他嘅貢獻者編輯、修改，或者刪除。如果你係唔想你編輯嘅文字無喇喇咁被編輯，咁就唔好喺呢度遞交。
+'copyrightwarning2'         => "請留意喺{{SITENAME}}度，所有嘅貢獻可能會被其他嘅貢獻者編輯、修改，或者刪除。如果你係唔想你編輯嘅文字無喇喇咁被編輯，咁就唔好喺呢度遞交。
 
 你亦都要同我哋保證啲文字係你自己寫嘅，或者係由公有領域或相似嘅自由資源複製落嚟（睇$1有更詳細嘅資訊）。
 '''喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！'''",
-'longpagewarning'                   => "'''警告：呢一頁有 $1 kilobytes 咁長；有啲瀏覽器可能會喺就離或者超過 32kb 編輯頁面會出現一啲問題。
+'longpagewarning'           => "'''警告：呢一頁有 $1 kilobytes 咁長；有啲瀏覽器可能會喺就離或者超過 32kb 編輯頁面會出現一啲問題。
 請考慮分割呢個頁面到細啲嘅小節。'''",
-'longpageerror'                     => "'''錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。'''",
-'readonlywarning'                   => "'''錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。'''",
-'protectedpagewarning'              => "'''警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。'''",
-'semiprotectedpagewarning'          => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
-'cascadeprotectedwarning'           => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
-'titleprotectedwarning'             => '<strong>警告：呢一版已經鎖咗，只有一啲用戶先至可以開到。</strong>',
-'templatesused'                     => '喺呢一頁所用嘅模：',
-'templatesusedpreview'              => '喺呢一次預覽所用嘅模：',
-'templatesusedsection'              => '喺呢一小節所用嘅模：',
-'template-protected'                => '(保護)',
-'template-semiprotected'            => '(半保護)',
-'hiddencategories'                  => '呢一版係屬於$1個隱藏類嘅成員:',
-'edittools'                         => '<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->',
-'nocreatetitle'                     => '頁面建立被限制',
-'nocreatetext'                      => '{{SITENAME}}已經限制咗起新版嘅能力。
+'longpageerror'             => "'''錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。'''",
+'readonlywarning'           => "'''錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。'''",
+'protectedpagewarning'      => "'''警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。'''",
+'semiprotectedpagewarning'  => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
+'cascadeprotectedwarning'   => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
+'titleprotectedwarning'     => '<strong>警告：呢一版已經鎖咗，只有一啲用戶先至可以開到。</strong>',
+'templatesused'             => '喺呢一頁所用嘅模：',
+'templatesusedpreview'      => '喺呢一次預覽所用嘅模：',
+'templatesusedsection'      => '喺呢一小節所用嘅模：',
+'template-protected'        => '(保護)',
+'template-semiprotected'    => '(半保護)',
+'hiddencategories'          => '呢一版係屬於$1個隱藏類嘅成員:',
+'edittools'                 => '<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->',
+'nocreatetitle'             => '頁面建立被限制',
+'nocreatetext'              => '{{SITENAME}}已經限制咗起新版嘅能力。
 你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:Userlogin|登入或開個新戶口]]。',
-'nocreate-loggedin'                 => '你響{{SITENAME}}度並無許可權去開新版。',
-'permissionserrors'                 => '權限錯誤',
-'permissionserrorstext'             => '根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做呢樣嘢:',
-'recreate-deleted-warn'             => "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''
+'nocreate-loggedin'         => '你響{{SITENAME}}度並無許可權去開新版。',
+'permissionserrors'         => '權限錯誤',
+'permissionserrorstext'     => '根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做呢樣嘢:',
+'recreate-deleted-warn'     => "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''
 
 你應該要考慮吓繼續編輯呢一版係唔係適合嘅。
 為咗方便起見，呢一版嘅刪除記錄已經響下面提供:",
+
+# Parser/template warnings
 'expensive-parserfunction-warning'  => '警告: 呢一版有太多耗費嘅語法功能呼叫。
 
 佢應該少過$2，但而家係$1。',
@@ -1441,6 +1439,12 @@ Template:搞清楚',
 'allpagesprefix'    => '用以下開頭嘅頁面：',
 'allpagesbadtitle'  => '提供嘅頁面名無效，又或者有一個跨語言或跨wiki嘅字頭。佢可能包括一個或多個字係唔可以用響標題度嘅。',
 'allpages-bad-ns'   => '{{SITENAME}}係無一個空間名叫做"$1"。',
+
+# Special:Categories
+'categories'                    => '類',
+'categoriespagetext'            => '下面嘅類有版或媒體。',
+'special-categories-sort-count' => '跟數量排',
+'special-categories-sort-abc'   => '跟字母排',
 
 # Special:Listusers
 'listusersfrom'      => '顯示由呢個字開始嘅用戶：',

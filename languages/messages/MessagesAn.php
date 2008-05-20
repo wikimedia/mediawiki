@@ -216,10 +216,6 @@ $messages = array(
 'dec'           => 'abi',
 
 # Categories related messages
-'categories'                     => 'Categorías',
-'categoriespagetext'             => 'As siguients categorías contienen bella pachina u archibo',
-'special-categories-sort-count'  => 'ordenar por recuento',
-'special-categories-sort-abc'    => 'ordenar alfabeticament',
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'                => 'Articlos en a categoría "$1"',
 'subcategories'                  => 'Subcategorías',
@@ -584,23 +580,23 @@ Si a cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'hr_tip'          => 'Linia orizontal (en faiga un emplego amoderau)',
 
 # Edit pages
-'summary'                           => 'Resumen',
-'subject'                           => 'Tema/títol',
-'minoredit'                         => 'He feito una edizión menor',
-'watchthis'                         => 'Cosirar ista pachina',
-'savearticle'                       => 'Alzar pachina',
-'preview'                           => 'Bisualizazión prebia',
-'showpreview'                       => 'Bisualizazión prebia',
-'showlivepreview'                   => 'Ambiesta prebia rapeda',
-'showdiff'                          => 'Amostrar cambeos',
-'anoneditwarning'                   => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en o istorial d'a pachina.",
-'missingsummary'                    => "'''Pare cuenta:''' No ha escrito garra resumen d'edizión. Si fa clic nuebament en «{{MediaWiki:Savearticle}}» a suya edizión se grabará sin resumen.",
-'missingcommenttext'                => 'Por fabor, escriba o testo astí baxo.',
-'missingcommentheader'              => "'''Pare cuenta:''' No ha escrito garra títol ta iste comentario. Si puncha un atra bez en con a rateta en \"Alzar\", a suya edizión se grabará sin títol.",
-'summary-preview'                   => "Beyer ambiesta prebia d'o resumen",
-'subject-preview'                   => "Ambiesta prebia d'o tema/títol",
-'blockedtitle'                      => "L'usuario ye bloqueyato",
-'blockedtext'                       => "<big>'''O suyo nombre d'usuario u adreza IP ha estato bloqueyato.'''</big>
+'summary'                   => 'Resumen',
+'subject'                   => 'Tema/títol',
+'minoredit'                 => 'He feito una edizión menor',
+'watchthis'                 => 'Cosirar ista pachina',
+'savearticle'               => 'Alzar pachina',
+'preview'                   => 'Bisualizazión prebia',
+'showpreview'               => 'Bisualizazión prebia',
+'showlivepreview'           => 'Ambiesta prebia rapeda',
+'showdiff'                  => 'Amostrar cambeos',
+'anoneditwarning'           => "''Pare cuenta:'' No s'ha identificato con un nombre d'usuario. A suya adreza IP s'alzará en o istorial d'a pachina.",
+'missingsummary'            => "'''Pare cuenta:''' No ha escrito garra resumen d'edizión. Si fa clic nuebament en «{{MediaWiki:Savearticle}}» a suya edizión se grabará sin resumen.",
+'missingcommenttext'        => 'Por fabor, escriba o testo astí baxo.',
+'missingcommentheader'      => "'''Pare cuenta:''' No ha escrito garra títol ta iste comentario. Si puncha un atra bez en con a rateta en \"Alzar\", a suya edizión se grabará sin títol.",
+'summary-preview'           => "Beyer ambiesta prebia d'o resumen",
+'subject-preview'           => "Ambiesta prebia d'o tema/títol",
+'blockedtitle'              => "L'usuario ye bloqueyato",
+'blockedtext'               => "<big>'''O suyo nombre d'usuario u adreza IP ha estato bloqueyato.'''</big>
 
 O bloqueyo fue feito por \$1. A razón data ye ''\$2''.
 
@@ -611,7 +607,7 @@ O bloqueyo fue feito por \$1. A razón data ye ''\$2''.
 Puede contautar con \$1 u con atro [[{{MediaWiki:Grouppage-sysop}}|almenistrador]] ta letigar sobre o bloqueyo.
 
 No puede fer serbir o binclo \"nimbiar correu electronico ta iste usuario\" si no ha rechistrato una adreza conforme de correu electronico en as suyas [[Special:Preferences|preferenzias]]. A suya adreza IP autual ye \$3, y o identificador d'o bloqueyo ye #\$5. Por fabor encluiga belún u os dos datos cuan faga cualsiquier consulta.",
-'autoblockedtext'                   => "A suya adreza IP fue bloqueyata automaticament porque l'eba feito serbir un atro usuario bloqueyato por \$1.
+'autoblockedtext'           => "A suya adreza IP fue bloqueyata automaticament porque l'eba feito serbir un atro usuario bloqueyato por \$1.
 
 A razón d'o bloqueyo ye ista:
 
@@ -627,94 +623,96 @@ Puede contautar con \$1 u con atro d'os [[{{MediaWiki:Grouppage-sysop}}|almenist
 Pare cuenta que no puede emplegar a funzión \"Nimbiar correu electronico ta iste usuario\" si no tiene una adreza de correu electronico conforme rechistrada en as suyas [[Special:Preferences|preferenzias d'usuario]] u si li ha estato biedata ista funzión.
 
 O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos datos cuan faga cualsiquier consulta.",
-'blockednoreason'                   => "No s'ha dato garra causa",
-'blockedoriginalsource'             => "Contino s'amuestra o codigo fuent de  '''$1''':",
-'blockededitsource'                 => "Contino s'amuestra o testo d'as suyas '''edizions''' á '''$1''':",
-'whitelistedittitle'                => 'Cal enzetar una sesión ta ta fer edizions.',
-'whitelistedittext'                 => 'Ha de $1 ta poder editar pachinas.',
-'whitelistreadtitle'                => "Cal que s'identifique y que enzete una sesión ta poder leyer",
-'whitelistreadtext'                 => 'Ha de [[Special:Userlogin|identificar-se]] ta leyer as pachinas.',
-'whitelistacctitle'                 => 'No tiene premiso ta creyar una cuenta',
-'whitelistacctext'                  => 'Ta poder creyar cuentas en {{SITENAME}} li cal [[Special:Userlogin|enzetar una sesión]] y tener os premisos apropiatos.',
-'confirmedittitle'                  => 'Cal que confirme a suya adreza de correu-e ta poder editar',
-'confirmedittext'                   => "Ha de confirmar a suya adreza de correu-e antis de poder editar pachinas. Por fabor, establa y confirme una adreza de correu-e a trabiés d'as suyas [[Special:Preferences|preferenzias d'usuario]].",
-'nosuchsectiontitle'                => 'No esiste ixa sezión',
-'nosuchsectiontext'                 => "Has prebato d'editar una sezión que no existe. Como no bi ha sezión $1, as suyas edizions no se pueden alzar en garra puesto.",
-'loginreqtitle'                     => 'Cal que enzete una sesión',
-'loginreqlink'                      => 'enzetar una sesión',
-'loginreqpagetext'                  => 'Ha de $1 ta beyer atras pachinas.',
-'accmailtitle'                      => 'A palabra de paso ha estato nimbiata.',
-'accmailtext'                       => "A palabra de paso de '$1' s'ha nimbiato á $2.",
-'newarticle'                        => '(Nuebo)',
-'newarticletext'                    => "Ha siguito un binclo ta una pachina que encara no esiste.
+'blockednoreason'           => "No s'ha dato garra causa",
+'blockedoriginalsource'     => "Contino s'amuestra o codigo fuent de  '''$1''':",
+'blockededitsource'         => "Contino s'amuestra o testo d'as suyas '''edizions''' á '''$1''':",
+'whitelistedittitle'        => 'Cal enzetar una sesión ta ta fer edizions.',
+'whitelistedittext'         => 'Ha de $1 ta poder editar pachinas.',
+'whitelistreadtitle'        => "Cal que s'identifique y que enzete una sesión ta poder leyer",
+'whitelistreadtext'         => 'Ha de [[Special:Userlogin|identificar-se]] ta leyer as pachinas.',
+'whitelistacctitle'         => 'No tiene premiso ta creyar una cuenta',
+'whitelistacctext'          => 'Ta poder creyar cuentas en {{SITENAME}} li cal [[Special:Userlogin|enzetar una sesión]] y tener os premisos apropiatos.',
+'confirmedittitle'          => 'Cal que confirme a suya adreza de correu-e ta poder editar',
+'confirmedittext'           => "Ha de confirmar a suya adreza de correu-e antis de poder editar pachinas. Por fabor, establa y confirme una adreza de correu-e a trabiés d'as suyas [[Special:Preferences|preferenzias d'usuario]].",
+'nosuchsectiontitle'        => 'No esiste ixa sezión',
+'nosuchsectiontext'         => "Has prebato d'editar una sezión que no existe. Como no bi ha sezión $1, as suyas edizions no se pueden alzar en garra puesto.",
+'loginreqtitle'             => 'Cal que enzete una sesión',
+'loginreqlink'              => 'enzetar una sesión',
+'loginreqpagetext'          => 'Ha de $1 ta beyer atras pachinas.',
+'accmailtitle'              => 'A palabra de paso ha estato nimbiata.',
+'accmailtext'               => "A palabra de paso de '$1' s'ha nimbiato á $2.",
+'newarticle'                => '(Nuebo)',
+'newarticletext'            => "Ha siguito un binclo ta una pachina que encara no esiste.
 Ta creyar a pachina, prenzipie á escribir en a caxa d'abaxo
 (mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más informazión).
 Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga.",
-'anontalkpagetext'                  => "---- ''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito serbir. Por ixo, hemos d'emplegar a suya adreza IP ta identificar-lo/a. Una adreza IP puede estar compartita entre diferens usuarios. Si busté ye un usuario anonimo y creye que s'han endrezato á busté con comentarios no relebants, [[Special:Userlogin|creye una cuenta u identifique-se]] ta pribar esdebenideras confusions con atros usuarios anonimos.''",
-'noarticletext'                     => 'Por agora no bi ha testo en ista pachina. Puede [[Special:Search/{{PAGENAME}}|mirar o títol]] en atras pachinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} prenzipiar á escribir en ista pachina].',
-'userpage-userdoesnotexist'         => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
-'clearyourcache'                    => "'''Nota:''' Si quiere beyer os cambeos dimpués d'alzar l'archibo, puede estar que tienga que refrescar a caché d'o suyo nabegador ta beyer os cambeos:
+'anontalkpagetext'          => "---- ''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito serbir. Por ixo, hemos d'emplegar a suya adreza IP ta identificar-lo/a. Una adreza IP puede estar compartita entre diferens usuarios. Si busté ye un usuario anonimo y creye que s'han endrezato á busté con comentarios no relebants, [[Special:Userlogin|creye una cuenta u identifique-se]] ta pribar esdebenideras confusions con atros usuarios anonimos.''",
+'noarticletext'             => 'Por agora no bi ha testo en ista pachina. Puede [[Special:Search/{{PAGENAME}}|mirar o títol]] en atras pachinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} prenzipiar á escribir en ista pachina].',
+'userpage-userdoesnotexist' => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
+'clearyourcache'            => "'''Nota:''' Si quiere beyer os cambeos dimpués d'alzar l'archibo, puede estar que tienga que refrescar a caché d'o suyo nabegador ta beyer os cambeos:
 *'''Mozilla:'''  ''ctrl-shift-r'',
 *'''Internet Explorer:''' ''ctrl-f5'',
 *'''Safari:''' ''cmd-shift-r'',
 *'''Konqueror''' ''f5''.",
-'usercssjsyoucanpreview'            => '<strong>Consello:</strong> Faga serbir o botón «Amostrar prebisualizazión» ta prebar o nuebo css/js antes de grabar-lo.',
-'usercsspreview'                    => "'''Remere que sólo ye prebisualizando o suyo css d'usuario y encara no ye grabato!'''",
-'userjspreview'                     => "'''Remere que sólo ye prebisualizando o suyo javascript d'usuario y encara no ye grabato!'''",
-'userinvalidcssjstitle'             => "'''Pare cuenta:''' No bi ha garra aparenzia clamata \"\$1\". Remere que as pachinas presonalizatas .css y .js tienen un títol en minusclas, p.e. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
-'updated'                           => '(Esbiellato)',
-'note'                              => '<strong>Nota:</strong>',
-'previewnote'                       => "<strong>Pare cuenta que isto sólo ye que l'ambiesta prebia d'a pachina; os cambeos encara no han estato alzatos!</strong>",
-'previewconflict'                   => "L'ambiesta prebia li amostrará l'aparenzia d'o testo dimpués d'alzar os cambeos.",
-'session_fail_preview'              => "<strong>Ya lo sentimos, pero no podiemos alzar a suya edizión por una perda d'os datos de sesion. Por fabor, prebe de fer-lo una atra bez, y si encara no funziona, salga d'a sesión y torne á identificar-se.</strong>",
-'session_fail_preview_html'         => "<strong>Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han acazegatos.</strong>
+'usercssjsyoucanpreview'    => '<strong>Consello:</strong> Faga serbir o botón «Amostrar prebisualizazión» ta prebar o nuebo css/js antes de grabar-lo.',
+'usercsspreview'            => "'''Remere que sólo ye prebisualizando o suyo css d'usuario y encara no ye grabato!'''",
+'userjspreview'             => "'''Remere que sólo ye prebisualizando o suyo javascript d'usuario y encara no ye grabato!'''",
+'userinvalidcssjstitle'     => "'''Pare cuenta:''' No bi ha garra aparenzia clamata \"\$1\". Remere que as pachinas presonalizatas .css y .js tienen un títol en minusclas, p.e. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
+'updated'                   => '(Esbiellato)',
+'note'                      => '<strong>Nota:</strong>',
+'previewnote'               => "<strong>Pare cuenta que isto sólo ye que l'ambiesta prebia d'a pachina; os cambeos encara no han estato alzatos!</strong>",
+'previewconflict'           => "L'ambiesta prebia li amostrará l'aparenzia d'o testo dimpués d'alzar os cambeos.",
+'session_fail_preview'      => "<strong>Ya lo sentimos, pero no podiemos alzar a suya edizión por una perda d'os datos de sesion. Por fabor, prebe de fer-lo una atra bez, y si encara no funziona, salga d'a sesión y torne á identificar-se.</strong>",
+'session_fail_preview_html' => "<strong>Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han acazegatos.</strong>
 
 ''Como  {{SITENAME}} tiene l'HTML puro autibato, s'ha amagato l'ambiesta prebia ta aprebenir ataques en JavaScript.''
 
 <strong>Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe-se de zarrar a sesión y i dentre identificando-se de nuebas.</strong>",
-'token_suffix_mismatch'             => "<strong>S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.</strong>",
-'editing'                           => 'Editando $1',
-'editingsection'                    => 'Editando $1 (sezión)',
-'editingcomment'                    => 'Editando $1 (comentario)',
-'editconflict'                      => "Conflito d'edizión: $1",
-'explainconflict'                   => "Bel atro usuario ha cambiato ista pachina dende que bustet prenzipió á editar-la.
+'token_suffix_mismatch'     => "<strong>S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.</strong>",
+'editing'                   => 'Editando $1',
+'editingsection'            => 'Editando $1 (sezión)',
+'editingcomment'            => 'Editando $1 (comentario)',
+'editconflict'              => "Conflito d'edizión: $1",
+'explainconflict'           => "Bel atro usuario ha cambiato ista pachina dende que bustet prenzipió á editar-la.
 O cuatrón de testo superior contiene o testo d'a pachina como ye autualment.
 Os suyos cambeos s'amuestran en o cuatrón de testo inferior.
 Abrá d'encorporar os suyos cambeos en o testo esistent.
 '''Nomás''' o testo en o cuatrón superior s'alzará cuan prete o botón \"Alzar a pachina\".",
-'yourtext'                          => 'O testo suyo',
-'storedversion'                     => 'Bersión almadazenata',
-'nonunicodebrowser'                 => "<strong>Pare cuenta: O suyo nabegador no cumple a norma Unicode. S'ha autibato un sistema d'edizión alternatibo que li premitirá d'editar articlos con seguridat: os caráuters no ASCII aparixerán en a caxa d'edizión como codigos exadezimals.</strong>",
-'editingold'                        => "<strong>PARE CUENTA: Ye editando una bersión antiga d'ista pachina. Si alza a pachina, toz os cambeos feitos dende ixa rebisión se tresbatirán.</strong>",
-'yourdiff'                          => 'Esferenzias',
-'copyrightwarning'                  => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} se consideran publicatas baxo a lizenzia $2 (beyer detalles en $1). Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
+'yourtext'                  => 'O testo suyo',
+'storedversion'             => 'Bersión almadazenata',
+'nonunicodebrowser'         => "<strong>Pare cuenta: O suyo nabegador no cumple a norma Unicode. S'ha autibato un sistema d'edizión alternatibo que li premitirá d'editar articlos con seguridat: os caráuters no ASCII aparixerán en a caxa d'edizión como codigos exadezimals.</strong>",
+'editingold'                => "<strong>PARE CUENTA: Ye editando una bersión antiga d'ista pachina. Si alza a pachina, toz os cambeos feitos dende ixa rebisión se tresbatirán.</strong>",
+'yourdiff'                  => 'Esferenzias',
+'copyrightwarning'          => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} se consideran publicatas baxo a lizenzia $2 (beyer detalles en $1). Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre.
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong><br />",
-'copyrightwarning2'                 => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
+'copyrightwarning2'         => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong>",
-'longpagewarning'                   => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32KB o más.
+'longpagewarning'           => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32KB o más.
 Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más chicoz.</strong>',
-'longpageerror'                     => '<strong>ERROR: O testo que ha escrito ye de $1 kilobytes, que ye mayor que a grandaria maisima de $2 kilobytes. No se puede alzar.</strong>',
-'readonlywarning'                   => '<strong>Pare cuenta: A base de datos ha estato bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible alzar as suyas edizions. Puede copiar y apegar o testo en un archibo y alzar-lo ta dimpués.</strong>',
-'protectedpagewarning'              => "<strong>PARE CUENTA: Ista pachina ha estato protechita ta que sólo os usuarios con premisos d'almenistrador puedan editar-la.</strong>",
-'semiprotectedpagewarning'          => "'''Nota:''' Ista pachina ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
-'cascadeprotectedwarning'           => "'''Pare cuenta:''' Ista pachina ye protechita ta que nomás os almenistrador puedan editar-la, porque ye encluyita en {{PLURAL:$1|a siguient pachina, protechita|as siguients pachinas, protechitas}} con a opzión de ''cascada'' :",
-'titleprotectedwarning'             => '<strong>PARE CUENTA:  Ista pachina ye bloqueyata ta que sólo bels usuarios puedan creyar-la.</strong>',
-'templatesused'                     => 'Plantillas emplegatas en ista pachina:',
-'templatesusedpreview'              => 'Plantillas emplegatas en ista ambiesta prebia:',
-'templatesusedsection'              => 'Plantillas usatas en ista sezión:',
-'template-protected'                => '(protechita)',
-'template-semiprotected'            => '(semiprotechita)',
-'hiddencategories'                  => 'Ista pachina fa parte de {{PLURAL:$1|1 categoría amagata|$1 categorías amagatas}}:',
-'edittools'                         => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
-'nocreatetitle'                     => "S'ha restrinchito a creyazión de pachinas",
-'nocreatetext'                      => '{{SITENAME}} ha restrinchito a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
-'nocreate-loggedin'                 => 'No tiene premisos ta creyar nuebas pachinas en {{SITENAME}}.',
-'permissionserrors'                 => 'Errors de premisos',
-'permissionserrorstext'             => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',
-'recreate-deleted-warn'             => "'''Pare cuenta: ye creyando una pachina que ya ha estato borrata denantes.'''
+'longpageerror'             => '<strong>ERROR: O testo que ha escrito ye de $1 kilobytes, que ye mayor que a grandaria maisima de $2 kilobytes. No se puede alzar.</strong>',
+'readonlywarning'           => '<strong>Pare cuenta: A base de datos ha estato bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible alzar as suyas edizions. Puede copiar y apegar o testo en un archibo y alzar-lo ta dimpués.</strong>',
+'protectedpagewarning'      => "<strong>PARE CUENTA: Ista pachina ha estato protechita ta que sólo os usuarios con premisos d'almenistrador puedan editar-la.</strong>",
+'semiprotectedpagewarning'  => "'''Nota:''' Ista pachina ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
+'cascadeprotectedwarning'   => "'''Pare cuenta:''' Ista pachina ye protechita ta que nomás os almenistrador puedan editar-la, porque ye encluyita en {{PLURAL:$1|a siguient pachina, protechita|as siguients pachinas, protechitas}} con a opzión de ''cascada'' :",
+'titleprotectedwarning'     => '<strong>PARE CUENTA:  Ista pachina ye bloqueyata ta que sólo bels usuarios puedan creyar-la.</strong>',
+'templatesused'             => 'Plantillas emplegatas en ista pachina:',
+'templatesusedpreview'      => 'Plantillas emplegatas en ista ambiesta prebia:',
+'templatesusedsection'      => 'Plantillas usatas en ista sezión:',
+'template-protected'        => '(protechita)',
+'template-semiprotected'    => '(semiprotechita)',
+'hiddencategories'          => 'Ista pachina fa parte de {{PLURAL:$1|1 categoría amagata|$1 categorías amagatas}}:',
+'edittools'                 => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
+'nocreatetitle'             => "S'ha restrinchito a creyazión de pachinas",
+'nocreatetext'              => '{{SITENAME}} ha restrinchito a creyazión de nuebas pachinas. Puede tornar entazaga y editar una pachina ya esistent, [[Special:Userlogin|identificarse u creyar una cuenta]].',
+'nocreate-loggedin'         => 'No tiene premisos ta creyar nuebas pachinas en {{SITENAME}}.',
+'permissionserrors'         => 'Errors de premisos',
+'permissionserrorstext'     => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',
+'recreate-deleted-warn'     => "'''Pare cuenta: ye creyando una pachina que ya ha estato borrata denantes.'''
 
 Abría de considerar si ye reyalment nezesario continar editando ista pachina.
 Puede consultar o rechistro de borraus que s'amuestra a continuazión:",
+
+# Parser/template warnings
 'expensive-parserfunction-warning'  => 'Pare cuenta: Ista pachina tiene masiadas cridas á funzions de preprozeso (parser functions) costosas.
 
 Abría de tener-ne menos de $2, por agora en tiene $1.',
@@ -1422,6 +1420,12 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 'allpagesprefix'    => 'Amostrar pachinas con o prefixo:',
 'allpagesbadtitle'  => 'O títol yera incorreuto u teneba un prefixo de binclo inter-luenga u inter-wiki. Puede contener uno u más caráuters que no se pueden emplegar en títols.',
 'allpages-bad-ns'   => '{{SITENAME}} no tiene o espazio de nombres "$1".',
+
+# Special:Categories
+'categories'                    => 'Categorías',
+'categoriespagetext'            => 'As siguients categorías contienen bella pachina u archibo',
+'special-categories-sort-count' => 'ordenar por recuento',
+'special-categories-sort-abc'   => 'ordenar alfabeticament',
 
 # Special:Listusers
 'listusersfrom'      => 'Amostrar usuarios que o nombre suyo prenzipie por:',

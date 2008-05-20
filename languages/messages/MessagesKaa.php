@@ -185,8 +185,6 @@ $messages = array(
 'dec'           => 'Dek',
 
 # Categories related messages
-'categories'             => 'Kategoriyalar',
-'categoriespagetext'     => 'Kelesi kategoriyalar ishinde betler yamasa media bar.',
 'pagecategories'         => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'category_header'        => '"$1" kategoriyasindag\'ı betler',
 'subcategories'          => 'Podkategoriyalar',
@@ -967,6 +965,10 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'allpagessubmit'    => "O'tin'",
 'allpagesprefix'    => "Mına prefiksten baslag'an betlerdi ko'rsetiw:",
 'allpages-bad-ns'   => '{{SITENAME}} proyektinde "$1"  isimler ko\'pligi joq.',
+
+# Special:Categories
+'categories'         => 'Kategoriyalar',
+'categoriespagetext' => 'Kelesi kategoriyalar ishinde betler yamasa media bar.',
 
 # Special:Listusers
 'listusersfrom'      => "Mına paydalanıwshıdan baslap ko'rsetiw:",

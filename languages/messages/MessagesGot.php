@@ -8,7 +8,6 @@
 
 $messages = array(
 # Categories related messages
-'categories'     => '𐌺𐌿𐌽𐌾𐍉𐍃',
 'pagecategories' => '{{PLURAL:$1|𐌺𐌿𐌽𐌾𐌰|𐌺𐌿𐌽𐌾𐍉𐍃}}',
 
 'qbspecialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
@@ -69,6 +68,9 @@ $messages = array(
 'ncategories'  => '$1 {{PLURAL:$1|𐌺𐌿𐌽𐌾𐌰|𐌺𐌿𐌽𐌾𐍉𐍃}}',
 'specialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
 'move'         => '𐌽𐌰𐌼𐌾𐌰𐌽 𐌰𐍆𐍄𐍂𐌰',
+
+# Special:Categories
+'categories' => '𐌺𐌿𐌽𐌾𐍉𐍃',
 
 # Watchlist
 'watchlist'     => '𐌼𐌴𐌹𐌽𐍉𐍃 𐍅𐌹𐍄𐌰𐌽𐌳𐍃𐌻𐌴𐌹𐍃𐍄𐌰',

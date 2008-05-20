@@ -113,10 +113,6 @@ $messages = array(
 'dec'           => 'Tab',
 
 # Categories related messages
-'categories'                     => 'Wàll',
-'categoriespagetext'             => 'Wàll yii ñoo am ci biir wiki gi.',
-'special-categories-sort-count'  => 'nose sàq',
-'special-categories-sort-abc'    => 'nose abajada',
 'pagecategories'                 => '{{PLURAL:$1|Wàll |Wàll }}',
 'category_header'                => 'Xët yi ci wàll gi « $1 »',
 'subcategories'                  => 'Ron-wàll',
@@ -876,6 +872,12 @@ wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.',
 'allpagessubmit'   => 'Baaxal',
 'allpagesprefix'   => 'Wone xët yi tambalee :',
 'allpagesbadtitle' => 'Koj gi nga bindal xët mii jaaduwul. xayna dafa am ay araf yu ñu manula jëfëndikoo ci koj yi.',
+
+# Special:Categories
+'categories'                    => 'Wàll',
+'categoriespagetext'            => 'Wàll yii ñoo am ci biir wiki gi.',
+'special-categories-sort-count' => 'nose sàq',
+'special-categories-sort-abc'   => 'nose abajada',
 
 # Special:Listusers
 'listusers-submit' => 'Wone',

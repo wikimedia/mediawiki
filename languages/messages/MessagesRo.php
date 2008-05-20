@@ -193,17 +193,14 @@ pe titlul secţiunii (JavaScript)',
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'                  => '{{PLURAL:$1|Categorie|Categorii}}',
-'categoriespagetext'          => 'Următoarele categorii conţin pagini sau fişiere.',
-'special-categories-sort-abc' => 'sortează alfabetic',
-'pagecategories'              => '{{PLURAL:$1|Categorie|Categorii}}',
-'category_header'             => 'Articole din categoria "$1"',
-'subcategories'               => 'Subcategorii',
-'category-media-header'       => 'Fişiere media în categoria "$1"',
-'category-empty'              => "''Această categorie nu conţine articole sau fişiere media.''",
-'hidden-categories'           => '{{PLURAL:$1|categorie ascunsă|categorii ascunse}}',
-'hidden-category-category'    => 'Categorii ascunse', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'      => ' cont.',
+'pagecategories'           => '{{PLURAL:$1|Categorie|Categorii}}',
+'category_header'          => 'Articole din categoria "$1"',
+'subcategories'            => 'Subcategorii',
+'category-media-header'    => 'Fişiere media în categoria "$1"',
+'category-empty'           => "''Această categorie nu conţine articole sau fişiere media.''",
+'hidden-categories'        => '{{PLURAL:$1|categorie ascunsă|categorii ascunse}}',
+'hidden-category-category' => 'Categorii ascunse', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => ' cont.',
 
 'mainpagetext' => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
 
@@ -1141,6 +1138,11 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'allpagesprefix'    => 'Afişează paginile cu prefix:',
 'allpagesbadtitle'  => 'Titlul paginii este nevalid sau conţine un prefix inter-wiki. Este posibil să conţină unul sau mai multe caractere care nu pot fi folosite în titluri.',
 'allpages-bad-ns'   => '{{SITENAME}} nu are spaţiul de nume "$1".',
+
+# Special:Categories
+'categories'                  => '{{PLURAL:$1|Categorie|Categorii}}',
+'categoriespagetext'          => 'Următoarele categorii conţin pagini sau fişiere.',
+'special-categories-sort-abc' => 'sortează alfabetic',
 
 # Special:Listusers
 'listusersfrom'      => 'Afişează utilizatori începând cu:',

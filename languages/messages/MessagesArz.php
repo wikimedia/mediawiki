@@ -307,7 +307,6 @@ $messages = array(
 'dec'           => 'ديسمبر',
 
 # Categories related messages
-'categories'             => 'تصانيف',
 'category_header'        => 'الصفحات فى التصنيف "$1"',
 'subcategories'          => 'التصنيفات الفرعيه',
 'category-media-header'  => 'ملفات الميديا فى التصنيف "$1"',
@@ -685,6 +684,9 @@ $messages = array(
 'allarticles'    => 'كل المقالات',
 'allpagessubmit' => 'روح',
 'allpagesprefix' => 'عرض الصفحات  اللى تبتدى بـ:',
+
+# Special:Categories
+'categories' => 'تصانيف',
 
 # E-mail user
 'emailuser' => ' ابعت ايميل لليوزر ده',

@@ -23,7 +23,6 @@ $messages = array(
 'december'  => 'tenpo mun pi nanpa luka luka tu',
 
 # Categories related messages
-'categories'             => 'kulupu lipu',
 'category_header'        => 'lipu lon kulupu lipu "$1"',
 'subcategories'          => 'kulupu lipu lili',
 'listingcontinuesabbrev' => ' li awen',
@@ -140,6 +139,9 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 
 # Special:Allpages
 'allpages' => 'lipu ale',
+
+# Special:Categories
+'categories' => 'kulupu lipu',
 
 # Watchlist
 'watchlist'       => 'mi sona e ante pi lipu seme',

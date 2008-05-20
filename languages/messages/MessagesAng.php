@@ -81,8 +81,6 @@ $messages = array(
 'dec'           => 'Ġēo',
 
 # Categories related messages
-'categories'               => 'Floccas',
-'categoriespagetext'       => 'Þā folgendan floccas standaþ in þǣm wici.',
 'pagecategories'           => '{{PLURAL:$1|Flocc|Floccas}}',
 'category_header'          => 'Ġewritu in flocce "$1"',
 'subcategories'            => 'Underfloccas',
@@ -451,6 +449,10 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'allpagesprev'   => 'Beforan',
 'allpagesnext'   => 'Nīehst',
 'allpagessubmit' => 'Gān',
+
+# Special:Categories
+'categories'         => 'Floccas',
+'categoriespagetext' => 'Þā folgendan floccas standaþ in þǣm wici.',
 
 # Special:Listusers
 'listusers-noresult' => 'Nǣnne brūcend gefundenne.',

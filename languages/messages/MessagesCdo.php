@@ -83,7 +83,6 @@ $messages = array(
 'dec'           => '12ng',
 
 # Categories related messages
-'categories'             => 'Lôi-biék',
 'pagecategories'         => '{{PLURAL:$1|Lôi-biék|Lôi-biék}}',
 'category_header'        => '"$1" lôi-biék â-dā̤ gì ùng-ciŏng',
 'subcategories'          => 'Cṳ̄-lôi-biék',
@@ -567,6 +566,9 @@ Téng buōng câng kiū siék gáu gĭng-dáng, ĭ ī-gĭng ké̤ṳk nè̤ng si
 'allpagessubmit'    => 'Kó̤',
 'allpagesprefix'    => 'Áng cê-tàu hiēng-sê:',
 'allpagesbadtitle'  => 'Nṳ̄ sṳ̆-ĭk gì biĕu-dà̤ buōng câng mò̤ ciĕ-tì.',
+
+# Special:Categories
+'categories' => 'Lôi-biék',
 
 # E-mail user
 'emailuser'       => 'Gié diêng-piĕ ké̤ṳk ĭ',

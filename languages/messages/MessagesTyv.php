@@ -113,7 +113,6 @@ $messages = array(
 'dec'           => '12.ай',
 
 # Categories related messages
-'categories'            => 'Бөлүктер',
 'pagecategories'        => '{{PLURAL:$1|Бөлүк|Бөлүктер}}',
 'category_header'       => '"$1" деп бөлүкте чүүлдер',
 'subcategories'         => 'Бичии бөлүктер',
@@ -520,6 +519,9 @@ $1',
 'allpagesprev'   => 'Пертинде',
 'allpagesnext'   => 'Соонда',
 'allpagessubmit' => 'Чоруур',
+
+# Special:Categories
+'categories' => 'Бөлүктер',
 
 # Special:Listusers
 'listusers-submit' => 'Көргүзер',

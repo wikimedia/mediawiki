@@ -113,8 +113,6 @@ $messages = array(
 'dec'           => 'Nad',
 
 # Categories related messages
-'categories'             => 'Categuri',
-'categoriespagetext'     => "Erencu cumpretu di li categuri prisenti i' lu situ.",
 'pagecategories'         => '{{PLURAL:$1|Categuria|Categuri}}',
 'category_header'        => 'Pàgini i\' la categuria "$1"',
 'subcategories'          => 'Sottucateguri',
@@ -1154,6 +1152,10 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa
 'allpagesprefix'    => "Musthra li pàgini ch'ischuminzani cun:",
 'allpagesbadtitle'  => "Lu tìturu indicaddu pa la pàgina nò è vàriddu o cunteni prefissi interlinga o interwiki. Pudia puru cuntinì unu o più caràtteri chi nò si pudiani usà i' li tìturi.",
 'allpages-bad-ns'   => 'Lu namespace "$1" nò isisthi i\' {{SITENAME}}.',
+
+# Special:Categories
+'categories'         => 'Categuri',
+'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i' lu situ.",
 
 # Special:Listusers
 'listusersfrom'      => "Musthra l'utenti parthendi da:",

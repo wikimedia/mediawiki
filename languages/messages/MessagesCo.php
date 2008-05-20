@@ -64,7 +64,6 @@ $messages = array(
 'dec'           => 'dic',
 
 # Categories related messages
-'categories'      => 'Categurie',
 'pagecategories'  => '{{PLURAL:$1|Categuria|Categurie}}',
 'category_header' => 'Articuli in a categuria "$1"',
 'subcategories'   => 'Sottucategurie',
@@ -318,6 +317,9 @@ $messages = array(
 'allpagessubmit'    => 'Và',
 'allpagesprefix'    => 'Mustrà e pagine chì cumincianu cù:',
 'allpages-bad-ns'   => 'U spaziu "$1" ùn esiste micca nant\'à {{SITENAME}}',
+
+# Special:Categories
+'categories' => 'Categurie',
 
 # Special:Listusers
 'listusers-submit' => 'Mustrà',

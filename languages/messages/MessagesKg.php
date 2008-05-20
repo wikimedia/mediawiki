@@ -27,7 +27,6 @@ $messages = array(
 'december'  => 'ngonda ya kumi na zole',
 
 # Categories related messages
-'categories'      => 'Bakalasi',
 'pagecategories'  => '{{PLURAL:$1|Kalasi|Bakalasi}}',
 'category_header' => 'Mikanda na kalasi "$1"',
 
@@ -85,6 +84,9 @@ $messages = array(
 
 # Miscellaneous special pages
 'ncategories' => '{{PLURAL:$1|kalasi|bakalasi}} $1',
+
+# Special:Categories
+'categories' => 'Bakalasi',
 
 # Contributions
 'mycontris' => 'Makabu ya munu',

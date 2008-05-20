@@ -217,10 +217,6 @@ $messages = array(
 'dec'           => 'Rhag',
 
 # Categories related messages
-'categories'                     => 'Categorïau',
-'categoriespagetext'             => "Mae'r categorïau isod yn y wici.",
-'special-categories-sort-count'  => 'trefnu yn ôl nifer',
-'special-categories-sort-abc'    => 'trefnu yn ôl yr wyddor',
 'pagecategories'                 => '{{PLURAL:$1|Categori|Categori|Categorïau|Categorïau|Categorïau|Categorïau}}',
 'category_header'                => 'Erthyglau yn y categori "$1"',
 'subcategories'                  => 'Is-gategorïau',
@@ -1240,6 +1236,12 @@ Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 'allpagessubmit'    => 'Eler',
 'allpagesprefix'    => "Dangos pob tudalen gyda'r rhagddodiad:",
 'allpagesbadtitle'  => 'Roedd y darpar deitl yn annilys oherwydd bod ynddo naill ai:<p> - rhagddodiad rhyngwici neu ryngieithol, neu </p>- nod neu nodau na ellir eu defnyddio mewn teitlau.',
+
+# Special:Categories
+'categories'                    => 'Categorïau',
+'categoriespagetext'            => "Mae'r categorïau isod yn y wici.",
+'special-categories-sort-count' => 'trefnu yn ôl nifer',
+'special-categories-sort-abc'   => 'trefnu yn ôl yr wyddor',
 
 # Special:Listusers
 'listusersfrom'      => 'Dangos y defnyddwyr gan ddechrau â:',

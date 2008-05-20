@@ -158,8 +158,6 @@ $messages = array(
 'dec'           => '12',
 
 # Categories related messages
-'categories'                     => '분류',
-'categoriespagetext'             => '문서나 자료를 담고 있는 분류 목록입니다.',
 'pagecategories'                 => '{{PLURAL:$1|분류|분류}}',
 'category_header'                => '‘$1’ 분류에 속하는 문서',
 'subcategories'                  => '하위 분류',
@@ -1130,6 +1128,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'allpagesprefix'    => '다음 접두어로 시작하는 문서 목록:',
 'allpagesbadtitle'  => '문서 제목이 잘못되었거나 다른 사이트로 연결되는 인터위키를 가지고 있습니다. 문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
 'allpages-bad-ns'   => '{{SITENAME}}에는 ‘$1’ 네임스페이스를 사용하지 않습니다.',
+
+# Special:Categories
+'categories'         => '분류',
+'categoriespagetext' => '문서나 자료를 담고 있는 분류 목록입니다.',
 
 # Special:Listusers
 'listusersfrom'      => '다음으로 시작하는 사용자 보이기:',

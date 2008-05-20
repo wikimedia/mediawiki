@@ -134,8 +134,6 @@ $messages = array(
 'dec'           => 'decembrī,',
 
 # Categories related messages
-'categories'                     => '{{PLURAL:$1|Kategorija|Kategorijas}}',
-'categoriespagetext'             => 'Wiki ir atrodamas šādas kategorijas.',
 'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorijas}}',
 'category_header'                => 'Raksti, kas ietverti kategorijā "$1".',
 'subcategories'                  => 'Apakškategorijas',
@@ -780,6 +778,10 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'allarticles'    => 'Visi raksti',
 'allpagessubmit' => 'Aiziet!',
 'allpagesprefix' => 'Parādīt lapas ar šādu virsraksta sākumu:',
+
+# Special:Categories
+'categories'         => '{{PLURAL:$1|Kategorija|Kategorijas}}',
+'categoriespagetext' => 'Wiki ir atrodamas šādas kategorijas.',
 
 # E-mail user
 'mailnologin'     => 'Nav adreses, uz kuru sūtīt',

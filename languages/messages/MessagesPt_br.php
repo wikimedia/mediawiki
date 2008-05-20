@@ -253,7 +253,6 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Categories related messages
-'categories'                  => 'Categorias',
 'pagecategories'              => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'             => 'Páginas na categoria "$1"',
 'subcategories'               => 'Subcategorias',
@@ -1104,6 +1103,9 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 'allpagesnext'   => 'Posterior',
 'allpagessubmit' => 'Ir',
 'allpagesprefix' => 'Exibir páginas com o prefixo:',
+
+# Special:Categories
+'categories' => 'Categorias',
 
 # Special:Listusers
 'listusersfrom'      => 'Mostrar usuários a partir de:',

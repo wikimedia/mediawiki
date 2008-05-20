@@ -18,9 +18,6 @@ $messages = array(
 'apr'        => 'اپريل',
 'aug'        => 'آگسٽ',
 
-# Categories related messages
-'categories' => 'زمرا',
-
 'about'   => 'بابت',
 'article' => 'مسوَدو',
 'and'     => '۽',
@@ -78,6 +75,9 @@ $messages = array(
 'allarticles'    => 'سمورا مضمون',
 'allpagesprev'   => 'اڳوڻو',
 'allpagessubmit' => 'ھلو',
+
+# Special:Categories
+'categories' => 'زمرا',
 
 # Watchlist
 'addedwatch' => 'ٽيٽ فھرست ۾ شامل ڪيو ويو.',

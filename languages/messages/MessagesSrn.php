@@ -111,7 +111,6 @@ $messages = array(
 'dec'           => 'twa',
 
 # Categories related messages
-'categories'             => 'Den guru',
 'pagecategories'         => '{{PLURAL:$1|Guru|Guru}}',
 'category_header'        => 'Peprewoysi ini guru “$1”',
 'subcategories'          => 'Subguru',
@@ -778,6 +777,9 @@ A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'
 'allpagessubmit'    => 'Go',
 'allpagesprefix'    => 'Peprewoysi libi si nanga a prifiks:',
 'allpages-bad-ns'   => '{{SITENAME}} abi no nenpreki nanga a nen "$1".',
+
+# Special:Categories
+'categories' => 'Den guru',
 
 # Special:Listusers
 'listusersfrom'      => 'Masyin libi si fu:',

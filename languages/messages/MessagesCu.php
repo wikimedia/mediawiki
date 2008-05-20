@@ -114,7 +114,6 @@ $messages = array(
 'dec'           => 'де҃к',
 
 # Categories related messages
-'categories'     => 'Катигорїѩ',
 'pagecategories' => '{{PLURAL:$1|Катигорї|Катигорїи|Катигориѩ|Катигориѩ}}',
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
@@ -232,6 +231,9 @@ $messages = array(
 'allpages'     => 'Вьсѩ страницѧ',
 'allpagesfrom' => 'Страницѧ видѣти хощѫ съ начѧльнами бѹкъвами:',
 'allarticles'  => 'Вьсѩ статїѩ',
+
+# Special:Categories
+'categories' => 'Катигорїѩ',
 
 # E-mail user
 'emailuser' => 'Посъли епїстолѫ',

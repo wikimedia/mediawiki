@@ -83,15 +83,12 @@ $messages = array(
 'dec'           => 'dis',
 
 # Categories related messages
-'categories'                    => 'Kategorías',
-'special-categories-sort-count' => 'ordenar por número',
-'special-categories-sort-abc'   => 'ordenar alefbeticamente',
-'category_header'               => 'Artikolos en la kategoría "$1"',
-'subcategories'                 => 'Subkategorías',
-'category-media-header'         => 'Archivos multimedia en la kategoría "$1"',
-'category-empty'                => "''La kategoría no kontiene aktualmente ningún artikolo o archivo multimedia''",
-'hidden-category-category'      => 'Kategorías eskondidas', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'        => 'kont.',
+'category_header'          => 'Artikolos en la kategoría "$1"',
+'subcategories'            => 'Subkategorías',
+'category-media-header'    => 'Archivos multimedia en la kategoría "$1"',
+'category-empty'           => "''La kategoría no kontiene aktualmente ningún artikolo o archivo multimedia''",
+'hidden-category-category' => 'Kategorías eskondidas', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'kont.',
 
 'about'          => 'Aserka de',
 'article'        => 'Artikolo',
@@ -222,6 +219,11 @@ $messages = array(
 'allinnamespace' => 'Todas las pajinas (espasio $1)',
 'allpagesnext'   => 'Siguiente',
 'allpagessubmit' => 'Amostrar la lista',
+
+# Special:Categories
+'categories'                    => 'Kategorías',
+'special-categories-sort-count' => 'ordenar por número',
+'special-categories-sort-abc'   => 'ordenar alefbeticamente',
 
 # Watchlist
 'watch' => 'Vijilar',

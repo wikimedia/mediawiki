@@ -63,7 +63,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'             => 'Categories',
 'pagecategories'         => '{{PLURAL:$1|Categorie|Categories}}',
 'category_header'        => 'Articules in categorie "$1"',
 'listingcontinuesabbrev' => 'cont.',
@@ -290,6 +289,9 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'allpages'       => 'Omni págines',
 'allarticles'    => 'Omni págines',
 'allpagessubmit' => 'Vade',
+
+# Special:Categories
+'categories' => 'Categories',
 
 # Watchlist
 'watchlist'            => 'Liste de sequet págines',

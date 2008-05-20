@@ -146,8 +146,6 @@ $messages = array(
 'dec'           => 'jouluk',
 
 # Categories related messages
-'categories'             => 'Katõgooriaq',
-'categoriespagetext'     => 'Seon vikin ommaq sääntseq katõgooriaq:',
 'pagecategories'         => '{{PLURAL:$1|Katõgooria|Katõgooriaq}}',
 'category_header'        => 'Katõgooria "$1" artikliq',
 'subcategories'          => 'Allkatõgooriaq',
@@ -1118,6 +1116,10 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'allpagesprefix'    => 'Näütäq lehti, mink alostusõn om:',
 'allpagesbadtitle'  => "Taa päälkiri oll' viganõ vai vikidevaihõlidsõ edejakuga. Tan või ollaq märke, midä tohe-i päälkir'on pruukiq.",
 'allpages-bad-ns'   => '{{SITENAME}}n olõ-i nimeruumi "$1".',
+
+# Special:Categories
+'categories'         => 'Katõgooriaq',
+'categoriespagetext' => 'Seon vikin ommaq sääntseq katõgooriaq:',
 
 # Special:Listusers
 'listusersfrom'      => 'Näütäq pruukjit alostõn:',

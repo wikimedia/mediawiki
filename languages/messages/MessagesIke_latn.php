@@ -46,9 +46,6 @@ $messages = array(
 'aug'          => 'augu',
 'nov'          => 'nuvi',
 
-# Categories related messages
-'categories' => 'nuapput',
-
 'about'          => 'miksaani',
 'article'        => 'ilulik mappitaq',
 'newwindow'      => '(uittuq qarasaujaq ikiaq pigivuq igalaaq)',
@@ -247,6 +244,9 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'allpagesprev'   => 'tunullipaaq',
 'allpagesnext'   => 'tagga',
 'allpagessubmit' => 'aivuk',
+
+# Special:Categories
+'categories' => 'nuapput',
 
 # E-mail user
 'emailfrom'    => 'nakit',

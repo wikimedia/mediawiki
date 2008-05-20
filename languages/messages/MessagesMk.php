@@ -178,8 +178,6 @@ $messages = array(
 'dec'           => 'дек',
 
 # Categories related messages
-'categories'             => 'Категории',
-'categoriespagetext'     => 'Во викито постојат следниве категории.',
 'pagecategories'         => '{{PLURAL:$1|Категорија|Категории}}',
 'category_header'        => 'Статии во категоријата "$1"',
 'subcategories'          => 'Подкатегории',
@@ -1035,6 +1033,10 @@ $1',
 'allpagesprefix'    => 'Прикажи страници со префикс:',
 'allpagesbadtitle'  => 'Дадениот наслов е невалиден или има интер-јазичен или интер-вики префикс. Може да содржи повеќе карактери кои несмеат да се користат во наслови.',
 'allpages-bad-ns'   => 'Википедија не содржи именски простор „$1“.',
+
+# Special:Categories
+'categories'         => 'Категории',
+'categoriespagetext' => 'Во викито постојат следниве категории.',
 
 # Special:Listusers
 'listusersfrom'      => 'Прикажни корисници почнувајќи од:',

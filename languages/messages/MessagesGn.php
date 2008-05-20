@@ -63,7 +63,6 @@ $messages = array(
 'dec'          => 'jasypakõi',
 
 # Categories related messages
-'categories'     => 'Ñemohendakuéra',
 'pagecategories' => '{{PLURAL:$1|Ñemohenda|Ñemohendakuéra}}',
 
 'about'          => 'Rehegua',
@@ -357,6 +356,9 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'allnotinnamespace' => 'Opaite kuatiarogue (fuera del espacio $1)',
 'allpagesnext'      => 'Upeigua',
 'allpagessubmit'    => 'Hechauka',
+
+# Special:Categories
+'categories' => 'Ñemohendakuéra',
 
 # Special:Listusers
 'listusers-submit' => 'Hechauka',

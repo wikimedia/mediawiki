@@ -113,16 +113,12 @@ $messages = array(
 'dec'           => 'Diz',
 
 # Categories related messages
-'categories'                    => 'Categories',
-'categoriespagetext'            => 'The follaein categories exist in the wiki.',
-'special-categories-sort-count' => 'sairt bi coont',
-'special-categories-sort-abc'   => 'sairt by the alphabet',
-'pagecategories'                => '{{PLURAL:$1|Category|Categories}}',
-'category_header'               => 'Pages in category "$1"',
-'subcategories'                 => 'Subcategories',
-'category-media-header'         => 'Eetems in category "$1"',
-'category-empty'                => "''This category haes no pages or eetems at the meenit.''",
-'hidden-categories'             => '{{PLURAL:$1|Hidden categorie|Hidden categories}}',
+'pagecategories'        => '{{PLURAL:$1|Category|Categories}}',
+'category_header'       => 'Pages in category "$1"',
+'subcategories'         => 'Subcategories',
+'category-media-header' => 'Eetems in category "$1"',
+'category-empty'        => "''This category haes no pages or eetems at the meenit.''",
+'hidden-categories'     => '{{PLURAL:$1|Hidden categorie|Hidden categories}}',
 
 'mainpagetext'      => "<big>'''MediaWiki haes been installit wi speed.'''</big>",
 'mainpagedocfooter' => "Aks the [http://meta.wikimedia.org/wiki/Help:Contents Uiser's Manual] for speirins aboot using the wiki saftware.
@@ -851,6 +847,12 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'allpagesprefix'    => 'Shaw pages wi prefix:',
 'allpagesbadtitle'  => 'The page teitle gien wis wrang or haed a cross-lied or cross-wiki prefix. It micht hae ane or twa characters that canna be uised in teitles',
 'allpages-bad-ns'   => '{{SITENAME}} disna hae a namespace "$1".',
+
+# Special:Categories
+'categories'                    => 'Categories',
+'categoriespagetext'            => 'The follaein categories exist in the wiki.',
+'special-categories-sort-count' => 'sairt bi coont',
+'special-categories-sort-abc'   => 'sairt by the alphabet',
 
 # E-mail user
 'mailnologin'     => 'Nae send address',

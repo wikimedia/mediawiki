@@ -86,7 +86,6 @@ $messages = array(
 'dec'           => 'Kek',
 
 # Categories related messages
-'categories'            => 'Nā mahele',
 'pagecategories'        => '{{PLURAL:$1|Mahele|Nā mahele}}',
 'category_header'       => 'Nā mo‘olelo maloko o ka mahele "$1"',
 'subcategories'         => 'Nā lalo-mahele',
@@ -315,6 +314,9 @@ hō‘ike ‘ia i lalo:",
 'allpagesprev'   => 'Mua',
 'allpagesnext'   => 'Hope',
 'allpagessubmit' => 'E huli',
+
+# Special:Categories
+'categories' => 'Nā mahele',
 
 # E-mail user
 'emailuser' => 'E leka uila i kēia mea ho‘ohana',

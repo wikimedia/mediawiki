@@ -78,7 +78,6 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
 'pagecategories'           => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
 'category_header'          => 'Mga pakli ha kategorya "$1"',
 'subcategories'            => 'Mga ilarom nga kategorya',
@@ -242,6 +241,9 @@ $messages = array(
 'allpagesprev'   => 'Naha-una',
 'allpagesnext'   => 'Sunod',
 'allpagessubmit' => 'Kadto-a',
+
+# Special:Categories
+'categories' => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
 
 # Watchlist
 'watchlist'     => 'Akon barantayan',

@@ -95,8 +95,6 @@ $messages = array(
 'dec'           => 'dek',
 
 # Categories related messages
-'categories'             => 'Kategoriyalar',
-'categoriespagetext'     => 'Ushbu kategoriyalar vikida bor.',
 'pagecategories'         => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'category_header'        => '"$1" kategoriyadagi maqolalar.',
 'subcategories'          => 'Podkategoriyalar',
@@ -421,6 +419,10 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'allarticles'    => 'Barcha sahifalar',
 'allpagesnext'   => 'Keyingi',
 'allpagessubmit' => "O'tish",
+
+# Special:Categories
+'categories'         => 'Kategoriyalar',
+'categoriespagetext' => 'Ushbu kategoriyalar vikida bor.',
 
 # E-mail user
 'emailuser' => 'Bu foydalanuvchiga e-maktub joʻnat',

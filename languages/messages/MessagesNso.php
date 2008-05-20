@@ -99,7 +99,6 @@ $messages = array(
 'dec'           => 'Manthole',
 
 # Categories related messages
-'categories'             => 'Dihlopha',
 'pagecategories'         => '{{PLURAL:$1|Sehlopha|Dihlopha}}',
 'category_header'        => 'Matlakala go sehlopha "$1"',
 'subcategories'          => 'Dihlophana',
@@ -702,6 +701,9 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'allarticles'    => 'Matlakala ka moka',
 'allpagessubmit' => 'Eya',
 'allpagesprefix' => "Laetša matlakala agoba le hlogo (''prefix''):",
+
+# Special:Categories
+'categories' => 'Dihlopha',
 
 # Special:Listusers
 'listusers-submit' => 'Botšha',

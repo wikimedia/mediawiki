@@ -122,10 +122,6 @@ $messages = array(
 'dec'           => 'дек',
 
 # Categories related messages
-'categories'                    => 'Категоритæ',
-'categoriespagetext'            => 'Мæнæ ахæм категоритæ ирон Википедийы ис.',
-'special-categories-sort-count' => 'нымæцмæ гæсгæ равæр',
-'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 'pagecategories'                => '{{PLURAL:$1|Категори|Категоритæ}}',
 'category_header'               => 'Категори "$1"',
 'subcategories'                 => 'Дæлкатегоритæ',
@@ -404,6 +400,12 @@ $3',
 'allarticles'    => 'Æппæт статьятæ',
 'allpagesprev'   => 'фæстæмæ',
 'allpagesnext'   => 'дарддæр',
+
+# Special:Categories
+'categories'                    => 'Категоритæ',
+'categoriespagetext'            => 'Мæнæ ахæм категоритæ ирон Википедийы ис.',
+'special-categories-sort-count' => 'нымæцмæ гæсгæ равæр',
+'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
 # Special:Listusers
 'listusers-submit' => 'Равдис',

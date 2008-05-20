@@ -118,11 +118,9 @@ $messages = array(
 'dec'       => 'Dek',
 
 # Categories related messages
-'categories'         => 'Cíıntıqlar',
-'categoriespagetext' => "Bu wiki'dä kiläse cíıntıqlar bar.",
-'pagecategories'     => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
-'category_header'    => '«$1» cíıntığınıñ mäqäläläre',
-'subcategories'      => 'Eçke cíıntıqlar',
+'pagecategories'  => '{{PLURAL:$1|Cíıntıq|Cíıntıqlar}}',
+'category_header' => '«$1» cíıntığınıñ mäqäläläre',
+'subcategories'   => 'Eçke cíıntıqlar',
 
 'linkprefix' => '/^(.*?)([a-zäçğıñöşüA-ZÄÇĞİÑÖŞÜ«„]+)$/sDu',
 
@@ -512,6 +510,10 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'nextpage'     => 'Kiläse bit ($1)',
 'prevpage'     => 'Ötken bet ($1)',
 'allpagesfrom' => 'Bolay başlanğan betler:',
+
+# Special:Categories
+'categories'         => 'Cíıntıqlar',
+'categoriespagetext' => "Bu wiki'dä kiläse cíıntıqlar bar.",
 
 # Special:Listusers
 'listusers-submit' => 'Körset',

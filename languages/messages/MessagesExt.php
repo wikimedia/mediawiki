@@ -113,10 +113,6 @@ $messages = array(
 'dec'           => 'Dic',
 
 # Categories related messages
-'categories'                     => 'Categorias',
-'categoriespagetext'             => 'Las siguientis categorias contienin artículus u archivus murtimeya.',
-'special-categories-sort-count'  => 'ordenal pol cuenta',
-'special-categories-sort-abc'    => 'ordenal alfabeticamenti',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'                => 'Artículus ena categoria "$1"',
 'subcategories'                  => 'Sucategorias',
@@ -1211,6 +1207,12 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'allpagessubmit'    => 'Dil',
 'allpagesprefix'    => 'Muestral páhinas con el prefihu:',
 'allpages-bad-ns'   => '{{SITENAME}} nu tieni el espaciu e nombris "$1".',
+
+# Special:Categories
+'categories'                    => 'Categorias',
+'categoriespagetext'            => 'Las siguientis categorias contienin artículus u archivus murtimeya.',
+'special-categories-sort-count' => 'ordenal pol cuenta',
+'special-categories-sort-abc'   => 'ordenal alfabeticamenti',
 
 # Special:Listusers
 'listusersfrom'      => 'Muestral usuárius qu´encetin pol:',

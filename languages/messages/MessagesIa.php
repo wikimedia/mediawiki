@@ -103,7 +103,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'             => 'Categorias',
 'category_header'        => 'Articulos in le categoria "$1"',
 'subcategories'          => 'Subcategorias',
 'listingcontinuesabbrev' => 'cont.',
@@ -617,6 +616,9 @@ executar iste function.',
 'allpagesnext'   => 'Sequente',
 'allpagessubmit' => 'Ir',
 'allpagesprefix' => 'Monstrar le paginas con prefixo:',
+
+# Special:Categories
+'categories' => 'Categorias',
 
 # E-mail user
 'mailnologin'     => 'Necun adresse de invio',

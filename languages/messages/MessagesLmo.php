@@ -66,7 +66,6 @@ süi titul dai sezziún (JavaScript)',
 'nov'       => 'nuv',
 
 # Categories related messages
-'categories'      => 'Categurii',
 'category_header' => 'Vus in de la categuria "$1"',
 'subcategories'   => 'Sót-categurii',
 
@@ -367,6 +366,9 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'allpagesnext'   => 'Pròssim',
 'allpagessubmit' => 'Innanz',
 'allpagesprefix' => "Varda i pagin ch'i scumenza per:",
+
+# Special:Categories
+'categories' => 'Categurii',
 
 # E-mail user
 'emailuser' => 'Manda un email al duvrátt',

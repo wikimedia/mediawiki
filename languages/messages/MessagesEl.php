@@ -333,9 +333,6 @@ $messages = array(
 'dec'           => 'Δεκ',
 
 # Categories related messages
-'categories'                     => 'Κατηγορίες',
-'categoriespagetext'             => 'Οι ακόλουθες κατηγορίες περιέχουν σελίδες ή αρχεία.',
-'special-categories-sort-abc'    => 'αλφαβητική ταξινόμηση',
 'pagecategories'                 => '{{PLURAL:$1|Κατηγορία|Κατηγορίες}}',
 'category_header'                => 'Άρθρα στην κατηγορία "$1"',
 'subcategories'                  => 'Υποκατηγορίες',
@@ -1422,6 +1419,11 @@ $1 ώρες.',
 'allpagesprefix'    => 'Προβολή των σελίδων με πρόθεμα:',
 'allpagesbadtitle'  => 'Ο δοσμένος τίτλος σελίδας ήταν άκυρος ή είχε ένα διαγλωσσικό ή δια-wiki πρόθεμα. Μπορεί να περιέχει έναν ή περισσότερους χαρακτήρες οι οποίοι δεν μπορούν να χρησιμοποιοθούν σε τίτλους.',
 'allpages-bad-ns'   => 'Το {{SITENAME}} δεν έχει τον τομέα "$1".',
+
+# Special:Categories
+'categories'                  => 'Κατηγορίες',
+'categoriespagetext'          => 'Οι ακόλουθες κατηγορίες περιέχουν σελίδες ή αρχεία.',
+'special-categories-sort-abc' => 'αλφαβητική ταξινόμηση',
 
 # Special:Listusers
 'listusersfrom'      => 'Προβολή χρηστών ξεκινώντας από:',

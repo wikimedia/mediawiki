@@ -147,10 +147,6 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'                    => '頁面分類',
-'categoriespagetext'            => '以下列出所有的頁面分類。',
-'special-categories-sort-count' => '按數量排列',
-'special-categories-sort-abc'   => '按字母排列',
 'pagecategories'                => '$1個分類',
 'category_header'               => '類別「$1」中的頁面',
 'subcategories'                 => '子分類',
@@ -1172,6 +1168,12 @@ Template:消除歧義',
 'allpagesprefix'    => '顯示具有此前綴(名字空間)的頁面:',
 'allpagesbadtitle'  => '給定的頁面標題是非法的，或者具有一個內部語言或內部 wiki 的前綴。它可能包含一個或更多的不能用於標題的字元。',
 'allpages-bad-ns'   => '在{{SITENAME}}中沒有一個叫做"$1"的名字空間。',
+
+# Special:Categories
+'categories'                    => '頁面分類',
+'categoriespagetext'            => '以下列出所有的頁面分類。',
+'special-categories-sort-count' => '按數量排列',
+'special-categories-sort-abc'   => '按字母排列',
 
 # Special:Listusers
 'listusersfrom'      => '給定顯示使用者條件:',

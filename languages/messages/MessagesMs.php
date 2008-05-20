@@ -241,10 +241,6 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'                     => 'Kategori',
-'categoriespagetext'             => 'Kategori-kategori berikut wujud dalam wiki ini.',
-'special-categories-sort-count'  => 'susun mengikut tertib bilangan',
-'special-categories-sort-abc'    => 'susun mengikut tertib abjad',
 'pagecategories'                 => 'Kategori',
 'category_header'                => 'Laman-laman dalam kategori "$1"',
 'subcategories'                  => 'Subkategori',
@@ -1351,6 +1347,12 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 'allpagesprefix'    => 'Tunjukkan laman dengan awalan:',
 'allpagesbadtitle'  => 'Tajuk laman yang dinyatakan tidak sah atau mempunyai awalam antara bahasa atau antara wiki. Ia mungkin mengandungi aksara yang tidak boleh digunakan dalam tajuk laman.',
 'allpages-bad-ns'   => '{{SITENAME}} tidak mempunyai ruang nama "$1".',
+
+# Special:Categories
+'categories'                    => 'Kategori',
+'categoriespagetext'            => 'Kategori-kategori berikut wujud dalam wiki ini.',
+'special-categories-sort-count' => 'susun mengikut tertib bilangan',
+'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
 
 # Special:Listusers
 'listusersfrom'      => 'Tunjukkan pengguna bermula pada:',

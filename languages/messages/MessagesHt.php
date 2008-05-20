@@ -135,10 +135,6 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'                     => 'Kategori yo',
-'categoriespagetext'             => 'Kategori ki swiv yo gen lòt paj oubien medya nan yo.',
-'special-categories-sort-count'  => 'klase pa valè',
-'special-categories-sort-abc'    => 'klase alfabetikalman',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori yo}}',
 'category_header'                => 'Paj yo ki nann  kategori « $1 »',
 'subcategories'                  => 'Pitit kategori yo',
@@ -622,6 +618,12 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'allarticles'    => 'tout atik yo',
 'allpagessubmit' => 'Ale',
 'allpagesprefix' => 'Montre paj yo ki ap komanse pa prefiks sa a :',
+
+# Special:Categories
+'categories'                    => 'Kategori yo',
+'categoriespagetext'            => 'Kategori ki swiv yo gen lòt paj oubien medya nan yo.',
+'special-categories-sort-count' => 'klase pa valè',
+'special-categories-sort-abc'   => 'klase alfabetikalman',
 
 # E-mail user
 'emailuser' => 'Voye yon mesaj (imèl) pou itilizatè sa a',

@@ -65,8 +65,6 @@ $messages = array(
 'sat'       => 'Sar',
 
 # Categories related messages
-'categories'            => 'Ol grup',
-'categoriespagetext'    => 'Ol dispela grup istap.',
 'pagecategories'        => '{{PLURAL:$1|Grup|Ol grup}}',
 'category_header'       => 'Ol pes insait long grup "$1"',
 'subcategories'         => 'Ol grup insait long grup',
@@ -182,6 +180,10 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 
 # Special:Allpages
 'allpages' => 'Olgeta pes',
+
+# Special:Categories
+'categories'         => 'Ol grup',
+'categoriespagetext' => 'Ol dispela grup istap.',
 
 # Watchlist
 'watchlist'            => 'Lukautbuk bilong mi',

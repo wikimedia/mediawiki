@@ -156,8 +156,6 @@ $messages = array(
 'dec'           => 'grd',
 
 # Categories related messages
-'categories'               => 'Kateguorėjės',
-'categoriespagetext'       => 'Pruojekte īr šėtuos kateguorėjės.',
 'pagecategories'           => '{{PLURAL:$1|Kateguorėjė|Kateguorėjės|Kateguorėju}}',
 'category_header'          => 'Kateguorėjės „$1“ straipsnē',
 'subcategories'            => 'Subkateguorėjės',
@@ -924,6 +922,10 @@ katram ivīkdītė šėta funkcėjė.',
 'allpagessubmit'    => 'Tink',
 'allpagesprefix'    => 'Ruodītė poslapios so prīdelēs:',
 'allpagesbadtitle'  => 'Douts poslapė pavadėnėms īr neteisings a tor terpkalbėnė a terppruojektėnė prīdielė. Anamė īr vėns a kelė žėnklā, katrū negal nauduotė pavadėnėmūs.',
+
+# Special:Categories
+'categories'         => 'Kateguorėjės',
+'categoriespagetext' => 'Pruojekte īr šėtuos kateguorėjės.',
 
 # Special:Listusers
 'listusersfrom'      => 'Ruodītė nauduotuojus pradedont nū:',

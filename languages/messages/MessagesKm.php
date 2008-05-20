@@ -229,10 +229,6 @@ $messages = array(
 'dec'           => 'ធ្នូ',
 
 # Categories related messages
-'categories'                     => 'ចំនាត់ថ្នាក់ក្រុម',
-'categoriespagetext'             => 'ចំនាត់ថ្នាក់ក្រុមខាងក្រោមនេះមានអត្ថបទឬមេឌាទេ ។',
-'special-categories-sort-count'  => 'តំរៀបតាមចំនួន',
-'special-categories-sort-abc'    => 'តំរៀបតាមអក្ខរក្រម',
 'pagecategories'                 => '{{PLURAL:$1|ចំនាត់ថ្នាក់ក្រុម|ចំនាត់ថ្នាក់ក្រុម}}',
 'category_header'                => 'ទំព័រដែលមាន​ក្នុងចំនាត់ថ្នាក់ក្រុម"$1"',
 'subcategories'                  => 'ចំនាត់ថ្នាក់ក្រុមរង',
@@ -1308,6 +1304,12 @@ $2',
 'allpagesprefix'    => 'បង្ហាញទំព័រដែលចាប់ផ្តើមដោយ ៖',
 'allpagesbadtitle'  => 'ចំនងជើងទំព័រដែលត្រូវបានផ្តល់ឱ្យគឺគ្មានសុពលភាពឬក៏មានបុព្វបទដែលមានអន្តរភាសាឬអន្តរវីគី។ ប្រហែលជាវាមានអក្សរមួយឬច្រើន ដែលមិនអាចត្រូវប្រើនៅក្នុងចំនងជើង។',
 'allpages-bad-ns'   => '{{SITENAME}}មិនមានលំហឈ្មោះ"$1"ទេ។',
+
+# Special:Categories
+'categories'                    => 'ចំនាត់ថ្នាក់ក្រុម',
+'categoriespagetext'            => 'ចំនាត់ថ្នាក់ក្រុមខាងក្រោមនេះមានអត្ថបទឬមេឌាទេ ។',
+'special-categories-sort-count' => 'តំរៀបតាមចំនួន',
+'special-categories-sort-abc'   => 'តំរៀបតាមអក្ខរក្រម',
 
 # Special:Listusers
 'listusersfrom'      => 'បង្ហាញអ្នកប្រើប្រាស់ចាប់ផ្តើមដោយ៖',

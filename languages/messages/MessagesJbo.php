@@ -47,7 +47,6 @@ $messages = array(
 'may'           => 'la mumast.',
 
 # Categories related messages
-'categories'     => 'klesi',
 'pagecategories' => '{{PLURAL:$1|klesi|klesi}}',
 
 'qbedit'        => 'stika',
@@ -135,6 +134,9 @@ $messages = array(
 
 # Special:Allpages
 'allarticles' => 'ro notci',
+
+# Special:Categories
+'categories' => 'klesi',
 
 # Watchlist
 'watch'         => 'zgana',

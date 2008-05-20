@@ -25,7 +25,6 @@ $messages = array(
 'aug'       => 'uti',
 
 # Categories related messages
-'categories'      => 'Nyɛ ka cogoyaw',
 'category_header' => 'Nyɛw cogoya kɔnɔ: "$1"',
 
 'article'        => 'Nyɛ',
@@ -102,6 +101,9 @@ $messages = array(
 
 # Special:Allpages
 'allpages' => 'Nyɛw bɛɛ',
+
+# Special:Categories
+'categories' => 'Nyɛ ka cogoyaw',
 
 # Watchlist
 'watch'         => 'Tulomajɔ',

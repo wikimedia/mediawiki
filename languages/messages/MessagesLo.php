@@ -126,8 +126,6 @@ $messages = array(
 'dec'           => 'ທັນວາ',
 
 # Categories related messages
-'categories'             => 'ໝວດ',
-'categoriespagetext'     => 'ມີ ບັນດາ ໝວດ ຕໍ່ໄປນີ້ ຢູ່ ວິກີ.',
 'pagecategories'         => '{{PLURAL:$1|ໝວດ|ໝວດ}}',
 'category_header'        => 'ບົດຄວາມໃນໝວດ "$1"',
 'subcategories'          => 'ໝວດຍ່ອຍ',
@@ -601,6 +599,10 @@ $messages = array(
 'allpagesnext'   => 'ຕໍ່ໄປ',
 'allpagessubmit' => 'ໄປ',
 'allpagesprefix' => 'ສະແດງ ໜ້າ ຂຶ້ນຕົ້ນດ້ວຍ:',
+
+# Special:Categories
+'categories'         => 'ໝວດ',
+'categoriespagetext' => 'ມີ ບັນດາ ໝວດ ຕໍ່ໄປນີ້ ຢູ່ ວິກີ.',
 
 # Special:Listusers
 'listusers-submit' => 'ສະແດງ',

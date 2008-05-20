@@ -110,7 +110,6 @@ $messages = array(
 'dec'           => 'Дек',
 
 # Categories related messages
-'categories'            => 'Категореш',
 'pagecategories'        => '{{PLURAL:$1|Категори|Категореш}}',
 'category_header'       => '"$1" категори оагIонаш',
 'subcategories'         => 'Чура-категореш',
@@ -219,5 +218,8 @@ $messages = array(
 'versionrequiredtext' => '$1 MediaWiki верси йиза ер оагIув хьажа. [[Special:Version|version page]] хьажа.',
 
 'ok' => 'ОК',
+
+# Special:Categories
+'categories' => 'Категореш',
 
 );

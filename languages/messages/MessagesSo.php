@@ -101,7 +101,6 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'      => 'Qeybaha',
 'pagecategories'  => '{{PLURAL:$1|Qaybta|Qaybaha}}',
 'category_header' => 'Maqaalada ku jirta qaybta "$1"',
 'subcategories'   => 'Qaybaha hoose',
@@ -450,6 +449,9 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'allpagessubmit'    => 'Soco',
 'allpagesprefix'    => 'Soo saar boggaga leh horgalaha:',
 'allpagesbadtitle'  => "Cinwaanka bogga xaq ma'aha ama waa ereyo u gaar ah isdhaafka-luqadaha ama isdhaafka-wiki. Waxaa ku jirikara xuruufo aanan loo isticmaalikarin cinwaan ahaan.",
+
+# Special:Categories
+'categories' => 'Qeybaha',
 
 # Special:Listusers
 'listusersfrom'      => "I'tus isticmaalayaasha laga bilaabo:",

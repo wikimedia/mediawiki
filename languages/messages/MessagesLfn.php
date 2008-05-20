@@ -108,8 +108,6 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'               => 'Categorias',
-'categoriespagetext'       => 'Es la categorias seguente en la vici.',
 'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'          => 'Articles en categoria "$1"',
 'subcategories'            => 'Sucategorias',
@@ -599,6 +597,10 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'allpagesnext'   => 'Seguente',
 'allpagessubmit' => 'Vade',
 'allpagesprefix' => 'Mostra pajes con prefis:',
+
+# Special:Categories
+'categories'         => 'Categorias',
+'categoriespagetext' => 'Es la categorias seguente en la vici.',
 
 # Special:Listgrouprights
 'listgrouprights-group' => 'Grupo',

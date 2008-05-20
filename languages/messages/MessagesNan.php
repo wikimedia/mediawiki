@@ -108,8 +108,6 @@ $messages = array(
 'dec'           => '12g',
 
 # Categories related messages
-'categories'             => 'Lūi-pia̍t',
-'categoriespagetext'     => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.',
 'pagecategories'         => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
 'category_header'        => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
 'subcategories'          => 'Ē-lūi-pia̍t',
@@ -590,6 +588,10 @@ Template:Khu-pia̍t-ia̍h',
 'allpagesprev'      => 'Téng 1 ê',
 'allpagesnext'      => 'ē 1 ê',
 'allpagessubmit'    => 'Lâi-khì',
+
+# Special:Categories
+'categories'         => 'Lūi-pia̍t',
+'categoriespagetext' => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.',
 
 # E-mail user
 'mailnologin'     => 'Bô siu-phoe ê chū-chí',

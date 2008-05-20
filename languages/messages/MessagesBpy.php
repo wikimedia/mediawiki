@@ -143,8 +143,6 @@ $messages = array(
 'dec'           => 'ডিসে',
 
 # Categories related messages
-'categories'            => 'বিষয়রথাকহানি',
-'categoriespagetext'    => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক:',
 'pagecategories'        => '{{PLURAL:$1|থাক|থাকহানি}}',
 'category_header'       => '"$1" বিষয়রথাকে আসে নিবন্ধহানি',
 'subcategories'         => 'উপথাক',
@@ -410,6 +408,10 @@ $messages = array(
 'allpagesnext'   => 'থাঙনাত',
 'allpagessubmit' => 'হাত',
 'allpagesprefix' => 'মেয়েক এগন অকরিসি ৱাহির পাতাহানি দেহাদেঃ',
+
+# Special:Categories
+'categories'         => 'বিষয়রথাকহানি',
+'categoriespagetext' => 'ইমারঠারর উইকিপিডিয়াত এবাকার বিষয়রথাক:',
 
 # Watchlist
 'watchlist'       => 'মর তালাবি',

@@ -126,7 +126,6 @@ $messages = array(
 'dec'           => 'ਦਸੰਬਰ',
 
 # Categories related messages
-'categories'            => 'ਕੈਟਾਗਰੀਆਂ',
 'pagecategories'        => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}',
 'category_header'       => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਲੇਖ',
 'subcategories'         => 'ਸਬ-ਕੈਟਾਗਰੀਆਂ',
@@ -694,6 +693,9 @@ to upload files.',
 'allpagesprev'      => 'ਪਿੱਛੇ',
 'allpagesnext'      => 'ਅੱਗੇ',
 'allpagessubmit'    => 'ਜਾਓ',
+
+# Special:Categories
+'categories' => 'ਕੈਟਾਗਰੀਆਂ',
 
 # Special:Listusers
 'listusers-submit'   => 'ਵੇਖੋ',

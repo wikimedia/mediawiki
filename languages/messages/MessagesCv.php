@@ -70,7 +70,6 @@ $messages = array(
 'dec'       => 'Раш',
 
 # Categories related messages
-'categories'             => 'Категорисем',
 'pagecategories'         => 'Категорисем',
 'listingcontinuesabbrev' => '(малалли)',
 
@@ -199,6 +198,9 @@ $messages = array(
 'allpages'     => 'Пěтěм страницăсем',
 'nextpage'     => 'Тепěр страницă ($1)',
 'allpagesnext' => 'Тепěр',
+
+# Special:Categories
+'categories' => 'Категорисем',
 
 # Delete/protect/revert
 'deletepage'     => 'Кăларса парахнă статьясем',

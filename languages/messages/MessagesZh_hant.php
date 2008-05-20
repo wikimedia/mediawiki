@@ -164,10 +164,6 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'                     => '頁面分類',
-'categoriespagetext'             => '以下的分類中包含了頁面或媒體。',
-'special-categories-sort-count'  => '按數量排列',
-'special-categories-sort-abc'    => '按字母排列',
 'pagecategories'                 => '$1個分類',
 'category_header'                => '類別「$1」中的頁面',
 'subcategories'                  => '附分類',
@@ -528,23 +524,23 @@ $2',
 'hr_tip'          => '水平線 (小心使用)',
 
 # Edit pages
-'summary'                           => '摘要',
-'subject'                           => '主題',
-'minoredit'                         => '這是一個小修改',
-'watchthis'                         => '監視本頁',
-'savearticle'                       => '保存本頁',
-'preview'                           => '預覽',
-'showpreview'                       => '顯示預覽',
-'showlivepreview'                   => '即時預覽',
-'showdiff'                          => '顯示差異',
-'anoneditwarning'                   => "'''警告:'''您沒有登錄，您的IP位址將記錄在此頁的編輯歷史中。",
-'missingsummary'                    => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
-'missingcommenttext'                => '請在下面輸入評論。',
-'missingcommentheader'              => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊儲存，您的編輯將不帶標題儲存。",
-'summary-preview'                   => '摘要預覽',
-'subject-preview'                   => '主題/標題預覽',
-'blockedtitle'                      => '用戶被查封',
-'blockedtext'                       => "<big>你的用戶名或IP地址已經被$1查封。</big>
+'summary'                   => '摘要',
+'subject'                   => '主題',
+'minoredit'                 => '這是一個小修改',
+'watchthis'                 => '監視本頁',
+'savearticle'               => '保存本頁',
+'preview'                   => '預覽',
+'showpreview'               => '顯示預覽',
+'showlivepreview'           => '即時預覽',
+'showdiff'                  => '顯示差異',
+'anoneditwarning'           => "'''警告:'''您沒有登錄，您的IP位址將記錄在此頁的編輯歷史中。",
+'missingsummary'            => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
+'missingcommenttext'        => '請在下面輸入評論。',
+'missingcommentheader'      => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊儲存，您的編輯將不帶標題儲存。",
+'summary-preview'           => '摘要預覽',
+'subject-preview'           => '主題/標題預覽',
+'blockedtitle'              => '用戶被查封',
+'blockedtext'               => "<big>你的用戶名或IP地址已經被$1查封。</big>
 
 這次查封是由$1所封的。當中的原因是''$2''。
 
@@ -556,7 +552,7 @@ $2',
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 你目前的IP地址是$3，而該查封ID是 #$5。 請你在所有查詢中註明這地址及／或查封ID。",
-'autoblockedtext'                   => "你的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
+'autoblockedtext'           => "你的IP地址已經被自動查封，由於先前的另一位用戶被$1所查封。
 而查封的原因是：
 
 :''$2''
@@ -568,95 +564,97 @@ $2',
 除非你已經在你的[[Special:Preferences|帳號參數設置]]中設定了一個有效的電子郵件地址，否則你是不能使用「電郵這位用戶」的功能。當設定了一個有效的電子郵件地址後，這個功能是不會封鎖的。
 
 您的查封ID是 #$5。 請你在所有查詢中註明這個查封ID。",
-'blockednoreason'                   => '無給出原因',
-'blockedoriginalsource'             => "以下是'''$1'''的原始碼:",
-'blockededitsource'                 => "你對'''$1'''進行'''編輯'''的文字如下:",
-'whitelistedittitle'                => '登入後才可編輯',
-'whitelistedittext'                 => '您必須先$1才可編輯頁面。',
-'whitelistreadtitle'                => '登入後才可閱讀',
-'whitelistreadtext'                 => '您必須先[[Special:Userlogin|登入]]才可閱讀頁面。',
-'whitelistacctitle'                 => '您被禁止建立帳號',
-'whitelistacctext'                  => '在{{SITENAME}}中建立帳號您必須先[[Special:Userlogin|登入]]並擁有相關許可權。',
-'confirmedittitle'                  => '郵件確認後才可編輯',
-'confirmedittext'                   => '在編輯此頁之前您必須確認您的郵箱位址。請透過[[Special:Preferences|參數設定]]設定並驗証您的郵箱位址。',
-'nosuchsectiontitle'                => '沒有這個段落',
-'nosuchsectiontext'                 => '您嘗試編輯的段落並不存在。在這裡是無第$1個段落，所以是沒有一個地方去儲存你的編輯。',
-'loginreqtitle'                     => '需要登入',
-'loginreqlink'                      => '登入',
-'loginreqpagetext'                  => '您必須$1才能檢視其它頁面。',
-'accmailtitle'                      => '密碼已寄出',
-'accmailtext'                       => "'$1'的密碼已經寄到$2。",
-'newarticle'                        => '(新)',
-'newarticletext'                    => '您進入了一個尚未創建的頁面。
+'blockednoreason'           => '無給出原因',
+'blockedoriginalsource'     => "以下是'''$1'''的原始碼:",
+'blockededitsource'         => "你對'''$1'''進行'''編輯'''的文字如下:",
+'whitelistedittitle'        => '登入後才可編輯',
+'whitelistedittext'         => '您必須先$1才可編輯頁面。',
+'whitelistreadtitle'        => '登入後才可閱讀',
+'whitelistreadtext'         => '您必須先[[Special:Userlogin|登入]]才可閱讀頁面。',
+'whitelistacctitle'         => '您被禁止建立帳號',
+'whitelistacctext'          => '在{{SITENAME}}中建立帳號您必須先[[Special:Userlogin|登入]]並擁有相關許可權。',
+'confirmedittitle'          => '郵件確認後才可編輯',
+'confirmedittext'           => '在編輯此頁之前您必須確認您的郵箱位址。請透過[[Special:Preferences|參數設定]]設定並驗証您的郵箱位址。',
+'nosuchsectiontitle'        => '沒有這個段落',
+'nosuchsectiontext'         => '您嘗試編輯的段落並不存在。在這裡是無第$1個段落，所以是沒有一個地方去儲存你的編輯。',
+'loginreqtitle'             => '需要登入',
+'loginreqlink'              => '登入',
+'loginreqpagetext'          => '您必須$1才能檢視其它頁面。',
+'accmailtitle'              => '密碼已寄出',
+'accmailtext'               => "'$1'的密碼已經寄到$2。",
+'newarticle'                => '(新)',
+'newarticletext'            => '您進入了一個尚未創建的頁面。
 要創建該頁面，請在下面的編輯框中輸入內容(詳情參見[[Help:幫助|幫助]])。
 如果您是不小心來到此頁面，直接點擊您瀏覽器中的"返回"按鈕返回。',
-'anontalkpagetext'                  => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:Userlogin|創建新帳號或登入]]以避免在未來於其他匿名用戶混淆。''",
-'noarticletext'                     => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
-'userpage-userdoesnotexist'         => '用戶帳號「$1」未曾創建。請在創建／編輯這個頁面前先檢查一下。',
-'clearyourcache'                    => "'''注意:''' 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''(或按下''Ctrl-Shift-R''，在蘋果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需點擊 ''重新整理''；'''Opera:''' 用戶需要在 ''工具-設定'' 中完整地清除它們的快取。",
-'usercssjsyoucanpreview'            => "<strong>提示:</strong> 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
-'usercsspreview'                    => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
-'userjspreview'                     => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
-'userinvalidcssjstitle'             => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
-'updated'                           => '(已更新)',
-'note'                              => '<strong>注意:</strong>',
-'previewnote'                       => '<strong>請記住這只是預覽，內容還未保存！</strong>',
-'previewconflict'                   => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'              => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。</strong>',
-'session_fail_preview_html'         => "<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
+'anontalkpagetext'          => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:Userlogin|創建新帳號或登入]]以避免在未來於其他匿名用戶混淆。''",
+'noarticletext'             => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
+'userpage-userdoesnotexist' => '用戶帳號「$1」未曾創建。請在創建／編輯這個頁面前先檢查一下。',
+'clearyourcache'            => "'''注意:''' 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''(或按下''Ctrl-Shift-R''，在蘋果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需點擊 ''重新整理''；'''Opera:''' 用戶需要在 ''工具-設定'' 中完整地清除它們的快取。",
+'usercssjsyoucanpreview'    => "<strong>提示:</strong> 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
+'usercsspreview'            => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
+'userjspreview'             => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
+'userinvalidcssjstitle'     => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
+'updated'                   => '(已更新)',
+'note'                      => '<strong>注意:</strong>',
+'previewnote'               => '<strong>請記住這只是預覽，內容還未保存！</strong>',
+'previewconflict'           => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
+'session_fail_preview'      => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。</strong>',
+'session_fail_preview_html' => "<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
 <strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>",
-'token_suffix_mismatch'             => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
+'token_suffix_mismatch'     => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
-'editing'                           => '正在編輯$1',
-'editingsection'                    => '正在編輯$1 (段落)',
-'editingcomment'                    => '正在編輯$1 (評論)',
-'editconflict'                      => '編輯衝突：$1',
-'explainconflict'                   => '有人在你開始編輯後更改了頁面。
+'editing'                   => '正在編輯$1',
+'editingsection'            => '正在編輯$1 (段落)',
+'editingcomment'            => '正在編輯$1 (評論)',
+'editconflict'              => '編輯衝突：$1',
+'explainconflict'           => '有人在你開始編輯後更改了頁面。
 上面的文字框內顯示的是目前本頁的內容。
 你所做的修改顯示在下面的文字框中。
 你應當將你所做的修改加入現有的內容中。
 <b>只有</b>在上面文字框中的內容會在你點擊"保存頁面"後被保存。<br />',
-'yourtext'                          => '您的文字',
-'storedversion'                     => '已保存版本',
-'nonunicodebrowser'                 => '<strong>警告: 您的瀏覽器不兼容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。</strong>',
-'editingold'                        => '<strong>警告：你正在編輯的是本頁的舊版本。
+'yourtext'                  => '您的文字',
+'storedversion'             => '已保存版本',
+'nonunicodebrowser'         => '<strong>警告: 您的瀏覽器不兼容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。</strong>',
+'editingold'                => '<strong>警告：你正在編輯的是本頁的舊版本。
 如果你保存它的話，在本版本之後的任何修改都會丟失。</strong>',
-'yourdiff'                          => '差異',
-'copyrightwarning'                  => '請注意您對{{SITENAME}}的所有貢獻都被認為是在$2下發佈，請查看在$1的細節。
+'yourdiff'                  => '差異',
+'copyrightwarning'          => '請注意您對{{SITENAME}}的所有貢獻都被認為是在$2下發佈，請查看在$1的細節。
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源。
 <strong>不要在未獲授權的情況下發表！</strong><br />',
-'copyrightwarning2'                 => '請注意您對{{SITENAME}}的所有貢獻
+'copyrightwarning2'         => '請注意您對{{SITENAME}}的所有貢獻
 都可能被其他貢獻者編輯，修改或刪除。
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源（參閱$1的細節）。
 <strong>不要在未獲授權的情況下發表！</strong>',
-'longpagewarning'                   => '<strong>警告: 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。</strong>',
-'longpageerror'                     => '<strong>錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。</strong>',
-'readonlywarning'                   => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
-'protectedpagewarning'              => '<strong>警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。</strong>',
-'semiprotectedpagewarning'          => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。",
-'cascadeprotectedwarning'           => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
-'titleprotectedwarning'             => '<strong>警告: 本頁面已被鎖上，只有一些用戶方可創建。</strong>',
-'templatesused'                     => '在這個頁面上使用的模板有:',
-'templatesusedpreview'              => '此次預覽中使用的模板有:',
-'templatesusedsection'              => '在這個段落上使用的模板有:',
-'template-protected'                => '(保護)',
-'template-semiprotected'            => '(半保護)',
-'hiddencategories'                  => '這個頁面是屬於$1個隱藏分類的成員:',
-'edittools'                         => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
-'nocreatetitle'                     => '創建頁面受限',
-'nocreatetext'                      => '{{SITENAME}}限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
-'nocreate-loggedin'                 => '您在{{SITENAME}}中並無許可權去創建新頁面。',
-'permissionserrors'                 => '權限錯誤',
-'permissionserrorstext'             => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
-'recreate-deleted-warn'             => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
+'longpagewarning'           => '<strong>警告: 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。</strong>',
+'longpageerror'             => '<strong>錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。</strong>',
+'readonlywarning'           => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
+'protectedpagewarning'      => '<strong>警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。</strong>',
+'semiprotectedpagewarning'  => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。",
+'cascadeprotectedwarning'   => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
+'titleprotectedwarning'     => '<strong>警告: 本頁面已被鎖上，只有一些用戶方可創建。</strong>',
+'templatesused'             => '在這個頁面上使用的模板有:',
+'templatesusedpreview'      => '此次預覽中使用的模板有:',
+'templatesusedsection'      => '在這個段落上使用的模板有:',
+'template-protected'        => '(保護)',
+'template-semiprotected'    => '(半保護)',
+'hiddencategories'          => '這個頁面是屬於$1個隱藏分類的成員:',
+'edittools'                 => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
+'nocreatetitle'             => '創建頁面受限',
+'nocreatetext'              => '{{SITENAME}}限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
+'nocreate-loggedin'         => '您在{{SITENAME}}中並無許可權去創建新頁面。',
+'permissionserrors'         => '權限錯誤',
+'permissionserrorstext'     => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
+'recreate-deleted-warn'     => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
 
 你應該要考慮一下繼續編輯這一個頁面是否合適。
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
+
+# Parser/template warnings
 'expensive-parserfunction-warning'  => '警告: 這個頁面有太多耗費的語法功能呼叫。
 
 它應該少過$2，現在有$1。',
@@ -1360,6 +1358,12 @@ Template:消除歧義',
 'allpagesprefix'    => '顯示具有此前綴(名字空間)的頁面:',
 'allpagesbadtitle'  => '給定的頁面標題是非法的，或者具有一個內部語言或內部 wiki 的前綴。它可能包含一個或更多的不能用於標題的字元。',
 'allpages-bad-ns'   => '在{{SITENAME}}中沒有一個叫做"$1"的名字空間。',
+
+# Special:Categories
+'categories'                    => '頁面分類',
+'categoriespagetext'            => '以下的分類中包含了頁面或媒體。',
+'special-categories-sort-count' => '按數量排列',
+'special-categories-sort-abc'   => '按字母排列',
 
 # Special:Listusers
 'listusersfrom'      => '給定顯示用戶條件:',

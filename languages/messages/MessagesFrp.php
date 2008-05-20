@@ -169,10 +169,6 @@ $messages = array(
 'dec'           => 'dèc',
 
 # Categories related messages
-'categories'                     => 'Catègories',
-'categoriespagetext'             => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
-'special-categories-sort-count'  => 'tri per compto',
-'special-categories-sort-abc'    => 'tri alfabètico',
 'pagecategories'                 => '{{PLURAL:$1|Catègorie|Catègories}}',
 'category_header'                => 'Pâges dens la catègorie « $1 »',
 'subcategories'                  => 'Sot-catègories',
@@ -1270,6 +1266,12 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'allpagesprefix'    => 'Afichiér les pâges comencient per lo prèfixe :',
 'allpagesbadtitle'  => 'Lo titro rensègnê por la pâge est fôx ou at un prèfixe resèrvâ. Contint sûrement yon ou plusiors caractèros spèciâls que pôvont pas étre utilisâs dens los titros.',
 'allpages-bad-ns'   => '{{SITENAME}} at pas d’èspâço de nom « $1 ».',
+
+# Special:Categories
+'categories'                    => 'Catègories',
+'categoriespagetext'            => 'Les catègories siuventes contegnont des pâges ou des fichiérs multimèdia.',
+'special-categories-sort-count' => 'tri per compto',
+'special-categories-sort-abc'   => 'tri alfabètico',
 
 # Special:Listusers
 'listusersfrom'      => 'Afichiér los utilisators dês :',

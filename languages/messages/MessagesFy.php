@@ -167,7 +167,6 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'             => 'Kategoryen',
 'pagecategories'         => '{{PLURAL:$1|Kategory|Kategoryen}}',
 'category_header'        => 'Siden yn kategory "$1"',
 'subcategories'          => 'Underkategoryen',
@@ -872,6 +871,9 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 'allarticles'    => 'Alle siden',
 'allpagessubmit' => 'Ynoarder',
 'allpagesprefix' => "Siden sjen litte dy't begjinne mei:",
+
+# Special:Categories
+'categories' => 'Kategoryen',
 
 # E-mail user
 'mailnologin'     => 'Gjin adres beskikber',

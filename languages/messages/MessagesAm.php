@@ -114,8 +114,6 @@ $messages = array(
 'dec'           => 'ዲሴም.',
 
 # Categories related messages
-'categories'               => 'ምድቦች',
-'categoriespagetext'       => 'በዚሁ ሥራ ዕቅድ ውስጥ የሚከተሉ መደቦች ይኖራሉ።',
 'pagecategories'           => '{{PLURAL:$1|ምድብ|ምድቦች}}',
 'category_header'          => 'በምድብ «$1» ውስጥ የሚገኙ ገጾች',
 'subcategories'            => 'ንዑስ-ምድቦች',
@@ -1097,6 +1095,10 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'allpagessubmit'    => 'ይታይ',
 'allpagesprefix'    => 'በዚሁ ፊደል የጀመሩት ገጾች:',
 'allpages-bad-ns'   => 'በ{{SITENAME}} «$1» የሚባል ክፍለዊኪ የለም።',
+
+# Special:Categories
+'categories'         => 'ምድቦች',
+'categoriespagetext' => 'በዚሁ ሥራ ዕቅድ ውስጥ የሚከተሉ መደቦች ይኖራሉ።',
 
 # Special:Listusers
 'listusersfrom'      => 'ከዚሁ ፊደል ጀምሮ፦',

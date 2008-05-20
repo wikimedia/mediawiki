@@ -143,10 +143,6 @@ $messages = array(
 'dec'           => 'Aralık',
 
 # Categories related messages
-'categories'                     => '{{PLURAL:$1|Kategori|Kategoriler}}',
-'categoriespagetext'             => 'Vikide aşağıdaki kategoriler mevcuttur.',
-'special-categories-sort-count'  => 'sayılarına göre sırala',
-'special-categories-sort-abc'    => 'alfabetik olarak sırala',
 'pagecategories'                 => 'Sayfa {{PLURAL:$1|kategorisi|kategorileri}}',
 'category_header'                => '"$1" kategorisindeki sayfalar',
 'subcategories'                  => 'Alt Kategoriler',
@@ -1141,6 +1137,12 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'allpagessubmit'    => 'Getir',
 'allpagesprefix'    => 'Buraya yazdığınız harflerle başlayan sayfaları listeleyin:',
 'allpagesbadtitle'  => 'Girilen sayfa ismi diller arası bağlantı ya da vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
+
+# Special:Categories
+'categories'                    => '{{PLURAL:$1|Kategori|Kategoriler}}',
+'categoriespagetext'            => 'Vikide aşağıdaki kategoriler mevcuttur.',
+'special-categories-sort-count' => 'sayılarına göre sırala',
+'special-categories-sort-abc'   => 'alfabetik olarak sırala',
 
 # Special:Listusers
 'listusers-submit'   => 'Göster',

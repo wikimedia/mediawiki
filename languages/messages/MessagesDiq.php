@@ -113,7 +113,6 @@ href="" class="internal"}?{/a}) bımocne.',
 'dec'           => 'Gağ',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
 'pagecategories'           => '{{PLURAL:$1|Kategoriya|Kategoriyê}} perre',
 'category_header'          => 'Nuşteyê ke kategoriya "$1"(-i/-an) derê.',
 'subcategories'            => 'Kategoriyê bınêni',
@@ -361,6 +360,9 @@ href="" class="internal"}?{/a}) bımocne.',
 
 # Special:Allpages
 'allpagessubmit' => 'Şo',
+
+# Special:Categories
+'categories' => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
 
 # Special:Listusers
 'listusers-submit' => 'Bımocne',

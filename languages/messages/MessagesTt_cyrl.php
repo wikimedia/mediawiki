@@ -113,10 +113,6 @@ $messages = array(
 'dec'           => 'дек',
 
 # Categories related messages
-'categories'                     => 'Төркемнәр',
-'categoriespagetext'             => 'Викидә бу категорияләре бар.',
-'special-categories-sort-count'  => 'исәп буенча тәртипләү',
-'special-categories-sort-abc'    => 'әлифба буенча тәртипләү',
 'pagecategories'                 => '{{PLURAL:$1|Төркем|Төркемнәр}}',
 'category_header'                => '«$1» төркемендәге битләр',
 'subcategories'                  => 'Төркемчәләр',
@@ -737,6 +733,12 @@ $2',
 'allpagesnext'   => 'Киләсе',
 'allpagessubmit' => 'Башкару',
 'allpagesprefix' => 'Алкушымчалы битләрне күрсәтергә:',
+
+# Special:Categories
+'categories'                    => 'Төркемнәр',
+'categoriespagetext'            => 'Викидә бу категорияләре бар.',
+'special-categories-sort-count' => 'исәп буенча тәртипләү',
+'special-categories-sort-abc'   => 'әлифба буенча тәртипләү',
 
 # Special:Listusers
 'listusers-submit'   => 'Күрсәтергә',

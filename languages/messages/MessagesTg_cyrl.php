@@ -168,10 +168,6 @@ $messages = array(
 'dec'           => 'Дек',
 
 # Categories related messages
-'categories'                     => 'Гурӯҳҳо',
-'categoriespagetext'             => 'Гурӯҳҳои зерин дар вики вуҷуд доранд.',
-'special-categories-sort-count'  => 'муратаб кардан бар асоси теъдод',
-'special-categories-sort-abc'    => 'муратаб кардани алифбоӣ',
 'pagecategories'                 => '{{PLURAL:$1|Гурӯҳ|Гурӯҳҳо}}',
 'category_header'                => 'Мақолаҳо дар гурӯҳи "$1"',
 'subcategories'                  => 'Зергурӯҳҳо',
@@ -1301,6 +1297,12 @@ $1',
 'allpagesprefix'    => 'Намоиши саҳифаҳои дорои пешванд:',
 'allpagesbadtitle'  => 'Унвони саҳифаи дода шуда номӯътабар аст, ё инки дорои пешванди байнизабонӣ ё байнивикиӣ аст. Мумкин аст аломатҳоеро дорад, ки наметавон онҳоро дар унвонҳо истифода бурд.',
 'allpages-bad-ns'   => '{{SITENAME}} дорои фазоином "$1" нест.',
+
+# Special:Categories
+'categories'                    => 'Гурӯҳҳо',
+'categoriespagetext'            => 'Гурӯҳҳои зерин дар вики вуҷуд доранд.',
+'special-categories-sort-count' => 'муратаб кардан бар асоси теъдод',
+'special-categories-sort-abc'   => 'муратаб кардани алифбоӣ',
 
 # Special:Listusers
 'listusersfrom'      => 'Намоиши корбарон бо шурӯъ аз:',

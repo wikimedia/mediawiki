@@ -79,7 +79,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'            => 'Categorias',
 'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'       => 'Artitgels en la categoria "$1"',
 'category-media-header' => 'Datotecas en la categoria "$1"',
@@ -463,6 +462,9 @@ La lunghezza da la [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]: ''
 'allpagesnext'      => 'enavant',
 'allpagessubmit'    => 'Mussa',
 'allpagesprefix'    => 'mussar paginas cun il prefix:',
+
+# Special:Categories
+'categories' => 'Categorias',
 
 # E-mail user
 'mailnologintext' => "Ti stos [[Special:Userlogin|t'annunziar]] ed avair ina adressa d'email valaivla en tias [[Special:Preferences|preferenzas]] per trametter emails ad auters utilisaders.",

@@ -112,7 +112,6 @@ $messages = array(
 'dec'           => 'Δεκ',
 
 # Categories related messages
-'categories'      => 'Γένη',
 'pagecategories'  => '{{PLURAL:$1|Γένος|Γένη}}',
 'category_header' => 'Χρήματα ἐν γένει "$1"',
 'subcategories'   => 'Ὑπογένη',
@@ -404,6 +403,9 @@ $messages = array(
 'alphaindexline' => '$1 ἕως $2',
 'allarticles'    => 'Πάντες γραφαί',
 'allpagessubmit' => 'Ἰέναι',
+
+# Special:Categories
+'categories' => 'Γένη',
 
 # E-mail user
 'emailmessage' => 'Ἀγγελία',

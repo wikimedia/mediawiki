@@ -165,10 +165,6 @@ $messages = array(
 'dec'           => 'pro',
 
 # Categories related messages
-'categories'                     => '{{PLURAL:$1|Kategorija|Kategorije}}',
-'categoriespagetext'             => 'Na ovom wikiju postoje sljedeće kategorije.',
-'special-categories-sort-count'  => 'razvrstavanje po broju',
-'special-categories-sort-abc'    => 'abecedno razvrstavanje',
 'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header'                => 'Članci u kategoriji "$1"',
 'subcategories'                  => 'Potkategorije',
@@ -1382,6 +1378,12 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'allpagesprefix'    => 'Stranice čiji naslov počinje s:',
 'allpagesbadtitle'  => 'Zadana stranica nije valjana, ili je imala međuwiki predmetak. Možda sadrži jedan ili više znakova koji ne mogu biti uporabljeni u nazivu stranice.',
 'allpages-bad-ns'   => '{{SITENAME}} nema imenski prostor "$1".',
+
+# Special:Categories
+'categories'                    => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'categoriespagetext'            => 'Na ovom wikiju postoje sljedeće kategorije.',
+'special-categories-sort-count' => 'razvrstavanje po broju',
+'special-categories-sort-abc'   => 'abecedno razvrstavanje',
 
 # Special:Listusers
 'listusersfrom'      => 'Prikaži suradnike počevši od:',

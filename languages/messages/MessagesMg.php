@@ -76,8 +76,6 @@ $messages = array(
 'dec'       => 'Des',
 
 # Categories related messages
-'categories'             => 'Sokajy',
-'categoriespagetext'     => "Ireto no sokajy misy eto amin'ity wiki ity.",
 'pagecategories'         => '{{PLURAL:$1|Sokajy|Sokajy}}',
 'category_header'        => 'Ireo lahatsoratra ao amin\'ny sokajy "$1"',
 'subcategories'          => 'Zana-tsokajy',
@@ -668,6 +666,10 @@ mampihena ny tantaran'asa miseho eto.",
 'allpagesnext'      => 'Manaraka',
 'allpagessubmit'    => 'Alefa',
 'allpagesprefix'    => "Asehoy ny pejy miantomboka amin'ny:",
+
+# Special:Categories
+'categories'         => 'Sokajy',
+'categoriespagetext' => "Ireto no sokajy misy eto amin'ity wiki ity.",
 
 # E-mail user
 'mailnologin'     => 'Tsy misy adiresy handefasana ny tenimiafina',

@@ -77,14 +77,11 @@ $messages = array(
 'dec'           => 'Noll',
 
 # Categories related messages
-'categories'                    => 'Ronnaghyn',
-'special-categories-sort-count' => 'sorçhaghey rere coontey',
-'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
-'pagecategories'                => '{{PLURAL:$1|Ronney|Ronnaghyn}}',
-'category_header'               => 'Duillagyn ayns ronney "$1"',
-'subcategories'                 => 'Fo-ronnaghyn',
-'hidden-category-category'      => 'Ronnaghyn follit', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'        => 'tooil.',
+'pagecategories'           => '{{PLURAL:$1|Ronney|Ronnaghyn}}',
+'category_header'          => 'Duillagyn ayns ronney "$1"',
+'subcategories'            => 'Fo-ronnaghyn',
+'hidden-category-category' => 'Ronnaghyn follit', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'tooil.',
 
 'about'          => 'Mychione',
 'article'        => 'Duillag y chummal',
@@ -629,6 +626,11 @@ The file contains a virus! Mynphoyntyn: $1",
 'allarticles'    => 'Dagh ooilley ghuillag',
 'allpagessubmit' => 'Gow',
 'allpagesprefix' => 'Taishbyney duillagyn lesh roie-ockle:',
+
+# Special:Categories
+'categories'                    => 'Ronnaghyn',
+'special-categories-sort-count' => 'sorçhaghey rere coontey',
+'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
 # Special:Listusers
 'listusers-submit' => 'Taishbyney',

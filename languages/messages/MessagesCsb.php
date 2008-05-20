@@ -132,7 +132,6 @@ $messages = array(
 'dec'           => 'gòd',
 
 # Categories related messages
-'categories'            => 'Kategòrëje',
 'pagecategories'        => '{{PLURAL:$1|Kategòrëjô|Kategòrëje}}',
 'category_header'       => 'Artikle w kategòrëji "$1"',
 'subcategories'         => 'Pòdkategòrëje',
@@ -528,6 +527,9 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 'allpagesnext'      => 'Pòsobnô',
 'allpagessubmit'    => 'Pòkôżë',
 'allpagesprefix'    => 'Pòkôżë naczënającë sã òd:',
+
+# Special:Categories
+'categories' => 'Kategòrëje',
 
 # E-mail user
 'emailuser'       => 'Wëslë e-maila do negò brëkòwnika',
