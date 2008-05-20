@@ -28,6 +28,22 @@ class OldLocalFile extends LocalFile {
 		$file->loadFromRow( $row, 'oi_' );
 		return $file;
 	}
+	
+	static function newFromKey( $sha1, $repo, $timestamp = false ) {
+		# Polymorphic function name to distinguish foreign and local fetches
+		$fname = get_class( $this ) . '::' . __FUNCTION__;
+
+		$conds = array( 'oi_sha1' => $sha1 );
+		if( $timestamp ) {
+			$conds['oi_timestamp'] = $timestamp;
+		}
+		$row = $dbr->selectRow( 'oldimage', $this->getCacheFields( 'oi_' ), $conds, $fname );
+		if( $row ) {
+			return self::newFromRow( $row, $repo );
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 * @param Title $title
