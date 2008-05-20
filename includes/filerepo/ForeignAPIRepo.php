@@ -1,7 +1,8 @@
 <?php
 
 /**
- * File repository with no files, for performance testing
+ * Very hacky and inefficient
+ * do not use :D
  *
  * @ingroup FileRepo
  */
