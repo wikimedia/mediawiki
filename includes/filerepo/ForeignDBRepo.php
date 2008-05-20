@@ -1,7 +1,9 @@
 <?php
 
 /**
- * A foreign repository with an accessible MediaWiki database
+ * A foreign repository with a remote MediaWiki with an API thingy
+ * Very hacky and inefficient
+ * do not use :D
  */
 
 class ForeignDBRepo extends LocalRepo {
