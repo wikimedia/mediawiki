@@ -43,24 +43,22 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 
 		$prop = array_flip($params['prop']);
-		$this->fld_timestamp = isset($prop['timestamp']);
-		$this->fld_user = isset($prop['user']);
-		$this->fld_comment = isset($prop['comment']);
-		$this->fld_url = isset($prop['url']);
-		$this->fld_size = isset($prop['size']);
-		$this->fld_sha1 = isset($prop['sha1']);
-		$this->fld_mime = isset($prop['mime']);
-		$this->fld_metadata = isset($prop['metadata']);
-		$this->fld_archivename = isset($prop['archivename']);
 
 		if($params['urlheight'] != -1 && $params['urlwidth'] == -1)
 			$this->dieUsage("iiurlheight cannot be used without iiurlwidth", 'iiurlwidth');
-		$this->scale = ($params['urlwidth'] != -1);
-		$this->urlwidth = $params['urlwidth'];
-		$this->urlheight = $params['urlheight'];
+		
+		if ( $params['urlwidth'] != -1 ) {
+			$scale = array();
+			$scale['width'] = $params['urlwidth'];
+			$scale['height'] = $params['urlheight'];
+		} else {
+			$scale = null;
+		}
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
 		if (!empty($pageIds[NS_IMAGE])) {
+			
+			$result = $this->getResult();
 			foreach ($pageIds[NS_IMAGE] as $dbKey => $pageId) {
 
 				$title = Title :: makeTitle(NS_IMAGE, $dbKey);
@@ -77,7 +75,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					// Check that the current version is within the start-end boundaries
 					if((is_null($params['start']) || $img->getTimestamp() <= $params['start']) &&
 							(is_null($params['end']) || $img->getTimestamp() >= $params['end'])) {
-						$data[] = $this->getInfo($img);
+						$data[] = self::getInfo( $img, $prop, $result, $scale );
 					}
 
 					// Now get the old revisions
@@ -92,11 +90,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 								$this->setContinueEnumParameter('start', $oldie->getTimestamp());
 							break;
 						}
-						$data[] = $this->getInfo($oldie);
+						$data[] = $this->getInfo( $oldie, $prop, $result );
 					}
 				}
 
-				$this->getResult()->addValue(array(
+				$result->addValue(array(
 						'query', 'pages', intval($pageId)),
 						'imagerepository', $repository
 				);
@@ -111,45 +109,46 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param File f The image
 	 * @return array Result array
 	 */
-	protected function getInfo($f) {
+	static function getInfo($file, $prop, $result, $scale = null) {
 		$vals = array();
-		if($this->fld_timestamp)
-			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $f->getTimestamp());
-		if($this->fld_user) {
-			$vals['user'] = $f->getUser();
-			if(!$f->getUser('id'))
+		if( isset( $prop['timestamp'] ) )
+			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $file->getTimestamp());
+		if( isset( $prop['user'] ) ) {
+			$vals['user'] = $file->getUser();
+			if( !$file->getUser( 'id' ) )
 				$vals['anon'] = '';
 		}
-		if($this->fld_size) {
-			$vals['size'] = intval($f->getSize());
-			$vals['width'] = intval($f->getWidth());
-			$vals['height'] = intval($f->getHeight());
+		if( isset( $prop['size'] ) || isset( $prop['dimensions'] ) ) {
+			$vals['size'] = intval( $file->getSize() );
+			$vals['width'] = intval( $file->getWidth() );
+			$vals['height'] = intval( $file->getHeight() );
 		}
-		if($this->fld_url) {
-			if($this->scale && !$f->isOld()) {
-				$thumb = $f->getThumbnail($this->urlwidth, $this->urlheight);
-				if($thumb)
+		if( isset( $prop['url'] ) ) {
+			if( !is_null( $scale ) && !$file->isOld() ) {
+				$thumb = $file->getThumbnail( $scale['width'], $scale['height'] );
+				if( $thumb )
 				{
 					$vals['thumburl'] = wfExpandUrl( $thumb->getURL() );
 					$vals['thumbwidth'] = $thumb->getWidth();
 					$vals['thumbheight'] = $thumb->getHeight();
 				}
 			}
-			$vals['url'] = $f->getFullURL();
+			$vals['url'] = $file->getFullURL();
 		}
-		if($this->fld_comment)
-			$vals['comment'] = $f->getDescription();
-		if($this->fld_sha1)
-			$vals['sha1'] = wfBaseConvert($f->getSha1(), 36, 16, 40);
-		if($this->fld_mime)
-			$vals['mime'] = $f->getMimeType();
-		if($this->fld_metadata) {
-			$metadata = unserialize($f->getMetadata());
-			$vals['metadata'] = $metadata ? $metadata : null;
-			$this->getResult()->setIndexedTagName_recursive($vals['metadata'], 'meta');
+		if( isset( $prop['comment'] ) )
+			$vals['comment'] = $file->getDescription();
+		if( isset( $prop['sha1'] ) )
+			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
+		if( isset( $prop['metadata'] ) ) {
+			$metadata = $file->getMetadata();
+			$vals['metadata'] = $metadata ? unserialize( $metadata ) : null;
+			$result->setIndexedTagName_recursive( $vals['metadata'], 'meta' );
 		}
-		if($this->fld_archivename && $f->isOld())
-			$vals['archivename'] = $f->getArchiveName();
+		if( isset( $prop['mimetype'] ) ) 
+			$vals['mime'] = $file->getMimeType();
+		
+		if( isset( $prop['archivename'] ) && $file->isOld() )
+			$vals['archivename'] = $file->getArchiveName();
 
 		return $vals;
 	}
