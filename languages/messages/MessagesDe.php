@@ -792,10 +792,14 @@ Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspr
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
+'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
  
 Es dürfen nicht mehr als $2 Aufrufe sein, aktuell sind es $1 Aufrufe.',
-'expensive-parserfunction-category' => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
+'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
+'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden',
+'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
+'post-expand-template-argument-warning'   => 'Warnung: Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.',
+'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
 
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
@@ -1099,7 +1103,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'right-upload_by_url'        => 'Hochladen von einer URL-Adresse',
 'right-purge'                => 'Seitencache leeren ohne Rückfrage',
 'right-autoconfirmed'        => 'Halbgeschützte Seiten bearbeiten',
-'right-bot'                  => 'Behandlung als automatischer Prozess (Bot)',
+'right-bot'                  => 'Behandlung als automatischer Prozess',
 'right-nominornewtalk'       => 'Kleine Bearbeitungen an Diskussionsseiten führen zu keiner „Neue Nachrichten“-Anzeige',
 'right-apihighlimits'        => 'Höhere Limits in API-Abfragen',
 'right-delete'               => 'Seiten löschen',
@@ -1539,6 +1543,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 # Special:Categories
 'categories'                    => 'Kategorien',
 'categoriespagetext'            => 'Folgende Kategorien in {{SITENAME}} enthalten Seiten oder Dateien:',
+'categoriesfrom'                => 'Zeige Kategorien ab:',
 'special-categories-sort-count' => 'Sortierung nach Anzahl',
 'special-categories-sort-abc'   => 'Sortierung nach Alphabet',
 
