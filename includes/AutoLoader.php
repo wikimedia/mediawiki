@@ -302,6 +302,8 @@ function __autoload($className) {
 		'File' => 'includes/filerepo/File.php',
 		'FileRepo' => 'includes/filerepo/FileRepo.php',
 		'FileRepoStatus' => 'includes/filerepo/FileRepoStatus.php',
+		'ForeignAPIFile' => 'includes/filerepo/ForeignAPIFile.php',
+		'ForeignAPIRepo' => 'includes/filerepo/ForeignAPIRepo.php',
 		'ForeignDBFile' => 'includes/filerepo/ForeignDBFile.php',
 		'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
 		'ForeignDBViaLBRepo' => 'includes/filerepo/ForeignDBViaLBRepo.php',
