@@ -567,10 +567,6 @@ XHTML id names.
 'dec'           => 'Dec',
 
 # Categories related messages
-'categories'                     => 'Categories',
-'categoriespagetext'             => 'The following categories contain pages or media.',
-'special-categories-sort-count'  => 'sort by count',
-'special-categories-sort-abc'    => 'sort alphabetically',
 'pagecategories'                 => '{{PLURAL:$1|Category|Categories}}',
 'pagecategorieslink'             => 'Special:Categories', # do not translate or duplicate this message to other languages
 'category_header'                => 'Pages in category "$1"',
@@ -1965,8 +1961,12 @@ It may contain one or more characters which cannot be used in titles.',
 'allpages-bad-ns'   => '{{SITENAME}} does not have namespace "$1".',
 
 # Special:Categories
-'categoriesfrom' => 'Display categories starting at:',
-
+'categories'                    => 'Categories',
+'categories-summary'            => '', # only translate this message to other languages if you have to change it
+'categoriespagetext'            => 'The following categories contain pages or media.',
+'categoriesfrom'                => 'Display categories starting at:',
+'special-categories-sort-count' => 'sort by count',
+'special-categories-sort-abc'   => 'sort alphabetically',
 
 # Special:Listusers
 'listusersfrom'      => 'Display users starting at:',
