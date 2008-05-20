@@ -125,6 +125,21 @@ abstract class FileRepo {
 		return false;
 	}
 	
+	/*
+	 * Find many files at once
+	 */
+	function findFiles( &$titles, $time = false, $flags ) {
+		$result = array();
+		foreach ( $titles as $index => $title ) {
+			$file = $this->findFile( $title );
+			if ( $file ) {
+				$result[$file->getTitle()->getDBkey()] = $file;
+				unset( $titles[$index] );
+			}
+		}
+		return $result;
+	}
+	
 	/**
 	 * Create a new File object from the local repository
 	 * @param mixed $sha1 SHA-1 key
