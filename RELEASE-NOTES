@@ -350,6 +350,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14021) Removed titles= support from list=backlinks (has been obsolete for ages)
 * (bug 13829) Expose parse tree via action=expandtemplates
 * (bug 13606) Allow deletion of images
+* Added iiprop=mime and aiprop=metadata
 
 === Languages updated in 1.13 ===
 

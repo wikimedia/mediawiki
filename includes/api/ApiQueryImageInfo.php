@@ -49,6 +49,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$this->fld_url = isset($prop['url']);
 		$this->fld_size = isset($prop['size']);
 		$this->fld_sha1 = isset($prop['sha1']);
+		$this->fld_mime = isset($prop['mime']);
 		$this->fld_metadata = isset($prop['metadata']);
 		$this->fld_archivename = isset($prop['archivename']);
 
@@ -140,6 +141,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['comment'] = $f->getDescription();
 		if($this->fld_sha1)
 			$vals['sha1'] = wfBaseConvert($f->getSha1(), 36, 16, 40);
+		if($this->fld_mime)
+			$vals['mime'] = $f->getMimeType();
 		if($this->fld_metadata) {
 			$metadata = unserialize($f->getMetadata());
 			$vals['metadata'] = $metadata ? $metadata : null;
@@ -163,6 +166,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					'url',
 					'size',
 					'sha1',
+					'mime',
 					'metadata',
 					'archivename'
 				)
