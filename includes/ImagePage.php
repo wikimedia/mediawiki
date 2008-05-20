@@ -20,11 +20,11 @@ class ImagePage extends Article {
 	var $mExtraDescription = false;
 	var $dupes;
 
-	function __construct( $title, $time = false ) {
+	function __construct( $title, $time = null ) {
 		parent::__construct( $title );
 
 		global $wgRequest;
-		$time = $time ? $time : $wgRequest->getVal( 'filetimestamp' );
+		$time = is_null($time) ? $time : $wgRequest->getVal( 'filetimestamp' );
 
 		$this->img = wfFindFile( $this->mTitle, $time );
 		if ( !$this->img ) {
