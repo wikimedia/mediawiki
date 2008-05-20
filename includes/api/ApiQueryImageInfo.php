@@ -59,48 +59,47 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if (!empty($pageIds[NS_IMAGE])) {
 			
 			$result = $this->getResult();
-			foreach ($pageIds[NS_IMAGE] as $dbKey => $pageId) {
-
-				$title = Title :: makeTitle(NS_IMAGE, $dbKey);
-				$img = wfFindFile($title);
-
+			$images = RepoGroup::singleton()->findFiles( array_keys( $pageIds[NS_IMAGE] ) );
+			foreach ( $images as $img ) {
 				$data = array();
-				if ( !$img ) {
-					$repository = '';
-				} else {
-
-					$repository = $img->getRepoName();
-
-					// Get information about the current version first
-					// Check that the current version is within the start-end boundaries
-					if((is_null($params['start']) || $img->getTimestamp() <= $params['start']) &&
-							(is_null($params['end']) || $img->getTimestamp() >= $params['end'])) {
-						$data[] = self::getInfo( $img, $prop, $result, $scale );
-					}
-
-					// Now get the old revisions
-					// Get one more to facilitate query-continue functionality
-					$count = count($data);
-					$oldies = $img->getHistory($params['limit'] - $count + 1, $params['start'], $params['end']);
-					foreach($oldies as $oldie) {
-						if(++$count > $params['limit']) {
-							// We've reached the extra one which shows that there are additional pages to be had. Stop here...
-							// Only set a query-continue if there was only one title
-							if(count($pageIds[NS_IMAGE]) == 1)
-								$this->setContinueEnumParameter('start', $oldie->getTimestamp());
-							break;
-						}
-						$data[] = self::getInfo( $oldie, $prop, $result );
-					}
+				
+				// Get information about the current version first
+				// Check that the current version is within the start-end boundaries
+				if((is_null($params['start']) || $img->getTimestamp() <= $params['start']) &&
+						(is_null($params['end']) || $img->getTimestamp() >= $params['end'])) {
+					$data[] = self::getInfo( $img, $prop, $result, $scale );
 				}
 
-				$result->addValue(array(
-						'query', 'pages', intval($pageId)),
-						'imagerepository', $repository
+				// Now get the old revisions
+				// Get one more to facilitate query-continue functionality
+				$count = count($data);
+				$oldies = $img->getHistory($params['limit'] - $count + 1, $params['start'], $params['end']);
+				foreach($oldies as $oldie) {
+					if(++$count > $params['limit']) {
+						// We've reached the extra one which shows that there are additional pages to be had. Stop here...
+						// Only set a query-continue if there was only one title
+						if(count($pageIds[NS_IMAGE]) == 1)
+							$this->setContinueEnumParameter('start', $oldie->getTimestamp());
+						break;
+					}
+					$data[] = self::getInfo( $oldie, $prop, $result );
+				}
+
+				$pageId = $pageIds[NS_IMAGE][ $img->getOriginalTitle()->getDBkey() ];
+				wfDebug("id: $pageId\n");
+				$result->addValue(
+					array( 'query', 'pages', intval( $pageId ) ),
+					'imagerepository', $img->getRepoName()
 				);
-				if (!empty($data))
-					$this->addPageSubItems($pageId, $data);
+				$this->addPageSubItems($pageId, $data);
 			}
+			
+			$missing = array_diff( array_keys( $pageIds[NS_IMAGE] ), array_keys( $images ) );
+			foreach ( $missing as $title )
+				$result->addValue(
+					array( 'query', 'pages', intval( $pageIds[NS_IMAGE][$title] ) ),
+					'imagerepository', ''
+				);
 		}
 	}
 

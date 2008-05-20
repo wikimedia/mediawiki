@@ -76,6 +76,18 @@ class RepoGroup {
 		}
 		return false;
 	}
+	function findFiles( $titles, $time = false, $flags = 0 ) {
+		if ( !$this->reposInitialised ) {
+			$this->initialiseRepos();
+		}
+
+		$images = $this->localRepo->findFiles( $titles, $time, $flags );
+
+		foreach ( $this->foreignRepos as $repo ) {
+			$images = array_merge( $images, $repo->findFiles( $titles, $time, $flags ) );
+		}
+		return $images;
+	}
 
 	/**
 	 * Interface for FileRepo::checkRedirect()

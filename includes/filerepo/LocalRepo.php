@@ -157,4 +157,36 @@ class LocalRepo extends FSRepo {
 		$res->free();
 		return $result;
 	}
+	
+	function findFiles( &$titles, $time = false, $flags ) {
+		if ( count( $titles ) == 0 ) return array();		
+	
+		$dbKeys = array();
+		$indices = array();
+		
+		foreach ( $titles as $index => $title ) {
+			if ( !( $title instanceof Title ) )
+				$title = Title::makeTitleSafe( NS_IMAGE, $title );
+			if ( is_object( $title ) ) {
+				$key = $title->getDBkey();
+				$indices[$key] = $index;
+				$dbKeys[] = $key;
+			}
+		}
+	
+		$dbr = $this->getSlaveDB();
+		$res = $dbr->select(
+			'image',
+			LocalFile::selectFields(),
+			array( 'img_name' => $dbKeys )		
+		);
+		
+		$result = array();
+		while ( $row = $res->fetchObject() ) {
+			$result[$row->img_name] = $this->newFileFromRow( $row );
+			unset( $titles[$indices[$row->img_name]] );
+		}
+		$res->free();
+		return $result;
+	}
 }

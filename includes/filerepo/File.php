@@ -46,7 +46,7 @@ abstract class File {
 	/**
 	 * The following member variables are not lazy-initialised
 	 */
-	var $repo, $title, $lastError, $redirected;
+	var $repo, $title, $lastError, $redirected, $redirectedTitle;
 
 	/**
 	 * Call this constructor from child classes
@@ -152,6 +152,15 @@ abstract class File {
 	 * Return the associated title object
 	 */
 	public function getTitle() { return $this->title; }
+	
+	/**
+	 * Return the title used to find this file
+	 */
+	public function getOriginalTitle() {
+		if ( $this->redirected )
+			return $this->getRedirectedTitle();
+		return $this->title;
+	}
 
 	/**
 	 * Return the URL of the file
@@ -1213,6 +1222,14 @@ abstract class File {
 
 	function getRedirected() {
 		return $this->redirected;
+	}
+	
+	function getRedirectedTitle() {
+		if ( $this->redirected ) {
+			if ( !$this->redirectTitle )
+				$this->redirectTitle = Title::makeTitle( NS_IMAGE, $this->redirected );
+			return $this->redirectTitle;
+		}
 	}
 
 	function redirectedFrom( $from ) {
