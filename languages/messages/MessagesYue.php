@@ -415,7 +415,7 @@ $messages = array(
 'nosuchspecialpage' => '冇呢頁特別頁',
 'nospecialpagetext' => "<big>'''無你所要求嘅特別頁。'''</big>
 
-喺[[Special:Specialpages|特別頁一覽]]有全部用得嘅特別頁。",
+喺[[Special:Specialpages|{{int:specialpages}}]]有全部用得嘅特別頁。",
 
 # General errors
 'error'                => '錯誤',
@@ -524,9 +524,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'yourrealname'               => '真實姓名:',
 'yourlanguage'               => '語言:',
 'yourvariant'                => '字體變化:',
-'yournick'                   => '綽號:',
+'yournick'                   => '簽名:',
 'badsig'                     => '無效嘅程式碼簽名；請檢查 HTML 有無錯。所有屬性都要用雙引號括住。',
-'badsiglength'               => '綽號太長喇；佢嘅長度一定要響$1個字元以下。',
+'badsiglength'               => '簽名太長喇。
+佢嘅長度一定要響$1個字元以下。',
 'email'                      => '電郵',
 'prefs-help-realname'        => '真名係可以選填嘅。
 如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
@@ -737,10 +738,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 為咗方便起見，呢一版嘅刪除記錄已經響下面提供:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => '警告: 呢一版有太多耗費嘅語法功能呼叫。
+'expensive-parserfunction-warning'        => '警告: 呢一版有太多耗費嘅語法功能呼叫。
 
 佢應該少過$2，但而家係$1。',
-'expensive-parserfunction-category' => '響版度有太多嘅耗費嘅語法功能呼叫',
+'expensive-parserfunction-category'       => '響版度有太多嘅耗費嘅語法功能呼叫',
+'post-expand-template-inclusion-warning'  => '警告: 包含模大細太大。
+有啲模將唔會包含。',
+'post-expand-template-inclusion-category' => '模包含上限已超過嘅版',
+'post-expand-template-argument-warning'   => '警告: 呢一版有最少一個模參數有太大嘅擴展大細。
+呢啲參數會被略過。',
+'post-expand-template-argument-category'  => '包含住略過模參數嘅版',
 
 # "Undo" feature
 'undo-success' => '呢個編輯可以取消。請檢查一下個差異去確認呢個係你要去做嘅，跟住儲存下面嘅更改去完成編輯。',
@@ -1236,7 +1243,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'filehist'                       => '檔案歷史',
 'filehist-help'                  => '撳個日期／時間去睇響嗰個時間出現過嘅檔案。',
 'filehist-deleteall'             => '刪除全部',
-'filehist-deleteone'             => '刪除呢個',
+'filehist-deleteone'             => '刪除',
 'filehist-revert'                => '回復',
 'filehist-current'               => '現時',
 'filehist-datetime'              => '日期／時間',
@@ -1249,6 +1256,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nolinkstoimage'                 => '冇個頁面連結到呢個檔案。',
 'morelinkstoimage'               => '去睇連到呢個檔案嘅[[Special:Whatlinkshere/$1|更多連結]]。',
 'redirectstofile'                => '下面嘅檔案跳轉到呢個檔案:',
+'duplicatesoffile'               => '下面嘅檔案係同呢個檔案重覆:',
 'sharedupload'                   => '呢個檔案係共用嘅上載，可以喺其他計劃中使用。“',
 'shareduploadwiki'               => '更多資訊請睇$1。',
 'shareduploadwiki-desc'          => '佢響共用檔案庫上面嘅$1描述響下面度顯示。',
@@ -1403,6 +1411,8 @@ Template:搞清楚',
 'unusedcategoriestext'    => '呢啲類存在，但入面冇嘢亦都冇分類。',
 'notargettitle'           => '冇目標',
 'notargettext'            => '你冇指定到呢個功能要用喺嘅對象頁面或用戶。',
+'nopagetitle'             => '冇目標頁',
+'nopagetext'              => '你所指定嘅目標頁並唔存在。',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '舊$1次',
 'suppress'                => '監督',
@@ -1443,6 +1453,7 @@ Template:搞清楚',
 # Special:Categories
 'categories'                    => '類',
 'categoriespagetext'            => '下面嘅類有版或媒體。',
+'categoriesfrom'                => '顯示由呢項起嘅類:',
 'special-categories-sort-count' => '跟數量排',
 'special-categories-sort-abc'   => '跟字母排',
 

@@ -342,7 +342,7 @@ $messages = array(
 'nosuchspecialpage' => '無此特查',
 'nospecialpagetext' => "'''<big>無此特查。</big>'''
 
-見[[{{ns:special}}:Specialpages]]。",
+見[[Special:Specialpages|{{int:specialpages}}]]。",
 
 # General errors
 'error'                => '有誤',
@@ -432,8 +432,9 @@ $2',
 'yourrealname'               => '本名：',
 'yourlanguage'               => '語言：',
 'yourvariant'                => '變字：',
-'yournick'                   => '自號：',
-'badsiglength'               => '自號長哉，莫逾$1字。',
+'yournick'                   => '自畫：',
+'badsiglength'               => '自畫長哉。
+莫逾$1字。',
 'email'                      => '郵',
 'prefs-help-realname'        => '可用署也，選填之。',
 'loginerror'                 => '登簿誤然',
@@ -580,10 +581,17 @@ $2',
 誌刪如下：",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => '警：頁有多貴功呼。
+'expensive-parserfunction-warning'        => '警：頁有多貴功呼。
 
 其須少$2，現有$1。',
-'expensive-parserfunction-category' => '頁有多貴功呼',
+'expensive-parserfunction-category'       => '頁有多貴功呼',
+'post-expand-template-inclusion-warning'  => '警：含模過大也。
+一些模板將不會包含。',
+'post-expand-template-inclusion-category' => '模含上限已超之頁',
+'post-expand-template-argument-warning'   => '警：此頁有至少一模數展大。
+數略之。',
+'post-expand-template-argument-category'  => '含略模數之頁',
+
 
 # "Undo" feature
 'undo-success' => '此審可返也。查確然完之。',
@@ -744,7 +752,11 @@ $2',
 'nonefound'                 => "'''注'''：部名冊預尋也。。試''all:''尋全名刪之頁（含議模等），或可用要之名冊為前綴也。",
 'powersearch'               => '尋',
 'powersearch-legend'        => '尋',
+'powersearch-ns'            => '尋名集：',
+'powersearch-redir'         => '轉表',
+'powersearch-field'         => '尋',
 'search-external'           => '外尋',
+'searchdisabled'            => '{{SITENAME}}因性能而停用之。可Gooogle查之，乃之過時也。',
 
 # Preferences page
 'preferences'           => '簿註',
@@ -1002,7 +1014,7 @@ $2',
 'filehist'                       => '檔史',
 'filehist-help'                  => '揀日尋檔。',
 'filehist-deleteall'             => '全刪',
-'filehist-deleteone'             => '獨刪',
+'filehist-deleteone'             => '刪',
 'filehist-revert'                => '還',
 'filehist-current'               => '今',
 'filehist-datetime'              => '時',
@@ -1015,6 +1027,7 @@ $2',
 'nolinkstoimage'                 => '無頁連本檔也。',
 'morelinkstoimage'               => '閱檔[[Special:Whatlinkshere/$1|接]]。',
 'redirectstofile'                => '下檔轉到此檔：',
+'duplicatesoffile'               => '下檔重此檔：',
 'sharedupload'                   => '此檔為共傳，可另項用也。',
 'shareduploadwiki'               => '詳閱$1。',
 'shareduploadwiki-desc'          => '於共庫上$1之示。',
@@ -1148,6 +1161,8 @@ $2',
 'unusedcategoriestext'    => '以下空門，無依可活。',
 'notargettitle'           => '落靶',
 'notargettext'            => '簿、頁未定，無可為之。',
+'nopagetitle'             => '落靶之頁',
+'nopagetext'              => '頁未定，無可為之。',
 'pager-newer-n'           => '新$1次',
 'pager-older-n'           => '陳$1次',
 'suppress'                => '監',
@@ -1188,6 +1203,7 @@ $2',
 # Special:Categories
 'categories'                    => '類',
 'categoriespagetext'            => '大典有頁或媒。',
+'categoriesfrom'                => '示此項起之類：',
 'special-categories-sort-count' => '排數',
 'special-categories-sort-abc'   => '排字',
 
