@@ -98,6 +98,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 		$data = array ();
 		$count = 0;
+		$result = $this->getResult();
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -108,29 +109,8 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 			if (is_null($resultPageSet)) {
 				$file = $repo->newFileFromRow( $row );
-				$item['name'] = $row->img_name;
-				if(isset($prop['size']))
-					$item['size'] = $file->getSize();
-				if(isset($prop['dimensions']))
-				{
-					$item['width'] = $file->getWidth();
-					$item['height'] = $file->getHeight();
-				}
-				if(isset($prop['mime']))
-					$item['mime'] = $file->getMimeType();
-				if(isset($prop['sha1']))
-					$item['sha1'] = wfBaseConvert($file->getSha1(), 36, 16, 31);
-				if(isset($prop['timestamp']))
-					$item['timestamp'] = wfTimestamp(TS_ISO_8601, $file->getTimestamp());
-				if(isset($prop['url']))
-					$item['url'] = $file->getFullUrl();
-				if(isset($prop['metadata']))
-				{
-					$metadata = unserialize($file->getMetadata()); 
-					$item['metadata'] = $metadata ? $metadata : null;
-					$this->getResult()->setIndexedTagName_recursive($item['metadata'], 'meta');
-				}
-				$data[] = $item;
+
+				$data[] = ApiQueryImageInfo::getInfo( $file, $prop, $result );
 			} else {
 				$data[] = Title::makeTitle( NS_IMAGE, $row->img_name );
 			}
@@ -175,9 +155,11 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'prop' => array (
 				ApiBase :: PARAM_TYPE => array(
 					'timestamp',
+					'user',
+					'comment',
 					'url',
 					'size',
-					'dimensions',
+					'dimensions', // Obsolete
 					'mime',
 					'sha1',
 					'metadata'
