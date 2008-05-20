@@ -118,7 +118,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add support for SQLite
 * AutoAuthenticate hook renamed to UserLoadFromSession
 * (bug 13232) importScript(), importStylesheet() funcs available to custom JS
-
+* (bug 13095) Search by first letters or digits in [[Special:Categories]]
 
 === Bug fixes in 1.13 ===
 
