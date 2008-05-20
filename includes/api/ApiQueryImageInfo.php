@@ -86,7 +86,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 
 				$pageId = $pageIds[NS_IMAGE][ $img->getOriginalTitle()->getDBkey() ];
-				wfDebug("id: $pageId\n");
 				$result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),
 					'imagerepository', $img->getRepoName()
