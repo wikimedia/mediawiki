@@ -1725,6 +1725,8 @@ class User {
 		if ( is_null( $this->mRights ) ) {
 			$this->mRights = self::getGroupPermissions( $this->getEffectiveGroups() );
 			wfRunHooks( 'UserGetRights', array( $this, &$this->mRights ) );
+			// Force reindexation of rights when a hook has unset one of them
+			$this->mRights = array_values( $this->mRights );
 		}
 		return $this->mRights;
 	}
