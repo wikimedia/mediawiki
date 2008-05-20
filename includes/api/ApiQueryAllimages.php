@@ -53,7 +53,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 	private function run($resultPageSet = null) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		if ( !is_a( $repo, 'LocalRepo' ) )
+		if ( !$repo instanceof LocalRepo )
 			$this->dieUsage('Local file repository does not support querying all images', 'unsupportedrepo');
 
 		$db = $this->getDB();
@@ -124,6 +124,12 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 					$item['timestamp'] = wfTimestamp(TS_ISO_8601, $file->getTimestamp());
 				if(isset($prop['url']))
 					$item['url'] = $file->getFullUrl();
+				if(isset($prop['metadata']))
+				{
+					$metadata = unserialize($file->getMetadata()); 
+					$item['metadata'] = $metadata ? $metadata : null;
+					$this->getResult()->setIndexedTagName_recursive($item['metadata'], 'meta');
+				}
 				$data[] = $item;
 			} else {
 				$data[] = Title::makeTitle( NS_IMAGE, $row->img_name );
@@ -173,7 +179,8 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 					'size',
 					'dimensions',
 					'mime',
-					'sha1'
+					'sha1',
+					'metadata'
 				),
 				ApiBase :: PARAM_DFLT => 'timestamp|url',
 				ApiBase :: PARAM_ISMULTI => true
