@@ -1022,7 +1022,7 @@ class SkinTemplate extends Skin {
 				# XXX: additional security check/prompt?
 				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText('wpTextbox1') . ' /*]]>*/';
 			} else {
-				$this->userjs = self::makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype='.$wgJsMimeType.'&dontcountme=s');
+				$this->userjs = self::makeUrl($this->userpage.'/'.$this->skinname.'.js', 'action=raw&ctype='.$wgJsMimeType);
 			}
 		}
 		wfProfileOut( __METHOD__ );
