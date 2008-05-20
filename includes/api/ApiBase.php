@@ -155,6 +155,13 @@ abstract class ApiBase {
 	 * notice any changes in API.
 	 */
 	public function setWarning($warning) {
+		# If there is a warning already, append it to the existing one
+		$data =& $this->getResult()->getData();
+		if(isset($data['warnings'][$this->getModuleName()]))
+		{
+			$warning = "{$data['warnings'][$this->getModuleName()]['*']}\n$warning";
+			unset($data['warnings'][$this->getModuleName()]);
+		}
 		$msg = array();
 		ApiResult :: setContent($msg, $warning);
 		$this->getResult()->addValue('warnings', $this->getModuleName(), $msg);
