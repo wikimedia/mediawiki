@@ -518,10 +518,21 @@ abstract class ApiBase {
 			$this->dieUsage("Only one $possibleValues is allowed for parameter '$valueName'", "multival_$valueName");
 		}
 		if (is_array($allowedValues)) {
-			$unknownValues = array_diff($valuesList, $allowedValues);
-			if ($unknownValues) {
-				$this->dieUsage('Unrecognised value' . (count($unknownValues) > 1 ? "s" : "") . " for parameter '$valueName'", "unknown_$valueName");
+			# Check for unknown values
+			$unknown = array_diff($valuesList, $allowedValues);
+			if(!empty($unknown))
+			{
+				if($allowMultiple)
+				{
+					$s = count($unknown) > 1 ? "s" : "";
+					$vals = implode(", ", $unknown); 
+					$this->setWarning("Unrecognized value$s for parameter '$valueName': $vals");
+				}
+				else
+					$this->dieUsage("Unrecognized value for parameter '$valueName': {$valuesList[0]}", "unknown_$valueName");
 			}
+			# Now throw them out
+			$valuesList = array_intersect($valuesList, $allowedValues);
 		}
 
 		return $allowMultiple ? $valuesList : $valuesList[0];

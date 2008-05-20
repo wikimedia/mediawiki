@@ -351,6 +351,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13829) Expose parse tree via action=expandtemplates
 * (bug 13606) Allow deletion of images
 * Added iiprop=mime and aiprop=metadata
+* Handled unrecognized values for parameters more gracefully
 
 === Languages updated in 1.13 ===
 
