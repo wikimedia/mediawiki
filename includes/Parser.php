@@ -2699,10 +2699,10 @@ class Parser
 	 * Warn the user when a parser limitation is reached
 	 * Will warn at most once the user per limitation type
 	 *
-	 * @param string $limitationType, should be one of :
-     *   'expensive-parserfunction'
-	 *   'post-expand-template-argument'
-	 *	 'post-expand-template-inclusion'
+	 * @param string $limitationType, should be one of:
+	 *   'expensive-parserfunction' (corresponding messages: 'expensive-parserfunction-warning', 'expensive-parserfunction-category')
+	 *   'post-expand-template-argument' (corresponding messages: 'post-expand-template-argument-warning', 'post-expand-template-argument-category')
+	 *   'post-expand-template-inclusion' (corresponding messages: 'post-expand-template-inclusion-warning', 'post-expand-template-inclusion-category')
 	 * @params int $current, $max When an explicit limit has been
 	 *	 exceeded, provide the values (optional)
 	 */
