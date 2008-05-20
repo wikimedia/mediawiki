@@ -75,6 +75,26 @@ class LocalFile extends File
 	}
 	
 	/**
+	 * Create a LocalFile from a SHA-1 key
+	 * Do not call this except from inside a repo class.
+	 */
+	static function newFromKey( $sha1, $repo, $timestamp = false ) {
+		# Polymorphic function name to distinguish foreign and local fetches
+		$fname = get_class( $this ) . '::' . __FUNCTION__;
+
+		$conds = array( 'img_sha1' => $sha1 );
+		if( $timestamp ) {
+			$conds['img_timestamp'] = $timestamp;
+		}
+		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ), $conds, $fname );
+		if( $row ) {
+			return self::newFromRow( $row, $repo );
+		} else {
+			return false;
+		}
+	}
+	
+	/**
 	 * Fields in the image table
 	 */
 	static function selectFields() {

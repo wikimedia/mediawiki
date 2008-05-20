@@ -20,6 +20,7 @@ abstract class FileRepo {
 	 * Override these in the base class
 	 */
 	var $fileFactory = false, $oldFileFactory = false;
+	var $fileFactoryKey = false, $oldFileFactoryKey = false;
 
 	function __construct( $info ) {
 		// Required settings
@@ -107,7 +108,9 @@ abstract class FileRepo {
 		}
 				
 		# Now try redirects
-		if ( $flags & FileRepo::FIND_IGNORE_REDIRECT ) return false;
+		if ( $flags & FileRepo::FIND_IGNORE_REDIRECT ) {
+			return false;
+		}
 		$redir = $this->checkRedirect( $title );		
 		if( $redir && $redir->getNamespace() == NS_IMAGE) {
 			$img = $this->newFile( $redir );
@@ -117,6 +120,58 @@ abstract class FileRepo {
 			if( $img->exists() ) {
 				$img->redirectedFrom( $title->getDBkey() );
 				return $img;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Create a new File object from the local repository
+	 * @param mixed $sha1 SHA-1 key
+	 * @param mixed $time Time at which the image was uploaded.
+	 *                    If this is specified, the returned object will be an
+	 *                    instance of the repository's old file class instead of
+	 *                    a current file. Repositories not supporting version
+	 *                    control should return false if this parameter is set.
+	 */
+	function newFileFromKey( $sha1, $time = false ) {
+		if ( $time ) {
+			if ( $this->oldFileFactoryKey ) {
+				return call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
+			} else {
+				return false;
+			}
+		} else {
+			return call_user_func( $this->fileFactoryKey, $sha1, $this );
+		}
+	}
+	
+	/**
+	 * Find an instance of the file with this key, created at the specified time
+	 * Returns false if the file does not exist. Repositories not supporting
+	 * version control should return false if the time is specified.
+	 *
+	 * @param string $sha1 string
+	 * @param mixed $time 14-character timestamp, or false for the current version
+	 */
+	function findFileFromKey( $sha1, $time = false, $flags = 0 ) {
+		# First try the current version of the file to see if it precedes the timestamp
+		$img = $this->newFileFromKey( $sha1 );
+		if ( !$img ) {
+			return false;
+		}
+		if ( $img->exists() && ( !$time || $img->getTimestamp() == $time ) ) {
+			return $img;
+		}
+		# Now try an old version of the file
+		if ( $time !== false ) {
+			$img = $this->newFileFromKey( $sha1, $time );
+			if ( $img->exists() ) {
+				if ( !$img->isDeleted(File::DELETED_FILE) ) {
+					return $img;
+				} else if ( ($flags & FileRepo::FIND_PRIVATE) && $img->userCan(File::DELETED_FILE) ) {
+					return $img;
+				}
 			}
 		}
 		return false;
