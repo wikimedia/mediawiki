@@ -1,10 +1,10 @@
 <?php
-
 /**
  * Special page allowing users with the appropriate permissions to view
  * and hide revisions. Log items can also be hidden.
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 function wfSpecialRevisiondelete( $par = null ) {
@@ -58,7 +58,7 @@ function wfSpecialRevisiondelete( $par = null ) {
 
 /**
  * Implements the GUI for Revision Deletion.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class RevisionDeleteForm {
 	/**
@@ -785,7 +785,7 @@ class RevisionDeleteForm {
 
 /**
  * Implements the actions for Revision Deletion.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class RevisionDeleter {
 	function __construct( $db ) {

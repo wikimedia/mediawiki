@@ -1,13 +1,9 @@
 <?php
+
 /** Czech (česky)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
-
-#--------------------------------------------------------------------------
-# Internationalisation code
-#--------------------------------------------------------------------------
-
 class LanguageCs extends Language {
 	# Grammatical transformations, needed for inflected languages
 	# Invoked by putting {{grammar:case|word}} in a message

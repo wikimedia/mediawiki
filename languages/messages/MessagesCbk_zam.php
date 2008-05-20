@@ -1,7 +1,8 @@
 <?php
 /** Zamboangueño (Zamboangueño)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

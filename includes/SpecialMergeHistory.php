@@ -1,10 +1,10 @@
 <?php
-
 /**
  * Special page allowing users with the appropriate permissions to
  * merge article histories, with some restrictions
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -20,7 +20,7 @@ function wfSpecialMergehistory( $par ) {
 /**
  * The HTML form for Special:MergeHistory, which allows users with the appropriate
  * permissions to view and restore deleted content.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class MergehistoryForm {
 	var $mAction, $mTarget, $mDest, $mTimestamp, $mTargetID, $mDestID, $mComment;

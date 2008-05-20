@@ -1,14 +1,14 @@
 <?php
-
 /**
  * Special page to allow managing user group membership
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * A class to manage user levels rights.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UserrightsPage extends SpecialPage {
 	# The target of the local right-adjuster's interest.  Can be gotten from

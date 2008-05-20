@@ -1,7 +1,8 @@
 <?php
 /** Divehi (ދިވެހިބަސް)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MF-Warburg
  * @author לערי ריינהארט

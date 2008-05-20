@@ -1,8 +1,8 @@
 <?php
+
 /** Slovenian (Slovenščina)
  *
- * @addtogroup Language
- *
+ * @ingroup Language
  */
 class LanguageSl extends Language {
 	# Convert from the nominative form of a noun to some other case

@@ -1,7 +1,8 @@
 <?php
 /** Maithili (मैथिली)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ggajendra
  * @author Siebrand

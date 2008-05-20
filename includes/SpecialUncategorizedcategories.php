@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -11,7 +11,7 @@ require_once( "SpecialUncategorizedpages.php" );
 
 /**
  * implements Special:Uncategorizedcategories
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 	function UncategorizedCategoriesPage() {

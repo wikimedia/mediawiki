@@ -2,8 +2,10 @@
 /**
  * Rebuild interwiki table using the file on meta and the language list
  * Wikimedia specific!
+ *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 
 /** */

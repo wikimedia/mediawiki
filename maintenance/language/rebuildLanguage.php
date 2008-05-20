@@ -2,7 +2,9 @@
 /**
  * Rewrite the messages array in the files languages/messages/MessagesXX.php.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup MaintenanceLanguage
+ * @defgroup MaintenanceLanguage MaintenanceLanguage
  */
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );

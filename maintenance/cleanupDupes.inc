@@ -21,7 +21,8 @@
  * If on the old non-unique indexes, check the cur table for duplicate
  * entries and remove them...
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 function fixDupes( $fixthem = false) {
@@ -125,5 +126,3 @@ function checkDupes( $fixthem = false, $indexonly = false ) {
 		}
 	}
 }
-
-?>

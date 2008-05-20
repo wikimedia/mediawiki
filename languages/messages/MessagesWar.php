@@ -1,7 +1,8 @@
 <?php
 /** Waray (Winaray)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Harvzsf
  * @author לערי ריינהארט

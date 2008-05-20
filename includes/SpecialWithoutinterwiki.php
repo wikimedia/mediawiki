@@ -1,9 +1,13 @@
 <?php
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
 
 /**
  * Special page lists pages without language links
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
 class WithoutInterwikiPage extends PageQueryPage {

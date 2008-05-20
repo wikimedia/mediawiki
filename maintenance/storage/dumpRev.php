@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance ExternalStorage
+ */
 
 require_once( dirname(__FILE__) . '/../commandLine.inc' );
 

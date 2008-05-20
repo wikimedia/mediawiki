@@ -1,7 +1,7 @@
 <?php
 /** Upper Sorbian (Hornjoserbsce)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
 
 class LanguageHsb extends Language {

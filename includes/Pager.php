@@ -1,8 +1,14 @@
 <?php
+/**
+ * @defgroup Pager Pager
+ *
+ * @file
+ * @ingroup Pager
+ */
 
 /**
  * Basic pager interface.
- * @addtogroup Pager
+ * @ingroup Pager
  */
 interface Pager {
 	function getNavigationBar();
@@ -49,7 +55,7 @@ interface Pager {
  *  getQueryInfo() and getIndexField(). Don't forget to call the parent
  *  constructor if you override it.
  *
- * @addtogroup Pager
+ * @ingroup Pager
  */
 abstract class IndexPager implements Pager {
 	public $mRequest;
@@ -477,7 +483,7 @@ abstract class IndexPager implements Pager {
 
 /**
  * IndexPager with an alphabetic list and a formatted navigation bar
- * @addtogroup Pager
+ * @ingroup Pager
  */
 abstract class AlphabeticPager extends IndexPager {
 	function __construct() {
@@ -557,7 +563,7 @@ abstract class AlphabeticPager extends IndexPager {
 
 /**
  * IndexPager with a formatted navigation bar
- * @addtogroup Pager
+ * @ingroup Pager
  */
 abstract class ReverseChronologicalPager extends IndexPager {
 	public $mDefaultDirection = true;
@@ -592,7 +598,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 /**
  * Table-based display with a user-selectable sort order
- * @addtogroup Pager
+ * @ingroup Pager
  */
 abstract class TablePager extends IndexPager {
 	var $mSort;

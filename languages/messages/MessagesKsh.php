@@ -1,7 +1,8 @@
 <?php
 /** Ripoarisch (Ripoarisch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
@@ -29,7 +30,7 @@
  * and not from the Akademie (for example: Gedöns, geeße, gegovve, aadig, iggelig, nüdig)
  * Otherwise most part of the following expressions are taken from the Akademie.
  *
- * @addtogroup Language
+ * @ingroup Language
  *
  * @author Caesius noh en Idee vum Manes
  */

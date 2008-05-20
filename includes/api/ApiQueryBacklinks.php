@@ -34,7 +34,7 @@ if (!defined('MEDIAWIKI')) {
  *   * embeddedin - what pages transclude the given page within themselves,
  *   * imageusage - what pages use the given image
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 

@@ -1,7 +1,8 @@
 <?php
 /** Aymara (Aymar)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kanon6917
  * @author Siebrand

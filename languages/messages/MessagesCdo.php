@@ -1,7 +1,8 @@
 <?php
 /** Min Dong Chinese (Mìng-dĕ̤ng-ngṳ̄)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Siebrand
  */

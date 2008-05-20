@@ -33,7 +33,7 @@ if (!defined('MEDIAWIKI')) {
  * any templates in a provided string, and returns the result of this expansion
  * to the caller.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiExpandTemplates extends ApiBase {
 

@@ -4,7 +4,7 @@
  * Special page allows users to request email confirmation message, and handles
  * processing of the confirmation code when the link in the email is followed
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Brion Vibber
  * @author Rob Church <robchur@gmail.com>
  */
@@ -103,7 +103,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
  * Special page allows users to cancel an email confirmation using the e-mail
  * confirmation code
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class EmailInvalidation extends UnlistedSpecialPage {
 

@@ -1,11 +1,10 @@
 <?php
-/** Armenian (Հայերեն)
-  *
-  * @addtogroup Language
-  * @author Ruben Vardanyan (Me@RubenVardanyan.com)
-  */
 
-/* Please, see Language.php for general function comments */
+/** Armenian (Հայերեն)
+ *
+ * @ingroup Language
+ * @author Ruben Vardanyan (Me@RubenVardanyan.com)
+ */
 class LanguageHy extends Language {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{grammar:case|word}}

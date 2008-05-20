@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 
 /**
  * Utility class for creating new RC entries

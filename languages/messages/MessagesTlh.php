@@ -1,8 +1,9 @@
 <?php
 /** Klingon (tlhIngan-Hol)
-  *
-  * @addtogroup Language
-  */
+ *
+ * @ingroup Language
+ * @file
+ */
 
 $namespaceNames = array(
 	NS_MEDIA            => "Doch",

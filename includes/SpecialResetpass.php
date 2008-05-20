@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
 
 /** Constructor */
 function wfSpecialResetpass( $par ) {
@@ -8,7 +12,7 @@ function wfSpecialResetpass( $par ) {
 
 /**
  * Let users recover their password.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class PasswordResetForm extends SpecialPage {
 	function __construct( $name=null, $reset=null ) {

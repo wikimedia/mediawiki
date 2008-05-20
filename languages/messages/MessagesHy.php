@@ -1,7 +1,8 @@
 <?php
 /** Armenian (Հայերեն)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak

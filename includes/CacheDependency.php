@@ -4,7 +4,7 @@
  * This class stores an arbitrary value along with its dependencies.
  * Users should typically only use DependencyWrapper::getFromCache(), rather
  * than instantiating one of these objects directly.
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class DependencyWrapper {
 	var $value;
@@ -97,7 +97,7 @@ class DependencyWrapper {
 }
 
 /**
- * @addtogroup Cache
+ * @ingroup Cache
  */
 abstract class CacheDependency {
 	/**
@@ -112,7 +112,7 @@ abstract class CacheDependency {
 }
 
 /**
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class FileDependency extends CacheDependency {
 	var $filename, $timestamp;
@@ -171,7 +171,7 @@ class FileDependency extends CacheDependency {
 }
 
 /**
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class TitleDependency extends CacheDependency {
 	var $titleObj;
@@ -230,7 +230,7 @@ class TitleDependency extends CacheDependency {
 }
 
 /**
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class TitleListDependency extends CacheDependency {
 	var $linkBatch;
@@ -313,7 +313,7 @@ class TitleListDependency extends CacheDependency {
 }
 
 /**
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class GlobalDependency extends CacheDependency {
 	var $name, $value;
@@ -329,7 +329,7 @@ class GlobalDependency extends CacheDependency {
 }
 
 /**
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class ConstantDependency extends CacheDependency {
 	var $name, $value;

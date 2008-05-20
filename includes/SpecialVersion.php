@@ -2,7 +2,8 @@
 /**#@+
  * Give information about the version of MediaWiki, PHP, the DB and extensions
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
@@ -17,6 +18,9 @@ function wfSpecialVersion() {
 	$version->execute();
 }
 
+/**
+ * @ingroup SpecialPage
+ */
 class SpecialVersion {
 	private $firstExtOpened = true;
 

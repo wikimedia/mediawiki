@@ -1,7 +1,8 @@
 <?php
 /** Erzya (эрзянь кель)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Botuzhaleny-sodamo
  * @author Erzianj jurnalist

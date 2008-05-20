@@ -2,8 +2,9 @@
 /**
  * Rebuild recent changes table.
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 
 /** Public entry; more passes might come in! :) */
@@ -243,5 +244,3 @@ function rebuildRecentChangesTablePass4()
 	
 	$dbw->freeResult( $res );
 }
-
-?>

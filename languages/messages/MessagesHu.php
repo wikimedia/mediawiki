@@ -1,7 +1,8 @@
 <?php
 /** Hungarian (Magyar)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Dani
  * @author Bdamokos

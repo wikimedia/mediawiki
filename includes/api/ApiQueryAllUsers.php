@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to enumerate all registered users.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryAllUsers extends ApiQueryBase {
 

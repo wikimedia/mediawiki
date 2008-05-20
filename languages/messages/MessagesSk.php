@@ -1,7 +1,8 @@
 <?php
 /** Slovak (Slovenčina)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Valasek
  * @author Palica

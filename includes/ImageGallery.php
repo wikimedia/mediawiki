@@ -3,14 +3,11 @@ if ( ! defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
 /**
- */
-
-/**
  * Image gallery
  *
  * Add images to the gallery using add(), then render that list to HTML using toHTML().
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 class ImageGallery
 {

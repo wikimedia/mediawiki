@@ -1,9 +1,17 @@
 <?php
 // php deleteImageMemcached.php --until "2005-09-05 00:00:00" --sleep 0 --report 10
+/**
+ * @file
+ * @ingroup Maintenance
+ */
+
 $optionsWithArgs = array( 'until', 'sleep', 'report' );
 
 require_once 'commandLine.inc';
 
+/**
+ * @ingroup Maintenance
+ */
 class DeleteImageCache {
 	var $until, $sleep, $report;
 

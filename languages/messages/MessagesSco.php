@@ -1,7 +1,8 @@
 <?php
 /** Scots (Scots)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author sco.wikipedia.org editors
  * @author OchAyeTheNoo

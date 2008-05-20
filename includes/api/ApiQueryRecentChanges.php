@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
  * A query action to enumerate the recent changes that were done to the wiki.
  * Various filters are supported.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryRecentChanges extends ApiQueryBase {
 

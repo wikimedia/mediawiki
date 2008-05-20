@@ -19,6 +19,7 @@
  *
  * @author Evan Prodromou <evan@wikitravel.org>
  * @see hooks.txt
+ * @file
  */
 
 

@@ -2,7 +2,8 @@
 /**
  * Define the messages structure in the messages file, for an automated rewriting.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup MaintenanceLanguage
  */
 
 /** The structure of the messages, divided to blocks */

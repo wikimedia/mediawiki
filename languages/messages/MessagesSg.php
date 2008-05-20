@@ -1,7 +1,8 @@
 <?php
 /** Sango (Sängö)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author sg.wikipedia.org sysops
  * @author Siebrand

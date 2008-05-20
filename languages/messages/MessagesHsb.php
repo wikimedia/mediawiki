@@ -1,7 +1,8 @@
 <?php
 /** Upper Sorbian (Hornjoserbsce)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Dundak
  * @author Michawiki

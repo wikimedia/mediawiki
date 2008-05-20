@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
 
 require_once( 'cleanupDupes.inc' );
 require_once( 'userDupes.inc' );
@@ -9,6 +13,9 @@ define( 'MW_UPGRADE_ENCODE',   true  );
 define( 'MW_UPGRADE_NULL',     null  );
 define( 'MW_UPGRADE_CALLBACK', null  ); // for self-documentation only
 
+/**
+ * @ingroup Maintenance
+ */
 class FiveUpgrade {
 	function FiveUpgrade() {
 		$this->conversionTables = $this->prepareWindows1252();
@@ -1170,5 +1177,3 @@ ENDS;
 	}
 
 }
-
-?>

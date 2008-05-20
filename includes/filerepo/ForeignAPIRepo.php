@@ -2,8 +2,9 @@
 
 /**
  * File repository with no files, for performance testing
+ *
+ * @ingroup FileRepo
  */
-
 class ForeignAPIRepo extends FileRepo {
 	function __construct( $info ) {
 		parent::__construct( $info );

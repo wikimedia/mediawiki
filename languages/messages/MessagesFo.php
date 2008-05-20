@@ -1,7 +1,8 @@
 <?php
 /** Faroese (Føroyskt)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Spacebirdy
  * @author לערי ריינהארט

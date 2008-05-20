@@ -1,7 +1,8 @@
 <?php
 /** Belarusian (Беларуская)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Yury Tarasievich
  * @author Mienski

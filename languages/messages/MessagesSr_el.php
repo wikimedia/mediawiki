@@ -1,7 +1,8 @@
 <?php
 /** latinica (latinica)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Siebrand
  * @author לערי ריינהארט

@@ -1,7 +1,8 @@
 <?php
 /** Catalan (Català)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Toniher
  * @author SMP

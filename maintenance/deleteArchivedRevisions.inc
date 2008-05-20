@@ -3,7 +3,8 @@
 /**
  * Support functions for the deleteArchivedRevisions script
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Aaron Schulz
  */
  
@@ -31,5 +32,3 @@ function DeleteArchivedRevisions( $delete = false ) {
 	}
 
 }
-
-?>

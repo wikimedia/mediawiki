@@ -29,7 +29,7 @@
  * File format docs are available in source package for DjVuLibre:
  * http://djvulibre.djvuzone.org/
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 class DjVuImage {
 	function __construct( $filename ) {

@@ -1,7 +1,8 @@
 <?php
 /** Sranan Tongo (Sranantongo)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Adfokati
  * @author Jordi

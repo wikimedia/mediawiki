@@ -1,7 +1,8 @@
 <?php
 /** French (Français)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hégésippe Cormier
  * @author Seb35

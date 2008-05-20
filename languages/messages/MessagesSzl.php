@@ -1,7 +1,8 @@
 <?php
 /** Silesian (Ślůnski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Lajsikonik
  * @author Herr Kriss

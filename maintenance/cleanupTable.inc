@@ -2,6 +2,9 @@
 
 require_once( 'FiveUpgrade.inc' );
 
+/**
+ * @ingroup Maintenance
+ */
 abstract class TableCleanup extends FiveUpgrade {
 	function __construct( $table, $dryrun = false ) {
 		parent::__construct();
@@ -82,5 +85,3 @@ abstract class TableCleanup extends FiveUpgrade {
 	abstract function processPage( $row );
 	
 }
-
-?>

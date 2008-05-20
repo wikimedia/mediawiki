@@ -3,8 +3,8 @@
 /**
  * Support functions for the removeUnusedAccounts maintenance script
  *
- *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 
@@ -42,5 +42,3 @@ function showHelp() {
 	echo( "  --delete : Delete accounts which are discovered to be inactive\n" );
 	echo( "\n" );
 }
-
-?>

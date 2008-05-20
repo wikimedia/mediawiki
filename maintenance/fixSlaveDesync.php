@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
 
 $wgUseRootUser = true;
 require_once( 'commandLine.inc' );

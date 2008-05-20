@@ -1,7 +1,8 @@
 <?php
 /** Punjabi (ਪੰਜਾਬੀ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason

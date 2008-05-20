@@ -1,8 +1,13 @@
 <?php
 /**
+ * @file
+ * @ingroup SpecialPage
+ */
+
+/**
  * A querypage to list the most wanted categories - implements Special:Wantedcategories
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason

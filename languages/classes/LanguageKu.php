@@ -1,13 +1,12 @@
 <?php
-/** Kurdish
-  * converter routines
-  *
-  * @addtogroup Language
-  */
-
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );
 require_once( dirname(__FILE__).'/LanguageKu_ku.php' );
 
+/** Kurdish
+ * converter routines
+ *
+ * @ingroup Language
+ */
 class KuConverter extends LanguageConverter {
 	var $mArabicToLatin = array(
 		'ب' => 'b', 'ج' => 'c', 'چ' => 'ç', 'د' => 'd', 'ف' => 'f', 'گ' => 'g', 'ھ' => 'h',
@@ -226,6 +225,9 @@ class KuConverter extends LanguageConverter {
 	}
 }
 
+/**
+ * @ingroup Language
+ */
 class LanguageKu extends LanguageKu_ku {
 
 	function __construct() {

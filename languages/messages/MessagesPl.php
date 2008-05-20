@@ -1,7 +1,8 @@
 <?php
 /** Polish (Polski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Derbeth
  * @author Wpedzich

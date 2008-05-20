@@ -1,7 +1,8 @@
 <?php
 /** Kashubian (Kaszëbsczi)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Warszk
  * @author Siebrand

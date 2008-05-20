@@ -1,7 +1,8 @@
 <?php
 /** Gan (贛語)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Symane
  * @author Nike

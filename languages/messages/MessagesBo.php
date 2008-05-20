@@ -1,7 +1,8 @@
 <?php
 /** Tibetan (བོད་ཡིག)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 $digitTransformTable = array(

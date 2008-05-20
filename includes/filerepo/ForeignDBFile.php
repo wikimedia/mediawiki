@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @ingroup FileRepo
+ */
 class ForeignDBFile extends LocalFile {
 	static function newFromTitle( $title, $repo, $unused = null ) {
 		return new self( $title, $repo );

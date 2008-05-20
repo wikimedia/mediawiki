@@ -2,7 +2,7 @@
 
 /**
  * Various core parser functions, registered in Parser::firstCallInit()
- * @addtogroup Parser
+ * @ingroup Parser
  */
 class CoreParserFunctions {
 	static function register( $parser ) {

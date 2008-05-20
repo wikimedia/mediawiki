@@ -1,7 +1,8 @@
 <?php
 /** Neapolitan (Nnapulitano)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Carmine Colacino
  * @author SabineCretella

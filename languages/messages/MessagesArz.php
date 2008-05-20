@@ -1,7 +1,8 @@
 <?php
 /** Egyptian Spoken Arabic (مصرى)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ghaly
  * @author Alnokta

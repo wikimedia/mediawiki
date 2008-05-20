@@ -1,7 +1,8 @@
 <?php
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Olve Utne
  * @author Guttorm Flatabø

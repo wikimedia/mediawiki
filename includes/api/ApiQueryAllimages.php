@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to enumerate all available pages.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryAllimages extends ApiQueryGeneratorBase {
 

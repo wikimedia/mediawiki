@@ -1,7 +1,8 @@
 <?php
 /** Chechen (Нохчийн)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Girdi
  * @author Mega programmer

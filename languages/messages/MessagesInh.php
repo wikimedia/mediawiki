@@ -1,7 +1,8 @@
 <?php
 /** Ingush (ГІалгІай Ğalğaj)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Tagir
  * @author Siebrand

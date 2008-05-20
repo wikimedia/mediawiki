@@ -1,7 +1,8 @@
 <?php
 /**
  * @todo document
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 /** */

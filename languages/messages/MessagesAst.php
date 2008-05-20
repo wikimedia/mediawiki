@@ -1,7 +1,8 @@
 <?php
 /** Asturian (Asturianu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Esbardu
  * @author Helix84

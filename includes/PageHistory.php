@@ -3,6 +3,7 @@
  * Page history
  *
  * Split off from Article.php and Skin.php, 2003-12-22
+ * @file
  */
 
 /**
@@ -579,7 +580,7 @@ class PageHistory {
 
 
 /**
- * @addtogroup Pager
+ * @ingroup Pager
  */
 class PageHistoryPager extends ReverseChronologicalPager {
 	public $mLastRow = false, $mPageHistory;

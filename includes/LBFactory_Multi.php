@@ -1,4 +1,9 @@
 <?php
+/**
+ * @file
+ * @ingroup Database
+ */
+
 
 /**
  * A multi-wiki, multi-master factory for Wikimedia and similar installations.
@@ -31,6 +36,7 @@
  *
  *     masterTemplateOverrides     An override array for all master servers.
  *
+ * @ingroup Database
  */
 class LBFactory_Multi extends LBFactory {
 	// Required settings

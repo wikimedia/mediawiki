@@ -1,7 +1,8 @@
 <?php
 /** Vèneto (Vèneto)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Nick1915
  * @author BrokenArrow

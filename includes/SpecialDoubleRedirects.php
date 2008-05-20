@@ -1,13 +1,13 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * A special page listing redirects to redirecting page.
  * The software will automatically not follow double redirects, to prevent loops.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class DoubleRedirectsPage extends PageQueryPage {
 

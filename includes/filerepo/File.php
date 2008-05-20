@@ -17,7 +17,7 @@
  * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
  * in most cases.
  *
- * @addtogroup FileRepo
+ * @ingroup FileRepo
  */
 abstract class File {
 	const DELETED_FILE = 1;

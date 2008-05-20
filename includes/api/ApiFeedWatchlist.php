@@ -33,7 +33,7 @@ if (!defined('MEDIAWIKI')) {
  * When executed, it performs a nested call to the API to get the needed data,
  * and formats it in a proper format.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiFeedWatchlist extends ApiBase {
 

@@ -4,8 +4,8 @@
  * Differences from DOM schema:
  *   * attribute nodes are children
  *   * <h> nodes that aren't at the top are replaced with <possible-h>
+ * @ingroup Parser
  */
-
 class Preprocessor_Hash implements Preprocessor {
 	var $parser;
 
@@ -618,6 +618,7 @@ class Preprocessor_Hash implements Preprocessor {
 
 /**
  * Stack class to help Preprocessor::preprocessToObj()
+ * @ingroup Parser
  */
 class PPDStack_Hash extends PPDStack {
 	function __construct() {
@@ -627,6 +628,9 @@ class PPDStack_Hash extends PPDStack {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPDStackElement_Hash extends PPDStackElement {
 	function __construct( $data = array() ) {
 		$this->partClass = 'PPDPart_Hash';
@@ -659,6 +663,9 @@ class PPDStackElement_Hash extends PPDStackElement {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPDPart_Hash extends PPDPart {
 	function __construct( $out = '' ) {
 		$accum = new PPDAccum_Hash;
@@ -669,6 +676,9 @@ class PPDPart_Hash extends PPDPart {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPDAccum_Hash {
 	var $firstNode, $lastNode;
 
@@ -730,6 +740,7 @@ class PPDAccum_Hash {
 
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
+ * @ingroup Parser
  */
 class PPFrame_Hash implements PPFrame {
 	var $preprocessor, $parser, $title;
@@ -1111,6 +1122,7 @@ class PPFrame_Hash implements PPFrame {
 
 /**
  * Expansion frame with template arguments
+ * @ingroup Parser
  */
 class PPTemplateFrame_Hash extends PPFrame_Hash {
 	var $numberedArgs, $namedArgs, $parent;
@@ -1196,6 +1208,9 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPNode_Hash_Tree implements PPNode {
 	var $name, $firstChild, $lastChild, $nextSibling;
 
@@ -1380,6 +1395,9 @@ class PPNode_Hash_Tree implements PPNode {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPNode_Hash_Text implements PPNode {
 	var $value, $nextSibling;
 
@@ -1409,6 +1427,9 @@ class PPNode_Hash_Text implements PPNode {
 	function splitHeading() { throw new MWException( __METHOD__ . ': not supported' ); }
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPNode_Hash_Array implements PPNode {
 	var $value, $nextSibling;
 
@@ -1442,6 +1463,9 @@ class PPNode_Hash_Array implements PPNode {
 	function splitHeading() { throw new MWException( __METHOD__ . ': not supported' ); }
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPNode_Hash_Attr implements PPNode {
 	var $name, $value, $nextSibling;
 

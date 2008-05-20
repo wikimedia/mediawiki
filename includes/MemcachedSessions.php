@@ -6,6 +6,8 @@
  * be necessary to change the cookie settings to work across hostnames.
  * See: http://www.php.net/manual/en/function.session-set-save-handler.php
  *
+ * @file
+ * @ingroup Cache
  */
 
 /**

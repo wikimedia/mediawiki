@@ -1,7 +1,7 @@
 <?php
 /** Arabic (العربية)
  *
- * @addtogroup Language
+ * @ingroup Language
  *
  * @author Niklas Laxström
  */

@@ -1,12 +1,4 @@
 <?php
-/**
- *
- *
- * DB accessable external objects
- *
- */
-
-
 
 /**
  * External database storage will use one (or more) separate connection pools
@@ -28,6 +20,10 @@ $wgExternalLoadBalancers = array();
 global $wgExternalBlobCache;
 $wgExternalBlobCache = array();
 
+/**
+ * DB accessable external objects
+ * @ingroup ExternalStorage
+ */
 class ExternalStoreDB {
 
 	/** @todo Document.*/

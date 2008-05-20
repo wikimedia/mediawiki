@@ -1,7 +1,8 @@
 <?php
 /** Hakka (Hak-kâ-fa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hakka
  * @author Siebrand

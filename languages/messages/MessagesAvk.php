@@ -1,7 +1,8 @@
 <?php
 /** Kotava (Kotava)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Wikimistusik
  * @author Sab

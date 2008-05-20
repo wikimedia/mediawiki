@@ -1,7 +1,8 @@
 <?php
 /** Ewe (Eʋegbe)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Natsubee
  * @author Cbrown1023

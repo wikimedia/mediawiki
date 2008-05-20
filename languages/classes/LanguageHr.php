@@ -1,7 +1,7 @@
 <?php
 /** Croatian (hrvatski)
   *
-  * @addtogroup Language
+  * @ingroup Language
   */
 
 class LanguageHr extends Language {

@@ -22,7 +22,7 @@ define( 'MW_FILE_VERSION', 8 );
  * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
  * in most cases.
  *
- * @addtogroup FileRepo
+ * @ingroup FileRepo
  */
 class LocalFile extends File
 {
@@ -1178,6 +1178,7 @@ class LocalFile extends File
 
 /**
  * Helper class for file deletion
+ * @ingroup FileRepo
  */
 class LocalFileDeleteBatch {
 	var $file, $reason, $srcRels = array(), $archiveUrls = array(), $deletionBatch, $suppress;
@@ -1442,6 +1443,7 @@ class LocalFileDeleteBatch {
 
 /**
  * Helper class for file undeletion
+ * @ingroup FileRepo
  */
 class LocalFileRestoreBatch {
 	var $file, $cleanupBatch, $ids, $all, $unsuppress = false;
@@ -1689,6 +1691,7 @@ class LocalFileRestoreBatch {
 
 /**
  * Helper class for file movement
+ * @ingroup FileRepo
  */
 class LocalFileMoveBatch {
 	var $file, $cur, $olds, $oldcount, $archive, $thumbs, $target, $db;

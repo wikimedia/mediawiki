@@ -24,8 +24,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Brion Vibber <brion at pobox.com>
- * @addtogroup maintenance
+ * @ingroup Maintenance
  */
 
 $options = array( 'fix' );
@@ -33,6 +34,9 @@ $options = array( 'fix' );
 require_once( 'commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
+/**
+ * @ingroup Maintenance
+ */
 class WatchlistCleanup extends FiveUpgrade {
 	function WatchlistCleanup( $dryrun = false ) {
 		parent::FiveUpgrade();

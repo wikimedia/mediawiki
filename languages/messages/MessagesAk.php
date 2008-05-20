@@ -1,7 +1,8 @@
 <?php
 /** Akan (Akan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Natsubee
  * @author Siebrand

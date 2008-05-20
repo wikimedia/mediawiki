@@ -1,7 +1,8 @@
 <?php
 /** Zeeuws (Zeêuws)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach

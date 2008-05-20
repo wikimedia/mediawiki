@@ -1,7 +1,8 @@
 <?php
 /** Bavarian (Boarisch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand

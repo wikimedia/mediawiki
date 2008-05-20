@@ -1,7 +1,8 @@
 <?php
 /** Swedish (Svenska)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Sannab
  * @author Habjchen

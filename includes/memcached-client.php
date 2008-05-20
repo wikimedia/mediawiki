@@ -57,7 +57,6 @@
  * $val = $mc->get('key');
  *
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
- * @package memcached-client
  * @version 0.1.2
  */
 
@@ -69,7 +68,7 @@
  * memcached client class implemented using (p)fsockopen()
  *
  * @author  Ryan T. Dean <rtdean@cytherianage.net>
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class memcached
 {

@@ -1,7 +1,9 @@
 <?php
-
 /**
  * Communications protocol...
+ *
+ * @file
+ * @ingroup Maintenance
  */
 
 require "commandLine.inc";

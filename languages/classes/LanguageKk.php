@@ -1,9 +1,4 @@
 <?php
-/** Kazakh (Қазақша)
-  * converter routines
-  *
-  * @addtogroup Language
-  */
 
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );
 require_once( dirname(__FILE__).'/LanguageKk_cyrl.php' );
@@ -16,6 +11,11 @@ define( 'KK_L_LC', 'aäbcçdeéfgğhıiïjklmnñoöpqrsştuüvwxyýz' ); # Kazak
 define( 'H_HAMZA', 'ٴ' ); # U+0674 ARABIC LETTER HIGH HAMZA
 //define( 'ZWNJ', '‌' ); # U+200C ZERO WIDTH NON-JOINER
 
+/** Kazakh (Қазақша)
+ * converter routines
+ *
+ * @ingroup Language
+ */
 class KkConverter extends LanguageConverter {
 
 	function __construct($langobj, $maincode,
@@ -362,9 +362,12 @@ class KkConverter extends LanguageConverter {
 
 }
 
-/* class that handles Cyrillic, Latin and Arabic scripts for Kazakh
-   right now it only distinguish kk_cyrl, kk_latn, kk_arab and kk_kz, kk_tr, kk_cn.
-*/
+/**
+ * class that handles Cyrillic, Latin and Arabic scripts for Kazakh
+ * right now it only distinguish kk_cyrl, kk_latn, kk_arab and kk_kz, kk_tr, kk_cn.
+ *
+ * @ingroup Language
+ */
 class LanguageKk extends LanguageKk_cyrl {
 
 	function __construct() {

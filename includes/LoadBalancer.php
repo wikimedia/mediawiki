@@ -1,8 +1,14 @@
 <?php
 /**
+ * @file
+ * @ingroup Database
+ */
+
+/**
  * Database load balancing object
  *
  * @todo document
+ * @ingroup Database
  */
 class LoadBalancer {
 	/* private */ var $mServers, $mConns, $mLoads, $mGroupLoads;

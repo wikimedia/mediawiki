@@ -1,7 +1,8 @@
 <?php
 /** Tamil (தமிழ்)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Trengarasu
  * @author Mayooranathan

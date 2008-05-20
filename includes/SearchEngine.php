@@ -1,7 +1,14 @@
 <?php
 /**
+ * @defgroup Search Search
+ *
+ * @file
+ * @ingroup Search
+ */
+
+/**
  * Contain a class for special pages
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchEngine {
 	var $limit = 10;
@@ -360,7 +367,7 @@ class SearchEngine {
 }
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchResultSet {
 	/**
@@ -478,7 +485,7 @@ class SearchResultSet {
 
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchResultTooMany {
 	## Some search engines may bail out if too many matches are found
@@ -486,7 +493,7 @@ class SearchResultTooMany {
 
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchResult {
 	var $mRevision = null;
@@ -638,7 +645,7 @@ class SearchResult {
 /**
  * Highlight bits of wikitext
  * 
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchHighlighter {	
 	var $mCleanWikitext = true;
@@ -1131,7 +1138,7 @@ class SearchHighlighter {
 }
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchEngineDummy {
 	function search( $term ) {

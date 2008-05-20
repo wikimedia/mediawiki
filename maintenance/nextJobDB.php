@@ -1,7 +1,9 @@
 <?php
-
-/*
+/**
  * Pick a database that has pending jobs
+ *
+ * @file
+ * @ingroup Maintenance
  */
 
 $options = array( 'type'  );

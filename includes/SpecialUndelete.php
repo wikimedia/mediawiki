@@ -4,7 +4,8 @@
  * Special page allowing users with the appropriate permissions to view
  * and restore deleted content
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -19,7 +20,7 @@ function wfSpecialUndelete( $par ) {
 
 /**
  * Used to show archived pages and eventually restore them.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class PageArchive {
 	protected $title;
@@ -566,7 +567,7 @@ class PageArchive {
 /**
  * The HTML form for Special:Undelete, which allows users with the appropriate
  * permissions to view and restore deleted content.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;

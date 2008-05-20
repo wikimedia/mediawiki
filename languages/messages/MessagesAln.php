@@ -1,7 +1,8 @@
 <?php
 /** Gheg Albanian (Gegë)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Cradel
  * @author Dardan

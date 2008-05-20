@@ -1,7 +1,8 @@
 <?php
 /** Emiliano-Romagnolo (Emiliàn e rumagnòl)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Timichal
  * @author Ottaviano II

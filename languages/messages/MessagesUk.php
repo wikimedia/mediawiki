@@ -1,7 +1,8 @@
 <?php
 /** Ukrainian (Українська)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Gutsul (Gutsul.ua at Google Mail)
  * @author Ahonc

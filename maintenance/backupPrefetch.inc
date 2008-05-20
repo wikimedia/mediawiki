@@ -52,6 +52,7 @@ foreach( $xmlReaderConstants as $name ) {
  *   recorded, so the previous dump is a reliable source
  *
  * Requires PHP 5 and the XMLReader PECL extension.
+ * @ingroup Maintenance
  */
 class BaseDump {
 	var $reader = null;
@@ -199,5 +200,3 @@ class BaseDump {
 		return null;
 	}
 }
-
-?>

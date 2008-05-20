@@ -9,7 +9,7 @@ test:
 	php parserTests.php --quiet
 
 doc:
-	php mwdocgen.php -all
+	php mwdocgen.php --all
 	echo 'Doc generation done. Look at ./docs/html/'
 
 doxydoc:

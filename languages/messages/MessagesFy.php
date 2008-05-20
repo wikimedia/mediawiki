@@ -1,7 +1,8 @@
 <?php
 /** Western Frisian (Frysk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Helix84
  * @author Maartenvdbent

@@ -17,13 +17,15 @@
  * SpecialPage::$mList. To remove a core static special page at runtime, use
  * a SpecialPage_initList hook.
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
+ * @defgroup SpecialPage SpecialPage
  */
 
 /**
  * Parent special page class, also static functions for handling the special
  * page list.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialPage
 {
@@ -775,7 +777,7 @@ class SpecialPage
 
 /**
  * Shortcut to construct a special page which is unlisted by default
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UnlistedSpecialPage extends SpecialPage
 {
@@ -786,7 +788,7 @@ class UnlistedSpecialPage extends SpecialPage
 
 /**
  * Shortcut to construct an includable special  page
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class IncludableSpecialPage extends SpecialPage
 {
@@ -797,7 +799,7 @@ class IncludableSpecialPage extends SpecialPage
 
 /**
  * Shortcut to construct a special page alias.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 	var $redirName, $redirSubpage;
@@ -827,7 +829,7 @@ class SpecialRedirectToSpecial extends UnlistedSpecialPage {
 
 /**
  * Shortcut to construct a special page pointing to current user user's page.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialMypage extends UnlistedSpecialPage {
 	function __construct() {
@@ -847,7 +849,7 @@ class SpecialMypage extends UnlistedSpecialPage {
 
 /**
  * Shortcut to construct a special page pointing to current user talk page.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialMytalk extends UnlistedSpecialPage {
 	function __construct() {
@@ -867,7 +869,7 @@ class SpecialMytalk extends UnlistedSpecialPage {
 
 /**
  * Shortcut to construct a special page pointing to current user contributions.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialMycontributions extends UnlistedSpecialPage {
 	function __construct() {

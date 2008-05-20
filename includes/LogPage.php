@@ -20,7 +20,7 @@
 
 /**
  * Contain log classes
- *
+ * @file
  */
 
 /**

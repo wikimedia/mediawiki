@@ -1,6 +1,7 @@
 <?php
 /**
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 /** */
@@ -112,5 +113,3 @@ function output( $text ) {
 		print $text;
 	}
 }
-
-?>

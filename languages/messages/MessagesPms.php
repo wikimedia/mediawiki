@@ -1,7 +1,8 @@
 <?php
 /** Piemontèis (Piemontèis)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author Teak

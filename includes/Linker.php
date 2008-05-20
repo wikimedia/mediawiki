@@ -9,7 +9,7 @@
  * so that ever other bit of the wiki doesn't have to
  * go loading up Skin to get at it.
  *
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class Linker {
 

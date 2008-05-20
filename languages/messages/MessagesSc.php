@@ -1,7 +1,8 @@
 <?php
 /** Sardinian (Sardu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Nike
  * @author Siebrand

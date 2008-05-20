@@ -6,7 +6,8 @@
  * dependency on PHPTAL.
  *
  * @todo document
- * @addtogroup Skins
+ * @file
+ * @ingroup Skins
  */
 
 if( !defined( 'MEDIAWIKI' ) )
@@ -15,7 +16,7 @@ if( !defined( 'MEDIAWIKI' ) )
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
@@ -29,7 +30,7 @@ class SkinMonoBook extends SkinTemplate {
 
 /**
  * @todo document
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class MonoBookTemplate extends QuickTemplate {
 	/**

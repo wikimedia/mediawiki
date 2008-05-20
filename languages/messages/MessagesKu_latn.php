@@ -1,7 +1,8 @@
 <?php
 /** Kurdish (Latin) (Kurdî / كوردی (Latin))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Bangin
  * @author Siebrand

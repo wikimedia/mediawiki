@@ -1,6 +1,7 @@
 <?php
 /**
-* @addtogroup Maintenance
+* @file
+* @ingroup Maintenance
 * @author Nick Jenkins ( http://nickj.org/ ).
 * @copyright 2006 Nick Jenkins
 * @licence GNU General Public Licence 2.0

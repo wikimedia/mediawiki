@@ -1,7 +1,9 @@
 <?php
-
 /**
  * Replication-safe online upgrade script for log_id/log_deleted
+ *
+ * @file
+ * @ingroup MaintenanceArchive
  */
 
 require( dirname(__FILE__).'/../commandLine.inc' );

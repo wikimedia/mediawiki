@@ -1,7 +1,8 @@
 <?php
 /** Albanian (Shqip)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Dori
  * @author Cradel

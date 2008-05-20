@@ -1,7 +1,8 @@
 <?php
 /** Maori (Māori)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 $messages = array(

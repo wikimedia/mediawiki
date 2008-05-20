@@ -24,8 +24,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @author Brion Vibber <brion at pobox.com>
- * @addtogroup maintenance
+ * @ingroup maintenance
  */
 
 $options = array( 'dry-run' );
@@ -33,6 +34,9 @@ $options = array( 'dry-run' );
 require_once( 'commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
+/**
+ * @ingroup Maintenance
+ */
 class CapsCleanup extends FiveUpgrade {
 	function CapsCleanup( $dryrun = false, $namespace=0 ) {
 		parent::FiveUpgrade();
@@ -152,5 +156,3 @@ $wgUser->setName( 'Conversion script' );
 $ns = isset( $options['namespace'] ) ? $options['namespace'] : 0;
 $caps = new CapsCleanup( isset( $options['dry-run'] ), $ns );
 $caps->cleanup();
-
-

@@ -1,7 +1,8 @@
 <?php
 /** Yoruba (Yorùbá)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Demmy
  * @author SPQRobin

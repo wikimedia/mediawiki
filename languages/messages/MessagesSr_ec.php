@@ -1,7 +1,8 @@
 <?php
 /** Serbian Cyrillic ekavian (ћирилица)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Red Baron
  * @author Sasa Stefanovic

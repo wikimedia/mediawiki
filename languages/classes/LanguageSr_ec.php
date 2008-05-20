@@ -1,12 +1,8 @@
 <?php
+
 /**
-  * @addtogroup Language
-  */
-
-#--------------------------------------------------------------------------
-# Internationalisation code
-#--------------------------------------------------------------------------
-
+ * @ingroup Language
+ */
 class LanguageSr_ec extends Language {
 	function convertPlural( $count, $forms ) {
 		if ( !count($forms) ) { return ''; }

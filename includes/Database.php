@@ -1,5 +1,9 @@
 <?php
 /**
+ * @defgroup Database Database
+ *
+ * @file
+ * @ingroup Database
  * This file deals with MySQL interface functions
  * and query specifics/optimisations
  */
@@ -13,7 +17,7 @@ define( 'DEADLOCK_DELAY_MAX', 1500000 );
 
 /**
  * Database abstraction object
- * @addtogroup Database
+ * @ingroup Database
  */
 class Database {
 
@@ -2218,7 +2222,7 @@ class Database {
  * Database abstraction object for mySQL
  * Inherit all methods and properties of Database::Database()
  *
- * @addtogroup Database
+ * @ingroup Database
  * @see Database
  */
 class DatabaseMysql extends Database {
@@ -2231,7 +2235,7 @@ class DatabaseMysql extends Database {
 
 /**
  * Utility class.
- * @addtogroup Database
+ * @ingroup Database
  */
 class DBObject {
 	public $mData;
@@ -2251,7 +2255,7 @@ class DBObject {
 
 /**
  * Utility class
- * @addtogroup Database
+ * @ingroup Database
  *
  * This allows us to distinguish a blob from a normal string and an array of strings
  */
@@ -2267,7 +2271,7 @@ class Blob {
 
 /**
  * Utility class.
- * @addtogroup Database
+ * @ingroup Database
  */
 class MySQLField {
 	private $name, $tablename, $default, $max_length, $nullable,
@@ -2324,7 +2328,7 @@ class MySQLField {
 
 /**
  * Database error base class
- * @addtogroup Database
+ * @ingroup Database
  */
 class DBError extends MWException {
 	public $db;
@@ -2341,7 +2345,7 @@ class DBError extends MWException {
 }
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class DBConnectionError extends DBError {
 	public $error;
@@ -2461,7 +2465,7 @@ border=\"0\" ALT=\"Google\"></A>
 }
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class DBQueryError extends DBError {
 	public $error, $errno, $sql, $fname;
@@ -2517,14 +2521,14 @@ class DBQueryError extends DBError {
 }
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class DBUnexpectedError extends DBError {}
 
 
 /**
  * Result wrapper for grabbing data queried by someone else
- * @addtogroup Database
+ * @ingroup Database
  */
 class ResultWrapper implements Iterator {
 	var $db, $result, $pos = 0, $currentRow = null;

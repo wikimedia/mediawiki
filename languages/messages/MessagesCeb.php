@@ -1,7 +1,8 @@
 <?php
 /** Cebuano (Cebuano)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Abastillas

@@ -1,7 +1,8 @@
 <?php
 /** Javanese (Basa Jawa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Meursault2004
  * @author Helix84

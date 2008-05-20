@@ -1,7 +1,8 @@
 <?php
 /** Assamese (অসমীয়া)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Priyankoo
  * @author Siebrand

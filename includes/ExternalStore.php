@@ -1,12 +1,17 @@
 <?php
 /**
+ * @defgroup ExternalStorage ExternalStorage
+ */
+
+/**
  * Constructor class for data kept in external repositories
  *
  * External repositories might be populated by maintenance/async
  * scripts, thus partial moving of data may be possible, as well
  * as possibility to have any storage format (i.e. for archives)
+ *
+ * @ingroup ExternalStorage
  */
-
 class ExternalStore {
 	/* Fetch data from given URL */
 	static function fetchFromURL($url) {

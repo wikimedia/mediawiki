@@ -1,9 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
+/**
+ * @ingroup SpecialPage
+ */
 class DisambiguationsPage extends PageQueryPage {
 
 	function getName() {

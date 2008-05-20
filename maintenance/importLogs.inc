@@ -22,8 +22,9 @@
  *
  * Not yet complete.
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 
 /** */
@@ -35,7 +36,7 @@ require_once( 'LogPage.php' );
 /**
  * Log importer
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 class LogImporter {
 	var $dummy = false;
@@ -141,5 +142,3 @@ function wfUnescapeWikiText( $text ) {
 		$text );
 	return $text;
 }
-
-?>

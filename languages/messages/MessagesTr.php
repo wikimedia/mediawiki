@@ -1,7 +1,8 @@
 <?php
 /** Turkish (Türkçe)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Uğur Başak
  * @author SPQRobin

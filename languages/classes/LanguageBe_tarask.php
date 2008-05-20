@@ -1,7 +1,7 @@
 <?php
 /** Belarusian in Taraškievica orthography (Беларуская тарашкевіца)
   *
-  * @addtogroup Language
+  * @ingroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
   * @bug 1638, 2135

@@ -1,7 +1,8 @@
 <?php
 /** Võro (Võro)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Niklas Laxsröm
  * @author Sulev Iva (Võrok)

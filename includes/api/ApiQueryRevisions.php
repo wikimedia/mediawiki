@@ -33,7 +33,7 @@ if (!defined('MEDIAWIKI')) {
  * Various pieces of information may be shown - flags, comments, and the actual wiki markup of the rev.
  * In the enumeration mode, ranges of revisions may be requested and filtered.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryRevisions extends ApiQueryBase {
 

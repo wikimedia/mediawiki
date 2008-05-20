@@ -1,7 +1,8 @@
 <?php
 /** Kabyle (Taqbaylit)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Agurzil
  * @author Siebrand

@@ -1,7 +1,6 @@
 <?php
 /**
- *
- * @addtogroup Cache
+ * @ingroup Cache Parser
  * @todo document
  */
 class ParserCache {

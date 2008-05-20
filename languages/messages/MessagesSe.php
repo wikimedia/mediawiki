@@ -1,7 +1,8 @@
 <?php
 /** Northern Sami (Sámegiella)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Skuolfi
  * @author לערי ריינהארט

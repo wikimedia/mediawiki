@@ -1,7 +1,8 @@
 <?php
 /** Ido (Ido)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Albonio
  * @author Artomo

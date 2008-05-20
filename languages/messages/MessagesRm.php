@@ -1,7 +1,8 @@
 <?php
 /** Rhaeto-Romance (Rumantsch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand

@@ -1,8 +1,9 @@
 <?php
-/** Esperanto (Esperanto)
-  * @addtogroup Language
-  */
 
+/** Esperanto (Esperanto)
+ *
+ * @ingroup Language
+ */
 class LanguageEo extends Language {
 	function iconv( $in, $out, $string ) {
 		# For most languages, this is a wrapper for iconv

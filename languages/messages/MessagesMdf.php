@@ -1,7 +1,8 @@
 <?php
 /** Moksha (мокшень кяль)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Numulunj pilgae
  * @author Kranch

@@ -4,7 +4,8 @@
  * Special page lists various statistics, including the contents of
  * `site_stats`, plus page view details if enabled
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**

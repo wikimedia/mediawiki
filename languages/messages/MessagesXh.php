@@ -1,7 +1,8 @@
 <?php
 /** Xhosa (isiXhosa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jose77
  */

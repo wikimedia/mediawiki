@@ -1,7 +1,8 @@
 <?php
 /** Aragonese (Aragonés)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Juanpabl

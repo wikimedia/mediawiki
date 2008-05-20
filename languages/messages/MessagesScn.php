@@ -1,7 +1,8 @@
 <?php
 /** Sicilian (Sicilianu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Niklas Laxström
  * @author Sarvaturi

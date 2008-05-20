@@ -3,7 +3,8 @@
 /**
  * Maintenance script to create an account and grant it administrator rights
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

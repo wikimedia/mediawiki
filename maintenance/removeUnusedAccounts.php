@@ -1,10 +1,10 @@
 <?php
-
 /**
  * Remove unused user accounts from the database
  * An unused account is one which has made no edits
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

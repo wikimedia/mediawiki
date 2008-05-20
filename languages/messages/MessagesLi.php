@@ -1,7 +1,8 @@
 <?php
 /** Limburgish (Limburgs)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ooswesthoesbes
  * @author Cicero

@@ -1,4 +1,9 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
+
 require_once( "commandLine.inc" );
 if ( isset( $args[0] ) ) {
 	wfWaitForSlaves($args[0]);

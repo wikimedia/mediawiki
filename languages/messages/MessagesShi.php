@@ -1,7 +1,8 @@
 <?php
 /** Tachelhit (Tašlḥiyt)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Zanatos
  * @author Siebrand

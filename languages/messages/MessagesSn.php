@@ -1,7 +1,8 @@
 <?php
 /** Shona (chiShona)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 $messages = array(

@@ -1,10 +1,9 @@
 <?php
-/** Old Church Slavonic (Ѩзыкъ словѣньскъ)
-  *
-  * @addtogroup Language
-  */
 
-/* Please, see Language.php for general function comments */
+/** Old Church Slavonic (Ѩзыкъ словѣньскъ)
+ *
+ * @ingroup Language
+ */
 class LanguageCu extends Language {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{grammar:case|word}}

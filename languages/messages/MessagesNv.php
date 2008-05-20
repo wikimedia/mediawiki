@@ -1,7 +1,8 @@
 <?php
 /** Navajo (Diné bizaad)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 $skinNames = array(

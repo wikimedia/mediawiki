@@ -3,7 +3,7 @@
   * These determine things like interwikis, language selectors, and so on.
   * Safe to change without running scripts on the respective sites.
   *
-  * @addtogroup Language
+  * @ingroup Language
   */
 /* private */ $wgLanguageNames = array(
 	'aa' => 'Afar',			# Afar

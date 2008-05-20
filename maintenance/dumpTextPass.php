@@ -18,7 +18,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup Maintenance
  */
 
 $originalDir = getcwd();
@@ -30,6 +31,8 @@ require_once( 'backup.inc' );
  * Stream wrapper around 7za filter program.
  * Required since we can't pass an open file resource to XMLReader->open()
  * which is used for the text prefetch.
+ *
+ * @ingroup Maintenance
  */
 class SevenZipStream {
 	var $stream;
@@ -93,7 +96,9 @@ class SevenZipStream {
 }
 stream_wrapper_register( 'mediawiki.compress.7z', 'SevenZipStream' );
 
-
+/**
+ * @ingroup Maintenance
+ */
 class TextPassDumper extends BackupDumper {
 	var $prefetch = null;
 	var $input = "php://stdin";

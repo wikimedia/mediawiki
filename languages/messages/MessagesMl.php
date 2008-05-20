@@ -1,7 +1,8 @@
 <?php
 /** Malayalam (മലയാളം)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Sadik Khalid <sadik.khalid@gmail.com>

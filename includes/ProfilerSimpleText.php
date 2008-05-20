@@ -1,4 +1,9 @@
 <?php
+/**
+ * @file
+ * @ingroup Profiler
+ */
+
 require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
 
 /**
@@ -10,7 +15,7 @@ require_once( dirname( __FILE__ ) . '/ProfilerSimple.php' );
  * $wgProfiler = new ProfilerSimpleText;
  * $wgProfiler->visible=true;
  *
- * @addtogroup Profiler
+ * @ingroup Profiler
  */
 class ProfilerSimpleText extends ProfilerSimple {
 	public $visible=false; /* Show as <PRE> or <!-- ? */

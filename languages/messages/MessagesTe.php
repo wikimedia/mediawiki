@@ -1,7 +1,8 @@
 <?php
 /** Telugu (తెలుగు)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Mpradeep

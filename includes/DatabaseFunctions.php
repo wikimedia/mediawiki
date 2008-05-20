@@ -2,7 +2,8 @@
 /**
  * Legacy database functions, for compatibility with pre-1.3 code
  * NOTE: this file is no longer loaded by default.
- *
+ * @file
+ * @ingroup Database
  */
 
 /**

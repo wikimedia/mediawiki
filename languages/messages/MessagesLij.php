@@ -1,7 +1,8 @@
 <?php
 /** Líguru (Líguru)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jon Harald Søby
  * @author Dario vet

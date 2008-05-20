@@ -1,7 +1,8 @@
 <?php
 /** Romanian (Română)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Emily
  * @author KlaudiuMihaila

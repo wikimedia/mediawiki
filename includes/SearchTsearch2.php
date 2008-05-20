@@ -19,12 +19,13 @@
 
 /**
  * Search engine hook for PostgreSQL / Tsearch2
- * @addtogroup Search
+ * @file
+ * @ingroup Search
  */
 
 /**
  * @todo document
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchTsearch2 extends SearchEngine {
 	var $strictMatching = false;

@@ -1,7 +1,8 @@
 <?php
 /** Mingrelian (მარგალური)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Dato deutschland
  * @author Alsandro

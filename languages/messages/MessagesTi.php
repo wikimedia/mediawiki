@@ -1,7 +1,8 @@
 <?php
 /** Tigrinya (ትግርኛ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Blake
  * @author Niklas Laxström

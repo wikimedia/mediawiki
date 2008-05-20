@@ -1,7 +1,8 @@
 <?php
 /** Norfuk / Pitkern (Norfuk / Pitkern)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author http://pih.wikipedia.org sysops
  */

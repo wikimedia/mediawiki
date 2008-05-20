@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -29,8 +29,7 @@ function wfSpecialUnlockdb() {
 }
 
 /**
- *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class DBUnlockForm {
 	function showForm( $err )

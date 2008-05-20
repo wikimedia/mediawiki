@@ -1,7 +1,8 @@
 <?php
 /** Cherokee (ᏣᎳᎩ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

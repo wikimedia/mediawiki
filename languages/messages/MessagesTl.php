@@ -1,7 +1,8 @@
 <?php
 /** Tagalog (Tagalog)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Sky Harbor
  * @author לערי ריינהארט

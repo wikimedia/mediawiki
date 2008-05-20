@@ -1,7 +1,8 @@
 <?php
 /** Georgian (ქართული)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author ka.wikipedia.org sysops
  * @author Alsandro

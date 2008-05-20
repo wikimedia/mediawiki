@@ -1,7 +1,8 @@
 <?php
 /** Toki Pona (Toki Pona)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author http://tokipona.wikia.com sysops
  * @author Siebrand

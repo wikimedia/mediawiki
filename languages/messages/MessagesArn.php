@@ -1,7 +1,8 @@
 <?php
 /** Araucanian (Mapudungun)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Lin linao
  * @author Poquil

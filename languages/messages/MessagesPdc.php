@@ -1,7 +1,8 @@
 <?php
 /** Deitsch (Deitsch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author G - ג
  * @author SPQRobin

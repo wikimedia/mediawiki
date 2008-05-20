@@ -1,4 +1,10 @@
 <?php
+/**
+ * Move revision's text to external storage
+ *
+ * @file
+ * @ingroup Maintenance ExternalStorage
+ */
 
 define( 'REPORTING_INTERVAL', 1 );
 

@@ -1,6 +1,7 @@
 <?php
 /**
  * Contains the EditPage class
+ * @file
  */
 
 /**

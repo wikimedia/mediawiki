@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to get list of random pages
  *
- * @addtogroup API
+ * @ingroup API
  */
 
  class ApiQueryRandom extends ApiQueryGeneratorBase {

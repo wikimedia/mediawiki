@@ -2,7 +2,8 @@
 /**
  * Min Nan (Bân-lâm-gú/閩南話)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 # Inherit everything for now

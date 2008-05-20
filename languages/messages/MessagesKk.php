@@ -1,9 +1,10 @@
 <?php
 /**
-  * Kazakh (Қазақша)
-  *
-  * @addtogroup Language
-  */
+ * Kazakh (Қазақша)
+ *
+ * @ingroup Language
+ * @file
+ */
 
 # Stub message file for converter code "kk"
 

@@ -1,7 +1,8 @@
 <?php
 /** Mongolian (Монгол)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Chinneeb

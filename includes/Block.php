@@ -1,5 +1,6 @@
 <?php
 /**
+ * @file
  * Blocks and bans object
  */
 

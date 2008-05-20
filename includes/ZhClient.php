@@ -1,6 +1,4 @@
 <?php
-/**
- */
 
 /**
  * Client for querying zhdaemon

@@ -1,7 +1,8 @@
 <?php
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Samuelsen
  * @author Jon Harald Søby

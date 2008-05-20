@@ -1,7 +1,7 @@
 <?php
 /**
-  *
-  * @addtogroup Language
-  */
+ * @ingroup Language
+ * @file
+ */
 
 $fallback = 'ru';

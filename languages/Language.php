@@ -1,6 +1,9 @@
 <?php
 /**
- * @addtogroup Language
+ * @defgroup Language Language
+ *
+ * @file
+ * @ingroup Language
  */
 
 if( !defined( 'MEDIAWIKI' ) ) {
@@ -24,7 +27,11 @@ if( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding('UTF-8');
 }
 
-/* a fake language converter */
+/**
+ * a fake language converter
+ *
+ * @ingroup Language
+ */
 class FakeConverter {
 	var $mLang;
 	function FakeConverter($langobj) {$this->mLang = $langobj;}
@@ -41,10 +48,10 @@ class FakeConverter {
 	function armourMath($text){ return $text; }
 }
 
-#--------------------------------------------------------------------------
-# Internationalisation code
-#--------------------------------------------------------------------------
-
+/**
+ * Internationalisation code
+ * @ingrouo Language
+ */
 class Language {
 	var $mConverter, $mVariants, $mCode, $mLoaded = false;
 	var $mMagicExtensions = array(), $mMagicHookDone = false;

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @addtogroup Media
+ * @ingroup Media
  */
 class ArchivedFile
 {

@@ -1,7 +1,8 @@
 <?php
 /** Sinhalese (සිංහල)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Asiri wiki
  * @author Chandana

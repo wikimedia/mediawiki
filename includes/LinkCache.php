@@ -2,7 +2,7 @@
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
  *
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class LinkCache {
 	// Increment $mClassVer whenever old serialized versions of this class

@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * A query module to list all langlinks (links to correspanding foreign language pages).
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryLangLinks extends ApiQueryBase {
 

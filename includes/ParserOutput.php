@@ -1,7 +1,7 @@
 <?php
 /**
  * @todo document
- * @addtogroup Parser
+ * @ingroup Parser
  */
 class ParserOutput
 {

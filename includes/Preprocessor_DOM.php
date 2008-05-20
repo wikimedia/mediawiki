@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @ingroup Parser
+ */
 class Preprocessor_DOM implements Preprocessor {
 	var $parser, $memoryLimit;
 
@@ -585,6 +588,7 @@ class Preprocessor_DOM implements Preprocessor {
 
 /**
  * Stack class to help Preprocessor::preprocessToObj()
+ * @ingroup Parser
  */
 class PPDStack {
 	var $stack, $rootAccum, $top;
@@ -661,6 +665,9 @@ class PPDStack {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPDStackElement {
 	var $open,		        // Opening character (\n for heading)
 		$close,     	    // Matching closing character
@@ -727,6 +734,9 @@ class PPDStackElement {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPDPart {
 	var $out; // Output accumulator string
 
@@ -742,6 +752,7 @@ class PPDPart {
 
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
+ * @ingroup Parser
  */
 class PPFrame_DOM implements PPFrame {
 	var $preprocessor, $parser, $title;
@@ -1156,6 +1167,7 @@ class PPFrame_DOM implements PPFrame {
 
 /**
  * Expansion frame with template arguments
+ * @ingroup Parser
  */
 class PPTemplateFrame_DOM extends PPFrame_DOM {
 	var $numberedArgs, $namedArgs, $parent;
@@ -1241,6 +1253,9 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	}
 }
 
+/**
+ * @ingroup Parser
+ */
 class PPNode_DOM implements PPNode {
 	var $node;
 

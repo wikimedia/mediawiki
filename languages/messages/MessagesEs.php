@@ -1,7 +1,8 @@
 <?php
 /** Spanish (Español)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Alhen
  * @author Alpertron

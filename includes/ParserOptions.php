@@ -3,7 +3,7 @@
 /**
  * Set options of the Parser
  * @todo document
- * @addtogroup Parser
+ * @ingroup Parser
  */
 class ParserOptions
 {

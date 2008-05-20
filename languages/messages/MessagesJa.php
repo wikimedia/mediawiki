@@ -1,7 +1,8 @@
 <?php
 /** Japanese (日本語)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Suisui
  * @author Marine-Blue

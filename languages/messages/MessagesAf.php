@@ -1,7 +1,8 @@
 <?php
 /** Afrikaans (Afrikaans)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Adriaan

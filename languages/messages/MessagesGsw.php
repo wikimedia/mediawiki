@@ -1,7 +1,8 @@
 <?php
 /** Swiss German (Alemannisch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Helix84
  * @author 80686

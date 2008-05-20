@@ -3,15 +3,14 @@
  * Rebuild interwiki table using the file on meta and the language list
  * Wikimedia specific!
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
-
-/** */
 
 /**
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 class Site {
 	var $suffix, $lateral, $url;
@@ -257,5 +256,3 @@ function makeLink( $entry, &$first, $source ) {
 	$sql .= "(" . $dbr->makeList( $entry ) . ")";
 	return $sql;
 }
-
-?>

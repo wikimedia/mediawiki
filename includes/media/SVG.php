@@ -1,7 +1,11 @@
 <?php
+/**
+ * @file
+ * @ingroup Media
+ */
 
 /**
- * @addtogroup Media
+ * @ingroup Media
  */
 class SvgHandler extends ImageHandler {
 	function isEnabled() {

@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * This is the abstract base class for API formatters.
  *
- * @addtogroup API
+ * @ingroup API
  */
 abstract class ApiFormatBase extends ApiBase {
 
@@ -238,7 +238,7 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 
 /**
  * This printer is used to wrap an instance of the Feed class
- * @addtogroup API
+ * @ingroup API
  */
 class ApiFormatFeedWrapper extends ApiFormatBase {
 

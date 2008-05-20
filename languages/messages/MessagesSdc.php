@@ -1,7 +1,8 @@
 <?php
 /** Sassaresu (Sassaresu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Felis
  * @author Antofa

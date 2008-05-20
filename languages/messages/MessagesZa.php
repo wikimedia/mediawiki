@@ -1,7 +1,8 @@
 <?php
 /** Zhuang (壮语)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 $fallback = 'zh-hans';

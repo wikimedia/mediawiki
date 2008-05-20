@@ -1,7 +1,8 @@
 <?php
 /** Kara-Kalpak (Qaraqalpaqsha)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Atabek
  * @author Jiemurat

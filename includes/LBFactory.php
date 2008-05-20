@@ -1,7 +1,12 @@
 <?php
+/**
+ * @file
+ * @ingroup Database
+ */
 
 /**
  * An interface for generating database load balancers
+ * @ingroup Database
  */
 abstract class LBFactory {
 	static $instance;

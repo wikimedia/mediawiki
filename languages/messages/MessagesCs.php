@@ -1,7 +1,8 @@
 <?php
 /** Czech (Česky)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Mormegil
  * @author Li-sung

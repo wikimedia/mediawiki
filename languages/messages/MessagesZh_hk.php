@@ -2,7 +2,8 @@
 /**
  * Chinese (Hong Kong) (中文 (香港))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 $fallback = 'zh-hant';

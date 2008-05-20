@@ -1,7 +1,8 @@
 <?php
 /**
+ * @file
  * @deprecated
- * @addtogroup MaintenanceArchive
+ * @ingroup MaintenanceArchive
  */
 
 /** */

@@ -18,8 +18,13 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * @file
+ * @ingroup Search
+ */
+
+/**
  * Search engine hook base class for Oracle (ConText).
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchOracle extends SearchEngine {
 	function __construct($db) {
@@ -210,7 +215,7 @@ class SearchOracle extends SearchEngine {
 }
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class OracleSearchResultSet extends SearchResultSet {
 	function __construct($resultSet, $terms) {

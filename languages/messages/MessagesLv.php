@@ -1,7 +1,8 @@
 <?php
 /** Latvian (Latviešu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Niklas Laxström
  * @author Yyy

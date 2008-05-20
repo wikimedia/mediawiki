@@ -6,8 +6,9 @@
  * This is only for MySQL (see bug 9905). For postgres we can probably
  * use SearchPostgres::update($pageid);
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 
 /** */

@@ -2,8 +2,10 @@
 /**
  * Rebuild recent changes table
  *
+ * @file
  * @deprecated
- * @addtogroup MaintenanceArchive
+ * @ingroup MaintenanceArchive
+ * @defgroup MaintenanceArchive MaintenanceArchive
  */
 
 /** */

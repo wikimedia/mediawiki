@@ -1,7 +1,8 @@
 <?php
 /** Cmique Itom (Cmique Itom)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop

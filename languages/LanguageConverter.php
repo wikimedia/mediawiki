@@ -1,6 +1,6 @@
 <?php
 /**
-  * @addtogroup Language
+  * @ingroup Language
   *
   * @author Zhengzhu Feng <zhengzhu@gmail.com>
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License

@@ -1,7 +1,8 @@
 <?php
 /** Ossetic (Иронау)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Siebrand
  * @author לערי ריינהארט

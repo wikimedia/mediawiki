@@ -1,7 +1,8 @@
 <?php
 /** Interlingua (Interlingua)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Siebrand

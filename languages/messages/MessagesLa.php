@@ -1,7 +1,8 @@
 <?php
 /** Latin (Latina)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author UV

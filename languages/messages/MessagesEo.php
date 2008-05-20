@@ -1,7 +1,8 @@
 <?php
 /** Esperanto (Esperanto)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Tlustulimu
  * @author Michawiki

@@ -1,7 +1,8 @@
 <?php
 /** Papiamento (Papiamentu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kamizu
  * @author לערי ריינהארט

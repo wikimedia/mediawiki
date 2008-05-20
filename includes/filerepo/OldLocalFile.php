@@ -3,7 +3,7 @@
 /**
  * Class to represent a file in the oldimage table
  *
- * @addtogroup FileRepo
+ * @ingroup FileRepo
  */
 class OldLocalFile extends LocalFile {
 	var $requestedTime, $archive_name;

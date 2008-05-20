@@ -19,7 +19,8 @@
 
 /**
  * Run text & title search and display the output
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -43,7 +44,7 @@ function wfSpecialSearch( $par = '' ) {
 
 /**
  * implements Special:Search - Run text & title search and display the output
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialSearch {
 

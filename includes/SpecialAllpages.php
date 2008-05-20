@@ -1,6 +1,7 @@
 <?php
 /**
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -35,7 +36,7 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 
 /**
  * Implements Special:Allpages
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialAllpages {
 	/**

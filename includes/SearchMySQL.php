@@ -18,8 +18,13 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * @file
+ * @ingroup Search
+ */
+
+/**
  * Search engine hook for MySQL 4+
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchMySQL extends SearchEngine {
 	var $strictMatching = true;
@@ -226,7 +231,7 @@ class SearchMySQL extends SearchEngine {
 }
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class MySQLSearchResultSet extends SearchResultSet {
 	function MySQLSearchResultSet( $resultSet, $terms ) {

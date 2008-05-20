@@ -1,7 +1,8 @@
 <?php
 /** Sundanese (Basa Sunda)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kandar
  * @author Irwangatot

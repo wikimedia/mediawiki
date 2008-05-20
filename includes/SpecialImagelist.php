@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -19,8 +19,7 @@ function wfSpecialImagelist() {
 }
 
 /**
- * @addtogroup SpecialPage
- * @addtogroup Pager
+ * @ingroup SpecialPage Pager
  */
 class ImageListPager extends TablePager {
 	var $mFieldNames = null;

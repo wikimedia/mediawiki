@@ -1,7 +1,8 @@
 <?php
 /** Malagasy (Malagasy)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand

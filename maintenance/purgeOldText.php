@@ -3,7 +3,8 @@
 /**
  * Purge old text records from the database
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

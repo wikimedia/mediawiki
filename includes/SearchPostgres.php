@@ -18,8 +18,13 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * @file
+ * @ingroup Search
+ */
+
+/**
  * Search engine hook base class for Postgres
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchPostgres extends SearchEngine {
 
@@ -210,7 +215,7 @@ class SearchPostgres extends SearchEngine {
 } ## end of the SearchPostgres class
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class PostgresSearchResult extends SearchResult {
 	function PostgresSearchResult( $row ) {
@@ -223,7 +228,7 @@ class PostgresSearchResult extends SearchResult {
 }
 
 /**
- * @addtogroup Search
+ * @ingroup Search
  */
 class PostgresSearchResultSet extends SearchResultSet {
 	function PostgresSearchResultSet( $resultSet, $terms ) {

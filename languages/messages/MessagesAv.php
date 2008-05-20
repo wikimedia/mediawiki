@@ -1,7 +1,8 @@
 <?php
 /** Avaric (Авар)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MONARCH79
  * @author Phoebe

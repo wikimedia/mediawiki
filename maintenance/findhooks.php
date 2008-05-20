@@ -12,7 +12,8 @@
  *
  * Any instance of wfRunHooks that doesn't meet these parameters will be noted.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  *
  * @author Ashar Voultoiz <hashar@altern.org>
  * @copyright Copyright © Ashar voultoiz

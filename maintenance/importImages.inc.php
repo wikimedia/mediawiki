@@ -3,7 +3,8 @@
 /**
  * Support functions for the importImages script
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

@@ -1,7 +1,8 @@
 <?php
 /** Friulian (Furlan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Klenje
  * @author לערי ריינהארט

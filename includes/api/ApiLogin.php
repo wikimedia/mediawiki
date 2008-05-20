@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Unit to authenticate log-in attempts to the current wiki.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiLogin extends ApiBase {
 

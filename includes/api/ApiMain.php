@@ -29,6 +29,10 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
+ * @defgroup API API
+ */
+
+/**
  * This is the main API class, used for both external and internal processing.
  * When executed, it will create the requested formatter object,
  * instantiate and execute an object associated with the needed action,
@@ -39,7 +43,7 @@ if (!defined('MEDIAWIKI')) {
  * case any internal exceptions will not be handled but passed up to the caller.
  * After successful execution, use getResult() for the resulting data.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiMain extends ApiBase {
 
@@ -608,7 +612,7 @@ class ApiMain extends ApiBase {
  * This exception will be thrown when dieUsage is called to stop module execution.
  * The exception handling code will print a help screen explaining how this API may be used.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class UsageException extends Exception {
 

@@ -1,9 +1,8 @@
 <?php
 /**
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
-
- /** */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	echo "This file is not a valid entry point\n";

@@ -8,7 +8,7 @@ class Autopromote {
 	/**
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
-	 * @param User $user The user to get the groups for
+	 * @param $user The user to get the groups for
 	 * @return array Array of groups to promote to.
 	 */
 	public static function getAutopromoteGroups( User $user ) {
@@ -33,8 +33,8 @@ class Autopromote {
 	 * This function evaluates the former type recursively, and passes off to
 	 * self::checkCondition for evaluation of the latter type.
 	 *
-	 * @param mixed $cond A condition, possibly containing other conditions
-	 * @param User  $user The user to check the conditions against
+	 * @param $cond Mixed: a condition, possibly containing other conditions
+	 * @param $user The user to check the conditions against
 	 * @return bool Whether the condition is true
 	 */
 	private static function recCheckCondition( $cond, User $user ) {
@@ -75,8 +75,8 @@ class Autopromote {
 	 * APCOND_AGE.  Other types will throw an exception if no extension evalu-
 	 * ates them.
 	 *
-	 * @param array $cond A condition, which must not contain other conditions
-	 * @param User  $user The user to check the condition against
+	 * @param $cond Array: A condition, which must not contain other conditions
+	 * @param $user The user to check the condition against
 	 * @return bool Whether the condition is true for the user
 	 */
 	private static function checkCondition( $cond, User $user ) {

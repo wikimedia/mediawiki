@@ -2,6 +2,8 @@
 
 /**
  * Job for email notification mails
+ *
+ * @ingroup JobQueue
  */
 class EnotifNotifyJob extends Job {
 

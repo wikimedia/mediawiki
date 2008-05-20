@@ -1,10 +1,13 @@
 <?php
-require_once( "commandLine.inc" );
-
 /**
  * Why yes, this *is* another special-purpose Wikimedia maintenance script!
  * Should be fixed up and generalized.
+ *
+ * @file
+ * @ingroup Maintenance
  */
+
+require_once( "commandLine.inc" );
 
 if ( count( $args ) != 2 ) {
 	wfDie( "Rename external storage dbs and leave a new one...\n" .

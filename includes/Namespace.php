@@ -1,6 +1,7 @@
 <?php
 /**
  * Provide things related to namespaces
+ * @file
  */
 
 /**

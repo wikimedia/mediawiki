@@ -1,7 +1,8 @@
 <?php
 /** Hindi (हिन्दी)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Kaustubh

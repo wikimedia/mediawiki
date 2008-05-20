@@ -1,7 +1,8 @@
 <?php
 /** Yiddish (ייִדיש)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Yidel
  * @author Siebrand

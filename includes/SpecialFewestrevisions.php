@@ -1,9 +1,13 @@
 <?php
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
 
 /**
  * Special page for listing the articles with the fewest revisions.
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Martin Drashkov
  */
 class FewestrevisionsPage extends QueryPage {

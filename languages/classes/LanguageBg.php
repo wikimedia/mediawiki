@@ -1,11 +1,8 @@
 <?php
+
 /** Bulgarian (Български)
  *
- * @addtogroup Language
- */
-
-/**
- * @addtogroup Language
+ * @ingroup Language
  */
 class LanguageBg extends Language {
 	/**

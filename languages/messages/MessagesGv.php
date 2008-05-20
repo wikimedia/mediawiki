@@ -1,7 +1,8 @@
 <?php
 /** Manx (Gaelg)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MacTire02
  * @author Siebrand

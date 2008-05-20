@@ -1,7 +1,8 @@
 <?php
 /** Urdu (اردو)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Wisesabre

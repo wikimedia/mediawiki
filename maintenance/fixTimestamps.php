@@ -1,11 +1,13 @@
 <?php
-
 /**
  * This script fixes timestamp corruption caused by one or more webservers 
  * temporarily being set to the wrong time. The time offset must be known and
  * consistent. Start and end times (in 14-character format) restrict the search, 
  * and must bracket the damage. There must be a majority of good timestamps in the 
  * search period.
+ *
+ * @file
+ * @ingroup Maintenance
  */
 
 require_once( 'commandLine.inc' );

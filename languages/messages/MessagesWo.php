@@ -1,7 +1,8 @@
 <?php
 /** Wolof (Wolof)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ibou
  * @author Siebrand

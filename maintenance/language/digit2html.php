@@ -1,4 +1,9 @@
 <?php
+/**
+ * @file
+ * @ingroup MaintenanceLanguage
+ */
+
 require( '../commandLine.inc' );
 
 # A list of unicode numerals is available at:

@@ -1,7 +1,8 @@
 <?php
 /** Ganda (Luganda)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kizito
  * @author Siebrand

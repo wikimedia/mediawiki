@@ -1,7 +1,8 @@
 <?php
 /** Somali (Soomaaliga)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Mimursal
  * @author Nike

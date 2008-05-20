@@ -1,7 +1,8 @@
 <?php
 /** Bosnian (Bosanski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Kal-El

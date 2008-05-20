@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * A query action to get image information and upload history.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryImageInfo extends ApiQueryBase {
 

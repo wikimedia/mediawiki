@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to get information about the currently logged-in user
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryUserInfo extends ApiQueryBase {
 

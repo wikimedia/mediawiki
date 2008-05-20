@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * @todo document
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class ProtectedPagesForm {
 
@@ -235,7 +235,7 @@ class ProtectedPagesForm {
 
 /**
  * @todo document
- * @addtogroup Pager
+ * @ingroup Pager
  */
 class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;

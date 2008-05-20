@@ -1,7 +1,8 @@
 <?php
 /** Fiji Hindi/फ़ीजी हिन्दी (Latin) (Fiji Hindi/फ़ीजी हिन्दी (Latin))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Girmitya
  * @author Siebrand

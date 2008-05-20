@@ -1,7 +1,9 @@
 <?php
 /**
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
+ * @defgroup Maintenance Maintenance
  */
 
 $wgRequestTime = microtime(true);

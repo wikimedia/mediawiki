@@ -2,6 +2,7 @@
 
 /**
  * A foreign repository with a MediaWiki database accessible via the configured LBFactory
+ * @ingroup FileRepo
  */
 class ForeignDBViaLBRepo extends LocalRepo {
 	var $wiki, $dbName, $tablePrefix;

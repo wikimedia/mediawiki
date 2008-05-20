@@ -1,7 +1,8 @@
 <?php
 /** Crimean Turkish (Latin) (Qırımtatarca (Latin))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Alessandro
  * @author AlefZet

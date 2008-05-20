@@ -2,8 +2,8 @@
 
 /**
  * File repository with no files, for performance testing
+ * @ingroup FileRepo
  */
-
 class NullRepo extends FileRepo {
 	function __construct( $info ) {}
 

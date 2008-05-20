@@ -3,6 +3,9 @@
 /**
  * Deletes all pages in the MediaWiki namespace which were last edited by 
  * "MediaWiki default".
+ *
+ * @file
+ * @ingroup Maintenance
  */
 
 if ( !defined( 'MEDIAWIKI' ) ) {

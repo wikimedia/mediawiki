@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * implements Special:Unusedimages
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UnusedimagesPage extends ImageQueryPage {
 

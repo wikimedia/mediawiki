@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @ingroup Parser
+ */
 class Parser_DiffTest
 {
 	var $parsers, $conf;

@@ -1,7 +1,8 @@
 <?php
 /** Icelandic (Íslenska)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Steinninn
  * @author Jóna Þórunn

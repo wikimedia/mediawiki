@@ -1,13 +1,13 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * SpecialShortpages extends QueryPage. It is used to return the shortest
  * pages in the database.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class ShortPagesPage extends QueryPage {
 

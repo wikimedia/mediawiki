@@ -1,7 +1,8 @@
 <?php
 /** Pashto (پښتو)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author SPQRobin

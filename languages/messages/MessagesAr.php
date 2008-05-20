@@ -1,7 +1,8 @@
 <?php
 /** Arabic (العربية)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Meno25
  * @author Mido

@@ -1,7 +1,8 @@
 <?php
 /** Hawaiian (Hawai`i)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Singularity
  * @author SPQRobin

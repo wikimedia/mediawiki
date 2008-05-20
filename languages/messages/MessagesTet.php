@@ -1,7 +1,8 @@
 <?php
 /** Tetum (Tetun)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MF-Warburg
  * @author Siebrand

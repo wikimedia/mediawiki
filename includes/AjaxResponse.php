@@ -1,11 +1,16 @@
 <?php
+/**
+ * @file
+ * @ingroup Ajax
+ */
+
 if( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
 /**
  * @todo document
- * @addtogroup Ajax
+ * @ingroup Ajax
  */
 class AjaxResponse {
 

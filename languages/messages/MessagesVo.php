@@ -1,7 +1,8 @@
 <?php
 /** Volapük (Volapük)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Smeira
  * @author Nike

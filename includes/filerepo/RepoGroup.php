@@ -1,8 +1,14 @@
 <?php
+/**
+ * @defgroup FileRepo FileRepo
+ *
+ * @file
+ * @ingroup FileRepo
+ */
 
 /**
+ * @ingroup FileRepo
  * Prioritized list of file repositories
- * @addtogroup FileRepo
  */
 class RepoGroup {
 	var $localRepo, $foreignRepos, $reposInitialised = false;

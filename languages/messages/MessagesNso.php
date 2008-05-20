@@ -1,7 +1,8 @@
 <?php
 /** Northern Sotho (Sesotho sa Leboa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Mohau
  * @author Siebrand

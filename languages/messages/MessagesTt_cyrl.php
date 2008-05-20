@@ -1,7 +1,8 @@
 <?php
 /** Tatar (Cyrillic) (Tatarça/Татарча (Cyrillic))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ерней
  * @author Himiq Dzyu

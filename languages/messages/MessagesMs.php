@@ -1,7 +1,8 @@
 <?php
 /** Malay (Bahasa Melayu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Aviator

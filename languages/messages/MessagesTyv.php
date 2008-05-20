@@ -1,7 +1,8 @@
 <?php
 /** Tuvinian (Тыва дыл)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Krice from Tyvanet.com
  * @author friends at tyvawiki.org

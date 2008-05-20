@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 function wfSpecialCategories() {
@@ -21,8 +21,7 @@ function wfSpecialCategories() {
  * TODO: Allow sorting by count.  We need to have a unique index to do this
  * properly.
  *
- * @addtogroup SpecialPage
- * @addtogroup Pager
+ * @ingroup SpecialPage Pager
  */
 class CategoryPager extends AlphabeticPager {
 	function getQueryInfo() {

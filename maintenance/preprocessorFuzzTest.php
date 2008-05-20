@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
 
 require_once( dirname( __FILE__ ). '/../maintenance/commandLine.inc' );
 

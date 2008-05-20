@@ -43,7 +43,7 @@ if (!defined('MEDIAWIKI')) {
  *   '*'        This key has special meaning only to the XML formatter, and is outputed as is
  * 				for all others. In XML it becomes the content of the current element.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiResult extends ApiBase {
 

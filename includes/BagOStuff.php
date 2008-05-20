@@ -17,13 +17,15 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
+
 /**
+ * @defgroup Cache Cache
  *
+ * @file
+ * @ingroup Cache
  */
 
 /**
- * Simple generic object store
- *
  * interface is intended to be more or less compatible with
  * the PHP memcached client.
  *
@@ -33,7 +35,7 @@
  *   $bag = new MediaWikiBagOStuff($tablename); # connect to db first
  * </code>
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class BagOStuff {
 	var $debugmode;
@@ -171,7 +173,7 @@ class BagOStuff {
  * This is a test of the interface, mainly. It stores things in an associative
  * array, which is not going to persist between program runs.
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class HashBagOStuff extends BagOStuff {
 	var $bag;
@@ -215,7 +217,7 @@ class HashBagOStuff extends BagOStuff {
 /**
  * Generic class to store objects in a database
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 abstract class SqlBagOStuff extends BagOStuff {
 	var $table;
@@ -416,7 +418,7 @@ abstract class SqlBagOStuff extends BagOStuff {
 /**
  * Stores objects in the main database of the wiki
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	var $tableInitialised = false;
@@ -491,7 +493,7 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
  * that Turck's serializer is faster, so a possible future extension would be
  * to use it for arrays but not for objects.
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class TurckBagOStuff extends BagOStuff {
 	function get($key) {
@@ -526,7 +528,7 @@ class TurckBagOStuff extends BagOStuff {
 /**
  * This is a wrapper for APC's shared memory functions
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class APCBagOStuff extends BagOStuff {
 	function get($key) {
@@ -555,7 +557,7 @@ class APCBagOStuff extends BagOStuff {
  * This is basically identical to the Turck MMCache version,
  * mostly because eAccelerator is based on Turck MMCache.
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class eAccelBagOStuff extends BagOStuff {
 	function get($key) {
@@ -591,7 +593,7 @@ class eAccelBagOStuff extends BagOStuff {
  * Wrapper for XCache object caching functions; identical interface
  * to the APC wrapper
  *
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class XCacheBagOStuff extends BagOStuff {
 
@@ -637,7 +639,7 @@ class XCacheBagOStuff extends BagOStuff {
 
 /**
  * @todo document
- * @atttogroup Cache
+ * @ingroup Cache
  */
 class DBABagOStuff extends BagOStuff {
 	var $mHandler, $mFile, $mReader, $mWriter, $mDisabled;

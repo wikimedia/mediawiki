@@ -1,7 +1,8 @@
 <?php
 /** Lithuanian (Lietuvių)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Garas
  * @author Hugo.arg

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @ingroup MaintenanceLanguage
+ */
 
 class CheckLanguageCLI {
 	protected $code  = null;

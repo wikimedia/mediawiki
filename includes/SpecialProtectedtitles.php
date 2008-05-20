@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * @todo document
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class ProtectedTitlesForm {
 
@@ -154,7 +154,7 @@ class ProtectedTitlesForm {
 
 /**
  * @todo document
- * @addtogroup Pager
+ * @ingroup Pager
  */
 class ProtectedtitlesPager extends AlphabeticPager {
 	public $mForm, $mConds;

@@ -1,7 +1,8 @@
 <?php
 /** Tajik (Тоҷикӣ/tojikī)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  * @comment falls back to Tajik (Cyrillic)
  *
  */

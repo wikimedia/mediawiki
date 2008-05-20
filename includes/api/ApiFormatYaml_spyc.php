@@ -10,7 +10,7 @@
 
   /**
    * A node, used by Spyc for parsing YAML.
-   * @addtogroup API
+   * @ingroup API
    */
   class YAMLNode {
     /**#@+
@@ -58,7 +58,7 @@
    *   $parser = new Spyc;
    *   $array  = $parser->load($file);
    * </code>
-   * @addtogroup API
+   * @ingroup API
    */
   class Spyc {
 

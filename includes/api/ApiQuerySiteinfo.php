@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * A query action to return meta information about the wiki site.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
 

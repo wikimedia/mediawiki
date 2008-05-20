@@ -1,7 +1,7 @@
 <?php
 /** Kazakh (Қазақша)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
 
 class LanguageKk_cyrl extends Language {

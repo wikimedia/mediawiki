@@ -1,7 +1,8 @@
 <?php
 /** Pontic (Ποντιακά)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Consta
  * @author Sinopeus

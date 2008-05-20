@@ -1,7 +1,8 @@
 <?php
 /** Lao (ລາວ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Passawuth
  * @author Tuinui
