@@ -102,10 +102,6 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Categories related messages
-'categories'                     => 'Dagiti Categoria',
-'categoriespagetext'             => 'Dagiti sumaganad a categoria ket addaan pampanid wenno media.',
-'special-categories-sort-count'  => 'urnosen babaen ti bilang',
-'special-categories-sort-abc'    => 'urnosen nga alfabetikal',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'                => 'Dagiti articulo iti categoria "$1"',
 'subcategories'                  => 'Dagiti subcategoria',
@@ -397,8 +393,10 @@ Saankan a makaaramid pay.',
 # Password reset dialog
 'resetpass'           => 'Sukatan ti pasesbalikas ti account',
 'resetpass_header'    => 'Sukatan ti pasesbalikas',
+'resetpass_submit'    => 'Ikabil ti pasesbalikas ken login',
 'resetpass_success'   => 'Sibaballigi a nabaliwan ti pasesbalikasmo! Sumsumrekkan...',
 'resetpass_forbidden' => 'Saan a mabalin a baliwan dagiti pasesbalikas iti {{SITENAME}}',
+'resetpass_missing'   => 'Awan ti form data.',
 
 # Edit page toolbar
 'bold_sample'     => 'Napuskol a texto',
@@ -486,6 +484,7 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno k
 amangan ta sumagmamano a browsers ket agparikut iti panagedit iti pampanid a dandani 32kb, wenno ad-adu pay, ti kaatiddogna.
 Pangngaasim ta padasem a pasetpasetem ti panid iti babbabassit a benneg.</strong>',
 'protectedpagewarning'      => '<strong>BALLAAG:  Daytoy a panid ket nabalunetan tapno dagiti laeng agar-aramat nga addaan previlehio a sysop wenno administrador ti makabalbaliw itoy.</strong>',
+'titleprotectedwarning'     => '<strong>BALLAAG:  Nabalunetan daytoy a panid tapno sumagmamano laeng nga agar-aramat ti mabalin a mangparnuay.</strong>',
 'templatesused'             => 'Dagiti template a naaramat iti daytoy a panid:',
 'templatesusedpreview'      => 'Dagiti template a naaramat iti daytoy a preview:',
 'templatesusedsection'      => 'Dagiti templates a naaramat iti daytoy a benneg:',
@@ -494,6 +493,7 @@ Pangngaasim ta padasem a pasetpasetem ti panid iti babbabassit a benneg.</strong
 'nocreatetitle'             => 'Limitado ti panagaramid iti panid',
 'nocreatetext'              => 'Pinaritan ti {{SITENAME}} ti kabalinan a makapartuat iti kabarbaro a pampanid.
 Mabalinmo ti agsubli ken agedit iti adda a panid, wenno [[Special:Userlogin|sumrek wenno mangaramid iti account]].',
+'nocreate-loggedin'         => 'Awananka iti pammalubos a mangaramid iti kabarbaro a pampanid iti {{SITENAME}}.',
 'recreate-deleted-warn'     => "'''Ballaag: Mangar-aramidka iti panid a naikkaten iti kallabes.'''
 
 Nasken a siguraduem no maikanatad nga ituloymo a parnuayen manen wenno editen daytoy a panid.
@@ -853,6 +853,12 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'allpagessubmit'  => 'mapanen',
 'allpagesprefix'  => 'Iparang dagiti pampanid nga addaan prefix:',
 'allpages-bad-ns' => 'Awanan ti {{SITENAME}} iti namespace a "$1".',
+
+# Special:Categories
+'categories'                    => 'Dagiti Categoria',
+'categoriespagetext'            => 'Dagiti sumaganad a categoria ket addaan pampanid wenno media.',
+'special-categories-sort-count' => 'urnosen babaen ti bilang',
+'special-categories-sort-abc'   => 'urnosen nga alfabetikal',
 
 # Special:Listusers
 'listusersfrom'      => 'Iparang dagiti agar-aramat mangrugi iti:',

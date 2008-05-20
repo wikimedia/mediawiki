@@ -324,10 +324,6 @@ $messages = array(
 'dec'           => 'дек',
 
 # Categories related messages
-'categories'                     => 'Категории',
-'categoriespagetext'             => 'Следните категории съдържат страници или медийни файлове.',
-'special-categories-sort-count'  => 'сортиране по брой',
-'special-categories-sort-abc'    => 'сортиране по азбучен ред',
 'pagecategories'                 => '{{PLURAL:$1|Категория|Категории}}',
 'category_header'                => 'Страници в категория „$1“',
 'subcategories'                  => 'Подкатегории',
@@ -506,7 +502,9 @@ $messages = array(
 'nosuchaction'      => 'Няма такова действие',
 'nosuchactiontext'  => 'Действието, указано от мрежовия адрес, не се разпознава от системата.',
 'nosuchspecialpage' => 'Няма такава специална страница',
-'nospecialpagetext' => 'Отправихте заявка за невалидна [[Special:Specialpages|специална страница]].',
+'nospecialpagetext' => "<big>'''Отправихте заявка за невалидна специална страница.'''</big>
+
+Списък с валидните специални страници може да бъде видян на [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Грешка',
@@ -1521,6 +1519,12 @@ $2',
 'allpagesprefix'    => 'Показване на страници, започващи със:',
 'allpagesbadtitle'  => 'Зададеното име е невалидно. Възможно е да съдържа междуезикова или междупроектна представка или пък знаци, които не могат да се използват в заглавия.',
 'allpages-bad-ns'   => 'В {{SITENAME}} не съществува именно пространство „$1“.',
+
+# Special:Categories
+'categories'                    => 'Категории',
+'categoriespagetext'            => 'Следните категории съдържат страници или медийни файлове.',
+'special-categories-sort-count' => 'сортиране по брой',
+'special-categories-sort-abc'   => 'сортиране по азбучен ред',
 
 # Special:Listusers
 'listusersfrom'      => 'Показване на потребителите, започвайки от:',

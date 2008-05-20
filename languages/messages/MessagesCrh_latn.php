@@ -208,10 +208,6 @@ $messages = array(
 'dec'           => 'dek',
 
 # Categories related messages
-'categories'                     => 'Saife kategoriyaları',
-'categoriespagetext'             => 'Vikide aşağıdaki kategoriyalar mevcüttir.',
-'special-categories-sort-count'  => 'sayılarına köre sırala',
-'special-categories-sort-abc'    => 'elifbe sırasınen sırala',
 'pagecategories'                 => '{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}',
 'category_header'                => '"$1" kategoriyasındaki saifeler',
 'subcategories'                  => 'Alt kategoriyalar',
@@ -514,7 +510,7 @@ Bu saytnıñ ayarlarını (nastroykalarını) şahsıñızğa köre [[{{ns:speci
 'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñiz ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
-'wrongpassword'              => 'Kirgen/Belgilegen paroliñiz yañlıştır.',
+'wrongpassword'              => 'Kirsetken paroliñiz yañlıştır. Lütfen, tekrar etiñiz.',
 'wrongpasswordempty'         => 'Boş parol kirmeñiz/belgilemeñiz.',
 'passwordtooshort'           => 'Paroliñiz pek qısqa. Eñ az $1 ariften ve/ya da raqamdan ibaret olmalı.',
 'mailmypassword'             => 'Yañı parol yiber',
@@ -1154,6 +1150,12 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'allpagesprefix'    => 'Yazğan ariflernen başlağan saifelerni köster:',
 'allpagesbadtitle'  => 'Saifeniñ adı keçerli degil. Serlevada tiller arası prefiksi ya da vikiler arası bağlantı ya da başqa qullanıluvı yasaq olğan simvollar bardır.',
 'allpages-bad-ns'   => '{{SITENAME}} saytında "$1" isim fezası yoqtır.',
+
+# Special:Categories
+'categories'                    => 'Saife kategoriyaları',
+'categoriespagetext'            => 'Vikide aşağıdaki kategoriyalar mevcüttir.',
+'special-categories-sort-count' => 'sayılarına köre sırala',
+'special-categories-sort-abc'   => 'elifbe sırasınen sırala',
 
 # Special:Listusers
 'listusers-submit'   => 'Köster',

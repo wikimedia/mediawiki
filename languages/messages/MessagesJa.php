@@ -161,9 +161,6 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'                     => 'カテゴリ',
-'categoriespagetext'             => '{{SITENAME}}には以下のカテゴリが存在します。',
-'special-categories-sort-count'  => '項目数順',
 'pagecategories'                 => 'カテゴリ',
 'category_header'                => 'カテゴリ “$1” にあるページ',
 'subcategories'                  => 'サブカテゴリ',
@@ -1050,7 +1047,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'filehist-filesize'         => 'ファイルサイズ',
 'filehist-comment'          => 'コメント',
 'imagelinks'                => 'リンク',
-'linkstoimage'              => 'このファイルにリンクしているページの一覧:',
+'linkstoimage'              => 'このファイルを使用しているページの一覧:',
 'nolinkstoimage'            => 'このファイルにリンクしているページはありません。',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'          => '詳しい情報は$1を参照してください。',
@@ -1232,6 +1229,11 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'allpagesprefix'    => '次の文字列から始まるページを表示:',
 'allpagesbadtitle'  => '指定したタイトルは無効か、他言語版または他ウィキ内のタイトルです。ページタイトルに使用できない文字が含まれている可能性があります。',
 'allpages-bad-ns'   => '{{SITENAME}}に "$1" という名前空間はありません。',
+
+# Special:Categories
+'categories'                    => 'カテゴリ',
+'categoriespagetext'            => '{{SITENAME}}には以下のカテゴリが存在します。',
+'special-categories-sort-count' => '項目数順',
 
 # Special:Listusers
 'listusersfrom'      => 'この文字から表示:',
@@ -1540,6 +1542,7 @@ $NEWPAGE
 'ipbotheroption'              => 'その他',
 'ipbotherreason'              => '理由（その他/追加）',
 'ipbhidename'                 => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',
+'ipbwatchuser'                => 'この利用者の{{ns:2}}ページと{{ns:3}}ページをウォッチリストに追加',
 'badipaddress'                => 'IPアドレスが異常です。',
 'blockipsuccesssub'           => 'ブロックに成功しました。',
 'blockipsuccesstext'          => '利用者またはIPアドレス [[User:$1|$1]]（[[User talk:$1|会話]]|[[Special:Contributions/$1|履歴]]） の投稿をブロックしました。<br /> [[Special:Ipblocklist|{{int:ipblocklist}}]]で確認できます。',
