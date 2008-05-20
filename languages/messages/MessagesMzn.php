@@ -1,10 +1,11 @@
 <?php
 /** Mazandarani
-  *
-  * Minimalistic setup, needed to switch to right-to-left writing.
-  *
-  * @addtogroup Language
-  */
+ *
+ * Minimalistic setup, needed to switch to right-to-left writing.
+ *
+ * @ingroup Language
+ * @file
+ */
 
 $linkPrefixExtension = true;
 $fallback8bitEncoding = 'windows-1256';

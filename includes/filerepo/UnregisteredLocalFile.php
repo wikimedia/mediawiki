@@ -9,6 +9,8 @@
  * TODO: Currently it doesn't really work in the repository role, there are
  * lots of functions missing. It is used by the WebStore extension in the
  * standalone role.
+ *
+ * @ingroup FileRepo
  */
 class UnregisteredLocalFile extends File {
 	var $title, $path, $mime, $handler, $dims;

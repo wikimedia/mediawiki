@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to perform full text search within wiki titles and content
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQuerySearch extends ApiQueryGeneratorBase {
 

@@ -1,7 +1,8 @@
 <?php
 /**
  * Hold things related to displaying and saving user preferences.
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -17,7 +18,7 @@ function wfSpecialPreferences() {
 /**
  * Preferences form handling
  * This object will show the preferences form and can save it as well.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class PreferencesForm {
 	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;

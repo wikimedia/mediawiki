@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @ingroup Language
+ */
 class LanguageRmy extends Language {
 	/**
 	 * Convert from the nominative form of a noun to some other case

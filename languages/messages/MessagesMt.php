@@ -1,7 +1,8 @@
 <?php
 /** Maltese (Malti)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  */
 
 $messages = array(

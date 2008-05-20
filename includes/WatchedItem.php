@@ -1,10 +1,11 @@
 <?php
 /**
- *
+ * @file
+ * @ingroup Watchlist
  */
 
 /**
- *
+ * @ingroup Watchlist
  */
 class WatchedItem {
 	var $mTitle, $mUser;

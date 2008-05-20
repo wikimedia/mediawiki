@@ -22,7 +22,8 @@
  * 2005-03-14
  *
  * @todo document
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 if( php_sapi_name() != 'cli' ) {

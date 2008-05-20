@@ -1,8 +1,10 @@
 <?php
 /**
+ * @defgroup DifferenceEngine DifferenceEngine
+ *
+ * @file
  * See diff.doc
  * @todo indicate where diff.doc can be found.
- * @addtogroup DifferenceEngine
  */
 
 /**
@@ -15,8 +17,7 @@ define( 'MW_DIFF_VERSION', '1.11a' );
 
 /**
  * @todo document
- * @public
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class DifferenceEngine {
 	/**#@+
@@ -793,7 +794,7 @@ define('USE_ASSERTS', function_exists('assert'));
 /**
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class _DiffOp {
 	var $type;
@@ -816,7 +817,7 @@ class _DiffOp {
 /**
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class _DiffOp_Copy extends _DiffOp {
 	var $type = 'copy';
@@ -836,7 +837,7 @@ class _DiffOp_Copy extends _DiffOp {
 /**
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class _DiffOp_Delete extends _DiffOp {
 	var $type = 'delete';
@@ -854,7 +855,7 @@ class _DiffOp_Delete extends _DiffOp {
 /**
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class _DiffOp_Add extends _DiffOp {
 	var $type = 'add';
@@ -872,7 +873,7 @@ class _DiffOp_Add extends _DiffOp {
 /**
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class _DiffOp_Change extends _DiffOp {
 	var $type = 'change';
@@ -909,7 +910,7 @@ class _DiffOp_Change extends _DiffOp {
  *
  * @author Geoffrey T. Dairiki, Tim Starling
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class _DiffEngine {
 	const MAX_XREF_LENGTH =  10000;
@@ -1324,7 +1325,7 @@ class _DiffEngine {
  * Class representing a 'diff' between two sequences of strings.
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class Diff
 {
@@ -1463,7 +1464,7 @@ class Diff
 /**
  * @todo document, bad name.
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class MappedDiff extends Diff
 {
@@ -1525,7 +1526,7 @@ class MappedDiff extends Diff
  * to obtain fancier outputs.
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class DiffFormatter {
 	/**
@@ -1679,7 +1680,7 @@ class DiffFormatter {
 
 /**
  * A formatter that outputs unified diffs
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 
 class UnifiedDiffFormatter extends DiffFormatter {
@@ -1703,7 +1704,7 @@ class UnifiedDiffFormatter extends DiffFormatter {
 
 /**
  * A pseudo-formatter that just passes along the Diff::$edits array
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class ArrayDiffFormatter extends DiffFormatter {
 	function format($diff) {
@@ -1759,7 +1760,7 @@ define('NBSP', '&#160;'); // iso-8859-x non-breaking space.
 /**
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class _HWLDF_WordAccumulator {
 	function _HWLDF_WordAccumulator () {
@@ -1820,7 +1821,7 @@ class _HWLDF_WordAccumulator {
 /**
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class WordLevelDiff extends MappedDiff {
 	const MAX_LINE_LENGTH = 10000;
@@ -1903,7 +1904,7 @@ class WordLevelDiff extends MappedDiff {
  * Wikipedia Table style diff formatter.
  * @todo document
  * @private
- * @addtogroup DifferenceEngine
+ * @ingroup DifferenceEngine
  */
 class TableDiffFormatter extends DiffFormatter {
 	function TableDiffFormatter() {

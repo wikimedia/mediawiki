@@ -4,7 +4,8 @@
  * Maintenance script allows creating or editing pages using
  * the contents of a text file
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

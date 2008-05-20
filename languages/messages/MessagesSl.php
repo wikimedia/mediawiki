@@ -1,7 +1,8 @@
 <?php
 /** Slovenian (Slovenščina)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author XJamRastafire
  * @author romanm

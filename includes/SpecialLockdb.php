@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -37,7 +37,7 @@ function wfSpecialLockdb() {
 
 /**
  * A form to make the database readonly (eg for maintenance purposes).
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class DBLockForm {
 	var $reason = '';

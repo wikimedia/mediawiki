@@ -18,7 +18,13 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * @file
+ * @ingroup Maintenance
+ */
+
+/**
  * Look for duplicate user table entries and optionally prune them.
+ * @ingroup Maintenance
  */
 class UserDupes {
 	var $db;
@@ -321,6 +327,3 @@ class UserDupes {
 	}
 
 }
-
-
-?>

@@ -3,6 +3,7 @@
 /**
  * Backwards compatibility class
  * @deprecated
+ * @ingroup FileRepo
  */
 class Image extends LocalFile {
 	function __construct( $title ) {

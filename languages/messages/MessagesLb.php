@@ -1,7 +1,8 @@
 <?php
 /** Luxembourgish (Lëtzebuergesch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand

@@ -1,10 +1,14 @@
 <?php
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
 
 /**
  * Special page lists all uncategorised pages in the
  * template namespace
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
 class UncategorizedTemplatesPage extends UncategorizedPagesPage {

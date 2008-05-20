@@ -1,7 +1,8 @@
 <?php
 /** Romani (Romani)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Niklas Laxström
  * @author לערי ריינהארט

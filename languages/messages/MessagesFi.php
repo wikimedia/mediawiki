@@ -1,7 +1,8 @@
 <?php
 /** Finnish (Suomi)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Crt
  * @author Nike

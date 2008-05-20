@@ -1,7 +1,8 @@
 <?php
 /** Chamorro (Chamoru)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Gadao01
  * @author Magalahi

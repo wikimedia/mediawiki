@@ -1,7 +1,8 @@
 <?php
 /** Lingua Franca Nova (Lingua Franca Nova)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Cgboeree
  * @author Nike

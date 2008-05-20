@@ -2,6 +2,9 @@
 /**
  * Fix the user_registration field.
  * In particular, for values which are NULL, set them to the date of the first edit
+ *
+ * @file
+ * @ingroup Maintenance
  */
 
 require_once( 'commandLine.inc' );

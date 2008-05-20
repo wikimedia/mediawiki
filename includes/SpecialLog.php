@@ -18,8 +18,8 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**

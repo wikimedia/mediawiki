@@ -17,6 +17,10 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ * @defgroup UtfNormal UtfNormal
+ */
+
 /** */
 require_once dirname(__FILE__).'/UtfNormalUtil.php';
 
@@ -54,7 +58,7 @@ define( 'NORMALIZE_ICU', function_exists( 'utf8_normalize' ) );
  *
  * See description of forms at http://www.unicode.org/reports/tr15/
  *
- * @addtogroup UtfNormal
+ * @ingroup UtfNormal
  */
 class UtfNormal {
 	/**

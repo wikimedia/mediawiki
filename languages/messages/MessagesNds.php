@@ -1,7 +1,8 @@
 <?php
 /** Low German (Plattdüütsch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Slomox
  * @author Siebrand

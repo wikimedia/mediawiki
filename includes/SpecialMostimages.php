@@ -1,6 +1,7 @@
 <?php
 /**
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
@@ -9,7 +10,7 @@
 
 /**
  * implements Special:Mostimages
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class MostimagesPage extends ImageQueryPage {
 

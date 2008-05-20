@@ -17,7 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 $optionsWithArgs = array( 'target', 'repository', 'repos' );
@@ -28,6 +29,9 @@ define('EXTINST_NOPATCH', 0);
 define('EXTINST_WRITEPATCH', 6);
 define('EXTINST_HOTPATCH', 10);
 
+/**
+ * @ingroup Maintenance
+ */
 class InstallerRepository {
 	var $path;
 	
@@ -64,6 +68,9 @@ class InstallerRepository {
 	}
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class LocalInstallerRepository extends InstallerRepository {
 
 	function LocalInstallerRepository ( $path ) {
@@ -101,6 +108,9 @@ class LocalInstallerRepository extends InstallerRepository {
 	}        
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class WebInstallerRepository extends InstallerRepository {
 
 	function WebInstallerRepository ( $path ) {
@@ -144,6 +154,9 @@ class WebInstallerRepository extends InstallerRepository {
 	}        
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class SVNInstallerRepository extends InstallerRepository {
 
 	function SVNInstallerRepository ( $path ) {
@@ -176,6 +189,9 @@ class SVNInstallerRepository extends InstallerRepository {
 	}        
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class InstallerResource {
 	var $path;
 	var $isdir;
@@ -243,6 +259,9 @@ class InstallerResource {
 	}
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class LocalInstallerResource extends InstallerResource {
 	function LocalInstallerResource( $path ) {
 		InstallerResource::InstallerResource( $path, is_dir( $path ), true );
@@ -255,6 +274,9 @@ class LocalInstallerResource extends InstallerResource {
         
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class WebInstallerResource extends InstallerResource {
 	function WebInstallerResource( $path ) {
 		InstallerResource::InstallerResource( $path, false, false );
@@ -278,6 +300,9 @@ class WebInstallerResource extends InstallerResource {
 	}        
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class SVNInstallerResource extends InstallerResource {
 	function SVNInstallerResource( $path ) {
 		InstallerResource::InstallerResource( $path, true, false );
@@ -297,6 +322,9 @@ class SVNInstallerResource extends InstallerResource {
 	}        
 }
 
+/**
+ * @ingroup Maintenance
+ */
 class ExtensionInstaller {
 	var $source;
 	var $target;

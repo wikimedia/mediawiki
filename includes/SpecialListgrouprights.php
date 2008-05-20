@@ -4,7 +4,7 @@
  * This special page lists all defined user groups and the associated rights.
  * See also @ref $wgGroupPermissions.
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Petr Kadlec <mormegil@centrum.cz>
  */
 class SpecialListGroupRights extends SpecialPage {

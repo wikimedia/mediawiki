@@ -7,8 +7,9 @@ require_once 'counter.php';
  * Rebuilding is faster if you drop the index and recreate it,
  * but that will prevent searches from working while it runs.
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 
 /** */
@@ -63,5 +64,3 @@ function rebuildTextIndex( &$database )
 		$n += RTI_CHUNK_SIZE;
 	}
 }
-
-?>

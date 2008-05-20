@@ -1,5 +1,9 @@
 <?php
 /**
+ * @defgroup Ajax Ajax
+ *
+ * @file
+ * @ingroup Ajax
  * Handle ajax requests and send them to the proper handler.
  */
 
@@ -11,7 +15,7 @@ require_once( 'AjaxFunctions.php' );
 
 /**
  * Object-Oriented Ajax functions.
- * @addtogroup Ajax
+ * @ingroup Ajax
  */
 class AjaxDispatcher {
 	/** The way the request was made, either a 'get' or a 'post' */

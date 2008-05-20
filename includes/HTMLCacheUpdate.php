@@ -20,6 +20,8 @@
  * The class is nevertheless a vast improvement on the previous method of using
  * Image::getLinksTo() and Title::touchArray(), which uses about 2KB of memory per
  * link.
+ *
+ * @ingroup Cache
  */
 class HTMLCacheUpdate
 {
@@ -185,6 +187,7 @@ class HTMLCacheUpdate
 
 /**
  * @todo document (e.g. one-sentence top-level class description).
+ * @ingroup JobQueue
  */
 class HTMLCacheUpdateJob extends Job {
 	var $table, $start, $end;

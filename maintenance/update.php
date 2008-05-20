@@ -3,8 +3,9 @@ require_once 'counter.php';
 /**
  * Run all updaters.
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 
 /** */

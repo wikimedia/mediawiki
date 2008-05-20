@@ -1,7 +1,8 @@
 <?php
 /** Old English (Anglo Saxon)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author JJohnson

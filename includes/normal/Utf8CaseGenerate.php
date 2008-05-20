@@ -21,7 +21,7 @@
  * This script generates Utf8Case.inc from the Unicode Character Database
  * and supplementary files.
  *
- * @addtogroup UtfNormal
+ * @ingroup UtfNormal
  * @access private
  */
 
@@ -74,7 +74,7 @@ if( $out ) {
  *
  * These are pulled from memcached if possible, as this is faster than filling
  * up a big array manually.
- * @addtogroup Language
+ * @ingroup Language
  */
 
 /*

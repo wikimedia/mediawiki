@@ -4,7 +4,7 @@
  * Provides the UI through which users can perform editing
  * operations on their watchlist
  *
- * @addtogroup Watchlist
+ * @ingroup Watchlist
  * @author Rob Church <robchur@gmail.com>
  */
 class WatchlistEditor {

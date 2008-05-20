@@ -1,7 +1,8 @@
 <?php
 /** Thai (ไทย)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author วรากร อึ้งวิเชียร (Varakorn Ungvichian)
  * @author จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae

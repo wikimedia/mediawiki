@@ -8,7 +8,8 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * compensate with the passage of time and certainly less expensive than a
  * time-freezing device, get yours now!
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, 2006 Ævar Arnfjörð Bjarmason

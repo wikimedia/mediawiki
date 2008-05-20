@@ -1,7 +1,8 @@
 <?php
 /** Gothic (𐌲𐌿𐍄𐌹𐍃𐌺)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

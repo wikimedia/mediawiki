@@ -1,7 +1,8 @@
 <?php
 /** Guarani (Avañe'ẽ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hugo.arg
  * @author Nike

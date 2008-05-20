@@ -1,10 +1,14 @@
 <?php
-
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
+ 
 /**
  * Special page lists templates with a large number of
  * transclusion links, i.e. "most used" templates
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
 class SpecialMostlinkedtemplates extends QueryPage {

@@ -1,7 +1,8 @@
 <?php
 /** Megleno-Romanian (Latin) (Vlăheşte (Latin))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Макѕе
  * @author Кумулај Маркус

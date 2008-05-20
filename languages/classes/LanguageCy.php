@@ -1,7 +1,7 @@
 <?php
 /** Welsh (Cymraeg)
  *
- * @addtogroup Language
+ * @ingroup Language
  *
  * @author Niklas Laxström
  */

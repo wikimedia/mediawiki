@@ -1,7 +1,8 @@
 <?php
 /** Tajik (Cyrillic) (Тоҷикӣ/tojikī (Cyrillic))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ibrahim
  * @author FrancisTyers

@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -19,7 +19,7 @@ function wfSpecialUserlogin( $par = '' ) {
 
 /**
  * implements Special:Login
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class LoginForm {
 

@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 
 /**
  * Pure virtual parent

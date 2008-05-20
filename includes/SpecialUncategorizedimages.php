@@ -1,12 +1,15 @@
 <?php
-
 /**
  * Special page lists images which haven't been categorised
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
 
+/**
+ * @ingroup SpecialPage
+ */
 class UncategorizedImagesPage extends ImageQueryPage {
 
 	function getName() {

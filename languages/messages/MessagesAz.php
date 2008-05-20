@@ -1,7 +1,8 @@
 <?php
 /** Azerbaijani (Azərbaycan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Siebrand
  */

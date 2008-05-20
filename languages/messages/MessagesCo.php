@@ -1,7 +1,8 @@
 <?php
 /** Corsican (Corsu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand

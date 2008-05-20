@@ -1,7 +1,8 @@
 <?php
 /** Quechua (Runa Simi)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Nike
  * @author AlimanRuna

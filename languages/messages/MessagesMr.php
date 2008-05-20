@@ -1,7 +1,8 @@
 <?php
 /** Marathi (मराठी)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Angela
  * @author Hemanshu

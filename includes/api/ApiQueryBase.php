@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
  * This is a base class for all Query modules.
  * It provides some common functionality such as constructing various SQL queries.
  *
- * @addtogroup API
+ * @ingroup API
  */
 abstract class ApiQueryBase extends ApiBase {
 
@@ -370,7 +370,7 @@ abstract class ApiQueryBase extends ApiBase {
 }
 
 /**
- * @addtogroup API
+ * @ingroup API
  */
 abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 

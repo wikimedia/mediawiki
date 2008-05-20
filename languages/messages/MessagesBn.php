@@ -1,7 +1,8 @@
 <?php
 /** Bengali (বাংলা)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Bellayet
  * @author Zaheen

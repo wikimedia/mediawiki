@@ -1,9 +1,13 @@
 <?php
+/**
+ * @file
+ * @ingroup Media
+ */
 
 /**
  * Base class for the output of MediaHandler::doTransform() and File::transform().
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 abstract class MediaTransformOutput {
 	var $file, $width, $height, $url, $page, $path;
@@ -95,7 +99,7 @@ abstract class MediaTransformOutput {
 /**
  * Media transform output for images
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 class ThumbnailImage extends MediaTransformOutput {
 	/**
@@ -172,7 +176,7 @@ class ThumbnailImage extends MediaTransformOutput {
 /**
  * Basic media transform error class
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 class MediaTransformError extends MediaTransformOutput {
 	var $htmlMsg, $textMsg, $width, $height, $url, $path;
@@ -213,7 +217,7 @@ class MediaTransformError extends MediaTransformOutput {
 /**
  * Shortcut class for parameter validation errors
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 class TransformParameterError extends MediaTransformError {
 	function __construct( $params ) {

@@ -1,7 +1,8 @@
 <?php
 /** Megleno-Romanian (Cyrillic) (Vlăheşte (Cyrillic))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Макѕе
  * @author Кумулај Маркус

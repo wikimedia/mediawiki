@@ -1,13 +1,14 @@
 <?php
 /**
- * @TODO: Use some variant of Pager or something; the pagination here is lousy.
+ * @todo Use some variant of Pager or something; the pagination here is lousy.
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * Entry point
- * @param string $par An article name ??
+ * @param $par String: An article name ??
  */
 function wfSpecialWhatlinkshere($par = NULL) {
 	global $wgRequest;
@@ -17,7 +18,7 @@ function wfSpecialWhatlinkshere($par = NULL) {
 
 /**
  * implements Special:Whatlinkshere
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class WhatLinksHerePage {
 	// Stored data

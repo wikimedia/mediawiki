@@ -3,7 +3,8 @@
  * Modern skin, derived from monobook template.
  *
  * @todo document
- * @addtogroup Skins
+ * @file
+ * @ingroup Skins
  */
 
 if( !defined( 'MEDIAWIKI' ) )
@@ -12,7 +13,7 @@ if( !defined( 'MEDIAWIKI' ) )
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @todo document
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class SkinModern extends SkinTemplate {
 	/*
@@ -34,7 +35,7 @@ class SkinModern extends SkinTemplate {
 
 /**
  * @todo document
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class ModernTemplate extends QuickTemplate {
 	/**

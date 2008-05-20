@@ -1,10 +1,9 @@
 <?php
+
 /** French (Français)
  *
- * @addtogroup Language
- *
+ * @ingroup Language
  */
-
 class LanguageFr extends Language {
 	/**
 	 * Use singular form for zero (see bug 7309)

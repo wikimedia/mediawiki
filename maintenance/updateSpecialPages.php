@@ -1,6 +1,11 @@
 <?php
-
-# Run this script periodically if you have miser mode enabled, to refresh the caches
+/**
+ * Run this script periodically if you have miser mode enabled, to refresh the
+ * caches
+ *
+ * @file
+ * @ingroup Maintenance
+ */
 $options = array('only','help');
 
 require_once( 'commandLine.inc' );

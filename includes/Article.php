@@ -1,6 +1,7 @@
 <?php
 /**
  * File for articles
+ * @file
  */
 
 /**

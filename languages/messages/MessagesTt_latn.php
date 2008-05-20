@@ -1,7 +1,8 @@
 <?php
 /** Tatar (Latin) (Tatarça/Татарча (Latin))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Siebrand

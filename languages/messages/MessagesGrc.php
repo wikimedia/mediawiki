@@ -1,7 +1,8 @@
 <?php
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author LeighvsOptimvsMaximvs
  * @author Lefcant

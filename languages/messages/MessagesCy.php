@@ -1,7 +1,8 @@
 <?php
 /** Welsh (Cymraeg)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Lloffiwr
  * @author Nike

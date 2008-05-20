@@ -3,7 +3,8 @@
  * A special page to search for files by hash value as defined in the
  * img_sha1 field in the image table
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  *
  * @author Raimond Spekking, based on Special:MIMESearch by Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -12,6 +13,7 @@
 /**
  * Searches the database for files of the requested hash, comparing this with the
  * 'img_sha1' field in the image table.
+ * @ingroup SpecialPage
  */
 class FileDuplicateSearchPage extends QueryPage {
 	var $hash, $filename;

@@ -20,7 +20,8 @@
 /**
  * @todo Make this more independent of the configuration (and if possible the database)
  * @todo document
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 /** */
@@ -33,7 +34,7 @@ require_once( "$IP/maintenance/parserTestsStaticParserHook.php" );
 require_once( "$IP/maintenance/parserTestsParserTime.php" );
 
 /**
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 class ParserTest {
 	/**
@@ -1183,5 +1184,3 @@ class DbTestPreviewer extends DbTestRecorder  {
 		TestRecorder::end();
 	}
 }
-
-?>

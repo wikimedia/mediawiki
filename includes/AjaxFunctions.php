@@ -1,6 +1,7 @@
 <?php
 /**
- * @addtogroup Ajax
+ * @file
+ * @ingroup Ajax
  */
 
 if( !defined( 'MEDIAWIKI' ) ) {

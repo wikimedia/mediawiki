@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
 
 function wfInitStats( $options=array() ) {
 	$dbr = wfGetDB( DB_SLAVE );
@@ -51,5 +55,3 @@ function wfInitStats( $options=array() ) {
 
 	echo( "done.\n" );
 }
-
-?>

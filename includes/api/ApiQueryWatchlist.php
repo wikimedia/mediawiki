@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
  * This query action allows clients to retrieve a list of recently modified pages
  * that are part of the logged-in user's watchlist.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 

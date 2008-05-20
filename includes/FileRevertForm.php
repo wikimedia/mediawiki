@@ -3,7 +3,7 @@
 /**
  * File reversion user interface
  *
- * @addtogroup Media
+ * @ingroup Media
  * @author Rob Church <robchur@gmail.com>
  */
 class FileRevertForm {

@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
  * API module that facilitates the unblocking of users. Requires API write mode
  * to be enabled.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiUnblock extends ApiBase {
 

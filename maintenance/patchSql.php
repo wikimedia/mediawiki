@@ -1,7 +1,11 @@
 <?php
-
-// Manually run an SQL patch outside of the general updaters.
-// This ensures that the DB options (charset, prefix, engine) are correctly set.
+/**
+ * Manually run an SQL patch outside of the general updaters.
+ * This ensures that the DB options (charset, prefix, engine) are correctly set.
+ *
+ * @file
+ * @ingroup Maintenance
+ */
 
 require_once 'commandLine.inc';
 require_once "$IP/maintenance/updaters.inc";

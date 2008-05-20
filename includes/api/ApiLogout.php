@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
  * API module to allow users to log out of the wiki. API equivalent of
  * Special:Userlogout.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiLogout extends ApiBase {
 

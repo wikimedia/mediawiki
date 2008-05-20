@@ -2,7 +2,7 @@
 /**
  * A special page to show pages in the
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
@@ -10,7 +10,7 @@
  */
 
 /**
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class MostrevisionsPage extends QueryPage {
 

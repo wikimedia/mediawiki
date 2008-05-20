@@ -1,7 +1,8 @@
 <?php
 /** Hiligaynon (Ilonggo)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jose77
  * @author Kguirnela

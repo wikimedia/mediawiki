@@ -1,7 +1,8 @@
 <?php
 /** Jutish (Jysk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ælsån
  * @author Huslåke

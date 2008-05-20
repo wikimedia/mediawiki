@@ -1,6 +1,7 @@
 <?php
 /**
  * A few constants that might be needed during LocalSettings.php
+ * @file
  */
 
 /**

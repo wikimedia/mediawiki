@@ -3,7 +3,8 @@
 /**
  * Support functions for the deleteArchivedFiles script
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Aaron Schulz
  */
 
@@ -53,5 +54,3 @@ function DeleteArchivedFiles( $delete = false ) {
 	
 	$transaction->commit();
 }
-
-?>

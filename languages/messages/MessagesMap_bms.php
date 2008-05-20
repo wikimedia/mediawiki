@@ -1,8 +1,8 @@
 <?php
 /** Banyumasan (Basa Banyumasan)
  *
- * @addtogroup Language
- *
+ * @ingroup Language
+ * @file
  */
 
 $fallback = 'jv';

@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
  * Query module to enumerate all categories, even the ones that don't have
  * category pages.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 

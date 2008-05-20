@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * implements Special:Popularpages
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class PopularPagesPage extends QueryPage {
 

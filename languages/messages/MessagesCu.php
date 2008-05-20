@@ -1,7 +1,8 @@
 <?php
 /** Church Slavic (Словѣньскъ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Svetko

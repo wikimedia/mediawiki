@@ -1,11 +1,9 @@
 <?php
-/**
-  * @addtogroup Language
-  */
-#
-# Hungarian localisation for MediaWiki
-#
 
+/** Hungarian localisation for MediaWiki
+ *
+ * @ingroup Language
+ */
 class LanguageHu extends Language {
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;

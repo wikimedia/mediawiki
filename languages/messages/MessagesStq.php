@@ -1,7 +1,8 @@
 <?php
 /** Seeltersk (Seeltersk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Maartenvdbent
  * @author Pyt

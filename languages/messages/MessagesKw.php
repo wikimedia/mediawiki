@@ -1,7 +1,8 @@
 <?php
 /** Cornish (Kernewek)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MF-Warburg
  * @author Malafaya

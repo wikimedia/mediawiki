@@ -1,8 +1,11 @@
 <?php
 
-// Very hacky and inefficient
-// do not use :D
-
+/** 
+ * Very hacky and inefficient
+ * do not use :D
+ *
+ * @ingroup FileRepo
+ */
 class ForeignAPIFile extends File {
 	function __construct( $title, $repo, $info ) {
 		parent::__construct( $title, $repo );

@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query action to List the log events, with optional filtering by various parameters.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryLogEvents extends ApiQueryBase {
 

@@ -1,7 +1,8 @@
 <?php
 /** Yakut (Саха тыла)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author HalanTul
  * @author Bert Jickty

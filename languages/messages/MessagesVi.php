@@ -1,7 +1,8 @@
 <?php
 /** Vietnamese (Tiếng Việt)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang

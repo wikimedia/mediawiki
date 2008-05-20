@@ -37,7 +37,7 @@ if (!defined('MEDIAWIKI')) {
  * In the generator mode, a generator will be first executed to populate a second ApiPageSet object,
  * and that object will be used for all subsequent modules.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQuery extends ApiBase {
 

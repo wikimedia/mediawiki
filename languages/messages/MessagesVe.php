@@ -1,7 +1,8 @@
 <?php
 /** Venda (Tshivenda)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Node ue
  */

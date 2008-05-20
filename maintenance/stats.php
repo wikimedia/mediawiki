@@ -1,4 +1,11 @@
 <?php
+/**
+ * Show statistics from memcached
+ *
+ * @file
+ * @ingroup Maintenance
+ */
+
 require_once('commandLine.inc');
 
 if( get_class( $wgMemc ) == 'FakeMemCachedClient' ) {

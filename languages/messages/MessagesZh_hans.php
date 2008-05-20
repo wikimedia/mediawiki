@@ -1,7 +1,8 @@
 <?php
 /** Chinese (Simplified) (‪中文 (简化字)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Shinjiman
  * @author O

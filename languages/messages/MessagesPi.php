@@ -1,7 +1,8 @@
 <?php
 /** Pali (पािऴ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jon Harald Søby
  */

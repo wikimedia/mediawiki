@@ -1,4 +1,10 @@
 <?php
+/**
+ * Undelete a page
+ *
+ * @file
+ * @ingroup Maintenance
+ */
 
 $usage = <<<EOT
 Undelete a page

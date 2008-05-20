@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * A query module to list all wiki links on a given set of pages.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryLinks extends ApiQueryGeneratorBase {
 

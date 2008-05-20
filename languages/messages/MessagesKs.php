@@ -1,8 +1,9 @@
 <?php
 /** Kashmiri language file ( कश्मीरी - (ﻚﺸﻤﻳﺮﻳ) )
-  *
-  * @addtogroup Language
-  */
+ *
+ * @ingroup Language
+ * @file
+ */
 
 #FIXME: inherit almost everything for now
 $rtl = true;

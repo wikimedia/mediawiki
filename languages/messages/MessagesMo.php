@@ -1,7 +1,8 @@
 <?php
 /** Moldavian (Молдовеняскэ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Node ue
  * @author לערי ריינהארט

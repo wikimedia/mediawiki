@@ -3,10 +3,12 @@
  * This script is the SQLite database abstraction layer
  *
  * See maintenance/sqlite/README for development notes and other specific information
+ * @ingroup Database
+ * @file
  */
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class DatabaseSqlite extends Database {
 
@@ -375,7 +377,7 @@ class DatabaseSqlite extends Database {
 }
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class SQLiteField extends MySQLField {
 

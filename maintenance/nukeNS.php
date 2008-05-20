@@ -13,7 +13,8 @@
  * back up your DB if there's anything in the MediaWiki that is important to
  * you.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Steve Sanbeg
  * based on nukePage by Rob Church
  */

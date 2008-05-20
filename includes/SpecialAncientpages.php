@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * Implements Special:Ancientpages
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class AncientPagesPage extends QueryPage {
 

@@ -1,7 +1,8 @@
 <?php
 /** German (Deutsch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007

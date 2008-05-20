@@ -1,7 +1,8 @@
 <?php
 /** Lower Sorbian (Dolnoserbski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Pe7er
  * @author Qualia

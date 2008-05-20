@@ -19,7 +19,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -170,7 +171,7 @@ function wfSpecialImport( $page = '' ) {
 
 /**
  * Reporting callback
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class ImportReporter {
 	function __construct( $importer, $upload, $interwiki ) {
@@ -241,7 +242,7 @@ class ImportReporter {
 
 /**
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class WikiRevision {
 	var $title = null;
@@ -514,7 +515,7 @@ class WikiRevision {
 
 /**
  * implements Special:Import
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class WikiImporter {
 	var $mDebug = false;
@@ -1043,7 +1044,7 @@ class WikiImporter {
 
 /**
  * @todo document (e.g. one-sentence class description).
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class ImportStringSource {
 	function __construct( $string ) {
@@ -1067,7 +1068,7 @@ class ImportStringSource {
 
 /**
  * @todo document (e.g. one-sentence class description).
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class ImportStreamSource {
 	function __construct( $handle ) {

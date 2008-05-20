@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -56,7 +56,7 @@ function wfSpecialEmailuser( $par ) {
 
 /**
  * Implements the Special:Emailuser web interface, and invokes userMailer for sending the email message.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class EmailUserForm {
 

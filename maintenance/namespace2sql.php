@@ -1,7 +1,11 @@
 <?php
-#
-# Print SQL to insert namespace names into database.
-# This source code is in the public domain.
+/**
+ * Print SQL to insert namespace names into database.
+ * This source code is in the public domain.
+ *
+ * @file
+ * @ingroup Maintenance
+ */
 
 require_once( "commandLine.inc" );
 

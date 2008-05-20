@@ -2,8 +2,8 @@
 
 /**
  * A repository for files accessible via InstantCommons.
+ * @ingroup FileRepo
  */
-
 class ICRepo extends LocalRepo {
 	var $directory, $url, $hashLevels, $cache;
 	var $fileFactory = array( 'ICFile', 'newFromTitle' );

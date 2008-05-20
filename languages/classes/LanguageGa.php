@@ -1,9 +1,9 @@
 <?php
+
 /** Irish (Gaeilge)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
-
 class LanguageGa extends Language {
 	# Convert day names
 	# Invoked with {{GRAMMAR:transformation|word}}

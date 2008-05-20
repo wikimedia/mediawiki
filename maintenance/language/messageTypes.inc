@@ -2,7 +2,8 @@
 /**
  * Several types of messages.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup MaintenanceLanguage
  */
 
 /** Ignored messages, which should be exist only in the English messages file. */

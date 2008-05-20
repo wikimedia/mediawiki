@@ -1,7 +1,8 @@
 <?php
 /** Greek (Ελληνικά)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Dead3y3
  * @author ZaDiak

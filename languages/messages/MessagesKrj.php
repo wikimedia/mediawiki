@@ -1,7 +1,8 @@
 <?php
 /** Kinaray-a (Kinaray-a)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author RonaldPanaligan
  * @author Jose77

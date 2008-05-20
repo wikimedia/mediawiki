@@ -5,7 +5,8 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * A basic extension that's used by the parser tests to test whether input and
  * arguments are passed to extensions properly.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, 2006 Ævar Arnfjörð Bjarmason

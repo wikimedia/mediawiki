@@ -1,7 +1,7 @@
 <?php
 /** Samogitian (Žemaitėška)
  *
- * @addtogroup Language
+ * @ingroup Language
  *
  * @author Niklas Laxström
  */

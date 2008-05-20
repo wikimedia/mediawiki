@@ -1,7 +1,8 @@
 <?php
 /** Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Red Winged Duck
  * @author EugeneZelenko

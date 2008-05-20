@@ -1,13 +1,14 @@
 <?php
-
 /**
  * Media-handling base classes and generic functionality
+ * @file
+ * @ingroup Media
  */
 
 /**
  * Base media handler class
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 abstract class MediaHandler {
 	const TRANSFORM_LATER = 1;
@@ -272,7 +273,7 @@ abstract class MediaHandler {
 /**
  * Media handler abstract base class for images
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 abstract class ImageHandler extends MediaHandler {
 	function canRender( $file ) {

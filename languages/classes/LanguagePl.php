@@ -1,9 +1,9 @@
 <?php
+
 /** Polish (polski)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
-
 class LanguagePl extends Language {
 	function convertPlural( $count, $forms ) {
 		if ( !count($forms) ) { return ''; }

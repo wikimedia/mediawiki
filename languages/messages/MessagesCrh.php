@@ -1,7 +1,8 @@
 <?php
 /** Crimean Turkish (Qırımtatarca)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Alessandro
  */

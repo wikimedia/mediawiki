@@ -17,8 +17,9 @@
  * - the menu doesnt work, got disabled at revision 13740. Need to code it.
  *
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  *
  * @author Ashar Voultoiz <thoane@altern.org>
  * @version first release

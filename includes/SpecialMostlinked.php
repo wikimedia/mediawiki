@@ -1,10 +1,14 @@
 <?php
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
 
 /**
  * A special page to show pages ordered by the number of pages linking to them.
  * Implements Special:Mostlinked
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Rob Church <robchur@gmail.com>

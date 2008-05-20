@@ -1,7 +1,8 @@
 <?php
 /** Franco-Provençal (Arpetan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author ChrisPtDe
  * @author Nike

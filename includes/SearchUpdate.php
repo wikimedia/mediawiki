@@ -1,7 +1,7 @@
 <?php
 /**
  * See deferred.txt
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchUpdate {
 
@@ -106,7 +106,7 @@ class SearchUpdate {
 
 /**
  * Placeholder class
- * @addtogroup Search
+ * @ingroup Search
  */
 class SearchUpdateMyISAM extends SearchUpdate {
 	# Inherits everything

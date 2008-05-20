@@ -1,19 +1,18 @@
 <?php
-/**
-  * @addtogroup Language
-  */
 
-/*
-	There are two levels of conversion for Serbian: the script level
-	(Cyrillics <-> Latin), and the variant level (ekavian
-	<->iyekavian). The two are orthogonal. So we really only need two
-	dictionaries: one for Cyrillics and Latin, and one for ekavian and
-	iyekavian.
-*/
 require_once( dirname(__FILE__).'/../LanguageConverter.php' );
 require_once( dirname(__FILE__).'/LanguageSr_ec.php' );
 require_once( dirname(__FILE__).'/LanguageSr_el.php' );
 
+/**
+ * There are two levels of conversion for Serbian: the script level
+ * (Cyrillics <-> Latin), and the variant level (ekavian
+ * <->iyekavian). The two are orthogonal. So we really only need two
+ * dictionaries: one for Cyrillics and Latin, and one for ekavian and
+ * iyekavian.
+ *
+ * @ingroup Language
+ */
 class SrConverter extends LanguageConverter {
 	var $mToLatin = array(
 		'а' => 'a', 'б' => 'b',  'в' => 'v', 'г' => 'g',  'д' => 'd',
@@ -160,6 +159,9 @@ class SrConverter extends LanguageConverter {
 	}
 }
 
+/**
+ * @ingroup Language
+ */
 class LanguageSr extends LanguageSr_ec {
 	function __construct() {
 		global $wgHooks;

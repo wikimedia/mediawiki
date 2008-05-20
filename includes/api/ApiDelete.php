@@ -32,7 +32,7 @@ if (!defined('MEDIAWIKI')) {
  * API module that facilitates deleting pages. The API eqivalent of action=delete.
  * Requires API write mode to be enabled.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiDelete extends ApiBase {
 

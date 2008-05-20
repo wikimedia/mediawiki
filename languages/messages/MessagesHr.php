@@ -1,7 +1,8 @@
 <?php
 /** Croatian (Hrvatski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SpeedyGonsales
  * @author MayaSimFan

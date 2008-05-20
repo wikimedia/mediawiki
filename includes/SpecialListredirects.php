@@ -1,6 +1,7 @@
 <?php
 /**
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  *
  * @author Rob Church <robchur@gmail.com>
  * @copyright © 2006 Rob Church
@@ -9,7 +10,7 @@
 
 /**
  * Special:Listredirects - Lists all the redirects on the wiki.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class ListredirectsPage extends QueryPage {
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * See user.txt
- *
+ * @file
  */
 
 # Number of characters in user_token field
@@ -15,7 +15,7 @@ define( 'EDIT_TOKEN_SUFFIX', '+\\' );
 
 /**
  * Thrown by User::setPassword() on error
- * @addtogroup Exception
+ * @ingroup Exception
  */
 class PasswordError extends MWException {
 	// NOP

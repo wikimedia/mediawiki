@@ -1,7 +1,8 @@
 <?php
 /** British English ()
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jon Harald Søby
  */

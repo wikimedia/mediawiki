@@ -1,7 +1,8 @@
 <?php
 /** Novial (Novial)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author nov.wikipedia.org sysops
  * @author Malafaya

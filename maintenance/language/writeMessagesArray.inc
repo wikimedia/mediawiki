@@ -2,9 +2,13 @@
 /**
  * Write a messages array as a PHP text.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup MaintenanceLanguage
  */
 
+/**
+ * @ingroup MaintenanceLanguage
+ */
 class MessageWriter {
 	static $optionalComment = 'only translate this message to other languages if you have to change it';
 	static $ignoredComment = "do not translate or duplicate this message to other languages";

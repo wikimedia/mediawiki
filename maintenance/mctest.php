@@ -1,5 +1,9 @@
 <?php
-/* $Id$ */
+/**
+ * $Id$
+ * @file
+ * @ingroup Maintenance
+ */
 
 $optionsWithArgs = array( 'i' );
 

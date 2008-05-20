@@ -1,7 +1,8 @@
 <?php
 /** Tonga (faka-Tonga)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Tauʻolunga

@@ -1,17 +1,12 @@
 <?php
-/**
- */
 
-/**
- *
- */
 if( !defined( 'MEDIAWIKI' ) )
 	die( 1 );
 
 /**
  * Special handling for image description pages
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 class ImagePage extends Article {
 
@@ -768,7 +763,7 @@ EOT
 /**
  * Builds the image revision log shown on image pages
  *
- * @addtogroup Media
+ * @ingroup Media
  */
 class ImageHistoryList {
 

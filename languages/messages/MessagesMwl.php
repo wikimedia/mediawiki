@@ -1,7 +1,8 @@
 <?php
 /** Mirandese (Mirandés)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MCruz
  * @author Malafaya

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
 
 function wfSpecialFilepath( $par ) {
 	global $wgRequest, $wgOut;
@@ -22,6 +26,9 @@ function wfSpecialFilepath( $par ) {
 	}
 }
 
+/**
+ * @ingroup SpecialPage
+ */
 class FilepathForm {
 	var $mTitle;
 

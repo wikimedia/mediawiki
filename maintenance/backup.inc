@@ -18,15 +18,22 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup Dump Maintenance
  */
 
+/**
+ * @ingroup Dump Maintenance
+ */
 class DumpDBZip2Output extends DumpPipeOutput {
 	function DumpDBZip2Output( $file ) {
 		parent::DumpPipeOutput( "dbzip2", $file );
 	}
 }
 
+/**
+ * @ingroup Dump Maintenance
+ */
 class BackupDumper {
 	var $reportingInterval = 100;
 	var $reporting = true;
@@ -295,5 +302,3 @@ class ExportProgressFilter extends DumpFilter {
 		$this->progress->revCount();
 	}
 }
-
-?>

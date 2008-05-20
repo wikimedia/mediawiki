@@ -1,7 +1,8 @@
 <?php
 /** Lumbaart (Lumbaart)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kemmótar
  * @author Flavio05

@@ -3,7 +3,8 @@
 /**
  * Delete arcived (deleted from public) revisions from the database
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Aaron Schulz
  * Shamelessly stolen from deleteOldRevisions.php by Rob Church :)
  */

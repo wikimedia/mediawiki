@@ -1,7 +1,8 @@
 <?php
 /** Pampanga (Kapampangan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Val2397
  * @author Katimawan2005

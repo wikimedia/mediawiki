@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * This query action adds a list of a specified user's contributions to the output.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryContributions extends ApiQueryBase {
 

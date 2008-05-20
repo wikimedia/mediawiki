@@ -1,7 +1,8 @@
 <?php
 /** Galician (Galego)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Alma
  * @author Prevert

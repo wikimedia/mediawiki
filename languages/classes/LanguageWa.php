@@ -2,7 +2,7 @@
 /**
  * Walloon (Walon)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
 
 # NOTE: cweri après "NOTE:" po des racsegnes so des ratournaedjes

@@ -1,7 +1,8 @@
 <?php
 /** Persian (فارسی)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author G - ג

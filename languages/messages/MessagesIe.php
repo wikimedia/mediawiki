@@ -1,7 +1,8 @@
 <?php
 /** Interlingue (Interlingue)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jmb
  * @author SPQRobin

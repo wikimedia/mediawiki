@@ -1,10 +1,10 @@
 <?php
-
 /**
  * Maintenance script to provide a better count of the number of articles
  * and update the site statistics table, if desired
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

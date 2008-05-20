@@ -1,7 +1,8 @@
 <?php
 /** ‪Chinese (Taiwan) (‪中文(台灣)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author BobChao
  * @author Siebrand

@@ -1,7 +1,8 @@
 <?php
 /** Estonian (Eesti)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author WikedKentaur
  * @author SPQRobin

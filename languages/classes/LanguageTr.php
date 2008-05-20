@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Turkish (Türkçe)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
 class LanguageTr extends Language {
 	function ucfirst ( $string ) {

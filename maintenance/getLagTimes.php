@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
 
 require 'commandLine.inc';
 

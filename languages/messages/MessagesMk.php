@@ -1,7 +1,8 @@
 <?php
 /** Macedonian (Македонски)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author FlavrSavr
  * @author Misos

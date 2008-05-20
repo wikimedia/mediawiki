@@ -4,7 +4,7 @@
  * Variant of QueryPage which uses a gallery to output results, thus
  * suited for reports generating images
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
 class ImageQueryPage extends QueryPage {

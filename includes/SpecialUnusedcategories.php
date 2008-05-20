@@ -1,12 +1,11 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
- *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UnusedCategoriesPage extends QueryPage {
 

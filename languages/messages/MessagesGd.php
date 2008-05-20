@@ -1,7 +1,8 @@
 <?php
 /** Scottish Gaelic (Gàidhlig)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author לערי ריינהארט

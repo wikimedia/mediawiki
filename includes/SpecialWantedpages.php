@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * implements Special:Wantedpages
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class WantedPagesPage extends QueryPage {
 	var $nlinks;

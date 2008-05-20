@@ -1,4 +1,9 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
+
 require_once( 'commandLine.inc' );
 
 $dbw = wfGetDB( DB_MASTER );

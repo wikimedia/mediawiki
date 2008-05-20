@@ -4,6 +4,8 @@
  * Maintenance script to show the cached statistics.
  * Give out the same output as [[Special:Statistics]]
  *
+ * @file
+ * @ingroup Maintenance
  * @author Ashar Voultoiz <hashar@altern.org>
  * Based on initStats.php by:
  * @author Brion Vibber

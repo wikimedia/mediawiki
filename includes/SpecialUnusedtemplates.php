@@ -1,11 +1,15 @@
 <?php
+/**
+ * @file
+ * @ingroup SpecialPage
+ */
 
 /**
  * implements Special:Unusedtemplates
  * @author Rob Church <robchur@gmail.com>
  * @copyright © 2006 Rob Church
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UnusedtemplatesPage extends QueryPage {
 

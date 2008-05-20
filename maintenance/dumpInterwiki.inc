@@ -3,15 +3,14 @@
  * Rebuild interwiki table using the file on meta and the language list
  * Wikimedia specific!
  *
+ * @file
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
-
-/** */
 
 /**
  * @todo document
- * @addtogroup Maintenance
+ * @ingroup Maintenance
  */
 class Site {
 	var $suffix, $lateral, $url;
@@ -207,5 +206,3 @@ function makeLink( $entry, $source ) {
             print "{$source}:{$entry['iw_prefix']} {$entry['iw_url']} {$entry['iw_local']}\n";
 
     }
-
-?>

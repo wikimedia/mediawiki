@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to get information about a list of users
  *
- * @addtogroup API
+ * @ingroup API
  */
 
  class ApiQueryUsers extends ApiQueryBase {

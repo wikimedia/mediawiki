@@ -1,7 +1,8 @@
 <?php
 /** Indonesian (Bahasa Indonesia)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Irwangatot
  * @author לערי ריינהארט

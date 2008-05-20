@@ -3,8 +3,8 @@
 /**
  * A repository for files accessible via the local filesystem. Does not support
  * database access or registration.
+ * @ingroup FileRepo
  */
-
 class FSRepo extends FileRepo {
 	var $directory, $deletedDir, $url, $hashLevels, $deletedHashLevels;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );

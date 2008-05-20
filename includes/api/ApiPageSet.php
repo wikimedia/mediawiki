@@ -38,7 +38,7 @@ if (!defined('MEDIAWIKI')) {
  * second instance of this class, and all subsequent actions will go use the second instance
  * for all their work.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiPageSet extends ApiQueryBase {
 

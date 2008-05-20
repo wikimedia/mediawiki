@@ -1,7 +1,8 @@
 <?php
 /**
  * This is to display changes made to all articles linked in an article.
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**

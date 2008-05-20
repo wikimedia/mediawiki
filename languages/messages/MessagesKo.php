@@ -1,7 +1,8 @@
 <?php
 /** Korean (한국어)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Klutzy
  * @author PuzzletChung

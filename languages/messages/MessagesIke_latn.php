@@ -1,7 +1,8 @@
 <?php
 /** Eastern Canadian (Latin) (inuktitut)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author M.M.S.

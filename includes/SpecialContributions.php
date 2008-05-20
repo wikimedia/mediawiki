@@ -1,9 +1,14 @@
 <?php
 /**
  * Special:Contributions, show user contributions in a paged list
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
+/**
+ * Pager for Special:Contributions
+ * @ingroup SpecialPage Pager
+ */
 class ContribsPager extends ReverseChronologicalPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;

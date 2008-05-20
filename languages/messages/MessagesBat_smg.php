@@ -1,7 +1,8 @@
 <?php
 /** Samogitian (Žemaitėška)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hugo.arg
  * @author Zordsdavini

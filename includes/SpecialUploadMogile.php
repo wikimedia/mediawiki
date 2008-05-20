@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -20,7 +20,7 @@ function wfSpecialUploadMogile() {
 
 /**
  * Extends Special:Upload with MogileFS.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UploadFormMogile extends UploadForm {
 	/**

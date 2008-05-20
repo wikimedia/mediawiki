@@ -1,4 +1,8 @@
 <?php
+/**
+ * @ingroup Database
+ * @file
+ */
 
 /**
  * This is the Postgres database abstraction layer.
@@ -7,7 +11,7 @@
  * than MySQL ones, some of them should be moved to parent
  * Database class.
  *
- * @addtogroup Database
+ * @ingroup Database
  */
 class PostgresField {
 	private $name, $tablename, $type, $nullable, $max_length;
@@ -70,7 +74,7 @@ END;
 }
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class DatabasePostgres extends Database {
 	var $mInsertId = NULL;

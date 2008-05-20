@@ -1,6 +1,7 @@
 <?php
 /**
  * Parser with old preprocessor
+ * @ingroup Parser
  */
 class Parser_OldPP
 {

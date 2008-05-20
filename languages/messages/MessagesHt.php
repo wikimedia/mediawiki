@@ -1,7 +1,8 @@
 <?php
 /** Haitian (Kreyòl ayisyen)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Masterches
  * @author Siebrand

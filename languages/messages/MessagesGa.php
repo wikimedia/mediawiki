@@ -1,7 +1,8 @@
 <?php
 /** Irish (Gaeilge)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kwekubo
  * @author לערי ריינהארט

@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * A special page looking for page without any category.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UncategorizedPagesPage extends PageQueryPage {
 	var $requestedNamespace = NS_MAIN;

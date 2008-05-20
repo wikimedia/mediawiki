@@ -1,4 +1,7 @@
 <?php
+/**
+ * @defgroup JobQueue JobQueue
+ */
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point\n" );
@@ -6,6 +9,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 /**
  * Class to both describe a background job and handle jobs.
+ *
+ * @ingroup JobQueue
  */
 abstract class Job {
 	var $command,
@@ -78,7 +83,7 @@ abstract class Job {
 
 	/**
 	 * Pop a job off the front of the queue
-	 * @static
+	 *
 	 * @param $offset Number of jobs to skip
 	 * @return Job or false if there's no jobs
 	 */
@@ -167,10 +172,10 @@ abstract class Job {
 	/**
 	 * Create the appropriate object to handle a specific job
 	 *
-	 * @param string $command Job command
-	 * @param Title $title Associated title
-	 * @param array $params Job parameters
-	 * @param int $id Job identifier
+	 * @param $command String: Job command
+	 * @param $title Title: Associated title
+	 * @param $params Array: Job parameters
+	 * @param $id Int: Job identifier
 	 * @return Job
 	 */
 	static function factory( $command, $title, $params = false, $id = 0 ) {

@@ -3,7 +3,8 @@
 /**
  * Maintenance script to move a batch of pages
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Tim Starling
  *
  * USAGE: php moveBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>

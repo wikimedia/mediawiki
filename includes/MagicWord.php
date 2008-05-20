@@ -3,7 +3,8 @@
  * File for magic words
  * See docs/magicword.txt
  *
- * @addtogroup Parser
+ * @file
+ * @ingroup Parser
  */
 
 /**
@@ -22,6 +23,7 @@
  * magic words which are also Parser variables, add a MagicWordwgVariableIDs
  * hook. Use string keys.
  *
+ * @ingroup Parser
  */
 class MagicWord {
 	/**#@+
@@ -466,6 +468,7 @@ class MagicWord {
 
 /**
  * Class for handling an array of magic words
+ * @ingroup Parser
  */
 class MagicWordArray {
 	var $names = array();

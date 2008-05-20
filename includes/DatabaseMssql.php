@@ -3,10 +3,12 @@
  * This script is the MSSQL Server database abstraction layer
  *
  * See maintenance/mssql/README for development notes and other specific information
+ * @ingroup Database
+ * @file
  */
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class DatabaseMssql extends Database {
 
@@ -999,7 +1001,7 @@ class DatabaseMssql extends Database {
 }
 
 /**
- * @addtogroup Database
+ * @ingroup Database
  */
 class MSSQLField extends MySQLField {
 

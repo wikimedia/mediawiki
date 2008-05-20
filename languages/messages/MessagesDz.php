@@ -1,7 +1,8 @@
 <?php
 /** Dzongkha (ཇོང་ཁ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Tenzin

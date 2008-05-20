@@ -1,7 +1,8 @@
 <?php
 /** Sanskrit (संस्कृत)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kaustubh
  */

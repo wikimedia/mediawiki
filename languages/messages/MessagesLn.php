@@ -2,7 +2,8 @@
 /**
  * Lingala language
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

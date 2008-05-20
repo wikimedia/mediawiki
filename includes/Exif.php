@@ -1,7 +1,6 @@
 <?php
 /**
- * @addtogroup Media
- *
+ * @ingroup Media
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
@@ -26,7 +25,7 @@
 
 /**
  * @todo document (e.g. one-sentence class-overview description)
- * @addtogroup Media
+ * @ingroup Media
  */
 class Exif {
 	//@{
@@ -604,7 +603,7 @@ class Exif {
 
 /**
  * @todo document (e.g. one-sentence class-overview description)
- * @addtogroup Media
+ * @ingroup Media
  */
 class FormatExif {
 	/**

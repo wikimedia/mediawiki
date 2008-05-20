@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 
@@ -16,7 +16,7 @@ function wfSpecialUpload() {
 
 /**
  * implements Special:Upload
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class UploadForm {
 	const SUCCESS = 0;

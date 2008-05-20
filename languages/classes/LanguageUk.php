@@ -1,10 +1,9 @@
 <?php
-/** Ukrainian (українська мова)
-  *
-  * @addtogroup Language
-  */
 
-/* Please, see Language.php for general function comments */
+/** Ukrainian (українська мова)
+ *
+ * @ingroup Language
+ */
 class LanguageUk extends Language {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{grammar:case|word}}

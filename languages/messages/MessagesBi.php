@@ -1,9 +1,10 @@
 <?php
 /** Bislama
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  * @author Ushanka
-*/
+ */
 
 $messages = array(
 'underline-always' => 'Oltaem',

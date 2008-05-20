@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * Query module to enumerate links from all pages together.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 

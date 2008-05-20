@@ -1,7 +1,8 @@
 <?php
 /** Kannada (ಕನ್ನಡ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Mana
  * @author Shushruth

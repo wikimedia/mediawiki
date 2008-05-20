@@ -3,6 +3,7 @@
 /**
  * Base class for file repositories
  * Do not instantiate, use a derived class.
+ * @ingroup FileRepo
  */
 abstract class FileRepo {
 	const DELETE_SOURCE = 1;

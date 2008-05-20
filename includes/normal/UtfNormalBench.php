@@ -20,7 +20,7 @@
 /**
  * Approximate benchmark for some basic operations.
  *
- * @addtogroup UtfNormal
+ * @ingroup UtfNormal
  * @access private
  */
 

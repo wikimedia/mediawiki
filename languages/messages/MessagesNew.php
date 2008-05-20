@@ -1,7 +1,8 @@
 <?php
 /** Newari (नेपाल भाषा)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Eukesh
  * @author SPQRobin

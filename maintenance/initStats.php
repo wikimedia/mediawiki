@@ -3,7 +3,8 @@
 /**
  * Maintenance script to re-initialise or update the site statistics table
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Brion Vibber
  * @author Rob Church <robchur@gmail.com>
  * @licence GNU General Public Licence 2.0 or later

@@ -1,7 +1,8 @@
 <?php
 /** Extremaduran (Estremeñu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Better
  * @author Nike

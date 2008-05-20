@@ -2,7 +2,8 @@
 /**
  * Check a language file.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup MaintenanceLanguage
  */
 
 require_once( dirname(__FILE__).'/../commandLine.inc' );

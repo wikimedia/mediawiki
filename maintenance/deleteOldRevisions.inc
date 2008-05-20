@@ -1,9 +1,9 @@
 <?php
-
 /**
  * Support functions for the deleteOldRevisions script
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
  
@@ -66,5 +66,3 @@ function DeleteOldRevisions( $delete = false, $args = array() ) {
 	}
 
 }
-
-?>

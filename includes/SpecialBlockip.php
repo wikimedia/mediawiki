@@ -2,7 +2,8 @@
 /**
  * Constructor for Special:Blockip page
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -39,7 +40,7 @@ function wfSpecialBlockip( $par ) {
 /**
  * Form object for the Special:Blockip page.
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;

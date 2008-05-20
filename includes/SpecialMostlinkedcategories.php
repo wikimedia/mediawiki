@@ -1,8 +1,13 @@
 <?php
 /**
+ * @file
+ * @ingroup SpecialPage
+ */
+
+/**
  * A querypage to show categories ordered in descending order by the pages  in them
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason

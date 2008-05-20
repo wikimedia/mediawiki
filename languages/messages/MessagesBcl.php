@@ -1,7 +1,8 @@
 <?php
 /** Bikol Central (Bikol Central)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Filipinayzd
  * @author Steven*fung

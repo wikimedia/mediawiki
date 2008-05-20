@@ -1,7 +1,11 @@
 <?php
+/**
+ * @file
+ * @ingroup Media
+ */
 
 /**
- * @addtogroup Media
+ * @ingroup Media
  */
 class BitmapHandler extends ImageHandler {
 	function normaliseParams( $image, &$params ) {

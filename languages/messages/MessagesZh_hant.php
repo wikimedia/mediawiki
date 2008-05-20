@@ -1,7 +1,8 @@
 <?php
 /** Traditional Chinese (‪中文(傳統字)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Shinjiman
  * @author Alexsh

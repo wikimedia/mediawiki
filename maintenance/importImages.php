@@ -4,7 +4,8 @@
  * Maintenance script to import one or more images from the local file system into
  * the wiki without using the web-based interface
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

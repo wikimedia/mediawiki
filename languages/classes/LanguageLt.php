@@ -1,10 +1,9 @@
 <?php
+
 /** Lithuanian (Lietuvių)
  *
- * @addtogroup Language
- *
+ * @ingroup Language
  */
-
 class LanguageLt extends Language {
 	/* Word forms (with examples):
 		1 - vienas (1) lapas, dvidešimt vienas (21) lapas

@@ -1,7 +1,8 @@
 <?php
 /** Lojban (Lojban)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Malafaya
  * @author OldakQuill

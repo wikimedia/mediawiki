@@ -1,4 +1,11 @@
 <?php
+/**
+ * Add a new wiki
+ * Wikimedia specific!
+ *
+ * @file
+ * @ingroup Maintenance
+ */
 
 $wgNoDBParam = true;
 

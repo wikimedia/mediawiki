@@ -2,6 +2,8 @@
 /**
  * Based on runJobs.php
  *
+ * @file
+ * @ingroup Maintenance
  * @author Tim Starling
  * @author Ashar Voultoiz
  */

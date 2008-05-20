@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * A query module to enumerate pages that belong to a category.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 

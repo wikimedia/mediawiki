@@ -1,7 +1,8 @@
 <?php
 /** Gagauz (Gagauz)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Cuman
  * @author Nike

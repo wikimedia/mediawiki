@@ -1,13 +1,13 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  * A special page looking for articles with no article linking to them,
  * thus being lonely.
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class LonelyPagesPage extends PageQueryPage {
 

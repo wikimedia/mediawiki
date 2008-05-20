@@ -1,7 +1,8 @@
 <?php
 /** Bamanankan (Bamanankan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Guaka
  * @author Siebrand

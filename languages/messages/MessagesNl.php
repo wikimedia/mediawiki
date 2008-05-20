@@ -1,7 +1,8 @@
 <?php
 /** Dutch (Nederlands)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
  * @author Siebrand

@@ -1,12 +1,17 @@
 <?php
 
-# delete a batch of pages
-# Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
-# where
-# 	<listfile> is a file where each line contains the title of a page to be deleted.
-#	<user> is the username
-#	<reason> is the delete reason
-#	<interval> is the number of seconds to sleep for after each delete
+/**
+ * delete a batch of pages
+ * Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
+ * where
+ * 	<listfile> is a file where each line contains the title of a page to be deleted.
+ *	<user> is the username
+ *	<reason> is the delete reason
+ *	<interval> is the number of seconds to sleep for after each delete
+ *
+ * @file
+ * @ingroup Maintenance
+ */
 
 $oldCwd = getcwd();
 $optionsWithArgs = array( 'u', 'r', 'i' );

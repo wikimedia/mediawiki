@@ -1,7 +1,8 @@
 <?php
 /** Bashkir (Башҡорт)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Рустам Нурыев
  * @author Siebrand

@@ -3,7 +3,8 @@
  * A special page to search for files by MIME type as defined in the
  * img_major_mime and img_minor_mime fields in the image table
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -12,6 +13,7 @@
 /**
  * Searches the database for files of the requested MIME type, comparing this with the
  * 'img_major_mime' and 'img_minor_mime' fields in the image table.
+ * @ingroup SpecialPage
  */
 class MIMEsearchPage extends QueryPage {
 	var $major, $minor;

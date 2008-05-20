@@ -1,7 +1,8 @@
 <?php
 /** Basque (Euskara)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Helix84

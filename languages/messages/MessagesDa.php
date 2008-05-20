@@ -1,7 +1,8 @@
 <?php
 /** Danish (Dansk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Anders Wegge Jakobsen <awegge@gmail.com>

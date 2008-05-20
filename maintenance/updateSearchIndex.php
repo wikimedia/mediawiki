@@ -9,7 +9,8 @@
  * LOCKTIME is how long the searchindex and cur tables will be locked for
  * -q means quiet
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 /** */

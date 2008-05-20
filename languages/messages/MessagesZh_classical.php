@@ -1,7 +1,8 @@
 <?php
 /** Old Chinese / Late Middle Chinese (文言)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */

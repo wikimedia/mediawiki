@@ -1,7 +1,8 @@
 <?php
 /**
  * Stub profiling functions
- * @addtogroup Profiler
+ * @file
+ * @ingroup Profiler
  */
 
 /** backward compatibility */
@@ -12,7 +13,7 @@ $haveProctitle = function_exists( 'setproctitle' );
 
 /**
  * Begin profiling of a function
- * @param string $fn
+ * @param $fn string
  */
 function wfProfileIn( $fn = '' ) {
 	global $hackwhere, $wgDBname, $haveProctitle;
@@ -24,7 +25,7 @@ function wfProfileIn( $fn = '' ) {
 
 /**
  * Stop profiling of a function
- * @param string $fn
+ * @param $fn string
  */
 function wfProfileOut( $fn = '' ) {
 	global $hackwhere, $wgDBname, $haveProctitle;

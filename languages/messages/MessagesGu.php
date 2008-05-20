@@ -1,7 +1,8 @@
 <?php
 /** Gujarati (ગુજરાતી)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Aksi great

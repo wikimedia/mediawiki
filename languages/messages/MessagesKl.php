@@ -1,7 +1,8 @@
 <?php
 /** Kalaallisut (Kalaallisut)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author SPQRobin

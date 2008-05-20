@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 
@@ -15,7 +15,7 @@ function wfSpecialNewPages( $par, $sp ) {
 
 /**
  * implements Special:Newpages
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class NewPagesForm {
 
@@ -354,7 +354,7 @@ class NewPagesForm {
 }
 
 /**
- * @addtogroup Pager
+ * @ingroup SpecialPage Pager
  */
 class NewPagesPager extends ReverseChronologicalPager {
 	// Stored opts

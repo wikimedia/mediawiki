@@ -1,7 +1,8 @@
 <?php
 /** Swahili (Kiswahili)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Robert Ullmann
  * @author Malangali

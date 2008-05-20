@@ -1,7 +1,11 @@
 <?php
-
 /**
- * @addtogroup Media
+ * @file
+ * @ingroup Media
+ */
+ 
+/**
+ * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {
 	function isEnabled() {

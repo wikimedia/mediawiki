@@ -1,7 +1,8 @@
 <?php
 /** Russian (Русский)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author לערי ריינהארט

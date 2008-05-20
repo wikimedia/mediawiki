@@ -1,10 +1,10 @@
 <?php
-
 /**
+ * @defgroup Parser Parser
  *
+ * @file
+ * @ingroup Parser
  * File for Parser and related classes
- *
- * @addtogroup Parser
  */
 
 
@@ -41,7 +41,7 @@
  *  * only within ParserOptions
  * </pre>
  *
- * @addtogroup Parser
+ * @ingroup Parser
  */
 class Parser
 {
@@ -4915,7 +4915,7 @@ class Parser
 
 /**
  * @todo document, briefly.
- * @addtogroup Parser
+ * @ingroup Parser
  */
 class StripState {
 	var $general, $nowiki;
@@ -4959,7 +4959,7 @@ class StripState {
 
 /**
  * @todo document, briefly.
- * @addtogroup Parser
+ * @ingroup Parser
  */
 class OnlyIncludeReplacer {
 	var $output = '';

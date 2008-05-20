@@ -12,7 +12,8 @@
  * To get decent line editing behavior, you should compile PHP with support
  * for GNU readline (pass --with-readline to configure).
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  */
 
 $wgUseNormalUser = (bool)getenv('MW_WIKIUSER');

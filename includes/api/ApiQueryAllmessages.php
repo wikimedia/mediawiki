@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * A query action to return messages from site message cache
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryAllmessages extends ApiQueryBase {
 

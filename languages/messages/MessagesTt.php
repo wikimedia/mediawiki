@@ -1,7 +1,8 @@
 <?php
 /** Tatar (Tatarça)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Siebrand
  * @comment Placeholder for Tatar. Falls back to Tatar in Latin script.

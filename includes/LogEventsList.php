@@ -406,7 +406,7 @@ class LogEventsList {
 }
 
 /**
- * @addtogroup Pager
+ * @ingroup Pager
  */
 class LogPager extends ReverseChronologicalPager {
 	private $type = '', $user = '', $title = '', $pattern = '', $year = '', $month = '';
@@ -626,7 +626,7 @@ class LogPager extends ReverseChronologicalPager {
 
 /**
  * @Deprecated
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class LogReader {
 	var $pager;
@@ -664,7 +664,7 @@ class LogReader {
 
 /**
  * @Deprecated
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class LogViewer {
 	const NO_ACTION_LINK = 1;

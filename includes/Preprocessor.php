@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @ingroup Parser
+ */
 interface Preprocessor {
 	/** Create a new preprocessor object based on an initialised Parser object */
 	function __construct( $parser );
@@ -11,6 +14,9 @@ interface Preprocessor {
 	function preprocessToObj( $text, $flags = 0 );
 }
 
+/**
+ * @ingroup Parser
+ */
 interface PPFrame {
 	const NO_ARGS = 1;
 	const NO_TEMPLATES = 2;
@@ -83,6 +89,7 @@ interface PPFrame {
  * data is provided via two means:
  *     * PPFrame::expand(), which provides expanded text
  *     * The PPNode::split*() functions, which provide metadata about certain types of tree node
+ * @ingroup Parser
  */
 interface PPNode {
 	/**

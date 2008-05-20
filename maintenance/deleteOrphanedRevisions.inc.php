@@ -3,7 +3,8 @@
 /**
  * Support functions for the deleteOrphanedRevisions maintenance script
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 

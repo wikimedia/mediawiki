@@ -3,6 +3,8 @@ if (!defined('MEDIAWIKI')) die();
 /**
  * Statistic output classes.
  *
+ * @file
+ * @ingroup MaintenanceLanguage
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Ashar Voultoiz <thoane@altern.org>
  */

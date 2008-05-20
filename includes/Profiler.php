@@ -1,7 +1,10 @@
 <?php
 /**
+ * @defgroup Profiler Profiler
+ *
+ * @file
+ * @ingroup Profiler
  * This file is only included if profiling is enabled
- * @addtogroup Profiler
  */
 
 /** backward compatibility */
@@ -52,8 +55,8 @@ if (!function_exists('memory_get_usage')) {
 }
 
 /**
+ * @ingroup Profiler
  * @todo document
- * @addtogroup Profiler
  */
 class Profiler {
 	var $mStack = array (), $mWorkStack = array (), $mCollated = array ();
@@ -72,7 +75,7 @@ class Profiler {
 
 	/**
 	 * Called by wfProfieIn()
-	 * @param string $functionname
+	 * @param $functionname string
 	 */
 	function profileIn( $functionname ) {
 		global $wgDebugFunctionEntry;
@@ -86,7 +89,7 @@ class Profiler {
 
 	/**
 	 * Called by wfProfieOut()
-	 * @param string $functionname
+	 * @param $functionname string
 	 */
 	function profileOut($functionname) {
 		global $wgDebugFunctionEntry;
@@ -159,7 +162,7 @@ class Profiler {
 	/**
 	 * Recursive function the format the current profiling array into a tree
 	 *
-	 * @param array $stack profiling array
+	 * @param $stack profiling array
 	 */
 	function remapCallTree( $stack ) {
 		if( count( $stack ) < 2 ){
@@ -344,9 +347,9 @@ class Profiler {
 	/**
 	 * Log a function into the database.
 	 *
-	 * @param string $name function name
-	 * @param float $timeSum
-	 * @param int $eventCount number of times that function was called
+	 * @param $name string: function name
+	 * @param $timeSum float
+	 * @param $eventCount int: number of times that function was called
 	 */
 	static function logToDB( $name, $timeSum, $eventCount, $memorySum ){
 		# Do not log anything if database is readonly (bug 5375)
@@ -409,7 +412,7 @@ class Profiler {
 
 	/**
 	 * Get function caller
-	 * @param int $level
+	 * @param $level int
 	 */
 	static function getCaller( $level ) {
 		$backtrace = wfDebugBacktrace();
@@ -427,7 +430,7 @@ class Profiler {
 
 	/**
 	 * Add an entry in the debug log file
-	 * @param string $s string to output
+	 * @param $s string to output
 	 */
 	function debug( $s ) {
 		if( function_exists( 'wfDebug' ) ) {

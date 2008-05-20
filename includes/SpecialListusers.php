@@ -22,8 +22,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -31,9 +31,8 @@
  * rights (sysop, bureaucrat, developer) will have them displayed
  * next to their names.
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
-
 class UsersPager extends AlphabeticPager {
 
 	function __construct($group=null) {

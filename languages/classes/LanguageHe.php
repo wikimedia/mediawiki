@@ -1,12 +1,12 @@
 <?php
+
 /**
  * Hebrew (עברית)
  *
- * @addtogroup Language
+ * @ingroup Language
  *
  * @author Rotem Liss
  */
-
 class LanguageHe extends Language {
 	/**
 	 * Convert grammar forms of words.

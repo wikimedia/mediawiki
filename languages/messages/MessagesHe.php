@@ -1,7 +1,8 @@
 <?php
 /** Hebrew (עברית)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)

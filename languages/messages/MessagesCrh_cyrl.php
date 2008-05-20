@@ -1,7 +1,8 @@
 <?php
 /** Crimean Turkish (Cyrillic) (Qırımtatarca (Cyrillic))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Alessandro
  * @author Siebrand

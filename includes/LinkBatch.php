@@ -4,7 +4,7 @@
  * Class representing a list of titles
  * The execute() method checks them all for existence and adds them to a LinkCache object
  *
- * @addtogroup Cache
+ * @ingroup Cache
  */
 class LinkBatch {
 	/**

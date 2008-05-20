@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * This query adds <images> subelement to all pages with the list of images embedded into those pages.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
 

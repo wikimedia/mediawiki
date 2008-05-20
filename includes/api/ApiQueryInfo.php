@@ -31,7 +31,7 @@ if (!defined('MEDIAWIKI')) {
 /**
  * A query module to show basic page information.
  *
- * @addtogroup API
+ * @ingroup API
  */
 class ApiQueryInfo extends ApiQueryBase {
 

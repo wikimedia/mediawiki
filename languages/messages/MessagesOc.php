@@ -1,7 +1,8 @@
 <?php
 /** Occitan (Occitan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Cedric31
  * @author Nike

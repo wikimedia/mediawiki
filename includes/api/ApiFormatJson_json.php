@@ -45,7 +45,7 @@
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 * DAMAGE.
 *
-* @addtogroup  API
+* @ingroup     API
 * @author      Michal Migurski <mike-json@teczno.com>
 * @author      Matt Knapp <mdknapp[at]gmail[dot]com>
 * @author      Brett Stimmerman <brettstimmerman[at]gmail[dot]com>
@@ -111,7 +111,7 @@ define('SERVICES_JSON_SUPPRESS_ERRORS', 32);
  * $value = $json->decode($input);
  * </code>
  *
- * @addtogroup API
+ * @ingroup API
  */
 class Services_JSON
 {
@@ -815,7 +815,7 @@ class Services_JSON
 if (class_exists('PEAR_Error')) {
 
     /**
-     * @addtogroup API
+     * @ingroup API
      */
     class Services_JSON_Error extends PEAR_Error
     {
@@ -830,7 +830,7 @@ if (class_exists('PEAR_Error')) {
 
     /**
      * @todo Ultimately, this class shall be descended from PEAR_Error
-     * @addtogroup API
+     * @ingroup API
      */
     class Services_JSON_Error
     {

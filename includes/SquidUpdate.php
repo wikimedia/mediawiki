@@ -1,10 +1,13 @@
 <?php
 /**
  * See deferred.txt
+ * @file
+ * @ingroup Cache
  */
 
 /**
- *
+ * @todo document
+ * @ingroup Cache
  */
 class SquidUpdate {
 	var $urlArr, $mMaxTitles;

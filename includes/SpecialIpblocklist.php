@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -65,7 +65,7 @@ function wfSpecialIpblocklist() {
 
 /**
  * implements Special:ipblocklist GUI
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class IPUnblockForm {
 	var $ip, $reason, $id;
@@ -370,7 +370,7 @@ class IPUnblockForm {
 
 /**
  * @todo document
- * @addtogroup Pager
+ * @ingroup Pager
  */
 class IPBlocklistPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;

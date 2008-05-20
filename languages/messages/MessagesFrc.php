@@ -1,7 +1,8 @@
 <?php
 /** Cajun French (Français cadien)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author RoyAlcatraz
  * @author JeanVoisin

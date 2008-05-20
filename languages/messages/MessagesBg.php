@@ -1,7 +1,8 @@
 <?php
 /** Bulgarian (Български)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author DCLXVI
  * @author לערי ריינהארט

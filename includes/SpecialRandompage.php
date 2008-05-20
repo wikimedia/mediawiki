@@ -3,15 +3,9 @@
 /**
  * Special page to direct the user to a random page
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  * @license GNU General Public Licence 2.0 or later
- */
-
-/**
- * Special page to direct the user to a random page
- *
- * @addtogroup SpecialPage
  */
 class RandomPage extends SpecialPage {
 	private $namespace = NS_MAIN;  // namespace to select pages from

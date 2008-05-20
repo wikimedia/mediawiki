@@ -1,7 +1,8 @@
 <?php
 /** Walloon (Walon)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Srtxg
  * @author Siebrand

@@ -1,12 +1,12 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
  *
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class LongPagesPage extends ShortPagesPage {
 

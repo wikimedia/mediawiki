@@ -1,7 +1,8 @@
 <?php
 /** Pangasinan (Pangasinan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Arikasikis
  * @author SPQRobin

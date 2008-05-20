@@ -3,7 +3,8 @@
 /**
  * Reassign edits from a user or IP address to another user
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  * @licence GNU General Public Licence 2.0 or later
  */

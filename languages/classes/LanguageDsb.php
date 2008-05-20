@@ -1,9 +1,9 @@
 <?php
+
 /** Lower Sorbian (Dolnoserbski)
  *
- * @addtogroup Language
+ * @ingroup Language
  */
-
 class LanguageDsb extends Language {
 
 	# Convert from the nominative form of a noun to some other case

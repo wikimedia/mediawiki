@@ -2,9 +2,13 @@
 /**
  * Handle messages in the language files.
  *
- * @addtogroup Maintenance
+ * @file
+ * @ingroup MaintenanceLanguage
  */
 
+/**
+ * @ingroup MaintenanceLanguage
+ */
 class languages {
 	protected $mLanguages; # List of languages
 	protected $mRawMessages; # Raw list of the messages in each language

@@ -1,7 +1,8 @@
 <?php
 /** Amharic (አማርኛ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Codex Sinaiticus
  * @author Siebrand

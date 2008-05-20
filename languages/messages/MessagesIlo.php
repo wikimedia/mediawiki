@@ -1,7 +1,8 @@
 <?php
 /** Iloko (Ilokano)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Saluyot
  * @author לערי ריינהארט

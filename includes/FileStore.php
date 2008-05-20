@@ -372,6 +372,6 @@ class FSTransaction {
 }
 
 /**
- * @addtogroup Exception
+ * @ingroup Exception
  */
 class FSException extends MWException { }

@@ -1,7 +1,8 @@
 <?php
 /** Chuvash (Чăвашла)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Siebrand
  * @author PCode

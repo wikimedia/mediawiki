@@ -1,7 +1,8 @@
 <?php
 /** Southern Sami (Åarjelsaemien gïele)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author M.M.S.
  * @author Siebrand

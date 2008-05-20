@@ -18,10 +18,15 @@
 # http://www.gnu.org/copyleft/gpl.html
 
 /**
+ * @file
+ * @ingroup Search
+ */
+
+/**
  * Search engine hook for MySQL 4+
  * This class retained for backwards compatibility...
  * The meat's been moved to SearchMySQL, since the 3.x variety is gone.
- * @addtogroup Search
+ * @ingroup Search
  * @deprecated
  */
 class SearchMySQL4 extends SearchMySQL {

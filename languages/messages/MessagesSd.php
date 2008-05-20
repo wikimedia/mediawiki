@@ -1,7 +1,8 @@
 <?php
 /** Sindhi (سنڌي)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand

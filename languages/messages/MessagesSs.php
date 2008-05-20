@@ -1,7 +1,8 @@
 <?php
 /** Swati (SiSwati)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MF-Warburg
  * @author Jatrobat

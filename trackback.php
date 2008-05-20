@@ -1,7 +1,8 @@
 <?php
 /**
  * Provide functions to handle article trackbacks.
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 require_once( './includes/WebStart.php' );
 require_once( './includes/DatabaseFunctions.php' );

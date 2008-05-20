@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * @ingroup Maintenance
+ */
 
 $optionsWithArgs = array( 'maxjobs', 'type' );
 $wgUseNormalUser = true;

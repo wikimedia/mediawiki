@@ -1,7 +1,8 @@
 <?php
 /** Italian (Italiano)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author BrokenArrow
  * @author Gianfranco

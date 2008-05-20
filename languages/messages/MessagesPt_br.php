@@ -1,7 +1,8 @@
 <?php
 /** Brazilian Portuguese (Português do Brasil)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino

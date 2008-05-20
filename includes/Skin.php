@@ -1,8 +1,10 @@
 <?php
+/**
+ * @defgroup Skins Skins
+ */
+
 if ( ! defined( 'MEDIAWIKI' ) )
 	die( 1 );
-
-# See skin.txt
 
 /**
  * The main skin class that provide methods and properties for all other skins.
@@ -10,7 +12,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
  *
  * See docs/skin.txt for more information.
  *
- * @addtogroup Skins
+ * @ingroup Skins
  */
 class Skin extends Linker {
 	/**#@+

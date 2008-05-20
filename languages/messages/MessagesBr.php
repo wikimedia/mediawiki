@@ -1,7 +1,8 @@
 <?php
 /** Breton (Brezhoneg)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Fulup
  * @author Nike

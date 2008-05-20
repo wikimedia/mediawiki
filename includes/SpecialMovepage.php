@@ -1,7 +1,7 @@
 <?php
 /**
- *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -42,7 +42,7 @@ function wfSpecialMovepage( $par = null ) {
 
 /**
  * HTML form for Special:Movepage
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input

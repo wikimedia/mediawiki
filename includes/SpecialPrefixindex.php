@@ -1,6 +1,7 @@
 <?php
 /**
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
 
 /**
@@ -37,7 +38,7 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 
 /**
  * implements Special:Prefixindex
- * @addtogroup SpecialPage
+ * @ingroup SpecialPage
  */
 class SpecialPrefixindex extends SpecialAllpages {
 	// Inherit $maxPerPage

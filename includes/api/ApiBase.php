@@ -34,7 +34,7 @@
  *
  * Self-documentation: code to allow api to document its own state.
  *
- * @addtogroup API
+ * @ingroup API
  */
 abstract class ApiBase {
 

@@ -2,6 +2,7 @@
 
 /**
  * Generic operation result class for FileRepo-related operations
+ * @ingroup FileRepo
  */
 class FileRepoStatus extends Status {
 	/**

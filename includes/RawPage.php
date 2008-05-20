@@ -7,6 +7,7 @@
  * License: GPL (http://www.gnu.org/copyleft/gpl.html)
  *
  * @author Gabriel Wicke <wicke@wikidev.net>
+ * @file
  */
 
 /**

@@ -1,9 +1,9 @@
 <?php
-/** Bosnian (bosanski)
-  *
-  * @addtogroup Language
-  */
 
+/** Bosnian (bosanski)
+ *
+ * @ingroup Language
+ */
 class LanguageBs extends Language {
 
 	function convertPlural( $count, $forms ) {

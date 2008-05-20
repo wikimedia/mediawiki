@@ -1,7 +1,8 @@
 <?php
 /** Danish
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  * @comment Deprecated code. Falls back to 'dk'.
  */
 

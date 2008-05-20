@@ -1,7 +1,8 @@
 <?php
 /** Aramaic (ܐܪܡܝܐ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author A2raya07
  * @author The Thadman
