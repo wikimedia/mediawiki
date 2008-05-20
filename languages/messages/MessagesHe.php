@@ -912,10 +912,16 @@ $2',
 יומן המחיקות של הדף מוצג להלן:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'אזהרה: דף זה כולל יותר מדי קריאות למשתנים הגוזלים משאבים.
+'expensive-parserfunction-warning'        => 'אזהרה: דף זה כולל יותר מדי קריאות למשתנים הגוזלים משאבים.
 
-צריכות להיות פחות מ-$2 קריאות כאלה, אך כעת יש $1.',
-'expensive-parserfunction-category' => 'דפים עם יותר מדי קריאות למשתנים הגוזלים משאבים',
+צריכות להיות פחות מ־$2 קריאות כאלה, אך כרגע יש $1.',
+'expensive-parserfunction-category'       => 'דפים עם יותר מדי קריאות למשתנים הגוזלים משאבים',
+'post-expand-template-inclusion-warning'  => 'אזהרה: התבניות המוכללות בדף זה גדולות מדי.
+חלק מהתבניות לא יוכללו.',
+'post-expand-template-inclusion-category' => 'דפים שבהם ההכללה גדולה מדי',
+'post-expand-template-argument-warning'   => 'אזהרה: דף זה כולל לפחות תבנית אחת שבה פרמטרים גדולים מדי.
+פרמטרים אלה הושמטו.',
+'post-expand-template-argument-category'  => 'דפים שבהם הושמטו פרמטרים של תבניות',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בידקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
@@ -1612,6 +1618,7 @@ $2',
 # Special:Categories
 'categories'                    => 'קטגוריות',
 'categoriespagetext'            => 'הקטגוריות הבאות כוללות דפים או קובצי מדיה.',
+'categoriesfrom'                => 'הצגת קטגוריות החל מ:',
 'special-categories-sort-count' => 'סידור לפי מספר חברים',
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
 
