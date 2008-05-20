@@ -286,6 +286,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   even if the wiki's overall content language is not Korean
 * (bug 12773) addOnloadHook() now calls functions immediately when scripts are
   loaded after the primary page completion, instead of dropping them
+* (bug 14199) Fix deletion form for image redirect pages
 
 
 === API changes in 1.13 ===
