@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * A foreign repository with a remote MediaWiki with an API thingy
  * Very hacky and inefficient
  * do not use :D
  *

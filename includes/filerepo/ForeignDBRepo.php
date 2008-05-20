@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A foreign repository with a remote MediaWiki with an API thingy
+ * A foreign repository with an accessible MediaWiki database
  * @ingroup FileRepo
  */
 class ForeignDBRepo extends LocalRepo {
