@@ -99,10 +99,6 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'                     => 'Katigoria',
-'categoriespagetext'             => 'Guåha påhina pat media gi halom i sigiente katigoria.',
-'special-categories-sort-count'  => 'såttea pot tinefong',
-'special-categories-sort-abc'    => 'såttea pot i atfabetu',
 'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategoria}}',
 'category_header'                => 'Påhina siha gi katigoria "$1"',
 'subcategories'                  => 'Ni dibision katigoria siha',
@@ -478,7 +474,12 @@ Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat pub
 <strong>MUNGA MANFA'BURESI NA GAIDIRECHU I MANTITUGE'!</strong>",
 'templatesused'         => "I plantiyas siha ni ma'usa gi påhina:",
 'templatesusedpreview'  => "I plantiyas ni ma'usa gi ripasu:",
+'templatesusedsection'  => "Plantiyas siha ni ma'usa gi este na seksion:",
 'template-protected'    => '(maprotehi)',
+'hiddencategories'      => "Miembron {{PLURAL:$1|1 manå'na na kategoria|$1 na mannå'na na kategoria}} este na påhina:",
+'nocreate-loggedin'     => "Ti nahon i nibet-mu petmisu mama'tinas nuebu na påhina gi {{SITENAME}}.",
+'permissionserrors'     => 'Linache siha gi Petmisu',
+'permissionserrorstext' => "Ti nahong nibet-mu petmisu chumo'gue enao, pot i sigiente {{PLURAL:$1|na rason|na rason siha}}:",
 'recreate-deleted-warn' => "'''Adahi: Esta mana'suha i påhina ni para un fa'tinas ta'lo.'''
 
 Konsidera fan anggen maolek ha' kumontinua tumulaika i påhina.
@@ -493,17 +494,45 @@ Estague' i historian muna'suha ni påhina:",
 'nextrevision'        => 'Mas nuebu na tinilaika→',
 'currentrevisionlink' => 'I mas nuebu na tinilaika',
 'cur'                 => "på'go",
+'next'                => 'manmamaila',
 'last'                => 'halacha',
 'page_first'          => "fine'nena",
 'page_last'           => 'uttimo',
 'histlegend'          => "Seleksion ni diferensia: ayek i kahon rediu siha ni tinilaika ni para un akompara ya yemme' \"enter\" pat i batunes gi sanpapa'.<br />
 Leyendu: (på'go) = i diferensia yan i rebision på'go,
 (halacha) = i diferensia yan i tinilaika ma'pos, M = dikike' na tinilaika.",
+'deletedrev'          => '[mafunas]',
 'histfirst'           => 'I mas bihu',
 'histlast'            => 'I mas nuebu',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historyempty'        => '(taisinahguan)',
 
 # Revision feed
+'history-feed-title'          => 'Historian tinilaika',
+'history-feed-description'    => 'Historian tinilaika gi este na påhina gi wiki',
 'history-feed-item-nocomment' => '$1 gi $2', # user at time
+'history-feed-empty'          => "Tåya' na påhina ni finaisen-mu.
+Buente mana'suha gi wiki, pat matulaika nå'an-ña.
+Chagi fan [[Special:Search|manaligao gi wiki]] para i mannuebu na påhina siha ni manaplikao.",
+
+# Revision deletion
+'rev-deleted-comment'         => "(mana'suha kommentu)",
+'rev-deleted-user'            => "(mana'suha nå'an muna'sesetbi)",
+'rev-deleted-event'           => "(mana'suha aksion log)",
+'rev-deleted-text-permission' => "<div class=\"mw-warning plainlinks\">
+Mana'suha este na tinilaika ginen i manpubliku na atkibu siha.
+Fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log muna'susuha].</div>",
+'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
+Mana'suha este na tinilaika ginen i mampubliku na atkibu siha.
+Komu administradot {{SITENAME}} siña un atan ha';
+fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log muna'susuha].</div>",
+'rev-delundel'                => "na'annok/nå'na",
+'revisiondelete'              => "Na'suha/para håfa muna'suha i tinilaika",
+'revdelete-selected'          => "{{PLURAL:$2|Tinilaika ma'ayek|Tinilaika manma'ayek}} gi [[:$1]]:",
+'logdelete-selected'          => "{{PLURAL:$1|Kasun log ni ma'ayek|Kasun log ni manma'ayek}}:",
+'revdelete-hide-comment'      => "Nå'na' i kommentun tinilaika",
+'revdelete-hide-user'         => "Nå'na' i na'an muna'sesetbi/IP i editot",
+'revdelete-hide-image'        => "Nå'na' i sinahguan atkibu",
 
 # Diffs
 'history-title'           => 'Historian tinilaika nu "$1"',
@@ -662,6 +691,12 @@ Siña un [[:\$1|fa'tinas i påhina]].",
 'allarticles'    => 'Todu i påhina siha',
 'allpagessubmit' => 'Hånao',
 'allpagesprefix' => "Na'annok i påhina siha yan i kla'an mo'na:",
+
+# Special:Categories
+'categories'                    => 'Katigoria',
+'categoriespagetext'            => 'Guåha påhina pat media gi halom i sigiente katigoria.',
+'special-categories-sort-count' => 'såttea pot tinefong',
+'special-categories-sort-abc'   => 'såttea pot i atfabetu',
 
 # E-mail user
 'emailuser' => "Na'e-mail i muna'sesetbi este",

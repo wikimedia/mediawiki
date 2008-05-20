@@ -277,10 +277,6 @@ Na ''Ünnerscheed wiesen'' nich de kumplette Siet wiesen",
 'dec'           => 'Dez',
 
 # Categories related messages
-'categories'                     => '{{PLURAL:$1|Kategorie|Kategorien}}',
-'categoriespagetext'             => 'In disse Kategorien staht Sieden oder Mediendatein.',
-'special-categories-sort-count'  => 'na Tall sorteren',
-'special-categories-sort-abc'    => 'alphabeetsch sorteren',
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'                => 'Sieden in de Kategorie „$1“',
 'subcategories'                  => 'Ünnerkategorien',
@@ -631,23 +627,23 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'hr_tip'          => 'Waagrechte Lien (sporsam bruken)',
 
 # Edit pages
-'summary'                           => 'Tosamenfaten',
-'subject'                           => 'Bedrap',
-'minoredit'                         => 'Blots lütte Ännern',
-'watchthis'                         => 'Op disse Siet oppassen',
-'savearticle'                       => 'Siet spiekern',
-'preview'                           => 'Vörschau',
-'showpreview'                       => 'Vörschau wiesen',
-'showlivepreview'                   => 'Live-Vörschau',
-'showdiff'                          => 'Ünnerscheed wiesen',
-'anoneditwarning'                   => "'''Wohrschau:''' Du büst nich anmellt. Diene IP-Adress warrt in de Versionshistorie vun de Siet fasthollen.",
-'missingsummary'                    => "'''Wohrschau:''' Du hest keen Tosamenfaten angeven, wat du ännert hest. Wenn du nu Spiekern klickst, warrt de Siet ahn Tosamenfaten spiekert.",
-'missingcommenttext'                => 'Geev ünnen en Tosamenfaten in.',
-'missingcommentheader'              => "'''WOHRSCHAU:''' Du hest keen Överschrift in dat Feld „{{MediaWiki:Subject/nds}}“ ingeven. Wenn du noch wedder op „{{MediaWiki:Savearticle/nds}}“ klickst, denn warrt dien Ännern ahn Överschrift spiekert.",
-'summary-preview'                   => 'Vörschau vun’t Tosamenfaten',
-'subject-preview'                   => "Vörschau vun de Reeg ''Tosamenfaten''",
-'blockedtitle'                      => 'Bruker is blockt',
-'blockedtext'                       => 'Dien Brukernaam oder diene IP-Adress is vun $1 blockt worrn.
+'summary'                   => 'Tosamenfaten',
+'subject'                   => 'Bedrap',
+'minoredit'                 => 'Blots lütte Ännern',
+'watchthis'                 => 'Op disse Siet oppassen',
+'savearticle'               => 'Siet spiekern',
+'preview'                   => 'Vörschau',
+'showpreview'               => 'Vörschau wiesen',
+'showlivepreview'           => 'Live-Vörschau',
+'showdiff'                  => 'Ünnerscheed wiesen',
+'anoneditwarning'           => "'''Wohrschau:''' Du büst nich anmellt. Diene IP-Adress warrt in de Versionshistorie vun de Siet fasthollen.",
+'missingsummary'            => "'''Wohrschau:''' Du hest keen Tosamenfaten angeven, wat du ännert hest. Wenn du nu Spiekern klickst, warrt de Siet ahn Tosamenfaten spiekert.",
+'missingcommenttext'        => 'Geev ünnen en Tosamenfaten in.',
+'missingcommentheader'      => "'''WOHRSCHAU:''' Du hest keen Överschrift in dat Feld „{{MediaWiki:Subject/nds}}“ ingeven. Wenn du noch wedder op „{{MediaWiki:Savearticle/nds}}“ klickst, denn warrt dien Ännern ahn Överschrift spiekert.",
+'summary-preview'           => 'Vörschau vun’t Tosamenfaten',
+'subject-preview'           => "Vörschau vun de Reeg ''Tosamenfaten''",
+'blockedtitle'              => 'Bruker is blockt',
+'blockedtext'               => 'Dien Brukernaam oder diene IP-Adress is vun $1 blockt worrn.
 As Grund is angeven: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbookindrag]</span>, de Block-ID is $5).
 
 Du dröffst aver jümmer noch lesen. Blot dat Schrieven geiht nich. Wenn du gor nix schrieven wullst, denn hest du villicht op en roden Lenk klickt, to en Artikel den dat noch nich gifft. blot blaue Lenken gaht na vörhannene Artikels.
@@ -660,7 +656,7 @@ Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{Medi
 * IP-Adress: $3
 * Block-ID: #$5
 * Wokeen hett blockt: $1',
-'autoblockedtext'                   => 'Diene IP-Adress is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
+'autoblockedtext'           => 'Diene IP-Adress is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
 As Grund is angeven: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbookindrag]</span>, de Block-ID is $5).
 
 Du dröffst aver jümmer noch lesen. Blot dat Schrieven geiht nich.
@@ -673,91 +669,93 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 * IP-Adress: $3
 * Block-ID: #$5
 * Wokeen hett blockt: $1',
-'blockednoreason'                   => 'keen Grund angeven',
-'blockedoriginalsource'             => "De Borntext vun '''$1''' warrt hier wiest:",
-'blockededitsource'                 => "De Text vun '''diene Ännern''' an '''$1''':",
-'whitelistedittitle'                => 'de Siet to ännern is dat nödig anmellt to wesen',
-'whitelistedittext'                 => 'Du musst di $1, dat du Sieden ännern kannst.',
-'whitelistreadtitle'                => 'üm to Lesen is dat neudig anmellt to ween',
-'whitelistreadtext'                 => 'Du musst di [[Special:Userlogin|hier anmellen]], dat du Sieden lesen kannst.',
-'whitelistacctitle'                 => 'Du hest nich de Rechten en Konto antoleggen',
-'whitelistacctext'                  => 'Dat du op {{SITENAME}} Brukerkontos anleggen kannst, musst du di [[Special:Userlogin|hier anmellen]] un de nödigen Rechten hebben.',
-'confirmedittitle'                  => 'E-Mail-Adress mutt bestätigt wesen, dat du wat ännern kannst',
-'nosuchsectiontitle'                => 'Dissen Afsnitt gifft dat nich',
-'nosuchsectiontext'                 => 'Du hest versöcht den Afsnitt „$1“ to ännern, den dat nich gifft. Du kannst blot Afsneed ännern, de al dor sünd.',
-'loginreqtitle'                     => 'Anmellen nödig',
-'loginreqlink'                      => 'anmellen',
-'loginreqpagetext'                  => 'Du musst di $1, dat du annere Sieden ankieken kannst.',
-'accmailtitle'                      => 'Passwoort is toschickt worrn.',
-'accmailtext'                       => 'Dat Passwoort vun $1 is an $2 schickt worrn.',
-'newarticle'                        => '(Nee)',
-'newarticletext'                    => 'Hier den Text vun de ne’e Siet indregen. Jümmer in ganze Sätz schrieven un kene Texten vun Annern, de en Oorheverrecht ünnerliggt, hierher kopeern.',
-'anontalkpagetext'                  => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker. Wi mööt hier de numerische [[IP-Adress]]
+'blockednoreason'           => 'keen Grund angeven',
+'blockedoriginalsource'     => "De Borntext vun '''$1''' warrt hier wiest:",
+'blockededitsource'         => "De Text vun '''diene Ännern''' an '''$1''':",
+'whitelistedittitle'        => 'de Siet to ännern is dat nödig anmellt to wesen',
+'whitelistedittext'         => 'Du musst di $1, dat du Sieden ännern kannst.',
+'whitelistreadtitle'        => 'üm to Lesen is dat neudig anmellt to ween',
+'whitelistreadtext'         => 'Du musst di [[Special:Userlogin|hier anmellen]], dat du Sieden lesen kannst.',
+'whitelistacctitle'         => 'Du hest nich de Rechten en Konto antoleggen',
+'whitelistacctext'          => 'Dat du op {{SITENAME}} Brukerkontos anleggen kannst, musst du di [[Special:Userlogin|hier anmellen]] un de nödigen Rechten hebben.',
+'confirmedittitle'          => 'E-Mail-Adress mutt bestätigt wesen, dat du wat ännern kannst',
+'nosuchsectiontitle'        => 'Dissen Afsnitt gifft dat nich',
+'nosuchsectiontext'         => 'Du hest versöcht den Afsnitt „$1“ to ännern, den dat nich gifft. Du kannst blot Afsneed ännern, de al dor sünd.',
+'loginreqtitle'             => 'Anmellen nödig',
+'loginreqlink'              => 'anmellen',
+'loginreqpagetext'          => 'Du musst di $1, dat du annere Sieden ankieken kannst.',
+'accmailtitle'              => 'Passwoort is toschickt worrn.',
+'accmailtext'               => 'Dat Passwoort vun $1 is an $2 schickt worrn.',
+'newarticle'                => '(Nee)',
+'newarticletext'            => 'Hier den Text vun de ne’e Siet indregen. Jümmer in ganze Sätz schrieven un kene Texten vun Annern, de en Oorheverrecht ünnerliggt, hierher kopeern.',
+'anontalkpagetext'          => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker. Wi mööt hier de numerische [[IP-Adress]]
 verwennen, üm den Bruker to identifizeern. So en Adress kann vun verscheden Brukern bruukt warrn. Wenn du en anonymen Bruker büst un meenst,
 dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di doch an]], dormit dat Problem nich mehr besteiht.''",
-'noarticletext'                     => 'Dor is opstunns keen Text op disse Siet. Du kannst [[Special:Search/{{PAGENAME}}|na dissen Utdruck in annere Sieden söken]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Siet ännern].',
-'userpage-userdoesnotexist'         => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
-'clearyourcache'                    => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'usercssjsyoucanpreview'            => '<strong>Tipp:</strong> Bruuk den Vörschau-Knoop, üm dien nieg CSS/JS vör dat Spiekern to testen.',
-'usercsspreview'                    => "'''Denk doran, dat du blots en Vörschau vun dien CSS ankiekst, dat is noch nich spiekert!'''",
-'userjspreview'                     => "'''Denk doran, dat du blots en Vörschau vun dien JS ankiekst, dat is noch nich spiekert!'''",
-'userinvalidcssjstitle'             => "'''Wohrschau:''' Dat gifft keen Skin „$1“. Denk dor an, dat .css- un .js-Sieden  för Brukers mit en lütten Bookstaven anfangen mööt, to’n Bispeel ''{{ns:user}}:Brukernaam/monobook.css'' un nich ''{{ns:user}}:Brukernaam/Monobook.css''.",
-'updated'                           => '(Ännert)',
-'note'                              => '<strong>Wohrschau:</strong>',
-'previewnote'                       => '<strong>Dit is blots en Vörschau, de Siet is noch nich spiekert!</strong>',
-'previewconflict'                   => 'Disse Vörschau wiest den Inholt vun dat Textfeld baven; so warrt de Siet utseihn, wenn du nu spiekerst.',
-'session_fail_preview'              => '<strong>Deit uns leed! Wi kunnen dien Ännern nich spiekern. Diene Sitzungsdaten weren weg.
+'noarticletext'             => 'Dor is opstunns keen Text op disse Siet. Du kannst [[Special:Search/{{PAGENAME}}|na dissen Utdruck in annere Sieden söken]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Siet ännern].',
+'userpage-userdoesnotexist' => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
+'clearyourcache'            => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'usercssjsyoucanpreview'    => '<strong>Tipp:</strong> Bruuk den Vörschau-Knoop, üm dien nieg CSS/JS vör dat Spiekern to testen.',
+'usercsspreview'            => "'''Denk doran, dat du blots en Vörschau vun dien CSS ankiekst, dat is noch nich spiekert!'''",
+'userjspreview'             => "'''Denk doran, dat du blots en Vörschau vun dien JS ankiekst, dat is noch nich spiekert!'''",
+'userinvalidcssjstitle'     => "'''Wohrschau:''' Dat gifft keen Skin „$1“. Denk dor an, dat .css- un .js-Sieden  för Brukers mit en lütten Bookstaven anfangen mööt, to’n Bispeel ''{{ns:user}}:Brukernaam/monobook.css'' un nich ''{{ns:user}}:Brukernaam/Monobook.css''.",
+'updated'                   => '(Ännert)',
+'note'                      => '<strong>Wohrschau:</strong>',
+'previewnote'               => '<strong>Dit is blots en Vörschau, de Siet is noch nich spiekert!</strong>',
+'previewconflict'           => 'Disse Vörschau wiest den Inholt vun dat Textfeld baven; so warrt de Siet utseihn, wenn du nu spiekerst.',
+'session_fail_preview'      => '<strong>Deit uns leed! Wi kunnen dien Ännern nich spiekern. Diene Sitzungsdaten weren weg.
 Versöök dat noch wedder. Wenn dat noch jümmer nich geiht, denn versöch di af- un denn wedder antomellen.</strong>',
-'editing'                           => 'Ännern vun $1',
-'editingsection'                    => 'Ännern vun $1 (Afsatz)',
-'editingcomment'                    => 'Ännern vun $1 (Kommentar)',
-'editconflict'                      => 'Konflikt bi dat Bearbeiden: $1',
-'explainconflict'                   => 'En anner Bruker hett disse Siet ännert, no de Tied dat du anfungen hest, de Siet to bearbeiden.
+'editing'                   => 'Ännern vun $1',
+'editingsection'            => 'Ännern vun $1 (Afsatz)',
+'editingcomment'            => 'Ännern vun $1 (Kommentar)',
+'editconflict'              => 'Konflikt bi dat Bearbeiden: $1',
+'explainconflict'           => 'En anner Bruker hett disse Siet ännert, no de Tied dat du anfungen hest, de Siet to bearbeiden.
 Dat Textfeld baven wiest de aktuelle Siet.
 Dat Textfeld nerrn wiest diene Ännern.
 Föög diene Ännern in dat Textfeld baven in.
 
 <b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<br />',
-'yourtext'                          => 'Dien Text',
-'storedversion'                     => 'Spiekerte Version',
-'nonunicodebrowser'                 => "'''Wohrschau: Dien Browser kann keen Unicode, bruuk en annern Browser, wenn du en Siet ännern wist.'''",
-'editingold'                        => '<strong>Wohrscho: Du bearbeidst en ole Version vun disse Siet.
+'yourtext'                  => 'Dien Text',
+'storedversion'             => 'Spiekerte Version',
+'nonunicodebrowser'         => "'''Wohrschau: Dien Browser kann keen Unicode, bruuk en annern Browser, wenn du en Siet ännern wist.'''",
+'editingold'                => '<strong>Wohrscho: Du bearbeidst en ole Version vun disse Siet.
 Wenn du spiekerst, warrn alle niegeren Versionen överschrieven.</strong>',
-'yourdiff'                          => 'Ünnerscheed',
-'copyrightwarning'                  => 'Bitte pass op, dat all diene Bidrääg to de Wikipedia so ansehn warrt, dat se ünner de $2 staht (kiek op $1 för de Details). Wenn du nich willst, dat diene Bidrääg ännert un verdeelt warrt, denn schallst du hier man nix bidragen. Du seggst ok to, dat du dat hier sülvst schreven hest, oder dat du dat ut en fre’e Born (to’n Bispeel Gemeenfree oder so wat in disse Oort) kopeert hest.
+'yourdiff'                  => 'Ünnerscheed',
+'copyrightwarning'          => 'Bitte pass op, dat all diene Bidrääg to de Wikipedia so ansehn warrt, dat se ünner de $2 staht (kiek op $1 för de Details). Wenn du nich willst, dat diene Bidrääg ännert un verdeelt warrt, denn schallst du hier man nix bidragen. Du seggst ok to, dat du dat hier sülvst schreven hest, oder dat du dat ut en fre’e Born (to’n Bispeel Gemeenfree oder so wat in disse Oort) kopeert hest.
 <strong>Stell hier nix rin, wat ünner Oorheverrecht steiht, wenn de, de dat Oorheverrecht hett, di dorto keen Verlööf geven hett!</strong>',
-'copyrightwarning2'                 => "Dien Text, de du op {{SITENAME}} stellen wullst, könnt vun elkeen ännert oder wegmaakt warrn.
+'copyrightwarning2'         => "Dien Text, de du op {{SITENAME}} stellen wullst, könnt vun elkeen ännert oder wegmaakt warrn.
 Wenn du dat nich wullst, dröffst du dien Text hier nich apentlich maken.<br />
 
 Du bestätigst ok, dat du den Text sülvst schreven hest oder ut en „Public Domain“-Born oder en annere fre'e Born kopeert hest (Kiek ok $1 för Details).
 <strong>Kopeer kene Warken, de enen Oorheverrecht ünnerliggt, ahn Verlööv vun de Copyright-Inhebbers!</strong>",
-'longpagewarning'                   => '<strong>Wohrscho: Disse Siet is $1 KB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 KB sünd.
+'longpagewarning'           => '<strong>Wohrscho: Disse Siet is $1 KB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 KB sünd.
 Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.</strong>',
-'longpageerror'                     => "'''Fehler: Dien Text is $1 Kilobytes lang. Dat is länger as dat Maximum vun $2 Kilobytes. Kann den Text nich spiekern.'''",
-'readonlywarning'                   => '<strong>Wohrscho: De Datenbank is wiel dat Ännern vun de
+'longpageerror'             => "'''Fehler: Dien Text is $1 Kilobytes lang. Dat is länger as dat Maximum vun $2 Kilobytes. Kann den Text nich spiekern.'''",
+'readonlywarning'           => '<strong>Wohrscho: De Datenbank is wiel dat Ännern vun de
 Siet för Pleegarbeiden sparrt worrn, so dat du de Siet en Stoot nich
 spiekern kannst. Seker di den Text un versöök later weer de Ännern to spiekern.</strong>',
-'protectedpagewarning'              => '<strong>Wohrscho: Disse Siet is sparrt worrn, so dat blots
+'protectedpagewarning'      => '<strong>Wohrscho: Disse Siet is sparrt worrn, so dat blots
 Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
-'semiprotectedpagewarning'          => "'''Henwies:''' Disse Siet is sparrt. Blots anmellt Brukers köönt de Siet ännern.",
-'cascadeprotectedwarning'           => "'''Wohrschau:''' Disse Siet is so sparrt, dat blot Brukers mit Admin-Status ehr ännern köönt. Dat liggt dor an, dat se in disse {{PLURAL:$1|kaskadensparrte Siet|kaskadensparrten Sieden}} inbunnen is:",
-'titleprotectedwarning'             => '<strong>WOHRSCHAU: Disse Siet is schuult, dat blot welk Brukergruppen ehr anleggen köönt.</strong>',
-'templatesused'                     => 'Vörlagen de in disse Siet bruukt warrt:',
-'templatesusedpreview'              => 'Vörlagen de in disse Vörschau bruukt warrt:',
-'templatesusedsection'              => 'Vörlagen de in dissen Afsnitt bruukt warrt:',
-'template-protected'                => '(schuult)',
-'template-semiprotected'            => '(half-schuult)',
-'hiddencategories'                  => 'Disse Siet steiht in {{PLURAL:$1|ene verstekene Kategorie|$1 verstekene Kategorien}}:',
-'edittools'                         => '<!-- Disse Text warrt ünner de Finstern för dat Ännern un Hoochladen wiest. -->',
-'nocreatetitle'                     => 'Opstellen vun ne’e Sieden is inschränkt.',
-'nocreatetext'                      => '{{SITENAME}} verlööft di dat Opstellen vun ne’e Sieden nich. Du kannst blot Sieden ännern, de al dor sünd, oder du musst di [[Special:Userlogin|anmellen]].',
-'nocreate-loggedin'                 => 'Du hest keen Verlööf, op {{SITENAME}} ne’e Sieden antoleggen.',
-'permissionserrors'                 => 'Fehlers mit de Rechten',
-'permissionserrorstext'             => 'Du hest keen Verlööf, dat to doon. De {{PLURAL:$1|Grund is|Grünn sünd}}:',
-'recreate-deleted-warn'             => "'''Wohrschau: Du stellst jüst en Siet wedder nee op, de vördem al mal wegsmeten worrn is.'''
+'semiprotectedpagewarning'  => "'''Henwies:''' Disse Siet is sparrt. Blots anmellt Brukers köönt de Siet ännern.",
+'cascadeprotectedwarning'   => "'''Wohrschau:''' Disse Siet is so sparrt, dat blot Brukers mit Admin-Status ehr ännern köönt. Dat liggt dor an, dat se in disse {{PLURAL:$1|kaskadensparrte Siet|kaskadensparrten Sieden}} inbunnen is:",
+'titleprotectedwarning'     => '<strong>WOHRSCHAU: Disse Siet is schuult, dat blot welk Brukergruppen ehr anleggen köönt.</strong>',
+'templatesused'             => 'Vörlagen de in disse Siet bruukt warrt:',
+'templatesusedpreview'      => 'Vörlagen de in disse Vörschau bruukt warrt:',
+'templatesusedsection'      => 'Vörlagen de in dissen Afsnitt bruukt warrt:',
+'template-protected'        => '(schuult)',
+'template-semiprotected'    => '(half-schuult)',
+'hiddencategories'          => 'Disse Siet steiht in {{PLURAL:$1|ene verstekene Kategorie|$1 verstekene Kategorien}}:',
+'edittools'                 => '<!-- Disse Text warrt ünner de Finstern för dat Ännern un Hoochladen wiest. -->',
+'nocreatetitle'             => 'Opstellen vun ne’e Sieden is inschränkt.',
+'nocreatetext'              => '{{SITENAME}} verlööft di dat Opstellen vun ne’e Sieden nich. Du kannst blot Sieden ännern, de al dor sünd, oder du musst di [[Special:Userlogin|anmellen]].',
+'nocreate-loggedin'         => 'Du hest keen Verlööf, op {{SITENAME}} ne’e Sieden antoleggen.',
+'permissionserrors'         => 'Fehlers mit de Rechten',
+'permissionserrorstext'     => 'Du hest keen Verlööf, dat to doon. De {{PLURAL:$1|Grund is|Grünn sünd}}:',
+'recreate-deleted-warn'     => "'''Wohrschau: Du stellst jüst en Siet wedder nee op, de vördem al mal wegsmeten worrn is.'''
 
 Överlegg genau, wat du würklich de Siet nee opstellen wist.
 Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Uttog ut dat Lösch-Logbook:",
+
+# Parser/template warnings
 'expensive-parserfunction-category' => 'Sieden, de toveel opwännige Parserfunkschonen bruukt',
 
 # "Undo" feature
@@ -1209,7 +1207,7 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'filehist'                       => 'Datei-Historie',
 'filehist-help'                  => 'Klick op de Tiet, dat du de Datei ankieken kannst, so as se do utseeg.',
 'filehist-deleteall'             => 'all wegsmieten',
-'filehist-deleteone'             => 'dit wegsmieten',
+'filehist-deleteone'             => 'wegsmieten',
 'filehist-revert'                => 'Trüchsetten',
 'filehist-current'               => 'aktuell',
 'filehist-datetime'              => 'Datum/Tiet',
@@ -1406,6 +1404,12 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'allpagessubmit'    => 'Los',
 'allpagesprefix'    => 'Sieden wiesen, de anfangt mit:',
 'allpages-bad-ns'   => '{{SITENAME}} hett keen Naamruum „$1“.',
+
+# Special:Categories
+'categories'                    => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'categoriespagetext'            => 'In disse Kategorien staht Sieden oder Mediendatein.',
+'special-categories-sort-count' => 'na Tall sorteren',
+'special-categories-sort-abc'   => 'alphabeetsch sorteren',
 
 # Special:Listusers
 'listusersfrom'      => 'Wies de Brukers, de anfangt mit:',
