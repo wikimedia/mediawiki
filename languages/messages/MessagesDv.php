@@ -46,11 +46,9 @@ $messages = array(
 'dec'       => 'ޑިސެމްބަރ',
 
 # Categories related messages
-'categories'         => 'ގިސްމުތައް',
-'categoriespagetext' => 'ތިރީގައި މިވާ ގިސްމުތައް ވިކީ ގައި މައުޖޫދުވެގެން ވެއެވެ.',
-'category_header'    => 'ގިސްމު "$1" ގައިވާ މަޒުމޫނުތައް',
-'subcategories'      => 'ކުދިގިސްމުތައް',
-'category-empty'     => "''މި ގިސްމުގައި އެއްވެއސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
+'category_header' => 'ގިސްމު "$1" ގައިވާ މަޒުމޫނުތައް',
+'subcategories'   => 'ކުދިގިސްމުތައް',
+'category-empty'  => "''މި ގިސްމުގައި އެއްވެއސް ސަފްހާ އެއް އަދި އެއްވެސް ފައިލެއް ނުހިމެނެއެވެ.''",
 
 'about'         => 'ތާރަފު',
 'article'       => 'ފިހުރިސްތު ޞަފްޙާ',
@@ -287,6 +285,10 @@ $messages = array(
 'allpagesprev'   => 'ކުރީގެ',
 'allpagesnext'   => 'ކުރިޔަށް އޮތް',
 'allpagessubmit' => 'ދުރުވޭ',
+
+# Special:Categories
+'categories'         => 'ގިސްމުތައް',
+'categoriespagetext' => 'ތިރީގައި މިވާ ގިސްމުތައް ވިކީ ގައި މައުޖޫދުވެގެން ވެއެވެ.',
 
 # E-mail user
 'emailuser' => 'މި މެންބަރަށް އީމޭލު ފޮނުއްވާ',

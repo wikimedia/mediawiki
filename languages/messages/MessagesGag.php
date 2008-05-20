@@ -110,7 +110,6 @@ $messages = array(
 'dec'           => 'Dek',
 
 # Categories related messages
-'categories'             => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 'pagecategories'         => 'Sayfa {{PLURAL:$1|kategoriyası|kategoriyaları}}',
 'category_header'        => '"$1" kategoriyasındaki sayfalar',
 'subcategories'          => 'Alt kategoriyalar',
@@ -651,6 +650,9 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'allarticles'    => 'Hepsi yazılar',
 'allpagessubmit' => 'Git',
 'allpagesprefix' => 'Gösterin sayfaları angıları çekeder bukvalarlan ani buraya yazdınız:',
+
+# Special:Categories
+'categories' => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
 
 # E-mail user
 'emailuser' => 'Gönder bu kullanıcıya bir e-mail',

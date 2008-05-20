@@ -105,8 +105,6 @@ $messages = array(
 'dec'           => 'juovlamánnu',
 
 # Categories related messages
-'categories'             => 'Luohkát',
-'categoriespagetext'     => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát:',
 'pagecategories'         => '{{PLURAL:$1|Luohkká|Luohkát}}',
 'category_header'        => 'Siiddut, mat gullet luohkkái $1',
 'subcategories'          => 'Vuolleluohkát',
@@ -830,6 +828,10 @@ $1 | $2',
 'allpagessubmit'    => 'Oza',
 'allpagesbadtitle'  => 'Čállojuvvon bájilčála lei dohkemeahtun dahje das lei wikiid gaskasaš álgooassi.',
 'allpages-bad-ns'   => '{{GRAMMAR:inessive|{{SITENAME}}}} ii leat nammagomuvuohta ”$1”.',
+
+# Special:Categories
+'categories'         => 'Luohkát',
+'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát:',
 
 # Special:Listusers
 'listusers-submit'   => 'Oza',

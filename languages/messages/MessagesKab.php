@@ -138,8 +138,6 @@ $messages = array(
 'dec'           => 'Jember',
 
 # Categories related messages
-'categories'            => 'Taggayin',
-'categoriespagetext'    => 'Llant taggayin-agi deg wiki-yagi.',
 'pagecategories'        => '{{PLURAL:$1|Taggayt|Taggayin}}',
 'category_header'       => 'Imagraden deg taggayt "$1"',
 'subcategories'         => 'Taggayin tizellumin',
@@ -1019,6 +1017,10 @@ Tzemreḍ ad textareḍ cwiṭ seg-sen ma tebɣiḍ.',
 'allpagesprefix'    => 'Ssken isebtar s uzwir:',
 'allpagesbadtitle'  => 'Azwel n usebter mačči ṣaḥiḥ neɣ yesɛa azwir inter-wiki. Waqila yesɛa isekkilen ur ttuseqdacen ara deg izwal.',
 'allpages-bad-ns'   => '{{SITENAME}} ur yesɛi ara isem n taɣult "$1".',
+
+# Special:Categories
+'categories'         => 'Taggayin',
+'categoriespagetext' => 'Llant taggayin-agi deg wiki-yagi.',
 
 # Special:Listusers
 'listusersfrom'      => 'Ssken imseqdacen seg:',

@@ -70,7 +70,6 @@ $messages = array(
 'dec'           => 'ཟླ་༡༢ པ།',
 
 # Categories related messages
-'categories'             => 'དབྱེ་རིམ།',
 'category_header'        => 'དབྱེ་རིམ་ "$1" ནང་གི་ཤོག་ལེབ་ཚུ།',
 'subcategories'          => 'ཡན་ལག་དབྱེ་རིམ།',
 'category-media-header'  => 'དབྱེ་རིམ་ \\"$1\\" ནང་གི་བརྡ་བརྒྱུད།',
@@ -450,6 +449,9 @@ $messages = array(
 'allarticles'    => 'ཤོག་ལེབ་ག་ར།',
 'allpagessubmit' => 'འགྱོ།',
 'allpagesprefix' => 'སྔོན་ཚིག་གི་ཐོག་ལས་ཤོག་ལེབ་ཚུ་སྟོན།',
+
+# Special:Categories
+'categories' => 'དབྱེ་རིམ།',
 
 # E-mail user
 'emailuser' => 'ལག་ལེན་པ་ལུ་ གློག་འཕྲིན་གཏང་',

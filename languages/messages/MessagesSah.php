@@ -112,10 +112,6 @@ $messages = array(
 'dec'           => 'Ахс',
 
 # Categories related messages
-'categories'                     => 'Категориялар',
-'categoriespagetext'             => 'Бу категориялар истэригэр сирэйдэр эбэтэр медия-билэлэр бааллар.',
-'special-categories-sort-count'  => 'ахсаанынан бэрээдэктээһин',
-'special-categories-sort-abc'    => 'алпабыытынан бэрээдэктээһин',
 'pagecategories'                 => '{{PLURAL:$1|Категория|Категориялар}}',
 'category_header'                => '"$1" категория ыстатыйалара',
 'subcategories'                  => 'Субкатегориялар',
@@ -1240,6 +1236,12 @@ PICT # misc.
 'allpagesprefix'    => 'Мантан саҕаланар сирэйдэри бул:',
 'allpagesbadtitle'  => 'Сирэй маннык ааттанара сатаммат: аакка туттуллуо суохтаах бэлиэлэрдээх эбэтэр тыллар ыккардыларыгар туһаныллар ыйынньыктаах.',
 'allpages-bad-ns'   => '{{SITENAME}} не содержит пространства имён «$1».',
+
+# Special:Categories
+'categories'                    => 'Категориялар',
+'categoriespagetext'            => 'Бу категориялар истэригэр сирэйдэр эбэтэр медия-билэлэр бааллар.',
+'special-categories-sort-count' => 'ахсаанынан бэрээдэктээһин',
+'special-categories-sort-abc'   => 'алпабыытынан бэрээдэктээһин',
 
 # Special:Listusers
 'listusersfrom'      => 'Мантан саҕалаан кыттааччылары көрдөр:',

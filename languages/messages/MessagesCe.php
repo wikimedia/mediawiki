@@ -56,7 +56,6 @@ $messages = array(
 'sat'       => 'Шот',
 
 # Categories related messages
-'categories'            => 'Тобаш',
 'pagecategories'        => '{{PLURAL:$1|Тоба|Тобаш}}',
 'category-media-header' => 'Файлош тобашахь «$1»',
 
@@ -225,6 +224,9 @@ $messages = array(
 'allpages'       => 'Массо таптараш',
 'allarticles'    => 'Массо таптараш',
 'allpagessubmit' => 'кхочушде',
+
+# Special:Categories
+'categories' => 'Тобаш',
 
 # E-mail user
 'emailuser'       => 'Кехат Язде Юзеран',

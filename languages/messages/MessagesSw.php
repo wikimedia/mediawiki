@@ -69,7 +69,6 @@ $messages = array(
 'dec'           => 'Des',
 
 # Categories related messages
-'categories'             => 'Jamii',
 'category_header'        => 'Makala katika jamii "$1"',
 'subcategories'          => 'Vijamii',
 'category-media-header'  => 'Picha, video, na sauti katika jamii  "$1"',
@@ -483,6 +482,9 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'allarticles'    => 'Kurasa zote',
 'allpagessubmit' => 'Nenda',
 'allpagesprefix' => 'Onyesha kurasa zenye kiambishi awali:',
+
+# Special:Categories
+'categories' => 'Jamii',
 
 # E-mail user
 'emailuser' => 'Mtumie mtumiaji huyu barua pepe',

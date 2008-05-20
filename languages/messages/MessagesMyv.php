@@ -118,10 +118,6 @@ $messages = array(
 'dec'           => 'Аца',
 
 # Categories related messages
-'categories'                     => 'Категорият',
-'categoriespagetext'             => 'Не категориятнесэ улить лопат эли медият.',
-'special-categories-sort-count'  => 'аравтомс цётонь коряс',
-'special-categories-sort-abc'    => 'аравтомс альфавитэнь коряс',
 'pagecategories'                 => '{{PLURAL:$1|Категория|Категорият}}',
 'category_header'                => '"$1" категориясонть лопатне',
 'subcategories'                  => 'Алкскатегорият',
@@ -799,6 +795,12 @@ $messages = array(
 'allpagesnext'   => 'Сыця',
 'allpagessubmit' => 'Молемс',
 'allpagesprefix' => 'Невтевкс лопась полаткс марто:',
+
+# Special:Categories
+'categories'                    => 'Категорият',
+'categoriespagetext'            => 'Не категориятнесэ улить лопат эли медият.',
+'special-categories-sort-count' => 'аравтомс цётонь коряс',
+'special-categories-sort-abc'   => 'аравтомс альфавитэнь коряс',
 
 # Special:Listusers
 'listusers-submit' => 'Невтемс',

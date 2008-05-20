@@ -13,7 +13,6 @@ $messages = array(
 'tog-underline' => 'Links ke underline karo:',
 
 # Categories related messages
-'categories'             => 'Vibhag',
 'category_header'        => '"$1" vibhag ke panna',
 'subcategories'          => 'Vibhag ke bhitar vibhag',
 'category-media-header'  => 'Vibhag "$1" me media',
@@ -347,6 +346,9 @@ Legend: (abhi) = abhi ke version se farka,
 'allarticles'    => 'Sab panna',
 'allpagessubmit' => 'Jao',
 'allpagesprefix' => 'Uu panna dekhao jiske prefix hai:',
+
+# Special:Categories
+'categories' => 'Vibhag',
 
 # E-mail user
 'emailuser' => 'Ii user ke E-mail karo',

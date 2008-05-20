@@ -146,8 +146,6 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'             => 'Mga Kategorya',
-'categoriespagetext'     => 'Igwa nin laog ang mga minasunod na kategorya.',
 'pagecategories'         => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
 'category_header'        => 'Mga artikulo sa kategoryang "$1"',
 'subcategories'          => 'Mga sub-kategorya',
@@ -1148,6 +1146,10 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'allpagesprefix'    => 'Ipahiling an mga páhinang may prepiho:',
 'allpagesbadtitle'  => "Dai pwede an tinaong titulo kan páhina o may prefihong para sa ibang tataramon o ibang wiki. Pwede ser na igwa ining sarô o iba pang mga ''character'' na dai pwedeng gamiton sa mga titulo.",
 'allpages-bad-ns'   => 'An {{SITENAME}} mayo man na ngaran-espacio na "$1".',
+
+# Special:Categories
+'categories'         => 'Mga Kategorya',
+'categoriespagetext' => 'Igwa nin laog ang mga minasunod na kategorya.',
 
 # Special:Listusers
 'listusersfrom'      => 'Ipahiling an mga paragamit poon sa:',

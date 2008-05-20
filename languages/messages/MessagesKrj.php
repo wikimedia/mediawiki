@@ -91,7 +91,6 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'            => 'Manga Kategorya',
 'category_header'       => 'Manga artikolo sa "$1"',
 'subcategories'         => "Manga ''subcategory''",
 'category-media-header' => 'Manga midya sa "$1"',
@@ -234,6 +233,9 @@ $messages = array(
 
 # Special:Log
 'log-search-submit' => 'Agto',
+
+# Special:Categories
+'categories' => 'Manga Kategorya',
 
 # Special:Listusers
 'listusers-submit' => 'Ipakita',

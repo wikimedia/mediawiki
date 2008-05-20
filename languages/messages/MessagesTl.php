@@ -106,8 +106,6 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'categories'                  => 'Mga kategorya',
-'categoriespagetext'          => 'Ang mga sumusunod na kategorya ay naglalaman ng mga pahina o midya.',
 'pagecategories'              => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
 'category_header'             => 'Mga pahina sa kategoryang "$1"',
 'subcategories'               => 'Mga subkategorya',
@@ -448,6 +446,10 @@ upang makapagkarga ng talaksan.',
 
 # Special:Allpages
 'allpages' => 'Lahat ng pahina',
+
+# Special:Categories
+'categories'         => 'Mga kategorya',
+'categoriespagetext' => 'Ang mga sumusunod na kategorya ay naglalaman ng mga pahina o midya.',
 
 # Watchlist
 'watchlist'     => 'Bantayan Ko',

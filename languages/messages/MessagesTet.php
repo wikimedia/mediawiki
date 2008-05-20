@@ -137,7 +137,6 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Categories related messages
-'categories'             => 'Kategoría',
 'pagecategories'         => '{{PLURAL:$1|Kategoría|Kategoría}}',
 'category_header'        => 'Artigu iha kategoría "$1"',
 'category-empty'         => "''Iha kategoría ne'e agora pájina lá'os.''",
@@ -452,6 +451,9 @@ $messages = array(
 'allarticles'    => 'Pájina hotu',
 'allpagesnext'   => 'Oinmai',
 'allpagessubmit' => 'Bá',
+
+# Special:Categories
+'categories' => 'Kategoría',
 
 # Special:Listusers
 'listusers-submit' => 'Hatudu',

@@ -49,10 +49,8 @@ $messages = array(
 'dec'          => 'des',
 
 # Categories related messages
-'categories'         => 'Kategories',
-'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.',
-'pagecategories'     => '{{PLURAL:$1|Kategorie|Kategories}}',
-'category_header'    => 'Artikles in kategorie "$1"',
+'pagecategories'  => '{{PLURAL:$1|Kategorie|Kategories}}',
+'category_header' => 'Artikles in kategorie "$1"',
 
 'about'          => 'Pri',
 'article'        => 'Pagine de kontenaje',
@@ -295,6 +293,10 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'allpagesprev'      => 'Antei',
 'allpagesnext'      => 'Sekuenti',
 'allpagessubmit'    => 'Vada',
+
+# Special:Categories
+'categories'         => 'Kategories',
+'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.',
 
 # Watchlist
 'watchlist'       => 'Men liste de observos',

@@ -179,9 +179,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'                    => 'Kategorije',
-'categoriespagetext'            => 'Sledeće kategorije već postoje u {{SITENAME}}',
-'special-categories-sort-abc'   => 'sortiraj po abecedi',
 'pagecategories'                => 'Kategorije',
 'category_header'               => 'Članaka u kategoriji "$1"',
 'subcategories'                 => 'Potkategorije',
@@ -808,6 +805,11 @@ na kome bi se izvela ova funkcija.',
 'alphaindexline' => '$1 do $2',
 'allarticles'    => 'Svi članci',
 'allpagessubmit' => 'Idi',
+
+# Special:Categories
+'categories'                  => 'Kategorije',
+'categoriespagetext'          => 'Sledeće kategorije već postoje u {{SITENAME}}',
+'special-categories-sort-abc' => 'sortiraj po abecedi',
 
 # E-mail user
 'mailnologin'     => 'Nema adrese za slanje',

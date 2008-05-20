@@ -325,10 +325,6 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'                     => 'Flokkar',
-'categoriespagetext'             => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
-'special-categories-sort-count'  => 'raða eftir fjölda',
-'special-categories-sort-abc'    => 'raða eftir stafrófinu',
 'pagecategories'                 => '{{PLURAL:$1|Flokkur|Flokkar}}',
 'category_header'                => 'Greinar í flokknum „$1“',
 'subcategories'                  => 'Undirflokkar',
@@ -1302,6 +1298,12 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'allpagesprefix'    => 'Sýna síður með forskeytinu:',
 'allpagesbadtitle'  => 'Ekki var hægt að búa til grein með þessum titli því hann innihélt einn eða fleiri stafi sem ekki er hægt að nota í titlum.',
 'allpages-bad-ns'   => '{{SITENAME}} hefur ekki nafnrými „$1“.',
+
+# Special:Categories
+'categories'                    => 'Flokkar',
+'categoriespagetext'            => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
+'special-categories-sort-count' => 'raða eftir fjölda',
+'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
 # Special:Listusers
 'listusersfrom'      => 'Sýna notendur sem byrja á:',

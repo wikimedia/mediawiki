@@ -61,7 +61,6 @@ $messages = array(
 'nov'           => 'नोभ',
 
 # Categories related messages
-'categories'      => 'श्रेणीहरू',
 'category_header' => '"$1" श्रेणीमा भएका लेखहरू',
 'subcategories'   => 'उपश्रेणीहरु',
 
@@ -371,6 +370,9 @@ $messages = array(
 'allpagesprev'   => 'अघिल्लो',
 'allpagesnext'   => 'अर्को',
 'allpagessubmit' => 'जानुहोस्',
+
+# Special:Categories
+'categories' => 'श्रेणीहरू',
 
 # Special:Listusers
 'listusers-submit' => 'देखाउनुहोस्',

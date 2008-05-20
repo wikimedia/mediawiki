@@ -208,8 +208,6 @@ $messages = array(
 'dec'           => 'Dic',
 
 # Categories related messages
-'categories'             => 'Categoriis',
-'categoriespagetext'     => 'Te wiki a esistin lis categoriis ca sot.',
 'pagecategories'         => '{{PLURAL:$1|Categorie|Categoriis}}',
 'category_header'        => 'Vôs inte categorie "$1"',
 'subcategories'          => 'Sot categoriis',
@@ -780,6 +778,10 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'allpagesnext'      => 'Prossim',
 'allpagessubmit'    => 'Va',
 'allpagesprefix'    => 'Mostre lis pagjinis che a scomencin cun:',
+
+# Special:Categories
+'categories'         => 'Categoriis',
+'categoriespagetext' => 'Te wiki a esistin lis categoriis ca sot.',
 
 # E-mail user
 'emailuser'    => 'Messaç di pueste a chest utent',

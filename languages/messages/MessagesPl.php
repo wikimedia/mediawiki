@@ -311,10 +311,6 @@ $messages = array(
 'dec'           => 'gru',
 
 # Categories related messages
-'categories'                     => 'Kategorie',
-'categoriespagetext'             => 'Lista kategorii dla stron i plików.',
-'special-categories-sort-count'  => 'sortowanie według liczby',
-'special-categories-sort-abc'    => 'sortowanie alfabetyczne',
 'pagecategories'                 => '{{PLURAL:$1|Kategoria|Kategorie}}',
 'category_header'                => 'Strony w kategorii „$1”',
 'subcategories'                  => 'Podkategorie',
@@ -707,26 +703,26 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'hr_tip'          => 'Linia pozioma (nie nadużywaj)',
 
 # Edit pages
-'summary'                           => 'Opis zmian',
-'subject'                           => 'Temat/nagłówek',
-'minoredit'                         => 'To jest drobna zmiana',
-'watchthis'                         => 'Obserwuj',
-'savearticle'                       => 'Zapisz',
-'preview'                           => 'Podgląd',
-'showpreview'                       => 'Pokaż podgląd',
-'showlivepreview'                   => 'Dynamiczny podgląd',
-'showdiff'                          => 'Podgląd zmian',
-'anoneditwarning'                   => "'''Uwaga:''' Nie jesteś zalogowany.
+'summary'                   => 'Opis zmian',
+'subject'                   => 'Temat/nagłówek',
+'minoredit'                 => 'To jest drobna zmiana',
+'watchthis'                 => 'Obserwuj',
+'savearticle'               => 'Zapisz',
+'preview'                   => 'Podgląd',
+'showpreview'               => 'Pokaż podgląd',
+'showlivepreview'           => 'Dynamiczny podgląd',
+'showdiff'                  => 'Podgląd zmian',
+'anoneditwarning'           => "'''Uwaga:''' Nie jesteś zalogowany.
 Twój adres IP będzie zapisany w historii edycji strony.",
-'missingsummary'                    => "'''Uwaga:''' Nie wprowadziłeś opisu zmian.
+'missingsummary'            => "'''Uwaga:''' Nie wprowadziłeś opisu zmian.
 Jeżeli nie chcesz go wprowadzać naciśnij przycisk Zapisz jeszcze raz.",
-'missingcommenttext'                => 'Wprowadź komentarz poniżej.',
-'missingcommentheader'              => "'''Uwaga:''' Treść nagłówka jest pusta – uzupełnij go!
+'missingcommenttext'        => 'Wprowadź komentarz poniżej.',
+'missingcommentheader'      => "'''Uwaga:''' Treść nagłówka jest pusta – uzupełnij go!
 Jeśli tego nie zrobisz, Twój komentarz zostanie zapisany bez nagłówka.",
-'summary-preview'                   => 'Podgląd opisu',
-'subject-preview'                   => 'Podgląd nagłówka',
-'blockedtitle'                      => 'Użytkownik jest zablokowany',
-'blockedtext'                       => "<big>'''Twoje konto lub adres IP zostały zablokowane.'''</big>
+'summary-preview'           => 'Podgląd opisu',
+'subject-preview'           => 'Podgląd nagłówka',
+'blockedtitle'              => 'Użytkownik jest zablokowany',
+'blockedtext'               => "<big>'''Twoje konto lub adres IP zostały zablokowane.'''</big>
 
 Blokada została nałożona przez $1. Podany powód to: ''$2''.
 
@@ -737,7 +733,7 @@ Blokada została nałożona przez $1. Podany powód to: ''$2''.
 W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
 Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika” jeśli nie podałeś poprawnego adresu e-mail w swoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
 Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5. Prosimy o podanie jednego lub obu tych numerów przy wyjaśnianiu tej blokady.",
-'autoblockedtext'                   => "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.
+'autoblockedtext'           => "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.
 Powód blokady:
 
 :''$2''
@@ -751,105 +747,107 @@ Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adr
 
 Identyfikator blokady to $5.
 Zanotuj go i podaj administratorowi.",
-'blockednoreason'                   => 'nie podano przyczyny',
-'blockedoriginalsource'             => "Źródło '''$1''' zostało pokazane poniżej:",
-'blockededitsource'                 => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
-'whitelistedittitle'                => 'Przed edycją musisz się zalogować',
-'whitelistedittext'                 => 'Musisz $1 by edytować strony.',
-'whitelistreadtitle'                => 'Czytanie możliwe jest dopiero po zalogowaniu się',
-'whitelistreadtext'                 => 'Musisz [[Special:Userlogin|zalogować się]], żeby czytać strony.',
-'whitelistacctitle'                 => 'Nie masz uprawnień do założenia konta',
-'whitelistacctext'                  => 'Zakładanie kont w {{GRAMMAR:MS.lp|{{SITENAME}}}} wymaga [[Special:Userlogin|zalogowania się]] oraz posiadania odpowiednich uprawnień.',
-'confirmedittitle'                  => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail',
-'confirmedittext'                   => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail.
+'blockednoreason'           => 'nie podano przyczyny',
+'blockedoriginalsource'     => "Źródło '''$1''' zostało pokazane poniżej:",
+'blockededitsource'         => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
+'whitelistedittitle'        => 'Przed edycją musisz się zalogować',
+'whitelistedittext'         => 'Musisz $1 by edytować strony.',
+'whitelistreadtitle'        => 'Czytanie możliwe jest dopiero po zalogowaniu się',
+'whitelistreadtext'         => 'Musisz [[Special:Userlogin|zalogować się]], żeby czytać strony.',
+'whitelistacctitle'         => 'Nie masz uprawnień do założenia konta',
+'whitelistacctext'          => 'Zakładanie kont w {{GRAMMAR:MS.lp|{{SITENAME}}}} wymaga [[Special:Userlogin|zalogowania się]] oraz posiadania odpowiednich uprawnień.',
+'confirmedittitle'          => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail',
+'confirmedittext'           => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail.
 Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach użytkownika]].',
-'nosuchsectiontitle'                => 'Sekcja nie istnieje',
-'nosuchsectiontext'                 => 'Próbowałeś edytować sekcję, która nie istnieje.
+'nosuchsectiontitle'        => 'Sekcja nie istnieje',
+'nosuchsectiontext'         => 'Próbowałeś edytować sekcję, która nie istnieje.
 Ponieważ nie ma sekcji $1, nie ma też gdzie zapisać Twojej edycji.',
-'loginreqtitle'                     => 'musisz się zalogować',
-'loginreqlink'                      => 'zalogować się',
-'loginreqpagetext'                  => 'Musisz $1 żeby móc przeglądać inne strony.',
-'accmailtitle'                      => 'Hasło zostało wysłane.',
-'accmailtext'                       => 'Hasło użytkownika „$1” zostało wysłane na adres $2.',
-'newarticle'                        => '(Nowy)',
-'newarticletext'                    => "Nie ma jeszcze strony o tym tytule.
+'loginreqtitle'             => 'musisz się zalogować',
+'loginreqlink'              => 'zalogować się',
+'loginreqpagetext'          => 'Musisz $1 żeby móc przeglądać inne strony.',
+'accmailtitle'              => 'Hasło zostało wysłane.',
+'accmailtext'               => 'Hasło użytkownika „$1” zostało wysłane na adres $2.',
+'newarticle'                => '(Nowy)',
+'newarticletext'            => "Nie ma jeszcze strony o tym tytule.
 Jeśli chcesz ją utworzyć wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]). 
 Jeśli utworzenie nowej strony nie było Twoim zamiarem, wciśnij ''Wstecz'' w swojej przeglądarce.",
-'anontalkpagetext'                  => "---- ''To jest strona dyskusji anonimowego użytkownika – takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać. By go identyfikować używamy adresów IP.
+'anontalkpagetext'          => "---- ''To jest strona dyskusji anonimowego użytkownika – takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać. By go identyfikować używamy adresów IP.
 Jednak adres IP może być współdzielony przez wielu użytkowników.
 Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[Special:Userlogin|utwórz konto lub zaloguj się]] – dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
-'noarticletext'                     => 'Nie ma jeszcze strony o tym tytule. Możesz [[Special:Search/{{PAGENAME}}|poszukać {{PAGENAME}} na innych stronach]] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć stronę {{FULLPAGENAME}}].',
-'userpage-userdoesnotexist'         => 'Użytkownik „$1” nie jest zarejestrowany. Upewnij się czy na pewno zamierzałeś utworzyć/zmodyfikować właśnie tę stronę.',
-'clearyourcache'                    => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
+'noarticletext'             => 'Nie ma jeszcze strony o tym tytule. Możesz [[Special:Search/{{PAGENAME}}|poszukać {{PAGENAME}} na innych stronach]] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć stronę {{FULLPAGENAME}}].',
+'userpage-userdoesnotexist' => 'Użytkownik „$1” nie jest zarejestrowany. Upewnij się czy na pewno zamierzałeś utworzyć/zmodyfikować właśnie tę stronę.',
+'clearyourcache'            => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
 *'''Mozilla, Firefox lub Safari:''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu);
 *'''IE:''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5'';
 *'''Konqueror:''': po prostu kliknij przycisk ''Odśwież'' lub wciśnij ''F5'';
 *'''Opera''' może wymagać wyczyszczenia pamięci podręcznej w menu ''Narzędzia → Preferencje''.",
-'usercssjsyoucanpreview'            => '<strong>Podpowiedź:</strong> Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
-'usercsspreview'                    => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
-'userjspreview'                     => "'''Pamiętaj, że to tylko podgląd Twojego kodu JavaScript – nic jeszcze nie zostało zapisane!'''",
-'userinvalidcssjstitle'             => "'''Uwaga:''' Nie ma skórki o nazwie „$1”.
+'usercssjsyoucanpreview'    => '<strong>Podpowiedź:</strong> Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
+'usercsspreview'            => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
+'userjspreview'             => "'''Pamiętaj, że to tylko podgląd Twojego kodu JavaScript – nic jeszcze nie zostało zapisane!'''",
+'userinvalidcssjstitle'     => "'''Uwaga:''' Nie ma skórki o nazwie „$1”.
 Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. {{ns:user}}:Foo/monobook.css, w przeciwieństwie do nieprawidłowego {{ns:user}}:Foo/Monobook.css.",
-'updated'                           => '(Zmodyfikowano)',
-'note'                              => '<strong>Uwaga:</strong>',
-'previewnote'                       => '<strong>To jest tylko podgląd – zmiany nie zostały jeszcze zapisane!</strong>',
-'previewconflict'                   => 'Wersja podglądana odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona jeśli zdecydujesz się ją zapisać.',
-'session_fail_preview'              => '<strong>Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz. Jeśli to nie pomoże – wyloguj się i zaloguj ponownie.</strong>',
-'session_fail_preview_html'         => "<strong>Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
+'updated'                   => '(Zmodyfikowano)',
+'note'                      => '<strong>Uwaga:</strong>',
+'previewnote'               => '<strong>To jest tylko podgląd – zmiany nie zostały jeszcze zapisane!</strong>',
+'previewconflict'           => 'Wersja podglądana odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona jeśli zdecydujesz się ją zapisać.',
+'session_fail_preview'      => '<strong>Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji. Spróbuj jeszcze raz. Jeśli to nie pomoże – wyloguj się i zaloguj ponownie.</strong>',
+'session_fail_preview_html' => "<strong>Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
 
 ''Ponieważ w {{GRAMMAR:MS.lp|{{SITENAME}}}} włączona została opcja „surowy HTML”, podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.''
 
 <strong>Jeśli jest to uprawniona próba dokonania edycji, spróbuj jeszcze raz. Jeśli to nie pomoże – wyloguj się i zaloguj ponownie.</strong>",
-'token_suffix_mismatch'             => '<strong>Twoja edycja została odrzucona, ponieważ twój klient pomieszał znaki interpunkcyjne w żetonie edycyjnym.
+'token_suffix_mismatch'     => '<strong>Twoja edycja została odrzucona, ponieważ twój klient pomieszał znaki interpunkcyjne w żetonie edycyjnym.
 Twoja edycja została odrzucona by zapobiec zniszczeniu tekstu strony.
 Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.</strong>',
-'editing'                           => 'Edytujesz „$1”',
-'editingsection'                    => 'Edytujesz „$1” (fragment)',
-'editingcomment'                    => 'Edytujesz „$1” (komentarz)',
-'editconflict'                      => 'Konflikt edycji: $1',
-'explainconflict'                   => "Ktoś zmienił treść strony w trakcie Twojej edycji.
+'editing'                   => 'Edytujesz „$1”',
+'editingsection'            => 'Edytujesz „$1” (fragment)',
+'editingcomment'            => 'Edytujesz „$1” (komentarz)',
+'editconflict'              => 'Konflikt edycji: $1',
+'explainconflict'           => "Ktoś zmienił treść strony w trakcie Twojej edycji.
 Górne pole zawiera tekst strony aktualnie zapisany w bazie danych.
 Twoje zmiany znajdują się w dolnym polu.
 By wprowadzić swoje zmiany musisz zmodyfikować tekst z górnego pola.
 '''Tylko''' tekst z górnego pola zostanie zapisany w bazie gdy wciśniesz „Zapisz”.",
-'yourtext'                          => 'Twój tekst',
-'storedversion'                     => 'Zapisana wersja',
-'nonunicodebrowser'                 => '<strong>Uwaga! Twoja przeglądarka nie rozpoznaje poprawnie kodowania UTF-8 (Unicode).
+'yourtext'                  => 'Twój tekst',
+'storedversion'             => 'Zapisana wersja',
+'nonunicodebrowser'         => '<strong>Uwaga! Twoja przeglądarka nie rozpoznaje poprawnie kodowania UTF-8 (Unicode).
 Z tego powodu wszystkie znaki, których przeglądarka nie rozpoznaje, zostały zastąpione ich kodami szesnastkowymi.</strong>',
-'editingold'                        => '<strong>Uwaga! Edytujesz inną niż bieżąca wersję tej strony.
+'editingold'                => '<strong>Uwaga! Edytujesz inną niż bieżąca wersję tej strony.
 Jeśli zapiszesz ją, wszystkie zmiany wykonane w międzyczasie zostaną wycofane.</strong>',
-'yourdiff'                          => 'Różnice',
-'copyrightwarning'                  => "Wkład do {{GRAMMAR:D.lp|{{SITENAME}}}} jest udostępniany na licencji $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
+'yourdiff'                  => 'Różnice',
+'copyrightwarning'          => "Wkład do {{GRAMMAR:D.lp|{{SITENAME}}}} jest udostępniany na licencji $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych.
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
-'copyrightwarning2'                 => "Wszelki wkład w {{GRAMMAR:B.lp|{{SITENAME}}}} może być edytowany, zmieniany lub usunięty przez innych użytkowników.
+'copyrightwarning2'         => "Wszelki wkład w {{GRAMMAR:B.lp|{{SITENAME}}}} może być edytowany, zmieniany lub usunięty przez innych użytkowników.
 Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych (zobacz także $1).
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
-'longpagewarning'                   => '<strong>Ta strona ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
-'longpageerror'                     => '<strong>Błąd! Wprowadzony przez Ciebie tekst ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Długość tekstu nie może przekraczać {{PLURAL:$2|1 kilobajt|$2 kilobajty|$2 kilobajtów}}. Tekst nie może być zapisany.</strong>',
-'readonlywarning'                   => '<strong>Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku używając wytnij/wklej i zachowaj na później.</strong>',
-'protectedpagewarning'              => '<strong>Uwaga! Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.</strong>',
-'semiprotectedpagewarning'          => "'''Uwaga!''' Ta strona została zabezpieczona i tylko zarejestrowani użytkownicy mogą ją edytować.",
-'cascadeprotectedwarning'           => "'''Uwaga!''' Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Strona ta jest zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
-'titleprotectedwarning'             => '<strong>Uwaga! Utworzenie strony o tej nazwie zostało zablokowane. Tylko niektórzy użytkownicy mogą ją utworzyć.</strong>',
-'templatesused'                     => 'Szablony użyte w tym artykule:',
-'templatesusedpreview'              => 'Szablony użyte w tym podglądzie:',
-'templatesusedsection'              => 'Szablony użyte w tej sekcji:',
-'template-protected'                => '(zabezpieczony)',
-'template-semiprotected'            => '(częściowo zabezpieczony)',
-'hiddencategories'                  => 'Ta strona jest w {{PLURAL:$1|jednej ukrytej kategorii|$1 ukrytych kategoriach}}:',
-'edittools'                         => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
-'nocreatetitle'                     => 'Ograniczono tworzenie stron',
-'nocreatetext'                      => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.
+'longpagewarning'           => '<strong>Ta strona ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
+'longpageerror'             => '<strong>Błąd! Wprowadzony przez Ciebie tekst ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Długość tekstu nie może przekraczać {{PLURAL:$2|1 kilobajt|$2 kilobajty|$2 kilobajtów}}. Tekst nie może być zapisany.</strong>',
+'readonlywarning'           => '<strong>Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku używając wytnij/wklej i zachowaj na później.</strong>',
+'protectedpagewarning'      => '<strong>Uwaga! Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.</strong>',
+'semiprotectedpagewarning'  => "'''Uwaga!''' Ta strona została zabezpieczona i tylko zarejestrowani użytkownicy mogą ją edytować.",
+'cascadeprotectedwarning'   => "'''Uwaga!''' Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Strona ta jest zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
+'titleprotectedwarning'     => '<strong>Uwaga! Utworzenie strony o tej nazwie zostało zablokowane. Tylko niektórzy użytkownicy mogą ją utworzyć.</strong>',
+'templatesused'             => 'Szablony użyte w tym artykule:',
+'templatesusedpreview'      => 'Szablony użyte w tym podglądzie:',
+'templatesusedsection'      => 'Szablony użyte w tej sekcji:',
+'template-protected'        => '(zabezpieczony)',
+'template-semiprotected'    => '(częściowo zabezpieczony)',
+'hiddencategories'          => 'Ta strona jest w {{PLURAL:$1|jednej ukrytej kategorii|$1 ukrytych kategoriach}}:',
+'edittools'                 => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
+'nocreatetitle'             => 'Ograniczono tworzenie stron',
+'nocreatetext'              => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.
 Możesz edytować istniejące strony, bądź też [[Special:Userlogin|zalogować się lub utworzyć konto]].',
-'nocreate-loggedin'                 => 'Nie masz uprawnień do tworzenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
-'permissionserrors'                 => 'Błędy uprawnień',
-'permissionserrorstext'             => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
-'recreate-deleted-warn'             => "'''Uwaga! Zamierzasz utworzyć stroną, która została wcześniej usunięta.'''
+'nocreate-loggedin'         => 'Nie masz uprawnień do tworzenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
+'permissionserrors'         => 'Błędy uprawnień',
+'permissionserrorstext'     => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
+'recreate-deleted-warn'     => "'''Uwaga! Zamierzasz utworzyć stroną, która została wcześniej usunięta.'''
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć tej strony:",
+
+# Parser/template warnings
 'expensive-parserfunction-warning'  => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
 
 Powinno ich być mniej niż $2, a jest obecnie $1.',
@@ -1606,6 +1604,12 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'allpagesprefix'    => 'Pokaż strony o tytułach rozpoczynających się od',
 'allpagesbadtitle'  => 'Podana nazwa jest nieprawidłowa, zawiera prefiks międzyprojektowy lub międzyjęzykowy. Może ona także zawierać w sobie jeden lub więcej znaków, których użycie w nazwach jest niedozwolone.',
 'allpages-bad-ns'   => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw „$1”.',
+
+# Special:Categories
+'categories'                    => 'Kategorie',
+'categoriespagetext'            => 'Lista kategorii dla stron i plików.',
+'special-categories-sort-count' => 'sortowanie według liczby',
+'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
 
 # Special:Listusers
 'listusersfrom'      => 'Pokaż użytkowników zaczynając od',

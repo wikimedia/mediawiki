@@ -145,18 +145,15 @@ $messages = array(
 'dec'           => 'დეკ',
 
 # Categories related messages
-'categories'                  => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'categoriespagetext'          => 'ვიკიპედიაში შემდეგი კატეგორიებია.',
-'special-categories-sort-abc' => 'ანბანზე დალაგება',
-'pagecategories'              => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'category_header'             => 'სტატიები კატეგორიაში "$1"',
-'subcategories'               => 'ქვეკატეგორიები',
-'category-media-header'       => 'მედია კატეგორიაში "$1"',
-'category-empty'              => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
-'hidden-categories'           => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'hidden-category-category'    => 'დამალული კატეგორიები', # Name of the category where hidden categories will be listed
-'category-subcat-count'       => '{{PLURAL:$2|ეს კატეგორია შეიცავს მხოლოდ შემდეგ ქვეკატეგორიას.|ამ კატეგორიაში მოცემულია $1 ქვეკატეგორია $2-დან.}}',
-'listingcontinuesabbrev'      => 'გაგრძ.',
+'pagecategories'           => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'category_header'          => 'სტატიები კატეგორიაში "$1"',
+'subcategories'            => 'ქვეკატეგორიები',
+'category-media-header'    => 'მედია კატეგორიაში "$1"',
+'category-empty'           => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
+'hidden-categories'        => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'hidden-category-category' => 'დამალული კატეგორიები', # Name of the category where hidden categories will be listed
+'category-subcat-count'    => '{{PLURAL:$2|ეს კატეგორია შეიცავს მხოლოდ შემდეგ ქვეკატეგორიას.|ამ კატეგორიაში მოცემულია $1 ქვეკატეგორია $2-დან.}}',
+'listingcontinuesabbrev'   => 'გაგრძ.',
 
 'linkprefix'        => '/^(.*?)(„|«)$/sD',
 'mainpagetext'      => "<big>'''მედიავიკი წარმატებით ჩაიტვირთა.'''</big>",
@@ -1126,6 +1123,11 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'allpagesprefix'    => 'ასახე გვერდები პრეფიქსით:',
 'allpagesbadtitle'  => 'მოცემული გვერდის სათაური არასწორია ან აქვს ინტერვიკი ან ნათშორისი პრეფიქსი. იგი შესაძლოა შეიცავდეს ერთ ან მეტ სიმბოლოს, რომელიც არ შეიძლება გამოყენებულ იქნას სათაურში.',
 'allpages-bad-ns'   => '{{SITENAME}} "$1" არ აქვს სახელთა სივრცე.',
+
+# Special:Categories
+'categories'                  => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'categoriespagetext'          => 'ვიკიპედიაში შემდეგი კატეგორიებია.',
+'special-categories-sort-abc' => 'ანბანზე დალაგება',
 
 # Special:Listusers
 'listusers-submit'   => 'ჩვენება',

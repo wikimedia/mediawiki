@@ -87,8 +87,6 @@ $messages = array(
 'may'       => 'Mei',
 
 # Categories related messages
-'categories'             => 'Kategorie',
-'categoriespagetext'     => 'Selli Kategorie gits in dem Wiki:',
 'pagecategories'         => '{{PLURAL:$1|Kategori|Kategorie}}',
 'category_header'        => 'Artikel in de Kategori "$1"',
 'subcategories'          => 'Unterkategorie',
@@ -600,6 +598,10 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 'allpagesnext'      => 'nächschts',
 'allpagessubmit'    => 'gang',
 'allpagesprefix'    => 'Alli Sytene mit em Präfix:',
+
+# Special:Categories
+'categories'         => 'Kategorie',
+'categoriespagetext' => 'Selli Kategorie gits in dem Wiki:',
 
 # E-mail user
 'mailnologin'     => 'Du bisch nid aagmäldet oder hesch keis Mail aaggä',

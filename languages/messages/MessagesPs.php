@@ -181,9 +181,6 @@ $messages = array(
 'dec'           => 'ډيسمبر',
 
 # Categories related messages
-'categories'                  => 'وېشنيزې',
-'categoriespagetext'          => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
-'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
 'pagecategories'              => '{{PLURAL:$1|وېشنيزه|وېشنيزې}}',
 'category_header'             => 'د "$1" په وېشنيزه کې شته مخونه',
 'subcategories'               => 'وړې-وېشنيزې',
@@ -860,6 +857,11 @@ $messages = array(
 'allpagessubmit'    => 'ورځه',
 'allpagesprefix'    => 'هغه مخونه ښکاره کړه چې مختاړی يې داسې وي:',
 'allpagesbadtitle'  => 'ورکړ شوی سرليک سم نه دی او يا هم د ژبو او يا د بېلابېلو ويکي ګانو مختاړی لري. ستاسو په سرليک کې يو يا څو داسې ابېڅې دي کوم چې په سرليک کې نه شي کارېدلی.',
+
+# Special:Categories
+'categories'                  => 'وېشنيزې',
+'categoriespagetext'          => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
+'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
 
 # Special:Listusers
 'listusersfrom'      => 'هغه کارونکي ښکاره کړه چې نومونه يې پېلېږي په:',

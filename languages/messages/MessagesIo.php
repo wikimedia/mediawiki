@@ -106,7 +106,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'             => 'Kategorii',
 'pagecategories'         => '{{PLURAL:$1|Kategorio|Kategorii}}',
 'category_header'        => 'Artikli en kategorio "$1"',
 'subcategories'          => 'Subkategorii',
@@ -701,6 +700,9 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'allpagesnext'      => 'Sequanta',
 'allpagessubmit'    => 'Irez',
 'allpages-bad-ns'   => '{{SITENAME}} ne havas nomaro "$1".',
+
+# Special:Categories
+'categories' => 'Kategorii',
 
 # Special:Listgrouprights
 'listgrouprights-group' => 'Grupo',

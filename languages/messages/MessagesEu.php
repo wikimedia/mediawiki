@@ -141,8 +141,6 @@ $messages = array(
 'dec'           => 'Abe',
 
 # Categories related messages
-'categories'               => '{{PLURAL:$1|Kategoria|Kategoriak}}',
-'categoriespagetext'       => 'Hurrengo kategoriak daude wiki honetan:',
 'pagecategories'           => '{{PLURAL:$1|Kategoria|Kategoriak}}',
 'category_header'          => '"$1" kategoriako artikuluak',
 'subcategories'            => 'Azpikategoriak',
@@ -1076,6 +1074,10 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'allpagesprefix'    => 'Aurrizki hau duten orrialdeak bistaratu:',
 'allpagesbadtitle'  => 'Orrialdearen izena baliogabekoa da edo interwiki edo hizkuntzen arteko aurrizkia dauka. Izenburuetan erabili ezin daitezkeen karaktere bat edo gehiago izan ditzake.',
 'allpages-bad-ns'   => '{{SITENAME}}(e)k ez dauka "$1" izeneko izen-tarterik.',
+
+# Special:Categories
+'categories'         => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'categoriespagetext' => 'Hurrengo kategoriak daude wiki honetan:',
 
 # Special:Listusers
 'listusersfrom'      => 'Hemendik aurrerako erabiltzaileak bistaratu:',

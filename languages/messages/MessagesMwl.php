@@ -68,7 +68,6 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Categories related messages
-'categories'             => 'Categories',
 'category_header'        => 'Páginas na categoria "$1"',
 'subcategories'          => 'Subcategories',
 'listingcontinuesabbrev' => 'cont.',
@@ -374,6 +373,9 @@ Legenda: (actu) = diferenças da versão actual,
 'allpagesfrom'   => 'Mostrar páginas começando an:',
 'allarticles'    => 'Todas las páginas',
 'allpagessubmit' => 'Ir',
+
+# Special:Categories
+'categories' => 'Categories',
 
 # E-mail user
 'emailuser' => 'Contactar yeste outelizador',

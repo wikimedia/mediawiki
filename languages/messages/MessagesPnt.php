@@ -106,8 +106,6 @@ $messages = array(
 'dec'           => 'Χριστ',
 
 # Categories related messages
-'categories'                     => 'Κατηγορίας',
-'categoriespagetext'             => 'Τα κατηγορίας αφκά καικά έχνε σελίδας και μέσα.',
 'pagecategories'                 => '{{PLURAL:$1|Κατηγορίαν|Κατηγορίας}}',
 'category_header'                => 'Σελίδας τη κατηγορίας "$1"',
 'subcategories'                  => 'Υποκατηγορίας',
@@ -434,6 +432,10 @@ $messages = array(
 'prevpage'       => 'Προηγούμενον σελίδα ($1)',
 'allarticles'    => 'Όλεα τα σελίδας',
 'allpagessubmit' => 'Δέβα',
+
+# Special:Categories
+'categories'         => 'Κατηγορίας',
+'categoriespagetext' => 'Τα κατηγορίας αφκά καικά έχνε σελίδας και μέσα.',
 
 # E-mail user
 'emailuser' => 'Στείλον μένεμαν σον χρήστεν ατόν.',

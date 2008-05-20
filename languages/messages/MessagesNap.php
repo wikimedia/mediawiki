@@ -69,10 +69,8 @@ $messages = array(
 'dec'       => 'dic',
 
 # Categories related messages
-'categories'         => '{{PLURAL:$1|Categurìa|Categurìe}}',
-'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
-'category_header'    => 'Paggene rìnt\'a categurìa "$1"',
-'subcategories'      => 'Categurìe secunnarie',
+'category_header' => 'Paggene rìnt\'a categurìa "$1"',
+'subcategories'   => 'Categurìe secunnarie',
 
 'about'          => 'Nfromma',
 'article'        => 'Articulo',
@@ -294,6 +292,10 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'allpages'       => "Tutte 'e ppaggene",
 'allarticles'    => "Tutt' 'e vvoce",
 'allinnamespace' => "Tutt' 'e ppaggene d&#39;&#39;o namespace $1",
+
+# Special:Categories
+'categories'         => '{{PLURAL:$1|Categurìa|Categurìe}}',
+'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
 
 # Watchlist
 'addedwatch'   => 'Aggiunto ai Osservate Speciale tue',

@@ -77,7 +77,6 @@ $messages = array(
 'dec'           => 'ქირ',
 
 # Categories related messages
-'categories'             => '{{PLURAL:$1|კატეგორია|კატეგორიეფ}}',
 'pagecategories'         => '{{PLURAL:$1|კატეგორია|კატეგორიეფ}}',
 'category_header'        => 'სტატიეფ კატეგორიას "$1"',
 'subcategories'          => 'ქვეკატეგორიეფ',
@@ -363,6 +362,9 @@ $messages = array(
 'allpagesfrom'   => 'გვერდეფიშ ძირაფა დოჭყაფულ:',
 'allarticles'    => 'ირ სტატია',
 'allpagessubmit' => 'ძირა',
+
+# Special:Categories
+'categories' => '{{PLURAL:$1|კატეგორია|კატეგორიეფ}}',
 
 # Watchlist
 'watchlist'            => 'ჩქიმ კონტროლიშ ხასილეფ',

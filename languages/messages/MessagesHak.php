@@ -111,8 +111,6 @@ $messages = array(
 'dec'           => 'Sṳ̍p-ngi-ngie̍t',
 
 # Categories related messages
-'categories'             => 'Hong-mien fûn-lui',
-'categoriespagetext'     => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.',
 'pagecategories'         => '$1-ke fûn-lui',
 'category_header'        => 'Lui-phe̍t "$1" chûng ke vùn-chông',
 'subcategories'          => 'Fu-su̍k fûn-lui',
@@ -943,6 +941,10 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'allpagessubmit'    => 'Thì-kâu',
 'allpagesprefix'    => 'Hién-sṳ khí--yû chhṳ́ miàng-sṳ khûng-kiên ke hong-mien:',
 'allpagesbadtitle'  => 'Pûn-thin ke hong-mien phêu-thì he fî-fap ke, fe̍t-chá yung-khí yû yit-ke nui-phu ngî-ngièn fe̍t-he nui-phu wiki. Kí khó-nèn pâu-hàm yit-ke fe̍t kien-tô ke put-nèn yung chhai-yî phêu-thì ke sṳ-ngièn.',
+
+# Special:Categories
+'categories'         => 'Hong-mien fûn-lui',
+'categoriespagetext' => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.',
 
 # Special:Listusers
 'listusersfrom'      => 'Hién-sṳ yung-fu lie̍t-péu chhiùng:',

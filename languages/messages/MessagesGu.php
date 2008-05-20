@@ -106,8 +106,6 @@ $messages = array(
 'dec'           => 'ડિસે',
 
 # Categories related messages
-'categories'                  => 'શ્રેણીઓ',
-'categoriespagetext'          => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.',
 'pagecategories'              => '{{PLURAL:$1|શ્રેણી|શ્રેણીઓ}}',
 'category_header'             => 'શ્રેણી "$1"માં પાના',
 'subcategories'               => 'ઉપશ્રેણીઓ',
@@ -405,6 +403,10 @@ $messages = array(
 'allpagesprev'   => 'પહેલાનું',
 'allpagesnext'   => 'પછીનું',
 'allpagessubmit' => 'જાઓ',
+
+# Special:Categories
+'categories'         => 'શ્રેણીઓ',
+'categoriespagetext' => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.',
 
 # Special:Listusers
 'listusers-submit' => 'બતાવો',

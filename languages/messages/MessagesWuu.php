@@ -92,7 +92,6 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'                    => '页面分类',
 'pagecategories'                => '$1个分类',
 'category_header'               => '“$1”分类中个页面',
 'subcategories'                 => '亚类',
@@ -563,6 +562,9 @@ $messages = array(
 'allpagesnext'      => '下底',
 'allpagesprefix'    => '显示个页面有下底个前缀:',
 'allpages-bad-ns'   => '{{SITENAME}}没有叫做"$1"个名字空间.',
+
+# Special:Categories
+'categories' => '页面分类',
 
 # Special:Listusers
 'listusers-submit' => '显示',

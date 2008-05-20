@@ -19,10 +19,8 @@ $messages = array(
 'august'   => 'An Lùnastal',
 
 # Categories related messages
-'categories'         => 'Gnethan',
-'categoriespagetext' => "Tha na gnethan a leanas anns a'wiki.",
-'category_header'    => 'Altan sa ghnè "$1"',
-'subcategories'      => 'Fo-ghnethan',
+'category_header' => 'Altan sa ghnè "$1"',
+'subcategories'   => 'Fo-ghnethan',
 
 'about'          => 'Mu',
 'newwindow'      => "(a'fosgladh ann an uinneag ùr)",
@@ -263,6 +261,10 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 # Special:Allpages
 'allpages' => 'Duilleagan uile',
 'nextpage' => 'An ath dhuilleag ($1)',
+
+# Special:Categories
+'categories'         => 'Gnethan',
+'categoriespagetext' => "Tha na gnethan a leanas anns a'wiki.",
 
 # E-mail user
 'emailfrom'    => 'Bho',

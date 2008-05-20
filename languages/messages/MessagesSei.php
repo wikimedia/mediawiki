@@ -112,7 +112,6 @@ $messages = array(
 'dec'           => 'T12',
 
 # Categories related messages
-'categories'             => 'Cayliibám',
 'pagecategories'         => '{{PLURAL:$1|Cajliib|Cajliibám}}',
 'category_header'        => 'Páhinám cayliibám zo iti "$1"',
 'subcategories'          => 'Subcayliibám',
@@ -900,6 +899,9 @@ Informacion: (curt) = quiíxde vercion currentua,
 'allpagessubmit'    => 'Caátemöx',
 'allpagesprefix'    => 'Xuniim páhinám jan prefix mii:',
 'allpages-bad-ns'   => '{{SITENAME}} necoccebj ipartuatl "$1".',
+
+# Special:Categories
+'categories' => 'Cayliibám',
 
 # Special:Listusers
 'listusersfrom'      => 'Xuniim caitóm startomde:',

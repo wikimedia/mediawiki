@@ -113,7 +113,6 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'               => 'Klynger',
 'pagecategories'           => '{{PLURAL:$1|Klynge|Klynger}}',
 'category_header'          => 'Ertikler i\'n klynge "$1"',
 'subcategories'            => 'Underklynger',
@@ -611,6 +610,9 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'allarticles'    => 'Åle ertikler',
 'allpagessubmit' => 'Ves',
 'allpagesprefix' => 'Ves sider ve førgøret:',
+
+# Special:Categories
+'categories' => 'Klynger',
 
 # E-mail user
 'emailuser' => 'E-mail til denne bruger',

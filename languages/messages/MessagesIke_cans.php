@@ -62,9 +62,6 @@ $messages = array(
 'nov'           => 'ᓄᕕ',
 'dec'           => 'ᑎᓯᒻ',
 
-# Categories related messages
-'categories' => 'ᓄᐊᑉᐳᑦ',
-
 'about'          => 'ᒥᒃᓵᓂ',
 'article'        => 'ᐃᓗᓕᒃ ᒪᑉᐱᑕᖅ',
 'newwindow'      => '(ᐅᐃᑦᑐᖅ ᖃᕋᓴᐅᔭᖅ ᐃᑭᐊᖅ ᐱᒋᕗᖅ ᐃᒐᓛᖅ)',
@@ -277,6 +274,9 @@ $messages = array(
 'allpagesprev'   => 'ᑐᓄᓪᓕᐹᖅ',
 'allpagesnext'   => 'ᑕᒡᒐ',
 'allpagessubmit' => 'ᐊᐃᕗᖅ',
+
+# Special:Categories
+'categories' => 'ᓄᐊᑉᐳᑦ',
 
 # E-mail user
 'emailuser'    => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ ᐃᓄᒃ',

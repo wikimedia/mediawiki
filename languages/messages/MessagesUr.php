@@ -81,8 +81,6 @@ $messages = array(
 'may'           => 'مئی',
 
 # Categories related messages
-'categories'             => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
-'categoriespagetext'     => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔',
 'pagecategories'         => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
 'category_header'        => 'زمرہ "$1" میں مضامین',
 'subcategories'          => 'ذیلی ذمرہ جات',
@@ -508,6 +506,10 @@ $messages = array(
 'allpagesprev'   => 'پچھلا',
 'allpagesnext'   => 'اگلا',
 'allpagesprefix' => 'مطلوبہ سابقہ سے شروع ہونے والے صفحات کی نمائش:',
+
+# Special:Categories
+'categories'         => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
+'categoriespagetext' => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔',
 
 # E-mail user
 'mailnologintext' => 'دیگر ارکان کو برقی خط ارسال کرنے کیلیۓ لازم ہے کہ آپ [[Special:Userlogin|داخل شدہ]] حالت میں ہوں اور آپ کی [[Special:Preferences|ترجیحات]] ایک درست برقی خط کا پتا درج ہو۔',

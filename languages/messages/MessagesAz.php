@@ -73,8 +73,6 @@ $messages = array(
 'dec'       => 'Dekabr',
 
 # Categories related messages
-'categories'             => 'Kateqoriyalar',
-'categoriespagetext'     => 'Wikide aşağıdaki kateqoriyalar var.',
 'pagecategories'         => 'Kateqoriyalar',
 'category_header'        => '"$1" kategoriyasındaki məqalələr',
 'subcategories'          => 'Alt kategoriyalar',
@@ -413,6 +411,10 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 'allpagesprev'   => 'Əvvəlki',
 'allpagesnext'   => 'Sonrakı',
 'allpagessubmit' => 'Gətir',
+
+# Special:Categories
+'categories'         => 'Kateqoriyalar',
+'categoriespagetext' => 'Wikide aşağıdaki kateqoriyalar var.',
 
 # E-mail user
 'emailuser'       => 'İstifadəçiyə e-məktub yolla',

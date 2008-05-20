@@ -71,7 +71,6 @@ $messages = array(
 'dec'           => 'Goe',
 
 # Categories related messages
-'categories'             => 'Karegorijeh',
 'pagecategories'         => '{{PLURAL:$1|Kategorije|Kategorijeh}}',
 'category_header'        => 'Bielie sïjse kategorije "$1"',
 'subcategories'          => 'Subkategorijeh',
@@ -535,6 +534,9 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'allpagesnext'   => 'Minngebe',
 'allpagessubmit' => 'Vaadtsa',
 'allpagesprefix' => 'Vuesehte bielieh meatan prefihkse:',
+
+# Special:Categories
+'categories' => 'Karegorijeh',
 
 # Special:Listusers
 'listusers-submit' => 'Vuesehte',

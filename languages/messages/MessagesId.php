@@ -381,10 +381,6 @@ $messages = array(
 'dec'           => 'Des',
 
 # Categories related messages
-'categories'                     => 'Daftar kategori',
-'categoriespagetext'             => 'Kategori-kategori berikut mengandung halaman atau media.',
-'special-categories-sort-count'  => 'urutkan menurut jumlah',
-'special-categories-sort-abc'    => 'urutkan menurut abjad',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'                => 'Artikel dalam kategori "$1"',
 'subcategories'                  => 'Subkategori',
@@ -1426,6 +1422,12 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'allpagesprefix'    => 'Tampilkan halaman dengan awalan:',
 'allpagesbadtitle'  => 'Judul halaman yang diberikan tidak sah atau memiliki awalan antar-bahasa atau antar-wiki. Judul tersebut mungkin juga mengandung satu atau lebih aksara yang tidak dapat digunakan dalam judul.',
 'allpages-bad-ns'   => '{{SITENAME}} tidak memiliki ruang nama "$1".',
+
+# Special:Categories
+'categories'                    => 'Daftar kategori',
+'categoriespagetext'            => 'Kategori-kategori berikut mengandung halaman atau media.',
+'special-categories-sort-count' => 'urutkan menurut jumlah',
+'special-categories-sort-abc'   => 'urutkan menurut abjad',
 
 # Special:Listusers
 'listusersfrom'      => 'Tampilkan pengguna diawali dengan:',

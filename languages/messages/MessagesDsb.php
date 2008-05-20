@@ -245,10 +245,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'                     => 'Kategorije',
-'categoriespagetext'             => 'Slědujuce kategorije wopśimuju boki abo medije.',
-'special-categories-sort-count'  => 'pśewuběrowaś pó licbje',
-'special-categories-sort-abc'    => 'pśewuběrowaś pó alfabeśe',
 'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije}}',
 'category_header'                => 'Nastawki w kategoriji „$1“',
 'subcategories'                  => 'Pódkategorije',
@@ -1448,6 +1444,12 @@ Wót togo {{PLURAL:$2|jo|stej|su}} '''$2''' (=$4 %) $5.",
 'allpagesprefix'    => 'Boki pokazaś (z prefiksom):',
 'allpagesbadtitle'  => 'Zapódane mě boka njejo płaśece: Jo móžno, až ma pśedstajonu rěcnu resp. interwikijowu krotceńku abo wopśimjejo jadno abo wěcej znamuškow, kótarež njamgu se za mjenja bokow wužywaś.',
 'allpages-bad-ns'   => 'Mjenjowy rum „$1“ w {{SITENAME}} njeeksistěrujo.',
+
+# Special:Categories
+'categories'                    => 'Kategorije',
+'categoriespagetext'            => 'Slědujuce kategorije wopśimuju boki abo medije.',
+'special-categories-sort-count' => 'pśewuběrowaś pó licbje',
+'special-categories-sort-abc'   => 'pśewuběrowaś pó alfabeśe',
 
 # Special:Listusers
 'listusersfrom'      => 'Pokaž wužywarjow wót:',

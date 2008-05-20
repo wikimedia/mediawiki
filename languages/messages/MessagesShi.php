@@ -77,7 +77,6 @@ $messages = array(
 'dec'           => 'Dujanbir',
 
 # Categories related messages
-'categories'      => 'imggrad',
 'pagecategories'  => '{{PLURAL:$1|amggrd|imggrad}}',
 'category_header' => 'tiwriqin ɣ-omggrd "$1"',
 'subcategories'   => 'imggrad-mzin',
@@ -184,6 +183,9 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 
 # Special:Allpages
 'alphaindexline' => '$1 ar $2',
+
+# Special:Categories
+'categories' => 'imggrad',
 
 # Watchlist
 'watch'   => 'zaydtin i tochwafin-niw',

@@ -62,9 +62,6 @@ $messages = array(
 'nov'           => 'nō novema',
 'dec'           => 'nō tītema',
 
-# Categories related messages
-'categories' => 'Te mau huru o te ’api',
-
 'about'          => 'Nō',
 'article'        => 'Parau pāpa’i',
 'qbedit'         => 'Fa’ahuru ’ē',
@@ -145,6 +142,9 @@ $messages = array(
 
 # Special:Allpages
 'allpagessubmit' => 'Haere',
+
+# Special:Categories
+'categories' => 'Te mau huru o te ’api',
 
 # Watchlist
 'watch' => 'Ha’apa’o',

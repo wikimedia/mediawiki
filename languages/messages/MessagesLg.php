@@ -65,7 +65,6 @@ $messages = array(
 'dec'           => 'Gw12',
 
 # Categories related messages
-'categories'            => 'Amatuluba',
 'pagecategories'        => '{{PLURAL:$1|Tuluba|Matuluba}}',
 'category_header'       => 'Empapula eziri mu ttuluba lya "$1"',
 'subcategories'         => 'Amatabi',
@@ -383,6 +382,9 @@ oba ku gano agali ku lupapula luno.<br />
 'allinnamespace'    => 'Empapula zonna (mu kkunngaanizo erya $1)',
 'allnotinnamespace' => 'Empapula zonna (ezitali mu kkunngaanizo erya $1)',
 'allpagessubmit'    => 'Nona',
+
+# Special:Categories
+'categories' => 'Amatuluba',
 
 # E-mail user
 'emailuser' => 'Memba ono musindikire e-mail',

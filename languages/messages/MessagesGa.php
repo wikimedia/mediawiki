@@ -195,8 +195,6 @@ $messages = array(
 'dec'           => 'Noll',
 
 # Categories related messages
-'categories'             => 'Catagóirí',
-'categoriespagetext'     => 'Tá na catagóir seo a leanas ann sa vicí.',
 'pagecategories'         => '{{PLURAL:$1|Catagóir|Catagóirí}}',
 'category_header'        => 'Ailt sa chatagóir "$1"',
 'subcategories'          => 'Fo-chatagóirí',
@@ -979,6 +977,10 @@ leathanach atá i gceist agat.',
 'allpagessubmit'    => 'Dul',
 'allpagesprefix'    => 'Taispeáin leathanaigh leis an réimír:',
 'allpages-bad-ns'   => 'Níl an ainmspás "$1" ar {{SITENAME}}',
+
+# Special:Categories
+'categories'         => 'Catagóirí',
+'categoriespagetext' => 'Tá na catagóir seo a leanas ann sa vicí.',
 
 # E-mail user
 'mailnologin'     => 'Níl aon seoladh maith ann',

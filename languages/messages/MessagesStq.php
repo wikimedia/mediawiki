@@ -136,8 +136,6 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Categories related messages
-'categories'               => 'Kategorien',
-'categoriespagetext'       => 'Do foulgjende Kategorien existierje in de Wiki.',
 'pagecategories'           => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'          => 'Artikkel in ju Kategorie "$1"',
 'subcategories'            => 'Unnerkategorien',
@@ -1216,6 +1214,10 @@ Lääste schällen dan wächhoald wäide.',
 'allpagesprefix'    => 'Sieden anwiese mäd Präfix:',
 'allpagesbadtitle'  => 'Die ienroate Siedennoome is ungultich: Hie häd äntweeder n foaranstoald Sproak-, n Interwiki-Oukuutenge of änthaalt een of moor Teekene, do der in Siedennoomen nit verwoand wäide duuren.',
 'allpages-bad-ns'   => 'Die Noomensruum „$1“ is in {{SITENAME}} nit deer.',
+
+# Special:Categories
+'categories'         => 'Kategorien',
+'categoriespagetext' => 'Do foulgjende Kategorien existierje in de Wiki.',
 
 # Special:Listusers
 'listusersfrom'      => 'Wies Benutsere fon:',

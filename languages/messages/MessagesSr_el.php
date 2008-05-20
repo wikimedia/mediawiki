@@ -302,8 +302,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'             => 'Kategorije stranica',
-'categoriespagetext'     => 'Sledeće kategorije već postoje na vikiju',
 'pagecategories'         => '{{PLURAL:$1|Kategorija|Kategorije|Kategorije}} stranica',
 'category_header'        => 'Članaka u kategoriji "$1"',
 'subcategories'          => 'Potkategorije',
@@ -1116,6 +1114,10 @@ Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene s
 'allpagessubmit'    => 'Idi',
 'allpagesprefix'    => 'Prikaži strane sa prefiksom:',
 'allpagesbadtitle'  => 'Dati naziv stranice nije dobar ili sadrži međujezički ili interviki prefiks. Moguće je da sadrži karaktere koji ne mogu da se koriste u nazivima.',
+
+# Special:Categories
+'categories'         => 'Kategorije stranica',
+'categoriespagetext' => 'Sledeće kategorije već postoje na vikiju',
 
 # Special:Listusers
 'listusersfrom' => 'Prikaži korisnike počevši od:',

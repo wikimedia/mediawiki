@@ -146,8 +146,6 @@ $messages = array(
 'dec'           => 'dec.',
 
 # Categories related messages
-'categories'             => 'Kategorije',
-'categoriespagetext'     => 'V wikiju obstajajo naslednje kategorije.',
 'pagecategories'         => '{{plural:$1|Kategorija|Kategoriji|Kategorije|Kategorije|Kategorije}}',
 'category_header'        => 'Strani v kategoriji »$1«',
 'subcategories'          => 'Podkategorije',
@@ -882,6 +880,10 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'allpagesnext'      => 'Naslednja',
 'allpagessubmit'    => 'Pojdi',
 'allpagesprefix'    => 'Prikaži strani z začetnimi črkami:',
+
+# Special:Categories
+'categories'         => 'Kategorije',
+'categoriespagetext' => 'V wikiju obstajajo naslednje kategorije.',
 
 # E-mail user
 'mailnologin'     => 'Manjka naslov pošiljatelja',

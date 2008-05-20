@@ -105,7 +105,6 @@ $messages = array(
 'dec'           => 'Ngu',
 
 # Categories related messages
-'categories'             => 'Kattegori',
 'pagecategories'         => '{{PLURAL:$1|Kattegori|Kattegorina}}',
 'category_header'        => 'Kattegori petulo di "$1"',
 'subcategories'          => 'Subkattegori',
@@ -717,6 +716,9 @@ di uplodezi media.',
 'allpagesnext'   => 'Lila',
 'allpagessubmit' => 'Afi',
 'allpagesprefix' => 'Kamukile petulo di pifeto di:',
+
+# Special:Categories
+'categories' => 'Kattegori',
 
 # Special:Listusers
 'listusersfrom'      => 'Kamukile sebelu di:',

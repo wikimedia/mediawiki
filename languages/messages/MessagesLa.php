@@ -238,10 +238,6 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Categories related messages
-'categories'                     => 'Categoriae',
-'categoriespagetext'             => 'Categoriae subter paginas vel fasciculos continent.',
-'special-categories-sort-count'  => 'ordinare secundum numerum',
-'special-categories-sort-abc'    => 'ordinare secundum abecedarium',
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categoriae}}',
 'category_header'                => 'Paginae in categoria "$1"',
 'subcategories'                  => 'Subcategoriae',
@@ -1078,6 +1074,12 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel titulum pagi
 'allpagesprefix'    => 'Monstrare paginas quibus est praeverbium:',
 'allpagesbadtitle'  => 'Nomen paginae datum fuit invalidum aut praverbium interlinguale vel interviciale habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.',
 'allpages-bad-ns'   => 'Non est spatium nominale "$1" apud {{grammar:accusative|{{SITENAME}}}}.',
+
+# Special:Categories
+'categories'                    => 'Categoriae',
+'categoriespagetext'            => 'Categoriae subter paginas vel fasciculos continent.',
+'special-categories-sort-count' => 'ordinare secundum numerum',
+'special-categories-sort-abc'   => 'ordinare secundum abecedarium',
 
 # Special:Listusers
 'listusers-submit' => 'Monstrare',

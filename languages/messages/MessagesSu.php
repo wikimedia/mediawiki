@@ -138,8 +138,6 @@ $messages = array(
 'dec'           => 'Dés',
 
 # Categories related messages
-'categories'                     => 'Kategori',
-'categoriespagetext'             => 'Kategori-kategori di handap ieu aya na wiki.',
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'                => 'Artikel-artikel na kategori "$1"',
 'subcategories'                  => 'Subkategori',
@@ -1158,6 +1156,10 @@ Jumlah-jamléh geus aya '''\$3''' kaca ulasan sarta '''\$4''' éditan ti saprak 
 'allpagesprefix'    => 'Pintonkeun kaca dimimitian ku:',
 'allpagesbadtitle'  => 'Judul kaca nu dibikeun teu bener atawa mibanda awalan antarbasa atawa antarwiki, nu ngandung karakter nu teu bisa dipaké dina judul.',
 'allpages-bad-ns'   => '{{SITENAME}} teu boga spasi ngaran "$1".',
+
+# Special:Categories
+'categories'         => 'Kategori',
+'categoriespagetext' => 'Kategori-kategori di handap ieu aya na wiki.',
 
 # Special:Listusers
 'listusersfrom'      => 'Témbongkeun pamaké nu dimimitian ku',

@@ -167,8 +167,6 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'categories'            => 'Categoreyes',
-'categoriespagetext'    => 'I gn a les categoreyes shuvantes sol wiki.',
 'pagecategories'        => '{{PLURAL:$1|Categoreye|Categoreyes}}',
 'category_header'       => 'Årtikes el categoreye «$1»',
 'subcategories'         => 'Dizo-categoreyes',
@@ -957,6 +955,10 @@ Vos ploz limiter l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' 
 'allpagessubmit'    => 'I va',
 'allpagesprefix'    => "Håyner les pådjes avou l' betchete:",
 'allpagesbadtitle'  => "Li tite di pådje diné n' est nén valide oudonbén il a-st ene betchete di loyén eterlingaedje ou eterwiki. Ça s' pout k' il åye onk ou d' pus d' caracteres ki n' si polèt nén eployî dins les tites.",
+
+# Special:Categories
+'categories'         => 'Categoreyes',
+'categoriespagetext' => 'I gn a les categoreyes shuvantes sol wiki.',
 
 # E-mail user
 'mailnologin'     => "Nole adresse d' evoyeu",

@@ -131,10 +131,6 @@ $messages = array(
 'dec'           => 'ber',
 
 # Categories related messages
-'categories'                     => '{{PLURAL:$1|Kategorî|Kategorî}}',
-'categoriespagetext'             => 'Di vê wîkiyê de ev kategorî hene:',
-'special-categories-sort-count'  => 'hatîye rêzkirin li gorî hejmaran',
-'special-categories-sort-abc'    => 'hatîye rêzkirin li gorî alfabeyê',
 'pagecategories'                 => '$1 Kategorîyan',
 'category_header'                => 'Gotarên di kategoriya "$1" de',
 'subcategories'                  => 'Binekategorî',
@@ -1027,6 +1023,12 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'allpagesprefix'    => 'Nîşan bide rûpelên bi pêşgira:',
 'allpagesbadtitle'  => 'Sernavê rûpelê qedexe bû ya "interwiki"- ya "interlanguage"-pêşnavekî xwe hebû. Meqûle ku zêdertirî tiştekî nikanin werin bikaranîn di sernavê da.',
 'allpages-bad-ns'   => 'Namespace\'a "$1" di {{SITENAME}} da tune ye.',
+
+# Special:Categories
+'categories'                    => '{{PLURAL:$1|Kategorî|Kategorî}}',
+'categoriespagetext'            => 'Di vê wîkiyê de ev kategorî hene:',
+'special-categories-sort-count' => 'hatîye rêzkirin li gorî hejmaran',
+'special-categories-sort-abc'   => 'hatîye rêzkirin li gorî alfabeyê',
 
 # Special:Listusers
 'listusers-submit'   => 'Pêşêkê',

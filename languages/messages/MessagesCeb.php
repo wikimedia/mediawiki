@@ -75,9 +75,6 @@ $messages = array(
 'may'           => 'Mayo',
 
 # Categories related messages
-'categories'                    => 'Mga kategoriya',
-'categoriespagetext'            => 'Ang mosunod nga mga kategoriya adunay sulod nga panid o medya.',
-'special-categories-sort-abc'   => 'han-aya nga paalpabetikal',
 'pagecategories'                => '{{PLURAL:$1|Kategoriya|Mga kategoriya}}',
 'category_header'               => 'Mga panid sa kategoriyang "$1"',
 'subcategories'                 => 'Mga subkategoriya',
@@ -280,6 +277,11 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan s
 
 # Special:Allpages
 'alphaindexline' => '$1 hangtod $2',
+
+# Special:Categories
+'categories'                  => 'Mga kategoriya',
+'categoriespagetext'          => 'Ang mosunod nga mga kategoriya adunay sulod nga panid o medya.',
+'special-categories-sort-abc' => 'han-aya nga paalpabetikal',
 
 # Watchlist
 'mywatchlist' => 'Akong gibantayan',

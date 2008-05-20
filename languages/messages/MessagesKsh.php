@@ -189,8 +189,6 @@ $messages = array(
 'dec'          => 'Dez',
 
 # Categories related messages
-'categories'             => 'Saachjruppe',
-'categoriespagetext'     => 'Dat sin de Saachjruppe vun däm Wiki hee.',
 'pagecategories'         => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}',
 'category_header'        => 'Atikkele in de Saachjrupp „$1“',
 'subcategories'          => 'Ungerjruppe',
@@ -1159,6 +1157,10 @@ aanluure.",
 'allpagesbadtitle'  => 'Dä Siggename es nit ze jebruche. Dä hät e Köözel för en Sproch oder för ne 
 Interwiki Link am Aanfang, oder et kütt e Zeiche dren för, wat en Siggename nit jeiht, villeich och mieh wie 
 eins vun all däm op eimol.',
+
+# Special:Categories
+'categories'         => 'Saachjruppe',
+'categoriespagetext' => 'Dat sin de Saachjruppe vun däm Wiki hee.',
 
 # Special:Listusers
 'listusersfrom' => 'Zeich de Metmaacher vun:',

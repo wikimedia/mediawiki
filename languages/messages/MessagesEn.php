@@ -985,26 +985,26 @@ You may have already successfully changed your password or requested a new tempo
 'hr_tip'          => 'Horizontal line (use sparingly)',
 
 # Edit pages
-'summary'                           => 'Summary',
-'subject'                           => 'Subject/headline',
-'minoredit'                         => 'This is a minor edit',
-'watchthis'                         => 'Watch this page',
-'savearticle'                       => 'Save page',
-'preview'                           => 'Preview',
-'showpreview'                       => 'Show preview',
-'showlivepreview'                   => 'Live preview',
-'showdiff'                          => 'Show changes',
-'anoneditwarning'                   => "'''Warning:''' You are not logged in.
+'summary'                   => 'Summary',
+'subject'                   => 'Subject/headline',
+'minoredit'                 => 'This is a minor edit',
+'watchthis'                 => 'Watch this page',
+'savearticle'               => 'Save page',
+'preview'                   => 'Preview',
+'showpreview'               => 'Show preview',
+'showlivepreview'           => 'Live preview',
+'showdiff'                  => 'Show changes',
+'anoneditwarning'           => "'''Warning:''' You are not logged in.
 Your IP address will be recorded in this page's edit history.",
-'missingsummary'                    => "'''Reminder:''' You have not provided an edit summary.
+'missingsummary'            => "'''Reminder:''' You have not provided an edit summary.
 If you click Save again, your edit will be saved without one.",
-'missingcommenttext'                => 'Please enter a comment below.',
-'missingcommentheader'              => "'''Reminder:''' You have not provided a subject/headline for this comment.
+'missingcommenttext'        => 'Please enter a comment below.',
+'missingcommentheader'      => "'''Reminder:''' You have not provided a subject/headline for this comment.
 If you click Save again, your edit will be saved without one.",
-'summary-preview'                   => 'Summary preview',
-'subject-preview'                   => 'Subject/headline preview',
-'blockedtitle'                      => 'User is blocked',
-'blockedtext'                       => "<big>'''Your user name or IP address has been blocked.'''</big>
+'summary-preview'           => 'Summary preview',
+'subject-preview'           => 'Subject/headline preview',
+'blockedtitle'              => 'User is blocked',
+'blockedtext'               => "<big>'''Your user name or IP address has been blocked.'''</big>
 
 The block was made by $1. The reason given is ''$2''.
 
@@ -1015,7 +1015,7 @@ The block was made by $1. The reason given is ''$2''.
 You can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'e-mail this user' feature unless a valid e-mail address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
-'autoblockedtext'                   => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
+'autoblockedtext'           => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is this:
 
 :\'\'$2\'\'
@@ -1029,108 +1029,108 @@ Note that you may not use the "e-mail this user" feature unless you have a valid
 
 Your block ID is $5.
 Please include this ID in any queries you make.',
-'blockednoreason'                   => 'no reason given',
-'blockedoriginalsource'             => "The source of '''$1''' is shown below:",
-'blockededitsource'                 => "The text of '''your edits''' to '''$1''' is shown below:",
-'whitelistedittitle'                => 'Login required to edit',
-'whitelistedittext'                 => 'You have to $1 to edit pages.',
-'whitelistreadtitle'                => 'Login required to read',
-'whitelistreadtext'                 => 'You have to [[Special:Userlogin|login]] to read pages.',
-'whitelistacctitle'                 => 'You are not allowed to create an account',
-'whitelistacctext'                  => 'To be allowed to create accounts in {{SITENAME}} you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
-'confirmedittitle'                  => 'E-mail confirmation required to edit',
-'confirmedittext'                   => 'You must confirm your e-mail address before editing pages.
+'blockednoreason'           => 'no reason given',
+'blockedoriginalsource'     => "The source of '''$1''' is shown below:",
+'blockededitsource'         => "The text of '''your edits''' to '''$1''' is shown below:",
+'whitelistedittitle'        => 'Login required to edit',
+'whitelistedittext'         => 'You have to $1 to edit pages.',
+'whitelistreadtitle'        => 'Login required to read',
+'whitelistreadtext'         => 'You have to [[Special:Userlogin|login]] to read pages.',
+'whitelistacctitle'         => 'You are not allowed to create an account',
+'whitelistacctext'          => 'To be allowed to create accounts in {{SITENAME}} you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
+'confirmedittitle'          => 'E-mail confirmation required to edit',
+'confirmedittext'           => 'You must confirm your e-mail address before editing pages.
 Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
-'nosuchsectiontitle'                => 'No such section',
-'nosuchsectiontext'                 => 'You tried to edit a section that does not exist.
+'nosuchsectiontitle'        => 'No such section',
+'nosuchsectiontext'         => 'You tried to edit a section that does not exist.
 Since there is no section $1, there is no place to save your edit.',
-'loginreqtitle'                     => 'Login Required',
-'loginreqlink'                      => 'log in',
-'loginreqpagetext'                  => 'You must $1 to view other pages.',
-'accmailtitle'                      => 'Password sent.',
-'accmailtext'                       => 'The password for "$1" has been sent to $2.',
-'newarticle'                        => '(New)',
-'newarticletext'                    => "You have followed a link to a page that does not exist yet.
+'loginreqtitle'             => 'Login Required',
+'loginreqlink'              => 'log in',
+'loginreqpagetext'          => 'You must $1 to view other pages.',
+'accmailtitle'              => 'Password sent.',
+'accmailtext'               => 'The password for "$1" has been sent to $2.',
+'newarticle'                => '(New)',
+'newarticletext'            => "You have followed a link to a page that does not exist yet.
 To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
-'newarticletextanon'                => '{{int:newarticletext}}', # do not translate or duplicate this message to other languages
-'talkpagetext'                      => '<!-- MediaWiki:talkpagetext -->', # do not translate or duplicate this message to other languages
-'anontalkpagetext'                  => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her.
+'newarticletextanon'        => '{{int:newarticletext}}', # do not translate or duplicate this message to other languages
+'talkpagetext'              => '<!-- MediaWiki:talkpagetext -->', # do not translate or duplicate this message to other languages
+'anontalkpagetext'          => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her.
 Such an IP address can be shared by several users.
 If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
-'noarticletext'                     => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
-'noarticletextanon'                 => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
-'userpage-userdoesnotexist'         => 'User account "$1" is not registered. Please check if you want to create/edit this page.',
-'clearyourcache'                    => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools→Preferences''.",
-'usercssjsyoucanpreview'            => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
-'usercsspreview'                    => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
-'userjspreview'                     => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
-'userinvalidcssjstitle'             => "'''Warning:''' There is no skin \"\$1\".
+'noarticletext'             => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
+'noarticletextanon'         => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
+'userpage-userdoesnotexist' => 'User account "$1" is not registered. Please check if you want to create/edit this page.',
+'clearyourcache'            => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools→Preferences''.",
+'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
+'usercsspreview'            => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
+'userjspreview'             => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
+'userinvalidcssjstitle'     => "'''Warning:''' There is no skin \"\$1\".
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
-'updated'                           => '(Updated)',
-'note'                              => '<strong>Note:</strong>',
-'previewnote'                       => '<strong>This is only a preview;
+'updated'                   => '(Updated)',
+'note'                      => '<strong>Note:</strong>',
+'previewnote'               => '<strong>This is only a preview;
 changes have not yet been saved!</strong>',
-'previewconflict'                   => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
-'session_fail_preview'              => '<strong>Sorry! We could not process your edit due to a loss of session data.
+'previewconflict'           => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
+'session_fail_preview'      => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again. If it still does not work, try logging out and logging back in.</strong>',
-'session_fail_preview_html'         => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
+'session_fail_preview_html' => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
 <strong>If this is a legitimate edit attempt, please try again. If it still does not work, try logging out and logging back in.</strong>",
-'token_suffix_mismatch'             => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
+'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
 The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
-'editing'                           => 'Editing $1',
-'editingsection'                    => 'Editing $1 (section)',
-'editingcomment'                    => 'Editing $1 (comment)',
-'editconflict'                      => 'Edit conflict: $1',
-'explainconflict'                   => "Someone else has changed this page since you started editing it.
+'editing'                   => 'Editing $1',
+'editingsection'            => 'Editing $1 (section)',
+'editingcomment'            => 'Editing $1 (comment)',
+'editconflict'              => 'Edit conflict: $1',
+'explainconflict'           => "Someone else has changed this page since you started editing it.
 The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
 '''Only''' the text in the upper text area will be saved when you press \"Save page\".",
-'yourtext'                          => 'Your text',
-'storedversion'                     => 'Stored version',
-'nonunicodebrowser'                 => '<strong>WARNING: Your browser is not unicode compliant.
+'yourtext'                  => 'Your text',
+'storedversion'             => 'Stored version',
+'nonunicodebrowser'         => '<strong>WARNING: Your browser is not unicode compliant.
 A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>',
-'editingold'                        => '<strong>WARNING: You are editing an out-of-date revision of this page.
+'editingold'                => '<strong>WARNING: You are editing an out-of-date revision of this page.
 If you save it, any changes made since this revision will be lost.</strong>',
-'yourdiff'                          => 'Differences',
-'copyrightwarning'                  => 'Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
+'yourdiff'                  => 'Differences',
+'copyrightwarning'          => 'Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
 If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
-'copyrightwarning2'                 => 'Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.
+'copyrightwarning2'         => 'Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.
 If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
-'longpagewarning'                   => '<strong>WARNING: This page is $1 kilobytes long;
+'longpagewarning'           => '<strong>WARNING: This page is $1 kilobytes long;
 some browsers may have problems editing pages approaching or longer than 32kb.
 Please consider breaking the page into smaller sections.</strong>',
-'longpageerror'                     => '<strong>ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes.
+'longpageerror'             => '<strong>ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes.
 It cannot be saved.</strong>',
-'readonlywarning'                   => '<strong>WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.
+'readonlywarning'           => '<strong>WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.
 You may wish to cut-n-paste the text into a text file and save it for later.</strong>',
-'protectedpagewarning'              => '<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it.</strong>',
-'semiprotectedpagewarning'          => "'''Note:''' This page has been locked so that only registered users can edit it.",
-'cascadeprotectedwarning'           => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
-'titleprotectedwarning'             => '<strong>WARNING:  This page has been locked so that only some users can create it.</strong>',
-'templatesused'                     => 'Templates used on this page:',
-'templatesusedpreview'              => 'Templates used in this preview:',
-'templatesusedsection'              => 'Templates used in this section:',
-'template-protected'                => '(protected)',
-'template-semiprotected'            => '(semi-protected)',
-'hiddencategories'                  => 'This page is a member of {{PLURAL:$1|1 hidden category|$1 hidden categories}}:',
-'edittools'                         => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
-'nocreatetitle'                     => 'Page creation limited',
-'nocreatetext'                      => '{{SITENAME}} has restricted the ability to create new pages.
+'protectedpagewarning'      => '<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it.</strong>',
+'semiprotectedpagewarning'  => "'''Note:''' This page has been locked so that only registered users can edit it.",
+'cascadeprotectedwarning'   => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
+'titleprotectedwarning'     => '<strong>WARNING:  This page has been locked so that only some users can create it.</strong>',
+'templatesused'             => 'Templates used on this page:',
+'templatesusedpreview'      => 'Templates used in this preview:',
+'templatesusedsection'      => 'Templates used in this section:',
+'template-protected'        => '(protected)',
+'template-semiprotected'    => '(semi-protected)',
+'hiddencategories'          => 'This page is a member of {{PLURAL:$1|1 hidden category|$1 hidden categories}}:',
+'edittools'                 => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
+'nocreatetitle'             => 'Page creation limited',
+'nocreatetext'              => '{{SITENAME}} has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
-'nocreate-loggedin'                 => 'You do not have permission to create new pages on {{SITENAME}}.',
-'permissionserrors'                 => 'Permissions Errors',
-'permissionserrorstext'             => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
-'recreate-deleted-warn'             => "'''Warning: You are recreating a page that was previously deleted.'''
+'nocreate-loggedin'         => 'You do not have permission to create new pages on {{SITENAME}}.',
+'permissionserrors'         => 'Permissions Errors',
+'permissionserrorstext'     => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
+'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.'''
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
@@ -1140,12 +1140,12 @@ The deletion log for this page is provided here for convenience:",
 
 It should have less than $2, there are now $1.',
 'expensive-parserfunction-category'       => 'Pages with too many expensive parser function calls',
-'post-expand-template-inclusion-warning'  => "Warning: Template include size is too large.
-Some templates will not be included.",
-'post-expand-template-inclusion-category' => "Pages where template include size is exceeded",
-'post-expand-template-argument-warning'   => "Warning: This page contains at least one template argument which has a too large expansion size.
-These arguments have been omitted.",
-'post-expand-template-argument-category'  => "Pages containing omitted template arguments",
+'post-expand-template-inclusion-warning'  => 'Warning: Template include size is too large.
+Some templates will not be included.',
+'post-expand-template-inclusion-category' => 'Pages where template include size is exceeded',
+'post-expand-template-argument-warning'   => 'Warning: This page contains at least one template argument which has a too large expansion size.
+These arguments have been omitted.',
+'post-expand-template-argument-category'  => 'Pages containing omitted template arguments',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',

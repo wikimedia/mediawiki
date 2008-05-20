@@ -115,8 +115,6 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'categories'               => '頁面分類',
-'categoriespagetext'       => '下底箇分類包括頁面或是媒體文件。',
 'pagecategories'           => '$1隻分類',
 'category_header'          => '“$1”分類中嗰文章',
 'subcategories'            => '亞分類',
@@ -1115,6 +1113,10 @@ $2',
 'allpagesprefix'    => '以箇隻開頭嗰頁面:',
 'allpagesbadtitle'  => '提供嗰頁面標題冇用，或有隻跨語言或跨wiki嗰字頭。佢可能含到一隻或幾隻字伓合標題。',
 'allpages-bad-ns'   => '{{SITENAME}}冇名字空間叫"$1"嗰。',
+
+# Special:Categories
+'categories'         => '頁面分類',
+'categoriespagetext' => '下底箇分類包括頁面或是媒體文件。',
 
 # Special:Listusers
 'listusersfrom'      => '顯示噉樣用戶條件:',

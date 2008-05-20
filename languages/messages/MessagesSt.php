@@ -43,9 +43,7 @@ $messages = array(
 'dec'       => 'Tshitwe',
 
 # Categories related messages
-'categories'         => 'Mekga',
-'categoriespagetext' => 'Wiki e na le mekga ena',
-'category_header'    => 'Dingolwa tse mokgeng wa "$1"',
+'category_header' => 'Dingolwa tse mokgeng wa "$1"',
 
 'mypage'     => 'Leqephe la ka',
 'mytalk'     => 'Leqephe la ka la moqoqo',
@@ -127,6 +125,10 @@ $messages = array(
 
 # Special:Allpages
 'allpages' => 'Maqephe ohle',
+
+# Special:Categories
+'categories'         => 'Mekga',
+'categoriespagetext' => 'Wiki e na le mekga ena',
 
 # E-mail user
 'emailuser'     => 'Romela motho enwa email',

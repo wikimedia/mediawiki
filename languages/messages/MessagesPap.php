@@ -47,10 +47,8 @@ $messages = array(
 'dec'       => 'des',
 
 # Categories related messages
-'categories'         => 'Kategorianan',
-'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.',
-'category_header'    => 'Artíkulonan den kategoria "$1"',
-'subcategories'      => 'Supkategorianan',
+'category_header' => 'Artíkulonan den kategoria "$1"',
+'subcategories'   => 'Supkategorianan',
 
 'about'         => 'Info',
 'article'       => 'Artíkulo',
@@ -245,6 +243,10 @@ Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uza
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Siguiente',
 'allpagesprefix'    => 'Mustra páginanan kuminsando ku e prefiho:',
+
+# Special:Categories
+'categories'         => 'Kategorianan',
+'categoriespagetext' => 'Esaki ta e kategorianan ku ta eksistí den {{SITENAME}}.',
 
 # E-mail user
 'emailuser'       => 'Manda e-mail pa e uzadó aki',

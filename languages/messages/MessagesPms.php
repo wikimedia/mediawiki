@@ -140,10 +140,6 @@ dj'artìcol ancó pa scrit",
 'dec'           => 'Dze',
 
 # Categories related messages
-'categories'                     => '{{PLURAL:$1|Categorìa|Categorìe}}',
-'categoriespagetext'             => "Coste categorìe-sì a l'han andrinta dle pàgine ò dj'archivi.",
-'special-categories-sort-count'  => 'ordiné për nùmer',
-'special-categories-sort-abc'    => 'òrdiné për alfabétich',
 'pagecategories'                 => '{{PLURAL:$1|Categorìa|Categorìe}}',
 'category_header'                => 'Artìcoj ant la categorìa "$1"',
 'subcategories'                  => 'Sotacategorìe',
@@ -1274,6 +1270,12 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'allpagesprefix'    => "Most-me la pàgine che a l'ha prefiss:",
 'allpagesbadtitle'  => "Ël tìtol che a l'ha daje a la pàgina a va nen bin, ò pura a l'ha andrinta un prefiss inter-lenga ò inter-wiki. A peul esse ëdcò che a l'abia andrinta dij caràter che as peulo nen dovresse ant ij tìtoj.",
 'allpages-bad-ns'   => '{{SITENAME}} a l\'ha pa gnun ëspassi nominal "$1".',
+
+# Special:Categories
+'categories'                    => '{{PLURAL:$1|Categorìa|Categorìe}}',
+'categoriespagetext'            => "Coste categorìe-sì a l'han andrinta dle pàgine ò dj'archivi.",
+'special-categories-sort-count' => 'ordiné për nùmer',
+'special-categories-sort-abc'   => 'òrdiné për alfabétich',
 
 # Special:Listusers
 'listusersfrom'      => "Smon-me j'utent a parte da:",

@@ -111,7 +111,6 @@ $messages = array(
 'dec'           => 'déc',
 
 # Categories related messages
-'categories'            => 'Classes',
 'pagecategories'        => '{{PLURAL:$1|Classe|Classes}}',
 'category_header'       => 'Articles dans classe "$1"',
 'subcategories'         => 'Sous-classes',
@@ -642,6 +641,9 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # Miscellaneous special pages
 'move'         => 'Renommer',
 'movethispage' => 'Renommer cette page',
+
+# Special:Categories
+'categories' => 'Classes',
 
 # Watchlist
 'watchlist'   => 'Mes pages guettées',

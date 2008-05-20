@@ -113,7 +113,6 @@ $messages = array(
 'dec'           => 'Dhj',
 
 # Categories related messages
-'categories'               => 'Kategori',
 'pagecategories'           => '{{PLURAL:$1|Kategoria|Kategoritë}}',
 'category_header'          => 'Artikuj në kategorinë "$1"',
 'subcategories'            => 'Nën-kategori',
@@ -498,6 +497,9 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 # Special:Allpages
 'alphaindexline' => '$1 deri në $2',
 'allpagessubmit' => 'Shko',
+
+# Special:Categories
+'categories' => 'Kategori',
 
 # Watchlist
 'mywatchlist'          => 'Lista mbikqyrëse',

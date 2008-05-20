@@ -86,9 +86,6 @@ $messages = array(
 'dec'           => 'Dex',
 
 # Categories related messages
-'categories'                     => 'Categorîe',
-'special-categories-sort-count'  => 'ordenâ pe nûmmero',
-'special-categories-sort-abc'    => 'ordenâ arfabeticamente',
 'pagecategories'                 => '{{PLURAL:$1|Categorîa|Categorîe}}',
 'category_header'                => 'Paggine inta categorîa "$1"',
 'subcategories'                  => 'Sottocategorîe',
@@ -655,6 +652,11 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'allpagesprefix'    => 'Fanni vedde e paggine che inissian con:',
 'allpagesbadtitle'  => 'O titolo pe a pagina o non va ben, o o tegne de i prefissi interlingua o interwiki. O peu tegne un o ciù caratteri non permissi in ti titoli ascì.',
 'allpages-bad-ns'   => '"$1" o no ghe in {{SITENAME}}.',
+
+# Special:Categories
+'categories'                    => 'Categorîe',
+'special-categories-sort-count' => 'ordenâ pe nûmmero',
+'special-categories-sort-abc'   => 'ordenâ arfabeticamente',
 
 # Special:Listusers
 'listusers-submit'   => 'Fanni vedde',

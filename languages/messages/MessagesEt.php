@@ -183,8 +183,6 @@ $messages = array(
 'dec'           => 'dets',
 
 # Categories related messages
-'categories'             => 'Kategooriad',
-'categoriespagetext'     => 'Vikis on järgmised kategooriad.',
 'pagecategories'         => '{{PLURAL:$1|Kategooria|Kategooriad}}',
 'category_header'        => 'Artiklid kategooriast "$1"',
 'subcategories'          => 'Allkategooriad',
@@ -933,6 +931,10 @@ Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje 
 'allpagesprev'      => 'Eelmised',
 'allpagesnext'      => 'Järgmised',
 'allpagessubmit'    => 'Näita',
+
+# Special:Categories
+'categories'         => 'Kategooriad',
+'categoriespagetext' => 'Vikis on järgmised kategooriad.',
 
 # E-mail user
 'mailnologintext' => 'Te peate olema [[Special:Userlogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',

@@ -83,8 +83,6 @@ $messages = array(
 'dec'           => 'Tis',
 
 # Categories related messages
-'categories'             => 'Faʻahinga',
-'categoriespagetext'     => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
 'pagecategories'         => 'Faʻahinga',
 'category_header'        => 'Ngaahi kupu ʻi he faʻahinga "$1"',
 'subcategories'          => 'Ngaahi faʻahinga siʻi',
@@ -699,6 +697,10 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'allpagessubmit'    => 'Fai ā',
 'allpagesprefix'    => 'ʻAsi mai ngaahi peesi mo ʻenau fakapipikimuʻa:',
 'allpagesbadtitle'  => "Naʻe taʻeʻaonga ʻa e hingoa ʻo e peesi naʻa ke fili, pe naʻe ʻi ai ha fakapipikimuʻa  fakalea kehe pe ha fakapipikimuʻa faka''wiki'' kehe. Mahalo pe ʻoku ʻi loto ha ʻū mataʻitohi ʻoku ʻikai lava ngāueʻaki ʻi ha hingoa.",
+
+# Special:Categories
+'categories'         => 'Faʻahinga',
+'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
 
 # Special:Listusers
 'listusersfrom'    => 'ʻAsi mai kau ʻetita mei he:',

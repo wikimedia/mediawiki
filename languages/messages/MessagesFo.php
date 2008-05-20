@@ -198,8 +198,6 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'categories'             => 'Bólkar',
-'categoriespagetext'     => 'Eftirfylgjandi bólkar eru í hesu wiki.',
 'pagecategories'         => '{{PLURAL:$1|Bólkur|Bólkar}}',
 'category_header'        => 'Greinir í bólki "$1"',
 'subcategories'          => 'Undirbólkur',
@@ -784,6 +782,10 @@ Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella á
 'allpagesprev'   => 'Undanfarnu',
 'allpagesnext'   => 'Næstu',
 'allpagessubmit' => 'Far',
+
+# Special:Categories
+'categories'         => 'Bólkar',
+'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.',
 
 # Special:Listusers
 'listusersfrom'      => 'Vís brúkarar ið byrja við:',
