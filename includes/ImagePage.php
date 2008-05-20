@@ -16,7 +16,10 @@ if( !defined( 'MEDIAWIKI' ) )
 class ImagePage extends Article {
 
 	/* private */ var $img;  // Image object this page is shown for
+	/* private */ var $current;
 	/* private */ var $repo;
+	/* private */ var $time;
+	/* private */ var $fileLoaded;
 	var $mExtraDescription = false;
 	var $dupes;
 
@@ -25,16 +28,24 @@ class ImagePage extends Article {
 
 		global $wgRequest;
 		$time = is_null($time) ? $time : $wgRequest->getVal( 'filetimestamp' );
-
-		$this->img = wfFindFile( $this->mTitle, $time );
+		$this->time = $time;
+		$this->dupes = null;
+		$this->repo = null;
+	}
+	
+	protected function loadFile() {
+		if( $this->fileLoaded ) {
+			return true;
+		}
+		$this->img = wfFindFile( $this->mTitle, $this->time );
 		if ( !$this->img ) {
 			$this->img = wfLocalFile( $this->mTitle );
 			$this->current = $this->img;
 		} else {
-			$this->current = $time ? wfLocalFile( $this->mTitle ) : $this->img;
+			$this->current = $this->time ? wfLocalFile( $this->mTitle ) : $this->img;
 		}
 		$this->repo = $this->img->getRepo();
-		$this->dupes = null;
+		$this->fileLoaded = true;
 	}
 
 	/**
@@ -49,6 +60,7 @@ class ImagePage extends Article {
 
 	function view() {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
+		$this->loadFile();
 
 		if ( $this->mTitle->getNamespace() == NS_IMAGE && $this->img->getRedirected() ) {
 			if ( $this->mTitle->getDBkey() == $this->img->getName() ) {
@@ -133,25 +145,32 @@ class ImagePage extends Article {
 	}
 	
 	public function getRedirectTarget() {
-		if ( $this->img->isLocal() )
+		$this->loadFile();
+		if ( $this->img->isLocal() ) {
 			return parent::getRedirectTarget();
-		
+		}
 		// Foreign image page
 		$from = $this->img->getRedirected();
 		$to = $this->img->getName();
-		if ($from == $to) return null; 
+		if ( $from == $to ) {
+			return null; 
+		}
 		return $this->mRedirectTarget = Title::makeTitle( NS_IMAGE, $to );
 	}
 	public function followRedirect() {
-		if ( $this->img->isLocal() )
+		$this->loadFile();
+		if ( $this->img->isLocal() ) {
 			return parent::followRedirect();
-			
+		}
 		$from = $this->img->getRedirected();
 		$to = $this->img->getName();
-		if ($from == $to) return false; 
+		if ( $from == $to ) {
+			return false; 
+		}
 		return Title::makeTitle( NS_IMAGE, $to );	
 	}
 	public function isRedirect( $text = false ) {
+		$this->loadFile();
 		if ( $this->img->isLocal() )
 			return parent::isRedirect( $text );
 			
@@ -159,20 +178,24 @@ class ImagePage extends Article {
 	}
 	
 	public function isLocal() {
+		$this->loadFile();
 		return $this->img->isLocal();
 	}
 	
 	public function getFile() {
+		$this->loadFile();
 		return $this->img;
 	}
 	
 	public function getDuplicates() {
-		if ( !is_null($this->dupes) ) return $this->dupes;
-		
-		if ( !( $hash = $this->img->getSha1() ) ) 
+		$this->loadFile();
+		if ( !is_null($this->dupes) ) {
+			return $this->dupes;
+		}
+		if ( !( $hash = $this->img->getSha1() ) ) {
 			return $this->dupes = array();
+		}
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
-		
 		// Remove duplicates with self and non matching file sizes
 		$self = $this->img->getRepoName().':'.$this->img->getName();
 		$size = $this->img->getSize();
@@ -242,6 +265,7 @@ class ImagePage extends Article {
 	 * shared upload server if possible.
 	 */
 	function getContent() {
+		$this->loadFile();
 		if( $this->img && !$this->img->isLocal() && 0 == $this->getID() ) {
 			return '';
 		}
@@ -250,6 +274,8 @@ class ImagePage extends Article {
 
 	function openShowImage() {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgLang, $wgContLang;
+
+		$this->loadFile();
 
 		$full_url  = $this->img->getURL();
 		$linkAttribs = false;
@@ -449,6 +475,8 @@ EOT
 	function printSharedImageText() {
 		global $wgOut, $wgUser;
 
+		$this->loadFile();
+
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
 		$s = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml( 'sharedupload' );
@@ -475,10 +503,13 @@ EOT
 	 */
 	function checkSharedConflict() {
 		global $wgOut, $wgUser;
+		
 		$repoGroup = RepoGroup::singleton();
 		if( !$repoGroup->hasForeignRepos() ) {
 			return;
 		}
+		
+		$this->loadFile();
 		if( !$this->img->isLocal() ) {
 			return;
 		}
@@ -506,13 +537,16 @@ EOT
 	}
 
 	function checkSharedConflictCallback( $repo ) {
+		$this->loadFile();
 		$dupfile = $repo->newFile( $this->img->getTitle() );
-		if( $dupfile->exists() )
+		if( $dupfile->exists() ) {
 			$this->dupFile = $dupfile;
+		}
 		return $dupfile->exists();
 	}
 
 	function getUploadUrl() {
+		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 		return $uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) );
 	}
@@ -524,6 +558,7 @@ EOT
 	function uploadLinksBox() {
 		global $wgUser, $wgOut;
 
+		$this->loadFile();
 		if( !$this->img->isLocal() )
 			return;
 
@@ -564,6 +599,7 @@ EOT
 
 		$sk = $wgUser->getSkin();
 
+		$this->loadFile();
 		if ( $this->img->exists() ) {
 			$list = new ImageHistoryList( $sk, $this->current, $this->img );
 			$file = $this->current;
@@ -654,7 +690,9 @@ EOT
 	
 	function imageDupes() {
 		global $wgOut, $wgUser;		
-	
+
+		$this->loadFile();
+
 		$dupes = $this->getDuplicates();
 		if ( count( $dupes ) == 0 ) return;
 
@@ -677,6 +715,7 @@ EOT
 	 * Delete the file, or an earlier version of it
 	 */
 	public function delete() {
+		$this->loadFile();
 		if( !$this->img->exists() || !$this->img->isLocal() ) {
 			// Standard article deletion
 			Article::delete();
@@ -690,6 +729,7 @@ EOT
 	 * Revert the file to an earlier version
 	 */
 	public function revert() {
+		$this->loadFile();
 		$reverter = new FileRevertForm( $this->img );
 		$reverter->execute();
 	}
@@ -698,6 +738,7 @@ EOT
 	 * Override handling of action=purge
 	 */
 	function doPurge() {
+		$this->loadFile();
 		if( $this->img->exists() ) {
 			wfDebug( "ImagePage::doPurge purging " . $this->img->getName() . "\n" );
 			$update = new HTMLCacheUpdate( $this->mTitle, 'imagelinks' );
