@@ -154,7 +154,7 @@ function wfSpecialWatchlist( $par ) {
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
 		$header .= wfMsg( 'wlheader-enotif' ) . "\n";
 	}
-	if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
+	if ( $wgShowUpdatedMarker ) {
 		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
 	}
 
@@ -175,7 +175,7 @@ function wfSpecialWatchlist( $par ) {
 	if( ( $lag = $dbr->getLag() ) > 0 )
 		$wgOut->showLagWarning( $lag );
 
-	if ( $wgEnotifWatchlist || $wgShowUpdatedMarker ) {
+	if ( $wgShowUpdatedMarker ) {
 		$wgOut->addHTML( '<form action="' .
 			$specialTitle->escapeLocalUrl() .
 			'" method="post"><input type="submit" name="dummy" value="' .
