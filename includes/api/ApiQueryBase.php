@@ -355,7 +355,10 @@ abstract class ApiQueryBase extends ApiBase {
 			if ($wgUser->isAllowed($action))
 				return true;
 			else
-				$this->dieUsage("Action '$action' is not allowed for the current user", 'permissiondenied');
+			{
+				$this->setWarning("Action '$action' is not allowed for the current user");
+				return false;
+			}
 		}
 		return false;
 	}
