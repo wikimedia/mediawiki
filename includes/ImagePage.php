@@ -552,10 +552,11 @@ EOT
 	function checkSharedConflictCallback( $repo ) {
 		$this->loadFile();
 		$dupfile = $repo->newFile( $this->img->getTitle() );
-		if( $dupfile->exists() ) {
+		if( $dupfile && $dupfile->exists() ) {
 			$this->dupFile = $dupfile;
+			return $dupfile->exists();
 		}
-		return $dupfile->exists();
+		return false;
 	}
 
 	function getUploadUrl() {
