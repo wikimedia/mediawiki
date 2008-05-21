@@ -43,9 +43,8 @@ class ImagePage extends Article {
 			$this->displayImg = wfFindFile( $this->mTitle );
 			# If none found, use a valid local placeholder
 			if( !$this->displayImg ) {
-				$this->displayImg = wfLocalFile( $this->mTitle );
+				$this->displayImg = wfLocalFile( $this->mTitle ); // fallback to current
 			}
-			# Fallback to current
 			$this->img = $this->displayImg;
 		# If found, set $this->img. This will be the same if no time given
 		} else {
