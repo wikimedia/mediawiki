@@ -43,8 +43,13 @@ $wgSitename         = 'MediaWiki';
 $wgMetaNamespace    = false;
 
 /**
- * Name of the project talk namespace. If left set to false, a name derived
- * from the name of the project namespace will be used.
+ * Name of the project talk namespace.
+ *
+ * Normally you can ignore this and it will be something like
+ * $wgMetaNamespace . "_talk". In some languages, you may want to set this
+ * manually for grammatical reasons. It is currently only respected by those
+ * languages where it might be relevant and where no automatic grammar converter
+ * exists.
  */
 $wgMetaNamespaceTalk = false;
 
@@ -90,25 +95,20 @@ if(    isset( $_SERVER['SERVER_PORT'] )
 $wgScriptPath	    = '/wiki';
 
 /**
- * Whether to support URLs like index.php/Page_title
- * These often break when PHP is set up in CGI mode.
- * PATH_INFO *may* be correct if cgi.fix_pathinfo is
- * set, but then again it may not; lighttpd converts
- * incoming path data to lowercase on systems with
- * case-insensitive filesystems, and there have been
- * reports of problems on Apache as well.
+ * Whether to support URLs like index.php/Page_title These often break when PHP
+ * is set up in CGI mode. PATH_INFO *may* be correct if cgi.fix_pathinfo is set,
+ * but then again it may not; lighttpd converts incoming path data to lowercase
+ * on systems with case-insensitive filesystems, and there have been reports of
+ * problems on Apache as well.
  *
  * To be safe we'll continue to keep it off by default.
  *
- * Override this to false if $_SERVER['PATH_INFO']
- * contains unexpectedly incorrect garbage, or to
- * true if it is really correct.
+ * Override this to false if $_SERVER['PATH_INFO'] contains unexpectedly
+ * incorrect garbage, or to true if it is really correct.
  *
- * The default $wgArticlePath will be set based on
- * this value at runtime, but if you have customized
- * it, having this incorrectly set to true can
- * cause redirect loops when "pretty URLs" are used.
- *
+ * The default $wgArticlePath will be set based on this value at runtime, but if
+ * you have customized it, having this incorrectly set to true can cause
+ * redirect loops when "pretty URLs" are used.
  */
 $wgUsePathInfo =
 	( strpos( php_sapi_name(), 'cgi' ) === false ) &&
@@ -116,53 +116,51 @@ $wgUsePathInfo =
 	( strpos( php_sapi_name(), 'isapi' ) === false );
 
 
-/**#@+
+/**@{
  * Script users will request to get articles
- * ATTN: Old installations used wiki.phtml and redirect.phtml -
- * make sure that LocalSettings.php is correctly set!
+ * ATTN: Old installations used wiki.phtml and redirect.phtml - make sure that
+ * LocalSettings.php is correctly set!
  *
- * Will be set based on $wgScriptPath in Setup.php if not overridden
- * in LocalSettings.php. Generally you should not need to change this
- * unless you don't like seeing "index.php".
+ * Will be set based on $wgScriptPath in Setup.php if not overridden in
+ * LocalSettings.php. Generally you should not need to change this unless you
+ * don't like seeing "index.php".
  */
-$wgScriptExtension  = '.php'; /// extension to append to script names by default
-$wgScript           = false; /// defaults to "{$wgScriptPath}/index{$wgScriptExtension}"
-$wgRedirectScript   = false; /// defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}"
-/**#@-*/
+$wgScriptExtension  = '.php'; ///< extension to append to script names by default
+$wgScript           = false; ///< defaults to "{$wgScriptPath}/index{$wgScriptExtension}"
+$wgRedirectScript   = false; ///< defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}"
+/**@}*/
 
 
-/**#@+
+/**@{
  * These various web and file path variables are set to their defaults
  * in Setup.php if they are not explicitly set from LocalSettings.php.
  * If you do override them, be sure to set them all!
  *
  * These will relatively rarely need to be set manually, unless you are
  * splitting style sheets or images outside the main document root.
- *
- * @global string
  */
 /**
  * style path as seen by users
  */
-$wgStylePath   = false; /// defaults to "{$wgScriptPath}/skins"
+$wgStylePath   = false; ///< defaults to "{$wgScriptPath}/skins"
 /**
  * filesystem stylesheets directory
  */
-$wgStyleDirectory = false; /// defaults to "{$IP}/skins"
+$wgStyleDirectory = false; ///< defaults to "{$IP}/skins"
 $wgStyleSheetPath = &$wgStylePath;
-$wgArticlePath      = false; /// default to "{$wgScript}/$1" or "{$wgScript}?title=$1", depending on $wgUsePathInfo
+$wgArticlePath      = false; ///< default to "{$wgScript}/$1" or "{$wgScript}?title=$1", depending on $wgUsePathInfo
 $wgVariantArticlePath = false;
-$wgUploadPath       = false; /// defaults to "{$wgScriptPath}/images"
-$wgUploadDirectory	= false; /// defaults to "{$IP}/images"
+$wgUploadPath       = false; ///< defaults to "{$wgScriptPath}/images"
+$wgUploadDirectory	= false; ///< defaults to "{$IP}/images"
 $wgHashedUploadDirectory	= true;
-$wgLogo				= false; /// defaults to "{$wgStylePath}/common/images/wiki.png"
+$wgLogo				= false; ///< defaults to "{$wgStylePath}/common/images/wiki.png"
 $wgFavicon			= '/favicon.ico';
-$wgAppleTouchIcon   = false; /// This one'll actually default to off. For iPhone and iPod Touch web app bookmarks
-$wgMathPath         = false; /// defaults to "{$wgUploadPath}/math"
-$wgMathDirectory    = false; /// defaults to "{$wgUploadDirectory}/math"
-$wgTmpDirectory     = false; /// defaults to "{$wgUploadDirectory}/tmp"
+$wgAppleTouchIcon   = false; ///< This one'll actually default to off. For iPhone and iPod Touch web app bookmarks
+$wgMathPath         = false; ///< defaults to "{$wgUploadPath}/math"
+$wgMathDirectory    = false; ///< defaults to "{$wgUploadDirectory}/math"
+$wgTmpDirectory     = false; ///< defaults to "{$wgUploadDirectory}/tmp"
 $wgUploadBaseUrl    = "";
-/**#@-*/
+/**@}*/
 
 /**
  * New file storage paths; currently used only for deleted files.
@@ -172,11 +170,11 @@ $wgUploadBaseUrl    = "";
  *
  */
 $wgFileStore = array();
-$wgFileStore['deleted']['directory'] = false;// Defaults to $wgUploadDirectory/deleted
-$wgFileStore['deleted']['url'] = null;       // Private
-$wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
+$wgFileStore['deleted']['directory'] = false;///< Defaults to $wgUploadDirectory/deleted
+$wgFileStore['deleted']['url'] = null;       ///< Private
+$wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
 
-/**#@+
+/**@{
  * File repository structures
  *
  * $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepo is
@@ -225,7 +223,7 @@ $wgFileStore['deleted']['hash'] = 3;         // 3-level subdirectory split
  */
 $wgLocalFileRepo = false;
 $wgForeignFileRepos = array();
-/**#@-*/
+/**@}*/
 
 /**
  * Allowed title characters -- regex character class
@@ -274,7 +272,6 @@ $wgUrlProtocols = array(
 
 /** internal name of virus scanner. This servers as a key to the $wgAntivirusSetup array.
  * Set this to NULL to disable virus scanning. If not null, every file uploaded will be scanned for viruses.
- * @global string $wgAntivirus
  */
 $wgAntivirus= NULL;
 
@@ -301,8 +298,6 @@ $wgAntivirus= NULL;
  * "messagepattern" is a perl regular expression to extract the meaningful part of the scanners
  * output. The relevant part should be matched as group one (\1).
  * If not defined or the pattern does not match, the full message is shown to the user.
- *
- * @global array $wgAntivirusSetup
  */
 $wgAntivirusSetup = array(
 
@@ -336,33 +331,24 @@ $wgAntivirusSetup = array(
 );
 
 
-/** Determines if a failed virus scan (AV_SCAN_FAILED) will cause the file to be rejected.
- * @global boolean $wgAntivirusRequired
- */
+/** Determines if a failed virus scan (AV_SCAN_FAILED) will cause the file to be rejected. */
 $wgAntivirusRequired= true;
 
-/** Determines if the mime type of uploaded files should be checked
- * @global boolean $wgVerifyMimeType
- */
+/** Determines if the mime type of uploaded files should be checked */
 $wgVerifyMimeType= true;
 
-/** Sets the mime type definition file to use by MimeMagic.php.
- * @global string $wgMimeTypeFile
- */
+/** Sets the mime type definition file to use by MimeMagic.php. */
 $wgMimeTypeFile= "includes/mime.types";
 #$wgMimeTypeFile= "/etc/mime.types";
 #$wgMimeTypeFile= NULL; #use built-in defaults only.
 
-/** Sets the mime type info file to use by MimeMagic.php.
- * @global string $wgMimeInfoFile
- */
+/** Sets the mime type info file to use by MimeMagic.php. */
 $wgMimeInfoFile= "includes/mime.info";
 #$wgMimeInfoFile= NULL; #use built-in defaults only.
 
 /** Switch for loading the FileInfo extension by PECL at runtime.
  * This should be used only if fileinfo is installed as a shared object
  * or a dynamic libary
- * @global string $wgLoadFileinfoExtension
  */
 $wgLoadFileinfoExtension= false;
 
@@ -468,7 +454,6 @@ $wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/Image:";
 /**
  * Site admin email address
  * Default to wikiadmin@SERVER_NAME
- * @global string $wgEmergencyContact
  */
 $wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 
@@ -476,7 +461,6 @@ $wgEmergencyContact = 'wikiadmin@' . $wgServerName;
  * Password reminder email address
  * The address we should use as sender when a user is requesting his password
  * Default to apache@SERVER_NAME
- * @global string $wgPasswordSender
  */
 $wgPasswordSender	= 'MediaWiki Mail <apache@' . $wgServerName . '>';
 
@@ -492,14 +476,12 @@ $wgNoReplyAddress	= 'reply@not.possible';
  * Set to true to enable the e-mail basic features:
  * Password reminders, etc. If sending e-mail on your
  * server doesn't work, you might want to disable this.
- * @global bool $wgEnableEmail
  */
 $wgEnableEmail = true;
 
 /**
  * Set to true to enable user-to-user e-mail.
  * This can potentially be abused, as it's hard to track.
- * @global bool $wgEnableUserEmail
  */
 $wgEnableUserEmail = true;
 
@@ -531,13 +513,11 @@ $wgPasswordReminderResendTime = 24;
  * "username" => user,
  * "password" => password
  * </code>
- *
- * @global mixed $wgSMTP
  */
 $wgSMTP				= false;
 
 
-/**#@+
+/**@{
  * Database settings
  */
 /** database host name or ip address */
@@ -574,7 +554,7 @@ $wgSQLiteDataDir = '';
  */
 $wgAllDBsAreLocalhost = false;
 
-/**#@-*/
+/**@}*/
 
 
 /** Live high performance sites should disable this - some checks acquire giant mysql locks */
@@ -706,26 +686,28 @@ $wgDBmysql5			= false;
  */
 $wgLocalDatabases = array();
 
-/**
+/** @{
  * Object cache settings
  * See Defines.php for types
  */
 $wgMainCacheType = CACHE_NONE;
 $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
+/**@}*/
 
 $wgParserCacheExpireTime = 86400;
 
 $wgSessionsInMemcached = false;
 
-/**
+/**@{
  * Memcached-specific settings
  * See docs/memcached.txt
  */
 $wgUseMemCached     = false;
-$wgMemCachedDebug   = false; # Will be set to false in Setup.php, if the server isn't working
+$wgMemCachedDebug   = false; ///< Will be set to false in Setup.php, if the server isn't working
 $wgMemCachedServers = array( '127.0.0.1:11000' );
 $wgMemCachedPersistent = false;
+/**@}*/
 
 /**
  * Directory for local copy of message cache, for use in addition to memcached
@@ -770,14 +752,16 @@ $wgInputEncoding  = 'UTF-8';
 $wgOutputEncoding = 'UTF-8';
 $wgEditEncoding   = '';
 
-# Set this to eg 'ISO-8859-1' to perform character set
-# conversion when loading old revisions not marked with
-# "utf-8" flag. Use this when converting wiki to UTF-8
-# without the burdensome mass conversion of old text data.
-#
-# NOTE! This DOES NOT touch any fields other than old_text.
-# Titles, comments, user names, etc still must be converted
-# en masse in the database before continuing as a UTF-8 wiki.
+/**
+ * Set this to eg 'ISO-8859-1' to perform character set
+ * conversion when loading old revisions not marked with
+ * "utf-8" flag. Use this when converting wiki to UTF-8
+ * without the burdensome mass conversion of old text data.
+ *
+ * NOTE! This DOES NOT touch any fields other than old_text.
+ * Titles, comments, user names, etc still must be converted
+ * en masse in the database before continuing as a UTF-8 wiki.
+ */
 $wgLegacyEncoding   = false;
 
 /**
@@ -803,12 +787,14 @@ $wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
 $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 $wgXhtmlDefaultNamespace	= 'http://www.w3.org/1999/xhtml';
 
-# Permit other namespaces in addition to the w3.org default.
-# Use the prefix for the key and the namespace for the value. For
-# example:
-# $wgXhtmlNamespaces['svg'] = 'http://www.w3.org/2000/svg';
-# Normally we wouldn't have to define this in the root <html>
-# element, but IE needs it there in some circumstances.
+/**
+ * Permit other namespaces in addition to the w3.org default.
+ * Use the prefix for the key and the namespace for the value. For
+ * example:
+ * $wgXhtmlNamespaces['svg'] = 'http://www.w3.org/2000/svg';
+ * Normally we wouldn't have to define this in the root <html>
+ * element, but IE needs it there in some circumstances.
+ */
 $wgXhtmlNamespaces		= array();
 
 /** Enable to allow rewriting dates in page text.
@@ -847,10 +833,10 @@ $wgMaxMsgCacheEntrySize = 10000;
  */
 $wgCheckSerialized = true;
 
-# Whether to enable language variant conversion.
+/** Whether to enable language variant conversion. */
 $wgDisableLangConversion = false;
 
-# Default variant code, if false, the default will be the language code
+/** Default variant code, if false, the default will be the language code */
 $wgDefaultLanguageVariant = false;
 
 /**
@@ -860,22 +846,15 @@ $wgDefaultLanguageVariant = false;
  */
 $wgLoginLanguageSelector = false;
 
-# Whether to use zhdaemon to perform Chinese text processing
-# zhdaemon is under developement, so normally you don't want to
-# use it unless for testing
+/**
+ * Whether to use zhdaemon to perform Chinese text processing
+ * zhdaemon is under developement, so normally you don't want to
+ * use it unless for testing
+ */
 $wgUseZhdaemon = false;
 $wgZhdaemonHost="localhost";
 $wgZhdaemonPort=2004;
 
-/**
- * Normally you can ignore this and it will be something
- * like $wgMetaNamespace . "_talk". In some languages, you
- * may want to set this manually for grammatical reasons.
- * It is currently only respected by those languages
- * where it might be relevant and where no automatic
- * grammar converter exists.
- */
-$wgMetaNamespaceTalk = false;
 
 # Miscellaneous configuration settings
 #
@@ -942,16 +921,13 @@ $wgSiteSupportPage	= ''; # A page where you users can receive donations
  * Its contents will be shown to users as part of the read-only warning
  * message.
  */
-$wgReadOnlyFile         = false; /// defaults to "{$wgUploadDirectory}/lock_yBgMBwiR";
+$wgReadOnlyFile         = false; ///< defaults to "{$wgUploadDirectory}/lock_yBgMBwiR";
 
 /**
  * The debug log file should be not be publicly accessible if it is used, as it
  * may contain private data. */
 $wgDebugLogFile         = '';
 
-/**#@+
- * @global bool
- */
 $wgDebugRedirects		= false;
 $wgDebugRawPage         = false; # Avoid overlapping debug entries by leaving out CSS
 
@@ -1041,8 +1017,6 @@ $wgSidebarCacheExpiry = 86400;
  * the existing count (cf. maintenance/recount.sql).
  */
 $wgUseCommaCount = false;
-
-/**#@-*/
 
 /**
  * wgHitcounterUpdateFreq sets how often page counters should be updated, higher
@@ -1360,7 +1334,7 @@ $wgStyleVersion = '146';
 $wgUseFileCache = false;
 
 /** Directory where the cached page will be saved */
-$wgFileCacheDirectory = false; /// defaults to "{$wgUploadDirectory}/cache";
+$wgFileCacheDirectory = false; ///< defaults to "{$wgUploadDirectory}/cache";
 
 /**
  * When using the file cache, we can store the cached HTML gzipped to save disk

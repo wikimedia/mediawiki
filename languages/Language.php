@@ -50,7 +50,7 @@ class FakeConverter {
 
 /**
  * Internationalisation code
- * @ingrouo Language
+ * @ingroup Language
  */
 class Language {
 	var $mConverter, $mVariants, $mCode, $mLoaded = false;
@@ -174,11 +174,11 @@ class Language {
 	function initContLang() {}
 
 	/**
-	 * @deprecated
+	 * @deprecated Use User::getDefaultOptions()
 	 * @return array
 	 */
 	function getDefaultUserOptions() {
-		trigger_error( 'Use of ' . __METHOD__ . ' is deprecated', E_USER_NOTICE );
+		wfDeprecated( __METHOD__ );
 		return User::getDefaultOptions();
 	}
 
@@ -226,7 +226,7 @@ class Language {
 	 * echo $mw_ns; // prints 'MediaWiki'
 	 * </code>
 	 *
-	 * @param int $index the array key of the namespace to return
+	 * @param $index Int: the array key of the namespace to return
 	 * @return mixed, string if the namespace value exists, otherwise false
 	 */
 	function getNsText( $index ) {
@@ -251,7 +251,7 @@ class Language {
 	 * Only matches namespace names for the current language, not the
 	 * canonical ones defined in Namespace.php.
 	 *
-	 * @param string $text
+	 * @param $text String
 	 * @return mixed An integer if $text is a valid value otherwise false
 	 */
 	function getLocalNsIndex( $text ) {
@@ -264,7 +264,7 @@ class Language {
 	 * Get a namespace key by value, case insensitive.  Canonical namespace
 	 * names override custom ones defined for the current language.
 	 *
-	 * @param string $text
+	 * @param $text String
 	 * @return mixed An integer if $text is a valid value otherwise false
 	 */
 	function getNsIndex( $text ) {
@@ -277,7 +277,7 @@ class Language {
 	/**
 	 * short names for language variants used for language conversion links.
 	 *
-	 * @param string $code
+	 * @param $code String
 	 * @return string
 	 */
 	function getVariantname( $code ) {
@@ -439,10 +439,10 @@ class Language {
 
 	/**
 	 * Used by date() and time() to adjust the time output.
-	 * @public
-	 * @param int   $ts the time in date('YmdHis') format
-	 * @param mixed $tz adjust the time by this amount (default false,
-	 *                  mean we get user timecorrection setting)
+	 *
+	 * @param $ts Int the time in date('YmdHis') format
+	 * @param $tz Mixed: adjust the time by this amount (default false, mean we
+	 *            get user timecorrection setting)
 	 * @return int
 	 */
 	function userAdjust( $ts, $tz = false )	{
@@ -536,8 +536,8 @@ class Language {
 	 * Input timestamp is assumed to be pre-normalized to the desired local
 	 * time zone, if any.
 	 * 
-	 * @param string $format
-	 * @param string $ts 14-character timestamp
+	 * @param $format String
+	 * @param $ts String: 14-character timestamp
 	 *      YYYYMMDDHHMMSS
 	 *      01234567890123
 	 */
@@ -1000,7 +1000,7 @@ class Language {
 	 *
 	 * Link: http://en.wikipedia.org/wiki/Thai_solar_calendar
 	 *
-	 * @param string $ts 14-character timestamp
+	 * @param $ts String: 14-character timestamp
 	 * @return array converted year, month, day
 	 */
 	private static function tsToThai( $ts ) {
@@ -1113,7 +1113,7 @@ class Language {
 	 * }
 	 *</code>
 	 *
-	 * @param mixed $usePrefs: if true, the user's preference is used
+	 * @param $usePrefs Mixed: if true, the user's preference is used
 	 *                         if false, the site/language default is used
 	 *                         if int/string, assumed to be a format.
 	 * @return string
@@ -1141,14 +1141,13 @@ class Language {
 	}
 
 	/**
-	 * @public
-	 * @param mixed  $ts the time format which needs to be turned into a
-	 *               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param bool   $adj whether to adjust the time output according to the
-	 *               user configured offset ($timecorrection)
-	 * @param mixed  $format true to use user's date format preference
-	 * @param string $timecorrection the time offset as returned by
-	 *               validateTimeZone() in Special:Preferences
+	 * @param $ts Mixed: the time format which needs to be turned into a
+	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param $adj Bool: whether to adjust the time output according to the
+	 *             user configured offset ($timecorrection)
+	 * @param $format Mixed: true to use user's date format preference
+	 * @param $timecorrection String: the time offset as returned by
+	 *                        validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $timecorrection = false ) {
@@ -1165,16 +1164,15 @@ class Language {
 	}
 
 	/**
-	* @public
-	* @param mixed  $ts the time format which needs to be turned into a
-	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	* @param bool   $adj whether to adjust the time output according to the
-	*               user configured offset ($timecorrection)
-	* @param mixed  $format true to use user's date format preference
-	* @param string $timecorrection the time offset as returned by
-	*               validateTimeZone() in Special:Preferences
-	* @return string
-	*/
+	 * @param $ts Mixed: the time format which needs to be turned into a
+	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param $adj Bool: whether to adjust the time output according to the
+	 *             user configured offset ($timecorrection)
+	 * @param $format Mixed: true to use user's date format preference
+	 * @param $timecorrection String: the time offset as returned by
+	 *                        validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
 	function time( $ts, $adj = false, $format = true, $timecorrection = false ) {
 		$this->load();
 		if ( $adj ) { 
@@ -1189,18 +1187,16 @@ class Language {
 	}
 
 	/**
-	* @public
-	* @param mixed  $ts the time format which needs to be turned into a
-	*               date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	* @param bool   $adj whether to adjust the time output according to the
-	*               user configured offset ($timecorrection)
-
-	* @param mixed  $format what format to return, if it's false output the
-	*               default one (default true)
-	* @param string $timecorrection the time offset as returned by
-	*               validateTimeZone() in Special:Preferences
-	* @return string
-	*/
+	 * @param $ts Mixed: the time format which needs to be turned into a
+	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
+	 * @param $adj Bool: whether to adjust the time output according to the
+	 *             user configured offset ($timecorrection)
+	 * @param $format Mixed: what format to return, if it's false output the
+	 *                default one (default true)
+	 * @param $timecorrection String: the time offset as returned by
+	 *                        validateTimeZone() in Special:Preferences
+	 * @return string
+	 */
 	function timeanddate( $ts, $adj = false, $format = true, $timecorrection = false) {
 		$this->load();
 
@@ -1425,8 +1421,8 @@ class Language {
 	 * or characters which need to be converted for MySQL's
 	 * indexing to grok it correctly. Make such changes here.
 	 *
-	 * @param string $in
-	 * @return string
+	 * @param $string String
+	 * @return String
 	 */
 	function stripForSearch( $string ) {
 		global $wgDBtype;
@@ -1463,7 +1459,7 @@ class Language {
 	/**
 	 * Get the first character of a string. 
 	 *
-	 * @param string $s
+	 * @param $s string
 	 * @return string
 	 */
 	function firstChar( $s ) {
@@ -1661,9 +1657,7 @@ class Language {
 	/**
 	 * Italic is unsuitable for some languages
 	 *
-	 * @public
-	 *
-	 * @param string $text The text to be emphasized.
+	 * @param $text String: the text to be emphasized.
 	 * @return string
 	 */
 	function emphasize( $text ) {
@@ -1671,29 +1665,28 @@ class Language {
 	}
 
 	 /**
-	 * Normally we output all numbers in plain en_US style, that is
-	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
-	 * point twohundredthirtyfive. However this is not sutable for all
-	 * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
-	 * Icelandic just want to use commas instead of dots, and dots instead
-	 * of commas like "293.291,235".
-	 *
-	 * An example of this function being called:
-	 * <code>
-	 * wfMsg( 'message', $wgLang->formatNum( $num ) )
-	 * </code>
-	 *
-	 * See LanguageGu.php for the Gujarati implementation and
-	 * LanguageIs.php for the , => . and . => , implementation.
-	 *
-	 * @todo check if it's viable to use localeconv() for the decimal
-	 *       seperator thing.
-	 * @public
-	 * @param mixed $number the string to be formatted, should be an integer or
-	 *        a floating point number.
-	 * @param bool $nocommafy Set to true for special numbers like dates
-	 * @return string
-	 */
+	  * Normally we output all numbers in plain en_US style, that is
+	  * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
+	  * point twohundredthirtyfive. However this is not sutable for all
+	  * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
+	  * Icelandic just want to use commas instead of dots, and dots instead
+	  * of commas like "293.291,235".
+	  *
+	  * An example of this function being called:
+	  * <code>
+	  * wfMsg( 'message', $wgLang->formatNum( $num ) )
+	  * </code>
+	  *
+	  * See LanguageGu.php for the Gujarati implementation and
+	  * LanguageIs.php for the , => . and . => , implementation.
+	  *
+	  * @todo check if it's viable to use localeconv() for the decimal
+	  *       seperator thing.
+	  * @param $number Mixed: the string to be formatted, should be an integer
+	  *        or a floating point number.
+	  * @param $nocommafy Bool: set to true for special numbers like dates
+	  * @return string
+	  */
 	function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
 		if (!$nocommafy) {
@@ -1724,7 +1717,7 @@ class Language {
 	/**
 	 * Adds commas to a given number
 	 *
-	 * @param mixed $_
+	 * @param $_ mixed
 	 * @return string
 	 */
 	function commafy($_) {
@@ -1745,7 +1738,7 @@ class Language {
 	/**
 	 * For the credit list in includes/Credits.php (action=credits)
 	 *
-	 * @param array $l
+	 * @param $l Array
 	 * @return string
 	 */
 	function listToText( $l ) {
@@ -1773,9 +1766,9 @@ class Language {
 	 *
 	 * If $length is negative, the string will be truncated from the beginning
 	 *	 
-	 * @param string $string String to truncate
-	 * @param int $length Maximum length (excluding ellipses)
-	 * @param string $ellipses String to append to the truncated text
+	 * @param $string String to truncate
+	 * @param $length Int: maximum length (excluding ellipses)
+	 * @param $ellipsis String to append to the truncated text
 	 * @return string
 	 */
 	function truncate( $string, $length, $ellipsis = "" ) {
@@ -1814,8 +1807,8 @@ class Language {
 	 * Grammatical transformations, needed for inflected languages
 	 * Invoked by putting {{grammar:case|word}} in a message
 	 *
-	 * @param string $word
-	 * @param string $case
+	 * @param $word string
+	 * @param $case string
 	 * @return string
 	 */
 	function convertGrammar( $word, $case ) {
@@ -1837,8 +1830,8 @@ class Language {
 	 *
 	 * Example: {{plural:{{NUMBEROFARTICLES}}|article|articles}}
 	 *
-	 * @param integer $count Non-localized number
-	 * @param array $forms Different plural forms
+	 * @param $count Integer: non-localized number
+	 * @param $forms Array: different plural forms
 	 * @return string Correct form of plural for $count in this language
 	 */
 	function convertPlural( $count, $forms ) {
@@ -1852,8 +1845,8 @@ class Language {
 	 * Checks that convertPlural was given an array and pads it to requested
 	 * amound of forms by copying the last one.
 	 *
-	 * @param integer $count How many forms should there be at least
-	 * @param array $forms Array of forms given to convertPlural
+	 * @param $count Integer: How many forms should there be at least
+	 * @param $forms Array of forms given to convertPlural
 	 * @return array Padded array of forms or an exception if not an array
 	 */
 	protected function preConvertPlural( /* Array */ $forms, $count ) {
@@ -1865,7 +1858,7 @@ class Language {
 
 	/**
 	 * For translaing of expiry times
-	 * @param string The validated block time in English
+	 * @param $str String: the validated block time in English
 	 * @return Somehow translated block time
 	 * @see LanguageFi.php for example implementation
 	 */
@@ -1893,8 +1886,8 @@ class Language {
 	 * languages like Chinese need to be segmented in order for the diff
 	 * to be of any use
 	 *
-	 * @param string $text
-	 * @return string
+	 * @param $text String
+	 * @return String
 	 */
 	function segmentForDiff( $text ) {
 		return $text;
@@ -1903,8 +1896,8 @@ class Language {
 	/**
 	 * and unsegment to show the result
 	 *
-	 * @param string $text
-	 * @return string
+	 * @param $text String
+	 * @return String
 	 */
 	function unsegmentForDiff( $text ) {
 		return $text;
@@ -1933,8 +1926,8 @@ class Language {
 
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
-	 * @param string $text
-	 * @param bool $isTitle -- wtf?
+	 * @param $text String
+	 * @param $isTitle Bool -- wtf?
 	 * @return string
 	 * @todo this should get integrated somewhere sane
 	 */
@@ -1967,8 +1960,8 @@ class Language {
 	 * actually exists in another variant. this function
 	 * tries to find it. See e.g. LanguageZh.php
 	 *
-	 * @param string $link the name of the link
-	 * @param mixed $nt the title object of the link
+	 * @param $link String: the name of the link
+	 * @param $nt Mixed: the title object of the link
 	 * @return null the input parameters may be modified upon return
 	 */
 	function findVariantLink( &$link, &$nt ) {
@@ -1991,7 +1984,6 @@ class Language {
 	 * for example, the preferred language variant
 	 *
 	 * @return string
-	 * @public
 	 */
 	function getExtraHashOptions() {
 		return $this->mConverter->getExtraHashOptions();
@@ -2012,9 +2004,10 @@ class Language {
 	 * Enclose a string with the "no conversion" tag. This is used by
 	 * various functions in the Parser
 	 *
-	 * @param string $text text to be tagged for no conversion
+	 * @param $text String: text to be tagged for no conversion
+	 * @param $noParse
 	 * @return string the tagged text
-	*/
+	 */
 	function markNoConversion( $text, $noParse=false ) {
 		return $this->mConverter->markNoConversion( $text, $noParse );
 	}
@@ -2024,7 +2017,6 @@ class Language {
 	 * which should be merged onto a link of the form [[foo]]bar.
 	 *
 	 * @return string
-	 * @public
 	 */
 	function linkTrail() {
 		$this->load();

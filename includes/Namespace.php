@@ -48,7 +48,7 @@ class MWNamespace {
 	/**
 	 * Can pages in the given namespace be moved?
 	 *
-	 * @param int $index Namespace index
+	 * @param $index Int: namespace index
 	 * @return bool
 	 */
 	public static function isMovable( $index ) {
@@ -59,7 +59,7 @@ class MWNamespace {
 	/**
 	 * Is the given namespace is a subject (non-talk) namespace?
 	 *
-	 * @param int $index Namespace index
+	 * @param $index Int: namespace index
 	 * @return bool
 	 */
 	public static function isMain( $index ) {
@@ -69,7 +69,7 @@ class MWNamespace {
 	/**
 	 * Is the given namespace a talk namespace?
 	 *
-	 * @param int $index Namespace index
+	 * @param $index Int: namespace index
 	 * @return bool
 	 */
 	public static function isTalk( $index ) {
@@ -80,7 +80,7 @@ class MWNamespace {
 	/**
 	 * Get the talk namespace index for a given namespace
 	 *
-	 * @param int $index Namespace index
+	 * @param $index Int: namespace index
 	 * @return int
 	 */
 	public static function getTalk( $index ) {
@@ -92,7 +92,7 @@ class MWNamespace {
 	/**
 	 * Get the subject namespace index for a given namespace
 	 *
-	 * @param int $index Namespace index
+	 * @param $index Int: Namespace index
 	 * @return int
 	 */
 	public static function getSubject( $index ) {
@@ -104,7 +104,7 @@ class MWNamespace {
 	/**
 	 * Returns the canonical (English Wikipedia) name for a given index
 	 *
-	 * @param int $index Namespace index
+	 * @param $index Int: namespace index
 	 * @return string
 	 */
 	public static function getCanonicalName( $index ) {
@@ -116,7 +116,7 @@ class MWNamespace {
 	 * Returns the index for a given canonical name, or NULL
 	 * The input *must* be converted to lower case first
 	 *
-	 * @param string $name Namespace name
+	 * @param $name String: namespace name
 	 * @return int
 	 */
 	public static function getCanonicalIndex( $name ) {
@@ -138,7 +138,7 @@ class MWNamespace {
 	/**
 	 * Can this namespace ever have a talk namespace?
 	 *
-	 * @param $index Namespace index
+	 * @param $index Int: namespace index
 	 * @return bool
 	 */
 	 public static function canTalk( $index ) {
@@ -149,7 +149,7 @@ class MWNamespace {
 	 * Does this namespace contain content, for the purposes
 	 * of calculating statistics, etc?
 	 *
-	 * @param $index Index to check
+	 * @param $index Int: index to check
 	 * @return bool
 	 */
 	public static function isContent( $index ) {
@@ -160,7 +160,7 @@ class MWNamespace {
 	/**
 	 * Can pages in a namespace be watched?
 	 *
-	 * @param int $index
+	 * @param $index Int
 	 * @return bool
 	 */
 	public static function isWatchable( $index ) {

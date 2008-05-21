@@ -625,7 +625,7 @@ class LogPager extends ReverseChronologicalPager {
 }
 
 /**
- * @Deprecated
+ * @deprecated
  * @ingroup SpecialPage
  */
 class LogReader {
@@ -663,7 +663,7 @@ class LogReader {
 }
 
 /**
- * @Deprecated
+ * @deprecated
  * @ingroup SpecialPage
  */
 class LogViewer {
