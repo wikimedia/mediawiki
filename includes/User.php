@@ -1730,9 +1730,16 @@ class User {
 		}
 		// Filter out any newlines that may have passed through input validation.
 		// Newlines are used to separate items in the options blob.
-		$val = str_replace( "\r\n", "\n", $val );
-		$val = str_replace( "\r", "\n", $val );
-		$val = str_replace( "\n", " ", $val );
+		if( $val ) {
+			$val = str_replace( "\r\n", "\n", $val );
+			$val = str_replace( "\r", "\n", $val );
+			$val = str_replace( "\n", " ", $val );
+		}
+		// Explicitly NULL values should refer to defaults
+		global $wgDefaultUserOptions;
+		if( is_null($val) && isset($wgDefaultUserOptions[$oname]) ) {
+			$val = $wgDefaultUserOptions[$oname];
+		}
 		$this->mOptions[$oname] = $val;
 	}
 
