@@ -78,16 +78,16 @@ class ImagePage extends Article {
 		if ( $this->mTitle->getNamespace() != NS_IMAGE || ( isset( $diff ) && $diffOnly ) )
 			return Article::view();
 
-		if ($wgShowEXIF && $this->img->exists()) {
+		if ( $wgShowEXIF && $this->displayImg->exists() ) {
 			// FIXME: bad interface, see note on MediaHandler::formatMetadata().
-			$formattedMetadata = $this->img->formatMetadata();
+			$formattedMetadata = $this->displayImg->formatMetadata();
 			$showmeta = $formattedMetadata !== false;
 		} else {
 			$showmeta = false;
 		}
 
-		if ($this->img->exists())
-			$wgOut->addHTML($this->showTOC($showmeta));
+		if ( $this->displayImg->exists() )
+			$wgOut->addHTML( $this->showTOC($showmeta) );
 
 		$this->openShowImage();
 
@@ -123,7 +123,9 @@ class ImagePage extends Article {
 		$this->imageDupes();
 		// TODO: We may want to find local images redirecting to a foreign 
 		// file: "The following local files redirect to this file"
-		if ( $this->img->isLocal() ) $this->imageRedirects();		
+		if ( $this->img->isLocal() ) {
+			$this->imageRedirects();
+		}
 		$this->imageLinks();
 
 		if ( $showmeta ) {
@@ -179,6 +181,11 @@ class ImagePage extends Article {
 	public function getFile() {
 		$this->loadFile();
 		return $this->img;
+	}
+	
+	public function getDisplayedFile() {
+		$this->loadFile();
+		return $this->displayImg;
 	}
 	
 	public function getDuplicates() {
@@ -271,7 +278,7 @@ class ImagePage extends Article {
 
 		$this->loadFile();
 
-		$full_url  = $this->img->getURL();
+		$full_url  = $this->displayImg->getURL();
 		$linkAttribs = false;
 		$sizeSel = intval( $wgUser->getOption( 'imagesize') );
 		if( !isset( $wgImageLimits[$sizeSel] ) ) {
@@ -290,7 +297,7 @@ class ImagePage extends Article {
 		$sk = $wgUser->getSkin();
 		$dirmark = $wgContLang->getDirMark();
 
-		if ( $this->img->exists() ) {
+		if ( $this->displayImg->exists() ) {
 			# image
 			$page = $wgRequest->getIntOrNull( 'page' );
 			if ( is_null( $page ) ) {
@@ -299,22 +306,22 @@ class ImagePage extends Article {
 			} else {
 				$params = array( 'page' => $page );
 			}
-			$width_orig = $this->img->getWidth();
+			$width_orig = $this->displayImg->getWidth();
 			$width = $width_orig;
-			$height_orig = $this->img->getHeight();
+			$height_orig = $this->displayImg->getHeight();
 			$height = $height_orig;
-			$mime = $this->img->getMimeType();
+			$mime = $this->displayImg->getMimeType();
 			$showLink = false;
 			$linkAttribs = array( 'href' => $full_url );
-			$longDesc = $this->img->getLongDesc();
+			$longDesc = $this->displayImg->getLongDesc();
 
 			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this , &$wgOut ) )	;
 
-			if ( $this->img->allowInlineDisplay() ) {
+			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image
 
 				# "Download high res version" link below the image
-				#$msgsize = wfMsgHtml('file-info-size', $width_orig, $height_orig, $sk->formatSize( $this->img->getSize() ), $mime );
+				#$msgsize = wfMsgHtml('file-info-size', $width_orig, $height_orig, $sk->formatSize( $this->displayImg->getSize() ), $mime );
 				# We'll show a thumbnail of this image
 				if ( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
@@ -335,15 +342,15 @@ class ImagePage extends Article {
 						array( 'parseinline' ), $wgLang->formatNum( $width ), $wgLang->formatNum( $height ) );
 				} else {
 					# Image is small enough to show full size on image page
-					$msgbig = htmlspecialchars( $this->img->getName() );
+					$msgbig = htmlspecialchars( $this->displayImg->getName() );
 					$msgsmall = wfMsgExt( 'file-nohires', array( 'parseinline' ) );
 				}
 
 				$params['width'] = $width;
-				$thumbnail = $this->img->transform( $params );
+				$thumbnail = $this->displayImg->transform( $params );
 
 				$anchorclose = "<br />";
-				if( $this->img->mustRender() ) {
+				if( $this->displayImg->mustRender() ) {
 					$showLink = true;
 				} else {
 					$anchorclose .=
@@ -351,13 +358,13 @@ class ImagePage extends Article {
 						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . "$dirmark " . $longDesc;
 				}
 
-				if ( $this->img->isMultipage() ) {
+				if ( $this->displayImg->isMultipage() ) {
 					$wgOut->addHTML( '<table class="multipageimage"><tr><td>' );
 				}
 
 				if ( $thumbnail ) {
 					$options = array(
-						'alt' => $this->img->getTitle()->getPrefixedText(),
+						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
 						'file-link' => true,
 					);
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
@@ -365,13 +372,13 @@ class ImagePage extends Article {
 						$anchorclose . '</div>' );
 				}
 
-				if ( $this->img->isMultipage() ) {
-					$count = $this->img->pageCount();
+				if ( $this->displayImg->isMultipage() ) {
+					$count = $this->displayImg->pageCount();
 
 					if ( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
 						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
-						$thumb1 = $sk->makeThumbLinkObj( $this->mTitle, $this->img, $link, $label, 'none',
+						$thumb1 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page - 1 ) );
 					} else {
 						$thumb1 = '';
@@ -380,7 +387,7 @@ class ImagePage extends Article {
 					if ( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
 						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
-						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->img, $link, $label, 'none',
+						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page + 1 ) );
 					} else {
 						$thumb2 = '';
@@ -414,8 +421,8 @@ class ImagePage extends Article {
 				}
 			} else {
 				#if direct link is allowed but it's not a renderable image, show an icon.
-				if ($this->img->isSafeFile()) {
-					$icon= $this->img->iconThumb();
+				if ( $this->displayImg->isSafeFile() ) {
+					$icon= $this->displayImg->iconThumb();
 
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
 					$icon->toHtml( array( 'desc-link' => true ) ) .
@@ -427,9 +434,9 @@ class ImagePage extends Article {
 
 
 			if ($showLink) {
-				$filename = wfEscapeWikiText( $this->img->getName() );
+				$filename = wfEscapeWikiText( $this->displayImg->getName() );
 
-				if (!$this->img->isSafeFile()) {
+				if ( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
 					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">
@@ -450,7 +457,7 @@ EOT
 				}
 			}
 
-			if(!$this->img->isLocal()) {
+			if( !$this->displayImg->isLocal() ) {
 				$this->printSharedImageText();
 			}
 		} else {
@@ -458,7 +465,7 @@ EOT
 
 			$title = SpecialPage::getTitleFor( 'Upload' );
 			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('noimage-linktext'),
-				'wpDestFile=' . urlencode( $this->img->getName() ) );
+				'wpDestFile=' . urlencode( $this->displayImg->getName() ) );
 			$wgOut->addHTML( wfMsgWikiHtml( 'noimage', $link ) );
 		}
 	}
