@@ -27,15 +27,19 @@ class ForeignAPIFile extends File {
 	public function getPath() {
 		return false;
 	}
-	
-	function getThumbPath( $suffix = false ) {
-		return false; // hrmmm
+
+	function transform( $params, $flags = 0 ) {
+		$thumbUrl = $this->repo->getThumbUrl(
+			$this->getName(),
+			isset( $params['width'] ) ? $params['width'] : -1,
+			isset( $params['height'] ) ? $params['height'] : -1 );
+		if( $thumbUrl ) {
+			wfDebug( __METHOD__ . " got remote thumb $thumbUrl\n" );
+			return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );;
+		}
+		return false;
 	}
-	
-	function getThumbUrl( $suffix = false ) {
-		return false; // FLKDSJLKFDJS
-	}
-	
+
 	// Info we can get from API...
 	public function getWidth( $page = 1 ) {
 		return intval( $this->mInfo['width'] );
@@ -46,7 +50,7 @@ class ForeignAPIFile extends File {
 	}
 	
 	public function getMetadata() {
-		return $this->mInfo['metadata'];
+		return serialize( (array)$this->mInfo['metadata'] );
 	}
 	
 	public function getSize() {
@@ -61,7 +65,7 @@ class ForeignAPIFile extends File {
 		return $this->mInfo['user'];
 	}
 	
-	public function getComment() {
+	public function getDescription() {
 		return $this->mInfo['comment'];
 	}
 
@@ -72,5 +76,11 @@ class ForeignAPIFile extends File {
 	
 	function getMediaType() {
 		return $this->mInfo['media_type'];
+	}
+	
+	function getDescriptionUrl() {
+		return isset( $this->mInfo['descriptionurl'] )
+			? $this->mInfo['descriptionurl']
+			: false;
 	}
 }
