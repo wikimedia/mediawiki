@@ -720,14 +720,20 @@ Bạn nên cân nhắc trong việc tiếp tục soạn thảo trang này.
 Nhật trình xóa của trang được đưa ra dưới đây để tiện theo dõi:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
+'expensive-parserfunction-warning'        => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
 
 Nó nên ít hơn $2, hiện giờ đang là $1.',
-'expensive-parserfunction-category' => 'Trang có quá nhiều lời gọi hàm cú pháp cần mức độ xử lý cao',
+'expensive-parserfunction-category'       => 'Trang có quá nhiều lời gọi hàm cú pháp cần mức độ xử lý cao',
+'post-expand-template-inclusion-warning'  => 'Cảnh báo: Kích thước tiêu bản nhúng vào quá lớn.
+Một số tiêu bản sẽ không được đưa vào.',
+'post-expand-template-inclusion-category' => 'Những trang có kích thước tiêu bản nhúng vào vượt quá giới hạn cho phép',
+'post-expand-template-argument-warning'   => 'Cảnh báo: Trang này có chứa ít nhất một giá trị tiêu bản có kích thước bung ra quá lớn.
+Những giá trị này sẽ bị bỏ đi.',
+'post-expand-template-argument-category'  => 'Những trang có chứa những giá trị tiêu bản bị loại bỏ',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
-'undo-failure' => 'Không có thể lùi lại sửa đổi vì những sửa đổi sau mâu thuẫn.',
+'undo-failure' => 'Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.',
 'undo-norev'   => 'Sửa đổi không thể hồi phục vì nó không tồn tại hoặc đã bị xóa.',
 'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|thảo luận]])',
 
@@ -1439,6 +1445,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 # Special:Categories
 'categories'                    => 'Thể loại',
 'categoriespagetext'            => 'Các thể loại có chứa trang hoặc tập tin phương tiện.',
+'categoriesfrom'                => 'Hiển thị thể loại bằng đầu từ:',
 'special-categories-sort-count' => 'xếp theo số trang',
 'special-categories-sort-abc'   => 'xếp theo vần',
 

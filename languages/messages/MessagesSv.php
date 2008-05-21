@@ -1580,6 +1580,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 # Special:Categories
 'categories'                    => 'Kategorier',
 'categoriespagetext'            => 'Följande kategorier innehåller sidor eller media.',
+'categoriesfrom'                => 'Visa kategorier från och med:',
 'special-categories-sort-count' => 'sortera efter storlek',
 'special-categories-sort-abc'   => 'sortera alfabetiskt',
 

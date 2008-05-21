@@ -745,10 +745,16 @@ Overvej om det er passende at genoprette siden. De slettede versioner for
 denne side er vist nedenfor:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Advarsel: Denne side indeholder ligeledes mange bekostelig analysere funktion opringninger.
+'expensive-parserfunction-warning'        => 'Advarsel: Denne side indeholder ligeledes mange bekostelig analysere funktion opringninger.
 
 Det burde være mindre end $2, der er nu $1.',
-'expensive-parserfunction-category' => 'Sider med for mange bekostelige analysere funktion opringninger',
+'expensive-parserfunction-category'       => 'Sider med for mange bekostelige analysere funktion opringninger',
+'post-expand-template-inclusion-warning'  => 'Advarsel: Denne siden indeholder for mange skabeloner.
+Nogle af skabelonerne vil ikke blive inkluderet.',
+'post-expand-template-inclusion-category' => 'Sider som indeholder for mange skabeloner',
+'post-expand-template-argument-warning'   => 'Advarsel: Siden indeholder en eller flere skabelonparametre som bliver for lange når de udvides.
+Disse parametre er blevet udeladt.',
+'post-expand-template-argument-category'  => 'Sider med udeladte skabelonparametre',
 
 # "Undo" feature
 'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
@@ -1486,6 +1492,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 # Special:Categories
 'categories'                    => 'Kategorier',
 'categoriespagetext'            => '{{SITENAME}} har følgende kategorier.',
+'categoriesfrom'                => 'Vis kategorier som starter med:',
 'special-categories-sort-count' => 'sorter efter antal',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 

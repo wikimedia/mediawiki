@@ -393,6 +393,8 @@ De Funktion es: „<code>$1</code>“<br />
 De Aanfroch es: „<code>$2</code>“<br />',
 'viewsource'           => 'Wikitex aanluure',
 'viewsourcefor'        => 'för de Sigg: „$1“',
+'actionthrottled'      => "Dat ka'mer nit esu öff maache",
+'actionthrottledtext'  => 'Dat darf mer nor en jeweße Zahl Mole hengerenander maache. Do bes jrad aan de Jrenz jekumme. Kannze jo en e paar Menutte widder probeere.',
 'protectedinterface'   => 'Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed.',
 'editinginterface'     => '<strong>Opjepass:</strong> 
 Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed. Nor de Wiki-Köbese künne 
@@ -1134,6 +1136,7 @@ kein Saachjrupp dren ze finge.',
 'specialloguserlabel'  => 'Metmaacher:',
 'speciallogtitlelabel' => ' Siggename:',
 'log'                  => 'Logböcher ehr Opzeichnunge (all)',
+'all-logs-page'        => 'All Logböcher',
 'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher för et [[Special:Log/block|Metmaacher 
 oder IP Adress Sperre]], et [[Special:Log/protect|Sigge Sperre]], [[Special:Log/delete|et Sigge Fottschmieße]], et 
 [[Special:Log/move|Sigge Ömnenne]], et [[Special:Log/renameuser|Metmaacher Ömnenne]], oder 
@@ -1158,6 +1161,7 @@ aanluure.",
 'allpagesbadtitle'  => 'Dä Siggename es nit ze jebruche. Dä hät e Köözel för en Sproch oder för ne 
 Interwiki Link am Aanfang, oder et kütt e Zeiche dren för, wat en Siggename nit jeiht, villeich och mieh wie 
 eins vun all däm op eimol.',
+'allpages-bad-ns'   => "Dat Appachtemeng „$1“ ha'mer nit.",
 
 # Special:Categories
 'categories'         => 'Saachjruppe',
@@ -1754,6 +1758,7 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'Dä janze Enhald vun dä Sigg fottjemaht',
+'autosumm-replace' => "Dä jannze Enhallt fon dä Sigk ußjetuusch: '$1'",
 'autoredircomment' => 'Leit öm op „[[$1]]“',
 'autosumm-new'     => 'Neu Sigg: $1',
 

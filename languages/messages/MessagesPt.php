@@ -1492,6 +1492,7 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 # Special:Categories
 'categories'                    => 'Categorias',
 'categoriespagetext'            => 'As seguintes categorias existem na wiki.',
+'categoriesfrom'                => 'Listar categorias começando por:',
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 

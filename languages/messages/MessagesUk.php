@@ -453,7 +453,7 @@ $messages = array(
 'versionrequired'     => 'Потрібна MediaWiki версії $1',
 'versionrequiredtext' => 'Для роботи з цією сторінкою потрібна MediaWiki версії $1. Див. [[Special:Version|інформацію про версії програмного забезпечення, яке використовується]].',
 
-'ok'                      => 'OK',
+'ok'                      => 'Гаразд',
 'pagetitle'               => '$1 — {{SITENAME}}',
 'retrievedfrom'           => 'Отримано з $1',
 'youhavenewmessages'      => 'Ви отримали $1 ($2).',
@@ -847,10 +847,16 @@ $1",
 Нижче наведений журнал вилучень:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Увага: Ця сторінка містить дуже багато викликів ресурсомістких функцій.
+'expensive-parserfunction-warning'        => 'Увага: Ця сторінка містить дуже багато викликів ресурсомістких функцій.
 
 Кількість викликів не повинна перевищувати $2, а зараз їх $1.',
-'expensive-parserfunction-category' => 'Сторінки з дуже великою кількістю викликів ресурсомістких функцій',
+'expensive-parserfunction-category'       => 'Сторінки з дуже великою кількістю викликів ресурсомістких функцій',
+'post-expand-template-inclusion-warning'  => 'Увага: розмір шаблонів для включення занадто великий.
+Деякі шаблони не будуть включені.',
+'post-expand-template-inclusion-category' => 'Сторінки з перевищеним розміром включених шаблонів',
+'post-expand-template-argument-warning'   => 'Увага: Ця сторінка містить принаймні один аргумент шаблону, який має надто великий розмір для розгортання.
+Такі аргументи були опущені.',
+'post-expand-template-argument-category'  => 'Сторінки, які містять пропущені аргументи шаблонів',
 
 # "Undo" feature
 'undo-success' => 'Редагування відмінено. Будь-ласка, натисніть «Зберегти», щоб зберегти зміни.',
@@ -1567,6 +1573,7 @@ $3 зазначив наступну причину: ''$2''",
 # Special:Categories
 'categories'                    => 'Категорії',
 'categoriespagetext'            => 'У вікі є такі категорії.',
+'categoriesfrom'                => 'Показати категорії, що починаються з:',
 'special-categories-sort-count' => 'упорядкувати за кількістю',
 'special-categories-sort-abc'   => 'упорядкувати за алфавітом',
 
@@ -2607,7 +2614,7 @@ $1
 'confirm_purge'        => 'Очистити кеш цієї сторінки?
 
 $1',
-'confirm_purge_button' => 'OK',
+'confirm_purge_button' => 'Гаразд',
 
 # AJAX search
 'searchcontaining' => 'Шукати статті, які містять «$1».',

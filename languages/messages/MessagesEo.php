@@ -666,10 +666,16 @@ Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
 Jen la protokolo de forigoj por via oportuno:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
+'expensive-parserfunction-warning'        => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
 
 Ĝi havu malpli ol $2, sed nun estas $1.',
-'expensive-parserfunction-category' => 'Paĝoj kun tro da multekostaj sintaksaj funkcio-vokoj',
+'expensive-parserfunction-category'       => 'Paĝoj kun tro da multekostaj sintaksaj funkcio-vokoj',
+'post-expand-template-inclusion-warning'  => 'Averto: Inkluziva pezo de ŝablonoj estas tro granda.
+Iuj ŝablonoj ne estos inkluzivitaj.',
+'post-expand-template-inclusion-category' => 'Paĝoj kie inkluziva pezo de ŝablonoj estas tro granda.',
+'post-expand-template-argument-warning'   => 'Averto: Ĉit tiu paĝo enhavas almenaŭ unu ŝablonan argumenton kiu havas tro grandan etendan pezon.
+Ĉi tiuj argumentoj estis forlasitaj.',
+'post-expand-template-argument-category'  => 'Paĝoj enhavantaj forlasitajn argumentojn de ŝablonoj',
 
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla. Bonvolu konfirmi la jenan komparajxon por verigi cxi tiel vi volas, kaj konservu la sxangxojn suben fini malfarante la redakton.',
@@ -1383,6 +1389,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 # Special:Categories
 'categories'                    => '{{PLURAL:$1|Kategorio|Kategorioj}}',
 'categoriespagetext'            => 'La sekvantaj kategorioj ekzistas jam en la vikio.',
+'categoriesfrom'                => 'Montri kategoriojn komencante de:',
 'special-categories-sort-count' => 'oridigu laŭ nombrado',
 'special-categories-sort-abc'   => 'ordigu alfabete',
 
