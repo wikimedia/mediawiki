@@ -132,6 +132,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 			}
 			$vals['url'] = $file->getFullURL();
+			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
 		}
 		if( isset( $prop['comment'] ) )
 			$vals['comment'] = $file->getDescription();
