@@ -10,8 +10,8 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class ImagePage extends Article {
 
-	/* private */ var $img;  // Image object this page is shown for
-	/* private */ var $current;
+	/* private */ var $img;  // Image object
+	/* private */ var $displayImg;
 	/* private */ var $repo;
 	/* private */ var $time;
 	/* private */ var $fileLoaded;
@@ -31,12 +31,12 @@ class ImagePage extends Article {
 		if( $this->fileLoaded ) {
 			return true;
 		}
-		$this->img = wfFindFile( $this->mTitle, $this->time );
-		if ( !$this->img ) {
-			$this->img = wfLocalFile( $this->mTitle );
-			$this->current = $this->img;
+		$this->displayImg = wfFindFile( $this->mTitle, $this->time );
+		if ( !$this->displayImg ) {
+			$this->displayImg = wfLocalFile( $this->mTitle );
+			$this->img = $this->displayImg;
 		} else {
-			$this->current = $this->time ? wfLocalFile( $this->mTitle ) : $this->img;
+			$this->img = $this->time ? wfLocalFile( $this->mTitle ) : $this->displayImg;
 		}
 		$this->repo = $this->img->getRepo();
 		$this->fileLoaded = true;
@@ -595,8 +595,8 @@ EOT
 
 		$this->loadFile();
 		if ( $this->img->exists() ) {
-			$list = new ImageHistoryList( $sk, $this->current, $this->img );
-			$file = $this->current;
+			$list = new ImageHistoryList( $sk, $this->img, $this->displayImg );
+			$file = $this->img;
 			$dims = $file->getDimensionsString();
 			$s = $list->beginImageHistoryList();
 			$s .= $list->imageHistoryLine( true, $file );
