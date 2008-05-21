@@ -1447,11 +1447,11 @@ class Article {
 
 				$dbw->begin();
 				$revisionId = $revision->insertOn( $dbw );
-				
-				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, $baseRevId) );
 
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
+				
+				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, $baseRevId) );
 
 				if( !$ok ) {
 					/* Belated edit conflict! Run away!! */
@@ -1519,11 +1519,11 @@ class Article {
 			$revisionId = $revision->insertOn( $dbw );
 
 			$this->mTitle->resetArticleID( $newid );
-			
-			wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
+			
+			wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, $bot,
@@ -1871,8 +1871,6 @@ class Article {
 				# Insert a null revision
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
 				$nullRevId = $nullRevision->insertOn( $dbw );
-				
-				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $nullRevision, false) );
 
 				# Update page record
 				$dbw->update( 'page',
@@ -1884,6 +1882,8 @@ class Article {
 						'page_id' => $id
 					), 'Article::protect'
 				);
+				
+				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $nullRevision, false) );
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
 
 				# Update the protection log
@@ -2975,9 +2975,10 @@ class Article {
 			'minor_edit' => $minor ? 1 : 0,
 			) );
 		$revision->insertOn( $dbw );
-		wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
+		
+		wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 
 		wfProfileOut( __METHOD__ );
 	}
