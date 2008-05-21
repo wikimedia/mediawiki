@@ -17,6 +17,8 @@
  * @ingroup FileRepo
  */
 class ForeignAPIRepo extends FileRepo {
+	protected $mQueryCache = array();
+	
 	function __construct( $info ) {
 		parent::__construct( $info );
 		$this->mApiBase = $info['apibase']; // http://commons.wikimedia.org/w/api.php
@@ -47,16 +49,7 @@ class ForeignAPIRepo extends FileRepo {
 	}
 	
 	protected function queryImage( $query ) {
-		$url = $this->mApiBase .
-			'?' .
-			wfArrayToCgi(
-				array_merge( $query,
-					array(
-						'format' => 'json',
-						'action' => 'query',
-						'prop' => 'imageinfo' ) ) );
-		$json = Http::get( $url );
-		$data = json_decode( $json, true );
+		$data = $this->fetchImageQuery( $query );
 		
 		if( isset( $data['query']['pages'] ) ) {
 			foreach( $data['query']['pages'] as $pageid => $info ) {
@@ -68,10 +61,38 @@ class ForeignAPIRepo extends FileRepo {
 		return false;
 	}
 	
+	protected function fetchImageQuery( $query ) {
+		global $wgMemc;
+		
+		$url = $this->mApiBase .
+			'?' .
+			wfArrayToCgi(
+				array_merge( $query,
+					array(
+						'format' => 'json',
+						'action' => 'query',
+						'prop' => 'imageinfo' ) ) );
+		
+		if( !isset( $this->mQueryCache[$url] ) ) {
+			$key = wfMemcKey( 'ForeignAPIRepo', $url );
+			$data = $wgMemc->get( $key );
+			if( !$data ) {
+				$data = Http::get( $url );
+				$wgMemc->set( $key, $data, 3600 );
+			}
+
+			if( count( $this->mQueryCache ) > 100 ) {
+				// Keep the cache from growing infinitely
+				$this->mQueryCache = array();
+			}
+			$this->mQueryCache[$url] = $data;
+		}
+		return json_decode( $this->mQueryCache[$url], true );
+	}
+	
 	function findFile( $title, $time = false ) {
 		$info = $this->queryImage( array(
 			'titles' => 'Image:' . $title->getText(),
-			'prop' => 'imageinfo',
 			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mimetype' ) );
 		if( $info ) {
 			return new ForeignAPIFile( $title, $this, $info );
