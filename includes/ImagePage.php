@@ -22,21 +22,34 @@ class ImagePage extends Article {
 		parent::__construct( $title );
 
 		global $wgRequest;
-		$this->time = is_null($time) ? $wgRequest->getVal( 'filetimestamp' ) : $time;
+		$time = is_null($time) ? $wgRequest->getVal( 'filetimestamp' ) : $time;
+		$time = $time ? $time : false; // be clear about type
+		$this->time = $time;
 		$this->dupes = null;
 		$this->repo = null;
 	}
 	
 	protected function loadFile() {
-		if( $this->fileLoaded ) {
+		if ( $this->fileLoaded ) {
 			return true;
 		}
 		$this->displayImg = wfFindFile( $this->mTitle, $this->time );
-		if ( !$this->displayImg ) {
+		# If none found, and no time given, use a valid local placeholder
+		if ( !$this->displayImg && !$this->time ) {
 			$this->displayImg = wfLocalFile( $this->mTitle );
 			$this->img = $this->displayImg;
+		# If none found, and time given, try current
+		} else if ( !$this->displayImg && $this->time ) {
+			$this->displayImg = wfFindFile( $this->mTitle );
+			# If none found, use a valid local placeholder
+			if( !$this->displayImg ) {
+				$this->displayImg = wfLocalFile( $this->mTitle );
+			}
+			# Fallback to current
+			$this->img = $this->displayImg;
+		# If found, set $this->img. This will be the same if no time given
 		} else {
-			$this->img = $this->time ? wfLocalFile( $this->mTitle ) : $this->displayImg;
+			$this->img = $this->time ? wfFindFile( $this->mTitle ) : $this->displayImg;
 		}
 		$this->repo = $this->img->getRepo();
 		$this->fileLoaded = true;
