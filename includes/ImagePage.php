@@ -22,8 +22,7 @@ class ImagePage extends Article {
 		parent::__construct( $title );
 
 		global $wgRequest;
-		$time = is_null($time) ? $time : $wgRequest->getVal( 'filetimestamp' );
-		$this->time = $time;
+		$this->time = is_null($time) ? $wgRequest->getVal( 'filetimestamp' ) : $time;
 		$this->dupes = null;
 		$this->repo = null;
 	}
