@@ -1138,13 +1138,14 @@ class User {
 		$keys = array();
 		$id = $this->getId();
 		$ip = wfGetIP();
+		$userLimit = false;
 
 		if( isset( $limits['anon'] ) && $id == 0 ) {
 			$keys[wfMemcKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 		}
 
 		if( isset( $limits['user'] ) && $id != 0 ) {
-			$keys[wfMemcKey( 'limiter', $action, 'user', $id )] = $limits['user'];
+			$userLimit = $limits['user'];
 		}
 		if( $this->isNewbie() ) {
 			if( isset( $limits['newbie'] ) && $id != 0 ) {
@@ -1158,6 +1159,20 @@ class User {
 				$subnet = $matches[1];
 				$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
 			}
+		}
+		// Check for group-specific permissions
+		// If more than one group applies, use the group with the highest limit
+		foreach ( $this->getGroups() as $group ) {
+			if ( isset( $limits[$group] ) ) {
+				if ( $userLimit === false || $limits[$group] > $userLimit ) {
+					$userLimit = $limits[$group];
+				}
+			}
+		}
+		// Set the user limit key
+		if ( $userLimit !== false ) {
+			wfDebug( __METHOD__.": effective user limit: $userLimit\n" );
+			$keys[ wfMemcKey( 'limiter', $action, 'user', $id ) ] = $userLimit;
 		}
 
 		$triggered = false;
