@@ -1517,10 +1517,10 @@ class Article {
 				'text'       => $text
 				) );
 			$revisionId = $revision->insertOn( $dbw );
-			
-			wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 
 			$this->mTitle->resetArticleID( $newid );
+			
+			wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
