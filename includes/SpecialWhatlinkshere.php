@@ -129,6 +129,7 @@ class WhatLinksHerePage {
 		if ( is_int($namespace) ) {
 			$plConds['page_namespace'] = $namespace;
 			$tlConds['page_namespace'] = $namespace;
+			$ilConds['page_namespace'] = $namespace;
 		}
 
 		if ( $from ) {
