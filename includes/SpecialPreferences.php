@@ -151,7 +151,7 @@ class PreferencesForm {
 	function validateIntOrNull( &$val, $min=0, $max=0x7fffffff ) {
 		$val = trim($val);
 		if($val === '') {
-			return $val;
+			return null;
 		} else {
 			return $this->validateInt( $val, $min, $max );
 		}
