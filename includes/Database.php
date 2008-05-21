@@ -974,7 +974,7 @@ class Database {
 			$options = array( $options );
 		}
 		if( is_array( $table ) ) {
-			if ( !empty($join_conds) || is_array( @$options['USE INDEX'] ) )
+			if ( !empty($join_conds) || ( isset( $options['USE INDEX'] ) && is_array( @$options['USE INDEX'] ) ) )
 				$from = ' FROM ' . $this->tableNamesWithUseIndexOrJOIN( $table, @$options['USE INDEX'], $join_conds );
 			else
 				$from = ' FROM ' . implode( ',', array_map( array( &$this, 'tableName' ), $table ) );
@@ -1417,7 +1417,9 @@ class Database {
 		# Split database and table into proper variables.
 		# We reverse the explode so that database.table and table both output
 		# the correct table.
-		@list( $table, $database ) = array_reverse( explode( '.', $name, 2 ) );
+		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
+		if( isset( $dbDetails[1] ) ) @list( $table, $database ) = $dbDetails;
+		else                         @list( $table ) = $dbDetails;
 		$prefix = $this->mTablePrefix; # Default prefix
 		
 		# A database name has been specified in input. Quote the table name
