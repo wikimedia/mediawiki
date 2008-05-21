@@ -1906,7 +1906,7 @@ class Title {
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB(DB_MASTER) : wfGetDB(DB_SLAVE);
 		return $this->mLatestID = $db->selectField( 'revision',
 			"max(rev_id)",
-			array('rev_page' => $this->getArticleID()),
+			array('rev_page' => $this->getArticleID($flags)),
 			'Title::getLatestRevID' );
 	}
 
@@ -2896,7 +2896,7 @@ class Title {
 	public function getPreviousRevisionID( $revision, $flags=0 ) {
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
-			'rev_page=' . intval( $this->getArticleId() ) .
+			'rev_page=' . intval( $this->getArticleId($flags) ) .
 			' AND rev_id<' . intval( $revision ) . ' ORDER BY rev_id DESC' );
 	}
 
@@ -2910,7 +2910,7 @@ class Title {
 	public function getNextRevisionID( $revision, $flags=0 ) {
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
-			'rev_page=' . intval( $this->getArticleId() ) .
+			'rev_page=' . intval( $this->getArticleId($flags) ) .
 			' AND rev_id>' . intval( $revision ) . ' ORDER BY rev_id' );
 	}
 
