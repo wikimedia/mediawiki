@@ -880,7 +880,7 @@ END;
 	function subPageSubtitle() {
 		$subpages = '';
 		if(!wfRunHooks('SkinSubPageSubtitle', array(&$subpages)))
-			return $retval;
+			return $subpages;
 
 		global $wgOut, $wgTitle, $wgNamespacesWithSubpages;
 		if($wgOut->isArticle() && !empty($wgNamespacesWithSubpages[$wgTitle->getNamespace()])) {
