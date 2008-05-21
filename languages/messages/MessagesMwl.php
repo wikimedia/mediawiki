@@ -282,6 +282,12 @@ Legenda: (actu) = diferenças da versão actual,
 # Preferences page
 'preferences'   => 'Preferencies',
 'mypreferences' => 'Las mies preferencias',
+'retypenew'     => 'Reintroduza a nuoba palabra-chave',
+
+'grouppage-sysop' => '{{ns:project}}:Administradores',
+
+# User rights log
+'rightslog' => 'Registo de privilégios de outelizador',
 
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|alteração|alterações}}',
@@ -330,16 +336,24 @@ Legenda: (actu) = diferenças da versão actual,
 'linkstoimage'        => 'As seguintes páginas apontam para este ficheiro:',
 'nolinkstoimage'      => 'Nenhuma página aponta para yeste ficheiro.',
 'sharedupload'        => 'Este ficheiro encontra-se partilhado i puode ser usado por otros proyectos.',
+'noimage'             => 'Num eisiste nenhum ficheiro com yeste nome. Se desejar, puode $1',
 'noimage-linktext'    => 'upload it',
 
 # MIME search
 'mimesearch' => 'Pesquisa MIME',
+
+# List redirects
+'listredirects' => 'Lhistar redireccionamientos',
 
 # Random page
 'randompage' => 'Página aleatória',
 
 # Statistics
 'statistics' => 'Çtatísticas',
+
+'disambiguations' => 'Página de desambiguaçon',
+
+'brokenredirects' => 'Redireccionamentos quebrados',
 
 # Miscellaneous special pages
 'nbytes'         => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -349,6 +363,7 @@ Legenda: (actu) = diferenças da versão actual,
 'prefixindex'    => 'Índice de prefixo',
 'shortpages'     => 'Páginas curtas',
 'longpages'      => 'Páginas longas',
+'deadendpages'   => 'Páginas sem saída',
 'protectedpages' => 'Páginas protegidas',
 'listusers'      => 'Lhista de outelizadores',
 'specialpages'   => 'Páginas speciales',
@@ -374,6 +389,7 @@ Legenda: (actu) = diferenças da versão actual,
 'allpagesfrom'   => 'Mostrar páginas começando an:',
 'allarticles'    => 'Todas las páginas',
 'allpagessubmit' => 'Ir',
+'allpagesprefix' => 'Mostrar páginas com l prefixo:',
 
 # Special:Categories
 'categories' => 'Categories',
@@ -389,6 +405,7 @@ Legenda: (actu) = diferenças da versão actual,
 'watchthispage'        => 'Bigiar yesta página',
 'unwatch'              => 'Desinteressar-se',
 'wlshowlast'           => 'Ber últimas $1 horas $2 dias $3',
+'watchlist-hide-bots'  => 'Çcuonder ediçons de robôs',
 'watchlist-hide-own'   => 'çconder mies ediçons',
 'watchlist-hide-minor' => 'sconder ediçons menores',
 
@@ -397,18 +414,21 @@ Legenda: (actu) = diferenças da versão actual,
 'unwatching' => 'Deixando de vigiar...',
 
 # Delete/protect/revert
-'deletepage'              => 'Apagar página',
-'actioncomplete'          => 'Acção terminada',
-'deletedarticle'          => 'apagado "[[$1]]"',
-'dellogpage'              => 'Registo de eliminação',
-'deletereasonotherlist'   => 'Outro motivo',
-'rollbacklink'            => 'voltar',
-'protectlogpage'          => 'Registo de protecção',
-'protect-legend'          => 'Confirmar protecçon',
-'protect-default'         => '(padron)',
-'protect-level-sysop'     => 'Apenas administradores',
-'protect-summary-cascade' => 'p. progressiva',
-'restriction-type'        => 'Permisson:',
+'deletepage'                  => 'Apagar página',
+'actioncomplete'              => 'Acção terminada',
+'deletedarticle'              => 'apagado "[[$1]]"',
+'dellogpage'                  => 'Registo de eliminação',
+'deletereasonotherlist'       => 'Outro motivo',
+'rollbacklink'                => 'voltar',
+'protectlogpage'              => 'Registo de protecção',
+'protect-legend'              => 'Confirmar protecçon',
+'protect-default'             => '(padron)',
+'protect-level-autoconfirmed' => 'Bloquear outelizadores num registados',
+'protect-level-sysop'         => 'Apenas administradores',
+'protect-summary-cascade'     => 'p. progressiva',
+'protect-expiring'            => 'expira an $1 (UTC)',
+'restriction-type'            => 'Permisson:',
+'restriction-level'           => 'Níble de restriçon:',
 
 # Undelete
 'undeletebtn' => 'Restaurar',
@@ -464,6 +484,9 @@ Legenda: (actu) = diferenças da versão actual,
 # Export
 'export' => 'Exportação de páginas',
 
+# Namespace 8 related
+'allmessages' => 'Todas as mensagens de sistema',
+
 # Thumbnails
 'thumbnail-more'  => 'Aumentar',
 'thumbnail_error' => 'Erro ao criar miniatura: $1',
@@ -505,6 +528,7 @@ Legenda: (actu) = diferenças da versão actual,
 'tooltip-ca-nstab-project'        => 'Ber la página de l proyecto',
 'tooltip-ca-nstab-image'          => 'Ber la página de l ficheiro',
 'tooltip-ca-nstab-template'       => 'Ber l modelo',
+'tooltip-ca-nstab-help'           => 'Ber la página de ayuda',
 'tooltip-ca-nstab-category'       => 'Ber la página da categoria',
 'tooltip-minoredit'               => 'Marcar como ediçon menor',
 'tooltip-save'                    => 'Grabar sues alterações',
@@ -558,6 +582,10 @@ Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns d
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ber alteraçons amportantes',
+'watchlisttools-edit' => 'Ber i editar a lhista de bigiados',
 'watchlisttools-raw'  => 'Ediçon bruta da lhista de ls bigiados',
+
+# Special:Version
+'version' => 'Berson', # Not used as normal message but as header for the special page itself
 
 );

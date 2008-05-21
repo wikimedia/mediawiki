@@ -657,10 +657,16 @@ Debe considerar se é apropiado continuar a editar esta páxina.
 Velaquí o rexistro de borrado desta páxina, por se quere consultalo:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
+'expensive-parserfunction-warning'        => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
 
 Debe ter menos de $2, e agora hai $1.',
-'expensive-parserfunction-category' => 'Páxinas con moitos analizadores de funcións de chamadas moi caros',
+'expensive-parserfunction-category'       => 'Páxinas con moitos analizadores de funcións de chamadas moi caros',
+'post-expand-template-inclusion-warning'  => 'Aviso: o tamaño do modelo incluído é moi grande.
+Algúns modelos non serán incluídos.',
+'post-expand-template-inclusion-category' => 'Páxinas onde o tamaño dos modelos incluídos é excedido',
+'post-expand-template-argument-warning'   => 'Aviso: esta páxina contén, polo menos, un argumento dun modelo que ten un tamaño e expansión moi grande.
+Estes argumentos serán omitidos.',
+'post-expand-template-argument-category'  => 'Páxinas que conteñen argumentos de modelo omitidos',
 
 # "Undo" feature
 'undo-success' => 'A edición desfíxose. Por favor a continuación confirme e garde os cambios.',
@@ -1190,7 +1196,7 @@ Premendo nun cabezallo da columna cambia a ordenación.',
 'duplicatesoffile'               => 'Os seguintes ficheiros son duplicados deste:',
 'sharedupload'                   => 'Este ficheiro é un envío compartido e pode ser usado por outros proxectos.',
 'shareduploadwiki'               => 'Por favor, vexa a $1 para máis información.',
-'shareduploadwiki-desc'          => 'A descrición na súa $1 no repositorio de imaxes móstrase embaixo.',
+'shareduploadwiki-desc'          => 'Embaixo móstrase a descrición da $1 no repositorio de imaxes.',
 'shareduploadwiki-linktext'      => 'páxina de descrición do ficheiro',
 'shareduploadduplicate'          => 'Este ficheiro é un duplicado $1 que está no repositorio.',
 'shareduploadduplicate-linktext' => 'doutro ficheiro',
@@ -1387,6 +1393,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 # Special:Categories
 'categories'                    => 'Categorías',
 'categoriespagetext'            => 'As seguintes categorías conteñen páxinas ou contidos multimedia.',
+'categoriesfrom'                => 'Amosar as categorías comezando por:',
 'special-categories-sort-count' => 'ordenar por número',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 

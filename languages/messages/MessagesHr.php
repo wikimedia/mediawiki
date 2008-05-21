@@ -949,6 +949,7 @@ za podešavanje suradničkih postavki.',
 'group-bot'           => 'Botovi',
 'group-sysop'         => 'Administratori',
 'group-bureaucrat'    => 'Birokrati',
+'group-suppress'      => 'Nadzornici',
 'group-all'           => '(svi)',
 
 'group-user-member'          => 'Suradnik',
@@ -956,12 +957,14 @@ za podešavanje suradničkih postavki.',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Birokrat',
+'group-suppress-member'      => 'Nadzornik',
 
 'grouppage-user'          => '{{ns:project}}:Suradnici',
 'grouppage-autoconfirmed' => '{{ns:project}}:Suradnici prijavljeni duže od 4 dana',
 'grouppage-bot'           => '{{ns:project}}:Botovi',
 'grouppage-sysop'         => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat'    => '{{ns:project}}:Birokrati',
+'grouppage-suppress'      => '{{ns:project}}:Nadzor',
 
 # Rights
 'right-read'                 => 'Čitanje stranica',
@@ -1343,6 +1346,8 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'unusedcategoriestext'    => 'Na navedenim stranicama kategorija nema ni jednog članka ili potkategorije.',
 'notargettitle'           => 'Nema odredišta',
 'notargettext'            => 'Niste naveli ciljnu stranicu ili suradnika za izvršavanje ove funkcije.',
+'nopagetitle'             => 'Nema ciljane stranice',
+'nopagetext'              => 'Ciljana stranica koju ste odabrali ne postoji.',
 'pager-newer-n'           => '{{PLURAL:$1|novija $1|novije $1|novijih $1}}',
 'pager-older-n'           => '{{PLURAL:$1|starija $1|starije $1|starijih $1}}',
 
@@ -1383,6 +1388,7 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 # Special:Categories
 'categories'                    => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'categoriespagetext'            => 'Na ovom wikiju postoje sljedeće kategorije.',
+'categoriesfrom'                => 'Prikaži kategorije počevši od:',
 'special-categories-sort-count' => 'razvrstavanje po broju',
 'special-categories-sort-abc'   => 'abecedno razvrstavanje',
 

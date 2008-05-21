@@ -536,6 +536,7 @@ $messages = array(
 'nohistory'           => 'ددې مخ لپاره د سمادېدنې هېڅ کوم پېښليک نه شته.',
 'currentrev'          => 'اوسنۍ بڼه',
 'revisionasof'        => 'د $1 پورې شته مخليدنه',
+'revision-info'       => 'د $1 پورې شته مخليدنه، د $2 لخوا ترسره شوې',
 'previousrevision'    => '← زړه بڼه',
 'nextrevision'        => 'نوې بڼه →',
 'currentrevisionlink' => 'اوسنۍ بڼه',
@@ -1061,11 +1062,11 @@ $messages = array(
 '''ګواښنه!'''
 يوه نوي نوم ته د مخونو د نوم بدلون کېدای شي چې په نامتو مخونو کې بنسټيزه او نه اټکل کېدونکی بدلونونه رامېنځ ته کړي;
 مخکې له دې نه چې پرمخ ولاړ شی، مهرباني وکړۍ لومړی خپل ځان په دې ډاډه کړی چې تاسو ددغې کړنې په پايلو ښه پوهېږۍ.",
-'movepagetalktext'        => "همدې مخ ته اړونده د خبرواترو مخ هم په اتوماتيک ډول لېږدول کېږي '''خو تر څو چې:'''
-*A non-empty talk page already exists under the new name, or
-*You uncheck the box below.
+'movepagetalktext'        => "همدې مخ ته اړونده د خبرواترو مخ هم په اتوماتيک ډول لېږدول کېږي '''خو که چېرته:'''
+*په نوي نوم د پخوا نه د خبرواترو يو مخ شتون ولري، او يا هم
+*تاسو ته لاندې ورکړ شوی څلورڅنډی په نښه شوی وي.
 
-In those cases, you will have to move or merge the page manually if desired.",
+نو په هغه وخت کې پکار ده چې د خبرواترو د مخ لېږدونه او د نوي مخ سره د يوځای کولو کړنه په لاسي توګه ترسره کړی.",
 'movearticle'             => 'مخ لېږدول',
 'movenologin'             => 'غونډال کې نه ياست ننوتي',
 'movenologintext'         => 'ددې لپاره چې يو مخ ولېږدوی، نو تاسو بايد يو ثبت شوی کارونکی او غونډال کې [[Special:Userlogin|ننوتي]] اوسۍ.',
@@ -1302,11 +1303,14 @@ $1',
 'autosumm-new'     => 'نوی مخ: $1',
 
 # Watchlist editor
+'watchlistedit-raw-title'  => 'خام کتلی لړليک سمادول',
+'watchlistedit-raw-legend' => 'خام کتلی لړليک سمادول',
 'watchlistedit-raw-titles' => 'سرليکونه:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'اړونده بدلونونه کتل',
 'watchlisttools-edit' => 'کتلی لړليک ليدل او سمادول',
+'watchlisttools-raw'  => 'خام کتلی لړليک سمادول',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'وری',

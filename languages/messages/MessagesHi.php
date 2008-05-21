@@ -681,10 +681,16 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 इस पृष्ट को मिटाने का अभिलेख/प्रचालेख सुविधा के लिये उपलब्ध कराया गया है:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'सूचना: इस पन्नेपर बहुत सारे किमती पार्सर क्रिया कॉल हैं।
+'expensive-parserfunction-warning'        => 'सूचना: इस पन्नेपर बहुत सारे किमती पार्सर क्रिया कॉल हैं।
 
 वे $2 से कम होने चाहिये, पर अभी $1 हैं।',
-'expensive-parserfunction-category' => 'बहुत सारे किमती पार्सर क्रिया कॉल होने वाले पन्ने',
+'expensive-parserfunction-category'       => 'बहुत सारे किमती पार्सर क्रिया कॉल होने वाले पन्ने',
+'post-expand-template-inclusion-warning'  => 'सूचना: साँचा डालनेकी सीमा खतम हो चुकी हैं।
+कुछ साँचे हटाये जायेंगे।',
+'post-expand-template-inclusion-category' => 'ऐसे पन्ने जिनपर और साँचे नहीं डाले जा सकते',
+'post-expand-template-argument-warning'   => 'सूचना: इस पन्नेपर ऐसा कमसे कम एक साँचा है जिसे बढाने पर बहुत बडा हो जायेगा।
+ऐसा साँचा हटा दिया गया है।',
+'post-expand-template-argument-category'  => 'ऐसे पन्ने जिनमें साँचे हटाये गये हैं',
 
 # "Undo" feature
 'undo-success' => 'यह संपादन पूर्ववत किया जा सकता हैं। ऐसा करने के लिये कृपया निम्नलिखित पाठ को ध्यान से देखकर बदलाव संजोयें।',
@@ -1426,6 +1432,7 @@ PICT # misc.
 # Special:Categories
 'categories'                    => '{{PLURAL:$1|श्रेणि|श्रेणियाँ}}',
 'categoriespagetext'            => 'निम्न श्रेणियाँ विकि मे अस्तित्वमान हैं।',
+'categoriesfrom'                => 'इस शब्दसे शुरू होनेवाली श्रेणीयाँ दर्शायें:',
 'special-categories-sort-count' => 'संख्यानुसार वर्ग दर्शायें',
 'special-categories-sort-abc'   => 'वर्णानुक्रम के अनुसार दर्शायें',
 

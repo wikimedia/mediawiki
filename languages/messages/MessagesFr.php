@@ -881,7 +881,7 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-suppress'          => 'Masquer aussi les révisions aux administrateurs',
 'revdelete-hide-image'        => 'Masquer le contenu du fichier',
 'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
-'revdelete-log'               => 'Commentaire per l’istoric :',
+'revdelete-log'               => 'Commentaire pour l’historique :',
 'revdelete-submit'            => 'Appliquer à la version sélectionnée',
 'revdelete-logentry'          => 'La visibilité de la version a été modifiée pour [[$1]]',
 'logdelete-logentry'          => 'La visibilité de l’événement a été modifiée pour [[$1]]',
@@ -1521,6 +1521,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 # Special:Categories
 'categories'                    => 'Catégories',
 'categoriespagetext'            => 'Les catégories suivantes existent dans le wiki.',
+'categoriesfrom'                => 'Afficher les catégories commençant à :',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
 

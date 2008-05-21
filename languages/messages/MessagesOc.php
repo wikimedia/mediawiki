@@ -999,7 +999,7 @@ contenon totes los tèrmes apareisson dins los resultats).',
 'powersearch-legend'        => 'Recèrca avançada',
 'powersearch-ns'            => 'Recercar dins los espacis de nom :',
 'powersearch-redir'         => 'Lista de las redireccions',
-'powersearch-field'         => 'Recercar per',
+'powersearch-field'         => 'Recercar',
 'search-external'           => 'Recèrca extèrna',
 'searchdisabled'            => 'La recèrca sus {{SITENAME}} es desactivada.
 En esperant la reactivacion, podètz efectuar una recèrca via Google.
@@ -1370,7 +1370,7 @@ Un clic en tèsta de colomna cambia l’òrdre d’afichatge.',
 'filerevert-badversion'     => 'I a pas de version mai anciana del fichièr amb lo Timestamp donat.',
 
 # File deletion
-'filedelete'                  => 'Suprimís $1',
+'filedelete'                  => 'Suprimir $1',
 'filedelete-legend'           => 'Suprimir lo fichièr',
 'filedelete-intro'            => "Sètz a suprimir '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Sètz a escafar la version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $2 a $3].</span>',
@@ -1378,7 +1378,7 @@ Un clic en tèsta de colomna cambia l’òrdre d’afichatge.',
 'filedelete-submit'           => 'Suprimir',
 'filedelete-success'          => "'''$1''' es estat suprimit.",
 'filedelete-success-old'      => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' del $2 a $3 es estada suprimida.</span>',
-'filedelete-nofile'           => "'''$1''' existís pas sus aqueste sit.",
+'filedelete-nofile'           => "'''$1''' existís pas sus {{SITENAME}}.",
 'filedelete-nofile-old'       => "Existís pas cap de version archivada de '''$1''' amb los atributs indicats.",
 'filedelete-iscurrent'        => "Sètz a ensajar de suprimir la version mai recenta d'aqueste fichièr. Vos cal, deperabans, restablir una version anciana d'aqueste.",
 'filedelete-otherreason'      => 'Rason diferenta/suplementària :',
@@ -1551,13 +1551,14 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'allpagesprev'      => 'Precedent',
 'allpagesnext'      => 'Seguent',
 'allpagessubmit'    => 'Validar',
-'allpagesprefix'    => 'Afichar las paginas començant pel prefix :',
+'allpagesprefix'    => 'Afichar las paginas que començan pel prefix :',
 'allpagesbadtitle'  => 'Lo títol rensenhat per la pagina es incorrècte o possedís un prefix reservat. Conten segurament un o mantun caractèr especial que pòt pas èsser utilizats dins los títols.',
 'allpages-bad-ns'   => '{{SITENAME}} a pas d’espaci de noms « $1 ».',
 
 # Special:Categories
 'categories'                    => '{{PLURAL:$1|Categoria|Categorias}}',
 'categoriespagetext'            => 'Las categorias seguentas contenon de paginas o de mèdias.',
+'categoriesfrom'                => 'Afichar las categorias que començan a :',
 'special-categories-sort-count' => 'triada per compte',
 'special-categories-sort-abc'   => 'triada alfabetica',
 

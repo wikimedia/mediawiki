@@ -739,10 +739,16 @@ kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
 Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. Slettingsloggen for denne siden gjengis her:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
+'expensive-parserfunction-warning'        => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
 
 Det burde være mindre enn $2, men er nå $1.',
-'expensive-parserfunction-category' => 'Sider med for mange prosesskrevende parserfunksjoner',
+'expensive-parserfunction-category'       => 'Sider med for mange prosesskrevende parserfunksjoner',
+'post-expand-template-inclusion-warning'  => 'Advarsel: Størrelsen på inkluderte maler er for stor.
+Noen maler vil ikke bli inkludert.',
+'post-expand-template-inclusion-category' => 'Sider som inneholder for store maler',
+'post-expand-template-argument-warning'   => 'Advarsel: Siden inneholder ett eller flere malparametere som blir for lange når de utvides.
+Disse parameterne har blitt utelatt.',
+'post-expand-template-argument-category'  => 'Sider med utelatte malparametere',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
@@ -1446,6 +1452,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 # Special:Categories
 'categories'                    => 'Kategorier',
 'categoriespagetext'            => 'Følgende kategorier inneholder sider eller media.',
+'categoriesfrom'                => 'Vis kategorier fra og med:',
 'special-categories-sort-count' => 'soter etter antall',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 

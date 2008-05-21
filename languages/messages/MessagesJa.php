@@ -1049,7 +1049,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'filehist-comment'          => 'コメント',
 'imagelinks'                => 'リンク',
 'linkstoimage'              => 'このファイルを使用しているページの一覧:',
-'nolinkstoimage'            => 'このファイルにリンクしているページはありません。',
+'nolinkstoimage'            => 'このファイルを使用しているページはありません。',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'          => '詳しい情報は$1を参照してください。',
 'shareduploadwiki-desc'     => '共有リポジトリ内の$1にあるこのファイルの説明は以下の通りです。',

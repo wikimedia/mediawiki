@@ -963,10 +963,14 @@ $1 ساعة.',
 سجل الحذف لهذه الصفحة معروض هنا:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'تحذير: هذه الصفحة تحتوي على استدعاءات دالة بارسر كثيرة مكلفة.
+'expensive-parserfunction-warning'        => 'تحذير: هذه الصفحة تحتوي على استدعاءات دالة بارسر كثيرة مكلفة.
 
 ينبغي أن تكون أقل من $2، يوجد الآن $1.',
-'expensive-parserfunction-category' => 'الصفحات ذات استدعاءات دالة بارسر كثيرة مكلفة',
+'expensive-parserfunction-category'       => 'الصفحات ذات استدعاءات دالة بارسر كثيرة مكلفة',
+'post-expand-template-inclusion-warning'  => 'تحذير: يتضمّن القالب حجما كبيرا جدا.
+بعض القوالب لن تضمّن.',
+'post-expand-template-inclusion-category' => 'صفحات حيث القالب يتضمّن حجما متجاوزا',
+'post-expand-template-argument-category'  => 'صفحات تحتوي مدخلات القالب المحذوفة',
 
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل. من فضلك تحقق من المقارنة بالأسفل للتأكد من أن هذا هو ما تريد أن تفعله، وبعد ذلك احفظ التغييرات بالأسفل للانتهاء من استرجاع التعديل.',
@@ -1691,6 +1695,7 @@ PICT # misc.
 # Special:Categories
 'categories'                    => 'تصنيفات',
 'categoriespagetext'            => 'التصنيفات التالية تحتوي على صفحات أو وسائط.',
+'categoriesfrom'                => 'أظهر التغييرات بدءا من:',
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'رتب هجائيا',
 

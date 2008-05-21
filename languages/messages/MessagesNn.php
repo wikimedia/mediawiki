@@ -17,6 +17,7 @@
  * @author M.M.S.
  * @author Jorunn
  * @author H92
+ * @author Finnrind
  */
 
 /**
@@ -628,7 +629,7 @@ Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sj
 'yourvariant'                => 'Språkvariant',
 'yournick'                   => 'Signatur:',
 'badsig'                     => 'Ugyldig råsignatur, sjekk HTML-kodinga.',
-'badsiglength'               => 'Brukarnamnet er for langt, det må vere under $1 teikn.',
+'badsiglength'               => 'Signaturen er for lang, det må vere under $1 teikn.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
 'loginerror'                 => 'Innloggingsfeil',
@@ -829,14 +830,21 @@ Du bør tenkje over om det er lurt å halde fram med å endre denne sida.
 Sletteloggen for sida finn du her:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Åtvaring: Denne sida inneheld for mange prosesskrevande parsarfunksjonar.
+'expensive-parserfunction-warning'        => 'Åtvaring: Denne sida inneheld for mange prosesskrevande parsarfunksjonar.
 
 Det burde vere færre enn $2, men er no $1.',
-'expensive-parserfunction-category' => 'Sider med for mange prosesskrevande parserfunksjonar',
+'expensive-parserfunction-category'       => 'Sider med for mange prosesskrevande parserfunksjonar',
+'post-expand-template-inclusion-warning'  => 'Åtvaring: Storleiken på malar som er inkludert er for stor.
+Nokre malar vil ikkje verte inkludert.',
+'post-expand-template-inclusion-category' => 'Sider som inneheld for store malar',
+'post-expand-template-argument-warning'   => 'Åtvaring: Sida inneheld ein eller fleire malparameterar som vert for lange når dei utvidast. 
+Desse parameterane har vorte utelatne.',
+'post-expand-template-argument-category'  => 'Sider med utelatne malparameterar',
 
 # "Undo" feature
 'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
 'undo-failure' => 'Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjort i mellomtida.',
+'undo-norev'   => 'Redigeringa kunne ikkje fjernast fordi den ikkje finnast eller vart sletta',
 'undo-summary' => 'Rullar attende versjon $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]])',
 
 # Account creation failure
@@ -918,7 +926,9 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'logdelete-log-message'       => '$1 for {{PLURAL:$2|éitt element|$2 element}}',
 
 # Suppression log
-'suppressionlog' => 'Logg over historikkfjerningar',
+'suppressionlog'     => 'Logg over historikkfjerningar',
+'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymd frå administratorar.
+Sjå [[Special:Ipblocklist|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
@@ -956,44 +966,47 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'diff-multi'              => '({{PLURAL:$1|Éin versjon mellom desse er ikkje vist|$1 versjonar mellom desse er ikkje viste}}.)',
 
 # Search results
-'searchresults'            => 'Søkjeresultat',
-'searchresulttext'         => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[Help:Søk|Hjelp]].',
-'searchsubtitle'           => 'Du søkte etter «[[:$1]]»',
-'searchsubtitleinvalid'    => 'Du søkte etter «$1»',
-'noexactmatch'             => "* '''{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].'''
+'searchresults'             => 'Søkjeresultat',
+'searchresulttext'          => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[Help:Søk|Hjelp]].',
+'searchsubtitle'            => 'Du søkte etter «[[:$1]]»',
+'searchsubtitleinvalid'     => 'Du søkte etter «$1»',
+'noexactmatch'              => "* '''{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].'''
 * <big>'''Du kan [[:$1|opprette ho no]]'''</big>.<br />
 (Men du bør søkje etter andre namnevariasjonar først, slik at du ikkje lagar ei side som allereie finst under eit anna namn!)",
-'noexactmatch-nocreate'    => "'''Inga side har tittelen «$1».'''",
-'toomanymatches'           => 'Søket gav for mange treff, prøv ei anna spørjing',
-'titlematches'             => 'Sidetitlar med treff på førespurnaden',
-'notitlematches'           => 'Ingen sidetitlar hadde treff på førespurnaden',
-'textmatches'              => 'Sider med treff på førespurnaden',
-'notextmatches'            => 'Ingen sider hadde treff på førespurnaden',
-'prevn'                    => 'førre $1',
-'nextn'                    => 'neste $1',
-'viewprevnext'             => 'Vis ($1) ($2) ($3).',
-'search-result-size'       => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
-'search-result-score'      => 'Relevans: $1&nbsp;%',
-'search-redirect'          => '(omdirigering $1)',
-'search-section'           => '(bolk $1)',
-'search-suggest'           => 'Meinte du: «$1»',
-'search-interwiki-caption' => 'Systerprosjekt',
-'search-interwiki-default' => '$1 resultat:',
-'search-interwiki-more'    => '(meir)',
-'search-relatedarticle'    => 'Relaterte',
-'searchrelated'            => 'relaterte',
-'searchall'                => 'alle',
-'showingresults'           => "Nedanfor er opp til {{PLURAL:$1|'''éitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist.",
-'showingresultsnum'        => "Nedanfor er {{PLURAL:$3|'''éitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
-'showingresultstotal'      => "Under er resultata '''$1-$2''' av '''$3''' viste",
-'nonefound'                => "'''Merk''': søk utan resultat kan komma av at du leitar etter alminnelege engelske ord som ikkje blir indekserte, eller det kan komma av at du har gjeve meir enn eitt søkjeord (berre sider som inneheld alle søkjeorda vil bli funne).",
-'powersearch'              => 'Søk',
-'powersearch-legend'       => 'Avansert søk',
-'powersearch-ns'           => 'Søk i namnerom:',
-'powersearch-redir'        => 'Vis omdirigeringer',
-'powersearch-field'        => 'Søk etter',
-'search-external'          => 'Eksternt søk',
-'searchdisabled'           => 'Søkjefunksjonen på {{SITENAME}} er slått av akkurat no.
+'noexactmatch-nocreate'     => "'''Inga side har tittelen «$1».'''",
+'toomanymatches'            => 'Søket gav for mange treff, prøv ei anna spørjing',
+'titlematches'              => 'Sidetitlar med treff på førespurnaden',
+'notitlematches'            => 'Ingen sidetitlar hadde treff på førespurnaden',
+'textmatches'               => 'Sider med treff på førespurnaden',
+'notextmatches'             => 'Ingen sider hadde treff på førespurnaden',
+'prevn'                     => 'førre $1',
+'nextn'                     => 'neste $1',
+'viewprevnext'              => 'Vis ($1) ($2) ($3).',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
+'search-result-score'       => 'Relevans: $1&nbsp;%',
+'search-redirect'           => '(omdirigering $1)',
+'search-section'            => '(bolk $1)',
+'search-suggest'            => 'Meinte du: «$1»',
+'search-interwiki-caption'  => 'Systerprosjekt',
+'search-interwiki-default'  => '$1 resultat:',
+'search-interwiki-more'     => '(meir)',
+'search-mwsuggest-enabled'  => 'med forslag',
+'search-mwsuggest-disabled' => 'inga forslag',
+'search-relatedarticle'     => 'Relaterte',
+'mwsuggest-disable'         => 'Slå av AJAX-forslag',
+'searchrelated'             => 'relaterte',
+'searchall'                 => 'alle',
+'showingresults'            => "Nedanfor er opp til {{PLURAL:$1|'''éitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist.",
+'showingresultsnum'         => "Nedanfor er {{PLURAL:$3|'''éitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
+'showingresultstotal'       => "Under er resultata '''$1-$2''' av '''$3''' viste",
+'nonefound'                 => "'''Merk''': søk utan resultat kan komma av at du leitar etter alminnelege engelske ord som ikkje blir indekserte, eller det kan komma av at du har gjeve meir enn eitt søkjeord (berre sider som inneheld alle søkjeorda vil bli funne).",
+'powersearch'               => 'Søk',
+'powersearch-legend'        => 'Avansert søk',
+'powersearch-ns'            => 'Søk i namnerom:',
+'powersearch-redir'         => 'Vis omdirigeringer',
+'powersearch-field'         => 'Søk etter',
+'search-external'           => 'Eksternt søk',
+'searchdisabled'            => 'Søkjefunksjonen på {{SITENAME}} er slått av akkurat no.
 I mellomtida kan du søkje gjennom Google.
 Ver merksam på at registra deira kan vera utdaterte.',
 
@@ -1069,6 +1082,10 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'userrights-groupsmember'          => 'Medlem av:',
 'userrights-groupsremovable'       => 'Grupper som kan fjernast:',
 'userrights-groupsavailable'       => 'Tilgjengelege grupper:',
+'userrights-groups-help'           => 'Du kan endre kva for grupper denne brukaren er medlem av.
+* Ein krossa boks tyder at brukaren er medlem av denne gruppa.
+* Ein ikkjekrossa boks tyder at brukaren ikkje er medlem av denne gruppa.
+* Ein * tyder at du ikkje kan fjerna gruppemedlemskapen etter at du har lagt den til, eller omvendt.',
 'userrights-reason'                => 'Grunn til endring:',
 'userrights-available-none'        => 'Du kan ikkje endre gruppemedlemsskap.',
 'userrights-available-add'         => 'Du kan legge brukarar til {{PLURAL:$2|denne gruppa|desse gruppene}}: $1.',

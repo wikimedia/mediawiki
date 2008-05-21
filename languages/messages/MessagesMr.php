@@ -750,10 +750,16 @@ $2',
 या लेखाची वगळल्याची नोंद तुमच्या संदर्भाकरीता पुढीलप्रमाणे:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'इशारा: या पानावर खूप सारे खर्चिक पार्सर क्रिया कॉल्स आहेत.
+'expensive-parserfunction-warning'        => 'इशारा: या पानावर खूप सारे खर्चिक पार्सर क्रिया कॉल्स आहेत.
 
 ते $2 पेक्षा कमी असायला हवेत, सध्या $1 इतके आहेत.',
-'expensive-parserfunction-category' => 'खूप सारे खर्चिक पार्सर क्रिया कॉल्स असणारी पाने',
+'expensive-parserfunction-category'       => 'खूप सारे खर्चिक पार्सर क्रिया कॉल्स असणारी पाने',
+'post-expand-template-inclusion-warning'  => 'सूचना: साचे वाढविण्याची मर्यादा संपलेली आहे.
+काही साचे वगळले जातील.',
+'post-expand-template-inclusion-category' => 'अशी पाने ज्यांच्यावर साचे चढविण्याची मर्यादा संपलेली आहे',
+'post-expand-template-argument-warning'   => 'सूचना: या पानावर असा एकतरी साचा आहे जो वाढविल्यास खूप मोठा होईल.
+असे साचे वगळण्यात आलेले आहेत.',
+'post-expand-template-argument-category'  => 'अशी पाने ज्यांच्यामध्ये साचे वगळलेले आहेत',
 
 # "Undo" feature
 'undo-success' => 'संपादन परतवले जाऊ शकते.कृपया, आपण नेमके हेच करू इच्छीता हे खाली दिलेली तुलना पाहू निश्चीत करा,आणि नंतर संपादन परतवण्याचे काम पूर्ण करण्याकरिता इच्छीत बद्ल जतन करा.',
@@ -1459,6 +1465,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 # Special:Categories
 'categories'                    => 'वर्ग',
 'categoriespagetext'            => 'विकिवर खालील वर्ग आहेत.',
+'categoriesfrom'                => 'या शब्दापासून सुरू होणारे वर्ग दाखवा:',
 'special-categories-sort-count' => 'क्रमानुसार लावा',
 'special-categories-sort-abc'   => 'अक्षरांप्रमाणे लावा',
 

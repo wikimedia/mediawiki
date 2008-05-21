@@ -1348,6 +1348,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' proÃ
 # Special:Categories
 'categories'                    => '{{PLURAL:$1|Categoria|Categorie}}',
 'categoriespagetext'            => 'Elenco par intiero de le categorie presenti sul sito.',
+'categoriesfrom'                => 'Mostra le categorie tacando da :',
 'special-categories-sort-count' => 'ordina par nÃ¹maro',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 

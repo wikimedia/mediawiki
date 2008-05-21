@@ -775,10 +775,16 @@ Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
+'expensive-parserfunction-warning'        => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
 
 Je ich $1. Malo by ich byť menej ako $2.',
-'expensive-parserfunction-category' => 'Stránky s príliš veľkým počtom volaní funkcií syntaktického analyzátora',
+'expensive-parserfunction-category'       => 'Stránky s príliš veľkým počtom volaní funkcií syntaktického analyzátora',
+'post-expand-template-inclusion-warning'  => 'Upozornenie: Vkladaná šablóna je príliš veľká.
+Niektoré zo šablón nebudú vložené.',
+'post-expand-template-inclusion-category' => 'Stránky, kde je prekročená povolená veľkosť šablón',
+'post-expand-template-argument-warning'   => 'Upozornenie: Táto stránka obsahuje aspoň jeden argument šalóny, ktorý je príliš veľký.
+Tieto argumenty boli vynechané.',
+'post-expand-template-argument-category'  => 'Stránky obsahujúce vynechané argumenty šablón',
 
 # "Undo" feature
 'undo-success' => 'Úpravu nie je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',

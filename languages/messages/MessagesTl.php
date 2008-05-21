@@ -446,11 +446,19 @@ upang makapagkarga ng talaksan.',
 'movethispage'       => 'Ilipat itong pahina',
 
 # Special:Allpages
-'allpages' => 'Lahat ng pahina',
+'allpages'        => 'Lahat ng pahina',
+'allpages-bad-ns' => 'Wala sa {{SITENAME}} ang ngalan-espasyong "$1".',
 
 # Special:Categories
 'categories'         => 'Mga kategorya',
 'categoriespagetext' => 'Ang mga sumusunod na kategorya ay naglalaman ng mga pahina o midya.',
+
+# E-mail user
+'emailfrom'    => 'Mula',
+'emailto'      => 'Kay',
+'emailsubject' => 'Paksa',
+'emailmessage' => 'Mensahe',
+'emailsend'    => 'Ipadala',
 
 # Watchlist
 'watchlist'     => 'Bantayan Ko',

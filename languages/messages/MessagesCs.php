@@ -563,7 +563,7 @@ $messages = array(
 'nosuchspecialpage' => 'Neexistující speciální stránka',
 'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
 
-Seznam existujících speciálních stránek vizte na [[Special:Specialpages|{{int:specialpages}}]].",
+Zkuste se podívat na [[Special:Specialpages|seznam všech existujících speciálních stránek]].",
 
 # General errors
 'error'                => 'Chyba',

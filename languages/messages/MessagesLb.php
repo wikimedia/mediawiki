@@ -730,10 +730,12 @@ Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
+'expensive-parserfunction-warning'        => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
  
 Et däerfen net méi wéi $2 ufroe sinn, aktuell sinn et $1 Ufroen.',
-'expensive-parserfunction-category' => 'Säiten, déi komplex Parserfunktiounen ze dacks opruffen',
+'expensive-parserfunction-category'       => 'Säiten, déi komplex Parserfunktiounen ze dacks opruffen',
+'post-expand-template-inclusion-warning'  => "Opgepasst: D'Gréisst vun den agebonnene Schablounen ass ze grouss, e puer Schabloune kënnen net agebonne ginn.",
+'post-expand-template-inclusion-category' => "Säiten, op denen d'maximal Gréist vun agebonnene Schablounen iwwerschratt ass",
 
 # "Undo" feature
 'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnedrënner fir nozekuckeen ob et esou richteg ass, duerno späichert w.e.g d'Ännerungen of fir dës Aktioun ofzeschléissen.",
@@ -1400,10 +1402,12 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'ancientpages-summary'            => 'Op dëser Spezialsäit stinn déi Säiten, déi am längsten net méi geännert goufen.',
 'move'                            => 'Réckelen',
 'movethispage'                    => 'Dës Säit réckelen',
+'unusedimagestext'                => 'Denkt w.e.g. drunn datt aner Internetsäiten dëse Fichier matt enger direkter URL verlinke kënnen. An dem Fall gëtt de Fichier hei opgelëscht obwuel en aktiv gebraucht gëtt.',
 'unusedcategoriestext'            => 'Dës Kategoriesäiten existéieren, mee weder en Artikel nach eng Kategorie maachen dovunner Gebrauch.',
 'notargettitle'                   => 'Dir hutt keng Säit uginn.',
 'notargettext'                    => 'Dir hutt keng Zilsäit oder keen Zilbenotzer uginn fir déi dës Funktioun ausgheféiert soll ginn.',
 'nopagetitle'                     => 'Zilsäit gëtt et net',
+'nopagetext'                      => 'Déi Zilsäit déi dir uginn hutt gëtt et net.',
 'pager-newer-n'                   => '{{PLURAL:$1|nächsten|nächst $1}}',
 'pager-older-n'                   => '{{PLURAL:$1|vireg|vireg $1}}',
 'suppress'                        => 'Iwwersiicht',
@@ -1446,6 +1450,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 # Special:Categories
 'categories'                    => 'Kategorien',
 'categoriespagetext'            => 'An dëse Kategorie gëtt et Säiten oder Medien.',
+'categoriesfrom'                => 'Weis Kategorien ugefaang bäi:',
 'special-categories-sort-count' => 'No der Zuel sortéieren',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
 
