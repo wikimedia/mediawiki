@@ -360,7 +360,7 @@ Pangngaasim ta mangpilika sabali a nagan.',
 'yourlanguage'               => 'Pagsasao:',
 'yournick'                   => 'Birngas:',
 'badsiglength'               => 'Atiddog unay ti palayawmo.
-Nasken a nababbaba ngem $1 a karakter.',
+Nasken a nababbaba ngem $1 a {{PLURAL:$1|character|characters}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Saan a nasken ti pudno a nagan.
 Ngem no kayatmo nga ited, maaramat daytoy kas pammadayaw ken pangpatalged iti obram.',

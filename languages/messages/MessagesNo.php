@@ -540,7 +540,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'yournick'                   => 'Signatur:',
 'badsig'                     => 'Ugyldig råsignatur; sjekk HTML-elementer.',
 'badsiglength'               => 'Signaturen er for lang.
-Den kan maks inneholde $1 tegn.',
+Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
 'loginerror'                 => 'Innloggingsfeil',

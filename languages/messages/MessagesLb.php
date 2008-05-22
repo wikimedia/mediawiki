@@ -511,7 +511,7 @@ Probéiert et w.e.g. nach eng Kéier!",
 'yournick'                   => 'Ënnerschrëft:',
 'badsig'                     => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
 'badsiglength'               => "D'Ënnerschrëft ass ze laang.
-Si muss manner wéi $1 Zeechen hunn.",
+Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.",
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => 'Äre richtege Numm ass fakultativ. Wann Dir en ugitt gëtt e benotzt fir iech är Kontributiounen zouzeuerdnen.',
 'loginerror'                 => 'Feeler bäi der Umeldung',

@@ -71,6 +71,8 @@ $messages = array(
 # Categories related messages
 'category_header'        => 'Páginas na categoria "$1"',
 'subcategories'          => 'Subcategories',
+'category-media-header'  => 'Multimédia na categorie "$1"',
+'category-empty'         => "''Yesta categorie de momento num possui nenhuma página de conteúdo o ficheiro multimédia.''",
 'listingcontinuesabbrev' => 'cont.',
 
 'about'     => 'Sobre',
@@ -173,9 +175,16 @@ $messages = array(
 'gotaccount'              => 'Ya tem ua cuonta? $1.',
 'gotaccountlink'          => 'Entrar',
 'yourrealname'            => 'Nome berdadeiro:',
+'prefs-help-realname'     => 'L nome berdadeiro ye opcional, mas, caso decida l revelar, yeste será outelizado para lhe dar crédito pulo sue trabalho.',
 'loginsuccesstitle'       => 'Login bem sucedido',
+'loginsuccess'            => "'''Encontra-se agora lhigado a {{SITENAME}} como \"\$1\"'''.",
+'nosuchuser'              => 'Num eisiste nenhum outelizador com l nome "$1".
+Berifique l nome que antroduziu, o crie unha nuoba cuonta de outelizador.',
 'nouserspecified'         => 'Tem que specificar um nome de outelizador.',
+'wrongpassword'           => 'La palabra-chave que antroduziu ye inbálida. Por fabor, tente de nuobo.',
+'wrongpasswordempty'      => 'La palabra-chave antroduzida stá em branco. Por fabor, tente de nuobo.',
 'mailmypassword'          => 'Ambiar ua nuoba palabra-chabe por correio electrónico',
+'passwordremindertitle'   => 'Nuoba palabra-chave temporária an {{SITENAME}}',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo carregado',
@@ -226,6 +235,7 @@ O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um
 Para criá-la, screva l sue conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por angano, clique ne l boton '''boltar''' (o ''back'') de l sue navegador.",
+'noarticletext'          => 'Num eisiste actualmente teisto nesta página; você puode [[Special:Search/{{PAGENAME}}|pesquisar pulo títalo desta página noutras páginas]] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
 'previewnote'            => '<strong>Isto ye apenas unha prebison. Las alteraçons inda num foram grabadas!</strong>',
 'editing'                => 'A editar $1',
 'editingsection'         => 'Editando $1 (secçon)',
@@ -239,6 +249,8 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'templatesusedpreview'   => 'Templates usados nesta previsão:',
 'template-protected'     => '(protegida)',
 'template-semiprotected' => '(semi-protegida)',
+'nocreatetext'           => '{{SITENAME}} tem restringida la possibilidade de criar nuobas páginas.
+Pode boltar atrás i editar unha página yá eisistente, o [[{{ns:special}}:Userlogin|autenticar-se o criar unha cuonta]].',
 'recreate-deleted-warn'  => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
 
 Certifique-se de que é adequado prosseguir a edição de esta página.
@@ -290,23 +302,25 @@ Legenda: (actu) = diferenças da versão actual,
 'rightslog' => 'Registo de privilégios de outelizador',
 
 # Recent changes
-'nchanges'        => '$1 {{PLURAL:$1|alteração|alterações}}',
-'recentchanges'   => 'Alteraçons recentes',
-'rcnote'          => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir de $3.",
-'rclistfrom'      => 'Mostrar as novas alterações a partir de $1',
-'rcshowhideminor' => '$1 edições mínimas',
-'rcshowhidebots'  => '$1 robots',
-'rcshowhideliu'   => '$1 utilizadores registados',
-'rcshowhideanons' => '$1 utilizadores anónimos',
-'rcshowhidemine'  => '$1 mies ediçons',
-'rclinks'         => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
-'diff'            => 'dif',
-'hist'            => 'hist',
-'hide'            => 'Esconder',
-'show'            => 'Mostrar',
-'minoreditletter' => 'm',
-'newpageletter'   => 'N',
-'boteditletter'   => 'b',
+'nchanges'                       => '$1 {{PLURAL:$1|alteração|alterações}}',
+'recentchanges'                  => 'Alteraçons recentes',
+'recentchanges-feed-description' => 'Acompanhe las alteraçõns recientes de yeste buiqui por yeste feed.',
+'rcnote'                         => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir de $3.",
+'rclistfrom'                     => 'Mostrar as novas alterações a partir de $1',
+'rcshowhideminor'                => '$1 edições mínimas',
+'rcshowhidebots'                 => '$1 robots',
+'rcshowhideliu'                  => '$1 utilizadores registados',
+'rcshowhideanons'                => '$1 utilizadores anónimos',
+'rcshowhidepatr'                 => '$1 ediçons berificadas',
+'rcshowhidemine'                 => '$1 mies ediçons',
+'rclinks'                        => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
+'diff'                           => 'dif',
+'hist'                           => 'hist',
+'hide'                           => 'Esconder',
+'show'                           => 'Mostrar',
+'minoreditletter'                => 'm',
+'newpageletter'                  => 'N',
+'boteditletter'                  => 'b',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
@@ -324,20 +338,21 @@ Legenda: (actu) = diferenças da versão actual,
 'imagelist' => 'Lista de ficheiros',
 
 # Image description page
-'filehist'            => 'Histórico de l ficheiro',
-'filehist-help'       => 'Clique an unha data/horário para ber l ficheiro tal como eilhe se encontraba an tal momento.',
-'filehist-current'    => 'actual',
-'filehist-datetime'   => 'Data/Hora',
-'filehist-user'       => 'Utilizador',
-'filehist-dimensions' => 'Dimensões',
-'filehist-filesize'   => 'Tamanho de ficheiro',
-'filehist-comment'    => 'Comentário',
-'imagelinks'          => 'Ligaçons (andereços web)',
-'linkstoimage'        => 'As seguintes páginas apontam para este ficheiro:',
-'nolinkstoimage'      => 'Nenhuma página aponta para yeste ficheiro.',
-'sharedupload'        => 'Este ficheiro encontra-se partilhado i puode ser usado por otros proyectos.',
-'noimage'             => 'Num eisiste nenhum ficheiro com yeste nome. Se desejar, puode $1',
-'noimage-linktext'    => 'upload it',
+'filehist'                  => 'Histórico de l ficheiro',
+'filehist-help'             => 'Clique an unha data/horário para ber l ficheiro tal como eilhe se encontraba an tal momento.',
+'filehist-current'          => 'actual',
+'filehist-datetime'         => 'Data/Hora',
+'filehist-user'             => 'Utilizador',
+'filehist-dimensions'       => 'Dimensões',
+'filehist-filesize'         => 'Tamanho de ficheiro',
+'filehist-comment'          => 'Comentário',
+'imagelinks'                => 'Ligaçons (andereços web)',
+'linkstoimage'              => 'As seguintes páginas apontam para este ficheiro:',
+'nolinkstoimage'            => 'Nenhuma página aponta para yeste ficheiro.',
+'sharedupload'              => 'Este ficheiro encontra-se partilhado i puode ser usado por otros proyectos.',
+'noimage'                   => 'Num eisiste nenhum ficheiro com yeste nome. Se desejar, puode $1',
+'noimage-linktext'          => 'upload it',
+'uploadnewversion-linktext' => 'Carregar unha nuoba berson de yeste ficheiro',
 
 # MIME search
 'mimesearch' => 'Pesquisa MIME',
@@ -351,6 +366,9 @@ Legenda: (actu) = diferenças da versão actual,
 # Random page
 'randompage' => 'Página aleatória',
 
+# Random redirect
+'randomredirect' => 'Redireccionamento aleatório',
+
 # Statistics
 'statistics' => 'Çtatísticas',
 
@@ -361,21 +379,29 @@ Legenda: (actu) = diferenças da versão actual,
 'brokenredirects' => 'Redireccionamentos quebrados',
 
 # Miscellaneous special pages
-'nbytes'         => '$1 {{PLURAL:$1|byte|bytes}}',
-'nlinks'         => '$1 {{PLURAL:$1|link|links}}',
-'nmembers'       => '$1 {{PLURAL:$1|membro|membros}}',
-'mostcategories' => 'Páginas de conteúdo com mais categories',
-'prefixindex'    => 'Índice de prefixo',
-'shortpages'     => 'Páginas curtas',
-'longpages'      => 'Páginas longas',
-'deadendpages'   => 'Páginas sem saída',
-'protectedpages' => 'Páginas protegidas',
-'listusers'      => 'Lhista de outelizadores',
-'specialpages'   => 'Páginas speciales',
-'newpages'       => 'Nuovas páginas',
-'ancientpages'   => 'Páginas mais antigas',
-'move'           => 'Mover',
-'movethispage'   => 'Mover esta página',
+'nbytes'              => '$1 {{PLURAL:$1|byte|bytes}}',
+'nlinks'              => '$1 {{PLURAL:$1|link|links}}',
+'nmembers'            => '$1 {{PLURAL:$1|membro|membros}}',
+'lonelypages'         => 'Páginas órfãs',
+'uncategorizedimages' => 'Imagens num categorizadas',
+'unusedcategories'    => 'Categories num usadas',
+'unusedimages'        => 'Ficheiros num usados',
+'wantedcategories'    => 'Categories pedidas',
+'wantedpages'         => 'Páginas pedidas',
+'mostlinked'          => 'Páginas cum mais afluentes',
+'mostcategories'      => 'Páginas de conteúdo com mais categories',
+'mostrevisions'       => 'Páginas de conteúdo com mais rebisons',
+'prefixindex'         => 'Índice de prefixo',
+'shortpages'          => 'Páginas curtas',
+'longpages'           => 'Páginas longas',
+'deadendpages'        => 'Páginas sem saída',
+'protectedpages'      => 'Páginas protegidas',
+'listusers'           => 'Lhista de outelizadores',
+'specialpages'        => 'Páginas speciales',
+'newpages'            => 'Nuovas páginas',
+'ancientpages'        => 'Páginas mais antigas',
+'move'                => 'Mover',
+'movethispage'        => 'Mover esta página',
 
 # Book sources
 'booksources' => 'Fontes de lhibros',
@@ -421,17 +447,23 @@ Legenda: (actu) = diferenças da versão actual,
 # Delete/protect/revert
 'deletepage'                  => 'Apagar página',
 'actioncomplete'              => 'Acção terminada',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" fue elhiminada.
+Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'              => 'apagado "[[$1]]"',
 'dellogpage'                  => 'Registo de eliminação',
+'deletecomment'               => 'Razon de eliminaçon',
+'deleteotherreason'           => 'Razon adicional:',
 'deletereasonotherlist'       => 'Outro motivo',
 'rollbacklink'                => 'voltar',
 'protectlogpage'              => 'Registo de protecção',
 'protect-legend'              => 'Confirmar protecçon',
+'protectcomment'              => 'Razon de protecçon',
 'protect-default'             => '(padron)',
 'protect-level-autoconfirmed' => 'Bloquear outelizadores num registados',
 'protect-level-sysop'         => 'Apenas administradores',
 'protect-summary-cascade'     => 'p. progressiva',
 'protect-expiring'            => 'expira an $1 (UTC)',
+'protect-cascade'             => '"Protecçon progressiva" - proteya quaisquer páginas que estejam ancluídas nesta.',
 'restriction-type'            => 'Permisson:',
 'restriction-level'           => 'Níble de restriçon:',
 
@@ -478,9 +510,19 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Move page
 'move-page-legend' => 'Mover página',
+'movepagetext'     => "Outelizando l seguinte formulário você poderá renomear unha página, mobendo todo l stórico para l nuobo títalo. L títalo anterior será transformado num redireccionamento para l nuobo.
+
+Links para las páginas antigas num seron mudados; certifique-se de verificar se eisistem redireccionamentos quebrados o duplos. Você ye responsáble por certificar-se que ls links continuam apontando para onde eilhes deberion apuntar.
+
+Note que la página '''num''' será mobida se yá eisistir unha página com l nuobo títalo, a num ser que steya bazio o seya um redireccionamento e num tenha stórico de ediçons. Isto significa que puode renomear unha página de bolta para l nome que tinha anteriormente se cometer algum engano i que num puode sobrepor unha página.
+
+<b>CUIDADO!</b>
+Isto puode ser unha mudança drástica i inesperada para unha página popular; por fabor, tenha certeza de que compreende las consequências de la alteraçon antes de prosseguir.",
 'movearticle'      => 'Mover página',
 'newtitle'         => 'Para nuovo títalo',
+'move-watch'       => 'Bigiar yesta página',
 'movepagebtn'      => 'Mover página',
+'pagemovedsub'     => 'Página mobida com sucesso',
 'movedto'          => 'movido para',
 '1movedto2'        => '[[$1]] foi movido para [[$2]]',
 'movelogpage'      => 'Registo de movimentos',

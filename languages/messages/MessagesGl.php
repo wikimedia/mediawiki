@@ -429,8 +429,8 @@ Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITE
 'yourvariant'                => 'Variante de idioma:',
 'yournick'                   => 'Sinatura:',
 'badsig'                     => 'Sinatura non válida; comprobe o código HTML utilizado.',
-'badsiglength'               => 'A sinatura é demasiado longa.
-Ha de ter menos de $1 caracteres.',
+'badsiglength'               => 'A súa sinatura é demasiado longa.
+Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => 'O seu nome real é opcional, pero se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'loginerror'                 => 'Erro ao entrar ao sistema',

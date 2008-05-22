@@ -12,6 +12,7 @@
  * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
+ * @author Quackor
  */
 
 $skinNames = array(
@@ -440,6 +441,7 @@ verður sendur fyri nakað av fylgjandi hentleikum.',
 'extlink_tip'     => 'Útvortis slóð (minst til http:// forskoytið)',
 'headline_sample' => 'Yvirskrift tekstur',
 'headline_tip'    => 'Snið 2 yvirskrift',
+'math_sample'     => 'Set formil her',
 'math_tip'        => 'Støddfrøðiligur formul (LaTeX)',
 'nowiki_tip'      => 'Ignorera wiki forsniðan',
 'image_sample'    => 'Dømi.jpg',
@@ -667,6 +669,7 @@ fyri at leggja fílur upp.',
 'filehist-current'  => 'streymur',
 'filehist-datetime' => 'Dagur/Tíð',
 'filehist-user'     => 'Brúkari',
+'filehist-filesize' => 'Fílu stødd',
 'filehist-comment'  => 'Viðmerking',
 'imagelinks'        => 'Myndarslóðir',
 'linkstoimage'      => 'Hesar síður slóða til hesa mynd:',
@@ -877,7 +880,9 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'protect-title'      => 'Friðar "$1"',
 'protect-legend'     => 'Vátta friðing',
 'protectcomment'     => 'Orsøk til friðing:',
+'protectexpiry'      => 'Gongur út:',
 'protect-default'    => '(fyridømi)',
+'protect-expiring'   => 'gongur út $1 (UTC)',
 'restriction-type'   => 'Verndstøða:',
 'pagesize'           => '(být)',
 
@@ -1086,8 +1091,10 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'nextdiff'     => 'Far til næsta mun →',
 
 # Media information
-'imagemaxsize' => 'Avmarka myndir á myndalýsingarsíðum til:',
-'thumbsize'    => 'Smámyndastødd:',
+'imagemaxsize'   => 'Avmarka myndir á myndalýsingarsíðum til:',
+'thumbsize'      => 'Smámyndastødd:',
+'file-info-size' => '($1 × $2 pixel, fílu stødd: $3, MIME slag: $4)',
+'svg-long-desc'  => '(SVG fíle, nominelt $1 × $2 pixel, fíle stødd: $3)',
 
 # Special:Newimages
 'newimages' => 'Nýggjar myndir',

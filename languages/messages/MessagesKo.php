@@ -16,6 +16,7 @@
  * @author Jon Harald Søby
  * @author Ficell
  * @author Pi.C.Noizecehx
+ * @author Kwj2772
  */
 
 $namespaceNames = array(
@@ -220,7 +221,7 @@ $messages = array(
 'permalink'         => '고유링크',
 'print'             => '인쇄',
 'edit'              => '편집',
-'create'            => '만들기',
+'create'            => '생성',
 'editthispage'      => '이 문서 편집하기',
 'create-this-page'  => '문서 만들기',
 'delete'            => '삭제',
@@ -821,7 +822,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'show'                              => '보이기',
 'minoreditletter'                   => '잔글',
 'newpageletter'                     => '새글',
-'boteditletter'                     => 'b',
+'boteditletter'                     => '봇',
 'number_of_watching_users_pageview' => '[$1명이 주시하고 있음]',
 'rc_categories'                     => '다음 분류로 제한 (‘|’로 구분)',
 'rc_categories_any'                 => '모두',
@@ -953,6 +954,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'imagelinks'                => '그림 링크',
 'linkstoimage'              => '다음 문서들이 이 그림을 사용하고 있습니다:',
 'nolinkstoimage'            => '이 그림을 사용하는 문서가 없습니다.',
+'duplicatesoffile'          => '이 파일과 중복되는 파일은 다음과 같습니다:',
 'sharedupload'              => '이 파일은 공용 저장소에 있습니다. 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
 'shareduploadwiki'          => '$1에서 더 자세한 정보를 얻을 수 있습니다.',
 'shareduploadwiki-linktext' => '파일 설명 문서',
@@ -1721,6 +1723,11 @@ $1',
 * exposuretime
 * fnumber
 * focallength', # Do not translate list items
+
+# EXIF tags
+'exif-make'              => '카메라 제조사',
+'exif-exposuretime'      => '노출 시간',
+'exif-shutterspeedvalue' => '셔터 속도',
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',

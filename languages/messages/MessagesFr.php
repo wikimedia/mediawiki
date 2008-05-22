@@ -1677,7 +1677,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'protectlogtext'              => 'Voir les [[{{MediaWiki:Policy-url}}|directives]] pour plus d’information.',
 'protectedarticle'            => 'a protégé « $1 »',
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
-'unprotectedarticle'          => 'a déprotégé « $1 »',
+'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
 'protect-title'               => 'Protéger « $1 »',
 'protect-legend'              => 'Confirmer la protection',
 'protectcomment'              => 'Raison de la protection',
@@ -1767,7 +1767,7 @@ $1',
 # Namespace form on various pages
 'namespace'      => 'Espace de noms :',
 'invert'         => 'Inverser la sélection',
-'blanknamespace' => '(principal)',
+'blanknamespace' => '(Principal)',
 
 # Contributions
 'contributions' => 'Contributions',

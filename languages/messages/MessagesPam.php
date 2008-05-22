@@ -141,7 +141,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'newwindow'      => '(mibusni ya king bayung awang)',
 'cancel'         => 'E taglus',
 'qbfind'         => 'Maintun',
-'qbbrowse'       => 'Batyon',
+'qbbrowse'       => 'Bation (browse)',
 'qbedit'         => 'Mag-edit',
 'qbpageoptions'  => 'Ining bulung',
 'qbpageinfo'     => 'Kontekstu/kabilian',
@@ -152,7 +152,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'mytalk'         => 'Makisabi kaku',
 'anontalk'       => 'Pamakisabi para keng IPing ini',
 'navigation'     => 'Pamaglibut',
-'and'            => 'at',
+'and'            => 'ampo',
 
 'errorpagetitle'    => 'Mali',
 'returnto'          => 'Magbalik king $1.',
@@ -293,22 +293,22 @@ Ating tala da reng bulung a makabukud king [[Special:Specialpages|{{int:specialp
 # General errors
 'error'                => 'Mali',
 'databaseerror'        => 'Pamagkamali king database (simpanan)',
-'dberrortext'          => 'Mika maki king database query syntax.
-Mapalyaring ating bug king software.
-Ing tauling mesubuk a database query yapin iti:
+'dberrortext'          => 'Ating migkamali king database query syntax.
+Mapaliaring ating bug king software.
+Ing tauling mesubuk a kutang king database (database query) yapin iti:
 <blockquote><tt>$1</tt></blockquote>
 from within function "<tt>$2</tt>".
 MySQL returned error "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Mika pamagkamali king syntax ning pamangutang king database (database query).
 Ing tauling kutang king database yapin iti:
 "$1"
-from within function "$2".
-MySQL returned error "$3: $4"',
+manibat king kilub ning function "$2".
+Ini ing pamagkamaling linto king MySQL - "$3: $4"',
 'noconnect'            => 'Pasensia na ka! Mikaka-prublema yang teknikal ing wiki, at e ne ayaus ing database server.<br />
 $1',
 'nodb'                 => 'E ne apili ing database $1',
 'cachederror'          => 'Ing makatuki copia neng misimpan (cached copy) ning bulung a adwan mu, at mapalyaring e ne bayu o makapanaun.',
-'laggedslavemode'      => 'Babala: Mekad ing bulung aliwa ya ing pekabayu',
+'laggedslavemode'      => 'Kapiadian: Mapaliaring ala lu king bulung deng pekatauling mibayu.',
 'readonly'             => 'Makasara ya ing database',
 'enterlockreason'      => 'Ibie me ing sangkan ning pamaniara, pati ing tantia nung kapilan ya milako iti',
 'readonlytext'         => 'Kasalungsungan yang makasara ing database kareng bayung ambag at aliwa pang pamagbayu, mapalyaring para king karaniwan a pamaniamasan king database; mibalik ya king normal kaibat na niti.
@@ -402,9 +402,9 @@ Mamili kang aliwang lagyu.',
 'uid'                        => 'Ing kekang user ID:',
 'yourrealname'               => 'Tutung lagyu:',
 'yourlanguage'               => 'Amanu:',
-'yournick'                   => 'Palayo:',
+'yournick'                   => 'Pirma (Signature):',
 'badsig'                     => 'E ustu ing simpling pirma (raw signature); lon mo reng HTML tag.',
-'badsiglength'               => 'Masiadu yang makaba ing kekang palayo; kailangan, mas makuyad ya king $1 kulit (character).',
+'badsiglength'               => 'Masiadu yang makaba ing kekang pirma (signature). Kailangan, mas makuyad ya kesa king $1 kulit (characters).',
 'email'                      => 'Kekang e-mail',
 'prefs-help-realname'        => 'Ika ing bala nung buri meng ibie ing tutu mung lagyu.
 Nung ibie me, magamit ya bang kilalanan ing kekang ambag.',
@@ -430,7 +430,7 @@ Pakisalangi mu la, at subukan mung pasibayu.',
 Kailangan maki $1 yang letra at aliwa ya king kekang lagyung talagamit.',
 'mailmypassword'             => 'I e-mail me ing password',
 'passwordremindertitle'      => 'Bayu at pansamantalang password para king {{SITENAME}}',
-'passwordremindertext'       => 'Ating talagamit (mapalyaring ika, ibat king IP address $1)
+'passwordremindertext'       => 'Ating talagamit (mapaliaring ika, ibat king IP address $1)
 a mákisabing paralan da kang bayung password para king {{SITENAME}} ($4).
 Ing password para king talagamit a i "$2", miyalilan ne king "$3".
 Kailangan mung mag login ngeni at alilan me ing kekang password.
@@ -506,7 +506,7 @@ Mapaliaring melaus na ing pamanalili mung password, o mekapaniad na kang bayung 
 'showpreview'               => 'Pakit ya ing preview',
 'showlivepreview'           => 'Kasalungsungan (live) a preview',
 'showdiff'                  => 'Pakit la reng miyalilan',
-'anoneditwarning'           => "'''Babala:''' Eka makalog-in.  Ing kekang IP address mitala ya kening bulung ning amlat pamanalili.",
+'anoneditwarning'           => "'''Kapiadian:''' Eka maka-login.  Mitala ya ing kekang IP address king amlat pamanalili (edit history) ning bulung a ini.",
 'missingsummary'            => "'''Kapabaluan:''' Ala kang binieng sampulung (summary) da reng me-edit.
 Nung i-click meng pasibayu ing Save, ma-save ya ing kekang in-edit a alang anti kaniti.",
 'missingcommenttext'        => 'Pakisulat me ing kekang komentu/puna king lalam.',
@@ -515,12 +515,12 @@ Nung i-click meng pasibayu ing Save, ma-save ya ing kekang i-edit a yalang anti 
 'summary-preview'           => 'Preview ning sampulung (summary preview)',
 'subject-preview'           => 'Preview ning paksa/pamagat',
 'blockedtitle'              => 'Ing talagamit mesabat ya',
-'blockedtext'               => "<big>'''Mesabat ya ing kekang lagyung talagamit (user name) o IP address.'''</big>
+'blockedtext'               => "<big>'''Mesabat ya ing kekang lagiung talagamit (user name) o IP address.'''</big>
 
 I $1 ing menyabat. Ini ing binie nang sangkan ''$2''.
 
-* Umpisa ning pamanyabat: $8
-* Angganan ning pamanyabat: $6
+* Umpisa ning pamaniabat: $8
+* Angganan ning pamaniabat: $6
 * Ing talagamit a sabatan: $7
 
 Malyari meng pabaluan i $1 o deng aliwang [[{{MediaWiki:Grouppage-sysop}}|talapanibala]] ba yeng pisabian ing pangasabat.
@@ -571,7 +571,7 @@ Nung migkamali kang minta keni, i-click me mu ing '''back''' (mibalik) button ni
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Gamitan me ing button a 'Pakit ya ing preview' ('Show preview') ba yang subukan ing kekang bayung CSS/JS bayu ka mag-save.",
 'usercsspreview'            => "'''Tandanan mung pi-preview me mu ing kekang user CSS, e ya pa me-save!'''",
 'userjspreview'             => "'''Tandanan mung susubukan/pi-preview me pamu ing kekang user JavaScript, e ya pa me-save iti!'''",
-'userinvalidcssjstitle'     => "'''Babala:''' Alang pabalat (skin) a \"\$1\".
+'userinvalidcssjstitle'     => "'''Kapiadian:''' Alang pabalat (skin) a \"\$1\".
 Tandanan mung deng pasadiang bulung (custom pages) a .css ampong .js, gagamit lang bansag a mababang letra (lowercase), alm. (alimbawa), {{ns:user}}:Foo/monobook.css, at e {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Mibayu)',
 'note'                      => '<strong>Kapabaluan:</strong>',
@@ -601,21 +601,22 @@ Bukud mung ing makasulat king babo ing ma-save katimid mu ketang   "I-save ya in
 'storedversion'             => 'Bersion a makasimpan',
 'nonunicodebrowser'         => '<strong>BABALA: E ya unicode compliant ing kekang browser.
 Ating paralan ba kang e mika-prublema king pamag-edit: lunto la antimong hexadecimal code king kahun a pipag-editan deng letra/kulit a e-ASCII (non-ASCII characters).</strong>',
-'editingold'                => '<strong>BABALA: Laun neng pamagbayu ning bulung a ini ing
-kekang alilan.
+'editingold'                => '<strong>KAPIADIAN: Laun neng pamagbayu ning bulung a ini ing kekang alilan.
 Nung i-save me, mawala la ngan deng miyalilan manibat ketang pamagbayung ini.</strong>',
 'yourdiff'                  => 'Pamiyaliwa',
-'copyrightwarning'          => 'Pakitandanan mung tuturing lang mipaintulutan deng eganaganang ambag king {{SITENAME}} lalam ning $2 (lon ya ing $1 para kareng detalle). Nung e mu buri ing alilan deng laganas at alang patugut ing kekang sinulat, at mipamye ya angyang kaninu
-iti, e me duduwang keni.<br />
-Mangaku ka mu naman a ika mismu ing sinulat kaniti, o acopia me ketang metung a pikwanan a mipaintulutan king malda o aliwa pang libring pikukwanan.
+'copyrightwarning'          => 'Pakitandanan mung tuturing lang mipaintulutan deng eganaganang ambag king {{SITENAME}} lalam ning $2 (lon ya ing $1 para kareng detalle). 
+Nung e mu buri ing alilan deng laganas at alang patugut ing kekang sinulat, at mipamie ya angiang kaninu
+iti, e me duduang keni.
+<br />
+Mangaku ka mu naman a ika mismu ing sinulat kaniti, o acopia me ketang metung a pikuanan a mipaintulutan king malda o aliwa pang libring pikukuanan.
 <strong>E KA MÁNAMBAG OBRANG MAKI COPYRIGHT NUNG ALANG PAINTULUT!</strong>',
 'copyrightwarning2'         => 'Pakitandanan da lang alilan, ibayu o ilako deng aliwang talagamit deng kekang ambag king {{SITENAME}}. 
 Nung e mu buri ing alilan deng alang patugut at alang lunus ing kekang sinulat, e me duduang keni.<br />
 Mangaku ka mu naman a ika mismu ing sinulat kaniti, o akopia me ketang metung a pikuanan a mipaintulutan king malda o aliwa pang libring pikukuanan (lon me ing $1 para kareng detalle).
 <strong>E KA MANAMBAG OBRANG MAKI COPYRIGHT NUNG ALANG PAINTULUT!',
-'longpagewarning'           => '<strong>BABALA: Maki kaba yang $1 kilobyte ining bulung;
-mágkasákit lang mag-edit bulung a maygit 32kb deng aliwang browser.
-Nung malyari pakipitna me karing adua o maigit pang dake.</strong>',
+'longpagewarning'           => '<strong>KAPIADIAN: Maki kaba yang $1 kilobyte ining bulung;
+mágkasákit lang mag-edit bulung a maigit 32kb deng aliwang browser.
+Nung maliari, pakipitnan me kareng adua o maigit pang dake.</strong>',
 'longpageerror'             => '<strong>MALI: Miras yang $1 kilobyte ing kekang sinulat; sobra ya ketang $2 a pekamakabang maliaring iyambag. E ya ma-save iti.</strong>',
 'readonlywarning'           => '<strong>BABALA: Makasara ya ing database uling sasamasan de iti, ania e mo a-save ngeni detang kekang in-edit.
 Maliari meng i-"cut-n-paste" ing sinulat mu king metung a text file, at i-save mu ne mu para king tutuki.</strong>',
@@ -814,9 +815,10 @@ Malyari meng [[:\$1|lalangan ing bulung a iti]].",
 'showingresults'            => "Ing/ding {{PLURAL:$1|'''1''' a resulta|'''$1''' resulta}} manibatan king #'''$2'''.",
 'showingresultsnum'         => "Ing/ding {{PLURAL:$3|'''1''' a resulta|'''$3''' resulta}} manibatan king #'''$2'''.",
 'showingresultstotal'       => "Makabili la king lalam deng linual/resulta '''$1 - $2''' ning '''$3'''",
-'nonefound'                 => '\'\'\'Kapabaluan\'\'\': Keraklan, ala lang resulta deng pamanintun uling kayabe la kareng paintunan deng karaniwan a kataya antimo ing "maki/ating" ("have") o "ibat king" ("from"), a e maka-index, o nung maigit yang metung ing katayang paintunan (search term). Deta mung bulung nung nu la ngan makabili deng katayang paintunan ding lunto ketang resulta.',
+'nonefound'                 => "'''Kapabaluan''': Den mung aliwang pirinan lagiu (namespace) ing tambing a masisiasat o masusuri. Subukan meng umpisan king  ''eganagana:'' (''all:'') ing kekang kutang ba kang makapanintun king sablang laman (kayabe no reng pamisabi-sabi o talk pages, modelu o template, atlwp.), o gamitan me ing pirinan lagiung buri mu antimong mumunang paniapi (prefix) o mumunang/magumpisang lagiu.",
 'powersearch'               => 'Espesial a pamanintun',
 'powersearch-legend'        => 'Espesial a pamanintun',
+'powersearch-field'         => 'Paintunan ya ing',
 'search-external'           => 'Pamanintun king kilual',
 'searchdisabled'            => 'Makapatda/e gagana ing pamanintun king {{SITENAME}}.
 Samantala, maliari kang maintun kapamilatan ning Google.
@@ -1650,6 +1652,7 @@ $1',
 'nolinkshere-ns'           => "Alang bulung a makatuglung king '''[[:$1]]''' ketang mepiling pirinan lagyu (namespace).",
 'isredirect'               => 'Bulung ning pamanaliling direksiun',
 'istemplate'               => 'misingit',
+'isimage'                  => 'suglung king larawan',
 'whatlinkshere-prev'       => '{{PLURAL:$1|minunang|minunang $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|tutuking $1}}',
 'whatlinkshere-links'      => '← suglung',
@@ -2321,6 +2324,9 @@ $5
 
 Mayari/mapasu ya ining confirmation code keng $4.',
 'confirmemail_invalidated' => 'Mibawi ing pamagkumpirma ning e-mail address',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[Masiadu yang makaba ing URL; pasensia na ka]',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Buran])',

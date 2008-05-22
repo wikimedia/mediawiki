@@ -555,7 +555,7 @@ Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{
 'yourvariant'                => 'Kielivariantti',
 'yournick'                   => 'Allekirjoitus',
 'badsig'                     => 'Allekirjoitus ei kelpaa.',
-'badsiglength'               => 'Allekirjoitus on liian pitkä – enimmäispituus on $1 merkkiä.',
+'badsiglength'               => 'Allekirjoitus on liian pitkä – sen on oltava alle $1 {{PLURAL:$1|merkki|merkkiä}}.',
 'email'                      => 'Sähköpostitoiminnot',
 'prefs-help-realname'        => 'Vapaaehtoinen. Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
 'loginerror'                 => 'Sisäänkirjautumisvirhe',
