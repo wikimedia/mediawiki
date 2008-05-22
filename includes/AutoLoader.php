@@ -27,7 +27,6 @@ function __autoload($className) {
 		'BrokenRedirectsPage' => 'includes/SpecialBrokenRedirects.php',
 		'Category' => 'includes/Category.php',
 		'Categoryfinder' => 'includes/Categoryfinder.php',
-		'CategoryList' => 'includes/Category.php',
 		'CategoryPage' => 'includes/CategoryPage.php',
 		'CategoryViewer' => 'includes/CategoryPage.php',
 		'ChangesList' => 'includes/ChangesList.php',
