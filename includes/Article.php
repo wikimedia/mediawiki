@@ -438,7 +438,7 @@ class Article {
 		$this->mComment   = $revision->getComment();
 		$this->mTimestamp = wfTimestamp( TS_MW, $revision->getTimestamp() );
 
-		$this->mRevIdFetched = $revision->getID();
+		$this->mRevIdFetched = $revision->getId();
 		$this->mContentLoaded = true;
 		$this->mRevision =& $revision;
 
@@ -590,7 +590,7 @@ class Article {
 			$this->mTimestamp = $this->mLastRevision->getTimestamp();
 			$this->mComment   = $this->mLastRevision->getComment();
 			$this->mMinorEdit = $this->mLastRevision->isMinor();
-			$this->mRevIdFetched = $this->mLastRevision->getID();
+			$this->mRevIdFetched = $this->mLastRevision->getId();
 		}
 	}
 
