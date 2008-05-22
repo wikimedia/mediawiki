@@ -12,21 +12,20 @@
 
 class LanguageBe_tarask extends Language {
 	/**
-	 * Plural form transformations
-         *
-         * $wordform1 - singular form (for 1, 21, 31, 41...)
-         * $wordform2 - plural form (for 2, 3, 4, 22, 23, 24, 32, 33, 34...)
-         * $wordform3 - plural form (for 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 26...)
-         * $wordform4 - plural form for messages without number
-	 */
+	* Plural form transformations
+	*
+	* $wordform1 - singular form (for 1, 21, 31, 41...)
+	* $wordform2 - plural form (for 2, 3, 4, 22, 23, 24, 32, 33, 34...)
+	* $wordform3 - plural form (for 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 26...)
+	*/
 
 	function convertPlural( $count, $forms ) {
 		if ( !count($forms) ) { return ''; }
-		$forms = $this->preConvertPlural( $forms, 3 );
 
-		$count = abs( $count );
-		if ( isset($forms[3]) && $count != 1 )
-			return $forms[3];
+		//if no number with word, then use $form[0] for singular and $form[1] for plural or zero
+		if( count($forms) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
+
+		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ($count > 10 && floor(($count % 100) / 10) == 1) {
 			return $forms[2];
