@@ -251,7 +251,7 @@ class PreferencesForm {
 		if( mb_strlen( $this->mNick ) > $wgMaxSigChars ) {
 			global $wgLang;
 			$this->mainPrefsForm( 'error',
-				wfMsg( 'badsiglength', $wgLang->formatNum( $wgMaxSigChars ) ) );
+				wfMsgExt( 'badsiglength', 'parsemag', $wgLang->formatNum( $wgMaxSigChars ) ) );
 			return;
 		} elseif( $this->mToggles['fancysig'] ) {
 			if( $wgParser->validateSig( $this->mNick ) !== false ) {
@@ -643,7 +643,7 @@ class PreferencesForm {
 			$invalidSig = $this->tableRow(
 				'&nbsp;',
 				Xml::element( 'span', array( 'class' => 'error' ),
-					wfMsg( 'badsiglength', $wgLang->formatNum( $wgMaxSigChars ) ) )
+					wfMsgExt( 'badsiglength', 'parsemag', $wgLang->formatNum( $wgMaxSigChars ) ) )
 			);
 		} elseif( !empty( $this->mToggles['fancysig'] ) &&
 			false === $wgParser->validateSig( $this->mNick ) ) {
