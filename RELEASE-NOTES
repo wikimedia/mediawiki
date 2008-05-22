@@ -43,6 +43,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   be filtered to only those within the range of $wgRCMaxAge.
 * $wgRCLinkLimits and $wgRCLinkDays allow for customization of the list and limits
   displayed on the recent changes special pages.
+* The "createpage" permission is no longer required when uploading if the target
+  image page already exists.
 
 === New features in 1.13 ===
 
