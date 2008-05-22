@@ -307,7 +307,7 @@ class UploadForm {
 				break;
 
 			case self::PROTECTED_PAGE:
-				$this->uploadError( wfMsgWikiHtml( 'protectedpage' ) );
+				$wgOut->showPermissionsErrorPage( $details['permissionserrors'] );
 				break;
 
 			case self::OVERWRITE_EXISTING_FILE:
@@ -436,9 +436,15 @@ class UploadForm {
 		 * If the image is protected, non-sysop users won't be able
 		 * to modify it by uploading a new revision.
 		 */
-		if( !$nt->userCan( 'edit' ) || 
-				!$nt->userCan( 'create' ) || 
-				!$nt->userCan( 'upload' ) ){
+		$permErrors = $nt->getUserPermissionsErrors( 'edit', $wgUser );
+		$permErrorsUpload = $nt->getUserPermissionsErrors( 'upload', $wgUser );
+		$permErrorsCreate = ( $nt->exists() ? array() : $nt->getUserPermissionsErrors( 'create', $wgUser ) );
+
+		if( $permErrors || $permErrorsUpload || $permErrorsCreate ) {
+			// merge all the problems into one list, avoiding duplicates
+			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsUpload, $permErrors ) );
+			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsCreate, $permErrors ) );
+			$resultDetails = array( 'permissionserrors' => $permErrors );
 			return self::PROTECTED_PAGE;
 		}
 
