@@ -459,7 +459,7 @@ Ratio tua iam creata est. Noli oblivisci praeferentias tuas mutare.',
 'yournick'                   => 'Subscriptio:',
 'badsig'                     => 'Subscriptio cruda non est valida; scrutina HTML textos.',
 'badsiglength'               => 'Subscriptio nimis longa est.
-$1 litterae sunt longitudo maxima.',
+{{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
 'email'                      => 'Litterae electronicae',
 'prefs-help-realname'        => 'Nomen verum non necesse est.
 Si vis id dare, opera tua tibi ascribantur.',

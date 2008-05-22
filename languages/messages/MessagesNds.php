@@ -813,6 +813,10 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'rev-deleted-comment'     => '(Kommentar rutnahmen)',
 'rev-deleted-user'        => '(Brukernaam rutnahmen)',
 'rev-deleted-event'       => '(Logbook-Indrag rutnahmen)',
+'rev-deleted-text-view'   => '<div class="mw-warning plainlinks">
+Disse Version is wegsmeten worrn un is nich mehr apen to sehn.
+As Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.
+Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.</div>',
 'rev-delundel'            => 'wiesen/versteken',
 'revisiondelete'          => 'Versionen wegsmieten/wedderhalen',
 'revdelete-nooldid-title' => 'kene Versionen dor, de passt',
@@ -993,6 +997,9 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'userrights-groupsmember'          => 'Liddmaat vun:',
 'userrights-groupsremovable'       => 'Gruppen, de wegnahmen warrn köönt:',
 'userrights-groupsavailable'       => 'vörhannene Gruppen:',
+'userrights-groups-help'           => 'Du kannst de Gruppen för dissen Bruker ännern:
+* En ankrüüzt Kasten bedüüdt, dat de Bruker Maat vun de Grupp is.
+* En * bedüüdt, dat du dat Brukerrecht na dat Tokennen nich wedder trüchnehmen kannst (un annersrüm).',
 'userrights-reason'                => 'Grund:',
 'userrights-available-none'        => 'Du dröffst kene Brukerrechten ännern.',
 'userrights-available-add'         => 'Du kannst Brukers to disse Grupp{{PLURAL:$2||en}} tofögen: $1.',
@@ -1058,6 +1065,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'right-block'                => 'Brukers dat Schrieven sperren',
 'right-blockemail'           => 'Brukers dat Schrieven vun E-Mails sperren',
 'right-hideuser'             => 'Brukernaam sperrn un nich mehr apen wiesen',
+'right-proxyunbannable'      => 'Utnahm vun automaatsche Proxysperren',
 'right-protect'              => 'Schuulstatus vun Sieden ännern',
 'right-editprotected'        => 'Schuulte Sieden ännern (ahn Kaskadensperr)',
 'right-editinterface'        => 'Systemnarichten ännern',
@@ -1173,6 +1181,10 @@ Alle Tieden sünd UTC.",
 'largefileserver'            => 'De Datei is grötter as de vun’n Server verlöövte Bövergrenz för de Grött.',
 'emptyfile'                  => 'De hoochladene Datei is leddig. De Grund kann en Tippfehler in de Dateinaam ween. Kontrolleer, of du de Datei redig hoochladen wullst.',
 'fileexists'                 => 'En Datei mit dissen Naam existeert al, prööv <strong><tt>$1</tt></strong>, wenn du di nich seker büst of du dat ännern wullst.',
+'fileexists-extension'       => 'Dat gifft al en Datei mit en ähnlichen Naam:<br />
+Naam vun diene Datei: <strong><tt>$1</tt></strong><br />
+Naam vun de Datei, de al dor is: <strong><tt>$2</tt></strong><br />
+Blot dat Ennen vun de Datei is bi dat Groot-/Lütt-Schrieven anners. Kiek na, wat de Datein villicht desülven sünd.',
 'fileexists-thumb'           => "<center>'''Vörhannene Datei'''</center>",
 'fileexists-forbidden'       => 'En Datei mit dissen Naam gifft dat al; gah trüch un laad de Datei ünner en annern Naam hooch. [[Image:$1|thumb|center|$1]]',
 'successfulupload'           => 'Datei hoochladen hett Spood',
@@ -1358,7 +1370,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'unusedimages'            => 'Weetbiller',
 'popularpages'            => 'Faken opropene Sieden',
 'wantedcategories'        => 'Kategorien, de veel bruukt warrt, aver noch keen Text hebbt (nich anleggt sünd)',
-'wantedpages'             => 'Wünschte Sieden',
+'wantedpages'             => 'Sieden, de noch fehlt',
 'mostlinked'              => 'Sieden, op de vele Lenken wiest',
 'mostlinkedcategories'    => 'Kategorien, op de vele Lenken wiest',
 'mostlinkedtemplates'     => 'Vörlagen, op de vele Lenken wiest',
@@ -1643,6 +1655,9 @@ Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse
 'undeletedrevisions-files' => '{{Plural:$1|Ene Version|$1 Versionen}} un {{Plural:$2|ene Datei|$2 Datein}} wedderhaalt',
 'undeletedfiles'           => '{{Plural:$1|ene Datei|$1 Datein}} wedderhaalt',
 'cannotundelete'           => 'Wedderhalen güng nich; en annern hett de Siet al wedderhaalt.',
+'undeletedpage'            => "<big>'''$1''' wedderhaalt.</big>
+
+In dat [[Special:Log/delete|Lösch-Logbook]] steiht en Översicht över de wegsmetenen un wedderhaalten Sieden.",
 'undelete-header'          => 'Kiek in dat [[{{ns:special}}:Log/delete|Lösch-Logbook]] för Sieden, de nuletzt wegsmeten worrn sünd.',
 'undelete-search-box'      => 'Wegsmetene Sieden söken',
 'undelete-search-prefix'   => 'Wies Sieden, de anfangt mit:',
@@ -1715,6 +1730,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipbanononly'                 => 'Blot anonyme Brukers blocken',
 'ipbcreateaccount'            => 'Anleggen vun Brukerkonto verhinnern',
 'ipbemailban'                 => 'E-Mail schrieven sperren',
+'ipbenableautoblock'          => 'Sperr de aktuell vun dissen Bruker bruukte IP-Adress un automaatsch all de annern, vun de ut he Sieden ännern oder Brukers anleggen will',
 'ipbsubmit'                   => 'Adress blocken',
 'ipbother'                    => 'Annere Tiet:',
 'ipboptions'                  => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
@@ -1767,6 +1783,7 @@ Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.
 'ipb_expiry_invalid'          => 'De angeven Aflooptiet is nich güllig.',
 'ipb_already_blocked'         => '„$1“ is al blockt',
 'ipb_cant_unblock'            => 'Fehler: Block-ID $1 nich funnen. De Sperr is villicht al wedder ophoven.',
+'ipb_blocked_as_range'        => 'Fehler: De IP-Adress $1 is as Deel vun de IP-Reeg $2 indirekt sperrt worrn. De Sperr trüchnehmen för $1 alleen geiht nich.',
 'ip_range_invalid'            => 'Ungüllig IP-Addressrebeet.',
 'blockme'                     => 'Sperr mi',
 'proxyblocker'                => 'Proxyblocker',
@@ -1794,6 +1811,7 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 'lockdbsuccesstext'   => 'De {{SITENAME}}-Datenbank is sparrt.
 <br />Du muttst de Datenbank weer freegeven, wenn de Pleegarbeiden beennt sünd.',
 'unlockdbsuccesstext' => 'De {{SITENAME}}-Datenbank is weer freegeven.',
+'lockfilenotwritable' => 'De Datenbank-Sperrdatei geiht nich to schrieven. För dat Sperren oder Freegeven vun de Datenbank mutt disse Datei för den Webserver to schrieven gahn.',
 'databasenotlocked'   => 'De Datenbank is nich sparrt.',
 
 # Move page
@@ -1845,6 +1863,8 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schaven warrn kann?',
 'delete_and_move_confirm' => 'Jo, de Siet wegsmieten',
 'delete_and_move_reason'  => 'wegsmeten, Platz to maken för Schuven',
+'selfmove'                => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
+'immobile_namespace'      => 'De Utgangs- oder Teelnaamruum is schuult; Schuven na oder ut dissen Naamruum geiht nich.',
 'imagenocrossnamespace'   => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
 'imagetypemismatch'       => 'De ne’e Dateiennen passt nich to de ole',
 
@@ -1882,6 +1902,9 @@ De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schav
 # Special:Import
 'import'                     => 'Import vun Sieden',
 'importinterwiki'            => 'Transwiki-Import',
+'import-interwiki-text'      => 'Wähl en Wiki un en Siet för dat Importeren ut.
+De Versionsdaten un Brukernaams blievt dor bi vörhannen.
+All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import-Logbook]].',
 'import-interwiki-history'   => 'Importeer all Versionen vun disse Siet',
 'import-interwiki-submit'    => 'Rinhalen',
 'import-interwiki-namespace' => 'Siet in Naamruum halen:',
@@ -2390,6 +2413,7 @@ $1',
 'imgmultipageprev' => '← vörige Siet',
 'imgmultipagenext' => 'nächste Siet →',
 'imgmultigo'       => 'Los!',
+'imgmultigoto'     => 'Gah na de Siet $1',
 
 # Table pager
 'ascending_abbrev'         => 'op',
@@ -2452,6 +2476,7 @@ Versöök de normale Vörschau.',
 'version-other'                    => 'Annern Kraam',
 'version-mediahandlers'            => 'Medien-Handlers',
 'version-hooks'                    => 'Hooks',
+'version-extension-functions'      => 'Extension-Funkschonen',
 'version-parser-extensiontags'     => "Parser-Extensions ''(Tags)''",
 'version-parser-function-hooks'    => 'Parser-Funkschonen',
 'version-skin-extension-functions' => 'Skin-Extension-Funkschonen',

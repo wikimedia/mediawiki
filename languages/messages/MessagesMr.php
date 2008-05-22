@@ -1007,10 +1007,10 @@ $3ने ''$2'' कारण दिले आहे.",
 'editusergroup'                    => 'सदस्य गट (ग्रूप्स) संपादीत करा',
 'editinguser'                      => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])चे सदस्य अधिकारात बदल केला जात आहे.",
 'userrights-editusergroup'         => 'सदस्य मंडळे संपादीत करा',
-'saveusergroups'                   => 'सदस्य मंडळ जतन करा',
+'saveusergroups'                   => 'सदस्य गट जतन करा',
 'userrights-groupsmember'          => '(चा) सभासद:',
-'userrights-groupsremovable'       => 'वगळण्यायोग्य मंडळे:',
-'userrights-groupsavailable'       => 'उपलब्ध मंडळे:',
+'userrights-groupsremovable'       => 'वगळण्यायोग्य गट:',
+'userrights-groupsavailable'       => 'उपलब्ध गट:',
 'userrights-groups-help'           => 'तुम्ही एखाद्या सदस्याचे गट सदस्यत्व बदलू शकता:
 * निवडलेला चौकोन म्हणजे सदस्य त्या गटात आहे.
 * न निवडलेला चौकोन म्हणजे सदस्य त्या गटात नाही.

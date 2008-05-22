@@ -787,20 +787,20 @@ Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;už
 Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu a&nbsp;pokud Vám byla tato možnost zakázána.
 Vaše IP adresa je '''$3''' a&nbsp;identifikační číslo bloku je '''$5'''; tyto údaje budete muset uvést ve všech žádostech o&nbsp;odblokování.",
-'autoblockedtext'           => 'Vaše IP adresa byla automaticky zablokována, protože byla používána jiným uživatelem, kterého zablokoval $1.
+'autoblockedtext'           => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
 
-Udaný důvod:
+Udaný důvod blokování:
 
-:\'\'$2\'\'
+:''$2''
 
-* Zablokováno: $8
-* Zablokování vyprší: $6
+* Začátek blokování: $8
+* Konec blokování: $6
 
-Můžete kontaktovat správce $1 nebo některého z dalších [[{{MediaWiki:Grouppage-sysop}}|správců]] pro diskuzi o Vašem zablokování.
+Zablokování můžete prodiskutovat se správcem $1 nebo některým z dalších [[{{MediaWiki:Grouppage-sysop}}|správců]].
 
-Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete použít, pokud nemáte zadaný platný email ve svém [[Special:Preferences|nastavení]] a nebylo vám zablokováno jeho užívání.
+Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete použít, pokud nemáte ve svém [[Special:Preferences|nastavení]] zadaný platný e-mail a nebylo vám zablokováno jeho užívání.
 
-Číslo Vašeho zablokování je $5. Prosíme, uveďte ho při komunikaci se správci.',
+Číslo vašeho zablokování je $5. Prosíme, uveďte ho při komunikaci se správci.",
 'blockednoreason'           => 'důvod nebyl zadán',
 'blockedoriginalsource'     => "Zdrojový text stránky '''$1''' následuje:",
 'blockededitsource'         => "Text '''vašich editací''' stránky '''$1''' následuje:",

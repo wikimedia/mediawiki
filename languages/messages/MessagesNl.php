@@ -669,8 +669,8 @@ Kies alstublieft een andere naam.',
 'yourvariant'                => 'Taalvariant:',
 'yournick'                   => 'Tekst voor ondertekening:',
 'badsig'                     => 'Ongeldige ondertekening; controleer de HTML-tags.',
-'badsiglength'               => 'Ondertekening is te lang.
-Deze moet minder dan $1 karakters bevatten.',
+'badsiglength'               => 'De ondertekening is te lang.
+Deze moet minder dan $1 {{PLURAL:$1|karakters|karakters}} bevatten.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Echte naam is optioneel, als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 'loginerror'                 => 'Aanmeldfout',

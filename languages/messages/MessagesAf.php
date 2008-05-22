@@ -10,6 +10,7 @@
  * @author Spacebirdy
  * @author Manie
  * @author Arnobarnard
+ * @author Anrie
  */
 
 $skinNames = array(
@@ -69,10 +70,10 @@ $messages = array(
 'tog-previewontop'            => 'Wys voorskou bo wysigingsboks.',
 'tog-previewonfirst'          => 'Wys voorksou met eerste wysiging',
 'tog-nocache'                 => 'Deaktiveer bladsykasstelsel (Engels: caching)',
-'tog-enotifwatchlistpages'    => 'Stuur vir my epos met bladsyveranderings',
-'tog-enotifusertalkpages'     => 'Stuur vir my epos as my eie besprekingsblad verander word',
-'tog-enotifminoredits'        => 'Stuur ook epos vir klein bladsywysigings',
-'tog-enotifrevealaddr'        => 'Stel my eposadres bloot in kennisgewingspos',
+'tog-enotifwatchlistpages'    => 'Stuur vir my e-pos met bladsyveranderings',
+'tog-enotifusertalkpages'     => 'Stuur vir my e-pos as my eie besprekingsblad verander word',
+'tog-enotifminoredits'        => 'Stuur ook e-pos vir klein bladsywysigings',
+'tog-enotifrevealaddr'        => 'Stel my e-posadres bloot in kennisgewingspos',
 'tog-fancysig'                => 'Doodgewone handtekening (sonder outomatiese skakel)',
 'tog-externaleditor'          => "Gebruik outomaties 'n eksterne redigeringsprogram",
 'tog-showjumplinks'           => 'Wys "spring na"-skakels vir toeganklikheid',
@@ -1221,7 +1222,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 
 'sp-contributions-newbies'     => 'Wys slegs bydraes deur nuwe rekenings',
 'sp-contributions-newbies-sub' => 'Vir nuwe gebruikers',
-'sp-contributions-blocklog'    => 'Versperringsboekstaaf',
+'sp-contributions-blocklog'    => 'Blokkeerlogboek',
 'sp-contributions-search'      => 'Soek na bydraes',
 'sp-contributions-submit'      => 'Vertoon',
 
@@ -1238,10 +1239,10 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'whatlinkshere-links' => '← skakels',
 
 # Block/unblock
-'blockip'                  => 'Versper gebruiker',
-'blockip-legend'           => 'Versper gebruiker of IP-adres',
-'blockiptext'              => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te versper.
-Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}} beleid]].
+'blockip'                  => 'Blok gebruiker',
+'blockip-legend'           => 'Blok gebruiker of IP-adres',
+'blockiptext'              => "Gebruik die vorm hier onder om skryftoegang van 'n sekere IP-adres te blok.
+Dit moet net gedoen word om vandalisme te voorkom en in ooreenstemming met [[{{MediaWiki:Policy-url}}|{{SITENAME}}-beleid]].
 Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat gevandaliseer is, aan).",
 'ipaddress'                => 'IP-adres',
 'ipadressorusername'       => 'IP-adres of gebruikernaam:',
@@ -1261,29 +1262,29 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipboptions'               => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'           => 'ander',
 'badipaddress'             => 'Die IP-adres is nie in die regte formaat nie.',
-'blockipsuccesssub'        => 'Versperring het geslaag',
-'blockipsuccesstext'       => 'Die IP-adres "$1" is versper.
-<br />Kyk na [[Special:Ipblocklist|IP versper lys]] vir \'n oorsig van versperrings.',
+'blockipsuccesssub'        => 'Blokkering het geslaag',
+'blockipsuccesstext'       => 'Die IP-adres "$1" is geblokkeer.
+<br />Sien die [[Special:Ipblocklist|IP-bloklys]] vir \'n oorsig van blokkerings.',
 'unblockip'                => 'Maak IP-adres oop',
-'unblockiptext'            => "Gebruik die vorm hier onder om skryftoegang te herstel vir 'n voorheen versperde IP-adres.",
+'unblockiptext'            => "Gebruik die vorm hier onder om skryftoegang te herstel vir 'n voorheen geblokkeerde IP-adres.",
 'ipusubmit'                => 'Maak hierdie adres oop',
-'ipblocklist'              => 'Lys van versperde IP-adresse',
+'ipblocklist'              => 'Lys van geblokkeerde IP-adresse',
 'ipblocklist-username'     => 'Gebruikersnaam of IP adres:',
 'ipblocklist-submit'       => 'Soek',
-'blocklistline'            => '$1, $2 het $3 versper ($4)',
+'blocklistline'            => '$1, $2 het $3 geblok ($4)',
 'infiniteblock'            => 'oneindig',
 'emailblock'               => 'e-pos versper',
-'blocklink'                => 'Versper',
+'blocklink'                => 'blok',
 'unblocklink'              => 'maak oop',
 'contribslink'             => 'bydraes',
-'blocklogpage'             => 'Versperringsboekstaaf',
-'blocklogentry'            => '"[[$1]]" is versper vir \'n periode van $2 $3',
-'unblocklogentry'          => 'versperring van $1 is opgehef:',
+'blocklogpage'             => 'Blokkeerlogboek',
+'blocklogentry'            => '"[[$1]]" is vir \'n periode van $2 $3 geblok',
+'unblocklogentry'          => 'blokkade van $1 is opgehef:',
 'block-log-flags-anononly' => 'anonieme gebruikers alleenlik',
 'block-log-flags-noemail'  => 'e-pos versper',
 'ip_range_invalid'         => 'Ongeldige IP waardegebied.',
 'blockme'                  => 'Versper my',
-'proxyblocker'             => 'Proxyversper',
+'proxyblocker'             => 'Proxyblokker',
 'proxyblocksuccess'        => 'Voltooi.',
 
 # Developer tools

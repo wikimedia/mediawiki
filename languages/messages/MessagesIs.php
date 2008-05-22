@@ -569,7 +569,8 @@ Spurn: $2',
 'protectedinterface'   => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er þess vegna læst til að koma í veg fyrir misnotkun.',
 'editinginterface'     => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma texta fyrir notendaumhverfi hugbúnaðarins. Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda. Fyrir þýðingar, gjörðu svo vel að nota [http://translatewiki.net/wiki/Main_Page?setlang=is Betawiki], þýðingarverkefni MediaWiki.",
 'sqlhidden'            => '(SQL-fyrirspurn falin)',
-'cascadeprotected'     => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:',
+'cascadeprotected'     => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
+$2',
 'namespaceprotected'   => "Þú hefur ekki leyfi til að breyta síðum í '''$1''' nafnrýminu.",
 'customcssjsprotected' => 'Þú hefur ekki leyfi til að breyta þessari síð því hún inniheldur notandastillingar fyrir annann notanda.',
 'ns-specialprotected'  => 'Kerfissíðum er ekki hægt að breyta.',
@@ -868,6 +869,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-uname'        => 'notandanafn',
 
 # History merging
+'mergehistory-from' => 'Heimildsíða:',
 'mergehistory-into' => 'Áætlunarsíða:',
 
 # Diffs
@@ -911,6 +913,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'nonefound'                 => "'''Athugaðu''': Það er aðeins leitað í sumum nafnrýmum sjálfkrafa. Prófaðu að setja forskeytið ''all:'' í fyrirspurnina til að leita í öllu efni (þar á meðal notandaspjallsíðum, sniðum, o.s.frv.), eða notaðu tileigandi nafnrými sem forskeyti.",
 'powersearch'               => 'Ítarleg leit',
 'powersearch-legend'        => 'Ítarlegri leit',
+'powersearch-field'         => 'Leita að',
 
 # Preferences page
 'preferences'             => 'Stillingar',
@@ -1066,6 +1069,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'recentchangeslinked-noresult' => 'Engar breytingar á tengdum síðum á þessu tímabili.',
 'recentchangeslinked-summary'  => "Þetta er listi yfir nýlega gerðar breytingar á síðum sem tengt er í frá tilgreindri síðu (eða á meðlimum úr tilgreindum flokki).
 Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
+'recentchangeslinked-page'     => 'Nafn á síða:',
 
 # Upload
 'upload'            => 'Hlaða inn skrá',
@@ -1324,6 +1328,9 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'listusers-submit'   => 'Sýna',
 'listusers-noresult' => 'Enginn notandi fannst.',
 
+# Special:Listgrouprights
+'listgrouprights-rights' => 'Réttindi',
+
 # E-mail user
 'mailnologin'     => 'Ekkert netfang til að senda á',
 'mailnologintext' => 'Þú verður að vera [[Special:Userlogin|innskráð(ur)]] auk þess að hafa gilt netfang í [[Special:Preferences|stillingunum]] þínum til að senda tölvupóst til annara notenda.',
@@ -1461,6 +1468,7 @@ Núverandi staða síðunnar er <strong>$1</strong>:',
 'restriction-edit'   => 'Breyta',
 'restriction-move'   => 'Færa',
 'restriction-create' => 'Skapa',
+'restriction-upload' => 'Hlaða inn',
 
 # Restriction levels
 'restriction-level-sysop'         => 'alvernduð',
@@ -1895,6 +1903,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-model'            => 'Tegund',
 'exif-software'         => 'Hugbúnaður notaður',
 'exif-artist'           => 'Höfundur',
+'exif-exifversion'      => 'Exif-útgáfa',
 'exif-pixelydimension'  => 'Leyfð myndalengd',
 'exif-pixelxdimension'  => 'Leyfð myndahæð',
 'exif-usercomment'      => 'Athugunarsemdir notanda',
