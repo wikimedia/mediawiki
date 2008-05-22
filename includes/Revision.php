@@ -406,7 +406,8 @@ class Revision {
 			       'rev_id' => $this->mId ),
 			'Revision::getTitle' );
 		if( $row ) {
-			$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$this->mTitle = Title::makeTitle( $row->page_namespace,
+			                                  $row->page_title );
 		}
 		return $this->mTitle;
 	}
@@ -557,24 +558,26 @@ class Revision {
 	 * @return Revision
 	 */
 	public function getPrevious() {
-		$prev = $this->getTitle() ? $this->getTitle()->getPreviousRevisionID( $this->mId ) : null;
-		if( $prev ) {
-			return Revision::newFromTitle( $this->mTitle, $prev );
-		} else {
-			return null;
+		if( $this->getTitle() ) {
+			$prev = $this->getTitle()->getPreviousRevisionID( $this->getId() );
+			if( $prev ) {
+				return Revision::newFromTitle( $this->getTitle(), $prev );
+			}
 		}
+		return null;
 	}
 
 	/**
 	 * @return Revision
 	 */
 	public function getNext() {
-		$next = $this->getTitle() ? $this->getTitle()->getNextRevisionID( $this->mId ) : null;
-		if ( $next ) {
-			return Revision::newFromTitle( $this->mTitle, $next );
-		} else {
-			return null;
+		if( $this->getTitle() ) {
+			$next = $this->getTitle()->getNextRevisionID( $this->getId() );
+			if ( $next ) {
+				return Revision::newFromTitle( $this->getTitle(), $next );
+			}
 		}
+		return null;
 	}
 
 	/**
@@ -904,7 +907,7 @@ class Revision {
 	 * @param integer $id
 	 * @param integer $pageid, optional
 	 */
-	static function getTimestampFromID( $id, $pageId = 0 ) {
+	static function getTimestampFromId( $id, $pageId = 0 ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array( 'rev_id' => $id );
 		if( $pageId ) {
