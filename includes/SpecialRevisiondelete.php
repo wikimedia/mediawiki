@@ -272,7 +272,7 @@ class RevisionDeleteForm {
 		);
 		if( $this->deleteKey=='oldid' ) {
 			foreach( $revObjs as $rev )
-				$hidden[] = wfHidden( 'oldid[]', $rev->getID() );
+				$hidden[] = wfHidden( 'oldid[]', $rev->getId() );
 		} else {
 			foreach( $revObjs as $rev )
 				$hidden[] = wfHidden( 'artimestamp[]', $rev->getTimestamp() );
@@ -1287,7 +1287,7 @@ class RevisionDeleter {
 	function updateArchFiles( $file, $bitfield ) {
 		$this->dbw->update( 'filearchive',
 			array( 'fa_deleted' => $bitfield ),
-			array( 'fa_id' => $file->getID() ),
+			array( 'fa_id' => $file->getId() ),
 			__METHOD__ );
 	}
 

@@ -232,7 +232,7 @@ class MergehistoryForm {
 		$checkBox = wfRadio( "mergepoint", $ts, false );
 
 		$pageLink = $this->sk->makeKnownLinkObj( $rev->getTitle(),
-			htmlspecialchars( $wgLang->timeanddate( $ts ) ), 'oldid=' . $rev->getID() );
+			htmlspecialchars( $wgLang->timeanddate( $ts ) ), 'oldid=' . $rev->getId() );
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
 		}
