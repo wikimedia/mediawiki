@@ -593,8 +593,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each new page in the stream is reached.
-	 * @param callable $callback
-	 * @return callable
+	 * @param $callback callback
+	 * @return callback
 	 */
 	function setPageCallback( $callback ) {
 		$previous = $this->mPageCallback;
@@ -608,8 +608,8 @@ class WikiImporter {
 	 * with the original title form (in case it's been overridden into a
 	 * local namespace), and a count of revisions.
 	 *
-	 * @param callable $callback
-	 * @return callable
+	 * @param $callback callback
+	 * @return callback
 	 */
 	function setPageOutCallback( $callback ) {
 		$previous = $this->mPageOutCallback;
@@ -619,8 +619,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each page revision is reached.
-	 * @param callable $callback
-	 * @return callable
+	 * @param $callback callback
+	 * @return callback
 	 */
 	function setRevisionCallback( $callback ) {
 		$previous = $this->mRevisionCallback;
@@ -630,8 +630,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each file upload version is reached.
-	 * @param callable callback
-	 * @return callable
+	 * @param $callback callback
+	 * @return callback
 	 */
 	function setUploadCallback( $callback ) {
 		$previous = $this->mUploadCallback;
@@ -656,7 +656,7 @@ class WikiImporter {
 
 	/**
 	 * Default per-revision callback, performs the import.
-	 * @param WikiRevision $revision
+	 * @param $revision WikiRevision
 	 * @private
 	 */
 	function importRevision( $revision ) {
@@ -675,7 +675,7 @@ class WikiImporter {
 
 	/**
 	 * Alternate per-revision callback, for debugging.
-	 * @param WikiRevision $revision
+	 * @param $revision WikiRevision
 	 * @private
 	 */
 	function debugRevisionHandler( &$revision ) {
@@ -693,7 +693,7 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function when a new <page> is reached.
-	 * @param Title $title
+	 * @param $title Title
 	 * @private
 	 */
 	function pageCallback( $title ) {
@@ -704,10 +704,10 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function when a </page> is closed.
-	 * @param Title $title
-	 * @param Title $origTitle
-	 * @param int $revisionCount
-	 * @param int $successCount number of revisions for which callback returned true
+	 * @param $title Title
+	 * @param $origTitle Title
+	 * @param $revisionCount int
+	 * @param $successCount Int: number of revisions for which callback returned true
 	 * @private
 	 */
 	function pageOutCallback( $title, $origTitle, $revisionCount, $successCount ) {

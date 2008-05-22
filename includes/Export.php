@@ -46,13 +46,13 @@ class WikiExporter {
 	 * make additional queries to pull source data while the
 	 * main query is still running.
 	 *
-	 * @param Database $db
-	 * @param mixed $history one of WikiExporter::FULL or WikiExporter::CURRENT, or an
-	 *                       associative array:
-	 *                         offset: non-inclusive offset at which to start the query
-	 *                         limit: maximum number of rows to return
-	 *                         dir: "asc" or "desc" timestamp order
-	 * @param int $buffer one of WikiExporter::BUFFER or WikiExporter::STREAM
+	 * @param $db Database
+	 * @param $history Mixed: one of WikiExporter::FULL or WikiExporter::CURRENT,
+	 *                 or an associative array:
+	 *                   offset: non-inclusive offset at which to start the query
+	 *                   limit: maximum number of rows to return
+	 *                   dir: "asc" or "desc" timestamp order
+	 * @param $buffer Int: one of WikiExporter::BUFFER or WikiExporter::STREAM
 	 */
 	function __construct( &$db, $history = WikiExporter::CURRENT,
 			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
@@ -69,7 +69,7 @@ class WikiExporter {
 	 * various row objects and XML output for filtering. Filters
 	 * can be chained or used as callbacks.
 	 *
-	 * @param mixed $callback
+	 * @param $sink mixed
 	 */
 	function setOutputSink( &$sink ) {
 		$this->sink =& $sink;
@@ -97,8 +97,8 @@ class WikiExporter {
 	/**
 	 * Dumps a series of page and revision records for those pages
 	 * in the database falling within the page_id range given.
-	 * @param int $start Inclusive lower limit (this id is included)
-	 * @param int $end   Exclusive upper limit (this id is not included)
+	 * @param $start Int: inclusive lower limit (this id is included)
+	 * @param $end   Int: Exclusive upper limit (this id is not included)
 	 *                   If 0, no upper limit.
 	 */
 	function pagesByRange( $start, $end ) {
@@ -110,7 +110,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param $title Title
 	 */
 	function pageByTitle( $title ) {
 		return $this->dumpFrom(
@@ -257,7 +257,7 @@ class WikiExporter {
 	 * separate database connection not managed by LoadBalancer; some
 	 * blob storage types will make queries to pull source data.
 	 *
-	 * @param ResultWrapper $resultset
+	 * @param $resultset ResultWrapper
 	 * @access private
 	 */
 	function outputStream( $resultset ) {
@@ -388,7 +388,7 @@ class XmlDumpWriter {
 	 * Opens a <page> section on the output stream, with data
 	 * from the given database row.
 	 *
-	 * @param object $row
+	 * @param $row object
 	 * @return string
 	 * @access private
 	 */
@@ -417,7 +417,7 @@ class XmlDumpWriter {
 	 * Dumps a <revision> section on the output stream, with
 	 * data filled in from the given database row.
 	 *
-	 * @param object $row
+	 * @param $row object
 	 * @return string
 	 * @access private
 	 */
