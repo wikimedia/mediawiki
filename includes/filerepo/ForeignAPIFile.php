@@ -9,13 +9,6 @@
 class ForeignAPIFile extends File {
 	function __construct( $title, $repo, $info ) {
 		parent::__construct( $title, $repo );
-		
-		// For some reason API doesn't currently provide type info
-		$magic = MimeMagic::singleton();
-		$info['mime'] = $magic->guessTypesForExtension( $this->getExtension() );
-		list( $info['major_mime'], $info['minor_mime'] ) = self::splitMime( $info['mime'] );
-		$info['media_type'] = $magic->getMediaType( null, $info['mime'] );
-		
 		$this->mInfo = $info;
 	}
 	
@@ -51,48 +44,53 @@ class ForeignAPIFile extends File {
 
 	// Info we can get from API...
 	public function getWidth( $page = 1 ) {
-		return intval( $this->mInfo['width'] );
+		return intval( @$this->mInfo['width'] );
 	}
 	
 	public function getHeight( $page = 1 ) {
-		return intval( $this->mInfo['height'] );
+		return intval( @$this->mInfo['height'] );
 	}
 	
 	public function getMetadata() {
-		return serialize( (array)$this->mInfo['metadata'] );
+		return serialize( (array)@$this->mInfo['metadata'] );
 	}
 	
 	public function getSize() {
-		return intval( $this->mInfo['size'] );
+		return intval( @$this->mInfo['size'] );
 	}
 	
 	public function getUrl() {
-		return $this->mInfo['url'];
+		return strval( @$this->mInfo['url'] );
 	}
 
 	public function getUser( $method='text' ) {
-		return $this->mInfo['user'];
+		return strval( @$this->mInfo['user'] );
 	}
 	
 	public function getDescription() {
-		return $this->mInfo['comment'];
+		return strval( @$this->mInfo['comment'] );
 	}
 
 	function getSha1() {
-		return wfBaseConvert( $this->mInfo['sha1'], 16, 36, 31 );
+		return wfBaseConvert( strval( @$this->mInfo['sha1'] ), 16, 36, 31 );
 	}
 	
 	function getTimestamp() {
-		return wfTimestamp( TS_MW, $this->mInfo['timestamp'] );
+		return wfTimestamp( TS_MW, strval( @$this->mInfo['timestamp'] ) );
 	}
 	
-	// Info we had to guess...
 	function getMimeType() {
-		return $this->mInfo['mime'];
+		if( empty( $info['mime'] ) ) {
+			$magic = MimeMagic::singleton();
+			$info['mime'] = $magic->guessTypesForExtension( $this->getExtension() );
+		}
+		return $info['mime'];
 	}
 	
+	/// @fixme May guess wrong on file types that can be eg audio or video
 	function getMediaType() {
-		return $this->mInfo['media_type'];
+		$magic = MimeMagic::singleton();
+		return $magic->getMediaType( null, $this->getMimeType() );
 	}
 	
 	function getDescriptionUrl() {

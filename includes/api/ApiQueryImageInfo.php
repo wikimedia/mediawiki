@@ -143,7 +143,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['metadata'] = $metadata ? unserialize( $metadata ) : null;
 			$result->setIndexedTagName_recursive( $vals['metadata'], 'meta' );
 		}
-		if( isset( $prop['mimetype'] ) ) 
+		if( isset( $prop['mime'] ) ) 
 			$vals['mime'] = $file->getMimeType();
 		
 		if( isset( $prop['archivename'] ) && $file->isOld() )
