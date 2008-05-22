@@ -82,15 +82,15 @@ class RepoGroup {
 		}
 		return false;
 	}
-	function findFiles( $titles, $time = false, $flags = 0 ) {
+	function findFiles( $titles, $flags = 0 ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
 
-		$images = $this->localRepo->findFiles( $titles, $time, $flags );
+		$images = $this->localRepo->findFiles( $titles, $flags );
 
 		foreach ( $this->foreignRepos as $repo ) {
-			$images = array_merge( $images, $repo->findFiles( $titles, $time, $flags ) );
+			$images = array_merge( $images, $repo->findFiles( $titles, $flags ) );
 		}
 		return $images;
 	}

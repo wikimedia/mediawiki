@@ -127,9 +127,12 @@ abstract class FileRepo {
 	}
 	
 	/*
-	 * Find many files at once
+	 * Find many files at once. Removes the corresponding titles
+	 * of files that are found from $titles.
+	 * @param array $titles, an array of titles
+	 * @param int $flags
 	 */
-	function findFiles( &$titles, $time = false, $flags ) {
+	function findFiles( &$titles, $flags ) {
 		$result = array();
 		foreach ( $titles as $index => $title ) {
 			$file = $this->findFile( $title );
