@@ -56,10 +56,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	# As a feed, use limited settings only
 	if( $feedFormat ) {
 		global $wgFeedLimit;
-		if( $limit > $wgFeedLimit ) {
-			$limit = $wgFeedLimit;
-		}
-
+		$limit = min( $wgFeedLimit, $limit );
 	} else {
 
 		$namespace = $wgRequest->getIntOrNull( 'namespace' );
@@ -509,6 +506,7 @@ function rcDayLimitLinks( $days, $limit, $page='Recentchanges', $more='', $doall
 	if ($more != '') $more .= '&';
 	
 	# Sort data for display and make sure it's unique after we've added user data.
+	# FIXME: why does this piss around with globals like this? Why is $limit added on globally?
 	$wgRCLinkLimits[] = $limit;
 	$wgRCLinkDays[] = $days;
 	sort($wgRCLinkLimits);
