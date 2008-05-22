@@ -1498,7 +1498,7 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno aleb
 'allnotinnamespace' => 'Všetky stránky (nie z menného priestoru $1)',
 'allpagesprev'      => 'Predchádzajúci',
 'allpagesnext'      => 'Ďalší',
-'allpagessubmit'    => 'Choď',
+'allpagessubmit'    => 'Vykonať',
 'allpagesprefix'    => 'Zobraziť stránky s predponou:',
 'allpagesbadtitle'  => 'Zadaný názov stránky je neplatný alebo mal medzijazykový alebo interwiki prefix. Môže obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v názve stránky.',
 'allpages-bad-ns'   => '{{SITENAME}} nemá menný priestor „$1“.',

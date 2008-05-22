@@ -432,7 +432,7 @@ Par piaser siegli un nome difarente.",
 'yournick'                   => 'Firma:',
 'badsig'                     => 'Erór ne ła firma non standard, verifica i tag HTML.',
 'badsiglength'               => 'La firma la xe massa longa.
-La gà da verghe al massimo $1 caràteri.',
+La gà da verghe al massimo $1 {{PLURAL:$1|caràtere|caràteri}}.',
 'email'                      => 'Indirizo e-mail',
 'prefs-help-realname'        => 'Indicar el proprio nome vero no xe obligatorio; se te siegli de inserirlo, el vegnarà doparà par atribuir la paternità dei contenuti invià.',
 'loginerror'                 => "Eror ne l'acesso",
