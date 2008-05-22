@@ -473,7 +473,7 @@ class PageHistory {
 			'wl_notificationtimestamp',
 			array(	'wl_namespace' => $this->mTitle->getNamespace(),
 				'wl_title' => $this->mTitle->getDBkey(),
-				'wl_user' => $wgUser->getID()
+				'wl_user' => $wgUser->getId()
 			),
 			__METHOD__ );
 

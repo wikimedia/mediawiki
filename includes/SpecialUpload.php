@@ -1655,7 +1655,7 @@ wgUploadAutoFill = {$autofill};
 		if ( !$row )
 			return false;
 
-		return $user->getID() == $row->img_user;
+		return $user->getId() == $row->img_user;
 	}
 
 	/**

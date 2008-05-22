@@ -149,15 +149,15 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	$hidem .= $forcebot ? ' AND rc_bot = 1' : '';
 
 	if( $hidemyself ) {
-		if( $wgUser->getID() ) {
-			$hidem .= ' AND rc_user != ' . $wgUser->getID();
+		if( $wgUser->getId() ) {
+			$hidem .= ' AND rc_user != ' . $wgUser->getId();
 		} else {
 			$hidem .= ' AND rc_user_text != ' . $dbr->addQuotes( $wgUser->getName() );
 		}
 	}
 
 	// JOIN on watchlist for users
-	$uid = $wgUser->getID();
+	$uid = $wgUser->getId();
 	if( $uid ) {
 		$tables = array( 'recentchanges', 'watchlist' );
 		$join_conds = array( 'watchlist' => array('LEFT JOIN',"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace") );

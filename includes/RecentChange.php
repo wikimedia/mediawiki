@@ -223,7 +223,7 @@ class RecentChange
 		if( $wgUseEnotif || $wgShowUpdatedMarker ) {
 			// Users
 			if( $this->mAttribs['rc_user'] ) {
-				$editor = ($wgUser->getID() == $this->mAttribs['rc_user']) ? 
+				$editor = ($wgUser->getId() == $this->mAttribs['rc_user']) ? 
 					$wgUser : User::newFromID( $this->mAttribs['rc_user'] );
 			// Anons
 			} else {
@@ -289,7 +289,7 @@ class RecentChange
 			'rc_type'	=> RC_EDIT,
 			'rc_minor'	=> $minor ? 1 : 0,
 			'rc_cur_id'	=> $title->getArticleID(),
-			'rc_user'	=> $user->getID(),
+			'rc_user'	=> $user->getId(),
 			'rc_user_text'	=> $user->getName(),
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> $newId,
@@ -343,7 +343,7 @@ class RecentChange
 			'rc_type'           => RC_NEW,
 			'rc_minor'          => $minor ? 1 : 0,
 			'rc_cur_id'         => $title->getArticleID(),
-			'rc_user'           => $user->getID(),
+			'rc_user'           => $user->getId(),
 			'rc_user_text'      => $user->getName(),
 			'rc_comment'        => $comment,
 			'rc_this_oldid'     => $newId,
@@ -394,7 +394,7 @@ class RecentChange
 			'rc_type'	=> $overRedir ? RC_MOVE_OVER_REDIRECT : RC_MOVE,
 			'rc_minor'	=> 0,
 			'rc_cur_id'	=> $oldTitle->getArticleID(),
-			'rc_user'	=> $user->getID(),
+			'rc_user'	=> $user->getId(),
 			'rc_user_text'	=> $user->getName(),
 			'rc_comment'	=> $comment,
 			'rc_this_oldid'	=> 0,
@@ -452,7 +452,7 @@ class RecentChange
 			'rc_type'	=> RC_LOG,
 			'rc_minor'	=> 0,
 			'rc_cur_id'	=> $target->getArticleID(),
-			'rc_user'	=> $user->getID(),
+			'rc_user'	=> $user->getId(),
 			'rc_user_text'	=> $user->getName(),
 			'rc_comment'	=> $logComment,
 			'rc_this_oldid'	=> 0,

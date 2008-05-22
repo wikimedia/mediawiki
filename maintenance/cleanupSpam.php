@@ -62,7 +62,7 @@ $username = wfMsg( 'spambot_username' );
 $fname = $username;
 $wgUser = User::newFromName( $username );
 // Create the user if necessary
-if ( !$wgUser->getID() ) {
+if ( !$wgUser->getId() ) {
 	$wgUser->addToDatabase();
 }
 

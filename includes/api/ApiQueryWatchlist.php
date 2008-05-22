@@ -122,7 +122,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'recentchanges'
 		));
 
-		$userId = $wgUser->getID();
+		$userId = $wgUser->getId();
 		$this->addWhere(array (
 			'wl_namespace = rc_namespace',
 			'wl_title = rc_title',

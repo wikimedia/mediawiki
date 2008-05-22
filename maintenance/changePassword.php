@@ -40,7 +40,7 @@ class ChangePassword {
 		}
 
 		$this->user = User::newFromName( $user );
-		if ( !$this->user->getID() ) {
+		if ( !$this->user->getId() ) {
 			die ( "No such user: $user\n" );
 		}
 
@@ -54,10 +54,10 @@ class ChangePassword {
 
 		$this->dbw->update( 'user',
 			array(
-				'user_password' => wfEncryptPassword( $this->user->getID(), $this->password )
+				'user_password' => wfEncryptPassword( $this->user->getId(), $this->password )
 			),
 			array(
-				'user_id' => $this->user->getID()
+				'user_id' => $this->user->getId()
 			),
 			$fname
 		);
