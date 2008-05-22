@@ -2,6 +2,7 @@
 /**
  * @file
  * @ingroup SpecialPage
+ * FIXME: this code is crap, should use Pager and Database::select().
  */
 
 /**
