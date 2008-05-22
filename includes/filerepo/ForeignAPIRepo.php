@@ -17,6 +17,7 @@
  * @ingroup FileRepo
  */
 class ForeignAPIRepo extends FileRepo {
+	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
 	protected $mQueryCache = array();
 	
 	function __construct( $info ) {
@@ -42,9 +43,6 @@ class ForeignAPIRepo extends FileRepo {
 		return false;
 	}
 	function getFileProps( $virtualUrl ) {
-		return false;
-	}
-	function newFile( $title, $time = false ) {
 		return false;
 	}
 	
@@ -90,15 +88,10 @@ class ForeignAPIRepo extends FileRepo {
 		return json_decode( $this->mQueryCache[$url], true );
 	}
 	
-	function findFile( $title, $time = false ) {
-		$info = $this->queryImage( array(
+	function getImageInfo( $title, $time = false ) {
+		return $this->queryImage( array(
 			'titles' => 'Image:' . $title->getText(),
 			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mimetype' ) );
-		if( $info ) {
-			return new ForeignAPIFile( $title, $this, $info );
-		} else {
-			return false;
-		}
 	}
 	
 	function getThumbUrl( $name, $width=-1, $height=-1 ) {
