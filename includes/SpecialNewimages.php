@@ -177,9 +177,11 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$now = wfTimestampNow();
 	$d = $wgLang->date( $now, true );
 	$t = $wgLang->time( $now, true );
-	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'sp-newimages-showfrom', $d, $t ), 'from='.$now.$botpar.$searchpar );
+	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'sp-newimages-showfrom', $d, $t ), 
+		'from='.$now.$botpar.$searchpar );
 
-	$botLink = $sk->makeKnownLinkObj($titleObj, wfMsgHtml( 'showhidebots', ($hidebots ? wfMsgHtml('show') : wfMsgHtml('hide'))),'hidebots='.($hidebots ? '0' : '1').$searchpar);
+	$botLink = $sk->makeKnownLinkObj($titleObj, wfMsgHtml( 'showhidebots', 
+		($hidebots ? wfMsgHtml('show') : wfMsgHtml('hide'))),'hidebots='.($hidebots ? '0' : '1').$searchpar);
 
 	$prevLink = wfMsgHtml( 'prevn', $wgLang->formatNum( $limit ) );
 	if( $firstTimestamp && $firstTimestamp != $latestTimestamp ) {
