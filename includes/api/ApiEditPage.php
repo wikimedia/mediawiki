@@ -239,7 +239,7 @@ class ApiEditPage extends ApiBase {
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
 			'text' => 'Page content',
 			'token' => 'Edit token. You can get one of these through prop=info',
-			'summary' => 'Edit summary',
+			'summary' => 'Edit summary. Also section title when section=new',
 			'minor' => 'Minor edit',
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
