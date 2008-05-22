@@ -1070,6 +1070,11 @@ class Linker {
 
 		$comment = $match[0];
 
+		# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
+		if( strpos( $match[1], '%' ) !== false ) {
+			$match[1] = str_replace( array('<', '>'), array('&lt;', '&gt;'), urldecode($match[1]) );
+		}
+
 		# Handle link renaming [[foo|text]] will show link as "text"
 		if( "" != $match[3] ) {
 			$text = $match[3];
