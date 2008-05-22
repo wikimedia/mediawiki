@@ -58,8 +58,8 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Substreku ligilojn',
-'tog-highlightbroken'         => 'Ruĝigu ligilojn al neekzistantaj paĝoj',
+'tog-underline'               => 'Substreki ligilojn',
+'tog-highlightbroken'         => 'Ruĝigi ligilojn al neekzistantaj paĝoj',
 'tog-justify'                 => 'Alkadrigu liniojn',
 'tog-hideminor'               => 'Kaŝu malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>',
 'tog-extendwatchlist'         => 'Etendu la atentaron por montri ĉiujn aplikeblajn ŝanĝon',

@@ -765,14 +765,17 @@ om voorkeure te spesifiseer.',
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrate',
 
 # Rights
-'right-read'          => 'Lees bladsye',
-'right-edit'          => 'Wysig bladsye',
-'right-move'          => 'Skuif bladsye',
-'right-upload'        => 'Laai lêers op',
-'right-delete'        => 'Vee bladsye uit',
-'right-browsearchive' => 'Soek uigeveede bladsye',
-'right-editinterface' => 'Wysig die gebruiker intervlak',
-'right-userrights'    => 'Wysig alle gebruiker regte',
+'right-read'           => 'Lees bladsye',
+'right-edit'           => 'Wysig bladsye',
+'right-move'           => 'Skuif bladsye',
+'right-upload'         => 'Laai lêers op',
+'right-delete'         => 'Vee bladsye uit',
+'right-bigdelete'      => 'Skrap bladsye met groot geskiedenisse',
+'right-deleterevision' => 'Skrap en ontskrap spesifieke hersienings van bladsye',
+'right-browsearchive'  => 'Soek uigeveede bladsye',
+'right-undelete'       => "Ontskrap 'n bladsy",
+'right-editinterface'  => 'Wysig die gebruiker intervlak',
+'right-userrights'     => 'Wysig alle gebruiker regte',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -887,7 +890,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 # Image description page
 'filehist'                  => 'Lêergeskiedenis',
 'filehist-deleteall'        => 'verwyder alles',
-'filehist-deleteone'        => 'verwyder hierdie',
+'filehist-deleteone'        => 'skrap',
 'filehist-current'          => 'huidig',
 'filehist-datetime'         => 'Datum/Tyd',
 'filehist-user'             => 'Gebruiker',
@@ -918,6 +921,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filedelete-reason-dropdown'  => '*Algemene skrappingsredes:
 ** Kopieregskending
 ** Duplikaatlêer',
+'filedelete-edit-reasonlist'  => 'Wysig skrap redes',
 
 # MIME search
 'mimesearch' => 'MIME-soek',
@@ -1185,6 +1189,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 # Undelete
 'undelete'                 => 'Herstel geskrapte bladsy',
 'undeletepage'             => 'Bekyk en herstel geskrapte bladsye',
+'viewdeletedpage'          => 'Bekyk geskrapte bladsye',
 'undeletepagetext'         => 'Die volgende bladsye is geskrap, maar hulle is nog in die argief en kan herstel word. Die argief kan periodiek skoongemaak word.',
 'undeleterevisions'        => '$1 {{PLURAL:$1|weergawe|weergawes}} in argief',
 'undeletehistory'          => "As jy die bladsy herstel, sal alle weergawes herstel word.
@@ -1552,6 +1557,9 @@ Om te bevestig dat hierdie adres werklik aan u behoort, en om die posfasiliteite
 $3
 
 Indien dit nié u was nie, ignoreer bloot die skakel (en hierdie pos). Hierde bevestigingkode verval om $4.',
+
+# Trackbacks
+'trackbackremove' => ' ([$1 Skrap])',
 
 # Delete conflict
 'confirmrecreate' => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''

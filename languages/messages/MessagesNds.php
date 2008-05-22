@@ -415,7 +415,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'newmessageslink'         => 'Ne’e Narichten',
 'newmessagesdifflink'     => 'Ünnerscheed to vörher',
 'youhavenewmessagesmulti' => 'Du hest ne’e Narichten op $1',
-'editsection'             => 'bearbeiden',
+'editsection'             => 'ännern',
 'editold'                 => 'bearbeiden',
 'viewsourceold'           => 'Borntext wiesen',
 'editsectionhint'         => 'Ännere Afsnitt: $1',
@@ -540,7 +540,7 @@ Vergeet nich, dien [[Special:Preferences|Instellen]] antopassen.',
 'nologin'                    => 'Wenn du noch keen Brukerkonto hest, denn kannst di anmellen: $1.',
 'nologinlink'                => 'Brukerkonto inrichten',
 'createaccount'              => 'Nieg Brukerkonto anleggen',
-'gotaccount'                 => 'Hebbt Se al en Konto? $1.',
+'gotaccount'                 => 'Hest Du al en Brukerkonto? $1.',
 'gotaccountlink'             => 'Anmellen',
 'createaccountmail'          => 'över E-Mail',
 'badretype'                  => 'De beiden Passwöör stimmt nich övereen.',
@@ -757,10 +757,12 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Uttog ut dat Lösch-Logbook:",
 
 # Parser/template warnings
-'expensive-parserfunction-category' => 'Sieden, de toveel opwännige Parserfunkschonen bruukt',
+'expensive-parserfunction-category'       => 'Sieden, de toveel opwännige Parserfunkschonen bruukt',
+'post-expand-template-inclusion-category' => 'Sieden, de över de Maximumgrött för inbunnene Sieden rövergaht',
 
 # "Undo" feature
 'undo-failure' => '<span class="error">Kunn de Siet nich op de vörige Version trüchdreihn. De Afsnitt is twischendör al wedder ännert worrn.</span>',
+'undo-norev'   => 'De Ännern kunn nich trüchdreiht warrn, de gifft dat nich oder is wegsmeten worrn.',
 'undo-summary' => 'Ännern $1 vun [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskuschoon]]) trüchdreiht.',
 
 # Account creation failure
@@ -783,8 +785,8 @@ Dit is en ole Version vun disse Siet, so as <span id="mw-revision-name">$2</span
 'nextrevision'        => 'Ne’ere Version →',
 'currentrevisionlink' => 'aktuelle Version',
 'cur'                 => 'Aktuell',
-'next'                => 'Tokamen',
-'last'                => 'Letzte',
+'next'                => 'tokamen',
+'last'                => 'vörige',
 'page_first'          => 'Anfang',
 'page_last'           => 'Enn',
 'histlegend'          => "Ünnerscheed-Utwahl: De Boxen vun de wünschten
@@ -823,6 +825,7 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'revdelete-hide-user'     => 'Brukernaam/IP vun’n Schriever versteken',
 'revdelete-hide-image'    => 'Dateiinholt versteken',
 'revdelete-log'           => 'Kommentar:',
+'revdelete-submit'        => 'Op utwählte Version anwennen',
 'revdelete-logentry'      => 'Sichtborkeit vun Version för [[$1]] ännert',
 'logdelete-logentry'      => 'Sichtborkeit vun Begeevnis för [[$1]] ännert',
 'revdelete-success'       => "'''Sichtborkeit vun Version mit Spood ännert.'''",
@@ -913,6 +916,7 @@ Söökanfragen ahn Spood hebbt faken de Oorsaak, dat no kotte oder gemeene Wöö
 'powersearch-legend'        => 'Betere Söök',
 'powersearch-ns'            => 'Söök in Naamrüüm:',
 'powersearch-redir'         => 'Redirects wiesen',
+'powersearch-field'         => 'Söök na:',
 'search-external'           => 'Externe Söök',
 'searchdisabled'            => '<p>De Vulltextsöök is wegen Överlast en Stoot deaktiveert. In disse Tied kannst du disse Google-Söök verwennen,
 de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
@@ -956,7 +960,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'oldpassword'              => 'Oolt Passwoort:',
 'newpassword'              => 'Nee Passwoort',
 'retypenew'                => 'Nee Passwoort (nochmal)',
-'textboxsize'              => 'Textfeld-Grött',
+'textboxsize'              => 'Grött vun’t Textfeld',
 'rows'                     => 'Regen',
 'columns'                  => 'Spalten',
 'searchresultshead'        => 'Söökresultaten',
@@ -1040,7 +1044,9 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'right-reupload-own'         => 'Överschrieven vun Datein, de een sülvst hoochlaadt hett',
 'right-reupload-shared'      => 'Datein lokal hoochladen, de dat al op’n gemeensam bruukten Datei-Spiekerplatz gifft',
 'right-upload_by_url'        => 'Datein vun en URL-Adress hoochladen',
+'right-purge'                => 'Siedencache leddig maken ahn dat noch wedder fraagt warrt',
 'right-autoconfirmed'        => 'Halfschuulte Sieden ännern',
+'right-bot'                  => 'Lieks as en automaatschen Prozess behannelt warrn',
 'right-apihighlimits'        => 'Högere Limits in API-Affragen',
 'right-delete'               => 'Sieden wegsmieten',
 'right-bigdelete'            => 'Sieden mit grote Versionsgeschichten wegsmieten',
@@ -1191,8 +1197,11 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'upload-misc-error'      => 'Unbekannt Fehler bi dat Hoochladen',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'  => 'Kunn de URL nich kriegen',
-'upload-curl-error28' => 'Tied-Ut bi dat Hoochladen',
+'upload-curl-error6'       => 'Kunn de URL nich kriegen',
+'upload-curl-error28'      => 'Tied-Ut bi dat Hoochladen',
+'upload-curl-error28-text' => 'De Siet hett to lang bruukt för en Antwoort.
+Kiek na, wat de Siet ok online is, tööv en Stoot un versöök dat denn noch wedder.
+Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de Siet nich ganz so veel los is.',
 
 'license'            => 'Lizenz:',
 'nolicense'          => 'nix utwählt',
@@ -1268,9 +1277,10 @@ Dat geev en internen Fehler bi dat Anleggen vun en temporäre Datei op’n Serve
 'filedelete-edit-reasonlist'  => 'Grünn för’t Wegsmieten bearbeiden',
 
 # MIME search
-'mimesearch' => 'MIME-Söök',
-'mimetype'   => 'MIME-Typ:',
-'download'   => 'Dalladen',
+'mimesearch'         => 'MIME-Söök',
+'mimesearch-summary' => 'Disse Sied verlööft dat Filtern vun Datein na’n MIME-Typ. Du musst jümmer den Medien- un den Subtyp ingeven, to’n Bispeel: <tt>image/jpeg</tt>.',
+'mimetype'           => 'MIME-Typ:',
+'download'           => 'Dalladen',
 
 # Unwatched pages
 'unwatchedpages' => 'Sieden, de op kene Oppasslist staht',
@@ -1308,8 +1318,9 @@ De List, mit de Opgaven, de de Software noch maken mutt, hett {{PLURAL:$7|een In
 Dorvun {{PLURAL:$2|hett '''een'''|hebbt '''$2'''}} {{PLURAL:$1||($4 %)}} $5-Rechten (kiek $3).",
 'statistics-mostpopular' => 'opmehrst ankekene Sieden',
 
-'disambiguations'     => 'Mehrdüdige Begrepen',
-'disambiguationspage' => 'Template:Mehrdüdig_Begreep',
+'disambiguations'      => 'Mehrdüdige Begrepen',
+'disambiguationspage'  => 'Template:Mehrdüdig_Begreep',
+'disambiguations-text' => 'Disse Sieden wist na Sieden för mehrdüdige Begrepen. Se schöölt lever op de Sieden wiesen, de egentlich meent sünd.<br />Ene Siet warrt as Siet för en mehrdüdigen Begreep ansehn, wenn [[MediaWiki:Disambiguationspage]] na ehr wiest.<br />Lenken ut annere Naamrüüm sünd nich mit in de List.',
 
 'doubleredirects'     => 'Dubbelte Wiederleiden',
 'doubleredirectstext' => '<b>Wohrscho:</b> Disse List kann „falsche Positive“ bargen.
@@ -1379,6 +1390,8 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'unusedcategoriestext'    => 'Disse Kategorien sünd leddig, keen Artikel un kene Ünnerkategorie steiht dor in.',
 'notargettitle'           => 'Kene Siet angeven',
 'notargettext'            => 'Du hest nich angeven, op welke Siet du disse Funktschoon anwennen willst.',
+'nopagetitle'             => 'Teelsiet gifft dat nich',
+'nopagetext'              => 'De angevene Teelsiet gifft dat nich.',
 'pager-newer-n'           => '{{PLURAL:$1|nächste|nächste $1}}',
 'pager-older-n'           => '{{PLURAL:$1|vörige|vörige $1}}',
 'suppress'                => 'Oversight',
@@ -1414,6 +1427,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'allpagesnext'      => 'tokamen',
 'allpagessubmit'    => 'Los',
 'allpagesprefix'    => 'Sieden wiesen, de anfangt mit:',
+'allpagesbadtitle'  => 'De ingevene Siedennaam gellt nich: Kann angahn, dor steiht en Afkörten för en annere Spraak oder en anneret Wiki an’n Anfang oder dor sünd Tekens binnen, de in Siedennaams nich bruukt warrn dröfft.',
 'allpages-bad-ns'   => '{{SITENAME}} hett keen Naamruum „$1“.',
 
 # Special:Categories
@@ -1554,6 +1568,7 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 ** gegen dat Oorheverrecht
 ** Vandalismus',
 'delete-edit-reasonlist'      => 'Grünn för’t Wegsmieten ännern',
+'delete-toobig'               => 'Disse Siet hett en temlich lange Versionsgeschicht vun mehr as $1 Versionen. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tiet utlasten un den Bedriev vun dat Wiki stöörn.',
 'delete-warning-toobig'       => 'Disse Siet hett en temlich lange Versionsgeschicht vun mehr as $1 Versionen. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tiet utlasten un den Bedriev vun dat Wiki stöörn.',
 'rollback'                    => 'Trüchnahm vun de Ännern',
 'rollback_short'              => 'Trüchnehmen',
@@ -1611,6 +1626,7 @@ De letzte Ännern is vun [[User:$3|$3]]
 # Undelete
 'undelete'                 => 'Wegsmetene Siet wedderhalen',
 'undeletepage'             => 'Wegsmetene Sieden wedderhalen',
+'undeletepagetitle'        => "'''Dit sünd de wegsmetenen Versionen vun [[:$1|$1]]'''.",
 'viewdeletedpage'          => 'Wegsmetene Sieden ankieken',
 'undeletepagetext'         => 'Disse Sieden sünd wegsmeten worrn, aver jümmer noch spiekert un köönt wedderhaalt warrn.',
 'undeleterevisions'        => '{{PLURAL:$1|Ene Version|$1 Versionen}} archiveert',
@@ -1836,6 +1852,8 @@ De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schav
 'export'            => 'Sieden exporteren',
 'exporttext'        => 'Du kannst de Text un de Bearbeidenshistorie vun een oder mehr Sieten no XML exporteern. Dat Resultat kann in en annern Wiki mit Mediawiki-Software inspeelt warrn, bearbeid oder archiveert warrn.',
 'exportcuronly'     => 'Blots de aktuelle Version vun de Siet exporteern',
+'exportnohistory'   => "----
+'''Henwies:''' Exporteren vun hele Versionsgeschichten över dit Formular geiht nich, wegen de Performance.",
 'export-submit'     => 'Export',
 'export-addcattext' => 'Sieden ut Kategorie tofögen:',
 'export-addcat'     => 'Tofögen',
@@ -1879,6 +1897,9 @@ De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schav
 'importsuccess'              => 'Import hett Spood!',
 'importhistoryconflict'      => 'Dor sünd al öllere Versionen, de mit dissen kollideert. (Mööglicherwies is de Siet al vörher importeert worrn)',
 'importnofile'               => 'Kene Import-Datei hoochladen.',
+'importuploaderrorsize'      => 'Hoochladen vun de Importdatei güng nich. De Datei is grötter as de verlöövte Maximumgrött för Datein.',
+'importuploaderrorpartial'   => 'Hoochladen vun de Importdatei güng nich. De Datei weer blot to’n Deel hoochlaadt.',
+'importuploaderrortemp'      => 'Hoochladen vun de Importdatei güng nich. En temporär Mapp fehlt.',
 'import-parse-failure'       => 'Fehler bi’n XML-Import:',
 'import-noarticle'           => 'Kene Siet to’n Rinhalen angeven!',
 'import-nonewrevisions'      => 'Gifft kene ne’en Versionen to importeren, all Versionen sünd al vördem importeert worrn.',
@@ -1886,6 +1907,8 @@ De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schav
 
 # Import log
 'importlogpage'                    => 'Import-Logbook',
+'importlogpagetext'                => 'Administrativen Import vun Sieden mit Versionsgeschicht vun annere Wikis.',
+'import-logentry-upload'           => 'hett „[[$1]]“ ut Datei importeert',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|ene Version|$1 Versionen}}',
 'import-logentry-interwiki'        => 'hett „[[$1]]“ importeert (Transwiki)',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|ene Version|$1 Versionen}} vun $2',
@@ -1976,6 +1999,8 @@ De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schav
 'spamprotectiontext'  => 'De Siet, de du spiekern wullst, weer vun de Spamschild blockt. Dat kann vun en Link to en externe Siet kamen.',
 'spamprotectionmatch' => 'Dit Text hett den Spamschild utlöst: $1',
 'spambot_username'    => 'MediaWiki Spam-Oprümen',
+'spam_reverting'      => 'Trüchdreiht na de letzte Version ahn Lenken na $1.',
+'spam_blanking'       => 'All Versionen harrn Lenken na $1, rein maakt.',
 
 # Info page
 'infosubtitle'   => 'Informatschonen för de Siet',
@@ -2010,12 +2035,15 @@ De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schav
 'patrol-log-auto' => '(automaatsch)',
 
 # Image deletion
-'deletedrevision'       => 'Löschte ole Version $1',
-'filedeleteerror-short' => 'Fehler bi dat Wegsmieten vun de Datei: $1',
-'filedeleteerror-long'  => 'Dat geev Fehlers bi dat Wegsmieten vun de Datei:
+'deletedrevision'                 => 'Löschte ole Version $1',
+'filedeleteerror-short'           => 'Fehler bi dat Wegsmieten vun de Datei: $1',
+'filedeleteerror-long'            => 'Dat geev Fehlers bi dat Wegsmieten vun de Datei:
 
 $1',
-'filedelete-missing'    => 'De Datei „$1“ kann nich wegsmeten warrn, de gifft dat gornich.',
+'filedelete-missing'              => 'De Datei „$1“ kann nich wegsmeten warrn, de gifft dat gornich.',
+'filedelete-old-unregistered'     => 'De angevene Datei-Version „$1“ is nich in de Datenbank.',
+'filedelete-current-unregistered' => 'De angevene Datei „$1“ is nich in de Datenbank.',
+'filedelete-archive-read-only'    => 'De Archiv-Mapp „$1“ geiht för den Webserver nich to schrieven.',
 
 # Browsing diffs
 'previousdiff' => '← Gah to den vörigen Ünnerscheed',
@@ -2097,27 +2125,35 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-flashpixversion'             => 'ünnerstütt Flashpix-Version',
 'exif-colorspace'                  => 'Farvruum',
 'exif-componentsconfiguration'     => 'Bedüden vun elk Kumponent',
+'exif-compressedbitsperpixel'      => 'Komprimeerte Bits je Pixel',
 'exif-pixelydimension'             => 'Gellen Bildbreed',
 'exif-pixelxdimension'             => 'Gellen Bildhööchd',
 'exif-makernote'                   => 'Herstellernotiz',
 'exif-usercomment'                 => 'Brukerkommentar',
 'exif-relatedsoundfile'            => 'Tohörige Toondatei',
+'exif-datetimeoriginal'            => 'Tiet vun de Opnahm',
+'exif-datetimedigitized'           => 'Tiet vun dat digital Maken',
 'exif-subsectime'                  => 'Spiekertiet (1/100 s)',
+'exif-subsectimeoriginal'          => 'Tiet vun de Opnahm (1/100 s)',
 'exif-subsectimedigitized'         => 'Tiet digital maakt (1/100 s)',
 'exif-exposuretime'                => 'Belichtungstiet',
 'exif-exposuretime-format'         => '$1 Sek. ($2)',
 'exif-fnumber'                     => 'F-Nummer',
 'exif-exposureprogram'             => 'Belichtungsprogramm',
 'exif-spectralsensitivity'         => 'Spektralsensitivität',
+'exif-isospeedratings'             => 'Film- oder Sensorempfindlichkeit (ISO)',
+'exif-oecf'                        => 'Optoelektroonsch Ümrekenfaktor',
 'exif-shutterspeedvalue'           => 'Belichttiet',
 'exif-aperturevalue'               => 'Blennweert',
 'exif-brightnessvalue'             => 'Helligkeit',
+'exif-exposurebiasvalue'           => 'Belichtungsvörgaav',
 'exif-subjectdistance'             => 'wo wied weg',
 'exif-meteringmode'                => 'Meetmethood',
 'exif-lightsource'                 => 'Lichtborn',
 'exif-flash'                       => 'Blitz',
 'exif-focallength'                 => 'Brennwied',
 'exif-flashenergy'                 => 'Blitzstärk',
+'exif-subjectlocation'             => 'Oort vun dat Motiv',
 'exif-exposureindex'               => 'Belichtungsindex',
 'exif-sensingmethod'               => 'Meetmethood',
 'exif-filesource'                  => 'Dateiborn',

@@ -970,6 +970,8 @@ $1 ساعة.',
 'post-expand-template-inclusion-warning'  => 'تحذير: يتضمّن القالب حجما كبيرا جدا.
 بعض القوالب لن تضمّن.',
 'post-expand-template-inclusion-category' => 'صفحات حيث القالب يتضمّن حجما متجاوزا',
+'post-expand-template-argument-warning'   => 'تحذير: هذه الصفحة تحتوي على عامل قالب واحد على الأقل له حجم تمدد كبير جدا.
+هذه العوامل تم حذفها.',
 'post-expand-template-argument-category'  => 'صفحات تحتوي مدخلات القالب المحذوفة',
 
 # "Undo" feature

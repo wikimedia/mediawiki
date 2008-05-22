@@ -1671,6 +1671,7 @@ Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréier
 'undelete-no-results'        => 'Et goufen am Archiv keng Säite fonnt déi op är Sich passen.',
 'undelete-filename-mismatch' => "D'Dateiversioun vum $1 konnt net restauréiert ginn: De Fichier gouf net fonnt.",
 'undelete-bad-store-key'     => "D'Versioun vum Fichier mat dem Zäitstempel $1 konnt net restauréiert ginn: De Fichier war scho virum Läschen net méi do.",
+'undelete-cleanup-error'     => 'Feeler beim Läsche vun der onbenotzter Archiv-Versioun $1.',
 'undelete-error-short'       => 'Feeler bäim Restauréieren vum Fichier: $1',
 'undelete-error-long'        => 'Beim Restauréiere vun engem Fichier goufe Feeler fonnt:
 
@@ -1869,6 +1870,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'delete_and_move_confirm' => "Jo, läsch d'Destinatiounssäit",
 'delete_and_move_reason'  => 'Geläscht fir Plaz ze maache fir eng Säit heihin ze réckelen',
 'selfmove'                => 'Source- an Destinatiounsnumm sinn dselwecht; eng Säit kann net op sech selwer geréckelt ginn.',
+'imagetypemismatch'       => 'Déi nei Dateierweiderung ass net mat dem Fichier kompatibel',
 
 # Export
 'export'            => 'Säiten exportéieren',

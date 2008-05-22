@@ -834,8 +834,8 @@ Sletteloggen for sida finn du her:",
 
 Det burde vere færre enn $2, men er no $1.',
 'expensive-parserfunction-category'       => 'Sider med for mange prosesskrevande parserfunksjonar',
-'post-expand-template-inclusion-warning'  => 'Åtvaring: Storleiken på malar som er inkludert er for stor.
-Nokre malar vil ikkje verte inkludert.',
+'post-expand-template-inclusion-warning'  => 'Åtvaring: Storleiken på malar som er inkluderte er for stor.
+Nokre malar vert ikkje inkluderte.',
 'post-expand-template-inclusion-category' => 'Sider som inneheld for store malar',
 'post-expand-template-argument-warning'   => 'Åtvaring: Sida inneheld ein eller fleire malparameterar som vert for lange når dei utvidast. 
 Desse parameterane har vorte utelatne.',
@@ -927,7 +927,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 
 # Suppression log
 'suppressionlog'     => 'Logg over historikkfjerningar',
-'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymd frå administratorar.
+'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymde frå administratorane.
 Sjå [[Special:Ipblocklist|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
 # History merging
@@ -991,7 +991,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'search-interwiki-default'  => '$1 resultat:',
 'search-interwiki-more'     => '(meir)',
 'search-mwsuggest-enabled'  => 'med forslag',
-'search-mwsuggest-disabled' => 'inga forslag',
+'search-mwsuggest-disabled' => 'ingen forslag',
 'search-relatedarticle'     => 'Relaterte',
 'mwsuggest-disable'         => 'Slå av AJAX-forslag',
 'searchrelated'             => 'relaterte',
@@ -1003,7 +1003,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'powersearch'               => 'Søk',
 'powersearch-legend'        => 'Avansert søk',
 'powersearch-ns'            => 'Søk i namnerom:',
-'powersearch-redir'         => 'Vis omdirigeringer',
+'powersearch-redir'         => 'Vis omdirigeringar',
 'powersearch-field'         => 'Søk etter',
 'search-external'           => 'Eksternt søk',
 'searchdisabled'            => 'Søkjefunksjonen på {{SITENAME}} er slått av akkurat no.
@@ -1124,15 +1124,19 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'grouppage-suppress'      => '{{ns:project}}:Historikkfjerning',
 
 # Rights
-'right-read'          => 'Sjå sider',
-'right-edit'          => 'Endre sider',
-'right-createpage'    => 'Opprette sider (som ikkje er diskusjonssider)',
-'right-createtalk'    => 'Lage diskusjonssider',
-'right-createaccount' => 'Lage nya brukarkontoer',
-'right-move'          => 'Flytta sider',
-'right-upload'        => 'Lasta opp filer',
-'right-delete'        => 'Slette sider',
-'right-browsearchive' => 'Søkje etter slettade sider',
+'right-read'             => 'Sjå sider',
+'right-edit'             => 'Endre sider',
+'right-createpage'       => 'Opprette sider (som ikkje er diskusjonssider)',
+'right-createtalk'       => 'Opprette diskusjonssider',
+'right-createaccount'    => 'Opprette nye brukarkontoar',
+'right-minoredit'        => 'Merke endringar som småplukk',
+'right-move'             => 'Flytte sider',
+'right-suppressredirect' => 'Treng ikkje lage omdirigering frå det gamle namnet når sida vert flytta',
+'right-upload'           => 'Laste opp filer',
+'right-reupload'         => 'Skrive over ei eksisterande fil',
+'right-reupload-own'     => 'Skrive over eigne filer',
+'right-delete'           => 'Slette sider',
+'right-browsearchive'    => 'Søk i sletta sider',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1295,10 +1299,10 @@ Sletteloggen for fila finn du her:",
 'nolinkstoimage'                 => 'Det finst ikkje noka side med lenkje til denne fila.',
 'sharedupload'                   => 'Denne fila er ei delt opplasting og kan brukast av andre prosjekt.',
 'shareduploadwiki'               => 'Sjå $1 for meir informasjon.',
-'shareduploadwiki-desc'          => 'Skildringa til $1 er vist nedanfor.',
+'shareduploadwiki-desc'          => 'Skildringa til $1 i det delte lageret er vist nedanfor.',
 'shareduploadwiki-linktext'      => 'filskildringssida',
-'shareduploadduplicate-linktext' => 'ei annen fil',
-'shareduploadconflict-linktext'  => 'ei annen fil',
+'shareduploadduplicate-linktext' => 'ei anna fil',
+'shareduploadconflict-linktext'  => 'ei anna fil',
 'noimage'                        => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
 'noimage-linktext'               => 'laste ho opp',
 'uploadnewversion-linktext'      => 'Last opp ny versjon av denne fila',
@@ -1778,7 +1782,7 @@ $1',
 'ipbotheroption'              => 'anna tid',
 'ipbotherreason'              => 'Anna grunn/tilleggsgrunn:',
 'ipbhidename'                 => 'Gøym brukarnamnet frå blokkeringsloggen, lista over aktive blokkeringar og brukarlista',
-'ipbwatchuser'                => 'Overvak brukarens brukarside og diskusjonsside',
+'ipbwatchuser'                => 'Overvak brukarsida og diskusjonssida til brukaren',
 'badipaddress'                => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
 'blockipsuccesssub'           => 'Blokkering utført',
 'blockipsuccesstext'          => '«[[User:$1|$1]]» er blokkert.<br />Sjå [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringar.',
@@ -1942,7 +1946,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'importlogpage'                    => 'Importeringslogg',
 'import-logentry-upload'           => 'importerte [[$1]] frå opplasta fil',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versjon|versjonar}} frå $2',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|Éin versjon|$1 versjonar}} frå $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Brukarsida mi',

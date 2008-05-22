@@ -477,7 +477,9 @@ Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat pub
 'templatesusedpreview'  => "I plantiyas ni ma'usa gi ripasu:",
 'templatesusedsection'  => "Plantiyas siha ni ma'usa gi este na seksion:",
 'template-protected'    => '(maprotehi)',
-'hiddencategories'      => "Miembron {{PLURAL:$1|1 manå'na na kategoria|$1 na mannå'na na kategoria}} este na påhina:",
+'hiddencategories'      => "Miembron {{PLURAL:$1|1 manå'na' na kategoria|$1 na mannå'na' na kategoria}} este na påhina:",
+'nocreatetext'          => "I nina'siña mama'tinas mannuebu na påhina machomma' gi {{SITENAME}}.
+Siña hao humanao tåtte ya tumulaika påhina ni guinaha, pat [[Special:Userlogin|log in pat un fa'tinas kuenta-mu]].",
 'nocreate-loggedin'     => "Ti nahon i nibet-mu petmisu mama'tinas nuebu na påhina gi {{SITENAME}}.",
 'permissionserrors'     => 'Linache siha gi Petmisu',
 'permissionserrorstext' => "Ti nahong nibet-mu petmisu chumo'gue enao, pot i sigiente {{PLURAL:$1|na rason|na rason siha}}:",
@@ -486,8 +488,23 @@ Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat pub
 Konsidera fan anggen maolek ha' kumontinua tumulaika i påhina.
 Estague' i historian muna'suha ni påhina:",
 
+# Parser/template warnings
+'expensive-parserfunction-warning'  => "Adahi: Guåha meggai mampos na inagang fongksion parser.
+
+Debi di menos ki $2 ha', på'go guåha $1.",
+'expensive-parserfunction-category' => 'Påhinas siha ni meggai mampos na inagang fungksion parser',
+
+# Account creation failure
+'cantcreateaccounttitle' => "Ti siña mama'tinas kuenta",
+'cantcreateaccount-text' => "Chinemma' mama'tinas kuenta ginen i IP ('''$1''') as [[User:$3|$3]].
+
+Nina'i i rasion ''$2'' as $3",
+
 # History pages
 'viewpagelogs'        => 'Atan i historian påhina',
+'nohistory'           => "Tåya' historian tinilaika este na påhina.",
+'revnotfound'         => "Timasodda' i ribision",
+'revnotfoundtext'     => "Ti siña masodda' i tinilaika i påhina ni finaisen-mu. Pot fabot chek i URL ni un usa para i finatto-mu gi påhina.",
 'currentrev'          => 'Tinilaika modetnu',
 'revisionasof'        => 'Maribisa ginen $1',
 'revision-info'       => 'Tinilaika ginen $1 as $2',
@@ -527,10 +544,11 @@ Fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 Mana'suha este na tinilaika ginen i mampubliku na atkibu siha.
 Komu administradot {{SITENAME}} siña un atan ha';
 fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log muna'susuha].</div>",
-'rev-delundel'                => "na'annok/nå'na",
+'rev-delundel'                => "na'annok/nå'na'",
 'revisiondelete'              => "Na'suha/para håfa muna'suha i tinilaika",
 'revdelete-selected'          => "{{PLURAL:$2|Tinilaika ma'ayek|Tinilaika manma'ayek}} gi [[:$1]]:",
 'logdelete-selected'          => "{{PLURAL:$1|Kasun log ni ma'ayek|Kasun log ni manma'ayek}}:",
+'revdelete-hide-text'         => "Nå'na' i tinige' ribision",
 'revdelete-hide-comment'      => "Nå'na' i kommentun tinilaika",
 'revdelete-hide-user'         => "Nå'na' i na'an muna'sesetbi/IP i editot",
 'revdelete-hide-image'        => "Nå'na' i sinahguan atkibu",

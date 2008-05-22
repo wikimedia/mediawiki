@@ -345,6 +345,9 @@ Legenda: (actu) = diferenças da versão actual,
 # List redirects
 'listredirects' => 'Lhistar redireccionamientos',
 
+# Unused templates
+'unusedtemplates' => 'Predefiniçons num outelizadas',
+
 # Random page
 'randompage' => 'Página aleatória',
 
@@ -352,6 +355,8 @@ Legenda: (actu) = diferenças da versão actual,
 'statistics' => 'Çtatísticas',
 
 'disambiguations' => 'Página de desambiguaçon',
+
+'doubleredirects' => 'Redireccionamentos duplos',
 
 'brokenredirects' => 'Redireccionamentos quebrados',
 
@@ -466,6 +471,7 @@ Legenda: (actu) = diferenças da versão actual,
 'ipboptions'    => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'ipblocklist'   => 'Lhista de IPs i outelizadores bloqueados',
 'blocklink'     => 'bloquear',
+'unblocklink'   => 'desbloquear',
 'contribslink'  => 'contribs',
 'blocklogpage'  => 'Registo de bloqueio',
 'blocklogentry' => '"[[$1]]" fue bloqueado com um tiempo de expiraçon de $2 $3',
