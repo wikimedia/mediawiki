@@ -801,7 +801,7 @@ instead.
 $tools: array of tools
 
 'NewRevisionFromEditComplete': called when a revision was inserted due to an edit
-$article: the page title
+$article: the article edited
 $rev: the new revision
 $baseID: the revision ID this was based off, if any
 
