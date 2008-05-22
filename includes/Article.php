@@ -1451,7 +1451,7 @@ class Article {
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
 				
-				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, $baseRevId) );
+				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, $baseRevId) );
 
 				if( !$ok ) {
 					/* Belated edit conflict! Run away!! */
@@ -1523,7 +1523,7 @@ class Article {
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
 			
-			wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
+			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, $bot,
@@ -1883,7 +1883,7 @@ class Article {
 					), 'Article::protect'
 				);
 				
-				wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $nullRevision, false) );
+				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $nullRevision, false) );
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
 
 				# Update the protection log
@@ -2978,7 +2978,7 @@ class Article {
 		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
 		
-		wfRunHooks( 'newRevisionFromEditComplete', array($this->mTitle, $revision, false) );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 		wfProfileOut( __METHOD__ );
 	}
