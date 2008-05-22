@@ -458,12 +458,13 @@ class UploadForm {
 		}
 
 		/* Don't allow users to override the blacklist (check file extension) */
-		global $wgStrictFileExtensions;
+		global $wgCheckFileExtensions, $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist;
 		if ($finalExt == '') {
 			return self::FILETYPE_MISSING;
 		} elseif ( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
-				($wgStrictFileExtensions && !$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
+				($wgCheckFileExtensions && $wgStrictFileExtensions &&
+					!$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) ) {
 			$resultDetails = array( 'finalExt' => $finalExt );
 			return self::FILETYPE_BADTYPE;
 		}
