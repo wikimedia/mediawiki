@@ -19,6 +19,15 @@ class ForeignAPIFile extends File {
 		$this->mInfo = $info;
 	}
 	
+	static function newFromTitle( $title, $repo ) {
+		$info = $repo->getImageInfo( $title );
+		if( $info ) {
+			return new ForeignAPIFile( $title, $repo, $info );
+		} else {
+			return null;
+		}
+	}
+	
 	// Dummy functions...
 	public function exists() {
 		return true;
@@ -69,6 +78,14 @@ class ForeignAPIFile extends File {
 		return $this->mInfo['comment'];
 	}
 
+	function getSha1() {
+		return wfBaseConvert( $this->mInfo['sha1'], 16, 36, 31 );
+	}
+	
+	function getTimestamp() {
+		return wfTimestamp( TS_MW, $this->mInfo['timestamp'] );
+	}
+	
 	// Info we had to guess...
 	function getMimeType() {
 		return $this->mInfo['mime'];
