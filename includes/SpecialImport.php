@@ -351,7 +351,7 @@ class WikiRevision {
 		# Sneak a single revision into place
 		$user = User::newFromName( $this->getUser() );
 		if( $user ) {
-			$userId = intval( $user->getId() );
+			$userId = intval( $user->getID() );
 			$userText = $user->getName();
 		} else {
 			$userId = 0;

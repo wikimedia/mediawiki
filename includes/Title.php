@@ -1338,7 +1338,7 @@ class Title {
 					, 'pt_create_perm' => $create_perm
 					, 'pt_timestamp' => Block::encodeExpiry(wfTimestampNow(), $dbw)
 					, 'pt_expiry' => $encodedExpiry
-					, 'pt_user' => $wgUser->getId(), 'pt_reason' => $reason ), __METHOD__  );
+					, 'pt_user' => $wgUser->getID(), 'pt_reason' => $reason ), __METHOD__  );
 		} else {
 			$dbw->delete( 'protected_titles', array( 'pt_namespace' => $namespace,
 				'pt_title' => $title ), __METHOD__ );

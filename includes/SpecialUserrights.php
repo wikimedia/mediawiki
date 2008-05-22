@@ -141,7 +141,7 @@ class UserrightsPage extends SpecialPage {
 
 		// Validate input set...
 		$changeable = $this->changeableGroups();
-		if ($wgUser->getId() != 0 && $wgUser->getId() == $user->getId()) {
+		if ($wgUser->getID() != 0 && $wgUser->getID() == $user->getID()) {
 			$addable = array_merge($changeable['add'], $wgGroupsAddToSelf);
 			$removable = array_merge($changeable['remove'], $wgGroupsRemoveFromSelf);
 		} else {

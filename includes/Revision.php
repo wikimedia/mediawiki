@@ -332,7 +332,7 @@ class Revision {
 			$this->mPage      = isset( $row['page']       ) ? intval( $row['page']       ) : null;
 			$this->mTextId    = isset( $row['text_id']    ) ? intval( $row['text_id']    ) : null;
 			$this->mUserText  = isset( $row['user_text']  ) ? strval( $row['user_text']  ) : $wgUser->getName();
-			$this->mUser      = isset( $row['user']       ) ? intval( $row['user']       ) : $wgUser->getId();
+			$this->mUser      = isset( $row['user']       ) ? intval( $row['user']       ) : $wgUser->getID();
 			$this->mMinorEdit = isset( $row['minor_edit'] ) ? intval( $row['minor_edit'] ) : 0;
 			$this->mTimestamp = isset( $row['timestamp']  ) ? strval( $row['timestamp']  ) : wfTimestamp( TS_MW );
 			$this->mDeleted   = isset( $row['deleted']    ) ? intval( $row['deleted']    ) : 0;

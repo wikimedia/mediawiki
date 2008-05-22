@@ -608,7 +608,7 @@ class PreferencesForm {
 			$this->tableRow( wfMsgHtml( 'uid' ), htmlspecialchars( $wgUser->getID() ) ) .
 			$this->tableRow(
 				wfMsgHtml( 'prefs-edits' ),
-				$wgLang->formatNum( User::edits( $wgUser->getId() ) )
+				$wgLang->formatNum( User::edits( $wgUser->getID() ) )
 			);
 
 		if( wfRunHooks( 'PreferencesUserInformationPanel', array( $this, &$userInformationHtml ) ) ) {

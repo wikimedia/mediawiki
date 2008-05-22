@@ -19,7 +19,7 @@ class WatchedItem {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
-		$wl->id = $user->getId();
+		$wl->id = $user->getID();
 # Patch (also) for email notification on page changes T.Gries/M.Arndt 11.09.2004
 # TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
 # The change results in talk-pages not automatically included in watchlists, when their parent page is included
