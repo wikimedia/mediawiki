@@ -51,7 +51,7 @@ class LogPage {
 		$this->updateRecentChanges = $rc;
 	}
 
-	function saveContent() {
+	protected function saveContent() {
 		global $wgUser, $wgLogRestrictions;
 		$fname = 'LogPage::saveContent';
 
