@@ -12,12 +12,12 @@
  * @author VasilievVV
  * @author Siebrand
  * @author Flrn
- * @author .:Ajvol:.
  * @author Kaganer
  * @author Kalan
  * @author Ahonc
  * @author EugeneZelenko
  * @author Innv
+ * @author Александр Сигачёв
  */
 
 /*
@@ -2059,7 +2059,7 @@ IP-адреса.',
 'import-interwiki-history'   => 'Копировать всю историю изменений этой страницы',
 'import-interwiki-submit'    => 'Импортировать',
 'import-interwiki-namespace' => 'Помещать страницы в пространство имён:',
-'importtext'                 => 'Пожалуйста, экспортируйте страницу из исходной вики используя инструмент Special:Export, сохраните файл на диск, а затем загрузите его сюда.',
+'importtext'                 => 'Пожалуйста, экспортируйте страницу из исходной вики, используя инструмент Special:Export, сохраните файл на диск, а затем загрузите его сюда.',
 'importstart'                => 'Импортирование страниц…',
 'import-revision-count'      => '$1 {{PLURAL:$1|версия|версии|версий}}',
 'importnopages'              => 'Нет страниц для импортирования.',

@@ -902,7 +902,7 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'tooltip-pt-logout'               => 'Sciortîa (logout)',
 'tooltip-ca-talk'                 => "Vedde e discûscioin insce 'sta paggina.",
 'tooltip-ca-edit'                 => "O se pêu modificâ 'sta paggina. Pe piaxei scia dêuvie o pommello d'anteprimma primma de sarvâla.",
-'tooltip-ca-addsection'           => "Azzonze 'n commentâjo a 'sta discûscion chì.",
+'tooltip-ca-addsection'           => "Azzonze 'n commento a 'sta discûscion chì.",
 'tooltip-ca-viewsource'           => "'Sta paggina a l'è protetta, ma o se pêu vedde o sêu còddice sorgente.",
 'tooltip-ca-protect'              => "Proteze 'sta paggina",
 'tooltip-ca-delete'               => "Scassa 'sta paggina",

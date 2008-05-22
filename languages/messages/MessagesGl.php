@@ -1518,7 +1518,7 @@ Feedback e axuda:
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'              => 'A acción foi completada',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" foi borrado.
-No $2 pode ver unha listaxe dos borrados recentes.',
+No $2 pode ver unha listaxe dos borrados máis recentes.',
 'deletedarticle'              => 'borrou "[[$1]]"',
 'suppressedarticle'           => 'suprimiu "[[$1]]"',
 'dellogpage'                  => 'Rexistro de borrado',

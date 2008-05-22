@@ -19,6 +19,7 @@
  * @author Kph
  * @author H92
  * @author Jóna Þórunn
+ * @author Finnrind
  */
 
 $skinNames = array(
@@ -351,7 +352,7 @@ $messages = array(
 'otherlanguages'    => 'Andre språk',
 'redirectedfrom'    => '(Omdirigert fra $1)',
 'redirectpagesub'   => 'Omdirigeringsside',
-'lastmodifiedat'    => 'Denne siden ble sist endret $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Denne siden ble sist endret $1 kl. $2.', # $1 date, $2 time
 'viewcount'         => 'Denne siden er vist $1 {{plural:$1|gang|ganger}}.',
 'protectedpage'     => 'Låst side',
 'jumpto'            => 'Gå til:',
@@ -1039,7 +1040,7 @@ se math/README for oppsett.',
 'right-createpage'           => 'Opprette sider (som ikke er diskusjonssider)',
 'right-createtalk'           => 'Opprette diskusjonssider',
 'right-createaccount'        => 'Opprette nye kontoer',
-'right-minoredit'            => 'Markere mindre endringer',
+'right-minoredit'            => 'Marker endringer som mindre',
 'right-move'                 => 'Flytte sider',
 'right-suppressredirect'     => 'Behøver ikke å opprette omdirigeringer ved sideflytting',
 'right-upload'               => 'Laste opp filer',
@@ -2028,7 +2029,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 # Attribution
 'anonymous'        => 'Anonym(e) bruker(e) av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-bruker $1',
-'lastmodifiedatby' => 'Denne siden ble sist redigert $2, $1 av $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Denne siden ble sist redigert $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-bruker(e) $1',

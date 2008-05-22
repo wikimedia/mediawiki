@@ -2057,7 +2057,7 @@ $1',
 'import-interwiki-history'   => 'Копіювати всю історію змін цієї сторінки',
 'import-interwiki-submit'    => 'Імпортувати',
 'import-interwiki-namespace' => 'Розміщати сторінки в просторі імен:',
-'importtext'                 => 'Будь-ласка, експортуйте сторінку з іншої вікі використовуючи інструмент Special:Export, збережіть файл, а потім завантажте його сюди.',
+'importtext'                 => 'Будь-ласка, експортуйте сторінку з іншої вікі, використовуючи інструмент Special:Export, збережіть файл, а потім завантажте його сюди.',
 'importstart'                => 'Імпорт сторінок…',
 'import-revision-count'      => '$1 {{PLURAL:$1|версія|версії|версій}}',
 'importnopages'              => 'Сторінки для імпорту відсутні.',
@@ -2538,7 +2538,7 @@ $1',
 'exif-gpsdirection-m' => 'магнітний',
 
 # External editor support
-'edit-externally'      => 'Редагувати цей файл використовуючи зовнішню програму',
+'edit-externally'      => 'Редагувати цей файл, використовуючи зовнішню програму',
 'edit-externally-help' => 'Подробиці див. на сторінці [http://meta.wikimedia.org/wiki/Help:External_editors Meta:Help:External_editors].',
 
 # 'all' in various places, this might be different for inflected languages
