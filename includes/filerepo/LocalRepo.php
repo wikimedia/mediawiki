@@ -159,7 +159,7 @@ class LocalRepo extends FSRepo {
 		return $result;
 	}
 	
-	function findFiles( &$titles, $time = false, $flags ) {
+	function findFiles( &$titles, $flags ) {
 		if ( count( $titles ) == 0 ) return array();		
 	
 		$dbKeys = array();
