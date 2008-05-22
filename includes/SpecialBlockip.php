@@ -314,9 +314,9 @@ class IPBlockForm {
 				# Username block
 				if ( $wgSysopUserBans ) {
 					$user = User::newFromName( $this->BlockAddress );
-					if( !is_null( $user ) && $user->getID() ) {
+					if( !is_null( $user ) && $user->getId() ) {
 						# Use canonical name
-						$userId = $user->getID();
+						$userId = $user->getId();
 						$this->BlockAddress = $user->getName();
 					} else {
 						return array('nosuchusershort', htmlspecialchars( $user ? $user->getName() : $this->BlockAddress ) );
@@ -358,7 +358,7 @@ class IPBlockForm {
 
 		# Create block
 		# Note: for a user block, ipb_address is only for display purposes
-		$block = new Block( $this->BlockAddress, $userId, $wgUser->getID(),
+		$block = new Block( $this->BlockAddress, $userId, $wgUser->getId(),
 			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
 			$this->BlockEmail);

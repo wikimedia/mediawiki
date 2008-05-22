@@ -1252,7 +1252,7 @@ class User {
 	/**
 	 * Get the user ID. Returns 0 if the user is anonymous or nonexistent.
 	 */
-	function getID() {
+	function getId() {
 		if( $this->mId === null and $this->mName !== null
 		and User::isIP( $this->mName ) ) {
 			// Special case, we know the user is anonymous
@@ -1267,7 +1267,7 @@ class User {
 	/**
 	 * Set the user and reload all fields according to that ID
 	 */
-	function setID( $v ) {
+	function setId( $v ) {
 		$this->mId = $v;
 		$this->clearInstanceCache( 'id' );
 	}
@@ -1997,7 +1997,7 @@ class User {
 			$title->getText() == $wgUser->getName())
 		{
 			$watched = true;
-		} elseif ( $this->getID() == $wgUser->getID() ) {
+		} elseif ( $this->getId() == $wgUser->getId() ) {
 			$watched = $title->userIsWatching();
 		} else {
 			$watched = true;

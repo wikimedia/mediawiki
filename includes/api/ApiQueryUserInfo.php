@@ -57,7 +57,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		global $wgUser;
 		$result = $this->getResult();
 		$vals = array();
-		$vals['id'] = $wgUser->getID();
+		$vals['id'] = $wgUser->getId();
 		$vals['name'] = $wgUser->getName();
 
 		if($wgUser->isAnon())

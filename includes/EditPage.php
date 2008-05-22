@@ -870,7 +870,7 @@ class EditPage {
 				}
 			}
 		}
-		$userid = $wgUser->getID();
+		$userid = $wgUser->getId();
 
 		if ( $this->isConflict) {
 			wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .

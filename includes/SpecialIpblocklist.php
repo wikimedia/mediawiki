@@ -249,7 +249,7 @@ class IPUnblockForm {
 			$conds['ipb_auto'] = 0;
 		} else {
 			$user = User::newFromName( $this->ip );
-			if ( $user && ( $id = $user->getID() ) != 0 ) {
+			if ( $user && ( $id = $user->getId() ) != 0 ) {
 				$conds['ipb_user'] = $id;
 			} else {
 				// Uh...?

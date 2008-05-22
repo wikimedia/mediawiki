@@ -770,7 +770,7 @@ class LocalFile extends File
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
 		}
 		$props['description'] = $comment;
-		$props['user'] = $wgUser->getID();
+		$props['user'] = $wgUser->getId();
 		$props['user_text'] = $wgUser->getName();
 		$props['timestamp'] = wfTimestamp( TS_MW );
 		$this->setProps( $props );
@@ -806,7 +806,7 @@ class LocalFile extends File
 				'img_minor_mime' => $this->minor_mime,
 				'img_timestamp' => $timestamp,
 				'img_description' => $comment,
-				'img_user' => $wgUser->getID(),
+				'img_user' => $wgUser->getId(),
 				'img_user_text' => $wgUser->getName(),
 				'img_metadata' => $this->metadata,
 				'img_sha1' => $this->sha1
@@ -852,7 +852,7 @@ class LocalFile extends File
 					'img_minor_mime' => $this->minor_mime,
 					'img_timestamp' => $timestamp,
 					'img_description' => $comment,
-					'img_user' => $wgUser->getID(),
+					'img_user' => $wgUser->getId(),
 					'img_user_text' => $wgUser->getName(),
 					'img_metadata' => $this->metadata,
 					'img_sha1' => $this->sha1
@@ -1262,7 +1262,7 @@ class LocalFileDeleteBatch {
 		global $wgUser;
 		$dbw = $this->file->repo->getMasterDB();
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp() );
-		$encUserId = $dbw->addQuotes( $wgUser->getID() );
+		$encUserId = $dbw->addQuotes( $wgUser->getId() );
 		$encReason = $dbw->addQuotes( $this->reason );
 		$encGroup = $dbw->addQuotes( 'deleted' );
 		$ext = $this->file->getExtension();

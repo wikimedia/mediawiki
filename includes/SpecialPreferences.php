@@ -605,10 +605,10 @@ class PreferencesForm {
 
 		$userInformationHtml =
 			$this->tableRow( wfMsgHtml( 'username' ), htmlspecialchars( $wgUser->getName() ) ) .
-			$this->tableRow( wfMsgHtml( 'uid' ), htmlspecialchars( $wgUser->getID() ) ) .
+			$this->tableRow( wfMsgHtml( 'uid' ), htmlspecialchars( $wgUser->getId() ) ) .
 			$this->tableRow(
 				wfMsgHtml( 'prefs-edits' ),
-				$wgLang->formatNum( User::edits( $wgUser->getID() ) )
+				$wgLang->formatNum( User::edits( $wgUser->getId() ) )
 			);
 
 		if( wfRunHooks( 'PreferencesUserInformationPanel', array( $this, &$userInformationHtml ) ) ) {

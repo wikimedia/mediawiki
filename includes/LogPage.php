@@ -56,7 +56,7 @@ class LogPage {
 		$fname = 'LogPage::saveContent';
 
 		$dbw = wfGetDB( DB_MASTER );
-		$uid = $wgUser->getID();
+		$uid = $wgUser->getId();
 		$log_id = $dbw->nextSequenceValue( 'log_log_id_seq' );
 
 		$this->timestamp = $now = wfTimestampNow();

@@ -82,7 +82,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	list($recentchanges, $categorylinks, $pagelinks, $watchlist) =
 	    $dbr->tableNamesN( 'recentchanges', 'categorylinks', 'pagelinks', "watchlist" );
 
-	$uid = $wgUser->getID();
+	$uid = $wgUser->getId();
 	// The fields we are selecting
 	$fields = "rc_cur_id,rc_namespace,rc_title,
 		rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,rc_log_type,rc_log_action,rc_params,rc_deleted,
