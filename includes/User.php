@@ -1966,7 +1966,7 @@ class User {
 	 * the next change of the page if it's watched etc.
 	 */
 	function clearNotification( &$title ) {
-		global $wgUser, $wgUseEnotif;
+		global $wgUser, $wgUseEnotif, $wgShowUpdatedMarker;
 
 		# Do nothing if the database is locked to writes
 		if( wfReadOnly() ) {
@@ -1980,7 +1980,7 @@ class User {
 			$this->setNewtalk( false );
 		}
 
-		if( !$wgUseEnotif ) {
+		if( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
 			return;
 		}
 
