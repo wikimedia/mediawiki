@@ -1262,7 +1262,7 @@ class LocalFileDeleteBatch {
 		global $wgUser;
 		$dbw = $this->file->repo->getMasterDB();
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp() );
-		$encUserId = $dbw->addQuotes( $wgUser->getId() );
+		$encUserId = $dbw->addQuotes( $wgUser->getID() );
 		$encReason = $dbw->addQuotes( $this->reason );
 		$encGroup = $dbw->addQuotes( 'deleted' );
 		$ext = $this->file->getExtension();
