@@ -3190,7 +3190,7 @@ $wgExpensiveParserFunctionLimit = 100;
 /**
  * Maximum number of pages to move at once when moving subpages with a page.
  */
-$wgMaximumMovedPages = 1000;
+$wgMaximumMovedPages = 100;
 
 /**
  * Array of namespaces to generate a sitemap for when the
