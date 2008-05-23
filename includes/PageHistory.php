@@ -44,6 +44,10 @@ class PageHistory {
 	function getArticle() {
 		return $this->mArticle;
 	}
+	
+	function getTitle() {
+		return $this->mTitle;
+	}
 
 	/**
 	 * As we use the same small set of messages in various methods and that
@@ -595,12 +599,14 @@ class PageHistoryPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		return array(
-			'tables' => 'revision',
+		$queryInfo = array(
+			'tables' => array('revision'),
 			'fields' => Revision::selectFields(),
 			'conds' => array('rev_page' => $this->mPageHistory->mTitle->getArticleID() ),
-			'options' => array( 'USE INDEX' => 'page_timestamp' )
+			'options' => array( 'USE INDEX' => array('revision','page_timestamp') )
 		);
+		wfRunHooks( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ) );
+		return $queryInfo;
 	}
 
 	function getIndexField() {
