@@ -1650,24 +1650,18 @@ END;
 	 * Build an array that represents the sidebar(s), the navigation bar among them
 	 *
 	 * @return array
-	 * @private
 	 */
 	function buildSidebar() {
 		global $parserMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
-		global $wgLang, $wgContLang;
+		global $wgLang;
+		wfProfileIn( __METHOD__ );
 
-		$fname = 'SkinTemplate::buildSidebar';
+		$key = wfMemcKeyLang( wfMemcKey( 'sidebar' ), $wgLang->getCode() );
 
-		wfProfileIn( $fname );
-
-		$key = wfMemcKey( 'sidebar' );
-		$cacheSidebar = $wgEnableSidebarCache &&
-			($wgLang->getCode() == $wgContLang->getCode());
-
-		if ($cacheSidebar) {
+		if ( $wgEnableSidebarCache ) {
 			$cachedsidebar = $parserMemc->get( $key );
-			if ($cachedsidebar!="") {
-				wfProfileOut($fname);
+			if ( $cachedsidebar ) {
+				wfProfileOut( __METHOD__ );
 				return $cachedsidebar;
 			}
 		}
@@ -1683,7 +1677,7 @@ END;
 				$heading = $line;
 			} else {
 				if (strpos($line, '|') !== false) { // sanity check
-					$line = explode( '|' , trim($line, '* '), 2 );
+					$line = array_map('trim', explode( '|' , trim($line, '* '), 2 ) );
 					$link = wfMsgForContent( $line[0] );
 					if ($link == '-')
 						continue;
@@ -1713,9 +1707,9 @@ END;
 				} else { continue; }
 			}
 		}
-		if ($cacheSidebar)
-			$parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
-		wfProfileOut( $fname );
+		if ( $wgEnableSidebarCache ) $parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
+		wfProfileOut( __METHOD__ );
 		return $bar;
 	}
 }
+
