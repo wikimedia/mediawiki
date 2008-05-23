@@ -731,7 +731,7 @@ class Block
 			$expirystr = $msg['infiniteblock'];
 		} else {
 			global $wgLang;
-			$expiretimestr = $wgLang->timeanddate( wfTimestamp( TS_MW, $expiry ), true );
+			$expiretimestr = $wgLang->timeanddate( $expiry, true );
 			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array($expiretimestr) );
 		}
 
