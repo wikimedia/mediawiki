@@ -960,7 +960,7 @@ class OutputPage {
 	 *
 	 * @param array $errors Error message keys
 	 */
-	public function showPermissionsErrorPage( $errors )
+	public function showPermissionsErrorPage( $errors, $action = null )
 	{
 		global $wgTitle;
 
@@ -973,7 +973,7 @@ class OutputPage {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 		$this->mBodytext = '';
-		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors ) );
+		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
 	}
 
 	/** @deprecated */
@@ -1096,8 +1096,14 @@ class OutputPage {
 	 * @param array $errors An array of arrays returned by Title::getUserPermissionsErrors
 	 * @return string The wikitext error-messages, formatted into a list.
 	 */
-	public function formatPermissionsErrorMessage( $errors ) {
-		$text = wfMsgNoTrans( 'permissionserrorstext', count( $errors ) ) . "\n\n";
+	public function formatPermissionsErrorMessage( $errors, $action = null ) {
+		if ($action == null) {
+			$text = wfMsgNoTrans( 'permissionserrorstext', count($errors)). "\n\n";
+		} else {
+			$action_desc = wfMsg( "right-$action" );
+			$action_desc[0] = strtolower($action_desc[0]);
+			$text = wfMsgNoTrans( 'permissionserrorstext-withaction', count($errors), $action_desc ) . "\n\n";
+		}
 
 		if (count( $errors ) > 1) {
 			$text .= '<ul class="permissions-errors">' . "\n";
@@ -1135,7 +1141,7 @@ class OutputPage {
 	 * @param bool   $protected Is this a permissions error?
 	 * @param array  $reasons   List of reasons for this error, as returned by Title::getUserPermissionsErrors().
 	 */
-	public function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
+	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		global $wgUser, $wgTitle;
 		$skin = $wgUser->getSkin();
 
@@ -1156,7 +1162,7 @@ class OutputPage {
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
 			}
-			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons ) );
+			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
 		} else {
 			// Wiki is read only
 			$this->setPageTitle( wfMsg( 'readonly' ) );

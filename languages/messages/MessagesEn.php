@@ -1130,6 +1130,7 @@ You can go back and edit an existing page, or [[Special:Userlogin|log in or crea
 'nocreate-loggedin'         => 'You do not have permission to create new pages on {{SITENAME}}.',
 'permissionserrors'         => 'Permissions Errors',
 'permissionserrorstext'     => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
+'permissionserrorstext-withaction'  => 'You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:',
 'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.'''
 
 You should consider whether it is appropriate to continue editing this page.
@@ -1158,6 +1159,7 @@ These arguments have been omitted.',
 'cantcreateaccount-text' => "Account creation from this IP address ('''$1''') has been blocked by [[User:$3|$3]].
 
 The reason given by $3 is ''$2''",
+'cantcreateaccount-nonblock-text' => '', # do not translate or duplicate this message to other languages
 
 # History pages
 'viewpagelogs'          => 'View logs for this page',

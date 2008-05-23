@@ -327,12 +327,7 @@ class IPUnblockForm {
 		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
 
 		$properties = array();
-		if ( $block->mExpiry === "" || $block->mExpiry === Block::infinity() ) {
-			$properties[] = $msg['infiniteblock'];
-		} else {
-			$properties[] = wfMsgReplaceArgs( $msg['expiringblock'],
-				array( $wgLang->timeanddate( $block->mExpiry, true ) ) );
-		}
+		$properties[] = Block::formatExpiry( $block->mExpiry );
 		if ( $block->mAnonOnly ) {
 			$properties[] = $msg['anononlyblock'];
 		}

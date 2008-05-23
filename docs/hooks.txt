@@ -238,6 +238,10 @@ protocol came about after MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if
 you're going to add events to the MediaWiki code.
 
+'AbortAutoblock': Return false to cancel an autoblock.
+$autoblockip: The IP going to be autoblocked.
+$block: The block from which the autoblock is coming.
+
 'AbortLogin': Return false to cancel account login.
 $user: the User object being authenticated against
 $password: the password being submitted, not yet checked for validity

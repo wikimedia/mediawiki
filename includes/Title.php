@@ -1158,8 +1158,9 @@ class Title {
 			else if ($result === false )
 				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
 		}
-
-		if( NS_SPECIAL == $this->mNamespace ) {
+		
+		$specialOKActions = array( 'createaccount', 'execute' );
+		if( NS_SPECIAL == $this->mNamespace && !in_array( $action, $specialOKActions) ) {
 			$errors[] = array('ns-specialprotected');
 		}
 
