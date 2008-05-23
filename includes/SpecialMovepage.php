@@ -304,28 +304,29 @@ class MovePageForm {
 			$this->moveTalk = false;
 		}
 
-		# If the target namespace doesn't allow subpages, moving with subpages
-		# would mean that you couldn't move them back in one operation, which
-		# is bad.
-		#
-		# FIXME: A specific error message should be given in this case.
-		if( empty( $wgNamespacesWithSubpages[$nt->getNamespace()] ) ) {
-			$this->moveSubpages = false;
-		}
-
 		# Next make a list of id's.  This might be marginally less efficient
 		# than a more direct method, but this is not a highly performance-cri-
 		# tical code path and readable code is more important here.
 		#
 		# Note: this query works nicely on MySQL 5, but the optimizer in MySQL
 		# 4 might get confused.  If so, consider rewriting as a UNION.
+		#
+		# If the target namespace doesn't allow subpages, moving with subpages
+		# would mean that you couldn't move them back in one operation, which
+		# is bad.  FIXME: A specific error message should be given in this
+		# case.
 		$dbr = wfGetDB( DB_SLAVE );
-		if( $this->moveSubpages ) {
+		if( $this->moveSubpages && (
+			!empty($wgNamespacesWithSubpages[$nt->getNamespace()]) || (
+				$this->moveTalk &&
+				!empty( $wgNamespacesWithSubpages[$nt->getTalkPage()->getNamespace()] )
+			)
+		) ) {
 			$conds = array(
 				'page_title LIKE '.$dbr->addQuotes( $dbr->escapeLike( $ot->getDBkey() ) . '/%' )
 					.' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
 			);
-			if( $this->moveTalk ) {
+			if( $this->moveTalk && !empty( $wgNamespacesWithSubpages[$nt->getTalkPage()->getNamespace()] ) ) {
 				$conds['page_namespace'] = array( $ot->getNamespace(),
 					MWNamespace::getTalk($ot->getNamespace()) );
 			} else {
