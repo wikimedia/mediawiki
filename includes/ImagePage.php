@@ -19,8 +19,6 @@ class ImagePage extends Article {
 
 	function __construct( $title ) {
 		parent::__construct( $title );
-
-		global $wgRequest;
 		$this->dupes = null;
 		$this->repo = null;
 	}
