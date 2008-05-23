@@ -45,6 +45,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   displayed on the recent changes special pages.
 * The "createpage" permission is no longer required when uploading if the target
   image page already exists.
+* $wgMaximumMovedPages restricts the number of pages that can be moved at once
+  (default 1000) with the new subpage-move functionality of Special:Movepage.
 
 === New features in 1.13 ===
 
@@ -121,6 +123,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * AutoAuthenticate hook renamed to UserLoadFromSession
 * (bug 13232) importScript(), importStylesheet() funcs available to custom JS
 * (bug 13095) Search by first letters or digits in [[Special:Categories]]
+* Users moving a page can now move all subpages automatically as well
 
 === Bug fixes in 1.13 ===
 

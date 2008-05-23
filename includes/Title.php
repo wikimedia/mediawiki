@@ -1503,6 +1503,34 @@ class Title {
 	}
 
 	/**
+	 * Does this have subpages?  (Warning, usually requires an extra DB query.)
+	 * @return bool
+	 */
+	public function hasSubpages() {
+		global $wgNamespacesWithSubpages;
+
+		if( !isset( $wgNamespacesWithSubpages[$this->mNamespace] ) ) {
+			# Duh
+			return false;
+		}
+
+		# We dynamically add a member variable for the purpose of this method
+		# alone to cache the result.  There's no point in having it hanging
+		# around uninitialized in every Title object; therefore we only add it
+		# if needed and don't declare it statically.
+		if( isset( $this->mHasSubpages ) ) {
+			return $this->mHasSubpages;
+		}
+
+		$db = wfGetDB( DB_SLAVE );
+		return $this->mHasSubpages = (bool)$db->selectField( 'page', '1',
+			"page_namespace = {$this->mNamespace} AND page_title LIKE '"
+			. $db->escapeLike( $this->mDbkeyform ) . "/%'",
+			__METHOD__
+		);
+	}
+
+	/**
 	 * Could this page contain custom CSS or JavaScript, based
 	 * on the title?
 	 *
