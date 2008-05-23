@@ -39,10 +39,10 @@ while ( $dbw->selectField( 'job', 'count(*)', $conds, 'runJobs.php' ) ) {
 			break;
 
 		wfWaitForSlaves( 5 );
-		print $job->id . "  " . $job->toString() . "\n";
+		print wfTimestamp( TS_DB ) . "  " . $job->id . "  " . $job->toString() . "\n";
 		$offset=$job->id;
 		if ( !$job->run() ) {
-			print "Error: {$job->error}\n";
+			print wfTimestamp( TS_DB ) . "  Error: {$job->error}\n";
 		}
 		if ( $maxJobs && ++$n > $maxJobs ) {
 			break 2;
