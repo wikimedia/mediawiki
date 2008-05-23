@@ -326,11 +326,12 @@ class MovePageForm {
 				'page_title LIKE '.$dbr->addQuotes( $dbr->escapeLike( $ot->getDBkey() ) . '/%' )
 					.' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
 			);
+			$conds['page_namespace'] = array();
+			if( !empty( $wgNamespacesWithSubpages[$nt->getNamespace()] ) ) {
+				$conds['page_namespace'] []= $ot->getNamespace();
+			}
 			if( $this->moveTalk && !empty( $wgNamespacesWithSubpages[$nt->getTalkPage()->getNamespace()] ) ) {
-				$conds['page_namespace'] = array( $ot->getNamespace(),
-					MWNamespace::getTalk($ot->getNamespace()) );
-			} else {
-				$conds['page_namespace'] = $ot->getNamespace();
+				$conds['page_namespace'] []= $ot->getTalkPage()->getNamespace();
 			}
 		} elseif( $this->moveTalk ) {
 			$conds = array(
