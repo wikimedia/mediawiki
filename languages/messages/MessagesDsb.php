@@ -1858,8 +1858,6 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'talkexists'              => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',
 'movedto'                 => 'pśesunjony do',
 'movetalk'                => 'Diskusijny bok sobu pśesunuś.',
-'talkpagemoved'           => 'Pśisłušny diskusijny bok jo teke se pśesunuł.',
-'talkpagenotmoved'        => 'Wótpowědny diskusijny bok <strong>njejo</strong> był pśesunjony.',
 '1movedto2'               => '„[[$1]]“ pśesunjone na „[[$2]]“',
 '1movedto2_redir'         => '„[[$1]]“ jo se pśesunuł(o/a) na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
 'movelogpage'             => 'Protokol pśesunjenjow',

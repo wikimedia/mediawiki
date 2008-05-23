@@ -990,8 +990,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'articleexists'    => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'movedto'          => 'pārvietota uz',
 'movetalk'         => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
-'talkpagemoved'    => 'Tika pārvietota arī atbilstošā diskusiju lapa.',
-'talkpagenotmoved' => 'Atbilstošā diskusiju lapa <strong>netika</strong> pārvietota.',
 '1movedto2'        => '"[[$1]]" pārdēvēju par "[[$2]]"',
 '1movedto2_redir'  => '$1 pārdēvēju par $2, izmantojot pāradresāciju',
 'movelogpage'      => 'Pārvietošanas reģistrs',

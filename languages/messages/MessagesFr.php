@@ -1950,8 +1950,6 @@ Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez cel
 'talkexists'              => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',
 'movedto'                 => 'renommé en',
 'movetalk'                => 'Renommer aussi la page de discussion associée',
-'talkpagemoved'           => 'La page de discussion correspondante a également été déplacée.',
-'talkpagenotmoved'        => 'La page de discussion correspondante n’a <strong>pas</strong> été déplacée.',
 '1movedto2'               => 'a renommé [[$1]] en [[$2]]',
 '1movedto2_redir'         => 'a redirigé [[$1]] vers [[$2]]',
 'movelogpage'             => 'Historique des renommages',

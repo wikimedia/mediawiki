@@ -593,7 +593,6 @@ $2',
 數略之。',
 'post-expand-template-argument-category'  => '含略模數之頁',
 
-
 # "Undo" feature
 'undo-success' => '此審可返也。查確然完之。',
 'undo-failure' => '中審之異，此審無返也。',
@@ -1583,8 +1582,6 @@ $NEWPAGE
 'talkexists'              => "'''文遷成而議未移，蓋早存也；請併之。'''",
 'movedto'                 => '遷至',
 'movetalk'                => '議並遷',
-'talkpagemoved'           => '議並遷矣。',
-'talkpagenotmoved'        => '遷議<strong>不成</strong>。',
 '1movedto2'               => '[[$1]]遷至[[$2]]',
 '1movedto2_redir'         => '[[$1]]遷至[[$2]]為渡',
 'movelogpage'             => '誌遷',

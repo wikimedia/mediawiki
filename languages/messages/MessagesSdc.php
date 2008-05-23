@@ -1515,8 +1515,6 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'talkexists'              => "'''La pàgina è isthadda ippusthadda currettamenti, ma nò è isthaddu pussìbiri ippusthà la pàgina di dischussioni parchí ni isisthi già un'althra cu' lu nobu tìturu. Aggiugnì a manu li cuntiniddi di li dui pàgini.'''",
 'movedto'                 => 'ippusthadda a',
 'movetalk'                => 'Ippustha puru la pàgina di dischussioni.',
-'talkpagemoved'           => 'Puru la reratiba pàgina di dischussioni è isthadda ippusthadda.',
-'talkpagenotmoved'        => 'La reratiba pàgina di dischussioni <strong>nò</strong> è isthadda ippusthadda.',
 '1movedto2'               => 'ha ippusthaddu [[$1]] a [[$2]]',
 '1movedto2_redir'         => '[[$1]] ippusthadda a [[$2]] attrabessu rinviu',
 'movelogpage'             => 'Ippusthamenti',

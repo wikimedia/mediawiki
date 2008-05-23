@@ -457,14 +457,12 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'unlockbtn' => 'Na mai brakh i database',
 
 # Move page
-'movearticle'      => 'Inger i patrin',
-'movepagebtn'      => 'Inger i patrin',
-'pagemovedsub'     => 'I patrin sas bićhaldi.',
-'movedto'          => 'ingerdi kai',
-'talkpagemoved'    => 'Ingerdi vi i phandli vakyarimatengi patrin.',
-'talkpagenotmoved' => 'I phandli vakyarimatengi patrin <strong>nai</strong> ingerdi.',
-'1movedto2'        => '[[$1]] bichhaldo kai [[$2]]',
-'delete_and_move'  => 'Khos thai inger',
+'movearticle'     => 'Inger i patrin',
+'movepagebtn'     => 'Inger i patrin',
+'pagemovedsub'    => 'I patrin sas bićhaldi.',
+'movedto'         => 'ingerdi kai',
+'1movedto2'       => '[[$1]] bichhaldo kai [[$2]]',
+'delete_and_move' => 'Khos thai inger',
 
 # Export
 'export-submit' => 'Bichhal avri',

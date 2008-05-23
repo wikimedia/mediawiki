@@ -859,8 +859,6 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'talkexists'              => "'''A paggina a l'è stæta stramûâa correttamente, ma o no l'è stæto poscibbile stramûâ a paggina de discûxon perché ghe n'è zà 'n'âtra co-o nêuvo tittolo. O se deive inserî manualmente i contegnûi de tûtte e doe.'''",
 'movedto'                 => 'Stramûâa a',
 'movetalk'                => 'Stramûâ anche a paggina de discûxon',
-'talkpagemoved'           => "Anche a rispettiva paggina de discûxon a l'è stæta stramûâa.",
-'talkpagenotmoved'        => "A paggina de discûxon <strong>a no l'è stæta stramûâa</strong>.",
 '1movedto2'               => '[[$1]] mesciòu a [[$2]]',
 '1movedto2_redir'         => '[[$1]] mescioö a [[$2]] redirect',
 'movelogpage'             => 'Lista di remesci',

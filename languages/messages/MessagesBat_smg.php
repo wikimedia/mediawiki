@@ -1241,8 +1241,6 @@ pavadėnėma straipsnis jau tor aptarėmu poslapi.
 Prašuom sojongtė šėtuos poslapios.'''",
 'movedto'                 => 'parvadints i',
 'movetalk'                => 'Parkeltė sosėta aptarėma poslapi.',
-'talkpagemoved'           => 'Sosėits aptarėma poslapis bova parkelts teipuogi.',
-'talkpagenotmoved'        => 'Sosėits aptarėma poslapis <strong>nabova</strong> parkelts.',
 '1movedto2'               => 'Straipsnis [[$1]] parvadints i [[$2]]',
 '1movedto2_redir'         => "'$1' parvadints i '$2' (onkstiau bova nukrēpamāsis)",
 'movelogpage'             => 'Parvardinėmu istuorėjė',

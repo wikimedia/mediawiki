@@ -553,8 +553,6 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'talkexists'       => "La pagina è stata spostata correttamente, ma la pagina di dicussione non poteva essere spostata perché ne esiste già un'altra con il nuovo titolo. Per favore, modifica manualmente i contenuti delle due pagine discussione, così da mantenerle entrambe per non perdere potenzialmente interessanti riflessioni.",
 'movedto'          => 'spostata a',
 'movetalk'         => 'Sposta anche la corrispondente pagina "discussione", se possibile.',
-'talkpagemoved'    => 'Anche la corrispondente pagina di discussione è stata spostata.',
-'talkpagenotmoved' => 'La corrispondente pagina di discussione <strong>non è stata spostata</strong>.',
 
 # Special:Newimages
 'imagelisttext' => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',

@@ -219,19 +219,17 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'whatlinkshere' => 'Ol link ikam long hia',
 
 # Move page
-'movepagebtn'      => 'Surikim',
-'pagemovedsub'     => 'Pes i surik pinis',
-'movepage-moved'   => '<big>\'\'\'"$1" i surik i go long "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => 'Wanpela pes wantaim dispela nem i stap pinis, o dispela nem i no stret.
+'movepagebtn'     => 'Surikim',
+'pagemovedsub'    => 'Pes i surik pinis',
+'movepage-moved'  => '<big>\'\'\'"$1" i surik i go long "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'   => 'Wanpela pes wantaim dispela nem i stap pinis, o dispela nem i no stret.
 Yu mas painim narapela nem.',
-'talkexists'       => "'''Pes bilong buk i surik pinis, tasol pes bilong toktok i no inap surik, bilong wanem wanpela pes bilong toktok istap pinis wantaim dispela nam.  Yu mas pasim wantaim tupela pes bilong toktok yu yet.'''",
-'movedto'          => 'i surik i go long',
-'movetalk'         => 'Surikim pes bilong toktok wantaim',
-'talkpagemoved'    => 'Pes bilong toktok i surik pinis wantaim.',
-'talkpagenotmoved' => 'Pes bilong toktok <strong>i no surik wantaim</strong>.',
-'1movedto2'        => '[[$1]] i surik i go long [[$2]] pinis',
-'movelogpage'      => 'Buk bilong ol surik',
-'movelogpagetext'  => 'Hia yumi lukim ol pes i surik pinis.',
+'talkexists'      => "'''Pes bilong buk i surik pinis, tasol pes bilong toktok i no inap surik, bilong wanem wanpela pes bilong toktok istap pinis wantaim dispela nam.  Yu mas pasim wantaim tupela pes bilong toktok yu yet.'''",
+'movedto'         => 'i surik i go long',
+'movetalk'        => 'Surikim pes bilong toktok wantaim',
+'1movedto2'       => '[[$1]] i surik i go long [[$2]] pinis',
+'movelogpage'     => 'Buk bilong ol surik',
+'movelogpagetext' => 'Hia yumi lukim ol pes i surik pinis.',
 
 # Namespace 8 related
 'allmessages' => 'Ol toksave bilong sistem',

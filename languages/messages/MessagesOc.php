@@ -1996,8 +1996,6 @@ la pagina de discussion a pas pogut èsser desplaçada perque n'existissiá ja u
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movedto'                 => 'renomenat en',
 'movetalk'                => 'Tornar nomenar tanben la pagina de discussion associada',
-'talkpagemoved'           => 'La pagina de discussion correspondenta tanben es estada desplaçada.',
-'talkpagenotmoved'        => 'La pagina de discussion correspondenta es <strong>pas</strong> estada desplaçada.',
 '1movedto2'               => 'a renomenat [[$1]] en [[$2]]',
 '1movedto2_redir'         => 'a redirigit [[$1]] vèrs [[$2]]',
 'movelogpage'             => 'Istoric dels renomenatges',

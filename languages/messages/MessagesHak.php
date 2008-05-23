@@ -1262,8 +1262,6 @@ chhiáng chhai hàng-thung chṳ̂-chhièn siên liáu-kié khì-thâ khó-nèn 
 'talkexists'              => "'''Hong-mien pún-sṳ̂n yì-thung sṳ̀n-kûng, than-he yù-yî sîn phêu-thì hâ yí-kîn yû tui-fa-hong chhùn-chhai, só-yî tui-fa-hong vù-fap yì-thung. Chhiáng sú-kûng ha̍p-phîn lióng-ke hong-mien'''.",
 'movedto'                 => 'yì-thung to',
 'movetalk'                => 'Chhiáng thùng-sṳ̀ yì-thung tui-fa-chông',
-'talkpagemoved'           => 'Siông-yin ke tui-fa-hong ya yí-kîn yì-thung.',
-'talkpagenotmoved'        => 'Siông-yin ke tui-fa-hong <strong>mò-yû</strong> pûn yì-thung.',
 '1movedto2'               => '[[$1]] yì-thung to [[$2]]',
 '1movedto2_redir'         => '[[$1]] theu-ko chhûng-thin-hiong yì-thung to [[$2]]',
 'movelogpage'             => 'Yì-thung ngit-ki',

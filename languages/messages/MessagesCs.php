@@ -2006,8 +2006,6 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'talkexists'              => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
 'movedto'                 => 'přesunuto na',
 'movetalk'                => 'Přesunout také diskusní stránku, existuje-li.',
-'talkpagemoved'           => 'Diskusní stránka byla také přesunuta.',
-'talkpagenotmoved'        => 'Diskusní stránka <strong>nebyla</strong> přesunuta.',
 '1movedto2'               => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
 '1movedto2_redir'         => 'Stránka [[$1]] přemístěna na stránku [[$2]] s výměnou přesměrování',
 'movelogpage'             => 'Kniha přesunů',

@@ -902,8 +902,6 @@ qua vu selektis ne esas valida.
 Voluntez selektar altra nomo.',
 'movedto'                 => 'rinomizita ad',
 'movetalk'                => 'Rinomizar la debato-pagino se to esas aplikebla.',
-'talkpagemoved'           => 'Anke la korespondanta debato-pagino movesis.',
-'talkpagenotmoved'        => 'La korespondanta debato-pagino <strong>ne</strong> movesis.',
 '1movedto2'               => '[[$1]] movita a [[$2]]',
 'movereason'              => 'Motivo:',
 'revertmove'              => 'rekuperar',

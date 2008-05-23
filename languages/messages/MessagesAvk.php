@@ -1592,8 +1592,6 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'movedto'                 => 'Tolyoltayan ton',
 'movetalk'                => "Renommer aussi la page « discussion », s'il y a lieu.",
-'talkpagemoved'           => 'La page discussion correspondante a également été déplacée.',
-'talkpagenotmoved'        => "La page discussion correspondante n'a <strong>pas</strong> été déplacée.",
 '1movedto2'               => '$1 arbureyen kal $2',
 '1movedto2_redir'         => '$1 arbureyen kal $2 (graskara)',
 'movelogpage'             => 'Arrundara va "log" bu',

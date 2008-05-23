@@ -1649,8 +1649,6 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
 'movedto'                 => 'renombrado a',
 'movetalk'                => 'Renombrar la página de discusión también, si es aplicable.',
-'talkpagemoved'           => 'La página de discusión correspondiente también fue renombrada.',
-'talkpagenotmoved'        => 'La página de discusión correspondiente <strong>no</strong> fue renombrada.',
 '1movedto2'               => '[[$1]] trasladada a [[$2]]',
 '1movedto2_redir'         => '[[$1]] trasladada a [[$2]] sobre una redirección',
 'movelogpage'             => 'Registro de traslados',

@@ -1488,8 +1488,6 @@ $NEWPAGE
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',
 'movedto'                 => '移到',
 'movetalk'                => '移動相關嗰討論頁',
-'talkpagemoved'           => '相關嗰對話頁也移卟嘞。',
-'talkpagenotmoved'        => '相關嗰對話頁<strong>冇</strong>移動。',
 '1movedto2'               => '[[$1]]移到[[$2]]',
 '1movedto2_redir'         => '[[$1]]通過重定向移到[[$2]]',
 'movelogpage'             => '移動日誌',
