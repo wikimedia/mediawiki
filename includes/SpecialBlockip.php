@@ -342,18 +342,10 @@ class IPBlockForm {
 		if (strlen($expirestr) == 0) {
 			return array('ipb_expiry_invalid');
 		}
-
-		if ( $expirestr == 'infinite' || $expirestr == 'indefinite' ) {
-			$expiry = Block::infinity();
-		} else {
-			# Convert GNU-style date, on error returns -1 for PHP <5.1 and false for PHP >=5.1
-			$expiry = strtotime( $expirestr );
-
-			if ( $expiry < 0 || $expiry === false ) {
-				return array('ipb_expiry_invalid');
-			}
-
-			$expiry = wfTimestamp( TS_MW, $expiry );
+		
+		if ( false === ($expiry = Block::parseExpiryInput( $expirestr )) ) {
+			// Bad expiry.
+			return array('ipb_expiry_invalid');
 		}
 
 		# Create block

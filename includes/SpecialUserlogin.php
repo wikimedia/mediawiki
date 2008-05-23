@@ -665,14 +665,16 @@ class LoginForm {
 	}
 
 	/** */
-	function userNotPrivilegedMessage() {
+	function userNotPrivilegedMessage($errors) {
 		global $wgOut;
 
-		$wgOut->setPageTitle( wfMsg( 'whitelistacctitle' ) );
+		$wgOut->setPageTitle( wfMsg( 'permissionserrors' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
-		$wgOut->addWikiMsg( 'whitelistacctext' );
+		$wgOut->addWikitext( $wgOut->formatPermissionsErrorMessage( $errors, 'createaccount' ) );
+		// Stuff that might want to be added at the end. For example, instructions if blocked.
+		$wgOut->addWikiMsg( 'cantcreateaccount-nonblock-text' );
 
 		$wgOut->returnToMain( false );
 	}
@@ -711,13 +713,15 @@ class LoginForm {
 		global $wgUser, $wgOut, $wgAllowRealName, $wgEnableEmail;
 		global $wgCookiePrefix, $wgAuth, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit;
+		
+		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 
 		if ( $this->mType == 'signup' ) {
-			if ( !$wgUser->isAllowed( 'createaccount' ) ) {
-				$this->userNotPrivilegedMessage();
-				return;
-			} elseif ( $wgUser->isBlockedFromCreateAccount() ) {
+			if ( $wgUser->isBlockedFromCreateAccount() ) {
 				$this->userBlockedMessage();
+				return;
+			} elseif ( count( $permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $wgUser, true ) )>0 ) {
+				$wgOut->showPermissionsErrorPage( $permErrors, 'createaccount' );
 				return;
 			}
 		}

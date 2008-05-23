@@ -389,6 +389,7 @@ class EditPage {
 		}
 
 		$permErrors = $this->mTitle->getUserPermissionsErrors('edit', $wgUser);
+		
 		if( !$this->mTitle->exists() ) {
 			$permErrors = array_merge( $permErrors,
 				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors('create', $wgUser), $permErrors ) );
@@ -414,10 +415,10 @@ class EditPage {
 			}
 		}
 		$permErrors = wfArrayDiff2( $permErrors, $remove );
-
+		
 		if ( $permErrors ) {
 			wfDebug( __METHOD__.": User can't edit\n" );
-			$this->readOnlyPage( $this->getContent(), true, $permErrors );
+			$this->readOnlyPage( $this->getContent(), true, $permErrors, 'edit' );
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
@@ -489,7 +490,7 @@ class EditPage {
 	 * Parameters are the same as OutputPage:readOnlyPage()
 	 * Redirect to the article page if redlink=1
 	 */
-	function readOnlyPage( $source = null, $protected = false, $reasons = array() ) {
+	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		global $wgRequest, $wgOut;
 		if ( $wgRequest->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
@@ -497,7 +498,7 @@ class EditPage {
 			// they really want a permission error.
 			$wgOut->redirect( $this->mTitle->getFullUrl() );
 		} else {
-			$wgOut->readOnlyPage( $source, $protected, $reasons );
+			$wgOut->readOnlyPage( $source, $protected, $reasons, $action );
 		}
 	}
 

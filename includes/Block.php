@@ -486,6 +486,12 @@ class Block
 				wfDebug( " No match\n" );
 			}
 		}
+		
+		## Allow hooks to cancel the autoblock.
+		if (!wfRunHooks( 'AbortAutoblock', array( $autoblockip, &$this ) )) {
+			wfDebug( "Autoblock aborted by hook." );
+			return false;
+		}
 
 		# It's okay to autoblock. Go ahead and create/insert the block.
 
@@ -703,6 +709,49 @@ class Block
 		}
 		return $infinity;
 		 */
+	}
+	
+	/**
+	 * Convert a DB-encoded expiry into a real string that humans can read.
+	 */
+	static function formatExpiry( $encoded_expiry ) {
+	
+		static $msg = null;
+		
+		if( is_null( $msg ) ) {
+			$msg = array();
+			$keys = array( 'infiniteblock', 'expiringblock' );
+			foreach( $keys as $key ) {
+				$msg[$key] = wfMsgHtml( $key );
+			}
+		}
+		
+		$expiry = Block::decodeExpiry( $encoded_expiry );
+		if ($expiry == 'infinity') {
+			$expirystr = $msg['infiniteblock'];
+		} else {
+			global $wgLang;
+			$expiretimestr = $wgLang->timeanddate( wfTimestamp( TS_MW, $expiry ), true );
+			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array($expiretimestr) );
+		}
+
+		return $expirystr;
+	}
+	
+	/**
+	 * Convert a typed-in expiry time into something we can put into the database.
+	 */
+	static function parseExpiryInput( $expiry_input ) {
+		if ( $expiry_input == 'infinite' || $expiry_input == 'indefinite' ) {
+			$expiry = 'infinity';
+		} else {
+			$expiry = strtotime( $expiry_input );
+			if ($expiry < 0 || $expiry === false) {
+				return false;
+			}
+		}
+		
+		return $expiry;
 	}
 
 }
