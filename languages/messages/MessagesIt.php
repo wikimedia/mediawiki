@@ -1825,8 +1825,6 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'talkexists'              => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
 'movedto'                 => 'spostata a',
 'movetalk'                => 'Sposta anche la pagina di discussione.',
-'talkpagemoved'           => 'Anche la rispettiva pagina di discussione è stata spostata.',
-'talkpagenotmoved'        => 'La rispettiva pagina di discussione <strong>non</strong> è stata spostata.',
 '1movedto2'               => 'ha spostato [[$1]] a [[$2]]',
 '1movedto2_redir'         => '[[$1]] spostata a [[$2]] tramite redirect',
 'movelogpage'             => 'Spostamenti',

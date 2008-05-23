@@ -1952,8 +1952,6 @@ pretože už jedna existuje pod zadaným novým názvom.
 Prosím, zlúčte ich ručne.'''",
 'movedto'                 => 'presunutá na',
 'movetalk'                => 'Presunúť aj príslušnú diskusnú stránku, ak sa dá.',
-'talkpagemoved'           => 'Príslušná diskusná stránka bola tiež premiestnená.',
-'talkpagenotmoved'        => 'Príslušná diskusná stránka <strong>nebola</strong> premiestnená.',
 '1movedto2'               => '[[$1]] premiestnená na [[$2]]',
 '1movedto2_redir'         => '[[$1]] premiestnená na [[$2]] výmenou presmerovania',
 'movelogpage'             => 'Záznam presunov',

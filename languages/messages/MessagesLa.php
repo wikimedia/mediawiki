@@ -1362,8 +1362,6 @@ Quaesumus, nomen alterum elige aut opem pete [[{{MediaWiki:Grouppage-sysop}}|mag
 'talkexists'              => "'''Pagina prospere mota est, sed pagina disputationis not moveri potuit quia iam est pagina disputationis sub titulo novo. Disputationes recensendo iunge.'''",
 'movedto'                 => 'mota ad',
 'movetalk'                => 'Movere etiam paginam disputationis',
-'talkpagemoved'           => 'Pagina disputationis etiam mota est.',
-'talkpagenotmoved'        => 'Pagina disputationis <strong>non</strong> mota est.',
 '1movedto2'               => 'movit [[$1]] ad [[$2]]',
 '1movedto2_redir'         => 'movit [[$1]] ad [[$2]] praeter redirectionem',
 'movereason'              => 'Causa:',

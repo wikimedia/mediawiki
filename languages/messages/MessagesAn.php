@@ -1840,8 +1840,6 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'talkexists'              => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
 'movedto'                 => 'tresladato ta',
 'movetalk'                => 'Tresladar a pachina de descusión asoziata.',
-'talkpagemoved'           => 'A pachina de descusión correspondient tamién estió tresladata.',
-'talkpagenotmoved'        => 'A pachina de descusión correspondient <strong>no</strong> estió tresladata.',
 '1movedto2'               => '[[$1]] tresladada á [[$2]]',
 '1movedto2_redir'         => '[[$1]] tresladada á [[$2]] sobre una reendrezera',
 'movelogpage'             => 'Rechistro de treslatos',

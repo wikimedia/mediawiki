@@ -1872,8 +1872,6 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'talkexists'              => 'Strona sama bu z wuspěchom přesunjena, diskusijna strona pak njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změš jeju manuelnje.',
 'movedto'                 => 'přesunjena do hesła',
 'movetalk'                => 'Přisłušnu diskusijnu stronu tohorunja přesunyć',
-'talkpagemoved'           => 'Přisłušna diskusijna strona bu tohorunja přesunjena.',
-'talkpagenotmoved'        => 'Přisłušna diskusijna strona <strong>njebu</strong> přesunjena.',
 '1movedto2'               => 'je [[$1]] pod hesło [[$2]] přesunył',
 '1movedto2_redir'         => 'je [[$1]] pod hesło [[$2]] přesunył a při tym daleposrědkowanje přepisał.',
 'movelogpage'             => 'Protokol přesunjenjow',

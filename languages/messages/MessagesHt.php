@@ -758,8 +758,6 @@ Souple, byen gade ke li pa egziste pyès redireksyon de fwa epi korije yo si li 
 'talkexists'       => 'Paj an men byen deplase. Mè paj diskisyon an pa deplase paske li te ja egziste yonn anlè nouvo paj an. Souple, fizyone de diskisyon sa yo, mete yo ansanmm anlè nouvo paj an.',
 'movedto'          => 'deplase nan',
 'movetalk'         => 'Renonmen ak deplase paj diskisyon an tou',
-'talkpagemoved'    => 'Paj diskisyon an byen deplase',
-'talkpagenotmoved' => 'Paj diskisyon ki sosye a <strong>pa</strong> deplase.',
 '1movedto2'        => '[[$1]] renonmen, li kounye a [[$2]]',
 'movelogpage'      => 'Istorik renomaj yo',
 'movereason'       => 'Poukisa nou deplase li :',

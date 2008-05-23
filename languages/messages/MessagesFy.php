@@ -1109,8 +1109,6 @@ net mear keppele om't der foar de nije namme el al in oerlisside wie.
 Gearfoegje de oerlissiden hânmjittig.",
 'movedto'          => 'werenamd as',
 'movetalk'         => 'Derby hearrende oerlisside ferskowe',
-'talkpagemoved'    => 'De oerlisside is al noch keppele.',
-'talkpagenotmoved' => 'De oerlisside is <strong>net</strong> mear keppele.',
 '1movedto2'        => '[[$1]] ferskood nei [[$2]]',
 'movelogpage'      => 'Lochboek fan ferskode siden',
 'movereason'       => 'Reden:',

@@ -1761,8 +1761,6 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'talkexists'              => "'''La pagina la xe stà spostà coretamente, ma no s'à mìa podesto spostar la pagina de discussion parché ghe ne xe xà n'altra col stesso nome. Par piaser meti insieme i contenuti de le do pagine a man.'''",
 'movedto'                 => 'spostà a',
 'movetalk'                => 'Sposta anca la corispondente pagina "discussion", se se riesse.',
-'talkpagemoved'           => 'Anca ła corispondente pàxena de discussion la xè stà spostà.',
-'talkpagenotmoved'        => 'La corispondente pàxena de discussion <strong>no la xè mìa stà spostà</strong>.',
 '1movedto2'               => '[[$1]] spostà a [[$2]]',
 '1movedto2_redir'         => "$1 spostà a $2 co'n redirect",
 'movelogpage'             => 'Registro dei spostamenti',

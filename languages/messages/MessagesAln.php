@@ -557,13 +557,12 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'contribslink' => 'kontribute',
 
 # Move page
-'movearticle'      => 'Zhvendose faqen',
-'newtitle'         => 'Te titulli i ri',
-'move-watch'       => 'Mbikqyre kët faqe',
-'movepagebtn'      => 'Zhvendose faqen',
-'movedto'          => 'zhvendosur te',
-'talkpagenotmoved' => 'Faqja e diskutimeve korrespondente <strong>nuk</strong> u zhvendos.',
-'movereason'       => 'Arsyja',
+'movearticle' => 'Zhvendose faqen',
+'newtitle'    => 'Te titulli i ri',
+'move-watch'  => 'Mbikqyre kët faqe',
+'movepagebtn' => 'Zhvendose faqen',
+'movedto'     => 'zhvendosur te',
+'movereason'  => 'Arsyja',
 
 # Thumbnails
 'thumbnail-more'  => 'Zmadho',

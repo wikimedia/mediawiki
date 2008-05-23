@@ -1141,8 +1141,6 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'talkexists'              => 'Sama stran je bila uspešno prestavljena, pripadajoča pogovorna stran pa ne, ker že obstaja na novem naslovu. Prosimo, združite ju ročno. Če tega ne morete storiti, prosite za pomoč katerega izmed [[{{MediaWiki:Grouppage-sysop}}|administratorjev]], nikakor pa tega NE počnite z izrezanjem in prilepljenjem vsebine.',
 'movedto'                 => 'prestavljeno na',
 'movetalk'                => 'Če je mogoče, prestavi tudi pogovorno stran.',
-'talkpagemoved'           => 'Prestavljena je tudi pripadajoča pogovorna stran.',
-'talkpagenotmoved'        => 'Pripadajoča pogovorna stran <strong>ni</strong> prestavljena. Bodisi ne obstaja ali pa ste sami določili, naj se ne prestavi.',
 '1movedto2'               => '- prestavitev [[$1]] na [[$2]]',
 '1movedto2_redir'         => '- prestavitev [[$1]] na [[$2]] čez preusmeritev',
 'movelogpage'             => 'Dnevnik prestavljanja strani',

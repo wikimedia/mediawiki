@@ -912,8 +912,6 @@ miaraka aminy no tsy afaka nakisaka satria efa misy pejin-dresaka
 mifanaraka amin'ilay anarana vaovao. Azafady mba atambaro izay pejin-dresaka izay.'''",
 'movedto'                 => "voafindra any amin'ny",
 'movetalk'                => 'Afindrao any koa ny "pejin-dresaka", raha mety.',
-'talkpagemoved'           => "Tafafindra koa ny pejin-dresaka mifanaraka amin'ilay pejy.",
-'talkpagenotmoved'        => "<strong>Tsy</strong> tafafindra ny pejin-dresaka mifanaraka amin'ilay pejy.",
 '1movedto2'               => 'Novana ho [[$2]] ilay takelaka [[$1]]',
 '1movedto2_redir'         => 'Redirection: Novaina ho [[$2]] i [[$1]]',
 'movelogpage'             => "Tantaran'asan'ny famindran-toerana",

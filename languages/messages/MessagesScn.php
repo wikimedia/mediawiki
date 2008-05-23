@@ -1728,8 +1728,6 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'talkexists'              => "'''La pàggina hà statu spustata currettamenti, ma nun hà statu pussìbbili spustari la pàggina di discussioni pirchì nn'esisti già n'àutra cu lu tìtulu novu. Ntigrari manuarmenti li cuntinuti dî dui pàggini.'''",
 'movedto'                 => 'spustata a',
 'movetalk'                => 'Sposta puru la pàggina di discussioni, eventuarmenti.',
-'talkpagemoved'           => 'La Pàggina di discussioni chi ci currispunni fu spustata midemma.',
-'talkpagenotmoved'        => 'La rispittiva pàggina di discussioni <strong>nun</strong> hà statu spustata.',
 '1movedto2'               => '[[$1]] spustatu a [[$2]]',
 '1movedto2_redir'         => '[[$1]] spustatu a [[$2]] supra rinnirizzamentu',
 'movelogpage'             => 'Spustamenti',

@@ -732,7 +732,6 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'articleexists'    => 'A Syte mit sellem Name gits scho odr de Name isch ungültigt. Bitte nimm en andere.',
 'movedto'          => 'verschoben uf',
 'movetalk'         => 'Diskussionssyte nach Müglechkeit mitverschiebe',
-'talkpagemoved'    => 'D Diskussionssyten isch mitverschobe worde.',
 '1movedto2'        => '[[$1]] isch uf [[$2]] verschobe worde.',
 '1movedto2_redir'  => '[[$1]] isch uf [[$2]] verschobe worre un het drbii e Wiiterleitig übrschriebe.',
 'movereason'       => 'Grund',

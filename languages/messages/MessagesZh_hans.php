@@ -692,7 +692,6 @@ $2',
 这些参数会被略过。',
 'post-expand-template-argument-category'  => '包含着略过模板参数的页面',
 
-
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下对比以核实这正是您想做的，然后保存以下更改以完成撤销编辑。',
 'undo-failure' => '由于中途不一致的编辑，此编辑不能撤销。',
@@ -1834,8 +1833,6 @@ $1',
 但是由于新标题下已经有对话页存在，所以对话页无法移动。请手工合并两个页面。',
 'movedto'                 => '移动到',
 'movetalk'                => '移动关联的讨论页',
-'talkpagemoved'           => '相应的对话页也已经移动。',
-'talkpagenotmoved'        => '相应的对话页<strong>没有</strong>被移动。',
 '1movedto2'               => '[[$1]]移动到[[$2]]',
 '1movedto2_redir'         => '[[$1]]通过重定向移动到[[$2]]',
 'movelogpage'             => '移动日志',

@@ -806,8 +806,6 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'aa-enmyssit myr',
 'movetalk'                => 'Scughey yn duillag resoonaght ta cochianglt lesh',
-'talkpagemoved'           => "Va'n duillag resoonaght co`reggyrtagh scughit myrgeddin.",
-'talkpagenotmoved'        => '<strong>Cha</strong> row yn duillag resoonaght co`reggyrtagh scughit.',
 '1movedto2'               => '[[$1]] aa-enmyssit myr [[$2]]',
 'movelogpage'             => 'Lioar y scughey',
 'movereason'              => 'Fa',

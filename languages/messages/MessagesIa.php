@@ -808,8 +808,6 @@ pagina de discussion associate non ha essite movite proque ja existe un sub le
 nove titulo. Per favor fusiona los manualmente.',
 'movedto'          => 'movite a',
 'movetalk'         => 'Mover le pagina de "discussion" tamben, si applicabile.',
-'talkpagemoved'    => 'Le pagina de discussion correspondente tamben ha essite movite.',
-'talkpagenotmoved' => 'Le pagina de discussion correspondente <strong>non</strong> ha essite movite.',
 '1movedto2'        => '[[$1]] movite a [[$2]]',
 '1movedto2_redir'  => '[[$1]] movite a [[$2]] trans redirection',
 'movelogpage'      => 'Registro de movimentos',

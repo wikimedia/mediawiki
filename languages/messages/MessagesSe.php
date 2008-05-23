@@ -1069,8 +1069,6 @@ $1 | $2',
 'movepage-moved'          => "Siidu '''$1''' sirdojuvvui '''$2'''.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'Sirdojuvvun ođđa bájilčállagin',
 'movetalk'                => 'Sirdde maid ságastallansiiddu.',
-'talkpagemoved'           => 'Maid siiddu ságastallansiidu sirdojuvvui.',
-'talkpagenotmoved'        => "Siiddu ságastallansiidu '''ii''' sirdojuvvon.",
 '1movedto2'               => 'sirddii siiddu ”$1” ođđa namain ”$2”',
 'movelogpage'             => 'Sirdinlogga',
 'movelogpagetext'         => 'Dát lea logga sirdojuvvon siidduin.',

@@ -1483,8 +1483,6 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 'talkexists'              => 'Artikli om tõistõ paika pant, a arotuslehekülge saa-s pandaq, selle et vahtsõ nime all om jo arotuskülg. Panõq arotusküleq esiq kokko.',
 'movedto'                 => 'Pant päälkirä ala:',
 'movetalk'                => 'Panõq ka "arotus", ku saa.',
-'talkpagemoved'           => 'Arotuslehekülg om kah tõistõ paika pant.',
-'talkpagenotmoved'        => 'Arotuslehekülg jäi tõistõ paika pandmaldaq.',
 '1movedto2'               => "pand' lehe [[$1]] vahtsõ nime [[$2]] ala",
 '1movedto2_redir'         => "pand' lehe [[$1]] ümbresaatmislehe [[$2]] pääle",
 'movelogpage'             => 'Tõistõ paika pandmiisi nimekiri',

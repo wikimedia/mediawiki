@@ -1290,8 +1290,6 @@ leathanach phlé a hathainmniú dá bharr go bhfuil ceann ann cheana féin ag an
 Báigh tusa féin iad, le do thoil.",
 'movedto'                 => 'athainmnithe go',
 'movetalk'                => 'Athainmnigh an leathanach "phlé" freisin, má bhfuil an leathanach sin ann.',
-'talkpagemoved'           => "D'athainmníodh an leathanach phlé frithiontráil.",
-'talkpagenotmoved'        => '<strong>Níor</strong> athainmníodh an leathanach phlé frithiontráil.',
 '1movedto2'               => "D'athainmníodh $1 bheith $2",
 '1movedto2_redir'         => "D'athainmníodh $1 bheith $2 thar athsheoladh",
 'movelogpage'             => 'Athainmnigh loga',

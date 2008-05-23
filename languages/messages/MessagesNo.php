@@ -1863,8 +1863,6 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'talkexists'              => "'''Siden ble flyttet korrekt, men den tilhørende diskusjonssiden kunne ikke flyttes, fordi det allerede finnes en med den nye tittelen. Du er nødt til å flette dem sammen manuelt.'''",
 'movedto'                 => 'flyttet til',
 'movetalk'                => 'Flytt også diskusjonssiden, hvis den finnes.',
-'talkpagemoved'           => 'Den tilhørende diskusjonssiden ble også flyttet.',
-'talkpagenotmoved'        => 'Den tilhørende diskusjonssiden ble <strong>ikke</strong> flyttet.',
 '1movedto2'               => '[[$1]] flyttet til [[$2]]',
 '1movedto2_redir'         => '[[$1]] flyttet til [[$2]] over omdirigeringsside',
 'movelogpage'             => 'Flyttelogg',

@@ -1745,8 +1745,6 @@ Vergaet neet de database opnuuj te [[Special:Unlockdb|deblokkere]] wens te klaor
 'talkexists'              => "De pazjena zelf is verplaats, meh de euverlikpazjena kós neet verplaats waere, ómdat d'r al 'n euverlikpazjena mit de nuje titel besjtóng. Combineer de euverlikpazjena's estebleef mit de hand.",
 'movedto'                 => 'verplaats nao',
 'movetalk'                => 'Verplaats de euverlikpazjena ouch.',
-'talkpagemoved'           => 'De biebehurende euverlikpazjena is ouch verplaats.',
-'talkpagenotmoved'        => 'De biebehurende euverlikpazjena is <strong>neet</strong> verplaats.',
 '1movedto2'               => '[[$1]] verplaats nao [[$2]]',
 '1movedto2_redir'         => '[[$1]] euver redirect verplaats nao [[$2]]',
 'movelogpage'             => "Logbook verplaatsde pazjena's",

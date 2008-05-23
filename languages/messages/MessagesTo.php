@@ -924,8 +924,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'talkexists'              => "'''Kuo ola ʻa e ʻunu ʻo e peesi ia, kā naʻe ʻikai ʻunu he peesi alea koeʻuhi ʻoku toe tuʻu ha peesi pehē mo e hingoa foʻou. Kātaki fakataha kinaua faiʻaki ʻa e nima.'''",
 'movedto'                 => 'kuo ʻunu ki he',
 'movetalk'                => 'ʻUnu he peesi alea fekauʻaki',
-'talkpagemoved'           => 'Naʻe foki ʻunu ʻa e peesi alea fekauʻaki.',
-'talkpagenotmoved'        => 'Naʻe <strong>ʻikai</strong> ʻunu ʻa e peesi alea fekauʻaki.',
 '1movedto2'               => 'Kuo ʻunu ʻa e [[$1]] ki he [[$2]]',
 '1movedto2_redir'         => 'Kuo ʻunu ʻa e [[$1]] ki he [[$2]] ʻi he leʻei',
 'movelogpage'             => 'Tohinoa ʻo e ʻunu',

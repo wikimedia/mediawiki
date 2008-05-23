@@ -1821,8 +1821,6 @@ ne movis la diskuto-paĝon ĉar jam ekzistas tia ĉe la nova titolo.
 Bonvolu permane kunigi ilin.',
 'movedto'                 => 'movita al',
 'movetalk'                => 'Movu ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
-'talkpagemoved'           => 'Ankaŭ la diskutpaĝo estas movita.',
-'talkpagenotmoved'        => 'La diskutpaĝo <strong>ne</strong> estas movita.',
 '1movedto2'               => '[[$1]] movita al [[$2]]',
 '1movedto2_redir'         => '[[$1]] movita al [[$2]], redirekto lasita',
 'movelogpage'             => 'Protokolo de paĝmovoj',

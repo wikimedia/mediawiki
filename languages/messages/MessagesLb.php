@@ -1857,8 +1857,6 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'talkexists'              => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
 'movedto'                 => 'geréckelt op',
 'movetalk'                => "D'Diskussiounssäit matréckelen, wa méiglich.",
-'talkpagemoved'           => "D'Diskussiounssäit gouf mat eriwwergeholl.",
-'talkpagenotmoved'        => "D'Diskussiounssäit gouf <strong>net</strong> mat eriwwergeholl.",
 '1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir'         => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 'movelogpage'             => 'Réckellëscht',
