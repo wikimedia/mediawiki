@@ -46,7 +46,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The "createpage" permission is no longer required when uploading if the target
   image page already exists.
 * $wgMaximumMovedPages restricts the number of pages that can be moved at once
-  (default 1000) with the new subpage-move functionality of Special:Movepage.
+  (default 100) with the new subpage-move functionality of Special:Movepage.
 
 === New features in 1.13 ===
 
