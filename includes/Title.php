@@ -1492,7 +1492,7 @@ class Title {
 	 */
 	public function isSubpage() {
 		return MWNamespace::hasSubpages( $this->mNamespace )
-			? strpos( $this->getText(), '/' ) !== false;
+			? strpos( $this->getText(), '/' ) !== false
 			: false;
 	}
 
