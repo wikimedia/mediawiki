@@ -555,6 +555,7 @@ $wgMessageStructure = array(
 		'nocreate-loggedin',
 		'permissionserrors',
 		'permissionserrorstext',
+		'permissionserrorstext-withaction',
 		'recreate-deleted-warn',
 	),
 	'parserwarnings' => array(
@@ -574,6 +575,7 @@ $wgMessageStructure = array(
 	'cantcreateaccount' => array(
 		'cantcreateaccounttitle',
 		'cantcreateaccount-text',
+		'cantcreateaccount-nonblock-text',
 	),
 	'history' => array(
 		'viewpagelogs',
