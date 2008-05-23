@@ -2378,7 +2378,7 @@ function wfSplitWikiID( $wiki ) {
 }
 
 /*
- * Get a Database object
+ * Get a Database object.
  * @param integer $db Index of the connection to get. May be DB_MASTER for the
  *                master (for write queries), DB_SLAVE for potentially lagged
  *                read queries, or an integer >= 0 for a particular server.
@@ -2388,6 +2388,10 @@ function wfSplitWikiID( $wiki ) {
  *              in one group.
  *
  * @param string $wiki The wiki ID, or false for the current wiki
+ *
+ * Note: multiple calls to wfGetDB(DB_SLAVE) during the course of one request 
+ * will always return the same object, unless the underlying connection or load 
+ * balancer is manually destroyed. 
  */
 function &wfGetDB( $db = DB_LAST, $groups = array(), $wiki = false ) {
 	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );
