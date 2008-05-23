@@ -112,7 +112,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'id' => $ns
 			);
 			ApiResult :: setContent($data[$ns], $title);
-			if(@$wgNamespacesWithSubpages[$ns])
+			if(!empty($wgNamespacesWithSubpages[$ns]))
 				$data[$ns]['subpages'] = '';
 		}
 

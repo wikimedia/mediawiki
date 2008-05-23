@@ -237,7 +237,8 @@ class MovePageForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgUser, $wgRequest, $wgMaximumMovedPages, $wgLang,
+		$wgNamespacesWithSubpages;
 
 		if ( $wgUser->pingLimiter( 'move' ) ) {
 			$wgOut->rateLimited();
@@ -302,7 +303,16 @@ class MovePageForm {
 		if( $ot->isTalkPage() || $nt->isTalkPage() ) {
 			$this->moveTalk = false;
 		}
-		
+
+		# If the target namespace doesn't allow subpages, moving with subpages
+		# would mean that you couldn't move them back in one operation, which
+		# is bad.
+		#
+		# FIXME: A specific error message should be given in this case.
+		if( empty( $wgNamespacesWithSubpages[$nt->getNamespace()] ) ) {
+			$this->moveSubpages = false;
+		}
+
 		# Next make a list of id's.  This might be marginally less efficient
 		# than a more direct method, but this is not a highly performance-cri-
 		# tical code path and readable code is more important here.
@@ -321,16 +331,14 @@ class MovePageForm {
 			} else {
 				$conds['page_namespace'] = $ot->getNamespace();
 			}
+		} elseif( $this->moveTalk ) {
+			$conds = array(
+				'page_namespace' => MWNamespace::getTalk($ot->getNamespace()),
+				'page_title' => $ot->getDBKey()
+			);
 		} else {
-			if( $this->moveTalk ) {
-				$conds = array(
-					'page_namespace' => MWNamespace::getTalk($ot->getNamespace()),
-					'page_title' => $ot->getDBKey()
-				);
-			} else {
-				# Skip the query
-				$conds = null;
-			}
+			# Skip the query
+			$conds = null;
 		}
 
 		if( !is_null( $conds ) ) {
@@ -342,7 +350,6 @@ class MovePageForm {
 			);
 		}
 
-		global $wgMaximumMovedPages, $wgLang;
 		$extraOutput = array();
 		$skin = $wgUser->getSkin();
 		$count = 1;

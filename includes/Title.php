@@ -715,7 +715,7 @@ class Title {
 	 */
 	public function getSubpageText() {
 		global $wgNamespacesWithSubpages;
-		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace ] ) && $wgNamespacesWithSubpages[ $this->mNamespace ] ) {
+		if( !empty( $wgNamespacesWithSubpages[ $this->mNamespace ] ) ) {
 			$parts = explode( '/', $this->mTextform );
 			return( $parts[ count( $parts ) - 1 ] );
 		} else {
@@ -1496,8 +1496,8 @@ class Title {
 	public function isSubpage() {
 		global $wgNamespacesWithSubpages;
 
-		if( isset( $wgNamespacesWithSubpages[ $this->mNamespace ] ) ) {
-			return ( strpos( $this->getText(), '/' ) !== false && $wgNamespacesWithSubpages[ $this->mNamespace ] == true );
+		if( !empty( $wgNamespacesWithSubpages[ $this->mNamespace ] ) ) {
+			return strpos( $this->getText(), '/' ) !== false;
 		} else {
 			return false;
 		}
@@ -1510,7 +1510,7 @@ class Title {
 	public function hasSubpages() {
 		global $wgNamespacesWithSubpages;
 
-		if( !isset( $wgNamespacesWithSubpages[$this->mNamespace] ) ) {
+		if( empty( $wgNamespacesWithSubpages[$this->mNamespace] ) ) {
 			# Duh
 			return false;
 		}
