@@ -3159,18 +3159,17 @@ $wgParserConf = array(
 );
 
 /**
- * Hooks that are used for outputting exceptions
- * Format is:
- * 	$wgExceptionHooks[] = $funcname
+ * Hooks that are used for outputting exceptions.  Format is:
+ *   $wgExceptionHooks[] = $funcname
  * or:
- * 	$wgExceptionHooks[] = array( $class, $funcname )
+ *   $wgExceptionHooks[] = array( $class, $funcname )
  * Hooks should return strings or false
  */
 $wgExceptionHooks = array();
 
 /**
- * Page property link table invalidation lists.
- * Should only be set by extensions.
+ * Page property link table invalidation lists. Should only be set by exten-
+ * sions.
  */
 $wgPagePropLinkInvalidations = array(
 	'hiddencat' => 'categorylinks',
@@ -3183,22 +3182,27 @@ $wgPagePropLinkInvalidations = array(
 $wgMaxRedirectLinksRetrieved = 500;
 
 /**
- * Maximum number of calls to expensive parser functions
- * such as PAGESINCATEGORY.
+ * Maximum number of calls per parse to expensive parser functions such as
+ * PAGESINCATEGORY.
  */
 $wgExpensiveParserFunctionLimit = 100;
 
 /**
+ * Maximum number of pages to move at once when moving subpages with a page.
+ */
+$wgMaximumMovedPages = 1000;
+
+/**
  * Array of namespaces to generate a sitemap for when the
- * maintenance/generateSitemap.php script is run, or false
- * if one is to be generated for all namespaces.
+ * maintenance/generateSitemap.php script is run, or false if one is to be ge-
+ * nerated for all namespaces.
  */
 $wgSitemapNamespaces = false;
 
 
 /**
- * If user doesn't specify any edit summary when making a an edit,
- * MediaWiki will try to automatically create one. This feature can
- * be disabled by setting this variable false.
+ * If user doesn't specify any edit summary when making a an edit, MediaWiki
+ * will try to automatically create one. This feature can be disabled by set-
+ * ting this variable false.
  */
 $wgUseAutomaticEditSummaries = true;
