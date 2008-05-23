@@ -41,6 +41,10 @@ class PageHistory {
 		$this->preCacheMessages();
 	}
 
+	function getArticle() {
+		return $this->mArticle;
+	}
+
 	/**
 	 * As we use the same small set of messages in various methods and that
 	 * they are called often, we call them once and save them in $this->message
@@ -281,7 +285,7 @@ class PageHistory {
 			$s .= ' (' . implode( ' | ', $tools ) . ')';
 		}
 
-		wfRunHooks( 'PageHistoryLineEnding', array( &$row , &$s ) );
+		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s ) );
 
 		return "<li>$s</li>\n";
 	}

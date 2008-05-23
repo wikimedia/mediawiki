@@ -73,6 +73,10 @@ class DifferenceEngine {
 		$this->mRefreshCache = $refreshCache;
 	}
 
+	function getTitle() {
+		return $this->mTitle;
+	}
+
 	function showDiffPage( $diffOnly = false ) {
 		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
 		wfProfileIn( __METHOD__ );

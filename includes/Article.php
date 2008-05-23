@@ -1324,10 +1324,10 @@ class Article {
 				}
 			}
 
-			$extraq = ''; // Give extensions a chance to modify URL query on update
-			wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$sectionanchor, &$extraq ) );
+			$extraQuery = ''; // Give extensions a chance to modify URL query on update
+			wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$sectionanchor, &$extraQuery ) );
 
-			$this->doRedirect( $this->isRedirect( $text ), $sectionanchor, $extraq );
+			$this->doRedirect( $this->isRedirect( $text ), $sectionanchor, $extraQuery );
 		}
 		return $good;
 	}
@@ -1573,16 +1573,16 @@ class Article {
 	 *
 	 * @param boolean $noRedir Add redirect=no
 	 * @param string $sectionAnchor section to redirect to, including "#"
-	 * @param string $extraq, extra query params
+	 * @param string $extraQuery, extra query params
 	 */
-	function doRedirect( $noRedir = false, $sectionAnchor = '', $extraq = '' ) {
+	function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
 		global $wgOut;
 		if ( $noRedir ) {
 			$query = 'redirect=no';
-			if( $extraq )
+			if( $extraQuery )
 				$query .= "&$query";
 		} else {
-			$query = $extraq;
+			$query = $extraQuery;
 		}
 		$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $sectionAnchor );
 	}
