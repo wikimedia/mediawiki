@@ -842,6 +842,7 @@ Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<now
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>''' vir klanklêers.
 
 Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêers redigeer as hulle dink dit dien die ensiklopedie, en jy kan verhoed word om lêers te laai as jy die stelsel misbruik.",
+'upload-permitted'   => 'Toegelate lêertipes: $1.',
 'uploadlog'          => 'laailog',
 'uploadlogpage'      => 'laai_log',
 'uploadlogpagetext'  => "Hier volg 'n lys van die mees onlangse lêers wat gelaai is.",
@@ -927,6 +928,9 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 # MIME search
 'mimesearch' => 'MIME-soek',
 'download'   => 'laai af',
+
+# Unwatched pages
+'unwatchedpages' => 'Bladsye wat nie dopgehou word nie',
 
 # List redirects
 'listredirects' => 'Lys aansture',
@@ -1148,6 +1152,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'exblank'                     => 'bladsy was leeg',
 'delete-confirm'              => 'Skrap "$1"',
 'delete-legend'               => 'Skrap',
+'historywarning'              => "Waarskuwing: Die bladsy het 'n geskiedenis:",
 'confirmdeletetext'           => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'              => 'Aksie uitgevoer',
@@ -1224,6 +1229,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'sp-contributions-newbies-sub' => 'Vir nuwe gebruikers',
 'sp-contributions-blocklog'    => 'Blokkeerlogboek',
 'sp-contributions-search'      => 'Soek na bydraes',
+'sp-contributions-username'    => 'IP-adres of gebruikersnaam:',
 'sp-contributions-submit'      => 'Vertoon',
 
 # What links here
@@ -1331,8 +1337,6 @@ Kies asseblief 'n ander naam.",
 'talkexists'              => "'''Die bladsy self is suksesvol geskuif, maar die besprekingsbladsy is nie geskuif nie omdat een reeds bestaan met die nuwe titel. Smelt hulle asseblief met die hand saam.'''",
 'movedto'                 => 'geskuif na',
 'movetalk'                => 'Skuif besprekingsblad ook, indien van toepassing.',
-'talkpagemoved'           => 'Die ooreenkomstige besprekingsblad is ook geskuif.',
-'talkpagenotmoved'        => 'Die ooreenkomstige besprekingsblad is <strong>nie</strong> geskuif nie.',
 '1movedto2'               => '[[$1]] geskuif na [[$2]]',
 '1movedto2_redir'         => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
 'movelogpage'             => 'Skuiflogboek',
@@ -1400,11 +1404,13 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'tooltip-p-logo'                  => 'Tuisblad',
 'tooltip-n-mainpage'              => 'Besoek die Tuisblad',
 'tooltip-n-portal'                => 'Meer oor die projek, wat jy kan doen, nuttige skakels',
+'tooltip-n-currentevents'         => "'n Plek waar almal gesellig kan verkeer",
 'tooltip-n-recentchanges'         => "'n Lys van onlangse wysigings",
 'tooltip-n-randompage'            => "Laai 'n lukrake bladsye",
 'tooltip-n-help'                  => 'Vind meer uit oor iets.',
 'tooltip-n-sitesupport'           => 'Ondersteun ons',
 'tooltip-t-whatlinkshere'         => "'n Lys bladsye wat hierheen skakel",
+'tooltip-t-recentchangeslinked'   => 'Onlangse wysigings aan bladsye wat vanaf hierdie bladsy geskakel is',
 'tooltip-feed-rss'                => 'RSS-voed vir hierdie bladsy',
 'tooltip-feed-atom'               => 'Atom-voed vir hierdie bladsy',
 'tooltip-t-contributions'         => "Bekyk 'n lys van bydraes deur hierdie gebruiker",
@@ -1449,6 +1455,17 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'mw_math_source' => 'Los as TeX (vir teksblaaiers).',
 'mw_math_modern' => 'Moderne blaaiers.',
 'mw_math_mathml' => 'MathML',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Merk as gekontroleerd',
+'markaspatrolledtext'                 => 'Merk hierdie bladsy as gekontroleerd',
+'markedaspatrolled'                   => 'As gekontroleerd gemerk',
+'markedaspatrolledtext'               => 'Die gekose weergawe is as gekontroleerd gemerk.',
+'rcpatroldisabled'                    => 'Onlangse Wysigingskontrolering buiten staat gestel',
+'rcpatroldisabledtext'                => 'Die Onlangse Wysigingskontroleringsfunksie is tans buiten staat gestel.',
+'markedaspatrollederror'              => 'Kan nie as gekontroleerd merk nie',
+'markedaspatrollederrortext'          => "U moet 'n weergawe spesifiseer om as gekontroleerd te merk.",
+'markedaspatrollederror-noautopatrol' => 'U kan nie u eie veranderinge as gekontroleerd merk nie.',
 
 # Patrol log
 'patrol-log-page' => 'Kontroleringslogboek',
