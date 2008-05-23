@@ -361,6 +361,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Handled unrecognized values for parameters more gracefully
 * Handled requesting disallowed tokens more gracefully
 * (bug 14140) URL-encoded page titles are now decoded in edit summaries
+* (bug 14243) Fixed a security leak in the edit api; patch by HardDisk
 
 === Languages updated in 1.13 ===
 
