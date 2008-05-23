@@ -2,7 +2,8 @@
 /**
   * Kazakh (China) (قازاقشا (جۇنگو))
   *
-  * @addtogroup Language
+  * @ingroup Language
+  * @file
   */
 
 # Inherit everything for now
