@@ -58,7 +58,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	public static function loadFromId( &$db, $id ) {
+	public static function loadFromId( $db, $id ) {
 		return Revision::loadFromConds( $db,
 			array( 'page_id=rev_page',
 			       'rev_id' => intval( $id ) ) );
@@ -98,7 +98,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	public static function loadFromTitle( &$db, $title, $id = 0 ) {
+	public static function loadFromTitle( $db, $title, $id = 0 ) {
 		if( $id ) {
 			$matchId = intval( $id );
 		} else {
@@ -124,7 +124,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	public static function loadFromTimestamp( &$db, &$title, $timestamp ) {
+	public static function loadFromTimestamp( $db, $title, $timestamp ) {
 		return Revision::loadFromConds(
 			$db,
 			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
@@ -185,7 +185,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	public static function fetchAllRevisions( &$title ) {
+	public static function fetchAllRevisions( $title ) {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			array( 'page_namespace' => $title->getNamespace(),
@@ -203,7 +203,7 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	public static function fetchRevision( &$title ) {
+	public static function fetchRevision( $title ) {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
 			array( 'rev_id=page_latest',
@@ -710,7 +710,7 @@ class Revision {
 	 * @param Database $dbw
 	 * @return int
 	 */
-	public function insertOn( &$dbw ) {
+	public function insertOn( $dbw ) {
 		global $wgDefaultExternalStore;
 
 		wfProfileIn( __METHOD__ );
@@ -850,7 +850,7 @@ class Revision {
 	 * @param bool     $minor
 	 * @return Revision
 	 */
-	public static function newNullRevision( &$dbw, $pageId, $summary, $minor ) {
+	public static function newNullRevision( $dbw, $pageId, $summary, $minor ) {
 		wfProfileIn( __METHOD__ );
 
 		$current = $dbw->selectRow(
