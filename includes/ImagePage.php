@@ -13,45 +13,36 @@ class ImagePage extends Article {
 	/* private */ var $img;  // Image object
 	/* private */ var $displayImg;
 	/* private */ var $repo;
-	/* private */ var $time;
 	/* private */ var $fileLoaded;
 	var $mExtraDescription = false;
 	var $dupes;
 
-	function __construct( $title, $time = null ) {
+	function __construct( $title ) {
 		parent::__construct( $title );
 
 		global $wgRequest;
-		$time = is_null($time) ? $wgRequest->getVal( 'filetimestamp' ) : $time;
-		$time = $time ? $time : false; // be clear about type
-		$this->time = $time;
 		$this->dupes = null;
 		$this->repo = null;
 	}
-	
+
 	protected function loadFile() {
 		if ( $this->fileLoaded ) {
 			return true;
 		}
-		$this->displayImg = wfFindFile( $this->mTitle, $this->time );
-		# If none found, and no time given, use a valid local placeholder
-		if ( !$this->displayImg && !$this->time ) {
-			$this->displayImg = wfLocalFile( $this->mTitle );
-			$this->img = $this->displayImg;
-		# If none found, and time given, try current
-		} else if ( !$this->displayImg && $this->time ) {
-			$this->displayImg = wfFindFile( $this->mTitle );
-			# If none found, use a valid local placeholder
-			if( !$this->displayImg ) {
-				$this->displayImg = wfLocalFile( $this->mTitle ); // fallback to current
+		$this->fileLoaded = true;
+
+		$this->displayImg = $this->img = false;
+		wfRunHooks( 'ImagePageFindFile', array( $this, &$this->img, &$this->displayImg ) );
+		if ( !$this->img ) {
+			$this->img = wfFindFile( $this->mTitle );
+			if ( !$this->img ) {
+				$this->img = wfLocalFile( $this->mTitle );
 			}
-			$this->img = $this->displayImg;
-		# If found, set $this->img. This will be the same if no time given
-		} else {
-			$this->img = $this->time ? wfFindFile( $this->mTitle ) : $this->displayImg;
+		}
+		if ( !$this->displayImg ) {
+			$this->displayImg = $this->img;
 		}
 		$this->repo = $this->img->getRepo();
-		$this->fileLoaded = true;
 	}
 
 	/**
@@ -609,13 +600,11 @@ EOT
 	 */
 	function imageHistory()
 	{
-		global $wgUser, $wgOut, $wgUseExternalEditor;
-
-		$sk = $wgUser->getSkin();
+		global $wgOut, $wgUseExternalEditor;
 
 		$this->loadFile();
 		if ( $this->img->exists() ) {
-			$list = new ImageHistoryList( $sk, $this->img, $this->displayImg );
+			$list = new ImageHistoryList( $this );
 			$file = $this->img;
 			$dims = $file->getDimensionsString();
 			$s = $list->beginImageHistoryList();
@@ -786,13 +775,27 @@ EOT
  */
 class ImageHistoryList {
 
-	protected $img, $skin, $title, $repo;
+	protected $imagePage, $img, $skin, $title, $repo;
 
-	public function __construct( $skin, $curimg, $img ) {
-		$this->skin = $skin;
-		$this->current = $curimg;
-		$this->img = $img;
-		$this->title = $img->getTitle();
+	public function __construct( $imagePage ) {
+		global $wgUser;
+		$this->skin = $wgUser->getSkin();
+		$this->current = $imagePage->getFile();
+		$this->img = $imagePage->getDisplayedFile();
+		$this->title = $imagePage->getTitle();
+		$this->imagePage = $imagePage;
+	}
+
+	function getImagePage() {
+		return $this->imagePage;
+	}
+
+	function getSkin() {
+		return $this->skin;
+	}
+
+	function getFile() {
+		return $this->img;
 	}
 
 	public function beginImageHistoryList() {
@@ -936,9 +939,9 @@ class ImageHistoryList {
 		}
 		$row .= '</td>';
 
-		wfRunHooks( 'ImagePageFileHistoryLine', array( &$file, &$row, &$css ) );
-		$trCSS = $css ? " class='$css'" : "";
+		wfRunHooks( 'ImagePageFileHistoryLine', array( $this, $file, &$row, &$rowClass ) );
+		$classAttr = $rowClass ? " class='$rowClass'" : "";
 
-		return "<tr{$trCSS}>{$row}</tr>\n";
+		return "<tr{$classAttr}>{$row}</tr>\n";
 	}
 }
