@@ -2336,6 +2336,14 @@ function wfMemcKey( /*... */ ) {
 	return $key;
 }
 
+function wfMemcKeyLang( $key, $code ) {
+	if ( !is_string($code) ) {
+		return $key;
+	} else {
+		return $key . ';L:' . $code;
+	}
+}
+
 /**
  * Get a cache key for a foreign DB
  */
