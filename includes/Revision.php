@@ -35,10 +35,8 @@ class Revision {
 	 * @param Title $title
 	 * @param int $id
 	 * @return Revision
-	 * @access public
-	 * @static
 	 */
-	public static function newFromTitle( &$title, $id = 0 ) {
+	public static function newFromTitle( $title, $id = 0 ) {
 		if( $id ) {
 			$matchId = intval( $id );
 		} else {
