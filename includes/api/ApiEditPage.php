@@ -209,6 +209,10 @@ class ApiEditPage extends ApiBase {
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
 
+	public function mustBePosted() {
+		return true;
+	}
+
 	protected function getDescription() {
 		return 'Create and edit pages.';
 	}
