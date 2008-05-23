@@ -92,6 +92,7 @@ $wgIgnoredMessages = array(
 	'pubmedurl',
 	'randompage-url',
 	'recentchanges-url',
+	'cantcreateaccount-nonblock-text',
 	'revision-info-current',
 	'revision-nav',
 	'rfcurl',
