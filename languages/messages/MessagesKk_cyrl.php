@@ -1,7 +1,8 @@
 <?php
 /** Kazakh (Cyrillic) (Қазақша (Кирил))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author GaiJin
  * @author AlefZet
