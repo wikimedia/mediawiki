@@ -1865,8 +1865,7 @@ class Parser
 	 */
 	function areSubpagesAllowed() {
 		# Some namespaces don't allow subpages
-		global $wgNamespacesWithSubpages;
-		return !empty($wgNamespacesWithSubpages[$this->mTitle->getNamespace()]);
+		return MWNamespace::hasSubpages( $this->mTitle->getNamespace() );
 	}
 
 	/**

@@ -104,7 +104,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendNamespaces($property) {
-		global $wgContLang, $wgNamespacesWithSubpages;
+		global $wgContLang;
 
 		$data = array ();
 		foreach ($wgContLang->getFormattedNamespaces() as $ns => $title) {
@@ -112,7 +112,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'id' => $ns
 			);
 			ApiResult :: setContent($data[$ns], $title);
-			if(!empty($wgNamespacesWithSubpages[$ns]))
+			if( MWNamespace::hasSubpages( $ns ) )
 				$data[$ns]['subpages'] = '';
 		}
 

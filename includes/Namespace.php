@@ -146,8 +146,8 @@ class MWNamespace {
 	 }
 
 	/**
-	 * Does this namespace contain content, for the purposes
-	 * of calculating statistics, etc?
+	 * Does this namespace contain content, for the purposes of calculating
+	 * statistics, etc?
 	 *
 	 * @param $index Int: index to check
 	 * @return bool
@@ -165,6 +165,17 @@ class MWNamespace {
 	 */
 	public static function isWatchable( $index ) {
 		return $index >= NS_MAIN;
+	}
+
+	/**
+	 * Does the namespace allow subpages?
+	 *
+	 * @param $index int Index to check
+	 * @return bool
+	 */
+	public static function hasSubpages( $index ) {
+		global $wgNamespacesWithSubpages;
+		return !empty( $wgNamespacesWithSubpages[$index] );
 	}
 
 }

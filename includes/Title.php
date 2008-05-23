@@ -697,16 +697,15 @@ class Title {
 	 * @return string Base name
 	 */
 	public function getBaseText() {
-		global $wgNamespacesWithSubpages;
-		if( !empty( $wgNamespacesWithSubpages[$this->mNamespace] ) ) {
-			$parts = explode( '/', $this->getText() );
-			# Don't discard the real title if there's no subpage involved
-			if( count( $parts ) > 1 )
-				unset( $parts[ count( $parts ) - 1 ] );
-			return implode( '/', $parts );
-		} else {
+		if( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			return $this->getText();
 		}
+
+		$parts = explode( '/', $this->getText() );
+		# Don't discard the real title if there's no subpage involved
+		if( count( $parts ) > 1 )
+			unset( $parts[ count( $parts ) - 1 ] );
+		return implode( '/', $parts );
 	}
 
 	/**
@@ -714,13 +713,11 @@ class Title {
 	 * @return string Subpage name
 	 */
 	public function getSubpageText() {
-		global $wgNamespacesWithSubpages;
-		if( !empty( $wgNamespacesWithSubpages[ $this->mNamespace ] ) ) {
-			$parts = explode( '/', $this->mTextform );
-			return( $parts[ count( $parts ) - 1 ] );
-		} else {
+		if( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			return( $this->mTextform );
 		}
+		$parts = explode( '/', $this->mTextform );
+		return( $parts[ count( $parts ) - 1 ] );
 	}
 
 	/**
@@ -1494,13 +1491,9 @@ class Title {
 	 * @return bool
 	 */
 	public function isSubpage() {
-		global $wgNamespacesWithSubpages;
-
-		if( !empty( $wgNamespacesWithSubpages[ $this->mNamespace ] ) ) {
-			return strpos( $this->getText(), '/' ) !== false;
-		} else {
-			return false;
-		}
+		return MWNamespace::hasSubpages( $this->mNamespace )
+			? strpos( $this->getText(), '/' ) !== false;
+			: false;
 	}
 
 	/**
@@ -1508,9 +1501,7 @@ class Title {
 	 * @return bool
 	 */
 	public function hasSubpages() {
-		global $wgNamespacesWithSubpages;
-
-		if( empty( $wgNamespacesWithSubpages[$this->mNamespace] ) ) {
+		if( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
 			# Duh
 			return false;
 		}

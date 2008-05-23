@@ -65,7 +65,7 @@ class MovePageForm {
 	}
 
 	function showForm( $err, $hookErr = '' ) {
-		global $wgOut, $wgUser, $wgNamespacesWithSubpages;
+		global $wgOut, $wgUser;
 
 		$ot = Title::newFromURL( $this->oldTitle );
 		if( is_null( $ot ) ) {
@@ -237,8 +237,7 @@ class MovePageForm {
 	}
 
 	function doSubmit() {
-		global $wgOut, $wgUser, $wgRequest, $wgMaximumMovedPages, $wgLang,
-		$wgNamespacesWithSubpages;
+		global $wgOut, $wgUser, $wgRequest, $wgMaximumMovedPages, $wgLang;
 
 		if ( $wgUser->pingLimiter( 'move' ) ) {
 			$wgOut->rateLimited();
@@ -317,9 +316,9 @@ class MovePageForm {
 		# case.
 		$dbr = wfGetDB( DB_SLAVE );
 		if( $this->moveSubpages && (
-			!empty($wgNamespacesWithSubpages[$nt->getNamespace()]) || (
+			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
 				$this->moveTalk &&
-				!empty( $wgNamespacesWithSubpages[$nt->getTalkPage()->getNamespace()] )
+				MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() )
 			)
 		) ) {
 			$conds = array(
@@ -327,15 +326,15 @@ class MovePageForm {
 					.' OR page_title = ' . $dbr->addQuotes( $ot->getDBkey() )
 			);
 			$conds['page_namespace'] = array();
-			if( !empty( $wgNamespacesWithSubpages[$nt->getNamespace()] ) ) {
+			if( MWNamespace::hasSubpages( $nt->getNamespace() ) ) {
 				$conds['page_namespace'] []= $ot->getNamespace();
 			}
-			if( $this->moveTalk && !empty( $wgNamespacesWithSubpages[$nt->getTalkPage()->getNamespace()] ) ) {
+			if( $this->moveTalk && MWNamespace::hasSubpages( $nt->getTalkPage()->getNamespace() ) ) {
 				$conds['page_namespace'] []= $ot->getTalkPage()->getNamespace();
 			}
 		} elseif( $this->moveTalk ) {
 			$conds = array(
-				'page_namespace' => MWNamespace::getTalk($ot->getNamespace()),
+				'page_namespace' => $ot->getTalkPage()->getNamespace(),
 				'page_title' => $ot->getDBKey()
 			);
 		} else {

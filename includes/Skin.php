@@ -882,8 +882,8 @@ END;
 		if(!wfRunHooks('SkinSubPageSubtitle', array(&$subpages)))
 			return $subpages;
 
-		global $wgOut, $wgTitle, $wgNamespacesWithSubpages;
-		if($wgOut->isArticle() && !empty($wgNamespacesWithSubpages[$wgTitle->getNamespace()])) {
+		global $wgOut, $wgTitle;
+		if($wgOut->isArticle() && MWNamespace::hasSubpages( $wgTitle->getNamespace() )) {
 			$ptext=$wgTitle->getPrefixedText();
 			if(preg_match('/\//',$ptext)) {
 				$links = explode('/',$ptext);
