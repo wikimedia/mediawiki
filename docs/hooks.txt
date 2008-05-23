@@ -825,6 +825,10 @@ $article: the article that the history is loading for
 $row: the revision row for this line
 $s: the string representing this parsed line
 
+'PageHistoryPager::getQueryInfo': when a history pager query parameter set is constructed
+$pager: the pager
+$queryInfo: the query parameters
+
 'PageRenderingHash': alter the parser cache option hash key
   A parser extension which depends on user options should install
   this hook and append its values to the key.
