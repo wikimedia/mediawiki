@@ -2019,7 +2019,8 @@ class Article {
 			$reason = $this->DeleteReason;
 		}
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('hiderevision');
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('deleterevision') 
+			&& $wgUser->isAllowed('hiderevision');
 
 		# This code desperately needs to be totally rewritten
 
@@ -2170,7 +2171,7 @@ class Article {
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
 
-		if( $wgUser->isAllowed( 'hiderevision' ) ) {
+		if( $wgUser->isAllowed( 'deleterevision' ) && $wgUser->isAllowed( 'hiderevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\"><td></td><td>";
 			$suppress .= Xml::checkLabel( wfMsg( 'revdelete-suppress' ), 'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '2' ) );
 			$suppress .= "</td></tr>";

@@ -45,7 +45,8 @@ class FileDeleteForm {
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('hiderevision');
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('deleterevision') 
+			&& $wgUser->isAllowed('hiderevision');
 
 		if( $this->oldimage && !self::isValidOldSpec($this->oldimage) ) {
 			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->oldimage ) );
@@ -126,7 +127,7 @@ class FileDeleteForm {
 		global $wgOut, $wgUser, $wgRequest, $wgContLang;
 		$align = $wgContLang->isRtl() ? 'left' : 'right';
 
-		if( $wgUser->isAllowed( 'hiderevision' ) ) {
+		if( $wgUser->isAllowed( 'deleterevision' ) && $wgUser->isAllowed( 'hiderevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\"><td></td><td>";
 			$suppress .= Xml::checkLabel( wfMsg( 'revdelete-suppress' ), 'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '2' ) );
 			$suppress .= "</td></tr>";
