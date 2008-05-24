@@ -684,6 +684,11 @@ $file: the file
 $line: the HTML of the history line
 $css: the line CSS class
 
+'ImagePageFindFile': called when fetching the file associated with an image page
+$page: ImagePage object
+&$file: File object
+&$displayFile: displayed File object
+
 'InitPreferencesForm': called at the end of PreferencesForm's constructor
 $form: the PreferencesForm
 $request: the web request to initialized from
