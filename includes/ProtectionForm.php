@@ -72,6 +72,15 @@ class ProtectionForm {
 			foreach( $this->mApplicableTypes as $action ) {
 				$val = $wgRequest->getVal( "mwProtect-level-$action" );
 				if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
+					//prevent users from setting levels that they cannot later unset
+					if( $val == 'sysop' ) {
+						//special case, rewrite sysop to either protect and editprotected
+						if( !$wgUser->isAllowed('protect') && !$wgUser->isAllowed('editprotected') )
+							continue;
+					} else {
+						if( !$wgUser->isAllowed($val) )
+							continue;
+					}
 					$this->mRestrictions[$action] = $val;
 				}
 			}
@@ -315,7 +324,7 @@ class ProtectionForm {
 	}
 
 	function buildSelector( $action, $selected ) {
-		global $wgRestrictionLevels;
+		global $wgRestrictionLevels, $wgUser;
 		$id = 'mwProtect-level-' . $action;
 		$attribs = array(
 			'id' => $id,
@@ -326,6 +335,15 @@ class ProtectionForm {
 
 		$out = Xml::openElement( 'select', $attribs );
 		foreach( $wgRestrictionLevels as $key ) {
+			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
+			if( $key == 'sysop' ) {
+				//special case, rewrite sysop to protect and editprotected
+				if( !$wgUser->isAllowed('protect') && !$wgUser->isAllowed('editprotected') && $this->disabled )
+					continue;
+			} else {
+				if( !$wgUser->isAllowed($key) && !$this->disabled )
+					continue;
+			}
 			$out .= Xml::option( $this->getOptionLabel( $key ), $key, $key == $selected );
 		}
 		$out .= Xml::closeElement( 'select' );
