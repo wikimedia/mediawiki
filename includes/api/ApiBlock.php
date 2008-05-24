@@ -87,6 +87,7 @@ class ApiBlock extends ApiBase {
 		$form->BlockEmail = $params['noemail'];
 		$form->BlockHideName = $params['hidename'];
 
+		$userID = $expiry = null;
 		$retval = $form->doBlock($userID, $expiry);
 		if(!empty($retval))
 			// We don't care about multiple errors, just report one of them
