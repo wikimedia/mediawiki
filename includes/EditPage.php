@@ -923,8 +923,11 @@ class EditPage {
 		}
 
 		# Handle the user preference to force summaries here, but not for null edits
-		if( $this->section != 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary')
-			&&  0 != strcmp($oldtext, $text) && !Article::getRedirectAutosummary( $text )) {
+		if( $this->section != 'new' && !$this->allowBlankSummary &&  $wgUser->getOption( 'forceeditsummary') && 
+			0 != strcmp($oldtext, $text) && 
+			!is_object( Title::newFromRedirect( $text ) ) # check if it's not a redirect
+		) {
+
 			if( md5( $this->summary ) == $this->autoSumm ) {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
