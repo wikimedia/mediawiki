@@ -545,8 +545,8 @@ S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
 'yourvariant'                => 'Variant lingüística:',
 'yournick'                   => 'Signatura:',
 'badsig'                     => 'La signatura que heu inserit no és vàlida; verifiqueu les etiquetes HTML que heu emprat.',
-'badsiglength'               => 'La signatura és massa llarga.
-Ha de tenir menys de $1 caràcters.',
+'badsiglength'               => "La signatura és massa llarga.
+Ha de tenir menys {{PLURAL:$1|d'$1 càracter|de $1 caràcters}}.",
 'email'                      => 'Adreça electrònica',
 'prefs-help-realname'        => "* Nom real (opcional): si escolliu donar aquesta informació serà utilitzada per a donar-vos l'atribució de la vostra feina.",
 'loginerror'                 => "Error d'inici de sessió",
@@ -630,23 +630,23 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'hr_tip'          => 'Línia horitzontal (feu-la servir amb moderació)',
 
 # Edit pages
-'summary'                   => 'Resum',
-'subject'                   => 'Tema/capçalera',
-'minoredit'                 => 'Aquesta és una edició menor',
-'watchthis'                 => 'Vigila aquesta pàgina',
-'savearticle'               => 'Desa la pàgina',
-'preview'                   => 'Previsualització',
-'showpreview'               => 'Mostra una previsualització',
-'showlivepreview'           => 'Vista ràpida',
-'showdiff'                  => 'Mostra els canvis',
-'anoneditwarning'           => "'''Avís:''' No esteu identificats amb un compte d'usuari. Es mostrarà la vostra adreça IP en l'historial d'aquesta pàgina.",
-'missingsummary'            => "'''Recordatori''': Heu deixat en blanc el resum de l'edició. Si torneu a clicar al botó de desar, l'edició es guardarà sense resum.",
-'missingcommenttext'        => 'Introduïu un comentari a continuació.',
-'missingcommentheader'      => "'''Recordatori:''' No heu proporcionat un assumpte/encapçalament per al comentari. Si cliqueu al botó Torna a desar, la vostra contribució se desarà sense cap.",
-'summary-preview'           => 'Previsualització del resum',
-'subject-preview'           => 'Previsualització de tema/capçalera',
-'blockedtitle'              => "L'usuari està blocat",
-'blockedtext'               => "<big>'''S'ha procedit al bloqueig del vostre compte d'usuari o la vostra adreça IP.'''</big>
+'summary'                          => 'Resum',
+'subject'                          => 'Tema/capçalera',
+'minoredit'                        => 'Aquesta és una edició menor',
+'watchthis'                        => 'Vigila aquesta pàgina',
+'savearticle'                      => 'Desa la pàgina',
+'preview'                          => 'Previsualització',
+'showpreview'                      => 'Mostra una previsualització',
+'showlivepreview'                  => 'Vista ràpida',
+'showdiff'                         => 'Mostra els canvis',
+'anoneditwarning'                  => "'''Avís:''' No esteu identificats amb un compte d'usuari. Es mostrarà la vostra adreça IP en l'historial d'aquesta pàgina.",
+'missingsummary'                   => "'''Recordatori''': Heu deixat en blanc el resum de l'edició. Si torneu a clicar al botó de desar, l'edició es guardarà sense resum.",
+'missingcommenttext'               => 'Introduïu un comentari a continuació.',
+'missingcommentheader'             => "'''Recordatori:''' No heu proporcionat un assumpte/encapçalament per al comentari. Si cliqueu al botó Torna a desar, la vostra contribució se desarà sense cap.",
+'summary-preview'                  => 'Previsualització del resum',
+'subject-preview'                  => 'Previsualització de tema/capçalera',
+'blockedtitle'                     => "L'usuari està blocat",
+'blockedtext'                      => "<big>'''S'ha procedit al bloqueig del vostre compte d'usuari o la vostra adreça IP.'''</big>
 
 El bloqueig l'ha dut a terme l'usuari $1, amb el següent motiu: ''$2''
 
@@ -659,7 +659,7 @@ Podeu contactar $1 o un dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] pe
 Tingueu en compte que no podeu fer servir el formulari d'enviament de missatges de correu electrònic a cap usuari, fins que no tingueu una adreça de correu vàlida registrada a les vostres [[Special:Preferences|preferències d'usuari]].
 
 La vostra adreça IP és $3, i el núm. ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
-'autoblockedtext'           => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1. El motiu donat per al bloqueig ha estat:
+'autoblockedtext'                  => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1. El motiu donat per al bloqueig ha estat:
 
 :''$2''
 
@@ -671,103 +671,110 @@ Podeu contactar l'usuari $1 o algun altre dels [[{{MediaWiki:Grouppage-sysop}}|a
 Recordeu que per a poder usar l'opció «Envia un missatge de correu electrònic a aquest usuari» haureu d'haver validat una adreça de correu electrònic a les vostres [[Special:Preferences|preferències]].
 
 La vostra adreça IP és $3, i el núm. ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
-'blockednoreason'           => "no s'ha donat cap motiu",
-'blockedoriginalsource'     => "La font de '''$1''' es mostra a sota:",
-'blockededitsource'         => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
-'whitelistedittitle'        => 'Cal iniciar una sessió per a poder editar',
-'whitelistedittext'         => 'Heu de $1 per editar pàgines.',
-'whitelistreadtitle'        => "Heu d'iniciar una sessió per a llegir-ho",
-'whitelistreadtext'         => "Heu d'[[Special:Userlogin|identificar-vos]] per a llegir les pàgines.",
-'whitelistacctitle'         => 'No teniu permisos per a crear un compte',
-'whitelistacctext'          => "Per estar autoritzat a crear comptes al projecte {{SITENAME}} heu d'[[Special:Userlogin|identificar-vos]] i tenir els permisos apropiats.",
-'confirmedittitle'          => "Cal una confirmació de l'adreça electrònica per a poder editar",
-'confirmedittext'           => "Heu de confirmar la vostra adreça electrònica abans de poder editar pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
-'nosuchsectiontitle'        => 'No hi ha cap secció',
-'nosuchsectiontext'         => 'Esteu intentant editar una secció que no existeix. Com que no hi ha la secció $1, no es poden desar les vostres edicions.',
-'loginreqtitle'             => 'Cal que inicieu una sessió',
-'loginreqlink'              => 'inicia una sessió',
-'loginreqpagetext'          => 'Heu de ser $1 per a visualitzar altres pàgines.',
-'accmailtitle'              => "S'ha enviat una contrasenya.",
-'accmailtext'               => "S'ha enviat a $2 la contrasenya per a «$1».",
-'newarticle'                => '(Nou)',
-'newarticletext'            => "Heu seguit un enllaç a una pàgina que encara no existeix.
+'blockednoreason'                  => "no s'ha donat cap motiu",
+'blockedoriginalsource'            => "La font de '''$1''' es mostra a sota:",
+'blockededitsource'                => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
+'whitelistedittitle'               => 'Cal iniciar una sessió per a poder editar',
+'whitelistedittext'                => 'Heu de $1 per editar pàgines.',
+'whitelistreadtitle'               => "Heu d'iniciar una sessió per a llegir-ho",
+'whitelistreadtext'                => "Heu d'[[Special:Userlogin|identificar-vos]] per a llegir les pàgines.",
+'whitelistacctitle'                => 'No teniu permisos per a crear un compte',
+'whitelistacctext'                 => "Per estar autoritzat a crear comptes al projecte {{SITENAME}} heu d'[[Special:Userlogin|identificar-vos]] i tenir els permisos apropiats.",
+'confirmedittitle'                 => "Cal una confirmació de l'adreça electrònica per a poder editar",
+'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder editar pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
+'nosuchsectiontitle'               => 'No hi ha cap secció',
+'nosuchsectiontext'                => 'Esteu intentant editar una secció que no existeix. Com que no hi ha la secció $1, no es poden desar les vostres edicions.',
+'loginreqtitle'                    => 'Cal que inicieu una sessió',
+'loginreqlink'                     => 'inicia una sessió',
+'loginreqpagetext'                 => 'Heu de ser $1 per a visualitzar altres pàgines.',
+'accmailtitle'                     => "S'ha enviat una contrasenya.",
+'accmailtext'                      => "S'ha enviat a $2 la contrasenya per a «$1».",
+'newarticle'                       => '(Nou)',
+'newarticletext'                   => "Heu seguit un enllaç a una pàgina que encara no existeix.
 Per a crear-la, comenceu a escriure en l'espai de sota
 (vegeu l'[[{{MediaWiki:Helppage}}|ajuda]] per a més informació).
 Si sou ací per error, simplement cliqueu al botó «Enrere» del vostre navegador.",
-'anontalkpagetext'          => "----''Aquesta és la pàgina de discussió d'un usuari anònim que encara no ha creat un compte o que no fa servir el seu nom registrat. Per tant, hem de fer servir la seua adreça IP numèrica per a identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim, i trobeu que us han adreçat comentaris inoportuns, si us plau, [[Special:Userlogin|creeu-vos un compte]] per a evitar futures confusions amb altres usuaris anònims.''",
-'noarticletext'             => 'En aquest moment no hi ha text en aquesta pàgina. Podeu [[Special:Search/{{PAGENAME}}|cercar-ne el títol]] en altres pàgines o [{{fullurl:{{FULLPAGENAME}}|action=edit}} començar a escriure-hi].',
-'userpage-userdoesnotexist' => "Atenció: El compte d'usuari «$1» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
-'clearyourcache'            => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+Shift+R'' (''Cmd+Shift+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
-'usercssjsyoucanpreview'    => '<strong>Consell:</strong> Utilitzeu el botó «Mostra previsualització» per probar el vostre nou CSS/JS abans de desar-lo.',
-'usercsspreview'            => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari i que encara no s'ha desat!'''",
-'userjspreview'             => "'''Recordeu que només estau provant/previsualitzant el vostre JavaScript, encara no ho heu desat!'''",
-'userinvalidcssjstitle'     => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/monobook.css no és el mateix que {{ns:user}}:NOM/Monobook.css.",
-'updated'                   => '(Actualitzat)',
-'note'                      => '<strong>Nota:</strong>',
-'previewnote'               => "<strong>Açò només és una previsualització, els canvis de la qual encara no s'han desat!</strong>",
-'previewconflict'           => "Aquesta previsualització reflecteix, a l'àrea
+'anontalkpagetext'                 => "----''Aquesta és la pàgina de discussió d'un usuari anònim que encara no ha creat un compte o que no fa servir el seu nom registrat. Per tant, hem de fer servir la seua adreça IP numèrica per a identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim, i trobeu que us han adreçat comentaris inoportuns, si us plau, [[Special:Userlogin|creeu-vos un compte]] per a evitar futures confusions amb altres usuaris anònims.''",
+'noarticletext'                    => 'En aquest moment no hi ha text en aquesta pàgina. Podeu [[Special:Search/{{PAGENAME}}|cercar-ne el títol]] en altres pàgines o [{{fullurl:{{FULLPAGENAME}}|action=edit}} començar a escriure-hi].',
+'userpage-userdoesnotexist'        => "Atenció: El compte d'usuari «$1» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
+'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+Shift+R'' (''Cmd+Shift+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
+'usercssjsyoucanpreview'           => '<strong>Consell:</strong> Utilitzeu el botó «Mostra previsualització» per probar el vostre nou CSS/JS abans de desar-lo.',
+'usercsspreview'                   => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari i que encara no s'ha desat!'''",
+'userjspreview'                    => "'''Recordeu que només estau provant/previsualitzant el vostre JavaScript, encara no ho heu desat!'''",
+'userinvalidcssjstitle'            => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/monobook.css no és el mateix que {{ns:user}}:NOM/Monobook.css.",
+'updated'                          => '(Actualitzat)',
+'note'                             => '<strong>Nota:</strong>',
+'previewnote'                      => "<strong>Açò només és una previsualització, els canvis de la qual encara no s'han desat!</strong>",
+'previewconflict'                  => "Aquesta previsualització reflecteix, a l'àrea
 d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
-'session_fail_preview'      => "<strong>No s'ha pogut processar la vostra edició a causa d'una pèrdua de dades de la sessió.
+'session_fail_preview'             => "<strong>No s'ha pogut processar la vostra edició a causa d'una pèrdua de dades de la sessió.
 Si us plau, proveu-ho una altra vegada. Si continués sense funcionar, finalitzeu la sessió i torneu a iniciar-ne una.</strong>",
-'session_fail_preview_html' => "<strong>Ho sentim, no s'han pogut processar les vostres modificacions a causa d'una pèrdua de la sessió de dades.</strong>
+'session_fail_preview_html'        => "<strong>Ho sentim, no s'han pogut processar les vostres modificacions a causa d'una pèrdua de la sessió de dades.</strong>
 
 ''Com que el projecte {{SITENAME}} té habilitat l'ús de codi HTML cru, s'ha amagat la previsualització com a prevenció contra atacs mitjançant codis JavaScript.''
 
 <strong>Si es tracta d'una contribució legítima, si us plau, intenteu-ho una altra vegada. Si continua havent-hi problemes, finalitzeu la sessió i torneu a iniciar-ne una.</strong>",
-'token_suffix_mismatch'     => "<strong>S'ha rebutjat la vostra edició perquè el vostre client ha fet malbé els caràcters de puntuació en el testimoni d'edició. S'ha rebutjat l'edició per a evitar la corrupció del text de la pàgina. Açò passa a vegades quan s'utilitza un servei web de servidor intermediari anònim amb problemes.</strong>",
-'editing'                   => "S'està editant $1",
-'editingsection'            => "S'està editant $1 (secció)",
-'editingcomment'            => "S'està editant $1 (comentari)",
-'editconflict'              => "Conflicte d'edició: $1",
-'explainconflict'           => "Algú més ha canviat aquesta pàgina des que l'heu editada.
+'token_suffix_mismatch'            => "<strong>S'ha rebutjat la vostra edició perquè el vostre client ha fet malbé els caràcters de puntuació en el testimoni d'edició. S'ha rebutjat l'edició per a evitar la corrupció del text de la pàgina. Açò passa a vegades quan s'utilitza un servei web de servidor intermediari anònim amb problemes.</strong>",
+'editing'                          => "S'està editant $1",
+'editingsection'                   => "S'està editant $1 (secció)",
+'editingcomment'                   => "S'està editant $1 (comentari)",
+'editconflict'                     => "Conflicte d'edició: $1",
+'explainconflict'                  => "Algú més ha canviat aquesta pàgina des que l'heu editada.
 L'àrea de text superior conté el text de la pàgina com existeix actualment.
 Els vostres canvis es mostren en l'àrea de text inferior.
 Haureu de fusionar els vostres canvis en el text existent.
 '''Només''' el text de l'àrea superior es desarà quan premeu el botó «Desa la pàgina».",
-'yourtext'                  => 'El vostre text',
-'storedversion'             => 'Versió emmagatzemada',
-'nonunicodebrowser'         => "<strong>ALERTA: El vostre navegador no és compatible amb unicode, si us plau canvieu-lo abans d'editar cap pàgina: els caràcters que no són ASCII apareixeran en el quadre d'edició com a codis hexadecimals.</strong>",
-'editingold'                => '<strong>AVÍS: Esteu editant una revisió desactualitzada de la pàgina.
+'yourtext'                         => 'El vostre text',
+'storedversion'                    => 'Versió emmagatzemada',
+'nonunicodebrowser'                => "<strong>ALERTA: El vostre navegador no és compatible amb unicode, si us plau canvieu-lo abans d'editar cap pàgina: els caràcters que no són ASCII apareixeran en el quadre d'edició com a codis hexadecimals.</strong>",
+'editingold'                       => '<strong>AVÍS: Esteu editant una revisió desactualitzada de la pàgina.
 Si la deseu, es perdran els canvis que hàgiu fet des de llavors.</strong>',
-'yourdiff'                  => 'Diferències',
-'copyrightwarning'          => "Si us plau, tingueu en compte que totes les contribucions per al projecte {{SITENAME}} es consideren com a publicades sota els termes de la llicència $2 (vegeu-ne més detalls a $1). Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />
+'yourdiff'                         => 'Diferències',
+'copyrightwarning'                 => "Si us plau, tingueu en compte que totes les contribucions per al projecte {{SITENAME}} es consideren com a publicades sota els termes de la llicència $2 (vegeu-ne més detalls a $1). Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />
 A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o bé de fonts en el domini públic o recursos lliures similars. Heu de saber que aquest <strong>no</strong> és el cas de la majoria de pàgines que hi ha a Internet.
 <strong>No feu servir textos amb drets d'autor sense permís!</strong>",
-'copyrightwarning2'         => "Si us plau, tingueu en compte que totes les contribucions al projecte {{SITENAME}} poden ser corregides, alterades o esborrades per altres usuaris. Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />
+'copyrightwarning2'                => "Si us plau, tingueu en compte que totes les contribucions al projecte {{SITENAME}} poden ser corregides, alterades o esborrades per altres usuaris. Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />
 A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o bé de fonts en el domini públic o altres recursos lliures similars (consulteu $1 per a més detalls).
 <strong>No feu servir textos amb drets d'autor sense permís!</strong>",
-'longpagewarning'           => "<strong>ATENCIÓ: Aquesta pàgina fa $1 kB; hi ha navegadors que poden presentar problemes editant pàgines que s'acostin o sobrepassin els 32 kB. Intenteu, si és possible, dividir la pàgina en seccions més petites.</strong>",
-'longpageerror'             => '<strong>ERROR: El text que heu introduït és de $1 kB i  sobrepassa el màxim permès de $2 kB. Per tant, no es desarà.</strong>',
-'readonlywarning'           => '<strong>ADVERTÈNCIA: La base de dades està tancada per manteniment
+'longpagewarning'                  => "<strong>ATENCIÓ: Aquesta pàgina fa $1 kB; hi ha navegadors que poden presentar problemes editant pàgines que s'acostin o sobrepassin els 32 kB. Intenteu, si és possible, dividir la pàgina en seccions més petites.</strong>",
+'longpageerror'                    => '<strong>ERROR: El text que heu introduït és de $1 kB i  sobrepassa el màxim permès de $2 kB. Per tant, no es desarà.</strong>',
+'readonlywarning'                  => '<strong>ADVERTÈNCIA: La base de dades està tancada per manteniment
 i no podeu desar les vostres contribucions en aquests moments. podeu retallar i enganxar el codi
 en un fitxer de text i desar-lo més tard.</strong>',
-'protectedpagewarning'      => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[{{MediaWiki:Grouppage-sysop}}|administradors]].</strong>',
-'semiprotectedpagewarning'  => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
-'cascadeprotectedwarning'   => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden editar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
-'titleprotectedwarning'     => '<strong>ATENCIÓ: Aquesta pàgina està protegida de tal manera que només certs usuaris poden crear-la.</strong>',
-'templatesused'             => 'Aquesta pàgina fa servir les següents plantilles:',
-'templatesusedpreview'      => 'Plantilles usades en aquesta previsualització:',
-'templatesusedsection'      => 'Plantilles usades en aquesta secció:',
-'template-protected'        => '(protegida)',
-'template-semiprotected'    => '(semiprotegida)',
-'hiddencategories'          => 'Aquesta pàgina forma part de {{PLURAL:$1|la següent categoria oculta|les següents categories ocultes}}:',
-'edittools'                 => "<!-- Es mostrarà als formularis d'edició i de càrrega el text que hi haja després d'aquesta línia. -->",
-'nocreatetitle'             => "S'ha limitat la creació de pàgines",
-'nocreatetext'              => "El projecte {{SITENAME}} ha restringit la possibilitat de crear noves pàgines.
+'protectedpagewarning'             => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[{{MediaWiki:Grouppage-sysop}}|administradors]].</strong>',
+'semiprotectedpagewarning'         => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
+'cascadeprotectedwarning'          => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden editar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
+'titleprotectedwarning'            => '<strong>ATENCIÓ: Aquesta pàgina està protegida de tal manera que només certs usuaris poden crear-la.</strong>',
+'templatesused'                    => 'Aquesta pàgina fa servir les següents plantilles:',
+'templatesusedpreview'             => 'Plantilles usades en aquesta previsualització:',
+'templatesusedsection'             => 'Plantilles usades en aquesta secció:',
+'template-protected'               => '(protegida)',
+'template-semiprotected'           => '(semiprotegida)',
+'hiddencategories'                 => 'Aquesta pàgina forma part de {{PLURAL:$1|la següent categoria oculta|les següents categories ocultes}}:',
+'edittools'                        => "<!-- Es mostrarà als formularis d'edició i de càrrega el text que hi haja després d'aquesta línia. -->",
+'nocreatetitle'                    => "S'ha limitat la creació de pàgines",
+'nocreatetext'                     => "El projecte {{SITENAME}} ha restringit la possibilitat de crear noves pàgines.
 Podeu editar les planes ja existents o bé [[Special:Userlogin|entrar en un compte d'usuari]].",
-'nocreate-loggedin'         => 'No teniu permisos per a crear pàgines noves a la {{SITENAME}}.',
-'permissionserrors'         => 'Error de permisos',
-'permissionserrorstext'     => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
-'recreate-deleted-warn'     => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
+'nocreate-loggedin'                => 'No teniu permisos per a crear pàgines noves a la {{SITENAME}}.',
+'permissionserrors'                => 'Error de permisos',
+'permissionserrorstext'            => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
+'permissionserrorstext-withaction' => 'No teniu permís per a $2, {{PLURAL:$1|pel motiu següent|pels motius següents}}:',
+'recreate-deleted-warn'            => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
 A continuació s'ofereix el registre d'esborraments de la pàgina:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => "Atenció: Aquesta pàgina conté massa crides a funcions parserfunction complexes.
+'expensive-parserfunction-warning'        => "Atenció: Aquesta pàgina conté massa crides a funcions parserfunction complexes.
 
 Actualment hi ha $1 crides i n'haurien de ser menys de $2.",
-'expensive-parserfunction-category' => 'Pàgines amb massa crides de parser function',
+'expensive-parserfunction-category'       => 'Pàgines amb massa crides de parser function',
+'post-expand-template-inclusion-warning'  => "Avís: La mida d'inclusió de la plantilla és massa gran.
+No s'inclouran algunes plantilles.",
+'post-expand-template-inclusion-category' => "Les pàgines on s'excedeix la mida d'inclusió de les plantilles.",
+'post-expand-template-argument-warning'   => "Avís: Aquesta pàgina conté com a mínim un argument de plantilla que té una mida d'expansió massa llarga.
+Se n'han omès els arguments.",
+'post-expand-template-argument-category'  => "Pàgines que contenen arguments de plantilla que s'han omès",
 
 # "Undo" feature
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
@@ -1474,6 +1481,7 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 # Special:Categories
 'categories'                    => 'Categories',
 'categoriespagetext'            => 'Les categories següents contenen pàgines o fitxers multimèdia.',
+'categoriesfrom'                => 'Mostra les categories que comencen a:',
 'special-categories-sort-count' => 'ordena per recompte',
 'special-categories-sort-abc'   => 'ordena alfabèticament',
 
@@ -1930,6 +1938,11 @@ Trieu-ne un altre, si us plau.',
 Incorporeu-les manualment, si us plau.",
 'movedto'                 => 'reanomenat a',
 'movetalk'                => 'Mou la pàgina de discussió associada',
+'move-subpages'           => "Mou totes les pàgines (si s'escau)",
+'move-talk-subpages'      => "Mou totes les subpàgines de la discussió (si s'escau)",
+'movepage-page-exists'    => "La pàgina $1 ja existeix i no pot sobreescriure's automàticament.",
+'movepage-page-unmoved'   => "La pàgina $1 no s'ha pogut moure a $2.",
+'movepage-max-pages'      => "S'ha mogut el nombre màxim de $1 pàgines i no es mourà cap més automàticament.",
 '1movedto2'               => "[[$1]] s'ha reanomenat com [[$2]]",
 '1movedto2_redir'         => "[[$1]] s'ha reanomenat com [[$2]] amb una redirecció",
 'movelogpage'             => 'Registre de reanomenaments',

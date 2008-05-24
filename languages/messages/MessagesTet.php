@@ -140,7 +140,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Kategoría|Kategoría}}',
 'category_header'        => 'Artigu iha kategoría "$1"',
-'category-empty'         => "''Iha kategoría ne'e agora pájina lá'os.''",
+'category-empty'         => "''Kategoria ne'e agora la iha pájina sira.''",
 'listingcontinuesabbrev' => 'kont.',
 
 'about'          => 'Kona-ba',
@@ -251,7 +251,7 @@ $messages = array(
 'nstab-category'  => 'Kategoria',
 
 # Main script and global functions
-'nosuchspecialpage' => "Pájina espesiál ne'e lá'os",
+'nosuchspecialpage' => "Pájina espesiál ne'e la iha",
 
 # General errors
 'error'         => 'Sala',
@@ -323,7 +323,7 @@ $messages = array(
 'lineno' => 'Liña $1:',
 
 # Search results
-'noexactmatch' => "'''Pájina ''$1'' lá'os.''' Ó bele [[:$1|kria pájina ne'e]].",
+'noexactmatch' => "'''Pájina ''$1'' la iha.''' Ó bele [[:$1|kria pájina ne'e]].",
 'prevn'        => 'molok $1',
 'nextn'        => 'oinmai $1',
 'viewprevnext' => 'Haree ($1) ($2) ($3)',

@@ -11,6 +11,7 @@
  * @author לערי ריינהארט
  * @author Nike
  * @author Malafaya
+ * @author Ushanka
  */
 
 $messages = array(
@@ -247,6 +248,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Ye hae neow messages on $1',
 'editsection'             => 'edit',
 'editold'                 => 'edit',
+'viewsourceold'           => 'ken soorce',
 'editsectionhint'         => 'Edit section: $1',
 'toc'                     => 'Table o contents',
 'showtoc'                 => 'shaw',

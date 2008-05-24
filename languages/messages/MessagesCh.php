@@ -321,7 +321,7 @@ Ayek fan otru na nå'an.",
 'yourrealname'               => "Minagahet nå'an-mu:",
 'yourlanguage'               => 'Lengguahe:',
 'yournick'                   => "Fa'na'an:",
-'badsiglength'               => "Mampos anakko'-ña i na'an; na'lakadada' $1 na simbolo siha.",
+'badsiglength'               => "Mampos anakko'-ña i na'an; na'lakadada' $1 ((PLURAL:$1|na simbolo|na simbolo siha)).",
 'email'                      => 'E-mail',
 'prefs-help-realname'        => "Ti nesisario i na'an-mu mågahet.
 Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'cho'-mu.",
@@ -552,6 +552,14 @@ fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'revdelete-hide-comment'      => "Nå'na' i kommentun tinilaika",
 'revdelete-hide-user'         => "Nå'na' i na'an muna'sesetbi/IP i editot",
 'revdelete-hide-image'        => "Nå'na' i sinahguan atkibu",
+'revdelete-log'               => 'Kommentun log:',
+'pagehist'                    => 'Historian påhina',
+'deletedhist'                 => "Historia mana'suha",
+'revdelete-content'           => 'guinaha',
+'revdelete-summary'           => 'tulaika i sumaria',
+'revdelete-uname'             => "nå'an muna'sesetbi",
+'revdelete-hid'               => "manå'na' $1",
+'revdelete-unhid'             => "mana'annok $1",
 
 # Diffs
 'history-title'           => 'Historian tinilaika nu "$1"',

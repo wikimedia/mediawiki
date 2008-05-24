@@ -726,23 +726,23 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'hr_tip'          => 'Horisontell linje (använd sparsamt)',
 
 # Edit pages
-'summary'                   => 'Sammanfattning',
-'subject'                   => 'Rubrik',
-'minoredit'                 => 'Mindre ändring (m)',
-'watchthis'                 => 'Bevaka denna sida',
-'savearticle'               => 'Spara',
-'preview'                   => 'Förhandsgranska',
-'showpreview'               => 'Visa förhandsgranskning',
-'showlivepreview'           => 'Automatiskt uppdaterad förhandsvisning',
-'showdiff'                  => 'Visa ändringar',
-'anoneditwarning'           => 'Du är inte inloggad. Därför kommer din IP-adress att synas i historiken för den här sidan när du sparar din redigering.',
-'missingsummary'            => "'''OBS:''' Du glömde att skriva en redigeringskommentar. Om du trycker på \"Spara\" igen så kommer din redigering att sparas utan redigeringskommentar.",
-'missingcommenttext'        => 'Var god och skriv in en kommentar nedan.',
-'missingcommentheader'      => "'''OBS:''' Du har inte skrivit någon rubrik till den här kommentaren. Om du trycker på \"Spara\" igen, så sparas kommentaren utan någon rubrik.",
-'summary-preview'           => 'Sammanfattningsförhandsgranskning',
-'subject-preview'           => 'Rubrikförhandsgranskning',
-'blockedtitle'              => 'Användaren är blockerad',
-'blockedtext'               => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
+'summary'                          => 'Sammanfattning',
+'subject'                          => 'Rubrik',
+'minoredit'                        => 'Mindre ändring (m)',
+'watchthis'                        => 'Bevaka denna sida',
+'savearticle'                      => 'Spara',
+'preview'                          => 'Förhandsgranska',
+'showpreview'                      => 'Visa förhandsgranskning',
+'showlivepreview'                  => 'Automatiskt uppdaterad förhandsvisning',
+'showdiff'                         => 'Visa ändringar',
+'anoneditwarning'                  => 'Du är inte inloggad. Därför kommer din IP-adress att synas i historiken för den här sidan när du sparar din redigering.',
+'missingsummary'                   => "'''OBS:''' Du glömde att skriva en redigeringskommentar. Om du trycker på \"Spara\" igen så kommer din redigering att sparas utan redigeringskommentar.",
+'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
+'missingcommentheader'             => "'''OBS:''' Du har inte skrivit någon rubrik till den här kommentaren. Om du trycker på \"Spara\" igen, så sparas kommentaren utan någon rubrik.",
+'summary-preview'                  => 'Sammanfattningsförhandsgranskning',
+'subject-preview'                  => 'Rubrikförhandsgranskning',
+'blockedtitle'                     => 'Användaren är blockerad',
+'blockedtext'                      => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
 
 Blockeringen utfördes av $1 med motiveringen: ''$2''.
 
@@ -753,7 +753,7 @@ Blockeringen utfördes av $1 med motiveringen: ''$2''.
 Du kan kontakta $1 eller någon annan av [[{{MediaWiki:Grouppage-sysop}}|administratörerna]] för att diskutera blockeringen. Om du är inloggad och har uppgivit en e-postadress i dina inställningar så kan du använda funktionen 'skicka e-post till den här användaren', såvida du inte blivit blockerad från funktionen.
 
 Din IP-adress är $3 och blockerings-ID är #$5. Vänligen ange IP-adress eller blockerings-ID i alla förfrågningar som du gör i ärendet.",
-'autoblockedtext'           => 'Din IP-adress har blockerats automatiskt eftersom den har använts av en annan användare som blockerats av $1.
+'autoblockedtext'                  => 'Din IP-adress har blockerats automatiskt eftersom den har använts av en annan användare som blockerats av $1.
 Motiveringen av blockeringen var:
 
 :\'\'$2\'\'
@@ -766,91 +766,92 @@ Du kan kontakta $1 eller någon annan [[{{MediaWiki:Grouppage-sysop}}|administra
 Observera att du inte kan använda dig av funktionen "skicka e-post till användare" om du inte har registrerat en giltig e-postadress i [[Special:Preferences|dina inställningar]] eller om du har blivit blockerad från att skicka e-post.
 
 Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar som du gör i ärendet.',
-'blockednoreason'           => 'ingen motivering angavs',
-'blockedoriginalsource'     => "Källkoden för '''$1''' visas nedan:",
-'blockededitsource'         => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
-'whitelistedittitle'        => 'Redigering kräver inloggning',
-'whitelistedittext'         => 'Du måste $1 för att kunna redigera sidor.',
-'whitelistreadtitle'        => 'Läsning kräver inloggning',
-'whitelistreadtext'         => 'För att kunna läsa sidor, måste du [[Special:Userlogin|logga in]].',
-'whitelistacctitle'         => 'Du kan inte skapa konton',
-'whitelistacctext'          => 'För att kunna skapa konton på {{SITENAME}} måste du vara [[Special:Userlogin|inloggad]] och ha rätt behörighet.',
-'confirmedittitle'          => 'E-postbekräftelse krävs för redigering',
-'confirmedittext'           => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
-'nosuchsectiontitle'        => 'Avsnittet finns inte',
-'nosuchsectiontext'         => 'Du försökte redigera ett avsnitt som inte finns. Eftersom avsnitt $1 inte finns, så kan inte din redigering sparas.',
-'loginreqtitle'             => 'Inloggning krävs',
-'loginreqlink'              => 'logga in',
-'loginreqpagetext'          => 'Du måste $1 för att visa andra sidor.',
-'accmailtitle'              => 'Lösenordet är skickat.',
-'accmailtext'               => "Lösenordet för '$1' har skickats till $2.",
-'newarticle'                => '(Ny)',
-'newarticletext'            => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
-'anontalkpagetext'          => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. {{SITENAME}} måste därför använda personens numeriska IP-adress för att identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
-'noarticletext'             => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
-'userpage-userdoesnotexist' => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
-'clearyourcache'            => "'''Obs:''' Sedan du sparat sidan, måste du tömma din webbläsares cache för att se ändringarna. '''Mozilla/Safari/Firefox:''' håll ner ''skift'' och klicka på ''reload'' eller tryck ''ctrl-shift-r'', (cmd-shift-R på mac:ar); '''Internet Explorer:'''  håll ner ctr och klicka på \"Refresh\" eller tryck ''ctrl-f5'', '''Konqueror:''': klicka helt enkelt på \"Reload\" eller F5; '''Opera:''' tryck ''F5''",
-'usercssjsyoucanpreview'    => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
-'usercsspreview'            => "'''Observera att du bara förhandsgranskar din användar-css - den har inte sparats än.'''",
-'userjspreview'             => "'''Observera att du bara testar/förhandsgranskar ditt javascript! Det är inte sparat än.'''",
-'userinvalidcssjstitle'     => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(Uppdaterad)',
-'note'                      => '<strong>Obs!</strong>',
-'previewnote'               => '<strong>Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!</strong>',
-'previewconflict'           => 'Den här förhandsvisningen är resultatet av den
+'blockednoreason'                  => 'ingen motivering angavs',
+'blockedoriginalsource'            => "Källkoden för '''$1''' visas nedan:",
+'blockededitsource'                => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
+'whitelistedittitle'               => 'Redigering kräver inloggning',
+'whitelistedittext'                => 'Du måste $1 för att kunna redigera sidor.',
+'whitelistreadtitle'               => 'Läsning kräver inloggning',
+'whitelistreadtext'                => 'För att kunna läsa sidor, måste du [[Special:Userlogin|logga in]].',
+'whitelistacctitle'                => 'Du kan inte skapa konton',
+'whitelistacctext'                 => 'För att kunna skapa konton på {{SITENAME}} måste du vara [[Special:Userlogin|inloggad]] och ha rätt behörighet.',
+'confirmedittitle'                 => 'E-postbekräftelse krävs för redigering',
+'confirmedittext'                  => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
+'nosuchsectiontitle'               => 'Avsnittet finns inte',
+'nosuchsectiontext'                => 'Du försökte redigera ett avsnitt som inte finns. Eftersom avsnitt $1 inte finns, så kan inte din redigering sparas.',
+'loginreqtitle'                    => 'Inloggning krävs',
+'loginreqlink'                     => 'logga in',
+'loginreqpagetext'                 => 'Du måste $1 för att visa andra sidor.',
+'accmailtitle'                     => 'Lösenordet är skickat.',
+'accmailtext'                      => "Lösenordet för '$1' har skickats till $2.",
+'newarticle'                       => '(Ny)',
+'newarticletext'                   => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
+'anontalkpagetext'                 => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. {{SITENAME}} måste därför använda personens numeriska IP-adress för att identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
+'noarticletext'                    => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
+'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
+'clearyourcache'                   => "'''Obs:''' Sedan du sparat sidan, måste du tömma din webbläsares cache för att se ändringarna. '''Mozilla/Safari/Firefox:''' håll ner ''skift'' och klicka på ''reload'' eller tryck ''ctrl-shift-r'', (cmd-shift-R på mac:ar); '''Internet Explorer:'''  håll ner ctr och klicka på \"Refresh\" eller tryck ''ctrl-f5'', '''Konqueror:''': klicka helt enkelt på \"Reload\" eller F5; '''Opera:''' tryck ''F5''",
+'usercssjsyoucanpreview'           => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
+'usercsspreview'                   => "'''Observera att du bara förhandsgranskar din användar-css - den har inte sparats än.'''",
+'userjspreview'                    => "'''Observera att du bara testar/förhandsgranskar ditt javascript! Det är inte sparat än.'''",
+'userinvalidcssjstitle'            => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
+'updated'                          => '(Uppdaterad)',
+'note'                             => '<strong>Obs!</strong>',
+'previewnote'                      => '<strong>Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!</strong>',
+'previewconflict'                  => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
-'session_fail_preview'      => '<strong>Databasen kunde inte bearbeta redigeringen på grund av ett bortfall av sessionsdata. Försök igen; om det fortfarande inte fungerar, prova att öppna om redigeringssidan, logga ut och logga in igen eller vänta ett tag på att felet fixas.</strong>',
-'session_fail_preview_html' => "<strong>Beklagar! Vi kunde inte databehandla din redigering på grund av att sessionens data gått förlorad.</strong>
+'session_fail_preview'             => '<strong>Databasen kunde inte bearbeta redigeringen på grund av ett bortfall av sessionsdata. Försök igen; om det fortfarande inte fungerar, prova att öppna om redigeringssidan, logga ut och logga in igen eller vänta ett tag på att felet fixas.</strong>',
+'session_fail_preview_html'        => "<strong>Beklagar! Vi kunde inte databehandla din redigering på grund av att sessionens data gått förlorad.</strong>
 
 ''Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd med syfte att förhindra JavaScript-attacker.''
 
 <strong>Om det är ett försök att göra en rättmätig redigering, så pröva igen. Om det fortfarande inte fungerar, pröva att logga ut och logga in igen.</strong>",
-'token_suffix_mismatch'     => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
+'token_suffix_mismatch'            => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
 i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
-'editing'                   => 'Redigerar $1',
-'editingsection'            => 'Redigerar $1 (avsnitt)',
-'editingcomment'            => 'Redigerar $1 (kommentar)',
-'editconflict'              => 'Redigeringskonflikt: $1',
-'explainconflict'           => "Någon har ändrat den här sidan efter att du började att redigera den.
+'editing'                          => 'Redigerar $1',
+'editingsection'                   => 'Redigerar $1 (avsnitt)',
+'editingcomment'                   => 'Redigerar $1 (kommentar)',
+'editconflict'                     => 'Redigeringskonflikt: $1',
+'explainconflict'                  => "Någon har ändrat den här sidan efter att du började att redigera den.
 Den översta textrutan innehåller den nuvarande sparade versionen av texten
 Din ändrade version visas i den nedre rutan.
 Om du vill spara dina ändringar så måste du infoga dem i den övre texten.
 '''Endast''' texten i den översta textrutan kommer att sparas när du trycker på \"Spara\".",
-'yourtext'                  => 'Din text',
-'storedversion'             => 'Den sparade versionen',
-'nonunicodebrowser'         => '<strong>VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.</strong>',
-'editingold'                => '<strong>VARNING: Du redigerar en gammal version av denna sida. Om du sparar den kommer alla ändringar som har gjorts sedan denna version att skrivas över.</strong>',
-'yourdiff'                  => 'Skillnader',
-'copyrightwarning'          => 'Observera att alla bidrag till {{SITENAME}} är att betrakta som utgivna under $2 (se $1 för detaljer). Om du inte vill att din text ska redigeras eller kopieras efter andras gottfinnande skall du inte skriva något här.<br />
+'yourtext'                         => 'Din text',
+'storedversion'                    => 'Den sparade versionen',
+'nonunicodebrowser'                => '<strong>VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.</strong>',
+'editingold'                       => '<strong>VARNING: Du redigerar en gammal version av denna sida. Om du sparar den kommer alla ändringar som har gjorts sedan denna version att skrivas över.</strong>',
+'yourdiff'                         => 'Skillnader',
+'copyrightwarning'                 => 'Observera att alla bidrag till {{SITENAME}} är att betrakta som utgivna under $2 (se $1 för detaljer). Om du inte vill att din text ska redigeras eller kopieras efter andras gottfinnande skall du inte skriva något här.<br />
 Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor. <strong>LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!</strong>',
-'copyrightwarning2'         => 'Observera att alla bidrag till {{SITENAME}} kan komma att redigeras, ändras, eller tas bort av andra deltagare. Om du inte vill se din text förändrad efter andras gottfinnade skall du inte skriva in någon text här.<br />
+'copyrightwarning2'                => 'Observera att alla bidrag till {{SITENAME}} kan komma att redigeras, ändras, eller tas bort av andra deltagare. Om du inte vill se din text förändrad efter andras gottfinnade skall du inte skriva in någon text här.<br />
 Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor - se $1 för detaljer.
 <strong>LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!</strong>',
-'longpagewarning'           => 'Om du använder en väldigt gammal webbläsare kan du ha problem med att redigera den här artikeln, eftersom vissa äldre webbläsare inte klarar artiklar större än 32 kB, och den här är $1 kB.',
-'longpageerror'             => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
-'readonlywarning'           => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
+'longpagewarning'                  => 'Om du använder en väldigt gammal webbläsare kan du ha problem med att redigera den här artikeln, eftersom vissa äldre webbläsare inte klarar artiklar större än 32 kB, och den här är $1 kB.',
+'longpageerror'                    => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
+'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
 dina ändringar just nu. Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>',
-'protectedpagewarning'      => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
+'protectedpagewarning'             => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
 Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
-'semiprotectedpagewarning'  => "'''Observera:''' Denna sida har delvis skrivskyddats, så att endast registrerade användare kan redigera den.",
-'cascadeprotectedwarning'   => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":',
-'titleprotectedwarning'     => '<strong>VARNING: Den här sidan har skyddats så att endast vissa användare kan skapa den.</strong>',
-'templatesused'             => 'Mallar som används på den här sidan:',
-'templatesusedpreview'      => 'Mallar som används i förhandsgranskningen:',
-'templatesusedsection'      => 'Mallar som används i det här avsnittet:',
-'template-protected'        => '(skyddad)',
-'template-semiprotected'    => '(delvis skyddad)',
-'hiddencategories'          => 'Denna sida är medlem i följande dolda {{PLURAL:$1|kategori|kategorier}}:',
-'edittools'                 => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
-'nocreatetitle'             => 'Skapande av sidor begränsat',
-'nocreatetext'              => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
+'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har delvis skrivskyddats, så att endast registrerade användare kan redigera den.",
+'cascadeprotectedwarning'          => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":',
+'titleprotectedwarning'            => '<strong>VARNING: Den här sidan har skyddats så att endast vissa användare kan skapa den.</strong>',
+'templatesused'                    => 'Mallar som används på den här sidan:',
+'templatesusedpreview'             => 'Mallar som används i förhandsgranskningen:',
+'templatesusedsection'             => 'Mallar som används i det här avsnittet:',
+'template-protected'               => '(skyddad)',
+'template-semiprotected'           => '(delvis skyddad)',
+'hiddencategories'                 => 'Denna sida är medlem i följande dolda {{PLURAL:$1|kategori|kategorier}}:',
+'edittools'                        => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
+'nocreatetitle'                    => 'Skapande av sidor begränsat',
+'nocreatetext'                     => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
 Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skapa ett användarkonto]].',
-'nocreate-loggedin'         => 'Du har inte behörighet att skapa nya sidor på {{SITENAME}}.',
-'permissionserrors'         => 'Behörighetsfel',
-'permissionserrorstext'     => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
-'recreate-deleted-warn'     => "'''Varning: Den sida du skapar har tidigare raderats.'''
+'nocreate-loggedin'                => 'Du har inte behörighet att skapa nya sidor på {{SITENAME}}.',
+'permissionserrors'                => 'Behörighetsfel',
+'permissionserrorstext'            => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
+'permissionserrorstext-withaction' => 'Du har inte behörighet att $2, av följande {{PLURAL:$1|anledning|anledningar}}:',
+'recreate-deleted-warn'            => "'''Varning: Den sida du skapar har tidigare raderats.'''
 
 Du bör överväga om det är lämpligt att fortsätta redigera sidan.
 Raderingsloggen för sidan innehåller följande:",
@@ -1999,6 +2000,12 @@ Välj något annat namn istället.',
 'talkexists'              => 'Sidan flyttades, men eftersom en annan diskussionssida redan fanns på destinationen kunde diskussionssidan inte flyttas med. Försök att manuellt sammanfoga de bägge diskusionssidornas innehåll till en sida.',
 'movedto'                 => 'flyttad till',
 'movetalk'                => 'Flytta även diskussionssidan ifall det går.',
+'move-subpages'           => 'Flytta alla undersidor, om det finns sådana',
+'move-talk-subpages'      => 'Flytta alla undersidor av diskussionssidan, om det finns sådana',
+'movepage-page-exists'    => 'Sidan $1 finns redan och kan inte skrivas över automatiskt.',
+'movepage-page-moved'     => 'Sidan $1 har flyttats till $2.',
+'movepage-page-unmoved'   => 'Sidan $1 kunde inte flyttas till $2.',
+'movepage-max-pages'      => 'Gränsen på $1 sidor har uppnåtts och inga mera sidor kommer att flyttas automatiskt.',
 '1movedto2'               => 'flyttade [[$1]] till [[$2]]',
 '1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
 'movelogpage'             => 'Sidflyttslogg',

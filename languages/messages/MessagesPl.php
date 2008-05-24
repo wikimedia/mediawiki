@@ -1609,6 +1609,7 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 # Special:Categories
 'categories'                    => 'Kategorie',
 'categoriespagetext'            => 'Lista kategorii dla stron i plików.',
+'categoriesfrom'                => 'Wyświetl kategorie, zaczynając od:',
 'special-categories-sort-count' => 'sortowanie według liczby',
 'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
 
@@ -2054,6 +2055,7 @@ Wybierz inną nazwę.',
 'talkexists'              => "'''Strona artykułu została przeniesiona, natomiast strona dyskusji nie, ponieważ strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
 'movedto'                 => 'przeniesiono do',
 'movetalk'                => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
+'movepage-page-unmoved'   => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
 '1movedto2'               => 'stronę [[$1]] przeniósł do [[$2]]',
 '1movedto2_redir'         => 'stronę [[$1]] przeniósł do [[$2]] nad przekierowaniem',
 'movelogpage'             => 'Przeniesione',
