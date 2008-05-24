@@ -299,6 +299,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14199) Fix deletion form for image redirect pages
 * (bug 14220) Disabling $wgCheckFileExtensions now works without also
   disabling $wgStrictFileExtensions
+* (bug 14241) Pages can no longer be protected to levels you are not in
 
 === API changes in 1.13 ===
 
