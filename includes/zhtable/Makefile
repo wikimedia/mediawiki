@@ -12,7 +12,7 @@ DIFF = LANG=zh_CN.UTF8 diff
 CC ?= gcc
 
 SF_MIRROR = easynews
-SCIM_TABLES_VER = 0.5.7
+SCIM_TABLES_VER = 0.5.8
 SCIM_PINYIN_VER = 0.5.91
 LIBTABE_VER = 0.2.3
 
@@ -21,22 +21,40 @@ INSTDIR = /usr/local/share/zhdaemons/
 
 all: ZhConversion.php tradphrases.notsure simpphrases.notsure wordlist toHans.dict toHant.dict toCN.dict toTW.dict toHK.dict toSG.dict
 
-Unihan.txt:
+# Download Unihan database and Traditional Chinese / Simplified Chinese phrases files
+Unihan.zip:
 	wget -nc ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip
-	unzip -q Unihan.zip
 
-EZ.txt.in:
+scim-tables-$(SCIM_TABLES_VER).tar.gz:
 	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/scim/scim-tables-$(SCIM_TABLES_VER).tar.gz
+
+scim-pinyin-$(SCIM_PINYIN_VER).tar.gz:
+	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/scim/scim-pinyin-$(SCIM_PINYIN_VER).tar.gz
+
+libtabe-$(LIBTABE_VER).tgz:
+	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/libtabe/libtabe-$(LIBTABE_VER).tgz
+
+# Extract the file from a comressed files
+Unihan.txt: Unihan.zip
+	unzip -oq Unihan.zip
+
+EZ.txt.in: scim-tables-$(SCIM_TABLES_VER).tar.gz
 	tar -xzf scim-tables-$(SCIM_TABLES_VER).tar.gz -O scim-tables-$(SCIM_TABLES_VER)/tables/zh/EZ-Big.txt.in > EZ.txt.in
 
-phrase_lib.txt:
-	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/scim/scim-pinyin-$(SCIM_PINYIN_VER).tar.gz
+Wubi.txt.in: scim-tables-$(SCIM_TABLES_VER).tar.gz
+	tar -xzf scim-tables-$(SCIM_TABLES_VER).tar.gz -O scim-tables-$(SCIM_TABLES_VER)/tables/zh/Wubi.txt.in > Wubi.txt.in
+
+Ziranma.txt.in: scim-tables-$(SCIM_TABLES_VER).tar.gz
+	tar -xzf scim-tables-$(SCIM_TABLES_VER).tar.gz -O scim-tables-$(SCIM_TABLES_VER)/tables/zh/Ziranma.txt.in > Ziranma.txt.in
+
+
+phrase_lib.txt: scim-pinyin-$(SCIM_PINYIN_VER).tar.gz
 	tar -xzf scim-pinyin-$(SCIM_PINYIN_VER).tar.gz -O scim-pinyin-$(SCIM_PINYIN_VER)/data/phrase_lib.txt > phrase_lib.txt
 
-tsi.src:
-	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/libtabe/libtabe-$(LIBTABE_VER).tgz	
+tsi.src: libtabe-$(LIBTABE_VER).tgz	
 	tar -xzf libtabe-$(LIBTABE_VER).tgz -O libtabe/tsi-src/tsi.src > tsi.src
 
+# Make a word list
 wordlist: phrase_lib.txt EZ.txt.in tsi.src
 	iconv -c -f big5 -t utf8 tsi.src | $(SED) 's/# //g' | $(SED) 's/[ ][0-9].*//' > wordlist
 	$(SED) 's/\(.*\)\t[0-9][0-9]*.*/\1/' phrase_lib.txt | $(SED) '1,5d' >> wordlist
@@ -64,7 +82,7 @@ simp2trad.t: unihan.s2t.t simp2trad.manual
 	cat simp2trad.manual tmp1 > simp2trad.t
 
 t2s_1tomany.t: trad2simp.t
-	$(GREP) -s ".\{19,\}" trad2simp.t | $(SED)  's/U+...../"/' | $(SED)  's/|U+...../"=>"/' | $(SED)  's/|U+.....//g' | $(SED)  's/|/",/'  > t2s_1tomany.t
+	$(GREP) -s ".\{19,\}" trad2simp.t | $(SED)  's/U+...../"/' | $(SED)  's/|U+...../"=>"/' | $(SED)  's/|U+.....//g' | $(SED)  's/|/",/' > t2s_1tomany.t
 
 t2s_1to1.t: trad2simp.t s2t_1tomany.t
 	$(SED)  "/.*|.*|.*|.*/d" trad2simp.t | $(SED)  's/U+[0-9a-z][0-9a-z]*/"/' | $(SED)  's/|U+[0-9a-z][0-9a-z]*/"=>"/' | $(SED)  's/|/",/' > t2s_1to1.t
@@ -133,8 +151,17 @@ tradphrases.notsure: tradphrases_2.t tradphrases_3.t tradphrases_4.t t2s_1tomany
 ph.t: phrase_lib.txt
 	$(SED) 's/[\t0-9a-zA-Z]//g' phrase_lib.txt | $(GREP) "^.\{2,4\}$$" > ph.t
 
-allsimpphrases.t: ph.t
+Wubi.t: Wubi.txt.in
+	$(SED) '1,/BEGIN_TABLE/d' Wubi.txt.in | colrm 1 8 | $(SED) 's/\t.*//' | $(GREP) "^...*" > Wubi.t
+
+Ziranma.t: Ziranma.txt.in
+	$(SED) '1,/BEGIN_TABLE/d' Ziranma.txt.in | colrm 1 8 | $(SED) 's/\t.*//' | $(GREP) "^...*" > Ziranma.t
+
+
+allsimpphrases.t: t2s_1tomany.t ph.t Wubi.t Ziranma.t
 	rm -f allsimpphrases.t
+	for i in `cat t2s_1tomany.t | $(SED) 's/.*=>".//' | $(SED) 's/"//g' | $(SED) 's/,/\n/' | $(SED) 's/\(.\)/\1\n/g' | sort | uniq `; do $(GREP) $$i Wubi.t >> allsimpphrases.t; done
+	for i in `cat t2s_1tomany.t | $(SED) 's/.*=>".//' | $(SED) 's/"//g' | $(SED) 's/,/\n/' | $(SED) 's/\(.\)/\1\n/g' | sort | uniq `; do $(GREP) $$i Ziranma.t >> allsimpphrases.t; done
 	for i in `cat t2s_1tomany.t | $(SED) 's/.*=>".//' | $(SED) 's/"//g' | $(SED) 's/,/\n/' | $(SED) 's/\(.\)/\1\n/g' | sort | uniq `; do $(GREP) $$i ph.t >> allsimpphrases.t; done
 
 simpphrases_2.t: allsimpphrases.t
@@ -153,7 +180,7 @@ simpphrases_4.t: allsimpphrases.t
 	sort t | uniq > t3
 	$(DIFF) t3 simpphrases_4.t | $(GREP) ">" | $(SED) 's/> //' > t
 	mv t simpphrases_4.t
-	for i in `cat simpphrases_3.t`; do $(GREP) $$i simpphrases_4.t; done | sort  | uniq > t3 || true
+	for i in `cat simpphrases_3.t`; do $(GREP) $$i simpphrases_4.t; done | sort | uniq > t3 || true
 	$(DIFF) t3 simpphrases_4.t | $(GREP) ">" | $(SED) 's/> //' > t
 	mv t simpphrases_4.t
 
@@ -259,6 +286,8 @@ cleantmp:
 	rm -f \
 		Unihan.txt \
 		EZ.txt.in \
+		Wubi.txt.in \
+		Ziranma.txt.in \
 		phrase_lib.txt \
 		tsi.src
 	# Temporary files and other trash
