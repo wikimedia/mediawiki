@@ -468,6 +468,7 @@ class Parser
 
 	function &getTitle() { return $this->mTitle; }
 	function getOptions() { return $this->mOptions; }
+	function getRevisionId() { return $this->mRevisionId; }
 
 	function getFunctionLang() {
 		global $wgLang, $wgContLang;
