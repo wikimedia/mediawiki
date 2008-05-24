@@ -1368,7 +1368,7 @@ class Article {
 	 * @return bool success
 	 */
 	function doEdit( $text, $summary, $flags = 0, $baseRevId = false ) {
-		global $wgUser, $wgDBtransactions;
+		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
 
 		wfProfileIn( __METHOD__ );
 		$good = true;
@@ -1398,9 +1398,10 @@ class Article {
 		$oldtext = $this->getContent();
 		$oldsize = strlen( $oldtext );
 
-		# Provide autosummaries if one is not provided.
-		if ($flags & EDIT_AUTOSUMMARY && $summary == '')
+		# Provide autosummaries if one is not provided and autosummaries are enabled.
+		if( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
 			$summary = $this->getAutosummary( $oldtext, $text, $flags );
+		}
 
 		$editInfo = $this->prepareTextForEdit( $text );
 		$text = $editInfo->pst;
@@ -3300,41 +3301,6 @@ class Article {
 	}
 
 	/**
-	 * Return an auto-generated summary if the text provided is a redirect.
-	 *
-	 * @param  string $text The wikitext to check
-	 * @return string '' or an appropriate summary
-	 */
-	public static function getRedirectAutosummary( $text ) {
-		$rt = Title::newFromRedirect( $text );
-		if( is_object( $rt ) )
-			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
-		else
-			return '';
-	}
-
-	/**
-	 * Return an auto-generated summary if the new text is much shorter than
-	 * the old text.
-	 *
-	 * @param  string $oldtext The previous text of the page
-	 * @param  string $text    The submitted text of the page
-	 * @return string An appropriate autosummary, or an empty string.
-	 */
-	public static function getBlankingAutosummary( $oldtext, $text ) {
-		if ($oldtext!='' && $text=='') {
-			return wfMsgForContent('autosumm-blank');
-		} elseif (strlen($oldtext) > 10 * strlen($text) && strlen($text) < 500) {
-			#Removing more than 90% of the article
-			global $wgContLang;
-			$truncatedtext = $wgContLang->truncate($text, max(0, 200 - strlen(wfMsgForContent('autosumm-replace'))), '...');
-			return wfMsgForContent('autosumm-replace', $truncatedtext);
-		} else {
-			return '';
-		}
-	}
-
-	/**
 	* Return an applicable autosummary if one exists for the given edit.
 	* @param string $oldtext The previous text of the page.
 	* @param string $newtext The submitted text of the page.
@@ -3342,40 +3308,42 @@ class Article {
 	* @return string An appropriate autosummary, or an empty string.
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
-		global $wgUseAutomaticEditSummaries;
-		if ( !$wgUseAutomaticEditSummaries ) return '';
+		# Decide what kind of autosummary is needed.
 
-		# This code is UGLY UGLY UGLY.
-		# Somebody PLEASE come up with a more elegant way to do it.
+		# Redirect autosummaries
+		$rt = Title::newFromRedirect( $newtext );
+		if( is_object( $rt ) ) {
+			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
+		}
 
-		#Redirect autosummaries
-		$summary = self::getRedirectAutosummary( $newtext );
-
-		if ($summary)
-			return $summary;
-
-		#Blanking autosummaries
-		if (!($flags & EDIT_NEW))
-			$summary = self::getBlankingAutosummary( $oldtext, $newtext );
-
-		if ($summary)
-			return $summary;
-
-		#New page autosummaries
-		if ($flags & EDIT_NEW && strlen($newtext)) {
-			#If they're making a new article, give its text, truncated, in the summary.
+		# New page autosummaries
+		if( $flags & EDIT_NEW && strlen( $newtext ) ) {
+			# If they're making a new article, give its text, truncated, in the summary.
 			global $wgContLang;
 			$truncatedtext = $wgContLang->truncate(
 				str_replace("\n", ' ', $newtext),
 				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new') ) ),
 				'...' );
-			$summary = wfMsgForContent( 'autosumm-new', $truncatedtext );
+			return wfMsgForContent( 'autosumm-new', $truncatedtext );
 		}
 
-		if ($summary)
-			return $summary;
+		# Blanking autosummaries
+		if( $oldtext != '' && $newtext == '' ) {
+			return wfMsgForContent('autosumm-blank');
+		} elseif( strlen( $oldtext ) > 10 * strlen( $newtext ) && strlen( $newtext ) < 500) {
+			# Removing more than 90% of the article
+			global $wgContLang;
+			$truncatedtext = $wgContLang->truncate(
+				$newtext,
+				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) ),
+				'...'
+			);
+			return wfMsgForContent( 'autosumm-replace', $truncatedtext );
+		}
 
-		return $summary;
+		# If we reach this point, there's no applicable autosummary for our case, so our
+		# autosummary is empty.
+		return '';
 	}
 
 	/**
