@@ -999,7 +999,13 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 			if ( '' != $cgi ) {
 				$cgi .= '&';
 			}
-			$cgi .= urlencode( $key ) . '=' . urlencode( $value );
+			if(is_array($value))
+				foreach($value as $v)
+					$cgi .= urlencode( $key . '[]' ) . '=' .
+						urlencode( $v );
+			else
+				$cgi .= urlencode( $key ) . '=' .
+					urlencode( $value );
 		}
 	}
 	return $cgi;
