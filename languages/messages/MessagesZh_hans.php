@@ -548,23 +548,23 @@ $2',
 'hr_tip'          => '水平线 (小心使用)',
 
 # Edit pages
-'summary'                   => '摘要',
-'subject'                   => '标题',
-'minoredit'                 => '这是一个小修改',
-'watchthis'                 => '监视本页',
-'savearticle'               => '保存本页',
-'preview'                   => '预览',
-'showpreview'               => '显示预览',
-'showlivepreview'           => '实时预览',
-'showdiff'                  => '显示差异',
-'anoneditwarning'           => "'''警告:'''您没有登录，您的IP地址将记录在此页的编辑历史中。",
-'missingsummary'            => "'''提示:''' 您没有提供一个编辑摘要。如果您再次单击保存，您的编辑将不带编辑摘要保存。",
-'missingcommenttext'        => '请在下面输入评论。',
-'missingcommentheader'      => "'''提示:''' 您没有为此评论提供一个标题。如果您再次单击保存，您的编辑将不带标题保存。",
-'summary-preview'           => '摘要预览',
-'subject-preview'           => '标题预览',
-'blockedtitle'              => '用户被查封',
-'blockedtext'               => "<big>你的用户名或IP地址已经被$1查封。</big>
+'summary'                          => '摘要',
+'subject'                          => '标题',
+'minoredit'                        => '这是一个小修改',
+'watchthis'                        => '监视本页',
+'savearticle'                      => '保存本页',
+'preview'                          => '预览',
+'showpreview'                      => '显示预览',
+'showlivepreview'                  => '实时预览',
+'showdiff'                         => '显示差异',
+'anoneditwarning'                  => "'''警告:'''您没有登录，您的IP地址将记录在此页的编辑历史中。",
+'missingsummary'                   => "'''提示:''' 您没有提供一个编辑摘要。如果您再次单击保存，您的编辑将不带编辑摘要保存。",
+'missingcommenttext'               => '请在下面输入评论。',
+'missingcommentheader'             => "'''提示:''' 您没有为此评论提供一个标题。如果您再次单击保存，您的编辑将不带标题保存。",
+'summary-preview'                  => '摘要预览',
+'subject-preview'                  => '标题预览',
+'blockedtitle'                     => '用户被查封',
+'blockedtext'                      => "<big>你的用户名或IP地址已经被$1查封。</big>
 
 这次查封是由$1所封的。当中的原因是''$2''。
 
@@ -576,7 +576,7 @@ $2',
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
 你的IP地址是$3，而该查封ID是 #$5。 请你在所有查询中注明这地址及／或查封ID。",
-'autoblockedtext'           => "你的IP地址已经被自动查封，由于先前的另一位用户被$1所查封。
+'autoblockedtext'                  => "你的IP地址已经被自动查封，由于先前的另一位用户被$1所查封。
 而查封的原因是：
 
 :''$2''
@@ -589,93 +589,94 @@ $2',
 除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
 您的查封ID是 #$5。 请你在所有查询中注明这个查封ID。",
-'blockednoreason'           => '无给出原因',
-'blockedoriginalsource'     => "以下是'''$1'''的源码:",
-'blockededitsource'         => "你对'''$1'''进行'''编辑'''的文字如下:",
-'whitelistedittitle'        => '登录后才可编辑',
-'whitelistedittext'         => '您必须先$1才可编辑页面。',
-'whitelistreadtitle'        => '登录后才可阅读',
-'whitelistreadtext'         => '您必须先[[Special:Userlogin|登录]]才可阅读页面。',
-'whitelistacctitle'         => '您被禁止建立账户',
-'whitelistacctext'          => '在{{SITENAME}}中建立账户您必须先[[Special:Userlogin|登录]]并拥有相关权限。',
-'confirmedittitle'          => '邮件确认后才可编辑',
-'confirmedittext'           => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
-'nosuchsectiontitle'        => '没有这个段落',
-'nosuchsectiontext'         => '您尝试编辑的段落并不存在。在这里是无第$1个段落，所以是没有一个地方去存贮你的编辑。',
-'loginreqtitle'             => '需要登录',
-'loginreqlink'              => '登录',
-'loginreqpagetext'          => '您必须$1才能查看其它页面。',
-'accmailtitle'              => '密码已寄出',
-'accmailtext'               => "'$1'的密码已经被发送到$2。",
-'newarticle'                => '(新)',
-'newarticletext'            => '您进入了一个尚未创建的页面。
+'blockednoreason'                  => '无给出原因',
+'blockedoriginalsource'            => "以下是'''$1'''的源码:",
+'blockededitsource'                => "你对'''$1'''进行'''编辑'''的文字如下:",
+'whitelistedittitle'               => '登录后才可编辑',
+'whitelistedittext'                => '您必须先$1才可编辑页面。',
+'whitelistreadtitle'               => '登录后才可阅读',
+'whitelistreadtext'                => '您必须先[[Special:Userlogin|登录]]才可阅读页面。',
+'whitelistacctitle'                => '您被禁止建立账户',
+'whitelistacctext'                 => '在{{SITENAME}}中建立账户您必须先[[Special:Userlogin|登录]]并拥有相关权限。',
+'confirmedittitle'                 => '邮件确认后才可编辑',
+'confirmedittext'                  => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
+'nosuchsectiontitle'               => '没有这个段落',
+'nosuchsectiontext'                => '您尝试编辑的段落并不存在。在这里是无第$1个段落，所以是没有一个地方去存贮你的编辑。',
+'loginreqtitle'                    => '需要登录',
+'loginreqlink'                     => '登录',
+'loginreqpagetext'                 => '您必须$1才能查看其它页面。',
+'accmailtitle'                     => '密码已寄出',
+'accmailtext'                      => "'$1'的密码已经被发送到$2。",
+'newarticle'                       => '(新)',
+'newarticletext'                   => '您进入了一个尚未创建的页面。
 要创建该页面，请在下面的编辑框中输入内容(详情参见[[Help:帮助|帮助]])。
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
-'anontalkpagetext'          => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:Userlogin|创建新账户或登录]]以避免在未来与其他匿名用户混淆。''",
-'noarticletext'             => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
-'userpage-userdoesnotexist' => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
-'clearyourcache'            => "'''注意:''' 在保存以后, 您必须清除浏览器的缓存才能看到所作出的改变。 '''Mozilla / Firefox / Safari:''' 按着 ''Shift'' 再点击''刷新''(或按下''Ctrl-Shift-R''，在苹果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按着 ''Ctrl'' 再点击 ''刷新''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需点击 ''刷新''；'''Opera:''' 用户需要在 ''工具-设置'' 中完整地清除它们的缓存。",
-'usercssjsyoucanpreview'    => "<strong>提示:</strong> 在保存前请用'显示预  '按钮来测试您新的 CSS/JS 。",
-'usercsspreview'            => "'''注意您只是在预览您的个人 CSS, 还没有保存！'''",
-'userjspreview'             => "'''注意您只是在测试／预览您的个人 JavaScript，还没有保存！'''",
-'userinvalidcssjstitle'     => "'''警告:''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
-'updated'                   => '(已更新)',
-'note'                      => '<strong>注意:</strong>',
-'previewnote'               => '<strong>请记住这只是预览，内容还未保存！</strong>',
-'previewconflict'           => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'      => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请登出后重新登陆。</strong>',
-'session_fail_preview_html' => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
+'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:Userlogin|创建新账户或登录]]以避免在未来与其他匿名用户混淆。''",
+'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
+'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
+'clearyourcache'                   => "'''注意:''' 在保存以后, 您必须清除浏览器的缓存才能看到所作出的改变。 '''Mozilla / Firefox / Safari:''' 按着 ''Shift'' 再点击''刷新''(或按下''Ctrl-Shift-R''，在苹果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按着 ''Ctrl'' 再点击 ''刷新''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需点击 ''刷新''；'''Opera:''' 用户需要在 ''工具-设置'' 中完整地清除它们的缓存。",
+'usercssjsyoucanpreview'           => "<strong>提示:</strong> 在保存前请用'显示预  '按钮来测试您新的 CSS/JS 。",
+'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS, 还没有保存！'''",
+'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript，还没有保存！'''",
+'userinvalidcssjstitle'            => "'''警告:''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
+'updated'                          => '(已更新)',
+'note'                             => '<strong>注意:</strong>',
+'previewnote'                      => '<strong>请记住这只是预览，内容还未保存！</strong>',
+'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
+'session_fail_preview'             => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请登出后重新登陆。</strong>',
+'session_fail_preview_html'        => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
 <strong>如果这是一次合法的编辑，请重新进行尝试。如果还不行，请退出并重新登录。</strong>",
-'token_suffix_mismatch'     => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
+'token_suffix_mismatch'            => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。</strong>',
-'editing'                   => '正在编辑$1',
-'editingsection'            => '正在编辑$1 (段落)',
-'editingcomment'            => '正在编辑$1 (评论)',
-'editconflict'              => '编辑冲突: $1',
-'explainconflict'           => '有人在你开始编辑后更改了页面。
+'editing'                          => '正在编辑$1',
+'editingsection'                   => '正在编辑$1 (段落)',
+'editingcomment'                   => '正在编辑$1 (评论)',
+'editconflict'                     => '编辑冲突: $1',
+'explainconflict'                  => '有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
 你所做的修改显示在下面的文字框中。
 你应当将你所做的修改加入现有的内容中。
 <b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
-'yourtext'                  => '您的文字',
-'storedversion'             => '已保存版本',
-'nonunicodebrowser'         => '<strong>警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。</strong>',
-'editingold'                => '<strong>警告：你正在编辑的是本页的旧版本。
+'yourtext'                         => '您的文字',
+'storedversion'                    => '已保存版本',
+'nonunicodebrowser'                => '<strong>警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。</strong>',
+'editingold'                       => '<strong>警告：你正在编辑的是本页的旧版本。
 如果你保存它的话，在本版本之后的任何修改都会丢失。</strong>',
-'yourdiff'                  => '差异',
-'copyrightwarning'          => '请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。
+'yourdiff'                         => '差异',
+'copyrightwarning'                 => '请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源。
 <strong>不要在未获授权的情况下发表！</strong><br />',
-'copyrightwarning2'         => '请注意您对{{SITENAME}}的所有贡献
+'copyrightwarning2'                => '请注意您对{{SITENAME}}的所有贡献
 都可能被其他贡献者编辑，修改或删除。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源（参阅$1的细节）。
 <strong>不要在未获授权的情况下发表！</strong>',
-'longpagewarning'           => '<strong>警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
+'longpagewarning'                  => '<strong>警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
 您应该考虑将此页面分成更小的章节。</strong>',
-'longpageerror'             => '<strong>错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。该文本不能被保存。</strong>',
-'readonlywarning'           => '<strong>警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。</strong>',
-'protectedpagewarning'      => '<strong>警告: 此页已经被保护，只有拥有管理员权限的用户才可修改。</strong>',
-'semiprotectedpagewarning'  => "'''注意：''' 本页面被锁定，仅限注册用户编辑。",
-'cascadeprotectedwarning'   => '警告: 本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含:',
-'titleprotectedwarning'     => '<strong>警告: 本页面已被锁上，只有一些用户方可创建。</strong>',
-'templatesused'             => '在这个页面上使用的模板有:',
-'templatesusedpreview'      => '此次预览中使用的模板有:',
-'templatesusedsection'      => '在这个段落上使用的模板有:',
-'template-protected'        => '(保护)',
-'template-semiprotected'    => '(半保护)',
-'hiddencategories'          => '这个页面是属于$1个隐藏分类的成员:',
-'edittools'                 => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
-'nocreatetitle'             => '创建页面受限',
-'nocreatetext'              => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
-'nocreate-loggedin'         => '您在{{SITENAME}}中并无权限去创建新页面。',
-'permissionserrors'         => '权限错误',
-'permissionserrorstext'     => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作:',
-'recreate-deleted-warn'     => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
+'longpageerror'                    => '<strong>错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。该文本不能被保存。</strong>',
+'readonlywarning'                  => '<strong>警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。</strong>',
+'protectedpagewarning'             => '<strong>警告: 此页已经被保护，只有拥有管理员权限的用户才可修改。</strong>',
+'semiprotectedpagewarning'         => "'''注意：''' 本页面被锁定，仅限注册用户编辑。",
+'cascadeprotectedwarning'          => '警告: 本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含:',
+'titleprotectedwarning'            => '<strong>警告: 本页面已被锁上，只有一些用户方可创建。</strong>',
+'templatesused'                    => '在这个页面上使用的模板有:',
+'templatesusedpreview'             => '此次预览中使用的模板有:',
+'templatesusedsection'             => '在这个段落上使用的模板有:',
+'template-protected'               => '(保护)',
+'template-semiprotected'           => '(半保护)',
+'hiddencategories'                 => '这个页面是属于$1个隐藏分类的成员:',
+'edittools'                        => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
+'nocreatetitle'                    => '创建页面受限',
+'nocreatetext'                     => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
+'nocreate-loggedin'                => '您在{{SITENAME}}中并无权限去创建新页面。',
+'permissionserrors'                => '权限错误',
+'permissionserrorstext'            => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作:',
+'permissionserrorstext-withaction' => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做$2:',
+'recreate-deleted-warn'            => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
 
 你应该要考虑一下继续编辑这一个页面是否合适。
 为方便起见，这一个页面的删除记录已经在下面提供:",
@@ -1833,6 +1834,12 @@ $1',
 但是由于新标题下已经有对话页存在，所以对话页无法移动。请手工合并两个页面。',
 'movedto'                 => '移动到',
 'movetalk'                => '移动关联的讨论页',
+'move-subpages'           => '如果可能的话，同时移动所有的子页面',
+'move-talk-subpages'      => '如果可能的话，同时移动所有的子对话页面',
+'movepage-page-exists'    => '页面$1已经存在，不可以自动地覆写。',
+'movepage-page-moved'     => '页面$1已经移动到$2。',
+'movepage-page-unmoved'   => '页面$1不可以移动到$2。',
+'movepage-max-pages'      => '最多有$1个页面已经移动同时不可以自动地再移动更多。',
 '1movedto2'               => '[[$1]]移动到[[$2]]',
 '1movedto2_redir'         => '[[$1]]通过重定向移动到[[$2]]',
 'movelogpage'             => '移动日志',
