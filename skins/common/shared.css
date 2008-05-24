@@ -244,3 +244,8 @@ h4.mw-specialpagesgroup {
 #shared-image-dup, #shared-image-conflict {
 	font-style: italic;
 }
+
+span.mw-pager-pagerlink-disabled {
+        color: #aaa;
+}
+

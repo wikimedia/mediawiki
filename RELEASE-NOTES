@@ -127,6 +127,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13095) Search by first letters or digits in [[Special:Categories]]
 * Users moving a page can now move all subpages automatically as well
 * Sidebar is now cached for all languages
+* Paging links on special pages now have CSS classes and are greyed out by default
+  when disabled
 
 === Bug fixes in 1.13 ===
 
