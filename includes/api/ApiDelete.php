@@ -113,6 +113,8 @@ class ApiDelete extends ApiBase {
 	 */
 	public static function delete(&$article, $token, &$reason = NULL)
 	{
+		global $wgUser;
+		
 		$errors = self::getPermissionsError($article->getTitle(), $token);
 		if (count($errors)) return $errors;
 
@@ -124,10 +126,15 @@ class ApiDelete extends ApiBase {
 			if($reason === false)
 				return array(array('cannotdelete'));
 		}
+		
+		if (!wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)))
+			$this->dieUsageMsg(array('hookaborted'));
 
 		// Luckily, Article.php provides a reusable delete function that does the hard work for us
-		if($article->doDeleteArticle($reason))
+		if($article->doDeleteArticle($reason)) {
+			wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason, $article->getId()));
 			return array();
+		}
 		return array(array('cannotdelete', $article->mTitle->getPrefixedText()));
 	}
 
@@ -139,7 +146,7 @@ class ApiDelete extends ApiBase {
 		if( $oldimage && !FileDeleteForm::isValidOldSpec($oldimage) )
 			return array(array('invalidoldimage'));
 
-		$file = wfFindFile($title);
+		$file = wfFindFile($title, false, FileRepo::FIND_IGNORE_REDIRECT);
 		$oldfile = false;
 		
 		if( $oldimage )

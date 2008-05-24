@@ -69,6 +69,9 @@ class ApiEditPage extends ApiBase {
 
 		$articleObj = new Article($titleObj);
 		$ep = new EditPage($articleObj);
+		
+		if ( !wfRunHooks( 'AlternateEdit', array( &$ep ) ) )
+			$this->dieUsageMsg(array('hookaborted'));
 
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable

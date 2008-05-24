@@ -59,6 +59,9 @@ class ApiUndelete extends ApiBase {
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
+			
+		if ($titleObj->getNamespace() == NS_IMAGE)
+			$this->dieUsage('File undeletion is not supported', 'fileundeletionunsupported');
 
 		// Convert timestamps
 		if(!is_array($params['timestamps']))
@@ -72,6 +75,9 @@ class ApiUndelete extends ApiBase {
 		$retval = $pa->undelete((isset($params['timestamps']) ? $params['timestamps'] : array()), $params['reason']);
 		if(!is_array($retval))
 			$this->dieUsageMsg(array('cannotundelete'));
+
+		//wfRunHooks( 'FileUndeleteComplete', array(
+		//	$titleObj, $this->mFileVersions, $wgUser, $params['reason']) );
 
 		$info['title'] = $titleObj->getPrefixedText();
 		$info['revisions'] = $retval[0];
