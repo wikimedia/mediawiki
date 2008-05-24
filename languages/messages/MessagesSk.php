@@ -550,7 +550,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'yournick'                   => 'Podpis:',
 'badsig'                     => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML značky.',
 'badsiglength'               => 'Podpis je príliš dlhý.
-Musí obsahovať menej ako $1 znakov.',
+Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '¹ Skutočné meno (nepovinné): ak sa rozhodnete ho poskytnúť, bude použité na označenie vašej práce.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
@@ -636,23 +636,23 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'hr_tip'          => 'Vodorovná čiara (radšej ju nepoužívajte)',
 
 # Edit pages
-'summary'                   => 'Zhrnutie úprav',
-'subject'                   => 'Téma/nadpis',
-'minoredit'                 => 'Toto je drobná úprava',
-'watchthis'                 => 'Sledovať úpravy tejto stránky',
-'savearticle'               => 'Uložiť stránku',
-'preview'                   => 'Náhľad',
-'showpreview'               => 'Zobraziť náhľad',
-'showlivepreview'           => 'Živý náhľad',
-'showdiff'                  => 'Zobraziť rozdiely',
-'anoneditwarning'           => 'Nie ste [[Special:Userlogin|prihlásený]]. Vaša IP adresa bude zaznamenaná v <span class="plainlinks"> [{{fullurl:{{FULLPAGENAME}}|action=history}} histórii úprav]</span> tejto stránky.',
-'missingsummary'            => "'''Pripomienka:''' Neposkytli ste zhrnutie úprav. Ak kliknete znova na Uložiť, vaše úpravy sa uložia bez zhrnutia úprav.",
-'missingcommenttext'        => 'Prosím, dolu napíšte komentár.',
-'missingcommentheader'      => "'''Pripomienka:''' Neposkytli ste predmet/hlavičku tohto komentára. Ak znova kliknete na tlačidlo Uložiť, vaša úprava sa uloží bez nej.",
-'summary-preview'           => 'Náhľad zhrnutia',
-'subject-preview'           => 'Náhľad predmetu/hlavičky',
-'blockedtitle'              => 'Používateľ je zablokovaný',
-'blockedtext'               => "<big>'''Vaše používateľské meno alebo IP adresa bola zablokovaná.'''</big>
+'summary'                          => 'Zhrnutie úprav',
+'subject'                          => 'Téma/nadpis',
+'minoredit'                        => 'Toto je drobná úprava',
+'watchthis'                        => 'Sledovať úpravy tejto stránky',
+'savearticle'                      => 'Uložiť stránku',
+'preview'                          => 'Náhľad',
+'showpreview'                      => 'Zobraziť náhľad',
+'showlivepreview'                  => 'Živý náhľad',
+'showdiff'                         => 'Zobraziť rozdiely',
+'anoneditwarning'                  => 'Nie ste [[Special:Userlogin|prihlásený]]. Vaša IP adresa bude zaznamenaná v <span class="plainlinks"> [{{fullurl:{{FULLPAGENAME}}|action=history}} histórii úprav]</span> tejto stránky.',
+'missingsummary'                   => "'''Pripomienka:''' Neposkytli ste zhrnutie úprav. Ak kliknete znova na Uložiť, vaše úpravy sa uložia bez zhrnutia úprav.",
+'missingcommenttext'               => 'Prosím, dolu napíšte komentár.',
+'missingcommentheader'             => "'''Pripomienka:''' Neposkytli ste predmet/hlavičku tohto komentára. Ak znova kliknete na tlačidlo Uložiť, vaša úprava sa uloží bez nej.",
+'summary-preview'                  => 'Náhľad zhrnutia',
+'subject-preview'                  => 'Náhľad predmetu/hlavičky',
+'blockedtitle'                     => 'Používateľ je zablokovaný',
+'blockedtext'                      => "<big>'''Vaše používateľské meno alebo IP adresa bola zablokovaná.'''</big>
 
 Zablokoval vás správca $1. Udáva tento dôvod:<br />''$2''
 
@@ -663,7 +663,7 @@ Zablokoval vás správca $1. Udáva tento dôvod:<br />''$2''
 Môžete kontaktovať $1 alebo s jedného z ďalších [[{{MediaWiki:Grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
 Uvedomte si, že nemôžete použiť funkciu „{{MediaWiki:Emailuser}}“, pokiaľ nemáte registrovanú platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]].
 Vaša IP adresa je $3 a ID blokovania je #$5. Prosíme, zahrňte oba tieto údaje do každej správy, ktorú posielate.",
-'autoblockedtext'           => "Vaša IP adresa bola automaticky zablokovaná, pretože je používaná iným používateľom, ktorého zablokoval $1.
+'autoblockedtext'                  => "Vaša IP adresa bola automaticky zablokovaná, pretože je používaná iným používateľom, ktorého zablokoval $1.
 Udaný dôvod zablokovania:
 
 :''$2''
@@ -678,98 +678,99 @@ Pozn.: Nemôžete použiť funkciu „{{MediaWiki:emailuser}}“, ak ste si vo s
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
 
 ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.",
-'blockednoreason'           => 'nebol uvedený dôvod',
-'blockedoriginalsource'     => "Zdroj '''$1''' je zobrazený nižšie:",
-'blockededitsource'         => "Text '''vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
-'whitelistedittitle'        => 'Aby ste mohli upravovať stránky, musíte sa prihlásiť',
-'whitelistedittext'         => 'Aby ste mohli upravovať stránky, musíte sa $1',
-'whitelistreadtitle'        => 'Aby ste mohli čítať stránky, musíte sa prihlásiť',
-'whitelistreadtext'         => 'Aby ste mohli čítať stránky, musíte sa [[Special:Userlogin|prihlásiť]].',
-'whitelistacctitle'         => 'Nemáte dovolené vytvoriť si účet',
-'whitelistacctext'          => 'Ak chcete na {{GRAMMAR:lokál|{{SITENAME}}}} vytvárať účty, musíte sa [[Special:Userlogin|prihlásiť]] a mať príslušné oprávnenia.',
-'confirmedittitle'          => 'Aby ste mohli upravovať je potrebné potvrdenie e-mailu',
-'confirmedittext'           => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
-'nosuchsectiontitle'        => 'Sekcia neexistuje',
-'nosuchsectiontext'         => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje. Keďže sekcia $1 neexistuje, nie je kam uložiť vašu úpravu.',
-'loginreqtitle'             => 'Je potrebné prihlásiť sa',
-'loginreqlink'              => 'prihlásiť',
-'loginreqpagetext'          => 'Aby ste mohli prezerať ďalšie stránky, musíte sa $1.',
-'accmailtitle'              => 'Heslo bolo odoslané.',
-'accmailtext'               => 'Heslo pre „$1“ bolo poslané na $2.',
-'newarticle'                => '(Nový)',
-'newarticletext'            => "Sledovali ste odkaz na stránku, ktorá zatiaľ neexistuje.
+'blockednoreason'                  => 'nebol uvedený dôvod',
+'blockedoriginalsource'            => "Zdroj '''$1''' je zobrazený nižšie:",
+'blockededitsource'                => "Text '''vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
+'whitelistedittitle'               => 'Aby ste mohli upravovať stránky, musíte sa prihlásiť',
+'whitelistedittext'                => 'Aby ste mohli upravovať stránky, musíte sa $1',
+'whitelistreadtitle'               => 'Aby ste mohli čítať stránky, musíte sa prihlásiť',
+'whitelistreadtext'                => 'Aby ste mohli čítať stránky, musíte sa [[Special:Userlogin|prihlásiť]].',
+'whitelistacctitle'                => 'Nemáte dovolené vytvoriť si účet',
+'whitelistacctext'                 => 'Ak chcete na {{GRAMMAR:lokál|{{SITENAME}}}} vytvárať účty, musíte sa [[Special:Userlogin|prihlásiť]] a mať príslušné oprávnenia.',
+'confirmedittitle'                 => 'Aby ste mohli upravovať je potrebné potvrdenie e-mailu',
+'confirmedittext'                  => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
+'nosuchsectiontitle'               => 'Sekcia neexistuje',
+'nosuchsectiontext'                => 'Pokúšali ste sa upravovať sekciu, ktorá neexistuje. Keďže sekcia $1 neexistuje, nie je kam uložiť vašu úpravu.',
+'loginreqtitle'                    => 'Je potrebné prihlásiť sa',
+'loginreqlink'                     => 'prihlásiť',
+'loginreqpagetext'                 => 'Aby ste mohli prezerať ďalšie stránky, musíte sa $1.',
+'accmailtitle'                     => 'Heslo bolo odoslané.',
+'accmailtext'                      => 'Heslo pre „$1“ bolo poslané na $2.',
+'newarticle'                       => '(Nový)',
+'newarticletext'                   => "Sledovali ste odkaz na stránku, ktorá zatiaľ neexistuje.
 Stránku vytvoríte tak, že začnete písať do dolného poľa a potom stlačíte tlačidlo „Uložiť stránku“.
 (Viac informácií nájdete na stránkach [[{{MediaWiki:Helppage}}|Pomocníka]]).
 Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom prehliadači.",
-'anontalkpagetext'          => "----''Toto je diskusná stránka anonymného používateľa, ktorý nemá vytvorené svoje konto alebo ho nepoužíva. Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, že takúto IP adresu používajú viacerí používatelia. Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevantné diskusné príspevky, vytvorte si konto alebo sa prihláste ([[Special:Userlogin|Vytvorenie konta alebo prihlásenie]]), aby sa zamedzilo budúcim zámenám s inými anonymnými používateľmi''",
-'noarticletext'             => 'Na tejto stránke sa momentálne nenachádza žiadny text. Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
-'userpage-userdoesnotexist' => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
-'clearyourcache'            => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kiknite na ''Reload'' alebo stlačte ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Apple Mac); '''IE:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''; '''Konqueror:''': jednoducho kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; Používatelia '''Opery''' možno budú musieť úplne vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''.",
-'usercssjsyoucanpreview'    => '<strong>Tip:</strong> Váš nový CSS/JS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.',
-'usercsspreview'            => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
-'userjspreview'             => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
-'userinvalidcssjstitle'     => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(Aktualizovaný)',
-'note'                      => '<strong>Poznámka: </strong>',
-'previewnote'               => '<strong>Nezabudnite, toto je iba náhľad stránky, ktorú upravujete. Zmeny ešte nie sú uložené!</strong>',
-'previewconflict'           => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
-'session_fail_preview'      => '<strong>Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie. Skúste to prosím ešte raz. Ak to nebude fungovať, skúste sa odhlásiť a znovu prihlásiť.</strong>',
-'session_fail_preview_html' => "<strong>Prepáčte! Nemohli sme spracovať vašu úpravu kvôli strate údajov relácie.</strong>
+'anontalkpagetext'                 => "----''Toto je diskusná stránka anonymného používateľa, ktorý nemá vytvorené svoje konto alebo ho nepoužíva. Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, že takúto IP adresu používajú viacerí používatelia. Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevantné diskusné príspevky, vytvorte si konto alebo sa prihláste ([[Special:Userlogin|Vytvorenie konta alebo prihlásenie]]), aby sa zamedzilo budúcim zámenám s inými anonymnými používateľmi''",
+'noarticletext'                    => 'Na tejto stránke sa momentálne nenachádza žiadny text. Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
+'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
+'clearyourcache'                   => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kiknite na ''Reload'' alebo stlačte ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Apple Mac); '''IE:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''; '''Konqueror:''': jednoducho kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; Používatelia '''Opery''' možno budú musieť úplne vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''.",
+'usercssjsyoucanpreview'           => '<strong>Tip:</strong> Váš nový CSS/JS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.',
+'usercsspreview'                   => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
+'userjspreview'                    => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
+'userinvalidcssjstitle'            => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
+'updated'                          => '(Aktualizovaný)',
+'note'                             => '<strong>Poznámka: </strong>',
+'previewnote'                      => '<strong>Nezabudnite, toto je iba náhľad stránky, ktorú upravujete. Zmeny ešte nie sú uložené!</strong>',
+'previewconflict'                  => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
+'session_fail_preview'             => '<strong>Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie. Skúste to prosím ešte raz. Ak to nebude fungovať, skúste sa odhlásiť a znovu prihlásiť.</strong>',
+'session_fail_preview_html'        => "<strong>Prepáčte! Nemohli sme spracovať vašu úpravu kvôli strate údajov relácie.</strong>
 
 ''Pretože {{SITENAME}} má použitie HTML umožnené, náhľad sa nezobrazí (prevencia pred JavaScript útokmi).''
 
 <strong>Ak je toto legitímny pokus o úpravu, skúste to prosím znova. Ak to stále nefunguje, skúste sa odhlásiť a znovu prihlásiť.</strong>",
-'token_suffix_mismatch'     => '<strong>Vaša úprava bola zamietnutá, pretože váš klient pokazil znaky s diakritikou v editačnom symbole (token). Úprava bola zamietnutá, aby sa zabránilo poškodeniu textu stránky. Toto sa občas stáva, keď používate chybnú anonymnú proxy službu cez webové rozhranie.</strong>',
-'editing'                   => 'Úprava stránky $1',
-'editingsection'            => 'Úprava stránky $1 (sekcia)',
-'editingcomment'            => 'Úprava stránky $1 (komentár)',
-'editconflict'              => 'Konflikt pri úprave: $1',
-'explainconflict'           => "Niekto iný zmenil túto stránku, zatiaľ čo ste ju upravovali vy.
+'token_suffix_mismatch'            => '<strong>Vaša úprava bola zamietnutá, pretože váš klient pokazil znaky s diakritikou v editačnom symbole (token). Úprava bola zamietnutá, aby sa zabránilo poškodeniu textu stránky. Toto sa občas stáva, keď používate chybnú anonymnú proxy službu cez webové rozhranie.</strong>',
+'editing'                          => 'Úprava stránky $1',
+'editingsection'                   => 'Úprava stránky $1 (sekcia)',
+'editingcomment'                   => 'Úprava stránky $1 (komentár)',
+'editconflict'                     => 'Konflikt pri úprave: $1',
+'explainconflict'                  => "Niekto iný zmenil túto stránku, zatiaľ čo ste ju upravovali vy.
 Horné okno na úpravy obsahuje text stránky tak, ako je momentálne platný.
 Vaše úpravy sú uvedené v dolnom okne na úpravy.
 Budete musieť zlúčiť vaše zmeny s existujúcim textom.
 '''Iba''' obsah horného okna sa uloží, keď stlačíte „{{MediaWiki:savearticle}}“.",
-'yourtext'                  => 'Váš text',
-'storedversion'             => 'Uložená verzia',
-'nonunicodebrowser'         => '<strong>UPOZORNENIE: Váš prehliadač nepodporuje unicode. Dočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.</strong>',
-'editingold'                => '<strong>UPOZORNENIE: Upravujete starú
+'yourtext'                         => 'Váš text',
+'storedversion'                    => 'Uložená verzia',
+'nonunicodebrowser'                => '<strong>UPOZORNENIE: Váš prehliadač nepodporuje unicode. Dočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.</strong>',
+'editingold'                       => '<strong>UPOZORNENIE: Upravujete starú
 verziu tejto stránky. Ak vašu úpravu uložíte, prepíšete tým všetky úpravy, ktoré nasledovali po tejto starej verzii.</strong>',
-'yourdiff'                  => 'Rozdiely',
-'copyrightwarning'          => 'Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} sa považujú za príspevky pod licenciou $2 (podrobnosti pozri pod $1). Ak nechcete, aby bolo to, čo ste napísali, neúprosne upravované a ďalej ľubovoľne rozširované, tak sem váš text neumiestňujte.<br />
+'yourdiff'                         => 'Rozdiely',
+'copyrightwarning'                 => 'Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} sa považujú za príspevky pod licenciou $2 (podrobnosti pozri pod $1). Ak nechcete, aby bolo to, čo ste napísali, neúprosne upravované a ďalej ľubovoľne rozširované, tak sem váš text neumiestňujte.<br />
 
 Týmto sa právne zaväzujete, že ste tento text buď napísali sám, alebo že je skopírovaný
 z voľného diela (public domain) alebo podobného zdroja neobmedzeného autorskými právami.
 <strong>NEUMIESTŇUJTE TU BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>',
-'copyrightwarning2'         => 'Prosím uvedomte si, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} môžu byť upravované, skracované alebo odstránené inými prispievateľmi. Ak nechcete, aby Vaše texty boli menené, tak ich tu neuverejňujte.<br />
+'copyrightwarning2'                => 'Prosím uvedomte si, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} môžu byť upravované, skracované alebo odstránené inými prispievateľmi. Ak nechcete, aby Vaše texty boli menené, tak ich tu neuverejňujte.<br />
 
 Týmto sa právne zaväzujete, že ste tento text buď napísali sám, alebo že je skopírovaný
 z voľného diela (public domain) alebo podobného zdroja neobmedzeného autorskými právami (podrobnosti: $1).
 <strong>NEUMIESTŇUJTE SEM BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>',
-'longpagewarning'           => '<strong>UPOZORNENIE: Táto stránka má $1 kilobajtov; niektoré
+'longpagewarning'                  => '<strong>UPOZORNENIE: Táto stránka má $1 kilobajtov; niektoré
 prehliadače by mohli mať problémy s úpravou stránok, ktorých veľkosť sa blíži k alebo presahuje 32kb.
 Zvážte, či by nebolo možné rozdeliť stránku na menšie sekcie.</strong>',
-'longpageerror'             => '<strong>CHYBA: Text, ktorý ste poslali má $1 kilobajtov, čo je viac ako maximum $2 kilobajtov. Nie je možné ho uložiť.</strong>',
-'readonlywarning'           => '<strong>UPOZORNENIE: Databáza bola počas upravovania stránky zamknutá z dôvodu údržby,
+'longpageerror'                    => '<strong>CHYBA: Text, ktorý ste poslali má $1 kilobajtov, čo je viac ako maximum $2 kilobajtov. Nie je možné ho uložiť.</strong>',
+'readonlywarning'                  => '<strong>UPOZORNENIE: Databáza bola počas upravovania stránky zamknutá z dôvodu údržby,
 takže stránku momentálne nemôžete uložiť. Môžete skopírovať a vložiť
 text do textového súboru a uložiť si ho na neskôr.</strong>',
-'protectedpagewarning'      => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.</strong>',
-'semiprotectedpagewarning'  => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
-'cascadeprotectedwarning'   => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
-'titleprotectedwarning'     => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba niektorí používatelia.</strong>',
-'templatesused'             => 'Šablóny použité na tejto stránke:',
-'templatesusedpreview'      => 'Šablóny použité v tomto náhľade:',
-'templatesusedsection'      => 'Šablóny použité v tejto sekcii:',
-'template-protected'        => '(zamknutá)',
-'template-semiprotected'    => '(čiastočne zamknutá)',
-'hiddencategories'          => 'Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:',
-'edittools'                 => '<!-- Tento text sa zobrazí pod upravovacím a nahrávacím formulárom. -->',
-'nocreatetitle'             => 'Tvorba nových stránok bola obmedzená',
-'nocreatetext'              => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} je tvorba nových stránok obmedzená.
+'protectedpagewarning'             => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.</strong>',
+'semiprotectedpagewarning'         => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
+'cascadeprotectedwarning'          => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
+'titleprotectedwarning'            => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba niektorí používatelia.</strong>',
+'templatesused'                    => 'Šablóny použité na tejto stránke:',
+'templatesusedpreview'             => 'Šablóny použité v tomto náhľade:',
+'templatesusedsection'             => 'Šablóny použité v tejto sekcii:',
+'template-protected'               => '(zamknutá)',
+'template-semiprotected'           => '(čiastočne zamknutá)',
+'hiddencategories'                 => 'Táto stránka patrí do {{PLURAL:$1|1 skrytej kategórie|$1 skrytých kategórií}}:',
+'edittools'                        => '<!-- Tento text sa zobrazí pod upravovacím a nahrávacím formulárom. -->',
+'nocreatetitle'                    => 'Tvorba nových stránok bola obmedzená',
+'nocreatetext'                     => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} je tvorba nových stránok obmedzená.
 Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Special:Userlogin|sa prihlásiť alebo vytvoriť účet]].',
-'nocreate-loggedin'         => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} nemáte povolenie vytvárať nové stránky.',
-'permissionserrors'         => 'Chyba povolení',
-'permissionserrorstext'     => 'Na to nemáte povolenie z {{PLURAL:$1|nasledujúceho dôvodu|nasledujúcich dôvodov}}:',
-'recreate-deleted-warn'     => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
+'nocreate-loggedin'                => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} nemáte povolenie vytvárať nové stránky.',
+'permissionserrors'                => 'Chyba povolení',
+'permissionserrorstext'            => 'Na to nemáte povolenie z {{PLURAL:$1|nasledujúceho dôvodu|nasledujúcich dôvodov}}:',
+'permissionserrorstext-withaction' => 'Nemáte oprávnenie $2 z {{PLURAL:$1|nasledovného dôvodu|nasledovných dôvodov}}:',
+'recreate-deleted-warn'            => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
 
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
@@ -1952,6 +1953,12 @@ pretože už jedna existuje pod zadaným novým názvom.
 Prosím, zlúčte ich ručne.'''",
 'movedto'                 => 'presunutá na',
 'movetalk'                => 'Presunúť aj príslušnú diskusnú stránku, ak sa dá.',
+'move-subpages'           => 'Presunúť všetky podstránky ak existujú',
+'move-talk-subpages'      => 'Presunúť všetky podstránky diskusnej stránky ak existujú',
+'movepage-page-exists'    => 'Stránka $1 už existuje a nie je možné ju automaticky prepísať.',
+'movepage-page-moved'     => 'Stránka $1 bola presunutá na $2.',
+'movepage-page-unmoved'   => 'Stránku $1 nebolo možné presunúť na $2.',
+'movepage-max-pages'      => 'Maximum $1 stránok bolo presunutých a viac nebude presunutých automaticky.',
 '1movedto2'               => '[[$1]] premiestnená na [[$2]]',
 '1movedto2_redir'         => '[[$1]] premiestnená na [[$2]] výmenou presmerovania',
 'movelogpage'             => 'Záznam presunov',

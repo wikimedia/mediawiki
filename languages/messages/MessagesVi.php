@@ -514,7 +514,7 @@ Tài khoản của bạn đã mở. Đừng quên thay đổi tùy chọn cá nh
 'yournick'                   => 'Chữ ký:',
 'badsig'                     => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
 'badsiglength'               => 'Chữ ký của bạn quá dài.
-Nó phải không quá $1 ký tự.',
+Nó phải không quá $1 {{PLURAL:$1|ký tự|ký tự}}.',
 'email'                      => 'Thư điện tử',
 'prefs-help-realname'        => 'Tên thật là không bắt buộc, nhưng nếu bạn ghi lại, tên này sẽ dùng để ghi công cho bạn.',
 'loginerror'                 => 'Lỗi đăng nhập',
@@ -590,23 +590,23 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'hr_tip'          => 'Dòng kẻ ngang (không nên lạm dụng)',
 
 # Edit pages
-'summary'                   => 'Tóm tắt',
-'subject'                   => 'Đề mục',
-'minoredit'                 => 'Sửa đổi nhỏ',
-'watchthis'                 => 'Theo dõi trang này',
-'savearticle'               => 'Lưu trang',
-'preview'                   => 'Xem thử',
-'showpreview'               => 'Xem thử',
-'showlivepreview'           => 'Xem thử nhanh',
-'showdiff'                  => 'Xem thay đổi',
-'anoneditwarning'           => "'''Cảnh báo:''' Bạn chưa đăng nhập. Địa chỉ IP của bạn sẽ được ghi lại trong lịch sử sửa đổi của trang.",
-'missingsummary'            => "'''Nhắc nhở:''' Bạn đã không ghi lại tóm lược sửa đổi. Nếu bạn nhấn Lưu trang một lần nữa, sửa đổi của bạn sẽ được lưu mà không có tóm lược.",
-'missingcommenttext'        => 'Xin hãy gõ vào lời bàn luận ở dưới.',
-'missingcommentheader'      => "'''Nhắc nhở:''' Bạn chưa cung cấp đề mục cho bàn luận này. Nếu bạn nhấn nút Lưu trang lần nữa, sửa đổi của bạn sẽ được lưu mà không có đề mục.",
-'summary-preview'           => 'Xem trước dòng tóm lược',
-'subject-preview'           => 'Xem trước đề mục',
-'blockedtitle'              => 'Thành viên bị cấm',
-'blockedtext'               => "<big>'''Tên người dùng hoặc địa chỉ IP của bạn đã bị cấm.'''</big>
+'summary'                          => 'Tóm tắt',
+'subject'                          => 'Đề mục',
+'minoredit'                        => 'Sửa đổi nhỏ',
+'watchthis'                        => 'Theo dõi trang này',
+'savearticle'                      => 'Lưu trang',
+'preview'                          => 'Xem thử',
+'showpreview'                      => 'Xem thử',
+'showlivepreview'                  => 'Xem thử nhanh',
+'showdiff'                         => 'Xem thay đổi',
+'anoneditwarning'                  => "'''Cảnh báo:''' Bạn chưa đăng nhập. Địa chỉ IP của bạn sẽ được ghi lại trong lịch sử sửa đổi của trang.",
+'missingsummary'                   => "'''Nhắc nhở:''' Bạn đã không ghi lại tóm lược sửa đổi. Nếu bạn nhấn Lưu trang một lần nữa, sửa đổi của bạn sẽ được lưu mà không có tóm lược.",
+'missingcommenttext'               => 'Xin hãy gõ vào lời bàn luận ở dưới.',
+'missingcommentheader'             => "'''Nhắc nhở:''' Bạn chưa cung cấp đề mục cho bàn luận này. Nếu bạn nhấn nút Lưu trang lần nữa, sửa đổi của bạn sẽ được lưu mà không có đề mục.",
+'summary-preview'                  => 'Xem trước dòng tóm lược',
+'subject-preview'                  => 'Xem trước đề mục',
+'blockedtitle'                     => 'Thành viên bị cấm',
+'blockedtext'                      => "<big>'''Tên người dùng hoặc địa chỉ IP của bạn đã bị cấm.'''</big>
 
 Người thực hiện cấm là $1. Lý do được cung cấp là ''$2''.
 
@@ -618,7 +618,7 @@ Bạn có thể liên lạc với $1 hoặc một [[{{MediaWiki:Grouppage-sysop}
 Bạn không thể sử dụng tính năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lý trong [[Special:Preferences|tùy chọn tài khoản]] và bạn không bị khóa chức năng đó.
 Địa chỉ IP hiện tại của bạn là $3, và mã số cấm là #$5.
 Xin hãy ghi kèm theo một trong hai hoặc cả hai vào các yêu cầu của bạn.",
-'autoblockedtext'           => "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, và người đó đã bị $1 cấm.
+'autoblockedtext'                  => "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, và người đó đã bị $1 cấm.
 Lý do được cung cấp là:
 
 :''$2''
@@ -632,89 +632,90 @@ Bạn có thể liên lạc với $1 hoặc một trong số các
 Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử đúng trong [[{{ns:Special}}:Preferences|tùy chọn]] và chức năng đó không bị cấm.
 
 Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những yêu cầu của bạn.",
-'blockednoreason'           => 'không đưa ra lý do',
-'blockedoriginalsource'     => "Mã nguồn của '''$1''':",
-'blockededitsource'         => "Các '''sửa đổi của bạn''' ở '''$1''':",
-'whitelistedittitle'        => 'Cần đăng nhập để sửa trang',
-'whitelistedittext'         => 'Bạn phải $1 để sửa trang.',
-'whitelistreadtitle'        => 'Cần đăng nhập để đọc nội dung',
-'whitelistreadtext'         => 'Bạn cần [[Special:Userlogin|đăng nhập]] để đọc nội dung.',
-'whitelistacctitle'         => 'Bạn không được phép mở tài khoản.',
-'whitelistacctext'          => 'Bạn cần [[Special:Userlogin|đăng nhập]] để mở tài khoản và phải có quyền tương ứng tại {{SITENAME}}.',
-'confirmedittitle'          => 'Cần xác nhận địa chỉ thư điện tử trước khi sửa đổi',
-'confirmedittext'           => 'Bạn cần phải xác nhận địa chỉ thư điện tử trước khi được sửa đổi trang. Xin hãy đặt và xác nhận địa chỉ thư điện tử của bạn dùng trang [[Special:Preferences|tùy chọn]].',
-'nosuchsectiontitle'        => 'Không có mục nào như vậy',
-'nosuchsectiontext'         => 'Bạn vừa sửa đổi một mục chưa tồn tại.  Vì không có mục nào mang tên $1, không thể lưu sửa đổi của bạn vào đó.',
-'loginreqtitle'             => 'Cần đăng nhập',
-'loginreqlink'              => 'đăng nhập',
-'loginreqpagetext'          => 'Bạn phải $1 mới có quyền xem các trang khác.',
-'accmailtitle'              => 'Đã gửi mật khẩu.',
-'accmailtext'               => 'Mật khẩu của “$1” đã được gửi đến $2.',
-'newarticle'                => '(Mới)',
-'newarticletext'            => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Back''' trên trình duyệt của bạn.",
-'anontalkpagetext'          => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có nhưng không đăng nhập. Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta. Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung. Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:Userlogin|tạo tài khoản hoặc đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
-'noarticletext'             => 'Trang này hiện chưa có gì, bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang]] tại các trang khác hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này].',
-'userpage-userdoesnotexist' => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
-'clearyourcache'            => "'''Ghi chú:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi. '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-Shift-R'' (''Cmd-Shift-R'' trên Mac); '''IE:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''; '''Konqueror:''': chỉ cần nhấn nút ''Reload'', hoặc nhấn ''F5''; người dùng '''Opera''' có thể cần phải xóa hoàn toàn bộ nhớ đệm trong ''Tools→Preferences''.",
-'usercssjsyoucanpreview'    => '<strong>Mẹo:</strong> Sử dụng nút “Xem thử” để kiểm thử trang CSS/JS của bạn trước khi lưu trang.',
-'usercsspreview'            => "'''Nhớ rằng bạn chỉ đang xem thử trang CSS, nó chưa được lưu!'''",
-'userjspreview'             => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript, nó chưa được lưu!'''",
-'userinvalidcssjstitle'     => "'''Cảnh báo:''' Không có skin “$1”. Hãy nhớ rằng các trang .css và .js tùy chỉnh sử dụng tiêu đề chữ thường, như {{ns:user}}:Ví&nbsp;dụ/monobook.css chứ không phải {{ns:user}}:Ví&nbsp;dụ/Monobook.css.",
-'updated'                   => '(Cập nhật)',
-'note'                      => '<strong>Ghi chú:</strong>',
-'previewnote'               => '<strong>Đây chỉ mới là xem thử; các thay đổi vẫn chưa được lưu!</strong>',
-'previewconflict'           => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
-'session_fail_preview'      => '<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
+'blockednoreason'                  => 'không đưa ra lý do',
+'blockedoriginalsource'            => "Mã nguồn của '''$1''':",
+'blockededitsource'                => "Các '''sửa đổi của bạn''' ở '''$1''':",
+'whitelistedittitle'               => 'Cần đăng nhập để sửa trang',
+'whitelistedittext'                => 'Bạn phải $1 để sửa trang.',
+'whitelistreadtitle'               => 'Cần đăng nhập để đọc nội dung',
+'whitelistreadtext'                => 'Bạn cần [[Special:Userlogin|đăng nhập]] để đọc nội dung.',
+'whitelistacctitle'                => 'Bạn không được phép mở tài khoản.',
+'whitelistacctext'                 => 'Bạn cần [[Special:Userlogin|đăng nhập]] để mở tài khoản và phải có quyền tương ứng tại {{SITENAME}}.',
+'confirmedittitle'                 => 'Cần xác nhận địa chỉ thư điện tử trước khi sửa đổi',
+'confirmedittext'                  => 'Bạn cần phải xác nhận địa chỉ thư điện tử trước khi được sửa đổi trang. Xin hãy đặt và xác nhận địa chỉ thư điện tử của bạn dùng trang [[Special:Preferences|tùy chọn]].',
+'nosuchsectiontitle'               => 'Không có mục nào như vậy',
+'nosuchsectiontext'                => 'Bạn vừa sửa đổi một mục chưa tồn tại.  Vì không có mục nào mang tên $1, không thể lưu sửa đổi của bạn vào đó.',
+'loginreqtitle'                    => 'Cần đăng nhập',
+'loginreqlink'                     => 'đăng nhập',
+'loginreqpagetext'                 => 'Bạn phải $1 mới có quyền xem các trang khác.',
+'accmailtitle'                     => 'Đã gửi mật khẩu.',
+'accmailtext'                      => 'Mật khẩu của “$1” đã được gửi đến $2.',
+'newarticle'                       => '(Mới)',
+'newarticletext'                   => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Back''' trên trình duyệt của bạn.",
+'anontalkpagetext'                 => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có nhưng không đăng nhập. Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta. Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung. Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:Userlogin|tạo tài khoản hoặc đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
+'noarticletext'                    => 'Trang này hiện chưa có gì, bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang]] tại các trang khác hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này].',
+'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
+'clearyourcache'                   => "'''Ghi chú:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi. '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-Shift-R'' (''Cmd-Shift-R'' trên Mac); '''IE:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''; '''Konqueror:''': chỉ cần nhấn nút ''Reload'', hoặc nhấn ''F5''; người dùng '''Opera''' có thể cần phải xóa hoàn toàn bộ nhớ đệm trong ''Tools→Preferences''.",
+'usercssjsyoucanpreview'           => '<strong>Mẹo:</strong> Sử dụng nút “Xem thử” để kiểm thử trang CSS/JS của bạn trước khi lưu trang.',
+'usercsspreview'                   => "'''Nhớ rằng bạn chỉ đang xem thử trang CSS, nó chưa được lưu!'''",
+'userjspreview'                    => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript, nó chưa được lưu!'''",
+'userinvalidcssjstitle'            => "'''Cảnh báo:''' Không có skin “$1”. Hãy nhớ rằng các trang .css và .js tùy chỉnh sử dụng tiêu đề chữ thường, như {{ns:user}}:Ví&nbsp;dụ/monobook.css chứ không phải {{ns:user}}:Ví&nbsp;dụ/Monobook.css.",
+'updated'                          => '(Cập nhật)',
+'note'                             => '<strong>Ghi chú:</strong>',
+'previewnote'                      => '<strong>Đây chỉ mới là xem thử; các thay đổi vẫn chưa được lưu!</strong>',
+'previewconflict'                  => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
+'session_fail_preview'             => '<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
 Xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đăng xuất và đăng nhập lại.</strong>',
-'session_fail_preview_html' => "<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.</strong>
+'session_fail_preview_html'        => "<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.</strong>
 
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được giấu đi để đề phòng bị tấn công bằng JavaScript.''
 
 <strong>Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đăng xuất và đăng nhập lại.</strong>",
-'token_suffix_mismatch'     => '<strong>Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu
+'token_suffix_mismatch'            => '<strong>Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.</strong>',
-'editing'                   => 'Sửa đổi $1',
-'editingsection'            => 'Sửa đổi $1',
-'editingcomment'            => 'Sửa đổi $1',
-'editconflict'              => 'Sửa đổi mâu thuẫn: $1',
-'explainconflict'           => "Trang này có đã được lưu bởi người khác sau khi bạn bắt đầu sửa.
+'editing'                          => 'Sửa đổi $1',
+'editingsection'                   => 'Sửa đổi $1',
+'editingcomment'                   => 'Sửa đổi $1',
+'editconflict'                     => 'Sửa đổi mâu thuẫn: $1',
+'explainconflict'                  => "Trang này có đã được lưu bởi người khác sau khi bạn bắt đầu sửa.
 Phía trên là bản hiện tại.
 Phía dưới là sửa đổi của bạn.
 Bạn sẽ phải trộn thay đổi của bạn với bản hiện tại.
 '''Chỉ có''' phần văn bản ở phía trên là sẽ được lưu khi bạn nhất nút “Lưu trang”.",
-'yourtext'                  => 'Nội dung bạn nhập',
-'storedversion'             => 'Phiên bản lưu',
-'nonunicodebrowser'         => "<strong>CHU' Y': Tri`nh duye^.t cu?a ba.n kho^ng ho^~ tro+. unicode. Mo^.t ca'ch dde^? ba.n co' the^? su+?a ddo^?i an toa`n trang na`y: ca'c ky' tu+. kho^ng pha?i ASCII se~ xua^'t hie^.n trong ho^.p soa.n tha?o du+o+'i da.ng ma~ tha^.p lu.c pha^n.</strong>",
-'editingold'                => '<strong>Chú ý: bạn đang sửa một phiên bản cũ. Nếu bạn lưu, các sửa đổi trên các phiên bản mới hơn sẽ bị mất.</strong>',
-'yourdiff'                  => 'Khác',
-'copyrightwarning'          => 'Xin chú ý rằng tất cả các đóng góp của bạn tại {{SITENAME}} được xem là sẽ phát hành theo giấy phép $2 (xem $1 để biết thêm chi tiết). Nếu bạn không muốn trang của bạn bị sửa đổi không thương tiếc và không sẵn lòng cho phép phát hành lại, đừng đăng trang ở đây.<br />
+'yourtext'                         => 'Nội dung bạn nhập',
+'storedversion'                    => 'Phiên bản lưu',
+'nonunicodebrowser'                => "<strong>CHU' Y': Tri`nh duye^.t cu?a ba.n kho^ng ho^~ tro+. unicode. Mo^.t ca'ch dde^? ba.n co' the^? su+?a ddo^?i an toa`n trang na`y: ca'c ky' tu+. kho^ng pha?i ASCII se~ xua^'t hie^.n trong ho^.p soa.n tha?o du+o+'i da.ng ma~ tha^.p lu.c pha^n.</strong>",
+'editingold'                       => '<strong>Chú ý: bạn đang sửa một phiên bản cũ. Nếu bạn lưu, các sửa đổi trên các phiên bản mới hơn sẽ bị mất.</strong>',
+'yourdiff'                         => 'Khác',
+'copyrightwarning'                 => 'Xin chú ý rằng tất cả các đóng góp của bạn tại {{SITENAME}} được xem là sẽ phát hành theo giấy phép $2 (xem $1 để biết thêm chi tiết). Nếu bạn không muốn trang của bạn bị sửa đổi không thương tiếc và không sẵn lòng cho phép phát hành lại, đừng đăng trang ở đây.<br />
 Bạn phải đảm bảo với chúng tôi rằng chính bạn là người viết nên, hoặc chép nó từ một nguồn thuộc phạm vi công cộng hoặc tự do tương đương.
 <strong>ĐỪNG ĐĂNG TÁC PHẨM CÓ BẢN QUYỀN MÀ CHƯA XIN PHÉP!</strong>',
-'copyrightwarning2'         => 'Xin chú ý rằng tất cả các đóng góp của bạn tại {{SITENAME}} có thể được sửa đổi, thay thế, hoặc xóa bỏ bởi các thành viên khác. Nếu bạn không muốn trang của bạn bị sửa đổi không thương tiếc, đừng đăng trang ở đây.<br />
+'copyrightwarning2'                => 'Xin chú ý rằng tất cả các đóng góp của bạn tại {{SITENAME}} có thể được sửa đổi, thay thế, hoặc xóa bỏ bởi các thành viên khác. Nếu bạn không muốn trang của bạn bị sửa đổi không thương tiếc, đừng đăng trang ở đây.<br />
 Bạn phải đảm bảo với chúng tôi rằng chính bạn là người viết nên, hoặc chép nó từ một nguồn thuộc phạm vi công cộng hoặc tự do tương đương (xem $1 để biết thêm chi tiết).
 <strong>ĐỪNG ĐĂNG TÁC PHẨM CÓ BẢN QUYỀN MÀ CHƯA XIN PHÉP!</strong>',
-'longpagewarning'           => '<strong>CẢNH BÁO: Trang này dài $1 kilobyte; một số trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>',
-'longpageerror'             => '<strong>LỖI: Văn bạn mà bạn muốn lưu dài $1 kilobyte, dài hơn độ dài tối đa cho phép $2 kilobyte. Không thể lưu trang.</strong>',
-'readonlywarning'           => '<strong>CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.</strong>',
-'protectedpagewarning'      => '<strong>CẢNH BÁO:  Trang này đã bị khoá, chỉ có các thành viên có quyền quản lý mới sửa được.</strong>',
-'semiprotectedpagewarning'  => "'''Ghi chú:''' Trang này đã bị khóa, chỉ cho phép các thành viên đã đăng ký sửa đổi.",
-'cascadeprotectedwarning'   => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
-'titleprotectedwarning'     => '<strong>CẢNH BÁO:  Trang này đã bị khóa, chỉ có một số thành viên mới có thể tạo ra.</strong>',
-'templatesused'             => 'Các tiêu bản dùng trong trang này',
-'templatesusedpreview'      => 'Các tiêu bản sẽ được dùng trong trang này:',
-'templatesusedsection'      => 'Các tiêu bản sẽ được dùng trong phần này:',
-'template-protected'        => '(khóa hoàn toàn)',
-'template-semiprotected'    => '(bị hạn chế sửa đổi)',
-'hiddencategories'          => 'Trang này thuộc về {{PLURAL:$1|1 thể loại ẩn|$1 thể loại ẩn}}:',
-'edittools'                 => '<!-- Văn bản dưới đây sẽ xuất hiện phía dưới mẫu sửa đổi và tải lên. -->',
-'nocreatetitle'             => 'Khả năng tạo trang bị hạn chế',
-'nocreatetext'              => '{{SITENAME}} đã hạn chế khả năng tạo trang mới.
+'longpagewarning'                  => '<strong>CẢNH BÁO: Trang này dài $1 kilobyte; một số trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>',
+'longpageerror'                    => '<strong>LỖI: Văn bạn mà bạn muốn lưu dài $1 kilobyte, dài hơn độ dài tối đa cho phép $2 kilobyte. Không thể lưu trang.</strong>',
+'readonlywarning'                  => '<strong>CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.</strong>',
+'protectedpagewarning'             => '<strong>CẢNH BÁO:  Trang này đã bị khoá, chỉ có các thành viên có quyền quản lý mới sửa được.</strong>',
+'semiprotectedpagewarning'         => "'''Ghi chú:''' Trang này đã bị khóa, chỉ cho phép các thành viên đã đăng ký sửa đổi.",
+'cascadeprotectedwarning'          => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
+'titleprotectedwarning'            => '<strong>CẢNH BÁO:  Trang này đã bị khóa, chỉ có một số thành viên mới có thể tạo ra.</strong>',
+'templatesused'                    => 'Các tiêu bản dùng trong trang này',
+'templatesusedpreview'             => 'Các tiêu bản sẽ được dùng trong trang này:',
+'templatesusedsection'             => 'Các tiêu bản sẽ được dùng trong phần này:',
+'template-protected'               => '(khóa hoàn toàn)',
+'template-semiprotected'           => '(bị hạn chế sửa đổi)',
+'hiddencategories'                 => 'Trang này thuộc về {{PLURAL:$1|1 thể loại ẩn|$1 thể loại ẩn}}:',
+'edittools'                        => '<!-- Văn bản dưới đây sẽ xuất hiện phía dưới mẫu sửa đổi và tải lên. -->',
+'nocreatetitle'                    => 'Khả năng tạo trang bị hạn chế',
+'nocreatetext'                     => '{{SITENAME}} đã hạn chế khả năng tạo trang mới.
 Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[Special:Userlogin|đăng nhập hoặc tạo tài khoản]].',
-'nocreate-loggedin'         => 'Bạn không có quyền tạo trang mới trên {{SITENAME}}.',
-'permissionserrors'         => 'Không có quyền thực hiện',
-'permissionserrorstext'     => 'Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|lý do}}:',
-'recreate-deleted-warn'     => "'''Cảnh báo: Bạn vừa tạo lại một trang từng bị xóa trước đây.'''
+'nocreate-loggedin'                => 'Bạn không có quyền tạo trang mới trên {{SITENAME}}.',
+'permissionserrors'                => 'Không có quyền thực hiện',
+'permissionserrorstext'            => 'Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|lý do}}:',
+'permissionserrorstext-withaction' => 'Bạn không quyền $2, với {{PLURAL:$1|lý do|lý do}} sau:',
+'recreate-deleted-warn'            => "'''Cảnh báo: Bạn vừa tạo lại một trang từng bị xóa trước đây.'''
 
 Bạn nên cân nhắc trong việc tiếp tục soạn thảo trang này.
 Nhật trình xóa của trang được đưa ra dưới đây để tiện theo dõi:",
@@ -1880,6 +1881,11 @@ Xin hãy chọn tên khác.',
 'talkexists'              => "'''Trang được di chuyển thành công, nhưng trang thảo luận không thể di chuyển được vì đã tồn tại một trang thảo luận ở tên mới. Xin hãy hợp nhất chúng lại một cách thủ công.'''",
 'movedto'                 => 'đổi thành',
 'movetalk'                => 'Di chuyển trang thảo luận đi kèm',
+'move-subpages'           => 'Di chuyển tất cả các trang con, nếu được',
+'move-talk-subpages'      => 'Di chuyển tất cả các trang con của trang thảo luận, nếu được',
+'movepage-page-exists'    => 'Trang $1 đã tồn tại và không thể bị tự động ghi đè.',
+'movepage-page-unmoved'   => 'Trang $1 không thể di chuyển đến $2.',
+'movepage-max-pages'      => 'Tối đa là $1 trang được di chuyển và sẽ không còn tự động di chuyển thêm được nữa.',
 '1movedto2'               => '[[$1]] đổi thành [[$2]]',
 '1movedto2_redir'         => '[[$1]] đổi thành [[$2]] qua đổi hướng',
 'movelogpage'             => 'Nhật trình di chuyển',

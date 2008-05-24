@@ -419,7 +419,7 @@ Es möchlich, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie w
 
 Dinge Zojang för hee es do. Do bes jetz aanjemeldt. Denk dran, Do künnts der Ding [[Special:Preferences|Enstellunge]] hee op de {{SITENAME}} zeräächmaache.',
 'loginpagetitle'             => 'Enlogge',
-'yourname'                   => 'Metmaacher Name',
+'yourname'                   => 'Metmaacher Name:',
 'yourpassword'               => 'Passwood',
 'yourpasswordagain'          => 'Noch ens dat Passwood',
 'remembermypassword'         => 'Op Duur Aanmelde',
@@ -565,6 +565,7 @@ Do kanns ävver nor dann dat „<i>E-Mail aan dä Metmaacher</i>“ aanwende, wa
 [[Special:Preferences|ming Enstellunge]] enjedrage un freijejovve häs.
 
 Ding IP Adress es de „$3“. Dun se en Ding Aanfroge nenne.',
+'blockednoreason'           => 'Keine Aanlass aanjejovve',
 'blockedoriginalsource'     => 'Dä orjenal Wiki Tex vun dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
 'blockededitsource'         => 'Dä Wiki Tex vun <strong>Dinge Änderunge</strong> aan dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
 'whitelistedittitle'        => 'Enlogge nüdich för Sigge ze Ändere',
@@ -886,7 +887,7 @@ Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 # Recent changes
 'recentchanges'                     => 'Neuste Änderunge',
 'recentchangestext'                 => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
-'rcnote'                            => 'Hee sin de letzte <strong>$1</strong> Änderunge us de letzte <strong>$2</strong> Dage vum $3 aan.',
+'rcnote'                            => '{{PLURAL:$1|Hee is de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Et jit <strong>kei</strong> Änderunge en}} {{PLURAL:$2|däm letzte Dag|de letzte <strong>$2</strong> Dage|dä Zick}} vun $3 aff.',
 'rcnotefrom'                        => 'Hee sin bes op <strong>$1</strong> Änderunge zick <strong>$2</strong> opjeliss.',
 'rclistfrom'                        => 'Zeich de neu Änderunge vum $1 av',
 'rcshowhideminor'                   => '$1 klein Mini-Änderunge',
@@ -902,7 +903,7 @@ Bürrokrade, Stewards, â€¦ kanns De nohlese, wat domet es.',
 'show'                              => 'Zeije:',
 'minoreditletter'                   => 'M',
 'boteditletter'                     => 'B',
-'number_of_watching_users_pageview' => '[$1 Oppasser]',
+'number_of_watching_users_pageview' => '[{{PLURAL:$1|eine|$1|kein}} Oppasser]',
 'rc_categories'                     => 'Nor de Saachjruppe (met „|“ dozwesche):',
 'rc_categories_any'                 => 'All, wat mer han',
 
@@ -1011,6 +1012,7 @@ De Einzelheite: $1',
 # Image description page
 'linkstoimage'              => 'Hee kumme de Sigge, die op die Datei linke dun:',
 'nolinkstoimage'            => 'Nix link op hee die Datei.',
+'duplicatesoffile'          => 'De Dateie hee noh sen dubbelte fon he dä Datei:',
 'sharedupload'              => 'De Datei es esu parat jelaht, dat se en diverse, ungerscheedlije Projekte jebruch wääde kann.',
 'shareduploadwiki'          => 'Mieh Informatione fings De hee: $1.',
 'shareduploadwiki-linktext' => 'Hee es en Datei beschrevve',
@@ -1311,7 +1313,7 @@ De Neuste letzte Änderung es jetz vun däm Metmaacher „[[User:$3|$3]]“ (?[[
 Öm bloß einzel Versione zeröckzeholle, maach Hökche aan die Versione, die De widder han wells, un dann dun „<b style="padding:2px; background-color:#ddd; color:black">Zeröckholle!</b>“ klicke.
 Op „<b style="padding:2px; background-color:#ddd; color:black">De Felder usleere</b>“
 klick, wann De all Ding Hökche un Ding „Erklärung (för en et Logboch):“ widder fott han wells.',
-'undeleterevisions'        => '<strong>$1</strong> Versione en et Archiv jedon',
+'undeleterevisions'        => '{{PLURAL:$1|Ein Version|<strong>$1</strong> Versione|<strong>Kein</strong> Version}} en et Archiv jedon',
 'undeletehistory'          => 'Wann De die Sigg widder zeröckholls,
 dann kriss De all fottjeschmesse Versione widder.
 Wann enzwesche en neu Sigg unger däm ahle Name enjerich woode es,
@@ -1324,8 +1326,8 @@ Die neu Sigg weed nit ersetz.',
 'undeletecomment'          => 'Erklärung (för en et Logboch):',
 'undeletedarticle'         => '„$1“ zeröckjehollt',
 'undeletedrevisions'       => '{{PLURAL:$1|ein Version|$1 Versione}} zeröckjehollt',
-'undeletedrevisions-files' => 'Zesammejenomme <strong>$1</strong> Versione vun <strong>$2</strong> Dateie zeröckjehollt',
-'undeletedfiles'           => '<strong>$1</strong> Dateie zeröckjehollt',
+'undeletedrevisions-files' => 'Zesammejenomme {{PLURAL:$1|Ein Version|<strong>$1</strong> Versione|<strong>Kein</strong> Version}} vun {{PLURAL:$2|eine Datei|<strong>$2</strong> Dateie|<strong>nix</strong>}} zeröckjehollt',
+'undeletedfiles'           => '{{PLURAL:$1|Ein Datei|<strong>$1</strong> Dateie|<strong>Kein</strong> Dateie}} zeröckjehollt',
 'cannotundelete'           => '<strong>Dä.</strong> Dat Zeröckholle jing donevve. Möchlich, dat ene andere Metmaacher flöcker wor, un et ald et eets jedon hät, un jetz es die Sigg ald widder do jewäse.',
 'undeletedpage'            => '<big><strong>De Sigg „$1“ es jetz widder do</strong></big>
 Luur Der et [[Special:Log/delete|Logboch met de fottjeschmesse Sigge]] aan, do häs De de Neuste fottjeschmesse 
@@ -1359,7 +1361,7 @@ un widder herjehollte Sigge.',
 'ipaddress'                   => 'IP-Adress',
 'ipadressorusername'          => 'IP Adress oder Metmaacher Name',
 'ipbexpiry'                   => 'Duur för wie lang',
-'ipbreason'                   => 'Aanlass',
+'ipbreason'                   => 'Aanlass:',
 'ipbanononly'                 => 'Nor de namelose Metmaacher sperre',
 'ipbcreateaccount'            => 'Neu aanmelde verbeede',
 'ipbenableautoblock'          => 'Dun automatisch de letzte IP-Adress sperre, die dä Metmaacher jehatt hät, un och all die IP-Adresse, vun wo dä versök, jet ze ändere.',
@@ -1463,7 +1465,7 @@ watte bruchs.",
 '1movedto2_redir'         => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt un doför de ahl Ömleitungs-Sigg fottjeschmesse.',
 'movelogpage'             => 'Logboch met de ömjenannte Sigge',
 'movelogpagetext'         => 'Hee sin de Neuste ömjenannte Sigge opjeliss, un wä et jedon hät.',
-'movereason'              => 'Aanlass',
+'movereason'              => 'Aanlass:',
 'revertmove'              => 'Et Ömnenne zeröcknemme',
 'delete_and_move'         => 'Fottschmieße un Ömnenne',
 'delete_and_move_text'    => '== Dä! Dubbelte Name ==
@@ -1493,6 +1495,7 @@ wann De jet domet aanfange künne wells.",
 <strong>Opjepass:</strong> de janze Versione Exporteere es hee em Wiki avjeschalt. Schad, ävver et wör en 
 zo jroße Lass för dä Sörver.',
 'export-submit'   => 'Loss_Jonn!',
+'export-addcat'   => 'Dobei donn',
 
 # Namespace 8 related
 'allmessages'               => 'All Tex, Baustein un Aanzeije vum Wiki-System',

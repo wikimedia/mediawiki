@@ -237,38 +237,38 @@ $messages = array(
 'policy-url'           => 'Project:Zasady',
 'portal'               => 'Portal užytkowńikůw',
 'portal-url'           => 'Project:Portal užytkowńikůw',
-'privacy'              => 'Zasady chrońyńo prywatności',
+'privacy'              => 'Zasady chrońyńo prywatnośći',
 'privacypage'          => 'Project:Zasady chrońyńo prywatnośći',
 'sitesupport'          => 'Śćepa',
 'sitesupport-url'      => 'Project:Śćepa',
 
 'badaccess'        => 'Felerne uprawńyńo',
-'badaccess-group0' => 'Ńy moš uprawńyń coby wykůnać ta uoperacjo.',
-'badaccess-group1' => 'Ta uoperacjo mogům wykůnać ino užytkownicy z grupy $1',
-'badaccess-group2' => 'Ta uoperacjo mogům wykůnać ino užytkownicy s keryjś z grup $1.',
-'badaccess-groups' => 'Ta uoperacjo mogům wykůnać ino užytkownicy s keryjś z grup $1.',
+'badaccess-group0' => 'Ńy moš uprawńyń coby wykůnać ta uoperacyjo.',
+'badaccess-group1' => 'Ta uoperacyjo mogům wykůnać ino užytkownicy z grupy $1',
+'badaccess-group2' => 'Ta uoperacyjo mogům wykůnać ino užytkownicy s keryjś z grup $1.',
+'badaccess-groups' => 'Ta uoperacyjo mogům wykůnać ino užytkownicy s keryjś z grup $1.',
 
-'versionrequired'     => 'Wymagano MediaWiki we wersji $1',
-'versionrequiredtext' => 'Wymagano jest MediaWiki we wersji $1 coby skořystać z ty zajty. Uoboč [[Special:Version]]',
+'versionrequired'     => 'Wymagano MediaWiki we wersyji $1',
+'versionrequiredtext' => 'Wymagano jest MediaWiki we wersji $1 coby skořistać s tyi zajty. Uoboč [[Special:Version]]',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Zdřůduo "$1"',
-'youhavenewmessages'      => 'Mosz $1 ($2).',
+'youhavenewmessages'      => 'Moš $1 ($2).',
 'newmessageslink'         => 'nowe wjadůmośći',
-'newmessagesdifflink'     => 'ostatnio dyferéncyjo',
-'youhavenewmessagesmulti' => 'Moš nowe wjadomości: $1',
-'editsection'             => 'sprowjéj',
-'editold'                 => 'sprowjéj',
-'viewsourceold'           => 'pokož zdřuduo',
-'editsectionhint'         => 'Sprowjéj tajla: $1',
+'newmessagesdifflink'     => 'uostatńo zmjana',
+'youhavenewmessagesmulti' => 'Moš nowe wjadůmośći: $1',
+'editsection'             => 'sprowjyj',
+'editold'                 => 'sprowjyj',
+'viewsourceold'           => 'pokož zdřůduo',
+'editsectionhint'         => 'Sprowjyj tajla: $1',
 'toc'                     => 'Spis treśći',
 'showtoc'                 => 'pokož',
 'hidetoc'                 => 'schrůń',
 'thisisdeleted'           => 'Pokož/wćepej nazod $1',
-'viewdeleted'             => 'Uobejžij $1',
-'restorelink'             => '{{PLURAL:$1|jedna wyćepano wersja|$1 wyćepane wersje|$1 wyćepanych wersjůw}}',
-'feedlinks'               => 'Kanau:',
-'feed-invalid'            => 'Ńywuaściwy typ kanauů informacyjnego.',
+'viewdeleted'             => 'Uobejřij $1',
+'restorelink'             => '{{PLURAL:$1|jedna wyćepano wersyjo|$1 wyćepane wersyje|$1 wyćepanych wersyjůw}}',
+'feedlinks'               => 'Kanauy:',
+'feed-invalid'            => 'Ńywuaściwy typ kanauů informacyjnygo.',
 'feed-unavailable'        => 'Kanauy informacyjne ńy sům dostympne na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'site-rss-feed'           => 'Kanau RSS {{GRAMMAR:D.lp|$1}}',
 'site-atom-feed'          => 'Kanau Atom {{GRAMMAR:D.lp|$1}}',
@@ -280,93 +280,93 @@ $messages = array(
 'nstab-main'      => 'Zajta',
 'nstab-user'      => 'Zajta užytkowńika',
 'nstab-media'     => 'Media',
-'nstab-special'   => 'Extra zajta',
+'nstab-special'   => 'Špecyjalno zajta',
 'nstab-project'   => 'Zajta projektu',
 'nstab-image'     => 'Plik',
-'nstab-mediawiki' => 'Komunikat',
-'nstab-template'  => 'Šablôna',
+'nstab-mediawiki' => 'Komuńikat',
+'nstab-template'  => 'Šablůn',
 'nstab-help'      => 'Zajta pomocy',
-'nstab-category'  => 'Kategoryja',
+'nstab-category'  => 'Katygorja',
 
 # Main script and global functions
-'nosuchaction'      => 'Ńy ma takiy uoperacje',
-'nosuchactiontext'  => 'Uoprogramowańe ńy rozpoznowo uoperacje takiy jak podano w URL',
-'nosuchspecialpage' => 'Ńy ma takiy extra zajty',
-'nospecialpagetext' => "<big>'''Uoprogramowańe ńy rozpoznaje takiy extra zajty.'''</big>
+'nosuchaction'      => 'Ńy mo takij uoperacyji',
+'nosuchactiontext'  => 'Uoprogramowańy ńy rozpoznowo uoperacyji takij kej podano w URL',
+'nosuchspecialpage' => 'Ńy mo takij špecyjalnyj zajty',
+'nospecialpagetext' => "<big>'''Uoprogramowańy ńy rozpoznowo takij špecyjalnyj zajty.'''</big>
 
-Lista extra zajtůw znejdzieš na [[Special:Specialpages|{{int:specialpages}}]].",
+Lista špecyjalnych zajtůw znejdźeš na [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Feler',
 'databaseerror'        => 'Feler bazy danych',
-'dberrortext'          => 'Zdožyu sie feler we skuadńe zapytańa do bazy danych. Uostatńe, ńyudane zapytańe to:
+'dberrortext'          => 'Zdořiu śe feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
 <blockquote><tt>$1</tt></blockquote>
 wysuane bez funkcja "<tt>$2</tt>".
-MySQL zguosiů bůond "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Zdožyu sie feler we skuadńe zapytańo do bazy danych. Uostatńe, ńyudane zapytańe to:
+MySQL zguośiu feler "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Zdořiu śe feler we skuadńi zapytańo do bazy danych. Uostatńy, ńyudane zapytańy to:
 "$1"
-kere wywouoůa fukcjo "$2".
-MySQL zguosiyů bůond "$3: $4"',
-'noconnect'            => 'Přeprašomy! {{SITENAME}} mo chwilowo problemy technične. Ńy možna pouůnčyć sie ze serwerym bazy danych.<br />$1',
+kere wywououa funkcyjo "$2".
+MySQL zguośiu feler "$3: $4"',
+'noconnect'            => 'Přeprašomy! {{SITENAME}} mo chwilowo problemy techńične. Ńy možno pouůnčyć śe ze serwerym bazy danych.<br />$1',
 'nodb'                 => 'Ńy idźe znejść bazy danych $1',
-'cachederror'          => 'To co sam nanaškréflane to ino kopia z pamjyńći podrynčnyi i može ńy być aktualne.',
-'laggedslavemode'      => 'Dej pozůr: Ta zajta može ńy mjeć nojnowšych aktualizacjůw.',
-'readonly'             => 'Baza danych jest zawarto',
+'cachederror'          => 'To, co sam je naškryflone to ino kopja s pamjyńći podrynčnyj a može ńy być aktualne.',
+'laggedslavemode'      => 'Dej pozůr: Ta zajta može ńy mjeć nojnowšych aktualizacyjůw.',
+'readonly'             => 'Baza danych je zawarto',
 'enterlockreason'      => 'Naškréflej sam powůd zawarća bazy danych i za wiela (mniy-wiyncyi) jom uodymkńeš',
 'readonlytext'         => 'Baza danych jest terozki zawarto
-- ńy možna wćepywać nowych artikli ani sprowjać juž wćepanych. Powodem
-sům prawdopodobńe czynności administracyjne. Po jeich zakůńčeńu peuno funkcjonalność bazy bydźe přywrůcono.
-Administrator, kery zablokowou baza, podou takie wyjaśńyńe:<br /> $1',
-'missingarticle'       => 'Uoprogramowanie ńy znoduo tekstu zajty "$1", kero powinna sie znajdować w bazie.
+- ńy možna wćepywać nowych artikli ńi sprowjać juž wćepanych. Powodym
+sům prawdopodobńy čynnośći admińistracyjne. Po jeich zakůńčeńu peuno funkcjonalność bazy bydźe přywrůcono.
+Administrator, kery zablokowou baza, podou takie wyjaśńyńy:<br /> $1',
+'missingarticle'       => 'Uoprogramowańy ńy znoduo tekstu zajty "$1", kero powinna śe znajdować w baźe.
 
-Zwykle sie to trefio, jak zostańe wybrany link do wyćepanej zajty,
-np. do staršej wersji inkšyi z zajtów.
+Zwykle śe to trefio, jak zostańe wybrany link do wyćepanej zajty,
+np. do staršej wersyji inkšyj ze zajtůw.
 
-Jak to ńy je powůd, to možeś znod feler w uoprogramowańu. W takiym raźe zguoś, proša, tyn fakt
-administratorowi, końečńe podej w zguošyńu adres URL tyi zajty.',
+Jak to ńy je powůd, to možeś znod feler w uoprogramowańu. W takim raźe zguoś, proša, tyn fakt
+admińistratorowi, końečńy podej we zguošyńu adres URL tyi zajty.',
 'missingarticle-rev'   => '(wersyjo#: $1)',
 'missingarticle-diff'  => '(dyferencyjo: $1, $2)',
-'readonly_lag'         => 'Baza danych zostoua automatyčnie zawarto na čas potřebny na synchronizacja zmian miyndzy serwerem guůwnym i serwerami pośredničůncymi.',
+'readonly_lag'         => 'Baza danych zostoua automatyčńy zawarto na čas potřebny na synchrońizacyjo zmjan mjyndzy serwerym guůwnym a serwerami pośredńičůncymi.',
 'internalerror'        => 'Wewnyntřny feler',
 'internalerror_info'   => 'Wewnytřny feler: $1',
-'filecopyerror'        => 'Ńy idźe skopiować plika "$1" do "$2".',
-'filerenameerror'      => 'Ńy idźe zmjynić nazwy plika "$1" na "$2".',
+'filecopyerror'        => 'Ńy idźe skopjować plika "$1" do "$2".',
+'filerenameerror'      => 'Ńy idźe zmjyńić mjana plika "$1" na "$2".',
 'filedeleteerror'      => 'Ńy idźe wyćepać plika "$1".',
-'directorycreateerror' => 'Ńy idźe utwořyć katalogu "$1".',
+'directorycreateerror' => 'Ńy idźe utwořić katalogu "$1".',
 'filenotfound'         => 'Ńy idźe znejść plika "$1".',
 'fileexistserror'      => 'Ńy idźe sprowjać we pliku "$1": plik istńeje',
 'unexpected'           => 'Ńyspodźewano wartość: "$1"="$2".',
 'formerror'            => 'Feler: ńy idźe wysuać formulařa',
-'badarticleerror'      => 'Tyi uoperacyji ńy idźe zrobiyć dlo tyi zajty.',
-'cannotdelete'         => 'Ńy idźe wyćepać podanyi zajty abo grafiki.',
+'badarticleerror'      => 'Tyi uoperacyji ńy idźe zrobić lo tyi zajty.',
+'cannotdelete'         => 'Ńy idźe wyćepać podanyj zajty abo grafiki.',
 'badtitle'             => 'Zuy titel',
-'badtitletext'         => 'Podano felerny titel zajty. Prawdopodobńy sům w ńym znoki kerych ńy wolno užywać we titlach, abo je pusty.',
-'perfdisabled'         => 'Přeprašomy! Coby uodciůnžyć serwer w godźinach ščytu czasowo zawarlimy wykůnanie tyi čynności.',
-'perfcached'           => 'To co sam nanaškréflane to ino kopia z pamjyńći podrynčnyi i može ńy być aktualne.',
-'perfcachedts'         => 'To co sam nanaškréflane to ino kopia z pamjyńći podrynčnyi i boůo uaktualniůne $1.',
-'querypage-no-updates' => 'Uaktualńyńo dlo tyi zajty sům terozki zawarte. Dane kere sam sům nie zostouy uodświežůne.',
+'badtitletext'         => 'Podano felerny titel zajty. Prawdopodobńy sům w ńim znoki, kerych ńy wolno užywać we titlach abo je pusty.',
+'perfdisabled'         => 'Přeprašomy! Coby uodćůnžyć serwer w godźinach ščytu, časowo zawarlimy wykůnańy tyi čynnośći.',
+'perfcached'           => 'To co sam je naškryflane, to ino kopia s pamjyńći podrynčnyj a može ńy być aktualne.',
+'perfcachedts'         => 'To co sam je naškryflane, to ino kopia s pamjyńći podrynčnyj a bůuo uaktualńůne $1.',
+'querypage-no-updates' => 'Uaktualńyńo lo tyi zajty sům terozki zawarte. Dane, kere sam sům, ńy zostouy uodśwjyžůne.',
 'wrong_wfQuery_params' => 'Felerne parametry překozane do wfQuery()<br />
-Funkcjo: $1<br />
-Zapytanie: $2',
-'viewsource'           => 'Tekst źrůduowy',
-'viewsourcefor'        => 'dlo $1',
-'actionthrottled'      => 'Akcjo wstřiymano',
-'actionthrottledtext'  => 'Mechanizm uobrůny před spamym uograničo liczba wykonań tyi čynnośći w jednostce času. Průbowoužeś go uocyganić. Proša sprůbuj na nowo za pora minut.',
-'protectedpagetext'    => 'Ta zajta jest zawarto před sprowjańym.',
-'viewsourcetext'       => 'We tekst źrůduowy tyi zajty možna dali filować, idźe go tyž kopjować.',
-'protectedinterface'   => 'Na tyi zajcie znojdowo sie tekst interfejsa uoprogramowanio, bez tůž uona jest zawarto uod sprowjańo.',
-'editinginterface'     => "'''Dej pozůr:''' Sprowjoš zajta na kery jest tekst interfejsa uoprogramowanio. Pomjyńyńa na tyi zajcie zmiyńom wyglůnd interfejsa dlo inkšych užytkownikůw.",
-'sqlhidden'            => '(schowano zapytanie SQL)',
-'cascadeprotected'     => 'Ta zajta jest zawarto od sprowjańo, po takiymů co uona je zauončono na {{PLURAL:$1|nastympujůncej zajcie, kero zostaua zawarto|nastympujůncych zajtach, kere zostauy zawarte}} z zauončonom opcjom dźedźiczynio:
+Funkcyjo: $1<br />
+Zapytańy: $2',
+'viewsource'           => 'Tekst zdřůduowy',
+'viewsourcefor'        => 'lo $1',
+'actionthrottled'      => 'Akcyjo wstřimano',
+'actionthrottledtext'  => 'Mechańizm uobrůny před spamym uograńičo ličba wykonań tyi čynnośći we jednostce času. Průbowoužeś go uocygańić. Proša, sprůbuj na nowo za pora minut.',
+'protectedpagetext'    => 'Ta zajta je zawarto před sprowjańym.',
+'viewsourcetext'       => 'We tekst zdřůduowy tyi zajty možno dali filować, idźe go tyž kopjować.',
+'protectedinterface'   => 'Na tyi zajće znojdowo śe tekst interfejsu uoprogramowańo, bez tůž uůna je zawarto uod sprowjańo.',
+'editinginterface'     => "'''Dej pozůr:''' Sprowjoš zajta, na keryj je tekst interfejsu uoprogramowańo. Pomjyńyńa na tyi zajće zmjyńům wyglůnd interfejsu lo inkšych užytkowńikůw.",
+'sqlhidden'            => '(schowano zapytańy SQL)',
+'cascadeprotected'     => 'Ta zajta je zawarto uod sprowjańo, po takymu, co uůna je zauončono na {{PLURAL:$1|nastympujůncyj zajće, kero zostaua zawarto|nastympujůncych zajtach, kere zostauy zawarte}} ze zauončonům opcjům dźedźičyńo:
 $2',
-'namespaceprotected'   => "Ńy moš uprowńyń coby sprowjać zajty w přestřeńi mjan '''$1'''.",
-'customcssjsprotected' => 'Ńy moš uprawńyń do sprowjańo tyi zajty, bo na ńyi sům uosobiste štalowańo inkšego užytkownika.',
-'ns-specialprotected'  => 'Ńy idźe sprowjać zajtów we přestřyni mjan {{ns:special}}.',
-'titleprotected'       => "Wćepanie sam zajty o takiym mjańe zawar [[User:$1|$1]].
+'namespaceprotected'   => "Ńy moš uprowńyń, coby sprowjać zajty we přestřeńi mjan '''$1'''.",
+'customcssjsprotected' => 'Ńy moš uprawńyń do sprowjańo tyi zajty, bo na ńij sům uosobiste štalowańo inkšego užytkowńika.',
+'ns-specialprotected'  => 'Ńy idźe sprowjać zajtůw we přestřyni mjan {{ns:special}}.',
+'titleprotected'       => "Wćepańy sam zajty uo takim mjańe zawar [[User:$1|$1]].
 Powůd zawarćo: ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Wylogůwańe užytkownika',
+'logouttitle'                => 'Wylogůwańy užytkowńika',
 'logouttext'                 => '<strong>Terozki jestžeś wylůgowany</strong>.<br />Možeš dali sam sprowjać zajty jako niezalůgowany užytkownik, abo zalůgować sie nazod jako tyn som abo inkšy užytkownik.',
 'welcomecreation'            => '== Witej, $1! ==
 

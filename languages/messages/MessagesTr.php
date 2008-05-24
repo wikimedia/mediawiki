@@ -734,6 +734,9 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'search-suggest'           => 'Bunu mu demek istediniz: $1',
 'search-interwiki-caption' => 'Kardeş projeler',
 'search-interwiki-default' => '$1 sonuçlar:',
+'search-interwiki-more'    => '(daha çok)',
+'search-relatedarticle'    => 'ilgili',
+'searchrelated'            => 'ilgili',
 'searchall'                => 'hepsi',
 'showingresults'           => '<b>$2.</b> sonuçtan başlayarak <b>$1</b> sonuç aşağıdadır:',
 'showingresultsnum'        => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
@@ -831,9 +834,16 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'group-sysop-member'      => 'Hizmetli',
 'group-bureaucrat-member' => 'Bürokrat',
 
+'grouppage-user'       => '{{ns:project}}:Kullanıcılar',
 'grouppage-bot'        => '{{ns:project}}:Botlar',
 'grouppage-sysop'      => '{{ns:project}}:Hizmetliler',
 'grouppage-bureaucrat' => '{{ns:project}}:Bürokratlar',
+
+# Rights
+'right-read'   => 'Sayfaları oku',
+'right-edit'   => 'Sayfaları değiştir',
+'right-upload' => 'Dosyaları yükle',
+'right-delete' => 'Sayfaları sil',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -963,26 +973,28 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'imagelist_description' => 'Tanım',
 
 # Image description page
-'filehist'                  => 'Dosya geçmişi',
-'filehist-help'             => 'Dosyanın geçmişini görebilmek için Gün/Zaman bölümündeki tarihleri tıklayınız.',
-'filehist-deleteall'        => 'Hepsini sil',
-'filehist-deleteone'        => 'sadece bunu sil',
-'filehist-revert'           => 'geri al',
-'filehist-current'          => 'Şimdiki',
-'filehist-datetime'         => 'Gün/Zaman',
-'filehist-user'             => 'Kullanıcı',
-'filehist-dimensions'       => 'Boyutlar',
-'filehist-filesize'         => 'Dosya boyutu',
-'filehist-comment'          => 'Açıklama',
-'imagelinks'                => 'Kullanıldığı sayfalar',
-'linkstoimage'              => 'Bu görüntü dosyasına bağlantısı olan sayfalar:',
-'nolinkstoimage'            => 'Bu görüntü dosyasına bağlanan sayfa yok.',
-'sharedupload'              => 'Bu dosya ortak alana yüklenmiştir ve diğer projelerde de kullanılıyor olabilir.',
-'shareduploadwiki'          => 'Lütfen daha fazla bilgi için $1 sayfasına bakın.',
-'shareduploadwiki-linktext' => 'dosya açıklama sayfası',
-'noimage'                   => 'Bu isimde dosya yok. Siz $1.',
-'noimage-linktext'          => 'yükleyebilirsiniz',
-'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
+'filehist'                       => 'Dosya geçmişi',
+'filehist-help'                  => 'Dosyanın geçmişini görebilmek için Gün/Zaman bölümündeki tarihleri tıklayınız.',
+'filehist-deleteall'             => 'Hepsini sil',
+'filehist-deleteone'             => 'sadece bunu sil',
+'filehist-revert'                => 'geri al',
+'filehist-current'               => 'Şimdiki',
+'filehist-datetime'              => 'Gün/Zaman',
+'filehist-user'                  => 'Kullanıcı',
+'filehist-dimensions'            => 'Boyutlar',
+'filehist-filesize'              => 'Dosya boyutu',
+'filehist-comment'               => 'Açıklama',
+'imagelinks'                     => 'Kullanıldığı sayfalar',
+'linkstoimage'                   => 'Bu görüntü dosyasına bağlantısı olan sayfalar:',
+'nolinkstoimage'                 => 'Bu görüntü dosyasına bağlanan sayfa yok.',
+'sharedupload'                   => 'Bu dosya ortak alana yüklenmiştir ve diğer projelerde de kullanılıyor olabilir.',
+'shareduploadwiki'               => 'Lütfen daha fazla bilgi için $1 sayfasına bakın.',
+'shareduploadwiki-linktext'      => 'dosya açıklama sayfası',
+'shareduploadduplicate-linktext' => 'başka dosya',
+'shareduploadconflict-linktext'  => 'başka dosya',
+'noimage'                        => 'Bu isimde dosya yok. Siz $1.',
+'noimage-linktext'               => 'yükleyebilirsiniz',
+'uploadnewversion-linktext'      => 'Dosyanın yenisini yükleyin',
 
 # File reversion
 'filerevert'         => '$1 dosyasını eski haline döndür',
@@ -1150,6 +1162,8 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'listusers-noresult' => 'Kullanıcı bulunamadı.',
 
 # Special:Listgrouprights
+'listgrouprights-group'   => 'grup',
+'listgrouprights-rights'  => 'Haklar',
 'listgrouprights-members' => '(üyelerin listesi)',
 
 # E-mail user
@@ -1216,14 +1230,15 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'watching'   => 'İzleniyor...',
 'unwatching' => 'Durduruluyor...',
 
-'enotif_mailer'      => '{{SITENAME}} Bildirim Postası',
-'enotif_reset'       => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
-'enotif_newpagetext' => 'Yeni bir sayfa.',
-'changed'            => 'değiştirildi',
-'created'            => 'oluşturuldu',
-'enotif_lastvisited' => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
-'enotif_anon_editor' => 'anonim kullanıcılar $1',
-'enotif_body'        => 'Sayın $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}} Bildirim Postası',
+'enotif_reset'                 => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
+'enotif_newpagetext'           => 'Yeni bir sayfa.',
+'enotif_impersonal_salutation' => '{{SITENAME}} kullanıcı',
+'changed'                      => 'değiştirildi',
+'created'                      => 'oluşturuldu',
+'enotif_lastvisited'           => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
+'enotif_anon_editor'           => 'anonim kullanıcılar $1',
+'enotif_body'                  => 'Sayın $WATCHINGUSERNAME,
 
 {{SITENAME}} sitesindeki $PAGETITLE başlıklı sayfa $PAGEEDITDATE tarihinde $PAGEEDITOR tarafından $CHANGEDORCREATED. Sayfanın son haline $PAGETITLE_URL adresinden ulaşabilirsiniz.
 
@@ -1320,6 +1335,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'restriction-edit'   => 'Düzenle',
 'restriction-move'   => 'Taşı',
 'restriction-create' => 'Yarat',
+'restriction-upload' => 'Yükle',
 
 # Restriction levels
 'restriction-level-sysop'         => 'Tam koruma',
@@ -1534,6 +1550,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 # Special:Import
 'import'                     => 'Sayfaları aktar',
 'import-interwiki-history'   => 'Sayfanın tüm geçmiş sürümlerini kopyala',
+'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Sayfaları alan adına taşı:',
 'importstart'                => 'Sayfalar aktarmaktadır...',
 'importnopages'              => 'Aktarılacak dosya yok.',

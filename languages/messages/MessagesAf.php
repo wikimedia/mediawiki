@@ -74,6 +74,7 @@ $messages = array(
 'tog-enotifusertalkpages'     => 'Stuur vir my e-pos as my eie besprekingsblad verander word',
 'tog-enotifminoredits'        => 'Stuur ook e-pos vir klein bladsywysigings',
 'tog-enotifrevealaddr'        => 'Stel my e-posadres bloot in kennisgewingspos',
+'tog-shownumberswatching'     => 'Wys die aantal gebruikers wat dophou',
 'tog-fancysig'                => 'Doodgewone handtekening (sonder outomatiese skakel)',
 'tog-externaleditor'          => "Gebruik outomaties 'n eksterne redigeringsprogram",
 'tog-showjumplinks'           => 'Wys "spring na"-skakels vir toeganklikheid',
@@ -420,11 +421,17 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'yourlanguage'               => 'Taal:',
 'yournick'                   => 'Bynaam (vir handtekening)',
 'badsig'                     => 'Ongeldige handtekening; gaan HTML na.',
+'badsiglength'               => 'Die handtekening is te lank. 
+Dit moet minder as $1 {{PLURAL:$1|karakter|karakters}} wees.',
 'email'                      => 'E-pos',
 'prefs-help-realname'        => 'Regte naam (opsioneel): as u hierdie verskaf, kan dit gebruik word om erkenning vir u werk te gee.',
 'loginerror'                 => 'Intekenfout',
 'prefs-help-email'           => 'E-pos (opsioneel): Maak dit vir ander moontlik om u te kontak deur u gebruikerblad sonder dat u identiteit verraai word.',
 'prefs-help-email-required'  => 'E-pos adres word benodig.',
+'nocookiesnew'               => 'Die gebruikersrekening is geskep, maar u is nie ingeteken nie.
+{{SITENAME}} gebruik koekies om gebruikers in te teken.
+U rekenaar laat tans nie koekies toe nie.
+Stel u rekenaar om dit te aanvaar, dan kan u met u nuwe naam en wagwoord inteken.',
 'nocookieslogin'             => '{{SITENAME}} gebruik koekies vir die aanteken van gebruikers, maar u blaaier laat dit nie toe nie. Skakel dit asseblief aan en probeer weer.',
 'noname'                     => 'Ongeldige gebruikersnaam.',
 'loginsuccesstitle'          => 'Suksesvolle intekening',
@@ -446,17 +453,27 @@ Indien iemand anders hierdie navraag gerig het of as U die wagwoord onthou en U 
 'noemail'                    => 'Daar is geen e-posadres vir gebruiker "$1" nie.',
 'passwordsent'               => 'Nuwe wagwoord gestuur na e-posadres vir "$1".
 Teken asseblief in na jy dit ontvang het.',
+'blocked-mailpassword'       => 'U IP-adres is tans teen wysigings geblokkeer. Om verdere misbruik te voorkom is dit dus nie moontlik om die wagwoordherwinningfunksie te gebruik nie.',
 'eauthentsent'               => "'n Bevestigingpos is gestuur na die gekose e-posadres.
 Voordat ander pos na die adres gestuur word,
 moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres werklik u adres is.",
+'throttled-mailpassword'     => "Daar is reeds in die laaste $1 uur 'n wagwoordwenk gestuur.
+Om misbruik te voorkom, word slegs een wagwoordwenk per $1 uur gestuur.",
 'mailerror'                  => 'Fout tydens e-pos versending: $1',
 'acct_creation_throttle_hit' => 'Jammer. U het reeds $1 rekeninge geskep. U kan nie nog skep nie.',
 'emailauthenticated'         => 'U e-posadres is bevestig op $1.',
 'emailnotauthenticated'      => 'U e-poasadres is <strong>nog nie bevestig nie</strong>. Geen e-pos sal gestuur word vir die volgende funksies nie.',
 'noemailprefs'               => "Spesifiseer 'n eposadres vir hierdie funksies om te werk.",
 'emailconfirmlink'           => 'Bevestig u e-posadres',
+'invalidemailaddress'        => "Die e-posadres kan nie aanvaar word nie, aangesien dit 'n ongeldige formaat blyk te hê.
+Voer asseblief 'n korrek geformateerde adres in, of verwyder die inhoud in daardie afdeling.",
 'accountcreated'             => 'Rekening geskep',
 'accountcreatedtext'         => 'Die rekening vir gebruiker $1 is geskep.',
+'createaccount-title'        => 'Rekeningskepping vir {{SITENAME}}',
+'createaccount-text'         => 'Iemand het \'n rekening vir u e-posadres geskep by {{SITENAME}} ($4), met die naam "$2" en "$3". as die wagwoord.
+U word aangeraai om in te teken so gou as moontlik u wagwoord te verander.
+
+Indien hierdie rekening foutief geskep is, kan u hierdie boodskap ignoreer.',
 'loginlanguagelabel'         => 'Taal: $1',
 
 # Password reset dialog
