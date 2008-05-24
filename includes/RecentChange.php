@@ -606,7 +606,7 @@ class RecentChange
 			$flag = $rc_log_action;
 		} else {
 			$comment = $this->cleanupForIRC( $rc_comment );
-			$flag = ($rc_minor ? "M" : "") . ($rc_new ? "N" : "");
+			$flag = ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
