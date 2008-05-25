@@ -129,6 +129,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Sidebar is now cached for all languages
 * Paging links on special pages now have CSS classes and are greyed out by default
   when disabled
+* (bug 14259) Localisation message for upload button on Special:Import is now 'import-upload'
+  instead of 'upload'
 
 === Bug fixes in 1.13 ===
 
