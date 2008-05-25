@@ -1739,6 +1739,7 @@ $wgMessageStructure = array(
 		'import-noarticle',
 		'import-nonewrevisions',
 		'xml-error-string',
+		'import-upload',
 	),
 	'importlog' => array(
 		'importlogpage',

@@ -2519,7 +2519,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'import-noarticle'           => 'No page to import!',
 'import-nonewrevisions'      => 'All revisions were previously imported.',
 'xml-error-string'           => '$1 at line $2, col $3 (byte $4): $5',
-'import-upload'	             => 'Upload XML data',
+'import-upload'              => 'Upload XML data',
 
 # Import log
 'importlogpage'                    => 'Import log',
