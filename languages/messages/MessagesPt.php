@@ -153,11 +153,11 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sublinhar hiperligações',
+'tog-underline'               => 'Sublinhar hiperligações:',
 'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
-'tog-extendwatchlist'         => 'Expandir a lista de artigos vigiados para mostrar todas as alterações aplicáveis',
+'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis',
 'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -167,12 +167,12 @@ $messages = array(
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
 'tog-editwidth'               => 'Caixa de edição com largura completa',
-'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de artigos vigiados',
-'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de artigos vigiados',
-'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de artigos vigiados',
-'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de artigos vigiados',
+'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
+'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
+'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
+'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de vigiados',
 'tog-minordefault'            => 'Marcar todas as edições como secundárias, por padrão',
-'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição ao invés de ser após',
+'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desactivar caching de páginas',
 'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página vigiada por mim for alterada',
@@ -2003,6 +2003,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'import-noarticle'           => 'Sem páginas para importar!',
 'import-nonewrevisions'      => 'Todas as edições já haviam sido importadas.',
 'xml-error-string'           => '$1 na linha $2, coluna $3 (byte $4): $5',
+'import-upload'              => 'Enviar dados em XML',
 
 # Import log
 'importlogpage'                    => 'Registo de importações',

@@ -1765,6 +1765,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'move-subpages'           => 'Sposta tute le sotopagine, se aplicabile',
 'move-talk-subpages'      => 'Sposta tute le sotopagine de la pagina de discussion, se aplicabile',
 'movepage-page-exists'    => 'La pagina $1 la esiste de zà e no la pode vegner automaticamente sorascrita.',
+'movepage-page-moved'     => 'La pagina $1 la xe stà spostà a $2.',
 'movepage-page-unmoved'   => "No s'à mìa podesto spostar $1 a $2.",
 'movepage-max-pages'      => "Xe stà ragiunto el nùmaro massimo consentìo de pagine spostà ($1) e nissun'altra la vegnarà spostà in automatico.",
 '1movedto2'               => '[[$1]] spostà a [[$2]]',
@@ -1845,6 +1846,7 @@ Tute łe operazion de inportazion trans-wiki łe xè notà nel [[Special:Log/imp
 'import-noarticle'           => 'Nissuna pagina da inportar.',
 'import-nonewrevisions'      => 'Tute le revision le xe zà stà inportà in precedenza.',
 'xml-error-string'           => '$1 a riga $2, colona $3 (byte $4): $5',
+'import-upload'              => 'Carga dati XML',
 
 # Import log
 'importlogpage'                    => 'Inportassion',

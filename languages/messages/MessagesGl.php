@@ -1595,7 +1595,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'restriction-level-all'           => 'todos',
 
 # Undelete
-'undelete'                     => 'Ver páxinas borradas',
+'undelete'                     => 'Ver as páxinas borradas',
 'undeletepage'                 => 'Ver e restaurar páxinas borradas',
 'undeletepagetitle'            => "'''O que segue consiste nas revisións eliminadas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Ver as páxinas borradas',

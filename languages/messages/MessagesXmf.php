@@ -176,6 +176,7 @@ $messages = array(
 
 # General errors
 'badtitle'      => 'ცაგანა სათაური',
+'viewsource'    => 'ქოძირ წყუ',
 'viewsourcefor' => '$1-იშ',
 
 # Login and logout pages
@@ -225,6 +226,7 @@ $messages = array(
 'savearticle'        => 'ჩუალა',
 'showpreview'        => 'ოწმახ ძირა',
 'showdiff'           => 'თირაფეფიშ ძირაფა',
+'anoneditwarning'    => "'''გათხილება:''' თქვა ვარეთ რეგისტრირებულ. თქვან IP მისამართ დინოჭარილ იჸიი თე ასილაშ რედაქტირებაშ ისტორიას.",
 'newarticle'         => '(ახალ)',
 'noarticletext'      => 'ასე თე ხასილას ტექსტ ვარე, [[Special:Search/{{PAGENAME}}|მიგორეთ თე ხასილაშ სახელ]] შხვა ხასილებს ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა ხასილა].',
 'editing'            => 'რედაქტირება - $1',
@@ -296,8 +298,9 @@ $messages = array(
 'boteditletter'   => 'რ',
 
 # Recent changes linked
-'recentchangeslinked'       => 'აკოხვალამირი თირაფეფი',
-'recentchangeslinked-title' => '"$1"-წკუმა მებუნაფილ თირაფეფი',
+'recentchangeslinked'          => 'აკოხვალამირი თირაფეფი',
+'recentchangeslinked-title'    => '"$1"-წკუმა მებუნაფილ თირაფეფი',
+'recentchangeslinked-noresult' => 'წურაფილ პერიოდს თირაფეფ აკოხვალამირ ხასილეფს ვა ჸოფერენ.',
 
 # Upload
 'upload'        => 'ფაილიშ გეთება',
@@ -318,6 +321,7 @@ $messages = array(
 'filehist-comment'    => 'კომენტარ',
 'imagelinks'          => 'ბუნილეფ',
 'linkstoimage'        => 'გეჸვენჯი ხასილეფ მორცხუ თე ფაილს',
+'sharedupload'        => 'თენა ფაილ გეთებულ რე საართო სარგებლობაშოთ დო შილებე თიში გიმორინაფა შხვა პროექტეფს.',
 'noimage'             => 'ფაილ თე სახელით ვაარსეენც, თქვან შეგილებუნთ $1.',
 
 # MIME search
@@ -387,6 +391,7 @@ $messages = array(
 # Delete/protect/revert
 'deletepage'                  => 'გვერდიშ შალუა',
 'actioncomplete'              => 'მოქმედალა რსულებულ რე',
+'deletedarticle'              => 'წაშალულ რე "[[$1]]"',
 'deleteotherreason'           => 'შხვა/დამატებით ბაძაძი:',
 'deletereasonotherlist'       => 'შხვა ბაძაძი',
 'rollbacklink'                => 'გაუქვება',
@@ -416,9 +421,11 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'სო რე თენა გვერდ წურაფილი',
+'whatlinkshere-title' => 'ხასილეფ, სოდეთ რენა ბუნილეფ $1-ს',
 'whatlinkshere-page'  => 'გვერდ:',
 'linklistsub'         => '(ბუნილეფ)',
 'nolinkshere'         => "'''[[:$1]]''', თე ხასილას ვარე ბუნილ.",
+'whatlinkshere-prev'  => '{{PLURAL:$1|წოხოლენ|წოხოლენ $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|უკულიან|უკულიან $1}}',
 'whatlinkshere-links' => '← ბუნილეფ',
 
@@ -468,6 +475,7 @@ $messages = array(
 'tooltip-ca-edit'                 => 'თქვა შეგილებნა თე ხასილაშ რედაქტირება. რთხიინთ გეუნჭირით ოწმახ რწყებაშ ღილაკიშ გვერდიშ შენახაშა.',
 'tooltip-ca-delete'               => 'თე გვერდიშ შალუა',
 'tooltip-ca-move'                 => 'თე ხასილაშ გინოღალა',
+'tooltip-ca-watch'                => 'თე ხასილაშ მინოთება თქვან კონტროლირაფონ ხასილეფს',
 'tooltip-ca-unwatch'              => 'მონწყუმეთ თენა ხასილა თქვან კონტროლიშ ხასილეფიშე',
 'tooltip-search'                  => 'გორუა {{SITENAME}}',
 'tooltip-n-mainpage'              => 'დუდ ხასილაშ ძირაფა',
@@ -496,7 +504,9 @@ $messages = array(
 'nextdiff'     => 'უკულ თირუა →',
 
 # Media information
-'file-info-size' => '($1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4)',
+'file-info-size'       => '($1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4)',
+'show-big-image'       => 'რსული გარჩევადობა',
+'show-big-image-thumb' => '<small>ზომა ოწმახ ძირაშ დროს: $1 × $2 პიქსელ</small>',
 
 # Special:Newimages
 'newimages' => 'ახალ სურათეფ',

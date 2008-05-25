@@ -755,7 +755,7 @@ Disse parameterne har blitt utelatt.',
 # "Undo" feature
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
 'undo-failure' => 'Redigeringen kunne ikke omgjøres på grunn av konflikterende etterfølgende redigeringer.',
-'undo-norev'   => 'Reidgeringen kunne ikke fjernes fordi den ikke eksisterer eller ble slettet',
+'undo-norev'   => 'Redigeringen kunne ikke fjernes fordi den ikke eksisterer eller ble slettet',
 'undo-summary' => 'Fjerner revisjon $1 av [[Special:Contributions/$2]] ([[User talk:$2|Brukerdiskusjon:$2]])',
 
 # Account creation failure
@@ -1867,6 +1867,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'move-subpages'           => 'Flytt alle undersider, om det finnes noen',
 'move-talk-subpages'      => 'Flytt alle undersider av diskusjonssiden, om det finnes noen',
 'movepage-page-exists'    => 'Siden $1 finnes allerede og kan ikke overskrives automatisk.',
+'movepage-page-moved'     => 'Siden $1 har blitt flyttet til $2.',
 'movepage-page-unmoved'   => 'Siden $1 kunne ikke flyttes til $2.',
 'movepage-max-pages'      => 'Gresnen på $1 sider er nådd; ingen flere sider vil bli flyttet automatisk.',
 '1movedto2'               => '[[$1]] flyttet til [[$2]]',

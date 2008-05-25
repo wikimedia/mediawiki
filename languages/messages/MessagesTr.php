@@ -424,7 +424,7 @@ Kullanıcı adınız Türkçe karakter, boşluk '''içerebilir'''. Kullanıcı a
 'yournick'                   => 'İmzalarda gözükmesini istediğiniz isim',
 'badsig'                     => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
 'badsiglength'               => 'İmza çok uzun
-$1 karakterin altında olmalı.',
+$1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'email'                      => 'E-posta',
 'prefs-help-realname'        => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
 'loginerror'                 => 'Oturum açma hatası.',
@@ -452,6 +452,8 @@ Parola değişimini siz istemediyseniz, ya da parolanızı hatırlayıp değişt
 'blocked-mailpassword'       => 'Siteye erişiminiz engellenmiş olduğundan, yeni şifre gönderilme işlemi yapılamamaktadır.',
 'eauthentsent'               => 'Kaydedilen adrese onay kodu içeren bir e-posta gönderildi.
 E-postadaki yönerge uygulanıp adresin size ait olduğu onaylanmadıkça başka e-posta gönderilmeyecek.',
+'throttled-mailpassword'     => 'Parola hatırlatıcı son $1 saat içinde zaten gönderildi.
+Hizmeti kötüye kullanmayı önlemek için, her $1 saatte sadece bir parola hatırlatıcısı gönderilecektir.',
 'mailerror'                  => 'E-posta gönderim hatası: $1',
 'acct_creation_throttle_hit' => '$1 tane kullanıcı hesabı açtırmış durumdasınız. Daha fazla açtıramazsınız.',
 'emailauthenticated'         => 'E-posta adresiniz $1 tarihinde doğrulanmıştı.',

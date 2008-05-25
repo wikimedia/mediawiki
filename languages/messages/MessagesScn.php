@@ -126,7 +126,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Suttalìnia li culligamenti:',
-'tog-highlightbroken'         => 'Evidenzia <a href="" class="new">accussì</a> (àutrimenti: accussì<a href="" class="internal">?</a>)li culligamenti ca pùntanu a artìculi ancora a scrìviri.',
+'tog-highlightbroken'         => 'Furmatta <a href="" class="new">accussì</a> (o accussì<a href="" class="internal">?</a>) li culligamenti ca pùntanu a artìculi ancora a scrìviri.',
 'tog-justify'                 => 'Alliniamentu dû paràgrafu: giustificatu',
 'tog-hideminor'               => "Ammuccia li canciamenti nichi nta l'ùrtimi canciamenti",
 'tog-extendwatchlist'         => "Attiva li funzioni avanzati pi l'ossirvati spiciali",
@@ -229,7 +229,7 @@ $messages = array(
 'category_header'                => 'Artìculi ntâ catigurìa "$1"',
 'subcategories'                  => 'Suttacatigurìi',
 'category-media-header'          => 'File multimidiali ntâ catigurìa "$1"',
-'category-empty'                 => "''Chista catigurìa attuarmenti non havi artìculi o \"media\".''",
+'category-empty'                 => "''Sta catigurìa attuarmenti nun havi artìculi o \"media\".''",
 'hidden-categories'              => '{{PLURAL:$1|Catigurìa ammucciata|Catigurìi ammuciati}}',
 'hidden-category-category'       => 'Catigurìi ammucciati', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Sta catigurìa cunteni na sula suttacatigurìa, nnicata ccà sutta.|Sta catigurìa cunteni {{PLURAL:$1|la suttacatigurìa|li $1 suttacatigurìi nnicati}} ccà sutta, sùpira nu tutali di $2.}}',
@@ -241,7 +241,12 @@ $messages = array(
 'listingcontinuesabbrev'         => ' cunt.',
 
 'mainpagetext'      => 'Nstallazzioni di MediaWiki cumplitata currettamenti.',
-'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni. == Ncignari == * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Alencu di mpostazzioni di configurazzioni] *  [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ] * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list dî rilasci di MediaWiki]",
+'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni di stu software wiki. 
+
+== P'accuminzari == 
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Alencu di mpustazzioni di cunfigurazzioni] 
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ] 
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list dî rilassi di MediaWiki]",
 
 'about'          => 'pàggina',
 'article'        => 'artìculu',
@@ -292,7 +297,7 @@ $messages = array(
 'unprotect'         => 'livari la prutizzioni',
 'unprotectthispage' => 'Sblocca sta pàggina',
 'newpage'           => 'pàggina nova',
-'talkpage'          => 'Parra di chista pàggina',
+'talkpage'          => 'Pàggina di discussioni',
 'talkpagelinktext'  => 'Discussioni',
 'specialpage'       => 'Pàggina spiciali',
 'personaltools'     => 'Strumenta pirsunali',
@@ -320,7 +325,7 @@ $messages = array(
 'jumptosearch'      => "Va' cerca",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Àutri nformazzioni su {{SITENAME}}',
+'aboutsite'            => 'Àutri nfurmazzioni supra {{SITENAME}}',
 'aboutpage'            => 'Project:Àutri nformazzioni',
 'bugreports'           => 'Malifunziunamenti',
 'bugreportspage'       => 'Project:Malifunziunamenti',
@@ -422,7 +427,7 @@ Si prega di signalari l'accadutu a n'amministraturi spicificannu la URL in quist
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'Lu database hà statu bluccatu automaticamenti, mentri li server cu li database slave si sincrunìzzanu cu lu master',
 'internalerror'        => 'Erruri nternu',
-'internalerror_info'   => 'Errori nternu: $1',
+'internalerror_info'   => 'Erruri nternu: $1',
 'filecopyerror'        => 'Mpussìbbili cupiari lu file "$1" n "$2".',
 'filerenameerror'      => 'Mpussìbbili rinuminari lu file "$1" \'n "$2".',
 'filedeleteerror'      => 'Mpussìbbili cancillari lu file "$1".',
@@ -446,15 +451,15 @@ Query: $2',
 'viewsourcefor'        => 'di $1',
 'actionthrottled'      => 'Azzioni ritardata',
 'actionthrottledtext'  => "Comu misura di sicurezza contru lu spam, l'esecuzioni di alcuni azzionu è limitata a nu nùmmuru massimu di voti ni nu determinatu piriudu du tempu, limiti ca ni stu casu fu supiratu. Si prega di ripruvari tra qualchi minutu.",
-'protectedpagetext'    => 'Chista pàggina havi stata bloccata pi previniri li canciamenti.',
+'protectedpagetext'    => 'Sta pàggina fu bluccata pi privèniri li canciamenti.',
 'viewsourcetext'       => 'È pussìbbili visualizzari e cupiari lu còdici surgenti di sta pàggina:',
 'protectedinterface'   => "Sta pàggina cunteni un elementu ca fà parti dâ nterfaccia utenti dû software; è quinni prutetta p'evitari pussìbbili abbusi.",
 'editinginterface'     => "'''Accura:''' Lu testu di sta pàggina fà parti d l'interfaccia utenti dû situ. Tutti li canciamenti appurtati a sta pàggina si riflèttinu supra li missaggi visualizzati pi tutti l'utenti.",
 'sqlhidden'            => '(la query SQL hà statu ammucciata)',
 'cascadeprotected'     => 'Supra sta pàggina nun è pussìbbili effittuari canciamenti pirchì veni nclusa nt{{PLURAL:$1|â pàggina siquenti, ca fu prutetta|ê pàggini siquenti, ca foru prutetti}} silizziunannu la prutizzioni "ricursiva":
 $2',
-'namespaceprotected'   => "Non hai lu pirmissu pi canciari li pàggini ntô namespace '''$1'''.",
-'customcssjsprotected' => "Non hai lu pirmissu di canciari chista pàggina, picchì cunteni li mpostazzioni pirsonali di n'àutru utenti.",
+'namespaceprotected'   => "Nun hai lu pirmissu pi canciari li pàggini ntô namespace '''$1'''.",
+'customcssjsprotected' => "Nun hai lu pirmissu di canciari sta pàggina, picchì cunteni li mpustazzioni pirsunali di n'àutru utenti.",
 'ns-specialprotected'  => 'Li pàggini ntô namespace {{ns:special}} non ponnu èssiri canciati.',
 'titleprotected'       => "La criazzioni di sta pàggina cu stu tìtulu fu bluccata da [[User:$1|$1]].
 La mutivazzioni è chista: ''$2''.",
@@ -497,13 +502,13 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li p
 'yourvariant'                => 'Varianti:',
 'yournick'                   => 'Suprannomu (nickname):',
 'badsig'                     => 'Erruri ntâ firma nun standard, virificari li tag HTML.',
-'badsiglength'               => "Nickname troppu lòngu; havi d'èssiri minuri di $1 caràttiri.",
+'badsiglength'               => 'Lu Nickname è troppu longu. Nun pò aviri cchiù di $1 {{PLURAL:$1|caràttiri|caràttiri}}.',
 'email'                      => 'Nnirizzu email',
 'prefs-help-realname'        => '* Nomu veru (upziunali): siddu scegghi di furnìrilu veni usatu pi dàriti crèditu dû tò travagghiu.',
 'loginerror'                 => "Erruri nta l'accessu",
 'prefs-help-email'           => "* Imeil (opziunali): abbìlita l'àutri utenti a cuntattàriti attraversu la tò pàggina d'utenti o di discussioni, senza pi chissu rivilari la tò identitati.",
 'prefs-help-email-required'  => 'Lu nnirizzu email è nicissariu.',
-'nocookiesnew'               => 'La riggistrazzioni hà statu cumplitatu, ma nun hai effittuatu lu log in. {{SITENAME}} usa li cookies pi gistiri li log in. Lu tò browser havi li cookies disabbilitati. Abbìlita li cookies, appoi effèttua lu login cu li tò username e password novi.',
+'nocookiesnew'               => 'Lu nomu utenti pi tràsiri fu criatu, ma nun hai effittuatu lu log in. {{SITENAME}} usa li cookies pi gistiri li log in. Lu tò browser havi li cookies disabbilitati. Abbìlita li cookies, appoi effèttua lu login cu li tò username e password novi.',
 'nocookieslogin'             => '{{SITENAME}} usa li cookies pi gistiri lu log in. Lu tò browser havi li cookies disabbilitati. Abbìlita li cookies, appoi effèttua lu login cu li tò username e password.',
 'noname'                     => 'Lu nomu utenti innicatu nun è vàlidu, nun è pussìbbili criari un account a stu nomu.',
 'loginsuccesstitle'          => 'Trasuta rinisciuta',
@@ -513,7 +518,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li p
 'nouserspecified'            => 'È nicissariu spicificari un nomu utenti.',
 'wrongpassword'              => "La ''password'' chi mittisti nun è giusta. Prova n'àutra vota.",
 'wrongpasswordempty'         => 'Nun hà statu nzirita arcuna password. Ripruvari.',
-'passwordtooshort'           => "La tò password è troppu brivi. Havi a cuntèniri armenu $1 caràttiri e èssiri diversa dô toi nomu d'utenti.",
+'passwordtooshort'           => "La tò password è troppu brivi. Havi a cuntèniri armenu $1 caràttiri e èssiri diversa dô tò nomu d'utenti.",
 'mailmypassword'             => "Mànnimi n'àutra password",
 'passwordremindertitle'      => 'Sirvizziu Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Quarcunu (prubbabbirmenti tu, cu ndirizzu IP $1) hà addumannatu lu mannu di na password d\'accessu nova a {{SITENAME}} ($4). La password pi l\'utenti "$2" hà statu mpustata a "$3". È appurtunu esèquiri un accessu quantu prima e canciari la password mmidiatamenti. Siddu nun sî statu tu a fari la richiesta, oppuru hai ritruvatu la password e nun addisìi cchiù canciàrila, poi gnurari stu missaggiu e cuntinuari a usari la password vecchia.',
@@ -525,7 +530,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li p
 'mailerror'                  => 'Erruri nta lu mannu dû missaggiu: $1',
 'acct_creation_throttle_hit' => 'Semu spiacenti, ma hai già criatu $1 account. Nun poi criàrinni àutri.',
 'emailauthenticated'         => 'Lu ndirizzu e-mail hà statu cunfirmatu lu $1.',
-'emailnotauthenticated'      => 'Lu tò ndrizzu imeil nun ha statu ancora autenticatu. Nun sarannu mannati missaggi imeil pi chisti funzioni.',
+'emailnotauthenticated'      => 'Lu tò ndrizzu imeil nun hà statu ancora autinticatu. Nun vannu a èssiri mannati missaggi imeil pi sti funzioni.',
 'noemailprefs'               => "Innicari un ndirizzu e-mail p'attivari sti funzioni.",
 'emailconfirmlink'           => 'Cunfirmari lu tò ndrizzu imeil',
 'invalidemailaddress'        => 'Lu ndirizzu email nun pò èssiri accittatu poichì hà un furmatu nun vàlidu. Pi favuri nziriti un ndirizzu vàlidu o svacantati la casella.',
@@ -622,8 +627,8 @@ L'ID dû bloccu è $5. Pi favuri ncludilu nte tutti li dumanni.",
 'whitelistacctext'          => 'Pi putiri criari cunta n sta Wiki hai a fari [[Special:Userlogin|login]] e aviri li nicissari pirmissi.',
 'confirmedittitle'          => 'Cunferma dâ e-mail nicissaria pi lu canciamentu dî pàggini',
 'confirmedittext'           => "P'èssiri abbilitati a lu canciamentu dî pàggini è nicissariu cunfirmari lu propiu ndirizzu e-mail. Pi mpustari e cunfirmari lu ndirizzu sirvìrisi dî [[Special:Preferences|prifirenzi]].",
-'nosuchsectiontitle'        => 'Chista sezioni non esisti',
-'nosuchsectiontext'         => 'Pruvasti a canciari na sezioni chi non esisti. Li  tò canciamenti non ponnu èssiri sarvati, picchì non esisti la sezioni $1.',
+'nosuchsectiontitle'        => 'Sta sezzioni nun esisti',
+'nosuchsectiontext'         => 'Pruvasti a canciari na sezzioni chi nun esisti. Li tò canciamenti nun ponnu èssiri sarvati, picchì nun esisti la sezzioni $1.',
 'loginreqtitle'             => 'Login nicissariu',
 'loginreqlink'              => "esèquiri l'accessu",
 'loginreqpagetext'          => 'Pi vìdiri àutri pàggini è nicissariu $1.',
@@ -647,7 +652,7 @@ Si agghicasti ccà pi sbagghiu, clicca lu buttuni ''''n arreri (back)''' dû tò
 'previewconflict'           => "L'antiprima currispunni a lu testu prisenti ntâ casella di canciamentu supiriuri e rapprisenta la pàggina comu appari siddu si scegghi di prèmiri 'Sarva' 'n stu mumentu.",
 'session_fail_preview'      => "<strong>Purtroppu nun hà statu pussìbbili sarvari li tò canciamenti pirchì li dati dâ sissioni hannu jutu pirduti. Pi favuri, riprova. Siddu arricevi stu missaggiu d'erruri cchiù voti, prova a sculligàriti e a culligàriti novamenti.</strong>",
 'session_fail_preview_html' => "<strong>Semu spiacenti, nun hà statu pussìbbili elabburari lu canciamentu pirchì hannu jutu pirduti li dati rilativi â sissioni.</strong> ''Poichì nta stu situ è abbilitatu l'usu di HTML senza limitazzioni, l'antiprima nun veni visualizzata; si tratta di na misura di sicurizza contra l'attacchi JavaScript.'' <strong>Siddu lu prubbrema pirsisti, si pò pruvari a sculligàrisi e effittuari un novu accessu.</strong>",
-'token_suffix_mismatch'     => "<strong>Lu canciu nun ha statu sarvatu pirchì lu client ha mustratu di gestiri 'n modu sbagghiatu li caratteri di punteggiatura nta lu token assuciatu a iddu. Pi evitari na possibili corruzioni dô testu dâ pàggina, ha statu rifiutatu tuttu lu canciu. Chista situazzioni pò verificarisi, certi voti, quannu s'addoperanu arcuni sirvìzzi di proxy anonimi via web chi prisentanu bug.</strong>",
+'token_suffix_mismatch'     => "<strong>Lu canciamentu nun fu sarvatu pirchì lu client ammustrau di gèstiri 'n modu sbagghiatu li caràttiri di puntiggiatura nta lu token assuciatu a iddu. P'evitari na curruzzioni pussìbbili dô testu dâ pàggina, fu rifiutatu tuttu lu canciamentu. Sta situazzioni pò virificàrisi, certi voti, quannu s'adòpiranu arcuni sirvizza di proxy anònimi via web chi prisèntanu bug.</strong>",
 'editing'                   => 'Canciu di la vuci "$1"',
 'editingsection'            => 'Canciamentu di $1 (sezzioni)',
 'editingcomment'            => 'Canciu di $1 (cummentu)',
@@ -655,7 +660,7 @@ Si agghicasti ccà pi sbagghiu, clicca lu buttuni ''''n arreri (back)''' dû tò
 'explainconflict'           => "N'àutru utenti havi sarvatu na virsioni nova dâ pàggina mentri stavi effittuannu li canciamenti.<br /> La casella di canciamentu supiriuri cunteni lu testu dâ pàggina attuarmenti online, accussì comu hà statu aggiurnatu di l'àutru utenti. La virsioni cu li tò canciamenti è mmeci ripurtata ntâ casella di canciamentu nfiriuri. Siddu addisìi cunfirmàrili, hai a ripurtari li tò canciamenti ntô testu asistenti (casella supiriuri). Primennu lu pulsanti 'Sarva la pàggina', veni sarvatu <b>sulu</b> lu testu cuntinutu ntâ casella di canciamentu supiriuri.<br />",
 'yourtext'                  => 'Lu tò testu',
 'storedversion'             => 'La virsioni mimurizzata',
-'nonunicodebrowser'         => "<strong>'''ACCURA: Lu tò browser nun supporta unicode, li caràttiri non-ASCII apparirannu nte lu box di canciamentu comu codici esadecimali.'''</strong>",
+'nonunicodebrowser'         => "<strong>'''ACCURA: Lu tò browser nun supporta unicode, li caràttiri nun-ASCII appàrinu nta lu box di canciamentu comu còdici esadicimali.'''</strong>",
 'editingold'                => '<strong>Accura: si sta canciannu na virsioni nun aggiurnata dâ pàggina.<br /> Siddu si scegghi di sarvàrila, tutti li canciamenti appurtati doppu sta rivisioni vannu pirduti.</strong>',
 'yourdiff'                  => 'Diffirenzi',
 'copyrightwarning'          => "Nutati chi tutti li cuntribbuti a {{SITENAME}} s'hannu a cunzidirari sutta la licenza d'usu $2 (talìa $1 pî dittagghi). Si nun vuliti chi lu vostru travagghiu curri lu rìsicu di vèniri ritravagghiatu e/o ridistribbuitu, nun suttamittìtilu ccà.<br />
@@ -680,11 +685,11 @@ Vuatri prumittiti puru chi lu scrivìstivu chî vostri palori, o chi lu cupiàst
 'nocreatetext'              => "La pussibbilitati di criari pàggini novi nta {{SITENAME}} è limitata a l'utenti riggistrati. Poi turnari 'n arreri e canciari na pàggina esistenti, oppuru [[Special:Userlogin|tràsiri o criari nu cuntu novu]].",
 'nocreate-loggedin'         => 'Nun hai lu pirmissu pi criari pàggini novi nta {{SITENAME}}.',
 'permissionserrors'         => 'Erruri di pirmissu',
-'permissionserrorstext'     => 'Nun hai lu pirmissu pi fari chistu, pi {{PLURAL:$1|chistu motivu|chisti motivi}}:',
+'permissionserrorstext'     => 'Nun hai lu pirmissu pi fari chistu, pi {{PLURAL:$1|chistu motivu|sti mutivi}}:',
 'recreate-deleted-warn'     => "'''Accura: stai pi criari na pàggina chi fu cancillata 'n passatu.'''
 
-Accurativi chi sia opportunu cuntinuari a canciari chista pàggina.
-L'alencu dî relativi cancillaziuni veni riportatu ccà pi comodità:",
+Accuràtivi ch'è uppurtunu cuntinuari a canciari sta pàggina.
+L'alencu dî cancillazzioni rilativi veni ripurtatu ccà pi cummudità:",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'  => 'Attenzioni: Sta pàggina cunteni troppi chiamati ê parser functions.
@@ -693,16 +698,16 @@ Avissi essiri menu di $2, al momentu ci sunu $1.',
 'expensive-parserfunction-category' => 'Pàggini cu troppi chiamati ê parser functions',
 
 # "Undo" feature
-'undo-success' => "Lu canciamentu hà statu annullatu cu successu. Virificati lu cumfruntu prisentatu ccà sutta pi accuràrivi vhi lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
+'undo-success' => "Lu canciamentu hà statu annullatu cu successu. Virificati lu cunfruntu prisintatu ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
 'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntermedi.",
 'undo-norev'   => 'Lu canciamentu nun pò essiri annullatu pirchì nun esisti o fù cancillato.',
 'undo-summary' => 'Annullatu lu canciamentu $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussioni]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Mpussìbbili riggistrari n'utenti",
-'cantcreateaccount-text' => "La criazzioni di account da chistu nnirizzu IP ('''$1''') ha statu bloccatu da [[User:$3|$3]].
+'cantcreateaccount-text' => "La criazzioni di account di stu nnirizzu IP ('''$1''') fu bluccata di [[User:$3|$3]].
 
-Lu motivu è ''$2''",
+Lu mutivu è ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Vidi li log rilativi a sta pàggina',
@@ -842,14 +847,14 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'mwsuggest-disable'         => 'Astuta suggirimenti AJAX',
 'searchrelated'             => 'currilati',
 'searchall'                 => 'tutti',
-'showingresults'            => "Ammustra nzinu a {{PLURAL:$1|'''1''' risurtatu|'''$1''' risurtati}} a pàrtiri dô nummuru '''$2'''.",
+'showingresults'            => "Ammustra nzinu a {{PLURAL:$1|'''1''' risurtatu|'''$1''' risurtati}} a pàrtiri dô nùmmuru '''$2'''.",
 'showingresultsnum'         => "L'alencu cunteni {{PLURAL:$3|'''1''' risurtatu|'''$3''' risurtati}} a pàrtiri dû nùmmuru '''$2'''.",
 'showingresultstotal'       => "Appressu venunu ammustrati li risultati da '''$1''' a '''$2''' su nu totali di '''$3'''",
 'nonefound'                 => "'''Nota''': arcuni palori cumuni ntâ lingua ngrisa, comu \"have\" o \"from\", nun sunnu indicizzati e ponnu quinni dari locu a risurtati nulli, accussì comu l'indicazzioni di cchiù tèrmini a ricircari (sulu li pàggini ca cuntèninu tutti li tèrmini richiesti vèninu visualizzati tra li risurtati).",
 'powersearch'               => 'Arriscedi',
 'powersearch-legend'        => 'Ricerca avanzata',
 'search-external'           => 'Ricerca sterna',
-'searchdisabled'            => 'La circata nterna di {{SITENAME}} hà statu disabbilitata. Nta stu mentri, poi usari la circata supra Google o supra àutri motori di ricerca. Accura ca li loru innici dê cuntinuti di {{SITENAME}} ponnu nun èssiri aggiurnati.',
+'searchdisabled'            => 'La circata nterna di {{SITENAME}} hà statu disabbilitata. Nta stu mentri, poi usari la circata supra Google o supra àutri muturi di circata. Accura ca li sò ìnnici dê cuntinuti di {{SITENAME}} ponnu nun èssiri aggiurnati.',
 
 # Preferences page
 'preferences'              => 'prifirenzi',
@@ -995,7 +1000,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'recentchanges'                     => 'Ùrtimi canciamenti',
 'recentchangestext'                 => 'Chista pàggina prisenta li canci cchiù ricenti ê cuntinuti dô situ.',
 'recentchanges-feed-description'    => 'Stu feed riporta li canciamenti cchiù ricenti a li cuntinuti dû situ.',
-'rcnote'                            => "Ccà sutta {{PLURAL:$1|c'è lu canciamentu cchiù ricente apportatu|cci sunnu l'ùrtimi '''$1''' canciamenti apportati}} l'{{PLURAL:$2|ùrtimu jornu|ùrtimi '''$2''' jorna}}, aggiornatu a $3.",
+'rcnote'                            => "Ccà sutta {{PLURAL:$1|c'è lu canciamentu cchiù ricenti appurtatu|cci sunnu l'ùrtimi '''$1''' canciamenti appurtati}} l'{{PLURAL:$2|ùrtimu jornu|ùrtimi '''$2''' jorna}}, aggiurnatu a $3.",
 'rcnotefrom'                        => 'Ccà sutta cci sunnu li canciamenti a pàrtiri dû <b>$2</b> (ammustrati nzinu ô <b>$1</b>).',
 'rclistfrom'                        => 'Ammustra li canciamenti novi a pàrtiri di $1',
 'rcshowhideminor'                   => '$1 li canciamenti nichi',
@@ -1141,7 +1146,7 @@ PICT # arcuni
 'filehist'                  => 'Crunoluggìa dô file',
 'filehist-help'             => 'Fari clic supra nu gruppu data/ura pi vìdiri lu file comu si prisintava ntô mumentu nnicatu.',
 'filehist-deleteall'        => 'cancilla tuttu',
-'filehist-deleteone'        => 'cancilla chista virsioni',
+'filehist-deleteone'        => 'cancella',
 'filehist-revert'           => 'riprìstina',
 'filehist-current'          => 'correnti',
 'filehist-datetime'         => 'Data/Ura',
@@ -1154,7 +1159,7 @@ PICT # arcuni
 'nolinkstoimage'            => 'Nudda pàggina cunteni sta mmàggini.',
 'sharedupload'              => "Chistu file è n'upload condivisu; pò èssiri quinni utilizzatu di cchiù pruggetti wiki.",
 'shareduploadwiki'          => 'Si preja di taliari $1 pi ultiriuri nfurmazzioni.',
-'shareduploadwiki-desc'     => 'La discrizzioni ca appari ni dda sedi, supra la rilativa $1, veni ammustrata ccà.',
+'shareduploadwiki-desc'     => 'La discrizzioni supra $1 ca appari nta dda sedi veni ammustrata sutta.',
 'shareduploadwiki-linktext' => "pàggina di discrizzioni dû ''file''",
 'noimage'                   => 'Un file cu stu nomu nun esisti, voi $1 tu?',
 'noimage-linktext'          => 'carricàrilu',
@@ -1220,13 +1225,13 @@ PICT # arcuni
 'sitestats'              => 'Li statìstichi di {{SITENAME}}',
 'userstats'              => "Li statìstichi di l'utilizzatura",
 'sitestatstext'          => "C{{PLURAL:\$1|'è na pàggina|i sunnu '''\$1''' pàggini}} ntô databbasi.
-Chisti nclùdunu li pàggini di discussioni, li pàggini supra {{SITENAME}}, li \"stub\" minimali, li redirects, e àutri pàggini chi non ponnu qualificàrisi comu pàggini di cuntinutu. Escludennu chissi, c{{PLURAL:\$2|'è '''1''' pàggina chi si pò|i sunnu '''\$2''' pàggini chi si ponnu}} qualificari comu pàggini di cuntinutu.
+Chisti nclùdunu li pàggini di discussioni, li pàggini supra {{SITENAME}}, li \"stub\" minimali, li redirects, e àutri pàggini chi nun ponnu qualificàrisi comu pàggini di cuntinutu. Escludennu chissi, c{{PLURAL:\$2|'è '''1''' pàggina chi si pò|i sunnu '''\$2''' pàggini chi si ponnu}} qualificari comu pàggini di cuntinutu.
 
 {{PLURAL:\$8|Hà statu puru carricatu|Hannu stati puru carricati}} '''\$8''' file.
 
-Dâ nstallazzioni dô situ nzinu a chistu mumentu {{PLURAL:\$3|hà stata visitata '''1''' pàggina|hannu statu visitati '''\$3''' pàggini}} e {{PLURAL:\$4|fattu '''1''' canciamentu|fatti '''\$4''' canciamenti}}, pari a na media di '''\$5''' canciamenti pi pàggina e '''\$6''' richiesti di littura pi ciascunu canciamentu.
+Dâ nstallazzioni dô situ nzinu a stu mumentu {{PLURAL:\$3|hà stata visitata '''1''' pàggina|hannu statu visitati '''\$3''' pàggini}} e {{PLURAL:\$4|fattu '''1''' canciamentu|fatti '''\$4''' canciamenti}}, pari a na media di '''\$5''' canciamenti pi pàggina e '''\$6''' richiesti di littura p'ogni canciamentu.
 
-La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' elementu|'''\$7''' elementi}}.",
+La cuda dî prucessi a esèquiri 'n background cunteni {{PLURAL:\$7|'''1''' elementu|'''\$7''' elementi}}.",
 'userstatstext'          => "C{{PLURAL:$1|'è '''1''' [[Special:Listusers|utilizzaturi]] riggistratu|i sunnu '''$1''' [[Special:Listusers|utilizzatura]] riggistrati}}; di chisti '''$2''' (o lu '''$4%''') {{PLURAL:$2|havi|hannu}} li diritti di lu gruppu $5.",
 'statistics-mostpopular' => 'Pàggini cchiù visitati',
 
@@ -1235,7 +1240,7 @@ La coda dî processi a esequiri 'n background cunteni {{PLURAL:\$7|'''1''' eleme
 'disambiguations-text' => "Li pàggini ntâ lista ca sequi cuntèninu dî culligamenti a '''pàggini di disambiguazzioni''' e nun a l'argumentu cui avìssiru a fari rifirimentu.<br />Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li template alincati 'n [[MediaWiki:disambiguationspage]]",
 
 'doubleredirects'     => 'Rinnirizzamenti duppi',
-'doubleredirectstext' => 'Chista pàggina alenca li pàggini chi rinnirizzanu a àutri pàggini di rinnirizzamentu. Ognuna riga cunteni li culligamenti a lu primu e a lu secunnu redirect, oltri â prima riga di testu dû secunnu redirect ca di sòlitu cunteni la pàggina di distinazzioni "curretta" â quali avissi a puntari macari lu primu redirect.',
+'doubleredirectstext' => 'Chista pàggina alenca li pàggini chi rinnirìzzanu a àutri pàggini di rinnirizzamentu. Ognuna riga cunteni li culligamenti a lu primu e a lu secunnu redirect, oltri â prima riga di testu dû secunnu redirect ca di sòlitu cunteni la pàggina di distinazzioni "curretta" â quali avissi a puntari macari lu primu redirect.',
 
 'brokenredirects'        => "Riinnirizzamenti (''redirects'') rumputi.",
 'brokenredirectstext'    => 'Li rinnirizzamenti siquenti pùntanu a pàggini ca nun asìstinu:',
@@ -1345,7 +1350,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Diritti dô gruppu utenti',
-'listgrouprights-summary'  => "Ccà sutta venunu elencati li gruppi utenti definiti pi sta wiki, cu li diritti d'accessu associati a iddi.",
+'listgrouprights-summary'  => "Ccà sutta sunnu elincati li gruppi utenti difiniti pi sta wiki, cu li dritti d'accessu assuciati a iddi. Pi sapìrinni chiossai supra li dritti, lèggiti [[{{MediaWiki:Listgrouprights-helppage}}]].",
 'listgrouprights-group'    => 'Gruppu',
 'listgrouprights-rights'   => 'Diritti',
 'listgrouprights-helppage' => 'Help:Diritti dô gruppu',
