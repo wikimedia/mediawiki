@@ -2087,6 +2087,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-noarticle'           => 'Inga sidor att importera!',
 'import-nonewrevisions'      => 'Alla sidversioner hade importerats tidigare.',
 'xml-error-string'           => '$1 på rad $2, kolumn $3 (byte $4): $5',
+'import-upload'              => 'Ladda upp XML-data',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

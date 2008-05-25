@@ -333,7 +333,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'summary'                => 'Oggetto',
 'subject'                => 'Argomento (tittolo)',
 'minoredit'              => 'Cangiamento minô (m)',
-'watchthis'              => 'Azzonze a li osservæ speçiâli',
+'watchthis'              => 'Azzonze a-i osservæ speçiâli',
 'savearticle'            => 'Sârva a paggina',
 'preview'                => 'Anteprimma',
 'showpreview'            => "Veddi l'anteprimma",
@@ -398,8 +398,8 @@ Pe piaxei conscidera l'opportûnitæ de soddividde a paggina in sessioîn ciû p
 'templatesusedpreview'   => "Template dêuviæ inte 'st'anteprimma:",
 'template-protected'     => '(protezûo)',
 'template-semiprotected' => '(semiprotezûo)',
-'nocreatetext'           => "A poscibilitæ de creâ nêuve paggine insce {{SITENAME}} a l'è stæta limitâa solo a li ûtenti registræ.
-O se pêu tornâ inderrê e modificâ 'na paggina escistente, oppûre [[Special:Userlogin|intrâ ou creâ 'n nêuvo accesso]].",
+'nocreatetext'           => "A poscibilitæ de creâ nêuve paggine insce {{SITENAME}} a l'è stæta limitâ solo a-i ûtenti registræ.
+O se pêu tornâ inderê e modificâ 'na paggina escistente, oppûre [[Special:Userlogin|intrâ ò creâ 'n accesso nêuvo]].",
 'recreate-deleted-warn'  => "'''Attension: o se sta pe ricreâ 'na paggina zà scassâa into passòu.'''
 
 O se deive consciderâ se o l'è davvei corretto continuâ avanti a modificâ 'sta paggina.
@@ -509,7 +509,7 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 # Upload
 'upload'               => "Caregâ 'n archivvio",
 'uploadbtn'            => "Carega 'n archivvio",
-'uploadlogpage'        => 'Log de li archivvi careghæ',
+'uploadlogpage'        => 'Log di archivi careghæ',
 'filename'             => 'Nomme do papê',
 'filesource'           => 'Reixe:',
 'uploadedfiles'        => 'Papê caregæ',
@@ -532,7 +532,7 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 # Special:Imagelist
 'imagelist_search_for' => "Çerca pe nomme de l'imàgine:",
 'imgfile'              => 'papê',
-'imagelist'            => 'Lista de li archivvi',
+'imagelist'            => "Lista d'archivvi",
 'imagelist_date'       => 'Dæta',
 
 # Image description page
@@ -665,7 +665,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 
 # E-mail user
 'emailuser'       => "Inviâ 'na léttia elettronega a quest'ûtente",
-'emailpage'       => 'Mandigli unn-a lettìa elettronega',
+'emailpage'       => "Mandighe 'na léttia elettronega",
 'defemailsubject' => '{{SITENAME}} posta elettronega',
 'noemailtitle'    => 'Nisciûn conto e-mail',
 'emailfrom'       => 'Da',
@@ -684,7 +684,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'watchnologin'         => "Non ti t'æ entroö",
 'watchnologintext'     => 'Devvi [[Special:Userlogin|entrâ]] pe cangiâ a toa lista in osservaçion.',
 'addedwatch'           => 'Azzonto a a lista in osservaçion',
-'addedwatchtext'       => "A paggina \"[[:\$1]]\" a l'è stæta azzonta a-a pròpia [[Special:Watchlist|lista in osservaçion]]. De chì in avanti, i cangiamenti fæti a-a paggina e a-a sêu discûxon sajàn missi in lista lì; o tittolo da paggina o sajà scrîo in '''grascietto''' inta paggina de li [[Special:Recentchanges|ûrtimi cangiamenti]] coscì ti o veddi megio. Se ti vêu eliminâla da-a lista in osservaçion ciû târdi, sciacca sorve \"no seguî\" inscia barra de d'âto.",
+'addedwatchtext'       => "A paggina \"[[:\$1]]\" a l'è stæta azzonta a-a pròpia [[Special:Watchlist|lista in osservaçion]]. De chì in avanti, i cangiamenti fæti a-a paggina e a-a sêu discûxon sajàn missi in lista lì; o tittolo da paggina o sajà scrîo in '''grascietto''' inta paggina di [[Special:Recentchanges|ûrtimi cangiamenti]] coscì ti o veddi megio. Se ti vêu eliminâla da-a lista in osservaçion ciû târdi, sciacca \"no seguî\" inscia barra de d'âto.",
 'removedwatch'         => 'Scassæ da a lista in osservaçion',
 'removedwatchtext'     => 'A paggina "[[:$1]]" a l\'è stæta scassâa da-a têu lista in osservaçion.',
 'watch'                => 'Inta lista in osservaçion',
@@ -702,7 +702,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Inti osservæ speçiâli...',
-'unwatching' => 'Scassâa da li osservæ speçiâli',
+'unwatching' => 'Scassâ da-i osservæ speçiâli',
 
 'changed'            => 'cangiâ',
 'enotif_anon_editor' => 'ûtente anònnimo $1',
@@ -722,11 +722,11 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'deleteotherreason'           => 'Ûn âtro motivo',
 'deletereasonotherlist'       => "Ûnn'âtra raxon",
 'rollbacklink'                => 'rollback',
-'cantrollback'                => "Non çe peu tornâ in derrè; a urtima modifica a l'è l'unega per sta pagina.",
-'alreadyrolled'               => "No se peu tornà in derrê o urtimi cangiamento da a pagina [[:$1]]
-de [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarchedun ätro a l'ha cangiâ o l'è tornoö in derrê de za.
-
-O urtimo cangiamento o l'è de [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
+'cantrollback'                => "O no se pêu tornâ inderê; l'ûtente ch'à fæto quelle modiffiche o l'è stæto l'ûnico contribûente.",
+'alreadyrolled'               => "O no se peû tornâ inderê a-i ûrtimi cangiamenti da pagina [[:$1]]
+da [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarche âtro 
+o l'à cangiâ ò o l'è zà tornòu inderê.
+L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
 'revertpage'                  => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Protessioîn',
 'protectedarticle'            => 'o s\'ha protezûo "[[$1]]"',
@@ -968,7 +968,7 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 'metadata-help'     => "'St'archivvio o contegne informassion adissionâ, fòscia missa da-a fotocamera ou da-o scanner dêuviòu pe creâla ou digitalissâla. Se l'archivvio o l'è stæto modificòu, çerti dettaggi porieivan no corisponde a-e modiffiche apportæ.",
 'metadata-expand'   => 'Fâ vedde dettaggi',
 'metadata-collapse' => 'Asconde dettaggi',
-'metadata-fields'   => "I campi relativi a-i metadati EXIF elencæ inte 'sto messaggio sajàn visti inscia paggina de l'immaggine quande a tabella di metadati a seggie presentâa inta forma breive. Pe l'impostassion predefinîa, li âtri campi sajàn ascoxi.
+'metadata-fields'   => "I campi relativi a-i metadati EXIF elencæ inte 'sto messaggio sajàn visti inscia paggina de l'immaggine quande a tabella di metadati a seggie presentâ inta forma breive. Pe l'impostassion predefinîa, i âtri campi sajàn ascoxi.
 * make
 * model
 * datetimeoriginal

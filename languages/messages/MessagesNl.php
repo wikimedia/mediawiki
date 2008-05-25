@@ -2166,6 +2166,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'import-noarticle'           => "Er zijn geen te importeren pagina's!",
 'import-nonewrevisions'      => 'Alle versies zijn al eerder geïmporteerd.',
 'xml-error-string'           => '$1 op regel $2, kolom $3 (byte $4): $5',
+'import-upload'              => 'XML-gegevens uploaden',
 
 # Import log
 'importlogpage'                    => 'Importlogboek',

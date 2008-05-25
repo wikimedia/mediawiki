@@ -1846,6 +1846,7 @@ $1',
 'import-noarticle'           => 'Ашет лопат ускоманди!',
 'import-nonewrevisions'      => 'Сембе илякстоптоматне ускфольхть сядынголе.',
 'xml-error-string'           => '$1 $2-це киксса, палмань $3 ($4 байтт): $5',
+'import-upload'              => 'Тонгомс XML информациесь',
 
 # Import log
 'importlogpage'                    => 'Сувафтомань лувома',

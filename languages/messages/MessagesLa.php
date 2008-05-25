@@ -1397,6 +1397,7 @@ Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic mo
 'import-interwiki-submit'    => 'Importare',
 'import-interwiki-namespace' => 'Transferre paginas in spatium nominale:',
 'importbadinterwiki'         => 'Nexus intervicus malus',
+'import-upload'              => 'XML imponere et importare',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Pagina usoris mea',

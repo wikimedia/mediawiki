@@ -365,7 +365,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Kategória|Kategóriák}}',
-'category_header'                => '„$1” kategória szócikkei',
+'category_header'                => 'A(z) „$1” kategóriába tartozó szócikkek',
 'subcategories'                  => 'Alkategóriák',
 'category-media-header'          => 'A(z) „$1” kategóriába tartozó médiafájlok',
 'category-empty'                 => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
@@ -2124,6 +2124,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'import-noarticle'           => 'Nincs importálandó lap!',
 'import-nonewrevisions'      => 'A korábban importált összes változat.',
 'xml-error-string'           => '$1 a(z) $2. sorban, $3. oszlopban ($4. bájt): $5',
+'import-upload'              => 'XML-adatok feltöltése',
 
 # Import log
 'importlogpage'                    => 'Importnapló',
@@ -2278,8 +2279,8 @@ $1',
 'imagemaxsize'         => 'A kép leírólapján mutatott legnagyobb képméret:',
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, $3 oldal',
-'file-info'            => '(fájlméret: $1, MIME típus: $2)',
-'file-info-size'       => '($1 × $2 képpont, fájlméret: $3, MIME típus: $4)',
+'file-info'            => '(fájlméret: $1, MIME-típus: $2)',
+'file-info-size'       => '($1 × $2 képpont, fájlméret: $3, MIME-típus: $4)',
 'file-nohires'         => '<small>Nem érhető el nagyobb felbontású változat.</small>',
 'svg-long-desc'        => '(SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3)',
 'show-big-image'       => 'A kép nagyfelbontású változata',

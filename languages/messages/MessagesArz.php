@@ -260,9 +260,24 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'حط خط تحت الوصلات:',
+'tog-underline'           => 'حط خط تحت الوصلات:',
+'tog-justify'             => 'ساوى الفقرات',
+'tog-numberheadings'      => 'رقم العناوين تلقائيا',
+'tog-nocache'             => 'عطل تخبية الصفحه',
+'tog-enotifusertalkpages' => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',
+'tog-enotifminoredits'    => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
+
+'underline-always' => 'دايما',
+'underline-never'  => 'ابدا',
 
 # Dates
+'sunday'        => 'الحد',
+'monday'        => 'الاتنين',
+'tuesday'       => 'التلات',
+'wednesday'     => 'الاربع',
+'thursday'      => 'الخميس',
+'friday'        => 'الجمعه',
+'saturday'      => 'السبت',
 'sun'           => 'الحد',
 'mon'           => 'الاتنين',
 'tue'           => 'التلات',
@@ -537,11 +552,12 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخه متوسطه}} مش معروضه.)',
 
 # Search results
-'noexactmatch' => "'''مافيش  صفحه بالاسم \"\$1\"'''. ممكن [[:\$1| تبتدى الصفحه دى]].",
-'prevn'        => '$1 اللى قبل كده',
-'nextn'        => '$1 اللى بعد كده',
-'viewprevnext' => 'بص ($1) ($2) ($3)',
-'powersearch'  => 'تدوير متفصل',
+'searchresults' => 'نتايج التدوير',
+'noexactmatch'  => "'''مافيش  صفحه بالاسم \"\$1\"'''. ممكن [[:\$1| تبتدى الصفحه دى]].",
+'prevn'         => '$1 اللى قبل كده',
+'nextn'         => '$1 اللى بعد كده',
+'viewprevnext'  => 'بص ($1) ($2) ($3)',
+'powersearch'   => 'تدوير متفصل',
 
 # Preferences page
 'preferences'   => 'تفضيلات',
@@ -675,6 +691,7 @@ $messages = array(
 'speciallogtitlelabel' => 'العنوان:',
 'log'                  => 'سجلات',
 'all-logs-page'        => 'كل السجلات',
+'log-search-legend'    => 'دور على سجلات',
 
 # Special:Allpages
 'allpages'       => 'كل الصفحات',
@@ -932,5 +949,15 @@ $messages = array(
 
 # Special:Version
 'version' => 'نسخه', # Not used as normal message but as header for the special page itself
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'اسم الفايل:',
+'fileduplicatesearch-submit'   => 'تدوير',
+
+# Special:SpecialPages
+'specialpages-group-login'   => 'ادخل / سجل',
+'specialpages-group-users'   => 'اليوزرز والصلاحيات',
+'specialpages-group-needy'   => 'صفحات محتاجه شغل',
+'specialpages-group-highuse' => 'صفحات بتستخدم كتير',
 
 );

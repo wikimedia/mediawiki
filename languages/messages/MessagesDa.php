@@ -1986,6 +1986,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'import-noarticle'           => 'Ingen side til import!',
 'import-nonewrevisions'      => 'Alle revisioner er tidligere blevet importeret.',
 'xml-error-string'           => '$1 på linje $2, kolonne $3 (byte $4): $5',
+'import-upload'              => 'Læg XML data op',
 
 # Import log
 'importlogpage'                    => 'Importlog',

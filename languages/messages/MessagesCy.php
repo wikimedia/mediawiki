@@ -494,7 +494,7 @@ Mae eich accownt wedi gael eu creu. Peidiwch ac anghofio i personaleiddio eich f
 'yournick'                   => 'Eich llysenw (fel llofnod):',
 'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
 'badsiglength'               => "Mae'r llysenw'n rhy hir. 
-Rhaid iddo fod yn llai na $1 llythyren o hyd.",
+Rhaid iddo fod yn llai na $1 {{PLURAL:$1|llythyren|lythyren|lythyren|lythyren|llythyren|llythyren}} o hyd.",
 'email'                      => 'E-bost',
 'prefs-help-realname'        => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei ddefnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',
 'loginerror'                 => 'Problem mewngofnodi',
@@ -1062,7 +1062,7 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'filehist'                  => 'Hanes y ffeil',
 'filehist-help'             => 'Cliciwch ar ddyddiad/amser i weld y ffeil fel ag yr oedd bryd hynny.',
 'filehist-deleteall'        => 'eu dileu i gyd',
-'filehist-deleteone'        => 'dileu hwn',
+'filehist-deleteone'        => 'dileu',
 'filehist-revert'           => 'gwrthdroi',
 'filehist-current'          => 'cyfredol',
 'filehist-datetime'         => 'Dyddiad/Amser',
@@ -1243,6 +1243,7 @@ Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 'allpagessubmit'    => 'Eler',
 'allpagesprefix'    => "Dangos pob tudalen gyda'r rhagddodiad:",
 'allpagesbadtitle'  => 'Roedd y darpar deitl yn annilys oherwydd bod ynddo naill ai:<p> - rhagddodiad rhyngwici neu ryngieithol, neu </p>- nod neu nodau na ellir eu defnyddio mewn teitlau.',
+'allpages-bad-ns'   => 'Nid oes gan {{SITENAME}} barth o\'r enw "$1".',
 
 # Special:Categories
 'categories'                    => 'Categorïau',
