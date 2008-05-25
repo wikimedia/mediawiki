@@ -405,17 +405,11 @@ abstract class IndexPager implements Pager {
 		$links = array();
 		foreach ( $queries as $type => $query ) {
 			if ( $query !== false ) {
-				$links[$type] = "<span class='mw-pager-pagerlink-enabled'>" .
-					$this->makeLink( $linkTexts[$type], $queries[$type], $type ) .
-					"</span>";
+				$links[$type] = $this->makeLink( $linkTexts[$type], $queries[$type], $type );
 			} elseif ( isset( $disabledTexts[$type] ) ) {
-				$links[$type] = "<span class='mw-pager-pagerlink-disabled'>" .
-					$disabledTexts[$type] .
-					"</span>";
+				$links[$type] = $disabledTexts[$type];
 			} else {
-				$links[$type] = "<span class='mw-pager-pagerlink-disabled'>" .
-					$linkTexts[$type] .
-					"</span>";
+				$links[$type] = $linkTexts[$type];
 			}
 		}
 		return $links;
