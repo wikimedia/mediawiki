@@ -80,7 +80,7 @@ class RevisionDeleteForm {
 			$oimage->load();
 			// Check if user is allowed to see this file
 			if( !$oimage->userCan(File::DELETED_FILE) ) {
-				$wgOut->permissionRequired( 'hiderevision' );
+				$wgOut->permissionRequired( 'suppressrevision' );
 			} else {
 				$this->showFile( $file );
 			}
@@ -134,7 +134,7 @@ class RevisionDeleteForm {
 			$hide_content_name,
 			array( 'revdelete-hide-comment', 'wpHideComment', Revision::DELETED_COMMENT ),
 			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER ) );
-		if( $wgUser->isAllowed('hiderevision') ) {
+		if( $wgUser->isAllowed('suppressrevision') ) {
 			$this->checks[] = array( 'revdelete-hide-restricted', 'wpHideRestricted', Revision::DELETED_RESTRICTED );
 		}
 	}
@@ -198,7 +198,7 @@ class RevisionDeleteForm {
 				} else if( !$revObjs[$revid]->userCan(Revision::DELETED_RESTRICTED) ) {
 				// If a rev is hidden from sysops
 					if( $action != 'submit') {
-						$wgOut->permissionRequired( 'hiderevision' );
+						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
 					$UserAllowed = false;
@@ -239,7 +239,7 @@ class RevisionDeleteForm {
 				} else if( !$revObjs[$timestamp]->userCan(Revision::DELETED_RESTRICTED) ) {
 				// If a rev is hidden from sysops
 					if( $action != 'submit') {
-						$wgOut->permissionRequired( 'hiderevision' );
+						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
 					$UserAllowed = false;
@@ -344,7 +344,7 @@ class RevisionDeleteForm {
 				} else if( !$filesObjs[$archivename]->userCan(File::DELETED_RESTRICTED) ) {
 					// If a rev is hidden from sysops
 					if( $action != 'submit' ) {
-						$wgOut->permissionRequired( 'hiderevision' );
+						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
 					$UserAllowed = false;
@@ -375,7 +375,7 @@ class RevisionDeleteForm {
 				} else if( !$filesObjs[$fileid]->userCan(File::DELETED_RESTRICTED) ) {
 					// If a rev is hidden from sysops
 					if( $action != 'submit' ) {
-						$wgOut->permissionRequired( 'hiderevision' );
+						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
 					$UserAllowed = false;
@@ -473,7 +473,7 @@ class RevisionDeleteForm {
 			} else if( !LogEventsList::userCan( $logRows[$logid],Revision::DELETED_RESTRICTED) ) {
 			// If an event is hidden from sysops
 				if( $action != 'submit') {
-					$wgOut->permissionRequired( 'hiderevision' );
+					$wgOut->permissionRequired( 'suppressrevision' );
 					return;
 				}
 				$UserAllowed = false;
@@ -708,8 +708,8 @@ class RevisionDeleteForm {
 		$bitfield = $this->extractBitfield( $request );
 		$comment = $request->getText( 'wpReason' );
 		# Can the user set this field?
-		if( $bitfield & Revision::DELETED_RESTRICTED && !$wgUser->isAllowed('hiderevision') ) {
-			$wgOut->permissionRequired( 'hiderevision' );
+		if( $bitfield & Revision::DELETED_RESTRICTED && !$wgUser->isAllowed('suppressrevision') ) {
+			$wgOut->permissionRequired( 'suppressrevision' );
 			return false;
 		}
 		# If the save went through, go to success message. Otherwise
@@ -844,7 +844,7 @@ class RevisionDeleter {
 		// Where all revs allowed to be set?
 		if( !$userAllowedAll ) {
 			//FIXME: still might be confusing???
-			$wgOut->permissionRequired( 'hiderevision' );
+			$wgOut->permissionRequired( 'suppressrevision' );
 			return false;
 		}
 
@@ -914,7 +914,7 @@ class RevisionDeleter {
 		}
 		// Where all revs allowed to be set?
 		if( !$userAllowedAll ) {
-			$wgOut->permissionRequired( 'hiderevision' );
+			$wgOut->permissionRequired( 'suppressrevision' );
 			return false;
 		}
 
@@ -1006,7 +1006,7 @@ class RevisionDeleter {
 		}
 		// Where all revs allowed to be set?
 		if( !$userAllowedAll ) {
-			$wgOut->permissionRequired( 'hiderevision' );
+			$wgOut->permissionRequired( 'suppressrevision' );
 			return false;
 		}
 
@@ -1062,7 +1062,7 @@ class RevisionDeleter {
 		}
 		// Where all revs allowed to be set?
 		if( !$userAllowedAll ) {
-			$wgOut->permissionRequired( 'hiderevision' );
+			$wgOut->permissionRequired( 'suppressrevision' );
 			return false;
 		}
 
@@ -1121,7 +1121,7 @@ class RevisionDeleter {
 		}
 		// Were all revs allowed to be set?
 		if( !$userAllowedAll ) {
-			$wgOut->permissionRequired( 'hiderevision' );
+			$wgOut->permissionRequired( 'suppressrevision' );
 			return false;
 		}
 

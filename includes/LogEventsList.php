@@ -338,7 +338,7 @@ class LogEventsList {
 		if( ( $row->log_deleted & $field ) == $field ) {
 			global $wgUser;
 			$permission = ( $row->log_deleted & LogPage::DELETED_RESTRICTED ) == LogPage::DELETED_RESTRICTED
-				? 'hiderevision'
+				? 'suppressrevision'
 				: 'deleterevision';
 			wfDebug( "Checking for $permission due to $field match on $row->log_deleted\n" );
 			return $wgUser->isAllowed( $permission );
