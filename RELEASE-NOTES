@@ -168,7 +168,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13281) Treat X-Forwarded-For, Client-ip and User-Agent headers as
   case-insensitive names.
 * Adding the fix for lists in RTL wikis to more skins, and fixing the image toc
-* (bug 8157) Remove redirects from Special:Unusedtemplates
+* (bug 8157) Remove redirects from Special:Unusedtemplates. Patch by WebBoy.
 * (bug 10721) Duplicate section anchors with differing case now disambiguated
   for Internet Explorer's sake and standards compliance
 * (bug 13298) Tighter limits on Special:Newpages limits when embedding
@@ -367,7 +367,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Handled unrecognized values for parameters more gracefully
 * Handled requesting disallowed tokens more gracefully
 * (bug 14140) URL-encoded page titles are now decoded in edit summaries
-* (bug 14243) Only accept post requests in action=edit
+* (bug 14243) Only accept post requests in action=edit; patch by HardDisk
 
 === Languages updated in 1.13 ===
 
