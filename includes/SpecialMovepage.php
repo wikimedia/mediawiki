@@ -342,9 +342,9 @@ class MovePageForm {
 			$conds = null;
 		}
 
+		$extrapages = array();
 		if( !is_null( $conds ) ) {
-			$extrapages = $dbr->select(
-				'page',
+			$extrapages = $dbr->select( 'page',
 				array( 'page_id', 'page_namespace', 'page_title' ),
 				$conds,
 				__METHOD__

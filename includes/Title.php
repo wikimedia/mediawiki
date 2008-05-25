@@ -2584,18 +2584,9 @@ class Title {
 		$now = wfTimestampNow();
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
-		$dbw = wfGetDB( DB_MASTER );
 
-		# Move an image if it is
-		if( $this->getNamespace() == NS_IMAGE ) {
-			$file = wfLocalFile( $this );
-			if( $file->exists() ) {
-				$status = $file->move( $nt );
-				if( !$status->isOk() ) {
-					return $status->getWikiText();
-				}
-			}
-		}
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
 
 		# Delete the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
@@ -2638,8 +2629,7 @@ class Title {
 		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
 		# Recreate the redirect, this time in the other direction.
-		if($createRedirect || !$wgUser->isAllowed('suppressredirect'))
-		{
+		if( $createRedirect || !$wgUser->isAllowed('suppressredirect') ) {
 			$mwRedir = MagicWord::get( 'redirect' );
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 			$redirectArticle = new Article( $this );
@@ -2665,6 +2655,19 @@ class Title {
 		} else {
 			$this->resetArticleID( 0 );
 		}
+		
+		# Move an image if this is a file
+		if( $this->getNamespace() == NS_IMAGE ) {
+			$file = wfLocalFile( $this );
+			if( $file->exists() ) {
+				$status = $file->move( $nt );
+				if( !$status->isOk() ) {
+					$dbw->rollback();
+					return $status->getWikiText();
+				}
+			}
+		}
+		$dbw->commit();
 
 		# Log the move
 		$log = new LogPage( 'move' );
@@ -2695,19 +2698,10 @@ class Title {
 
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
+		
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
 		$now = $dbw->timestamp();
-
-		# Move an image if it is
-		if( $this->getNamespace() == NS_IMAGE ) {
-			$file = wfLocalFile( $this );
-			if( $file->exists() ) {
-				$status = $file->move( $nt );
-				if( !$status->isOk() ) {
-					return $status->getWikiText();
-				}
-			}
-		}
 
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
@@ -2730,8 +2724,7 @@ class Title {
 		
 		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
-		if($createRedirect || !$wgUser->isAllowed('suppressredirect'))
-		{
+		if( $createRedirect || !$wgUser->isAllowed('suppressredirect') ) {
 			# Insert redirect
 			$mwRedir = MagicWord::get( 'redirect' );
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
@@ -2756,6 +2749,19 @@ class Title {
 		} else {
 			$this->resetArticleID( 0 );
 		}
+		
+		# Move an image if this is a file
+		if( $this->getNamespace() == NS_IMAGE ) {
+			$file = wfLocalFile( $this );
+			if( $file->exists() ) {
+				$status = $file->move( $nt );
+				if( !$status->isOk() ) {
+					$dbw->rollback();
+					return $status->getWikiText();
+				}
+			}
+		}
+		$dbw->commit();
 
 		# Log the move
 		$log = new LogPage( 'move' );
