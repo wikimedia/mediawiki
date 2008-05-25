@@ -101,7 +101,7 @@ function wfSpecialImport( $page = '' ) {
 		$wgOut->addWikiMsg( "importtext" );
 		$wgOut->addHTML(
 			Xml::openElement( 'fieldset' ).
-			Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
+			Xml::element( 'legend', null, wfMsg( 'import-upload' ) ) .
 			Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post', 'action' => $action ) ) .
 			Xml::hidden( 'action', 'submit' ) .
 			Xml::hidden( 'source', 'upload' ) .
