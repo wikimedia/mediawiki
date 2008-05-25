@@ -588,7 +588,7 @@ class UndeleteForm {
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mComment = $request->getText( 'wpComment' );
-		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $wgUser->isAllowed( 'hiderevision' );
+		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $wgUser->isAllowed( 'suppressrevision' );
 
 		if( $par != "" ) {
 			$this->mTarget = $par;
@@ -653,7 +653,7 @@ class UndeleteForm {
 			$file = new ArchivedFile( $this->mTargetObj, '', $this->mFile );
 			// Check if user is allowed to see this file
 			if( !$file->userCan( File::DELETED_FILE ) ) {
-				$wgOut->permissionRequired( 'hiderevision' );
+				$wgOut->permissionRequired( 'suppressrevision' );
 				return false;
 			} else {
 				return $this->showFile( $this->mFile );
@@ -967,13 +967,13 @@ class UndeleteForm {
 		if( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
-			if( $wgUser->isAllowed( 'hiderevision' ) ) {
+			if( $wgUser->isAllowed( 'suppressrevision' ) ) {
 				$unsuppressBox =
 					"<tr>
 						<td>&nbsp;</td>
 						<td class='mw-input'>" .
 							Xml::checkLabel( wfMsg('revdelete-unsuppress'), 'wpUnsuppress',
-								'mw-undelete-unsupress', $this->mUnsuppress ).
+								'mw-undelete-unsuppress', $this->mUnsuppress ).
 						"</td>
 					</tr>";
 			} else {

@@ -288,7 +288,7 @@ class ChangesList {
 		if( ( $rc->mAttribs['rc_deleted'] & $field ) == $field ) {
 			global $wgUser;
 			$permission = ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
-				? 'hiderevision'
+				? 'suppressrevision'
 				: 'deleterevision';
 			wfDebug( "Checking for $permission due to $field match on $rc->mAttribs['rc_deleted']\n" );
 			return $wgUser->isAllowed( $permission );
