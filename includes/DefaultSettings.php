@@ -1150,7 +1150,7 @@ $wgGroupPermissions['bureaucrat']['userrights']  = true;
 // To hide usernames from users and Sysops
 #$wgGroupPermissions['suppress']['hideuser'] = true;
 // To hide revisions/log items from users and Sysops
-#$wgGroupPermissions['suppress']['hiderevision'] = true;
+#$wgGroupPermissions['suppress']['suppressrevision'] = true;
 // For private suppression log access
 #$wgGroupPermissions['suppress']['suppress'] = true;
 
