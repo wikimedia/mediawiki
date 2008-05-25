@@ -2142,6 +2142,7 @@ $1',
 'import-noarticle'           => 'صفحه‌ای برای بارگذاری وجود ندارد!',
 'import-nonewrevisions'      => 'تمام نسخه‌ها قبلاً بارگذاری شده‌اند.',
 'xml-error-string'           => '$1 در سطر $2، ستون $3 (بایت $4): $5',
+'import-upload'              => 'بارگذاری داده XML',
 
 # Import log
 'importlogpage'                    => 'سیاههٔ واردکردن‌ها',
