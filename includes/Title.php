@@ -2612,6 +2612,7 @@ class Title {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $nt );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -2625,8 +2626,6 @@ class Title {
 			$fname
 		);
 		$nt->resetArticleID( $oldid );
-		
-		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
 		# Recreate the redirect, this time in the other direction.
 		if( $createRedirect || !$wgUser->isAllowed('suppressredirect') ) {
@@ -2708,6 +2707,7 @@ class Title {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $nt );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
 		# Rename page entry
 		$dbw->update( 'page',
@@ -2721,8 +2721,6 @@ class Title {
 			$fname
 		);
 		$nt->resetArticleID( $oldid );
-		
-		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
 		if( $createRedirect || !$wgUser->isAllowed('suppressredirect') ) {
 			# Insert redirect
