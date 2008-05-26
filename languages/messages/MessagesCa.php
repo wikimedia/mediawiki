@@ -1088,7 +1088,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'right-deletedhistory'       => 'Veure els historials esborrats sense consultar-ne el text',
 'right-browsearchive'        => 'Cercar pàgines esborrades',
 'right-undelete'             => 'Restaurar pàgines esborrades',
-'right-hiderevision'         => 'Revisar i restaurar les versions amagades als administradors',
+'right-suppressrevision'     => 'Revisar i restaurar les versions amagades als administradors',
 'right-suppress'             => 'Veure registres privats',
 'right-block'                => "Blocar altres usuaris per a impedir-los l'edició",
 'right-blockemail'           => 'Impedir que un usuari envii correu electrònic',

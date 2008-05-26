@@ -966,7 +966,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-deletedhistory'       => 'Fottjeschmeße Versione vun Sigge opleßte lohße — dat zeich ävver nit der Tex aan',
 'right-browsearchive'        => 'Noh fottjeschmesse Sigge söke',
 'right-undelete'             => 'Fottjeschmeße Sigge widder zeröck holle',
-'right-hiderevision'         => 'Versione vun Sigge beloore un zeröck holle, di sujaa för de Wiki-Köbesse verstoche sin',
+'right-suppressrevision'     => 'Versione vun Sigge beloore un zeröck holle, di sujaa för de Wiki-Köbesse verstoche sin',
 'right-editusercssjs'        => 'Anderlücks CSS- un JS-Dateie ändere',
 'right-userrights'           => 'Metmaacher ier Rääschte ändere',
 'right-userrights-interwiki' => 'Metmaacher ier Rääschte in ander Wikis ändere',

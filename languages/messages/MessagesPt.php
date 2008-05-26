@@ -1095,7 +1095,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-deletedhistory'       => 'Ver entradas de histórico eliminadas, sem o texto associado',
 'right-browsearchive'        => 'Buscar páginas eliminadas',
 'right-undelete'             => 'Restaurar uma página',
-'right-hiderevision'         => 'Rever e restaurar revisões ocultadas dos Sysops',
+'right-suppressrevision'     => 'Rever e restaurar revisões ocultadas dos Sysops',
 'right-suppress'             => 'Ver registos privados',
 'right-block'                => 'Impedir outros utilizadores de editarem',
 'right-blockemail'           => 'Impedir um utilizador de enviar email',

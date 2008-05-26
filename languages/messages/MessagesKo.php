@@ -793,7 +793,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'grouppage-bureaucrat' => '{{ns:project}}:뷰로크랫',
 
 # Rights
-'right-hiderevision' => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
+'right-suppressrevision' => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',

@@ -1030,7 +1030,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'right-deletedhistory'       => 'Wušmórnjene zapiski stawiznow bjez přisłušneho teksta wobhladać',
 'right-browsearchive'        => 'Zničene strony pytać',
 'right-undelete'             => 'Strony wobnowić',
-'right-hiderevision'         => 'Wersije, kotrež su před administratorami schowane, přepruwować a wobnowić',
+'right-suppressrevision'     => 'Wersije, kotrež su před administratorami schowane, přepruwować a wobnowić',
 'right-suppress'             => 'Priwatne protokole wobhladać',
 'right-block'                => 'Druhich wužiwarjow při wobdźěłowanju haćić',
 'right-blockemail'           => 'Wužiwarja při słanju e-mejlow haćić',

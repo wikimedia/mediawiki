@@ -986,7 +986,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'right-deletedhistory'       => 'Ver entraes eliminaes del historial ensin testu asociáu',
 'right-browsearchive'        => 'Buscar páxines borraes',
 'right-undelete'             => 'Restaurar una páxina',
-'right-hiderevision'         => 'Revisar y restaurar revisiones ocultes a los alministradores',
+'right-suppressrevision'     => 'Revisar y restaurar revisiones ocultes a los alministradores',
 'right-suppress'             => 'Ver rexistros privaos',
 'right-block'                => "Bloquiar la edición d'otros usuarios",
 'right-blockemail'           => "Bloquia-y l'unviu de corréu electrónicu a un usuariu",

@@ -1192,7 +1192,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'right-deletedhistory'       => 'törölt lapváltozatok megtekintése, a szövegük nélkül',
 'right-browsearchive'        => 'keresés a törölt lapok között',
 'right-undelete'             => 'lap helyreállítása',
-'right-hiderevision'         => 'az adminisztrátorok elől elrejtett változatok megtekintése és helyreállítása',
+'right-suppressrevision'     => 'az adminisztrátorok elől elrejtett változatok megtekintése és helyreállítása',
 'right-suppress'             => 'titkos naplók megtekintése',
 'right-block'                => 'szerkesztők blokkolása',
 'right-blockemail'           => 'szerkesztő e-mail küldési lehetőségének blokkolása',
