@@ -792,7 +792,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'right-deleterevision'       => 'Emendationes paginarum delere vel restituere',
 'right-browsearchive'        => 'Paginas deletas quaerere',
 'right-undelete'             => 'Paginam restituere',
-'right-hiderevision'         => 'Emendationes magistratus celatas inspicere vel restituere',
+'right-suppressrevision'     => 'Emendationes magistratus celatas inspicere vel restituere',
 'right-suppress'             => 'Acta privata inspicere',
 'right-block'                => 'Usores alios obstruere ne recensere possunt',
 'right-blockemail'           => 'Usorem obstruere ne litteras electronicas mittere potest',

@@ -1066,7 +1066,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'right-deletedhistory'       => 'Vis slettede poster i versionshistoriken uden tilhørende tekst',
 'right-browsearchive'        => 'Søg efter slettede sider',
 'right-undelete'             => 'Genopret en side',
-'right-hiderevision'         => 'Gense og gendan versioner skjult for administratorer',
+'right-suppressrevision'     => 'Gense og gendan versioner skjult for administratorer',
 'right-suppress'             => 'Se private log',
 'right-block'                => 'Blokere andre brugere fra at redigere',
 'right-blockemail'           => 'Bloker en bruger fra at sende e-mail',

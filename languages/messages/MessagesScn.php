@@ -985,7 +985,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'right-autoconfirmed'    => 'Cancia pàggini semiprotetti',
 'right-browsearchive'    => 'Talìa pàggini cancillati',
 'right-undelete'         => 'Riprìstina na pàggina',
-'right-hiderevision'     => 'Ritalìa e riprìstina virsioni ammucciati',
+'right-suppressrevision' => 'Ritalìa e riprìstina virsioni ammucciati',
 'right-suppress'         => 'Talìa li log privati',
 'right-block'            => 'Blocca li canciamenti da parti di autri utenti',
 

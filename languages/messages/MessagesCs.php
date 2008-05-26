@@ -1212,7 +1212,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-deletedhistory'       => 'Zobrazování smazaných položek v historii bez odpovídajícího textu',
 'right-browsearchive'        => 'Vyhledávání ve smazaných stránkách',
 'right-undelete'             => 'Obnovování smazaných stránek',
-'right-hiderevision'         => 'Prohlížení a obnovování revizí skrytých před správci',
+'right-suppressrevision'     => 'Prohlížení a obnovování revizí skrytých před správci',
 'right-suppress'             => 'Zobrazování skrytých protokolovacích záznamů',
 'right-block'                => 'Blokování možnosti editace ostatním uživatelům',
 'right-blockemail'           => 'Blokování možnosti poslat e-mail',

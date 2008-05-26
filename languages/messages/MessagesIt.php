@@ -1043,7 +1043,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'right-deleterevision'   => 'Nascondi versioni specifiche delle pagine',
 'right-browsearchive'    => 'Visualizza pagine cancellate',
 'right-undelete'         => 'Recupera una pagina',
-'right-hiderevision'     => 'Rivedi e recupera versioni nascoste',
+'right-suppressrevision' => 'Rivedi e recupera versioni nascoste',
 'right-block'            => 'Blocca le modifiche da parte di altri utenti',
 'right-blockemail'       => 'Impedisci ad un utente di inviare email',
 'right-hideuser'         => 'Blocca un nome utente, nascondendolo al pubblico',

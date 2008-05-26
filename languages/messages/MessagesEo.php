@@ -998,7 +998,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-deletedhistory'       => 'Rigardu listerojn de forigitaj historioj, sen ties asociaj tekstoj',
 'right-browsearchive'        => 'Serĉu forigitajn paĝojn',
 'right-undelete'             => 'Restarigu paĝon',
-'right-hiderevision'         => 'Kontrolu kaj restarigu reviziojn kaŝitajn de administrantoj',
+'right-suppressrevision'     => 'Kontrolu kaj restarigu reviziojn kaŝitajn de administrantoj',
 'right-suppress'             => 'Rigardu privatajn loglibrojn',
 'right-block'                => 'Forbaru aliajn uzantoj por redaktado',
 'right-blockemail'           => 'Forbaru uzanton de retpoŝta sendado',
