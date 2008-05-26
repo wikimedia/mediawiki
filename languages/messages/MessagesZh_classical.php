@@ -1663,6 +1663,7 @@ $NEWPAGE
 'import-noarticle'           => '無頁入匯也！',
 'import-nonewrevisions'      => '全審已入匯也。',
 'xml-error-string'           => '$1 於行$2，欄$3 ($4字節): $5',
+'import-upload'              => '貢XML',
 
 # Import log
 'importlogpage'                    => '誌入',

@@ -1959,6 +1959,7 @@ $1',
 'import-noarticle'           => '無版去倒入！',
 'import-nonewrevisions'      => '全部嘅修訂已經響之前倒入咗。',
 'xml-error-string'           => '$1 響行$2，欄$3 ($4 bytes): $5',
+'import-upload'              => '上載XML資料',
 
 # Import log
 'importlogpage'                    => '倒入日誌',
