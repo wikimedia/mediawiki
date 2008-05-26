@@ -1924,6 +1924,7 @@ $1',
 'import-noarticle'           => '没有页面作导入！',
 'import-nonewrevisions'      => '所有的修订已经在先前导入。',
 'xml-error-string'           => '$1 於行$2，列$3 ($4字节): $5',
+'import-upload'              => '上传XML资料',
 
 # Import log
 'importlogpage'                    => '导入日志',

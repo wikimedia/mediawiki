@@ -1899,6 +1899,7 @@ $1',
 'import-noarticle'           => '沒有頁面作匯入！',
 'import-nonewrevisions'      => '所有的修訂已經在先前匯入。',
 'xml-error-string'           => '$1 於行$2，欄$3 ($4位元組): $5',
+'import-upload'              => '上傳XML資料',
 
 # Import log
 'importlogpage'                    => '匯入日誌',
