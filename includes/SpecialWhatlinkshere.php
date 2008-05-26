@@ -271,6 +271,12 @@ class WhatLinksHerePager extends AlphabeticPager {
 		$this->level = intval($level); // recursion depth
 	}
 	
+	function getDefaultQuery() {
+		$query = parent::getDefaultQuery();
+		$query['target'] = $this->target->getPrefixedDBKey();
+		return $query;
+	}
+	
 	function getQueryInfo() {
 		$queryInfo = array();
 		$options = array();
