@@ -2137,6 +2137,7 @@ $1',
 'import-noarticle'           => 'אין דף לייבוא!',
 'import-nonewrevisions'      => 'כל הגרסאות יובאו בעבר.',
 'xml-error-string'           => '$1 בשורה $2, עמודה $3 (בייט מספר $4): $5',
+'import-upload'              => 'העלאת קובץ XML',
 
 # Import log
 'importlogpage'                    => 'יומן ייבוא',
