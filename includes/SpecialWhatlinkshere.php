@@ -352,7 +352,7 @@ class WhatLinksHerePager extends AlphabeticPager {
 	 * Do a query with specified parameters
 	 * Note: in theory this could miss results if there were 
 	 * so many rows with the same page_id that the UNION table was 
-	 * exhausted and more rows should have been scanned in it's creation.
+	 * exhausted and more rows should have been scanned in its creation.
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param integer $limit Exact query limit
