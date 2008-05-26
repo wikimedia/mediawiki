@@ -61,6 +61,8 @@ class ApiUndelete extends ApiBase {
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
 
 		// Convert timestamps
+		if(!isset($params['timestamps']))
+			$params['timestamps'] = array();
 		if(!is_array($params['timestamps']))
 			$params['timestamps'] = array($params['timestamps']);
 		foreach($params['timestamps'] as $i => $ts)
