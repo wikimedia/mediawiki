@@ -121,6 +121,8 @@ class ApiDelete extends ApiBase {
 		// Auto-generate a summary, if necessary
 		if(is_null($reason))
 		{
+			# Need to pass a throwaway variable because generateReason expects
+			# a reference
 			$hasHistory = false;
 			$reason = $article->generateReason($hasHistory);
 			if($reason === false)
