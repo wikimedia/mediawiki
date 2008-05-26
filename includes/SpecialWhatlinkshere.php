@@ -158,9 +158,9 @@ class WhatLinksHerePage {
 		$props = array();
 		if ( $row->page_is_redirect )
 			$props[] = $msgcache['isredirect'];
-		if ( $row->is_template )
+		if ( $row->template )
 			$props[] = $msgcache['istemplate'];
-		if ( $row->is_image )
+		if ( $row->image )
 			$props[] = $msgcache['isimage'];
 
 		if ( count( $props ) ) {
@@ -350,9 +350,6 @@ class WhatLinksHerePager extends AlphabeticPager {
 	
 	/**
 	 * Do a query with specified parameters
-	 * Note: in theory this could miss results if there were 
-	 * so many rows with the same page_id that the UNION table was 
-	 * exhausted and more rows should have been scanned in its creation.
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param integer $limit Exact query limit
@@ -390,7 +387,8 @@ class WhatLinksHerePager extends AlphabeticPager {
 			$SQLqueries[] = '('.$this->mDb->selectSQLText( $tables, $fields, $conds, $fname, $options, $join_conds ).')';
 		}
 		// Contruct the final query. UNION the mini-queries and merge the results.
-		$SQL = 'SELECT * FROM (' . implode(' UNION ',$SQLqueries) . ') AS result_links';
+		$fields = 'page_id,page_namespace,page_title,page_is_redirect,MAX(is_template) AS template,MAX(is_image) AS image';
+		$SQL = "SELECT $fields FROM (" . implode(' UNION ',$SQLqueries) . ") AS result_links";
 		// Remove duplicates within the result set.
 		$SQL .= ' GROUP BY page_id';
 		// Use proper order of result set
