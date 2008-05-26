@@ -47,7 +47,9 @@ LocalSettings.php file, AdminSettings.php file (if present), and the
 
 Depending upon your configuration, you may also need to preserve additional
 directories, including a custom upload directory ($wgUploadDirectory),
-deleted file archives, and any custom skins.
+deleted file archives, and any custom skins.  If you're using very old exten-
+sions that add files to the "includes" directory or other directories, be sure
+to back those up as well.
 
 === Perform the database upgrade ===
 
