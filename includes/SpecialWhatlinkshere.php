@@ -349,8 +349,10 @@ class WhatLinksHerePager extends AlphabeticPager {
 	}
 	
 	/**
-	 * Do a query with specified parameters, rather than using the object
-	 * context
+	 * Do a query with specified parameters
+	 * Note: in theory this could miss results if there were 
+	 * so many rows with the same page_id that the UNION table was 
+	 * exhausted and more rows should have been scanned in it's creation.
 	 *
 	 * @param string $offset Index offset, inclusive
 	 * @param integer $limit Exact query limit
@@ -388,8 +390,9 @@ class WhatLinksHerePager extends AlphabeticPager {
 			$SQLqueries[] = '('.$this->mDb->selectSQLText( $tables, $fields, $conds, $fname, $options, $join_conds ).')';
 		}
 		// Contruct the final query. UNION the mini-queries and merge the results.
+		$SQL = 'SELECT * FROM (' . implode(' UNION ',$SQLqueries) . ') AS result_links';
 		// Remove duplicates within the result set.
-		$SQL = implode(' UNION DISTINCT ',$SQLqueries);
+		$SQL .= ' GROUP BY page_id';
 		// Use proper order of result set
 		$SQL .= $descending ? " ORDER BY {$this->mIndexField} DESC" : " ORDER BY {$this->mIndexField}";
 		// Cut off at the specified limit
