@@ -121,8 +121,8 @@ class ApiDelete extends ApiBase {
 		// Auto-generate a summary, if necessary
 		if(is_null($reason))
 		{
-			// $hasHistory = false;
-			$reason = $article->generateReason(false);
+			$hasHistory = false;
+			$reason = $article->generateReason($hasHistory);
 			if($reason === false)
 				return array(array('cannotdelete'));
 		}
