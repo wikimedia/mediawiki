@@ -126,10 +126,12 @@ class UserMailer {
 
 			$headers['From'] = $from->toString();
 
-			if ($wgEnotifImpersonal)
+			if ($wgEnotifImpersonal) {
 				$headers['To'] = 'undisclosed-recipients:;';
-			else
-				$headers['To'] = $to->toString();
+			}
+			else {
+				$headers['To'] = implode( ", ", (array )$dest );
+			}
 
 			if ( $replyto ) {
 				$headers['Reply-To'] = $replyto->toString();
