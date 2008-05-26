@@ -787,6 +787,7 @@ speichern kannst. Sichere den Text und versuche die Änderungen später einzuspi
 'nocreate-loggedin'         => 'Du hast keine Berechtigung, neue Seiten in {{SITENAME}} anzulegen.',
 'permissionserrors'         => 'Berechtigungsfehler',
 'permissionserrorstext'     => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
+'permissionserrorstext-withaction'  => 'Du bist nicht berechtigt, die Aktion „$2“ auszuführen, {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'     => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
@@ -977,7 +978,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 
 # Preferences page
 'preferences'              => 'Einstellungen',
-'preferences-summary'      => 'Auf dieser Spezialseite kannst du deine Zugangsdaten ändern und bestimmte Teile der Oberfläche individuell anpassen ',
+'preferences-summary'      => 'Auf dieser Spezialseite kannst du deine Zugangsdaten ändern und bestimmte Teile der Oberfläche individuell anpassen.',
 'mypreferences'            => 'Einstellungen',
 'prefs-edits'              => 'Anzahl Bearbeitungen:',
 'prefsnologin'             => 'Nicht angemeldet',
@@ -2050,7 +2051,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-noarticle'           => 'Es wurde kein zu importierender Artikel angegeben!',
 'import-nonewrevisions'      => 'Es sind keine neuen Versionen zum Import vorhanden, alle Versionen wurden bereits früher importiert.',
 'xml-error-string'           => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
-'import-upload'		     => 'XML-Daten importieren',
+'import-upload'              => 'XML-Daten importieren',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuch',

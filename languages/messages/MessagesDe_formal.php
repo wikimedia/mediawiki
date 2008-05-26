@@ -189,6 +189,7 @@ speichern können. Sichern Sie den Text und versuchen Sie die Änderungen späte
 'nocreatetext'              => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:Userlogin|anmelden]].',
 'nocreate-loggedin'         => 'Sie haben keine Berechtigung, neue Seiten in {{SITENAME}} anzulegen.',
 'permissionserrorstext'     => 'Sie sind nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
+'permissionserrorstext-withaction'  => 'Sie sind nicht berechtigt, die Aktion „$2“ auszuführen, {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'     => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
@@ -223,7 +224,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
-'preferences-summary' => 'Auf dieser Spezialseite können Sie Ihre Zugangsdaten ändern und bestimmte Teile der Oberfläche individuell anpassen ',
+'preferences-summary' => 'Auf dieser Spezialseite können Sie Ihre Zugangsdaten ändern und bestimmte Teile der Oberfläche individuell anpassen.',
 'prefsnologintext'    => 'Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
 'savedprefs'          => 'Ihre Einstellungen wurden gespeichert.',
 'timezonetext'        => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
