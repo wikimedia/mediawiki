@@ -83,7 +83,13 @@ class ApiMove extends ApiBase {
 
 		$retval = $fromTitle->moveTo($toTitle, true, $params['reason'], !$params['noredirect']);
 		if($retval !== true)
-			$this->dieUsageMsg(reset($retval));
+		{
+			# FIXME: Title::moveTo() sometimes returns a string
+			if(is_array($retval))
+				$this->dieUsageMsg(reset($retval));
+			else
+				$this->dieUsageMsg(array('unknownerror', $error));
+		}
 
 		$r = array('from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason']);
 		if(!$params['noredirect'] || !$wgUser->isAllowed('suppressredirect'))
