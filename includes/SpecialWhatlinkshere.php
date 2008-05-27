@@ -397,7 +397,8 @@ class WhatLinksHerePager extends AlphabeticPager {
 		// Remove duplicates within the result set.
 		$SQL .= ' GROUP BY page_id';
 		// Use proper order of result set
-		$SQL .= $descending ? " ORDER BY {$this->mIndexField}" : " ORDER BY {$this->mIndexField} DESC";
+		$SQL .= " ORDER BY {$this->mIndexField}";
+		$SQL .= $descending ? '' : ' DESC';
 		// Cut off at the specified limit
 		$SQL .= ' LIMIT ' . intval( $limit );
 		# Run the query!
