@@ -95,7 +95,7 @@ class ApiBlock extends ApiBase {
 
 		$res['user'] = $params['user'];
 		$res['userID'] = $userID;
-		$res['expiry'] = ($expiry == Block::infinity() ? 'infinite' : $expiry);
+		$res['expiry'] = ($expiry == Block::infinity() ? 'infinite' : wfTimestamp(TS_ISO_8601, $expiry));
 		$res['reason'] = $params['reason'];
 		if($params['anononly'])
 			$res['anononly'] = '';
