@@ -364,8 +364,12 @@ funkshonnan di e-mail riba {{SITENAME}}, por fabor habri e link aki:
 
 $3
 
-Si esaki *no* ta abo, por fabor no habri e link. E kódigo di konfirmashon
-aki lo kaduká riba $4.',
+Si esaki *no* ta abo, por fabor no habri e link.
+Follow this link to cancel the e-mail address confirmation:
+
+$5
+
+E kódigo di konfirmashon aki lo kaduká riba $4.',
 
 # Delete conflict
 'confirmrecreate' => "[[User:$1|$1]] ([[User talk:$1|diskushon]]) a kita e artíkulo aki despues ku bo ta kuminsá editá. E rason ta:

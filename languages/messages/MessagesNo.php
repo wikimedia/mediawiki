@@ -1333,11 +1333,11 @@ PICT # div.
 'statistics'             => 'Statistikk',
 'sitestats'              => '{{SITENAME}}-statistikk',
 'userstats'              => 'Brukerstatistikk',
-'sitestatstext'          => "Det er til sammen {{PLURAL:$1|'''én''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, små stubbsider, omdirigeringer, og annet som antagligvis ikke gjelder som ordentlig innhold. Om man ikke regner med disse, er det {{PLURAL:$2|'''én''' side|'''$2''' sider}} som sannsynligvis er ordentlige innholdssider.
+'sitestatstext'          => "Det er til sammen {{PLURAL:$1|'''én''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, små stubbsider, omdirigeringer, og annet som antagligvis ikke gjelder som ordentlig innhold. Om man ikke regner med disse, er det {{PLURAL:$2|'''én''' side|'''$2''' sider}} som sannsynligvis er {{PLURAL:$2|en ordentlig innholdsside|ordentlige innholdssider}}.
 
-'''$8''' filer har blitt lastet opp.
+{{PLURAL:$8|'''Én''' fil|'''$8''' filer}} har blitt lastet opp.
 
-Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}}, og {{PLURAL:$4|'''én''' redigering|'''$4''' redigeringer}} siden wikien ble satt opp. Det blir i snitt '''$5''' redigeringer per side, og '''$6''' visninger per redigering.
+Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}}, og {{PLURAL:$4|'''én''' redigering|'''$4''' redigeringer}} siden wikien ble satt opp. Det blir i snitt {{PLURAL:$5|'''én''' redigering|'''$5''' redigeringer}} per side, og {{PLURAL:$6|'''én''' visning|'''$6''' visninger}} per redigering.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Arbeidskøen] er på '''$7'''.",
 'userstatstext'          => "Det er {{PLURAL:$1|'''én''' registrert bruker|'''$1''' registrerte brukere}}, hvorav '''$2''' (eller '''$4&nbsp;%''') har {{lc:$5rettigheter}}.",
@@ -1947,6 +1947,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'import-noarticle'           => 'Ingen side å importere!',
 'import-nonewrevisions'      => 'Alle revisjoner var importert fra før.',
 'xml-error-string'           => '$1 på linje $2, kolonne $3 (byte: $4): $5',
+'import-upload'              => 'Last opp XML-data',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

@@ -1884,6 +1884,7 @@ Xin hãy chọn tên khác.',
 'move-subpages'           => 'Di chuyển tất cả các trang con, nếu được',
 'move-talk-subpages'      => 'Di chuyển tất cả các trang con của trang thảo luận, nếu được',
 'movepage-page-exists'    => 'Trang $1 đã tồn tại và không thể bị tự động ghi đè.',
+'movepage-page-moved'     => 'Trang $1 đã được di chuyển đến $2.',
 'movepage-page-unmoved'   => 'Trang $1 không thể di chuyển đến $2.',
 'movepage-max-pages'      => 'Tối đa là $1 trang được di chuyển và sẽ không còn tự động di chuyển thêm được nữa.',
 '1movedto2'               => '[[$1]] đổi thành [[$2]]',
@@ -1966,6 +1967,7 @@ Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa Medi
 'import-noarticle'           => 'Không có trang nào để nhập cả!',
 'import-nonewrevisions'      => 'Tất cả các phiên bản đều đã được nhập trước đây.',
 'xml-error-string'           => '$1 tại dòng $2, cột $3 (byte $4): $5',
+'import-upload'              => 'Tải lên dữ liệu XML',
 
 # Import log
 'importlogpage'                    => 'Nhật trình nhập trang',

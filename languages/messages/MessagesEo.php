@@ -1905,6 +1905,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'import-noarticle'           => 'Neniu paĝo por importi!',
 'import-nonewrevisions'      => 'Ĉiuj revizioj estis antaŭe importitaj.',
 'xml-error-string'           => '$1 ĉe linio $2, kolumno $3 (bitiko $4): $5',
+'import-upload'              => 'Alŝuti XML-datenojn',
 
 # Import log
 'importlogpage'                    => 'Protokolo de importoj',

@@ -1309,6 +1309,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protectedarticle'            => '"[[$1]]" koruma altında alındı',
 'modifiedarticleprotection'   => '"[[$1]]" için koruma düzeyi değiştirildi',
 'unprotectedarticle'          => 'koruma kaldırıldı: "[[$1]]"',
+'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
 'protect-legend'              => 'Korumayı onayla',
 'protectcomment'              => 'Koruma altına alma nedeni',
 'protectexpiry'               => 'Bitiş tarihi:',
@@ -1322,7 +1323,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protect-default'             => '(standart)',
 'protect-fallback'            => '"$1" izni gerektir',
 'protect-level-autoconfirmed' => 'kayıtlı olmayan değiştirmesin',
-'protect-level-sysop'         => 'sadece yöneticiler',
+'protect-level-sysop'         => 'sadece hizmetliler',
 'protect-summary-cascade'     => 'kademeli',
 'protect-expiring'            => 'bitiş tarihi $1 (UTC)',
 'protect-cascade'             => 'Bu sayfada kullanılan tüm sayfaları korumaya al (kademeli koruma)',
@@ -1654,8 +1655,16 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_modern' => 'Modern tarayıcılar için tavsiye edilen',
 'mw_math_mathml' => 'Mümkünse MathML (daha deneme aşamasında)',
 
+# Patrolling
+'markaspatrolleddiff'    => 'Kontrol edilmiş olarak işaretle',
+'markaspatrolledtext'    => 'Kontrol edilmiş olarak işaretle',
+'markedaspatrolled'      => 'Kontrol edildi',
+'markedaspatrolledtext'  => 'Gözden geçirilen metin kontrol edilmiş olarak işaretlendi.',
+'markedaspatrollederror' => 'Kontrol edilmedi',
+
 # Patrol log
 'patrol-log-page' => 'Kontrol kaydı',
+'patrol-log-line' => '$3 kontrol edilmiş olarak $2 $1 sürümü işaretlendi',
 'patrol-log-auto' => '(otomatik)',
 
 # Image deletion

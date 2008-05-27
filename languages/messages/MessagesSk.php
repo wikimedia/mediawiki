@@ -2042,6 +2042,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'import-noarticle'           => 'Žiadny článok na import!',
 'import-nonewrevisions'      => 'Všetky revízie boli predtým importované.',
 'xml-error-string'           => '$1 na riadku $2, stĺpec $3 (bajt $4): $5',
+'import-upload'              => 'Nahrať XML údaje',
 
 # Import log
 'importlogpage'                    => 'Záznam importov',

@@ -1912,6 +1912,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-noarticle'           => 'Ei tuotavaa sivua.',
 'import-nonewrevisions'      => 'Kaikki versiot on tuotu aiemmin.',
 'xml-error-string'           => '$1 rivillä $2, sarakkeessa $3 (tavu $4): $5',
+'import-upload'              => 'Tallenna XML-tiedosto',
 
 # Import log
 'importlogpage'                    => 'Tuontiloki',

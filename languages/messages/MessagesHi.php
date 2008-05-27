@@ -1969,6 +1969,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'import-noarticle'           => 'आयात करने के लिये पन्ना नहीं!',
 'import-nonewrevisions'      => 'सभी अवतरण पहले ही आयात कर दिये गये हैं।',
 'xml-error-string'           => '$1 कतार $2 में, कालम $3 (बाईट $4): $5',
+'import-upload'              => 'XML डाटा अपलोड करें',
 
 # Import log
 'importlogpage'                    => 'इम्पोर्ट सूची',

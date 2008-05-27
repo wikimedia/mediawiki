@@ -1591,7 +1591,12 @@ Om te bevestig dat hierdie adres werklik aan u behoort, en om die posfasiliteite
 
 $3
 
-Indien dit nié u was nie, ignoreer bloot die skakel (en hierdie pos). Hierde bevestigingkode verval om $4.',
+Indien dit nié u was nie, ignoreer bloot die skakel (en hierdie pos).
+Follow this link to cancel the e-mail address confirmation:
+
+$5
+
+Hierde bevestigingkode verval om $4.',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Skrap])',

@@ -1763,6 +1763,7 @@ Hinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
 'move-subpages'           => "Tukuy urin p'anqakunata astay, astanalla kaptinqa",
 'move-talk-subpages'      => "Tukuy urin rimanakuy p'anqakunata astay, astanalla kaptinqa",
 'movepage-page-exists'    => "$1 sutiyuq p'anqaqa kachkanñam, manam kikinmanta huknachanallachu.",
+'movepage-page-moved'     => "$1 sutiyuq p'anqaqa $2 sutiman astasqañam.",
 'movepage-page-unmoved'   => "Manam atinichu $1 sutiyuq p'anqata $2 sutiman astayta.",
 'movepage-max-pages'      => "$1 p'anqakuna astasqañam, kikinmanta manam aswan astasqa kanqachu.",
 '1movedto2'               => '«[[$1]]» «[[$2]]»-man astasqa',
@@ -1846,6 +1847,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'import-noarticle'           => "Manam hawamanta chaskina p'anqachu!",
 'import-nonewrevisions'      => 'Tukuy musuqchasqakunaqa ñawpaqtañam hawamanta chaskisqa.',
 'xml-error-string'           => "$1, $2 siq'ipi, $3 tunupi (byte $4): $5",
+'import-upload'              => 'XML willakunata churkuy',
 
 # Import log
 'importlogpage'                    => "Hawamanta chaskiy hallch'a",

@@ -126,6 +126,7 @@ $messages = array(
 'tog-watchlisthideminor'      => "Baqlaw diziminen kishi o'zgerislerdi jasır",
 'tog-ccmeonemails'            => "Basqa qollanıwshılarg'a jibergen xatlarımnın' ko'shirmesin mag'an da jiber",
 'tog-diffonly'                => "Bet mag'lıwmatın parqlardan to'mengi jerde ko'rsetpe",
+'tog-showhiddencats'          => "Jasırın kategoriyalardı ko'rset",
 
 'underline-always'  => "Ha'r dayım",
 'underline-never'   => 'Hesh qashan',
@@ -423,7 +424,7 @@ Akkauntın'ız jaratıldı. {{SITENAME}} sazlawların'ızdı o'zgertiwdi umıtpa
 'userlogout'                 => "Shıg'ıw",
 'notloggedin'                => 'Kirilmegen',
 'nologin'                    => "Akkauntın'ız joqpa? $1.",
-'nologinlink'                => 'Akkaunt jarat',
+'nologinlink'                => "Akkaunt jaratın'",
 'createaccount'              => 'Akkaunt jarat',
 'gotaccount'                 => "Akkauntın'ız barma? $1.",
 'gotaccountlink'             => 'Kir',
@@ -540,6 +541,8 @@ to'mende ko'rsetilgen:",
 'whitelistreadtext'         => "Betterdi oqıw ushın [[Special:Userlogin|kiriwin'iz]] kerek.",
 'whitelistacctitle'         => "Sizin' akkaunt jaratıwg'a ruxsatın'ız joq",
 'confirmedittitle'          => "O'zgertiw ushın e-mail tastıyıqlaması kerek",
+'confirmedittext'           => "Betlerge o'zgeris kiritiwin'iz ushın aldın E-pochta adresin'izdi tastıyıqlawın'ız kerek.
+E-pochta adresin'izdi [[{{#special:Preferences}}|paydalanıwshı sazlawları bo'limi]] arqalı ko'rsetin' ha'm jaramlılıg'ın tekserin'.",
 'nosuchsectiontitle'        => "Bunday bo'lim joq",
 'loginreqtitle'             => "Sistemag'a kiriw kerek",
 'loginreqlink'              => 'kiriw',
@@ -1436,6 +1439,21 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 'confirmemail'          => 'E-mail adresin tastıyıqlaw',
 'confirmemail_success'  => "Sizin' e-mail adresin'iz tastıyıqlandı, endi wikige kiriwin'iz mu'mkin.",
 'confirmemail_loggedin' => "Sizin' e-mail adresin'iz endi tastıyıqlandı.",
+'confirmemail_subject'  => '{{SITENAME}} e-pochta adresi tastıyıqaw xatı',
+'confirmemail_body'     => "Geybirew, ba'lkimiz o'zin'iz shıg'ar, $1 IP adresinen,
+{{SITENAME}} saytında bul E-pochta adresin qollanıp «$2» degen akkaunt jarattı.
+
+Usı akkaunt shın'ınan ha'm siziki ekenin tastıyıqlaw ushın ha'mde {{SITENAME}} saytının'
+e-pochta mu'mkinshiliklerin paydalanıw ushın, to'mendegi siltewdi brauzerin'izde ashın':
+
+$3
+
+Eger bul akkauntti jaratpag'an bolsan'ız, to'mendegi siltewge o'tip
+e-pochta adresin'izdin' tastıyıqlawın o'shirsen'iz boladı:
+
+$5
+
+Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 
 # Trackbacks
 'trackbackremove' => " ([$1 O'shir])",

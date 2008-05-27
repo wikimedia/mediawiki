@@ -646,7 +646,7 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 'yourpasswordagain'          => 'Napište heslo znovu',
 'remembermypassword'         => 'Trvalé přihlášení',
 'yourdomainname'             => 'Vaše doména',
-'externaldberror'            => 'Buď nastalo chyba v databázi pro externí autentikaci, nebo nemáte dovoleno měnit svůj externí účet.',
+'externaldberror'            => 'Buď nastala chyba externí autentizační databáze, nebo nemáte dovoleno měnit svůj externí účet.',
 'loginproblem'               => '<strong>Nastal problém při vašem přihlášení.</strong><br />
 Zkuste to znovu!',
 'login'                      => 'Přihlaste se',
@@ -687,7 +687,7 @@ Zkuste to znovu!',
 'nosuchusershort'            => 'Neexistuje uživatel se jménem „<nowiki>$1</nowiki>“. Zkontrolujte zápis.',
 'nouserspecified'            => 'Musíte zadat uživatelské jméno.',
 'wrongpassword'              => 'Vámi uvedené heslo nesouhlasí. Zkuste to znovu.',
-'wrongpasswordempty'         => 'Zadané heslo bylo prázdné. Zkuste to znovu.',
+'wrongpasswordempty'         => 'Bylo zadáno prázdné heslo. Zkuste to znovu.',
 'passwordtooshort'           => 'Vaše heslo je příliš krátké. Musí obsahovat nejméně $1 {{plural:$1|znak|znaky|znaků}} a nesmí být stejné jako uživatelské jméno.',
 'mailmypassword'             => 'Poslat e-mailem dočasné heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
@@ -2017,6 +2017,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-subpages'           => 'Přesunout i všechny podstránky, je-li to možné',
 'move-talk-subpages'      => 'Přesunout i všechny podstránky diskusní stránky, je-li to možné',
 'movepage-page-exists'    => 'Stránka $1 již existuje a nemůže být automaticky přepsána.',
+'movepage-page-moved'     => 'Stránka $1 byla přesunuta na $2.',
 'movepage-page-unmoved'   => 'Stránka $1 nemůže být přesunuta na $2.',
 'movepage-max-pages'      => 'Bylo přesunuto maximálně dovolených $1 stránek, více jich už automaticky přesunuto nebude.',
 '1movedto2'               => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
@@ -2096,6 +2097,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'import-noarticle'           => 'Není určena žádná stránka na import!',
 'import-nonewrevisions'      => 'Všechny verze již byly dříve importovány.',
 'xml-error-string'           => '$1 na řádku $2, sloupec $3 (bajt $4): $5',
+'import-upload'              => 'Importovat XML data',
 
 # Import log
 'importlogpage'                    => 'Kniha importů',

@@ -707,6 +707,11 @@ dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di d
 'previewconflict'                  => 'Disse Vörschau wiest den Inholt vun dat Textfeld baven; so warrt de Siet utseihn, wenn du nu spiekerst.',
 'session_fail_preview'             => '<strong>Deit uns leed! Wi kunnen dien Ännern nich spiekern. Diene Sitzungsdaten weren weg.
 Versöök dat noch wedder. Wenn dat noch jümmer nich geiht, denn versöch di af- un denn wedder antomellen.</strong>',
+'session_fail_preview_html'        => "<strong>Wi kunn dien Ännern nich spiekern, de Sitzungsdaten sünd verloren gahn.</strong>
+
+''In {{SITENAME}} is dat Spiekern vun rein HTML verlöövt, dorvun is de Vörschau utblennt, dat JavaScript-Angrepen nich mööglich sünd.''
+
+<strong>Versöök dat noch wedder un klick noch wedder op „Siet spiekern“. Wenn dat Problem noch jümmer dor is, mell di af un denn wedder an.</strong>",
 'editing'                          => 'Ännern vun $1',
 'editingsection'                   => 'Ännern vun $1 (Afsatz)',
 'editingcomment'                   => 'Ännern vun $1 (Kommentar)',
@@ -760,6 +765,9 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Uttog ut dat Lösch-Logbook:",
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => 'Wohrschau: Disse Sied bruukt to veel opwännige Parserfunkschonen.
+
+Nu sünd dor $1, wesen dröfft dat blot $2.',
 'expensive-parserfunction-category'       => 'Sieden, de toveel opwännige Parserfunkschonen bruukt',
 'post-expand-template-inclusion-category' => 'Sieden, de över de Maximumgrött för inbunnene Sieden rövergaht',
 'post-expand-template-argument-category'  => 'Sieden mit utlaten Vörlaagargmenten',
@@ -1292,6 +1300,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filedelete-success-old'      => '<span class="plainlinks">De Version vun de Datei \'\'\'„[[Media:$1|$1]]“\'\'\' vun $2, $3 is wegsmeten worrn.</span>',
 'filedelete-nofile'           => "'''$1''' gifft dat nich op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Gifft keen Version vun '''„$1“''' in’t Archiv mit disse Egenschoppen.",
+'filedelete-iscurrent'        => 'Du versöchst de aktuelle Version vun disse Datei wegtosmieten. Sett de Datei vörher eerst op en öllere Version trüch.',
 'filedelete-otherreason'      => 'Annern/tosätzlichen Grund:',
 'filedelete-reason-otherlist' => 'Annern Grund',
 'filedelete-reason-dropdown'  => '* Faken bruukte Grünn
@@ -1619,6 +1628,8 @@ De letzte Ännern is vun [[User:$3|$3]]
 'protect_expiry_old'          => 'Utlooptiet al vörbi.',
 'protect-unchain'             => 'Schuul vör dat Schuven ännern',
 'protect-text'                => "Hier kannst du den Schuulstatus för de Siet '''<nowiki>$1</nowiki>''' ankieken un ännern.",
+'protect-locked-blocked'      => 'Du kannst den Schuulstatus vun de Sied nich ännern, du büst sperrt. Hier sünd de aktuellen Schuulstatus-Instellungen för de Siet <strong>„$1“:</strong>',
+'protect-locked-dblock'       => 'De Datenbank is sperrt un de Schuulstatus vun de Sied kann nich ännert warrn. Dit sünd de aktuellen Schuul-Instellungen för de Sied <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Du hest nich de nödigen Rechten, den Schuulstatus vun de Siet to ännern. Dit sünd de aktuellen Instellungen för de Siet <strong>„$1“:</strong>',
 'protect-cascadeon'           => 'Disse Siet is aktuell dör ene Kaskadensparr schuult. Se is in de nakamen {{PLURAL:$1|Siet|Sieden}} inbunnen, de dör Kaskadensparr schuult {{PLURAL:$1|is|sünd}}. De Schuulstatus kann för disse Siet ännert warrn, dat hett aver keen Effekt op de Kaskadensparr:',
 'protect-default'             => '(normal)',
@@ -1862,6 +1873,8 @@ Bitte söök en annern Naam ut.',
 Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft. De Inholt mutt vun Hand anpasst warrn.',
 'movedto'                 => 'schaven na',
 'movetalk'                => 'De Diskuschoonssiet ok schuven, wenn mööglich.',
+'move-subpages'           => 'All Ünnersieden, wenn welk dor sünd, mit schuven',
+'move-talk-subpages'      => 'All Ünnersieden vun Diskuschoonssieden, wenn welk dor sünd, mit schuven',
 'movepage-page-moved'     => 'De Siet „$1“ is nu schaven na „$2“.',
 'movepage-page-unmoved'   => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
 'movepage-max-pages'      => 'De Maximaltall vun $1 Sieden is schaven. All de annern Sieden köönt nich automaatsch schaven warrn.',
@@ -2372,8 +2385,10 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'confirmemail'             => 'Nettbreefadress bestätigen',
 'confirmemail_noemail'     => 'Du hest kene bestätigte Nettbreefadress in diene [[Special:Preferences|Instellen]] angeven.',
 'confirmemail_text'        => '{{SITENAME}} verlangt, dat du diene Nettbreefadress bestätigst, ehrder du de Nettbreeffunkschonen bruken kannst. Klick op den Knopp wieder ünnen, dat die en Bestätigungskood schickt warrt.',
+'confirmemail_pending'     => '<div class="error">Di is al en Bestätigungs-Kood över E-Mail toschickt worrn. Wenn du dien Brukerkonto nu eerst nee opstellt hest, denn tööv doch noch en poor Minuten op de E-Mail, ehrdat du di en ne’en Kood toschicken lettst.</div>',
 'confirmemail_send'        => 'Bestätigungskood schicken.',
 'confirmemail_sent'        => 'Bestätigungsnettbreef afschickt.',
+'confirmemail_oncreate'    => 'Du hest en Bestätigungs-Kood an dien E-Mail-Adress kregen. Disse Kood is för dat Anmellen nich nödig. He warrt blot bruukt, dat du de E-Mail-Funkschonen in dat Wiki bruken kannst.',
 'confirmemail_sendfailed'  => 'Bestätigungsnettbreef kunn nich sennt warrn. Schasst man nakieken, wat de Adress ok nich verkehrt schreven is.
 
 Fehler bi’t Versennen: $1',
@@ -2470,22 +2485,23 @@ Versöök de normale Vörschau.',
 'lag-warn-high'   => 'De Datenbank is temlich dull utlast. Ännern, de jünger as $1 Sekunnen sünd, warrt in de List noch nich wiest.',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Du hest {{PLURAL:$1|ene Siet|$1 Sieden}} op diene Oppasslist, Diskuschoonssieden nich tellt.',
-'watchlistedit-noitems'       => 'Diene Oppasslist is leddig.',
-'watchlistedit-normal-title'  => 'Oppasslist ännern',
-'watchlistedit-normal-legend' => 'Sieden vun de Oppasslist rünnernehmen',
-'watchlistedit-normal-submit' => 'Sieden rutnehmen',
-'watchlistedit-normal-done'   => '{{PLURAL:$1|Ene Siet|$1 Sieden}} vun de Oppasslist rünnernahmen:',
-'watchlistedit-raw-title'     => 'Oppasslist as Textlist ännern',
-'watchlistedit-raw-legend'    => 'Oppasslist as Textlist ännern',
-'watchlistedit-raw-explain'   => 'Dit sünd de Sieden op diene Oppasslist as List. Du kannst Sieden rutnehmen oder tofögen. Een Reeg för een Sied.
+'watchlistedit-numitems'       => 'Du hest {{PLURAL:$1|ene Siet|$1 Sieden}} op diene Oppasslist, Diskuschoonssieden nich tellt.',
+'watchlistedit-noitems'        => 'Diene Oppasslist is leddig.',
+'watchlistedit-normal-title'   => 'Oppasslist ännern',
+'watchlistedit-normal-legend'  => 'Sieden vun de Oppasslist rünnernehmen',
+'watchlistedit-normal-explain' => 'Dit sünd all de Sieden op diene Oppasslist. Sieden ruttonehmen, krüüz de Kassens blangen de Sieden an un klick op „Sieden rutnehmen“. Du kannst diene Oppasslist ok in [[Special:Watchlist/raw|Listenform ännern]].',
+'watchlistedit-normal-submit'  => 'Sieden rutnehmen',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Ene Siet|$1 Sieden}} vun de Oppasslist rünnernahmen:',
+'watchlistedit-raw-title'      => 'Oppasslist as Textlist ännern',
+'watchlistedit-raw-legend'     => 'Oppasslist as Textlist ännern',
+'watchlistedit-raw-explain'    => 'Dit sünd de Sieden op diene Oppasslist as List. Du kannst Sieden rutnehmen oder tofögen. Een Reeg för een Sied.
 Wenn du trech büst, denn klick op Oppasslist spiekern“.
 Du kannst ok de [[Special:Watchlist/edit|normale Sied to’n Ännern]] bruken.',
-'watchlistedit-raw-titles'    => 'Sieden:',
-'watchlistedit-raw-submit'    => 'Oppasslist spiekern',
-'watchlistedit-raw-done'      => 'Diene Oppasslist is spiekert worrn.',
-'watchlistedit-raw-added'     => '{{PLURAL:$1|Ene Siet|$1 Sieden}} dorto:',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|Ene Siet|$1 Sieden}} rünnernahmen:',
+'watchlistedit-raw-titles'     => 'Sieden:',
+'watchlistedit-raw-submit'     => 'Oppasslist spiekern',
+'watchlistedit-raw-done'       => 'Diene Oppasslist is spiekert worrn.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Ene Siet|$1 Sieden}} dorto:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Ene Siet|$1 Sieden}} rünnernahmen:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Oppasslist ankieken',
