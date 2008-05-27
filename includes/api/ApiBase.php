@@ -620,6 +620,8 @@ abstract class ApiBase {
 		'protectedpage' => array('code' => 'protectedpage', 'info' => "You don't have permission to perform this move"),
 		'hookaborted' => array('code' => 'hookaborted', 'info' => "The modification you tried to make was aborted by an extension hook"),
 		'cantmove-titleprotected' => array('code' => 'protectedtitle', 'info' => "The destination article has been protected from creation"),
+		'imagenocrossnamespace' => array('code' => 'nonfilenamespace', 'info' => "Can't move a file to a non-file namespace"),
+		'imagetypemismatch' => array('code' => 'filetypemismatch', 'info' => "The new file extension doesn't match its type"),
 		// 'badarticleerror' => shouldn't happen
 		// 'badtitletext' => shouldn't happen
 		'ip_range_invalid' => array('code' => 'invalidrange', 'info' => "Invalid IP range"),
