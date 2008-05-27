@@ -1138,6 +1138,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'right-userrights'           => 'Benutzerrechte bearbeiten',
 'right-userrights-interwiki' => 'Benutzerrechte in anderen Wikis bearbeiten',
 'right-siteadmin'            => 'Datenbank sperren und entsperren',
+'right-writeapi'             => 'Benutzung der writeAPI',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
