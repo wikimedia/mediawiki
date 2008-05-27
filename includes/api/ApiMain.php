@@ -179,12 +179,19 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * This method will simply cause an error if the write mode was disabled for this api.
+	 * This method will simply cause an error if the write mode was disabled
+	 * or if the current user doesn't have the right to use it
 	 */
 	public function requestWriteMode() {
+		global $wgUser;
 		if (!$this->mEnableWrite)
-			$this->dieUsage('Editing of this site is disabled. Make sure the $wgEnableWriteAPI=true; ' .
-			'statement is included in the site\'s LocalSettings.php file', 'noapiwrite');
+			$this->dieUsage('Editing of this wiki through the API' .
+			' is disabled. Make sure the $wgEnableWriteAPI=true; ' .
+			'statement is included in the wiki\'s ' .
+			'LocalSettings.php file', 'noapiwrite');
+		if (!$wgUser->isAllowed('writeapi'))
+			$this->dieUsage('You\'re not allowed to edit this ' .
+			'wiki through the API', 'writeapidenied');
 	}
 
 	/**

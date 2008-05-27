@@ -1083,6 +1083,7 @@ $wgGroupPermissions['*'    ]['read']             = true;
 $wgGroupPermissions['*'    ]['edit']             = true;
 $wgGroupPermissions['*'    ]['createpage']       = true;
 $wgGroupPermissions['*'    ]['createtalk']       = true;
+$wgGroupPermissions['*'    ]['writeapi']         = true;
 
 // Implicit group for all logged-in accounts
 $wgGroupPermissions['user' ]['move']             = true;
@@ -1090,6 +1091,7 @@ $wgGroupPermissions['user' ]['read']             = true;
 $wgGroupPermissions['user' ]['edit']             = true;
 $wgGroupPermissions['user' ]['createpage']       = true;
 $wgGroupPermissions['user' ]['createtalk']       = true;
+$wgGroupPermissions['user' ]['writeapi']         = true;
 $wgGroupPermissions['user' ]['upload']           = true;
 $wgGroupPermissions['user' ]['reupload']         = true;
 $wgGroupPermissions['user' ]['reupload-shared']  = true;
@@ -1107,6 +1109,7 @@ $wgGroupPermissions['bot'  ]['nominornewtalk']   = true;
 $wgGroupPermissions['bot'  ]['autopatrol']       = true;
 $wgGroupPermissions['bot'  ]['suppressredirect'] = true;
 $wgGroupPermissions['bot'  ]['apihighlimits']    = true;
+$wgGroupPermissions['bot'  ]['writeapi']         = true;
 #$wgGroupPermissions['bot'  ]['editprotected']    = true; // can edit all protected pages without cascade protection enabled
 
 // Most extra permission abilities go to this group
