@@ -2393,26 +2393,29 @@ class Title {
 	 * @return mixed True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true ) {
+		$errors = array();	
 		if( !$this or !$nt ) {
+			// Normally we'd add this to $errors, but we'll get
+			// lots of syntax errors if $nt is not an object
 			return array(array('badtitletext'));
 		}
 		if( $this->equals( $nt ) ) {
-			return array(array('selfmove'));
+			$errors[] = array(array('selfmove'));
 		}
 		if( !$this->isMovable() || !$nt->isMovable() ) {
-			return array(array('immobile_namespace'));
+			$errors[] = array(array('immobile_namespace'));
 		}
 
 		$oldid = $this->getArticleID();
 		$newid = $nt->getArticleID();
 
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
-			return array(array('articleexists'));
+			$errors[] = array(array('articleexists'));
 		}
 		if ( ( '' == $this->getDBkey() ) ||
 			 ( !$oldid ) ||
 		     ( '' == $nt->getDBkey() ) ) {
-			return array(array('badarticleerror'));
+			$errors[] = array(array('badarticleerror'));
 		}
 
 		// Image-specific checks
@@ -2420,28 +2423,27 @@ class Title {
 			$file = wfLocalFile( $this );
 			if( $file->exists() ) {
 				if( $nt->getNamespace() != NS_IMAGE ) {
-					return array(array('imagenocrossnamespace'));
+					$errors[] = array(array('imagenocrossnamespace'));
 				}
 				if( !File::checkExtensionCompatibility( $file, $nt->getDbKey() ) ) {
-					return array(array('imagetypemismatch'));
+					$errors[] = array(array('imagetypemismatch'));
 				}
 			}
 		}
 
 		if ( $auth ) {
 			global $wgUser;
-			$errors = array_merge($this->getUserPermissionsErrors('move', $wgUser),
+			$errors = array_merge($errors, 
+					$this->getUserPermissionsErrors('move', $wgUser),
 					$this->getUserPermissionsErrors('edit', $wgUser),
 					$nt->getUserPermissionsErrors('move', $wgUser),
 					$nt->getUserPermissionsErrors('edit', $wgUser));
-			if($errors !== array())
-				return $errors;
 		}
 
 		global $wgUser;
 		$err = null;
 		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err ) ) ) {
-			return array(array('hookaborted', $err));
+			$errors[] = array(array('hookaborted', $err));
 		}
 
 		# The move is allowed only if (1) the target doesn't exist, or
@@ -2450,16 +2452,18 @@ class Title {
 
 		if ( 0 != $newid ) { # Target exists; check for validity
 			if ( ! $this->isValidMoveTarget( $nt ) ) {
-				return array(array('articleexists'));
+				$errors[] = array(array('articleexists'));
 			}
 		} else {
 			$tp = $nt->getTitleProtection();
 			$right = ( $tp['pt_create_perm'] == 'sysop' ) ? 'protect' : $tp['pt_create_perm'];
 			if ( $tp and !$wgUser->isAllowed( $right ) ) {
-				return array(array('cantmove-titleprotected'));
+				$errors[] = array(array('cantmove-titleprotected'));
 			}
 		}
-		return true;
+		if(empty($errors))
+			return true;
+		return $errors;
 	}
 
 	/**
@@ -2486,6 +2490,8 @@ class Title {
 			$err = $this->moveToNewTitle( $nt, $reason, $createRedirect );
 			$pageCountChange = ($createRedirect ? 1 : 0);
 		}
+		# FIXME: moveToNewTitle() and moveOverExistingRedirect() return
+		#        wikitext if a file move goes bad
 		if( is_string( $err ) ) {
 			return $err;
 		}
