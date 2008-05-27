@@ -1,5 +1,7 @@
 <?php
 /**
+ * @todo Use some variant of Pager or something; the pagination here is lousy.
+ *
  * @file
  * @ingroup SpecialPage
  */
@@ -44,12 +46,16 @@ class WhatLinksHerePage {
 
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
+		$opts->add( 'limit', 50 );
+		$opts->add( 'from', 0 );
+		$opts->add( 'back', 0 );
 		$opts->add( 'hideredirs', false );
 		$opts->add( 'hidetrans', false );
 		$opts->add( 'hidelinks', false );
 		$opts->add( 'hideimages', false );
 
 		$opts->fetchValuesFromRequest( $this->request );
+		$opts->validateIntBounds( 'limit', 0, 5000 );
 
 		// Give precedence to subpage syntax
 		if ( isset($this->par) ) {
@@ -70,22 +76,22 @@ class WhatLinksHerePage {
 		$wgOut->setPageTitle( wfMsgExt( 'whatlinkshere-title', 'escape', $this->target->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsgHtml( 'linklistsub' ) );
 
-		$wgOut->addHTML( wfMsgExt( 'whatlinkshere-barrow', array( 'escapenoentities') ) . ' ' .
-			$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
+		$wgOut->addHTML( wfMsgExt( 'whatlinkshere-barrow', array( 'escapenoentities') ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
 
-		$this->showIndirectLinks( 0, $this->target );
+		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
+			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );
 	}
 
 	/**
 	 * @param int       $level      Recursion level
 	 * @param Title     $target     Target title
-	 * @param int       $limit      Result limit (used for redirects)
-	 * For the top level, this outputs the link list to $wgOut.
-	 * For sublevels, it returns the string of the HTML.
-	 * @returns mixed (true/string)
+	 * @param int       $limit      Number of entries to display
+	 * @param Title     $from       Display from this article ID
+	 * @param Title     $back       Display from this article ID at backwards scrolling
+	 * @private
 	 */
-	function showIndirectLinks( $level, $target, $limit=false ) {
-		global $wgOut;
+	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
+		global $wgOut, $wgMaxRedirectLinksRetrieved;
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = array();
 
@@ -95,13 +101,72 @@ class WhatLinksHerePage {
 		$hideimages = $target->getNamespace() != NS_IMAGE || $this->opts->getValue( 'hideimages' );
 
 		$fetchlinks = (!$hidelinks || !$hideredirs);
-		
-		$namespace = $this->opts->getValue( 'namespace' );
-		
-		$pager = new WhatLinksHerePager( $this, $target, $level, $limit, $namespace, 
-			$hidelinks, $hideredirs, $hidetrans, $hideimages );
 
-		if( !$pager->getNumRows() ) {
+		// Make the query
+		$plConds = array(
+			'page_id=pl_from',
+			'pl_namespace' => $target->getNamespace(),
+			'pl_title' => $target->getDBkey(),
+		);
+		if( $hideredirs ) {
+			$plConds['page_is_redirect'] = 0;
+		} elseif( $hidelinks ) {
+			$plConds['page_is_redirect'] = 1;
+		}
+
+		$tlConds = array(
+			'page_id=tl_from',
+			'tl_namespace' => $target->getNamespace(),
+			'tl_title' => $target->getDBkey(),
+		);
+
+		$ilConds = array(
+			'page_id=il_from',
+			'il_to' => $target->getDBkey(),
+		);
+
+		$namespace = $this->opts->getValue( 'namespace' );
+		if ( is_int($namespace) ) {
+			$plConds['page_namespace'] = $namespace;
+			$tlConds['page_namespace'] = $namespace;
+			$ilConds['page_namespace'] = $namespace;
+		}
+
+		if ( $from ) {
+			$tlConds[] = "tl_from >= $from";
+			$plConds[] = "pl_from >= $from";
+			$ilConds[] = "il_from >= $from";
+		}
+
+		// Read an extra row as an at-end check
+		$queryLimit = $limit + 1;
+
+		// Enforce join order, sometimes namespace selector may
+		// trigger filesorts which are far less efficient than scanning many entries
+		$options[] = 'STRAIGHT_JOIN';
+
+		$options['LIMIT'] = $queryLimit;
+		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
+
+		if( $fetchlinks ) {
+			$options['ORDER BY'] = 'pl_from';
+			$plRes = $dbr->select( array( 'pagelinks', 'page' ), $fields,
+				$plConds, __METHOD__, $options );
+		}
+
+		if( !$hidetrans ) {
+			$options['ORDER BY'] = 'tl_from';
+			$tlRes = $dbr->select( array( 'templatelinks', 'page' ), $fields,
+				$tlConds, __METHOD__, $options );
+		}
+
+		if( !$hideimages ) {
+			$options['ORDER BY'] = 'il_from';
+			$ilRes = $dbr->select( array( 'imagelinks', 'page' ), $fields,
+				$ilConds, __METHOD__, $options );
+		}
+
+		if( ( !$fetchlinks || !$dbr->numRows($plRes) ) && ( $hidetrans || !$dbr->numRows($tlRes) ) && ( $hideimages || !$dbr->numRows($ilRes) ) ) {
 			if ( 0 == $level ) {
 				$wgOut->addHTML( $this->whatlinkshereForm() );
 				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
@@ -112,31 +177,89 @@ class WhatLinksHerePage {
 			}
 			return;
 		}
-		
-		// If this is a sub-level, return out a string
-		if( $level > 0 ) {
-			return $pager->getBody();
+
+		// Read the rows into an array and remove duplicates
+		// templatelinks comes second so that the templatelinks row overwrites the
+		// pagelinks row, so we get (inclusion) rather than nothing
+		if( $fetchlinks ) {
+			while ( $row = $dbr->fetchObject( $plRes ) ) {
+				$row->is_template = 0;
+				$row->is_image = 0;
+				$rows[$row->page_id] = $row;
+			}
+			$dbr->freeResult( $plRes );
+
+		}
+		if( !$hidetrans ) {
+			while ( $row = $dbr->fetchObject( $tlRes ) ) {
+				$row->is_template = 1;
+				$row->is_image = 0;
+				$rows[$row->page_id] = $row;
+			}
+			$dbr->freeResult( $tlRes );
+		}
+		if( !$hideimages ) {
+			while ( $row = $dbr->fetchObject( $ilRes ) ) {
+				$row->is_template = 0;
+				$row->is_image = 1;
+				$rows[$row->page_id] = $row;
+			}
+			$dbr->freeResult( $ilRes );
 		}
 
-		if( $level == 0 ) {
+		// Sort by key and then change the keys to 0-based indices
+		ksort( $rows );
+		$rows = array_values( $rows );
+
+		$numRows = count( $rows );
+
+		// Work out the start and end IDs, for prev/next links
+		if ( $numRows > $limit ) {
+			// More rows available after these ones
+			// Get the ID from the last row in the result set
+			$nextId = $rows[$limit]->page_id;
+			// Remove undisplayed rows
+			$rows = array_slice( $rows, 0, $limit );
+		} else {
+			// No more rows after
+			$nextId = false;
+		}
+		$prevId = $from;
+
+		if ( $level == 0 ) {
 			$wgOut->addHTML( $this->whatlinkshereForm() );
 			$wgOut->addHTML( $this->getFilterPanel() );
 			$wgOut->addWikiMsg( 'linkshere', $this->target->getPrefixedText() );
-			$wgOut->addHTML( '<hr/>' );
-			// Add nav links only to top list
-			$wgOut->addHTML( $pager->getNavigationBar() );
+
+			$prevnext = $this->getPrevNext( $prevId, $nextId );
+			$wgOut->addHTML( $prevnext );
 		}
-		
-		$wgOut->addHTML( $pager->getBody() );
-		
-		if ( $level == 0 ) {
-			// Add nav links only to top list
-			$wgOut->addHTML( $pager->getNavigationBar() );
+
+		$wgOut->addHTML( $this->listStart() );
+		foreach ( $rows as $row ) {
+			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
+
+			if ( $row->page_is_redirect && $level < 2 ) {
+				$wgOut->addHTML( $this->listItem( $row, $nt, true ) );
+				$this->showIndirectLinks( $level + 1, $nt, $wgMaxRedirectLinksRetrieved );
+				$wgOut->addHTML( Xml::closeElement( 'li' ) );
+			} else {
+				$wgOut->addHTML( $this->listItem( $row, $nt ) );
+			}
 		}
-		return true;
+
+		$wgOut->addHTML( $this->listEnd() );
+
+		if( $level == 0 ) {
+			$wgOut->addHTML( $prevnext );
+		}
 	}
 
-	public function listItem( $row, $nt, $notClose = false ) {
+	protected function listStart() {
+		return Xml::openElement( 'ul' );
+	}
+
+	protected function listItem( $row, $nt, $notClose = false ) {
 		# local message cache
 		static $msgcache = null;
 		if ( $msgcache === null ) {
@@ -156,9 +279,9 @@ class WhatLinksHerePage {
 		$props = array();
 		if ( $row->page_is_redirect )
 			$props[] = $msgcache['isredirect'];
-		if ( $row->template )
+		if ( $row->is_template )
 			$props[] = $msgcache['istemplate'];
-		if ( $row->image )
+		if( $row->is_image )
 			$props[] = $msgcache['isimage'];
 
 		if ( count( $props ) ) {
@@ -174,6 +297,10 @@ class WhatLinksHerePage {
 			Xml::tags( 'li', null, "$link $propsText $wlh" ) . "\n";
 	}
 
+	protected function listEnd() {
+		return Xml::closeElement( 'ul' );
+	}
+
 	protected function wlhLink( Title $target, $text ) {
 		static $title = null;
 		if ( $title === null )
@@ -187,11 +314,44 @@ class WhatLinksHerePage {
 		return $this->skin->makeKnownLinkObj( $this->selfTitle, $text, $query );
 	}
 
+	function getPrevNext( $prevId, $nextId ) {
+		global $wgLang;
+		$currentLimit = $this->opts->getValue( 'limit' );
+		$fmtLimit = $wgLang->formatNum( $currentLimit );
+		$prev = wfMsgExt( 'whatlinkshere-prev', array( 'parsemag', 'escape' ), $fmtLimit );
+		$next = wfMsgExt( 'whatlinkshere-next', array( 'parsemag', 'escape' ), $fmtLimit );
+
+		$changed = $this->opts->getChangedValues();
+		unset($changed['target']); // Already in the request title
+
+		if ( 0 != $prevId ) {
+			$overrides = array( 'from' => $this->opts->getValue( 'back' ) );
+			$prev = $this->makeSelfLink( $prev, wfArrayToCGI( $overrides, $changed ) );
+		}
+		if ( 0 != $nextId ) {
+			$overrides = array( 'from' => $nextId, 'back' => $prevId );
+			$next = $this->makeSelfLink( $next, wfArrayToCGI( $overrides, $changed ) );
+		}
+
+		$limitLinks = array();
+		foreach ( $this->limits as $limit ) {
+			$prettyLimit = $wgLang->formatNum( $limit );
+			$overrides = array( 'limit' => $limit );
+			$limitLinks[] = $this->makeSelfLink( $prettyLimit, wfArrayToCGI( $overrides, $changed ) );
+		}
+
+		$nums = implode ( ' | ', $limitLinks );
+
+		return wfMsgHtml( 'viewprevnext', $prev, $next, $nums );
+	}
+
 	function whatlinkshereForm() {
 		global $wgScript, $wgTitle;
 
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
+		// Reset these for new requests
+		$this->opts->consumeValues( array( 'back', 'from' ) );
 
 		$target = $this->target ? $this->target->getPrefixedText() : '';
 		$namespace = $this->opts->consumeValue( 'namespace' );
@@ -244,199 +404,5 @@ class WhatLinksHerePage {
 			$links[] = $this->makeSelfLink( $msg, wfArrayToCGI( $overrides, $changed ) );
 		}
 		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), implode( '&nbsp;|&nbsp;', $links ) );
-	}
-}
-
-/**
- * Pager for Special:WhatLinksHere
- * @ingroup SpecialPage Pager
- */
-class WhatLinksHerePager extends AlphabeticPager {
-	protected $form, $target, $level, $limit, $namespace, $hidelinks, $hideredirs, $hidetrans, $hideimages;
-	
-	function __construct( $form, $target, $level, $limit, $namespace, $hidelinks, $hideredirs, $hidetrans, $hideimages ) {
-		parent::__construct();
-		$this->mForm = $form;
-
-		$this->target = $target;
-		$this->namespace = $namespace;
-		$this->hidelinks = (bool)$hidelinks;
-		$this->hideredirs = (bool)$hideredirs;
-		$this->hidetrans = (bool)$hidetrans;
-		$this->hideimages = (bool)$hideimages;
-		
-		$this->upperLimit = $limit; // limit cannot pass this
-		$this->level = intval($level); // recursion depth
-	}
-	
-	function getDefaultQuery() {
-		$query = parent::getDefaultQuery();
-		$query['target'] = $this->target->getPrefixedDBKey();
-		return $query;
-	}
-	
-	function getQueryInfo() {
-		$queryInfo = array();
-		$options = array();
-
-		$fields = array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' );
-
-		$plConds = array(
-			'page_id=pl_from',
-			'pl_namespace' => $this->target->getNamespace(),
-			'pl_title' => $this->target->getDBkey(),
-		);
-		if( $this->hideredirs ) {
-			$plConds['page_is_redirect'] = 0;
-		} else if( $this->hidelinks ) {
-			$plConds['page_is_redirect'] = 1;
-		}
-
-		$tlConds = array(
-			'page_id=tl_from',
-			'tl_namespace' => $this->target->getNamespace(),
-			'tl_title' => $this->target->getDBkey(),
-		);
-
-		$ilConds = array(
-			'page_id=il_from',
-			'il_to' => $this->target->getDBkey(),
-		);
-
-		if( is_int($this->namespace) ) {
-			$plConds['page_namespace'] = $this->namespace;
-			$tlConds['page_namespace'] = $this->namespace;
-			$ilConds['page_namespace'] = $this->namespace;
-		}
-
-		$plOptions['ORDER BY'] = 'pl_from';
-		$tlOptions['ORDER BY'] = 'tl_from';
-		$ilOptions['ORDER BY'] = 'il_from';
-		
-		// Enforce join order, sometimes namespace selector may
-        // trigger filesorts which are far less efficient than scanning many entries
-		$plOptions['USE INDEX'] = array('pagelinks' => 'pl_namespace');
-		$tlOptions['USE INDEX'] = array('templatelinks' => 'tl_namespace');
-		$ilOptions['USE INDEX'] = array('imagelinks' => 'il_to');
-
-		$fetchlinks = (!$this->hidelinks || !$this->hideredirs);
-		if( $fetchlinks ) {
-			$plQueryInfo = array(
-				'tables'  => array( 'pagelinks', 'page' ),
-				'fields'  => array_merge($fields,array('0 AS is_template','0 AS is_image')),
-				'conds'   => $plConds,
-				'options' => array_merge($options,$plOptions)
-			);
-			$queryInfo[] = $plQueryInfo;
-		}
-
-		if( !$this->hidetrans ) {
-			$tlQueryInfo = array(
-				'tables'  => array( 'templatelinks', 'page' ),
-				'fields'  => array_merge($fields,array('1 AS is_template','0 AS is_image')),
-				'conds'   => $tlConds,
-				'options' => array_merge($options,$tlOptions)
-			);
-			$queryInfo[] = $tlQueryInfo;
-		}
-		
-		if( !$this->hideimages ) {
-			$ilQueryInfo = array(
-				'tables'  => array( 'imagelinks', 'page' ),
-				'fields'  => array_merge($fields,array('0 AS is_template','1 AS is_image')),
-				'conds'   => $ilConds,
-				'options' => array_merge($options,$ilOptions)
-			);
-			$queryInfo[] = $ilQueryInfo;
-		}
-		return $queryInfo;
-	}
-	
-	/**
-	 * Do a query with specified parameters
-	 *
-	 * @param string $offset Index offset, inclusive
-	 * @param integer $limit Exact query limit
-	 * @param boolean $descending Query direction, false for ascending, true for descending
-	 * @return ResultWrapper
-	 */
-	function reallyDoQuery( $offset, $limit, $descending ) {
-		$fname = __METHOD__ . ' (' . get_class( $this ) . ')';
-		$queryInfo = $this->getQueryInfo();
-		# Make sure a valid wrapper is always returned!
-		if( empty($queryInfo) ) {
-			return new ResultWrapper( $this->mDb, false );
-		}
-		$SQLqueries = array();
-		// Redirect subqueries have an upper limit for perfomance.
-		// If one is given, override the requested limit with this if smaller.
-		$limit = $this->upperLimit ? min( $limit, $this->upperLimit ) : $limit;
-		// Some code here lifted from Pager.php
-		foreach( $queryInfo as $info ) {
-			$tables = $info['tables'];
-			$fields = $info['fields'];
-			$conds = isset( $info['conds'] ) ? $info['conds'] : array();
-			$options = isset( $info['options'] ) ? $info['options'] : array();
-			$join_conds = isset( $info['join_conds'] ) ? $info['join_conds'] : array();
-			$pagefield = $options['ORDER BY'];
-			if ( $descending ) {
-				$operator = '>';
-			} else {
-				$options['ORDER BY'] .= ' DESC';
-				$operator = '<';
-			}
-			if ( $offset != '' ) {
-				$conds[] = $pagefield . $operator . $this->mDb->addQuotes( $offset );
-			}
-			$options['LIMIT'] = intval( $limit );
-			$SQLqueries[] = '('.$this->mDb->selectSQLText( $tables, $fields, $conds, $fname, $options, $join_conds ).')';
-		}
-		// Construct the final query. UNION the mini-queries and merge the results.
-		$fields = 'page_id,page_namespace,page_title,page_is_redirect,MAX(is_template) AS template,MAX(is_image) AS image';
-		$SQL = "SELECT $fields FROM (" . implode(' UNION ',$SQLqueries) . ") AS result_links";
-		// Remove duplicates within the result set.
-		$SQL .= ' GROUP BY page_id';
-		// Use proper order of result set
-		$SQL .= " ORDER BY {$this->mIndexField}";
-		$SQL .= $descending ? '' : ' DESC';
-		// Cut off at the specified limit
-		$SQL .= ' LIMIT ' . intval( $limit );
-		# Run the query!
-		$res = $this->mDb->query( $SQL, __METHOD__ );
-		return new ResultWrapper( $this->mDb, $res );
-	}
-
-	function getIndexField() {
-		return 'page_id';
-	}
-
-	function getStartBody() {
-		wfProfileIn( __METHOD__ );
-		# Do a link batch query
-		$lb = new LinkBatch;
-		while( $row = $this->mResult->fetchObject() ) {
-			$lb->add( $row->page_namespace, $row->page_title );
-		}
-		$lb->execute();
-		wfProfileOut( __METHOD__ );
-		return "<ul>\n";
-	}
-
-	function getEndBody() {
-		return "</ul>\n";
-	}
-	
-	function formatRow( $row ) {
-		global $wgMaxRedirectLinksRetrieved;
-		$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
-		# For redirects, recursively list out the links there...unless
-		# we hit the maxixum recurision depth.
-		if( $row->page_is_redirect && $this->level < 2 ) {
-			return $this->mForm->listItem( $row, $nt, true ) .
-				$this->mForm->showIndirectLinks( $this->level + 1, $nt, $wgMaxRedirectLinksRetrieved ) .
-				Xml::closeElement( 'li' );
-		} else {
-			return $this->mForm->listItem( $row, $nt );
-		}
 	}
 }
