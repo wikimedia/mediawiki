@@ -14,7 +14,7 @@
 	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility. See gsw.
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'Aragonés',	# Aragonese
-	'ang' => 'Anglo Saxon',	# Old English
+	'ang' => 'Anglo-Saxon',	# Old English
 	'ar' => 'العربية',	# Arabic
 	'arc' => 'ܐܪܡܝܐ',	# Aramaic
 	'arn' => 'Mapudungun',	# Mapuche, Mapudungu, Araucanian (Araucano)
