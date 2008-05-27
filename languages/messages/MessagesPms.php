@@ -2274,6 +2274,10 @@ st'adrëssa-sì andrinta a sò programa ëd navigassion (browser)
 \$3
 
 Se a fussa *nen* stait chiel a deurbe ël cont, anlora che a fasa gnente.
+Follow this link to cancel the e-mail address confirmation:
+
+\$5
+
 Cost còdes ëd conferma a l'é bon fin-a al \$4.",
 
 # Scary transclusion

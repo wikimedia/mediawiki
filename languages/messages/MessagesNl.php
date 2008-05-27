@@ -807,7 +807,7 @@ Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]]
 'nosuchsectiontitle'               => 'Deze subkop bestaat niet',
 'nosuchsectiontext'                => 'U probeerde een subkop te bewerken dat niet bestaat. Omdat subkop $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
 'loginreqtitle'                    => 'Aanmelden verplicht',
-'loginreqlink'                     => 'aanmelden',
+'loginreqlink'                     => 'Aanmelden',
 'loginreqpagetext'                 => "$1 is verplicht om andere pagina's te kunnen zien.",
 'accmailtitle'                     => 'Wachtwoord verzonden.',
 'accmailtext'                      => 'Het wachtwoord voor "$1" is verzonden naar $2.',

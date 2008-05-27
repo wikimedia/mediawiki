@@ -20,6 +20,7 @@
  * @author Jon Harald Søby
  * @author Spacebirdy
  * @author Paucabot
+ * @author Jordi Roqué
  */
 
 $skinNames = array(
@@ -1941,6 +1942,7 @@ Incorporeu-les manualment, si us plau.",
 'move-subpages'           => "Mou totes les pàgines (si s'escau)",
 'move-talk-subpages'      => "Mou totes les subpàgines de la discussió (si s'escau)",
 'movepage-page-exists'    => "La pàgina $1 ja existeix i no pot sobreescriure's automàticament.",
+'movepage-page-moved'     => 'La pàgina $1 ha estat traslladada a $2.',
 'movepage-page-unmoved'   => "La pàgina $1 no s'ha pogut moure a $2.",
 'movepage-max-pages'      => "S'ha mogut el nombre màxim de $1 pàgines i no es mourà cap més automàticament.",
 '1movedto2'               => "[[$1]] s'ha reanomenat com [[$2]]",

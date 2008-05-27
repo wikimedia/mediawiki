@@ -488,89 +488,89 @@ Coby powstřimać nadužyća možliwość wysyuańa připůmńeń naštalowano n
 'preview'                   => 'Podglůnd',
 'showpreview'               => 'Pokož podglůnd',
 'showlivepreview'           => 'Dynamičny podglůnd',
-'showdiff'                  => 'Pokož dyferéncyje',
-'anoneditwarning'           => 'Nie jest žeś zalogowany. W historie sprowjyń tyi zajty bydzie naškréflany Twůj adres IP.',
-'missingsummary'            => "'''Připomńyńe:''' Ńy wprowadźiužeś uopisu pomjyńań. Jak go nie chceš wprowadzać, naciś knefel Škryflej ješče roz.",
-'missingcommenttext'        => 'Wćepej kůmyntoř půnižyi.',
-'missingcommentheader'      => "'''Dej pozůr:''' Treść naguůwka jest pusto - uzupeuńyj go! Jeśli tego ńy zrobiš, Twůj kůmyntoř bydzie naškryflany bez naguůwka.",
+'showdiff'                  => 'Pokož zmjony',
+'anoneditwarning'           => 'Ńy ježeś zalogowany. We historji sprowjyń tyi zajty bydźe naškryflony Twůj adres IP.',
+'missingsummary'            => "'''Připomńyńy:''' Ńy wprowadźiužeś uopisu pomjyńań. Kej go ńy chceš wprowadzać, naćiś knefel Škryflej ješče roz.",
+'missingcommenttext'        => 'Wćepej kůmyntoř půńižyj.',
+'missingcommentheader'      => "'''Dej pozůr:''' Treść naguůwka je pusto - uzupeuńij go! Jeli tego ńy zrobiš, Twůj kůmyntoř bydźe naškryflany bez naguůwka.",
 'summary-preview'           => 'Podglůnd uopisu',
 'subject-preview'           => 'Podglůnd tematu/naguůwka',
-'blockedtitle'              => 'Užytkownik jest zawarty uod sprowjyń',
+'blockedtitle'              => 'Užytkowńik je zawarty uod sprowjyń',
 'blockedtext'               => '<big>\'\'\'Twoje kůnto abo adres IP sům zawarte.\'\'\'</big>
 
-Uo zawarću zdecydowou $1. Pado, aže s kuli: \'\'$2\'\'.
+Uo zawarću zdecydowou $1. Pado, aže skuli: \'\'$2\'\'.
 
 * Zawarte uod: $8
 * Uodymkńe śe: $6
 * Bez cůž: $7
 Coby wyjaśńić sprawa zawarćo, naškryflej do $1 abo inkšygo [[{{MediaWiki:Grouppage-sysop}}|admińistratora]].
 Ńy možeš posuać e-brifa bez "poślij e-brifa tymu užytkowńikowi", jak žeś ńy podou dobrygo adresa e-brifa we prefyryncyjach , abo jak e-brify moš tyž zawarte. Terozki moš adres IP $3 a nůmer zawarća to #$5. Prošymy podać jedyn abo uobadwa jak chceš pouosprawjać uo zawarću.',
-'autoblockedtext'           => 'Tyn adres IP zostou zawarty automatyčńe, gdyž kořysto ś ńygo inkšy užytkowńik, zawarty uod sprowjyń bez administratora $1.
+'autoblockedtext'           => 'Tyn adres IP zostou zawarty automatyčńy, gdyž kořisto s ńygo inkšy užytkowńik, zawarty uod sprowjyń bez administratora $1.
 Powůd zawarćo:
 
 :\'\'$2\'\'
 
 Zawarće uod $8 wygaso $6
 
-Možyš skůntaktować sie z $1 abo jednym z pozostauych [[{{MediaWiki:Grouppage-sysop}}|administratorůw]] jakbyś chiou uzyskać informacyje uo zawarću.
+Možyš skůntaktować śe s $1 abo jednym s pozostauych [[{{MediaWiki:Grouppage-sysop}}|admińistratorůw]] kejbyś chćou uzyskać informacyje uo zawarću.
 
-Uwaga: Jakžeś w [[Special:Preferences|preferencjach]] ńy naštalowou prowiduowygo adresa e-brifa, abo e-brify moš tyž zawarte, ńy možeš skožystać z opcje "Poślij e-brifa tymu užytkownikowi".
+Pozůr: Kejžeś we [[Special:Preferences|preferencyjach]] ńy naštalowou prowiduowygo adresa e-brifa, abo e-brify moš tyž zawarte, ńy možeš skožystać s opcyji "Poślij e-brifa tymu užytkowńikowi".
 
-Identyfikator Twojiy blokady to $5. Zanotuj sie go i podej administratorowi.',
-'blockednoreason'           => 'ńy podano s kuli čego',
+Identyfikator Twojij blokady to $5. Zanotuj śe go i podej admińistratorowi.',
+'blockednoreason'           => 'ńy podano skuli čego',
 'blockedoriginalsource'     => "Zdřůduo '''$1''' zostouo pokozane půnižyj:",
-'blockededitsource'         => "Tekst '''Twojiych sprowjyń''' na '''$1''' zostou pokozany půnižyj:",
-'whitelistedittitle'        => 'Ńym začńeš sprowiać ta zajta, muśiš być zalůgowany.',
+'blockededitsource'         => "Tekst '''Twojich sprowjyń''' na '''$1''' zostou pokozany půnižyj:",
+'whitelistedittitle'        => 'Začym začńyš sprowjać ta zajta, muśiš być zalůgowany.',
 'whitelistedittext'         => 'Muśiš $1 coby můc sprowjać artikle.',
-'whitelistreadtitle'        => 'Před přečytańym muśiš sie zalůgować',
-'whitelistreadtext'         => 'Muśiš sie [[Special:Userlogin|zalůgować]], coby čytać zajty.',
-'whitelistacctitle'         => 'Ńy wolno Ci zakuodać kůnta',
-'whitelistacctext'          => 'Zakuodanie kůnt na {{GRAMMAR:MS.lp|{{SITENAME}}}} wymogo [[Special:Userlogin|zalůgowańo]] oraz pośadańo uodpowjednich uprowńyń.',
-'confirmedittitle'          => 'Wymogane potwiyrdzynie e-brifa cobyś můg sam sprowjać',
-'confirmedittext'           => 'Muśiš podać i potwjerdźić swůj e-brif coby můc sam sprowjać.
-Možeš to zrobić w [[Special:Preferences|swojych štalowańach]].',
-'nosuchsectiontitle'        => 'Ńy ma takiy tajli',
+'whitelistreadtitle'        => 'Před přečytańym muśiš śe zalůgować',
+'whitelistreadtext'         => 'Muśiš śe [[Special:Userlogin|zalůgować]], coby čytać zajty.',
+'whitelistacctitle'         => 'Ńy wolno Ći zakuodać kůnta',
+'whitelistacctext'          => 'Zakuodańy kůnt na {{GRAMMAR:MS.lp|{{SITENAME}}}} wymogo [[Special:Userlogin|zalůgowańo]] oraz pośadańo uodpowjedńich uprowńyń.',
+'confirmedittitle'          => 'Wymogane potwjyrdzyńy e-brifa, cobyś můg sam sprowjać',
+'confirmedittext'           => 'Muśiš podać a potwjerdźić swůj e-brif, coby můc sam sprowjać.
+Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
+'nosuchsectiontitle'        => 'Ńy mo takij tajli',
 'nosuchsectiontext'         => 'Průbowoužeś sprowjać tajla kero ńy istńeje. Jak sam ńy ma tajli $1, ńy ma tyž kaj naškryflać twojego sprowjyńo.',
-'loginreqtitle'             => 'Muśiš sie zalůgować',
-'loginreqlink'              => 'zalůguj sie',
+'loginreqtitle'             => 'Muśiš śe zalůgować',
+'loginreqlink'              => 'zalůguj śe',
 'loginreqpagetext'          => 'Muśiš $1 coby můc přeglůndać inkše zajty.',
 'accmailtitle'              => 'Hasuo wysuane.',
 'accmailtext'               => 'Hasuo užytkowńika "$1" zostauo wysuane pod adres $2.',
 'newarticle'                => '(Nowy)',
-'newarticletext'            => 'Ńy ma sam ješče artikla uo tym tytule. W polu ńižej možeš naškryflać jygo pjeršy fragmynt. Jak chćoužeś zrobić co inkše, naćiś ino knefel "Nazod".',
-'anontalkpagetext'          => "---- ''To jest zajta godki dla užytkownikůw anůnimowych - takich, keři ńy majům ješče swojygo kůnta abo ńy chcům go terozki užywać. By ich identyfikować užywomy numerůw IP. Jeśli žeś jest anůnimowym užytkowńikiem i wydowo Ci sie, že zamjyščůne sam kůmentoře ńy sům skiyrowane do Ćebie, [[{{ns:special}}:Userlogin|utwůř proša kůnto abo zalůguj sie]] - bez tůž uńikńeš potym podobnych ńyporozumień.''",
-'noarticletext'             => 'Ńy ma ješče zajty uo tym tytule. Možeš [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{FULLPAGENAME}}|šnupać za {{FULLPAGENAME}} w inkšych artiklach]].',
-'userpage-userdoesnotexist' => 'Užytkowńik "$1" ńy jest zareještrowany. Sprowdź čy na pewno chcioužeś stwořyć/pomjynić genau ta zajta.',
-'clearyourcache'            => "'''Dej pozůr:''' Coby uobejřeć pomjyńańo po naškryflańu nowych štalowań poleć přeglůndarce wyčyścić zawartość pamiyńći podrynčnyi (cache). '''Mozilla / Firefox / Safari:''' přitřimej ''Shift'' klikajůnc na ''Uodświyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' přitřimej ''Ctrl'' klikajůnc na ''Uodświyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodświyž'' abo wciś ''F5''; užytkowńicy '''Opery''' mogům być zmušeńi coby coukiym wyčyśćić jeich pamjyńć podrynčno we menu ''Werkcojgi→Preferencyje''.",
-'usercssjsyoucanpreview'    => '<strong>Podpowiydź:</strong> Užyj knefla "Podglůnd", coby přetestować Twůj nowy arkuš stylůw CSS abo kod JavaScript před jego zašrajbowańym.',
-'usercsspreview'            => "'''Pamjyntej, že to na raźe ino podglůnd Twojego arkuša stylůw - nic ješče ńy zostouo naškreflane!'''",
-'userjspreview'             => "'''Pamjyntej, že to na raźe ino podglůnd Twojego JavaScriptu - nic ješče ńy zostouo naškreflane!'''",
-'userinvalidcssjstitle'     => "'''Pozůr:''' Ńy ma skůrki uo nozwie \"\$1\". Pamjyntyj, že zajty užytkownika zawiyrajůnce CSS i JavaScript powinny začynać sie s mouy buchštaby, np. {{ns:user}}:Foo/monobook.css.",
+'newarticletext'            => 'Ńy ma sam ješče artikla uo tym tytule. W polu ńižyj možeš naškryflać jygo pjyršy fragmynt. Kej chćoužeś zrobić co inkše, naćiś ino knefel "Nazod".',
+'anontalkpagetext'          => "---- ''To jest zajta godki do užytkowńikůw anůnimowych - takich, keři ńy majům ješče swojygo kůnta abo ńy chcům go terozki užywać. By ich identyfikować, užywomy numerůw IP. Jeli ježeś anůnimowym užytkowńikem a wydowo Ći śe, aže zamjyščůne sam kůmentoře ńy sům skjyrowane do Ćebje, [[{{ns:special}}:Userlogin|utwůř proša kůnto abo zalůguj śe]] - bez tůž uńikńeš potym podobnych ńyporozumjyń.''",
+'noarticletext'             => 'Ńy mo ješče zajty uo tym titelu. Možeš [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{FULLPAGENAME}}|šnupać za {{FULLPAGENAME}} w inkšych artiklach]].',
+'userpage-userdoesnotexist' => 'Užytkowńik "$1" ńy je zareještrowany. Sprowdź eli na pewno chćoužeś stwořyć/pomjynić gynau ta zajta.',
+'clearyourcache'            => "'''Dej pozůr:''' Coby uobejřeć pomjyńańo pů naškryflańu nowych štalowań poleć přeglůndorce wyčyśćić zawartość pamjyńći podrynčnyj (cache). '''Mozilla / Firefox / Safari:''' přitřimej ''Shift'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' přitřimej ''Ctrl'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodśwjyž'' abo wciś ''F5''; užytkowńicy '''Opery''' mogům być zmušeńi coby coukym wyčyśćić jeich pamjyńć podrynčno we menu ''Werkcojgi→Preferencyje''.",
+'usercssjsyoucanpreview'    => '<strong>Podpowjydź:</strong> Užyj knefla "Podglůnd", coby přetestować Twůj nowy arkuš stylůw CSS abo kod JavaScript před jego zašrajbowańym.',
+'usercsspreview'            => "'''Pamjyntej, aže to je na raźe ino podglůnd Twojego arkuša stylůw - nic ješče ńy zostouo naškryflone!'''",
+'userjspreview'             => "'''Pamjyntej, aže to je na raźe ino podglůnd Twojego JavaScriptu - nic ješče ńy zostouo naškryflone!'''",
+'userinvalidcssjstitle'     => "'''Pozůr:''' Ńy mo skůrki uo mjańe \"\$1\". Pamjyntej, aže zajty užytkowńika zawjyrajůnce CSS i JavaScript powinny začynać śe mouům buchštabům, np. {{ns:user}}:Foo/monobook.css.",
 'updated'                   => '(Pomjyńano)',
 'note'                      => '<strong>Pozůr:</strong>',
 'previewnote'               => '<strong>To je ino podglůnd - artikel ješče ńy je naškryflany!</strong>',
-'previewconflict'           => 'Wersjo podglůmdano uodnośi się do tekstu z pola edycyji na wjyrchu. Tak bydźe wyglůndać zajta jeśli zdecyduješ sie jům naškryflać.',
-'session_fail_preview'      => '<strong>Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo s kuli utraty danych ze sesyi. Sprůbuj ješče roz. Kieby to ńy pomoguo - wylůguj sie i zalogůj uod nowa.</strong>',
-'session_fail_preview_html' => "<strong>Přeprašomy! Serwer ńy može přetwořyć tygo srowjyńo s kuli utraty danych ze sesyji.</strong>
+'previewconflict'           => 'Wersyjo podglůndano uodnośi śe do tekstu s pola edycyji na wjyrchu. Tak bydźe wyglůndać zajta jeli zdecyduješ śe jům naškryflać.',
+'session_fail_preview'      => '<strong>Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji. Sprůbuj ješče roz. Kejby to ńy pomoguo - wylůguj śe i zalogůj uod nowa.</strong>',
+'session_fail_preview_html' => "<strong>Přeprašomy! Serwer ńy može přetwořyć tygo sprowjyńo skuli utraty danych ze sesyji.</strong>
 
-''Jako že na {{GRAMMAR:MS.lp|{{SITENAME}}}} wuůnčono zostoua opcja \"raw HTML\", podglůnd zostou schrůńony w celu zabezpiečyńo před atakami JavaScript.''
+''Jako aže na {{GRAMMAR:MS.lp|{{SITENAME}}}} wuůnčono zostoua opcyjo \"raw HTML\", podglůnd zostou schrůńony coby zabezpječyć před atakami JavaScript.''
 
-<strong>Jeśli to jest prawiduowo průba srowjańo, sprůbuj ješče roz. Jakby to ńy pomoguo - wylůguj sie i zalůguj na nowo.</strong>",
-'token_suffix_mismatch'     => '<strong>Twoje sprowjyńe zostouo uodćepńynte s kuli tego, co twůj klijynt pomiyšou znaki uod interpůnkcje w žetůńe sprowjyń. Twoje sprowjyńe zostauo uodćepńynte coby zapobiec zńyščyńu tekstu zajty. Takie průblymy zdořajům sie w raźe kůřystańo z felernych anůnimowych śećowych usuůg proxy.</strong>',
-'editing'                   => 'Sprowioš $1',
-'editingsection'            => 'Sprowjoš $1 (kůnsek)',
+<strong>Jeli to je prawiduowo průba sprowjańo, sprůbuj ješče roz. Kejby to ńy pomoguo - wylůguj śe a zalůguj na nowo.</strong>",
+'token_suffix_mismatch'     => '<strong>Twoje sprowjyńy zostouo uodćepńynte skuli tego, co twůj klijynt pomjyšou znaki uod interpůnkcyji w žetůńe sprowjyń. Twoje sprowjyńe zostauo uodćepńynte coby zapobjec zńyščyńu tekstu zajty. Take průblymy zdořajům śe w roźe kůřistańo s felernych anůnimowych śećowych usuůg proxy.</strong>',
+'editing'                   => 'Sprowjoš $1',
+'editingsection'            => 'Sprowjoš $1 (sekcyjo)',
 'editingcomment'            => 'Sprowjoš "$1" (kůmyntoř)',
 'editconflict'              => 'Kůnflikt sprowjyń: $1',
-'explainconflict'           => 'Ktoś zdůnžyu wćepać swoja wersja artikla zanim žeś naškryflou sprowjyńe.
-W polu edycyi na wiyrchu moš tekst zajty aktůalńe naškreflany w baźe danych.
-Twoje pomjyńańo sům w polu edycyji půnižyi.
-By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wiyrchu.
-<b>Tylko</b> tekst z pola na wiyrchu bydźe naškreflany we baźe jak wciśńeš "Škryflej".<br />',
+'explainconflict'           => 'Ktoś zdůnžyu wćepać swoja wersyjo artikla ńim žeś naškryflou sprowjyńy.
+We polu edycyji na wjyrchu moš tekst zajty aktůalńy naškryflany w baźe danych.
+Twoje pomjyńańo sům we polu edycyji půnižyj.
+By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wjyrchu.
+<b>Tylko</b> tekst z pola na wjyrchu bydźe naškryflany we baźe jak wciśńeš "Škryflej".<br />',
 'yourtext'                  => 'Twůj tekst',
-'storedversion'             => 'Naškryflano wersyja',
-'nonunicodebrowser'         => '<strong>Pozůr! Twoja přeglůndarka ńy umje poprowńe rozpoznować kodowanio UTF-8 (Unicode). Bez tůž wšyskie znaki, ktůrych Twoja přeglůndarka ńy umje rozpoznować, zamieńůno na jeich kody heksadecymalne.</strong>',
+'storedversion'             => 'Naškryflano wersyjo',
+'nonunicodebrowser'         => '<strong>Pozůr! Twoja přeglůndorka ńy umje poprowńy rozpoznować kodowańo UTF-8 (Unicode). Bez tůž wšyjske znoki, kerych Twoja přeglůndorka ńy umje rozpoznować, zamjeńůno na jeich kody heksadecymalne.</strong>',
 'editingold'                => '<strong>Dej pozůr: Sprowjoš inkšo wersyja zajty kej bježůnco. Jeśli jům naškryfloš, wšyskie půźniyjše pomjyńańa bydom wyćepane.</strong>',
-'yourdiff'                  => 'Dyferencyje',
+'yourdiff'                  => 'Růžńice',
 'copyrightwarning'          => "Pamjyntej uo tym, aže couki wkuod do {{SITENAME}} udostympńůmy wedle zasad $2 (dokuadńij w $1). Jak ńy chceš, coby koždy můg go zmjyńać i dali rozpowšychńać, ńy wćepuj go sam. Škréflajůnc sam tukej pośwjadčoš tyž, co te pisańy je twoje wuasne, abo žeś go wźůn(a) s materjouůw kere sům na ''public domain'', abo kůmpatybilne.<br />
 <strong>PROŠA NIE WĆEPYWAĆ SAM MATERIAUŮW KERE SŮM CHRŮNIONE PRAWEM AUTORSKIM BEZ DOZWOLENIO WUAŚCICIELA!</strong>",
 'copyrightwarning2'         => 'Pamjyntej uo tym, aže couki wkuod do {{GRAMMAR:MS.lp|{{SITENAME}}}} može być sprowjany, pomjyńany abo wyćepany bez inkšych užytkownikůw. Jak ńy chceš, coby koždy můg go zmjyńać i dali rozpowšychńać bez uograničyń, ńy wćepuj go sam.<br />

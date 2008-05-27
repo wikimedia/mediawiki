@@ -232,15 +232,16 @@ $messages = array(
 Кæс [[Special:Specialpages|æппæт сæрмагонд фæрсты номхыгъд]].",
 
 # General errors
-'error'               => 'Рæдыд',
-'internalerror'       => 'Мидæг рæдыд',
-'internalerror_info'  => 'Мидæг рæдыд: $1',
-'filedeleteerror'     => 'Нæй аппарæн файл «$1».',
-'filenotfound'        => 'Нæй ссарæн файл «$1».',
-'unexpected'          => 'Æнæмбæлон æмиасад: «$1»=«$2».',
-'badtitle'            => 'Æнæмбæлон сæргонд',
-'viewsource'          => 'Йæ код фен',
-'ns-specialprotected' => 'Сæрмагонд фæрстæ ({{ns:special}}) баивæн нæй.',
+'error'                => 'Рæдыд',
+'internalerror'        => 'Мидæг рæдыд',
+'internalerror_info'   => 'Мидæг рæдыд: $1',
+'filedeleteerror'      => 'Нæй аппарæн файл «$1».',
+'directorycreateerror' => 'Нæй саразæн файлдон «$1».',
+'filenotfound'         => 'Нæй ссарæн файл «$1».',
+'unexpected'           => 'Æнæмбæлон æмиасад: «$1»=«$2».',
+'badtitle'             => 'Æнæмбæлон сæргонд',
+'viewsource'           => 'Йæ код фен',
+'ns-specialprotected'  => 'Сæрмагонд фæрстæ ({{ns:special}}) баивæн нæй.',
 
 # Login and logout pages
 'logouttitle'             => 'Номсусæг суын',
@@ -249,6 +250,7 @@ $messages = array(
 'yourname'                => 'Архайæджы ном:',
 'yourpassword'            => 'Пароль:',
 'remembermypassword'      => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл',
+'yourdomainname'          => 'Дæ домен:',
 'login'                   => 'Дæхи бавдис системæйæн',
 'nav-login-createaccount' => 'Системæйæн дæхи бавдис',
 'userlogin'               => 'Системæйæн дæхи бавдис',

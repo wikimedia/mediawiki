@@ -400,7 +400,7 @@ $2',
 
 계정이 만들어졌습니다. [[Special:Preferences|사용자 환경 설정]]에서 당신의 {{SITENAME}} 사용자 환경 설정을 바꿀 수 있습니다.',
 'loginpagetitle'             => '로그인',
-'yourname'                   => '이름',
+'yourname'                   => '사용자 이름:',
 'yourpassword'               => '비밀번호:',
 'yourpasswordagain'          => '암호 확인',
 'remembermypassword'         => '로그인 상태를 저장하기',
@@ -777,12 +777,13 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userrights-unchangeable-col' => '바꿀 수 없는 권한',
 
 # Groups
-'group'            => '권한:',
-'group-user'       => '사용자',
-'group-bot'        => '봇',
-'group-sysop'      => '관리자',
-'group-bureaucrat' => '뷰로크랫',
-'group-all'        => '(모두)',
+'group'               => '권한:',
+'group-user'          => '사용자',
+'group-autoconfirmed' => '자동 인증된 사용자',
+'group-bot'           => '봇',
+'group-sysop'         => '관리자',
+'group-bureaucrat'    => '뷰로크랫',
+'group-all'           => '(모두)',
 
 'group-bot-member'        => '봇',
 'group-sysop-member'      => '관리자',
@@ -1140,6 +1141,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusersfrom'      => '다음으로 시작하는 사용자 보이기:',
 'listusers-submit'   => '보이기',
 'listusers-noresult' => '해당 사용자가 없습니다.',
+
+# Special:Listgrouprights
+'listgrouprights' => '사용자 권한 목록',
 
 # E-mail user
 'mailnologin'     => '보낼 이메일 주소가 없음',

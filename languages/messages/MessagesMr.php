@@ -1976,6 +1976,7 @@ $1',
 'import-noarticle'           => 'आयात करण्याकरिता पान नाही!',
 'import-nonewrevisions'      => 'सारी आवर्तने पूर्वी आयात केली होती.',
 'xml-error-string'           => '$1 ओळ $2मध्ये , स्तंभ $3 (बाईट $4): $5',
+'import-upload'              => 'XML डाटा चढवा',
 
 # Import log
 'importlogpage'                    => 'ईम्पोर्ट सूची',

@@ -1165,8 +1165,11 @@ on {{SITENAME}}, open this airtin in yer brouser:
 
 $3
 
-If this *isna* you, dinna follae the airtin. This confirmation code
-will end at $4.',
+If this *isna* you, dinna follae the airtin.
+
+$5
+
+This confirmation code will end at $4.',
 
 # Delete conflict
 'deletedwhileediting' => 'Warnin: This page haes been delete syne ye stertit editin!',

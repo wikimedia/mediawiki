@@ -2350,7 +2350,12 @@ Untuk mengkonfirmasikan bahwa akun ini benar dimiliki oleh Anda sekaligus mengak
 
 $3
 
-Jika Anda merasa *tidak pernah* mendaftar, jangan ikuti pranala di atas. Kode konfirmasi ini akan kadaluwarsa pada $4.',
+Jika Anda merasa *tidak pernah* mendaftar, jangan ikuti pranala di atas.
+Follow this link to cancel the e-mail address confirmation:
+
+$5
+
+Kode konfirmasi ini akan kadaluwarsa pada $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi interwiki dimatikan]',
