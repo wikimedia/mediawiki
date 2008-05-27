@@ -1205,6 +1205,7 @@ $user: the user object that is about to be logged out
 'UserLogoutComplete': after a user has logged out
 $user: the user object _after_ logout (won't have name, ID, etc.)
 $inject_html: Any HTML to inject after the "logged out" message.
+$oldName: name of the user before logout (string)
 
 'UserRights': After a user's group memberships are changed
 $user  : User object that was changed
