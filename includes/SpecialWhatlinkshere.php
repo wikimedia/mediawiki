@@ -380,6 +380,7 @@ class WhatLinksHerePager extends AlphabeticPager {
 			$conds = isset( $info['conds'] ) ? $info['conds'] : array();
 			$options = isset( $info['options'] ) ? $info['options'] : array();
 			$join_conds = isset( $info['join_conds'] ) ? $info['join_conds'] : array();
+			$pagefield = $options['ORDER BY'];
 			if ( $descending ) {
 				$operator = '>';
 			} else {
@@ -387,7 +388,7 @@ class WhatLinksHerePager extends AlphabeticPager {
 				$operator = '<';
 			}
 			if ( $offset != '' ) {
-				$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
+				$conds[] = $pagefield . $operator . $this->mDb->addQuotes( $offset );
 			}
 			$options['LIMIT'] = intval( $limit );
 			$SQLqueries[] = '('.$this->mDb->selectSQLText( $tables, $fields, $conds, $fname, $options, $join_conds ).')';
