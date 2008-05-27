@@ -391,7 +391,7 @@ class WhatLinksHerePager extends AlphabeticPager {
 			$options['LIMIT'] = intval( $limit );
 			$SQLqueries[] = '('.$this->mDb->selectSQLText( $tables, $fields, $conds, $fname, $options, $join_conds ).')';
 		}
-		// Contruct the final query. UNION the mini-queries and merge the results.
+		// Construct the final query. UNION the mini-queries and merge the results.
 		$fields = 'page_id,page_namespace,page_title,page_is_redirect,MAX(is_template) AS template,MAX(is_image) AS image';
 		$SQL = "SELECT $fields FROM (" . implode(' UNION ',$SQLqueries) . ") AS result_links";
 		// Remove duplicates within the result set.
