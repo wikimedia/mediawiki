@@ -2394,7 +2394,7 @@ class Title {
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true ) {
 		$errors = array();	
-		if( !$this or !$nt ) {
+		if( !$nt ) {
 			// Normally we'd add this to $errors, but we'll get
 			// lots of syntax errors if $nt is not an object
 			return array(array('badtitletext'));
