@@ -80,12 +80,10 @@ class ApiMove extends ApiBase {
 			$this->dieUsageMsg(current($errors));
 
 		$hookErr = null;
-		if( !wfRunHooks( 'AbortMove', array( $fromTitle, $toTitle, $wgUser, &$hookErr ) ) )
-			$this->dieUsageMsg(array('hookaborted', $hookErr));
 
 		$retval = $fromTitle->moveTo($toTitle, true, $params['reason'], !$params['noredirect']);
 		if($retval !== true)
-			$this->dieUsageMsg(array($retval));
+			$this->dieUsageMsg(reset($retval));
 
 		$r = array('from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason']);
 		if(!$params['noredirect'] || !$wgUser->isAllowed('suppressredirect'))
@@ -121,10 +119,6 @@ class ApiMove extends ApiBase {
 			$wgUser->removeWatch($toTitle);
 		}
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
-		
-		// This one is a problem as we don't have a special page, but some
-		// extensions may want to do something when the hook has succeeded.
-		//wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ot , &$nt ) )	;
 	}
 
 	public function mustBePosted() { return true; }

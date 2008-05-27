@@ -2386,34 +2386,33 @@ class Title {
 
 	/**
 	 * Check whether a given move operation would be valid.
-	 * Returns true if ok, or a message key string for an error message
-	 * if invalid. (Scarrrrry ugly interface this.)
+	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
 	 * @param Title &$nt the new title
 	 * @param bool $auth indicates whether $wgUser's permissions
 	 * 	should be checked
-	 * @return mixed true on success, message name on failure
+	 * @return mixed True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true ) {
 		if( !$this or !$nt ) {
-			return 'badtitletext';
+			return array(array('badtitletext'));
 		}
 		if( $this->equals( $nt ) ) {
-			return 'selfmove';
+			return array(array('selfmove'));
 		}
 		if( !$this->isMovable() || !$nt->isMovable() ) {
-			return 'immobile_namespace';
+			return array(array('immobile_namespace'));
 		}
 
 		$oldid = $this->getArticleID();
 		$newid = $nt->getArticleID();
 
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
-			return 'articleexists';
+			return array(array('articleexists'));
 		}
 		if ( ( '' == $this->getDBkey() ) ||
 			 ( !$oldid ) ||
 		     ( '' == $nt->getDBkey() ) ) {
-			return 'badarticleerror';
+			return array(array('badarticleerror'));
 		}
 
 		// Image-specific checks
@@ -2421,10 +2420,10 @@ class Title {
 			$file = wfLocalFile( $this );
 			if( $file->exists() ) {
 				if( $nt->getNamespace() != NS_IMAGE ) {
-					return 'imagenocrossnamespace';
+					return array(array('imagenocrossnamespace'));
 				}
 				if( !File::checkExtensionCompatibility( $file, $nt->getDbKey() ) ) {
-					return 'imagetypemismatch';
+					return array(array('imagetypemismatch'));
 				}
 			}
 		}
@@ -2436,13 +2435,13 @@ class Title {
 					$nt->getUserPermissionsErrors('move', $wgUser),
 					$nt->getUserPermissionsErrors('edit', $wgUser));
 			if($errors !== array())
-				return $errors[0][0];
+				return $errors;
 		}
 
 		global $wgUser;
 		$err = null;
 		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err ) ) ) {
-			return 'hookaborted';
+			return array(array('hookaborted', $err));
 		}
 
 		# The move is allowed only if (1) the target doesn't exist, or
@@ -2451,13 +2450,13 @@ class Title {
 
 		if ( 0 != $newid ) { # Target exists; check for validity
 			if ( ! $this->isValidMoveTarget( $nt ) ) {
-				return 'articleexists';
+				return array(array('articleexists'));
 			}
 		} else {
 			$tp = $nt->getTitleProtection();
 			$right = ( $tp['pt_create_perm'] == 'sysop' ) ? 'protect' : $tp['pt_create_perm'];
 			if ( $tp and !$wgUser->isAllowed( $right ) ) {
-				return 'cantmove-titleprotected';
+				return array(array('cantmove-titleprotected'));
 			}
 		}
 		return true;
@@ -2471,11 +2470,11 @@ class Title {
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
 	 *  Ignored if the user doesn't have the suppressredirect right.
-	 * @return mixed true on success, message name on failure
+	 * @return mixed true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
 		$err = $this->isValidMoveOperation( $nt, $auth );
-		if( is_string( $err ) ) {
+		if( is_array($err) ) {
 			return $err;
 		}
 

@@ -271,15 +271,9 @@ class MovePageForm {
 			return;
 		}
 
-		$hookErr = null;
-		if( !wfRunHooks( 'AbortMove', array( $ot, $nt, $wgUser, &$hookErr ) ) ) {
-			$this->showForm( 'hookaborted', $hookErr );
-			return;
-		}
-
 		$error = $ot->moveTo( $nt, true, $this->reason );
 		if ( $error !== true ) {
-			$this->showForm( $error );
+			call_user_func_array(array($this, 'showForm'), $error[0]);
 			return;
 		}
 
