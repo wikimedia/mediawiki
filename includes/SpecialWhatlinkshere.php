@@ -1,7 +1,5 @@
 <?php
 /**
- * @todo Use some variant of Pager or something; the pagination here is lousy.
- *
  * @file
  * @ingroup SpecialPage
  */
