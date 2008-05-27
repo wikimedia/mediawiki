@@ -870,6 +870,7 @@ $wgMessageStructure = array(
 		'right-bot',
 		'right-nominornewtalk',
 		'right-apihighlimits',
+		'right-writeapi',
 		'right-delete',
 		'right-bigdelete',
 		'right-deleterevision',
@@ -900,7 +901,6 @@ $wgMessageStructure = array(
 		'right-userrights',
 		'right-userrights-interwiki',
 		'right-siteadmin',
-		'right-writeapi',
 	),
 	'rightslog' => array(
 		'rightslog',
