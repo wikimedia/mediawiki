@@ -1,7 +1,8 @@
 <?php
 /** Scots (Scots)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author sco.wikipedia.org editors
  * @author SPQRobin
@@ -279,7 +280,7 @@ $messages = array(
 'nosuchspecialpage' => 'Nae sic byordinar page',
 'nospecialpagetext' => "<big>'''Ye hae requestit an invalid byordinar page.'''</big>
 
-A leet o valid byordinar pages can be funnd at [[Special:Specialpages]].",
+A leet o valid byordinar pages can be funnd at [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',
@@ -533,7 +534,7 @@ Yer block ID is $5. Please include this ID in ony argies ye mak.',
 'userinvalidcssjstitle'     => "'''Warnin:''' There isnae a skin \"\$1\". Mynd that yer ain .css an .js pages uise a lowercase teetle, e.g. {{ns:user}}:Foo/monobook.css instead o {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Updatit)',
 'note'                      => '<strong>Mynd:</strong>',
-'previewnote'               => 'Mynd that this is juist a scance-ower, an haesna been hained yet!',
+'previewnote'               => '<strong>Mynd that this is juist a scance-ower, an haesna been hained yet!</strong>',
 'previewconflict'           => 'This scance reflects the text in the upper text editin area like it will kythe gin ye chuise tae save.',
 'session_fail_preview'      => '<strong>Sairy! We culdnae process yer edit acause o a loss o term data.
 Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.</strong>',
@@ -546,7 +547,7 @@ Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.<
 in the edit token. The edit haes been rejectit tae hinder corruption o the page text.
 This whiles happens when ye are uisin a bruken web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editin $1',
-'editinguser'               => 'Editin uiser <b>$1</b>',
+'editinguser'               => "Editin uiser '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editin $1 (section)',
 'editingcomment'            => 'Editin $1 (comment)',
 'editconflict'              => 'Edit conflict: $1',
@@ -739,7 +740,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'illegalfilename'             => 'The filename "$1" haes characters that isna alloud in page teitles. Please rename the file an gie uplaidin it anither shot.',
 'badfilename'                 => 'Eimage name haes been chynged tae "$1".',
 'largefileserver'             => 'This file is bigger nor the server is confeigurt tae allou.',
-'fileexists'                  => "A file wi this name exists aareadies, please check $1 gin ye'r no siccar that ye want tae chynge it.",
+'fileexists'                  => "A file wi this name exists aareadies, please check <strong><tt>$1</tt></strong> gin ye'r no siccar that ye want tae chynge it.",
 'fileexists-forbidden'        => 'A file wi this name aareadies exists; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file wi this name aareadies exists in the shared file depose; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
 'uploadwarning'               => 'Uplaid warnin',

@@ -1,7 +1,8 @@
 <?php
 /** Southern Sami (Åarjelsaemien gïele)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Max sonnelid
  * @author Siebrand
@@ -287,7 +288,7 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 'note'                   => '<strong>Galtege:</strong>',
 'previewnote'            => '<strong>Dïhte lea aktegh åvte-vuesiehtidh; värrhtoedimmieh ånta ijje sjïdtedh spååredh!</strong>',
 'editing'                => 'Sjiehtedimmie $1',
-'editinguser'            => 'Värrhtoedimmie nuhtjien <b>$1</b>',
+'editinguser'            => "Värrhtoedimmie nuhtjien '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'         => 'Värrhtoedimmie $1 (sektiovne)',
 'yourtext'               => 'Dov tjaalege',
 'copyrightwarning'       => 'Tjaeleste gaajhke värrhtoedimmieh gåajkoe {{SITENAME}} lea ahte gïehtjele goh maam buektedh nuelesne $2 (vuajna $1 ihke detaaljeh). Bïjre datne ijje sïjhtedh dov tjaalege galka värrhtoedimmieh jallh kåpieeres minngesne jeatjebh daerpies voete, galka datne ijje tjaala daesnie.<br />

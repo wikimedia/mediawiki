@@ -1,7 +1,8 @@
 <?php
 /** Czech (Česky)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Mormegil
  * @author Li-sung
@@ -505,6 +506,7 @@ $messages = array(
 'versionrequiredtext' => 'Pro použití této stránky je vyžadováno MediaWiki verze $1. Vizte [[Special:Version|stránku verze]].',
 
 'ok'                      => 'OK',
+'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Citováno z „$1“',
 'youhavenewmessages'      => 'Máte $1 ($2).',
 'newmessageslink'         => 'nové zprávy',
@@ -546,7 +548,7 @@ $messages = array(
 'nosuchspecialpage' => 'Neexistující speciální stránka',
 'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
 
-Seznam existujících speciálních stránek vizte na [[Special:Specialpages]].",
+Zkuste se podívat na [[Special:Specialpages|seznam všech existujících speciálních stránek]].",
 
 # General errors
 'error'                => 'Chyba',
@@ -627,7 +629,7 @@ Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|n
 'yourpasswordagain'          => 'Napište heslo znovu',
 'remembermypassword'         => 'Trvalé přihlášení',
 'yourdomainname'             => 'Vaše doména',
-'externaldberror'            => 'Buď nastalo chyba v databázi pro externí autentikaci, nebo nemáte dovoleno měnit svůj externí účet.',
+'externaldberror'            => 'Buď nastala chyba externí autentizační databáze, nebo nemáte dovoleno měnit svůj externí účet.',
 'loginproblem'               => '<strong>Nastal problém při vašem přihlášení.</strong><br />
 Zkuste to znovu!',
 'login'                      => 'Přihlaste se',
@@ -650,7 +652,7 @@ Zkuste to znovu!',
 'yourrealname'               => 'Vaše skutečné jméno:',
 'yourlanguage'               => 'Jazyk rozhraní:',
 'yourvariant'                => 'Jazyková varianta',
-'yournick'                   => 'Alternativní podpis:',
+'yournick'                   => 'Podpis:',
 'badsig'                     => 'Chybný podpis, zkontrolujte syntaxi HTML.',
 'badsiglength'               => 'Jméno je příliš dlouhé; musí být kratší než $1 znaků.',
 'email'                      => 'E-mail',
@@ -667,7 +669,7 @@ Zkuste to znovu!',
 'nosuchusershort'            => 'Neexistuje uživatel se jménem „<nowiki>$1</nowiki>“. Zkontrolujte zápis.',
 'nouserspecified'            => 'Musíte zadat uživatelské jméno.',
 'wrongpassword'              => 'Vámi uvedené heslo nesouhlasí. Zkuste to znovu.',
-'wrongpasswordempty'         => 'Zadané heslo bylo prázdné. Zkuste to znovu.',
+'wrongpasswordempty'         => 'Bylo zadáno prázdné heslo. Zkuste to znovu.',
 'passwordtooshort'           => 'Vaše heslo je příliš krátké. Musí obsahovat nejméně $1 {{plural:$1|znak|znaky|znaků}} a nesmí být stejné jako uživatelské jméno.',
 'mailmypassword'             => 'Poslat e-mailem dočasné heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
@@ -767,20 +769,20 @@ Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;už
 Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu a&nbsp;pokud Vám byla tato možnost zakázána.
 Vaše IP adresa je '''$3''' a&nbsp;identifikační číslo bloku je '''$5'''; tyto údaje budete muset uvést ve všech žádostech o&nbsp;odblokování.",
-'autoblockedtext'           => 'Vaše IP adresa byla automaticky zablokována, protože byla používána jiným uživatelem, kterého zablokoval $1.
+'autoblockedtext'           => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
 
-Udaný důvod:
+Udaný důvod blokování:
 
-:\'\'$2\'\'
+:''$2''
 
-* Zablokováno: $8
-* Zablokování vyprší: $6
+* Začátek blokování: $8
+* Konec blokování: $6
 
-Můžete kontaktovat správce $1 nebo některého z dalších [[{{MediaWiki:Grouppage-sysop}}|správců]] pro diskuzi o Vašem zablokování.
+Zablokování můžete prodiskutovat se správcem $1 nebo některým z dalších [[{{MediaWiki:Grouppage-sysop}}|správců]].
 
-Mějte však na vědomí, že funkci "Poslat email tomuto uživateli" nemůžete použít, pokud nemáte zadaný platný email ve svém [[Special:Preferences|nastavení]] a nebylo vám zablokováno jeho užívání.
+Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete použít, pokud nemáte ve svém [[Special:Preferences|nastavení]] zadaný platný e-mail a nebylo vám zablokováno jeho užívání.
 
-Číslo Vašeho zablokování je $5. Prosíme, uveďte ho při komunikaci se správci.',
+Číslo vašeho zablokování je $5. Prosíme, uveďte ho při komunikaci se správci.",
 'blockednoreason'           => 'důvod nebyl zadán',
 'blockedoriginalsource'     => "Zdrojový text stránky '''$1''' následuje:",
 'blockededitsource'         => "Text '''vašich editací''' stránky '''$1''' následuje:",
@@ -1286,7 +1288,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filehist'                  => 'Historie souboru',
 'filehist-help'             => 'Kliknutím na datum a čas se zobrazí tehdejší verze souboru.',
 'filehist-deleteall'        => 'smazat vše',
-'filehist-deleteone'        => 'smazat tuto',
+'filehist-deleteone'        => 'smazat',
 'filehist-revert'           => 'vrátit zpět',
 'filehist-current'          => 'současná',
 'filehist-datetime'         => 'Datum a čas',
@@ -1299,7 +1301,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'nolinkstoimage'            => 'Na tento soubor neodkazuje žádná stránka.',
 'sharedupload'              => 'Tento soubor je sdílený a může být používán ostatními projekty.',
 'shareduploadwiki'          => 'Více informací najdete na $1.',
-'shareduploadwiki-desc'     => 'Na $1 jsou následující informace.',
+'shareduploadwiki-desc'     => 'Níže je zobrazený popis, který obsahuje jeho $1 na sdíleném úložišti.',
 'shareduploadwiki-linktext' => 'stránce s popisem',
 'noimage'                   => 'Soubor s tímto jménem neexistuje, můžete ho $1',
 'noimage-linktext'          => 'načíst',
@@ -1415,7 +1417,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'unusedimages'            => 'Nepoužívané obrázky a soubory',
 'popularpages'            => 'Nejnavštěvovanější stránky',
 'wantedcategories'        => 'Žádané kategorie',
-'wantedpages'             => 'Žádoucí stránky',
+'wantedpages'             => 'Požadované stránky',
 'mostlinked'              => 'Nejodkazovanější stránky',
 'mostlinkedcategories'    => 'Nejpoužívanější kategorie',
 'mostlinkedtemplates'     => 'Nejvkládanější šablony',
@@ -1458,6 +1460,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'booksources-text'          => 'Níže je seznam odkazů na servery prodávající knihy, nebo které mohou mít další informace o knihách, které hledáte.',
 
 'categoriespagetext' => 'Ve wiki existují následující kategorie:',
+'data'               => 'Data',
 'userrights'         => 'Správa uživatelských skupin',
 'groups'             => 'Uživatelské skupiny',
 'alphaindexline'     => 'od $1 do $2',

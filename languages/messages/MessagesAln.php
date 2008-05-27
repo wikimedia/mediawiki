@@ -1,7 +1,8 @@
 <?php
 /** Gheg Albanian (Gegë)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Cradel
  * @author Dardan
@@ -539,7 +540,7 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'whatlinkshere'       => "Lidhjet k'tu",
 'whatlinkshere-title' => 'Faqe qi lidhen me $1',
 'linklistsub'         => '(Listë e lidhjeve)',
-'linkshere'           => "Faqet e mëposhtme lidhen k'tu:",
+'linkshere'           => "Faqet e mëposhtme lidhen k'tu '''[[:$1]]''':",
 'isredirect'          => 'faqe përcjellëse',
 'istemplate'          => 'përfshirë',
 'whatlinkshere-links' => '← lidhje',
@@ -595,6 +596,9 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 
 # Spam protection
 'listingcontinuesabbrev' => 'vazh.',
+
+# Browsing diffs
+'previousdiff' => '← Nryshimi ma përpara',
 
 # Media information
 'file-nohires'   => '<small>Rezolucioni i plotë.</small>',

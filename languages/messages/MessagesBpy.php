@@ -1,7 +1,8 @@
 <?php
 /** Bishnupriya (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Uttam Singha, Dec 2006
  * @author Usingha

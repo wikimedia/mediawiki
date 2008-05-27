@@ -1,7 +1,8 @@
 <?php
 /** Kurdish (Arab) (كوردي (عەرەبی))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Aras Noori
  */

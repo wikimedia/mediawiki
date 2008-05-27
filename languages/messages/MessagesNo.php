@@ -1,7 +1,8 @@
 <?php
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jon Harald Søby
  * @author Nike
@@ -15,6 +16,7 @@
  * @author Kph
  * @author Stigmj
  * @author H92
+ * @author Jóna Þórunn
  */
 
 $skinNames = array(
@@ -327,7 +329,7 @@ $messages = array(
 'otherlanguages'    => 'Andre språk',
 'redirectedfrom'    => '(Omdirigert fra $1)',
 'redirectpagesub'   => 'Omdirigeringsside',
-'lastmodifiedat'    => 'Denne siden ble sist endret $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Denne siden ble sist endret $1 kl. $2.', # $1 date, $2 time
 'viewcount'         => 'Denne siden er vist $1 {{plural:$1|gang|ganger}}.',
 'protectedpage'     => 'Låst side',
 'jumpto'            => 'Gå til:',
@@ -409,7 +411,7 @@ $messages = array(
 'nosuchaction'      => 'Funksjonen finnes ikke',
 'nosuchactiontext'  => 'MediaWiki-programvaren kjenner ikke igjen funksjonen som er spesifisert i URL-en.',
 'nosuchspecialpage' => 'En slik spesialside finnes ikke',
-'nospecialpagetext' => 'Du ba om en ugyldig spesialside; en liste over gyldige spesialsider finnes på [[Special:Specialpages]].',
+'nospecialpagetext' => 'Du ba om en ugyldig spesialside; en liste over gyldige spesialsider finnes på [[Special:Specialpages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Feil',
@@ -537,7 +539,7 @@ Dersom denne forespørselen ble utført av noen andre, eller om du kom på passo
 'eauthentsent'               => 'En bekreftelsesmelding ble sendt til gitte e-postadresse. Før andre e-poster kan sendes til kontoen må du følge instruksjonene i e-posten for å bekrefte at kontoen faktisk er din.',
 'throttled-mailpassword'     => 'En passordpåminnelse ble sendt for mindre enn $1 timer siden. For å forhindre misbruk kan kun én passordpåminnelse sendes per $1 timer.',
 'mailerror'                  => 'Feil under sending av e-post: $1',
-'acct_creation_throttle_hit' => 'Beklager, du har allerede opprettet $1 kontoer. Du kan ikke opprette flere.',
+'acct_creation_throttle_hit' => 'Beklager, du har allerede opprettet {{PLURAL:$1|én konto|$1 kontoer}}. Du kan ikke opprette flere.',
 'emailauthenticated'         => 'Din e-postadresse ble bekreftet $1.',
 'emailnotauthenticated'      => 'Din e-postadresse er ikke bekreftet. Du vil ikke kunne motta e-post for noen av følgende egenskaper.',
 'noemailprefs'               => 'Oppgi en e-postadresse for at disse funksjonene skal fungere.',
@@ -737,7 +739,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'orig'                => 'original',
 'page_first'          => 'første',
 'page_last'           => 'siste',
-'histlegend'          => 'Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, M = mindre endring.',
+'histlegend'          => "Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, '''m''' = mindre endring.",
 'deletedrev'          => '[slettet]',
 'histfirst'           => 'Første',
 'histlast'            => 'Siste',
@@ -842,7 +844,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'viewprevnext'          => 'Vis ($1) ($2) ($3).',
 'showingresults'        => "Nedenfor vises opptil {{PLURAL:$1|'''ett''' resultat|'''$1''' resultater}} fra og med nummer <b>$2</b>.",
 'showingresultsnum'     => "Nedenfor vises {{PLURAL:$3|'''ett''' resultat|'''$3''' resultater}} fra og med nummer '''$2'''.",
-'nonefound'             => "'''Merk:''' Søk uten resultat skyldes ofte at man søker etter alminnelige ord som «i» eller «på», som ikke er indeksert, eller ved å spesifisere mer enn et søkeord (da kun sider som inneholder alle søkeordene blir funnet).",
+'nonefound'             => "'''Merk:''' Som standard søkes det kun i enkelte navnerom. For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler etc.), eller bruk det ønskede navnerommet som prefiks.",
 'powersearch'           => 'Avansert søk',
 'powersearchtext'       => 'Søk i navnerom:<br />$1<br />$2 List opp omdirigeringer<br />Søk etter $3 $9',
 'searchdisabled'        => 'Søkefunksjonen er slått av. Du kan søke via Google i mellomtiden. Merk at Googles indeksering av {{SITENAME}} muligens er utdatert.',
@@ -874,7 +876,8 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'math_image_error'         => 'PNG-konversjon mislyktes',
 'math_bad_tmpdir'          => 'Kan ikke skrive til eller opprette midlertidig mappe',
 'math_bad_output'          => 'Kan ikke skrive til eller opprette resultatmappe',
-'math_notexvc'             => 'Mangler kjørbar texvc; vennligst se math/README for oppsett.',
+'math_notexvc'             => 'Mangler kjørbar texvc;
+se math/README for oppsett.',
 'prefs-personal'           => 'Brukerdata',
 'prefs-rc'                 => 'Siste endringer',
 'prefs-watchlist'          => 'Overvåkningsliste',
@@ -882,7 +885,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'prefs-watchlist-edits'    => 'Antall redigeringer som skal vises i utvidet overvåkningsliste:',
 'prefs-misc'               => 'Diverse',
 'saveprefs'                => 'Lagre',
-'resetprefs'               => 'Tilbakestilte ulagrede endringer',
+'resetprefs'               => 'Tilbakestill ulagrede endringer',
 'oldpassword'              => 'Gammelt passord:',
 'newpassword'              => 'Nytt passord:',
 'retypenew'                => 'Gjenta nytt passord:',
@@ -1026,7 +1029,7 @@ For å lenke direkte til filen, skriv:
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
 'largefileserver'             => 'Denne fila er større enn det tjeneren er satt opp til å tillate.',
 'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
-'fileexists'                  => 'Ei fil med dette navnet finnes allerede. Sjekk $1 hvis du ikke er sikker på at du vil forandre den.',
+'fileexists'                  => 'Ei fil med dette navnet finnes allerede. Sjekk <strong><tt>$1</tt></strong> hvis du ikke er sikker på at du vil forandre den.',
 'filepageexists'              => 'En side (ikke fil) med dette navnet finnes allerede, sjekk <strong><tt>$1</tt></strong> om du ikke er sikker på om du vil endre den.',
 'fileexists-extension'        => 'En fil med et lignende navn finnes:<br />
 Navnet på din fil: <strong><tt>$1</tt></strong><br />
@@ -1106,7 +1109,7 @@ PICT # div.
 'filehist'                  => 'Filhistorikk',
 'filehist-help'             => 'Klikk på en dato/klokkeslett for å se filen slik den var på den tiden.',
 'filehist-deleteall'        => 'slett alt',
-'filehist-deleteone'        => 'slett denne',
+'filehist-deleteone'        => 'slett',
 'filehist-revert'           => 'tilbakestill',
 'filehist-current'          => 'nåværende',
 'filehist-datetime'         => 'Dato/tid',
@@ -1119,7 +1122,7 @@ PICT # div.
 'nolinkstoimage'            => 'Det er ingen sider som bruker denne fila.',
 'sharedupload'              => 'Denne fila deles av andre prosjekter.',
 'shareduploadwiki'          => 'Se $1 for mer informasjon.',
-'shareduploadwiki-desc'     => 'Beskrivelsen fra den opprinnelige $1n vises nedenfor.',
+'shareduploadwiki-desc'     => 'Beskrivelsen som vist på dens $1 vises nedenfor.',
 'shareduploadwiki-linktext' => 'filbeskrivelsesside',
 'noimage'                   => 'Ingen fil ved dette navnet finnes, du kan $1.',
 'noimage-linktext'          => 'laste det opp',
@@ -1188,11 +1191,11 @@ PICT # div.
 'statistics'             => 'Statistikk',
 'sitestats'              => '{{SITENAME}}-statistikk',
 'userstats'              => 'Brukerstatistikk',
-'sitestatstext'          => "Det er til sammen {{PLURAL:$1|'''én''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, små stubbsider, omdirigeringer, og annet som antagligvis ikke gjelder som ordentlig innhold. Om man ikke regner med disse, er det {{PLURAL:$2|'''én''' side|'''$2''' sider}} som sannsynligvis er ordentlige innholdssider.
+'sitestatstext'          => "Det er til sammen {{PLURAL:$1|'''én''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, små stubbsider, omdirigeringer, og annet som antagligvis ikke gjelder som ordentlig innhold. Om man ikke regner med disse, er det {{PLURAL:$2|'''én''' side|'''$2''' sider}} som sannsynligvis er {{PLURAL:$2|en ordentlig innholdsside|ordentlige innholdssider}}.
 
-'''$8''' filer har blitt lastet opp.
+{{PLURAL:$8|'''Én''' fil|'''$8''' filer}} har blitt lastet opp.
 
-Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}}, og {{PLURAL:$4|'''én''' redigering|'''$4''' redigeringer}} siden wikien ble satt opp. Det blir i snitt '''$5''' redigeringer per side, og '''$6''' visninger per redigering.
+Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}}, og {{PLURAL:$4|'''én''' redigering|'''$4''' redigeringer}} siden wikien ble satt opp. Det blir i snitt {{PLURAL:$5|'''én''' redigering|'''$5''' redigeringer}} per side, og {{PLURAL:$6|'''én''' visning|'''$6''' visninger}} per redigering.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue Arbeidskøen] er på '''$7'''.",
 'userstatstext'          => "Det er {{PLURAL:$1|'''én''' registrert bruker|'''$1''' registrerte brukere}}, hvorav '''$2''' (eller '''$4&nbsp;%''') har {{lc:$5rettigheter}}.",
@@ -1256,7 +1259,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'listusers'               => 'Brukerliste',
 'specialpages'            => 'Spesialsider',
 'spheading'               => 'Spesialsider for alle brukere',
-'restrictedpheading'      => 'Spesialsider for administratorer',
+'restrictedpheading'      => 'Begrensede spesialsider',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',
@@ -1430,7 +1433,7 @@ Tilbakemeldinger og videre assistanse:
 'deletereason-dropdown'       => '* Vanlige grunner for sletting
 ** På forfatters forespørsel
 ** Opphavsrettsbrudd
-** Hærverk',
+** Vandalisme',
 'delete-toobig'               => 'Denne siden har en stor redigeringshistorikk, med over $1&nbsp;revisjoner. Muligheten til å slette slike sider er begrenset for å unngå utilsiktet forstyrring av {{SITENAME}}.',
 'delete-warning-toobig'       => 'Denne siden har en stor redigeringshistorikk, med over $1&nbsp;revisjoner. Sletting av denne siden kan forstyrre databasen til {{SITENAME}}; vær varsom.',
 'rollback'                    => 'Fjern redigeringer',
@@ -1861,7 +1864,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 # Attribution
 'anonymous'        => 'Anonym(e) bruker(e) av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-bruker $1',
-'lastmodifiedatby' => 'Denne siden ble sist redigert $2, $1 av $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Denne siden ble sist redigert $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-bruker(e) $1',
@@ -2049,7 +2052,7 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 'exif-sharpness'                   => 'Skarphet',
 'exif-devicesettingdescription'    => 'Beskrivelse av apparatets innstilling',
 'exif-subjectdistancerange'        => 'Avstandsintervall til motiv',
-'exif-imageuniqueid'               => 'Unikk bilde-ID',
+'exif-imageuniqueid'               => 'Unik bilde-ID',
 'exif-gpsversionid'                => 'Versjon for GPS-tagger',
 'exif-gpslatituderef'              => 'nordlig eller sørlig breddegrad',
 'exif-gpslatitude'                 => 'Breddegrad',

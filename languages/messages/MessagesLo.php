@@ -1,7 +1,8 @@
 <?php
 /** Lao (ລາວ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Passawuth
  * @author Tuinui
@@ -344,7 +345,7 @@ $messages = array(
 'clearyourcache'           => "'''ເອົາໃຈໃສ່:''' ຫຼັງຈາກບັນທຶກ, ທ່ານອາດຈຳເປັນຕ້ອງເວັ້ນຜ່ານ ຂໍ້ມູນເກົ່າທີ່ ໂປແກມທ່ອງເວັບ ຂອງ ທ່ານບັນທຶກໄວ້ເພື່ອເບິ່ງຜົນການປ່ຽນແປງ. '''Mozilla / Firefox / Safari:''' ກົດ ''Shift'' ໃນເວລາຄລິກ ''Reload'', ຫຼືກົດ ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ໃນ ເມັກຄິນທົສ); '''IE:''' ກົດ ''Ctrl'' ໃນເວລາຄລິກ ''Refresh'', ຫຼືກົດ ''Ctrl-F5''; '''Konqueror:''': ກົດປຸ່ມ ''Reload'' , ຫຼື ກົດ ''F5''; '''Opera''' ຜູ້ໃຊ້ອາດຈຳເປັນຕ້ອງລຶບ ຂໍ້ມູນບັນທຶກໂດຍສິ້ນເຊີງ ໃນ ''Tools→Preferences''.",
 'previewnote'              => '<strong>ນີ້ ແມ່ນ ການລອງເບິ່ງຜົນເທົ່ານັ້ນ; ການດັດແກ້ຍັງບໍ່ທັນຖືກບັນທຶກ!</strong>',
 'editing'                  => 'ພວມດັດແກ້ $1',
-'editinguser'              => 'ຜູ້ໃຊ້ <b>$1</b> ພວມດັດແກ້',
+'editinguser'              => 'ຜູ້ໃຊ້ <b>$1</b> ພວມດັດແກ້ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 'editingsection'           => 'ພວມດັດແກ້ $1 (ພາກ)',
 'editingcomment'           => 'ພວມດັດແກ້ $1 (comment)',
 'yourtext'                 => 'ເນື້ອໃນ',
@@ -367,6 +368,9 @@ $messages = array(
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ບໍ່ສາມາດສ້າງ ບັນຊີ ໄດ້',
+'cantcreateaccount-text' => "ການສ້າງບັນຊີ ຈາກ IP ນີ້ (<b>$1</b>) ໄດ້ຖືກຫ້າມ ໂດຍ [[User:$3|$3]].
+
+ເຫດຜົນ ໃຫ້ໄວ້ ໂດຍ $3 ແມ່ນ ''$2''",
 
 # History pages
 'viewpagelogs'        => 'ເບິ່ງບັນທຶກ ຂອງ ໜ້ານີ້',

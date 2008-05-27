@@ -1,7 +1,8 @@
 <?php
 /** Wu (吴语)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author O
  */

@@ -1,7 +1,8 @@
 <?php
 /** Romani (Romani)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Niklas Laxström
  * @author G - ג
@@ -244,7 +245,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 'noarticletext'      => "Andi '''{{SITENAME}}''' nai ji akana ek lekh kadale anavesa.
 * Te shirdes (astares) te keres o lekh, ker klik  '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} kathe]'''.",
 'editing'            => 'Editisaripen $1',
-'editinguser'        => 'Editisaripen $1',
+'editinguser'        => "Editisaripen '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'yourtext'           => 'Tiro teksto',
 'storedversion'      => 'Akanutni versiya',
 'yourdiff'           => 'Ververimata',

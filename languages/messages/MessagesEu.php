@@ -1,7 +1,8 @@
 <?php
 /** Basque (Euskara)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Helix84
@@ -9,6 +10,7 @@
  * @author Siebrand
  * @author Malafaya
  * @author Bengoa
+ * @author Kaustubh
  */
 
 $skinNames = array(
@@ -437,6 +439,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'invalidemailaddress'        => 'Ezin da e-posta helbide hori ontzat eman baliogabeko formatua duela dirudielako. Mesedez, formatu egokia duen helbide bat zehaztu, edo hutsik utzi.',
 'accountcreated'             => 'Kontua sortuta',
 'accountcreatedtext'         => '$1 erabiltzaile kontua sortu egin da.',
+'createaccount-title'        => '{{SITENAME}}-rako kontua sortu',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
 
 # Password reset dialog
@@ -488,7 +491,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'summary-preview'           => 'Laburpenaren aurreikuspena',
 'subject-preview'           => 'Gaia/Izenburuaren aurreikuspena',
 'blockedtitle'              => 'Erabiltzailea blokeatuta dago',
-'blockedtext'               => '  Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: \'\'$2\'\' $1 edo Wikipediako beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula "Erabiltzaile honi e-posta bidali" aukera erabili zure [[Special:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.',
+'blockedtext'               => 'Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: \'\'$2\'\' $1 edo Wikipediako beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula "Erabiltzaile honi e-posta bidali" aukera erabili zure [[Special:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.',
 'blockednoreason'           => 'ez da arrazoirik zehaztu',
 'blockedoriginalsource'     => "Jarraian ikus daiteke '''$1'''(r)en kodea:",
 'blockededitsource'         => "Jarraian ikus daitezke '''$1'''(e)n egin dituzun aldaketak:",
@@ -511,6 +514,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'newarticletext'            => "Orrialde hau ez da existitzen oraindik. Orrialde sortu nahi baduzu, beheko koadroan idazten hasi zaitezke (ikus [[{{MediaWiki:Helppage}}|laguntza orrialdea]] informazio gehiagorako). Hona nahi gabe etorri bazara, nabigatzaileko '''atzera''' botoian klik egin.",
 'anontalkpagetext'          => "----''Honako hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da. Bere IP helbidea erabili beharko da beraz identifikatzeko. Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea. Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:Userlogin|Izena eman edo saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
 'noarticletext'             => 'Oraindik ez dago testurik orrialde honetan; beste orrialde batzuetan [[Special:Search/{{PAGENAME}}|bilatu dezakezu izenburu hau]] edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu].',
+'userpage-userdoesnotexist' => '"$1" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
 'clearyourcache'            => "'''Oharra:''' Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko. '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''InternetExplorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
 'usercssjsyoucanpreview'    => "<strong>Laguntza:</strong> Zure CSS/JS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
 'usercsspreview'            => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala, oraindik ez dela gorde!'''",
@@ -548,6 +552,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'readonlywarning'           => '<strong>OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.</strong>',
 'protectedpagewarning'      => '<strong>OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete.</strong>',
 'semiprotectedpagewarning'  => '<big><strong>Oharra: Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.</strong></big>',
+'titleprotectedwarning'     => '<strong>OHARRA:  Orrialde hau blokeatuta dago eta bakkarrik lankide batzuk aldatu edo sortu dezakete.</strong>',
 'templatesused'             => 'Orrialde honetan erabiltzen diren txantiloiak:',
 'templatesusedpreview'      => 'Aurreikuspen honetan erabiltzen diren txantiloiak:',
 'templatesusedsection'      => 'Atal honetan erabiltzen diren txantiloiak:',
@@ -556,7 +561,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'edittools'                 => '<!-- Hemen jarritako testua aldaketa eta igoera formularioen azpian agertuko da. -->',
 'nocreatetitle'             => 'Orrialdeak sortzea mugatuta',
 'nocreatetext'              => 'Gune honek orrialde berriak sortzeko gaitasuna mugatu du. Atzera egin dezakezu existitzen den orrialde bat aldatzeko, edo [[Special:Userlogin|saio hasi edo kontua sortu]].',
-'nocreate-loggedin'         => 'Ez daukazu wiki honetan orrialde berriak sortzeko baimenik.',
+'nocreate-loggedin'         => 'Ez daukazu wiki honetan orrialde berriak sortzeko baimenik, administratzaile batek orri hau blokeatu duelako bandalismoak sahiesteko.',
 'permissionserrors'         => 'Baimen erroreak',
 'permissionserrorstext'     => 'Ez duzu hori egiteko baimenik, hurrengo {{PLURAL:$1|arrazoia dela eta|arrazoiak direla eta}}:',
 'recreate-deleted-warn'     => "'''Oharra: Lehenago ezabatutako orrialdea birsortzen ari zara.'''
@@ -837,7 +842,7 @@ Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 'large-file'                  => 'Ez da gomendagarria fitxategiak $1 baino handiagoak izatea; fitxategi honen tamaina: $2.',
 'largefileserver'             => 'Fitxategi hau zerbitzariak baimentzen duena baino handiagoa da.',
 'emptyfile'                   => 'Badirudi igotzen ari zaren fitxategia hutsik dagoela. Mesedez, egiaztatu fitxategi hori dela igo nahi duzuna.',
-'fileexists'                  => 'Badago izen hori daukan fitxategi bat; mesedez, ikusi existitzen den $1 fitxategia aldatu nahi duzun egiaztatzeko.',
+'fileexists'                  => 'Badago izen hori daukan fitxategi bat; mesedez, ikusi existitzen den <strong><tt>$1</tt></strong> fitxategia aldatu nahi duzun egiaztatzeko.',
 'fileexists-extension'        => 'Badago antzeko izena duen fitxategi bat:<br />
 Igotako fitxategiaren izena: <strong><tt>$1</tt></strong><br />
 Aurretik dagoen fitxategiaren izena: <strong><tt>$2</tt></strong><br />
@@ -1194,6 +1199,7 @@ Laguntza:
 'deletionlog'                 => 'ezabaketa erregistroa',
 'reverted'                    => 'Lehenagoko berrikuspen batera itzuli da',
 'deletecomment'               => 'Ezabatzeko arrazoia',
+'deleteotherreason'           => 'Arrazoi gehigarria:',
 'deletereasonotherlist'       => 'Beste arrazoi bat',
 'deletereason-dropdown'       => '*Ezabatzeko ohiko arrazoiak
 ** Egileak eskatuta

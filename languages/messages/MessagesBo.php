@@ -1,7 +1,8 @@
 <?php
 /** Tibetan (བོད་ཡིག)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author M.M.S.
  */
@@ -23,8 +24,9 @@ $messages = array(
 'about' => 'ཨཱབོཨུཏ་',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'ཨཱབོཨུཏ་ {{SITENAME}}',
-'aboutpage' => 'Project:ཨཱབོཨུཏ་',
+'aboutsite'         => 'ཨཱབོཨུཏ་ {{SITENAME}}',
+'aboutpage'         => 'Project:ཨཱབོཨུཏ་',
+'currentevents-url' => 'Project:ད་ལྟའི་བྱ་བ།',
 
 # Edit pages
 'newarticle' => '(ཎེཝ་)',

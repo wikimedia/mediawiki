@@ -1,7 +1,8 @@
 <?php
 /** Slovenian (Slovenščina)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author XJamRastafire
  * @author romanm
@@ -492,7 +493,7 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 
 <strong>Če gre za dobronameren poskus urejanja, vas prosimo, da poskusite znova. Če bo spet prišlo do napake, se odjavite in ponovno prijavite. Za nevšečnosti se opravičujemo.</strong>",
 'editing'                   => 'Urejanje $1',
-'editinguser'               => 'Urejanje $1',
+'editinguser'               => "Urejanje '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Urejanje $1 (razdelek)',
 'editingcomment'            => 'Urejanje $1 (pripomba)',
 'editconflict'              => 'Navzkrižje urejanj: $1',
@@ -745,7 +746,7 @@ ali za neposredno povezavo z datoteko
 'badfilename'                 => 'Ime datoteke se je samodejno popravilo v »$1«.',
 'largefileserver'             => 'Velikost datoteke presega strežnikove nastavitve.',
 'emptyfile'                   => 'Naložena datoteka je morda prazna. Do tega bi lahko prišlo zaradi slovnične napake v imenu. Ali datoteko resnično želite naložiti?',
-'fileexists'                  => 'Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran $1. Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr. »Eifflov stolp, Pariz, ponoči.jpg«).',
+'fileexists'                  => 'Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran <strong><tt>$1</tt></strong>. Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr. »Eifflov stolp, Pariz, ponoči.jpg«).',
 'fileexists-forbidden'        => 'Datoteka s tem imenom že obstaja in je ni mogoče prepisati. Poskusite svojo datoteko naložiti pod drugim imenom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s tem imenom že obstaja v skupnem repozitoriju datotek. Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom. 
 [[Image:$1|thumb|center|$1]]',

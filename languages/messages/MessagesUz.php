@@ -1,7 +1,8 @@
 <?php
 /** Uzbek (O'zbek)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Behzod Saidov <behzodsaidov@gmail.com>
  * @author Abdulla

@@ -1,7 +1,8 @@
 <?php
 /** Danish (Dansk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
@@ -13,6 +14,9 @@
  * @author Siebrand
  * @author Peter Andersen
  * @author H92
+ * @author Jan Friberg
+ * @author S.Örvarr.S
+ * @author Ranveig
  */
 
 $namespaceNames = array(
@@ -410,7 +414,9 @@ $messages = array(
 'nosuchaction'      => 'Funktionen findes ikke',
 'nosuchactiontext'  => "Funktion angivet i URL'en kan ikke genkendes af MediaWiki-softwaren",
 'nosuchspecialpage' => 'En sådan specialside findes ikke',
-'nospecialpagetext' => 'Du har bedt om en specialside, der ikke kan genkendes af MediaWiki-softwaren.',
+'nospecialpagetext' => "<big>'''Du har bedt om en ugyldig specialside.'''</big>
+
+En liste over gyldige specialsider kan findes på [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Fejl',
@@ -560,7 +566,7 @@ Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, ska
 'createaccount-text'         => 'En bruger ($1) har oprettet en konto for $2 på {{SITENAME}}
 ($4). Password for "$2" er "$3". Du opfordres til at logge ind, og ændre kodeordet omgående.
 
-Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.',
+Denne besked kan ignoreres, hvis denne konto er oprettet som følge af en fejl.',
 'loginlanguagelabel'         => 'Sprog: $1',
 
 # Password reset dialog
@@ -666,7 +672,7 @@ Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
 'userinvalidcssjstitle'     => "'''Advarsel:''' Der findes intet skin „$1“. Tænk på, at brugerspecifikke .css- og .js-sider begynder med små bogstaver, altså f.eks. ''{{ns:user}}:Hansen/monobook.css'' og ikke ''{{ns:user}}:Hansen/Monobook.css''.",
 'updated'                   => '(Opdateret)',
 'note'                      => '<strong>Bemærk:</strong>',
-'previewnote'               => 'Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!',
+'previewnote'               => '<strong>Husk at dette er kun en forhåndsvisning, siden er ikke gemt endnu!</strong>',
 'previewconflict'           => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
 'session_fail_preview'      => '<strong>Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
 Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.</strong>',
@@ -1055,7 +1061,7 @@ Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
 'large-file'                  => 'Filstørrelsen skal så vidt muligt ikke overstige $1. Denne fil er $2 stor.',
 'largefileserver'             => 'Filen er større end den på serveren indstillede maksimale størrelse.',
 'emptyfile'                   => 'Filen du lagde op lader til at være tom. Det kan skyldes en slåfejl i filnavnet. Kontroller om du virkelig ønsker at lægge denne fil op.',
-'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst $1 om du er sikker på du vil ændre den.',
+'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst <strong><tt>$1</tt></strong> om du er sikker på du vil ændre den.',
 'fileexists-extension'        => 'En fil med lignende navn findes allerede:<br />
 Navnet på den valgte fil: <strong><tt>$1</tt></strong><br />
 Navnet på den eksisterende fil: <strong><tt>$2</tt></strong><br />
@@ -1135,6 +1141,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'nolinkstoimage'            => 'Der er ingen sider der henviser til dette billede.',
 'sharedupload'              => 'Denne fil er en fælles upload og kan bruges af andre projekter.',
 'shareduploadwiki'          => 'Se venligst $1 for yderligere information.',
+'shareduploadwiki-desc'     => 'Beskrivelsen som vist på dens $1 vises nedenfor.',
 'shareduploadwiki-linktext' => 'siden med billedbeskrivelsen',
 'noimage'                   => 'Der eksisterer ingen fil med dette navn, du kan $1',
 'noimage-linktext'          => 'lægge den op',
@@ -1607,12 +1614,12 @@ $1',
 'sp-contributions-username'    => 'IP-adresse eller brugernavn:',
 'sp-contributions-submit'      => 'Søg',
 
-'sp-newimages-showfrom' => 'Vis nye filer fra $1',
+'sp-newimages-showfrom' => 'Vis nye filer fra $2, $1',
 
 # What links here
 'whatlinkshere'         => 'Hvad henviser hertil',
 'whatlinkshere-title'   => 'Sider der henviser til $1',
-'whatlinkshere-summary' => 'Denne specialside viser alle interne henvisninger til en bestemt side. De mulige tilføjelser „(skabelonmedtagning)“ og „(omdirigeringsside)“ viser, at siden ikke er henvist med et normalt Wikilink. ',
+'whatlinkshere-summary' => 'Denne specialside viser alle interne henvisninger til en bestemt side. De mulige tilføjelser „(indlejring)“ og „(omdirigering)“ viser, at siden ikke er henvist med et normalt Wikilink.',
 'whatlinkshere-page'    => 'Side:',
 'linklistsub'           => '(Henvisningsliste)',
 'linkshere'             => "De følgende sider henviser til '''„[[:$1]]“''':",
@@ -2411,12 +2418,14 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'version-parserhooks'              => 'Parser hooks',
 'version-variables'                => 'Variabler',
 'version-other'                    => 'Andre',
+'version-mediahandlers'            => 'Mediehåndtere',
 'version-hooks'                    => 'Hooks',
 'version-extension-functions'      => 'Udvidelsesfunktioner',
 'version-parser-extensiontags'     => 'Udvidelsestags til parseren',
 'version-parser-function-hooks'    => 'Parser funktionshooks',
 'version-skin-extension-functions' => 'Funktioner til skin-udvidelser',
 'version-hook-name'                => 'Hook-navn',
+'version-hook-subscribedby'        => 'Brugt af',
 'version-version'                  => 'Version',
 'version-license'                  => 'Licens',
 'version-software'                 => 'Installeret software',

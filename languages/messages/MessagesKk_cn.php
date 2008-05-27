@@ -1,7 +1,8 @@
 <?php
-/** Kazakh (China) (قازاقشا (جۇنگو))
+/** Kazakh (China) (‫قازاقشا (جۇنگو)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

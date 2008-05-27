@@ -1,7 +1,8 @@
 <?php
 /** Arabic (العربية)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Meno25
  * @author Mido
@@ -17,6 +18,7 @@
  * @author SPQRobin
  * @author OsamaK
  * @author Jon Harald Søby
+ * @author Khaledhosny
  */
 
 $linkPrefixExtension = true;
@@ -352,8 +354,8 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ضع خطا تحت الوصلات:',
-'tog-highlightbroken'         => 'أظهر الوصلات المكسورة <a href="" class="new">بهذا الشكل</a> (البديل: بهذا الشكل<a href="" class="internal">؟</a>).',
-'tog-justify'                 => 'اجعل عرض الأسطر في الفقرات متساو',
+'tog-highlightbroken'         => 'أأظهر الوصلات المعطوبة <a href="" class="new">هكذا</a> (البديل: كهذا<a href="" class="internal">؟</a>).',
+'tog-justify'                 => 'ساوِ الفقرات',
 'tog-hideminor'               => 'خبئ التعديلات الطفيفة في أحدث التغييرات',
 'tog-extendwatchlist'         => 'مدد قائمة المراقبة لعرض كل التغييرات المطبقة',
 'tog-usenewrc'                => 'شكل متقدم من أحدث التغييرات (جافا سكريبت)',
@@ -572,8 +574,8 @@ $messages = array(
 'badaccess-group2' => 'الفعل الذي طلبته مقصور على المستخدمين في إحدى المجموعتين $1.',
 'badaccess-groups' => 'الفعل الذي طلبته مقصور على المستخدمين في إحدى المجموعات $1.',
 
-'versionrequired'     => 'يلزم الإصدار $1 من ميدياويكي',
-'versionrequiredtext' => 'يلزم الإصدار $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة الإصدار]]',
+'versionrequired'     => 'تلزم نسخة $1 من ميدياويكي',
+'versionrequiredtext' => 'تلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]',
 
 'ok'                      => 'موافق',
 'retrievedfrom'           => 'تم الاسترجاع من "$1"',
@@ -724,7 +726,7 @@ $2',
 'yourrealname'               => 'الاسم الحقيقي:',
 'yourlanguage'               => 'اللغة:',
 'yourvariant'                => 'اللهجة:',
-'yournick'                   => 'اللقب:',
+'yournick'                   => 'التوقيع:',
 'badsig'                     => 'توقيع خام غير صحيح؛ تحقق من وسوم الHTML.',
 'badsiglength'               => 'التوقيع طويل جدا؛ يجب أن يكون أقل من $1 حرف.',
 'email'                      => 'البريد الإلكتروني',
@@ -1086,7 +1088,7 @@ $1 ساعة.',
 'viewprevnext'          => 'عرض ($1) ($2) ($3).',
 'showingresults'        => "القائمة التالية تعرض {{PLURAL:$1|'''1''' نتيجة|'''$1''' نتيجة}} بدءا من رقم '''$2'''.",
 'showingresultsnum'     => "معروض بالأسفل {{PLURAL:$3|'''نتيجة واحدة'''|'''$3''' نتيجة}} بدءا من رقم'''$2'''.",
-'nonefound'             => "'''ملاحظة:''' عمليات البحث غير الناجحة تكون عادة نتيجة للبحث عن كلمات شائعة مثل \"من\" و \"يمتلك\" والتي لا يتم فهرستها، وقد تنتج أيضا من استعمال أكثر من كلمة في البحث (فقط الصفحات التي تحتوي على جميع هذه الكلمات سوف تظهر في نتيجة البحث).",
+'nonefound'             => "'''ملاحظة''': فقط بعض النطاقات يتم البحث فيها افتراضيا. حاول بدء استعلامك ب ''all:'' للبحث في كل المحتوى (شاملا صفحات النقاش، القوالب، إلى آخره)، أو استخدم النطاق المطلوب كبادئة.",
 'powersearch'           => 'بحث متقدم',
 'powersearchtext'       => 'ابحث في النطاقات:<br />$1<br />$2 عرض التحويلات<br />ابحث عن $3 $9',
 'searchdisabled'        => 'البحث في {{SITENAME}} معطل. يمكنك البحث من خلال جوجل في الوقت الحالي. لاحظ أن فهارسه لمحتوى {{SITENAME}} ربما تكون غير محدثة.',
@@ -1356,7 +1358,7 @@ PICT # misc.
 'filehist'                  => 'تاريخ الملف',
 'filehist-help'             => 'اضغط على وقت/زمن لرؤية الملف كما بدا في هذا الزمن.',
 'filehist-deleteall'        => 'احذف الكل',
-'filehist-deleteone'        => 'احذف هذا',
+'filehist-deleteone'        => 'حذف',
 'filehist-revert'           => 'استرجع',
 'filehist-current'          => 'حالي',
 'filehist-datetime'         => 'وقت/زمن',
@@ -1369,7 +1371,7 @@ PICT # misc.
 'nolinkstoimage'            => 'لا توجد صفحات تصل لهذا الملف.',
 'sharedupload'              => 'هذا الملف تم رفعه للتشارك بين المشاريع ويمكن استخدامه في المشاريع الأخرى.',
 'shareduploadwiki'          => 'من فضلك انظر $1 لمزيد من المعلومات.',
-'shareduploadwiki-desc'     => 'الوصف على $1 هناك معروض بالأسفل.',
+'shareduploadwiki-desc'     => 'الوصف على $1 في المستودع المشترك معروض بالأسفل.',
 'shareduploadwiki-linktext' => 'صفحة وصف الملف',
 'noimage'                   => 'لا يوجد ملف بهذا الاسم، بإمكانك أن تقوم بـ$1.',
 'noimage-linktext'          => 'رفعه',
@@ -1468,9 +1470,10 @@ PICT # misc.
 'brokenredirects-edit'   => '(تحرير)',
 'brokenredirects-delete' => '(حذف)',
 
-'withoutinterwiki'        => 'صفحات بدون وصلات لغات أخرى',
-'withoutinterwiki-header' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
-'withoutinterwiki-submit' => 'عرض',
+'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
+'withoutinterwiki-header'  => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
+'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
+'withoutinterwiki-submit'  => 'عرض',
 
 'fewestrevisions' => 'المقالات ذات أقل تعديل',
 
@@ -1536,13 +1539,13 @@ PICT # misc.
 'booksources-go'            => 'اذهب',
 'booksources-text'          => 'توجد أدناه قائمة بوصلات لمواقع أخرى تبيع الكتب الجديدة والمستعملة، أيضا يمكنك أن تحصل على معلومات إضافية عن الكتب التي تبحث عنها من هناك:',
 
-'categoriespagetext' => 'التصنيفات التالية تحتوي على صفحات أو ميديا.',
+'categoriespagetext' => 'التصنيفات التالية تحتوي على صفحات أو وسائط.',
 'data'               => 'بيانات',
 'userrights'         => 'إدارة صلاحيات المستخدم',
 'groups'             => 'مجموعات المستخدم',
 'isbn'               => 'ردمك',
 'alphaindexline'     => '$1 إلى $2',
-'version'            => 'إصدار',
+'version'            => 'نسخة',
 
 # Special:Log
 'specialloguserlabel'  => 'المستخدم:',
@@ -1592,7 +1595,7 @@ PICT # misc.
 'emailto'         => 'إلى',
 'emailsubject'    => 'الموضوع',
 'emailmessage'    => 'الرسالة',
-'emailsend'       => 'إرسال',
+'emailsend'       => 'أرسل',
 'emailccme'       => 'أرسل لي بنسخة من رسالتي.',
 'emailccsubject'  => 'نسخة من رسالتك إلى $1: $2',
 'emailsent'       => 'تم إرسال البريد الإلكتروني',
@@ -1858,7 +1861,7 @@ $1',
 ** إساءة استخدام حسابات متعددة
 ** اسم مستخدم غير مقبول',
 'ipbanononly'                 => 'منع المستخدمين المجهولين فقط',
-'ipbcreateaccount'            => 'منع إنشاء الحسابات',
+'ipbcreateaccount'            => 'امنع إنشاء الحسابات',
 'ipbemailban'                 => 'منع المستخدم من إرسال بريد إلكتروني',
 'ipbenableautoblock'          => 'تلقائيا امنع آخر عنوان أيبي تم استعماله بواسطة هذا المستخدم، وأي عناوين أيبي أخرى يحاول التحرير من خلالها',
 'ipbsubmit'                   => 'امنع هذا المستخدم',
@@ -1933,7 +1936,7 @@ $1',
 'lockconfirm'         => 'نعم، أنا متأكد أني أريد قفل قاعدة البيانات.',
 'unlockconfirm'       => 'نعم، أريد فعلا فتح قاعدة البيانات.',
 'lockbtn'             => 'أقفل قاعدة البيانات',
-'unlockbtn'           => 'فتح قاعدة البيانات',
+'unlockbtn'           => 'افتح قاعدة البيانات',
 'locknoconfirm'       => 'لم تقم باختيار خانة التأكيد.',
 'lockdbsuccesssub'    => 'نجح إقفال قاعدة البيانات',
 'unlockdbsuccesssub'  => 'تم إزالة قفل قاعدة البيانات',
@@ -2663,7 +2666,7 @@ $1',
 'watchlistedit-normal-legend'  => 'أزل عناوين من قائمة المراقبة',
 'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل. لإزالة عنوان، اضغط على
 	الصندوق بجواره، واضغط إزالة العناوين. يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
-'watchlistedit-normal-submit'  => 'إزالة العناوين',
+'watchlistedit-normal-submit'  => 'أزل العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته من قائمة مراقبتك:',
 'watchlistedit-raw-title'      => 'عدل قائمة المراقبة الخام',
 'watchlistedit-raw-legend'     => 'عدل قائمة المراقبة',
@@ -2728,22 +2731,22 @@ $1',
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
 
 # Special:Version
-'version-extensions'               => 'الامتدادات المنصبة',
+'version-extensions'               => 'الامتدادات المثبتة',
 'version-specialpages'             => 'صفحات خاصة',
-'version-parserhooks'              => 'هوكات البارسر',
+'version-parserhooks'              => 'خطاطيف المحلل',
 'version-variables'                => 'المتغيرات',
 'version-other'                    => 'أخرى',
 'version-mediahandlers'            => 'متحكمات الميديا',
-'version-hooks'                    => 'الهوكات',
+'version-hooks'                    => 'الخطاطيف',
 'version-extension-functions'      => 'وظائف الامتداد',
-'version-parser-extensiontags'     => 'وسوم امتداد البارسر',
-'version-parser-function-hooks'    => 'هوكات دالة البارسر',
-'version-skin-extension-functions' => 'وظائف امتداد الواجهة',
-'version-hook-name'                => 'اسم الهوك',
+'version-parser-extensiontags'     => 'وسوم امتداد المحلل',
+'version-parser-function-hooks'    => 'خطاطيف دالة المحلل',
+'version-skin-extension-functions' => 'دوال امتداد الواجهة',
+'version-hook-name'                => 'اسم الخطاف',
 'version-hook-subscribedby'        => 'يستخدم بواسطة',
-'version-version'                  => 'إصدار',
+'version-version'                  => 'نسخة',
 'version-license'                  => 'الرخصة',
-'version-software'                 => 'البرنامج المنصب',
+'version-software'                 => 'البرنامج المثبت',
 'version-software-product'         => 'المنتج',
 'version-software-version'         => 'النسخة',
 

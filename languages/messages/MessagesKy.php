@@ -1,7 +1,8 @@
 <?php
 /** Kirghiz (Кыргызча)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Aidabishkek
  * @author SPQRobin

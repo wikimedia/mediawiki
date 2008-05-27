@@ -1,7 +1,8 @@
 <?php
 /** Slovak (Slovenčina)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Valasek
  * @author helix84
@@ -258,7 +259,7 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
 'pagecategories'        => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
-'category_header'       => 'stránky v kategórii „$1“',
+'category_header'       => 'Stránky v kategórii „$1“',
 'subcategories'         => 'Podkategórie',
 'category-media-header' => 'Multimediálne súbory v kategórii „$1“',
 'category-empty'        => "''Táto kategória momentálne neobsahuje články ani multimediálne súbory.''",
@@ -424,7 +425,7 @@ ktorú vyžadujete pomocou URL.',
 'nosuchspecialpage' => 'Takáto špeciálna stránka neexistuje',
 'nospecialpagetext' => "<big>'''Vyžiadali ste si neplatnú špeciálnu stránku.'''</big>
 
-Zoznam platných špeciálnych stránok nájdete na [[Special:Specialpages]].",
+Zoznam platných špeciálnych stránok nájdete na [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Chyba',
@@ -533,7 +534,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'yourrealname'               => 'Skutočné meno *:',
 'yourlanguage'               => 'Jazyk:',
 'yourvariant'                => 'Variant jazyka:',
-'yournick'                   => 'Prezývka:',
+'yournick'                   => 'Podpis:',
 'badsig'                     => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML značky.',
 'badsiglength'               => 'Používateľské meno je príliš dlhé; musí mať menej ako $1 znakov.',
 'email'                      => 'E-mail',
@@ -906,7 +907,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'viewprevnext'          => 'Zobraziť ($1) ($2) ($3).',
 'showingresults'        => "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
 'showingresultsnum'     => "Nižšie {{PLURAL:$3|je zobrazený najviac '''1''' výsledok|sú zobrazené najviac '''$3''' výsledky|je zobrazených najviac '''$3''' výsledkov}}, počnúc od  #'''$2'''.",
-'nonefound'             => "<strong>Poznámka</strong>: bezvýsledné vyhľadávania sú často spôsobené buď snahou hľadať príliš bežné, obyčajné slová (napríklad slovo ''je''), pretože tieto sa nezaraďujú do indexu vyhľadávača, alebo uvedením viac ako jedného vyhľadávaného výrazu, pretože výsledky uvádzajú len stránky obsahujúce všetky vyhľadávané výrazy.",
+'nonefound'             => "'''Poznámka''': Štandardne sa vyhľadáva iba v niektorých menných priestoroch. Skúste pred vyhľadávaný reťazec napísať ''all:'', aby sa hľadalo v celom obsahu (vrátane diskusných stránok, šablón atď.) alebo použite ako predponu požadovaný menný priestor.",
 'powersearch'           => 'Vyhľadávanie',
 'powersearchtext'       => 'Vyhľadávania v menných priestoroch :<br />
 $1<br />
@@ -1095,7 +1096,7 @@ alebo pre priamy odkaz na súbor
 'large-file'                  => 'Odporúča sa aby veľkosť súborov neprekračovala $1; tento súbor má $2.',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
-'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte $1 ak nie ste si istý, či ho chcete zmeniť.',
+'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte <strong><tt>$1</tt></strong> ak nie ste si istý, či ho chcete zmeniť.',
 'filepageexists'              => 'Stránka (nie súbor) s týmto názvom už existuje. Prosím, skontrolujte <strong><tt>$1</tt></strong> ak si nie ste istý, či to chcete zmeniť.',
 'fileexists-extension'        => 'Súbor s podobným názvom už existuje:<br />
 Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
@@ -1178,7 +1179,7 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'filehist'                  => 'História súboru',
 'filehist-help'             => 'Po kliknutí na dátum/čas uvidíte súbor ako vyzeral vtedy.',
 'filehist-deleteall'        => 'zmazať všetky',
-'filehist-deleteone'        => 'zmazať túto',
+'filehist-deleteone'        => 'zmazať',
 'filehist-revert'           => 'obnoviť',
 'filehist-current'          => 'aktuálna',
 'filehist-datetime'         => 'dátum/čas',
@@ -1191,7 +1192,7 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'nolinkstoimage'            => 'Žiadne stránky neobsahujú odkazy na tento obrázok.',
 'sharedupload'              => 'Toto je zdieľaný súbor a je možné ho používať na iných projektoch.',
 'shareduploadwiki'          => 'Ďalšie informácie pozrite na $1.',
-'shareduploadwiki-desc'     => '$1 obsahuje dolu jeho popis.',
+'shareduploadwiki-desc'     => 'Dolu je zobrazený popis, ktorý obsahuje jeho $1 na zdieľanom úložisku.',
 'shareduploadwiki-linktext' => 'popisná stránka súboru',
 'noimage'                   => 'Súbor s takým menom neexistuje, môžete ho $1',
 'noimage-linktext'          => 'nahrať',
@@ -1312,7 +1313,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'wantedpages'             => 'Žiadané stránky',
 'mostlinked'              => 'Najčastejšie odkazované stránky',
 'mostlinkedcategories'    => 'Najčastejšie odkazované kategórie',
-'mostlinkedtemplates'     => 'Najodkazovanejšie šablóny',
+'mostlinkedtemplates'     => 'Najčastejšie odkazované šablóny',
 'mostcategories'          => 'Stránky s najväčším počtom kategórií',
 'mostimages'              => 'Najčastejšie odkazované súbory',
 'mostrevisions'           => 'Stránky s najväčším počtom úprav',
@@ -1380,7 +1381,7 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno aleb
 'allnotinnamespace' => 'Všetky stránky (nie z menného priestoru $1)',
 'allpagesprev'      => 'Predchádzajúci',
 'allpagesnext'      => 'Ďalší',
-'allpagessubmit'    => 'Choď',
+'allpagessubmit'    => 'Vykonať',
 'allpagesprefix'    => 'Zobraziť stránky s predponou:',
 'allpagesbadtitle'  => 'Zadaný názov stránky je neplatný alebo mal medzijazykový alebo interwiki prefix. Môže obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v názve stránky.',
 'allpages-bad-ns'   => '{{SITENAME}} nemá menný priestor „$1“.',
@@ -2054,7 +2055,7 @@ $1',
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 stránky',
 'file-info'            => '(veľkosť súboru: $1, MIME typ: $2)',
-'file-info-size'       => '($1 × $2 pixel, veľkosť súboru: $3, MIME typ: $4)',
+'file-info-size'       => '($1 × $2 pixelov, veľkosť súboru: $3, MIME typ: $4)',
 'file-nohires'         => '<small>Nie je dostupné vyššie rozlíšenie.</small>',
 'svg-long-desc'        => '(SVG súbor, $1 × $2 pixelov, veľkosť súboru: $3)',
 'show-big-image'       => 'Obrázok vo vyššom rozlíšení',
@@ -2073,7 +2074,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 
 # Metadata
 'metadata'          => 'Metadáta',
-'metadata-help'     => 'Tento súbor obsahuje ďalšie informácie, pravdepodobne pochádzajúce z digitálneho fotoaparátu či skenera ktorý ho vytvoril alebo digitalizoval. Ak bol súbor zmenený, niektoré podrobnosti sa nemusia plne zhodovať so zmeneným súborom.',
+'metadata-help'     => 'Tento súbor obsahuje ďalšie informácie, pravdepodobne pochádzajúce z digitálneho fotoaparátu či skenera, ktorý ho vytvoril alebo digitalizoval. Ak bol súbor zmenený, niektoré podrobnosti sa nemusia plne zhodovať so zmeneným súborom.',
 'metadata-expand'   => 'Zobraziť detaily EXIF',
 'metadata-collapse' => 'Skryť detaily EXIF',
 'metadata-fields'   => 'Polia EXIF metadát uvedených v tejto správe sa zobrazia na stránke obrázka vtedy, keď je tabuľka metadát zbalená. Ostatné sa štandardne nezobrazia.

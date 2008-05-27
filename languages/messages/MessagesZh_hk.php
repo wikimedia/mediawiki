@@ -1,7 +1,8 @@
 <?php
-/** Hong Kong Chinese‬ (‪中文(香港)‬)
+/** Hong Kong Chinese (‪中文(香港)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

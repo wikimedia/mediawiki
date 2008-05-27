@@ -1,7 +1,8 @@
 <?php
 /** Northern Sotho (Sesotho sa Leboa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Mohau
  * @author Siebrand
@@ -401,7 +402,7 @@ Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' 
 'note'                   => '<strong>Ela hloko:</strong>',
 'previewnote'            => '<strong>Ye ke Taetšo ya sebopego sa letlakala fela; diphetogo ga di ya bolokwa!</strong>',
 'editing'                => 'O fetola $1',
-'editinguser'            => 'Fetola mošomiši <b>$1</b>',
+'editinguser'            => "Fetola mošomiši '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'         => 'Phetolo ya $1 (sekgoba)',
 'editingcomment'         => 'Fetola $1 (tshwayotshwayo)',
 'editconflict'           => 'Tholano ya diphetogo: $1',
@@ -484,7 +485,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'prevn'                 => 'gofeta $1',
 'nextn'                 => 'latela $1',
 'viewprevnext'          => 'Lebelela ($1) ($2) ($3)',
-'powersearch'           => 'Fetleka',
+'powersearch'           => 'Fetleka ka tlhoko',
 
 # Preferences page
 'preferences'        => 'Dikgatlhegelo',
@@ -769,7 +770,7 @@ Ka kgopela sitlediša gore ke se o nyakago  go sedira, le gore o kwešiša ditla
 Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'deletedarticle'              => 'E phumutšwe "[[$1]]"',
 'dellogpage'                  => "''Log'' yago phumula",
-'deletecomment'               => 'Lebaka la go phumula',
+'deletecomment'               => 'Lebaka la go phumula:',
 'deleteotherreason'           => 'Mabaka a mangwe:',
 'deletereasonotherlist'       => 'Mabaka a mangwe',
 'rollbacklink'                => 'bošetša morago',
@@ -948,11 +949,11 @@ Ka kgopelo, kgetha leina le lengwe.',
 'tooltip-t-whatlinkshere'         => "Lenano la matlakala ao a hlomaganyago (''link'') mo",
 'tooltip-t-contributions'         => 'Lebelela lenano la diabe tša mošomiši yo',
 'tooltip-t-emailuser'             => 'Romela molaetša go mošomiši yo',
-'tooltip-t-upload'                => 'Lokela senepe goba difaele tša gago',
+'tooltip-t-upload'                => 'Lokela senepe goba difaele',
 'tooltip-t-specialpages'          => 'Lenano la matlakala kamoka a itšeng',
 'tooltip-ca-nstab-user'           => 'Lebelela letlakala la mošomiši',
 'tooltip-ca-nstab-project'        => 'Lebelela letlakala la tirotherwa',
-'tooltip-ca-nstab-image'          => 'Pono ya letlakala la seswantšho',
+'tooltip-ca-nstab-image'          => 'Botšha  letlakala',
 'tooltip-ca-nstab-template'       => "Lebelela ''template''",
 'tooltip-ca-nstab-help'           => 'Lebelea matlakala a thušo',
 'tooltip-ca-nstab-category'       => 'Lebelela letlakala la sehlopha',

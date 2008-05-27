@@ -1,7 +1,8 @@
 <?php
 /** Kara-Kalpak (Qaraqalpaqsha)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Atabek
  * @author Jiemurat
@@ -345,7 +346,7 @@ $messages = array(
 'nosuchspecialpage' => 'Bunday arnawlı bet joq',
 'nospecialpagetext' => "<big>'''Siz sorag'an bunday arnawlı bet joq.'''</big>
 
-Arnawlı betlerdin' dizimin [[{{ns:special}}:Specialpages]] betinen tabıwın'ızg'a boladı.",
+Arnawlı betlerdin' dizimin [[Special:Specialpages|{{int:specialpages}}]] betinen tabıwın'ızg'a boladı.",
 
 # General errors
 'error'                => "Qa'telik",
@@ -420,7 +421,7 @@ Akkauntın'ız jaratıldı. {{SITENAME}} sazlawların'ızdı o'zgertiwdi umıtpa
 'userlogout'                 => "Shıg'ıw",
 'notloggedin'                => 'Kirilmegen',
 'nologin'                    => "Akkauntın'ız joqpa? $1.",
-'nologinlink'                => 'Akkaunt jarat',
+'nologinlink'                => "Akkaunt jaratın'",
 'createaccount'              => 'Akkaunt jarat',
 'gotaccount'                 => "Akkauntın'ız barma? $1.",
 'gotaccountlink'             => 'Kir',
@@ -537,6 +538,8 @@ to'mende ko'rsetilgen:",
 'whitelistreadtext'         => "Betterdi oqıw ushın [[Special:Userlogin|kiriwin'iz]] kerek.",
 'whitelistacctitle'         => "Sizin' akkaunt jaratıwg'a ruxsatın'ız joq",
 'confirmedittitle'          => "O'zgertiw ushın e-mail tastıyıqlaması kerek",
+'confirmedittext'           => "Betlerge o'zgeris kiritiwin'iz ushın aldın E-pochta adresin'izdi tastıyıqlawın'ız kerek.
+E-pochta adresin'izdi [[{{#special:Preferences}}|paydalanıwshı sazlawları bo'limi]] arqalı ko'rsetin' ha'm jaramlılıg'ın tekserin'.",
 'nosuchsectiontitle'        => "Bunday bo'lim joq",
 'loginreqtitle'             => "Sistemag'a kiriw kerek",
 'loginreqlink'              => 'kiriw',
@@ -552,7 +555,7 @@ Eger bul jerge aljasıp o'tken bolsan'ız, brauzerin'izdin' «Arqag'a» knopkas�
 'note'                      => '<strong>Eskertiw:</strong>',
 'previewnote'               => "<strong>Bul ele tek aldınnan ko'rip shıg'ıw; o'zgerisler ele saqlanbadı!</strong>",
 'editing'                   => "$1 o'zgertilmekte",
-'editinguser'               => "Paydalanıwshı <b>$1</b> o'zgertilmekte",
+'editinguser'               => "Paydalanıwshı <b>$1</b> o'zgertilmekte ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => "$1 (bo'limi) o'zgertilmekte",
 'editingcomment'            => "$1 (kommentariyi) o'zgertilmekte",
 'editconflict'              => "O'zgertiw konflikti: $1",
@@ -850,7 +853,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 # File deletion
 'filedelete'             => "$1 degendi o'shiriw",
 'filedelete-legend'      => "Fayldı o'shiriw",
-'filedelete-intro'       => "'''[[{{ns:media}}:$1|$1]]''' o'shirilmekte.",
+'filedelete-intro'       => "'''[[Media:$1|$1]]''' o'shirilmekte.",
 'filedelete-intro-old'   => "<span class=\"plainlinks\"> [\$4 \$3, \$2] waqtındag'ı '''[[{{ns:media}}:\$1|\$1]]''' nusqası o'shirilmekte.</span>",
 'filedelete-comment'     => 'Kommentariy:',
 'filedelete-submit'      => "O'shiriw",
@@ -1004,7 +1007,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'nowatchlist'          => "Baqlaw dizimin'iz bos.",
 'watchlistanontext'    => "Baqlaw dizimin'izdegilerdi qaraw yamasa o'zgertiw ushın $1 kerek.",
 'watchnologin'         => 'Kirilmegen',
-'watchnologintext'     => "Baqlaw dizimin'izdi o'zgertiw ushın [[{{ns:special}}:Userlogin|kiriwin'iz]] kerek.",
+'watchnologintext'     => "Baqlaw dizimin'izdi o'zgertiw ushın [[Special:Userlogin|kiriwin'iz]] kerek.",
 'addedwatch'           => 'Baqlaw dizimine qosıldı',
 'addedwatchtext'       => "\"[[:\$1]]\" beti [[{{ns:special}}:Watchlist|baqlaw dizimin'izge]] qosıldı.
 Usı ha'm og'an baylanıslı bolg'an sa'wbet betlerinde bolatug'ın keleshektegi o'zgerisler usı dizimde ko'rsetiledi ha'mde betti tabıwdı an'satlastırıw ushın [[{{ns:special}}:Recentchanges|taza o'zgerisler diziminde]] '''juwan ha'ripte''' ko'rsetiledi.
@@ -1452,6 +1455,7 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 'confirmemail'          => 'E-mail adresin tastıyıqlaw',
 'confirmemail_success'  => "Sizin' e-mail adresin'iz tastıyıqlandı, endi wikige kiriwin'iz mu'mkin.",
 'confirmemail_loggedin' => "Sizin' e-mail adresin'iz endi tastıyıqlandı.",
+'confirmemail_subject'  => '{{SITENAME}} e-pochta adresi tastıyıqaw xatı',
 
 # Trackbacks
 'trackbackremove' => " ([$1 O'shir])",

@@ -1,7 +1,8 @@
 <?php
 /** Tok Pisin (Tok Pisin)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Wantok
  * @author Niklas Laxström

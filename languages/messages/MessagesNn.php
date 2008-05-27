@@ -1,7 +1,8 @@
 <?php
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Olve Utne
  * @author Guttorm Flatabø
@@ -16,6 +17,7 @@
  * @author M.M.S.
  * @author Jorunn
  * @author H92
+ * @author Ranveig
  */
 
 /**
@@ -609,7 +611,7 @@ Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sj
 'yourrealname'               => 'Verkeleg namn:',
 'yourlanguage'               => 'Språk:',
 'yourvariant'                => 'Språkvariant',
-'yournick'                   => 'Kallenamn:',
+'yournick'                   => 'Signatur:',
 'badsig'                     => 'Ugyldig råsignatur, sjekk HTML-kodinga.',
 'badsiglength'               => 'Brukarnamnet er for langt, det må vere under $1 teikn.',
 'email'                      => 'E-post',
@@ -656,7 +658,7 @@ Dersom du ikkje ynskjer å endre passordet ditt kan du sjå bort frå denne meld
 'createaccount-title'        => 'Oppretting av brukarkonto på {{SITENAME}}',
 'createaccount-text'         => 'Nokon oppretta ein brukarkonto for $2 på {{SITENAME}} ($4). Passordet til «$2» er «$3». Du bør logge inn og endre passordet ditt med ein gong.
 
-Du kan oversjå denne meldinga dersom kontoen vart oppretta med eit uhell.',
+Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -758,7 +760,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'userinvalidcssjstitle'     => "'''Åtvaring:''' Det finst ikkje noka sidedrakt som heiter «$1». Hugs på at vanlege .css- og .js-sider brukar titlar med små bokstavar, til dømes {{ns:user}}:Døme/monobook.css, og ikkje {{ns:user}}:Døme/Monobook.css.",
 'updated'                   => '(Oppdatert)',
 'note'                      => '<strong>Merk:</strong>',
-'previewnote'               => 'Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!',
+'previewnote'               => '<strong>Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!</strong>',
 'previewconflict'           => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
 'session_fail_preview'      => '<strong>Beklagar! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
 'session_fail_preview_html' => "<strong>Beklagar! Endringa di kunne ikkje lagrast.</strong>
@@ -801,7 +803,7 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'template-semiprotected'    => '(delvis verna)',
 'edittools'                 => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
 'nocreatetitle'             => 'Avgrensa sideoppretting',
-'nocreatetext'              => '{{SITENAME}} har avgrensa mogelegheita for å opprette nye sider.
+'nocreatetext'              => '{{SITENAME}} har avgrensa tilgang til å opprette nye sider.
 Du kan gå attende og endre ei eksisterande side, [[Special:Userlogin|logge inn eller opprette ein brukarkonto]].',
 'nocreate-loggedin'         => 'Du har ikkje tilgang til å opprette nye sider på {{SITENAME}}.',
 'permissionserrors'         => 'Tilgangsfeil',
@@ -955,7 +957,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'mypreferences'            => 'Innstillingane mine',
 'prefs-edits'              => 'Tal på endringar:',
 'prefsnologin'             => 'Ikkje innlogga',
-'prefsnologintext'         => 'Du lyt vera [[Special:Userlogin|innlogga]] for å endre brukarinnstillingane dine.',
+'prefsnologintext'         => 'Du lyt vere [[Special:Userlogin|innlogga]] for å endre brukarinnstillingane dine.',
 'prefsreset'               => 'Innstillingane er tilbakestilte til siste lagra versjon.',
 'qbsettings'               => 'Snøggmeny',
 'qbsettings-none'          => 'Ingen',
@@ -1129,7 +1131,7 @@ For å lenkje direkte til fila, skriv:
 'large-file'                  => 'Det er tilrådd at filene ikkje er større enn $1, denne fila er $2.',
 'largefileserver'             => 'Denne fila er større enn det tenaren tillèt.',
 'emptyfile'                   => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
-'fileexists'                  => 'Ei fil med dette namnet finst allereie, sjekk $1 om du ikkje er sikker på om du vil endre namnet.',
+'fileexists'                  => 'Ei fil med dette namnet finst allereie, sjekk <strong><tt>$1</tt></strong> om du ikkje er sikker på om du vil endre namnet.',
 'filepageexists'              => 'Ei side (ikkje ei fil) med dette namnet finst allereie, ver venleg og sjekk <strong><tt>$1</tt></strong> dersom du er usikker på om du vil endre henne.',
 'fileexists-extension'        => 'Ei fil med eit liknande namn finst allereie:<br />
 Namnet på fila du lastar opp: <strong><tt>$1</tt></strong><br />
@@ -1197,7 +1199,7 @@ Sletteloggen for fila finn du her:",
 'filehist'                  => 'Filhistorikk',
 'filehist-help'             => 'Klikk på dato/klokkeslett for å sjå fila slik ho var på det tidspunktet.',
 'filehist-deleteall'        => 'slett alle',
-'filehist-deleteone'        => 'slett denne',
+'filehist-deleteone'        => 'slett',
 'filehist-revert'           => 'rull attende',
 'filehist-current'          => 'noverande',
 'filehist-datetime'         => 'Dato/klokkeslett',
@@ -1210,7 +1212,7 @@ Sletteloggen for fila finn du her:",
 'nolinkstoimage'            => 'Det finst ikkje noka side med lenkje til denne fila.',
 'sharedupload'              => 'Denne fila er ei delt opplasting og kan brukast av andre prosjekt.',
 'shareduploadwiki'          => 'Sjå $1 for meir informasjon.',
-'shareduploadwiki-desc'     => 'Skildringa til $1 er vist nedanfor.',
+'shareduploadwiki-desc'     => 'Skildringa til $1 i det delte lageret er vist nedanfor.',
 'shareduploadwiki-linktext' => 'filskildringssida',
 'noimage'                   => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
 'noimage-linktext'          => 'laste ho opp',
@@ -1244,8 +1246,8 @@ Sletteloggen for fila finn du her:",
 'filedelete-nofile'           => "'''$1''' finst ikkje på {{SITENAME}}.",
 'filedelete-nofile-old'       => "Det finst ingen arkivert versjon av '''$1''' med dei oppgjevne attributta.",
 'filedelete-iscurrent'        => 'Du prøver å slette den nyaste versjonen av denne fila. Ver venleg og rull attende til ein eldre versjon fyrst.',
-'filedelete-otherreason'      => 'Anna grunn/tilleggsgrunn:',
-'filedelete-reason-otherlist' => 'Anna grunn',
+'filedelete-otherreason'      => 'Annan grunn/tilleggsgrunn:',
+'filedelete-reason-otherlist' => 'Annan grunn',
 'filedelete-reason-dropdown'  => '*Vanlege grunnar for sletting
 ** Brot på opphavsretten
 ** Ligg dobbelt',
@@ -1835,10 +1837,13 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'importhistoryconflict'      => 'Det kan vera at det er konflikt i historikken (kanskje sida vart importert før)',
 'importnosources'            => 'Ingen kjelder for transwikiimport er oppgjevne og funksjonen for opplasting av historikk er deaktivert.',
 'import-parse-failure'       => 'Feil i tolking av XML-import',
+'import-noarticle'           => 'Ingen sider å importere!',
 
 # Import log
-'importlogpage'                 => 'Importeringslogg',
-'import-logentry-upload-detail' => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
+'importlogpage'                    => 'Importeringslogg',
+'import-logentry-upload'           => 'importerte [[$1]] frå opplasta fil',
+'import-logentry-upload-detail'    => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|Éin versjon|$1 versjonar}} frå $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Brukarsida mi',

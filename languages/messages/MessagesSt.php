@@ -1,7 +1,8 @@
 <?php
 /** Southern Sotho (Sesotho)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Cbrown1023
  * @author SPQRobin

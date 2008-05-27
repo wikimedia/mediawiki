@@ -1,7 +1,8 @@
 <?php
 /** Gilaki (گیلکی)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author AminSanaei
  */

@@ -1,7 +1,8 @@
 <?php
 /** Vietnamese (Tiếng Việt)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
@@ -494,7 +495,7 @@ Tài khoản của bạn đã mở. Đừng quên thay đổi tùy chọn cá nh
 'yourrealname'               => 'Tên thật:',
 'yourlanguage'               => 'Ngôn ngữ:',
 'yourvariant'                => 'Ngôn ngữ địa phương:',
-'yournick'                   => 'Chữ ký trong thảo luận:',
+'yournick'                   => 'Chữ ký:',
 'badsig'                     => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
 'badsiglength'               => 'Chữ ký quá dài; chỉ được phép không quá $1 ký tự.',
 'email'                      => 'Thư điện tử',
@@ -703,7 +704,7 @@ Nhật trình xóa của trang được đưa ra dưới đây để tiện theo
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
-'undo-failure' => 'Không có thể lùi lại sửa đổi vì những sửa đổi sau mâu thuẫn.',
+'undo-failure' => 'Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.',
 'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|thảo luận]])',
 
 # Account creation failure
@@ -841,7 +842,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'viewprevnext'          => 'Xem ($1) ($2) ($3).',
 'showingresults'        => "Dưới đây là {{PLURAL:$1|'''1'''|'''$1'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'     => "Dưới đây là {{PLURAL:$3|'''1'''|'''$3'''}} kết quả bắt đầu từ #'''$2'''.",
-'nonefound'             => "'''Chú ý''': Tìm kiếm thường thất bại khi tìm những từ phổ biến như “thì” và “là”, những từ này không được đánh chỉ mục, hoặc bạn đã ghi nhiều từ khóa tìm kiếm (chỉ có những trang chứa tất cả các từ khóa mới xuất hiện trong kết quả).",
+'nonefound'             => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (như [[:en:Main Page|tiếng Anh]], ví dụ, Tiêu bản là ''Template:'', Thể loại là ''Category:''...).",
 'powersearch'           => 'Tìm kiếm nâng cao',
 'powersearchtext'       => 'Tìm trong không gian tên:<br />$1<br />$2 gồm cả trang đổi hướng<br />Tìm $3 $9',
 'searchdisabled'        => 'Chức năng tìm kiếm tại {{SITENAME}} đã bị tắt. Bạn có tìm kiếm bằng Google trong thời gian này. Chú ý rằng các chỉ mục từ {{SITENAME}} của chúng có thể đã lỗi thời.',
@@ -903,7 +904,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'servertime'               => 'Giờ máy chủ',
 'guesstimezone'            => 'Dùng giờ của trình duyệt',
 'allowemail'               => 'Nhận thư điện tử từ các thành viên khác',
-'defaultns'                => 'Mặc định tìm kiếm trong không gian tên :',
+'defaultns'                => 'Mặc định tìm kiếm trong không gian tên:',
 'default'                  => 'mặc định',
 'files'                    => 'Tập tin',
 
@@ -930,7 +931,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 
 # Groups
 'group'               => 'Nhóm:',
-'group-autoconfirmed' => 'Các thành viên tự động xác nhận.',
+'group-autoconfirmed' => 'Thành viên tự xác nhận',
 'group-bot'           => 'Robot',
 'group-sysop'         => 'Quản lý',
 'group-bureaucrat'    => 'Hành chính viên',
@@ -941,7 +942,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'group-sysop-member'         => 'Quản lý',
 'group-bureaucrat-member'    => 'Hành chính viên',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự động xác nhận',
+'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự xác nhận',
 'grouppage-bot'           => '{{ns:project}}:Robot',
 'grouppage-sysop'         => '{{ns:project}}:Người quản lý',
 'grouppage-bureaucrat'    => '{{ns:project}}:Hành chính viên',
@@ -1121,9 +1122,9 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'linkstoimage'              => 'Các trang sau có liên kết đến hình:',
 'nolinkstoimage'            => 'Không có trang nào chứa liên kết đến hình.',
 'sharedupload'              => 'Tập tin này được tải lên để dùng chung và có thể dùng ở các dự án khác.',
-'shareduploadwiki'          => 'Xin xem $1 để biết thêm thông tin về tập tin.',
-'shareduploadwiki-desc'     => 'Dưới đây có lời miêu tả của nó, được sao chép từ $1.',
-'shareduploadwiki-linktext' => 'trang miêu tả',
+'shareduploadwiki'          => 'Xin xem $1 để biết thêm thông tin.',
+'shareduploadwiki-desc'     => 'Dưới đây là nội dung từ $1 tại kho lưu trữ chung.',
+'shareduploadwiki-linktext' => 'trang miêu tả tập tin',
 'noimage'                   => 'Không có tập tin có tên này, bạn có thể $1.',
 'noimage-linktext'          => 'tải tập tin lên',
 'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
@@ -1137,17 +1138,17 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
 'filerevert-legend'         => 'Lùi lại tập tin',
-'filerevert-intro'          => '<span class="plainlinks">Bạn đang lùi \'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-intro'          => '<span class="plainlinks">Bạn đang lùi \'\'\'[[Media:$1|$1]]\'\'\' về [$4 phiên bản lúc $3, $2].</span>',
 'filerevert-comment'        => 'Lý do:',
 'filerevert-defaultcomment' => 'Đã lùi về phiên bản lúc $2, $1',
 'filerevert-submit'         => 'Lùi lại',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' đã được lùi về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' đã được lùi về [$4 phiên bản lúc $3, $2].</span>',
 'filerevert-badversion'     => 'Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.',
 
 # File deletion
 'filedelete'                  => 'Xóa $1',
 'filedelete-legend'           => 'Xóa tập tin',
-'filedelete-intro'            => "Bạn đang xóa '''[[{{ns:Media}}:$1|$1]]'''.",
+'filedelete-intro'            => "Bạn đang xóa '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
 'filedelete-comment'          => 'Lý do:',
 'filedelete-submit'           => 'Xóa',
@@ -1195,7 +1196,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 Trong số đó có các trang “thảo luận”, trang liên quan đến {{SITENAME}}, các trang “sơ khai” ngắn, và những trang khác không tính là trang có nội dung.
 Nếu không tính đến các trang đó, có {{PLURAL:$2|'''1'''|'''$2'''}} trang là những trang có nội dung tốt.
 
-Có '''$8''' đã được tải lên.
+Có '''$8''' tập tin đã được tải lên.
 
 Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
 
@@ -1225,7 +1226,7 @@ Có '''$8''' đã được tải lên.
 'nbytes'                  => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories'             => '$1 {{PLURAL:$1|thể loại|thể loại}}',
 'nlinks'                  => '$1 {{PLURAL:$1|liên kết|liên kết}}',
-'nmembers'                => '$1 {{PLURAL:$1|thành viên|thành viên}}',
+'nmembers'                => '$1 {{PLURAL:$1|trang|trang}}',
 'nrevisions'              => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'nviews'                  => '$1 {{PLURAL:$1|lượt truy cập|lượt truy cập}}',
 'specialpage-empty'       => 'Trang này đang trống.',
@@ -1515,7 +1516,7 @@ Cũng chú ý rằng các giới hạn áp dụng lên các phiên bản tập t
 'undeleterevdel'               => 'Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trên cùng bị xóa mất một phần. Trong những trường hợp như vậy, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất. Các phiên bản của tập tin mà bạn không có quyền xem sẽ không được phục hồi.',
 'undeletehistorynoadmin'       => 'Trang này đã bị xóa.
 Lý do xóa trang được hiển thị dưới đây, cùng với thông tin về các người đã sửa đổi trang này trước khi bị xóa.
-Chỉ cóngười quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
+Chỉ có người quản lý mới xem được văn bản đầy đủ của những phiên bản trang bị xóa.',
 'undelete-revision'            => 'Phiên bản của $1 do $3 xóa (vào lúc $2):',
 'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
 'undelete-nodiff'              => 'Không tìm thấy phiên bản cũ hơn.',

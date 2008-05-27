@@ -1,7 +1,8 @@
 <?php
 /** Javanese (Basa Jawa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Niklas Laxström
  * @author Helix84
@@ -107,14 +108,14 @@ $messages = array(
 'category-empty'  => "''Kategori iki saiki ora ngandhut artikel utawa média.''",
 
 'about'          => 'Prakawis',
-'cancel'         => 'Batal',
+'cancel'         => 'Batalna',
 'qbfind'         => 'Golèk',
 'qbspecialpages' => 'Kaca-kaca Astamiwa',
 'mypage'         => 'Panggonanku',
 'mytalk'         => 'Gunemanku',
 'anontalk'       => 'Dhiskusi IP puniki',
 'navigation'     => 'Pandhu Arah',
-'and'            => 'lan',
+'and'            => 'Lan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -178,7 +179,7 @@ $messages = array(
 'newmessageslink'         => 'warta enggal',
 'newmessagesdifflink'     => 'mirsani bédanipun saking revisi sadèrèngipun',
 'youhavenewmessagesmulti' => 'Panjenengan angsal pesen-pesen ènggal $1',
-'toc'                     => 'Bab lan Paragraf',
+'toc'                     => 'Bab lan paragraf',
 'hidetoc'                 => 'delikna',
 'restorelink'             => '$1 {{PLURAL:$1|suntingan|suntingan}} sing wis kabusak',
 'feed-unavailable'        => "Umpan sindikasi (''syndication feeds'') ora ana ing {{SITENAME}}",
@@ -191,6 +192,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'      => 'Kaca panganggo',
 'nstab-mediawiki' => 'Pariwara',
+'nstab-category'  => 'Kategori',
 
 # General errors
 'internalerror_info'   => 'Kaluputan internal: $1',
@@ -232,11 +234,13 @@ Alesané yaiku ''$2''.",
 'gotaccountlink'             => 'Mlebet',
 'createaccountmail'          => 'liwat layang e-mail',
 'badretype'                  => 'Sandhi panjenengan mboten gathuk',
+'youremail'                  => 'Layang élèktronik (E-mail):',
 'yourrealname'               => 'Asma sejatosipun *',
 'yourlanguage'               => 'Basa ingkang kaginaaken:',
 'yournick'                   => 'Asma sesinglon/samaran (kagem tapak asma):',
 'badsig'                     => 'Tapak asmanipun klentu; cek tag HTML.',
 'badsiglength'               => 'Jeneng sesingloné kedawan; kudu sangisoré $1 karakter.',
+'email'                      => 'Layang élèktronik (E-mail)',
 'loginerror'                 => 'Kesalahan mlebu log',
 'prefs-help-email-required'  => 'Alamat e-mail dibutuhaké.',
 'nocookiesnew'               => "Rékening utawa akun panganggo panjenengan wis digawé, nanging panjenengan durung mlebu log. {{SITENAME}} nggunakaké ''cookies'' kanggo  log panganggo. ''Cookies'' ing panjelajah web panjengengan dipatèni. Mangga diaktifaké lan mlebu log manèh mawa jeneng panganggo lan tembung sandhi panjenengan.",
@@ -306,7 +310,7 @@ ID pamblokiran panjenengan iku $5. Tulung sertakna ID iki saben ngajokaké pitak
 Manawa kersa manulis artikel iki, manggaa. (Mangga mirsani [[{{MediaWiki:Helppage}}|Pitulung]] kanggo informasi sabanjuré).
 Yèn ora sengaja tekan kéné, bisa ngeklik pencètan '''back''' waé ing panjlajah wèb panjenengan.",
 'userpage-userdoesnotexist' => 'Akun utawa rékening panganggo "$1" ora kadaftar.',
-'previewnote'               => 'Mugi dipun gatekaken menawi punika namung pratilik kemawon, dereng dipun simpen!',
+'previewnote'               => '<strong>Muga digatèkaké menawa iki namung pratilik waé, durung disimpen!</strong>',
 'session_fail_preview'      => '<strong>Nuwun sèwu, suntingan panjenengan ora bisa diolah amarga dhata sèsi kabusak. Coba kirim dhata manèh. Yèn tetep ora bisa, coba log metua lan mlebu log manèh.</strong>',
 'session_fail_preview_html' => "<strong>Nuwun sèwu! Kita ora bisa prosès suntingan panjenengan amerga data sési ilang.</strong>
 
@@ -315,6 +319,7 @@ Yèn ora sengaja tekan kéné, bisa ngeklik pencètan '''back''' waé ing panjla
 <strong>Yèn iki sawijining upaya suntingan sing absah, mangga dicoba manèh. Yèn isih tetep ora kasil, cobanen metu log utawa oncat lan mlebua manèh.</strong>",
 'token_suffix_mismatch'     => '<strong>Suntingan panjenengan ditulak amerga aplikasi klièn panjenengan ngowahi karakter tandha wewacan ing suntingan. Suntingan iku ditulak kanggo untuk menggak kaluputan ing tèks artikel. Prekara iki kadhangkala dumadi yèn panjenengan ngangem dines layanan proxy anonim adhedhasar situs wèb sing duwé masalah.</strong>',
 'editing'                   => 'Nyunting $1',
+'editinguser'               => "Ngowahi hak-hak aksès panganggo saka panganggo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editconflict'              => 'Konflik sunting: $1',
 'yourtext'                  => 'Seratan Panjenengan',
 'yourdiff'                  => 'Bentenipun',
@@ -390,7 +395,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'viewprevnext'          => 'Deleng ($1) ($2) ($3)',
 'showingresults'        => "Ing ngisor iki dituduhaké {{PLURAL:$1|'''1''' kasil|'''$1''' kasil}}, wiwitané saking #<strong>$2</strong>.",
 'showingresultsnum'     => "Ing ngisor iki dituduhaké {{PLURAL:$3|'''1''' kasil|'''$3''' kasil}}, wiwitané saka #<strong>$2</strong>.",
-'nonefound'             => "'''Cathetan''': Menawa olèhé nggolèk léma utawa èntri iku gagal, biasané prekara iki disebabaké amerga olèhé nggolèk tetembungan kerep nganggo tembung-tembung sing umum. Kayata ing basa Inggris tembung-tembung ''\"have\"'' lan ''\"from\"'' ora dilebokaké indèks, utawa nentokaké luwih saka kriterium panggolèkan. Namung kaca-kaca sing ngandhut kabèh kriteria panggolèkan bakal muncul ing pituwasé panggolèkan.",
+'nonefound'             => "'''Cathetan''': Namung sawetara bilik nama sing digolèki sacara baku. Coba seselana mawa awalan ''all:'' kanggo golèk kabèh isi (kalebu kaca dhiskusi, cithakan lsp.), utawa nganggo bilik nama sing dipèngèni minangka préfiks.",
 'powersearch'           => 'Golek',
 'powersearchtext'       => "Golèk ing bilik jeneng (''namespace''):<br />$1<br />$2 Uga tuduhna kaca pangalihan<br />Golèk $3 $9",
 'searchdisabled'        => 'Sawetara wektu iki panjenengan ora bisa nggolèk mawa fungsi golèk {{SITENAME}}. Kanggo saiki mangga panjenengan bisa golèk nganggo Google. Nanging isi indèks Google kanggo {{SITENAME}} bisa waé lawas lan durung dianyari.',
@@ -601,7 +606,7 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'nolinkstoimage'            => 'Ora ana kaca sing nyambung menyang berkas iki.',
 'sharedupload'              => 'Berkas iki sawijining pangunggahan bebarengan sing uga bisa dienggo déning proyèk-proyèk liyané.',
 'shareduploadwiki'          => 'Mangga mirsani $1 kanggo informasi sabanjuré.',
-'shareduploadwiki-desc'     => 'Dèskripsi ing $1 dituduhaké ing ngisor iki.',
+'shareduploadwiki-desc'     => 'Dèskripsi ing $1 sajroning khazanah binagi dituduhaké ing ngisor iki.',
 'shareduploadwiki-linktext' => 'kaca dèskripsi berkas',
 'noimage'                   => 'Ora ana berkas mawa jeneng iku, panjenengan bisa $1.',
 'noimage-linktext'          => 'ngunggah gambar',
@@ -623,7 +628,7 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'filedelete-legend'           => 'Mbusak berkas',
 'filedelete-intro'            => "Panjenengan mbusak '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Panjenengan mbusak vèrsi \'\'\'[[Media:$1|$1]]\'\'\' per [$4 $3, $2].</span>',
-'filedelete-comment'          => 'Komentar:',
+'filedelete-comment'          => 'Alesan mbusak:',
 'filedelete-submit'           => 'Busak',
 'filedelete-success'          => "'''$1''' wis dibusak.",
 'filedelete-success-old'      => '<span class="plainlinks">Vèrsi \'\'\'[[Media:$1|$1]]\'\'\' ing $3, $2 wis dibusak.</span>',
@@ -769,7 +774,7 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'allinnamespace'    => 'Kabeh kaca ($1 namespace)',
 'allnotinnamespace' => 'Sedaya kaca (mboten panggènan asma $1)',
 'allpagesprev'      => 'Sadèrèngipun',
-'allpagesnext'      => 'Salajengipun',
+'allpagesnext'      => 'Sabanjuré',
 'allpagessubmit'    => 'Madosi',
 'allpagesprefix'    => 'Kapacak kaca-kaca ingkang mawi ater-ater:',
 'allpagesbadtitle'  => 'Irah-irahan (judhul) ingkang dipun-gunaaken boten sah utawi nganggé ater-ater (awalan) antar-basa utawi antar-wiki. Irah-irahan punika saged ugi nganggé setunggal aksara utawi luwih ingkang boten saged kagunaaken dados irah-irahan.',
@@ -889,7 +894,7 @@ Umpan balik lan pitulung sabanjuré:
 'dellogpagetext'              => 'Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.',
 'deletionlog'                 => 'Cathetan sing dibusak',
 'reverted'                    => 'Dibalèkaké ing revisi sadurungé',
-'deletecomment'               => 'Alesan dipun-busak',
+'deletecomment'               => 'Alesan dibusak:',
 'deleteotherreason'           => 'Alesan liya utawa tambahan:',
 'deletereasonotherlist'       => 'Alesan liya',
 'deletereason-dropdown'       => '*Alesan pambusakan
@@ -1385,6 +1390,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 * fnumber', # Do not translate list items
 
 # EXIF tags
+'exif-imagelength'    => 'Dhuwur',
 'exif-gpsdestbearing' => 'Arah tujuan',
 
 # EXIF attributes

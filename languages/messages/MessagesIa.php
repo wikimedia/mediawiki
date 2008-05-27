@@ -1,7 +1,8 @@
 <?php
 /** Interlingua (Interlingua)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Malafaya
  * @author לערי ריינהארט
@@ -51,46 +52,64 @@ $messages = array(
 'tog-previewontop'     => 'Monstrar previsualisation ante le cassa de edition e non post illo',
 
 # Dates
-'sunday'    => 'dominica',
-'monday'    => 'lunedi',
-'tuesday'   => 'martedi',
-'wednesday' => 'mercuridi',
-'thursday'  => 'jovedi',
-'friday'    => 'venerdi',
-'saturday'  => 'sabbato',
-'sun'       => 'dom',
-'mon'       => 'lun',
-'tue'       => 'mar',
-'wed'       => 'mer',
-'thu'       => 'jov',
-'fri'       => 'ven',
-'sat'       => 'sab',
-'january'   => 'januario',
-'february'  => 'februario',
-'march'     => 'martio',
-'april'     => 'april',
-'may_long'  => 'maio',
-'june'      => 'junio',
-'july'      => 'julio',
-'august'    => 'augusto',
-'september' => 'septembre',
-'october'   => 'octobre',
-'november'  => 'novembre',
-'december'  => 'decembre',
-'jan'       => 'jan',
-'feb'       => 'feb',
-'mar'       => 'mar',
-'apr'       => 'apr',
-'may'       => 'mai',
-'jun'       => 'jun',
-'jul'       => 'jul',
-'aug'       => 'aug',
-'sep'       => 'sep',
-'oct'       => 'oct',
-'nov'       => 'nov',
-'dec'       => 'dec',
+'sunday'        => 'dominica',
+'monday'        => 'lunedi',
+'tuesday'       => 'martedi',
+'wednesday'     => 'mercuridi',
+'thursday'      => 'jovedi',
+'friday'        => 'venerdi',
+'saturday'      => 'sabbato',
+'sun'           => 'dom',
+'mon'           => 'lun',
+'tue'           => 'mar',
+'wed'           => 'mer',
+'thu'           => 'jov',
+'fri'           => 'ven',
+'sat'           => 'sab',
+'january'       => 'januario',
+'february'      => 'februario',
+'march'         => 'martio',
+'april'         => 'april',
+'may_long'      => 'maio',
+'june'          => 'junio',
+'july'          => 'julio',
+'august'        => 'augusto',
+'september'     => 'septembre',
+'october'       => 'octobre',
+'november'      => 'novembre',
+'december'      => 'decembre',
+'january-gen'   => 'januario',
+'february-gen'  => 'februario',
+'march-gen'     => 'martio',
+'april-gen'     => 'april',
+'may-gen'       => 'maio',
+'june-gen'      => 'junio',
+'july-gen'      => 'julio',
+'august-gen'    => 'augusto',
+'september-gen' => 'septembre',
+'october-gen'   => 'octobre',
+'november-gen'  => 'novembre',
+'december-gen'  => 'decembre',
+'jan'           => 'jan',
+'feb'           => 'feb',
+'mar'           => 'mar',
+'apr'           => 'apr',
+'may'           => 'mai',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'aug',
+'sep'           => 'sep',
+'oct'           => 'oct',
+'nov'           => 'nov',
+'dec'           => 'dec',
+
+# Bits of text used by many pages
+'categories'      => 'Categorias',
+'category_header' => 'Articulos in le categoria "$1"',
+'subcategories'   => 'Subcategorias',
 
 'about'         => 'A proposito',
+'newwindow'     => '(aperi in un nove fenestra)',
 'cancel'        => 'Cancellar',
 'qbfind'        => 'Trovar',
 'qbbrowse'      => 'Foliar',
@@ -102,24 +121,32 @@ $messages = array(
 'mytalk'        => 'Mi discussion',
 'and'           => 'e',
 
+'errorpagetitle'    => 'Error',
 'returnto'          => 'Retornar a $1.',
+'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Adjuta',
 'search'            => 'Recercar',
 'searchbutton'      => 'Recercar',
 'go'                => 'Ir',
 'searcharticle'     => 'Ir',
 'history'           => 'Chronologia',
+'history_short'     => 'Historia',
 'printableversion'  => 'Version imprimibile',
+'permalink'         => 'Ligamine permanente',
 'edit'              => 'Modificar',
 'editthispage'      => 'Modificar iste pagina',
+'delete'            => 'Eliminar',
 'deletethispage'    => 'Eliminar iste pagina',
 'protectthispage'   => 'Proteger iste pagina',
 'unprotectthispage' => 'Disproteger iste pagina',
 'newpage'           => 'Nove pagina',
 'talkpage'          => 'Discuter iste pagina',
 'talkpagelinktext'  => 'Discussion',
+'specialpage'       => 'Pagina Special',
+'personaltools'     => 'Utensiles personal',
 'articlepage'       => 'Vider article',
 'talk'              => 'Discussion',
+'toolbox'           => 'Cassa de utensiles',
 'userpage'          => 'Vider pagina del usator',
 'projectpage'       => 'Vider metapagina',
 'imagepage'         => 'Vider pagina de imagine',
@@ -139,6 +166,8 @@ $messages = array(
 'copyrightpage'     => '{{ns:project}}:Copyright',
 'currentevents'     => 'Actualitates',
 'currentevents-url' => 'Project:Actualitates',
+'disclaimers'       => 'Declarationes de exemption de responsabilitates',
+'disclaimerpage'    => 'Project:Declaration general de exemption de responsabilitates',
 'edithelp'          => 'Adjuta al edition',
 'edithelppage'      => 'Help:Como_editar_un_pagina',
 'faq'               => 'Questiones frequente',
@@ -147,10 +176,24 @@ $messages = array(
 'mainpage'          => 'Frontispicio',
 'portal'            => 'Portal del communitate',
 'portal-url'        => 'Project:Portal del communitate',
+'privacy'           => 'Politica de confidentialitate',
+'privacypage'       => 'Project:Politica de confidentialitate',
 'sitesupport'       => 'Donationes',
 
-'retrievedfrom'   => 'Recuperate de "$1"',
-'newmessageslink' => 'messages nove',
+'retrievedfrom'      => 'Recuperate de "$1"',
+'youhavenewmessages' => 'Tu ha $1 ($2).',
+'newmessageslink'    => 'messages nove',
+'editsection'        => 'modificar',
+'showtoc'            => 'monstrar',
+'hidetoc'            => 'occultar',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'Pagina',
+'nstab-user'     => 'Pagina de usator',
+'nstab-project'  => 'Pagina de projecto',
+'nstab-image'    => 'Archivo',
+'nstab-template' => 'Patrono',
+'nstab-category' => 'Categoria',
 
 # Main script and global functions
 'nosuchaction'      => 'Action inexistente',
@@ -199,6 +242,7 @@ un titulo interlinguistic o interwiki incorrectemente ligate.',
 'perfdisabled'    => 'Pardono! Iste functionalitate es temporarimente inactivate durante
 horas de grande affluentia de accessos pro motivo de performance;
 retorna inter 02:00 e 14:00 UTC e tenta de nove.',
+'viewsource'      => 'Vider codice fonte',
 
 # Login and logout pages
 'logouttitle'           => 'Fin de session',
@@ -222,6 +266,8 @@ Non oblida personalisar {{SITENAME}} secundo tu preferentias.',
 'badretype'             => 'Le duo contrasignos que tu scribeva non coincide.',
 'userexists'            => 'Le nomine de usator que tu selectionava ja es in uso. Per favor selectiona un nomine differente.',
 'youremail'             => 'Tu e-mail',
+'yourrealname'          => 'Nomine real:',
+'yourlanguage'          => 'Lingua:',
 'yournick'              => 'Tu pseudonymo (pro signaturas)',
 'loginerror'            => 'Error in le apertura del session',
 'noname'                => 'Tu non specificava un nomine de usator valide.',
@@ -241,15 +287,30 @@ Nos consilia que tu initia un session e cambia le contrasigno le plus tosto poss
 'passwordsent'          => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
 Per favor initia un session post reciper lo.',
+'accountcreated'        => 'Conto create',
 'loginlanguagelabel'    => 'Lingua: $1',
+
+# Edit page toolbar
+'bold_sample'     => 'Texto grasse',
+'bold_tip'        => 'Texto grasse',
+'italic_sample'   => 'Texto italic',
+'italic_tip'      => 'Texto italic',
+'link_sample'     => 'Titulo del ligamine',
+'link_tip'        => 'Ligamine interne',
+'extlink_sample'  => 'http://www.exemplo.com titulo del ligamine',
+'headline_sample' => 'Texto del titulo',
+'headline_tip'    => 'Titulo de nivello 2',
+'math_sample'     => 'Inserer formula aqui',
 
 # Edit pages
 'summary'          => 'Summario',
+'subject'          => 'Subjecto/titulo',
 'minoredit'        => 'Iste es un modification minor',
 'watchthis'        => 'Poner iste articulo sub observation',
 'savearticle'      => 'Salvar articulo',
 'preview'          => 'Previsualisar',
 'showpreview'      => 'Monstrar previsualisation',
+'showdiff'         => 'Monstrar cambios',
 'blockedtitle'     => 'Le usator es blocate',
 'blockedtext'      => "Tu nomine de usator o adresse de IP ha essite blocate per $1.
 Le motivo presentate es iste:<br />''$2''<p>Tu pote contactar $1 o un del altere
@@ -263,11 +324,11 @@ Si tu es hic per error, simplemente clicca le button '''Retornar''' de tu naviga
 'noarticletext'    => '(Actualmente il non ha texto in iste pagina)',
 'updated'          => '(Actualisate)',
 'note'             => '<strong>Nota:</strong>',
-'previewnote'      => 'Rememora te que isto es solmente un previsualisation, tu modificationes ancora non ha essite salvate!',
+'previewnote'      => '<strong>Rememora te que isto es solmente un previsualisation, tu modificationes ancora non ha essite salvate!</strong>',
 'previewconflict'  => 'Iste previsualisation reflecte le apparentia final del texto in le area de redaction superior
 si tu opta pro salvar lo.',
 'editing'          => 'Modification de $1',
-'editinguser'      => 'Modification de $1',
+'editinguser'      => "Modification de '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editconflict'     => 'Conflicto de edition: $1',
 'explainconflict'  => 'Alcuno ha modificate iste pagina post que tu
 ha comenciate a modificar lo.
@@ -282,28 +343,37 @@ quando tu premera "Salvar pagina".<br />',
 un version obsolete de iste pagina.
 Si tu lo salvara, tote le modificationes facite post iste revision essera perdite.</strong>',
 'yourdiff'         => 'Differentias',
+'copyrightwarning' => 'Nota que tote le contributiones a {{SITENAME}} es considerate public secundo le $2 (vide plus detalios in $1).
+Si tu non vole que tu scripto sia modificate impietosemente e redistribuite a voluntate, tunc non lo edita aqui.<br />
+Additionalmente, tu nos garanti que tu es le autor de tu contributiones, o que tu los ha copiate de un ressource libere de derectos.
+<strong>NON USA MATERIAL COPERITE PER DERECTOS DE AUTOR (COPYRIGHT) SIN AUTORISATION EXPRESSE!</strong>',
 'longpagewarning'  => 'ADVERTIMENTO: Iste pagina ha $1 kilobytes de longitude;
 alcun navigatores pote presentar problemas in editar
 paginas de approximatemente o plus de 32kb.
 Considera fragmentar le pagina in sectiones minor.',
 
 # History pages
-'nohistory'       => 'Iste pagina non ha versiones precedente.',
-'revnotfound'     => 'Revision non trovate',
-'revnotfoundtext' => 'Impossibile trovar le version anterior del pagina que tu ha demandate.
+'nohistory'        => 'Iste pagina non ha versiones precedente.',
+'revnotfound'      => 'Revision non trovate',
+'revnotfoundtext'  => 'Impossibile trovar le version anterior del pagina que tu ha demandate.
 Verifica le URL que tu ha usate pro accessar iste pagina.',
-'loadhist'        => 'Carga del chronologia del pagina',
-'currentrev'      => 'Revision currente',
-'revisionasof'    => 'Revision de $1',
-'cur'             => 'actu',
-'next'            => 'sequ',
-'last'            => 'prec',
-'histlegend'      => 'Legenda: (actu) = differentia del version actual,
+'loadhist'         => 'Carga del chronologia del pagina',
+'currentrev'       => 'Revision currente',
+'revisionasof'     => 'Revision de $1',
+'previousrevision' => '←Revision plus vetere',
+'nextrevision'     => 'Revision plus nove→',
+'cur'              => 'actu',
+'next'             => 'sequ',
+'last'             => 'prec',
+'histlegend'       => 'Legenda: (actu) = differentia del version actual,
 (prec) = differentia con le version precedente, M = modification minor',
+'histfirst'        => 'Prime',
+'histlast'         => 'Ultime',
 
 # Diffs
 'difference' => '(Differentia inter revisiones)',
 'lineno'     => 'Linea $1:',
+'editundo'   => 'revocar',
 
 # Search results
 'searchresults'         => 'Resultatos del recerca',
@@ -351,6 +421,7 @@ pro definir tu preferentias.',
 'math_unknown_function'    => 'function incognite',
 'math_lexing_error'        => 'error lexic',
 'math_syntax_error'        => 'error syntactic',
+'prefs-rc'                 => 'Modificationes recente',
 'saveprefs'                => 'Salvar preferentias',
 'resetprefs'               => 'Restaurar preferentias',
 'oldpassword'              => 'Contrasigno actual',
@@ -370,13 +441,22 @@ e illo del servitor (UTC).',
 'localtime'                => 'Hora local',
 'timezoneoffset'           => 'Differentia de fuso horari',
 
+'grouppage-sysop'      => '{{ns:project}}:Administratores',
+'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrates',
+
 # Recent changes
+'nchanges'          => '$1 {{PLURAL:$1|modification|modificationes}}',
 'recentchanges'     => 'Modificationes recente',
 'recentchangestext' => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
 'rcnote'            => "Infra es le {{PLURAL:$1|ultime modification|'''$1''' ultime modificationes}} in le {{PLURAL:$2|ultime die|'''$2''' ultime dies}}, in $3.",
 'rcnotefrom'        => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom'        => 'Monstrar nove modificationes a partir de $1',
+'rcshowhideminor'   => '$1 modificationes minor',
+'rcshowhideliu'     => '$1 usatores registrate',
+'rcshowhideanons'   => '$1 usatores anonyme',
+'rcshowhidemine'    => '$1 mi modificationes',
 'rclinks'           => 'Monstrar le $1 ultime modificationes in le $2 ultime dies<br />$3',
+'diff'              => 'diff',
 'hist'              => 'prec',
 'hide'              => 'occultar',
 'show'              => 'monstrar',
@@ -435,6 +515,8 @@ de carga blocate si tu abusa del systema.",
 Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'filename'          => 'Nomine del file',
 'filedesc'          => 'Description',
+'filestatus'        => 'Stato de copyright:',
+'filesource'        => 'Fonte:',
 'uploadedfiles'     => 'Files cargate',
 'badfilename'       => 'Le nomine del imagine esseva cambiate a "$1".',
 'successfulupload'  => 'Carga complete',
@@ -452,9 +534,13 @@ Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
 'bydate'         => 'per data',
 'bysize'         => 'per dimension',
 'imgdelete'      => 'elim',
-'imagelinks'     => 'Ligamines al imagine',
+'filehist-user'  => 'Usator',
+'imagelinks'     => 'Ligamines',
 'linkstoimage'   => 'Le paginas sequente se liga a iste imagine:',
 'nolinkstoimage' => 'Necun pagina se liga a iste imagine.',
+
+# Unused templates
+'unusedtemplates' => 'Patronos non usate',
 
 # Random page
 'randompage' => 'Pagina aleatori',
@@ -487,34 +573,58 @@ al qual le prime redirection deberea referer se.',
 'brokenredirects'     => 'Redirectiones van',
 'brokenredirectstext' => 'Le redirectiones sequente se liga a articulos inexistente.',
 
+'withoutinterwiki' => 'Paginas sin ligamines de lingua',
+
 # Miscellaneous special pages
-'nbytes'                 => '$1 {{PLURAL:$1|byte|bytes}}',
-'nlinks'                 => '$1 {{PLURAL:$1|ligamine|ligamines}}',
-'nviews'                 => '$1 {{PLURAL:$1|visita|visitas}}',
-'lonelypages'            => 'Paginas orphanas',
-'uncategorizedpages'     => 'Paginas non classificate',
-'uncategorizedtemplates' => 'Patronos non classificate',
-'unusedimages'           => 'Imagines non usate',
-'popularpages'           => 'Paginas popular',
-'wantedpages'            => 'Paginas plus demandate',
-'allpages'               => 'Tote le paginas',
-'shortpages'             => 'Paginas curte',
-'longpages'              => 'Paginas longe',
-'listusers'              => 'Lista de usatores',
-'specialpages'           => 'Paginas special',
-'spheading'              => 'Paginas special',
-'newpages'               => 'Nove paginas',
-'movethispage'           => 'Mover iste pagina',
-'unusedimagestext'       => '<p>Nota que altere sitos del web
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
+'nlinks'                  => '$1 {{PLURAL:$1|ligamine|ligamines}}',
+'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
+'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
+'lonelypages'             => 'Paginas orphanas',
+'uncategorizedpages'      => 'Paginas non classificate',
+'uncategorizedcategories' => 'Categorias non classificate',
+'uncategorizedtemplates'  => 'Patronos non classificate',
+'unusedcategories'        => 'Categorias non usate',
+'unusedimages'            => 'Imagines non usate',
+'popularpages'            => 'Paginas popular',
+'wantedcategories'        => 'Categorias plus demandate',
+'wantedpages'             => 'Paginas plus demandate',
+'allpages'                => 'Tote le paginas',
+'shortpages'              => 'Paginas curte',
+'longpages'               => 'Paginas longe',
+'listusers'               => 'Lista de usatores',
+'specialpages'            => 'Paginas special',
+'spheading'               => 'Paginas special',
+'newpages'                => 'Nove paginas',
+'ancientpages'            => 'Paginas le plus ancian',
+'move'                    => 'Mover',
+'movethispage'            => 'Mover iste pagina',
+'unusedimagestext'        => '<p>Nota que altere sitos del web
 tal como le {{SITENAME}}s international pote ligar se a un imagine
 con un URL directe, e consequentemente illos pote esser listate
 hic malgrado esser in uso active.',
-'notargettitle'          => 'Sin scopo',
-'notargettext'           => 'Tu non ha specificate un pagina o usator super le qual
+'notargettitle'           => 'Sin scopo',
+'notargettext'            => 'Tu non ha specificate un pagina o usator super le qual
 executar iste function.',
 
 # Book sources
 'booksources' => 'Fornitores de libros',
+
+'alphaindexline' => '$1 a $2',
+
+# Special:Log
+'specialloguserlabel'  => 'Usator:',
+'speciallogtitlelabel' => 'Titulo:',
+'log'                  => 'Registros',
+
+# Special:Allpages
+'allpagesfrom'   => 'Monstrar le paginas initiante a:',
+'allarticles'    => 'Tote le paginas',
+'allpagesprev'   => 'Previe',
+'allpagesnext'   => 'Sequente',
+'allpagessubmit' => 'Ir',
+'allpagesprefix' => 'Monstrar le paginas con prefixo:',
 
 # E-mail user
 'mailnologin'     => 'Necun adresse de invio',
@@ -565,6 +675,7 @@ Si tu vole cessar le obsevation de iste pagina posteriormente, clicca \"Cancella
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
 Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
 e tu lo face de accordo con [[{{MediaWiki:Policy-url}}]].',
+'actioncomplete'    => 'Action complite',
 'deletedtext'       => '"<nowiki>$1</nowiki>" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
 'deletedarticle'    => '"$1" eliminate',
@@ -577,7 +688,8 @@ Tote le horas es in le fuso horari del servitor (UTC).',
 'rollback'          => 'Revocar modificationes',
 'rollbacklink'      => 'revocar',
 'cantrollback'      => 'Impossibile revocar le modification; le ultime contribuente es le unic autor de iste articulo.',
-'revertpage'        => 'Revertite al ultime modification per $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'        => 'Revertite modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])
+al ultime modification per [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Undelete
 'undelete'          => 'Restaurar pagina eliminate',
@@ -589,8 +701,9 @@ pote esser restaurate. Le archivo pote esser evacuate periodicamente.',
 Si un nove pagina con le mesme nomine ha essite create post le elimination, le revisiones
 restaurate apparera in le chronologia anterior, e le revision currente del pagina in vigor
 non essera automaticamente substituite.',
-'undeletebtn'       => 'Restautar!',
+'undeletebtn'       => 'Restaurar',
 'undeletedarticle'  => '"$1" restaurate',
+'undeletedfiles'    => '$1 {{PLURAL:$1|archivo|archivos}} restaurate',
 
 # Namespace form on various pages
 'namespace'      => 'Spatio de nomine:',
@@ -606,11 +719,13 @@ non essera automaticamente substituite.',
 'uctop'         => ' (alto)',
 
 # What links here
-'whatlinkshere' => 'Referentias a iste pagina',
-'linklistsub'   => '(Lista de ligamines)',
-'linkshere'     => "Le paginas sequente se liga a '''[[:$1]]''':",
-'nolinkshere'   => "Necun pagina se liga a '''[[:$1]]'''.",
-'isredirect'    => 'pagina de redirection',
+'whatlinkshere'       => 'Referentias a iste pagina',
+'whatlinkshere-page'  => 'Pagina:',
+'linklistsub'         => '(Lista de ligamines)',
+'linkshere'           => "Le paginas sequente se liga a '''[[:$1]]''':",
+'nolinkshere'         => "Necun pagina se liga a '''[[:$1]]'''.",
+'isredirect'          => 'pagina de redirection',
+'whatlinkshere-links' => '← ligamines',
 
 # Block/unblock
 'blockip'            => 'Blocar adresse IP',
@@ -704,21 +819,41 @@ nove titulo. Per favor fusiona los manualmente.',
 'talkpagenotmoved' => 'Le pagina de discussion correspondente <strong>non</strong> ha essite movite.',
 '1movedto2'        => '[[$1]] movite a [[$2]]',
 '1movedto2_redir'  => '[[$1]] movite a [[$2]] trans redirection',
+'movelogpage'      => 'Registro de movimentos',
+
+# Export
+'export' => 'Exportar paginas',
 
 # Namespace 8 related
 'allmessages'     => 'Messages del systema',
 'allmessagesname' => 'Nomine',
 
+# Thumbnails
+'thumbnail-more' => 'Ampliar',
+
+# Special:Import
+'import' => 'Importar paginas',
+
+# Import log
+'importlogpage' => 'Registro de importationes',
+
 # Tooltip help for the actions
-'tooltip-pt-preferences' => 'Mi preferentias',
-'tooltip-search'         => 'Recercar {{SITENAME}}',
-'tooltip-p-logo'         => 'Frontispicio',
-'tooltip-n-mainpage'     => 'Visitar le Frontispicio',
-'tooltip-n-portal'       => 'A proposito del projecto, que vos pote facer, ubi trovar cosas',
-'tooltip-n-sitesupport'  => 'Sustene nos',
-'tooltip-save'           => 'Salvar tu modificationes',
-'tooltip-preview'        => 'Previsualisar tu cambios, per favor usa isto ante salvar!',
-'tooltip-watch'          => 'Adder iste pagina a tu lista de paginas sub observation',
+'tooltip-pt-userpage'             => 'Mi pagina de usator',
+'tooltip-pt-mytalk'               => 'Mi pagina de discussion',
+'tooltip-pt-preferences'          => 'Mi preferentias',
+'tooltip-pt-mycontris'            => 'Lista de mi contributiones',
+'tooltip-search'                  => 'Recercar {{SITENAME}}',
+'tooltip-p-logo'                  => 'Frontispicio',
+'tooltip-n-mainpage'              => 'Visitar le Frontispicio',
+'tooltip-n-portal'                => 'A proposito del projecto, que vos pote facer, ubi trovar cosas',
+'tooltip-n-sitesupport'           => 'Sustene nos',
+'tooltip-save'                    => 'Salvar tu modificationes',
+'tooltip-preview'                 => 'Previsualisar tu cambios, per favor usa isto ante salvar!',
+'tooltip-compareselectedversions' => 'Vide le differentias inter le duo versiones selectionate de iste pagina.',
+'tooltip-watch'                   => 'Adder iste pagina a tu lista de paginas sub observation',
+
+# Spam protection
+'listingcontinuesabbrev' => 'cont.',
 
 # Math options
 'mw_math_png'    => 'Sempre produce PNG',
@@ -727,5 +862,9 @@ nove titulo. Per favor fusiona los manualmente.',
 'mw_math_source' => 'Lassa lo como TeX (pro navigatores in modo texto)',
 'mw_math_modern' => 'Recommendate pro navigatores moderne',
 'mw_math_mathml' => 'MathML',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'tote',
+'monthsall'     => 'tote',
 
 );

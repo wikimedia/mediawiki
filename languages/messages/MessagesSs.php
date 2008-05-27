@@ -1,7 +1,8 @@
 <?php
 /** Swati (SiSwati)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MF-Warburg
  * @author Jatrobat
@@ -66,6 +67,7 @@ $messages = array(
 'youhavenewmessages' => 'Ube $1 ($2).',
 'editsection'        => 'kúhlela',
 'editold'            => 'kúhlela',
+'hidetoc'            => 'hide',
 'viewdeleted'        => 'Kúfúna $1?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

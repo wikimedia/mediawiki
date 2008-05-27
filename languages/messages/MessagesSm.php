@@ -1,7 +1,8 @@
 <?php
 /** Samoan (Gagana Samoa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author sm.wikipedia.org sysops
  * @author SPQRobin

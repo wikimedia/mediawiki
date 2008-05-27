@@ -1,7 +1,8 @@
 <?php
 /** Papiamento (Papiamentu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kamizu
  * @author לערי ריינהארט
@@ -120,7 +121,7 @@ $messages = array(
 'nosuchspecialpage' => 'E página spesial no ta eksistí',
 'nospecialpagetext' => "<big>'''Bo a pidi un página spesial inválido.'''</big>
 
-Bo por haña un lista di tur página spesial [[Special:Specialpages|aki]].",
+Bo por haña un lista di tur [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'         => 'Eror',

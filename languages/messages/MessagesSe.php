@@ -1,7 +1,8 @@
 <?php
 /** Northern Sami (Sámegiella)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Skuolfi
  * @author G - ג
@@ -403,10 +404,10 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'newarticle'               => '(ođđa)',
 'newarticletext'           => 'Leat boahtán muhtin liŋkka mielde siidui, mii ii vel dihtto. Sáhtat álggahit siiddu vuollái. Jus it hálit álggahit siiddu, geavat neahttabláđejeaddji máhccandoaimma.',
 'updated'                  => '(Beaividuvvon)',
-'note'                     => 'Cuigehus:',
+'note'                     => '<strong>Cuigehus:</strong>',
 'previewnote'              => '<strong>Dát lea siiddu ovdalgihtiigeahččan. Siidu ii leat vel vurkejuvvon!</strong>',
 'editing'                  => 'Rievdadit siiddu $1',
-'editinguser'              => 'Rievdadit siiddu $1',
+'editinguser'              => "Rievdadit siiddu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'           => 'Rievdadit oasi siiddus $1',
 'editingcomment'           => 'Rievdadit kommeanta siiddus $1',
 'yourtext'                 => 'Iežat teaksta',

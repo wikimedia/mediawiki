@@ -1,7 +1,8 @@
 <?php
 /** Swiss German (Alemannisch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author 80686
  * @author Helix84
@@ -9,6 +10,7 @@
  * @author לערי ריינהארט
  * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Spacebirdy
  */
 
 $fallback = 'de';
@@ -375,9 +377,9 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'userjspreview'            => "== Vorschau Ihres Benutzer-Javascript. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'note'                     => '<strong>Achtung: </strong>',
-'previewnote'              => 'Das isch numen e Vorschau und nonig gspycheret!',
+'previewnote'              => '<strong>Das isch numen e Vorschau und nonig gspycheret!</strong>',
 'editing'                  => 'Bearbeite vo «$1»',
-'editinguser'              => 'Bearbeite vo «$1»',
+'editinguser'              => "Bearbeite vo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'           => 'Bearbeite vo «$1» (Absatz)',
 'editconflict'             => 'Bearbeitigs-Konflikt: «$1»',
 'explainconflict'          => "Öpper anders het dä Artikel gänderet, wo du ne sälber am Ändere bisch gsy.
@@ -714,7 +716,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'blocklink'       => 'spärre',
 'contribslink'    => 'Byträg',
 'blocklogpage'    => 'Sperrigs-Protokoll',
-'blocklogentry'   => 'sperrt [[User:$1]] - ([[Special:Contributions/$1|Biiträg]]) für d Ziit vo: $2',
+'blocklogentry'   => 'sperrt [[$1]] für d Ziit vo: $2 $3',
 'blocklogtext'    => 'Des ischs Logbuech yber Sperrunge un Entsperrunge vun Bnutzer. Automatisch blockti IP-Adresse werre nit erfasst. Lueg au [[Special:Ipblocklist|IP-Block Lischt]] fyr ä Lischt vun gsperrti Bnutzer.',
 'unblocklogentry' => 'Blockade von [[User:$1]] aufgehoben',
 

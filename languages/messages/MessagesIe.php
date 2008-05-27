@@ -1,7 +1,8 @@
 <?php
 /** Interlingue (Interlingue)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jmb
  * @author SPQRobin
@@ -63,6 +64,7 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
+'categories'      => 'Categories',
 'pagecategories'  => '{{PLURAL:$1|Categorie|Categories}}',
 'category_header' => 'Articules in categorie "$1"',
 
@@ -82,10 +84,14 @@ $messages = array(
 'anontalk'       => 'Discussion por ti ci IP',
 'and'            => 'e',
 
+'errorpagetitle'   => 'Errore',
 'returnto'         => 'Retornar a $1.',
+'tagline'          => 'Ex {{SITENAME}}',
 'help'             => 'Auxilie',
 'search'           => 'Serchar',
+'searchbutton'     => 'Sercha',
 'go'               => 'Ear',
+'searcharticle'    => 'Vade',
 'history'          => 'Historie',
 'history_short'    => 'Historie',
 'printableversion' => 'Printabil version',
@@ -96,6 +102,7 @@ $messages = array(
 'undelete_short'   => 'Restaurar {{PLURAL:$1|1 modification|$1 modificationes}}',
 'protect'          => 'Protecter',
 'unprotect'        => 'Deprotecter',
+'newpage'          => 'Nov págine',
 'talkpage'         => 'Discusser ti págine',
 'talkpagelinktext' => 'Discussion',
 'specialpage'      => 'Special Págine',
@@ -108,8 +115,9 @@ $messages = array(
 'imagepage'        => 'Vider págine del image',
 'viewtalkpage'     => 'Vider li discussion',
 'redirectedfrom'   => '(Redirectet de $1)',
-'viewcount'        => 'Ti págine ha esset consultat {{PLURAL:$1|$1 vezes|$1 vezes}}.',
+'viewcount'        => 'Ti págine ha esset consultat {{PLURAL:$1|un vez|$1 vezes}}.',
 'protectedpage'    => 'Un protectet págine',
+'jumptonavigation' => 'navigation',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'      => 'Apropó de {{SITENAME}}',
@@ -126,20 +134,27 @@ $messages = array(
 'portal-url'     => 'Project:Págine del comunité',
 'sitesupport'    => 'Donationes',
 
-'editsection' => 'modificar',
-'toc'         => 'Tabelle de contenetes',
-'hidetoc'     => 'celar',
+'youhavenewmessages' => 'Vu have $1 ($2).',
+'newmessageslink'    => 'nov missages',
+'editsection'        => 'modificar',
+'editold'            => 'redacter',
+'toc'                => 'Tabelle de contenetes',
+'showtoc'            => 'monstrar',
+'hidetoc'            => 'celar',
+'viewdeleted'        => 'Vider $1?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articul',
 'nstab-user'      => 'Usator',
+'nstab-project'   => 'Págine de projecte',
 'nstab-mediawiki' => 'Missage',
 'nstab-template'  => 'Modelle',
 'nstab-help'      => 'Auxilie',
 'nstab-category'  => 'Categorie',
 
 # General errors
-'error' => 'Erra',
+'error'      => 'Erra',
+'viewsource' => 'Vider fonte',
 
 # Login and logout pages
 'logouttitle'                => 'Fine de session',
@@ -158,6 +173,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'userlogout'                 => 'Surtir',
 'notloggedin'                => 'Vu ne ha intrat',
 'createaccount'              => 'Crear un nov conto',
+'gotaccountlink'             => 'Intrar',
 'badretype'                  => 'Li passa-paroles queles vu tippat ne es identic.',
 'youremail'                  => 'Vor ret-adresse:',
 'loginerror'                 => 'Erra in initiation del session',
@@ -167,6 +183,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'wrongpassword'              => 'Li passa-parol quel vu scrit es íncorect. Prova denov.',
 'mailmypassword'             => 'Invia me un nov passa-parol per electronic post',
 'acct_creation_throttle_hit' => 'Vu ja ha creat $1 contos. Vu ne posse crear pli mult quam to.',
+'loginlanguagelabel'         => 'Lingue: $1',
 
 # Edit pages
 'summary'          => 'Resumate',
@@ -178,10 +195,17 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'loginreqtitle'    => 'Apertion de session obligatori',
 'accmailtitle'     => 'Li passa-parol es inviat.',
 'accmailtext'      => "Li passa-parol por '$1' ha esset inviat a $2.",
+'newarticle'       => '(Nov)',
 'editing'          => 'modification de $1',
 'editingsection'   => 'modification de $1 (section)',
 'editingcomment'   => 'modification de $1 (comenta)',
 'copyrightwarning' => 'Omni contributiones a {{SITENAME}} es considerat quam publicat sub li termines del $2 (ples vider $1 por plu mult detallies). Si vu ne vole que vor ovres mey esser modificat e distribuet secun arbitrie, ples ne inviar les. Adplu, ples contribuer solmen vor propri ovres o ovres ex un fonte quel es líber de jures. <strong>NE UTILISA OVRES SUB JURE EDITORIAL SIN DEFINITIV AUTORISATION!</strong>',
+
+# Diffs
+'lineno' => 'Linea $1:',
+
+# Search results
+'viewprevnext' => 'Vider ($1) ($2) ($3)',
 
 # Preferences page
 'preferences'    => 'Preferenties',
@@ -195,10 +219,14 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'retypenew'      => 'Confirmar nov passa-parol',
 
 # Recent changes
+'nchanges'          => '$1 {{PLURAL:$1|change|changes}}',
 'recentchanges'     => 'Recent modificationes',
 'recentchangestext' => 'Seque sur ti-ci págine li ultim modificationes al wiki.',
 'rclistfrom'        => 'Monstrar li nov modificationes desde $1.',
+'rcshowhideminor'   => '$1 modificationes minori',
+'rcshowhidemine'    => '$1 mi redactiones',
 'rclinks'           => 'Monstrar li $1 ultim modificationes fat durante li $2 ultim dies<br/ >$3.',
+'diff'              => 'dif',
 'hist'              => 'hist',
 'hide'              => 'Celar',
 'show'              => 'Monstrar',
@@ -214,7 +242,8 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'savefile'  => 'Conservar file',
 
 # Image list
-'imagelist' => 'Liste de images',
+'imagelist'        => 'Liste de images',
+'filehist-comment' => 'Comenta',
 
 # Random page
 'randompage' => 'Págine in hasarde',
@@ -243,15 +272,37 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 # Book sources
 'booksources' => 'Librari fontes',
 
+'version' => 'Version',
+
+# Special:Log
+'specialloguserlabel'  => 'Usator:',
+'speciallogtitlelabel' => 'Titul:',
+
+# Special:Allpages
+'allarticles'    => 'Omni págines',
+'allpagessubmit' => 'Vade',
+
 # Watchlist
-'watchlist'      => 'Liste de sequet págines',
-'addedwatch'     => 'Adjuntet al liste',
-'addedwatchtext' => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:Recentchanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
-'watch'          => 'Sequer',
-'watchthispage'  => 'Sequer ti págine',
+'watchlist'            => 'Liste de sequet págines',
+'addedwatch'           => 'Adjuntet al liste',
+'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:Recentchanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
+'watch'                => 'Sequer',
+'watchthispage'        => 'Sequer ti págine',
+'watchlist-hide-bots'  => 'Celar modificationes de bot',
+'watchlist-hide-own'   => 'Celar mi modificationes',
+'watchlist-hide-minor' => 'Celar modificationes minori',
 
 # Delete/protect/revert
-'actioncomplete' => 'Supression efectuat',
+'deletepage'            => 'Deleter págine',
+'actioncomplete'        => 'Supression efectuat',
+'deletecomment'         => 'Motive de deletion:',
+'deleteotherreason'     => 'Altri/suplementari motive:',
+'deletereasonotherlist' => 'Altri motive',
+'protectcomment'        => 'Comenta:',
+'restriction-type'      => 'Permission:',
+
+# Namespace form on various pages
+'blanknamespace' => '(Principal)',
 
 # Contributions
 'mycontris' => 'Mi contributiones',
@@ -260,10 +311,16 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'whatlinkshere' => 'Ligat págines',
 
 # Block/unblock
-'ipblocklist' => 'Liste de blocat adresses e usatores',
+'ipblocklist'  => 'Liste de blocat adresses e usatores',
+'contribslink' => 'contribs',
 
 # Move page
+'movearticle' => 'Moer págine:',
 'movenologin' => 'Vu ne ha intrat',
+'movepagebtn' => 'Moer págine',
+'movedto'     => 'moet a',
+'1movedto2'   => '[[$1]] moet a [[$2]]',
+'movereason'  => 'Motive:',
 
 # Export
 'export' => 'Exportar págines',
@@ -271,7 +328,23 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 # Namespace 8 related
 'allmessages' => 'Liste del missages del sistema',
 
+# Tooltip help for the actions
+'tooltip-pt-mytalk'      => 'Mi discussion',
+'tooltip-pt-preferences' => 'Mi preferenties',
+'tooltip-ca-delete'      => 'Deleter ti págine',
+'tooltip-ca-move'        => 'Moer ti págine',
+'tooltip-n-mainpage'     => 'Visita li Principal págine',
+'tooltip-t-specialpages' => 'Liste de omni special págines',
+
+# Spam protection
+'listingcontinuesabbrev' => 'cont.',
+
 # Special:Newimages
 'newimages' => 'Galerie de nov images',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'omni',
+'namespacesall' => 'omni',
+'monthsall'     => 'omni',
 
 );

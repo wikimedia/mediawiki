@@ -1,10 +1,12 @@
 <?php
 /** Bavarian (Boarisch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand
+ * @author Malafaya
  */
 
 $fallback = 'de';
@@ -88,7 +90,8 @@ $messages = array(
 'unwatch'           => 'nimma beobachten',
 
 # Contributions
-'mycontris' => 'Eigene Beiträg',
+'contributions' => 'Benutzerbeiträg',
+'mycontris'     => 'Eigene Beiträg',
 
 # What links here
 'whatlinkshere' => 'Links auf de Seitn',

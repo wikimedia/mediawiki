@@ -1,7 +1,8 @@
 <?php
 /** Old English (Anglo Saxon)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand
@@ -157,6 +158,7 @@ $messages = array(
 
 'youhavenewmessages'      => 'Þu hæfst $1 ($2).',
 'newmessageslink'         => 'nīwu ǣrendgewritu',
+'newmessagesdifflink'     => 'nīwoste wendung',
 'youhavenewmessagesmulti' => 'Þu hæfst nīwu ǣrendu on $1',
 'editsection'             => 'ādihtan',
 'editold'                 => 'ādihtan',
@@ -403,25 +405,31 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'brokenredirects-edit'   => '(ādihtan)',
 'brokenredirects-delete' => '(āfeorsian)',
 
+'withoutinterwiki'         => 'Trametas būtan sprǣcbendum',
+'withoutinterwiki-summary' => 'Þā folgendan trametas ne bindaþ tō ōðrum sprǣcfadungum:',
+
 # Miscellaneous special pages
-'ncategories'       => '$1 {{PLURAL:$1|flocca|floccas}}',
-'nlinks'            => '$1 bendas',
-'specialpage-empty' => 'Þis tramet is ǣmtig.',
-'lonelypages'       => 'Ealdorlēase trametas',
-'unusedimages'      => 'Ungebrȳcodu biliðu',
-'popularpages'      => 'Dēore trametas',
-'wantedcategories'  => 'Gewilnode floccas',
-'wantedpages'       => 'Gewilnode trametas',
-'allpages'          => 'Trametas',
-'shortpages'        => 'Scorte trametas',
-'longpages'         => 'Lange trametas',
-'specialpages'      => 'Syndrige trametas',
-'spheading'         => 'Syndrige trametas eallum brýcerum',
-'newpages'          => 'Nīwe trametas',
-'newpages-username' => 'Brūcendnama:',
-'ancientpages'      => 'Ieldestan Trametas',
-'intl'              => 'Betwuxsprǣclice bendas',
-'move'              => 'Gān',
+'ncategories'          => '$1 {{PLURAL:$1|flocca|floccas}}',
+'nlinks'               => '$1 bendas',
+'specialpage-empty'    => 'Þis tramet is ǣmtig.',
+'lonelypages'          => 'Ealdorlēase trametas',
+'unusedimages'         => 'Ungebrȳcodu biliðu',
+'popularpages'         => 'Dēore trametas',
+'wantedcategories'     => 'Gewilnode floccas',
+'wantedpages'          => 'Gewilnode trametas',
+'mostlinked'           => 'Gebundenostan trametas',
+'mostlinkedcategories' => 'Gebundenostan floccas',
+'mostlinkedtemplates'  => 'Gebundenostan bysena',
+'allpages'             => 'Trametas',
+'shortpages'           => 'Scorte trametas',
+'longpages'            => 'Lange trametas',
+'specialpages'         => 'Syndrige trametas',
+'spheading'            => 'Syndrige trametas eallum brýcerum',
+'newpages'             => 'Nīwe trametas',
+'newpages-username'    => 'Brūcendnama:',
+'ancientpages'         => 'Ieldestan Trametas',
+'intl'                 => 'Betwuxsprǣclice bendas',
+'move'                 => 'Gān',
 
 # Book sources
 'booksources'               => 'Bōcfruman',
@@ -472,6 +480,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'watchlist-hide-minor' => 'Hȳdan smala ādihtunga',
 
 'enotif_newpagetext' => 'Þēs is nīwe tramet.',
+'created'            => 'gescapen',
 
 # Delete/protect/revert
 'deletepage'         => 'Āfeorsian tramet',
@@ -495,8 +504,9 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'restriction-type'   => 'Gelēafnes:',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Ādihtan',
-'restriction-move' => 'Gān',
+'restriction-edit'   => 'Ādihtan',
+'restriction-move'   => 'Gān',
+'restriction-create' => 'Scieppan',
 
 # Undelete
 'undeletebtn'            => 'Edstaðola!',
@@ -513,12 +523,13 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'sp-contributions-submit' => 'Sēcan',
 
 # What links here
-'whatlinkshere'      => 'Hwæt bindaþ hider',
-'whatlinkshere-page' => 'Tramet:',
-'linklistsub'        => '(Getalu benda)',
-'linkshere'          => 'Þā folgendan trametas bindaþ hider:',
-'nolinkshere'        => 'Nāne trametas bindaþ hider.',
-'isredirect'         => 'edlǣdungtramet',
+'whatlinkshere'       => 'Hwæt bindaþ hider',
+'whatlinkshere-page'  => 'Tramet:',
+'linklistsub'         => '(Getalu benda)',
+'linkshere'           => 'Þā folgendan trametas bindaþ hider:',
+'nolinkshere'         => 'Nāne trametas bindaþ hider.',
+'isredirect'          => 'edlǣdungtramet',
+'whatlinkshere-links' => '← bendas',
 
 # Block/unblock
 'ipbreason'          => 'Racu',
@@ -688,5 +699,8 @@ Gif þis is *nā* þū, ne folga þisne bend. Þēos āsēðungrūn forealdaþ �
 
 # Auto-summaries
 'autosumm-new' => 'Nīwe tramet: $1',
+
+# Special:Version
+'version-other' => 'Ōðer',
 
 );

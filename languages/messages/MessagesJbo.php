@@ -1,7 +1,8 @@
 <?php
 /** Lojban (Lojban)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Malafaya
  * @author OldakQuill
@@ -86,6 +87,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-mediawiki' => 'notci',
+'nstab-category'  => 'klesi',
 
 # Login and logout pages
 'login'          => "co'a se jaspu",

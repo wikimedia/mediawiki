@@ -1,7 +1,8 @@
 <?php
 /** Ganda (Luganda)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Kizito
  * @author Siebrand
@@ -258,7 +259,7 @@ erya '''ddayo'''.",
 'noarticletext'          => "Wano tewali kyawandiikidwawo, ky'obadde onoonya osobola [[Special:Search/{{PAGENAME}}| okukinoonyeza]] ku mpapula endala oba oyinza [{{fullurl:{{FULLPAGENAME}}|action=edit}} gwe okukiwandiikako] wano.",
 'previewnote'            => "<strong>Kuno kugezaamubugeza; by'okoze tebinnakazibwa!</strong>",
 'editing'                => 'Kati okyuusa $1',
-'editinguser'            => 'Kukyuusa ebya memba <b>$1</b>',
+'editinguser'            => "Kukyuusa ebya memba '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'         => 'Okyuusa $1 (kitundu)',
 'editingcomment'         => 'Kukyuusa $1 (obubaka)',
 'yourtext'               => 'Ebigambo ebibyo',

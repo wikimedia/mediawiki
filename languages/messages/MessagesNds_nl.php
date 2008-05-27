@@ -1,7 +1,8 @@
 <?php
 /** Nedersaksisch (Nedersaksisch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author SPQRobin
@@ -408,7 +409,7 @@ $messages = array(
 'nosuchaction'      => 'De op-egeven haandeling besteet neet',
 'nospecialpagetext' => "<big>'''Disse speciale pagina wonnen neet herkend deur de pregrammetuur.'''</big>
 
-Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:Specialpages|Speciaal:Speciale pagina’s]].",
+Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'noconnect'           => 'De databanke is noen neet bereikbaor. <br />
@@ -422,6 +423,7 @@ $1',
 'viewsource'          => 'brontekse bekieken',
 'protectedinterface'  => 'Disse pagina bevat een tekse dee gebruuk wonnen veur systeemteksen van de wiki. Allinnig beheerders kunnen disse pagina bewarken.',
 'editinginterface'    => "'''Waorschuwing:''' je bewarken een pagina dee gebruuk wonnen deur de pregrammetuur. Wiezigingen dee an-ebröch wonnen op disse pagina zullen 't uterlijk veur iederene beïnvleujen. Overweeg veur vertalingen um [http://translatewiki.net/wiki/Main_Page?setlang=nds-nl Betawiki] te gebruken, 't vertalingsprejek veur MediaWiki.",
+'sqlhidden'           => '(SQL-zeukopdrachte verbörgen)',
 'cascadeprotected'    => 'Disse pagina is beveilig umdat \'t veurkump in de volgende {{PLURAL:$1|pagina|pagina\'s}}, dee beveilig {{PLURAL:$1|is|bin}} mit de "cascade"-optie:
 $2',
 'ns-specialprotected' => "Speciale pagina's kunnen neet bewörk wonnen.",
@@ -501,7 +503,9 @@ Je kunnen \'t woord [[Special:Search/{{PAGENAME}}|opzeuken]] in aandere pagina\'
 | Konqueror || f5
 |}",
 'userinvalidcssjstitle'    => "'''Waorschuwing:''' der is gien uutvoering mit de naam \"\$1\". Vergeet neet dat joew eigen .css- en .js-pagina's beginnen mit een kleine letter, bv. \"{{ns:user}}:Naam/'''m'''onobook.css\" in plaose van \"{{ns:user}}:Naam/'''M'''onobook.css\".",
+'previewnote'              => "<strong>NB: je bin de pagina allinnig nog mar an 't naokieken; de tekse is nog neet op-esleugen!</strong>",
 'token_suffix_mismatch'    => "<strong>De bewarking is eweigerd umdat joew webblaojeraar de leestekens in 't bewarkingstoken verkeerd behaandeld hef. De bewarking is eweigerd um verminking van de paginatekse te veurkoemen. Dit gebeurt soms as der een web-ebaseren proxydiens gebruuk wonnen dee fouten bevat.</strong>",
+'editinguser'              => "Doonde mit 't wiezigen van de gebrukersrechen van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'copyrightwarning'         => "NB: Alle biedragen an {{SITENAME}} mutten vrie-egeven wonnen onder de $2 (zie $1 veur infermasie).
 A-j neet willen dat joew tekse deur aandere gebrukers an-epas en verspreid kan wonnen, kies dan neet veur 'Pagina opslaon'.<br />
 Deur op 'Pagina opslaon' te klikken beleuf je da-j disse tekse zelf eschreven hemmen, of over-eneumen hemmen uut een vrieje, openbaore bron.<br />
@@ -515,6 +519,9 @@ De tekse mut auteursrechvrie ween (zie $1 veur details).
 'titleprotectedwarning'    => "<strong>Waorschuwing: disse pagina is beveilig zodat allinnig bepaolde gebrukers 't an kunnen maken.</strong>",
 'nocreatetitle'            => "'t Anmaken van pagina's is beteund",
 'permissionserrorstext'    => 'Je maggen of kunnen dit neet doon. De {{PLURAL:$1|rejen|rejens}} daoveur {{PLURAL:$1|is|bin}}:',
+
+# "Undo" feature
+'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleeg]]) ongedaon-emaak.',
 
 # History pages
 'revisionasof'  => 'Versie op $1',
@@ -546,37 +553,78 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'logdelete-success'           => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
 
 # History merging
-'mergehistory'        => "Geschiedenisse van pagina's bie mekaar doon",
-'mergehistory-from'   => 'Bronpagina:',
-'mergehistory-into'   => 'Bestemmingspagina:',
-'mergehistory-list'   => 'Samenvoegbaore bewarkingsgeschiedenisse',
-'mergehistory-go'     => 'Samenvoegbaore bewarkingen bekieken',
-'mergehistory-submit' => 'Versies bie mekaar doon',
+'mergehistory'                     => "Geschiedenisse van pagina's bie mekaar doon",
+'mergehistory-box'                 => "Versies van twee pagina's samenvoegen:",
+'mergehistory-from'                => 'Bronpagina:',
+'mergehistory-into'                => 'Bestemmingspagina:',
+'mergehistory-list'                => 'Samenvoegbaore bewarkingsgeschiedenisse',
+'mergehistory-merge'               => "De volgende versies van [[:$1]] kunnen samen-evoeg wonnen naor [[:$2]]. Gebruuk de kelom mit keuzerondjes um allinnig de versies emaak op en veur de an-egeven tied samen te voegen. Let op dat 't gebruken van de navigasieverwiezingen disse kelom zal herinstellen.",
+'mergehistory-go'                  => 'Samenvoegbaore bewarkingen bekieken',
+'mergehistory-submit'              => 'Versies bie mekaar doon',
+'mergehistory-empty'               => 'Der bin gien versies dee samen-evoeg kunnen wonnen.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|versie|versies}} van [[:$1]] bin succesvol samen-evoeg naor [[:$2]].',
+'mergehistory-fail'                => 'Kan gien geschiedenisse samenvoegen, controleer opniej de pagina- en tiedparremeters.',
+'mergehistory-no-source'           => 'Bronpagina $1 besteet neet.',
+'mergehistory-no-destination'      => 'Bestemmingspagina $1 besteet neet.',
+'mergehistory-invalid-source'      => 'De bronpagina mut een geldige titel ween.',
+'mergehistory-invalid-destination' => 'De bestemmingspagina mut een geldige titel ween.',
+
+# Merge log
+'mergelog'         => 'Samenvoegingslogboek',
+'mergelogpagetext' => 'Hieronder zie-j een lieste van de leste samenvoegingen van een paginageschiedenisse naor een aandere.',
 
 # Diffs
 'history-title' => 'Geschiedenisse van "$1"',
 'lineno'        => 'Regel $1:',
+'diff-multi'    => '({{PLURAL:$1|1 tussenliggende versie|$1 tussenliggende versies}} wonnen neet weer-egeven.)',
+
+# Search results
+'searchresulttext'      => "'''Opmarking:''' een pagina dee kortens an-emaak is ku-j meschien neet vienen via de zeukfunctie. 't Zeuken geet via een speciale zeukdatabanke dee ongeveer um de 30 tot 48 uur bie-ewörk wonnen.",
+'searchsubtitleinvalid' => 'Veur zeukopdrachte "$1"',
+'noexactmatch-nocreate' => "'''Der besteet gien pagina mit de naam \"\$1\".'''",
+'toomanymatches'        => 'Der wanen te veule risseltaoten. Prebeer asjeblief een aandere zeukopdrachte.',
+'nextn'                 => 'volgende $1',
+'showingresults'        => "Hieronder {{PLURAL:$1|steet '''1''' risseltaot|staon '''$1''' risseltaoten}}  <b>$1</b> vanof nummer <b>$2</b>.",
+'showingresultsnum'     => "Hieronder {{PLURAL:$3|steet '''1''' risseltaot|staon '''$3''' risseltaoten}} vanof nummer '''$2'''.",
+'nonefound'             => '<strong>Let wel:</strong> as een zeukopdrachte mislok kump dat vake deur gebruuk van veulveurkoemmende woorden as "de" en "het", dee neet eïndexeerd bin.',
+'searchdisabled'        => 'Zeuken in {{SITENAME}} is neet meugelijk. Je kunnen gebruukmaken van Google. De gegevens over {{SITENAME}} bin meugelijk neet bie-ewörk.',
 
 # Preferences page
 'preferences' => 'Veurkeuren',
+'skin'        => '{{SITENAME}}-uterlijk',
+'servertime'  => 'Tied op de server',
+'files'       => 'Bestanden',
 
 # User rights
-'userrights-reason'       => 'Rejen:',
-'userrights-no-interwiki' => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
-'userrights-nodatabase'   => 'Databanke $1 besteet neet of is gien plaoselijke databanke.',
-'userrights-nologin'      => 'Je mutten [[Special:Userlogin|an-emeld]] ween en as gebruker de juuste rechen hemmen um gebrukersrechen toe te kunnen wiezen.',
-'userrights-notallowed'   => 'Je hemmen gien rechen um gebrukersrechen toe te kunnen wiezen.',
+'userrights-reason'                => 'Rejen:',
+'userrights-available-add-self'    => 'Je kunnen je eigen toevoegen an disse {{PLURAL:$2|groep|groepen}}: $1.',
+'userrights-available-remove-self' => 'Je kunnen je eigen vorthaolen uut disse {{PLURAL:$2|groep|groepen}}: $1.',
+'userrights-no-interwiki'          => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
+'userrights-nodatabase'            => 'Databanke $1 besteet neet of is gien plaoselijke databanke.',
+'userrights-nologin'               => 'Je mutten [[Special:Userlogin|an-emeld]] ween en as gebruker de juuste rechen hemmen um gebrukersrechen toe te kunnen wiezen.',
+'userrights-notallowed'            => 'Je hemmen gien rechen um gebrukersrechen toe te kunnen wiezen.',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Eregistreren gebrukers',
+# Groups
+'group'               => 'Groep:',
+'group-autoconfirmed' => 'An-emelde gebrukers',
+'group-all'           => '(alles)',
+
+'group-autoconfirmed-member' => 'An-emelde gebruker',
+
+'grouppage-autoconfirmed' => '{{ns:project}}:An-emelde gebrukers',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Beheerder',
 'grouppage-bureaucrat'    => '{{ns:project}}:Beheerder',
 
 # Recent changes
-'nchanges'      => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
-'recentchanges' => 'Recente wiezigingen',
-'hist'          => 'gesch',
-'newpageletter' => 'N',
+'nchanges'                          => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
+'recentchanges'                     => 'Leste wiezigingen',
+'recentchangestext'                 => 'Op disse pagina ku-j de leste wiezigingen van disse wiki bekieken.',
+'rcnote'                            => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de of-eleupen {{PLURAL:$2|dag|'''$2''' dagen}} (stand: $3).",
+'rclinks'                           => 'Bekiek de leste $1 wiezigingen van de of-eleupen $2 dagen<br>$3',
+'hist'                              => 'gesch',
+'newpageletter'                     => 'N',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|keer|keer}} op een volglieste]',
 
 # Recent changes linked
 'recentchangeslinked' => 'Volg verwiezigingen',
@@ -584,21 +632,57 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 # Upload
 'upload'                     => 'Bestand toevoegen',
 'upload_directory_read_only' => "Op 't mement ku-j gien bestanden toevoegen wegens technische rejens ($1).",
+'uploadtext'                 => "Gebruuk 't onderstaonde formelier um bestanden toe te voegen.
+Um eerder toe-evoegen bestanden te bekieken of te zeuken ku-j naor de [[Special:Imagelist|bestanslieste]] gaon.
+Toe-evoegen bestanden en media dee vort-edaon bin wonnen bie-ehuilen in 't [[Special:Log/upload|logboek mit toe-evoegen bestanden]].
+
+Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken:
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.png|alternatieve tekst]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestand.ogg]]</nowiki>''' drekte verwiezing naor een bestand.",
+'upload-permitted'           => 'Toe-estaone bestanstypes: $1.',
+'upload-preferred'           => 'An-ewezen bestanstypes: $1.',
+'upload-prohibited'          => 'Verbeujen bestanstypes: $1.',
 'uploadlogpagetext'          => 'Hieronder steet een lieste mit bestanden dee net niej bin.',
 'filetype-badmime'           => 'Bestanden mit \'t MIME-type "$1" maggen hier neet toe-evoeg wonnen.',
+'fileexists'                 => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't bestand onder een aandere naam toe te voegen. <strong><tt>$1</tt></strong>",
 'fileexists-forbidden'       => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't toe te voegen onder een aandere naam.
 [[Ofbeelding:$1|thumb|center|$1]]",
 'uploadedimage'              => 'Toe-evoeg: [[$1]]',
+'upload-wasdeleted'          => "'''Waorschuwing: je bin een bestand an 't toevoegen dee eerder al vort-edaon is.'''
+
+Bedenk eers of 't inderdaod de bedoeling is dat dit bestand toe-evoeg wonnen.
+'t Logboek mit vort-edaone pagina's ku-j hier vienen:",
+'filename-bad-prefix'        => 'De naam van \'t bestand da-j an \'t toevoegen bin begint mit <strong>"$1"</strong>, wat een neet-beschrievende naam is dee meestentieds autematisch deur een digitale camera egeven wonnen. Kies een dudelijke naam veur \'t bestand.',
+
+'upload-proto-error-text' => 'Um op disse meniere bestanden toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
+'upload-file-error'       => 'Interne fout',
+'upload-file-error-text'  => 'Een interne fout vun plaose to een tiejelijk bestand op de server an-emaak wönnen. Neem kontak op mit een systeembeheerder.',
+
+'upload_source_url' => ' (een geldig, pebliek toegankelijk webadres)',
 
 # Image list
-'sharedupload' => 'Dit bestand is een gedeelde upload en kan ook deur andere prejekken ebruukt worden.',
+'imagelist-summary'     => 'Op disse speciale pagina ku-j alle toe-evoegen bestanden bekieken.
+Standard wonnen de les toe-evoegen bestanden bovenan de lieste ezet.
+Klikken op een kelomkop veraandert de sortering.',
+'imgfile'               => 'bestand',
+'sharedupload'          => 'Dit bestand is een gedeelde upload en kan ook deur andere prejekken ebruukt worden.',
+'shareduploadwiki-desc' => 'De $1 in de edelen bestansbanke zie-j hieronder.',
+'imagelist_name'        => 'Naam',
+'imagelist_size'        => 'Grootte (bytes)',
 
 # File reversion
 'filerevert-intro'          => '<span class="plainlinks">Je bin \'\'\'[[Media:$1|$1]]\'\'\' an \'t weerummedreien tot de [$4 versie van $2, $3]</span>.',
 'filerevert-defaultcomment' => 'Weerummedreid tot de versie van $1, $2',
 
+# MIME search
+'mimetype' => 'MIME-type:',
+
 # Random page
 'randompage' => 'Willekeurig artikel',
+
+# Statistics
+'sitestats' => 'Staotestieken van {{SITENAME}}',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -634,6 +718,8 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'contributions' => 'Biedragen van disse gebruker',
 'mycontris'     => 'mien biedragen',
 
+'sp-contributions-blocklog' => 'Blokkeerlogboek',
+
 'sp-newimages-showfrom' => 'Teun nieje ofbeeldingen vanof $1, $2',
 
 # What links here
@@ -655,6 +741,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'ipb-edit-dropdown'           => 'Blokkeerrejens bewarken',
 'blocklistline'               => 'Op $1 (vervuilt op $4) blokkeren $2: $3',
 'autoblocker'                 => 'Vanzelf eblokkeerd umdat \'t IP-adres overenekump mit \'t IP-adres van [[User:$1|$1]], dee eblokkeerd is mit as rejen: "$2"',
+'blocklogpage'                => 'Blokkeerlogboek',
 'sorbsreason'                 => 'Joew IP-adres is op-eneumen as open proxyserver in de DNS-blacklist de {{SITENAME}} ebruukt.',
 'sorbs_create_account_reason' => 'Joew IP-adres is op-eneumen as open proxyserver in de DNS-blacklist de {{SITENAME}} ebruukt.
 Je kunnen gien gebrukerspagina anmaken.',
@@ -673,7 +760,7 @@ Je kunnen gien gebrukerspagina anmaken.',
 
 # Namespace 8 related
 'allmessages'               => 'Alle systeemteksten',
-'allmessagesnotsupportedDB' => "Der is gien ondersteuning veur '''{{ns:special}}:AllMessages''' umdat '''\$wgUseDatabaseMessages''' uut-eschakeld is.",
+'allmessagesnotsupportedDB' => "Disse pagina kan neet gebruuk wonnen umdat '''\$wgUseDatabaseMessages''' uut-eschakeld is.",
 
 # Special:Import
 'importnofile' => 'Der is gien invoerbestand toe-evoeg.',
@@ -686,6 +773,9 @@ Je kunnen gien gebrukerspagina anmaken.',
 'tooltip-diff'                    => 'Teun de deur joe an-ebröchen wiezigingen.',
 'tooltip-compareselectedversions' => 'Teun de verschillen tussen de ekeuzen versies.',
 'tooltip-watch'                   => 'Voeg disse pagina toe an joew volglieste',
+
+# Patrolling
+'rcpatroldisabled' => 'De controlemeugelijkheid op leste wiezigingen is uut-eschakeld.',
 
 # Metadata
 'metadata'        => 'Metadata',

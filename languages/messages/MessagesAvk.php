@@ -1,7 +1,8 @@
 <?php
 /** Kotava (Kotava)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Wikimistusik
  * @author Sab
@@ -45,6 +46,8 @@ $messages = array(
 'tog-fancysig'                => 'Rilaf sugdaks (a mivaskafi gluyasiki)',
 'tog-externaleditor'          => 'Omavafa favera va divefi betasiki',
 'tog-externaldiff'            => 'Omavafa favera va divefa "diff" xeka',
+'tog-showjumplinks'           => 'Tutegirara va "grablera" vansarafi gluyasiki',
+'tog-uselivepreview'          => 'Favera va abdiwira (JavaScript) (bagalon)',
 'tog-forceeditsummary'        => 'Zo walzé viele betaravildeks tir vlardaf !',
 'tog-watchlisthideown'        => 'Palsera va jinaf suzdasikif betakseem',
 'tog-watchlisthidebots'       => 'Palsera va suzdasikif stiernaf betakseem',
@@ -344,6 +347,7 @@ Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'yourpasswordagain'          => 'Va rinaf remravlem tolon bazel',
 'remembermypassword'         => 'Setikera va jinaf remravlem (cookie)',
 'yourdomainname'             => 'Rinaf ind',
+'externaldberror'            => 'Ont divefa origakrokla va pilkomodara ont va rinafa divefa pata me ronuskel.',
 'loginproblem'               => '<b>Pilkomodajara.</b><br />Tollwil !',
 'login'                      => 'Pilkomodá',
 'loginprompt'                => 'Ta dogluyara va {{SITENAME}} va cookie se gotutegiral.',
@@ -400,6 +404,8 @@ Abdi ara staksara va pata, va bazereem ke e-mail gonaskil nume gogruyel da bata 
 'mailerror'                  => 'Rokla stakseson va e-mail staksa : $1',
 'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé $1 comptes. Vous ne pouvez pas en créer de nouveaux.',
 'emailauthenticated'         => 'Rinaf e-mail mane moe $1 tir tugariayan.',
+'emailnotauthenticated'      => "Rinafe 'email' mane men tir pilkomodayane.
+Meka 'email' staksa icde vlevefa staava zo staksatar.",
 'noemailprefs'               => 'Ta bata kobarastaava se va email mane bazel !',
 'emailconfirmlink'           => 'Va rinaf e-mail mane gruyel',
 'accountcreated'             => 'Reduyuna pata',
@@ -408,11 +414,16 @@ Abdi ara staksara va pata, va bazereem ke e-mail gonaskil nume gogruyel da bata 
 'loginlanguagelabel'         => 'Ava : $1',
 
 # Password reset dialog
-'resetpass'           => 'Va patabeksa tolbazel !',
-'resetpass_header'    => 'Va beksa tolbazel !',
-'resetpass_submit'    => 'Va beksa bazel nume zo dogluyatal !',
-'resetpass_success'   => 'Rinaf remravlem kiewatcon su zo betar ! Nume rinafa dogluyara tir...',
-'resetpass_forbidden' => 'Beksa koe {{SITENAME}} me zo robetar',
+'resetpass'               => 'Va patabeksa tolbazel !',
+'resetpass_announce'      => "Rin kan ugalorafa 'email' beksa va int pilkomodayal.
+Ta da wan zo pilkomodal, va warzaf remravlem batlize gobazel :",
+'resetpass_header'        => 'Va beksa tolbazel !',
+'resetpass_submit'        => 'Va beksa bazel nume zo dogluyatal !',
+'resetpass_success'       => 'Rinaf remravlem kiewatcon su zo betar ! Nume rinafa dogluyara tir...',
+'resetpass_bad_temporary' => 'Meenaf ugaloraf remravlem.
+Rin lanon vaon al betanhal oke va warzaf al kucilal.',
+'resetpass_forbidden'     => 'Beksa koe {{SITENAME}} me zo robetar',
+'resetpass_missing'       => 'Me tazukorig.',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold krent',
@@ -491,7 +502,7 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'userjspreview'             => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code javascript et qu'il n'a pas encore été enregistré !'''",
 'updated'                   => '(Nuskeyen)',
 'note'                      => '<strong>Straga :</strong>',
-'previewnote'               => 'Obral, bat krent anton tir abdinediks ise men tir giwayan !',
+'previewnote'               => '<strong>Obral, bat krent anton tir abdinediks ise men tir giwayan !</strong>',
 'previewconflict'           => 'Abdinedira nedir va krent ke batu bu inde in giwayanon titir.',
 'editing'                   => 'betara va $1',
 'editinguser'               => "Betara va rokeem ke '''[[User:$1|$1]]''' favesik ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -616,6 +627,7 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'mergehistory-submit'              => 'Joara va betakseem',
 'mergehistory-empty'               => 'Mek rojoan betaks.',
 'mergehistory-success'             => '$3 betaks va [[:$1]] joanhayan ko [[:$2]].',
+'mergehistory-fail'                => 'Skura va jera va izvot tir merotisa, va bu is evladoreem vay tolstujel !',
 'mergehistory-no-source'           => '$1 klitabu me tir.',
 'mergehistory-no-destination'      => '$1 jalabu me tir.',
 'mergehistory-invalid-source'      => 'Klitabu gotir vergumveltanh.',
@@ -835,7 +847,7 @@ Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 'large-file'                  => 'Lokiewafa da lum ke man iyeltak tir lepinaf dam $1; bat iyeltak tir $2.',
 'largefileserver'             => 'Bat iyeltak tir pwertarsaf gu gotune ke zanisiko.',
 'emptyfile'                   => 'Kalvajan iyeltak nuvelar vlardaf. Lanon golde sutejen iyeltakyolt. Vay ageltal ede va bat iyeltak en djukalvajal !',
-'fileexists'                  => 'Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va $1. Til lanaf da va bat iyeltak djubetal ?',
+'fileexists'                  => 'Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va <strong><tt>$1</tt></strong>. Til lanaf da va bat iyeltak djubetal ?',
 'fileexists-extension'        => 'Iyeltak dem nuxaf yolt tir :<br />
 Yolt ke kalvajayan iyeltak : <strong><tt>$1</tt></strong><br />
 Yolt ke tis iyeltak : <strong><tt>$2</tt></strong><br />
@@ -907,7 +919,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'nolinkstoimage'            => 'Meku bu va bata ewava ruldar.',
 'sharedupload'              => 'Bat iyeltak tir dof nume gan ar abdumimaks zo rofaver.',
 'shareduploadwiki'          => 'Ta lo giva va $1 vay disukel !',
-'shareduploadwiki-desc'     => 'Pimtara icde intaf $1 vleveon zo nedir.',
+'shareduploadwiki-desc'     => 'Pimtara icde intaf $1 koe solparsani vargi vleveon zo nedir.',
 'shareduploadwiki-linktext' => 'Iyeltakpimtarabu',
 'noimage'                   => 'Mek iyeltak dem bat yolt, rin rotil va $1.',
 'noimage-linktext'          => 'kalvajara',
@@ -930,9 +942,11 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filedelete'                  => 'Sulara va $1',
 'filedelete-legend'           => 'Sulara va iyeltak',
 'filedelete-intro'            => "Rin va '''[[Media:$1|$1]]''' sulal.",
+'filedelete-intro-old'        => '<span class="plainlinks">Rin va siatos ke \'\'\'[[Media:$1|$1]]\'\'\' wetce [$4 $3, $2] sulal.</span>',
 'filedelete-comment'          => 'Sebuks :',
 'filedelete-submit'           => 'Sulara',
 'filedelete-success'          => "'''$1''' al zo sular.",
+'filedelete-success-old'      => '<span class="plainlinks">Siatos ke \'\'\'[[Media:$1|$1]]\'\'\' wetce $3, $2 tir sulayan.</span>',
 'filedelete-nofile'           => "'''$1''' me krulder koe {{SITENAME}}.",
 'filedelete-iscurrent'        => 'Rin yawal da va tel lonoeltaf siatos ke bat iyeltak sulal. Kal losavsaf siatos taneon vay dimplekul.',
 'filedelete-otherreason'      => 'Ara ik loplekufa lazava :',
@@ -953,8 +967,10 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'listredirects' => 'Va graskareem vexalar',
 
 # Unused templates
-'unusedtemplates'    => 'Mefaven tezeem',
-'unusedtemplateswlh' => 'ari gluyasiki yo',
+'unusedtemplates'     => 'Mefaven tezeem',
+'unusedtemplatestext' => 'Batu bu va kotu bu koe tezayoltxo skedasikiiskafu gu aru bu vexalar.
+Abdi sulara, setikel da va ari skedasiki va teza stujel.',
+'unusedtemplateswlh'  => 'ari gluyasiki yo',
 
 # Random page
 'randompage'         => 'Xuyavon bu',
@@ -1378,11 +1394,14 @@ male abdion elekayane IP mane.',
 'ipblocklist-username'     => 'Favesikyolt ok IP mane :',
 'ipblocklist-submit'       => 'Aneyara',
 'blocklistline'            => '$1 (tenuwer ba $4): $2 va $3 al elekar',
+'infiniteblock'            => 'parmaf',
 'expiringblock'            => 'tenuwer ba $1',
 'anononlyblock'            => 'anton yoltiskik',
+'noautoblockblock'         => "gritegirayan 'autoblock'",
 'createaccountblock'       => 'pataredura zo elekar',
 'emailblock'               => 'e-mail elekan',
 'ipblocklist-empty'        => 'Meka elekara.',
+'ipblocklist-no-results'   => 'Erune IP mane ok favesikyolt me tid elekayan.',
 'blocklink'                => 'elekara',
 'unblocklink'              => 'grielekara',
 'contribslink'             => 'webekseem',
@@ -1402,6 +1421,7 @@ male abdion elekayane IP mane.',
 'proxyblocker-disabled'    => 'Bati fli tir metegirafi.',
 'proxyblockreason'         => "Votre ip a été bloquée car c'est un proxy ouvert. Merci de contacter votre fournisseur d'accès internet ou votre support technique et de l'informer de ce problème de sécurité.",
 'proxyblocksuccess'        => 'Tenuweyes.',
+'sorbsreason'              => "Rinafe IP mane wetce fenkunafi 'proxy' koe DNSBL faveni gan {{SITENAME}} zo vexalar.",
 
 # Developer tools
 'lockdb'              => 'Ixatcara va origak',
@@ -1461,7 +1481,13 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movereason'              => 'Lazava va arplekura',
 'revertmove'              => 'dimplekura',
 'delete_and_move'         => 'Sulara is arplekura',
+'delete_and_move_text'    => '==Sulara eruna==
+"[[$1]]" kalefu bu ixam krulder.
+Kas ta askira va darka ta arrundara va in djusulal ?',
 'delete_and_move_confirm' => 'En, va bu sulal !',
+'delete_and_move_reason'  => 'Sulayan ta dark ta arrundara',
+'selfmove'                => 'Malef vergumvelt isu kalef tid mil;
+bu ika int me zo rotarrundar.',
 
 # Export
 'export'            => 'Budivburera',
@@ -1489,6 +1515,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'thumbnail_error'          => 'Va $1 aluk redujara',
 'djvu_page_error'          => 'DjVu bu dive kima',
 'djvu_no_xml'              => 'XML Vexalara va DjVu iyeltak tir merotisa',
+'thumbnail_invalid_params' => 'Meenaf alukdor',
 'thumbnail_dest_directory' => 'Redura va kalbonja tir merotisa',
 
 # Special:Import
@@ -1516,6 +1543,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 
 # Import log
 'importlogpage'                    => 'Koburera va "log" bu',
+'import-logentry-upload'           => 'kobureyen [[$1]] kan iyeltakkalvajara',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|betaks|betaks}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|betaks|betaks}} male $2',
 
@@ -1631,6 +1659,7 @@ MediaWiki spam cleanup',
 'rcpatroldisabled'                    => 'Fiera va Noeltaf Betakseem gritegirana',
 'rcpatroldisabledtext'                => "La fonctionnalité de surveillance des modifications récentes n'est pas activée.",
 'markedaspatrollederror'              => 'Va fieks me rotcalar',
+'markedaspatrollederrortext'          => 'Ta fieyena tcalara va betaks gobazel.',
 'markedaspatrollederror-noautopatrol' => 'Va intaf betaks fienon me rotcalal.',
 
 # Patrol log
@@ -1690,10 +1719,15 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-imagewidth'                  => 'Mantuca',
 'exif-imagelength'                 => 'Ontinuca',
 'exif-compression'                 => 'Raxivaracave',
+'exif-photometricinterpretation'   => "'Pixel' ponara",
 'exif-orientation'                 => 'Woyok',
 'exif-samplesperpixel'             => 'Spertota',
+'exif-planarconfiguration'         => 'Vuks ke origeem',
+'exif-ycbcrpositioning'            => 'Y is C tirka',
 'exif-xresolution'                 => "Résolution de l'image en largeur",
 'exif-yresolution'                 => "Résolution de l'image en hauteur",
+'exif-stripoffsets'                => 'Xo ke ewavorigeem',
+'exif-rowsperstrip'                => 'Blayblayon conhota',
 'exif-jpeginterchangeformat'       => 'Position du SOI JPEG',
 'exif-jpeginterchangeformatlength' => 'Taille en octet des données JPEG',
 'exif-transferfunction'            => 'Arburerafli',
@@ -1706,29 +1740,46 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-copyright'                   => 'Digisik va copyright',
 'exif-exifversion'                 => 'Version exif',
 'exif-colorspace'                  => 'Ksevaxo',
+'exif-compressedbitsperpixel'      => 'Ewavaraxivaracave',
 'exif-pixelydimension'             => 'Mante ke enafa ewava',
 'exif-pixelxdimension'             => 'Ontine ke enafa ewava',
 'exif-makernote'                   => 'Notes du fabricant',
 'exif-usercomment'                 => 'Favesikaf sebuks',
 'exif-relatedsoundfile'            => 'Fichier audio lié',
+'exif-datetimeoriginal'            => 'Viel is gemelt ke nasbara va origeem',
+'exif-exposuretime'                => 'Wonarugal',
 'exif-fnumber'                     => 'F Ota',
+'exif-exposureprogram'             => 'Wonaratalpey',
+'exif-isospeedratings'             => 'ISO kalieka',
+'exif-shutterspeedvalue'           => 'Kaliuca ke budesiki',
+'exif-aperturevalue'               => 'Fenkura',
 'exif-brightnessvalue'             => 'Afiuca',
+'exif-subjectdistance'             => 'Soluma va plek',
 'exif-lightsource'                 => 'Afiklita',
 'exif-flash'                       => 'Divafira',
+'exif-subjectarea'                 => 'Lizuxo ke plek',
 'exif-flashenergy'                 => 'Divafirafa',
+'exif-subjectlocation'             => 'Xo ke plek',
 'exif-exposureindex'               => 'Konedireka',
+'exif-sensingmethod'               => 'Siakranuva',
 'exif-filesource'                  => 'Iyeltakklita',
 'exif-scenetype'                   => 'Nakilord',
+'exif-cfapattern'                  => 'CFA fum',
 'exif-exposuremode'                => 'Konedirinda',
 'exif-whitebalance'                => 'Balance des blancs',
+'exif-gaincontrol'                 => 'Stujera va nakila',
 'exif-contrast'                    => 'Kevaxanuca',
 'exif-saturation'                  => 'Keldelanuca',
+'exif-sharpness'                   => 'Gentim',
+'exif-imageuniqueid'               => 'Tanewava ID',
 'exif-gpslatituderef'              => 'Lentef ok geef laksiwak',
 'exif-gpslatitude'                 => 'Laksiwak',
 'exif-gpslongituderef'             => 'Ronef ok taltef wak',
 'exif-gpslongitude'                => 'Wak',
 'exif-gpsaltituderef'              => 'Ontinukeka',
 'exif-gpsaltitude'                 => 'Ontinuk',
+'exif-gpsmeasuremode'              => 'Sabegaracave',
+'exif-gpsdop'                      => 'Sabegarelimuca',
 'exif-gpsspeedref'                 => 'Kaliucolk',
 'exif-gpstrackref'                 => 'Kallizirafa giva',
 'exif-gpstrack'                    => 'Lizirania',
@@ -1758,16 +1809,32 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 
 'exif-componentsconfiguration-0' => "n'existe pas",
 
+'exif-exposureprogram-0' => 'Metentuyun',
+'exif-exposureprogram-1' => 'Nubedaf',
+'exif-exposureprogram-2' => 'Preksaf talpey',
+'exif-exposureprogram-3' => 'Abdukuca ke fenkura',
+'exif-exposureprogram-4' => 'Abdukuca ke budesiki',
+
 'exif-subjectdistance-value' => '$1 metrolk',
 
+'exif-meteringmode-0'   => 'Megrupen',
+'exif-meteringmode-1'   => 'Mialuk',
+'exif-meteringmode-5'   => 'Fum',
 'exif-meteringmode-6'   => 'Pakaf',
 'exif-meteringmode-255' => 'Ar',
 
-'exif-lightsource-0'  => 'Megrupen',
-'exif-lightsource-4'  => 'Divafira',
-'exif-lightsource-17' => 'A preksayafi afi',
-'exif-lightsource-18' => 'B preksayafi afi',
-'exif-lightsource-19' => 'C preksayafi afi',
+'exif-lightsource-0'   => 'Megrupen',
+'exif-lightsource-1'   => 'Afiz',
+'exif-lightsource-4'   => 'Divafira',
+'exif-lightsource-9'   => 'Sazanh',
+'exif-lightsource-10'  => 'Rujodaf saz',
+'exif-lightsource-11'  => 'Izga',
+'exif-lightsource-17'  => 'A preksayafi afi',
+'exif-lightsource-18'  => 'B preksayafi afi',
+'exif-lightsource-19'  => 'C preksayafi afi',
+'exif-lightsource-255' => 'Ara afiklita',
+
+'exif-focalplaneresolutionunit-2' => "'inch'",
 
 'exif-sensingmethod-1' => 'Metentun',
 
@@ -1783,6 +1850,10 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-scenecapturetype-3' => 'Mielnakila',
 
 'exif-gaincontrol-0' => 'Mek',
+'exif-gaincontrol-1' => 'Lopoamara',
+'exif-gaincontrol-2' => 'Lopoapara',
+'exif-gaincontrol-3' => 'Lepoamara',
+'exif-gaincontrol-4' => 'Lepoapara',
 
 'exif-contrast-0' => 'Prekson',
 'exif-contrast-1' => 'Omon',
@@ -1798,6 +1869,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 
 'exif-subjectdistancerange-0' => 'Megrupenon',
 'exif-subjectdistancerange-2' => 'Budera va wira',
+'exif-subjectdistancerange-3' => 'Solumawira',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Lentelaksiwak',
@@ -1807,8 +1879,15 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-gpslongitude-e' => 'Ronewak',
 'exif-gpslongitude-w' => 'Taltewak',
 
+'exif-gpsstatus-a' => 'Dun sabeson',
+
+'exif-gpsmeasuremode-2' => '2-lumafa sabera',
+'exif-gpsmeasuremode-3' => '3-lumafa sabera',
+
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Bartivon decitmetrolk se',
+'exif-gpsspeed-m' => "Bartivon 'mile'",
+'exif-gpsspeed-n' => 'Webokeem',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Ageltania',
@@ -1831,6 +1910,8 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'confirmemail_text'       => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",
 'confirmemail_send'       => 'Envoyer un code de confirmation',
 'confirmemail_sent'       => 'Email de confirmation envoyé',
+'confirmemail_oncreate'   => "Gruyerafa beksa pu rinafe 'email' mane su zo staksar.
+Ta pilkomodara bata beksa tir mevrebafa vexe ta tutegirara va 'email' fli koe wiki zo godafur.",
 'confirmemail_sendfailed' => 'Staksara va gruyes e-mail tir merotisa. Va rinafe mane ageltal !
 
 Rodjeyesi staksasiki : $1',
@@ -1883,6 +1964,8 @@ $1',
 'imgmultigotopre'  => 'Grablera kal bu',
 
 # Table pager
+'ascending_abbrev'         => 'tid-',
+'descending_abbrev'        => 'tit-',
 'table_pager_next'         => 'Radimefu bu',
 'table_pager_prev'         => 'Abduefu bu',
 'table_pager_first'        => 'Taneafu bu',
@@ -1900,6 +1983,8 @@ $1',
 # Live preview
 'livepreview-loading' => 'Vajas…',
 'livepreview-ready'   => 'Vajas... Gadion !',
+'livepreview-failed'  => 'Geltrafa abdiwira keluyuna ! Va preksafa abdiwira lwil !',
+'livepreview-error'   => 'Keluyuna dogluyara va : $1 "$2". Va preksafa abdiwira lwil !',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Betaks skuyun weti le $1 verast batliz me zo kovexalatar.',
@@ -1924,13 +2009,19 @@ $1',
 'watchlisttools-edit' => 'Wira va suzdasiki isu betara',
 'watchlisttools-raw'  => 'Betara va suzdasiki',
 
+# Core parser functions
+'unknown_extension_tag' => '"$1" megrupena divatcenafa tcala',
+
 # Special:Version
 'version-extensions'               => 'Inkeyeni divatcesiki se',
 'version-specialpages'             => 'Aptaf bueem',
+'version-parserhooks'              => 'Exulerademi',
 'version-variables'                => 'Remvodeem',
 'version-other'                    => 'Ar',
 'version-hooks'                    => 'Demi se',
 'version-extension-functions'      => 'Divatces fliok se',
+'version-parser-extensiontags'     => 'Exulerafa divatcenafa tcala',
+'version-parser-function-hooks'    => 'Exuleraflidemi',
 'version-skin-extension-functions' => 'Wiatezaf divatces fliok se',
 'version-hook-name'                => 'Demiyolt',
 'version-hook-subscribedby'        => 'Wimpayan gan',

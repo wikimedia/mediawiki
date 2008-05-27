@@ -1,7 +1,8 @@
 <?php
 /** Udmurt (Удмурт)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

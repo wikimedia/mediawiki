@@ -1,7 +1,8 @@
 <?php
 /** Inupiaq (Iñupiak)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

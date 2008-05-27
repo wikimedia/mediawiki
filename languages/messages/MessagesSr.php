@@ -1,7 +1,8 @@
 <?php
 /** Serbian (Српски / Srpski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

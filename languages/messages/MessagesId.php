@@ -1,7 +1,8 @@
 <?php
 /** Indonesian (Bahasa Indonesia)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Irwangatot
  * @author לערי ריינהארט
@@ -11,6 +12,7 @@
  * @author SPQRobin
  * @author Meursault2004
  * @author Siebrand
+ * @author Rex
  */
 
 /**
@@ -411,7 +413,7 @@ $messages = array(
 'mytalk'         => 'Pembicaraan saya',
 'anontalk'       => 'Pembicaraan IP ini',
 'navigation'     => 'Navigasi',
-'and'            => 'dan',
+'and'            => 'Dan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -782,7 +784,7 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'userinvalidcssjstitle'     => "'''Peringatan:''' Kulit \"\$1\" tidak ditemukan. Harap diingat bahwa halaman .css dan .js menggunakan huruf kecil, contoh {{ns:user}}:Foo/monobook.css dan bukannya {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Diperbarui)',
 'note'                      => '<strong>Catatan:</strong>',
-'previewnote'               => 'Ingatlah bahwa ini hanyalah pratayang yang belum disimpan!',
+'previewnote'               => '<strong>Ingatlah bahwa ini hanyalah pratayang yang belum disimpan!</strong>',
 'previewconflict'           => 'Pratayang ini mencerminkan teks pada bagian atas kotak suntingan teks sebagaimana akan terlihat bila Anda menyimpannya.',
 'session_fail_preview'      => '<strong>Maaf, kami tidak dapat mengolah suntingan Anda akibat terhapusnya data sesi. Silakan coba sekali lagi. Jika masih tidak berhasil, cobalah keluar log dan masuk log kembali.</strong>',
 'session_fail_preview_html' => "<strong>Maaf! Kami tidak dapat memproses suntingan Anda karena hilangnya data sesi.</strong>
@@ -921,7 +923,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'mergehistory-go'                  => 'Tampilkan suntingan-suntingan yang dapat digabung',
 'mergehistory-submit'              => 'Gabung revisi',
 'mergehistory-empty'               => 'Tidak ada revisi yang dapat digabung.',
-'mergehistory-success'             => '$3 {{PLURAL:$1|revisi|revisi}} dari [[:$1]] sukses digabung ke [[:$2]].',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revisi|revisi}} dari [[:$1]] berhasil digabungkan ke [[:$2]].',
 'mergehistory-fail'                => 'Tidak dapat melakukan penggabungan, harap periksa kembali halaman dan parameter waktu.',
 'mergehistory-no-source'           => 'Halaman sumber $1 tidak ada.',
 'mergehistory-no-destination'      => 'Halaman tujuan $1 tidak ada.',
@@ -999,7 +1001,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 'prefs-watchlist-edits'    => 'Jumlah suntingan maksimum yang ditampilkan di daftar pantauan yang lebih lengkap:',
 'prefs-misc'               => 'Lain-lain',
 'saveprefs'                => 'Simpan',
-'resetprefs'               => 'Reset',
+'resetprefs'               => 'Batalkan perubahan',
 'oldpassword'              => 'Kata sandi lama:',
 'newpassword'              => 'Kata sandi baru:',
 'retypenew'                => 'Ketik ulang kata sandi baru:',
@@ -1100,7 +1102,7 @@ Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapu
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan terkait',
-'recentchangeslinked-title'    => 'Perubahan yang terkait dengan $1',
+'recentchangeslinked-title'    => 'Perubahan yang terkait dengan "$1"',
 'recentchangeslinked-noresult' => 'Tidak terjadi perubahan pada halaman-halaman terkait selama periode yang telah ditentukan.',
 'recentchangeslinked-summary'  => "Halaman istimewa ini memberikan daftar perubahan terakhir pada halaman-halaman terkait. Halaman yang Anda pantau ditandai dengan '''cetak tebal'''.",
 
@@ -1197,6 +1199,9 @@ Log penghapusan berkas adalah sebagai berikut:",
 
 # Image list
 'imagelist'                 => 'Daftar berkas',
+'imagelist-summary'         => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat.
+Secara baku, berkas yang terakhir dimuat berada pada urutan teratas.
+Klik pada kepala kolom untuk mengubah urutan.',
 'imagelisttext'             => "Di bawah ini adalah daftar '''$1''' {{PLURAL:$1|berkas|berkas}} diurutkan $2.",
 'getimagelist'              => 'mengambil daftar berkas',
 'ilsubmit'                  => 'Cari',
@@ -1416,7 +1421,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 
 # E-mail user
 'mailnologin'     => 'Tidak ada alamat surat-e',
-'mailnologintext' => 'Anda harus [[{{ns:special}}:Userlogin|masuk log]] dan mempunyai alamat surat-e yang sah di dalam [[{{ns:special}}:Preferences|preferensi]] untuk mengirimkan surat-e kepada pengguna lain.',
+'mailnologintext' => 'Anda harus [[Special:Userlogin|masuk log]] dan mempunyai alamat surat-e yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surat-e kepada pengguna lain.',
 'emailuser'       => 'Surat-e pengguna',
 'emailpage'       => 'Kirimi pengguna ini surat-e',
 'emailpagetext'   => 'Jika pengguna ini memasukkan alamat surat-e yang sah dalam preferensinya, formulir di bawah ini akan mengirimkan sebuah surat-e. Alamat surat-e yg terdapat pada preferensi Anda akan muncul sebagai alamat "Dari" dalam surat-e tersebut, sehingga penerima dapat membalas surat-e tersebut.',
@@ -1441,7 +1446,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'nowatchlist'          => 'Daftar pantauan Anda kosong.',
 'watchlistanontext'    => 'Silakan $1 untuk melihat atau menyunting daftar pantauan Anda.',
 'watchnologin'         => 'Belum masuk log',
-'watchnologintext'     => 'Anda harus [[{{ns:special}}:Userlogin|masuk log]] untuk mengubah daftar pantauan.',
+'watchnologintext'     => 'Anda harus [[Special:Userlogin|masuk log]] untuk mengubah daftar pantauan.',
 'addedwatch'           => 'Telah ditambahkan ke daftar pantauan',
 'addedwatchtext'       => 'Halaman "[[:$1]]" telah ditambahkan ke [[{{ns:special}}:Watchlist|daftar pantauan]]. Perubahan yang terjadi di masa yang akan datang pada halaman tersebut dan halaman pembicaraan terkaitnya akan tercantum di sini, dan halaman itu akan ditampilkan \'\'tebal\'\' pada [[{{ns:special}}:Recentchanges|daftar perubahan terbaru]] agar lebih mudah terlihat.<br /><br />Jika Anda ingin menghapus halaman ini dari daftar pantauan, klik "Berhenti memantau" pada menu.',
 'removedwatch'         => 'Telah dihapus dari daftar pantauan',
@@ -2040,6 +2045,7 @@ Hanya butir daftar (baris yang diawali dengan tanda *) yang diperhitungkan. Pran
 Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, yaitu artikel yang dapat menampilkan berkas tersebut.',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => 'Berkas ini mengandung informasi tambahan yang mungkin ditambahkan oleh kamera digital atau pemindai yang digunakan untuk membuat atau mendigitalisasi berkas. Jika berkas ini telah mengalami modifikasi, detil yang ada mungkin tidak secara penuh merefleksikan informasi dari gambar yang sudah dimodifikasi ini.',
 'metadata-expand'   => 'Tampilkan detil tambahan',
 'metadata-collapse' => 'Sembunyikan detil tambahan',

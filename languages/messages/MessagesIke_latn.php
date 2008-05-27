@@ -1,9 +1,11 @@
 <?php
 /** Eastern Canadian (Latin) (inuktitut)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $messages = array(
@@ -153,7 +155,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'blockedtitle'    => 'aaqqiksuiji uminngasisijuq',
 'loginreqlink'    => 'akunnapuq',
 'newarticle'      => '(pigivuk)',
-'editinguser'     => 'suqusiqpaa qatannguti <b>$1</b>',
+'editinguser'     => "suqusiqpaa qatannguti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'  => 'suqusiqpaa $1 (ilangiutititsiguti)',
 'editingcomment'  => 'suqusiqpaa $1 (ujjirijaq)',
 'editconflict'    => 'suqusiqpaa akaunngiliurutiniq: $1',

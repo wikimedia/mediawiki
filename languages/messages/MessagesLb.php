@@ -1,7 +1,8 @@
 <?php
 /** Luxembourgish (Lëtzebuergesch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand
@@ -268,7 +269,7 @@ $messages = array(
 'go'                => 'Lass',
 'searcharticle'     => 'Säit',
 'history'           => 'Historique vun der Säit',
-'history_short'     => 'Historique',
+'history_short'     => 'Versiounen',
 'updatedmarker'     => "geännert zënter dat ech d'Säit fir d'lescht gekuckt hunn",
 'info_short'        => 'Informatioun',
 'printableversion'  => 'Printversioun',
@@ -334,7 +335,7 @@ $messages = array(
 'portal'            => '{{SITENAME}}-Portal',
 'portal-url'        => 'Project:Kommunautéit',
 'privacy'           => 'Dateschutz',
-'privacypage'       => 'Projet:Dateschutz',
+'privacypage'       => 'Project:Dateschutz',
 'sitesupport'       => 'Donatiounen',
 'sitesupport-url'   => 'Project:En Don maachen',
 
@@ -485,7 +486,7 @@ Probéiert et w.e.g. nach eng Kéier!",
 'uid'                        => 'Benotzer ID:',
 'yourrealname'               => 'Richtege Numm:',
 'yourlanguage'               => 'Sprooch:',
-'yournick'                   => 'Äre Spëtznumm (fir Ënnerschrëften)',
+'yournick'                   => 'Ënnerschrëft:',
 'badsig'                     => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
 'badsiglength'               => 'De gewielten Numm ass ze laang; e muss manner wéi $1 Zeechen hunn.',
 'email'                      => 'E-Mail',
@@ -493,6 +494,10 @@ Probéiert et w.e.g. nach eng Kéier!",
 'loginerror'                 => 'Feeler bäi der Umeldung',
 'prefs-help-email'           => 'E-mailadress (fakultativ): Erméiglecht et anere Benotzer, iech per Mail ze kontaktéieren, (iwwert e Link op ärer Benotzersäit), ouni datt hinnen dobäi är E-Mailadress matgedeelt gëtt.',
 'prefs-help-email-required'  => 'Eng gülteg E-Mailadress gëtt heifir gebraucht.',
+'nocookiesnew'               => "De Benotzerkont gouf ugeluecht, Awer Dir sidd net ageloggt. 
+{{SITENAME}} brauch fir dës Funktioun Cookien.
+Dir hutt d'Cookien desaktivéiert.
+Aktivéiert déi w.e.g. a loggt Iech da matt ärem neie Benotzernomm an dem respektive Passwort ein.",
 'nocookieslogin'             => "{{SITENAME}} benotzt Cookiën beim Umelle vun de Benotzer. Dir hutt Cookiën ausgeschalt, w.e.g aktivéiert d'Cookiën a versicht et nach eng Kéier.",
 'noname'                     => 'Dir hutt kee gültege Benotzernumm uginn.',
 'loginsuccesstitle'          => 'Umeldung huet geklappt',
@@ -530,10 +535,16 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'accountcreated'             => 'De Kont gouf geschaf',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 'createaccount-title'        => 'Opmaache vun engem Benotzerkont op {{SITENAME}}',
+'createaccount-text'         => 'Et gouf e Benotzerkont "$2" fir iech op {{SITENAME}} ($4) ugeluecht mat dem Passwuert "$3".
+Dir sollt iech aloggen an ärt Passwuert elo änneren.
+
+Falls dëse Benotzerkonto ongewollt ugeluecht ginn ass kënnt Dir dës Noriicht einfach ignoréieren.',
 'loginlanguagelabel'         => 'Sprooch: $1',
 
 # Password reset dialog
 'resetpass'               => 'Passwuert fir Benotzerkont zrécksetzen',
+'resetpass_announce'      => 'Dir sidd mat engem temporären , per E-Mail geschéckte Code ageloggt.
+Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'resetpass_text'          => '<!-- Schreiwt ären Text heihin-->',
 'resetpass_header'        => 'Passwuert zrécksetzen',
 'resetpass_submit'        => 'Passwuert aginn an umellen',
@@ -621,6 +632,8 @@ D\'Nummer vun ärer Spär ass $5. Gitt dës Nummer w.e.g bei allen Ufroen zu dë
 'whitelistacctitle'         => 'Dir däerft kee Benotzerkont uleeën.',
 'whitelistacctext'          => 'Fir Konten op {{SITENAME}} kënnen opzemaachen musst Dir [[Special:Userlogin|ageloggt]] sinn an déi noutwänneg Rechter hunn.',
 'confirmedittitle'          => "Konfirmatioun vun ärer E-Mailadress ass erfuederlech fir z'änneren.",
+'confirmedittext'           => 'Dir musst är E-Mail-Adress conirméieren, ier Dir ännerunge maache kënnt.
+Gitt w.e.g. Eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benotzerastellungen]].',
 'nosuchsectiontitle'        => 'Et gëtt keen Abschnitt mat dem Numm',
 'nosuchsectiontext'         => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt. Well et den Abschnitt $1 net gëtt, gëtt et keng Plaz fir är Ännerung ze späicheren.",
 'loginreqtitle'             => 'Umeldung néideg',
@@ -752,6 +765,9 @@ Prezisiounen iwwert d\'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Speci
 'revdelete-nooldid-title'     => 'Ongülteg Zilversioun',
 'revdelete-nooldid-text'      => 'Dir hutt keng Versioun uginn fir dës Funktioun ze benotzen.',
 'revdelete-selected'          => "{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :",
+'revdelete-text'              => 'Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.
+
+{{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.',
 'revdelete-legend'            => "Limitatioune fir d'Sichtbarkeet festleeën",
 'revdelete-hide-text'         => 'Text vun der Versioun verstoppen',
 'revdelete-hide-name'         => 'Logbuch-Aktioun verstoppen',
@@ -814,7 +830,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'viewprevnext'          => 'Weis ($1) ($2) ($3)',
 'showingresults'        => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
 'showingresultsnum'     => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
-'nonefound'             => '<strong>Opgepasst</strong>: Net erfollegräich Siche geschéien dacks doduerch, datt zevill allgeméng Wierder benotzt ginn, wéi "an" oder "vun", déi net indexéiert sinn, oder wann dir méi wéi ee Wuert ugitt (dir kritt nëmmen déi Säiten ugewisen, an deenen all d\'Wierder stinn).',
+'nonefound'             => "'''Opgepasst''': Nëmmen e puer Nimmraim gi ''par default'' duerchsicht. Versicht an ärer Ufro ''all:'' anzestellen fir de dsamte contenu (inklusiv Diskussiounssäiten, Schablonen, ...), oder benotzed déi gwënscht Nimmräim als Virastellung.",
 'powersearch'           => 'Erweidert Sich',
 'powersearchtext'       => 'Sich an de Nimmraim:<br />$1
 <br />
@@ -823,60 +839,61 @@ Sich no: $3 $9',
 'searchdisabled'        => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat H!ellef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Preferences page
-'preferences'             => 'Astellungen',
-'preferences-summary'     => 'Op dëser Spezialsäit kënnt Dir är Zougangsdaten änneren an Astellunge maachen déi een Afloss dorop hunn wéi äer Säiten op {{SITENAME}} ausgesinn a wéi eenzel Säiten ugewise ginn.',
-'mypreferences'           => 'Meng Astellungen',
-'prefs-edits'             => 'Zuel vun den Ännerungen:',
-'prefsnologin'            => 'Net ageloggt',
-'prefsnologintext'        => 'Dir musst [[Special:Userlogin|agelogged]] sinn, fir är Astellungen änneren ze kënnen.',
-'prefsreset'              => "D'Astellungen goufen zréckgesat esou wéi se ofgespäichert waren.",
-'qbsettings'              => 'Geschirläischt',
-'qbsettings-none'         => 'Keen',
-'qbsettings-fixedleft'    => 'Lénks, fest',
-'qbsettings-fixedright'   => 'Riets, fest',
-'qbsettings-floatingleft' => 'schwiewt lenks',
-'changepassword'          => 'Passwuert änneren',
-'skin'                    => 'Skin',
-'dateformat'              => 'Datumsformat',
-'datedefault'             => 'Egal (Standard)',
-'datetime'                => 'Datum an Auerzäit',
-'math_failure'            => 'Parser-Feeler',
-'math_unknown_error'      => 'Onbekannte Feeler',
-'math_unknown_function'   => 'Onbekannte Funktioun',
-'math_lexing_error'       => "'Lexing'-Feeler",
-'math_syntax_error'       => 'Syntaxfeeler',
-'prefs-personal'          => 'Benotzerprofil',
-'prefs-rc'                => 'Rezent Ännerungen',
-'prefs-watchlist'         => 'Iwwerwaachungslëscht',
-'prefs-watchlist-days'    => 'Zuel vun den Deeg, déi an der Iwwerwaachungslëscht ugewise solle ginn:',
-'prefs-watchlist-edits'   => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungslëscht ugewise solle ginn:',
-'prefs-misc'              => 'Verschiddenes',
-'saveprefs'               => 'Späicheren',
-'resetprefs'              => 'Net gespäichert Ännerungen zrécksetzen',
-'oldpassword'             => 'Aalt Passwuert:',
-'newpassword'             => 'Neit Passwuert:',
-'retypenew'               => 'Neit Passwuert (nachemol):',
-'textboxsize'             => 'Änneren',
-'rows'                    => 'Zeilen',
-'columns'                 => 'Kolonnen',
-'searchresultshead'       => 'Sich',
-'resultsperpage'          => 'Zuel vun de Resultater pro Säit:',
-'contextlines'            => 'Zuel vun de Linnen:',
-'contextchars'            => 'Kontextcharactère pro Linn:',
-'stub-threshold'          => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',
-'recentchangesdays'       => 'Deeg déi an de Rezenten Ännerungen ugewise ginn:',
-'recentchangescount'      => 'Zuel vun Titele bei de rezenten Ännerungen an den Neie Säiten:',
-'savedprefs'              => 'Är Astellunge goufe gespäichert.',
-'timezonelegend'          => 'Zäitzon',
-'timezonetext'            => "Gitt d'Zuel vun de Stonnen an, déi tëscht ärer Zäitzon an der Serverzäit (UTC) leien (A West- a Mëtteleuropa ass dat +1 Stonn am Wanter an +2 am Summer).",
-'localtime'               => 'Lokalzäit:',
-'timezoneoffset'          => 'Ënnerscheed¹:',
-'servertime'              => 'Serverzäit:',
-'guesstimezone'           => 'Vum Browser iwwerhuelen',
-'allowemail'              => 'E-Maile vun anere Benotzer kréien.',
-'defaultns'               => 'Dës Nimmraim duerchsichen:',
-'default'                 => 'Standard',
-'files'                   => 'Fichieren',
+'preferences'              => 'Astellungen',
+'preferences-summary'      => 'Op dëser Spezialsäit kënnt Dir är Zougangsdaten änneren an Astellunge maachen déi een Afloss dorop hunn wéi äer Säiten op {{SITENAME}} ausgesinn a wéi eenzel Säiten ugewise ginn.',
+'mypreferences'            => 'Meng Astellungen',
+'prefs-edits'              => 'Zuel vun den Ännerungen:',
+'prefsnologin'             => 'Net ageloggt',
+'prefsnologintext'         => 'Dir musst [[Special:Userlogin|agelogged]] sinn, fir är Astellungen änneren ze kënnen.',
+'prefsreset'               => "D'Astellungen goufen zréckgesat esou wéi se ofgespäichert waren.",
+'qbsettings'               => 'Geschirläischt',
+'qbsettings-none'          => 'Keen',
+'qbsettings-fixedleft'     => 'Lénks, fest',
+'qbsettings-fixedright'    => 'Riets, fest',
+'qbsettings-floatingleft'  => 'schwiewt lenks',
+'qbsettings-floatingright' => 'Schwiewt riets',
+'changepassword'           => 'Passwuert änneren',
+'skin'                     => 'Skin',
+'dateformat'               => 'Datumsformat',
+'datedefault'              => 'Egal (Standard)',
+'datetime'                 => 'Datum an Auerzäit',
+'math_failure'             => 'Parser-Feeler',
+'math_unknown_error'       => 'Onbekannte Feeler',
+'math_unknown_function'    => 'Onbekannte Funktioun',
+'math_lexing_error'        => "'Lexing'-Feeler",
+'math_syntax_error'        => 'Syntaxfeeler',
+'prefs-personal'           => 'Benotzerprofil',
+'prefs-rc'                 => 'Rezent Ännerungen',
+'prefs-watchlist'          => 'Iwwerwaachungslëscht',
+'prefs-watchlist-days'     => 'Zuel vun den Deeg, déi an der Iwwerwaachungslëscht ugewise solle ginn:',
+'prefs-watchlist-edits'    => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungslëscht ugewise solle ginn:',
+'prefs-misc'               => 'Verschiddenes',
+'saveprefs'                => 'Späicheren',
+'resetprefs'               => 'Net gespäichert Ännerungen zrécksetzen',
+'oldpassword'              => 'Aalt Passwuert:',
+'newpassword'              => 'Neit Passwuert:',
+'retypenew'                => 'Neit Passwuert (nachemol):',
+'textboxsize'              => 'Änneren',
+'rows'                     => 'Zeilen',
+'columns'                  => 'Kolonnen',
+'searchresultshead'        => 'Sich',
+'resultsperpage'           => 'Zuel vun de Resultater pro Säit:',
+'contextlines'             => 'Zuel vun de Linnen:',
+'contextchars'             => 'Kontextcharactère pro Linn:',
+'stub-threshold'           => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',
+'recentchangesdays'        => 'Deeg déi an de Rezenten Ännerungen ugewise ginn:',
+'recentchangescount'       => 'Zuel vun Titele bei de rezenten Ännerungen an den Neie Säiten:',
+'savedprefs'               => 'Är Astellunge goufe gespäichert.',
+'timezonelegend'           => 'Zäitzon',
+'timezonetext'             => "Gitt d'Zuel vun de Stonnen an, déi tëscht ärer Zäitzon an der Serverzäit (UTC) leien (A West- a Mëtteleuropa ass dat +1 Stonn am Wanter an +2 am Summer).",
+'localtime'                => 'Lokalzäit:',
+'timezoneoffset'           => 'Ënnerscheed¹:',
+'servertime'               => 'Serverzäit:',
+'guesstimezone'            => 'Vum Browser iwwerhuelen',
+'allowemail'               => 'E-Maile vun anere Benotzer kréien.',
+'defaultns'                => 'Dës Nimmraim duerchsichen:',
+'default'                  => 'Standard',
+'files'                    => 'Fichieren',
 
 # User rights
 'userrights-lookup-user'           => 'Benotzergrupp verwalten',
@@ -928,7 +945,7 @@ derbäisetzen.',
 'recentchangestext'                 => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'rcnote'                            => "Ugewise {{PLURAL:$1|gëtt '''1''' Ännerung|ginn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}. Stand: $3. (<b><tt>N</tt></b>&nbsp;– nei Säiten; <b><tt>k</tt></b>&nbsp;– kleng Ännerung; <b><tt>B</tt></b>&nbsp;– Ännerung durch ee Bot; ''(± Zuel)''&nbsp;– Gréisst vun der Ännerung a Byte)",
-'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximum '''$1''' Ännerunge gi gewisen).",
+'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
 'rclistfrom'                        => 'Nëmmen Ännerungen zënter $1 weisen.',
 'rcshowhideminor'                   => 'Kleng Ännerunge $1',
 'rcshowhidebots'                    => 'Botte $1',
@@ -999,12 +1016,13 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'illegalfilename'             => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'                 => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
 'filetype-badmime'            => 'Fichieren vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' ass een onerwënschte Fichiersformat. Erwënschte Formater sinn: \$2.",
 'filetype-banned-type'        => "'''.$1''' ass ee Fichersformat deen net erlaabt ass. Erlaabt sinn: $2.",
 'filetype-missing'            => 'De Fichier huet keng Erweiderung (wéi z. B. ".jpg").',
 'large-file'                  => "D'Fichieren sollte no Méiglechkeet net méi grouss wéi $1 sinn. Dëse Fhihier huet $2.",
 'largefileserver'             => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
 'emptyfile'                   => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
-'fileexists'                  => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. $1 wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
+'fileexists'                  => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. <strong><tt>$1</tt></strong> wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
 'fileexists-thumb'            => "<center>'''Dëse Fichier gëtt et'''</center>",
 'fileexists-forbidden'        => "Et gëtt schonn e Fichier mat ësem Nummm. Gitt w.e.g. z'réck a lued dëse Fichier ënntert engem aner Numm erop. [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn;
@@ -1023,6 +1041,10 @@ gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[Image:$1
 'destfilename'                => 'Numm vum Fichier',
 'watchthisupload'             => 'Dës Säit iwwerwaachen',
 'filewasdeleted'              => 'E Fichier matt dësem Numm gouf schonn eemol eropgelueden an duerno nees geläscht. kuckt w.e.g op $1 no, ier Dir dee Fichier nach eng Kéier eroplued.',
+'upload-wasdeleted'           => "'''Opgepasst: Dir lued e Fichier erop, dee schonn eng Kéier geläscht ginn ass.'''
+
+Kuckt w.e.g. genee no, ob d'dat erneit Eroplueden de Richtlinnen entsprecht.
+Zu ärer Informatioun steett hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
 'filename-bad-prefix'         => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
 'upload-proto-error'      => 'Falsche Protokoll',
@@ -1046,7 +1068,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 
 # Image list
 'imagelist'                 => 'Lëscht vun de Fichieren',
-'imagelist-summary'         => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als öischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
+'imagelist-summary'         => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als éischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
 'imagelisttext'             => "Hei ass eng Lëscht vun '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
 'getimagelist'              => 'Billerlëscht gëtt opgestallt',
 'ilsubmit'                  => 'Sichen',
@@ -1060,7 +1082,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filehist'                  => 'Versiounen',
 'filehist-help'             => 'Klickt op e bestëmmten Zäitpunkt fir déi respektiv Versioun vum Fichier ze kucken.',
 'filehist-deleteall'        => 'All Versioune läschen',
-'filehist-deleteone'        => 'Dës Versioun läschen',
+'filehist-deleteone'        => 'Läschen',
 'filehist-revert'           => 'zrécksetzen',
 'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Versioun vum',
@@ -1073,7 +1095,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'nolinkstoimage'            => 'Keng Säit benotzt dëse Fichier.',
 'sharedupload'              => 'Dës Fichier ass ee gemeinsam genotzten Upload a ka vun anere Projeten benotzt ginn.',
 'shareduploadwiki'          => 'Kuckt w.e.g. $1 fir méi Informatiounen.',
-'shareduploadwiki-desc'     => "D'Beschreiwung op sénger $1 steet ënnendrënner.",
+'shareduploadwiki-desc'     => "D'Beschreiwung op sénger $1 op dem geeelte Repertoire steet ënnendrënner.",
 'shareduploadwiki-linktext' => 'Datei-Beschreiwungssäit',
 'noimage'                   => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt $1.',
 'noimage-linktext'          => 'eroplueden',
@@ -1253,6 +1275,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'intl'                            => 'Interwiki-Linken',
 'move'                            => 'Réckelen',
 'movethispage'                    => 'Dës Säit réckelen',
+'unusedimagestext'                => 'Denkt w.e.g. drunn datt aner Internetsäiten dëse Fichier matt enger direkter URL verlinke kënnen. An dem Fall gëtt de Fichier hei opgelëscht obwuel en aktiv gebraucht gëtt.',
 'unusedcategoriestext'            => 'Dës Kategoriesäiten existéieren, mee weder en Artikel nach eng Kategorie maachen dovunner Gebrauch.',
 'notargettitle'                   => 'Dir hutt keng Säit uginn.',
 'notargettext'                    => 'Dir hutt keng Zilsäit oder keen Zilbenotzer uginn fir déi dës Funktioun ausgheféiert soll ginn.',
@@ -1373,6 +1396,27 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'enotif_lastvisited'           => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff'              => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor'           => 'Anonyme Benotzer $1',
+'enotif_body'                  => 'Léiwe $WATCHINGUSERNAME,
+
+d\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATE $CHANGEDORCREATED.
+
+Aktuell Versioun: $PAGETITLE_URL
+
+$NEWPAGE
+
+Zusammefaassung vuun dem Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT
+
+Dëse Mataarbechter kontaktéieren:
+E-Mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt. Op ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen. 
+
+
+             Äre freëdleche {{SITENAME}} Benaoriichtigungssystem
+
+--
+Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{fullurl:Special:Watchlist/edit}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Säit läschen',
@@ -1459,6 +1503,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'undeleterevisions'          => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} archivéiert',
 'undeletehistorynoadmin'     => "Dës Säit gouf geläscht. De Grond fir d'Läsche gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. Déi verschidden Textversioune kënnen awer just vun Administrateure gekuckt a restauréiert ginn.",
 'undelete-revision'          => 'Geläschte Versioun vun $1 (Versioun  vum $2) vum $3:',
+'undeleterevision-missing'   => "Ongëlteg oder Versioun déi feelt. Entweder ass de Link falsch oder d'Versioun gouf aus dem Archiv restauréiert oder geläscht.",
 'undelete-nodiff'            => 'Et si keng méi al Versiounen do.',
 'undeletebtn'                => 'Restauréieren',
 'undeletelink'               => 'restauréieren',
@@ -1479,6 +1524,7 @@ Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréier
 'undelete-no-results'        => 'Et goufen am Archiv keng Säite fonnt déi op är Sich passen.',
 'undelete-filename-mismatch' => "D'Dateiversioun vum $1 konnt net restauréiert ginn: De Fichier gouf net fonnt.",
 'undelete-bad-store-key'     => "D'Versioun vum Fichier mat dem Zäitstempel $1 konnt net restauréiert ginn: De Fichier war scho virum Läschen net méi do.",
+'undelete-cleanup-error'     => 'Feeler beim Läsche vun der onbenotzter Archiv-Versioun $1.',
 'undelete-error-short'       => 'Feeler bäim Restauréieren vum Fichier: $1',
 'undelete-error-long'        => 'Beim Restauréiere vun engem Fichier goufe Feeler fonnt:
 
@@ -1561,6 +1607,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-blocklist-addr'          => 'Kuckt aktuell Späre vum $1',
 'ipb-blocklist'               => 'Kuckt aktuell Spären',
 'unblockip'                   => 'Spär annuléieren',
+'unblockiptext'               => 'Matt dësem Formulaire kënnt Dir enger IP-Adress oder engen Benotzer seng Spär ohiewen.',
 'ipusubmit'                   => "D'Spär vun dëser Adress ophiewen",
 'unblocked'                   => "D'Spär fir de(n) [[User:$1|$1]] gouf annulléiert",
 'unblocked-id'                => "D'Spär $1 gouf annulléiert",
@@ -1600,6 +1647,7 @@ Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.
 'blockme'                     => 'Spär mech',
 'proxyblocker'                => 'Proxy blocker',
 'proxyblocker-disabled'       => 'Dës Funktioun ass ausgeschalt.',
+'proxyblockreason'            => 'Är IP-Adress gouf gespaart, well si een oppene Proxy ass. Kontaktéiert w.e.g. ären Internet-Provider oder ärs Systemadministrateuren und informéiert si iiwwer dëses méigleche Sécherheetsprobleem.',
 'proxyblocksuccess'           => 'Gemaach.',
 'sorbsreason'                 => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
 'sorbs_create_account_reason' => 'Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.',
@@ -1717,6 +1765,8 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'importnotext'               => 'Eidel oder keen Text',
 'importsuccess'              => 'Den Import ass fäerdeg!',
 'importnosources'            => 'Fir den Transwiki-Import si keng Quellen definéiert an et ass net méiglech fir Säite mat alle Versiounen aus dem Transwiki-Tëschespäicher eropzelueden.',
+'importnofile'               => 'Et gouf keen importéierte Fichier eropgelueden',
+'import-parse-failure'       => 'Feeler bei engem XML-Import',
 'import-noarticle'           => "Keng Säit fir z'importéieren!",
 'import-nonewrevisions'      => "All d'Versioune goufe scho virdrunn importéiert.",
 'xml-error-string'           => '$1 an der Zeil $2, Spalt $3, (Byte $4): $5',
@@ -1802,6 +1852,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'others'           => 'anerer',
 'siteusers'        => '{{SITENAME}}-Benotzer $1',
 'creditspage'      => 'Quellen',
+'nocredits'        => "Fir dës Säit si keng Informatiounen iwwert d'Mataarbechter vun der Säit disponibel.",
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamfilter',
@@ -1811,6 +1862,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'categoryarticlecount'   => 'An dëser Kategorie {{PLURAL:$1|gëtt et bis ewell 1 Säit|ginn et bis ewell $1 Säiten}}.',
 'category-media-count'   => 'Et {{PLURAL:$1|gëtt eng Datei|ginn $1 Dateien}} an dëser Kategorie',
 'listingcontinuesabbrev' => '(Fortsetzung)',
+'spambot_username'       => 'Botz vum Spam duerch MediaWiki',
 'spam_reverting'         => 'Déi lescht Versioun ouni Linken op $1 restauréieren.',
 'spam_blanking'          => 'An alle Versioune ware Linken op $1, et ass elo alles gebotzt.',
 
@@ -1842,6 +1894,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 
 $1',
 'filedelete-missing'              => 'De Fichier "$1" kann net geläscht ginn, well et e net gëtt.',
+'filedelete-old-unregistered'     => 'Déi Versioun vum Fichier déi Dir uginn hutt "$1" gëtt et an der Datebank net.',
 'filedelete-current-unregistered' => 'Dee Fichier "$1" ass net an der Datebank.',
 
 # Browsing diffs
@@ -1899,7 +1952,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-resolutionunit'              => 'Moosseenheet vun der Opléisung',
 'exif-stripoffsets'                => 'Plaz wou de Fichier vum Bild gespäichert ass',
 'exif-rowsperstrip'                => 'Zuel vun den Zeile pro Stréif',
+'exif-stripbytecounts'             => 'Byte pro kompriméiert Strëpp',
 'exif-jpeginterchangeformatlength' => 'Gréisst vun de JPEG-Daten a Byten',
+'exif-transferfunction'            => 'Transferfunktioun',
 'exif-whitepoint'                  => 'Manuell mat Miessung',
 'exif-referenceblackwhite'         => 'Schwoarz/Wäiss-Referenzpunkten',
 'exif-datetime'                    => 'Späicherzäitpunkt',
@@ -1921,6 +1976,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-datetimeoriginal'            => 'Erfaassungszäitpunkt',
 'exif-datetimedigitized'           => 'Digitaliséierungszäitpunkt',
 'exif-subsectime'                  => 'Späicherzäitpunkt (1/100 s)',
+'exif-subsectimeoriginal'          => 'Erfaassungszäitpunkt (1/100 s)',
 'exif-subsectimedigitized'         => 'Digitaliséirungszäitpunkt (1/100 s)',
 'exif-exposuretime'                => 'Beliichtungsdauer',
 'exif-exposuretime-format'         => '$1 Sekonnen ($2)',
@@ -1944,6 +2000,8 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-focalplaneresolutionunit'    => 'Eenheet vun der Sensoropléisung',
 'exif-subjectlocation'             => 'Motivstanduert',
 'exif-exposureindex'               => 'Beliichtungsindex',
+'exif-sensingmethod'               => 'Miessmethod',
+'exif-filesource'                  => 'Quell vum Fichier',
 'exif-customrendered'              => 'Benotzerdefinéiert Bildveraarbechtung',
 'exif-exposuremode'                => 'Beliichtungsmodus',
 'exif-whitebalance'                => 'Wäissofgläich',
@@ -1956,6 +2014,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-imageuniqueid'               => 'Bild-ID',
 'exif-gpslatituderef'              => 'nördlech oder südlech Breet',
 'exif-gpslatitude'                 => 'Geografesch Breet',
+'exif-gpslongituderef'             => 'östlech oder westlech geografesch Längt',
 'exif-gpslongitude'                => 'Geografesch Längt',
 'exif-gpsaltituderef'              => 'Referenzhéicht',
 'exif-gpsaltitude'                 => 'Héicht',
@@ -1979,9 +2038,12 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-unknowndate' => 'Onbekannten Datum',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Horizontal gedréit', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Ëm 180° gedréit', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gedréit', # 0th row: bottom; 0th column: left
+'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: right; 0th column: top
+'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
 
@@ -1989,6 +2051,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-exposureprogram-1' => 'Manuell',
 'exif-exposureprogram-2' => 'Standardprogramm',
 'exif-exposureprogram-3' => 'Zäitautomatik',
+'exif-exposureprogram-4' => 'Blendenautomatik',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
 
 'exif-subjectdistance-value' => '$1 Meter',
@@ -2021,6 +2084,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-scenetype-1' => "D'Bild gouf photograféiert",
 
+'exif-customrendered-0' => 'Standard',
+'exif-customrendered-1' => 'Benotzerdefinéiert',
+
 'exif-exposuremode-0' => 'Automatesch Beliichtung',
 'exif-exposuremode-1' => 'Manuell Beliichtung',
 'exif-exposuremode-2' => 'Beliichtungsserie',
@@ -2028,6 +2094,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-whitebalance-0' => 'Automatesche Wäissofgläich',
 'exif-whitebalance-1' => 'Manuelle Wäissofgläich',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-3' => 'Nuetszeen',
 
 'exif-gaincontrol-0' => 'Keng',
@@ -2040,12 +2107,23 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-saturation-2' => 'Héich',
 
 'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Douce',
 'exif-sharpness-2' => 'Stark',
 
 'exif-subjectdistancerange-0' => 'Onbekannt',
 'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'No',
 'exif-subjectdistancerange-3' => 'wäit ewech',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'nërdlech Breet',
+'exif-gpslatitude-s' => 'südlech Breet',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'ëstlech Längt',
+'exif-gpslongitude-w' => 'westlech Längt',
+
+'exif-gpsstatus-a' => 'Miessung am gaang',
 
 'exif-gpsmeasuremode-2' => '2-dimensional Miessung',
 'exif-gpsmeasuremode-3' => '3-dimensional Miessung',
@@ -2144,6 +2222,8 @@ $1',
 'livepreview-loading' => 'Lueden …',
 'livepreview-ready'   => 'Lueden … Fäerdeg!',
 'livepreview-failed'  => "Live-Preview huet net fonctionéiert! Benotzt w.e.g. d'Fonctioun ''Kucken ouni ofzespäicheren''.",
+'livepreview-error'   => 'Verbindung net méiglech: $1 „$2“. 
+Benotzt w.e.g. de normale Preview (Kucken ouni ofzespäicheren).',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Ännerunge vun de leschte(n) $1 Sekonnen kënne an dëser Lëscht net gewise ginn.',

@@ -1,7 +1,8 @@
 <?php
 /** Lozi (Silozi)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SF-Language
  * @author Litingatinga Silozi

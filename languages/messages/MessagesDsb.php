@@ -1,7 +1,8 @@
 <?php
 /** Lower Sorbian (Dolnoserbski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Pe7er
  * @author Qualia
@@ -507,7 +508,7 @@ Twójo wužywarske konto jo se zarědowało. Njezabydni, swóje {{SITENAME}} nas
 'yourrealname'               => 'Realne mě *:',
 'yourlanguage'               => 'Rěc:',
 'yourvariant'                => 'Warianta:',
-'yournick'                   => 'Signatura:',
+'yournick'                   => 'Pódpismo:',
 'badsig'                     => 'Signatura njejo dobra; pšosym HTML pśekontrolěrowaś.',
 'badsiglength'               => 'Wužywarske mě smějo nejwušej $1 pismikow měś.',
 'email'                      => 'E-mail',
@@ -859,7 +860,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'viewprevnext'          => 'Pokazaś ($1) ($2) ($3).',
 'showingresults'        => "How {{PLURAL:|jo '''1''' wuslědk|stej '''$1''' wuslědka|su '''$1''' wuslědki}} wót cysła '''$2'''.",
 'showingresultsnum'     => "How {{PLURAL:$3|jo '''1''' wuslědk|stej '''$3''' wuslědka|su '''$3''' wuslědki}} wót cysła '''$2'''.",
-'nonefound'             => '<strong>Pokazka</strong>: Njewuspěšne wótpšašowanja zawinujo cesto pytanje za powšyknymi a togodla njeindicěrowanymi słowami ako "měś" abo "wót", ale teke pytanje za wěcej słowami. Pokazuju se jano boki, kótarež wopśimjeju wšykne pytane wuraze. W takem paźe wopytaj hyšći raz z mjenje pytanymi wurazami.',
+'nonefound'             => "'''Pokazka''': Jano někótare mjenjowe rumy se standarnje pytaju. Wopytaj za swóje wótpšašanje prefiks ''all:'' wužywać, aby cełe wopśimjeśe pytał (inkluziwnje diskusijnych bokow, pśedłogi atd.) abo wužyj póžedany mjenjowy rum ako prefiks.",
 'powersearch'           => 'Rozšyrjone pytanje',
 'powersearchtext'       => 'W mjenjowych rumach pytaś:<br />$1<br />$2 dalejpósrědnjenja pokazaś<br />Pytaś za: $3 $9',
 'searchdisabled'        => 'Pytanje we {{SITENAME}} jo se deaktiwěrowało. Tak dłujko móžoš w googlu pytaś. Pšosym wobmysli, až móžo pytanski indeks za {{SITENAME}} njeaktualny byś.',
@@ -1127,7 +1128,7 @@ PICT # misc.
 'filehist'                  => 'Stawizny dataje',
 'filehist-help'             => 'Tłoc na datum/cas aby tencasna wersija se lodowała.',
 'filehist-deleteall'        => 'Wšykno wulašowaś',
-'filehist-deleteone'        => 'Toś tu wersiju wulašowaś',
+'filehist-deleteone'        => 'Lašowaś',
 'filehist-revert'           => 'Slědk wześ',
 'filehist-current'          => 'něntejšny',
 'filehist-datetime'         => 'datum/cas',
@@ -1140,7 +1141,7 @@ PICT # misc.
 'nolinkstoimage'            => 'Žedne boki njewótkazuju na toś tu dataju.',
 'sharedupload'              => 'Toś ta dataja se gromaźe wužywa - snaź teke w drugich projektach.',
 'shareduploadwiki'          => 'Za dalšne informacije glědaj $1.',
-'shareduploadwiki-desc'     => 'Wopisanje na $1 se dołojce pókazujo.',
+'shareduploadwiki-desc'     => 'Wopisanje na $1 w zgromadnem skłaźišću se dołojce pókazujo.',
 'shareduploadwiki-linktext' => 'Bok wopisanja dataje',
 'noimage'                   => 'Dataja z takim mjenim njeeksistěrujo, móžoš ju ale $1.',
 'noimage-linktext'          => 'pósłaś',
@@ -1223,8 +1224,8 @@ Dogromady {{PLURAL:$3|běšo|běštej|běchu}} '''$3''' {{PLURAL:$3|wótwołanje
 To wucynjujo '''$5''' {{PLURAL:$5|wobźěłanje|wobźěłani|wobźěłanja}} na bok a '''$6''' {{PLURAL:$6|wótwołanje|wótwołani|wótwołanja}} na wobźěłanje.
 
 Dłujkosć [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''$7'''",
-'userstatstext'          => "Dajo '''$1''' {{PLURAL:$1|registrěrowanego|registrěrowaneju|registrěrowanych}} [[Special:Listusers|{{Plural:|wužywarja|wužywarjowu|wužywarjow}}]].
-Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
+'userstatstext'          => "Dajo '''$1''' {{PLURAL:$1|registrěrowanego|registrěrowaneju|registrěrowanych}} [[Special:Listusers|{{Plural:$1|wužywarja|wužywarjowu|wužywarjow}}]].
+Wót togo {{PLURAL:$2|jo|stej|su}} '''$2''' (=$4 %) $5.",
 'statistics-mostpopular' => 'Nejwěcej woglědane boki',
 
 'disambiguations'      => 'Rozjasnjenja zapśimjeśow',
@@ -1373,7 +1374,7 @@ Wót togo {{PLURAL:$2|ma|matej|maju}} (=$4%) $5-pšawa.",
 
 # E-mail user
 'mailnologin'     => 'Njejo móžno e-mailku pósłaś.',
-'mailnologintext' => 'Dejš byś [[{{ns:special}}:Userlogin|pśizjawjony]] a měś [[{{ns:special}}:Confirmemail|wobkšuśonu]] e-mailowu adresu, aby mógał drugim wužywarjam e-maile pósłaś.',
+'mailnologintext' => 'Dejš byś [[Special:Userlogin|pśizjawjony]] a měś [[Special:Confirmemail|wobkšuśonu]] e-mailowu adresu, aby mógał drugim wužywarjam e-maile pósłaś.',
 'emailuser'       => 'Toś tomu wužywarjeju e-mail pósłaś',
 'emailpage'       => 'E-mail wužywarjeju',
 'emailpagetext'   => 'Jo-lic toś ten wužywaŕ płaśecu e-mailowu adresu zapódał, móžoš jomu z pomocu dołojcnego formulara e-mail pósłaś. Ako wótpósłaŕ pódajo se e-mailowa adresa z twójich nastajenjow, aby mógał wužywaŕ wótegroniś.',

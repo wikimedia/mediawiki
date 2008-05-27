@@ -1,7 +1,8 @@
 <?php
 /** Kongo (Kongo)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

@@ -1,7 +1,8 @@
 <?php
 /** Nauru (Ekakairũ Naoero)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author CdaMVvWgS
  * @author Belgian man

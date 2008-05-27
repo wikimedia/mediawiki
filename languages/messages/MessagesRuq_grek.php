@@ -1,7 +1,8 @@
 <?php
 /** Megleno-Romanian (Greek script) (Βλαεστε)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

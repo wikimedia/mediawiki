@@ -1,7 +1,8 @@
 <?php
 /** Bashkir (Башҡорт)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Рустам Нурыев
  * @author Siebrand
@@ -202,9 +203,9 @@ $messages = array(
 'preview'        => 'Ҡарап сығыу',
 'showpreview'    => 'Ҡарап сығырға',
 'showdiff'       => 'Индерелгән үҙгәрештәр',
-'previewnote'    => 'Ҡарап сығыу өлгөһө, әлегә үҙгәрештәр яҙҙырылмаған!',
+'previewnote'    => '<strong>Ҡарап сығыу өлгөһө, әлегә үҙгәрештәр яҙҙырылмаған!</strong>',
 'editing'        => 'Мөхәрирләү  $1',
-'editinguser'    => 'Мөхәрирләү  $1',
+'editinguser'    => "Мөхәрирләү  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection' => 'Мөхәрирләү  $1 (секция)',
 'editingcomment' => 'Мөхәрирләү $1 (комментарий)',
 'yourtext'       => 'Һеҙҙең текст',

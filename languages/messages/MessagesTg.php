@@ -1,7 +1,8 @@
 <?php
-/** Tajik (Тоҷикӣ)
+/** Tajik (Тоҷикӣ/tojikī)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Francis Tyers
  * @author SPQRobin

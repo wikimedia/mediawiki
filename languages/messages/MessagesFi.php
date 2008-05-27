@@ -1,7 +1,8 @@
 <?php
 /** Finnish (Suomi)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Crt
  * @author Nike
@@ -663,10 +664,9 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'newarticle'                => '(uusi)',
 'newarticletext'            => 'Linkki toi sivulle, jota ei vielä ole. Voit luoda sivun kirjoittamalla alla olevaan tilaan. Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext'          => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:Userlogin|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
-'noarticletext'             => "<big>'''{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.'''</big>
+'noarticletext'             => "{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.
 * Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta.
-* Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''
-* Jos olet luonut sivun tällä nimellä, se on saatettu poistaa – katso [[Special:Log/delete|poistoloki]].",
+* Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''",
 'userpage-userdoesnotexist' => 'Käyttäjätunnusta $1 ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
 'clearyourcache'            => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
 *'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
@@ -678,7 +678,7 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'userjspreview'             => "'''Tämä on JavaScriptin esikatselu.'''",
 'userinvalidcssjstitle'     => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/monobook.css eikä {{ns:user}}:Matti Meikäläinen/Monobook.css.",
 'updated'                   => '(Päivitetty)',
-'note'                      => 'Huomautus:',
+'note'                      => '<strong>Huomautus:</strong>',
 'previewnote'               => '<strong>Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!</strong>',
 'previewconflict'           => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
 'session_fail_preview'      => '<strong>Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.</strong> Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisään.',
@@ -1041,7 +1041,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'large-file'                  => 'Tiedostojen enimmäiskoko on $1. Lähettämäsi tiedoston koko on $2.',
 'largefileserver'             => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'                   => 'Tiedosto, jota yritit lähettää, näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
-'fileexists'                  => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu $1, jos et ole varma, haluatko muuttaa sitä.',
+'fileexists'                  => 'Samanniminen tiedosto on jo olemassa. Katso tiedoston sivu <strong><tt>$1</tt></strong>, jos et ole varma, haluatko muuttaa sitä.',
 'filepageexists'              => 'Sivu (ei tiedosto) on jo olemassa tällä nimellä. Tarkista sivu <strong><tt>$1</tt></strong>, jos et ole varma että haluat muuttaa sitä.',
 'fileexists-extension'        => 'Tiedosto, jolla on samankaltainen nimi, on jo olemassa:<br />
 Tallennetun tiedoston nimi: <strong><tt>$1</tt></strong><br />
@@ -1121,7 +1121,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'nolinkstoimage'            => 'Tähän tiedostoon ei ole linkkejä miltään sivulta.',
 'sharedupload'              => 'Tämä tiedosto on jaettu ja muut projektit saattavat käyttää sitä.',
 'shareduploadwiki'          => 'Katso $1 lisätietoja.',
-'shareduploadwiki-desc'     => 'Tiedot $1 näkyvät alla.',
+'shareduploadwiki-desc'     => 'Tiedot tiedoston $1 jaetussa mediavarastossa näkyvät alla.',
 'shareduploadwiki-linktext' => 'kuvaussivulta',
 'noimage'                   => 'Tämän nimistä tiedostoa ei ole olemassa. Voit $1 {{GRAMMAR:illative|{{SITENAME}}}}.',
 'noimage-linktext'          => 'lisätä tiedoston',

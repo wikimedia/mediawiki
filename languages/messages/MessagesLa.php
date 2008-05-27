@@ -1,7 +1,8 @@
 <?php
 /** Latin (Latina)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author UV
@@ -257,7 +258,7 @@ $messages = array(
 'qbspecialpages' => 'Paginae speciales',
 'moredotdotdot'  => 'Plus...',
 'mypage'         => 'Pagina mea',
-'mytalk'         => 'Disputatum meum',
+'mytalk'         => 'Disputatio mea',
 'anontalk'       => 'Disputatio huius IP',
 'navigation'     => 'Navigatio',
 'and'            => 'et',
@@ -302,7 +303,7 @@ $messages = array(
 'templatepage'      => 'Videre formulam',
 'viewhelppage'      => 'Videre auxilium',
 'categorypage'      => 'Videre categoriam',
-'viewtalkpage'      => 'Videre disputatum',
+'viewtalkpage'      => 'Videre disputationem',
 'otherlanguages'    => 'Linguis aliis',
 'redirectedfrom'    => '(Redirectum de $1)',
 'redirectpagesub'   => 'Pagina redirectionis',
@@ -377,7 +378,9 @@ $messages = array(
 'nosuchaction'      => 'Actio non est',
 'nosuchactiontext'  => 'Actio in URL designata non agnoscitur a hoc vici.',
 'nosuchspecialpage' => 'Pagina specialis non est',
-'nospecialpagetext' => 'Paginam specialem invalidam petivisti. Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{MediaWiki:Specialpages}}]].',
+'nospecialpagetext' => "<big>'''Paginam specialem invalidam petivisti.'''</big>
+
+Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erratum',
@@ -440,7 +443,7 @@ Ratio tua iam creata est. Noli oblivisci praeferentias tuas mutare.',
 'yourrealname'               => 'Nomen tuum verum:',
 'yourlanguage'               => 'Lingua tua:',
 'yourvariant'                => 'Differentia:',
-'yournick'                   => 'Agnomen tuum (in subscriptionibus):',
+'yournick'                   => 'Subscriptio:',
 'badsig'                     => 'Subscriptio cruda non est valida; scrutina HTML textos.',
 'badsiglength'               => 'Agnomen nimis longum; $1 litterae sunt longitudo maxima.',
 'email'                      => 'Litterae electronicae',
@@ -836,7 +839,7 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'filehist'                  => 'Historia fasciculi',
 'filehist-help'             => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
 'filehist-deleteall'        => 'delere omnes emendationes',
-'filehist-deleteone'        => 'delere hanc emendationem',
+'filehist-deleteone'        => 'delere',
 'filehist-revert'           => 'revertere',
 'filehist-current'          => 'recentissima',
 'filehist-datetime'         => 'Dies/Tempus',
@@ -926,8 +929,9 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'brokenredirects-edit'   => '(recensere)',
 'brokenredirects-delete' => '(delere)',
 
-'withoutinterwiki'        => 'Paginae sine nexibus ad linguas alias',
-'withoutinterwiki-submit' => 'Monstrare',
+'withoutinterwiki'         => 'Paginae sine nexibus ad linguas alias',
+'withoutinterwiki-summary' => 'Paginae sequentes non ad paginas in linguis aliis nectunt:',
+'withoutinterwiki-submit'  => 'Monstrare',
 
 'fewestrevisions' => 'Paginae minime mutatae',
 
@@ -1323,7 +1327,7 @@ Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic mo
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Pagina usoris mea',
-'tooltip-pt-mytalk'               => 'Disputatum meum',
+'tooltip-pt-mytalk'               => 'Pagina disputationis mea',
 'tooltip-pt-preferences'          => 'Praeferentiae meae',
 'tooltip-pt-watchlist'            => 'Paginae quae custodis ut eorum mutationes facilius vides',
 'tooltip-pt-mycontris'            => 'Index conlationum mearum',

@@ -1,7 +1,8 @@
 <?php
 /** Guarani (Avañe'ẽ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hugo.arg
  * @author Nike
@@ -71,6 +72,7 @@ $messages = array(
 'newarticletext' => "Rehapykuehókuri peteĩ joaju peteĩ kuatiarogue ndaipórivape.
 Nde remoheñoisérõ ko kuatiarogue, eñepyrũkatu ehai.
 Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo reikereínte térã rejavyhaguére, upéicharõ terehojey [[{{MediaWiki:Helppage}}|kuatiarogue mboyveguápe]].",
+'editinguser'    => "Ojehaihína '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # User rights
 'userrights-user-editname' => 'Ehaimi peteĩ téra puruháragua:',

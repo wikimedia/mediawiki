@@ -1,8 +1,9 @@
 <?php
 /** Nyanja (Chi-Chewa)
  *
- * @addtogroup Language
-
+ * @ingroup Language
+ * @file
+ *
  */
 
 $messages = array(

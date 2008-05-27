@@ -1,7 +1,8 @@
 <?php
 /** German (Deutsch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
@@ -701,7 +702,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'userinvalidcssjstitle'     => "'''Warnung:''' Es existiert kein Skin „$1“. Bitte bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also z.B. ''{{ns:user}}:Mustermann/monobook.css'' an Stelle von ''{{ns:user}}:Mustermann/Monobook.css''.",
 'updated'                   => '(Geändert)',
 'note'                      => '<strong>Hinweis:</strong>',
-'previewnote'               => 'Dies ist nur eine Vorschau, die Seite wurde noch nicht gespeichert!',
+'previewnote'               => '<strong>Dies ist nur eine Vorschau, die Seite wurde noch nicht gespeichert!</strong>',
 'previewconflict'           => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird der Artikel aussehen, wenn du jetzt speicherst.',
 'session_fail_preview'      => '<strong>Deine Bearbeitung konnte nicht gespeichert werden, da deine Sitzungsdaten verloren gegangen sind.
 Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst. 
@@ -768,7 +769,7 @@ Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorh
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden',
-'cantcreateaccount-text' => "Die Erstellung eines Benutzerkontos von der IP-Adresse <b>$1</b> aus wurde von [[User:$3|$3]] gesperrt.
+'cantcreateaccount-text' => "Die Erstellung eines Benutzerkontos von der IP-Adresse '''($1)''' aus wurde durch [[User:$3|$3]] gesperrt.
 
 Grund der Sperre: ''$2''",
 
@@ -978,7 +979,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'userrights-groupsavailable'       => 'Verfügbare Gruppen:',
 'userrights-groupshelp'            => "Wähle die Gruppen, aus denen der Benutzer entfernt oder zu denen er hinzugefügt werden soll. Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Strg + Linksklick''' (bzw. Ctrl + Linksklick) entfernt werden.",
 'userrights-reason'                => 'Grund:',
-'userrights-available-none'        => 'Du darst keine Benutzerrechte verändern.',
+'userrights-available-none'        => 'Du darfst keine Benutzerrechte verändern.',
 'userrights-available-add'         => 'Du kannst Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} hinzufügen: $1.',
 'userrights-available-remove'      => 'Du kannst Benutzer aus {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} entfernen: $1.',
 'userrights-available-add-self'    => 'Du kannst dich selbst {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} hinzufügen: $1.',
@@ -1734,7 +1735,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'contribslink'                => 'Beiträge',
 'autoblocker'                 => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[Benutzer:$1]] benutzt. Grund: „$2“.',
 'blocklogpage'                => 'Benutzersperr-Logbuch',
-'blocklogentry'               => 'sperrte „[[$1]]“ für einen Zeitraum von: $2 $3',
+'blocklogentry'               => 'sperrte „[[$1]]“ für den Zeitraum: $2 $3',
 'blocklogtext'                => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen. Automatisch gesperrte IP-Adressen werden nicht erfasst. Siehe die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Sperren.',
 'unblocklogentry'             => 'hat die Sperre von „[[$1]]“ aufgehoben',
 'block-log-flags-anononly'    => 'nur Anonyme',

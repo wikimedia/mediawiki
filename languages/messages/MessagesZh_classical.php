@@ -1,7 +1,8 @@
 <?php
 /** Old Chinese / Late Middle Chinese (文言)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */
@@ -508,7 +509,7 @@ $2',
 'newarticletext'            => '此頁尚缺。欲補，撰於下，有惑見[[{{ns:help}}:Contents|助]]。
 誤入者，返前即可。',
 'anontalkpagetext'          => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:Userlogin|登簿]]遠之。",
-'noarticletext'             => '此頁無文。子可 [[{{ns:special}}:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
+'noarticletext'             => '此頁無文。子可 [[Special:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
 'userpage-userdoesnotexist' => '"$1"之簿未增也。請建纂本頁前查之。',
 'clearyourcache'            => "'''註：'''重取頁面，文方新焉。
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-Shift-R''（Apple Mac為''Cmd-Shift-R''）。

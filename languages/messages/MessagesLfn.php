@@ -1,12 +1,14 @@
 <?php
 /** Lingua Franca Nova (Lingua Franca Nova)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Cgboeree
  * @author Nike
  * @author SPQRobin
  * @author Siebrand
+ * @author Malafaya
  */
 
 
@@ -189,6 +191,7 @@ $messages = array(
 'otherlanguages'    => 'En otra linguas',
 'redirectedfrom'    => '(Redirijeda de $1)',
 'redirectpagesub'   => 'Redireta la paje',
+'viewcount'         => 'Esta paje es asesada a $1 {{PLURAL:$1|ves|veses}}.',
 'protectedpage'     => 'Paje protejeda',
 'jumpto'            => 'Salta a:',
 'jumptonavigation'  => 'naviga',
@@ -226,28 +229,38 @@ $messages = array(
 'toc'                 => 'Contenida',
 'showtoc'             => 'mostra',
 'hidetoc'             => 'asconde',
+'viewdeleted'         => 'Vide $1?',
 'site-rss-feed'       => '$1 RSS Flue',
 'site-atom-feed'      => '$1 Atom Flue',
 'page-rss-feed'       => '"$1" RSS Flue',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'     => 'Paje de usor',
-'nstab-project'  => 'Paje de projeta',
-'nstab-image'    => 'Fix',
-'nstab-template' => 'Model',
-'nstab-category' => 'Categoria',
+'nstab-main'      => 'Paje',
+'nstab-user'      => 'Paje de usor',
+'nstab-special'   => 'Spesial',
+'nstab-project'   => 'Paje de projeta',
+'nstab-image'     => 'Fix',
+'nstab-mediawiki' => 'Mesaje',
+'nstab-template'  => 'Model',
+'nstab-help'      => 'Paje de aida',
+'nstab-category'  => 'Categoria',
 
 # General errors
-'badtitle'       => 'Titulo es mal',
-'badtitletext'   => 'La titulo de la paje tu ia desira ia es nonlegal, es vacua, o es un titulo intervici o interlingual no liada coreta. Es posable ce es un o plu simboles ce no pote es usada en titulos.',
-'viewsource'     => 'Vide la orijin',
-'viewsourcefor'  => 'per $1',
-'viewsourcetext' => 'Tu pote vide e copia la orijin de esta paje:',
+'error'              => 'Era',
+'databaseerror'      => 'Era de base de datos',
+'internalerror'      => 'Era interna',
+'internalerror_info' => 'Era interna: $1',
+'badtitle'           => 'Titulo es mal',
+'badtitletext'       => 'La titulo de la paje tu ia desira ia es nonlegal, es vacua, o es un titulo intervici o interlingual no liada coreta. Es posable ce es un o plu simboles ce no pote es usada en titulos.',
+'viewsource'         => 'Vide la orijin',
+'viewsourcefor'      => 'per $1',
+'viewsourcetext'     => 'Tu pote vide e copia la orijin de esta paje:',
 
 # Login and logout pages
 'logouttitle'           => 'Sinia per retira',
 'yourname'              => 'Nom de usor:',
 'yourpassword'          => 'Sinia de entra:',
+'yourpasswordagain'     => 'Retape la sinia:',
 'remembermypassword'    => 'Memora me sinia de entra a esta computador',
 'login'                 => 'Sinia per entra',
 'loginprompt'           => 'Tu debe engrana "tortetas" per entra {{SITENAME}}.',
@@ -260,6 +273,7 @@ $messages = array(
 'gotaccount'            => 'Tu ave ja un conta? $1.',
 'gotaccountlink'        => 'Sinia per entra',
 'yourrealname'          => 'Nom vera:',
+'yourlanguage'          => 'Lingua:',
 'prefs-help-realname'   => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
 'loginsuccesstitle'     => 'Entra susedente',
 'loginsuccess'          => "'''Tu ia entrada aora a {{SITENAME}} como \"\$1\".'''",
@@ -299,8 +313,8 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'math_tip'        => 'Formula matematical (LaTeX)',
 'nowiki_sample'   => 'Introdui testo nonformida asi',
 'nowiki_tip'      => 'Iniora la forma de la vici',
-'image_tip'       => 'Imaje interna',
-'media_tip'       => 'Lia a fix de medio',
+'image_tip'       => 'Fix interna',
+'media_tip'       => 'Lia a fix',
 'sig_tip'         => 'Tu sinia con la primi de la ora',
 'hr_tip'          => 'Linia orizonal (usa nonfrecuente)',
 
@@ -372,9 +386,14 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 (presedente) = difere con varia presedente, M = edita minor.',
 'histfirst'           => 'Prima',
 'histlast'            => 'Ultima',
+'historysize'         => '({{PLURAL:$1|1 otuple|$1 otuples}})',
+'historyempty'        => '(vacua)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
+
+# Revision deletion
+'rev-delundel' => 'mostra/asconde',
 
 # Diffs
 'history-title'           => 'Istoria de cambias de "$1"',
@@ -390,18 +409,26 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'prevn'         => '$1 presedente',
 'nextn'         => '$1 seguente',
 'viewprevnext'  => 'Vide ($1) ($2) ($3)',
-'powersearch'   => 'Xerca',
+'powersearch'   => 'Xerca avansada',
 
 # Preferences page
 'preferences'       => 'Preferis',
 'mypreferences'     => 'Me preferis',
+'math'              => 'Matematica',
 'saveprefs'         => 'Fisa',
 'retypenew'         => 'Re-entra tu sinia secreta nova:',
+'rows'              => 'Linias:',
+'columns'           => 'Colonas:',
 'searchresultshead' => 'Xerca',
 'savedprefs'        => 'Tu preferis es fisada',
+'files'             => 'Fixes',
 
 # User rights
 'saveusergroups' => 'Fisa la grupo de usores',
+
+# Groups
+'group'     => 'Grupo:',
+'group-all' => '(tota)',
 
 'grouppage-sysop' => '{{ns:project}}:Dirijores',
 
@@ -430,6 +457,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
+'rc_categories_any'              => 'Cualce',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambias relateda',
@@ -444,10 +472,13 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'savefile'      => 'Fisa fix',
 'uploadedimage' => '"[[$1]]" es enviada',
 
+'upload-file-error' => 'Era interna',
+
 # Image list
 'imagelist'                 => 'Lista de imajes',
 'ilsubmit'                  => 'Xerca',
 'imgdelete'                 => 'sutr',
+'imgfile'                   => 'fix',
 'filehist'                  => 'Istoria de fix',
 'filehist-help'             => 'Clica a un data/tempo per vide la fix como el ia aperi alora.',
 'filehist-current'          => 'aora',
@@ -463,6 +494,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'noimage'                   => 'Es no fix con esta nom; tu pote $1.',
 'noimage-linktext'          => 'envia el',
 'uploadnewversion-linktext' => 'Envia un varia nova de esta fix',
+'imagelist_name'            => 'Nom',
 
 # MIME search
 'mimesearch' => 'Xerca de MIME',
@@ -499,7 +531,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'lonelypages'             => 'Pajes orfanida',
 'uncategorizedpages'      => 'Pajes sin categoria',
 'uncategorizedcategories' => 'Categorias sin categoria',
-'uncategorizedimages'     => 'Imajes sin categoria',
+'uncategorizedimages'     => 'Fixes sin categoria',
 'uncategorizedtemplates'  => 'Modeles sin categoria',
 'unusedcategories'        => 'Categorias nonusada',
 'unusedimages'            => 'Images nonusada',
@@ -510,7 +542,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'mostlinkedcategories'    => 'Categorias a ce es la plu lias',
 'mostlinkedtemplates'     => 'Modeles a ce es la plu lias',
 'mostcategories'          => 'Pajes con la plu categorias',
-'mostimages'              => 'Imajes a ce es la plu lias',
+'mostimages'              => 'Fixes a ce es la plu lias',
 'mostrevisions'           => 'Pajes con la plu revisas',
 'allpages'                => 'Tota pajes',
 'prefixindex'             => 'Catalogo de prefises',
@@ -530,7 +562,8 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'unusedcategoriestext'    => 'La categorias seguente esiste sin es usada par otra articles o categorias.',
 
 # Book sources
-'booksources' => 'Orijines de libros',
+'booksources'    => 'Orijines de libros',
+'booksources-go' => 'Vade',
 
 'categoriespagetext' => 'Es la categorias seguente en la vici.',
 'userrights'         => 'Dirije de la diretos de usores',
@@ -542,6 +575,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Lista de atas',
 'all-logs-page'        => 'Tota catalogos',
+'log-search-submit'    => 'Vade',
 
 # Special:Allpages
 'nextpage'       => 'Paje seguente ($1)',
@@ -555,6 +589,8 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 
 # E-mail user
 'emailuser' => 'Envia un eposta a esta usor',
+'emailfrom' => 'De',
+'emailto'   => 'Per',
 
 # Watchlist
 'watchlist'            => 'Pajes oservada',
@@ -626,8 +662,9 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'restriction-level'           => 'Nivel de restrinje:',
 
 # Undelete
-'undelete'    => 'Restora paje sutraeda',
-'undeletebtn' => 'Restora',
+'undelete'               => 'Restora paje sutraeda',
+'undeletebtn'            => 'Restora',
+'undelete-search-submit' => 'Xerca',
 
 # Namespace form on various pages
 'namespace'      => 'Loca de nom:',
@@ -644,10 +681,12 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 
 'sp-contributions-newbies-sub' => 'Per contas nova',
 'sp-contributions-blocklog'    => 'Impedi arcivo',
+'sp-contributions-submit'      => 'Xerca',
 
 # What links here
 'whatlinkshere'       => 'Ce es liada a asi',
 'whatlinkshere-title' => 'Pajes ci lia a $1',
+'whatlinkshere-page'  => 'Paje:',
 'linklistsub'         => '(Lista de lias)',
 'linkshere'           => "Esta pajes lia a '''[[:$1]]''':",
 'nolinkshere'         => "No pajes lia a '''[[:$1]]'''.",
@@ -658,18 +697,19 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'whatlinkshere-links' => '← lias',
 
 # Block/unblock
-'blockip'           => 'Impedi usor',
-'ipbreason'         => 'Razona:',
-'ipbsubmit'         => 'Impedi esta usor',
-'ipboptions'        => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
-'blockipsuccesssub' => 'La impedi susede',
-'ipusubmit'         => 'Desimpedi esta dirije',
-'ipblocklist'       => 'Liste de usores impedida',
-'blocklink'         => 'impedi',
-'unblocklink'       => 'desimpedi',
-'contribslink'      => 'contribuis',
-'blocklogpage'      => 'impedi arcivo',
-'blocklogentry'     => 'impedida [[$1]] con un tempo de fini de $2 $3',
+'blockip'            => 'Impedi usor',
+'ipbreason'          => 'Razona:',
+'ipbsubmit'          => 'Impedi esta usor',
+'ipboptions'         => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
+'blockipsuccesssub'  => 'La impedi susede',
+'ipusubmit'          => 'Desimpedi esta dirije',
+'ipblocklist'        => 'Liste de usores impedida',
+'ipblocklist-submit' => 'Xerca',
+'blocklink'          => 'impedi',
+'unblocklink'        => 'desimpedi',
+'contribslink'       => 'contribuis',
+'blocklogpage'       => 'impedi arcivo',
+'blocklogentry'      => 'impedida [[$1]] con un tempo de fini de $2 $3',
 
 # Move page
 'movepage'         => 'Move paje',
@@ -753,11 +793,11 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'tooltip-t-whatlinkshere'         => 'Lista de tota pajes de vici ce lia a asi',
 'tooltip-t-contributions'         => 'Vide la lista de contribuis de esta usor',
 'tooltip-t-emailuser'             => 'Envia un eposta a esta usor',
-'tooltip-t-upload'                => 'Envia imajes o arcivos de medio',
+'tooltip-t-upload'                => 'Envia fixes',
 'tooltip-t-specialpages'          => 'Lista de tota pajes spesial',
 'tooltip-ca-nstab-user'           => 'Vide la paje de usor',
 'tooltip-ca-nstab-project'        => 'Vide la paje de la projeta',
-'tooltip-ca-nstab-image'          => 'Vide la paje de imaje',
+'tooltip-ca-nstab-image'          => 'Vide la paje de fix',
 'tooltip-ca-nstab-template'       => 'Mostra la model',
 'tooltip-ca-nstab-help'           => 'Vide la paje de aida',
 'tooltip-ca-nstab-category'       => 'Vide la paje de la categoria',
@@ -792,14 +832,16 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'newimages' => 'Imajes nova',
 
 # Bad image list
-'bad_image_list' => 'La forma es...
+'bad_image_list' => 'La forma es la seguente:
 
-Sola linias de un lista (ce comensa con *) es considerada. La lia prima a la linia nesesa es un lia a un mal imaje.
-Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do la imaje pote aveni enlinia.',
+Sola linias de un lista (ce comensa con *) es considerada.
+La lia prima a la linia nesesa es un lia a un mal fix.
+Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do la fix pote aveni enlinia.',
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Esta fix conteni plu informa, posable juntada de un camera dijital o un scanador usada per crea o dijiti el. Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en la image cambiada.',
+'metadata-help'     => 'Esta fix conteni plu informa, posable juntada de un camera dijital o un scanador usada per crea o dijiti el.
+Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en la fix cambiada.',
 'metadata-expand'   => 'Mostra detalias estendente',
 'metadata-collapse' => 'Asconde detalias estendeda',
 'metadata-fields'   => 'Campos de EXIF metadata listada en esta mesaje va es inclui cuando la table de metadata es minimida.
@@ -810,6 +852,9 @@ Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-exposuretime-format' => '$1 sec. ($2)',
+
 # External editor support
 'edit-externally'      => 'Edita esta fix con un programa esterna',
 'edit-externally-help' => 'Vide la [http://meta.wikimedia.org/wiki/Help:External_editors instruis per comensa] per plu instruis.',
@@ -818,6 +863,9 @@ Cada lias seguente a la mesma linia es considerada es esetas, ce es, la pajes do
 'watchlistall2' => 'tota',
 'namespacesall' => 'tota',
 'monthsall'     => 'tota',
+
+# action=purge
+'confirm_purge_button' => 'Oce',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vide cambias pertinente',

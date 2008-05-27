@@ -1,7 +1,8 @@
 <?php
 /** Newari (नेपाल भाषा)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand
@@ -93,7 +94,7 @@ $messages = array(
 'mainpage'     => 'मू पौ',
 'policy-url'   => 'Project:नीति',
 'portal'       => 'सामाजिक दबू',
-'portal-url'   => 'ज्याझ्वः:सामाजिक दबू',
+'portal-url'   => 'Project:सामाजिक दबू',
 'privacy'      => 'दुबिस्ता नियम',
 'sitesupport'  => 'दान',
 

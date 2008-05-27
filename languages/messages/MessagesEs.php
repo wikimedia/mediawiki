@@ -1,7 +1,8 @@
 <?php
 /** Spanish (Español)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Icvav
  * @author Platonides
@@ -26,6 +27,7 @@
  * @author Bengoa
  * @author Ascánder
  * @author Dvortygirl
+ * @author Jatrobat
  */
 
 $skinNames = array(
@@ -590,7 +592,7 @@ Por favor, incluye este identificador en cualquier petición que hagas.',
 'userinvalidcssjstitle'     => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Actualizado)',
 'note'                      => '<strong>Nota:</strong>',
-'previewnote'               => '¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!',
+'previewnote'               => '<strong>¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!</strong>',
 'previewconflict'           => 'La previsualización le muestra cómo aparecerá el texto una vez guardados los cambios.',
 'session_fail_preview'      => '<strong>Lo sentimos, no pudimos efectuar su edición debido a una pérdida de los datos de sesión. Por favor, inténtelo de nuevo y si no funciona, salga de su sesión y vuelva a identificarse.</strong>',
 'session_fail_preview_html' => "<strong>Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.</strong>
@@ -962,14 +964,7 @@ Para incluir un archivo en una página, utilice en el formulario los enlaces
 'large-file'                  => 'Se recomienda que los archivos no sean mayores de de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
-'fileexists'                  => "Ya existe un archivo con este nombre. Por favor compruebe el existente $1 si no está seguro de querer reemplazarlo.
-
-
-'''Nota:''' Si finalmente sustituye el archivo, debe refrescar la caché de su navegador para ver los cambios:
-*'''Mozilla''' / '''Firefox''': Pulsa el botón '''Recargar''' (o '''ctrl-r''')
-*'''Internet Explorer''' / '''Opera''': '''ctrl-f5'''
-*'''Safari''': '''cmd-r'''
-*'''Konqueror''': '''ctrl-r''",
+'fileexists'                  => 'Ya existe un archivo con este nombre. Por favor compruebe el existente <strong><tt>$1</tt></strong> si no está seguro de querer reemplazarlo.',
 'fileexists-extension'        => 'Existe un archivo con un nombre similar:<br />
 Nombre del archivo que se está subiendo: <strong><tt>$1</tt></strong><br />
 Nombre del archivo ya existente: <strong><tt>$2</tt></strong><br />
@@ -1421,6 +1416,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undelete-nodiff'          => 'No existe una revisión previa.',
 'undeletebtn'              => '¡Restaurar!',
+'undeletelink'             => 'restaurar',
 'undeletereset'            => 'Nada',
 'undeletecomment'          => 'Razón para restaurar:',
 'undeletedarticle'         => 'restauró "$1"',
@@ -1653,7 +1649,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
 'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
+'allmessagesnotsupportedDB' => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
 'allmessagesfilter'         => 'Filtrar por nombre del mensaje:',
 'allmessagesmodified'       => 'Mostrar sólo los modificados',
 
@@ -2247,6 +2243,7 @@ Intenta la previsualización normal.',
 # Special:Version
 'version-specialpages'     => 'Páginas especiales',
 'version-parserhooks'      => "Lligams de l'analitzador",
+'version-version'          => 'Versión',
 'version-license'          => 'Licencia',
 'version-software-version' => 'Versión',
 

@@ -1,7 +1,8 @@
 <?php
 /** Fulah (Fulfulde)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Amkoullel
  * @author SPQRobin

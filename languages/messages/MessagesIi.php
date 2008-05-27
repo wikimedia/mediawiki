@@ -1,7 +1,8 @@
 <?php
 /** Sichuan Yi (ꆇꉙ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

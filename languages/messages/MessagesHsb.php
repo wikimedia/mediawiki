@@ -1,7 +1,8 @@
 <?php
 /** Upper Sorbian (Hornjoserbsce)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Dundak
  * @author Michawiki
@@ -484,7 +485,7 @@ Prošu spytaj hišće raz!',
 'yourrealname'               => 'Woprawdźite mjeno *',
 'yourlanguage'               => 'Rěč:',
 'yourvariant'                => 'Warianta:',
-'yournick'                   => 'Přimjeno:',
+'yournick'                   => 'Podpis:',
 'badsig'                     => 'Njepłaćiwa signatura, prošu HTML přepruwować.',
 'badsiglength'               => 'Podpis smě maksimalnje $1 znamješkow dołhi być.',
 'email'                      => 'E-mejl',
@@ -1020,7 +1021,7 @@ Zo by dataju do strony zapřijał, wužij wotkaz we formje
 'large-file'                  => 'Doporuča so, zo dataje wjetše hač $1 njejsu; tuta dataja ma $2.',
 'largefileserver'             => 'Dataja je wjetša hač serwer dowoluje.',
 'emptyfile'                   => 'Dataja, kotruž sy nahrał, zda so prózdna być. Z přičinu móhł pisanski zmylk w mjenje dataje być. Prošu pruwuj hač chceš ju woprawdźe nahrać.',
-'fileexists'                  => 'Dataja z tutym mjenom hižo eksistuje. Jeli kliknješ na „Składować”, so wona přepisuje. Prošu pruwuj $1 jeli njejsy wěsty hač chceš ju změnić.',
+'fileexists'                  => 'Dataja z tutym mjenom hižo eksistuje. Jeli kliknješ na „Składować”, so wona přepisuje. Prošu pruwuj <strong><tt>$1</tt></strong> jeli njejsy wěsty hač chceš ju změnić.',
 'filepageexists'              => 'Strona (žadyn wobraz) z tutym mjenom hižo eksistuje, prošu přepruwuj <strong><tt>$1</tt></strong>, jeli njejsy sej wěsty, hač chceš je změnić.',
 'fileexists-extension'        => 'Dataja z podobnym mjenom hižo eksistuje:<br />
 Mjeno dataje, kotruž chceš nahrać: <strong><tt>$1</tt></strong><br />
@@ -1116,7 +1117,7 @@ PICT # misc.
 'nolinkstoimage'            => 'Njejsu strony, kotrež na tutu dataju wotkazuja.',
 'sharedupload'              => 'Tuta dataja je zhromadne nahraće a móže so přez druhe projekty wužiwać.',
 'shareduploadwiki'          => 'Za dalše informacije hlej $1.',
-'shareduploadwiki-desc'     => 'Wopisanje na $1 so deleka pokazuje.',
+'shareduploadwiki-desc'     => 'Wopisanje na $1 so deleka w zhromadnym składźišću pokazuje.',
 'shareduploadwiki-linktext' => 'stronu datajoweho wopisanja',
 'noimage'                   => 'Žana dataja z tutym mjenom njeeksistuje. Móžeš $1.',
 'noimage-linktext'          => 'ju nahrać',
@@ -1372,7 +1373,7 @@ E-mejlowa adresa, kotruž sy w swojich nastajenjach zapodał, jewi so jako adres
 'nowatchlist'          => 'Nimaš žane strony w swojich wobkedźbowankach.',
 'watchlistanontext'    => 'Dyrbiš so $1, zo by swoje wobkedźbowanki wobhladać abo wobdźěłać móhł.',
 'watchnologin'         => 'Njejsy přizjewjeny.',
-'watchnologintext'     => 'Dyrbiš [[{{ns:special}}:Userlogin|přizjewjeny]] być, zo by swoje wobkedźbowanki změnić móhł.',
+'watchnologintext'     => 'Dyrbiš [[Special:Userlogin|přizjewjeny]] być, zo by swoje wobkedźbowanki změnić móhł.',
 'addedwatch'           => 'Strona bu wobkedźbowankam přidata.',
 'addedwatchtext'       => "Strona [[:$1]] bu k twojim [[Special:Watchlist|wobkedźbowankam]] přidata.
 Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam nalistować a strona so '''w tučnym pismje''' w [[Special:Recentchanges|lisćinje aktualnych změnach]] zjewi, zo by so wosnadniło ju wubrać.

@@ -1,7 +1,8 @@
 <?php
 /** Hakka (Hak-kâ-fa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hakka
  * @author Nike
@@ -474,7 +475,7 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 
 <strong>Kó-yèn liá-ke phiên-siá ko-chhàng mò-yû mun-thì, chhiáng chai-chhṳ yit-chhṳ. Yìn-yèn yû mun-thì, chhiáng tên-chhut heu chhùng-sîn tên-ngi̍p yit-chhṳ.</strong>',
 'editing'                   => 'Chang-chhai phiên-siá $1',
-'editinguser'               => 'Chang-chhai phiên-siá yung-fu <b>$1</b>',
+'editinguser'               => "Chang-chhai phiên-siá yung-fu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Chang-chhai phiên-siá $1 (thon-lo̍k)',
 'editingcomment'            => 'Chang-chhai phiên-siá $1 (phìn-lun)',
 'editconflict'              => 'phiên-cho chhûng-thu̍t： $1',
@@ -759,7 +760,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'large-file'                  => 'Kien-ngi tóng-on thai-séu put-nèn chhêu-ko $1; pún tóng-on thai-séu he $2.',
 'largefileserver'             => 'Liá-ke tóng-on ke thai-séu fu̍k-chhiùng-hi fûn-phi yún-chún ke thai-séu hàn-yeu thai.',
 'emptyfile'                   => 'Ngì só song-chhòn ke tóng-on put chhùn-chhai. Liá khó-nèn he chhut-yì tóng-on miàng chho-ngu. Chhiáng kiám-chhà ngì he-feu chṳ̂n yeu song-chhòn chhṳ́ tóng-on.',
-'fileexists'                  => 'Yí-kîn chhùn-chhai siông-thùng miàng-chhṳ̂n ke tóng-on, kó-yèn ngì mò-fap khok-thin ngì he-feu yeu kói-pien kì, chhiáng kiám-chhà $1.',
+'fileexists'                  => 'Yí-kîn chhùn-chhai siông-thùng miàng-chhṳ̂n ke tóng-on, kó-yèn ngì mò-fap khok-thin ngì he-feu yeu kói-pien kì, chhiáng kiám-chhà <strong><tt>$1</tt></strong>.',
 'fileexists-extension'        => 'Yit-ke siông-sṳ tóng-miàng ke tóng-on yí-kîn chhùn-chhai:<br />
 Song-chhòn tóng-on ke tóng-miàng: <strong><tt>$1</tt></strong><br />
 hien-chhai yû tóng-on ke tóng-miàng: <strong><tt>$2</tt></strong><br />

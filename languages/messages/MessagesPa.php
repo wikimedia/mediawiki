@@ -1,7 +1,8 @@
 <?php
 /** Punjabi (ਪੰਜਾਬੀ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
@@ -414,7 +415,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'note'                   => '<strong>ਨੋਟ:</strong>',
 'previewnote'            => '<strong>ਇਹ ਸਿਰਫ਼ ਇੱਕ ਝਲਕ ਹੈ; ਬਦਲਾਅ ਹਾਲੇ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ ਹਨ!</strong>',
 'editing'                => '$1 ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
-'editinguser'            => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
+'editinguser'            => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 'editingsection'         => '$1 (ਸ਼ੈਕਸ਼ਨ) ਸੋਧ',
 'editingcomment'         => '$1 (ਟਿੱਪਣੀ) ਸੋਧ',
 'editconflict'           => 'ਅਪਵਾਦ ਟਿੱਪਣੀ: $1',

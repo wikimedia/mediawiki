@@ -1,7 +1,8 @@
 <?php
 /** Pfälzisch (Pfälzisch)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPS
  */

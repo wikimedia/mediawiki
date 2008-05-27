@@ -1,7 +1,8 @@
 <?php
-/** Mazandarani (مَزِروني)
+/** Mazanderani (مَزِروني)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

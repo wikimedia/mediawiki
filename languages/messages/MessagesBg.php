@@ -1,7 +1,8 @@
 <?php
 /** Bulgarian (Български)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author DCLXVI
  * @author לערי ריינהארט
@@ -484,7 +485,9 @@ $messages = array(
 'nosuchaction'      => 'Няма такова действие',
 'nosuchactiontext'  => 'Действието, указано от мрежовия адрес, не се разпознава от системата.',
 'nosuchspecialpage' => 'Няма такава специална страница',
-'nospecialpagetext' => 'Отправихте заявка за невалидна [[{{ns:special}}:Specialpages|специална страница]].',
+'nospecialpagetext' => "<big>'''Отправихте заявка за невалидна специална страница.'''</big>
+
+Списък с валидните специални страници може да бъде видян на [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Грешка',
@@ -1224,7 +1227,7 @@ $2',
 'nolinkstoimage'            => 'Няма страници, сочещи към файла.',
 'sharedupload'              => 'Този файл е споделен и може да бъде използван от други проекти.',
 'shareduploadwiki'          => 'Разгледайте $1 за повече информация.',
-'shareduploadwiki-desc'     => 'Следва съдържанието на $1.',
+'shareduploadwiki-desc'     => 'Следва описанието от $1 от споделеното хранилище.',
 'shareduploadwiki-linktext' => 'описателната страница на файла',
 'noimage'                   => 'Не съществува файл с това име, можете $1.',
 'noimage-linktext'          => 'да го качите',
@@ -1423,7 +1426,7 @@ $2',
 
 # E-mail user
 'mailnologin'     => 'Няма електронна поща',
-'mailnologintext' => 'Необходимо е да [[{{ns:special}}:Userlogin|влезете]] и да посочите валидна електронна поща в [[{{ns:special}}:Preferences|настройките]] си, за да може да пращате писма на други потребители.',
+'mailnologintext' => 'Необходимо е да [[Special:Userlogin|влезете]] и да посочите валидна електронна поща в [[Special:Preferences|настройките]] си, за да може да пращате писма на други потребители.',
 'emailuser'       => 'Писмо на потребителя',
 'emailpage'       => 'Пращане писмо на потребител',
 'emailpagetext'   => 'Ако потребителят е посочил валидна електронна поща в настройките си, чрез долния формуляр можете да му изпратите съобщение. Адресът, записан в настройките ви, ще се появи в полето „От“ на изпратеното писмо, така че получателят ще е в състояние да ви отговори.',
@@ -1448,7 +1451,7 @@ $2',
 'nowatchlist'          => 'Списъкът ви за наблюдение е празен.',
 'watchlistanontext'    => 'За преглеждане и редактиране на списъка за наблюдение се изисква $1 в системата.',
 'watchnologin'         => 'Не сте влезли',
-'watchnologintext'     => 'Необходимо е да [[{{ns:special}}:Userlogin|влезете]], за да може да променяте списъка си за наблюдение.',
+'watchnologintext'     => 'Необходимо е да [[Special:Userlogin|влезете]], за да може да променяте списъка си за наблюдение.',
 'addedwatch'           => 'Добавено в списъка за наблюдение',
 'addedwatchtext'       => "Страницата „'''$1'''“ беше добавена към [[{{ns:special}}:Watchlist|списъка ви за наблюдение]].
 Нейните бъдещи промени, както и на съответната й дискусионна страница, ще се описват там, а тя ще се появява в '''получер''' в [[{{ns:special}}:Recentchanges|списъка на последните промени]], което ще направи по-лесно избирането й.
@@ -1517,9 +1520,9 @@ $NEWPAGE
 
 # Delete/protect/revert
 'deletepage'                  => 'Изтриване',
-'confirm'                     => 'Потвърждение',
+'confirm'                     => 'Потвърждаване',
 'excontent'                   => 'съдържанието беше: „$1“',
-'excontentauthor'             => 'съдържанието беше: „$1“ (като единственият автор беше „[[Special:Contributions/$2|$2]]“)',
+'excontentauthor'             => 'съдържанието беше: „$1“ (като единственият автор беше [[Special:Contributions/$2|$2]])',
 'exbeforeblank'               => 'премахнато преди това съдържание: „$1“',
 'exblank'                     => 'страницата беше празна',
 'delete-confirm'              => 'Изтриване на „$1“',
@@ -2079,8 +2082,8 @@ $1',
 'metadata-fields'   => 'EXIF данните, показани в това съобщение, ще бъдат включени на медийната страница, когато информационната таблица е сгъната. Останалите данни ще са скрити по подразбиране.
 * производител
 * модел
-* дата и време на създаване
-* време за експозиция
+* дата и час на създаване
+* време за експонация
 * F (бленда)
 * фокусно разстояние', # Do not translate list items
 
@@ -2093,6 +2096,7 @@ $1',
 'exif-orientation'               => 'Ориентация',
 'exif-samplesperpixel'           => 'Редица от компоненти',
 'exif-planarconfiguration'       => 'Принцип на организация на данните',
+'exif-ycbcrpositioning'          => 'Y и C позициониране',
 'exif-xresolution'               => 'Хоризонтална резолюция',
 'exif-yresolution'               => 'Вертикална резолюция',
 'exif-rowsperstrip'              => 'Брой редове на ивица',
@@ -2100,7 +2104,7 @@ $1',
 'exif-transferfunction'          => 'Функция по пренос',
 'exif-whitepoint'                => 'Хроматичност на бялото',
 'exif-ycbcrcoefficients'         => 'Коефициенти в матрицата на трансформацията на цветовото пространство',
-'exif-datetime'                  => 'Дата и време на изменението на файла',
+'exif-datetime'                  => 'Дата и час на изменението на файла',
 'exif-imagedescription'          => 'Название на изображението',
 'exif-make'                      => 'Производител',
 'exif-model'                     => 'Модел на фотоапарата',
@@ -2117,9 +2121,9 @@ $1',
 'exif-makernote'                 => 'Допълнителни данни на производителя',
 'exif-usercomment'               => 'Допълнителни коментари',
 'exif-relatedsoundfile'          => 'Свързан звуков файл',
-'exif-datetimeoriginal'          => 'Дата и време на създаване',
+'exif-datetimeoriginal'          => 'Дата и час на създаване',
 'exif-datetimedigitized'         => 'Дата и час на записа',
-'exif-exposuretime'              => 'Време на експозиция',
+'exif-exposuretime'              => 'Време на експонация',
 'exif-exposuretime-format'       => '$1 сек ($2)',
 'exif-fnumber'                   => 'F (бленда)',
 'exif-exposureprogram'           => 'Програма на експонацията',
@@ -2176,6 +2180,7 @@ $1',
 'exif-gpsdestlongitude'          => 'Географска дължина на целта',
 'exif-gpsdestbearing'            => 'Местоположение на целта',
 'exif-gpsdestdistance'           => 'Разстояние до целта',
+'exif-gpsareainformation'        => 'Име на GPS зоната',
 'exif-gpsdatestamp'              => 'GPS дата',
 'exif-gpsdifferential'           => 'Диференциална корекция на GPS',
 
@@ -2250,8 +2255,8 @@ $1',
 'exif-customrendered-0' => 'нормален процес',
 'exif-customrendered-1' => 'нестандартна обработка',
 
-'exif-exposuremode-0' => 'автоматична експозиция',
-'exif-exposuremode-1' => 'ръчна експозиция',
+'exif-exposuremode-0' => 'автоматична експонация',
+'exif-exposuremode-1' => 'ръчна експонация',
 'exif-exposuremode-2' => 'Автоматичен клин',
 
 'exif-whitebalance-0' => 'Автоматичен баланс на бялото',
@@ -2268,19 +2273,19 @@ $1',
 'exif-gaincontrol-3' => 'Неголямо намаление',
 'exif-gaincontrol-4' => 'Силно намаление',
 
-'exif-contrast-0' => 'Нормално',
+'exif-contrast-0' => 'Нормален',
 'exif-contrast-1' => 'Слабо повишение',
 'exif-contrast-2' => 'Силно повишение',
 
-'exif-saturation-0' => 'Нормално',
+'exif-saturation-0' => 'Нормална',
 'exif-saturation-1' => 'Неголяма наситеност',
 'exif-saturation-2' => 'Голяма наситеност',
 
-'exif-sharpness-0' => 'Нормално',
+'exif-sharpness-0' => 'Нормална',
 'exif-sharpness-1' => 'по-меко',
 'exif-sharpness-2' => 'по-остро',
 
-'exif-subjectdistancerange-0' => 'Неизвестно',
+'exif-subjectdistancerange-0' => 'Неизвестен',
 'exif-subjectdistancerange-1' => 'Макро',
 'exif-subjectdistancerange-2' => 'Близко',
 'exif-subjectdistancerange-3' => 'Далечно',

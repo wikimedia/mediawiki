@@ -1,7 +1,8 @@
 <?php
 /** Gujarati (ગુજરાતી)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Aksi great
@@ -165,7 +166,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:સામાન્ય જાહેર ઇનકાર',
 'edithelp'          => 'ફેરફારો માટે મદદ',
 'edithelppage'      => 'Help:ફેરફાર',
-'helppage'          => 'મદદઃસૂચિ',
+'helppage'          => 'Help:સૂચિ',
 'mainpage'          => 'મુખપૃષ્ઠ',
 'portal'            => 'સમાજ મુખપૃષ્ઠ',
 'privacy'           => 'ગોપનિયતા નીતિ',

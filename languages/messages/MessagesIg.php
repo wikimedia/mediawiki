@@ -1,7 +1,8 @@
 <?php
 /** Igbo (Igbo)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

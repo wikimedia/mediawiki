@@ -1,7 +1,8 @@
 <?php
 /** Uighur (Uyghurche‎ / ئۇيغۇرچە)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

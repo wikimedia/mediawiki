@@ -1,7 +1,8 @@
 <?php
 /** Church Slavic (Словѣньскъ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Svetko
@@ -139,7 +140,7 @@ $messages = array(
 'specialpage'      => 'нарочьна страница',
 'talk'             => 'бесѣда',
 'toolbox'          => 'Орѫди',
-'otherlanguages'   => 'Дрѹгы ѩзыкы',
+'otherlanguages'   => 'ДРОУГꙐ́ ѨꙀꙐКꙐ́',
 'jumptosearch'     => 'поискъ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

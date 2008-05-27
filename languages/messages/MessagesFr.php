@@ -1,7 +1,8 @@
 <?php
 /** French (Français)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hégésippe Cormier
  * @author Seb35
@@ -21,6 +22,7 @@
  * @author SPQRobin
  * @author Guillom
  * @author Jon Harald Søby
+ * @author IAlex
  */
 
 $skinNames = array(
@@ -237,7 +239,7 @@ $messages = array(
 'tog-previewontop'            => 'Montrer la prévisualisation au-dessus de la zone de modification',
 'tog-previewonfirst'          => 'Montrer la prévisualisation lors de la première édition',
 'tog-nocache'                 => 'Désactiver le cache des pages',
-'tog-enotifwatchlistpages'    => 'Autoriser l’envoi de courriel lorsqu’une page de votre liste de suivi est modifiée',
+'tog-enotifwatchlistpages'    => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel en cas de modification de ma page de discussion',
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modification mineure',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
@@ -364,7 +366,7 @@ $messages = array(
 'updatedmarker'     => 'modifié depuis ma dernière visite',
 'info_short'        => 'Informations',
 'printableversion'  => 'Version imprimable',
-'permalink'         => 'Lien permanent',
+'permalink'         => 'Lien historique',
 'print'             => 'Imprimer',
 'edit'              => 'Modifier',
 'editthispage'      => 'Modifier cette page',
@@ -481,7 +483,7 @@ $messages = array(
 'nosuchspecialpage' => 'Page spéciale inexistante',
 'nospecialpagetext' => "<big>'''Vous avez demandé une page spéciale qui n’est pas reconnue par le wiki.'''</big>
 
-Une liste des pages spéciales peut être trouvée sur [[{{ns:special}}:Specialpages]].",
+Une liste des pages spéciales peut être trouvée sur [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erreur',
@@ -534,7 +536,7 @@ Requête : $2',
 'protectedpagetext'    => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext'       => 'Vous pouvez voir et copier le contenu de l’article pour pouvoir travailler dessus :',
 'protectedinterface'   => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
-'editinginterface'     => "'''Attention :''' vous êtes en train d’éditer une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet Mediawiki d’internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr Betawiki].",
+'editinginterface'     => "'''Attention :''' vous êtes en train d’éditer une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [http://translatewiki.net/wiki/Main_Page?setlang=fr Betawiki].",
 'sqlhidden'            => '(Requête SQL cachée)',
 'cascadeprotected'     => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, ayant été protégée{{PLURAL:$1||s}} avec l’option « protection en cascade » activée :
 $2',
@@ -721,7 +723,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur son titre]] dans d’autres pages ou de [{{fullurl:{{FULLPAGENAME}}|action=edit}} la modifier].',
+'noarticletext'             => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]], vérifier qu’elle n’a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
 'userpage-userdoesnotexist' => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'clearyourcache'            => "'''Note :''' Après avoir sauvegardé la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'    => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
@@ -730,7 +732,7 @@ Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votr
 'userinvalidcssjstitle'     => "'''Attention :''' il n’existe pas de style « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/monobook.css et non {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Mis à jour)',
 'note'                      => '<strong>Note :</strong>',
-'previewnote'               => 'Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été sauvegardé !',
+'previewnote'               => '<strong>Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été sauvegardé !</strong>',
 'previewconflict'           => 'Cette prévisualisation montre le texte de la boîte de modification supérieure tel qu’il apparaîtra si vous choisissez de le sauvegarder.',
 'session_fail_preview'      => '<strong>Désolé ! Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session. Veuillez réessayer. Si cela échoue à nouveau, veuillez vous déconnecter, puis vous reconnecter.</strong>',
 'session_fail_preview_html' => "<strong>Désolé ! Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.</strong>
@@ -784,7 +786,7 @@ Demandez-vous s’il est réellement approprié de la recréer en vous référan
 # "Undo" feature
 'undo-success' => 'Cette modification va être défaite. Veuillez confirmer les changements (visibles en bas de cette page), puis sauvegarder si vous êtes d’accord. Merci de motiver l’annulation dans la boîte de résumé.',
 'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
-'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]]',
+'undo-summary' => 'Annulation des modifications $1 par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discuter]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vous ne pouvez pas créer de compte.',
@@ -1098,7 +1100,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
 'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
-'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier $1. Êtes-vous certain de vouloir modifier ce fichier ?',
+'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier <strong><tt>$1</tt></strong>. Êtes-vous certain de vouloir modifier ce fichier ?',
 'filepageexists'              => 'Une page (pas un fichier) portant ce nom existe déjà. Veuillez vérifier <strong><tt>$1</tt></strong> si vous n’êtes pas sûr de vouloir la modifier.',
 'fileexists-extension'        => 'Un fichier avec un nom similaire existe déjà :<br />
 Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
@@ -1123,7 +1125,7 @@ Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez ch
 Veuillez vérifer le fichier.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'sourcefilename'              => 'Nom du fichier source :',
-'destfilename'                => 'Nom sous lequel le fichier sera enregistré',
+'destfilename'                => 'Nom sous lequel le fichier sera enregistré :',
 'watchthisupload'             => 'Suivre ce fichier',
 'filewasdeleted'              => 'Un fichier avec ce nom a déjà été copié, puis supprimé. Vous devriez vérifier le $1 avant de procéder à une nouvelle copie.',
 'upload-wasdeleted'           => "'''Attention : Vous êtes en train d’importer un fichier qui a déjà été supprimé auparavant.'''
@@ -1195,7 +1197,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'nolinkstoimage'            => 'Aucune page ne contient cette image.',
 'sharedupload'              => 'Ce fichier est partagé et peut-être utilisé par d’autres projets.',
 'shareduploadwiki'          => 'Reportez-vous à la [$1 page de description] pour plus d’informations.',
-'shareduploadwiki-desc'     => 'La $1 du répertoire partagé comprend la description affichée ci-dessous.',
+'shareduploadwiki-desc'     => 'La description de sa $1 dans le répertoire partagé est affichée ci-dessous.',
 'shareduploadwiki-linktext' => 'page de description du fichier',
 'noimage'                   => 'Aucun fichier possèdant ce nom n’existe, vous pouvez $1.',
 'noimage-linktext'          => 'en importer un',
@@ -1529,7 +1531,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'protectlogtext'              => 'Voir les [[{{MediaWiki:Policy-url}}|directives]] pour plus d’information.',
 'protectedarticle'            => 'a protégé « $1 »',
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
-'unprotectedarticle'          => 'a déprotégé « $1 »',
+'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
 'protectsub'                  => '(Protéger « $1 »)',
 'confirmprotect'              => 'Confirmer la protection',
 'protectcomment'              => 'Raison de la protection',
@@ -1618,7 +1620,7 @@ $1',
 # Namespace form on various pages
 'namespace'      => 'Espace de noms :',
 'invert'         => 'Inverser la sélection',
-'blanknamespace' => '(principal)',
+'blanknamespace' => '(Principal)',
 
 # Contributions
 'contributions' => 'Contributions',
@@ -1834,7 +1836,8 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'allmessagesname'           => 'Nom du champ',
 'allmessagesdefault'        => 'Message par défaut',
 'allmessagescurrent'        => 'Message actuel',
-'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki',
+'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki.
+Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation MédiaWiki] et [http://translatewiki.net Betawiki] si vous désirez contribuer à la localisation MédiaWiki générique.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' n’est pas disponible car '''\$wgUseDatabaseMessages''' est désactivé.",
 'allmessagesfilter'         => 'Filtre d’expression rationnelle :',
 'allmessagesmodified'       => 'N’afficher que les modifications',
@@ -1949,8 +1952,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-upload'                  => 'Commencer l’envoi',
 
 # Stylesheets
-'common.css'   => '/** Le CSS placé ici sera appliqué à toutes les apparences. */',
-'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs du skin Monobook */',
+'common.css'   => '/** Le CSS placé ici sera appliqué à tous les habillages. */',
+'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook */',
 
 # Scripts
 'common.js'   => '/* N’importe quel JavaScript ici sera chargé pour n’importe quel utilisateur et pour chaque page accédée. */',
@@ -2071,13 +2074,13 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 # EXIF tags
 'exif-imagewidth'                  => 'Largeur',
 'exif-imagelength'                 => 'Hauteur',
-'exif-bitspersample'               => 'Bits par échantillon',
+'exif-bitspersample'               => 'Profondeur',
 'exif-compression'                 => 'Type de compression',
 'exif-photometricinterpretation'   => 'Modèle colorimétrique',
 'exif-orientation'                 => 'Orientation',
 'exif-samplesperpixel'             => 'Composantes par pixel',
 'exif-planarconfiguration'         => 'Arrangement des données',
-'exif-ycbcrsubsampling'            => 'Taux d’échantillonnage des composantes de la chrominance',
+'exif-ycbcrsubsampling'            => 'Taux de sous-échantillonnage de Y à C',
 'exif-ycbcrpositioning'            => 'Positionnement YCbCr',
 'exif-xresolution'                 => 'Résolution horizontale',
 'exif-yresolution'                 => 'Résolution verticale',
@@ -2092,7 +2095,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-primarychromaticities'       => 'Chromaticité des primaires',
 'exif-ycbcrcoefficients'           => 'Coefficients YCbCr',
 'exif-referenceblackwhite'         => 'Valeurs de référence noir et blanc',
-'exif-datetime'                    => 'Date et heure de changement du fichier',
+'exif-datetime'                    => 'Date de modification',
 'exif-imagedescription'            => 'Description de l’image',
 'exif-make'                        => 'Fabricant de l’appareil',
 'exif-model'                       => 'Modèle de l’appareil',
@@ -2109,21 +2112,21 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-makernote'                   => 'Notes du fabricant',
 'exif-usercomment'                 => 'Commentaires de l’utilisateur',
 'exif-relatedsoundfile'            => 'Fichier audio associé',
-'exif-datetimeoriginal'            => 'Date et heure de la génération de données',
-'exif-datetimedigitized'           => 'Date et heure de numérisation',
-'exif-subsectime'                  => 'Date de dernière modification',
+'exif-datetimeoriginal'            => 'Date de la prise originelle',
+'exif-datetimedigitized'           => 'Date de la numérisation',
+'exif-subsectime'                  => 'Date de modification',
 'exif-subsectimeoriginal'          => 'Date de la prise originelle',
 'exif-subsectimedigitized'         => 'Date de la numérisation',
 'exif-exposuretime'                => 'Temps d’exposition',
 'exif-exposuretime-format'         => '$1 sec ($2)',
-'exif-fnumber'                     => 'Nombre f',
+'exif-fnumber'                     => 'Ouverture',
 'exif-exposureprogram'             => 'Programme d’exposition',
 'exif-spectralsensitivity'         => 'Sensitivité spectrale',
 'exif-isospeedratings'             => 'Sensibilité ISO',
 'exif-oecf'                        => 'Fonction de conversion opto-électronique',
 'exif-shutterspeedvalue'           => 'Vitesse d’obturation',
 'exif-aperturevalue'               => 'Ouverture',
-'exif-brightnessvalue'             => 'Luminosité',
+'exif-brightnessvalue'             => 'Luminance',
 'exif-exposurebiasvalue'           => 'Correction d’exposition',
 'exif-maxaperturevalue'            => 'Ouverture maximale',
 'exif-subjectdistance'             => 'Distance du sujet',
@@ -2134,22 +2137,22 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-subjectarea'                 => 'Emplacement du sujet',
 'exif-flashenergy'                 => 'Énergie du flash',
 'exif-spatialfrequencyresponse'    => 'Fréquence spatiale',
-'exif-focalplanexresolution'       => 'Résolution X focale plane',
-'exif-focalplaneyresolution'       => 'Résolution Y focale plane',
-'exif-focalplaneresolutionunit'    => 'Unité de résolution de focale plane',
+'exif-focalplanexresolution'       => 'Résolution horizontale du plan focal',
+'exif-focalplaneyresolution'       => 'Résolution verticale du plan focal',
+'exif-focalplaneresolutionunit'    => 'Unité de résolution du plan focal',
 'exif-subjectlocation'             => 'Position du sujet',
 'exif-exposureindex'               => 'Index d’exposition',
 'exif-sensingmethod'               => 'Type de capteur',
 'exif-filesource'                  => 'Source du fichier',
 'exif-scenetype'                   => 'Type de scène',
-'exif-cfapattern'                  => 'Matrice de filtrage de couleur',
+'exif-cfapattern'                  => 'Modèle CFA',
 'exif-customrendered'              => 'Rendu personnalisé',
 'exif-exposuremode'                => 'Mode d’exposition',
 'exif-whitebalance'                => 'Balance des blancs',
-'exif-digitalzoomratio'            => 'Taux d’agrandissement numérique (zoom)',
-'exif-focallengthin35mmfilm'       => 'Longueur de focale pour un film 35 mm',
+'exif-digitalzoomratio'            => 'Zoom numérique',
+'exif-focallengthin35mmfilm'       => 'Longueur focale pour un film 35 mm',
 'exif-scenecapturetype'            => 'Type de capture de la scène',
-'exif-gaincontrol'                 => 'Contrôle de luminosité',
+'exif-gaincontrol'                 => 'Contrôle du gain',
 'exif-contrast'                    => 'Contraste',
 'exif-saturation'                  => 'Saturation',
 'exif-sharpness'                   => 'Netteté',
@@ -2161,18 +2164,18 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpslatitude'                 => 'Latitude',
 'exif-gpslongituderef'             => 'Référence pour la longitude',
 'exif-gpslongitude'                => 'Longitude',
-'exif-gpsaltituderef'              => 'Référence d’altitude',
+'exif-gpsaltituderef'              => 'Référence d’altitude (0=altitude, 1=profondeur)',
 'exif-gpsaltitude'                 => 'Altitude',
 'exif-gpstimestamp'                => 'Heure GPS (horloge atomique)',
 'exif-gpssatellites'               => 'Satellites utilisés pour la mesure',
-'exif-gpsstatus'                   => 'Statut récepteur',
+'exif-gpsstatus'                   => 'Statut du récepteur',
 'exif-gpsmeasuremode'              => 'Mode de mesure',
 'exif-gpsdop'                      => 'Précision de la mesure',
 'exif-gpsspeedref'                 => 'Unité de vitesse du récepteur GPS',
 'exif-gpsspeed'                    => 'Vitesse du récepteur GPS',
 'exif-gpstrackref'                 => 'Référence pour la direction du mouvement',
 'exif-gpstrack'                    => 'Direction du mouvement',
-'exif-gpsimgdirectionref'          => 'Référence pour l’orientation de l’image',
+'exif-gpsimgdirectionref'          => 'Référence pour la direction de l’image',
 'exif-gpsimgdirection'             => 'Direction de l’image',
 'exif-gpsmapdatum'                 => 'Système géodésique utilisé',
 'exif-gpsdestlatituderef'          => 'Référence pour la latitude de la destination',
@@ -2181,10 +2184,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsdestlongitude'            => 'Longitude de la destination',
 'exif-gpsdestbearingref'           => 'Référence pour le relèvement de la destination',
 'exif-gpsdestbearing'              => 'Relèvement de la destination',
-'exif-gpsdestdistanceref'          => 'Référence pour la distance de la destination',
+'exif-gpsdestdistanceref'          => 'Référence pour la distance à la destination',
 'exif-gpsdestdistance'             => 'Distance à la destination',
 'exif-gpsprocessingmethod'         => 'Nom de la méthode de traitement du GPS',
-'exif-gpsareainformation'          => 'Nom de la zone GPS',
+'exif-gpsareainformation'          => 'Nom de l’emplacement GPS',
 'exif-gpsdatestamp'                => 'Date GPS',
 'exif-gpsdifferential'             => 'Correction différentielle GPS',
 
@@ -2224,11 +2227,11 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 'exif-meteringmode-0'   => 'Inconnu',
 'exif-meteringmode-1'   => 'Moyenne',
-'exif-meteringmode-2'   => 'Mesure centrale moyenne',
+'exif-meteringmode-2'   => 'Moyenne pondérée au centre',
 'exif-meteringmode-3'   => 'Spot',
-'exif-meteringmode-4'   => 'MultiSpot',
-'exif-meteringmode-5'   => 'Palette',
-'exif-meteringmode-6'   => 'Partiel',
+'exif-meteringmode-4'   => 'Multi-spot',
+'exif-meteringmode-5'   => 'Modèle',
+'exif-meteringmode-6'   => 'Partielle',
 'exif-meteringmode-255' => 'Autre',
 
 'exif-lightsource-0'   => 'Inconnue',
@@ -2249,15 +2252,15 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-lightsource-24'  => 'Tungstène ISO de studio',
 'exif-lightsource-255' => 'Autre source de lumière',
 
-'exif-focalplaneresolutionunit-2' => 'pouces',
+'exif-focalplaneresolutionunit-2' => 'Pouce',
 
 'exif-sensingmethod-1' => 'Non défini',
-'exif-sensingmethod-2' => 'Capteur de zone de couleurs monochromatiques',
-'exif-sensingmethod-3' => 'Capteur de zone de couleurs bichromatiques',
-'exif-sensingmethod-4' => 'Capteur de zone de couleurs trichromatiques',
+'exif-sensingmethod-2' => 'Capteur de couleur à une puce',
+'exif-sensingmethod-3' => 'Capteur de couleur à deux puces',
+'exif-sensingmethod-4' => 'Capteur de couleur à trois puces',
 'exif-sensingmethod-5' => 'Capteur de couleur séquentiel',
 'exif-sensingmethod-7' => 'Capteur trilinéaire',
-'exif-sensingmethod-8' => 'Capteur couleur linéaire séquentiel',
+'exif-sensingmethod-8' => 'Capteur de couleur linéaire séquentiel',
 
 'exif-filesource-3' => 'Appareil photographique numérique',
 
@@ -2279,10 +2282,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-scenecapturetype-3' => 'Scène de nuit',
 
 'exif-gaincontrol-0' => 'Aucun',
-'exif-gaincontrol-1' => 'Augmentation faible de l’acquisition',
-'exif-gaincontrol-2' => 'Augmentation forte de l’acquisition',
-'exif-gaincontrol-3' => 'Réduction faible de l’acquisition',
-'exif-gaincontrol-4' => 'Réduction forte de l’acquisition',
+'exif-gaincontrol-1' => 'Gain faiblement positif',
+'exif-gaincontrol-2' => 'Gain fortement positif',
+'exif-gaincontrol-3' => 'Gain faiblement négatif',
+'exif-gaincontrol-4' => 'Gain fortement négatif',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Faible',
@@ -2310,7 +2313,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpslongitude-w' => 'Ouest',
 
 'exif-gpsstatus-a' => 'Mesure en cours',
-'exif-gpsstatus-v' => 'Interfonctionnement de la mesure',
+'exif-gpsstatus-v' => 'Interopérabilité de la mesure',
 
 'exif-gpsmeasuremode-2' => 'Mesure à 2 dimensions',
 'exif-gpsmeasuremode-3' => 'Mesure à 3 dimensions',
@@ -2321,7 +2324,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsspeed-n' => 'Nœud',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'Direction vraie',
+'exif-gpsdirection-t' => 'Vrai Nord',
 'exif-gpsdirection-m' => 'Nord magnétique',
 
 # External editor support

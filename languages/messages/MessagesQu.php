@@ -1,7 +1,8 @@
 <?php
 /** Quechua (Runa Simi)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author AlimanRuna
  * @author Siebrand
@@ -557,7 +558,7 @@ Hark'ay huchhaykiqa $5 nisqam. Mañakuspaykiqa chay huchhata willay.",
 'userinvalidcssjstitle'     => "'''Paqtataq:''' Manam kanchu \"\$1\" qara. Yuyariy, kikinpa .css, .js p'anqankunaqa uchuy sanampa umalliyuqmi, ahinataq {{ns:user}}:Foo/monobook.css manataq  {{ns:user}}:Foo/Monobook.css nisqachu.",
 'updated'                   => '(Musuqchasqa)',
 'note'                      => '<strong>Musyay:</strong>',
-'previewnote'               => 'Yuyaykuy: Kayqa manaraq waqaychaspa qhawariymi!',
+'previewnote'               => '<strong>Yuyaykuy: Kayqa manaraq waqaychaspa qhawariymi!</strong>',
 'previewconflict'           => "Rikuchkanki kay p'anqataqa, ima hinachus waqaychasqa kanqa.",
 'session_fail_preview'      => "<strong>Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi. Ama hina kaspa, musuqmanta ruraykachay. Mana atispaykiqa, lluqsispa musuqmanta yaykuy.</strong>",
 'session_fail_preview_html' => "<strong>Achachaw! Llamk'apusqaykiqa manam waqaychasqachu, llamk'ana tiyaypa willankuna chinkaptinmi.</strong>
@@ -754,7 +755,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'viewprevnext'          => 'Qhaway ($1) ($2) ($3).',
 'showingresults'        => "Qhipanpiqa rikuchkanki {{PLURAL:$1|'''1''' tarisqatam|'''$1'''-kama tarisqakunatam}}, '''$2''' huchhawan qallarispa.",
 'showingresultsnum'     => "Qhipanpiqa rikuchkanki {{PLURAL:$3|'''1''' tarisqatam|'''$3''' tarisqakunatam}}, '''$2''' yupaywan qallarispa.",
-'nonefound'             => '<strong>Musyay</strong>: Mana aypalla maskasqaqa paqarin ancha pasaq, mana hallch\'api kaq rimakunata ("kay", "chay", "huk") maskaptiykim, ichataq hukmanta aswan maskana rimakunata quptiykim (tukuy maskana rimayuq p\'anqakunallam paqarinqa).',
+'nonefound'             => "'''Musyay''': Kikinmantaqa huk suti k'itikunallapim maskanki, manataqmi tukuykunapichu. Ñawpaqninpi ''all:'' nisqata qillqaspaykiqa, tukuy suti k'itikunapim maskanki (rimachinakunapipas, plantillakunapipas). Huk sapaq suti k'itipi maskayta munaspaykiqa, chay k'itip sutinta k'askaq hina ñawpaqninpi qillqamuy.",
 'powersearch'           => 'Maskay',
 'powersearchtext'       => "Kay suti k'itikunapi maskay:<br />
 $1<br />
@@ -1014,7 +1015,7 @@ Tunup umanpi ñit'ispaqa allichaytam hukchanki.",
 'filehist'                  => 'Willañiqip wiñay kawsaynin',
 'filehist-help'             => "P'unchaw/pacha nisqapi ñit'iy chaypacha willañiqi kachkasqata qhawanaykipaq.",
 'filehist-deleteall'        => 'tukuyta qulluy',
-'filehist-deleteone'        => 'kayta qulluy',
+'filehist-deleteone'        => 'qulluy',
 'filehist-revert'           => 'kutichiy',
 'filehist-current'          => 'kunan',
 'filehist-datetime'         => "P'unchaw/Pacha",
@@ -1027,7 +1028,7 @@ Tunup umanpi ñit'ispaqa allichaytam hukchanki.",
 'nolinkstoimage'            => "Kay rikchamanqa manam ima p'anqakunachu t'inkimun.",
 'sharedupload'              => "Kay p'anqaqa rakinakusqallam churkusqa huk ruraykamaykunapipas llamk'achinapaq.",
 'shareduploadwiki'          => '$1-ta qhaway astawan willasunaykipaq.',
-'shareduploadwiki-desc'     => "Chaypi kaq $1npi sut'ichanataqa kay qatiqpim rikunki.",
+'shareduploadwiki-desc'     => "Rakinakusqa waqaychanapi $1pi kaq sut'ichanataqa kay qatiqpim rikunki.",
 'shareduploadwiki-linktext' => "willañiqimanta t'iktuna p'anqa",
 'noimage'                   => 'Manam kanchu kay sutiyuq willañiqi, $1ta atinki.',
 'noimage-linktext'          => 'churkuy',
@@ -1111,8 +1112,8 @@ paypurataq '''$2''' ('''$4%'''-nin) $5 hayñiyuqmi.",
 'statistics-mostpopular' => "Lliwmanta astawan rikusqa p'anqakuna",
 
 'disambiguations'      => "Sut'ichana qillqakuna",
-'disambiguationspage'  => 'Template:Disambig',
-'disambiguations-text' => "Kay qatiq p'anqakunam t'inkimun sut'ichana qillqaman. Chiqap, hukchanasqa p'anqaman t'inkichunman.<br />Tukuy [[:Plantilla:Disambig]] plantillayuq p'anqakunaqa sut'ichana qillqam.",
+'disambiguationspage'  => "Plantilla:Sut'ichana qillqa",
+'disambiguations-text' => "Kay qatiq p'anqakunam t'inkimun '''sut'ichana qillqaman'''. Chiqap, hukchanasqa p'anqaman t'inkichun.<br />Tukuy [[MediaWiki:Disambiguationspage]] plantillayuq p'anqakunaqa sut'ichana qillqam.",
 
 'doubleredirects'     => 'Iskaylla pusapunakuna',
 'doubleredirectstext' => "<b>Paqtataq:</b> Kay p'anqapiqa pantasqalla p'anqa sutikunachá rikuchisqa kayta atinman, ñawpaq kaq #REDIRECT nisqap qhipanpi t'inkiyuq p'anqakuna.<br />

@@ -1,7 +1,8 @@
 <?php
 /** Korean (한국어)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Klutzy
  * @author PuzzletChung
@@ -13,6 +14,9 @@
  * @author SPQRobin
  * @author ToePeu
  * @author Jon Harald Søby
+ * @author Ficell
+ * @author Kwj2772
+ * @author Pi.C.Noizecehx
  */
 
 $namespaceNames = array(
@@ -87,6 +91,7 @@ $messages = array(
 'tog-fancysig'                => '서명에 링크를 걸지 않기',
 'tog-externaleditor'          => '외부 입력기를 기본값으로 사용하기',
 'tog-externaldiff'            => '외부 비교 툴을 기본값으로 사용하기',
+'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트) (실험적 기능)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
 'tog-watchlisthideown'        => '주시문서 목록에서 내 편집을 숨기기',
@@ -155,7 +160,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '분류',
-'pagecategories'        => '분류',
+'pagecategories'        => '{{PLURAL:$1|분류|분류}}',
 'category_header'       => '‘$1’ 분류에 속하는 문서',
 'subcategories'         => '하위 분류',
 'category-media-header' => '‘$1’ 분류에 속하는 자료',
@@ -361,6 +366,8 @@ $messages = array(
 'wrong_wfQuery_params' => 'wfQuery()에서 잘못된 매개변수 발생<br />함수: $1<br />쿼리: $2',
 'viewsource'           => '내용 보기',
 'viewsourcefor'        => '$1의 문서 내용',
+'actionthrottledtext'  => '스팸을 막기 위해 이 작업을 짧은 시간에 너무 많이 하는 것을 막고 있습니다.
+제한을 넘었으니 몇 분 후에 새로 시도하세요.',
 'protectedpagetext'    => '이 문서는 문서 편집이 불가능하도록 보호되어 있습니다.',
 'viewsourcetext'       => '문서의 원본을 보거나 복사할 수 있습니다:',
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
@@ -380,8 +387,8 @@ $2',
 
 계정이 만들어졌습니다. [[Special:Preferences|사용자 환경 설정]]에서 당신의 {{SITENAME}} 사용자 환경 설정을 바꿀 수 있습니다.',
 'loginpagetitle'             => '로그인',
-'yourname'                   => '이름',
-'yourpassword'               => '암호',
+'yourname'                   => '사용자 이름:',
+'yourpassword'               => '비밀번호:',
 'yourpasswordagain'          => '암호 확인',
 'remembermypassword'         => '로그인 상태를 저장하기',
 'yourdomainname'             => '도메인 이름',
@@ -504,7 +511,7 @@ $2',
 * 차단이 만료되는 시간: $6
 * 차단된 사용자: $7
 
-$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 연락할 수 있습니다. [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 \'이메일 보내기\' 기능을 사용할 수 있습니다. 당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다. 이메일을 보낼 때에 이 주소를 같이 알려주세요.',
+$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다. [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 \'이메일 보내기\' 기능을 사용할 수 있습니다. 당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다. 문의할 때에 이 정보를 같이 알려주세요.',
 'autoblockedtext'           => "당신의 IP 주소는 $1이 차단한 사용자가 사용했던 IP이기 때문에, 자동으로 차단되었습니다. 차단된 이유는 다음과 같습니다:
 
 :$2
@@ -512,11 +519,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 * 차단이 시작된 시간: $8
 * 차단이 만료되는 시간: $6
 
-$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 연락할 수 있습니다.
+$1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대해 문의할 수 있습니다.
 
 [[Special:Preferences|계정 환경 설정]]에 올바른 이메일 주소가 있어야만 '이메일 보내기' 기능을 사용할 수 있습니다. 또한 이메일 보내기 기능이 차단되어 있으면 이메일을 보낼 수 없습니다.
 
-당신의 현재 IP 주소는 $3이고, 차단 ID는 #$5입니다. 이메일을 보낼 때에 이 주소를 같이 알려주세요.",
+당신의 차단 ID는 #$5입니다. 문의할 때에 이 ID를 같이 알려주세요.",
 'blockedoriginalsource'     => "아래에 '''$1'''의 내용이 나와 있습니다:",
 'blockededitsource'         => "아래에 '''$1'''에서의 '''당신의 편집'''이 나와 있습니다:",
 'whitelistedittitle'        => '편집하려면 로그인 필요',
@@ -546,8 +553,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userjspreview'             => "'''이것은 자바스크립트 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userinvalidcssjstitle'     => "'''경고''': ‘$1’ 스킨이 존재하지 않습니다. .css와 .js 문서의 제목은 {{ns:user}}:Foo/monobook.css처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Monobook.css와 같이 대문자로 쓸 경우 작동하지 않습니다.",
 'updated'                   => '(바뀜)',
-'note'                      => "'''주의''':",
-'previewnote'               => "'''지금 미리 보기로 보고 있는 내용은 아직 저장되지 않았습니다!'''",
+'note'                      => '<strong>주의:</strong>',
+'previewnote'               => '<strong>지금 미리 보기로 보고 있는 내용은 아직 저장되지 않았습니다!</strong>',
 'previewconflict'           => '이 미리 보기는 저장할 때의 모습, 즉 위쪽 편집창의 문서를 반영합니다.',
 'session_fail_preview'      => "'''죄송합니다. 세션 데이터가 없어져 편집을 저장하지 못했습니다. 다시 시도해도 되지 않으면 로그아웃한 다음 다시 로그인해 보십시오.'''",
 'session_fail_preview_html' => "'''죄송합니다. 세션 데이터가 없어져 편집을 저장하지 못했습니다.'''
@@ -746,15 +753,18 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userrights-groupsmember'    => '현재 권한:',
 'userrights-groupsavailable' => '가능한 권한:',
 'userrights-groupshelp'      => '현재 권한에서 제거하려는 권한이나, 가능한 권한에서 추가하려는 권한을 선택해 주세요. 선택하지 않은 권한은 변경되지 않습니다. CTRL을 누른 채 클릭하면 선택을 해제할 수 있습니다.',
+'userrights-reason'          => '바꾸는 이유:',
 'userrights-no-interwiki'    => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
 'userrights-nologin'         => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:Userlogin|로그인]]해야 합니다.',
+'userrights-notallowed'      => '다른 사용자의 권한을 조정할 권한이 없습니다.',
 
 # Groups
-'group'            => '권한:',
-'group-bot'        => '봇',
-'group-sysop'      => '관리자',
-'group-bureaucrat' => '뷰로크랫',
-'group-all'        => '(모두)',
+'group'               => '권한:',
+'group-autoconfirmed' => '자동 인증된 사용자',
+'group-bot'           => '봇',
+'group-sysop'         => '관리자',
+'group-bureaucrat'    => '뷰로크랫',
+'group-all'           => '(모두)',
 
 'group-bot-member'        => '봇',
 'group-sysop-member'      => '관리자',
@@ -791,7 +801,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'show'                              => '보이기',
 'minoreditletter'                   => '잔글',
 'newpageletter'                     => '새글',
-'boteditletter'                     => 'b',
+'boteditletter'                     => '봇',
 'number_of_watching_users_pageview' => '[$1명이 주시하고 있음]',
 'rc_categories'                     => '다음 분류로 제한 (‘|’로 구분)',
 'rc_categories_any'                 => '모두',
@@ -811,9 +821,14 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'uploadnologintext'           => '파일을 올리려면 [[Special:Userlogin|로그인]]해야 합니다.',
 'upload_directory_read_only'  => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
 'uploaderror'                 => '올리기 오류',
-'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요. 또는 예전에 올라온 그림을 찾으려면 [[Special:Imagelist|파일 목록]]을 사용할 수 있습니다. [[Special:Log/upload|올리기 기록]]에서 파일이 올라온 기록과 삭제된 기록을 볼 수 있습니다.
+'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요.
+[[Special:Imagelist|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다.
+[[Special:Log/upload|올리기 기록]]에도 파일이 올라오거나 지워진 기록이 남습니다.
 
-문서에 그림을 집어넣으려면 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|대체 설명]]</nowiki>'''과 같이 사용합니다. 또는 파일에 직접 링크하려면 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''와 같이 씁니다.",
+문서에 그림을 넣으려면
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|대체 설명]]</nowiki>'''와 같이 씁니다.
+파일에 직접 링크하려면 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''와 같이 씁니다.",
 'upload-permitted'            => '허용하는 파일 확장자: $1',
 'upload-preferred'            => '권장하는 파일 확장자: $1',
 'upload-prohibited'           => '금지하는 파일 확장자: $1',
@@ -838,7 +853,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'large-file'                  => '파일 크기는 $1을 넘지 않는 것을 추천합니다. 이 파일의 크기는 $2입니다.',
 'largefileserver'             => '이 파일의 크기가 서버에서 허용된 설정보다 큽니다.',
 'emptyfile'                   => '당신이 올린 파일이 빈 파일입니다. 파일명을 잘못 입력했을 수도 있습니다. 다시 한 번 확인해 주시기 바랍니다.',
-'fileexists'                  => '같은 이름의 파일이 이미 있습니다. 파일을 바꾸고 싶지 않다면 $1 파일을 확인해 주세요.',
+'fileexists'                  => '같은 이름의 파일이 이미 있습니다. 파일을 바꾸고 싶지 않다면 <strong><tt>$1</tt></strong> 파일을 확인해 주세요.',
 'fileexists-extension'        => '비슷한 이름의 파일이 존재합니다:<br />
 올리려는 파일 이름: <strong><tt>$1</tt></strong><br />
 존재하는 파일 이름: <strong><tt>$2</tt></strong><br />
@@ -860,6 +875,13 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'destfilename'                => '파일의 새 이름:',
 'watchthisupload'             => '이 문서 주시하기',
 'filewasdeleted'              => '같은 이름을 가진 파일이 올라온 적이 있었고, 그 후에 삭제되었습니다. 올리기 전에 $1을 확인해 주시기 바랍니다.',
+'upload-wasdeleted'           => "'''경고: 삭제된 적이 있는 파일을 다시 올리려 하고 있습니다.'''
+
+이 파일을 올리는 것이 적절한지 다시 한번 생각해주십시오.
+편의를 위해 삭제 기록을 제공합니다.",
+'filename-bad-prefix'         => '올리려고 하는 파일 이름이 <strong>"$1"</strong>로 시작합니다.
+"$1"은 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
+파일에 대해 알기 쉬운 이름을 골라주세요.',
 
 'upload-proto-error'      => '잘못된 프로토콜',
 'upload-proto-error-text' => '파일을 URL로 올리려면 <code>http://</code>이나 <code>ftp://</code>로 시작해야 합니다.',
@@ -870,6 +892,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',
+'upload-curl-error6-text'  => 'URL에 접근할 수 없습니다.
+URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload-curl-error28'      => '업로드 시간 초과',
 'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다. 사이트 접속이 가능한지 확인한 다음 다시 시도해주세요. 해당 사이트에 접속이 많을 경우, 접속이 원활한 시간대에 시도해주세요.',
 
@@ -879,6 +903,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Image list
 'imagelist'                 => '그림 목록',
+'imagelist-summary'         => '이 특수문서는 올라온 모든 파일의 목록입니다.
+기본적으로 마지막으로 올라온 파일이 맨 위에 보입니다.
+다르게 정렬하려면 원하는 기준 열의 첫 칸을 누르세요.',
 'imagelisttext'             => '$1개의 파일이 $2 순으로 정렬되어 있습니다.',
 'getimagelist'              => '그림 목록 가져오기',
 'ilsubmit'                  => '찾기',
@@ -994,6 +1021,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 'withoutinterwiki'        => '언어 인터위키 링크가 없는 문서 목록',
 'withoutinterwiki-header' => '다른 언어로의 연결이 없는 문서의 목록입니다:',
+'withoutinterwiki-submit' => '보이기',
 
 'fewestrevisions' => '편집 역사가 짧은 문서 목록',
 
@@ -1079,7 +1107,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'prevpage'          => '이전 문서 ($1)',
 'allpagesfrom'      => '다음으로 시작하는 문서들을 보여주기:',
 'allarticles'       => '모든 문서',
-'allinnamespace'    => '$1 네임스페이스의 모든 문서',
+'allinnamespace'    => '$1 이름공간의 모든 문서',
 'allnotinnamespace' => '$1 네임스페이스를 제외한 모든 문서 목록',
 'allpagesprev'      => '이전',
 'allpagesnext'      => '다음',
@@ -1237,7 +1265,8 @@ $NEWPAGE
 'protect-locked-blocked'      => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
 'protect-locked-dblock'       => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
 'protect-locked-access'       => '문서 보호 수준을 변경할 권한이 없습니다. <strong>$1</strong> 문서의 권한은 다음과 같습니다.',
-'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다. 이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
+'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다.
+이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
 'protect-default'             => '(기본값)',
 'protect-fallback'            => '‘$1’ 권한 필요',
 'protect-level-autoconfirmed' => '등록된 사용자만 가능',
@@ -1248,11 +1277,14 @@ $NEWPAGE
 'protect-cantedit'            => '이 문서의 보호 설정을 바꿀 권한이 없습니다.',
 'restriction-type'            => '권한:',
 'restriction-level'           => '보호 수준:',
+'minimum-size'                => '최소 크기',
+'maximum-size'                => '최대 크기:',
 'pagesize'                    => '(바이트)',
 
 # Restrictions (nouns)
-'restriction-edit' => '편집',
-'restriction-move' => '이동',
+'restriction-edit'   => '편집',
+'restriction-move'   => '이동',
+'restriction-create' => '만들기',
 
 # Restriction levels
 'restriction-level-sysop'         => '보호됨',
@@ -1269,7 +1301,9 @@ $NEWPAGE
 'undeletehistory'          => '문서를 되살리면 모든 역사가 같이 복구됩니다. 문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다. 문서 보호 등의 설정은 역사를 복구하는 과정에서 사라진다는 점을 유의해 주세요.',
 'undeletehistorynoadmin'   => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
 'undeletebtn'              => '복구',
+'undeletelink'             => '되살리기',
 'undeletereset'            => '초기화',
+'undeletecomment'          => '설명:',
 'undeletedarticle'         => '"[[$1]]" 복구됨',
 'undeletedrevisions'       => '$1개의 버전이 복구되었습니다.',
 'undeletedrevisions-files' => '$1개의 버전과 $2개의 파일이 복구되었습니다.',
@@ -1367,6 +1401,7 @@ $1',
 'unblocked'                   => '[[User:$1|$1]] 사용자 차단 해제됨',
 'unblocked-id'                => '차단 $1 해제됨',
 'ipblocklist'                 => '현재 차단 중인 IP 주소와 사용자 이름 목록',
+'ipblocklist-submit'          => '찾기',
 'blocklistline'               => '$1, $2 사용자는 $3을 차단함 ($4)',
 'infiniteblock'               => '무기한',
 'expiringblock'               => '$1에 해제',
@@ -1384,6 +1419,7 @@ $1',
 'unblocklogentry'             => '$1을 차단 해제했습니다.',
 'block-log-flags-anononly'    => 'IP만 막음',
 'block-log-flags-nocreate'    => '계정 생성 막음',
+'block-log-flags-noautoblock' => '자동 차단 비활성화됨',
 'block-log-flags-noemail'     => '이메일 막음',
 'range_block_disabled'        => 'IP 범위 차단 기능이 비활성화되어 있습니다.',
 'ipb_expiry_invalid'          => '차단 기간이 잘못되었습니다.',
@@ -1481,8 +1517,7 @@ $1',
 'allmessagesname'           => '이름',
 'allmessagesdefault'        => '기본 내용',
 'allmessagescurrent'        => '현재 내용',
-'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으시다면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net 베타위키]에 참가해주세요.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 '''{{ns:special}}:Allmessages'''를 사용할 수 없습니다.",
 'allmessagesfilter'         => '다음 메시지만 보이기:',
 'allmessagesmodified'       => '변경된 것만 보여주기',
@@ -1673,6 +1708,11 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-make'              => '카메라 제조사',
+'exif-exposuretime'      => '노출 시간',
+'exif-shutterspeedvalue' => '셔터 속도',
+
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',
 'edit-externally-help' => '[http://meta.wikimedia.org/wiki/Help:External_editors 여기]에서 외부 편집기에 대한 정보를 얻을 수 있습니다.',
@@ -1761,6 +1801,9 @@ $1',
 'autoredircomment' => '[[$1]](으)로 넘겨주기',
 'autosumm-new'     => '새 문서: $1',
 
+# Live preview
+'livepreview-loading' => '불러오는 중...',
+
 # Watchlist editor
 'watchlistedit-numitems'       => '주시문서 목록에는 토론 문서를 제외하고 $1개의 문서가 들어 있습니다.',
 'watchlistedit-noitems'        => '주시문서 목록이 비어 있습니다.',
@@ -1785,15 +1828,26 @@ $1',
 'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
 
 # Special:Version
-'version-extensions'       => '설치된 확장 기능',
-'version-specialpages'     => '특수 문서',
-'version-parserhooks'      => '파서 훅',
-'version-other'            => '기타',
-'version-hook-name'        => '훅 이름',
-'version-version'          => '버전',
-'version-license'          => '라이센스',
-'version-software'         => '설치된 프로그램',
-'version-software-product' => '제품',
-'version-software-version' => '버전',
+'version-extensions'           => '설치된 확장 기능',
+'version-specialpages'         => '특수 문서',
+'version-parserhooks'          => '파서 훅',
+'version-other'                => '기타',
+'version-extension-functions'  => '확장 함수',
+'version-parser-extensiontags' => '파서 확장 태그',
+'version-hook-name'            => '훅 이름',
+'version-version'              => '버전',
+'version-license'              => '라이센스',
+'version-software'             => '설치된 프로그램',
+'version-software-product'     => '제품',
+'version-software-version'     => '버전',
+
+# Special:Filepath
+'filepath'         => '파일 주소',
+'filepath-page'    => '파일:',
+'filepath-submit'  => '주소',
+'filepath-summary' => '파일의 전체 주소를 알려줍니다.
+그림은 최고 해상도로 보여주고 다른 파일은 연결된 프로그램으로 바로 실행합니다.
+
+"{{ns:image}}:" 접두어를 빼고 파일 이름만 넣으세요.',
 
 );

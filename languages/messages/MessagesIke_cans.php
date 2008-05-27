@@ -1,15 +1,14 @@
 <?php
 /** Eastern Canadian (Unified Canadian Aboriginal Syllabics) (ᐃᓄᒃᑎᑐᑦ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Siebrand
  * @author Max sonnelid
  * @author M.M.S.
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -184,7 +183,7 @@ $messages = array(
 'loginreqlink'    => 'ᐊᑯᓐᓇᐳᖅ',
 'newarticle'      => '(ᐱᒋᕗᖅ)',
 'editing'         => 'ᐊᓯᐊᙳᑐᖅ $1',
-'editinguser'     => 'ᓱᖁᓯᖅᐹ ᖃᑕᙳᑎ <b>$1</b>',
+'editinguser'     => "ᓱᖁᓯᖅᐹ ᖃᑕᙳᑎ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'  => 'ᓱᖁᓯᖅᐹ ᐃᓚ $1 (ᖏᐅᑎᑎᑦᓯᒍᑎ)',
 'editingcomment'  => 'ᓱᖁᓯᖅᐹ $1 (ᐅᔾᔨᕆᔭᖅ)',
 'editconflict'    => 'ᓱᖁᓯᖅᐹ ᐊᑲᐅᙱᓕᐅᕈᑎᓂᖅ: $1',

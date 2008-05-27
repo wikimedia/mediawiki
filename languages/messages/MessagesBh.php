@@ -1,7 +1,8 @@
 <?php
 /** Bihari (भोजपुरी)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Jon Harald Søby
  */

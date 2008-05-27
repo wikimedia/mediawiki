@@ -1,7 +1,8 @@
 <?php
 /** Portuguese (Português)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
@@ -163,11 +164,11 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sublinhar hiperligações',
+'tog-underline'               => 'Sublinhar hiperligações:',
 'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
-'tog-extendwatchlist'         => 'Expandir a lista de artigos vigiados para mostrar todas as alterações aplicáveis',
+'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis',
 'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -177,12 +178,12 @@ $messages = array(
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
 'tog-editwidth'               => 'Caixa de edição com largura completa',
-'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de artigos vigiados',
-'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de artigos vigiados',
-'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de artigos vigiados',
-'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de artigos vigiados',
+'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
+'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
+'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
+'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de vigiados',
 'tog-minordefault'            => 'Marcar todas as edições como secundárias, por padrão',
-'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição ao invés de ser após',
+'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desactivar caching de páginas',
 'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página vigiada por mim for alterada',
@@ -429,7 +430,7 @@ $messages = array(
 'nosuchspecialpage' => 'Não existe a página especial requisitada',
 'nospecialpagetext' => "<big>'''Você requisitou uma página especial inválida.'''</big>
 
-Uma lista de páginas especiais válidas poderá ser encontrada em [[{{ns:special}}:Specialpages]].",
+Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erro',
@@ -670,7 +671,7 @@ Sua ID de bloqueio é $5. Por favor, inclua esse dado em qualquer tentativa de e
 'whitelistreadtitle'        => 'É necessária a autentificação para poder visualizar',
 'whitelistreadtext'         => 'Precisa de se [[Special:Userlogin|autenticar]] para poder visualizar páginas.',
 'whitelistacctitle'         => 'Não lhe é permitido criar uma conta',
-'whitelistacctext'          => 'De modo a poder criar contas de utilizador neste Wiki terá que se [[{{ns:special}}:Userlogin|autenticar]] e possuir as devidas permissões.',
+'whitelistacctext'          => 'De modo a poder criar contas de utilizador neste Wiki terá que se [[Special:Userlogin|autenticar]] e possuir as devidas permissões.',
 'confirmedittitle'          => 'Confirmação de e-mail requerida para editar',
 'confirmedittext'           => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de utilizador]].',
@@ -682,7 +683,7 @@ Por favor, introduza um e valide-o através das suas [[Special:Preferences|prefe
 'accmailtitle'              => 'Palavra-chave enviada.',
 'accmailtext'               => "A palavra-chave para '$1' foi enviada para $2.",
 'newarticle'                => '(Nova)',
-'newarticletext'            => "Você seguiu um link para uma página que ainda não existe. 
+'newarticletext'            => "Você seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo
 (veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back'') do seu navegador.",
@@ -785,6 +786,7 @@ A justificativa apresentada por $3 foi ''$2''",
 'cur'                 => 'act',
 'next'                => 'prox',
 'last'                => 'ult',
+'orig'                => 'orig',
 'page_first'          => 'primeira',
 'page_last'           => 'última',
 'histlegend'          => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
@@ -799,7 +801,7 @@ Legenda: (actu) = diferenças da versão actual,
 # Revision feed
 'history-feed-title'          => 'História de revisão',
 'history-feed-description'    => 'Histórico de revisões para esta página nesta wiki',
-'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-item-nocomment' => '$1 em $2', # user at time
 'history-feed-empty'          => 'A página requisitada não existe.
 Poderá ter sido eliminada da wiki ou renomeada.
 Tente [[{{ns:special}}:Search|pesquisar na wiki]] por páginas relevantes.',
@@ -838,7 +840,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
 'revdelete-log'               => 'Comentário de registo:',
 'revdelete-submit'            => 'Aplicar à edição seleccionada',
-'revdelete-logentry'          => 'modificada visibilidade de revisão para [[$1]]',
+'revdelete-logentry'          => 'modificou visibilidade de revisão para [[$1]]',
 'logdelete-logentry'          => 'alterada visibilidade de eventos para [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|edição definida|edições definidas}} como $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|evento|eventos}} de [[$3]] {{PLURAL:$1|definido|definidos}} como $2',
@@ -1121,8 +1123,8 @@ O registo de eliminação é exibido a seguir, para sua comodidade:",
 'filename-bad-prefix'         => 'O nome do ficheiro que você está enviando começa com <strong>"$1"</strong>, um nome pouco esclarecedor, comumente associado de forma automática por câmeras digitais. Por gentileza, escolha um nome de ficheiro mais explicativo.',
 'filename-prefix-blacklist'   => ' #<!-- deixe esta linha exactamente como está --> <pre>
 # A sintaxe é a seguinte:
-#   * Tudo a partir do caracter "#" character até ao fim da linha é um comentário
-#   * Todas as linhas não vazias é um prefixo para nomes de ficheiro típicos atribuídos automaticamente por câmaras digitais
+#   * Tudo a partir do caractere "#" até ao fim da linha é um comentário
+#   * Todas as linhas não vazias são um prefixo para nomes de ficheiros típicos atribuídos automaticamente por câmaras digitais
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
@@ -1166,6 +1168,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'bydate'                    => 'por data',
 'bysize'                    => 'por tamanho',
 'imgdelete'                 => 'eli',
+'imgdesc'                   => 'desc',
 'imgfile'                   => 'ficheiro',
 'filehist'                  => 'Histórico do ficheiro',
 'filehist-help'             => 'Clique em uma data/horário para ver o ficheiro tal como ele se encontrava em tal momento.',
@@ -1183,7 +1186,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'nolinkstoimage'            => 'Nenhuma página aponta para este ficheiro.',
 'sharedupload'              => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
 'shareduploadwiki'          => 'Por favor, consulte a $1 para mais informações.',
-'shareduploadwiki-desc'     => 'A descrição na sua $1 é mostrada abaixo.',
+'shareduploadwiki-desc'     => 'A descrição na sua $1 do repositório partilhado é mostrada abaixo.',
 'shareduploadwiki-linktext' => 'página de descrição de ficheiro',
 'noimage'                   => 'Não existe nenhum ficheiro com este nome. Se desejar, pode $1',
 'noimage-linktext'          => 'carregá-lo',
@@ -1261,7 +1264,7 @@ Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma pá
 Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado.
 Isso nos leva a aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
 
-O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é de actualmente '''\$7'''.",
+O tamanho actual da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é '''\$7'''.",
 'userstatstext'          => "Há actualmente {{PLURAL:$1|'''$1''' utilizador registado|'''$1''' utilizadores registados}}, dentre os quais '''$2''' (ou '''$4%''') {{PLURAL:$2|é|são}} $5.",
 'statistics-mostpopular' => 'Páginas mais vistas',
 
@@ -1383,9 +1386,7 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',
-'mailnologintext' => 'Necessita de estar [[{{ns:special}}:Userlogin|autenticado]]
-e de possuir um endereço de e-mail válido nas suas [[{{ns:special}}:Preferences|preferências]]
-para poder enviar um e-mail a outros utilizadores.',
+'mailnologintext' => 'Necessita de estar [[Special:Userlogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros utilizadores.',
 'emailuser'       => 'Contactar este utilizador',
 'emailpage'       => 'Contactar utilizador',
 'emailpagetext'   => 'Se o utilizador introduziu um endereço válido de e-mail
@@ -1413,7 +1414,7 @@ para que o destinatário lhe possa responder.',
 'nowatchlist'          => 'A sua lista de vigiados não possui títulos.',
 'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de artigos vigiados.',
 'watchnologin'         => 'Não está autenticado',
-'watchnologintext'     => 'Você precisa estar [[{{ns:special}}:Userlogin|autenticado]] para modificar a sua lista de artigos vigiados.',
+'watchnologintext'     => 'Você precisa estar [[Special:Userlogin|autenticado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[{{ns:special}}:Watchlist|lista de vigiados]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[{{ns:special}}:Recentchanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.
@@ -2037,7 +2038,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 
 # Metadata
 'metadata'          => 'Metadados',
-'metadata-help'     => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizar a imagem. Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
+'metadata-help'     => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizá-lo.
+Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
 'metadata-expand'   => 'Mostrar restantes detalhes',
 'metadata-collapse' => 'Esconder detalhes restantes',
 'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.

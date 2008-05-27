@@ -1,7 +1,8 @@
 <?php
 /** Limburgish (Limburgs)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ooswesthoesbes
  * @author Cicero
@@ -11,6 +12,7 @@
  * @author Nike
  * @author לערי ריינהארט
  * @author Tibor
+ * @author Matthias
  */
 
 $fallback = 'nl';
@@ -211,7 +213,7 @@ $messages = array(
 'searcharticle'     => 'Gao',
 'history'           => 'Historie',
 'history_short'     => 'Historie',
-'updatedmarker'     => 'bewèrk sins mien letste bezeuk',
+'updatedmarker'     => 'bewirk sins mien lètste bezeuk',
 'info_short'        => 'Infermasie',
 'printableversion'  => 'Printer-vruntelike versie',
 'permalink'         => 'Permanente link',
@@ -563,7 +565,8 @@ Veur dien e-mailadres in en bevestig 'm via [[Special:Preferences|dien veurkeure
 'newarticletext'            => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit. 
 Type in de box hiejónger óm de pazjena te beginne (zuug de [[Help:Contents|helppazjena]] veur mier informatie). Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp van diene browser.",
 'anontalkpagetext'          => "----''Dit is de euverlikpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemak of dae 't neet gebroek. Daorom gebroeke v'r 't IP adres om de gebroeker te identificere. Dat adres kint weure gedeild doer miedere gebroekers. As e 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r onrillevante commentare aan dich gericht zint, kins e 't biste [[Special:Userlogin|'n account crëere of inlogge]] om toekomstige verwarring mit angere anonieme gebroekers te veurkomme.''",
-'noarticletext'             => "(Dees pazjena bevat op 't moment gein teks)",
+'noarticletext'             => 'Dees pazjena bevat gein teks.
+Doe kans [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pazjena\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pazjena bewèrke]</span>.',
 'userpage-userdoesnotexist' => 'Doe bewerks \'n gebroekerspagina van \'ne gebroeker dae neet besteit (gebroeker "$1"). Lèvver te controlere ofse deze pagina waal wils aanmake/bewerke.',
 'clearyourcache'            => "'''Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''Firefox / IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Gebroek de knoep 'Tuun bewerking ter controle' om dien nuuje css/js te teste alveures op sjlaon.",
@@ -572,7 +575,7 @@ Type in de box hiejónger óm de pazjena te beginne (zuug de [[Help:Contents|hel
 'userinvalidcssjstitle'     => "'''Waorsjuwing:''' d'r is geine skin \"\$1\". Let op: dien eige .css- en .js-pazjena's beginne mèt  'ne kleine letter, bijveurbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
 'updated'                   => '(Biegewèrk)',
 'note'                      => '<strong>Opmirking:</strong>',
-'previewnote'               => "Lèt op: dit is 'n controlepazjena; dien tèks is nog neet opgesjlage!",
+'previewnote'               => "<strong>Lèt op: dit is 'n controlepazjena; dien tèks is nog neet opgesjlage!</strong>",
 'previewconflict'           => "Dees versie toent wie de tèks in 't bôvesjte vèld oet git zeen es e zouws opsjlaon.",
 'session_fail_preview'      => "<strong>Sorry! Dien bewerking is neet verwerkt omdat sessiegegevens verlaore zeen gegaon.
 Probeer 't opnieuw. Als 't dan nog neet lukt, meldt dich dan aaf en weer aan.</strong>",
@@ -689,7 +692,7 @@ d'r kinne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{PAGEN
 'revdelete-text'              => "Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.
 
 Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder.",
-'revdelete-legend'            => 'Stel versiebeperkinge in',
+'revdelete-legend'            => 'Stel zichbaarheidsbeperkinge in',
 'revdelete-hide-text'         => 'Verberg de bewerkte teks',
 'revdelete-hide-name'         => 'Actie en doel verberge',
 'revdelete-hide-comment'      => 'De bewerkingssamevatting verberge',
@@ -953,7 +956,7 @@ De letste link is bedoeld veur mediabestenj die gein aafbeilding zeen.",
 'large-file'                  => 'Aanbeveling: maak bestenj neet groter dan $1, dit bestand is $2.',
 'largefileserver'             => "'t Bestandj is groter dan de instelling van de server toestuit.",
 'emptyfile'                   => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
-'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek $1 of se dat besjtand mesjien wils vervange.",
+'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek <strong><tt>$1</tt></strong> of se dat besjtand mesjien wils vervange.",
 'filepageexists'              => "'ne Pazjena (gein aafbeilding) mit deze naam besteit al, geleve <strong><tt>$1</tt></strong> te controlere es geer neet zeker böntj of geer 'm wil verangere.",
 'fileexists-extension'        => "'n bestand met dezelfde naam bestuit al:<br />
 Naam van 't geüploade bestand: <strong><tt>$1</tt></strong><br />
@@ -1036,7 +1039,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'nolinkstoimage'            => 'Gein enkele pazjena gebroek dees aafbeilding.',
 'sharedupload'              => 'literal translation',
 'shareduploadwiki'          => 'Zee $1 veur meer informatie.',
-'shareduploadwiki-desc'     => 'De $1 dao wuuerdj hiej ónger getuund.',
+'shareduploadwiki-desc'     => 'De omschrèèving op zie $1 op de gedèèlde map is hij onder wiergegeve.',
 'shareduploadwiki-linktext' => 'bestandsbesjrieving',
 'noimage'                   => "d'r bestuit gein bestand met deze naam. Doe kins 't $1.",
 'noimage-linktext'          => 'uploade',

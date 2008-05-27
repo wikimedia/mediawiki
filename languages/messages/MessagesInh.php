@@ -1,7 +1,8 @@
 <?php
 /** Ingush (ГІалгІай Ğalğaj)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Tagir
  * @author Siebrand
@@ -152,7 +153,7 @@ $messages = array(
 'editthispage'      => 'Хувца ер оагIув',
 'delete'            => 'Дiадаккха',
 'deletethispage'    => 'Дiайаккха ер оагIув',
-'undelete_short'    => 'ЮхаметтаоттадеU{PLURAL:$1|oхувцам$1 eхувцамаш}',
+'undelete_short'    => 'Юхаметтаоттаде {{PLURAL:$1|oхувцам|$1 eхувцамаш}}',
 'protect'           => 'Лораде',
 'protect_change'    => 'Лорадер хувца',
 'protectthispage'   => 'Лораде ер оагIув',

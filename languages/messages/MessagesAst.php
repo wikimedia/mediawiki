@@ -1,7 +1,8 @@
 <?php
 /** Asturian (Asturianu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Esbardu
  * @author Helix84
@@ -71,7 +72,7 @@ $messages = array(
 'tog-previewontop'            => "Amosar previsualización enantes de la caxa d'edición",
 'tog-previewonfirst'          => 'Amosar previsualización na primer edición',
 'tog-nocache'                 => 'Desactivar la caché de les páxines',
-'tog-enotifwatchlistpages'    => 'Mandame un corréu cuando cambie una páxina que toi vixilando',
+'tog-enotifwatchlistpages'    => 'Mandame un corréu cuando cambie una páxina de la mio llista de vixilancia',
 'tog-enotifusertalkpages'     => "Mandame un corréu cuando camude la mio páxina d'alderique",
 'tog-enotifminoredits'        => 'Mandame tamién un corréu pa les ediciones menores',
 'tog-enotifrevealaddr'        => 'Amosar el mio corréu electrónicu nos correos de notificación',
@@ -316,7 +317,7 @@ reconocida pola wiki",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
 'nospecialpagetext' => "<big>'''Pidisti una páxina especial non válida.'''</big>
 
-Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages]].",
+Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',
@@ -384,7 +385,7 @@ Consulta: $2',
 $2',
 'namespaceprotected'   => "Nun tienes permisu pa editar páxines nel espaciu de nomes '''$1'''.",
 'customcssjsprotected' => "Nun tienes permisu pa editar esta páxina porque contién preferencies personales d'otru usuariu.",
-'ns-specialprotected'  => 'Les páxines del espaciu de nomes {{ns:special}} nun puen ser editaes.',
+'ns-specialprotected'  => 'Les páxines especiales nun puen ser editaes.',
 'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye ''$2''.",
 
 # Login and logout pages
@@ -697,7 +698,7 @@ Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
 # Revision deletion
 'rev-deleted-comment'         => '(comentariu elimináu)',
 'rev-deleted-user'            => "(nome d'usuariu elimináu)",
-'rev-deleted-event'           => '(entrada eliminada)',
+'rev-deleted-event'           => '(aición de rexistru eliminada)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Esta revisión de la páxina foi eliminada de los archivos públicos.
 Pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru de borraos].
@@ -708,9 +709,9 @@ Como alministrador d\'esti sitiu pues vela; pue haber detalles nel [{{fullurl:Sp
 </div>',
 'rev-delundel'                => 'amosar/esconder',
 'revisiondelete'              => 'Borrar/restaurar revisiones',
-'revdelete-nooldid-title'     => 'Nun hai revisión de destín',
+'revdelete-nooldid-title'     => 'Revisión de destín non válida',
 'revdelete-nooldid-text'      => 'Nun especificasti una revisión o revisiones de destín sobre les que realizar esta función.',
-'revdelete-selected'          => "{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de '''$1:'''",
+'revdelete-selected'          => '{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de [[:$1]]:',
 'logdelete-selected'          => "{{PLURAL:$2|Seleicionáu un eventu de rexistru|Seleicionaos eventos de rexistru}} pa '''$1:'''",
 'revdelete-text'              => "Les revisiones y eventos eliminaos van siguir apaeciendo nel historial de la páxina
 y nos rexistros, pero parte del so conteníu nun va ser accesible al públicu.
@@ -718,7 +719,7 @@ y nos rexistros, pero parte del so conteníu nun va ser accesible al públicu.
 Otros alministrados de {{SITENAME}} van siguir pudiendo acceder al conteníu escondíu
 y puen restauralu de nuevo al traviés d'esta mesma interfaz, a nun ser que s'establezan
 restricciones adicionales.",
-'revdelete-legend'            => 'Establecer restricciones',
+'revdelete-legend'            => 'Establecer restricciones de visibilidá',
 'revdelete-hide-text'         => 'Esconder testu de revisión',
 'revdelete-hide-name'         => 'Esconder aición y oxetivu',
 'revdelete-hide-comment'      => "Esconder comentariu d'edición",
@@ -755,7 +756,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mergehistory-go'                  => 'Amosar ediciones fusionables',
 'mergehistory-submit'              => 'Fusionar revisiones',
 'mergehistory-empty'               => 'Nun se pue fusionar nenguna revisión.',
-'mergehistory-success'             => '$3 revisiones de [[:$1]] fusionaes correutamente en [[:$2]].',
+'mergehistory-success'             => '$3 {{PLURAL:$3|revisión|revisiones}} de [[:$1]] fusionaes correutamente en [[:$2]].',
 'mergehistory-fail'                => "Nun se pudo facer la fusión d'historiales, por favor verifica la páxina y los parámetros temporales.",
 'mergehistory-no-source'           => "La páxina d'orixe $1 nun esiste.",
 'mergehistory-no-destination'      => 'La páxina de destín $1 nun esiste.',
@@ -793,10 +794,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'viewprevnext'          => 'Ver ($1) ($2) ($3)',
 'showingresults'        => "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsnum'     => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
-'nonefound'             => "'''Nota''': Les busques fallíes son ocasionaes davezu por buscar
-pallabres comunes como \"de\" o \"a\", que nun tán indexaes, o por
-especificar más d'un términu de busca (namái van apaecer nel
-resultáu les páxines que contengan tolos términos de la busca).",
+'nonefound'             => "'''Nota''': Por defeutu namái se busca en dalgunos de los espacios de nome. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
 'powersearch'           => 'Buscar',
 'powersearchtext'       => 'Buscar nel espaciu de nomes:<br />$1<br />$2 Llistar redireiciones<br />Buscar $3 $9',
 'searchdisabled'        => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
@@ -945,7 +943,7 @@ Los grupos non seleicionaos nun se van modificar. Pues deseleicionar un grupu ca
 'upload'                      => 'Xubir imaxe',
 'uploadbtn'                   => 'Xubir',
 'reupload'                    => 'Volver a xubir',
-'reuploaddesc'                => 'Tornar al formulariu de xubíes.',
+'reuploaddesc'                => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'uploadnologin'               => 'Nun tas identificáu',
 'uploadnologintext'           => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder xubir archivos.',
 'upload_directory_read_only'  => "El servidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
@@ -1719,8 +1717,8 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Testu por defeutu',
 'allmessagescurrent'        => 'Testu actual',
-'allmessagestext'           => 'Esta ye una llista de tolos mensaxes disponibles nel espaciu de nomes de MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
+Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [http://translatewiki.net Betawiki] si quies contribuyer a la llocalización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessagesfilter'         => 'Filtru pal nome del mensax:',
 'allmessagesmodified'       => 'Amosar solo modificaos',

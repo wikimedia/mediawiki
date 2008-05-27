@@ -1,7 +1,8 @@
 <?php
 /** Breton (Brezhoneg)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Fulup
  * @author Nike
@@ -778,10 +779,9 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.
 'prevn'                 => '$1 kent',
 'nextn'                 => "$1 war-lerc'h",
 'viewprevnext'          => 'Gwelet ($1) ($2) ($3).',
-'showingresults'        => "Diskouez <b>$1</b> disoc'h adal an #<b>$2</b>.",
-'showingresultsnum'     => "Diskouez <b>$3</b> disoc'h adal an #<b>$2</b>.",
-'nonefound'             => '<strong>Notenn</strong>: alies eo liammet an diouer a zisoc\'hoù ouzh an implij a vez graet eus termenoù klask re stank, evel "da" pe "ha",
-termenoù n\'int ket menegeret, pe ouzh implij meur a dermen klask disheñvel (en disoc\'hoù ne gaver nemet ar pajennoù enno an holl c\'herioù spisaet).',
+'showingresults'        => "Diskouez betek {{PLURAL:$1|'''1''' disoc'h|'''$1''' disoc'h}} o kregiñ gant #'''$2'''.",
+'showingresultsnum'     => "Diskouez {{PLURAL:$3|'''1''' disoc'h|'''$3''' disoc'h}} o kregiñ gant #'''$2'''.",
+'nonefound'             => "'''Notenn''' : dre ziouer ne glasker nemet en esaouennoù anv zo. Klaskit spisaat '''holl :''' evit klask e pep lec'h (e-barzh ar pajennoù-kaozeal, ar patromoù, hag all), pe dibabit an esaouenn anv a zere.",
 'powersearch'           => 'Klask',
 'powersearchtext'       => '
 Klask en esaouennoù :<br />
@@ -970,7 +970,7 @@ Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'large-file'                  => "Erbediñ a reer ne vefe ket brasoc'h ar restroù eget $1; $2 eo ment ar restr-mañ.",
 'largefileserver'             => "Brasoc'h eo ar restr-mañ eget ar pezh a c'hall ar servijer aotren.",
 'emptyfile'                   => "Evit doare eo goullo ar restr bet karget ganeoc'h. Moarvat eo abalamour d'an tipo en anv ar restr. Gwiriit mat e fell deoc'h pellgargañ ar restr-mañ.",
-'fileexists'                  => "Ur restr all gant an anv-se zo c'hoazh. Trugarez da wiriañ $1. Ha sur oc'h da gaout c'hoant da gemmañ ar restr-mañ ?",
+'fileexists'                  => "Ur restr all gant an anv-se zo c'hoazh. Trugarez da wiriañ <strong><tt>$1</tt></strong>. Ha sur oc'h da gaout c'hoant da gemmañ ar restr-mañ ?",
 'filepageexists'              => "Bez'ez eus dija ur bajenn (ket ur skeudenn) gant an anv-mañ. Gwiriit <strong><tt>$1</tt></strong> ma n'oc'h ket peursur e fell deoc'h kemmañ anezhi.",
 'fileexists-extension'        => "Bez' ez eus dija ur restr gant an anv-se war-bouez nebeut :<br />
 Anv ar restr pellgarget : <strong><tt>$1</tt></strong><br />
@@ -1055,7 +1055,7 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'filehist'                  => 'Istor ar restr',
 'filehist-help'             => 'Klikañ war un deiziad/eur da welet ar restr evel ma oa da neuze.',
 'filehist-deleteall'        => 'diverkañ pep tra',
-'filehist-deleteone'        => 'diverkañ kement-mañ',
+'filehist-deleteone'        => 'diverkañ',
 'filehist-revert'           => 'disteuler',
 'filehist-current'          => 'red',
 'filehist-datetime'         => 'Deiziad/Eur',
@@ -1068,7 +1068,7 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'nolinkstoimage'            => "N'eus liamm ebet war-du ar skeudenn-mañ war pajenn ebet.",
 'sharedupload'              => 'Rannet eo ar restr-mañ. Gallout a ra bezañ implijet evit raktresoù all.',
 'shareduploadwiki'          => "Gwelit an $1 mar plij evit gouzout hiroc'h.",
-'shareduploadwiki-desc'     => 'Diskouezet eo a-is an deskrivadur a-zivout $1.',
+'shareduploadwiki-desc'     => "Diskouezet eo a-is an deskrivadur a-zivout $1 er c'havlec'h rannet.",
 'shareduploadwiki-linktext' => 'pajenn deskrivañ ar restr',
 'noimage'                   => "N'eus pajenn ebet anvet evel-se c'hoazh, gallout a rit $1.",
 'noimage-linktext'          => 'enporzhiañ unan',

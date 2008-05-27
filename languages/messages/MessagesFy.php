@@ -1,7 +1,8 @@
 <?php
 /** Western Frisian (Frysk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Helix84
  * @author Maartenvdbent
@@ -523,10 +524,10 @@ jo jo [[{{ns:special}}:Userlogin|oanmelde]], dat jo allinnich opmerkings foar jo
 'noarticletext'          => '(Der stjit noch gjin tekst op dizze side.)',
 'updated'                => '(Bewurke)',
 'note'                   => '<strong>Opmerking:</strong>',
-'previewnote'            => 'Tink der om dat dizze side noch net fêstlein is!',
+'previewnote'            => '<strong>Tink der om dat dizze side noch net fêstlein is!</strong>',
 'previewconflict'        => 'Dizze side belanget allinich it earste bewurkingsfjild oan.',
 'editing'                => 'Bewurkje "$1"',
-'editinguser'            => 'Bewurkje "$1"',
+'editinguser'            => "Bewurkje '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'         => 'Dwaande mei bewurkjen fan $1 (dielside)',
 'editconflict'           => 'Tagelyk bewurke: "$1"',
 'explainconflict'        => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen.
@@ -885,9 +886,7 @@ an ôfbyld makke hawwe kinne. Dan wurde se noch brûke, mar stean al in dizze li
 
 # E-mail user
 'mailnologin'     => 'Gjin adres beskikber',
-'mailnologintext' => 'Jo moatte [[{{ns:special}}:Userlogin|oanmeld]]
-wêze, en in jildich e-postadres [[{{ns:special}}:Preferences|ynsteld]]
-hawwe, om oan oare brûkers e-post stjoere te kinnen.',
+'mailnologintext' => 'Jo moatte [[Special:Userlogin|oanmeld]] wêze, en in jildich e-postadres [[Special:Preferences|ynsteld]] hawwe, om oan oare brûkers e-post stjoere te kinnen.',
 'emailuser'       => 'Skriuw dizze brûker',
 'emailpage'       => 'E-post nei brûker',
 'emailpagetext'   => "As dizze brûker in jildich e-postadres in ynsteld hat,
@@ -911,7 +910,7 @@ of hat oanjaan gjin post fan oare brûkers krije te wollen.',
 'watchlistfor'         => "(foar '''$1''')",
 'nowatchlist'          => 'Jo hawwe gjin siden op jo folchlist.',
 'watchnologin'         => 'Not oanmeld in',
-'watchnologintext'     => 'Jo moatte [[{{ns:special}}:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.',
+'watchnologintext'     => 'Jo moatte [[Special:Userlogin|oanmeld]] wêze om jo folchlist te feroarjen.',
 'addedwatch'           => 'Oan folchlist tafoege',
 'addedwatchtext'       => 'De side "<nowiki>$1</nowiki>" is tafoege oan jo <a href="{{localurle:{{ns:special}}:Watchlist}}">folchlist</a>.
 As dizze side sels, of de oerlisside, feroare wurd, dan komt dat dêr yn,

@@ -1,7 +1,8 @@
 <?php
 /** Nepali (नेपाली)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author ne.wikipedia.org sysops
  * @author SPQRobin

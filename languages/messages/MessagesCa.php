@@ -1,7 +1,8 @@
 <?php
 /** Catalan (Català)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Toniher
  * @author SMP
@@ -177,8 +178,8 @@ $messages = array(
 'tog-previewonfirst'          => 'Mostra una previsualització en la primera edició',
 'tog-nocache'                 => 'Inhabilita la memòria cau de les pàgines',
 'tog-enotifwatchlistpages'    => "A les preferències de l'usuari",
-'tog-enotifusertalkpages'     => "Notifica per correu quan hi hagi modificacions a la pàgina de discussió del meu compte d'usuari",
-'tog-enotifminoredits'        => "Notifica per correu també en casos d'edicions menors",
+'tog-enotifusertalkpages'     => "Notifica'm per correu quan hi hagi modificacions a la pàgina de discussió del meu compte d'usuari",
+'tog-enotifminoredits'        => "Notifica'm per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr'        => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
 'tog-shownumberswatching'     => "Mostra el nombre d'usuaris que hi vigilen",
 'tog-fancysig'                => 'Signatures netes (sense enllaç automàtic)',
@@ -524,7 +525,7 @@ S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
 'yourrealname'               => 'Nom real *',
 'yourlanguage'               => 'Llengua:',
 'yourvariant'                => 'Variant lingüística:',
-'yournick'                   => 'Àlies (nom que es mostrarà):',
+'yournick'                   => 'Signatura:',
 'badsig'                     => 'La signatura que heu inserit no és vàlida; verifiqueu les etiquetes HTML que heu emprat.',
 'badsiglength'               => 'Nom massa llarg; el màxim són $1 caràcters.',
 'email'                      => 'Adreça electrònica',
@@ -881,10 +882,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'viewprevnext'          => 'Vés a ($1) ($2) ($3).',
 'showingresults'        => 'Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultsnum'     => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
-'nonefound'             => "<strong>Nota</strong>: les cerques sense resultats són causades tot sovint
-per haver utilitzat paraules comunes com ara «té» o «de»,
-que no s'indexen; o bé, per haver especificat més d'un terme de cerca (només les pàgines
-que contenen tots els termes de cerca apareixeran en el resultat).",
+'nonefound'             => "'''Nota''': Només se cerca en alguns espais de noms per defecte. Proveu d'afegir el prefix ''all:'' a la vostra consulta per a cercar a tot el contingut (incloent-hi les pàgines de discussió, les plantilles, etc.), o feu servir l'espai de noms on vulgueu cercar com a prefix.",
 'powersearch'           => 'Cerca avançada',
 'powersearchtext'       => '
 Cerca en espais de nom :<br />
@@ -941,7 +939,7 @@ $2 Llista redireccions   Cerca $3 $9',
 'stub-threshold'           => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',
 'recentchangesdays'        => 'Dies a mostrar en els canvis recents:',
 'recentchangescount'       => 'Nombre de títols en canvis recents',
-'savedprefs'               => 'Les vostres preferències han estat desades.',
+'savedprefs'               => "S'han desat les vostres preferències",
 'timezonelegend'           => 'Fus horari',
 'timezonetext'             => "Introduïu el nombre d'hores de diferència entre la vostra hora local i la del servidor (UTC).",
 'localtime'                => 'Hora local',
@@ -1074,7 +1072,7 @@ Totes les hores són les del servidor (UTC).",
 'large-file'                  => 'Els fitxers importants no haurien de ser més grans de $1; aquest fitxer ocupa $2.',
 'largefileserver'             => 'Aquest fitxer és més gran del que el servidor permet.',
 'emptyfile'                   => 'El fitxer que heu carregat sembla estar buit. Açò por ser degut a un mal caràcter en el nom del fitxer. Si us plau, reviseu si realment voleu carregar aquest arxiu.',
-'fileexists'                  => 'Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu $1 si no esteu segurs de voler substituir-lo.',
+'fileexists'                  => 'Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu <strong><tt>$1</tt></strong> si no esteu segurs de voler substituir-lo.',
 'filepageexists'              => 'Una pàgina (no un fitxer) amb aquest nom ja existeix, comproveu <strong><tt>$1</tt></strong> si no esteu segur de voler canviar-li el nom.',
 'fileexists-extension'        => 'Ja existeix un fitxer amb un nom semblant:<br />
 Nom del fitxer que es puja: <strong><tt>$1</tt></strong><br />
@@ -1143,7 +1141,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'filehist'                  => 'Historial del fitxer',
 'filehist-help'             => 'Cliqueu una data/hora per veure el fitxer tal com era aleshores.',
 'filehist-deleteall'        => 'elimina-ho tot',
-'filehist-deleteone'        => 'elimina-ho',
+'filehist-deleteone'        => 'elimina',
 'filehist-revert'           => 'reverteix',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Data/hora',
@@ -1156,7 +1154,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'nolinkstoimage'            => 'No hi ha pàgines que enllacin aquesta imatge.',
 'sharedupload'              => 'Aquest fitxer està compartit i poden utilitzar-lo altres projectes.',
 'shareduploadwiki'          => 'Consulteu $1 per a més informació.',
-'shareduploadwiki-desc'     => 'La descripció en la seua $1 es mostra a continuació.',
+'shareduploadwiki-desc'     => 'La descripció a la $1 del repositori compartit es mostra a continuació.',
 'shareduploadwiki-linktext' => 'pàgina de descripció del fitxer',
 'noimage'                   => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'          => 'Carrega',

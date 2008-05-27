@@ -1,7 +1,8 @@
 <?php
 /** Yue (粵語)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

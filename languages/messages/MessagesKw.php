@@ -1,9 +1,11 @@
 <?php
 /** Cornish (Kernewek)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MF-Warburg
+ * @author Malafaya
  */
 
 $messages = array(
@@ -58,6 +60,7 @@ $messages = array(
 'helppage'      => 'Help:Gweres',
 'mainpage'      => 'Pennfolenn/Penfolen',
 'portal'        => 'Porth kemmynieth',
+'portal-url'    => 'Project:Porth Kemmynieth',
 'sitesupport'   => 'Riansow',
 
 'ok'          => 'Sur',

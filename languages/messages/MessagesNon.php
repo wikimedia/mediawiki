@@ -1,7 +1,8 @@
 <?php
 /** Old Norse (Norrǿna)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author M.M.S.

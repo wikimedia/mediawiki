@@ -1,7 +1,8 @@
 <?php
 /** Chechen (Нохчийн)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Girdi
  * @author Mega programmer
@@ -169,7 +170,7 @@ $messages = array(
 'newarticle'      => '(Kерла)',
 'newarticletext'  => "ХІар тептар хІинца а кхоьллина дац. Керл тептар кхолла лаахь, дІаязде текст лахара кор чохь (см. [[{{MediaWiki:helppage}}|гІо тептар]] еша кхин информацинаш хаар хьам). Хьо кхуза гІалат вал кхаьчнехь, '''тІехьа воьрзу''' кнопку таІ йе хьан браузера тІехь.",
 'editing'         => 'Хийца $1',
-'editinguser'     => 'Хийца юзер <b>$1</b>',
+'editinguser'     => "Хийца юзер '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'  => 'Хийца $1 (секция)',
 'editingcomment'  => 'Хийца $1 (комментарий)',
 'editconflict'    => 'Хийца Конфликт: $1',

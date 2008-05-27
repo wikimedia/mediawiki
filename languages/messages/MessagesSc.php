@@ -1,7 +1,8 @@
 <?php
 /** Sardinian (Sardu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Nike
  * @author לערי ריינהארט
@@ -219,10 +220,10 @@ Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:Grouppage-sy
 'noarticletext'   => "(L'articolo è vuoto, potresti gentilmente iniziare l'articolo oppure richiedere la cancellazione di questa pagina)",
 'updated'         => '(Aggiornato)',
 'note'            => '<strong>Nota:</strong>',
-'previewnote'     => 'Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!',
+'previewnote'     => '<strong>Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!</strong>',
 'previewconflict' => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
 'editing'         => 'Modifica di $1',
-'editinguser'     => 'Modifica di $1',
+'editinguser'     => "Modifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editconflict'    => 'Conflitto di edizione: $1',
 'explainconflict' => 'Qualcun altro ha salvato una sua versione dell\'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell\'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.

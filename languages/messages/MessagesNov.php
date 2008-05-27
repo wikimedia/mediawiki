@@ -1,7 +1,8 @@
 <?php
 /** Novial (Novial)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author nov.wikipedia.org sysops
  * @author Malafaya
@@ -35,7 +36,18 @@ $messages = array(
 'august-gen'   => 'auguste',
 'october-gen'  => 'oktobre',
 'december-gen' => 'desembre',
+'jan'          => 'jan',
+'feb'          => 'feb',
+'mar'          => 'mar',
+'apr'          => 'apr',
 'may'          => 'maye',
+'jun'          => 'jun',
+'jul'          => 'jul',
+'aug'          => 'aug',
+'sep'          => 'sep',
+'oct'          => 'okt',
+'nov'          => 'nov',
+'dec'          => 'des',
 
 # Bits of text used by many pages
 'categories'      => 'Kategories',
@@ -46,6 +58,7 @@ $messages = array(
 'article'        => 'Pagine de kontenaje',
 'newwindow'      => '(aperta in novi fenestre)',
 'cancel'         => 'Nihilisa',
+'qbedit'         => 'Modifika',
 'qbspecialpages' => 'Spesial pagines',
 'moredotdotdot'  => 'Plu...',
 'mypage'         => 'Men pagine',
@@ -84,16 +97,20 @@ $messages = array(
 'categorypage'     => 'Regarda kategorial pagine',
 'otherlanguages'   => 'Altri lingues',
 'lastmodifiedat'   => 'Disi pagine blid lastim modifika: $2 ye $1.', # $1 date, $2 time
+'jumptonavigation' => 'navigatione',
+'jumptosearch'     => 'sercha',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'     => 'Pri {{SITENAME}}',
-'aboutpage'     => 'Project:Pri',
-'currentevents' => 'Nuni eventes',
-'edithelp'      => 'Help pri modifiko de pagines',
-'helppage'      => 'Help:Kontenaje',
-'mainpage'      => 'Chefi pagine',
-'portal'        => 'Li komun chambre',
-'sitesupport'   => 'Donationes',
+'aboutsite'         => 'Pri {{SITENAME}}',
+'aboutpage'         => 'Project:Pri',
+'currentevents'     => 'Nuni eventes',
+'currentevents-url' => 'Project:Nuni eventes',
+'edithelp'          => 'Helpo pri modifiko de pagines',
+'helppage'          => 'Help:Kontenaje',
+'mainpage'          => 'Chefi pagine',
+'portal'            => 'Li komun chambre',
+'portal-url'        => 'Project:Li komun chambre',
+'sitesupport'       => 'Donationes',
 
 'badaccess' => 'Permisione erore',
 
@@ -101,6 +118,9 @@ $messages = array(
 'newmessageslink'         => 'novi mesajes',
 'newmessagesdifflink'     => 'lasti chanjo',
 'youhavenewmessagesmulti' => 'Vu have novi mesajes pri $1',
+'editsection'             => 'modifika',
+'editold'                 => 'modifika',
+'restorelink'             => '{{PLURAL:$1|unu ekartati modifiko|$1 ekartati modifikos}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikle',
@@ -179,11 +199,14 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Search results
 'searchresults'         => 'Resultes de sercho',
+'searchresulttext'      => 'Por plu multi informatione pri sercho {{SITENAME}}, vida [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Vu serchad '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Vu serchad '''$1'''",
 'prevn'                 => 'lasti $1',
 'nextn'                 => 'sekuenti $1',
 'viewprevnext'          => 'Vida ($1) ($2) ($3).',
+'showingresults'        => "Montrant subu {{PLURAL:$1|'''1''' resulte|'''$1''' resultes}} amaxim komensant fro #'''$2'''.",
+'showingresultsnum'     => "Montrant subu {{PLURAL:$3|'''1''' result|'''$3''' results}} komensant fro #'''$2'''.",
 'powersearch'           => 'Sercha',
 
 # Preferences page
@@ -196,6 +219,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Recent changes
 'recentchanges'   => 'Resenti chanjos',
+'rcnote'          => "Subu es {{PLURAL:$1| '''1''' chanje|li lasti '''$1''' chanjes}} in li lasti {{PLURAL:$2|die|'''$2''' dies}}, fro $3.",
 'rcshowhideminor' => '$1 minori modifikos',
 'rcshowhideanons' => '$1 anonimi useres',
 'rcshowhidemine'  => '$1 men modifikos',
@@ -218,6 +242,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'ilsubmit'              => 'Sercha',
 'byname'                => 'segun nome',
 'bydate'                => 'segun date',
+'filehist-user'         => 'Usere',
 'imagelinks'            => 'Linkes',
 'imagelist_name'        => 'Nome',
 'imagelist_user'        => 'Usere',
@@ -320,9 +345,11 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'sp-contributions-submit'  => 'Sercha',
 
 # What links here
-'whatlinkshere' => 'Tum kel kupla hir',
+'whatlinkshere'      => 'Tum kel kupla hir',
+'whatlinkshere-page' => 'Pagine:',
 
 # Block/unblock
+'badipaddress' => 'Non-valid IP adrese',
 'contribslink' => 'Kontributiones',
 
 # Move page
@@ -345,7 +372,10 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'allmessagesmodified' => 'Montra nur modifikates',
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => 'Eksignata',
+'tooltip-pt-mytalk'      => 'Men parla-pagine',
+'tooltip-pt-preferences' => 'Men preferos',
+'tooltip-pt-logout'      => 'Eksignata',
+'tooltip-p-logo'         => 'Chefi pagine',
 
 # Info page
 'infosubtitle' => 'Informatione pri pagine',
@@ -368,5 +398,9 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'autosumm-replace' => "Remplasant pagine kun '$1'",
 'autoredircomment' => 'Ri-adresant a [[$1]]',
 'autosumm-new'     => 'Novi pagine: $1',
+
+# Special:Version
+'version-specialpages'     => 'Spesial pagines',
+'version-software-version' => 'Versione',
 
 );

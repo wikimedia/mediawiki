@@ -1,7 +1,8 @@
 <?php
 /** Brazilian Portuguese (Português do Brasil)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
@@ -414,7 +415,7 @@ $messages = array(
 'nosuchspecialpage' => 'Esta página especial não existe',
 'nospecialpagetext' => "<big>'''Você requisitou uma página especial inválida.'''</big>
 
-Uma lista de páginas especiais válidas poderá ser encontrada em [[{{ns:special}}:Specialpages]].",
+Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erro',

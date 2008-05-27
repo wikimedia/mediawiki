@@ -1,7 +1,8 @@
 <?php
-/** ‪Tainwanese Chinese‬ (‪中文(台灣)‬)
+/** Taiwan Chinese (‪中文(台灣)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author BobChao
  */
@@ -240,9 +241,9 @@ $messages = array(
 'bugreportspage'    => 'Project:錯誤報告',
 'copyright'         => '本站的文字內容除另有聲明外，全部以 $1 條款授權使用。',
 'copyrightpagename' => '{{SITENAME}}版權',
-'copyrightpage'     => 'Project:版權訊息',
+'copyrightpage'     => '{{ns:project}}:版權訊息',
 'currentevents'     => '現時事件',
-'currentevents-url' => '現時事件',
+'currentevents-url' => 'Project:現時事件',
 'disclaimers'       => '免責聲明',
 'disclaimerpage'    => 'Project:一般免責聲明',
 'edithelp'          => '編輯說明',
@@ -555,14 +556,14 @@ $2',
 'userinvalidcssjstitle'     => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
 'updated'                   => '(已更新)',
 'note'                      => '<strong>注意:</strong>',
-'previewnote'               => '請記住這只是預覽，內容還未保存！',
+'previewnote'               => '<strong>請記住這只是預覽，內容還未保存！</strong>',
 'previewconflict'           => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
 'session_fail_preview'      => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。</strong>',
 'session_fail_preview_html' => '<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong><strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>',
 'token_suffix_mismatch'     => '<strong>由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                   => '正在編輯$1',
-'editinguser'               => '正在編輯使用者<b>$1</b>',
+'editinguser'               => "正在編輯使用者'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => '正在編輯$1 (段落)',
 'editingcomment'            => '正在編輯$1 (評論)',
 'editconflict'              => '編輯衝突：$1',
@@ -916,7 +917,7 @@ $2',
 'large-file'                  => '建議檔案大小不能超過 $1；本檔案大小為 $2。',
 'largefileserver'             => '這個檔案的大小比伺服器配置允許的大小還要大。',
 'emptyfile'                   => '您所上傳的檔案不存在。這可能是由於檔案名鍵入錯誤。請檢查您是否真的要上傳此檔案。',
-'fileexists'                  => '已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查$1。',
+'fileexists'                  => '已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查<strong><tt>$1</tt></strong>。',
 'fileexists-extension'        => '一個相似檔名的檔案已經存在:<br />
 上載檔案的檔名: <strong><tt>$1</tt></strong><br />
 現有檔案的檔名: <strong><tt>$2</tt></strong><br />

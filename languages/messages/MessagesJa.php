@@ -1,7 +1,8 @@
 <?php
 /** Japanese (日本語)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Suisui
  * @author Marine-Blue
@@ -16,6 +17,7 @@
  * @author Kkkdc
  * @author JtFuruhata
  * @author Mzm5zbC3
+ * @author Iwai.masaharu
  */
 
 $skinNames = array(
@@ -585,7 +587,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'userinvalidcssjstitle'     => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
 'updated'                   => '（更新）',
 'note'                      => '<strong>お知らせ:</strong>',
-'previewnote'               => 'これはプレビューです。まだ保存されていません!',
+'previewnote'               => '<strong>これはプレビューです。まだ保存されていません!</strong>',
 'previewconflict'           => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview'      => '<strong>セッションが切断されたため編集を保存できません。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
 'session_fail_preview_html' => "<strong>申し訳ありません。セッションが切断されたため編集を保存することができませんでした。</strong>
@@ -955,7 +957,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'large-file'                  => 'ファイルサイズは $1 バイト以下に抑えることが推奨されています。このファイルは $2 バイトです。',
 'largefileserver'             => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
 'emptyfile'                   => 'あなたがアップロードしようとしているファイルは内容が空であるか、もしくはファイル名の指定が間違っています。もう一度、ファイル名が正しいか、あるいはアップロードしようとしたファイルであるかどうかを確認してください。',
-'fileexists'                  => 'この名前のファイルは既に存在しています。$1と置き換えるかどうかお確かめください。',
+'fileexists'                  => 'この名前のファイルは既に存在しています。<strong><tt>$1</tt></strong>と置き換えるかどうかお確かめください。',
 'filepageexists'              => '同じ名前の（ファイルではなく）ページが既に存在しています。置き換えるかどうか、まずは <strong><tt>$1</tt></strong> を確認してください。',
 'fileexists-extension'        => '類似した名前のファイルが既に存在しています:<br />
 アップロード中のファイル: <strong><tt>$1</tt></strong><br />
@@ -1035,11 +1037,11 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filehist-filesize'         => 'ファイルサイズ',
 'filehist-comment'          => 'コメント',
 'imagelinks'                => 'リンク',
-'linkstoimage'              => 'このファイルにリンクしているページの一覧:',
-'nolinkstoimage'            => 'このファイルにリンクしているページはありません。',
+'linkstoimage'              => 'このファイルを使用しているページの一覧:',
+'nolinkstoimage'            => 'このファイルを使用しているページはありません。',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'          => '詳しい情報は$1を参照してください。',
-'shareduploadwiki-desc'     => '$1にあるこのファイルの説明は以下の通りです。',
+'shareduploadwiki-desc'     => '共有リポジトリ内の$1にあるこのファイルの説明は以下の通りです。',
 'shareduploadwiki-linktext' => 'ファイルの詳細ページ',
 'noimage'                   => '同名のファイルは存在しません。「$1」リンクをクリックしてください。',
 'noimage-linktext'          => 'このファイル名でアップロードする',
@@ -1670,10 +1672,10 @@ $NEWPAGE
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
 'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効のため、'''{{ns:special}}:Allmessages''' はサポートされません。",
+もし、MediaWikiの翻訳に協力してくれるならば、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]や[http://translatewiki.net Betawiki]を訪れてください。',
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
-'allmessagesmodified'       => '条件に当てはまるものを表示',
+'allmessagesmodified'       => '変更されたもののみを表示',
 
 # Thumbnails
 'thumbnail-more'           => '拡大',

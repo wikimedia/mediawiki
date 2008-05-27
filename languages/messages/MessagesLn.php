@@ -1,7 +1,8 @@
 <?php
 /** Lingala (Lingála)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

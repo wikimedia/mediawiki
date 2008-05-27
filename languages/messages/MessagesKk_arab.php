@@ -1,7 +1,8 @@
 <?php
 /** Kazakh (Arabic script) (‫قازاقشا (تٴوتە)‬)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author GaiJin
  * @author AlefZet

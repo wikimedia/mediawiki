@@ -1,7 +1,8 @@
 <?php
 /** Sango (Sängö)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author sg.wikipedia.org sysops
  */
@@ -33,7 +34,7 @@ $messages = array(
 # Edit pages
 'anoneditwarning' => "'''Ânge:''' Mo yeke sunga äpëe. IP-lindosînga tî mo ayeke na mbayé tî sô lêmbëtï.",
 'editing'         => 'Mo fa na mbi $1',
-'editinguser'     => 'Mo fa na mbi nyîmbâ <b>$1</b>',
+'editinguser'     => "Mo fa na mbi nyîmbâ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'  => 'Mo fa na mbi $1 (section)',
 
 # Preferences page

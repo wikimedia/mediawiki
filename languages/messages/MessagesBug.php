@@ -1,7 +1,8 @@
 <?php
 /** Buginese (ᨅᨔ ᨕᨘᨁᨗ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Kurniasan

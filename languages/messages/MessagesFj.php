@@ -1,7 +1,8 @@
 <?php
 /** Fijian (Na Vosa Vakaviti)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

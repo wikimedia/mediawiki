@@ -1,7 +1,8 @@
 <?php
 /** Cebuano (Cebuano)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author לערי ריינהארט
@@ -157,8 +158,8 @@ $messages = array(
 'currentevents'     => 'Mga bag-ong panghitabo',
 'disclaimers'       => 'Mga pagpasabot',
 'edithelp'          => 'Tabang sa pag-usab',
-'edithelppage'      => 'Tabang:Pag-usab',
-'helppage'          => 'Tabang:Mga sulod',
+'edithelppage'      => 'Help:Pag-usab',
+'helppage'          => 'Help:Mga sulod',
 'mainpage'          => 'Unang Panid',
 'portal'            => 'Tubaan',
 'portal-url'        => 'Project:Ganghaan sa Komunidad',
@@ -204,7 +205,7 @@ $messages = array(
 'nosuchspecialpage' => 'Walay maong espesyal nga panid',
 'nospecialpagetext' => "<big>'''Mihangyo ikaw sa inbalidong espesyal nga panid.'''</big>
 
-Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:Specialpages]].",
+Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'noconnect'          => "Pasayloa, adunay problemang teknikal sa karon ang kini nga wiki, ug dili makakontak sa serber sa ''database''.<br />

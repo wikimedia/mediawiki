@@ -1,7 +1,8 @@
 <?php
 /** Hungarian (Magyar)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Bdanee
  * @author Bdamokos
@@ -10,6 +11,8 @@
  * @author SPQRobin
  * @author Dorgan
  * @author Dani
+ * @author Cerasus
+ * @author Andre Engels
  */
 
 $namespaceNames = array(
@@ -358,7 +361,7 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => 'Kategóriák',
 'pagecategories'        => '{{PLURAL:$1|Kategória|Kategóriák}}',
-'category_header'       => '„$1” kategória szócikkei',
+'category_header'       => 'A(z) „$1” kategóriába tartozó szócikkek',
 'subcategories'         => 'Alkategóriák',
 'category-media-header' => 'A(z) „$1” kategóriába tartozó médiafájlok',
 'category-empty'        => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
@@ -581,9 +584,9 @@ Lekérdezés: $2',
 'viewsourcefor'        => '$1 változata',
 'actionthrottled'      => 'Művelet megszakítva',
 'actionthrottledtext'  => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
-'protectedpagetext'    => 'Ezt a lapot a szerkesztések megakadályozása érdekében zároltuk. Módosításokat a vitalapon javasolhatsz, a védelem feloldását az adminisztrátorok üzenőfalán kérheted .',
+'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',
 'viewsourcetext'       => 'Megtekintheted és másolhatod a lap forrását:',
-'protectedinterface'   => 'Ez a lap a honlap felületéhez szolgáltat szöveget a szoftver számára, és a visszaélések elkerülése végett le van zárva. A vitalapon javasolhatsz módosításokat.',
+'protectedinterface'   => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése végett le van zárva.',
 'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felhasználói felületéthez tarzozik. A lap megváltoztatása hatással lesz más felhasználók számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Main_Page?setlang=hu Betawikit].",
 'sqlhidden'            => '(rejtett SQL lekérdezés)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
@@ -597,7 +600,7 @@ $2',
 'logouttitle'                => 'Kijelentkezés',
 'logouttext'                 => '<strong>Kijelentkeztél.</strong>
 
-Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy ismét bejelentkezhetsz ugyanezzel, vagy egy másik felhasználói névvel. Néhány oldalon lehet, hogy továbbra is azt látod, hogy bejelentkezve vagy, mindaddig, amíg nem üríted ki a böngésződ gyorsítótárát.',
+Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy ismét bejelentkezhetsz ugyanezzel, vagy egy másik felhasználói névvel. Néhány oldalon lehet, hogy továbbra is azt látod, hogy be vagy jelentkezve, mindaddig, amíg nem üríted ki a böngésződ gyorsítótárát.',
 'welcomecreation'            => '== Köszöntünk, $1! ==
 
 A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személyes beállításaidat.',
@@ -629,7 +632,7 @@ A felhasználói környezetedet létrehoztuk. Ne felejtsd el átnézni a személ
 'yourrealname'               => 'Valódi neved:',
 'yourlanguage'               => 'A felület nyelve:',
 'yourvariant'                => 'Változó',
-'yournick'                   => 'Az aláírásokban használni kívánt névformád:',
+'yournick'                   => 'Aláírás:',
 'badsig'                     => 'Érvénytelen aláírás; ellenőrizd a HTML-formázást.',
 'badsiglength'               => 'A megadott név túl hosszú; $1 karakternél rövidebbnek kell lennie.',
 'email'                      => 'E-mail',
@@ -671,7 +674,7 @@ Lépj be a levélben található adatokkal.',
 'invalidemailaddress'        => 'A megadott e-mail cím érvénytelen formátumú. Kérlek, adj meg egy helyesen formázott e-mail címet vagy hagyd üresen azt a mezőt.',
 'accountcreated'             => 'Felhasználói fiók létrehozva',
 'accountcreatedtext'         => '$1 felhasználói fiókja sikeresen létrejött.',
-'createaccount-title'        => 'Új {{SITENAME}}-fiók létrehozása',
+'createaccount-title'        => 'Új {{SITENAME}}-azonosító létrehozása',
 'createaccount-text'         => '$1 létrehozott számodra egy „$2” nevű {{SITENAME}}-azonosítót ($4). A hozzátartozó jelszó "$3", melyet minél előbb változtass meg.
 
 Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugodtan hagyd figyelmen kívül.',
@@ -695,7 +698,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'italic_tip'      => 'Dőlt szöveg',
 'link_sample'     => 'Belső hivatkozás',
 'link_tip'        => 'Belső hivatkozás',
-'extlink_sample'  => 'http://www.példa.hu hivatkozás címe',
+'extlink_sample'  => 'http://www.példa-hivatkozás.hu hivatkozás címe',
 'extlink_tip'     => 'Külső hivatkozás (ne felejtsd el a http:// előtagot)',
 'headline_sample' => 'Alfejezet címe',
 'headline_tip'    => 'Alfejezetcím',
@@ -835,7 +838,7 @@ egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'templatesusedpreview'      => 'Az előnézetben használt sablonok:',
 'templatesusedsection'      => 'Szakaszban használt sablonok:',
 'template-protected'        => '(védett)',
-'template-semiprotected'    => '(félig-védett)',
+'template-semiprotected'    => '(félig védett)',
 'edittools'                 => '<!-- Ez a szöveg a szerkesztés és a feltöltés űrlap alatt lesz látható. -->',
 'nocreatetitle'             => 'A laplétrehozás korlátozott',
 'nocreatetext'              => 'Ezen a webhelyen korlátozták az új oldalak készítését.
@@ -973,7 +976,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.
 
 # Search results
 'searchresults'         => 'A keresés eredménye',
-'searchresulttext'      => 'A {{SITENAME}} keresésével kapcsolatos további információ a [[{{MediaWiki:Helppage}}|{{int:súgóban}}]].',
+'searchresulttext'      => 'A keresésről a [[{{MediaWiki:Helppage}}|{{int:help}}]] lapon találhatsz további információkat.',
 'searchsubtitle'        => 'Erre kerestél: „[[:$1]]”',
 'searchsubtitleinvalid' => 'A "$1" kereséshez',
 'noexactmatch'          => "Nincs '''$1''' nevű lap. Készíthetsz egy [[:$1|új oldalt]] ezen a néven.",
@@ -1001,7 +1004,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'mypreferences'            => 'beállításaim',
 'prefs-edits'              => 'Szerkesztések száma:',
 'prefsnologin'             => 'Nem jelentkeztél be',
-'prefsnologintext'         => 'Ahhoz, hogy a beállításaidat rögzíthesd, [[Special:Userlogin|be kell lépned]].',
+'prefsnologintext'         => 'Ahhoz, hogy a beállításaidat rögzíthesd, [[Special:Userlogin|be kell jelentkezned]].',
 'prefsreset'               => 'A beállítások visszaállításra kerültek a tárolóból.',
 'qbsettings'               => 'Gyorsmenü beállítások',
 'qbsettings-none'          => 'Nincs',
@@ -1055,7 +1058,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'allowemail'               => 'E-mail engedélyezése más felhasználóktól',
 'defaultns'                => 'Alapértelmezett keresés az alábbi névterekben:',
 'default'                  => 'alapértelmezés',
-'files'                    => 'Képek',
+'files'                    => 'Fájlok',
 
 # User rights
 'userrights-lookup-user'           => 'Felhasználócsoportok kezelése',
@@ -1181,7 +1184,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 A feltöltendő fájl neve: <strong><tt>$1</tt></strong><br />
 A létező fájl neve: <strong><tt>$2</tt></strong><br />
 Kérjük, hogy válassz másik nevet.',
-'fileexists-thumb'            => "<center>Ilyen nevű fájl már van</center>'''",
+'fileexists-thumb'            => "<center>'''Ilyen nevű fájl már van'''</center>",
 'fileexists-thumbnail-yes'    => 'A fájl egy csökkentett méretű képnek <i>(bélyegképnek)</i> tűnik. Kérjük, hogy ellenőrizd a(z) <strong><tt>$1</tt></strong> fájlt.<br />
 Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor a bélyegképet nem kell külön feltöltened.',
 'file-thumbnail-no'           => 'A fájlnév a(z) <strong><tt>$1</tt></strong> karakterlánccal kezdődik. Úgy tűnik, hogy ez egy csökkentett méretű kép <i>(bélyegkép)</i>.
@@ -1272,7 +1275,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'sharedupload'              => 'Ez a fájlt egy megosztott feltöltés, és más projektek használhatják.',
 'shareduploadwiki'          => 'Lásd a [$1 fájl leírólapját] a további információkért.',
 'shareduploadwiki-desc'     => 'A $1 található leírás alább látható.',
-'shareduploadwiki-linktext' => 'fájl leírólapját',
+'shareduploadwiki-linktext' => 'fájl leírólapján',
 'noimage'                   => 'Ezen a néven nem létezik médiafájl. Ha szeretnél, $1 egyet.',
 'noimage-linktext'          => 'feltölthetsz',
 'uploadnewversion-linktext' => 'A fájl újabb változatának felküldése',
@@ -1392,7 +1395,7 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'wantedpages'             => 'Keresett lapok',
 'mostlinked'              => 'Legtöbbet hivatkozott lapok',
 'mostlinkedcategories'    => 'Legtöbbet hivatkozott kategóriák',
-'mostlinkedtemplates'     => 'Legtöbbet szerkesztett lapok',
+'mostlinkedtemplates'     => 'Legtöbbet hivatkozott sablonok',
 'mostcategories'          => 'Legtöbb kategóriába tartozó lapok',
 'mostimages'              => 'Legtöbbet hivatkozott fájlok',
 'mostrevisions'           => 'Legtöbb változattal rendelkező szócikkek',
@@ -1474,16 +1477,10 @@ Szűkítheted a listát a naplótípus, a műveletet végző felhasználó vagy 
 
 # E-mail user
 'mailnologin'     => 'Nincs feladó',
-'mailnologintext' => 'Ahhoz hogy másoknak emailt küldhess
-[[Special:Userlogin|be kell jelentkezned]]
-és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
+'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:Userlogin|be kell jelentkezned]] és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
-'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail címet adott meg,
-akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni.
-Feladóként a beállításaid között megadott e-mail címed
-fog szerepelni,
-hogy a címzett válaszolni tudjon.',
+'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail-címet adott meg, akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni. Feladóként a beállításaid között megadott e-mail-címed fog szerepelni, hogy a címzett válaszolni tudjon.',
 'usermailererror' => 'A postázó objektum által visszaadott hiba:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Nincs e-mail cím',
@@ -1577,11 +1574,11 @@ Visszajelzés és további segítség:
 'confirm'                     => 'Megerősítés',
 'excontent'                   => 'a lap tartalma: „$1”',
 'excontentauthor'             => 'a lap tartalma: „$1” (és csak „$2” szerkesztette)',
-'exbeforeblank'               => 'az eltávolítás előtti tartalom: $1',
+'exbeforeblank'               => 'az eltávolítás előtti tartalom: „$1”',
 'exblank'                     => 'a lap üres volt',
 'delete-confirm'              => '$1 törlése',
 'delete-legend'               => 'Törlés',
-'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, története van:',
+'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, több változata van:',
 'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti
 végleges törlésére készülsz.
 Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni,
@@ -1596,7 +1593,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletionlog'                 => 'törlési napló',
 'reverted'                    => 'Visszaállítva a korábbi változatra',
 'deletecomment'               => 'A törlés oka',
-'deleteotherreason'           => 'Az FV-ben megjelenő indoklás:',
+'deleteotherreason'           => 'További indoklás:',
 'deletereasonotherlist'       => 'Egyéb indok',
 'deletereason-dropdown'       => '*Gyakori törlési okok
 ** Szerző kérésére
@@ -1612,7 +1609,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'alreadyrolled'               => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|Vita]] | [[Special:Contributions/$2|Szerkesztései]] | [[Special:blockip/$2|Blokkolás]]) általi szerkesztését nem lehet visszavonni: időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]) végezte.',
-'editcomment'                 => 'A változtatás összefoglalója "<i>$1</i>" volt.', # only shown if there is an edit comment
+'editcomment'                 => 'A változtatás összefoglalója „<i>$1</i>” volt.', # only shown if there is an edit comment
 'revertpage'                  => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]] szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
 'sessionfailure'              => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
@@ -1794,7 +1791,7 @@ $1',
 'ipblocklist'                 => 'Blokkolt IP-címek listája',
 'ipblocklist-legend'          => 'Blokkolt felhasználó keresése',
 'ipblocklist-username'        => 'Felhasználónév vagy IP-cím:',
-'ipblocklist-summary'         => 'Lásd még a [[Special:log/block|blokkolási naplót]].',
+'ipblocklist-summary'         => 'Lásd még a [[Special:Log/block|blokkolási naplót]].',
 'ipblocklist-submit'          => 'Keresés',
 'blocklistline'               => '$1, $2 blokkolta $3 felhasználót (lejárat: $4)',
 'infiniteblock'               => 'végtelen',
@@ -1804,7 +1801,7 @@ $1',
 'createaccountblock'          => 'új felhasználó létrehozása blokkolva',
 'emailblock'                  => 'e-mail cím blokkolva',
 'ipblocklist-empty'           => 'A blokkoltak listája üres.',
-'ipblocklist-no-results'      => 'A kért IP-cím vagy felhazsnálónév nem blokkolt.',
+'ipblocklist-no-results'      => 'A kért IP-cím vagy felhasználónév nem blokkolt.',
 'blocklink'                   => 'Blokkolás',
 'unblocklink'                 => 'blokk feloldása',
 'contribslink'                => 'Szerkesztései',
@@ -1812,7 +1809,7 @@ $1',
 'blocklogpage'                => 'Blokkolási_napló',
 'blocklogentry'               => '„$1” blokkolva $2 $3 időtartamra',
 'blocklogtext'                => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:Ipblocklist|a jelenleg életben lévő blokkok listáját]].',
-'unblocklogentry'             => '"$1" blokkolása feloldva',
+'unblocklogentry'             => '„$1” blokkolása feloldva',
 'block-log-flags-anononly'    => 'csak névtelen felhasználók',
 'block-log-flags-nocreate'    => 'a fióklétrehozás letiltott',
 'block-log-flags-noautoblock' => 'az automatikus blokkolás letiltott',
@@ -2103,7 +2100,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'markaspatrolledtext'                 => 'Ellenőriztem',
 'markedaspatrolled'                   => 'Ellenőrzöttnek jelölve',
 'markedaspatrolledtext'               => 'A kiválasztott változatot ellenőrzöttnek jelölted.',
-'rcpatroldisabled'                    => 'A Friss Változtatások Ellenőrzése kikapcsolva',
+'rcpatroldisabled'                    => 'A friss változtatások járőrözése kikapcsolva',
 'rcpatroldisabledtext'                => 'A Friss Változtatások Ellenőrzése jelenleg nincs engedélyezve.',
 'markedaspatrollederror'              => 'Nem lehet ellenőrzöttnek jelölni',
 'markedaspatrollederrortext'          => 'Meg kell adnod egy ellenőrzöttként megjelölt változatot.',
@@ -2130,12 +2127,12 @@ $1',
 'nextdiff'     => 'Következő változtatások →',
 
 # Media information
-'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, aminek futtatása kárt tehet a számítógépes rendszeredben.<hr />",
+'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, futtatása során kárt tehet a számítógépedben.<hr />",
 'imagemaxsize'         => 'A kép leírólapján mutatott legnagyobb képméret:',
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, $3 oldal',
-'file-info'            => '(fájlméret: $1, MIME típus: $2)',
-'file-info-size'       => '($1 × $2 képpont, fájlméret: $3, MIME típus: $4)',
+'file-info'            => '(fájlméret: $1, MIME-típus: $2)',
+'file-info-size'       => '($1 × $2 képpont, fájlméret: $3, MIME-típus: $4)',
 'file-nohires'         => '<small>Nem érhető el nagyobb felbontású változat.</small>',
 'svg-long-desc'        => '(SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3)',
 'show-big-image'       => 'A kép nagyfelbontású változata',

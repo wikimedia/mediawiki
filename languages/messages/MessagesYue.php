@@ -1,8 +1,10 @@
 <?php
 /** Yue (粵語)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
+ * @author Siebrand
  */
 
 $skinNames = array(
@@ -653,6 +655,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userjspreview'             => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
 'userinvalidcssjstitle'     => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                   => '(己更新)',
+'note'                      => '<strong>留意:</strong>',
 'previewnote'               => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'previewconflict'           => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
 'session_fail_preview'      => '<strong>對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。

@@ -1,7 +1,8 @@
 <?php
 /** Amharic (አማርኛ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Codex Sinaiticus
  * @author Siebrand
@@ -243,7 +244,7 @@ $messages = array(
 
 'ok'                      => 'እሺ',
 'retrievedfrom'           => 'ከ «$1» ተወሰደ',
-'youhavenewmessages'      => '$1 አለዎት ($2)።',
+'youhavenewmessages'      => '$1 አሉዎት ($2)።',
 'newmessageslink'         => 'አዲስ መልእክቶች',
 'newmessagesdifflink'     => 'የመጨረሻ ለውጥ',
 'youhavenewmessagesmulti' => 'በ$1 አዲስ መልእክቶች አሉዎት',
@@ -283,7 +284,7 @@ $messages = array(
 'nosuchspecialpage' => 'እንዲህ የተባለ ልዩ ገጽ የለም',
 'nospecialpagetext' => "<big>'''ለማይኖር ልዩ ገጽ ጠይቀዋል።'''</big>
 
-የሚኖሩ ልዩ ገጾች ዝርዝር በ[[Special:Specialpages]] ሊገኝ ይችላል።",
+የሚኖሩ ልዩ ገጾች ዝርዝር በ[[Special:Specialpages|{{int:specialpages}}]] ሊገኝ ይችላል።",
 
 # General errors
 'error'                => 'ስኅተት',
@@ -510,7 +511,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'accmailtitle'              => 'የመግቢያ ቃል ተላከ።',
 'accmailtext'               => 'የመግቢያ ቃል ለ«$1» ወደ $2 ተልኳል።',
 'newarticle'                => '(አዲስ)',
-'newarticletext'            => 'የተከተሉት መያያዣ እስካሁን ወደሌለ ገጽ ነው ያመጣዎት። ገጹን ለመፍጠር ከታች በሚገኘው ሳጥን ውስጥ መተየብ ይጀምሩ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:Helppage}}|መመሪያ ገጽን]] ይመልከቱ።
+'newarticletext'            => 'እርስዎ የተከተሉት መያያዣ እስካሁን ወደማይኖር ገጽ የሚወስድ ነው። ገጹን አሁን ለመፍጠር፣ ከታች በሚገኘው ሳጥን ውስጥ መተየብ ይጀምሩ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:Helppage}}|የእርዳታ ገጽን]] ይመልከቱ።
 
 ወደዚህ በስሕተት ከሆነ የመጡት፣ የቃኝውን «Back» ቁልፍ ይጫኑ።',
 'anontalkpagetext'          => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:Userlogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",

@@ -1,7 +1,8 @@
 <?php
 /** Azerbaijani (Azərbaycan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 
@@ -243,7 +244,7 @@ $messages = array(
 'noarticletext'      => "Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə [[Special:Search/{{PAGENAME}}|bu səhifənin adını axtara]] bilər və ya '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} səhifəni siz redaktə edəbilərsiniz]'''.",
 'previewnote'        => '<strong>Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilmemişdir!</strong>',
 'editing'            => 'Redaktə $1',
-'editinguser'        => 'Redaktə $1',
+'editinguser'        => "Redaktə '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'yourtext'           => 'Metniniz',
 'yourdiff'           => 'Fərqlər',
 'templatesused'      => 'Bu səhifədə istifadə edilmiş şablonlar:',

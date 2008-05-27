@@ -1,7 +1,8 @@
 <?php
 /** Chinese (中文)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

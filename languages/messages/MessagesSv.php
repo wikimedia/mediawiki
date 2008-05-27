@@ -1,7 +1,8 @@
 <?php
 /** Swedish (Svenska)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Sannab
  * @author Habjchen
@@ -19,6 +20,7 @@
  * @author Leo Johannes
  * @author Lokal Profil
  * @author Micke
+ * @author S.Örvarr.S
  */
 
 $skinNames = array(
@@ -441,11 +443,12 @@ MySQL returnerade felen "$3<tt>: $4</tt>".',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
 'readonlytext'         => 'Databasen är tillfälligt låst för ändringar, förmodligen på grund av rutinmässigt underhåll. Efter avslutat arbete kommer den att återgå till normalläge. Den utvecklare som skrivskyddade den har angivit följande anledning: <p>$1',
-'missingarticle'       => 'Databasen borde ha funnit sidan "$1", men det gjorde den inte.
+'missingarticle'       => 'Databasen borde ha funnit texten till en sida med namnet $1, men det gjorde den inte.
 
-Den vanligaste orsaken till denna typ av fel är en utdaterad jämförelse mellan sidversioner (diff) eller en länk från versionshistoriken till en sida som raderats.
+Den vanligaste orsaken till denna typ av fel är en länk till en jämförelse mellan versioner (diff) eller till en gammal version av en sida som raderats.
 
-Om inte så är fallet, kan du ha hittat en bugg i mjukvaran. Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
+Om inte så är fallet, kan du ha hittat en bugg i mjukvaran.
+Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
@@ -517,7 +520,7 @@ Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'uid'                        => 'Användar-ID:',
 'yourrealname'               => 'Riktigt namn:',
 'yourlanguage'               => 'Språk:',
-'yournick'                   => 'Smeknamn:',
+'yournick'                   => 'Signatur:',
 'badsig'                     => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
 'badsiglength'               => 'Signaturen är för lång; den får innehålla högst $1 tecken.',
 'email'                      => 'E-post',
@@ -668,7 +671,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'userinvalidcssjstitle'     => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Uppdaterad)',
 'note'                      => '<strong>Obs!</strong>',
-'previewnote'               => 'Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!',
+'previewnote'               => '<strong>Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!</strong>',
 'previewconflict'           => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
@@ -730,7 +733,7 @@ Raderingsloggen för sidan innehåller följande:",
 # "Undo" feature
 'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
 'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
-'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[Användardiskussion:$2|diskussion]])',
+'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskussion]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -760,7 +763,7 @@ Anledningen till blockeringen var "$2".',
 'deletedrev'          => '[raderad]',
 'histfirst'           => 'Första',
 'histlast'            => 'Senaste',
-'historysize'         => '($1 byte)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 byte}})',
 'historyempty'        => '(tom)',
 
 # Revision feed
@@ -862,7 +865,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'viewprevnext'          => 'Visa ($1) ($2) ($3).',
 'showingresults'        => "Nedan visas upp till '''$1''' resultat från och med nummer #'''$2'''.",
 'showingresultsnum'     => "Nedan visas '''$3''' resultat från och med #'''$2'''.",
-'nonefound'             => '<strong>Observera:</strong>: Sökningar utan träffar beror ofta på att man försöker söka efter vanliga ord som "har" och "från", dessa ord indexeras inte och fungerar inte som söktermer. En annan orsak kan vara att du söker på flera ord, då visas bara sidor som innehåller alla orden bland sökresultaten.',
+'nonefound'             => "'''Observera:''' Som standard sker sökning endast i vissa namnrymder. Du kan pröva att skriva ''all:'' i början av din sökning om du vill söka i alla sidor (inklusive diskussionssidor, mallar, m.m.), eller så kan du att börja din sökning med namnet på den namnrymd du vill söka i.",
 'powersearch'           => 'Sök',
 'powersearchtext'       => 'Sök i namnrymderna :<br />
 $1<br />
@@ -1051,7 +1054,7 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'large-file'                  => 'Filer bör inte vara större än $1 bytes, denna är $2 bytes',
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',
 'emptyfile'                   => 'Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.',
-'fileexists'                  => 'Det finns redan en fil med detta namn. Titta på $1, såvida du inte är säker på att du vill ändra den.',
+'fileexists'                  => 'Det finns redan en fil med detta namn. Titta på <strong><tt>$1</tt></strong>, såvida du inte är säker på att du vill ändra den.',
 'filepageexists'              => 'Det finns redan en sida (men inte någon fil) med det här namnet. Kontrollera <strong><tt>$1</tt></strong> om du är osäker på om du vill ändra sidan.',
 'fileexists-extension'        => 'En fil med ett liknande namn finns redan:<br />
 Namn på den fil du försöker ladda upp: <strong><tt>$1</tt></strong><br />
@@ -1151,7 +1154,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'nolinkstoimage'            => 'Inga sidor länkar till den här bilden.',
 'sharedupload'              => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'          => 'Vänligen se $1 för mer information.',
-'shareduploadwiki-desc'     => 'Beskrivningen på $1 visas nedan.',
+'shareduploadwiki-desc'     => 'Innehållet på $1 i den gemensamma filförvaringen visas nedan.',
 'shareduploadwiki-linktext' => 'filens beskrivningssida',
 'noimage'                   => 'Det finns ingen fil med detta namn. Du kan $1.',
 'noimage-linktext'          => 'ladda upp den',
@@ -1309,6 +1312,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'booksources-text'          => 'Nedan följer en lista över länkar till webbplatser som säljer nya och begagnade böcker, och som kanske har ytterligare information om de böcker du söker.',
 
 'categoriespagetext' => 'Följande kategorier innehåller sidor eller media.',
+'data'               => 'Data',
 'userrights'         => 'Användarrättigheter',
 'groups'             => 'Användargrupper',
 'alphaindexline'     => '$1 till $2',
@@ -1510,16 +1514,16 @@ Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'protect-expiring'            => 'upphör den $1 (UTC)',
 'protect-cascade'             => 'Kaskaderande skydd - skydda samtidigt alla sidor som inkluderas på den här sidan.',
 'protect-cantedit'            => 'Du kan inte ändra skyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
-'restriction-type'            => 'Typ av skydd',
-'restriction-level'           => 'Skyddsnivå',
+'restriction-type'            => 'Typ av skydd:',
+'restriction-level'           => 'Skyddsnivå:',
 'minimum-size'                => 'Minsta storlek',
 'maximum-size'                => 'Största storlek:',
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Redigering av sidan',
-'restriction-move'   => 'Flytt av sidan',
-'restriction-create' => 'Skapande av sidan',
+'restriction-edit'   => 'Redigering',
+'restriction-move'   => 'Flyttning',
+'restriction-create' => 'Skapa sidan',
 
 # Restriction levels
 'restriction-level-sysop'         => 'helt låst',

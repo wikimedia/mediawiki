@@ -1,7 +1,8 @@
 <?php
 /** Turkmen (Türkmen)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

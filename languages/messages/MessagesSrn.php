@@ -1,7 +1,8 @@
 <?php
 /** Sranan Tongo (Sranantongo)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Adfokati
  * @author Jordi
@@ -389,7 +390,7 @@ Teki a box '''back''' ini yu browser leki yu dyaso soma ben e kon.",
 'note'                   => '<strong>Opotaki:</strong>',
 'previewnote'            => '<strong>Atessi: disi ben wan fusi; yu kenki ben no oponaki!</strong>',
 'editing'                => 'Kenki fu $1',
-'editinguser'            => 'Kenki fu lesi fu <b>$1</b>',
+'editinguser'            => "Kenki fu lesi fu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'         => 'Kenki fu $1 (seksi)',
 'editingcomment'         => 'Kenki fu $1 (opotaki)',
 'yourtext'               => 'Yu litiwrok',
@@ -467,7 +468,7 @@ A kan ben trowe efu dribi.
 'prevn'                 => 'fos $1',
 'nextn'                 => 'tra $1',
 'viewprevnext'          => '($1) ($2) ($3) libi si.',
-'powersearch'           => 'Suku',
+'powersearch'           => 'Gu suku',
 
 # Preferences page
 'preferences'              => 'Wana',

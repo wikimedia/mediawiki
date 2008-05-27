@@ -1,7 +1,8 @@
 <?php
 /** Ladino (Ladino)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author ILVI
  * @author Taichi

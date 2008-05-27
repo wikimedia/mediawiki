@@ -1,7 +1,8 @@
 <?php
 /** Samogitian (Žemaitėška)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hugo.arg
  * @author Zordsdavini
@@ -277,7 +278,7 @@ Prašuom pamiegintė vielēk. Jei šėtā napaded, pamieginkėt atsėjongtė ėr
 'session_fail_preview_html' => "<strong>Atsėprašuom! Mes nagalėm apdoroutė Tamstas keitėma diel sesėjės doumenū praradėma.</strong>
 ''Kadaogi šėtom pruojekte grīnasės HTML īr ijongts, parveiza īr pasliepta kāp atsargoma prėimonė priš JavaScript atakas.''
 <strong>Jei tā teisiets keitėma bandīms, prašuom pamiegint viel. Jei šėtā napaded, pamieginkėt atsėjongtė ėr prėsėjongtė atgal.</strong>",
-'editinguser'               => 'Taisuoms nauduotuos <b>$1</b>',
+'editinguser'               => "Taisuoms nauduotuos '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'copyrightwarning'          => 'Primenam, kū vėsks, kas patenk i {{SITENAME}}, īr laikuoma pavėišėnto palē $2 (platiau - $1). Jēgo nenuorit, kū Tamstas duovis būtou ba pasėgailiejėma keitams ė platėnams, nerašīkėt čė.<br />
 Tamsta tēpuogi pasėžadat, kū tas īr Tamstas patėis rašīts torėnīs a kuopėjouts ėš vėišū a panašiū valnū šaltėniu.
 <strong>NEKOPĖJOUKĖT AUTUORĖNIEM TEISIEM APSAUGUOTU DARBŪ BA LEIDĖMA!</strong>',
@@ -292,6 +293,7 @@ Tamsta galėt grīžtė ė redagoutė nūnā esonti poslapi, a [[Special:Userlog
 
 # "Undo" feature
 'undo-success' => 'Keitėms gal būtė atšaukts. Prašuom patėkrėntė palīgėnėma, asonti žemiau, kū patvėrtėntomiet, kū Tamsta šėta ė nuorėt padarītė, ė tumet ėšsauguokit pakeitėmos, asontios žemiau, kū ožbėngtomiet keitėma atšaukėma.',
+'undo-summary' => 'Atšauktė [[Special:Contributions/$2|$2]] ([[User_talk:$2|Aptarėms]]) versėje $1',
 
 # History pages
 'revision-info' => '$1 versėjė nauduotuojė $2',

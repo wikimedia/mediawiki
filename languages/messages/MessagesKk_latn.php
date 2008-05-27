@@ -1,7 +1,8 @@
 <?php
-/** Kazakh (Latin) (Qazaqşa (Latın))
+/** Kazakh (Latin) (Қазақша (Latin))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author GaiJin
  * @author AlefZet

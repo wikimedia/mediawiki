@@ -1,7 +1,8 @@
 <?php
 /** Italian (Italiano)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author BrokenArrow
  * @author Gianfranco
@@ -663,7 +664,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'userinvalidcssjstitle'     => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/monobook.css e non {{ns:user}}:Esempio/Monobook.css.",
 'updated'                   => '(Aggiornato)',
 'note'                      => '<strong>NOTA:</strong>',
-'previewnote'               => 'Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!',
+'previewnote'               => '<strong>Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!</strong>',
 'previewconflict'           => "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere 'Salva la pagina' in questo momento.",
 'session_fail_preview'      => '<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>',
 'session_fail_preview_html' => "<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.</strong>
@@ -1039,7 +1040,7 @@ per generare un collegamento diretto al file.",
 'large-file'                  => 'Si raccomanda di non superare le dimensioni di $1 per ciascun file; questo file è grande $2.',
 'largefileserver'             => 'Il file supera le dimensioni consentite dalla configurazione del server.',
 'emptyfile'                   => 'Il file appena caricato sembra essere vuoto. Ciò potrebbe essere dovuto ad un errore nel nome del file. Verificare che si intenda realmente caricare questo file.',
-'fileexists'                  => 'Un file con questo nome esiste già. Verificare prima $1 se non si è sicuri di volerlo sovrascrivere.',
+'fileexists'                  => 'Un file con questo nome esiste già. Verificare prima <strong><tt>$1</tt></strong> se non si è sicuri di volerlo sovrascrivere.',
 'filepageexists'              => 'Una pagina (ma non un file) con questo nome esiste già. Verificare prima <strong><tt>$1</tt></strong> se non si è sicuri di volerla modificare.',
 'fileexists-extension'        => "Un file con nome simile a questo esiste già; l'unica differenza è l'uso delle maiuscole nell'estensione:<br />
 Nome del file caricato: <strong><tt>$1</tt></strong><br />

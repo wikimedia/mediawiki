@@ -1,7 +1,8 @@
 <?php
 /** Volapük (Volapük)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Smeira
  * @author Nike
@@ -705,7 +706,7 @@ Plän: (anuik) = dif tefü fomam anuik,
 # Revision feed
 'history-feed-title'          => 'Revidajenotem',
 'history-feed-description'    => 'Revidajenotem pada at in vük',
-'history-feed-item-nocomment' => '$1 lä $2', # user at time
+'history-feed-item-nocomment' => '$1 ün $2', # user at time
 'history-feed-empty'          => 'Pad pevipöl no dabinon.
 Ba pemoükon se ragivs, u ba pevotanemon.
 Kanol [[Special:Search|sukön]] padis nulik tefik.',
@@ -923,7 +924,7 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'rcshowhidemine'                    => '$1 redakamis obik',
 'rclinks'                           => 'Jonolöd votükamis lätik $1 ün dels lätik $2<br />$3',
 'diff'                              => 'dif',
-'hist'                              => 'jenotem',
+'hist'                              => 'jen',
 'hide'                              => 'Klänedolöd',
 'show'                              => 'Jonolöd',
 'minoreditletter'                   => 'p',
@@ -1144,7 +1145,7 @@ Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL
 Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
 
 Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$7'''.",
-'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5{{PLURAL:$2||s}}.",
+'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5.",
 'statistics-mostpopular' => 'Pads suvüno palogöls:',
 
 'disambiguations'      => 'Telplänovapads',
@@ -1900,8 +1901,10 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-jpeginterchangeformatlength' => 'Jöläts nünodas: JPEG',
 'exif-datetime'                    => 'Dät e tim votükama ragiva',
 'exif-imagedescription'            => 'Tiäd magoda',
+'exif-software'                    => 'Nünömaprogram pegeböl',
 'exif-artist'                      => 'Lautan',
 'exif-copyright'                   => 'Dalaban kopiedagitäta',
+'exif-exifversion'                 => 'Fomam-Exif',
 'exif-colorspace'                  => 'Kölaspad',
 'exif-compressedbitsperpixel'      => 'Mod kobopedama magoda',
 'exif-pixelydimension'             => 'Magodavidot lonöföl',
@@ -1923,6 +1926,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gpslongitude'                => 'Lunet',
 'exif-gpsaltitude'                 => 'Geilot',
 'exif-gpstimestamp'                => 'tim-GPS (glok taumik)',
+'exif-gpssatellites'               => 'Muneds pö mafam pegeböls',
 'exif-gpsdop'                      => 'Kurat mafama',
 'exif-gpsspeedref'                 => 'Vifotastabäd',
 'exif-gpstrack'                    => 'Mufalüod',
@@ -1971,6 +1975,10 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gaincontrol-0' => 'Nonik',
 
 'exif-contrast-0' => 'Nomik',
+
+'exif-saturation-0' => 'Nomik',
+
+'exif-sharpness-0' => 'Nomik',
 
 'exif-subjectdistancerange-0' => 'Nesevädik',
 'exif-subjectdistancerange-2' => 'Loged nilik',

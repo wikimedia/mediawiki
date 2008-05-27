@@ -1,7 +1,8 @@
 <?php
 /** Zazaki (Zazaki)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  * @author Mirzali

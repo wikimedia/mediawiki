@@ -1,7 +1,8 @@
 <?php
 /** Franco-Provençal (Arpetan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author ChrisPtDe
  * @author Nike
@@ -169,7 +170,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Catègories',
-'pagecategories'        => '{{PLURAL:$1|Catègorie |Catègories }}',
+'pagecategories'        => '{{PLURAL:$1|Catègorie|Catègories}}',
 'category_header'       => 'Pâges dens la catègorie « $1 »',
 'subcategories'         => 'Sot-catègories',
 'category-media-header' => 'Fichiérs multimèdia dens la catègorie « $1 »',
@@ -291,7 +292,7 @@ $messages = array(
 'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de les tropes $1.',
 
 'versionrequired'     => 'Vèrsion $1 de MediaWiki nècèssèra',
-'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge. Consultâd [[Special:Version]].',
+'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge. Consultâd [[Special:Version|la pâge de les vèrsions]].',
 
 'ok'                      => 'D’acôrd',
 'retrievedfrom'           => 'Rècupèrâ de « $1 »',

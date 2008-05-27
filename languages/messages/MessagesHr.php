@@ -1,7 +1,8 @@
 <?php
 /** Croatian (Hrvatski)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author MayaSimFan
  * @author Roberta F.
@@ -600,8 +601,7 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'userinvalidcssjstitle'     => "'''Upozorenje:''' Nema sučelja pod imenom \"\$1\". Ne zaboravite da imena stranica s .css and .js kodom počinju malim slovom, npr. {{ns:user}}:Mate/monobook.css, a ne {{ns:user}}:Mate/Monobook.css.",
 'updated'                   => '(Ažurirano)',
 'note'                      => '<strong>Napomena:</strong>',
-'previewnote'               => 'Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da
-stranica još nije snimljena!',
+'previewnote'               => '<strong>Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da stranica još nije snimljena!</strong>',
 'previewconflict'           => 'Ovaj pregled odražava stanje u gornjem polju za unos koje će biti sačuvano
 ako pritisnete "Sačuvaj stranicu".',
 'session_fail_preview'      => '<strong>Ispričavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi.
@@ -739,7 +739,7 @@ postavili dodatna ograničenja.',
 'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim izmjenama',
 'revdelete-log'               => 'Komentar za evidenciju:',
 'revdelete-submit'            => 'Izvrši brisanje/sakrivanje',
-'revdelete-logentry'          => 'promijenjena su prava pristupa za stranicu [[$1]]',
+'revdelete-logentry'          => 'promijenjena vidljivost izmjene za [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost uređivanja [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}} postavljena u mod $2',
 'logdelete-logaction'         => '$1 {{PLURAL:$1|događaj|događaja|događaja}} od [[$3]] postavljena u mod $2',
@@ -996,7 +996,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'large-file'                  => 'Preporučljivo je da datoteke ne prelaze $1; Ova datoteka je $2.',
 'largefileserver'             => 'Veličina ove datoteke veća je od one dopuštene postavkama poslužitelja.',
 'emptyfile'                   => 'Datoteka koju ste postavili je prazna. Možda se radi o krivo utipkanom imenu datoteke. Provjerite želite li zaista postaviti ovu datoteku.',
-'fileexists'                  => 'Datoteka s ovim imenom već postoji, pogledajte $1 ako niste sigurni želite li je uistinu promijeniti.',
+'fileexists'                  => 'Datoteka s ovim imenom već postoji, pogledajte <strong><tt>$1</tt></strong> ako niste sigurni želite li je uistinu promijeniti.',
 'filepageexists'              => 'Stranica (ne slika) s ovim imenom već postoji, molimo provjerite <strong><tt>$1</tt></strong> ako niste sigurni da je želite promijeniti.',
 'fileexists-extension'        => 'Već postoji datoteka sa sličnim imenom:<br />
 Ime datoteke koju postavljate: <strong><tt>$1</tt></strong><br />
@@ -1067,7 +1067,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'filehist'                  => 'Povijest datoteke',
 'filehist-help'             => 'Kliknite na datum/vrijeme kako biste vidjeli datoteku kakva je tada bila.',
 'filehist-deleteall'        => 'izbriši sve',
-'filehist-deleteone'        => 'izbriši ovu',
+'filehist-deleteone'        => 'izbriši',
 'filehist-revert'           => 'vrati',
 'filehist-current'          => 'sadašnja',
 'filehist-datetime'         => 'Datum/Vrijeme',
@@ -1078,9 +1078,9 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'imagelinks'                => 'Poveznice slike',
 'linkstoimage'              => 'Sljedeće stranice povezuju na ovu sliku:',
 'nolinkstoimage'            => 'Nijedna stranica ne povezuje na ovu sliku.',
-'sharedupload'              => 'Ova je datoteka postavljena na zajedničkom poslužitelju i mogu je koristiti i ostali wikiji',
+'sharedupload'              => 'Ova je datoteka postavljena na zajedničkom poslužitelju i mogu je koristiti ostali wikiji',
 'shareduploadwiki'          => 'Za podrobnije informacije vidi $1.',
-'shareduploadwiki-desc'     => 'Opis na njegovoj stranici $1 je prikazan ispod.',
+'shareduploadwiki-desc'     => 'Opis datoteke $1 na zajedničkom poslužitelju je prikazan ispod',
 'shareduploadwiki-linktext' => 'stranica s opisom datoteke',
 'noimage'                   => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'          => 'postaviti',
@@ -1447,14 +1447,14 @@ Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutačno 
 'unprotectsub'                => '(Uklanjam zaštitu stranice "$1")',
 'protect-unchain'             => 'Otključaj ovlaštenja za premještanje',
 'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.
-Molim pripazite da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
+Pripazite da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
 'protect-locked-blocked'      => 'Ne možete mijenjati nivo zaštite dok ste blokirani.
 Slijede postavke stranice <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Razina zaštite ne može biti promijenjena jer je baza zaključana.
 Slijede postavke stranice <strong>$1</strong>:',
 'protect-locked-access'       => 'Nemate ovlasti za mijenjanje razine zaštite.
 Slijede trenutačne postavke stranice <strong>$1</strong>:',
-'protect-cascadeon'           => 'Ova stranica je zaštićena jer je uključena u {{PLURAL:$1|stranicu, koja ima|stranice, koje imaju|stranice, koje imaju}} uključenu kaskadnu zaštitu. Možete promijeniti stupanj zaštite ove stranice, no to neće utjecati na kaskadnu zaštitu.',
+'protect-cascadeon'           => 'Ova stranica je zaštićena jer je uključena u {{PLURAL:$1|stranicu, koja ima|stranice, koje imaju|stranice, koje imaju}} uključenu prenosivu zaštitu. Možete promijeniti stupanj zaštite ove stranice, no to neće utjecati na prenosivu zaštitu.',
 'protect-default'             => '(bez zaštite)',
 'protect-fallback'            => 'Potrebno je imati "$1" ovlasti',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrirane suradnike',

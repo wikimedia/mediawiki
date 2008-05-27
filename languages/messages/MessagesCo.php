@@ -1,7 +1,8 @@
 <?php
 /** Corsican (Corsu)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */
@@ -179,7 +180,7 @@ $messages = array(
 'accmailtitle'           => 'Parulla secreta inviata.',
 'accmailtext'            => 'A parulla secreta per "$1" hè stata inviata à l\'indirizzu $2.',
 'editing'                => 'Mudifica di $1',
-'editinguser'            => 'Mudifica di $1',
+'editinguser'            => "Mudifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'         => 'Mudifica di $1 (sezzione)',
 'editingcomment'         => 'Mudifica di $1 (cummentu)',
 'editconflict'           => 'Cunflittu di mudificazione: $1',

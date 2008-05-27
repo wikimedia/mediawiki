@@ -1,7 +1,8 @@
 <?php
 /** Min Nan Chinese (Bân-lâm-gú)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

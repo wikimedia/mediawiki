@@ -1,7 +1,8 @@
 <?php
 /** Wolof (Wolof)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ibou
  * @author SF-Language
@@ -273,7 +274,9 @@ $messages = array(
 'nosuchaction'      => 'Jëf ji xameesu ko',
 'nosuchactiontext'  => 'Jëf ji ñu biral ci bii URL wiki bi xammeewu ko.',
 'nosuchspecialpage' => 'Xëtu jagleel wu amul',
-'nospecialpagetext' => 'Da nga laaj aw xëtu jagleel wu wiki bi xamul. Ab limu xëti jagleel yépp, ma nees na koo gis ci [[{{ns:special}}:Specialpages]]',
+'nospecialpagetext' => "<big>'''Da nga laaj aw xëtu jagleel wu wiki bi xamul.'''</big>
+
+Ab limu xëti jagleel yépp, ma nees na koo gis ci [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Njuumte',
@@ -512,7 +515,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'userinvalidcssjstitle'     => "'''Moytul :''' amul wenn melin wu tuddu « $1 ». Bul fatte ne xët yiy jeexee .css ak .js seeni koj ay araf yu tuut ñoo ciy tegu/.<br />ci misaal, {{ns:user}}:Foo/'''m'''onobook.css moo baax, waaye bii du baax {{ns:user}}:Foo/'''M'''onobook.css .",
 'updated'                   => '(bees na)',
 'note'                      => '<strong>Karmat :</strong>',
-'previewnote'               => 'Lii ab wonendi rekk la; coppite yi ci xët wi dencagoo leen!',
+'previewnote'               => '<strong>Lii ab wonendi rekk la; coppite yi ci xët wi dencagoo leen!</strong>',
 'previewconflict'           => "Wonendi bi mengóo na ak mbind yi ne ci boyotu coppite bi te nii lay mel soo cuqe ci 'Denc xët wi'.",
 'session_fail_preview'      => '<strong>Jéegalu! manu noo denc say coppite ngir ñakkub ay njoxe ñeel sag duggu. Di la ñaan nga jéemaat. Su tolof-tolof bi wéyee, Jéemal a génn te duggaat. </strong>',
 'session_fail_preview_html' => "<strong>Jéegalu ! manu noo denc say coppite ngir ab ñakkub ay njoxe ñeel sag duggu.</strong>

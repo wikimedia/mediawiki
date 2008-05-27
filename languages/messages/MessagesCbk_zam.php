@@ -1,7 +1,8 @@
 <?php
 /** Chavacano de Zamboanga (Chavacano de Zamboanga)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SPQRobin
  */

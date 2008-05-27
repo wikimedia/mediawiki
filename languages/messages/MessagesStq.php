@@ -1,7 +1,8 @@
 <?php
 /** Seeltersk (Seeltersk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Maartenvdbent
  * @author Nike
@@ -237,7 +238,7 @@ $messages = array(
 'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hälpe',
 'mainpage'          => 'Haudsiede',
-'policy-url'        => 'Projekt:Laitlienjen',
+'policy-url'        => 'Project:Laitlienjen',
 'portal'            => '{{SITENAME}}-Portoal',
 'portal-url'        => 'Project:Portoal',
 'privacy'           => 'Doatenschuts',
@@ -566,7 +567,7 @@ Mechanismen fon dän Server kon dät uk ne Wiele duurje, bit eene oolde Doatäi 
 'userinvalidcssjstitle'     => "'''Woarschauenge:''' Deer existiert neen Skin \"\$1\". Betoank jädden, dät benutserspezifiske .css- un .js-Sieden män n Littek-Bouksteeuwe anfange mouten, also t.B. ''{{ns:user}}:Mustermann/monobook.css'', nit ''{{ns:user}}:Mustermann/Monobook.css''.",
 'updated'                   => '(Annerd)',
 'note'                      => '<strong>Waiwiesenge:</strong>',
-'previewnote'               => 'Dit is man ne Foarschau, die Artikkel wuude noch nit spiekerd!',
+'previewnote'               => '<strong>Dit is man ne Foarschau, die Artikkel wuude noch nit spiekerd!</strong>',
 'previewconflict'           => 'Disse Foarschau rakt dän Inhoold fon dät buppere Täkstfäild wier; so wol die Artikkel uutsjo, wan du nu spiekerjen dääst.',
 'session_fail_preview'      => '<strong>Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt. Fersäik dät jädden fonnäien. Schuul dät Problem bestounden blieuwe, logge die kuut uut un wier ien.</strong>',
 'session_fail_preview_html' => "<strong>Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt.</strong>
@@ -577,7 +578,7 @@ Mechanismen fon dän Server kon dät uk ne Wiele duurje, bit eene oolde Doatäi 
 'token_suffix_mismatch'     => '<strong>Dien Beoarbaidenge wuude touräächwiesd, deer dien Browser Teekene in dät Beoarbaidje-Token ferstummeld häd.
 Ne Spiekerenge kon dän Siedeninhoold fernäile. Dit geböärt bietiede truch ju Benutsenge fon n anonymen Proxy-Tjoonst, die der failerhaft oarbaidet.</strong>',
 'editing'                   => 'Beoarbaidjen fon $1',
-'editinguser'               => 'Beoarbaidje fon Benutser <b>$1</b>',
+'editinguser'               => "Beoarbaidje fon Benutser '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Beoarbaidje fon $1 (Apsats)',
 'editingcomment'            => 'Beoarbaidjen fon $1 (Kommentoar)',
 'editconflict'              => 'Beoarbaidengs-Konflikt: "$1"',
@@ -953,8 +954,7 @@ Jädden beoachtje Jie, dät, juust as bie do Artikkele, uur Benutsere hiere Doat
 'large-file'                  => 'Jädden neen Bielde uur $1 hoochleede; disse Doatäi is $2 groot.',
 'largefileserver'             => 'Disse Doatäi is tou groot, deer die Server so konfigurierd is, dät Doatäien bloot bit tou ne bestimde Grööte apzeptierd wäide.',
 'emptyfile'                   => 'Ju hoochleedene Doatäi is loos. Die Gruund kon n Typfailer in dän Doatäinoome weese. Kontrollierje jädden, of du ju Doatäi wuddelk hoochleede wolt.',
-'fileexists'                  => "Ne Doatäi mäd dissen Noome bestoant al. Wan du ap 'Doatäi spiekerje' klikst, wäd ju Doatäi
-uurschrieuwen. Unner $1 koast du die bewisje, of du dät wuddelk wolt.",
+'fileexists'                  => "Ne Doatäi mäd dissen Noome bestoant al. Wan du ap 'Doatäi spiekerje' klikst, wäd ju Doatäi uurschrieuwen. Unner <strong><tt>$1</tt></strong> koast du die bewisje, of du dät wuddelk wolt.",
 'filepageexists'              => 'Ne Siede (neen Bielde) mäd dissen Noomen existiert al. Wröich <strong><tt>$1</tt></strong>, of du ne Doatäi unner dissen Noome hoochleede wolt.',
 'fileexists-extension'        => 'Een Doatei mäd n äänelken Noome existiert al:<br />
 Noome fon ju hoochtouleedende Doatäi: <strong><tt>$1</tt></strong><br />
@@ -1241,7 +1241,7 @@ Lääste schällen dan wächhoald wäide.',
 
 # E-mail user
 'mailnologin'     => 'Du bäst nit anmälded.',
-'mailnologintext' => 'Du moast [[{{ns:special}}:Userlogin|anmälded weese]] un sälwen ne [[{{ns:special}}:Confirmemail|gultige]] E-Mail-Adrässe anroat hääbe, uum uur Benutsere ne E-Mail tou seenden.',
+'mailnologintext' => 'Du moast [[Special:Userlogin|anmälded weese]] un sälwen ne [[Special:Confirmemail|gultige]] E-Mail-Adrässe anroat hääbe, uum uur Benutsere ne E-Mail tou seenden.',
 'emailuser'       => 'Seende E-Mail an dissen Benutser',
 'emailpage'       => 'E-mail an Benutser',
 'emailpagetext'   => 'Wan disse Benutser ne gultige Email-Adrässe anroat häd, konnen Jie him mäd dän unnerstoundene Formuloar ne E-mail seende. As Ouseender wäd ju E-mail-Adrässe uut Jou Ienstaalengen iendrain, deermäd die Benutser Jou oantwoudje kon.',

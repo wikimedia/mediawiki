@@ -1,7 +1,8 @@
 <?php
 /** Haitian (Kreyòl ayisyen)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Masterches
  * @author Siebrand
@@ -300,7 +301,7 @@ $messages = array(
 'nosuchspecialpage' => 'Pa gen paj especial konsa',
 'nospecialpagetext' => "<big>'''Paj espesial ou demande-a envalid.'''</big>
 
-Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages]].",
+Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'           => 'Erè',
@@ -412,7 +413,7 @@ Pou ou kapab kreye paj sa a, komanse ap ekri nan bwat sa a ki anba (gade [[{{Med
 
 Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bouton '''ritounen''' nan bwozè ou a.",
 'noarticletext'          => 'Poko genyen tèks nan paj sa a, ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] oubyen [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye li].',
-'previewnote'            => 'Atansyon, tèks sa a se yon previzyalizasyon, li poko anrejistre !',
+'previewnote'            => '<strong>Atansyon, tèks sa a se yon previzyalizasyon, li poko anrejistre !</strong>',
 'editing'                => 'Modifikasyon pou $1',
 'editingsection'         => 'Modifikasyon pou $1 (seksyon)',
 'copyrightwarning'       => 'Souple, raple ou ke tout piblikasyon ki fèt nan {{SITENAME}} piblye anba kontra $2 an (wè $1 pou konnen plis). Si ou pa ta vle ke sa ou ekri pataje oubyen  modifye, ou pa dwèt soumèt yo isit.<br />

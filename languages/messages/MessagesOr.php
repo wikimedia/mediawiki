@@ -1,7 +1,8 @@
 <?php
 /** Oriya (ଓଡ଼ିଆ)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Jon Harald Søby

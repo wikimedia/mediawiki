@@ -1,7 +1,8 @@
 <?php
 /** Middle Dutch (Middelnederlands)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Ooswesthoesbes
  */

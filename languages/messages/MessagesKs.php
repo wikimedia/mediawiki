@@ -1,7 +1,8 @@
 <?php
 /** Kashmiri (कश्मीरी - (كشميري))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

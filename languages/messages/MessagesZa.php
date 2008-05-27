@@ -1,7 +1,8 @@
 <?php
 /** Zhuang ((Cuengh))
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hakka
  */

@@ -1,7 +1,8 @@
 <?php
 /** Burmese (Myanmasa)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Hakka
  */

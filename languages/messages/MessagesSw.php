@@ -1,7 +1,8 @@
 <?php
 /** Swahili (Kiswahili)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author לערי ריינהארט
  * @author Siebrand

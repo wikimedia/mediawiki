@@ -1,7 +1,8 @@
 <?php
 /** Kabyle (Taqbaylit)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Agurzil
  * @author Nike
@@ -518,7 +519,7 @@ G leɛnayek ɛreḍ tikelt nniḍen. Lukan mazal yella ugur, ffeɣ umbeɛd kcem.
 
 <strong>Lukan abeddel agi d aḥeqqani, g leɛnayek ɛreḍ tikelt nniḍen.. Lukan mazal yella ugur, ffeɣ umbeɛd kcem.</strong>",
 'editing'                   => 'Abeddel n $1',
-'editinguser'               => 'Abeddel n wemseqdac <b>$1</b>',
+'editinguser'               => "Abeddel n wemseqdac '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Abeddel n $1 (amur)',
 'editingcomment'            => 'Abeddel n $1 (awennit)',
 'editconflict'              => 'Amennuɣ deg ubeddel: $1',

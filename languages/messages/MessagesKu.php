@@ -1,7 +1,8 @@
 <?php
 /** Kurdish (Kurdî / كوردی)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  */
 

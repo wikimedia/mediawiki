@@ -1,7 +1,8 @@
 <?php
 /** Cmique Itom (Cmique Itom)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
@@ -534,7 +535,7 @@ Nexajvon. Jan necoccebj naxajvon poop, cuípo ö caápo.</strong>',
 'token_suffix_mismatch'     => '<strong>Meticpatlöx coccebj rejectöx meclient cahöx characteromde punctacion zo ticpatlöx zo iti. TicpatlÖx zo coccebj rejectöxde preventua corrupcionde textuade páhina zo. 
 Jan lajxepe occuram me usadad proxy service anon web-based buggy.</strong>',
 'editing'                   => 'Ticpatlöx $1',
-'editinguser'               => 'Ticpatlöx caitom <b>$1</b>',
+'editinguser'               => "Ticpatlöx caitom '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Ticpatlöx $1 (seccion)',
 'editingcomment'            => 'Ticpatlöx $1 (commentua)',
 'editconflict'              => 'Römjde ticpatlöxde conflictua: $1',

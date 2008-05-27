@@ -1,7 +1,8 @@
 <?php
 /** Tuvinian (Тыва дыл)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Krice from Tyvanet.com
  * @author Sborsody
@@ -310,7 +311,7 @@ $1',
 'accmailtext'        => '"{{grammar:genitive|$1}}" чажыт сөстү {{grammar:directive1|$2}} чоргузуптувус.',
 'newarticle'         => '(Чаа)',
 'editing'            => '$1 деп арынны өскертип турар',
-'editinguser'        => '<b>$1</b> деп ажыглакчыны өскертип турар',
+'editinguser'        => '<b>$1</b> деп ажыглакчыны өскертип турар ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
 'editingsection'     => '$1 деп арынның бөлгүмүн өскертип турар',
 'editingcomment'     => '$1 (комментарий) өскертип турар',
 'yourtext'           => 'Силерниң сөзүглелиңер',
