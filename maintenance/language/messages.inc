@@ -900,6 +900,7 @@ $wgMessageStructure = array(
 		'right-userrights',
 		'right-userrights-interwiki',
 		'right-siteadmin',
+		'right-writeapi',
 	),
 	'rightslog' => array(
 		'rightslog',
