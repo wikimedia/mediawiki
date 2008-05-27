@@ -2400,22 +2400,22 @@ class Title {
 			return array(array('badtitletext'));
 		}
 		if( $this->equals( $nt ) ) {
-			$errors[] = array(array('selfmove'));
+			$errors[] = array('selfmove');
 		}
 		if( !$this->isMovable() || !$nt->isMovable() ) {
-			$errors[] = array(array('immobile_namespace'));
+			$errors[] = array('immobile_namespace');
 		}
 
 		$oldid = $this->getArticleID();
 		$newid = $nt->getArticleID();
 
 		if ( strlen( $nt->getDBkey() ) < 1 ) {
-			$errors[] = array(array('articleexists'));
+			$errors[] = array('articleexists');
 		}
 		if ( ( '' == $this->getDBkey() ) ||
 			 ( !$oldid ) ||
 		     ( '' == $nt->getDBkey() ) ) {
-			$errors[] = array(array('badarticleerror'));
+			$errors[] = array('badarticleerror');
 		}
 
 		// Image-specific checks
@@ -2423,10 +2423,10 @@ class Title {
 			$file = wfLocalFile( $this );
 			if( $file->exists() ) {
 				if( $nt->getNamespace() != NS_IMAGE ) {
-					$errors[] = array(array('imagenocrossnamespace'));
+					$errors[] = array('imagenocrossnamespace');
 				}
 				if( !File::checkExtensionCompatibility( $file, $nt->getDbKey() ) ) {
-					$errors[] = array(array('imagetypemismatch'));
+					$errors[] = array('imagetypemismatch');
 				}
 			}
 		}
@@ -2443,7 +2443,7 @@ class Title {
 		global $wgUser;
 		$err = null;
 		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err ) ) ) {
-			$errors[] = array(array('hookaborted', $err));
+			$errors[] = array('hookaborted', $err);
 		}
 
 		# The move is allowed only if (1) the target doesn't exist, or
@@ -2452,13 +2452,13 @@ class Title {
 
 		if ( 0 != $newid ) { # Target exists; check for validity
 			if ( ! $this->isValidMoveTarget( $nt ) ) {
-				$errors[] = array(array('articleexists'));
+				$errors[] = array('articleexists');
 			}
 		} else {
 			$tp = $nt->getTitleProtection();
 			$right = ( $tp['pt_create_perm'] == 'sysop' ) ? 'protect' : $tp['pt_create_perm'];
 			if ( $tp and !$wgUser->isAllowed( $right ) ) {
-				$errors[] = array(array('cantmove-titleprotected'));
+				$errors[] = array('cantmove-titleprotected');
 			}
 		}
 		if(empty($errors))
