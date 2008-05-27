@@ -54,6 +54,8 @@ $datePreferenceMigrationMap = array(
 	'short tdmy',
 );
 
+$defaultDateFormat = 'dmyt';
+
 $dateFormats = array(
 	/*
 	'Standard',
