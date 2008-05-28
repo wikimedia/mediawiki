@@ -130,6 +130,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14259) Localisation message for upload button on Special:Import is now
   'import-upload' instead of 'upload'
 * Add information about user group membership to Special:Preferences
+* (bug 14146) Wrap usage section on imagepages into <div>s.
 
 === Bug fixes in 1.13 ===
 

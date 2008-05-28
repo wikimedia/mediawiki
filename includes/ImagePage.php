@@ -647,6 +647,7 @@ EOT
 			$wgOut->addWikiMsg( 'nolinkstoimage' );
 			return;
 		}
+		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
 		$wgOut->addWikiMsg( 'linkstoimage' );
 		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 
@@ -661,7 +662,7 @@ EOT
 				$wgOut->addHTML( "<li>{$link}</li>\n" );
 			}
 		}
-		$wgOut->addHTML( "</ul>\n" );
+		$wgOut->addHTML( "</ul></div>\n" );
 		$res->free();
 		
 		// Add a links to [[Special:Whatlinkshere]]
@@ -675,8 +676,8 @@ EOT
 		
 		$redirects = $this->getTitle()->getRedirectsHere( NS_IMAGE );
 		if ( count( $redirects ) == 0 ) return;
-		
 
+		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" );
 		$wgOut->addWikiMsg( 'redirectstofile' );
 		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
 
@@ -685,7 +686,7 @@ EOT
 			$link = $sk->makeKnownLinkObj( $title, "" );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
-		$wgOut->addHTML( "</ul>\n" );
+		$wgOut->addHTML( "</ul></div>\n" );
 
 	}
 	
@@ -697,6 +698,7 @@ EOT
 		$dupes = $this->getDuplicates();
 		if ( count( $dupes ) == 0 ) return;
 
+		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
 		$wgOut->addWikiMsg( 'duplicatesoffile' );
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
@@ -709,7 +711,7 @@ EOT
 					$file->getTitle()->getPrefixedText() );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
-		$wgOut->addHTML( "</ul>\n" );
+		$wgOut->addHTML( "</ul></div>\n" );
 	}
 
 	/**
