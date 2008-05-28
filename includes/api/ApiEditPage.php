@@ -93,10 +93,6 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpMinoredit'] = '';
 		if($params['recreate'])
 			$reqArr['wpRecreate'] = '';
-		if(!is_null($params['captchaid']))
-			$reqArr['wpCaptchaId'] = $params['captchaid'];
-		if(!is_null($params['captchaword']))
-			$reqArr['wpCaptchaWord'] = $params['captchaword'];
 		if(!is_null($params['section']))
 		{
 			$section = intval($params['section']);
@@ -124,10 +120,12 @@ class ApiEditPage extends ApiBase {
 		$ep->importFormData($req);
 
 		# Run hooks
-		# We need to fake $wgRequest for some of them
+		# Handle CAPTCHA parameters
 		global $wgRequest;
-		$oldRequest = $wgRequest;
-		$wgRequest = $req;
+		if(isset($params['captchaid']))
+			$wgRequest->data['wpCaptchaId'] = $params['captchaid'];
+		if(isset($params['captchaword']))
+			$wgRequest->data['wpCaptchaWord'] = $params['captchaword'];
 		$r = array();
 		if(!wfRunHooks('APIEditBeforeSave', array(&$ep, $ep->textbox1, &$r)))
 		{
@@ -140,7 +138,6 @@ class ApiEditPage extends ApiBase {
 			else
 				$this->dieUsageMsg(array('hookaborted'));
 		}
-		$wgRequest = $oldRequest;
 
 		# Do the actual save
 		$oldRevId = $articleObj->getRevIdFetched();
@@ -149,7 +146,13 @@ class ApiEditPage extends ApiBase {
 		# but that breaks API mode detection through is_null($wgTitle)
 		global $wgTitle;
 		$wgTitle = null;
+		# Fake $wgRequest for some hooks inside EditPage
+		# FIXME: This interface SUCKS
+		$oldRequest = $wgRequest;
+		$wgRequest = $req;
+
 		$retval = $ep->internalAttemptSave($result, $wgUser->isAllowed('bot') && $params['bot']);
+		$wgRequest = $oldRequest;
 		switch($retval)
 		{
 			case EditPage::AS_HOOK_ERROR:
