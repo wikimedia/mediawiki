@@ -306,6 +306,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6957) E-mail confirmation links now using English special page name
   for better compatibility and keeping the links shorter. Avoids problem
   with corrupt links in Gmail on IE 6.
+* (bug 14273) Fix for HTTP Accept header parsing with spaces as from Konqueror
 
 
 === API changes in 1.13 ===
