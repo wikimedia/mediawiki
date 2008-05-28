@@ -521,12 +521,13 @@ Twójo wužywarske konto jo se zarědowało. Njezabydni, swóje {{SITENAME}} nas
 'youremail'                  => 'E-mail:',
 'username'                   => 'Wužywarske mě:',
 'uid'                        => 'ID wužywarja:',
+'prefs-memberingroups'       => 'Cłonk {{PLURAL:$1|wužywarskeje skupiny|wužywarskeju kupkowu|wužywarskich kupkow|wužiwarskich kupkow}}:',
 'yourrealname'               => 'Realne mě *:',
 'yourlanguage'               => 'Rěc:',
 'yourvariant'                => 'Warianta:',
 'yournick'                   => 'Pódpismo:',
 'badsig'                     => 'Signatura njejo dobra; pšosym HTML pśekontrolěrowaś.',
-'badsiglength'               => 'Pódpismo jo pśedłujko. Musy mjenje ako $1 pismikow měś.',
+'badsiglength'               => 'Pódpismo jo pśedłujko. Musy mjenjej ako $1 {{PLURAL:$1|pismik|pismikowu|pismiki|pismikow}} měś.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Realne mě jo opcionalne. Jolic až jo zapódajośo wužywa se za pódpisanje wašych pśinoskow.',
 'loginerror'                 => 'Zmólka pśi pśizjawjenju',
@@ -1938,6 +1939,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-noarticle'           => 'Žeden bok za import!',
 'import-nonewrevisions'      => 'Wšykne wersije buchu južo pjerwjej importowane.',
 'xml-error-string'           => '$1 smužka $2, słup $3, (Byte $4): $5',
+'import-upload'              => 'XML-daty nagraś',
 
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',

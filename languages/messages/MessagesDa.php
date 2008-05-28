@@ -14,6 +14,7 @@
  * @author H92
  * @author S.Örvarr.S
  * @author Jan Friberg
+ * @author Ranveig
  */
 
 $namespaceNames = array(
@@ -524,6 +525,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'youremail'                  => 'E-mail:',
 'username'                   => 'Brugernavn:',
 'uid'                        => 'Bruger-ID:',
+'prefs-memberingroups'       => 'Medlemmer af {{PLURAL:$1|gruppe|grupper}}:',
 'yourrealname'               => 'Virkeligt navn:',
 'yourlanguage'               => 'Sprog:',
 'yourvariant'                => 'Sprogvariant',
@@ -579,7 +581,7 @@ Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, ska
 'createaccount-text'         => 'En bruger ($1) har oprettet en konto for $2 på {{SITENAME}}
 ($4). Password for "$2" er "$3". Du opfordres til at logge ind, og ændre kodeordet omgående.
 
-Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.',
+Denne besked kan ignoreres, hvis denne konto er oprettet som følge af en fejl.',
 'loginlanguagelabel'         => 'Sprog: $1',
 
 # Password reset dialog
@@ -1060,6 +1062,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'right-bot'                  => 'Blive behandlet som en automatiseret proces',
 'right-nominornewtalk'       => 'Mindre ændringer til diskussionssider skal ikke udløse meddelelse om ændring af disse',
 'right-apihighlimits'        => 'Brug højere grænser i API forespørgsler',
+'right-writeapi'             => "Brug af skrive API'et",
 'right-delete'               => 'Slette sider',
 'right-bigdelete'            => 'Slet sider med stor historik',
 'right-deleterevision'       => 'Slet og gendan specifikke versioner af sider',

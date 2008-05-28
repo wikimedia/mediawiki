@@ -11,6 +11,7 @@
  * @author Jon Harald Søby
  * @author SPQRobin
  * @author Timpul
+ * @author Leinad
  */
 
 $fallback = 'pl';
@@ -1187,7 +1188,7 @@ Wćepano sam \$8 {{PLURAL:\$8|plik|pliki|plikůw}}.
 
 Uod uruchůmjyńo {{GRAMMAR:D.lp|{{SITENAME}}}} {{PLURAL:\$3|'''1''' raz filowano w zajty|'''\$3''' razy filowano w zajty|bůuo '''\$3''' filowań w zajty}} i wykůnano '''\$4''' {{PLURAL:\$4|sprowjyńy|sprowjyńa|sprowjyń}}. To dowo średńo '''\$5''' {{PLURAL:\$5|sprowjyńy|sprowjyńa|sprowjyń}} na zajta i '''\$6''' {{PLURAL:\$4|filowańy|filowańa|filowań}} na sprawjyńy.
 
-Duůgość [http://meta.wikymedja.org/wiki/Help:Job_queue kolejki zadań] je '''\$7'''.",
+Duůgość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] je '''\$7'''.",
 'userstatstext'          => "Je sam {{PLURAL:$1|'''1''' zarejerowany užytkowńik|'''$1''' zarejerowanych užytkowńikůw}}. {{PLURAL:$1|Užytkowńik tyn|Spośrůd ńich '''$2''' ('''$4%''')}} mo status $5.",
 'statistics-mostpopular' => 'Zajty we kere nojčyńśći sam filujom',
 

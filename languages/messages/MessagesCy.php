@@ -331,7 +331,7 @@ $messages = array(
 'edithelp'             => 'Help gyda golygu',
 'edithelppage'         => 'Help:Golygu',
 'faq'                  => 'Cwestiynau cyffredin',
-'faqpage'              => 'Project:Cwestiynau cyffredin',
+'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Cymorth',
 'mainpage'             => 'Hafan',
 'mainpage-description' => 'Hafan',
@@ -557,7 +557,7 @@ Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwne
 'italic_tip'      => 'Testun italig',
 'link_sample'     => 'Teitl y cyswllt',
 'link_tip'        => 'Cyswllt mewnol',
-'extlink_sample'  => 'http://www.example.com cyswllt teitl',
+'extlink_sample'  => 'http://www.enghraifft.com teitl y cyswllt',
 'extlink_tip'     => 'Cyswllt allanol (cofiwch y rhagddodiad http:// )',
 'headline_sample' => 'Testun pennawd',
 'headline_tip'    => 'Pennawd lefel 2',
@@ -664,7 +664,7 @@ Bydd yn rhaid i chi gyfuno eich newidiadau chi a'r testun sydd yn bodoli eisioes
 'yourtext'                  => 'Eich testun',
 'storedversion'             => "Fersiwn o'r storfa",
 'nonunicodebrowser'         => '<strong>RHYBUDD: Nid yw eich porwr yn cydymffurfio ag Unicode. Serch hyn, mae modd i chi olygu tudalennau: bydd nodau sydd ddim yn ran o ASCII yn ymddangos yn y blwch golygu fel codau hecsadegol.</strong>',
-'editingold'                => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon.<br />Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli!</strong>",
+'editingold'                => "<strong>RHYBUDD: Rydych chi'n golygu hen ddiwygiad o'r dudalen hon. Os caiff ei chadw, bydd unrhyw newidiadau diweddarach yn cael eu colli.</strong>",
 'yourdiff'                  => 'Gwahaniaethau',
 'copyrightwarning'          => "Mae pob cyfraniad i {{SITENAME}} yn cael ei ryddhau o dan termau'r Drwydded Ddogfen Rhydd ($2) (gwelwch $1 am fanylion). Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
 Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg. '''Nid''' yw'r mwyafrif o wefannau yn y parth cyhoeddus.
@@ -1097,14 +1097,20 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'filerevert-badversion'     => "Nid oes fersiwn lleol cynt o'r ffeil hwn gyda'r amsernod a nodwyd.",
 
 # File deletion
-'filedelete'           => 'Dileu $1',
-'filedelete-legend'    => "Dileu'r ffeil",
-'filedelete-intro'     => "Rydych ar fin dileu '''[[Media:$1|$1]]'''.",
-'filedelete-comment'   => 'Sylw:',
-'filedelete-submit'    => 'Dileer',
-'filedelete-success'   => "Mae '''$1''' wedi cael ei dileu.",
-'filedelete-nofile'    => "Nid oes '''$1''' ar y wefan {{SITENAME}}.",
-'filedelete-iscurrent' => "Rydych yn ceisio dileu'r fersiwn diweddaraf o'r ffeil hwn. Rhaid gwrthdroi i fersiwn gynt yn gyntaf.",
+'filedelete'                  => 'Dileu $1',
+'filedelete-legend'           => "Dileu'r ffeil",
+'filedelete-intro'            => "Rydych ar fin dileu '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'Sylw:',
+'filedelete-submit'           => 'Dileer',
+'filedelete-success'          => "Mae '''$1''' wedi cael ei dileu.",
+'filedelete-nofile'           => "Nid oes '''$1''' ar y wefan {{SITENAME}}.",
+'filedelete-iscurrent'        => "Rydych yn ceisio dileu'r fersiwn diweddaraf o'r ffeil hwn. Rhaid gwrthdroi i fersiwn gynt yn gyntaf.",
+'filedelete-otherreason'      => 'Rheswm arall/ychwanegol:',
+'filedelete-reason-otherlist' => 'Rheswm arall',
+'filedelete-reason-dropdown'  => '*Rhesymau cyffredin dros ddileu
+** Yn torri hawlfraint
+** Dwy ffeil yn union debyg',
+'filedelete-edit-reasonlist'  => 'Rhowch reswm dros y dileu',
 
 # MIME search
 'mimesearch' => 'Chwiliad MIME',
@@ -1353,9 +1359,9 @@ Os digwydd mwy o olygiadau i\'r dudalen cyn i chi ymweld â hi, ni chewch ragor 
 
 --
 I newid eich gosodiadau gwylio, ymwelwch â
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
-Am fwy o gymorth:
+Am fwy o gymorth ac adborth:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
