@@ -127,8 +127,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13095) Search by first letters or digits in [[Special:Categories]]
 * Users moving a page can now move all subpages automatically as well
 * Sidebar is now cached for all languages
-* (bug 14259) Localisation message for upload button on Special:Import is now 'import-upload'
-  instead of 'upload'
+* (bug 14259) Localisation message for upload button on Special:Import is now
+  'import-upload' instead of 'upload'
 
 === Bug fixes in 1.13 ===
 
@@ -301,6 +301,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   disabling $wgStrictFileExtensions
 * (bug 14241) Pages can no longer be protected to levels you are not in
 * (bug 14296) Fix local name of ang: (Anglo-Saxon)
+* (bug 7715) Use date_default_timezone_* instead of TZ environment variable if
+  available
 
 === API changes in 1.13 ===
 
