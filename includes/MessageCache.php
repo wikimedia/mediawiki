@@ -264,7 +264,7 @@ class MessageCache {
 			$success = $this->setCache( $cache );
 			if ( $success ) {
 				$where[] = 'got from global cache';
-				$this->saveToCaches( $cache, $cacheKey, false );
+				$this->saveToCaches( $cache, $cacheKey, false, $code );
 			}
 			wfProfileOut( __METHOD__ . '-fromcache' );
 		}
@@ -283,7 +283,7 @@ class MessageCache {
 			$success = $this->setCache( $cache );
 			wfProfileOut( __METHOD__ . '-load' );
 			if ( $success ) {
-				$this->saveToCaches( $cache, $cacheKey );
+				$this->saveToCaches( $cache, $cacheKey, true, $code );
 			}
 			$this->unlock($cacheKey);
 		}
@@ -413,7 +413,7 @@ class MessageCache {
 			$success = $this->setCache( $cache, $cacheKey );
 			if ( $success ) {
 				# And then all caches
-				$this->saveToCaches( $cache, $cacheKey );
+				$this->saveToCaches( $cache, $cacheKey, true, $code );
 			}
 		}
 		$this->unlock($cacheKey);
@@ -430,9 +430,10 @@ class MessageCache {
 	 * @param $cache Array: cached messages with a version.
 	 * @param $cacheKey String: Identifier for the cache.
 	 * @param $memc Bool: Wether to update or not memcache.
+	 * @param $code String: Language code.
 	 * @return False on somekind of error.
 	 */
-	protected function saveToCaches( $cache, $cacheKey, $memc = true ) {
+	protected function saveToCaches( $cache, $cacheKey, $memc = true, $code = false ) {
 		wfProfileIn( __METHOD__ );
 		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized;
 
