@@ -50,7 +50,7 @@ function wfSpecialRevisiondelete( $par = null ) {
 	# does not exist...might be helpful
 	$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 	LogEventsList::showLogExtract( $wgOut, 'delete', $page->getPrefixedText() );
-	if( $wgUser->isAllowed( 'suppress' ) ){
+	if( $wgUser->isAllowed( 'suppressionlog' ) ){
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $wgOut, 'suppress', $page->getPrefixedText() );
 	}
