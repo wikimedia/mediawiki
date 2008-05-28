@@ -1266,7 +1266,7 @@ function wfClearOutputBuffers() {
 function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 	# No arg means accept anything (per HTTP spec)
 	if( !$accept ) {
-		return array( $def => 1 );
+		return array( $def => 1.0 );
 	}
 
 	$prefs = array();
@@ -1275,12 +1275,12 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
 
 	foreach( $parts as $part ) {
 		# FIXME: doesn't deal with params like 'text/html; level=1'
-		@list( $value, $qpart ) = explode( ';', $part );
+		@list( $value, $qpart ) = explode( ';', trim( $part ) );
 		$match = array();
 		if( !isset( $qpart ) ) {
-			$prefs[$value] = 1;
+			$prefs[$value] = 1.0;
 		} elseif( preg_match( '/q\s*=\s*(\d*\.\d+)/', $qpart, $match ) ) {
-			$prefs[$value] = $match[1];
+			$prefs[$value] = floatval($match[1]);
 		}
 	}
 
