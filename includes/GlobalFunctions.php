@@ -87,6 +87,28 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	}
 }
 
+if ( !function_exists( 'date_default_timezone_get' ) ) {
+	/**
+	 * Exists in PHP 5.1.0+
+	 * Simulates functionality partially.
+	 * @return String: Environment timezone.
+	 */
+	function date_default_timezone_get() {
+		return getenv( 'TZ' );
+	}
+}
+if ( !function_exists( 'date_default_timezone_set' ) ) {
+	/**
+	 * Exists in PHP 5.1.0+
+	 * Simulates functionality partially.
+	 * @param String: Timezone to set to.
+	 * @return Boolean: Indication regarding if setting was successful.
+	 */
+	function date_default_timezone_set( $setting ) {
+		return putenv( 'TZ=' . $setting );
+	}
+}
+
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
  */

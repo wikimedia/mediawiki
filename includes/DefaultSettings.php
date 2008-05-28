@@ -2444,7 +2444,7 @@ $wgLocaltimezone = null;
  * this in conjunction with the signature timezone and override the TZ
  * environment variable like so:
  *   $wgLocaltimezone="Europe/Berlin";
- *   putenv("TZ=$wgLocaltimezone");
+ *   date_default_timezone_set( $wgLocaltimezone );
  *   $wgLocalTZoffset = date("Z") / 60;
  *
  * Leave at NULL to show times in universal time (UTC/GMT).

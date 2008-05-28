@@ -2381,11 +2381,10 @@ class Parser
 		# Use the time zone
 		global $wgLocaltimezone;
 		if ( isset( $wgLocaltimezone ) ) {
-			$oldtz = getenv( 'TZ' );
-			putenv( 'TZ='.$wgLocaltimezone );
+			$oldtz = date_default_timezone_get();
+			date_default_timezone_set( $wgLocaltimezone );
 		}
 
-		wfSuppressWarnings(); // E_STRICT system time bitching
 		$localTimestamp = date( 'YmdHis', $ts );
 		$localMonth = date( 'm', $ts );
 		$localMonthName = date( 'n', $ts );
@@ -2396,9 +2395,8 @@ class Parser
 		$localYear = date( 'Y', $ts );
 		$localHour = date( 'H', $ts );
 		if ( isset( $wgLocaltimezone ) ) {
-			putenv( 'TZ='.$oldtz );
+			date_default_timezone_set( $oldtz );
 		}
-		wfRestoreWarnings();
 
 		switch ( $index ) {
 			case 'currentmonth':
@@ -3703,11 +3701,11 @@ class Parser
 		$tz = 'UTC';
 		if ( isset( $wgLocaltimezone ) ) {
 			$unixts = wfTimestamp( TS_UNIX, $ts );
-			$oldtz = getenv( 'TZ' );
-			putenv( 'TZ='.$wgLocaltimezone );
+			$oldtz = date_default_timezone_get();
+			date_default_timezone_set( $wgLocaltimezone );
 			$ts = date( 'YmdHis', $unixts );
 			$tz = date( 'T', $unixts );  # might vary on DST changeover!
-			putenv( 'TZ='.$oldtz );
+			date_default_timezone_set( $oldtz );
 		}
 		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tz)";
 
