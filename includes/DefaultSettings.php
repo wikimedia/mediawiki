@@ -1155,7 +1155,7 @@ $wgGroupPermissions['bureaucrat']['userrights']  = true;
 // To hide revisions/log items from users and Sysops
 #$wgGroupPermissions['suppress']['suppressrevision'] = true;
 // For private suppression log access
-#$wgGroupPermissions['suppress']['suppress'] = true;
+#$wgGroupPermissions['suppress']['suppressionlog'] = true;
 
 /**
  * The developer group is deprecated, but can be activated if need be
@@ -2512,7 +2512,7 @@ $wgLogTypes = array( '',
  * Logs should remain non-transcludable
  */
 $wgLogRestrictions = array(
-	'suppress' => 'suppress'
+	'suppress' => 'suppressionlog'
 );
 
 /**
