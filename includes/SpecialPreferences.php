@@ -603,9 +603,44 @@ class PreferencesForm {
 			$this->tableRow( Xml::element( 'h2', null, wfMsg( 'prefs-personal' ) ) )
 		);
 
+		# Get groups to which the user belongs
+		$userEffectiveGroups = $wgUser->getEffectiveGroups();
+		$userEffectiveGroupsArray = array();
+		foreach( $userEffectiveGroups as $ueg ) {
+			if( $ueg == '*' ) {
+				// Skip the default * group, seems useless here
+				continue;
+			}
+			$msgName = 'group-' . $ueg;
+			$groupName = wfMsg( $msgName );
+			if( wfEmptyMsg( $msgName, $groupName ) ) {
+				// No localized groupname available
+				$groupName = $ueg;
+			}
+			$userEffectiveGroupsArray[] = $groupName;
+		}
+		asort( $userEffectiveGroupsArray );
+
+		$sk = $wgUser->getSkin();
+		$toolLinks = array();
+		$toolLinks[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'ListGroupRights' ), wfMsg( 'listgrouprights' ) );
+		if( $wgUser->isAllowed( 'userrights' ) ) {
+			$toolLinks[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userrights' ),
+						wfMsg( 'prefs-changemembership' ),
+						'user=' . htmlspecialchars( $wgUser->getName() )
+					);
+		}
+
 		$userInformationHtml =
 			$this->tableRow( wfMsgHtml( 'username' ), htmlspecialchars( $wgUser->getName() ) ) .
 			$this->tableRow( wfMsgHtml( 'uid' ), htmlspecialchars( $wgUser->getId() ) ) .
+
+			$this->tableRow(
+				wfMsgExt( 'prefs-memberingroups', array( 'parseinline' ), count( $userEffectiveGroupsArray ) ),
+				implode( wfMsg( 'comma-separator' ), $userEffectiveGroupsArray ) . 
+				'<br />(' . implode( ' | ', $toolLinks ) . ')'
+			) .
+
 			$this->tableRow(
 				wfMsgHtml( 'prefs-edits' ),
 				$wgLang->formatNum( User::edits( $wgUser->getId() ) )
