@@ -307,7 +307,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for better compatibility and keeping the links shorter. Avoids problem
   with corrupt links in Gmail on IE 6.
 * (bug 14273) Fix for HTTP Accept header parsing with spaces as from Konqueror
-
+* (bug 14312) Update LanguageKaa.php for handling transform issues with i to İ
+  and I to ı
 
 === API changes in 1.13 ===
 

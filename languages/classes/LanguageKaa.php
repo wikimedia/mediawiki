@@ -19,13 +19,31 @@ class LanguageKaa extends Language {
 		/* Full code of function convertGrammar() is in development. Updates coming soon. */
 		return $word;
 	}
-
+	/*
+	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
+	 *
+	 */
 	function ucfirst ( $string ) {
 		if ( $string[0] == 'i' ) {
-			return 'İ' . substr( $string, 1 );
+			$string = 'İ' . substr( $string, 1 );
 		} else {
-			return parent::ucfirst( $string );
+			$string = parent::ucfirst( $string );
 		}
+		return $string;
+
+	}
+
+	/*
+	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
+	 *
+	 */
+	function lcfirst ( $string ) {
+		if ( $string[0] == 'I' ) {
+			$string = 'ı' . substr( $string, 1 );
+		} else {
+			$string = parent::lcfirst( $string );
+		}
+		return $string;
 	}
 
 	/**
