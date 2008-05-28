@@ -1279,6 +1279,7 @@ Sedemekê binivîse!',
 'ipbotheroption'              => 'yên din',
 'ipbotherreason'              => 'Sedemekî din',
 'ipbhidename'                 => 'Navî bikarhêner / adresê IP ji "pirtûkê" astengkirinê, lîsteya astengkirinên nuh û lîsteya bikarhêneran veşêre',
+'ipbwatchuser'                => 'Rûpelên bikarhênerê û guftûgoyê bişopîne',
 'badipaddress'                => 'Bikarhêner bi vî navî tune',
 'blockipsuccesssub'           => 'Blok serkeftî',
 'blockipsuccesstext'          => '"$1" hat asteng kirin.

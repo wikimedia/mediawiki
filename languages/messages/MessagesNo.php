@@ -535,6 +535,7 @@ Brukerkontoen din har blitt opprettet. Ikke glem å endre [[Special:Preferences|
 'youremail'                  => 'E-post:',
 'username'                   => 'Brukernavn:',
 'uid'                        => 'Bruker-ID:',
+'prefs-memberingroups'       => 'Medlem i følgende {{PLURAL:$1|gruppe|grupper}}:',
 'yourrealname'               => 'Virkelig navn:',
 'yourlanguage'               => 'Språk:',
 'yournick'                   => 'Signatur:',
@@ -640,7 +641,7 @@ Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 * Blokkeringen utgår: $6
 * Blokkering ment på: $7
 
-Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen. Du kan ikke bruke «E-post til denne brukeren-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]]. Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5. Vennligst ta med begge disse ved henvendelser.",
+Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen. Du kan ikke bruke «E-post til denne brukeren»-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]] og du ikke er blokkert fra å sende e-post. Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5. Vennligst ta med begge disse ved henvendelser.",
 'autoblockedtext'                  => "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.
 Den oppgitte grunnen var:
 
@@ -1054,6 +1055,7 @@ se math/README for oppsett.',
 'right-bot'                  => 'Bli behandlet som en automatisk prosess',
 'right-nominornewtalk'       => 'Får ikke «Du har nye meldinger»-beskjeden ved mindre endringer på diskusjonsside',
 'right-apihighlimits'        => 'Bruke API med høyere grenser',
+'right-writeapi'             => 'Redigere via API',
 'right-delete'               => 'Slette sider',
 'right-bigdelete'            => 'Slette sider med stor historikk',
 'right-deleterevision'       => 'Slette og gjenopprette enkeltrevisjoner av sider',
@@ -2571,7 +2573,7 @@ Prøv vanlig forhåndsvisning.',
 'version-skin-extension-functions' => 'Skalltilleggsfunksjoner',
 'version-hook-name'                => 'Navn',
 'version-hook-subscribedby'        => 'Brukes av',
-'version-version'                  => 'Versjon',
+'version-version'                  => 'versjon',
 'version-license'                  => 'Lisens',
 'version-software'                 => 'Installert programvare',
 'version-software-product'         => 'Produkt',

@@ -772,7 +772,7 @@ Actualment hi ha $1 crides i n'haurien de ser menys de $2.",
 'expensive-parserfunction-category'       => 'Pàgines amb massa crides de parser function',
 'post-expand-template-inclusion-warning'  => "Avís: La mida d'inclusió de la plantilla és massa gran.
 No s'inclouran algunes plantilles.",
-'post-expand-template-inclusion-category' => "Les pàgines on s'excedeix la mida d'inclusió de les plantilles.",
+'post-expand-template-inclusion-category' => "Pàgines on s'excedeix la mida d'inclusió de les plantilles",
 'post-expand-template-argument-warning'   => "Avís: Aquesta pàgina conté com a mínim un argument de plantilla que té una mida d'expansió massa llarga.
 Se n'han omès els arguments.",
 'post-expand-template-argument-category'  => "Pàgines que contenen arguments de plantilla que s'han omès",
@@ -1083,6 +1083,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'right-bot'                  => 'Ésser tractat com a procés automatitzat',
 'right-nominornewtalk'       => "Les edicions menors en pàgines de discussió d'usuari no generen l'avís de nous missatges",
 'right-apihighlimits'        => "Utilitza límits més alts en les consultes a l'API",
+'right-writeapi'             => "Fer servir l'escriptura a l'API",
 'right-delete'               => 'Esborrar pàgines',
 'right-bigdelete'            => 'Esborrar pàgines amb historials grans',
 'right-deleterevision'       => 'Esborrar i restaurar versions específiques de pàgines',
@@ -2026,6 +2027,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'import-noarticle'           => 'No hi ha cap pàgina per importar!',
 'import-nonewrevisions'      => "Totes les revisions s'havien importat abans.",
 'xml-error-string'           => '$1 a la línia $2, columna $3 (byte $4): $5',
+'import-upload'              => 'Carrega dades XML',
 
 # Import log
 'importlogpage'                    => "Registre d'importació",

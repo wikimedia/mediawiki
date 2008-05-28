@@ -910,33 +910,56 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'files'                    => 'Figura',
 
 # User rights
-'userrights'                 => 'Ndrysho privilegjet e përdoruesve', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Ndrysho grupet e përdoruesit',
-'userrights-user-editname'   => 'Fusni emrin e përdoruesit:',
-'editusergroup'              => 'Redaktoni Grupet e Përdoruesve',
-'editinguser'                => "Duke ndryshuar privilegjet e përdoruesit '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Anëtarësimi tek grupet',
-'saveusergroups'             => 'Ruaj Grupin e Përdoruesve',
-'userrights-groupsmember'    => 'Anëtar i:',
-'userrights-groupsremovable' => 'Grupet që mund të hiqen:',
-'userrights-groupsavailable' => 'Të mundshme:',
-'userrights-reason'          => 'Arsyeja për ndryshimin:',
-'userrights-available-none'  => 'Nuk ju lejohet anëtarsimi.',
+'userrights'                       => 'Ndrysho privilegjet e përdoruesve', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'           => 'Ndrysho grupet e përdoruesit',
+'userrights-user-editname'         => 'Fusni emrin e përdoruesit:',
+'editusergroup'                    => 'Redaktoni Grupet e Përdoruesve',
+'editinguser'                      => "Duke ndryshuar privilegjet e përdoruesit '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'         => 'Anëtarësimi tek grupet',
+'saveusergroups'                   => 'Ruaj Grupin e Përdoruesve',
+'userrights-groupsmember'          => 'Anëtar i:',
+'userrights-groupsremovable'       => 'Grupet që mund të hiqen:',
+'userrights-groupsavailable'       => 'Të mundshme:',
+'userrights-groups-help'           => 'Mund të ndryshoni anëtarësimin e këtij përdoruesi në grupe:
+* Kutia e zgjedhur shënon që përdoruesi është anëtar në atë grup
+* Kutia e pazgjedhur shënon që përdoruesi nuk është anëtar në atë grup
+* Një * shënon që nuk mund ta hiqni grupin pasi ta keni shtuar (dhe anasjelltas).',
+'userrights-reason'                => 'Arsyeja për ndryshimin:',
+'userrights-available-none'        => 'Nuk ju lejohet anëtarsimi.',
+'userrights-available-add'         => 'Mund të anëtarësoni cilindo përdorues tek {{PLURAL:$2|ky grup|këto grupe}}: $1.',
+'userrights-available-remove'      => 'Mund të çanëtarësoni cilindo përdorues nga {{PLURAL:$2|ky grup|këto grupe}}: $1.',
+'userrights-available-add-self'    => 'Mund të anëtarësoheni tek {{PLURAL:$2|ky grup|këto grupe}}: $1.',
+'userrights-available-remove-self' => 'Mund të çanëtarësoheni nga {{PLURAL:$2|ky grup|këto grupe}}: $1.',
+'userrights-no-interwiki'          => 'Nuk keni leje për të ndryshuar privilegjet e përdoruesve në wiki të tjera.',
+'userrights-nodatabase'            => 'Regjistri $1 nuk ekziston ose nuk është vendor.',
+'userrights-nologin'               => 'Duhet të [[Special:Userlogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
+'userrights-notallowed'            => 'Llogaria juaj nuk ju lejon të ndryshoni privilegjet e përdoruesve.',
+'userrights-changeable-col'        => 'Grupe që mund të ndryshoni',
+'userrights-unchangeable-col'      => "Grupe që s'mund të ndryshoni",
 
 # Groups
-'group'            => 'Grupi:',
-'group-bot'        => 'Robot',
-'group-sysop'      => 'Administrues',
-'group-bureaucrat' => 'Burokrat',
-'group-all'        => '(të gjitha)',
+'group'               => 'Grupi:',
+'group-user'          => 'Përdorues',
+'group-autoconfirmed' => 'Përdorues të vërtetuar automatikisht',
+'group-bot'           => 'Robot',
+'group-sysop'         => 'Administrues',
+'group-bureaucrat'    => 'Burokrat',
+'group-suppress'      => 'Kujdestari',
+'group-all'           => '(të gjitha)',
 
-'group-bot-member'        => 'Robot',
-'group-sysop-member'      => 'Administrues',
-'group-bureaucrat-member' => 'Burokrat',
+'group-user-member'          => 'Përdorues',
+'group-autoconfirmed-member' => 'Përdorues i vërtetuar automatikisht',
+'group-bot-member'           => 'Robot',
+'group-sysop-member'         => 'Administrues',
+'group-bureaucrat-member'    => 'Burokrat',
+'group-suppress-member'      => 'Kujdestari',
 
-'grouppage-bot'        => '{{ns:project}}:Robotë',
-'grouppage-sysop'      => '{{ns:project}}:Administrues',
-'grouppage-bureaucrat' => '{{ns:project}}:Burokratë',
+'grouppage-user'          => '{{ns:project}}:Përdorues',
+'grouppage-autoconfirmed' => '{{ns:project}}:Përdorues të vërtetuar automatikisht',
+'grouppage-bot'           => '{{ns:project}}:Robotë',
+'grouppage-sysop'         => '{{ns:project}}:Administrues',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burokratë',
+'grouppage-suppress'      => '{{ns:project}}:Kujdestari',
 
 # User rights log
 'rightslog'      => 'Regjistri i privilegjeve',
@@ -977,6 +1000,8 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'recentchangeslinked-noresult' => 'Nuk ka pasur ndryshime tek faqet e lidhura gjatë kohës së dhënë.',
 'recentchangeslinked-summary'  => "Kjo është një listë e ndryshimeve së fundmi të faqeve të lidhura nga faqja e dhënë (ose bëjnë pjesë tek kategoria e dhënë).
 Faqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të '''theksuara'''.",
+'recentchangeslinked-page'     => 'Emri i faqes:',
+'recentchangeslinked-to'       => 'Trego ndryshimet e faqeve që lidhen tek faqja e dhënë',
 
 # Upload
 'upload'                      => 'Ngarkoni skeda',
@@ -1399,10 +1424,13 @@ Mund të ndryshoni nivelin e mbrojtjes të kësaj faqeje por kjo nuk do të ndry
 'restriction-level'           => 'Mbrojtjet:',
 'minimum-size'                => 'Madhësia minimale',
 'maximum-size'                => 'Madhësia maksimale',
+'pagesize'                    => '(B)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Redaktimi',
-'restriction-move' => 'Zhvendosja',
+'restriction-edit'   => 'Redaktimi',
+'restriction-move'   => 'Zhvendosja',
+'restriction-create' => 'Krijo',
+'restriction-upload' => 'Ngarko',
 
 # Restriction levels
 'restriction-level-sysop'         => 'mbrojtje e plotë',
@@ -1458,16 +1486,24 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'sp-contributions-submit'      => 'Kërko',
 
 # What links here
-'whatlinkshere'       => 'Lidhjet këtu',
-'whatlinkshere-title' => 'Faqe që lidhin me $1',
-'linklistsub'         => '(Listë lidhjesh)',
-'linkshere'           => "Faqet e mëposhtme lidhen këtu '''[[:$1]]''':",
-'nolinkshere'         => "Asnjë faqe nuk lidhet tek '''[[:$1]]'''.",
-'isredirect'          => 'faqe përcjellëse',
-'istemplate'          => 'përfshirë',
-'whatlinkshere-prev'  => '{{PLURAL:$1|e kaluara|të kaluarat $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|tjetra|tjerat $1}}',
-'whatlinkshere-links' => '← lidhje',
+'whatlinkshere'            => 'Lidhjet këtu',
+'whatlinkshere-title'      => 'Faqe që lidhin me $1',
+'whatlinkshere-page'       => 'Faqja:',
+'linklistsub'              => '(Listë lidhjesh)',
+'linkshere'                => "Faqet e mëposhtme lidhen këtu '''[[:$1]]''':",
+'nolinkshere'              => "Asnjë faqe nuk lidhet tek '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Nuk ka faqe në hapësirën e zgjedhur që lidhen tek '''[[:$1]]'''.",
+'isredirect'               => 'faqe përcjellëse',
+'istemplate'               => 'përfshirë',
+'isimage'                  => 'lidhje figure',
+'whatlinkshere-prev'       => '{{PLURAL:$1|e kaluara|të kaluarat $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|tjetra|tjerat $1}}',
+'whatlinkshere-links'      => '← lidhje',
+'whatlinkshere-hideredirs' => '$1 përcjellimet',
+'whatlinkshere-hidetrans'  => '$1 përfshirjet',
+'whatlinkshere-hidelinks'  => '$1 lidhjet',
+'whatlinkshere-hideimages' => '$1 lidhjet e figurave',
+'whatlinkshere-filters'    => 'Filtra',
 
 # Block/unblock
 'blockip'                     => 'Blloko përdorues',
@@ -1660,6 +1696,8 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-ca-watch'                => 'Shtoje faqen në lisën e faqeve nën mbikqyrje',
 'tooltip-ca-unwatch'              => 'Hiqe faqen nga lista e faqeve nën mbikqyrje.',
 'tooltip-search'                  => 'Kërko në projekt',
+'tooltip-search-go'               => 'Shko tek faqja me këtë emër nëse ekziston',
+'tooltip-search-fulltext'         => 'Kërko faqet me këtë tekst',
 'tooltip-p-logo'                  => 'Figura e Faqes Kryesore',
 'tooltip-n-mainpage'              => 'Vizitoni Faqen kryesore',
 'tooltip-n-portal'                => 'Mbi projektin, çka mund të bëni për të dhe ku gjenden faqet.',
@@ -1676,6 +1714,8 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-t-emailuser'             => 'Dërgoni një email përdoruesit',
 'tooltip-t-upload'                => 'Ngarkoni figura ose skeda të tjera',
 'tooltip-t-specialpages'          => 'Lista e të gjitha faqeve speciale.',
+'tooltip-t-print'                 => 'Version i shtypshëm i kësaj faqeje',
+'tooltip-t-permalink'             => 'Lidhja e përhershme tek ky version i faqes',
 'tooltip-ca-nstab-main'           => 'Shikoni përmbajtjen e atikullit.',
 'tooltip-ca-nstab-user'           => 'Shikoni faqen e përdoruesit',
 'tooltip-ca-nstab-media'          => 'Shikoni faqen e skedës',
@@ -1692,6 +1732,8 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-diff'                    => 'Trego ndryshimet që Ju i keni bërë tekstit.',
 'tooltip-compareselectedversions' => 'Shikoni krahasimin midis dy versioneve të zgjedhura të kësaj faqeje.',
 'tooltip-watch'                   => 'Mbikqyre këtë faqe',
+'tooltip-recreate'                => 'Rikrijoje faqen edhe nëse është grisur më parë',
+'tooltip-upload'                  => 'Fillo ngarkimin',
 
 # Stylesheets
 'monobook.css' => '/* redaktoni këtë faqe për të përshtatur pamjen Monobook për tëra faqet tuaja */',
@@ -1703,6 +1745,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 
 # Attribution
 'anonymous'        => 'Përdorues anonim të {{SITENAME}}',
+'siteuser'         => 'Përdoruesi $1 nga {{SITENAME}}',
 'lastmodifiedatby' => 'Kjo faqe është redaktuar së fundit më $2, $1 nga $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bazuar në punën e: $1',
 'others'           => 'të tjerë',
@@ -1947,21 +1990,24 @@ Të tjerat do të fshihen.
 'monthsall'        => 'të gjitha',
 
 # E-mail address confirmation
-'confirmemail'            => 'Vërtetoni adresën tuaj',
-'confirmemail_noemail'    => 'Ju nuk keni dhënë email të sakt te [[Special:Preferences|parapëlqimet e juaja]].',
-'confirmemail_text'       => 'Për të marrë email duhet të vërtetoni adresen tuaj. Shtypni butonin e mëposhtëm për të dërguar një email vërtetimi tek adresa juaj. Email-i do të përmbajë një lidhje me kod të shifruar. Duke ndjekur lidhjen nëpërmjet shfletuesit tuaj do të vërtetoni adresën.',
-'confirmemail_send'       => 'Dërgo vërtetimin',
-'confirmemail_sent'       => 'Email-i për vërtetim është dërguar.',
-'confirmemail_sendfailed' => 'Nuk munda të dërgoj email-in e vërtetimit. Kontrolloni adresën tuaj për gabime shtypi.
+'confirmemail'             => 'Vërtetoni adresën tuaj',
+'confirmemail_noemail'     => 'Ju nuk keni dhënë email të sakt te [[Special:Preferences|parapëlqimet e juaja]].',
+'confirmemail_text'        => 'Për të marrë email duhet të vërtetoni adresen tuaj. Shtypni butonin e mëposhtëm për të dërguar një email vërtetimi tek adresa juaj. Email-i do të përmbajë një lidhje me kod të shifruar. Duke ndjekur lidhjen nëpërmjet shfletuesit tuaj do të vërtetoni adresën.',
+'confirmemail_pending'     => '<div class="error">Një kod vërtetimi ju është dërguar më parë. Nëse sapo hapët llogarinë tuaj prisni disa minuta deri sa t\'iu arrijë mesazhi përpara se të kërkoni një kod të ri.</div>',
+'confirmemail_send'        => 'Dërgo vërtetimin',
+'confirmemail_sent'        => 'Email-i për vërtetim është dërguar.',
+'confirmemail_oncreate'    => 'Një kod vërtetimi është dërguar tek adresa juaj e email-it.
+Ky kod nuk kërkohet për të hyrë brenda në llogarinë tuaj, por nevojitet për të mundësuar mjetet që përdorin email në këtë wiki.',
+'confirmemail_sendfailed'  => 'Nuk munda të dërgoj email-in e vërtetimit. Kontrolloni adresën tuaj për gabime shtypi.
 
 Postieri më tha: $1',
-'confirmemail_invalid'    => 'Kodi i shifrimit të vërtetimit është gabim ose ka skaduar.',
-'confirmemail_needlogin'  => 'Ju duhet të $1 për ta konfirmuar email-adresën',
-'confirmemail_success'    => 'Adresa juaj është vërtetuar. Mund të hyni brënda dhe të përdorni wiki-n.',
-'confirmemail_loggedin'   => 'Adresa juaj është vërtetuar.',
-'confirmemail_error'      => 'Pati gabim gjatë ruajtjes së vërtetimit tuaj.',
-'confirmemail_subject'    => 'Vërtetim adrese nga {{SITENAME}}',
-'confirmemail_body'       => 'Dikush, ndoshta ju nga IP adresa $1, ka hapur llogarinë "$2" tek {{SITENAME}} dhe ka dhënë këtë adresë email-i.
+'confirmemail_invalid'     => 'Kodi i shifrimit të vërtetimit është gabim ose ka skaduar.',
+'confirmemail_needlogin'   => 'Ju duhet të $1 për ta konfirmuar email-adresën',
+'confirmemail_success'     => 'Adresa juaj është vërtetuar. Mund të hyni brënda dhe të përdorni wiki-n.',
+'confirmemail_loggedin'    => 'Adresa juaj është vërtetuar.',
+'confirmemail_error'       => 'Pati gabim gjatë ruajtjes së vërtetimit tuaj.',
+'confirmemail_subject'     => 'Vërtetim adrese nga {{SITENAME}}',
+'confirmemail_body'        => 'Dikush, ndoshta ju nga IP adresa $1, ka hapur llogarinë "$2" tek {{SITENAME}} dhe ka dhënë këtë adresë email-i.
 
 Në qoftë se është me të vertetë llogaria juaj, vërtetoni këtë adresë duke ndjekur lidhjen e mëposhtme tek {{SITENAME}} për të mundësuar përdorimin e mjeteve që kërkojnë email:
 
@@ -1972,6 +2018,8 @@ Në qoftë se *nuk* është llogaria juaj atëhere ndiqni këtë lidhje për ta 
 $5
 
 Kodi i shifruar do të skadojë më $4.',
+'confirmemail_invalidated' => 'Vërtetimi i adresës së email-it është tërhequr',
+'invalidateemail'          => 'Tërhiq vërtetimin e email-it',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Lidhja Interwiki nuk është i mundshëm]',
@@ -2008,13 +2056,17 @@ $1',
 'searchnamed'      => "Kërko për artikuj të quajtur ''$1''.",
 'articletitles'    => "Artikuj që fillojnë me ''$1''",
 'hideresults'      => 'Fshih rezultatet',
+'useajaxsearch'    => 'Përdor kërkim me AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => '← faqja e kaluar',
 'imgmultipagenext' => 'faqja tjetër →',
 'imgmultigo'       => 'Shko!',
+'imgmultigoto'     => 'Shko tek faqja $1',
 
 # Table pager
+'ascending_abbrev'         => 'ngritje',
+'descending_abbrev'        => 'zbritje',
 'table_pager_next'         => 'Faqja më pas',
 'table_pager_prev'         => 'Faqja më parë',
 'table_pager_first'        => 'Faqja e parë',
@@ -2028,6 +2080,16 @@ $1',
 'autosumm-replace' => "Faqja u zëvendësua me '$1'",
 'autoredircomment' => 'Përcjellim te [[$1]]',
 'autosumm-new'     => 'Faqe e re: $1',
+
+# Live preview
+'livepreview-loading' => 'Duke punuar…',
+'livepreview-ready'   => 'Duke punuar… Gati!',
+'livepreview-failed'  => 'Parapamja e menjëhershme dështoi! Provoni parapamjen e zakonshme.',
+'livepreview-error'   => 'S\'munda të lidhem: $1 "$2". Provoni parapamjen e zakonshme.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Ndryshimet më të reja se $1 sekonda mund të mos tregohen në listë.',
+'lag-warn-high'   => 'Për shkak të vonesës së regjistrit ndryshimet më të reja se $1 sekonda mund të mos tregohen në listë.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Lista mbikëqyrëse e juaj përmban {{PLURAL:$1|1 titull|$1 tituj}}, pa faqet e diskutimit.',
@@ -2047,6 +2109,7 @@ Ju gjithashtu mundeni ta redaktoni listën mbikëqyrëse [[Special:Watchlist/edi
 'watchlistedit-raw-titles'     => 'Titujt:',
 'watchlistedit-raw-submit'     => 'Aktualizoje listën',
 'watchlistedit-raw-done'       => 'Lista mbikëqyrëse u aktualizua.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titull u shtua|$1 tituj u shtuan}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titull u largua|$1 tituj u larguan}}:',
 
 # Watchlist editing tools

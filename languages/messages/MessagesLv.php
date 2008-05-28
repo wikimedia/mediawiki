@@ -476,6 +476,7 @@ Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis
 'templatesused'            => '<br />Šajā lapā izmantotās veidnes:',
 
 # History pages
+'viewpagelogs'        => 'Apskatīties ar šo lapu saistītos reģistru ierakstus',
 'nohistory'           => 'Šai lapai nav pieejama versiju hronoloģija.',
 'revnotfound'         => 'Versija nav atrasta',
 'revnotfoundtext'     => 'Meklētā vecā lapas versija netika atrasta. Lūdzu pārbaudi lietoto URL.',
@@ -536,6 +537,7 @@ m = maznozīmīgs labojums.',
 # Preferences page
 'preferences'           => 'Izvēles',
 'mypreferences'         => 'manas izvēles',
+'prefs-edits'           => 'Izmaiņu skaits:',
 'prefsnologin'          => 'Neesi iegājis',
 'prefsnologintext'      => 'Tev jābūt [[Special:Userlogin|iegājušam]], lai mainītu lietotāja izvēles.',
 'prefsreset'            => 'Sākotnējās izvēles ir atjaunotas.',
@@ -733,6 +735,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'uncategorizedpages'      => 'Nekategorizētās lapas',
 'uncategorizedcategories' => 'Nekategorizētās kategorijas',
 'uncategorizedimages'     => 'Nekategorizētie attēli',
+'uncategorizedtemplates'  => 'Nekategorizētās veidnes',
 'unusedcategories'        => 'Neizmantotas kategorijas',
 'unusedimages'            => 'Neizmantoti attēli',
 'popularpages'            => 'Populārākās lapas',
@@ -747,6 +750,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'shortpages'              => 'Īsākās lapas',
 'longpages'               => 'Garākās lapas',
 'deadendpages'            => 'Lapas bez izejošām saitēm',
+'protectedpages'          => 'Aizsargātās lapas',
 'listusers'               => 'Lietotāju uzskaitījums',
 'specialpages'            => 'Īpašās lapas',
 'spheading'               => 'Visiem lietotājiem pieejamās īpašās lapas',
@@ -766,6 +770,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'specialloguserlabel'  => 'Lietotājs:',
 'speciallogtitlelabel' => 'Virsraksts:',
 'log'                  => 'Reģistri',
+'all-logs-page'        => 'Visi reģistri',
 'alllogstext'          => 'Augšupielādes, dzēšanas, aizsargāšanas, bloķēšanas un adminu reģistru apvienotais reģistrs.
 Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu.',
 'logempty'             => 'Reģistrā nav atbilstošu ierakstu.',
@@ -804,6 +809,7 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 # Watchlist
 'watchlist'            => 'Mani uzraugāmie raksti',
 'mywatchlist'          => 'Mani uzraugāmie raksti',
+'watchlistfor'         => "(priekš '''$1''')",
 'nowatchlist'          => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchnologin'         => 'Neesi iegājis',
 'watchnologintext'     => 'Tev ir [[Special:Userlogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
@@ -926,38 +932,48 @@ Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par
 'whatlinkshere-filters'    => 'Filtri',
 
 # Block/unblock
-'blockip'            => 'Bloķēt lietotāju',
-'blockiptext'        => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[Project:Vadlīnijas|noteikumiem]].
+'blockip'              => 'Bloķēt lietotāju',
+'blockip-legend'       => 'Bloķēt lietotāju',
+'blockiptext'          => 'Šo veidni izmanto, lai bloķētu kādas IP adreses vai lietotājvārda piekļuvi wiki lapu saglabāšanai. Dari to tikai, lai novērstu vandālismu atbilstoši [[Project:Vadlīnijas|noteikumiem]].
 Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
-'ipaddress'          => 'IP adrese/lietotājvārds',
-'ipadressorusername' => 'IP adrese vai lietotājvārds',
-'ipbexpiry'          => 'Termiņš',
-'ipbreason'          => 'Iemesls',
-'ipbreasonotherlist' => 'Cits iemesls',
-'ipbreason-dropdown' => '*Biežākie bloķēšanas iemesli
+'ipaddress'            => 'IP adrese/lietotājvārds',
+'ipadressorusername'   => 'IP adrese vai lietotājvārds',
+'ipbexpiry'            => 'Termiņš',
+'ipbreason'            => 'Iemesls',
+'ipbreasonotherlist'   => 'Cits iemesls',
+'ipbreason-dropdown'   => '*Biežākie bloķēšanas iemesli
 ** Ievieto nepatiesu informāciju
 ** Dzēš lapu saturu
 ** Spamo ārējās saitēs
 ** Ievieto nesakarīgus simbolus sakopojumus',
-'ipbsubmit'          => 'Bloķēt šo lietotāju',
-'ipbother'           => 'Cits laiks',
-'ipboptions'         => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'     => 'cits',
-'badipaddress'       => 'Nederīga IP adrese',
-'blockipsuccesssub'  => 'Nobloķēts veiksmīgi',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] tika nobloķēts.<br />
+'ipbsubmit'            => 'Bloķēt šo lietotāju',
+'ipbother'             => 'Cits laiks',
+'ipboptions'           => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'       => 'cits',
+'ipbotherreason'       => 'Cits/papildu iemesls:',
+'badipaddress'         => 'Nederīga IP adrese',
+'blockipsuccesssub'    => 'Nobloķēts veiksmīgi',
+'blockipsuccesstext'   => '[[Special:Contributions/$1|$1]] tika nobloķēts.<br />
 Visus blokus var apskatīties [[Special:Ipblocklist|IP bloku sarakstā]].',
-'ipblocklist'        => 'Bloķēto IP adrešu un lietotājvārdu uzskaitījums',
-'blocklistline'      => '$1 $2 bloķēja $3 (termiņš $4)',
-'expiringblock'      => 'beidzas $1',
-'blocklink'          => 'bloķēt',
-'unblocklink'        => 'atbloķēt',
-'contribslink'       => 'devums',
-'blocklogpage'       => 'Bloķēšanas reģistrs',
-'ipb_expiry_invalid' => 'Nederīgs beigu termiņš',
-'ip_range_invalid'   => 'Nederīgs IP diapazons',
-'proxyblocker'       => 'Starpniekservera bloķētājs',
-'proxyblocksuccess'  => 'Darīts.',
+'ipb-edit-dropdown'    => 'Izmainīt bloķēšanas iemeslus',
+'ipb-unblock'          => 'Atbloķēt lietotāju vai IP adresi',
+'ipb-blocklist'        => 'Apskatīties esošos blokus',
+'unblockip'            => 'Atbloķēt lietotāju',
+'ipusubmit'            => 'Atbloķēt šo adresi',
+'unblocked'            => '[[Lietotājs:$1|$1]] tika atbloķēts',
+'unblocked-id'         => 'Bloks $1 tika noņemts',
+'ipblocklist'          => 'Bloķēto IP adrešu un lietotājvārdu uzskaitījums',
+'ipblocklist-username' => 'Lietotāja vārds vai IP adrese:',
+'blocklistline'        => '$1 $2 bloķēja $3 (termiņš $4)',
+'expiringblock'        => 'beidzas $1',
+'blocklink'            => 'bloķēt',
+'unblocklink'          => 'atbloķēt',
+'contribslink'         => 'devums',
+'blocklogpage'         => 'Bloķēšanas reģistrs',
+'ipb_expiry_invalid'   => 'Nederīgs beigu termiņš',
+'ip_range_invalid'     => 'Nederīgs IP diapazons',
+'proxyblocker'         => 'Starpniekservera bloķētājs',
+'proxyblocksuccess'    => 'Darīts.',
 
 # Move page
 'move-page'        => 'Pārvietot $1',
@@ -1012,6 +1028,9 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 # Thumbnails
 'thumbnail-more' => 'Palielināt',
 'filemissing'    => 'Trūkst faila',
+
+# Import log
+'importlogpage' => 'Importēšanas reģistrs',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mana lietotāja lapa',
@@ -1089,6 +1108,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'imagemaxsize'         => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
 'thumbsize'            => 'Sīkbildes (<i>thumbnail</i>) izmērs:',
 'file-nohires'         => '<small>Augstāka izšķirtspēja nav pieejama.</small>',
+'svg-long-desc'        => '(SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3)',
 'show-big-image-thumb' => '<small>Šī priekšskata izmērs: $1 × $2 pikseļi</small>',
 
 # Special:Newimages
@@ -1186,6 +1206,9 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 
 # Live preview
 'livepreview-loading' => 'Ielādējas…',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Apskatīt un izmainīt uzraugāmo rakstu sarakstu',
 
 # Special:Version
 'version' => 'Versija', # Not used as normal message but as header for the special page itself

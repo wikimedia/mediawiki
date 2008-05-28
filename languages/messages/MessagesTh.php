@@ -194,7 +194,7 @@ $messages = array(
 'category-article-count'         => '{{PLURAL:$2|หมวดหมู่นี้มีหน้าอยู่เพียงหน้าเดียว|มี {{PLURAL:$1|หน้าเดียว|$1 หน้า}} ในหมวดหมู่นี้ เต็ม $2}}',
 'category-article-count-limited' => '{{PLURAL:$1|หน้า|หน้า}}ต่อไปนี้อยู่ในหมวดหมู่นี้',
 'category-file-count-limited'    => '{{PLURAL:$1|ไฟล์|ไฟล์}}ต่อไปนี้อยู่ในหมวดหมู่นี้',
-'listingcontinuesabbrev'         => 'ต่อไป',
+'listingcontinuesabbrev'         => '(ต่อ)',
 
 'mainpagetext'      => "<big>'''ซอฟต์แวร์มีเดียวิกิได้ถูกติดตั้งเรียบร้อย'''</big>",
 'mainpagedocfooter' => 'ศึกษา[http://meta.wikimedia.org/wiki/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ

@@ -544,6 +544,7 @@ Vaše konto je vytvorené. Nezabudnite si nastaviť svoje používateľské nast
 'youremail'                  => 'Váš e-mail²',
 'username'                   => 'Používateľské meno:',
 'uid'                        => 'ID používateľa:',
+'prefs-memberingroups'       => 'Člen {{PLURAL:$1|skupiny|skupín}}:',
 'yourrealname'               => 'Skutočné meno *:',
 'yourlanguage'               => 'Jazyk:',
 'yourvariant'                => 'Variant jazyka:',
@@ -1098,6 +1099,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'right-bot'                  => 'Byť považovaný za automatický proces',
 'right-nominornewtalk'       => 'Pri drobných úpravách diskusnej stránky nevypisovať hlásenie o nových správach',
 'right-apihighlimits'        => 'Používať vyššie limity v požiadavkách API',
+'right-writeapi'             => 'Použitie API na zápis',
 'right-delete'               => 'Mazať stránky',
 'right-bigdelete'            => 'Mazať stránky s veľkou históriou',
 'right-deleterevision'       => 'Mazať a obnovovať konkrétne revízie stránok',
@@ -1164,7 +1166,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
-'recentchangeslinked-title'    => 'Zmeny týkajúce sa "$1"',
+'recentchangeslinked-title'    => 'Zmeny týkajúce sa „$1”',
 'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
 'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav stránok, ''na ktoré odkazuje'' zadaná stránka (alebo ktoré patria do zadanej kategórie).
 Stránky, ktoré sa nachádzajú vo vašom [[Special:Watchlist|zozname sledovaných]] sú vyznačené '''hrubo'''.",
@@ -1507,7 +1509,7 @@ Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno aleb
 # Special:Categories
 'categories'                    => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
 'categoriespagetext'            => 'Nasledovné kategórie obsahujú stránky alebo multimediálne súbory.',
-'categoriesfrom'                => 'Zobraziť kategórie začínajúce na:',
+'categoriesfrom'                => 'Zobraziť kategórie počnúc:',
 'special-categories-sort-count' => 'zoradiť podľa počtu',
 'special-categories-sort-abc'   => 'zoradiť podľa abecedy',
 
