@@ -662,6 +662,7 @@ abstract class ApiBase {
 		'wasdeleted' => array('code' => 'pagedeleted', 'info' => "The page has been deleted since you fetched its timestamp"),
 		'blankpage' => array('code' => 'emptypage', 'info' => "Creating new, empty pages is not allowed"),
 		'editconflict' => array('code' => 'editconflict', 'info' => "Edit conflict detected"),
+		'hashcheckfailed' => array('code' => 'badmd5', 'info' => "The supplied MD5 hash was incorrect"),
 	);
 
 	/**

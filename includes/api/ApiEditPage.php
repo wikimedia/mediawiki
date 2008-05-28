@@ -67,6 +67,11 @@ class ApiEditPage extends ApiBase {
 		if(!empty($errors))
 			$this->dieUsageMsg($errors[0]);
 
+		# See if the MD5 hash checks out
+		if(isset($params['md5']))
+			if(md5($params['text']) !== $params['md5'])
+				$this->dieUsageMsg(array('hashcheckfailed'));
+		
 		$articleObj = new Article($titleObj);
 		$ep = new EditPage($articleObj);
 		
@@ -240,6 +245,7 @@ class ApiEditPage extends ApiBase {
 			'captchaid' => null,
 			'watch' => false,
 			'unwatch' => false,
+			'md5' => null,
 		);
 	}
 
@@ -262,6 +268,7 @@ class ApiEditPage extends ApiBase {
 			'unwatch' => 'Remove the page from your watchlist',
 			'captchaid' => 'CAPTCHA ID from previous request',
 			'captchaword' => 'Answer to the CAPTCHA',
+			'md5' => 'The MD5 hash of the new article text. If set, the edit won\'t be done unless the hash is correct',
 		);
 	}
 
