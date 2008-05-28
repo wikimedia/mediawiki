@@ -2620,8 +2620,7 @@ class User {
 	 * @private
 	 */
 	function confirmationTokenUrl( $token ) {
-		$title = SpecialPage::getTitleFor( 'Confirmemail', $token );
-		return $title->getFullUrl();
+		return $this->getTokenUrl( 'ConfirmEmail', $token );
 	}
 	/**
 	 * Return a URL the user can use to invalidate their email address.
@@ -2629,9 +2628,27 @@ class User {
 	 * @return string
 	 * @private
 	 */
-	 function invalidationTokenUrl( $token ) {
-		$title = SpecialPage::getTitleFor( 'Invalidateemail', $token );
-		return $title->getFullUrl();
+	function invalidationTokenUrl( $token ) {
+		return $this->getTokenUrl( 'Invalidateemail', $token );
+	}
+	
+	/**
+	 * Internal function to format the e-mail validation/invalidation URLs.
+	 * This uses $wgArticlePath directly as a quickie hack to use the
+	 * hardcoded English names of the Special: pages, for ASCII safety.
+	 *
+	 * Since these URLs get dropped directly into emails, using the
+	 * short English names avoids insanely long URL-encoded links, which
+	 * also sometimes can get corrupted in some browsers/mailers
+	 * (bug 6957 with Gmail and Internet Explorer).
+	 */
+	protected function getTokenUrl( $page, $token ) {
+		global $wgArticlePath;
+		return wfExpandUrl(
+			str_replace(
+				'$1',
+				"Special:$page/$token",
+				$wgArticlePath ) );
 	}
 
 	/**
