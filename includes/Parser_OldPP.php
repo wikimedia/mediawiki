@@ -2402,10 +2402,11 @@ class Parser_OldPP
 		# Use the time zone
 		global $wgLocaltimezone;
 		if ( isset( $wgLocaltimezone ) ) {
-			$oldtz = date_default_timezone_get();
-			date_default_timezone_set( $wgLocaltimezone );
+			$oldtz = getenv( 'TZ' );
+			putenv( 'TZ='.$wgLocaltimezone );
 		}
 
+		wfSuppressWarnings(); // E_STRICT system time bitching
 		$localTimestamp = date( 'YmdHis', $ts );
 		$localMonth = date( 'm', $ts );
 		$localMonthName = date( 'n', $ts );
@@ -2416,8 +2417,9 @@ class Parser_OldPP
 		$localYear = date( 'Y', $ts );
 		$localHour = date( 'H', $ts );
 		if ( isset( $wgLocaltimezone ) ) {
-			date_default_timezone_set( $oldtz );
+			putenv( 'TZ='.$oldtz );
 		}
+		wfRestoreWarnings();
 
 		switch ( $index ) {
 			case 'currentmonth':
@@ -3779,13 +3781,13 @@ class Parser_OldPP
 		 * than the one selected in each user's preferences.
 		 */
 		if ( isset( $wgLocaltimezone ) ) {
-			$oldtz = date_default_timezone_get();
-			date_default_timezone_set( $wgLocaltimezone );
+			$oldtz = getenv( 'TZ' );
+			putenv( 'TZ='.$wgLocaltimezone );
 		}
 		$d = $wgContLang->timeanddate( date( 'YmdHis' ), false, false) .
 		  ' (' . date( 'T' ) . ')';
 		if ( isset( $wgLocaltimezone ) ) {
-			date_default_timezone_set( $oldtz );
+			putenv( 'TZ='.$oldtz );
 		}
 
 		# Variable replacement
