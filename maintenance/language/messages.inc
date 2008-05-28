@@ -879,7 +879,7 @@ $wgMessageStructure = array(
 		'right-browsearchive',
 		'right-undelete',
 		'right-suppressrevision',
-		'right-suppress',
+		'right-suppressionlog',
 		'right-block',
 		'right-blockemail',
 		'right-hideuser',
