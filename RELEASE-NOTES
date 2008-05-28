@@ -304,6 +304,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14296) Fix local name of ang: (Anglo-Saxon)
 * (bug 7715) Use date_default_timezone_* instead of TZ environment variable if
   available
+* (bug 4871) Hardcoded superscript in time zone preferences moved to message
 
 === API changes in 1.13 ===
 
