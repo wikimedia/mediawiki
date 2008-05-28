@@ -558,7 +558,6 @@ Dein Benutzerkonto wurde eingerichtet. Vergiss nicht, deine Einstellungen anzupa
 'username'                   => 'Benutzername:',
 'uid'                        => 'Benutzer-ID:',
 'prefs-memberingroups'       => 'Mitglied der {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}:',
-'prefs-changemembership'     => 'Benutzerrechte ändern',
 'yourrealname'               => 'Echter Name:',
 'yourlanguage'               => 'Sprache der Benutzeroberfläche:',
 'yourvariant'                => 'Variante',
