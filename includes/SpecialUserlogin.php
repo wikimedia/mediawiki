@@ -296,7 +296,7 @@ class LoginForm {
 		$u->setRealName( $this->mRealName );
 
 		$abortError = '';
-		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
+		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError, false /* autocreate */ ) ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
 			$this->mainLoginForm( $abortError );
@@ -366,7 +366,7 @@ class LoginForm {
 	 *
 	 * @public
 	 */
-	function authenticateUserData() {
+	function authenticateUserData(&$error_extra) {
 		global $wgUser, $wgAuth;
 		if ( '' == $this->mName ) {
 			return self::NO_NAME;
@@ -388,7 +388,7 @@ class LoginForm {
 
 		$isAutoCreated = false;
 		if ( 0 == $u->getID() ) {
-			$status = $this->attemptAutoCreate( $u );
+			$status = $this->attemptAutoCreate( $u, &$error_extra );
 			if ( $status !== self::SUCCESS ) {
 				return $status;
 			} else {
@@ -458,7 +458,7 @@ class LoginForm {
 	 * Only succeeds if there is an external authentication method which allows it.
 	 * @return integer Status code
 	 */
-	function attemptAutoCreate( $user ) {
+	function attemptAutoCreate( $user, &$error_extra ) {
 		global $wgAuth, $wgUser;
 		/**
 		 * If the external authentication plugin allows it,
@@ -469,6 +469,7 @@ class LoginForm {
 			return self::NOT_EXISTS;
 		}
 		if ( !$wgAuth->userExists( $user->getName() ) ) {
+			die("Doesn't exist: ".$user->getName());
 			wfDebug( __METHOD__.": user does not exist\n" );
 			return self::NOT_EXISTS;
 		}
@@ -480,6 +481,14 @@ class LoginForm {
 			wfDebug( __METHOD__.": user is blocked from account creation\n" );
 			return self::CREATE_BLOCKED;
 		}
+		
+		$abortError = '';
+		if( !wfRunHooks( 'AbortNewAccount', array( $user, &$abortError, true /* autocreate */ ) ) ) {
+			// Hook point to add extra creation throttles and blocks
+			wfDebug( __METHOD__.": a hook blocked creation\n" );
+			$error_extra = $abortError;
+			return self::ABORTED;
+		}
 
 		wfDebug( __METHOD__.": creating account\n" );
 		$user = $this->initUser( $user, true );
@@ -489,7 +498,8 @@ class LoginForm {
 	function processLogin() {
 		global $wgUser, $wgAuth;
 
-		switch ($this->authenticateUserData())
+		$error_extra = '';
+		switch ($this->authenticateUserData(&$error_extra))
 		{
 			case self::SUCCESS:
 				# We've verified now, update the real record
@@ -539,6 +549,9 @@ class LoginForm {
 				break;
 			case self::CREATE_BLOCKED:
 				$this->userBlockedMessage();
+				break;
+			case self::ABORTED:
+				$this->mainLoginForm( $error_extra );
 				break;
 			default:
 				throw new MWException( "Unhandled case value" );

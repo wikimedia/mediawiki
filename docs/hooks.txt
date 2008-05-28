@@ -258,6 +258,7 @@ $err: error message
 'AbortNewAccount': Return false to cancel account creation.
 $user: the User object about to be created (read-only, incomplete)
 $message: out parameter: error message to display on abort
+$autocreate: whether the account is being automatically created.
 
 'AddNewAccount': after a user account is created
 $user: the User object that was created. (Parameter added in 1.7)
