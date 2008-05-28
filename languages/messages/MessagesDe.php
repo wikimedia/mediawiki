@@ -1116,7 +1116,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'right-browsearchive'        => 'Suche nach gelöschten Seiten',
 'right-undelete'             => 'Seiten wiederherstellen',
 'right-suppressrevision'     => 'Ansehen und wiederherstellen von Versionen, die auch vor Administratoren verborgen sind',
-'right-suppress'             => 'Ansehen privater Logbücher',
+'right-suppressionlog'       => 'Ansehen privater Logbücher',
 'right-block'                => 'Benutzer sperren (Schreibrecht)',
 'right-blockemail'           => 'Benutzer am Versenden von E-Mails hindern',
 'right-hideuser'             => 'Sperre und verberge einen Benutzernamen',
