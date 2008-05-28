@@ -624,12 +624,9 @@ class PreferencesForm {
 		$sk = $wgUser->getSkin();
 		$toolLinks = array();
 		$toolLinks[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'ListGroupRights' ), wfMsg( 'listgrouprights' ) );
-		if( $wgUser->isAllowed( 'userrights' ) ) {
-			$toolLinks[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userrights' ),
-						wfMsg( 'prefs-changemembership' ),
-						'user=' . htmlspecialchars( $wgUser->getName() )
-					);
-		}
+		# At the moment one tool link only but be prepared for the future...
+		# FIXME: Add a link to Special:Userrights for users who are allowed to use it. 
+		# $wgUser->isAllowed( 'userrights' ) seems to strict in some cases
 
 		$userInformationHtml =
 			$this->tableRow( wfMsgHtml( 'username' ), htmlspecialchars( $wgUser->getName() ) ) .

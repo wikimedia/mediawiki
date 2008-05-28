@@ -873,7 +873,6 @@ Please choose a different name.',
 'username'                   => 'Username:',
 'uid'                        => 'User ID:',
 'prefs-memberingroups'       => 'Member of {{PLURAL:$1|group|groups}}:',
-'prefs-changemembership'     => 'Change group membership',
 'yourrealname'               => 'Real name:',
 'yourlanguage'               => 'Language:',
 'yourvariant'                => 'Variant:', # only translate this message to other languages if you have to change it
