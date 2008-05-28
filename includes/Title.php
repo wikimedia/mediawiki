@@ -1717,7 +1717,8 @@ class Title {
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
 		if ( $oldFashionedRestrictions === NULL ) {
-			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions', array( 'page_id' => $this->getArticleId() ), __METHOD__ );
+			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions', 
+				array( 'page_id' => $this->getArticleId() ), __METHOD__ );
 		}
 
 		if ($oldFashionedRestrictions != '') {
