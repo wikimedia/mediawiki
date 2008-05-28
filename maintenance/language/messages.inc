@@ -387,6 +387,8 @@ $wgMessageStructure = array(
 		'youremail',
 		'username',
 		'uid',
+		'prefs-memberingroups',
+		'prefs-changemembership',
 		'yourrealname',
 		'yourlanguage',
 		'yourvariant',

@@ -129,6 +129,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Sidebar is now cached for all languages
 * (bug 14259) Localisation message for upload button on Special:Import is now
   'import-upload' instead of 'upload'
+* Add information about user group membership to Special:Preferences
 
 === Bug fixes in 1.13 ===
 
