@@ -1213,7 +1213,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-browsearchive'        => 'Vyhledávání ve smazaných stránkách',
 'right-undelete'             => 'Obnovování smazaných stránek',
 'right-suppressrevision'     => 'Prohlížení a obnovování revizí skrytých před správci',
-'right-suppress'             => 'Zobrazování skrytých protokolovacích záznamů',
+'right-suppressionlog'       => 'Zobrazování skrytých protokolovacích záznamů',
 'right-block'                => 'Blokování možnosti editace ostatním uživatelům',
 'right-blockemail'           => 'Blokování možnosti poslat e-mail',
 'right-hideuser'             => 'Blokování uživatelského jména a jeho skrytí',

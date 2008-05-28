@@ -989,7 +989,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-browsearchive'        => 'Noh fottjeschmesse Sigge söke',
 'right-undelete'             => 'Fottjeschmeße Sigge widder zeröck holle',
 'right-suppressrevision'     => 'Versione vun Sigge beloore un zeröck holle, di sujaa för de Wiki-Köbesse verstoche sin',
-'right-suppress'             => 'De private Logböcher aanloore',
+'right-suppressionlog'       => 'De private Logböcher aanloore',
 'right-block'                => 'Medmaacher Sperre, un domet am Schrive hindere',
 'right-blockemail'           => 'Metmaacher för et E-Mail Verschecke sperre',
 'right-hideuser'             => 'Ene Metmaacher sperre un em singe Name versteiche',

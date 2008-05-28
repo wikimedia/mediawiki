@@ -1090,7 +1090,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'right-browsearchive'        => 'Cercar pàgines esborrades',
 'right-undelete'             => 'Restaurar pàgines esborrades',
 'right-suppressrevision'     => 'Revisar i restaurar les versions amagades als administradors',
-'right-suppress'             => 'Veure registres privats',
+'right-suppressionlog'       => 'Veure registres privats',
 'right-block'                => "Blocar altres usuaris per a impedir-los l'edició",
 'right-blockemail'           => 'Impedir que un usuari envii correu electrònic',
 'right-hideuser'             => "Blocar un nom d'usuari amagant-lo del públic",
