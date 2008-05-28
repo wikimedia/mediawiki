@@ -16,7 +16,6 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 	global $wgUser, $wgOut, $wgRequest, $wgUseRCPatrol;
 	global $wgRCShowWatchingUsers, $wgShowUpdatedMarker;
 	global $wgAllowCategorizedRecentChanges ;
-	$fname = 'wfSpecialRecentchanges';
 
 	# Get query parameters
 	$feedFormat = $wgRequest->getVal( 'feed' );
@@ -116,7 +115,7 @@ function wfSpecialRecentchanges( $par, $specialPage ) {
 
 	# Get last modified date, for client caching
 	# Don't use this if we are using the patrol feature, patrol changes don't update the timestamp
-	$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, $fname );
+	$lastmod = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', false, __FUNCTION__ );
 	if ( $feedFormat || !$wgUseRCPatrol ) {
 		if( $lastmod && $wgOut->checkLastModified( $lastmod ) ){
 			# Client cache fresh and headers sent, nothing more to do.
@@ -710,8 +709,7 @@ function rcFormatDiff( $row ) {
 
 function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext='' ) {
 	global $wgFeedDiffCutoff, $wgContLang, $wgUser;
-	$fname = 'rcFormatDiff';
-	wfProfileIn( $fname );
+	wfProfileIn( __FUNCTION__ );
 
 	$skin = $wgUser->getSkin();
 	# log enties
@@ -728,7 +726,7 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiont
 
 	if( $title->getNamespace() >= 0 && !$accErrors ) {
 		if( $oldid ) {
-			wfProfileIn( "$fname-dodiff" );
+			wfProfileIn( __FUNCTION__."-dodiff" );
 
 			$de = new DifferenceEngine( $title, $oldid, $newid );
 			#$diffText = $de->getDiff( wfMsg( 'revisionasof',
@@ -758,7 +756,7 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiont
 				$diffText = UtfNormal::cleanUp( $diffText );
 				$diffText = rcApplyDiffStyle( $diffText );
 			}
-			wfProfileOut( "$fname-dodiff" );
+			wfProfileOut( __FUNCTION__."-dodiff" );
 		} else {
 			$rev = Revision::newFromId( $newid );
 			if( is_null( $rev ) ) {
@@ -772,7 +770,7 @@ function rcFormatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiont
 		$completeText .= $diffText;
 	}
 
-	wfProfileOut( $fname );
+	wfProfileOut( __FUNCTION__ );
 	return $completeText;
 }
 
