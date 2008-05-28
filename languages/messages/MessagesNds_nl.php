@@ -1171,7 +1171,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'right-browsearchive'        => "Vort-edaone pagina's bekieken",
 'right-undelete'             => "Vort-edaone pagina's weerummeplaosen",
 'right-suppressrevision'     => 'Verbörgen versies bekieken en weerummeplaosen',
-'right-suppress'             => 'Neet-peblieke logboeken bekieken',
+'right-suppressionlog'       => 'Neet-peblieke logboeken bekieken',
 'right-block'                => 'Aandere gebrukers de meugelijkheid ontnemen um te bewarken',
 'right-blockemail'           => "Een gebruker 't rech ontnemen um liendepos te versturen",
 'right-hideuser'             => 'Een gebruker veur de overige gebrukers verbargen',

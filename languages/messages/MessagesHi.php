@@ -1010,7 +1010,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'right-browsearchive'        => 'हटायें गये पन्ने देखें',
 'right-undelete'             => 'एक पृष्ठ पुनर्स्थापित करें',
 'right-suppressrevision'     => 'छुपायें हुए अवतरण देखें और पुनर्स्थापित करें',
-'right-suppress'             => 'खासगी सूचीयाँ देखें',
+'right-suppressionlog'       => 'खासगी सूचीयाँ देखें',
 'right-block'                => 'अन्य सदस्योंको बदलाव करने से रोके',
 'right-blockemail'           => 'सदस्यको इ-मेल भेजने से प्रतिबंधित करें',
 'right-hideuser'             => 'एक सदस्यनाम लोगोंसे छुपायें',

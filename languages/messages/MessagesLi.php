@@ -959,7 +959,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'right-browsearchive'        => "Verwijderde pagina's bekieke",
 'right-undelete'             => "Verwijderde pagina's terugplaatse",
 'right-suppressrevision'     => 'Verborge versies bekijke en terugplaatse',
-'right-suppress'             => 'Neet-publieke logboke bekieke',
+'right-suppressionlog'       => 'Neet-publieke logboke bekieke',
 'right-block'                => 'Angere gebroekers de mogelijkheid te bewerke ontnaeme',
 'right-blockemail'           => "'ne gebroeker 't rech ontnaeme om e-mail te versture",
 'right-hideuser'             => "'ne gebroeker veur de euverige gebroekers verberge",

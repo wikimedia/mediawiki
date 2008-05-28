@@ -1067,7 +1067,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'right-browsearchive'        => 'Søg efter slettede sider',
 'right-undelete'             => 'Genopret en side',
 'right-suppressrevision'     => 'Gense og gendan versioner skjult for administratorer',
-'right-suppress'             => 'Se private log',
+'right-suppressionlog'       => 'Se private log',
 'right-block'                => 'Blokere andre brugere fra at redigere',
 'right-blockemail'           => 'Bloker en bruger fra at sende e-mail',
 'right-hideuser'             => 'Blokere et brugernavn og skjul det for offentligheden',

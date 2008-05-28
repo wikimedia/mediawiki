@@ -999,7 +999,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-browsearchive'        => 'Serĉu forigitajn paĝojn',
 'right-undelete'             => 'Restarigu paĝon',
 'right-suppressrevision'     => 'Kontrolu kaj restarigu reviziojn kaŝitajn de administrantoj',
-'right-suppress'             => 'Rigardu privatajn loglibrojn',
+'right-suppressionlog'       => 'Rigardu privatajn loglibrojn',
 'right-block'                => 'Forbaru aliajn uzantoj por redaktado',
 'right-blockemail'           => 'Forbaru uzanton de retpoŝta sendado',
 'right-hideuser'             => 'Forbaru salutnomon, kaŝante ĝin de la publiko',

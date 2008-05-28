@@ -793,7 +793,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'right-browsearchive'        => 'Paginas deletas quaerere',
 'right-undelete'             => 'Paginam restituere',
 'right-suppressrevision'     => 'Emendationes magistratus celatas inspicere vel restituere',
-'right-suppress'             => 'Acta privata inspicere',
+'right-suppressionlog'       => 'Acta privata inspicere',
 'right-block'                => 'Usores alios obstruere ne recensere possunt',
 'right-blockemail'           => 'Usorem obstruere ne litteras electronicas mittere potest',
 'right-hideuser'             => 'Celare nomen usoris hunc usorem obstruendo',

@@ -1193,7 +1193,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'right-browsearchive'        => 'keresés a törölt lapok között',
 'right-undelete'             => 'lap helyreállítása',
 'right-suppressrevision'     => 'az adminisztrátorok elől elrejtett változatok megtekintése és helyreállítása',
-'right-suppress'             => 'titkos naplók megtekintése',
+'right-suppressionlog'       => 'titkos naplók megtekintése',
 'right-block'                => 'szerkesztők blokkolása',
 'right-blockemail'           => 'szerkesztő e-mail küldési lehetőségének blokkolása',
 'right-hideuser'             => 'felhasználói név blokkolása és elrejtése a külvilág elől',

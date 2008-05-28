@@ -957,7 +957,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'right-browsearchive'        => "Qullusqa p'anqakunata maskay",
 'right-undelete'             => "Qullusqa p'anqata paqarichiy",
 'right-suppressrevision'     => 'Kamachiqkunamanta pakasqa musuqchasqakunata qhawaspa paqarichiy',
-'right-suppress'             => "Hukllap hallch'ankunata qhaway",
+'right-suppressionlog'       => "Hukllap hallch'ankunata qhaway",
 'right-block'                => "Huk ruraqkunata llamk'apuymanta hark'ay",
 'right-blockemail'           => "Ruraqta e-chaski kachaymanta hark'ay",
 'right-hideuser'             => "Ruraqpa sutinta hark'ay, sapsimanta pakaspa",

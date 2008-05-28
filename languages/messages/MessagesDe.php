@@ -1109,6 +1109,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'right-bot'                  => 'Behandlung als automatischer Prozess',
 'right-nominornewtalk'       => 'Kleine Bearbeitungen an Diskussionsseiten führen zu keiner „Neue Nachrichten“-Anzeige',
 'right-apihighlimits'        => 'Höhere Limits in API-Abfragen',
+'right-writeapi'             => 'Benutzung der writeAPI',
 'right-delete'               => 'Seiten löschen',
 'right-bigdelete'            => 'Seiten löschen mit großer Versionsgeschichte',
 'right-deleterevision'       => 'Löschen und Wiederherstellen einzelner Versionen',
@@ -1139,7 +1140,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'right-userrights'           => 'Benutzerrechte bearbeiten',
 'right-userrights-interwiki' => 'Benutzerrechte in anderen Wikis bearbeiten',
 'right-siteadmin'            => 'Datenbank sperren und entsperren',
-'right-writeapi'             => 'Benutzung der writeAPI',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
