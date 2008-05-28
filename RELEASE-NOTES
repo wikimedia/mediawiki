@@ -303,6 +303,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14241) Pages can no longer be protected to levels you are not in
 * (bug 14296) Fix local name of ang: (Anglo-Saxon)
 * (bug 4871) Hardcoded superscript in time zone preferences moved to message
+* (bug 6957) E-mail confirmation links now using English special page name
+  for better compatibility and keeping the links shorter. Avoids problem
+  with corrupt links in Gmail on IE 6.
+
 
 === API changes in 1.13 ===
 
