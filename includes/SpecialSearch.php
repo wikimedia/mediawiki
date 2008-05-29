@@ -205,7 +205,6 @@ class SpecialSearch {
 		if($textMatches && !is_null($textMatches->getTotalHits()))
 			$totalNum += $textMatches->getTotalHits();
 		if ( $num > 0 ) {
-			$wgOut->wrapWikiMsg( "==$1==\n", 'searchresults' );
 			if ( $totalNum > 0 ){
 				$top = wfMsgExt('showingresultstotal', array( 'parseinline' ), 
 					$this->offset+1, $this->offset+$num, $totalNum );
@@ -233,7 +232,7 @@ class SpecialSearch {
 
 		if( $titleMatches ) {
 			if( $titleMatches->numRows() ) {
-				$wgOut->wrapWikiMsg( "===$1===\n", 'titlematches' );
+				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
 				$wgOut->addHTML( $this->showMatches( $titleMatches ) );
 			}
 			$titleMatches->free();
@@ -243,7 +242,7 @@ class SpecialSearch {
 			// output appropriate heading
 			if( $textMatches->numRows() ) {
 				if($titleMatches)
-					$wgOut->wrapWikiMsg( "===$1===\n", 'textmatches' );
+					$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );
 				else // if no title matches the heading is redundant
 					$wgOut->addHTML("<hr/>");								
 			} elseif( $num == 0 ) {
