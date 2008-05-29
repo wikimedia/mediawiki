@@ -644,7 +644,9 @@ EOT
 		);
 
 		if ( 0 == $dbr->numRows( $res ) ) {
+			$wgOut->addHTML( "<div id='mw-imagepage-nolinkstoimage'>\n" );
 			$wgOut->addWikiMsg( 'nolinkstoimage' );
+			$wgOut->addHTML( "</div>\n" );
 			return;
 		}
 		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
