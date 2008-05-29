@@ -1578,6 +1578,12 @@ class User {
 		$this->mNewpassword = '';
 		$this->mNewpassTime = null;
 	}
+	
+	function getToken() {
+		$this->load();
+		return $this->mToken;
+	}
+	
 	/**
 	 * Set the random token (used for persistent authentication)
 	 * Called from loadDefaults() among other places.
