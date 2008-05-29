@@ -109,9 +109,9 @@
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => 'עברית',	# Hebrew
 	'hi' => 'हिन्दी',	# Hindi
-	'hif' => 'Fiji Hindi/फ़ीजी हिन्दी',	# Fijian Hindi (falls back to hif-latn)
-	'hif-deva' => 'फ़ीजी हिन्दी',	# Hindi
-	'hif-latn' => 'Fiji Hindi',	# Hindi
+	'hif' => 'Fiji Hindi',	# Fijian Hindi (falls back to hif-latn)
+	'hif-deva' => 'फ़ीजी हिन्दी',	# Fiji Hindi (devangari)
+	'hif-latn' => 'Fiji Hindi',	# Fiji Hindi (latin)
 	'hil' => 'Ilonggo',	# Hiligaynon
 	'ho' => 'Hiri Motu',	# Hiri Motu
 	'hr' => 'Hrvatski',		# Croatian
