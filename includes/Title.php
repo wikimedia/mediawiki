@@ -1058,7 +1058,7 @@ class Title {
 		global $wgLang;
 		global $wgEmailConfirmToEdit;
 
-		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
+		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() && $action != 'createaccount' ) {
 			$errors[] = array( 'confirmedittext' );
 		}
 
