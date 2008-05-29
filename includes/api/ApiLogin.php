@@ -105,9 +105,9 @@ class ApiLogin extends ApiBase {
 				$wgUser->setCookies();
 
 				$result['result'] = 'Success';
-				$result['lguserid'] = $_SESSION['wsUserID'];
-				$result['lgusername'] = $_SESSION['wsUserName'];
-				$result['lgtoken'] = $_SESSION['wsToken'];
+				$result['lguserid'] = $wgUser->getId();
+				$result['lgusername'] = $wgUser->getName();
+				$result['lgtoken'] = $wgUser->getToken();
 				$result['cookieprefix'] = $wgCookiePrefix;
 				$result['sessionid'] = session_id();
 				break;
