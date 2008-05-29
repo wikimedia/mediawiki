@@ -441,6 +441,7 @@ $2',
 'youremail'                  => 'メールアドレス*:',
 'username'                   => '利用者名:',
 'uid'                        => '利用者ID:',
+'prefs-memberingroups'       => 'グループ:',
 'yourrealname'               => '本名*:',
 'yourlanguage'               => '使用言語:',
 'yourvariant'                => '字体変換',
@@ -551,7 +552,7 @@ $2',
 *ブロック解除予定: $6
 *ブロック対象: $7
 
-$1 または他の[[{{MediaWiki:grouppage-sysop}}|{{int:group-sysop}}]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、「{{int:emailuser}}」機能が使えないことに注意してください。
+$1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'autoblockedtext'           => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
@@ -874,6 +875,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 
 # Groups
 'group'               => 'グループ:',
+'group-user'          => 'ログインユーザー',
 'group-autoconfirmed' => '自動承認された利用者',
 'group-bot'           => 'ボット',
 'group-sysop'         => '管理者',

@@ -82,8 +82,8 @@ $messages = array(
 'february'      => 'феврѹарїи',
 'march'         => 'мартїи',
 'april'         => 'апрїлїи',
-'may_long'      => 'маїи',
-'june'          => 'їѹнїи',
+'may_long'      => 'ма́їи',
+'june'          => 'їоу́нїи',
 'july'          => 'їѹлїи',
 'august'        => 'аѵгѹстъ',
 'september'     => 'септемврїи',
@@ -95,14 +95,14 @@ $messages = array(
 'march-gen'     => 'мартї',
 'april-gen'     => 'апрїлї',
 'may-gen'       => 'ма́їꙗ',
-'june-gen'      => 'їѹнї',
+'june-gen'      => 'їоу́нїꙗ',
 'july-gen'      => 'їѹлї',
 'august-gen'    => 'аѵгѹста',
 'september-gen' => 'септемврї',
 'october-gen'   => 'октѡврї',
 'november-gen'  => 'ноемврї',
 'december-gen'  => 'декемврї',
-'jan'           => '҃н',
+'jan'           => 'ꙗ҃н',
 'feb'           => 'фе҃в',
 'mar'           => 'ма҃р',
 'apr'           => 'ап҃р',
@@ -116,12 +116,15 @@ $messages = array(
 'dec'           => 'де҃к',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Катигорі́ꙗ|Катигорі́и|Катигорі́ѩ|Катигорі́ѩ}}',
+'pagecategories'  => '{{PLURAL:$1|Катигорі́ꙗ|Катигорі́и|Катигорі́ѩ|Катигорі́ѩ}}',
+'category_header' => 'страни́цѧ катигорі́́ѩ "$1"',
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 
 'qbedit'         => 'испра́ви',
+'qbpageoptions'  => 'си страни́ца',
 'qbspecialpages' => 'наро́чьнꙑ страни́цѧ',
+'mypage'         => 'моꙗ́ страни́ца',
 'mytalk'         => 'моꙗ́ бєсѣ́да',
 'navigation'     => 'пла́ваниѥ',
 'and'            => 'и',
@@ -131,6 +134,7 @@ $messages = array(
 'searchbutton'     => 'ищи́',
 'go'               => 'прѣиди́',
 'searcharticle'    => 'прѣиди́',
+'history'          => 'страни́цѧ їсторі́ꙗ',
 'history_short'    => 'їсторі́ꙗ',
 'printableversion' => 'пєча́тьнъ о́браꙁъ',
 'permalink'        => 'въи́ньна съвѧ́ꙁь',
@@ -143,23 +147,31 @@ $messages = array(
 'talk'             => 'бєсѣ́да',
 'toolbox'          => 'орѫ́диꙗ',
 'otherlanguages'   => 'ДРОУГꙐ́ ѨꙀꙐКꙐ́',
+'lastmodifiedat'   => 'страни́цѧ послѣ́дьнꙗ мѣ́на сътворѥна́ $2 · $1 бѣ', # $1 date, $2 time
+'jumptonavigation' => 'пла́ваниѥ',
 'jumptosearch'     => 'иска́ниѥ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'copyright'            => 'по́дъ прощє́ниѥмь $1 пь́сано ѥ́стъ',
 'currentevents'        => 'Сѫ́щѧѩ вѣ́щи',
+'currentevents-url'    => 'Project:Сѫ́щѧѩ вѣ́щи',
+'edithelppage'         => 'Help:Исправлѥ́ниѥ страни́цѧ',
 'mainpage'             => 'гла́вьна страни́ца',
 'mainpage-description' => 'гла́вьна страни́ца',
 'portal'               => 'обьщє́ниꙗ съвѣ́тъ',
 'portal-url'           => 'Project:Обьщє́ниꙗ съвѣ́тъ',
 'sitesupport'          => 'даꙗ́ниꙗ',
 
+'newmessageslink'     => 'но́ви напь́саниꙗ',
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
 'editold'             => 'испра́ви',
+'red-link-title'      => '$1 (ѥщє нє напь́сано ѥ́стъ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'члѣ́нъ',
-'nstab-user'      => 'польѕеватель',
+'nstab-user'      => 'по́льꙃєватєл҄ь',
+'nstab-media'     => 'срѣ́дьства',
 'nstab-special'   => 'наро́чьна',
 'nstab-project'   => 'съвѣ́тъ',
 'nstab-image'     => 'ви́дъ',
@@ -169,28 +181,34 @@ $messages = array(
 'nstab-category'  => 'катигорі́ꙗ',
 
 # General errors
-'viewsource' => 'Страницѧ источьнъ образъ',
+'viewsource' => 'страни́цѧ исто́чьнъ о́браꙁъ',
 
 # Login and logout pages
-'loginpagetitle'    => 'Въходъ',
-'yourname'          => 'Твоѥ имѧ',
-'yourpassword'      => 'Таино слово напиши',
-'yourpasswordagain' => 'Опакы таиноѥ слово напиши',
-'login'             => 'Въниди',
-'userlogin'         => 'Въниди / съзижди си мѣсто',
-'logout'            => 'ис̾хо́дъ',
-'userlogout'        => 'ис̾хо́дъ',
-'createaccount'     => 'Cъзижди си мѣсто',
-'gotaccount'        => 'Мѣсто ти ѥстъ ли? $1.',
-'gotaccountlink'    => 'Въниди',
-'userexists'        => 'Сѫще польѕевател имѧ пьса. Ино изобрѧщи.',
-'username'          => 'по́льꙃєватєлꙗ и́мѧ :',
-'loginerror'        => 'Въхода блазна',
+'loginpagetitle'     => 'Въходъ',
+'yourname'           => 'Твоѥ имѧ',
+'yourpassword'       => 'Таино слово напиши',
+'yourpasswordagain'  => 'Опакы таиноѥ слово напиши',
+'login'              => 'Въниди',
+'userlogin'          => 'Въниди / съзижди си мѣсто',
+'logout'             => 'ис̾хо́дъ',
+'userlogout'         => 'ис̾хо́дъ',
+'createaccount'      => 'Cъзижди си мѣсто',
+'gotaccount'         => 'Мѣсто ти ѥстъ ли? $1.',
+'gotaccountlink'     => 'Въниди',
+'userexists'         => 'Сѫще польѕевател имѧ пьса. Ино изобрѧщи.',
+'username'           => 'по́льꙃєватєлꙗ и́мѧ :',
+'yourlanguage'       => 'ѩꙁꙑ́къ :',
+'yournick'           => 'аѵто́графъ :',
+'loginerror'         => 'Въхода блазна',
+'loginlanguagelabel' => 'ѩꙁꙑ́къ : $1',
 
 # Edit pages
 'summary'        => 'опьса́ниѥ',
+'savearticle'    => 'съхранѥ́ниѥ',
 'loginreqlink'   => 'Въниди',
-'clearyourcache' => '<span style="color:red; font-size:120%">НАРОЧИ́ТО:</span> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac) ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5 ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences</span>',
+'newarticle'     => '(но́въ)',
+'clearyourcache' => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac) ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5 ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences',
+'note'           => '<strong>НАРОЧИ́ТО:</strong>',
 'editing'        => 'исправлѥ́ниѥ: $1',
 
 # Search results
@@ -199,8 +217,9 @@ $messages = array(
 'powersearch'              => 'ищи́',
 
 # Preferences page
-'mypreferences' => 'мои строи',
-'prefs-rc'      => 'послѣ́дьнѩ мѣ́нꙑ',
+'mypreferences'       => 'мои строи',
+'prefs-rc'            => 'послѣ́дьнѩ мѣ́нꙑ',
+'prefs-searchoptions' => 'иска́ниꙗ строи́',
 
 # Groups
 'group-user'       => 'по́льꙃєватєлє',
@@ -213,6 +232,7 @@ $messages = array(
 'group-sysop-member'      => 'съмотри́тєл҄ь',
 'group-bureaucrat-member' => 'чинода́тєл҄ь',
 
+'grouppage-user'       => '{{ns:project}}:По́льꙃєватєлє',
 'grouppage-bot'        => '{{ns:project}}:Аѵтома́ти',
 'grouppage-sysop'      => '{{ns:project}}:Съмотри́тєлє',
 'grouppage-bureaucrat' => '{{ns:project}}:Чинода́тєлє',
@@ -268,9 +288,10 @@ $messages = array(
 'log-search-submit'   => 'прѣиди́',
 
 # Special:Allpages
-'allpages'     => 'Вьсѩ страницѧ',
-'allpagesfrom' => 'Страницѧ видѣти хощѫ съ начѧльнами бѹкъвами:',
-'allarticles'  => 'Вьсѩ статїѩ',
+'allpages'       => 'Вьсѩ страницѧ',
+'allpagesfrom'   => 'Страницѧ видѣти хощѫ съ начѧльнами бѹкъвами:',
+'allarticles'    => 'Вьсѩ статїѩ',
+'allpagessubmit' => 'прѣиди́',
 
 # Special:Categories
 'categories' => 'катигорі́ѩ',
@@ -314,8 +335,9 @@ $messages = array(
 'allmessagesname' => 'и́мѧ',
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => 'ис̾хо́дъ',
-'tooltip-p-logo'    => 'гла́вьна страни́ца',
+'tooltip-pt-logout'       => 'ис̾хо́дъ',
+'tooltip-p-logo'          => 'гла́вьна страни́ца',
+'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ катало́гъ',
 
 # Special:Newimages
 'ilsubmit' => 'Ищи',

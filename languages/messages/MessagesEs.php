@@ -30,6 +30,7 @@
  * @author Cvmontuy
  * @author Drini
  * @author Jatrobat
+ * @author Titoxd
  */
 
 $skinNames = array(
@@ -373,6 +374,8 @@ Normalmente esto se debe a que se ha seguido un enlace a una diferencia de versi
 
 Si esta no es la causa, puedes haber encontrado un error en el software. Por favor, informa de esto a un administrador,
 incluyendo el URL.',
+'missingarticle-rev'   => '(no. de revisión: $1)',
+'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',
 'internalerror'        => 'Error interno',
 'internalerror_info'   => 'Error interno: $1',
@@ -445,12 +448,14 @@ Tu cuenta ha sido creada. No olvides personalizar [[Special:Preferences|tus pref
 'youremail'                  => 'Su dirección de correo electrónico',
 'username'                   => 'Nombre de usuario:',
 'uid'                        => 'ID de usuario:',
+'prefs-memberingroups'       => 'Miembro {{PLURAL:$1|del grupo|de los grupos}}:',
 'yourrealname'               => 'Su nombre real *',
 'yourlanguage'               => 'Idioma:',
 'yourvariant'                => 'Variante lingüística',
 'yournick'                   => 'Su apodo (para firmas)',
 'badsig'                     => 'Firma en crudo inválida; compruebe las etiquetas HTML.',
-'badsiglength'               => 'Nombre de usuario demasiado largo: debe ser de menos de $1 caracteres.',
+'badsiglength'               => 'El apodo para firmas es demasiado largo.
+Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => '* Nombre real (opcional): si opta por proporcionarlo, se usará para dar atribución a su trabajo.',
 'loginerror'                 => 'Error de inicio de sesión',
@@ -532,23 +537,23 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'hr_tip'          => 'Línea horizontal (utilícela con moderación)',
 
 # Edit pages
-'summary'                   => 'Resumen',
-'subject'                   => 'Tema/título',
-'minoredit'                 => 'Esta es una edición menor',
-'watchthis'                 => 'Vigilar este artículo',
-'savearticle'               => 'Grabar la página',
-'preview'                   => 'Previsualizar',
-'showpreview'               => 'Mostrar previsualización',
-'showlivepreview'           => 'Previsualización inmediata',
-'showdiff'                  => 'Mostrar cambios',
-'anoneditwarning'           => "''Aviso:'' No has introducido tu nombre de usuario. Tu dirección IP se guardará en el historial de edición de la página.",
-'missingsummary'            => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.",
-'missingcommenttext'        => 'Por favor introduce texto debajo.',
-'missingcommentheader'      => "'''Atención:''' No has escrito un título para este comentario. Si haces clic nuevamente en Grabar tu edición se grabará sin él.",
-'summary-preview'           => 'Previsualización del resumen',
-'subject-preview'           => 'Previsualización del tema/título',
-'blockedtitle'              => 'El usuario está bloqueado',
-'blockedtext'               => '<big>\'\'\'Tu nombre de usuario o dirección IP ha sido bloqueada.\'\'\'</big>
+'summary'                          => 'Resumen',
+'subject'                          => 'Tema/título',
+'minoredit'                        => 'Esta es una edición menor',
+'watchthis'                        => 'Vigilar este artículo',
+'savearticle'                      => 'Grabar la página',
+'preview'                          => 'Previsualizar',
+'showpreview'                      => 'Mostrar previsualización',
+'showlivepreview'                  => 'Previsualización inmediata',
+'showdiff'                         => 'Mostrar cambios',
+'anoneditwarning'                  => "''Aviso:'' No has introducido tu nombre de usuario. Tu dirección IP se guardará en el historial de edición de la página.",
+'missingsummary'                   => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.",
+'missingcommenttext'               => 'Por favor introduce texto debajo.',
+'missingcommentheader'             => "'''Atención:''' No has escrito un título para este comentario. Si haces clic nuevamente en Grabar tu edición se grabará sin él.",
+'summary-preview'                  => 'Previsualización del resumen',
+'subject-preview'                  => 'Previsualización del tema/título',
+'blockedtitle'                     => 'El usuario está bloqueado',
+'blockedtext'                      => '<big>\'\'\'Tu nombre de usuario o dirección IP ha sido bloqueada.\'\'\'</big>
 
 El bloqueo fue hecho por $1. La razón dada es \'\'$2\'\'.
 
@@ -559,7 +564,7 @@ El bloqueo fue hecho por $1. La razón dada es \'\'$2\'\'.
 Puedes contactar con $1 o con otro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir el bloqueo.
 
 No puedes usar el enlace "enviar correo electrónico a este usuario" si no has registrado una dirección válida de correo electrónico en tus [[Special:Preferences|preferencias]]. Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor incluye uno o ambos datos en cualquier consulta que hagas.',
-'autoblockedtext'           => 'Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario que fue bloqueado por $1.
+'autoblockedtext'                  => 'Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario que fue bloqueado por $1.
 
 La razón dada es esta:
 
@@ -574,90 +579,91 @@ Nota que no puedes utilizar la función "Enviar correo electrónico a este usuar
 
 Tu identificador de bloqueo es $5.
 Por favor, incluye este identificador en cualquier petición que hagas.',
-'blockednoreason'           => 'No se da ninguna razón',
-'blockedoriginalsource'     => "El código fuente de '''$1''' se muestra a continuación:",
-'blockededitsource'         => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
-'whitelistedittitle'        => 'Se requiere identificación para editar.',
-'whitelistedittext'         => 'Tienes que $1 para editar artículos.',
-'whitelistreadtitle'        => 'Se requiere identificación para leer',
-'whitelistreadtext'         => 'Tienes que [[Special:Userlogin|registrarte]] para leer artículos.',
-'whitelistacctitle'         => 'No se le permite crear una cuenta',
-'whitelistacctext'          => 'Para poder crear cuentas en {{SITENAME}} se ha de [[Special:Userlogin|iniciar sesión]] y tener los permisos apropiados.',
-'confirmedittitle'          => 'Se requiere confirmación de dirección electrónica para editar',
-'confirmedittext'           => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
-'nosuchsectiontitle'        => 'No existe tal sección',
-'nosuchsectiontext'         => 'Has intentado editar una sección que no existe. Como no hay sección $1, no hay ningún lugar donde salvar tu edición.',
-'loginreqtitle'             => 'Se requiere identificación',
-'loginreqlink'              => 'identificarse',
-'loginreqpagetext'          => 'Debe $1 para ver otras páginas.',
-'accmailtitle'              => 'La contraseña ha sido enviada.',
-'accmailtext'               => "La contraseña para '$1' se ha enviado a $2.",
-'newarticle'                => '(Nuevo)',
-'newarticletext'            => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
-'anontalkpagetext'          => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.''",
-'noarticletext'             => 'En este momento no hay texto en esta página, puedes [[Special:Search/{{PAGENAME}}|buscar por el título de esta página]] en otras páginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
-'userpage-userdoesnotexist' => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
-'clearyourcache'            => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
+'blockednoreason'                  => 'No se da ninguna razón',
+'blockedoriginalsource'            => "El código fuente de '''$1''' se muestra a continuación:",
+'blockededitsource'                => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
+'whitelistedittitle'               => 'Se requiere identificación para editar.',
+'whitelistedittext'                => 'Tienes que $1 para editar artículos.',
+'whitelistreadtitle'               => 'Se requiere identificación para leer',
+'whitelistreadtext'                => 'Tienes que [[Special:Userlogin|registrarte]] para leer artículos.',
+'whitelistacctitle'                => 'No se le permite crear una cuenta',
+'whitelistacctext'                 => 'Para poder crear cuentas en {{SITENAME}} se ha de [[Special:Userlogin|iniciar sesión]] y tener los permisos apropiados.',
+'confirmedittitle'                 => 'Se requiere confirmación de dirección electrónica para editar',
+'confirmedittext'                  => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
+'nosuchsectiontitle'               => 'No existe tal sección',
+'nosuchsectiontext'                => 'Has intentado editar una sección que no existe. Como no hay sección $1, no hay ningún lugar donde salvar tu edición.',
+'loginreqtitle'                    => 'Se requiere identificación',
+'loginreqlink'                     => 'identificarse',
+'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',
+'accmailtitle'                     => 'La contraseña ha sido enviada.',
+'accmailtext'                      => "La contraseña para '$1' se ha enviado a $2.",
+'newarticle'                       => '(Nuevo)',
+'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
+'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:Userlogin|crea una cuenta o entra]] para evitar confusiones futuras con otros usuarios anónimos.''",
+'noarticletext'                    => 'En este momento no hay texto en esta página, puedes [[Special:Search/{{PAGENAME}}|buscar por el título de esta página]] en otras páginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
+'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
+'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
 *'''Mozilla:'''  ''ctrl-shift-r'',
 *'''Internet Explorer:''' ''ctrl-f5'',
 *'''Safari:''' ''cmd-shift-r'',
 *'''Konqueror''' ''f5''.",
-'usercssjsyoucanpreview'    => '<strong>Consejo:</strong> Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.',
-'usercsspreview'            => "'''¡Recuerde que sólo está previsualizando su css de usuario y aún no se ha grabado!'''",
-'userjspreview'             => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
-'userinvalidcssjstitle'     => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(Actualizado)',
-'note'                      => '<strong>Nota:</strong>',
-'previewnote'               => '<strong>¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!</strong>',
-'previewconflict'           => 'La previsualización le muestra cómo aparecerá el texto una vez guardados los cambios.',
-'session_fail_preview'      => '<strong>Lo sentimos, no pudimos efectuar su edición debido a una pérdida de los datos de sesión. Por favor, inténtelo de nuevo y si no funciona, salga de su sesión y vuelva a identificarse.</strong>',
-'session_fail_preview_html' => "<strong>Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.</strong>
+'usercssjsyoucanpreview'           => '<strong>Consejo:</strong> Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.',
+'usercsspreview'                   => "'''¡Recuerde que sólo está previsualizando su css de usuario y aún no se ha grabado!'''",
+'userjspreview'                    => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
+'userinvalidcssjstitle'            => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
+'updated'                          => '(Actualizado)',
+'note'                             => '<strong>Nota:</strong>',
+'previewnote'                      => '<strong>¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!</strong>',
+'previewconflict'                  => 'La previsualización le muestra cómo aparecerá el texto una vez guardados los cambios.',
+'session_fail_preview'             => '<strong>Lo sentimos, no pudimos efectuar su edición debido a una pérdida de los datos de sesión. Por favor, inténtelo de nuevo y si no funciona, salga de su sesión y vuelva a identificarse.</strong>',
+'session_fail_preview_html'        => "<strong>Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.</strong>
 
 ''Puesto que este wiki tiene el HTML puro habilitado, la visión preliminar está oculta para prevenirse contra ataques en JavaScript.''
 
 <strong>Si éste es un intento legítimo de modificación, por favor, inténtelo de nuevo. Si aún entonces no funcionase, pruebe a cerrar la sesión y a ingresar de nuevo.</strong>",
-'token_suffix_mismatch'     => '<strong>Tu edición ha sido rechazada porque tu cliente ha mezclado los signos de puntuación en el token de edición. 
+'token_suffix_mismatch'            => '<strong>Tu edición ha sido rechazada porque tu cliente ha mezclado los signos de puntuación en el token de edición. 
 Se rechazó la edición para evitar que el texto de la página se corrompa
 Esto sucede en ocasiones cuando se usa un servicio de proxy anónimo defectuoso.</strong>',
-'editing'                   => 'Editando $1',
-'editingsection'            => 'Editando $1 (sección)',
-'editingcomment'            => 'Editando $1 (comentario)',
-'editconflict'              => 'Conflicto de edición: $1',
-'explainconflict'           => "Alguien más ha cambiado esta página desde que empezaste a editarla.
+'editing'                          => 'Editando $1',
+'editingsection'                   => 'Editando $1 (sección)',
+'editingcomment'                   => 'Editando $1 (comentario)',
+'editconflict'                     => 'Conflicto de edición: $1',
+'explainconflict'                  => "Alguien más ha cambiado esta página desde que empezaste a editarla.
 El área de texto superior contiene el texto de la página como existe actualmente.
 Tus cambios se muestran en el área de texto inferior.
 Si quieres grabar tus cambios, has de trasladarlos al área superior.
 '''Sólo''' el texto en el área de texto superior será grabado cuando pulses «Grabar página».",
-'yourtext'                  => 'Su texto',
-'storedversion'             => 'Versión almacenada',
-'nonunicodebrowser'         => '<strong>Atención: Su navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.</strong>',
-'editingold'                => '<strong>ADVERTENCIA: Estás editando una versión antigua de esta página.
+'yourtext'                         => 'Su texto',
+'storedversion'                    => 'Versión almacenada',
+'nonunicodebrowser'                => '<strong>Atención: Su navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.</strong>',
+'editingold'                       => '<strong>ADVERTENCIA: Estás editando una versión antigua de esta página.
 Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>',
-'yourdiff'                  => 'Diferencias',
-'copyrightwarning'          => 'Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1).Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. También tú nos aseguras que escribiste esto texto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre.<strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br />',
-'copyrightwarning2'         => 'Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. <br />También tú nos aseguras que escribiste esto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para detalles). <br /><strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
-'longpagewarning'           => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32KB o más.
+'yourdiff'                         => 'Diferencias',
+'copyrightwarning'                 => 'Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1).Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. También tú nos aseguras que escribiste esto texto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre.<strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br />',
+'copyrightwarning2'                => 'Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. <br />También tú nos aseguras que escribiste esto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para detalles). <br /><strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
+'longpagewarning'                  => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32KB o más.
 Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.</strong>',
-'longpageerror'             => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, lo cual es mayor que $2 kilobytes. No se puede guardar.</strong>',
-'readonlywarning'           => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
+'longpageerror'                    => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, lo cual es mayor que $2 kilobytes. No se puede guardar.</strong>',
+'readonlywarning'                  => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
 Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
-'protectedpagewarning'      => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
-'semiprotectedpagewarning'  => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
-'cascadeprotectedwarning'   => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
-'titleprotectedwarning'     => '<strong>ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.</strong>',
-'templatesused'             => 'Plantillas usadas en esta página:',
-'templatesusedpreview'      => 'Plantillas usadas en esta previsualización:',
-'templatesusedsection'      => 'Plantillas usadas en esta sección:',
-'template-protected'        => '(protegida)',
-'template-semiprotected'    => '(semiprotegida)',
-'hiddencategories'          => 'Esta página es un miembro de {{PLURAL:$1|1 categoría oculta|$1 categorías ocultas}}:',
-'edittools'                 => '<!-- Este texto aparecerá bajo los formularios de edición y subida. -->',
-'nocreatetitle'             => 'Creación de páginas limitada',
-'nocreatetext'              => 'Este wiki ha restringido la posibilidad de crear nuevas páginas. Puede volver atrás y editar una página existente, [[Special:Userlogin|identificarse o crear una cuenta]].',
-'nocreate-loggedin'         => 'No tienes permiso para crear páginas nuevas en {{SITENAME}}.',
-'permissionserrors'         => 'Errores de permisos',
-'permissionserrorstext'     => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
-'recreate-deleted-warn'     => "'''Atención: está creando una página que ha sido borrada previamente.'''
+'protectedpagewarning'             => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
+'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
+'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
+'titleprotectedwarning'            => '<strong>ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.</strong>',
+'templatesused'                    => 'Plantillas usadas en esta página:',
+'templatesusedpreview'             => 'Plantillas usadas en esta previsualización:',
+'templatesusedsection'             => 'Plantillas usadas en esta sección:',
+'template-protected'               => '(protegida)',
+'template-semiprotected'           => '(semiprotegida)',
+'hiddencategories'                 => 'Esta página es un miembro de {{PLURAL:$1|1 categoría oculta|$1 categorías ocultas}}:',
+'edittools'                        => '<!-- Este texto aparecerá bajo los formularios de edición y subida. -->',
+'nocreatetitle'                    => 'Creación de páginas limitada',
+'nocreatetext'                     => 'Este wiki ha restringido la posibilidad de crear nuevas páginas. Puede volver atrás y editar una página existente, [[Special:Userlogin|identificarse o crear una cuenta]].',
+'nocreate-loggedin'                => 'No tienes permiso para crear páginas nuevas en {{SITENAME}}.',
+'permissionserrors'                => 'Errores de permisos',
+'permissionserrorstext'            => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
+'permissionserrorstext-withaction' => 'No tienes permiso para $2, por las siguientes {{PLURAL:$1|razón|razones}}:',
+'recreate-deleted-warn'            => "'''Atención: está creando una página que ha sido borrada previamente.'''
 
 Debería considerar si es apropiado continuar editando esta página.
 Consulte a continuación el registro de borrados:",
@@ -828,6 +834,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'powersearch'           => 'Búsqueda',
 'powersearch-legend'    => 'Búsqueda avanzada',
+'powersearch-ns'        => 'Buscar en los espacios de nombres:',
+'powersearch-redir'     => 'Listar redirecciones',
 'search-external'       => 'Búsqueda externa',
 'searchdisabled'        => 'Las búsquedas en {{SITENAME}} está temporalmente deshabilitadas. Mientras tanto puede buscar mediante buscadores externos, pero tenga en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
 
@@ -927,6 +935,28 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'grouppage-bot'        => '{{ns:project}}:Bot',
 'grouppage-sysop'      => '{{ns:project}}:Administradores',
 'grouppage-bureaucrat' => '{{ns:project}}:Burócratas',
+
+# Rights
+'right-read'             => 'Leer páginas',
+'right-edit'             => 'Editar páginas',
+'right-createpage'       => 'Crear páginas que no sean páginas de discusión',
+'right-createtalk'       => 'Crear páginas de discusión',
+'right-createaccount'    => 'Crear cuentas de usuario nuevas',
+'right-minoredit'        => 'Marcar ediciones como «menores»',
+'right-move'             => 'Trasladar páginas',
+'right-suppressredirect' => 'No crear una redirección en el viejo nombre al trasladar una página',
+'right-upload'           => 'Subir archivos',
+'right-reupload'         => 'Subir una nueva versión de un archivo existente',
+'right-reupload-own'     => 'Subir una nueva versión de un archivo creado por uno mismo',
+'right-upload_by_url'    => 'Subir un archivo a traves de un URL',
+'right-delete'           => 'Borrar páginas',
+'right-bigdelete'        => 'Borrar páginas con historiales de revisión largos',
+'right-deleterevision'   => 'Borrar y restaurar revisiones específicas de páginas',
+'right-undelete'         => 'Deshacer el borrado de una página',
+'right-editinterface'    => 'Editar la interfáz de usuario',
+'right-editusercssjs'    => 'Editar las páginas de CSS y JS de otros usuarios',
+'right-import'           => 'Importar páginas desde otras wikis',
+'right-siteadmin'        => 'Bloquear y desbloquear la base de datos',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -1865,7 +1895,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso, ejecutarlo podría comprometer la seguridad de tu equipo.<hr />",
 'imagemaxsize'         => 'Limitar imágenes en las páginas de descripción a:',
 'thumbsize'            => 'Tamaño de las vistas en miniatura:',
-'widthheightpage'      => '$1×$2, $3 páginas',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:|página|páginas}}',
 'file-info'            => '(tamaño de archivo: $1; tipo MIME: $2)',
 'file-info-size'       => '($1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4)',
 'file-nohires'         => '<small>No disponible a mayor resolución.</small>',
@@ -2297,6 +2327,13 @@ Intenta la previsualización normal.',
 'fileduplicatesearch-submit'   => 'Buscar',
 
 # Special:SpecialPages
-'specialpages-group-other' => 'Otras páginas especiales',
+'specialpages-group-maintenance' => 'Reportes de mantenimiento',
+'specialpages-group-other'       => 'Otras páginas especiales',
+'specialpages-group-login'       => 'Registrarse / entrar',
+'specialpages-group-changes'     => 'Cambios recientes y registros',
+'specialpages-group-media'       => 'Páginas sobre archivos',
+'specialpages-group-users'       => 'Usuarios y permisos',
+'specialpages-group-needy'       => 'Páginas que necesitan ser revisadas',
+'specialpages-group-highuse'     => 'Páginas sobre usos',
 
 );

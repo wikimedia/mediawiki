@@ -354,14 +354,14 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'ضع خطا تحت الوصلات:',
+'tog-underline'               => 'ضع خطًا تحت الوصلات:',
 'tog-highlightbroken'         => 'أأظهر الوصلات المعطوبة <a href="" class="new">هكذا</a> (البديل: كهذا<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'ساوِ الفقرات',
-'tog-hideminor'               => 'خبئ التعديلات الطفيفة في أحدث التغييرات',
+'tog-hideminor'               => 'خبيء التعديلات الطفيفة في أحدث التغييرات',
 'tog-extendwatchlist'         => 'مدد قائمة المراقبة لعرض كل التغييرات المطبقة',
 'tog-usenewrc'                => 'شكل متقدم من أحدث التغييرات (جافا سكريبت)',
 'tog-numberheadings'          => 'رقم العناوين تلقائيا',
-'tog-showtoolbar'             => 'اعرض شريط التحرير (جافا سكريبت)',
+'tog-showtoolbar'             => 'اظهر شريط التحرير (جافا سكريبت)',
 'tog-editondblclick'          => 'عدل الصفحات عند الضغط المزدوج (جافا سكريبت)',
 'tog-editsection'             => 'فعل تعديل الأقسام عن طريق وصلات [تحرير]',
 'tog-editsectiononrightclick' => 'فعل تعديل الأقسام بواسطة كبسة الفأرة اليمين على عناوين الأقسام (جافاسكريبت)',
@@ -393,10 +393,10 @@ $messages = array(
 'tog-nolangconversion'        => 'عطل تحويل اللهجات',
 'tog-ccmeonemails'            => 'أرسل لي نسخا من رسائل البريد الإلكتروني التي أرسلها للمستخدمين الآخرين',
 'tog-diffonly'                => 'لا تعرض محتوى الصفحة أسفل الفروقات',
-'tog-showhiddencats'          => 'أعرض التّصنيفات المخفية',
+'tog-showhiddencats'          => 'اظهر التّصنيفات المخفية',
 
-'underline-always'  => 'دائما',
-'underline-never'   => 'أبدا',
+'underline-always'  => 'دائمًا',
+'underline-never'   => 'أبدًا',
 'underline-default' => 'تبعا لإعدادات المتصفح',
 
 'skinpreview' => '(عرض)',
@@ -513,9 +513,9 @@ $messages = array(
 'info_short'        => 'معلومات',
 'printableversion'  => 'نسخة للطباعة',
 'permalink'         => 'وصلة دائمة',
-'print'             => 'طباعة',
+'print'             => 'اطبع',
 'edit'              => 'عدل',
-'create'            => 'إنشاء',
+'create'            => 'أنشيء',
 'editthispage'      => 'عدل هذه الصفحة',
 'create-this-page'  => 'أنشيء هذه الصفحة',
 'delete'            => 'حذف',
@@ -725,10 +725,10 @@ $2',
 'login'                      => 'دخول',
 'nav-login-createaccount'    => 'دخول / إنشاء حساب',
 'loginprompt'                => 'يجب أن تكون الكوكيز لديك مفعلة لتتمكن من الدخول إلى {{SITENAME}}.',
-'userlogin'                  => 'دخول / إنشاء حساب',
+'userlogin'                  => 'سجّل الدخول / أنشيء حساب',
 'logout'                     => 'خروج',
 'userlogout'                 => 'خروج',
-'notloggedin'                => 'غير مسجل',
+'notloggedin'                => 'غير مسجّل الدخول',
 'nologin'                    => 'لم تشترك بعد؟ $1.',
 'nologinlink'                => 'قم بإنشاء حساب',
 'createaccount'              => 'أنشئ حسابا',
@@ -737,7 +737,7 @@ $2',
 'createaccountmail'          => 'بواسطة البريد الإلكتروني',
 'badretype'                  => 'كلمات السر التي أدخلتها لا تتطابق.',
 'userexists'                 => 'اسم المستخدم الذي أدخلته مستعمل بالفعل. من فضلك اختر اسما مختلفا.',
-'youremail'                  => 'البريد الإلكتروني:',
+'youremail'                  => 'البريد:',
 'username'                   => 'اسم المستخدم:',
 'uid'                        => 'رقم المستخدم:',
 'prefs-memberingroups'       => 'عضو في {{PLURAL:$1|مجموعة|مجموعة}}:',
@@ -834,9 +834,9 @@ $1 ساعة.',
 'watchthis'                        => 'راقب هذه الصفحة',
 'savearticle'                      => 'احفظ الصفحة',
 'preview'                          => 'عرض مسبق',
-'showpreview'                      => 'عرض التعديلات',
+'showpreview'                      => 'عرض مسبق',
 'showlivepreview'                  => 'عرض مباشر',
-'showdiff'                         => 'عرض التغييرات',
+'showdiff'                         => 'اظهر المقارنة',
 'anoneditwarning'                  => "'''تحذير:''' لم تقم بالدخول؛ سيتم تسجيل عنوان الأيبي الخاص بك في تاريخ هذه الصفحة.",
 'missingsummary'                   => "'''تنبيه:''' لم تقم بكتابة ملخص للتعديل. إذا قمت بضغط حفظ الصفحة مرة أخرى فيتم حفظ تعديلك بدون ملخص.",
 'missingcommenttext'               => 'من فضلك أدخل تعليقا في الأسفل.',
@@ -968,7 +968,7 @@ $1 ساعة.',
 'expensive-parserfunction-warning'        => 'تحذير: هذه الصفحة تحتوي على استدعاءات دالة بارسر كثيرة مكلفة.
 
 ينبغي أن تكون أقل من $2، يوجد الآن $1.',
-'expensive-parserfunction-category'       => 'الصفحات ذات استدعاءات دالة بارسر كثيرة مكلفة',
+'expensive-parserfunction-category'       => 'صفحات يوجد بها استدعاءات دوال محلل كثيرة ومكلفة',
 'post-expand-template-inclusion-warning'  => 'تحذير: يتضمّن القالب حجما كبيرا جدا.
 بعض القوالب لن تضمّن.',
 'post-expand-template-inclusion-category' => 'صفحات حيث القالب يتضمّن حجما متجاوزا',
@@ -979,7 +979,7 @@ $1 ساعة.',
 # "Undo" feature
 'undo-success' => 'يمكن استرجاع التعديل. من فضلك تحقق من المقارنة بالأسفل للتأكد من أن هذا هو ما تريد أن تفعله، وبعد ذلك احفظ التغييرات بالأسفل للانتهاء من استرجاع التعديل.',
 'undo-failure' => 'لم يمكن استرجاع التعديل بسبب تعديلات متعارضة تمت على الصفحة.',
-'undo-norev'   => 'التعديل لم يمكن الرجوع عنه لأنه غير موجود أو تم حذفه.',
+'undo-norev'   => 'فشل في الرجوع عن التعديل حيث أنه غير موجود أو تم حذفه.',
 'undo-summary' => 'الرجوع عن التعديل $1 بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]])',
 
 # Account creation failure
@@ -1020,7 +1020,7 @@ $1 ساعة.',
 'history-feed-empty'          => 'الصفحة المطلوبة غير موجودة. من المحتمل أن تكون هذه الصفحة قد حذفت أو نقلت. حاول [[Special:Search|البحث في الويكي]] عن صفحات جديدة ذات صلة.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(تم مسح تعليق)',
+'rev-deleted-comment'         => '(أزيل التعليق)',
 'rev-deleted-user'            => '(اسم المستخدم أزيل)',
 'rev-deleted-event'           => '(فعل السجل تمت إزالته)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
@@ -1211,6 +1211,8 @@ $1 ساعة.',
 'servertime'               => 'وقت الخادم',
 'guesstimezone'            => 'أدخل التوقيت من المتصفح',
 'allowemail'               => 'السماح بتلقي البريد الإلكتروني من المستخدمين الآخرين',
+'prefs-searchoptions'      => 'خيارات البحث',
+'prefs-namespaces'         => 'أسماء النطاقات',
 'defaultns'                => 'ابحث في هذه النطاقات افتراضيا:',
 'default'                  => 'افتراضي',
 'files'                    => 'ملفات',
@@ -1895,7 +1897,7 @@ $NEWPAGE
 # Restrictions (nouns)
 'restriction-edit'   => 'تعديل',
 'restriction-move'   => 'نقل',
-'restriction-create' => 'إنشاء',
+'restriction-create' => 'أنشيء',
 'restriction-upload' => 'رفع',
 
 # Restriction levels
@@ -2262,7 +2264,7 @@ $1',
 'tooltip-t-recentchangeslinked'   => 'أحدث التغييرات في الصفحات الموجودة وصلاتها هنا.',
 'tooltip-feed-rss'                => 'تلقيم أر إس إس لهذه الصفحة',
 'tooltip-feed-atom'               => 'تلقيم أتوم لهذه الصفحة',
-'tooltip-t-contributions'         => 'عرض قائمة مساهمات هذا المستخدم',
+'tooltip-t-contributions'         => 'اعرض قائمة مساهمات هذا المستخدم',
 'tooltip-t-emailuser'             => 'أرسل رسالة لهذا المستخدم',
 'tooltip-t-upload'                => 'رفع ملفات',
 'tooltip-t-specialpages'          => 'قائمة بكل الصفحات الخاصة',
@@ -2403,8 +2405,8 @@ $1',
 # Metadata
 'metadata'          => 'بيانات ميتا',
 'metadata-help'     => 'هذا الملف يحتوي على معلومات إضافية، غالبا ما تكون أضيفت من قبل الكاميرا الرقمية أو الماسح الضوئي المستخدم في نقل الملف إلى الحاسوب. إذا كان الملف قد عدل عن حالته الأصلية، فبعض التفاصيل قد لا تعبر عن الملف المعدل.',
-'metadata-expand'   => 'عرض التفاصيل الإضافية',
-'metadata-collapse' => 'إخفاء التفاصيل الإضافية',
+'metadata-expand'   => 'اظهر التفاصيل الممتدة',
+'metadata-collapse' => 'اخف التفاصيل الممتدة',
 'metadata-fields'   => 'حقول معطيات الميتا EXIF الموجودة في هذه الرسالة سوف تعرض في صفحة الصورة عندما يكون جدول معطيات الميتا مضغوطا. الحقول الأخرى ستكون مخفية افتراضيا.
 * make
 * model
@@ -2632,7 +2634,7 @@ $1',
 
 'exif-exposuremode-0' => 'تعرض تلقائي',
 'exif-exposuremode-1' => 'تعرض يدوي',
-'exif-exposuremode-2' => 'أوتو براكيت',
+'exif-exposuremode-2' => 'أقواس تلقائية',
 
 'exif-whitebalance-0' => 'توازن الأبيض تلقائي',
 'exif-whitebalance-1' => 'توازن الأبيض يدوي',
@@ -2748,7 +2750,7 @@ $1
 </div>',
 'trackbackremove'   => ' ([$1 حذف])',
 'trackbacklink'     => 'متابعة',
-'trackbackdeleteok' => 'تم بنجاح إلغاء المتابعة.',
+'trackbackdeleteok' => 'حذفت المراجعة بنجاح.',
 
 # Delete conflict
 'deletedwhileediting' => 'تحذير: هذه الصفحة تم حذفها بعد أن بدأت أنت بتحريرها!',
@@ -2763,7 +2765,7 @@ $1
 'redirectingto' => 'جاري التحويل إلى [[$1]]...',
 
 # action=purge
-'confirm_purge'        => 'امسح كاش هذه الصفحة؟
+'confirm_purge'        => 'امسح مختزن هذه الصفحة؟
 
 $1',
 'confirm_purge_button' => 'موافق',
@@ -2809,8 +2811,8 @@ $1',
 'size-gigabytes' => '$1 جيجابايت',
 
 # Live preview
-'livepreview-loading' => 'جاري التحميل…',
-'livepreview-ready'   => 'جاري التحميل… جاهز!',
+'livepreview-loading' => 'تحميل…',
+'livepreview-ready'   => 'تحميل… جاهز!',
 'livepreview-failed'  => 'فشل العرض المباشر!
 حاول تجربة العرض العادي.',
 'livepreview-error'   => 'لم ينجح الاتصال: $1 "$2"

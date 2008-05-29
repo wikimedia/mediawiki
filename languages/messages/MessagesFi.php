@@ -550,7 +550,7 @@ Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{
 'youremail'                  => 'Sähköpostiosoite',
 'username'                   => 'Tunnus',
 'uid'                        => 'Numero',
-'prefs-memberingroups'       => 'Jäsen {{PLURAL:$1|ryhmässä|ryhmissä}}:',
+'prefs-memberingroups'       => 'Jäsenenä {{PLURAL:$1|ryhmässä|ryhmissä}}:',
 'yourrealname'               => 'Oikea nimi',
 'yourlanguage'               => 'Käyttöliittymän kieli',
 'yourvariant'                => 'Kielivariantti',

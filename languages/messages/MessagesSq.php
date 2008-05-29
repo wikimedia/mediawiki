@@ -445,6 +445,7 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'youremail'                  => 'Adresa e email-it*',
 'username'                   => 'Nofka e përdoruesit:',
 'uid'                        => 'Nr. i identifikimit:',
+'prefs-memberingroups'       => 'Anëtar i {{PLURAL:$1|grupit|grupeve}}:',
 'yourrealname'               => 'Emri juaj i vërtetë*',
 'yourlanguage'               => 'Ndërfaqja gjuhësore',
 'yourvariant'                => 'Varianti',
@@ -913,7 +914,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'userrights'                       => 'Ndrysho privilegjet e përdoruesve', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => 'Ndrysho grupet e përdoruesit',
 'userrights-user-editname'         => 'Fusni emrin e përdoruesit:',
-'editusergroup'                    => 'Redaktoni Grupet e Përdoruesve',
+'editusergroup'                    => 'Redakto grupet e përdoruesve',
 'editinguser'                      => "Duke ndryshuar privilegjet e përdoruesit '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'         => 'Anëtarësimi tek grupet',
 'saveusergroups'                   => 'Ruaj Grupin e Përdoruesve',
@@ -1327,15 +1328,17 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'watching'   => 'Duke mbikqyrur...',
 'unwatching' => 'Duke çmbikqyrur...',
 
-'enotif_mailer'      => 'Postieri njoftues i {{SITENAME}}',
-'enotif_reset'       => 'Markoi të gjitha faqet e vizituara',
-'enotif_newpagetext' => 'Kjo është një faqe e re.',
-'changed'            => 'ndryshuar',
-'created'            => 'u krijua',
-'enotif_subject'     => '{{SITENAME}} faqja $PAGETITLE u $CHANGEDORCREATED prej $PAGEEDITOR',
-'enotif_lastvisited' => 'Shikoni $1 për të gjitha ndryshimet që prej vizitës tuaj të fundit.',
-'enotif_anon_editor' => 'përdorues anonim $1',
-'enotif_body'        => 'I/E dashur $WATCHINGUSERNAME,
+'enotif_mailer'                => 'Postieri njoftues i {{SITENAME}}',
+'enotif_reset'                 => 'Markoi të gjitha faqet e vizituara',
+'enotif_newpagetext'           => 'Kjo është një faqe e re.',
+'enotif_impersonal_salutation' => 'Përdorues i {{SITENAME}}',
+'changed'                      => 'ndryshuar',
+'created'                      => 'u krijua',
+'enotif_subject'               => '{{SITENAME}} faqja $PAGETITLE u $CHANGEDORCREATED prej $PAGEEDITOR',
+'enotif_lastvisited'           => 'Shikoni $1 për të gjitha ndryshimet që prej vizitës tuaj të fundit.',
+'enotif_lastdiff'              => 'Shikoni $1 për ndryshime.',
+'enotif_anon_editor'           => 'përdorues anonim $1',
+'enotif_body'                  => 'I/E dashur $WATCHINGUSERNAME,
 
 faqja $PAGETITLE tek {{SITENAME}} është $CHANGEDORCREATED më $PAGEEDITDATE nga $PAGEEDITOR, shikoni $PAGETITLE_URL për versionin e tanishëm.
 
@@ -1507,6 +1510,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 
 # Block/unblock
 'blockip'                     => 'Blloko përdorues',
+'blockip-legend'              => 'Blloko përdoruesin',
 'blockiptext'                 => 'Përdorni formularin e mëposhtëm për të hequr lejen e shkrimit për një përdorues ose IP-ë specifike.
 Kjo duhet bërë vetëm në raste vandalizmi, dhe në përputhje me [[{{MediaWiki:Policy-url}}|rregullat e {{SITENAME}}-s]].
 Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u vandalizuan).',
@@ -1546,6 +1550,7 @@ Shiko te [[{{ns:special}}:Ipblocklist|Lista e përdoruesve dhe e IP adresave të
 një përdoruesi ose IP adreseje të bllokuar.",
 'ipusubmit'                   => 'Çblloko këtë përdorues',
 'unblocked'                   => '[[User:$1|$1]] është çbllokuar',
+'unblocked-id'                => 'Bllokimi $1 është hequr',
 'ipblocklist'                 => 'Lista e përdoruesve dhe e IP adresave të bllokuara',
 'ipblocklist-legend'          => 'Gjej një përdorues të bllokuar',
 'ipblocklist-username'        => 'Adresa IP ose nofka e përdoruesit:',
@@ -1554,7 +1559,9 @@ një përdoruesi ose IP adreseje të bllokuar.",
 'infiniteblock'               => 'pakufi',
 'expiringblock'               => 'mbaron më $1',
 'anononlyblock'               => 'vetëm anonimët',
+'noautoblockblock'            => 'autobllokimi është çaktivizuar',
 'createaccountblock'          => 'hapja e lloggarive është bllokuar',
+'emailblock'                  => 'email është bllokuar',
 'ipblocklist-no-results'      => 'Adresa IP ose përdoruesi i kërkuar nuk është i bllokuar.',
 'blocklink'                   => 'blloko',
 'unblocklink'                 => 'çblloko',
@@ -1567,6 +1574,7 @@ një përdoruesi ose IP adreseje të bllokuar.",
 'range_block_disabled'        => 'Mundësia e administruesve për të bllokuar me shtrirje është çaktivizuar.',
 'ipb_expiry_invalid'          => 'Afati i kohës është gabim.',
 'ip_range_invalid'            => 'Shtrirje IP gabim.',
+'blockme'                     => 'Më blloko',
 'proxyblocker'                => 'Bllokuesi i ndërmjetëseve',
 'proxyblockreason'            => 'IP adresa juaj është bllokuar sepse është një ndërmjetëse e hapur. Ju lutem lidhuni me kompaninë e shërbimeve të Internetit që përdorni dhe i informoni për këtë problem sigurije.',
 'proxyblocksuccess'           => 'Mbaruar.',
@@ -1590,8 +1598,12 @@ kur të mbaroni së kryeri mirëmbajtjen.',
 'lockdbsuccesstext'   => 'Regjistri është bllokuar.<br />
 Kujtohuni ta [[Special:Unlockdb|çbllokoni]] pasi të keni mbaruar mirëmbajtjen.',
 'unlockdbsuccesstext' => 'Regjistri i {{SITENAME}} është çbllokuar.',
+'lockfilenotwritable' => "Skeda për bllokimin e regjistrit s'mund të shkruhet.
+Shërbyesi i rrjetit duhet të jetë në gjendje të shkruaj këtë skedë për të bllokuar ose çbllokuar regjistrin.",
+'databasenotlocked'   => 'Regjistri nuk është bllokuar.',
 
 # Move page
+'move-page'               => 'Zhvendose $1',
 'move-page-legend'        => 'Zhvendose faqen',
 'movepagetext'            => "Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri. Titulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri. Lidhjet tek faqja e vjetër nuk do të ndryshohen; duhet të kontrolloni [[Special:SpecialPages|mirëmbajtjen]] për përcjellime të dyfishta ose të prishura.
 Keni përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.
@@ -1610,15 +1622,23 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'movearticle'             => 'Zhvendose faqen',
 'movenologin'             => 'Nuk keni hyrë brenda',
 'movenologintext'         => 'Duhet të keni hapur një llogari dhe të keni [[Special:Userlogin|hyrë brenda]] për të zhvendosur një faqe.',
+'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe në {{SITENAME}}.',
 'newtitle'                => 'Tek titulli i ri',
 'move-watch'              => 'Mbikqyre këtë faqe',
 'movepagebtn'             => 'Zhvendose faqen',
 'pagemovedsub'            => 'Zhvendosja doli me sukses',
 'movepage-moved'          => '<big>\'\'\'"$1" u zhvendos tek "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Një faqe me atë titull ekziston, ose titulli që zgjodhët nuk është i saktë. Ju lutem zgjidhni një tjetër.',
+'cantmove-titleprotected' => 'Nuk mund të zhvendosni një faqe në këtë titull pasi ky titull është mbrojtur kundrejt krijimit',
 'talkexists'              => 'Faqja për vete u zhvendos, ndërsa faqja e diskutimit nuk u zhvendos sepse një e tillë ekziston tek titulli i ri. Ju lutem, përpuqini vetë.',
 'movedto'                 => 'zhvendosur tek',
 'movetalk'                => 'Zhvendos edhe faqen e diskutimeve, në qoftë se është e mundur.',
+'move-subpages'           => 'Zhvendos të tëra nënfaqet nëse është e mundshme',
+'move-talk-subpages'      => 'Zhvendos të tëra nënfaqet e diskutimit nëse është e mundshme',
+'movepage-page-exists'    => "Faqja $1 ekziston prandaj s'mund ta mbivendos automatikisht",
+'movepage-page-moved'     => 'Faqja $1 është zhvendosur tek $2.',
+'movepage-page-unmoved'   => "Faqja $1 s'mund të zhvendosej tek $2.",
+'movepage-max-pages'      => "Maksimumi i lejuar, $1 faqe, janë zhvendosur dhe s'do të zhvendosen më faqe të tjera automatikisht.",
 '1movedto2'               => '[[$1]] u zhvendos tek [[$2]]',
 '1movedto2_redir'         => '[[$1]] u zhvendos tek [[$2]] dhe u krijua një faqe përcjellimi',
 'movelogpage'             => 'Regjistri i zhvendosjeve',
@@ -1816,6 +1836,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # Special:Newimages
 'newimages'             => 'Galeria e figurave të reja',
 'imagelisttext'         => 'Më poshtë është një listë e $1 {{PLURAL:$1|skedës të renditur|skedave të renditura}} sipas $2.',
+'newimages-summary'     => 'Kjo faqe speciale tregon skedat e ngarkuara së fundmi',
 'showhidebots'          => '($1 robotët)',
 'noimages'              => "S'ka gjë për të parë.",
 'ilsubmit'              => 'Kërko',

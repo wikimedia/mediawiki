@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author Aursani
  * @author Jon Harald Søby
+ * @author Nike
  */
 
 $rtl = true;
@@ -76,6 +77,7 @@ $messages = array(
 'mytalk'         => 'مون سان ڳالهه',
 'and'            => '۽',
 
+'errorpagetitle'    => 'چُڪَ',
 'tagline'           => '{{سرزميننانءُ}} کان',
 'search'            => 'ڳول',
 'go'                => 'کوليو',
@@ -119,19 +121,21 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} بابت',
 'aboutpage'            => 'Project:بابت',
 'copyright'            => 'سمورو مواد $1 تحت ميسر ڪجي ٿو',
-'copyrightpagename'    => '{{سرزميننانءُ}} حق ۽ واسطا',
-'copyrightpage'        => '{{نپ:رٿا}}:حق ۽ واسطا',
+'copyrightpagename'    => '{{SITENAME}} حق ۽ واسطا',
+'copyrightpage'        => '{{ns:project}}:حق ۽ واسطا',
 'currentevents'        => 'ھاڻوڪا واقعا',
-'currentevents-url'    => 'رٿا: اعداد',
+'currentevents-url'    => 'Project: اعداد',
 'disclaimers'          => 'غيرجوابداريناما',
 'faq'                  => 'ڪپوس',
-'faqpage'              => 'رٿا:ڪپوس',
+'faqpage'              => 'Project:ڪپوس',
 'mainpage'             => 'مُک صفحو',
 'mainpage-description' => 'مُک صفحو',
-'policy-url'           => 'رٿا:پاليسي',
+'policy-url'           => 'Project:پاليسي',
 
-'editsection' => 'سنواريو',
-'editold'     => 'سنواريو',
+'youhavenewmessages' => 'توهان لاءِ $1 ($2) آهن.',
+'newmessageslink'    => 'نوان نياپا',
+'editsection'        => 'سنواريو',
+'editold'            => 'سنواريو',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'صفحو',
@@ -147,14 +151,21 @@ $messages = array(
 'internalerror'       => 'اندروني خرابي',
 'viewsource'          => 'ڪوڊ ڏسو',
 'viewsourcefor'       => 'براءِ $1',
+'viewsourcetext'      => 'توهان هن صفحي جو ڪوڊ ڏسي ۽ نقل ڪري سگھو ٿا:',
 'ns-specialprotected' => 'خاص صفحا سنواري نٿا سگھجن.',
 
 # Login and logout pages
 'logouttitle'                => 'يوزر لاگ آئوٽ',
+'yourname'                   => 'يُوزرنانءُ:',
+'yourpassword'               => 'ڳجھو لفظ:',
+'logout'                     => 'لاگ آئوٽ',
 'createaccount'              => 'کاتو کوليو',
+'gotaccountlink'             => 'لاگ اِن',
 'createaccountmail'          => 'بذريعه برق ٽپال',
+'yourrealname'               => 'اصل نالو:',
 'badsiglength'               => 'اها صحيح تمام وڏي آهي.
 $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
+'loginsuccesstitle'          => 'لاگ اِن ڪامياب',
 'nouserspecified'            => 'توهان کي ڪو يوزرنانءُ ڄاڻائڻو پوندو.',
 'mailerror'                  => 'ٽپال اماڻڻ ۾ چُڪَ: $1',
 'acct_creation_throttle_hit' => 'معاف ڪجَو، اوهان اڳي ئي $1 کاتا کولي چڪا آهيو. ان کان وڌيڪ نه ٿا کولي سگھجن.',
@@ -166,6 +177,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'hr_tip'      => 'افقي لڪير (غيرضروري استعمال کان پاسو ڪندا)',
 
 # Edit pages
+'savearticle'          => 'صفحو سانڍيو',
 'missingcommenttext'   => 'براءِ مهرباني هيٺ پنهنجا تاثرات درج ڪندا.',
 'blockedtitle'         => 'يُوزر بندشيل آهي.',
 'blockednoreason'      => 'سبب اڻڄاڻايل',
@@ -192,6 +204,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'powersearch-redir' => 'چورڻن جي فهرست ڏيکاريو',
 
 # Preferences page
+'preferences'    => 'ترجيحات',
 'changepassword' => 'ڳجھو لفظ تبديل ڪريو',
 'datedefault'    => 'بلا ترجيحا',
 'datetime'       => 'تاريخ ۽ وقت',
@@ -209,6 +222,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 # Recent changes
 'rcshowhidebots' => '$1 بوٽس',
+'rcshowhideliu'  => '$1 لاگ اِن ٿيل يوزرس',
 'hist'           => 'سوانح',
 
 # Recent changes linked
@@ -217,9 +231,18 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Image description page
 'sharedupload'                   => 'هيءَ هڪ شراڪتي چاڙهه آهي، تنهنڪري ان کي ٻيون رٿائون به استعمال ڪري سگھن ٿيون.',
 'shareduploadduplicate-linktext' => 'ڪو ٻيو فائيل',
+'noimage-linktext'               => 'اهو چاڙهيو',
 
 # MIME search
 'mimesearch' => 'مائيم ڳولا',
+
+# List redirects
+'listredirects' => 'چورڻن جي فهرست',
+
+# Unused templates
+'unusedtemplates' => 'اڻ استعماليل سانچا',
+
+'disambiguations' => 'سلجھائپ صفحا',
 
 'doubleredirects' => 'ٻٽا چورڻا',
 
@@ -230,9 +253,19 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'withoutinterwiki' => 'ڪنهن به ٻي ٻوليءَ سان نه ڳنڍيل صفحا',
 
 # Miscellaneous special pages
-'uncategorizedpages' => 'اڻ زمريل صفحا',
-'ancientpages'       => 'قديم ترين صفحا',
-'move'               => 'چوريو',
+'lonelypages'             => 'يتيم صفحا',
+'uncategorizedpages'      => 'اڻ زمريل صفحا',
+'uncategorizedcategories' => 'اڻزمرايل زمرا',
+'uncategorizedimages'     => 'اڻزمرايل فائيل',
+'uncategorizedtemplates'  => 'اڻزمرايل سانچا',
+'wantedcategories'        => 'گھربل زمرا',
+'wantedpages'             => 'گھربل صفحا',
+'shortpages'              => 'مختصر صفحا',
+'longpages'               => 'طويل صفحا',
+'protectedpages'          => 'تحفظيل صفحا',
+'listusers'               => 'يُوزر فهرست',
+'ancientpages'            => 'قديم ترين صفحا',
+'move'                    => 'چوريو',
 
 # Special:Allpages
 'allpages'       => 'سڀ صفحا',
@@ -245,24 +278,37 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Special:Categories
 'categories' => 'زمرا',
 
+# E-mail user
+'emailuser' => 'هن يوزر کي برق ٽپال اماڻيو',
+
 # Watchlist
+'watchlistfor'        => "(براءِ '''$1''')",
 'addedwatch'          => 'ٽيٽ فھرست ۾ شامل ڪيو ويو.',
+'removedwatch'        => 'ٽيٽ فهرست مان هٽايو ويو',
 'watch'               => 'ٽيٽيو',
 'unwatch'             => 'اڻ ٽيٽيو',
 'unwatchthispage'     => 'ٽيٽڻ ڇڏيو',
 'watchlist-hide-bots' => 'بوٽ جون ڪيل ترميمون لڪايو',
+'watchlist-hide-own'  => 'منهنجون ڪيل ترميمون لڪايو',
 
 'enotif_newpagetext' => 'هيءُ هڪ نئون صفحو آهي.',
 'changed'            => 'تبديل ٿي ويو',
 'created'            => 'ٺهي چڪو',
 
 # Delete/protect/revert
+'deletepage'            => 'صفحو ڊاهيو',
 'confirm'               => 'پڪ ڪريو',
+'actioncomplete'        => 'عمل مڪمل',
+'deletecomment'         => 'ڊاهڻ جو سبب:',
+'deleteotherreason'     => 'اڃا ڪو ٻيو سبب:',
+'deletereasonotherlist' => 'ٻيو سبب',
 'rollbacklink'          => 'واپس ورايو',
 'protect-legend'        => 'تحفظڻ جي پڪ ڪريو',
+'protectcomment'        => 'تاثرات:',
 'protect-locked-access' => 'توهان جو کاتو صفحن جي تحفظاتي سطح تبديلي ڪرڻ جا اختيار نه ٿو رکي. هيٺ صفحي جون وقوعات (سيٽڱس) پيش ڪجن ٿيون <strong>$1</strong>:',
 'protect-level-sysop'   => 'صرف منتظمين',
 'protect-cascade'       => 'هن صفحي ۾ شامل صفحن کي تحفظيو (تحفظ در تحفظ)',
+'restriction-type'      => 'اجازتنامو:',
 'pagesize'              => '(ٻاٽڻيون)',
 
 # Undelete
@@ -283,17 +329,23 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'noautoblockblock'         => 'خودڪار بندش روڪيل',
 'createaccountblock'       => 'کاتو کولڻ جي روڪَ ٿيل',
 'blocklink'                => 'بندشيو',
+'unblocklink'              => 'اڻبندشيو',
 'contribslink'             => 'ڀاڱيداريون',
 'blocklogentry'            => '"[[$1]]" کي بندشيو ويو $2 جي عرصي لاء',
 'block-log-flags-anononly' => 'فقط نامعلوم يوزرس',
 
 # Move page
 'newtitle'                => 'نئين عنوان ڏانهن:',
+'move-watch'              => 'هيءُ صفحو ٽيٽيو',
+'movepagebtn'             => 'صفحو چوريو',
+'pagemovedsub'            => 'چورڻ جو عمل ڪامياب ٿيو',
+'movereason'              => 'سبب:',
 'revertmove'              => 'ورايو',
 'delete_and_move_confirm' => 'جي ها، صفحو ڊاهيو',
 'delete_and_move_reason'  => 'چورڻ جو عمل ممڪن بنائڻ لاءِ ڊاٺو ويو',
 
 # Namespace 8 related
+'allmessages'         => 'سرشتائي نياپا',
 'allmessagesname'     => 'نالو',
 'allmessagescurrent'  => 'موجوده تحرير',
 'allmessagesfilter'   => 'نياپي نانءُ ڇاڻي:',
@@ -306,9 +358,10 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'tooltip-ca-addsection' => 'هن بحث تي تاثرات درج ڪرايو',
 'tooltip-n-mainpage'    => 'مک صفحو گھمو',
 'tooltip-t-print'       => 'هن صفحي جو ڇاپائتو پرت',
+'tooltip-ca-nstab-help' => 'امدادي صفحو ڏسو',
 
 # Attribution
-'anonymous' => '{{سرزمين ناءُ}} جا نامعلوم يوزرس',
+'anonymous' => '{{SITENAME}} جا نامعلوم يوزرس',
 
 # Browsing diffs
 'previousdiff' => '← اڳوڻو تفاوت',
@@ -390,6 +443,12 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 # AJAX search
 'articletitles' => "''$1'' سان شروع ٿيندڙ مضمون",
+
+# Watchlist editing tools
+'watchlisttools-view' => 'لاڳاپيل تبديليون ڏسو',
+
+# Special:Version
+'version' => 'ورزن', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
 'specialpages-group-users' => 'يوزرس ۽ حق',
