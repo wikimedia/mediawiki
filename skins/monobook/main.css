@@ -573,6 +573,7 @@ div.townBox dl dd {
 	padding-right: 18px;
 }
 #bodyContent a[href ^="irc://"],
+#bodyContent a.extiw[href ^="irc://"],
 .link-irc {
 	background: url(discussionitem_icon.gif) center right no-repeat;
 	padding-right: 18px;
