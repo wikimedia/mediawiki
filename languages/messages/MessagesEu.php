@@ -642,6 +642,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'revdelete-log'               => 'Erregistroaren iruzkina:',
 'revdelete-submit'            => 'Hautatutako berrikuspenari aplikatu',
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
+'pagehist'                    => 'Orriaren historia',
 'revdelete-uname'             => 'Erabiltzaile izena',
 
 # History merging
@@ -764,21 +765,30 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'userrights-reason'          => 'Aldatzeko arrazoia:',
 
 # Groups
-'group'            => 'Taldea:',
-'group-bot'        => 'Bot-ak',
-'group-sysop'      => 'Administratzaileak',
-'group-bureaucrat' => 'Burokratak',
-'group-all'        => '(guztiak)',
+'group'               => 'Taldea:',
+'group-user'          => 'Lankideak',
+'group-autoconfirmed' => 'Lankide autokonfirmatuak',
+'group-bot'           => 'Bot-ak',
+'group-sysop'         => 'Administratzaileak',
+'group-bureaucrat'    => 'Burokratak',
+'group-all'           => '(guztiak)',
 
 'group-autoconfirmed-member' => 'Erabiltzaile autokonfirmatua',
 'group-bot-member'           => 'Bot-a',
 'group-sysop-member'         => 'Administratzaile',
 'group-bureaucrat-member'    => 'Burokrata',
 
+'grouppage-user'          => '{{ns:project}}:Lankideak',
 'grouppage-autoconfirmed' => '{{ns:project}}:Lankide autokonfirmatuak',
 'grouppage-bot'           => '{{ns:project}}:Bot-ak',
 'grouppage-sysop'         => '{{ns:project}}:Administratzaileak',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokratak',
+
+# Rights
+'right-edit'   => 'Orriak aldatu',
+'right-move'   => 'Oriak mugitu',
+'right-upload' => 'Fitxategia igo',
+'right-delete' => 'Orri ezabatuak',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',

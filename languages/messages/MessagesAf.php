@@ -1585,7 +1585,7 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'confirmemail_loggedin' => 'U e-posadres is nou bevestig.',
 'confirmemail_error'    => 'Iets het foutgegaan met die stoor van u bevestiging.',
 'confirmemail_subject'  => '{{SITENAME}}: E-posadres-bevestiging',
-'confirmemail_body'     => 'Iemand, waarskynlik van u IP-adres ($1), het \'n rekening "$2" geregistreer met hierdie e-posadres by {{SITENAME}}.
+'confirmemail_body'     => 'Iemand, waarskynlik van u IP-adres: $1, het \'n rekening "$2" geregistreer met hierdie e-posadres by {{SITENAME}}.
 
 Om te bevestig dat hierdie adres werklik aan u behoort, en om die posfasiliteite by {{SITENAME}} te aktiveer, besoek hierdie skakel in u blaaier:
 

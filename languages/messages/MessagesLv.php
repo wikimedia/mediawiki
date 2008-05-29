@@ -97,6 +97,13 @@ $messages = array(
 'thursday'      => 'ceturtdiena',
 'friday'        => 'piektdiena',
 'saturday'      => 'sestdiena',
+'sun'           => 'Sv',
+'mon'           => 'Pi',
+'tue'           => 'Ot',
+'wed'           => 'Tr',
+'thu'           => 'Ce',
+'fri'           => 'Pie',
+'sat'           => 'Se',
 'january'       => 'janvārī',
 'february'      => 'februārī',
 'march'         => 'martā',
@@ -336,11 +343,16 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt ''{{gr
 'uid'                        => 'Lietotāja ID:',
 'yourrealname'               => 'Tavs īstais vārds*',
 'yourlanguage'               => 'Lietotāja saskarnes valoda:',
-'yournick'                   => 'Tavs paraksts (iesauka):',
+'yournick'                   => 'Tavs paraksts (tāds kāds parādīsies uzrakstot 3~):',
 'badsig'                     => "Kļūdains ''paraksta'' kods; pārbaudi HTML (ja tāds ir lietots).",
+'badsiglength'               => 'Paraksts ir pārāk garš.
+Tam ir jābūt īsākam par  $1 {{PLURAL:$1|simbolu|simboliem}}.',
 'email'                      => 'E-pasts',
+'prefs-help-realname'        => 'Īstais vārds nav obligāts.
+Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldījumu {{grammar:lokatīvs|{{SITENAME}}}}).',
 'loginerror'                 => 'Neveiksmīga ieiešana',
 'prefs-help-email'           => '* E-pasts (nav obligāti jānorāda): Ļauj citiem sazināties ar tevi, izmantojot tavu lietotāja lapu vai lietotāja diskusiju lapu, tev nekur neatklājot savu identitāti.',
+'prefs-help-email-required'  => 'E-pasta adrese ir obligāta.',
 'nocookiesnew'               => 'Lietotājvārds tika izveidots, bet tu neesi iegājis iekšā. {{SITENAME}} izmanto sīkdatnes (<i>cookies</i>), lai lietotāji varētu tajā ieiet. Tavs pārlūks nepieņem tās. Lūdzu, atļauj to pieņemšanu un tad nāc iekšā ar savu lietotājvārdu un paroli.',
 'nocookieslogin'             => '{{SITENAME}} izmanto sīkdatnes (<i>cookies</i>), lai lietotāji varētu ieiet tajā. Diemžēl tavs pārlūks tos nepieņem. Lūdzu, atļauj to pieņemšanu un mēģini vēlreiz.',
 'noname'                     => 'Tu neesi norādījis derīgu lietotāja vārdu.',
@@ -360,7 +372,10 @@ Lietotajam $2 parole tagad ir $3.
 Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
 'noemail'                    => 'Lietotājs "$1" nav reģistrējis e-pasta adresi.',
 'passwordsent'               => 'Esam nosūtījuši jaunu paroli uz e-pasta adresi, kuru ir norādījis lietotājs $1. Lūdzu, nāc iekšā ar jauno paroli, kad būsi to saņēmis.',
+'blocked-mailpassword'       => "Tava IP adrese ir bloķēta un tāpēc nevar lietot paroles atjaunošanas (''recovery'') funkciju, lai nevarētu apiet bloku.",
 'eauthentsent'               => "Apstiprinājuma e-pasts tika nosūtīts uz norādīto e-pasta adresi. Lai varētu saņemt citus ''meilus'', izpildi vēstulē norādītās instrukcijas, lai apstiprinātu, ka šī tiešām ir tava e-pasta adrese.",
+'throttled-mailpassword'     => 'Paroles atgādinājums jau ir ticis nosūtīts pēdējo $1 stundu laikā.
+Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt tikai vienu paroles atgādinājumu, katras $1 stundas.',
 'mailerror'                  => 'E-pasta sūtīšanas kļūda: $1',
 'acct_creation_throttle_hit' => 'Tu jau esi izveidojis $1 kontus. Vairāk nevar.',
 'emailauthenticated'         => 'Tava e-pasta adrese tika apstiprināta $1.',
@@ -370,6 +385,7 @@ Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
 'invalidemailaddress'        => 'E-pasta adrese nevar tikt apstiprināta, jo izskatās nederīga. Lūdzu ievadi korekti noformētu e-pasta adresi, vai arī atstāj to lauku tukšu.',
 'accountcreated'             => 'Konts izveidots',
 'accountcreatedtext'         => 'Lietotāja konts priekš $1 tika izveidots.',
+'createaccount-title'        => 'Lietotāja konta izveidošana {{grammar:lokatīvs|{{SITENAME}}}}',
 'loginlanguagelabel'         => 'Valoda: $1',
 
 # Edit page toolbar
@@ -474,6 +490,10 @@ Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis
 'protectedpagewarning'     => "'''BRĪDINĀJUMS: Šī lapa ir bloķēta pret izmaiņām, tikai lietotāji ar admina privilēģijām var to izmainīt. To darot, noteikti ievēro [[Project:Norādījumi par aizsargātajām lapām|norādījumus par aizsargātajām lapām]].'''",
 'semiprotectedpagewarning' => "'''Piezīme:''' Izmaiņu veikšana šajā lapā ir atļauta tikai reģistrētiem lietotājiem.",
 'templatesused'            => '<br />Šajā lapā izmantotās veidnes:',
+'recreate-deleted-warn'    => "'''Brīdinājums: Tu atjauno lapu, kas ir tikusi izdzēsta'''
+
+Tev vajadzētu pārliecināties, vai ir lietderīgi turpināt izmainīt šo lapu.
+Te var apskatīties dzēšanas reģistru, kurā jābūt datiem par to kas, kad un kāpēc šo lapu izdzēsa.",
 
 # History pages
 'viewpagelogs'        => 'Apskatīties ar šo lapu saistītos reģistru ierakstus',
@@ -608,7 +628,8 @@ m = maznozīmīgs labojums.',
 'number_of_watching_users_pageview' => '[šo lapu uzrauga $1 {{plural:$1|lietotājs|lietotāji}}]',
 
 # Recent changes linked
-'recentchangeslinked' => 'Saistītās izmaiņas',
+'recentchangeslinked'       => 'Saistītās izmaiņas',
+'recentchangeslinked-title' => 'Izmaiņas, kas saistītas ar "$1"',
 
 # Upload
 'upload'               => 'Augšuplādēt failu',
@@ -680,6 +701,8 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'imagelist' => 'Attēlu uzskaitījums',
 
 # Image description page
+'filehist'                  => 'Faila hronoloģija',
+'filehist-filesize'         => 'Faila izmērs',
 'imagelinks'                => 'Attēlu saites',
 'linkstoimage'              => 'Attēls ir izmantots šajās lapās:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
@@ -730,7 +753,7 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'ncategories'             => '$1 {{PLURAL:$1|kategorija|kategorijas}}',
 'nlinks'                  => '$1 {{PLURAL:$1|saite|saites}}',
 'nrevisions'              => '$1 {{PLURAL:$1|versija|versijas}}',
-'nviews'                  => '$1 views',
+'nviews'                  => 'skatīta $1 {{PLURAL:$1|reizi|reizes}}',
 'lonelypages'             => 'Lapas bez saitēm uz tām',
 'uncategorizedpages'      => 'Nekategorizētās lapas',
 'uncategorizedcategories' => 'Nekategorizētās kategorijas',
@@ -914,6 +937,7 @@ Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par
 
 'sp-contributions-blocklog' => 'Bloķēšanas reģistrs',
 'sp-contributions-username' => 'IP adrese vai lietotāja vārds:',
+'sp-contributions-submit'   => 'Meklēt',
 
 # What links here
 'whatlinkshere'            => 'Norādes uz šo rakstu',
@@ -1109,6 +1133,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'thumbsize'            => 'Sīkbildes (<i>thumbnail</i>) izmērs:',
 'file-nohires'         => '<small>Augstāka izšķirtspēja nav pieejama.</small>',
 'svg-long-desc'        => '(SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3)',
+'show-big-image'       => 'Pilnā izmērā',
 'show-big-image-thumb' => '<small>Šī priekšskata izmērs: $1 × $2 pikseļi</small>',
 
 # Special:Newimages
@@ -1154,22 +1179,22 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'namespacesall'    => 'visas',
 
 # E-mail address confirmation
-'confirmemail'            => 'Apstiprini e-pasta adresi',
-'confirmemail_text'       => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas. 
+'confirmemail'             => 'Apstiprini e-pasta adresi',
+'confirmemail_text'        => 'Šajā wiki ir nepieciešams apstiprināt savu e-pasta adresi, lai izmantotu e-pasta funkcijas. 
 Spied uz zemāk esošās pogas, lai uz tavu e-pasta adresi nosūtītu apstiprināšanas e-pastu. 
 Tajā būs saite ar kodu; spied uz tās saites vai atver to savā interneta pārlūkā, 
 lai apstiprinātu tavas e-pasta adreses derīgumu.',
-'confirmemail_send'       => 'Nosūtīt apstiprināšanas kodu',
-'confirmemail_sent'       => 'Apstiprināšanas e-pasts nosūtīts.',
-'confirmemail_sendfailed' => 'Nevarējām nosūtīt apstiprināšanas e-pastu. Pārbaudi, vai adresē nav kāds nepareizs simbols.
+'confirmemail_send'        => 'Nosūtīt apstiprināšanas kodu',
+'confirmemail_sent'        => 'Apstiprināšanas e-pasts nosūtīts.',
+'confirmemail_sendfailed'  => 'Nevarējām nosūtīt apstiprināšanas e-pastu. Pārbaudi, vai adresē nav kāds nepareizs simbols.
 
 Nosūtīšanas programma atmeta atpakaļ: $1',
-'confirmemail_invalid'    => 'Nederīgs apstiprināšanas kods. Iespējams, beidzies tā termiņš.',
-'confirmemail_success'    => 'Tava e-pasta adrese ir apstiprināta. Tagad vari doties iekšā ar savu lietotājvārdu un pilnvērtīgi izmantot wiki iespējas.',
-'confirmemail_loggedin'   => 'Tava e-pasta adrese tagad ir apstiprināta.',
-'confirmemail_error'      => 'Notikusi kāda kļūme ar tava apstiprinājuma saglabāšanu.',
-'confirmemail_subject'    => 'E-pasta adreses apstiprinajums no {{grammar:ģenitīvs|{{SITENAME}}}}',
-'confirmemail_body'       => 'Kads, iespejams, tu pats, no IP adreses $1 ir registrejis {{grammar:ģenitīvs|{{SITENAME}}}} lietotaja vardu "$2" ar so e-pasta adresi.
+'confirmemail_invalid'     => 'Nederīgs apstiprināšanas kods. Iespējams, beidzies tā termiņš.',
+'confirmemail_success'     => 'Tava e-pasta adrese ir apstiprināta. Tagad vari doties iekšā ar savu lietotājvārdu un pilnvērtīgi izmantot wiki iespējas.',
+'confirmemail_loggedin'    => 'Tava e-pasta adrese tagad ir apstiprināta.',
+'confirmemail_error'       => 'Notikusi kāda kļūme ar tava apstiprinājuma saglabāšanu.',
+'confirmemail_subject'     => 'E-pasta adreses apstiprinajums no {{grammar:ģenitīvs|{{SITENAME}}}}',
+'confirmemail_body'        => 'Kads, iespejams, tu pats, no IP adreses $1 ir registrejis {{grammar:ģenitīvs|{{SITENAME}}}} lietotaja vardu "$2" ar so e-pasta adresi.
 
 Lai apstiprinatu, ka so lietotaja vardu esi izveidojis tu pats, un aktivizetu e-pasta izmantosanu {{SITENAME}}, atver so saiti sava interneta parluka:
 
@@ -1180,11 +1205,23 @@ Ja tu *neesi* registrejis sadu lietotaja vardu, atver sho saiti savaa interneta 
 $5
 
 Si apstiprinajuma koda deriguma termins ir $4.',
+'confirmemail_invalidated' => 'E-pasta adreses apstiprināšana atcelta',
+'invalidateemail'          => 'Atcelt e-pasta adreses apstiprināšanu',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Starpviki saišu iekļaušana ir atspējota.]',
 'scarytranscludefailed'   => '[Atvaino, neizdevās ienest veidni $1.]',
 'scarytranscludetoolong'  => '[Atvaino, URL adrese ir pārāk gara.]',
+
+# Delete conflict
+'deletedwhileediting' => 'Brīdinājums: Šī lapa tika izdzēsta, pēc tam, kad tu to sāki izmainīt!',
+'confirmrecreate'     => "Lietotājs [[Lietotājs:$1|$1]] ([[Lietotāja diskusija:$1|diskusija]]) izdzēssaa šo lapu, pēc tam, kad tu to biji sācis rediģēt, ar iemeslu:
+: ''$2''
+Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
+'recreate'            => 'Izveidot no jauna',
+
+# HTML dump
+'redirectingto' => 'Pāradresē uz [[$1]]...',
 
 # AJAX search
 'searchcontaining' => "Meklēt rakstus, kas satur ''$1''.",
@@ -1197,15 +1234,25 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 'imgmultipagenext' => 'nākamā lapa →',
 
 # Table pager
-'table_pager_next' => 'Nākamā lapa',
-'table_pager_prev' => 'Iepriekšējā lapa',
+'table_pager_next'  => 'Nākamā lapa',
+'table_pager_prev'  => 'Iepriekšējā lapa',
+'table_pager_first' => 'Pirmā lapa',
+'table_pager_last'  => 'Pēdējā lapa',
 
 # Auto-summaries
+'autosumm-replace' => "Aizvieto lapas saturu ar '$1'",
 'autoredircomment' => 'Pāradresē uz [[$1]]',
 'autosumm-new'     => 'Jauna lapa: $1',
 
 # Live preview
 'livepreview-loading' => 'Ielādējas…',
+'livepreview-ready'   => 'Ielādējas… Gatavs!',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Izmaiņas, kas ir jaunākas par  $1 sekundēm, var neparādīties šajā sarakstā.',
+
+# Watchlist editor
+'watchlistedit-numitems' => 'Tavs uzraugāmo lapu saraksts satur {{PLURAL:$1|1 lapu|$1 lapas}}, neieskaitot diskusiju lapas.',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Apskatīt un izmainīt uzraugāmo rakstu sarakstu',
@@ -1217,5 +1264,11 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 'filepath'        => 'Failu adreses',
 'filepath-page'   => 'Fails:',
 'filepath-submit' => 'Atrast adresi',
+
+# Special:SpecialPages
+'specialpages-group-maintenance' => 'Uzturēšanas atskaites',
+'specialpages-group-other'       => 'Citas īpašās lapas',
+'specialpages-group-changes'     => 'Pēdējās izmaiņas un reģistri',
+'specialpages-group-users'       => 'Lietotāji un piekļuves tiesības',
 
 );

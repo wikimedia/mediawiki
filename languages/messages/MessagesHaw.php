@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author Node ue
  * @author Siebrand
+ * @author Kalani
  */
 
 
@@ -52,13 +53,13 @@ $messages = array(
 'january'       => 'Ianuali',
 'february'      => 'Pepeluali',
 'march'         => 'Malaki',
-'april'         => "'Apelila",
+'april'         => '‘Apelila',
 'may_long'      => 'Mei',
 'june'          => 'Iune',
 'july'          => 'Iulai',
-'august'        => "'Aukake",
+'august'        => '‘Aukake',
 'september'     => 'Kepakemapa',
-'october'       => "'Okakopa",
+'october'       => '‘Okakopa',
 'november'      => 'Nowemapa',
 'december'      => 'Kēkēmapa',
 'january-gen'   => 'Ianuali',
@@ -95,7 +96,7 @@ $messages = array(
 
 'about'         => 'E pili ana',
 'cancel'        => 'Ho‘ōki',
-'qbedit'        => "E ho'opololei",
+'qbedit'        => 'E ho‘opololei',
 'moredotdotdot' => 'Hou...',
 'mypage'        => 'Ko‘u ‘ao‘ao',
 'mytalk'        => 'Ka‘u ‘ōlelo',
@@ -110,14 +111,15 @@ $messages = array(
 'searchbutton'     => 'Huli',
 'go'               => 'E huli',
 'searcharticle'    => 'Hele',
-'history_short'    => "He aha i ho'ololi 'ia ai",
+'history_short'    => 'He aha i ho‘ololi ‘ia ai',
 'printableversion' => "Ke 'ano hiki ke pa'i",
 'permalink'        => "Ka loulou pa'a",
 'edit'             => 'E ho‘opololei',
+'create'           => 'Hana',
 'editthispage'     => 'E ho‘opololei i kēia ‘ao‘ao',
 'delete'           => 'E kāpae',
 'deletethispage'   => 'E kāpae i kēia mo‘olelo',
-'protect'          => "E ho'omalu",
+'protect'          => 'E ho‘omalu',
 'protectthispage'  => 'E ho‘omalu i kēia ‘ao‘ao',
 'unprotect'        => 'E wehe ho‘omalu',
 'newpage'          => '‘Ao‘ao hou',
@@ -146,8 +148,8 @@ $messages = array(
 'youhavenewmessages'      => 'He $1 ($2) kāu.',
 'newmessageslink'         => 'mau memo hou',
 'youhavenewmessagesmulti' => 'He mau memo kou ma $1',
-'editsection'             => "E ho'opololei",
-'editold'                 => "E ho'opololei",
+'editsection'             => 'e ho‘opololei',
+'editold'                 => 'e ho‘opololei',
 'editsectionhint'         => 'E ho‘opololei i ka paukū: $1',
 'showtoc'                 => 'hō‘ike',
 'hidetoc'                 => 'hūnā',
@@ -336,13 +338,14 @@ hō‘ike ‘ia i lalo:",
 'changed' => 'ua loli ‘ia',
 
 # Delete/protect/revert
+'actioncomplete' => 'Ua pau',
 'deletedarticle' => 'ua kāpae ‘ia "[[$1]]"',
 'dellogpagetext' => 'He helu o nā mea i kāpae ʻia hou i lalo.',
 'deletecomment'  => 'Ke kumu e kāpae',
 'rollbacklink'   => 'ho‘i',
 
 # Restrictions (nouns)
-'restriction-edit' => "E ho'opololei",
+'restriction-edit' => 'E ho‘opololei',
 'restriction-move' => "E ho'ololi i ka inoa",
 
 # Namespace form on various pages
@@ -392,6 +395,7 @@ hō‘ike ‘ia i lalo:",
 'tooltip-pt-preferences' => 'ka‘u makemake',
 'tooltip-pt-logout'      => 'e ha‘alele',
 'tooltip-ca-edit'        => 'Hiki iā‘oe ke ho‘opololei i kēia ‘ao‘ao. Imua o ka mālama, ho‘ohana i ka nāmua, ke ‘olu‘olu.',
+'tooltip-ca-delete'      => 'E kāpae i kēia mo‘olelo',
 'tooltip-ca-move'        => 'E ne‘e i kēia mo‘olelo',
 'tooltip-search'         => 'Huli iā {{SITENAME}}',
 'tooltip-n-mainpage'     => 'Hele i ka papa kinohi',

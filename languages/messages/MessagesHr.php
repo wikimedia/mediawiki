@@ -447,6 +447,7 @@ Vaš je suradnički račun otvoren. Ne zaboravite podesiti suradničke postavke.
 'youremail'                  => 'Vaša elektronska pošta *',
 'username'                   => 'Suradničko ime:',
 'uid'                        => 'Suradnički ID-broj:',
+'prefs-memberingroups'       => 'Član {{PLURAL:$1|skupine|skupina}}:',
 'yourrealname'               => 'Pravo ime (nije obvezno)*',
 'yourlanguage'               => 'Jezik:',
 'yourvariant'                => 'Inačica:',
@@ -673,6 +674,10 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:Userlo
 Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima.
 Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning' => 'Upozorenje: Veličina uključenih predložaka je prevelika.
+Neki predlošci neće biti uključeni.',
+
 # "Undo" feature
 'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
 'undo-failure' => 'Ova izmjena ne može biti uklonjena zbog postojanja međuinačica.',
@@ -844,7 +849,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'searchall'                 => 'sve',
 'showingresults'            => "Dolje {{PLURAL:$1|je prikazan '''$1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}}, počevši od '''$2'''.",
 'showingresultsnum'         => "Dolje {{PLURAL:$3|je prikazan '''$3''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}}, počevši s brojem '''$2'''.",
-'showingresultstotal'       => "Rezultati pretraživanja '''$1 - $2''' od '''$3'''",
+'showingresultstotal'       => "Rezultati pretraživanja {{PLURAL:$3| '''$1''' od '''$3'''| '''$1 - $2''' od '''$3'''}}",
 'nonefound'                 => '<b>Napomena</b>: pretrage su neuspješne ako tražite česte riječi koje ne indeksiramo, ili u upitu navedete previše pojmova (u rezultatu se pojavlju samo stranice koje sadrže sve tražene pojmove).',
 'powersearch'               => 'Traženje',
 'powersearch-legend'        => 'Napredno pretraživanje',
@@ -912,6 +917,8 @@ za podešavanje suradničkih postavki.',
 'servertime'               => 'Vrijeme na poslužitelju',
 'guesstimezone'            => 'Vrijeme dobiveno od preglednika',
 'allowemail'               => 'Omogući primanje e-maila od drugih suradnika',
+'prefs-searchoptions'      => 'Način traženja',
+'prefs-namespaces'         => 'Imenski prostori',
 'defaultns'                => 'Ako ne navedem drugačije, traži u ovim prostorima:',
 'default'                  => 'prvotno',
 'files'                    => 'Datoteke',
@@ -1921,6 +1928,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'import-noarticle'           => 'Nema stranice za uvoz!',
 'import-nonewrevisions'      => 'Sve inačice su bile prethodno uvezene.',
 'xml-error-string'           => '$1 u retku $2, stupac $3 (bajt $4): $5',
+'import-upload'              => 'Postavljanje XML datoteka',
 
 # Import log
 'importlogpage'                    => 'Evidencija uvoza članaka',
