@@ -747,6 +747,8 @@ class User {
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroups = array();
 
+		wfRunHooks( 'UserLoadDefaults', array( $this, $name ) );
+
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -2122,19 +2124,29 @@ class User {
 	function setCookies() {
 		$this->load();
 		if ( 0 == $this->mId ) return;
-		
-		$_SESSION['wsUserID'] = $this->mId;
-		
-		$this->setCookie( 'UserID', $this->mId );
-		$this->setCookie( 'UserName', $this->getName() );
-
-		$_SESSION['wsUserName'] = $this->getName();
-
-		$_SESSION['wsToken'] = $this->mToken;
+		$session = array( 
+			'wsUserID' => $this->mId,
+			'wsToken' => $this->mToken,
+			'wsUserName' => $this->getName()
+		);
+		$cookies = array(
+			'UserID' => $this->mId,
+			'UserName' => $this->getName(),
+		);
 		if ( 1 == $this->getOption( 'rememberpassword' ) ) {
-			$this->setCookie( 'Token', $this->mToken );
+			$cookies['Token'] = $this->mToken;
 		} else {
-			$this->clearCookie( 'Token' );
+			$cookies['Token'] = false;
+		}
+		
+		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
+		$_SESSION = $session + $_SESSION;
+		foreach ( $cookies as $name => $value ) {
+			if ( $value === false ) {
+				$this->clearCookie( $name );
+			} else {
+				$this->setCookie( $name, $value );
+			}
 		}
 	}
 
