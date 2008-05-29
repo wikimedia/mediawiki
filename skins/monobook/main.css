@@ -603,6 +603,70 @@ div.townBox dl dd {
 	background: url("document.png") center right no-repeat;
 	padding-right: 12px;
 }
+/* for rtl wikis */
+.rtl #bodyContent a.external,
+.rtl #bodyContent a[href ^="gopher://"] {
+        background: url(external.png) center left no-repeat;
+        padding-right: 0px;
+        padding-left: 13px;
+}
+.rtl #bodyContent a[href ^="https://"],
+.link-https {
+        background: url(lock_icon.gif) center left no-repeat;
+        padding-right: 0px;
+        padding-left: 16px;
+}
+.rtl #bodyContent a[href ^="mailto:"],
+.link-mailto {
+        background: url(mail_icon.gif) center left no-repeat;
+        padding-right: 0px;
+        padding-left: 18px;
+}
+.rtl #bodyContent a[href ^="news://"] {
+        background: url(news_icon.png) center left no-repeat;
+        padding-right: 0px;
+        padding-left: 18px;
+}
+.rtl #bodyContent a[href ^="ftp://"],
+.link-ftp {
+        background: url(file_icon.gif) center left no-repeat;
+        padding-right: 0px;
+        padding-left: 18px;
+}
+.rtl #bodyContent a[href ^="irc://"],
+.link-irc {
+        background: url(discussionitem_icon.gif) center left no-repeat;
+        padding-right: 0px;
+        padding-left: 18px;
+}
+.rtl #bodyContent a.external[href $=".ogg"], .rtl #bodyContent a.external[href $=".OGG"],
+.rtl #bodyContent a.external[href $=".mid"], .rtl #bodyContent a.external[href $=".MID"],
+.rtl #bodyContent a.external[href $=".midi"], .rtl #bodyContent a.external[href $=".MIDI"],
+.rtl #bodyContent a.external[href $=".mp3"], .rtl #bodyContent a.external[href $=".MP3"],
+.rtl #bodyContent a.external[href $=".wav"], .rtl #bodyContent a.external[href $=".WAV"],
+.rtl #bodyContent a.external[href $=".wma"], .rtl #bodyContent a.external[href $=".WMA"],
+.link-audio {
+        background: url("audio.png") center left no-repeat;
+        padding-right: 0px;
+        padding-left: 13px;
+}
+.rtl #bodyContent a.external[href $=".ogm"], .rtl #bodyContent a.external[href $=".OGM"],
+.rtl #bodyContent a.external[href $=".avi"], .rtl #bodyContent a.external[href $=".AVI"],
+.rtl #bodyContent a.external[href $=".mpeg"], .rtl #bodyContent a.external[href $=".MPEG"],
+.rtl #bodyContent a.external[href $=".mpg"], .rtl #bodyContent a.external[href $=".MPG"],
+.link-video {
+        background: url("video.png") center left no-repeat;
+        padding-right: 0px;
+        padding-left: 13px;
+}
+.rtl #bodyContent a.external[href $=".pdf"], .rtl #bodyContent a.external[href $=".PDF"],
+.rtl #bodyContent a.external[href *=".pdf#"], .rtl #bodyContent a.external[href *=".PDF#"],
+.rtl #bodyContent a.external[href *=".pdf?"], .rtl #bodyContent a.external[href *=".PDF?"],
+.link-document {
+        background: url("document.png") center left no-repeat;
+        padding-right: 0px;
+        padding-left: 12px;
+}
 
 /* disable interwiki styling */
 #bodyContent a.extiw,
