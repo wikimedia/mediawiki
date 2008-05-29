@@ -66,7 +66,8 @@ class SearchEngine {
 			if (is_null($title))
 				return NULL;
 
-			if ( $title->getNamespace() == NS_SPECIAL || $title->exists() ) {
+			if ( $title->getNamespace() == NS_SPECIAL || $title->isExternal() 
+			     || $title->exists() ) {
 				return $title;
 			}
 

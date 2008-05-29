@@ -313,6 +313,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13826) MediaWiki:Defaultns accepts Wikicode
 * (bug 14324) Creating an account is again possible with $wgEmailConfirmToEdit
   set to true
+* (bug 13034) Interwiki pages can now be reached using Go search button
 
 === API changes in 1.13 ===
 
