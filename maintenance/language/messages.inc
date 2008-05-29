@@ -795,6 +795,8 @@ $wgMessageStructure = array(
 		'servertime',
 		'guesstimezone',
 		'allowemail',
+		'prefs-searchoptions',
+		'prefs-namespaces',
 		'defaultns',
 		'default',
 		'files',
