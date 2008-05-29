@@ -383,7 +383,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14243) Only accept post requests in action=edit; patch by HardDisk
 * action=block now returns an ISO8601 timestamp, like all other modules do
 * Added md5 parameter to action=edit
-* (bug 14335) Use proper $wgUser methods instead of using $_SESSION
+* (bug 14335) Logging in to unified account using API not possible
 
 === Languages updated in 1.13 ===
 
