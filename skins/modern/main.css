@@ -362,6 +362,10 @@ h1, h2 {
 	color: #666;
 }
 
+.prefsection legend {
+	font-weight: bold;
+}
+
 #preftoc li.selected {
 	background-color: #bbbbbb;
 }
