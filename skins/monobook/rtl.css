@@ -156,11 +156,7 @@ li#ca-watch {
 #p-personal li {
 	float: left;
 }
-/* Fix link icons */
-.external {
-	padding: 0 !important;
-	background: none !important;
-}
+
 #footer {
 	clear: both;
 }
