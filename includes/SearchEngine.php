@@ -73,27 +73,27 @@ class SearchEngine {
 			# Now try all lower case (i.e. first letter capitalized)
 			#
 			$title = Title::newFromText( $wgContLang->lc( $term ) );
-			if ( $title->exists() ) {
+			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try capitalized string
 			#
 			$title = Title::newFromText( $wgContLang->ucwords( $term ) );
-			if ( $title->exists() ) {
+			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try all upper case
 			#
 			$title = Title::newFromText( $wgContLang->uc( $term ) );
-			if ( $title->exists() ) {
+			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try Word-Caps-Breaking-At-Word-Breaks, for hyphenated names etc
 			$title = Title::newFromText( $wgContLang->ucwordbreaks($term) );
-			if ( $title->exists() ) {
+			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
@@ -101,11 +101,11 @@ class SearchEngine {
 			if( !$wgCapitalLinks ) {
 				// Catch differs-by-first-letter-case-only
 				$title = Title::newFromText( $wgContLang->ucfirst( $term ) );
-				if ( $title->exists() ) {
+				if ( $title && $title->exists() ) {
 					return $title;
 				}
 				$title = Title::newFromText( $wgContLang->lcfirst( $term ) );
-				if ( $title->exists() ) {
+				if ( $title && $title->exists() ) {
 					return $title;
 				}
 			}
