@@ -409,6 +409,7 @@ h1, h2 {
         padding-right: 18px;
 }
 #mw_content a[href ^="irc://"],
+#mw_content a.extiw[href ^="irc://"],
 .link-irc {
         background: url(discussionitem_icon.gif) center right no-repeat;
         padding-right: 18px;
