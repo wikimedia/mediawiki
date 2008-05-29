@@ -412,6 +412,7 @@ class ParserTest {
 				'createtalk'    => true,
 			) ),
 			'wgDefaultExternalStore' => array(),
+			'wgForeignFileRepos' => array(),
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
