@@ -311,6 +311,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14312) Update LanguageKaa.php for handling transform issues with i to İ
   and I to ı
 * (bug 13826) MediaWiki:Defaultns accepts Wikicode
+* (bug 14324) Creating an account is again possible with $wgEmailConfirmToEdit
+  set to true
 
 === API changes in 1.13 ===
 
