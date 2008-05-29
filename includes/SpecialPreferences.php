@@ -1047,8 +1047,12 @@ class PreferencesForm {
 				Xml::check( 'wpDisableMWSuggest', $this->mDisableMWSuggest, array( 'id' => 'wpDisableMWSuggest' ) )
 			) : '';
 		$wgOut->addHTML(
+			// Elements for the search tab itself
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'searchresultshead' ) ) .
+			// Elements for the search options in the search tab
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'prefs-searchoptions' ) ) .
 			Xml::openElement( 'table' ) .
 			$ajaxsearch .
 			$this->addRow(
@@ -1065,10 +1069,14 @@ class PreferencesForm {
 			) .
 			$mwsuggest .
 			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
+			// Elements for the namespace options in the search tab
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'defaultns' ) ) .
+			Xml::element( 'legend', null, wfMsg( 'prefs-namespaces' ) ) .
+			wfMsgExt( 'defaultns', array( 'parse' ) ) .
 			$ps .
 			Xml::closeElement( 'fieldset' ) .
+			// End of the search tab
 			Xml::closeElement( 'fieldset' )
 		);
 

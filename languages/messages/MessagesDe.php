@@ -1035,6 +1035,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'servertime'               => 'Aktuelle Zeit auf dem Server:',
 'guesstimezone'            => 'Vom Browser übernehmen',
 'allowemail'               => 'E-Mail-Empfang von anderen Benutzern ermöglichen',
+'prefs-searchoptions'      => 'Suchoptionen',
+'prefs-namespaces'         => 'Namensräume',
 'defaultns'                => 'In diesen Namensräumen soll standardmäßig gesucht werden:',
 'default'                  => 'Voreinstellung',
 'files'                    => 'Dateien',
