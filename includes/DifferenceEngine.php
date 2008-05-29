@@ -156,7 +156,9 @@ CONTROL;
 
 		$sk = $wgUser->getSkin();
 
-		if ( $this->mNewRev->isCurrent() && $wgUser->isAllowed('rollback') ) {
+		// Check if page is editable
+		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );
+		if ( $editable && $this->mNewRev->isCurrent() && $wgUser->isAllowed('rollback') ) {
 			$rollback = '&nbsp;&nbsp;&nbsp;' . $sk->generateRollback( $this->mNewRev );
 		} else {
 			$rollback = '';
