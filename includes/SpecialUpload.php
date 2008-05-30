@@ -539,6 +539,9 @@ class UploadForm {
 			if ( !$this->mDestWarningAck ) {
 				$warning .= self::getExistsWarning( $this->mLocalFile );
 			}
+			
+			$warning .= $this->getDupeWarning( $this->mTempPath );
+			
 			if( $warning != '' ) {
 				/**
 				 * Stash the file in a temporary location; the user can choose
@@ -738,6 +741,31 @@ class UploadForm {
 		$output = $wgParser->parse( $text, $title, $options );
 
 		return $output->getText();
+	}
+	
+	/**
+	 * Check for duplicate files and throw up a warning before the upload
+	 * completes.
+	 */
+	function getDupeWarning( $tempfile ) {
+		$hash = File::sha1Base36( $tempfile );
+		$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		if( $dupes ) {
+			global $wgOut;
+			$msg = "<gallery>";
+			foreach( $dupes as $file ) {
+				$title = $file->getTitle();
+				$msg .= $title->getPrefixedText() .
+					"|" . $title->getText() . "\n";
+			}
+			$msg .= "</gallery>";
+			return "<li>" .
+				wfMsgExt( "file-exists-duplicate", array( "parse" ), count( $dupes ) ) .
+				$wgOut->parse( $msg ) .
+				"</li>\n";
+		} else {
+			return '';
+		}
 	}
 
 	/**
