@@ -127,19 +127,16 @@ abstract class FileRepo {
 	}
 	
 	/*
-	 * Find many files at once. Removes the corresponding titles
-	 * of files that are found from $titles.
+	 * Find many files at once. 
 	 * @param array $titles, an array of titles
 	 * @param int $flags
 	 */
-	function findFiles( &$titles, $flags ) {
+	function findFiles( $titles, $flags ) {
 		$result = array();
 		foreach ( $titles as $index => $title ) {
-			$file = $this->findFile( $title );
-			if ( $file ) {
+			$file = $this->findFile( $title, $flags );
+			if ( $file )
 				$result[$file->getTitle()->getDBkey()] = $file;
-				unset( $titles[$index] );
-			}
 		}
 		return $result;
 	}

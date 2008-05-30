@@ -12,6 +12,7 @@ class ForeignDBRepo extends LocalRepo {
 	# Other stuff
 	var $dbConn;
 	var $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
+	var $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) )

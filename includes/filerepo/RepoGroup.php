@@ -87,10 +87,22 @@ class RepoGroup {
 			$this->initialiseRepos();
 		}
 
-		$images = $this->localRepo->findFiles( $titles, $flags );
+		$titleObjs = array();
+		foreach ( $titles as $title ) {
+			if ( !( $title instanceof Title ) )
+				$title = Title::makeTitleSafe( NS_IMAGE, $title );
+			$titleObjs[$title->getDBkey()] = $title;
+		}
+
+		$images = $this->localRepo->findFiles( $titleObjs, $flags );
 
 		foreach ( $this->foreignRepos as $repo ) {
-			$images = array_merge( $images, $repo->findFiles( $titles, $flags ) );
+			// Remove found files from $titleObjs
+			foreach ( $images as $name => $image )
+				if ( isset( $titleObjs[$name] ) )
+					unset( $titleObjs[$name] );
+			
+			$images = array_merge( $images, $repo->findFiles( $titleObjs, $flags ) );
 		}
 		return $images;
 	}

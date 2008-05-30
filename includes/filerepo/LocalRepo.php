@@ -7,6 +7,8 @@
 class LocalRepo extends FSRepo {
 	var $fileFactory = array( 'LocalFile', 'newFromTitle' );
 	var $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
+	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
+	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 
 	function getSlaveDB() {
 		return wfGetDB( DB_SLAVE );
@@ -22,9 +24,9 @@ class LocalRepo extends FSRepo {
 
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) ) {
-			return LocalFile::newFromRow( $row, $this );
+			return call_user_func( $this->fileFromRowFactory, $row, $this );
 		} elseif ( isset( $row->oi_name ) ) {
-			return OldLocalFile::newFromRow( $row, $this );
+			return call_user_func( $this->oldFileFromRowFactory, $row, $this );
 		} else {
 			throw new MWException( __METHOD__.': invalid row' );
 		}
@@ -159,33 +161,26 @@ class LocalRepo extends FSRepo {
 		return $result;
 	}
 	
-	function findFiles( &$titles, $flags ) {
+	/*
+	 * Find many files using one query
+	 */
+	function findFiles( $titles, $flags ) {
+		// FIXME: Comply with $flags
+	 	// FIXME: Only accepts a $titles array where the keys are the sanitized
+	 	// file names.
+	 	 
 		if ( count( $titles ) == 0 ) return array();		
-	
-		$dbKeys = array();
-		$indices = array();
-		
-		foreach ( $titles as $index => $title ) {
-			if ( !( $title instanceof Title ) )
-				$title = Title::makeTitleSafe( NS_IMAGE, $title );
-			if ( is_object( $title ) ) {
-				$key = $title->getDBkey();
-				$indices[$key] = $index;
-				$dbKeys[] = $key;
-			}
-		}
 	
 		$dbr = $this->getSlaveDB();
 		$res = $dbr->select(
 			'image',
 			LocalFile::selectFields(),
-			array( 'img_name' => $dbKeys )		
+			array( 'img_name' => array_keys( $titles ) )		
 		);
 		
 		$result = array();
 		while ( $row = $res->fetchObject() ) {
 			$result[$row->img_name] = $this->newFileFromRow( $row );
-			unset( $titles[$indices[$row->img_name]] );
 		}
 		$res->free();
 		return $result;
