@@ -170,4 +170,13 @@ class Status {
 		$this->successCount += $other->successCount;
 		$this->failCount += $other->failCount;
 	}
+	
+	function getErrorsArray() {
+		$result = array();
+		foreach ( $this->errors as $error ) {
+			if ( $error['type'] == 'error' )
+				$result[] = $error['message'];
+		}
+		return $result;
+	}
 }

@@ -273,12 +273,8 @@ class MovePageForm {
 
 		$error = $ot->moveTo( $nt, true, $this->reason );
 		if ( $error !== true ) {
-			# FIXME: moveTo() can return a string
-			if(is_array($error))
-				# FIXME: showForm() should handle multiple errors
-				call_user_func_array(array($this, 'showForm'), $error[0]);
-			else
-				$this->showForm($error);
+			# FIXME: showForm() should handle multiple errors
+			call_user_func_array(array($this, 'showForm'), $error[0]);
 			return;
 		}
 

@@ -2479,7 +2479,7 @@ class Title {
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
 		$err = $this->isValidMoveOperation( $nt, $auth );
-		if( is_array($err) ) {
+		if( is_array( $err ) ) {
 			return $err;
 		}
 
@@ -2491,9 +2491,8 @@ class Title {
 			$err = $this->moveToNewTitle( $nt, $reason, $createRedirect );
 			$pageCountChange = ($createRedirect ? 1 : 0);
 		}
-		# FIXME: moveToNewTitle() and moveOverExistingRedirect() return
-		#        wikitext if a file move goes bad
-		if( is_string( $err ) ) {
+
+		if( is_array( $err ) ) {
 			return $err;
 		}
 		$redirid = $this->getArticleID();
@@ -2668,7 +2667,7 @@ class Title {
 				$status = $file->move( $nt );
 				if( !$status->isOk() ) {
 					$dbw->rollback();
-					return $status->getWikiText();
+					return $status->getErrorsArray();
 				}
 			}
 		}
@@ -2684,6 +2683,7 @@ class Title {
 			$u = new SquidUpdate( $urls );
 			$u->doUpdate();
 		}
+		
 	}
 
 	/**
@@ -2761,7 +2761,7 @@ class Title {
 				$status = $file->move( $nt );
 				if( !$status->isOk() ) {
 					$dbw->rollback();
-					return $status->getWikiText();
+					return $status->getErrorsArray();
 				}
 			}
 		}
@@ -2777,6 +2777,7 @@ class Title {
 		# Purge old title from squid
 		# The new title, and links to the new title, are purged in Article::onArticleCreate()
 		$this->purgeSquid();
+		
 	}
 
 	/**
