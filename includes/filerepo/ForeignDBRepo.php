@@ -14,12 +14,6 @@ class ForeignDBRepo extends LocalRepo {
 	var $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
 	var $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
-	function newFileFromRow( $row ) {
-		if ( isset( $row->img_name ) )
-			return ForeignDBFile::newFromRow( $row, $this );
-		return parent::newFileFromRow( $row );
-	}
-
 	function __construct( $info ) {
 		parent::__construct( $info );
 		$this->dbType = $info['dbType'];
