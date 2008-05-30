@@ -2616,7 +2616,7 @@ class Title {
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
-		$article = new Article( $nt );
+		$article = new Article( $this );
 		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
 		# Change the name of the target page:
@@ -2712,7 +2712,7 @@ class Title {
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
-		$article = new Article( $nt );
+		$article = new Article( $this );
 		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
 
 		# Rename page entry
