@@ -7,6 +7,7 @@
 class ForeignDBViaLBRepo extends LocalRepo {
 	var $wiki, $dbName, $tablePrefix;
 	var $fileFactory = array( 'ForeignDBFile', 'newFromTitle' );
+	var $fileFromRowFactory = array( 'ForeignDBFile', 'newFromRow' );
 
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) )
