@@ -1631,6 +1631,7 @@ If you have this image in full resolution upload this one, otherwise change the 
 please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository;
 please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'This file seems to be a duplicate of the following {{PLURAL:$1|file|files}}:',
 'successfulupload'            => 'Successful upload',
 'uploadwarning'               => 'Upload warning',
 'savefile'                    => 'Save file',
