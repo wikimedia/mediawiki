@@ -102,7 +102,12 @@ function wfGzipHandler( $s ) {
  * Mangle flash policy tags which open up the site to XSS attacks.
  */
 function wfMangleFlashPolicy( $s ) {
-	return preg_replace( '/\<\s*cross-domain-policy\s*\>/i', '<NOT-cross-domain-policy>', $s );
+	# Avoid weird excessive memory usage in PCRE on big articles
+	if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $s ) ) {
+		return preg_replace( '/\<\s*cross-domain-policy\s*\>/i', '<NOT-cross-domain-policy>', $s );
+	} else {
+		return $s;
+	}
 }
 
 /**
