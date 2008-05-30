@@ -29,7 +29,8 @@ class CategoryPager extends AlphabeticPager {
 		return array(
 			'tables' => array( 'category' ),
 			'fields' => array( 'cat_title','cat_pages' ),
-			'conds' => array( 'cat_pages > 0' )
+			'conds' => array( 'cat_pages > 0' ), 
+			'options' => array( 'USE INDEX' => 'cat_title' ),
 		);
 	}
 
