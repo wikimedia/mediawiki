@@ -85,10 +85,7 @@ class ApiMove extends ApiBase {
 		if($retval !== true)
 		{
 			# FIXME: Title::moveTo() sometimes returns a string
-			if(is_array($retval))
-				$this->dieUsageMsg(reset($retval));
-			else
-				$this->dieUsageMsg(array('unknownerror', $error));
+			$this->dieUsageMsg(reset($retval));
 		}
 
 		$r = array('from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason']);
