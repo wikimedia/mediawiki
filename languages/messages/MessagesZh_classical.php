@@ -2030,5 +2030,9 @@ $1',
 'specialpages-group-users'       => '簿與權',
 'specialpages-group-needy'       => '作事之頁',
 'specialpages-group-highuse'     => '高用頁',
+'specialpages-group-pages'       => '頁',
+'specialpages-group-pagetools'   => '頁器',
+'specialpages-group-wiki'        => 'Wiki訊與器',
+'specialpages-group-spam'        => '反垃圾之器',
 
 );

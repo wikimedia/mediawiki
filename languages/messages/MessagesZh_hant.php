@@ -2555,5 +2555,9 @@ $1
 'specialpages-group-users'       => '用戶和權限',
 'specialpages-group-needy'       => '需要做事情的頁面',
 'specialpages-group-highuse'     => '高度使用頁面',
+'specialpages-group-pages'       => '頁面',
+'specialpages-group-pagetools'   => '頁面工具',
+'specialpages-group-wiki'        => 'Wiki資料和工具',
+'specialpages-group-spam'        => '反垃圾工具',
 
 );
