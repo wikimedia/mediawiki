@@ -314,6 +314,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14324) Creating an account is again possible with $wgEmailConfirmToEdit
   set to true
 * (bug 13034) Interwiki pages can now be reached using Go search button
+* (bug 14362) Change interwiki names of Erzya and Moksha Wikipedias
 
 === API changes in 1.13 ===
 
