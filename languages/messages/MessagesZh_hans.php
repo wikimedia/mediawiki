@@ -1130,7 +1130,7 @@ $2',
 如果你有该图像的完整大小，如不是请再修改文件名。',
 'fileexists-forbidden'        => '已存在相同名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
-'file-exists-duplicate'       => '这个文件好像是跟以下的{{PLURAL:$1|一|多}}个文件重覆:'
+'file-exists-duplicate'       => '这个文件好像是跟以下的{{PLURAL:$1|一|多}}个文件重覆:',
 'successfulupload'            => '上传成功',
 'uploadwarning'               => '上载警告',
 'savefile'                    => '保存文件',
