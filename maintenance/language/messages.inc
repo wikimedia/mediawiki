@@ -2569,6 +2569,10 @@ $wgMessageStructure = array(
 		'specialpages-group-users',
 		'specialpages-group-needy',
 		'specialpages-group-highuse',
+		'specialpages-group-pages',
+		'specialpages-group-pagetools',
+		'specialpages-group-wiki',
+		'specialpages-group-spam',
 	),
 );
 
