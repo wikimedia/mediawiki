@@ -3403,5 +3403,6 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'specialpages-group-pages'       => 'Pages',
 'specialpages-group-pagetools'   => 'Page tools',
 'specialpages-group-wiki'        => 'Wiki data and tools',
+'specialpages-group-spam'        => 'Spam tools',
 
 );
