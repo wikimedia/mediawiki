@@ -2580,7 +2580,7 @@ $1
 'specialpages-group-users'       => '用户和权限',
 'specialpages-group-needy'       => '需要做事情的页面',
 'specialpages-group-highuse'     => '高度使用页面',
-'specialpages-group-pages'       => '页面',
+'specialpages-group-pages'       => '页面列表',
 'specialpages-group-pagetools'   => '页面工具',
 'specialpages-group-wiki'        => 'Wiki资料和工具',
 'specialpages-group-spam'        => '反垃圾工具',
