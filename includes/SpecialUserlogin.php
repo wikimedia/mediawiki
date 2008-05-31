@@ -36,7 +36,7 @@ class LoginForm {
 
 	var $mName, $mPassword, $mRetype, $mReturnTo, $mCookieCheck, $mPosted;
 	var $mAction, $mCreateaccount, $mCreateaccountMail, $mMailmypassword;
-	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
+	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage, $mSkipCookieCheck;
 
 	/**
 	 * Constructor
@@ -63,6 +63,7 @@ class LoginForm {
 		$this->mAction = $request->getVal( 'action' );
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mLanguage = $request->getText( 'uselang' );
+		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 
 		if( $wgEnableEmail ) {
 			$this->mEmail = $request->getText( 'wpEmail' );
@@ -501,7 +502,7 @@ class LoginForm {
 				}
 				$wgUser->setCookies();
 
-				if( $this->hasSessionCookie() ) {
+				if( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {
 					/* Replace the language object to provide user interface in correct
 					 * language immediately on this first page load.
 					 */
