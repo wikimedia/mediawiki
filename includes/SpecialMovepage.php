@@ -384,7 +384,7 @@ class MovePageForm {
 
 			++$count;
 			if( $count >= $wgMaximumMovedPages ) {
-				$extraOutput []= wfMsgHtml( 'movepage-max-pages', $wgLang->formatNum( $wgMaximumMovedPages ) );
+				$extraOutput []= wfMsgExt( 'movepage-max-pages', array( 'parsemag', 'escape' ), $wgLang->formatNum( $wgMaximumMovedPages ) );
 				break;
 			}
 		}
