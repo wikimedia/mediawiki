@@ -2654,6 +2654,13 @@ $wgSpecialPageGroups = array(
 	'Disambiguations'           => 'pages',
 	'Unwatchedpages'            => 'pages',
 	'Fewestrevisions'           => 'pages',
+	
+	'Randompage'                => 'redirects',
+	'Randomredirect'            => 'redirects',
+	'Mypage'                    => 'redirects',
+	'Mytalk'                    => 'redirects',
+	'Mycontributions'           => 'redirects',
+	'Search'                    => 'redirects',
 
 	'Movepage'                  => 'pagetools',
 	'MergeHistory'              => 'pagetools',
@@ -2672,9 +2679,6 @@ $wgSpecialPageGroups = array(
 	'Specialpages'              => 'other',
 	'Blockme'                   => 'other',
 	'Booksources'               => 'other',
-	'Mypage'                    => 'other',
-	'Mytalk'                    => 'other',
-	'Mycontributions'           => 'other',
 );
 
 /**
