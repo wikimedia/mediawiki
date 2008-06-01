@@ -318,6 +318,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14370) When a grouppage-x message does not exist the entry on the
   ListGroupRights special page links to the main namespace page not the project
   namespace page.
+* (bug 11659) Urldecode image names in galleries
 
 === API changes in 1.13 ===
 
