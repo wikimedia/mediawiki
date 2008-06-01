@@ -4366,6 +4366,9 @@ class Parser
 			if ( count( $matches ) == 0 ) {
 				continue;
 			}
+			
+			if ( strpos( $matches[0], '%' ) !== false )
+				$matches[1] = urldecode( $matches[1] );
 			$tp = Title::newFromText( $matches[1] );
 			$nt =& $tp;
 			if( is_null( $nt ) ) {
