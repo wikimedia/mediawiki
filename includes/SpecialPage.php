@@ -375,6 +375,32 @@ class SpecialPage
 	}
 
 	/**
+	 * Return categorised listable special pages which are available
+	 * for the current user, and everyone.
+	 * @static
+	 */
+	static function getUsablePages() {
+		global $wgUser;
+		if ( !self::$mListInitialised ) {
+			self::initList();
+		}
+		$pages = array();
+
+		foreach ( self::$mList as $name => $rec ) {
+			$page = self::getPage( $name );
+			if ( $page->isListed()
+				&& (
+					!$page->isRestricted()
+					|| $page->userCanExecute( $wgUser )
+				)
+			) {
+				$pages[$name] = $page;
+			}
+		}
+		return $pages;
+	}
+
+	/**
 	 * Return categorised listable special pages for all users
 	 * @static
 	 */
@@ -409,8 +435,8 @@ class SpecialPage
 			$page = self::getPage( $name );
 			if (
 				$page->isListed()
-				and $page->isRestricted()
-				and $page->userCanExecute( $wgUser )
+				&& $page->isRestricted()
+				&& $page->userCanExecute( $wgUser )
 			) {
 				$pages[$name] = $page;
 			}

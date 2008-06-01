@@ -128,6 +128,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'import-upload' instead of 'upload'
 * Add information about user group membership to Special:Preferences
 * (bug 14146) Wrap usage section on imagepages into <div>s.
+* New layout for Special:Specialpages. Restricted pages are marked but not separated
+  from other pages in their group. And the page uses css rather than tables to create
+  a column layout which grades well in all sizes of browsers.
 
 === Bug fixes in 1.13 ===
 
