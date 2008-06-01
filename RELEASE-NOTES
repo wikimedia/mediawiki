@@ -131,6 +131,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New layout for Special:Specialpages. Restricted pages are marked but not separated
   from other pages in their group. And the page uses css rather than tables to create
   a column layout which grades well in all sizes of browsers.
+* (bug 14263) Show a diff of the revert on rollback notification page.
 
 === Bug fixes in 1.13 ===
 
