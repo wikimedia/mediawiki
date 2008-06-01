@@ -3399,11 +3399,11 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'specialpages-group-changes'     => 'Recent changes and logs',
 'specialpages-group-media'       => 'Media reports and uploads',
 'specialpages-group-users'       => 'Users and rights',
-'specialpages-group-needy'       => 'Pages in need of work',
 'specialpages-group-highuse'     => 'High use pages',
 'specialpages-group-pages'       => 'Page lists',
 'specialpages-group-pagetools'   => 'Page tools',
 'specialpages-group-wiki'        => 'Wiki data and tools',
+'specialpages-group-redirects'   => 'Redirecting special pages',
 'specialpages-group-spam'        => 'Spam tools',
 
 );
