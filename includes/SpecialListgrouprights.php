@@ -50,7 +50,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 			$msg = wfMsgForContent( 'grouppage-' . $groupname );
 			if ( wfEmptyMsg( 'grouppage-' . $groupname, $msg ) || $msg == '' ) {
-				$grouppageLocalized = $groupname;
+				$grouppageLocalized = MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname;
 			} else {
 				$grouppageLocalized = $msg;
 			}
