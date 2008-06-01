@@ -2605,6 +2605,11 @@ $wgSpecialPageGroups = array(
 	'Unusedtemplates'           => 'maintenance',
 	'Withoutinterwiki'          => 'maintenance',
 	'Longpages'                 => 'maintenance',
+	'Shortpages'                => 'maintenance',
+	'Ancientpages'              => 'maintenance',
+	'Deadendpages'              => 'maintenance',
+	'Wantedpages'               => 'maintenance',
+	'Wantedcategories'          => 'maintenance',
 
 	'Userlogin'                 => 'login',
 	'Userlogout'                => 'login',
@@ -2635,12 +2640,6 @@ $wgSpecialPageGroups = array(
 	'Preferences'               => 'users',
 	'Resetpass'                 => 'users',
 
-	'Wantedpages'               => 'needy',
-	'Wantedcategories'          => 'needy',
-	'Shortpages'                => 'needy',
-	'Ancientpages'              => 'needy',
-	'Deadendpages'              => 'needy',
-
 	'Mostlinked'                => 'highuse',
 	'Mostlinkedcategories'      => 'highuse',
 	'Mostlinkedtemplates'       => 'highuse',
@@ -2650,13 +2649,10 @@ $wgSpecialPageGroups = array(
 	
 	'Allpages'                  => 'pages',
 	'Prefixindex'               => 'pages',
-	'Randompage'                => 'pages',
-	'Randomredirect'            => 'pages',
 	'Listredirects'             => 'pages',
 	'Categories'                => 'pages',
 	'Disambiguations'           => 'pages',
 	'Unwatchedpages'            => 'pages',
-	'Whatlinkshere'             => 'pages',
 	'Fewestrevisions'           => 'pages',
 
 	'Movepage'                  => 'pagetools',
@@ -2665,6 +2661,7 @@ $wgSpecialPageGroups = array(
 	'Undelete'                  => 'pagetools',
 	'Export'                    => 'pagetools',
 	'Import'                    => 'pagetools',
+	'Whatlinkshere'             => 'pagetools',
 
 	'Statistics'                => 'wiki',
 	'Version'                   => 'wiki',
