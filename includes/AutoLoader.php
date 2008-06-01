@@ -336,6 +336,7 @@ function __autoload($className) {
 
 		# API
 		'ApiBase' => 'includes/api/ApiBase.php',
+		'ApiEmailUser' => 'includes/api/ApiEmailUser.php',
 		'ApiExpandTemplates' => 'includes/api/ApiExpandTemplates.php',
 		'ApiFeedWatchlist' => 'includes/api/ApiFeedWatchlist.php',
 		'ApiFormatBase' => 'includes/api/ApiFormatBase.php',

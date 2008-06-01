@@ -389,6 +389,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * action=block now returns an ISO8601 timestamp, like all other modules do
 * Added md5 parameter to action=edit
 * (bug 14335) Logging in to unified account using API not possible
+* Added action=emailuser to send an email to a user
 
 === Languages updated in 1.13 ===
 

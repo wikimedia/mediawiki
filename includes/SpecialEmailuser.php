@@ -188,7 +188,7 @@ class EmailUserForm {
 							// We can either show them an error, or we can say everything was fine,
 							// or we can say we sort of failed AND sort of succeeded. Of these options,
 							// simply saying there was an error is probably best.
-							return $ccResult->getMessage();
+							return $ccResult;
 						}
 					}
 				}
