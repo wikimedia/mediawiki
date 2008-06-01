@@ -2093,9 +2093,8 @@ class Language {
 			}
 
 			# Try the global cache
-			
-			$memcKey = wfMemcKeyLang( wfMemcKey('localisation'), $code );
-			$fbMemcKey = wfMemcKeyLang( wfMemcKey('fallback'), $cache['fallback'] );
+			$memcKey = wfMemcKey('localisation', $code );
+			$fbMemcKey = wfMemcKey('fallback', $cache['fallback'] );
 			$cache = $wgMemc->get( $memcKey );
 			if ( $cache ) {
 				if ( self::isLocalisationOutOfDate( $cache ) ) {
@@ -2233,7 +2232,7 @@ class Language {
 
 		// Try memcache
 		global $wgMemc;
-		$memcKey = wfMemcKeyLang( wfMemcKey('fallback'), $code );
+		$memcKey = wfMemcKey( 'fallback', $code );
 		$fbcode = $wgMemc->get( $memcKey );
 
 		if ( is_string($fbcode) ) {

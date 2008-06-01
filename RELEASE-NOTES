@@ -47,8 +47,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   image page already exists
 * $wgMaximumMovedPages restricts the number of pages that can be moved at once
   (default 100) with the new subpage-move functionality of Special:Movepage
-* New option $wgPerLanguageCaching, for wikies with many translated system
-  messages in MediaWiki namespace
 
 === New features in 1.13 ===
 
@@ -126,7 +124,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13232) importScript(), importStylesheet() funcs available to custom JS
 * (bug 13095) Search by first letters or digits in [[Special:Categories]]
 * Users moving a page can now move all subpages automatically as well
-* Sidebar is now cached for all languages
 * (bug 14259) Localisation message for upload button on Special:Import is now
   'import-upload' instead of 'upload'
 * Add information about user group membership to Special:Preferences

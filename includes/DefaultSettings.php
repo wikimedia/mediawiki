@@ -721,13 +721,6 @@ $wgLocalMessageCache = false;
 $wgLocalMessageCacheSerialized = true;
 
 /**
- * Cache messages in MesssageCache per language, instead of all them together.
- * Enable this if you have thousands of messages in MediaWiki namespace in many
- * different languages.
- */
-$wgPerLanguageCaching = false;
-
-/**
  * Directory for compiled constant message array databases
  * WARNING: turning anything on will just break things, aaaaaah!!!!
  */
