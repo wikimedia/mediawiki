@@ -2612,7 +2612,7 @@ class Article {
 		$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$wgOut->returnToMain( false, $this->mTitle );
 		$de = new DifferenceEngine( $this->mTitle, $current->getId(), 'next', false, true );
-		$de->showDiff();
+		$de->showDiff( '', '' );
 	}
 
 
