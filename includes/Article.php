@@ -2611,6 +2611,8 @@ class Article {
 			. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
 		$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$wgOut->returnToMain( false, $this->mTitle );
+		$de = new DifferenceEngine( $this->mTitle, $current->getId(), 'next', false, true );
+		$de->showDiff();
 	}
 
 
