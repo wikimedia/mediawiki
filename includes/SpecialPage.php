@@ -294,8 +294,19 @@ class SpecialPage
 	 */
 	static function getGroup( &$page ) {
 		global $wgSpecialPageGroups;
-		$group = isset($wgSpecialPageGroups[$page->mName]) ?
-			$wgSpecialPageGroups[$page->mName] : 'other';
+		static $specialPageGroupsCache = array();
+		if( isset($specialPageGroupsCache[$page->mName]) ) {
+			return $specialPageGroupsCache[$page->mName];
+		}
+		$group = wfMsg('specialpages-specialpagegroup-'.$page->mName);
+		if( $group == ''
+		 || wfEmptyMsg('specialpages-specialpagegroup-'.$page->mName, $group ) ) {
+			$group = isset($wgSpecialPageGroups[$page->mName])
+				? $wgSpecialPageGroups[$page->mName]
+				: '-';
+		}
+		if( $group == '-' ) $group = 'other';
+		$specialPageGroupsCache[$page->mName] = $group;
 		return $group;
 	}
 
