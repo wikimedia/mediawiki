@@ -298,9 +298,9 @@ class SpecialPage
 		if( isset($specialPageGroupsCache[$page->mName]) ) {
 			return $specialPageGroupsCache[$page->mName];
 		}
-		$group = wfMsg('specialpages-specialpagegroup-'.$page->mName);
+		$group = wfMsg('specialpages-specialpagegroup-'.strtolower($page->mName));
 		if( $group == ''
-		 || wfEmptyMsg('specialpages-specialpagegroup-'.$page->mName, $group ) ) {
+		 || wfEmptyMsg('specialpages-specialpagegroup-'.strtolower($page->mName), $group ) ) {
 			$group = isset($wgSpecialPageGroups[$page->mName])
 				? $wgSpecialPageGroups[$page->mName]
 				: '-';
