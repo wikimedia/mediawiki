@@ -2855,17 +2855,19 @@ $1',
 'fileduplicatesearch-result-n' => 'پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* دسترسی به صفحه‌های ویژهٔ <span class="mw-specialpagerestricted">رنگی</span> محدود شده‌است.',
 'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
 'specialpages-group-other'       => 'صفحه‌های ویژهٔ دیگر',
 'specialpages-group-login'       => 'ورود / ثبت نام',
 'specialpages-group-changes'     => 'تغییرات اخیر و سیاهه‌ها',
 'specialpages-group-media'       => 'گزارش بارگذاری رسانه‌ها',
 'specialpages-group-users'       => 'کاربرها و دسترسی‌ها',
-'specialpages-group-needy'       => 'صفحه‌هایی که هنوز کار دارند',
 'specialpages-group-highuse'     => 'صفحه‌های پربازدید',
 'specialpages-group-pages'       => 'فهرست‌های صفحه‌ها',
 'specialpages-group-pagetools'   => 'ابزارهای صفحه‌ها',
 'specialpages-group-wiki'        => 'اطلاعات و ابزارهای ویکی',
+'specialpages-group-redirects'   => 'صفحه‌های ویژهٔ تغییر مسیر دهنده',
 'specialpages-group-spam'        => 'ابزارهای مرتبط با هرزنگاری',
 
 );
