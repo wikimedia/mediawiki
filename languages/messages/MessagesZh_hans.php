@@ -2572,17 +2572,19 @@ $1
 'fileduplicatesearch-result-n' => '文件 "$1" 有$2项完全相同的重覆。',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* 已<span class="mw-specialpagerestricted">高亮</span>的特殊页面是有限制的。',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other'       => '其它特殊页面',
 'specialpages-group-login'       => '登入／创建',
 'specialpages-group-changes'     => '最近更改和日志',
 'specialpages-group-media'       => '媒体报告和上传',
 'specialpages-group-users'       => '用户和权限',
-'specialpages-group-needy'       => '需要做事情的页面',
 'specialpages-group-highuse'     => '高度使用页面',
 'specialpages-group-pages'       => '页面列表',
 'specialpages-group-pagetools'   => '页面工具',
 'specialpages-group-wiki'        => 'Wiki资料和工具',
+'specialpages-group-redirects'   => '重定向特殊页面',
 'specialpages-group-spam'        => '反垃圾工具',
 
 );

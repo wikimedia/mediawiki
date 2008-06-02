@@ -2547,17 +2547,19 @@ $1
 'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* 已有<span class="mw-specialpagerestricted">醒目提示</span>的特殊頁面是有限制的。',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特殊頁面',
 'specialpages-group-login'       => '登入／創建',
 'specialpages-group-changes'     => '最近更改和日誌',
 'specialpages-group-media'       => '媒體報告和上傳',
 'specialpages-group-users'       => '用戶和權限',
-'specialpages-group-needy'       => '需要做事情的頁面',
 'specialpages-group-highuse'     => '高度使用頁面',
 'specialpages-group-pages'       => '頁面清單',
 'specialpages-group-pagetools'   => '頁面工具',
 'specialpages-group-wiki'        => 'Wiki資料和工具',
+'specialpages-group-redirects'   => '重新定向特殊頁面',
 'specialpages-group-spam'        => '反垃圾工具',
 
 );
