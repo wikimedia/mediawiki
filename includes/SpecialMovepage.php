@@ -309,7 +309,7 @@ class MovePageForm {
 		# would mean that you couldn't move them back in one operation, which
 		# is bad.  FIXME: A specific error message should be given in this
 		# case.
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		if( $this->moveSubpages && (
 			MWNamespace::hasSubpages( $nt->getNamespace() ) || (
 				$this->moveTalk &&
