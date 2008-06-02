@@ -321,6 +321,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ListGroupRights special page now links to the project namespace page for it,
   not the main namespace page.
 * (bug 11659) Urldecode image names in galleries
+* (bug 14258, 14368) Fix for subpage renames in replication environments
+
 
 === API changes in 1.13 ===
 
