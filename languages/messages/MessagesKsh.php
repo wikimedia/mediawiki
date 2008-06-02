@@ -245,7 +245,7 @@ $messages = array(
 'qbpageinfo'     => 'Zosammehang',
 'qbmyoptions'    => 'Ming Sigge',
 'qbspecialpages' => 'Spezial Sigge',
-'moredotdotdot'  => 'Miehâ€¦',
+'moredotdotdot'  => 'Mieh&nbsp;…',
 'mypage'         => 'Ming Sigg',
 'mytalk'         => 'ming Klaafsigg',
 'anontalk'       => 'Klaaf för de IP-Adress',
@@ -1206,9 +1206,10 @@ De Einzelheite: $1',
 'filedelete-edit-reasonlist'  => 'De Jrönde för et Fottschmieße beärbeide',
 
 # MIME search
-'mimesearch' => 'Belder, Tön, uew. üvver ehr MIME-Typ söke',
-'mimetype'   => 'MIME-Typ:',
-'download'   => 'Erungerlade',
+'mimesearch'         => 'Belder, Tön, uew. üvver ehr MIME-Typ söke',
+'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Bildbeschreibungsseite).',
+'mimetype'           => 'MIME-Typ:',
+'download'           => 'Erungerlade',
 
 # Unwatched pages
 'unwatchedpages'         => 'Sigge, wo keiner drop oppass',
@@ -1219,7 +1220,8 @@ De Einzelheite: $1',
 
 # Unused templates
 'unusedtemplates'         => 'Schablone oder Baustein, die nit jebruch wääde',
-'unusedtemplates-summary' => 'Die Sondersigg hee zeich Schablone aan, die nit en ender Sigge enjebonge sin. Beß ävver försichtich mem Fottschmieße, Schablone könne och ohne et Enbenge jenoz wääde.',
+'unusedtemplates-summary' => "Die Sondersigg hee zeich Schablone aan, die nit en ander Sigge enjebonge sin.
+Beß ävver försichtich me'm Fottschmieße, Schablone könne och jenoz un jebruch wääde, ohne se diräk enzebenge.",
 'unusedtemplatestext'     => 'Hee sin all de Schablone opjeliss, die em Appachtemeng „Schablon“ sin, die nit en 
 ander Sigge enjefüg wääde. Ih De jet dovun fottschmieß, denk dran, se künnte och op en ander Aat jebruch 
 wääde, un luur Der die ander Links aan!',
@@ -1238,17 +1240,14 @@ wääde, un luur Der die ander Links aan!',
 'sitestats'              => 'Statistike üvver de {{SITENAME}}',
 'userstats'              => 'Statistike üvver de Metmaacher',
 'sitestatstext'          => '* Et jitt en etwa <strong>$2</strong> richtije Atikkele hee.
-* En de Daatebank sinner ävver <strong>$1</strong> Sigge, aan dänne bes jetz zosamme <strong>$4</strong> Mol jet 
-jeändert woode es.  Em Schnedd woodte alsu <strong>$5</strong> Änderunge pro Sigg jemaht. <br /><small> (Do sin 
-ävver de Klaafsigge metjezallt, de Sigge üvver de {{SITENAME}}, un usserdäm jede kleine Futz un Stümpchenssigg, 
-Ömleitunge, Schablone, Saachjruppe, un ander Zeuch, wat mer nit jod als ene Atikkel zälle kann)</small>
+* En de Daatebank sinner ävver <strong>$1</strong> Sigge, aan dänne bes jetz zosamme <strong>$4</strong> Mol jet jeändert woode es. Em Schnedd woodte alsu <strong>$5</strong> Änderunge pro Sigg jemaht. <br /><small> (Do sin ävver de Klaafsigge metjezallt, de Sigge üvver de {{SITENAME}}, un usserdäm jede kleine Futz un Stümpchenssigg, Ömleitunge, Schablone, Saachjruppe, un ander Zeuch, wat mer nit jod als ene Atikkel zälle kann)</small>
 
 * <strong>$8</strong> Belder, Tön, un esun ähnlije Daate woodte ald huhjelade.
 
-* Et {{PLURAL:$7|es noch <strong>ein</strong> Aufgab|sin noch <strong>$7</strong> Aufgabe|es <strong>kein</strong> 
-Aufgab mieh}} en de Liss.
-
-* <strong>$3</strong> mol wood en Sigg hee avjerofe, dat sin <strong>$6</strong> Avrofe pro Sigg.',
+* Et {{PLURAL:$7|es noch <strong>ein</strong> Opjav|sin noch <strong>$7</strong> Opjave|es <strong>kein</strong> Opjav mieh}} en de Liss.
+{{PLURAL:$3|
+* <strong>Ein</strong> mol wood en Sigg hee avjerofe, dat sin <strong>$6</strong> Avrofe pro Sigg.|
+* <strong>$3</strong> mol wood en Sigg hee avjerofe, dat sin <strong>$6</strong> Avrofe pro Sigg.|<!-- -->}}',
 'userstatstext'          => '* {{PLURAL:$1|<strong>Eine</strong> Metmaacher hät|<strong>$1</strong> Metmaacher han|<strong>Keine</strong> Metmaacher hät}} sich bes jetz aanjemeldt.
 * {{PLURAL:$2|<strong>Eine</strong> dovun es|<strong>$2</strong> dovun sin|<strong>Keine</strong> es}} $5, dat {{PLURAL:$4|es|sinner|sinner}} <strong>$4%</strong>.',
 'statistics-mostpopular' => 'De miets beluurte Sigge',
@@ -1278,8 +1277,9 @@ späder wall noch kumme wääde,
 die sollt mer behalde.</small>",
 'brokenredirects-delete'  => '(fottschmieße)',
 
-'withoutinterwiki'        => 'Atikele ohne Links op annder Shprooche',
-'withoutinterwiki-submit' => 'Zeije',
+'withoutinterwiki'         => 'Atikele ohne Links op annder Shprooche',
+'withoutinterwiki-summary' => 'He sin Sigge jeliß, di nit op annder Shprooche jelingk sin.',
+'withoutinterwiki-submit'  => 'Zeije',
 
 'fewestrevisions-summary' => 'Hee sin Atikele opjelis, die et winnigs beärbeit wode sin.',
 
@@ -1320,7 +1320,7 @@ die sollt mer behalde.</small>",
 'mostrevisions'                   => 'Atikkele met de miehste Änderunge',
 'mostrevisions-summary'           => 'Hee kumme de am miihtßte beärrbëijte un jeännderte Sigge.',
 'prefixindex'                     => 'All Sigge, die dänne ehr Name met enem bestemmte Wood oder Tex aanfange deit',
-'prefixindex-summary'             => 'Die Sondersigg hee zeich all Sigge, die met dä aanjejovve Zeiche aanfange.
+'prefixindex-summary'             => 'Die Sondersigg hee zeich all di Sigge, dä ier Titele met dä aanjejovve Bochstabe oder Zeiche aanfange.
 Die Liss kann op ein Appachtemang bejrenz wäde.',
 'shortpages'                      => 'Sigge zoteet vun koot noh lang',
 'shortpages-summary'              => 'Die Sondersigg hee zeich Atikkele, un zwa de koote et eets. Wie lang ene Atikel es, weed am Wikikood in Byte ußjezallt — also de Zeiche, di mer beim „{{int:Edit}}“ un „{{int:viewsource}}“ op der Belddscherrem krit. Opjepaß! Ömluute un esu brenge zwei Byte pro Zeiche, de miehßte andere nor ein.',
@@ -1340,7 +1340,8 @@ Die Liss kann op ein Appachtemang bejrenz wäde.',
 'spheading'                       => 'Sondersigge för all Metmaacher',
 'restrictedpheading'              => 'Sondersigge met beschränkte Zojangsräächde',
 'newpages'                        => 'Neu Sigge',
-'newpages-summary'                => 'Die Sondersigg hee zeich de neu aanjelaate Sigge uß de letzte Zigg.',
+'newpages-summary'                => "Die Sondersigg hee zeich de neu aanjelaate Sigge uß de letzte Zigg.
+De Liss kam'mer op eij Appachtemang odder op einem Metmaacher sing Beidrääch bejrenz wääde.",
 'newpages-username'               => 'Metmaacher Name:',
 'ancientpages'                    => 'Sigge zoteet vun Ahl noh Neu',
 'ancientpages-summary'            => 'Die Sondersigg zeich en Liss med Sigge, die et längs nit mieh jeändert wode sin.',
@@ -1612,6 +1613,7 @@ un widder herjehollte Sigge.',
 'contribsub2'   => 'För dä Metmaacher: $1 ($2)',
 'nocontribs'    => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
 'uctop'         => ' (Neuste)',
+'month'         => 'un Moohnt:',
 
 'sp-contributions-newbies'     => 'Nor neu Metmaacher ier Beidräg zeije',
 'sp-contributions-newbies-sub' => 'För neu Metmaacher',
@@ -1831,6 +1833,7 @@ Metmaacher Name vun de Schriever wääde dobei metjenomme. All de Trans Wiki Emp
 'tooltip-pt-preferences'          => 'De eije Enstellunge',
 'tooltip-pt-logout'               => 'Uslogge',
 'tooltip-search'                  => 'En de {{SITENAME}} söke',
+'tooltip-n-mainpage'              => 'Houpsigk aanzeije',
 'tooltip-minoredit'               => 'Deit Ding Änderunge als klein Mini-Änderunge markeere.',
 'tooltip-save'                    => 'Deit Ding Änderunge avspeichere.',
 'tooltip-preview'                 => 'Liss de Vör-Aansich vun dä Sigg un vun Dinge Änderunge ih datte en Avspeichere deis!',
@@ -1909,6 +1912,7 @@ wat Dinge Client oder Brauser verstonn künnt.',
 # Special:Newimages
 'newimages'             => 'Belder, Tön, uew. als Jalerie',
 'imagelisttext'         => 'Hee küt en Liss vun <strong>$1</strong> Datei{{PLURAL:$1||e}}, zoteet $2.',
+'newimages-summary'     => 'Hee die Sigg zeig die zoletz huhjeladene Belder un Dateie aan.',
 'showhidebots'          => '(Bots $1)',
 'noimages'              => 'Kein Dateie jefunge.',
 'ilsubmit'              => 'Sök',

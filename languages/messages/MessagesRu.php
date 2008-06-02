@@ -1290,6 +1290,7 @@ $3 указал следующую причину: ''$2''",
 Если у вас есть данное изображение в полном размере, пожалуйста, загрузите его или измените имя файла.',
 'fileexists-forbidden'        => 'Файл с этим именем уже существует; пожалуйста, вернитесь назад и загрузите файл под другим именем. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Файл с этим именем уже существует в общем хранилище файлов; пожалуйста, вернитесь назад и загрузите файл под другим именем. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Этот файл является дубликатом {{PLURAL:$1|следующего файла|следующих файлов}}:',
 'successfulupload'            => 'Загрузка успешно завершена',
 'uploadwarning'               => 'Предупреждение',
 'savefile'                    => 'Записать файл',
@@ -2802,6 +2803,8 @@ $1',
 'fileduplicatesearch-result-n' => 'Файл «$1» имеет $2 {{PLURAL:$2|идентичный дубликат|идентичных дубликата|идентичных дубликатов}}.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* Доступ к <span class="mw-specialpagerestricted">выделенным</span> служебным страницам ограничен.',
 'specialpages-group-maintenance' => 'Отчёты технического обслуживания',
 'specialpages-group-other'       => 'Другие служебные страницы',
 'specialpages-group-login'       => 'Представиться / Зарегистрироваться',
@@ -2812,6 +2815,7 @@ $1',
 'specialpages-group-pages'       => 'Списки страниц',
 'specialpages-group-pagetools'   => 'Инструменты для страниц',
 'specialpages-group-wiki'        => 'Вики-данные и инструменты',
+'specialpages-group-redirects'   => 'Перенаправляющие служебные страницы',
 'specialpages-group-spam'        => 'Инструменты против спама',
 
 );

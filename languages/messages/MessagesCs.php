@@ -2782,5 +2782,10 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'specialpages-group-media'       => 'Média',
 'specialpages-group-users'       => 'Uživatelé a skupiny',
 'specialpages-group-highuse'     => 'Často používané stránky',
+'specialpages-group-pages'       => 'Seznamy stránek',
+'specialpages-group-pagetools'   => 'Nástroje pro stránky',
+'specialpages-group-wiki'        => 'Wiki a data nástroje',
+'specialpages-group-redirects'   => 'Spřesměrování speciálních stránek',
+'specialpages-group-spam'        => 'Spamové nástroje',
 
 );

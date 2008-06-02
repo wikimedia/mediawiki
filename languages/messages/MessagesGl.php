@@ -1115,7 +1115,7 @@ Se dispón dunha versión desta imaxe de maior resolución, envíe esta última.
 'fileexists-forbidden'        => 'Xa hai un ficheiro co mesmo nome; por favor retroceda e cargue o ficheiro cun novo nome. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no depósito de ficheiros compartidos; volva e cargue este ficheiro con outro nome.
 [[Image:$1|thumb|center|$1]]',
-'file-exists-duplicate'       => 'Este ficheiro parece que é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
+'file-exists-duplicate'       => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'successfulupload'            => 'Carga con éxito',
 'uploadwarning'               => 'Advertencia da carga',
 'savefile'                    => 'Gardar o ficheiro',

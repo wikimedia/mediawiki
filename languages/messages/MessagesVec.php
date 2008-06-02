@@ -1094,6 +1094,7 @@ Se se trata de la stessa imagine, ne le dimension originali, no xe necessario ca
 Se se dispone de l'imagine ne la risoluzion originale, se prega di cargarla. In caso contrario, se prega de canbiar el nome del file.",
 'fileexists-forbidden'        => 'Un file con sto nome el esiste xà; per favore torna indrio e cambia el nome che te voi dare al file. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con sto nome l'esiste de xà ne l'archivio de risorse multimediałi condivixe. Par piaser torna indrio e canbia el nome che te voi darghe al file. [[Image:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => 'Sto file el xe un duplicato {{PLURAL:$1|del seguente file|dei seguenti file}}:',
 'successfulupload'            => 'Caricamento conpletà',
 'uploadwarning'               => 'Avixo de caricamento',
 'savefile'                    => 'Salva file',
@@ -1777,7 +1778,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'movepage-page-exists'    => 'La pagina $1 la esiste de zà e no la pode vegner automaticamente sorascrita.',
 'movepage-page-moved'     => 'La pagina $1 la xe stà spostà a $2.',
 'movepage-page-unmoved'   => "No s'à mìa podesto spostar $1 a $2.",
-'movepage-max-pages'      => "Xe stà ragiunto el nùmaro massimo consentìo de pagine spostà ($1) e nissun'altra la vegnarà spostà in automatico.",
+'movepage-max-pages'      => "Xe stà ragiunto el nùmaro massimo consentìo de $1 {{PLURAL:$1|pagina|pagine}} spostà e nissun'altra la vegnarà spostà in automatico.",
 '1movedto2'               => '[[$1]] spostà a [[$2]]',
 '1movedto2_redir'         => "$1 spostà a $2 co'n redirect",
 'movelogpage'             => 'Registro dei spostamenti',
@@ -2488,6 +2489,8 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'fileduplicatesearch-result-n' => 'Ghe xe {{PLURAL:$2|un duplicato conpagno|$2 duplicati conpagni}} al file "$1".',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* L\'acesso a le pagine <span class="mw-specialpagerestricted">in grasseto</span> el xe restreto.',
 'specialpages-group-maintenance' => 'Resoconti de manutenzion',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazion',
@@ -2495,5 +2498,10 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'specialpages-group-media'       => 'Resoconti e caricamenti dei file multimediài',
 'specialpages-group-users'       => 'Utenti e diriti',
 'specialpages-group-highuse'     => 'Pagine doparà assè',
+'specialpages-group-pages'       => 'Liste de pagine',
+'specialpages-group-pagetools'   => 'Strumenti de pagina',
+'specialpages-group-wiki'        => 'Dati e strumenti wiki',
+'specialpages-group-redirects'   => 'Reindirizamenti',
+'specialpages-group-spam'        => 'Strumenti anti spam',
 
 );
