@@ -2616,17 +2616,19 @@ $1',
 'fileduplicatesearch-result-n' => '個檔案 "$1" 有$2項完全相同嘅重覆。',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* <span class="mw-specialpagerestricted">Highlight</span>咗嘅特別頁係有限制嘅。',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特別頁',
 'specialpages-group-login'       => '登入／開戶口',
 'specialpages-group-changes'     => '最近更改同日誌',
 'specialpages-group-media'       => '媒體報告同上載',
 'specialpages-group-users'       => '用戶同權限',
-'specialpages-group-needy'       => '需要做嘢嘅版',
 'specialpages-group-highuse'     => '高度使用頁',
 'specialpages-group-pages'       => '頁面一覽',
 'specialpages-group-pagetools'   => '版工具',
 'specialpages-group-wiki'        => 'Wiki資料同工具',
+'specialpages-group-redirects'   => '跳轉特別頁',
 'specialpages-group-spam'        => '反垃圾工具',
 
 );

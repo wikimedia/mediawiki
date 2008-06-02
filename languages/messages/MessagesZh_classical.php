@@ -2022,17 +2022,19 @@ $1',
 'fileduplicatesearch-result-n' => '案 "$1" 重有$2。',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* 已<span class="mw-specialpagerestricted">亮</span>之特查為限也。',
 'specialpages-group-maintenance' => '護報',
 'specialpages-group-other'       => '它之奇頁',
 'specialpages-group-login'       => '登／增',
 'specialpages-group-changes'     => '近易與誌',
 'specialpages-group-media'       => '媒報兼呈',
 'specialpages-group-users'       => '簿與權',
-'specialpages-group-needy'       => '作事之頁',
 'specialpages-group-highuse'     => '高用頁',
 'specialpages-group-pages'       => '頁列',
 'specialpages-group-pagetools'   => '頁器',
 'specialpages-group-wiki'        => 'Wiki訊與器',
+'specialpages-group-redirects'   => '轉之特查',
 'specialpages-group-spam'        => '反垃圾之器',
 
 );
