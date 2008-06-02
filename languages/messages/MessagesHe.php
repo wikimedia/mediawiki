@@ -1357,7 +1357,7 @@ $2',
 [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'קובץ בשם זה כבר קיים כקובץ משותף; אנא חזרו לדף הקודם והעלו את הקובץ תחת שם חדש.
 [[Image:$1|thumb|center|$1]]',
-'file-exists-duplicate'       => 'נראה שקובץ זה כפול ל{{plural:$1|קובץ הבא|קבצים הבאים}}:',
+'file-exists-duplicate'       => 'קובץ זה כפול ל{{plural:$1|קובץ הבא|קבצים הבאים}}:',
 'successfulupload'            => 'העלאת הקובץ הושלמה בהצלחה',
 'uploadwarning'               => 'אזהרת העלאת קבצים',
 'savefile'                    => 'שמירת קובץ',
