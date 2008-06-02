@@ -64,7 +64,7 @@ class ApiEmailUser extends ApiBase {
 		$form = new EmailUserForm( $targetUser, $params['text'], $params['subject'], $params['ccme'] );
 		$retval = $form->doSubmit();
 		if ( is_null( $retval ) )
-			$result = array();
+			$result = array( 'result' => 'Success' );
 		else
 			$result = array( 'result' => 'Failure',
 				 'message' => $retval->getMessage() );
