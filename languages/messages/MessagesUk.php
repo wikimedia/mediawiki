@@ -33,24 +33,28 @@ $fallback8bitEncoding = 'windows-1251';
 $linkPrefixExtension = true;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Медіа',
-	NS_SPECIAL          => 'Спеціальні',
-	NS_MAIN             => '',
-	NS_TALK             => 'Обговорення',
-	NS_USER             => 'Користувач',
-	NS_USER_TALK        => 'Обговорення_користувача',
-	#NS_PROJECT set by $wgMetaNamespace
-  	NS_PROJECT_TALK     => 'Обговорення_{{grammar:genitive|$1}}',
-	NS_IMAGE            => 'Зображення',
-	NS_IMAGE_TALK       => 'Обговорення_зображення',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Обговорення_MediaWiki',
-	NS_TEMPLATE         => 'Шаблон',
-	NS_TEMPLATE_TALK    => 'Обговорення_шаблону',
-	NS_HELP             => 'Довідка',
-	NS_HELP_TALK        => 'Обговорення_довідки',
-	NS_CATEGORY         => 'Категорія',
-	NS_CATEGORY_TALK    => 'Обговорення_категорії',
+	NS_MEDIA          => 'Медіа',
+	NS_SPECIAL        => 'Спеціальна',
+	NS_MAIN           => '',
+	NS_TALK           => 'Обговорення',
+	NS_USER           => 'Користувач',
+	NS_USER_TALK      => 'Обговорення_користувача',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => 'Обговорення_{{grammar:genitive|$1}}',
+	NS_IMAGE          => 'Зображення',
+	NS_IMAGE_TALK     => 'Обговорення_зображення',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'Обговорення_MediaWiki',
+	NS_TEMPLATE       => 'Шаблон',
+	NS_TEMPLATE_TALK  => 'Обговорення_шаблону',
+	NS_HELP           => 'Довідка',
+	NS_HELP_TALK      => 'Обговорення_довідки',
+	NS_CATEGORY       => 'Категорія',
+	NS_CATEGORY_TALK  => 'Обговорення_категорії',
+);
+
+$namespaceAliases = array(
+	'Спеціальні' => NS_SPECIAL,
 );
 
 $skinNames = array(

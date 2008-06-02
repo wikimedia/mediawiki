@@ -46,6 +46,30 @@ $skinNames = array(
 	'chick' => 'Kokido',
 );
 
+$magicWords = array(
+	'redirect'            => array( '0', '#REDIRECT', '#ALIDIREKTU' ),
+	'nogallery'           => array( '0', '__NOGALLERY__', '__SENGALERIO__' ),
+	'currentmonth'        => array( '1', 'CURRENTMONTH', 'NUNAMONATO' ),
+	'numberofarticles'    => array( '1', 'NUMBEROFARTICLES', 'NOMBRODEARTIKOLOJ' ),
+	'numberoffiles'       => array( '1', 'NUMBEROFFILES', 'NOMBRODEDOSIEROJ' ),
+	'numberofusers'       => array( '1', 'NUMBEROFUSERS', 'NOMBRODEUZANTOJ' ),
+	'numberofedits'       => array( '1', 'NUMBEROFEDITS', 'NOMBRODEREDAKTOJ' ),
+	'pagename'            => array( '1', 'PAGENAME', 'PAĜNOMO' ),
+	'img_thumbnail'       => array( '1', 'thumbnail', 'thumb', '' ),
+	'img_right'           => array( '1', 'right', 'dekstra' ),
+	'img_left'            => array( '1', 'left', 'maldekstra' ),
+	'img_center'          => array( '1', 'center', 'centre', 'centra' ),
+	'server'              => array( '0', 'SERVER', 'SERVILO' ),
+	'servername'          => array( '0', 'SERVERNAME', 'NOMODESERVILO' ),
+	'currentversion'      => array( '1', 'CURRENTVERSION', 'NUNAVERSIO' ),
+	'language'            => array( '0', '#LANGUAGE:', '#LINGVO:' ),
+	'special'             => array( '0', 'special', 'speciala' ),
+	'defaultsort'         => array( '1', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:', 'DEFAŬLTORDIGO:' ),
+	'tag'                 => array( '0', 'tag', 'etikedo' ),
+	'hiddencat'           => array( '1', '__HIDDENCAT__', '__KAŜITAKATEGORIO__' ),
+	'pagesize'            => array( '1', 'PAGESIZE', 'PEZODEPAĜO' ),
+);
+
 $separatorTransformTable = array(',' => ' ', '.' => ',' );
 
 $datePreferences = false;
