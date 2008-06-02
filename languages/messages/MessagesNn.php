@@ -2563,7 +2563,6 @@ $1',
 'specialpages-group-login'   => 'Innlogging / registrering',
 'specialpages-group-changes' => 'Siste endringar og loggar',
 'specialpages-group-users'   => 'Brukarar og brukartilgangar',
-'specialpages-group-needy'   => 'Sider som trengjer arbeid',
 'specialpages-group-highuse' => 'Mykje brukte sider',
 
 );

@@ -2460,7 +2460,6 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
 'specialpages-group-changes'     => 'Pomjyńane na uostatku a rejery',
 'specialpages-group-media'       => 'Pliki',
 'specialpages-group-users'       => 'Užytkowńiki i uprawńyńa',
-'specialpages-group-needy'       => 'Zajty kere wymagajům poprawek',
 'specialpages-group-highuse'     => 'Zajty čynsto užywane',
 
 );

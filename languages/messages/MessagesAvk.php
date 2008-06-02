@@ -2177,7 +2177,6 @@ $1',
 'specialpages-group-login'   => 'Figara / dimfigara',
 'specialpages-group-changes' => 'Noeltaf betakseem isu "log"',
 'specialpages-group-users'   => 'Favesikeem is rokeem',
-'specialpages-group-needy'   => 'Gonhofanu bu',
 'specialpages-group-highuse' => 'Nhofapanu bu',
 
 );

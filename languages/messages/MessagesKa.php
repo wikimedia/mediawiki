@@ -1908,6 +1908,5 @@ $1',
 'specialpages-group-other'   => 'სხვა სპეციალური გვერდები',
 'specialpages-group-changes' => 'ბოლო ცვლილებები და ჟურნალები',
 'specialpages-group-users'   => 'მომხმარებლები და უფლებები',
-'specialpages-group-needy'   => 'გვერდები, რომლებიც საჭიროებენ დამუშავებას',
 
 );

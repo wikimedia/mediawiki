@@ -2418,7 +2418,6 @@ $1',
 'specialpages-group-changes' => 'Bayung mengayalili ampong tala (logs)',
 'specialpages-group-media'   => 'Ulat king media ampong pamaglulan (uploads)',
 'specialpages-group-users'   => 'Talagamit ampong katuliran',
-'specialpages-group-needy'   => 'Bulung a kailangang panigobran',
 'specialpages-group-highuse' => 'Deng bulung a magamitan',
 
 );

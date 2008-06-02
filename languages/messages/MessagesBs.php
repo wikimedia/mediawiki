@@ -1269,7 +1269,6 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'specialpages-group-changes'     => 'Nedavne izmjene i evidencije',
 'specialpages-group-media'       => 'Mediji i postavljanje datoteka',
 'specialpages-group-users'       => 'Korisnici i korisnička prava',
-'specialpages-group-needy'       => 'Stranice koje treba doraditi',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
 
 );

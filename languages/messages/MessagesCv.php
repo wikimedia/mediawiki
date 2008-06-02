@@ -1222,7 +1222,6 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'specialpages-group-changes'     => 'Юлашки улшăнусемпе журналсем',
 'specialpages-group-media'       => 'Медиа-материалсемпе тултарăшсем',
 'specialpages-group-users'       => 'Хутшăнакансем тата правасем',
-'specialpages-group-needy'       => 'Тӳрлетмелли страницăсем',
 'specialpages-group-highuse'     => 'Нумай усă куракан страницăсем',
 
 );

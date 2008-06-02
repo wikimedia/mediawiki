@@ -2329,7 +2329,6 @@ $1',
 'specialpages-group-changes'     => 'அண்மைய மாற்றங்களும் பதிகைகளும்',
 'specialpages-group-media'       => 'ஊடக அறிக்கைகளும் பதிவேற்றங்களும்',
 'specialpages-group-users'       => 'பயனர்களும் உரிமைகளும்',
-'specialpages-group-needy'       => 'கவனம் தேவையான பக்கங்கள்',
 'specialpages-group-highuse'     => 'உயர் பயன்பாட்டு பக்கங்கள்',
 
 );

@@ -2526,7 +2526,6 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'specialpages-group-changes'     => 'Cambeos recientes y rexistros',
 'specialpages-group-media'       => 'Informes multimedia y xubíes',
 'specialpages-group-users'       => 'Usuarios y drechos',
-'specialpages-group-needy'       => 'Páxines que necesiten ameyoramientu',
 'specialpages-group-highuse'     => 'Páxines mui usaes',
 
 );

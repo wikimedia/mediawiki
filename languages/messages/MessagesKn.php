@@ -1908,7 +1908,6 @@ $5
 'specialpages-group-changes'     => 'ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳು ಮತ್ತು ದಾಖಲೆಗಳು',
 'specialpages-group-media'       => 'ಮೀಡಿಯ ವರದಿಗಳು ಮತ್ತು ಅಪ್ಲೋಡ್‍ಗಳು',
 'specialpages-group-users'       => 'ಬಳಕೆದಾರರು ಮತ್ತು ಹಕ್ಕುಗಳು',
-'specialpages-group-needy'       => 'ಕೆಲಸ ಬೇಕಾಗಿರುವ ಪುಟಗಳು',
 'specialpages-group-highuse'     => 'ಹೆಚ್ಚು ಬಳಕೆಯಲ್ಲಿರುವ ಪುಟಗಳು',
 
 );
