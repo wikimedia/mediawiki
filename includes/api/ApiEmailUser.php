@@ -50,21 +50,18 @@ class ApiEmailUser extends ApiBase {
 		if ( !isset( $params['token'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'token' ) );	
 		
-		// Match edit token
-		if( !$wgUser->matchEditToken( $params['token'] ) )
-			$this->dieUsageMsg( array( 'sessionfailure' ) );
+		// Validate target 
+		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
+		if ( !( $targetUser instanceof User ) )
+			$this->dieUsageMsg( $targetUser[0] );
 		
 		// Check permissions
-		$errors = EmailUserForm::getPermissionsError( $params['target'] );
-		if ( $errors )
-			$this->dieUsageMsg( $errors[0] );
+		$error = EmailUserForm::getPermissionsError( $wgUser, $params['token'] );
+		if ( $error )
+			$this->dieUsageMsg( array( $error[0] ) );
 		
-		// Rate limiter
-		if( $wgUser->pingLimiter( 'emailuser' ) )
-			$this->dieUsageMsg( 'actionthrottledtext' );
 			
-		$form = EmailUserForm::newFromURL( $params['target'],
-			$params['text'], $params['subject'], $params['ccme'] );
+		$form = new EmailUserForm( $targetUser, $params['text'], $params['subject'], $params['ccme'] );
 		$retval = $form->doSubmit();
 		if ( is_null( $retval ) )
 			$result = array();
