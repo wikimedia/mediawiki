@@ -53,7 +53,7 @@ class ApiEmailUser extends ApiBase {
 		// Validate target 
 		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
 		if ( !( $targetUser instanceof User ) )
-			$this->dieUsageMsg( $targetUser[0] );
+			$this->dieUsageMsg( array( $targetUser[0] ) );
 		
 		// Check permissions
 		$error = EmailUserForm::getPermissionsError( $wgUser, $params['token'] );
