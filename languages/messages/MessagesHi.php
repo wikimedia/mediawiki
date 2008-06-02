@@ -2665,7 +2665,6 @@ $1',
 'specialpages-group-changes'     => 'हाल ही में हुए परिवर्तन एवं अभिलेख',
 'specialpages-group-media'       => 'मीडिया रिपोर्ट एवं अपलोड',
 'specialpages-group-users'       => 'सदस्य एवं अधिकार',
-'specialpages-group-needy'       => 'कार्य प्रयोजित पृष्ठ',
 'specialpages-group-highuse'     => 'अत्यधिक उपयोगी पृष्ठ',
 
 );

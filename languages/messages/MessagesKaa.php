@@ -884,6 +884,17 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'statistics'             => 'Statistika',
 'sitestats'              => '{{SITENAME}} statistikası',
 'userstats'              => 'Paydalanıwshı statistikası',
+'sitestatstext'          => "Mag'lıwmatlar bazasında {{PLURAL:$1|'''1'''|ha'mmesi bolıp '''$1'''}} bet bar.
+Bug'an «sa'wbet» betleri, {{SITENAME}} haqqındag'ı betler, «shala» betler, burıwshı betler, ja'ne de basqa mag'lıwmat dep tanılmaytug'ın betler kiritiledi.
+Usılardı esapqa almag'anda, haqıyqıy mag'lıwmatqa iye '''$2''' bet bar dep boljanadı.
+
+'''$8''' fayl aploud qılındı.
+
+{{SITENAME}} ornatılg'annan beri betler {{PLURAL:$3|'''1'''|ha'mmesi bolıp '''$3'''}} ret qaralg'an, '''$4''' ret o'zgertilgen.
+Bunın' na'tiyjesinde ortasha esap penen ha'r bir betke '''$5''' o'zgeris tuwrı keledi, ha'mde ha'r bir o'zgeriske '''$6''' qaraw tuwrı  keledi.
+
+[http://meta.wikimedia.org/wiki/Help:Job_queue Tapsırımalar gezeginin'] uzınlıg'ı: '''$7'''.",
+'userstatstext'          => "Bul jerde '''$1''' [[{{#special:Listusers}}|esapqa alıng'an paydalanıwshı]] bar, solardın' ishinen '''$2''' (yag'nıy '''$4 %''') paydalanıwshısında $5 huquqları bar.",
 'statistics-mostpopular' => "En' ko'p ko'rilgen betler",
 
 'disambiguations'     => "Ko'p ma'nisli betler",
@@ -1436,11 +1447,23 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 'monthsall'        => "ha'mme",
 
 # E-mail address confirmation
-'confirmemail'          => 'E-mail adresin tastıyıqlaw',
-'confirmemail_success'  => "Sizin' e-mail adresin'iz tastıyıqlandı, endi wikige kiriwin'iz mu'mkin.",
-'confirmemail_loggedin' => "Sizin' e-mail adresin'iz endi tastıyıqlandı.",
-'confirmemail_subject'  => '{{SITENAME}} e-pochta adresi tastıyıqaw xatı',
-'confirmemail_body'     => "Geybirew, ba'lkimiz o'zin'iz shıg'ar, $1 IP adresinen,
+'confirmemail'            => 'E-mail adresin tastıyıqlaw',
+'confirmemail_send'       => 'Tastıyıqlaw kodın jiberiw',
+'confirmemail_sent'       => 'Tastıyıqlaw xatı jiberildi.',
+'confirmemail_oncreate'   => "Tastıyıqlaw kodı e-mail adresin'izge jiberildi.
+Bul kod kiriw ushın talap etilmeydi, biraq wikidin' e-mail mu'mkinshiliklerinen paydalanıwın'ız ushın kodtı ko'rsetiwin'iz kerek.",
+'confirmemail_sendfailed' => "Tastıyıqlaw xatı jiberilmedi.
+Adresin'izde jaramsız simvollar bolmawına tekserip shıg'ın'.
+
+Xat jiberiwshinin' qaytarg'an mag'lıwmatı: $1",
+'confirmemail_invalid'    => "Tastıyıqlaw kodı nadurıs.
+Kodtın' jaramlılıq waqtı pitken bolıwı mu'mkin.",
+'confirmemail_needlogin'  => "E-mail adresin'izdi tastıyıqlaw ushın $1 kerek.",
+'confirmemail_success'    => "Sizin' e-mail adresin'iz tastıyıqlandı, endi wikige kiriwin'iz mu'mkin.",
+'confirmemail_loggedin'   => "Sizin' e-mail adresin'iz endi tastıyıqlandı.",
+'confirmemail_error'      => "Tastıyıqlawın'ızdı saqlaw waqtında belgisiz qa'te ju'z berdi.",
+'confirmemail_subject'    => '{{SITENAME}} e-pochta adresi tastıyıqaw xatı',
+'confirmemail_body'       => "Geybirew, ba'lkimiz o'zin'iz shıg'ar, $1 IP adresinen,
 {{SITENAME}} saytında bul E-pochta adresin qollanıp «$2» degen akkaunt jarattı.
 
 Usı akkaunt shın'ınan ha'm siziki ekenin tastıyıqlaw ushın ha'mde {{SITENAME}} saytının'

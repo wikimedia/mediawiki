@@ -23,6 +23,7 @@
  * @author S.Örvarr.S
  * @author Melos
  * @author Ramac
+ * @author Darth Kule
  */
 
 $namespaceNames = array(
@@ -907,7 +908,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'searchall'                 => 'tutti',
 'showingresults'            => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
 'showingresultsnum'         => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
-'showingresultstotal'       => "Di seguito vengono mostrati i risultati da '''$1''' a '''$2''' su un totale di '''$3'''",
+'showingresultstotal'       => "Di seguito {{PLURAL:$3|viene mostrato il risultato '''$1''' di '''$3'''|vengono mostrati i risultati '''$1 - $2''' di '''$3'''}}",
 'nonefound'                 => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
 'powersearch'               => 'Ricerca',
 'powersearch-legend'        => 'Ricerca avanzata',
@@ -974,6 +975,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'servertime'               => 'Ora del server',
 'guesstimezone'            => "Usa l'ora del tuo browser",
 'allowemail'               => 'Consenti la ricezione di e-mail da altri utenti (1)',
+'prefs-searchoptions'      => 'Opzioni di ricerca',
+'prefs-namespaces'         => 'Namespace',
 'defaultns'                => 'Namespace predefiniti per la ricerca:',
 'default'                  => 'predefinito',
 'files'                    => 'File',
@@ -1053,6 +1056,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'right-browsearchive'        => 'Visualizza pagine cancellate',
 'right-undelete'             => 'Recupera una pagina',
 'right-suppressrevision'     => 'Rivedi e recupera versioni nascoste',
+'right-suppressionlog'       => 'Visualizza log privati',
 'right-block'                => 'Blocca le modifiche da parte di altri utenti',
 'right-blockemail'           => 'Impedisci ad un utente di inviare email',
 'right-hideuser'             => 'Blocca un nome utente, nascondendolo al pubblico',
@@ -1251,6 +1255,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'imagelinks'                     => "Collegamenti all'immagine",
 'linkstoimage'                   => "Pagine che contengono collegamenti all'immagine:",
 'nolinkstoimage'                 => "Nessuna pagina contiene collegamenti all'immagine.",
+'morelinkstoimage'               => 'Visualizza [[Special:Whatlinkshere/$1|altri link]] a questo file.',
 'redirectstofile'                => 'I seguenti file sono un redirect a questo file:',
 'duplicatesoffile'               => 'I seguenti file sono duplicati di questo file:',
 'sharedupload'                   => 'Questo file è un upload condiviso; può essere quindi utilizzato da più progetti wiki.',
@@ -1715,12 +1720,14 @@ $1',
 'nolinkshere-ns'           => "Non vi sono pagine che puntano a '''[[:$1]]''' nel namespace selezionato.",
 'isredirect'               => 'redirect',
 'istemplate'               => 'inclusione',
+'isimage'                  => 'link immagine',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedente|precedenti $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|successivo|successivi $1}}',
 'whatlinkshere-links'      => '← collegamenti',
 'whatlinkshere-hideredirs' => '$1 redirect',
 'whatlinkshere-hidetrans'  => '$1 inclusioni',
 'whatlinkshere-hidelinks'  => '$1 link',
+'whatlinkshere-hideimages' => '$1 link da immagini',
 'whatlinkshere-filters'    => 'Filtri',
 
 # Block/unblock
@@ -1750,6 +1757,7 @@ $1',
 'ipbotheroption'              => 'altro',
 'ipbotherreason'              => 'Altri motivi/dettagli:',
 'ipbhidename'                 => "Nascondi il nome utente dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
+'ipbwatchuser'                => 'Segui le pagine e le discussioni utente di questo utente',
 'badipaddress'                => 'Indirizzo IP non valido.',
 'blockipsuccesssub'           => 'Blocco eseguito',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] è stato bloccato.
@@ -1855,7 +1863,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepage-page-exists'    => 'La pagina $1 esiste già e non può essere automaticamente sovrascritta.',
 'movepage-page-moved'     => 'La pagina $1 è stata spostata a $2.',
 'movepage-page-unmoved'   => 'La pagina $1 non può essere spostata a $2.',
-'movepage-max-pages'      => 'È stato spostato il numero massimo di $1 pagine e non protranno essere spostate ulteriori pagine automaticamente.',
+'movepage-max-pages'      => 'È stato spostato il numero massimo di $1 {{PLURAL:$1|pagina|pagine}} e non protranno essere spostate ulteriori pagine automaticamente.',
 '1movedto2'               => 'ha spostato [[$1]] a [[$2]]',
 '1movedto2_redir'         => '[[$1]] spostata a [[$2]] tramite redirect',
 'movelogpage'             => 'Spostamenti',
@@ -1870,6 +1878,7 @@ La pagina di destinazione [[$1]] esiste già. Si desidera cancellarla per render
 'delete_and_move_reason'  => 'Cancellata per rendere possibile lo spostamento',
 'selfmove'                => 'Il nuovo titolo è uguale al vecchio; impossibile spostare la pagina su se stessa.',
 'immobile_namespace'      => 'Il nuovo titolo corrisponde a una pagina speciale; impossibile spostare pagine in quel namespace.',
+'imagetypemismatch'       => 'La nuova estensione del file non corrisponde alla sua reale estensione',
 
 # Export
 'export'            => 'Esporta pagine',
@@ -2582,7 +2591,6 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'specialpages-group-changes'     => 'Ultime modifiche e registri',
 'specialpages-group-media'       => 'File multimediali - caricamento e resoconti',
 'specialpages-group-users'       => 'Utenti e diritti',
-'specialpages-group-needy'       => 'Pagine in cerca di manutenzione',
 'specialpages-group-highuse'     => 'Pagine molto usate',
 
 );

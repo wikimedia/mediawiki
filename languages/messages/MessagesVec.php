@@ -647,10 +647,16 @@ Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pa
 L'elenco de le relative scancelazion el vien riportà qua de seguito par comodità:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.
+'expensive-parserfunction-warning'        => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.
 
 Dovarìa èssarghene manco de $2, ghe ne xe $1.',
-'expensive-parserfunction-category' => 'Pagina con chiamate de funzion al parser massa onerose',
+'expensive-parserfunction-category'       => 'Pagina con chiamate de funzion al parser massa onerose',
+'post-expand-template-inclusion-warning'  => 'Ocio: la dimension de inclusion dei template la xe massa granda.
+Alcuni template no i sarà mia inclusi.',
+'post-expand-template-inclusion-category' => 'Pagine in do che la dimension de inclusion dei template la xe massa granda',
+'post-expand-template-argument-warning'   => 'Ocio: Sta pagina la contien almanco un argomento de template che el gà na dimension de espansion massa granda.
+Sti argomenti i xe stà omessi.',
+'post-expand-template-argument-category'  => 'Pagine che contien template con argomenti mancanti',
 
 # "Undo" feature
 'undo-success' => 'Sta modifica la pode èssar anulà. Verifica el confronto presentà de seguito par èssar sicuro che el contenuto el sia come te lo voli e quindi salva le modifiche par conpletar la procedura de anulamento.',
@@ -681,7 +687,7 @@ Verifica l'URL che te doparà par açedere a sta pàxena.",
 'last'                => 'prec',
 'page_first'          => 'prima',
 'page_last'           => 'ultima',
-'histlegend'          => 'Legenda: (corr) = difarense con la versión corente,
+'histlegend'          => 'Legenda: (cor) = difarense con la versión corente,
 (prec) = difarense con la versión precedente, m = modifica minore',
 'deletedrev'          => '[scancełà]',
 'histfirst'           => 'Prima',
@@ -877,7 +883,7 @@ par poder personalixare le to preferense.',
 'recentchangescount'       => 'Nùmaro titołi in "modifeghe reçenti"',
 'savedprefs'               => 'Le to preferense łe xè stà salvae.',
 'timezonelegend'           => 'Fuso orario',
-'timezonetext'             => '¹Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).',
+'timezonetext'             => "¹Inserissi el nùmaro de ore de difarensa fra la to ora locale e l'ora del server (UTC).",
 'localtime'                => 'Ora locale',
 'timezoneoffset'           => 'Difarenza¹',
 'servertime'               => 'Ora del server',
@@ -2488,7 +2494,6 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'specialpages-group-changes'     => 'Ultime modifiche e registri',
 'specialpages-group-media'       => 'Resoconti e caricamenti dei file multimediài',
 'specialpages-group-users'       => 'Utenti e diriti',
-'specialpages-group-needy'       => 'Pagine che ga bisogno de laori',
 'specialpages-group-highuse'     => 'Pagine doparà assè',
 
 );

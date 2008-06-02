@@ -248,7 +248,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Påhina',
-'nstab-user'      => "Påhina ni muna'sesetbi",
+'nstab-user'      => "Påhina muna'sesetbi",
 'nstab-media'     => 'Påhinan media',
 'nstab-special'   => 'Espesiat na påhina',
 'nstab-project'   => 'Påhinan proyekto',
@@ -318,9 +318,10 @@ Ayek fan otru na nå'an.",
 'youremail'                  => 'E-mail:',
 'username'                   => "Nå'an muna'sesetbi:",
 'uid'                        => "ID muna'sesetbi:",
+'prefs-memberingroups'       => 'Miembron {{PLURAL:$1|i grupu|i grupu siha}}:',
 'yourrealname'               => "Minagahet nå'an-mu:",
 'yourlanguage'               => 'Lengguahe:',
-'yournick'                   => "Fa'na'an:",
+'yournick'                   => 'Fitma:',
 'badsiglength'               => "Mampos anakko'-ña i na'an; na'lakadada' $1 ((PLURAL:$1|na simbolo|na simbolo siha)).",
 'email'                      => 'E-mail',
 'prefs-help-realname'        => "Ti nesisario i na'an-mu mågahet.
@@ -366,6 +367,9 @@ Ti para u na'hanao ni sigienti na inayek siha.",
 'createaccount-title'        => "Nina'huyong kuenta nu {{SITENAME}}",
 'loginlanguagelabel'         => 'Lengguahe: $1',
 
+# Password reset dialog
+'resetpass_submit' => "Po'lo i password ya log in",
+
 # Edit page toolbar
 'bold_sample'     => "Tinige' potpot",
 'bold_tip'        => "Tinige' potpot",
@@ -385,23 +389,25 @@ Ti para u na'hanao ni sigienti na inayek siha.",
 'hr_tip'          => "Råya ni umadespatta (uho' fan)",
 
 # Edit pages
-'summary'               => 'Sumaria',
-'subject'               => "Suhetu/titulo mo'na",
-'minoredit'             => "Dikike' este na tiniliaka",
-'watchthis'             => 'Pulan este na påhina',
-'savearticle'           => 'Såtba i påhina',
-'preview'               => 'Ripasu',
-'showpreview'           => "Fa'nu'i para manripasa",
-'showdiff'              => "Na'annok tinilaika",
-'anoneditwarning'       => "'''Adahi:''' Ti ma log-in hao.
+'summary'                          => 'Sumaria',
+'subject'                          => "Suhetu/titulo mo'na",
+'minoredit'                        => "Dikike' este na tiniliaka",
+'watchthis'                        => 'Pulan este na påhina',
+'savearticle'                      => 'Såtba i påhina',
+'preview'                          => 'Ripasu',
+'showpreview'                      => "Fa'nu'i para manripasa",
+'showdiff'                         => "Na'annok tinilaika",
+'anoneditwarning'                  => "'''Adahi:''' Ti ma log-in hao.
 Mausa iyo-mu IP address sempre para tumulaika i historian påhina este.",
-'missingcommenttext'    => "Nå'ye kommentu gi papa'.",
-'missingcommentheader'  => "'''Nina'hasso:''' Ti un tuge' suhetu/titulon må'gas para i kommentu.
+'missingsummary'                   => "'''Nina'hasso:''' Tåya' iyo-mu sumaria tinilaika.
+An un yemme' Såtba ta'lo, para u såtba i tinilaika-mu sin sumaria.",
+'missingcommenttext'               => "Nå'ye kommentu gi papa'.",
+'missingcommentheader'             => "'''Nina'hasso:''' Ti un tuge' suhetu/titulon må'gas para i kommentu.
 Yanggen un yemme' \"Såtba\" ta'lo, masåtba tinilaika-mu sin titulo.",
-'summary-preview'       => 'Ripasun sumaria',
-'subject-preview'       => 'Ripasun suhetu/titulo',
-'blockedtitle'          => "Machoma' i muna'sesetbi",
-'blockedtext'           => "<big>'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''</big>
+'summary-preview'                  => 'Ripasun sumaria',
+'subject-preview'                  => 'Ripasun suhetu/titulo',
+'blockedtitle'                     => "Machoma' i muna'sesetbi",
+'blockedtext'                      => "<big>'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''</big>
 
 Manchomma' as $1. Pot i rason: ''$2''.
 
@@ -412,7 +418,7 @@ Manchomma' as $1. Pot i rason: ''$2''.
 Siña un kuentusi si $1 pat otru na [[{{MediaWiki:Grouppage-sysop}}|administradot]] para un diskuti i chinemma'.
 Ti siña un usa i ramientan 'e-mail i muna'sesetbi,' solo guåha e-mail address minaolek gi i [[Special:Preferences|priferensia i kuenta-mu]] ya ti machomma' hao manu'usa ha'.
 På'go, $3 iyo-mu IP, ya machomma' i ID #$5. Pot fabot, na'hålom i dos gi todus i finaisen-mu siha.",
-'autoblockedtext'       => "Machomma' på'go iyo-mu IP sa' guåha otru na muna'sestbi ni ha u'usa ha', ya machomma' gue' as $1.
+'autoblockedtext'                  => "Machomma' på'go iyo-mu IP sa' guåha otru na muna'sestbi ni ha u'usa ha', ya machomma' gue' as $1.
 Ha na'i i rason:
 
 :''$2''
@@ -426,73 +432,89 @@ Ti siña un usa i ramientan 'e-mail i muna'sesetbi,' solo guåha e-mail address 
 
 Machomma' i ID #$5.
 Pot fabot, na'hålom i ID gi todus i finaisen-mu siha.",
-'blockednoreason'       => "ti mana'i rason",
-'blockedoriginalsource' => "Ma'a'annok i code '''$1''' gi papa':",
-'blockededitsource'     => "Ma'a'annok gi papa' i tinige' '''tinilaika-mu''' gi '''$1''':",
-'whitelistedittitle'    => 'Nesesario malogin para tumulaika',
-'whitelistedittext'     => 'Un nesisita ma$1 para tumulaika påhina.',
-'whitelistreadtitle'    => 'Nesisario malogin para manaitai',
-'whitelistreadtext'     => 'Un nesisita [[Special:Userlogin|lumogin]] para manaitai.',
-'whitelistacctitle'     => "Ti masedi hao mama'tinas kuenta",
-'whitelistacctext'      => "Ti masedi hao mama'tinas kuenta gi {{SITENAME}}, un nesita [[Special:Userlogin|lumogin]] yan un nesita i petmisu propiu siha.",
-'loginreqtitle'         => 'Manesita login',
-'loginreqlink'          => 'log in',
-'loginreqpagetext'      => "Debi di un $1 para manli'e' påhina.",
-'accmailtitle'          => "Mana'hanague ni password.",
-'accmailtext'           => 'Mana\'hanague $2 ni password "$1".',
-'newarticle'            => '(Nuebu)',
-'newarticletext'        => "Tåya' na påhina trabiha ni inachetton ni un yemme'.
+'blockednoreason'                  => "ti mana'i rason",
+'blockedoriginalsource'            => "Ma'a'annok i code '''$1''' gi papa':",
+'blockededitsource'                => "Ma'a'annok gi papa' i tinige' '''tinilaika-mu''' gi '''$1''':",
+'whitelistedittitle'               => 'Nesesario malogin para tumulaika',
+'whitelistedittext'                => 'Un nesisita ma$1 para tumulaika påhina.',
+'whitelistreadtitle'               => 'Nesisario malogin para manaitai',
+'whitelistreadtext'                => 'Un nesisita [[Special:Userlogin|lumogin]] para manaitai.',
+'whitelistacctitle'                => "Ti masedi hao mama'tinas kuenta",
+'whitelistacctext'                 => "Ti masedi hao mama'tinas kuenta gi {{SITENAME}}, un nesita [[Special:Userlogin|lumogin]] yan un nesita i petmisu propiu siha.",
+'confirmedittitle'                 => 'Manesita i konfitmasion e-mail para tumulaika',
+'confirmedittext'                  => "Un nesisita un konfotme iyo-mu email åntes di tumulaika påhina.
+Pot fabot po'lo yan konfotme iyo-mu e-mail gi [[Special:Preferences|prifirensia muna'sesetbi]].",
+'nosuchsectiontitle'               => "Tåya' na påtte",
+'nosuchsectiontext'                => "Tåya' na påtte ni un chagi tumulaika.
+Sa' tåya' na påtten $1, tåya' na lugåt para u såtba i tinilaika-mu.",
+'loginreqtitle'                    => 'Manesita login',
+'loginreqlink'                     => 'log in',
+'loginreqpagetext'                 => "Debi di un $1 para manli'e' påhina.",
+'accmailtitle'                     => "Mana'hanague ni password.",
+'accmailtext'                      => 'Mana\'hanague $2 ni password "$1".',
+'newarticle'                       => '(Nuebu)',
+'newarticletext'                   => "Tåya' na påhina trabiha ni inachetton ni un yemme'.
 Para un fa'tinas i påhina, fångge' gi sanpapa' na kahon (bisita i [[{{MediaWiki:Helppage}}|påhinan ayudo]] para mas infotmasion).
 Anggen lachi finatto-mu mågi, yemme' i batunes '''back''' ni iyo-mu browser.",
-'anontalkpagetext'      => "----''Este na påhinan kombetsasion muna'sesetbi taina'an ni ti ha fa'tinas kuenta-ña pat ti ha u'usa i kuenta. Entonses na in i'isa i numiron IP para in aidentifika gue'.
+'anontalkpagetext'                 => "----''Este na påhinan kombetsasion muna'sesetbi taina'an ni ti ha fa'tinas kuenta-ña pat ti ha u'usa i kuenta. Entonses na in i'isa i numiron IP para in aidentifika gue'.
 Buente ha' na guåha unos kuantos na muna'sesetbi ni ma u'usa i enao na IP.
 An un muna'sesetbi taina'an hao ya manñiente hao na guåha na kommentu ti prisisu ni manadirihiyi hao, pot fabot [[Special:Userlogin|fa'tinas kuenta-mu pat log in]] para mansuhayi yinaoyao yan i otru na muna'sesetbi siha.''",
-'noarticletext'         => "Tåya' tinige'-ña i påhina este, siña un [[Special:Search/{{PAGENAME}}|aligao i titulon påhina]] gi halom otru na påhina siha pat [{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika i påhina].",
-'note'                  => '<strong>Fanapunta:</strong>',
-'previewnote'           => '<strong>Annok este para manripasa;
+'noarticletext'                    => "Tåya' tinige'-ña i påhina este, siña un [[Special:Search/{{PAGENAME}}|aligao i titulon påhina]] gi halom otru na påhina siha pat [{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika i påhina].",
+'userpage-userdoesnotexist'        => 'Ti marehistra i kuenata muna\'sesetbi "$1". Pot fabot chek kao malago\' hao un fa\'tinas/tulaika este na påhina.',
+'usercsspreview'                   => "'''Hasso fan na un ripapasa iyo-mu CSS muna'sesetbi, trabiha ti masåtba ha'!'''",
+'userjspreview'                    => "'''Hasso fan na un chachagi/ripapasa iyo-mu JavaScript muna'sesetbi, trabiha ti masåtba ha'!'''",
+'note'                             => '<strong>Fanapunta:</strong>',
+'previewnote'                      => '<strong>Annok este para manripasa;
 ti masåtba trabiha i tinilaika-mu!</strong>',
-'editing'               => 'Tumulaika $1',
-'editingsection'        => 'Tumulaika $1 (patte)',
-'editingcomment'        => 'Tulalaika $1 (komentu)',
-'editconflict'          => 'Tulaika i problema: $1',
-'explainconflict'       => "Guåha otru na tinilaika gi påhina ginen i tiempon tumutuhon hao tumulaika.
+'previewconflict'                  => "Este na ripasu ha na'annok i tinige' gi i kahon tumulaika gi sanhilo' kumu para u annok an un såtba ha'.",
+'session_fail_preview'             => "<strong>Dispensa! Ti siña in na'fo'na i tinilaika-mu sa' guåha fina'lingun infotmasion sesion.
+Pot fabot chagi ta'lo. Yanggen ti siña u såtba ta'lo, chagi muna'logout yan na'login ta'lo.</strong>",
+'editing'                          => 'Tumulaika $1',
+'editingsection'                   => 'Tumulaika $1 (patte)',
+'editingcomment'                   => 'Tulalaika $1 (komentu)',
+'editconflict'                     => 'Tulaika i problema: $1',
+'explainconflict'                  => "Guåha otru na tinilaika gi påhina ginen i tiempon tumutuhon hao tumulaika.
 Ma'annok i tinige' gi hilo' komu på'go.
 Ma'annok i tinilaika-mu gi papa'.
 Para un nesita muna'daña i tinilaika-mu yan i guinaha.
 '''I tinige' gi hilo' ha'''' para u såtba annai un yemme' \"Såtba i påhina\".",
-'yourtext'              => "Tinige'-mu",
-'storedversion'         => 'Tinilaika masåtba',
-'editingold'            => "<strong>ADAHI: Un tulalaika un ribision påhina gus bihu.
+'yourtext'                         => "Tinige'-mu",
+'storedversion'                    => 'Tinilaika masåtba',
+'editingold'                       => "<strong>ADAHI: Un tulalaika un ribision påhina gus bihu.
 Yanggen un såtba ha', para u fana'malingu i tinilaika siha despues di enao na ribision.</strong>",
-'yourdiff'              => 'Diferensia',
-'copyrightwarning'      => "Pot fabot, fanapunta fan na makonsidera manmasotta todus i kontribusion gi {{SITENAME}} papa' i $2 (atan $1 para i attikulu siha).
+'yourdiff'                         => 'Diferensia',
+'copyrightwarning'                 => "Pot fabot, fanapunta fan na makonsidera manmasotta todus i kontribusion gi {{SITENAME}} papa' i $2 (atan $1 para i attikulu siha).
 Yanggen munga hao na matulaika i tinige'-mu yan malamaña ya mana'apåttao ta'lo maseha månu, pues munga ma po'lu guini.<br />
 Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat publika pat otru na lugat dibåtde.
 <strong>MUNGA MANFA'BURESI NA GAIDIRECHU I MANTITUGE'!</strong>",
-'copyrightwarning2'     => "Pot fabot, fanapunta fan na siña i otru na muna'sesetbi siha tumulaika/munasuha todus i kontribusion gi {{SITENAME}}.
+'copyrightwarning2'                => "Pot fabot, fanapunta fan na siña i otru na muna'sesetbi siha tumulaika/munasuha todus i kontribusion gi {{SITENAME}}.
 Yanggen munga hao na matulaika i tinige'-mu yan malamaña ya mana'apåttao ta'lo maseha månu, pues munga ma po'lu guini.<br />
 Un promette ham lokkue' na hågu ha' i tituge', pat un kopia ha' gi un lugat publika pat otru na lugat dibåtde (atan $1 para i attikulu siha).
 <strong>MUNGA MANFA'BURESI NA GAIDIRECHU I MANTITUGE'!</strong>",
-'templatesused'         => "I plantiyas siha ni ma'usa gi påhina:",
-'templatesusedpreview'  => "I plantiyas ni ma'usa gi ripasu:",
-'templatesusedsection'  => "Plantiyas siha ni ma'usa gi este na seksion:",
-'template-protected'    => '(maprotehi)',
-'hiddencategories'      => "Miembron {{PLURAL:$1|1 manå'na' na kategoria|$1 na mannå'na' na kategoria}} este na påhina:",
-'nocreatetext'          => "I nina'siña mama'tinas mannuebu na påhina machomma' gi {{SITENAME}}.
+'templatesused'                    => "I plantiyas siha ni ma'usa gi påhina:",
+'templatesusedpreview'             => "I plantiyas ni ma'usa gi ripasu:",
+'templatesusedsection'             => "Plantiyas siha ni ma'usa gi este na seksion:",
+'template-protected'               => '(maprotehi)',
+'hiddencategories'                 => "Miembron {{PLURAL:$1|1 manå'na' na kategoria|$1 na mannå'na' na kategoria}} este na påhina:",
+'nocreatetext'                     => "I nina'siña mama'tinas mannuebu na påhina machomma' gi {{SITENAME}}.
 Siña hao humanao tåtte ya tumulaika påhina ni guinaha, pat [[Special:Userlogin|log in pat un fa'tinas kuenta-mu]].",
-'nocreate-loggedin'     => "Ti nahon i nibet-mu petmisu mama'tinas nuebu na påhina gi {{SITENAME}}.",
-'permissionserrors'     => 'Linache siha gi Petmisu',
-'permissionserrorstext' => "Ti nahong nibet-mu petmisu chumo'gue enao, pot i sigiente {{PLURAL:$1|na rason|na rason siha}}:",
-'recreate-deleted-warn' => "'''Adahi: Esta mana'suha i påhina ni para un fa'tinas ta'lo.'''
+'nocreate-loggedin'                => "Ti nahon i nibet-mu petmisu mama'tinas nuebu na påhina gi {{SITENAME}}.",
+'permissionserrors'                => 'Linache siha gi Petmisu',
+'permissionserrorstext'            => "Ti nahong nibet-mu petmisu chumo'gue enao, pot i sigiente {{PLURAL:$1|na rason|na rason siha}}:",
+'permissionserrorstext-withaction' => "Ti nahong nibet-mu petmisu $2, sa' i sigiente {{PLURAL:$1|na rason|na rason siha}}:",
+'recreate-deleted-warn'            => "'''Adahi: Esta mana'suha i påhina ni para un fa'tinas ta'lo.'''
 
 Konsidera fan anggen maolek ha' kumontinua tumulaika i påhina.
 Estague' i historian muna'suha ni påhina:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => "Adahi: Guåha meggai mampos na inagang fongksion parser.
+'expensive-parserfunction-warning'        => "Adahi: Guåha meggai mampos na inagang fongksion parser.
 
 Debi di menos ki $2 ha', på'go guåha $1.",
-'expensive-parserfunction-category' => 'Påhinas siha ni meggai mampos na inagang fungksion parser',
+'expensive-parserfunction-category'       => 'Påhinas siha ni meggai mampos na inagang fungksion parser',
+'post-expand-template-inclusion-warning'  => "Adahi: Mampos dangkolo i mineddong muna'saonao plantiyas.
+Ti para u na'saonao palu na plantiyas.",
+'post-expand-template-inclusion-category' => "Påhina siha ni maloffan i mineddong muna'saonao plantiyas",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Ti siña mama'tinas kuenta",
@@ -548,11 +570,19 @@ fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'revisiondelete'              => "Na'suha/para håfa muna'suha i tinilaika",
 'revdelete-selected'          => "{{PLURAL:$2|Tinilaika ma'ayek|Tinilaika manma'ayek}} gi [[:$1]]:",
 'logdelete-selected'          => "{{PLURAL:$1|Kasun log ni ma'ayek|Kasun log ni manma'ayek}}:",
+'revdelete-legend'            => "Po'lo i chinemma' lini'e'on siha",
 'revdelete-hide-text'         => "Nå'na' i tinige' ribision",
 'revdelete-hide-comment'      => "Nå'na' i kommentun tinilaika",
 'revdelete-hide-user'         => "Nå'na' i na'an muna'sesetbi/IP i editot",
 'revdelete-hide-image'        => "Nå'na' i sinahguan atkibu",
+'revdelete-unsuppress'        => "Na'suha i chinemma' siha gi tinilaika manmana'lo siha",
 'revdelete-log'               => 'Kommentun log:',
+'revdelete-submit'            => "Na'aplika gi tinilaika ni ma'ayek",
+'revdelete-logentry'          => "ha tulaika i lini'e'on ribision [[$1]]",
+'logdelete-logentry'          => "ha tulaika i lini'e'on kasu [[$1]]",
+'revdelete-success'           => "'''Munhåyan i sinesedi i lini'e'on ribision .'''",
+'logdelete-success'           => "'''Munhåyan i sinesedi i lini'e'on log.'''",
+'revdel-restore'              => "Tulaika i lini'e'on",
 'pagehist'                    => 'Historian påhina',
 'deletedhist'                 => "Historia mana'suha",
 'revdelete-content'           => 'guinaha',
@@ -560,6 +590,40 @@ fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'revdelete-uname'             => "nå'an muna'sesetbi",
 'revdelete-hid'               => "manå'na' $1",
 'revdelete-unhid'             => "mana'annok $1",
+'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|na ribision|na ribision siha}}',
+'logdelete-log-message'       => '$1 para $2 {{PLURAL:$2|na kåsu|na kåsu siha}}',
+
+# Suppression log
+'suppressionlog' => "Log manchinemma'",
+
+# History merging
+'mergehistory'                     => "Na'daña i historian i påhina siha",
+'mergehistory-header'              => "Sinedi hao ni este na påhina muna'daña i historian unu na påhinan mo'na yan otru na påhina mas nuebu.
+Na'seguro na este na tinilaika para u mantiene i kinontinua i historian påhiana.",
+'mergehistory-box'                 => "Na'daña i ribision siha i dos påhina:",
+'mergehistory-from'                => "Påhina mo'na:",
+'mergehistory-into'                => 'Påhina destinasion:',
+'mergehistory-list'                => 'I historian tinilaika dañayon',
+'mergehistory-merge'               => "Siña u fana'daña [[:$2]] yan i mansigiente na ribision [[:$1]].
+Usa i kalumnan batunes rediu para mana'daña solo i ribision siha ni manmafa'tinas gi/åntes di i oran espesifiku.
+Fanapunta na para u na'nuebu i kolumna anggen un usa i inachetton nabegasion.",
+'mergehistory-go'                  => "Na'annok i mandañayon na tinilaika siha",
+'mergehistory-submit'              => "Na'daña i ribision siha",
+'mergehistory-empty'               => "Tåya' mandañayon na ribision siha.",
+'mergehistory-success'             => "Munhåyan muna'daña [[:$2]] yan i $3 {{PLURAL:$3|na ribision|na ribision siha}} gi [[:$1]].",
+'mergehistory-fail'                => "Ti siña muna'daña i historia siha, pot fabot ripåra ta'lo i påhina yan i ora pine'lo.",
+'mergehistory-no-source'           => "Tåya' na påhina mo'na $1.",
+'mergehistory-no-destination'      => "Tåya' na påhina destinasion $1.",
+'mergehistory-invalid-source'      => "I påhina mo'na debi di maolek na titulo.",
+'mergehistory-invalid-destination' => 'I påhina destinasion debi di maolek na titulo.',
+'mergehistory-autocomment'         => "Mana'daña [[:$1]] yan [[:$2]]",
+'mergehistory-comment'             => "Mana'daña [[:$1]] yan [[:$2]]: $3",
+
+# Merge log
+'mergelog'           => "Log i manmana'daña",
+'pagemerge-logentry' => "ha na'daña [[$1]] yan [[$2]] (ribision asta $3)",
+'revertmerge'        => 'Sipåra',
+'mergelogpagetext'   => "Guåha gi sampapa' un listan i manmana'daña siha ni historian påhina gi halacha.",
 
 # Diffs
 'history-title'           => 'Historian tinilaika nu "$1"',
@@ -570,19 +634,81 @@ fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'diff-multi'              => "({{PLURAL:$1|Ti mana'a'annok unu na tinilaika gi talo'|Ti manmana'a'annok $1 na tinilaika siha gi talo'}}.)",
 
 # Search results
-'noexactmatch'       => "'''Taya' na påhina mafa'na'an \"\$1\".'''
+'searchresults'             => 'Humuyongña i inaligao',
+'searchresulttext'          => 'Para mas infotmasion nu manaliligao {{SITENAME}}, hånao para [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => "Un aligao '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "Un aligao '''$1'''",
+'noexactmatch'              => "'''Taya' na påhina mafa'na'an \"\$1\".'''
 Siña un [[:\$1|fa'tinas i påhina]].",
-'prevn'              => "$1 ni manmå'pos",
-'nextn'              => "$1 ni manmamaila'",
-'viewprevnext'       => 'Atan i ($1) ($2) ($3)',
-'powersearch'        => 'Finu na inaligao',
-'powersearch-legend' => 'Finu na inaligao',
+'noexactmatch-nocreate'     => "'''Tåya' na påhina ni titulon \"\$1\".'''",
+'toomanymatches'            => 'Mampos meggai na manaya ni humuyongña, pot fabot chagi difirente na inaligao',
+'titlematches'              => 'Titulon påhina siha ni manaya',
+'notitlematches'            => "Tåya' titulon påhina siha ni manaya",
+'textmatches'               => "Tinige' påhina siha ni manaya",
+'notextmatches'             => "Tåya' na tinige' påhina siha ni manaya",
+'prevn'                     => "$1 ni manmå'pos",
+'nextn'                     => "$1 ni manmamaila'",
+'viewprevnext'              => 'Atan i ($1) ($2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 na palabra|$2 na palabra siha}})',
+'search-result-score'       => 'Prinisisu: $1%',
+'search-redirect'           => "(na'dirihi $1)",
+'search-section'            => '(påtte $1)',
+'search-suggest'            => 'Kao kumekeilek-mu: $1',
+'search-interwiki-caption'  => 'Proyektu siha ni mamarehu',
+'search-interwiki-default'  => 'Humuyongña gi $1:',
+'search-interwiki-more'     => '(mas)',
+'search-mwsuggest-enabled'  => 'yan abisa',
+'search-mwsuggest-disabled' => "tåya' abisa",
+'search-relatedarticle'     => 'Umachetton',
+'mwsuggest-disable'         => "Na'påra i abisan AJAX",
+'searchrelated'             => 'umachetton',
+'searchall'                 => 'todu',
+'showingresults'            => "A'annok gi sampapa' asta {{PLURAL:$1|'''1''' na humuyongña|'''$1''' na humuyongña siha}} tumutuhon yan i #'''$2'''.",
+'showingresultsnum'         => "A'annok gi sampapa' {{PLURAL:$3|'''1''' na humuyongña|'''$3''' na humuyongña siha}} tumutuhon yan i #'''$2'''.",
+'showingresultstotal'       => "A'annok gi sampapa' {{PLURAL:$3|i humuyongña '''$1''' ginen '''$3'''|i humuyongña '''$1 - $2''' siha ginen '''$3'''}}",
+'nonefound'                 => "'''Apunta''': Solo ha' manmanaligao palu na sågan nå'an. Chagi fan muna'klå'an mo'na i inaligao-mu yan ''all:'' para un aligao todu i guinaha (kontodu påhinan kombesasion, plantiyas, etc), pat usa i sagan nå'an ni malago'-mu kumu klå'an mo'na.",
+'powersearch'               => 'Finu na inaligao',
+'powersearch-legend'        => 'Finu na inaligao',
+'powersearch-ns'            => "Inaligao gi sagan nå'an:",
+'powersearch-redir'         => "Na'lista i na'dirihi siha",
+'powersearch-field'         => 'Aligao',
+'search-external'           => 'Inaligao sanhiyong',
+'searchdisabled'            => "Mana'påra i inaligao {{SITENAME}}.
+Siña hao manaligao gi Google gi entretanto.
+Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 
 # Preferences page
-'preferences'       => "I ga'ña-mu",
-'mypreferences'     => "I ga'ña-hu",
-'retypenew'         => "Na'tekla nuebu na password:",
-'searchresultshead' => 'Aligao',
+'preferences'           => "I ga'ña-mu",
+'mypreferences'         => "I ga'ña-hu",
+'prefs-edits'           => 'Numirun tinilaika:',
+'prefsnologin'          => "Ti ma'log in",
+'prefsnologintext'      => "Un nesisita [[Special:Userlogin|muna'log in]] para un tulaika i ga'ña-mu muna'sesetbi.",
+'prefsreset'            => "Manmamo'lo ta'lo i prifirensia siha ginen i dipusita.",
+'qbsettings-none'       => "Tåya'",
+'changepassword'        => 'Tulaika password',
+'skin'                  => 'Låssas',
+'math'                  => 'Math',
+'dateformat'            => 'Plantiyas fecha',
+'datedefault'           => "Tåya' prifirensia",
+'datetime'              => 'Fecha yan ora',
+'math_failure'          => 'Lachi ma parse',
+'prefs-rc'              => 'Tinilaika gi halacha',
+'prefs-watchlist'       => 'Listan pinilan',
+'prefs-watchlist-days'  => "Dihas siha muna'annok gi listan pinilan:",
+'prefs-watchlist-edits' => "I mas takhilo' na numirun tinilaika para u na'annok gi i mana'la'dangkolo i listan pinilan:",
+'prefs-misc'            => 'Misc',
+'saveprefs'             => 'Såtba',
+'resetprefs'            => "Na'funas i tinilaika ti manma'såtba siha",
+'oldpassword'           => 'Password bihu:',
+'newpassword'           => 'Password nuebu:',
+'retypenew'             => "Na'tekla nuebu na password:",
+'textboxsize'           => 'Tumulaika',
+'rows'                  => 'Fila siha:',
+'columns'               => 'Kolumna siha:',
+'searchresultshead'     => 'Aligao',
+'resultsperpage'        => 'Dinanche siha kada påhina:',
+'contextlines'          => 'Liña siha kada dinanche:',
+'contextchars'          => 'Guinaha kada liña:',
 
 'grouppage-sysop' => '{{ns:project}}:Atministradot siha',
 

@@ -586,7 +586,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'loginproblem'               => '<b>Wystąpił problem przy próbie zalogowania.</b><br />Spróbuj ponownie!',
 'login'                      => 'Zaloguj się',
 'nav-login-createaccount'    => 'Logowanie i rejestracja',
-'loginprompt'                => 'Musisz mieć włączoną w przeglądarce obsługę ciasteczek by móc się zalogować do {{GRAMMAR:D.lp|{{SITENAME}}}}.',
+'loginprompt'                => 'Musisz mieć włączoną w przeglądarce obsługę ciasteczek, by móc się zalogować do {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'userlogin'                  => 'Logowanie i rejestracja',
 'logout'                     => 'Wyloguj',
 'userlogout'                 => 'Wyloguj',
@@ -613,7 +613,7 @@ Wybierz inną nazwę użytkownika.',
 Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
-Jeśli zdecydujesz się je podać, zostaną użyte, aby zapewnić Twojej pracy atrybucję.',
+Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
 'loginerror'                 => 'Błąd zalogowania',
 'prefs-help-email'           => "Podanie adresu e-mail nie jest obowiązkowe, lecz pozwoli innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła. '''Twój adres nie zostanie nikomu udostępniony.'''",
 'prefs-help-email-required'  => 'Wymagany jest adres e-mail.',
@@ -628,7 +628,7 @@ Spróbuj ponownie po ich odblokowaniu.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
 'loginsuccess'               => "'''Zalogowałeś się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 'nosuchuser'                 => 'Nie ma użytkownika o nazwie „$1”.
-Sprawdź pisownię lub użyj poniższego formularza by utworzyć nowe konto.',
+Sprawdź pisownię lub użyj poniższego formularza, by utworzyć nowe konto.',
 'nosuchusershort'            => 'Nie ma użytkownika o nazwie „<nowiki>$1</nowiki>”.
 Sprawdź poprawność pisowni.',
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
@@ -643,7 +643,7 @@ poprosił o przesłanie nowego hasła do {{GRAMMAR:D.lp|{{SITENAME}}}} ($4).
 Nowym hasłem użytkownika „$2” jest „$3”.
 Najlepiej będzie, gdy zalogujesz się teraz i od razu zmienisz hasło.
 
-Jeśli to nie Ty prosiłeś o przesłanie hasła i nie chcesz zmieniać poprzedniego hasła wystarczy, że zignorujesz tą wiadomość i dalej będziesz się posługiwał swoim dotychczasowym hasłem.',
+Jeśli to nie Ty prosisz o przesłanie hasła lub nie chcesz zmienić poprzedniego hasła, wystarczy, że zignorujesz tą wiadomość i dalej będziesz się posługiwać swoim dotychczasowym hasłem.',
 'noemail'                    => 'Nie ma zdefiniowanego adresu e-mail dla użytkownika „$1”.',
 'passwordsent'               => 'Nowe hasło zostało wysłane na adres e-mail użytkownika „$1”.
 Po otrzymaniu go zaloguj się ponownie.',
@@ -734,7 +734,7 @@ Blokada została nałożona przez $1. Podany powód to: ''$2''.
 * Cel blokady: $7
 
 W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
-Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika” jeśli nie podałeś poprawnego adresu e-mail w swoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
+Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika” jeśli nie brak poprawnego adresu e-mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
 Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5. Prosimy o podanie jednego lub obu tych numerów przy wyjaśnianiu tej blokady.",
 'autoblockedtext'                  => "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.
 Powód blokady:
@@ -772,7 +772,7 @@ Ponieważ nie ma sekcji $1, nie ma też gdzie zapisać Twojej edycji.',
 'accmailtext'                      => 'Hasło użytkownika „$1” zostało wysłane na adres $2.',
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => "Nie ma jeszcze strony o tym tytule.
-Jeśli chcesz ją utworzyć wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]). 
+Jeśli chcesz ją utworzyć, wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]). 
 Jeśli utworzenie nowej strony nie było Twoim zamiarem, wciśnij ''Wstecz'' w swojej przeglądarce.",
 'anontalkpagetext'                 => "---- ''To jest strona dyskusji anonimowego użytkownika – takiego, który nie ma jeszcze swojego konta lub nie chce go w tej chwili używać. By go identyfikować używamy adresów IP.
 Jednak adres IP może być współdzielony przez wielu użytkowników.
@@ -819,7 +819,7 @@ Z tego powodu wszystkie znaki, których przeglądarka nie rozpoznaje, zostały z
 Jeśli zapiszesz ją, wszystkie zmiany wykonane w międzyczasie zostaną wycofane.</strong>',
 'yourdiff'                         => 'Różnice',
 'copyrightwarning'                 => "Wkład do {{GRAMMAR:D.lp|{{SITENAME}}}} jest udostępniany na licencji $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
-Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych.
+Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych.
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
 'copyrightwarning2'                => "Wszelki wkład w {{GRAMMAR:B.lp|{{SITENAME}}}} może być edytowany, zmieniany lub usunięty przez innych użytkowników.
 Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
@@ -841,7 +841,7 @@ Zapisując swoją edycję oświadczasz, że ten tekst jest Twoim dziełem lub po
 'edittools'                        => '<!-- Znajdujący się tutaj tekst zostanie pokazany pod polem edycji i formularzem przesyłania plików. -->',
 'nocreatetitle'                    => 'Ograniczono możliwość tworzenia nowych stron',
 'nocreatetext'                     => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.
-Możesz edytować istniejące strony, bądź też [[Special:Userlogin|zalogować się lub utworzyć konto]].',
+Możesz edytować istniejące strony bądź też [[Special:Userlogin|zalogować się lub utworzyć konto]].',
 'nocreate-loggedin'                => 'Nie masz uprawnień do tworzenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'permissionserrors'                => 'Błędy uprawnień',
 'permissionserrorstext'            => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
@@ -1031,7 +1031,7 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'searchall'                 => 'wszystkie',
 'showingresults'            => "Oto lista z {{PLURAL:$1|'''1''' wynikiem|'''$1''' wynikami}}, rozpoczynając od wyniku numer '''$2'''.",
 'showingresultsnum'         => "Oto lista z {{PLURAL:$3|'''1''' wynikiem|'''$3''' wynikami}}, rozpoczynając od wyniku numer '''$2'''.",
-'showingresultstotal'       => "Poniżej {{PLURAL:$3|znajduje się wynik wyszukiwania '''$1'''|znajdują się '''$3''' wyniki wyszukiwania '''$1 – $2'''|znajduje się '''$3''' wyników wyszukiwania '''$1 – $2'''}}",
+'showingresultstotal'       => "Poniżej {{PLURAL:$3|znajduje się wynik wyszukania '''$1'''|znajdują się wyniki wyszukiwania '''$1 – $2''', z ogólnej liczby '''$3'''}}",
 'nonefound'                 => "'''Uwaga''': Domyślnie przeszukiwane są wyłącznie niektóre przestrzenie nazw. Spróbuj poprzedzić wyszukiwaną frazę przedrostkiem ''all:'', co spowoduje przeszukanie całej zawartości {{GRAMMAR:D.lp|{{SITENAME}}}} (włącznie ze stronami dyskusji, szablonami itp) lub spróbuj użyć jako przedrostka wybranej, jednej przestrzeni nazw.",
 'powersearch'               => 'Szukaj',
 'powersearch-legend'        => 'Wyszukiwanie zaawansowane',
@@ -1742,9 +1742,9 @@ Pomoc:
 'exblank'                     => 'Strona była pusta',
 'delete-confirm'              => 'Usuń „$1”',
 'delete-legend'               => 'Usuń',
-'historywarning'              => 'Uwaga! Strona, którą chcesz usunąć ma starsze wersje:',
+'historywarning'              => 'Uwaga! Strona, którą chcesz usunąć, ma starsze wersje:',
 'confirmdeletetext'           => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
-Upewnij się czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
+Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'              => 'Operacja wykonana',
 'deletedtext'                 => 'Usunięto „<nowiki>$1</nowiki>”.
 Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
@@ -2039,14 +2039,14 @@ Linki do starego tytułu pozostaną niezmienione.
 Upewnij się, że uwzględniasz podwójne lub zerwane przekierowania.
 Odpowiadasz za to, żeby linki odnosiły się do właściwych artykułów!
 
-Strona '''nie''' zostanie przeniesiona jeśli:
+Strona '''nie''' zostanie, przeniesiona jeśli:
 *jest pusta i nigdy nie była edytowana
 *jest stroną przekierowującą
-*strona o nowej nazwie już istnieje. Chyba że jest pusta lub jest przekierowaniem i ma pustą historię edycji. To oznacza, że błędną operację zmiany nazwy, można bezpiecznie odwrócić zmieniając nową nazwę strony na poprzednią.
+*strona o nowej nazwie już istnieje, chyba że jest pusta lub jest przekierowaniem i ma pustą historię edycji. To oznacza, że błędną operację zmiany nazwy można bezpiecznie odwrócić, zmieniając nową nazwę strony na poprzednią.
 
 '''UWAGA!'''
 Może to być drastyczna lub nieprzewidywalna zmiana w przypadku popularnych stron.
-Upewnij się co do konsekwencji tej operacji zanim się na nią zdecydujesz.",
+Upewnij się co do konsekwencji tej operacji, zanim się na nią zdecydujesz.",
 'movepagetalktext'        => 'Powiązana strona dyskusji, jeśli istnieje, będzie przeniesiona automatycznie, chyba że:
 *niepusta strona dyskusji już jest pod nową nazwą
 *usuniesz zaznaczenie z poniższego pola wyboru
@@ -2608,7 +2608,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpsdirection-m' => 'kierunek magnetyczny',
 
 # External editor support
-'edit-externally'      => 'Edytuj ten plik używając zewnętrznej aplikacji',
+'edit-externally'      => 'Edytuj ten plik, używając zewnętrznej aplikacji',
 'edit-externally-help' => "Więcej informacji o używaniu [http://meta.wikimedia.org/wiki/Help:External_editors zewnętrznych edytorów] (''ang.'').",
 
 # 'all' in various places, this might be different for inflected languages
@@ -2835,7 +2835,6 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:image}}:”.',
 'specialpages-group-changes'     => 'Ostatnie zmiany i rejestry',
 'specialpages-group-media'       => 'Pliki',
 'specialpages-group-users'       => 'Użytkownicy i uprawnienia',
-'specialpages-group-needy'       => 'Strony wymagające poprawek',
 'specialpages-group-highuse'     => 'Strony często używane',
 
 );

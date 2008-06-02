@@ -738,7 +738,7 @@ Notatz que podètz pas utilizar la foncion "Mandar un messatge a aqueste utiliza
 Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'blockednoreason'                  => 'Cap de rason balhada',
 'blockedoriginalsource'            => "Lo còde font de '''$1''' es indicat çaijós :",
-'blockededitsource'                => "Lo contengut de '''vòstras modificacions''' poratadas sus '''$1''' es indicat çaijós :",
+'blockededitsource'                => "Lo contengut de '''vòstras modificacions''' aportadas a '''$1''' es indicat çaijós :",
 'whitelistedittitle'               => 'Connexion necessària per modificar lo contengut',
 'whitelistedittext'                => 'Vos cal èsser $1 per modificar las paginas.',
 'whitelistreadtitle'               => 'Connexion necessària per legir lo contengut',
@@ -994,7 +994,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'searchall'                 => 'Totes',
 'showingresults'            => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
 'showingresultsnum'         => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
-'showingresultstotal'       => "Visionament dels resultats çaijós '''$1 - $2''' de '''$3'''",
+'showingresultstotal'       => "Visionament çaijós {{PLURAL:$3|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
 'nonefound'                 => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
 que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas que
 contenon totes los tèrmes apareisson dins los resultats).',
@@ -1066,6 +1066,8 @@ per modificar vòstras preferéncias d'utilizaire.",
 'servertime'               => 'Ora del servidor',
 'guesstimezone'            => 'Utilizar la valor del navigador',
 'allowemail'               => 'Autorizar lo mandadís de corrièr electronic venent d’autres utilizaires',
+'prefs-searchoptions'      => 'Opcions de recèrca',
+'prefs-namespaces'         => 'Noms d’espacis',
 'defaultns'                => 'Per defaut, recercar dins aquestes espacis :',
 'default'                  => 'defaut',
 'files'                    => 'Fichièrs',
@@ -1883,7 +1885,7 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'badipaddress'                => "L'adreça IP es incorrècta",
 'blockipsuccesssub'           => 'Blocatge capitat',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
-Vous pouvez consulter la [[Special:Ipblocklist|lista dels comptes e de las adreças IP blocats]].',
+Podètz consultar la [[Special:Ipblocklist|lista dels comptes e de las adreças IP blocats]].',
 'ipb-edit-dropdown'           => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr'            => 'Desblocar $1',
 'ipb-unblock'                 => "Desblocar un compte d'utilizaire o una adreça IP",
@@ -1913,7 +1915,7 @@ a partir d'una adreça IP precedentament blocada.",
 'unblocklink'                 => 'desblocar',
 'contribslink'                => 'contribucions',
 'autoblocker'                 => 'Sètz estat autoblocat perque partejatz una adreça IP amb "[[User:$1|$1]]".
-La rason balhada per $1 et : « $2 ».',
+La rason balhada per $1 es : « $2 ».',
 'blocklogpage'                => 'Istoric dels blocatges',
 'blocklogentry'               => 'a blocat « [[$1]] » - durada : $2 $3',
 'blocklogtext'                => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires. Las adreças IP automaticament blocadas son pas listadas. Consultatz la [[Special:Ipblocklist|lista dels utilizaires blocats]] per veire qui es actualament efectivament blocat.",
@@ -1995,7 +1997,7 @@ Verificatz qu’existís pas cap de redireccion dobla, e corregissètz-las se me
 Causissètz-ne un autre.",
 'cantmove-titleprotected' => 'Avètz pas la possibilitat de desplaçar una pagina vèrs aqueste emplaçament perque lo títol es estat protegit a la creacion.',
 'talkexists'              => "La pagina ela-meteissa es estada desplaçada amb succès, mas
-la pagina de discussion a pas pogut èsser desplaçada perque n'existissiá ja una
+la pagina de discussion a pas pogut èsser desplaçada perque ja n'existissiá una
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movedto'                 => 'renomenat en',
 'movetalk'                => 'Tornar nomenar tanben la pagina de discussion associada',
@@ -2735,7 +2737,6 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
 'specialpages-group-changes'     => 'Darrièrs cambiaments e jornals',
 'specialpages-group-media'       => 'Rapòrts dels fichièrs de mèdias e dels impòrts',
 'specialpages-group-users'       => 'Utilizaires e dreches estacats',
-'specialpages-group-needy'       => 'Paginas que necessitan de trabalhs',
 'specialpages-group-highuse'     => 'Utilizacion intensa de las paginas',
 
 );

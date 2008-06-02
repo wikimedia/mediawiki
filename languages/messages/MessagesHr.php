@@ -2574,7 +2574,6 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'specialpages-group-changes'     => 'Nedavne promjene i evidencije',
 'specialpages-group-media'       => 'Izvještaji i postavljanje datoteka',
 'specialpages-group-users'       => 'Suradnici i suradnička prava',
-'specialpages-group-needy'       => 'Stranice s potrebom dorade',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
 
 );

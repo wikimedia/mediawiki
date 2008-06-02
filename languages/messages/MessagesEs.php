@@ -794,6 +794,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'mergehistory-no-destination'      => 'La página destino $1 no existe.',
 'mergehistory-invalid-source'      => 'La página origen debe tener un título válido.',
 'mergehistory-invalid-destination' => 'La página de destino ha de tener un título válido.',
+'mergehistory-autocomment'         => 'Fusionando [[:$1]] en [[:$2]]',
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',
@@ -949,13 +950,27 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'right-reupload'         => 'Subir una nueva versión de un archivo existente',
 'right-reupload-own'     => 'Subir una nueva versión de un archivo creado por uno mismo',
 'right-upload_by_url'    => 'Subir un archivo a traves de un URL',
+'right-purge'            => 'Purgar la caché en el servidor sin tener que dar confirmación',
+'right-autoconfirmed'    => 'Editar páginas semiprotegidas',
+'right-bot'              => 'Ser tratado como un programa automático',
+'right-apihighlimits'    => 'Tener límites más altos de peticiones a través del API',
+'right-writeapi'         => 'Hacer uso del API para escribir',
 'right-delete'           => 'Borrar páginas',
 'right-bigdelete'        => 'Borrar páginas con historiales de revisión largos',
 'right-deleterevision'   => 'Borrar y restaurar revisiones específicas de páginas',
+'right-deletedhistory'   => 'Ver el historial de páginas borradas, sin el texto asociado',
+'right-browsearchive'    => 'Buscar páginas borradas',
 'right-undelete'         => 'Deshacer el borrado de una página',
+'right-block'            => 'Bloquear a otros usuarios para que no editen',
+'right-blockemail'       => 'Bloquear a un usuario para que no pueda mandar correos electrónicos',
+'right-hideuser'         => 'Bloquear un nombre de usuario, haciéndolo invisible',
+'right-protect'          => 'Cambiar niveles de protección y editar páginas protegidas',
+'right-editprotected'    => 'Editar páginas protegidas (sin la protección «en cascada»)',
 'right-editinterface'    => 'Editar la interfáz de usuario',
 'right-editusercssjs'    => 'Editar las páginas de CSS y JS de otros usuarios',
 'right-import'           => 'Importar páginas desde otras wikis',
+'right-autopatrol'       => 'Marcar como patrulladas sus ediciones automáticamente',
+'right-unwatchedpages'   => 'Ver una lista de páginas no vigiladas',
 'right-siteadmin'        => 'Bloquear y desbloquear la base de datos',
 
 # User rights log
@@ -1279,6 +1294,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 # Special:Categories
 'categories'                    => 'Categorías',
 'categoriespagetext'            => 'Existen las siguientes categorías en este wiki.',
+'categoriesfrom'                => 'Mostrar categorías que empiecen por:',
 'special-categories-sort-count' => 'ordenar por conteo',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
@@ -1288,8 +1304,13 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'listusers-noresult' => 'No se encontró al usuario.',
 
 # Special:Listgrouprights
-'listgrouprights-group'  => 'Grupo',
-'listgrouprights-rights' => 'Derechos',
+'listgrouprights'          => 'Permisos del grupo de usuarios',
+'listgrouprights-summary'  => 'La siguiente es una lista de los grupos de usuario definidos en esta wiki, y de sus privilegios de acceso asociados.
+Información adicional sobre privilegios individuales pueden ser hallados en [[{{MediaWiki:Listgrouprights-helppage}}]]',
+'listgrouprights-group'    => 'Grupo',
+'listgrouprights-rights'   => 'Derechos',
+'listgrouprights-helppage' => 'Help:Derechos de grupos',
+'listgrouprights-members'  => '(ver los miembros de este grupo)',
 
 # E-mail user
 'mailnologin'     => 'No enviar dirección',
@@ -1645,6 +1666,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'databasenotlocked'   => 'La base de datos no está bloqueada.',
 
 # Move page
+'move-page'               => 'Trasladar $1',
 'move-page-legend'        => 'Renombrar página',
 'movepagetext'            => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
@@ -1679,6 +1701,11 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
 'movedto'                 => 'renombrado a',
 'movetalk'                => 'Renombrar la página de discusión también, si es aplicable.',
+'move-subpages'           => 'Mover todas las subpáginas si es posible',
+'move-talk-subpages'      => 'Mover todas las subpáginas de discusión, si es posible',
+'movepage-page-exists'    => 'La página $1 ya existe, por lo que no puede ser renombrada automáticamente.',
+'movepage-page-unmoved'   => 'La página $1 no se ha podido trasladar a $2.',
+'movepage-max-pages'      => 'Se han trasladado un máximo de $1 páginas, y no se van a mover más automáticamente.',
 '1movedto2'               => '[[$1]] trasladada a [[$2]]',
 '1movedto2_redir'         => '[[$1]] trasladada a [[$2]] sobre una redirección',
 'movelogpage'             => 'Registro de traslados',
@@ -2333,7 +2360,9 @@ Intenta la previsualización normal.',
 'specialpages-group-changes'     => 'Cambios recientes y registros',
 'specialpages-group-media'       => 'Páginas sobre archivos',
 'specialpages-group-users'       => 'Usuarios y permisos',
-'specialpages-group-needy'       => 'Páginas que necesitan ser revisadas',
 'specialpages-group-highuse'     => 'Páginas sobre usos',
+'specialpages-group-pages'       => 'Listas de páginas',
+'specialpages-group-pagetools'   => 'Herramientas de páginas',
+'specialpages-group-wiki'        => 'Datos sobre la wiki y herramientas',
 
 );

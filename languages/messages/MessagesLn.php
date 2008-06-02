@@ -5,6 +5,7 @@
  * @file
  *
  * @author SPQRobin
+ * @author Eruedin
  */
 
 $fallback = 'fr';
@@ -70,6 +71,7 @@ $messages = array(
 
 'about'          => 'elɔ́kɔ elobámí',
 'article'        => 'ekakoli',
+'cancel'         => 'Kozóngela',
 'qbedit'         => 'kobalusa',
 'qbspecialpages' => 'Nkásá ya ndéngé isúsu',
 'mytalk'         => 'Ntembe na ngáí',
@@ -77,6 +79,7 @@ $messages = array(
 'and'            => 'mpé',
 
 'errorpagetitle'   => 'Mbéba',
+'tagline'          => 'Artíclɛ ya {{SITENAME}}.',
 'help'             => 'Bosálisi',
 'search'           => 'Boluki',
 'searchbutton'     => 'Boluki',
@@ -93,6 +96,7 @@ $messages = array(
 'unprotect'        => 'Kobátela tɛ̂',
 'talkpagelinktext' => 'Ntembe',
 'talk'             => 'Ntembe',
+'views'            => 'Bomɔ́niseli',
 'toolbox'          => 'Bisáleli',
 'otherlanguages'   => 'Na nkótá isúsu',
 'redirectedfrom'   => '(Eyendísí útá $1)',
@@ -127,21 +131,22 @@ $messages = array(
 'error' => 'Mbéba',
 
 # Login and logout pages
-'yourname'          => 'Nkómbó ya ekitoli :',
-'yourpasswordagain' => 'Banda naíno :',
-'login'             => 'komíkitola (log in)',
-'userlogin'         => 'Komíkomisa tǒ kokɔtɔ',
-'logout'            => 'kolongwa',
-'userlogout'        => 'kolongwa (log out)',
-'nologin'           => 'Omíkomísí naíno tɛ̂ ? $1.',
-'nologinlink'       => 'Míkomísá yɔ̌-mɛ́i',
-'gotaccount'        => 'Omíkomísí naíno ? $1.',
-'createaccountmail' => 'na mokánda',
-'youremail'         => 'Mokandá (e-mail) *',
-'username'          => 'Nkómbó ya ekitoli :',
-'yourrealname'      => 'nkómbó ya sɔ̂lɔ́ *',
-'yourlanguage'      => 'Lokótá',
-'email'             => 'Mokánda',
+'yourname'                => 'Nkómbó ya ekitoli :',
+'yourpasswordagain'       => 'Banda naíno :',
+'login'                   => 'komíkitola (log in)',
+'nav-login-createaccount' => 'Komíkomisa tǒ kokɔtɔ',
+'userlogin'               => 'Komíkomisa tǒ kokɔtɔ',
+'logout'                  => 'kolongwa',
+'userlogout'              => 'kolongwa (log out)',
+'nologin'                 => 'Omíkomísí naíno tɛ̂ ? $1.',
+'nologinlink'             => 'Míkomísá yɔ̌-mɛ́i',
+'gotaccount'              => 'Omíkomísí naíno ? $1.',
+'createaccountmail'       => 'na mokánda',
+'youremail'               => 'Mokandá (e-mail) *',
+'username'                => 'Nkómbó ya ekitoli :',
+'yourrealname'            => 'nkómbó ya sɔ̂lɔ́ *',
+'yourlanguage'            => 'Lokótá',
+'email'                   => 'Mokánda',
 
 # Edit pages
 'summary'        => 'Likwé ya mokusé',
@@ -162,6 +167,7 @@ $messages = array(
 'rev-delundel' => 'komɔ́nisa/kobomba',
 
 # Diffs
+'lineno'   => 'Mokɔlɔ́tɔ $1 :',
 'editundo' => 'kozóngela',
 
 # Search results
@@ -195,6 +201,9 @@ $messages = array(
 'hist'            => 'likambo',
 'hide'            => 'kobomba',
 'show'            => 'Komɔ́nisa',
+'minoreditletter' => 'm',
+'newpageletter'   => 'S',
+'boteditletter'   => 'b',
 
 # Recent changes linked
 'recentchangeslinked' => 'Bolandi ekangisi',
@@ -235,6 +244,7 @@ $messages = array(
 
 # Special:Allpages
 'allpages'       => 'Nkásá ínsɔ',
+'alphaindexline' => '$1 kina $2',
 'nextpage'       => 'Lokásá ya nsima ($1)',
 'prevpage'       => 'Lokasá ya libosó ($1)',
 'allpagesprev'   => '< ya libosó',
@@ -269,6 +279,9 @@ $messages = array(
 'watchlist-show-minor' => 'Komɔ́nisa mbóngwana ya mokɛ́',
 'watchlist-hide-minor' => 'Kobomba mbóngwana ya mokɛ́',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching' => 'Bonɔ́ngi...',
+
 'created' => 'ekomákí',
 
 # Delete/protect/revert
@@ -285,8 +298,9 @@ $messages = array(
 'mycontris' => 'Nkásá nakomí',
 
 # What links here
-'whatlinkshere' => 'Ekangísí áwa',
-'isredirect'    => 'Lokásá ya boyendisi',
+'whatlinkshere'       => 'Ekangísí áwa',
+'isredirect'          => 'Lokásá ya boyendisi',
+'whatlinkshere-links' => '← ekangisi',
 
 # Move page
 'movearticle'             => 'Kobóngola nkómbó ya ekakoli :',
@@ -300,6 +314,9 @@ $messages = array(
 # Export
 'export'        => 'komɛmɛ na...',
 'export-submit' => 'Komɛmɛ',
+
+# Thumbnails
+'thumbnail-more' => 'Koyéisa monɛ́nɛ',
 
 # Special:Import
 'import' => 'koútisa...',

@@ -140,7 +140,7 @@ $messages = array(
 'tog-fancysig'                => 'Ungerschreff ohne automatische Link',
 'tog-externaleditor'          => 'Nemm jedes Mol en extern Editor-Projramm',
 'tog-externaldiff'            => 'Nemm jedes Mol en extern Diff-Projramm',
-'tog-showjumplinks'           => 'Links usjevve, die däm „Zojang ohne Barrikad“ helfe dun',
+'tog-showjumplinks'           => '„Jangk-noh“-Links usjevve, die bei em „Zojang ohne Barrikad“ helfe dun',
 'tog-uselivepreview'          => 'Zeich de „Lebendije Vör-Aansich zeije“ (bruch Java_Skripp) (em Usprobierstadium)',
 'tog-forceeditsummary'        => 'Froch noh, wann en däm Feld „Koot zosammejefass, Quell“ beim Avspeichere nix dren steiht',
 'tog-watchlisthideown'        => 'Dun ming eije Änderunge <strong>nit</strong> en minger Oppassliss aanzeije',
@@ -151,7 +151,7 @@ $messages = array(
 'tog-diffonly'                => 'Zeich beim Versione Verjliche nur de Ungerscheed aan (ävver pack nit noch de janze Sigg dodronger)',
 'tog-showhiddencats'          => 'Verstoche Saachjroppe aanzeije',
 
-'underline-always'  => 'jo, jedes Mol',
+'underline-always'  => 'jo, ongershtriishe',
 'underline-never'   => 'nä',
 'underline-default' => 'nemm dem Brauser sing Enstellung',
 
@@ -817,6 +817,7 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'revdelete-uname'             => 'Metmaacher',
 
 # Diffs
+'history-title'           => 'Liss met Versione vun „$1“',
 'difference'              => '(Ungerscheed zwesche de Versione)',
 'lineno'                  => 'Reih $1:',
 'compareselectedversions' => 'Dun de markeete Version verjliche',
@@ -1174,6 +1175,7 @@ De Einzelheite: $1',
 # Image description page
 'filehist-deleteall'        => 'All Versione fottschmieße',
 'filehist-deleteone'        => 'Schmieß die Version fott',
+'filehist-revert'           => 'Zeröck nemme',
 'filehist-datetime'         => 'Version vom',
 'filehist-user'             => 'Metmaacher',
 'imagelinks'                => 'Jebruch en',
@@ -1186,6 +1188,9 @@ De Einzelheite: $1',
 'noimage'                   => 'Mer han kein Datei met däm Name, kanns De ävver $1.',
 'noimage-linktext'          => 'Kanns De huhlade!',
 'uploadnewversion-linktext' => 'Dun en neu Version vun dä Datei huhlade',
+
+# File reversion
+'filerevert-submit' => 'Zeröcknemme',
 
 # File deletion
 'filedelete'                  => 'Schmieß „$1“ fott',
@@ -1385,7 +1390,7 @@ aanluure.",
 # Special:Allpages
 'allpages'          => 'All Sigge',
 'allpages-summary'  => "Die Sondersigg hee zeich der Siggebestand en etwa noh'm Alphabett, ävver de Zahle stonn am Aanfang för der Jroßbochstabe, dann de Kleine Bochstave, un de jruße un kleine Ömluute un de Sönderzeiche stonn am Eng.",
-'alphaindexline'    => '$1 â€¦ $2',
+'alphaindexline'    => '$1 … $2',
 'nextpage'          => 'De nächste Sigg: „$1“',
 'allpagesfrom'      => 'Sigge aanzeije av däm Name:',
 'allarticles'       => 'All Atikkele',
@@ -1744,7 +1749,7 @@ watte bruchs.",
 'movelogpage'             => 'Logboch met de ömjenannte Sigge',
 'movelogpagetext'         => 'Hee sin de Neuste ömjenannte Sigge opjeliss, un wä et jedon hät.',
 'movereason'              => 'Aanlass:',
-'revertmove'              => 'Et Ömnenne zeröcknemme',
+'revertmove'              => 'Et Ömnänne zerök_nämme',
 'delete_and_move'         => 'Fottschmieße un Ömnenne',
 'delete_and_move_text'    => '== Dä! Dubbelte Name ==
 Dä Atikkel „[[$1]]“ jitt et ald. Wollts De en fottschmieße, öm hee dä Atikkel ömnenne ze künne?',
@@ -2118,7 +2123,6 @@ Doht der Name ohne „{{ns:image}}:“ doför ennjävve.",
 'specialpages-group-changes'     => 'Letzte Änderunge un Logböcher',
 'specialpages-group-media'       => 'Medie',
 'specialpages-group-users'       => 'Metmaacher un denne ier Rääschte',
-'specialpages-group-needy'       => 'Sigge, woh jet draan jedonn weede mööt',
 'specialpages-group-highuse'     => 'Sellde jebruchte Sigge',
 
 );

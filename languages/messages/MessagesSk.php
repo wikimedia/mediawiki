@@ -2692,7 +2692,6 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'specialpages-group-changes'     => 'Posledné zmeny a záznamy',
 'specialpages-group-media'       => 'Správy o multimédiách a nahrávaniach',
 'specialpages-group-users'       => 'Používatelia a skupiny',
-'specialpages-group-needy'       => 'Stránky, ktoré treba vylepšiť',
 'specialpages-group-highuse'     => 'Často používané stránky',
 
 );

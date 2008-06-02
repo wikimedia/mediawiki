@@ -184,7 +184,7 @@ $messages = array(
 'metadata_help' => 'Metadatos:',
 
 'errorpagetitle'    => 'Erro',
-'returnto'          => 'Voltar a $1.',
+'returnto'          => 'Voltar a "$1".',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Axuda',
 'search'            => 'Procura',
@@ -341,11 +341,12 @@ MySQL retornou o erro "$3: $4".',
 'readonlytext'         => 'Nestes momentos a base de datos está fechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento da base de datos, tras as que voltará á normalidade.
 
 O administrador que a fechou deu esta explicación: $1',
-'missingarticle'       => 'A base de datos non deu atopado o texto dunha páxina que debería dar atopado, titulada "$1".
+'missingarticle'       => 'A base de datos non deu atopado o texto dunha páxina titulada "$1", e que debería dar atopado.
 
 Xeralmente isto é causado por seguir unha ligazón cara a un cambio anterior ou a unha páxina que foi borrada.
 
-Se non é o caso, pode ter atopado un erro no programa. Por favor, informe a un administrador, tomando nota do URL.',
+Se non é o caso, pode ter atopado un erro no programa.
+Por favor, informe a un administrador, tomando nota do URL.',
 'missingarticle-rev'   => '(revisión#: $1)',
 'missingarticle-diff'  => '(Dif: $1, $2)',
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
@@ -394,7 +395,8 @@ A razón dada foi ''$2''.",
 'logouttitle'                => 'Saída de usuario a anónimo',
 'logouttext'                 => '<strong>Agora está fóra do sistema.</strong>
 
-Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo nome de usuario ou con outro. Note que mentres se limpa a memoria caché do navegador algunhas páxinas poden continuar a ser amosadas como se estivesen aínda dentro do sistema.',
+Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo nome de usuario ou con outro.
+Teña en conta que mentres se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivesen dentro do sistema.',
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
 Creouse a súa conta.
 Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITENAME}}.',
@@ -1113,6 +1115,7 @@ Se dispón dunha versión desta imaxe de maior resolución, envíe esta última.
 'fileexists-forbidden'        => 'Xa hai un ficheiro co mesmo nome; por favor retroceda e cargue o ficheiro cun novo nome. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no depósito de ficheiros compartidos; volva e cargue este ficheiro con outro nome.
 [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Este ficheiro parece que é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'successfulupload'            => 'Carga con éxito',
 'uploadwarning'               => 'Advertencia da carga',
 'savefile'                    => 'Gardar o ficheiro',
@@ -1134,9 +1137,9 @@ Debe comprobar o $1 antes de proceder a cargalo outra vez.',
 Debe considerar se é apropiado continuar enviando este ficheiro.
 O rexistro de borrado proporciónase aquí por se quere consultalo:",
 'filename-bad-prefix'         => 'O nome do ficheiro que está cargando comeza con <strong>"$1"</strong>, que é un típico nome non descritivo asignado automaticamente polas cámaras dixitais. Por favor, escolla un nome máis descritivo para o seu ficheiro.',
-'filename-prefix-blacklist'   => ' #<!-- deixa esta liña exactamente como está --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- deixe esta liña exactamente como está --> <pre>
 # A sintaxe é a seguinte:
-#   * Todo desde o carácter "#" até o final da liña é un comentario
+#   * Todo o que estea desde o carácter "#" até o final da liña é un comentario
 #   * Cada liña que non está en branco é un prefixo para os nomes típicos dos ficheiros asignados automaticamente polas cámaras dixitais
 CIMG # Casio
 DSC_ # Nikon
@@ -1146,8 +1149,8 @@ DUW # algúns teléfonos móbiles
 IMG # xenérico
 JD # Jenoptik
 MGP # Pentax
-PICT # misc.
- #</pre> <!-- deixa esta liña exactamente como está -->',
+PICT # varias
+ #</pre> <!-- deixe esta liña exactamente como está -->',
 
 'upload-proto-error'      => 'Protocolo erróneo',
 'upload-proto-error-text' => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
@@ -1205,7 +1208,7 @@ Premendo nun cabezallo da columna cambia a ordenación.',
 'shareduploadwiki-linktext'      => 'páxina de descrición do ficheiro',
 'shareduploadduplicate'          => 'Este ficheiro é un duplicado $1 que está no repositorio.',
 'shareduploadduplicate-linktext' => 'doutro ficheiro',
-'shareduploadconflict'           => 'Este ficheiro ten o mesmo nome que $1 que está no repositorio.',
+'shareduploadconflict'           => 'Este ficheiro comparte o nome $1 que está no repositorio.',
 'shareduploadconflict-linktext'  => 'doutro ficheiro',
 'noimage'                        => 'Non existe ningún ficheiro con ese nome, vostede pode $1.',
 'noimage-linktext'               => 'cargalo',
@@ -1311,7 +1314,7 @@ desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 'nlinks'                  => '$1 {{PLURAL:$1|ligazón|ligazóns}}',
 'nmembers'                => '$1 {{PLURAL:$1|páxina|páxinas}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisión|revisións}}',
-'nviews'                  => '$1 {{PLURAL:$1|vista|vistas}}',
+'nviews'                  => 'vista {{PLURAL:$1|unha vez|$1 veces}}',
 'specialpage-empty'       => 'Non hai resultados para o que solicitou.',
 'lonelypages'             => 'Páxinas orfas',
 'lonelypagestext'         => 'As seguintes páxinas están illadas, non están enlazadas desde outras páxinas de {{SITENAME}}.',
@@ -1601,7 +1604,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Ver as páxinas borradas',
 'undeletepage'                 => 'Ver e restaurar páxinas borradas',
-'undeletepagetitle'            => "'''O que segue consiste nas revisións eliminadas de [[:$1]]'''.",
+'undeletepagetitle'            => "'''A continuación amósanse as revisións eliminadas de''' \"'''[[:\$1|\$1]]'''\".",
 'viewdeletedpage'              => 'Ver as páxinas borradas',
 'undeletepagetext'             => 'As seguintes páxinas foron borradas pero aínda están no arquivo e poden ser restauradas. O arquivo vai ser limpado periodicamente.',
 'undeleteextrahelp'            => "Para restaurar a páxina completa deixe todas as caixas sen marcar e prema en '''''Restaurar'''''.
@@ -1670,8 +1673,8 @@ $1',
 'whatlinkshere-page'       => 'Páxina:',
 'linklistsub'              => '(Listaxe de ligazóns)',
 'linkshere'                => "As seguintes páxinas ligan con '''[[:$1]]''':",
-'nolinkshere'              => "Ningunha páxina liga con '''[[:$1]]'''.",
-'nolinkshere-ns'           => "Ningunha páxina liga con '''[[:$1]]''' no espazo de nomes elixido.",
+'nolinkshere'              => "Ningunha páxina liga con \"'''[[:\$1]]'''\".",
+'nolinkshere-ns'           => "Ningunha páxina liga con \"'''[[:\$1]]'''\" no espazo de nomes elixido.",
 'isredirect'               => 'páxina redirixida',
 'istemplate'               => 'inclusión',
 'isimage'                  => 'ligazón á imaxe',
@@ -1733,7 +1736,7 @@ Olle a [[Special:Ipblocklist|listaxe de IP bloqueados]] para revisalo.',
 'ipblocklist-legend'          => 'Buscar un usuario bloqueado',
 'ipblocklist-username'        => 'Nome de usuario ou enderezo IP:',
 'ipblocklist-submit'          => 'Procurar',
-'blocklistline'               => '$1, $2 bloqueou $3 ($4)',
+'blocklistline'               => '$1, $2 bloqueou a "$3" ($4)',
 'infiniteblock'               => 'para sempre',
 'expiringblock'               => 'remata $1',
 'anononlyblock'               => 'só anón.',
@@ -1826,7 +1829,7 @@ Por favor escolla outro nome.',
 'movepage-page-exists'    => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
 'movepage-page-moved'     => 'A páxina "$1" foi movida a "$2".',
 'movepage-page-unmoved'   => 'A páxina "$1" non pode ser movida a "$2".',
-'movepage-max-pages'      => 'Foi movido o número máximo de $1 páxinas e non poderán ser movidas automaticamente máis.',
+'movepage-max-pages'      => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
 '1movedto2'               => 'moveu "[[$1]]" a "[[$2]]"',
 '1movedto2_redir'         => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
 'movelogpage'             => 'Rexistro de traslados',
@@ -2545,13 +2548,19 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'O ficheiro "$1" ten {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* As páxinas <span class="mw-specialpagerestricted">destacadas</span> están restrinxidas.',
 'specialpages-group-maintenance' => 'Informes de mantemento',
 'specialpages-group-other'       => 'Outras páxinas especiais',
 'specialpages-group-login'       => 'Rexistro',
 'specialpages-group-changes'     => 'Cambios recentes e rexistros',
 'specialpages-group-media'       => 'Informes multimedia e cargas',
 'specialpages-group-users'       => 'Usuarios e dereitos',
-'specialpages-group-needy'       => 'Páxinas que precisan de traballo',
 'specialpages-group-highuse'     => 'Páxinas con máis uso',
+'specialpages-group-pages'       => 'Listaxes de páxinas',
+'specialpages-group-pagetools'   => 'Ferramentas das páxinas',
+'specialpages-group-wiki'        => 'Datos do wiki e ferramentas',
+'specialpages-group-redirects'   => 'Páxinas de redirección especiais',
+'specialpages-group-spam'        => "Ferramentas de ''spam''",
 
 );

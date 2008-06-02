@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -900,8 +900,8 @@ $2',
 'servertime'               => '伺服器時間',
 'guesstimezone'            => '從瀏覽器填寫',
 'allowemail'               => '接受來自其他用戶的郵件',
-'prefs-searchoptions'      => '搜索選項',
-'prefs-namespaces'         => '名字空間',
+'prefs-searchoptions'      => '搜尋選項',
+'prefs-namespaces'         => '頁面名稱空間',
 'defaultns'                => '預設搜索的名字空間',
 'default'                  => '預設',
 'files'                    => '檔案',

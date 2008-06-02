@@ -1043,7 +1043,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'searchall'                 => 'mind',
 'showingresults'            => "Lent '''{{PLURAL:$1|egy|$1}}''' találat látható, az eleje <b>$2</b>.",
 'showingresultsnum'         => "Lent '''{{PLURAL:$3|egy|$3}}''' találat látható, az eleje '''$2'''.",
-'showingresultstotal'       => "Találatok: '''$1 - $2''' (összesen '''$3''')",
+'showingresultstotal'       => "{{PLURAL:$3|Találat: '''$1''' (összesen '''$3''')|Találatok: '''$1 – $2''' (összesen '''$3''')}}",
 'nonefound'                 => "'''Megjegyzés''': A sikertelen keresések
 gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
 rendszer nem indexel, vagy több független keresési kifejezés megadása
@@ -1113,6 +1113,8 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'servertime'               => 'A kiszolgáló ideje:',
 'guesstimezone'            => 'Töltse ki a böngésző',
 'allowemail'               => 'E-mail engedélyezése más felhasználóktól',
+'prefs-searchoptions'      => 'A keresés beállításai',
+'prefs-namespaces'         => 'Névterek',
 'defaultns'                => 'Alapértelmezett keresés az alábbi névterekben:',
 'default'                  => 'alapértelmezés',
 'files'                    => 'Fájlok',
@@ -2762,7 +2764,6 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'specialpages-group-changes'     => 'Friss változások, naplók',
 'specialpages-group-media'       => 'Médiafájlok, feltöltések',
 'specialpages-group-users'       => 'Felhasználók és jogok',
-'specialpages-group-needy'       => 'Figyelmet igénylő lapok',
 'specialpages-group-highuse'     => 'Gyakran használt lapok',
 
 );

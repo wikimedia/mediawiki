@@ -2600,7 +2600,6 @@ $1',
 'specialpages-group-changes'     => 'अलीकडील बदल व सूची',
 'specialpages-group-media'       => 'मीडिया अहवाल व चढविलेल्या संचिका',
 'specialpages-group-users'       => 'सदस्य व अधिकार',
-'specialpages-group-needy'       => 'योगदान पाहिजे असलेली पाने',
 'specialpages-group-highuse'     => 'सर्वात जास्त वापरली जाणारी पृष्ठे',
 
 );

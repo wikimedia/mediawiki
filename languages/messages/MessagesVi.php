@@ -2613,7 +2613,6 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 'specialpages-group-changes'     => 'Thay đổi gần đây và nhật trình',
 'specialpages-group-media'       => 'Báo cáo và tải lên phương tiện',
 'specialpages-group-users'       => 'Thành viên và chức năng',
-'specialpages-group-needy'       => 'Trang cần quan tâm',
 'specialpages-group-highuse'     => 'Trang được dùng nhiều',
 
 );

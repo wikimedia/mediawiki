@@ -1245,6 +1245,7 @@ Si le fichier vérifié est la même image (dans une meilleure résolution), il 
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez changer le nom du fichier.',
 'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà ; merci de retourner en arrière et de copier le fichier sous un nouveau nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune ; veuillez revenir en arrière et le renvoyer sous un autre nom. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Ce fichier semble être un double {{PLURAL:$1|du fichier|des fichiers}} suivant :',
 'successfulupload'            => 'Import réussi',
 'uploadwarning'               => 'Attention !',
 'savefile'                    => 'Sauvegarder le fichier',
@@ -1960,7 +1961,7 @@ Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez cel
 'movepage-page-exists'    => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement;',
 'movepage-page-moved'     => 'La page $1 a été renommée en $2.',
 'movepage-page-unmoved'   => 'La page $1 ne peut être renommée en $2.',
-'movepage-max-pages'      => 'Le maximum de $1 pages a été renommées et aucune autre ne pourra l’être automatiquement.',
+'movepage-max-pages'      => 'Le maximum de $1 {{PLURAL:$1|page a été renommée|pages ont été renommées}} et aucune autre ne pourra l’être automatiquement.',
 '1movedto2'               => 'a renommé [[$1]] en [[$2]]',
 '1movedto2_redir'         => 'a redirigé [[$1]] vers [[$2]]',
 'movelogpage'             => 'Historique des renommages',
@@ -2677,13 +2678,19 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 double identique|$2 doubles identiques}}.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* Les pages spéciales <span class="mw-specialpagerestricted">en gras</span> sont restreintes.',
 'specialpages-group-maintenance' => 'Rapport de maintenance',
 'specialpages-group-other'       => 'Autres pages spéciales',
 'specialpages-group-login'       => 'Se connecter / s’enregistrer',
 'specialpages-group-changes'     => 'Modifications récentes et journaux',
 'specialpages-group-media'       => 'Rapports des fichiers médias et des imports',
 'specialpages-group-users'       => 'Utilisateurs et droits rattachés',
-'specialpages-group-needy'       => 'Pages nécessitant des travaux',
 'specialpages-group-highuse'     => 'Utilisation intense des pages',
+'specialpages-group-pages'       => 'Liste de pages',
+'specialpages-group-pagetools'   => 'Outils pour les pages',
+'specialpages-group-wiki'        => 'Données du wiki et outils',
+'specialpages-group-redirects'   => 'Redirections',
+'specialpages-group-spam'        => 'Outils pour le spam',
 
 );
