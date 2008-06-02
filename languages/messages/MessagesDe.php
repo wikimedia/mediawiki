@@ -1247,6 +1247,7 @@ Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates V
 Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.',
 'fileexists-forbidden'        => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehe zurück und lade diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehe zurück und lade diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Diese Datei scheint ein Duplikat der folgenden {{PLURAL:$1|Datei|Dateien}} zu sein:',
 'successfulupload'            => 'Erfolgreich hochgeladen',
 'uploadwarning'               => 'Warnung',
 'savefile'                    => 'Datei speichern',
@@ -1972,7 +1973,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movepage-page-exists'    => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
 'movepage-page-moved'     => 'Die Seite „$1“ wurde nach „$2“ verschoben.',
 'movepage-page-unmoved'   => 'Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.',
-'movepage-max-pages'      => 'Die Maximalanzahl von $1 Seiten wurde verschoben, Alle weiteren Seiten können nicht automatisch verschoben werden.',
+'movepage-max-pages'      => 'Die Maximalanzahl von $1 {{PLURAL:$1|Seite|Seiten}} wurde verschoben, Alle weiteren Seiten können nicht automatisch verschoben werden.',
 '1movedto2'               => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
 '1movedto2_redir'         => 'hat „[[$1]]“ nach „[[$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
 'movelogpage'             => 'Verschiebungs-Logbuch',
@@ -2689,13 +2690,19 @@ Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 'fileduplicatesearch-result-n' => 'Die Datei „$1“ hat {{PLURAL:$2|1 identisches Duplikat|$2 identische Duplikate}}.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* <span class="mw-specialpagerestricted">Hervorgehobene</span> Spezialseiten stehen nur Benutzern mit erweiteren Rechten zur Verfügung.',
 'specialpages-group-maintenance' => 'Wartungslisten',
 'specialpages-group-other'       => 'Andere Spezialseiten',
 'specialpages-group-login'       => 'Anmelden',
 'specialpages-group-changes'     => 'Letzte Änderungen und Logbücher',
 'specialpages-group-media'       => 'Medien',
 'specialpages-group-users'       => 'Benutzer und Rechte',
-'specialpages-group-needy'       => 'Seiten, die bearbeitet werden sollten',
 'specialpages-group-highuse'     => 'Häufig benutzte Seiten',
+'specialpages-group-pages'       => 'Seitenlisten',
+'specialpages-group-pagetools'   => 'Seitenwerkzeuge',
+'specialpages-group-wiki'        => 'Systemdaten und Werkzeuge',
+'specialpages-group-redirects'   => 'Weiterleitende Spezialseiten',
+'specialpages-group-spam'        => 'Spam-Werkzeuge',
 
 );
