@@ -322,6 +322,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   not the main namespace page.
 * (bug 11659) Urldecode image names in galleries
 * (bug 14258, 14368) Fix for subpage renames in replication environments
+* (bug 14367) Failed block no longer adds phantom watchlist entry
 
 
 === API changes in 1.13 ===
