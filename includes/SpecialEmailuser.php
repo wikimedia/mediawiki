@@ -10,35 +10,44 @@
 function wfSpecialEmailuser( $par ) {
 	global $wgRequest, $wgUser, $wgOut;
 
-	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );	
-	$error = EmailUserForm::getPermissionsError( $target );
-	if ( $error ) {
-		if ( $error[0] === "blockedemailuser" ) {
-			$wgOut->blockedPage();
-			return;
-		} else {
-			$wgOut->showErrorPage( $error[0], $error[1] );
-			return;
-		}
+	$action = $wgRequest->getVal( 'action' );
+	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
+	$targetUser = EmailUserForm::validateEmailTarget( $target );
+	
+	if ( !( $targetUser instanceof User ) ) {
+		$wgOut->showErrorPage( $targetUser[0], $targetUser[1] );
+		return;
 	}
-
-	$form = EmailUserForm::newFromURL( $target,
+	
+	$form = new EmailUserForm( $targetUser,
 			$wgRequest->getText( 'wpText' ),
 			$wgRequest->getText( 'wpSubject' ),
 			$wgRequest->getBool( 'wpCCMe' ) );
-	
-	$action = $wgRequest->getVal( 'action' );
-	if ( "success" == $action ) {
+	if ( $action == 'success' ) {
 		$form->showSuccess();
-	} else if ( "submit" == $action && $wgRequest->wasPosted() &&
-				$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) )
-	{
-		# Check against the rate limiter
-		if( $wgUser->pingLimiter( 'emailuser' ) ) {
-			$wgOut->rateLimited();
-			return;
+		return;
+	}
+					
+	$error = EmailUserForm::getPermissionsError( $wgUser, $wgRequest->getVal( 'wpEditToken' ) );
+	if ( $error ) {
+		switch ( $error[0] ) {
+			case 'blockedemailuser':
+				$wgOut->blockedPage();
+				return;
+			case 'actionthrottledtext':
+				$wgOut->rateLimited();
+				return;
+			case 'sessionfailure':
+				$form->showForm();
+				return;
+			default:
+				$wgOut->showErrorPage( $error[0], $error[1] );
+				return;
 		}
-
+	}	
+		
+	
+	if ( "submit" == $action && $wgRequest->wasPosted() ) {
 		$result = $form->doSubmit();
 		
 		if ( !is_null( $result ) ) {
@@ -215,22 +224,12 @@ class EmailUserForm {
 		return $this->target;
 	}
 	
-	static function getPermissionsError ( $target ) {
-		global $wgUser, $wgRequest, $wgEnableEmail, $wgEnableUserEmail;
+	static function validateEmailTarget ( $target ) {
+		global $wgEnableEmail, $wgEnableUserEmail;
 
 		if( !( $wgEnableEmail && $wgEnableUserEmail ) ) 
 			return array( "nosuchspecialpage", "nospecialpagetext" );
-	
-		if( !$wgUser->canSendEmail() ) {
-			wfDebug( "User can't send.\n" );
-			return array( "mailnologin", "mailnologintext" );
-		}
 		
-		if( $wgUser->isBlockedFromEmailuser() ) {
-			wfDebug( "User is blocked from sending e-mail.\n" );
-			return array( "blockedemailuser", "" );
-		}
-	
 		if ( "" == $target ) {
 			wfDebug( "Target is empty.\n" );
 			return array( "notargettitle", "notargettext" );
@@ -246,6 +245,29 @@ class EmailUserForm {
 		if( is_null( $nu ) || !$nu->canReceiveEmail() ) {
 			wfDebug( "Target is invalid user or can't receive.\n" );
 			return array( "noemailtitle", "noemailtext" );
+		}
+		
+		return $nu;
+	}
+	static function getPermissionsError ( $user, $editToken ) {
+		if( !$user->canSendEmail() ) {
+			wfDebug( "User can't send.\n" );
+			return array( "mailnologin", "mailnologintext" );
+		}
+		
+		if( $user->isBlockedFromEmailuser() ) {
+			wfDebug( "User is blocked from sending e-mail.\n" );
+			return array( "blockedemailuser", "" );
+		}
+		
+		if( $user->pingLimiter( 'emailuser' ) ) {
+			wfDebug( "Ping limiter triggered.\n" );	
+			return array( 'actionthrottledtext', '' );
+		}
+		
+		if( !$user->matchEditToken( $editToken ) ) {
+			wfDebug( "Matching edit token failed.\n" );
+			return array( 'sessionfailure', '' );
 		}
 		
 		return;
