@@ -1184,6 +1184,7 @@ Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ik
 'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>. Det virker som om det er et bilde av redusert størrelse. Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før; gå tilbake og last opp filen under et nytt navn. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret; gå tilbake og last opp fila under et nytt navn. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$|fil|filer}}:',
 'successfulupload'            => 'Opplastingen er gjennomført',
 'uploadwarning'               => 'Opplastingsadvarsel',
 'savefile'                    => 'Lagre fil',
@@ -1873,7 +1874,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'movepage-page-exists'    => 'Siden $1 finnes allerede og kan ikke overskrives automatisk.',
 'movepage-page-moved'     => 'Siden $1 har blitt flyttet til $2.',
 'movepage-page-unmoved'   => 'Siden $1 kunne ikke flyttes til $2.',
-'movepage-max-pages'      => 'Gresnen på $1 sider er nådd; ingen flere sider vil bli flyttet automatisk.',
+'movepage-max-pages'      => 'Grensen på {{PLURAL:$1|én side|$1 sider}} er nådd; ingen flere sider vil bli flyttet automatisk.',
 '1movedto2'               => '[[$1]] flyttet til [[$2]]',
 '1movedto2_redir'         => '[[$1]] flyttet til [[$2]] over omdirigeringsside',
 'movelogpage'             => 'Flyttelogg',
@@ -2602,6 +2603,8 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|ett duplikat|$2 duplikater}} av «$1».',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* <span class="mw-specialpagerestricted">Markerte</span> spesialsider har begrenset tilgang.',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',
@@ -2609,5 +2612,10 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 'specialpages-group-media'       => 'Mediarapporter og opplastinger',
 'specialpages-group-users'       => 'Brukere og rettigheter',
 'specialpages-group-highuse'     => 'Ofte brukte sider',
+'specialpages-group-pages'       => 'Sidelister',
+'specialpages-group-pagetools'   => 'Sideverktøy',
+'specialpages-group-wiki'        => 'Informasjon og verktøy for wikien',
+'specialpages-group-redirects'   => 'Omdirigerende spesialsider',
+'specialpages-group-spam'        => 'Spamverktøy',
 
 );

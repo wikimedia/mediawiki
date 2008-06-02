@@ -1163,6 +1163,7 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'fileexists-forbidden'        => "Et gëtt schonn e Fichier mat ësem Nummm. Gitt w.e.g. z'réck a lued dëse Fichier ënntert engem aner Numm erop. [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn;
 gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
 'successfulupload'            => 'Eroplueden erfollegräich',
 'uploadwarning'               => 'Opgepasst',
 'savefile'                    => 'Fichier späicheren',
@@ -2485,6 +2486,8 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 'fileduplicatesearch-result-n' => 'De Fichier "$1" huet {{PLURAL:$2|1 identeschen Doublon|$2 identesch Doublonen}}.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* <span class="mw-specialpagerestricted">Fettgeschriwwe</span> Spezialsäite sinn nëmme fir Benotzer mat méi Rechter.',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',
 'specialpages-group-other'       => 'Aner Spezialsäiten',
 'specialpages-group-login'       => 'Aloggen / Umellen',
@@ -2492,5 +2495,10 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 'specialpages-group-media'       => 'Medie-Rapporten an Uploaden',
 'specialpages-group-users'       => 'Benotzer a Rechter',
 'specialpages-group-highuse'     => 'Dacks benotzte Säiten',
+'specialpages-group-pages'       => 'Lëschte vu Säiten',
+'specialpages-group-pagetools'   => 'Handwierksgeschir fir Säiten',
+'specialpages-group-wiki'        => 'Systemdaten an Handwierksgeschir',
+'specialpages-group-redirects'   => 'Spezialsäiten déi viruleeden',
+'specialpages-group-spam'        => 'Handwierksgeschir géint de Spam',
 
 );

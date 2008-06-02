@@ -1148,6 +1148,7 @@ Bonvolu elekti malsaman nomon.',
 Se vi havas ĉi bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.',
 'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun tia ĉi nomo jam ekzistas en la komuna dosiero-deponejo; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Ĉi tiu dosiero estas duplikato de la {{PLURAL:$1|jena dosiero|jenaj dosieroj}}:',
 'successfulupload'            => 'Alŝuto sukcesis!',
 'uploadwarning'               => 'Alŝuta averto',
 'savefile'                    => 'Konservi dosieron',
@@ -2556,6 +2557,8 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 'fileduplicatesearch-result-n' => 'La dosiero "$1" havas {{PLURAL:$2|1 identan duplikaton|$2 identajn duplikatojn}}.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* <span class="mw-specialpagerestricted">Emfazaj</span> specialaj paĝoj estas limigitaj.',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
 'specialpages-group-login'       => 'Ensalutu / Kreu novan konton',
@@ -2563,5 +2566,10 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 'specialpages-group-media'       => 'Gazetaj raportoj kaj alŝutoj',
 'specialpages-group-users'       => 'Uzantoj kaj rajtoj',
 'specialpages-group-highuse'     => 'Plej uzitaj paĝoj',
+'specialpages-group-pages'       => 'Paĝaj listoj',
+'specialpages-group-pagetools'   => 'Paĝaj iloj',
+'specialpages-group-wiki'        => 'Vikidatenoj kaj iloj',
+'specialpages-group-redirects'   => 'Alidirektantaj specialaj paĝoj',
+'specialpages-group-spam'        => 'Kontraŭspamiloj',
 
 );

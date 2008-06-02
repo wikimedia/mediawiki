@@ -738,11 +738,15 @@ Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'       => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.
+'expensive-parserfunction-warning'        => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.
 
 Dovrebbe averne meno di $2, al momento ce ne sono $1.',
-'expensive-parserfunction-category'      => 'Pagine con troppe chiamate alle parser functions',
-'post-expand-template-argument-category' => 'Pagine contenenti template con argomenti mancanti',
+'expensive-parserfunction-category'       => 'Pagine con troppe chiamate alle parser functions',
+'post-expand-template-inclusion-warning'  => 'Attenzione: la dimensione dei template inclusi è troppo grande.
+Alcuni template non verranno inclusi.',
+'post-expand-template-inclusion-category' => 'Pagine dove la dimensione dei template inclusi supera il limite consentito',
+'post-expand-template-argument-warning'   => 'Attenzione: questa pagina contiene almeno un argomento di un template che ha una dimensione troppo grande per essere espanso. Questi argomenti verranno omessi.',
+'post-expand-template-argument-category'  => 'Pagine contenenti template con argomenti mancanti',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -2585,6 +2589,8 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'fileduplicatesearch-result-n' => '{{PLURAL:$2|Esiste un duplicato identico|Esistono $2 duplicati identici}} al file "$1".',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* Le pagine speciali <span class="mw-specialpagerestricted">evidenziate</span> sono riservate ad alcune categorie di utenti.',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazione',

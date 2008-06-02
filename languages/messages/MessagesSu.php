@@ -1027,6 +1027,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'fileexists-thumb'            => "<center>'''Koropak nu aya'''</center>",
 'fileexists-forbidden'        => 'Koropak nu ngaranna ieu geus aya; mangga balik deui sarta muatkeun koropakna maké ngaran nu béda. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Koropak nu ngaranna ieu geus aya dina gudang koropak babagi (''shared file repository''); mangga balik deui sarta muatkeun koropak ieu maké ngaran nu béda. [[Image:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => 'Gambar ieu duplikat sareng {{PLURAL:$1|gambar|gambar}}:',
 'successfulupload'            => 'Ngamuat geus hasil',
 'uploadwarning'               => 'Pépéling ngamuat',
 'savefile'                    => 'Simpen koropak',
@@ -1260,7 +1261,7 @@ Jumlah-jamléh geus aya '''\$3''' {{PLURAL:\$3|kaca}} ulasan sarta '''\$4''' {{P
 'prevpage'          => 'Kaca saméméhna ($1)',
 'allpagesfrom'      => 'Pintonkeun kaca ti mimiti:',
 'allarticles'       => 'Sadaya artikel',
-'allinnamespace'    => 'Sadaya kaca ($1 ngaranspasi)',
+'allinnamespace'    => 'Sadaya kaca (ngaranspasi $1)',
 'allnotinnamespace' => 'Sadaya kaca (teu na $1 ngaranspasi)',
 'allpagesprev'      => 'Saméméhna',
 'allpagesnext'      => 'Salajengna',
@@ -1692,7 +1693,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'export-templates'  => 'Kaasup citakan',
 
 # Namespace 8 related
-'allmessages'               => 'Sadaya pesen sistim',
+'allmessages'               => 'Talatah sistim',
 'allmessagesname'           => 'Ngaran',
 'allmessagesdefault'        => 'Téks ti dituna',
 'allmessagescurrent'        => 'Téks kiwari',

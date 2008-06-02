@@ -2548,7 +2548,7 @@ Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
 'specialpages-group-media'       => 'Media',
 'specialpages-group-users'       => 'Käyttäjät',
 'specialpages-group-highuse'     => 'Sivujen käyttöaste',
-'specialpages-group-pages'       => 'Listat sivuista',
+'specialpages-group-pages'       => 'Sivulistaukset',
 'specialpages-group-pagetools'   => 'Sivutyökalut',
 'specialpages-group-wiki'        => 'Wikitiedot ja työkalut',
 

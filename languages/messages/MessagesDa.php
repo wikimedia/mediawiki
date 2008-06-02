@@ -1200,6 +1200,7 @@ Hvis det er billedet i original størrelse, er det ikke nødvendigt at uploade e
 Kontroller om du har billedet i fuld størrelse og upload det under det originale navn.',
 'fileexists-forbidden'        => 'Der findes allerede en fil med dette navn. Gå tilbage og upload filen under et andet navn. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Der findes allerede en fil med dette navn. Gå tilbage og upload filen under et andet navn. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Denne fil er en dublet at følgene {{PLURAL:$1|fil|filer}}:',
 'successfulupload'            => 'Oplægningen er gennemført',
 'uploadwarning'               => 'Advarsel',
 'savefile'                    => 'Gem fil',
@@ -2618,6 +2619,8 @@ Skriv filnavnet uden "{{ns:image}}:" præfikset.',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dublet|$2 identiske dubletter}}.',
 
 # Special:SpecialPages
+'specialpages-note'              => '<hr />
+* <span class="mw-specialpagerestricted">Fremhævede</span> specialsider har begrænset adgang.',
 'specialpages-group-maintenance' => 'Vedligeholdelsesrapporter',
 'specialpages-group-other'       => 'Øvrige specielle sider',
 'specialpages-group-login'       => 'Opret en konto / log på',
@@ -2625,5 +2628,10 @@ Skriv filnavnet uden "{{ns:image}}:" præfikset.',
 'specialpages-group-media'       => 'Medierapporter og uplaods',
 'specialpages-group-users'       => 'Brugere og rettigheder',
 'specialpages-group-highuse'     => 'Meget brugte sider',
+'specialpages-group-pages'       => 'Sidelister',
+'specialpages-group-pagetools'   => 'Sideværktøjer',
+'specialpages-group-wiki'        => 'Data og værktøj for wikien',
+'specialpages-group-redirects'   => 'Omdirigerende specialsider',
+'specialpages-group-spam'        => 'Spamværktøjer',
 
 );
