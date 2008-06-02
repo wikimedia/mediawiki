@@ -111,7 +111,7 @@ $messages = array(
 'tog-showtoc'                 => 'Näita sisukorda (lehtedel, millel on rohkem kui 3 pealkirja)',
 'tog-rememberpassword'        => 'Parooli meeldejätmine tulevasteks seanssideks',
 'tog-editwidth'               => 'Redaktoriaknal on täislaius',
-'tog-watchcreations'          => 'Lisa minu loodud lehed minu jälgimisloendisse',
+'tog-watchcreations'          => 'Lisa minu loodud lehed jälgimisloendisse',
 'tog-watchdefault'            => 'Jälgi uusi ja muudetud artikleid',
 'tog-minordefault'            => 'Märgi kõik parandused vaikimisi pisiparandusteks',
 'tog-previewontop'            => 'Näita eelvaadet redaktoriakna ees, mitte järel',
@@ -124,6 +124,7 @@ $messages = array(
 'tog-externaleditor'          => 'Kasuta vaikimisi välist redaktorit',
 'tog-externaldiff'            => 'Kasuta vaikimisi välist võrdlusvahendit (diff)',
 'tog-forceeditsummary'        => 'Nõua redigeerimisel resümee välja täitmist',
+'tog-showhiddencats'          => 'Näita peidetud kategooriaid',
 
 'underline-always'  => 'Alati',
 'underline-never'   => 'Mitte kunagi',
@@ -184,12 +185,14 @@ $messages = array(
 'dec'           => 'dets',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Kategooria|Kategooriad}}',
-'category_header'        => 'Artiklid kategooriast "$1"',
-'subcategories'          => 'Allkategooriad',
-'category-media-header'  => 'Meediafailid kategooriast "$1"',
-'category-empty'         => "''Selles kategoorias pole ühtegi artiklit ega meediafaili.''",
-'listingcontinuesabbrev' => 'jätk',
+'pagecategories'           => '{{PLURAL:$1|Kategooria|Kategooriad}}',
+'category_header'          => 'Artiklid kategooriast "$1"',
+'subcategories'            => 'Allkategooriad',
+'category-media-header'    => 'Meediafailid kategooriast "$1"',
+'category-empty'           => "''Selles kategoorias pole ühtegi artiklit ega meediafaili.''",
+'hidden-categories'        => '{{PLURAL:$1|Peidetud kategooria|Peidetud kategooriad}}',
+'hidden-category-category' => 'Peidetud kategooriad', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'jätk',
 
 'mainpagetext'      => "<big>'''Wiki tarkvara installeeritud.'''</big>",
 'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
@@ -208,7 +211,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'qbspecialpages' => 'Erileheküljed',
 'moredotdotdot'  => 'Veel...',
 'mypage'         => 'Minu lehekülg',
-'mytalk'         => 'Minu arutelu',
+'mytalk'         => 'Arutelu',
 'anontalk'       => 'Arutelu selle IP jaoks',
 'navigation'     => 'Navigeerimine',
 'and'            => 'ja',
@@ -552,6 +555,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 'templatesused'            => 'Sellel lehel on kasutusel järgnevad mallid:',
 'templatesusedpreview'     => 'Selles eelvaates kasutatakse järgmisi malle:',
 'template-protected'       => '(kaitstud)',
+'hiddencategories'         => 'See lehekülg kuulub {{PLURAL:$1|1 peidetud kategooriasse|$1 peidetud kategooriasse}}:',
 'recreate-deleted-warn'    => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
 
 Kaaluge, kas lehe uuesti loomine on kohane.
@@ -614,8 +618,8 @@ mitme otsingusõna kasutamine (tulemusena ilmuvad ainult leheküljed, mis sisald
 'searchdisabled'        => "<p>Vabandage! Otsing vikist on ajutiselt peatatud, et säilitada muude teenuste normaalne töökiirus. Otsimiseks võite kasutada allpool olevat Google'i otsinguvormi, kuid sellelt saadavad tulemused võivad olla vananenud.</p>",
 
 # Preferences page
-'preferences'             => 'Minu eelistused',
-'mypreferences'           => 'minu eelistused',
+'preferences'             => 'Eelistused',
+'mypreferences'           => 'eelistused',
 'prefsnologin'            => 'Te ei ole sisse loginud',
 'prefsnologintext'        => 'Et oma eelistusi seada, [[Special:Userlogin|tuleb Teil]]
 sisse logida.',
@@ -951,8 +955,8 @@ Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje 
 'emailsenttext'   => 'Teie sõnum on saadetud.',
 
 # Watchlist
-'watchlist'            => 'Minu jälgimisloend',
-'mywatchlist'          => 'Minu jälgimisloend',
+'watchlist'            => 'Jälgimisloend',
+'mywatchlist'          => 'Jälgimisloend',
 'watchlistfor'         => "('''$1''' jaoks)",
 'nowatchlist'          => 'Teie jälgimisloend on tühi.',
 'watchlistanontext'    => 'Et näha ja muuta oma jälgimisloendit, peate $1.',
@@ -1015,14 +1019,14 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 ** Autori palve
 ** Autoriõiguste rikkumine
 ** Vandalism',
+'delete-edit-reasonlist'      => 'Redigeeri kustutamise põhjuseid',
 'rollback'                    => 'Tühista muudatused',
 'rollback_short'              => 'Tühista',
 'rollbacklink'                => 'tühista',
 'rollbackfailed'              => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'                => 'Ei saa muudatusi tagasi pöörata; viimane kaastööline on artikli ainus autor.',
 'editcomment'                 => 'Artikli sisu oli: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Tühistati [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) muudatus ning
-pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Tühistati [[Eri:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|arutelu]]) muudatus ning pöörduti tagasi viimasele muudatusele, mille tegi [[Kasutaja:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Kaitsmise logi',
 'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsmised ja kaitsete eemaldamised. Praegu kaitstud lehekülgi vaata [[Special:Protectedpages|kaitstud lehtede loetelust]].',
 'protectedarticle'            => 'kaitses lehekülje "[[$1]]"',
@@ -1078,7 +1082,7 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 
 # Contributions
 'contributions' => 'Kasutaja kaastööd',
-'mycontris'     => 'Minu kaastöö',
+'mycontris'     => 'Kaastöö',
 'contribsub2'   => 'Kasutaja "$1 ($2)" jaoks',
 'nocontribs'    => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
 'uctop'         => ' (üles)',
@@ -1147,8 +1151,8 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'unlockdbsuccesstext' => 'Andmebaasi kirjutuspääs on taastatud.',
 
 # Move page
-'move-page-legend' => 'Teisalda artikkel',
-'movepagetext'     => "Allolevat vormi kasutades saate lehekülje ümber nimetada.
+'move-page-legend'        => 'Teisalda artikkel',
+'movepagetext'            => "Allolevat vormi kasutades saate lehekülje ümber nimetada.
 Lehekülje ajalugu tõstetakse uue pealkirja alla automaatselt.
 Praeguse pealkirjaga leheküljest saab ümbersuunamisleht uuele leheküljele.
 Teistes artiklites olevaid linke praeguse nimega leheküljele automaatselt ei muudeta.
@@ -1160,31 +1164,33 @@ See tähendab, et te ei saa kogemata üle kirjutada juba olemasolevat lehekülge
 '''ETTEVAATUST!'''
 Võimalik, et kavatsete teha ootamatut ning drastilist muudatust väga loetavasse artiklisse;
 enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks.",
-'movepagetalktext' => "Koos artiklileheküljega teisaldatakse automaatselt ka arutelulehekülg, '''välja arvatud juhtudel, kui:'''
+'movepagetalktext'        => "Koos artiklileheküljega teisaldatakse automaatselt ka arutelulehekülg, '''välja arvatud juhtudel, kui:'''
 *liigutate lehekülge ühest nimeruumist teise,
 *uue nime all on juba olemas mittetühi arutelulehekülg või
 *jätate alumise kastikese märgistamata.
 
 Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
-'movearticle'      => 'Teisalda artiklilehekülg',
-'movenologin'      => 'Te ei ole sisse loginud',
-'movenologintext'  => 'Et lehekülge teisaldada, peate registreeruma
+'movearticle'             => 'Teisalda artiklilehekülg',
+'movenologin'             => 'Te ei ole sisse loginud',
+'movenologintext'         => 'Et lehekülge teisaldada, peate registreeruma
 kasutajaks ja [[Special:Userlogin|sisse logima]]',
-'newtitle'         => 'Uue pealkirja alla',
-'move-watch'       => 'Jälgi seda lehekülge',
-'movepagebtn'      => 'Teisalda artikkel',
-'pagemovedsub'     => 'Artikkel on teisaldatud',
-'articleexists'    => 'Selle nimega artikkel on juba olemas või pole valitud nimi lubatav. Palun valige uus nimi.',
-'talkexists'       => 'Artikkel on teisaldatud, kuid arutelulehekülge ei saanud teisaldada, sest uue nime all on arutelulehekülg juba olemas. Palun ühendage aruteluleheküljed ise.',
-'movedto'          => 'Teisaldatud pealkirja alla:',
-'movetalk'         => 'Teisalda ka "arutelu", kui saab.',
-'1movedto2'        => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla',
-'1movedto2_redir'  => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla ümbersuunamisega',
-'movelogpage'      => 'Teisaldamise logi',
-'movelogpagetext'  => 'See logi sisaldab infot lehekülgede teisaldamistest.',
-'movereason'       => 'Põhjus',
-'revertmove'       => 'taasta',
-'delete_and_move'  => 'Kustuta ja teisalda',
+'newtitle'                => 'Uue pealkirja alla',
+'move-watch'              => 'Jälgi seda lehekülge',
+'movepagebtn'             => 'Teisalda artikkel',
+'pagemovedsub'            => 'Artikkel on teisaldatud',
+'articleexists'           => 'Selle nimega artikkel on juba olemas või pole valitud nimi lubatav. Palun valige uus nimi.',
+'talkexists'              => 'Artikkel on teisaldatud, kuid arutelulehekülge ei saanud teisaldada, sest uue nime all on arutelulehekülg juba olemas. Palun ühendage aruteluleheküljed ise.',
+'movedto'                 => 'Teisaldatud pealkirja alla:',
+'movetalk'                => 'Teisalda ka "arutelu", kui saab.',
+'1movedto2'               => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla',
+'1movedto2_redir'         => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla ümbersuunamisega',
+'movelogpage'             => 'Teisaldamise logi',
+'movelogpagetext'         => 'See logi sisaldab infot lehekülgede teisaldamistest.',
+'movereason'              => 'Põhjus',
+'revertmove'              => 'taasta',
+'delete_and_move'         => 'Kustuta ja teisalda',
+'delete_and_move_confirm' => 'Jah, kustuta lehekülg',
+'delete_and_move_reason'  => 'Kustutatud, et asemele tõsta teine lehekülg',
 
 # Export
 'export' => 'Lehekülgede eksport',

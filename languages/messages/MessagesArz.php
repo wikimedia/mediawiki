@@ -260,15 +260,23 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'           => 'حط خط تحت الوصلات:',
-'tog-justify'             => 'ساوى الفقرات',
-'tog-numberheadings'      => 'رقم العناوين تلقائيا',
-'tog-nocache'             => 'عطل تخبية الصفحه',
-'tog-enotifusertalkpages' => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',
-'tog-enotifminoredits'    => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
+'tog-underline'            => 'حط خط تحت الوصلات:',
+'tog-justify'              => 'ساوى الفقرات',
+'tog-numberheadings'       => 'رقم العناوين تلقائيا',
+'tog-watchcreations'       => 'ضيف الصفحات اللى أنشأتها للستة الصفحات اللى باراقبها',
+'tog-watchdefault'         => 'ضيف الصفحات اللى بأعدلها للستة الصفحات اللى باراقبها',
+'tog-watchmoves'           => 'ضيف الصفحات اللى بأنقلها للستة الصفحات اللى باراقبها',
+'tog-watchdeletion'        => 'ضيف الصفحات اللى بأمسحها للستة الصفحات اللى باراقبها',
+'tog-nocache'              => 'عطل تخبية الصفحه',
+'tog-enotifwatchlistpages' => 'ابعت لى ايميل لما تتغير صفحه فى لستة الصفحات اللى باراقبها',
+'tog-enotifusertalkpages'  => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',
+'tog-enotifminoredits'     => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
+'tog-ccmeonemails'         => 'ابعتلى  نسخ من رسايل الايميل اللى بابعتها لليوزرز التانيين',
 
 'underline-always' => 'دايما',
 'underline-never'  => 'ابدا',
+
+'skinpreview' => '(بروفه)',
 
 # Dates
 'sunday'        => 'الحد',
@@ -323,46 +331,57 @@ $messages = array(
 'dec'           => 'ديسمبر',
 
 # Categories related messages
+'pagecategories'         => '{{PLURAL:$1|تصنيف|تصانيف}}',
 'category_header'        => 'الصفحات فى التصنيف "$1"',
 'subcategories'          => 'التصنيفات الفرعيه',
 'category-media-header'  => 'ملفات الميديا فى التصنيف "$1"',
 'category-empty'         => "''التصنيف ده مافيهوش حاليا مقالات او ملفات ميديا.''",
 'listingcontinuesabbrev' => 'متابعه',
 
-'about'     => 'عن',
-'newwindow' => '(بتفتح ويندو جديده)',
-'cancel'    => 'كانسل',
-'qbfind'    => 'تدوير',
-'qbedit'    => 'عدل',
-'mytalk'    => 'مناقشاتى',
+'about'         => 'عن',
+'article'       => 'صفحة محتوى',
+'newwindow'     => '(بتفتح ويندو جديده)',
+'cancel'        => 'كانسل',
+'qbfind'        => 'تدوير',
+'qbbrowse'      => 'تصفح',
+'qbedit'        => 'عدل',
+'qbpageoptions' => ' الصفحه دى',
+'moredotdotdot' => 'اكتر...',
+'mytalk'        => 'مناقشاتى',
 
-'errorpagetitle'   => 'غلطه',
-'returnto'         => 'ارجع ل $1.',
-'tagline'          => 'من {{SITENAME}}',
-'help'             => 'مساعده',
-'search'           => 'تدوير',
-'searchbutton'     => 'تدوير',
-'searcharticle'    => 'روح',
-'history'          => 'تاريخ الصفحه',
-'history_short'    => 'تاريخ',
-'printableversion' => 'نسخه للطبع',
-'permalink'        => 'وصله مستديمه',
-'edit'             => 'تعديل',
-'editthispage'     => 'عدل الصفحه دى',
-'delete'           => 'مسح',
-'protect'          => 'حمايه',
-'newpage'          => 'صفحه جديده',
-'talkpage'         => 'ناقش الصفحه دى',
-'talkpagelinktext' => 'مناقشه',
-'personaltools'    => 'ادوات شخصيه',
-'talk'             => 'مناقشه',
-'views'            => 'مشاهده',
-'toolbox'          => 'علبة العده',
-'redirectedfrom'   => '(تحويل من $1)',
-'redirectpagesub'  => 'صفحة تحويل',
-'jumpto'           => 'روح على:',
-'jumptonavigation' => 'ناڤيجيشن',
-'jumptosearch'     => 'تدوير',
+'errorpagetitle'    => 'غلطه',
+'returnto'          => 'ارجع ل $1.',
+'tagline'           => 'من {{SITENAME}}',
+'help'              => 'مساعده',
+'search'            => 'تدوير',
+'searchbutton'      => 'تدوير',
+'go'                => 'روح',
+'searcharticle'     => 'روح',
+'history'           => 'تاريخ الصفحه',
+'history_short'     => 'تاريخ',
+'printableversion'  => 'نسخه للطبع',
+'permalink'         => 'وصله مستديمه',
+'edit'              => 'تعديل',
+'editthispage'      => 'عدل الصفحه دى',
+'create-this-page'  => 'أنشيء الصفحه دى',
+'delete'            => 'مسح',
+'deletethispage'    => 'امسح الصفحه دى',
+'protect'           => 'حمايه',
+'protectthispage'   => 'احمى الصفحه دى',
+'unprotectthispage' => 'شيل حماية الصفحه دى',
+'newpage'           => 'صفحه جديده',
+'talkpage'          => 'ناقش الصفحه دى',
+'talkpagelinktext'  => 'مناقشه',
+'personaltools'     => 'ادوات شخصيه',
+'talk'              => 'مناقشه',
+'views'             => 'مشاهده',
+'toolbox'           => 'علبة العده',
+'otherlanguages'    => 'بلغات تانيه',
+'redirectedfrom'    => '(تحويل من $1)',
+'redirectpagesub'   => 'صفحة تحويل',
+'jumpto'            => 'روح على:',
+'jumptonavigation'  => 'ناڤيجيشن',
+'jumptosearch'      => 'تدوير',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => ' عن {{SITENAME}}',
@@ -376,6 +395,8 @@ $messages = array(
 'disclaimerpage'       => 'Project:اخلاء مسؤوليه عمومى',
 'edithelp'             => 'مساعده فى التعديل',
 'edithelppage'         => 'Help:تعديل',
+'faq'                  => 'اسئله بتتسئل كتير',
+'faqpage'              => 'Project:اسئله بتتسئل كتير',
 'helppage'             => 'Help:محتويات',
 'mainpage'             => 'الصفحه الرئيسيه',
 'mainpage-description' => 'الصفحه الرئيسيه',
@@ -385,6 +406,8 @@ $messages = array(
 'privacypage'          => 'Project:سياسة الخصوصيه',
 'sitesupport'          => 'التبرعات',
 'sitesupport-url'      => 'Project:دعم الموقع',
+
+'badaccess' => 'غلطه فى السماح',
 
 'retrievedfrom'       => 'اتجابت من "$1"',
 'youhavenewmessages'  => 'عندك $1 ($2).',
@@ -481,9 +504,11 @@ $messages = array(
 'savearticle'            => 'سييف الصفحه',
 'preview'                => 'بروفه',
 'showpreview'            => 'عرض البروفه',
+'showlivepreview'        => 'بروفه حيه',
 'showdiff'               => 'بيين التعديلات',
 'anoneditwarning'        => "'''تحذير:''' انت ما عملتش لوجين؛ عنوان الااى  بى  بتاعك هايتسجل فى تاريخ الصفحه .",
 'summary-preview'        => 'بروفه للملخص',
+'blockedtitle'           => 'اليوزر ممنوع',
 'blockedtext'            => "
 
 <big>'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</big>
@@ -497,6 +522,7 @@ $messages = array(
 ممكن التواصل مع $1 لمناقشة المنع، أو مع واحد من [[{{MediaWiki:Grouppage-sysop}}|الاداريين]] عن المنع>
 افتكر انه مش ممكن تبعت ايميل  لليوزرز الا اذا كنت سجلت عنوان ايميل صحيح فى صفحة [[Special:Preferences|التفضيلات]] بتاعتك.
 عنوان الااى بى بتاعك حاليا هو $3 وكود المنع هو #$5.من فضلك ضيف اى واحد منهم أو كلاهما في اى رسالة للتساؤل عن المنع.",
+'accmailtitle'           => ' كلمة السر اتبعتت .',
 'newarticle'             => '(جديد)',
 'newarticletext'         => "انت وصلت لصفحه مابتدتش لسه.
 علشان  تبتدى الصفحة ابتدى الكتابه في الصندوق اللى تحت.
@@ -506,6 +532,7 @@ $messages = array(
 'previewnote'            => '<strong> دى بروفه للصفحه بس، ولسه ما تسييفتش!</strong>',
 'editing'                => 'تعديل $1',
 'editingsection'         => 'تعديل $1 (جزء)',
+'editconflict'           => 'تضارب فى التحرير: $1',
 'copyrightwarning'       => 'من فضلك لاحظ ان كل المساهمات فى {{SITENAME}} بتتنشر حسب شروط ترخيص $2 (بص على $1 علشان تعرف  تفاصيل اكتر)
 لو مش عايز كتابتك تتعدل او تتوزع من غير مقابل و بدون اذنك ، ما تحطهاش هنا<br />. كمان انت  بتتعهد بانك كتبت كلام تعديلك بنفسك، او نسخته من مصدر يعتبر ضمن الملكيه العامه، أو مصدر حر تان.
 
@@ -531,6 +558,7 @@ $messages = array(
 'nextrevision'        => 'نسخه احدث→',
 'currentrevisionlink' => 'النسخه دلوقتى',
 'cur'                 => 'دلوقتى',
+'next'                => 'اللى بعد كده',
 'last'                => 'قبل كده',
 'page_first'          => 'الاولى',
 'page_last'           => 'الاخيره',
@@ -539,6 +567,7 @@ $messages = array(
 (اللى قبل كده) = الفرق مع النسخة اللى قبل كده، ص = تعديل صغير',
 'histfirst'           => 'اول',
 'histlast'            => 'آخر',
+'historyempty'        => '(فاضى)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 فى $2', # user at time
@@ -566,8 +595,14 @@ $messages = array(
 
 'grouppage-sysop' => '{{ns:project}}:اداريين',
 
+# Rights
+'right-import'       => 'استيراد الصفحات من ويكيات تانيه',
+'right-importupload' => 'استيراد الصفحات من فايل متحمل',
+'right-siteadmin'    => 'قفل وفتح قاعدة البيانات',
+
 # User rights log
-'rightslog' => 'سجل صلاحيات اليوزرز',
+'rightslog'  => 'سجل صلاحيات اليوزرز',
+'rightsnone' => '(فاضى)',
 
 # Recent changes
 'nchanges'                       => '{{PLURAL:$1|تعديل|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
@@ -591,16 +626,21 @@ $messages = array(
 'minoreditletter'                => 'ص',
 'newpageletter'                  => 'ج',
 'boteditletter'                  => 'ب',
+'rc_categories_any'              => 'أى',
+'newsectionsummary'              => '/* $1 */ قسم جديد',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تعديلات  ليها علاقه',
 'recentchangeslinked-title'    => 'التعديلات المرتبطه  ب "$1"',
 'recentchangeslinked-noresult' => 'مافيش تعديلات حصلت فى الصفحات اللى ليها وصلات هنا خلال الفترة المحدده.',
 'recentchangeslinked-summary'  => "دى صفحة مخصوصه بتعرض اخر التغييرات في الصفحات الموصوله. الصفحات اللى   فى  لسته بالصفحات اللى انت بتراقب التعديلات فيها معروضه''' بحروف عريضه'''",
+'recentchangeslinked-page'     => 'اسم الصفحه :',
 
 # Upload
 'upload'        => 'حمل',
 'uploadbtn'     => 'حمل الملف',
+'reupload'      => 'حمل مره تانيه',
+'uploaderror'   => 'غلطه فى التحميل',
 'uploadlogpage' => 'سجل التحميل',
 'uploadedimage' => 'اتحمل "[[$1]]"',
 
@@ -684,7 +724,8 @@ $messages = array(
 'movethispage'            => 'انقل الصفحه دى',
 
 # Book sources
-'booksources' => 'مصادر من كتب',
+'booksources'    => 'مصادر من كتب',
+'booksources-go' => 'روح',
 
 # Special:Log
 'specialloguserlabel'  => 'اليوزر:',
@@ -692,6 +733,7 @@ $messages = array(
 'log'                  => 'سجلات',
 'all-logs-page'        => 'كل السجلات',
 'log-search-legend'    => 'دور على سجلات',
+'log-search-submit'    => 'روح',
 
 # Special:Allpages
 'allpages'       => 'كل الصفحات',
@@ -700,6 +742,7 @@ $messages = array(
 'prevpage'       => 'الصفحه اللى قبل كده ($1)',
 'allpagesfrom'   => 'عرض الصفحات بدايه من:',
 'allarticles'    => 'كل المقالات',
+'allpagesnext'   => 'اللى بعد كده',
 'allpagessubmit' => 'روح',
 'allpagesprefix' => 'عرض الصفحات  اللى تبتدى بـ:',
 
@@ -733,8 +776,13 @@ $messages = array(
 'watching'   => 'راقب...',
 'unwatching' => 'بطل مراقبه...',
 
+'enotif_newpagetext' => 'الصفحه دى جديده.',
+
 # Delete/protect/revert
 'deletepage'                  => 'امسح الصفحه',
+'exblank'                     => 'الصفحه كانت فاضيه',
+'delete-confirm'              => 'مسح"$1"',
+'delete-legend'               => 'مسح',
 'historywarning'              => 'تحذير: الصفحه اللى ها  تمسحها ليها تاريخ:',
 'confirmdeletetext'           => 'انت على وشك انك تمسح صفحه أو صوره و كل التعديلات عليها بشكل دايم من قاعدة البيانات.  من فضلك  اتأكد انك عايز المسح وبأنك فاهم نتايج  العمليه  دى. عمليات الحذف لازم تتم بناء على [[{{MediaWiki:Policy-url}}|القواعد المتفق عليها]].',
 'actioncomplete'              => ' العمليه خلصت',
@@ -742,10 +790,13 @@ $messages = array(
 بص على $2 لسجل آخر عمليات المسح.',
 'deletedarticle'              => 'اتمسحت "[[$1]]"',
 'dellogpage'                  => 'سجل المسح',
+'deletionlog'                 => 'سجل المسح',
 'deletecomment'               => 'سبب المسح:',
 'deleteotherreason'           => 'سبب تانى/اضافي:',
 'deletereasonotherlist'       => 'سبب تانى',
+'delete-edit-reasonlist'      => 'عدل اسباب المسح',
 'rollbacklink'                => 'استعاده',
+'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'              => 'سجل الحمايه',
 'protectcomment'              => 'تعليق:',
 'protectexpiry'               => 'تنتهى فى:',
@@ -853,6 +904,9 @@ $messages = array(
 'thumbnail-more'  => 'كبر',
 'thumbnail_error' => 'غلطه فى انشاء صوره مصغره: $1',
 
+# Special:Import
+'import' => 'استيراد صفحات',
+
 # Import log
 'importlogpage' => 'سجل الاستيراد',
 
@@ -874,6 +928,7 @@ $messages = array(
 'tooltip-ca-watch'                => 'حط الصفحة دى فى لسته الصفحات اللى باراقب التعديلات فيها',
 'tooltip-ca-unwatch'              => 'شيل الصفحه دى من لستة الصفحات اللى بتراقبها',
 'tooltip-search'                  => 'دور فى {{SITENAME}}',
+'tooltip-p-logo'                  => 'الصفحه الرئيسيه',
 'tooltip-n-mainpage'              => 'زور الصفحه الرئيسيه',
 'tooltip-n-portal'                => 'عن المشروع، ممكن تعمل ايه، و فين تلاقى اللى بتدور عليه',
 'tooltip-n-currentevents'         => 'مطالعه سريعه لاهم الاحداث دلوقتى',
@@ -942,13 +997,24 @@ $messages = array(
 'namespacesall' => 'الكل',
 'monthsall'     => 'الكل',
 
+# Multipage image navigation
+'imgmultipagenext' => 'الصفحه اللى بعد كده →',
+
+# Table pager
+'table_pager_next' => 'الصفحه اللى بعد كده',
+
+# Auto-summaries
+'autosumm-new' => 'صفحه جديده: $1',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'عرض التعديلات المرتبطه',
 'watchlisttools-edit' => 'عرض وتعديل لستة الصفحات اللى باراقبها',
 'watchlisttools-raw'  => 'عدل لستة المراقبه الخام',
 
 # Special:Version
-'version' => 'نسخه', # Not used as normal message but as header for the special page itself
+'version'                  => 'نسخه', # Not used as normal message but as header for the special page itself
+'version-license'          => 'الترخيص',
+'version-software-product' => 'المنتج',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'اسم الفايل:',
@@ -957,7 +1023,6 @@ $messages = array(
 # Special:SpecialPages
 'specialpages-group-login'   => 'ادخل / سجل',
 'specialpages-group-users'   => 'اليوزرز والصلاحيات',
-'specialpages-group-needy'   => 'صفحات محتاجه شغل',
 'specialpages-group-highuse' => 'صفحات بتستخدم كتير',
 
 );

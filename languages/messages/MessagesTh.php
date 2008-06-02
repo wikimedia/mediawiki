@@ -483,7 +483,7 @@ $1',
 'wrongpassword'              => 'รหัสผ่านที่ใส่ไม่ถูกต้อง กรุณาลองใหม่',
 'wrongpasswordempty'         => 'ยังไม่ได้ระบุรหัสผ่าน กรุณาลองใหม่',
 'passwordtooshort'           => 'รหัสผ่านไม่ถูกต้องหรือสั้นเกินไป ซึ่งต้องมีอย่างน้อย $1 ตัวอักษรและแตกต่างจากชื่อผู้ใช้',
-'mailmypassword'             => 'ลืมรหัสผ่าน ส่งให้ใหม่ทางอีเมล',
+'mailmypassword'             => 'อีเมลรหัสผ่าน',
 'passwordremindertitle'      => 'คำบอกรหัสผ่านจาก {{SITENAME}}',
 'passwordremindertext'       => 'ใครบางคน (ซึ่งอาจจะเป็นคุณจากหมายเลขไอพี $1)
 ได้ขอให้ส่งรหัสผ่านใหม่สำหรับ {{SITENAME}} ($4)
@@ -2379,7 +2379,6 @@ $1',
 'specialpages-group-changes'     => 'ปรับปรุงล่าสุดและปูมต่าง ๆ',
 'specialpages-group-media'       => 'รายงานเรื่องสื่อและการอัปโหลด',
 'specialpages-group-users'       => 'ผู้ใช้และสิทธิ์',
-'specialpages-group-needy'       => 'หน้าที่ต้องการดูแล',
 'specialpages-group-highuse'     => 'หน้าที่มีการใช้สูง',
 
 );

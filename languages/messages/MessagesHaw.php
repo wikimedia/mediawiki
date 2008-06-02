@@ -97,6 +97,7 @@ $messages = array(
 'about'         => 'E pili ana',
 'cancel'        => 'Ho‘ōki',
 'qbedit'        => 'E ho‘opololei',
+'qbmyoptions'   => 'Ka‘u mau ‘ao‘ao',
 'moredotdotdot' => 'Hou...',
 'mypage'        => 'Ko‘u ‘ao‘ao',
 'mytalk'        => 'Ka‘u ‘ōlelo',
@@ -255,6 +256,9 @@ hō‘ike ‘ia i lalo:",
 'prefs-rc'          => 'Nā loli hou',
 'searchresultshead' => 'Huli',
 'savedprefs'        => 'Ua mālama ‘ia kāu makemake',
+
+# User rights
+'userrights' => 'Ho‘oponopono ‘ana o nā kuleana', # Not used as normal message but as header for the special page itself
 
 # Groups
 'group-sysop'      => 'Nā kahu',

@@ -1,5 +1,5 @@
 <?php
-/** Moksha (мокшень кяль)
+/** Moksha (Мокшень)
  *
  * @ingroup Language
  * @file
@@ -2480,7 +2480,6 @@ $1',
 'specialpages-group-changes'     => 'Улхкомбань полафнематне ди лувоматне',
 'specialpages-group-media'       => 'Медиа пачфтематне ди тонгоматне',
 'specialpages-group-users'       => 'Тиихне ди видексне',
-'specialpages-group-needy'       => 'Лопатне конатнень мархта эряви покадемс',
 'specialpages-group-highuse'     => 'Пяк эрявикс лопат',
 
 );

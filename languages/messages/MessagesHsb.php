@@ -722,11 +722,14 @@ Prošu přepruwuj, hač je znowawutworjenje woprawnjena a wotpowěduje prawidła
 Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmórnjenje:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'       => 'Warnowanje: Tuta strona wobsahuje přewjele parserowych wołanjow, kotrež serwer poćežuja.
+'expensive-parserfunction-warning'        => 'Warnowanje: Tuta strona wobsahuje přewjele parserowych wołanjow, kotrež serwer poćežuja.
  
 Jich dyrbi jenož $2 być, je nětko $1.',
-'expensive-parserfunction-category'      => 'Strony, kotrež tajke parserowe funkcije přehusto wołaja, kotrež serwer poćežuja.',
-'post-expand-template-argument-category' => 'Strony, kotrež wuwostajene předłohowe argumenty wobsahuja',
+'expensive-parserfunction-category'       => 'Strony, kotrež tajke parserowe funkcije přehusto wołaja, kotrež serwer poćežuja.',
+'post-expand-template-inclusion-warning'  => 'Warnowanje: Wulkosć zapřijatych předłohow je přewulka. Někotre předłohi so njezapřijmu.',
+'post-expand-template-inclusion-category' => 'Strony, hdźež maksimalna wulkosć zapřijatych předłohow je překročena',
+'post-expand-template-argument-warning'   => 'Warnowanje: Tuta strona wobsahuje znajmjeńša jedyn předłohowy argument, kotryž ma přewulku espansisku wulkosć. Tute argumenty bu wuwostajene.',
+'post-expand-template-argument-category'  => 'Strony, kotrež wuwostajene předłohowe argumenty wobsahuja',
 
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',
@@ -2593,7 +2596,6 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:image}}:\".",
 'specialpages-group-changes'     => 'Poslednje změny a protokole',
 'specialpages-group-media'       => 'Medije',
 'specialpages-group-users'       => 'Wužiwarjo a prawa',
-'specialpages-group-needy'       => 'Strony, kotrež so bychu wobdźěłane měli',
 'specialpages-group-highuse'     => 'Často wužiwane strony',
 
 );

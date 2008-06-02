@@ -890,10 +890,10 @@ Ujistěte se, že je vhodné pokračovat v editaci stránky.
 Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí syntaktického analyzátoru.
+'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
 
 Je jich $1. Mělo by jich být méně než $2.',
-'expensive-parserfunction-category'       => 'Stránky s příliš vysokým počtem volání funkcí syntaktického analyzátoru.',
+'expensive-parserfunction-category'       => 'Stránky s příliš vysokým počtem volání funkcí parseru.',
 'post-expand-template-inclusion-warning'  => 'Varování: Objem vkládaných šablon je příliš velký.
 Některé šablony nebudou vloženy.',
 'post-expand-template-inclusion-category' => 'Stránky překračující povolenou velikost vložených šablon',
@@ -1065,7 +1065,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchall'                 => 'vše',
 'showingresults'            => 'Zobrazuji <strong>$1</strong> {{plural:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultsnum'         => 'Zobrazuji <strong>$3</strong> {{plural:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
-'showingresultstotal'       => "Zobrazeny výsledky '''$1 - $2''' z '''$3'''",
+'showingresultstotal'       => "{{plural:$3|Zobrazuje se výsledek '''$1''' z&nbsp;'''$3'''|Zobrazují se výsledky '''$1–$2''' z&nbsp;'''$3'''}}",
 'nonefound'                 => '<strong>Poznámka</strong>: neúspěšná hledání jsou často důsledkem zadání slov, která nejsou indexována, nebo uvedením mnoha slov najednou (ve výsledku se objeví jen ty stránky, které obsahují všechna zadaná slova).',
 'powersearch'               => 'Hledání',
 'powersearch-legend'        => 'Rozšířené vyhledávání',
@@ -1132,6 +1132,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'servertime'               => 'Aktuální čas na serveru',
 'guesstimezone'            => 'Načíst z prohlížeče',
 'allowemail'               => 'Povolit e-mail od ostatních uživatelů',
+'prefs-searchoptions'      => 'Možnosti vyhledávání',
+'prefs-namespaces'         => 'Jmenné prostory',
 'defaultns'                => 'Implicitně hledat v těchto jmenných prostorech:',
 'default'                  => 'implicitní',
 'files'                    => 'Soubory',
@@ -2779,7 +2781,6 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'specialpages-group-changes'     => 'Poslední změny a záznamy',
 'specialpages-group-media'       => 'Média',
 'specialpages-group-users'       => 'Uživatelé a skupiny',
-'specialpages-group-needy'       => 'Stránky vyžadující úpravu',
 'specialpages-group-highuse'     => 'Často používané stránky',
 
 );

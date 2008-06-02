@@ -547,7 +547,7 @@ m = maznozīmīgs labojums.',
 'viewprevnext'          => 'Skatīt ($1) ($2) ($3 vienā lapā).',
 'showingresults'        => 'Šobrīd ir redzamas <b>$1</b> {{PLURAL:$1|lapa|lapas}}, sākot ar #<b>$2</b>.',
 'showingresultsnum'     => 'Šobrīd ir redzamas <b>$3</b> {{PLURAL:$1|lapa|lapas}}, sākot ar #<b>$2</b>.',
-'showingresultstotal'   => "Rāda rezultātus '''$1 - $2''' no '''$3'''",
+'showingresultstotal'   => "Rāda {{PLURAL:$3|rezultātu '''$1''' no '''$3'''|rezultātus '''$1 - $2''' no '''$3'''}}",
 'nonefound'             => "'''Piezīme:''' bieži vien meklēšana ir neveiksmīga, meklējot plaši izplatītus vārdus, piemēram, \"un\" vai \"ir\", jo tie netiek iekļauti meklēšanas datubāzē, vai arī meklējot vairāk par vienu vārdu (jo rezultātos parādīsies tikai lapas, kurās ir visi meklētie vārdi). Vēl, pēc noklusējuma, pārmeklē tikai dažas ''namespaces''. Lai meklētu visās, meklēšanas pieprasījumam priekšā jāieliek ''all:'', vai arī analogā veidā jānorāda pārmeklējamo ''namespaci''.",
 'powersearch'           => 'Izvērstā meklēšana',
 'powersearch-legend'    => 'Izvērstā meklēšana',
@@ -698,11 +698,30 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'license' => 'Licence:',
 
 # Special:Imagelist
-'imagelist' => 'Attēlu uzskaitījums',
+'imagelist-summary'     => 'Šajā lapā ir redzami visi augšuplādētie faili.
+Pēc noklusējuma, pēdējie ielādētie faili atrodas saraksta augšā.
+Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita parametra.',
+'imagelist_search_for'  => 'Meklēt failu pēc vārda:',
+'imgfile'               => 'fails',
+'imagelist'             => 'Attēlu uzskaitījums',
+'imagelist_date'        => 'Datums',
+'imagelist_name'        => 'Nosaukums',
+'imagelist_user'        => 'Lietotājs',
+'imagelist_size'        => 'Izmērs',
+'imagelist_description' => 'Apraksts',
 
 # Image description page
 'filehist'                  => 'Faila hronoloģija',
+'filehist-help'             => 'Uzklikšķini uz datums/laiks kolonnā esošās saites, lai apskatītos, kā šis fails izskatījās tad.',
+'filehist-deleteall'        => 'dzēst visus',
+'filehist-deleteone'        => 'dzēst',
+'filehist-revert'           => 'atjaunot',
+'filehist-current'          => 'tagadējais',
+'filehist-datetime'         => 'Datums/Laiks',
+'filehist-user'             => 'Lietotājs',
+'filehist-dimensions'       => 'Izmēri',
 'filehist-filesize'         => 'Faila izmērs',
+'filehist-comment'          => 'Komentārs',
 'imagelinks'                => 'Attēlu saites',
 'linkstoimage'              => 'Attēls ir izmantots šajās lapās:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
@@ -710,6 +729,37 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, tu vari [$1].',
 'noimage-linktext'          => 'augšuplādēt to',
 'uploadnewversion-linktext' => 'Augšupielādēt jaunu šī faila versiju',
+'imagepage-searchdupe'      => 'Meklēt šī faila kopijas',
+
+# File reversion
+'filerevert'                => 'Atjaunot $1',
+'filerevert-legend'         => 'Atjaunot failu',
+'filerevert-intro'          => '<span class="plainlinks">Tu atjauno failu \'\'\'[[Media:$1|$1]]\'\'\' uz [$4 versiju kāda bija $3, $2].</span>',
+'filerevert-comment'        => 'Komentārs:',
+'filerevert-defaultcomment' => 'Atjaunots uz $2, $1 versiju',
+'filerevert-submit'         => 'Atjaunot',
+'filerevert-success'        => '<span class="plainlinks">Fails \'\'\'[[Media:$1|$1]]\'\'\' tika atjaunots uz [$4 versiju, kāda tā bija $3, $2].</span>',
+'filerevert-badversion'     => 'Šajam failam nav iepriekšējās versijas, kas atbilstu norādītajam datumam un laikam.',
+
+# File deletion
+'filedelete'                  => 'Dzēst $1',
+'filedelete-legend'           => 'Dzēst failu',
+'filedelete-intro'            => "Tu taisies izdzēst '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Tu tagad taisies izdzēst faila \'\'\'[[Media:$1|$1]]\'\'\' versiju, kas tika augšuplādēta [$4 $3, $2].</span>',
+'filedelete-comment'          => 'Dzēšanas iemesls:',
+'filedelete-submit'           => 'Izdzēst',
+'filedelete-success'          => "'''$1''' tika veiksmīgi izdzēsts.",
+'filedelete-success-old'      => '<span class="plainlinks">Faila \'\'\'[[Media:$1|$1]]\'\'\' versija $3, $2 tika izdzēsta.</span>',
+'filedelete-nofile'           => "'''$1''' {{grammar:lokatīvs|{{SITENAME}}}} nav atrodams.",
+'filedelete-nofile-old'       => "Failam '''$1''' nav vecas versijas ar norādītajiem parametriem.",
+'filedelete-iscurrent'        => 'Tu mēģini izdzēst šī faila vissvaigāko versiju.
+Lūdzu, vispirms atjauno vecāku versiju.',
+'filedelete-otherreason'      => 'Cits/papildu iemesls:',
+'filedelete-reason-otherlist' => 'Cits iemesls',
+'filedelete-reason-dropdown'  => '*Izplatīti dzēšanas iemesli
+** Autortiesību pārkāpums
+** Viens tāds jau ir',
+'filedelete-edit-reasonlist'  => 'Izmainīt dzēšanas iemeslus',
 
 # List redirects
 'listredirects' => 'Pāradresāciju uzskaitījums',
@@ -911,15 +961,23 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 # Undelete
 'undelete'               => 'Atjaunot dzēstu lapu',
 'undeletepage'           => 'Skatīt un atjaunot dzēstās lapas',
+'undeletepagetitle'      => "'''Šeit ir [[:$1|$1]] izdzēstās versijas'''.",
+'viewdeletedpage'        => 'Skatīt izdzēstās lapas',
 'undeletepagetext'       => 'Šīs lapas ir dzēstas, bet ir saglabātas arhīvā. Tās ir iespējams atjaunot, bet ņemiet vērā, ka arhīvs reizēm tiek tīrīts.',
+'undeleteextrahelp'      => "Lai atjaunotu visu lapu, atstāj visus ķekšus neieķeksētus uz uzspied uz '''''Atjaunot!'''''.
+Lai atjaunotu tikai noteiktas versijas, ieķeksē vajadzīgās versijas un spied uz '''''Atjaunot!'''''. Uzspiešana uz '''''Notīrīt''''' notīrīs komentāru lauku un visus keķšus.",
 'undeleterevisions'      => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|arhivēta|arhivētas}}',
 'undeletehistory'        => 'Ja tu atjauno lapu, visas versijas tiks atjaunotas tās hronoloģijā.
 Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta. 
 Tas arī var ietekmēt failu versiju aizsardzības līmeni.',
+'undeleterevdel'         => 'Atjaunošana nenotiks, ja tas izraisīs jaunākās versijas izdzēšanu.
+Šādos gadījumos ir vai nu jāizņem ķeksis no jaunākās versijas, vai arī jāatslēpj jaunākā versija.',
 'undeletehistorynoadmin' => 'Šī lapa ir tikusi izdzēsta. 
 Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par lietotājiem, kas bija rediģējuši šo lapu pirs tās izdzēšanas. 
 Šo izdzēsto versiju teksts ir pieejams tikai administratoriem.',
 'undeletebtn'            => 'Atjaunot!',
+'undeletereset'          => 'Notīrīt',
+'undeletecomment'        => 'Komentārs:',
 'undeletedarticle'       => 'atjaunoju "$1"',
 'undeletedrevisions'     => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
 
@@ -970,17 +1028,24 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 ** Dzēš lapu saturu
 ** Spamo ārējās saitēs
 ** Ievieto nesakarīgus simbolus sakopojumus',
+'ipbanononly'          => 'Bloķēt tikai anonīmos lietotājus',
+'ipbcreateaccount'     => 'Neļaut izveidot lietotājvārdu',
+'ipbemailban'          => 'Neļaut lietotājam sūtīt e-pastu',
+'ipbenableautoblock'   => 'Automātiski bloķēt lietotāja pēdējo IP adresi un jebkuru IP adresi, no kuras šis lietotājs piekļūst šim wiki',
 'ipbsubmit'            => 'Bloķēt šo lietotāju',
 'ipbother'             => 'Cits laiks',
 'ipboptions'           => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'       => 'cits',
 'ipbotherreason'       => 'Cits/papildu iemesls:',
+'ipbwatchuser'         => 'Uzraudzīt šī lietotāja lietotāja un lietotāja diskusijas lapas',
 'badipaddress'         => 'Nederīga IP adrese',
 'blockipsuccesssub'    => 'Nobloķēts veiksmīgi',
 'blockipsuccesstext'   => '[[Special:Contributions/$1|$1]] tika nobloķēts.<br />
 Visus blokus var apskatīties [[Special:Ipblocklist|IP bloku sarakstā]].',
 'ipb-edit-dropdown'    => 'Izmainīt bloķēšanas iemeslus',
+'ipb-unblock-addr'     => 'Atbloķēt $1',
 'ipb-unblock'          => 'Atbloķēt lietotāju vai IP adresi',
+'ipb-blocklist-addr'   => 'Skatīt $1 uzliktos, esošos blokus',
 'ipb-blocklist'        => 'Apskatīties esošos blokus',
 'unblockip'            => 'Atbloķēt lietotāju',
 'ipusubmit'            => 'Atbloķēt šo adresi',
@@ -993,7 +1058,12 @@ Visus blokus var apskatīties [[Special:Ipblocklist|IP bloku sarakstā]].',
 'blocklink'            => 'bloķēt',
 'unblocklink'          => 'atbloķēt',
 'contribslink'         => 'devums',
+'autoblocker'          => 'Tava IP ir nobloķēta automātiski, tāpēc, ka to nesen lietojis "[[User:$1|$1]]".
+Viņa bloķēšanas iemesls bija: "$2"',
 'blocklogpage'         => 'Bloķēšanas reģistrs',
+'blocklogentry'        => 'nobloķēja [[$1]] uz $2 $3',
+'blocklogtext'         => 'Šajā lapā ir pēdējo nobloķēto un atbloķēto lietotāju un IP adrešu saraksts. Te neparādās automātiski nobloķētās IP adreses.
+Šobrīd aktīvos blokus var apskatīties [[Special:Ipblocklist|bloķēto lietotāju un IP adrešu sarakstā]].',
 'ipb_expiry_invalid'   => 'Nederīgs beigu termiņš',
 'ip_range_invalid'     => 'Nederīgs IP diapazons',
 'proxyblocker'         => 'Starpniekservera bloķētājs',
@@ -1131,6 +1201,9 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 # Media information
 'imagemaxsize'         => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
 'thumbsize'            => 'Sīkbildes (<i>thumbnail</i>) izmērs:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lapa|lapas}}',
+'file-info'            => '(faila izmērs: $1, MIME tips: $2)',
+'file-info-size'       => '($1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4)',
 'file-nohires'         => '<small>Augstāka izšķirtspēja nav pieejama.</small>',
 'svg-long-desc'        => '(SVG fails, definētais izmērs $1 × $2 pikseļi, faila izmērs: $3)',
 'show-big-image'       => 'Pilnā izmērā',
@@ -1215,7 +1288,7 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 
 # Delete conflict
 'deletedwhileediting' => 'Brīdinājums: Šī lapa tika izdzēsta, pēc tam, kad tu to sāki izmainīt!',
-'confirmrecreate'     => "Lietotājs [[Lietotājs:$1|$1]] ([[Lietotāja diskusija:$1|diskusija]]) izdzēssaa šo lapu, pēc tam, kad tu to biji sācis rediģēt, ar iemeslu:
+'confirmrecreate'     => "Lietotājs [[User:$1|$1]] ([[User talk:$1|diskusija]]) izdzēssaa šo lapu, pēc tam, kad tu to biji sācis rediģēt, ar iemeslu:
 : ''$2''
 Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'recreate'            => 'Izveidot no jauna',
@@ -1234,10 +1307,12 @@ Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'imgmultipagenext' => 'nākamā lapa →',
 
 # Table pager
-'table_pager_next'  => 'Nākamā lapa',
-'table_pager_prev'  => 'Iepriekšējā lapa',
-'table_pager_first' => 'Pirmā lapa',
-'table_pager_last'  => 'Pēdējā lapa',
+'table_pager_next'         => 'Nākamā lapa',
+'table_pager_prev'         => 'Iepriekšējā lapa',
+'table_pager_first'        => 'Pirmā lapa',
+'table_pager_last'         => 'Pēdējā lapa',
+'table_pager_limit'        => 'Rādīt $1 ierakstus vienā lapā',
+'table_pager_limit_submit' => 'Parādīt',
 
 # Auto-summaries
 'autosumm-replace' => "Aizvieto lapas saturu ar '$1'",

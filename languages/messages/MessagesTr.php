@@ -18,6 +18,7 @@
  * @author Myildirim2007
  * @author Mach
  * @author Mskyrider
+ * @author Runningfridgesrule
  */
 
 $namespaceNames = array(
@@ -482,6 +483,8 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 
 # Password reset dialog
 'resetpass'               => 'Kullanıcı parolasını sıfırla',
+'resetpass_announce'      => 'Size gönderilen muvakkat bir parola ile oturum açtınız.
+Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass_header'        => 'Parolayı sıfırla',
 'resetpass_submit'        => 'Şifreyi ayarlayın ve oturum açın',
 'resetpass_success'       => 'Parolanız başarıyla değiştirldi! Şimdi oturumunuz açılıyor...',
@@ -875,6 +878,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'right-upload'        => 'Dosyaları yükle',
 'right-delete'        => 'Sayfaları sil',
 'right-editinterface' => 'Kullanıcı arayüzünü değiştirmek',
+'right-patrol'        => 'Diğerlerinin değişikliklerini kontrol edilmiş olarak işaretle',
 'right-userrights'    => 'Tüm kullanıcı haklarını değiştirmek',
 
 # User rights log
@@ -1694,11 +1698,12 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'mw_math_mathml' => 'Mümkünse MathML (daha deneme aşamasında)',
 
 # Patrolling
-'markaspatrolleddiff'    => 'Kontrol edilmiş olarak işaretle',
-'markaspatrolledtext'    => 'Kontrol edilmiş olarak işaretle',
-'markedaspatrolled'      => 'Kontrol edildi',
-'markedaspatrolledtext'  => 'Gözden geçirilen metin kontrol edilmiş olarak işaretlendi.',
-'markedaspatrollederror' => 'Kontrol edilmedi',
+'markaspatrolleddiff'                 => 'Kontrol edilmiş olarak işaretle',
+'markaspatrolledtext'                 => 'Kontrol edilmiş olarak işaretle',
+'markedaspatrolled'                   => 'Kontrol edildi',
+'markedaspatrolledtext'               => 'Gözden geçirilen metin kontrol edilmiş olarak işaretlendi.',
+'markedaspatrollederror'              => 'Kontrol edilmedi',
+'markedaspatrollederror-noautopatrol' => 'Kendi değişikliklerinizi kontrol edilmiş olarak işaretleyemezsiniz.',
 
 # Patrol log
 'patrol-log-page' => 'Kontrol kaydı',
@@ -2035,7 +2040,6 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'specialpages-group-changes'     => 'Son değişiklikler ve kayıtlar',
 'specialpages-group-media'       => 'Dosya raporları ve yüklemeler',
 'specialpages-group-users'       => 'Kullanıcılar ve hakları',
-'specialpages-group-needy'       => 'Üzerinde çalışılması gereken sayfalar',
 'specialpages-group-highuse'     => 'Çok kullanılan sayfalar',
 
 );

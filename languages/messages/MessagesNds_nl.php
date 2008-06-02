@@ -628,11 +628,12 @@ De op-egeven rejen is ''$2''.",
 'gotaccount'                 => 'Bi-j al eregistreerd? $1.',
 'gotaccountlink'             => 'Anmelden',
 'createaccountmail'          => 'per e-mail',
-'badretype'                  => 'De wachwoorden dee-j in-evoerd hemmen bin neet liekelleens.',
+'badretype'                  => 'De wachwoorden dee-j in-etik hemmen bin neet liekeleens.',
 'userexists'                 => 'Disse gebrukersnaam is al gebruuk. Kies a.j.b. een aandere naam.',
 'youremail'                  => 'E-mailadres (neet verplich) *',
 'username'                   => 'Gebrukersnaam:',
 'uid'                        => 'Gebrukersnummer:',
+'prefs-memberingroups'       => 'Lid van {{PLURAL:$1|groep|groepen}}:',
 'yourrealname'               => 'Echte naam (neet verplich)',
 'yourlanguage'               => 'Taal veur systeemteksen',
 'yourvariant'                => 'Gewunste taal:',
@@ -861,6 +862,9 @@ Noen bin 't der $1, terwiel 't der minder as $2 mutten ween.",
 'post-expand-template-inclusion-warning'  => "Waorschuwing: de grootte van 't in-evoegen sjabloon is te groot.
 Sommigen sjablonen wonnen neet in-evoeg.",
 'post-expand-template-inclusion-category' => "Pagina's waoveur de grootte van de in-evoegen sjabloon overschrejen wonnen",
+'post-expand-template-argument-warning'   => "Waorschuwing: op disse pagina steet tenminsen één sjabloonparremeter dee te lange zol wonnen as 't uut-eklap wonnen.
+Disse parremeters bin vort-eleuten.",
+'post-expand-template-argument-category'  => "Pagina's mit ontbrekende sjabloonelementen",
 
 # "Undo" feature
 'undo-success' => 'De bewarking kan ongedaon-emaak wonnen. Controleer de vergelieking hieronder um vaste te stellen da-j disse haandeling uutvoeren willen, en slao vervolgens de pagina op um de bewarking ongedaon te maken.',
@@ -1089,6 +1093,8 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'servertime'               => 'Tied op de server',
 'guesstimezone'            => 'Vanuut webblaojeraar toevoegen',
 'allowemail'               => 'Berichen van aandere gebrukers toelaoten',
+'prefs-searchoptions'      => 'Zeukinstellingen',
+'prefs-namespaces'         => 'Naamruumtes',
 'defaultns'                => 'Naamruumtes um in te zeuken:',
 'default'                  => 'standard',
 'files'                    => 'Bestanden',
@@ -1164,6 +1170,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'right-bot'                  => 'Behaandeld wonnen as een eautomatiseerd preces',
 'right-nominornewtalk'       => "Kleine bewarkingen an een overlegpagina leien neet tot een melding 'nieje berichen'",
 'right-apihighlimits'        => 'Hoge API-limieten gebruken',
+'right-writeapi'             => 'Bewarken via de API',
 'right-delete'               => "Pagina's vortdoon",
 'right-bigdelete'            => "Pagina's mit een grote geschiedenisse vortdoon",
 'right-deleterevision'       => "Versies van pagina's verbargen",
@@ -1363,6 +1370,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'nolinkstoimage'                 => 'Ofbeelding is neet in gebruuk.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Meer verwiezingen]] naor dit bestand bekieken.',
 'redirectstofile'                => 'De volgende bestanden verwiezen deur naor dit bestand:',
+'duplicatesoffile'               => 'De volgende bestanden bin liekeleens as dit bestand:',
 'sharedupload'                   => 'Dit bestand is een gedeelde upload en kan ook deur andere prejekken ebruukt worden.',
 'shareduploadwiki'               => 'Zie $1 veur veerdere infermasie.',
 'shareduploadwiki-desc'          => 'De $1 in de edelen bestansbanke zie-j hieronder.',
@@ -1390,16 +1398,20 @@ Klikken op een kelomkop veraandert de sortering.',
 'filedelete'                  => '$1 vortdoon',
 'filedelete-legend'           => 'Bestand vortdoon',
 'filedelete-intro'            => "Je doon '''[[Media:$1|$1]]''' noen vort.",
+'filedelete-intro-old'        => '<span class="plainlinks">Je bin de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] vort an \'t doon.</span>',
 'filedelete-comment'          => 'Opmarking:',
 'filedelete-submit'           => 'Vortdoon',
 'filedelete-success'          => "'''$1''' is vort-edaon.",
+'filedelete-success-old'      => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is vort-edaon.</span>',
 'filedelete-nofile'           => "'''$1''' besteet neet op disse webstee.",
 'filedelete-nofile-old'       => "Der is gien versie van '''$1''' in 't archief mit de an-egeven eigenschappen.",
+'filedelete-iscurrent'        => 'Je preberen de niejste versie van dit bestand vort te doon. Zet eers een ouwere versie weerumme.',
 'filedelete-otherreason'      => 'Aandere rejen:',
 'filedelete-reason-otherlist' => 'Aandere rejen',
 'filedelete-reason-dropdown'  => '*Veulveurkoemende rejens
 ** Auteursrechenschending
 ** Dit bestand he-w dubbel',
+'filedelete-edit-reasonlist'  => "Rejen veur 't vortdoon van de bewarken",
 
 # MIME search
 'mimesearch'         => 'Zeuken op MIME-type',
@@ -1427,9 +1439,24 @@ Klikken op een kelomkop veraandert de sortering.',
 'randomredirect-nopages' => 'Der staon gien deurverwiezingen in disse naamruumte.',
 
 # Statistics
-'statistics' => 'Staotestieken',
-'sitestats'  => 'Staotestieken van {{SITENAME}}',
-'userstats'  => 'Gebrukerstaotestieken',
+'statistics'             => 'Staotestieken',
+'sitestats'              => 'Staotestieken van {{SITENAME}}',
+'userstats'              => 'Gebrukerstaotestieken',
+'sitestatstext'          => "In totaal {{PLURAL:$1|steet der '''1''' pagina|staon der '''$1''' pagina's}} in de databanke van disse {{SITENAME}}. Hier zitten de overlegpagina's, pagina's over Wikipedie, iezelig korte artikels, deurstuurpagina's en een antal aandere pagina's dee neet as artikel mee-eteld wonnen bie in. Zonder disse pagina's {{PLURAL:$2|is der ongeveer '''1''' artikel|bin der ongeveer '''$2''' artikels}}.
+
+Der {{PLURAL:$8|is '''1''' bestand|bin '''$8''' bestanden}} toe-evoeg.
+
+Der {{PLURAL:$3|is '''1''' pagina|bin '''$3''' pagina's}} weer-egeven en '''$4''' {{PLURAL:$4|bewarking|bewarkingen}} edaon sins {{SITENAME}} op-ezet is. Dit geef een gemiddelde van '''$5''' bewarkingen per pagina en '''$6''' weer-egeven pagina's per bewarking.
+
+De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue taakwachrie] is '''$7'''.",
+'userstatstext'          => "Der {{PLURAL:$1|is '''1''' an-emelde gebruker|bin '''$1''' an-emelde gebrukers}}. Daovan  {{PLURAL:$2|hef|hemmen}} der '''$2''' (van '''$4%''') $5rechen.",
+'statistics-mostpopular' => "Meestbekeken pagina's",
+
+'disambiguations'      => "Deurverwiespagina's",
+'disambiguationspage'  => 'Template:Dv',
+'disambiguations-text' => "De onderstaonde pagina's verwiezen naor een '''deurverwiespagina'''. Disse verwiezingen mutten eigenlijks rechstreeks verwiezen naor 't juuste onderwarp.
+
+Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen dat vermeld steet op [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Dubbele deurverwiezingen',
 'doubleredirectstext' => "Op elke regel steet de eerste deurstuurpagina, de tweede deurstuurpagina en de eerste regel van de tweede deurverwiezing. Meestentieds is leste pagina 't eigenlijke doel.",
@@ -1439,14 +1466,22 @@ Klikken op een kelomkop veraandert de sortering.',
 'brokenredirects-edit'   => '(bewark)',
 'brokenredirects-delete' => '(vortdoon)',
 
-'withoutinterwiki'        => "Pagina's zonder verwiezingen naor aandere talen",
-'withoutinterwiki-legend' => 'Veurvoegsel',
+'withoutinterwiki'         => "Pagina's zonder verwiezingen naor aandere talen",
+'withoutinterwiki-summary' => "De volgende pagina's verwiezen neet naor versies in een aandere taal:",
+'withoutinterwiki-legend'  => 'Veurvoegsel',
+'withoutinterwiki-submit'  => 'Bekieken',
 
 'fewestrevisions' => 'Artikels mit de minste bewarkingen',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'ncategories'             => '$1 {{PLURAL:$1|kattegerie|kattegerieën}}',
+'nlinks'                  => '$1 {{PLURAL:$1|verwiezing|verwiezingen}}',
+'nmembers'                => '$1 {{PLURAL:$1|onderwarp|onderwarpen}}',
+'nrevisions'              => '$1 {{PLURAL:$1|versie|versies}}',
+'nviews'                  => '{{PLURAL:$1|1 keer|$1 keer}} bekeken',
 'specialpage-empty'       => 'Disse pagina is leeg.',
+'lonelypages'             => "Weespagina's",
 'lonelypagestext'         => "Naor de onderstaonde pagina's wonnen vanuut disse wiki neet verwezen.",
 'uncategorizedpages'      => "Pagina's zonder kattegerie",
 'uncategorizedcategories' => 'Kattegerieën zonder kattegerie',
@@ -1469,9 +1504,11 @@ Klikken op een kelomkop veraandert de sortering.',
 'deadendpages'            => "Pagina's zonder verwiezingen",
 'deadendpagestext'        => "De onderstaonde pagina's verwiezen neet naor aandere pagina's in disse wiki.",
 'protectedpages'          => "Pagina's dee beveilig bin",
+'protectedpages-indef'    => 'Allinnig blokkeringen zonder verloopdaotum',
 'protectedpagestext'      => "De volgende pagina's bin beveilig en kunnen neet herneumd of bewark wonnen.",
 'protectedpagesempty'     => "Der bin op 't mement gien beveiligen pagina's",
 'protectedtitles'         => 'Beveiligen titels',
+'protectedtitlestext'     => "De volgende pagina's bin beveilig zoda-ze neet opniej an-emaak kunnen wonnen",
 'protectedtitlesempty'    => 'Der bin noen gien titels beveilig dee an disse parremeters voldoon.',
 'listusers'               => 'Gebrukerslieste',
 'specialpages'            => "Speciale pagina's",
@@ -1487,6 +1524,11 @@ Klikken op een kelomkop veraandert de sortering.',
 'unusedcategoriestext'    => 'De onderstaonde kattegerieën bin an-emaak mar wonnen neet gebruuk.',
 'notargettitle'           => 'Gien pagina op-egeven',
 'notargettext'            => 'Je hemmen neet op-egeven veur welke pagina je disse functie bekieken willen.',
+'nopagetitle'             => 'Doelpagina besteet neet',
+'nopagetext'              => 'De pagina dee-j herneumen willen besteet neet.',
+'pager-newer-n'           => '{{PLURAL:$1|1 niejere|$1 niejere}}',
+'pager-older-n'           => '{{PLURAL:$1|1 ouwere|$1 ouwere}}',
+'suppress'                => 'Toezichte',
 
 # Book sources
 'booksources'               => 'Boekinfermasie',
@@ -1519,10 +1561,12 @@ Klikken op een kelomkop veraandert de sortering.',
 'allpagessubmit'    => 'Zeuk',
 'allpagesprefix'    => "Teun pagina's dee beginnen mit:",
 'allpagesbadtitle'  => 'De op-egeven paginanaam is ongeldig of bevatten een interwikiveurvoegsel. Meugelijkerwieze bevatten de naam kerakters dee neet gebruuk maggen wonnen in paginanamen.',
+'allpages-bad-ns'   => '{{SITENAME}} hef gien "$1"-naamruumte.',
 
 # Special:Categories
 'categories'                    => 'Kattegerieën',
 'categoriespagetext'            => 'De volgende kattegerieën bin anwezig in {{SITENAME}}.',
+'categoriesfrom'                => 'Kattegerieën weergeven vanof:',
 'special-categories-sort-count' => 'op antal sorteren',
 'special-categories-sort-abc'   => 'alfebetisch sorteren',
 
@@ -2382,7 +2426,6 @@ Voer de bestansnaam in zonder 't veurvoegsel \"{{ns:image}}:\".",
 'specialpages-group-changes'     => 'Leste wiezigingen en logboeken',
 'specialpages-group-media'       => 'Media-overzichen en toe-evoegen bestanden',
 'specialpages-group-users'       => 'Gebrukers en rechen',
-'specialpages-group-needy'       => "Pagina's waor naor ekeken mut wonnen",
 'specialpages-group-highuse'     => "Veulgebruken pagina's",
 
 );

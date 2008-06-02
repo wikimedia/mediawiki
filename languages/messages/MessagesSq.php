@@ -834,12 +834,12 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'search-mwsuggest-enabled'  => 'me këshilla',
 'search-mwsuggest-disabled' => 'pa këshilla',
 'search-relatedarticle'     => 'Të ngjashme',
-'mwsuggest-disable'         => "Ç'mundësoi sugjerimet AJAX",
+'mwsuggest-disable'         => 'Çmundësoi sugjerimet AJAX',
 'searchrelated'             => 'të ngjashme',
 'searchall'                 => 'të gjitha',
 'showingresults'            => "Më poshtë tregohen {{PLURAL:$1|'''1''' përfundim|'''$1''' përfundime}} duke filluar nga #'''$2'''.",
 'showingresultsnum'         => "Më poshtë tregohen {{PLURAL:$3|'''1''' përfundim|'''$3''' përfundime}} duke filluar nga #'''$2'''.",
-'showingresultstotal'       => "Më poshtë tregohen përfundimet '''$1 - $2''' nga '''$3'''",
+'showingresultstotal'       => "Më poshtë {{PLURAL:$3|tregohet 1 përfundim|tregohen '''$1 - $2''' nga '''$3''' përfundime}}",
 'nonefound'                 => '<strong>Shënim</strong>: Kërkimet pa rezultate ndodhin kur kërkoni për fjalë që rastisen shpesh si "ke" dhe "nga", të cilat nuk janë të futura në regjistër, ose duke dhënë më shumë se një fjalë (vetëm faqet që i kanë të gjitha ato fjalë do të tregohen si rezultate).',
 'powersearch'               => 'Kërko',
 'powersearch-legend'        => 'Kërkim i përparuar',
@@ -906,6 +906,8 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'servertime'               => 'Ora e shërbyesit tani është',
 'guesstimezone'            => 'Gjeje nga shfletuesi',
 'allowemail'               => 'Lejo përdoruesit të më dërgojnë email',
+'prefs-searchoptions'      => 'Mundësi kërkimi',
+'prefs-namespaces'         => 'Hapësirat',
 'defaultns'                => 'Kërko automatikisht vetëm në këto hapësira:',
 'default'                  => 'parazgjedhje',
 'files'                    => 'Figura',
@@ -1021,6 +1023,8 @@ Për të përdorur një skedë në një faqe përdorni lidhje të llojit:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skedë.png|Përshkrim]]</nowiki>''' ose
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skedë.ogg]]</nowiki>''' për lidhje të drejtpërdrejta të skedës.",
 'upload-permitted'            => 'Llojet e lejuara të skedave: $1.',
+'upload-preferred'            => 'Llojet e parapëlqyera të skedave: $1.',
+'upload-prohibited'           => 'Llojet e ndaluara të skedave: $1.',
 'uploadlog'                   => 'regjistër dhënjesh',
 'uploadlogpage'               => 'Regjistri i ngarkimeve',
 'uploadlogpagetext'           => 'Më poshtë është një listë e skedave më të reja që janë ngarkuar.
@@ -1036,10 +1040,29 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'minlength1'                  => 'Emri i dosjes duhet të jetë së paku një fjalë',
 'illegalfilename'             => 'Skeda "$1" përmban gërma që nuk lejohen tek titujt e faqeve. Ju lutem ndërrojani emrin dhe provoni ta ngarkoni përsëri.',
 'badfilename'                 => 'Emri i skedës është ndërruar në "$1".',
+'filetype-badmime'            => 'Skedat e llojit MIME "$1" nuk lejohen për ngarkim.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' është një lloj skede i padëshiruar. Parapëlqehen seda të llojit \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' është një lloj skede i ndaluar. Lejohen seda të llojit \$2.",
+'filetype-missing'            => 'Skeda nuk ka mbaresë (si p.sh. ".jpg").',
+'large-file'                  => 'Është e këshillueshme që skedat të jenë jo më shumë se $1;
+kjo skedë është $2.',
 'largefileserver'             => 'Skeda është më e madhe se sa serveri e lejon këtë.',
 'emptyfile'                   => 'Skeda që keni dhënë është bosh ose mbi madhësinë e lejushme. Kjo gjë mund të ndodhi nëse shtypni emrin gabim, prandaj kontrolloni nëse dëshironi të jepni skedën me këtë emër.',
 'fileexists'                  => 'Ekziston një skedë me atë emër, ju lutem kontrolloni <strong><tt>$1</tt></strong> në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.',
+'filepageexists'              => 'Faqja përshkruese për këtë skedë është krijuar që më parë tek <strong><tt>$1</tt></strong>, por nuk ekziston një skedë me atë emër.
+Përmbledhja që vendosët nuk do të shfaqet tek faqja përshkruese.
+Për ta treguar atje duhet ta redaktoni vetë.',
+'fileexists-extension'        => 'Ekziston një skedë me emër të ngjashëm:<br />
+Emri i skedës në ngarkim: <strong><tt>$1</tt></strong><br />
+Emri i skedës ekzistuese: <strong><tt>$2</tt></strong><br />
+Ju lutem zgjidhni një emër tjetër.',
 'fileexists-thumb'            => "<center>'''Dosja ekziston'''</center>",
+'fileexists-thumbnail-yes'    => 'Kjo skedë duket se është një figurë me madhësi të zvogëluar <i>(figurë përmbledhëse)</i>.
+Ju lutem kontrolloni skedën <strong><tt>$1</tt></strong>.<br />
+Nëse skeda e kontrolluar është e së njëjtës madhësi me origjinalen atëherë nuk ka nevojë të ngarkoni një figurë përmbledhëse.',
+'file-thumbnail-no'           => 'Emri i skedës fillon me <strong><tt>$1</tt></strong>.
+Duket se është një figurë me madhësi të zvogëluar <i>(figurë përmbledhëse)</i>.
+Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, përndryshe ju lutem të ndryshoni emrin e skedës.',
 'fileexists-forbidden'        => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsh dhe ngarkoni këtë skedë me një emër të ri. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ekziston një skedë me të njëjtin emër në magazinën e përbashkët. Ju lutem kthehuni mbrapsh dhe ngarkojeni këtë skedë me një emër të ri. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Dhënie e sukseshme',
@@ -1057,13 +1080,42 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'upload-maxfilesize'          => 'Madhësia maksimale e skedave: $1',
 'watchthisupload'             => 'Mbikqyre këtë faqe',
 'filewasdeleted'              => 'Një skedë më këtë emër është ngarkuar një here dhe pastaj është grisur. Duhet të shikoni $1 përpara se ta ngarkoni përsëri.',
+'upload-wasdeleted'           => "'''Vini re: Po ngarkoni një skedë që është grisur më parë.'''
+
+Duhet të mendoheni nëse është e pranueshme ngarkimi i kësaj skede.
+Regjistri i grisjes së skedës jepet më poshtë:",
+'filename-bad-prefix'         => 'Emri i skedës që po ngarkoni fillon me <strong>"$1"</strong> dhe nuk është veçantisht përshkrues pasi përdoret nga shumë kamera.
+Ju lutem zgjidhni një emër më përshkrues për skedën tuaj.',
+
+'upload-proto-error'      => 'Protokoll i gabuar',
+'upload-proto-error-text' => 'Ngarkimet nga rrjeti kërkojnë që adresa URL të fillojë me <code>http://</code> ose <code>ftp://</code>.',
+'upload-file-error'       => 'Gabim i brendshëm',
+'upload-file-error-text'  => 'Ka ndodhur një gabim i brendshëm gjatë krijimit të skedës së përkohshme nga shërbyesi.
+Ju lutem lidhuni me administruesin e sistemit tuaj.',
+'upload-misc-error'       => 'Gabim i panjohur ngarkimi',
+'upload-misc-error-text'  => 'Një gabim i panjohur ka ndodhur gjatë ngarkimit.
+Ju lutem kontrolloni që adresa URL të jetë e vlefshme dhe e kapshme dhe provoni përsëri.
+Nëse problemi vazhdon atëherë duhet të lidheni me administruesin e sistemit.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => "S'munda të lidhem me adresën URL",
+'upload-curl-error6-text'  => "Adresa URL e dhënë s'mund të arrihej.
+Ju lutem kontrollojeni nëse është e saktë dhe nëse faqja është në rrjet.",
+'upload-curl-error28'      => 'Mbaroi koha e ngarkimit',
+'upload-curl-error28-text' => 'Ka kaluar shumë kohë pa përgjigje.
+Ju lutem kontrolloni nëse faqja është në rrjet, prisni pak dhe provojeni përsëri.
+Këshillohet që ta provoni kur të jetë më pak e zënë.',
 
 'license'            => 'Licencimi:',
 'nolicense'          => 'Asnjë nuk është zgjedhur',
+'license-nopreview'  => '(Nuk ka parapamje)',
 'upload_source_url'  => ' (URL e vlefshme, publikisht e përdorshme)',
 'upload_source_file' => ' (skeda në kompjuterin tuaj)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Kjo faqe speciale tregon tërë skedat e ngarkuara.
+Fillimisht skedat e ngarkuara së fundmi jepen më sipër.
+Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'imagelist_search_for'  => 'Kërko për emrin e figurës:',
 'imgfile'               => 'skeda',
 'imagelist'             => 'Lista e figurave',
@@ -1074,45 +1126,64 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'imagelist_description' => 'Përshkrimi',
 
 # Image description page
-'filehist'                  => 'Historiku i dosjes',
-'filehist-help'             => 'Shtypni një datë/kohë për ta parë skedën ashtu si dukej në atë kohë.',
-'filehist-deleteall'        => 'grisi të tëra',
-'filehist-deleteone'        => 'grise këtë',
-'filehist-revert'           => 'riktheje',
-'filehist-current'          => 'e tanishme',
-'filehist-datetime'         => 'Data/Ora',
-'filehist-user'             => 'Përdoruesi',
-'filehist-dimensions'       => 'Dimensionet',
-'filehist-filesize'         => 'Madhësia e skedës',
-'filehist-comment'          => 'Koment',
-'imagelinks'                => 'Lidhje skedash',
-'linkstoimage'              => 'Këto faqe lidhen tek kjo skedë:',
-'nolinkstoimage'            => 'Asnjë faqe nuk lidhet tek kjo skedë.',
-'sharedupload'              => 'Kjo skedë është një ngarkim i përbashkët dhe mund të përdoret nga projekte të tjera.',
-'shareduploadwiki'          => 'Ju lutem shikoni $1 për më shumë informacion.',
-'shareduploadwiki-desc'     => '$1 së atjeshme tregohet më poshtë',
-'shareduploadwiki-linktext' => 'faqja përshkruese e skedës',
-'noimage'                   => 'Një skedë me këtë emër nuk ekziston akoma, ju mundeni ta $1 atë.',
-'noimage-linktext'          => 'ngarkoni',
-'uploadnewversion-linktext' => 'Ngarkoni një version të ri për këtë skedë',
+'filehist'                       => 'Historiku i dosjes',
+'filehist-help'                  => 'Shtypni një datë/kohë për ta parë skedën ashtu si dukej në atë kohë.',
+'filehist-deleteall'             => 'grisi të tëra',
+'filehist-deleteone'             => 'grise këtë',
+'filehist-revert'                => 'riktheje',
+'filehist-current'               => 'e tanishme',
+'filehist-datetime'              => 'Data/Ora',
+'filehist-user'                  => 'Përdoruesi',
+'filehist-dimensions'            => 'Dimensionet',
+'filehist-filesize'              => 'Madhësia e skedës',
+'filehist-comment'               => 'Koment',
+'imagelinks'                     => 'Lidhje skedash',
+'linkstoimage'                   => 'Këto faqe lidhen tek kjo skedë:',
+'nolinkstoimage'                 => 'Asnjë faqe nuk lidhet tek kjo skedë.',
+'morelinkstoimage'               => 'Shikoni [[Special:Whatlinkshere/$1|më shumë lidhje]] tek kjo skedë.',
+'redirectstofile'                => 'Skedat e mëposhtme përcillen tek kjo skedë:',
+'duplicatesoffile'               => 'Skedat e më poshtme janë kopje të kësaj skede:',
+'sharedupload'                   => 'Kjo skedë është një ngarkim i përbashkët dhe mund të përdoret nga projekte të tjera.',
+'shareduploadwiki'               => 'Ju lutem shikoni $1 për më shumë informacion.',
+'shareduploadwiki-desc'          => '$1 së atjeshme tregohet më poshtë',
+'shareduploadwiki-linktext'      => 'faqja përshkruese e skedës',
+'shareduploadduplicate'          => 'Kjo skedë është kopje e $1 nga baseni i përbashkët.',
+'shareduploadduplicate-linktext' => 'një skedë tjetër',
+'shareduploadconflict'           => 'Kjo skedë ka të njëjtin emër si $1 nga baseni i përbashkët.',
+'shareduploadconflict-linktext'  => 'një skedë tjetër',
+'noimage'                        => 'Një skedë me këtë emër nuk ekziston akoma, ju mundeni ta $1 atë.',
+'noimage-linktext'               => 'ngarkoni',
+'uploadnewversion-linktext'      => 'Ngarkoni një version të ri për këtë skedë',
+'imagepage-searchdupe'           => 'Kërko për kopje skedash',
 
 # File reversion
 'filerevert'                => 'Rikthe $1',
 'filerevert-legend'         => 'Rikthe skedën',
+'filerevert-intro'          => '<span class="plainlinks">Po ktheni \'\'\'[[Media:$1|$1]]\'\'\' tek [versioni $4 i $3, $2].</span>',
 'filerevert-comment'        => 'Arsyeja:',
 'filerevert-defaultcomment' => 'U rikthye tek versioni i $2, $1',
 'filerevert-submit'         => 'Riktheje',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' është kthyer tek [versioni $4 i $3, $2].</span>',
+'filerevert-badversion'     => 'Nuk ka version vendor tjetër të kësaj skede në kohën e dhënë.',
 
 # File deletion
 'filedelete'                  => 'Grise $1',
 'filedelete-legend'           => 'Grise skedën',
 'filedelete-intro'            => "Jeni duke grisur '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Po grisni versionin e \'\'\'[[Media:$1|$1]]\'\'\' të [$4 $3, $2].</span>',
 'filedelete-comment'          => 'Arsyeja:',
 'filedelete-submit'           => 'Grise',
 'filedelete-success'          => "'''$1''' është grisur.",
+'filedelete-success-old'      => '<span class="plainlinks">Versioni i \'\'\'[[Media:$1|$1]]\'\'\' së $3, $2 është grisur.</span>',
+'filedelete-nofile'           => "'''$1''' nuk ekziston tek {{SITENAME}}.",
+'filedelete-nofile-old'       => "Nuk ka version të arkivuar të '''$1''' me të dhënat e kërkuara.",
 'filedelete-iscurrent'        => 'Jeni duke grisur versionin e tanishëm të kësaj skede. Ju lutem më parë rikthejeni tek një version më të vjetër.',
 'filedelete-otherreason'      => 'Arsye tjetër / shtesë:',
 'filedelete-reason-otherlist' => 'Arsye tjetër',
+'filedelete-reason-dropdown'  => '*Arsye të shpeshpërdorura për grisje:
+** Kundër të drejtave të autorit
+** Skedë kopje',
+'filedelete-edit-reasonlist'  => 'Arsye grisjeje për redaktimet',
 
 # MIME search
 'mimesearch'         => 'Kërkime MIME',
@@ -1132,23 +1203,26 @@ Të gjithë orët janë me orën e shërbyesit (UTC).',
 'unusedtemplateswlh'  => 'lidhje',
 
 # Random page
-'randompage' => 'Artikull i rastit',
+'randompage'         => 'Artikull i rastit',
+'randompage-nopages' => 'Nuk ka faqe në këtë hapësirë.',
 
 # Random redirect
-'randomredirect' => 'Përcjellim i rastit',
+'randomredirect'         => 'Përcjellim i rastit',
+'randomredirect-nopages' => 'Nuk ka përcjellime në këtë hapësirë.',
 
 # Statistics
-'statistics'    => 'Statistika',
-'sitestats'     => 'Statistikat e faqeve',
-'userstats'     => 'Statistikat e përdoruesve',
-'sitestatstext' => "{{PLURAL:\$1|Gjëndet '''1''' faqe|Gjënden '''\$1''' faqe}} në totalin e regjistrit. Kjo përfshin faqet e \"diskutimit\", faqe rreth {{SITENAME}}, faqe \"cungje\" të vogla, përcjellime, dhe faqe të tjera që ndoshta nuk kualifikohen si artikuj. Duke mos i përfshirë këto, ka {{PLURAL:\$2| '''1''' faqe që është artikull i ligjshëm|'''\$2''' faqe që janë artikuj të ligjshëm}}.
+'statistics'             => 'Statistika',
+'sitestats'              => 'Statistikat e faqeve',
+'userstats'              => 'Statistikat e përdoruesve',
+'sitestatstext'          => "{{PLURAL:\$1|Gjëndet '''1''' faqe|Gjënden '''\$1''' faqe}} në totalin e regjistrit. Kjo përfshin faqet e \"diskutimit\", faqe rreth {{SITENAME}}, faqe \"cungje\" të vogla, përcjellime, dhe faqe të tjera që ndoshta nuk kualifikohen si artikuj. Duke mos i përfshirë këto, ka {{PLURAL:\$2| '''1''' faqe që është artikull i ligjshëm|'''\$2''' faqe që janë artikuj të ligjshëm}}.
 
 '''\$8''' {{PLURAL:\$8|skedë është|skeda janë}} ngarkuar.
 
 '''\$3''' {{PLURAL:\$3|Është bërë '''\$3''' shikim faqeje|Janë bërë '''\$3''' shikime faqesh}} dhe '''\$4''' {{PLURAL:\$4|redaktim faqeje|redaktime faqesh}} që nga dita kur {{SITENAME}} u hap. Kjo do të thotë se janë bërë afërsisht '''\$5''' redaktime për faqe, dhe '''\$6''' shikime për çdo redaktim.
 
 Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] është '''\$7'''.",
-'userstatstext' => "{{PLURAL:$1|Gjëndet|Gjënden}} '''$1''' [[Special:Listusers|përdorues]] {{PLURAL:$1|i|të}} regjistruar. '''$2''' prej tyre (ose '''$4'''%) {{PLURAL:$2|ka|kanë}} privilegjin $5.",
+'userstatstext'          => "{{PLURAL:$1|Gjëndet|Gjënden}} '''$1''' [[Special:Listusers|përdorues]] {{PLURAL:$1|i|të}} regjistruar. '''$2''' prej tyre (ose '''$4'''%) {{PLURAL:$2|ka|kanë}} privilegjin $5.",
+'statistics-mostpopular' => 'Faqet më të shikuara',
 
 'disambiguations'      => 'Faqe kthjelluese',
 'disambiguationspage'  => 'Template:Kthjellim',
@@ -1167,6 +1241,8 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 
 'withoutinterwiki'         => 'Artikuj pa lidhje interwiki',
 'withoutinterwiki-summary' => 'Artikujt në vazhdim nuk kanë asnjë lidhje te wikit në gjuhët tjera:',
+'withoutinterwiki-legend'  => 'Parashtesa',
+'withoutinterwiki-submit'  => 'Trego',
 
 'fewestrevisions' => 'Artikuj më të paredaktuar',
 
@@ -1201,7 +1277,9 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'deadendpages'            => 'Artikuj pa rrugëdalje',
 'deadendpagestext'        => 'Artikujt në vijim nuk kanë asnjë lidhje me artikuj e tjerë në këtë wiki.',
 'protectedpages'          => 'Faqe të mbrojtura',
+'protectedpages-indef'    => 'Vetëm mbrojtjet pa afat',
 'protectedpagestext'      => 'Faqet e mëposhtme janë të mbrojtura nga zhvendosja apo redaktimi',
+'protectedpagesempty'     => 'Nuk ka faqe të mbrojtura me të dhënat e kërkuara.',
 'protectedtitles'         => 'Titujt e mbrojtur',
 'protectedtitlestext'     => 'Krijimi i këtyre titujve është i mbrojtur',
 'protectedtitlesempty'    => 'Asnjë titull i mbrojtur nuk u gjet në këtë hapësirë.',
@@ -1218,6 +1296,8 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'unusedcategoriestext'    => 'Kategoritë në vazhdim ekzistojnë edhe pse asnjë artikull ose kategori nuk i përdor ato.',
 'notargettitle'           => 'Asnjë artikull',
 'notargettext'            => 'Nuk keni dhënë asnjë artikull ose përdorues mbi të cilin të përdor këtë funksion.',
+'nopagetitle'             => 'Faqja e kërkuar nuk ekziston',
+'nopagetext'              => 'Faqja e kërkuar nuk ekziston.',
 'pager-newer-n'           => '{{PLURAL:$1|1 më i reja|$1 më të reja}}',
 'pager-older-n'           => '{{PLURAL:$1|1 më i vjetër|$1 më të vjetra}}',
 
@@ -2175,7 +2255,6 @@ Vendosni emrin e skedës pa parashtesën "{{ns:image}}:".',
 'specialpages-group-changes'     => 'Ndryshime së fundmi dhe regjistra',
 'specialpages-group-media'       => 'Përmbledhje media dhe ngarkime',
 'specialpages-group-users'       => 'Përdoruesit dhe privilegjet',
-'specialpages-group-needy'       => 'Faqe në nevojë për përmirësime',
 'specialpages-group-highuse'     => 'Faqe të shumëpërdorura',
 
 );

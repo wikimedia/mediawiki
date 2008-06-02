@@ -897,7 +897,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'searchall'                 => 'all',
 'showingresults'            => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
 'showingresultsnum'         => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
-'showingresultstotal'       => "Weis ënnendrënner d'Resultater '''$1 - $2''' vu(n) '''$3'''",
+'showingresultstotal'       => "Weis ënnendrënner d'{{PLURAL:$3|Resultat|Resultater}} '''$1 - $2''' vu(n) '''$3'''",
 'nonefound'                 => "'''Opgepasst''': Nëmmen e puer Nimmraim gi ''par default'' duerchsicht. Versicht an ärer Ufro ''all:'' anzestellen fir de dsamte contenu (inklusiv Diskussiounssäiten, Schablonen, ...), oder benotzed déi gwënscht Nimmräim als Virastellung.",
 'powersearch'               => 'Erweidert Sich',
 'powersearch-legend'        => 'Erweidert Sich',
@@ -960,6 +960,8 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'servertime'               => 'Serverzäit:',
 'guesstimezone'            => 'Vum Browser iwwerhuelen',
 'allowemail'               => 'E-Maile vun anere Benotzer kréien.',
+'prefs-searchoptions'      => 'Sichoptiounen',
+'prefs-namespaces'         => 'Nummraim',
 'defaultns'                => 'Dës Nimmraim duerchsichen:',
 'default'                  => 'Standard',
 'files'                    => 'Fichieren',
@@ -1056,6 +1058,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'right-markbotedits'         => 'Annuléiert Ännerungen als Botännerungen uweisen',
 'right-import'               => 'Säite vun anere Wikien importéieren',
 'right-importupload'         => 'Säite vun engem eropgeluedene Ficher importéieren',
+'right-patrol'               => 'Aneren hir Ännerungen als kontrolléiert markéieren',
 'right-unwatchedpages'       => 'Lëscht vun den net iwwerwaachte Säite weisen',
 'right-mergehistory'         => 'Zesummeféierung vum Historique vun de Versioune vu Säiten',
 'right-userrights'           => 'All Benotzerrechter änneren',
@@ -1263,6 +1266,8 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filedelete-success-old'      => "<span class=\"plainlinks\">D'Versioun vum Fichier '''[[Media:\$1|\$1]]''' vum \$2, \$3 Auer gouf geläscht.</span>",
 'filedelete-nofile'           => "'''$1''' gëtt et net op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Et gëtt vun '''$1''' keng Versioun vum $2, $3 Auer.",
+'filedelete-iscurrent'        => "Dir versicht déi aktuell Versioun vun dësem Fichier ze läschen.
+Setzt dëse w.e.g. vir d'éischt op méi eng al Versioun zréck.",
 'filedelete-otherreason'      => 'Aneren/zousätzleche Grond:',
 'filedelete-reason-otherlist' => 'Anere Grond',
 'filedelete-reason-dropdown'  => "* Allgemeng Läschgrënn
@@ -2040,13 +2045,19 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'mw_math_png'    => 'Ëmmer als PNG duerstellen',
 'mw_math_simple' => 'Einfachen TeX als HTML duerstellen, soss PNG',
 'mw_math_html'   => 'Wa méiglech als HTML duerstellen, soss PNG',
+'mw_math_source' => 'Als TeX loossen (fir Textbrowser)',
 'mw_math_modern' => 'Recommandéiert fir modern Browser',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Als kontrolléiert markéieren',
+'markaspatrolledtext'        => 'Dës Säit als kontrolléiert markéieren',
+'markedaspatrolled'          => 'ass als kontrolléiert markéiert',
+'markedaspatrolledtext'      => 'Déi gewielte Versioun gouf als kontrolléiert markéiert.',
+'markedaspatrollederror'     => 'Kann net als "kontrolléiert" markéiert ginn.',
 'markedaspatrollederrortext' => 'Dir musst eng Säitenännerung auswielen.',
 
 # Patrol log
+'patrol-log-page' => 'Kontroll-Logbuch',
 'patrol-log-auto' => '(automatesch)',
 
 # Image deletion
@@ -2454,9 +2465,12 @@ Benotzt w.e.g. de normale Preview (Kucken ouni ofzespäicheren).',
 'version-software-version'         => 'Versioun',
 
 # Special:Filepath
-'filepath'        => 'Pad bäi de Fichier',
-'filepath-page'   => 'Fichier:',
-'filepath-submit' => 'Pad',
+'filepath'         => 'Pad bäi de Fichier',
+'filepath-page'    => 'Fichier:',
+'filepath-submit'  => 'Pad',
+'filepath-summary' => 'Matt dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem engem Fichier direkt offroen. Den ugefrote Fichier gëtt direkt gewisen respektiv mat enger verbonner Applikatioun gestart.
+
+D\'Ufro muss ouni den Zousaz "{{ns:image}}": gemaach ginn.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sich no duebele Fichieren',
@@ -2477,7 +2491,6 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 'specialpages-group-changes'     => 'Rezent Ännerungen a Lëschten',
 'specialpages-group-media'       => 'Medie-Rapporten an Uploaden',
 'specialpages-group-users'       => 'Benotzer a Rechter',
-'specialpages-group-needy'       => 'Säiten déi nach Mataarbecht brauchen',
 'specialpages-group-highuse'     => 'Dacks benotzte Säiten',
 
 );

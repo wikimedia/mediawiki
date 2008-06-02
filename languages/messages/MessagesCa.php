@@ -2676,7 +2676,6 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 'specialpages-group-changes'     => 'Canvis recents i registres',
 'specialpages-group-media'       => 'Informes multimèdia i càrregues',
 'specialpages-group-users'       => 'Usuaris i drets',
-'specialpages-group-needy'       => 'Pàgines amb necessitat de treball',
 'specialpages-group-highuse'     => "Pàgines d'alt ús",
 
 );

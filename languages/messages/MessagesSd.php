@@ -68,6 +68,7 @@ $messages = array(
 
 'about'          => 'بابت',
 'article'        => 'مسوَدو',
+'qbfind'         => 'ڳوليو',
 'qbbrowse'       => 'جھانگيو',
 'qbedit'         => 'سنواريو',
 'qbpageoptions'  => 'هيءُ صفحو',
@@ -132,10 +133,11 @@ $messages = array(
 'mainpage-description' => 'مُک صفحو',
 'policy-url'           => 'Project:پاليسي',
 
-'youhavenewmessages' => 'توهان لاءِ $1 ($2) آهن.',
-'newmessageslink'    => 'نوان نياپا',
-'editsection'        => 'سنواريو',
-'editold'            => 'سنواريو',
+'youhavenewmessages'  => 'توهان لاءِ $1 ($2) آهن.',
+'newmessageslink'     => 'نوان نياپا',
+'newmessagesdifflink' => 'آخري تبديلي',
+'editsection'         => 'سنواريو',
+'editold'             => 'سنواريو',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'صفحو',
@@ -149,6 +151,7 @@ $messages = array(
 'readonly'            => 'اعدادخانو بنديل',
 'missingarticle-diff' => '(تفاوت: $1، $2)',
 'internalerror'       => 'اندروني خرابي',
+'badtitle'            => 'غيردرست عنوان',
 'viewsource'          => 'ڪوڊ ڏسو',
 'viewsourcefor'       => 'براءِ $1',
 'viewsourcetext'      => 'توهان هن صفحي جو ڪوڊ ڏسي ۽ نقل ڪري سگھو ٿا:',
@@ -158,15 +161,21 @@ $messages = array(
 'logouttitle'                => 'يوزر لاگ آئوٽ',
 'yourname'                   => 'يُوزرنانءُ:',
 'yourpassword'               => 'ڳجھو لفظ:',
+'login'                      => 'لاگ اِن',
 'logout'                     => 'لاگ آئوٽ',
+'nologin'                    => 'پنهنجو کاتو نه ٿا رکو؟ $1.',
 'createaccount'              => 'کاتو کوليو',
+'gotaccount'                 => 'ڇا اڳي ئي کاتو رکو ٿا؟ $1.',
 'gotaccountlink'             => 'لاگ اِن',
 'createaccountmail'          => 'بذريعه برق ٽپال',
 'yourrealname'               => 'اصل نالو:',
 'badsiglength'               => 'اها صحيح تمام وڏي آهي.
 $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'loginsuccesstitle'          => 'لاگ اِن ڪامياب',
+'loginsuccess'               => "'''هاڻي توهان {{SITENAME}} تي بطور \"\$1\" لاگ اِن ٿيل آهيو.'''",
 'nouserspecified'            => 'توهان کي ڪو يوزرنانءُ ڄاڻائڻو پوندو.',
+'passwordremindertitle'      => '{{SITENAME}} لاءِ نئون عارضي ڳجھو لفظ',
+'noemail'                    => 'يُوزر "$1" جي ڪو به برق ٽپال پتو درج ٿيل ناهي.',
 'mailerror'                  => 'ٽپال اماڻڻ ۾ چُڪَ: $1',
 'acct_creation_throttle_hit' => 'معاف ڪجَو، اوهان اڳي ئي $1 کاتا کولي چڪا آهيو. ان کان وڌيڪ نه ٿا کولي سگھجن.',
 'accountcreated'             => 'کاتو کلي چڪو',
@@ -182,6 +191,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'blockedtitle'         => 'يُوزر بندشيل آهي.',
 'blockednoreason'      => 'سبب اڻڄاڻايل',
 'accmailtitle'         => 'ڳجھو لفظ اماڻجي چڪو.',
+'newarticle'           => '(نئون)',
 'templatesusedpreview' => 'هن پيش نگاهه ۾ استعمال ٿيل سانچا:',
 
 # History pages
@@ -189,6 +199,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'currentrev'   => 'هاڻوڪو مسودو',
 'cur'          => 'ھاڻوڪو',
 'page_first'   => 'پهريون',
+'page_last'    => 'آخري',
 'histfirst'    => 'اوائلي ترين',
 'histlast'     => 'تازوترين',
 'historyempty' => '(خالي)',
@@ -221,12 +232,22 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'right-undelete' => 'ڪو صفحو اڻڊاهيو',
 
 # Recent changes
-'rcshowhidebots' => '$1 بوٽس',
-'rcshowhideliu'  => '$1 لاگ اِن ٿيل يوزرس',
-'hist'           => 'سوانح',
+'rcshowhidebots'  => '$1 بوٽس',
+'rcshowhideliu'   => '$1 لاگ اِن ٿيل يوزرس',
+'rcshowhideanons' => '$1 نامعلوم يُوزرس',
+'rcshowhidemine'  => 'منهنجون ترميمون $1',
+'hist'            => 'سوانح',
 
 # Recent changes linked
 'recentchangeslinked-title' => '"$1" سان لاڳاپيل تبديليون',
+
+# Upload
+'uploadbtn'     => 'فائيل چاڙهيو',
+'uploadlogpage' => 'چاڙهه لاگ',
+'uploadedimage' => '"[[$1]]" چاڙهيو ويو',
+
+# Special:Imagelist
+'imagelist' => 'فائيل فهرست',
 
 # Image description page
 'sharedupload'                   => 'هيءَ هڪ شراڪتي چاڙهه آهي، تنهنڪري ان کي ٻيون رٿائون به استعمال ڪري سگھن ٿيون.',
@@ -242,6 +263,12 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Unused templates
 'unusedtemplates' => 'اڻ استعماليل سانچا',
 
+# Random redirect
+'randomredirect' => 'بلا ترتيب چورڻو',
+
+# Statistics
+'statistics' => 'انگ اکر',
+
 'disambiguations' => 'سلجھائپ صفحا',
 
 'doubleredirects' => 'ٻٽا چورڻا',
@@ -253,19 +280,28 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'withoutinterwiki' => 'ڪنهن به ٻي ٻوليءَ سان نه ڳنڍيل صفحا',
 
 # Miscellaneous special pages
+'nlinks'                  => '$1 {{PLURAL:$1|ڳنڍڻو|ڳنڍڻا}}',
 'lonelypages'             => 'يتيم صفحا',
 'uncategorizedpages'      => 'اڻ زمريل صفحا',
 'uncategorizedcategories' => 'اڻزمرايل زمرا',
 'uncategorizedimages'     => 'اڻزمرايل فائيل',
 'uncategorizedtemplates'  => 'اڻزمرايل سانچا',
+'unusedcategories'        => 'اڻ استعماليل زمرا',
+'unusedimages'            => 'اڻ استعماليل فائيلس',
 'wantedcategories'        => 'گھربل زمرا',
 'wantedpages'             => 'گھربل صفحا',
+'prefixindex'             => 'اڳياڙي ڏسڻي',
 'shortpages'              => 'مختصر صفحا',
 'longpages'               => 'طويل صفحا',
 'protectedpages'          => 'تحفظيل صفحا',
 'listusers'               => 'يُوزر فهرست',
 'ancientpages'            => 'قديم ترين صفحا',
 'move'                    => 'چوريو',
+'movethispage'            => 'هيءُ صفحو چوريو',
+
+# Special:Log
+'specialloguserlabel'  => 'يُوزر:',
+'speciallogtitlelabel' => 'عنوان:',
 
 # Special:Allpages
 'allpages'       => 'سڀ صفحا',
@@ -282,14 +318,17 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'emailuser' => 'هن يوزر کي برق ٽپال اماڻيو',
 
 # Watchlist
-'watchlistfor'        => "(براءِ '''$1''')",
-'addedwatch'          => 'ٽيٽ فھرست ۾ شامل ڪيو ويو.',
-'removedwatch'        => 'ٽيٽ فهرست مان هٽايو ويو',
-'watch'               => 'ٽيٽيو',
-'unwatch'             => 'اڻ ٽيٽيو',
-'unwatchthispage'     => 'ٽيٽڻ ڇڏيو',
-'watchlist-hide-bots' => 'بوٽ جون ڪيل ترميمون لڪايو',
-'watchlist-hide-own'  => 'منهنجون ڪيل ترميمون لڪايو',
+'watchlistfor'         => "(براءِ '''$1''')",
+'addedwatch'           => 'ٽيٽ فھرست ۾ شامل ڪيو ويو.',
+'removedwatch'         => 'ٽيٽ فهرست مان هٽايو ويو',
+'watch'                => 'ٽيٽيو',
+'watchthispage'        => 'هيءُ صفحو ٽيٽيو',
+'unwatch'              => 'اڻ ٽيٽيو',
+'unwatchthispage'      => 'ٽيٽڻ ڇڏيو',
+'wlshowlast'           => 'پوين $1 ڪلاڪن $2 ڏينهن جا $3 ڏيکاريو',
+'watchlist-hide-bots'  => 'بوٽ جون ڪيل ترميمون لڪايو',
+'watchlist-hide-own'   => 'منهنجون ڪيل ترميمون لڪايو',
+'watchlist-hide-minor' => 'معمولي ترميمون لڪايو',
 
 'enotif_newpagetext' => 'هيءُ هڪ نئون صفحو آهي.',
 'changed'            => 'تبديل ٿي ويو',
@@ -303,19 +342,29 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'deleteotherreason'     => 'اڃا ڪو ٻيو سبب:',
 'deletereasonotherlist' => 'ٻيو سبب',
 'rollbacklink'          => 'واپس ورايو',
+'protectlogpage'        => 'تحفظ لاگ',
 'protect-legend'        => 'تحفظڻ جي پڪ ڪريو',
 'protectcomment'        => 'تاثرات:',
 'protect-locked-access' => 'توهان جو کاتو صفحن جي تحفظاتي سطح تبديلي ڪرڻ جا اختيار نه ٿو رکي. هيٺ صفحي جون وقوعات (سيٽڱس) پيش ڪجن ٿيون <strong>$1</strong>:',
+'protect-fallback'      => '"$1" جي اجازت گھرجي',
 'protect-level-sysop'   => 'صرف منتظمين',
 'protect-cascade'       => 'هن صفحي ۾ شامل صفحن کي تحفظيو (تحفظ در تحفظ)',
 'restriction-type'      => 'اجازتنامو:',
 'pagesize'              => '(ٻاٽڻيون)',
 
 # Undelete
+'undeletebtn'          => 'بحاليو',
 'undelete-error-short' => 'هيءُ فائيل اڻڊاهيندي چُڪَ ٿي آهي: $1',
+
+# Namespace form on various pages
+'invert' => 'چونڊ ابتيو',
 
 # Contributions
 'contributions' => 'يوزر جون ڀاڱيداريون',
+'contribsub2'   => 'براءِ $1 ($2)',
+
+'sp-contributions-newbies-sub' => 'نون کاتن لاءِ',
+'sp-contributions-blocklog'    => 'بنسش لاگ',
 
 # What links here
 'istemplate' => 'شموليت',
@@ -324,6 +373,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'blockip'                  => 'يُوزر کي روڪيو',
 'ipboptions'               => '2 ڪلاڪ:2 ڪلاڪ،1 ڏينهن:1 ڏينهن،3 ڏينهن:3 ڏينهن،1 هفتو:1 هفتو،2 هفتا:2 هفتا،1 مهينو:1 مهينو،3 مهينا:3 مهينا،6 مهينا:6 مهينا،1 سال:1 سال،لامحدود:لامحدود', # display1:time1,display2:time2,...
 'badipaddress'             => 'ناقابلڪار آءِ پي پتو',
+'ipblocklist'              => 'بندشيل يوزرنانءُ ۽ آءِ پي پتا',
 'infiniteblock'            => 'لامحدود',
 'anononlyblock'            => 'فقط نامعلوم',
 'noautoblockblock'         => 'خودڪار بندش روڪيل',
@@ -335,10 +385,12 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'block-log-flags-anononly' => 'فقط نامعلوم يوزرس',
 
 # Move page
+'movearticle'             => 'صفحو چوريو:',
 'newtitle'                => 'نئين عنوان ڏانهن:',
 'move-watch'              => 'هيءُ صفحو ٽيٽيو',
 'movepagebtn'             => 'صفحو چوريو',
 'pagemovedsub'            => 'چورڻ جو عمل ڪامياب ٿيو',
+'movetalk'                => 'لاڳاپيل مباحثي صفحو چوريو',
 'movereason'              => 'سبب:',
 'revertmove'              => 'ورايو',
 'delete_and_move_confirm' => 'جي ها، صفحو ڊاهيو',
@@ -356,6 +408,8 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 # Tooltip help for the actions
 'tooltip-ca-addsection' => 'هن بحث تي تاثرات درج ڪرايو',
+'tooltip-ca-protect'    => 'هيءُ صفحو تحفظيو',
+'tooltip-ca-delete'     => 'هيءُ صفحو ڊاهيو',
 'tooltip-n-mainpage'    => 'مک صفحو گھمو',
 'tooltip-t-print'       => 'هن صفحي جو ڇاپائتو پرت',
 'tooltip-ca-nstab-help' => 'امدادي صفحو ڏسو',

@@ -11,6 +11,7 @@
  * @author Manie
  * @author Arnobarnard
  * @author Anrie
+ * @author Naudefj
  */
 
 $skinNames = array(
@@ -346,6 +347,7 @@ $1',
 'missingarticle'       => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
 Nie databasisfout nie, moontlik sagtewarefout.
 Raporteer die adres asseblief aan enige administrateur.',
+'missingarticle-rev'   => '(weergawe#: $1)',
 'readonly_lag'         => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
@@ -398,6 +400,8 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'yourpassword'               => 'Wagwoord:',
 'yourpasswordagain'          => 'Herhaal wagwoord',
 'remembermypassword'         => 'Onthou my wagwoord oor sessies.',
+'yourdomainname'             => 'U domein:',
+'externaldberror'            => "'n Databasis fout het voorgekom tydens aanmelding of jy word nie toegelaat om jou eksterne rekening op te dateer nie.",
 'loginproblem'               => '<b>Daar was probleme met jou intekening.</b><br />Probeer weer.',
 'login'                      => 'Teken in',
 'nav-login-createaccount'    => 'Teken in',
@@ -417,6 +421,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'youremail'                  => 'E-pos',
 'username'                   => 'Gebruikersnaam:',
 'uid'                        => 'Gebruiker-ID:',
+'prefs-memberingroups'       => 'Lid van {{PLURAL:$1|groep|groepe}}:',
 'yourrealname'               => 'Regte naam:',
 'yourlanguage'               => 'Taal:',
 'yournick'                   => 'Bynaam (vir handtekening)',
@@ -482,6 +487,7 @@ Indien hierdie rekening foutief geskep is, kan u hierdie boodskap ignoreer.',
 'resetpass_submit'    => 'Stel wagwoord en teken in',
 'resetpass_success'   => 'U wagwoord is suksesvol gewysig! Besig om U in te teken ...',
 'resetpass_forbidden' => 'Wagwoorde kannie op {{SITENAME}} gewysig word nie.',
+'resetpass_missing'   => "U het nie 'n wagwoord verskaf nie.",
 
 # Edit page toolbar
 'bold_sample'     => 'Vet teks',
@@ -581,6 +587,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'readonlywarning'          => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later. </strong>",
 'protectedpagewarning'     => '<strong>WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.</strong>',
 'semiprotectedpagewarning' => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
+'titleprotectedwarning'    => '<strong>WAARSKUWING:  Die bladsy is gesluit sodat net sekere gebruikers dit kan skep.</strong>',
 'templatesused'            => 'Sjablone in gebruik op hierdie blad:',
 'templatesusedpreview'     => 'Sjablone in hierdie voorskou gebruik:',
 'templatesusedsection'     => 'Sjablone gebruik in hierdie afdeling:',
@@ -588,8 +595,12 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'template-semiprotected'   => '(half-beskerm)',
 'hiddencategories'         => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
 'nocreatetitle'            => 'Bladsy skepping beperk',
+'nocreate-loggedin'        => 'U het nie regte om nuwe blaaie op {{SITENAME}} te skep nie.',
 'permissionserrors'        => 'Toestemmings Foute',
 'permissionserrorstext'    => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
+
+# "Undo" feature
+'undo-summary' => 'Rol weergawe $1 deur [[Spesiaal:Contributions/$2|$2]] terug. ([[Gebruikerbespreking:$2|Bespreek]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan nie rekening skep nie',
@@ -615,6 +626,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'deletedrev'          => '[geskrap]',
 'histfirst'           => 'Oudste',
 'histlast'            => 'Nuutste',
+'historysize'         => '({{PLURAL:$1|1 greep|$1 grepe}})',
 'historyempty'        => '(leeg)',
 
 # Revision feed
@@ -668,7 +680,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'searchresulttext'          => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Vir navraag "[[:$1]]"',
 'searchsubtitleinvalid'     => 'Vir navraag "$1"',
-'noexactmatch'              => "'''Geen bladsy met die titel \"\$1\" bestaan nie.''' Probeer 'n volteksnavraag of [[:\$1|maak die bladsy]].",
+'noexactmatch'              => "'''Geen bladsy met die titel \"\$1\" bestaan nie.''' Probeer 'n volteksnavraag of [[:\$1|skep die bladsy]].",
 'titlematches'              => 'Artikeltitel resultate',
 'notitlematches'            => 'Geen artikeltitel resultate nie',
 'textmatches'               => 'Artikelteks resultate',
@@ -677,19 +689,25 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'nextn'                     => 'volgende $1',
 'viewprevnext'              => 'Kyk na ($1) ($2) ($3).',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 woord|$2 woorde}})',
+'search-redirect'           => '(aanstuur $1)',
 'search-suggest'            => 'Het U bedoel: $1',
 'search-interwiki-caption'  => 'Suster projekte',
 'search-interwiki-default'  => '$1 resultate:',
 'search-interwiki-more'     => '(meer)',
 'search-mwsuggest-enabled'  => 'met voorstelle',
 'search-mwsuggest-disabled' => 'geen voorstelle',
+'mwsuggest-disable'         => 'Deaktiveer AJAX voorstelle',
 'searchall'                 => 'alle',
 'showingresults'            => "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} wat met #'''$2''' begin.",
+'showingresultsnum'         => "Hieronder {{PLURAL:$3|is '''1''' resultaat|is '''$3''' resultate}} vanaf #'''$2'''.",
+'showingresultstotal'       => "Hieronder is {{PLURAL:$3|resultaat '''$1''' van '''$3'''|resultate '''$1 - $2''' van '''$3'''}}",
 'nonefound'                 => "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene
 woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (slegs blaaie wat alle navraagwoorde
 bevat, word gewys).",
 'powersearch'               => 'Soek',
 'powersearch-legend'        => 'Gevorderde soektog',
+'powersearch-ns'            => 'Soek in naamruimtes:',
+'powersearch-redir'         => 'Wys aanstuurbladsye',
 'powersearch-field'         => 'Soek vir',
 'search-external'           => 'Eksterne soektog',
 'searchdisabled'            => '{{SITENAME}} se soekfunksie is tans afgeskakel ter wille van werkverrigting. Gebruik gerus intussen Google of Yahoo! Let daarop dat hulle indekse van die {{SITENAME}}-inhoud verouderd mag wees.',
@@ -747,36 +765,49 @@ om voorkeure te spesifiseer.',
 'servertime'               => 'Tyd op die bediener is nou',
 'guesstimezone'            => 'Vul in vanaf webblaaier',
 'allowemail'               => 'Laat e-pos van ander toe',
+'prefs-namespaces'         => 'Naamruimtes',
 'defaultns'                => 'Verstek naamruimtes vir soektog:',
 'default'                  => 'verstek',
 'files'                    => 'Lêers',
 
 # User rights
-'userrights-lookup-user'      => 'Beheer gebruikersgroepe',
-'userrights-user-editname'    => 'Voer gebruikersnaam in:',
-'editusergroup'               => 'Wysig gebruikersgroepe',
-'editinguser'                 => "Besig om gebruikersrechte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
-'userrights-editusergroup'    => 'wysig gebruikersgroepe',
-'saveusergroups'              => 'Stoor gebruikersgroepe',
-'userrights-groupsmember'     => 'Lid van:',
-'userrights-groupsremovable'  => 'Skrapbare groepen:',
-'userrights-groupsavailable'  => 'Beskikbare groepen:',
-'userrights-reason'           => 'Rede vir wysiging:',
-'userrights-changeable-col'   => 'Groepe wat U kan verander',
-'userrights-unchangeable-col' => 'Groepe wat U nie kan verander nie',
+'userrights'                       => 'Bestuur gebruikersregte', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'           => 'Beheer gebruikersgroepe',
+'userrights-user-editname'         => 'Voer gebruikersnaam in:',
+'editusergroup'                    => 'Wysig gebruikersgroepe',
+'editinguser'                      => "Besig om gebruikersrechte van gebruiker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) te wysig",
+'userrights-editusergroup'         => 'wysig gebruikersgroepe',
+'saveusergroups'                   => 'Stoor gebruikersgroepe',
+'userrights-groupsmember'          => 'Lid van:',
+'userrights-groupsremovable'       => 'Skrapbare groepen:',
+'userrights-groupsavailable'       => 'Beskikbare groepen:',
+'userrights-reason'                => 'Rede vir wysiging:',
+'userrights-available-none'        => 'U mag nie groep lidmaatskap verander nie.',
+'userrights-available-add'         => 'U kan enige gebruiker tot {{PLURAL:$2|die group|hierdie groepe}} byvoeg: $1.',
+'userrights-available-remove'      => 'U kan enige gebruiker van {{PLURAL:$2|die group|hierdie groepe}} verwyder: $1.',
+'userrights-available-add-self'    => 'U kan uself by {{PLURAL:$2|die groep|hierdie groepe}} voeg: $1.',
+'userrights-available-remove-self' => 'Verwyder uself van {{PLURAL:$2|die groep|hierdie groepe}}: $1.',
+'userrights-no-interwiki'          => 'U het nie toestemming om gebruikersregte op ander wikis te verander nie.',
+'userrights-nodatabase'            => 'Databasis $1 bestaan nie of is nie hier beskikbaar nie.',
+'userrights-notallowed'            => 'U het nie die toestemming om gebruikersregte toe te ken nie.',
+'userrights-changeable-col'        => 'Groepe wat U kan verander',
+'userrights-unchangeable-col'      => 'Groepe wat U nie kan verander nie',
 
 # Groups
-'group'            => 'Groep:',
-'group-user'       => 'Gebruikers',
-'group-bot'        => 'Robotte',
-'group-sysop'      => 'Administrateurs',
-'group-bureaucrat' => 'Burokrate',
-'group-all'        => '(alle)',
+'group'               => 'Groep:',
+'group-user'          => 'Gebruikers',
+'group-autoconfirmed' => 'Geregistreerde gebruikers',
+'group-bot'           => 'Robotte',
+'group-sysop'         => 'Administrateurs',
+'group-bureaucrat'    => 'Burokrate',
+'group-suppress'      => 'Toesighouers',
+'group-all'           => '(alle)',
 
 'group-user-member'       => 'Gebruiker',
 'group-bot-member'        => 'Robot',
 'group-sysop-member'      => 'Administrateur',
 'group-bureaucrat-member' => 'Burokraat',
+'group-suppress-member'   => 'Toesighouer',
 
 'grouppage-bot'        => '{{ns:project}}:Robotte',
 'grouppage-sysop'      => '{{ns:project}}:Administrateurs',
@@ -785,8 +816,14 @@ om voorkeure te spesifiseer.',
 # Rights
 'right-read'           => 'Lees bladsye',
 'right-edit'           => 'Wysig bladsye',
+'right-createpage'     => 'Skep bladsye (nie besprekingsblaaie nie)',
+'right-createtalk'     => 'Skep besprekingsbladsye',
+'right-createaccount'  => 'Skep nuwe gebruikersrekeninge',
+'right-minoredit'      => "Merk as 'n klein verandering",
 'right-move'           => 'Skuif bladsye',
 'right-upload'         => 'Laai lêers op',
+'right-reupload'       => "Oorskryf 'n bestaande lêer",
+'right-reupload-own'   => "Oorskryf 'n lêer wat u self opgelaai het",
 'right-delete'         => 'Vee bladsye uit',
 'right-bigdelete'      => 'Skrap bladsye met groot geskiedenisse',
 'right-deleterevision' => 'Skrap en ontskrap spesifieke hersienings van bladsye',
@@ -908,8 +945,10 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 
 # Image description page
 'filehist'                  => 'Lêergeskiedenis',
+'filehist-help'             => 'Klik op die datum/tyd om te sien hoe die lêer destyds gelyk het.',
 'filehist-deleteall'        => 'verwyder alles',
 'filehist-deleteone'        => 'skrap',
+'filehist-revert'           => 'rol terug',
 'filehist-current'          => 'huidig',
 'filehist-datetime'         => 'Datum/Tyd',
 'filehist-user'             => 'Gebruiker',
@@ -919,6 +958,9 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'imagelinks'                => 'Prentskakels',
 'linkstoimage'              => 'Die volgende bladsye gebruik hierdie prent:',
 'nolinkstoimage'            => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
+'redirectstofile'           => 'Die volgende lêers is aansture na die lêer:',
+'duplicatesoffile'          => 'Die volgende lêers is duplikate van die lêer:',
+'sharedupload'              => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word.',
 'shareduploadwiki-linktext' => 'lêer beskrywingsbladsy',
 'noimage'                   => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
 'noimage-linktext'          => 'laai dit',
@@ -927,6 +969,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 
 # File reversion
 'filerevert-comment' => 'Kommentaar:',
+'filerevert-submit'  => 'Rol terug',
 
 # File deletion
 'filedelete'                  => 'Skrap $1',
@@ -944,6 +987,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 
 # MIME search
 'mimesearch' => 'MIME-soek',
+'mimetype'   => 'MIME-tipe:',
 'download'   => 'laai af',
 
 # Unwatched pages
@@ -958,10 +1002,12 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'unusedtemplateswlh'  => 'ander skakels',
 
 # Random page
-'randompage' => 'Lukrake bladsy',
+'randompage'         => 'Lukrake bladsy',
+'randompage-nopages' => 'Daar is geen bladye in die naamspasie.',
 
 # Random redirect
-'randomredirect' => 'Lukrake aanstuur',
+'randomredirect'         => 'Lukrake aanstuur',
+'randomredirect-nopages' => 'Daar is geen aansture in die naamspasie.',
 
 # Statistics
 'statistics'             => 'Statistiek',
@@ -1080,6 +1126,7 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 # Special:Categories
 'categories'                    => 'Kategorieë',
 'categoriespagetext'            => 'Die volgende kategorieë bestaan op die wiki.',
+'categoriesfrom'                => 'Wys kategorieë vanaf:',
 'special-categories-sort-count' => 'sorteer volgens getal',
 'special-categories-sort-abc'   => 'sorteer alfabeties',
 
@@ -1089,9 +1136,11 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'listusers-noresult' => 'Geen gebruiker gevind.',
 
 # Special:Listgrouprights
+'listgrouprights'          => 'Gebruikersgroepregte',
 'listgrouprights-group'    => 'Groep',
 'listgrouprights-rights'   => 'Regte',
 'listgrouprights-helppage' => 'Help:Groep regte',
+'listgrouprights-members'  => '(lys van lede)',
 
 # E-mail user
 'mailnologin'     => 'Geen versendadres beskikbaar',
@@ -1134,6 +1183,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'notanarticle'         => "Nie 'n artikel",
 'notvisiblerev'        => 'Weergawe is verwyder',
 'watchnochange'        => 'Geen item op die dophoulys is geredigeer in die gekose periode nie.',
+'watchlist-details'    => '{{PLURAL:$1|$1 bladsy|$1 bladsye}} in dophoulys (beskrekinsbadsye uitgesluit).',
 'wlheader-enotif'      => '* E-pos notifikasie is aangeskakel.',
 'wlheader-showupdated' => "* Bladsye wat gewysig is sedert U laaste besoek aan hulle word in '''vetdruk''' gewys",
 'watchlistcontains'    => 'Jou dophoulys bevat $1 {{PLURAL:$1|bladsy|bladsye}}.',
@@ -1198,6 +1248,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'protectcomment'              => 'Rede vir beskerming:',
 'protectexpiry'               => 'Verval:',
 'protect-default'             => '(normaal)',
+'protect-fallback'            => 'Hiervoor is "$1" regte nodig',
 'protect-level-autoconfirmed' => 'Beskerm teen anonieme wysigings',
 'protect-level-sysop'         => 'Slegs administrateurs',
 'minimum-size'                => 'Minimum grootte',
@@ -1358,6 +1409,7 @@ Kies asseblief 'n ander naam.",
 '1movedto2_redir'         => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
 'movelogpage'             => 'Skuiflogboek',
 'movereason'              => 'Rede:',
+'revertmove'              => 'rol terug',
 'delete_and_move'         => 'Skrap en skuif',
 'delete_and_move_text'    => '==Skrapping benodig==
 
@@ -1508,6 +1560,9 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'ilsubmit'      => 'Soek',
 'bydate'        => 'volgens datum',
 
+# Metadata
+'metadata' => 'Metadata',
+
 # EXIF tags
 'exif-imagewidth'          => 'Wydte',
 'exif-imagelength'         => 'Hoogte',
@@ -1535,7 +1590,8 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 
 'exif-subjectdistance-value' => '$1 meter',
 
-'exif-meteringmode-0' => 'Onbekend',
+'exif-meteringmode-0'   => 'Onbekend',
+'exif-meteringmode-255' => 'Ander',
 
 'exif-lightsource-0'  => 'Onbekend',
 'exif-lightsource-1'  => 'Sonlig',
@@ -1645,13 +1701,19 @@ $1',
 'watchlisttools-raw'  => 'Redigeer brondophoulys',
 
 # Special:Version
-'version'                  => 'Weergawe', # Not used as normal message but as header for the special page itself
-'version-specialpages'     => 'Spesiale bladsye',
-'version-version'          => 'Weergawe',
-'version-license'          => 'Lisensie',
-'version-software'         => 'Geïnstalleerde sagteware',
-'version-software-product' => 'Produk',
-'version-software-version' => 'Weergawe',
+'version'                   => 'Weergawe', # Not used as normal message but as header for the special page itself
+'version-extensions'        => 'Uitbreidings geïnstalleer',
+'version-specialpages'      => 'Spesiale bladsye',
+'version-variables'         => 'Veranderlikes',
+'version-other'             => 'Ander',
+'version-hooks'             => 'Hoeke',
+'version-hook-name'         => 'Hoek naam',
+'version-hook-subscribedby' => 'Gebruik deur',
+'version-version'           => 'Weergawe',
+'version-license'           => 'Lisensie',
+'version-software'          => 'Geïnstalleerde sagteware',
+'version-software-product'  => 'Produk',
+'version-software-version'  => 'Weergawe',
 
 # Special:Filepath
 'filepath'        => 'Lêerpad',
@@ -1659,6 +1721,9 @@ $1',
 'filepath-submit' => 'Pad',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Soek duplikaat lêers',
+'fileduplicatesearch-legend'   => "Search for a duplicate
+Soek vir 'n duplikaat",
 'fileduplicatesearch-filename' => 'Lêernaam:',
 'fileduplicatesearch-submit'   => 'Soek',
 
@@ -1669,7 +1734,6 @@ $1',
 'specialpages-group-changes'     => 'Onlangse wysigings en boekstawings',
 'specialpages-group-media'       => 'Media verslae en oplaai',
 'specialpages-group-users'       => 'Gebruikers en regte',
-'specialpages-group-needy'       => 'Bladsye wat werk nodig het',
 'specialpages-group-highuse'     => 'Baie gebruikte bladsye',
 
 );

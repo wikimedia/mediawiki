@@ -17,6 +17,7 @@
  * @author Ficell
  * @author Pi.C.Noizecehx
  * @author Kwj2772
+ * @author ITurtle
  */
 
 $namespaceNames = array(
@@ -274,6 +275,8 @@ $messages = array(
 'disclaimerpage'       => 'Project:면책 조항',
 'edithelp'             => '편집 도움말',
 'edithelppage'         => 'Help:편집하기',
+'faq'                  => 'FAQ',
+'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:목차',
 'mainpage'             => '대문',
 'mainpage-description' => '대문',
@@ -683,24 +686,27 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-multi'              => '(중간 $1개의 편집이 숨겨짐)',
 
 # Search results
-'searchresults'         => '검색 결과',
-'searchresulttext'      => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
-'searchsubtitle'        => "검색 단어 '''[[:$1]]'''",
-'searchsubtitleinvalid' => "검색 단어 '''$1'''",
-'noexactmatch'          => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
-'titlematches'          => '문서 제목 일치',
-'notitlematches'        => '해당하는 제목 없음',
-'textmatches'           => '문서 내용 일치',
-'notextmatches'         => '해당하는 문서 없음',
-'prevn'                 => '이전 $1개',
-'nextn'                 => '다음 $1개',
-'viewprevnext'          => '보기: ($1) ($2) ($3).',
-'showingresults'        => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
-'showingresultsnum'     => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
-'nonefound'             => "'''참고''': ‘have’, ‘from’과 같은 일반적인 단어는 검색 색인에 들어가지 않아서, 이런 단어를 포함한 경우 검색이 효과적이지 않을 수 있습니다. 또는 여러 단어를 동시에 검색한 경우에도 효과적인 검색이 되지 않습니다(검색하려는 단어가 모두 들어 있는 문서만이 결과에 나타납니다).",
-'powersearch'           => '찾기',
-'powersearch-legend'    => '더 찾아보기',
-'searchdisabled'        => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
+'searchresults'            => '검색 결과',
+'searchresulttext'         => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
+'searchsubtitle'           => "검색 단어 '''[[:$1]]'''",
+'searchsubtitleinvalid'    => "검색 단어 '''$1'''",
+'noexactmatch'             => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
+'titlematches'             => '문서 제목 일치',
+'notitlematches'           => '해당하는 제목 없음',
+'textmatches'              => '문서 내용 일치',
+'notextmatches'            => '해당하는 문서 없음',
+'prevn'                    => '이전 $1개',
+'nextn'                    => '다음 $1개',
+'viewprevnext'             => '보기: ($1) ($2) ($3).',
+'search-interwiki-caption' => '자매 프로젝트',
+'search-interwiki-default' => '$1 결과:',
+'search-interwiki-more'    => '(더 보기)',
+'showingresults'           => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
+'showingresultsnum'        => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
+'nonefound'                => "'''참고''': ‘have’, ‘from’과 같은 일반적인 단어는 검색 색인에 들어가지 않아서, 이런 단어를 포함한 경우 검색이 효과적이지 않을 수 있습니다. 또는 여러 단어를 동시에 검색한 경우에도 효과적인 검색이 되지 않습니다(검색하려는 단어가 모두 들어 있는 문서만이 결과에 나타납니다).",
+'powersearch'              => '찾기',
+'powersearch-legend'       => '더 찾아보기',
+'searchdisabled'           => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
 # Preferences page
 'preferences'              => '사용자 환경 설정',
@@ -792,6 +798,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'group-bureaucrat'    => '뷰로크랫',
 'group-all'           => '(모두)',
 
+'group-user-member'       => '사용자',
 'group-bot-member'        => '봇',
 'group-sysop-member'      => '관리자',
 'group-bureaucrat-member' => '뷰로크랫',
@@ -801,6 +808,19 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'grouppage-bureaucrat' => '{{ns:project}}:뷰로크랫',
 
 # Rights
+'right-read'             => '문서 읽기',
+'right-edit'             => '문서 편집',
+'right-createpage'       => '문서 생성 (토론 문서 제외)',
+'right-createtalk'       => '토론 문서 생성',
+'right-createaccount'    => '새 계정 만들기',
+'right-minoredit'        => '사소한 편집 사용 가능',
+'right-move'             => '문서 이동',
+'right-upload'           => '파일 올리기',
+'right-reupload'         => '이미 존재하는 파일 덮어쓰기',
+'right-reupload-own'     => '자신이 이미 올린 파일 덮어쓰기',
+'right-upload_by_url'    => 'URL 주소에서 파일 올리기',
+'right-delete'           => '문서 삭제',
+'right-browsearchive'    => '삭제된 문서 검색',
 'right-suppressrevision' => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
 
 # User rights log
@@ -1903,7 +1923,6 @@ $1',
 'specialpages-group-changes'     => '최근 바뀜과 기록',
 'specialpages-group-media'       => '파일 관리',
 'specialpages-group-users'       => '사용자와 권한',
-'specialpages-group-needy'       => '정리가 필요한 문서 목록',
 'specialpages-group-highuse'     => '많이 쓰이는 문서 목록',
 
 );
