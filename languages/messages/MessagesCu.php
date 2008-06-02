@@ -20,24 +20,42 @@ $separatorTransformTable = array(
 $linkPrefixExtension = true;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Срѣдьства',
-	NS_SPECIAL          => 'Нарочьна',
-	NS_MAIN             => '',
-	NS_TALK             => 'Бесѣда',
-	NS_USER             => 'Польѕевател҄ь',
-	NS_USER_TALK        => 'Польѕевател_бесѣда', 
-	#NS_PROJECT set by $wgMetaNamespace
-  	NS_PROJECT_TALK     => '{{grammar:genitive|$1}}_бесѣда',
-	NS_IMAGE            => 'Видъ',
-	NS_IMAGE_TALK       => 'Вида_бесѣда',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_бесѣда',
-	NS_TEMPLATE         => 'Образьць',
-	NS_TEMPLATE_TALK    => 'Образьца_бесѣда',
-	NS_HELP             => 'Помощь',
-	NS_HELP_TALK        => 'Помощи_бесѣда',
-	NS_CATEGORY         => 'Катигорї',
-	NS_CATEGORY_TALK    => 'Катигорїѩ_бесѣда',
+	NS_MEDIA          => 'Срѣ́дьства',
+	NS_SPECIAL        => 'Наро́чьна',
+	NS_MAIN           => '',
+	NS_TALK           => 'Бєсѣ́да',
+	NS_USER           => 'По́льꙃєватєл҄ь',
+	NS_USER_TALK      => 'По́льꙃєватєлꙗ_бєсѣ́да',
+	# NS_PROJECT set by \$wgMetaNamespace
+	NS_PROJECT_TALK   => '{{grammar:genitive|$1}}_бєсѣ́да',
+	NS_IMAGE          => 'Ви́дъ',
+	NS_IMAGE_TALK     => 'Ви́да_бєсѣ́да',
+	NS_MEDIAWIKI      => 'MediaWiki',
+	NS_MEDIAWIKI_TALK => 'MediaWiki_бєсѣ́да',
+	NS_TEMPLATE       => 'Обраꙁь́ць',
+	NS_TEMPLATE_TALK  => 'Обраꙁь́ца_бєсѣ́да',
+	NS_HELP           => 'По́мощь',
+	NS_HELP_TALK      => 'По́мощи_бєсѣ́да',
+	NS_CATEGORY       => 'Катигорі́ꙗ',
+	NS_CATEGORY_TALK  => 'Катигорі́ѩ_бєсѣ́да',
+);
+
+$namespaceAliases = array(
+	'Срѣдьства'                      => NS_MEDIA,
+	'Нарочьна'                       => NS_SPECIAL,
+	'Бесѣда'                         => NS_TALK,
+	'Польѕевател҄ь'                  => NS_USER,
+	'Польѕевател_бесѣда'             => NS_USER_TALK,
+	'{{grammar:genitive|$1}}_бесѣда' => NS_PROJECT_TALK,
+	'Видъ'                           => NS_IMAGE,
+	'Вида_бесѣда'                    => NS_IMAGE_TALK,
+	'MediaWiki_бесѣда'               => NS_MEDIAWIKI_TALK,
+	'Образьць'                       => NS_TEMPLATE,
+	'Образьца_бесѣда'                => NS_TEMPLATE_TALK,
+	'Помощь'                         => NS_HELP,
+	'Помощи_бесѣда'                  => NS_HELP_TALK,
+	'Катигорї'                      => NS_CATEGORY,
+	'Катигорїѩ_бесѣда'               => NS_CATEGORY_TALK,
 );
 
 $defaultDateFormat = 'mdy';
