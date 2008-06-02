@@ -355,10 +355,6 @@ class IPBlockForm {
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
 			$this->BlockEmail);
 
-		if ( $this->BlockWatchUser ) { 
-			$wgUser->addWatch ( Title::makeTitle( NS_USER, $this->BlockAddress ) );
-		}
-		
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
 			if ( !$block->insert() ) {
@@ -366,6 +362,10 @@ class IPBlockForm {
 			}
 
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
+
+			if ( $this->BlockWatchUser ) { 
+				$wgUser->addWatch ( Title::makeTitle( NS_USER, $this->BlockAddress ) );
+			}
 
 			# Prepare log parameters
 			$logParams = array();
