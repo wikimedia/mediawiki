@@ -130,10 +130,10 @@ class WebRequest {
 	 * Internal URL rewriting function; tries to extract page title and,
 	 * optionally, one other fixed parameter value from a URL path.
 	 *
-	 * @param string $path the URL path given from the client
-	 * @param array $bases one or more URLs, optionally with $1 at the end
-	 * @param string $key if provided, the matching key in $bases will be
-	 *        passed on as the value of this URL parameter
+	 * @param $path string: the URL path given from the client
+	 * @param $bases array: one or more URLs, optionally with $1 at the end
+	 * @param $key string: if provided, the matching key in $bases will be
+	 *             passed on as the value of this URL parameter
 	 * @return array of URL variables to interpolate; empty if no match
 	 */
 	private function extractTitle( $path, $bases, $key=false ) {
@@ -158,7 +158,7 @@ class WebRequest {
 	/**
 	 * Recursively strips slashes from the given array;
 	 * used for undoing the evil that is magic_quotes_gpc.
-	 * @param array &$arr will be modified
+	 * @param $arr array: will be modified
 	 * @return array the original array
 	 * @private
 	 */
@@ -193,7 +193,7 @@ class WebRequest {
 
 	/**
 	 * Recursively normalizes UTF-8 strings in the given array.
-	 * @param array $data string or array
+	 * @param $data string or array
 	 * @return cleaned-up version of the given
 	 * @private
 	 */
@@ -211,9 +211,9 @@ class WebRequest {
 	/**
 	 * Fetch a value from the given array or return $default if it's not set.
 	 *
-	 * @param array $arr
-	 * @param string $name
-	 * @param mixed $default
+	 * @param $arr array
+	 * @param $name string
+	 * @param $default mixed
 	 * @return mixed
 	 * @private
 	 */
@@ -240,8 +240,8 @@ class WebRequest {
 	 * non-freeform text inputs (e.g. predefined internal text keys
 	 * selected by a drop-down menu). For freeform input, see getText().
 	 *
-	 * @param string $name
-	 * @param string $default optional default (or NULL)
+	 * @param $name string
+	 * @param $default string: optional default (or NULL)
 	 * @return string
 	 */
 	function getVal( $name, $default = NULL ) {
@@ -261,8 +261,8 @@ class WebRequest {
 	 * If source was scalar, will return an array with a single element.
 	 * If no source and no default, returns NULL.
 	 *
-	 * @param string $name
-	 * @param array $default optional default (or NULL)
+	 * @param $name string
+	 * @param $default array: optional default (or NULL)
 	 * @return array
 	 */
 	function getArray( $name, $default = NULL ) {
@@ -280,8 +280,8 @@ class WebRequest {
 	 * If no source and no default, returns NULL.
 	 * If an array is returned, contents are guaranteed to be integers.
 	 *
-	 * @param string $name
-	 * @param array $default option default (or NULL)
+	 * @param $name string
+	 * @param $default array: option default (or NULL)
 	 * @return array of ints
 	 */
 	function getIntArray( $name, $default = NULL ) {
@@ -296,8 +296,8 @@ class WebRequest {
 	 * Fetch an integer value from the input or return $default if not set.
 	 * Guaranteed to return an integer; non-numeric input will typically
 	 * return 0.
-	 * @param string $name
-	 * @param int $default
+	 * @param $name string
+	 * @param $default int
 	 * @return int
 	 */
 	function getInt( $name, $default = 0 ) {
@@ -308,7 +308,7 @@ class WebRequest {
 	 * Fetch an integer value from the input or return null if empty.
 	 * Guaranteed to return an integer or null; non-numeric input will
 	 * typically return null.
-	 * @param string $name
+	 * @param $name string
 	 * @return int
 	 */
 	function getIntOrNull( $name ) {
@@ -322,8 +322,8 @@ class WebRequest {
 	 * Fetch a boolean value from the input or return $default if not set.
 	 * Guaranteed to return true or false, with normal PHP semantics for
 	 * boolean interpretation of strings.
-	 * @param string $name
-	 * @param bool $default
+	 * @param $name string
+	 * @param $default bool
 	 * @return bool
 	 */
 	function getBool( $name, $default = false ) {
@@ -334,7 +334,7 @@ class WebRequest {
 	 * Return true if the named value is set in the input, whatever that
 	 * value is (even "0"). Return false if the named value is not set.
 	 * Example use is checking for the presence of check boxes in forms.
-	 * @param string $name
+	 * @param $name string
 	 * @return bool
 	 */
 	function getCheck( $name ) {
@@ -352,8 +352,8 @@ class WebRequest {
 	 * input (for which input transformations may be required - e.g. Esperanto
 	 * x-coding).
 	 *
-	 * @param string $name
-	 * @param string $default optional
+	 * @param $name string
+	 * @param $default string: optional
 	 * @return string
 	 */
 	function getText( $name, $default = '' ) {
@@ -497,6 +497,8 @@ class WebRequest {
 	/**
 	 * Appends or replaces value of query variables.
 	 * @param $array Array of values to replace/add to query
+	 * @param $onlyquery Bool: whether to only return the query string and not
+	 *                   the complete URL
 	 * @return string
 	 */
 	function appendQueryArray( $array, $onlyquery = false ) {
@@ -609,7 +611,7 @@ class WebRequest {
 
 	/**
 	 * Get a request header, or false if it isn't set
-	 * @param string $name Case-insensitive header name
+	 * @param $name String: case-insensitive header name
 	 */
 	function getHeader( $name ) {
 		$name = strtoupper( $name );
@@ -644,9 +646,9 @@ class FauxRequest extends WebRequest {
 	var $wasPosted = false;
 
 	/**
-	 * @param array $data Array of *non*-urlencoded key => value pairs, the
+	 * @param $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
-	 * @param bool $wasPosted Whether to treat the data as POST
+	 * @param $wasPosted Bool: whether to treat the data as POST
 	 */
 	function FauxRequest( $data, $wasPosted = false ) {
 		if( is_array( $data ) ) {
