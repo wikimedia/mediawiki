@@ -2391,7 +2391,6 @@ $1',
 'specialpages-group-changes'     => 'Саҥа уларытыылар уонна сурунааллар',
 'specialpages-group-media'       => 'Медиа отчуоттар уонна киллэриилэр',
 'specialpages-group-users'       => 'Кыттааччылар уонна бырааптара',
-'specialpages-group-needy'       => 'Үлэҕэ аналлаах сирэйдэр',
 'specialpages-group-highuse'     => 'Элбэхтик туттуллар сирэйдэр',
 
 );

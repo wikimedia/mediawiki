@@ -2374,7 +2374,6 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
 'specialpages-group-changes'     => 'Ùrtimi canciamenti e riggistri',
 'specialpages-group-users'       => 'Utenti e diritti',
-'specialpages-group-needy'       => 'Pàggini n cerca di manutenzioni',
 'specialpages-group-highuse'     => 'Pàggini cchiù usati',
 
 );

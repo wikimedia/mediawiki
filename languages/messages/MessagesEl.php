@@ -2550,7 +2550,6 @@ $1',
 'specialpages-group-changes'     => 'Πρόσφατες αλλαγές και καταγραφές γεγονότων',
 'specialpages-group-media'       => 'Αναφορές πολυμέσων και επιφόρτωση αρχείων',
 'specialpages-group-users'       => 'Χρήστες και δικαιώματα',
-'specialpages-group-needy'       => 'Σελίδες που χρειάζονται εργασία',
 'specialpages-group-highuse'     => 'Πολυσύχναστες σελίδες',
 
 );

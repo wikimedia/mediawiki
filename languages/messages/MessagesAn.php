@@ -2552,7 +2552,6 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:image}}:".',
 'specialpages-group-changes'     => 'Zaguers cambios y rechistros',
 'specialpages-group-media'       => "Informes d'archibos multimedias y cargas",
 'specialpages-group-users'       => 'Usuarios y dreitos',
-'specialpages-group-needy'       => 'Pachinas que amenistan treballo',
 'specialpages-group-highuse'     => 'Pachinas con muito uso',
 
 );

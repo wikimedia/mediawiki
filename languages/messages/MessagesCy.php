@@ -2009,7 +2009,6 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:image}}:".',
 'specialpages-group-changes'     => 'Newidiadau diweddar a logiau',
 'specialpages-group-media'       => 'Ffeiliau - adroddiadau ac uwchlwytho',
 'specialpages-group-users'       => "Defnyddwyr a'u galluoedd",
-'specialpages-group-needy'       => 'Tudalennau ag angen gweithio arnynt',
 'specialpages-group-highuse'     => 'Tudalennau aml eu defnydd',
 
 );

@@ -2501,7 +2501,6 @@ Merkañ anv ar restr hep ar rakger "{{ns:image}}:"',
 'specialpages-group-changes'     => 'Kemmoù diwezhañ ha marilhoù',
 'specialpages-group-media'       => 'Danevelloù ar restroù media hag an enporzhiadennoù',
 'specialpages-group-users'       => 'An implijerien hag o gwirioù',
-'specialpages-group-needy'       => "Pajennoù zo labour d'ober warno",
 'specialpages-group-highuse'     => 'Implij stank ar pajennoù',
 
 );

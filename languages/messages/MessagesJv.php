@@ -2437,7 +2437,6 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 'specialpages-group-changes'     => 'Owah-owahan pungkasan lan log',
 'specialpages-group-media'       => 'Lapuran média lan pangunggahan',
 'specialpages-group-users'       => 'Panganggo lan hak-haké',
-'specialpages-group-needy'       => 'Kaca-kaca sing kudu dibenakaké',
 'specialpages-group-highuse'     => 'Kaca-kaca sing akèh dienggo',
 
 );

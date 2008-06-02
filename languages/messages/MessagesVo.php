@@ -2270,7 +2270,6 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 'specialpages-group-login'   => 'Nunädön oki / jafön kali',
 'specialpages-group-changes' => 'Votükams nulik e jenotaliseds',
 'specialpages-group-users'   => 'Gebans e gitäts',
-'specialpages-group-needy'   => 'Pads bevobami neodöls',
 'specialpages-group-highuse' => 'Pads suvo pegeböls',
 
 );
