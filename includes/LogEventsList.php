@@ -24,9 +24,9 @@ class LogEventsList {
 	private $out;
 	public $flags;
 
-	function __construct( &$skin, &$out, $flags = 0 ) {
-		$this->skin =& $skin;
-		$this->out =& $out;
+	function __construct( $skin, $out, $flags = 0 ) {
+		$this->skin = $skin;
+		$this->out = $out;
 		$this->flags = $flags;
 		$this->preCacheMessages();
 	}
