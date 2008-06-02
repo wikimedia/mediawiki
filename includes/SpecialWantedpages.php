@@ -66,8 +66,8 @@ class WantedPagesPage extends QueryPage {
 	/**
 	 * Format an individual result
 	 *
-	 * @param Skin $skin Skin to use for UI elements
-	 * @param object $result Result row
+	 * @param $skin Skin to use for UI elements
+	 * @param $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
@@ -90,9 +90,9 @@ class WantedPagesPage extends QueryPage {
 	/**
 	 * Make a "what links here" link for a specified result if required
 	 *
-	 * @param Title $title Title to make the link for
-	 * @param Skin $skin Skin to use
-	 * @param object $result Result row
+	 * @param $title Title to make the link for
+	 * @param $skin Skin to use
+	 * @param $result Result row
 	 * @return string
 	 */
 	private function makeWlhLink( $title, $skin, $result ) {

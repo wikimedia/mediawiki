@@ -62,7 +62,7 @@ class UserRightsProxy {
 	/**
 	 * Open a database connection to work on for the requested user.
 	 * This may be a new connection to another database for remote users.
-	 * @param string $database
+	 * @param $database string
 	 * @return Database or null if invalid selection
 	 */
 	public static function getDB( $database ) {

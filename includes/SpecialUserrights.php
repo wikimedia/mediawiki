@@ -38,7 +38,7 @@ class UserrightsPage extends SpecialPage {
 	 * Manage forms to be shown according to posted data.
 	 * Depending on the submit button used, call a form or a save function.
 	 *
-	 * @param mixed $par String if any subpage provided, else null
+	 * @param $par Mixed: string if any subpage provided, else null
 	 */
 	function execute( $par ) {
 		// If the visitor doesn't have permissions to assign or remove
@@ -111,8 +111,8 @@ class UserrightsPage extends SpecialPage {
 	 * Save user groups changes in the database.
 	 * Data comes from the editUserGroupsForm() form function
 	 *
-	 * @param string $username Username to apply changes to.
-	 * @param string $reason Reason for group change
+	 * @param $username String: username to apply changes to.
+	 * @param $reason String: reason for group change
 	 * @return null
 	 */
 	function saveUserGroups( $username, $reason = '') {
@@ -205,7 +205,7 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Edit user groups membership
-	 * @param string $username Name of the user.
+	 * @param $username String: name of the user.
 	 */
 	function editUserGroupsForm( $username ) {
 		global $wgOut;
@@ -383,7 +383,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Format a link to a group description page
 	 *
-	 * @param string $group
+	 * @param $group string
 	 * @return string
 	 */
 	private static function buildGroupLink( $group ) {
@@ -402,11 +402,10 @@ class UserrightsPage extends SpecialPage {
 	 }
 
 	/**
-	 * Adds the <select> thingie where you can select what groups to add/remove
+	 * Adds a table with checkboxes where you can select what groups to add/remove
 	 *
-	 * @param array  $groups The groups that can be added/removed
-	 * @param string $name   'removable' or 'available'
-	 * @return string XHTML <select> element
+	 * @param $usergroups Array: groups the user belongs to
+	 * @return string XHTML table element with checkboxes
 	 */
 	private function groupCheckboxes( $usergroups ) {
 		$allgroups = $this->getAllGroups();
@@ -476,7 +475,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param  string $group The name of the group to check
+	 * @param  $group String: the name of the group to check
 	 * @return bool Can we remove the group?
 	 */
 	private function canRemove( $group ) {
@@ -487,7 +486,7 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * @param  string $group The name of the group to check
+	 * @param $group string: the name of the group to check
 	 * @return bool Can we add the group?
 	 */
 	private function canAdd( $group ) {
@@ -538,7 +537,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Returns an array of the groups that a particular group can add/remove.
 	 *
-	 * @param String $group The group to check for whether it can add/remove
+	 * @param $group String: the group to check for whether it can add/remove
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) )
 	 */
 	private function changeableByGroup( $group ) {
@@ -567,8 +566,8 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show a rights log fragment for the specified user
 	 *
-	 * @param User $user User to show log for
-	 * @param OutputPage $output OutputPage to use
+	 * @param $user User to show log for
+	 * @param $output OutputPage to use
 	 */
 	protected function showLogFragment( $user, $output ) {
 		$output->addHtml( Xml::element( 'h2', null, LogPage::logName( 'rights' ) . "\n" ) );
