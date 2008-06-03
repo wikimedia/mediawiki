@@ -2572,10 +2572,9 @@ $1
 'fileduplicatesearch-result-n' => '文件 "$1" 有$2项完全相同的重覆。',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr /><ul>
-<li>标准特殊页面。</li>
-<li class="mw-specialpagerestricted">有限制的特殊页面。</li>
-</ul>',
+'specialpages-note'              => '----
+* 标准特殊页面。
+* <span class="mw-specialpagerestricted">有限制的特殊页面。</span>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other'       => '其它特殊页面',
 'specialpages-group-login'       => '登入／创建',

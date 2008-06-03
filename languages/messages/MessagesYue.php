@@ -2616,10 +2616,9 @@ $1',
 'fileduplicatesearch-result-n' => '個檔案 "$1" 有$2項完全相同嘅重覆。',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr /><ul>
-<li>標準特別頁。</li>
-<li class="mw-specialpagerestricted">有限制嘅特別頁。</li>
-</ul>',
+'specialpages-note'              => '----
+* 標準特別頁。
+* <span class="mw-specialpagerestricted">有限制嘅特別頁。</span>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特別頁',
 'specialpages-group-login'       => '登入／開戶口',
