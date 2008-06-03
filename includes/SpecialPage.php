@@ -437,14 +437,14 @@ class SpecialPage
 	 */
 	static function getRestrictedPages() {
 		global $wgUser;
-		if ( !self::$mListInitialised ) {
+		if( !self::$mListInitialised ) {
 			self::initList();
 		}
 		$pages = array();
 
-		foreach ( self::$mList as $name => $rec ) {
+		foreach( self::$mList as $name => $rec ) {
 			$page = self::getPage( $name );
-			if (
+			if(
 				$page->isListed()
 				&& $page->isRestricted()
 				&& $page->userCanExecute( $wgUser )
