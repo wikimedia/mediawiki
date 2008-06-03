@@ -1570,9 +1570,6 @@ $2',
 'protectedtitlestext'     => 'הכותרות הבאות מוגנות מפני יצירה:',
 'protectedtitlesempty'    => 'אין כרגע כותרות מוגנות עם הפרמטרים האלה.',
 'listusers'               => 'רשימת משתמשים',
-'specialpages'            => 'דפים מיוחדים',
-'spheading'               => 'דפים מיוחדים',
-'restrictedpheading'      => 'דפים מיוחדים מוגבלים',
 'newpages'                => 'דפים חדשים',
 'newpages-username'       => 'שם משתמש:',
 'ancientpages'            => 'דפים מוזנחים',
@@ -2815,6 +2812,7 @@ $1',
 'fileduplicatesearch-result-n' => 'לקובץ "$1" יש {{plural:$2|עותק כפול אחד|$2 עותקים כפולים}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'דפים מיוחדים',
 'specialpages-note'              => '----
 * דפים מיוחדים רגילים.
 * <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',

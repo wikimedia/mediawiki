@@ -1906,10 +1906,6 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # only translate this message to other languages if you have to change it
-'specialpages'                    => 'Special pages',
-'specialpages-summary'            => '', # only translate this message to other languages if you have to change it
-'spheading'                       => 'Special pages for all users',
-'restrictedpheading'              => 'Restricted special pages',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # only translate this message to other languages if you have to change it
 'newpages-username'               => 'Username:',
@@ -3392,6 +3388,8 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'fileduplicatesearch-result-n' => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Special pages',
+'specialpages-summary'           => '', # only translate this message to other languages if you have to change it
 'specialpages-note'              => '----
 * Normal special pages.
 * <span class="mw-specialpagerestricted">Restricted special pages.</span>',

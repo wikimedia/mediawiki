@@ -1234,10 +1234,6 @@ $wgMessageStructure = array(
 		'protectedtitlesempty',
 		'listusers',
 		'listusers-summary',
-		'specialpages',
-		'specialpages-summary',
-		'spheading',
-		'restrictedpheading',
 		'newpages',
 		'newpages-summary',
 		'newpages-username',
@@ -2560,7 +2556,9 @@ $wgMessageStructure = array(
 		'fileduplicatesearch-result-1',
 		'fileduplicatesearch-result-n',
 	),
-	'specialpages-group' => array(
+	'special-specialpages' => array(
+		'specialpages',
+		'specialpages-summary',
 		'specialpages-note',
 		'specialpages-group-maintenance',
 		'specialpages-group-other',
@@ -2760,7 +2758,7 @@ Variants for Chinese language",
 	'version'               => 'Special:Version',
 	'filepath'              => 'Special:Filepath',
 	'fileduplicatesearch'   => 'Special:FileDuplicateSearch',
-	'specialpages-group'    => 'Special:SpecialPages',
+	'special-specialpages'  => 'Special:SpecialPages',
 );
 
 /** Short comments for standalone messages */
