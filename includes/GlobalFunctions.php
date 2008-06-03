@@ -1000,9 +1000,16 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 				$cgi .= '&';
 			}
 			if(is_array($value))
+			{
+				$firstTime = true;
 				foreach($value as $v)
-					$cgi .= urlencode( $key . '[]' ) . '=' .
+				{
+					$cgi .= ($firstTime ? '' : '&') .
+						urlencode( $key . '[]' ) . '=' .
 						urlencode( $v );
+					$firstTime = false;
+				}
+			}
 			else
 				$cgi .= urlencode( $key ) . '=' .
 					urlencode( $value );
