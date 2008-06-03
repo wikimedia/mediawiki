@@ -270,9 +270,8 @@ class MonoBookTemplate extends QuickTemplate {
 ?>
 			</ul>
 		</div>
-		
-	<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
 </div>
+<?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
 <?php $this->html('reporttime') ?>
 <?php if ( $this->data['debug'] ): ?>
 <!-- Debug output:
