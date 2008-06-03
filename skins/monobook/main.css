@@ -551,32 +551,32 @@ div.townBox dl dd {
 #bodyContent a.external,
 #bodyContent a[href ^="gopher://"] {
 	background: url(external.png) center right no-repeat;
-	padding-right: 13px;
+	padding: 0 13px;
 }
 #bodyContent a[href ^="https://"],
 .link-https {
 	background: url(lock_icon.gif) center right no-repeat;
-	padding-right: 16px;
+	padding: 0 16px;
 }
 #bodyContent a[href ^="mailto:"],
 .link-mailto {
 	background: url(mail_icon.gif) center right no-repeat;
-	padding-right: 18px;
+	padding: 0 18px;
 }
 #bodyContent a[href ^="news://"] {
 	background: url(news_icon.png) center right no-repeat;
-	padding-right: 18px;
+	padding: 0 18px;
 }
 #bodyContent a[href ^="ftp://"],
 .link-ftp {
 	background: url(file_icon.gif) center right no-repeat;
-	padding-right: 18px;
+	padding: 0 18px;
 }
 #bodyContent a[href ^="irc://"],
 #bodyContent a.extiw[href ^="irc://"],
 .link-irc {
 	background: url(discussionitem_icon.gif) center right no-repeat;
-	padding-right: 18px;
+	padding: 0 18px;
 }
 #bodyContent a.external[href $=".ogg"], #bodyContent a.external[href $=".OGG"],
 #bodyContent a.external[href $=".mid"], #bodyContent a.external[href $=".MID"],
@@ -586,7 +586,7 @@ div.townBox dl dd {
 #bodyContent a.external[href $=".wma"], #bodyContent a.external[href $=".WMA"],
 .link-audio {
 	background: url("audio.png") center right no-repeat;
-	padding-right: 13px;
+	padding: 0 13px;
 }
 #bodyContent a.external[href $=".ogm"], #bodyContent a.external[href $=".OGM"],
 #bodyContent a.external[href $=".avi"], #bodyContent a.external[href $=".AVI"],
@@ -594,14 +594,24 @@ div.townBox dl dd {
 #bodyContent a.external[href $=".mpg"], #bodyContent a.external[href $=".MPG"],
 .link-video {
 	background: url("video.png") center right no-repeat;
-	padding-right: 13px;
+	padding: 0 13px;
 }
 #bodyContent a.external[href $=".pdf"], #bodyContent a.external[href $=".PDF"],
 #bodyContent a.external[href *=".pdf#"], #bodyContent a.external[href *=".PDF#"],
 #bodyContent a.external[href *=".pdf?"], #bodyContent a.external[href *=".PDF?"],
 .link-document {
 	background: url("document.png") center right no-repeat;
-	padding-right: 12px;
+	padding: 0 12px;
+}
+
+/* for rtl wikis */
+.rtl #bodyContent a.external {
+	background-position: left;
+	padding-right: 0;
+}
+/* correction for ltr wikis */
+.ltr #bodyContent a.external {
+	padding-left: 0;
 }
 
 /* disable interwiki styling */
