@@ -2815,8 +2815,9 @@ $1',
 'fileduplicatesearch-result-n' => 'לקובץ "$1" יש {{plural:$2|עותק כפול אחד|$2 עותקים כפולים}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* דפים מיוחדים <span class="mw-specialpagerestricted">מובלטים</span> הם מוגבלים.',
+'specialpages-note'              => '----
+* דפים מיוחדים רגילים.
+* <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other'       => 'דפים מיוחדים אחרים',
 'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',
