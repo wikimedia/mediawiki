@@ -3392,8 +3392,10 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'fileduplicatesearch-result-n' => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Highlighted</span> special pages are restricted.',
+'specialpages-note'              => '<hr /><ul>
+<li>Normal special pages.</li>
+<li class="mw-specialpagerestricted">Restricted special pages.</li>
+</ul>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
 'specialpages-group-login'       => 'Login / sign up',
