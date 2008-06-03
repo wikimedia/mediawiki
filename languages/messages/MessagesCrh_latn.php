@@ -329,8 +329,8 @@ $messages = array(
 'mainpage'             => 'Baş Saife',
 'mainpage-description' => 'Baş Saife',
 'policy-url'           => 'Project:Qaideler',
-'portal'               => 'Toplulıq portalı',
-'portal-url'           => 'Project:Toplulıq portalı',
+'portal'               => 'Cemaat portalı',
+'portal-url'           => 'Project:Cemaat portalı',
 'privacy'              => 'Gizlilik esası',
 'privacypage'          => 'Project:Gizlilik esası',
 'sitesupport'          => 'Bağışlar',
@@ -1110,9 +1110,6 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'protectedpagestext'      => 'Bu saifelerniñ deñiştirüvge qarşı qorçalavı bar',
 'protectedtitles'         => 'Yasaqlanğan serlevalar',
 'listusers'               => 'Qullanıcılar cedveli',
-'specialpages'            => 'Mahsus saifeler',
-'spheading'               => 'Bütün qullanıcılarnı meraqlandırıp olacaq mahsus saifeler',
-'restrictedpheading'      => 'Administratorlarnıñ tesirlerinen bağlı mahsus saifeler',
 'newpages'                => 'Yañı saifeler',
 'newpages-username'       => 'Qullanıcı adı:',
 'ancientpages'            => 'Eñ eski saifeler',
@@ -1835,5 +1832,8 @@ $1',
 
 # Special:Version
 'version' => 'Versiya', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Mahsus saifeler',
 
 );

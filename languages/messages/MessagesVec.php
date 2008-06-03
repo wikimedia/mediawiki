@@ -1306,9 +1306,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'protectedtitlestext'     => 'No se pol crear pagine coi titoli elencà de seguito',
 'protectedtitlesempty'    => 'Al momento no ghe xe titoli proteti coi parametri specificà.',
 'listusers'               => 'Elenco dei utenti',
-'specialpages'            => 'Pàxene speciałi',
-'spheading'               => 'Pàxene speciałi par tuti i utenti',
-'restrictedpheading'      => 'Pàxene speciałi par i aministradori',
 'newpages'                => 'Pàxene nove',
 'newpages-username'       => 'Nome utente:',
 'ancientpages'            => 'Pàxene pì vece',
@@ -2489,8 +2486,10 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'fileduplicatesearch-result-n' => 'Ghe xe {{PLURAL:$2|un duplicato conpagno|$2 duplicati conpagni}} al file "$1".',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* L\'acesso a le pagine <span class="mw-specialpagerestricted">in grasseto</span> el xe restreto.',
+'specialpages'                   => 'Pàxene speciałi',
+'specialpages-note'              => '----
+* Pagine speciali normali.
+* <span class="mw-specialpagerestricted">Pagine speciali ad acesso limità.</span>',
 'specialpages-group-maintenance' => 'Resoconti de manutenzion',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazion',

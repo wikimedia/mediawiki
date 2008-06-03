@@ -132,7 +132,7 @@ $messages = array(
 'dec'           => 'ber',
 
 # Categories related messages
-'pagecategories'                 => '$1 Kategorîyan',
+'pagecategories'                 => '{{PLURAL:$1|Kategorî|Kategorîyan}}',
 'category_header'                => 'Gotarên di kategoriya "$1" de',
 'subcategories'                  => 'Binekategorî',
 'category-media-header'          => 'Medya di kategorîya "$1" da',
@@ -411,12 +411,13 @@ Hesaba te hat afirandin. Tu dikarî niha tercîhên xwe eyar bikî.',
 'youremail'                  => 'E-maila te*',
 'username'                   => 'Navê bikarhêner:',
 'uid'                        => "ID'ya bikarhêner:",
+'prefs-memberingroups'       => 'Endamê {{PLURAL:$1|grûpê|grûpan}}:',
 'yourrealname'               => 'Navê te yê rastî*',
 'yourlanguage'               => 'Ziman',
 'yourvariant'                => 'Varîyant:',
 'yournick'                   => 'Leqeba te (ji bo îmza)',
 'badsig'                     => 'Nivîsandinê îmzê ne baş e; xêra xwe nivîsandina HTML seke, ku şaşbûn hene ya na.',
-'badsiglength'               => 'Navî te zêde dirêj e; ew gireke di bin $1 nîşanan da be.',
+'badsiglength'               => 'Navî te zêde dirêj e; ew gireke di bin {{PLURAL:$1|nîşanekê|nîşanan}} da be.',
 'email'                      => 'E-name',
 'prefs-help-realname'        => 'Ne gereke. Tu dikarî navî xwe binivisînê, ew ê bi karkirên te were nivîsandin.',
 'loginerror'                 => 'Çewtî (Login error)',
@@ -635,7 +636,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'deletedrev'          => '[jêbir]',
 'histfirst'           => 'Kevintirîn',
 'histlast'            => 'Nûtirîn',
-'historysize'         => '($1 bytes)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(vala)',
 
 # Revision feed
@@ -651,10 +652,10 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 </div>',
 'rev-delundel'                => 'nîşan bide/veşêre',
 'revisiondelete'              => 'Rêvîsyona jêbibe/dîsa çêke',
-'revdelete-legend'            => 'Qebûlkirinan ji vê versyonê ra',
+'revdelete-legend'            => 'Guherandina qebûlkirina dîtinê',
 'revdelete-hide-comment'      => 'Nivîsandinê kurte yê guherandinê veşêre',
 'revdelete-hide-user'         => "Navî bikarhêner/IP'yê veşêre",
-'revdelete-hide-restricted'   => 'Ev qebûlkirin ji koordînatoran ra ye jî',
+'revdelete-hide-restricted'   => 'Ev qebûlkirinan ji koordînatoran ra ye jî û ev rûpela tê girtin',
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 
 # History merging
@@ -682,7 +683,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'prevn'                 => '$1 paş',
 'nextn'                 => '$1 pêş',
 'viewprevnext'          => '($1) ($2) ($3).',
-'showingresults'        => '<b>$1</b> encam, bi #<b>$2</b> dest pê dike.',
+'showingresults'        => "{{PLURAL:$1|Encamek|'''$1''' encam}}, bi #'''$2''' dest pê dike.",
 'showingresultsnum'     => '<b>$3</b> encam, bi #<b>$2</b> dest pê dike.',
 'powersearch'           => 'Lê bigere',
 'searchdisabled'        => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
@@ -709,7 +710,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'prefs-watchlist'    => 'Lîsteya şopandinê',
 'prefs-misc'         => 'Eyaren cuda',
 'saveprefs'          => 'Tercîhan qeyd bike',
-'resetprefs'         => 'Şonda bike',
+'resetprefs'         => 'Nivîsarên netomarkirî şondabike',
 'oldpassword'        => 'Şîfreya kevn',
 'newpassword'        => 'Şîfreya nû',
 'retypenew'          => 'Şîfreya nû careke din binîvîse',
@@ -849,6 +850,7 @@ Xêra xwe navekî din bibîne.',
 'uploadvirus'            => "Di vê data'yê da vîrûsek heye! Înformasyon: $1",
 'sourcefilename'         => 'Navî wêneyê (ya tiştekî din ya mêdya):',
 'destfilename'           => 'Navî wêneyê (ya tiştekî din ya mêdya) yê xastî:',
+'upload-maxfilesize'     => "Mezinbûna data'yê ya herî mezin: $1",
 'watchthisupload'        => 'Vê rûpelê bişopîne',
 'filewasdeleted'         => "Data'yek bi vê navê hatibû barkirin û jêbirin. Xêra xwe li $1 seke ku barkirina te hêja ye ya na.",
 'upload-wasdeleted'      => "'''Hîşyar: Tu data'yekê bardikê yê berê hatibû jêbirin.'''
@@ -978,8 +980,6 @@ Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7
 'protectedpages'          => 'Rûpelên parastî',
 'protectedtitles'         => 'Sernavên parastî',
 'listusers'               => 'Lîsteya bikarhêneran',
-'specialpages'            => 'Rûpelên taybet',
-'spheading'               => 'Rûpelên taybet ji bo hemû bikarhêneran',
 'newpages'                => 'Rûpelên nû',
 'newpages-username'       => 'Navê bikarhêner:',
 'ancientpages'            => 'Gotarên kevintirîn',
@@ -1235,18 +1235,21 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'sp-contributions-submit'      => 'Lêbigere',
 
 # What links here
-'whatlinkshere'       => 'Lînk yê tên ser vê rûpelê',
-'whatlinkshere-title' => 'Rûpelan, yê berve $1 tên',
-'whatlinkshere-page'  => 'Rûpel:',
-'linklistsub'         => '(Listeya lînkan)',
-'linkshere'           => "Ev rûpel tên ser vê rûpelê '''„[[:$1]]“''':",
-'nolinkshere'         => "Ne ji rûpelekê lînk tên ser '''„[[:$1]]“'''.",
-'nolinkshere-ns'      => "Ne lînkek berve '''[[:$1]]''' di vê namespace'a da tê.",
-'isredirect'          => 'rûpela ragihandinê',
-'istemplate'          => 'tê bikaranîn',
-'whatlinkshere-prev'  => '{{PLURAL:$1|yê|$1 yên}} berê',
-'whatlinkshere-next'  => '{{PLURAL:$1|yê|$1 yên}} din',
-'whatlinkshere-links' => '← lînkan',
+'whatlinkshere'            => 'Lînk yê tên ser vê rûpelê',
+'whatlinkshere-title'      => 'Rûpelan, yê berve $1 tên',
+'whatlinkshere-page'       => 'Rûpel:',
+'linklistsub'              => '(Listeya lînkan)',
+'linkshere'                => "Ev rûpel tên ser vê rûpelê '''„[[:$1]]“''':",
+'nolinkshere'              => "Ne ji rûpelekê lînk tên ser '''„[[:$1]]“'''.",
+'nolinkshere-ns'           => "Ne lînkek berve '''[[:$1]]''' di vê namespace'a da tê.",
+'isredirect'               => 'rûpela ragihandinê',
+'istemplate'               => 'tê bikaranîn',
+'whatlinkshere-prev'       => '{{PLURAL:$1|yê|$1 yên}} berê',
+'whatlinkshere-next'       => '{{PLURAL:$1|yê|$1 yên}} din',
+'whatlinkshere-links'      => '← lînkan',
+'whatlinkshere-hideredirs' => "$1 redirect'an",
+'whatlinkshere-hidelinks'  => '$1 lînkan',
+'whatlinkshere-hideimages' => '$1 lînkên wêneyan',
 
 # Block/unblock
 'blockip'                     => 'Bikarhêner asteng bike',
@@ -1645,5 +1648,12 @@ $1',
 
 # Special:Filepath
 'filepath-page' => 'Data:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Lêbigere',
+
+# Special:SpecialPages
+'specialpages'             => 'Rûpelên taybet',
+'specialpages-group-login' => 'Têkevê',
 
 );

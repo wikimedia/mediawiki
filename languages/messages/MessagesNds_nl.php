@@ -1300,6 +1300,7 @@ A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de 
 'fileexists-forbidden'        => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't toe te voegen onder een aandere naam.
 [[Ofbeelding:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Een bestand mit disse naam besteet al in de gezamelijke bestanslokasie; gao weerumme en laod 't bestand onder een nieje naam. [[Image:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => "Dit bestand is liekeleens as {{PLURAL:$1|'t volgende bestand|de volgende bestanden}}:",
 'successfulupload'            => 'Bestanstoevoeging was succesvol',
 'uploadwarning'               => 'Waorschuwing',
 'savefile'                    => 'Bestand opslaon',
@@ -1511,9 +1512,6 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'protectedtitlestext'     => "De volgende pagina's bin beveilig zoda-ze neet opniej an-emaak kunnen wonnen",
 'protectedtitlesempty'    => 'Der bin noen gien titels beveilig dee an disse parremeters voldoon.',
 'listusers'               => 'Gebrukerslieste',
-'specialpages'            => "Speciale pagina's",
-'spheading'               => "Speciale pagina's veur alle gebrukers",
-'restrictedpheading'      => "Speciale pagina's mit beteunde toegang",
 'newpages'                => 'Nieje artikels',
 'newpages-username'       => 'Gebrukersnaam:',
 'ancientpages'            => 'Artikels dee lange neet bewörk bin',
@@ -1575,6 +1573,13 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'listusers-submit'   => 'Teun',
 'listusers-noresult' => 'Gien gebrukers evunnen. Zeuk oek naor varianten mit kleine letters of heufletters.',
 
+# Special:Listgrouprights
+'listgrouprights'          => 'Rechen van gebrukersgroepen',
+'listgrouprights-group'    => 'Groep',
+'listgrouprights-rights'   => 'Rechen',
+'listgrouprights-helppage' => 'Help:Gebrukersrechen',
+'listgrouprights-members'  => '(lejenlieste)',
+
 # E-mail user
 'mailnologin'     => 'Neet an-emeld.',
 'mailnologintext' => 'Je mutten [[Special:Userlogin|an-emeld]] ween en een geldig e-mailadres in "[[Special:Preferences|mien veurkeuren]]" invoeren um disse functie te kunnen gebruken.',
@@ -1584,6 +1589,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'usermailererror' => "Foutmelding bie 't versturen:",
 'noemailtitle'    => 'Gebruker hef gien e-mailadres op-egeven',
 'noemailtext'     => 'Disse gebruker hef gien geldig e-mailadres in-evoerd, of wil gien berichen van aandere gebrukers ontvangen.',
+'emailfrom'       => 'Van',
 'emailto'         => 'An',
 'emailsubject'    => 'Onderwarp',
 'emailmessage'    => 'Berich',
@@ -2420,6 +2426,7 @@ Kiek de pagina op de normale meniere nao.',
 Voer de bestansnaam in zonder 't veurvoegsel \"{{ns:image}}:\".",
 
 # Special:SpecialPages
+'specialpages'                   => "Speciale pagina's",
 'specialpages-group-maintenance' => 'Onderhoudsliesten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Anmelden / inschrieven',

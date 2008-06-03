@@ -330,8 +330,8 @@ $messages = array(
 'mainpage'             => 'Баш Саифе',
 'mainpage-description' => 'Баш Саифе',
 'policy-url'           => 'Project:Къаиделер',
-'portal'               => 'Топлулыкъ порталы',
-'portal-url'           => 'Project:Топлулыкъ порталы',
+'portal'               => 'Джемаат порталы',
+'portal-url'           => 'Project:Джемаат порталы',
 'privacy'              => 'Гизлилик эсасы',
 'privacypage'          => 'Project:Гизлилик эсасы',
 'sitesupport'          => 'Багъышлар',
@@ -1112,9 +1112,6 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'protectedpagestext'      => 'Бу саифелернинъ денъиштирювге къаршы къорчалавы бар',
 'protectedtitles'         => 'Ясакълангъан серлевалар',
 'listusers'               => 'Къулланыджылар джедвели',
-'specialpages'            => 'Махсус саифелер',
-'spheading'               => 'Бутюн къулланыджыларны меракъландырып оладжакъ махсус саифелер',
-'restrictedpheading'      => 'Администраторларнынъ тесирлеринен багълы махсус саифелер',
 'newpages'                => 'Янъы саифелер',
 'newpages-username'       => 'Къулланыджы ады:',
 'ancientpages'            => 'Энъ эски саифелер',
@@ -1832,5 +1829,8 @@ $1',
 
 # Special:Version
 'version' => 'Версия', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Махсус саифелер',
 
 );

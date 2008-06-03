@@ -1286,6 +1286,7 @@ Jika berkas tersebut merupakan berkas yang sama, tidak perlu untuk memuat kembal
 Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas tersebut. Jika tidak, harap ubah nama berkas ini.',
 'fileexists-forbidden'        => 'Ditemukan berkas dengan nama yang sama; harap kembali dan muatkan berkas dengan nama lain. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ditemukan berkas lain dengan nama yang sama di repositori bersama; harap kembali dan muatkan berkas dengan nama lain. [[{{ns:image}}:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Berkas ini berduplikasi dengan {{PLURAL:$1|berkas|berkas-berkas}} berikut:',
 'successfulupload'            => 'Berhasil dimuat',
 'uploadwarning'               => 'Peringatan pemuatan',
 'savefile'                    => 'Simpan berkas',
@@ -1493,9 +1494,6 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.w
 'protectedtitlestext'     => 'Judul berikut ini dilindungi dari pembuatan',
 'protectedtitlesempty'    => 'Tidak ada judul yang dilindungi.',
 'listusers'               => 'Daftar pengguna',
-'specialpages'            => 'Halaman istimewa',
-'spheading'               => 'Halaman istimewa untuk semua pengguna',
-'restrictedpheading'      => 'Halaman istimewa terbatas',
 'newpages'                => 'Halaman baru',
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Artikel lama',
@@ -2650,6 +2648,10 @@ Masukkan nama berkas tanpa prefiks "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'Berkas "$1" memiliki {{PLURAL:$2|1 duplikat identik|$2 duplikat identik}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Halaman istimewa',
+'specialpages-note'              => '----
+* Halaman istimewa normal.
+* <span class="mw-specialpagerestricted">Halaman istimewa terbatas.</span>',
 'specialpages-group-maintenance' => 'Laporan pemeliharaan',
 'specialpages-group-other'       => 'Halaman istimewa lainnya',
 'specialpages-group-login'       => 'Masuk log / mendaftar',
@@ -2658,5 +2660,9 @@ Masukkan nama berkas tanpa prefiks "{{ns:image}}:".',
 'specialpages-group-users'       => 'Pengguna dan hak pengguna',
 'specialpages-group-highuse'     => 'Frekuensi tinggi',
 'specialpages-group-pages'       => 'Daftar halaman',
+'specialpages-group-pagetools'   => 'Peralatan halaman',
+'specialpages-group-wiki'        => 'Data dan peralatan wiki',
+'specialpages-group-redirects'   => 'Mengalihkan halaman istimewa',
+'specialpages-group-spam'        => 'Peralatan spam',
 
 );

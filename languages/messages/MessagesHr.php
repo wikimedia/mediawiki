@@ -1123,6 +1123,7 @@ Ukoliko je ta datoteka ista kao i ova koju ste upravo pokušali snimiti, samo u 
 Ukoliko imate ovu sliku u punoj razlučljivosti (rezoluciji) postavite tu sliku, u protivnom, molimo promijenite ime datoteke.',
 'fileexists-forbidden'        => 'Datoteka s ovim imenom već postoji; molim postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s ovim imenom već postoji u središnjem spremniku datoteka; molim postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Ova datoteka je duplikat {{PLURAL:$1|sljedeće datoteke|sljedećih datoteka}}:',
 'successfulupload'            => 'Postavljanje uspješno.',
 'uploadwarning'               => 'Upozorenje kod postavljanja',
 'savefile'                    => 'Sačuvaj datoteku',
@@ -1341,10 +1342,6 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'protectedtitlestext'     => 'Sljedeći naslovi su zaštićeni od kreiranja',
 'protectedtitlesempty'    => 'Nijedan naslov nije trenutačno zaštićen s tim parametrima.',
 'listusers'               => 'Popis suradnika',
-'specialpages'            => 'Posebne stranice',
-'specialpages-summary'    => 'Slijedi popis posebnih stranica koje služe kako administratorima tako i suradnicima za lakše održavanje projekta. Molim ovdje navesti posebne stranice/kategorije za održavanje projekta.',
-'spheading'               => 'Posebne stranice za sve suradnike',
-'restrictedpheading'      => 'Posebne stranice s ograničenim pristupom',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Suradničko ime:',
 'ancientpages'            => 'Najstarije stranice',
@@ -1359,6 +1356,7 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'nopagetext'              => 'Ciljana stranica koju ste odabrali ne postoji.',
 'pager-newer-n'           => '{{PLURAL:$1|novija $1|novije $1|novijih $1}}',
 'pager-older-n'           => '{{PLURAL:$1|starija $1|starije $1|starijih $1}}',
+'suppress'                => 'Nadzor',
 
 # Book sources
 'booksources'               => 'Pretraživanje po ISBN-u',
@@ -1846,7 +1844,7 @@ Molimo odaberite drugo ime.',
 'movepage-page-exists'    => 'Stranica $1 već postoji i ne može biti automatski prepisana',
 'movepage-page-moved'     => 'Stranica $1 je premještena na $2.',
 'movepage-page-unmoved'   => 'Stranica $1 nije mogla biti premještena na $2.',
-'movepage-max-pages'      => 'Najveća količina od $1 stranica je premještena i više od toga neće biti automatski premješteno.',
+'movepage-max-pages'      => 'Najveća količina od $1 {{PLURAL:$1|stranice|stranica}} je premještena i više od toga neće biti automatski premješteno.',
 '1movedto2'               => '$1 premješteno na $2',
 '1movedto2_redir'         => '$1 premješteno na $2 preko postojećeg preusmjeravanja',
 'movelogpage'             => 'Evidencija premještanja',
@@ -2568,6 +2566,11 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'fileduplicatesearch-result-n' => 'Datoteka "$1" ima {{PLURAL:$2|1 identičnu kopiju|$2 identične kopije}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Posebne stranice',
+'specialpages-summary'           => 'Slijedi popis posebnih stranica koje služe kako administratorima tako i suradnicima za lakše održavanje projekta. Molim ovdje navesti posebne stranice/kategorije za održavanje projekta.',
+'specialpages-note'              => '----
+* Normalne posebne stranice
+:<span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',
@@ -2575,5 +2578,10 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'specialpages-group-media'       => 'Izvještaji i postavljanje datoteka',
 'specialpages-group-users'       => 'Suradnici i suradnička prava',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
+'specialpages-group-pages'       => 'Popisi stranica',
+'specialpages-group-pagetools'   => 'Alati za stranice',
+'specialpages-group-wiki'        => 'Wiki podaci i alati',
+'specialpages-group-redirects'   => 'Preusmjeravajuće posebne stranice',
+'specialpages-group-spam'        => 'Spam alati',
 
 );

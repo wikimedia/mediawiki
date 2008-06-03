@@ -483,6 +483,7 @@ Dinge Zojang för hee es do. Do bes jetz aanjemeldt. Denk dran, Do künnts der D
 'youremail'                  => 'E-Mail *',
 'username'                   => 'Metmaacher Name:',
 'uid'                        => 'Metmaacher ID:',
+'prefs-memberingroups'       => 'Mitglied der {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}:',
 'yourrealname'               => 'Dinge richtije Name *',
 'yourlanguage'               => 'Die Sproch, die et Wiki kalle soll:',
 'yourvariant'                => 'Ding Variant',
@@ -634,11 +635,8 @@ Do kanns och noch en et <span class="plainlinks">[{{fullurl:Special:Ipblocklist|
 'accmailtitle'              => 'Passwood verscheck',
 'accmailtext'               => 'Dat Passwood för dä Metmaacher „$1“ es aan „$2“ jescheck woode.',
 'newarticle'                => '(Neu)',
-'newarticletext'            => 'Ene Link op en Sigg, wo noch nix drop steiht, weil et se noch jar nit jitt, hät Dich 
-noh hee jebraht.<br />
-<small>Öm die Sigg aanzeläje, schriev hee unge en dat Feld eren, un dun et dann avspeichere. (Luur op de 
-[[int:MediaWiki:Helppage|Sigge met Hölp]] noh, wann De mieh dodrüvver wesse wells)<br />Wann De jar nit hee hen 
-kumme wollts, dann jangk zeröck op die Sigg, wo De herjekumme bes, Dinge Brauser hät ene Knopp doför.</small>',
+'newarticletext'            => 'Ene Link op en Sigg, wo noch nix drop steiht, weil et se noch jar nit jitt, hät Dich noh hee jebraht.<br />
+<small>Öm die Sigg aanzeläje, schriev hee unge en dat Feld eren, un dun dat dann avspeichere. Luur op de [[int:MediaWiki:Helppage|Sigge met Hölp]] noh, wann De mieh dodrüvver wesse wells. Wann De jar nit hee hen kumme wollts, dann jangk zeröck op die Sigg, wo De herjekumme bes, Dinge Brauser hät ene Knopp doför.</small>',
 'anontalkpagetext'          => '----
 <i>Dat hee es de Klaaf Sigg för ene namenlose Metmaacher. Dä hät sich noch keine Metmaacher Name jejovve un 
 enjerich, ov deit keine bruche. Dröm bruche mer sing IP Adress öm It oder In en uns Lisste fasszehalde. 
@@ -922,6 +920,8 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'servertime'               => 'De Uhrzigg om Sörver es jetz:',
 'guesstimezone'            => 'Fing et erus üvver dä Brauser',
 'allowemail'               => 'E-Mail vun andere Metmaacher zolooße',
+'prefs-searchoptions'      => 'Enstellunge för et Sööke',
+'prefs-namespaces'         => 'Appachtemangs',
 'defaultns'                => 'Dun standaadmäßich en hee dä Appachtemengs söke:',
 'default'                  => 'Standaad',
 'files'                    => 'Dateie',
@@ -996,6 +996,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-bot'                  => 'Als enne automatesche Prozeß oddr a Projramm behandelle',
 'right-nominornewtalk'       => 'Klein Mini-Änderunge aan anderlücks Klaafsigge brenge dänne nit „{{int:newmessageslink}}“',
 'right-apihighlimits'        => 'Hütere Jrenze em API',
+'right-writeapi'             => 'Darf de <tt>writeAPI</tt> bruche',
 'right-delete'               => 'Sigge fottschmieße, die nit besönders vill ahle Versione han',
 'right-bigdelete'            => 'Sigge fottschmiiße, och wann se ahle Versione ze baasch han',
 'right-deleterevision'       => 'Einzel Versione fun Sigge fottschmiiße un zeröck holle',
@@ -1016,7 +1017,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-rollback'             => 'All de letzte Änderunge fom letzte Metmaacher aan ene Sigg retur maache',
 'right-markbotedits'         => 'Retur jemaate Änderonge als Bot-Änderung makeere',
 'right-import'               => 'Sigge uß ander Wikis Empochteere',
-'right-importupload'         => 'Sigge övver et Datei-Huhlade empochteere',
+'right-importupload'         => 'Sigge övver et XML-Datei-Huhlade empochteere',
 'right-patrol'               => 'Anderlücks Änderunge aan Sigge als „nohjeloort“ makeere',
 'right-autopatrol'           => 'De eije Änderunge automattesch als „Nohjeloohrt“ makeere',
 'right-patrolmarks'          => 'De „noch nit Nohjeloohrt“ Zeiche en de „{{int:recentchanges}}“ jezeich krijje',
@@ -1207,7 +1208,10 @@ De Einzelheite: $1',
 
 # MIME search
 'mimesearch'         => 'Belder, Tön, uew. üvver ehr MIME-Typ söke',
-'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Bildbeschreibungsseite).',
+'mimesearch-summary' => 'Op hee dä Sondersigg könne de Dateie noh em MIME-Tüpp ußjesöök wäde.
+Mer moß immer der Medietüp un der Ongertüp aanjevve.
+Zem Beispell: <tt>image/jpeg</tt>
+— kannß donoh op dä Beschrievungssigge von de Belder loore.',
 'mimetype'           => 'MIME-Typ:',
 'download'           => 'Erungerlade',
 
@@ -1216,7 +1220,8 @@ De Einzelheite: $1',
 'unwatchedpages-summary' => 'Die Sondersigg hee zeich Sigge, die keine Metmaacher op singe Oppassliss ston hät.',
 
 # List redirects
-'listredirects' => 'Ömleitunge',
+'listredirects'         => 'Ömleitunge',
+'listredirects-summary' => 'Die Sondersigg hee liss Ömleidunge op.',
 
 # Unused templates
 'unusedtemplates'         => 'Schablone oder Baustein, die nit jebruch wääde',
@@ -1335,10 +1340,6 @@ Die Liss kann op ein Appachtemang bejrenz wäde.',
 'protectedtitles-summary'         => "Hee sin verbodde Sigge-Tittele opjelis, unger dä Name ka'mer kein neu Sigge aanläje.",
 'listusers'                       => 'Metmaacher',
 'listusers-summary'               => "Die Sondersigg hee zeich aanjemelldte Metmaacher. En de [[Special:Statistics|Sondersigg met de Statistike]] ka'mer dozo och Zahle nohloore.",
-'specialpages'                    => 'Sondersigge',
-'specialpages-summary'            => 'Die Sondersigg hee zeich ene Övverbleck över de Sondersigge, die vum Wiki automatesch opjebout wäde un wo mer direk nix draan ändere kann.',
-'spheading'                       => 'Sondersigge för all Metmaacher',
-'restrictedpheading'              => 'Sondersigge met beschränkte Zojangsräächde',
 'newpages'                        => 'Neu Sigge',
 'newpages-summary'                => "Die Sondersigg hee zeich de neu aanjelaate Sigge uß de letzte Zigg.
 De Liss kam'mer op eij Appachtemang odder op einem Metmaacher sing Beidrääch bejrenz wääde.",
@@ -1408,7 +1409,7 @@ eins vun all däm op eimol.',
 
 # Special:Categories
 'categories'                    => 'Saachjruppe',
-'categoriespagetext'            => 'En hee dä Saachjrup{{PLURAL:|pe|}} en de {{SITENAME}} sin Saachjruppe, Sigge, Bellder, Tön uew. dren:',
+'categoriespagetext'            => 'En hee dä Saachjrup{{PLURAL:$1||pe|}} en de {{SITENAME}} sin Saachjruppe, Sigge, Bellder, Tön uew. dren:',
 'special-categories-sort-count' => 'Zoteere noh de Aanzahl',
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
 
@@ -1746,6 +1747,12 @@ watte bruchs.",
 'talkexists'              => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
 'movedto'                 => 'ömjenannt en',
 'movetalk'                => 'dä ehr Klaafsigg met ömnenne',
+'move-subpages'           => 'Don de Ongersigge met_ömnënne',
+'move-talk-subpages'      => 'Don de Ongersigge von de Klaafsigge met_ömnënne',
+'movepage-page-exists'    => 'En Sigg „$1“ ham_mer ald, un di bliif och beshtonn, mer don se nit ottomatėsch ußtuusche.',
+'movepage-page-moved'     => 'Di eejemoolijje Sigg „$1“ es jëz op „$2“ ömjenannt.',
+'movepage-page-unmoved'   => 'Mer kůnnte di Sigg „$1“ nit op „$2“ ömnënne.',
+'movepage-max-pages'      => 'Mer han jëtz {{PLURAL:$1|ëijn Sigg|$1 Sigge|kein Sigg}} ömjenanndt. Mieh jeiht nit automatėsch.',
 '1movedto2'               => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
 '1movedto2_redir'         => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt un doför de ahl Ömleitungs-Sigg fottjeschmesse.',
 'movelogpage'             => 'Logboch met de ömjenannte Sigge',
@@ -1819,6 +1826,7 @@ Metmaacher Name vun de Schriever wääde dobei metjenomme. All de Trans Wiki Emp
 'importhistoryconflict'      => 'Mer han zwei ahle Versione jefunge, die dun sich bieße - die ein wor ald do - de ander en dä Emport Datei. möchlich, Ehr hatt die Daate ald ens emporteet.',
 'importnosources'            => 'Hee sin kein Quell för dä Trans Wiki Emport enjerich. Dat ahle Versione Huhlade es avjeschalt  un nit möchlich.',
 'importnofile'               => 'Et wood kein Datei huhjelade för ze Emporteere.',
+'import-upload'              => 'En XML-Datei impochteere',
 
 # Import log
 'importlogpage'                    => 'Logboch met emporteerte Sigge',
@@ -2117,10 +2125,15 @@ $1',
 Doht der Name ohne „{{ns:image}}:“ doför ennjävve.",
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch-summary'  => 'Söök noh dubbelte Dateie övver dänne iere Häsh-Zahl.
+
+Der Name moß ohne der Försatz „{{ns:image}}:“ aanjejovve wääde.',
 'fileduplicatesearch-submit'   => 'Sööke',
 'fileduplicatesearch-result-n' => "Vun dä Datei „$1“ ham'mer '''{{PLURAL:$2|ein|$2|kein}}''' dubbelte mem selve Enhalt jefonge.",
 
 # Special:SpecialPages
+'specialpages'                   => 'Sondersigge',
+'specialpages-summary'           => 'Die Sondersigg hee zeich ene Övverbleck över de Sondersigge, die vum Wiki automatesch opjebout wäde un wo mer direk nix draan ändere kann.',
 'specialpages-group-maintenance' => 'Waadungsleste',
 'specialpages-group-other'       => 'Ander Sondersigge',
 'specialpages-group-login'       => 'Aamelde',

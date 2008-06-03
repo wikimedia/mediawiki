@@ -1083,6 +1083,7 @@ Llanchisqa willañiqi qallariy chhikan kikin rikchaman kaqlla kaptinqa, huk rikc
 Kay churkunayki rikcha hunt'a chhikan kayniyuq kaptinqa, chay hunt'atam churkuy, manataq hinaptinqa willañiqip sutinta hukchay.",
 'fileexists-forbidden'        => 'Kay sutiyuq willañiqiqa kachkanñam. Ama hina kaspa, willañiqip sutinta hukchaspa musuqmanta churkuy. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Kay sutiyuq willañiqiqa kachkañam rakinakusqa willañiqi qullqapi; ama hina kaspa, ñawpaq p'anqaman kutispa willañiqiykita huk sutiwan churkuy. [[Image:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => 'Kay willañiqiqa kay qatiq {{PLURAL:$1|willañiqip|willañiqikunap}} iskaychasqanmi:',
 'successfulupload'            => 'Aypalla churkusqañam',
 'uploadwarning'               => 'Willañiqi churkuymanta paqtataq niy',
 'savefile'                    => 'Willañiqita waqaychay',
@@ -1297,9 +1298,6 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'protectedtitlestext'     => "Kay sutikunayuq p'anqakunaqa kamarinamanta hark'asqam",
 'protectedtitlesempty'    => "Manam kachkanchu kay kuskanachina tupukunawan amachasqa p'anqakuna.",
 'listusers'               => 'Tukuy ruraqkuna',
-'specialpages'            => "Sapaq p'anqakuna",
-'spheading'               => "Sapaq p'anqakuna",
-'restrictedpheading'      => "Kamachiqkunallapaq sapaq p'anqakuna",
 'newpages'                => "Musuq p'anqakuna",
 'newpages-username'       => 'Ruraqpa sutin:',
 'ancientpages'            => "Ñawpaqta qallarisqa p'anqakuna",
@@ -2478,6 +2476,10 @@ Mana “{{ns:image}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'fileduplicatesearch-result-n' => '"$1" sutiyuq willañiqiqa {{PLURAL:$2|1 kaqllalla iskaychasqayuqmi|$2 kaqllalla iskaychasqakunayuqmi}}.',
 
 # Special:SpecialPages
+'specialpages'                   => "Sapaq p'anqakuna",
+'specialpages-note'              => '----
+* Sapsipaq sapaq p\'anqakuna.
+* <span class="mw-specialpagerestricted">Sapaqkunallapaq sapaq p\'anqakuna.</span>',
 'specialpages-group-maintenance' => 'Hatalliy willaykuna',
 'specialpages-group-other'       => "Huk sapaq p'anqakuna",
 'specialpages-group-login'       => 'Yaykuy / rakiqunata kichariy',
@@ -2485,5 +2487,10 @@ Mana “{{ns:image}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'specialpages-group-media'       => 'Midya willaykuna churkuykunapas',
 'specialpages-group-users'       => 'Ruraqkuna hayñinkunapas',
 'specialpages-group-highuse'     => "Achka kuti llamk'achisqa p'anqakuna",
+'specialpages-group-pages'       => "P'anqa sutisuyukuna",
+'specialpages-group-pagetools'   => "P'anqa llamk'anakuna",
+'specialpages-group-wiki'        => "Wiki willakuna llamk'anakunapas",
+'specialpages-group-redirects'   => "Pusapunapaq sapaq p'anqakuna",
+'specialpages-group-spam'        => "Spam nisqa millay rurayta hark'anapaq llamk'anakuna",
 
 );

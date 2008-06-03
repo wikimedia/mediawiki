@@ -1516,9 +1516,6 @@ PICT # различные
 'protectedtitlestext'     => 'Следующие названия не разрешается использовать',
 'protectedtitlesempty'    => 'В настоящий момент нет запрещённых названий с указанными параметрами.',
 'listusers'               => 'Список участников',
-'specialpages'            => 'Спецстраницы',
-'spheading'               => 'Служебные страницы',
-'restrictedpheading'      => 'Служебные страницы с ограниченным доступом',
 'newpages'                => 'Новые страницы',
 'newpages-username'       => 'Участник:',
 'ancientpages'            => 'Статьи по дате последнего редактирования',
@@ -2803,8 +2800,10 @@ $1',
 'fileduplicatesearch-result-n' => 'Файл «$1» имеет $2 {{PLURAL:$2|идентичный дубликат|идентичных дубликата|идентичных дубликатов}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* Доступ к <span class="mw-specialpagerestricted">выделенным</span> служебным страницам ограничен.',
+'specialpages'                   => 'Спецстраницы',
+'specialpages-note'              => '----
+* Обычные служебные страницы.
+* <span class="mw-specialpagerestricted">Служебные страницы с ограниченным доступом.</span>',
 'specialpages-group-maintenance' => 'Отчёты технического обслуживания',
 'specialpages-group-other'       => 'Другие служебные страницы',
 'specialpages-group-login'       => 'Представиться / Зарегистрироваться',

@@ -1442,9 +1442,6 @@ O tamanho actual da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de taref
 'protectedtitlestext'     => 'Os títulos a seguir encontram-se protegidos contra criação',
 'protectedtitlesempty'    => 'Não há títulos protegidos com os parâmetros fornecidos.',
 'listusers'               => 'Lista de utilizadores',
-'specialpages'            => 'Páginas especiais',
-'spheading'               => 'Páginas especiais para todos os utilizadores',
-'restrictedpheading'      => 'Páginas especiais restritas',
 'newpages'                => 'Páginas novas',
 'newpages-username'       => 'Nome de utilizador:',
 'ancientpages'            => 'Páginas mais antigas',
@@ -2640,6 +2637,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'O ficheiro "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '<hr />
 * As páginas especiais <span class="mw-specialpagerestricted">destacadas</span> são de acesso restrito.',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',

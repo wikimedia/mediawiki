@@ -1361,9 +1361,6 @@ La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda v
 'protectedtitlestext'     => 'La jenaj titoloj estas protektitaj kontraŭ kreado',
 'protectedtitlesempty'    => 'Neniuj titoloj estas nune protektitaj kun ĉi parametroj.',
 'listusers'               => 'Uzantaro',
-'specialpages'            => 'Specialaj paĝoj',
-'spheading'               => 'Specialaj paĝoj',
-'restrictedpheading'      => 'Alirlimigitaj specialaj paĝoj',
 'newpages'                => 'Novaj paĝoj',
 'newpages-username'       => 'Salutnomo:',
 'ancientpages'            => 'Plej malnovaj artikoloj',
@@ -1720,7 +1717,7 @@ $1',
 ** Misuzo de pluraj salutnomoj
 ** Neakceptebla uzanto-nomo',
 'ipbanononly'                 => 'Forbari nur anonimulojn',
-'ipbcreateaccount'            => 'Malpermesu kreadon de konto',
+'ipbcreateaccount'            => 'Preventi kreadon de konto',
 'ipbemailban'                 => 'Malebligu al uzanto sendi retpoŝton.',
 'ipbenableautoblock'          => 'Aŭtomate forbaru la lastan IP-adreson uzitan de la uzanto, kaj ĉiajn subsekvantajn adresojn el kiuj tiu provos redakti',
 'ipbsubmit'                   => 'Forbari ĉi tiun uzanton',
@@ -2557,8 +2554,10 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 'fileduplicatesearch-result-n' => 'La dosiero "$1" havas {{PLURAL:$2|1 identan duplikaton|$2 identajn duplikatojn}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Emfazaj</span> specialaj paĝoj estas limigitaj.',
+'specialpages'                   => 'Specialaj paĝoj',
+'specialpages-note'              => '----
+* Normaj specialaj paĝoj.
+* <span class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
 'specialpages-group-login'       => 'Ensalutu / Kreu novan konton',

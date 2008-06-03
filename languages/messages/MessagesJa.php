@@ -530,23 +530,23 @@ $2',
 'hr_tip'          => '水平線（利用は控えめに）',
 
 # Edit pages
-'summary'                   => '編集内容の要約',
-'subject'                   => '題名・見出し',
-'minoredit'                 => 'これは細部の編集です',
-'watchthis'                 => 'ウォッチリストに追加',
-'savearticle'               => '保存する',
-'preview'                   => 'プレビュー',
-'showpreview'               => 'プレビューを実行',
-'showlivepreview'           => 'ライブプレビュー',
-'showdiff'                  => '差分を表示',
-'anoneditwarning'           => 'あなたはログインしていません。このまま投稿を行った場合あなたのIPアドレスはこの項目の履歴に記録されます。',
-'missingsummary'            => "'''注意:''' 要約欄が空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
-'missingcommenttext'        => '以下にコメントを入力してください。',
-'missingcommentheader'      => "'''注意:''' 題名・見出しが空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
-'summary-preview'           => '要約のプレビュー',
-'subject-preview'           => '題名・見出しのプレビュー',
-'blockedtitle'              => '投稿ブロック',
-'blockedtext'               => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。ブロックの理由は $2 です。
+'summary'                          => '編集内容の要約',
+'subject'                          => '題名・見出し',
+'minoredit'                        => 'これは細部の編集です',
+'watchthis'                        => 'ウォッチリストに追加',
+'savearticle'                      => '保存する',
+'preview'                          => 'プレビュー',
+'showpreview'                      => 'プレビューを実行',
+'showlivepreview'                  => 'ライブプレビュー',
+'showdiff'                         => '差分を表示',
+'anoneditwarning'                  => 'あなたはログインしていません。このまま投稿を行った場合あなたのIPアドレスはこの項目の履歴に記録されます。',
+'missingsummary'                   => "'''注意:''' 要約欄が空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
+'missingcommenttext'               => '以下にコメントを入力してください。',
+'missingcommentheader'             => "'''注意:''' 題名・見出しが空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
+'summary-preview'                  => '要約のプレビュー',
+'subject-preview'                  => '題名・見出しのプレビュー',
+'blockedtitle'                     => '投稿ブロック',
+'blockedtext'                      => 'ご使用の利用者名またはIPアドレスは $1 によって投稿をブロックされています。ブロックの理由は $2 です。
 
 *ブロック開始時期: $8
 *ブロック解除予定: $6
@@ -555,7 +555,7 @@ $2',
 $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
-'autoblockedtext'           => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
+'autoblockedtext'                  => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
 
 :$2
 
@@ -567,89 +567,90 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
-'blockednoreason'           => '理由が設定されていません',
-'blockedoriginalsource'     => "以下に '''$1''' のソースを示します:",
-'blockededitsource'         => "'''$1''' への '''あなたの編集''' を以下に示します:",
-'whitelistedittitle'        => '編集にはログインが必要',
-'whitelistedittext'         => 'このページを編集するには $1 する必要があります。',
-'whitelistreadtitle'        => '閲覧にはログインが必要',
-'whitelistreadtext'         => 'このページを閲覧するには[[Special:Userlogin|ログイン]]する必要があります。',
-'whitelistacctitle'         => 'アカウントの作成は許可されていません',
-'whitelistacctext'          => '{{SITENAME}}のアカウントを作成するには、適切な権限を持った利用者名で[[Special:Userlogin|ログイン]]する必要があります。',
-'confirmedittitle'          => '編集にはメールアドレスの確認が必要です。',
-'confirmedittext'           => 'ページの編集を始める前にメールアドレスの確認をする必要があります。[[Special:Preferences|オプション]]でメールアドレスを設定し、確認を行ってください。',
-'nosuchsectiontitle'        => 'セクションが存在しません',
-'nosuchsectiontext'         => '指定されたセクションはありません。セクション $1 はありませんでしたので、セクション編集は無効となります。編集内容は保存されません。',
-'loginreqtitle'             => 'ログインが必要',
-'loginreqlink'              => 'ログイン',
-'loginreqpagetext'          => '他のページを閲覧するには$1する必要があります。',
-'accmailtitle'              => 'パスワードを送信しました',
-'accmailtext'               => '"$1" のパスワードを $2 に送信しました。',
-'newarticle'                => '（新規）',
-'newarticletext'            => 'ページを新規に作成するには新しい内容を書き込んでください。',
-'anontalkpagetext'          => "----
+'blockednoreason'                  => '理由が設定されていません',
+'blockedoriginalsource'            => "以下に '''$1''' のソースを示します:",
+'blockededitsource'                => "'''$1''' への '''あなたの編集''' を以下に示します:",
+'whitelistedittitle'               => '編集にはログインが必要',
+'whitelistedittext'                => 'このページを編集するには $1 する必要があります。',
+'whitelistreadtitle'               => '閲覧にはログインが必要',
+'whitelistreadtext'                => 'このページを閲覧するには[[Special:Userlogin|ログイン]]する必要があります。',
+'whitelistacctitle'                => 'アカウントの作成は許可されていません',
+'whitelistacctext'                 => '{{SITENAME}}のアカウントを作成するには、適切な権限を持った利用者名で[[Special:Userlogin|ログイン]]する必要があります。',
+'confirmedittitle'                 => '編集にはメールアドレスの確認が必要です。',
+'confirmedittext'                  => 'ページの編集を始める前にメールアドレスの確認をする必要があります。[[Special:Preferences|オプション]]でメールアドレスを設定し、確認を行ってください。',
+'nosuchsectiontitle'               => 'セクションが存在しません',
+'nosuchsectiontext'                => '指定されたセクションはありません。セクション $1 はありませんでしたので、セクション編集は無効となります。編集内容は保存されません。',
+'loginreqtitle'                    => 'ログインが必要',
+'loginreqlink'                     => 'ログイン',
+'loginreqpagetext'                 => '他のページを閲覧するには$1する必要があります。',
+'accmailtitle'                     => 'パスワードを送信しました',
+'accmailtext'                      => '"$1" のパスワードを $2 に送信しました。',
+'newarticle'                       => '（新規）',
+'newarticletext'                   => 'ページを新規に作成するには新しい内容を書き込んでください。',
+'anontalkpagetext'                 => "----
 ''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。{{SITENAME}}では匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしも、あなたが匿名利用者で無関係なコメントがここに寄せられる場合は、[[Special:Userlogin|アカウントを作成するかログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。",
-'noarticletext'             => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
-'userpage-userdoesnotexist' => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
-'clearyourcache'            => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
+'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
+'userpage-userdoesnotexist'        => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
+'clearyourcache'                   => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
 * '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Shift]-[Ctrl]-[R] （Macでは [Cmd]-[Shift]-[R]）
 * '''IE:''' [Ctrl] を押しながら [更新] をクリック、または [Ctrl]-[F5]
 * '''Konqueror:''' [再読み込み] をクリック、または [F5]
 * '''Opera:''' 「ツール」→「設定」からキャッシュをクリア。",
-'usercssjsyoucanpreview'    => '<strong>ヒント:</strong> 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシート・スクリプトをテストできます。',
-'usercsspreview'            => "'''あなたはユーザースタイルシートをプレビューしています。まだ保存されていないので注意してください。'''",
-'userjspreview'             => "'''あなたはユーザースクリプトをテスト・プレビューしています。まだ保存されていないので注意してください。'''",
-'userinvalidcssjstitle'     => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
-'updated'                   => '（更新）',
-'note'                      => '<strong>お知らせ:</strong>',
-'previewnote'               => '<strong>これはプレビューです。まだ保存されていません!</strong>',
-'previewconflict'           => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
-'session_fail_preview'      => '<strong>セッションが切断されたため編集を保存できません。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
-'session_fail_preview_html' => "<strong>申し訳ありません。セッションが切断されたため編集を保存することができませんでした。</strong>
+'usercssjsyoucanpreview'           => '<strong>ヒント:</strong> 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシート・スクリプトをテストできます。',
+'usercsspreview'                   => "'''あなたはユーザースタイルシートをプレビューしています。まだ保存されていないので注意してください。'''",
+'userjspreview'                    => "'''あなたはユーザースクリプトをテスト・プレビューしています。まだ保存されていないので注意してください。'''",
+'userinvalidcssjstitle'            => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
+'updated'                          => '（更新）',
+'note'                             => '<strong>お知らせ:</strong>',
+'previewnote'                      => '<strong>これはプレビューです。まだ保存されていません!</strong>',
+'previewconflict'                  => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
+'session_fail_preview'             => '<strong>セッションが切断されたため編集を保存できません。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
+'session_fail_preview_html'        => "<strong>申し訳ありません。セッションが切断されたため編集を保存することができませんでした。</strong>
 
 ''{{SITENAME}}ではHTMLタグの使用に制限を設けておらず、JavaScript でのアタックを予防するためにプレビューを隠しています。''
 
 <strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度ログアウトして、もう一度ログインしてみてください。</strong>",
-'token_suffix_mismatch'     => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
+'token_suffix_mismatch'            => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
 このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
 問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
-'editing'                   => '$1 を編集中',
-'editingsection'            => '$1 を編集中（節単位編集）',
-'editingcomment'            => '$1 を編集中（新規コメント）',
-'editconflict'              => '編集競合: $1',
-'explainconflict'           => 'あなたがこのページを編集し始めた後に、他の誰かがこのページを変更しました。上側のテキストエリアは現在の最新の状態です。あなたの編集していた文章は下側のテキストエリアに示されています。編集していた文章を、上側のテキストエリアの文章に組み込んでください。<strong>上側のテキストエリアの内容だけ</strong>が、「{{int:Savearticle}}」をクリックした時に実際に保存されます。',
-'yourtext'                  => 'あなたの文章',
-'storedversion'             => '保存された版',
-'nonunicodebrowser'         => '<strong>警告: あなたの使用しているブラウザはUnicode互換ではありません。項目を編集する前にブラウザを変更してください。</strong>',
-'editingold'                => '<strong>警告: あなたはこのページの古い版を編集しています。もしこの文章を保存すると、この版以降に追加された全ての変更が無効になってしまいます。</strong>',
-'yourdiff'                  => 'あなたの更新内容',
-'copyrightwarning'          => "'''■投稿する前に以下を確認してください■'''
+'editing'                          => '$1 を編集中',
+'editingsection'                   => '$1 を編集中（節単位編集）',
+'editingcomment'                   => '$1 を編集中（新規コメント）',
+'editconflict'                     => '編集競合: $1',
+'explainconflict'                  => 'あなたがこのページを編集し始めた後に、他の誰かがこのページを変更しました。上側のテキストエリアは現在の最新の状態です。あなたの編集していた文章は下側のテキストエリアに示されています。編集していた文章を、上側のテキストエリアの文章に組み込んでください。<strong>上側のテキストエリアの内容だけ</strong>が、「{{int:Savearticle}}」をクリックした時に実際に保存されます。',
+'yourtext'                         => 'あなたの文章',
+'storedversion'                    => '保存された版',
+'nonunicodebrowser'                => '<strong>警告: あなたの使用しているブラウザはUnicode互換ではありません。項目を編集する前にブラウザを変更してください。</strong>',
+'editingold'                       => '<strong>警告: あなたはこのページの古い版を編集しています。もしこの文章を保存すると、この版以降に追加された全ての変更が無効になってしまいます。</strong>',
+'yourdiff'                         => 'あなたの更新内容',
+'copyrightwarning'                 => "'''■投稿する前に以下を確認してください■'''
 * {{SITENAME}}に投稿された文書は、すべて$2（詳細は$1を参照）によって公開されることに同意してください。
 * あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えてください。
 * あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください。'''あなたが著作権を保持していない作品を許諾なしに投稿してはいけません!'''",
-'copyrightwarning2'         => "'''■投稿する前に以下を確認してください■'''
+'copyrightwarning2'                => "'''■投稿する前に以下を確認してください■'''
 * あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えてください。
 * あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください（詳細は$1を参照）。'''あなたが著作権を保持していない作品を許諾なしに投稿してはいけません!'''",
-'longpagewarning'           => "'''警告:''' このページのサイズは $1 キロバイトです。一部の古いブラウザでは 32 キロバイト以上のページを編集すると問題が起きるものがあります。ページを節に分けることを検討してください。",
-'longpageerror'             => '<strong>エラー: あなたが投稿したテキストは $1 キロバイトの長さがあります。これは投稿できる最大の長さである $2 キロバイトを超えています。この編集を保存することはできません。</strong>',
-'readonlywarning'           => '<strong>警告: データベースがメンテナンスのためにロックされています。現在は編集結果を保存できません。文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。</strong>',
-'protectedpagewarning'      => "'''警告:''' このページは保護されています。{{int:group-sysop}}しか編集できません。",
-'semiprotectedpagewarning'  => "'''お知らせ:''' このページは登録利用者のみが編集できるよう保護されています。",
-'cascadeprotectedwarning'   => "'''警告:''' このページはカスケード保護されている以下のページから呼び出されているため、{{int:group-sysop}}しか編集できません。",
-'titleprotectedwarning'     => '<strong>警告:  このページはロックされているため、特定の利用者以外は作成することができません。</strong>',
-'templatesused'             => 'このページで使われているテンプレート:',
-'templatesusedpreview'      => 'このプレビューで使われているテンプレート:',
-'templatesusedsection'      => 'この節で使われているテンプレート:',
-'template-protected'        => '（保護）',
-'template-semiprotected'    => '（半保護）',
-'hiddencategories'          => 'このページは{{PLURAL:$1|1個の非公開カテゴリ|$1個の非公開カテゴリ}}に属しています:',
-'edittools'                 => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
-'nocreatetitle'             => 'ページを作成できません',
-'nocreatetext'              => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',
-'nocreate-loggedin'         => '{{SITENAME}}で新しいページを作成する権限がありません。',
-'permissionserrors'         => '認証エラー',
-'permissionserrorstext'     => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
-'recreate-deleted-warn'     => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
+'longpagewarning'                  => "'''警告:''' このページのサイズは $1 キロバイトです。一部の古いブラウザでは 32 キロバイト以上のページを編集すると問題が起きるものがあります。ページを節に分けることを検討してください。",
+'longpageerror'                    => '<strong>エラー: あなたが投稿したテキストは $1 キロバイトの長さがあります。これは投稿できる最大の長さである $2 キロバイトを超えています。この編集を保存することはできません。</strong>',
+'readonlywarning'                  => '<strong>警告: データベースがメンテナンスのためにロックされています。現在は編集結果を保存できません。文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。</strong>',
+'protectedpagewarning'             => "'''警告:''' このページは保護されています。{{int:group-sysop}}しか編集できません。",
+'semiprotectedpagewarning'         => "'''お知らせ:''' このページは登録利用者のみが編集できるよう保護されています。",
+'cascadeprotectedwarning'          => "'''警告:''' このページはカスケード保護されている以下のページから呼び出されているため、{{int:group-sysop}}しか編集できません。",
+'titleprotectedwarning'            => '<strong>警告:  このページはロックされているため、特定の利用者以外は作成することができません。</strong>',
+'templatesused'                    => 'このページで使われているテンプレート:',
+'templatesusedpreview'             => 'このプレビューで使われているテンプレート:',
+'templatesusedsection'             => 'この節で使われているテンプレート:',
+'template-protected'               => '（保護）',
+'template-semiprotected'           => '（半保護）',
+'hiddencategories'                 => 'このページは{{PLURAL:$1|1個の非公開カテゴリ|$1個の非公開カテゴリ}}に属しています:',
+'edittools'                        => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
+'nocreatetitle'                    => 'ページを作成できません',
+'nocreatetext'                     => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',
+'nocreate-loggedin'                => '{{SITENAME}}で新しいページを作成する権限がありません。',
+'permissionserrors'                => '認証エラー',
+'permissionserrorstext'            => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
+'permissionserrorstext-withaction' => '以下に示された理由により $2 を行うことができません:',
+'recreate-deleted-warn'            => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
 
 このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
 
@@ -1185,9 +1186,6 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'protectedtitlestext'     => '以下のページは新規作成が禁止されています',
 'protectedtitlesempty'    => '現在作成保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
-'specialpages'            => '特別ページ',
-'spheading'               => '特別ページ',
-'restrictedpheading'      => '制限のある特別ページ',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名:',
 'ancientpages'            => '更新されていないページ',
@@ -1695,7 +1693,7 @@ $NEWPAGE
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
 'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。
-もし、MediaWikiの翻訳に協力してくれるならば、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]や[http://translatewiki.net Betawiki]を訪れてください。',
+もし、MediaWikiデフォルトメッセージの翻訳を行いたい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]や[http://translatewiki.net?setlang=ja Betawiki]に行ってみてください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
 'allmessagesmodified'       => '変更されたもののみを表示',
@@ -2404,6 +2402,7 @@ $1',
 'fileduplicatesearch-result-n' => '「$1」と重複するファイルが $2 個あります。',
 
 # Special:SpecialPages
+'specialpages'                   => '特別ページ',
 'specialpages-group-maintenance' => 'ページのメンテナンス情報',
 'specialpages-group-other'       => 'その他特別ページ',
 'specialpages-group-login'       => 'ログイン / 利用者登録',

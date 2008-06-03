@@ -1325,6 +1325,9 @@ Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: 
 'disambiguations'         => 'Homonymie Säiten',
 'disambiguations-summary' => 'Homonymiesresumé',
 'disambiguationspage'     => 'Schabloun:Homonymie',
+'disambiguations-text'    => 'Dës Säite si mat enger Homonymie-Säit verlinkt.
+Sie sollten am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
+Eng Säite gëtt als Homonymiesäit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.',
 
 'doubleredirects'         => 'Duebel Viruleedungen',
 'doubleredirects-summary' => 'Op dëser Lëscht stinn déi Viruleedungen, déi op aner Viruleedungen linken.',
@@ -1404,10 +1407,6 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'protectedtitlesempty'            => 'Zur Zäit si mat de Parameteren déi Dir uginn huet keng Säite gespaart esou datt si net ugeluecht kënne ginn.',
 'listusers'                       => 'Benotzerlëscht',
 'listusers-summary'               => "Op dëser Spezialsäit ginn all registréiert Mataarbechter opgezielt; wéivill am Ganzen et der sinn, steet [[Special:Statistics|hei]]. Am Feld ''Grupp'' kënnt der ënnert bestëmmte Mataarbechtergruppen auswielen.",
-'specialpages'                    => 'Spezialsäiten',
-'specialpages-summary'            => "Op dëser Säit sinn all d'Spezialsäiten opgezielt. Si ass automatesch generéiert ginn a kann nëtt g'ännert ginn.",
-'spheading'                       => 'Spezialsäite fir all Benotzer',
-'restrictedpheading'              => 'Spezialsäite fir Administrateuren',
 'newpages'                        => 'Nei Säiten',
 'newpages-summary'                => "Op dëser Spezialsäit stinn all d'nei Säite vun de leschten 30 Deeg. Dir kënnt d'Sich op e bestëmmten Nummraum oder Benotzernumm limitéieren.",
 'newpages-username'               => 'Benotzernumm:',
@@ -2486,6 +2485,8 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 'fileduplicatesearch-result-n' => 'De Fichier "$1" huet {{PLURAL:$2|1 identeschen Doublon|$2 identesch Doublonen}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Spezialsäiten',
+'specialpages-summary'           => "Op dëser Säit sinn all d'Spezialsäiten opgezielt. Si ass automatesch generéiert ginn a kann nëtt g'ännert ginn.",
 'specialpages-note'              => '<hr />
 * <span class="mw-specialpagerestricted">Fettgeschriwwe</span> Spezialsäite sinn nëmme fir Benotzer mat méi Rechter.',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',

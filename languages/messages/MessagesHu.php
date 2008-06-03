@@ -1540,9 +1540,6 @@ A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló
 'protectedtitlestext'     => 'A következő lapok védve vannak a létrehozás ellen',
 'protectedtitlesempty'    => 'Jelenleg nincsenek ilyen típusú védett lapok.',
 'listusers'               => 'Felhasználók',
-'specialpages'            => 'Speciális lapok',
-'spheading'               => 'Speciális lapok',
-'restrictedpheading'      => 'Korlátozott hozzáférésű speciális lapok',
 'newpages'                => 'Új lapok',
 'newpages-username'       => 'Felhasználói név:',
 'ancientpages'            => 'Régóta nem változott szócikkek',
@@ -2041,7 +2038,7 @@ Kérlek, válassz egy másik nevet.',
 'movepage-page-exists'    => 'A(z) „$1” nevű lap már létezik, és nem írható felül automatikusan.',
 'movepage-page-moved'     => 'A(z) „$1” nevű lap át lett nevezve „$2” névre.',
 'movepage-page-unmoved'   => 'A(z) „$1” nevű lap nem nevezhető át „$2” névre.',
-'movepage-max-pages'      => '$1 lapnál több nem nevezhető át automatikusan, így a további lapok a helyükön maradnak.',
+'movepage-max-pages'      => '{{PLURAL:$1|Egy|$1}} lapnál több nem nevezhető át automatikusan, így a további lapok a helyükön maradnak.',
 '1movedto2'               => '[[$1]] lapot átneveztem [[$2]] névre',
 '1movedto2_redir'         => '[[$1]] lapot átneveztem [[$2]] névre (az átirányítást felülírva)',
 'movelogpage'             => 'Átnevezési napló',
@@ -2758,6 +2755,10 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'fileduplicatesearch-result-n' => 'A(z) „$1” nevű fájlnak $2 duplikátuma van.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Speciális lapok',
+'specialpages-note'              => '----
+* Mindenki számára elérhető speciális lapok.
+* <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>',
 'specialpages-group-maintenance' => 'Állapotjelentések',
 'specialpages-group-other'       => 'További speciális lapok',
 'specialpages-group-login'       => 'Bejelentkezés / fiók létrehozása',
@@ -2765,5 +2766,8 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'specialpages-group-media'       => 'Médiafájlok, feltöltések',
 'specialpages-group-users'       => 'Felhasználók és jogok',
 'specialpages-group-highuse'     => 'Gyakran használt lapok',
+'specialpages-group-pages'       => 'Listák',
+'specialpages-group-pagetools'   => 'Eszközök',
+'specialpages-group-redirects'   => 'Átirányító speciális lapok',
 
 );

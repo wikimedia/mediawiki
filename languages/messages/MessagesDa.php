@@ -1440,10 +1440,6 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'protectedtitlesempty'            => 'Der er ingen sidetitler der er beskyttet med disse arametre.',
 'listusers'                       => 'Brugerliste',
 'listusers-summary'               => "Denne specialside viser alle registrerede brugere; det samlede tal kan ses [[Special:Statistics|her]]. Med udvalget ''Gruppe'' kan søgningen begrænses til bestemte brugergrupper.",
-'specialpages'                    => 'Specielle sider',
-'specialpages-summary'            => 'Denne side giver en oversigt over alle specialsider. De genereres automatisk og kan ikke ændres.',
-'spheading'                       => 'Specielle sider for alle brugere',
-'restrictedpheading'              => 'Specielle sider med begrænset adgang',
 'newpages'                        => 'Nyeste artikler',
 'newpages-summary'                => 'Denne specialside viser alle nye artikler fra de sidste 30 dage. Visningen kan begrænses til et navnerum eller et brugernavn.',
 'newpages-username'               => 'Brugernavn:',
@@ -2619,8 +2615,11 @@ Skriv filnavnet uden "{{ns:image}}:" præfikset.',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dublet|$2 identiske dubletter}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Fremhævede</span> specialsider har begrænset adgang.',
+'specialpages'                   => 'Specielle sider',
+'specialpages-summary'           => 'Denne side giver en oversigt over alle specialsider. De genereres automatisk og kan ikke ændres.',
+'specialpages-note'              => '----
+* Normale specialsider.
+* <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesrapporter',
 'specialpages-group-other'       => 'Øvrige specielle sider',
 'specialpages-group-login'       => 'Opret en konto / log på',
