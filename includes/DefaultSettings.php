@@ -2838,10 +2838,10 @@ $wgRateLimitLog = null;
 /**
  * Array of groups which should never trigger the rate limiter
  * 
- * @deprecated as of 1.13, use $wgGroupPermissions[]['noratelimit']
- * instead.
+ * Removed as of 1.13, use $wgGroupPermissions[]['noratelimit'] instead.
+ * User::isPingLimitable() uses it now.
  */
-$wgRateLimitsExcludedGroups = array();
+# $wgRateLimitsExcludedGroups = array();
 
 /**
  * On Special:Unusedimages, consider images "used", if they are put
