@@ -363,7 +363,14 @@ class MovePageForm {
 			);
 			# The following line is an atrocious hack.  Kill it with fire.
 			$newNs = $nt->getNamespace() + ($oldPage->getNamespace() & 1);
-			$newPage = Title::makeTitle( $newNs, $newPageName );
+			# Bug 14385: we need makeTitleSafe because the new page names may
+			# be longer than 255 characters.
+			$newPage = Title::makeTitleSafe( $newNs, $newPageName );
+			if( !$newPage ) {
+				$oldLink = $skin->makeKnownLinkObj( $oldPage );
+				$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink, Title::makeName( $newNs, $newPageName ) );
+				continue;
+			}
 
 			# This was copy-pasted from Renameuser, bleh.
 			if ( $newPage->exists() && !$oldPage->isValidMoveTarget( $newPage ) ) {
