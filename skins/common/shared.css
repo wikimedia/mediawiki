@@ -236,28 +236,13 @@ table.mw-listgrouprights-table td, table.mw-listgrouprights-table th {
 
 /* Special:SpecialPages styling */
 h4.mw-specialpagesgroup {
-	padding: 2px;
 	background-color: #dcdcdc;
-	margin: .3em 0em 0em;
-	clear: both;
-}
-.mw-specialpages-section {
-	display: block;
-	width: 100%;
-	clear: both;
-}
-.mw-specialpages-page {
-	float: left;
-	width: 275px;
-	margin: 0em .3em .3em;
+	padding: 2px;
+	margin: .3em 0em 0em 0em;
 }
 .mw-specialpagerestricted {
 	display: list-item;
 	list-style-image: url(images/bullet_star.gif);
-}
-
-.mw-specialpages-notes {
-	clear: both;
 }
 
 #shared-image-dup, #shared-image-conflict {

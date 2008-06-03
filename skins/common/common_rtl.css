@@ -48,8 +48,3 @@ html > body div#article ul {
 html > body div#article ol {
 	display: table;
 }
-
-/* Special:SpecialPages styling */
-.mw-specialpages-page {
-	float: right;
-}
