@@ -1101,7 +1101,8 @@ class User {
 	 * @return bool
 	 */
 	public function isPingLimitable() {
-		return !$this->isAllowed('noratelimits');
+		global $wgRateLimitsExcludedGroups;
+		return array_intersect($this->getEffectiveGroups(), $wgRateLimitsExcludedGroups) == array();
 	}
 
 	/**
