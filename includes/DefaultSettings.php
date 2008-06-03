@@ -1135,12 +1135,10 @@ $wgGroupPermissions['sysop']['markbotedits']     = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
 $wgGroupPermissions['sysop']['apihighlimits']    = true;
 $wgGroupPermissions['sysop']['browsearchive']    = true;
-$wgGroupPermissions['sysop']['noratelimits']     = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
 // Permission to change users' group assignments
-$wgGroupPermissions['bureaucrat']['userrights']   = true;
-$wgGroupPermissions['bureaucrat']['noratelimits'] = true;
+$wgGroupPermissions['bureaucrat']['userrights']  = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 
@@ -2837,11 +2835,8 @@ $wgRateLimitLog = null;
 
 /**
  * Array of groups which should never trigger the rate limiter
- * 
- * Removed as of 1.13, use $wgGroupPermissions[]['noratelimit'] instead.
- * User::isPingLimitable() uses it now.
  */
-# $wgRateLimitsExcludedGroups = array();
+$wgRateLimitsExcludedGroups = array( 'sysop', 'bureaucrat' );
 
 /**
  * On Special:Unusedimages, consider images "used", if they are put

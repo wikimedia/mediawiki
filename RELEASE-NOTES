@@ -397,8 +397,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added md5 parameter to action=edit
 * (bug 14335) Logging in to unified account using API not possible
 * Added action=emailuser to send an email to a user
-* (bug 12859) Deprecate $wgRateLimitsExcludedGroups in favor of adding the
-  'noratelimit' user right.
 
 === Languages updated in 1.13 ===
 
