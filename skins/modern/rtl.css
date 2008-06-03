@@ -156,3 +156,8 @@ html > body div#mw_contentholder ol {
 html > body div#mw_contentholder ul#filetoc {
 	display: block;
 }
+
+/* Special:SpecialPages styling */
+.mw-specialpages-page {
+	float: right;
+}

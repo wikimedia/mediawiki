@@ -242,3 +242,8 @@ html > body div#bodyContent ol {
 html > body div#bodyContent ul#filetoc {
 	display: block;
 }
+
+/* Special:SpecialPages styling */
+.mw-specialpages-page {
+	float: right;
+}
