@@ -1101,7 +1101,7 @@ class User {
 	 * @return bool
 	 */
 	public function isPingLimitable() {
-		return !$this->userCan('noratelimits');
+		return !$this->isAllowed('noratelimits');
 	}
 
 	/**
