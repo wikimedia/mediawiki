@@ -2124,7 +2124,7 @@ class Language {
 		$filename = self::getMessagesFileName( $code );
 		if ( !file_exists( $filename ) ) {
 			wfDebug( "Language::loadLocalisation(): no localisation file for $code, using implicit fallback to en\n" );
-			$cache = $cache = compact( self::$mLocalisationKeys ); // Set correct fallback;
+			$cache = compact( self::$mLocalisationKeys ); // Set correct fallback
 			$deps = array();
 		} else {
 			$deps = array( $filename => filemtime( $filename ) );
