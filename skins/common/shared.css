@@ -241,8 +241,7 @@ h4.mw-specialpagesgroup {
 	margin: .3em 0em 0em 0em;
 }
 .mw-specialpagerestricted {
-	display: list-item;
-	list-style-image: url(images/bullet_star.gif);
+	font-weight: bold;
 }
 
 #shared-image-dup, #shared-image-conflict {
