@@ -3393,7 +3393,7 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 
 # Special:SpecialPages
 'specialpages-note'              => '----
-* Normal special pages.</li>
+* Normal special pages.
 * <span class="mw-specialpagerestricted">Restricted special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
