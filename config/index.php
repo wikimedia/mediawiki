@@ -597,7 +597,6 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->RootUser = importPost( "RootUser", "root" );
 	$conf->RootPW = importPost( "RootPW", "" );
 	$useRoot = importCheck( 'useroot', false );
-	$createAdminSettings = importCheck('createadminsettings', false);
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 
 	## MySQL specific:
@@ -1110,35 +1109,13 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		if(fwrite( $f, $localSettings ) ) {
 			fclose( $f );
-			print "</li>\n";
+			print "</li></ul><hr/>\n";
+			writeSuccessMessage();
 		} else {
 			fclose( $f );
 			die("<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p>\n");
 			print "</li></ul>\n";
 		}
-		
-		/* Create AdminSettings.php if we've enabled that */
-		if ( $createAdminSettings ){ 
-			print "<li style=\"list-style: none\">\n";
-			print "<p>Creating AdminSettings.php...</p>\n\n";
-			$f = file_get_contents( '../AdminSettings.sample' );
-	
-			if( $f == false ) {
-				dieout( "<p>Couldn't write out AdminSettings.php. Check that the directory permissions are correct.</p>\n" );
-			}
-			
-			$f = str_replace( 'wikiadmin', $conf->RootUser, $f );
-			$f = str_replace( 'adminpass', $conf->RootPW, $f );
-			
-			if ( file_put_contents( 'AdminSettings.php', $f ) ) {
-				print "</li>\n";
-			} else {
-				die("<p class='error'>An error occured while writing the config/AdminSettings.php file. Check user rights and disk space then try again.</p>\n");
-				print "</li></ul>\n";
-			}
-		}
-		print "</ul>\n<hr />";
-		writeSuccessMessage();
 
 	} while( false );
 }
@@ -1405,16 +1382,6 @@ if( count( $errs ) ) {
 		If the database user specified above does not exist, or does not have access to create
 		the database (if needed) or tables within it, please check the box and provide details
 		of a superuser account,	such as <strong>root</strong>, which does.
-	</p>
-	<div class="config-input">
-		<label class="column">AdminSettings.php:</label>
-		<input type="checkbox" name="createadminsettings" id="createadminsettings" <?php if( $createAdminSettings ) { ?>checked="checked" <?php } ?>/>
-		&nbsp;<label for="useroot">Create AdminSettings.php</label>
-	</div>
-
-	<p class="config-desc">
-		If the superuser account above is specified, you can optionally create an AdminSettings.php
-		file. This is used for running the maintenance scripts.
 	</p>
 
 	<?php database_switcher('mysql'); ?>
