@@ -1346,9 +1346,6 @@ desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 'protectedtitlestext'     => 'Os seguintes títulos están protexidos da creación',
 'protectedtitlesempty'    => 'Actualmente non están protexidos títulos con eses parámetros.',
 'listusers'               => 'Listaxe de usuarios',
-'specialpages'            => 'Páxinas especiais',
-'spheading'               => 'Páxinas especiais para todos os usuarios',
-'restrictedpheading'      => 'Páxinas especiais restrinxidas',
 'newpages'                => 'Páxinas novas',
 'newpages-username'       => 'Nome de usuario:',
 'ancientpages'            => 'Artigos máis antigos',
@@ -2548,8 +2545,10 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'O ficheiro "$1" ten {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* As páxinas <span class="mw-specialpagerestricted">destacadas</span> están restrinxidas.',
+'specialpages'                   => 'Páxinas especiais',
+'specialpages-note'              => '----
+* Páxinas especiais normais.
+* <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>',
 'specialpages-group-maintenance' => 'Informes de mantemento',
 'specialpages-group-other'       => 'Outras páxinas especiais',
 'specialpages-group-login'       => 'Rexistro',

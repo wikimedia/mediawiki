@@ -600,7 +600,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji]].',
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
 'userexists'                 => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
 Wybierz inną nazwę użytkownika.',
-'youremail'                  => 'E-mail (opcjonalnie)¹',
+'youremail'                  => 'Twój adres e-mail',
 'username'                   => 'Nazwa użytkownika',
 'uid'                        => 'ID użytkownika',
 'prefs-memberingroups'       => 'Należy do {{PLURAL:$1|grupy|grup:}}',
@@ -615,7 +615,7 @@ Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'prefs-help-realname'        => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
 'loginerror'                 => 'Błąd zalogowania',
-'prefs-help-email'           => '¹Wypełnienie tego pola umożliwi innym użytkownikom skontaktowanie się z Tobą poprzez odpowiedni formularz, bez potrzeby ujawniania Twojego adresu e-mail.',
+'prefs-help-email'           => "Podanie adresu e-mail nie jest obowiązkowe, lecz pozwoli innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła. '''Twój adres nie zostanie nikomu udostępniony.'''",
 'prefs-help-email-required'  => 'Wymagany jest adres e-mail.',
 'nocookiesnew'               => 'Konto użytkownika zostało utworzone, ale nie jesteś zalogowany.
 Projekt {{SITENAME}} używa ciasteczek do przechowywania informacji o zalogowaniu się.
@@ -734,7 +734,7 @@ Blokada została nałożona przez $1. Podany powód to: ''$2''.
 * Cel blokady: $7
 
 W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
-Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika” jeśli nie brak poprawnego adresu e-mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
+Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika” jeśli brak poprawnego adresu e-mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
 Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5. Prosimy o podanie jednego lub obu tych numerów przy wyjaśnianiu tej blokady.",
 'autoblockedtext'                  => "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.
 Powód blokady:
@@ -1096,7 +1096,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'recentchangescount'       => 'Liczba pozycji na liście ostatnich zmian',
 'savedprefs'               => 'Twoje preferencje zostały zapisane.',
 'timezonelegend'           => 'Strefa czasowa',
-'timezonetext'             => '¹Polski czas jest zmieniany automatycznie pod warunkiem, że pozostawisz to pole puste. Jeśli jesteś poza polską strefą czasową, wpisz w to pole różnicę (w godzinach) między Twoim czasem lokalnym, a czasem uniwersalnym (UTC).',
+'timezonetext'             => '¹Liczba godzin różnicy między Twoim czasem lokalnym, a czasem uniwersalnym (UTC).',
 'localtime'                => 'Twój czas lokalny',
 'timezoneoffset'           => 'Różnica¹',
 'servertime'               => 'Aktualny czas serwera',
@@ -1402,7 +1402,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'filehist-user'                  => 'Użytkownik',
 'filehist-dimensions'            => 'Wymiary',
 'filehist-filesize'              => 'Rozmiar pliku',
-'filehist-comment'               => 'Komentarz',
+'filehist-comment'               => 'Opis',
 'imagelinks'                     => 'Odnośniki do pliku',
 'linkstoimage'                   => 'Następujące strony odwołują się do tego pliku:',
 'nolinkstoimage'                 => 'Żadna strona nie odwołuje się do tego pliku.',
@@ -1567,9 +1567,6 @@ Strona uznawana jest za ujednoznaczniającą jeśli zawiera ona szablon linkowan
 'protectedtitlesempty'            => 'Dla tych ustawień dopuszczalne jest utworzenie artykułu o dowolnej nazwie.',
 'listusers'                       => 'Lista użytkowników',
 'listusers-summary'               => 'Poniżej znajduje się lista wszystkich użytkowników zarejestrowanych w tej wiki.',
-'specialpages'                    => 'Strony specjalne',
-'spheading'                       => 'Strony specjalne dla wszystkich użytkowników',
-'restrictedpheading'              => 'Strony specjalne z ograniczonym dostępem',
 'newpages'                        => 'Nowe strony',
 'newpages-username'               => 'Nazwa użytkownika',
 'ancientpages'                    => 'Najstarsze strony',
@@ -1664,7 +1661,7 @@ Szczegółową informację o uprawnieniach odnajdziesz [[{{MediaWiki:Listgroupri
 'watchlist'            => 'Obserwowane',
 'mywatchlist'          => 'obserwowane',
 'watchlistfor'         => "(raport dla użytkownika '''$1''')",
-'nowatchlist'          => 'Nie ma żadnych pozycji na liście obserwowanych przez Ciebie stron.',
+'nowatchlist'          => 'Lista obserwowanych przez Ciebie stron jest pusta.',
 'watchlistanontext'    => '$1 aby obejrzeć lub edytować elementy listy obserwowanych.',
 'watchnologin'         => 'Nie jesteś zalogowany',
 'watchnologintext'     => 'Musisz się [[Special:Userlogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
@@ -2040,7 +2037,7 @@ Linki do starego tytułu pozostaną niezmienione.
 Upewnij się, że uwzględniasz podwójne lub zerwane przekierowania.
 Odpowiadasz za to, żeby linki odnosiły się do właściwych artykułów!
 
-Strona '''nie''' zostanie, przeniesiona jeśli:
+Strona '''nie''' zostanie przeniesiona, jeśli:
 *jest pusta i nigdy nie była edytowana
 *jest stroną przekierowującą
 *strona o nowej nazwie już istnieje, chyba że jest pusta lub jest przekierowaniem i ma pustą historię edycji. To oznacza, że błędną operację zmiany nazwy można bezpiecznie odwrócić, zmieniając nową nazwę strony na poprzednią.
@@ -2752,7 +2749,7 @@ Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
 'watchlistedit-raw-removed'    => 'Usunięto {{PLURAL:$1|1 pozycję|$1 pozycje|$1 pozycji}} z listy obserwowanych:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'pokaż zmiany obserwowanych',
+'watchlisttools-view' => 'pokaż zmiany w obserwowanych',
 'watchlisttools-edit' => 'edycja listy',
 'watchlisttools-raw'  => 'tekstowy edytor listy',
 
@@ -2830,8 +2827,10 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:image}}:”.',
 'fileduplicatesearch-result-n' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|jest dodatkowa kopia|są $2 dodatkowe kopie|jest $2 dodatkowych kopii}} pliku „$1”.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Wytłuszczono</span> tytuły stron specjalnych o ograniczonym dostępie.',
+'specialpages'                   => 'Strony specjalne',
+'specialpages-note'              => '----
+* Strony specjalne ogólnie dostępne.
+* <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other'       => 'Inne strony specjalne',
 'specialpages-group-login'       => 'Logowanie i rejestracja',

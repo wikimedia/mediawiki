@@ -1141,6 +1141,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 कॄपया पीछे जाकर इस फ़ाईल को नये नाम से अपलोड करें। [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'शेअर्ड फ़ाईल रिपोज़िटरीमें इस नाम से एक फ़ाईल हैं;
 कृपया पीछे जाकर इसे नये नाम से अपलोड करें। [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'यह फ़ाईल निम्नलिखित {{PLURAL:$1|फ़ाइल की|फ़ाइलोंकी}} कापी हैं:',
 'successfulupload'            => 'अपलोड हो गईं',
 'uploadwarning'               => 'अपलोड वार्निंग',
 'savefile'                    => 'फ़ाईल संजोयें',
@@ -1381,9 +1382,6 @@ PICT # misc.
 'protectedtitlestext'     => 'निम्नलिखित शीर्षकोंके लेख बनाने के लिये प्रतिबंध हैं।',
 'protectedtitlesempty'    => 'इन नियमोंद्वारा कोई भी शीर्षक सुरक्षित नहीं हैं।',
 'listusers'               => 'सदस्यसूची',
-'specialpages'            => 'खास पन्नें',
-'spheading'               => 'सभी सदस्यों के लिये खास पन्ने',
-'restrictedpheading'      => 'प्रतिबंध लगाये गये विशेष पन्ने',
 'newpages'                => 'नये पन्ने',
 'newpages-username'       => 'सदस्यनाम:',
 'ancientpages'            => 'सबसे पुराने लेख',
@@ -1888,7 +1886,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'movepage-page-exists'    => '$1 पृष्ठ पहले से अस्तित्वमें हैं और उसपर अपनेआप पुनर्लेखन नहीं कर सकतें।',
 'movepage-page-moved'     => '$1 यह पृष्ठ $2 इस नामपर स्थानांतरित कर दिया गया।',
 'movepage-page-unmoved'   => '$1 यह पृष्ठ $2 इस नामपर स्थानांतरित नहीं कर पायें।',
-'movepage-max-pages'      => 'ज्यादासे ज्यादा $1 पृष्ठ स्थानांतरित कर दी गईं हैं और अब और पृष्ठ अपनेआप स्थानांतरित नहीं होंगी।',
+'movepage-max-pages'      => 'ज्यादासे ज्यादा $1 पृष्ठ स्थानांतरित कर {{PLURAL:$1|दिया गया है|दिये गये हैं}}, अब और पृष्ठ अपनेआप स्थानांतरित नहीं होंगे।',
 '1movedto2'               => '$1 का नाम बदलकर $2 कर दिया गया है',
 '1movedto2_redir'         => '[[$1]] यह लेख का नाम बदल कर [[$2]] कर दिया गया हैं (अनुप्रेषित)',
 'movelogpage'             => 'स्थानांतरण सूची',
@@ -2659,6 +2657,10 @@ $1',
 'fileduplicatesearch-result-n' => 'फ़ाईल "$1" में {{PLURAL:$2|1 द्विरावृत्ति|$2 द्विरावृत्तियाँ}} मिले हैं।',
 
 # Special:SpecialPages
+'specialpages'                   => 'खास पन्नें',
+'specialpages-note'              => '----
+* साधारण विशेष पृष्ठ।
+* <span class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</span>',
 'specialpages-group-maintenance' => 'अनुरक्षण रिपोर्ट',
 'specialpages-group-other'       => 'अन्य विशेष पृष्ठ',
 'specialpages-group-login'       => 'सत्र प्रारम्भ / हस्ताक्षर करें',
@@ -2666,5 +2668,10 @@ $1',
 'specialpages-group-media'       => 'मीडिया रिपोर्ट एवं अपलोड',
 'specialpages-group-users'       => 'सदस्य एवं अधिकार',
 'specialpages-group-highuse'     => 'अत्यधिक उपयोगी पृष्ठ',
+'specialpages-group-pages'       => 'पृष्ठ सूचीयाँ',
+'specialpages-group-pagetools'   => 'पृष्ठ औज़ार',
+'specialpages-group-wiki'        => 'विकि डाटा और औज़ार',
+'specialpages-group-redirects'   => 'विशेष पन्ने अनुप्रेषित कर रहें हैं',
+'specialpages-group-spam'        => 'स्पैम औज़ार',
 
 );

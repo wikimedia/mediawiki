@@ -937,6 +937,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'right-proxyunbannable'  => 'Abaikeun pengpeuk otomatis keur proxy',
 'right-editinterface'    => 'Édit antarbenget pamaké',
 'right-patrolmarks'      => 'Tempo panandaan patroli nuanyar robah',
+'right-mergehistory'     => 'Ngagabungkeun jujutan kaca',
 'right-userrights'       => 'Édit kabeh hak pamaké',
 
 # User rights log
@@ -1219,9 +1220,6 @@ Jumlah-jamléh geus aya '''\$3''' {{PLURAL:\$3|kaca}} ulasan sarta '''\$4''' {{P
 'protectedtitlestext'     => 'Judul-judul di handap ieu teu bisa dijieun:',
 'protectedtitlesempty'    => 'Dina danget ieu, euweuh judul nu keur dikonci tina paraméter-paraméter éta.',
 'listusers'               => 'Daptar pamaké',
-'specialpages'            => 'Kaca husus',
-'spheading'               => 'Kaca husus pikeun sadaya pamaké',
-'restrictedpheading'      => 'Kaca husus nu diwates',
 'newpages'                => 'Kaca anyar',
 'newpages-username'       => 'Landihan:',
 'ancientpages'            => 'Kaca pangheubeulna',
@@ -2235,8 +2233,10 @@ Coba ku sawangan normal.',
 'fileduplicatesearch-result-n' => 'Koropak "$1" mibanda {{PLURAL:$2|1 duplikat idéntik|$2 duplikat idéntik}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Cetak kandel</span> kaca husus nu kawates.',
+'specialpages'                   => 'Kaca husus',
+'specialpages-note'              => '----
+* Kaca husus biasa
+* <span class="mw-specialpagerestricted">Cetak kandel kaca husus nu kawates.</span>',
 'specialpages-group-maintenance' => 'Laporan pigawéeun',
 'specialpages-group-other'       => 'Kaca husus lainna',
 'specialpages-group-login'       => 'Asup log / Nyieun rekening',

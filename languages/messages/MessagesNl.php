@@ -1601,9 +1601,6 @@ Meestal is de laatste pagina het eigenlijke doel.",
 'protectedtitlestext'     => 'De volgende titels zijn beveiligd en kunnen niet aangemaakt worden',
 'protectedtitlesempty'    => 'Er zijn momenteel geen titels beveiligd die aan deze parameters voldoen.',
 'listusers'               => 'Gebruikerslijst',
-'specialpages'            => "Speciale pagina's",
-'spheading'               => "Speciale pagina's voor alle gebruikers",
-'restrictedpheading'      => "Speciale pagina's met beperkte toegang",
 'newpages'                => "Nieuwe pagina's",
 'newpages-username'       => 'Gebruikersnaam:',
 'ancientpages'            => "Oudste pagina's",
@@ -2832,8 +2829,10 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'Het bestand "$1" heeft {{PLURAL:$2|één duplicaat|$2 duplicaten}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Vetgedrukte</span> speciale pagina\'s zijn beperkt toegankelijk.',
+'specialpages'                   => "Speciale pagina's",
+'specialpages-note'              => '----
+* Normale speciale pagina\'s
+* <span class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</span>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Aanmelden / registreren',
@@ -2844,7 +2843,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'specialpages-group-pages'       => 'Paginalijsten',
 'specialpages-group-pagetools'   => 'Paginahulpmiddelen',
 'specialpages-group-wiki'        => 'Wikigegevens en -hulpmiddelen',
-'specialpages-group-redirects'   => "Doorverwezen speciale pagina's",
+'specialpages-group-redirects'   => "Doorverwijzende speciale pagina's",
 'specialpages-group-spam'        => 'Spamhulpmiddelen',
 
 );

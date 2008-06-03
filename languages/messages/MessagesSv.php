@@ -1532,9 +1532,6 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'protectedtitlestext'     => 'Följande sidtitlar är skyddade från att skapas',
 'protectedtitlesempty'    => 'Just nu finns inga skyddade sidtitlar med de parametrarna.',
 'listusers'               => 'Användarlista',
-'specialpages'            => 'Specialsidor',
-'spheading'               => 'Specialsidor för alla användare',
-'restrictedpheading'      => 'Specialsidor med begränsad åtkomst',
 'newpages'                => 'Nya sidor',
 'newpages-username'       => 'Användare:',
 'ancientpages'            => 'Äldsta sidorna',
@@ -2722,8 +2719,10 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'fileduplicatesearch-result-n' => 'Filen "$1" har {{PLURAL:$2|1 identisk dubblett|$2 identiska dubbletter}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Markerade</span> specialsidor har begränsad åtkomst.',
+'specialpages'                   => 'Specialsidor',
+'specialpages-note'              => '----
+* Normala specialsidor.
+* <span class="mw-specialpagerestricted">Begränsade specialsidor.</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',

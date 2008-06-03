@@ -172,7 +172,7 @@ $messages = array(
 'jumptosearch'     => 'иска́ниѥ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'О {{grammar:genitive|{{SITENAME}}}}',
+'aboutsite'            => 'О {{grammar:instrumental|{{SITENAME}}}}',
 'aboutpage'            => 'Project:О сѥ́мь опꙑтьствова́нии',
 'copyright'            => 'по́дъ прощє́ниѥмь $1 пьса́но ѥ́стъ',
 'currentevents'        => 'сѫ́щѧѩ вѣ́щи',
@@ -311,7 +311,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'listusers'         => 'по́льꙃєватєлъ катало́гъ',
-'specialpages'      => 'наро́чьнꙑ страни́цѧ',
 'newpages'          => 'но́ви члѣ́ни',
 'newpages-username' => 'по́льꙃєватєлꙗ и́мѧ :',
 'move'              => 'прѣимєнова́ниѥ',
@@ -394,5 +393,8 @@ $messages = array(
 
 # Special:Filepath
 'filepath-page' => 'дѣ́ло :',
+
+# Special:SpecialPages
+'specialpages' => 'наро́чьнꙑ страни́цѧ',
 
 );

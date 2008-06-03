@@ -1528,9 +1528,6 @@ $3 зазначив наступну причину: ''$2''",
 'protectedtitlestext'     => 'Наступні назви не дозволено використовувати',
 'protectedtitlesempty'    => 'Зараз нема захищених назв із зазначеними параметрами.',
 'listusers'               => 'Список користувачів',
-'specialpages'            => 'Спеціальні сторінки',
-'spheading'               => 'Спеціальні сторінки',
-'restrictedpheading'      => 'Спеціальні сторінки з обмеженим доступом',
 'newpages'                => 'Нові сторінки',
 'newpages-username'       => "Ім'я користувача:",
 'ancientpages'            => 'Найстаріші статті',
@@ -2747,6 +2744,10 @@ $1',
 'fileduplicatesearch-result-n' => 'Файл «$1» має {{PLURAL:$2|1 ідентичний дублікат|$2 ідентичних дублікатів}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Спеціальні сторінки',
+'specialpages-note'              => '----
+* Звичайні спеціальні сторінки.
+* <span class="mw-specialpagerestricted">Спеціальні сторінки з обмеженим доступом.</span>',
 'specialpages-group-maintenance' => 'Звіти технічного обслуговування',
 'specialpages-group-other'       => 'Інші спеціальні сторінки',
 'specialpages-group-login'       => 'Вхід до системи / реєстрація',
@@ -2755,6 +2756,9 @@ $1',
 'specialpages-group-users'       => 'Користувачі і права',
 'specialpages-group-highuse'     => 'Сторінки, що інтенсивно використовуються',
 'specialpages-group-pages'       => 'Списки сторінок',
-'specialpages-group-pagetools'   => 'Інструменти дял сторінок',
+'specialpages-group-pagetools'   => 'Інструменти для сторінок',
+'specialpages-group-wiki'        => 'Вікі-дані та інструменти',
+'specialpages-group-redirects'   => 'Спеціальні сторінки-перенаправлення',
+'specialpages-group-spam'        => 'Інструменти проти спаму',
 
 );

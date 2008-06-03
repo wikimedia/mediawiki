@@ -1176,6 +1176,7 @@ Jos yllä oleva tiedosto on alkuperäisversio samasta kuvasta, ei sille tarvi ta
 Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapauksessa nimeä tiedosto uudelleen.',
 'fileexists-forbidden'        => 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Tämä tiedosto on kaksoiskappale {{PLURAL:$1|seuraavasta tiedostosta|seuraavista tiedostoista}}:',
 'successfulupload'            => 'Tallennus onnistui',
 'uploadwarning'               => 'Tallennusvaroitus',
 'savefile'                    => 'Tallenna',
@@ -1382,9 +1383,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'protectedtitlestext'     => 'Seuraavien sivujen luonti on estetty.',
 'protectedtitlesempty'    => 'Ei suojattuja sivunimiä näillä hakuehdoilla.',
 'listusers'               => 'Käyttäjälista',
-'specialpages'            => 'Toimintosivut',
-'spheading'               => 'Toimintosivut',
-'restrictedpheading'      => 'Rajoitetut toimintosivut',
 'newpages'                => 'Uudet sivut',
 'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
@@ -1394,6 +1392,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'unusedcategoriestext'    => 'Nämä luokat ovat olemassa, mutta niitä ei käytetä.',
 'notargettitle'           => 'Ei kohdetta',
 'notargettext'            => 'Et ole määritellyt kohdesivua tai -käyttäjää johon toiminto kohdistuu.',
+'nopagetext'              => 'Määritettyä kohdesivua ei ole olemassa.',
 'pager-newer-n'           => '← {{PLURAL:$1|1 uudempi|$1 uudempaa}}',
 'pager-older-n'           => '{{PLURAL:$1|1 vanhempi|$1 vanhempaa}} →',
 'suppress'                => 'Häivytys',
@@ -2539,8 +2538,10 @@ Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
 'fileduplicatesearch-result-n' => 'Tiedostolla ”$1” on {{PLURAL:$2|yksi identtinen kaksoiskappale|$2 identtistä kaksoiskappaletta}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Korostetut</span> toimintosivut ovat rajoitettuja.',
+'specialpages'                   => 'Toimintosivut',
+'specialpages-note'              => '----
+* Normaalit toimintosivut.
+* <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>',
 'specialpages-group-maintenance' => 'Ylläpito',
 'specialpages-group-other'       => 'Muut',
 'specialpages-group-login'       => 'Kirjautuminen ja tunnusten luonti',
@@ -2551,5 +2552,7 @@ Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
 'specialpages-group-pages'       => 'Sivulistaukset',
 'specialpages-group-pagetools'   => 'Sivutyökalut',
 'specialpages-group-wiki'        => 'Wikitiedot ja työkalut',
+'specialpages-group-redirects'   => 'Ohjaavat toimintosivut',
+'specialpages-group-spam'        => 'Mainostenpoistotyökalut',
 
 );

@@ -1473,9 +1473,6 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'protectedtitlestext'     => 'Les titres suivants sont protégés à la création',
 'protectedtitlesempty'    => 'Aucun titre n’est actuellement protégé avec ces paramètres.',
 'listusers'               => 'Liste des inscrits',
-'specialpages'            => 'Pages spéciales',
-'spheading'               => 'Pages spéciales',
-'restrictedpheading'      => 'Pages spéciales réservées',
 'newpages'                => 'Nouvelles pages',
 'newpages-username'       => 'Utilisateur :',
 'ancientpages'            => 'Articles les moins récemment modifiés',
@@ -2678,8 +2675,10 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'fileduplicatesearch-result-n' => 'Le fichier « $1 » a {{PLURAL:$2|1 double identique|$2 doubles identiques}}.',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* Les pages spéciales <span class="mw-specialpagerestricted">en gras</span> sont restreintes.',
+'specialpages'                   => 'Pages spéciales',
+'specialpages-note'              => '----
+* Pages spéciales normales.
+* <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>',
 'specialpages-group-maintenance' => 'Rapport de maintenance',
 'specialpages-group-other'       => 'Autres pages spéciales',
 'specialpages-group-login'       => 'Se connecter / s’enregistrer',

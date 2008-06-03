@@ -1405,9 +1405,6 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'protectedtitlestext'     => 'Følgende titler er beskyttet fra opprettelse',
 'protectedtitlesempty'    => 'Ingen titler beskyttes med disse parameterne for øyeblikket.',
 'listusers'               => 'Brukerliste',
-'specialpages'            => 'Spesialsider',
-'spheading'               => 'Spesialsider for alle brukere',
-'restrictedpheading'      => 'Begrensede spesialsider',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',
@@ -2603,8 +2600,9 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|ett duplikat|$2 duplikater}} av «$1».',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* <span class="mw-specialpagerestricted">Markerte</span> spesialsider har begrenset tilgang.',
+'specialpages'                   => 'Spesialsider',
+'specialpages-note'              => '----
+* <span class="mw-specialpagerestricted">Markerte spesialsider har begrenset tilgang.</span>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',

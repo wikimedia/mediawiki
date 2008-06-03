@@ -418,7 +418,7 @@ Užklausa: $2',
 $2',
 'namespaceprotected'   => "Jūs neturite teisės redaguoti puslapių '''$1''' srityje.",
 'customcssjsprotected' => 'Jūs neturite teisės redaguoti šio puslapio, nes jame yra kito nautotojo asmeninių nustatymų.',
-'ns-specialprotected'  => '„{{ns:special}}“ vardų srityje puslapiai negali būti redaguojami.',
+'ns-specialprotected'  => 'Specialieji puslapiai negali būti redaguojami.',
 'titleprotected'       => "[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo.
 Duota priežastis yra ''$2''.",
 
@@ -1306,9 +1306,6 @@ Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, be
 'protectedtitlestext'     => 'Šie pavadinimai yra apsaugoti nuo sukūrimo',
 'protectedtitlesempty'    => 'Šiuo metu nėra jokių pavadinimų apsaugotų šiais parametrais.',
 'listusers'               => 'Naudotojų sąrašas',
-'specialpages'            => 'Specialieji puslapiai',
-'spheading'               => 'Specialieji puslapiai visiems naudotojams',
-'restrictedpheading'      => 'Apribotieji specialieji puslapiai',
 'newpages'                => 'Naujausi puslapiai',
 'newpages-username'       => 'Naudotojo vardas:',
 'ancientpages'            => 'Seniausi puslapiai',
@@ -2044,7 +2041,7 @@ $1',
 'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą, jį paleidus jūsų sistema gali būti pažeista.<hr />",
 'imagemaxsize'         => 'Riboti paveikslėlių dydį jų aprašymo puslapyje iki:',
 'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
-'widthheightpage'      => '$1×$2, $3 puslapiai',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
 'file-info'            => '(failo dydis: $1, MIME tipas: $2)',
 'file-info-size'       => '($1 × $2 taškų, failo dydis: $3, MIME tipas: $4)',
 'file-nohires'         => '<small>Geresnė raiška negalima.</small>',
@@ -2391,8 +2388,7 @@ Patvirtinimo kodas baigs galioti $4.',
 'scarytranscludetoolong'  => '[URL per ilgas; atsiprašome]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Trackback šiam puslapiui:<br />
+'trackbackbox'      => '<div id="mw_trackbacks">Šio puslapio „Trackback“ nuorodos:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 Trinti])',
@@ -2513,15 +2509,19 @@ $1',
 'fileduplicatesearch'          => 'Ieškoti dublikuotų failų',
 'fileduplicatesearch-summary'  => 'Pasikartojančių failų paieška pagal jų kontrolinę sumą.
 
-Įveskite failo pavadinimą be "{{ns:image}}:" priešdėlio.',
+Įveskite failo pavadinimą be „{{ns:image}}:“ priešdėlio.',
 'fileduplicatesearch-legend'   => 'Ieškoti dublikatų',
 'fileduplicatesearch-filename' => 'Failo vardas:',
 'fileduplicatesearch-submit'   => 'Ieškoti',
 'fileduplicatesearch-info'     => '$1 × $2 pikselių<br />Failo dydis: $3<br />MIME tipas: $4',
-'fileduplicatesearch-result-1' => 'Failas "$1" neturi identiškų dublikatų.',
-'fileduplicatesearch-result-n' => 'Šis failas "$1" turi {{PLURAL:$2|1 identišką dublikatą|$2 identiškus dublikatus|$2 identiškų dublikatų}}.',
+'fileduplicatesearch-result-1' => 'Failas „$1“ neturi identiškų dublikatų.',
+'fileduplicatesearch-result-n' => 'Šis failas „$1“ turi $2 {{PLURAL:$2|identišką dublikatą|identiškus dublikatus|identiškų dublikatų}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Specialieji puslapiai',
+'specialpages-note'              => '----
+* Normalūs specialieji puslapiai.
+* <span class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</span>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
 'specialpages-group-other'       => 'Kiti specialieji puslapiai',
 'specialpages-group-login'       => 'Prisijungti / registruotis',

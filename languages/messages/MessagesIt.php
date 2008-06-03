@@ -1177,6 +1177,7 @@ Se si tratta della stessa immagine, nelle dimensioni originali, non è necessari
 Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. In caso contrario, si prega di cambiare il nome del file.",
 'fileexists-forbidden'        => 'Un file con questo nome esiste già. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => 'Questo file è un duplicato {{PLURAL:$1|del seguente|dei seguenti}} file:',
 'successfulupload'            => 'Caricamento completato',
 'uploadwarning'               => 'Avviso di caricamento',
 'savefile'                    => 'Salva file',
@@ -1403,9 +1404,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'protectedtitlestext'     => 'Non è possibile creare pagine con i titoli elencati di seguito',
 'protectedtitlesempty'    => 'Al momento non esistono titoli protetti con i parametri specificati.',
 'listusers'               => 'Elenco degli utenti',
-'specialpages'            => 'Pagine speciali',
-'spheading'               => 'Pagine speciali non riservate',
-'restrictedpheading'      => 'Pagine speciali riservate',
 'newpages'                => 'Pagine più recenti',
 'newpages-username'       => 'Nome utente:',
 'ancientpages'            => 'Pagine meno recenti',
@@ -2589,8 +2587,10 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'fileduplicatesearch-result-n' => '{{PLURAL:$2|Esiste un duplicato identico|Esistono $2 duplicati identici}} al file "$1".',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* Le pagine speciali <span class="mw-specialpagerestricted">evidenziate</span> sono riservate ad alcune categorie di utenti.',
+'specialpages'                   => 'Pagine speciali',
+'specialpages-note'              => '----
+* Pagine speciali non riservate.
+* <span class="mw-specialpagerestricted">Pagine speciali risevate ad alcune categorie di utenti.</span>',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazione',
@@ -2598,5 +2598,9 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'specialpages-group-media'       => 'File multimediali - caricamento e resoconti',
 'specialpages-group-users'       => 'Utenti e diritti',
 'specialpages-group-highuse'     => 'Pagine molto usate',
+'specialpages-group-pages'       => 'Elenchi di pagine',
+'specialpages-group-pagetools'   => 'Strumenti utili per le pagine',
+'specialpages-group-wiki'        => 'Strumenti e informazioni sul progetto',
+'specialpages-group-redirects'   => 'Pagine speciali di redirect',
 
 );
