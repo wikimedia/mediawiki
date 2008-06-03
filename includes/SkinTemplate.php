@@ -1082,7 +1082,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ );
 
 		$s = parent::getUserJs();
-		$s .= "\n\n/* MediaWiki:".ucfirst($this->skinname).".js (deprecated; migrate to Common.js!) */\n";
+		$s .= "\n\n/* MediaWiki:".ucfirst($this->skinname).".js */\n";
 
 		// avoid inclusion of non defined user JavaScript (with custom skins only)
 		// by checking for default message content

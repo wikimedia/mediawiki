@@ -2659,7 +2659,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 
 # Scripts
 'common.js'   => '/* Any JavaScript here will be loaded for all users on every page load. */', # only translate this message to other languages if you have to change it
-'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */', # only translate this message to other languages if you have to change it
+'monobook.js' => '/* JavaScript here will be loaded for users using the MonoBook skin only. */', # only translate this message to other languages if you have to change it
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata disabled for this server.',
