@@ -611,13 +611,7 @@ class PreferencesForm {
 				// Skip the default * group, seems useless here
 				continue;
 			}
-			$msgName = 'group-' . $ueg;
-			$groupName = wfMsg( $msgName );
-			if( wfEmptyMsg( $msgName, $groupName ) ) {
-				// No localized groupname available
-				$groupName = $ueg;
-			}
-			$userEffectiveGroupsArray[] = $groupName;
+			$userEffectiveGroupsArray[] = User::makeGroupLinkHTML( $ueg );
 		}
 		asort( $userEffectiveGroupsArray );
 
