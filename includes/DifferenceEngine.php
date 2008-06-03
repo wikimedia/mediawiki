@@ -206,12 +206,8 @@ CONTROL;
 
 		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'previousdiff' ),
 			'diff=prev&oldid='.$this->mOldid, '', '', 'id="differences-prevlink"' );
-		if ( $this->mNewRev->isCurrent() ) {
-			$nextlink = '&nbsp;';
-		} else {
-			$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ),
-				'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
-		}
+		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ),
+			'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
 
 		$oldminor = '';
 		$newminor = '';
@@ -674,7 +670,7 @@ CONTROL;
 		$timestamp = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
 		$this->mNewPage = $this->mNewRev->getTitle();
 		if( $this->mNewRev->isCurrent() ) {
-			$newLink = $this->mNewPage->escapeLocalUrl();
+			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
 
