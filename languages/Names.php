@@ -80,6 +80,7 @@
 	'es' => 'Español',	# Spanish
 	'et' => 'Eesti',		# Estonian
 	'eu' => 'Euskara',		# Basque
+	'eur' => 'Europanto',		# Europanto
 	'ext' => 'Estremeñu', # Extremaduran
 	'fa' => 'فارسی',	# Persian
 	'ff' => 'Fulfulde',		# Fulfulde, Maasina
