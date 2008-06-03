@@ -587,7 +587,8 @@ function wfMsgExt( $key, $options ) {
 		$langCode = $options['language'];
 		$validCodes = array_keys( Language::getLanguageNames() );
 		if( !in_array($options['language'], $validCodes) ) {
-			$langCode = false;
+			# Fallback to en, instead of whatever interface language we might have
+			$langCode = 'en';
 		}
 	} else {
 		$forContent = false;
