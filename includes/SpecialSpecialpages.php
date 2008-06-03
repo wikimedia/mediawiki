@@ -30,7 +30,6 @@ function wfSpecialSpecialpages() {
 			if( !isset($groups[$group]) ) {
 				$groups[$group] = array();
 			}
-			//$groups[$group][$page->getDescription()] = $page->getTitle();
 			$groups[$group][$page->getDescription()] = array( $page->getTitle(), $page->isRestricted() );
 		}
 	}
@@ -50,7 +49,6 @@ function wfSpecialSpecialpages() {
 	}
 
 	/** Now output the HTML */
-	$restrictedPages = false;
 	foreach ( $groups as $group => $sortedPages ) {
 		$middle = ceil( count($sortedPages)/2 );
 		$total = count($sortedPages);
