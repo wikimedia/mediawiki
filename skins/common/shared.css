@@ -246,43 +246,19 @@ h4.mw-specialpagesgroup {
 	width: 100%;
 	clear: both;
 }
-/*.mw-specialpages-column {
-	margin: 0em 0em .5em;
-	float: left;
-}*/
 .mw-specialpages-page {
 	float: left;
 	width: 275px;
 	margin: 0em .3em .3em;
 }
-
 .mw-specialpagerestricted {
-	font-weight: bold;
+	display: list-item;
+	list-style-image: url(images/bullet_star.gif);
 }
 
-/*.mw-restrictedicon {
-	position: relative;
-	top: -5px;
-	font-style: italic;
-	color: #777777;
-float: right;
-	font-size: .75em;
-}*/
 .mw-specialpages-notes {
 	clear: both;
 }
-/*.mw-specialpagenotes {
-	clear: both;
-}*/
-/*.mw-specialpagenote {
-	display: block;
-}
-.mw-specialpagenote-symbol {
-	float: left;
-}
-.mw-specialpagenote-text {
-	font-style: italic;
-}*/
 
 #shared-image-dup, #shared-image-conflict {
 	font-style: italic;
