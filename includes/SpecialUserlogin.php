@@ -856,15 +856,15 @@ class LoginForm {
 
 		if ( !$this->hasSessionCookie() ) {
 			if ( $type == 'new' ) {
-				return $this->mainLoginForm( wfMsg( 'nocookiesnew' ) );
+				return $this->mainLoginForm( wfMsgExt( 'nocookiesnew', array( 'parseinline' ) ) );
 			} else if ( $type == 'login' ) {
-				return $this->mainLoginForm( wfMsg( 'nocookieslogin' ) );
+				return $this->mainLoginForm( wfMsgExt( 'nocookieslogin', array( 'parseinline' ) ) );
 			} else {
 				# shouldn't happen
 				return $this->mainLoginForm( wfMsg( 'error' ) );
 			}
 		} else {
-			return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
+			return $this->successfulLogin( wfMsgExt( 'loginsuccess', array( 'parseinline' ), $wgUser->getName() ) );
 		}
 	}
 
