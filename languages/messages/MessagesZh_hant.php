@@ -2547,8 +2547,10 @@ $1
 'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* 已有<span class="mw-specialpagerestricted">醒目提示</span>的特殊頁面是有限制的。',
+'specialpages-note'              => '<hr /><ul>
+<li>標準特殊頁面。</li>
+<li class="mw-specialpagerestricted">有限制的特殊頁面。</li>
+</ul>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特殊頁面',
 'specialpages-group-login'       => '登入／創建',

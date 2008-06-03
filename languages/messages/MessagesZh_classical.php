@@ -2022,8 +2022,10 @@ $1',
 'fileduplicatesearch-result-n' => '案 "$1" 重有$2。',
 
 # Special:SpecialPages
-'specialpages-note'              => '<hr />
-* 已<span class="mw-specialpagerestricted">亮</span>之特查為限也。',
+'specialpages-note'              => '<hr /><ul>
+<li>準特查。</li>
+<li class="mw-specialpagerestricted">限特查。</li>
+</ul>',
 'specialpages-group-maintenance' => '護報',
 'specialpages-group-other'       => '它之奇頁',
 'specialpages-group-login'       => '登／增',
