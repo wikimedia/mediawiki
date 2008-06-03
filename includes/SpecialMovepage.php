@@ -368,7 +368,8 @@ class MovePageForm {
 			$newPage = Title::makeTitleSafe( $newNs, $newPageName );
 			if( !$newPage ) {
 				$oldLink = $skin->makeKnownLinkObj( $oldPage );
-				$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink, Title::makeName( $newNs, $newPageName ) );
+				$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink,
+					htmlspecialchars(Title::makeName( $newNs, $newPageName )));
 				continue;
 			}
 
