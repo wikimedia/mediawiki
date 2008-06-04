@@ -2610,6 +2610,8 @@ $wgSpecialPageGroups = array(
 	'Deadendpages'              => 'maintenance',
 	'Wantedpages'               => 'maintenance',
 	'Wantedcategories'          => 'maintenance',
+	'Unwatchedpages'            => 'maintenance',
+	'Fewestrevisions'           => 'maintenance',
 
 	'Userlogin'                 => 'login',
 	'Userlogout'                => 'login',
@@ -2652,8 +2654,6 @@ $wgSpecialPageGroups = array(
 	'Listredirects'             => 'pages',
 	'Categories'                => 'pages',
 	'Disambiguations'           => 'pages',
-	'Unwatchedpages'            => 'pages',
-	'Fewestrevisions'           => 'pages',
 	
 	'Randompage'                => 'redirects',
 	'Randomredirect'            => 'redirects',
