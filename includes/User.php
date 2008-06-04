@@ -2466,7 +2466,7 @@ class User {
 				__METHOD__,
 				array('LIMIT' => $wgActiveUserEditcount ) );
 				
-		return $dbr->rumRows($res) == $wgActiveUserEditcount ? true : false;
+		return $dbr->numRows($res) == $wgActiveUserEditcount ? true : false;
 	}
 
 	/**
