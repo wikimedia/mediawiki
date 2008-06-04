@@ -1406,9 +1406,6 @@ Template:搞清楚',
 'protectedtitlestext'     => '下面係一個保護咗唔䦒得嘅標題',
 'protectedtitlesempty'    => '響呢啲參數之下並無標題保護住。',
 'listusers'               => '用戶一覽',
-'specialpages'            => '特別頁',
-'spheading'               => '所有用戶嘅特別頁',
-'restrictedpheading'      => '有限制嘅特別頁',
 'newpages'                => '新頁',
 'newpages-username'       => '用戶名：',
 'ancientpages'            => '舊頁面',
@@ -2616,6 +2613,7 @@ $1',
 'fileduplicatesearch-result-n' => '個檔案 "$1" 有$2項完全相同嘅重覆。',
 
 # Special:SpecialPages
+'specialpages'                   => '特別頁',
 'specialpages-note'              => '----
 * 標準特別頁。
 * <span class="mw-specialpagerestricted">有限制嘅特別頁。</span>',
