@@ -326,6 +326,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14258, 14368) Fix for subpage renames in replication environments
 * (bug 14367) Failed block no longer adds phantom watchlist entry
 * (bug 14385) "Move subpages" option no longer tries to move to invalid titles
+* (bug 14386) Fix subpage namespace oddity when moving a talk page
 
 
 === API changes in 1.13 ===
