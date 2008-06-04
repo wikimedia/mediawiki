@@ -333,7 +333,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14367) Failed block no longer adds phantom watchlist entry
 * (bug 14385) "Move subpages" option no longer tries to move to invalid titles
 * (bug 14386) Fix subpage namespace oddity when moving a talk page
-
+* (bug 11771) Signup form now not shown if in read-only mode.
 
 === API changes in 1.13 ===
 
