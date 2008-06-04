@@ -367,8 +367,11 @@ class MovePageForm {
 				$nt->getDBKey(),
 				$oldPage->getDBKey()
 			);
-			# The following line is an atrocious hack.  Kill it with fire.
-			$newNs = $nt->getNamespace() + ($oldPage->getNamespace() & 1);
+			if( $oldPage->isTalkPage() ) {
+				$newNs = $nt->getTalkPage()->getNamespace();
+			} else {
+				$newNs = $nt->getSubjectPage()->getNamespace();
+			}
 			# Bug 14385: we need makeTitleSafe because the new page names may
 			# be longer than 255 characters.
 			$newPage = Title::makeTitleSafe( $newNs, $newPageName );
