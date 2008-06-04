@@ -1817,7 +1817,7 @@ Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' page
 There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}} since {{SITENAME}} was setup.
 That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
 'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'Most viewed pages',
 'statistics-footer'      => '', # do not translate or duplicate this message to other languages
