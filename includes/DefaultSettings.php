@@ -949,6 +949,11 @@ $wgDebugDumpSql         = false;
 $wgDebugLogGroups       = array();
 
 /**
+ * Show the contents of $wgHooks in Special:Version
+ */
+$wgSpecialVersionShowHooks =  false;
+
+/**
  * Whether to show "we're sorry, but there has been a database error" pages.
  * Displaying errors aids in debugging, but may display information useful
  * to an attacker.

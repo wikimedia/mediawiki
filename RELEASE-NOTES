@@ -47,6 +47,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   image page already exists
 * $wgMaximumMovedPages restricts the number of pages that can be moved at once
   (default 100) with the new subpage-move functionality of Special:Movepage
+* Hooks display in Special:Version is now disabled by default, use 
+  $wgSpecialVersionShowHooks = true; to enable it.
 
 === New features in 1.13 ===
 
