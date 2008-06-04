@@ -37,6 +37,7 @@ if ( !isset( $optionsWithArgs ) ) {
 }
 $optionsWithArgs[] = 'conf'; # For specifying the location of LocalSettings.php
 $optionsWithArgs[] = 'aconf'; # As above for AdminSettings.php
+$optionsWithArgs[] = 'wiki'; # For specifying the wiki ID
 
 $self = array_shift( $argv );
 $IP = ( getenv('MW_INSTALL_PATH') !== false
@@ -122,7 +123,11 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 
 	if ( empty( $wgNoDBParam ) ) {
 		# Check if we were passed a db name
-		$db = array_shift( $args );
+		if ( isset( $options['wiki'] ) ) {
+			$db = $options['wiki'];
+		} else {
+			$db = array_shift( $args );
+		}
 		list( $site, $lang ) = $wgConf->siteFromDB( $db );
 
 		# If not, work out the language and site the old way
@@ -177,6 +182,14 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 		$settingsFile = $options['conf'];
 	} else {
 		$settingsFile = "$IP/LocalSettings.php";
+	}
+	if ( isset( $options['wiki'] ) ) {
+		$bits = explode( '-', $options['wiki'] );
+		if ( count( $bits ) == 1 ) {
+			$bits[] = '';
+		}
+		define( 'MW_DB', $bits[0] );
+		define( 'MW_PREFIX', $bits[1] );
 	}
 
 	if ( ! is_readable( $settingsFile ) ) {
