@@ -499,7 +499,7 @@ $dumper = new TextPassDumper( $argv );
 if( true ) {
 	$dumper->dump();
 } else {
-	$dumper->progress( <<<END
+	$dumper->progress( <<<ENDS
 This script postprocesses XML dumps from dumpBackup.php to add
 page text which was stubbed out (using --stub).
 
@@ -518,7 +518,7 @@ Options:
   --server=h  Force reading from MySQL server h
   --current   Base ETA on number of pages in database instead of all revisions
   --spawn     Spawn a subprocess for loading text records
-END
+ENDS
 );
 }
 
