@@ -1070,6 +1070,10 @@ div#userlogin form#userlogin2 {
 	background-color: #f9f9f9;
 	float: left;
 }
+.rtl div#userloginForm form,
+.rtl div#userlogin form#userlogin2 {
+	float: right;
+}
 
 div#userloginForm table,
 div#userlogin form#userlogin2 table {
@@ -1088,6 +1092,9 @@ div#userloginForm .captcha {
 	background-color: white;
 }
 
+#loginend, #signupend {
+	clear: both;
+}
 
 #userloginprompt, #languagelinks {
 	font-size: 85%;
