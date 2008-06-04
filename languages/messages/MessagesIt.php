@@ -24,6 +24,7 @@
  * @author Melos
  * @author Ramac
  * @author Darth Kule
+ * @author Nemo bis
  */
 
 $namespaceNames = array(
@@ -1049,14 +1050,18 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'right-upload'               => 'Carica file',
 'right-reupload'             => 'Sovrascrivi un file esistente',
 'right-reupload-own'         => 'Sovrascrivi un file esistente caricato dallo stesso utente',
+'right-reupload-shared'      => "Sovrascrivere localmente file presenti nell'archivio condiviso",
 'right-upload_by_url'        => 'Carica un file da un indirizzo URL',
 'right-purge'                => 'Purga la cache del sito senza conferma',
 'right-autoconfirmed'        => 'Da trattare come autoconfermato',
 'right-bot'                  => 'Da trattare come processo automatico',
 'right-nominornewtalk'       => "Fai sì che le modifiche minori alle pagine di discussione non facciano scattare l'avviso di nuovo messaggio",
+'right-apihighlimits'        => 'Usa limiti più alti per le interrogazioni API',
+'right-writeapi'             => "Usa l'API per modificare il wiki",
 'right-delete'               => 'Cancella pagine',
 'right-bigdelete'            => 'Cancella pagine con cronologie lunghe',
 'right-deleterevision'       => 'Nascondi versioni specifiche delle pagine',
+'right-deletedhistory'       => 'Visualizza le entrate della cronologia cancellate senza il testo associato',
 'right-browsearchive'        => 'Visualizza pagine cancellate',
 'right-undelete'             => 'Recupera una pagina',
 'right-suppressrevision'     => 'Rivedi e recupera versioni nascoste',
@@ -1076,6 +1081,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'right-importupload'         => 'Importa pagine da un upload di file',
 'right-patrol'               => 'Segna le modifiche degli altri utenti come verificate',
 'right-autopatrol'           => 'Segna automaticamente le sue modifiche come verificate',
+'right-patrolmarks'          => 'Usa la funzione di verifica delle ultime modifiche',
 'right-unwatchedpages'       => 'Visualizza una lista di pagine non osservate',
 'right-mergehistory'         => 'Fondi la cronologia delle pagine',
 'right-userrights'           => "Modifica tutti i diritti dell'utente",
@@ -1413,6 +1419,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'unusedcategoriestext'    => 'Le pagine delle categorie indicate di seguito sono state create ma non contengono nessuna pagina né sottocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Non è stata indicata una pagina o un utente in relazione al quale eseguire l'operazione richiesta.",
+'nopagetitle'             => 'La pagina di destinazione non esiste',
+'nopagetext'              => 'La pagina che hai richiesto non esiste.',
 'pager-newer-n'           => '{{PLURAL:$1|1 più recente|$1 più recenti}}',
 'pager-older-n'           => '{{PLURAL:$1|1 meno recente|$1 meno recenti}}',
 'suppress'                => 'Oversight',
@@ -1880,6 +1888,7 @@ La pagina di destinazione [[$1]] esiste già. Si desidera cancellarla per render
 'delete_and_move_reason'  => 'Cancellata per rendere possibile lo spostamento',
 'selfmove'                => 'Il nuovo titolo è uguale al vecchio; impossibile spostare la pagina su se stessa.',
 'immobile_namespace'      => 'Il nuovo titolo corrisponde a una pagina speciale; impossibile spostare pagine in quel namespace.',
+'imagenocrossnamespace'   => "Non puoi spostare un'immagine fuori del namespace Immagine.",
 'imagetypemismatch'       => 'La nuova estensione del file non corrisponde alla sua reale estensione',
 
 # Export
@@ -1946,6 +1955,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-noarticle'           => 'Nessuna pagina da importare.',
 'import-nonewrevisions'      => 'Tutte le revisioni sono già state importate in precedenza.',
 'xml-error-string'           => '$1 a riga $2, colonna $3 (byte $4): $5',
+'import-upload'              => 'Carica dati XML',
 
 # Import log
 'importlogpage'                    => 'Importazioni',
@@ -2602,5 +2612,6 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'specialpages-group-pagetools'   => 'Strumenti utili per le pagine',
 'specialpages-group-wiki'        => 'Strumenti e informazioni sul progetto',
 'specialpages-group-redirects'   => 'Pagine speciali di redirect',
+'specialpages-group-spam'        => 'Strumenti contro lo spam',
 
 );

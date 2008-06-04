@@ -1047,7 +1047,7 @@ Kun dai bibilangon an mga ini, igwang {{PLURAL:\$2|nin '''1''' páhina|nin '''\$
 despues sa pagbukas kan {{SITENAME}}.
 Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling kada hirá.
 
-'''\$7''' an labâ kan [http://meta.wikimedia.org/wiki/Help:Job_queue job queue].",
+'''\$7''' an labâ kan [http://www.mediawiki.org/wiki/Manual:Job_queue job queue].",
 'userstatstext'          => "{{PLURAL:$1|is '''1''' registered [[Special:mga paragamit|paragamit]]| '''$1''' an nakarehistrong [[Special:Listusers|users]]}}, '''$2''' (or '''$4%''') kaini {{PLURAL:$2|has|may}} $5 na derechos.",
 'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
 
@@ -1102,9 +1102,6 @@ Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling k
 'protectedpagestext'      => 'An mga minasunod na pahina protektado na ibalyó o hirahón',
 'protectedpagesempty'     => 'Mayong pang páhina an napoprotehiran kaining mga parametros.',
 'listusers'               => 'Lista kan parágamit',
-'specialpages'            => 'Mga espesyal na páhina',
-'spheading'               => 'Mga espesyal na páhina para sa gabos na parágamit',
-'restrictedpheading'      => 'Mga espesyal na páhinang may restriksyón',
 'newpages'                => 'Mga bâgong páhina',
 'newpages-username'       => 'Pangaran kan parágamit:',
 'ancientpages'            => 'Mga pinakalumang páhina',
@@ -1968,5 +1965,8 @@ Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',
 
 # Special:Version
 'version' => 'Bersyon', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Mga espesyal na páhina',
 
 );

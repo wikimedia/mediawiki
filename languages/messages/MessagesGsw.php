@@ -572,8 +572,6 @@ Zuer Ziit stöhn '''$7''' Arbete zuem mache aa.",
 'longpages'               => 'Langi Artikel',
 'deadendpages'            => 'Artikel ohni Links («Sackgasse»)',
 'listusers'               => 'Lischte vo Benutzer',
-'specialpages'            => 'Spezialsytene',
-'spheading'               => 'Spezial-Sytene für alli Benützer',
 'newpages'                => 'Nöji Artikel',
 'ancientpages'            => 'alti Sytene',
 'move'                    => 'verschiebe',
@@ -891,5 +889,9 @@ Fründtlechi Grüess',
 
 ''Ds Lösche vor Zwüschespycherig zwingt der Server, dir di aktuellschti Version vor Syte z gä!''
 </div>",
+
+# Special:SpecialPages
+'specialpages' => 'Spezialsytene',
+
 
 );

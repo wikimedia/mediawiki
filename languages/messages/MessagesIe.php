@@ -273,8 +273,6 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'longpages'               => 'Long págines',
 'deadendpages'            => 'Págines sin exeada',
 'listusers'               => 'Liste de usatores',
-'specialpages'            => 'Special págines',
-'spheading'               => 'Special págines por omni usatores',
 'newpages'                => 'Nov págines',
 'ancientpages'            => 'Li max old págines',
 'move'                    => 'Mover',
@@ -358,5 +356,9 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 
 # Special:Version
 'version' => 'Version', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Special págines',
+
 
 );

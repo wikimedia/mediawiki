@@ -586,8 +586,6 @@ al qual le prime redirection deberea referer se.',
 'shortpages'              => 'Paginas curte',
 'longpages'               => 'Paginas longe',
 'listusers'               => 'Lista de usatores',
-'specialpages'            => 'Paginas special',
-'spheading'               => 'Paginas special',
 'newpages'                => 'Nove paginas',
 'ancientpages'            => 'Paginas le plus ancian',
 'move'                    => 'Mover',
@@ -859,5 +857,9 @@ nove titulo. Per favor fusiona los manualmente.',
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'tote',
 'monthsall'     => 'tote',
+
+# Special:SpecialPages
+'specialpages' => 'Paginas special',
+
 
 );

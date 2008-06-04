@@ -823,8 +823,6 @@ $messages = array(
 'protectedpages'          => 'ژغورلي مخونه',
 'protectedtitles'         => 'ژغورلي سرليکونه',
 'listusers'               => 'د کارونکو لړليک',
-'specialpages'            => 'ځانګړي مخونه',
-'restrictedpheading'      => 'بنديز لګېدلي ځانګړي مخونه',
 'newpages'                => 'نوي مخونه',
 'newpages-username'       => 'کارن نوم:',
 'ancientpages'            => 'تر ټولو زاړه مخونه',
@@ -1333,5 +1331,9 @@ $1',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'پلټل',
+
+# Special:SpecialPages
+'specialpages' => 'ځانګړي مخونه',
+
 
 );

@@ -17,6 +17,7 @@
  * @author Michawiki
  * @author Nike
  * @author Jon Harald Søby
+ * @author Andre Engels
  */
 
 $datePreferences = array(
@@ -1393,7 +1394,7 @@ Celkovo {{PLURAL:$8|bol nahraný jeden súbor|boli nahrané '''$8''' súbory|bol
 
 Celkovo boli stránky navštívené '''$3'''-krát a upravené '''$4'''-krát. To znamená, že pripadá priemerne '''$5''' úprav na každú stránku a '''$6''' návštev na každú úpravu.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Dĺžka frontu úloh] je momentálne '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Dĺžka frontu úloh] je momentálne '''$7'''.",
 'userstatstext'          => "Celkovo {{PLURAL:$1|je jeden zaregistrovaný používateľ|sú '''$1''' zaregistrovaní používatelia|je '''$1''' zaregistrovaných používateľov}},
 z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (pozri $5).",
 'statistics-mostpopular' => 'Najčastejšie prezerané stránky',
@@ -1455,9 +1456,6 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'protectedtitlestext'     => 'Možnosť vytvoriť stránky s nasledovnými názvami bola zamknutá',
 'protectedtitlesempty'    => 'Tieto parametre momentálne nezamykajú žiadne názvy stránok.',
 'listusers'               => 'Zoznam používateľov',
-'specialpages'            => 'Špeciálne stránky',
-'spheading'               => 'Špeciálne stránky pre všetkých používateľov',
-'restrictedpheading'      => 'Obmedzené špeciálne stránky',
 'newpages'                => 'Nové stránky',
 'newpages-username'       => 'Meno používateľa:',
 'ancientpages'            => 'Najdávnejšie upravované stránky',
@@ -2686,6 +2684,7 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'fileduplicatesearch-result-n' => 'Súbor „$1“ má {{PLURAL:$2|1 identický duplikát|$2 identické duplikáty|$3 identických duplikátov}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Špeciálne stránky',
 'specialpages-group-maintenance' => 'Údržbové správy',
 'specialpages-group-other'       => 'Iné špeciálne stránky',
 'specialpages-group-login'       => 'Prihlásenie / registrácia',

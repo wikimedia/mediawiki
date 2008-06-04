@@ -595,7 +595,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'deadendpages'            => 'Paj ki ap fini',
 'protectedpages'          => 'Paj ki pwoteje yo',
 'listusers'               => 'Lis kontribitè yo',
-'specialpages'            => 'Paj espesyal yo',
 'newpages'                => 'Nouvo paj yo',
 'ancientpages'            => 'Atik ki pli vye yo',
 'move'                    => 'Renonmen',
@@ -868,5 +867,8 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 
 # Special:Version
 'version' => 'Vèsyon', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Paj espesyal yo',
 
 );

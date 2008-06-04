@@ -284,7 +284,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'wantedpages'  => 'Paggene cchiù addemannate',
 'shortpages'   => 'Paggene curte',
 'longpages'    => 'Paggene cchiú longhe',
-'specialpages' => 'Paggene speciale',
 'newpages'     => 'Paggene cchiù frische',
 'move'         => 'Spusta',
 'movethispage' => 'Spusta chesta paggena',
@@ -427,5 +426,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 # Auto-summaries
 'autoredircomment' => 'Redirect â paggena [[$1]]',
 'autosumm-new'     => 'Paggena nuova: $1',
+
+# Special:SpecialPages
+'specialpages' => 'Paggene speciale',
 
 );

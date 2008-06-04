@@ -390,8 +390,6 @@ $3',
 'shortpages'        => 'Цыбыр фæрстæ',
 'longpages'         => 'Даргъ фæрстæ',
 'listusers'         => 'Архайджыты номхыгъд',
-'specialpages'      => 'Сæрмагонд фæрстæ',
-'spheading'         => 'Сæрмагонд фæрстæ',
 'newpages'          => 'Ног фæрстæ',
 'newpages-username' => 'Архайæг:',
 'ancientpages'      => 'Зæронддæр фæрстæ',
@@ -523,5 +521,9 @@ $3',
 'version'                  => 'MediaWiki-йы верси', # Not used as normal message but as header for the special page itself
 'version-version'          => 'Верси',
 'version-software-version' => 'Верси',
+
+# Special:SpecialPages
+'specialpages' => 'Сæрмагонд фæрстæ',
+
 
 );

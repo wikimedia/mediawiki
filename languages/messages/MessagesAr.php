@@ -1584,7 +1584,7 @@ PICT # misc.
 منذ تنصيب {{SITENAME}}.
 هذا يعني '''\$5''' تعديل متوسط لكل صفحة، و '''\$6''' عرض لكل تعديل.
 
-طول [http://meta.wikimedia.org/wiki/Help:Job_queue طابور الشغل] هو '''\$7'''.",
+طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل] هو '''\$7'''.",
 'userstatstext'          => "هناك {{PLURAL:$1|مستخدم مسجل وحيد|مستخدمين مسجلين|$3 مستخدمين مسجلين|$3 مستخدم مسجل|$3 مستخدما مسجلا}}، منهم
 '''$2''' (أو '''$4%''') {{PLURAL:$2|لديه|لديهما|لديهم}} صلاحيات $5.",
 'statistics-mostpopular' => 'أكثر الصفحات مشاهدة',
@@ -1646,9 +1646,6 @@ PICT # misc.
 'protectedtitlestext'     => 'العناوين التالية محمية ضد الإنشاء',
 'protectedtitlesempty'    => 'لا توجد عناوين محمية حاليا بهذه المحددات.',
 'listusers'               => 'قائمة الأعضاء',
-'specialpages'            => 'الصفحات الخاصة',
-'spheading'               => 'الصفحات الخاصة لكل المستخدمين',
-'restrictedpheading'      => 'صفحات خاصة للمخولين فقط',
 'newpages'                => 'صفحات جديدة',
 'newpages-username'       => 'اسم المستخدم:',
 'ancientpages'            => 'أقدم الصفحات',
@@ -2934,6 +2931,7 @@ $1',
 'fileduplicatesearch-result-n' => 'الملف "$1" له {{PLURAL:$2|1 تكرار مطابق|$2 تكرار مطابق}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'الصفحات الخاصة',
 'specialpages-group-maintenance' => 'تقارير الصيانة',
 'specialpages-group-other'       => 'صفحات خاصة أخرى',
 'specialpages-group-login'       => 'ادخل / سجل',

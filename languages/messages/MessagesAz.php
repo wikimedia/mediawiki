@@ -5,6 +5,7 @@
  * @file
  *
  * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -366,7 +367,7 @@ There have been a total of '''$3''' page views, and '''$4''' page edits
 since the wiki was setup.
 That comes to '''$5''' average edits per page, and '''$6''' views per edit.
 
-Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: '''$7'''.",
+Hal-hazırda [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] sayı: '''$7'''.",
 'userstatstext' => "Hal-hazırda '''$1''' istifadəçi, '''2''' (və ya '''4%''') tanesi idarəçi. (baxınız $3).",
 
 'doubleredirects' => 'İkiqat istiqamətləndirmələr',
@@ -388,9 +389,6 @@ Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: ''
 'shortpages'              => 'Qısa səhifələr',
 'longpages'               => 'Uzun səhifələr',
 'listusers'               => 'İstifadəçi siyahı',
-'specialpages'            => 'Xüsusi səhifələr',
-'spheading'               => 'İstifadəçilər üçün xüsusi səhifələr',
-'restrictedpheading'      => 'İdarəçilər üçün xüsusi səhifələr',
 'newpages'                => 'Yeni səhifələr',
 'ancientpages'            => 'Ən köhnə səhifələr',
 'move'                    => 'Adını dəyişdir',
@@ -579,5 +577,8 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 
 # Special:Version
 'version' => 'Versiya', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Xüsusi səhifələr',
 
 );

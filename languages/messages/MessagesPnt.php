@@ -180,6 +180,7 @@ $messages = array(
 'jumptosearch'      => 'Αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Για το σάιτ {{SITENAME}}',
 'aboutpage'            => 'Project:Σχετικά',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
 'currentevents'        => 'Ατωριζνά γεγονότα',
@@ -412,7 +413,6 @@ $messages = array(
 'deadendpages'            => 'Αδιέξοδα σελίδας',
 'protectedpages'          => 'Ασπαλιγμένα σελίδας',
 'listusers'               => 'Κατάλογον χρήστιων',
-'specialpages'            => 'Ειδικά σελίδας',
 'newpages'                => 'Καινούρεα σελίδας',
 'ancientpages'            => 'Ασ’ όλιον παλαιά σελίδας',
 'move'                    => 'Ετεροχλάεμαν',
@@ -631,5 +631,8 @@ $messages = array(
 
 # Special:Version
 'version' => 'Έκδοση', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Ειδικά σελίδας',
 
 );

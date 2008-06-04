@@ -587,7 +587,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'deadendpages'            => 'Blendgydesider',
 'protectedpages'          => 'Skrevebeskyttede sider',
 'listusers'               => 'Brugerliste',
-'specialpages'            => 'Sonst sider',
 'newpages'                => 'Nyeste ertikler',
 'ancientpages'            => 'Ældste ertikler',
 'move'                    => 'Flyt',
@@ -852,5 +851,8 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 
 # Special:Version
 'version' => "Informasje MediaWiki'm", # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Sonst sider',
 
 );

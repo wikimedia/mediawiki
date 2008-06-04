@@ -1090,6 +1090,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-bot'                  => 'Ser tratado como um processo automatizado',
 'right-nominornewtalk'       => 'Não ter o aviso de novas mensagens despoletado quando são feitas edições menores a páginas de discussão',
 'right-apihighlimits'        => 'Usar limites superiores em consultas (queries) via API',
+'right-writeapi'             => 'Uso da API de escrita',
 'right-delete'               => 'Eliminar páginas',
 'right-bigdelete'            => 'Eliminar páginas com histórico grande',
 'right-deleterevision'       => 'Eliminar e restaurar revisões específicas de páginas',
@@ -1381,7 +1382,7 @@ Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma pá
 Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado.
 Isso nos leva a aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
 
-O tamanho actual da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é '''\$7'''.",
+O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas] é '''\$7'''.",
 'userstatstext'          => "Há actualmente {{PLURAL:$1|'''$1''' utilizador registado|'''$1''' utilizadores registados}}, dentre os quais '''$2''' (ou '''$4%''') {{PLURAL:$2|é|são}} $5.",
 'statistics-mostpopular' => 'Páginas mais vistas',
 

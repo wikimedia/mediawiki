@@ -676,7 +676,6 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'deadendpages'            => "Matlakala a seye felo(''Dead-end'')",
 'protectedpages'          => 'Matlakala a go lotiwa',
 'listusers'               => 'Lanano la mošomiši',
-'specialpages'            => 'Matlakala a itšeng',
 'newpages'                => 'Matlakala a mampsha',
 'ancientpages'            => 'Matlakala a kgalekgale',
 'move'                    => 'Huduša',
@@ -1069,5 +1068,8 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 
 # Special:Version
 'version' => "''Version''", # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Matlakala a itšeng',
 
 );

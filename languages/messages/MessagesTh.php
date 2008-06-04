@@ -915,18 +915,20 @@ $1 เป็นผู้ดำเนินการระงับการใ�
 
 # Groups
 'group'               => 'กลุ่ม:',
-'group-autoconfirmed' => 'ผู้ใช้ที่ยอมรับโดยอัตโนมัติ',
+'group-user'          => 'ผู้ใช้ใหม่',
+'group-autoconfirmed' => 'ผู้ใช้ทั่วไป',
 'group-bot'           => 'บอต',
 'group-sysop'         => 'ผู้ดูแล',
 'group-bureaucrat'    => 'ผู้ดูแลสิทธิแต่งตั้ง',
 'group-all'           => '(ทั้งหมด)',
 
-'group-autoconfirmed-member' => 'ผู้ใช้ที่ยอมรับโดยอัตโนมัติ',
+'group-user-member'          => 'ผู้ใช้ใหม่',
+'group-autoconfirmed-member' => 'ผู้ใช้ทั่วไป',
 'group-bot-member'           => 'บอต',
 'group-sysop-member'         => 'ผู้ดูแล',
 'group-bureaucrat-member'    => 'ผู้ดูแลสิทธิแต่งตั้ง',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:ผู้ใช้ที่ยอมรับโดยอัตโนมัติ',
+'grouppage-autoconfirmed' => '{{ns:project}}:ผู้ใช้ทั่วไป',
 'grouppage-bot'           => '{{ns:project}}:บอต',
 'grouppage-sysop'         => '{{ns:project}}:ผู้ดูแล',
 'grouppage-bureaucrat'    => '{{ns:project}}:ผู้ดูแลสิทธิแต่งตั้ง',
@@ -1179,7 +1181,7 @@ $1 เป็นผู้ดำเนินการระงับการใ�
 
 มีการเข้าชม  '''$3''' ครั้ง และ  '''$4''' การแก้ไขตั้งแต่ {{SITENAME}} ได้เริ่มใช้งาน ซึ่งเฉลี่ยแล้วมีการแก้ไข '''$5''' ครั้งต่อหนึ่งหน้าหรือการเข้าชม '''$6''' ครั้งต่อหนึ่งการแก้ไข
 
-ปัจจุบันมี[http://meta.wikimedia.org/wiki/Help:Job_queue งานในคิว]ทั้งหมด '''$7''' งาน",
+ปัจจุบันมี[http://www.mediawiki.org/wiki/Manual:Job_queue งานในคิว]ทั้งหมด '''$7''' งาน",
 'userstatstext'          => "มีผู้ลงทะเบียนทั้งหมด '''$1''' ชื่อ โดย'''$2''' (หรือ '''$4%''') มีสิทธิ $5",
 'statistics-mostpopular' => 'หน้าที่มีการเข้าชมมากที่สุด',
 
@@ -1239,9 +1241,6 @@ $1 เป็นผู้ดำเนินการระงับการใ�
 'protectedtitlestext'     => 'หัวเรื่องต่อไปนี้ได้รับการป้องกันไม่ให้สร้างใหม่',
 'protectedtitlesempty'    => 'ปัจจุบันไม่มีหัวเรื่องที่ได้รับการป้องกันด้วยค่าต่อไปนี้',
 'listusers'               => 'รายนามผู้ใช้',
-'specialpages'            => 'หน้าพิเศษ',
-'spheading'               => 'หน้าพิเศษสำหรับผู้ใช้ทั่วไป',
-'restrictedpheading'      => 'หน้าพิเศษสำหรับผู้ใช้เฉพาะ',
 'newpages'                => 'หน้าใหม่',
 'newpages-username'       => 'ชื่อผู้ใช้:',
 'ancientpages'            => 'หน้าที่ไม่ได้แก้ไขนานสุด',
@@ -1298,6 +1297,7 @@ $1 เป็นผู้ดำเนินการระงับการใ�
 'listusers-noresult' => 'ไม่พบผู้ใช้ที่ต้องการ',
 
 # Special:Listgrouprights
+'listgrouprights'        => 'สิทธิกลุ่มผู้ใช้งาน',
 'listgrouprights-group'  => 'กลุ่ม',
 'listgrouprights-rights' => 'สิทธิ',
 
@@ -2373,6 +2373,7 @@ $1',
 'fileduplicatesearch-submit'   => 'ค้นหา',
 
 # Special:SpecialPages
+'specialpages'                   => 'หน้าพิเศษ',
 'specialpages-group-maintenance' => 'รายงานการเก็บกวาด',
 'specialpages-group-other'       => 'หน้าพิเศษอื่น ๆ',
 'specialpages-group-login'       => 'ล็อกอิน / สร้างบัญชีผู้ใช้ใหม่',

@@ -100,6 +100,7 @@ $messages = array(
 'qbbrowse'       => 'جھانگيو',
 'qbedit'         => 'سنواريو',
 'qbpageoptions'  => 'هيءُ صفحو',
+'qbmyoptions'    => 'منهنجا صفحا',
 'qbspecialpages' => 'خاص صفحا',
 'moredotdotdot'  => 'اڃا...',
 'mypage'         => 'منهنجو صفحو',
@@ -146,9 +147,11 @@ $messages = array(
 'templatepage'      => 'سانچي جو صفحو ڏسو',
 'viewhelppage'      => 'امدادي صفحو ڏسو',
 'categorypage'      => 'زمراتي صفحو ڏسو',
+'viewtalkpage'      => 'بحث ڏسو',
 'otherlanguages'    => 'ٻين ٻولين ۾',
 'redirectedfrom'    => '($1 کان چوريل)',
 'redirectpagesub'   => 'چوريل صفحو',
+'lastmodifiedat'    => 'هيءُ صفحو آخري ڀيرو $2، $1ع تي ترميميو ويو هو.', # $1 date, $2 time
 'viewcount'         => 'هيءُ صفحو {{PLURAL:$1|دفعو|$1 دفعا}} ڏسجي چڪو آهي.',
 'protectedpage'     => 'تحفظيل صفحو',
 'jumptosearch'      => 'ڳولا',
@@ -172,9 +175,10 @@ $messages = array(
 'policy-url'           => 'Project:پاليسي',
 'portal'               => 'نياتي باب',
 'privacy'              => 'ذاتيات پاليسي',
-'privacypage'          => 'رٿا:ذاتيات پاليسي',
+'privacypage'          => 'Project:ذاتيات پاليسي',
 'sitesupport'          => 'مالي امداد',
 
+'ok'                  => 'ٺيڪ',
 'youhavenewmessages'  => 'توهان لاءِ $1 ($2) آهن.',
 'newmessageslink'     => 'نوان نياپا',
 'newmessagesdifflink' => 'آخري تبديلي',
@@ -184,6 +188,7 @@ $messages = array(
 'toc'                 => 'فهرست',
 'showtoc'             => 'ڏيکاريو',
 'hidetoc'             => 'لڪايو',
+'viewdeleted'         => '$1 ڏسندا؟',
 'red-link-title'      => '$1 (اڃا لکيل ناهي)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -209,10 +214,16 @@ $messages = array(
 'missingarticle-diff' => '(تفاوت: $1، $2)',
 'internalerror'       => 'اندروني خرابي',
 'internalerror_info'  => 'داخلي چُڪَ: $1',
+'filerenameerror'     => '"$1" نالي فائيل تي نئون نالو "$2" رکجي نه سگھجو.',
+'filedeleteerror'     => '"$1" فائيل ڊهي نه سگھيو.',
+'filenotfound'        => '"$1" نالي فائيل لڀجي نه سگھيو.',
+'unexpected'          => 'غير متوقع قدر: "$1"="$2".',
 'badtitle'            => 'غيردرست عنوان',
 'viewsource'          => 'ڪوڊ ڏسو',
 'viewsourcefor'       => 'براءِ $1',
+'protectedpagetext'   => 'هيءُ صفحو ترميمن کان تحفظيل آهي.',
 'viewsourcetext'      => 'توهان هن صفحي جو ڪوڊ ڏسي ۽ نقل ڪري سگھو ٿا:',
+'namespaceprotected'  => "توهان کي نانءُ پولار '''$1''' جا صفحا سنوارڻ جا اختيار ناهن.",
 'ns-specialprotected' => 'خاص صفحا سنواري نٿا سگھجن.',
 
 # Login and logout pages
@@ -222,6 +233,7 @@ $messages = array(
 'remembermypassword'         => 'هن ڳڻپيوڪر تي مون کي ياد رکو',
 'login'                      => 'لاگ اِن',
 'nav-login-createaccount'    => 'لاگ اِن ٿيو / کاتو کوليو',
+'loginprompt'                => '{{SITENAME}} ۾ لاگ اِن ٿيڻ لاءِ ڪوڪيز جي قبوليت لازمي آهي.',
 'userlogin'                  => 'لاگ اِن ٿيو / کاتو کوليو',
 'logout'                     => 'لاگ آئوٽ',
 'userlogout'                 => 'لاگ آئوٽ',
@@ -239,6 +251,8 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'loginsuccesstitle'          => 'لاگ اِن ڪامياب',
 'loginsuccess'               => "'''هاڻي توهان {{SITENAME}} تي بطور \"\$1\" لاگ اِن ٿيل آهيو.'''",
 'nosuchuser'                 => '"$1" نالي سان ڪو به يوزر نه آهي. هِجي چڪاسيو، يا نئون کاتو کوليو.',
+'nosuchusershort'            => '"<nowiki>$1</nowiki>" نالي ڪو به يُوزر ناهي. 
+هِجي جي پڪ ڪندا.',
 'nouserspecified'            => 'توهان کي ڪو يوزرنانءُ ڄاڻائڻو پوندو.',
 'wrongpassword'              => 'ڏنل ڳجھو لفظ غير درست آهي. مهرباني ڪري ٻيهر ڪوشش ڪندا.',
 'wrongpasswordempty'         => 'ڏنل ڳجھو لفظ خالي هو. مهرباني ڪري وري ڪوشش ڪندا.',
@@ -291,8 +305,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 * بندش جو انجام: $6
 * بندش جو هدف: $7
 
-اهڙي روڪ تي بحث ڪرڻ لاءِ توهان $1 يا ڪنهن ٻي [[{{ns:project}}:منتظمين|منتظم]] سان رابطو ڪري سگھو ٿا. 
-جيڪڏهن توهان جو درست [[Special:ترجيحات|کاتو ترجيحات]] ۾ درست برق ٽپال پتو درج ٿيل نه آهي ته توهان 'هن يوزر کي برق ٽپال ڪريو' وارو فيچر نه ٿا استعمال ڪري سگھو. توهان جو هاڻوڪو آءِ پي پتو $3 آهي، ۽ بندش سڃاڻپ $3 آهي. مهرباني ڪري ڪنهن به پڇا ڳاڇا يا لهوچڙ  لاءِ انهن مان ڪنهن هڪ يا ٻنهي جو حوالو ڏيندا.",
+اهڙي روڪ تي بحث ڪرڻ لاءِ توهان $1 يا ڪنهن ٻي [[{{MediaWiki:Grouppage-sysop}}|منتظم]] سان رابطو ڪري سگھو ٿا. جيڪڏهن توهان جو درست [[Special:ترجيحات|کاتو ترجيحات]] ۾ درست برق ٽپال پتو درج ٿيل نه آهي ته توهان 'هن يوزر کي برق ٽپال ڪريو' وارو فيچر نه ٿا استعمال ڪري سگھو. توهان جو هاڻوڪو آءِ پي پتو $3 آهي، ۽ بندش سڃاڻپ $5 آهي. مهرباني ڪري ڪنهن به پڇا ڳاڇا يا لهوچڙ  لاءِ انهن مان ڪنهن هڪ يا ٻنهي جو حوالو ڏيندا.",
 'blockednoreason'        => 'سبب اڻڄاڻايل',
 'accmailtitle'           => 'ڳجھو لفظ اماڻجي چڪو.',
 'newarticle'             => '(نئون)',
@@ -315,6 +328,9 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'histfirst'           => 'اوائلي ترين',
 'histlast'            => 'تازوترين',
 'historyempty'        => '(خالي)',
+
+# Revision feed
+'history-feed-item-nocomment' => '$2 تي $1', # user at time
 
 # Revision deletion
 'pagehist' => 'صفحي جي سوانح',
@@ -347,6 +363,8 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Groups
 'group'      => 'گروپ:',
 'group-user' => 'يوزرس',
+
+'grouppage-sysop' => '{{ns:project}}:منتظمين',
 
 # Rights
 'right-undelete' => 'ڪو صفحو اڻڊاهيو',
@@ -440,7 +458,10 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'unusedimages'            => 'اڻ استعماليل فائيلس',
 'wantedcategories'        => 'گھربل زمرا',
 'wantedpages'             => 'گھربل صفحا',
+'mostlinked'              => 'صفحن سان وڌانوڌ ڳنڍيل',
+'mostlinkedcategories'    => 'زمرن سان وڌانوڌ ڳنڍيل',
 'mostlinkedtemplates'     => 'گھڻي کان گھڻا سانچا رکندڙ',
+'mostcategories'          => 'گھڻي کان گھڻا زمرا رکندڙ صفحا',
 'prefixindex'             => 'اڳياڙي ڏسڻي',
 'shortpages'              => 'مختصر صفحا',
 'longpages'               => 'طويل صفحا',
@@ -455,6 +476,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'specialloguserlabel'  => 'يُوزر:',
 'speciallogtitlelabel' => 'عنوان:',
 'log'                  => 'لاگس',
+'all-logs-page'        => 'سڀئي لاگس',
 
 # Special:Allpages
 'allpages'       => 'سڀ صفحا',
@@ -465,6 +487,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'allarticles'    => 'سمورا مضمون',
 'allpagesprev'   => 'اڳوڻو',
 'allpagessubmit' => 'ھلو',
+'allpagesprefix' => 'صفحا نمايو بمع اڳياڙي:',
 
 # Special:Categories
 'categories' => 'زمرا',
@@ -483,10 +506,15 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'watchthispage'        => 'هيءُ صفحو ٽيٽيو',
 'unwatch'              => 'اڻ ٽيٽيو',
 'unwatchthispage'      => 'ٽيٽڻ ڇڏيو',
+'watchlist-details'    => 'مباحثي صفحن کان سواءِ {{PLURAL:$1|$1 صفحو|$1 صفحا}} ٽيٽيل.',
 'wlshowlast'           => 'پوين $1 ڪلاڪن $2 ڏينهن جا $3 ڏيکاريو',
 'watchlist-hide-bots'  => 'بوٽ جون ڪيل ترميمون لڪايو',
 'watchlist-hide-own'   => 'منهنجون ڪيل ترميمون لڪايو',
 'watchlist-hide-minor' => 'معمولي ترميمون لڪايو',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'ٽيٽيندي...',
+'unwatching' => 'اڻ ٽيٽيندي...',
 
 'enotif_newpagetext' => 'هيءُ هڪ نئون صفحو آهي.',
 'changed'            => 'تبديل ٿي ويو',
@@ -495,6 +523,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Delete/protect/revert
 'deletepage'                  => 'صفحو ڊاهيو',
 'confirm'                     => 'پڪ ڪريو',
+'historywarning'              => 'خبردار: جيڪو صفحو توهان ڊاهڻ وارا آهيو، تنهن جي هڪ سوانح آهي:',
 'actioncomplete'              => 'ڪم پُورو',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ڊهي چڪو آهي.
 تازو ڊاٺل صفحن جي فهرست لاءِ $2 ڏسندا.',
@@ -603,6 +632,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'tooltip-pt-userpage'             => 'منهنجو تعارفي صفحو',
 'tooltip-pt-mytalk'               => 'منهنجو مباحثي صفحو',
 'tooltip-pt-preferences'          => 'منهنجون ترجيحات',
+'tooltip-pt-watchlist'            => 'توهان جي ٽيٽ فهرست ۾ شامل صفحا',
 'tooltip-pt-mycontris'            => 'منهنجون ڀاڱيداريون',
 'tooltip-pt-logout'               => 'لاگ آئوٽ',
 'tooltip-ca-talk'                 => 'موادي صفحي تي بحث',

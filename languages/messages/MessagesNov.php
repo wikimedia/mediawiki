@@ -271,7 +271,6 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'longpages'               => 'Longi pagines',
 'deadendpages'            => 'Pagines sin kuplures',
 'listusers'               => 'Liste de useres',
-'specialpages'            => 'Spesial pagines',
 'newpages'                => 'Novi pagines',
 'ancientpages'            => 'Maxim ansieni pagines',
 'move'                    => 'Mova',
@@ -406,5 +405,8 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'version'                  => 'Versione', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'Spesial pagines',
 'version-software-version' => 'Versione',
+
+# Special:SpecialPages
+'specialpages' => 'Spesial pagines',
 
 );

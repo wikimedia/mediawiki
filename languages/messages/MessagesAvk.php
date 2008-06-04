@@ -12,6 +12,8 @@
  * @author Nkosi ya Cabinda
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Levconhani gluyasiki se',
@@ -1096,7 +1098,7 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 
 <b>$3</b> bu zo rupeyed ise <b>$4</b> zo betayad. Va mialuk va <b>$5</b> betara fuxe bu is <b>$6</b> rupera fuxe betara batcoba tadler. <br />
 
-Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\'\'$7\'\'\'.',
+Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue "job queue"] tir \'\'\'$7\'\'\'.',
 'userstatstext'          => "{{PLURAL:$1|Tir '''1''' vertokayan [[Special:Listusers|favesik]]|Tid '''$1''' vertokayan [[Special:Listusers|favesik]]}}. Vanmiaeon '''$2''' (ok '''$4%''') va $5 roka {{PLURAL:$2|digir|digid}}.",
 'statistics-mostpopular' => 'Tel lorupen bueem',
 
@@ -1155,9 +1157,6 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'protectedtitlestext'     => 'Radimef vergumvelteem reduron zo nendar',
 'protectedtitlesempty'    => 'Nedoy vergumvelt kan bat dor se zo nendar.',
 'listusers'               => 'Pakesikeem',
-'specialpages'            => 'Aptaf bueem',
-'spheading'               => 'Aptaf bueem',
-'restrictedpheading'      => 'Irutan aptabueem',
 'newpages'                => 'Warzaf bueem',
 'newpages-username'       => 'Favesikyolt :',
 'ancientpages'            => 'Losavsaf telizeem',
@@ -2173,6 +2172,7 @@ $1',
 'fileduplicatesearch-result-1' => '"$1" iyeltak va miltafa jontoloca me digir.',
 
 # Special:SpecialPages
+'specialpages'               => 'Aptaf bueem',
 'specialpages-group-other'   => 'Ar aptabueem',
 'specialpages-group-login'   => 'Figara / dimfigara',
 'specialpages-group-changes' => 'Noeltaf betakseem isu "log"',

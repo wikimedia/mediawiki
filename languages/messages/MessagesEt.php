@@ -857,7 +857,7 @@ See arv hõlmab ka arutelulehekülgi, abilehekülgi, väga lühikesi lehekülgi 
 Alates {{SITENAME}} töösse seadmisest on lehekülgede vaatamisi kokku '''$3''' ja redigeerimisi '''$4'''.
 Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje vaatamist ühe redigeerimise kohta.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Töö järjekorra] pikkus on '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Töö järjekorra] pikkus on '''$7'''.",
 'userstatstext' => "Registreeritud [[Special:Listusers|kasutajate]] arv: '''$1''', kelledest '''$2''' (ehk '''$4%''') on $5 õigused.",
 
 'disambiguations' => 'Täpsustusleheküljed',
@@ -900,9 +900,6 @@ Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje 
 'deadendpagestext'        => 'Järgmised leheküljed ei viita ühelegi teisele Viki leheküljele.',
 'protectedpages'          => 'Kaitstud leheküljed',
 'listusers'               => 'Kasutajad',
-'specialpages'            => 'Erileheküljed',
-'spheading'               => 'Erileheküljed',
-'restrictedpheading'      => 'Piirangutega erileheküljed',
 'newpages'                => 'Uued leheküljed',
 'ancientpages'            => 'Kõige vanemad artiklid',
 'move'                    => 'Teisalda',
@@ -1381,5 +1378,8 @@ Kinnituskood aegub $4.',
 
 # Special:Version
 'version' => 'Versioon', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Erileheküljed',
 
 );

@@ -225,8 +225,6 @@ Bo kuenta ta trahá. No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} 
 'unusedcategories'        => 'Kategorianan no uzá',
 'wantedcategories'        => 'Kategorianan deseá',
 'wantedpages'             => 'Páginanan deseá',
-'specialpages'            => 'Páginanan Spesial',
-'spheading'               => 'Páginanan spesial pa tur uzadó',
 'ancientpages'            => 'Páginanan mas bieu',
 'unusedcategoriestext'    => 'E siguiente kategorianan ta eksistí pero ningun artíkulo òf kategoria ta hasi uzo di nan.',
 
@@ -379,5 +377,9 @@ Por fabor konfirmá ku bo ke traha e artíkulo aki di nobo.",
 # AJAX search
 'articletitles' => "Artíkulonan kuminsando ku ''$1''",
 'hideresults'   => 'Skonde resultado',
+
+# Special:SpecialPages
+'specialpages' => 'Páginanan Spesial',
+
 
 );

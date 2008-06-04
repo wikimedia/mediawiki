@@ -22,7 +22,7 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Kusintha kumene kwachitika posachedwa',
 
-# Miscellaneous special pages
+# Special:SpecialPages
 'specialpages' => 'Masamba apadera',
 
 );

@@ -182,7 +182,6 @@ $messages = array(
 'withoutinterwiki-submit' => 'क्यनादिसँ',
 
 # Miscellaneous special pages
-'specialpages'      => 'विषेश पौत:',
 'newpages-username' => 'छ्येलेमि नां:',
 
 # Special:Allpages
@@ -214,5 +213,8 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-new' => 'न्हुगु पौ: $1',
+
+# Special:SpecialPages
+'specialpages' => 'विषेश पौत:',
 
 );

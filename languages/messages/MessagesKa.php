@@ -1019,7 +1019,7 @@ $1 საათში.',
 
 ვიკის დაარსებიდან დღემდე გვერდები დათვალიერებულ იქნა '''$3'''-ჯერ, ხოლო რედაქტირება განხორციელდა '''$4'''-ჯერ. ეს ნიშნავს, რომ ყოველ გვერდზე საშუალოდ მოდის '''$6''' დათვალიერება და '''$5''' რედაქტირება.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue დავალებათა რიგის] სიგრძეა '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue დავალებათა რიგის] სიგრძეა '''$7'''.",
 'userstatstext'          => "არსებობენ '''$1''' რეგისტრირებული მომხმარებელი, რომელთა შორის '''$2''' (ან '''$4%''') ადმინისტრატორია. (იხილეთ $3).",
 'statistics-mostpopular' => 'ყველზე ხშირად ხილვადი გვერდები',
 
@@ -1080,9 +1080,6 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'protectedpages'          => 'დაცული გვერდები',
 'protectedtitles'         => 'დაცული სათაურები',
 'listusers'               => 'მომხმარებლების სია',
-'specialpages'            => 'სპეციალური გვერდები',
-'spheading'               => 'სპეციალური გვერდები ყველა მომხმარებლისათვის',
-'restrictedpheading'      => 'შეზღუდული სპეციალური გვერდები',
 'newpages'                => 'ახალი გვერდები',
 'newpages-username'       => 'მომხმარებლის სახელი:',
 'ancientpages'            => 'ხანდაზმული გვერდები',
@@ -1905,6 +1902,7 @@ $1',
 'fileduplicatesearch-submit' => 'ძიება',
 
 # Special:SpecialPages
+'specialpages'               => 'სპეციალური გვერდები',
 'specialpages-group-other'   => 'სხვა სპეციალური გვერდები',
 'specialpages-group-changes' => 'ბოლო ცვლილებები და ჟურნალები',
 'specialpages-group-users'   => 'მომხმარებლები და უფლებები',

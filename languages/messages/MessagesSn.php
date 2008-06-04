@@ -131,7 +131,6 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'randompage' => 'Peji nhemwa',
 
 # Miscellaneous special pages
-'specialpages' => 'Mapeji akakosha',
 'move'         => 'Chichinura',
 'movethispage' => 'Chichinura kupeji iri',
 
@@ -178,5 +177,8 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 
 # Table pager
 'table_pager_limit_submit' => 'Enda',
+
+# Special:SpecialPages
+'specialpages' => 'Mapeji akakosha',
 
 );

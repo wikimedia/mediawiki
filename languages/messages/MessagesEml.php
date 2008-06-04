@@ -111,8 +111,7 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'randompage' => 'Una pàgina a chès',
 
 # Miscellaneous special pages
-'specialpages' => 'Pàgin specièli',
-'move'         => 'Môv',
+'move' => 'Môv',
 
 # Special:Log
 'specialloguserlabel' => 'Utèint:',
@@ -152,5 +151,8 @@ Guèrda $2 par vèdder la lésta d\'al pàgin ch\'i sun stèdi scanzlèdi di rec
 
 # Special:Newimages
 'ilsubmit' => 'Zerca',
+
+# Special:SpecialPages
+'specialpages' => 'Pàgin specièli',
 
 );

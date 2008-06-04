@@ -1506,7 +1506,7 @@ $3
 
 در مجموع صفحه‌های {{SITENAME}} '''$3''' بار بازدید شده‌اند که شامل  '''$4''' ویرایش می‌شود. به این ترتیب هر صفحه به طور متوسط '''$5''' بار ویرایش شده و به ازای هر ویرایش '''$6''' بازدید صورت گرفته‌است.
 
-طول [http://meta.wikimedia.org/wiki/Help:Job_queue صف کارها] $7 است.",
+طول [http://www.mediawiki.org/wiki/Manual:Job_queue صف کارها] $7 است.",
 'userstatstext'          => "تعداد '''$1''' کاربر ثبت شده وجود دارد که از بین آن‌ها '''$2''' نفر ('''$4٪''') دارای دسترسی $5 {{PLURAL:$2|است|هستند}}.",
 'statistics-mostpopular' => 'صفحه‌هایی که بیشترین تعداد بازدیدکننده را داشته‌اند',
 
@@ -1570,9 +1570,6 @@ $3
 'protectedtitlestext'     => 'عنوان‌های زیر از ایجاد محافظت شده‌اند',
 'protectedtitlesempty'    => 'در حال حاضر هیچ عنوانی با این پارامترها محافظت نشده‌است.',
 'listusers'               => 'فهرست کاربران',
-'specialpages'            => 'صفحه‌های ویژه',
-'spheading'               => 'صفحه‌های ویژهٔ همهٔ کاربران',
-'restrictedpheading'      => 'صفحه‌های ویژهٔ محدودشده',
 'newpages'                => 'صفحه‌های جدید',
 'newpages-username'       => 'نام کاربری:',
 'ancientpages'            => 'قدیمی‌ترین صفحه‌ها',
@@ -2855,6 +2852,7 @@ $1',
 'fileduplicatesearch-result-n' => 'پروندهٔ «$1» دارای {{PLURAL:$2|یک مورد تکراری|$2 مورد تکراری}} است.',
 
 # Special:SpecialPages
+'specialpages'                   => 'صفحه‌های ویژه',
 'specialpages-note'              => '<hr />
 * دسترسی به صفحه‌های ویژهٔ <span class="mw-specialpagerestricted">رنگی</span> محدود شده‌است.',
 'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
@@ -2869,5 +2867,6 @@ $1',
 'specialpages-group-wiki'        => 'اطلاعات و ابزارهای ویکی',
 'specialpages-group-redirects'   => 'صفحه‌های ویژهٔ تغییر مسیر دهنده',
 'specialpages-group-spam'        => 'ابزارهای مرتبط با هرزنگاری',
+
 
 );

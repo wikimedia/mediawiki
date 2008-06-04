@@ -101,7 +101,6 @@ $messages = array(
 'randompage' => 'Halamang rawak',
 
 # Miscellaneous special pages
-'specialpages' => 'Halamang Istimewa',
 'ancientpages' => 'Artikel talloa',
 'move'         => 'ᨙᨕᨔᨘ',
 'movethispage' => 'ᨙᨕᨔᨘᨀᨗ ᨕᨗᨙᨐᨙᨉ ᨒᨛᨄ',
@@ -155,5 +154,8 @@ Silakan pile aseng laing.',
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall' => 'maneng',
+
+# Special:SpecialPages
+'specialpages' => 'Halamang Istimewa',
 
 );

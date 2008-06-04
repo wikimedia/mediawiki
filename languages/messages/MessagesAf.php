@@ -1023,7 +1023,7 @@ Uitsluitend bogenoemde, is daar {{PLURAL:\$2|'''1''' bladsy|'''\$2''' bladsye}} 
 {{PLURAL:\$3|Bladsy is al '''1''' keer aangevra|Bladsye is al '''\$3''' kere aangevra}}, en '''\$4''' keer verander sedert hierdie wiki opgezet is.
 Dit werk uit op gemiddeld '''\$5''' veranderings per bladsy, en bladsye word '''\$6''' keer per verandering aangevra.
 
-Die ''[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]''-lengte is '''\$7'''.",
+Die ''[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]''-lengte is '''\$7'''.",
 'userstatstext'          => "Daar is {{PLURAL:$1|'''1''' geregistreerde [[Special:Listusers|gebruiker]]|'''$1''' geregistreerde [[Special:Listusers|gebruikers]]}}, waarvan '''$2''' (of '''$4%''') $5 regte het.",
 'statistics-mostpopular' => 'Mees bekykte bladsye',
 
@@ -1079,9 +1079,6 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 'protectedpagestext'      => 'Die volgende bladsye is beskerm teen verskuiwing of wysiging:',
 'protectedtitles'         => 'Beskermde titels',
 'listusers'               => 'Gebruikerslys',
-'specialpages'            => 'Spesiale bladsye',
-'spheading'               => 'Spesiale bladsye',
-'restrictedpheading'      => 'Beperkte spesiale bladsye',
 'newpages'                => 'Nuwe bladsye',
 'newpages-username'       => 'Gebruikersnaam:',
 'ancientpages'            => 'Oudste bladsye',
@@ -1728,6 +1725,7 @@ Soek vir 'n duplikaat",
 'fileduplicatesearch-submit'   => 'Soek',
 
 # Special:SpecialPages
+'specialpages'                   => 'Spesiale bladsye',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
 'specialpages-group-login'       => 'Inteken / aansluit',

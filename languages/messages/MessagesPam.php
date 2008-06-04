@@ -11,6 +11,8 @@
  * @author Nike
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gulisan lang panglalam deng suglung:',
@@ -1246,7 +1248,7 @@ Kayabe la kareti deng bulung \"pamisabi-sabi\", bulung tungkul king {{SITENAME}}
 Mekata'''\$3''' {{PLURAL:\$3|de linawe|de linawe}} at mekata'''\$4''' de {{PLURAL:\$4|binayu|binayu}} ing {{SITENAME}} manibat aniang melalang ya iti. 
 King kabilugan, miras ya iti king average a '''\$5''' a pamagbayu o edit balang bulung, at '''\$6''' a pamaglawe balang edit.  
 
-Ing kaba ning [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]  '''\$7''' ya.",
+Ing kaba ning [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]  '''\$7''' ya.",
 'userstatstext'          => "Ating {{PLURAL:$1|'''1''' a makarehistrung [[Special:Listusers|talagamit]]|'''$1''' makarehistrung [[Special:Listusers|talagamit]]}}, at kareti '''$2''' (o '''$4%''') {{PLURAL:$2|ing|ing}} maki katuliran (rights) a $5.",
 'statistics-mostpopular' => 'Bulung a pekamaralas dang linawe',
 
@@ -1310,9 +1312,6 @@ Tuturing yang bulung pamipalino ing metung a bulung nung gagamit yang modelung (
 'protectedtitlestext'     => 'Protektadu/makakambil la king pamaglalang deng makatuking bansag (title)',
 'protectedtitlesempty'    => 'Alang bansag a protektadu/makakambil king salukuyan a maki sukad (parameter) anti kareti.',
 'listusers'               => 'Tala da reng talagamit',
-'specialpages'            => 'Bulung a makabukud',
-'spheading'               => 'Bulung a makabukud (special pages) para karen ngang talagamit',
-'restrictedpheading'      => 'Bulung a makabukud a maki limitasiun (restricted)',
 'newpages'                => 'Deng bayung bulung',
 'newpages-username'       => 'Lagyungtalagamit:',
 'ancientpages'            => 'Pekamatuang bulung',
@@ -2413,6 +2412,7 @@ $1',
 'fileduplicatesearch-result-1' => 'Ala yang eksaktung kapareu ing simpan (file) a "$1".',
 
 # Special:SpecialPages
+'specialpages'               => 'Bulung a makabukud',
 'specialpages-group-other'   => 'Aliwa pang bulung a makabukud',
 'specialpages-group-login'   => 'Mag-login / magrehistru',
 'specialpages-group-changes' => 'Bayung mengayalili ampong tala (logs)',

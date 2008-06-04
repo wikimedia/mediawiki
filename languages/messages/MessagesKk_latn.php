@@ -1662,7 +1662,7 @@ Solardı esepten şığarğanda, mında mağlumat {{PLURAL:$2|beti|betteri}} dep
 {{SITENAME}} ornatılğannan beri better {{PLURAL:$3|'''1'''|jalpı '''$3'''}} ret qaralğan, jäne better '''$4''' ret öñdelgen.
 Bunıñ nätïjesinde ortaşa eseppen ärbir betke '''$5''' öñdeme keledi, jäne ärbir öñdemege '''$6''' qaraw keledi.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Tapsırımalar kezeginiñ] uzındığı: '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Tapsırımalar kezeginiñ] uzındığı: '''$7'''.",
 'userstatstext'          => "Mında '''$1''' [[{{#special:Listusers}}|tirkelgen qatıswşı]] bar, sonıñ işinde '''$2''' (ne '''$4 %''') qatıswşısında $5 quqıqtarı bar",
 'statistics-mostpopular' => 'Eñ köp qaralğan better',
 

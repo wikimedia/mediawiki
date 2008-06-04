@@ -1205,7 +1205,7 @@ $2',
 
 *គិតជាមធ្យមមាន '''\$5''' កំនែប្រែក្នុងមួយទំព័រ និង '''\$6'''ដងនៃការចូលមើលក្នុងមួយកំនែប្រែ។
 
-*<span class=\"plainlinks\">[http://meta.wikimedia.org/wiki/Help:Job_queue ជួរការងារ(job queue)]</span>ឥឡូវនេះមានប្រវែង '''\$7''' ។",
+*<span class=\"plainlinks\">[http://www.mediawiki.org/wiki/Manual:Job_queue ជួរការងារ(job queue)]</span>ឥឡូវនេះមានប្រវែង '''\$7''' ។",
 'userstatstext'          => "នៅពេលនេះមាន[[Special:Listusers|អ្នកប្រើប្រាស់]]​ដែលបានចុះឈ្មោះចំនួន '''$1'''នាក់ ដែលក្នុងនោះមាន'''$2'''នាក់(ស្មើនឹង'''$4%''') {{PLURAL:$2|មានសិទ្ធិជា|មានសិទ្ធិជា}}$5 ។",
 'statistics-mostpopular' => 'ទំព័រដែលត្រូវបានមើលច្រើនបំផុត',
 
@@ -1262,9 +1262,6 @@ $2',
 'protectedtitlestext'     => 'ចំនងជើងទំព័រត្រូវបានការពារមិនអោយបង្កើត',
 'protectedtitlesempty'    => 'មិនមានចំនងជើងណាដែលត្រូវបានការពារជាមួយនឹងប៉ារ៉ាម៉ែតទាំងនេះទេនាពេលថ្មីៗនេះ។',
 'listusers'               => 'បញ្ជីអ្នកប្រើប្រាស់',
-'specialpages'            => 'ទំព័រ​ពិសេស​ៗ',
-'spheading'               => 'ទំព័រពិសេសៗសំរាប់អ្នកប្រើប្រាស់ទាំងអស់',
-'restrictedpheading'      => 'ទំព័រពិសេសនានាដែលត្រូវបានដាក់កំហិត',
 'newpages'                => 'ទំព័រថ្មីៗ',
 'newpages-username'       => 'ឈ្មោះអ្នកប្រើប្រាស់៖',
 'ancientpages'            => 'ទំព័រ​ចាស់ៗ',
@@ -2157,6 +2154,7 @@ $1',
 'fileduplicatesearch-result-n' => 'មាន {{PLURAL:$2|1 ឯកសារដូចគ្នាបេះបិត|$2 ឯកសារដូចគ្នាបេះបិត}}ទៅនឹងឯកសារ "$1"។',
 
 # Special:SpecialPages
+'specialpages'                   => 'ទំព័រ​ពិសេស​ៗ',
 'specialpages-group-maintenance' => 'របាយការណ៍នានាអំពីតំហែទាំ',
 'specialpages-group-other'       => 'ទំព័រពិសេសៗផ្សេងៗទៀត',
 'specialpages-group-login'       => 'ឡុកអ៊ីន / ចុះឈ្មោះ',

@@ -1479,7 +1479,7 @@ Ezeket is beleszámítva '''$1''' lapunk van.
 
 Összesen '''$3''' alkalommal tekintették meg az oldalakat, és '''$4''' szerkesztés történt a {{SITENAME}} indulása óta, ami oldalanként '''$5''' szerkesztésnek és '''$6''' megtekintésnek számít.
 
-A [http://meta.wikimedia.org/wiki/Help:Job_queue szerver számára sorban álló feladatok] száma '''$7'''.",
+A [http://www.mediawiki.org/wiki/Manual:Job_queue szerver számára sorban álló feladatok] száma '''$7'''.",
 'userstatstext'          => 'Jelenleg <b>$1</b> regisztrált felhasználónk van; közülük <b>$2</b> ($4%) $5.',
 'statistics-mostpopular' => 'Legtöbbször megtekintett lapok',
 

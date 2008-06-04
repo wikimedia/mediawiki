@@ -1198,7 +1198,7 @@ Wis tau ana '''\$3''' kaca dituduhaké karo '''\$4''' kaca tau disunting sawisé
 
 Dadi tegesé rata-rata ana '''\$5''' suntingan per kaca karo '''\$6''' tayangan per suntingan.
 
-Dawané [http://meta.wikimedia.org/wiki/Help:Job_queue antrian tugas] ana '''\$7'''.",
+Dawané [http://www.mediawiki.org/wiki/Manual:Job_queue antrian tugas] ana '''\$7'''.",
 'userstatstext'          => "Ana '''$1''' [[Special:Listusers|{{PLURAL:$1|panganggo|panganggo}}]] sing wis ndaftar. '''$2''' (utawa '''$4%''') antarané iku {{PLURAL:$2|duwé|duwé}} hak aksès $5.",
 'statistics-mostpopular' => 'Kaca sing paling akèh dituduhaké',
 
@@ -1259,9 +1259,6 @@ Dawané [http://meta.wikimedia.org/wiki/Help:Job_queue antrian tugas] ana '''\$7
 'protectedtitlestext'     => 'Irah-irahan sing kapacak ing ngisor iki direksa lan ora bisa digawé',
 'protectedtitlesempty'    => 'Ora ana irah-irahan utawa judhul sing direksa karo paramèter-paramèter iki.',
 'listusers'               => 'Daftar panganggo',
-'specialpages'            => 'Kaca astaméwa',
-'spheading'               => 'Kaca astaméwa kanggo kabèh panganggo',
-'restrictedpheading'      => 'Kaca astaméwa sing aksèsé diwatesi',
 'newpages'                => 'Kaca énggal',
 'newpages-username'       => 'Asma panganggo:',
 'ancientpages'            => 'Kaca-kaca langkung sepuh',
@@ -2431,6 +2428,7 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'Berkas "$1" ora ndarbèni {{PLURAL:$2|1 duplikat idèntik|$2 duplikat idèntik}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Kaca astaméwa',
 'specialpages-group-maintenance' => 'Lapuran pangopènan',
 'specialpages-group-other'       => 'Kaca-kaca astaméwa liyané',
 'specialpages-group-login'       => 'Mlebu log / ndaftar',

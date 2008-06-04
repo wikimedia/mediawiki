@@ -559,9 +559,6 @@ Template:Khu-pia̍t-ia̍h',
 'protectedpages'          => 'Siū pó-hō͘ ê ia̍h',
 'protectedpagestext'      => 'Ē-kha ê ia̍h siū pó-hō͘, bē-tit soá-ūi ia̍h pian-chi̍p',
 'listusers'               => 'Iōng-chiá lia̍t-toaⁿ',
-'specialpages'            => 'Te̍k-sû-ia̍h',
-'spheading'               => 'Só·-ū iōng-chiá ê te̍k-sû-ia̍h',
-'restrictedpheading'      => 'Hān-chè sú-iōng ê te̍k-sû-ia̍h',
 'newpages'                => 'Sin ia̍h',
 'newpages-username'       => 'Iōng-chiá miâ-chheng:',
 'ancientpages'            => 'Kó·-ia̍h',
@@ -858,5 +855,9 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 
 # Special:Filepath
 'filepath' => 'Tóng-àn ê soàⁿ-lō·',
+
+# Special:SpecialPages
+'specialpages' => 'Te̍k-sû-ia̍h',
+
 
 );

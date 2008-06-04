@@ -1106,7 +1106,7 @@ Mädnunner {{PLURAL:$8|wuude '''1''' Doatäi|wuuden '''$8''' Doatäie}} hoochlee
 Mädnunner roat et '''$3''' {{PLURAL:$3|Siedenouroup|Siedenouroupe}} un '''$4''' {{PLURAL:$4|Siedenbeoarbaidenge|Siedenbeoarbaidengen}} siet {{SITENAME}} iengjucht wuude.
 Deeruut reeke sik '''$5''' Beoarbaidengen pro Siede un '''$6''' Siedenouroupe pro Beoarbaidenge.
 
-Laangte fon ju [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''$7'''",
+Laangte fon ju [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
 'userstatstext'          => "Dät rakt '''$1''' {{PLURAL:$1|registrierde|registrierde}} [[Special:Listusers|Benutsere]].
 Deerfon {{PLURAL:$2|häd|hääbe}} '''$2''' {{PLURAL:$2|Benutser|Benutsere}} (=$4 %) $5-Gjuchte.",
 'statistics-mostpopular' => 'Maast besoachte Sieden',
@@ -1168,9 +1168,6 @@ Lääste schällen dan wächhoald wäide.',
 'protectedtitlestext'     => 'Do foulgjende Sieden sunt speerd uum näi tou moakjen',
 'protectedtitlesempty'    => 'Apstuuns sunt mäd do ounroate Parametere neen Sieden speerd uum näi tou moakjen.',
 'listusers'               => 'Benutser-Lieste',
-'specialpages'            => 'Spezioalsieden',
-'spheading'               => 'Spezioalsieden foar alle Benutsere',
-'restrictedpheading'      => 'Spezialsieden foar Administratore',
 'newpages'                => 'Näie Sieden',
 'newpages-username'       => 'Benutsernoome:',
 'ancientpages'            => 'Siet loang uunbeoarbaidede Sieden',
@@ -2298,5 +2295,8 @@ $1',
 'filepath-page'    => 'Doatäi:',
 'filepath-submit'  => 'Paad säike',
 'filepath-summary' => 'Mäd disse Spezialsiede lät sik die komplette Paad fon ju aktuelle Version fon ne Doatäi sunner Uumwai oufräigje. Ju anfräigede Doatäi wäd fluks deerstoald blw. mäd ju ferknätte Anweendenge started.',
+
+# Special:SpecialPages
+'specialpages' => 'Spezioalsieden',
 
 );

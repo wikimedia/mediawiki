@@ -234,7 +234,6 @@ $messages = array(
 'nmembers'          => '{{PLURAL:$1|ekakoli|bikakoli}} $1',
 'shortpages'        => 'Nkásá ya mokúsé',
 'longpages'         => 'Nkásá ya molaí',
-'specialpages'      => 'Nkásá ya ndéngé mosúsu',
 'newpages'          => 'Ekakoli ya sika',
 'newpages-username' => 'Nkómbó ya ekitoli :',
 'move'              => 'Kobóngola nkómbó',
@@ -356,5 +355,8 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'kokɛndɛ',
+
+# Special:SpecialPages
+'specialpages' => 'Nkásá ya ndéngé mosúsu',
 
 );

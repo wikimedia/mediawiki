@@ -706,7 +706,6 @@ $2',
 'deadendpages'            => 'Тупик битләре',
 'protectedpages'          => 'Якланган битләр',
 'listusers'               => 'Кулланучылар исемлеге',
-'specialpages'            => 'Махсус битләр',
 'newpages'                => 'Яңа битләр',
 'ancientpages'            => 'Баягы төзәтмәләр белән битләр',
 'move'                    => 'Күчерергә',
@@ -983,5 +982,8 @@ $2',
 
 # Special:Version
 'version' => 'Юрама', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Махсус битләр',
 
 );

@@ -1243,7 +1243,7 @@ D'r {{PLURAL:\$8|is|zeen}} '''\$8''' {{PLURAL:\$8|bestandj|bestenj}} opgelaje.
 
 D'r is in totaal '''\$3''' {{PLURAL:\$3|kieër|kieër}} 'n pazjena bekeke en '''\$4''' {{PLURAL:\$4|kieër|kieër}} 'n pazjena bewirk sins de wiki is opgezat. Dat geuf e gemiddelde van '''\$5''' bewirkinge per pazjena en '''\$6''' getuinde pazjena's per bewirking.
 
-De lengde van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is '''\$7'''.",
+De lengde van de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '''\$7'''.",
 'userstatstext'          => "D'r {{PLURAL:$1|is eine geregistreerde gebroeker|zeen '''$1''' geregistreerde gebroekers}}; '''$2''' (of '''$4''') hievan {{PLURAL:$2|is syteemwèrker|zeen systeemwèrkers}} ($5rech).",
 'statistics-mostpopular' => 'Meisbekeke pazjenas',
 
@@ -1305,9 +1305,6 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'protectedtitlestext'     => 'De volgende titels zeen beveilig en kinne neet aangemaak waere',
 'protectedtitlesempty'    => "d'r Zeen momenteel gein titels beveilig die aan deze paramaeters voldaon.",
 'listusers'               => 'Lies van gebroekers',
-'specialpages'            => "Speciaal pazjena's",
-'spheading'               => "Speciaal pazjena's",
-'restrictedpheading'      => "Speciale pagina's met bepèrkte toegank",
 'newpages'                => "Nuuj pazjena's",
 'newpages-username'       => 'Gebroekersnaam:',
 'ancientpages'            => 'Artikele die lank neet bewèrk zeen',
@@ -2469,6 +2466,7 @@ Gaef de bestandjsnaam zónger \'t "{{ns:image}}:" veurvoogsel.',
 'fileduplicatesearch-result-n' => '\'t Bestandj "$1" haet {{PLURAL:$2|1 identieke döbbelversie|$2 identiek döbbelversies}}.',
 
 # Special:SpecialPages
+'specialpages'                   => "Speciaal pazjena's",
 'specialpages-group-maintenance' => 'Óngerhajingsrapporter',
 'specialpages-group-other'       => "Euverige speciaal pazjena's",
 'specialpages-group-login'       => 'Aanmelje / registrere',

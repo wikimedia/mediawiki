@@ -1318,7 +1318,7 @@ Am ganze gouf '''\$3''' {{PLURAL:\$3|Säitenoffro|Säitenoffroen}} ann '''\$4'''
 
 Doraus ergi sech '''\$5''' Ännerunge pro Säit an '''\$6''' Säitenoffroen pro Ännerung.
 
-Längt vun der [http://meta.wikimedia.org/wiki/Help:Job_queue „Job queue“]: '''\$7'''",
+Längt vun der [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''\$7'''",
 'userstatstext'          => "'''$1''' [[Special:Listusers|Benotzer]] {{PLURAL:$1|ass|sinn}} ageschriwwen.  '''$2''' (oder '''$4%''') vun dëse {{PLURAL:$2|ass|sinn}} $5.",
 'statistics-mostpopular' => 'Am meeschte gekuckte Säiten',
 
@@ -1876,7 +1876,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'movepage-page-exists'    => "D'Säit $1 gëtt et schonn a kann net automatesch iwwerschriwwe ginn.",
 'movepage-page-moved'     => "D'Säit $1 gouf schonn op $2 geréckelt.",
 'movepage-page-unmoved'   => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
-'movepage-max-pages'      => "D'Maximalzuel vun $1 Säite gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.",
+'movepage-max-pages'      => 'Déi Maximalzuel vun $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.',
 '1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
 '1movedto2_redir'         => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 'movelogpage'             => 'Réckellëscht',
@@ -1888,6 +1888,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'delete_and_move_confirm' => "Jo, läsch d'Destinatiounssäit",
 'delete_and_move_reason'  => 'Geläscht fir Plaz ze maache fir eng Säit heihin ze réckelen',
 'selfmove'                => 'Source- an Destinatiounsnumm sinn dselwecht; eng Säit kann net op sech selwer geréckelt ginn.',
+'imagenocrossnamespace'   => 'Fichiere kënnen net an aner Nummraim geréckelt ginn',
 'imagetypemismatch'       => 'Déi nei Dateierweiderung ass net mat dem Fichier kompatibel',
 
 # Export
@@ -2487,7 +2488,8 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 # Special:SpecialPages
 'specialpages'                   => 'Spezialsäiten',
 'specialpages-summary'           => "Op dëser Säit sinn all d'Spezialsäiten opgezielt. Si ass automatesch generéiert ginn a kann nëtt g'ännert ginn.",
-'specialpages-note'              => '<hr />
+'specialpages-note'              => '----
+* Normal Spezialsäiten
 * <span class="mw-specialpagerestricted">Fettgeschriwwe</span> Spezialsäite sinn nëmme fir Benotzer mat méi Rechter.',
 'specialpages-group-maintenance' => 'Maintenance-Rapporten',
 'specialpages-group-other'       => 'Aner Spezialsäiten',

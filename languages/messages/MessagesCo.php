@@ -297,8 +297,6 @@ $messages = array(
 'longpages'         => 'Pagine longhe',
 'protectedpages'    => 'Pagine prutette',
 'listusers'         => 'Listinu di i cuntributori',
-'specialpages'      => 'Pagine spiciale',
-'spheading'         => 'Pagine spiciale per tutti i cuntributori',
 'newpages'          => 'Pagine nove',
 'ancientpages'      => 'Pagine vechje',
 
@@ -499,5 +497,9 @@ $messages = array(
 
 # Special:Filepath
 'filepath-page' => 'Schedariu:',
+
+# Special:SpecialPages
+'specialpages' => 'Pagine spiciale',
+
 
 );

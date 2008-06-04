@@ -133,6 +133,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'E pili ana iā {{SITENAME}}',
+'aboutpage'            => 'Project:E pili ana',
 'currentevents'        => 'Ka nū hou',
 'disclaimers'          => 'Nā a‘o ‘ana laulā',
 'disclaimerpage'       => 'Project:Nā a‘o ‘ana laulā',
@@ -170,33 +171,34 @@ $messages = array(
 $2',
 
 # Login and logout pages
-'welcomecreation'    => '== E komo mai, $1! ==
+'welcomecreation'         => '== E komo mai, $1! ==
 
 He mea ho‘ohana ‘oe. Mai poina e loli kāu makemake ma {{SITENAME}}.',
-'yourname'           => "Inoa mea ho'ohana",
-'yourpassword'       => "Hua'ōlelo huna",
-'yourpasswordagain'  => "Hua'ōlelo huna hou",
-'remembermypassword' => "Ho'omana'o ia'u",
-'login'              => 'E komo',
-'userlogin'          => 'E komo / E hana',
-'logout'             => "E ha'alele",
-'userlogout'         => "E ha'alele",
-'notloggedin'        => 'Mai ‘e‘e',
-'nologinlink'        => "Lilo i mea ho'ohana",
-'gotaccountlink'     => 'E komo',
-'createaccountmail'  => 'no ka leka uila',
-'youremail'          => 'Leka uila:',
-'username'           => "Inoa mea ho'ohana:",
-'yourrealname'       => 'Inoa maoli:',
-'yourlanguage'       => "Kou 'ōlelo:",
-'yournick'           => 'Inoa kapakapa:',
-'email'              => 'Leka uila',
-'mailmypassword'     => "Leka uila hua'ōlelo huna",
-'emailauthenticated' => 'Ua hō‘oia ‘ia kāu leka uila ma $1.',
-'emailconfirmlink'   => 'E hō‘oia i kāu leka uila',
-'accountcreated'     => 'Ua lilo ‘ia ka mea ho‘ohana',
-'accountcreatedtext' => 'Ua lilo ‘ia ka mea ho‘ohana no $1.',
-'loginlanguagelabel' => "Kou 'ōlelo: $1",
+'yourname'                => "Inoa mea ho'ohana",
+'yourpassword'            => "Hua'ōlelo huna",
+'yourpasswordagain'       => "Hua'ōlelo huna hou",
+'remembermypassword'      => "Ho'omana'o ia'u",
+'login'                   => 'E komo',
+'nav-login-createaccount' => 'E komo mai / E hana',
+'userlogin'               => 'E komo / E hana',
+'logout'                  => "E ha'alele",
+'userlogout'              => "E ha'alele",
+'notloggedin'             => 'Mai ‘e‘e',
+'nologinlink'             => "Lilo i mea ho'ohana",
+'gotaccountlink'          => 'E komo',
+'createaccountmail'       => 'no ka leka uila',
+'youremail'               => 'Leka uila:',
+'username'                => "Inoa mea ho'ohana:",
+'yourrealname'            => 'Inoa maoli:',
+'yourlanguage'            => "Kou 'ōlelo:",
+'yournick'                => 'Inoa kapakapa:',
+'email'                   => 'Leka uila',
+'mailmypassword'          => "Leka uila hua'ōlelo huna",
+'emailauthenticated'      => 'Ua hō‘oia ‘ia kāu leka uila ma $1.',
+'emailconfirmlink'        => 'E hō‘oia i kāu leka uila',
+'accountcreated'          => 'Ua lilo ‘ia ka mea ho‘ohana',
+'accountcreatedtext'      => 'Ua lilo ‘ia ka mea ho‘ohana no $1.',
+'loginlanguagelabel'      => "Kou 'ōlelo: $1",
 
 # Password reset dialog
 'resetpass_success' => 'Ua loli ‘ia kāu hua‘ōlelo huna! E ‘e‘e iā‘oe...',
@@ -304,7 +306,6 @@ hō‘ike ‘ia i lalo:",
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|‘ai|‘ai}}',
 'nmembers'          => '$1 {{PLURAL:$1|lālā|lālā}}',
-'specialpages'      => 'Nā papa nui',
 'newpages'          => 'Nā ‘ao‘ao hou',
 'newpages-username' => "Inoa mea ho'ohana:",
 'ancientpages'      => 'Nā ‘ao‘ao kahiko loa',
@@ -420,5 +421,8 @@ hō‘ike ‘ia i lalo:",
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'E ho‘opololei i ka‘u papa nānā pono',
+
+# Special:SpecialPages
+'specialpages' => 'Nā papa nui',
 
 );

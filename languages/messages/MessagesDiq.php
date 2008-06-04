@@ -346,7 +346,6 @@ href="" class="internal"}?{/a}) bımocne.',
 'shortpages'        => 'Pelê kılmi',
 'longpages'         => 'Pelê dergi',
 'listusers'         => 'Lista karberan',
-'specialpages'      => 'Pelê xasi',
 'newpages'          => 'Pelê newey',
 'newpages-username' => 'Namey Karberi:',
 'ancientpages'      => 'Pelê khanêri',
@@ -401,5 +400,8 @@ href="" class="internal"}?{/a}) bımocne.',
 
 # Special:Filepath
 'filepath-page' => 'Dosya:',
+
+# Special:SpecialPages
+'specialpages' => 'Pelê xasi',
 
 );

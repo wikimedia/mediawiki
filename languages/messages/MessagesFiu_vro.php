@@ -1072,9 +1072,6 @@ Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq,
 'protectedpagestext'      => 'Naaq leheq kaidsõtasõq ärq tõistõ paika panõkist ja muutmisõst.',
 'protectedpagesempty'     => 'Olõ-i kaidsõtuid lehti.',
 'listusers'               => 'Pruukjaq',
-'specialpages'            => 'Tallitusleheküleq',
-'spheading'               => 'Tallitusleheküleq',
-'restrictedpheading'      => 'Piiredüq tallitusleheküleq',
 'newpages'                => 'Vahtsõq leheküleq',
 'newpages-username'       => 'Pruukjanimi:',
 'ancientpages'            => 'Kõgõ vanõmbaq leheküleq',
@@ -2108,5 +2105,8 @@ Prooviq harilikku kaehust.',
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Teedüstünimi:',
 'fileduplicatesearch-submit'   => 'Otsiq',
+
+# Special:SpecialPages
+'specialpages' => 'Tallitusleheküleq',
 
 );

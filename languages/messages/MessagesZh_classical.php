@@ -1105,7 +1105,7 @@ $2',
 'userstats'              => '有簿彙統',
 'sitestatstext'          => "庫藏有頁'''$1'''，除議、釋、芻文、渡與不濟者，有足文$2、獻品'''$8'''。
 自{{SITENAME}}始焉，閱頁'''$3'''，纂文'''$4'''。均之則每頁'''$5'''覽，每文'''$6'''纂。
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]長'''$7'''。",
+[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]長'''$7'''。",
 'userstatstext'          => "有[[Special:Listusers|簿]]者'''$1'''，內'''$2'''人掌$5權，據百分之'''$4'''。",
 'statistics-mostpopular' => '燴炙',
 
@@ -1156,8 +1156,6 @@ $2',
 'protectedpages'          => '頁錮',
 'protectedpages-indef'    => '只示無期之錮',
 'listusers'               => '點簿',
-'spheading'               => '民處',
-'restrictedpheading'      => '官辦',
 'newpages'                => '新灶',
 'newpages-username'       => '簿名：',
 'ancientpages'            => '陳年',
@@ -2037,5 +2035,6 @@ $1',
 'specialpages-group-wiki'        => 'Wiki訊與器',
 'specialpages-group-redirects'   => '轉之特查',
 'specialpages-group-spam'        => '反垃圾之器',
+
 
 );

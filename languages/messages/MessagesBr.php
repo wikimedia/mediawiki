@@ -1239,7 +1239,7 @@ Abaoe m'eo bet savet {{SITENAME}} ez eus bet sellet ouzh '''\$3''' {{PLURAL:\$3|
 
 Sed a ra e-tro '''\$5''' kemm dre bajenn ha '''\$6''' selladenn evit pep kemm.
 
-Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo par da '''\$7'''.",
+Hirder al [http://www.mediawiki.org/wiki/Manual:Job_queue lostennad labour] zo par da '''\$7'''.",
 'userstatstext'          => "{{PLURAL:$1|'''1''' [[Special:Listusers|implijer]] enrollet|'''$1''' [[Special:Listusers|implijer]] enrollet}} zo; en o zouez ez eus '''$2''' (pe '''$4%''') {{PLURAL:$2|gant|gant}} gwirioù $5.",
 'statistics-mostpopular' => 'Pajennoù muiañ sellet',
 
@@ -1300,9 +1300,6 @@ Hirder al [http://meta.wikimedia.org/wiki/Help:Job_queue lostennad labour] zo pa
 'protectedtitlestext'     => "An titloù da-heul zo bet gwarezet p'int bet krouet",
 'protectedtitlesempty'    => "N'eus bet gwarezet titl ebet dezhañ an arventennoù-se evit poent.",
 'listusers'               => 'Roll an implijerien',
-'specialpages'            => 'Pajennoù dibar',
-'spheading'               => 'Pajennoù dibar',
-'restrictedpheading'      => 'Pajennoù dibar miret-strizh',
 'newpages'                => 'Pajennoù nevez',
 'newpages-username'       => 'Anv implijer :',
 'ancientpages'            => 'Pennadoù koshañ',
@@ -2495,6 +2492,7 @@ Merkañ anv ar restr hep ar rakger "{{ns:image}}:"',
 'fileduplicatesearch-result-n' => '{{PLURAL:$2|1 doubl heñvel-poch|$2 doubl heñvel-poch}} zo gant ar restr "$1".',
 
 # Special:SpecialPages
+'specialpages'                   => 'Pajennoù dibar',
 'specialpages-group-maintenance' => "Rentaoù-kont trezalc'h",
 'specialpages-group-other'       => 'Pajennoù dibar all',
 'specialpages-group-login'       => 'Em lugañ / en em enrollañ',

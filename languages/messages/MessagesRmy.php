@@ -377,8 +377,6 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 'shortpages'   => 'Xarne patrya',
 'deadendpages' => 'Biphandimatenge patrya',
 'listusers'    => 'Jenengo patrinipen',
-'specialpages' => 'Uzalutne patrya',
-'spheading'    => 'Uzalutne patrya',
 'newpages'     => 'Neve patrya',
 'ancientpages' => 'E puraneder lekha',
 'move'         => 'Ingerdipen',
@@ -559,5 +557,9 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 
 # Special:Version
 'version' => 'Versiya', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Uzalutne patrya',
+
 
 );

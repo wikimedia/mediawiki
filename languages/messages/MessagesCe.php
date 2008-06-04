@@ -213,7 +213,6 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|байт|байтош|байтош}}',
 'ncategories'       => '$1 {{PLURAL:$1|тоба|тобаш|тоба}}',
-'specialpages'      => 'Спецтаптарш',
 'newpages'          => 'Керла таптараш',
 'newpages-username' => 'Юзер:',
 'move'              => 'цIe хийца',
@@ -292,5 +291,8 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-new' => 'Керла: $1',
+
+# Special:SpecialPages
+'specialpages' => 'Спецтаптарш',
 
 );

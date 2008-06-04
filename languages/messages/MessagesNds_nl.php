@@ -1449,7 +1449,7 @@ Der {{PLURAL:$8|is '''1''' bestand|bin '''$8''' bestanden}} toe-evoeg.
 
 Der {{PLURAL:$3|is '''1''' pagina|bin '''$3''' pagina's}} weer-egeven en '''$4''' {{PLURAL:$4|bewarking|bewarkingen}} edaon sins {{SITENAME}} op-ezet is. Dit geef een gemiddelde van '''$5''' bewarkingen per pagina en '''$6''' weer-egeven pagina's per bewarking.
 
-De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue taakwachrie] is '''$7'''.",
+De lengte van de [http://www.mediawiki.org/wiki/Manual:Job_queue taakwachrie] is '''$7'''.",
 'userstatstext'          => "Der {{PLURAL:$1|is '''1''' an-emelde gebruker|bin '''$1''' an-emelde gebrukers}}. Daovan  {{PLURAL:$2|hef|hemmen}} der '''$2''' (van '''$4%''') $5rechen.",
 'statistics-mostpopular' => "Meestbekeken pagina's",
 

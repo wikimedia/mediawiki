@@ -489,11 +489,10 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'withoutinterwiki' => 'Artikuj pa lidhje interwiki',
 
 # Miscellaneous special pages
-'nbytes'       => '$1 bytes',
-'nlinks'       => '$1 lidhje',
-'nmembers'     => '$1 anëtarë',
-'specialpages' => 'Faqet speciale',
-'move'         => 'Zhvendose',
+'nbytes'   => '$1 bytes',
+'nlinks'   => '$1 lidhje',
+'nmembers' => '$1 anëtarë',
+'move'     => 'Zhvendose',
 
 # Special:Allpages
 'alphaindexline' => '$1 deri në $2',
@@ -619,5 +618,8 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'krejt',
 'namespacesall' => 'krejt',
+
+# Special:SpecialPages
+'specialpages' => 'Faqet speciale',
 
 );

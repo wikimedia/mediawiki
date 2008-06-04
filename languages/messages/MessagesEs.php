@@ -1185,7 +1185,7 @@ Hay '''$8''' {{PLURAL:$8|archivo almacenado|archivos almacenados}} en el servido
 Desde la instalación del wiki ha habido un total de '''$3''' {{PLURAL:$3|visita|visitas}} y '''$4''' {{PLURAL:$4|edición de página|ediciones de páginas}}.
 Esto resulta en un promedio de '''$5''' {{PLURAL:$5|edición|ediciones}} por página y '''$6''' {{PLURAL:$6|visita|visitas}} por edición.
 
-La longitud de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola de tareas] es de '''$7'''",
+La longitud de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola de tareas] es de '''$7'''",
 'userstatstext'          => "Hay {{PLURAL:$1|'''1''' usuario registrado|'''$1''' usuarios registrados}},
 de los cuales '''$2''' (el '''$4%''') tienen privilegios de $5.",
 'statistics-mostpopular' => 'Páginas más vistas',
@@ -1245,9 +1245,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'protectedtitles'         => 'Títulos protegidos',
 'protectedtitlestext'     => 'Los siguientes títulos están protegidos, por lo que no se pueden crear',
 'listusers'               => 'Lista de usuarios',
-'specialpages'            => 'Páginas especiales',
-'spheading'               => 'Páginas especiales',
-'restrictedpheading'      => 'Páginas especiales restringidas',
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
 'ancientpages'            => 'Artículos más antiguos',
@@ -2354,6 +2351,7 @@ Intenta la previsualización normal.',
 'fileduplicatesearch-submit'   => 'Buscar',
 
 # Special:SpecialPages
+'specialpages'                   => 'Páginas especiales',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
 'specialpages-group-login'       => 'Registrarse / entrar',

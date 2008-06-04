@@ -8,6 +8,7 @@
  * @author Alnokta
  * @author Nike
  * @author Meno25
+ * @author Ramsis1978
  */
 
 $fallback = 'ar';
@@ -338,16 +339,20 @@ $messages = array(
 'category-empty'         => "''التصنيف ده مافيهوش حاليا مقالات او ملفات ميديا.''",
 'listingcontinuesabbrev' => 'متابعه',
 
-'about'         => 'عن',
-'article'       => 'صفحة محتوى',
-'newwindow'     => '(بتفتح ويندو جديده)',
-'cancel'        => 'كانسل',
-'qbfind'        => 'تدوير',
-'qbbrowse'      => 'تصفح',
-'qbedit'        => 'عدل',
-'qbpageoptions' => ' الصفحه دى',
-'moredotdotdot' => 'اكتر...',
-'mytalk'        => 'مناقشاتى',
+'about'          => 'عن',
+'article'        => 'صفحة محتوى',
+'newwindow'      => '(بتفتح ويندو جديده)',
+'cancel'         => 'كانسل',
+'qbfind'         => 'تدوير',
+'qbbrowse'       => 'تصفح',
+'qbedit'         => 'عدل',
+'qbpageoptions'  => ' الصفحه دى',
+'qbmyoptions'    => 'صفحاتى',
+'qbspecialpages' => 'الصفحات الخاصة',
+'moredotdotdot'  => 'اكتر...',
+'mypage'         => 'صفحتى',
+'mytalk'         => 'مناقشاتى',
+'and'            => 'و',
 
 'errorpagetitle'    => 'غلطه',
 'returnto'          => 'ارجع ل $1.',
@@ -359,9 +364,12 @@ $messages = array(
 'searcharticle'     => 'روح',
 'history'           => 'تاريخ الصفحه',
 'history_short'     => 'تاريخ',
+'info_short'        => 'معلومات',
 'printableversion'  => 'نسخه للطبع',
 'permalink'         => 'وصله مستديمه',
+'print'             => 'اطبع',
 'edit'              => 'تعديل',
+'create'            => 'أنشيء',
 'editthispage'      => 'عدل الصفحه دى',
 'create-this-page'  => 'أنشيء الصفحه دى',
 'delete'            => 'مسح',
@@ -376,6 +384,7 @@ $messages = array(
 'talk'              => 'مناقشه',
 'views'             => 'مشاهده',
 'toolbox'           => 'علبة العده',
+'projectpage'       => 'عرض صفحة المشروع',
 'otherlanguages'    => 'بلغات تانيه',
 'redirectedfrom'    => '(تحويل من $1)',
 'redirectpagesub'   => 'صفحة تحويل',
@@ -400,6 +409,7 @@ $messages = array(
 'helppage'             => 'Help:محتويات',
 'mainpage'             => 'الصفحه الرئيسيه',
 'mainpage-description' => 'الصفحه الرئيسيه',
+'policy-url'           => 'Project:سياسة',
 'portal'               => 'بوابة المجتمع',
 'portal-url'           => 'Project:بوابة المجتمع',
 'privacy'              => 'خصوصيه',
@@ -407,39 +417,53 @@ $messages = array(
 'sitesupport'          => 'التبرعات',
 'sitesupport-url'      => 'Project:دعم الموقع',
 
-'badaccess' => 'غلطه فى السماح',
+'badaccess'        => 'غلطه فى السماح',
+'badaccess-group0' => 'انت مش مسموح لك تنفذ الطلب بتاعك',
 
-'retrievedfrom'       => 'اتجابت من "$1"',
-'youhavenewmessages'  => 'عندك $1 ($2).',
-'newmessageslink'     => 'رسايل جديده',
-'newmessagesdifflink' => 'اخر تعديل',
-'editsection'         => 'تعديل',
-'editold'             => 'تعديل',
-'editsectionhint'     => 'تعديل جزء : $1',
-'toc'                 => 'المحتويات',
-'showtoc'             => 'عرض',
-'hidetoc'             => 'تخبيه',
-'site-rss-feed'       => '$1   ار‌ اس‌ اس فييد',
-'site-atom-feed'      => '$1 اتوم فييد',
-'page-rss-feed'       => '"$1" ار‌ اس‌ اس فييد',
+'ok'                      => 'موافئ',
+'retrievedfrom'           => 'اتجابت من "$1"',
+'youhavenewmessages'      => 'عندك $1 ($2).',
+'newmessageslink'         => 'رسايل جديده',
+'newmessagesdifflink'     => 'اخر تعديل',
+'youhavenewmessagesmulti' => 'عندك ميسيدج جديدة في $1',
+'editsection'             => 'تعديل',
+'editold'                 => 'تعديل',
+'editsectionhint'         => 'تعديل جزء : $1',
+'toc'                     => 'المحتويات',
+'showtoc'                 => 'عرض',
+'hidetoc'                 => 'تخبيه',
+'viewdeleted'             => 'عرض $1؟',
+'site-rss-feed'           => '$1   ار‌ اس‌ اس فييد',
+'site-atom-feed'          => '$1 اتوم فييد',
+'page-rss-feed'           => '"$1" ار‌ اس‌ اس فييد',
+'red-link-title'          => '$1 (لسة ما اتكتبت ش )',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'صفحة',
 'nstab-user'     => 'صفحة يوزر',
+'nstab-special'  => 'مخصوص',
 'nstab-project'  => 'صفحة مشروع',
 'nstab-image'    => 'فايل',
 'nstab-template' => 'قالب',
+'nstab-help'     => 'صفحة مساعدة',
 'nstab-category' => 'تصنيف',
 
 # General errors
-'badtitle'       => 'عنوان غلط',
-'badtitletext'   => 'عنوان الصفحه المطلوب اما مش صحيح او فاضي، و ربما الوصلة بين اللغات أو بين المشاريع غلط. وممكن وجود رموز ماتصلحش للاستخدام في العناوين.',
-'viewsource'     => 'عرض المصدر',
-'viewsourcefor'  => 'ل $1',
-'viewsourcetext' => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
+'error'              => 'غلطة',
+'internalerror'      => 'غلط داخلي',
+'internalerror_info' => 'غلط داخلي: $1',
+'badarticleerror'    => 'مش ممكن ننفذ العملية دي على الصفحة دي',
+'badtitle'           => 'عنوان غلط',
+'badtitletext'       => 'عنوان الصفحه المطلوب اما مش صحيح او فاضي، و ربما الوصلة بين اللغات أو بين المشاريع غلط. وممكن وجود رموز ماتصلحش للاستخدام في العناوين.',
+'viewsource'         => 'عرض المصدر',
+'viewsourcefor'      => 'ل $1',
+'viewsourcetext'     => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
 
 # Login and logout pages
+'loginpagetitle'          => 'دخول اليوزر',
 'yourname'                => ' اليوزرنيم:',
 'yourpassword'            => 'الباسوورد (كلمة السر):',
+'yourpasswordagain'       => 'اكتب الباسورد تاني:',
 'remembermypassword'      => 'افتكر بيانات دخولى على  الكمبيوتر ده',
 'login'                   => 'دخول',
 'nav-login-createaccount' => 'دخول / فتح حساب',
@@ -452,7 +476,13 @@ $messages = array(
 'createaccount'           => 'افتح حساب',
 'gotaccount'              => 'عندك حساب؟ $1.',
 'gotaccountlink'          => 'دخول',
+'createaccountmail'       => 'بـ الايميل',
+'youremail'               => 'الايميل:',
+'username'                => 'اسم اليوزر:',
 'yourrealname'            => 'الاسم الحقيقى:',
+'yourlanguage'            => 'اللغة:',
+'yournick'                => 'الإمضا:',
+'email'                   => 'الإيميل',
 'prefs-help-realname'     => 'الاسم الحقيقي اختيارى ولو اخترت تعرض اسمك هنا هايستخدم في الإشارة لمساهماتك.',
 'loginsuccesstitle'       => 'تم الدخول بشكل صحيح',
 'loginsuccess'            => "'''تم تسجيل دخولك{{SITENAME}} باسم \"\$1\".'''",
@@ -475,6 +505,7 @@ $messages = array(
 'passwordsent'            => '
 تم إرسال كلمة سر جديدة لعنوان الايميل المتسجل لليوزر "$1".من فضلك حاول تسجيل الدخول مره تانيه بعد استلامها.',
 'eauthentsent'            => 'فيه ايميل تأكيد اتبعت  للعنوان اللى كتبته.  علشان تبعت اي ايميل تانى للحساب ده لازم تتبع التعليمات اللى فى الايميل اللى اتبعتلك  علشان تأكد ان  الحساب ده بتاعك .',
+'accountcreated'          => 'الحساب اتفتح',
 
 # Edit page toolbar
 'bold_sample'     => 'حروف عريضه',
@@ -522,6 +553,9 @@ $messages = array(
 ممكن التواصل مع $1 لمناقشة المنع، أو مع واحد من [[{{MediaWiki:Grouppage-sysop}}|الاداريين]] عن المنع>
 افتكر انه مش ممكن تبعت ايميل  لليوزرز الا اذا كنت سجلت عنوان ايميل صحيح فى صفحة [[Special:Preferences|التفضيلات]] بتاعتك.
 عنوان الااى بى بتاعك حاليا هو $3 وكود المنع هو #$5.من فضلك ضيف اى واحد منهم أو كلاهما في اى رسالة للتساؤل عن المنع.",
+'blockednoreason'        => 'ما فيش سبب',
+'whitelistacctitle'      => 'انت مش مسموح لك تفتح حساب',
+'loginreqlink'           => 'ادخل',
 'accmailtitle'           => ' كلمة السر اتبعتت .',
 'newarticle'             => '(جديد)',
 'newarticletext'         => "انت وصلت لصفحه مابتدتش لسه.
@@ -533,6 +567,7 @@ $messages = array(
 'editing'                => 'تعديل $1',
 'editingsection'         => 'تعديل $1 (جزء)',
 'editconflict'           => 'تضارب فى التحرير: $1',
+'yourtext'               => 'النص بتاعك',
 'copyrightwarning'       => 'من فضلك لاحظ ان كل المساهمات فى {{SITENAME}} بتتنشر حسب شروط ترخيص $2 (بص على $1 علشان تعرف  تفاصيل اكتر)
 لو مش عايز كتابتك تتعدل او تتوزع من غير مقابل و بدون اذنك ، ما تحطهاش هنا<br />. كمان انت  بتتعهد بانك كتبت كلام تعديلك بنفسك، او نسخته من مصدر يعتبر ضمن الملكيه العامه، أو مصدر حر تان.
 
@@ -548,6 +583,9 @@ $messages = array(
 'recreate-deleted-warn'  => "'''تحذير: انت بتعيد انشاء صفحه اتمسحت قبل كده.'''
 لازم تتأكد من ان الاستمرار فى تحرير الصفحه دى ملائم.
 سجل الحذف للصفحه دى معروض هنا:",
+
+# Account creation failure
+'cantcreateaccounttitle' => 'مش ممكن فتح حساب',
 
 # History pages
 'viewpagelogs'        => 'عرض السجلات للصفحه دى',
@@ -572,6 +610,9 @@ $messages = array(
 # Revision feed
 'history-feed-item-nocomment' => '$1 فى $2', # user at time
 
+# Revision deletion
+'revdelete-uname' => 'اسم اليوزر',
+
 # Diffs
 'history-title'           => 'تاريخ تعديل "$1"',
 'difference'              => '(الفرق بين النسخ)',
@@ -581,21 +622,26 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخه متوسطه}} مش معروضه.)',
 
 # Search results
-'searchresults' => 'نتايج التدوير',
-'noexactmatch'  => "'''مافيش  صفحه بالاسم \"\$1\"'''. ممكن [[:\$1| تبتدى الصفحه دى]].",
-'prevn'         => '$1 اللى قبل كده',
-'nextn'         => '$1 اللى بعد كده',
-'viewprevnext'  => 'بص ($1) ($2) ($3)',
-'powersearch'   => 'تدوير متفصل',
+'searchresults'  => 'نتايج التدوير',
+'noexactmatch'   => "'''مافيش  صفحه بالاسم \"\$1\"'''. ممكن [[:\$1| تبتدى الصفحه دى]].",
+'prevn'          => '$1 اللى قبل كده',
+'nextn'          => '$1 اللى بعد كده',
+'viewprevnext'   => 'بص ($1) ($2) ($3)',
+'search-suggest' => 'قصدك: $1',
+'powersearch'    => 'تدوير متفصل',
 
 # Preferences page
 'preferences'   => 'تفضيلات',
 'mypreferences' => 'تفضيلاتى',
 'retypenew'     => 'اكتب كلمة السر الجديده تانى:',
 
+# Groups
+'group' => 'المجموعة:',
+
 'grouppage-sysop' => '{{ns:project}}:اداريين',
 
 # Rights
+'right-upload'       => 'حمل الملفات',
 'right-import'       => 'استيراد الصفحات من ويكيات تانيه',
 'right-importupload' => 'استيراد الصفحات من فايل متحمل',
 'right-siteadmin'    => 'قفل وفتح قاعدة البيانات',
@@ -645,7 +691,8 @@ $messages = array(
 'uploadedimage' => 'اتحمل "[[$1]]"',
 
 # Special:Imagelist
-'imagelist' => 'لستة الملفات',
+'imagelist'      => 'لستة الملفات',
+'imagelist_name' => 'اسم',
 
 # Image description page
 'filehist'                  => 'تاريخ الملف',
@@ -717,7 +764,6 @@ $messages = array(
 'deadendpages'            => 'صفحات ما بتوصلش  لحاجه',
 'protectedpages'          => 'صفحات محميه',
 'listusers'               => 'لستة الأعضاء',
-'specialpages'            => 'صفحات مخصوصه',
 'newpages'                => 'صفحات جديده',
 'ancientpages'            => 'اقدم الصفحات',
 'move'                    => 'انقل',
@@ -751,6 +797,8 @@ $messages = array(
 
 # E-mail user
 'emailuser' => ' ابعت ايميل لليوزر ده',
+'emailsend' => 'إبعت',
+'emailsent' => 'الإيميل اتبعت',
 
 # Watchlist
 'watchlist'            => 'لستة الصفحات اللى باراقبها',
@@ -777,6 +825,7 @@ $messages = array(
 'unwatching' => 'بطل مراقبه...',
 
 'enotif_newpagetext' => 'الصفحه دى جديده.',
+'changed'            => 'اتغيرت',
 
 # Delete/protect/revert
 'deletepage'                  => 'امسح الصفحه',
@@ -817,6 +866,8 @@ $messages = array(
 'protect-cantedit'            => 'مش ممكن تغير مستويات الحمايه للصفحه دى، لانك ماعندكش صلاحية تعديلها.',
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى القيود :',
+'minimum-size'                => 'أقل حجم',
+'maximum-size'                => 'أكبر حجم',
 
 # Undelete
 'undeletebtn' => 'استعاده',
@@ -838,19 +889,23 @@ $messages = array(
 'sp-contributions-blocklog'    => 'سجل المنع',
 
 # What links here
-'whatlinkshere'       => 'ايه بيوصل هنا',
-'whatlinkshere-title' => 'الصفحات اللي بتودي ل $1',
-'linklistsub'         => '(لسته بالوصلات)',
-'linkshere'           => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
-'nolinkshere'         => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
-'isredirect'          => 'صفحة تحويل',
-'istemplate'          => 'متضمن',
-'whatlinkshere-prev'  => '{{PLURAL:$1|اللى قبل كده|الـ $1 اللى قبل كده}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|اللى بعد كده|الـ $1 اللى بعد كده}}',
-'whatlinkshere-links' => '← وصلات',
+'whatlinkshere'           => 'ايه بيوصل هنا',
+'whatlinkshere-title'     => 'الصفحات اللي بتودي ل $1',
+'linklistsub'             => '(لسته بالوصلات)',
+'linkshere'               => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
+'nolinkshere'             => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
+'isredirect'              => 'صفحة تحويل',
+'istemplate'              => 'متضمن',
+'isimage'                 => 'لينك صورة',
+'whatlinkshere-prev'      => '{{PLURAL:$1|اللى قبل كده|الـ $1 اللى قبل كده}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|اللى بعد كده|الـ $1 اللى بعد كده}}',
+'whatlinkshere-links'     => '← وصلات',
+'whatlinkshere-hidelinks' => '$1 لينكات',
 
 # Block/unblock
 'blockip'       => 'منع يوزر',
+'ipbreason'     => 'السبب:',
+'ipbother'      => 'وقت تاني:',
 'ipboptions'    => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
 'ipblocklist'   => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
 'blocklink'     => 'منع',
@@ -895,10 +950,12 @@ $messages = array(
 'revertmove'       => 'استعاده',
 
 # Export
-'export' => 'تصدير صفحات',
+'export'        => 'تصدير صفحات',
+'export-addcat' => 'زيادة',
 
 # Namespace 8 related
-'allmessages' => 'رسايل النظام',
+'allmessages'     => 'رسايل النظام',
+'allmessagesname' => 'اسم',
 
 # Thumbnails
 'thumbnail-more'  => 'كبر',
@@ -953,6 +1010,7 @@ $messages = array(
 'tooltip-diff'                    => 'اعرض التعديلات اللى انت عملتها على النص.',
 'tooltip-compareselectedversions' => 'شوف الفروق بين النسختين المختارتين للصفحه دى.',
 'tooltip-watch'                   => 'ضم الصفحه دى للستة الصفحات اللى بتراقبها',
+'tooltip-upload'                  => 'ابتدي التحميل',
 
 # Browsing diffs
 'previousdiff' => '→ الفرق اللى قبل كده',
@@ -1013,6 +1071,7 @@ $messages = array(
 
 # Special:Version
 'version'                  => 'نسخه', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'صفحات خاصة',
 'version-license'          => 'الترخيص',
 'version-software-product' => 'المنتج',
 
@@ -1021,8 +1080,10 @@ $messages = array(
 'fileduplicatesearch-submit'   => 'تدوير',
 
 # Special:SpecialPages
+'specialpages'               => 'صفحات مخصوصه',
 'specialpages-group-login'   => 'ادخل / سجل',
 'specialpages-group-users'   => 'اليوزرز والصلاحيات',
 'specialpages-group-highuse' => 'صفحات بتستخدم كتير',
+'specialpages-group-pages'   => 'لستات الصفحة',
 
 );

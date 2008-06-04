@@ -1381,7 +1381,7 @@ omdirigeringssider, og andre som truleg ikkje kan kallast innhaldssider. Om ein 
 
 Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og endra {{PLURAL:$4|'''éin''' gong|'''$4''' gonger}} sidan programvaren vart installert. Det vil seie at kvar side gjennomsnittleg har vorte endra {{PLURAL:$5|'''éin''' gong|'''$5''' gonger}}, og vist {{PLURAL:$6|'''éin''' gong|'''$6''' gonger}} per endring.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Jobbkøen] er '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkøen] er '''$7'''.",
 'userstatstext'          => "{{SITENAME}} har {{PLURAL:$1|'''éin''' registrert brukar|'''$1''' registrerte brukarar}}. '''$2''' (eller '''$4%''') av desse har $5rettar (sjå $3).",
 'statistics-mostpopular' => 'Mest viste sider',
 
@@ -1441,9 +1441,6 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'protectedtitlestext'     => 'Desse sidene er verna mot oppretting',
 'protectedtitlesempty'    => 'Ingen sider er verna på den valde måten akkurat no.',
 'listusers'               => 'Brukarliste',
-'specialpages'            => 'Spesialsider',
-'spheading'               => 'Spesialsider for alle brukarar',
-'restrictedpheading'      => 'Spesialsider med avgrensa tilgang',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukarnamn:',
 'ancientpages'            => 'Eldste sider',
@@ -2559,10 +2556,12 @@ $1',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».',
 
 # Special:SpecialPages
-'specialpages-group-other'   => 'Andre spesialsider',
-'specialpages-group-login'   => 'Innlogging / registrering',
-'specialpages-group-changes' => 'Siste endringar og loggar',
-'specialpages-group-users'   => 'Brukarar og brukartilgangar',
-'specialpages-group-highuse' => 'Mykje brukte sider',
+'specialpages'                 => 'Spesialsider',
+'specialpages-group-other'     => 'Andre spesialsider',
+'specialpages-group-login'     => 'Innlogging / registrering',
+'specialpages-group-changes'   => 'Siste endringar og loggar',
+'specialpages-group-users'     => 'Brukarar og brukartilgangar',
+'specialpages-group-highuse'   => 'Mykje brukte sider',
+'specialpages-group-redirects' => 'Omdirigerande spesialsider',
 
 );

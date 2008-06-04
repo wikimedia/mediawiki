@@ -458,8 +458,6 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'deadendpages'            => 'Kurasa ambazo haziungi na ukurasa mwingine wowote',
 'protectedpages'          => 'Kurasa zinazolindwa',
 'listusers'               => 'Orodha ya Watumiaji',
-'specialpages'            => 'Kurasa maalum',
-'spheading'               => 'Kurasa za pekee kwa watumiaji wote',
 'newpages'                => 'Kurasa mpya',
 'ancientpages'            => 'Kurasa za kale',
 'move'                    => 'Sogeza',
@@ -743,5 +741,9 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 
 # Special:Version
 'version' => 'Toleo', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Kurasa maalum',
+
 
 );

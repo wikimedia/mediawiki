@@ -483,7 +483,7 @@ Bez nëch to prôwdëjuwerno da '''$2''' starn artiklów.
 
 Bëło w sëmie '''$3''' òdwiôdënów ë '''$4''' edicëji òd sztótu, czej miôł plac upgrade soft-wôrë. Dôwó to strzédno $5 edicëji na jedną starnã ë $6 òdwiôdënów na jedną edicëjã.
 
-Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je '''$7'''.",
+Długòta [http://www.mediawiki.org/wiki/Manual:Job_queue rédżi robòtë] je '''$7'''.",
 
 'disambiguationspage' => 'Template:Starnë_ùjednoznacznieniô',
 
@@ -500,8 +500,6 @@ Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je ''
 'shortpages'        => 'Nôkrótszé starnë',
 'longpages'         => 'Nôdłëgszé starnë',
 'listusers'         => 'Lësta brëkòwników',
-'specialpages'      => 'Specjalné starnë',
-'spheading'         => 'Specjalné nôpisma',
 'newpages'          => 'Nowé starnë',
 'newpages-username' => 'Miono brëkòwnika:',
 'ancientpages'      => 'Nôstarszé starnë',
@@ -733,5 +731,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Special:Version
 'version' => 'Wersëjô', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Specjalné starnë',
 
 );

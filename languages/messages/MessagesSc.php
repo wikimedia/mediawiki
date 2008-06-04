@@ -403,8 +403,6 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'shortpages'       => 'Pagine corte',
 'longpages'        => 'Pagine lunghe',
 'listusers'        => 'Elenco degli Utenti',
-'specialpages'     => 'Pagine speciali',
-'spheading'        => 'Pagine speciali',
 'newpages'         => 'Pagine nuove',
 'movethispage'     => 'Sposta questa pagina',
 'unusedimagestext' => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.',
@@ -558,5 +556,9 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'imagelisttext' => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',
 'ilsubmit'      => 'Cerca',
 'bydate'        => 'data',
+
+# Special:SpecialPages
+'specialpages' => 'Pagine speciali',
+
 
 );

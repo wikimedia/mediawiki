@@ -877,7 +877,7 @@ probåblumint des vraiys årtikes.
 I gn a-st avou å totå '''$3''' riwaitaedjes di pådjes, eyet '''$4''' candjmints do contnou des pådjes dispoy ki ci wiki chal est en alaedje.
 Dj' ô bén k' i gn a ene moyene di '''$5''' candjmints par pådje, eyet '''$6''' riwaitaedjes po on candjmint.
 
-Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouyes] est di '''$7'''.",
+Li longueur del [http://www.mediawiki.org/wiki/Manual:Job_queue cawêye des bouyes] est di '''$7'''.",
 'userstatstext'          => "I gn a '''$1''' uzeus d' eredjîstrés.
 '''$2''' (ou '''$4%''') di zels sont eto des manaedjeus (riloukîz a $3).",
 'statistics-mostpopular' => 'Pådjes les pus veyowes',
@@ -922,9 +922,6 @@ Li longueur del [http://meta.wikimedia.org/wiki/Help:Job_queue cawêye des bouye
 'deadendpages'            => 'Pådjes sins nou loyén wiki',
 'protectedpages'          => 'Pådjes protedjeyes',
 'listusers'               => 'Djivêye des uzeus',
-'specialpages'            => 'Pådjes sipeciåles',
-'spheading'               => 'Pådjes sipeciåles po tos ls uzeus',
-'restrictedpheading'      => 'Pådjes sipeciåles po les manaedjeus',
 'newpages'                => 'Novelès pådjes',
 'ancientpages'            => 'Viyès pådjes',
 'move'                    => 'Displaecî',
@@ -1614,5 +1611,8 @@ $1",
 
 # Special:Version
 'version' => 'Modêye des programes', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Pådjes sipeciåles',
 
 );

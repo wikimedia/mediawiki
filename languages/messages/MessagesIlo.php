@@ -1011,9 +1011,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'protectedpagesempty'     => 'Awan pampanid a madama a masalsaluadan babaen kadagitoy a parameters.',
 'protectedtitles'         => 'Nasaluadan a tittitulo',
 'listusers'               => 'Listaan dagiti agar-aramat',
-'specialpages'            => 'Naiduma a pampanid',
-'spheading'               => 'Naiduma a pampanid para kadagiti amin nga agar-aramat',
-'restrictedpheading'      => 'Maiparit a naiduma a pampanid',
 'newpages'                => 'Baro a pampanid',
 'newpages-username'       => 'Nagan:',
 'ancientpages'            => 'Kadaanan a pampanid',
@@ -1932,6 +1929,7 @@ $1',
 'fileduplicatesearch-result-n' => 'Ti file a "$1" ket addaan {{PLURAL:$2|1 nga identical duplication|$2 nga identical duplications}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Naiduma a pampanid',
 'specialpages-group-maintenance' => 'Dagiti maintenance reports',
 'specialpages-group-other'       => 'Sabali pay nga espesial a pampanid',
 'specialpages-group-login'       => 'Sumrek / agrehistro',
@@ -1939,5 +1937,6 @@ $1',
 'specialpages-group-media'       => 'Dagiti report ti media ken uploads',
 'specialpages-group-users'       => 'Dagiti agar-aramat ken karkarbengan',
 'specialpages-group-highuse'     => 'Nangato ti pannakaaramatna a pampanid',
+
 
 );

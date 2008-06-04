@@ -694,7 +694,7 @@ Da {{PLURAL:$8|ben '''wan''' gefre|ben '''$8''' gefre}} uploti.
 Da {{PLURAL:$3|ben '''wan''' papira|ben '''$3''' peprewoysi}} libi si nanga {{PLURAL:$4|wan kenki|'''$4''' kenki}} e meki sins {{SITENAME}} ben e skopu.
 Taki gi wan midi fu '''$5''' kenki ies papira nanga '''$6''' sko peprewoysi ies kenki.
 
-A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'''.",
+A gran fu a [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] ben '''$7'''.",
 'userstatstext' => "Da {{PLURAL:$1|ben '''wan''' register masyin|ben '''$1''' register masyin}}, pefu da
 '''$2''' (efu '''$4%''') $5-lesi {{PLURAL:$2|abi|abi}}.",
 
@@ -745,7 +745,6 @@ A gran fu a [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] ben '''$7'
 'protectedpages'          => 'Tapu peprewoysi',
 'protectedpagestext'      => 'Da ondroben peprewoysi ben tapu nanga kan no kenki abi efru e dribi ben',
 'listusers'               => 'Rey fu masyin',
-'specialpages'            => 'Spesyal peprewoysi',
 'newpages'                => 'Nyon peprewoysi',
 'newpages-username'       => 'Masyinnen:',
 'ancientpages'            => 'Pasa owru peprewoysi',
@@ -1070,5 +1069,8 @@ Ala trawan skaki dy opo se lina ben, ben awroko leki spesyal, leki fru eksempre 
 
 # Special:Version
 'version' => 'Si fu a softwer', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Spesyal peprewoysi',
 
 );

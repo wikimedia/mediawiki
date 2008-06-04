@@ -389,7 +389,6 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'       => '$1 বাইট',
 'ncategories'  => '$1 {{PLURAL:$1|থাক|থাকহানি}}',
-'specialpages' => 'বিশেষ পাতাহানি',
 'ancientpages' => 'পুরানা পাতাহানি',
 'move'         => 'থেইকরানি',
 
@@ -500,5 +499,8 @@ $1',
 
 # Auto-summaries
 'autoredircomment' => '[[$1]]-ত যানার বারো-র্নিদেশ করানি ইল',
+
+# Special:SpecialPages
+'specialpages' => 'বিশেষ পাতাহানি',
 
 );

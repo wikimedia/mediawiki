@@ -1369,7 +1369,7 @@ des que el programari s'ha configurat.
 Això resulta en una mitjana {{PLURAL:$5|d'una edició|de '''$5''' edicions}} per pàgina,
 i {{PLURAL:$6|'''$6''' visita|'''$6''' visites}} per edició.
 
-La mida de la [http://meta.wikimedia.org/wiki/Help:Job_queue cua de treballs] és '''$7'''.",
+La mida de la [http://www.mediawiki.org/wiki/Manual:Job_queue cua de treballs] és '''$7'''.",
 'userstatstext'          => "Hi ha {{PLURAL:$1|'''1''' usuari registrat i, a més,|'''$1''' usuaris registrats, dels quals}} {{PLURAL:$2|un (el '''$4%''') té|'''$2''' (el '''$4%''') tenen}} drets de: $5.",
 'statistics-mostpopular' => 'Pàgines més visualitzades',
 
@@ -1431,9 +1431,6 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'protectedtitlestext'     => 'Els títols següents estan protegits de crear-se',
 'protectedtitlesempty'    => 'No hi ha cap títol protegit actualment amb aquests paràmetres.',
 'listusers'               => "Llistat d'usuaris",
-'specialpages'            => 'Pàgines especials',
-'spheading'               => 'Pàgines especials',
-'restrictedpheading'      => 'Pàgines especials restringides',
 'newpages'                => 'Pàgines noves',
 'newpages-username'       => "Nom d'usuari:",
 'ancientpages'            => 'Pàgines més antigues',
@@ -2670,6 +2667,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 'fileduplicatesearch-result-n' => 'El fitxer «$1» té {{PLURAL:$2|1 duplicació idèntica|$2 duplicacions idèntiques}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Pàgines especials',
 'specialpages-group-maintenance' => 'Informes de manteniment',
 'specialpages-group-other'       => 'Altres pàgines especials',
 'specialpages-group-login'       => 'Inici de sessió / Registre',

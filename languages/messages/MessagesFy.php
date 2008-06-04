@@ -791,7 +791,7 @@ It tal fan siden in de databank is: <b>$1</b>.
 
 Der is <b>$3</b> kear in side opfrege, en <b>$4</b> kear in side bewurke, sûnt it programma bywurke is (15 oktober 2002). Dat komt yn trochslach del op <b>$5</b> kear bewurke de side, en <b>$6</b> kear opfrege de bewurking.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.",
 'userstatstext' => 'It tal fan registreare brûkers is <b>$1</b>.
 It tal fan behearders dêrfan is: <b>$2</b>.',
 
@@ -842,8 +842,6 @@ de twadde trochferwizing, wat it "echte" doel wêze moat.',
 'deadendpages'            => 'Siden sûnder links',
 'protectedpages'          => 'Befeilige siden',
 'listusers'               => 'Brûkerlist',
-'specialpages'            => 'Bysûndere siden',
-'spheading'               => 'Bysûndere siden foar all brûkers',
 'newpages'                => 'Nije siden',
 'ancientpages'            => 'Alde siden',
 'move'                    => 'Ferskowe nei oare namme',
@@ -1230,5 +1228,8 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 
 # Special:Version
 'version' => 'Programmatuerferzje', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Bysûndere siden',
 
 );

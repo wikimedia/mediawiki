@@ -322,9 +322,8 @@ $messages = array(
 'randompage' => 'අහඹු පිටුව',
 
 # Miscellaneous special pages
-'specialpages' => 'විශේෂ පිටු',
-'newpages'     => 'අලුත් පිටු',
-'move'         => 'ගෙනයන්න',
+'newpages' => 'අලුත් පිටු',
+'move'     => 'ගෙනයන්න',
 
 # Book sources
 'booksources-go' => 'යන්න',
@@ -415,5 +414,8 @@ $messages = array(
 # Special:Version
 'version-specialpages' => 'විශේෂ පිටු',
 'version-other'        => 'වෙනත්',
+
+# Special:SpecialPages
+'specialpages' => 'විශේෂ පිටු',
 
 );

@@ -227,7 +227,6 @@ $messages = array(
 'unusedimages'     => 'Колдонулбаган файлдар',
 'shortpages'       => 'Кыска макалалар',
 'listusers'        => 'Колдонуучулар тизмеси',
-'specialpages'     => 'Атайын барактар',
 'newpages'         => 'Жаңы барактар',
 'ancientpages'     => 'Эң эски барактар',
 'move'             => 'Аталышын өзгөртүү',
@@ -329,5 +328,8 @@ $messages = array(
 
 # Special:Version
 'version' => 'Версия', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Атайын барактар',
 
 );

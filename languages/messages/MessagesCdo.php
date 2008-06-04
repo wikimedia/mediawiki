@@ -532,8 +532,6 @@ Téng buōng câng kiū siék gáu gĭng-dáng, ĭ ī-gĭng ké̤ṳk nè̤ng si
 'longpages'            => 'Dòng hiĕk',
 'protectedpages'       => 'Bō̤-hô hiĕk',
 'listusers'            => 'Ê̤ṳng-hô-dăng',
-'specialpages'         => 'Dĕk-sṳ̀ hiĕk',
-'restrictedpheading'   => 'Ô âing-cié gì dĕk-sṳ̀ hiĕk',
 'newpages'             => 'Sĭng hiĕk',
 'newpages-username'    => 'Ê̤ṳng-hô-miàng:',
 'ancientpages'         => 'Dék gô gì hiĕk-miêng',
@@ -913,5 +911,9 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 
 # Special:Filepath
 'filepath-page' => 'Ùng-giông:',
+
+# Special:SpecialPages
+'specialpages' => 'Dĕk-sṳ̀ hiĕk',
+
 
 );

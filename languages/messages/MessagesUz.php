@@ -401,7 +401,6 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'mostcategories'          => "Eng ko'p kategoriyalarli sahifalar",
 'protectedpages'          => 'Himoyalangan sahifalar',
 'listusers'               => 'Foydalanuvchilar roʻyxati',
-'specialpages'            => 'Maxsus sahifalar',
 'newpages'                => 'Yangi sahifalar',
 'move'                    => "Ko'chirish",
 'movethispage'            => 'Bu sahifani koʻchir',
@@ -586,5 +585,8 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'namespacesall'    => 'Barchasi',
 
 'unit-pixel' => 'piksel',
+
+# Special:SpecialPages
+'specialpages' => 'Maxsus sahifalar',
 
 );

@@ -226,9 +226,6 @@ $messages = array(
 
 'withoutinterwiki-submit' => 'Ipakita',
 
-# Miscellaneous special pages
-'specialpages' => 'Manga espesyal nga pahina',
-
 # Book sources
 'booksources-go' => 'Agto',
 
@@ -287,5 +284,8 @@ $messages = array(
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Sagap',
+
+# Special:SpecialPages
+'specialpages' => 'Manga espesyal nga pahina',
 
 );

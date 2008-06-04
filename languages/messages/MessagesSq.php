@@ -1220,7 +1220,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 
 '''\$3''' {{PLURAL:\$3|Është bërë '''\$3''' shikim faqeje|Janë bërë '''\$3''' shikime faqesh}} dhe '''\$4''' {{PLURAL:\$4|redaktim faqeje|redaktime faqesh}} që nga dita kur {{SITENAME}} u hap. Kjo do të thotë se janë bërë afërsisht '''\$5''' redaktime për faqe, dhe '''\$6''' shikime për çdo redaktim.
 
-Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] është '''\$7'''.",
+Gjatësia e [http://www.mediawiki.org/wiki/Manual:Job_queue radhës së punëve] është '''\$7'''.",
 'userstatstext'          => "{{PLURAL:$1|Gjëndet|Gjënden}} '''$1''' [[Special:Listusers|përdorues]] {{PLURAL:$1|i|të}} regjistruar. '''$2''' prej tyre (ose '''$4'''%) {{PLURAL:$2|ka|kanë}} privilegjin $5.",
 'statistics-mostpopular' => 'Faqet më të shikuara',
 
@@ -1284,9 +1284,6 @@ Gjatësia e [http://meta.wikimedia.org/wiki/Help:Job_queue radhës së punëve] 
 'protectedtitlestext'     => 'Krijimi i këtyre titujve është i mbrojtur',
 'protectedtitlesempty'    => 'Asnjë titull i mbrojtur nuk u gjet në këtë hapësirë.',
 'listusers'               => 'Lista e përdoruesve',
-'specialpages'            => 'Faqet speciale',
-'spheading'               => 'Faqe speciale për të gjithë përdoruesit',
-'restrictedpheading'      => 'Faqe speciale të kufizuara',
 'newpages'                => 'Artikuj të rinj',
 'newpages-username'       => 'Përdoruesi:',
 'ancientpages'            => 'Artikuj më të vjetër',
@@ -2249,6 +2246,7 @@ Vendosni emrin e skedës pa parashtesën "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'Skeda "$1" ka {{PLURAL:$2|1 dyfishim|$2 dyfishime}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Faqet speciale',
 'specialpages-group-maintenance' => 'Përmbledhje mirëmbajtjeje',
 'specialpages-group-other'       => 'Faqe speciale të tjera',
 'specialpages-group-login'       => 'Hyrje dhe hapje llogarie',

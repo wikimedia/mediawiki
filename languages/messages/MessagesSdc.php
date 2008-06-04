@@ -13,6 +13,8 @@
  * @author Jon Harald Søby
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotturìnia li cullegamenti:',
@@ -1048,7 +1050,7 @@ Chisthu nùmaru cumprendi le pàgini di \"dischussioni\", li pàgini i' {{SITENA
 
 Da l'isthallazioni di {{SITENAME}} finz'abà  '''\$3''' {{PLURAL:\$3|pàgina è isthadda visitadda|pàgini so isthaddi visitaddi}}, e '''\$4''' {{PLURAL:\$4|mudìfigga è isthadda arriggadda|mudìfigghi so isthaddi arriggaddi}}, pa una mèdia di '''\$5''' mudìfigghi pa pàgina e '''\$6''' litturi pa mudìfigga.
 
-La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa '''\$7'''.",
+La [http://www.mediawiki.org/wiki/Manual:Job_queue coda di li pruzzessi] è longa '''\$7'''.",
 'userstatstext'          => "Abà {{PLURAL:$1|è registhraddu '''1''' [[Special:Listusers|utenti]]|so registhraddi '''$1''' [[Special:Listusers|utenti]]}}. Lu gruppu $5 è cumposthu da '''$2''' {{PLURAL:$2|utenti|utenti}}, pari a lu '''$4%''' di li registhraddi.",
 'statistics-mostpopular' => 'Pàgini più visitaddi',
 
@@ -1106,9 +1108,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coda di li pruzzessi] è longa
 'protectedtitlestext'     => 'Li sighenti tìturi so prutiggiddi da la criazioni di pàgini nobi',
 'protectedtitlesempty'    => 'Abà nò vi so tìturi prutiggiddi.',
 'listusers'               => 'Erencu di li utenti',
-'specialpages'            => 'Pàgini ippiziari',
-'spheading'               => 'Pàgini ippiziari nò riseivvaddi',
-'restrictedpheading'      => 'Pàgini ippiziari riseivvaddi',
 'newpages'                => 'Pàgini più rizzenti',
 'newpages-username'       => 'Nommu utenti:',
 'ancientpages'            => 'Pàgini mancu rizzenti',
@@ -1963,5 +1962,8 @@ $1',
 
 # Special:Version
 'version' => 'Versioni', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Pàgini ippiziari',
 
 );

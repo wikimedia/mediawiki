@@ -130,8 +130,7 @@ $messages = array(
 'randompage' => 'cunso ckupau',
 
 # Miscellaneous special pages
-'specialpages' => 'steci ckupau',
-'move'         => 'stika lo cmene',
+'move' => 'stika lo cmene',
 
 # Special:Allpages
 'allarticles' => 'ro notci',
@@ -172,5 +171,8 @@ $messages = array(
 
 # Special:Filepath
 'filepath-page' => 'se datnyvei zoi',
+
+# Special:SpecialPages
+'specialpages' => 'steci ckupau',
 
 );

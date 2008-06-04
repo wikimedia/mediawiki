@@ -1158,7 +1158,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 
 Jumlah-jamléh geus aya '''\$3''' {{PLURAL:\$3|kaca}} ulasan sarta '''\$4''' {{PLURAL:\$4|éditan}} ti saprak {{SITENAME}} ieu ngadeg. Jadi hartina aya rata-rata '''\$5''' éditan per kaca sarta '''\$6''' ulasan per édit.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Antrian gawé] lobana '''\$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Antrian gawé] lobana '''\$7'''.",
 'userstatstext'          => "Aya '''$1''' [[Special:Listusers|{{PLURAL:$1|pamaké|pamaké}}]] nu kadaptar.
 '''$2''' ($4) di antarana boga hak $5.",
 'statistics-mostpopular' => 'Kaca nu pangmindengna dibuka',
@@ -1571,7 +1571,7 @@ $1',
 'ipusubmit'                   => 'Buka peungpeuk pikeun pamaké ieu',
 'unblocked'                   => 'peungpeuk ka [[User:$1|$1]] geus dicabut',
 'unblocked-id'                => 'peungpeuk $1 geus dicabut',
-'ipblocklist'                 => 'Daptar alamat IP jeung ngaran pamaké nu dipeungpeuk',
+'ipblocklist'                 => 'Daptar IP jeung pamaké nu dipeungpeuk',
 'ipblocklist-legend'          => 'Téang pamaké nu dipeungpeuk',
 'ipblocklist-username'        => 'Landihan pamaké atawa alamat IP:',
 'ipblocklist-submit'          => 'Téang',
@@ -1870,7 +1870,7 @@ $1',
 
 # Media information
 'imagemaxsize'         => 'Watesan gambar na kaca dadaran gambar nepi ka:',
-'widthheightpage'      => '$1×$2, $3 kaca',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
 'file-info-size'       => '($1 × $2 piksel, ukuran koropak: $3, tipeu MIME: $4)',
 'file-nohires'         => '<small>Euweuh résolusi nu leuwih luhur.</small>',
 'svg-long-desc'        => '(Koropak SVG, nominalna $1 × $2 piksel, ukuranana $3)',

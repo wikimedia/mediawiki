@@ -818,7 +818,6 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'deadendpages'            => 'Påhina siha ni taiinachetton',
 'protectedpages'          => 'Påhina siha ni manmaprotehi',
 'listusers'               => "Listan muna'sesetbi",
-'specialpages'            => 'Manespesiat na påhina',
 'newpages'                => 'Mannuebu na påhina siha',
 'ancientpages'            => 'I mas manbihu na påhina siha',
 'move'                    => 'Kånya',
@@ -1095,5 +1094,8 @@ Ti mantattiyi i areklo ni sigienten ina'chetton siha gi mismo liña, i.e. i påh
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Aligao',
+
+# Special:SpecialPages
+'specialpages' => 'Manespesiat na påhina',
 
 );

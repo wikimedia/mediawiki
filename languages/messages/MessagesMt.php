@@ -69,8 +69,7 @@ $messages = array(
 'randompage' => 'Paġna kwalunkwe',
 
 # Miscellaneous special pages
-'specialpages' => 'Paġni speċjali',
-'move'         => 'Mexxi',
+'move' => 'Mexxi',
 
 # Special:Allpages
 'allpages' => 'Il-paġni kollha',
@@ -102,5 +101,8 @@ $messages = array(
 
 # Special:Version
 'version' => 'Verżjoni', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Paġni speċjali',
 
 );

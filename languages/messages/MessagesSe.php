@@ -787,9 +787,6 @@ $1 | $2',
 'protectedpages'          => 'Suodjáluvvon siiddut',
 'protectedpagestext'      => 'Čuovvovaš siiddut leat suodjáluvvon sirdimiin ja rievdadusain',
 'listusers'               => 'Geavaheaddjilistu',
-'specialpages'            => 'Erenomáš siiddut',
-'spheading'               => 'Doaibmasiiddut buot geavaheddjiide',
-'restrictedpheading'      => 'Doaibmasiiddut, maid geavaheapmi lea ráddjejuvvon',
 'newpages'                => 'Ođđa siiddut',
 'newpages-username'       => 'Geavaheaddjidovddaldat:',
 'ancientpages'            => 'Siiddut, mat eai leat rievdaduvvon guhkes áigái',
@@ -1319,5 +1316,9 @@ $1 | $2',
 
 # Special:Version
 'version' => 'Veršuvdna', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Erenomáš siiddut',
+
 
 );

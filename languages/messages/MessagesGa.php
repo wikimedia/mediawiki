@@ -896,7 +896,7 @@ D'uaslódáladh {{PLURAL:$8|'''comhad amháin'''|'''$8''' comhaid}}.
 Ina iomlán, tharla {{PLURAL:$3|'''radhairc leathanaigh amháin'''|'''$3''' radhairc leathanaigh}} agus {{PLURAL:$4|'''athrú leathanaigh amháin'''|'''$4''' athruithe leathanaigh}} ó bunaíodh {{SITENAME}}.
 Is é sin '''$5''' athruithe ar meán do gach leathanach, agus '''$6''' radhairc do gach athrú.
 
-Fad an [http://meta.wikimedia.org/wiki/Help:Job_queue scuaine jabanna]: '''$7'''.",
+Fad an [http://www.mediawiki.org/wiki/Manual:Job_queue scuaine jabanna]: '''$7'''.",
 'userstatstext' => "Tá {{PLURAL:$1|'''[[Special:Listusers|úsáideoir]] cláraithe amháin'''|'''$1''' [[Special:Listusers|úsáideoirí]] cláraithe}} anseo agus tá {{PLURAL:$2|'''duine amháin'''|'''$2'''}} (nó '''$4%''') díobh ina riarthóirí (féach ar $3).",
 
 'disambiguations'     => 'Leathanaigh idirdhealaithe',
@@ -934,8 +934,6 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'deadendpages'            => 'Leathanaigh caocha',
 'protectedpages'          => 'Leathanaigh cosanta',
 'listusers'               => 'Liosta úsáideoirí',
-'specialpages'            => 'Leathanaigh speisialta',
-'spheading'               => 'Leathanaigh speisialta do gach úsáideoir',
 'newpages'                => 'Leathanaigh nua',
 'newpages-username'       => 'Ainm úsáideora:',
 'ancientpages'            => 'Na leathanaigh is sine',
@@ -1810,5 +1808,8 @@ $1',
 
 # Special:Version
 'version' => 'Leagan', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Leathanaigh speisialta',
 
 );

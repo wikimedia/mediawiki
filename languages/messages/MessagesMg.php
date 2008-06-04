@@ -633,8 +633,6 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'shortpages'              => 'Pejy fohy',
 'longpages'               => 'Pejy lavabe',
 'listusers'               => 'Lisitry ny mpikambana',
-'specialpages'            => 'Pejy manokana',
-'spheading'               => "Pejy manokana ho an'ny mpikambana rehetra",
 'newpages'                => 'pejy Vaovao',
 'ancientpages'            => 'Ireo pejy tranainy indrindra',
 'move'                    => 'Afindrao',
@@ -1075,5 +1073,9 @@ $1",
 
 # AJAX search
 'articletitles' => "Lahatsoratra manomboka amin'ny ''$1''",
+
+# Special:SpecialPages
+'specialpages' => 'Pejy manokana',
+
 
 );

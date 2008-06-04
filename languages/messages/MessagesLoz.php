@@ -686,9 +686,6 @@ di uplodezi media.',
 'deadendpagestext'        => "Bye petulo ni sa ling'ki medi petulo di {{SITENAME}}.",
 'protectedpages'          => 'Petulo sa bukelelize',
 'listusers'               => 'Mukoloko di sebelu',
-'specialpages'            => 'Petulo zwenti',
-'spheading'               => 'Petulo di xeti sebelu',
-'restrictedpheading'      => 'Petulo lesitkon',
 'newpages'                => 'Nca petulo',
 'newpages-username'       => 'Sebelu:',
 'ancientpages'            => 'Petulo bye sa kona afina',
@@ -1123,5 +1120,9 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 
 # Special:Version
 'version' => 'Pane', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Petulo zwenti',
+
 
 );

@@ -1217,7 +1217,7 @@ Fyrir utan þær þá {{PLURAL:$2|er '''1''' síða sem líklega getur|eru '''$2
 síðan {{SITENAME}} hóf göngu sína.
 Sem gerir að meðaltali '''$5''' breytingar á hverja síðu og '''$6''' skoðanir á hverja breytingu.
 
-Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '''$7'''.",
+Lengdin á [http://www.mediawiki.org/wiki/Manual:Job_queue vinnsluröðinni] er '''$7'''.",
 'userstatstext'          => "Hér {{PLURAL:$1|er '''1''' skráður [[{{ns:special}}:Listusers|notandi]]|eru '''$1''' skráðir [[{{ns:special}}:Listusers|notendur]]}}, þar af '''$2''' (eða '''$4%''') {{PLURAL:$2|hefur|hafa}} $5 stjórnendaréttindi (sjá $3).",
 'statistics-mostpopular' => 'Mest skoðuðu síður',
 
@@ -1273,9 +1273,6 @@ Lengdin á [http://meta.wikimedia.org/wiki/Help:Job_queue vinnsluröðinni] er '
 'protectedpagestext'      => 'Eftirfarandi síður hafa verið verndaðar svo ekki sé hægt að breyta þeim eða færa þær',
 'protectedtitles'         => 'Verndaðir titlar',
 'listusers'               => 'Notendalisti',
-'specialpages'            => 'Kerfissíður',
-'spheading'               => 'Almennar',
-'restrictedpheading'      => 'Takmarkaðar kerfissíður',
 'newpages'                => 'Nýjustu greinar',
 'newpages-username'       => 'Notandanafn:',
 'ancientpages'            => 'Elstu síður',
@@ -2094,6 +2091,7 @@ $1',
 'fileduplicatesearch-result-n' => 'Skráin „$1“ hefur {{PLURAL:$2|1 nákvæmlega eins afrit|$2 nákvæmlega eins afrit}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Kerfissíður',
 'specialpages-group-maintenance' => 'Viðhaldsskýrslur',
 'specialpages-group-other'       => 'Aðrar kerfissíður',
 'specialpages-group-login'       => 'Innskrá / Búa til aðgang',

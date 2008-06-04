@@ -258,7 +258,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'listusers'         => 'ᖃᑕᙳᑎ ᓂᐱ',
-'specialpages'      => 'ᐱᔨ ᒪᑉᐱᑕᖅ',
 'newpages-username' => 'ᐅᐃᑭᐱᑎᐊ ᐊᑎᖅ:',
 'ancientpages'      => 'ᒪᑉᐱᑕᖅ ᐃᑦᑐᓴᖅ ᐅᑐᖃᖅ',
 'move'              => 'ᐅᐊᔪᖅ',
@@ -403,5 +402,8 @@ $messages = array(
 # Auto-summaries
 'autoredircomment' => 'ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ [[$1]]',
 'autosumm-new'     => 'ᐱᒋᕗᖅ ᒪᑉᐱᑕᖅ: $1',
+
+# Special:SpecialPages
+'specialpages' => 'ᐱᔨ ᒪᑉᐱᑕᖅ',
 
 );

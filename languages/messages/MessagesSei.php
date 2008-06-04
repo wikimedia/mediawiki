@@ -867,9 +867,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'protectedpagestext'  => 'Jan páhinám coccebj protectöxde yacom jöx ticpatlöx',
 'protectedpagesempty' => '0 páhinám currentua coccebj protectöx jan parameterám mii.',
 'listusers'           => 'Listade caitóm',
-'specialpages'        => 'Páhinám extravám',
-'spheading'           => 'Páhinám extravám jömde caitom',
-'restrictedpheading'  => 'Páhinám extravám restrictám',
 'newpages'            => 'Jan páhinám',
 'newpages-username'   => 'Caitom ID:',
 'ancientpages'        => 'Xeperesistant páhinám',
@@ -1128,5 +1125,9 @@ iitom e-iitomde diijömde caitóm.',
 
 # Special:Version
 'version' => 'Vercion', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Páhinám extravám',
+
 
 );

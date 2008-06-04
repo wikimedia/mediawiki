@@ -614,9 +614,6 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 'protectedpages'          => 'Paggine protette',
 'protectedtitles'         => 'Tittoli protezûi',
 'listusers'               => "Lista d'ûtenti",
-'specialpages'            => 'Paggine speçiâli',
-'spheading'               => 'Pagine speçiä pe tutti',
-'restrictedpheading'      => 'Pagine speçiä assegnæ',
 'newpages'                => 'Paggine ciû reçenti',
 'ancientpages'            => 'Paggine ciû vëgie',
 'move'                    => 'Mescia',
@@ -1027,5 +1024,9 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 
 # Special:Version
 'version' => 'Verscion', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Paggine speçiâli',
+
 
 );

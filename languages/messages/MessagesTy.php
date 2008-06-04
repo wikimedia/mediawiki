@@ -134,10 +134,6 @@ $messages = array(
 # Random page
 'randompage' => '’Api mā’iti-haere-noa',
 
-# Miscellaneous special pages
-'specialpages' => 'Te mau ’api ta’a ’ē',
-'spheading'    => 'Te mau ’api ta’a ’ē',
-
 # Special:Log
 'specialloguserlabel' => 'Ta’ata fa’a’ohipa :',
 
@@ -165,5 +161,9 @@ $messages = array(
 
 # Special:Filepath
 'filepath-page' => 'Putu’ite:',
+
+# Special:SpecialPages
+'specialpages' => 'Te mau ’api ta’a ’ē',
+
 
 );

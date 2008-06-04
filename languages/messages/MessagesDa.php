@@ -1358,7 +1358,7 @@ Der har været ialt '''\$3''' {{PLURAL:\$3|sidevisning|sidevisninger}}, og '''\$
 siden {{SITENAME}} blev oprettet.
 Det bliver til '''\$5''' gennemsnitlige ændringer pr. side, og '''\$6''' visninger pr. ændring.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue] længden er '''\$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue job queue] længden er '''\$7'''.",
 'userstatstext'          => "Der findes '''$1''' {{PLURAL:$1|registreret|registrerede}} [[Special:Listusers|brugere]].
 deraf har '''$2''' (=$4%) $5-rettigheder.",
 'statistics-mostpopular' => 'Mest besøgte sider',

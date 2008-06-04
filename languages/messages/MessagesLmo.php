@@ -345,9 +345,6 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'longpages'               => 'Pagin püssè luunch',
 'deadendpages'            => 'Pagin senza surtida',
 'listusers'               => 'Listá i üteent registraa',
-'specialpages'            => 'Pagin special',
-'spheading'               => 'Pagin specjai par tücc i üteent',
-'restrictedpheading'      => 'Pagin specjai riservaa',
 'newpages'                => 'Pagin nööf',
 'ancientpages'            => 'Pagin püssee vecc',
 
@@ -526,5 +523,9 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 
 # Special:Filepath
 'filepath' => 'Percuurz daj archivi',
+
+# Special:SpecialPages
+'specialpages' => 'Pagin special',
+
 
 );

@@ -12,6 +12,8 @@
  * @author Jon Harald Søby
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
@@ -1150,7 +1152,7 @@ La güiqui á tiniu '''\$3''' {{PLURAL:\$3|vesita|vesitas}} i '''\$4''' {{PLURAL
 endi que {{SITENAME}} prencipió a huncional.
 Estu resurta un promeyu e '''\$5''' eicionis pol páhina, i '''\$6''' vesitas pol eición.
 
-El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es de '''\$7'''.",
+El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] es de '''\$7'''.",
 'userstatstext'          => "Ai {{PLURAL:$1|un [[Special:Listusers|usuáriu]] rustriu|'''$1''' [[Special:Listusers|usuárius]] rustrius}}, de los cualis,
 '''$2''' (un '''$4%''') {{PLURAL:$2|es|son}} $5.",
 'statistics-mostpopular' => 'Páhinas mas visoreás',
@@ -1210,9 +1212,6 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'protectedtitlestext'     => "Los siguientis entítulus s'alcuentran atarugaus",
 'protectedtitlesempty'    => 'Ogañu nu desistin entítulus protehius con estus parámetrus.',
 'listusers'               => 'Lista d´usuárius',
-'specialpages'            => 'Páhinas especialis',
-'spheading'               => 'Páhinas especialis pa tolos usuárius',
-'restrictedpheading'      => 'Páhinas especialis restrinhias',
 'newpages'                => 'Nuevas páhinas',
 'newpages-username'       => 'Nombri d´usuáriu:',
 'ancientpages'            => 'Páhinas mas antiguas',
@@ -2326,6 +2325,7 @@ Escribi el nombri d'archivu sin el prefihu \"{{ns:image}}:\".",
 'fileduplicatesearch-result-n' => 'El archivu "$1" tiini {{PLURAL:$2|1 dupricau igual|$2 dupricaus igualis}}.',
 
 # Special:SpecialPages
+'specialpages'               => 'Páhinas especialis',
 'specialpages-group-other'   => 'Otras páhinas especialis',
 'specialpages-group-login'   => 'Entral / Crial cuenta',
 'specialpages-group-changes' => 'Úrtimus chambus i rustrihus',

@@ -1026,7 +1026,6 @@ De lèste lienk is bedoeld voe mediabestan'n die an hin plaetje zien.",
 'nmembers'          => '$1 {{PLURAL:$1|bladzie|bladzies}}',
 'longpages'         => 'Langste bladzies',
 'listusers'         => 'Gebrukerslieste',
-'specialpages'      => 'Speciaole bladzies',
 'newpages-username' => 'Gebrukersnaem:',
 'ancientpages'      => 'Bladzies die-an lang nie bin angepast',
 'move'              => 'Verschuuf',
@@ -1177,5 +1176,8 @@ Kiest 'n aore naem.",
 'autosumm-replace' => "Bladzie vervange mee '$1'",
 'autoredircomment' => 'Oor deugestierd nae [[$1]]',
 'autosumm-new'     => 'Nieuwe bladzie mee as inoud: $1',
+
+# Special:SpecialPages
+'specialpages' => 'Speciaole bladzies',
 
 );

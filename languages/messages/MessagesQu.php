@@ -1235,7 +1235,7 @@ Sirwiqpiqa '''$8''' {{PLURAL:$8|churkusqa willañiqim|churkusqa willañiqikunam}
 Kay wikip qallarisqanmantaqa '''$3''' kutiñam {{PLURAL:$3|watukusqa|watukusqa}}, '''$4''' kutitaqmi {{PLURAL:$4|p'anqa llamk'apusqa|p'anqakuna llamk'apusqa}} karqan.
 Chaymantaqa yurinmi: kuskanchaku '''$5''' {{PLURAL:$5|llamk'apusqa|llamk'apusqa}} p'anqaman, '''$6''' {{PLURAL:$6|watukusqa|watukusqa}} llamk'apusqaman.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Llamk'ana chupaqa] '''$7''' sunim.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Llamk'ana chupaqa] '''$7''' sunim.",
 'userstatstext'          => "{{PLURAL:$1|'''1''' rakiqunayuq ruraqmi|'''$1''' rakiqunayuq ruraqkunam}} kachkan,
 paypurataq '''$2''' ('''$4%'''-nin) $5 hayñiyuqmi.",
 'statistics-mostpopular' => "Lliwmanta astawan rikusqa p'anqakuna",

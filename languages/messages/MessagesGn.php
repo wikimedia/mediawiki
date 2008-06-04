@@ -338,8 +338,6 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'deadendpages'            => "Kuatiarogue ñesẽ'ỹva",
 'protectedpages'          => 'Kuatiarogue oñeñangarekóva',
 'listusers'               => 'Puruhára rysýi',
-'specialpages'            => 'Kuatiarogue hekochĩchĩva',
-'spheading'               => 'Kuatiarogue hekochĩchĩva',
 'newpages'                => 'Kuatiarogue ipyahúva',
 'newpages-username'       => 'Hero',
 'ancientpages'            => "Kuatiahai hi'arevéva",
@@ -481,5 +479,9 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'filepath'        => 'Ruta de archivo',
 'filepath-page'   => 'Archivo:',
 'filepath-submit' => 'Ruta',
+
+# Special:SpecialPages
+'specialpages' => 'Kuatiarogue hekochĩchĩva',
+
 
 );

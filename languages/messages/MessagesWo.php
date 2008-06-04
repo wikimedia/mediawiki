@@ -841,7 +841,6 @@ wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.',
 'mostimages'              => 'Nataal yi ñu gën a jëfëndikoo',
 'mostrevisions'           => 'Jukki yi ñu gën a soppi',
 'listusers'               => 'Limu way bokk yi',
-'specialpages'            => 'Xët yu solowu',
 'newpages'                => 'Xët yu bees',
 'newpages-username'       => 'Jëfëndikookat :',
 'ancientpages'            => 'Jukki yi gënë néew ay coppite ci lu mujj',
@@ -1098,5 +1097,8 @@ Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 'watchlisttools-view' => 'Limu toppte',
 'watchlisttools-edit' => 'Xool te soppi limu toppte gi',
 'watchlisttools-raw'  => 'Soppi lim gi',
+
+# Special:SpecialPages
+'specialpages' => 'Xët yu solowu',
 
 );

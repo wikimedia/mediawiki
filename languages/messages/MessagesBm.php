@@ -93,8 +93,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'popularpages' => 'Nyɛw les plus consultées',
-'specialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
-'spheading'    => 'Nyɛw kɛrɛnkɛrɛnnen',
 'newpages'     => 'Nyɛw kura',
 'ancientpages' => 'Nyɛw les plus anciens',
 'move'         => 'telun',
@@ -126,5 +124,9 @@ $messages = array(
 
 # Special:Newimages
 'ilsubmit' => 'Nyini',
+
+# Special:SpecialPages
+'specialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
+
 
 );

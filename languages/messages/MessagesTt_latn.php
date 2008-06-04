@@ -491,8 +491,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'longpages'               => 'Ozın bitlär',
 'deadendpages'            => 'Başqa betke beyli bolmağanı',
 'listusers'               => 'Äğzä isemlege',
-'specialpages'            => 'Maxsus bitlär',
-'spheading'               => 'Bar keşelär öçen',
 'newpages'                => 'Yaña bitlär',
 'ancientpages'            => 'İñ iske bitlär',
 'move'                    => 'Küçerü',
@@ -730,5 +728,9 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 
 # Special:Version
 'version' => 'Yurama', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Maxsus bitlär',
+
 
 );

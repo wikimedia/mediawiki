@@ -1245,7 +1245,7 @@ Xe stà inoltre caricà '''\$8''' file.
 
 Da l'instalazion del sito fin a sto momento, xe stà visità '''\$3''' pagine ed eseguìe '''\$4''' modifeghe, pari a na media de '''\$5''' modifeghe par pàxena e '''\$6''' richieste de letura par ciascuna modifega.
 
-La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' proçessi.",
+La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' proçessi.",
 'userstatstext'          => "Ghe xe {{PLURAL:$1|'''1''' [[Special:Listusers|utente]]|'''$1''' [[Special:Listusers|utenti]]}} registrà, de cui '''$2''' (pari al '''$4%''') {{PLURAL:$2|el|i}} gà i diriti de $5.",
 'statistics-mostpopular' => 'Pagine piassè visità',
 

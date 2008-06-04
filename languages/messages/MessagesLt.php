@@ -1065,7 +1065,7 @@ Norėdami panaudoti įkeltą paveikslėlį puslapyje, naudokite tokias nuorodas
 'uploadlogpage'               => 'Įkėlimų istorija',
 'uploadlogpagetext'           => 'Žemiau pateikiamas paskutinių failų įkėlimų istorija.',
 'filename'                    => 'Failo vardas',
-'filedesc'                    => 'Komentaras',
+'filedesc'                    => 'Aprašymas',
 'fileuploadsummary'           => 'Komentaras:',
 'filestatus'                  => 'Autorystės teisės:',
 'filesource'                  => 'Šaltinis:',
@@ -1244,7 +1244,7 @@ Buvo įkelta '''$8''' {{PLURAL:$8|failas|failai|failų}}.
 Nuo {{SITENAME}} pradžios iš viso buvo parodyta '''$3''' {{PLURAL:$3|puslapis|puslapiai|puslapių}} ir atlikta '''$4''' puslapių {{PLURAL:$4|keitimas|keitimai|keitimų}}.
 Iš to išeina, kad vidutiniškai kiekvienas puslapis keistas '''$5''' karto, bei parodytas '''$6''' karto per pakeitimą.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Užduočių eilės] ilgis yra '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Užduočių eilės] ilgis yra '''$7'''.",
 'userstatstext'          => "Šiuo metu yra '''$1''' [[Special:Listusers|{{PLURAL:$1|registruotas naudotojas|registruoti naudotojai|registruotų naudotojų}}]], iš jų
 '''$2''' (arba '''$4%''') yra $5.",
 'statistics-mostpopular' => 'Daugiausiai rodyti puslapiai',
@@ -2524,9 +2524,15 @@ $1',
 * <span class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</span>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
 'specialpages-group-other'       => 'Kiti specialieji puslapiai',
-'specialpages-group-login'       => 'Prisijungti / registruotis',
+'specialpages-group-login'       => 'Prisijungimas / Registracija',
 'specialpages-group-changes'     => 'Naujausi keitimai ir logai',
+'specialpages-group-media'       => 'Informacija apie failus ir jų pakrovimas',
 'specialpages-group-users'       => 'Naudotojai ir teisės',
 'specialpages-group-highuse'     => 'Plačiai naudojami puslapiai',
+'specialpages-group-pages'       => 'Puslapių sąrašai',
+'specialpages-group-pagetools'   => 'Puslapių priemonės',
+'specialpages-group-wiki'        => 'Wiki duomenys ir priemonės',
+'specialpages-group-redirects'   => 'Specialūs nukreipimo puslapiai',
+'specialpages-group-spam'        => 'Spamo valdymo priemonės',
 
 );

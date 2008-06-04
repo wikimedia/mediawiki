@@ -505,7 +505,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'deadendpages'            => 'Tsuvvedh bielieh',
 'protectedpages'          => 'Sïektjedh bielieh',
 'listusers'               => 'Nuhtjien lästoe',
-'specialpages'            => 'Joekoen bielieh',
 'newpages'                => 'Orre bielie',
 'newpages-username'       => 'Nuhtjiennomme:',
 'ancientpages'            => 'Båarasåabpoe bielieh',
@@ -894,5 +893,8 @@ $1',
 
 # Special:Version
 'version' => 'Låhkoe', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Joekoen bielieh',
 
 );

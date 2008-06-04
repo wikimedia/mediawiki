@@ -1535,7 +1535,7 @@ Er {{PLURAL:$8|is '''1''' bestand|zijn '''$8''' bestanden}} toegevoegd.
 Er {{PLURAL:$3|is '''1''' pagina|zijn '''$3''' pagina's}} weergegeven en '''$4''' {{PLURAL:$4|bewerking|bewerkingen}} gemaakt sinds {{SITENAME}} is opgezet.
 Dat komt uit op gemiddeld '''$5''' bewerkingen per pagina en '''$6''' weergegeven pagina's per bewerking.
 
-De lengte van de [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] is '''$7'''.",
+De lengte van de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '''$7'''.",
 'userstatstext'          => "Er {{PLURAL:$1|is '''1''' geregistreerde gebruiker|zijn '''$1''' geregistreerde gebruikers}}, waarvan er
 '''$2''' (of '''$4%''') $5rechten {{PLURAL:$2|heeft|hebben}}.",
 'statistics-mostpopular' => "Meestbekeken pagina's",

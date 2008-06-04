@@ -228,7 +228,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 
 # Miscellaneous special pages
 'listusers'         => 'qatannguti nipi',
-'specialpages'      => 'piji mappitaq',
 'newpages-username' => 'uikipitia atiq:',
 'ancientpages'      => 'utuqaq ittusaq mappitaq',
 'move'              => 'uajuq',
@@ -368,5 +367,8 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Auto-summaries
 'autoredircomment' => 'qaningani kamagijaq aasit nakit [[$1]]',
 'autosumm-new'     => 'pigivuq mappitaq: $1',
+
+# Special:SpecialPages
+'specialpages' => 'piji mappitaq',
 
 );
