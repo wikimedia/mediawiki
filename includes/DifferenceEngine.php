@@ -674,7 +674,7 @@ CONTROL;
 		$timestamp = $wgLang->timeanddate( $this->mNewRev->getTimestamp(), true );
 		$this->mNewPage = $this->mNewRev->getTitle();
 		if( $this->mNewRev->isCurrent() ) {
-			$newLink = $this->mNewPage->escapeLocalUrl();
+			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
 			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
 
