@@ -28,16 +28,18 @@ class SpecialVersion {
 	 * main()
 	 */
 	function execute() {
-		global $wgOut, $wgMessageCache;
+		global $wgOut, $wgMessageCache, $wgSpecialVersionShowHooks;
 		$wgMessageCache->loadAllMessages();
 
 		$wgOut->addHTML( '<div dir="ltr">' );
-		$wgOut->addWikiText(
+		$text = 
 			$this->MediaWikiCredits() .
 			$this->softwareInformation() .
-			$this->extensionCredits() .
-			$this->wgHooks()
-		);
+			$this->extensionCredits();
+		if  ( $wgSpecialVersionShowHooks ) {
+			$text .= $this->wgHooks();
+		}
+		$wgOut->addWikiText( $text );
 		$wgOut->addHTML( $this->IPInfo() );
 		$wgOut->addHTML( '</div>' );
 	}
