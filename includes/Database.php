@@ -26,6 +26,7 @@ class Database {
 #------------------------------------------------------------------------------
 
 	protected $mLastQuery = '';
+	protected $mPHPError = false;
 
 	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
 	protected $mOut, $mOpened = false;
@@ -343,21 +344,23 @@ class Database {
 		# so we use a short timeout plus a manual retry.
 		$this->mConn = false;
 		$max = 3;
+		$this->installErrorHandler();
 		for ( $i = 0; $i < $max && !$this->mConn; $i++ ) {
 			if ( $i > 1 ) {
 				usleep( 1000 );
 			}
 			if ( $this->mFlags & DBO_PERSISTENT ) {
-				@/**/$this->mConn = mysql_pconnect( $realServer, $user, $password );
+				$this->mConn = mysql_pconnect( $realServer, $user, $password );
 			} else {
 				# Create a new connection...
-				@/**/$this->mConn = mysql_connect( $realServer, $user, $password, true );
+				$this->mConn = mysql_connect( $realServer, $user, $password, true );
 			}
 			if ($this->mConn === false) {
 				#$iplus = $i + 1;
 				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n"); 
 			}
 		}
+		$phpError = $this->restoreErrorHandler();
 		
 		wfProfileOut("dbconnect-$server");
 
@@ -396,7 +399,7 @@ class Database {
 
 			// Turn off strict mode if it is on
 		} else {
-			$this->reportConnectionError();
+			$this->reportConnectionError( $phpError );
 		}
 
 		$this->mOpened = $success;
@@ -404,6 +407,20 @@ class Database {
 		return $success;
 	}
 	/**@}}*/
+
+	protected function installErrorHandler() {
+		$this->mPHPError = false;
+		set_error_handler( array( $this, 'connectionErrorHandler' ) );
+	}
+
+	protected function restoreErrorHandler() {
+		restore_error_handler();
+		return $this->mPHPError;
+	}
+
+	protected function connectionErrorHandler( $errno,  $errstr ) {
+		$this->mPHPError = $errstr;
+	}
 
 	/**
 	 * Closes a database connection.
