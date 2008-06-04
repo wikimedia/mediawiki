@@ -18,6 +18,9 @@ class Autopromote {
 			if( self::recCheckCondition( $cond, $user ) )
 				$promote[] = $group;
 		}
+		
+		wfRunHooks( 'GetAutoPromoteGroups', array($user, &$promote) );
+		
 		return $promote;
 	}
 
