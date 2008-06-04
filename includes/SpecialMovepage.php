@@ -354,12 +354,6 @@ class MovePageForm {
 				# Already did this one.
 				continue;
 			}
-			
-			if ( $wgUser->pingLimiter( 'move' ) ) {
-				// We've hit the rate limiter.
-				$extraOutput[] = wfMsg( 'actionthrottledtext' );
-				break;
-			}
 
 			$oldPage = Title::newFromRow( $row );
 			$newPageName = preg_replace(
