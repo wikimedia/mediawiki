@@ -433,17 +433,14 @@ upang makapagkarga ng talaksan.',
 'brokenredirects' => 'Mga sirang pangkarga',
 
 # Miscellaneous special pages
-'lonelypages'        => 'Mga inulilang pahina',
-'shortpages'         => 'Mga maiikling pahina',
-'longpages'          => 'Mga mahahabang pahina',
-'specialpages'       => 'Mga natatanging pahina',
-'spheading'          => 'Mga natatanging pahina para sa lahat ng manggagamit',
-'restrictedpheading' => 'Mga natatakdaang natatanging pahina',
-'newpages'           => 'Mga bagong pahina',
-'newpages-username'  => 'Bansag:',
-'ancientpages'       => 'Mga pinakalumang pahina',
-'move'               => 'Ilipat',
-'movethispage'       => 'Ilipat itong pahina',
+'lonelypages'       => 'Mga inulilang pahina',
+'shortpages'        => 'Mga maiikling pahina',
+'longpages'         => 'Mga mahahabang pahina',
+'newpages'          => 'Mga bagong pahina',
+'newpages-username' => 'Bansag:',
+'ancientpages'      => 'Mga pinakalumang pahina',
+'move'              => 'Ilipat',
+'movethispage'      => 'Ilipat itong pahina',
 
 # Special:Allpages
 'allpages'        => 'Lahat ng pahina',
@@ -652,5 +649,9 @@ $1',
 
 # Special:Filepath
 'filepath-page' => 'Talaksan:',
+
+# Special:SpecialPages
+'specialpages' => 'Mga natatanging pahina',
+
 
 );

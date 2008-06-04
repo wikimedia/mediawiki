@@ -667,9 +667,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'longpages'               => 'Longa pagini',
 'deadendpages'            => 'Pagini sen ekiraji',
 'listusers'               => 'Uzanto-listo',
-'specialpages'            => 'Specala pagini',
-'spheading'               => 'Specala pagini por omni',
-'restrictedpheading'      => 'Restriktita specala pagini',
 'newpages'                => 'Nova pagini',
 'newpages-username'       => 'Uzantonomo:',
 'ancientpages'            => 'Maxim anciena artikli',
@@ -1095,5 +1092,9 @@ Voluntez selektar altra nomo.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Serchar',
+
+# Special:SpecialPages
+'specialpages' => 'Specala pagini',
+
 
 );

@@ -273,9 +273,6 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan s
 # Random page
 'randompage' => 'Bisan unsang panid',
 
-# Miscellaneous special pages
-'specialpages' => 'Espesyal nga mga panid',
-
 # Special:Allpages
 'alphaindexline' => '$1 hangtod $2',
 
@@ -313,5 +310,8 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan s
 'tooltip-t-whatlinkshere' => 'Talaan sa mga wiki nga panid nga misumpay dinhi',
 'tooltip-t-upload'        => 'Pagsumiter og mga payl',
 'tooltip-t-specialpages'  => 'Talaan sa mga espesyal nga panid',
+
+# Special:SpecialPages
+'specialpages' => 'Espesyal nga mga panid',
 
 );

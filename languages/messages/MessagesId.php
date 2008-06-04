@@ -1433,7 +1433,7 @@ Klik pada kepala kolom untuk mengubah urutan.',
 
 Telah terjadi sejumlah '''$3''' penampilan halaman dan '''$4''' penyuntingan sejak {{SITENAME}} dimulai. Ini berarti rata-rata '''$5''' suntingan per halaman, dan '''$6''' penampilan per penyuntingan.
 
-Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://meta.wikimedia.org/wiki/Help:Job_queue antrian pekerjaan].",
+Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://www.mediawiki.org/wiki/Manual:Job_queue antrian pekerjaan].",
 'userstatstext'          => "Terdapat '''$1''' [[Special:Listusers|{{PLURAL:$1|pengguna|pengguna}}]] terdaftar. '''$2''' (atau '''$4%''') diantaranya memiliki hak akses $5.",
 'statistics-mostpopular' => 'Halaman yang paling banyak ditampilkan',
 
@@ -1948,7 +1948,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movepage-page-exists'    => 'Halaman $1 telah ada dan tidak dapat ditimpa secara otomatis.',
 'movepage-page-moved'     => 'Halaman $1 telah dipindahkan ke $2.',
 'movepage-page-unmoved'   => 'Halaman $1 tidak dapat dipindahkan ke $2.',
-'movepage-max-pages'      => 'Sejumlah maksimum $1 halaman telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
+'movepage-max-pages'      => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
 '1movedto2'               => 'memindahkan [[$1]] ke [[$2]]',
 '1movedto2_redir'         => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
 'movelogpage'             => 'Log pemindahan',

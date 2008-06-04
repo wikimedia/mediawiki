@@ -242,7 +242,7 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'pagecategories'                 => 'Kategori',
+'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'                => 'Laman-laman dalam kategori "$1"',
 'subcategories'                  => 'Subkategori',
 'category-media-header'          => 'Media-media dalam kategori "$1"',
@@ -1238,7 +1238,7 @@ pelencongan, dan lain-lain yang tidak layak menjadi laman kandungan. Dengan meng
 
 Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dimulakan. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
 
-Jumlah [http://meta.wikimedia.org/wiki/Help:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
+Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
 'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
@@ -1297,9 +1297,6 @@ Jumlah [http://meta.wikimedia.org/wiki/Help:Job_queue tugas yang tertunggak] ial
 'protectedtitlestext'     => 'Tajuk-tajuk berikut dilindungi daripada dicipta',
 'protectedtitlesempty'    => 'Tiada tajuk yang dilindungi yang sepadan dengan kriteria yang diberikan.',
 'listusers'               => 'Senarai pengguna',
-'specialpages'            => 'Laman khas',
-'spheading'               => 'Laman khas untuk semua pengguna',
-'restrictedpheading'      => 'Laman khas terhad',
 'newpages'                => 'Laman baru',
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Laman lapuk',
@@ -2043,7 +2040,7 @@ $1',
 'noimages'              => 'Tiada imej.',
 'ilsubmit'              => 'Cari',
 'bydate'                => 'mengikut tarikh',
-'sp-newimages-showfrom' => 'Tunjukkan imej-imej baru bermula daripada $1',
+'sp-newimages-showfrom' => 'Tunjukkan imej baru bermula daripada $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'j',
@@ -2357,16 +2354,18 @@ Pelayan mel memulangkan: $1',
 'confirmemail_loggedin'    => 'Alamat e-mel anda telah disahkan.',
 'confirmemail_error'       => 'Sesuatau yang tidak kena berlaku ketika kami menyimpan pengesahan anda.',
 'confirmemail_subject'     => 'Pengesahan alamat e-mel di {{SITENAME}}',
-'confirmemail_body'        => 'Seseorang, barangkali anda, daripada alamat IP $1, telah mendaftarkan sebuah
-akaun "$2" dengan alamat e-mel ini di {{SITENAME}}.
+'confirmemail_body'        => 'Seseorang, barangkali anda, daripada alamat IP $1, telah mendaftarkan akaun "$2" dengan alamat e-mel ini di {{SITENAME}}.
 
 Untuk mengesahkan bahawa akaun ini milik anda dan mengaktifkan
-ciri-ciri e-mel di {{SITENAME}}, sila buka pautan ini dalam pelayar anda:
+ciri e-mel di {{SITENAME}}, sila buka pautan ini dalam pelayar anda:
 
 $3
 
-Jika ini *bukan* anda, jangan buka pautan tersebut. Kod pengesahan ini
-akan luput pada $4.',
+Jika ini *bukan* anda, ikuti pautan ini untuk membatalkan pengesahan alamat e-mel:
+
+$5
+
+Kod pengesahan ini akan luput pada $4.',
 'confirmemail_invalidated' => 'Pengesahan alamat e-mel telah dibatalkan',
 'invalidateemail'          => 'Batalkan pengesahan e-mel',
 
@@ -2508,5 +2507,8 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Saiz fail: $3<br />Jenis MIME: $4',
 'fileduplicatesearch-result-1' => 'Tiada fail yang serupa dengan "$1".',
 'fileduplicatesearch-result-n' => 'Terdapat $2 fail yang serupa dengan "$1".',
+
+# Special:SpecialPages
+'specialpages' => 'Laman khas',
 
 );

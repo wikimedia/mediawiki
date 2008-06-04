@@ -88,10 +88,9 @@ $messages = array(
 'randompage' => 'Цебе ккараб гьумер',
 
 # Miscellaneous special pages
-'shortpages'   => 'Къокъал макъалаби',
-'longpages'    => 'Кlудиял гьумерал',
-'listusers'    => 'Гlахьалчагlазул сияхl',
-'specialpages' => 'Хассал гьумерал',
+'shortpages' => 'Къокъал макъалаби',
+'longpages'  => 'Кlудиял гьумерал',
+'listusers'  => 'Гlахьалчагlазул сияхl',
 
 # Special:Log
 'specialloguserlabel' => 'ГIахьалчи:',
@@ -111,5 +110,8 @@ $messages = array(
 'move-page-legend' => 'Гьумералъул цlар хисизе',
 'movearticle'      => 'Гьумералъул цIар хисизе',
 'movepagebtn'      => 'Гьумералъул цlар хисизе',
+
+# Special:SpecialPages
+'specialpages' => 'Хассал гьумерал',
 
 );

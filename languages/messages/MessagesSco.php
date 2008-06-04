@@ -14,6 +14,8 @@
  * @author Ushanka
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Unnerline airtins:',
@@ -787,7 +789,7 @@ Thare haes been a total o '''\$3''' {{PLURAL:\$3|page view|page views}}, an '''\
 syne {{SITENAME}} wis set up.
 That comes tae '''\$5''' average edits per page, and '''\$6''' views per edit.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
 'userstatstext' => "{{PLURAL:$1|There is '''1''' registert [[Special:Listusers|uiser]]|The'r '''$1''' registert [[Special:Listusers|uisers]]}}.
 '''$2''' (or '''$4%''') o thaim {{PLURAL:$2|has|have}} $5 rights.",
 
@@ -815,9 +817,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'longpages'               => 'Lang pages',
 'deadendpages'            => 'Deid-end pages',
 'listusers'               => 'Uiser leet',
-'specialpages'            => 'Byordinar pages',
-'spheading'               => 'Byordinar pages for aa uisers',
-'restrictedpheading'      => 'Restrictit byordinar pages',
 'ancientpages'            => 'Auldest pages',
 'move'                    => 'Flit',
 'movethispage'            => 'Flit this page',
@@ -1204,5 +1203,8 @@ $1',
 'autosumm-blank'   => 'Dichtin aa content frae page',
 'autosumm-replace' => "Replacin page wi '$1'",
 'autoredircomment' => 'Reguidin tae [[$1]]',
+
+# Special:SpecialPages
+'specialpages' => 'Byordinar pages',
 
 );

@@ -99,8 +99,7 @@ $messages = array(
 'randompage' => 'Folenn war amkan',
 
 # Miscellaneous special pages
-'specialpages' => 'Folennow arbennik',
-'move'         => 'Movya',
+'move' => 'Movya',
 
 # Watchlist
 'watchlist'   => 'Ow rol goelyas',
@@ -119,5 +118,8 @@ $messages = array(
 
 # Special:Newimages
 'ilsubmit' => 'Hwilas',
+
+# Special:SpecialPages
+'specialpages' => 'Folennow arbennik',
 
 );

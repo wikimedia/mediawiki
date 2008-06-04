@@ -1160,7 +1160,7 @@ S’on èxcllut celes pâges, réste {{PLURAL:$2|'''1''' pâge qu’est probâbl
 
 Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modificacions}} per pâge et de {{PLURAL:$6|'''1''' consulta|'''$6''' consultes}} por una modificacion.</p>
 
-<p>Y at ora {{PLURAL:$7|'''1''' ovrâjo|'''$7''' ovrâjos}} dens la [http://meta.wikimedia.org/wiki/Help:Job_queue fela d’atenta des travâlys].</p>",
+<p>Y at ora {{PLURAL:$7|'''1''' ovrâjo|'''$7''' ovrâjos}} dens la [http://www.mediawiki.org/wiki/Manual:Job_queue fela d’atenta des travâlys].</p>",
 'userstatstext'          => "Y at {{PLURAL:$1|'''1''' [[Special:Listusers|utilisator enregistrâ]]|'''$1''' [[Special:Listusers|utilisators enregistrâs]]}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5 (vêde $3).",
 'statistics-mostpopular' => 'Pâges les ples consultâs',
 
@@ -1219,9 +1219,6 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'protectedtitlestext'     => 'Los titros siuvents sont protègiês a la crèacion',
 'protectedtitlesempty'    => 'Nion titro est protègiê orendrêt avouéc celos paramètres.',
 'listusers'               => 'Lista des participents',
-'specialpages'            => 'Pâges spèciâles',
-'spheading'               => 'Pâges spèciâles',
-'restrictedpheading'      => 'Pâges spèciâles resèrvâs',
 'newpages'                => 'Novèles pâges',
 'newpages-username'       => 'Utilisator :',
 'ancientpages'            => 'Articllos los muens dèrriérement modifiâs',
@@ -2433,5 +2430,8 @@ $1',
 'filepath-summary' => 'Ceta pâge afiche lo chemin d’accès complèt d’un fichiér ; les émâges sont montrâs en rèsolucion hôta, los fichiérs ôdiô et vidèô s’ègzécutont avouéc lor programe associyê.
 
 Entrâd lo nom du fichiér sen lo prèfixe « {{ns:image}}: ».',
+
+# Special:SpecialPages
+'specialpages' => 'Pâges spèciâles',
 
 );

@@ -1356,7 +1356,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 {{SITENAME}}स्थापनेपासून '''$3''' {{PLURAL:$3|पानास भेट|पानास भेटी}},आणि '''$4''' {{PLURAL:$4|संपादनपान |संपादन पान}}.
 त्याची सरासरी संपादने  '''$5'''प्रतिपान,आणि '''$6''' भेटी प्रति संपादन.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]लांबी'''$7'''आहे.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]लांबी'''$7'''आहे.",
 'userstatstext'          => "सध्या {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]| '''$1''' नोंदीकृत  [[Special:Listusers|सदस्य]]}} आहेत, पैकी'''$2''' (किंवा '''$4%''')सदस्यांना $5 अधिकार {{PLURAL:$2|आहे|आहेत }} .",
 'statistics-mostpopular' => 'सर्वाधिक बघितली जाणारी पाने',
 

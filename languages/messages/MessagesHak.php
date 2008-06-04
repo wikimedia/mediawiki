@@ -11,6 +11,8 @@
  * @author Jon Harald Søby
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hâ-va̍k lièn-chiap:',
@@ -847,7 +849,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'statistics'             => 'Thúng-kie',
 'sitestats'              => '{{SITENAME}} thúng-kie su-kí',
 'userstats'              => 'Yung-fu thúng-kie',
-'sitestatstext'          => "Chṳ̂-liau-khu chûng khiung-yû '''\$1''' vùn-chông. Khì-chûng pâu-hàm tui-fa-hong, su̍k-yî {{SITENAME}} ke vùn-chông, chui-séu liòng ke \"stub\", chhùng-thiun hiong ke vùn-chông, yî-khi̍p hàn-mò tha̍t-tó vùn-chông chṳt-liòng ke vùn-chông. Chhù-chhṳ́ chṳ̂-ngoi hàn-yû '''\$2''' khó-nèn he ha̍p-fû phêu-chún ke vùn-chông. '''\$8'''-ke tóng-on yí-kîn pûn song-chhòn. Chhiùng {{SITENAME}} sat-thin yî-lòi, chhiòn mióng-chham khiung-yû hong-mien '''\$3'''-chhṳ, vùn-chông phiên-si̍p '''\$4'''-chhṳ. Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá heu vùn-chông ke mî-ke pán-pún phìn-kiûn '''\$6'''-chhṳ. [http://meta.wikimedia.org/wiki/Help:Job_queue kûng-chok chhui-lie̍t] ke chhòng-thu he '''\$7'''.",
+'sitestatstext'          => "Chṳ̂-liau-khu chûng khiung-yû '''\$1''' vùn-chông. Khì-chûng pâu-hàm tui-fa-hong, su̍k-yî {{SITENAME}} ke vùn-chông, chui-séu liòng ke \"stub\", chhùng-thiun hiong ke vùn-chông, yî-khi̍p hàn-mò tha̍t-tó vùn-chông chṳt-liòng ke vùn-chông. Chhù-chhṳ́ chṳ̂-ngoi hàn-yû '''\$2''' khó-nèn he ha̍p-fû phêu-chún ke vùn-chông. '''\$8'''-ke tóng-on yí-kîn pûn song-chhòn. Chhiùng {{SITENAME}} sat-thin yî-lòi, chhiòn mióng-chham khiung-yû hong-mien '''\$3'''-chhṳ, vùn-chông phiên-si̍p '''\$4'''-chhṳ. Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá heu vùn-chông ke mî-ke pán-pún phìn-kiûn '''\$6'''-chhṳ. [http://www.mediawiki.org/wiki/Manual:Job_queue kûng-chok chhui-lie̍t] ke chhòng-thu he '''\$7'''.",
 'userstatstext'          => "Muk-chhièn yû '''$1'''-ke chu-chhak yung-fu. Khì-chûng '''$2'''-ngìn (chit '''$4%''') he kón-lî-yèn (chhâm-siòng $3).",
 'statistics-mostpopular' => 'Pûn-ngìn chhà-khon chhṳ-su chui-tô ke vùn-chông',
 
@@ -899,9 +901,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'protectedpagestext'      => 'Yî-ha vùn-chông yí-kîn Pûn pó-fu yî fòng-chṳ́ yì-thung fe̍t-chá sîn-phiên',
 'protectedpagesempty'     => 'Chhai liá-ke chhâm-su hâ mò-yû vùn-chông chang-chhai pó-fu.',
 'listusers'               => 'Yung-fu lie̍t-péu',
-'specialpages'            => 'Thi̍t-sû hong-mien',
-'spheading'               => 'Só-yû yung-fu ke thi̍t-sû vùn-chông',
-'restrictedpheading'      => 'Chô-su han-chṳ ke thi̍t-sû vùn-chông',
 'newpages'                => 'Chui-sîn ke vùn-chông',
 'newpages-username'       => 'Yung-fu-miàng:',
 'ancientpages'            => 'Chui-khiu ke hong-mien',
@@ -1604,5 +1603,8 @@ Sòn-chhṳ phêu-chún yi-liau.',
 
 # Special:Version
 'version' => 'Pán-pún', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Thi̍t-sû hong-mien',
 
 );

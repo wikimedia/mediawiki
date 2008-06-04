@@ -1255,7 +1255,7 @@ Hai {{PLURAL:\$8|xubida '''una''' imaxe|xubíes '''\$8''' imáxenes}}.
 Hebo un total {{PLURAL:\$3|d''''una''' páxina visitada|de '''\$3''' páxines visitaes}}, y {{PLURAL:\$4|'''una''' edición|'''\$4''' ediciones}} dende qu'entamó {{SITENAME}}.
 Esto fai una media de '''\$5''' ediciones per páxina, y '''\$6''' visites per edición.
 
-La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''.",
+La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7'''.",
 'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuariu]] rexistráu, del|'''$1''' [[Special:Listusers|usuarios]] rexistraos, de los}} que
 '''$2''' (el '''$4%''') {{PLURAL:$2|tien|tienen}} privilexos de $5.",
 'statistics-mostpopular' => 'Páxines más vistes',
@@ -1317,9 +1317,6 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'protectedtitlestext'     => 'Los siguiente títulos tán protexíos de la so creación',
 'protectedtitlesempty'    => 'Nun hai títulos protexíos anguaño con estos parámetros.',
 'listusers'               => "Llista d'usuarios",
-'specialpages'            => 'Páxines especiales',
-'spheading'               => 'Páxines especiales pa tolos usuarios',
-'restrictedpheading'      => 'Páxines especiales restrinxíes',
 'newpages'                => 'Páxines nueves',
 'newpages-username'       => "Nome d'usuariu:",
 'ancientpages'            => 'Páxines más vieyes',
@@ -2520,6 +2517,7 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'L\'archivu "$1" tien {{PLURAL:$2|un duplicáu idénticu|$2 duplicaos idénticos}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Páxines especiales',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other'       => 'Otres páxines especiales',
 'specialpages-group-login'       => 'Entrar / Crear cuenta',

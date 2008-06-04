@@ -1321,7 +1321,7 @@ Bi ha '''$8''' {{PLURAL:$8|archibo alzato|archivos alzatos}} en o serbidor.
 Dende a debantadera d'o wiki bi ha abito un total de '''$3''' {{PLURAL:$3|besitas|besitas}} y '''$4''' {{PLURAL:$4|edizión de pachina|edizions de pachinas}}.
 Isto resulta en una meya de '''$5''' {{PLURAL:$5|edizión|edizions}} por pachina y '''$6''' {{PLURAL:$6|besita|besitas}} por edizión.
 
-A longaria d'a [http://meta.wikimedia.org/wiki/Help:Job_queue coda de quefers] ye de '''$7'''",
+A longaria d'a [http://www.mediawiki.org/wiki/Manual:Job_queue coda de quefers] ye de '''$7'''",
 'userstatstext'          => "Bi ha {{PLURAL:$1|'''1''' usuario rechistrato|'''$1''' usuarios rechistratos}},
 d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'statistics-mostpopular' => 'Pachinas más bistas',
@@ -1383,9 +1383,6 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 'protectedtitlestext'     => 'Os siguients títols son protechitos ta pribar a suya creyazión',
 'protectedtitlesempty'    => 'En iste inte no bi ha garra títol protechito con ixos parametros.',
 'listusers'               => "Lista d'usuarios",
-'specialpages'            => 'Pachinas espezials',
-'spheading'               => 'Pachinas espezials ta toz os usuarios',
-'restrictedpheading'      => 'Pachinas espezials restrinchitas',
 'newpages'                => 'Pachinas nuebas',
 'newpages-username'       => "Nombre d'usuario",
 'ancientpages'            => 'Pachinas más biellas',
@@ -2546,6 +2543,7 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-result-n' => 'L\'archibo "$1" tiene {{PLURAL:$2|1 duplicau identico|$2 duplicaus identicos}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Pachinas espezials',
 'specialpages-group-maintenance' => 'Informes de mantenimiento',
 'specialpages-group-other'       => 'Atras pachinas espezials',
 'specialpages-group-login'       => 'Inizio de sesión / rechistro',

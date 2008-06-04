@@ -227,10 +227,9 @@ $messages = array(
 'randompage' => 'алаећу',
 
 # Miscellaneous special pages
-'nbytes'       => '$1 {{PLURAL:$1|бајтул|бајтулс}}',
-'nmembers'     => '$1 {{PLURAL:$1|мембру|мембри}}',
-'specialpages' => 'Пажи спецалус',
-'newpages'     => 'Пажи нови',
+'nbytes'   => '$1 {{PLURAL:$1|бајтул|бајтулс}}',
+'nmembers' => '$1 {{PLURAL:$1|мембру|мембри}}',
+'newpages' => 'Пажи нови',
 
 # Book sources
 'booksources' => 'Сурсе де цајрћи',
@@ -325,5 +324,8 @@ $messages = array(
 'watchlistall2' => 'тоат',
 'namespacesall' => 'тоат',
 'monthsall'     => 'тоат',
+
+# Special:SpecialPages
+'specialpages' => 'Пажи спецалус',
 
 );

@@ -627,7 +627,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'deadendpages'            => 'Başka sayfalara baalantısız sayfalar',
 'protectedpages'          => 'Korunma altındaki sayfalar',
 'listusers'               => 'Kullanıcı listası',
-'specialpages'            => 'Maasus sayfalar',
 'newpages'                => 'Eni sayfalar',
 'ancientpages'            => 'En bitki diişmäk datası en eski olan yazılar',
 'move'                    => 'Aadını diiştir',
@@ -904,5 +903,8 @@ Sadä listadaki êlementlarä (* nışannan çekedän liniyalar) bakılacêk. Li
 
 # Special:Version
 'version' => 'Versiya', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Maasus sayfalar',
 
 );

@@ -665,7 +665,6 @@ to upload files.',
 'unusedimages'      => 'ਅਣਵਰਤੀਆਂ ਫਾਇਲਾਂ',
 'popularpages'      => 'ਪਾਪੂਲਰ ਪੇਜ਼',
 'listusers'         => 'ਯੂਜ਼ਰ ਲਿਸਟ',
-'specialpages'      => 'ਖਾਸ ਪੇਜ਼',
 'newpages'          => 'ਨਵੇਂ ਪੇਜ਼',
 'newpages-username' => 'ਯੂਜ਼ਰ ਨਾਂ:',
 'ancientpages'      => 'ਸਭ ਤੋਂ ਪੁਰਾਣੇ ਪੇਜ਼',
@@ -1019,5 +1018,8 @@ to upload files.',
 
 # Special:Version
 'version' => 'ਵਰਜਨ', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'ਖਾਸ ਪੇਜ਼',
 
 );

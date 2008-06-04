@@ -1266,7 +1266,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 Բեռնվել է '''$8''' ֆայլ։
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Առաջադրանքների հերթի] երկարությունն է՝ '''$7'''։",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Առաջադրանքների հերթի] երկարությունն է՝ '''$7'''։",
 'userstatstext'          => "Կան '''$1''' գրանցված մասնակիցներ, որոնցից '''$2'''ը (կամ '''$4%'''ը) $5 են։",
 'statistics-mostpopular' => 'Ամենահաճախ դիտվող էջեր',
 
@@ -1322,9 +1322,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'protectedpagestext'      => 'Հետևյալ էջերը պաշտպանված են վերանվանումից կամ տեղափոխումից։',
 'protectedpagesempty'     => 'Ներկայումս չկան պաշտպանված էջեր նշված պարամետրերով։',
 'listusers'               => 'Մասնակիցների ցանկ',
-'specialpages'            => 'Սպասարկող էջեր',
-'spheading'               => 'Սպասարկող էջեր բոլոր մասնակիցների համար',
-'restrictedpheading'      => 'Սահմանափակ թույլատրմամբ սպասարկող էջեր',
 'newpages'                => 'Նոր էջեր',
 'newpages-username'       => 'Մասնակից՝',
 'ancientpages'            => 'Ամենահին էջերը',
@@ -2158,5 +2155,8 @@ $1',
 
 # Special:Version
 'version' => 'MediaWiki տարբերակը', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Սպասարկող էջեր',
 
 );

@@ -1010,7 +1010,7 @@ $2',
 箇隻{{SITENAME}}建立以來，攏共有'''$3'''道瀏覽，同到'''$4'''回編輯。
 平均每頁有'''$5'''道瀏覽，同到'''$6'''回編輯。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue] 嗰長度係'''$7'''。",
+[http://www.mediawiki.org/wiki/Manual:Job_queue job queue] 嗰長度係'''$7'''。",
 'userstatstext'          => "網站有'''$1'''隻註冊[[Special:Listusers|用戶]]，其中 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '眵嗰人最多嗰頁面',
 

@@ -13,6 +13,8 @@
  * @author Raymond
  */
 
+
+
 $messages = array(
 # Dates
 'thursday' => 'Diardaoin',
@@ -238,7 +240,7 @@ $1",
 
 Tha na duilleagan air an sealladh '''\$3''' uairean, agus air an deasaicheadh '''\$4''' uairean o'n deach an wiki a shuidheachadh. Thig sin ri '''\$5''' deasaicheidhean anns a'mheadhan gach duilleag, agus '''\$6''' seallaidhean gach duilleag.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
 
 'doubleredirects' => 'Ath-stiùreidhean dùbailte',
 
@@ -252,8 +254,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7''
 'shortpages'              => 'Duilleagan goirid',
 'longpages'               => 'Duilleagan fhada',
 'listusers'               => 'Liosta nan cleachdair',
-'specialpages'            => 'Duilleagan àraidh',
-'spheading'               => 'Duilleagan àraidh aig a h-uile cleachdair',
 'newpages'                => 'Duilleagan ùra',
 'ancientpages'            => 'Duilleagan as sìne',
 'move'                    => 'Gluais',
@@ -382,5 +382,8 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 
 # Special:Version
 'version' => 'Lethbhreac', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Duilleagan àraidh',
 
 );

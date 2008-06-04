@@ -146,7 +146,6 @@ $messages = array(
 'brokenredirects-delete' => '(Vakarusa)',
 
 # Miscellaneous special pages
-'specialpages'      => 'Tabana vakamareqeti',
 'newpages-username' => 'Yaca vakayagataki:',
 'move'              => 'Toso',
 'movethispage'      => 'Toso na tabana oqo',
@@ -200,5 +199,8 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'Lako',
+
+# Special:SpecialPages
+'specialpages' => 'Tabana vakamareqeti',
 
 );

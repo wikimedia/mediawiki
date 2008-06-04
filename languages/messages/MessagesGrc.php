@@ -386,7 +386,6 @@ $messages = array(
 'ncategories'  => '$1 {{PLURAL:$1|Γένος|Γένη}}',
 'shortpages'   => 'Δέλτοι μικραί',
 'longpages'    => 'Δέλτοι μακραί',
-'specialpages' => ' Εἰδικαὶ δέλτοι',
 'newpages'     => 'Δέλτοι νέαι',
 'ancientpages' => 'Αἱ παλαιόταται δέλτοι',
 'move'         => 'κινεῖν',
@@ -563,5 +562,8 @@ $messages = array(
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Τίτλοι:',
+
+# Special:SpecialPages
+'specialpages' => ' Εἰδικαὶ δέλτοι',
 
 );

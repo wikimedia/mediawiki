@@ -496,8 +496,6 @@ $1',
 'longpages'               => 'Узун арыннар',
 'protectedpages'          => 'Камгалаган арыннар',
 'listusers'               => 'Ажыглакчы даңзызы',
-'specialpages'            => 'Тускай арыннар',
-'spheading'               => 'Шупту ажыглакчыларның тускай арыннары',
 'newpages'                => 'Чаа Арыннар',
 'newpages-username'       => 'Ажыглакчының ады:',
 'ancientpages'            => 'Эң эрги арыннар',
@@ -726,5 +724,9 @@ $1',
 
 # Special:Version
 'version' => 'Үндүрери', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Тускай арыннар',
+
 
 );

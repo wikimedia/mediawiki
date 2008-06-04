@@ -1047,9 +1047,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'protectedtitlestext'     => 'የሚከተሉት አርዕስቶች ከመፈጠር ተጠብቀዋል።',
 'protectedtitlesempty'    => 'እንደዚህ አይነት አርእስት አሁን የሚቆለፍ ምንም የለም።',
 'listusers'               => 'አባላት',
-'specialpages'            => 'ልዩ ገጾች',
-'spheading'               => 'ለሰው ሁሉ የሚጠቅሙ ልዩ ገጾች',
-'restrictedpheading'      => 'የተገደቡ ልዩ ገጾች',
 'newpages'                => 'አዳዲስ መጣጥፎች',
 'newpages-username'       => 'በአቅራቢው፦',
 'ancientpages'            => 'የቈዩ ፅሑፎች (በተለወጠበት ሰአት)',
@@ -2040,5 +2037,9 @@ $1',
 ስዕል በሙሉ ማጉላት ይታያል፤ ሌላ አይነት ፋይል በሚገባው ፕሮግራም በቀጥታ ይጀመራል።
 
 የፋይሉ ስም («{{ns:image}}:» የሚለው ባዕድ መነሻ ሳይኖር) ከዚህ ታች ይግባ፦',
+
+# Special:SpecialPages
+'specialpages' => 'ልዩ ገጾች',
+
 
 );

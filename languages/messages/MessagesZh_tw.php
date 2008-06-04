@@ -1062,7 +1062,7 @@ $2',
 從{{SITENAME}}設定以來，全網站共有頁面瀏覽'''\$3'''次，頁面編輯'''\$4'''次。
 即每頁平均編輯'''\$5'''次，各次編輯後頁面的每個版本平均瀏覽'''\$6'''次。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue 工作隊列]的長度是'''\$7'''。",
+[http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]的長度是'''\$7'''。",
 'userstatstext'          => "網站有'''$1'''位註冊[[Special:Listusers|使用者]]，其中
 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '被查閱次數最多的頁面',
@@ -1124,9 +1124,6 @@ Template:消除歧義',
 'protectedpagestext'      => '以下頁面已經被保護以防止移動或編輯',
 'protectedpagesempty'     => '在這些參數下沒有頁面正在保護。',
 'listusers'               => '使用者列表',
-'specialpages'            => '特殊頁面',
-'spheading'               => '所有使用者的特殊頁面',
-'restrictedpheading'      => '受限的特殊頁面',
 'newpages'                => '最新頁面',
 'newpages-username'       => '使用者帳號:',
 'ancientpages'            => '最舊頁面',
@@ -2237,5 +2234,9 @@ $1
 
 # Special:Version
 'version' => '版本', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => '特殊頁面',
+
 
 );

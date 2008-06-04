@@ -345,7 +345,6 @@ $messages = array(
 'shortpages'        => 'छोटा पृष्ठहरु',
 'protectedpages'    => 'संरक्षित पृष्ठहरु',
 'listusers'         => 'प्रयोगकर्ता सूची',
-'specialpages'      => 'विशेष पृष्ठ',
 'newpages'          => 'नयाँ पृष्ठहरू',
 'newpages-username' => 'युजरनेम:',
 'ancientpages'      => 'सबैभन्दा पुराना पृष्ठहरु',
@@ -623,5 +622,8 @@ $messages = array(
 
 # Special:Filepath
 'filepath-page' => 'फाइल',
+
+# Special:SpecialPages
+'specialpages' => 'विशेष पृष्ठ',
 
 );

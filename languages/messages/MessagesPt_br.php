@@ -1027,7 +1027,7 @@ Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma pá
 Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado.
 Isso nos leva a aproximadamente '''\$5''' edições por página e '''\$6''' acessos por edição.
 
-O tamanho da [http://meta.wikimedia.org/wiki/Help:Job_queue fila de tarefas] é atualmente de '''\$7'''.",
+O tamanho da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas] é atualmente de '''\$7'''.",
 'userstatstext' => "Há atualmente {{PLURAL:$1|'''$1''' usuário registrado|'''$1''' usuários registrados}}, dentre os quais '''$2''' (ou '''$4%''') {{PLURAL:$2|é|são}} $5.",
 
 'disambiguations'     => 'Páginas de desambiguamento',
@@ -1071,8 +1071,6 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 'deadendpages'            => 'Páginas sem saída',
 'protectedpages'          => 'Páginas protegidas',
 'listusers'               => 'Lista de usuários',
-'specialpages'            => 'Páginas especiais',
-'spheading'               => 'Páginas especiais para todos os usuários',
 'newpages'                => 'Páginas novas',
 'newpages-username'       => 'Nome de usuário:',
 'ancientpages'            => 'Páginas mais antigas',
@@ -1570,5 +1568,8 @@ Entre com o nome do arquivo sem fornecer o prefixo "{{ns:image}}:".',
 'fileduplicatesearch-filename' => 'Nome do arquivo:',
 'fileduplicatesearch-result-1' => 'O arquivo "$1" não possui cópias idênticas.',
 'fileduplicatesearch-result-n' => 'O arquivo "$1" possui {{PLURAL:$2|uma cópia idêntica|$2 cópias idênticas}}.',
+
+# Special:SpecialPages
+'specialpages' => 'Páginas especiais',
 
 );

@@ -1284,7 +1284,7 @@ Excluíndo todo isto, hai {{PLURAL:\$2|'''1''' páxina que é|'''\$2''' páxinas
 Houbo un total de '''\$3''' {{PLURAL:\$3|páxina vista|páxinas vistas}} e '''\$4''' {{PLURAL:\$4|edición|edicións}} desque se creou {{SITENAME}}.
 Isto resulta nunha media de '''\$5''' edicións por páxina e '''\$6''' visionados por edición.
 
-A lonxitude da [http://meta.wikimedia.org/wiki/Help:Job_queue cola de traballos] é de '''\$7'''.",
+A lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos] é de '''\$7'''.",
 'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuario]] rexistrado|'''$1''' [[Special:Listusers|usuarios]] rexistrados}}, dos cales '''$2''' (ou '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
 'statistics-mostpopular' => 'Páxinas máis vistas',
 
@@ -1987,7 +1987,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 
 # Scripts
 'common.js'   => '/* Calquera JavaScript será cargado para todos os usuarios en cada páxina cargada. */',
-'monobook.js' => '/* Desaconsellado; use [[MediaWiki:common.js]] */',
+'monobook.js' => '/* O JavaScript que apareza aquí só será cargado aos usuarios que usan a apariencia MonoBook. */',
 
 # Metadata
 'nodublincore'      => 'A opción de metadatos RDF do Dublin Core está desactivada neste servidor.',

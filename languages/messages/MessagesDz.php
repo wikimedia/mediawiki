@@ -426,7 +426,6 @@ $messages = array(
 'deadendpages'            => 'ཤོག་ལེབ་མཇུག་',
 'protectedpages'          => 'ཉེན་སྐྱོབ་འབད་ཡོད་པའི་ཤོག་ལེབ།',
 'listusers'               => 'ལག་ལེན་པའི་ཐོ་ཡིག།',
-'specialpages'            => 'དམིགས་བསལ་ཤོག་ལེབ།',
 'newpages'                => 'ཤོག་ལེབ་གསརཔ།',
 'ancientpages'            => 'ཤོག་ལེབ་རྙིང་ཤོས།',
 'move'                    => 'སྤོ་བཤུད་འབད།',
@@ -696,5 +695,8 @@ $messages = array(
 
 # Special:Version
 'version' => 'ཐོན་རིམ།', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'དམིགས་བསལ་ཤོག་ལེབ།',
 
 );

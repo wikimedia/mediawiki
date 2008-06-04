@@ -1260,7 +1260,7 @@ $2',
 從{{SITENAME}}設定以來，全網站共有頁面瀏覽'''\$3'''次，頁面編輯'''\$4'''次。
 即每頁平均編輯'''\$5'''次，各次編輯後頁面的每個版本平均瀏覽'''\$6'''次。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue 工作隊列]的長度是'''\$7'''。",
+[http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]的長度是'''\$7'''。",
 'userstatstext'          => "網站有'''$1'''位註冊[[Special:Listusers|用戶]]，其中
 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '被查閱次數最多的頁面',

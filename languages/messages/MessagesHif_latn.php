@@ -409,7 +409,6 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'deadendpages'            => 'Jon panna se koi jurre nai hai',
 'protectedpages'          => 'Surakchhit panna',
 'listusers'               => 'Sadasya ke suchi',
-'specialpages'            => 'Khaas panna',
 'newpages'                => 'Nawaa panna',
 'ancientpages'            => 'Sab se purana panna',
 'move'                    => 'Naam badlo',
@@ -676,5 +675,8 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 
 # Special:Version
 'version' => 'Version', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Khaas panna',
 
 );

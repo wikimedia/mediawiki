@@ -100,8 +100,7 @@ $messages = array(
 'withoutinterwiki-submit' => 'Kúfúna',
 
 # Miscellaneous special pages
-'specialpages' => 'Emakhasi labalulekile',
-'move'         => 'Kúgojotîsa',
+'move' => 'Kúgojotîsa',
 
 # Book sources
 'booksources-go' => 'Kúhámba',
@@ -155,5 +154,8 @@ $messages = array(
 
 # Special:Version
 'version-specialpages' => 'Emakhasi labalulekile',
+
+# Special:SpecialPages
+'specialpages' => 'Emakhasi labalulekile',
 
 );

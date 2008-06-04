@@ -977,7 +977,7 @@ His exclusis, {{PLURAL:$2|est '''1''' pagina|sunt '''$2''' paginae}} quae conten
 ab initio {{grammar:genitive|{{SITENAME}}}}.
 Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutationem.
 
-'''$7''' [http://meta.wikimedia.org/wiki/Help:Job_queue operationes etiam exspectant perfacier].",
+'''$7''' [http://www.mediawiki.org/wiki/Manual:Job_queue operationes etiam exspectant perfacier].",
 'userstatstext' => "'''$1''' {{PLURAL:$1|[[Special:Listusers|usor]] relatus est|[[Special:Listusers|usores]] relati sunt}}, quorum '''$2''' (vel '''$4%''') {{PLURAL:$2|est|sunt}} $5.",
 
 'disambiguations'      => 'Paginae disambiguationis',
@@ -1033,9 +1033,6 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'protectedtitles'         => 'Tituli protecti',
 'protectedtitlestext'     => 'Hi tituli protecti sunt ne creentur paginae',
 'listusers'               => 'Usores',
-'specialpages'            => 'Paginae speciales',
-'spheading'               => 'Paginae speciales',
-'restrictedpheading'      => 'Paginae speciales propriae',
 'newpages'                => 'Paginae novae',
 'newpages-username'       => 'Nomen usoris:',
 'ancientpages'            => 'Paginae veterrimae',
@@ -1601,5 +1598,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Fasciculi nomen:',
 'fileduplicatesearch-submit'   => 'Quaerere',
+
+# Special:SpecialPages
+'specialpages' => 'Paginae speciales',
 
 );

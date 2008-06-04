@@ -158,7 +158,6 @@ $messages = array(
 'randompage' => "Itulau le fa'ailogaina",
 
 # Miscellaneous special pages
-'specialpages'      => "Itulau fa'apitoa",
 'newpages-username' => "Igoa o le tagata fa'aaoga:",
 'move'              => "Si'itia",
 
@@ -221,5 +220,8 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'Alu',
+
+# Special:SpecialPages
+'specialpages' => "Itulau fa'apitoa",
 
 );

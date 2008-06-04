@@ -569,9 +569,6 @@ $messages = array(
 'deadendpages'            => 'ໜ້າບໍ່ການເຊື່ອມຕໍ່ຫາໜ້າອື່ນ',
 'protectedpages'          => 'ບັນດາໜ້າຖືກປົກປ້ອງ',
 'listusers'               => 'ລາຍຊື່ຜູ້ໃຊ້',
-'specialpages'            => 'ໜ້າພິເສດ',
-'spheading'               => 'ໜ້າພິເສດ ສຳຫຼັບ ຜູ້ໃຊ້ທຸກໆທ່ານ',
-'restrictedpheading'      => 'ບັນດາໜ້າຈຳກັດພິເສດ',
 'newpages'                => 'ໜ້າສ້າງໃໝ່',
 'newpages-username'       => 'ຊື່ຜູ້ໃຊ້:',
 'ancientpages'            => 'ບັນດາໜ້າເກົ່າທີ່ສຸດ',
@@ -913,5 +910,9 @@ $messages = array(
 
 # Special:Filepath
 'filepath' => 'ທາງໄປຫາໄຟລ໌',
+
+# Special:SpecialPages
+'specialpages' => 'ໜ້າພິເສດ',
+
 
 );

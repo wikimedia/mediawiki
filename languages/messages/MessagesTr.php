@@ -773,6 +773,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'showingresultsnum'         => '<b>$2.</b> sonuçtan başlayarak <b>$3</b> sonuç aşağıdadır:',
 'powersearch'               => 'Gelişmiş arama',
 'powersearch-legend'        => 'Gelişmiş arama',
+'powersearch-redir'         => 'Yönlendirmeleri listele',
+'search-external'           => 'Dış arama',
 'searchdisabled'            => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde indekslemelerinin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
 
 # Preferences page
@@ -794,6 +796,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'dateformat'               => 'Tarih gösterimi',
 'datedefault'              => 'Tercih yok',
 'datetime'                 => 'Tarih ve saat',
+'math_failure'             => 'Ayrıştırılamadı',
 'math_unknown_error'       => 'bilinmeyen hata',
 'math_unknown_function'    => 'bilinmeyen fonksiyon',
 'math_lexing_error'        => 'lexing hatası',
@@ -827,6 +830,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'servertime'               => 'Viki sunucusunda şu anki saat',
 'guesstimezone'            => 'Tarayıcınız sizin yerinize doldursun',
 'allowemail'               => 'Diğer kullanıcılar size e-posta atabilsin',
+'prefs-searchoptions'      => 'Arama seçenekleri',
 'defaultns'                => 'Aramayı aşağıdaki seçili alanlarda yap.',
 'default'                  => 'orijinal',
 'files'                    => 'Dosyalar',
@@ -843,6 +847,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'userrights-groupsremovable'       => 'Silinebilen gruplar:',
 'userrights-groupsavailable'       => 'Varolan gruplar:',
 'userrights-reason'                => 'Değiştirme nedeni:',
+'userrights-available-none'        => 'Grup üyeliğini değiştiremiyorsun.',
 'userrights-available-add'         => 'Kullanıcıları {{PLURAL:$2|bu grupa|bu gruplara}}: $1 ekleyebilirsiniz.',
 'userrights-available-remove'      => 'Kullanıcıları {{PLURAL:$2|bu grupdan|bu gruplardan}}: $1 silebilirsiniz.',
 'userrights-available-add-self'    => 'Kendinizi {{PLURAL:$2|bu grupa|bu gruplara}}: $1 ekleyebilirsiniz.',
@@ -851,6 +856,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'userrights-nodatabase'            => '$1 veritabanı mevcut veya bölgesel değil',
 'userrights-nologin'               => 'Kullanıcı haklarını atamak için yönetici hesabı ile [[Special:Userlogin|giriş yapmanız gerekir]].',
 'userrights-notallowed'            => 'Kullanıcı hesabınızın kullanıcı haklarını atamak için izni yok.',
+'userrights-changeable-col'        => 'Değiştirebildiğiniz gruplar',
+'userrights-unchangeable-col'      => 'Değiştirebilmediğiniz gruplar',
 
 # Groups
 'group'            => 'Grup:',
@@ -875,10 +882,16 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'right-edit'          => 'Sayfaları değiştir',
 'right-createtalk'    => 'Tartışma sayfaları yarat',
 'right-createaccount' => 'Yeni kullanıcı hesapları yarat',
+'right-minoredit'     => 'Değişikliklerini küçük olarak kaydet',
 'right-upload'        => 'Dosyaları yükle',
+'right-upload_by_url' => 'Bir URL adresinden dosya yükle',
 'right-delete'        => 'Sayfaları sil',
+'right-bigdelete'     => 'Uzun tarihli sayfaları sil',
+'right-browsearchive' => 'Silinen sayfaları ara',
+'right-undelete'      => 'Bir sayfanın silinmesini geri al',
 'right-editinterface' => 'Kullanıcı arayüzünü değiştirmek',
 'right-patrol'        => 'Diğerlerinin değişikliklerini kontrol edilmiş olarak işaretle',
+'right-mergehistory'  => 'Sayfalarının tarihlerini birleştir',
 'right-userrights'    => 'Tüm kullanıcı haklarını değiştirmek',
 
 # User rights log
@@ -1075,10 +1088,10 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'randomredirect' => 'Rastgele yönlendirme',
 
 # Statistics
-'statistics'    => 'İstatistikler',
-'sitestats'     => '{{SITENAME}} sitesi istatistikleri',
-'userstats'     => 'Kullanıcı istatistikleri',
-'sitestatstext' => "{{SITENAME}} sitesinde şu anda '''\$2''' geçerli sayfa mevcuttur.
+'statistics'             => 'İstatistikler',
+'sitestats'              => '{{SITENAME}} sitesi istatistikleri',
+'userstats'              => 'Kullanıcı istatistikleri',
+'sitestatstext'          => "{{SITENAME}} sitesinde şu anda '''\$2''' geçerli sayfa mevcuttur.
 
 Bu sayıya; \"yönlendirme\", \"tartışma\", \"resim\", \"kullanıcı\", \"yardım\", \"{{SITENAME}}\", \"şablon\" alanlarındakiler ve iç bağlantı içermeyen maddeler dahil değildir. Geçerli madde sayısına bu sayfaların sayısı eklendiğinde ise toplam '''\$1''' sayfa mevcuttur.
 
@@ -1088,8 +1101,9 @@ Site kurulduğundan bu güne kadar toplam '''\$4''' sayfa değişikliği ve sayf
 
 Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görüntüleme sayısı '''\$6''' olmuştur.
 
-Şu andaki [http://meta.wikimedia.org/wiki/Help:Job_queue iş kuyruğu] sayısı '''\$7'''.",
-'userstatstext' => "'''$1''' kayıtlı [[Special:Listusers|kullanıcı]] var. Bunlardan '''$2''' tanesi (ya da '''$4%''') $5 haklarına sahiptir.",
+Şu andaki [http://www.mediawiki.org/wiki/Manual:Job_queue iş kuyruğu] sayısı '''\$7'''.",
+'userstatstext'          => "'''$1''' kayıtlı [[Special:Listusers|kullanıcı]] var. Bunlardan '''$2''' tanesi (ya da '''$4%''') $5 haklarına sahiptir.",
+'statistics-mostpopular' => 'En popüler maddeler',
 
 'disambiguations'      => 'Anlam ayrım sayfaları',
 'disambiguationspage'  => 'Template:Anlam ayrımı',
@@ -1141,9 +1155,6 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'protectedpagestext'      => 'Aşağıdaki sayfalar koruma altına alınmıştır',
 'protectedtitles'         => 'Korunan başlıklar',
 'listusers'               => 'Kullanıcı listesi',
-'specialpages'            => 'Özel sayfalar',
-'spheading'               => 'Tüm kullanıcıları ilgilendirebilecek özel sayfalar',
-'restrictedpheading'      => 'Yöneticilerin yetkileri ile ilgili özel sayfalar',
 'newpages'                => 'Yeni sayfalar',
 'newpages-username'       => 'Kullanıcı adı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
@@ -1170,6 +1181,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 
 Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsiniz.',
 'logempty'             => 'Kayıtlarda eşleşen bilgi yok.',
+'log-title-wildcard'   => 'Bu metinle başlayan başlıklar ara',
 
 # Special:Allpages
 'allpages'          => 'Tüm sayfalar',
@@ -1273,6 +1285,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'changed'                      => 'değiştirildi',
 'created'                      => 'oluşturuldu',
 'enotif_lastvisited'           => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
+'enotif_lastdiff'              => 'Bu değişikliği görmek için, $1 sayfasına bakınız.',
 'enotif_anon_editor'           => 'anonim kullanıcılar $1',
 'enotif_body'                  => 'Sayın $WATCHINGUSERNAME,
 
@@ -1436,6 +1449,7 @@ $1',
 'nolinkshere'              => "'''[[:$1]]''' sayfasına bağlantı yapan sayfa yok.",
 'isredirect'               => 'yönlendirme sayfası',
 'istemplate'               => 'ekleme',
+'isimage'                  => 'dosya bağlantısı',
 'whatlinkshere-prev'       => '{{PLURAL:$1|önceki|önceki $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sonraki|sonraki $1}}',
 'whatlinkshere-links'      => '← linkler',
@@ -1471,7 +1485,9 @@ $1',
 'unblockip'                   => 'Kullanıcının engellemesini kaldır',
 'ipusubmit'                   => 'Bu adresin engellemesini kaldır',
 'unblocked'                   => '[[User:$1|$1]] - engelleme kaldırıldı',
+'unblocked-id'                => '$1 engeli çıkarıldı',
 'ipblocklist'                 => 'Erişimi durdurulmuş kullanıcılar ve IP adresleri listesi',
+'ipblocklist-legend'          => 'Engellenen kullanıcı ara',
 'ipblocklist-username'        => 'Kullanıcı adı veya IP adresi:',
 'ipblocklist-submit'          => 'Ara',
 'blocklistline'               => '$1, $2 blok etti: $3 ($4)',
@@ -1497,6 +1513,7 @@ $1',
 'ipb_already_blocked'         => '"$1" zaten engellenmiş',
 'ip_range_invalid'            => 'Geçersiz IP aralığı.',
 'blockme'                     => 'Beni engelle',
+'proxyblocker-disabled'       => 'Bu özellik engellenildi.',
 'proxyblocksuccess'           => 'Tamamlanmıştır.',
 
 # Developer tools
@@ -1545,6 +1562,7 @@ Lütfen başka bir isim deneyiniz.',
 'talkexists'              => "'''Sayfanın kendisi başarıyla taşındı, ancak tartışma sayfası taşınamadı çünkü taşınacağı isimde zaten bir sayfa vardı. Lütfen sayfanın içeriğini diğer sayfaya kendiniz taşıyın.'''",
 'movedto'                 => 'taşındı:',
 'movetalk'                => 'Varsa "tartışma" sayfasını da aktar.',
+'movepage-page-exists'    => '$1 maddesi zaten var olmaktadır, ve otomatikman yeniden yazılamaz.',
 'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.',
 '1movedto2'               => '[[$1]] sayfasının yeni adı: [[$2]]',
 '1movedto2_redir'         => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
@@ -1561,8 +1579,8 @@ Lütfen başka bir isim deneyiniz.',
 'selfmove'                => 'Olmasını istediğiniz isim ile mevcut isim aynı. Değişiklik mümkün değil.',
 
 # Export
-'export'        => 'Sayfa kaydet',
-'exporttext'    => 'You can export the text and editing history of a particular page or
+'export'            => 'Sayfa kaydet',
+'exporttext'        => 'You can export the text and editing history of a particular page or
 set of pages wrapped in some XML. This can be imported into another wiki using MediaWiki
 via the Special:Import page.
 
@@ -1571,9 +1589,11 @@ select whether you want the current version as well as all old versions, with th
 history lines, or just the current version with the info about the last edit.
 
 In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage}}]] for the page {{int:Mainpage}}.',
-'exportcuronly' => 'Geçmiş sürümleri almadan sadece son sürümü al',
-'export-submit' => 'Aktar',
-'export-addcat' => 'Ekle',
+'exportcuronly'     => 'Geçmiş sürümleri almadan sadece son sürümü al',
+'export-submit'     => 'Aktar',
+'export-addcattext' => 'Aşağıdaki kategoriden maddeler ekle:',
+'export-addcat'     => 'Ekle',
+'export-templates'  => 'Şablonları dahil et',
 
 # Namespace 8 related
 'allmessages'               => 'Viki arayüz metinleri',
@@ -1598,10 +1618,12 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'importstart'                => 'Sayfalar aktarmaktadır...',
 'importnopages'              => 'Aktarılacak dosya yok.',
 'importfailed'               => '$1 aktarımı başarısız',
+'importunknownsource'        => 'Bilinmeyen içeri aktarım kaynak türü',
 'importbadinterwiki'         => 'Yanlış interwiki bağlantısı',
 'importnotext'               => 'Boş ya da metin yok',
 'importsuccess'              => 'Aktarma başarılı sonuçlandı!',
 'importnofile'               => 'Bir aktarım dosyası yüklenmedi.',
+'import-upload'              => 'XML bilgileri yükle',
 
 # Import log
 'importlogpage'             => 'Dosya aktarım kayıtları',
@@ -1711,7 +1733,8 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 'patrol-log-auto' => '(otomatik)',
 
 # Image deletion
-'deletedrevision' => '$1 sayılı eski sürüm silindi.',
+'deletedrevision'       => '$1 sayılı eski sürüm silindi.',
+'filedeleteerror-short' => '$1 dosyanın silinmesinde hata oldu',
 
 # Browsing diffs
 'previousdiff' => '← Önceki sürümle aradaki fark',
@@ -1731,6 +1754,7 @@ In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage
 # Special:Newimages
 'newimages'             => 'Yeni resimler',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş '''$1''' adet dosyayı göstermektedir.",
+'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir',
 'showhidebots'          => '(botları $1)',
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',
@@ -1777,6 +1801,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-colorspace'                => 'Renk aralığı',
 'exif-componentsconfiguration'   => 'Her bir bileşenin anlamı',
 'exif-compressedbitsperpixel'    => 'Resim sıkıştırma modu',
+'exif-usercomment'               => 'Kullanıcı yorumları',
 'exif-datetimeoriginal'          => 'Çekim saati ve tarihi',
 'exif-datetimedigitized'         => 'Dijital işleme tarih ve saati',
 'exif-exposuretime'              => 'Çekim süresi',
@@ -1825,6 +1850,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
 
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-3' => '180° döndürülmüş', # 0th row: bottom; 0th column: right
 
 'exif-componentsconfiguration-0' => 'yok',
@@ -1873,6 +1899,12 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-contrast-2' => 'Sert',
 
 'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Az satürasyon',
+'exif-saturation-2' => 'Çok satürasyon',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Yumuşak',
+'exif-sharpness-2' => 'Net',
 
 'exif-subjectdistancerange-0' => 'Bilinmiyor',
 'exif-subjectdistancerange-1' => 'Makro',
@@ -2034,6 +2066,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Dosya boyutu: $3<br />MIME tipi: $4',
 
 # Special:SpecialPages
+'specialpages'                   => 'Özel sayfalar',
 'specialpages-group-maintenance' => 'Bakım raporları',
 'specialpages-group-other'       => 'Diğer özel sayfalar',
 'specialpages-group-login'       => 'Oturum aç / hesap edin',
@@ -2041,5 +2074,9 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'specialpages-group-media'       => 'Dosya raporları ve yüklemeler',
 'specialpages-group-users'       => 'Kullanıcılar ve hakları',
 'specialpages-group-highuse'     => 'Çok kullanılan sayfalar',
+'specialpages-group-pages'       => 'Sayfalar listesi',
+'specialpages-group-pagetools'   => 'Sayfa araçları',
+'specialpages-group-wiki'        => 'Viki bilgiler ve araçlar',
+'specialpages-group-spam'        => 'Spam araçları',
 
 );

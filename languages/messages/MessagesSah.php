@@ -11,6 +11,8 @@
  * @author Jon Harald Søby
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Бу ыйынньыктары бэлиэтээ:',
@@ -1130,7 +1132,7 @@ PICT # misc.
 
 {{SITENAME}} туруоҕуттан барыта '''$3''' сирэй көрөөһүнэ буолбут уонна '''$4''' сирэй уларытыыта. Онон ортотунан ыллахха биир сирэйгэ '''$5''' уларытыы уонна '''$6''' көрүү тиксэр.
 
-Величина [http://meta.wikimedia.org/wiki/Help:Job_queue очереди заданий] составляет '''$7'''.",
+Величина [http://www.mediawiki.org/wiki/Manual:Job_queue очереди заданий] составляет '''$7'''.",
 'userstatstext'          => "'''$1''' бэлиэтэммит [[Special:Listusers|кыттааччы]] баарыттан '''$2''' (эбэтэр '''$4%''') $2 $5 бырааптаах",
 'statistics-mostpopular' => 'Саамай элбэхтик көрүллэр ыстатыйалар',
 
@@ -1190,9 +1192,6 @@ PICT # misc.
 'protectedtitlestext'     => 'Бу ааттары оҥорор/айар бобуллар',
 'protectedtitlesempty'    => 'Биир да аат бу параметрдарынан көмүскэммэт',
 'listusers'               => 'Кыттааччылар испииһэктэрэ',
-'specialpages'            => 'Анал сирэйдэр',
-'spheading'               => 'Служебнай сирэйдэр',
-'restrictedpheading'      => 'Хааччахтаммыт служебнай сирэйдэр',
 'newpages'                => 'Саҥа ыстатыйалар',
 'newpages-username'       => 'Кыттааччы:',
 'ancientpages'            => 'Бүтэһик уларытыы киирбитинэн наардаммыт ыстатыйалар',
@@ -2385,6 +2384,7 @@ $1',
 'fileduplicatesearch-result-n' => '"$1" билэ {{PLURAL:$2|1 хатылааһыннаах эбит|$2 хатылааһыннардаах эбит}}.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Анал сирэйдэр',
 'specialpages-group-maintenance' => 'Техническэй отчуоттар',
 'specialpages-group-other'       => 'Атын аналлаах сирэйдэр',
 'specialpages-group-login'       => 'Киирии / бэлиэтэнии',

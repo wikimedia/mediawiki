@@ -207,7 +207,6 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'brokenredirects-delete' => '(panason)',
 
 # Miscellaneous special pages
-'specialpages'      => 'Pinasahi nga mga panid',
 'newpages-username' => 'Ngalan sang Manog-gamit:',
 'move'              => 'Saylohon',
 'movethispage'      => 'Saylohon ining panid',
@@ -307,5 +306,8 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Pangita-a',
+
+# Special:SpecialPages
+'specialpages' => 'Pinasahi nga mga panid',
 
 );

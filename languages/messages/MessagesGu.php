@@ -383,7 +383,6 @@ $messages = array(
 'shortpages'              => 'નાનાં પાનાં',
 'longpages'               => 'લાંબા પાનાઓ',
 'protectedpages'          => 'સંરક્ષિત પાનાઓ',
-'specialpages'            => 'ખાસ પાનાં',
 'newpages'                => 'નવા પાના',
 'ancientpages'            => 'સૌથી જૂનાં પાના',
 'move'                    => 'નામ બદલો',
@@ -612,5 +611,8 @@ $messages = array(
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'ધ્યાનસૂચી જુઓ અને બદલો',
+
+# Special:SpecialPages
+'specialpages' => 'ખાસ પાનાં',
 
 );

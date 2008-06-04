@@ -608,9 +608,6 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'protectedpages'          => 'Duillagyn fo ghlass',
 'protectedtitles'         => 'Enmyn coadit',
 'listusers'               => 'Rolley ymmydeyryn',
-'specialpages'            => 'Duillagyn er lheh',
-'spheading'               => 'Duillagyn er lheh da dagh ooilley ymmydeyr',
-'restrictedpheading'      => 'Duillagyn lhiettalit er lheh',
 'newpages'                => 'Duillagyn noa',
 'newpages-username'       => 'Ennym ymmydeyr:',
 'ancientpages'            => 'Duillagyn by hinney',
@@ -1035,9 +1032,11 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 'fileduplicatesearch-submit'   => 'Ronsaghey',
 
 # Special:SpecialPages
+'specialpages'                   => 'Duillagyn er lheh',
 'specialpages-group-maintenance' => 'Coontaghyn meansal',
 'specialpages-group-other'       => 'Duillagyn elley er lheh',
 'specialpages-group-login'       => 'Claare stiagh / croo coontys',
 'specialpages-group-users'       => 'Ymmydeyryn as kiartyn',
+
 
 );

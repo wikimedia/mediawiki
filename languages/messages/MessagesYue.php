@@ -1344,7 +1344,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 呢個Wiki喺建立以嚟，總共有'''$3'''次瀏覽，同埋'''$4'''次編輯。
 平均每個頁面有'''$5'''次瀏覽，同埋'''$6'''次編輯。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]嘅長度係'''$7'''。",
+[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]嘅長度係'''$7'''。",
 'userstatstext'          => "目前有'''$1'''個註冊[[Special:Listusers|用戶]]，其中有'''$2'''人（即'''$4%'''）有$5權限。",
 'statistics-mostpopular' => '最多人睇嘅頁',
 

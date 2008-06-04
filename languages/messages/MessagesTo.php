@@ -659,9 +659,6 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'protectedpages'          => 'Peesi maluʻi',
 'protectedtitles'         => 'Ngaahi ʻuluʻitohi maluʻi',
 'listusers'               => 'Hokohoko kau-ki-ai',
-'specialpages'            => 'Ngaahi peesi makehe',
-'spheading'               => 'Ngaahi peesi makehe maʻa e kau ʻetita kotoa pē',
-'restrictedpheading'      => 'Ngaahi peesi makehe fakangatangata',
 'newpages'                => 'Peesi foʻou',
 'newpages-username'       => 'Ko e ʻetita hono hingoa:',
 'ancientpages'            => 'Peesi motuʻa taha',
@@ -1228,5 +1225,9 @@ $1',
 'filepath'        => 'Hala ki he faile',
 'filepath-page'   => 'Faile:',
 'filepath-submit' => 'Ko e hala',
+
+# Special:SpecialPages
+'specialpages' => 'Ngaahi peesi makehe',
+
 
 );

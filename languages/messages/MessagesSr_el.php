@@ -1075,9 +1075,6 @@ Dužina reda za poslove iznosi '''$7'''",
 'deadendpages'            => 'Stranice bez internih veza',
 'deadendpagestext'        => 'Sledeće stranice ne vežu na druge stranice na ovom vikiju.',
 'listusers'               => 'Spisak korisnika',
-'specialpages'            => 'Posebne stranice',
-'spheading'               => 'Posebne stranice za sve korisnike',
-'restrictedpheading'      => 'Zaštićene posebne stranice',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Korisničko ime:',
 'ancientpages'            => 'Najstariji članci',
@@ -1997,5 +1994,9 @@ $1',
 'filepath'        => 'Putanja fajla',
 'filepath-page'   => 'Fajl:',
 'filepath-submit' => 'Putanja',
+
+# Special:SpecialPages
+'specialpages' => 'Posebne stranice',
+
 
 );

@@ -65,8 +65,7 @@ $messages = array(
 'brokenredirects-delete' => '(yukhutush)',
 
 # Miscellaneous special pages
-'specialpages' => 'Alahida Tor Batleri',
-'move'         => 'Yotkash',
+'move' => 'Yotkash',
 
 # Book sources
 'booksources-go' => 'Kuchush',
@@ -116,5 +115,8 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'Kuchush',
+
+# Special:SpecialPages
+'specialpages' => 'Alahida Tor Batleri',
 
 );

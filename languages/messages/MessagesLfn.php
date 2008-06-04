@@ -566,9 +566,6 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'deadendpages'            => 'Pajes sin sorti',
 'protectedpages'          => 'Pajes protejeda',
 'listusers'               => 'Lista de usores',
-'specialpages'            => 'Pajes spesial',
-'spheading'               => 'Pajes spesial per tota usores',
-'restrictedpheading'      => 'Pajes spesial restrinjeda',
 'newpages'                => 'Pajes nova',
 'ancientpages'            => 'Pajes la plu vea',
 'move'                    => 'Move',
@@ -889,5 +886,9 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Xerca',
+
+# Special:SpecialPages
+'specialpages' => 'Pajes spesial',
+
 
 );

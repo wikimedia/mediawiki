@@ -226,9 +226,8 @@ $messages = array(
 'sitestats'  => '{{SITENAME}} nga mga estadistika',
 
 # Miscellaneous special pages
-'longpages'    => 'Haglaba nga mga pakli',
-'specialpages' => 'Mga Ispisyal nga Pakli',
-'move'         => 'Balhina',
+'longpages' => 'Haglaba nga mga pakli',
+'move'      => 'Balhina',
 
 # Book sources
 'booksources-go' => 'Kadto-a',
@@ -285,5 +284,8 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'size-kilobytes' => '$1 nga KB',
 'size-megabytes' => '$1 nga MB',
 'size-gigabytes' => '$1 nga GB',
+
+# Special:SpecialPages
+'specialpages' => 'Mga Ispisyal nga Pakli',
 
 );

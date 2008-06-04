@@ -118,8 +118,7 @@ $messages = array(
 'imagelinks'    => 'Легэтурь',
 
 # Miscellaneous special pages
-'nbytes'       => '{{PLURAL:$1|ун октет|$1 октець}}',
-'specialpages' => 'Сервичий',
+'nbytes' => '{{PLURAL:$1|ун октет|$1 октець}}',
 
 # Special:Allpages
 'alphaindexline' => '$1 пынэ ла $2',
@@ -160,5 +159,8 @@ $messages = array(
 'tooltip-t-upload'        => 'Тримите имаӂинь сау фишиере медия',
 'tooltip-t-specialpages'  => 'Листа тутурор паӂинилор де сервичиу',
 'tooltip-save'            => 'Салвязэ скимбэриле тале',
+
+# Special:SpecialPages
+'specialpages' => 'Сервичий',
 
 );

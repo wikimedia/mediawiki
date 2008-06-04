@@ -1299,7 +1299,7 @@ Tiu nombro enhavas \"diskutpaĝojn\", paĝojn pri {{SITENAME}}, \"artikoletetojn
 Oni vidis sume '''\$3''' {{PLURAL:\$3|paĝo|paĝojn}}, kaj redaktis sume '''\$4''' {{PLURAL:\$4|paĝo|paĝojn}} ekde la starigo de la vikio.
 Tio estas meznombre po unu paĝo por '''\$5''' paĝoj viditaj, kaj por '''\$6''' redaktoj.
 
-La nuna longeco de la [http://meta.wikimedia.org/wiki/Help:Job_queue laborenda vico] estas '''\$7'''.",
+La nuna longeco de la [http://www.mediawiki.org/wiki/Manual:Job_queue laborenda vico] estas '''\$7'''.",
 'userstatstext'          => "Enskribiĝis '''$1''' {{PLURAL:$1|[[Special:Listusers|uzanto]]|[[Special:Listusers|uzantoj]]}}. El tiuj, '''$2''' (aŭ '''$4%''') havas rajtojn de $5.",
 'statistics-mostpopular' => 'Plej ofte montrataj paĝoj',
 

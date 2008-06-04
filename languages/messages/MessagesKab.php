@@ -919,7 +919,7 @@ Asmi ttwakksen wigini, {{PLURAL:\$2|yella '''yiwen''' usebter|llan '''\$2''' n i
 {{PLURAL:\$3|tella|llant}} '''\$3''' n {{PLURAL:\$3|timeẓriwt|timeẓriwin}}, '''\$4''' n {{PLURAL:\$4|ubeddel|yibeddlen}} n usebtar segmi {{SITENAME}} yettwaxleq.
 Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mkul asebter, d '''\$6''' timeẓriwin i mkul abeddel.
 
-Ṭul n [http://meta.wikimedia.org/wiki/Help:Job_queue umuti n wexdam] '''\$7'''.",
+Ṭul n [http://www.mediawiki.org/wiki/Manual:Job_queue umuti n wexdam] '''\$7'''.",
 'userstatstext'          => "{{PLURAL:$1|Yella '''yiwen''' wemseqdac|Llan '''$1''' n yimseqdacen}}, seg-sen
 '''$2''' (neɣ '''$4%''') {{PLURAL:$2|yesɛa|sɛan}} izerfan n $5.",
 'statistics-mostpopular' => 'isebtar mmeẓren aṭṭas',
@@ -972,9 +972,6 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'protectedpagestext'      => 'isebtar-agi yettwaḥerzen seg ubeddel neɣ asemmimeḍ',
 'protectedpagesempty'     => 'isebtar-agi ttwaḥerzen s imsektayen -agi.',
 'listusers'               => 'Umuɣ n yimseqdacen',
-'specialpages'            => 'isebtar usligen',
-'spheading'               => 'isebtar usligen i akk imseqdacen',
-'restrictedpheading'      => 'isebtar usligen gedlen',
 'newpages'                => 'isebtar imaynuten',
 'newpages-username'       => 'Isem n wemseqdac:',
 'ancientpages'            => 'isebtar iqdimen',
@@ -1600,5 +1597,8 @@ $1',
 
 # Special:Version
 'version' => 'Tasiwelt', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'isebtar usligen',
 
 );

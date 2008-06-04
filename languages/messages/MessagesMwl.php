@@ -155,6 +155,8 @@ $messages = array(
 
 # General errors
 'badtitle'       => 'Títalo inválido',
+'badtitletext'   => 'La página pedida era inbálida, bazia, o un títalo inter-lhenguagem o inter-buiqui ancorrectamiente lhigado.
+Puode conter un o mais caracteres que num puoden ser usados an títalos.',
 'viewsource'     => 'Ber código',
 'viewsourcefor'  => 'para $1',
 'viewsourcetext' => 'Você puode ber i copiar l código desta página:',
@@ -183,6 +185,7 @@ Berifique l nome que antroduziu, o crie unha nuoba cuonta de outelizador.',
 'nouserspecified'         => 'Tem que specificar um nome de outelizador.',
 'wrongpassword'           => 'La palabra-chave que antroduziu ye inbálida. Por fabor, tente de nuobo.',
 'wrongpasswordempty'      => 'La palabra-chave antroduzida stá em branco. Por fabor, tente de nuobo.',
+'passwordtooshort'        => 'La sue palabra-chave ye inbálida o demasiado corta. Debe ter pulo menos $1 caracteres i ser diferente do seu nome de outelizador.',
 'mailmypassword'          => 'Ambiar ua nuoba palabra-chabe por correio electrónico',
 'passwordremindertitle'   => 'Nuoba palabra-chave temporária an {{SITENAME}}',
 'noemail'                 => 'Num eisiste andereço de correio electrónico associado al outelizador "$1".',
@@ -309,6 +312,7 @@ Legenda: (actu) = diferenças da versão actual,
 'recentchanges'                  => 'Alteraçons recentes',
 'recentchanges-feed-description' => 'Acompanhe las alteraçõns recientes de yeste buiqui por yeste feed.',
 'rcnote'                         => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir de $3.",
+'rcnotefrom'                     => 'Alteraçons efectuadas desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom'                     => 'Mostrar as novas alterações a partir de $1',
 'rcshowhideminor'                => '$1 edições mínimas',
 'rcshowhidebots'                 => '$1 robots',
@@ -398,6 +402,7 @@ Legenda: (actu) = diferenças da versão actual,
 'wantedpages'             => 'Páginas pedidas',
 'mostlinked'              => 'Páginas cum mais afluentes',
 'mostlinkedcategories'    => 'Categories com mais miembros',
+'mostlinkedtemplates'     => 'Predefiniçons com mais artigos ligaçons',
 'mostcategories'          => 'Páginas de conteúdo com mais categories',
 'mostimages'              => 'Imagens com mais referências',
 'mostrevisions'           => 'Páginas de conteúdo com mais rebisons',
@@ -407,7 +412,6 @@ Legenda: (actu) = diferenças da versão actual,
 'deadendpages'            => 'Páginas sem saída',
 'protectedpages'          => 'Páginas protegidas',
 'listusers'               => 'Lhista de outelizadores',
-'specialpages'            => 'Páginas speciales',
 'newpages'                => 'Nuovas páginas',
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
@@ -442,9 +446,12 @@ Legenda: (actu) = diferenças da versão actual,
 'watchlist'            => 'Artigos vigiados',
 'mywatchlist'          => 'Artigos vigiados',
 'watchlistfor'         => "(para '''$1''')",
+'addedwatch'           => 'Adicionado à lhista de artigos bigiados',
+'removedwatch'         => 'Remobida de la lhista de artigos bigiados',
 'watch'                => 'Bigiar',
 'watchthispage'        => 'Bigiar yesta página',
 'unwatch'              => 'Desinteressar-se',
+'watchlist-details'    => '{{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão.',
 'wlshowlast'           => 'Ber últimas $1 horas $2 dias $3',
 'watchlist-hide-bots'  => 'Çcuonder ediçons de robôs',
 'watchlist-hide-own'   => 'çconder mies ediçons',
@@ -456,6 +463,8 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Delete/protect/revert
 'deletepage'                  => 'Apagar página',
+'confirmdeletetext'           => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
+Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que faz isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
 'actioncomplete'              => 'Acção terminada',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" fue elhiminada.
 Consulte $2 para um registo de eliminações recentes.',
@@ -468,7 +477,9 @@ Consulte $2 para um registo de eliminações recentes.',
 'protectlogpage'              => 'Registo de protecção',
 'protect-legend'              => 'Confirmar protecçon',
 'protectcomment'              => 'Razon de protecçon',
+'protectexpiry'               => 'Expiraçon',
 'protect-default'             => '(padron)',
+'protect-fallback'            => 'Ye necessário l perbilégio de "$1"',
 'protect-level-autoconfirmed' => 'Bloquear outelizadores num registados',
 'protect-level-sysop'         => 'Apenas administradores',
 'protect-summary-cascade'     => 'p. progressiva',
@@ -533,7 +544,9 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'move-watch'       => 'Bigiar yesta página',
 'movepagebtn'      => 'Mover página',
 'pagemovedsub'     => 'Página mobida com sucesso',
+'movepage-moved'   => '<big>\'\'\'"$1" foi mobido para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'movido para',
+'movetalk'         => 'Mober tambien la página de çcusson associada.',
 '1movedto2'        => '[[$1]] foi movido para [[$2]]',
 'movelogpage'      => 'Registo de movimentos',
 'movereason'       => 'Motivo:',
@@ -645,5 +658,8 @@ Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns d
 
 # Special:Version
 'version' => 'Berson', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Páginas speciales',
 
 );

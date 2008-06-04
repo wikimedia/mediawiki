@@ -1188,7 +1188,7 @@ Wćepano sam \$8 {{PLURAL:\$8|plik|pliki|plikůw}}.
 
 Uod uruchůmjyńo {{GRAMMAR:D.lp|{{SITENAME}}}} {{PLURAL:\$3|'''1''' raz filowano w zajty|'''\$3''' razy filowano w zajty|bůuo '''\$3''' filowań w zajty}} i wykůnano '''\$4''' {{PLURAL:\$4|sprowjyńy|sprowjyńa|sprowjyń}}. To dowo średńo '''\$5''' {{PLURAL:\$5|sprowjyńy|sprowjyńa|sprowjyń}} na zajta i '''\$6''' {{PLURAL:\$4|filowańy|filowańa|filowań}} na sprawjyńy.
 
-Duůgość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] je '''\$7'''.",
+Duůgość [http://www.mediawiki.org/wiki/Manual:Job_queue kolejki zadań] je '''\$7'''.",
 'userstatstext'          => "Je sam {{PLURAL:$1|'''1''' zarejerowany užytkowńik|'''$1''' zarejerowanych užytkowńikůw}}. {{PLURAL:$1|Užytkowńik tyn|Spośrůd ńich '''$2''' ('''$4%''')}} mo status $5.",
 'statistics-mostpopular' => 'Zajty we kere nojčyńśći sam filujom',
 
@@ -1249,9 +1249,6 @@ Duůgość [http://meta.wikimedia.org/wiki/Help:Job_queue kolejki zadań] je '''
 'protectedtitlestext'     => 'Ůtwořyńy artikli uo nastympujůncych mjanach je zawarte',
 'protectedtitlesempty'    => 'Do tych štalowań utwořyńy artikla uo dowolnym mjańy ńy je zawarte',
 'listusers'               => 'Lista užytkowńikůw',
-'specialpages'            => 'Extra zajty',
-'spheading'               => 'Extra zajty do wšyjstkych užytkowńikůw',
-'restrictedpheading'      => 'Extra zajty ze ůgrańičůnym dostympym',
 'newpages'                => 'Nowe zajty',
 'newpages-username'       => 'Mjano užytkowńika:',
 'ancientpages'            => 'Nojstarše artikle',
@@ -2454,6 +2451,7 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
 'fileduplicatesearch-result-n' => 'We {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|je dodatkowo kopia|sům $2 dodatkowe kopje|je $2 dodatkowych kopii}} plika „$1”.',
 
 # Special:SpecialPages
+'specialpages'                   => 'Extra zajty',
 'specialpages-group-maintenance' => 'Raporty kůnserwacyjne',
 'specialpages-group-other'       => 'Inkše extra zajty',
 'specialpages-group-login'       => 'Lůgowańy / rejerowańy',

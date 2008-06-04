@@ -347,7 +347,6 @@ $messages = array(
 'mostcategories'          => 'სტატიეფ, ნამუდგა არძას ბრალ კატეგორიეფ უღუნა',
 'shortpages'              => 'ჭიჭე გვერდეფ',
 'longpages'               => 'გინძე გვერდეფ',
-'specialpages'            => 'სპეციალურ ხასილეფ',
 'newpages'                => 'ახალ გვერდეფ',
 'ancientpages'            => 'ჯვეშ გვერდეფ',
 'move'                    => 'გინოღალა',
@@ -535,5 +534,8 @@ $messages = array(
 
 # Special:Version
 'version' => 'ვერსია', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'სპეციალურ ხასილეფ',
 
 );

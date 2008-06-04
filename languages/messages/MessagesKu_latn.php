@@ -941,7 +941,7 @@ Derve wan, {{PLURAL:$2|rûpelek|'''$2''' rûpel}} hene, ku qey {{PLURAL:$2|gotar
 Ji afirandina Wîkiyê heta roja îro '''$3''' {{PLURAL:$3|cara rûpelek hate|caran rûpelan hatin}} mezekirin û '''$4''' {{PLURAL:$3|cara rûpelek hate|caran rûpelan hatin}} guherandin ji destpêkê {{SITENAME}} da.
 Ji ber wê di nîvî de her rûpel '''$5''' carî hatiye guherandin, û nîspeta dîtun û guherandinan '''$6''' e.
 
-Dirêjahîya [http://meta.wikimedia.org/wiki/Help:Job_queue ''job queue''] '''$7''' e.",
+Dirêjahîya [http://www.mediawiki.org/wiki/Manual:Job_queue ''job queue''] '''$7''' e.",
 'userstatstext' => "Li vir {{PLURAL:$1|[[Special:Listusers|bikarhênerekî]]|'''$1''' [[Special:Listusers|bikarhênerên]]}} qeydkirî {{PLURAL:$1|heye|hene}}, ji wan '''$2''' (an '''$4%''') qebûlkirinên $5 {{PLURAL:$2|birîye|birine}}.",
 
 'disambiguations'     => 'Rûpelên cudakirinê',

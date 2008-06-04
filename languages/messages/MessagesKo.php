@@ -1053,7 +1053,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 위키가 설치된 후 문서는 전체 '''\$3'''번 읽혔고, '''\$4'''번 편집되었습니다. 문서당 평균 편집 횟수는 '''\$5'''번이고, 한번 편집할 때마다 평균 '''\$6'''번 문서를 보았습니다.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue]의 길이는 '''\$7'''입니다.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]의 길이는 '''\$7'''입니다.",
 'userstatstext'          => "'''$1'''명의 [[Special:Listusers|사용자]]가 등록되어 있고, 이 중 $5 권한을 가진 사용자 수는 '''$2'''명('''$4%''')입니다.",
 'statistics-mostpopular' => '가장 많이 읽힌 문서',
 
@@ -1113,9 +1113,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'protectedtitlestext'     => '다음 표제어들은 생성이 금지되어 있습니다.',
 'protectedtitlesempty'    => '해당 조건에 맞는 생성 금지 표제어가 없습니다.',
 'listusers'               => '사용자 목록',
-'specialpages'            => '특수 문서 목록',
-'spheading'               => '일반 특수 문서',
-'restrictedpheading'      => '제한된 특수 문서',
 'newpages'                => '새 문서 목록',
 'newpages-username'       => '이름:',
 'ancientpages'            => '오래된 문서 목록',
@@ -1917,6 +1914,7 @@ $1',
 'fileduplicatesearch-result-n' => '"$1"파일은 $2개의 중복 파일이 있습니다.',
 
 # Special:SpecialPages
+'specialpages'                   => '특수 문서 목록',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other'       => '다른 특수문서',
 'specialpages-group-login'       => '로그인 / 등록',

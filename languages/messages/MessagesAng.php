@@ -421,8 +421,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'mostlinkedtemplates'  => 'Gebundenostan bysena',
 'shortpages'           => 'Scorte trametas',
 'longpages'            => 'Lange trametas',
-'specialpages'         => 'Syndrige trametas',
-'spheading'            => 'Syndrige trametas eallum brýcerum',
 'newpages'             => 'Nīwe trametas',
 'newpages-username'    => 'Brūcendnama:',
 'ancientpages'         => 'Ieldestan Trametas',
@@ -701,5 +699,9 @@ Gif þis is *nā* þū, ne folga þisne bend. Þēos āsēðungrūn forealdaþ �
 # Special:Version
 'version'       => 'Fadung', # Not used as normal message but as header for the special page itself
 'version-other' => 'Ōðer',
+
+# Special:SpecialPages
+'specialpages' => 'Syndrige trametas',
+
 
 );

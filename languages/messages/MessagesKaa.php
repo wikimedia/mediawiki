@@ -951,7 +951,7 @@ Usılardı esapqa almag'anda, haqıyqıy mag'lıwmatqa iye '''$2''' bet bar dep 
 {{SITENAME}} ornatılg'annan beri betler {{PLURAL:$3|'''1'''|ha'mmesi bolıp '''$3'''}} ret qaralg'an, '''$4''' ret o'zgertilgen.
 Bunın' na'tiyjesinde ortasha esap penen ha'r bir betke '''$5''' o'zgeris tuwrı keledi, ha'mde ha'r bir o'zgeriske '''$6''' qaraw tuwrı  keledi.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Tapsırımalar gezeginin'] uzınlıg'ı: '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Tapsırımalar gezeginin'] uzınlıg'ı: '''$7'''.",
 'userstatstext'          => "Bul jerde '''$1''' [[{{#special:Listusers}}|esapqa alıng'an paydalanıwshı]] bar, solardın' ishinen '''$2''' (yag'nıy '''$4 %''') paydalanıwshısında $5 huquqları bar.",
 'statistics-mostpopular' => "En' ko'p ko'rilgen betler",
 

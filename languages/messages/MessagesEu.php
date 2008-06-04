@@ -988,7 +988,7 @@ Guztira <b>$3</b> bisitaturiko orri, eta <b>$4</b> artikulu aldaketa egon dira s
 
 Emaitza hauekin hurrengo arrazoiak atera daitezke: <b>$5</b> aldaketa egon dira orrialde bakoitzeko, eta <b>$6</b> bisita aldaketa bakoitzeko.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.",
 'userstatstext'          => "'''$1''' erabiltzaile daude izen emanda, horietatik '''$2''' (edo '''$4%''') $5 direlarik.",
 'statistics-mostpopular' => 'Orrialde bisitatuenak',
 
@@ -1041,9 +1041,6 @@ The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''
 'protectedpages'          => 'Babestutako orrialdeak',
 'protectedpagestext'      => 'Jarraian azaltzen diren orrialdeak mugitu edo aldatzeko babestuta daude',
 'listusers'               => 'Erabiltzaileen zerrenda',
-'specialpages'            => 'Aparteko orrialdeak',
-'spheading'               => 'Erabiltzaile guztientzako aparteko orrialdeak',
-'restrictedpheading'      => 'Mugatutako aparteko orrialdeak',
 'newpages'                => 'Orrialde berriak',
 'newpages-username'       => 'Erabiltzaile-izena:',
 'ancientpages'            => 'Orrialde zaharrenak',
@@ -1887,5 +1884,9 @@ $1',
 
 # Special:Filepath
 'filepath' => 'Fitxategi bidea',
+
+# Special:SpecialPages
+'specialpages' => 'Aparteko orrialdeak',
+
 
 );

@@ -10,6 +10,8 @@
  * @author Gion-andri
  */
 
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'suttastritgar colliaziuns:',
@@ -416,7 +418,7 @@ There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and ''
 since {{SITENAME}} was setup.
 That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
 
-La lunghezza da la [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]: '''\$7'''.",
+La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '''\$7'''.",
 'userstatstext' => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which
 '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 
@@ -428,20 +430,17 @@ La lunghezza da la [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]: ''
 'brokenredirectstext' => 'Ils suandants redirects (Weiterleitung) mainan tar ina pagina betg existenta:',
 
 # Miscellaneous special pages
-'ncategories'        => '$1 {{PLURAL:$1|categoria|categorias}}',
-'nviews'             => 'Guarda $1 giadas',
-'lonelypages'        => 'Paginas bandunadas',
-'wantedcategories'   => 'Categorias giavischadas',
-'wantedpages'        => 'Artitgels giavischads',
-'mostcategories'     => "Artitgels ch'èn en las pli biaras chategorias",
-'mostrevisions'      => 'Artitgels cun las pli biaras revisiuns',
-'longpages'          => 'Artitgels lungs',
-'deadendpages'       => 'artitgels senza links interns che mainan anavant',
-'specialpages'       => 'Paginas spezialas',
-'spheading'          => 'Paginas spezialas per tut ils utilisaders',
-'restrictedpheading' => 'Paginas spezialas per Administraturs',
-'ancientpages'       => 'Artitgels il pli ditg betg modifitgads',
-'move'               => 'spustar',
+'ncategories'      => '$1 {{PLURAL:$1|categoria|categorias}}',
+'nviews'           => 'Guarda $1 giadas',
+'lonelypages'      => 'Paginas bandunadas',
+'wantedcategories' => 'Categorias giavischadas',
+'wantedpages'      => 'Artitgels giavischads',
+'mostcategories'   => "Artitgels ch'èn en las pli biaras chategorias",
+'mostrevisions'    => 'Artitgels cun las pli biaras revisiuns',
+'longpages'        => 'Artitgels lungs',
+'deadendpages'     => 'artitgels senza links interns che mainan anavant',
+'ancientpages'     => 'Artitgels il pli ditg betg modifitgads',
+'move'             => 'spustar',
 
 # Book sources
 'booksources' => 'Tschertga da ISBN',
@@ -584,6 +583,9 @@ Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localis
 'common.css'   => '/** CSS placed here will be applied to all skins */',
 'monobook.css' => "/* editescha quest file per adattar il skin momobook per l'entira pagina */",
 
+# Scripts
+'monobook.js' => '/* Deprecated; use [[MediaWiki:common.js]] */',
+
 # Attribution
 'anonymous'     => 'Utilisader(s) anonim(s) da {{SITENAME}}',
 'othercontribs' => 'Basescha sin la lavur da $1.',
@@ -671,5 +673,8 @@ $1',
 
 # Special:Version
 'version' => 'Versiun', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Paginas spezialas',
 
 );

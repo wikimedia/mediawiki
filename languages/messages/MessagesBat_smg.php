@@ -876,9 +876,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'protectedpagestext'      => 'Šėtē poslapē īr apsauguotė nū parkielėma a redagavėma',
 'protectedpagesempty'     => 'Šėtu čiesu nier apsauguots anėjuoks fails so šėtās parametrās.',
 'listusers'               => 'Sārašos nauduotuoju',
-'specialpages'            => 'Specēlė̅jė poslapē',
-'spheading'               => 'Specēlė̅jė poslapē vėsėm nauduotuojam',
-'restrictedpheading'      => 'Apribuotė̅jė specēlė̅jė poslapē',
 'newpages'                => 'Naujausė straipsnē',
 'newpages-username'       => 'Nauduotuojė vards:',
 'ancientpages'            => 'Seniausė poslapē',
@@ -1530,5 +1527,9 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 
 # Special:Filepath
 'filepath' => 'Faila maršrots',
+
+# Special:SpecialPages
+'specialpages' => 'Specēlė̅jė poslapē',
+
 
 );

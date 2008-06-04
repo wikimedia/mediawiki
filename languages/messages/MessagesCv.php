@@ -830,8 +830,6 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'protectedpages'          => 'хӳтĕленĕ страницăсем',
 'protectedtitles'         => 'Юраман ятсем',
 'listusers'               => 'Хутшăнакансен списокĕ',
-'specialpages'            => 'Ятарлă страницăсем',
-'spheading'               => 'Пěтěм пользовательсем валли ятарлă страницăсем',
 'newpages'                => 'Çěнě страницăсем',
 'newpages-username'       => 'Хутшăнакан:',
 'ancientpages'            => 'Чи кивĕ статьясем',
@@ -1216,6 +1214,7 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'fileduplicatesearch-submit'   => 'Туп',
 
 # Special:SpecialPages
+'specialpages'                   => 'Ятарлă страницăсем',
 'specialpages-group-maintenance' => 'Техника обслуживанийĕн отчечĕсем',
 'specialpages-group-other'       => 'Ытти ятарлă страницăсем',
 'specialpages-group-login'       => 'Регистрациленесси',
@@ -1223,5 +1222,6 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'specialpages-group-media'       => 'Медиа-материалсемпе тултарăшсем',
 'specialpages-group-users'       => 'Хутшăнакансем тата правасем',
 'specialpages-group-highuse'     => 'Нумай усă куракан страницăсем',
+
 
 );

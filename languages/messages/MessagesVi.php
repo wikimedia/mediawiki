@@ -1335,7 +1335,7 @@ Có '''$8''' tập tin đã được tải lên.
 
 Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
 
-Độ dài của [http://meta.wikimedia.org/wiki/Help:Job_queue hàng đợi việc] là '''$7'''.",
+Độ dài của [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc] là '''$7'''.",
 'userstatstext'          => "Có '''$1''' [[Special:Listusers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.",
 'statistics-mostpopular' => 'Các trang được xem nhiều nhất',
 
@@ -2606,8 +2606,9 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Các trang đặc biệt',
-'specialpages-note'              => '<hr />
-* Những trang đặc biệt <span class="mw-specialpagerestricted">được tô màu khác</span> là những trang bị hạn chế.',
+'specialpages-note'              => '----
+* Trang đặc biệt thông thường.
+* <span class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</span>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
 'specialpages-group-other'       => 'Những trang đặc biệt khác',
 'specialpages-group-login'       => 'Đăng nhập / Mở tài khoản',

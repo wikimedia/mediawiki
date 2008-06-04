@@ -535,7 +535,6 @@ $messages = array(
 'protectedpages'       => '已保护页面',
 'protectedtitles'      => '已保护个标题',
 'listusers'            => '用户列表',
-'specialpages'         => '特殊页面',
 'newpages'             => '新页面',
 'newpages-username'    => '用户名:',
 'ancientpages'         => '顶顶老个页面',
@@ -855,5 +854,8 @@ Variants for Chinese language
 'filepath'        => '文件路径',
 'filepath-page'   => '文件：',
 'filepath-submit' => '路径',
+
+# Special:SpecialPages
+'specialpages' => '特殊页面',
 
 );

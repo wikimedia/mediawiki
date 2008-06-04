@@ -1243,7 +1243,7 @@ Atis fakipölo, retons nog {{PLURAL:\$2|pad '''1''', kel luveratiko binon legiko
 Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL:\$4|padiredakam '''1'''|padiredakams '''\$4'''}}, sisä vük at pästiton.
 Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
 
-Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$7'''.",
+Lunot [http://www.mediawiki.org/wiki/Manual:Job_queue vobodapoodkeda] binon '''\$7'''.",
 'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5.",
 'statistics-mostpopular' => 'Pads suvüno palogöls:',
 
@@ -1304,9 +1304,6 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'protectedtitlestext'     => 'Tiäds sököl no dalons pajafön:',
 'protectedtitlesempty'    => 'Tiäds nonik pejelons me paramets at.',
 'listusers'               => 'Gebanalised',
-'specialpages'            => 'Pads patik',
-'spheading'               => 'Pads patik pro gebans valik',
-'restrictedpheading'      => 'Te pro guvans',
 'newpages'                => 'Pads nulik',
 'newpages-username'       => 'Gebananem:',
 'ancientpages'            => 'Pads bäldikün',
@@ -2266,6 +2263,7 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 'fileduplicatesearch-info'     => 'pixels $1 × $2 <br />Ragivagretot: $3<br />MIME-sot: $4',
 
 # Special:SpecialPages
+'specialpages'               => 'Pads patik',
 'specialpages-group-other'   => 'Pads patik votik',
 'specialpages-group-login'   => 'Nunädön oki / jafön kali',
 'specialpages-group-changes' => 'Votükams nulik e jenotaliseds',

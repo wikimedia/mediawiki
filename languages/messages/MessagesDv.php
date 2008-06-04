@@ -270,8 +270,6 @@ $messages = array(
 'wantedcategories' => 'ބޭނުންފުޅުވާ ގިސްމުތައް',
 'wantedpages'      => 'ބޭނުންފުޅުވާ ޞަފްޙާތައް',
 'shortpages'       => 'ކުރު ޞަފްޙާތައް',
-'specialpages'     => 'ހާއްސަ ޞަފްޙާތައް',
-'spheading'        => 'ހުރިހާ މެންބަރުންނަށް ހާއްސަ ޞަފްޙާތައް',
 'ancientpages'     => 'ބޯދާ ޞަފްޙާތައް',
 'move'             => 'ނަން/ތަން ބަދަލުކުރައްވާ',
 'movethispage'     => 'މި ޞަފްހާގެ ނަންބަދަލުކުރައްވާ',
@@ -396,5 +394,9 @@ $messages = array(
 
 # Special:Version
 'version' => 'ނުސްހާ ނަމްބަރު', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'ހާއްސަ ޞަފްޙާތައް',
+
 
 );

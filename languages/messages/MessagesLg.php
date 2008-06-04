@@ -363,7 +363,6 @@ oba ku gano agali ku lupapula luno.<br />
 # Miscellaneous special pages
 'nbytes'            => '{{PLURAL:$1|bayiti|bayiti}} $1',
 'nmembers'          => '{{PLURAL:$1|memba|bamemba}} $1',
-'specialpages'      => "Empapula ez'enjawulo",
 'newpages'          => 'Empapula empya',
 'newpages-username' => "Ery'obwa memba:",
 'move'              => 'Simbuliza',
@@ -561,5 +560,8 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 # Watchlist editing tools
 'watchlisttools-view' => 'Kebera ebikyuse',
 'watchlisttools-edit' => "Kola ku lukalala lwe'mpapula z'ogoberera",
+
+# Special:SpecialPages
+'specialpages' => "Empapula ez'enjawulo",
 
 );

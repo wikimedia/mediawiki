@@ -808,7 +808,7 @@ Naloženih je '''$8''' {{plural:{{NUMBEROFFILES}}|datoteka|datoteki|datoteke|dat
 Od postavitve wikija je bilo opravljenih '''$3''' pregledov in '''$4''' urejanj strani.
 To da skupaj povprečno '''$5''' urejanj na stran in '''$6''' pogledov na urejanje.
 
-Dolžina [http://meta.wikimedia.org/wiki/Help:Job_queue čakalne vrste delovnih nalog]: '''$7'''.",
+Dolžina [http://www.mediawiki.org/wiki/Manual:Job_queue čakalne vrste delovnih nalog]: '''$7'''.",
 'userstatstext' => "Registriralo se je '''$1''' uporabnikov. Med temi je '''$2''' (oz. '''$4%''') administratorjev (glej $3).",
 
 'disambiguations'     => 'Razločitvene strani',
@@ -847,9 +847,6 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'longpages'               => 'Dolge strani',
 'deadendpages'            => 'Članki brez delujočih povezav',
 'listusers'               => 'Seznam uporabnikov',
-'specialpages'            => 'Posebne strani',
-'spheading'               => 'Posebne strani za vse uporabnike',
-'restrictedpheading'      => 'Omejene posebne strani',
 'newpages'                => 'Nove strani',
 'ancientpages'            => 'Najdlje nespremenjeni članki',
 'move'                    => 'Prestavi',
@@ -1651,5 +1648,9 @@ $1',
 
 # Special:Version
 'version' => 'Različica', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Posebne strani',
+
 
 );

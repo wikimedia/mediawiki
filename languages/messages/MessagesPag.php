@@ -207,7 +207,6 @@ $messages = array(
 'shortpages'     => 'Antikey ran bolong',
 'longpages'      => 'Andokoy ran bolong',
 'protectedpages' => 'Iyayagel ran bolobolong',
-'specialpages'   => 'Niduma ran bolobolong',
 'newpages'       => 'Balo ran bolong',
 'ancientpages'   => 'Sankadaanan ran bolobolong',
 'move'           => 'Iyales',
@@ -399,5 +398,8 @@ $1',
 # Live preview
 'livepreview-loading' => 'Ilulugan…',
 'livepreview-ready'   => 'Ilulugan… Akaparaan!',
+
+# Special:SpecialPages
+'specialpages' => 'Niduma ran bolobolong',
 
 );

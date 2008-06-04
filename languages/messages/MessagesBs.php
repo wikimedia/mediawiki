@@ -748,7 +748,7 @@ Totalni broj stranica u bazi:  '''$1'''.
 Bilo je '''$3''' pogleda stranica, i '''$4''' izmjena otkad je viki bio instaliran.
 To izađe u prosjeku oko '''$5''' izmjena po stranici, i '''$6''' pogleda po izmjeni.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.",
 'userstatstext' => "Postoji '''$1''' registrovanih korisnika, od kojih
 su '''$2''' (ili '''$4%''') administratori.",
 
@@ -778,8 +778,6 @@ su '''$2''' (ili '''$4%''') administratori.",
 'longpages'               => 'Dugačke stranice',
 'deadendpages'            => 'Stranice bez internih veza',
 'listusers'               => 'Spisak korisnika',
-'specialpages'            => 'Posebne stranice',
-'spheading'               => 'Posebne stranice za sve korisnike',
 'newpages'                => 'Nove stranice',
 'ancientpages'            => 'Najstarije stranice',
 'move'                    => 'Preusmjeri',
@@ -1263,6 +1261,7 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'version' => 'Verzija', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
+'specialpages'                   => 'Posebne stranice',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',

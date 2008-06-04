@@ -179,7 +179,6 @@ $messages = array(
 'brokenredirects-delete' => '(གསུབ་པ།)',
 
 # Miscellaneous special pages
-'specialpages'      => 'དམིཊ་བསལ་གྱི་བཟོ་བཅོས།',
 'newpages-username' => 'དྲ་མིང་།:',
 'move'              => 'སྤོར།',
 
@@ -241,5 +240,8 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'སོང་།',
+
+# Special:SpecialPages
+'specialpages' => 'དམིཊ་བསལ་གྱི་བཟོ་བཅོས།',
 
 );

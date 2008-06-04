@@ -483,9 +483,6 @@ $messages = array(
 'longpages'               => 'طویل ترین صفحات',
 'deadendpages'            => 'مردہ صفحات',
 'listusers'               => 'فہرست ارکان',
-'specialpages'            => 'خصوصی صفحات',
-'spheading'               => 'خصوصی صفحات براۓ تمام صارفین',
-'restrictedpheading'      => 'ممنوعہ خاص صفحہ',
 'newpages'                => 'جدید صفحات',
 'ancientpages'            => 'قدیم ترین صفحات',
 'move'                    => 'منتقـل',
@@ -692,5 +689,9 @@ $messages = array(
 
 # Special:Version
 'version' => 'ورژن', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'خصوصی صفحات',
+
 
 );

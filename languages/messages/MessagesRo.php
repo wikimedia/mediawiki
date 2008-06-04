@@ -13,6 +13,7 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Jon Harald Søby
+ * @author Gangleri
  */
 
 $skinNames = array(
@@ -1044,7 +1045,7 @@ Acest număr include paginile de "discuţii", paginile despre {{SITENAME}}, pagi
 În total au fost <b>$3</b> vizite (accesări) şi <b>$4</b> modificări de la lansarea acestei wiki.
 În medie rezultă <b>$5</b> modificări per pagină sau <b>$6</b> vizualizări la fiecare modificare.
 
-Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b>.',
+Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>$7</b>.',
 'userstatstext'          => "Există un număr de '''$1''' utilizatori înregistraţi. Dintre aceştia '''$2''' (sau '''$4%''') sunt administratori (vezi '''$3''').",
 'statistics-mostpopular' => 'Paginile cele mai vizualizate',
 
@@ -1098,9 +1099,6 @@ Mărimea [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] este <b>$7</b
 'protectedpagestext'      => 'Următoarele pagini sunt protejate la mutare sau editare',
 'protectedpagesempty'     => 'Nu există pagini protejate',
 'listusers'               => 'Lista de utilizatori',
-'specialpages'            => 'Pagini speciale',
-'spheading'               => 'Pagini speciale pentru toţi utilizatorii',
-'restrictedpheading'      => 'Pagini speciale restricţionate',
 'newpages'                => 'Pagini noi',
 'newpages-username'       => 'Nume de utilizator:',
 'ancientpages'            => 'Cele mai vechi articole',
@@ -2109,5 +2107,8 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 
 # Special:Version
 'version' => 'Versiune', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'Pagini speciale',
 
 );

@@ -66,9 +66,8 @@ $messages = array(
 'statistics' => 'Seidostatistik',
 
 # Miscellaneous special pages
-'ncategories'  => '$1 {{PLURAL:$1|𐌺𐌿𐌽𐌾𐌰|𐌺𐌿𐌽𐌾𐍉𐍃}}',
-'specialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
-'move'         => '𐌽𐌰𐌼𐌾𐌰𐌽 𐌰𐍆𐍄𐍂𐌰',
+'ncategories' => '$1 {{PLURAL:$1|𐌺𐌿𐌽𐌾𐌰|𐌺𐌿𐌽𐌾𐍉𐍃}}',
+'move'        => '𐌽𐌰𐌼𐌾𐌰𐌽 𐌰𐍆𐍄𐍂𐌰',
 
 # Special:Categories
 'categories' => '𐌺𐌿𐌽𐌾𐍉𐍃',
@@ -85,5 +84,8 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => '𐍈𐌰𐍂𐌾𐌹𐍃 𐍃𐌴𐌹𐌳𐍉𐌽𐌰 𐌷𐌻𐌰𐌲𐌺𐌾𐌰𐌽𐌳 𐌷𐌹𐌳𐍂𐌴',
+
+# Special:SpecialPages
+'specialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
 
 );

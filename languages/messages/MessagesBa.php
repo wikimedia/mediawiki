@@ -245,8 +245,6 @@ $messages = array(
 
 # Miscellaneous special pages
 'listusers'         => 'Ҡатнашыусылар исемлеге',
-'specialpages'      => 'Махсус биттәр',
-'spheading'         => 'Ярҙамсы биттәр',
 'newpages-username' => 'Ҡатнашыусы:',
 'ancientpages'      => 'Иң иҫке мәҡәләләр',
 'move'              => 'Яңы исем биреү',
@@ -312,5 +310,9 @@ $messages = array(
 'imagelistall'     => 'бөтә',
 'watchlistall2'    => 'бөтә',
 'namespacesall'    => 'бөтә',
+
+# Special:SpecialPages
+'specialpages' => 'Махсус биттәр',
+
 
 );

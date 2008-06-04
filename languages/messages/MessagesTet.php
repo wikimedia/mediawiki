@@ -431,7 +431,6 @@ $messages = array(
 'shortpages'        => 'Pájina badak',
 'longpages'         => 'Pájina naruk',
 'listusers'         => "Lista uza-na'in",
-'specialpages'      => 'Pájina espesiál sira',
 'newpages'          => 'Pájina foun',
 'newpages-username' => "Naran uza-na'in:",
 'ancientpages'      => 'Pájina tuan liu hotu sira',
@@ -666,5 +665,8 @@ $messages = array(
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Buka',
+
+# Special:SpecialPages
+'specialpages' => 'Pájina espesiál sira',
 
 );

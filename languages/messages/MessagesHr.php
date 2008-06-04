@@ -1279,7 +1279,7 @@ Snimljeno je '''$8''' datoteka.
 Ukupno je '''$3''' pregleda stranica, i '''$4''' uređivanja članaka od pokretanja projekta {{SITENAME}}.
 U prosjeku to iznosi '''$5''' uređivanja po stranici, i '''$6''' pregleda po uređivanju.
 
-Duljina [http://meta.wikimedia.org/wiki/Help:Job_queue zadataka za izvršavanje] je '''$7'''.",
+Duljina [http://www.mediawiki.org/wiki/Manual:Job_queue zadataka za izvršavanje] je '''$7'''.",
 'userstatstext'          => "Broj prijavljenih [[Special:Listusers|suradnika]] je '''$1'''. Od toga {{PLURAL:$2|je '''$2''' (ili '''$4%''') administrator|su '''$2''' (ili '''$4%''') administratora|su '''$2''' (ili '''$4%''') administratori}}, tj. imaju $5 prava.",
 'statistics-mostpopular' => 'Najposjećenije stranice',
 

@@ -174,7 +174,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'mostlinkedcategories'    => 'Ol grup igat planti link i kam long ol',
 'mostlinkedtemplates'     => 'Ol templet igat planti link i kam long ol',
 'mostcategories'          => 'Ol pes bilong buk istap insait long planti grup',
-'specialpages'            => 'Ol sipesol pes',
 'move'                    => 'Surikim',
 'movethispage'            => 'Surikim dispela pes',
 'unusedcategoriestext'    => 'Ol dispela grup istap yet, tasol i no gat wanpela pes o grup i stap insait long ol.',
@@ -261,5 +260,8 @@ Yu mas painim narapela nem.',
 'watchlisttools-view' => 'Lukim ol senis',
 'watchlisttools-edit' => 'Lukim na senisim lukautbuk',
 'watchlisttools-raw'  => 'Senisim lukautbuk insait long wanpela bokis',
+
+# Special:SpecialPages
+'specialpages' => 'Ol sipesol pes',
 
 );

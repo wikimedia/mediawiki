@@ -137,8 +137,7 @@ $messages = array(
 'statistics' => 'Kisitsisinngorlugit paasissutissat',
 
 # Miscellaneous special pages
-'specialpages' => 'Quppernerit immikkut ittut',
-'move'         => 'Nuunneq',
+'move' => 'Nuunneq',
 
 # Special:Log
 'specialloguserlabel' => 'Pineqartoq:',
@@ -171,5 +170,8 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 
 # Tooltip help for the actions
 'tooltip-search' => 'Ujaarlerit {{SITENAME}}',
+
+# Special:SpecialPages
+'specialpages' => 'Quppernerit immikkut ittut',
 
 );

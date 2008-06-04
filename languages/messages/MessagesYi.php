@@ -813,8 +813,10 @@ $1 שעות.',
 'nextn'                 => '$1 קומענדיגע',
 'search-suggest'        => 'צי האט איר געמיינט: $1',
 'searchall'             => 'אלץ',
-'showingresultstotal'   => "ווייזן רעזולטאטן '''$1 - $2''' פון '''$3'''",
+'showingresultstotal'   => "ווײַזן {{plural:$3| רעזולטאט '''$1''' פֿון '''$3'''| רעזולטאטן '''$1 - $2''' פֿון '''$3'''}}",
 'powersearch'           => 'זוכן',
+'powersearch-redir'     => 'ווײַז ווײַטערפֿירונג בלעטער',
+'powersearch-field'     => 'זוך',
 
 # Preferences page
 'preferences'           => 'פרעפערענצן',
@@ -822,6 +824,9 @@ $1 שעות.',
 'prefs-edits'           => 'צאל פון ענדערונגן:',
 'prefsnologin'          => 'נישט אריינלאגירט',
 'prefsnologintext'      => 'איר דארפט זיין [[Special:Userlogin|איינלאגירט]] כדי צו ענדערן באניצער פרעפֿערענצן.',
+'qbsettings-none'       => 'גארנישט',
+'qbsettings-fixedleft'  => 'קבוע לינקס',
+'qbsettings-fixedright' => 'קבוע רעכטס',
 'changepassword'        => 'ענדערט פעסווארד',
 'skin'                  => 'סקין',
 'math'                  => 'פאָרמאַל',
@@ -853,6 +858,7 @@ $1 שעות.',
 'timezonelegend'        => 'צייט זאונע',
 'localtime'             => 'לאקאלער צייט',
 'allowemail'            => 'ערלויבן אנדערע צו אײַך שיקן אימעילס',
+'prefs-namespaces'      => 'נאמענטיילן',
 'defaultns'             => 'זוך אין דעם נעימספעיס ביי דיפאלט:',
 'default'               => 'דיפאלט',
 'files'                 => 'פיילס',
@@ -866,6 +872,7 @@ $1 שעות.',
 
 # Groups
 'group'            => 'גרופע:',
+'group-user'       => 'באניצערס',
 'group-bot'        => 'באטס',
 'group-sysop'      => 'סיסאפס',
 'group-bureaucrat' => 'ביוראקראטן',
@@ -876,18 +883,25 @@ $1 שעות.',
 'group-sysop-member'      => 'סיסאפ',
 'group-bureaucrat-member' => 'ביוראקראט',
 
+'grouppage-user'       => '{{ns:project}}:אײַנגעשריבענער באניצער',
 'grouppage-bot'        => '{{ns:project}}:באטס',
 'grouppage-sysop'      => '{{ns:project}}:אדמיניסטראטורן',
 'grouppage-bureaucrat' => '{{ns:project}}:ביראקראט',
 
 # Rights
-'right-move'   => 'באוועג בלעטער',
-'right-upload' => 'ארויפלאדן טעקעס',
-'right-delete' => 'מעקן בלעטער',
+'right-read'          => 'ליינען בלעטער',
+'right-edit'          => 'רעדאקטירן בלעטער',
+'right-minoredit'     => 'צייכן רעדאקטירונגען אלס  מינערדיק',
+'right-move'          => 'באוועג בלעטער',
+'right-upload'        => 'ארויפלאדן טעקעס',
+'right-reupload'      => 'איבערשרײַבן עקסיסטירנדע טעקע',
+'right-autoconfirmed' => 'רעדאקטירן האלב-געשיצטע בלעטער',
+'right-delete'        => 'מעקן בלעטער',
 
 # Recent changes
 'recentchanges'     => 'לעצטע ענדערונגען',
 'rcnote'            => "אונטן {{PLURAL:$1|איז '''1''' ענדערונג | זײַנען די לעצטע '''$1''' ענדערונגען}} אין {{PLURAL:$2|דעם לעצטן טאג|די לעצטע $2 טעג}}, ביז $3.",
+'rcnotefrom'        => "פֿאלגנד זענען די ענדערונגען זײַט '''$2''' (ביז '''$1''')",
 'rclistfrom'        => 'װײַז נײַע ענדערונגען זינט $1',
 'rcshowhideminor'   => '$1 מינדערדיגע ענדערונגן',
 'rcshowhidebots'    => '$1 באטס',
@@ -900,31 +914,45 @@ $1 שעות.',
 'hist'              => 'היסטאריע',
 'hide'              => 'באַהאַלטן',
 'show'              => 'ווייז',
+'minoreditletter'   => 'מ',
 'newpageletter'     => 'נ',
+'boteditletter'     => 'ב',
 'newsectionsummary' => '/* $1 */ נייע אפטיילונג',
 
 # Recent changes linked
 'recentchangeslinked'         => 'פֿאַרבונדענע ענדערונגען',
 'recentchangeslinked-summary' => "אט א רשימה פון נייע ענדערונגען צו בלעטער פארבונדן פון א ספעציפישן בלאט (אדער מיטגליד בלעטער פון א ספעציפישער קאטעגאריע).
 בלעטער אויף [[Special:Watchlist|אייער אויפפאסונג ליסטע]] זענען געוויזן '''דיק'''.",
+'recentchangeslinked-page'    => 'בלאט נאמען:',
 
 # Upload
-'upload'        => 'בילדער/טעקעס אַרױפֿלאָדירן',
-'uploadbtn'     => 'פייל אַרױפֿלאָדירן',
-'uploadnologin' => 'נישט אריינלאגירט',
-'uploaderror'   => 'ארויפלאדירן פעילער',
-'uploadlog'     => 'ארויפלאָדירען לאָגבוך',
-'badfilename'   => 'פייל נאמען איז געטוישט צו "$1".',
-'emptyfile'     => 'די פייל וואס איר האט ארויפלאדירט איז ליידיג. עס קען זיין אז דער סיבה איז פשוט א טייפא. ביטע מאכט זיכער אז דאס איז די פייל וואס איר ווילט ארויפלאדירן.',
-'savefile'      => 'טעקע אױפֿהיטן',
-'uploadedimage' => 'אַרױפֿלאָדירט "[[$1]]"',
-'destfilename'  => 'ציל טעקע נאמען:',
+'upload'          => 'בילדער/טעקעס אַרױפֿלאָדירן',
+'uploadbtn'       => 'פייל אַרױפֿלאָדירן',
+'uploadnologin'   => 'נישט אריינלאגירט',
+'uploaderror'     => 'ארויפלאדירן פעילער',
+'uploadlog'       => 'ארויפלאָדירען לאָגבוך',
+'badfilename'     => 'פייל נאמען איז געטוישט צו "$1".',
+'emptyfile'       => 'די פייל וואס איר האט ארויפלאדירט איז ליידיג. עס קען זיין אז דער סיבה איז פשוט א טייפא. ביטע מאכט זיכער אז דאס איז די פייל וואס איר ווילט ארויפלאדירן.',
+'savefile'        => 'טעקע אױפֿהיטן',
+'uploadedimage'   => 'אַרױפֿלאָדירט "[[$1]]"',
+'destfilename'    => 'ציל טעקע נאמען:',
+'watchthisupload' => 'פאס אויף דעם בלאט',
+
+# Special:Imagelist
+'imgfile'        => 'טעקע',
+'imagelist'      => 'טעקע ליסטע',
+'imagelist_name' => 'נאמען',
 
 # Image description page
 'filehist-current' => 'לויפיק',
 'filehist-user'    => 'באניצער',
 'linkstoimage'     => 'די פאלגנדע בלעטער ניצן דאס דאזיגע בילד:',
 'nolinkstoimage'   => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
+
+# File deletion
+'filedelete'        => 'מעק אויס $1',
+'filedelete-legend' => 'מעק אויס טעקע',
+'filedelete-submit' => 'מעק אויס',
 
 # MIME search
 'download' => 'אראפלאדירן',
@@ -942,7 +970,7 @@ $1 שעות.',
 עס זענען געווען סה\"כ '''\$3''' {{PLURAL:\$3|בלאט קוק|בלאט קוקן}}, און  '''\$4''' {{PLURAL:\$4|בלאט באארבעטונגען| בלאט באארבעטונג}} זייט  {{SITENAME}} איז געווארן אויפגעשטעלט.
 דאס באטרעפט דורכשניטלעך  '''\$5''' באארבעטונגען א בלאט, און  '''\$6''' קוקן א  באארבעטונג.
 
-די [http://meta.wikimedia.org/wiki/Help:Job_queue ארבעט ריי] האט א לענג פון '''\$7'''.",
+די [http://www.mediawiki.org/wiki/Manual:Job_queue ארבעט ריי] האט א לענג פון '''\$7'''.",
 
 'disambiguations'      => 'באדייטען בלעטער',
 'disambiguationspage'  => 'Template:באדייטן',
@@ -956,21 +984,26 @@ $1 שעות.',
 'brokenredirects-edit'   => '(ענדערן)',
 'brokenredirects-delete' => '(אויסמעקן)',
 
+'withoutinterwiki-submit' => 'ווײַז',
+
 # Miscellaneous special pages
-'nbytes'            => '$1 {{PLURAL:$1|בייט|בייטן}}',
-'nlinks'            => '$1 {{PLURAL:$1|לינק|לינקען}}',
-'specialpage-empty' => 'די בלאט איז ליידיג.',
-'wantedpages'       => 'װינטשט זײטן',
-'mostcategories'    => 'אַרטיקלען מיט די מערקסטע קאַטעגאָריעס',
-'mostrevisions'     => 'אַרטיקלען מיט די מערקסטע באַאַרבעטונגען',
-'deadendpages'      => 'דעד-ענד בלעטער',
-'deadendpagestext'  => 'די פאלגנדע בלעטער לינקען נישט צו קיין אנדערע בלעטער אין דער וויקי.',
-'specialpages'      => 'ספּעציעלע זײטן',
-'spheading'         => 'ספעציעלע בלעטער פאר אלע באנוצער',
-'newpages'          => 'נייע בלעטער',
-'newpages-username' => 'באניצער נאמען:',
-'ancientpages'      => 'עלטסטע בלעטער',
-'move'              => 'באַװעגן',
+'nbytes'                  => '$1 {{PLURAL:$1|בייט|בייטן}}',
+'nlinks'                  => '$1 {{PLURAL:$1|לינק|לינקען}}',
+'specialpage-empty'       => 'די בלאט איז ליידיג.',
+'lonelypages'             => "פֿאר'יתומ'טע בלעטער",
+'uncategorizedpages'      => 'בלעטער אָן קאטעגאריעס',
+'uncategorizedcategories' => 'קאטעגאריעס וואס זענען נישט קאטעגאריזירט',
+'wantedpages'             => 'װינטשט זײטן',
+'mostcategories'          => 'אַרטיקלען מיט די מערקסטע קאַטעגאָריעס',
+'mostrevisions'           => 'אַרטיקלען מיט די מערקסטע באַאַרבעטונגען',
+'shortpages'              => 'קורצע בלעטער',
+'longpages'               => 'לאנגע בלעטער',
+'deadendpages'            => 'דעד-ענד בלעטער',
+'deadendpagestext'        => 'די פאלגנדע בלעטער לינקען נישט צו קיין אנדערע בלעטער אין דער וויקי.',
+'newpages'                => 'נייע בלעטער',
+'newpages-username'       => 'באניצער נאמען:',
+'ancientpages'            => 'עלטסטע בלעטער',
+'move'                    => 'באַװעגן',
 
 # Book sources
 'booksources'               => 'דרויסנדיגע ליטעראַטור ISBN',
@@ -1521,5 +1554,8 @@ $1',
 
 # Special:Version
 'version-specialpages' => 'ספעציעלע בלעטער',
+
+# Special:SpecialPages
+'specialpages' => 'ספּעציעלע זײטן',
 
 );

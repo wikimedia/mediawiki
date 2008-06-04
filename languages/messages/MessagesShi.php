@@ -179,9 +179,6 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 # Upload
 'upload' => 'sΥlid afaylu',
 
-# Miscellaneous special pages
-'specialpages' => 'tiwriqin tesbtarin',
-
 # Special:Allpages
 'alphaindexline' => '$1 ar $2',
 
@@ -222,5 +219,8 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'table_pager_first'        => 'tawriqt tamzwarut',
 'table_pager_last'         => 'tawriqt tamgrut',
 'table_pager_limit_submit' => 'ballak',
+
+# Special:SpecialPages
+'specialpages' => 'tiwriqin tesbtarin',
 
 );

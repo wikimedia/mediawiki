@@ -1126,7 +1126,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 
 ページの総閲覧回数は'''$3'''回です。また、'''$4'''回の編集が行われました。平均すると、1ページあたり'''$5'''回の編集が行われ、1編集あたり'''$6'''回閲覧されています。
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue] の長さは '''$7''' です。",
+[http://www.mediawiki.org/wiki/Manual:Job_queue job queue] の長さは '''$7''' です。",
 'userstatstext'          => "登録済みの利用者は'''$1'''人で、内'''$2'''人 ('''$4%''') が$5権限を持っています。($3を参照)",
 'statistics-mostpopular' => '最も閲覧されているページ',
 
@@ -2403,6 +2403,9 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                   => '特別ページ',
+'specialpages-note'              => '----
+* このように示したものは誰でも利用できる通常の特別ページです。
+* <span class="mw-specialpagerestricted">このように示したものは一定の権限がなければ利用できない特別ページです。</span>',
 'specialpages-group-maintenance' => 'ページのメンテナンス情報',
 'specialpages-group-other'       => 'その他特別ページ',
 'specialpages-group-login'       => 'ログイン / 利用者登録',
@@ -2410,5 +2413,10 @@ $1',
 'specialpages-group-media'       => 'メディア情報とアップロード',
 'specialpages-group-users'       => '利用者と権限',
 'specialpages-group-highuse'     => 'よく利用されているページ',
+'specialpages-group-pages'       => 'ページのリスト',
+'specialpages-group-pagetools'   => 'ページツール',
+'specialpages-group-wiki'        => 'このサイトのウィキに関する情報とツール',
+'specialpages-group-redirects'   => 'リダイレクトになっている特別ページ',
+'specialpages-group-spam'        => 'スパム対策ツール',
 
 );
