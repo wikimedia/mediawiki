@@ -264,8 +264,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->parseContinueParam();
 		else {
 			$title = $this->params['title'];
-			if (!is_null($title)) {
-				$this->rootTitle = Title :: newFromText($title);
+			if ( $title ) {
+				$this->rootTitle = Title::newFromText($title);
 			} else {
 				$this->dieUsageMsg(array('missingparam', 'title'));
 			}
