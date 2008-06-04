@@ -1280,6 +1280,14 @@ $wgAvailableRights = array();
  */
 $wgDeleteRevisionsLimit = 0;
 
+/**
+ * Used to figure out if a user is "active" or not. User::isActiveEditor()
+ * sees if a user has made at least $wgActiveUserEditCount number of edits
+ * within the last $wgActiveUserDays days.
+ */
+$wgActiveUserEditCount = 30;
+$wgActiveUserDays = 30;
+
 # Proxy scanner settings
 #
 
