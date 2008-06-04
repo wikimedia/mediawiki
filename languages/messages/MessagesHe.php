@@ -2217,7 +2217,7 @@ $1',
 
 # Scripts
 'common.js'   => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
-'monobook.js' => '/* מיושן; השתמשו ב[[מדיה ויקי:Common.js]] */',
+'monobook.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע Monobook */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata מבוטל בשרת זה.',
