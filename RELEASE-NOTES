@@ -49,6 +49,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   (default 100) with the new subpage-move functionality of Special:Movepage
 * Hooks display in Special:Version is now disabled by default, use 
   $wgSpecialVersionShowHooks = true; to enable it.
+* $wgActiveUserEditcount sets the number of edits that must be performed over
+  a certain number of days to be considered active
+* $wgActiveUserDays is that number of days
 
 === New features in 1.13 ===
 
@@ -135,6 +138,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14263) Show a diff of the revert on rollback notification page.
 * (bug 13434) Show a warning when hash identical files exist
 * Sidebar is now cached for all languages
+* The User class now contains a public function called isActiveUser. Figures
+  out if a user is active based on at least $wgActiveUserEditcount number of
+  edits in the last $wgActiveUserDays days.
 
 === Bug fixes in 1.13 ===
 
