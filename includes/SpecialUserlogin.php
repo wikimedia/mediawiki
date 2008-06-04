@@ -716,9 +716,15 @@ class LoginForm {
 		global $wgAuth, $wgEmailConfirmToEdit;
 		
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
-
+		
 		if ( $this->mType == 'signup' ) {
-			if ( $wgUser->isBlockedFromCreateAccount() ) {
+			// Block signup here if in readonly. Keeps user from 
+			// going through the process (filling out data, etc) 
+			// and being informed later.
+			if ( wfReadOnly() ) {
+				$wgOut->readOnlyPage();
+				return;
+			} elseif ( $wgUser->isBlockedFromCreateAccount() ) {
 				$this->userBlockedMessage();
 				return;
 			} elseif ( count( $permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $wgUser, true ) )>0 ) {
