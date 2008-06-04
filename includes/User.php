@@ -2459,10 +2459,10 @@ class User {
 		// Stolen without shame from RC
 		$cutoff_unixtime = time() - ( $wgActiveUserDays * 86400 );
 		$cutoff_unixtime = $cutoff_unixtime - ( $cutoff_unixtime % 86400 );
-		$oldTime = $dbr->timestamp ( $cutoff_unixtime );
+		$oldTime = $dbr->timestamp( $cutoff_unixtime );
 		
 		$res = $dbr->select( 'revision', '1',
-				array( 'rev_user_text' => $this->getName(), "rev_timestamp $oldTime "),
+				array( 'rev_user_text' => $this->getName(), "rev_timestamp > $oldTime"),
 				__METHOD__,
 				array('LIMIT' => $wgActiveUserEditcount ) );
 				
