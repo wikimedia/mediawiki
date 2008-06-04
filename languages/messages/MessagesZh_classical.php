@@ -1156,7 +1156,6 @@ $2',
 'protectedpages'          => '頁錮',
 'protectedpages-indef'    => '只示無期之錮',
 'listusers'               => '點簿',
-'specialpages'            => '特查',
 'spheading'               => '民處',
 'restrictedpheading'      => '官辦',
 'newpages'                => '新灶',
@@ -2022,6 +2021,7 @@ $1',
 'fileduplicatesearch-result-n' => '案 "$1" 重有$2。',
 
 # Special:SpecialPages
+'specialpages'                   => '特查',
 'specialpages-note'              => '----
 * 準特查。
 * <span class="mw-specialpagerestricted">限特查。</span>',

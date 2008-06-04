@@ -1328,9 +1328,6 @@ Template:消除歧義',
 'protectedtitlestext'     => '以下的頁面已經被保護以防止建立',
 'protectedtitlesempty'    => '在這些參數之下並無標題正在保護。',
 'listusers'               => '用戶列表',
-'specialpages'            => '特殊頁面',
-'spheading'               => '所有用戶的特殊頁面',
-'restrictedpheading'      => '受限的特殊頁面',
 'newpages'                => '最新頁面',
 'newpages-username'       => '用戶名:',
 'ancientpages'            => '最舊頁面',
@@ -2547,6 +2544,7 @@ $1
 'fileduplicatesearch-result-n' => '檔案 "$1" 有$2項完全相同的重覆。',
 
 # Special:SpecialPages
+'specialpages'                   => '特殊頁面',
 'specialpages-note'              => '----
 * 標準特殊頁面。
 * <span class="mw-specialpagerestricted">有限制的特殊頁面。</span>',
