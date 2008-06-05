@@ -2356,7 +2356,8 @@ See the [[Special:Ipblocklist|IP block list]] for the list of currently operatio
 'block-log-flags-noemail'     => 'e-mail blocked',
 'range_block_disabled'        => 'The sysop ability to create range blocks is disabled.',
 'ipb_expiry_invalid'          => 'Expiry time invalid.',
-'ipb_already_blocked'         => 'Caution: "$1" is alrady blocked. You can modify the block settings by using this form.',
+'ipb_already_blocked'         => 'Caution: "$1" is already blocked.
+You can modify the block settings by using this form.',
 'ipb_modifying_block'         => 'Modifying existing block:',
 'ipb_cant_unblock'            => 'Error: Block ID $1 not found. It may have been unblocked already.',
 'ipb_blocked_as_range'        => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
