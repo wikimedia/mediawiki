@@ -237,7 +237,7 @@ class QueryPage {
 				if ( isset( $row->value ) ) {
 					$value = $row->value;
 				} else {
-					$value = '';
+					$value = 0;
 				}
 
 				$insertSql .= '(' .
