@@ -263,7 +263,7 @@ $wgUrlProtocols = array(
 	'ftp://',
 	'irc://',
 	'gopher://',
-	'telnet://', // Well if we're going to support the above.. -Êvar
+	'telnet://', // Well if we're going to support the above.. -√¶var
 	'nntp://', // @bug 3808 RFC 1738
 	'worldwind://',
 	'mailto:',
@@ -567,7 +567,7 @@ $wgCheckDBSchema = true;
  * main database.
  * For backwards compatibility the shared prefix is set to the same as the local
  * prefix, and the user table is listed in the default list of shared tables.
- * 
+ *
  * $wgSharedTables may be customized with a list of tables to share in the shared
  * datbase. However it is advised to limit what tables you do share as many of
  * MediaWiki's tables may have side effects if you try to share them.
@@ -1271,7 +1271,7 @@ $wgAddGroups = $wgRemoveGroups = array();
 
 
 /**
- * A list of available rights, in addition to the ones defined by the core. 
+ * A list of available rights, in addition to the ones defined by the core.
  * For extensions only.
  */
 $wgAvailableRights = array();
@@ -1621,39 +1621,39 @@ $wgDisableSearchContext = false;
 
 /**
  * Set to true to have nicer highligted text in search results,
- * by default off due to execution overhead  
+ * by default off due to execution overhead
  */
 $wgAdvancedSearchHighlighting = false;
 
-/** 
+/**
  * Regexp to match word boundaries, defaults for non-CJK languages
- * should be empty for CJK since the words are not separate 
+ * should be empty for CJK since the words are not separate
  */
-$wgSearchHighlightBoundaries = version_compare("5.1", PHP_VERSION, "<")? '[\p{Z}\p{P}\p{C}]' 
+$wgSearchHighlightBoundaries = version_compare("5.1", PHP_VERSION, "<")? '[\p{Z}\p{P}\p{C}]'
 	: '[ ,.;:!?~!@#$%\^&*\(\)+=\-\\|\[\]"\'<>\n\r\/{}]'; // PHP 5.0 workaround
 
 /**
  * Template for OpenSearch suggestions, defaults to API action=opensearch
- * 
+ *
  * Sites with heavy load would tipically have these point to a custom
  * PHP wrapper to avoid firing up mediawiki for every keystroke
- * 
+ *
  * Placeholders: {searchTerms}
- * 
+ *
  */
 $wgOpenSearchTemplate = false;
 
 /**
- * Enable suggestions while typing in search boxes 
- * (results are passed around in OpenSearch format) 
+ * Enable suggestions while typing in search boxes
+ * (results are passed around in OpenSearch format)
  */
 $wgEnableMWSuggest = false;
 
 /**
  *  Template for internal MediaWiki suggestion engine, defaults to API action=opensearch
- *  
+ *
  *  Placeholders: {searchTerms}, {namespaces}, {dbname}
- *  
+ *
  */
 $wgMWSuggestTemplate = false;
 
@@ -2404,7 +2404,7 @@ $wgBrowserBlackList = array(
 	'/^Mozilla\/4\.[^ ]+ [^(]*?\((?!compatible).*; [UIN]/',
 
 	/**
-	 * MSIE on Mac OS 9 is teh sux0r, converts ˛ to <thorn>,  to <eth>, ﬁ to <THORN> and – to <ETH>
+	 * MSIE on Mac OS 9 is teh sux0r, converts √æ to <thorn>, √∞ to <eth>, √û to <THORN> and √ê to <ETH>
 	 *
 	 * Known useragents:
 	 * - Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)
@@ -2663,13 +2663,13 @@ $wgSpecialPageGroups = array(
 	'Mostcategories'            => 'highuse',
 	'Mostimages'                => 'highuse',
 	'Mostrevisions'             => 'highuse',
-	
+
 	'Allpages'                  => 'pages',
 	'Prefixindex'               => 'pages',
 	'Listredirects'             => 'pages',
 	'Categories'                => 'pages',
 	'Disambiguations'           => 'pages',
-	
+
 	'Randompage'                => 'redirects',
 	'Randomredirect'            => 'redirects',
 	'Mypage'                    => 'redirects',
@@ -2850,11 +2850,11 @@ $wgRateLimitLog = null;
 
 /**
  * Array of groups which should never trigger the rate limiter
- * 
+ *
  * @deprecated as of 1.13.0, the preferred method is using
  *  $wgGroupPermissions[]['noratelimit']. However, this will still
  *  work if desired.
- *  
+ *
  *  $wgRateLimitsExcludedGroups = array( 'sysop', 'bureaucrat' );
  */
 $wgRateLimitsExcludedGroups = array();
