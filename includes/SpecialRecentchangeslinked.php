@@ -109,7 +109,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		$catkey = $dbr->addQuotes( $nt->getDBkey() );
 		# The table clauses
 		$tables = "$categorylinks, $recentchanges";
-		$tables .= $uid ? "LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
+		$tables .= $uid ? " LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
 
 		$sql = "SELECT /* wfSpecialRecentchangeslinked */ $fields FROM $tables 
 			WHERE rc_timestamp > '{$cutoff}' {$cmq} 
@@ -126,7 +126,7 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 		}
 		# The table clauses
 		$tables = "$pagelinks, $recentchanges";
-		$tables .= $uid ? "LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
+		$tables .= $uid ? " LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
 
 		$sql = "SELECT /* wfSpecialRecentchangeslinked */ $fields FROM $tables
 			WHERE rc_timestamp > '{$cutoff}' {$cmq}
