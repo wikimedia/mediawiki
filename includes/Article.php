@@ -395,10 +395,8 @@ class Article {
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
 		$t = $this->mTitle->getPrefixedText();
-		if( $oldid ) {
-			$t .= ' ' . wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid );
-		}
-		$this->mContent = wfMsg( 'missingarticle', $t ) ;
+		$d = $oldid ? wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid ) : '';
+		$this->mContent = wfMsg( 'missing-article', $t, $d ) ;
 
 		if( $oldid ) {
 			$revision = Revision::newFromId( $oldid );
@@ -803,8 +801,8 @@ class Article {
 				# Failed to load, replace text with error message
 				$t = $this->mTitle->getPrefixedText();
 				if( $oldid ) {
-					$t .= ' ' . wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid );
-					$text = wfMsg( 'missingarticle', $t );
+					$d = wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid );
+					$text = wfMsg( 'missing-article', $t, $d );
 				} else {
 					$text = wfMsg( 'noarticletext' );
 				}

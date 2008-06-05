@@ -479,7 +479,7 @@ MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
 'readonlytext'         => 'Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuche es später noch einmal.
 
 Grund der Sperrung: $1',
-'missingarticle'       => 'Der Text für „$1“ wurde nicht in der Datenbank gefunden.
+'missing-article'      => 'Der Text für „$1“ $2 wurde nicht in der Datenbank gefunden.
 
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 

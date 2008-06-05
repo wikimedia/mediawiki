@@ -319,7 +319,7 @@ $wgMessageStructure = array(
 		'readonly',
 		'enterlockreason',
 		'readonlytext',
-		'missingarticle',
+		'missing-article',
 		'missingarticle-rev',
 		'missingarticle-diff',
 		'readonly_lag',

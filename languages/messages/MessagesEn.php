@@ -785,7 +785,7 @@ $1',
 'readonlytext'         => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
 
 The administrator who locked it offered this explanation: $1',
-'missingarticle'       => 'The database did not find the text of a page that it should have found, named "$1".
+'missing-article'      => 'The database did not find the text of a page that it should have found, named "$1" $2.
 
 This is usually caused by following an outdated diff or history link to a page that has been deleted.
 
