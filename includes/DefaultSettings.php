@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  *
  *                 NEVER EDIT THIS FILE
@@ -2627,7 +2627,6 @@ $wgSpecialPageGroups = array(
 	'Wantedcategories'          => 'maintenance',
 	'Unwatchedpages'            => 'maintenance',
 	'Fewestrevisions'           => 'maintenance',
-	'MissingFiles'				=> 'maintenance',
 
 	'Userlogin'                 => 'login',
 	'Userlogout'                => 'login',
