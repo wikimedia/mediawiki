@@ -1052,6 +1052,12 @@ class Title {
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
 	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true ) {
+		if( !StubObject::isRealObject( $user ) ) {
+			//Since StubObject is always used on globals, we can unstub $wgUser here and set $user = $wgUser
+			global $wgUser;
+			$wgUser->_unstub( '', 5 );
+			$user = $wgUser;
+		}
 		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
 
 		global $wgContLang;
