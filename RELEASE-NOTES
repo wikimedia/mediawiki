@@ -145,6 +145,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   edits in the last $wgActiveUserDays days.
 * (bug 13702) Add Special:MissingFiles to list places where an image link is 
   used but no such file exists.
+* SpecialSearchResults hook now passes results by reference, so they can be
+  changed by extensions.
 
 === Bug fixes in 1.13 ===
 
