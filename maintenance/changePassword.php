@@ -52,14 +52,7 @@ class ChangePassword {
 	function main() {
 		$fname = 'ChangePassword::main';
 
-		$this->dbw->update( 'user',
-			array(
-				'user_password' => wfEncryptPassword( $this->user->getId(), $this->password )
-			),
-			array(
-				'user_id' => $this->user->getId()
-			),
-			$fname
-		);
+		$this->user->setPassword( $this->password );
+		$this->user->saveSettings();
 	}
 }

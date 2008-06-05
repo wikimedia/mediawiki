@@ -1516,18 +1516,6 @@ class User {
 	}
 
 	/**
-	 * Encrypt a password.
-	 * It can eventually salt a password.
-	 * @see User::addSalt()
-	 * @param string $p clear Password.
-	 * @return string Encrypted password.
-	 */
-	function encryptPassword( $p ) {
-		$this->load();
-		return wfEncryptPassword( $this->mId, $p );
-	}
-
-	/**
 	 * Set the password and reset the random token
 	 * Calls through to authentication plugin if necessary;
 	 * will have no effect if the auth plugin refuses to
@@ -1579,7 +1567,7 @@ class User {
 			// Save an invalid hash...
 			$this->mPassword = '';
 		} else {
-			$this->mPassword = $this->encryptPassword( $str );
+			$this->mPassword = self::crypt( $str );
 		}
 		$this->mNewpassword = '';
 		$this->mNewpassTime = null;
@@ -1623,7 +1611,7 @@ class User {
 	 */
 	function setNewpassword( $str, $throttle = true ) {
 		$this->load();
-		$this->mNewpassword = $this->encryptPassword( $str );
+		$this->mNewpassword = self::crypt( $str );
 		if ( $throttle ) {
 			$this->mNewpassTime = wfTimestampNow();
 		}
@@ -2505,14 +2493,13 @@ class User {
 			/* Auth plugin doesn't allow local authentication for this user name */
 			return false;
 		}
-		$ep = $this->encryptPassword( $password );
-		if ( 0 == strcmp( $ep, $this->mPassword ) ) {
+		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
 			return true;
 		} elseif ( function_exists( 'iconv' ) ) {
 			# Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 			# Check for this with iconv
-			$cp1252hash = $this->encryptPassword( iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password ) );
-			if ( 0 == strcmp( $cp1252hash, $this->mPassword ) ) {
+			$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
+			if ( self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) ) {
 				return true;
 			}
 		}
@@ -2525,8 +2512,7 @@ class User {
 	 * @return bool
 	 */
 	function checkTemporaryPassword( $plaintext ) {
-		$hash = $this->encryptPassword( $plaintext );
-		return $hash === $this->mNewpassword;
+		return self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() );
 	}
 
 	/**
@@ -3000,5 +2986,63 @@ class User {
 		return $name == '' || wfEmptyMsg( $key, $name )
 			? $right
 			: $name;
+	}
+
+	/**
+	 * Make an old-style password hash
+	 *
+	 * @param string $password Plain-text password
+	 * @param string $userId User ID
+	 */
+	static function oldCrypt( $password, $userId ) {
+		global $wgPasswordSalt;
+		if ( $wgPasswordSalt ) {
+			return md5( $userId . '-' . md5( $password ) );
+		} else {
+			return md5( $password );
+		}
+	}
+
+	/**
+	 * Make a new-style password hash
+	 *
+	 * @param string $password Plain-text password
+	 * @param string $salt Salt, may be random or the user ID. False to generate a salt.
+	 */
+	static function crypt( $password, $salt = false ) {
+		global $wgPasswordSalt;
+
+		if($wgPasswordSalt) {
+			if ( $salt === false ) {
+				$salt = substr( wfGenerateToken(), 0, 8 );
+			}
+			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
+		} else {
+			return ':A:' . md5( $password);
+		}
+	}
+
+	/**
+	 * Compare a password hash with a plain-text password. Requires the user
+	 * ID if there's a chance that the hash is an old-style hash.
+	 *
+	 * @param string $hash Password hash
+	 * @param string $password Plain-text password to compare
+	 * @param string $userId User ID for old-style password salt
+	 */
+	static function comparePasswords( $hash, $password, $userId = false ) {
+		$m = false;
+		$type = substr( $hash, 0, 3 );
+		if ( $type == ':A:' ) {
+			# Unsalted
+			return md5( $password ) === substr( $hash, 3 );
+		} elseif ( $type == ':B:' ) {
+			# Salted
+			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
+			return md5( $salt.'-'.md5( $password ) ) == $realHash;
+		} else {
+			# Old-style
+			return self::oldCrypt( $password, $userId ) === $hash;
+		}
 	}
 }

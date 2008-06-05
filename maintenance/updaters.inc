@@ -142,6 +142,7 @@ $wgMysqlUpdates = array(
 	array( 'check_bin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
 	array( 'maybe_do_profiling_memory_update' ),
 	array( 'do_filearchive_indices_update' ),
+	array( 'update_password_format' ),
 );
 
 
@@ -1195,6 +1196,28 @@ function do_populate_parent_id() {
 	populate_rev_parent_id( $wgDatabase );
 }
 
+function update_password_format() {
+	if ( update_row_exists( 'password format' ) ) {
+		echo "...password hash format already changed\n";
+		return;
+	}
+
+	echo "Updating password hash format...";
+
+	global $wgDatabase, $wgPasswordSalt;
+	if ( $wgPasswordSalt ) {
+		$sql = "UPDATE user SET user_password=CONCAT(':B:', user_id, ':', user_password) " .
+			"WHERE user_password NOT LIKE ':%'";
+	} else {
+		$sql = "UPDATE user SET user_password=CONCAT(':A:', user_password) " .
+			"WHERE user_password NOT LIKE ':%'";
+	}
+	$wgDatabase->query( $sql, __METHOD__ );
+	$wgDatabase->insert( 'updatelog', array( 'ul_key' => 'password format' ), __METHOD__ );
+
+	echo "done\n";
+}
+
 function
 pg_describe_table($table)
 {
@@ -1690,3 +1713,4 @@ function do_postgres_updates() {
 
 	return;
 }
+
