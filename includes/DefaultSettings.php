@@ -2857,7 +2857,7 @@ $wgRateLimitLog = null;
  *  
  *  $wgRateLimitsExcludedGroups = array( 'sysop', 'bureaucrat' );
  */
-
+$wgRateLimitsExcludedGroups = array();
 
 /**
  * On Special:Unusedimages, consider images "used", if they are put
