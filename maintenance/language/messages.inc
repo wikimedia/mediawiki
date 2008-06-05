@@ -1205,8 +1205,6 @@ $wgMessageStructure = array(
 		'wantedpages-summary',
 		'missingfiles',
 		'missingfiles-summary',
-		'missingimages',
-		'missingimages-summary',
 		'mostlinked',
 		'mostlinked-summary',
 		'mostlinkedcategories',
