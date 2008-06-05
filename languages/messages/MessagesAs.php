@@ -8,6 +8,8 @@
  * @author Siebrand
  */
 
+$fallback='hi';
+
 $digitTransformTable = array(
 	'0' => '০', # &#x09e6;
 	'1' => '১', # &#x09e7;
