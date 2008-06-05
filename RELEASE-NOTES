@@ -52,6 +52,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgActiveUserEditCount sets the number of edits that must be performed over
   a certain number of days to be considered active
 * $wgActiveUserDays is that number of days
+* $wgRateLimitsExcludedGroups has been deprecated in favor of 
+  $wgGroupPermissions[]['noratelimit']. The former still works, however.
 
 === New features in 1.13 ===
 
@@ -335,6 +337,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14386) Fix subpage namespace oddity when moving a talk page
 * (bug 11771) Signup form now not shown if in read-only mode.
 * (bug 10080) Users can now modify an existing block without unblocking first.
+* (bug 12859) $wgRateLimitsExcludedGroups has been deprecated in favor of
+  $wgGroupPermissions[]['noratelimit']. 
 
 === API changes in 1.13 ===
 
