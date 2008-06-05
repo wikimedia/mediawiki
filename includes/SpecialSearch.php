@@ -225,7 +225,7 @@ class SpecialSearch {
 					array( 'search' => $term ) ),
 					($num < $this->limit) );
 			$wgOut->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
-			wfRunHooks( 'SpecialSearchResults', array( $term, $titleMatches, $textMatches ) );
+			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
 		} else {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
 		}
