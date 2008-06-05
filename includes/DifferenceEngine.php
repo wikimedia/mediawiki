@@ -112,9 +112,10 @@ CONTROL;
 
 		$wgOut->setArticleFlag( false );
 		if ( ! $this->loadRevisionData() ) {
-			$t = $this->mTitle->getPrefixedText() . ' ' . wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
+			$t = $this->mTitle->getPrefixedText();
+			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
+			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", $d );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -333,9 +334,10 @@ CONTROL;
 		# Get article text from the DB
 		#
 		if ( ! $this->loadNewText() ) {
-			$t = $this->mTitle->getPrefixedText() . ' ' . wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
+			$t = $this->mTitle->getPrefixedText();
+			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
-			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>$t</nowiki>" );
+			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", $d );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -378,7 +380,7 @@ CONTROL;
 		global $wgOut;
 		$diff = $this->getDiff( $otitle, $ntitle );
 		if ( $diff === false ) {
-			$wgOut->addWikiMsg( 'missingarticle', "<nowiki>(fixme, bug)</nowiki>" );
+			$wgOut->addWikiMsg( 'missing-article', "<nowiki>(fixme, bug)</nowiki>", '' );
 			return false;
 		} else {
 			$this->showDiffStyle();
