@@ -376,6 +376,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'UnusedImages' ),
 	'Wantedpages'               => array( 'WantedPages', 'BrokenLinks' ),
 	'Wantedcategories'          => array( 'WantedCategories' ),
+	'Missingfiles'              => array( 'MissingFiles', 'MissingImages' ),
 	'Mostlinked'                => array( 'MostLinked' ),
 	'Mostlinkedcategories'      => array( 'MostLinkedCategories', 'MostUsedCategories' ),
 	'Mostlinkedtemplates'       => array( 'MostLinkedTemplates', 'MostUsedTemplates' ),
@@ -1875,6 +1876,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'wantedcategories-summary'        => '', # only translate this message to other languages if you have to change it
 'wantedpages'                     => 'Wanted pages',
 'wantedpages-summary'             => '', # only translate this message to other languages if you have to change it
+'missingfiles'                    => 'Missing files',
+'missingfiles-summary'            => '', # only translate this message to other languages if you have to change it
 'mostlinked'                      => 'Most linked-to pages',
 'mostlinked-summary'              => '', # only translate this message to other languages if you have to change it
 'mostlinkedcategories'            => 'Most linked-to categories',

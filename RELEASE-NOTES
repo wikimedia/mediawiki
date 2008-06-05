@@ -143,6 +143,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The User class now contains a public function called isActiveEditor. Figures
   out if a user is active based on at least $wgActiveUserEditCount number of
   edits in the last $wgActiveUserDays days.
+* (bug 13702) Add Special:MissingFiles to list places where an image link is 
+  used but no such file exists.
 
 === Bug fixes in 1.13 ===
 
