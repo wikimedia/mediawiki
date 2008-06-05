@@ -1795,23 +1795,6 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
 }
 
 /**
- * Encrypt a username/password.
- *
- * @param string $userid ID of the user
- * @param string $password Password of the user
- * @return string Hashed password
- */
-function wfEncryptPassword( $userid, $password ) {
-	global $wgPasswordSalt;
-	$p = md5( $password);
-
-	if($wgPasswordSalt)
-		return md5( "{$userid}-{$p}" );
-	else
-		return $p;
-}
-
-/**
  * Appends to second array if $value differs from that in $default
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
