@@ -47,10 +47,32 @@ class IPBlockForm {
 #	var $BlockEmail;
 
 	function IPBlockForm( $par ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgLang;
 
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
 		$this->BlockAddress = strtr( $this->BlockAddress, '_', ' ' );
+		$this->AlreadyBlocked = false;
+
+		if( $this->BlockAddress && !$wgRequest->wasPosted() ){
+			$this->mBlock = new Block();
+			if( $this->mBlock->load($this->BlockAddress) ) {
+				$this->AlreadyBlocked = true;
+				$this->BlockReason = wfMsgForContent( 'ipb_modifying_block' );
+				$this->BlockReasonList = $wgRequest->getText( 'wpBlockReasonList' );
+				$this->BlockExpiry = wfMsg('ipbotheroption');
+				$this->BlockOther = $wgLang->timeanddate( $this->mBlock->mExpiry );
+				$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', true );
+				$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', true );
+				$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', true );
+				$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
+				$this->BlockEmail = $this->mBlock->mBlockEmail;
+				$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
+				# Re-check user's rights to hide names, very serious, defaults to 0
+				$this->BlockHideName = ( $this->mBlock->mHideName && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
+				return true;
+			}
+		}
+		
 		$this->BlockReason = $wgRequest->getText( 'wpBlockReason' );
 		$this->BlockReasonList = $wgRequest->getText( 'wpBlockReasonList' );
 		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg('ipbotheroption') );
@@ -111,6 +133,10 @@ class IPBlockForm {
 			wfMsgForContent( 'ipbreasonotherlist' ), '', 'wpBlockDropDown', 4 );
 
 		global $wgStylePath, $wgStyleVersion;
+		if( $this->AlreadyBlocked ) {
+			$wgOut->addHTML( Xml::element( 'p', array ( 'class' => 'error' ),
+			wfMsg( 'ipb_already_blocked', $this->BlockAddress ) ) );
+		}
 		$wgOut->addHTML(
 			Xml::tags( 'script', array( 'type' => 'text/javascript', 'src' => "$wgStylePath/common/block.js?$wgStyleVersion" ), '' ) .
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( "action=submit" ), 'id' => 'blockip' ) ) .
@@ -358,7 +384,10 @@ class IPBlockForm {
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
 			if ( !$block->insert() ) {
-				return array('ipb_already_blocked', htmlspecialchars($this->BlockAddress));
+				// Block already exists. Silently delete the existing block and insert it again
+				$oldblock = Block::newFromDB( $this->BlockAddress );
+				$oldblock->delete();
+				$block->insert();
 			}
 
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
