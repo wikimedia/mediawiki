@@ -1205,11 +1205,12 @@ function update_password_format() {
 	echo "Updating password hash format...";
 
 	global $wgDatabase, $wgPasswordSalt;
+	$user = $wgDatabase->tableName( 'user' );
 	if ( $wgPasswordSalt ) {
-		$sql = "UPDATE user SET user_password=CONCAT(':B:', user_id, ':', user_password) " .
+		$sql = "UPDATE $user SET user_password=CONCAT(':B:', user_id, ':', user_password) " .
 			"WHERE user_password NOT LIKE ':%'";
 	} else {
-		$sql = "UPDATE user SET user_password=CONCAT(':A:', user_password) " .
+		$sql = "UPDATE $user SET user_password=CONCAT(':A:', user_password) " .
 			"WHERE user_password NOT LIKE ':%'";
 	}
 	$wgDatabase->query( $sql, __METHOD__ );
