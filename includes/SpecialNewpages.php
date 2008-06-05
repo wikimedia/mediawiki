@@ -316,7 +316,7 @@ class NewPagesForm {
 		$title = Title::MakeTitle( intval( $row->rc_namespace ), $row->rc_title );
 		if( $title ) {
 			$date = $row->rc_timestamp;
-			$comments = $this->stripComment( $row->rc_comment );
+			$comments = $title->getTalkPage()->getFullURL();
 
 			return new FeedItem(
 				$title->getPrefixedText(),
