@@ -370,7 +370,7 @@ MySQL返回錯誤「$3: $4」。',
 這很可能是由於資料庫正在維修，之後即可恢復。
 管理員有如下解釋:
 <p>$1</p>',
-'missingarticle'       => '資料庫找不到文字"$1"。
+'missing-article'      => '資料庫找不到文字"$1" $2。
 
 <p>通常這是由於修訂歷史頁上過時的連結到已經被刪除的頁面所導致的。</p>
 
@@ -997,6 +997,7 @@ $2',
 'right-editusercssjs'        => '編輯其他用戶的CSS和JS檔案',
 'right-rollback'             => '快速復原上位用戶對某一頁面之編輯',
 'right-markbotedits'         => '標示復原編輯作機械人編輯',
+'right-noratelimit'          => '不受率上限影響',
 'right-import'               => '由其它wiki中匯入頁面',
 'right-importupload'         => '由檔案上載中匯入頁面',
 'right-patrol'               => '標示其它的編輯作已巡查的',
@@ -1309,6 +1310,7 @@ Template:消除歧義',
 'popularpages'            => '熱點頁面',
 'wantedcategories'        => '需要的分類',
 'wantedpages'             => '待撰頁面',
+'missingfiles'            => '遺失檔案',
 'mostlinked'              => '最多連結頁面',
 'mostlinkedcategories'    => '最多連結分類',
 'mostlinkedtemplates'     => '最多連結模版',
