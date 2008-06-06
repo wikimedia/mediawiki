@@ -2306,7 +2306,7 @@ Template with thumb image (with link in description)
 {{paramtest|
   param =[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
 !! result
-This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="Image:Noimage.png">Image:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit" class="new" title="No link (not yet written)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (not yet written)">caption</a></div></div></div>
+This is a test template with parameter <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="Image:Noimage.png">Image:Noimage.png</a>  <div class="thumbcaption"><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (not yet written)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (not yet written)">caption</a></div></div></div>
 
 !! end
 
@@ -3081,7 +3081,7 @@ Add test with existing image page
 !! input
 [[:Image:test]]
 !! result
-<p><a href="/index.php?title=Image:Test&amp;action=edit" class="new" title="Image:Test">Image:test</a>
+<p><a href="/index.php?title=Image:Test&amp;action=edit&amp;redlink=1" class="new" title="Image:Test (not yet written)">Image:test</a>
 </p>
 !! end
 
