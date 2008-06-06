@@ -3057,7 +3057,7 @@ class Parser
 	 */
 	function fetchTemplateAndTitle( $title ) {
 		$templateCb = $this->mOptions->getTemplateCallback();
-		$stuff = call_user_func( $templateCb, $title );
+		$stuff = call_user_func( $templateCb, $title, $this );
 		$text = $stuff['text'];
 		$finalTitle = isset( $stuff['finalTitle'] ) ? $stuff['finalTitle'] : $title;
 		if ( isset( $stuff['deps'] ) ) {
@@ -3077,7 +3077,7 @@ class Parser
 	 * Static function to get a template
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 */
-	static function statelessFetchTemplate( $title ) {
+	static function statelessFetchTemplate( $title, $parser=false ) {
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = array();
@@ -3086,7 +3086,7 @@ class Parser
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$id = false; // Assume current
-			wfRunHooks( 'BeforeParserFetchTemplateAndtitle', array( false, &$title, &$skip, &$id ) );
+			wfRunHooks( 'BeforeParserFetchTemplateAndtitle', array( $parser, &$title, &$skip, &$id ) );
 
 			if( $skip ) {
 				$text = false;
