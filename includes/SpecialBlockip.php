@@ -32,10 +32,8 @@ function wfSpecialBlockip( $par ) {
 	} else if ( $wgRequest->wasPosted() && 'submit' == $action &&
 		$wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
 		$ipb->doSubmit();
-	} else if ( $ipb->AlreadyBlocked ) {
-		$ipb->showForm( wfMsg('ipb_already_blocked', $ipb->BlockAddress ) );
 	} else {
-		$ipb->showForm('');
+		$ipb->showForm( '' );
 	}
 }
 
@@ -49,32 +47,10 @@ class IPBlockForm {
 #	var $BlockEmail;
 
 	function IPBlockForm( $par ) {
-		global $wgRequest, $wgUser, $wgLang;
+		global $wgRequest, $wgUser;
 
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
 		$this->BlockAddress = strtr( $this->BlockAddress, '_', ' ' );
-		$this->AlreadyBlocked = false;
-
-		if( $this->BlockAddress && !$wgRequest->wasPosted() ){
-			$this->mBlock = new Block();
-			if( $this->mBlock->load($this->BlockAddress) ) {
-				$this->AlreadyBlocked = true;
-				$this->BlockReason = wfMsgForContent( 'ipb_modifying_block' );
-				$this->BlockReasonList = $wgRequest->getText( 'wpBlockReasonList' );
-				$this->BlockExpiry = wfMsg('ipbotheroption');
-				$this->BlockOther = $wgLang->timeanddate( $this->mBlock->mExpiry );
-				$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', true );
-				$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', true );
-				$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', true );
-				$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
-				$this->BlockEmail = $this->mBlock->mBlockEmail;
-				$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
-				# Re-check user's rights to hide names, very serious, defaults to 0
-				$this->BlockHideName = ( $this->mBlock->mHideName && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
-				return true;
-			}
-		}
-		
 		$this->BlockReason = $wgRequest->getText( 'wpBlockReason' );
 		$this->BlockReasonList = $wgRequest->getText( 'wpBlockReasonList' );
 		$this->BlockExpiry = $wgRequest->getVal( 'wpBlockExpiry', wfMsg('ipbotheroption') );
@@ -93,7 +69,7 @@ class IPBlockForm {
 	}
 
 	function showForm( $err ) {
-		global $wgOut, $wgUser, $wgSysopUserBans, $wgRequest;
+		global $wgOut, $wgUser, $wgSysopUserBans;
 
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->addWikiMsg( 'blockiptext' );
@@ -110,10 +86,8 @@ class IPBlockForm {
 
 		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
 
-		if ( $wgRequest->wasPosted() ) {
-			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
-		}
 		if ( "" != $err ) {
+			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
 			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $err ) );
 		}
 
@@ -384,10 +358,7 @@ class IPBlockForm {
 		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
 
 			if ( !$block->insert() ) {
-				// Block already exists. Silently delete the existing block and insert it again
-				$oldblock = Block::newFromDB( $this->BlockAddress );
-				$oldblock->delete();
-				$block->insert();
+				return array('ipb_already_blocked', htmlspecialchars($this->BlockAddress));
 			}
 
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
