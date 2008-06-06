@@ -105,7 +105,7 @@ class NewPagesForm {
 			$this->setSyndicated();
 			$feedType = $this->opts->getValue( 'feed' );
 			if( $feedType ) {
-				return $this->feed( $feedType, $options );
+				return $this->feed( $feedType );
 			}
 		}
 
@@ -266,7 +266,7 @@ class NewPagesForm {
 	 * Output a subscription feed listing recent edits to this page.
 	 * @param string $type
 	 */
-	protected function feed( $type, $options ) {
+	protected function feed( $type ) {
 		require_once 'SpecialRecentchanges.php';
 
 		global $wgFeed, $wgFeedClasses;
