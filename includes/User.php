@@ -1102,13 +1102,11 @@ class User {
 	 */
 	public function isPingLimitable() {
 		global $wgRateLimitsExcludedGroups;
-		if ( array_intersect($this->getEffectiveGroups(), $wgRateLimitsExcludedGroups) == array() || 
-			!$this->isAllowed('noratelimit') ) {
-				return true;
-			}
-		else {
+		if( array_intersect( $this->getEffectiveGroups(), $wgRateLimitsExcludedGroups ) ) {
+			// Deprecated, but kept for backwards-compatibility config
 			return false;
 		}
+		return !$this->isAllowed('noratelimit');
 	}
 
 	/**
