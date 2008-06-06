@@ -79,7 +79,8 @@ abstract class File {
 			'htm' => 'html',
 			'jpeg' => 'jpg',
 			'mpeg' => 'mpg',
-			'tiff' => 'tif' );
+			'tiff' => 'tif',
+			'ogv' => 'ogg' );
 		if( isset( $squish[$lower] ) ) {
 			return $squish[$lower];
 		} elseif( preg_match( '/^[0-9a-z]+$/', $lower ) ) {
