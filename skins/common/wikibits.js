@@ -3,8 +3,13 @@
 var clientPC = navigator.userAgent.toLowerCase(); // Get client info
 var is_gecko = /gecko/.test( clientPC ) &&
 	!/khtml|spoofer|netscape\/7\.0/.test(clientPC);
-var is_safari = clientPC.indexOf('applewebkit') != -1 &&
-	clientPC.indexOf('spoofer') == -1;
+var webkit_match = clientPC.match(/applewebkit\/(\d+)/);
+if (webkit_match) {
+	var is_safari = clientPC.indexOf('applewebkit') != -1 &&
+		clientPC.indexOf('spoofer') == -1;
+	var is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
+	var webkit_version = parseInt(webkit_match[1]);
+}
 var is_khtml = navigator.vendor == 'KDE' ||
 	( document.childNodes && !document.all && !navigator.taintEnabled );
 // For accesskeys; note that FF3+ is included here!
@@ -201,9 +206,11 @@ function escapeQuotesHTML(text) {
 var tooltipAccessKeyPrefix = 'alt-';
 if (is_opera) {
 	tooltipAccessKeyPrefix = 'shift-esc-';
-} else if (is_safari
-	   || navigator.userAgent.toLowerCase().indexOf('mac') != -1
-	   || navigator.userAgent.toLowerCase().indexOf('konqueror') != -1 ) {
+} else if (!is_safari_win && is_safari && webkit_version > 526) {
+	tooltipAccessKeyPrefix = 'ctrl-alt-';
+} else if (!is_safari_win && (is_safari
+		|| clientPC.indexOf('mac') != -1
+		|| clientPC.indexOf('konqueror') != -1 )) {
 	tooltipAccessKeyPrefix = 'ctrl-';
 } else if (is_ff2) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
