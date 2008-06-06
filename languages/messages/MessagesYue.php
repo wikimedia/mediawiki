@@ -441,7 +441,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'readonlytext'         => '{{SITENAME}}資料庫而家鎖住咗，唔改得；可能因為維修緊。搞掂就會正常返。
 
 管理員嘅解釋： $1',
-'missingarticle'       => '資料庫搵唔到你要嘅版，「$1」。
+'missing-article'      => '資料庫搵唔到你要嘅版，「$1」 $2。
 
 通常係因為修訂歷史頁上面，由過時嘅連結去到刪除咗嘅版所引起嘅。
 
@@ -1081,6 +1081,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'right-editusercssjs'        => '編輯其他用戶嘅CSS同埋JS檔',
 'right-rollback'             => '快速反轉上位用戶對某一版嘅編輯',
 'right-markbotedits'         => '標示反轉編輯做機械人編輯',
+'right-noratelimit'          => '唔受率上限影響',
 'right-import'               => '由其它wiki度倒入版',
 'right-importupload'         => '由檔案上載度倒入版',
 'right-patrol'               => '標示其它嘅編輯做已巡查嘅',
@@ -1387,6 +1388,7 @@ Template:搞清楚',
 'popularpages'            => '受歡迎嘅頁面',
 'wantedcategories'        => '被徵求嘅分類',
 'wantedpages'             => '被徵求嘅頁面',
+'missingfiles'            => '遺失咗嘅檔案',
 'mostlinked'              => '有最多連結嘅頁面',
 'mostlinkedcategories'    => '有最多連結嘅分類',
 'mostlinkedtemplates'     => '有最多連結嘅模',

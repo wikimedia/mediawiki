@@ -388,7 +388,7 @@ MySQL返回错误“$3: $4”。',
 这很可能是由于数据库正在维修，完成后即可恢复。
 
 管理员有如下解释: $1',
-'missingarticle'       => '数据库找不到页面文字"$1"。
+'missing-article'      => '数据库找不到页面文字"$1" $2。
 
 通常这是由于修订历史页上过时的链接到已经被删除的页面所导致的。
 
@@ -1021,6 +1021,7 @@ $2',
 'right-editusercssjs'        => '编辑其他用户的CSS和JS文件',
 'right-rollback'             => '快速复原上位用户对某一页面之编辑',
 'right-markbotedits'         => '标示复原编辑作机械人编辑',
+'right-noratelimit'          => '不受率上限影响',
 'right-import'               => '由其它wiki中导入页面',
 'right-importupload'         => '由文件上载中导入页面',
 'right-patrol'               => '标示其它编辑作已巡查的',
@@ -1332,6 +1333,7 @@ Template:消除歧義',
 'popularpages'            => '热点页面',
 'wantedcategories'        => '待撰分类',
 'wantedpages'             => '待撰页面',
+'missingfiles'            => '遗失文件',
 'mostlinked'              => '最多链接页面',
 'mostlinkedcategories'    => '最多链接分类',
 'mostlinkedtemplates'     => '最多链接模版',
