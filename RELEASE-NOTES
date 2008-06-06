@@ -342,6 +342,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgGroupPermissions[]['noratelimit']. 
 * (Bug 13828) Split parameter $1 of MediaWiki:Missingarticle into $1 (=title)
   and $2 (=revision numbers)
+* (bug 14401) Fix Safari access key tooltips for Windows and >3.1 Mac versions
+
 
 === API changes in 1.13 ===
 
