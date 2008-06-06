@@ -9,7 +9,7 @@
  * the file mime.types in the includes directory.
  */
 define('MM_WELL_KNOWN_MIME_TYPES',<<<END_STRING
-application/ogg ogg ogm
+application/ogg ogg ogm ogv
 application/pdf pdf
 application/x-javascript js
 application/x-shockwave-flash swf
@@ -29,7 +29,7 @@ image/x-portable-pixmap ppm
 image/x-xcf xcf
 text/plain txt
 text/html html htm
-video/ogg ogm ogg
+video/ogg ogm ogg ogv
 video/mpeg mpg mpeg
 END_STRING
 );
@@ -360,7 +360,7 @@ class MimeMagic {
 			'xbm',
 
 			// Formats we recognize magic numbers for
-			'djvu', 'ogg', 'mid', 'pdf', 'wmf', 'xcf',
+			'djvu', 'ogg', 'ogv', 'mid', 'pdf', 'wmf', 'xcf',
 
 			// XML formats we sure hope we recognize reliably
 			'svg',
