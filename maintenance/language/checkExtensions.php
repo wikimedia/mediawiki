@@ -10,7 +10,7 @@ require_once( dirname(__FILE__).'/../commandLine.inc' );
 require_once( 'languages.inc' );
 require_once( 'checkLanguage.inc' );
 
-if( !class_exists( 'MessageGroups' ) ) {
+if( !class_exists( 'MessageGroups' ) || !class_exists( 'PremadeMediawikiExtensionGroups' ) ) {
 	echo <<<END
 Please add the Translate extension to LocalSettings.php, and enable the extension groups:
 	require_once( 'extensions/Translate/Translate.php' );
