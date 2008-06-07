@@ -176,12 +176,16 @@ function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
 	static $recursion = 0;
 
+	static $cache = array(); // Cache of unoutputted messages
+
 	# Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
 	if ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' && !$wgDebugRawPage ) {
 		return;
 	}
 
 	if ( $wgDebugComments && !$logonly ) {
+		$cache[] = $text;
+
 		if ( !isset( $wgOut ) ) {
 			return;
 		}
@@ -193,7 +197,10 @@ function wfDebug( $text, $logonly = false ) {
 			$wgOut->_unstub();
 			$recursion--;
 		}
-		$wgOut->debug( $text );
+
+		// add the message and possible cached ones to the output
+		array_map( array( $wgOut, 'debug' ), $cache );
+		$cache = array();
 	}
 	if ( '' != $wgDebugLogFile && !$wgProfileOnly ) {
 		# Strip unprintables; they can switch terminal modes when binary data
