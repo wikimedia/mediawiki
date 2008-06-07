@@ -10,25 +10,37 @@
 function wfSpecialMovepage( $par = null ) {
 	global $wgUser, $wgOut, $wgRequest, $action;
 
-	# Check rights
-	if ( !$wgUser->isAllowed( 'move' ) ) {
-		$wgOut->showPermissionsErrorPage( array( $wgUser->isAnon() ? 'movenologintext' : 'movenotallowed' ) );
-		return;
-	}
-
-	# Don't allow blocked users to move pages
-	if ( $wgUser->isBlocked() ) {
-		$wgOut->blockedPage();
-		return;
-	}
-
 	# Check for database lock
 	if ( wfReadOnly() ) {
 		$wgOut->readOnlyPage();
 		return;
 	}
 
-	$f = new MovePageForm( $par );
+	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
+	$oldTitle = $wgRequest->getText( 'wpOldTitle', $target );
+	$newTitle = $wgRequest->getText( 'wpNewTitle' );
+
+	# Variables beginning with 'o' for old article 'n' for new article
+	$ot = Title::newFromText( $oldTitle );
+	$nt = Title::newFromText( $newTitle );
+
+	if( is_null( $ot ) ) {
+		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+		return;
+	}
+	if( !$ot->exists() ) {
+		$wgOut->showErrorPage( 'nopagetitle', 'nopagetext' );
+		return;
+	}
+
+	# Check rights
+	$permErrors = $ot->getUserPermissionsErrors( 'move', $wgUser );
+	if( !empty( $permErrors ) ) {
+		$wgOut->showPermissionsErrorPage( $permErrors );
+		return;
+	}
+
+	$f = new MovePageForm( $ot, $nt );
 
 	if ( 'submit' == $action && $wgRequest->wasPosted()
 		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
@@ -48,11 +60,11 @@ class MovePageForm {
 
 	private $watch = false;
 
-	function MovePageForm( $par ) {
+	function MovePageForm( $oldTitle, $newTitle ) {
 		global $wgRequest;
 		$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
-		$this->oldTitle = $wgRequest->getText( 'wpOldTitle', $target );
-		$this->newTitle = $wgRequest->getText( 'wpNewTitle' );
+		$this->oldTitle = $oldTitle;
+		$this->newTitle = $newTitle;
 		$this->reason = $wgRequest->getText( 'wpReason' );
 		if ( $wgRequest->wasPosted() ) {
 			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', false );
@@ -67,16 +79,7 @@ class MovePageForm {
 	function showForm( $err, $hookErr = '' ) {
 		global $wgOut, $wgUser;
 
-		$ot = Title::newFromURL( $this->oldTitle );
-		if( is_null( $ot ) ) {
-			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
-			return;
-		}
-		if( !$ot->exists() ) {
-			$wgOut->showErrorPage( 'nopagetitle', 'nopagetext' );
-			return;
-		}
-
+		$ot = $this->oldTitle;
 		$sk = $wgUser->getSkin();
 
 		$oldTitleLink = $sk->makeLinkObj( $ot );
@@ -244,10 +247,8 @@ class MovePageForm {
 			return;
 		}
 
-		# Variables beginning with 'o' for old article 'n' for new article
-
-		$ot = Title::newFromText( $this->oldTitle );
-		$nt = Title::newFromText( $this->newTitle );
+		$ot = $this->oldTitle;
+		$nt = $this->newTitle;
 
 		# Delete to make way if requested
 		if ( $wgUser->isAllowed( 'delete' ) && $this->deleteAndMove ) {
