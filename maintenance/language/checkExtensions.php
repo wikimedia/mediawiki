@@ -15,6 +15,7 @@ if( !class_exists( 'MessageGroups' ) || !class_exists( 'PremadeMediawikiExtensio
 Please add the Translate extension to LocalSettings.php, and enable the extension groups:
 	require_once( 'extensions/Translate/Translate.php' );
 	\$wgTranslateEC = array_keys( \$wgTranslateAC );
+If you still get this message, update Translate to its latest version.
 
 END;
 	exit(-1);
