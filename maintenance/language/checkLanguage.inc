@@ -353,6 +353,8 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 			$this->checks[] = 'duplicate';
 		}
 
+		$extensions = new PremadeMediawikiExtensionGroups();
+		$extensions->addAll();
 		if( $extension == 'all' ) {
 			$this->extensions = array();
 			foreach( MessageGroups::singleton()->getGroups() as $group ) {
