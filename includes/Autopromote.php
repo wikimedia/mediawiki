@@ -41,7 +41,7 @@ class Autopromote {
 	 * @return bool Whether the condition is true
 	 */
 	private static function recCheckCondition( $cond, User $user ) {
-		$validOps = array( '&', '|', '^' );
+		$validOps = array( '&', '|', '^', '!' );
 		if( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
 			# Recursive condition
 			if( $cond[0] == '&' ) {
@@ -63,6 +63,11 @@ class Autopromote {
 						$res = ($res xor self::recCheckCondition( $subcond, $user ));
 				}
 				return $res;
+			} elseif ( $cond[0] = '!' ) {
+				foreach( array_slice( $cond, 1 ) as $subcond )
+					if( self::recCheckCondition( $subcond, $user ) )
+						return false;
+				return true;
 			}
 		}
 		# If we got here, the array presumably does not contain other condi-
