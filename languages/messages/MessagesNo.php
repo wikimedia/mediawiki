@@ -25,7 +25,11 @@
 $skinNames = array(
 	'standard'    => 'Standard',
 	'nostalgia'   => 'Nostalgi',
-	'cologneblue' => 'Kölnerblå'
+	'cologneblue' => 'Kølnerblå',
+	'monobook'    => 'Monobook',
+	'myskin'      => 'Eget utseende',
+	'simple'      => 'Enkel',
+	'modern'      => 'Moderne',
 );
 
 $bookstoreList = array(
@@ -89,6 +93,7 @@ $specialPageAliases = array(
 	'Imagelist'                 => array( 'Filliste', 'Bildeliste', 'Billedliste' ),
 	'Newimages'                 => array( 'Nye_bilder' ),
 	'Listusers'                 => array( 'Brukerliste' ),
+	'Listgrouprights'           => array( 'Grupperettigheter' ),
 	'Statistics'                => array( 'Statistikk' ),
 	'Randompage'                => array( 'Tilfeldig_side', 'Tilfeldig' ),
 	'Lonelypages'               => array( 'Foreldreløse_sider' ),
@@ -100,6 +105,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Ubrukte_filer', 'Ubrukte_bilder' ),
 	'Wantedpages'               => array( 'Ønskede_sider' ),
 	'Wantedcategories'          => array( 'Ønskede_kategorier' ),
+	'Missingfiles'              => array( 'Manglende_filer', 'Manglende_bilder' ),
 	'Mostlinked'                => array( 'Mest_lenkede_sider', 'Mest_lenka_sider' ),
 	'Mostlinkedcategories'      => array( 'Største_kategorier' ),
 	'Mostlinkedtemplates'       => array( 'Mest_brukte_maler' ),
