@@ -621,6 +621,9 @@ class LocalFile extends File
 
 	function getHistory($limit = null, $start = null, $end = null) {
 		$dbr = $this->repo->getSlaveDB();
+		$tables = array('oldimage');
+		$join_conds = array();
+		$fields = OldLocalFile::selectFields();
 		$conds = $opts = array();
 		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBKey() );
 		if( $start !== null ) {
@@ -633,7 +636,10 @@ class LocalFile extends File
 			$opts['LIMIT'] = $limit;
 		}
 		$opts['ORDER BY'] = 'oi_timestamp DESC';
-		$res = $dbr->select('oldimage', '*', $conds, __METHOD__, $opts);
+		
+		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields, &$conds, &$opts, &$join_conds ) );
+		
+		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
 		$r = array();
 		while( $row = $dbr->fetchObject($res) ) {
 			$r[] = OldLocalFile::newFromRow($row, $this->repo);
