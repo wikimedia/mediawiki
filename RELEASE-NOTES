@@ -147,7 +147,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   edits in the last $wgActiveUserDays days.
 * SpecialSearchResults hook now passes results by reference, so they can be
   changed by extensions.
-
+* Add a new hook LinkerMakeExternalLink to allow extensions to modify the output of
+  external links.
+  
 === Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository
