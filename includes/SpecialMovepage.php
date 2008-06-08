@@ -193,7 +193,8 @@ class MovePageForm {
 			);
 		}
 
-		if( $ot->hasSubpages() || $ot->getTalkPage()->hasSubpages() ) {
+		if( ($ot->hasSubpages() || $ot->getTalkPage()->hasSubpages())
+		&& $ot->userCan( 'move-subpages' ) ) {
 			$wgOut->addHTML( "
 				<tr>
 					<td></td>
@@ -297,6 +298,10 @@ class MovePageForm {
 		# can't move any talk pages: cancel that.
 		if( $ot->isTalkPage() || $nt->isTalkPage() ) {
 			$this->moveTalk = false;
+		}
+
+		if( !$ot->userCan( 'move-subpages' ) ) {
+			$this->moveSubpages = false;
 		}
 
 		# Next make a list of id's.  This might be marginally less efficient
