@@ -741,6 +741,14 @@ $lang: laguage code (string)
 
 'LoadExtensionSchemaUpdates': called by maintenance/updaters.inc when upgrading database schema
 
+'LocalFile::getHistory': called before file history query performed
+$file: the file
+$tables: tables
+$fields: select fields
+$conds: conditions
+$opts: query options
+$join_conds: JOIN conditions
+
 'LoginAuthenticateAudit': a login attempt for a valid user account either succeeded or failed.
                           No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against

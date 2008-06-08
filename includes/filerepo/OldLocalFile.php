@@ -44,6 +44,29 @@ class OldLocalFile extends LocalFile {
 			return false;
 		}
 	}
+	
+	/**
+	 * Fields in the oldimage table
+	 */
+	static function selectFields() {
+		return array(
+			'oi_name',
+			'oi_archive_name',
+			'oi_size',
+			'oi_width',
+			'oi_height',
+			'oi_metadata',
+			'oi_bits',
+			'oi_media_type',
+			'oi_major_mime',
+			'oi_minor_mime',
+			'oi_description',
+			'oi_user',
+			'oi_user_text',
+			'oi_timestamp',
+			'oi_sha1',
+		);
+	}
 
 	/**
 	 * @param Title $title
