@@ -28,6 +28,7 @@
 	'ba' => 'Башҡорт',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
 	'bat-smg' => 'Žemaitėška', # Samogitian
+	'bcc' => 'بلوچی', # Southern Balochi
 	'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 	'be' => 'Беларуская',	#  Belarusian normative
 	'be-tarask' => 'Беларуская (тарашкевіца)',	# Belarusian in Taraskievica orthography
