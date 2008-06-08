@@ -574,11 +574,12 @@ $messages = array(
 'readonly'             => 'Basis data dikunci',
 'enterlockreason'      => 'Masukkan alasan penguncian, termasuk perkiraan kapan kunci akan dibuka',
 'readonlytext'         => 'Basis data sedang dikunci terhadap masukan baru. Pengurus yang melakukan penguncian memberikan penjelasan sebagai berikut: <p>$1',
-'missingarticle'       => 'Basis data tidak menemukan teks bagi halaman yang seharusnya mempunyai teks, yaitu halaman "$1".
+'missing-article'      => 'Basis data tidak dapat menemukan teks dari halaman "$1" $2.
 
-Ini biasanya disebabkan karena perubahan yang kadaluwarsa atau karena pranala lama kepada halaman telah dihapus.
+Hal ini mungkin disebabkan oleh pranala usang ke versi terdahulu halaman yang telah dihapuskan.
 
-Jika ini bukan sebabnya, Anda mungkin menemukan bug dalam perangkat lunak. Silakan laporkan hal ini kepada pengurus, dengan mencantumkan URL halaman yang bermasalah tersebut',
+Jika bukan ini penyebabnya, Anda mungkin telah menemukan bug dalam perangkat lunak.
+Silakan laporkan hal ini kepada Pengurus, dengan menyebutkan alamat URL yang dituju.',
 'missingarticle-rev'   => '(revisi#: $1)',
 'missingarticle-diff'  => '(Beda: $1, $2)',
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
@@ -1180,6 +1181,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'right-editusercssjs'        => 'Menyunting arsip CSS dan JS pengguna lain',
 'right-rollback'             => 'Mengembalikan dengan cepat suntingan-suntingan pengguna terakhir yang menyunting halaman tertentu',
 'right-markbotedits'         => 'Menandai pengembalian revisi sebagai suntingan bot',
+'right-noratelimit'          => 'Tidak dipengaruhi oleh pembatasan jumlah suntingan.',
 'right-import'               => 'Mengimpor halaman dari wiki lain',
 'right-importupload'         => 'Mengimpor halaman dari sebuah berkas yang dimuatkan',
 'right-patrol'               => 'Menandai suntingan pengguna lain sebagai terpatroli',
@@ -1475,6 +1477,7 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://www.me
 'popularpages'            => 'Halaman populer',
 'wantedcategories'        => 'Kategori yang diinginkan',
 'wantedpages'             => 'Halaman yang diinginkan',
+'missingfiles'            => 'File-file hilang',
 'mostlinked'              => 'Halaman yang tersering dituju',
 'mostlinkedcategories'    => 'Kategori yang tersering digunakan',
 'mostlinkedtemplates'     => 'Templat yang tersering digunakan',

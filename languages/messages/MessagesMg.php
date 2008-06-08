@@ -218,12 +218,6 @@ $1",
 Mihidy vonjimaika aloha ny banky angona ka tsy afaka anaovana fanovana na fanampiana vaovao. Azo inoana fa asa fikolokoloana mahazatra ihany io ka rehefa vita izay asa izay dia hverina amin'ny laoniny izy.
 
 Ny mpitantana nanidy azy dia nametraka ito fanazavana ito: $1",
-'missingarticle'  => 'Tsy hita tao amin\'ny banky angona ny teny hoe "$1" izay tokony ho hitany mihitsy anefa.
-
-Matetika dia tao amin\'ny fampitahana na tantarana rohina pejy efa nofafana izay efa lany daty koa izany.
-
-Raha tsy izany, dia mety ho nahita bug tao amin\'ny rindrankajy ianao.
-Raha sitrakao dia mba tatero any amina mpitantana izany, aza adinoina ny URL.',
 'readonly_lag'    => "
 Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tompony",
 'internalerror'   => "Tsy fetezana anatin'ny rindrankajy",
@@ -1076,6 +1070,5 @@ $1",
 
 # Special:SpecialPages
 'specialpages' => 'Pejy manokana',
-
 
 );

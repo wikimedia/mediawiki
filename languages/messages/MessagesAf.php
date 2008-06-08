@@ -344,9 +344,6 @@ waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
 
 $1',
-'missingarticle'       => 'Die databasis het nie die teks van die veronderstelde bladsy "$1" gekry nie.
-Nie databasisfout nie, moontlik sagtewarefout.
-Raporteer die adres asseblief aan enige administrateur.',
 'missingarticle-rev'   => '(weergawe#: $1)',
 'readonly_lag'         => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
 'internalerror'        => 'Interne fout',

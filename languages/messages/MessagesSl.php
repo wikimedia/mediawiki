@@ -304,13 +304,6 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'readonlytext'         => "Zbirka podatkov je za urejanja in druge spremembe začasno zaklenjena. To navadno pomeni, da nadgrajujejo programje strežnikov ali pa rutinsko vzdrževanje zbirke.
 
 Sistemski skrbnik, ki jo je zaklenil, je podal naslednjo razlago: ''\"\$1\"''",
-'missingarticle'       => 'Zbirka podatkov bi besedilo strani »$1« morala najti, vendar ji žal ni uspelo.
-
-Morda stran s tem imenom še ni bila ustvarjena. Če je tako, jo lahko ustvarite z izbiro povezave »Uredite stran«.
-
-Kadar gre za nedavno spremenjeno stran, jo poskusite minuto ali dve pozneje ponovno poiskati. Morda pa ste sledili zastareli povezavi na primerjavo ali zgodovino izbrisane strani.
-
-Kadar to ni tako, ste morda odkrili hrošč v programju. Prosimo, obvestite katerega izmed [[{{MediaWiki:Grouppage-sysop}}|administratorjev]] in pri tem navedite spletni naslov.',
 'readonly_lag'         => 'Podatkovna zbirka se je samodejno zaklenila, dokler se podrejeni strežniki ne uskladijo z glavnim.',
 'internalerror'        => 'Notranja napaka',
 'filecopyerror'        => 'Datoteke »$1« ni mogoče prepisati v »$2«.',
@@ -1651,6 +1644,5 @@ $1',
 
 # Special:SpecialPages
 'specialpages' => 'Posebne strani',
-
 
 );

@@ -452,15 +452,12 @@ $messages = array(
 'readonlytext'         => 'Databasen er for øyeblikket skrivebeskyttet, sannsynligvis på grunn av rutinemessig vedlikehold.
 
 Administratoren som låste databasen ga forklaringen: $1',
-'missingarticle'       => 'Databasen fant ikke teksten til en side den skulle ha funnet, «$1».
+'missing-article'      => 'Databasen burde ha funnet siden «$1» $2, men det gjorde den ikke.
 
-Hvis dette er en nylig endret side vil det vanligvis hjelpe å prøve igjen
-om et minutt eller to. Ellers er det mulig du har fulgt en lenke til en side
-som er blitt slettet.
+De vanligste grunnene til denne feilen er en lenke til en diff mellom forskjellige versjoner eller lenker til en gammel versjon av en side som har blitt slettet.
 
-Hvis dette ikke er tilfelle er det mulig du har støtt på en programfeil.
-Send en rapport om dette til en administrator, og ta med adressen (URL-en)
-til siden.',
+Om det ikke er tilfellet kan du ha funnet en feil i programvaren.
+Rapporter gjerne problemet til en administrator, angi da adressen til siden.',
 'missingarticle-rev'   => '(versjon $1)',
 'missingarticle-diff'  => '(diff: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk skrivebeskyttet så slavetjenerne kan ta igjen mestertjeneren',
@@ -1077,6 +1074,7 @@ se math/README for oppsett.',
 'right-editusercssjs'        => 'Redigere andre brukeres CSS- og JS-filer',
 'right-rollback'             => 'Raskt tilbakestille den siste brukeren som har redigert en gitt side',
 'right-markbotedits'         => 'Markere tilbakestillinger som robotredigeringer',
+'right-noratelimit'          => 'Påvirkes ikke av hastighetsgrenser',
 'right-import'               => 'Importere sider fra andre wikier',
 'right-importupload'         => 'Importere sider via opplasting',
 'right-patrol'               => 'Markere redigeringer som patruljerte',
@@ -1386,6 +1384,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'popularpages'            => 'Populære sider',
 'wantedcategories'        => 'Ønskede kategorier',
 'wantedpages'             => 'Etterspurte sider',
+'missingfiles'            => 'Manglende filer',
 'mostlinked'              => 'Sider med flest lenker til seg',
 'mostlinkedcategories'    => 'Kategorier med flest sider',
 'mostlinkedtemplates'     => 'Mest brukte maler',

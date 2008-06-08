@@ -348,12 +348,6 @@ $1',
 'readonlytext'         => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
 
 Veritabanını kilitleyen operatörün açıklaması: $1',
-'missingarticle'       => 'Veritabanı bulması gereken "$1" adlı sayfadaki metni bulamadı.
-
-Bu genellikle süresi geçmiş bir geçmiş bağlantısı ya da silinmiş bir geçmiş bağlantısının açılmasıyla olur.
-
-Eğer durum bu değilse yazılımda bir hata bulmuş olabilirsiniz. 
-URL sayfasını belirterek lütfen bir hizmetliye durumu bildirin.',
 'missingarticle-rev'   => '(revizyon#: $1)',
 'missingarticle-diff'  => '(Fark: $1, $2)',
 'readonly_lag'         => 'Yedek sunucular ana sunucu ile güncellemeye çalışırken veritabanı otomatik olarak kilitlendi.',

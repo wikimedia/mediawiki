@@ -457,12 +457,6 @@ $1',
 'readonlytext'         => 'A base de dados está actualmente trancada para novas entradas e outras modificações, provavelmente por uma manutenção de rotina; a situação deverá ser normalizada dentro de algum tempo.
 
 Quem fez o bloqueio oferece a seguinte explicação: $1',
-'missingarticle'       => 'A base de dados não encontrou o texto de uma página que deveria ter encontrado. A página em questão é "$1".
-
-Isto é geralmente causado ao se acessar um diff ou link de histórico que leva a uma página que foi eliminada.
-
-Se este não for o caso, você pode ter encontrado um "bug" no software.
-Por favor, tome nota do URL e comunique o erro a um administrador do sistema.',
 'missingarticle-rev'   => '(revisão#: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'A base de dados foi automaticamente bloqueada enquanto os servidores secundários se sincronizam com o principal',

@@ -1096,5 +1096,4 @@ Voluntez selektar altra nomo.',
 # Special:SpecialPages
 'specialpages' => 'Specala pagini',
 
-
 );

@@ -859,5 +859,4 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 # Special:SpecialPages
 'specialpages' => 'Te̍k-sû-ia̍h',
 
-
 );

@@ -501,5 +501,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'Pagine spiciale',
 
-
 );

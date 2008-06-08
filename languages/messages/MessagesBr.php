@@ -364,9 +364,6 @@ $1",
 'readonlytext'         => "Evit poent n'haller ket ouzhpennañ pe gemmañ netra er bank roadennoù mui. Un tamm kempenn boutin d'ar bank moarvat. goude-se e vo plaen an traoù en-dro.
 
 Setu displegadenn ar merour bet prennet ar bank gantañ : $1",
-'missingarticle'       => "N'eo ket bet ar bank roadennoù evit kavout testenn ur bajenn zo anezhi c'hoazh gant an titl \"\$1\".
-N'eo ket ur fazi gant ar bank roadennoù, un draen gant ar wiki marteze a-walc'h.
-Kasit, ni ho ped, keloù eus an draen-mañ d'ur merour en ur verkañ mat dezhañ chomlec'h ar bajenn e kaoz.",
 'missingarticle-rev'   => '(adweladenn # : $1)',
 'missingarticle-diff'  => '(Dif : $1, $2)',
 'readonly_lag'         => "Stanket eo bet ar bank roadennoù ent emgefre p'emañ an eilservijerioù oc'h adpakañ o dale e-keñver ar pennservijer",

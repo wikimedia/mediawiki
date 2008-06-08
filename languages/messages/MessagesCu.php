@@ -167,6 +167,7 @@ $messages = array(
 'talk'             => 'бєсѣ́да',
 'toolbox'          => 'орѫ́диꙗ',
 'otherlanguages'   => 'ДРОУГꙐ́ ѨꙀꙐКꙐ́',
+'redirectpagesub'  => 'прѣнаправлѥ́ниѥ',
 'lastmodifiedat'   => 'страни́цѧ послѣ́дьнꙗ мѣ́на сътворѥна́ $2 · $1 бѣ ⁙', # $1 date, $2 time
 'jumptonavigation' => 'пла́ваниѥ',
 'jumptosearch'     => 'иска́ниѥ',
@@ -208,7 +209,7 @@ $messages = array(
 
 # Login and logout pages
 'loginpagetitle'     => 'Въходъ',
-'yourname'           => 'Твоѥ имѧ',
+'yourname'           => 'твоѥ́ и́мѧ',
 'yourpassword'       => 'Таино слово напиши',
 'yourpasswordagain'  => 'Опакы таиноѥ слово напиши',
 'login'              => 'Въниди',
@@ -220,6 +221,7 @@ $messages = array(
 'gotaccountlink'     => 'Въниди',
 'userexists'         => 'Сѫще польѕевател имѧ пьса. Ино изобрѧщи.',
 'username'           => 'по́льꙃєватєлꙗ и́мѧ :',
+'uid'                => 'по́льꙃєватєлꙗ число́ :',
 'yourlanguage'       => 'ѩꙁꙑ́къ :',
 'yournick'           => 'аѵто́графъ :',
 'loginerror'         => 'Въхода блазна',
@@ -237,7 +239,11 @@ $messages = array(
 # Revision feed
 'history-feed-title' => 'мѣ́нъ їсторі́ꙗ',
 
+# Revision deletion
+'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
+
 # Search results
+'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
 'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
 'searchall'                => 'вьсꙗ́',
 'powersearch'              => 'ищи́',
@@ -326,7 +332,7 @@ $messages = array(
 # Special:Allpages
 'allpages'       => 'вьсѩ́ страни́цѧ',
 'allpagesfrom'   => 'Страницѧ видѣти хощѫ съ начѧльнами бѹкъвами:',
-'allarticles'    => 'Вьсѩ статїѩ',
+'allarticles'    => 'вьсѩ́ страни́цѧ',
 'allpagessubmit' => 'прѣиди́',
 
 # Special:Categories
@@ -361,6 +367,7 @@ $messages = array(
 # What links here
 'whatlinkshere'       => 'дос̑ьдє́щьнѩ съвѧ́ꙁи',
 'whatlinkshere-page'  => 'страни́ца :',
+'isredirect'          => 'прѣнаправлѥ́ниѥ',
 'whatlinkshere-links' => '← съвѧ́ꙁи',
 
 # Block/unblock
@@ -391,6 +398,11 @@ $messages = array(
 
 # Table pager
 'table_pager_limit_submit' => 'прѣиди́',
+
+# Special:Version
+'version'                  => 'о́браꙁъ', # Not used as normal message but as header for the special page itself
+'version-version'          => 'о́браꙁъ',
+'version-software-version' => 'о́браꙁъ',
 
 # Special:Filepath
 'filepath-page' => 'дѣ́ло :',

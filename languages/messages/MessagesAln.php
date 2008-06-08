@@ -311,13 +311,6 @@ artikuj t'ri. Munet qi asht bllokuar për mirëmbajtje,
 dhe do të kthehet në gjèndje normale mas mirëmbajtjes.
 
 Mirëmbajtësi i cili e ka bllokue dha këtë arsye: $1",
-'missingarticle'       => 'Regjistri nuk e gjeti tekstin e faqes që duhet ta kishte gjetur, të quajtem "$1".
-
-Kjo ndodh zakonisht kur ndjek një ndryshim ose lidhje historie te një
-faqe që asht grisur.
-
-Nëse ky nuk asht rasti, atëherë munet qi e keni gjetur një gabim në softuerin.
-Tregojani këtë përmbledhje një administruesi, tuj shënue edhe URL-në.',
 'readonly_lag'         => "Regjistri asht bllokue automatikisht për m'i dhánë kohë shërbyesve skllevër me arrit kryesorin. Ju lutemi provojeni prap ma vonë.",
 'internalerror'        => 'Gabim i brendshëm',
 'internalerror_info'   => 'Gabimi i brenshëm: $1',

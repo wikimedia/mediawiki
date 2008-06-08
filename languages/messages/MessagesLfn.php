@@ -890,5 +890,4 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 # Special:SpecialPages
 'specialpages' => 'Pajes spesial',
 
-
 );

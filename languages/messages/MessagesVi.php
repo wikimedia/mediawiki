@@ -429,11 +429,6 @@ $1',
 'readonlytext'         => 'Cơ sở dữ liệu hiện đã bị khóa không nhận trang mới và các điều chỉnh khác, có lẽ để bảo trì cơ sở dữ liệu định kỳ, một thời gian ngắn nữa nó sẽ trở lại bình thường.
 
 Người quản lý khóa nó đã đưa ra lời giải thích sau: $1',
-'missingarticle'       => 'Cơ sở dữ liệu không tìm thấy đoạn văn bản trong trang mà lẽ ra nó phải tìm thấy, có tên “$1”.
-
-Điều này thường xảy ra do liên kết so sánh hoặc lịch sử bị lỗi thời đối với trang đã bị xóa.
-
-Nếu trường hợp này không phải như vậy, bạn có thể đã tìm thấy một lỗi của phần mềm. Xin hãy báo việc này lên người quản lý, ghi chú lại địa chỉ URL.',
 'missingarticle-rev'   => '(số phiên bản: $1)',
 'missingarticle-diff'  => '(Khác: $1, $2)',
 'readonly_lag'         => 'Cơ sở dữ liệu bị khóa tự động trong khi các máy chủ cập nhật thông tin của nhau.',

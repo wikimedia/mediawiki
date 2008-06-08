@@ -443,12 +443,6 @@ $1',
 'readonlytext'         => 'O banco-de-dados da {{SITENAME}} está atualmente bloqueado para novas entradas e outras modificações, provavelmente por uma manutenção rotineira; mais tarde voltará ao normal.
 
 Quem fez o bloqueio oferece a seguinte explicação: $1',
-'missingarticle'       => 'O Banco-de-Dados não encontrou o texto de uma página que deveria ter encontrado: "$1".
-
-Isto é geralmente causado por se ter acessado um diff antigo ou um link de histórico que leva a uma página que foi eliminada.
-
-Se este não for o caso, você pode ter encontrado um "bug" no software.
-Por favor, tome nota do URL e comunique o erro a um administrador do sistema.',
 'readonly_lag'         => 'O banco de dados foi automaticamente bloqueado enquanto os servidores secundários se sincronizam com o principal',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',

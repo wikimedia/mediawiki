@@ -367,11 +367,6 @@ MySQL je vratio pogrešku "<tt>$3: $4</tt>".',
 'readonlytext'         => 'Baza podataka je trenutačno zaključana, nije ju moguće uređivati ili mijenjati. Ovo je obično pokazatelj tekućeg redovitog održavanja. Nakon što se potonja privremena akcija završi, baza podataka će se vratiti u uobičajeno stanje.
 
 Administrator koji je izvršio zaključavanje naveo je ovaj razlog: $1',
-'missingarticle'       => 'U bazi podataka nije pronađena stranica "$1" koja je trebala biti pronađena.
-
-Ovo se najčešće događa zbog poveznice na zastarjelu usporedbu ili staru promjenu stranice koja je u međuvremenu izbrisana.
-
-Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom slučaju pošaljete poruku administratoru navodeći URL.',
 'missingarticle-rev'   => '(izmjena#: $1)',
 'missingarticle-diff'  => '(razlika: $1, $2)',
 'readonly_lag'         => 'Baza podataka je automatski zaključana dok se sekundarni bazni poslužitelji ne usklade s glavnim',

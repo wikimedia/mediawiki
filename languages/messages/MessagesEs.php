@@ -368,12 +368,6 @@ MySQL devolvió el error "$3: $4".',
 'readonlytext'         => 'La base de datos de {{SITENAME}} no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
 La explicación dada por el administrador que la bloqueó fue:
 <p>$1',
-'missingarticle'       => 'La base de datos no encontró el texto de una página que debería haber encontrado, llamada "$1".
-
-Normalmente esto se debe a que se ha seguido un enlace a una diferencia de versiones, o historial obsoletos de una página que ha sido borrada.
-
-Si esta no es la causa, puedes haber encontrado un error en el software. Por favor, informa de esto a un administrador,
-incluyendo el URL.',
 'missingarticle-rev'   => '(no. de revisión: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',

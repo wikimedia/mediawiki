@@ -341,9 +341,6 @@ MySQL a l\'ha dane n\'eror "$3: $4"',
 'readonlytext'         => "La base dat ëd {{SITENAME}} për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël server. Se a l'é parej motobin ampressa la base a sarà torna doèrta.<br />
 L'aministrator che a l'ha blocala a l'ha lassà sto messagi-sì:
 <p>:$1",
-'missingarticle'       => "La base dat a l'ha pa trovà ël test ëd la pàgina \"\$1\", che però a l'avrìa pro dovù trové.<br />
-Sòn a l'é pa n'eror dla base dat, ma a l'ha l'ària dë esse na gran-a dël programa.<br />
-Për piasì, che a-j segnala sossì a n'[[{{MediaWiki:Policy-url}}|aministrator]] dël sistema, specificand tìtol dla pàgina e ora dl'assident.",
 'readonly_lag'         => "La base dat a l'é staita blocà n'automàtich antramentr che che le màchine dël circuito secondari (slave) as buto an pari con cole dël prinsipal (master)",
 'internalerror'        => 'Eror intern',
 'internalerror_info'   => 'Eror antern: $1',

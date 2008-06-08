@@ -1223,5 +1223,4 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'specialpages-group-users'       => 'Хутшăнакансем тата правасем',
 'specialpages-group-highuse'     => 'Нумай усă куракан страницăсем',
 
-
 );

@@ -521,13 +521,12 @@ $1',
 'readonly'             => 'Base de données verrouillée',
 'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
 'readonlytext'         => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre. L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1',
-'missingarticle'       => 'La base de données n’a pas pu trouver le texte d’une page qui existe pourtant, et dont le nom est « $1 ».
+'missing-article'      => "La base de donnée n'a pas trouvé le texte d’une page qu’elle aurait due trouvée, intitulée « $1 » $2.
 
-Cela est généralement dû à un diff désuet ou un lien vers l’historique d’une page effacée.
+Ceci est, en principe, causé en suivant un diff périmé où un lien de l’historique vers une page ayant été supprimée.
 
-Si ce n’est pas le cas, vous avez peut-être trouvé un bogue du logiciel.
-
-Veuillez rapporter cette erreur à un administrateur, en lui indiquant l’adresse de la page fautive.',
+Si cela n’est pas le cas, vous pouvez avoir trouvé un bogue dans le programme.
+Veuillez le reporter à un administrateur après avoir relevé l’adresse du lien.",
 'missingarticle-rev'   => '(révision # : $1)',
 'missingarticle-diff'  => '(Diff : $1, $2)',
 'readonly_lag'         => 'La base de donnée a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
@@ -692,15 +691,15 @@ Ignorez ce message si ce compte a été créé par erreur.",
 'subject'                          => 'Sujet/titre',
 'minoredit'                        => 'Modification mineure',
 'watchthis'                        => 'Suivre cette page',
-'savearticle'                      => 'Sauvegarder',
+'savearticle'                      => 'Publier',
 'preview'                          => 'Prévisualisation',
 'showpreview'                      => 'Prévisualiser',
 'showlivepreview'                  => 'Aperçu rapide',
 'showdiff'                         => 'Changements en cours',
 'anoneditwarning'                  => "'''Attention :''' vous n’êtes pas identifié. Votre adresse IP sera enregistrée dans l’historique de cette page.",
-'missingsummary'                   => "'''Attention :''' vous n’avez pas modifié le résumé de votre modification. Si vous cliquez de nouveau sur le bouton « Sauvegarder », la sauvegarde sera faite sans nouvel avertissement.",
+'missingsummary'                   => "'''Attention :''' vous n’avez pas modifié le résumé de votre modification. Si vous cliquez de nouveau sur le bouton « Publier », la publication sera faite sans nouvel avertissement.",
 'missingcommenttext'               => 'Veuillez faire votre commentaire ci-dessous.',
-'missingcommentheader'             => "'''Rappel :''' Vous n’avez pas fourni de sujet/titre à ce commentaire. Si vous cliquez à nouveau sur « Sauvegarder », votre édition sera enregistrée sans titre.",
+'missingcommentheader'             => "'''Rappel :''' Vous n’avez pas fourni de sujet/titre à ce commentaire. Si vous cliquez à nouveau sur « Publier », votre édition sera enregistrée sans titre.",
 'summary-preview'                  => 'Prévisualiser le résumé',
 'subject-preview'                  => 'Prévisualisation du sujet/titre',
 'blockedtitle'                     => 'L’utilisateur est bloqué.',
@@ -737,7 +736,7 @@ Votre adresse IP est $3 et votre identifiant de blocage est #$5. Veuillez les pr
 'confirmedittitle'                 => 'Validation de l’adresse de courriel nécessaire pour modifier le contenu',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse courriel avant de modifier {{SITENAME}}. Veuillez entrer et valider votre adresse électronique à l’aide de la page [[Special:Preferences|préférences]].',
 'nosuchsectiontitle'               => 'Section manquante',
-'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas. Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où sauvegarder vos modifications.',
+'nosuchsectiontext'                => 'Vous avez essayé de modifier une section qui n’existe pas. Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où publier vos modifications.',
 'loginreqtitle'                    => 'Connexion nécessaire',
 'loginreqlink'                     => 'connecter',
 'loginreqpagetext'                 => 'Vous devez vous $1 pour voir les autres pages.',
@@ -750,15 +749,15 @@ Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votr
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
 'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur le titre de cette page]], vérifier qu’elle n’a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifier cette page].',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
-'clearyourcache'                   => "'''Note :''' Après avoir sauvegardé la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
+'clearyourcache'                   => "'''Note :''' Après avoir publié la page, vous devrez forcer son rechargement pour voir les changements : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
 'usercssjsyoucanpreview'           => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
 'usercsspreview'                   => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille CSS et qu’elle n’a pas encore été enregistrée !'''",
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
 'userinvalidcssjstitle'            => "'''Attention :''' il n’existe pas de style « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/monobook.css et non {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Mis à jour)',
 'note'                             => '<strong>Note :</strong>',
-'previewnote'                      => '<strong>Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été sauvegardé !</strong>',
-'previewconflict'                  => 'Cette prévisualisation montre le texte de la boîte de modification supérieure tel qu’il apparaîtra si vous choisissez de le sauvegarder.',
+'previewnote'                      => '<strong>Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été publié !</strong>',
+'previewconflict'                  => 'Cette prévisualisation montre le texte de la boîte de modification supérieure tel qu’il apparaîtra si vous choisissez de le publier.',
 'session_fail_preview'             => '<strong>Désolé ! Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session. Veuillez réessayer. Si cela échoue à nouveau, veuillez vous déconnecter, puis vous reconnecter.</strong>',
 'session_fail_preview_html'        => "<strong>Désolé ! Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.</strong>
 
@@ -774,7 +773,7 @@ Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votr
 'yourtext'                         => 'Votre texte',
 'storedversion'                    => 'Version enregistrée',
 'nonunicodebrowser'                => '<strong>Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
-'editingold'                       => '<strong>Attention : vous êtes en train de modifier une ancienne version de cette page. Si vous sauvegardez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
+'editingold'                       => '<strong>Attention : vous êtes en train de modifier une ancienne version de cette page. Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
 'yourdiff'                         => 'Différences',
 'copyrightwarning'                 => 'Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !</strong>',
@@ -785,7 +784,7 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’
 certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 Kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
 'longpageerror'                    => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.</strong>',
 'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance,
-vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier texte et le sauver pour plus tard.'''",
+vous ne pourrez donc pas publier vos modifications maintenant. Vous pouvez copier le texte dans un fichier texte et le publier pour plus tard.'''",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée.
 Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'''",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
@@ -819,7 +818,7 @@ Il devrait en avoir moins de $2 sur le nombre actuel $1.',
 'post-expand-template-argument-category'  => 'Pages contenant au moins un paramètre de modèle non évalué',
 
 # "Undo" feature
-'undo-success' => 'Cette modification va être défaite. Veuillez confirmer les changements (visibles en bas de cette page), puis sauvegarder si vous êtes d’accord. Merci de motiver l’annulation dans la boîte de résumé.',
+'undo-success' => 'Cette modification va être défaite. Veuillez confirmer les changements (visibles en bas de cette page), puis publier si vous êtes d’accord. Merci de motiver l’annulation dans la boîte de résumé.',
 'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
 'undo-norev'   => 'La modification n’a pas pu être défaite parce qu’elle est soit inexistante soit qu’elle a été supprimée.',
 'undo-summary' => 'Annulation des modifications $1 par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discuter]])',
@@ -1139,6 +1138,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'right-editusercssjs'        => "Modifier les fichiers CSS et JS d'autres utilisateurs",
 'right-rollback'             => 'Révocation rapide du dernier utilisateur ayant modifié une page particulière',
 'right-markbotedits'         => 'Marquer les modifications révoquées comme des modifications ayant été faites par des robots',
+'right-noratelimit'          => 'Non affecté par les limites de taux',
 'right-import'               => "Importer des pages depuis d'autres wikis",
 'right-importupload'         => 'Importer des pages depuis un fichier',
 'right-patrol'               => 'Marquer des modification comme vérifiées',
@@ -1412,7 +1412,7 @@ Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}
 
 Cela représente une moyenne de {{PLURAL:$5|'''$5''' modification|'''$5''' modifications}} par page et de {{PLURAL:$6|'''$6''' consultation|'''$6''' consultations}} pour une modification.
 
-Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_queue|la file des tâches]].",
+Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [http://www.mediawiki.org/wiki/Manual:Job_queue/fr la file des tâches].",
 'userstatstext'          => "Il y a {{PLURAL:$1|'''$1''' [[Special:Listusers|utilisateur enregistré]]. Il y a '''$2''' (ou '''$4%''') qui est $5 (voir $3).|'''$1''' [[Special:Listusers|utilisateurs enregistrés]]. Parmi ceux-ci, '''$2''' (ou '''$4%''') sont $5 (voir $3).}}",
 'statistics-mostpopular' => 'Pages les plus consultées',
 
@@ -1454,6 +1454,7 @@ Il y a {{PLURAL:$7|'''$7''' article|'''$7''' articles}} dans [[meta:Help:Job_que
 'popularpages'            => 'Pages les plus consultées',
 'wantedcategories'        => 'Catégories les plus demandées',
 'wantedpages'             => 'Pages les plus demandées',
+'missingfiles'            => 'Fichiers manquants',
 'mostlinked'              => 'Pages les plus liées',
 'mostlinkedcategories'    => 'Catégories les plus utilisées',
 'mostlinkedtemplates'     => 'Modèles les plus utilisés',
@@ -2105,8 +2106,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-ca-nstab-help'           => 'Voir la page d’aide',
 'tooltip-ca-nstab-category'       => 'Voir la page de la catégorie',
 'tooltip-minoredit'               => 'Marquer mes modifications comme mineures',
-'tooltip-save'                    => 'Sauvegarder vos modifications',
-'tooltip-preview'                 => 'Merci de prévisualiser vos modifications avant de sauvegarder',
+'tooltip-save'                    => 'Publier vos modifications',
+'tooltip-preview'                 => 'Merci de prévisualiser vos modifications avant de les publier',
 'tooltip-diff'                    => 'Permet de visualiser les changements que vous avez effectués',
 'tooltip-compareselectedversions' => 'Afficher les différences entre deux versions de cette page',
 'tooltip-watch'                   => 'Ajouter cette page à votre liste de suivi',
@@ -2138,7 +2139,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 
 # Spam protection
 'spamprotectiontitle' => 'Page automatiquement protégée pour cause de pourriel',
-'spamprotectiontext'  => 'La page que vous avez tenté de sauvegarder a été bloquée par le filtre anti-pourriel. Ceci est probablement causé par un lien vers un site externe.',
+'spamprotectiontext'  => 'La page que vous avez tenté de publier a été bloquée par le filtre anti-pourriel. Ceci est probablement causé par un lien vers un site externe.',
 'spamprotectionmatch' => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de pourriel.",
 'spambot_username'    => 'Nettoyage de pourriels par MediaWiki',
 'spam_reverting'      => 'Restauration de la dernière version ne contenant pas de lien vers $1',

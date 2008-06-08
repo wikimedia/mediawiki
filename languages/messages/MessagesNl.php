@@ -579,12 +579,12 @@ $1',
 'readonlytext'         => 'De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.
 
 De beheerder heeft de volgende reden opgegeven: $1',
-'missingarticle'       => 'In de database is geen tekst aangetroffen voor een pagina met de naam “$1”.
+'missing-article'      => 'In de database is geen inhoud aangetroffen voor de pagina "$1" die er wel zou moeten zijn ($2).
 
-Dit wordt meestal veroorzaakt door het volgen van een verwijzing in een vergelijkings- of geschiedenispagina naar een pagina die verwijderd is.
+Dit kan voorkomen als u een verouderde verwijzing naar het verschil tussen twee versies van een pagina volgt of een versie opvraagt die is verwijderd.
 
-Als dit niet het geval is, dan hebt u een fout in de software gevonden.
-Rapporteer dit alstublieft aan een beheerder met vermelding van de URL.',
+Als dit niet het geval is, hebt u wellicht een fout in de software gevonden.
+Maak hiervan melding bij een systeembeheerder van {{SITENAME}} en vermeld daarbij de URL van deze pagina.',
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wijziging: $1, $2)',
 'readonly_lag'         => 'De database is automatisch vergrendeld terwijl de ondergeschikte databaseservers synchroniseren met de hoofdserver.',
@@ -1215,6 +1215,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'right-createaccount'        => 'Nieuwe gebruikers aanmaken',
 'right-minoredit'            => 'Bewerkingen markeren als klein',
 'right-move'                 => "Pagina's hernoemen",
+'right-move-subpages'        => "Pagina's inclusief subpagina's verplaatsen",
 'right-suppressredirect'     => 'Een doorverwijzing op de doelpagina verwijderen bij het hernoemen van een pagina',
 'right-upload'               => 'Bestanden uploaden',
 'right-reupload'             => 'Een bestaand bestand overschrijven',
@@ -1246,6 +1247,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'right-editusercssjs'        => 'De CSS- en JS-bestanden van andere gebruikers bewerken',
 'right-rollback'             => 'Snel de laatste bewerking(en) van een gebruiker van een pagina terugdraaien',
 'right-markbotedits'         => 'Teruggedraaide bewerkingen markeren als botbewerkingen',
+'right-noratelimit'          => 'Heeft geen tijdsafhankelijke beperkingen',
 'right-import'               => "Pagina's uit andere wiki's importeren",
 'right-importupload'         => "Pagina's importeren uit een bestandsupload",
 'right-patrol'               => 'Bewerkingen als gecontroleerd markeren',
@@ -1582,6 +1584,7 @@ Meestal is de laatste pagina het eigenlijke doel.",
 'popularpages'            => "Populaire pagina's",
 'wantedcategories'        => 'Niet-bestaande categorieën met de meeste verwijzingen',
 'wantedpages'             => "Niet-bestaande pagina's met de meeste verwijzingen",
+'missingfiles'            => 'Niet-bestaande bestanden met verwijzingen',
 'mostlinked'              => "Pagina's waar het meest naar verwezen wordt",
 'mostlinkedcategories'    => 'Categorieën waar het meest naar verwezen wordt',
 'mostlinkedtemplates'     => 'Meestgebruikte sjablonen',
@@ -2248,7 +2251,7 @@ U kunt wel de broncode bekijken.',
 
 # Scripts
 'common.js'   => '/* JavaScript hier zal invloed hebben op elke pagina voor elke gebruiker. */',
-'monobook.js' => '/* Het wordt aangeraden om [[MediaWiki:Common.js]] te gebruiken */',
+'monobook.js' => '/* JavaScript-code op deze pagina wordt alleen geladen voor gebruikers die de skin Monobook gebruiken */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata is uitgeschakeld op deze server.',

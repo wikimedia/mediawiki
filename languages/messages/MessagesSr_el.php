@@ -485,14 +485,6 @@ vremena otključavanja',
 unose i ostale izmene, verovatno zbog rutinskog održavanja,
 posle čega će biti vraćena u uobičajeno stanje.
 Administrator koji ju je zaključao dao je ovo objašnjenje: $1',
-'missingarticle'       => 'Baza nije našla tekst stranice
-koji je trebalo, nazvan "$1".
-
-Ovo je obično izazvano praćenjem zastarele "razl" veze ili veze ka istoriji
-stranice koja je obrisana.
-
-Ako ovo nije slučaj, možda ste pronašli grešku u softveru.
-Molimo vas prijavite ovo jednom od administratora, zajedno sa URL-om.',
 'readonly_lag'         => 'Baza podataka je automatski zaključana dok slejv serveri ne sustignu master',
 'internalerror'        => 'Interna greška',
 'filecopyerror'        => 'Ne mogu da iskopiram fajl "$1" na "$2".',
@@ -1997,6 +1989,5 @@ $1',
 
 # Special:SpecialPages
 'specialpages' => 'Posebne stranice',
-
 
 );

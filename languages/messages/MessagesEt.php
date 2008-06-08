@@ -351,12 +351,6 @@ MySQL andis vea "$3: $4".',
 'readonlytext'         => 'Andmebaas on praegu kirjutuskaitse all, tõenäoliselt andmebaasi rutiinseks hoolduseks, mille lõppedes normaalne olukord taastub.
 Administraator, kes selle kaitse alla võttis, andis järgmise selgituse:
 <p>$1',
-'missingarticle'       => 'Andmebaas ei leidnud lehekülje "$1" teksti, kuigi see oleks pidanud olema leitav.
-
-Tavaliselt on selle põhjuseks vananenud erinevuste- või ajaloolink leheküljele, mis on kustutatud.
-
-Kui ei ole tegemist sellise juhtumiga, siis võib olla tegemist tarkvaraveaga.
-Palun teatage sellest administraatorile, märkides ära aadressi.',
 'internalerror'        => 'Sisemine viga',
 'filecopyerror'        => 'Ei saanud faili "$1" kopeerida nimega "$2".',
 'filerenameerror'      => 'Ei saanud faili "$1" failiks "$2" ümber nimetada.',

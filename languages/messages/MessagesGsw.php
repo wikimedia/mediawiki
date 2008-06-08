@@ -222,7 +222,6 @@ MySQL het den Fähler gmeldet: "<tt>$3: $4</tt>".',
 'readonlytext'         => 'Diä {{SITENAME}}-Datebonk isch vorybergehend fier Neijyträg un Änderige gsperrt. Bitte vosuechs s später no mol.
 
 Grund vun de Sperrung: $1',
-'missingarticle'       => 'De Tekscht vum Artikel "$1" isch in de Datebonk nit gfunde. Des isch wahrschinlich ä Fähler in de Software. Sin so guet, un melde des m Adminischtrator, un gib de Artikelnome on.',
 'readonly_lag'         => 'Datebonk isch automatisch gschperrt worre, wil d Sklavedatebonkserver ihr Meischter yhole miesse',
 'internalerror'        => 'Interner Fähler',
 'filecopyerror'        => 'Datei "$1" het nit noch "$2" kopiert werre kinne.',
@@ -892,6 +891,5 @@ Fründtlechi Grüess',
 
 # Special:SpecialPages
 'specialpages' => 'Spezialsytene',
-
 
 );

@@ -525,5 +525,4 @@ $3',
 # Special:SpecialPages
 'specialpages' => 'Сæрмагонд фæрстæ',
 
-
 );

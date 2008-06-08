@@ -412,12 +412,6 @@ MySQL "$3: $4" hatasını bildirdi.',
 'readonlytext'         => 'Plan işlemelerinden sebep malümat bazası vaqtınca blok etildi. İşlemeler tamamlanğan soñ normalge dönecek.
 
 Malümat bazasını kilitlegen administratornıñ açıqlaması: $1',
-'missingarticle'       => 'Malümat bazası "$1" adınen tapmaq kerek olğan saifesiniñ metnini tapıp olamadı.
-
-Adeti üzre, bunıñ sebebi yoq etilgen bir saife deñişiklik jurnalına eskirgen bağlantı qullanıluvdır.
-
-Problema bunda degil olsa, ihtimalı bar ki, viki programmasında bir hata tapqandırsıñız.
-Lütfen, URL belgilep bundan administratorğa haber beriñiz.',
 'missingarticle-rev'   => '(versiya No. $1)',
 'missingarticle-diff'  => '(Farq: $1, $2)',
 'readonly_lag'         => 'Malümat bazasınıñ ekilemci serveri birlemci serverinen sinhronizirlengence malümat bazası deñiştirilmemesi içün avtomatik olaraq blok etildi.',

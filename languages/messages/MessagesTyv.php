@@ -728,5 +728,4 @@ $1',
 # Special:SpecialPages
 'specialpages' => 'Тускай арыннар',
 
-
 );

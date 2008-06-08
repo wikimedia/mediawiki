@@ -1320,5 +1320,4 @@ $1 | $2',
 # Special:SpecialPages
 'specialpages' => 'Erenomáš siiddut',
 
-
 );

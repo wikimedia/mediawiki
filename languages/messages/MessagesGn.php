@@ -483,5 +483,4 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Special:SpecialPages
 'specialpages' => 'Kuatiarogue hekochĩchĩva',
 
-
 );

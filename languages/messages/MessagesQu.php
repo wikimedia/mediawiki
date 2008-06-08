@@ -339,12 +339,6 @@ $1",
 'readonlytext'         => "Kay {{SITENAME}} nisqap willañiqintintaqa manam hukchayta, manam chayman qillqamuyta saqillanchu, mit'awa kakuchiyraykuchá, chaymantataqchá allin kanqa.
 Hark'aq kamachiqqa umallirqan kaytam nispa:
 <p>$1",
-'missingarticle'       => "Willañiqintinqa huk p'anqapi qillqasqataqa, imatachus tarinan tiyanman, manam tarirqanchu, kay hinam nisqa: \"\$1\".
-
-Qullusqañachá p'anqap mawk'a llamk'apusqanta icha wiñay kawsasqanta mañakurqanki.
-
-Mana hinaptinqa, llamp'u kaq wakichipi pantasqatachá tarirqanki. Ama hina kaspa, kamachiqman chaymanta willariy,
-URL tiyaytapas.",
 'missingarticle-rev'   => '(musuqchasqa#: $1)',
 'missingarticle-diff'  => '(wakin kay: $1, $2)',
 'readonly_lag'         => "Willañiqintinqa mit'alla hark'asqam, sirwiqkuna kikinpachachastin.",

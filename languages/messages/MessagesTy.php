@@ -165,5 +165,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'Te mau ’api ta’a ’ē',
 
-
 );

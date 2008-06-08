@@ -745,5 +745,4 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 # Special:SpecialPages
 'specialpages' => 'Kurasa maalum',
 
-
 );

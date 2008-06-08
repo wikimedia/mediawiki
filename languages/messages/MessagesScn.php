@@ -417,12 +417,6 @@ L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:Specialpages|Alenc
 'readonly'             => 'Database bluccatu',
 'enterlockreason'      => "Ìnnica lu mutivu dû bloccu, spicificannu lu mumentu 'n cui è prisumìbbili ca veni rimossu.",
 'readonlytext'         => "Nta stu mumentu lu database è bluccatu e nun sunnu pussìbbili junti o canciamenti a li pàggini. Lu bloccu è di sòlitu ligatu a upirazzioni di manutinzioni urdinaria, a lu tèrmini dî quali lu database è di novu accissìbbili. L'amministraturi di sistema c'ha mpostu lu bloccu hà furnitu sta spiegazzioni: $1",
-'missingarticle'       => "Lu databbasi nun hà attruvatu lu testu dâ pàggina \"\$1\", chi avirìa dovuta èssiri prisenta.
-
-Di solitu ciò si virifica quannu veni sequitu, dâ cronoluggìa o dô cunfruntu tra virsioni, nu liami a na pàggina cancillata.
-
-'N casu cuntrariu, si è prubbabirmenti scopertu n'erruri dô software MediaWiki.
-Si prega di signalari l'accadutu a n'amministraturi spicificannu la URL in quistioni.",
 'missingarticle-rev'   => '(rivisioni#: $1)',
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'Lu database hà statu bluccatu automaticamenti, mentri li server cu li database slave si sincrunìzzanu cu lu master',

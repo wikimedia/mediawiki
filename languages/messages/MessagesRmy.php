@@ -561,5 +561,4 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 # Special:SpecialPages
 'specialpages' => 'Uzalutne patrya',
 
-
 );

@@ -527,5 +527,4 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 # Special:SpecialPages
 'specialpages' => 'Pagin special',
 
-
 );

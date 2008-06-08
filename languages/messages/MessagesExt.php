@@ -12,8 +12,6 @@
  * @author Jon Harald Søby
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
@@ -322,12 +320,6 @@ sedrá esborrau',
 'readonlytext'         => 'La basi e datus está atualmenti atarugá, siguramenti pol mantenimientu rutinariu. Cuandu s´acabihin los chambus, la güiqui gorverá a la normaliá.
 
 La razón dá pol el alministraol que pusu el tarugu es: $1',
-'missingarticle'       => "La basi e datus nu á alcuentrau el testu duna páhina qu'eberia bel alcuentrau, de nombri \"\$1\".
-
-Polo heneral, estu es ebiu a que s'á seguiu un atihu a una deferéncia e velsionis, u el estorial antigu duna páhina que á siu esborrá.
-
-Si esta nu es la causa, es posibri qu'aigas alcuentrau un marru nel software.
-Pol favol, enhorma d'estu a un çahoril u a un alministraol, incluyendu la direción URL.",
 'missingarticle-rev'   => '(revisión#: $1)',
 'missingarticle-diff'  => '(Def: $1, $2)',
 'readonly_lag'         => "S'á atarugau la basi e datus temporalmenti mentris los sirvioris se sincroniçan.",

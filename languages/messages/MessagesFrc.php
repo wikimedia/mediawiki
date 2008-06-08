@@ -292,12 +292,6 @@ d'équand le barrage va être ôté.",
 'readonlytext'         => "À présent, la base d'information est barrée aux nouveaux changements, peut-être pour le soutien habituel de la base d'information, et ça va retourner à normal t'à l'heure.  
 
 L'administrateur qui l'a barrée a donné cette explication: $1",
-'missingarticle'       => "La base d'information a pas trouvé la page vous êtes après charcher, nommée \"\$1\".
-
-Normalement ça arrive quand vous suivez un vieux lien pour une page qu'a été ôtée.
-
-Si c'est pas le cas, vous avez peut-être trouvé une erreur dans le software.  
-Envoyez donc une note à un administrateur avec l'adresse de la page ayoù vous avez trouvé l'erreur.",
 'readonly_lag'         => "La base d'information s'a barré pendant que les serveurs de la base d'information rapprochont le maître.",
 'internalerror'        => 'Erreur internelle',
 'internalerror_info'   => 'Erreur intérieur: $1',

@@ -549,12 +549,6 @@ MySQL returnerte feilen «$3: $4».',
 'readonlytext'         => 'Databasen er akkurat no skriveverna, truleg for rutinemessig vedlikehald. Administratoren som verna han har gjeve denne forklaringa:
 
 $1',
-'missingarticle'       => 'Databasen fann ikkje teksten til ei side med namnet «$1» som han skulle ha funne.
-
-Dette skjer oftast fordi du følgde ei lenkje til ei oppføring som har vorte sletta.
-Sletta oppføringar kan vanlegvis attopprettast.
-
-Dersom dette ikkje er tilfellet kan du ha funne ein feil i programvaren. Gje melding om dette til ein administrator, med adressa åt sida.',
 'missingarticle-rev'   => '(versjon $1)',
 'missingarticle-diff'  => '(jamføring av versjon $1 og $2)',
 'readonly_lag'         => 'Databasen er mellombels skriveverna for at databasetenarane skal kunna synkronisere seg mot kvarandre',
@@ -2562,6 +2556,8 @@ $1',
 'specialpages-group-changes'   => 'Siste endringar og loggar',
 'specialpages-group-users'     => 'Brukarar og brukartilgangar',
 'specialpages-group-highuse'   => 'Mykje brukte sider',
+'specialpages-group-wiki'      => 'Informasjon og verktøy for wikien',
 'specialpages-group-redirects' => 'Omdirigerande spesialsider',
+'specialpages-group-spam'      => 'Spamverktøy',
 
 );

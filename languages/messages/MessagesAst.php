@@ -356,13 +356,6 @@ $1',
 'readonlytext'         => "Nestos momentos la base de datos ta protexida pa nueves entraes y otres modificaciones, seique por un mantenimientu de rutina, depués d'él tará accesible de nuevo.
 
 L'alministrador que la protexó conseñó esti motivu: $1",
-'missingarticle'       => "La base de datos nun atopó'l testu d'una páxina qu'habría ser alcontráu, nomada \"\$1\".
-
-Esto débese normalmente a que se calcó nuna diferencia de versiones caducada o
-nun enllaz del historial a una paxína que foi borrada.
-
-Si esti nun ye'l casu, seique atoparas un error nel software. Por favor informa a un
-alministrador, indicando l'URL.",
 'missingarticle-rev'   => '(revisión: $1)',
 'missingarticle-diff'  => '(dif: $1, $2)',
 'readonly_lag'         => 'La base de datos foi protexida automáticamente mentes los servidores de la base de datos esclava se sincronicen cola maestra',

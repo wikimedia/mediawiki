@@ -461,12 +461,6 @@ $1",
 'readonlytext'         => "La base de dades està temporalment bloquejada segurament per tasques de manteniment, després de les quals es tornarà a la normalitat.
 
 L'administrador que l'ha bloquejada ha donat aquesta explicació: $1",
-'missingarticle'       => "La base de dades no ha trobat el text d'una
-pàgina que hauria d'haver trobat, anomenada «$1».
-Això acostuma a passar a quan se segueix un enllaç a una pàgina que ha estat eliminada.
-
-Si aquest no és el cas, probablement es tracta d'un error del programari.
-Informeu-ne a un administrador, fent-li arribar l'adreça URL.",
 'missingarticle-rev'   => '(revisió#: $1)',
 'missingarticle-diff'  => '(dif: $1, $2)',
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
@@ -2668,6 +2662,9 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàgines especials',
+'specialpages-note'              => '----
+* Pàgines especials normals.
+* <span class="mw-specialpagerestricted">Pàgines especials restringides.</span>',
 'specialpages-group-maintenance' => 'Informes de manteniment',
 'specialpages-group-other'       => 'Altres pàgines especials',
 'specialpages-group-login'       => 'Inici de sessió / Registre',
@@ -2675,5 +2672,10 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 'specialpages-group-media'       => 'Informes multimèdia i càrregues',
 'specialpages-group-users'       => 'Usuaris i drets',
 'specialpages-group-highuse'     => "Pàgines d'alt ús",
+'specialpages-group-pages'       => 'Llista de pàgines',
+'specialpages-group-pagetools'   => "Pàgines d'eines",
+'specialpages-group-wiki'        => 'Eines i dades del wiki',
+'specialpages-group-redirects'   => 'Pàgines especials de redirecció',
+'specialpages-group-spam'        => 'Eines de spam',
 
 );

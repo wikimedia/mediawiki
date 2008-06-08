@@ -698,12 +698,6 @@ $1',
 'readonlytext'         => 'Bul derekqor jañadan jazw jäne basqa özgerister jasawdan ağımda qulıptalınğan, mümkin künde-kün derekqordı baptaw üşin, bunı bitirgennen soñ qalıptı iske qaýtarıladı.
 
 Qulıptağan äkimşi bunı bılaý tüsindiredi: $1',
-'missingarticle'       => 'İzdestirilgen «$1» atawlı bet mätini derekqorda tabılmadı.
-
-Bul dağdıda eskirgen aýırma siltemesine nemese joýılğan bet tarïxınıñ siltemesine ergennen bolwı mümkin.
-
-Eger osı jağdaý bolmasa, bağdarlamalıq jasaqtamadağı qatege tap bolwıñız mümkin.
-Bul twralı naqtı URL jaýına añğartıp, äkimşige bayanat jöneltiñiz.',
 'missingarticle-rev'   => '(tüzetw n-i: $1)',
 'missingarticle-diff'  => '(Aýrm.: $1, $2)',
 'readonly_lag'         => 'Jetek derekqor serverler basqısımen qadamlanğanda osı derekqor özdiktik qulıptalınğan',

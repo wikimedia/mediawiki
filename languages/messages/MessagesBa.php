@@ -314,5 +314,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'Махсус биттәр',
 
-
 );

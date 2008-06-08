@@ -360,5 +360,4 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 # Special:SpecialPages
 'specialpages' => 'Special págines',
 
-
 );

@@ -370,7 +370,6 @@ MySQL brach fout "$3" nao veure: "$4"',
 'readonlytext'         => 'De database van {{SITENAME}} is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
 De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 <p>$1',
-'missingarticle'       => 'De database haet \'n pazjenatèks ("$1") die \'t zou motte vinge neet gevonge. Dit is gein fout in de database, mer waarscjienlik in de software. Meld dit estebleef aan inne adminstrator, mit vermèlding van de URL.',
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wijziging: $1, $2)',
 'readonly_lag'         => 'De database is automatisch vergrendeld wiele de slave databaseservers synchronisere mèt de master.',

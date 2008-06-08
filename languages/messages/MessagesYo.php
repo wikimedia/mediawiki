@@ -199,5 +199,4 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 # Special:SpecialPages
 'specialpages' => 'Àwọn ojúewé pàtàkì',
 
-
 );

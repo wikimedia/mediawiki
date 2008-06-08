@@ -2040,5 +2040,4 @@ $1',
 'specialpages-group-redirects'   => '轉之特查',
 'specialpages-group-spam'        => '反垃圾之器',
 
-
 );

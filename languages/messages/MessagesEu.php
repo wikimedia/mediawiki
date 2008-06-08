@@ -331,12 +331,6 @@ $1',
 'readonlytext'         => 'Datu-basea artikulu berriak sortu edo aldaketak ez egiteko blokeatuta dago, seguruenik mantenu lanak direla-eta. Blokeo hori kentzerakoan beti bezala egongo da berriz.
 
 Blokeatu duen administratzaileak azalpen hau eman du: $1',
-'missingarticle'       => 'Datu-baseak ez du aurkitu beharko lukeen orrialde baten testua aurkitu, "$1" izena duena.
-
-Arrazoia iraungitako diff bat edo ezabatutako orrialde baten historia lotura jarraitzea izan liteke.
-
-Hau ez bada zure egoera, baliteke softwarean bug bat aurkitu izana.
-Mesedez, administratzaileari jakinarazi, URLa bidaliz.',
 'readonly_lag'         => 'Datu-basea automatikoki blokeatu da menpeko zerbitzariak nagusiarekin sinkronizatu bitartean',
 'internalerror'        => 'Barne errorea',
 'internalerror_info'   => 'Barne errorea: $1',
@@ -773,6 +767,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'group-bureaucrat'    => 'Burokratak',
 'group-all'           => '(guztiak)',
 
+'group-user-member'          => 'Lankide',
 'group-autoconfirmed-member' => 'Erabiltzaile autokonfirmatua',
 'group-bot-member'           => 'Bot-a',
 'group-sysop-member'         => 'Administratzaile',
@@ -785,10 +780,13 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokratak',
 
 # Rights
-'right-edit'   => 'Orriak aldatu',
-'right-move'   => 'Oriak mugitu',
-'right-upload' => 'Fitxategia igo',
-'right-delete' => 'Orri ezabatuak',
+'right-read'          => 'Orriak irakurri',
+'right-edit'          => 'Orriak aldatu',
+'right-createtalk'    => 'Eztabaida orriak sortu',
+'right-createaccount' => 'Erabiltzaile kontu berria sortu',
+'right-move'          => 'Oriak mugitu',
+'right-upload'        => 'Fitxategia igo',
+'right-delete'        => 'Orri ezabatuak',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',
@@ -1887,6 +1885,5 @@ $1',
 
 # Special:SpecialPages
 'specialpages' => 'Aparteko orrialdeak',
-
 
 );

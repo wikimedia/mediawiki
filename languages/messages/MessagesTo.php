@@ -1229,5 +1229,4 @@ $1',
 # Special:SpecialPages
 'specialpages' => 'Ngaahi peesi makehe',
 
-
 );

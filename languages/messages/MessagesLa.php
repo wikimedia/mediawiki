@@ -785,6 +785,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'right-createaccount'        => 'Rationes usoris novas creare',
 'right-minoredit'            => 'Recensiones minores designare',
 'right-move'                 => 'Paginas movere',
+'right-move-subpages'        => 'Paginas una cum subpaginis movere',
 'right-suppressredirect'     => 'Non creare redirectionem ex titulo vetere paginam movendo',
 'right-upload'               => 'Fasciculos imponere',
 'right-upload_by_url'        => 'Fasciculum imponere ex inscriptione URL',
@@ -1016,6 +1017,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'popularpages'            => 'Paginae saepe monstratae',
 'wantedcategories'        => 'Categoriae desideratae',
 'wantedpages'             => 'Paginae desideratae',
+'missingfiles'            => 'Fasciculi desiderati',
 'mostlinked'              => 'Paginae maxime annexae',
 'mostlinkedcategories'    => 'Categoriae maxime annexae',
 'mostlinkedtemplates'     => 'Formulae maxime annexae',
@@ -1309,6 +1311,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'block-log-flags-nocreate' => 'creatio rationum obstructa',
 'block-log-flags-noemail'  => 'Litterae electronicae obstructae',
 'ipb_expiry_invalid'       => 'Tempus exeundo invalidum fuit.',
+'ipb_already_blocked'      => '"$1" iam obstructus est',
 'proxyblocksuccess'        => 'Factum.',
 
 # Developer tools
