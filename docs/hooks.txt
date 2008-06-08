@@ -728,6 +728,11 @@ $lang: laguage code (string)
 $specialPageAliases: associative array of magic words synonyms
 $lang: laguage code (string)
 
+'LinkerMakeExternalLink': At the end of Linker::makeExternalLink() just before the return
+&$url: the link url
+&$text: the link text
+&$link: the new link HTML (if returning false)
+
 'LinksUpdate': At the beginning of LinksUpdate::doUpdate() just before the actual update
 &$linksUpdate: the LinkUpdate object
 
