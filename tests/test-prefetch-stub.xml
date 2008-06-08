@@ -33,21 +33,21 @@
     <timestamp>2001-01-15T12:00:00Z</timestamp>
     <contributor><ip>10.0.0.1</ip></contributor>
     <comment>page 1, rev 1</comment>
-    <text id="1" />
+    <text />
   </revision>
   <revision>
     <id>2</id>
     <timestamp>2001-01-15T12:00:00Z</timestamp>
     <contributor><ip>10.0.0.1</ip></contributor>
     <comment>page 1, rev 2</comment>
-    <text id="2" />
+    <text />
   </revision>
   <revision>
     <id>4</id>
     <timestamp>2001-01-15T12:00:00Z</timestamp>
     <contributor><ip>10.0.0.1</ip></contributor>
     <comment>page 1, rev 4</comment>
-    <text id="4" />
+    <text />
   </revision>
 </page>
 <page>
@@ -58,7 +58,7 @@
     <timestamp>2001-01-15T12:00:00Z</timestamp>
     <contributor><ip>10.0.0.1</ip></contributor>
     <comment>page 2, rev 3</comment>
-    <text id="3" />
+    <text />
   </revision>
 </page>
 <page>
@@ -69,7 +69,7 @@
     <timestamp>2001-01-15T12:00:00Z</timestamp>
     <contributor><ip>10.0.0.1</ip></contributor>
     <comment>page 3, rev 5</comment>
-    <text id="5" />
+    <text />
   </revision>
 </page>
 </mediawiki>
