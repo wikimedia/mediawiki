@@ -530,12 +530,6 @@ un hvenær læsingunni verðu aflétt',
 'readonlytext'         => 'Læst hefur verið fyrir gerð nýrra síða og breytinga í gagnagrunninum, líklega vegna viðhalds, en eftir það mun hann starfa eðlilega.
 
 Kerfisstjórinn sem læsti honum gaf þessa skýringu: $1',
-'missingarticle'       => 'Gagnagrunnurinn finnur ekki texta af síðunni sem þú leitaðir að, „$1“.
-
-Þetta er venjulega vegna þess að þú hefur skoðað breytingu eða breytingaskrá að síðu sem hefur verið eytt.
-
-Ef þetta á ekki við, þá gæti verið að þú hafir fundið villu í hugbúnaðinum.
-Vinsamlegast tilkynntu stjórnanda þessa villu og taktu fram slóðina.',
 'missingarticle-rev'   => '(breyting#: $1)',
 'missingarticle-diff'  => '(Munur: $1, $2)',
 'readonly_lag'         => 'Gagnagrunninum hefur verið læst sjálfkrafa á meðan undirvefþjónarnir reyna að hafa í við aðalvefþjóninn',

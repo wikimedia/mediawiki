@@ -349,13 +349,6 @@ afturkend av wiki',
 # General errors
 'error'             => 'Villa',
 'databaseerror'     => 'Villa í dátagrunni',
-'missingarticle'    => 'Dátugrunnurin fann ikki tekstin á síðuni, sum átti at verið funnin, nevndur "$1".
-
-Hetta er vanliga orsakað av at fara eftir einari gamlari diff- ella søguslóð til eina
-síðu, ið er strikað.
-
-Er tað ikki soleiðis, er møguligt at tú hevur funnið eitt brek í ritbúnaðinum.
-Vinarliga boða einum umboðsstjóra frá hesum og gev honum url-ið.',
 'internalerror'     => 'Innvortis brek',
 'filecopyerror'     => 'Kundi ikki avrita fíluna "$1" til "$2".',
 'filerenameerror'   => 'Kundi ikki umdoypa fílu "$1" til "$2".',

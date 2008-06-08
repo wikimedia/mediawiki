@@ -42,8 +42,10 @@ $messages = array(
 
 'article'    => 'tlahcuilōlli',
 'newwindow'  => '(Motlapoāz cē yancuīc tlanexillōtl)',
+'qbfind'     => 'Tlatēmoāz',
 'navigation' => 'ācalpapanōliztli',
 
+'search'         => 'Tlatēmoāz',
 'history'        => 'tlahcuilōlloh',
 'history_short'  => 'tlahcuilōlloh',
 'edit'           => 'ticpatlaz',
@@ -70,7 +72,7 @@ $messages = array(
 'yourpasswordagain' => 'Tlahtolichtacayo zapa',
 'login'             => 'Ximomachiyōmaca/Ximocalaqui',
 'userlogin'         => 'Ximomachiyōmaca/Ximocalaqui',
-'yourlanguage'      => 'Tlahtolli:',
+'yourlanguage'      => 'Tlahtōlli:',
 
 # Edit pages
 'summary'          => 'Mopatlaliz',

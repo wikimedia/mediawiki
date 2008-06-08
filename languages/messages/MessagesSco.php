@@ -14,8 +14,6 @@
  * @author Ushanka
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Unnerline airtins:',
@@ -300,7 +298,6 @@ A leet o valid byordinar pages can be funnd at [[Special:Specialpages|{{int:spec
 likely for routine database maintenance; efter that it'll be back tae normal.
 The adminstration that lockit it gied this explanation:
 $1",
-'missingarticle'       => 'The database didna fin the text o a page that it shuid hae funnd, named "$1". <p>This is for ordinar caused bi follaein an ootdatit diff or history airtin tae a page that haes been delete. <p>Gin this isna the case, ye micht hae funnd a bug in the saftware. Please report this til an administrator, makkin a note o the URL.',
 'readonly_lag'         => 'The database haes been autaematically lockit while the sclave database servers catch up tae the maister',
 'internalerror'        => 'Internal mishanter',
 'internalerror_info'   => 'Internal error: $1',

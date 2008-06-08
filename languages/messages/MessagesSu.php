@@ -335,11 +335,6 @@ Kasalahan MySQL nu mulang "$3: $4".',
 'readonlytext'         => 'pangkalan data kiwar keur di konci pikeun éntri anyar sarta parobahan séjénna, meureun pikeun pangropéa pangkalan datarutin, nu satutasna mah bakal normal deui. Kuncén nu ngonci ngécéskeun kieu:
 
 $1',
-'missingarticle'       => "Pangkalan data teu manggihan téks kaca nu sakuduna aya, ngaranna \"\$1\".
-
-Kitu téh ilaharna mah alatan nuturkeun tumbu jujutan atawa diff bihari ka kaca nu geus dihapus.
-
-Mun lain kitu masalahna, jigana anjeun geus manggihan kutu na ''software''na. Mangga wartoskeun ka kuncén kalawan nuduhkeun URL-na.",
 'missingarticle-rev'   => '(révisi#: $1)',
 'missingarticle-diff'  => '(Béda: $1, $2)',
 'readonly_lag'         => 'pangkalan datana sacara otomatis dikonci nalika server pangkalan data disalin kana master',
@@ -500,7 +495,7 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 'showpreview'                      => 'Témbongkeun pramidang',
 'showlivepreview'                  => 'Pramidang saharita',
 'showdiff'                         => 'Témbongkeun parobahan',
-'anoneditwarning'                  => "'''Perhatosan:''' Anjeun can asup log. IP anjeun kacateut dina jujutan kaca ieu",
+'anoneditwarning'                  => "'''Perhatosan:''' Anjeun can asup log. IP anjeun kacatet dina jujutan kaca ieu",
 'missingsummary'                   => "'''Pépéling:''' Anjeun can ngeusian sari éditan. Mun anjeun ngaklik deui Simpen, éditan anjeun bakal disimpen tanpa sari éditan",
 'missingcommenttext'               => 'Mangga tulis koméntar di handapeun ieu.',
 'missingcommentheader'             => "'''Pépéling:''' Anjeun can ngeusian judul pikeun ieu koméntar. Mun anjeun ngaklik deui Simpen, éditan anjeun bakal disimpen tanpa judul.",

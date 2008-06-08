@@ -447,11 +447,6 @@ MySQL returnerede fejlen "$3: $4".',
 'readonlytext'         => 'Databasen er midlertidigt skrivebeskyttet. Forsøg venligst senere.
 
 Årsag til spærringen: $1',
-'missingarticle'       => 'Teksten til "$1" blev ikke fundet i databasen.
-
-Siden er måske slettet eller flyttet.
-
-Hvis det ikke er tilfældet, har du måske fundet en fejl i programmet. Meld det til en [[{{MediaWiki:Grouppage-sysop}}|Administrator]] med angivelse af adressen.',
 'missingarticle-rev'   => '(version $1)',
 'missingarticle-diff'  => '(forskel: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slavedatabaseserverne synkroniserer med master databasen',

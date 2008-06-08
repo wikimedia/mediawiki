@@ -333,11 +333,6 @@ $messages = array(
 'readonly'             => 'Database dikunci',
 'enterlockreason'      => 'Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka',
 'readonlytext'         => 'Database lagi dikunci marang panampan anyar. Pangurus sing ngunci mènèhi katrangan kaya mangkéné: <p>$1',
-'missingarticle'       => 'Database ora bisa nemokaké tèks kanggo kaca sing sajatiné nduwé tèks, yaiku kaca "$1".
-
-Iki biasané amarga pangowahan sing kadaluwarsa utawa merga pranala lawa menyang kaca iku wis dibusak.
-
-Menawa dudu iki sebabé, panjenengan mbokmenawa nemokaké bug ing software. Mangga dilaporaké ing para pangurus, mawa nulis URL kaca sing nduwé masalah iku',
 'missingarticle-rev'   => '(révisi#: $1)',
 'missingarticle-diff'  => '(Béda: $1, $2)',
 'readonly_lag'         => 'Database wis dikunci mawa otomatis sawetara database sékundhèr lagi nglakoni sinkronisasi mawa database utama',

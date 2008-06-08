@@ -424,11 +424,6 @@ All Spezialsäiten déi et gëtt sinn op der [[{{ns:special}}:Specialpages|Lesch
 'readonlytext'         => 'Datebank ass am Moment fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
 
 Den Administrateur huet folgend Erklärung uginn: $1',
-'missingarticle'       => 'D\'Datebank huet den Text vun enger Säit net fonnt deen hätt solle fonnt ginn, mam Numm "$1".
-
-Dëst geschitt meeschtens andeems en alen diff oder Historique Link op eng Säit hiweist déi geläscht ginn ass.
-
-Wann dëst net de Fall ass, hutt dir vläicht e Feeler an der Software fonnt. Sot w.e.g. engem Administrateur Bescheed an deelt him och d\'URL mat.',
 'missingarticle-rev'   => '(Versiounsnummer: $1)',
 'missingarticle-diff'  => '(Ënnerscheed tësche Versiounen: $1, $2)',
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
@@ -1375,6 +1370,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'wantedcategories-summary'        => 'Op dëser Spezialsäit stinn all déi Kategorien, déi zwar op Säite benotzt ginn, déi awer nach net als Kategorie ugeluecht goufen.',
 'wantedpages'                     => 'Gewënschte Säiten',
 'wantedpages-summary'             => 'Op dëser Spezialsäit stinn all Säiten, déi nach net existéieren, déi awer scho vu Säiten, déi et scho gëtt, verlinkt sinn.',
+'missingfiles'                    => 'Fichieren déi feelen',
 'mostlinked'                      => 'Dacks verlinkte Säiten',
 'mostlinked-summary'              => 'Op dëser Spezialsäit stinn, onofhängeg vum Nummraum, all déi besonnesch dacks verlinkte Säiten.',
 'mostlinkedcategories'            => 'Dacks benotzte Kategorien',
@@ -1603,6 +1599,9 @@ W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze ve
 'delete-edit-reasonlist'      => 'Läschgrënn änneren',
 'delete-toobig'               => "Dës Säit huet e laangen Historique, méi wéi $1 Versiounen.
 D'Läsche vun esou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENAME}} ze verhënneren.",
+'delete-warning-toobig'       => "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 Versiounen.
+D'Läschen dovun kann zu Stéierungen am Funktionnement vun {{SITENAME}} féieren;
+dës Aktioun soll mat Vierssiicht gemaach ginn.",
 'rollback'                    => 'Ännerungen zrécksetzen',
 'rollback_short'              => 'Zrécksetzen',
 'rollbacklink'                => 'Zrécksetzen',
@@ -1803,7 +1802,8 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'block-log-flags-noemail'     => 'E-Mail gespaart',
 'range_block_disabled'        => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_expiry_invalid'          => "D'Dauer déi Dir uginn hutt ass ongülteg.",
-'ipb_already_blocked'         => '„$1“ ass scho gespaart',
+'ipb_already_blocked'         => 'Opgepasst: "$1" ass scho gespaart.
+Dir kënnt d\'Asteelunge vun der Spär mat dësem Formulair änneren.',
 'ipb_cant_unblock'            => "Feeler: D'Nummer vun der Spär $1 gouf net fonnt. D'Spär gouf waarscheinlech schonn opgehuewen.",
 'ipb_blocked_as_range'        => "Feeler: D'IP-Adress $1 gouf net direkt gespaart an déi Spär kann dofir och net opghuee ginn.
 Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.",
@@ -1926,6 +1926,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'import-interwiki-history'   => "Importéier all d'Versioune vun dëser Säit",
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Kopéier Säiten an den Nummraum:',
+'importtext'                 => 'Exportéiert de Fichier w.e.g vun der Source-Wiki mat der Funktioun Spezial:Export, späichert en op ärem Disk of a lued en hei nees erop.',
 'importstart'                => 'Importéier Säiten …',
 'import-revision-count'      => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'importnopages'              => "Et gëtt keng Säiten fir z'importéieren.",
@@ -2207,6 +2208,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpsdestlatitude'             => 'Breet',
 'exif-gpsdestlongituderef'         => "Referenz fir d'Längt",
 'exif-gpsdestlongitude'            => 'Längt',
+'exif-gpsdestdistanceref'          => "Referenz fir d'Distanz bis bäi den Objet (vun der Foto)",
 'exif-gpsdestdistance'             => 'Motivdistanz',
 'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
@@ -2333,6 +2335,8 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'confirmemail_pending'     => '<div class="error">Dir kruet schon e Confirmatiouns-Code per E-Mail geschéckt. Wenn Dir äre Benotzerkont eréischt elo kuerz opgemaach huet, da gedëllegt iech nach  epuer Minutten bis ären E-Mail ukomm ass ier Dir een neie Code ufrot.</div>',
 'confirmemail_send'        => 'Confirmatiouns-E-Mail schécken',
 'confirmemail_sent'        => 'Confirmatiouns-E-Mail gouf geschéckt.',
+'confirmemail_oncreate'    => "E Confirmatiouns-Code gouf op är E-Mail-Adress geschéckt.
+Dëse Code gëtt fir d'Umeldung net gebraucht. Dir braucht en awer bäi der Aktivéierung vun den E-Mail-Funktiounen bannert der Wiki.",
 'confirmemail_sendfailed'  => "D'Confirmatiouns-E-Mail konnt net verschéckt ginn. Iwwerpréift w.e.g. op keng ongëlteg Zeechen an ärer Adress sinn.
 
 Feelermeldung vum Mailserver: $1",

@@ -398,7 +398,7 @@ $messages = array(
 
 # Image description page
 'filehist-deleteall' => 'halakon hotu',
-'filehist-deleteone' => "halakon ne'e",
+'filehist-deleteone' => 'halakon',
 'filehist-current'   => 'atuál',
 'filehist-datetime'  => 'Loron/Tempu',
 'filehist-user'      => "Uza-na'in",

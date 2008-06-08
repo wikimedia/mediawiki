@@ -589,11 +589,12 @@ $1',
 'readonlytext'         => 'Databáze je nyní uzamčena, takže nelze ukládat nové doplňky a změny. Důvodem je pravděpodobně pravidelná údržba, po které se vše vrátí do normálního stavu.
 
 Správce, který databázi zamkl, zanechal následující zprávu: $1',
-'missingarticle'       => 'Databáze nenašla text hledané stránky nazvané „$1“.
+'missing-article'      => 'V databázi nebyl nalezen text stránky „$1“ $2.
 
-Důvodem je obvykle zastaralý odkaz do historie smazané stránky.
+Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na rozdíl verzí nebo historii stránky, jež byla smazána.
 
-V jiném případě jste možná narazil(a) na chybu v programu. Oznamte to prosím správci systému (zapamatujte si použité URL).',
+Pokud toto není váš případ, možná jste nalezli chybu v software.
+Prosíme, ohlaste to správcům spolu s URL této stránky.',
 'missingarticle-rev'   => '(číslo revize: $1)',
 'missingarticle-diff'  => '(Rozdíl: $1, $2)',
 'readonly_lag'         => 'Databáze byla automaticky dočasně uzamčena kvůli zpoždění ostatních databázových servery proti hlavnímu',
@@ -1229,6 +1230,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-editusercssjs'        => 'Editace CSS a JS souborů jiných uživatelů',
 'right-rollback'             => 'Rychlý revert úprav posledního uživatele editujícího danou stránku',
 'right-markbotedits'         => 'Označování revertů jako editace bota',
+'right-noratelimit'          => 'Imunita vůči rychlostním limitům',
 'right-import'               => 'Import stránek z jiných wiki',
 'right-importupload'         => 'Import stránek nahráním souboru',
 'right-patrol'               => 'Označování úprav jako prověřené',
@@ -1547,6 +1549,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'popularpages'            => 'Nejnavštěvovanější stránky',
 'wantedcategories'        => 'Žádané kategorie',
 'wantedpages'             => 'Požadované stránky',
+'missingfiles'            => 'Chybějící soubory',
 'mostlinked'              => 'Nejodkazovanější stránky',
 'mostlinkedcategories'    => 'Nejpoužívanější kategorie',
 'mostlinkedtemplates'     => 'Nejvkládanější šablony',
@@ -2788,6 +2791,6 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'specialpages-group-pagetools'   => 'Nástroje ke stránkám',
 'specialpages-group-wiki'        => 'Informace a nástroje k celé wiki',
 'specialpages-group-redirects'   => 'Přesměrovávací speciální stránky',
-'specialpages-group-spam'        => 'Spamové nástroje',
+'specialpages-group-spam'        => 'Protispamové nástroje',
 
 );

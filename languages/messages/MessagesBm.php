@@ -128,5 +128,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 
-
 );

@@ -330,9 +330,6 @@ $1',
 'readonlytext'         => "Database'ê {{SITENAME}} ji bo guherandinan û gotarên nuh hatîye girtin.
 
 Sedemê girtinê ev e: $1",
-'missingarticle'       => '<p><span class="error">Şaşbûn:</span> Nivîsê „$1“ di database\'ê da nehate dîtin.</p>
-<p>Ew rûpela belkî <span class="plainlinks">[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} hatîye jêbirin]</span> ya <span class="plainlinks">[{{fullurl:Special:Log/move|page={{FULLPAGENAMEE}}}} navî wê gotarê hatîye guherandin]</span>.</p>
-<p>Belkî jî mişklek li cem sekirinê database\'ê heye. Eger wisa be, xêra xwe derengtir dîsa bicerbîne.</p>',
 'readonly_lag'         => "Database otomatîk hate girtin, ji bo server'î database'î slave kanibe xwe wekî server'î database'î master'ê bike.",
 'internalerror'        => 'Şaşbûnekî înternal',
 'internalerror_info'   => 'Şaşbûnê înternal: $1',

@@ -376,13 +376,6 @@ $1',
 'readonlytext'         => 'Ora les aponses et mises a jorn sur la bâsa de balyês sont blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
 
 L’administrator èyent vèrrolyê la bâsa de balyês at balyê l’èxpllicacion siuventa : $1',
-'missingarticle'       => 'La bâsa de balyês at pas possu trovar lo tèxte d’una pâge ègzistenta, que lo nom est « $1 ».
-
-Cen est g·ènèralament diu a un dif pas més utilisâ ou un lim vers l’historico d’una pâge èfaciê.
-
-Se cen est pas lo câs, vos éd pôt-étre trovâ una cofierie dens la programeria.
-
-Volyéd raportar ceta èrror a un administrator, en lui endiquent l’adrèce de la pâge fôssa.',
 'missingarticle-rev'   => '(vèrsion # : $1)',
 'missingarticle-diff'  => '(Dif : $1, $2)',
 'readonly_lag'         => 'La bâsa de balyês at étâ ôtomaticament vèrrolyê pendent que los sèrviors secondèros ratrapont lor retârd sur lo sèrvior principâl.',

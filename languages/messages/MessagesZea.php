@@ -348,12 +348,6 @@ $1',
 'readonlytext'         => 'De database is heblokkeerd voe bewerkiengen, warschijnlijk voe rehulier databaseonderoud. Nae afrondieng wor de functionaliteit hersteld.
 
 De beheêrder ei de volhende reeën opeheven: $1',
-'missingarticle'       => "In de database is hin tekst anetroffen voe een pagina mie de naem “$1”.
-
-Dit wor mistal veroôrzaekt deur 't volhen van een lienk in een verheliekiengs- of geschiedenispagina nae een pagina die a verwiederd is.
-
-A dit nie 't heval is, dan è je een fout in de software evon'n.
-Rapporteer dit asjeblieft an een beheêrder mie vermeldieng van de URL.",
 'readonly_lag'         => 'De database is automaotisch verhrendeld terwijl an de onderheschikte databaseservers synhroniseren mie den oôdserver.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',

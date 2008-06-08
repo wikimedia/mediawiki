@@ -374,12 +374,6 @@ turbūt duomenų bazės techninei profilaktikai,
 po to viskas vėl veiks kaip įprasta.
 
 Užrakinusiojo administratoriaus pateiktas rakinimo paaiškinimas: $1',
-'missingarticle'       => 'Duomenų bazei nepavyksta rasti puslapio „$1“ teksto.
-
-Paprastai tai sukelia pasenusi skirtumų ar istorijos nuoroda į puslapį, kuris buvo ištrintas.
-
-Jei tai ne toks atvejis, galbūt jūs aptikote klaidą programinėje įrangoje.
-Prašome pranešti apie tai administratoriui, taip pat nurodant ir URL.',
 'missingarticle-rev'   => '(revizija#: $1)',
 'missingarticle-diff'  => '(Skirt: $1, $2)',
 'readonly_lag'         => 'Duomenų bazė buvo automatiškai užrakinta, kol pagalbinės duomenų bazės prisivys pagrindinę',
@@ -442,7 +436,7 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'login'                      => 'Prisijungti',
 'nav-login-createaccount'    => 'Prisijungti / sukurti paskyrą',
 'loginprompt'                => 'Įjunkite slapukus, jei norite prisijungti prie {{SITENAME}}.',
-'userlogin'                  => 'Prisijungti / sukurti paskyrą',
+'userlogin'                  => 'Prisijungti / sukurti sąskaitą',
 'logout'                     => 'Atsijungti',
 'userlogout'                 => 'Atsijungti',
 'notloggedin'                => 'Neprisijungęs',

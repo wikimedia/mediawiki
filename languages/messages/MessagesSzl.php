@@ -318,13 +318,6 @@ MySQL zguośiu feler "$3: $4"',
 - ńy možna wćepywać nowych artikli ńi sprowjać juž wćepanych. Powodym
 sům prawdopodobńy čynnośći admińistracyjne. Po jeich zakůńčeńu peuno funkcjonalność bazy bydźe přywrůcono.
 Administrator, kery zablokowou baza, podou takie wyjaśńyńy:<br /> $1',
-'missingarticle'       => 'Uoprogramowańy ńy znoduo tekstu zajty "$1", kero powinna śe znajdować w baźe.
-
-Zwykle śe to trefio, jak zostańe wybrany link do wyćepanej zajty,
-np. do staršej wersyji inkšyj ze zajtůw.
-
-Jak to ńy je powůd, to možeś znod feler w uoprogramowańu. W takim raźe zguoś, proša, tyn fakt
-admińistratorowi, końečńy podej we zguošyńu adres URL tyi zajty.',
 'missingarticle-rev'   => '(wersyjo#: $1)',
 'missingarticle-diff'  => '(dyferencyjo: $1, $2)',
 'readonly_lag'         => 'Baza danych zostoua automatyčńy zawarto na čas potřebny na synchrońizacyjo zmjan mjyndzy serwerym guůwnym a serwerami pośredńičůncymi.',
@@ -1741,6 +1734,7 @@ Wybjer inkše mjano.',
 'talkexists'              => 'Zajta artikla zostaua přećepano, ale zajta godki ńy - zajta godki uo nowym mjańe juž sam jest. Poůunč, proša, teksty oubydwůch godek rynčńe.',
 'movedto'                 => 'přećiśńjynto ku',
 'movetalk'                => 'Přećiś godke, jak možno.',
+'move-subpages'           => 'Přećepńij podzajty, jak śe do',
 '1movedto2'               => '[[$1]] přećepano do [[$2]]',
 '1movedto2_redir'         => 'zajta [[$1]] přećepnůu do [[$2]] nad překerowańem',
 'movelogpage'             => 'Přećepńynte',
@@ -1826,6 +1820,7 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'import-noarticle'           => 'Ńy ma zajtůw do zaimportowańo!',
 'import-nonewrevisions'      => 'Wšyjstke wersyje zostouy juž wčeśńij zaimportowane.',
 'xml-error-string'           => '$1 lińa $2, kolůmna $3 (bajt $4): $5',
+'import-upload'              => 'Wćepnij dane XML',
 
 # Import log
 'importlogpage'                    => 'Rejer importa',
@@ -2459,5 +2454,9 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
 'specialpages-group-media'       => 'Pliki',
 'specialpages-group-users'       => 'Užytkowńiki i uprawńyńa',
 'specialpages-group-highuse'     => 'Zajty čynsto užywane',
+'specialpages-group-pages'       => 'Zajty',
+'specialpages-group-pagetools'   => 'Nořyńdźa zajtůw',
+'specialpages-group-wiki'        => 'Informacyje a nořyńdźa wiki',
+'specialpages-group-spam'        => 'Nořyńdźa do wyćepywanio spamu',
 
 );

@@ -365,13 +365,6 @@ artikuj të rinj. Ka mundësi të jetë bllokuar për mirëmbajtje,
 dhe do të kthehet në gjëndje normale mbas mirëmbajtjes.
 
 Mirëmbajtësi i cili e bllokoi dha këtë arsye: $1',
-'missingarticle'       => 'Regjistri nuk e gjeti tekstin e faqes që duhet të kishte gjetur, të quajtur "$1".
-
-Kjo ndodh zakonisht kur ndjek një ndryshim ose lidhje historie tek një
-faqe që është grisur.
-
-Në qoftë se ky nuk është rasti, atëherë mund të keni gjetur një yçkël në softuerin.
-Tregojani këtë përmbledhje një administruesi, duke shënuar edhe URL-in.',
 'missingarticle-rev'   => '(versioni#: $1)',
 'missingarticle-diff'  => '(Ndryshimi: $1, $2)',
 'readonly_lag'         => "Regjistri është bllokuar automatikisht për t'i dhënë kohë shërbyesve skllevër për të arritur kryesorin. Ju lutemi provojeni përsëri më vonë.",

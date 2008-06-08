@@ -11,8 +11,6 @@
  * @author Jon Harald Søby
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hâ-va̍k lièn-chiap:',
@@ -287,11 +285,6 @@ $messages = array(
 'readonly'             => 'Chṳ̂-liau-khu kim-chṳ́ fóng-mun',
 'enterlockreason'      => 'Chhiáng sû-ngi̍p kim-chṳ́ fóng-mun ke ngièn-yîn, pâu-hàm kû-kie chhùng-sîn khôi-fong ke sṳ̀-kiên',
 'readonlytext'         => 'Chṳ̂-liau-khu muk-chhièn kim-chṳ́ sû-ngi̍p sîn nui-yùng khi̍p kiên-kói, liá-hàn khó-nèn he chhut-yì chṳ̂-liau-khu chang-chhai vì-chhṳ̀ chhùng-siû, chṳ̂-heu hí-khó fî-fu̍k. Kón-lî-yèn yû yî-ha ke kié-sṳt: <p>$1</p>',
-'missingarticle'       => 'Chṳ̂-liau-khu vù-fap chhìm-cháu to vùn-sṳ "$1".
-
-Thûng-sòng liá-he chhut-yì siû-cháng li̍t-sṳ́ song ko-sṳ̀ ke lièn-kiet to yí-kîn pûn chhîn-chhù ke vùn-chông só thô-chṳ ke.
-
-Kó-yèn chhìn-khóng mò-he liá-yong, ngì khó-nèn chhìm-cháu ngiôn-thí nui yit-ke chhu-chhùng-è. Chhiáng ki-liu̍k hâ URL thi-tiám, pin chhièn-hiong kón-lî-yèn po-ko.',
 'readonly_lag'         => 'Fu-su̍k chṳ̂-liau-khu fu̍k-vu-hi chang-chhai chiông khoai-chhí kiên-sîn to chú fu̍k-vu-hi, chṳ̂-liau-khu yí-kîn pûn chhṳ-thung fûng-só',
 'internalerror'        => 'Nui-phu chho-ngu',
 'filecopyerror'        => 'Mò-fap fuk-chṳ vùn-khien "$1" to "$2".',

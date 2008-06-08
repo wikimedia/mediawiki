@@ -703,5 +703,4 @@ Gif þis is *nā* þū, ne folga þisne bend. Þēos āsēðungrūn forealdaþ �
 # Special:SpecialPages
 'specialpages' => 'Syndrige trametas',
 
-
 );

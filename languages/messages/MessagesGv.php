@@ -276,6 +276,7 @@ Cha nod oo ny smoo y chroo.',
 'headline_tip'    => 'Kione-linney corrym 2',
 'math_sample'     => 'Cur formley stiagh ayns shoh',
 'math_tip'        => 'Formley maddaghtoil (LaTeX)',
+'nowiki_tip'      => 'Ny chur tastey da cummey wikiagh',
 'image_tip'       => 'Coadan jingit',
 'media_tip'       => 'Kiangley yn choadan',
 'sig_tip'         => "Dt'ennym screeuit lesh clouag am",
@@ -472,6 +473,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'rcshowhideanons' => '$1 ymmydeyryn neuenmyssit',
 'rcshowhidepatr'  => '$1 arraghyn patrolaghit',
 'rcshowhidemine'  => "$1 m'arraghyn",
+'rclinks'         => "Soilshaghey caghlaa(ghyn) $1 s'jerree ayns yn/ny $2 laa(ghyn) s'jerree<br />$3",
 'diff'            => 'anch',
 'hist'            => 'shen',
 'hide'            => 'Follaghey',
@@ -481,8 +483,9 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Caghlaaghyn-vooinjerys',
-'recentchangeslinked-page' => 'Ennym y duillag:',
+'recentchangeslinked'       => 'Caghlaaghyn-vooinjerys',
+'recentchangeslinked-title' => 'Caghlaaghyn bentyn rish "$1"',
+'recentchangeslinked-page'  => 'Ennym y duillag:',
 
 # Upload
 'upload'            => 'Cur neese coadan',
@@ -878,6 +881,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'tooltip-ca-nstab-category'       => 'Jeeagh er duillag y ronney',
 'tooltip-minoredit'               => 'She myn-arraghey eh shoh',
 'tooltip-save'                    => 'Sauail dty chaghlaaghyn',
+'tooltip-preview'                 => 'Roie-haishbyney ny caghlaaghyn ayd; jannoo ymmyd jeh roish sauail, my saillt!',
 'tooltip-diff'                    => 'Taishbyney caghlaaghyn y teks ta jeant ayd.',
 'tooltip-compareselectedversions' => 'Jeeagh er ny caghlaaghyn eddyr y daa lhieggan reiht y ghuillag shoh.',
 'tooltip-watch'                   => 'Cur y duillag shoh lesh dty rolley arrey',
@@ -1037,6 +1041,5 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 'specialpages-group-other'       => 'Duillagyn elley er lheh',
 'specialpages-group-login'       => 'Claare stiagh / croo coontys',
 'specialpages-group-users'       => 'Ymmydeyryn as kiartyn',
-
 
 );

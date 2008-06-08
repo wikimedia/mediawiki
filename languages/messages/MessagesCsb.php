@@ -249,7 +249,6 @@ $messages = array(
 'error'            => 'Fela',
 'databaseerror'    => 'Fela w pòdôwkòwi baze',
 'readonly'         => 'Baza pòdôwków je zablokòwónô',
-'missingarticle'   => 'Programa ni mô nalôzłé tekstu starnë, chtërnô bë mùsza bëc w baze, to je starnë "$1".<p>Colemało mô to plac, czej òstónie wëbróné sparłãczenié\\ndo rëmóny starnë, np. stôrszi wersëji jińszi starnë.</p><p>Jińszé leżnosce mògą znaczëc, że w soft-wôrze je fela. W taczim przëtrôfkù prosymë zameldowac nen fakt administratorowi pòdającë hewòtną adresã.',
 'internalerror'    => 'Bënowô fela',
 'filecopyerror'    => 'Ni mòże skòpérowac lopka "$1" do "$2".',
 'filerenameerror'  => 'Ni mòże zmienic miona lopka "$1" na "$2".',

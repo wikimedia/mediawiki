@@ -309,12 +309,6 @@ $1',
 'readonlytext'         => 'Database d tamsekkert, ahat tettuseggem, qrib ad tuɣal-d.
 
 Win (anedbal) isekker-itt yenna-d: $1',
-'missingarticle'       => 'Database ur tufi ara aḍris n usebter i yessefk ad taf, isem-is "$1".
-
-S umata, wagi yeḍran asmi yettumḥa azady n umezruy/wemgerrad ar asebter.
-
-Lemmer mačči akka, ahat yella bug deg software.
-G leɛnayek, ini-yas-t-id i unedbal, ur tettuḍ ara ad tefkiḍ tansa n URL.',
 'readonly_lag'         => 'Database d tamsekkert (weḥdes) axaṭer kra n serveur ɛeṭṭlen',
 'internalerror'        => 'Agul zdaxel',
 'filecopyerror'        => 'Ur yezmir ara ad yexdem alsaru n ufaylu "$1" ar "$2".',

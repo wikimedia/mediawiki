@@ -1124,5 +1124,4 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 # Special:SpecialPages
 'specialpages' => 'Petulo zwenti',
 
-
 );

@@ -417,11 +417,12 @@ $1',
 'readonlytext'         => 'Datowa banka je tuchwilu za nowe zapiski a druhe změny zawrjena, najskerje wothladowanskich dźěłow dla; po jich zakónčenju budźe wšitko zaso normalne.
 
 Administrator, kiž je datowu banku zawrěł, je jako přičinu podał: $1',
-'missingarticle'       => 'Datowa banka njeje tekst strony, kotraž ma mjeno „$1”, namakała, byrnjež jón poprawom namakać dyrbjała.
+'missing-article'      => 'Datowa banka njenamaka tekst strony z mjenom "$1" $2, kotryž dyrbhał so namakać.
 
-To so zwjetša přez zestarjeny wotkaz na wušmórnjenu stronu zawinuje.
+To so zwjetša zawinuje, hdyž so njepłaćiwa změna abo zapisk stawiznow na stronu wotkazuje, kotraž bu wušmórnjena.
 
-Jeli tomu tak njeje, sy snano zmylk w softwarje namakał. Prošu informuj administratora wo tym a zdźěl jemu wužity URL.',
+Jeli to njetrjechi, sy najskerje programowu zmóku w softwarje namakał.
+Zdźěl to prošu admininistratorej podawajo wotpowědny URL.',
 'missingarticle-rev'   => '(Wersijowe čisło: $1)',
 'missingarticle-diff'  => '(Rozdźěl: $1, $2)',
 'readonly_lag'         => 'Datowa banka bu awtomatisce zawrjena, mjeztym zo pospytuja wotwisne serwery datowych bankow  hłowny serwer docpěć',
@@ -1053,6 +1054,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'right-editusercssjs'        => 'Dataje CSS a JS druhich wužiwarjow wobdźěłać',
 'right-rollback'             => 'Poslednjeho wužiwarja, kotryž wěstu stronu wobdźěła, spěšnje rewertować',
 'right-markbotedits'         => 'Rewertowane změny jako botowe změny markěrować',
+'right-noratelimit'          => 'Přez žane limity wobmjezowane',
 'right-import'               => 'Strony z druhich wikijow importować',
 'right-importupload'         => 'Strony přez nahraće datajow importować',
 'right-patrol'               => 'Změny jako dohladowane markěrować',
@@ -1383,6 +1385,7 @@ Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue rynka nadawkow] je '''
 'wantedcategories-summary'        => 'Tuta specialna strona naliči kategorije, kotrež so hižo w nastawkach nałožuja, njejsu pak hišće jako kategorije wutworjene.',
 'wantedpages'                     => 'Požadane strony',
 'wantedpages-summary'             => 'Tuta specialna strona naliči wšě hišće njeeksistowace strony, na kotrež eksistowace strony hižo wotkazuja.',
+'missingfiles'                    => 'Falowace dataje',
 'mostlinked'                      => 'Z najwjace stronami zwjazane strony',
 'mostlinked-summary'              => 'Tuta specialna strona naliči, njewotwisnje wot mjenoweho ruma, wšě strony z najwjace wotkazami.',
 'mostlinkedcategories'            => 'Z najwjace stronami zwjazane kategorije',

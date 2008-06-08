@@ -11,8 +11,6 @@
  * @author Nike
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gulisan lang panglalam deng suglung:',
@@ -316,12 +314,6 @@ $1',
 'readonlytext'         => 'Kasalungsungan yang makasara ing database kareng bayung ambag at aliwa pang pamagbayu, mapalyaring para king karaniwan a pamaniamasan king database; mibalik ya king normal kaibat na niti.
 
 Ini ing sangkan a binie ning talapanibalang minyara: $1',
-'missingarticle'       => 'E ne apaintun ning database ing sulat ning bulung a dapat ikit na sa, a maki bansag a "$1".
-
-Keraklan, malilyari iti uling king metung a aliwa (diff) a e laun na, o suglung ning amlat (history link) king bulung a mebura na.
-
-Nung e anti kaniti ing milyari, mapalyaring menakit kang bug king software.
-Pakisabi me king metung a talapanibala iti, kayabe ne itang URL.',
 'missingarticle-rev'   => '(pamanalili#: $1)',
 'missingarticle-diff'  => '(Aliwa: $1, $2)',
 'readonly_lag'         => 'Tambing (otomatiku) yang misara ing database kabang tatagal la king master deng slave database server.',

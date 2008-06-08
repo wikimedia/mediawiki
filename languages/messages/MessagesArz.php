@@ -261,18 +261,38 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => 'حط خط تحت الوصلات:',
-'tog-justify'              => 'ساوى الفقرات',
-'tog-numberheadings'       => 'رقم العناوين تلقائيا',
-'tog-watchcreations'       => 'ضيف الصفحات اللى أنشأتها للستة الصفحات اللى باراقبها',
-'tog-watchdefault'         => 'ضيف الصفحات اللى بأعدلها للستة الصفحات اللى باراقبها',
-'tog-watchmoves'           => 'ضيف الصفحات اللى بأنقلها للستة الصفحات اللى باراقبها',
-'tog-watchdeletion'        => 'ضيف الصفحات اللى بأمسحها للستة الصفحات اللى باراقبها',
-'tog-nocache'              => 'عطل تخبية الصفحه',
-'tog-enotifwatchlistpages' => 'ابعت لى ايميل لما تتغير صفحه فى لستة الصفحات اللى باراقبها',
-'tog-enotifusertalkpages'  => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',
-'tog-enotifminoredits'     => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
-'tog-ccmeonemails'         => 'ابعتلى  نسخ من رسايل الايميل اللى بابعتها لليوزرز التانيين',
+'tog-underline'               => 'حط خط تحت الوصلات:',
+'tog-highlightbroken'         => 'أ بين اللينكات البايظة <a href="" class="new">كدا</a> (البديل: زي دا<a href="" class="internal">؟</a>).',
+'tog-justify'                 => 'ساوى الفقرات',
+'tog-hideminor'               => 'خبي التعديلات الصغيرة في اجدد التغييرات',
+'tog-extendwatchlist'         => 'وسع لستة المراقبة علشان تبين كل التغييرات اللي ممكن تتطبق',
+'tog-usenewrc'                => 'شكل قوي من أجدد التغييرات (جافا سكريبت)',
+'tog-numberheadings'          => 'رقم العناوين تلقائيا',
+'tog-showtoolbar'             => 'بين شريط التحرير (جافا سكريبت)',
+'tog-editondblclick'          => 'عدل الصفحات عند الدبل كليك (جافا سكريبت)',
+'tog-editsection'             => 'اسمح ب تعديل الأقسام عن طريق وصلات [تعديل]',
+'tog-editsectiononrightclick' => 'اسمح ب تعديل الأقسام لما ندوس رايت كليك على الماوس على عناوين الأقسام (جافاسكريبت)',
+'tog-showtoc'                 => 'بين جدول المحتويات (ل الصفحات االلي فيها أكتر من 3 عناوين)',
+'tog-rememberpassword'        => 'خليك فاكر دخولي على الكمبيوتر دا',
+'tog-editwidth'               => 'صندوق التعديل  واخد العرض كله',
+'tog-watchcreations'          => 'ضيف الصفحات اللى أنشأتها للستة الصفحات اللى باراقبها',
+'tog-watchdefault'            => 'ضيف الصفحات اللى بأعدلها للستة الصفحات اللى باراقبها',
+'tog-watchmoves'              => 'ضيف الصفحات اللى بأنقلها للستة الصفحات اللى باراقبها',
+'tog-watchdeletion'           => 'ضيف الصفحات اللى بأمسحها للستة الصفحات اللى باراقبها',
+'tog-minordefault'            => 'علم  على كل التعديلات كأنها صغيرة افتراضيا',
+'tog-previewontop'            => 'بين البروفة قبل صندوق التعديل',
+'tog-previewonfirst'          => 'بين البروفة عند أول تعديل',
+'tog-nocache'                 => 'عطل تخبية الصفحه',
+'tog-enotifwatchlistpages'    => 'ابعت لى ايميل لما تتغير صفحه فى لستة الصفحات اللى باراقبها',
+'tog-enotifusertalkpages'     => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',
+'tog-enotifminoredits'        => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
+'tog-enotifrevealaddr'        => 'بين الايميل بتاعى في ايميلات الاعلام',
+'tog-shownumberswatching'     => 'بين عدد اليوزرز المراقبين',
+'tog-fancysig'                => 'امضاء خام (من غير لينك أوتوماتيكي)',
+'tog-externaleditor'          => 'استعمل محرر خارجي افتراضيا',
+'tog-externaldiff'            => 'استعمل فرق خارجي افتراضيا',
+'tog-ccmeonemails'            => 'ابعتلى  نسخ من رسايل الايميل اللى بابعتها لليوزرز التانيين',
+'tog-showhiddencats'          => 'بين التّصنيفات المستخبية',
 
 'underline-always' => 'دايما',
 'underline-never'  => 'ابدا',
@@ -332,12 +352,13 @@ $messages = array(
 'dec'           => 'ديسمبر',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|تصنيف|تصانيف}}',
-'category_header'        => 'الصفحات فى التصنيف "$1"',
-'subcategories'          => 'التصنيفات الفرعيه',
-'category-media-header'  => 'ملفات الميديا فى التصنيف "$1"',
-'category-empty'         => "''التصنيف ده مافيهوش حاليا مقالات او ملفات ميديا.''",
-'listingcontinuesabbrev' => 'متابعه',
+'pagecategories'           => '{{PLURAL:$1|تصنيف|تصانيف}}',
+'category_header'          => 'الصفحات فى التصنيف "$1"',
+'subcategories'            => 'التصنيفات الفرعيه',
+'category-media-header'    => 'ملفات الميديا فى التصنيف "$1"',
+'category-empty'           => "''التصنيف ده مافيهوش حاليا مقالات او ملفات ميديا.''",
+'hidden-category-category' => 'تصنيفات مستخبية', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'متابعه',
 
 'about'          => 'عن',
 'article'        => 'صفحة محتوى',
@@ -352,6 +373,7 @@ $messages = array(
 'moredotdotdot'  => 'اكتر...',
 'mypage'         => 'صفحتى',
 'mytalk'         => 'مناقشاتى',
+'anontalk'       => 'المناقشة مع عنوان الأيبي دا',
 'and'            => 'و',
 
 'errorpagetitle'    => 'غلطه',
@@ -375,19 +397,25 @@ $messages = array(
 'delete'            => 'مسح',
 'deletethispage'    => 'امسح الصفحه دى',
 'protect'           => 'حمايه',
+'protect_change'    => 'غير الحماية',
 'protectthispage'   => 'احمى الصفحه دى',
 'unprotectthispage' => 'شيل حماية الصفحه دى',
 'newpage'           => 'صفحه جديده',
 'talkpage'          => 'ناقش الصفحه دى',
 'talkpagelinktext'  => 'مناقشه',
+'specialpage'       => 'صفحة مخصوصة',
 'personaltools'     => 'ادوات شخصيه',
+'articlepage'       => 'بين صفحة المحتوى',
 'talk'              => 'مناقشه',
 'views'             => 'مشاهده',
 'toolbox'           => 'علبة العده',
 'projectpage'       => 'عرض صفحة المشروع',
+'viewhelppage'      => 'بين صفحة المساعدة',
+'viewtalkpage'      => 'بين المناقشة',
 'otherlanguages'    => 'بلغات تانيه',
 'redirectedfrom'    => '(تحويل من $1)',
 'redirectpagesub'   => 'صفحة تحويل',
+'lastmodifiedat'    => 'الصفحة دي اتعدلت اخر مرة في $2، $1.', # $1 date, $2 time
 'jumpto'            => 'روح على:',
 'jumptonavigation'  => 'ناڤيجيشن',
 'jumptosearch'      => 'تدوير',
@@ -449,63 +477,84 @@ $messages = array(
 'nstab-category' => 'تصنيف',
 
 # General errors
-'error'              => 'غلطة',
-'internalerror'      => 'غلط داخلي',
-'internalerror_info' => 'غلط داخلي: $1',
-'badarticleerror'    => 'مش ممكن ننفذ العملية دي على الصفحة دي',
-'badtitle'           => 'عنوان غلط',
-'badtitletext'       => 'عنوان الصفحه المطلوب اما مش صحيح او فاضي، و ربما الوصلة بين اللغات أو بين المشاريع غلط. وممكن وجود رموز ماتصلحش للاستخدام في العناوين.',
-'viewsource'         => 'عرض المصدر',
-'viewsourcefor'      => 'ل $1',
-'viewsourcetext'     => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
+'error'               => 'غلطة',
+'noconnect'           => 'متأسفين،الويكي  عندها شوية مشاكل فنية و مش قادرة توصل ب سيرفر الداتابيز. <br />
+$1',
+'missingarticle-diff' => '(فرق: $1، $2)',
+'internalerror'       => 'غلط داخلي',
+'internalerror_info'  => 'غلط داخلي: $1',
+'filecopyerror'       => 'ما قدرنا ش  ننسخ الملف "$1" لـ "$2".',
+'filedeleteerror'     => 'ما قدرنا ش نمسح الملف "$1".',
+'filenotfound'        => 'مش قادرين نلاقي الملف "$1".',
+'badarticleerror'     => 'مش ممكن ننفذ العملية دي على الصفحة دي',
+'cannotdelete'        => 'ما قدرناش نمسح الصفحة أو الملف المطلوب. (ممكن يكون حد تاني مسحه. )',
+'badtitle'            => 'عنوان غلط',
+'badtitletext'        => 'عنوان الصفحه المطلوب اما مش صحيح او فاضي، و ربما الوصلة بين اللغات أو بين المشاريع غلط. وممكن وجود رموز ماتصلحش للاستخدام في العناوين.',
+'viewsource'          => 'عرض المصدر',
+'viewsourcefor'       => 'ل $1',
+'viewsourcetext'      => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
 
 # Login and logout pages
-'loginpagetitle'          => 'دخول اليوزر',
-'yourname'                => ' اليوزرنيم:',
-'yourpassword'            => 'الباسوورد (كلمة السر):',
-'yourpasswordagain'       => 'اكتب الباسورد تاني:',
-'remembermypassword'      => 'افتكر بيانات دخولى على  الكمبيوتر ده',
-'login'                   => 'دخول',
-'nav-login-createaccount' => 'دخول / فتح حساب',
-'loginprompt'             => 'لازم تكون الكوكيز عندك مفعله علشان تقدر تدخل ل {{SITENAME}}.',
-'userlogin'               => 'دخول / فتح حساب',
-'logout'                  => 'خروج',
-'userlogout'              => 'خروج',
-'nologin'                 => 'مشتركتش لسه؟ $1.',
-'nologinlink'             => ' افتح حساب',
-'createaccount'           => 'افتح حساب',
-'gotaccount'              => 'عندك حساب؟ $1.',
-'gotaccountlink'          => 'دخول',
-'createaccountmail'       => 'بـ الايميل',
-'youremail'               => 'الايميل:',
-'username'                => 'اسم اليوزر:',
-'yourrealname'            => 'الاسم الحقيقى:',
-'yourlanguage'            => 'اللغة:',
-'yournick'                => 'الإمضا:',
-'email'                   => 'الإيميل',
-'prefs-help-realname'     => 'الاسم الحقيقي اختيارى ولو اخترت تعرض اسمك هنا هايستخدم في الإشارة لمساهماتك.',
-'loginsuccesstitle'       => 'تم الدخول بشكل صحيح',
-'loginsuccess'            => "'''تم تسجيل دخولك{{SITENAME}} باسم \"\$1\".'''",
-'nosuchuser'              => 'مافيش يوزر باسم "$1".
+'logouttitle'                => 'خروج اليوزر',
+'welcomecreation'            => '== اهلاً و سهلاً يا $1! ==
+
+اتفتحلك حساب. ما تنساش تغير تفضيلاتك في {{SITENAME}}.',
+'loginpagetitle'             => 'دخول اليوزر',
+'yourname'                   => ' اليوزرنيم:',
+'yourpassword'               => 'الباسوورد (كلمة السر):',
+'yourpasswordagain'          => 'اكتب الباسورد تاني:',
+'remembermypassword'         => 'افتكر بيانات دخولى على  الكمبيوتر ده',
+'login'                      => 'دخول',
+'nav-login-createaccount'    => 'دخول / فتح حساب',
+'loginprompt'                => 'لازم تكون الكوكيز عندك مفعله علشان تقدر تدخل ل {{SITENAME}}.',
+'userlogin'                  => 'دخول / فتح حساب',
+'logout'                     => 'خروج',
+'userlogout'                 => 'خروج',
+'nologin'                    => 'مشتركتش لسه؟ $1.',
+'nologinlink'                => ' افتح حساب',
+'createaccount'              => 'افتح حساب',
+'gotaccount'                 => 'عندك حساب؟ $1.',
+'gotaccountlink'             => 'دخول',
+'createaccountmail'          => 'بـ الايميل',
+'youremail'                  => 'الايميل:',
+'username'                   => 'اسم اليوزر:',
+'uid'                        => 'رقم اليوزر:',
+'yourrealname'               => 'الاسم الحقيقى:',
+'yourlanguage'               => 'اللغة:',
+'yournick'                   => 'الإمضا:',
+'badsiglength'               => 'الإمضا بتاعتك طويلة جدا.
+لازم تكون اقل من $1 {{PLURAL:$1|حرف|حروف}}.',
+'email'                      => 'الإيميل',
+'prefs-help-realname'        => 'الاسم الحقيقي اختيارى ولو اخترت تعرض اسمك هنا هايستخدم في الإشارة لمساهماتك.',
+'loginerror'                 => 'غلط في الدخول',
+'prefs-help-email-required'  => 'عنوان الإيميل مطلوب.',
+'loginsuccesstitle'          => 'تم الدخول بشكل صحيح',
+'loginsuccess'               => "'''تم تسجيل دخولك{{SITENAME}} باسم \"\$1\".'''",
+'nosuchuser'                 => 'مافيش يوزر باسم "$1".
 اتاكد من تهجية الاسم، او افتح حساب جديد.',
-'nosuchusershort'         => 'مافيش يوزر باسم <nowiki>$1</nowiki>". اتاكد من تهجية الاسم.',
-'nouserspecified'         => ' لازم تحدد اسم يوزر.',
-'wrongpassword'           => 'كلمة السر اللى كتبتها مش صحيحه. من فضلك حاول تانى.',
-'wrongpasswordempty'      => 'كلمة السر المدخله كانت فاضيه. من فضلك حاول تانى.',
-'passwordtooshort'        => 'كلمة السر التي اخترتها مش صحيحه أو قصيره جدا. لازم مايقلش طول الكلمه عن $1 حرف وتكون مختلفه عن اسم اليوزر بتاعك.',
-'mailmypassword'          => 'ابعتلى كلمة السر فى ايميل.',
-'passwordremindertitle'   => 'كلمة سر مؤقته جديده ل {{SITENAME}}',
-'passwordremindertext'    => 'فيه شخص ما (غالبا انت، من عنوان الااى بى $1)  طلب اننا نرسل لك كلمة سر جديده لـ{{SITENAME}} ($4).
+'nosuchusershort'            => 'مافيش يوزر باسم <nowiki>$1</nowiki>". اتاكد من تهجية الاسم.',
+'nouserspecified'            => ' لازم تحدد اسم يوزر.',
+'wrongpassword'              => 'كلمة السر اللى كتبتها مش صحيحه. من فضلك حاول تانى.',
+'wrongpasswordempty'         => 'كلمة السر المدخله كانت فاضيه. من فضلك حاول تانى.',
+'passwordtooshort'           => 'كلمة السر التي اخترتها مش صحيحه أو قصيره جدا. لازم مايقلش طول الكلمه عن $1 حرف وتكون مختلفه عن اسم اليوزر بتاعك.',
+'mailmypassword'             => 'ابعتلى كلمة السر فى ايميل.',
+'passwordremindertitle'      => 'كلمة سر مؤقته جديده ل {{SITENAME}}',
+'passwordremindertext'       => 'فيه شخص ما (غالبا انت، من عنوان الااى بى $1)  طلب اننا نرسل لك كلمة سر جديده لـ{{SITENAME}} ($4).
 
 كلمة السر لليوزر "$2" الآن هي "$3".
 عليك انك تدخل على الموقع وتغير كلمة السر بتاعتك دلوقتى.
 
 لو مكنتش  انت اللى طلب كلمة السر أو انك افتكرت كلمة السر اللى قبل كده ومش عايز تغيرها ممكن تتجاهل الرساله دى وتستمر في استخدام كلمة السر بتاعتك اللى قبل كده.',
-'noemail'                 => 'مافيش ايميل متسجل  لليوزر  "$1".',
-'passwordsent'            => '
+'noemail'                    => 'مافيش ايميل متسجل  لليوزر  "$1".',
+'passwordsent'               => '
 تم إرسال كلمة سر جديدة لعنوان الايميل المتسجل لليوزر "$1".من فضلك حاول تسجيل الدخول مره تانيه بعد استلامها.',
-'eauthentsent'            => 'فيه ايميل تأكيد اتبعت  للعنوان اللى كتبته.  علشان تبعت اي ايميل تانى للحساب ده لازم تتبع التعليمات اللى فى الايميل اللى اتبعتلك  علشان تأكد ان  الحساب ده بتاعك .',
-'accountcreated'          => 'الحساب اتفتح',
+'eauthentsent'               => 'فيه ايميل تأكيد اتبعت  للعنوان اللى كتبته.  علشان تبعت اي ايميل تانى للحساب ده لازم تتبع التعليمات اللى فى الايميل اللى اتبعتلك  علشان تأكد ان  الحساب ده بتاعك .',
+'acct_creation_throttle_hit' => 'متأسفين، انت عندك $1 حساب. مش ممكن نفتح واحد تاني.',
+'accountcreated'             => 'الحساب اتفتح',
+'loginlanguagelabel'         => 'اللغة: $1',
+
+# Password reset dialog
+'resetpass_header' => 'غير الباسورد',
 
 # Edit page toolbar
 'bold_sample'     => 'حروف عريضه',
@@ -557,6 +606,7 @@ $messages = array(
 'whitelistacctitle'      => 'انت مش مسموح لك تفتح حساب',
 'loginreqlink'           => 'ادخل',
 'accmailtitle'           => ' كلمة السر اتبعتت .',
+'accmailtext'            => "الباسورد بتاعة '$1' اتبعتت لـ $2.",
 'newarticle'             => '(جديد)',
 'newarticletext'         => "انت وصلت لصفحه مابتدتش لسه.
 علشان  تبتدى الصفحة ابتدى الكتابه في الصندوق اللى تحت.
@@ -580,6 +630,8 @@ $messages = array(
 'template-semiprotected' => '(حمايه جزئيه )',
 'nocreatetext'           => '{{SITENAME}} حدد القدره على انشاء صفحات جديده.
 ممكن ترجع وتحرر صفحه موجوده بالفعل، او [[Special:Userlogin|الدخول / فتح حساب]].',
+'nocreate-loggedin'      => 'انت ما عندك ش صلاحية تعمل صفحات جديدة في {{SITENAME}}.',
+'permissionserrorstext'  => 'ما عندك ش صلاحية تعمل كدا،{{PLURAL:$1|علشان|علشان}}:',
 'recreate-deleted-warn'  => "'''تحذير: انت بتعيد انشاء صفحه اتمسحت قبل كده.'''
 لازم تتأكد من ان الاستمرار فى تحرير الصفحه دى ملائم.
 سجل الحذف للصفحه دى معروض هنا:",
@@ -603,6 +655,7 @@ $messages = array(
 'histlegend'          => 'اختيار الفرق: علم على صناديق النسخ للمقارنه و اضغط قارن بين النسخ المختاره او الزر اللى تحت.<br />
 مفتاح: (دلوقتى) = الفرق مع النسخة دلوقتى
 (اللى قبل كده) = الفرق مع النسخة اللى قبل كده، ص = تعديل صغير',
+'deletedrev'          => '[ممسوحة]',
 'histfirst'           => 'اول',
 'histlast'            => 'آخر',
 'historyempty'        => '(فاضى)',
@@ -622,18 +675,30 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|نسخه واحده متوسطه|$1 نسخه متوسطه}} مش معروضه.)',
 
 # Search results
-'searchresults'  => 'نتايج التدوير',
-'noexactmatch'   => "'''مافيش  صفحه بالاسم \"\$1\"'''. ممكن [[:\$1| تبتدى الصفحه دى]].",
-'prevn'          => '$1 اللى قبل كده',
-'nextn'          => '$1 اللى بعد كده',
-'viewprevnext'   => 'بص ($1) ($2) ($3)',
-'search-suggest' => 'قصدك: $1',
-'powersearch'    => 'تدوير متفصل',
+'searchresults'            => 'نتايج التدوير',
+'searchsubtitleinvalid'    => "انت دورت على '''$1'''",
+'noexactmatch'             => "'''مافيش  صفحه بالاسم \"\$1\"'''. ممكن [[:\$1| تبتدى الصفحه دى]].",
+'prevn'                    => '$1 اللى قبل كده',
+'nextn'                    => '$1 اللى بعد كده',
+'viewprevnext'             => 'بص ($1) ($2) ($3)',
+'search-suggest'           => 'قصدك: $1',
+'search-interwiki-caption' => 'المشاريع الشقيقة',
+'search-interwiki-default' => '$1 نتيجة:',
+'search-interwiki-more'    => '(اأكتر)',
+'searchall'                => 'الكل',
+'powersearch'              => 'تدوير متفصل',
+'powersearch-redir'        => 'لستة التحويلات',
 
 # Preferences page
-'preferences'   => 'تفضيلات',
-'mypreferences' => 'تفضيلاتى',
-'retypenew'     => 'اكتب كلمة السر الجديده تانى:',
+'preferences'     => 'تفضيلات',
+'mypreferences'   => 'تفضيلاتى',
+'qbsettings-none' => 'ما في ش',
+'datetime'        => 'وقت وتاريخ',
+'saveprefs'       => 'حفظ',
+'retypenew'       => 'اكتب كلمة السر الجديده تانى:',
+
+# User rights
+'userrights-groupsavailable' => 'المجموعات المتوفرة:',
 
 # Groups
 'group' => 'المجموعة:',
@@ -683,12 +748,15 @@ $messages = array(
 'recentchangeslinked-page'     => 'اسم الصفحه :',
 
 # Upload
-'upload'        => 'حمل',
-'uploadbtn'     => 'حمل الملف',
-'reupload'      => 'حمل مره تانيه',
-'uploaderror'   => 'غلطه فى التحميل',
-'uploadlogpage' => 'سجل التحميل',
-'uploadedimage' => 'اتحمل "[[$1]]"',
+'upload'         => 'حمل',
+'uploadbtn'      => 'حمل الملف',
+'reupload'       => 'حمل مره تانيه',
+'uploaderror'    => 'غلطه فى التحميل',
+'uploadlogpage'  => 'سجل التحميل',
+'filename'       => 'اسم الملف',
+'uploadedimage'  => 'اتحمل "[[$1]]"',
+'uploadvirus'    => 'الملف فيه فيروس! التفاصيل: $1',
+'sourcefilename' => 'اسم الملف  بتاع المصدر:',
 
 # Special:Imagelist
 'imagelist'      => 'لستة الملفات',
@@ -795,10 +863,15 @@ $messages = array(
 # Special:Categories
 'categories' => 'تصانيف',
 
+# Special:Listusers
+'listusers-noresult' => 'ما في ش يوزر',
+
 # E-mail user
-'emailuser' => ' ابعت ايميل لليوزر ده',
-'emailsend' => 'إبعت',
-'emailsent' => 'الإيميل اتبعت',
+'emailuser'    => ' ابعت ايميل لليوزر ده',
+'emailfrom'    => 'من',
+'emailsubject' => 'الموضوع',
+'emailsend'    => 'إبعت',
+'emailsent'    => 'الإيميل اتبعت',
 
 # Watchlist
 'watchlist'            => 'لستة الصفحات اللى باراقبها',
@@ -903,16 +976,17 @@ $messages = array(
 'whatlinkshere-hidelinks' => '$1 لينكات',
 
 # Block/unblock
-'blockip'       => 'منع يوزر',
-'ipbreason'     => 'السبب:',
-'ipbother'      => 'وقت تاني:',
-'ipboptions'    => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
-'blocklink'     => 'منع',
-'unblocklink'   => 'رفع المنع',
-'contribslink'  => 'تعديلات',
-'blocklogpage'  => 'سجل المنع',
-'blocklogentry' => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
+'blockip'                 => 'منع يوزر',
+'ipbreason'               => 'السبب:',
+'ipbother'                => 'وقت تاني:',
+'ipboptions'              => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
+'ipblocklist'             => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
+'blocklink'               => 'منع',
+'unblocklink'             => 'رفع المنع',
+'contribslink'            => 'تعديلات',
+'blocklogpage'            => 'سجل المنع',
+'blocklogentry'           => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
+'block-log-flags-noemail' => 'الإيميل ممنوع',
 
 # Move page
 'movepagetext'     => "
@@ -1046,23 +1120,34 @@ $messages = array(
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-gpsstatus'   => 'حالة جهاز الاستقبال',
+'exif-gpsspeedref' => 'وحدة السرعة',
+
+'exif-exposureprogram-1' => 'يدوي',
+
 # External editor support
 'edit-externally'      => 'عدل هذا الملف باستخدام تطبيق خارجي',
 'edit-externally-help' => 'بص على [http://meta.wikimedia.org/wiki/Help:External_editors  تعليمات الاعداد] علشان معلومات اكتر.',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'الكل',
-'namespacesall' => 'الكل',
-'monthsall'     => 'الكل',
+'recentchangesall' => 'الكل',
+'watchlistall2'    => 'الكل',
+'namespacesall'    => 'الكل',
+'monthsall'        => 'الكل',
 
 # Multipage image navigation
 'imgmultipagenext' => 'الصفحه اللى بعد كده →',
 
 # Table pager
-'table_pager_next' => 'الصفحه اللى بعد كده',
+'table_pager_next'  => 'الصفحه اللى بعد كده',
+'table_pager_empty' => 'ما في ش نتايج',
 
 # Auto-summaries
 'autosumm-new' => 'صفحه جديده: $1',
+
+# Live preview
+'livepreview-loading' => 'تحميل…',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'عرض التعديلات المرتبطه',

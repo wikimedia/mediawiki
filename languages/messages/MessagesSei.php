@@ -298,12 +298,6 @@ $1',
 'readonlytext'         => "Database zo coccebj locköx cmaade hunticpatlöx, posde maintenancede database, normal returnöx 'depre.
 
 Sysop zo locköx zo xuniim jan rae': $1",
-'missingarticle'       => 'Database zo neyahöx textua zo jöx páhina zo Necesde yahöx, "$1".
-
-Jan coccebj rae\'de nenupdatenom diff jöx linkámde históriade páhina delatom pac.
-
-Jan necoccebj zo poop, me pos-coccebj yahöx bug zode software zo iti.
-Reportom jande sysop ö xuniim URL zo.',
 'readonly_lag'         => "Database coccebj locköx auto jan 'slave database serverám' zo ifanomde 'master' zo",
 'internalerror'        => 'Römj internal',
 'internalerror_info'   => 'Römj internal: $1',
@@ -1128,6 +1122,5 @@ iitom e-iitomde diijömde caitóm.',
 
 # Special:SpecialPages
 'specialpages' => 'Páhinám extravám',
-
 
 );

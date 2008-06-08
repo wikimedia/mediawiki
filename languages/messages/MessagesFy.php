@@ -357,10 +357,6 @@ en sawat hoenear't de men wêr skriuwe kin",
 nei alle gedachten is it foar ûnderhâld, en kinne jo der letter gewoan wer brûk fan meitsje.
 De behearder hat dizze útlis joen:
 <p>$1</p>',
-'missingarticle'       => 'De databank kin in side net fine, nammentlik: "$1".
-<p>Faak is dit om\'t in âlde ferskil-, of skiednisside opfreege wurdt fan in side dy\'t wiske is.
-<p>As dat it hjir net is, dan hawwe jo faaks in brek yn it programa fûn.
-Jou dat asjebleaft troch oan de behearder, tegearre mei de URL.',
 'readonly_lag'         => 'De database is automatysk beskoattele wylst de ûndergeskikte databaseservers syngronisearje mei de haadserver.',
 'internalerror'        => 'Ynwindige fout',
 'internalerror_info'   => 'Ynterne fout: $1',

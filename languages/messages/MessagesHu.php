@@ -570,11 +570,6 @@ $1',
 'readonlytext'         => 'A wiki adatbázisa ideiglenesen le van zárva (valószínűleg adatbázis-karbantartás miatt). A lezárás időtartama alatt a lapok nem szerkeszthetők, és új szócikkek sem hozhatóak létre, az oldalak azonban továbbra is böngészhetőek.
 
 Az adminisztrátor, aki lezárta az adatbázist, az alábbi magyarázatot adta: $1',
-'missingarticle'       => 'Az adatbázisban nem található meg a(z) „$1” nevű lap szövege.
-
-Ennek oka általában egy olyan régi link követése, amely egy már törölt lapra hivatkozik.
-
-Ha nem erről van szó akkor lehetséges, hogy programozási hibát találtál a szoftverben. Kérlek, értesíts erről egy adminisztrátort, és jegyezd fel neki az URL-t (pontos webcímet) is.',
 'missingarticle-rev'   => '(változat azonosítója: $1)',
 'missingarticle-diff'  => '(eltérés: $1, $2)',
 'readonly_lag'         => 'Az adatbázis automatikusan zárolásra került, amíg a mellékkiszolgálók utolérik a főkiszolgálót.',
@@ -1315,6 +1310,7 @@ Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor a b�
 Ha megvan neked a teljes felbontású kép, akkor töltsd fel azt, egyéb esetben kérjük, hogy változtasd meg a fájlnevet.',
 'fileexists-forbidden'        => 'Egy ugyanilyen nevű fájl már létezik; kérlek menj vissza és töltsd fel a fájlt egy másik néven. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Egy ugyanilyen nevű fájl már létezik a közös fájlmegosztóban; kérlek menj vissza és válassz egy másik nevet a fájlnak. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Ez a következő {{PLURAL:$1|fájl|fájlok}} duplikátuma:',
 'successfulupload'            => 'A feltöltés sikerült',
 'uploadwarning'               => 'Feltöltési figyelmeztetés',
 'savefile'                    => 'Fájl mentése',
@@ -1521,6 +1517,7 @@ A [http://www.mediawiki.org/wiki/Manual:Job_queue szerver számára sorban áll�
 'popularpages'            => 'Népszerű lapok',
 'wantedcategories'        => 'Keresett kategóriák',
 'wantedpages'             => 'Keresett lapok',
+'missingfiles'            => 'Hiányzó fájlok',
 'mostlinked'              => 'Legtöbbet hivatkozott lapok',
 'mostlinkedcategories'    => 'Legtöbbet hivatkozott kategóriák',
 'mostlinkedtemplates'     => 'Legtöbbet hivatkozott sablonok',

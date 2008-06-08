@@ -653,5 +653,4 @@ $1',
 # Special:SpecialPages
 'specialpages' => 'Mga natatanging pahina',
 
-
 );

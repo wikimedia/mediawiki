@@ -564,9 +564,9 @@ MySQL returnerade felen "$3<tt>: $4</tt>".',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
 'readonlytext'         => 'Databasen är tillfälligt låst för ändringar, förmodligen på grund av rutinmässigt underhåll. Efter avslutat arbete kommer den att återgå till normalläge. Den utvecklare som skrivskyddade den har angivit följande anledning: <p>$1',
-'missingarticle'       => 'Databasen borde ha funnit texten till en sida med namnet $1, men det gjorde den inte.
+'missing-article'      => 'Databasen borde ha funnit texten till en sida med namnet "$1" $2, men det gjorde den inte.
 
-Den vanligaste orsaken till denna typ av fel är en länk till en jämförelse mellan versioner (diff) eller till en gammal version av en sida som raderats.
+De vanligaste orsaken till denna typ av fel är en länk till en jämförelse mellan versioner (diff) eller till en gammal version av en sida som raderats.
 
 Om inte så är fallet, kan du ha hittat en bugg i mjukvaran.
 Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
@@ -1079,9 +1079,9 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-misc'               => 'Diverse',
 'saveprefs'                => 'Spara inställningar',
 'resetprefs'               => 'Återställ osparade ändringar',
-'oldpassword'              => 'Gammalt lösenord',
-'newpassword'              => 'Nytt lösenord',
-'retypenew'                => 'Upprepa det nya lösenordet',
+'oldpassword'              => 'Gammalt lösenord:',
+'newpassword'              => 'Nytt lösenord:',
+'retypenew'                => 'Upprepa det nya lösenordet:',
 'textboxsize'              => 'Redigering',
 'rows'                     => 'Rader:',
 'columns'                  => 'Kolumner:',
@@ -1166,6 +1166,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-createaccount'        => 'Skapa nya användarkonton',
 'right-minoredit'            => 'Markera mindre ändringar',
 'right-move'                 => 'Flytta sidor',
+'right-move-subpages'        => 'Flytta sidor med deras undersidor',
 'right-suppressredirect'     => 'Behöver inte skapa omdirigeringar vid sidflyttning',
 'right-upload'               => 'Ladda upp filer',
 'right-reupload'             => 'Skriva över existerande filer',
@@ -1197,6 +1198,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-editusercssjs'        => 'Redigera andra användares CSS- och JS-filer',
 'right-rollback'             => 'Rulla tillbaka den användare som senast redigerat en sida',
 'right-markbotedits'         => 'Markera tillbakarullningar som robotändringar',
+'right-noratelimit'          => 'Påverkas inte av hastighetsgränser',
 'right-import'               => 'Importera sidor från andra wikier',
 'right-importupload'         => 'Importera sidor genom uppladdning',
 'right-patrol'               => 'Markera ändringar som patrullerade',
@@ -1513,6 +1515,7 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 'popularpages'            => 'Populära sidor',
 'wantedcategories'        => 'Önskade kategorier',
 'wantedpages'             => 'Önskade sidor',
+'missingfiles'            => 'Saknade filer',
 'mostlinked'              => 'Sidor med flest länkar till sig',
 'mostlinkedcategories'    => 'Kategorier med flest länkar till sig',
 'mostlinkedtemplates'     => 'Mest använda mallar',
@@ -1875,27 +1878,27 @@ $1',
 'blockip-legend'              => 'Blockera användare',
 'blockiptext'                 => 'Formuläret nedan används för att blockera specifika användarnamns eller IP-adressers möjlighet att redigera sidor. Detta bör göras endast för att förhindra vandalism, och enligt gällande [[{{MediaWiki:Policy-url}}|policy]]. Ange orsaken nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipaddress'                   => 'IP-adress',
-'ipadressorusername'          => 'IP-adress eller användarnamn',
-'ipbexpiry'                   => 'Varaktighet',
+'ipadressorusername'          => 'IP-adress eller användarnamn:',
+'ipbexpiry'                   => 'Varaktighet:',
 'ipbreason'                   => 'Anledning:',
 'ipbreasonotherlist'          => 'Annan anledning',
-'ipbreason-dropdown'          => '
-*Vanliga motiv till blockering
+'ipbreason-dropdown'          => '*Vanliga motiv till blockering
 ** Infogar falsk information
 ** Tar bort sidinnehåll
 ** Länkspam till externa sajter
 ** Lägger till nonsens på sidor
 ** Hotfullt beteende/trakasserier
+** Missbruk av flera användarkonton
 ** Oacceptabelt användarnamn',
 'ipbanononly'                 => 'Blockera bara oinloggade användare',
 'ipbcreateaccount'            => 'Förhindra registrering av användarkonton',
 'ipbemailban'                 => 'Hindra användaren från att skicka e-post',
 'ipbenableautoblock'          => 'Blockera automatiskt den IP-adress som användaren använde senast, samt alla adresser som användaren försöker redigera ifrån',
-'ipbsubmit'                   => 'Blockera IP-adressen/användaren',
-'ipbother'                    => 'Annan tidsperiod',
+'ipbsubmit'                   => 'Blockera användaren',
+'ipbother'                    => 'Annan tidsperiod:',
 'ipboptions'                  => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'annan tidsperiod',
-'ipbotherreason'              => 'Annan/ytterligare anledning',
+'ipbotherreason'              => 'Annan/ytterligare anledning:',
 'ipbhidename'                 => 'Dölj användarnamnet från blockeringsloggen, blockeringslistan och användarlistan',
 'ipbwatchuser'                => 'Bevaka användarens användarsida och diskussionssida',
 'badipaddress'                => 'Du har inte skrivit IP-adressen korrekt.',
@@ -2722,7 +2725,7 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'specialpages'                   => 'Specialsidor',
 'specialpages-note'              => '----
 * Normala specialsidor.
-* <span class="mw-specialpagerestricted">Begränsade specialsidor.</span>',
+* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',

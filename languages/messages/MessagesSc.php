@@ -150,9 +150,6 @@ MySQL ha restituito un errore "<tt>$3: $4</tt>".',
 'readonlytext'    => "Il database di {{SITENAME}} è al momento bloccato, e non consente nuove immissioni né modifiche, molto probabilmente per manutenzione server, nel qual caso il database sarà presto di nuovo completamente accessibile.
 L/'amministratore di sistema che ha imposto il blocco, ha lasciato questa nota:
 <p>$1",
-'missingarticle'  => 'Il database non ha trovato il testo di una pagina, che invece avrebbe dovuto trovare, intitolata "$1".
-Questo non è un errore del database, ma più probabilmente un problema del software.
-Per favore, segnalate l\'accaduto ad un administrator, segnalando la URL e l\'ora dell\'incidente.',
 'internalerror'   => 'Errore interno',
 'filecopyerror'   => 'Non è stato possibile copiare il file "$1" come "$2".',
 'filerenameerror' => 'Non è stato possibile rinominare il file "$1" in "$2".',
@@ -559,6 +556,5 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 
 # Special:SpecialPages
 'specialpages' => 'Pagine speciali',
-
 
 );

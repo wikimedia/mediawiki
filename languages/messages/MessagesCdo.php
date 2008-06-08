@@ -915,5 +915,4 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 # Special:SpecialPages
 'specialpages' => 'Dĕk-sṳ̀ hiĕk',
 
-
 );

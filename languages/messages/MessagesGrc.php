@@ -230,6 +230,7 @@ $messages = array(
 # General errors
 'error'         => 'Σφάλμα',
 'filenotfound'  => 'Γραφὴ "$1" οὐχ ηὑρέθη',
+'badtitle'      => 'Κακὸν τὸ ὄνομα',
 'viewsource'    => 'Πηγήν διασκοπεῖν',
 'viewsourcefor' => 'Ὑπὲρ τοῦ $1',
 
@@ -282,6 +283,7 @@ $messages = array(
 'template-protected' => '(φυλλάττεται)',
 
 # History pages
+'previousrevision'    => '←Τὸ πρότερον',
 'currentrevisionlink' => 'Τὰ νῦν',
 'cur'                 => 'ἡ νῦν',
 'next'                => 'ἡ ἐχομένη',
@@ -291,12 +293,16 @@ $messages = array(
 'histfirst'           => 'πρώτη',
 'histlast'            => 'ἐσχάτη',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 ἐπὶ $2', # user at time
+
 # Revision deletion
 'rev-delundel' => 'δεικνύναι/κρύπτειν',
 
 # Diffs
-'lineno'   => 'Γραμμή $1·',
-'editundo' => 'ἀγένητον τιθέναι',
+'history-title' => 'Τὰ πρότερα περὶ "$1" κατὰ τὸ μεταγράφειν',
+'lineno'        => 'Γραμμή $1·',
+'editundo'      => 'ἀγένητον τιθέναι',
 
 # Search results
 'prevn'        => 'πρότερον $1',
@@ -336,6 +342,7 @@ $messages = array(
 'rcshowhideminor' => '$1 μικραὶ μεταβολαὶ',
 'rcshowhidebots'  => '$1 αὐτόματα',
 'rcshowhideliu'   => '$1 χρωμένους συνδεδεμένους',
+'rcshowhideanons' => '$1 χρώμενοι ἀνώνυμοι',
 'rcshowhidemine'  => '$1 μεταβολὰς μου',
 'diff'            => 'διαφ.',
 'hist'            => 'Προτ.',
@@ -395,8 +402,9 @@ $messages = array(
 'booksources-go' => 'Ἰέναι',
 
 # Special:Log
-'specialloguserlabel' => 'Χρήστης·',
-'log-search-submit'   => 'Ἰέναι',
+'specialloguserlabel'  => 'Χρήστης·',
+'speciallogtitlelabel' => 'Ὄνομα:',
+'log-search-submit'    => 'Ἰέναι',
 
 # Special:Allpages
 'allpages'       => 'Πᾶσαι αἱ δέλτοι',
@@ -426,12 +434,18 @@ $messages = array(
 'watchlist-show-minor' => 'Δεικνύναι τὰς μικρὰς μεταβολάς',
 'watchlist-hide-minor' => 'Κρύπτειν τὰς μικρὰς μεταβολάς',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching' => 'Ἐφορών...',
+
 # Delete/protect/revert
-'deletepage'      => 'Διαγράφειν τὴν δέλτον',
-'confirm'         => 'Κυροῦν',
-'exblank'         => 'δέλτος κενὴ ἦν',
-'protectcomment'  => 'Σχόλιον:',
-'protect-default' => '(κριτήριον)',
+'deletepage'          => 'Διαγράφειν τὴν δέλτον',
+'confirm'             => 'Κυροῦν',
+'exblank'             => 'δέλτος κενὴ ἦν',
+'protectcomment'      => 'Σχόλιον:',
+'protectexpiry'       => 'Ἐξήξει:',
+'protect-default'     => '(κριτήριον)',
+'protect-level-sysop' => 'Μόνοι οἱ γέροντες',
+'protect-expiring'    => 'Ἐξήξει $1 (UTC)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Μεταγράφειν',
@@ -466,6 +480,7 @@ $messages = array(
 'whatlinkshere-links' => '← σύνδεσμοι',
 
 # Block/unblock
+'blockip'            => 'Ἀποκλῄειν τόνδε τὸν χρώμενον',
 'ipboptions'         => 'βʹ ὥραι:2 hours,αʹ ἡμέρα day:1 day,γʹ ἡμέραι:3 days,ζʹ ἡμέραι:1 week,ιδʹ ἡμέραι:2 weeks,αʹ μήν:1 month,γʹ μήνες:3 months,ϝʹ μήνες:6 months,αʹ ἔτος:1 year,ἄπειρον:infinite', # display1:time1,display2:time2,...
 'ipblocklist-submit' => 'Ζητεῖν',
 'infiniteblock'      => 'ἄπειρον',
@@ -477,6 +492,7 @@ $messages = array(
 'move-page-legend' => 'Κινεῖν τὴν δέλτον',
 'movearticle'      => 'Κινεῖν τὴν δέλτον:',
 'movenologin'      => 'Οὐ συνδεδεμένος',
+'newtitle'         => 'Πρὸς τὸ νέον ὄνομα:',
 'move-watch'       => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movereason'       => 'Ἀπολογία:',
 

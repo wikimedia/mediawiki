@@ -307,12 +307,6 @@ $1',
 'enterlockreason'      => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',
 'readonlytext'         => 'Ci jamono jii yokk yeek coppitey xët yi jàppandiwuñ ndax dattub njoxe bi dañ kaa caabi, xéj-na dañoo nekk ciy liggéey, su ñu noppee rekk dattub njoxe bi baaxaat.
 Yorkat bi def caabi ji, joxe na yii lay :$1',
-'missingarticle'       => 'Dattub njoxe bi manuta fexe ba gis mbindi xët wi tuddu « $1 », donte xët wi am na.
-
-Li koy man a waral mooy, méngale ñaari sumbi jaar-jaar walla lëkkalekaay buy jëme ciw xët wu faru.
-Su dul loolu, kon ab njuumte lay doon ci tëriinub MediaWiki bi.
-
-Di sakku ci yaw nga jébbal li xew ab yorkat, te nga jox ko màkkaanuw xët wi mu ñeel.',
 'readonly_lag'         => 'Dattub njoxe bi daa caabiwu ngir may ñaareeli joxekat yi dap joxekat bu njëkk bi.',
 'internalerror'        => 'Njuumte gu biir',
 'internalerror_info'   => 'Njuumte gu biir : $1',

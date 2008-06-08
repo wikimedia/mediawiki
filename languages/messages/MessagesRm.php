@@ -10,8 +10,6 @@
  * @author Gion-andri
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'suttastritgar colliaziuns:',

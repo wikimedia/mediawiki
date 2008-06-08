@@ -381,5 +381,4 @@ Por fabor konfirmá ku bo ke traha e artíkulo aki di nobo.",
 # Special:SpecialPages
 'specialpages' => 'Páginanan Spesial',
 
-
 );

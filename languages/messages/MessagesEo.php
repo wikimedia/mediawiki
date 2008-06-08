@@ -390,10 +390,12 @@ Bonvolu reprovu post iom da tempo.
 
 La ŝlosinto lasis la jenan mesaĝon:
 <p>$1</p>',
-'missingarticle'       => 'La datumbazo ne trovis la tekston de
-artikolo, kiun ĝi devus trovi, nomita "$1".
-Ĉi tio ne estas eraro de la datumbazo, sed probable cimo en la programo.
-Bonvolu raporti ĉi tion al iu sistemestro, kaj rimarkigi la retadreson (URL).',
+'missing-article'      => 'La datumbazo ne trovis la tekston de paĝo kiun ĝi devas trovi, nomita "$1" $2.
+
+Ĉi tiel ofte estas kaŭzite de sekvado de malfreŝa \'\'diff\'\' aŭ historia ligilo al paĝo kiu estis forigita.
+
+Se ĉi tiel ne okazis, verŝajne vi trovis cimon en la softvaro.
+Bonvolu raporti ĉi tiun al administranto, notante la TTT-adreson.',
 'missingarticle-rev'   => '(revizio#: $1)',
 'missingarticle-diff'  => '(Diferenco inter versioj: $1, $2)',
 'readonly_lag'         => 'La datumbazo estis aŭtomate ŝlosita dum la subdatumbazo atingas la ĉefan datumbazon.',
@@ -1039,6 +1041,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-editusercssjs'        => 'Redaktu CSS- kaj JS-dosierojn de aliaj uzantoj',
 'right-rollback'             => 'Tuj restarigu la lastan uzanton kiu redaktis specifan paĝon',
 'right-markbotedits'         => 'Marku restarigitajn redaktojn kiel robotajn redaktojn',
+'right-noratelimit'          => 'Ne influita de po-limoj',
 'right-import'               => 'Importu paĝojn de aliaj vikioj',
 'right-importupload'         => 'Importu paĝojn de dosiera alŝuto',
 'right-patrol'               => 'Marku redaktojn kiel patrolitajn',
@@ -1342,6 +1345,7 @@ La nuna longeco de la [http://www.mediawiki.org/wiki/Manual:Job_queue laborenda 
 'popularpages'            => 'Plej vizitataj paĝoj',
 'wantedcategories'        => 'Dezirataj kategorioj',
 'wantedpages'             => 'Dezirataj paĝoj',
+'missingfiles'            => 'Mankantaj dosieroj',
 'mostlinked'              => 'Plej ligitaj paĝoj',
 'mostlinkedcategories'    => 'Plej ligitaj kategorioj',
 'mostlinkedtemplates'     => 'Plej ligitaj ŝablonoj',
@@ -1768,7 +1772,8 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'block-log-flags-noemail'     => 'retpoŝto blokita',
 'range_block_disabled'        => 'La ebleco de administranto krei forbaritajn intervalojn da IP-adresoj estas malebligita.',
 'ipb_expiry_invalid'          => 'Nevalida blokdaŭro.',
-'ipb_already_blocked'         => '"$1" estas jam forbarita',
+'ipb_already_blocked'         => '"$1" estas jam forbarita
+Vi povas modifi la preferojn por la forbaro per ĉi tiu paĝo',
 'ipb_cant_unblock'            => 'Eraro: Forbar-identigo $1 ne estas trovita. Ĝi eble estis jam malforbarita.',
 'ipb_blocked_as_range'        => 'Eraro: La IP-adreso $1 ne estas forbarita rekte kaj ne povas esti malforbarita. Tamen ĝi estas forbarita kiel parto de la intervalo $2, kiu ne povas esti malforbarita.',
 'ip_range_invalid'            => 'Nevalida IP-adresa intervalo.',
@@ -1854,7 +1859,7 @@ Bonvolu permane kunigi ilin.',
 'movepage-page-exists'    => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
 'movepage-page-moved'     => 'La paĝo $1 estis alinomita al $2.',
 'movepage-page-unmoved'   => 'La paĝo $1 ne povas esti alinomigita al $2.',
-'movepage-max-pages'      => 'La maksimumo de $1 paĝoj estis alinomita kaj neniuj pliaj estos alinomitaj aŭtomate.',
+'movepage-max-pages'      => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
 '1movedto2'               => '[[$1]] movita al [[$2]]',
 '1movedto2_redir'         => '[[$1]] movita al [[$2]], redirekto lasita',
 'movelogpage'             => 'Protokolo de paĝmovoj',

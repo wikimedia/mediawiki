@@ -914,5 +914,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'ໜ້າພິເສດ',
 
-
 );

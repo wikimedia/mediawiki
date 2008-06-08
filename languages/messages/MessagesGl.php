@@ -341,12 +341,12 @@ MySQL retornou o erro "$3: $4".',
 'readonlytext'         => 'Nestes momentos a base de datos está fechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento da base de datos, tras as que voltará á normalidade.
 
 O administrador que a fechou deu esta explicación: $1',
-'missingarticle'       => 'A base de datos non deu atopado o texto dunha páxina titulada "$1", e que debería dar atopado.
+'missing-article'      => 'A base de datos non atopa o texto da páxina chamada "$1" $2, que debera ter atopado.
 
-Xeralmente isto é causado por seguir unha ligazón cara a un cambio anterior ou a unha páxina que foi borrada.
+Normalmente, isto é causado por seguir unha ligazón cara a unha diferenza vella ou a unha páxina que foi borrada.
 
-Se non é o caso, pode ter atopado un erro no programa.
-Por favor, informe a un administrador, tomando nota do URL.',
+Se non é o caso, pode ter atopado un erro no software.
+Por favor, comuníquello a un administrador tomando nota do URL.',
 'missingarticle-rev'   => '(revisión#: $1)',
 'missingarticle-diff'  => '(Dif: $1, $2)',
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
@@ -1006,6 +1006,7 @@ Se quere, pode [[:\$1|creala]].",
 'right-editusercssjs'        => 'Editar os ficheiros CSS e JS doutros usuarios',
 'right-rollback'             => 'Reversión rápida da edición dun usuario dunha páxina particular',
 'right-markbotedits'         => 'Marcar as edicións desfeitas como edicións dun bot',
+'right-noratelimit'          => 'Non é afectado polos límites superiores',
 'right-import'               => 'Importar páxinas doutros wikis',
 'right-importupload'         => 'Importar páxinas dun ficheiro cargado',
 'right-patrol'               => 'Marcar edicións como patrulladas',
@@ -1327,6 +1328,7 @@ desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 'popularpages'            => 'Páxinas populares',
 'wantedcategories'        => 'Categorías sen comprobar',
 'wantedpages'             => 'Páxinas requiridas',
+'missingfiles'            => 'Ficheiros que faltan',
 'mostlinked'              => 'Páxinas máis enlazadas',
 'mostlinkedcategories'    => 'Categorías máis enlazadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',
@@ -1413,7 +1415,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 Se quere máis información acerca dos dereitos individuais pode atopala [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].',
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Dereitos',
-'listgrouprights-helppage' => 'Help:Dereiros do grupo',
+'listgrouprights-helppage' => 'Help:Dereitos do grupo',
 'listgrouprights-members'  => '(listaxe de membros)',
 
 # E-mail user
@@ -1685,7 +1687,7 @@ $1',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
-'blockip'                     => 'Bloquear un usuario',
+'blockip'                     => 'Bloquear usuario',
 'blockip-legend'              => 'Bloquear usuario',
 'blockiptext'                 => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear a un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
@@ -1808,7 +1810,7 @@ Este cambio nunha páxina popular pode ser drástico e inesperado; por favor, as
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'             => 'Mover esta páxina:',
 'movenologin'             => 'Non está dentro do sistema',
-'movenologintext'         => 'Vostede ha ser un usuario rexistrado e estar [[Special:Userlogin|dentro do sistema]] para mover unha páxina.',
+'movenologintext'         => 'Debe ser un usuario rexistrado e estar [[Special:Userlogin|dentro do sistema]] para mover unha páxina.',
 'movenotallowed'          => 'Non ten permiso para mover páxinas en {{SITENAME}}.',
 'newtitle'                => 'Ao novo título:',
 'move-watch'              => 'Vixiar esta páxina',
@@ -2560,6 +2562,6 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'specialpages-group-pagetools'   => 'Ferramentas das páxinas',
 'specialpages-group-wiki'        => 'Datos do wiki e ferramentas',
 'specialpages-group-redirects'   => 'Páxinas de redirección especiais',
-'specialpages-group-spam'        => "Ferramentas de ''spam''",
+'specialpages-group-spam'        => "Ferramentas contra o ''spam''",
 
 );

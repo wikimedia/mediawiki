@@ -13,8 +13,6 @@
  * @author Raymond
  */
 
-
-
 $messages = array(
 # Dates
 'thursday' => 'Diardaoin',

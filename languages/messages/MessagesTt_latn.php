@@ -732,5 +732,4 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 # Special:SpecialPages
 'specialpages' => 'Maxsus bitlär',
 
-
 );

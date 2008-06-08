@@ -318,10 +318,6 @@ $messages = array(
 mažo doumenū bazės techninē pruofilaktėkā,
 puo tuo vėsks griš i sava viežes.
 Ožrakėnusiuojo admėnėstratuoriaus pateikts rakėnima paaiškėnims: $1',
-'missingarticle'       => 'Doumenū bazē nepavīkst sorastė poslapė „$1“ teksta.
-Paprastā tas sokel pasenosė skėrtomu a istuorėjės nūruoda i poslapi, katros bova ėštrints.
-Jēgo tas ne tuoks atvejis, mažo Tamsta aptikuot klaida pruogramėnė ironguo.
-Prašuom praneštė aple šėta admėnėstratuorio, teipuogi nuruodont ė URL.',
 'readonly_lag'         => 'Doumenū bazė bova autuomatėškā ožrakėnta, kuol pagelbinės doumenū bazės pasvīs pagrėndine',
 'unexpected'           => 'Natėkieta raikšmie: „$1“=„$2“.',
 'cannotdelete'         => 'Nepavīka ėštrintė nuruodīta poslapė a faila. (Mažo kažkas padarė pėrmesnis šėta)',
@@ -1530,6 +1526,5 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 
 # Special:SpecialPages
 'specialpages' => 'Specēlė̅jė poslapē',
-
 
 );

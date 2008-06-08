@@ -87,6 +87,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Pogólon an pagríbay nin mga lain-lain',
 'tog-ccmeonemails'            => 'Padarahán ako nin mga kopya kan e-koreo na pigpadara ko sa ibang mga parágamit',
 'tog-diffonly'                => 'Dai ipahilíng an mga laog nin pahina sa babâ kan kaib',
+'tog-showhiddencats'          => 'Ipahiling an mga nakatagong kategorya',
 
 'underline-always'  => 'Pirmi',
 'underline-never'   => 'Nungka',
@@ -147,12 +148,17 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
-'category_header'        => 'Mga artikulo sa kategoryang "$1"',
-'subcategories'          => 'Mga sub-kategorya',
-'category-media-header'  => 'Media sa kategoryang "$1"',
-'category-empty'         => "''Mayò nin laog an kategoryang ini sa ngonyan.''",
-'listingcontinuesabbrev' => 'sunod',
+'pagecategories'                 => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
+'category_header'                => 'Mga artikulo sa kategoryang "$1"',
+'subcategories'                  => 'Mga sub-kategorya',
+'category-media-header'          => 'Media sa kategoryang "$1"',
+'category-empty'                 => "''Mayò nin laog an kategoryang ini sa ngonyan.''",
+'hidden-categories'              => '{{PLURAL:$1|Nakatagong kategorya|Mga nakatagong kategorya}}',
+'hidden-category-category'       => 'Mga nakatagong kategorya', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited'  => 'Igwa nin {{PLURAL:$1|sub-kategorya|$1 mga sub-kategorya}} an artikulong ini.',
+'category-article-count'         => '{{PLURAL:$2|An mga minasunod na pahina sana an laog kan kategoryang ini|An mga minasunod na {{PLURAL:$1|pahina|$1 pahina}} an yaon sa kategoryang ini, sa $2 gabos.}}',
+'category-article-count-limited' => 'Yaon sa presenteng kategorya an mga minasunod na {{PLURAL:$1|pahina|$1 pahina}}.',
+'listingcontinuesabbrev'         => 'sunod',
 
 'mainpagetext'      => "<big>'''Instalado na an MediaWiki.'''</big>",
 'mainpagedocfooter' => "Konsultarón tabì an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para sa impormasyon sa paggamit nin progama kaining wiki.
@@ -200,7 +206,9 @@ $messages = array(
 'permalink'         => 'Permanenteng takód',
 'print'             => 'Iprenta',
 'edit'              => 'Hirahón',
+'create'            => 'Maggibo',
 'editthispage'      => 'Hirahón ining pahina',
+'create-this-page'  => 'Gibohon ining pahina',
 'delete'            => 'Paraon',
 'deletethispage'    => 'Paraon ining pahina',
 'undelete_short'    => 'Bawion an pagparà {{PLURAL:$1|paghirá|$1 mga paghirá}}',
@@ -281,6 +289,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Igwa ka nin mga bàgong mensahe sa $1',
 'editsection'             => 'hirahón',
 'editold'                 => 'hirahón',
+'viewsourceold'           => 'hilingón an ginikánan',
 'editsectionhint'         => 'Hirahón an seksyon: $1',
 'toc'                     => 'Mga laog',
 'showtoc'                 => 'ipahilíng',
@@ -295,6 +304,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" Hungit na RSS',
 'page-atom-feed'          => '"$1" Hungit na Atomo',
 'feed-atom'               => 'Atomo',
+'red-link-title'          => '$1 (dai pa naisusurat)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikulo',
@@ -340,12 +350,6 @@ $1",
 'readonlytext'         => 'Sarado mùna an base nin datos sa mga bàgong entrada asin iba pang mga pagribay, pwede gayod sa rutinang pagmantenir kan base nin datos, despues, mabalik na ini sa normal.
 
 Ini an eksplikasyon kan tagamató na nagkandado kaini: $1',
-'missingarticle'       => 'Dai nahanap kan base nin datos an teksto kan pahina na dapat kaining nahanap, may ngaran na "$1".
-
-Puro-pirmeng an rason kaini an pagsunod sa lumà nang kaib o takód na historial sa sarong pahina na pigparà na.
-
-Kun bakô ini an rason, pwedeng nakahanap ka nin salà sa software.
-Ireport tabì ini sa sarong tagamató, asin ikaag tabì an URL.',
 'readonly_lag'         => 'Enseguidang nakandado an base nin datos mientras makaabot an base nin datos na esklabo saiyang amo.',
 'internalerror'        => 'Panlaog na salâ',
 'internalerror_info'   => 'Panlaog na salâ: $1',
@@ -398,6 +402,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'externaldberror'            => "Igwang nin salang panluwas pantunay kan base nin datos o dai ka pigtotogotan na bâgohon an saimong panluwas na ''account''.",
 'loginproblem'               => '<b>May problema sa paglaog mo.</b><br />Probaran giraray!',
 'login'                      => 'Maglaog',
+'nav-login-createaccount'    => 'Maglaog / maggibo nin account',
 'loginprompt'                => 'Kaipuhan may cookies ka para makalaog sa {{SITENAME}}.',
 'userlogin'                  => 'Maglaog / maggibo nin account',
 'logout'                     => 'Magluwas',
@@ -491,7 +496,7 @@ $1 na oras.',
 'nowiki_sample'   => "Isaliot digdi an tekstong dai na-''format''",
 'nowiki_tip'      => "Dai pagindiendehon pag-''format'' kan wiki",
 'image_sample'    => 'Halimbawa.jpg',
-'image_tip'       => 'Nakaturay na ladawan',
+'image_tip'       => 'Nakaturay na file',
 'media_sample'    => 'Halimbawa.ogg',
 'media_tip'       => "Takód sa ''media file''",
 'sig_tip'         => 'Pirma mo na may taták nin oras',
@@ -539,6 +544,7 @@ Pwedeng mong suratan si \$1 o an iba pang mga
 Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\" na gamit kun igwa kang tamang ''e''-surat na nakarehistro saimong [[Special:Preferences|mga kabôtan nin parágamit]] asin dai ka pigbabagat sa paggamit kaini.
 
 \$5 an pigbagat na ID. Ikaag tabî ining ID sa gabos na paghapot mo.",
+'blockednoreason'           => 'mayong itinaong rason',
 'blockedoriginalsource'     => "An ginikanan kan '''$1''' mahihiling sa ibabâ:",
 'blockededitsource'         => "An teksto kan '''mga hira mo''' sa '''$1''' mahihiling sa babâ:",
 'whitelistedittitle'        => 'Kaipuhan an paglaog tangarig makahirá',
@@ -722,6 +728,8 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'searchsubtitle'        => "Hinanap mo an '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Hinanap mo an '''$1'''",
 'noexactmatch'          => "'''Mayong siring na páhinang may títulong \"\$1\".''' Pwede mong [[:\$1|gibohon ining páhina]].",
+'noexactmatch-nocreate' => "'''Mayong pahina sa titulong \"\$1\".'''",
+'toomanymatches'        => 'Kadakol-dakol na angay an ipigbalik, probaran an ibang kahaputan',
 'titlematches'          => 'Angay an título kan artíkulo',
 'notitlematches'        => 'Mayong ángay na título nin páhina',
 'textmatches'           => 'Angay an teksto nin páhina',
@@ -850,6 +858,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'rcshowhidemine'                    => '$1 mga hirá ko',
 'rclinks'                           => 'Ipahiling an mga huring $1 na pagbabâgo sa ultimong $2 na aldáw<br />$3',
 'diff'                              => 'ibá',
+'hist'                              => 'usip',
 'hide'                              => 'Tagôon',
 'show'                              => 'Ipahiling',
 'minoreditletter'                   => 'm',
@@ -864,7 +873,8 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'recentchangeslinked'          => 'Mga angay na pagbabâgo',
 'recentchangeslinked-title'    => 'Mga pagbabâgong angay sa "$1"',
 'recentchangeslinked-noresult' => 'Warang mga pagbabago sa mga pahinang nakatakod sa itinaong pagkalawig.',
-'recentchangeslinked-summary'  => "Linista kaining especial na páhina an mga huring pagbabago sa mga páhinang nakatakod. An mga páhinang pigbabantayan mo nakasurat na  '''maitom'''.",
+'recentchangeslinked-summary'  => "Ini an lista nin mga pagsangli na ginibo pa sana sa mga pahinang nakatakod halì sa sarong espesyal na pahina (o sa mga myembro nin sarong espesyal na kategorya).
+'''Maitom''' an mga pahinang [[Special:Pigbabantayan|pigbabantayan mo]].",
 
 # Upload
 'upload'                      => 'Ikargá an file',
@@ -1769,10 +1779,11 @@ $1",
 'sp-newimages-showfrom' => 'Hilingón an mga retratong nagpopoon sa $1',
 
 # Bad image list
-'bad_image_list' => 'An pormato iyo an nasunod:
+'bad_image_list' => 'An pormato iyo an minasunod:
 
-Mga bagay na linista sana (mga linyang nagpopoon sa *) an pigkokonsiderar. An enot na takod sa linya seguradong nakatakod sa sala na ladawan.
-An mga iba pang takod sa linyang ini pigkokonsiderar na eksepsyon, i.e. mga páhina na may ladawan sa laog nin linya.',
+An mga nakalista sana (mga linyang nagpopoon sa *) an pigkokonsiderar.
+An enot na takod sa linya seguradong sarong takod sa sarong salang file.
+Ano man na takod sa parehong linyang ini pigkokonsiderar na eksepsyon, i.e. mga pahina na may file sa laog nin linya.',
 
 # Metadata
 'metadata'          => 'Metadatos',

@@ -693,5 +693,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'خصوصی صفحات',
 
-
 );

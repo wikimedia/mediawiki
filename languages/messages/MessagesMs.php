@@ -440,13 +440,6 @@ bila kunci ini akan dibuka.',
 'readonlytext'         => 'Pangkalan data sedang dikunci. Hal ini mungkin disebabkan oleh penyenggaraan rutin, dan akan dibuka semula selepas proses penyenggaraan ini siap.
 
 Pentadbir yang menguncinya memberi penjelasan ini: $1',
-'missingarticle'       => 'Pangkalan data kami tidak menjumpai teks bagi laman "$1".
-
-Perkara ini biasanya berlaku apabila anda mengikuti pautan perbezaan yang
-ketinggalan zaman ataupun pautan sejarah ke laman yang telah dihapuskan.
-
-Kalau bukan ini sebabnya, anda mungkin telah menjumpai pepijat dalam perisian
-ini. Sila laporkan masalah ini berserta URL yang anda buka kepada seorang pentadbir.',
 'readonly_lag'         => 'Pangkalan data telah dikunci secara automatik sementara semua pelayan pangkalan data diselaraskan.',
 'internalerror'        => 'Ralat dalaman',
 'internalerror_info'   => 'Ralat dalaman: $1',

@@ -7,6 +7,7 @@
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
  * @author Siebrand
+ * @author Caesius noh en Idee vum Manes
  */
 
 /**
@@ -402,11 +403,6 @@ MySQL meld dä Fähler: „<code>$3: $4</code>“.',
 'readonly'             => 'De Daatebank es jesperrt',
 'enterlockreason'      => 'Jevv aan, woröm un för wie lang dat de Daatebank jesperrt wääde soll',
 'readonlytext'         => 'De Daatebank es jesperrt. Neu Saache dren avspeichere jeiht jrad nit, un ändere och nit. Dä Jrund: „$1“',
-'missingarticle'       => 'Dä Tex för de Sigg „$1“ kunnte mer nit en de Daatebank finge.
-De Sigg es villeich fottjeschmesse oder ömjenannt woode.
-Wann dat esu nit sin sollt, dann hadder villeich ene Fähler en de Soffwär jefunge.
-Verzällt et enem Wiki_Köbes,
-un doht em och de URL vun dä Sigg hee sage.',
 'readonly_lag'         => 'De Daatebank es för en koote Zigg jesperrt, för de Daate avzejliche.',
 'internalerror'        => 'De Wiki-Soffwär hät ene Fähler jefunge',
 'filecopyerror'        => 'Kunnt de Datei „$1“ nit noh „$2“ kopeere.',
@@ -1409,7 +1405,11 @@ eins vun all däm op eimol.',
 
 # Special:Categories
 'categories'                    => 'Saachjruppe',
-'categoriespagetext'            => 'En hee dä Saachjrup{{PLURAL:$1||pe|}} en de {{SITENAME}} sin Saachjruppe, Sigge, Bellder, Tön uew. dren:',
+'categoriespagetext'            => 'Hee sin nur Saachjruppe met jät dren jeliss,
+* De nit anjelaate Saachjruppe met jät dren fingkd_Er norr_ens för sijj_allein op: [[{{#special:WantedCategories}}|{{int:wantedcategories}}]]
+* De aanjelaate Saachruppe met nix dren fingkd_Er nur op: [[{{#special:UnusedCategories}}|{{int:unusedcategories}}]].
+
+En hee dä Saachjrup{{PLURAL:$1||pe|}} en de {{SITENAME}} sin Saachjruppe, Sigge, Bellder, Tön uew. dren:',
 'special-categories-sort-count' => 'Zoteere noh de Aanzahl',
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
 

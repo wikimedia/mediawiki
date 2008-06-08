@@ -350,13 +350,6 @@ vremena otključavanja',
 'readonlytext'         => 'Baza je trenutno zaključana za nove unose i ostale izmjene, vjerovatno zbog rutinskog održavanja, posle čega će biti vraćena u uobičajeno stanje.
 
 Administrator koji ju je zaključao je ponudio ovo objašnjenje: $1',
-'missingarticle'       => 'Baza nije mogla naći tekst stranice koji je trebala da nađe, nazvan "$1".
-
-Ovo je obično izazvano praćenjem zastarijelog "razl" ili veze ka istoriji
-stranice koja je obrisana.
-
-Ako ovo nije slučaj, možda ste pronašli grešku u softveru.
-Molimo Vas da prijaviti ovo jednom od [[{{MediaWiki:Grouppage-sysop}}|administratora]], zajedno sa URL-om.',
 'internalerror'        => 'Interna greška',
 'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
 'filerenameerror'      => 'Ne može se promjeniti ime fajla "$1" to "$2".',

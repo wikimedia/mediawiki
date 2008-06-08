@@ -398,5 +398,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'ހާއްސަ ޞަފްޙާތައް',
 
-
 );

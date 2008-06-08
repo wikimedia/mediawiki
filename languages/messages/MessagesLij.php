@@ -1028,5 +1028,4 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 # Special:SpecialPages
 'specialpages' => 'Paggine speçiâli',
 
-
 );

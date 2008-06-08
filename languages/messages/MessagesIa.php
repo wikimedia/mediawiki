@@ -222,12 +222,6 @@ entratas e altere modificationes, probabilemente pro mantenentia
 routinari del base de datos, post le qual illo retornara al normal.
 Le administrator responsabile dava iste explication:
 <p>$1',
-'missingarticle'  => 'Le base de datos non trovava le texto de un pagina
-que illo deberea haber trovate, a saper "$1".
-Isto non es un error de base de datos, mais probabilemente
-un disfunction in le systema.
-Per favor reporta iste occurrentia a un administrator,
-indicante le URL.',
 'internalerror'   => 'Error interne',
 'filecopyerror'   => 'Impossibile copiar file "$1" a "$2".',
 'filerenameerror' => 'Impossibile renominar file "$1" a "$2".',
@@ -860,6 +854,5 @@ nove titulo. Per favor fusiona los manualmente.',
 
 # Special:SpecialPages
 'specialpages' => 'Paginas special',
-
 
 );

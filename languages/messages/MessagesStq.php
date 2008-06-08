@@ -318,11 +318,6 @@ MySQL mäldede dän Failer: „<tt>$3: $4</tt>“.',
 'readonlytext'         => 'Ju Doatenboank is apstuuns foar Annerengen un näie Iendraage speerd.
 
 As Gruund wuude anroat: $1',
-'missingarticle'       => 'Die Text foar "$1" wuude nit in ju Doatenboank fuunen.
-
-Ju Siede is muugelkerwiese läsked af ferschäuwen wuuden.
-
-Dät is uk muugelk, dät et n Problem mäd dän Tougriep ap ju Doatenboank rakt. In dän Fal fersäik dät leeter jädden noch moal.',
 'readonly_lag'         => 'Dät Spiekerjen fon Annerengen wuude foar ne kuute Tied automatisk speerd, uum doo Doatenboank-Servere fon dän Wikipedia Tied tou reeken, do Inhoolde unnernunner outouglieken. Fersäik dät jädden in n poor Minuten noch moal.',
 'internalerror'        => 'Interne Failer',
 'internalerror_info'   => 'Interne Failer: $1',

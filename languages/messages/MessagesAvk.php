@@ -12,8 +12,6 @@
  * @author Nkosi ya Cabinda
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Levconhani gluyasiki se',
@@ -306,9 +304,6 @@ $1',
 'enterlockreason'      => 'Va elekaradanda is uldinera va elekaracek bazel',
 'readonlytext'         => "Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :
 <p>$1",
-'missingarticle'       => "La base de données n'a pas pu trouver le texte d'une page existante, dont le titre est « $1 ».
-Ce n'est pas une erreur de la base de données, mais plus probablement un bogue du wiki.
-Veuillez rapporter cette erreur à un administrateur, en lui indiquant l'adresse de la page fautive.",
 'missingarticle-rev'   => '(betara#: $1)',
 'missingarticle-diff'  => '(Amid-: $1, $2)',
 'readonly_lag'         => 'La base de donnée a été automatiquement bloquée pendant que les serveurs secondaires rattrapent leur retard avec le serveur principal',
@@ -382,11 +377,12 @@ Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'youremail'                  => 'Jinafe internetmane',
 'username'                   => 'Favesikyolt:',
 'uid'                        => 'Favesikaf ID :',
+'prefs-memberingroups'       => 'Bewik ke {{PLURAL:$1|lospa|lospa}}:',
 'yourrealname'               => 'Rinaf ageltaf yolt*',
 'yourlanguage'               => 'Walasikiava',
 'yournick'                   => 'Sugdara tori prilara se (do <tt><nowiki>~~~</nowiki></tt>)&nbsp;',
 'badsig'                     => 'Meenafa rilafa sugdara; va HTML tcala yo stujel !',
-'badsiglength'               => '"Nickname" yolt tir abrotcarsaf; gotir le $1 staa.',
+'badsiglength'               => 'Sugdara tir abrotcarsafa; gotir le $1 {{PLURAL:$1|staa|staa}}.',
 'email'                      => '"E-mail"',
 'prefs-help-realname'        => '* <strong>Votre nom</strong> (mevrebaf): ede vaon co-bazel, mu gara va rinaf webereem zo faveter.',
 'loginerror'                 => 'Pilkomodajara',
@@ -562,7 +558,8 @@ Gokrafial ede tolredura va batu bu tir vodanhaf.
 Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 
 # Parser/template warnings
-'expensive-parserfunction-category' => 'Bu dem slika rozara va exulerafli',
+'expensive-parserfunction-category'      => 'Bu dem slika rozara va exulerafli',
+'post-expand-template-argument-category' => 'Bu ruldasu va vulkuna tezadusiva',
 
 # "Undo" feature
 'undo-success' => 'Betaks tir rodimaskin. Va vlevefa dolunhera vay stujel nume ageltal da batcoba tir rinafa djumaskina aze ta tenukera va dimaskira va betara va vlevef betakseem giwal.',
@@ -718,6 +715,9 @@ qui ne sont pas indexés, ou à l'emploi de plusieurs termes de recherche (seule
 contenant tous les termes apparaissent dans les résultats).",
 'powersearch'               => 'Aneyara',
 'powersearch-legend'        => 'Aneyapara',
+'powersearch-ns'            => 'Aneyara koe yoltxo:',
+'powersearch-redir'         => 'Vexalara va graskara',
+'powersearch-field'         => 'Aneyara va',
 'search-external'           => 'Divafa aneyara',
 'searchdisabled'            => "<p>La fonction de recherche sur l'intégralité du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>",
 
@@ -777,6 +777,8 @@ contenant tous les termes apparaissent dans les résultats).",
 'servertime'               => 'Bartiv ke zanisiko',
 'guesstimezone'            => 'Favera va voda ke exulesiki',
 'allowemail'               => 'Tutegirara va e-mail staksara mal ar favesik',
+'prefs-searchoptions'      => 'Aneyarikatcura',
+'prefs-namespaces'         => 'Yoltxo',
 'defaultns'                => 'Omavon, aneyara ko bato yoltxo se :',
 'default'                  => 'omava',
 'files'                    => 'Iyeltak se',
@@ -1012,7 +1014,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filehist'                       => 'Iyeltakizvot',
 'filehist-help'                  => 'Ta da va iyeltak wil dum in batoulon awir va evla/bartiv vulegal !',
 'filehist-deleteall'             => 'Sulara va kotcoba',
-'filehist-deleteone'             => 'sulara va batcoba',
+'filehist-deleteone'             => 'Sulara',
 'filehist-revert'                => 'dimplekura',
 'filehist-current'               => 'noeltaf',
 'filehist-datetime'              => 'Evla/Bartiv',
@@ -1139,6 +1141,7 @@ Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue "job queue"] tir \'
 'popularpages'            => 'Tel lorupen bueem',
 'wantedcategories'        => 'Eruna loma',
 'wantedpages'             => 'Tel loderun bueem',
+'missingfiles'            => 'Gracas iyeltak',
 'mostlinked'              => 'Tel buon logluyan teliz yo',
 'mostlinkedcategories'    => 'Tel lomon logluyan teliz yo',
 'mostlinkedtemplates'     => 'Tel tezon logluyasikikiraf',
@@ -1166,6 +1169,8 @@ Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue "job queue"] tir \'
 'unusedcategoriestext'    => 'Batu lomabu krulded damo da mekaru bu iku loma vaon faver.',
 'notargettitle'           => 'Me jala',
 'notargettext'            => 'Va jalafu bu oku favesik bazel.',
+'nopagetitle'             => 'Meku manu jalabu',
+'nopagetext'              => 'Bazenu jalabu me tir.',
 'pager-newer-n'           => '{{PLURAL:$1|lowarzaf 1|lowarzaf $1}}',
 'pager-older-n'           => '{{PLURAL:$1|loguazaf 1|loguazaf $1}}',
 'suppress'                => 'Rokla',
@@ -2172,11 +2177,15 @@ $1',
 'fileduplicatesearch-result-1' => '"$1" iyeltak va miltafa jontoloca me digir.',
 
 # Special:SpecialPages
-'specialpages'               => 'Aptaf bueem',
-'specialpages-group-other'   => 'Ar aptabueem',
-'specialpages-group-login'   => 'Figara / dimfigara',
-'specialpages-group-changes' => 'Noeltaf betakseem isu "log"',
-'specialpages-group-users'   => 'Favesikeem is rokeem',
-'specialpages-group-highuse' => 'Nhofapanu bu',
+'specialpages'                 => 'Aptaf bueem',
+'specialpages-group-other'     => 'Ar aptabueem',
+'specialpages-group-login'     => 'Figara / dimfigara',
+'specialpages-group-changes'   => 'Noeltaf betakseem isu "log"',
+'specialpages-group-users'     => 'Favesikeem is rokeem',
+'specialpages-group-highuse'   => 'Nhofapanu bu',
+'specialpages-group-pages'     => 'Buvexala',
+'specialpages-group-pagetools' => 'Buxekeem',
+'specialpages-group-wiki'      => 'Wiki origeem isu xekeem',
+'specialpages-group-redirects' => 'Graskara va aptabu',
 
 );

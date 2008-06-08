@@ -376,6 +376,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'import-logentry-upload' => 'ha mpurtato [[$1]] trammeto upload',
 
 # Tooltip help for the actions
+'tooltip-pt-logout' => 'Jésce',
 'tooltip-minoredit' => 'Rénne chìsto cagnamiénto cchiù ppiccirìllo.',
 'tooltip-save'      => "Sàrva 'e cagnamiénte.",
 'tooltip-preview'   => "Primma 'e sarvà, vìre primma chille ca hê cagnàte!",

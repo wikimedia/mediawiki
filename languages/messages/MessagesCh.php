@@ -678,37 +678,49 @@ Siña hao manaligao gi Google gi entretanto.
 Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 
 # Preferences page
-'preferences'           => "I ga'ña-mu",
-'mypreferences'         => "I ga'ña-hu",
-'prefs-edits'           => 'Numirun tinilaika:',
-'prefsnologin'          => "Ti ma'log in",
-'prefsnologintext'      => "Un nesisita [[Special:Userlogin|muna'log in]] para un tulaika i ga'ña-mu muna'sesetbi.",
-'prefsreset'            => "Manmamo'lo ta'lo i prifirensia siha ginen i dipusita.",
-'qbsettings-none'       => "Tåya'",
-'changepassword'        => 'Tulaika password',
-'skin'                  => 'Låssas',
-'math'                  => 'Math',
-'dateformat'            => 'Plantiyas fecha',
-'datedefault'           => "Tåya' prifirensia",
-'datetime'              => 'Fecha yan ora',
-'math_failure'          => 'Lachi ma parse',
-'prefs-rc'              => 'Tinilaika gi halacha',
-'prefs-watchlist'       => 'Listan pinilan',
-'prefs-watchlist-days'  => "Dihas siha muna'annok gi listan pinilan:",
-'prefs-watchlist-edits' => "I mas takhilo' na numirun tinilaika para u na'annok gi i mana'la'dangkolo i listan pinilan:",
-'prefs-misc'            => 'Misc',
-'saveprefs'             => 'Såtba',
-'resetprefs'            => "Na'funas i tinilaika ti manma'såtba siha",
-'oldpassword'           => 'Password bihu:',
-'newpassword'           => 'Password nuebu:',
-'retypenew'             => "Na'tekla nuebu na password:",
-'textboxsize'           => 'Tumulaika',
-'rows'                  => 'Fila siha:',
-'columns'               => 'Kolumna siha:',
-'searchresultshead'     => 'Aligao',
-'resultsperpage'        => 'Dinanche siha kada påhina:',
-'contextlines'          => 'Liña siha kada dinanche:',
-'contextchars'          => 'Guinaha kada liña:',
+'preferences'              => "I ga'ña-mu",
+'mypreferences'            => "I ga'ña-hu",
+'prefs-edits'              => 'Numirun tinilaika:',
+'prefsnologin'             => "Ti ma'log in",
+'prefsnologintext'         => "Un nesisita [[Special:Userlogin|muna'log in]] para un tulaika i ga'ña-mu muna'sesetbi.",
+'prefsreset'               => "Manmamo'lo ta'lo i prifirensia siha ginen i dipusita.",
+'qbsettings-none'          => "Tåya'",
+'qbsettings-fixedleft'     => 'Maplanta gi akague',
+'qbsettings-fixedright'    => "Maplanta gi agapa'",
+'qbsettings-floatingleft'  => "Mamå'ya gi akague",
+'qbsettings-floatingright' => "Mamå'ya gi agapa'",
+'changepassword'           => 'Tulaika password',
+'skin'                     => 'Låssas',
+'math'                     => 'Math',
+'dateformat'               => 'Plantiyas fecha',
+'datedefault'              => "Tåya' prifirensia",
+'datetime'                 => 'Fecha yan ora',
+'math_failure'             => 'Lachi ma parse',
+'math_unknown_error'       => "linachi ti matungo'",
+'math_unknown_function'    => "fonksion ti matungo'",
+'math_lexing_error'        => 'linachi lexing',
+'math_syntax_error'        => 'linachi syntax',
+'prefs-personal'           => "Botta muna'sesetbi",
+'prefs-rc'                 => 'Tinilaika gi halacha',
+'prefs-watchlist'          => 'Listan pinilan',
+'prefs-watchlist-days'     => "Dihas siha muna'annok gi listan pinilan:",
+'prefs-watchlist-edits'    => "I mas takhilo' na numirun tinilaika para u na'annok gi i mana'la'dangkolo i listan pinilan:",
+'prefs-misc'               => 'Misc',
+'saveprefs'                => 'Såtba',
+'resetprefs'               => "Na'funas i tinilaika ti manma'såtba siha",
+'oldpassword'              => 'Password bihu:',
+'newpassword'              => 'Password nuebu:',
+'retypenew'                => "Na'tekla nuebu na password:",
+'textboxsize'              => 'Tumulaika',
+'rows'                     => 'Fila siha:',
+'columns'                  => 'Kolumna siha:',
+'searchresultshead'        => 'Aligao',
+'resultsperpage'           => 'Dinanche siha kada påhina:',
+'contextlines'             => 'Liña siha kada dinanche:',
+'contextchars'             => 'Guinaha kada liña:',
+'recentchangesdays'        => "Diha siha na para u na'annok gi i tinilaika gi halacha:",
+'recentchangescount'       => "Kunatu na tinilaika para u na'annok gi i tinilaika gi halacha:",
+'savedprefs'               => "Manmaasåtba i ga'ña-mu siha.",
 
 'grouppage-sysop' => '{{ns:project}}:Atministradot siha',
 
@@ -783,7 +795,21 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 # Random redirect
 'randomredirect' => "Muna'dirihi maseha manu guatu",
 
-'disambiguations' => "Ti mania'abak na påhina siha",
+# Statistics
+'sitestatstext'          => "Guåha {{PLURAL:\$1|'''1''' na påhina|'''\$1''' na påhina siha}} gi database.
+Konsiste este yan påhinan \"kombetsasion\", påhinan {{SITENAME}}, påhinan \"stub\" ni mandikike', påhina ni manmadirihi ta'lo, yan otru na klåse påhina siha ni ti manmakonsidera påhina magåhet.
+Fuera di enao, guåha {{PLURAL:\$2|'''1''' na påhina|are '''\$2''' na påhina siha}} ni kasi {{PLURAL:\$2|påhina magåhet|påhina magåhet siha}}.
+
+Guåha '''\$8''' {{PLURAL:\$8|na atkibu ni makåtga hulu'|na atkibu siha ni manmakåtga hulu'}}.
+
+Guåha '''\$3''' {{PLURAL:\$3|na inatan påhina|na inatan påhina siha}}, yan '''\$4''' {{PLURAL:\$4|na tinilaikan påhina|na tinilaikan påhina siha}} desde mafa'tinas {{SITENAME}}.
+Masumma '''\$5''' na medianun tinilaika kada påhina, yan '''\$6''' na inatan kada tinilaika.
+
+'''\$7''' i mineddong [http://www.mediawiki.org/wiki/Manual:Job_queue job queue].",
+'statistics-mostpopular' => "Påhina siha ni mas ma'atan",
+
+'disambiguations'     => "Ti mania'abak na påhina siha",
+'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => "Mandoble na inachetton ma'dirihi siha",
 

@@ -461,11 +461,6 @@ $1',
 'readonlytext'         => 'Databáza je momentálne zamknutá, nové stránky a úpravy sú zablokované, pravdepodobne z dôvodu údržby databázy. Po skončení tejto údržby bude {{SITENAME}} opäť fungovať normálne.
 
 Správca, ktorý nariadil uzamknutie, uvádza tento dôvod: $1',
-'missingarticle'       => 'Databáza nenašla text stránky, ktorý by mala nájsť, menovite „$1“.
-
-Toto je zvyčajne zapríčinené odkazovaním na staršie verzie alebo odkazom na stránku, ktorý bol zmazaný.
-
-Ak to nie je ten prípad, možno ste našli chybu s softvéri. Prosím ohláste túto chybu správcovi, uveďte aj názov stránky - odkaz (URL).',
 'missingarticle-rev'   => '(č. revízie: $1)',
 'missingarticle-diff'  => '(rozdiel: $1, $2)',
 'readonly_lag'         => 'Databáza bola automaticky zamknutá pokým záložné databázové servery nedoženú hlavný server',
@@ -1230,6 +1225,7 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'file-thumbnail-no'           => 'Názov súboru začína <strong><tt>$1</tt></strong>. Zdá sa, že je to obrázok redukovanej veľkosti <i>(náhľad)</i>. Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.',
 'fileexists-forbidden'        => 'Súbor s týmto názvom už existuje; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Súbor s týmto názvom už existuje v zdieľanom úložisku súborov; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Tento súbor je duplikátom {{PLURAL:$1|nasledovného súboru|nasledovných súborov}}:',
 'successfulupload'            => 'Nahranie bolo úspešné',
 'uploadwarning'               => 'Varovanie pri nahrávaní',
 'savefile'                    => 'Uložiť súbor',
@@ -1960,7 +1956,7 @@ Prosím, zlúčte ich ručne.'''",
 'movepage-page-exists'    => 'Stránka $1 už existuje a nie je možné ju automaticky prepísať.',
 'movepage-page-moved'     => 'Stránka $1 bola presunutá na $2.',
 'movepage-page-unmoved'   => 'Stránku $1 nebolo možné presunúť na $2.',
-'movepage-max-pages'      => 'Maximum $1 stránok bolo presunutých a viac nebude presunutých automaticky.',
+'movepage-max-pages'      => 'Maximum $1 {{PLURAL:$1|stránka bola presunutá|stránok bolo presunutých}} a viac nebude presunutých automaticky.',
 '1movedto2'               => '[[$1]] premiestnená na [[$2]]',
 '1movedto2_redir'         => '[[$1]] premiestnená na [[$2]] výmenou presmerovania',
 'movelogpage'             => 'Záznam presunov',
@@ -2685,6 +2681,9 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Špeciálne stránky',
+'specialpages-note'              => '----
+* Bežné špeciálne stránky.
+* <span class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</span>',
 'specialpages-group-maintenance' => 'Údržbové správy',
 'specialpages-group-other'       => 'Iné špeciálne stránky',
 'specialpages-group-login'       => 'Prihlásenie / registrácia',
@@ -2692,5 +2691,10 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'specialpages-group-media'       => 'Správy o multimédiách a nahrávaniach',
 'specialpages-group-users'       => 'Používatelia a skupiny',
 'specialpages-group-highuse'     => 'Často používané stránky',
+'specialpages-group-pages'       => 'Zoznam stránok',
+'specialpages-group-pagetools'   => 'Nástroje stránky',
+'specialpages-group-wiki'        => 'Wiki údaje a nástroje',
+'specialpages-group-redirects'   => 'Špeciálne stránky, ktoré sú presmerovania',
+'specialpages-group-spam'        => 'Nástroje proti spamu',
 
 );

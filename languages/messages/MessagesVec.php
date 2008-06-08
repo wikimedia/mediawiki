@@ -342,11 +342,12 @@ MySQL gà restituìo l\'eror "$3: $4".',
 'readonlytext'         => "El database de {{SITENAME}} el xe al momento blocà, e no'l consente nove imissioni né modifiche, molto probabilmente par operassion de manutension del server, nel qual caso el database el sarà presto de novo completamente acessibile.
 
 L'aministrador de sistema che gà messo el bloco el gà lassà sta spiegassion: $1",
-'missingarticle'       => "El database no'l gà catà el testo de la pagina \"\$1\", che invesse la dovarìa èssarghe.
+'missing-article'      => 'El database no\'l gà mìa catà el testo de na pagina che la gavarìa dovùo èssarghe soto el nome de "$1" $2.
 
-Sto qua no'l xe un eror del database, ma più probabilmente un problema del software.
+De solito questo el se verifica quando vien riciamà, a partir da la cronologia o dal confronto tra revision, un colegamento a na pagina scancelà, a un confronto tra revision inesistenti o a un confronto tra revision ripulìe da la cronologia.
 
-Par piaser, segnala l'acaduto ad un aministrador de sistema, segnalando la URL e l'ora de l'incidente.",
+In caso contrario, se gà probabilmente catà un eror del software MediaWiki.
+Se prega de segnalar l\'acaduto a un aministrador specificando la URL in question.',
 'missingarticle-rev'   => '(revision n°: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'El database el xe stà blocà automaticamente par consentirghe ai server coi database slave de sincronizarse col master',
@@ -986,6 +987,7 @@ par poder personalixare le to preferense.',
 'right-editusercssjs'        => 'Modifica i file CSS e JS de altri utenti',
 'right-rollback'             => "Anula in prèssia le modifiche fate da l'ultimo utente su na pagina particolar.",
 'right-markbotedits'         => 'Segna modifiche specifiche come bot',
+'right-noratelimit'          => 'Mìa sogeto al limite de azioni',
 'right-import'               => 'Inporta pagine da altre wiki',
 'right-importupload'         => 'Inporta pagine da un caricamento de file',
 'right-patrol'               => 'Segna le modifiche come verificà',
@@ -1287,6 +1289,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' pro
 'popularpages'            => 'Pàxene pì viste',
 'wantedcategories'        => 'Categorie richieste',
 'wantedpages'             => 'Pàxene pì richieste',
+'missingfiles'            => 'File mancanti',
 'mostlinked'              => 'Pàxene piassè puntà',
 'mostlinkedcategories'    => 'Categorie piassè riciamae',
 'mostlinkedtemplates'     => 'Template piassè doparà',

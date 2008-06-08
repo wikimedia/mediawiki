@@ -299,11 +299,6 @@ MySQL æ returnerede fejl "$3: $4".',
 'readonlytext'         => 'Æ database er midlertedegt skrevebeskyttet. Førsøĝ venlegst senere.
 
 Årsag til æ spærrenge: $1',
-'missingarticle'       => 'Æ tekst til "$1" blev ekke fundet i\'n database.
-
-Æ side er måske slettet æller flyttet.
-
-Hves det ekke er tilfældet, harst du måske fundet en fejl i programmet. Meld det til en [[{{MediaWiki:Grouppage-sysop}}|administråtår]] ve angævelse åf æ adresse.',
 'readonly_lag'         => "Æ database er åtåmatisk blevet låst mens slæfdatabaseserverne synkroniserer ve'n master database",
 'internalerror'        => 'Intern fejl',
 'internalerror_info'   => 'Intern fejl: $1',

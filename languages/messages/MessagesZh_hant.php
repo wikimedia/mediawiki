@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -997,7 +997,7 @@ $2',
 'right-editusercssjs'        => '編輯其他用戶的CSS和JS檔案',
 'right-rollback'             => '快速復原上位用戶對某一頁面之編輯',
 'right-markbotedits'         => '標示復原編輯作機械人編輯',
-'right-noratelimit'          => '不受率上限影響',
+'right-noratelimit'          => '沒有使用頻率限制',
 'right-import'               => '由其它wiki中匯入頁面',
 'right-importupload'         => '由檔案上載中匯入頁面',
 'right-patrol'               => '標示其它的編輯作已巡查的',
