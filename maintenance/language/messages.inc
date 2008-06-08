@@ -862,6 +862,7 @@ $wgMessageStructure = array(
 		'right-createaccount',
 		'right-minoredit',
 		'right-move',
+		'right-move-subpages',
 		'right-suppressredirect',
 		'right-upload',
 		'right-reupload',
