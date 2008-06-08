@@ -452,16 +452,8 @@ class extensionLanguages extends languages {
 	 * @param $code The language code.
 	 */
 	protected function loadRawMessages( $code ) {
-		if ( isset( $this->mRawMessages[$code] ) ) {
-			return;
-		}
-		$definitions = $this->mMessageGroup->getDefinitions();
-		$this->mRawMessages[$code] = array();
-		foreach( $definitions as $key => $value ) {
-			$message = $this->mMessageGroup->getMessage( $key, $code );
-			if( $message !== null ) {
-				$this->mRawMessages[$code][$key] = $message;
-			}
+		if( !isset( $this->mRawMessages[$code] ) ) {
+			$this->mRawMessages[$code] = $this->mMessageGroup->load( $code );
 		}
 	}
 }
