@@ -820,6 +820,12 @@ class Linker {
 		if( $escape ) {
 			$text = htmlspecialchars( $text );
 		}
+		$link = '';
+		$success = wfRunHooks('LinkerMakeExternalLink', array( &$url, &$text, &link ) );
+		if(!$success) {
+			wfDebug("Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}", true);
+			return $link;
+		}
 		return '<a href="'.$url.'"'.$style.'>'.$text.'</a>';
 	}
 
