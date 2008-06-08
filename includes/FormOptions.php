@@ -6,7 +6,7 @@
  * @copyright Copyright © 2008, Niklas Laxström
  */
 
-class FormOptions {
+class FormOptions implements ArrayAccess {
 	const AUTO = -1; //! Automatically detects simple data types
 	const STRING = 0;
 	const INT = 1;
@@ -30,6 +30,11 @@ class FormOptions {
 		}
 
 		$this->options[$name] = $option;
+	}
+
+	public function delete( $name ) {
+		$this->validateName( $name, true );
+		unset($this->options[$name]);
 	}
 
 	public static function guessType( $data ) {
@@ -78,6 +83,11 @@ class FormOptions {
 		} else {
 			return $option['default'];
 		}
+	}
+
+	public function reset( $name ) {
+		$this->validateName( $name, true );
+		$this->options[$name]['value'] = null;
 	}
 
 	public function consumeValue( $name ) {
@@ -134,10 +144,22 @@ class FormOptions {
 		return $values;
 	}
 
+	public function getAllValues() {
+		$values = array();
+		foreach ( $this->options as $name => $data ) {
+			$values[$name] = $this->getValueReal( $data );
+		}
+		return $values;
+	}
+
 	# Reading values
 
-	public function fetchValuesFromRequest( WebRequest $r ) {
-		foreach ( array_keys($this->options) as $name ) {
+	public function fetchValuesFromRequest( WebRequest $r, $values = false ) {
+		if ( !$values ) {
+			$values = array_keys($this->options);
+		}
+
+		foreach ( $values as $name ) {
 			$default = $this->options[$name]['default'];
 			$type = $this->options[$name]['type'];
 
@@ -158,6 +180,23 @@ class FormOptions {
 				$this->options[$name]['value'] = $value;
 			}
 		}
+	}
+
+	/* ArrayAccess methods */
+	public function offsetExists( $name ) {
+		return isset($this->options[$name]);
+	}
+
+	public function offsetGet( $name ) {
+		return $this->getValue( $name );
+	}
+
+	public function offsetSet( $name, $value ) {
+		return $this->setValue( $name, $value );
+	}
+
+	public function offsetUnset( $name ) {
+		return $this->delete( $name );
 	}
 
 }
