@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -966,6 +966,7 @@ $2',
 'right-createaccount'        => '創建新用戶賬戶',
 'right-minoredit'            => '標示作小編輯',
 'right-move'                 => '移動頁面',
+'right-move-subpages'        => '移動頁面跟它的字頁面',
 'right-suppressredirect'     => '移動頁面時不建立重定向',
 'right-upload'               => '上載檔案',
 'right-reupload'             => '覆蓋現有的檔案',
