@@ -663,7 +663,7 @@ XHTML id names.
 'otherlanguages'    => 'In other languages',
 'redirectedfrom'    => '(Redirected from $1)',
 'redirectpagesub'   => 'Redirect page',
-'lastmodifiedat'    => 'This page was last modified $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'This page was last modified on $1, at $2.', # $1 date, $2 time
 'viewcount'         => 'This page has been accessed {{PLURAL:$1|once|$1 times}}.',
 'protectedpage'     => 'Protected page',
 'jumpto'            => 'Jump to:',
