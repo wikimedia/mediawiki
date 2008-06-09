@@ -4,13 +4,18 @@
  * @ingroup SpecialPage
  */
 
-function wfSpecialCategories() {
+function wfSpecialCategories( $par=null ) {
 	global $wgOut, $wgRequest;
 
-	$cap = new CategoryPager();
+	if( $par == '' ) {
+		$from = $wgRequest->getText( 'from' );
+	} else {
+		$from = $par;
+	}
+	$cap = new CategoryPager( $from );
 	$wgOut->addHTML(
 		wfMsgExt( 'categoriespagetext', array( 'parse' ) ) .
-		$cap->getStartForm( str_replace( '_', ' ', $wgRequest->getVal( 'offset' ) ) ) .
+		$cap->getStartForm( $from ) .
 		$cap->getNavigationBar() .
 		'<ul>' . $cap->getBody() . '</ul>' .
 		$cap->getNavigationBar()
@@ -24,6 +29,18 @@ function wfSpecialCategories() {
  * @ingroup SpecialPage Pager
  */
 class CategoryPager extends AlphabeticPager {
+	function __construct( $from ) {
+		parent::__construct();
+		$from = str_replace( ' ', '_', $from );
+		if( $from != '' ) {
+			global $wgCapitalLinks, $wgContLang;
+			if( $wgCapitalLinks ) {
+				$from = $wgContLang->ucfirst( $from );
+			}
+			$this->mOffset = $from;
+		}
+	}
+	
 	function getQueryInfo() {
 		global $wgRequest;
 		return array(
@@ -39,6 +56,10 @@ class CategoryPager extends AlphabeticPager {
 		return 'cat_title';
 	}
 
+	function getDefaultQuery() {
+		parent::getDefaultQuery();
+		unset( $this->mDefaultQuery['from'] );
+	}
 #	protected function getOrderTypeMessages() {
 #		return array( 'abc' => 'special-categories-sort-abc',
 #			'count' => 'special-categories-sort-count' );
@@ -75,7 +96,7 @@ class CategoryPager extends AlphabeticPager {
 		return Xml::tags('li', null, "$titleText ($count)" ) . "\n";
 	}
 	
-	public function getStartForm( $from='' ) {
+	public function getStartForm( $from ) {
 		global $wgScript;
 		$t = SpecialPage::getTitleFor( 'Categories' );
 	
@@ -84,7 +105,7 @@ class CategoryPager extends AlphabeticPager {
 				Xml::hidden( 'title', $t->getPrefixedText() ) .
 				Xml::fieldset( wfMsg( 'categories' ),
 					Xml::inputLabel( wfMsg( 'categoriesfrom' ),
-						'offset', 'offset', 20, $from ) .
+						'from', 'from', 20, $from ) .
 					' ' .
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) ) );
 	}
