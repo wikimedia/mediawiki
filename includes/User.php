@@ -2334,11 +2334,13 @@ class User {
 	 * which will give them a chance to modify this key based on their own
 	 * settings.
 	 *
+	 * @param $content Bool: wheter use the content language to generate the
+	 *                 hash
 	 * @return string
 	 */
-	function getPageRenderingHash() {
+	function getPageRenderingHash( $content = false ) {
 		global $wgContLang, $wgUseDynamicDates, $wgLang;
-		if( $this->mHash ){
+		if( $this->mHash && !$content ){
 			return $this->mHash;
 		}
 
@@ -2351,7 +2353,11 @@ class User {
 			$confstr .= '!' . $this->getDatePreference();
 		}
 		$confstr .= '!' . ($this->getOption( 'numberheadings' ) ? '1' : '');
-		$confstr .= '!' . $wgLang->getCode();
+		if( $content ){
+			$confstr .= '!' . $wgContLang->getCode();
+		} else {
+			$confstr .= '!' . $wgLang->getCode();
+		}
 		$confstr .= '!' . $this->getOption( 'thumbsize' );
 		// add in language specific options, if any
 		$extra = $wgContLang->getExtraHashOptions();
