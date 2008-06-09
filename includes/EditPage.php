@@ -1205,7 +1205,7 @@ class EditPage {
 
 		if( $wgUser->getOption('showtoolbar') and !$this->isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
-			$toolbar = $this->getEditToolbar();
+			$toolbar = EditPage::getEditToolbar();
 		} else {
 			$toolbar = '';
 		}
@@ -1791,8 +1791,10 @@ END
 	 * Shows a bulletin board style toolbar for common editing functions.
 	 * It can be disabled in the user preferences.
 	 * The necessary JavaScript code can be found in style/wikibits.js.
+	 * 
+	 * @return string
 	 */
-	function getEditToolbar() {
+	static function getEditToolbar() {
 		global $wgStylePath, $wgContLang, $wgJsMimeType;
 
 		/**

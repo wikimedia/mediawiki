@@ -349,6 +349,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and $2 (=revision numbers)
 * (bug 14401) Fix Safari access key tooltips for Windows and >3.1 Mac versions
 * (bug 14432) Fix notice regression in Special:Newpages feed mode
+* (bug 11951) EditPage::getEditToolbar() is now static.
 
 
 === API changes in 1.13 ===
