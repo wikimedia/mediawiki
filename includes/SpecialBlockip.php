@@ -347,15 +347,20 @@ class IPBlockForm {
 			// Bad expiry.
 			return array('ipb_expiry_invalid');
 		}
+		
+		if( $this->BlockHideName && $expiry != 'infinity' ) {
+			// Bad expiry.
+			return array('ipb_expiry_temp');
+		}
 
 		# Create block
 		# Note: for a user block, ipb_address is only for display purposes
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getId(),
 			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
-			$this->BlockEmail);
+			$this->BlockEmail );
 
-		if (wfRunHooks('BlockIp', array(&$block, &$wgUser))) {
+		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
 
 			if ( !$block->insert() ) {
 				return array('ipb_already_blocked', htmlspecialchars($this->BlockAddress));
