@@ -342,6 +342,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14385) "Move subpages" option no longer tries to move to invalid titles
 * (bug 14386) Fix subpage namespace oddity when moving a talk page
 * (bug 11771) Signup form now not shown if in read-only mode.
+* (bug 10080) Users can now modify an existing block without unblocking first.
 * (bug 12859) $wgRateLimitsExcludedGroups has been deprecated in favor of
   $wgGroupPermissions[]['noratelimit']. 
 * (Bug 13828) Split parameter $1 of MediaWiki:Missingarticle into $1 (=title)
