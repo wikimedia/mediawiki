@@ -2215,7 +2215,7 @@ class Database {
 		}
 
 		// Table prefixes
-		$ins = preg_replace_callback( '/\/\*(?:\$wgDBprefix|_)\*\/([a-z_]*)/',
+		$ins = preg_replace_callback( '/\/\*(?:\$wgDBprefix|_)\*\/([a-zA-Z_0-9]*)/',
 			array( &$this, 'tableNameCallback' ), $ins );
 		return $ins;
 	}
