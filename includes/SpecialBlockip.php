@@ -388,12 +388,11 @@ class IPBlockForm {
 
 		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
 
-			if ( !$block->insert() ) {
-				// Block already exists. Silently delete the existing block and insert it again
-				$oldblock = Block::newFromDB( $this->BlockAddress );
-				$oldblock->delete();
-				$block->insert();
+			if ( $oldblock = Block::newFromDB( $this->BlockAddress ) ) {
+				$oldblock->delete(); // Block already exists. Silently delete it
 			}
+			$block->insert();
+
 
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
 
