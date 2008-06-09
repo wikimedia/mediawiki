@@ -354,6 +354,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14392) Fix regression breaking table prefix in installer
 * (bug 11084) $wgDBprefix replacement for updater SQL will now work for
   extension tables using uppercase letters or digits in their names.
+* (bug 12311) Fix regression with lists at start of undeletion preview
 
 
 === API changes in 1.13 ===

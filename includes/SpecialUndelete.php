@@ -776,7 +776,7 @@ class UndeleteForm {
 			$popts = $wgOut->parserOptions();
 			$popts->setEditSection( false );
 			$wgOut->parserOptions( $popts );
-			$wgOut->addWikiTextTitleTidy( $rev->revText(), $this->mTargetObj, false );
+			$wgOut->addWikiTextTitleTidy( $rev->revText(), $this->mTargetObj, true );
 		}
 
 		$wgOut->addHtml(
