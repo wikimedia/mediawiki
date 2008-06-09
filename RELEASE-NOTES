@@ -352,6 +352,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11951) EditPage::getEditToolbar() is now static.
 * (bug 14404) Use of {{int:...}} to generate links no longer breaks links table
   if user has a custom interface language
+* (bug 14392) Fix regression breaking table prefix in installer
+* (bug 11084) $wgDBprefix replacement for updater SQL will now work for
+  extension tables using uppercase letters or digits in their names.
 
 
 === API changes in 1.13 ===
