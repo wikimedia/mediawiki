@@ -612,6 +612,11 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	
 	## SQLite specific
 	$conf->SQLiteDataDir = importPost( "SQLiteDataDir", "" );
+	
+	## MSSQL specific
+	// We need a second field so it doesn't overwrite the MySQL one
+	$conf->DBprefix2 = importPost( "DBprefix2" );
+
 
 /* Check for validity */
 $errs = array();
@@ -766,6 +771,11 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgDBport      = $conf->DBport;
 		$wgDBmwschema  = $conf->DBmwschema;
 		$wgDBts2schema = $conf->DBts2schema;
+
+		if( $conf->DBprefix2 != '' ) {
+			// For MSSQL
+			$wgDBprefix = $conf->DBprefix2;
+		}
 
 		$wgCommandLineMode = true;
 		if (! defined ( 'STDERR' ) )
@@ -1459,7 +1469,7 @@ if( count( $errs ) ) {
 
 	<?php database_switcher('mssql'); ?>
 	<div class="config-input"><?php
-		aField( $conf, "DBprefix", "Database table prefix:" );
+		aField( $conf, "DBprefix2", "Database table prefix:" );
 	?></div>
 	<div class="config-desc">
 		<p>If you need to share one database between multiple wikis, or
@@ -1632,6 +1642,10 @@ function writeLocalSettings( $conf ) {
 		$dbsettings =
 "# SQLite-specific settings
 \$wgSQLiteDataDir    = \"{$slconf['SQLiteDataDir']}\";";
+	} elseif( $conf->DBtype == 'mssql' ) {
+		$dbsettings =
+"# MSSQL specific settings
+\$wgDBprefix         = \"{$slconf['DBprefix2']}\";";
 	} else {
 		// ummm... :D
 		$dbsettings = '';
