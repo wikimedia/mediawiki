@@ -2659,7 +2659,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-diff'                    => 'Show which changes you made to the text.',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page.',
 'tooltip-watch'                   => 'Add this page to your watchlist',
-'tooltip-recreate'                => 'Recreate the page despite it has been deleted',
+'tooltip-recreate'                => 'Recreate the page despite it having been deleted',
 'tooltip-upload'                  => 'Start upload',
 
 # Stylesheets
