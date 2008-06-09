@@ -261,7 +261,7 @@ $messages = array(
 'otherlanguages'    => '他山',
 'redirectedfrom'    => '（渡自$1）',
 'redirectpagesub'   => '渡',
-'lastmodifiedat'    => '此頁$1$2方易。', # $1 date, $2 time
+'lastmodifiedat'    => '此頁於$1$2方易。', # $1 date, $2 time
 'viewcount'         => '此頁$1閱矣',
 'protectedpage'     => '函啟矣',
 'jumpto'            => '往：',
@@ -1543,7 +1543,11 @@ $NEWPAGE
 'block-log-flags-noemail'     => '郵禁焉',
 'range_block_disabled'        => '未准有秩圍禁。',
 'ipb_expiry_invalid'          => '屆期不明。',
+'ipb_expiry_temp'             => '藏簿禁封為長久也。',
 'ipb_already_blocked'         => '"$1"早禁矣',
+'ipb_modifying_block'         => '更現禁：',
+'ipb_tweak_block'             => '注：此簿（$1）為禁也。
+爾可用下表更禁也。',
 'ipb_cant_unblock'            => '有誤：禁$1無尋；或早赦矣。',
 'ipb_blocked_as_range'        => '錯：該IP $1 無直禁也，無赦之。唯它在 $2 之範禁內，其範可赦之。',
 'ip_range_invalid'            => 'IP址圍不格',
