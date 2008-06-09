@@ -1616,6 +1616,7 @@ $wgMessageStructure = array(
 		'block-log-flags-noemail',
 		'range_block_disabled',
 		'ipb_expiry_invalid',
+		'ipb_expiry_temp',
 		'ipb_already_blocked',
 		'ipb_modifying_block',
 		'ipb_cant_unblock',
