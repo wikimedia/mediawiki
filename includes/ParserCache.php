@@ -26,9 +26,9 @@ class ParserCache {
 		$this->mMemc =& $memCached;
 	}
 
-	function getKey( &$article, &$user ) {
+	function getKey( &$article, &$user, $content = false ) {
 		global $action;
-		$hash = $user->getPageRenderingHash();
+		$hash = $user->getPageRenderingHash( $content );
 		if( !$article->mTitle->quickUserCan( 'edit' ) ) {
 			// section edit links are suppressed even if the user has them on
 			$edit = '!edit=0';
@@ -86,9 +86,9 @@ class ParserCache {
 		return $value;
 	}
 
-	function save( $parserOutput, &$article, &$user ){
+	function save( $parserOutput, &$article, &$user, $content = false ){
 		global $wgParserCacheExpireTime;
-		$key = $this->getKey( $article, $user );
+		$key = $this->getKey( $article, $user, $content );
 
 		if( $parserOutput->getCacheTime() != -1 ) {
 
