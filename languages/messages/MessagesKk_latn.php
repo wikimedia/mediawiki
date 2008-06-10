@@ -421,9 +421,9 @@ $messages = array(
 'tog-enotifminoredits'        => 'Şağın öñdeme twralı da mağan xat jiber',
 'tog-enotifrevealaddr'        => 'E-poştamnıñ mekenjaýın eskertw xattarda aş',
 'tog-shownumberswatching'     => 'Baqılap turğan qatıswşılardıñ sanın körset',
-'tog-fancysig'                => 'Qam qoltañba (özdiktik siltemesiz;)',
-'tog-externaleditor'          => 'Şettik öñdewişti ädepkiden qoldan',
-'tog-externaldiff'            => 'Şettik aýırmağıştı ädepkiden qoldan',
+'tog-fancysig'                => 'Qam qoltañba (özdiktik siltemesiz)',
+'tog-externaleditor'          => 'Şettik öñdewişti ädepkiden qoldan (tek sarapşılar üşin, komp′ywteriñizde arnawlı baptalımdar kerek)',
+'tog-externaldiff'            => 'Şettik aýırmağıştı ädepkiden qoldan (tek sarapşılar üşin, komp′ywteriñizde arnawlı baptalımdar kerek)',
 'tog-showjumplinks'           => '«Ötip ketw» qatınaw siltemelerin qos',
 'tog-uselivepreview'          => 'Twra qarap şığwdı qoldanw (JavaScript) (Sınaqtama)',
 'tog-forceeditsummary'        => 'Öñdemeniñ qısqaşa mazmundaması bos qalğanda mağan eskert',
@@ -834,8 +834,8 @@ Qabıldağannan keýin kirgende sonı engiziñiz.',
 'blocked-mailpassword'       => 'IP mekenjaýıñızdan öñdew buğattalğan, sondıqtan qïyanattı qaqpaýlaw üşin qupïya sözdi qalpına keltirw jetesin qoldanwına ruqsat etilmeýdi.',
 'eauthentsent'               => 'Quptaw xatı aýtılmış e-poşta mekenjaýına jöneltildi.
 Basqa e-poşta xatın jöneltw aldınan, tirkelgi şınınan sizdiki ekenin quptaw üşin xattağı nusqamalarğa eriwñiz jön.',
-'throttled-mailpassword'     => 'Soñğı $1 sağatta qupïya söz eskertw xatı aldaqaşan jöneltildi.
-Qïyanattı qaqpaýlaw üşin, $1 sağat saýın tek bir ğana qupïya söz eskertw xatı jöneltiledi.',
+'throttled-mailpassword'     => 'Soñğı {{PLURAL:$1|sağatta|$1 sağatta}} qupïya söz eskertw xatı aldaqaşan jöneltildi.
+Qïyanattı qaqpaýlaw üşin, {{PLURAL:$1|sağat|$1 sağat}} saýın tek bir ğana qupïya söz eskertw xatı jöneltiledi.',
 'mailerror'                  => 'Xat jöneltw qatesi: $1',
 'acct_creation_throttle_hit' => 'Ğafw etiñiz, siz aldaqaşan $1 ret tirkelgi jasapsız.
 Onan artıq isteý almaýsız.',
@@ -1577,11 +1577,11 @@ Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
 'filehist-filesize'              => 'Faýl mölşeri',
 'filehist-comment'               => 'Mändemesi',
 'imagelinks'                     => 'Siltemeler',
-'linkstoimage'                   => 'Bul faýlğa kelesi better silteýdi:',
+'linkstoimage'                   => 'Bul faýlğa kelesi {{PLURAL:$1|bet|$1 bet}} silteýdi:',
 'nolinkstoimage'                 => 'Bul faýlğa eş bet siltemeýdi.',
 'morelinkstoimage'               => 'Bul faýldıñ [[{{#special:Whatlinkshere}}/$1|köbirek siltemelerin]] qaraw.',
-'redirectstofile'                => 'Bul faýlğa kelesi faýldar aýdaýdı:',
-'duplicatesoffile'               => 'Kelesi faýldar bul faýldıñ telnusqaları:',
+'redirectstofile'                => 'Kelesi {{PLURAL:$1|faýl|$1 faýl}} bul faýlğa aýdaýdı:',
+'duplicatesoffile'               => 'Kelesi {{PLURAL:$1|faýl bul faýldıñ telnusqası|$1 faýl bul faýldıñ telnusqaları}}:',
 'sharedupload'                   => 'Bul faýl ortaq qoýmağa qotarıp berilgen sondıqtan basqa jobalarda qoldanwı mümkin.',
 'shareduploadwiki'               => 'Bılaýğı aqparat üşin $1 degendi qarañız.',
 'shareduploadwiki-desc'          => 'Bul $1 degen faýldıñ ortaq qoýmadağı mälimetteri tömende körsetiledi.',
@@ -1941,8 +1941,7 @@ basqa birew bul betti aldaqaşan öñdegen ne şegindirgen.
 
 soñğı öñdemesin [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.',
 'editcomment'                 => 'Bolğan öñdeme mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen qaýtarğan;
-[[{{ns:user}}:$1|$1]] soñğı nusqasına özgertti.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 öñdemelerinen qaýtarğan;
 $2 soñğı nusqasına özgertti.',
 'sessionfailure'              => 'Kirw sessïyasında şataq bolğan sïyaqtı;
