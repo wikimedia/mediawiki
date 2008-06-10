@@ -353,23 +353,25 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 			$this->checks[] = 'duplicate';
 		}
 
+		$this->extensions = array();
 		$extensions = new PremadeMediawikiExtensionGroups();
 		$extensions->addAll();
 		if( $extension == 'all' ) {
-			$this->extensions = array();
 			foreach( MessageGroups::singleton()->getGroups() as $group ) {
 				if( strpos( $group->getId(), 'ext-' ) === 0 && !$group->isMeta() ) {
 					$this->extensions[] = new extensionLanguages( $group );
 				}
 			}
 		} else {
-			$group = MessageGroups::getGroup( 'ext-' . $extension );
-			if( $group ) {
-				$extension = new extensionLanguages( $group );
-				$this->extensions = array( $extension );
-			} else {
-				print "No such extension $extension.\n";
-				$this->extensions = array();
+			$extensions = explode( ',', $extension );
+			foreach( $extensions as $extension ) {
+				$group = MessageGroups::getGroup( 'ext-' . $extension );
+				if( $group ) {
+					$extension = new extensionLanguages( $group );
+					$this->extensions[] = $extension;
+				} else {
+					print "No such extension $extension.\n";
+				}
 			}
 		}
 	}
@@ -379,7 +381,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 Run this script to check the status of a specific language in extensions, or all of them.
 Command line settings are in form --parameter[=value], except for the first one.
 Parameters:
-	* First parameter (mandatory): Extension name, or "all" for all the extensions.
+	* First parameter (mandatory): Extension name, multiple extension names (separated by commas) or "all" for all the extensions.
 	* lang: Language code (default: the installation default language).
 	* help: Show this help.
 	* level: Show the following level (default: 2).
