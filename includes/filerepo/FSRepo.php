@@ -125,6 +125,9 @@ class FSRepo extends FileRepo {
 	 *                             same contents as the source
 	 */
 	function storeBatch( $triplets, $flags = 0 ) {
+		if ( !wfMkdirParents( $this->directory ) ) {
+			return $this->newFatal( 'upload_directory_missing', $this->directory );
+		}
 		if ( !is_writable( $this->directory ) ) {
 			return $this->newFatal( 'upload_directory_read_only', $this->directory );
 		}
@@ -255,6 +258,9 @@ class FSRepo extends FileRepo {
 	 */
 	function publishBatch( $triplets, $flags = 0 ) {
 		// Perform initial checks
+		if ( !wfMkdirParents( $this->directory ) ) {
+			return $this->newFatal( 'upload_directory_missing', $this->directory );
+		}
 		if ( !is_writable( $this->directory ) ) {
 			return $this->newFatal( 'upload_directory_read_only', $this->directory );
 		}
