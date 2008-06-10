@@ -1565,7 +1565,7 @@ $NEWPAGE
 
 最后编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]])。',
 'editcomment'                 => '编辑说明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑；更改回[[User:$1|$1]]的最后一个版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '恢复由$1的编辑；更改回$2的最后一个版本。',
 'sessionfailure'              => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 'protectlogpage'              => '保护日志',
@@ -1771,9 +1771,6 @@ $1',
 'ipb_expiry_invalid'          => '无效的终止时间。',
 'ipb_expiry_temp'             => '隐藏用户名封锁应该是永久性的。',
 'ipb_already_blocked'         => '已经封锁"$1"',
-'ipb_modifying_block'         => '修改现有的封锁:',
-'ipb_tweak_block'             => '注意: 这位用户 ($1) 已经被封锁。
-您可以用这个表格去更改封锁设置。',
 'ipb_cant_unblock'            => '错误: 找不到查封ID$1。可能已经解除封禁。',
 'ipb_blocked_as_range'        => '错误: 该IP $1 无直接查封，不可以解除封禁。但是它是在 $2 的查封范围之内，该段范围是可以解除封禁的。',
 'ip_range_invalid'            => '无效的IP范围。\\n',

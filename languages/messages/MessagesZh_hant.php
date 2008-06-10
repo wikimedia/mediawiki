@@ -1542,7 +1542,7 @@ $NEWPAGE
 
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯至[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '恢復由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
@@ -1744,9 +1744,6 @@ $1',
 'range_block_disabled'        => '只有管理員才能創建禁止查封的範圍。',
 'ipb_expiry_invalid'          => '無效的終止時間。',
 'ipb_expiry_temp'             => '隱藏用戶名封鎖應該是永久性的。',
-'ipb_modifying_block'         => '修改現有的封鎖:',
-'ipb_tweak_block'             => '注意: 這位用戶 ($1) 已經被封鎖。
-您可以用這個表格去更改封鎖設定。',
 'ipb_already_blocked'         => '已經封鎖"$1"',
 'ipb_cant_unblock'            => '錯誤: 找不到查封ID$1。可能已經解除封禁。',
 'ipb_blocked_as_range'        => '錯誤: 該IP $1 無直接查封，不可以解除封禁。但是它是在 $2 的查封範圍之內，該段範圍是可以解除封禁的。',
