@@ -240,16 +240,6 @@ EOT
 	# Rebuild interwiki tables
 	#passthru( '/home/wikipedia/conf/interwiki/update' );
 
-	# Create the upload dir
-	$uploadDir = "/mnt/upload3/$site/$lang";
-	if( file_exists( $uploadDir ) ) {
-		echo "$uploadDir already exists.\n";
-	} else {
-		echo "Creating $uploadDir...\n";
-		mkdir( $uploadDir, 0777 );
-		chmod( $uploadDir, 0777 );
-	}
-
 	print "Script ended. You still have to:
 * Add any required settings in InitialiseSettings.php
 * Run sync-common-all
