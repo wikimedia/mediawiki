@@ -134,7 +134,7 @@ class Parser
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} else {
-			$this->mPreprocessorClass = 'Preprocessor_DOM';
+			$this->mPreprocessorClass = 'Preprocessor_Hash';
 		}
 		$this->mMarkerIndex = 0;
 		$this->mFirstCall = true;
