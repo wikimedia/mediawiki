@@ -1944,6 +1944,7 @@ $wgRCLinkDays   = array( 1, 3, 7, 14, 30 );
 $wgRC2UDPAddress = false;
 $wgRC2UDPPort = false;
 $wgRC2UDPPrefix = '';
+$wgRC2UDPOmitBots = false;
 
 # Enable user search in Special:Newpages
 # This is really a temporary hack around an index install bug on some Wikipedias.

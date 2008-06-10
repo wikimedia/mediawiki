@@ -140,7 +140,8 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save()
 	{
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
+		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, 
+		$wgRC2UDPPort, $wgRC2UDPPrefix, $wgRC2UDPOmitBots;
 		$fname = 'RecentChange::save';
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -209,7 +210,7 @@ class RecentChange
 		}
 
 		# Notify external application via UDP
-		if ( $wgRC2UDPAddress ) {
+		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
 			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 			if ( $conn ) {
 				$line = $wgRC2UDPPrefix . $this->getIRCLine();

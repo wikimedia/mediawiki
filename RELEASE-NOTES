@@ -56,6 +56,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgGroupPermissions[]['noratelimit']. The former still works, however.
 * New $wgGroupPermissions option 'move-subpages' added to control bulk-moving
   subpages along with pages.  Assigned to 'user' and 'sysop' by default.
+* New $wgRC2UDPOmitBots allows user to omit bot edits from UDP output. Default: false
 
 === New features in 1.13 ===
 
@@ -149,6 +150,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   changed by extensions.
 * Add a new hook LinkerMakeExternalLink to allow extensions to modify the output of
   external links.
+* (bug 14132) Allow user to disable bot edits from being output to UDP. 
   
 === Bug fixes in 1.13 ===
 
