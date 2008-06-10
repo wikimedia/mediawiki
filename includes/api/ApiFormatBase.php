@@ -287,9 +287,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 				$feed->outItem($item);
 			$feed->outFooter();
 		} else {
-			// Error has occured, print something usefull
-			// TODO: make this error more informative using ApiBase :: dieDebug() or similar
-			wfHttpError(500, 'Internal Server Error', '');
+			// Error has occured, print something useful
+			ApiBase::dieDebug( __METHOD__, 'Invalid feed class/item' );
 		}
 	}
 
