@@ -920,8 +920,8 @@ Please log in again after you receive it.',
 'blocked-mailpassword'       => 'Your IP address is blocked from editing, and so is not allowed to use the password recovery function to prevent abuse.',
 'eauthentsent'               => 'A confirmation e-mail has been sent to the nominated e-mail address.
 Before any other e-mail is sent to the account, you will have to follow the instructions in the e-mail, to confirm that the account is actually yours.',
-'throttled-mailpassword'     => 'A password reminder has already been sent, within the last $1 hours.
-To prevent abuse, only one password reminder will be sent per $1 hours.',
+'throttled-mailpassword'     => 'A password reminder has already been sent, within the last {{PLURAL:$1|hour|$1 hours}}.
+To prevent abuse, only one password reminder will be sent per {{PLURAL:$1|hour|$1 hours}}.',
 'loginstart'                 => '', # do not translate or duplicate this message to other languages
 'loginend'                   => '', # do not translate or duplicate this message to other languages
 'signupend'                  => '{{int:loginend}}', # do not translate or duplicate this message to other languages
