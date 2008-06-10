@@ -424,7 +424,7 @@ class OutputPage {
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$parserOutput->mHeadItems );
 		// Versioning...
-		$this->mTemplateIds += (array)$parserOutput->mTemplateIds;
+		$this->mTemplateIds = array_merge( $this->mTemplateIds, (array)$parserOutput->mTemplateIds );
 
 		// Display title
 		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
