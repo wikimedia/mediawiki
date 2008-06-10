@@ -1195,6 +1195,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'reuploaddesc'                => 'Abbrechen und zurück zur Hochladen-Seite',
 'uploadnologin'               => 'Nicht angemeldet',
 'uploadnologintext'           => 'Du musst [[Special:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
+'upload_directory_missing'    => 'Das Upload-Verzeichnis ($1) fehlt und konnte durch den Webserver auch nicht erstellt werden.',
 'upload_directory_read_only'  => 'Der Webserver hat keine Schreibrechte für das Upload-Verzeichnis ($1).',
 'uploaderror'                 => 'Fehler beim Hochladen',
 'uploadtext'                  => "Gehe zu der [[{{#special:Imagelist}}|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen.
