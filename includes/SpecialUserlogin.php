@@ -595,7 +595,7 @@ class LoginForm {
 		if ( $u->isPasswordReminderThrottled() ) {
 			global $wgPasswordReminderResendTime;
 			# Round the time in hours to 3 d.p., in case someone is specifying minutes or seconds.
-			$this->mainLoginForm( wfMsg( 'throttled-mailpassword',
+			$this->mainLoginForm( wfMsgExt( 'throttled-mailpassword', array( 'parsemag' ),
 				round( $wgPasswordReminderResendTime, 3 ) ) );
 			return;
 		}
