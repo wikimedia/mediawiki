@@ -1350,6 +1350,8 @@ END
 			// mode will show an extra newline. A bit annoying.
 			$encodedtext .= "\n";
 		}
+		
+		wfRunHooks( 'EditPage:BeforeDisplayingTextbox', array (&$this, &$hidden) );
 
 		$wgOut->addHTML( <<<END
 $recreate
@@ -1360,6 +1362,8 @@ $recreate
 cols='{$cols}'{$ew} $hidden>{$encodedtext}</textarea>
 END
 );
+
+		wfRunHooks( 'EditPage::AfterEdit:Form', array (&$this) );
 
 		$wgOut->wrapWikiMsg( "<div id=\"editpage-copywarn\">\n$1\n</div>", $copywarnMsg );
 		$wgOut->addHTML( $this->editFormTextAfterWarn );

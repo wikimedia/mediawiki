@@ -151,6 +151,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add a new hook LinkerMakeExternalLink to allow extensions to modify the output of
   external links.
 * (bug 14132) Allow user to disable bot edits from being output to UDP. 
+* Two new hooks in EditPage.php: EditPage::AfterEdit:Form and
+  EditPage:BeforeDisplayingTextbox
   
 === Bug fixes in 1.13 ===
 
