@@ -1537,7 +1537,7 @@ class User {
 
 			if( !$this->isValidPassword( $str ) ) {
 				global $wgMinimalPasswordLength;
-				throw new PasswordError( wfMsg( 'passwordtooshort',
+				throw new PasswordError( wfMsgExt( 'passwordtooshort', array( 'parsemag' ),
 					$wgMinimalPasswordLength ) );
 			}
 		}

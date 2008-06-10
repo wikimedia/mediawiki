@@ -271,7 +271,7 @@ class LoginForm {
 		# check for minimal password length
 		if ( !$u->isValidPassword( $this->mPassword ) ) {
 			if ( !$this->mCreateaccountMail ) {
-				$this->mainLoginForm( wfMsg( 'passwordtooshort', $wgMinimalPasswordLength ) );
+				$this->mainLoginForm( wfMsgExt( 'passwordtooshort', array( 'parsemag' ), $wgMinimalPasswordLength ) );
 				return false;
 			} else {
 				# do not force a password for account creation by email

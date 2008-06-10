@@ -905,7 +905,7 @@ Check your spelling.',
 'wrongpassword'              => 'Incorrect password entered. Please try again.',
 'wrongpasswordempty'         => 'Password entered was blank. Please try again.',
 'passwordtooshort'           => 'Your password is invalid or too short.
-It must have at least $1 characters and be different from your username.',
+It must have at least {{PLURAL:$1|1 character|$1 characters}} and be different from your username.',
 'mailmypassword'             => 'E-mail password',
 'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
 'passwordremindertext'       => 'Someone (probably you, from IP address $1)
