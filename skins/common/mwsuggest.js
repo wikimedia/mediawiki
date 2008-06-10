@@ -96,14 +96,16 @@ function os_encodeQuery(value){
   if(escape) {
     return escape(value);
   }
+  return null;
 }
 function os_decodeValue(value){
   if (decodeURIComponent) {
     return decodeURIComponent(value);
-  } 
+  }
   if(unescape){
   	return unescape(value);
   }
+  return null;
 }
 
 /** Brower-dependent functions to find window inner size, and scroll status */
@@ -452,7 +454,7 @@ function os_updateSearchQuery(r,newText){
 
 /** Find event target */
 function os_getTarget(e){
-	if (!e) var e = window.event;
+	if (!e) e = window.event;
 	if (e.target) return e.target;
 	else if (e.srcElement) return e.srcElement;
 	else return null;
@@ -525,7 +527,7 @@ function os_eventKeypress(e){
 
 /** Catch the key code (Firefox bug)  */
 function os_eventKeydown(e){
-	if (!e) var e = window.event;
+	if (!e) e = window.event;
 	var targ = os_getTarget(e);
 	var r = os_map[targ.id];
 	if(r == null)

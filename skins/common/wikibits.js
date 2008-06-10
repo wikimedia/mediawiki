@@ -58,7 +58,7 @@ function importScript(page) {
 var loadedScripts = {}; // included-scripts tracker
 function importScriptURI(url) {
 	if (loadedScripts[url]) {
-		return;
+		return null;
 	}
 	loadedScripts[url] = true;
 	var s = document.createElement('script');
