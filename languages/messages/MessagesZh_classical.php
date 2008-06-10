@@ -1352,7 +1352,7 @@ $NEWPAGE
 'cantrollback'                => '退修不成，作者獨也。',
 'alreadyrolled'               => '[[User:$2|$2]]（[[User talk:$2|議]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]]）',
 'editcomment'                 => '贊曰"<i>$1</i>"', # only shown if there is an edit comment
-'revertpage'                  => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]），復為[[User:$1|$1]]之本耳', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '去$1之作，復為$2之本耳。',
 'sessionfailure'              => '登簿有變。為防盜簿，返前重取再為之。',
 'protectlogpage'              => '誌緘',
@@ -1545,9 +1545,6 @@ $NEWPAGE
 'ipb_expiry_invalid'          => '屆期不明。',
 'ipb_expiry_temp'             => '藏簿禁封為長久也。',
 'ipb_already_blocked'         => '"$1"早禁矣',
-'ipb_modifying_block'         => '更現禁：',
-'ipb_tweak_block'             => '注：此簿（$1）為禁也。
-爾可用下表更禁也。',
 'ipb_cant_unblock'            => '有誤：禁$1無尋；或早赦矣。',
 'ipb_blocked_as_range'        => '錯：該IP $1 無直禁也，無赦之。唯它在 $2 之範禁內，其範可赦之。',
 'ip_range_invalid'            => 'IP址圍不格',

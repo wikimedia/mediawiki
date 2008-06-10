@@ -1612,7 +1612,7 @@ wiki: $PAGEEDITOR_WIKI
 
 上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。',
 'editcomment'                 => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯；恢復到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 'protectlogpage'              => '保護日誌',
@@ -1815,9 +1815,6 @@ $1',
 'ipb_expiry_invalid'          => '無效嘅期限。',
 'ipb_expiry_temp'             => '隱藏用戶名封鎖應該係永久性嘅。',
 'ipb_already_blocked'         => '"$1"已經封鎖咗',
-'ipb_modifying_block'         => '改現有嘅封鎖:',
-'ipb_tweak_block'             => '注意: 呢位用戶 ($1) 已經封鎖咗。
-你可以用呢份表格去改個封鎖設定。',
 'ipb_cant_unblock'            => '錯誤：搵唔到封鎖ID$1。可能已經解封咗。',
 'ipb_blocked_as_range'        => '錯誤：個IP $1 無直接封鎖，唔可以解封。但係佢係響 $2 嘅封鎖範圍之內，嗰段範圍係可以解封嘅。',
 'ip_range_invalid'            => '無效嘅IP範圍',
