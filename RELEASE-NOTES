@@ -360,6 +360,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   extension tables using uppercase letters or digits in their names.
 * (bug 12311) Fix regression with lists at start of undeletion preview
 * (bug 14496) Fix regression with parseinline on Special:Upload.
+* We no longer just give up on a missing upload base directory; it's now
+  created automatically if we have sufficient permissions!
+
 
 === API changes in 1.13 ===
 

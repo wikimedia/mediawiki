@@ -1577,6 +1577,7 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'reuploaddesc'                => 'Cancel upload and return to the upload form',
 'uploadnologin'               => 'Not logged in',
 'uploadnologintext'           => 'You must be [[Special:Userlogin|logged in]] to upload files.',
+'upload_directory_missing'    => 'The upload directory ($1) is missing and could not be created by the webserver.',
 'upload_directory_read_only'  => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'                 => 'Upload error',
 'upload-summary'              => '', # only translate this message to other languages if you have to change it
