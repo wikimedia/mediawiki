@@ -224,18 +224,18 @@ $messages = array(
 'category-article-count-limited' => 'En dä Saachrupp hee {{PLURAL:$1|es ein Sigg dren:|sin $1 Sigge dren:|es kein Sigg dren:}}',
 'category-file-count'            => 'En dä Saachrupp hee {{PLURAL:$2|es ein Datei dren:|sin $2 Dateie dren, {{PLURAL:$1|un dovun weed hee nur ein|un dovun weede $1 hee|ävver dovun weed hee kein}} aanjezeich:|es kein Datei dren.}}',
 'category-file-count-limited'    => 'En dä Saachrupp hee {{PLURAL:$1|es ein Datei dren:|sin $1 Dateie dren:|es kein Datei dren.}}',
-'listingcontinuesabbrev'         => 'wigger',
+'listingcontinuesabbrev'         => '— wigger',
 
 'mainpagetext'      => "<big>'''MediaWiki es jetz enstalleet.'''</big>",
-'mainpagedocfooter' => 'Luur en dä [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
+'mainpagedocfooter' => 'Luur en et (änglesche) [http://meta.wikimedia.org/wiki/Help:Contents Handboch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
 
-== Getting started ==
-
+== För dä Aanfang ==
+Dat es och all op Änglesch:
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
-'about'          => 'Üvver {{SITENAME}}',
+'about'          => 'Üvver',
 'article'        => 'Atikkel',
 'newwindow'      => '(Mäht e neu Finster op, wann Dinge Brauser dat kann)',
 'cancel'         => 'Stopp! Avbreche!',
@@ -243,11 +243,11 @@ $messages = array(
 'qbbrowse'       => 'Aanluure',
 'qbedit'         => 'Ändere',
 'qbpageoptions'  => 'Sigge Enstellunge',
-'qbpageinfo'     => 'Zosammehang',
+'qbpageinfo'     => 'Üvver de Sigg',
 'qbmyoptions'    => 'Ming Sigge',
 'qbspecialpages' => 'Spezial Sigge',
 'moredotdotdot'  => 'Mieh&nbsp;…',
-'mypage'         => 'Ming Sigg',
+'mypage'         => 'Ming Metmaacher-Sigg',
 'mytalk'         => 'ming Klaafsigg',
 'anontalk'       => 'Klaaf för de IP-Adress',
 'navigation'     => 'Jangk noh',
@@ -1309,7 +1309,7 @@ die sollt mer behalde.</small>",
 'wantedcategories-summary'        => 'He sin Saachjruppe opjeliss, die zwa en Sigge aanjejove sin un villeich och jebruch wäde, ävver noch nit aanjelaat sin.',
 'wantedpages'                     => 'Sigge, die mer noch nit han, die noch jebruch wääde',
 'wantedpages-summary'             => 'He sin Sigge opjeliss, die et noch nit jitt, wo ävver Hyperlinks vun andere Sigge drop jon.',
-'mostlinked'                      => 'Sigge met de miehste Links drop',
+'mostlinked'                      => 'Atikele met de miehste Links drop',
 'mostlinked-summary'              => 'He kumme för alle Appachtemangs de Sigge, wo de miihßte Lingks drop zëije.',
 'mostlinkedcategories'            => 'Saachjruppe met de miehste Links drop',
 'mostlinkedcategories-summary'    => 'Die Sondersigg hee zeich Saachjruppe, un zwa de am miehtß jebruchte et eets.',
@@ -1408,6 +1408,7 @@ eins vun all däm op eimol.',
 'categoriespagetext'            => 'Hee sin nur Saachjruppe met jät dren jeliss,
 * De nit anjelaate Saachjruppe met jät dren fingkd_Er norr_ens för sijj_allein op: [[{{#special:WantedCategories}}|{{int:wantedcategories}}]]
 * De aanjelaate Saachruppe met nix dren fingkd_Er nur op: [[{{#special:UnusedCategories}}|{{int:unusedcategories}}]].
+
 
 En hee dä Saachjrup{{PLURAL:$1||pe|}} en de {{SITENAME}} sin Saachjruppe, Sigge, Bellder, Tön uew. dren:',
 'special-categories-sort-count' => 'Zoteere noh de Aanzahl',
@@ -1908,14 +1909,13 @@ wat Dinge Client oder Brauser verstonn künnt.',
 'deletedrevision' => 'De ahl Version „$1“ es fottjeschmesse',
 
 # Browsing diffs
-'previousdiff' => '? De Ungerscheede dovör zeije',
-'nextdiff'     => 'De Ungerscheede donoh zeije ?',
+'previousdiff' => '← De Ungerscheede dovör zeije',
+'nextdiff'     => 'De Ungerscheede donoh zeije →',
 
 # Media information
 'mediawarning' => "<strong>Opjepass</strong>: En dä Datei künnt en <b>jefährlich Projrammstöck</b> dren stecke. Wa'mer et laufe looße dät, do künnt dä Sörver met för de Cracker opjemaht wääde. <hr />",
 'imagemaxsize' => 'Belder op de Sigge, wo se beschrevve wääde, nit jrößer maache wie:',
 'thumbsize'    => 'Esu breid solle de klein Beldche (Thumbnails/Breefmarke) sin:',
-'widthheight'  => '$1Ã—$2',
 
 # Special:Newimages
 'newimages'             => 'Belder, Tön, uew. als Jalerie',
@@ -1927,16 +1927,17 @@ wat Dinge Client oder Brauser verstonn künnt.',
 'bydate'                => 'nohm Datum',
 'sp-newimages-showfrom' => 'Zeich de neu Belder av däm $1 öm $2 Uhr',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => 'Sek.',
+'minutes-abbrev' => 'Min.',
+'hours-abbrev'   => 'Std.',
+
 # Metadata
 'metadata'          => 'Metadaate',
-'metadata-help'     => 'En dä Datei stich noh mieh an Daate dren. Dat sin Metadaate, die normal vum Opnahmejerät 
-kumme. Wat en Kamera, ne Scanner, un esu, do fassjehallde han, dat kann ävver späder met enem Projramm 
-bearbeidt un usjetuusch woode sin.',
+'metadata-help'     => 'En dä Datei stich noh mieh an Daate dren. Dat sin Metadaate, die normal vum Opnahmejerät kumme. Wat en Kamera, ne Scanner, un esu, do fassjehallde han, dat kann ävver späder met enem Projramm bearbeidt un usjetuusch woode sin.',
 'metadata-expand'   => 'Mieh zeije',
 'metadata-collapse' => 'Daate Versteche',
-'metadata-fields'   => 'EXIF metadata fields listed in this message will
-be included on image page display when the metadata table
-is collapsed. Others will be hidden by default.
+'metadata-fields'   => 'Felder us de EXIF Metadate, di hee opjeliss sen, zeich et Wiki op Beldersigge aan, wan de Metadate kleinjeklick sin. Di andere weede esu lang verstoche. Dat Versteiche is och der Standat.
 * make
 * model
 * datetimeoriginal
@@ -1961,7 +1962,7 @@ is collapsed. Others will be hidden by default.
 
 # External editor support
 'edit-externally'      => 'Dun de Datei met enem externe Projramm bei Dr om Rechner bearbeide',
-'edit-externally-help' => 'Luur op [http://meta.wikimedia.org/wiki/Help:External_editors Installationsanweisungen] noh Hinwies, wie mer esu en extern Projramm opsetz un installeere deit.',
+'edit-externally-help' => 'Luur en de [http://meta.wikimedia.org/wiki/Help:External_editors Installationsaanweisunge] noh Hinwies, wie mer esu en extern Projramm ennrechte un installeere deit.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
@@ -1972,28 +1973,19 @@ is collapsed. Others will be hidden by default.
 
 # E-mail address confirmation
 'confirmemail'            => 'E-Mail Adress bestätije',
-'confirmemail_noemail'    => 'En [[Special:Preferences||Ding Enstellunge]] es kein öntlich E-Mail Adress.',
-'confirmemail_text'       => 'Ih datte en däm Wiki hee de E-Mail bruche kanns, muss De Ding E-Mail Adress bestätich 
-han, dat se en Oodnung es un dat se och Ding eijene es. Klick op dä Knopp un Do kriss en E-Mail jescheck. Do 
-steiht ene Link met enem Code dren. Wann De met Dingem Brauser op dä Link jeihs, dann deis De domet 
-bestätije, dat et wirklich Ding E-Mail Adress es. Dat es nit allzo secher, alsu wör nix för Die 
-Bankkonto oder bei de Sparkass, ävver et sorg doför, dat nit jede Peijaß met Dinger E-Mail oder Dingem 
-Metmaachername eröm maache kann.',
+'confirmemail_noemail'    => 'En [[Special:Preferences|Ding Enstellunge]] es kein öntlich E-Mail Adress.',
+'confirmemail_text'       => 'Ih datte en däm Wiki hee de E-Mail bruche kanns, muss De Ding E-Mail Adress bestätich han, dat se en Oodnung es un dat se och Ding eijene es. Klick op dä Knopp un Do kriss en E-Mail jescheck. Do steiht ene Link met enem Code dren. Wann De met Dingem Brauser op dä Link jeihs, dann deis De domet bestätije, dat et wirklich Ding E-Mail Adress es. Dat es nit allzo secher, alsu wör nix för Die Bankkonto oder bei de Sparkass, ävver et sorg doför, dat nit jede Peijaß met Dinger E-Mail oder Dingem Metmaachername eröm maache kann.',
 'confirmemail_send'       => 'Scheck en E-Mail zem Bestätije',
-'confirmemail_sent'       => 'En E-Mail zem Bestätije es ungerwähs.',
+'confirmemail_sent'       => 'En E-Mail, för Ding E-Mail Adress ze bestätije, es ungerwähs.',
 'confirmemail_sendfailed' => "Beim E-Mail Adress Bestätije es jet donevve jejange, dä Sörver hatt e Problem met 
 sing Konfijuration, oder en Dinger E-Mail Adress es e Zeiche verkihrt, oder esu jet.
 
 Dä E-Mail-Sörver saat: ''$1''",
-'confirmemail_invalid'    => 'Beim E-Mail Adress Bestätije es jet donevve jejange, dä Code es verkihrt, künnt 
-avjelaufe jewäse sin.',
+'confirmemail_invalid'    => 'Et es jet donevve jejange, Ding E-Mail Adress es un bliev nit bestätich. Mööchlech, dä Code wohr verkihrt, hä künnt avjelaufe jewäse sin, oder esu jet. Versöök et noch ens.',
 'confirmemail_needlogin'  => 'Do muss Dich $1, för de E-Mail Adress ze bestätije.',
-'confirmemail_success'    => 'Ding E-Mail Adress es jetz bestätich. Jetz künns De och noch 
-
-[[Special:Userlogin|enlogge]]. Vill Spass!',
+'confirmemail_success'    => 'Ding E-Mail Adress es jetz bestätich. Jetz künns De och noch [[Special:Userlogin|enlogge]]. Vill Spass!',
 'confirmemail_loggedin'   => 'Ding E-Mail Adress es jetz bestätich!',
-'confirmemail_error'      => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit 
-avjespeichert wääde.',
+'confirmemail_error'      => 'Beim E-Mail Adress Bestätije es jet donevve jejange, de Bestätijung kunnt nit avjespeichert wääde.',
 'confirmemail_subject'    => 'Dun Ding E-Mail Adress bestätije för de {{SITENAME}}.',
 'confirmemail_body'       => 'Jod möchlich, Do wors et selver,
 vun de IP_Adress $1,
@@ -2039,7 +2031,7 @@ Ene schöne Jroß vun de {{SITENAME}}.
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacks för dä Atikkel hee:<br />
+Trackbacks för hee di Sigg:<br />
 „<strong>$1</strong>“
 </div>',
 'trackbackremove'   => ' ([$1 Fottschmieße])',
@@ -2048,14 +2040,13 @@ Trackbacks för dä Atikkel hee:<br />
 
 # Delete conflict
 'deletedwhileediting' => '<strong>Opjepass:</strong> De Sigg wood fottjeschmesse, nohdäm Do ald aanjefange häs, dran ze Ändere.',
-'confirmrecreate'     => 'Dä Metmaacher [[User:$1|$1]] (?[[User talk:$1|däm sing Klaafs]]) hät die Sigg 
-fottjeschmesse, nohdäm Do do dran et Ändere aanjefange häs. Dä Jrund:
+'confirmrecreate'     => 'Dä Metmaacher [[User:$1|$1]] ([[User talk:$1|Klaaf]]) hät die Sigg fottjeschmesse, nohdäm Do do dran et Ändere aanjefange häs. Dä Jrund:
 : „<i>$2</i>“
-Wells Do jetz met en neu Version die Sigg neu aanläje?',
-'recreate'            => 'Zeröckholle',
+Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
+'recreate'            => 'Widder neu aanlääje',
 
 # HTML dump
-'redirectingto' => 'Leit öm op „[[$1]]“...',
+'redirectingto' => 'Leit öm op: „[[$1]]“',
 
 # action=purge
 'confirm_purge'        => 'Dä Zweschespeicher för die Sigg fottschmieße?
@@ -2134,12 +2125,15 @@ Der Name moß ohne der Försatz „{{ns:image}}:“ aanjejovve wääde.',
 # Special:SpecialPages
 'specialpages'                   => 'Sondersigge',
 'specialpages-summary'           => 'Die Sondersigg hee zeich ene Övverbleck över de Sondersigge, die vum Wiki automatesch opjebout wäde un wo mer direk nix draan ändere kann.',
+'specialpages-note'              => "<h4 class='mw-specialpagesgroup'>Lejände:</h4><table style='width:100%;' class='mw-specialpages-table'><tr><td valign='top'><ul><li> Sondersigge för jede Metmaacher
+</li><li class='mw-specialpages-page mw-specialpagerestricted'>Sondersigge för Metmaacher met besöndere Räächte
+</li></ul></td></tr></table>",
 'specialpages-group-maintenance' => 'Waadungsleste',
 'specialpages-group-other'       => 'Ander Sondersigge',
 'specialpages-group-login'       => 'Aamelde',
 'specialpages-group-changes'     => 'Letzte Änderunge un Logböcher',
 'specialpages-group-media'       => 'Medie',
 'specialpages-group-users'       => 'Metmaacher un denne ier Rääschte',
-'specialpages-group-highuse'     => 'Sellde jebruchte Sigge',
+'specialpages-group-highuse'     => 'Öff jebruchte Sigge',
 
 );

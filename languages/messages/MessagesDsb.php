@@ -4,15 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Pe7er
- * @author Qualia
  * @author Nepl1
+ * @author Pe7er
+ * @author Michawiki
+ * @author Qualia
  * @author Dunak
  * @author Murjarik
  * @author Tlustulimu Nepl1
  * @author Dundak
- * @author Michawiki
- * @author Nike
  * @author Siebrand
  * @author Tlustulimu
  * @author SPQRobin
@@ -1022,6 +1021,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'right-createaccount'        => 'natworiś nowe wužywaŕske konto',
 'right-minoredit'            => 'Změny ako snadne markěrowaś',
 'right-move'                 => 'pśesunuś boki',
+'right-move-subpages'        => 'Boki ze swójimi pódbokami pśesunuś',
 'right-upload'               => 'lódowaś dataje',
 'right-reupload'             => 'Eksistujucu dataju pśepisaś',
 'right-reupload-own'         => 'Dataju nagratu wót togo samogo wužywarja pśepisaś',
@@ -1036,6 +1036,9 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'right-browsearchive'        => 'Wulašowane boki pytaś',
 'right-undelete'             => 'Bok wótnowiś',
 'right-suppressionlog'       => 'Priwatne protokole se wobglědowaś',
+'right-block'                => 'Drugim wužywarjam wobźěłowanje zawoboraś',
+'right-blockemail'           => 'Wužywarjoju słanje emailow zawoboraś',
+'right-hideuser'             => 'Wužywarske mě blokěrowaś a schowaś',
 'right-protect'              => 'Šćitowe schójźeńki změniś a šćitane boki wobźěłaś',
 'right-editprotected'        => 'Šćitane boki wobźěłaś (bśez kaskadowego šćita)',
 'right-editinterface'        => 'Wužywański pówjerch wobźěłaś',
@@ -1600,7 +1603,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 
 Slědnu změnu jo wugbał [[User:$3|$3]] ([[User_talk:$3|diskusija]]).',
 'editcomment'                 => 'Komentar ku slědnej změnje jo był: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Změny wót [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|pśinoski]]) su se slědk wzeli a slědna wersija wót $1 jo se nawrośiła.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Změny wót [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) su se wót [[User:$1|$1]] k slědnej wersiji nawrośili.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
 'sessionfailure'              => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
 Wěstoty dla jo akcija se pśetergnuła, aby se zadorało wopacnemu pśirědowanjoju twójeje změny drugemu wužywarjeju.

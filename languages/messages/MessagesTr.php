@@ -4,21 +4,21 @@
  * @ingroup Language
  * @file
  *
- * @author Uğur Başak
  * @author SPQRobin
  * @author Srhat
+ * @author Uğur Başak
  * @author Dbl2010
- * @author Erkan Yilmaz
- * @author Katpatuka
- * @author Karduelis
- * @author לערי ריינהארט
- * @author Siebrand
- * @author Nike
  * @author Suelnur
- * @author Myildirim2007
- * @author Mach
- * @author Mskyrider
+ * @author Erkan Yilmaz
+ * @author Karduelis
  * @author Runningfridgesrule
+ * @author Katpatuka
+ * @author Mach
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Mskyrider
+ * @author Nike
+ * @author Myildirim2007
  */
 
 $namespaceNames = array(
@@ -284,7 +284,7 @@ $messages = array(
 'ok'                      => 'TAMAM',
 'retrievedfrom'           => '"$1"\'dan alındı',
 'youhavenewmessages'      => 'Yeni <u>$1</u> var. ($2)',
-'newmessageslink'         => 'mesajınız',
+'newmessageslink'         => 'yeni mesajınız',
 'newmessagesdifflink'     => 'Bir önceki sürüme göre eklenen yazı farkı',
 'youhavenewmessagesmulti' => "$1'de yeni mesajınız var.",
 'editsection'             => 'değiştir',
@@ -348,6 +348,12 @@ $1',
 'readonlytext'         => 'Veritabanı olağan bakım/onarım çalışmaları sebebiyle, geçici olarak giriş ve değişiklik yapmaya kapatılmıştır. Kısa süre sonra normale dönecektir.
 
 Veritabanını kilitleyen operatörün açıklaması: $1',
+'missing-article'      => 'Veritabanı, bulunması istenen "$1" $2 isimli sayfaya ait metni bulamadı.
+
+Bu durum sayfanın, silinmiş bir sayfanın geçmiş sürümü olmasından kaynaklanabilir.
+
+Eğer neden bu değilse, yazılımda bir hata ile karşılaşmış olabilirsiniz
+Lütfen bunu bir yöneticiye, URL\'yi not ederek iletin',
 'missingarticle-rev'   => '(revizyon#: $1)',
 'missingarticle-diff'  => '(Fark: $1, $2)',
 'readonly_lag'         => 'Yedek sunucular ana sunucu ile güncellemeye çalışırken veritabanı otomatik olarak kilitlendi.',
@@ -375,6 +381,8 @@ Sorgu: $2',
 'viewsource'           => 'Kaynağı gör',
 'viewsourcefor'        => '$1 için',
 'actionthrottled'      => 'Eylem kısılmışdır',
+'actionthrottledtext'  => 'Anti-spam önlemleri nedeniyle, bir eylemi kısa bir zaman aralığında çok defa yapmanız kısıtlandı, ve siz sınırı aşmış bulunmaktasınız.
+Lütfen birkaç dakika sonra yeniden deneyin.',
 'protectedpagetext'    => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
 'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
 'protectedinterface'   => 'Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
@@ -531,6 +539,7 @@ Sizi engelleyen hizmetli: $1. Engelleme sebebi: \'\'$2\'\'.
 
 *Engellenmenin başlangıcı: $8
 *Engellenmenin bitişi: $6
+*Engellenme süresi: $7
 
 Belirtilen nedene göre engellenmenizin uygun olmadığını düşünüyorsanız, $1 ile ya da başka bir [[{{MediaWiki:Grouppage-sysop}}|hizmetli]] ile bu durumu görüşebilirsiniz.
 Eğer [[Special:Preferences|tercihler]] kısmında geçerli bir e-posta adresi girmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamazsınız.
@@ -683,10 +692,10 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'rev-delundel'                => 'göster/gizle',
 'revisiondelete'              => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',
-'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok.',
+'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok. Sunulmuş olan revizyon mevcut değil, veya mevcut revizyonu gizlemeye çalışıyorsunuz.',
 'revdelete-selected'          => '[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:',
-'logdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili kayıt olayı|seçili kayıt olayları}}:",
-'revdelete-legend'            => 'Kısıtlamaları ayarla',
+'logdelete-selected'          => '{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:',
+'revdelete-legend'            => 'Görünürlük kısıtlamaları ayarla',
 'revdelete-hide-text'         => 'Değişikilik yazısını gizle',
 'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
 'revdelete-hide-comment'      => 'Özeti gösterme',
@@ -899,7 +908,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'recentchanges'                     => 'Son değişiklikler',
 'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
-'rcnote'                            => '$3 (UTC) tarihinde son <strong>$2</strong> günde yapılan <strong>$1</strong> değişiklik:',
+'rcnote'                            => "$3 tarihi itibariyle, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rcnotefrom'                        => '<b>$2</b> tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> adet madde gösterilmektedir).',
 'rclistfrom'                        => '$1 tarihinden beri yapılan değişiklikleri göster',
 'rcshowhideminor'                   => 'küçük değişiklikleri $1',
@@ -924,7 +933,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'recentchangeslinked'          => 'İlgili değişiklikler',
 'recentchangeslinked-title'    => '"$1" ile ilişkili değişiklikler',
 'recentchangeslinked-noresult' => 'Verilen süre içerisinde belirtilen sayfaya bağlı diğer sayfalarda değişikilik bulunmamaktadır.',
-'recentchangeslinked-summary'  => "Bu özel sayfa belirtilen sayfaya bağlı olan sayfalarda yapılan değişiklikleri listeler. İzleme listenizde olan sayfalar '''kalın''' yazıyla gösterilir.",
+'recentchangeslinked-summary'  => "Aşağıdaki liste, belirtilen sayfaya (ya da belirtilen kategorinin üyelerine) bağlantı veren sayfalarda yapılan son değişikliklerin listesidir.
+[[Special:Watchlist|İzleme listenizdeki]] sayfalar '''kalın''' yazıyla belirtilmiştir.",
 'recentchangeslinked-page'     => 'Sayfa adı:',
 
 # Upload
@@ -1360,7 +1370,8 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protect-text'                => '[[$1]] sayfasının koruma durumunu buradan görebilir ve değiştirebilirsiniz. Lütfen [[Project:Koruma politikası|koruma politikasına]] uygun hareket ettiğinizden emin olunuz.',
 'protect-locked-access'       => 'Kullanıcı hesabınız sayfanın koruma düzeylerini değiştirme yetkisine sahip değil.
 <strong>$1</strong> sayfasının geçerli ayarları şunlardır:',
-'protect-cascadeon'           => 'Bu sayfa şu an koruma altındadır, çünkü aşağıda listelenen ve kademeli koruma altındaki $1 sayfada kullanılmaktadır. Bu sayfanın koruma seviyesini değiştirebilirsiniz, ancak kademeli koruma etkilenmeyecektir.',
+'protect-cascadeon'           => 'Bu sayfa, kademeli koruma aktif hale getirilmiş aşağıdaki {{PLURAL:$1|$1 sayfada|$1 sayfada}} kullanıldığı için şu an koruma altındadır.
+Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya etki etmeyecektir.',
 'protect-default'             => '(standart)',
 'protect-fallback'            => '"$1" izni gerektir',
 'protect-level-autoconfirmed' => 'kayıtlı olmayan değiştirmesin',

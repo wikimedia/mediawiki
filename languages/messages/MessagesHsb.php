@@ -6,12 +6,12 @@
  *
  * @author Dundak
  * @author Michawiki
- * @author Nike
  * @author Siebrand
- * @author לערי ריינהארט
- * @author SPQRobin
- * @author M.M.S.
  * @author Tlustulimu
+ * @author לערי ריינהארט
+ * @author M.M.S.
+ * @author Nike
+ * @author SPQRobin
  */
 
 $fallback = 'de';

@@ -4,14 +4,13 @@
  * @ingroup Language
  * @file
  *
+ * @author Candalua
  * @author Nick1915
  * @author BrokenArrow
+ * @author Siebrand
  * @author לערי ריינהארט
  * @author Nike
  * @author Jon Harald Søby
- * @author Siebrand
- * @author SPQRobin
- * @author Candalua
  */
 
 $fallback = 'it';

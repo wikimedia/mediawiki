@@ -6,15 +6,16 @@
  *
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
+ * @author Jan Friberg
  * @author Morten
  * @author Jon Harald Søby
- * @author Peter Andersen
  * @author M.M.S.
+ * @author Peter Andersen
  * @author Siebrand
- * @author H92
  * @author S.Örvarr.S
- * @author Jan Friberg
+ * @author H92
  * @author Ranveig
+ * @author Boivie
  */
 
 $namespaceNames = array(
@@ -526,7 +527,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'yourvariant'                => 'Sprogvariant',
 'yournick'                   => 'Kaldenavn:',
 'badsig'                     => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
-'badsiglength'               => 'Underskriften er for lang. Den må højst indeholde $1 tegn.',
+'badsiglength'               => 'Underskriften er for lang. Den må højst indeholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '* <strong>Dit rigtige navn</strong> (valgfrit): Hvis du vælger at oplyse dit navn vil dette blive brugt til at tilskrive dig dit arbejde.',
 'loginerror'                 => 'Fejl med at logge på',

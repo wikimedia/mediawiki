@@ -4,13 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Helix84
- * @author Maartenvdbent
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Pyt
+ * @author Siebrand
  * @author Nike
+ * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Maartenvdbent
  */
 
 $skinNames = array(

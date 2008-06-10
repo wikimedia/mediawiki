@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
- * @author לערי ריינהארט
- * @author Kaffi
  * @author Robby
- * @author Nike
+ * @author Kaffi
+ * @author SPQRobin
+ * @author לערי ריינהארט
+ * @author Siebrand
  * @author Jon Harald Søby
+ * @author Nike
  */
 
 $fallback = 'de';
@@ -1802,8 +1802,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'block-log-flags-noemail'     => 'E-Mail gespaart',
 'range_block_disabled'        => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_expiry_invalid'          => "D'Dauer déi Dir uginn hutt ass ongülteg.",
-'ipb_already_blocked'         => 'Opgepasst: "$1" ass scho gespaart.
-Dir kënnt d\'Asteelunge vun der Spär mat dësem Formulair änneren.',
+'ipb_already_blocked'         => '"$1" ass scho gespaart.',
 'ipb_cant_unblock'            => "Feeler: D'Nummer vun der Spär $1 gouf net fonnt. D'Spär gouf waarscheinlech schonn opgehuewen.",
 'ipb_blocked_as_range'        => "Feeler: D'IP-Adress $1 gouf net direkt gespaart an déi Spär kann dofir och net opghuee ginn.
 Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.",

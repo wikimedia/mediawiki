@@ -5,26 +5,26 @@
  * @file
  *
  * @author BrokenArrow
+ * @author Cruccone
+ * @author Melos
+ * @author Siebrand
+ * @author Darth Kule
  * @author Gianfranco
  * @author Felis
+ * @author Nemo bis
+ * @author לערי ריינהארט
+ * @author Ramac
  * @author Broc
  * @author .anaconda
- * @author Nick1915
- * @author Tonyfroio
- * @author Cruccone
- * @author Nike
- * @author Martorell
- * @author Cryptex
- * @author SabineCretella
- * @author לערי ריינהארט
- * @author Siebrand
- * @author SPQRobin
- * @author Candalua
  * @author S.Örvarr.S
- * @author Melos
- * @author Ramac
- * @author Darth Kule
- * @author Nemo bis
+ * @author Nick1915
+ * @author Nike
+ * @author SPQRobin
+ * @author Tonyfroio
+ * @author Martorell
+ * @author SabineCretella
+ * @author Candalua
+ * @author Cryptex
  */
 
 $namespaceNames = array(

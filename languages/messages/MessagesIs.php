@@ -4,16 +4,15 @@
  * @ingroup Language
  * @file
  *
+ * @author S.Örvarr.S
  * @author Steinninn
  * @author Jóna Þórunn
+ * @author לערי ריינהארט
+ * @author Spacebirdy
+ * @author Siebrand
  * @author Friðrik Bragi Dýrfjörð
  * @author Cessator
- * @author S.Örvarr.S
- * @author Spacebirdy
- * @author Nike
- * @author Siebrand
  * @author SPQRobin
- * @author לערי ריינהארט
  * @author M.M.S.
  * @author Jon Harald Søby
  */

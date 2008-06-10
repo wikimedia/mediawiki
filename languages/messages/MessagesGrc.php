@@ -7,12 +7,10 @@
  * @author LeighvsOptimvsMaximvs
  * @author Lefcant
  * @author AndreasJS
+ * @author Nychus
  * @author Neachili
  * @author SPQRobin
- * @author Nike
  * @author Yannos
- * @author Siebrand
- * @author Nychus
  */
 
 $dateFormats = array(
@@ -371,6 +369,7 @@ $messages = array(
 
 # Image description page
 'filehist'          => 'Τοῦ ἀρχείου συγγραφή',
+'filehist-current'  => 'Τὸ νῦν',
 'filehist-user'     => 'Χρώμενος',
 'filehist-filesize' => 'Μέγεθος',
 'filehist-comment'  => 'Σχόλιον',
@@ -409,6 +408,7 @@ $messages = array(
 # Special:Allpages
 'allpages'       => 'Πᾶσαι αἱ δέλτοι',
 'alphaindexline' => '$1 ἕως $2',
+'prevpage'       => 'Ἡ δέλτος ἡ προτέρη ($1)',
 'allarticles'    => 'Πάντες γραφαί',
 'allpagessubmit' => 'Ἰέναι',
 
@@ -441,6 +441,7 @@ $messages = array(
 'deletepage'          => 'Διαγράφειν τὴν δέλτον',
 'confirm'             => 'Κυροῦν',
 'exblank'             => 'δέλτος κενὴ ἦν',
+'deletedarticle'      => 'Ἐσβέσθη τὴν δέλτον "[[$1]]"',
 'protectcomment'      => 'Σχόλιον:',
 'protectexpiry'       => 'Ἐξήξει:',
 'protect-default'     => '(κριτήριον)',
@@ -494,6 +495,8 @@ $messages = array(
 'movenologin'      => 'Οὐ συνδεδεμένος',
 'newtitle'         => 'Πρὸς τὸ νέον ὄνομα:',
 'move-watch'       => 'Ἑφορᾶν τήνδε τὴν δέλτον',
+'movepagebtn'      => 'Κινεῖν τὴν δέλτον',
+'pagemovedsub'     => 'Κεκίνηται ἡ δέλτος',
 'movereason'       => 'Ἀπολογία:',
 
 # Namespace 8 related

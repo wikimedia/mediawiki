@@ -15,6 +15,7 @@ $rtl = true;
 
 $messages = array(
 # User preference toggles
+'tog-showtoolbar'         => 'سنوارپ اوزار دٻي ڏيکاريو (جاوا اسڪرپٽ)',
 'tog-watchcreations'      => 'منهنجا سرجيل صفحا منهنجي ٽيٽ فهرست ۾ رکو',
 'tog-watchdefault'        => 'منهنجا ترميميل صفحا منهنجي ٽيٽ فهرست تي رکو',
 'tog-watchdeletion'       => 'آئون جيڪي صفحا ڊاهيان، سي منهنجي ٽيٽ فهرست تي رکو',

@@ -6,18 +6,17 @@
  *
  * @author Suisui
  * @author Marine-Blue
+ * @author JtFuruhata
  * @author Broad-Sky
  * @author Kahusi
- * @author Nike
+ * @author Emk
  * @author Siebrand
  * @author Hatukanezumi
- * @author SPQRobin
- * @author Emk
- * @author לערי ריינהארט
- * @author Kkkdc
- * @author JtFuruhata
  * @author Mzm5zbC3
  * @author Iwai.masaharu
+ * @author לערי ריינהארט
+ * @author Kkkdc
+ * @author Nike
  */
 
 $skinNames = array(

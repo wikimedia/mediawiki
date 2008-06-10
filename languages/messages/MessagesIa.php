@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Malafaya
+ * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(

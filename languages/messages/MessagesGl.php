@@ -5,14 +5,13 @@
  * @file
  *
  * @author Alma
+ * @author Toliño
  * @author Prevert
  * @author Xosé
- * @author Lameiro
  * @author Siebrand
- * @author Nike
+ * @author Lameiro
  * @author לערי ריינהארט
  * @author SPQRobin
- * @author Toliño
  * @author Jon Harald Søby
  */
 
@@ -975,6 +974,7 @@ Se quere, pode [[:\$1|creala]].",
 'right-createaccount'        => 'Crear novas contas de usuario',
 'right-minoredit'            => 'Marcar as edicións como pequenas',
 'right-move'                 => 'Mover páxinas',
+'right-move-subpages'        => 'Mover páxinas coas súas subpáxinas',
 'right-suppressredirect'     => 'Non crear unha redirección dende o nome vello ao mover unha páxina',
 'right-upload'               => 'Cargar ficheiros',
 'right-reupload'             => 'Sobreescribir un ficheiro existente',

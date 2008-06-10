@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Bellayet
  * @author Zaheen
+ * @author Bellayet
  * @author Siebrand
- * @author Nike
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author Jon Harald Søby
@@ -63,7 +62,7 @@ $messages = array(
 'tog-previewontop'            => 'সম্পাদনা বাক্সের আগে প্রাকদর্শন দেখানো হোক',
 'tog-previewonfirst'          => 'প্রথম সম্পাদনার ক্ষেত্রে প্রাকদর্শন দেখানো হোক',
 'tog-nocache'                 => 'পাতা ক্যাশ করার ক্ষমতা নিষ্ক্রিয় করা হোক',
-'tog-enotifwatchlistpages'    => 'আমার নজরতালিকার কোন পাতাতে পরিবর্তন হলে আমাকে ই-মেইল করা হোক',
+'tog-enotifwatchlistpages'    => 'আমার নজর তালিকায় আছে এমন পাতাতে পরিবর্তন হলে তা জানিয়ে আমাকে ই-মেইল করো',
 'tog-enotifusertalkpages'     => 'আমার ব্যবহারকারী আলোচনা পাতার পরিবর্তন হলে আমাকে ই-মেইল করা হোক',
 'tog-enotifminoredits'        => 'পাতাগুলির অনুল্লেখ্য সম্পাদনার জন্যও আমাকে ই-মেইল করা হোক',
 'tog-enotifrevealaddr'        => 'বিজ্ঞপ্তি মেইলে আমার ই-মেইল ঠিকানা প্রকাশ করা হোক',

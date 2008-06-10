@@ -5,10 +5,9 @@
  * @file
  *
  * @author Lloffiwr
- * @author Nike
  * @author Siebrand
+ * @author Nike
  * @author לערי ריינהארט
- * @author SPQRobin
  */
 
 $namespaceNames = array(

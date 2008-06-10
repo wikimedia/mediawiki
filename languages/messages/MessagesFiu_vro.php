@@ -9,7 +9,6 @@
  * @author Nike
  * @author Võrok
  * @author SPQRobin
- * @author Siebrand
  * @author Jon Harald Søby
  */
 

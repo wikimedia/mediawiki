@@ -5,11 +5,11 @@
  * @file
  *
  * @author Better
- * @author Nike
  * @author Siebrand
- * @author SPQRobin
  * @author M.M.S.
+ * @author Nike
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $messages = array(

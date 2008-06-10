@@ -457,6 +457,12 @@ $1',
 'readonlytext'         => 'A base de dados está actualmente trancada para novas entradas e outras modificações, provavelmente por uma manutenção de rotina; a situação deverá ser normalizada dentro de algum tempo.
 
 Quem fez o bloqueio oferece a seguinte explicação: $1',
+'missing-article'      => 'A base de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome "$1" $2.
+
+Isto geralmente é causado pelo seguimento de uma ligação de diferença desactualizada ou de história de uma página que foi removida.
+
+Se não for este o caso, você pode ter encontrado um defeito no software.
+Por favor, reporte este facto a um administrador, fazendo notar a URL.',
 'missingarticle-rev'   => '(revisão#: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'A base de dados foi automaticamente bloqueada enquanto os servidores secundários se sincronizam com o principal',
@@ -1073,6 +1079,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-createaccount'        => 'Criar novas contas de utilizador',
 'right-minoredit'            => 'Marcar edições como menores',
 'right-move'                 => 'Mover páginas',
+'right-move-subpages'        => 'Mover páginas com as suas subpáginas',
 'right-suppressredirect'     => 'Não criar um redireccionamento do nome antigo quando uma página é movida',
 'right-upload'               => 'Carregar ficheiros',
 'right-reupload'             => 'Sobrescrever um ficheiro existente',
@@ -1104,6 +1111,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-editusercssjs'        => 'Editar os ficheiros CSS e JS de outros utilizadores',
 'right-rollback'             => 'Reverter rapidamente o último utilizador que editou uma página em particular',
 'right-markbotedits'         => 'Marcar edições revertidas como edições de bot',
+'right-noratelimit'          => 'Não afectado pelos limites de velocidade de operação',
 'right-import'               => 'Importar páginas de outros wikis',
 'right-importupload'         => 'Importar páginas de um ficheiro carregado',
 'right-patrol'               => 'Marcar edições como patrulhadas',
@@ -1418,6 +1426,7 @@ O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tare
 'popularpages'            => 'Páginas populares',
 'wantedcategories'        => 'Categorias pedidas',
 'wantedpages'             => 'Páginas pedidas',
+'missingfiles'            => 'Ficheiros em falta',
 'mostlinked'              => 'Páginas com mais afluentes',
 'mostlinkedcategories'    => 'Categorias com mais membros',
 'mostlinkedtemplates'     => 'Predefinições com mais afluentes',
@@ -1850,6 +1859,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'block-log-flags-noemail'     => 'impedido de enviar e-mail',
 'range_block_disabled'        => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'          => 'Tempo de expiração inválido.',
+'ipb_expiry_temp'             => 'Bloqueios com nome de utilizador ocultado devem ser permanentes.',
 'ipb_already_blocked'         => '"$1" já encontra-se bloqueado',
 'ipb_cant_unblock'            => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'ipb_blocked_as_range'        => 'Erro: O IP $1 não se encontra bloqueado de forma direta, não podendo ser desbloqueado deste modo. Se encontra bloqueado como parte do "range" $2, o qual pode ser desbloqueado.',
@@ -2633,8 +2643,9 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiais',
-'specialpages-note'              => '<hr />
-* As páginas especiais <span class="mw-specialpagerestricted">destacadas</span> são de acesso restrito.',
+'specialpages-note'              => '----
+* Páginas especiais normais.
+* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registar-se',

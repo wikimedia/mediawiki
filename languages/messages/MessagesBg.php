@@ -5,13 +5,11 @@
  * @file
  *
  * @author DCLXVI
- * @author לערי ריינהארט
- * @author Helix84
- * @author Spiritia
- * @author BloodIce
  * @author Borislav
+ * @author Spiritia
  * @author Siebrand
- * @author SPQRobin
+ * @author BloodIce
+ * @author לערי ריינהארט
  * @author Петър Петров
  * @author Daggerstab
  */

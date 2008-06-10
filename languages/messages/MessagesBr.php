@@ -5,10 +5,10 @@
  * @file
  *
  * @author Fulup
+ * @author לערי ריינהארט
+ * @author Siebrand
  * @author Nike
  * @author SPQRobin
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Jon Harald Søby
  */
 

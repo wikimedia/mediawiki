@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Chinneeb
+ * @author לערי ריינהארט
  * @author SPQRobin
- * @author Nike
  * @author Siebrand
+ * @author Nike
  */
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';

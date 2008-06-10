@@ -4,12 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author Helix84
  * @author 80686
- * @author לערי ריינהארט
  * @author Siebrand
- * @author Jon Harald Søby
+ * @author לערי ריינהארט
  * @author Spacebirdy
+ * @author Jon Harald Søby
  */
 
 $fallback = 'de';

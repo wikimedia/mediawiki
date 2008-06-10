@@ -5,10 +5,10 @@
  * @file
  *
  * @author Ghaly
+ * @author Ramsis1978
  * @author Alnokta
  * @author Nike
  * @author Meno25
- * @author Ramsis1978
  */
 
 $fallback = 'ar';
@@ -291,11 +291,19 @@ $messages = array(
 'tog-fancysig'                => 'امضاء خام (من غير لينك أوتوماتيكي)',
 'tog-externaleditor'          => 'استعمل محرر خارجي افتراضيا',
 'tog-externaldiff'            => 'استعمل فرق خارجي افتراضيا',
+'tog-showjumplinks'           => 'خلي وصلات "روح لـ" تكون شغالة.',
+'tog-uselivepreview'          => 'استخدم البروفة السريعة (جافاسكريبت) (تجريبي)',
+'tog-forceeditsummary'        => 'نبهني عند تدخيل ملخص للتعديل  فاضي',
+'tog-watchlisthideown'        => ' خبي التعديلات بتاعتي من لستة المراقبة',
+'tog-watchlisthidebots'       => 'خبي التعديلات بتاعة البوت من لستة المراقبة',
+'tog-watchlisthideminor'      => 'خبي التعديلات البسيطة من لستة المراقبة',
 'tog-ccmeonemails'            => 'ابعتلى  نسخ من رسايل الايميل اللى بابعتها لليوزرز التانيين',
+'tog-diffonly'                => 'ما تبين ش محتوى الصفحة تحت الفروقات',
 'tog-showhiddencats'          => 'بين التّصنيفات المستخبية',
 
-'underline-always' => 'دايما',
-'underline-never'  => 'ابدا',
+'underline-always'  => 'دايما',
+'underline-never'   => 'ابدا',
+'underline-default' => 'على حسب إعدادات المتصفح',
 
 'skinpreview' => '(بروفه)',
 
@@ -352,13 +360,29 @@ $messages = array(
 'dec'           => 'ديسمبر',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|تصنيف|تصانيف}}',
-'category_header'          => 'الصفحات فى التصنيف "$1"',
-'subcategories'            => 'التصنيفات الفرعيه',
-'category-media-header'    => 'ملفات الميديا فى التصنيف "$1"',
-'category-empty'           => "''التصنيف ده مافيهوش حاليا مقالات او ملفات ميديا.''",
-'hidden-category-category' => 'تصنيفات مستخبية', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'متابعه',
+'pagecategories'                 => '{{PLURAL:$1|تصنيف|تصانيف}}',
+'category_header'                => 'الصفحات فى التصنيف "$1"',
+'subcategories'                  => 'التصنيفات الفرعيه',
+'category-media-header'          => 'ملفات الميديا فى التصنيف "$1"',
+'category-empty'                 => "''التصنيف ده مافيهوش حاليا مقالات او ملفات ميديا.''",
+'hidden-categories'              => '{{PLURAL:$1|تصنيف مستخبي|تصنيفات مستخبية}}',
+'hidden-category-category'       => 'تصنيفات مستخبية', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2| التصنيف دا فيه  التصنيف الفرعي الجاي بس.|التصنيف دا فيه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}}، من إجمالي $2.}}',
+'category-subcat-count-limited'  => ' التصنيف دا فيه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}} كدا.',
+'category-article-count'         => '{{PLURAL:$2| التصنيف دا فيه  الصفحة دي بس.|تحت {{PLURAL:$1|ملف|$1 ملف}} في  التصنيف دا ، من إجمالي $2.}}',
+'category-article-count-limited' => 'تحت {{PLURAL:$1|صفحة|$1 صفحة}} في التصنيف الحالي.',
+'category-file-count'            => '{{PLURAL:$2| التصنيف دا  فيه الملف الجاي دا بس.|تحت {{PLURAL:$1|ملف|$1 ملف}} في  التصنيف دا، من إجمالي $2.}}',
+'category-file-count-limited'    => 'تحت {{PLURAL:$1|ملف|$1 ملف}} في التصنيف الحالي.',
+'listingcontinuesabbrev'         => 'متابعه',
+
+'mainpagetext'      => "<big>''' ميدياويكي اتنزلت بنجاح.'''</big>",
+'mainpagedocfooter' => 'اسال [http://meta.wikimedia.org/wiki/Help:Contents دليل اليوزر] للمعلومات حوالين استخدام برنامج الويكي.
+
+== البداية ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings لستة اعدادات الضبط]
+* [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة بتكرر حوالين الويكي ميديا]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الويكي ميديا]',
 
 'about'          => 'عن',
 'article'        => 'صفحة محتوى',
@@ -368,13 +392,18 @@ $messages = array(
 'qbbrowse'       => 'تصفح',
 'qbedit'         => 'عدل',
 'qbpageoptions'  => ' الصفحه دى',
+'qbpageinfo'     => 'السياق',
 'qbmyoptions'    => 'صفحاتى',
 'qbspecialpages' => 'الصفحات الخاصة',
 'moredotdotdot'  => 'اكتر...',
 'mypage'         => 'صفحتى',
 'mytalk'         => 'مناقشاتى',
 'anontalk'       => 'المناقشة مع عنوان الأيبي دا',
+'navigation'     => 'ابحار',
 'and'            => 'و',
+
+# Metadata in edit box
+'metadata_help' => 'ميتا داتا:',
 
 'errorpagetitle'    => 'غلطه',
 'returnto'          => 'ارجع ل $1.',
@@ -386,6 +415,7 @@ $messages = array(
 'searcharticle'     => 'روح',
 'history'           => 'تاريخ الصفحه',
 'history_short'     => 'تاريخ',
+'updatedmarker'     => 'اتحدثت بعد زيارتي الأخيرة',
 'info_short'        => 'معلومات',
 'printableversion'  => 'نسخه للطبع',
 'permalink'         => 'وصله مستديمه',
@@ -396,26 +426,36 @@ $messages = array(
 'create-this-page'  => 'أنشيء الصفحه دى',
 'delete'            => 'مسح',
 'deletethispage'    => 'امسح الصفحه دى',
+'undelete_short'    => 'استرجاع {{PLURAL:$1|تعديل واحد|تعديلان|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'protect'           => 'حمايه',
 'protect_change'    => 'غير الحماية',
 'protectthispage'   => 'احمى الصفحه دى',
+'unprotect'         => 'الغي الحماية',
 'unprotectthispage' => 'شيل حماية الصفحه دى',
 'newpage'           => 'صفحه جديده',
 'talkpage'          => 'ناقش الصفحه دى',
 'talkpagelinktext'  => 'مناقشه',
 'specialpage'       => 'صفحة مخصوصة',
 'personaltools'     => 'ادوات شخصيه',
+'postcomment'       => 'ابعت تعليق',
 'articlepage'       => 'بين صفحة المحتوى',
 'talk'              => 'مناقشه',
 'views'             => 'مشاهده',
 'toolbox'           => 'علبة العده',
+'userpage'          => 'عرض صفحة اليوزر',
 'projectpage'       => 'عرض صفحة المشروع',
+'imagepage'         => 'عرض صفحة الميديا',
+'mediawikipage'     => 'عرض صفحة الرسالة',
+'templatepage'      => 'عرض صفحة القالب',
 'viewhelppage'      => 'بين صفحة المساعدة',
+'categorypage'      => 'عرض صفحة التصنيف',
 'viewtalkpage'      => 'بين المناقشة',
 'otherlanguages'    => 'بلغات تانيه',
 'redirectedfrom'    => '(تحويل من $1)',
 'redirectpagesub'   => 'صفحة تحويل',
 'lastmodifiedat'    => 'الصفحة دي اتعدلت اخر مرة في $2، $1.', # $1 date, $2 time
+'viewcount'         => 'الصفحة دي اتدخل عليها{{PLURAL:$1|مرة واحدة|مرتين|$1 مرات|$1 مرة}}.',
+'protectedpage'     => 'صفحه محميه',
 'jumpto'            => 'روح على:',
 'jumptonavigation'  => 'ناڤيجيشن',
 'jumptosearch'      => 'تدوير',
@@ -425,6 +465,8 @@ $messages = array(
 'aboutpage'            => 'Project:  معلومات عن',
 'bugreports'           => 'بلاغ الاخطاء',
 'bugreportspage'       => 'Project:تبليغ اخطاء',
+'copyright'            => 'المحتوى موجود تحت $1.',
+'copyrightpagename'    => 'حقوق النسخ في {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:حقوق النسخ',
 'currentevents'        => 'الاحداث الحاليه',
 'currentevents-url'    => 'Project:الاحداث الحاليه',
@@ -447,6 +489,10 @@ $messages = array(
 
 'badaccess'        => 'غلطه فى السماح',
 'badaccess-group0' => 'انت مش مسموح لك تنفذ الطلب بتاعك',
+'badaccess-group1' => 'الفعل االلي طلبته مسموح بس لليوزرز في المجموعة $1.',
+'badaccess-group2' => 'الفعل اللي طلبته مسموح بس لليوزرز في واحدة من المجموعات $1.',
+
+'versionrequired' => 'لازم نسخة $1 من ميدياويكي',
 
 'ok'                      => 'موافئ',
 'retrievedfrom'           => 'اتجابت من "$1"',
@@ -456,6 +502,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'عندك ميسيدج جديدة في $1',
 'editsection'             => 'تعديل',
 'editold'                 => 'تعديل',
+'viewsourceold'           => 'عرض المصدر',
 'editsectionhint'         => 'تعديل جزء : $1',
 'toc'                     => 'المحتويات',
 'showtoc'                 => 'عرض',
@@ -706,10 +753,12 @@ $1',
 'grouppage-sysop' => '{{ns:project}}:اداريين',
 
 # Rights
-'right-upload'       => 'حمل الملفات',
-'right-import'       => 'استيراد الصفحات من ويكيات تانيه',
-'right-importupload' => 'استيراد الصفحات من فايل متحمل',
-'right-siteadmin'    => 'قفل وفتح قاعدة البيانات',
+'right-upload'        => 'حمل الملفات',
+'right-autoconfirmed' => 'تعديل الصفحات  النص محميه',
+'right-delete'        => 'مسح الصفحات',
+'right-import'        => 'استيراد الصفحات من ويكيات تانيه',
+'right-importupload'  => 'استيراد الصفحات من فايل متحمل',
+'right-siteadmin'     => 'قفل وفتح قاعدة البيانات',
 
 # User rights log
 'rightslog'  => 'سجل صلاحيات اليوزرز',
@@ -754,6 +803,7 @@ $1',
 'uploaderror'    => 'غلطه فى التحميل',
 'uploadlogpage'  => 'سجل التحميل',
 'filename'       => 'اسم الملف',
+'ignorewarnings' => 'اتجاهل اى تحذير',
 'uploadedimage'  => 'اتحمل "[[$1]]"',
 'uploadvirus'    => 'الملف فيه فيروس! التفاصيل: $1',
 'sourcefilename' => 'اسم الملف  بتاع المصدر:',
@@ -897,7 +947,7 @@ $1',
 'watching'   => 'راقب...',
 'unwatching' => 'بطل مراقبه...',
 
-'enotif_newpagetext' => 'الصفحه دى جديده.',
+'enotif_newpagetext' => 'دى صفحه جديده.',
 'changed'            => 'اتغيرت',
 
 # Delete/protect/revert

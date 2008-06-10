@@ -4,16 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Kwekubo
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Alison
- * @author Helix84
- * @author SPQRobin
- * @author Nike
- * @author Spacebirdy
- * @author Jon Harald Søby
  * @author Moilleadóir
+ * @author SPQRobin
+ * @author Spacebirdy
+ * @author Kwekubo
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -467,7 +465,7 @@ Tá fianáin díchumasaithe agat.
 Cumasaigh iad agus bain triail eile as, le do thoil.',
 'noname'                     => 'Níor thug tú ainm úsáideora bailí.',
 'loginsuccesstitle'          => 'Logáil isteach rathúil',
-'loginsuccess'               => 'Tá tú logáilte isteach anois sa {{SITENAME}} mar "$1".',
+'loginsuccess'               => "'''Tá tú logáilte isteach anois sa {{SITENAME}} mar \"<nowiki>\$1</nowiki>\".'''",
 'nosuchuser'                 => 'Níl aon úsáideoir ann leis an ainm "$1".
 Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora nua a chruthú.',
 'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "<nowiki>$1</nowiki>". Cinntigh do litriú.',
@@ -1480,7 +1478,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 
 # Browsing diffs
 'previousdiff' => '← An difríocht roimhe seo',
-'nextdiff'     => 'An difríocht i ndiadh seo &rarr;',
+'nextdiff'     => 'An chéad dhifear eile →',
 
 # Media information
 'mediawarning'         => "'''Aire''': Tá seans ann go bhfuil cód mailíseach sa comhad seo - b'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.

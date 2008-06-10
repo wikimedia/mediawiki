@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Numulunj pilgae
  * @author Kranch
+ * @author Numulunj pilgae
+ * @author Khazar II
+ * @author Siebrand
  * @author Nike
  * @author SPQRobin
- * @author Siebrand
  * @author Jon Harald Søby
- * @author Khazar II
  */
 
 $fallbak = 'ru';
@@ -928,6 +928,7 @@ $3 макссь туфталсь - ''$2''",
 'right-createaccount'        => 'Тиемс од тиить сёрматфтоматне',
 'right-minoredit'            => 'Тяштемс петнемат кода йомланя видептемат',
 'right-move'                 => 'Йотафтомс лопат',
+'right-move-subpages'        => 'Йотафтомс лопатнень иля вастс синь сублопаснон мархта',
 'right-suppressredirect'     => 'Аф тиемс йотафтома ингольдень лемста од лемс лопань йотафтомда',
 'right-upload'               => 'Тонгомс файлхт',
 'right-reupload'             => 'Тиемс тяниень файлть одукс',
@@ -1690,6 +1691,7 @@ $1',
 'block-log-flags-noemail'     => 'электрононь адрессь пякстазь',
 'range_block_disabled'        => 'Тяни оцю пякстафксне аф тиевихть системонь вятикснень эса.',
 'ipb_expiry_invalid'          => 'Аф кондясти сирелгодома пинге.',
+'ipb_expiry_temp'             => 'Кяшф тиинь лемть сёлгоматне мъзярдонга аф полафтовихть.',
 'ipb_already_blocked'         => '"$1" сёлкфоль ни',
 'ipb_cant_unblock'            => 'Эльбятькс: ID $1-нь кардафксоц аф муви. Улема, тя кардафкссь валхтфоль ни.',
 'ipb_blocked_as_range'        => 'Эльбятькс: IP $1 аф кардаф видеста ди соннеда аш кода кардафкссь валхтомс.

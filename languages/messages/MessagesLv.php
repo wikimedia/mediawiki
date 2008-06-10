@@ -10,7 +10,6 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
- * @author Nike
  * @author Jon Harald Søby
  * @author M.M.S.
  */

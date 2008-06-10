@@ -8,8 +8,8 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Nike
- * @author Teak
  * @author Jon Harald Søby
+ * @author Teak
  */
 
 $namespaceNames = array(

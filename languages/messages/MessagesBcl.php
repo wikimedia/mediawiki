@@ -9,7 +9,6 @@
  * @author Siebrand Mazeland
  * @author Niklas Laxström
  * @author Siebrand
- * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
  */

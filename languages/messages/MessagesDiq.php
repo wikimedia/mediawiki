@@ -4,13 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Mirzali
+ * @author Belekvor
  * @author Nike
  * @author Siebrand
+ * @author SPQRobin
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -166,6 +165,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'print'             => 'çap ke',
 'edit'              => 'bıvurne',
 'editthispage'      => 'Ena pele bıvurne',
+'create-this-page'  => 'Na pele bınuse',
 'delete'            => 'bıestere',
 'deletethispage'    => 'Ena pele bıestere',
 'undelete_short'    => 'Vurnayışê $1 peyser bia',
@@ -224,51 +224,83 @@ href="" class="internal"}?{/a}) bımocne.',
 
 'badaccess' => 'Xeta mısadey',
 
-'ok'          => 'Temam',
-'editsection' => 'bıvurne',
-'editold'     => 'bıvurne',
-'toc'         => 'Tedeestey',
-'showtoc'     => 'bımocne',
-'hidetoc'     => 'bınımne',
+'ok'                      => 'Temam',
+'youhavenewmessages'      => 'To rê estê $1 ($2).',
+'newmessageslink'         => 'mesajê newey',
+'newmessagesdifflink'     => 'vurnayışo peyên',
+'youhavenewmessagesmulti' => 'To rê $1 de mesajê newey estê',
+'editsection'             => 'bıvurne',
+'editold'                 => 'bıvurne',
+'toc'                     => 'Tedeestey',
+'showtoc'                 => 'bımocne',
+'hidetoc'                 => 'bınımne',
+'thisisdeleted'           => 'Bıvêne ya ki restore ke $1?',
+'viewdeleted'             => '$1 bıvêne?',
+'restorelink'             => '{{PLURAL:$1|yew vurnayışo esterıte (pakbiyae)|$1 vurnayışê esterıtey (pakbiyaey)}}',
+'feedlinks'               => 'Weyikerdış (feed):',
+'feed-invalid'            => 'Invalid subscription feed type (Beğşo nêvêrde).',
+'red-link-title'          => '$1 (heta nıka nênusiyao)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'nuşte',
 'nstab-user'      => 'Pela Karberi',
 'nstab-media'     => 'Pela Medya',
+'nstab-special'   => 'xas',
 'nstab-project'   => 'Pela Procey',
 'nstab-image'     => 'Dosya',
 'nstab-mediawiki' => 'Mesaj',
+'nstab-template'  => 'Şablon',
 'nstab-help'      => 'Pela Pheşti',
 'nstab-category'  => 'Kategoriye',
 
+# Main script and global functions
+'nosuchaction'      => 'Faliyeto henên/otir çino',
+'nosuchspecialpage' => 'Pela xasa henêne/otir çina',
+'nospecialpagetext' => "<big>'''To yew pela xasa nêvêrdiye waşte.'''</big>
+
+Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:Specialpages|{{int:specialpages}}]].",
+
 # General errors
-'error'      => 'Ğelet',
-'viewsource' => 'Çımey bıvêne',
+'error'               => 'Ğelet',
+'badtitle'            => 'Sernameya xırabe',
+'perfdisabled'        => 'Qusır de seyrmeke! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
+'viewsource'          => 'Çımey bıvêne',
+'viewsourcefor'       => 'Seba / qandê $1',
+'viewsourcetext'      => 'To şikinay çımey na pele bıvêne u kopya kerê:',
+'ns-specialprotected' => 'Pelê xasi nênê vurnayış.',
 
 # Login and logout pages
-'logouttitle'        => 'Veciyaena karberi',
-'loginpagetitle'     => 'Cıkewtena karberi',
-'yourname'           => 'Namey karberi',
-'yourpassword'       => 'Parola',
-'yourpasswordagain'  => 'Parola reyna bınusne',
-'remembermypassword' => 'Na/In komputer de mı biya xo viri',
-'login'              => 'Cıkewe',
-'loginprompt'        => "Seba ke mumkın bo şıma bıkewê pela {{SITENAME}}, programê internetê şıma de ''cookies''i gereke aktifi bê.",
-'userlogin'          => 'Cıkewe ya ki hesab vıraze',
-'logout'             => 'Veciye',
-'userlogout'         => 'Veciye',
-'nologin'            => 'Hesabê şıma çıniyo? $1.',
-'nologinlink'        => 'Yewê akerê',
-'createaccount'      => 'hesab vıraze',
-'gotaccount'         => 'Hesabê şıma esto? $1.',
-'gotaccountlink'     => 'Cıkewe',
-'createaccountmail'  => 'Mı rê e-mail sera parola bırışe',
-'youremail'          => 'E-Mail (mecbur niyo) *:',
-'username'           => 'Namey karberi:',
-'yourrealname'       => 'Namo raştıkên:',
-'yourlanguage'       => 'Zıwan:',
-'mailmypassword'     => 'Mı rê e-mail sera parola bırışe',
-'loginlanguagelabel' => 'Zıwan: $1',
+'logouttitle'               => 'Veciyaena karberi',
+'loginpagetitle'            => 'Cıkewtena karberi',
+'yourname'                  => 'Namey karberi',
+'yourpassword'              => 'Parola',
+'yourpasswordagain'         => 'Parola reyna bınusne',
+'remembermypassword'        => 'Na/In komputer de mı biya xo viri',
+'login'                     => 'Cıkewe',
+'loginprompt'               => "Seba ke mumkın bo şıma bıkewê pela {{SITENAME}}, programê internetê şıma de ''cookies''i gereke aktifi bê.",
+'userlogin'                 => 'Cıkewe ya ki hesab vıraze',
+'logout'                    => 'Veciye',
+'userlogout'                => 'Veciye',
+'nologin'                   => 'Hesabê şıma çıniyo? $1.',
+'nologinlink'               => 'Yewê akerê',
+'createaccount'             => 'hesab vıraze',
+'gotaccount'                => 'Hesabê şıma esto? $1.',
+'gotaccountlink'            => 'Cıkewe',
+'createaccountmail'         => 'Mı rê e-mail sera parola bırışe',
+'youremail'                 => 'E-Mail (mecbur niyo) *:',
+'username'                  => 'Namey karberi:',
+'uid'                       => 'Namey karberi:',
+'yourrealname'              => 'Namo raştıkên:',
+'yourlanguage'              => 'Zıwan:',
+'yournick'                  => 'imza:',
+'prefs-help-realname'       => 'Nameo raşt waştena şıma rê mendo.
+If you choose to provide it, this will be used for giving you attribution for your work.',
+'prefs-help-email-required' => 'E-mail adrese mecburiya.',
+'wrongpassword'             => 'Parola ğeleta. Rêna / fına bıcerrebne .',
+'passwordtooshort'          => 'Parola to nêvêrena ya ki zaf kılma.
+It must have at least $1 characters and be different from your username.',
+'mailmypassword'            => 'Mı rê e-mail sera parola bırışe',
+'loginlanguagelabel'        => 'Zıwan: $1',
 
 # Edit pages
 'savearticle'  => 'Ena pele qeyd ke',
@@ -287,6 +319,7 @@ href="" class="internal"}?{/a}) bımocne.',
 
 # Preferences page
 'mypreferences'   => 'tercihê mı',
+'qbsettings-none' => 'çino',
 'prefs-personal'  => 'Pela karberi',
 'prefs-rc'        => 'Vurnayışê peyêni',
 'prefs-watchlist' => 'Lista seyr-kerdışi',
@@ -296,6 +329,9 @@ href="" class="internal"}?{/a}) bımocne.',
 'retypenew'       => 'Parola newiye tekrar ke:',
 'timezonelegend'  => 'Warey saete',
 'files'           => 'Dosyey',
+
+# User rights log
+'rightsnone' => '(çino)',
 
 # Recent changes
 'recentchanges' => 'Vurnayışê peyêni',
@@ -394,6 +430,8 @@ href="" class="internal"}?{/a}) bımocne.',
 
 # Special:Newimages
 'ilsubmit' => 'Cıgeyre',
+
+'exif-gaincontrol-0' => 'çino',
 
 # AJAX search
 'articletitles' => "Perri be ''$1'' dest cı kenê",

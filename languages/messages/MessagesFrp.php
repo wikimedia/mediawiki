@@ -5,11 +5,11 @@
  * @file
  *
  * @author ChrisPtDe
- * @author Nike
  * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
+ * @author Nike
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'fr';

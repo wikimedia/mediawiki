@@ -5,11 +5,10 @@
  * @file
  *
  * @author Esbardu
- * @author Helix84
  * @author Mikel
  * @author SPQRobin
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author Nike
  */
 

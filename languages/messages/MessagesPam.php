@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Val2397
  * @author Katimawan2005
- * @author SPQRobin
+ * @author Val2397
  * @author Siebrand
+ * @author SPQRobin
  * @author Nike
  */
 
