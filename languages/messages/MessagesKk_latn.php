@@ -699,7 +699,7 @@ $1',
 'readonlytext'         => 'Bul derekqor jañadan jazw jäne basqa özgerister jasawdan ağımda qulıptalınğan, mümkin künde-kün derekqordı baptaw üşin, bunı bitirgennen soñ qalıptı iske qaýtarıladı.
 
 Qulıptağan äkimşi bunı bılaý tüsindiredi: $1',
-'missing-article'       => 'Bar bolwı jön bılaý atalğan bet mätini derekqorda tabılmadı: «$1» $2.
+'missing-article'      => 'Bar bolwı jön bılaý atalğan bet mätini derekqorda tabılmadı: «$1» $2.
 
 Bul eskirgen aýırma siltemesine nemese joýılğan bet tarïxı siltemesine ergennen bola beredi.
 
@@ -2162,9 +2162,6 @@ Ağımdağı belsendi tïımdar men buğattawlardı [[{{#special:Ipblocklist}}|I
 'ipb_expiry_invalid'          => 'Bitetin waqıtı jaramsız.',
 'ipb_expiry_temp'             => 'Jasırılğan qatıswşı atın buğattawı mäñgi bolwı jön.',
 'ipb_already_blocked'         => '«$1» aldaqaşan buğattalğan',
-'ipb_modifying_block'         => 'Bolğan buğattawdı özgertw:',
-'ipb_tweak_block'             => 'Qulaqtandırw: Bul qatıswşı ($1) aldaqaşan buğattalğan.
-Buğattaw baptalımdarın qoyw üşin bul pişindi qoldana alasız.',
 'ipb_cant_unblock'            => 'Qatelik: IP $1 buğattawı tabılmadı. Onıñ buğattawı aldaqaşan öşirlgen mümkin.',
 'ipb_blocked_as_range'        => 'Qatelik: IP $1 tikeleý buğattalmağan jäne buğattawı öşirilmeýdi.
 Biraq, bul buğattawı öşirilwi mümkin $2 awqımı böligi bop buğattalğan.',
