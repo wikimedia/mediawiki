@@ -179,4 +179,16 @@ class Status {
 		}
 		return $result;
 	}
+
+	/**
+	 * Returns true if the specified message is present as a warning or error
+	 */
+	function hasMessage( $msg ) {
+		foreach ( $this->errors as $error ) {
+			if ( $error['message'] === $msg ) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
