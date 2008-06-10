@@ -8,8 +8,8 @@
  * @author Sab
  * @author Siebrand
  * @author SPQRobin
- * @author Nike
  * @author Nkosi ya Cabinda
+ * @author Nike
  */
 
 $messages = array(
@@ -839,6 +839,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'right-createaccount'        => 'Pataredura ke warzaf favesik',
 'right-minoredit'            => 'Tcalara wetce betamaks',
 'right-move'                 => 'Buarrundara',
+'right-move-subpages'        => 'Arrundara va bu do volveybu',
 'right-suppressredirect'     => 'Buarrundara va graskara male savsaf yolt me redur',
 'right-upload'               => 'Iyeltakkalvajara',
 'right-reupload'             => 'Selura va kruldes iyeltak',
@@ -847,6 +848,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'right-autoconfirmed'        => 'Betara va mialon nendanu bu',
 'right-bot'                  => 'Skura wetce mivaskafa diotetca',
 'right-apihighlimits'        => 'Favera va API kimapa',
+'right-writeapi'             => 'Favera va API suterabolk',
 'right-delete'               => 'Busulara',
 'right-bigdelete'            => 'Sulara va izkotapkirafu bu',
 'right-deleterevision'       => 'Sulara va aptaf bubetaks iku dimsulara',
@@ -868,6 +870,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'right-patrol'               => 'Tcalara va fieyen betaks',
 'right-patrolmarks'          => 'Rupera va noeltafa fieratcala',
 'right-unwatchedpages'       => 'Wira va medisukeyenu bu',
+'right-trackback'            => 'Erura va suzdara',
 'right-mergehistory'         => 'Jera va buizvot',
 'right-userrights'           => 'Betara va favesikrokeem',
 'right-userrights-interwiki' => "Betara va favesikrokeem koe aro 'wiki' xo",
@@ -965,6 +968,7 @@ Va amidaf yolt vay kiblal !',
 Ede stujen iyeltak tir mila lumanhafa ewava, va aptaf aluk me kalvajal !',
 'fileexists-forbidden'        => 'Milyoltaf iyeltak ixam krulder; vay dimpil aze va memilyoltaf bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Koe pakana bonja milyoltaf iyeltak ixam tir; vay dimpil aze kan ar yolt va bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Bat iyeltak tir jontolaca ke {{PLURAL:$1|iyeltak|iyeltak}}:',
 'successfulupload'            => 'Ksudanhara',
 'uploadwarning'               => 'Obral !',
 'savefile'                    => 'Giwara va iyeltak',
@@ -1027,6 +1031,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'nolinkstoimage'                 => 'Meku bu va bata ewava ruldar.',
 'morelinkstoimage'               => 'Rupera va [[Special:Whatlinkshere/$1|lofi skedasiki]] va bat iyeltak.',
 'redirectstofile'                => 'Vlevef iyeltak kal ban graskad :',
+'duplicatesoffile'               => 'Bat iyeltak tid jontolaca ke bat iyeltak:',
 'sharedupload'                   => 'Bat iyeltak tir dof nume gan ar abdumimaks zo rofaver.',
 'shareduploadwiki'               => 'Ta lo giva va $1 vay disukel !',
 'shareduploadwiki-desc'          => 'Pimtara icde intaf $1 koe solparsani vargi vleveon zo nedir.',
@@ -1364,7 +1369,7 @@ Bazen bartiv tir tel ke (UTC) zanisiko.',
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'editcomment'                 => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos gan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
 'protectlogpage'              => 'Izvot va nendareem',
 'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:Protectedpages|nendan bueem]] wil.',
@@ -1596,6 +1601,9 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'movedto'                 => 'Tolyoltayan ton',
 'movetalk'                => "Renommer aussi la page « discussion », s'il y a lieu.",
+'movepage-page-exists'    => '$1 bu ixam tir nume me balkon zo rotolsuter.',
+'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.',
+'movepage-page-unmoved'   => '$1 bu ko $2 me al zo rotarrundar.',
 '1movedto2'               => '$1 arbureyen kal $2',
 '1movedto2_redir'         => '$1 arbureyen kal $2 (graskara)',
 'movelogpage'             => 'Arrundara va "log" bu',

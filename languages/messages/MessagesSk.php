@@ -461,6 +461,12 @@ $1',
 'readonlytext'         => 'Databáza je momentálne zamknutá, nové stránky a úpravy sú zablokované, pravdepodobne z dôvodu údržby databázy. Po skončení tejto údržby bude {{SITENAME}} opäť fungovať normálne.
 
 Správca, ktorý nariadil uzamknutie, uvádza tento dôvod: $1',
+'missing-article'      => 'Text stránky s názvom „$1” $2, ktorú ste požadovali, nebol nájdený v databáze. 
+
+To sa zvyčajne stane, keď kliknete na zastaralý odkaz na rozdiel alebo do histórie stránky, ktorá bola zmazaná.
+
+Ak to tak nie je, je možné, že ste našli chybu v softvéri.
+Oznámte to prosím správcovi a uveďte URL.',
 'missingarticle-rev'   => '(č. revízie: $1)',
 'missingarticle-diff'  => '(rozdiel: $1, $2)',
 'readonly_lag'         => 'Databáza bola automaticky zamknutá pokým záložné databázové servery nedoženú hlavný server',
@@ -1086,6 +1092,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'right-createaccount'        => 'Vytvárať nové používateľské účty',
 'right-minoredit'            => 'Označovať úpravy ako drobné',
 'right-move'                 => 'Presúvať stránky',
+'right-move-subpages'        => 'Presunúť stránky aj s podstránkami',
 'right-suppressredirect'     => 'Nevytvoriť presmerovanie zo starého názvu pri presúvaní stránky',
 'right-upload'               => 'Nahrávať súbory',
 'right-reupload'             => 'Prepísať existujúci súbor',
@@ -1117,6 +1124,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'right-editusercssjs'        => 'Upravovať CSS a JS súbory ostatných používateľov',
 'right-rollback'             => 'Rýchlo vrátiť úpravy posledného používateľa, ktorý upravoval danú stránku',
 'right-markbotedits'         => 'Označiť vrátené úpravy ako úpravy robota',
+'right-noratelimit'          => 'Neovplyvnené obmedzeniami',
 'right-import'               => 'Importovať stránky z iných wiki',
 'right-importupload'         => 'Importovať stránky nahraním súboru',
 'right-patrol'               => 'Označiť úpravy ako strážené',
@@ -1433,6 +1441,7 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'popularpages'            => 'Populárne stránky',
 'wantedcategories'        => 'Žiadané kategórie',
 'wantedpages'             => 'Žiadané stránky',
+'missingfiles'            => 'Chýbajúce súbory',
 'mostlinked'              => 'Najčastejšie odkazované stránky',
 'mostlinkedcategories'    => 'Najčastejšie odkazované kategórie',
 'mostlinkedtemplates'     => 'Najčastejšie odkazované šablóny',
@@ -1873,6 +1882,7 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'block-log-flags-noemail'     => 'email blokovaný',
 'range_block_disabled'        => 'Možnosť správcov vytvárať rozsah zablokovaní je vypnutá.',
 'ipb_expiry_invalid'          => 'Neplatný čas ukončenia.',
+'ipb_expiry_temp'             => 'Blokovania skrytých používateľských mien by mali byť trvalé.',
 'ipb_already_blocked'         => '„$1“ je už zablokovaný',
 'ipb_cant_unblock'            => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
 'ipb_blocked_as_range'        => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',

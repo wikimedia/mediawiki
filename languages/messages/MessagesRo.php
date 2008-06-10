@@ -9,11 +9,10 @@
  * @author Laurap
  * @author SCriBu
  * @author לערי ריינהארט
+ * @author Firilacroco
  * @author Nike
- * @author Siebrand
  * @author SPQRobin
  * @author Jon Harald Søby
- * @author Gangleri
  */
 
 $skinNames = array(

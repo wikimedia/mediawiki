@@ -5,11 +5,11 @@
  * @file
  *
  * @author Smeira
- * @author Nike
  * @author Malafaya
  * @author Siebrand
- * @author לערי ריינהארט
+ * @author Nike
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(

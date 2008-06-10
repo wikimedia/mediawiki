@@ -5,10 +5,10 @@
  * @file
  *
  * @author Gadao01
- * @author Magalahi
- * @author Nike
  * @author Jatrobat
+ * @author Nike
  * @author Siebrand
+ * @author Magalahi
  */
 
 $messages = array(
@@ -302,6 +302,7 @@ Munga mamalefa tumulaika ga'ña-mu {{SITENAME}}.",
 'loginproblem'               => "<b>Guåha problema gi iyo-mu login.</b><br />Chagi ta'lo!",
 'login'                      => 'Log in',
 'nav-login-createaccount'    => "Hålom / fa'tinas kuenta-mu",
+'loginprompt'                => 'Un nesita mansedi cookies para un log in gi {{SITENAME}}.',
 'userlogin'                  => "Hålom / fa'tinas kuenta-mu",
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
@@ -322,6 +323,7 @@ Ayek fan otru na nå'an.",
 'yourrealname'               => "Minagahet nå'an-mu:",
 'yourlanguage'               => 'Lengguahe:',
 'yournick'                   => 'Fitma:',
+'badsig'                     => 'Ti maolek i fitma raw; chek i HTML tags.',
 'badsiglength'               => "Mampos anakko'-ña i na'an; na'lakadada' $1 ((PLURAL:$1|na simbolo|na simbolo siha)).",
 'email'                      => 'E-mail',
 'prefs-help-realname'        => "Ti nesisario i na'an-mu mågahet.
@@ -329,6 +331,13 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 'loginerror'                 => 'Lachi gi login',
 'prefs-help-email'           => "Ti nesesario i e-mail address, lao ha na'sede otru na taotao siha kumentusi hao ni påhina-mu muna'sesetbi/kombetsasion sin mana'annoki siha ni aidentifikasion-mu.",
 'prefs-help-email-required'  => 'Nesisario i e-mail address.',
+'nocookiesnew'               => "Mafa'tinas i kuentan muna'sesetbi, lao ti malogin hao.
+Manusa {{SITENAME}} cookies para muna'login muna'sesetbi siha.
+Ti mansedi hao ni cookies.
+Pot fabot na'sedi ha', pues log in yan i na'an-mu muna'sesetbi yan password.",
+'nocookieslogin'             => "Manusa {{SITENAME}} cookies para muna'login muna'sesetbi siha.
+Ti mansedi hao ni cookies.
+Pot fabot na'sedi ha'.",
 'noname'                     => "Ti mangge' hao ni na'an muna'sesetbi ni ma'sedi.",
 'loginsuccesstitle'          => 'Munhåyan i login',
 'loginsuccess'               => "'''Esta ma'log in hao gi {{SITENAME}}: \"\$1\".'''",
@@ -721,6 +730,26 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'recentchangesdays'        => "Diha siha na para u na'annok gi i tinilaika gi halacha:",
 'recentchangescount'       => "Kunatu na tinilaika para u na'annok gi i tinilaika gi halacha:",
 'savedprefs'               => "Manmaasåtba i ga'ña-mu siha.",
+'allowemail'               => "Na'sedi e-mail ginen otru na muna'sesetbi siha",
+'prefs-searchoptions'      => 'Inayek manaligao siha',
+'prefs-namespaces'         => "Sågan nå'an",
+'defaultns'                => "Fanaligao hålom este na sågan nå'an fine'nena:",
+'default'                  => 'default',
+'files'                    => 'Atkibu siha',
+
+# User rights
+'userrights'                 => "Inenkåtgan i direchun muna'sesetbi", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'     => "Maneha i grupun muna'sesetbi",
+'userrights-user-editname'   => "Po'lo nå'an muna'sesetbi:",
+'editusergroup'              => "Tulaika grupun muna'sesetbi",
+'userrights-editusergroup'   => "Tulaika grupun muna'sesetbi",
+'saveusergroups'             => "Såtba Grupun Muna'sesetbi",
+'userrights-groupsmember'    => 'Miembron:',
+'userrights-groupsremovable' => 'Grupu suhayon',
+'userrights-groupsavailable' => 'Grupu ni manggaige:',
+
+# Groups
+'group' => 'Grupu:',
 
 'grouppage-sysop' => '{{ns:project}}:Atministradot siha',
 
@@ -753,6 +782,7 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'recentchangeslinked-noresult' => "Tåya' na tinilaika siha ni maninachetton na påhina gi tiempon ma'ayek.",
 'recentchangeslinked-summary'  => "Lista este ni tinilaika siha gi halacha ginen un påhina ma'ayek (pat ni miembro siha ginen un katigoria ma'ayek).
 '''Potpot''' i påhina siha ginen [[Special:Watchlist|Listan pinilan-mu]].",
+'recentchangeslinked-page'     => "Nå'an i påhina:",
 
 # Upload
 'upload'        => "Na'kåtga hulu' i atkibu",

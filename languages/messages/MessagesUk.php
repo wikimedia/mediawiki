@@ -6,13 +6,12 @@
  *
  * @author Gutsul (Gutsul.ua at Google Mail)
  * @author Ahonc
- * @author Dubyk
- * @author Kalan
  * @author AS
  * @author Siebrand
- * @author SPQRobin
- * @author EugeneZelenko
  * @author Innv
+ * @author EugeneZelenko
+ * @author Dubyk
+ * @author Kalan
  */
 
 /*

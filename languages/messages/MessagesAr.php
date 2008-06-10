@@ -7,19 +7,19 @@
  * @author Meno25
  * @author Mido
  * @author Alnokta
- * @author Gharbeia
- * @author Nike
- * @author Mimouni
- * @author Tarawneh
- * @author Agurzil
- * @author Chaos
- * @author Siebrand
- * @author לערי ריינהארט
- * @author SPQRobin
  * @author OsamaK
+ * @author Siebrand
+ * @author Gharbeia
  * @author ترجمان05
- * @author Jon Harald Søby
+ * @author Mimouni
  * @author Khaledhosny
+ * @author Tarawneh
+ * @author Nike
+ * @author Agurzil
+ * @author לערי ריינהארט
+ * @author Jon Harald Søby
+ * @author SPQRobin
+ * @author Chaos
  */
 
 $linkPrefixExtension = true;
@@ -1278,6 +1278,7 @@ $1 ساعة.',
 'right-createaccount'        => 'إنشاء حسابات مستخدم جديدة',
 'right-minoredit'            => 'التعليم على التعديلات كطفيفة',
 'right-move'                 => 'نقل الصفحات',
+'right-move-subpages'        => 'نقل الصفحات مع صفحاتها الفرعية',
 'right-suppressredirect'     => 'عدم إنشاء تحويلة من الاسم القديم عند نقل صفحة',
 'right-upload'               => 'رفع الملفات',
 'right-reupload'             => 'الكتابة على ملف موجود',
@@ -2063,6 +2064,7 @@ $1',
 'block-log-flags-noemail'     => 'البريد الإلكتروني ممنوع',
 'range_block_disabled'        => 'إمكانية الإداري لمنع نطاق معطلة.',
 'ipb_expiry_invalid'          => 'تاريخ الانتهاء غير صحيح.',
+'ipb_expiry_temp'             => 'عمليات منع أسماء المستخدمين المخفية ينبغي أن تكون دائمة.',
 'ipb_already_blocked'         => '"$1" ممنوع بالفعل',
 'ipb_cant_unblock'            => 'خطأ: لم يتم إيجاد الممنوع $1. ربما تم رفع منعه بالفعل.',
 'ipb_blocked_as_range'        => 'خطأ: الأيبي $1 ليس ممنوعا مباشرة ولا يمكن رفع المنع عنه. لكنه، على أية حال، ممنوع كجزء من النطاق $2، والذي يمكن رفع المنع عنه.',

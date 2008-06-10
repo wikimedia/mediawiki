@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
- * @author Kal-El
- * @author Helix84
  * @author Demicx
- * @author Gangleri
+ * @author Kal-El
+ * @author לערי ריינהארט
  * @author Siebrand
+ * @author CERminator
+ * @author Gangleri
  */
 
 $namespaceNames = array(
@@ -104,8 +104,9 @@ $messages = array(
 'tog-numberheadings'       => 'Automatski numeriši podnaslove',
 'tog-showtoolbar'          => 'Prikaži dugmiće za izmjene (JavaScript)',
 'tog-editondblclick'       => 'Izmijeni stranice dvostrukim klikom (JavaScript)',
+'tog-editsection'          => 'Omogući da mijenjam pojedinačne odjeljke putem [uredi] linka',
 'tog-showtoc'              => 'Prikaži sadržaj<br />(u svim stranicama sa više od tri podnaslova)',
-'tog-rememberpassword'     => 'Zapamti lozinku kroz više seansi',
+'tog-rememberpassword'     => 'Zapamti šifru za iduće posjete',
 'tog-watchcreations'       => 'Dodaj stranice koje ja napravim u moj spisak praćenih članaka',
 'tog-watchdefault'         => 'Dodaj stranice koje uređujem u moj spisak praćenih članaka',
 'tog-minordefault'         => 'Označi sve izmjene malim isprva',
@@ -118,6 +119,7 @@ $messages = array(
 'tog-enotifrevealaddr'     => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching'  => 'Prikaži broj korisnika koji prate',
 'tog-showjumplinks'        => 'Omogući "skoči na" poveznice',
+'tog-watchlisthideminor'   => 'Sakrij zanemarljive izmjene sa spiska mojih praćenja',
 'tog-ccmeonemails'         => 'Pošalji mi kopije emailova koje pošaljem drugim korisnicima',
 'tog-showhiddencats'       => 'Prikaži skrivene kategorije',
 
@@ -381,7 +383,7 @@ Ne zaboravite da prilagodite sebi svoja podešavanja.',
 'yourname'                => 'Korisničko ime',
 'yourpassword'            => 'Lozinka',
 'yourpasswordagain'       => 'Ponovite lozinku',
-'remembermypassword'      => 'Zapamti me',
+'remembermypassword'      => 'Zapamti šifru za iduće posjete',
 'yourdomainname'          => 'Vaš domen',
 'loginproblem'            => '<b>Bilo je problema sa vašim prijavljivanjem.</b><br />Probajte ponovo!',
 'login'                   => 'Prijavi se',

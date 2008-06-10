@@ -631,7 +631,7 @@ Verificatz qu'avètz plan ortografiat lo nom, o utilizatz lo formulari çaijós 
 'nosuchusershort'            => 'I a pas de contributor amb lo nom « <nowiki>$1</nowiki> ». Verificatz l’ortografia.',
 'nouserspecified'            => "Vos cal especificar vòstre nom d'utilizaire.",
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
-'wrongpasswordempty'         => 'Lo senhal entrat èra void. Se vos plai, ensajatz tornarmai.',
+'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
 'passwordtooshort'           => 'Vòstre senhal es tròp cort.
 Deu conténer almens $1 caractèrs e èsser diferent de vòtre nom d’utilizaire.',
 'mailmypassword'             => 'Mandatz-me un senhal novèl',

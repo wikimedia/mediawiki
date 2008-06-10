@@ -6,9 +6,9 @@
  *
  * @author Saluyot
  * @author לערי ריינהארט
+ * @author Nike
  * @author SPQRobin
  * @author Siebrand
- * @author Nike
  */
 
 $messages = array(

@@ -5,19 +5,18 @@
  * @file
  *
  * @author Klutzy
+ * @author ToePeu
  * @author PuzzletChung
+ * @author Siebrand
+ * @author ITurtle
  * @author לערי ריינהארט
  * @author TheAlpha for knowledge
- * @author Nike
- * @author Teak
- * @author Siebrand
- * @author SPQRobin
- * @author ToePeu
- * @author Jon Harald Søby
- * @author Ficell
- * @author Pi.C.Noizecehx
  * @author Kwj2772
- * @author ITurtle
+ * @author Nike
+ * @author Ficell
+ * @author Jon Harald Søby
+ * @author Pi.C.Noizecehx
+ * @author SPQRobin
  */
 
 $namespaceNames = array(

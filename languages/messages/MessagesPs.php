@@ -7,7 +7,7 @@
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author SPQRobin
  * @author Siebrand
- * @author לערי ריינהארט
+ * @author Nike
  */
 
 $specialPageAliases = array(
@@ -280,7 +280,7 @@ $messages = array(
 'disclaimerpage'       => 'Project:ټولګړی ردادعاليک',
 'edithelp'             => 'د لارښود سماد',
 'edithelppage'         => 'Help:سمادېدنه',
-'helppage'             => 'لارښود:لړليک',
+'helppage'             => 'Help:لړليک',
 'mainpage'             => 'لومړی مخ',
 'mainpage-description' => 'لومړی مخ',
 'policy-url'           => 'Project:تګلاره',

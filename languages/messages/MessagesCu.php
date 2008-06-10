@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
+ * @author ОйЛ
  * @author Svetko
+ * @author SPQRobin
  * @author Nike
  * @author Siebrand
  * @author Wolliger Mensch
- * @author ОйЛ
  */
 
 $separatorTransformTable = array(
@@ -226,6 +226,10 @@ $messages = array(
 'yournick'           => 'аѵто́графъ :',
 'loginerror'         => 'Въхода блазна',
 'loginlanguagelabel' => 'ѩꙁꙑ́къ : $1',
+
+# Edit page toolbar
+'link_sample'    => 'съвѧ́ꙁи и́мѧ',
+'extlink_sample' => 'http://www.example.com съвѧ́ꙁи и́мѧ',
 
 # Edit pages
 'summary'        => 'опьса́ниѥ',

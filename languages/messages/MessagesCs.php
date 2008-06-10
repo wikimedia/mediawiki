@@ -4,17 +4,17 @@
  * @ingroup Language
  * @file
  *
- * @author Mormegil
  * @author Li-sung
- * @author Helix84
  * @author Danny B.
- * @author Martin Kozák
- * @author Michawiki
- * @author Nike
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Matěj Grabovský
+ * @author לערי ריינהארט
+ * @author Mormegil
+ * @author Siebrand
  * @author Reaperman
+ * @author Helix84
+ * @author Michawiki
+ * @author Martin Kozák
+ * @author Nike
  * @author Sp5uhe
  */
 
@@ -1199,6 +1199,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-createaccount'        => 'Vytváření nových uživatelských účtů',
 'right-minoredit'            => 'Označování editací jako malé',
 'right-move'                 => 'Přesun stránek',
+'right-move-subpages'        => 'Přesunout stránky také s jejich podstránkami',
 'right-suppressredirect'     => 'Nevytváření přesměrování po přesunu stránky',
 'right-upload'               => 'Nahrávání souborů',
 'right-reupload'             => 'Přepisování existujících souborů',

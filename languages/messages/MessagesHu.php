@@ -5,13 +5,11 @@
  * @file
  *
  * @author Dani
- * @author Bdamokos
  * @author Tgr
- * @author Siebrand
- * @author SPQRobin
+ * @author Bdamokos
  * @author Dorgan
- * @author Bennó
  * @author Cerasus
+ * @author Bennó
  */
 
 $namespaceNames = array(

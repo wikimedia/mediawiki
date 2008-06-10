@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Aviator
- * @author Siebrand
  * @author Aurora
+ * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 /**

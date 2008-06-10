@@ -4,14 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author UV
- * @author Siebrand Mazeland
- * @author Helix84
- * @author LeighvsOptimvsMaximvs
- * @author Siebrand
- * @author לערי ריינהארט
+ * @author SPQRobin
  * @author Rafaelgarcia
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author LeighvsOptimvsMaximvs
  */
 
 $skinNames = array(

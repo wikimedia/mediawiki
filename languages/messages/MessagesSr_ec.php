@@ -4,16 +4,15 @@
  * @ingroup Language
  * @file
  *
- * @author Red Baron
  * @author Sasa Stefanovic
+ * @author Red Baron
  * @author Siebrand
  * @author Kale
  * @author לערי ריינהארט
  * @author Nike
- * @author SPQRobin
- * @author Jon Harald Søby
  * @author Millosh
  * @author Јованвб
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(

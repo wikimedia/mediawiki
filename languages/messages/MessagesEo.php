@@ -4,17 +4,17 @@
  * @ingroup Language
  * @file
  *
+ * @author Yekrats
+ * @author לערי ריינהארט
  * @author Tlustulimu
  * @author Michawiki
- * @author Nike
+ * @author Siebrand
  * @author Amikeco
+ * @author Nike
+ * @author ArnoLagrange
+ * @author SPQRobin
  * @author Gangleri
  * @author Jon Harald Søby
- * @author לערי ריינהארט
- * @author Siebrand
- * @author SPQRobin
- * @author Yekrats
- * @author ArnoLagrange
  */
 
 $namespaceNames = array(
@@ -1010,6 +1010,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-createaccount'        => 'Kreu novajn uzanto-kontojn',
 'right-minoredit'            => 'Marku redaktojn kiel etajn',
 'right-move'                 => 'Movu paĝojn',
+'right-move-subpages'        => 'Alinomigi paĝojn kun ĝiaj subpaĝoj',
 'right-suppressredirect'     => 'Ne kreu alidirektilon de la malnova nomo kiam movante paĝon',
 'right-upload'               => 'Alŝutu dosierojn',
 'right-reupload'             => 'Anstataŭigu ekzistantan dosieron',
@@ -1772,8 +1773,8 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'block-log-flags-noemail'     => 'retpoŝto blokita',
 'range_block_disabled'        => 'La ebleco de administranto krei forbaritajn intervalojn da IP-adresoj estas malebligita.',
 'ipb_expiry_invalid'          => 'Nevalida blokdaŭro.',
-'ipb_already_blocked'         => '"$1" estas jam forbarita
-Vi povas modifi la preferojn por la forbaro per ĉi tiu paĝo',
+'ipb_expiry_temp'             => 'Kaŝitaj salutnomaj blokoj estu daŭraj.',
+'ipb_already_blocked'         => '"$1" estas jam forbarita',
 'ipb_cant_unblock'            => 'Eraro: Forbar-identigo $1 ne estas trovita. Ĝi eble estis jam malforbarita.',
 'ipb_blocked_as_range'        => 'Eraro: La IP-adreso $1 ne estas forbarita rekte kaj ne povas esti malforbarita. Tamen ĝi estas forbarita kiel parto de la intervalo $2, kiu ne povas esti malforbarita.',
 'ip_range_invalid'            => 'Nevalida IP-adresa intervalo.',

@@ -5,12 +5,12 @@
  * @file
  *
  * @author Lajsikonik
+ * @author Timpul
  * @author Herr Kriss
  * @author Pimke
  * @author Siebrand
  * @author Jon Harald Søby
  * @author SPQRobin
- * @author Timpul
  * @author Leinad
  */
 

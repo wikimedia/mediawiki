@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Crt
  * @author Nike
+ * @author Crt
  * @author Cimon Avaro
- * @author לערי ריינהארט
  * @author Siebrand
- * @author M.M.S.
  * @author Jack Phoenix
+ * @author M.M.S.
+ * @author לערי ריינהארט
  * @author Str4nd
  */
 
@@ -1040,6 +1040,7 @@ $1 | $2',
 'right-createaccount'        => 'Luoda uusia käyttäjätunnuksia',
 'right-minoredit'            => 'Merkitä muokkauksensa pieniksi',
 'right-move'                 => 'Siirtää sivuja',
+'right-move-subpages'        => 'Siirtää sivuja alasivuineen',
 'right-suppressredirect'     => 'Siirtää sivuja luomatta automaattisia ohjauksia',
 'right-upload'               => 'Tallentaa tiedostoja',
 'right-reupload'             => 'Tallennetun tiedoston korvaaminen uudella',

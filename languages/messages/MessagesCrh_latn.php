@@ -5,9 +5,8 @@
  * @file
  *
  * @author Alessandro
- * @author AlefZet
  * @author Siebrand
- * @author Nike
+ * @author AlefZet
  */
 
 $fallback8bitEncoding = 'windows-1254';

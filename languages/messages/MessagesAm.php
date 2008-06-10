@@ -5,11 +5,10 @@
  * @file
  *
  * @author Codex Sinaiticus
- * @author Siebrand
- * @author Nike
- * @author SPQRobin
  * @author Teferra
- * @author לערי ריינהארט
+ * @author Siebrand
+ * @author SPQRobin
+ * @author Nike
  * @author M.M.S.
  * @author Jon Harald Søby
  */

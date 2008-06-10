@@ -6,9 +6,9 @@
  *
  * @author Ерней
  * @author Himiq Dzyu
- * @author Nike
  * @author Siebrand
  * @author Jon Harald Søby
+ * @author Nike
  */
 
 $fallback = 'ru';
@@ -358,6 +358,7 @@ $2',
 'yourpasswordagain'          => 'Серсүзне кабат кертү:',
 'remembermypassword'         => 'Теркәү исемемне бу компьютердә онытмаска',
 'yourdomainname'             => 'Сезнең доменыгыз:',
+'loginproblem'               => '<b>Керүегездә авырлык бар.</b><br />Кабатлагызчы!',
 'login'                      => 'Керү',
 'nav-login-createaccount'    => 'Керү / хисап язмасы төзү',
 'userlogin'                  => 'Керү / хисап язмасы төзү',

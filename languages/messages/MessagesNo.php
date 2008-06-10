@@ -20,6 +20,7 @@
  * @author H92
  * @author Jóna Þórunn
  * @author Finnrind
+ * @author Boivie
  */
 
 $skinNames = array(
@@ -1188,7 +1189,7 @@ Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ik
 'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>. Det virker som om det er et bilde av redusert størrelse. Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før; gå tilbake og last opp filen under et nytt navn. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret; gå tilbake og last opp fila under et nytt navn. [[Image:$1|thumb|center|$1]]',
-'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$|fil|filer}}:',
+'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$1|fil|filer}}:',
 'successfulupload'            => 'Opplastingen er gjennomført',
 'uploadwarning'               => 'Opplastingsadvarsel',
 'savefile'                    => 'Lagre fil',

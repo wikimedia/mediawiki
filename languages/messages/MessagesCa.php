@@ -7,20 +7,20 @@
  * @author Toniher
  * @author SMP
  * @author Martorell
- * @author Iradigalesc
- * @author Pasqual (ca)
- * @author Nike
- * @author Vriullop
- * @author Pérez
- * @author Juanpabl
- * @author SPQRobin
- * @author לערי ריינהארט
  * @author Siebrand
- * @author Smeira
- * @author Jon Harald Søby
- * @author Spacebirdy
+ * @author Pasqual (ca)
+ * @author Iradigalesc
+ * @author לערי ריינהארט
  * @author Paucabot
+ * @author Nike
  * @author Jordi Roqué
+ * @author Spacebirdy
+ * @author Juanpabl
+ * @author Smeira
+ * @author Vriullop
+ * @author Jon Harald Søby
+ * @author SPQRobin
+ * @author Pérez
  */
 
 $skinNames = array(
@@ -461,6 +461,12 @@ $1",
 'readonlytext'         => "La base de dades està temporalment bloquejada segurament per tasques de manteniment, després de les quals es tornarà a la normalitat.
 
 L'administrador que l'ha bloquejada ha donat aquesta explicació: $1",
+'missing-article'      => "La base de dades no ha pogut trobar el text de la pàgina que hauria d'aparèixer, anomenada «$1» $2.
+
+Segurament això passa perquè s'ha seguit un enllaç trencat o a una pàgina que ha estat eliminada.
+
+Si esteu segurs que no és aquest el cas, podeu haver trobat un error al programari.
+Aviseu-ho a un administrador, deixant-li clar l'adreça URL causant del problema.",
 'missingarticle-rev'   => '(revisió#: $1)',
 'missingarticle-diff'  => '(dif: $1, $2)',
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
@@ -1069,6 +1075,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'right-createaccount'        => 'Crear nous comptes',
 'right-minoredit'            => 'Marcar les edicions com a menors',
 'right-move'                 => 'Moure pàgines',
+'right-move-subpages'        => 'Moure pàgines amb les seves subpàgines',
 'right-suppressredirect'     => 'No crear redireccions quan es reanomena una pàgina',
 'right-upload'               => 'Carregar fitxers',
 'right-reupload'             => "Carregar al damunt d'un fitxer existent",
@@ -1100,6 +1107,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'right-editusercssjs'        => "Editar els fitxer de configuració CSS i JS d'altres usuaris",
 'right-rollback'             => "Revertir ràpidament l'últim editor d'una pàgina particular",
 'right-markbotedits'         => 'Marcar les reversions com a edicions de bot',
+'right-noratelimit'          => "No es veu afectat pels límits d'accions.",
 'right-import'               => "Importar pàgines d'altres wikis",
 'right-importupload'         => "Importar pàgines carregant-les d'un fitxer",
 'right-patrol'               => 'Marcar com a patrullades les edicions',
@@ -1209,6 +1217,7 @@ Si el fitxer és la mateixa imatge a mida original, no cal carregar cap miniatur
 Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li el nom.',
 'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers; si us plau, torneu enrera i carregueu-ne una còpia amb un altre nom. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Aquest fitxer és un duplicat {{PLURAL:$1|del fitxer |dels següents fitxers:}}',
 'successfulupload'            => "El fitxer s'ha carregat amb èxit",
 'uploadwarning'               => 'Avís de càrrega',
 'savefile'                    => 'Desa el fitxer',
@@ -1406,6 +1415,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'popularpages'            => 'Pàgines populars',
 'wantedcategories'        => 'Categories demanades',
 'wantedpages'             => 'Pàgines demanades',
+'missingfiles'            => 'Arxius que falten',
 'mostlinked'              => 'Pàgines més enllaçades',
 'mostlinkedcategories'    => 'Categories més utilitzades',
 'mostlinkedtemplates'     => 'Plantilles més usades',
@@ -1859,7 +1869,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'block-log-flags-noemail'     => 'correu-e blocat',
 'range_block_disabled'        => 'La facultat dels administradors per a crear bloquejos de rang està desactivada.',
 'ipb_expiry_invalid'          => "Data d'acabament no vàlida.",
-'ipb_already_blocked'         => '«$1» ja és blocat',
+'ipb_already_blocked'         => '«$1» ja està blocat',
 'ipb_cant_unblock'            => "Errada: No s'ha trobat el núm. ID de bloqueig $1. És possible que ja s'haguera desblocat.",
 'ipb_blocked_as_range'        => "Error: L'adreça IP $1 no està blocada directament i per tant no pot ésser desbloquejada. Ara bé, sí que ho està per formar part del rang $2 que sí que pot ser desblocat.",
 'ip_range_invalid'            => 'Rang de IP no vàlid.',
@@ -1939,7 +1949,7 @@ Incorporeu-les manualment, si us plau.",
 'movepage-page-exists'    => "La pàgina $1 ja existeix i no pot sobreescriure's automàticament.",
 'movepage-page-moved'     => 'La pàgina $1 ha estat traslladada a $2.',
 'movepage-page-unmoved'   => "La pàgina $1 no s'ha pogut moure a $2.",
-'movepage-max-pages'      => "S'ha mogut el nombre màxim de $1 pàgines i no es mourà cap més automàticament.",
+'movepage-max-pages'      => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
 '1movedto2'               => "[[$1]] s'ha reanomenat com [[$2]]",
 '1movedto2_redir'         => "[[$1]] s'ha reanomenat com [[$2]] amb una redirecció",
 'movelogpage'             => 'Registre de reanomenaments',

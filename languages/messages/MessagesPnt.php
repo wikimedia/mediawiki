@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Consta
  * @author Sinopeus
+ * @author Consta
  * @author Siebrand
  */
 
@@ -121,6 +121,7 @@ $messages = array(
 'category-file-count-limited'    => "{{PLURAL:$1|Τ' αρχείον|$1 Τ' αρχεία}} αφκά καικά είν' σην κατηγορίαν.",
 'listingcontinuesabbrev'         => 'συνεχίζεται...',
 
+'newwindow'      => "(ανοίγ' σ' άλλον παραθύρ)",
 'cancel'         => 'Χάτεμαν',
 'qbfind'         => 'Εύρον',
 'qbedit'         => 'Άλλαξον',
@@ -146,6 +147,7 @@ $messages = array(
 'history'           => 'Ιστορίαν τη σελίδας',
 'history_short'     => 'Ιστορίαν',
 'printableversion'  => 'Μορφή εκτύπωσης',
+'permalink'         => 'Σκιρόν σύνδεσμος',
 'print'             => 'Τύπωμαν',
 'edit'              => 'Άλλαξον',
 'create'            => 'Ποίσον',
@@ -174,6 +176,7 @@ $messages = array(
 'viewhelppage'      => 'Τέρεν σελίδαν βοήθειας',
 'viewtalkpage'      => 'Τέρεν καλάτσεμα',
 'otherlanguages'    => "Σ' άλλα γλώσσας",
+'redirectedfrom'    => '(Έρτεν ασό $1)',
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
 'jumptonavigation'  => 'Πορπάτεμαν',
@@ -195,6 +198,7 @@ $messages = array(
 'portal'               => 'Πύλην τη κοινότητας',
 'portal-url'           => 'Project:Πύλη κοινότητας',
 'privacy'              => 'Ωρίαγμαν δογμενίων',
+'privacypage'          => 'Project:Πολιτική ιδιωτικού απορρήτου',
 'sitesupport'          => 'Δωρεάς',
 
 'retrievedfrom'           => 'Ασο "$1"',
@@ -273,6 +277,8 @@ $messages = array(
 'loginlanguagelabel'      => 'Γλώσσαν: $1',
 
 # Edit page toolbar
+'bold_sample'     => 'Σκιρόν κείμενον',
+'bold_tip'        => 'Σκιρόν κείμενον',
 'link_sample'     => 'Τίτλος σύνδεσμονος',
 'link_tip'        => 'Εσωτερικόν σύνδεσμον',
 'extlink_sample'  => 'http://www.paradeigma.com τίτλος σύνδεσμονος',
@@ -286,6 +292,7 @@ $messages = array(
 'image_tip'       => 'Ενσωματωμένον εικόνα',
 'media_tip'       => 'Σύνδεσμος αρχείατι πολυμεσίων',
 'sig_tip'         => 'Η υπογραφήν εσούν με ώραν κι ημερομηνίαν',
+'hr_tip'          => "Οριζόντιον γραμμή (μη θέκ'ς ατέν πολλά)",
 
 # Edit pages
 'summary'                => 'Σύνοψη',
@@ -296,6 +303,8 @@ $messages = array(
 'preview'                => 'Πρώτον τέρεμα',
 'showpreview'            => 'Πρώτον τέρεμαν',
 'showdiff'               => 'Αλλαγάς',
+'anoneditwarning'        => "'''Ωρίασων:''' 'Κ εποίκες τ' εσέβεμαν.
+Τ' IP ις θα γράφκεται και θα ελέπν' ατό σ' ιστορικόν τη σελίδας.",
 'newarticle'             => '(Νέον)',
 'previewnote'            => "<strong>Ατό πα πρώτον τέρεμαν εν και μόνον.
 Τ' αλλαγάς 'κ εκρατέθαν!</strong>",
@@ -348,6 +357,7 @@ $messages = array(
 'recentchanges'                  => 'Υστερνά αλλαγάς',
 'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
 'rcshowhideminor'                => '$1 τα μικρά αλλαγάς',
+'rcshowhidebots'                 => '$1 bots',
 'rcshowhideliu'                  => '$1 χρήστες με λογαρίαν',
 'rcshowhideanons'                => '$1 αναγνώριμοι χρήστες',
 'rcshowhidemine'                 => "$1 τ' επεξεργασίων ιμ",
@@ -370,6 +380,7 @@ $messages = array(
 
 # Image description page
 'filehist'            => 'Ιστορικό αρχείου',
+'filehist-help'       => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
 'filehist-current'    => 'υστερινά',
 'filehist-datetime'   => 'Ώραν/Ημερομ.',
 'filehist-user'       => 'Χρήστες',
@@ -395,6 +406,7 @@ $messages = array(
 'withoutinterwiki' => "Σελίδας ντο κ' έχνε συνδέσμ",
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμος|συνδέσμ}}',
 'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
 'lonelypages'             => 'Ορφανά σελίδας',
@@ -510,6 +522,7 @@ $messages = array(
 'whatlinkshere-links' => '← σύνδεσμοι',
 
 # Block/unblock
+'blocklink'    => 'ασπάλιγμαν',
 'contribslink' => "Δουλείαν ατ'",
 
 # Move page
@@ -588,6 +601,12 @@ $messages = array(
 # Special:Newimages
 'ilsubmit' => 'Αράεμαν',
 'bydate'   => 'ημερομηνίας',
+
+# Bad image list
+'bad_image_list' => "Η σύνταξην εν αέτς:
+
+Τα αντικείμενα τη λίστας (τα γραμμάς ντ' αχπάσκουνταν με *) και μόνον τερούμε. Ο πρώτον ο σύνδεσμος σε μιαν γραμμήν πρέπ' να δεκνίζ' σε κακόν αρχείον.
+Ήντιαν συνδέσμ' ντ' έρταν ασην ίδιαν γραμμήν οπίς θεωρούματα εξαιρέσεις, δηλαδή σελίδας όπου επορούμ' να συναντούμε την εικόναν σε σύνδεσην.",
 
 # Metadata
 'metadata'          => 'Μεταδογμένα',

@@ -8,7 +8,6 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Sionnach
- * @author Helix84
  * @author Nike
  * @author Raymond
  */

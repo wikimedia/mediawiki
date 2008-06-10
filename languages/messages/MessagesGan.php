@@ -5,11 +5,10 @@
  * @file
  *
  * @author Symane
- * @author Nike
- * @author Siebrand
- * @author SPQRobin
  * @author Vipuser
+ * @author Siebrand
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'zh-hant';

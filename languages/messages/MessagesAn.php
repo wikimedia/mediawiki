@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Juanpabl
- * @author Willtron
- * @author Nike
+ * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Nike
+ * @author Willtron
  * @author Jon Harald Søby
  */
 

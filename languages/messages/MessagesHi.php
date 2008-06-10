@@ -4,15 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Kaustubh
+ * @author לערי ריינהארט
+ * @author Shyam
  * @author Sunil Mohan
  * @author Nike
  * @author Aksi great
- * @author SPQRobin
- * @author Siebrand
  * @author Jon Harald Søby
- * @author Shyam
  */
 
 $namespaceNames = array(
@@ -354,6 +352,12 @@ $1',
 'readonlytext'         => 'शायद मेंटेनन्सके चलते डाटाबेस नये संपादन और अन्य बदलोंसे लॉक किया गया है, जिसके बाद यह सामान्य स्थितीमें आ जाना चाहियें ।
 
 जिस प्रबंधक ने यह लॉक किया था उसने यह कारण दिया है: $1',
+'missing-article'      => 'डाटाबेसको "$1" $2 नामका पृष्ठ मिला नहीं, जो मिलना चाहिये था।
+
+ऐसा शायद खतम हुए फरक अथवा हटाये गये पृष्ठ के इतिहास कडी से होता हैं।
+
+अगर ऐसा नहीं हैं, तो आपको सॉफ्टवेअरका बग मिला हैं।
+कृपया किसी प्रबंधकसे इस पृष्ठ के URL के साथ चर्चा करें।',
 'missingarticle-rev'   => '(अवतरण#: $1)',
 'missingarticle-diff'  => '(फर्क: $1, $2)',
 'readonly_lag'         => 'उपमुख्य डाटाबेस सर्व्हर्‌स मुख्य डाटाबेस सर्व्हर तक पहूंचने से पहले ही मुख्य डाटाबेस सर्व्हर लॉक हो गया है ।',
@@ -989,6 +993,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'right-createaccount'        => 'नये सदस्य अकाउंट बनायें',
 'right-minoredit'            => 'बदलाव छोटे नामसे संजोयें',
 'right-move'                 => 'पन्नोंके नाम बदलें',
+'right-move-subpages'        => 'पन्ने उपपृष्ठोंसे साथ स्थानांतरीत करें',
 'right-suppressredirect'     => 'पन्ना नये नाम से बदलते समय अनुप्रेषित ना करें',
 'right-upload'               => 'फ़ाईल अपलोड करें',
 'right-reupload'             => 'अस्तित्वमें होनेवाले फ़ाईलपर पुनर्लेखन करें',
@@ -1020,6 +1025,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'right-editusercssjs'        => 'अन्य सदस्योंके CSS और JS फ़ाईल्समें बदलाव करें',
 'right-rollback'             => 'विशिष्ट पन्ना जिसने बदला हो उसे जल्दी पूर्ववत करें',
 'right-markbotedits'         => 'चुने हुए संपादनोंपर बोट मार्क करें',
+'right-noratelimit'          => 'रेट लिमिट्सका असर नहीं होता',
 'right-import'               => 'अन्य विकियोंसे पृष्ठ आयात करें',
 'right-importupload'         => 'अपलोड किये फ़ाईल से पन्ने निकालें',
 'right-patrol'               => 'बदलाव पेट्रोल्ड करके मार्क करें',
@@ -1357,6 +1363,7 @@ PICT # misc.
 'popularpages'            => 'लोकप्रिय पन्ने',
 'wantedcategories'        => 'श्रेणियाँ जो चाहिये',
 'wantedpages'             => 'जो पन्ने चाहिये',
+'missingfiles'            => 'गायब हुई फ़ाइलें',
 'mostlinked'              => 'सबसे ज्यादा जुडे हुए पन्ने',
 'mostlinkedcategories'    => 'सबसे ज्यादा जुडी हुई श्रेणियाँ',
 'mostlinkedtemplates'     => 'सबसे ज्यादा जुडी हुई टेम्प्लेट्स',
@@ -1586,8 +1593,7 @@ $NEWPAGE
 इस पन्ने का आखिरी योगदानकर्ता इस लेख का एकमात्र लेखक हैं।',
 'alreadyrolled'               => '[[$1]] का [[User:$2|$2]] ([[User talk:$2|वार्ता]]) द्वारा किया गया पिछला बदलाव रोलबेक नहीं किया जा सकता; किसी और ने पहले ही इसे रोलबेक किया अथवा बदल दिया है । पिछला बदलाव [[User:$3|$3]] ([[User talk:$3|वार्ता]]) द्वारा किया गया है ।',
 'editcomment'                 => 'संपादन टिप्पणी: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) के संपादनोंको हटाया;
-[[User:$1|$1]] के आखिरी अवतरण को पूर्ववत किया', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) के संपादनोंको हटाकर [[User:$1|$1]] के आखिरी अवतरण को पूर्ववत किया', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 के संपादन हटायें;
 $2 द्वारा संपादित आखिरी अवतरण को पुनर्स्थापित किया।',
 'sessionfailure'              => 'ऐसा प्रतीत होता है की आपके लोगिन सत्र के साथ कोई समस्या है।
@@ -1805,6 +1811,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'block-log-flags-noemail'     => 'इ-मेल बंद हैं',
 'range_block_disabled'        => 'प्रबंधकोंको अब रेंज ब्लॉक करने की अनुमति नहीं हैं।',
 'ipb_expiry_invalid'          => 'अवैध समाप्ति कालावधी।',
+'ipb_expiry_temp'             => 'छुपायें हुए सदस्यनाम ब्लॉक्स हमेशा के लिये होने चाहिये।',
 'ipb_already_blocked'         => '"$1" को पहलेसे ब्लॉक हैं',
 'ipb_cant_unblock'            => 'समस्या: ब्लॉक ID $1 मिला नहीं। इसे पहले अनब्लॉक कर दिया गया हो सकता हैं।',
 'ipb_blocked_as_range'        => 'गलती: $1 यह आइपी सीधे बाधित नहीं है और अबाध्य नहीं किया जा सकता।

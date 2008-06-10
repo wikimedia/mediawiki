@@ -4,15 +4,13 @@
  * @ingroup Language
  * @file
  *
+ * @author Rex
+ * @author Borgx
+ * @author Meursault2004
  * @author Irwangatot
  * @author לערי ריינהארט
  * @author IvanLanin
- * @author Borgx
- * @author Nike
  * @author SPQRobin
- * @author Siebrand
- * @author Meursault2004
- * @author Rex
  */
 
 /**
@@ -1150,6 +1148,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'right-createaccount'        => 'Membuat akun baru',
 'right-minoredit'            => 'Menandai suntingan sebagai minor',
 'right-move'                 => 'Memindahkan halaman',
+'right-move-subpages'        => 'Pindahkan halaman dengan seluruh sub halamannya',
 'right-suppressredirect'     => 'Tidak membuat pengalihan dari nama lama ketika memindahkan halaman',
 'right-upload'               => 'Memuat berkas',
 'right-reupload'             => 'Menimpa berkas yang sudah ada',
@@ -1888,6 +1887,7 @@ $1',
 'block-log-flags-noemail'     => 'surat-e diblokir',
 'range_block_disabled'        => 'Kemampuan pengurus dalam membuat blokir blok IP dimatikan.',
 'ipb_expiry_invalid'          => 'Waktu kadaluwarsa tidak sah.',
+'ipb_expiry_temp'             => 'Pemblokiran atas nama pengguna yang disembunyikan harus permanen.',
 'ipb_already_blocked'         => '"$1" telah diblokir',
 'ipb_cant_unblock'            => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
 'ipb_blocked_as_range'        => 'Kesalahan: IP $1 tidak diblok secara langsung dan tidak dapat dilepaskan. IP $1 diblok sebagai bagian dari pemblokiran kelompok IP $2, yang dapat dilepaskan.',

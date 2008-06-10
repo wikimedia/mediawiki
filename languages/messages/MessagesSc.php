@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Nike
  * @author Siebrand
  * @author לערי ריינהארט
  */

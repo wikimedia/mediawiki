@@ -5,14 +5,12 @@
  * @file
  *
  * @author Ooswesthoesbes
- * @author Cicero
- * @author Siebrand
- * @author SPQRobin
- * @author Jon Harald Søby
- * @author Nike
- * @author לערי ריינהארט
  * @author Tibor
  * @author Matthias
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author Cicero
+ * @author SPQRobin
  */
 
 $fallback = 'nl';
