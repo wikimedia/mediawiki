@@ -630,7 +630,7 @@ EOT
 	function imageLinks()
 	{
 		global $wgUser, $wgOut;
-		
+
 		$limit = 100;
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -643,15 +643,17 @@ EOT
 			array( 'LIMIT' => $limit + 1)	
 		);
 
-		if ( 0 == $dbr->numRows( $res ) ) {
+		$count = $dbr->numRows( $res );
+		if ( $count == 0 ) {
 			$wgOut->addHTML( "<div id='mw-imagepage-nolinkstoimage'>\n" );
 			$wgOut->addWikiMsg( 'nolinkstoimage' );
 			$wgOut->addHTML( "</div>\n" );
 			return;
 		}
-		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
-		$wgOut->addWikiMsg( 'linkstoimage' );
-		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
+		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" .
+				wfMsgExt( 'linkstoimage', array( 'parseinline', 'escape' ), min( $count, $limit ) ) .
+				"<ul class='mw-imagepage-linktoimage'>\n"
+		);
 
 		$sk = $wgUser->getSkin();
 		$count = 0;
@@ -675,13 +677,14 @@ EOT
 	function imageRedirects() 
 	{
 		global $wgUser, $wgOut;
-		
+
 		$redirects = $this->getTitle()->getRedirectsHere( NS_IMAGE );
 		if ( count( $redirects ) == 0 ) return;
 
-		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" );
-		$wgOut->addWikiMsg( 'redirectstofile' );
-		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
+		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" .
+				wfMsgExt( 'redirectstofile', array( 'parseinline', 'escape' ),  count( $redirects ) ) .
+				"<ul class='mw-imagepage-redirectstofile'>\n"
+		);
 
 		$sk = $wgUser->getSkin();
 		foreach ( $redirects as $title ) {
@@ -700,9 +703,10 @@ EOT
 		$dupes = $this->getDuplicates();
 		if ( count( $dupes ) == 0 ) return;
 
-		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
-		$wgOut->addWikiMsg( 'duplicatesoffile' );
-		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
+		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" .
+				wfMsgExt( 'duplicatesoffile', array( 'parseinline', 'escape' ),  count( $dupes ) ) .
+				"<ul class='mw-imagepage-duplicates'>\n"
+		);
 
 		$sk = $wgUser->getSkin();
 		foreach ( $dupes as $file ) {
