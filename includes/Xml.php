@@ -364,9 +364,8 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML hidden form field.
-	 * @todo Document $name parameter.
-	 * @param $name FIXME
-	 * @param $value String: label text for the button
+	 * @param $name String: name attribute for the field
+	 * @param $value String: value for the hidden field
 	 * @param $attribs Array: optional custom attributes
 	 * @return string HTML
 	 */
