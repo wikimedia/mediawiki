@@ -959,6 +959,7 @@ $wgMessageStructure = array(
 		'reuploaddesc',
 		'uploadnologin',
 		'uploadnologintext',
+		'upload_directory_missing',
 		'upload_directory_read_only',
 		'uploaderror',
 		'upload-summary',
