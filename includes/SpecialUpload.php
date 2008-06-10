@@ -1043,8 +1043,9 @@ wgUploadAutoFill = {$autofill};
 		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
 		$maxUploadSize = wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ), $wgLang->formatSize( $val2 ) );
 
-		$sourcefilename = wfMsgExt( 'sourcefilename', 'escapenoentities' );
-		$destfilename = wfMsgExt( 'destfilename', 'escapenoentities' );
+		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
+        $destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) ); 
+		
 		$summary = wfMsgExt( 'fileuploadsummary', 'parseinline' );
 
 		$licenses = new Licenses();
