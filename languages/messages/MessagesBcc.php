@@ -285,7 +285,7 @@ Legend: (cur) = difference with current version,
 'histlast'            => 'اهرین',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 ته $2',
+'history-feed-item-nocomment' => '$1 ته $2', # user at time
 
 # Diffs
 'history-title'           => 'تاریح بازبینی "$1"',
@@ -542,7 +542,7 @@ Legend: (cur) = difference with current version,
 
 # Block/unblock
 'blockip'       => 'محدود کتن کاربر',
-'ipboptions'    => '2 ساعت: 2 ساعت، 1 روچ: 1 روچ، 3 روچ: 3 روچ، 1 هفته: 1 هفته، 2 هفته: 2هفته، 1 ماه: 1 ماه: 2ماه، 3 ماه: 3 ماه، 6 ماه: 6 ماه، 1 سال: 1 سال، بی حد: بی حد',
+'ipboptions'    => '2 ساعت: 2 ساعت، 1 روچ: 1 روچ، 3 روچ: 3 روچ، 1 هفته: 1 هفته، 2 هفته: 2هفته، 1 ماه: 1 ماه: 2ماه، 3 ماه: 3 ماه، 6 ماه: 6 ماه، 1 سال: 1 سال، بی حد: بی حد', # display1:time1,display2:time2,...
 'ipblocklist'   => 'لیست محدود بیتگین آی پی و نام کاربران',
 'blocklink'     => 'محدود',
 'unblocklink'   => 'رفع محدودیت',
@@ -571,7 +571,7 @@ Legend: (cur) = difference with current version,
 'move-watch'       => 'این صفحه یا بچار',
 'movepagebtn'      => 'جاه په جاه کن صفحه',
 'pagemovedsub'     => 'جاه په جاهی موفقیت بود',
-'movepage-moved'   => '<big>\'\'\'"$1" جاه په اجه بوت په"$2"\'\'\'</big>',
+'movepage-moved'   => '<big>\'\'\'"$1" جاه په اجه بوت په"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'صفحه گون آن نام پیش تر هستت، یا نامی که شما زورتت نامعتبرنت.
 یک دگه نامی بزوریت.',
 'talkexists'       => "''''صفحه وتی گون موفقیت جاه په جاه بوت، بله صفحه گپ نه نویت جاه  په جاه بیت چون که یکی ته نوکین عنوان هست.
@@ -673,7 +673,7 @@ Others will be hidden by default.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength',
+* focallength', # Do not translate list items
 
 # External editor support
 'edit-externally'      => 'ای صفحه یا اصلاح کن گون یک درآین برنامه ای',
@@ -690,7 +690,7 @@ Others will be hidden by default.
 'watchlisttools-raw'  => 'هامین لیست چارگ آ اصلاح کن',
 
 # Special:Version
-'version' => 'نسخه',
+'version' => 'نسخه', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
 'specialpages' => 'حاصین صفحه',
