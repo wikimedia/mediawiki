@@ -454,6 +454,9 @@ class extensionLanguages extends languages {
 	protected function loadRawMessages( $code ) {
 		if( !isset( $this->mRawMessages[$code] ) ) {
 			$this->mRawMessages[$code] = $this->mMessageGroup->load( $code );
+			if( empty( $this->mRawMessages[$code] ) ) {
+				$this->mRawMessages[$code] = array();
+			}
 		}
 	}
 }
