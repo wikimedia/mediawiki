@@ -725,6 +725,9 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'logdelete-logentry'          => '[[$1]]の版の操作情報を変更しました',
 'revdelete-success'           => '版の隠蔽状態を変更しました',
 'logdelete-success'           => '操作情報の隠蔽状態を変更しました',
+'deletedhist'                 => '削除された履歴',
+'revdelete-summary'           => '編集内容の要約',
+'revdelete-uname'             => '利用者名',
 
 # History merging
 'mergehistory'                     => 'ページの統合履歴',
@@ -744,6 +747,8 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'mergehistory-no-destination'      => '統合先のページ $1 が存在しません。',
 'mergehistory-invalid-source'      => '統合元となるページの正確なタイトルを指定してください。',
 'mergehistory-invalid-destination' => '統合先のページの正確なタイトルを指定してください。',
+'mergehistory-autocomment'         => '[[:$1]]を[[:$2]]に統合',
+'mergehistory-comment'             => '[[:$1]]を[[:$2]]に統合: $3',
 
 # Merge log
 'mergelog'           => '統合記録',
@@ -774,16 +779,19 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'prevn'                    => '前 $1',
 'nextn'                    => '次 $1',
 'viewprevnext'             => '（$1）（$2）（$3）を見る',
+'search-result-size'       => '$1 ({{PLURAL:$2|1語|$2語}})',
+'search-redirect'          => '($1 のリダイレクト)',
 'search-interwiki-caption' => '姉妹プロジェクト',
 'mwsuggest-disable'        => 'AJAX によるサジェストを無効にする',
 'searchall'                => 'all',
 'showingresults'           => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
 'showingresultsnum'        => '<b>$2</b> 件目から <b>$3</b> 件を表示しています。',
-'showingresultstotal'      => "'''$3'''件中'''$1 - $2'''件目の検索結果を表示",
+'showingresultstotal'      => "'''$3''' 件中 {{PLURAL:$3|'''$1''|'''$1 - $2'''}} 件目の検索結果を表示",
 'nonefound'                => "'''※'''検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けがされていないか、複数の検索語を指定している（全ての検索語を含むページだけが結果に示されます）などのためかもしれません。",
 'powersearch'              => '検索',
 'powersearch-legend'       => '高度な検索',
 'powersearch-ns'           => '名前空間を指定して検索:',
+'powersearch-redir'        => 'リダイレクトの一覧',
 'powersearch-field'        => '検索キーワード:',
 'searchdisabled'           => '<p>全文検索はサーバー負荷の都合から、一時的に使用停止しています。元に戻るまでGoogleでの全文検索を利用してください。検索結果は少し古い内容となります。</p>',
 
@@ -844,6 +852,8 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'servertime'               => 'サーバーの現在時刻',
 'guesstimezone'            => '自動設定',
 'allowemail'               => '他の利用者からのメールの受け取りを許可する',
+'prefs-searchoptions'      => '検索のオプション',
+'prefs-namespaces'         => '名前空間',
 'defaultns'                => '標準で検索する名前空間:',
 'default'                  => 'デフォルト',
 'files'                    => '画像等',
@@ -881,11 +891,13 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'group-bureaucrat'    => 'ビューロクラット',
 'group-all'           => '（すべて）',
 
+'group-user-member'          => '利用者',
 'group-autoconfirmed-member' => '{{int:group-autoconfirmed}}',
 'group-bot-member'           => '{{int:group-bot}}',
 'group-sysop-member'         => '{{int:group-sysop}}',
 'group-bureaucrat-member'    => '{{int:group-bureaucrat}}',
 
+'grouppage-user'          => '{{ns:project}}:利用者',
 'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
 'grouppage-bot'           => '{{ns:project}}:ボット',
 'grouppage-sysop'         => '{{ns:project}}:管理者',
@@ -1049,8 +1061,10 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'filehist-filesize'         => 'ファイルサイズ',
 'filehist-comment'          => 'コメント',
 'imagelinks'                => 'リンク',
-'linkstoimage'              => 'このファイルを使用しているページの一覧:',
+'linkstoimage'              => 'このファイルを使用している{{PLURAL:$1|ページ|&nbsp;$1 ページ}}の一覧:',
 'nolinkstoimage'            => 'このファイルを使用しているページはありません。',
+'morelinkstoimage'          => 'このファイルの[[Special:Whatlinkshere/$1|リンク元]]を見る。',
+'redirectstofile'           => 'このファイルへ{{PLURAL:$1|リダイレクトされているファイル|リダイレクトされている $1 ファイル}}の一覧:',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'          => '詳しい情報は$1を参照してください。',
 'shareduploadwiki-desc'     => '共有リポジトリ内の$1にあるこのファイルの説明は以下の通りです。',
@@ -1388,7 +1402,7 @@ $NEWPAGE
 
 このページの最後の編集は [[User:$3|$3]] ([[User_talk:$3|会話]] | [[Special:Contributions/$3|履歴]]) によるものです。',
 'editcomment'                 => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を $1 による版へ差し戻し', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
 'sessionfailure'              => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
 'protectlogpage'              => '保護記録',
@@ -1655,7 +1669,7 @@ $NEWPAGE
 'movepage-page-exists'    => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
 'movepage-page-moved'     => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'   => '$1 を $2 へ移動できませんでした。',
-'movepage-max-pages'      => '自動的に移動できるのは $1 ページまでで、それ以上は移動されません。',
+'movepage-max-pages'      => '自動的に移動できるのは $1{{PLURAL:$1|ページ|ページ}} までで、それ以上は移動されません。',
 '1movedto2'               => 'ページ [[$1]] を [[$2]] へ移動',
 '1movedto2_redir'         => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
 'movelogpage'             => '移動記録',

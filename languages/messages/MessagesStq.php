@@ -727,7 +727,7 @@ Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akro
 'lineno'                  => 'Riege $1:',
 'compareselectedversions' => 'Wäälde Versione ferglieke',
 'editundo'                => 'tounichte moakje',
-'diff-multi'              => "<span style='font-size: smaller'>(Die Versionsfergliek belukt {{plural:$1|ne deertwiske lääsende Version|$1 deertwiske lääsende Versione}} mee ien.)</span>",
+'diff-multi'              => "<span style='font-size: smaller'>(Die Versionsfergliek belukt {{PLURAL:$1|ne deertwiske lääsende Version|$1 deertwiske lääsende Versione}} mee ien.)</span>",
 
 # Search results
 'searchresults'         => 'Säikresultoate',

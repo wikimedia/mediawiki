@@ -1974,7 +1974,7 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Pänotem ragivas nulik',
-'imagelisttext'         => "Dono binon lised '''$1''' {{plural:$1|ragiva|ragivas}} $2 pedilädölas.",
+'imagelisttext'         => "Dono binon lised '''$1''' {{PLURAL:$1|ragiva|ragivas}} $2 pedilädölas.",
 'newimages-summary'     => 'Pad patik at lisedon ragivis pelöpüköl lätik.',
 'showhidebots'          => '($1 mäikamenis)',
 'noimages'              => 'Nos ad logön.',

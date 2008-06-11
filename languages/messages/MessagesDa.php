@@ -882,7 +882,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'lineno'                  => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte versioner',
 'editundo'                => 'annuller',
-'diff-multi'              => "<span style='font-size: smaller'>(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)</span>",
+'diff-multi'              => "<span style='font-size: smaller'>(Versionssammenligningen medtager {{PLURAL:$1|en mellemliggende version|$1 mellemliggende versioner}}.)</span>",
 
 # Search results
 'searchresults'             => 'Søgeresultater',
@@ -1712,8 +1712,8 @@ Den aktuelle tekst for den slettede side er kun tilgængelig for administratorer
 'undeletecomment'              => 'Begrundelse:',
 'undeletedarticle'             => 'gendannede "$1"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version|versioner}} gendannet',
-'undeletedrevisions-files'     => '$1 {{plural:$1|version|versioner}} og $2 {{plural:$2|fil|filer}} gendannet',
-'undeletedfiles'               => '$1 {{plural:$1|fil|filer}} gendannet',
+'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versioner}} og $2 {{PLURAL:$2|fil|filer}} gendannet',
+'undeletedfiles'               => '$1 {{PLURAL:$1|fil|filer}} gendannet',
 'cannotundelete'               => 'Gendannelse mislykkedes; en anden har allerede gendannet siden.',
 'undeletedpage'                => "'''$1''' blev gendannet.
 

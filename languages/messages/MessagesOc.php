@@ -959,7 +959,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'lineno'                  => 'Linha $1 :',
 'compareselectedversions' => 'Comparar las versions seleccionadas',
 'editundo'                => 'desfar',
-'diff-multi'              => '({{plural:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
+'diff-multi'              => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
 
 # Search results
 'searchresults'             => 'Resultats de la recèrca',

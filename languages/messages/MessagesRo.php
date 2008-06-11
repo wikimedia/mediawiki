@@ -730,7 +730,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'lineno'                  => 'Linia $1:',
 'compareselectedversions' => 'Compară versiunile selectate',
 'editundo'                => 'anulează',
-'diff-multi'              => '({{plural:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
+'diff-multi'              => '({{PLURAL:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
 
 # Search results
 'searchresults'         => 'Rezultatele căutării',

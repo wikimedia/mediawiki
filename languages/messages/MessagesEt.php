@@ -261,7 +261,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'redirectedfrom'    => '(Ümber suunatud artiklist $1)',
 'redirectpagesub'   => 'Ümbersuunamisleht',
 'lastmodifiedat'    => 'Viimane muutmine: $2, $1', # $1 date, $2 time
-'viewcount'         => 'Seda lehekülge on külastatud {{plural:$1|üks kord|$1 korda}}.',
+'viewcount'         => 'Seda lehekülge on külastatud {{PLURAL:$1|üks kord|$1 korda}}.',
 'protectedpage'     => 'Kaitstud lehekülg',
 'jumptonavigation'  => 'navigeerimiskast',
 'jumptosearch'      => 'otsi',

@@ -648,7 +648,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'lineno'                  => 'መስመር፡ $1፦',
 'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
 'editundo'                => 'ለውጡ ይገለበጥ',
-'diff-multi'              => '(ከነዚህ 2 እትሞች መካከል {{plural:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
+'diff-multi'              => '(ከነዚህ 2 እትሞች መካከል {{PLURAL:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
 
 # Search results
 'searchresults'         => 'የፍለጋ ውጤቶች',

@@ -694,7 +694,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'lineno'                  => 'Rida $1:',
 'compareselectedversions' => 'Võrdõlõq valituid kujjõ',
 'editundo'                => 'võtaq tagasi',
-'diff-multi'              => '(Kujjõ vaihõl {{plural:$1|üts näütämäldä muutminõ|$1 näütämäldä muutmist}}.)',
+'diff-multi'              => '(Kujjõ vaihõl {{PLURAL:$1|üts näütämäldä muutminõ|$1 näütämäldä muutmist}}.)',
 
 # Search results
 'searchresults'             => 'Otsmisõ tulõmusõq',
@@ -1308,9 +1308,9 @@ viil olõman, naid saa tagasi tetäq niikavva ku naid olõ-i viil arhiivist ärq
 'undeletereset'            => 'Tiiq tühäs',
 'undeletecomment'          => 'Kommõntaar:',
 'undeletedarticle'         => '"$1" tagasi tett',
-'undeletedrevisions'       => '$1 {{plural:$1|kujo|kujjo}} tagasi tett',
-'undeletedrevisions-files' => '$1 {{plural:$1|kujo|kujjo}} ja $2 {{plural:$2|teedüstü|teedüstüt}} tagasi tett',
-'undeletedfiles'           => '$1 {{plural:$1|teedüstü|teedüstüt}} tagasi tett',
+'undeletedrevisions'       => '$1 {{PLURAL:$1|kujo|kujjo}} tagasi tett',
+'undeletedrevisions-files' => '$1 {{PLURAL:$1|kujo|kujjo}} ja $2 {{PLURAL:$2|teedüstü|teedüstüt}} tagasi tett',
+'undeletedfiles'           => '$1 {{PLURAL:$1|teedüstü|teedüstüt}} tagasi tett',
 'cannotundelete'           => 'Tagasitegemine lää-s kõrda; kiäki tõõnõ või-ollaq lehe jo tagasi tennüq.',
 'undeletedpage'            => "<big>'''$1 om tagasi tett'''</big>
 

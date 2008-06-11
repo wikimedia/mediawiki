@@ -785,7 +785,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'lineno'                  => 'Tekslien $1:',
 'compareselectedversions' => 'Vergeliek geselecteerde versies',
 'editundo'                => 'ongedaon make',
-'diff-multi'              => '({{plural:$1|éin tusseligkede versie wörd|$1 tusseligkede versies waere}} neet getuund)',
+'diff-multi'              => '({{PLURAL:$1|éin tusseligkede versie wörd|$1 tusseligkede versies waere}} neet getuund)',
 
 # Search results
 'searchresults'             => 'Zeukresultate',

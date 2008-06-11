@@ -163,7 +163,7 @@ $messages = array(
 'viewtalkpage'      => 'Fiiri bogga wadahadalka',
 'otherlanguages'    => 'Luqadaha kale',
 'lastmodifiedat'    => 'Boggan waxaa markii ugu dambeysay wax laga bedelay $2, $1.', # $1 date, $2 time
-'viewcount'         => 'This page has been accessed {{plural:$1|one time|$1 times}}.',
+'viewcount'         => 'This page has been accessed {{PLURAL:$1|one time|$1 times}}.',
 'protectedpage'     => "Bog la'difaacay",
 'jumpto'            => 'U bood:',
 'jumptosearch'      => 'raadi',
@@ -341,7 +341,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'rev-delundel' => "i'tus/qari",
 
 # Diffs
-'diff-multi' => '({{plural:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
+'diff-multi' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
 
 # Search results
 'searchresults'         => 'Natiijooyinkii ka soo baxay raadinta',
@@ -527,9 +527,9 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'viewdeletedpage'          => "Fiiri boggaga la'tirtiray",
 'undeletebtn'              => 'Sooceli',
 'undeletedarticle'         => 'La\' sooceliyey "[[$1]]"',
-'undeletedrevisions'       => '$1 {{plural:$1|revision|revisions}} restored',
-'undeletedrevisions-files' => '$1 {{plural:$1|revision|revisions}} and $2 {{plural:$2|file|files}} restored',
-'undeletedfiles'           => '$1 {{plural:$1|file|files}} restored',
+'undeletedrevisions'       => '$1 {{PLURAL:$1|revision|revisions}} restored',
+'undeletedrevisions-files' => '$1 {{PLURAL:$1|revision|revisions}} and $2 {{PLURAL:$2|file|files}} restored',
+'undeletedfiles'           => '$1 {{PLURAL:$1|file|files}} restored',
 'cannotundelete'           => "Soo celinta ma' suurto galin; waxaa laga yaabaa in qofkale uu horay u soo celyey bogga.",
 'undelete-search-box'      => 'Raadi bogagga la tirtiray',
 'undelete-search-prefix'   => "I'tus boggaga ku bilaawda:",
@@ -600,7 +600,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'numwatchers' => 'Tirada waardiyeyaasha: $1',
 
 # Special:Newimages
-'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{plural:$1|file|faylalka}} oo u kala soocan $2.",
+'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",
 'bydate'        => 'hab taariikheed',
 
 # 'all' in various places, this might be different for inflected languages

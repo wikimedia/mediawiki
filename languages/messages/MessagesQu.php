@@ -770,7 +770,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'lineno'                  => "Siq'i $1:",
 'compareselectedversions' => "Pallasqa llamk'apusqakunata wakichay",
 'editundo'                => 'kutichiy',
-'diff-multi'              => "({{plural:$1|Chawpipi huk llamk'apusqaqa manam rikuchisqachu|Chawpipi $1 llamk'apusqaqa manam rikuchisqachu}}.)",
+'diff-multi'              => "({{PLURAL:$1|Chawpipi huk llamk'apusqaqa manam rikuchisqachu|Chawpipi $1 llamk'apusqaqa manam rikuchisqachu}}.)",
 
 # Search results
 'searchresults'             => 'Maskaymanta tarisqakuna',

@@ -802,7 +802,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'lineno'                  => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',
 'editundo'                => 'deshacer',
-'diff-multi'              => '({{plural:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
+'diff-multi'              => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 
 # Search results
 'searchresults'         => 'Resultados de la búsqueda',
@@ -1503,7 +1503,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletedarticle'         => 'restauró "$1"',
 'undeletedrevisions'       => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|ediciones restauradas y $2 archivo restaurado|ediciones y $2 archivos restaurados}}',
-'undeletedfiles'           => '$1 {{plural:$1|archivo restaurado|archivos restaurados}}',
+'undeletedfiles'           => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
 'cannotundelete'           => 'Ha fallado el deshacer el borrado; alguien más puede haber deshecho el borrado antes.',
 'undeletedpage'            => "<big>'''Se ha restaurado $1'''</big>
 

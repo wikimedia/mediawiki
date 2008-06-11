@@ -788,7 +788,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'lineno'                  => 'Riga $1:',
 'compareselectedversions' => 'Confronta łe version selezionà',
 'editundo'                => 'annulla',
-'diff-multi'              => '({{plural:$1|Una revision intermedia non mostrà|$1 revision intermedie non mostrà}}.)',
+'diff-multi'              => '({{PLURAL:$1|Una revision intermedia non mostrà|$1 revision intermedie non mostrà}}.)',
 
 # Search results
 'searchresults'             => 'Risultato de la riçerca',

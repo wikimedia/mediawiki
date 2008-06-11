@@ -531,7 +531,7 @@ Tomsta torėt nosprēst, a pritėnk tuoliau redagoutė šėta poslapi.
 # "Undo" feature
 'undo-success' => 'Keitėms gal būtė atšaukts. Prašuom patėkrėntė palīgėnėma, asonti žemiau, kū patvėrtėntomiet, kū Tamsta šėta ė nuorėt padarītė, ė tumet ėšsauguokit pakeitėmos, asontios žemiau, kū ožbėngtomiet keitėma atšaukėma.',
 'undo-failure' => 'Keitėms nagal būt atšaukts diel konflėktounantiu tarpėniu pakeitėmu.',
-'undo-summary' => 'Atšauktė [[Special:Contributions/$2|$2]] ([[Nauduotuojė_aptarėms:$2|Aptarėms]]) versėje $1',
+'undo-summary' => 'Atšauktė [[Special:Contributions/$2|$2]] ([[User_talk:$2|Aptarėms]]) versėje $1',
 
 # History pages
 'viewpagelogs'        => 'Ruodītė šėtuo poslapė specēliōsios vaiksmos',
@@ -646,7 +646,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'userrights-lookup-user'     => 'Tvarkītė nauduotuojė gropės',
 'userrights-user-editname'   => 'Iveskėt nauduotuojė varda:',
 'editusergroup'              => 'Redagoutė nauduotuojė gropes',
-'editinguser'                => 'Taisuoms nauduotuos <b>$1</b>',
+'editinguser'                => "Taisuoms nauduotuos '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'   => 'Keistė nauduotuoju gropes',
 'userrights-groupsmember'    => 'Narīs:',
 'userrights-groupsavailable' => 'Galėmas gropės:',
@@ -693,6 +693,8 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'hist'                              => 'ist',
 'hide'                              => 'Kavuotė',
 'show'                              => 'Ruodītė',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
 'boteditletter'                     => 'r',
 'number_of_watching_users_pageview' => '[$1 keravuojantiu nauduotuoju]',
 'rc_categories'                     => 'Ruodītė tėk šėtas kateguorėjės (atskirkit nauduodamė „|“)',

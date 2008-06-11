@@ -7,10 +7,7 @@
  * @author Макѕе
  * @author Кумулај Маркус
  * @author Siebrand
- * @author Макѕе
- * @author Кумулај Маркус
  * @author Приетен тев
- * @author Siebrand
  */
 
 $fallback = 'mk';

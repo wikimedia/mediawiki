@@ -226,7 +226,7 @@ $messages = array(
 'redirectedfrom'    => '($1(e)tik birzuzenduta)',
 'redirectpagesub'   => 'Birzuzenketa orria',
 'lastmodifiedat'    => 'Orrialdearen azken aldaketa: $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Orrialde hau {{plural:$1|behin|$1 aldiz}} bisitatu da.',
+'viewcount'         => 'Orrialde hau {{PLURAL:$1|behin|$1 aldiz}} bisitatu da.',
 'protectedpage'     => 'Babestutako orrialdea',
 'jumpto'            => 'Hona jo:',
 'jumptonavigation'  => 'nabigazioa',
@@ -786,6 +786,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'right-createaccount' => 'Erabiltzaile kontu berria sortu',
 'right-move'          => 'Oriak mugitu',
 'right-upload'        => 'Fitxategia igo',
+'right-autoconfirmed' => 'Semi-babestuak dauden orriak aldatu',
 'right-delete'        => 'Orri ezabatuak',
 
 # User rights log
@@ -1649,7 +1650,7 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Fitxategi berrien galeria',
-'imagelisttext'         => "Jarraian duzu $2(e)z ordenatutako {{plural:$1|fitxategi baten|'''$1''' fitxategiren}} zerrenda.",
+'imagelisttext'         => "Jarraian duzu $2(e)z ordenatutako {{PLURAL:$1|fitxategi baten|'''$1''' fitxategiren}} zerrenda.",
 'showhidebots'          => '($1 bot-ak)',
 'noimages'              => 'Ez dago ezer ikusteko.',
 'ilsubmit'              => 'Bilatu',

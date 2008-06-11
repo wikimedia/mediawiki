@@ -6,7 +6,6 @@
  *
  * @author Tagir
  * @author Siebrand
- * @author Tagir
  */
 
 $fallback = 'ru';

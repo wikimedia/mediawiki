@@ -160,8 +160,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Meng E-Mailadress an de Benoriichtigungsmaile weisen.',
 'tog-shownumberswatching'     => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-fancysig'                => 'Ënnerschrëft ouni automatesche Link op déi eege Benotzersäit',
-'tog-externaleditor'          => 'Externen Editor als Standard benotzen',
-'tog-externaldiff'            => 'Externen Diff-Programm als Standard benotzen',
+'tog-externaleditor'          => 'Externen Editor als Standard benotzen (Nëmme fir Experten, et musse seziell Astellungen op ärem Computer gemaach ginn.',
+'tog-externaldiff'            => 'En Externen Diff-Programm als Standard benotzen (nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn.',
 'tog-uselivepreview'          => 'Live-Preview notzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wa beim Späicheren de Resumé feelt',
 'tog-watchlisthideown'        => 'Meng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
@@ -526,7 +526,7 @@ Aktivéiert déi w.e.g. a loggt Iech da matt ärem neie Benotzernomm an dem resp
 'nouserspecified'            => 'Gitt w.e.g. e Benotzernumm un.',
 'wrongpassword'              => 'Dir hutt e falscht (oder kee) Passwuert aginn. Probéiert w.e.g. nach eng Kéier.',
 'wrongpasswordempty'         => "D'Passwuert dat Dir aginn huet war eidel. Probéiert w.e.g. nach eng Kéier.",
-'passwordtooshort'           => 'Ärt Passwuert ass ongülteg oder ze kuerz: Et muss mindestens $1 Zeeche laang sinn an et däerf net matt dem Benotzernumm identesch sinn.',
+'passwordtooshort'           => 'Ärt Passwuert ass ongülteg oder ze kuerz: Et muss mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn an et däerf net matt dem Benotzernumm identesch sinn.',
 'mailmypassword'             => 'Neit Passwuert per mail kréien',
 'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkonto',
 'passwordremindertext'       => "Iergend een matt der IP-Adress $1, waarscheinlech Dir selwer, huet een neit Passwuert fir d'Umeldung op {{SITENAME}} ($4) gefrot.
@@ -542,7 +542,8 @@ Melt iech w.e.g. domatt un, soubal Dir et kritt hutt.',
 'blocked-mailpassword'       => "Déi vun iech benotzten IP-Adress ass fir d'Ännere vu Säite gespaart. Fir Mëssbrauch ze verhënneren, gouf d'Méiglechkeet fir een neit Passwuert unzefroen och gespaart.",
 'eauthentsent'               => "Eng Confirmatiouns-E-Mail gouf un déi uginnen Adress geschéckt.<br/ >
 Ier iergend eng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, muss der als éischt d'Instructiounen an der Confirmatiouns-E-Mail befollegen, fir ze bestätegen datt de Kont wierklech ären eegenen ass.",
-'throttled-mailpassword'     => 'Et gouf an de läschte(n) $1 Stonnen schonn ee neit Passwuert ugefrot. Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all $1 Stonnen een neit Passwuert ugefrot ginn.',
+'throttled-mailpassword'     => "An {{PLURAL:$1|der läschter Stonn|de läschte(n) $1 Stonnen}} gouf eng Erënenrung un d'Passwuert verschéckt.
+Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURAL:$1|Stonn|$1 Stonnen}} esou eng Erënnerung verschéckt ginn.",
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Dir hutt scho(nn) $1 Konten. Dir kënnt keen Neie méi derbäikréien.',
 'emailauthenticated'         => 'Är E-Mailadress gouf bestätegt: $1..',
@@ -1154,6 +1155,9 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'largefileserver'             => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
 'emptyfile'                   => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'                  => 'Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. <strong><tt>$1</tt></strong> wann Dir net sécher sidd, op Dir den Numm ännere wëllt.',
+'filepageexists'              => "Eng Beschreiwungssäit gouf schonns als <strong><tt>$1</tt></strong> geschriwwen, et gëtt awer kee Fichier mat deem Numm.
+
+Dir kënnt also äre Fichier eroplueden, mee déi Beschreiwung déi dir aginn hutt gëtt net op d'Beschreiwungssäit iwwerholl. D'Beschreiwungssäit musst der nom Eropluede vum Fichier nach manuell änneren.",
 'fileexists-thumb'            => "<center>'''Dëse Fichier gëtt et'''</center>",
 'fileexists-forbidden'        => "Et gëtt schonn e Fichier mat ësem Nummm. Gitt w.e.g. z'réck a lued dëse Fichier ënntert engem aner Numm erop. [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn;
@@ -1223,7 +1227,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filehist-filesize'              => 'Gréisst vum Fichier',
 'filehist-comment'               => 'Bemierkung',
 'imagelinks'                     => 'Biller Linken',
-'linkstoimage'                   => 'Déi folgenden Säite benotzen dëse Fichier:',
+'linkstoimage'                   => 'Dës {{PLURAL:$1|Säit benotzt|Säite benotzen}} dëse Fichier:',
 'nolinkstoimage'                 => 'Keng Säit benotzt dëse Fichier.',
 'morelinkstoimage'               => 'Weis [[Special:Whatlinkshere/$1|méi Linken]] op dëse Fichier.',
 'redirectstofile'                => 'Dës Fichiere leede virun op de Fichier:',
@@ -1609,7 +1613,7 @@ dës Aktioun soll mat Vierssiicht gemaach ginn.",
 'cantrollback'                => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
 'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]) kann net zréckgesat ginn; een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen. Lescht Ännerung vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]).',
 'editcomment'                 => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) geläscht an déi lescht Versioun vum [[User:$1|$1]] restauréiert', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'protectlogtext'              => "Dëst ass d'Lëscht vun de Säitespären.

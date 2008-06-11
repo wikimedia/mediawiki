@@ -856,7 +856,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'lineno'                  => 'Linia $1:',
 'compareselectedversions' => 'Confrontar as bersions trigatas',
 'editundo'                => 'esfer',
-'diff-multi'              => "(S'ha amagato {{plural:$1|una edizión entremeya|$1 edizions entremeyas}}.)",
+'diff-multi'              => "(S'ha amagato {{PLURAL:$1|una edizión entremeya|$1 edizions entremeyas}}.)",
 
 # Search results
 'searchresults'             => 'Resultau de mirar',

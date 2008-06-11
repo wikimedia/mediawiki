@@ -931,7 +931,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'lineno'                  => 'Zeile $1:',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',
 'editundo'                => 'rückgängig',
-'diff-multi'              => "<span style='font-size: smaller'>(Der Versionsvergleich bezieht {{plural:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</span>",
+'diff-multi'              => "<span style='font-size: smaller'>(Der Versionsvergleich bezieht {{PLURAL:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</span>",
 
 # Search results
 'searchresults'             => 'Suchergebnisse',

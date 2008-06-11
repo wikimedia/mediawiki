@@ -671,7 +671,7 @@ m = maznozīmīgs labojums.',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'J',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[šo lapu uzrauga $1 {{plural:$1|lietotājs|lietotāji}}]',
+'number_of_watching_users_pageview' => '[šo lapu uzrauga $1 {{PLURAL:$1|lietotājs|lietotāji}}]',
 'newsectionsummary'                 => '/* $1 */ jauna sadaļa',
 
 # Recent changes linked
@@ -856,11 +856,11 @@ Lūdzu, vispirms atjauno vecāku versiju.',
 'statistics'    => 'Statistika',
 'sitestats'     => '{{grammar:ģenitīvs|{{SITENAME}}}} statistika',
 'userstats'     => 'Statistika par lietotājiem',
-'sitestatstext' => "Datubāzē kopā ir '''\$1''' {{plural:\$1|lapa|lapas}}, ieskaitot diskusiju lapas, lapas par {{GRAMMAR:akuzatīvs|{{SITENAME}}}}, nelielas \"aizmetņu\" lapas (''stubs''), pāradresācijas lapas, kā arī citas lapas, kuras, iespējams, nevar nosaukt par pilnvērtīgām satura lapām. Neskaitot iepriekš minētās, {{grammar:lokatīvs|{{SITENAME}}}} ir '''\$2''' {{plural:\$2|lapa|lapas}}, {{plural:\$2|kuru|kuras}} var uzskatīt par pamatsatura {{plural:\$2|lapu|lapām}}.
+'sitestatstext' => "Datubāzē kopā ir '''\$1''' {{PLURAL:\$1|lapa|lapas}}, ieskaitot diskusiju lapas, lapas par {{GRAMMAR:akuzatīvs|{{SITENAME}}}}, nelielas \"aizmetņu\" lapas (''stubs''), pāradresācijas lapas, kā arī citas lapas, kuras, iespējams, nevar nosaukt par pilnvērtīgām satura lapām. Neskaitot iepriekš minētās, {{grammar:lokatīvs|{{SITENAME}}}} ir '''\$2''' {{PLURAL:\$2|lapa|lapas}}, {{PLURAL:\$2|kuru|kuras}} var uzskatīt par pamatsatura {{PLURAL:\$2|lapu|lapām}}.
 
 Augšupielādēti '''\$8''' faili.
 
-Kopš {{grammar:ģenitīvs|{{SITENAME}}}} izveidošanas lapas ir tikušas apskatītas '''\$3''' reizes un lietotāji ir izdarījuši '''\$4''' {{plural:\$4|labojumu|labojumus}} (katra lapa ir labota vidēji '''\$5''' reizes).
+Kopš {{grammar:ģenitīvs|{{SITENAME}}}} izveidošanas lapas ir tikušas apskatītas '''\$3''' reizes un lietotāji ir izdarījuši '''\$4''' {{PLURAL:\$4|labojumu|labojumus}} (katra lapa ir labota vidēji '''\$5''' reizes).
 Vidēji tas ir '''\$5''' labojumi uz lapu un apskatīšanas/labojumu attiecība ir '''\$6'''.
 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",

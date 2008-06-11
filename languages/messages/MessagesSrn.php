@@ -456,7 +456,7 @@ A kan ben trowe efu dribi.
 'lineno'                  => 'Lin $1:',
 'compareselectedversions' => 'Ski disi si',
 'editundo'                => 'dyens',
-'diff-multi'              => '({{plural:$1|Wan inisey si ben|$1 inisey si ben}} no libi si)',
+'diff-multi'              => '({{PLURAL:$1|Wan inisey si ben|$1 inisey si ben}} no libi si)',
 
 # Search results
 'searchresults'         => 'Sukuleysi',

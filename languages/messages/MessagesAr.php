@@ -382,8 +382,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'أظهر عنوان بريدي الإلكتروني في رسائل الإخطار',
 'tog-shownumberswatching'     => 'اعرض عدد المستخدمين المراقبين',
 'tog-fancysig'                => 'توقيعات خام (بدون وصلة أوتوماتيكية)',
-'tog-externaleditor'          => 'استخدم محرر خارجي افتراضيا',
-'tog-externaldiff'            => 'استخدم فرقا خارجيا افتراضيا',
+'tog-externaleditor'          => 'استخدم محررا خارجيا افتراضيا (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك)',
+'tog-externaldiff'            => 'استخدم فرقا خارجيا افتراضيا (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك)',
 'tog-showjumplinks'           => 'فعل وصلات "اذهب إلى".',
 'tog-uselivepreview'          => 'استخدم الاستعراض السريع (جافاسكريبت) (تجريبي)',
 'tog-forceeditsummary'        => 'نبهني عند إدخال ملخص تعديل فارغا',
@@ -765,7 +765,8 @@ $2',
 'nouserspecified'            => 'يجب عليك تحديد اسم مستخدم.',
 'wrongpassword'              => 'كلمة السر التي أدخلتها غير صحيحة. من فضلك حاول مرة أخرى.',
 'wrongpasswordempty'         => 'كلمة السر المدخلة كانت فارغة. من فضلك حاول مرة أخرى.',
-'passwordtooshort'           => 'كلمة السر التي اخترتها غير صحيحة أو قصيرة جدا. يجب ألا يقل طول الكلمة عن $1 حرف وأن تكون مختلفة عن اسم المستخدم الخاص بك.',
+'passwordtooshort'           => 'كلمة السر التي اخترتها غير صحيحة أو قصيرة جدا.
+يجب ألا يقل طول الكلمة عن {{PLURAL:$1|1 حرف|$1 حرف}} حرف وأن تكون مختلفة عن اسم المستخدم الخاص بك.',
 'mailmypassword'             => 'أرسل لي كلمة السر عبر البريد الإلكتروني.',
 'passwordremindertitle'      => 'كلمة سر مؤقتة جديدة ل {{SITENAME}}',
 'passwordremindertext'       => 'لقد طلب شخص ما (غالبا أنت، من عنوان الأيبي $1) أن نرسل لك كلمة سر جديدة لـ{{SITENAME}} ($4).
@@ -779,9 +780,9 @@ $2',
 من فضلك حاول تسجيل الدخول مرة ثانية بعد استلامها.',
 'blocked-mailpassword'       => 'تم منع عنوان الأيبي الخاص بك من التحرير، ولمنع التخريب لا يمكنك أن تستخدم خاصية استرجاع كلمة السر.',
 'eauthentsent'               => 'تم إرسال رسالة تأكيد إلكترونية إلى العنوان المسمى. حتى ترسل أي رسالة أخرى لذلك الحساب عليك أن تتبع التعليمات الواردة في الرسالة لتأكيد أن هذا الحساب هو لك بالفعل.',
-'throttled-mailpassword'     => 'تم بالفعل إرسال تذكير بكلمة السر، في خلال الـ$1 ساعة الماضية.
+'throttled-mailpassword'     => 'تم بالفعل إرسال تذكير بكلمة السر، في خلال الـ{{PLURAL:$1|ساعة|$1 ساعة}} الماضية.
 لمنع التخريب، تذكير واحد فقط سيتم إرساله كل
-$1 ساعة.',
+{{PLURAL:$1|ساعة|$1 ساعة}}.',
 'mailerror'                  => 'خطأ أثناء إرسال البريد: $1',
 'acct_creation_throttle_hit' => 'عذرا، لقد قمت بإنشاء $1 حساب. لا يمكنك عمل المزيد.',
 'emailauthenticated'         => 'تم تأكيد بريدك الإلكتروني في $1.',
@@ -1372,6 +1373,7 @@ $1 ساعة.',
 'reuploaddesc'                => 'إلغاء الرفع والرجوع إلى استمارة الرفع',
 'uploadnologin'               => 'لم تقم بتسجيل الدخول',
 'uploadnologintext'           => 'يجب أن تكون [[Special:Userlogin|مسجلا الدخول]] لتتمكن من رفع الملفات.',
+'upload_directory_missing'    => 'مجلد الرفع ($1) مفقود ولم يمكن إنشاؤه بواسطة خادم الويب.',
 'upload_directory_read_only'  => 'لا يمكن الكتابة على مجلد الرفع ($1) بواسطة خادم الشبكة.',
 'uploaderror'                 => 'خطأ في الرفع',
 'uploadtext'                  => "استخدم الاستمارة بالأسفل لرفع الملفات.
@@ -1499,11 +1501,11 @@ PICT # misc.
 'filehist-filesize'              => 'حجم الملف',
 'filehist-comment'               => 'تعليق',
 'imagelinks'                     => 'وصلات',
-'linkstoimage'                   => 'الصفحات التالية تحتوي على وصلة لهذا الملف:',
+'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} التالية تصل إلى هذا الملف:',
 'nolinkstoimage'                 => 'لا توجد صفحات تصل لهذا الملف.',
 'morelinkstoimage'               => 'عرض [[Special:Whatlinkshere/$1|المزيد من الوصلات]] إلى هذا الملف.',
-'redirectstofile'                => 'الملفات التالية تحول إلى هذا الملف:',
-'duplicatesoffile'               => 'الملفات التالية مكررات لهذا الملف',
+'redirectstofile'                => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
+'duplicatesoffile'               => '{{PLURAL:$1|الملف|ال$1 ملف التالي}} مكررات لهذا الملف:',
 'sharedupload'                   => 'هذا الملف تم رفعه للتشارك بين المشاريع ويمكن استخدامه في المشاريع الأخرى.',
 'shareduploadwiki'               => 'من فضلك انظر $1 لمزيد من المعلومات.',
 'shareduploadwiki-desc'          => 'الوصف على $1 في المستودع المشترك معروض بالأسفل.',
@@ -1859,7 +1861,7 @@ $NEWPAGE
 
 آخر تعديل كان بواسطة [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
 'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'استرجع تعديلات [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]])؛ استرجع حتى تعديل [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]]) حتى آخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'استرجع تعديلات $1؛ استرجع حتى آخر نسخة بواسطة $2.',
 'sessionfailure'              => 'يبدو أنه هناك مشكلة في هذه الجلسة الخاصة بك؛ لذلك فقد ألغيت هذه العملية كإجراء احترازي ضد الاختراق. الرجاء الضغط على مفتاح "العودة" (Back) للرجوع للصفحة التي جئت منها ثم قم بإعادة تحميلها قبل المحاولة مرة أخرى.',
 'protectlogpage'              => 'سجل الحماية',
@@ -2298,7 +2300,7 @@ $1',
 
 # Scripts
 'common.js'   => '/* الجافاسكريبت الموضوع هنا سيتم تحميله لكل المستخدمين مع كل تحميل للصفحة. */',
-'monobook.js' => '/* تم الاستغناء عنها؛ استخدم [[MediaWiki:common.js]] */',
+'monobook.js' => '/* الجافاسكريبت هنا سيتم تحميلها للمستخدمين الذين يستعملون واجهة مونوبوك فقط. */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata معطلة لهذا الخادم.',

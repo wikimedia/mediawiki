@@ -210,7 +210,7 @@ $messages = array(
 'redirectedfrom'    => '(Yettusmimeḍ seg $1)',
 'redirectpagesub'   => 'Asebter usemmimeḍ',
 'lastmodifiedat'    => 'Tikkelt taneggarut i yettubeddel asebter-agi $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Asebter-agi yettwakcem {{plural:$1|yiwet tikelt|$1 tikwal}}.',
+'viewcount'         => 'Asebter-agi yettwakcem {{PLURAL:$1|yiwet tikelt|$1 tikwal}}.',
 'protectedpage'     => 'Asebter yettwaḥerzen',
 'jumpto'            => 'Neggez ar:',
 'jumptonavigation'  => 'ẓer isebtar',
@@ -639,7 +639,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'lineno'                  => 'Ajerriḍ $1:',
 'compareselectedversions' => 'Ẓer imgerraden ger tisiwal i textareḍ',
 'editundo'                => 'ssefsu',
-'diff-multi'              => '({{plural:$1|Yiwen tasiwelt tabusarit|$1 n tisiwal tibusarin}} ur ttumlalent ara.)',
+'diff-multi'              => '({{PLURAL:$1|Yiwen tasiwelt tabusarit|$1 n tisiwal tibusarin}} ur ttumlalent ara.)',
 
 # Search results
 'searchresults'         => 'Igmad n unadi',
@@ -1434,7 +1434,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Special:Newimages
 'newimages'             => 'Umuɣ n ifayluwen imaynuten',
-'imagelisttext'         => "Deg ukessar yella wumuɣ n '''$1''' {{plural:$1|ufaylu|yifayluwen}} $2.",
+'imagelisttext'         => "Deg ukessar yella wumuɣ n '''$1''' {{PLURAL:$1|ufaylu|yifayluwen}} $2.",
 'noimages'              => 'Tugna ulac-itt.',
 'ilsubmit'              => 'Nadi',
 'bydate'                => 's uzemz',

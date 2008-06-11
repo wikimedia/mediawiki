@@ -605,7 +605,7 @@ Votre compte a été créé. N’oubliez pas de personnaliser vos préférences 
 'prefs-memberingroups'       => 'Membre {{PLURAL:$1|du groupe|des groupes}} :',
 'yourrealname'               => 'Nom réel',
 'yourlanguage'               => 'Langue de l’interface :',
-'yourvariant'                => 'Variante',
+'yourvariant'                => 'Variante :',
 'yournick'                   => 'Signature pour les discussions :',
 'badsig'                     => 'Signature brute incorrecte ; Vérifiez vos balises HTML.',
 'badsiglength'               => 'Votre signature est trop longue : la taille maximale est de $1 caractère{{PLURAL:$1||s}}.',
@@ -943,7 +943,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'lineno'                  => 'Ligne $1 :',
 'compareselectedversions' => 'Comparer les versions sélectionnées',
 'editundo'                => 'défaire',
-'diff-multi'              => '({{plural:$1|Une révision intermédiaire masquée|$1 révisions intermédiaires masquées}})',
+'diff-multi'              => '({{PLURAL:$1|Une révision intermédiaire masquée|$1 révisions intermédiaires masquées}})',
 
 # Search results
 'searchresults'             => 'Résultats de la recherche',
@@ -974,8 +974,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'mwsuggest-disable'         => 'Désactiver les suggestions AJAX',
 'searchrelated'             => 'relaté',
 'searchall'                 => 'Tous',
-'showingresults'            => 'Affichage de <b>$1</b> {{plural:$1|résultat|résultats}} à partir du #<b>$2</b>.',
-'showingresultsnum'         => 'Affichage de <b>$3</b> {{plural:$3|résultat|résultats}} à partir du #<b>$2</b>.',
+'showingresults'            => 'Affichage de <b>$1</b> {{PLURAL:$1|résultat|résultats}} à partir du #<b>$2</b>.',
+'showingresultsnum'         => 'Affichage de <b>$3</b> {{PLURAL:$3|résultat|résultats}} à partir du #<b>$2</b>.',
 'showingresultstotal'       => "Ci-dessous l’affichage {{PLURAL:$3|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
 'nonefound'                 => '<strong>Note</strong> : l’absence de résultat est souvent due à l’emploi de termes de recherche trop courants, comme « à » ou « de », qui ne sont pas indexés, ou à l’emploi de plusieurs termes de recherche (seules les pages contenant tous les termes apparaissent dans les résultats).',
 'powersearch'               => 'Rechercher',
@@ -1205,6 +1205,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'reuploaddesc'                => 'Retour au formulaire.',
 'uploadnologin'               => 'Non connecté(e)',
 'uploadnologintext'           => 'Vous devez être [[Special:Userlogin|connecté]] pour envoyer des fichiers sur le serveur.',
+'upload_directory_missing'    => 'Le répertoire d’import ($1) est manquant et n’a pas pu être créé par le serveur web.',
 'upload_directory_read_only'  => 'Le serveur Web ne peut écrire dans le dossier cible ($1).',
 'uploaderror'                 => 'Erreur',
 'uploadtext'                  => 'Utilisez ce formulaire pour importer des fichiers sur le serveur.
@@ -1272,20 +1273,20 @@ Veuillez vérifer le fichier.',
 
 Le journal des suppressions de ce fichier vous aidera à déterminer s’il est opportun de continuer son import :",
 'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
-'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --><pre>
 # La syntaxe est la suivante :
-#   * Tout ce qui suit le caractère "#" jusqu\'à la fin de la ligne est un commentaire
-#   * Toute ligne non vide est un préfixe typique de nom de fichier assigné automatiquement par les appareils numériques
+#  * Tout ce qui figure entre un caractère "#" jusqu’à la fin de la ligne est un commentaire ;
+#  * Toute ligne non vide est un préfixe typique de nom de fichier assigné automatiquement par les appareils numériques :
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
 DSCN # Nikon
-DUW # some mobil phones
-IMG # generic
+DUW # certains téléphones mobiles
+IMG # générique
 JD # Jenoptik
 MGP # Pentax
-PICT # misc.
- #</pre> <!-- laisser cette ligne telle quelle -->',
+PICT # divers
+ #</pre><!-- laisser cette ligne telle quelle -->',
 
 'upload-proto-error'      => 'Protocole incorrect',
 'upload-proto-error-text' => 'L’import à distance requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.',
@@ -1332,11 +1333,11 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filehist-filesize'              => 'Taille du fichier',
 'filehist-comment'               => 'Commentaire',
 'imagelinks'                     => 'Pages contenant l’image',
-'linkstoimage'                   => 'Les pages ci-dessous contiennent cette image :',
+'linkstoimage'                   => '{{PLURAL:$1|La page ci-dessous contient|Les pages ci-dessous contiennent}} cette image :',
 'nolinkstoimage'                 => 'Aucune page ne contient cette image.',
 'morelinkstoimage'               => 'Voir [[Special:Whatlinkshere/$1|plus de liens]] vers cette image.',
-'redirectstofile'                => 'Les fichiers suivants redirigent vers ce fichier :',
-'duplicatesoffile'               => 'Les fichiers suivants sont des duplicatas de celui-ci :',
+'redirectstofile'                => '{{PLURAL:$1|Le fichier suivant redirige|Les fichiers suivants redirigent}} vers celui-ci :',
+'duplicatesoffile'               => '{{PLURAL:$1|Le fichier suivant est un duplicata|Les fichiers suivants sont des duplicatas}} de celui-ci :',
 'sharedupload'                   => 'Ce fichier est partagé et peut-être utilisé par d’autres projets.',
 'shareduploadwiki'               => 'Reportez-vous à la [$1 page de description] pour plus d’informations.',
 'shareduploadwiki-desc'          => 'La description de sa $1 dans le répertoire partagé est affichée ci-dessous.',
@@ -1680,7 +1681,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'cantrollback'                => 'Impossible de révoquer : l’auteur est la seule personne à avoir effectué des modifications sur cette page.',
 'alreadyrolled'               => 'Impossible de révoquer la dernière modification de l’article « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué l’article. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
 'editcomment'                 => 'Le résumé de la modification était: <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Révocation des modifications de [[Special:Contributions/$2|$2]] (retour à la dernière version de [[User:$1|$1]])', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Révocation des modifications par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vers la dernière version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Révocation des modifications de $1 ; retour à la version de $2.',
 'sessionfailure'              => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
 'protectlogpage'              => 'Historique des protections',
@@ -2122,12 +2123,12 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-upload'                  => 'Commencer l’envoi',
 
 # Stylesheets
-'common.css'   => '/** Le CSS placé ici sera appliqué à tous les habillages. */',
-'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook */',
+'common.css'   => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
+'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */',
 
 # Scripts
-'common.js'   => '/* N’importe quel JavaScript ici sera chargé pour n’importe quel utilisateur et pour chaque page accédée. */',
-'monobook.js' => '/* Périmé : utilisez [[MediaWiki:common.js]] */',
+'common.js'   => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
+'monobook.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage MonoBook uniquement. */',
 
 # Metadata
 'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',
@@ -2183,7 +2184,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'patrol-log-page' => 'Historique des versions patrouillées',
 'patrol-log-line' => 'a marqué la version $1 de $2 comme vérifiée $3',
 'patrol-log-auto' => '(automatique)',
-'patrol-log-diff' => '$1',
+'patrol-log-diff' => 'v$1',
 
 # Image deletion
 'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',
@@ -2433,7 +2434,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-sensingmethod-7' => 'Capteur trilinéaire',
 'exif-sensingmethod-8' => 'Capteur de couleur linéaire séquentiel',
 
-'exif-filesource-3' => 'Appareil photographique numérique',
+'exif-filesource-3' => 'Appareil photo numérique',
 
 'exif-scenetype-1' => 'Image directement photographiée',
 
@@ -2573,7 +2574,9 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'useajaxsearch'    => 'Utiliser la recherche AJAX',
 
 # Separators for various lists, etc.
-'colon-separator' => '&nbsp;:&#32;',
+'semicolon-separator' => '&nbsp;;&#32;',
+'colon-separator'     => '&nbsp;:&#32;',
+'autocomment-prefix'  => '&#32;–&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← page précédente',
@@ -2600,9 +2603,9 @@ Veuillez confirmer que vous désirez recréer cet article.",
 
 # Size units
 'size-bytes'     => '$1 o',
-'size-kilobytes' => '$1 ko',
-'size-megabytes' => '$1 Mo',
-'size-gigabytes' => '$1 Go',
+'size-kilobytes' => '$1 Kio',
+'size-megabytes' => '$1 Mio',
+'size-gigabytes' => '$1 Gio',
 
 # Live preview
 'livepreview-loading' => 'Chargement …',
