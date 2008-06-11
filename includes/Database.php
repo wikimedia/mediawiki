@@ -2234,7 +2234,42 @@ class Database {
 	function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
 	}
+	
+	/**
+	 * Acquire a lock
+	 * 
+	 * Abstracted from Filestore::lock() so child classes can implement for
+	 * their own needs.
+	 * 
+	 * @param string $lockName Name of lock to aquire
+	 * @param string $method Name of method calling us
+	 * @return bool
+	 */
+	public function lock( $lockName, $method ) {
+		$lockName = $this->addQuotes( $lockName );
+		$result = $this->query( "SELECT GET_LOCK($lockName, 5) AS lockstatus", $method );
+		$row = $this->fetchObject( $result );
+		$this->freeResult( $result );
 
+		if( $row->lockstatus == 1 ) {
+			return true;
+		} else {
+			wfDebug( __METHOD__." failed to acquire lock\n" );
+			return false;
+		}
+	}
+	/**
+	 * Release a lock.
+	 * 
+	 * @param string $lockName Name of lock to release
+	 * @param string $method Name of method calling us
+	 */
+	public function unlock( $lockName, $method ) {
+		$lockName = $this->addQuotes( $lockName );
+		$result = $this->query( "SELECT RELEASE_LOCK($lockName)", $method );
+		$this->fetchObject( $result );
+		$this->freeResult( $result );
+	}
 }
 
 /**
