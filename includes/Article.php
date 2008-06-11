@@ -541,9 +541,9 @@ class Article {
 	 */
 	function isRedirect( $text = false ) {
 		if ( $text === false ) {
-			if ( $this->mDataLoaded )
+			if ( $this->mDataLoaded ) 
 				return $this->mIsRedirect;
-
+			
 			// Apparently loadPageData was never called
 			$this->loadContent();
 			$titleObj = Title::newFromRedirect( $this->fetchContent() );
@@ -922,14 +922,14 @@ class Article {
 		$this->viewUpdates();
 		wfProfileOut( __METHOD__ );
 	}
-
+	
 	protected function viewRedirect( $target, $overwriteSubtitle = true, $forceKnown = false ) {
 		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
-
+		
 		# Display redirect
 		$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 		$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
-
+		
 		if( $overwriteSubtitle ) {
 			$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 		}
@@ -941,7 +941,7 @@ class Article {
 
 		$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
 			'<span class="redirectText">'.$link.'</span>' );
-
+		
 	}
 
 	function addTrackbacks() {
@@ -1449,7 +1449,7 @@ class Article {
 
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
-
+				
 				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, $baseRevId) );
 
 				if( !$ok ) {
@@ -1521,7 +1521,7 @@ class Article {
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
-
+			
 			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1881,7 +1881,7 @@ class Article {
 						'page_id' => $id
 					), 'Article::protect'
 				);
-
+				
 				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $nullRevision, false) );
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
 
@@ -2242,7 +2242,7 @@ class Article {
 	function doDelete( $reason, $suppress = false ) {
 		global $wgOut, $wgUser;
 		wfDebug( __METHOD__."\n" );
-
+		
 		$id = $this->getId();
 
 		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
@@ -2514,14 +2514,14 @@ class Article {
 		if( empty( $summary ) ){
 			$summary = wfMsgForContent( 'revertpage' );
 		}
-
+		
 		# Allow the custom summary to use the same args as the default message
 		$args = array(
 			$target->getUserText(), $from, $s->rev_id,
 			$wgLang->timeanddate(wfTimestamp(TS_MW, $s->rev_timestamp), true),
 			$current->getId(), $wgLang->timeanddate($current->getTimestamp())
 		);
-		$summary = wfMsgReplaceArgs( $summary, $args );
+		$summary = wfMsgReplaceArgs( $summary, $args ); 
 
 		# Save
 		$flags = EDIT_UPDATE;
@@ -2609,7 +2609,7 @@ class Article {
 			. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
 		$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$wgOut->returnToMain( false, $this->mTitle );
-
+		
 		if( !$wgRequest->getBool( 'hidediff', false ) ) {
 			$de = new DifferenceEngine( $this->mTitle, $current->getId(), 'next', false, true );
 			$de->showDiff( '', '' );
@@ -2640,7 +2640,7 @@ class Article {
 
 	/**
 	 * Prepare text which is about to be saved.
-	 * Returns a stdclass with source, pst, output and user members
+	 * Returns a stdclass with source, pst and output members
 	 */
 	function prepareTextForEdit( $text, $revid=null ) {
 		if ( $this->mPreparedEdit && $this->mPreparedEdit->newText == $text && $this->mPreparedEdit->revid == $revid) {
@@ -2652,14 +2652,11 @@ class Article {
 		$edit->revid = $revid;
 		$edit->newText = $text;
 		$edit->pst = $this->preSaveTransform( $text );
-		$user = new User();
-		$options = new ParserOptions( $user );
+		$options = new ParserOptions;
 		$options->setTidy( true );
-		$options->setInterfaceMessage( true ); // @bug 14404
 		$options->enableLimitReport();
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $options, true, true, $revid );
 		$edit->oldText = $this->getContent();
-		$edit->user = $user;
 		$this->mPreparedEdit = $edit;
 		return $edit;
 	}
@@ -2695,7 +2692,7 @@ class Article {
 		# Save it to the parser cache
 		if ( $wgEnableParserCache ) {
 			$parserCache = ParserCache::singleton();
-			$parserCache->save( $editInfo->output, $this, $editInfo->user, /*content*/true );
+			$parserCache->save( $editInfo->output, $this, $wgUser );
 		}
 
 		# Update the links tables
@@ -2984,7 +2981,7 @@ class Article {
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
-
+		
 		wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 		wfProfileOut( __METHOD__ );
