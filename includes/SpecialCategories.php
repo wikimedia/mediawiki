@@ -32,7 +32,7 @@ class CategoryPager extends AlphabeticPager {
 	function __construct( $from ) {
 		parent::__construct();
 		$from = str_replace( ' ', '_', $from );
-		if( $from != '' ) {
+		if( $from !== '' ) {
 			global $wgCapitalLinks, $wgContLang;
 			if( $wgCapitalLinks ) {
 				$from = $wgContLang->ucfirst( $from );
