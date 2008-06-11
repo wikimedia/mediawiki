@@ -1041,7 +1041,9 @@ wgUploadAutoFill = {$autofill};
 				$val2 = $val;
 		}
 		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
-		$maxUploadSize = wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ), $wgLang->formatSize( $val2 ) );
+		$maxUploadSize = Xml::tags( 'div', array( 'id' => 'mw-upload-maxfilesize' ), 
+			wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ), 
+				$wgLang->formatSize( $val2 ) ) )."\n";
 
 		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
         $destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) ); 
