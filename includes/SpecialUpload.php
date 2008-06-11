@@ -872,8 +872,8 @@ class UploadForm {
 	 */
 	function uploadError( $error ) {
 		global $wgOut;
-		$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'uploadwarning' ) . "\n" ) );
-		$wgOut->addHTML( Xml::tags( 'span', array( 'class' => 'error' ), $error ) );
+		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" ) );
+		$wgOut->addHTML( '<span class="error">' . $error . '</span>' ) );
 	}
 
 	/**
@@ -894,8 +894,8 @@ class UploadForm {
 			return;
 		}
 
-		$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'uploadwarning' ) ) . "\n" );
-		$wgOut->addHTML( Xml::tags( 'ul', array( 'class' => 'warning' ), $warning ) . "\n" );
+		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" );
+		$wgOut->addHTML( '<ul class="warning">' . $warning . "</ul>\n" );
 
 		$titleObj = SpecialPage::getTitleFor( 'Upload' );
 
@@ -1041,9 +1041,10 @@ wgUploadAutoFill = {$autofill};
 				$val2 = $val;
 		}
 		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
-		$maxUploadSize = Xml::tags( 'div', array( 'id' => 'mw-upload-maxfilesize' ), 
+		$maxUploadSize = '<div id="mw-upload-maxfilesize">' . 
 			wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ), 
-				$wgLang->formatSize( $val2 ) ) )."\n";
+				$wgLang->formatSize( $val2 ) ) ) .
+				"</div>\n";
 
 		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
         $destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) ); 
@@ -1231,8 +1232,7 @@ wgUploadAutoFill = {$autofill};
 		);
 		$uploadfooter = wfMsgNoTrans( 'uploadfooter' );
 		if( $uploadfooter != '-' && !wfEmptyMsg( 'uploadfooter', $uploadfooter ) ){
-			$wgOut->addWikiText( Xml::tags( 'div',
-				array( 'id' => 'mw-upload-footer-message' ), $uploadfooter ) );
+			$wgOut->addWikiText( '<div id="mw-upload-footer-message">' . $uploadfooter . '</div>' );
 		}
 	}
 
