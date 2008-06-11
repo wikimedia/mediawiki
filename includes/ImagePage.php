@@ -650,7 +650,7 @@ EOT
 			return;
 		}
 		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
-		$wgOut->addWikiText( wfMsgExt( 'linkstoimage', array( 'parsemag' ), $count ) );
+		$wgOut->addWikiMsg( 'linkstoimage', $count, array( 'parsemag' ) );
 		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 
 		$sk = $wgUser->getSkin();
@@ -680,7 +680,7 @@ EOT
 		if ( count( $redirects ) == 0 ) return;
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" );
-		$wgOut->addWikiText( wfMsgExt( 'redirectstofile', array( 'parsemag' ), count( $redirects ) ) );
+		$wgOut->addWikiMsg( 'redirectstofile', count( $redirects ), array( 'parsemag' ) );
 		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
 
 		$sk = $wgUser->getSkin();
@@ -701,7 +701,7 @@ EOT
 		if ( count( $dupes ) == 0 ) return;
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
-		$wgOut->addWikiText( wfMsgExt( 'duplicatesoffile', array( 'parsemag' ), count( $dupes ) ) );
+		$wgOut->addWikiMsg( 'duplicatesoffile', count( $dupes ), array( 'parsemag' ) );
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
 		$sk = $wgUser->getSkin();
