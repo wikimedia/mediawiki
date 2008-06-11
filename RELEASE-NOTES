@@ -56,7 +56,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgGroupPermissions[]['noratelimit']. The former still works, however.
 * New $wgGroupPermissions option 'move-subpages' added to control bulk-moving
   subpages along with pages.  Assigned to 'user' and 'sysop' by default.
-* New $wgRC2UDPOmitBots allows user to omit bot edits from UDP output. Default: false
+* New $wgRC2UDPOmitBots allows user to omit bot edits from UDP output. 
+  Default: false
+* Removed $wgEnableCascadingProtection option. Disabling cascading protection
+  is no longer possible. 
 
 === New features in 1.13 ===
 

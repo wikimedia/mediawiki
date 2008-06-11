@@ -3150,11 +3150,6 @@ $wgBreakFrames = false;
 $wgDisableQueryPageUpdate = false;
 
 /**
- * Set this to false to disable cascading protection
- */
-$wgEnableCascadingProtection = true;
-
-/**
  * Disable output compression (enabled by default if zlib is available)
  */
 $wgDisableOutputCompression = false;
