@@ -630,7 +630,7 @@ EOT
 	function imageLinks()
 	{
 		global $wgUser, $wgOut;
-		
+
 		$limit = 100;
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -642,15 +642,15 @@ EOT
 			__METHOD__,
 			array( 'LIMIT' => $limit + 1)	
 		);
-
-		if ( 0 == $dbr->numRows( $res ) ) {
+		$count = $dbr->numRows( $res );
+		if ( $count == 0 ) {
 			$wgOut->addHTML( "<div id='mw-imagepage-nolinkstoimage'>\n" );
 			$wgOut->addWikiMsg( 'nolinkstoimage' );
 			$wgOut->addHTML( "</div>\n" );
 			return;
 		}
 		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
-		$wgOut->addWikiMsg( 'linkstoimage' );
+		$wgOut->addWikiText( wfMsgExt( 'linkstoimage', array( 'parsemag' ), $count ) );
 		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 
 		$sk = $wgUser->getSkin();
@@ -666,21 +666,21 @@ EOT
 		}
 		$wgOut->addHTML( "</ul></div>\n" );
 		$res->free();
-		
+
 		// Add a links to [[Special:Whatlinkshere]]
 		if ( $count > $limit )
 			$wgOut->addWikiMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() );
 	}
 	
-	function imageRedirects() 
+	function imageRedirects()
 	{
 		global $wgUser, $wgOut;
-		
+
 		$redirects = $this->getTitle()->getRedirectsHere( NS_IMAGE );
 		if ( count( $redirects ) == 0 ) return;
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" );
-		$wgOut->addWikiMsg( 'redirectstofile' );
+		$wgOut->addWikiText( wfMsgExt( 'redirectstofile', array( 'parsemag' ), count( $redirects ) ) );
 		$wgOut->addHTML( "<ul class='mw-imagepage-redirectstofile'>\n" );
 
 		$sk = $wgUser->getSkin();
@@ -691,9 +691,9 @@ EOT
 		$wgOut->addHTML( "</ul></div>\n" );
 
 	}
-	
+
 	function imageDupes() {
-		global $wgOut, $wgUser;		
+		global $wgOut, $wgUser;
 
 		$this->loadFile();
 
@@ -701,7 +701,7 @@ EOT
 		if ( count( $dupes ) == 0 ) return;
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
-		$wgOut->addWikiMsg( 'duplicatesoffile' );
+		$wgOut->addWikiText( wfMsgExt( 'duplicatesoffile', array( 'parsemag' ), count( $dupes ) ) );
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
 		$sk = $wgUser->getSkin();
