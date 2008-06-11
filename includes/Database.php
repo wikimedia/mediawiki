@@ -2261,13 +2261,15 @@ class Database {
 	/**
 	 * Release a lock.
 	 * 
+	 * @todo fixme - Figure out a way to return a bool
+	 * based on successful lock release.
+	 * 
 	 * @param string $lockName Name of lock to release
 	 * @param string $method Name of method calling us
 	 */
 	public function unlock( $lockName, $method ) {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName)", $method );
-		$this->fetchObject( $result );
 		$this->freeResult( $result );
 	}
 }
