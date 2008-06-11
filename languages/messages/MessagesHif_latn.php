@@ -1,5 +1,5 @@
 <?php
-/** Fiji Hindi/फ़ीजी हिन्दी (Latin) (Fiji Hindi/फ़ीजी हिन्दी (Latin))
+/** Fiji Hindi (Latin) (Fiji Hindi (Latin))
  *
  * @ingroup Language
  * @file

@@ -197,6 +197,7 @@ $messages = array(
 'mainpage-description' => 'Κυρία Δέλτος',
 'portal'               => 'Πύλη πολιτείας',
 'privacy'              => 'Ἡ περὶ τῶν ἰδίων προαίρεσις',
+'privacypage'          => 'Βούλευμα:Περὶ τῶν ἰδιωτικῶν',
 'sitesupport'          => 'Δῶρα',
 
 'badaccess-group0' => 'Οὐκ ἔξεστί σοι ταῦτα διαπράττειν.',
@@ -261,6 +262,7 @@ $messages = array(
 # Edit page toolbar
 'bold_sample' => 'Γράμματα παχέα',
 'bold_tip'    => 'Γράμματα παχέα',
+'link_sample' => 'Συνδέσμου ὄνομα',
 
 # Edit pages
 'summary'            => 'Τὸ κεφάλαιον',
@@ -281,7 +283,10 @@ $messages = array(
 'template-protected' => '(φυλλάττεται)',
 
 # History pages
+'currentrev'          => 'Τὸ νῦν',
+'revisionasof'        => 'Τὰ ἐπὶ $1',
 'previousrevision'    => '←Τὸ πρότερον',
+'nextrevision'        => 'Τὸ νεώτερον→',
 'currentrevisionlink' => 'Τὰ νῦν',
 'cur'                 => 'ἡ νῦν',
 'next'                => 'ἡ ἐχομένη',
@@ -435,7 +440,8 @@ $messages = array(
 'watchlist-hide-minor' => 'Κρύπτειν τὰς μικρὰς μεταβολάς',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'Ἐφορών...',
+'watching'   => 'Ἐφορών...',
+'unwatching' => 'Ἀνεφορῶν...',
 
 # Delete/protect/revert
 'deletepage'          => 'Διαγράφειν τὴν δέλτον',
@@ -521,6 +527,7 @@ $messages = array(
 'tooltip-search'            => 'Ζητεῖν {{SITENAME}}',
 'tooltip-p-logo'            => 'Δέλτος Μεγίστη',
 'tooltip-n-mainpage'        => 'Πορεύεσθαι τὴν κυρίαν Δέλτον',
+'tooltip-n-portal'          => 'Τὰ περὶ ταῦτης τε τὴς ἐνκυκλοπαιδείας, τῶν τε οἷων ἔξεστι σοὶ πράττεις, οὗ παρεστὶ τινά',
 'tooltip-n-randompage'      => 'Τινὰ γραφὴν χύδην δηλοῦν.',
 'tooltip-n-help'            => 'Μάθησις περὶ τῆσδε Οὐίκεως',
 'tooltip-n-sitesupport'     => 'Τρέφειν ἡμᾶς',

@@ -8,6 +8,7 @@
  * @author Mienski
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Nike
  */
 
 $skinNames = array(
@@ -93,8 +94,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Не скрываць майго адрасу эл.пошты ў паведамленнях',
 'tog-shownumberswatching'     => 'Паказваць колькасць назіральнікаў',
 'tog-fancysig'                => 'Неапрацаваны подпіс (без аўтаматычнай спасылкі)',
-'tog-externaleditor'          => 'Вонкавая праграма-рэдактар',
-'tog-externaldiff'            => 'Вонкавая праграма-параўнальнік (diff)',
+'tog-externaleditor'          => "Карыстацца вонкавай праграмай для праўкі (edit); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары",
+'tog-externaldiff'            => "Карыстацца вонкавай праграмай для параўнання (diff); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары",
 'tog-showjumplinks'           => 'Дазволіць дапаможныя спасылкі "jump to"',
 'tog-uselivepreview'          => 'Жывы перадпаказ (Яваскрыпт, эксперыментальн.)',
 'tog-forceeditsummary'        => 'Папярэджваць пра пустое поле тлумачэння праўкі',
@@ -259,7 +260,7 @@ $messages = array(
 'redirectedfrom'    => '(Пасля перасылкі з $1)',
 'redirectpagesub'   => 'Старонка-перасылка',
 'lastmodifiedat'    => 'Апошняе змяненне старонкі адбылося $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Гэту старонку адкрывалі {{plural:$1|адзін раз|$1 разоў}}.',
+'viewcount'         => 'Гэту старонку адкрывалі {{PLURAL:$1|адзін раз|$1 разоў}}.',
 'protectedpage'     => 'Старонка пад аховай',
 'jumpto'            => 'Перайсці да:',
 'jumptonavigation'  => 'рух',
@@ -269,22 +270,28 @@ $messages = array(
 'aboutsite'            => 'Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'bugreports'           => 'Пра памылкі',
+'bugreportspage'       => '{{ns:Project}}:Паведамленні пра памылкі',
 'copyright'            => 'Матэрыял даступны на ўмовах $1.',
 'copyrightpagename'    => 'Аўтарскія правы {{GRAMMAR:родны|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Аўтарскія правы',
 'currentevents'        => 'Актуальныя падзеі',
 'currentevents-url'    => 'Project:Актуальныя падзеі',
 'disclaimers'          => 'Адмовы ад адказнасці',
+'disclaimerpage'       => '{{ns:Project}}:Агульная адмова ад адказнасці',
 'edithelp'             => 'Даведка рэдактарскага акна',
+'edithelppage'         => '{{ns:Help}}:Праўка',
 'faq'                  => 'ЧАПЫ',
 'faqpage'              => 'Project:ЧАПЫ',
 'helppage'             => 'Help:Змест',
 'mainpage'             => 'Першая старонка',
 'mainpage-description' => 'Першая старонка',
+'policy-url'           => '{{ns:Project}}:Арганізацыйная палітыка',
 'portal'               => 'Супольнасць',
 'portal-url'           => 'Project:Супольнасць',
 'privacy'              => 'Палітыка прыватнасці',
+'privacypage'          => '{{ns:Project}}:Палітыка аховы прыватнасці',
 'sitesupport'          => 'Ахвяраванні',
+'sitesupport-url'      => '{{ns:Project}}:Падтрымка сайта праекта',
 
 'badaccess'        => 'Памылка ў дазволах',
 'badaccess-group0' => 'Вам не дазволена выконваць аперацыю, па якую вы звярталіся.',
@@ -484,7 +491,7 @@ $2',
 'blocked-mailpassword'       => 'Для адрасу IP, з якога вы працуеце, забароненыя праўкі, а значыць, у мэтах абароны ад злоўжывання нельга карыстацца і функцыяй аднаўлення паролю.',
 'eauthentsent'               => 'Пацверджанне было адасланае эл.поштай на азначаны адрас эл.пошты.
 Каб туды, у далейшым, трапляла іншая эл.пошта адсюль, патрабуецца выканаць інструкцыі, выкладзеныя ў гэтым эл.паведамленні, каб пацвердзіць сваё права на рахунак эл.пошты.',
-'throttled-mailpassword'     => 'Нагаданне пра пароль ужо адсылалася на працягу апошніх $1 гадзін. Дзеля абароны ад злоўжыванняў, дазваляецца атрымліваць толькі адно такое нагаданне за $1 гадзін.',
+'throttled-mailpassword'     => 'Нагаданне пра пароль ужо адсылалася на працягу апошн{{PLURAL:$1|яй гадзіны|іх $1 гадзін}}. Дзеля абароны ад злоўжыванняў, дазваляецца атрымліваць толькі адно такое нагаданне за {{PLURAL:$1|гадзіну|$1 гадзін}}.',
 'mailerror'                  => 'Памылка адсылання эл.пошты: $1',
 'acct_creation_throttle_hit' => 'У вас ужо створаны $1 рахункаў, і большая колькасць не дазваляецца.',
 'emailauthenticated'         => 'Адрас эл.пошты пацверджаны $1.',
@@ -806,7 +813,7 @@ $2',
 'lineno'                  => 'Радок $1:',
 'compareselectedversions' => 'Параўнаць азначаныя версіі',
 'editundo'                => 'адкат',
-'diff-multi'              => '(Не паказан{{plural:$1|а адна прамежкавая версія|ы $1 прамежкавых версій}}.)',
+'diff-multi'              => '(Не паказан{{PLURAL:$1|а адна прамежкавая версія|ы $1 прамежкавых версій}}.)',
 
 # Search results
 'searchresults'             => 'Вынікі пошуку',
@@ -957,8 +964,12 @@ $2',
 'group-bureaucrat-member'    => 'Бюракрат',
 'group-suppress-member'      => 'Звышнаглядчык',
 
-'grouppage-sysop'      => '{{ns:project}}:Адміністратары',
-'grouppage-bureaucrat' => '{{ns:project}}:Бюракраты',
+'grouppage-user'          => '{{ns:project}}:Удзельнікі',
+'grouppage-autoconfirmed' => '{{ns:project}}:Аўтапацверджаныя ўдзельнікі',
+'grouppage-bot'           => '{{ns:project}}:Робаты',
+'grouppage-sysop'         => '{{ns:project}}:Адміністратары',
+'grouppage-bureaucrat'    => '{{ns:project}}:Бюракраты',
+'grouppage-suppress'      => '{{ns:project}}:Звышнаглядчыкі',
 
 # Rights
 'right-read'                 => 'Чытаць старонкі',
@@ -1007,7 +1018,7 @@ $2',
 'right-autopatrol'           => 'Значыць уласныя праўкі як ухваленыя',
 'right-patrolmarks'          => 'Бачыць меткі ўхвалення нядаўніх змяненняў',
 'right-unwatchedpages'       => 'Чытаць спіс неназіраных старонак',
-'right-trackback'            => 'Падаваць [[трэк-бэк]]',
+'right-trackback'            => 'Падаваць трэк-бэк',
 'right-mergehistory'         => "Аб'ядноўваць гісторыі старонак",
 'right-userrights'           => 'Правіць усе дазволы ўдзельнікаў',
 'right-userrights-interwiki' => 'Правіць дазволы ўдзельнікаў на іншых вікі',
@@ -1062,6 +1073,7 @@ $2',
 'reuploaddesc'                => 'Спыніць укладанне і вярнуцца да пачатковага фармуляра.',
 'uploadnologin'               => 'Не ў сістэме',
 'uploadnologintext'           => 'Каб укладваць файлы, трэба [[Special:Userlogin|ўвайсці ў сістэму]].',
+'upload_directory_missing'    => 'Няма каталога для ўкладаў ($1), і серверу не ўдалося яго стварыць.',
 'upload_directory_read_only'  => 'Немагчыма для веб-сервера запісаць у каталог укладаў ($1).',
 'uploaderror'                 => 'Памылка пры ўкладанні',
 'uploadtext'                  => "З дапамогай ніжэй паказанай формы можна ўкладаць файлы. Каб паказаць або знайсці раней укладзенае, трэба перайсці да [[Special:Imagelist|спісу ўкладзеных файлаў]], укладанні і сціранні таксама адзначаюцца ў [[Special:Log/upload|журнале укладанняў]].
@@ -1174,11 +1186,11 @@ $2',
 'filehist-filesize'              => "Аб'ём файла",
 'filehist-comment'               => 'Тлумачэнне',
 'imagelinks'                     => 'Спасылкі',
-'linkstoimage'                   => 'Старонкі, якія спасылаюцца на файл:',
+'linkstoimage'                   => 'Наступн{{PLURAL:$1|ая старонка спасылаецца|ыя $1 старонкі спасылаюцца}} на гэты файл:',
 'nolinkstoimage'                 => 'Няма старонак, якія б спасылаліся на файл.',
 'morelinkstoimage'               => 'Паказаць [[{{ns:Special}}:Whatlinkshere/$1|больш спасылак]] на гэты файл.',
-'redirectstofile'                => 'Наступныя файлы перасылаюцца да гэтага:',
-'duplicatesoffile'               => "Наступныя файлы з'яўляюцца дублікатамі гэтага файла:",
+'redirectstofile'                => "Наступны{{PLURAL:$1| файл з'яўляецца перасылкай|я $1 файлы з'яўляюцца перасылкамі}} да гэтага файла:",
+'duplicatesoffile'               => "Наступн{{PLURAL:$1|ы файл з'яўляецца дублікатам|ыя $1 файлы з'яўляюцца дублікатамі}} гэтага файла:",
 'sharedupload'                   => 'Гэты файл паданы для супольнага карыстання, і можа быць выкарыстаны ў іншых праектах.',
 'shareduploadwiki'               => 'Падрабязнасці глядзіце на $1.',
 'shareduploadwiki-desc'          => 'Апісанне $1 у агульным сховішчы паказанае ніжэй.',
@@ -1385,12 +1397,13 @@ $2',
 'listusers-noresult' => 'Удзельнікі не знойдзеныя.',
 
 # Special:Listgrouprights
-'listgrouprights'         => 'Дазволы для груп удзельнікаў',
-'listgrouprights-summary' => 'Гэты пералік вызначаных у гэтай вікі груп удзельнікаў, разам з прыпісанымі ім дазволамі.
+'listgrouprights'          => 'Дазволы для груп удзельнікаў',
+'listgrouprights-summary'  => 'Гэты пералік вызначаных у гэтай вікі груп удзельнікаў, разам з прыпісанымі ім дазволамі.
 Даведацца больш пра асабістыя дазволы можна на старонцы [[{{MediaWiki:Listgrouprights-helppage}}]].',
-'listgrouprights-group'   => 'Група',
-'listgrouprights-rights'  => 'Дазволы',
-'listgrouprights-members' => '(пералік удзельнікаў)',
+'listgrouprights-group'    => 'Група',
+'listgrouprights-rights'   => 'Дазволы',
+'listgrouprights-helppage' => '{{ns:Help}}:Дазволы ў групах',
+'listgrouprights-members'  => '(пералік удзельнікаў)',
 
 # E-mail user
 'mailnologin'     => 'Няма эл.адрасу',
@@ -1529,7 +1542,7 @@ $NEWPAGE
 
 Аўтарства апошняй праўкі: [[User:$3|$3]] ([[User talk:$3|Размова]]).',
 'editcomment'                 => 'Тлумачэнне праўкі: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Адкочаны праўкі [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]); вернута апошняя версія [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Адкочаны праўкі $1; вернута апошняя версія $2.',
 'sessionfailure'              => 'Магчыма, ёсць праблемы з вашым сеансам працы ў сістэме. Таму вам было адмоўлена ў выкананні дзеяння, каб засцерагчыся ад захопу сеанса. Націсніце "Назад", і перачытайце старонку, з якой вы сюды прыйшлі, тады паспрабуйце нанова.',
 'protectlogpage'              => 'Журнал аховы',
@@ -2049,7 +2062,7 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Новыя файлы',
-'imagelisttext'         => "Ніжэй даецца спіс з '''$1''' {{plural:$1|файла|файлаў}} у парадку $2.",
+'imagelisttext'         => "Ніжэй даецца спіс з '''$1''' {{PLURAL:$1|файла|файлаў}} у парадку $2.",
 'newimages-summary'     => 'Тут паказаныя нядаўна ўкладзеныя файлы',
 'showhidebots'          => '($1 робатаў)',
 'noimages'              => 'Тут нічога няма.',

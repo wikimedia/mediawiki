@@ -420,7 +420,7 @@ $messages = array(
 'redirectedfrom'    => '(Tilvísun frá $1)',
 'redirectpagesub'   => 'Þessi síða er tilvísun',
 'lastmodifiedat'    => 'Þessari síðu var síðast breytt $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Þessi síða hefur verið skoðuð {{plural:$1|einu sinni|$1 sinnum}}.',
+'viewcount'         => 'Þessi síða hefur verið skoðuð {{PLURAL:$1|einu sinni|$1 sinnum}}.',
 'protectedpage'     => 'Vernduð síða',
 'jumpto'            => 'Fara á:',
 'jumptonavigation'  => 'flakk',
@@ -628,7 +628,8 @@ Gjörðu svo vel og opnaðu fyrir þær, skráðu þig svo inn með notandanafni
 'nouserspecified'            => 'Þú verður að taka fram notandanafn.',
 'wrongpassword'              => 'Uppgefið lykilorð er rangt. Vinsamlegast reyndu aftur.',
 'wrongpasswordempty'         => 'Lykilorðsreiturinn var auður. Vinsamlegast reyndu aftur.',
-'passwordtooshort'           => 'Lykilorðið þitt er of stutt eða ógilt. Það verður að hafa að minnsta kosti $1 tákn og má ekki vera notandanafn þitt.',
+'passwordtooshort'           => 'Lykilorðið þitt er ógilt eða of stutt.
+Það verður að hafa að minnsta kosti {{PLURAL:$1|1 rittákn|$1 rittákn}} og einnig frábrugðið notandanafninu þínu.',
 'mailmypassword'             => 'Senda nýtt lykilorð með tölvupósti',
 'passwordremindertitle'      => 'Nýtt tímabundið aðgangsorð fyrir {{SITENAME}}',
 'passwordremindertext'       => 'Einhver (líklegast þú, á vistfanginu $1)
@@ -960,6 +961,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'servertime'              => 'Tími netþjóns',
 'guesstimezone'           => 'Fylla inn frá vafranum',
 'allowemail'              => 'Virkja tölvupóst frá öðrum notendum',
+'prefs-namespaces'        => 'Nafnrými',
 'defaultns'               => 'Leita í þessum nafnrýmum sjálfgefið:',
 'default'                 => 'sjálfgefið',
 'files'                   => 'Skrár',
@@ -1145,7 +1147,7 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'filehist-filesize'         => 'Stærð skráar',
 'filehist-comment'          => 'Athugasemd',
 'imagelinks'                => 'Tenglar',
-'linkstoimage'              => 'Eftirfarandi síður tengjast í þessa skrá:',
+'linkstoimage'              => 'Eftirfarandi {{PLURAL:$1|síða tengist|$1 síður tengjast}} í þessa skrá:',
 'nolinkstoimage'            => 'Engar síður tengja í þessa skrá.',
 'sharedupload'              => 'Þessari skrá er deilt meðal annarra verkefna og er því notanleg þar.',
 'noimage'                   => 'Engin skrá með þessu nafni er til. Þú getur $1.',
@@ -1227,6 +1229,7 @@ Lengdin á [http://www.mediawiki.org/wiki/Manual:Job_queue vinnsluröðinni] er 
 
 'withoutinterwiki'         => 'Síður án tungumálatengla',
 'withoutinterwiki-summary' => 'Eftirfarandi síður tengja ekki í önnur tungumál:',
+'withoutinterwiki-legend'  => 'Forskeyti',
 'withoutinterwiki-submit'  => 'Sýna',
 
 'fewestrevisions' => 'Greinar með fæstar breytingar',
@@ -1250,6 +1253,7 @@ Lengdin á [http://www.mediawiki.org/wiki/Manual:Job_queue vinnsluröðinni] er 
 'popularpages'            => 'Vinsælar síður',
 'wantedcategories'        => 'Eftirsóttir flokkar',
 'wantedpages'             => 'Eftirsóttar síður',
+'missingfiles'            => 'Skrá vantar',
 'mostlinked'              => 'Mest ítengdu síður',
 'mostlinkedcategories'    => 'Mest ítengdu flokkar',
 'mostlinkedtemplates'     => 'Mest ítengdu snið',
@@ -1274,6 +1278,8 @@ Lengdin á [http://www.mediawiki.org/wiki/Manual:Job_queue vinnsluröðinni] er 
 'unusedimagestext'        => 'Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan, svo að þær gætu komið fram á þessum lista þrátt fyrir að vera í notkun.',
 'unusedcategoriestext'    => 'Þessir flokkar eru til en engar síður eða flokkar eru í þeim.',
 'pager-newer-n'           => '{{PLURAL:$1|nýrri 1|nýrri $1}}',
+'pager-older-n'           => '{{PLURAL:$1|1 eldri|$1 eldri}}',
+'suppress'                => 'Yfirsýn',
 
 # Book sources
 'booksources'               => 'Bókaverslanir',
@@ -1312,6 +1318,7 @@ Lengdin á [http://www.mediawiki.org/wiki/Manual:Job_queue vinnsluröðinni] er 
 # Special:Categories
 'categories'                    => 'Flokkar',
 'categoriespagetext'            => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
+'categoriesfrom'                => 'Sýna flokka frá:',
 'special-categories-sort-count' => 'raða eftir fjölda',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
@@ -1321,7 +1328,11 @@ Lengdin á [http://www.mediawiki.org/wiki/Manual:Job_queue vinnsluröðinni] er 
 'listusers-noresult' => 'Enginn notandi fannst.',
 
 # Special:Listgrouprights
-'listgrouprights-rights' => 'Réttindi',
+'listgrouprights'          => 'Notandahópréttindi',
+'listgrouprights-group'    => 'Hópur',
+'listgrouprights-rights'   => 'Réttindi',
+'listgrouprights-helppage' => 'Help:Hópréttindi',
+'listgrouprights-members'  => '(listi yfir meðlimi)',
 
 # E-mail user
 'mailnologin'     => 'Ekkert netfang til að senda á',
@@ -1358,6 +1369,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'watchthispage'        => 'Vakta þessa síðu',
 'unwatch'              => 'Afvakta',
 'unwatchthispage'      => 'Hætta vöktun',
+'notanarticle'         => 'Ekki efnisleg síða',
 'watchnochange'        => 'Engri síðu á vaktlistanum þínum hefur verið breytt á tilgreindu tímabili.',
 'watchlist-details'    => 'Fyrir utan spjallsíður {{PLURAL:$1|er $1 síða|eru $1 síður}} á vaktlistanum þínum.',
 'wlheader-enotif'      => '* Tilkynning með tölvupósti er virk.',
@@ -1384,6 +1396,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_impersonal_salutation' => '{{SITENAME}}notandi',
 'changed'                      => 'breytt',
 'created'                      => 'búið til',
+'enotif_lastdiff'              => 'Sjá $1 til að skoða þessa breytingu.',
 'enotif_anon_editor'           => 'ónefndur notandi $1',
 
 # Delete/protect/revert
@@ -1423,12 +1436,14 @@ Sjá lista yfir nýlegar eyðingar í $2.',
 eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
+'editcomment'                 => 'Beytingarágripið var: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Fyrir neðan er listi yfir síðuverndanir og -afverndanir.
 Sjáðu [[Special:Protectedpages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
 'protectedarticle'            => 'verndaði „[[$1]]“',
+'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[$1]]"',
 'unprotectedarticle'          => 'afverndaði „[[$1]]“',
 'protect-title'               => 'Vernda „$1“',
 'protect-legend'              => 'Verndunarstaðfesting',
@@ -1516,18 +1531,23 @@ Skoðaðu [[{{ns:special}}:Log/delete|eyðingaskrána]] til að skoða eyðingar
 'sp-contributions-submit'      => 'Leita að breytingum',
 
 # What links here
-'whatlinkshere'       => 'Hvað tengist hingað',
-'whatlinkshere-title' => 'Síður sem tengjast $1',
-'whatlinkshere-page'  => 'Síða:',
-'linklistsub'         => '(Listi yfir tengla)',
-'linkshere'           => "Eftirfarandi síður tengjast á '''[[:$1]]''':",
-'nolinkshere'         => "Engar síður tengjast á '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Engar síður tengjast '''[[:$1]]''' í þessu nafnrými.",
-'isredirect'          => 'tilvísunarsíða',
-'istemplate'          => 'innifalið',
-'whatlinkshere-prev'  => '{{PLURAL:$1|fyrra|fyrri $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|næst|næstu $1}}',
-'whatlinkshere-links' => '← tenglar',
+'whatlinkshere'            => 'Hvað tengist hingað',
+'whatlinkshere-title'      => 'Síður sem tengjast $1',
+'whatlinkshere-page'       => 'Síða:',
+'linklistsub'              => '(Listi yfir tengla)',
+'linkshere'                => "Eftirfarandi síður tengjast á '''[[:$1]]''':",
+'nolinkshere'              => "Engar síður tengjast á '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Engar síður tengjast '''[[:$1]]''' í þessu nafnrými.",
+'isredirect'               => 'tilvísunarsíða',
+'istemplate'               => 'innifalið',
+'isimage'                  => 'myndatengill',
+'whatlinkshere-prev'       => '{{PLURAL:$1|fyrra|fyrri $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|næst|næstu $1}}',
+'whatlinkshere-links'      => '← tenglar',
+'whatlinkshere-hideredirs' => '$1 tilvísanir',
+'whatlinkshere-hidetrans'  => '$1 ítengingar',
+'whatlinkshere-hidelinks'  => '$1 tenglar',
+'whatlinkshere-hideimages' => '$1 myndatenglar',
 
 # Block/unblock
 'blockip'                     => 'Banna notanda',
@@ -1581,6 +1601,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'infiniteblock'               => 'aldrei',
 'expiringblock'               => 'rennur út  $1',
 'anononlyblock'               => 'bara ónafngreindir',
+'noautoblockblock'            => 'sjálfbönnun óvirk',
 'createaccountblock'          => 'bann við stofnun nýrra notenda',
 'emailblock'                  => 'tölvupóstur bannaður',
 'ipblocklist-empty'           => 'Bannlistinn er tómur.',
@@ -1602,6 +1623,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'ipb_cant_unblock'            => 'Villa: Bann-tala $1 fannst ekki. Hún gæti nú þegar hafa verið afbönnuð.',
 'ip_range_invalid'            => 'Ógilt vistfangasvið.',
 'blockme'                     => 'Banna mig',
+'proxyblocker-disabled'       => 'Þessi virkni er óvirk.',
 'proxyblocksuccess'           => 'Búinn.',
 
 # Developer tools
@@ -1657,6 +1679,8 @@ Vinsamlegast veldu annan titil.',
 Gjörðu svo vel og færðu hana handvirkt.'''",
 'movedto'                 => 'fært á',
 'movetalk'                => 'Færa meðfylgjandi spjallsíðu',
+'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifá sjálfkrafa.',
+'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.',
 '1movedto2'               => '[[$1]] færð á [[$2]]',
 '1movedto2_redir'         => '[[$1]] færð á [[$2]] yfir tilvísun',
 'movelogpage'             => 'Flutningaskrá',
@@ -1979,7 +2003,7 @@ $5
 Varanlegir tenglar fyrir þessa grein:<br />
 $1
 </div>',
-'trackbackremove'   => '([$1 {{plural:$1|eydd|eyddar}}])',
+'trackbackremove'   => '([$1 {{PLURAL:$1|eydd|eyddar}}])',
 'trackbacklink'     => 'Varanlegur tengill',
 'trackbackdeleteok' => 'Varanlega tenglinum var eytt.',
 

@@ -9,8 +9,6 @@
  * @author Jon Harald Søby
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Tsenya mothalafase go dihlomaganyo:',

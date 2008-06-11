@@ -114,7 +114,7 @@ $messages = array(
 'otherlanguages'    => 'Ate léngue',
 'redirectedfrom'    => "(Redirect 'a $1)",
 'lastmodifiedat'    => "Urdema cagnamiénto pe' a paggena: $2, $1.", # $1 date, $2 time
-'viewcount'         => 'Chesta paggena è stata lètta {{plural:$1|una vòta|$1 vòte}}.',
+'viewcount'         => 'Chesta paggena è stata lètta {{PLURAL:$1|una vòta|$1 vòte}}.',
 'jumpto'            => 'Vaje a:',
 'jumptonavigation'  => 'navigazione',
 'jumptosearch'      => 'truova',
@@ -376,7 +376,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'import-logentry-upload' => 'ha mpurtato [[$1]] trammeto upload',
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => 'Jésce',
+'tooltip-pt-logout' => 'Jésce (logout)',
 'tooltip-minoredit' => 'Rénne chìsto cagnamiénto cchiù ppiccirìllo.',
 'tooltip-save'      => "Sàrva 'e cagnamiénte.",
 'tooltip-preview'   => "Primma 'e sarvà, vìre primma chille ca hê cagnàte!",

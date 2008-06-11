@@ -352,7 +352,7 @@ $messages = array(
 'redirectedfrom'    => "(S'ha redirigit des de $1)",
 'redirectpagesub'   => 'Pàgina de redirecció',
 'lastmodifiedat'    => 'Darrera modificació de la pàgina: $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Aquesta pàgina ha estat visitada {{plural:$1|una vegada|$1 vegades}}.',
+'viewcount'         => 'Aquesta pàgina ha estat visitada {{PLURAL:$1|una vegada|$1 vegades}}.',
 'protectedpage'     => 'Pàgina protegida',
 'jumpto'            => 'Dreceres ràpides:',
 'jumptonavigation'  => 'navegació',
@@ -909,7 +909,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'lineno'                  => 'Línia $1:',
 'compareselectedversions' => 'Compara les versions seleccionades',
 'editundo'                => 'desfés',
-'diff-multi'              => '(Hi ha {{plural:$1|una revisió intermèdia|$1 revisions intermèdies}})',
+'diff-multi'              => '(Hi ha {{PLURAL:$1|una revisió intermèdia|$1 revisions intermèdies}})',
 
 # Search results
 'searchresults'             => 'Resultats de la cerca',
@@ -2194,7 +2194,7 @@ $1",
 
 # Special:Newimages
 'newimages'             => 'Galeria de nous fitxers',
-'imagelisttext'         => "Llista {{plural:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
+'imagelisttext'         => "Llista {{PLURAL:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
 'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Res per veure.',

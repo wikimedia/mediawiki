@@ -205,8 +205,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Miene Nettbreefadress in Bestätigungsnettbreven wiesen',
 'tog-shownumberswatching'     => 'Wies de Tall vun Brukers, de op disse Siet oppasst',
 'tog-fancysig'                => 'eenfache Signatur (ahn Lenk)',
-'tog-externaleditor'          => 'Jümmer extern Editor bruken',
-'tog-externaldiff'            => 'Extern Warktüüch to’n Wiesen vun Ünnerscheden as Standard bruken',
+'tog-externaleditor'          => 'Jümmer extern Editor bruken (blot för Lüüd, de sik dor mit utkennt, dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht)',
+'tog-externaldiff'            => 'Extern Warktüüch to’n Wiesen vun Ünnerscheden as Standard bruken (blot för Lüüd, de sik dor mit utkennt, dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht)',
 'tog-showjumplinks'           => '„Wesseln-na“-Lenken tolaten',
 'tog-uselivepreview'          => 'Live-Vörschau bruken (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Segg mi bescheid, wenn ik keen Tosamenfaten geven heff, wat ik allens ännert heff',
@@ -575,7 +575,7 @@ Kiek de Schrievwies na oder mell di as ne’en Bruker an.',
 'nouserspecified'            => 'Du musst en Brukernaam angeven',
 'wrongpassword'              => 'Dat Passwoort, wat du ingeven hest, is verkehrt. Kannst dat aver noch wedder versöken.',
 'wrongpasswordempty'         => 'Dat Passwoort, wat du ingeven hest, is leddig, versöök dat noch wedder.',
-'passwordtooshort'           => 'Dat Passwoort is to kort. Dat schall woll beter $1 Teken lang oder noch länger wesen.',
+'passwordtooshort'           => 'Dat Passwoord is to kort. Dat schall woll beter {{PLURAL:$1|een Teken|$1 Teken}} lang oder noch länger wesen.',
 'mailmypassword'             => 'En nieg Password sennen',
 'passwordremindertitle'      => 'Nee Passwoort för {{SITENAME}}',
 'passwordremindertext'       => 'Een (IP-Adress $1) hett för en nee Passwoort to’n Anmellen bi {{SITENAME}} beden ($4).
@@ -588,7 +588,7 @@ Wenn du nich sülvst för en nee Passwoort beden hest, denn bruukst di wegen dis
 'eauthentsent'               => 'Ene Bestätigungs-E-Mail is an de angevene Adress schickt worrn.
 Ehrdat E-Mails vun annere Brukers över de E-Mail-Funkschoon kamen köönt, mutt de Adress eerst noch bestätigt warrn.
 In de E-Mail steiht, wie dat geiht.',
-'throttled-mailpassword'     => 'Binnen de letzten $1 Stünnen is al mal en neet Passwoort toschickt worrn. Dat disse Funkschoon nich missbruukt warrt, kann blot alle $1 Stünnen en neet Passwoort toschickt warrn.',
+'throttled-mailpassword'     => 'Binnen de {{PLURAL:$1|letzte Stünn|letzten $1 Stünnen}} is al mal en neet Passwoort toschickt worrn. Dat disse Funkschoon nich missbruukt warrt, kann blot {{PLURAL:$1|jede Stünn|alle $1 Stünnen}} een Maal en neet Passwoort toschickt warrn.',
 'mailerror'                  => 'Fehler bi dat Sennen vun de E-Mail: $1',
 'acct_creation_throttle_hit' => 'Du hest al $1 Brukerkontos anleggt. Du kannst nich noch mehr anleggen.',
 'emailauthenticated'         => 'Diene E-Mail-Adress is bestätigt worrn: $1.',
@@ -921,7 +921,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'lineno'                  => 'Reeg $1:',
 'compareselectedversions' => 'Ünnerscheed twischen den utwählten Versionen wiesen',
 'editundo'                => 'rutnehmen',
-'diff-multi'              => '(Twischen de beiden Versionen {{plural:$1|liggt noch ene Twischenversion|doot noch $1 Twischenversionen liggen}}.)',
+'diff-multi'              => '(Twischen de beiden Versionen {{PLURAL:$1|liggt noch ene Twischenversion|doot noch $1 Twischenversionen liggen}}.)',
 
 # Search results
 'searchresults'             => 'Söökresultaten',
@@ -1141,7 +1141,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Een Ännern|$1 Ännern}}',
-'recentchanges'                     => 'Niegest Ännern',
+'recentchanges'                     => 'Toletzt ännert',
 'recentchangestext'                 => '
 Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de toletzt bearbeid worrn sünd, dorto de Tied un de Naam vun de Autor.',
 'recentchanges-feed-description'    => 'Behool mit dissen Feed de ne’esten Ännern op dit Wiki in’t Oog.',
@@ -1182,6 +1182,7 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'reuploaddesc'                => 'Trüch to de Hoochladen-Siet.',
 'uploadnologin'               => 'Nich anmellt',
 'uploadnologintext'           => 'Du musst [[Special:Userlogin|anmellt wesen]], dat du Datein hoochladen kannst.',
+'upload_directory_missing'    => 'De Dateimapp för hoochladene Datein ($1) fehlt un de Webserver kunn ehr ok nich nee opstellen.',
 'upload_directory_read_only'  => 'De Server kann nich in’n Orner för dat Hoochladen vun Datein ($1) schrieven.',
 'uploaderror'                 => 'Fehler bi dat Hoochladen',
 'uploadtext'                  => "
@@ -1310,11 +1311,11 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filehist-filesize'              => 'Dateigrött',
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Bildverwiesen',
-'linkstoimage'                   => 'Disse Sieden bruukt dit Bild:',
+'linkstoimage'                   => 'Disse {{PLURAL:$1|Sied|Sieden}} bruukt dit Bild:',
 'nolinkstoimage'                 => 'Kene Siet bruukt dat Bild.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Mehr Verwiesen]] för disse Datei.',
-'redirectstofile'                => 'Disse Datein sünd en Redirect op disse Datei:',
-'duplicatesoffile'               => 'Disse Datein sünd jüst de glieken as disse Datei:',
+'redirectstofile'                => 'Disse {{PLURAL:$1|Datei is|Datein sünd}} en Redirect op disse Datei:',
+'duplicatesoffile'               => 'Disse {{PLURAL:$1|Datei is|Datein sünd}} jüst de {{PLURAL:$1|glieke|glieken}} as disse Datei:',
 'sharedupload'                   => 'Disse Datei is as gemeensam bruukte Datei hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.',
 'shareduploadwiki'               => 'Kiek bi $1 för mehr Informatschoon.',
 'shareduploadwiki-desc'          => 'Wat nu kummt is de Text vun de $1 op den gemeensamen Datei-Spiekerplatz.',
@@ -1736,9 +1737,9 @@ Den Text vun de wegsmetene Sied köönt blot Administraters sehn.',
 'undeletereset'                => 'Afbreken',
 'undeletecomment'              => 'Grund:',
 'undeletedarticle'             => '„$1“ wedderhaalt',
-'undeletedrevisions'           => '{{Plural:$1|ene Version|$1 Versionen}} wedderhaalt',
-'undeletedrevisions-files'     => '{{Plural:$1|Ene Version|$1 Versionen}} un {{Plural:$2|ene Datei|$2 Datein}} wedderhaalt',
-'undeletedfiles'               => '{{Plural:$1|ene Datei|$1 Datein}} wedderhaalt',
+'undeletedrevisions'           => '{{PLURAL:$1|ene Version|$1 Versionen}} wedderhaalt',
+'undeletedrevisions-files'     => '{{PLURAL:$1|Ene Version|$1 Versionen}} un {{PLURAL:$2|ene Datei|$2 Datein}} wedderhaalt',
+'undeletedfiles'               => '{{PLURAL:$1|ene Datei|$1 Datein}} wedderhaalt',
 'cannotundelete'               => 'Wedderhalen güng nich; en annern hett de Siet al wedderhaalt.',
 'undeletedpage'                => "<big>'''$1''' wedderhaalt.</big>
 

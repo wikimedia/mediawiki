@@ -2151,7 +2151,12 @@ $1',
 'filepath-page'   => '文件：',
 'filepath-submit' => '路徑',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => '文件名:',
+'fileduplicatesearch-submit'   => '尋',
+
 # Special:SpecialPages
-'specialpages' => '特殊頁',
+'specialpages'                 => '特殊頁',
+'specialpages-group-redirects' => '重定向特殊頁面',
 
 );

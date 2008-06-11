@@ -290,7 +290,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Jelenítse meg az e-mail címemet a figyelmeztető e-mailekben',
 'tog-shownumberswatching'     => 'Az oldalt figyelő szerkesztők számának mutatása',
 'tog-fancysig'                => 'Aláírás automatikus hivatkozás nélkül',
-'tog-externaleditor'          => 'Külső szerkesztőprogram használata',
+'tog-externaleditor'          => 'Külső szerkesztőprogram használata (csak haladók számára, speciális beállításokra van szükség a számítógépeden)',
 'tog-externaldiff'            => 'Külső különbségképző (diff) program használata',
 'tog-showjumplinks'           => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
 'tog-uselivepreview'          => 'Élő előnézet használata (JavaScript) (Teszt)',
@@ -1003,7 +1003,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'lineno'                  => '$1. sor:',
 'compareselectedversions' => 'Kiválasztott változatok összehasonlítása',
 'editundo'                => 'visszavonás',
-'diff-multi'              => '({{plural:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
+'diff-multi'              => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
 
 # Search results
 'searchresults'             => 'A keresés eredménye',

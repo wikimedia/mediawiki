@@ -7,7 +7,6 @@
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
  * @author Siebrand
- * @author Caesius noh en Idee vum Manes
  */
 
 /**
@@ -139,8 +138,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Zeich dä Andere ming E-Mail Adress aan, en de Benohrichtijunge per E-Mail',
 'tog-shownumberswatching'     => 'Zeich de Aanzahl Metmaacher, die op die Sigg am oppasse sin',
 'tog-fancysig'                => 'Ungerschreff ohne automatische Link',
-'tog-externaleditor'          => 'Nemm jedes Mol en extern Editor-Projramm',
-'tog-externaldiff'            => 'Nemm jedes Mol en extern Diff-Projramm',
+'tog-externaleditor'          => 'Nemm jedes Mol en extern Editor-Projramm (Doför bruchs de spezjell Enstellunge op Dingem Kompjutor)',
+'tog-externaldiff'            => 'Nemm jedes Mol en extern Diff-Projramm (Doför bruchs de spezjell Enstellunge op Dingem Kompjutor)',
 'tog-showjumplinks'           => '„Jangk-noh“-Links usjevve, die bei em „Zojang ohne Barrikad“ helfe dun',
 'tog-uselivepreview'          => 'Zeich de „Lebendije Vör-Aansich zeije“ (bruch Java_Skripp) (em Usprobierstadium)',
 'tog-forceeditsummary'        => 'Froch noh, wann en däm Feld „Koot zosammejefass, Quell“ beim Avspeichere nix dren steiht',
@@ -224,7 +223,7 @@ $messages = array(
 'category-article-count-limited' => 'En dä Saachrupp hee {{PLURAL:$1|es ein Sigg dren:|sin $1 Sigge dren:|es kein Sigg dren:}}',
 'category-file-count'            => 'En dä Saachrupp hee {{PLURAL:$2|es ein Datei dren:|sin $2 Dateie dren, {{PLURAL:$1|un dovun weed hee nur ein|un dovun weede $1 hee|ävver dovun weed hee kein}} aanjezeich:|es kein Datei dren.}}',
 'category-file-count-limited'    => 'En dä Saachrupp hee {{PLURAL:$1|es ein Datei dren:|sin $1 Dateie dren:|es kein Datei dren.}}',
-'listingcontinuesabbrev'         => '— wigger',
+'listingcontinuesabbrev'         => '… (wigger)',
 
 'mainpagetext'      => "<big>'''MediaWiki es jetz enstalleet.'''</big>",
 'mainpagedocfooter' => 'Luur en et (änglesche) [http://meta.wikimedia.org/wiki/Help:Contents Handboch] wann De wesse wells wie de Wiki-Soffwär jebruch un bedeent wääde muss.
@@ -279,6 +278,7 @@ Dat es och all op Änglesch:
 'deletethispage'    => 'De Sigg fottschmieße',
 'undelete_short'    => '{{PLURAL:$1|ein Änderung|$1 Änderunge}} zeröckholle',
 'protect'           => 'Schötze',
+'protect_change'    => 'der Schotz ändere',
 'protectthispage'   => 'De Sigg schötze',
 'unprotect'         => 'Schotz ophevve',
 'unprotectthispage' => 'Dä Schotz för de Sigg ophevve',
@@ -403,6 +403,11 @@ MySQL meld dä Fähler: „<code>$3: $4</code>“.',
 'readonly'             => 'De Daatebank es jesperrt',
 'enterlockreason'      => 'Jevv aan, woröm un för wie lang dat de Daatebank jesperrt wääde soll',
 'readonlytext'         => 'De Daatebank es jesperrt. Neu Saache dren avspeichere jeiht jrad nit, un ändere och nit. Dä Jrund: „$1“',
+'missing-article'      => 'Dä Tex för de Sigg „$1“ kunnte mer nit en de Daatebank finge.
+De Sigg es villeich fottjeschmesse oder ömjenannt woode.
+Wann dat esu nit sin sollt, dann hadder villeich ene Fähler en de Soffwär jefunge.
+Verzällt et enem [[{{MediaWiki:Grouppage-sysop}}|Wiki_Köbes]],
+un doht em och de URL vun dä Sigg hee sage.',
 'readonly_lag'         => 'De Daatebank es för en koote Zigg jesperrt, för de Daate avzejliche.',
 'internalerror'        => 'De Wiki-Soffwär hät ene Fähler jefunge',
 'filecopyerror'        => 'Kunnt de Datei „$1“ nit noh „$2“ kopeere.',
@@ -436,6 +441,7 @@ De Aanfroch es: „<code>$2</code>“<br />',
 Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed. Nor de Wiki-Köbese künne 
 se ändere. Denk dran, hee ändere deit et Ussinn un de Wööt ändere met dänne et Wiki op de Metmaacher un de Besöker drop aankütt!',
 'sqlhidden'            => "(Dä SQL_Befähl du'mer nit zeije)",
+'namespaceprotected'   => 'Do darfs Sigge em Appachtemang „$1“ nit ändere.',
 
 # Login and logout pages
 'logouttitle'                => 'Uslogge',
@@ -1772,17 +1778,12 @@ Dä Atikkel „[[$1]]“ jitt et ald. Wollts De en fottschmieße, öm hee dä At
 'export'          => 'Sigge Exporteere',
 'exporttext'      => "Hee exportees De dä Tex un de Eijeschaffte vun ener Sigg, oder vun enem Knubbel Sigge, de aktuelle Version, met oder ohne ehr ählere Versione.
 Dat Janze es enjepack en XML.
-Dat ka'mer en en ander Wiki
-- wann et och met dä MediaWiki-Soffwär läuf -
-üvver de Sigg „[[Special:Import|Import]]“ do widder importeere.
+Dat ka'mer en en ander Wiki — wann et och met dä MediaWiki-Soffwär läuf — üvver de Sigg „[[Special:Import|Import]]“ do widder importeere.
 
 * Schriev de Titele vun dä Sigge en dat Feld för Tex enzejevve, unge, eine Titel en jede Reih.
-* Dann dun onoch ussöke, ov De all de vörherije Versione vun dä Sigge han wells, oder nor de aktuelle met dä 
-Informatione vun de letzte Änderung. (En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, 
-zom Beispill „[[{{ns:special}}:Export/{{int:mainpage}}]]“ för de Sigg „[[{{int:mainpage}}]]“ ze exporteere)
+* Dann dun onoch ussöke, ov De all de vörherije Versione vun dä Sigge han wells, oder nor de aktuelle met dä Informatione vun de letzte Änderung. (En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, zom Beispill „[[{{ns:special}}:Export/{{int:mainpage}}]]“ för de Sigg „[[{{int:mainpage}}]]“ ze exporteere)
 
-Denk dran, datte dat Zeuch em Unicode Format avspeichere muss,
-wann De jet domet aanfange künne wells.",
+Denk dran, dat'te dat Zeuch em Unicode Format avspeichere muss, wann De jet domet aanfange künne wells.",
 'exportcuronly'   => 'Bloß de aktuelle Version usjevve (un <strong>nit</strong> de janze ahle Versione onoch met dobei dun)',
 'exportnohistory' => '----
 <strong>Opjepass:</strong> de janze Versione Exporteere es hee em Wiki avjeschalt. Schad, ävver et wör en 
@@ -1795,7 +1796,8 @@ zo jroße Lass för dä Sörver.',
 'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Dä standaadmäßije Tex',
 'allmessagescurrent'        => 'Esu es dä Tex jetz',
-'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki:“',
+'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit jede maache. Wenn De jenerell aan 
+[http://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [http://translatewiki.net Betawiki], odder, jenou wie wenn de hee em Wiki jet anders han wells, frooch ene [[{{#special:Listadmins}}|Wiki-Köbes]] donoh, odder schriev op die Klaafsigg vun däm Textstöck, wo et Der dröm jeiht.',
 'allmessagesnotsupportedDB' => '<strong>Dat wor nix!</strong> Mer künne „{{ns:special}}:Allmessages“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!',
 'allmessagesfilter'         => 'Fingk dat Stöck hee em Name:',
 'allmessagesmodified'       => 'Dun nor de Veränderte aanzeije',

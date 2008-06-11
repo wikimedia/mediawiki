@@ -11,8 +11,6 @@
  * @author Malafaya
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sulinia lias:',

@@ -801,7 +801,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'lineno'                  => 'Linenn $1:',
 'compareselectedversions' => 'Keñveriañ ar stummoù diuzet',
 'editundo'                => 'disteuler',
-'diff-multi'              => "({{plural:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} kuzhet.)",
+'diff-multi'              => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} kuzhet.)",
 
 # Search results
 'searchresults'             => "Disoc'h ar c'hlask",

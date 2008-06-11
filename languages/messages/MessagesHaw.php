@@ -11,8 +11,6 @@
  * @author Kalani
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Kahalalo i nā loulou:',
@@ -134,6 +132,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'E pili ana iā {{SITENAME}}',
 'aboutpage'            => 'Project:E pili ana',
+'copyrightpage'        => '{{ns:project}}:Palapala ho‘okuleana',
 'currentevents'        => 'Ka nū hou',
 'disclaimers'          => 'Nā a‘o ‘ana laulā',
 'disclaimerpage'       => 'Project:Nā a‘o ‘ana laulā',
@@ -153,6 +152,7 @@ $messages = array(
 'editsection'             => 'e ho‘opololei',
 'editold'                 => 'e ho‘opololei',
 'editsectionhint'         => 'E ho‘opololei i ka paukū: $1',
+'toc'                     => 'Papa kuhikuhi',
 'showtoc'                 => 'hō‘ike',
 'hidetoc'                 => 'hūnā',
 
@@ -249,6 +249,7 @@ hō‘ike ‘ia i lalo:",
 'noexactmatch' => "'''‘A‘ohe mo‘olelo me ka inoa \"\$1\".''' Hiki iā‘oe ke [[:\$1|hana i keia ‘ao‘ao]].",
 'prevn'        => 'mua $1',
 'nextn'        => 'hope $1',
+'viewprevnext' => 'Nānā iā ($1) ($2) ($3)',
 'powersearch'  => 'Huli',
 
 # Preferences page
@@ -395,18 +396,21 @@ hō‘ike ‘ia i lalo:",
 'thumbnail-more' => 'ho‘onui',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'    => 'a‘u',
-'tooltip-pt-mytalk'      => 'ka‘u ‘ōlelo',
-'tooltip-pt-preferences' => 'ka‘u makemake',
-'tooltip-pt-logout'      => 'e ha‘alele',
-'tooltip-ca-edit'        => 'Hiki iā‘oe ke ho‘opololei i kēia ‘ao‘ao. Imua o ka mālama, ho‘ohana i ka nāmua, ke ‘olu‘olu.',
-'tooltip-ca-delete'      => 'E kāpae i kēia mo‘olelo',
-'tooltip-ca-move'        => 'E ne‘e i kēia mo‘olelo',
-'tooltip-search'         => 'Huli iā {{SITENAME}}',
-'tooltip-n-mainpage'     => 'Hele i ka papa kinohi',
-'tooltip-n-sitesupport'  => 'Kāko‘o mai',
-'tooltip-t-specialpages' => 'Helu o nā papa nui apau',
-'tooltip-save'           => 'Mālama i kāu ho‘opololei',
+'tooltip-pt-userpage'     => 'a‘u',
+'tooltip-pt-mytalk'       => 'ka‘u ‘ōlelo',
+'tooltip-pt-preferences'  => 'ka‘u makemake',
+'tooltip-pt-mycontris'    => 'Ka‘u mau ha‘awina',
+'tooltip-pt-logout'       => 'e ha‘alele',
+'tooltip-ca-edit'         => 'Hiki iā‘oe ke ho‘opololei i kēia ‘ao‘ao. Imua o ka mālama, ho‘ohana i ka nāmua, ke ‘olu‘olu.',
+'tooltip-ca-delete'       => 'E kāpae i kēia mo‘olelo',
+'tooltip-ca-move'         => 'E ne‘e i kēia mo‘olelo',
+'tooltip-search'          => 'Huli iā {{SITENAME}}',
+'tooltip-n-mainpage'      => 'Hele i ka papa kinohi',
+'tooltip-n-portal'        => 'E pili ana i ka pelokeka, he aha e hana',
+'tooltip-n-recentchanges' => 'Nā loli hou ma ka wiki.',
+'tooltip-n-sitesupport'   => 'Kāko‘o mai',
+'tooltip-t-specialpages'  => 'Helu o nā papa nui apau',
+'tooltip-save'            => 'Mālama i kāu ho‘opololei',
 
 # Special:Newimages
 'ilsubmit' => 'Huli',

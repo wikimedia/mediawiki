@@ -270,7 +270,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatera trasiga länkar <a href="" class="new">så här</a> (alternativt: <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justera indrag',
 'tog-hideminor'               => 'Visa inte mindre redigeringar i Senaste ändringar',
-'tog-extendwatchlist'         => 'Visa alla ändringar i övervakningslistan',
+'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar',
 'tog-usenewrc'                => 'Avancerad Senaste ändringar (Javascript)',
 'tog-numberheadings'          => 'Numrerade rubriker',
 'tog-showtoolbar'             => 'Visa verktygsrad (Javascript)',
@@ -280,28 +280,28 @@ $messages = array(
 'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
 'tog-rememberpassword'        => 'Kom ihåg lösenordet till nästa besök',
 'tog-editwidth'               => 'Full bredd på redigeringsrutan',
-'tog-watchcreations'          => 'Lägg till sidor jag skapar i min övervakningslista',
-'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min övervakningslista',
-'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min övervakningslista',
-'tog-watchdeletion'           => 'Lägg till sidor jag raderar i min övervakningslista',
+'tog-watchcreations'          => 'Lägg till sidor jag skapar i min bevakningslista',
+'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min bevakningslista',
+'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min bevakningslista',
+'tog-watchdeletion'           => 'Lägg till sidor jag raderar i min bevakningslista',
 'tog-minordefault'            => 'Markera automatiskt ändringar som mindre',
 'tog-previewontop'            => 'Visa förhandsgranskningen ovanför redigeringsrutan',
 'tog-previewonfirst'          => 'Visa förhandsgranskning när redigering påbörjas',
 'tog-nocache'                 => 'Stäng av cachning av sidor',
-'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på övervakningslistan ändras',
+'tog-enotifwatchlistpages'    => 'Skicka e-post till mig när en sida på min bevakningslista ändras',
 'tog-enotifusertalkpages'     => 'Skicka e-post till mig när något händer på min diskussionssida',
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post från systemet',
-'tog-shownumberswatching'     => 'Visa antalet användare som övervakar sidor',
+'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
 'tog-fancysig'                => 'Rå signatur, utan automatisk länk',
-'tog-externaleditor'          => 'Använd extern texteditor som standard',
-'tog-externaldiff'            => 'Använd externt diff-verktyg',
+'tog-externaleditor'          => 'Använd extern texteditor som standard (avancerat, kräver speciella inställningar i din dator)',
+'tog-externaldiff'            => 'Använd externt diff-verktyg (avancerat, kräver speciella inställningar i din dator)',
 'tog-showjumplinks'           => 'Aktivera "hoppa till"-tillgänglighetslänkar',
 'tog-uselivepreview'          => 'Använd direktuppdaterad förhandsgranskning (Javascript, på försöksstadiet)',
 'tog-forceeditsummary'        => 'Påminn mig om jag inte fyller i en redigeringskommentar',
-'tog-watchlisthideown'        => 'Visa inte mina redigeringar på övervakningslistan',
-'tog-watchlisthidebots'       => 'Visa inte robotredigeringar på övervakningslistan',
-'tog-watchlisthideminor'      => 'Visa inte mindre ändringar på övervakningslistan',
+'tog-watchlisthideown'        => 'Visa inte mina redigeringar i bevakningslistan',
+'tog-watchlisthidebots'       => 'Visa inte robotredigeringar i bevakningslistan',
+'tog-watchlisthideminor'      => 'Visa inte mindre ändringar i bevakningslistan',
 'tog-nolangconversion'        => 'Konvertera inte mellan språkvarianter',
 'tog-ccmeonemails'            => 'Skicka mig kopior av epost jag skickar till andra användare',
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
@@ -404,7 +404,7 @@ $messages = array(
 'moredotdotdot'  => 'Mer...',
 'mypage'         => 'Min sida',
 'mytalk'         => 'Min diskussionssida',
-'anontalk'       => "Denna IP-adress' diskussionssida",
+'anontalk'       => 'Diskussionssida för denna IP-adress',
 'navigation'     => 'Navigering',
 'and'            => 'och',
 
@@ -605,7 +605,7 @@ För översättningar, använd gärna [http://translatewiki.net/wiki/Main_Page?s
 'sqlhidden'            => '(gömd SQL-förfrågan)',
 'cascadeprotected'     => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":
 $2',
-'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namrymden '''$1'''.",
+'namespaceprotected'   => "Du har inte behörighet att redigera sidor i namnrymden '''$1'''.",
 'customcssjsprotected' => 'Du har inte behörighet att redigera den här sidan eftersom den innehåller en annan användares personliga inställningar.',
 'ns-specialprotected'  => 'Specialsidor kan inte redigeras.',
 'titleprotected'       => "Den här sidtiteln har skyddats från att skapas.
@@ -666,7 +666,8 @@ Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt 
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
-'passwordtooshort'           => 'Ditt lösenord är för kort. Det måste innehålla minst $1 tecken.',
+'passwordtooshort'           => 'Ditt lösenord är för kort.
+Det måste innehålla minst $1 tecken och det får inte vara ditt användarnamn.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle'      => 'Nytt lösenord från {{SITENAME}}',
 'passwordremindertext'       => 'Någon - förmodligen du - har från IP-adressen $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4). 
@@ -679,7 +680,8 @@ Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt ga
 'blocked-mailpassword'       => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
 'eauthentsent'               => 'Ett e-brev för bekräftelse har skickats till den e-postadress som angivits.
 Innan någon annan e-post kan skickas härifrån till kontot, måste du följa instruktionerna i e-brevet för att bekräfta att kontot verkligen är ditt.',
-'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats under de senaste $1 timmarna. För att förhindra missbruk skickas bara ett nytt lösenord på under den tiden.',
+'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
+För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
 'acct_creation_throttle_hit' => 'Du har redan skapat $1 användare och kan inte göra fler.',
 'emailauthenticated'         => 'Din e-postadress bekräftades den $1.',
@@ -795,7 +797,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'clearyourcache'                   => "'''Obs:''' Sedan du sparat sidan, måste du tömma din webbläsares cache för att se ändringarna. '''Mozilla/Safari/Firefox:''' håll ner ''skift'' och klicka på ''reload'' eller tryck ''ctrl-shift-r'', (cmd-shift-R på mac:ar); '''Internet Explorer:'''  håll ner ctr och klicka på \"Refresh\" eller tryck ''ctrl-f5'', '''Konqueror:''': klicka helt enkelt på \"Reload\" eller F5; '''Opera:''' tryck ''F5''",
 'usercssjsyoucanpreview'           => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
 'usercsspreview'                   => "'''Observera att du bara förhandsgranskar din användar-css - den har inte sparats än.'''",
-'userjspreview'                    => "'''Observera att du bara testar/förhandsgranskar ditt javascript! Det är inte sparat än.'''",
+'userjspreview'                    => "'''Kom ihåg att du bara testar/förhandsgranskar ditt JavaScript, det har inte sparat än!'''",
 'userinvalidcssjstitle'            => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Uppdaterad)',
 'note'                             => '<strong>Obs!</strong>',
@@ -1000,7 +1002,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'lineno'                  => 'Rad $1:',
 'compareselectedversions' => 'Jämför angivna versioner',
 'editundo'                => 'avlägsna',
-'diff-multi'              => '({{plural:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
+'diff-multi'              => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
 
 # Search results
 'searchresults'             => 'Sökresultat',
@@ -1075,9 +1077,9 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'math_notexvc'             => 'Applicationen texvc saknas; läs math/README för konfigureringsanvisningar.',
 'prefs-personal'           => 'Mitt konto',
 'prefs-rc'                 => 'Senaste ändringar',
-'prefs-watchlist'          => 'Övervakningslistan',
-'prefs-watchlist-days'     => 'Maximalt antal dagar som visas på övervakningslistan:',
-'prefs-watchlist-edits'    => 'Maximalt antal redigeringar som visas i utökad övervakningslista:',
+'prefs-watchlist'          => 'Bevakningslista',
+'prefs-watchlist-days'     => 'Antal dagar som visas i bevakningslistan:',
+'prefs-watchlist-edits'    => 'Maximalt antal redigeringar som visas i utökad bevakningslista:',
 'prefs-misc'               => 'Diverse',
 'saveprefs'                => 'Spara inställningar',
 'resetprefs'               => 'Återställ osparade ändringar',
@@ -1263,6 +1265,7 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 'reuploaddesc'                => 'Avbryt uppladdningen och gå tillbaka till uppladdningsformuläret.',
 'uploadnologin'               => 'Inte inloggad',
 'uploadnologintext'           => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ladda upp filer.',
+'upload_directory_missing'    => 'Uppladdningskatalogen ($1) saknas och kunde inte skapas av webbservern.',
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
 'uploaderror'                 => 'Fel vid uppladdningen',
 'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer.
@@ -1292,7 +1295,7 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp. Föredragna filtyper är \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' är inte en tillåten filtyp. Tillåtna filtyper är \$2.",
-'filetype-missing'            => 'Filen saknar ett filnamnsändelse (som ".jpg").',
+'filetype-missing'            => 'Filnamnet saknar ändelse (t ex ".jpg").',
 'large-file'                  => 'Filer bör inte vara större än $1; denna fil är $2',
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',
 'emptyfile'                   => 'Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.',
@@ -1393,11 +1396,11 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'filehist-filesize'              => 'Filstorlek',
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Bildlänkar',
-'linkstoimage'                   => 'Följande sidor länkar till denna bild:',
+'linkstoimage'                   => 'Följande {{PLURAL:$1|sida|sidor}} länkar till denna filen:',
 'nolinkstoimage'                 => 'Inga sidor länkar till den här bilden.',
 'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|fler länkar]] till den här filen.',
-'redirectstofile'                => 'Följande filer är omdirigeringar till den här filen:',
-'duplicatesoffile'               => 'Följande filer är dubbletter till den här filen:',
+'redirectstofile'                => 'Följande {{PLURAL:$1|fil är en omdirigering|filer är omdirigeringar}} till den här filen:',
+'duplicatesoffile'               => 'Följande {{PLURAL:$1|fil är en dubblett|filer är dubbletter}} till den här filen:',
 'sharedupload'                   => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'               => 'Vänligen se $1 för mer information.',
 'shareduploadwiki-desc'          => 'Innehållet på $1 i den gemensamma filförvaringen visas nedan.',
@@ -1447,7 +1450,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'download'           => 'ladda ner',
 
 # Unwatched pages
-'unwatchedpages' => 'Oövervakade sidor',
+'unwatchedpages' => 'Obevakade sidor',
 
 # List redirects
 'listredirects' => 'Lista över omdirigeringar',
@@ -1633,32 +1636,32 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'watchlist'            => 'Min bevakningslista',
 'mywatchlist'          => 'Min bevakningslista',
 'watchlistfor'         => "(för '''$1''')",
-'nowatchlist'          => 'Du har inga sidor i din övervakningslista.',
-'watchlistanontext'    => 'Du måste $1 för att se eller redigera din övervakningslista.',
+'nowatchlist'          => 'Du har inga sidor i din bevakningslista.',
+'watchlistanontext'    => 'Du måste $1 för att se eller redigera din bevakningslista.',
 'watchnologin'         => 'Inte inloggad',
-'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna göra ändringar i din övervakningslista.',
+'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ändra din bevakningslista.',
 'addedwatch'           => 'Tillagd på bevakningslistan',
 'addedwatchtext'       => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
-Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fet stil''' i [[Special:Recentchanges|listan över de senaste ändringarna]] för att synas bättre.",
+Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:Recentchanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
 'removedwatch'         => 'Borttagen från bevakningslista',
 'removedwatchtext'     => 'Sidan "[[:$1]]" har blivit borttagen från din bevakningslista.',
 'watch'                => 'bevaka',
 'watchthispage'        => 'Bevaka denna sida',
 'unwatch'              => 'avbevaka',
-'unwatchthispage'      => 'Stoppa övervakningen av denna sida',
+'unwatchthispage'      => 'Sluta bevaka',
 'notanarticle'         => 'Inte en artikel',
 'notvisiblerev'        => 'Sidversionen har raderats',
-'watchnochange'        => 'Inga av dina övervakade sidor har ändrats inom den visade tidsperioden.',
+'watchnochange'        => 'Inga av dina bevakade sidor har ändrats inom den visade tidsperioden.',
 'watchlist-details'    => '$1 {{PLURAL:$1|sida bevakad|sidor bevakade}} (utöver diskussionssidor).',
 'wlheader-enotif'      => '* Bekräftelse per e-post är aktiverad.',
 'wlheader-showupdated' => "* Sidor som ändrats sedan ditt senaste besök visas i '''fet stil.'''",
-'watchmethod-recent'   => 'letar efter övervakade sidor bland nyligen gjorda ändringar',
-'watchmethod-list'     => 'letar i övervakningslistan efter nyligen gjorda ändringar',
-'watchlistcontains'    => 'Din övervakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
+'watchmethod-recent'   => 'letar efter bevakade sidor bland senaste ändringar',
+'watchmethod-list'     => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
+'watchlistcontains'    => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
 'iteminvalidname'      => "Problem med sidan '$1', ogiltigt namn...",
 'wlnote'               => 'Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste $1 ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste <b>$2</b> timmarna}}.',
 'wlshowlast'           => 'Visa senaste $1 timmarna $2 dagarna $3',
-'watchlist-show-bots'  => 'Visa roboredigeringar',
+'watchlist-show-bots'  => 'Visa robotredigeringar',
 'watchlist-hide-bots'  => 'Göm robotredigeringar',
 'watchlist-show-own'   => 'Visa mina redigeringar',
 'watchlist-hide-own'   => 'Göm mina redigeringar',
@@ -1691,16 +1694,17 @@ Kontakta användaren:
 e-post: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om ändringar av sidan. Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din övervakningslista.
+Såvida du inte besöker sidan, kommer du inte att få flera meddelanden om ändringar av sidan.
+Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.
 
 Hälsningar från {{SITENAME}}s meddelandesystem
 
 --
-För att ändra inställningarna i din övervakningslista, besök
-{{fullurl:Special:Watchlist/edit}}
+För att ändra inställningarna i din bevakningslista, besök
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Feedback och hjälp:
-{{fullurl:Help:Innehåll}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Ta bort sida',
@@ -1742,7 +1746,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
 'editcomment'                 => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till se senaste versionen av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Återställde ändringar av $1 till senaste versionen av $2.',
 'sessionfailure'              => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
 'protectlogpage'              => 'Skrivskyddslogg',
@@ -1836,7 +1840,7 @@ $1',
 # Namespace form on various pages
 'namespace'      => 'Namnrymd:',
 'invert'         => 'Uteslut vald namnrymd',
-'blanknamespace' => '(Artiklar)',
+'blanknamespace' => '(Huvudnamnrymden)',
 
 # Contributions
 'contributions' => 'Användarbidrag',
@@ -2076,7 +2080,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-interwiki-namespace' => 'Överför sidorna till namnrymden:',
 'importtext'                 => 'Exportera filen från ursprungs-wikin genom Special:Export, spara den till din hårddisk och ladda upp den här.',
 'importstart'                => 'Importerar sidor....',
-'import-revision-count'      => '$1 {{plural:$1|version|versioner}}',
+'import-revision-count'      => '$1 {{PLURAL:$1|version|versioner}}',
 'importnopages'              => 'Det finns inga sidor att importera.',
 'importfailed'               => 'Importen misslyckades: $1',
 'importunknownsource'        => 'Okänd typ av importkälla',
@@ -2100,9 +2104,9 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'importlogpage'                    => 'Importlogg',
 'importlogpagetext'                => 'Administrativa sidimporter med versionshistorik från andra wikier.',
 'import-logentry-upload'           => '[[$1]]  har importerats genom uppladdning av fil',
-'import-logentry-upload-detail'    => '$1 {{plural:$1|version|versioner}}',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versioner}}',
 'import-logentry-interwiki'        => 'överförde $1 mellan wikier',
-'import-logentry-interwiki-detail' => '$1 {{plural:$1|version|versioner}} från $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versioner}} från $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Min användarsida',
@@ -2259,7 +2263,7 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Galleri över nya bilder',
-'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{plural:$1|bild|bilder}} sorterad <strong>$2</strong>.',
+'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|bild|bilder}} sorterad <strong>$2</strong>.',
 'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna',
 'showhidebots'          => '($1 robotar)',
 'noimages'              => 'Ingenting att se.',
@@ -2557,9 +2561,10 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'confirmemail_send'        => 'Skicka bekräftelsekod',
 'confirmemail_sent'        => 'E-post med bekräftelse skickat.',
 'confirmemail_oncreate'    => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men om du behöver koden om du vill få tillgång de epostbaserade funktionerna på wikin.',
-'confirmemail_sendfailed'  => 'E-post med bekräftelse kunde inte skickas. Kontrollera om adressen innehåller ogiltiga tecken.
+'confirmemail_sendfailed'  => 'E-post med bekräftelse kunde inte skickas.
+Kontrollera om adressen innehåller ogiltiga tecken.
 
-Mailaren returnade: $1',
+Mailservern meddelade: $1',
 'confirmemail_invalid'     => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
 'confirmemail_needlogin'   => 'Du behöver $1 för att bekräfta din e-postadress',
 'confirmemail_success'     => 'Din e-postadress har bekräftats och du kan logga in på wikin.',
@@ -2656,28 +2661,31 @@ Pröva vanlig förhandsgranskning istället.',
 'lag-warn-high'   => 'På grund av stor fördröjning i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Din övervakningslista innehåller {{PLURAL:$1|1 titel|$1 titlar}}, utöver diskussionsidor.',
-'watchlistedit-noitems'        => 'Din övervakningslista innehåller inga titlar.',
-'watchlistedit-normal-title'   => 'Redigera övervakningslistan',
-'watchlistedit-normal-legend'  => 'Ta bort titlar från övervakningslistan',
-'watchlistedit-normal-explain' => 'Titlarna i din övervakningslista visas i listan här nedanför. För att ta bort en titel, kryssa i rutan intill den och tryck på "Ta bort titlar". Du kan även [[Special:Watchlist/raw|redigera listan i textformat]].',
-'watchlistedit-normal-submit'  => 'Ta bort titlar',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titel|$1 titlar}} togs bort från övervakningslistan:',
-'watchlistedit-raw-title'      => 'Redigera övervakningslistan som text',
-'watchlistedit-raw-legend'     => 'Redigera övervakningslistan som text',
-'watchlistedit-raw-explain'    => 'Titlarna i din övervakningslista visas i textrutan här nedanför, varje rad
-visar en titel. Du kan redigera listan genom att lägga till och ta bort titlar från den. Tryck på "Spara listan"
-för att spara dina ändringar när du är färdig. Du kan också använda [[Special:Watchlist/edit|standardeditorn]].',
-'watchlistedit-raw-titles'     => 'Titlar:',
-'watchlistedit-raw-submit'     => 'Spara listan',
-'watchlistedit-raw-done'       => 'Ändringarna av din övervakningslista har sparats.',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titel|$1 titlar}} lades till:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titel|$1 titlar}} togs bort:',
+'watchlistedit-numitems'       => 'Din bevakningslista innehåller {{PLURAL:$1|1 sida|$1 sidor}}, utöver diskussionsidor.',
+'watchlistedit-noitems'        => 'Din bevakningslista innehåller inga sidor.',
+'watchlistedit-normal-title'   => 'Redigera bevakningslista',
+'watchlistedit-normal-legend'  => 'Ta bort sidor från bevakningslistan',
+'watchlistedit-normal-explain' => 'Sidorna i din bevakningslista visas nedan.
+För att ta bort en sida, kryssa i rutan intill den, och tryck på "Ta bort sidor".
+Du kan även [[Special:Watchlist/raw|redigera listan i textformat]].',
+'watchlistedit-normal-submit'  => 'Ta bort sidor',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 sida|$1 sidor}} togs bort från din bevakningslista:',
+'watchlistedit-raw-title'      => 'Redigera bevakningslistan i råformat',
+'watchlistedit-raw-legend'     => 'Redigera bevakningslistan i råformat',
+'watchlistedit-raw-explain'    => 'Sidorna i din bevakningslista visas här nedanför, och kan redigeras genom att lägga till och ta bort från listan;
+en sida per rad.
+Tryck på "Uppdatera bevakningslista", när du är färdig.
+Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
+'watchlistedit-raw-titles'     => 'Sidor:',
+'watchlistedit-raw-submit'     => 'Uppdatera bevakningslista',
+'watchlistedit-raw-done'       => 'Din bevakningslista har uppdaterats.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 sida|$1 sidor}} lades till:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 sida|$1 sidor}} togs bort:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Visa relevanta ändringar',
 'watchlisttools-edit' => 'Visa och redigera bevakningslistan',
-'watchlisttools-raw'  => 'Redigera bevakningslistan som text',
+'watchlisttools-raw'  => 'Redigera bevakningslistan i råformat',
 
 # Core parser functions
 'unknown_extension_tag' => 'Okänd tagg "$1"',

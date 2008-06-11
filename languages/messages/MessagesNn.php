@@ -621,6 +621,7 @@ Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sj
 'youremail'                  => 'E-post:',
 'username'                   => 'Brukarnamn:',
 'uid'                        => 'Brukar-ID:',
+'prefs-memberingroups'       => 'Medlem av {{PLURAL:$1|denne gruppa|desse gruppene}}:',
 'yourrealname'               => 'Verkeleg namn:',
 'yourlanguage'               => 'Språk:',
 'yourvariant'                => 'Språkvariant',
@@ -1065,6 +1066,8 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'servertime'               => 'Tenartid',
 'guesstimezone'            => 'Hent tidssone frå nettlesaren',
 'allowemail'               => 'Tillat e-post frå andre brukarar',
+'prefs-searchoptions'      => 'Søkjealternativ',
+'prefs-namespaces'         => 'Namnerom',
 'defaultns'                => 'Søk som standard i desse namneromma:',
 'default'                  => 'standard',
 'files'                    => 'Filer',
@@ -1133,12 +1136,20 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'right-upload'           => 'Laste opp filer',
 'right-reupload'         => 'Skrive over ei eksisterande fil',
 'right-reupload-own'     => 'Skrive over eigne filer',
+'right-reupload-shared'  => 'Skrive over delte filer lokalt',
+'right-upload_by_url'    => 'Laste opp ei fil frå ei nettadresse',
 'right-autoconfirmed'    => 'Endre halvlåste sider',
 'right-bot'              => 'Bli handsama som ein automatisk prosess.',
 'right-nominornewtalk'   => 'Mindre endringar på diskujsonssida gjev ikkje beskjed om at du har nye meldingar.',
 'right-delete'           => 'Slette sider',
+'right-bigdelete'        => 'Slette sider med lange historikkar',
 'right-browsearchive'    => 'Søk i sletta sider',
+'right-undelete'         => 'Attopprett sider',
 'right-suppressrevision' => 'Sjå og gjenopprett skjulte siderevisjonar',
+'right-suppressionlog'   => 'Sjå private loggar',
+'right-editinterface'    => 'Redigere brukargrensesnittet',
+'right-unwatchedpages'   => 'Sjå lista over sider som ikkje er overvaka',
+'right-siteadmin'        => 'Låse og låse opp databasen',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1299,10 +1310,12 @@ Sletteloggen for fila finn du her:",
 'imagelinks'                     => 'Fillenkjer',
 'linkstoimage'                   => 'Dei følgjande sidene har lenkjer til denne fila:',
 'nolinkstoimage'                 => 'Det finst ikkje noka side med lenkje til denne fila.',
+'morelinkstoimage'               => 'Vis [[Special:Whatlinkshere/$1|fleire lenkjer]] til denne fila.',
 'sharedupload'                   => 'Denne fila er ei delt opplasting og kan brukast av andre prosjekt.',
 'shareduploadwiki'               => 'Sjå $1 for meir informasjon.',
 'shareduploadwiki-desc'          => 'Skildringa til $1 i det delte lageret er vist nedanfor.',
 'shareduploadwiki-linktext'      => 'filskildringssida',
+'shareduploadduplicate'          => 'Denne fila er ein kopi av $1 frå det delte fillageret.',
 'shareduploadduplicate-linktext' => 'ei anna fil',
 'shareduploadconflict-linktext'  => 'ei anna fil',
 'noimage'                        => 'Det finst ikkje noka fil med dette namnet, men du kan $1',
@@ -1417,6 +1430,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'popularpages'            => 'Populære sider',
 'wantedcategories'        => 'Etterspurde kategoriar',
 'wantedpages'             => 'Etterspurde sider',
+'missingfiles'            => 'Manglande filer',
 'mostlinked'              => 'Sidene med flest lenkjer til seg',
 'mostlinkedcategories'    => 'Mest brukte kategoriar',
 'mostlinkedtemplates'     => 'Mest brukte malar',
@@ -1484,6 +1498,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 # Special:Categories
 'categories'                    => 'Kategoriar',
 'categoriespagetext'            => 'Wikien har følgjande kategoriar.',
+'categoriesfrom'                => 'Vis kategoriar frå og med:',
 'special-categories-sort-count' => 'sorter etter storleik',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
@@ -1632,7 +1647,7 @@ For hjelp og meir informasjon:
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]).',
 'editcomment'                 => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Attenderulla endring gjort av [[User:$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
@@ -1754,6 +1769,7 @@ $1',
 'whatlinkshere-hidetrans'  => '$1 inkluderinger',
 'whatlinkshere-hidelinks'  => '$1 lenkjer',
 'whatlinkshere-hideimages' => '$1 fillenkjer',
+'whatlinkshere-filters'    => 'Filter',
 
 # Block/unblock
 'blockip'                     => 'Blokker brukar',
@@ -2056,6 +2072,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'markedaspatrolledtext'               => 'Den valde versjonen er vorten merkt som patruljert.',
 'rcpatroldisabled'                    => 'Siste-endringar-patruljering er deaktivert',
 'rcpatroldisabledtext'                => 'Patruljeringsfunksjonen er deaktivert.',
+'markedaspatrollederror'              => 'Kan ikkje merke sida som patruljert',
 'markedaspatrollederror-noautopatrol' => 'Ein har ikkje høve til å merkje sine eigne endringar som godkjende.',
 
 # Patrol log
@@ -2385,27 +2402,27 @@ Dei andre felta er gøymde som standard.
 'monthsall'        => 'alle',
 
 # E-mail address confirmation
-'confirmemail'            => 'Stadfest e-postadresse',
-'confirmemail_text'       => '{{SITENAME}} krev at du stadfester e-postadressa di
+'confirmemail'             => 'Stadfest e-postadresse',
+'confirmemail_text'        => '{{SITENAME}} krev at du stadfester e-postadressa di
 før du får brukt funksjonar knytt til e-post. Klikk på knappen under for å sende ei stadfestingsmelding
 til adressa di. E-posten kjem med ei lenkje som har ein kode; opne
 lenkja i nettlesaren din for å stadfeste at e-postadressa di er gyldig.',
-'confirmemail_pending'    => '<div class="error">Ein stadfestingskode har alt vorte send til deg på e-post;
+'confirmemail_pending'     => '<div class="error">Ein stadfestingskode har alt vorte send til deg på e-post;
 gjer vel å vente nokre minutt før du ber om ny kode om du nett har oppretta kontoen din.</div>',
-'confirmemail_send'       => 'Send stadfestingsmelding',
-'confirmemail_sent'       => 'Stadfestingsmelding er sendt.',
-'confirmemail_oncreate'   => 'Ein stadfestingskode er no send til e-postadressa di.
+'confirmemail_send'        => 'Send stadfestingsmelding',
+'confirmemail_sent'        => 'Stadfestingsmelding er sendt.',
+'confirmemail_oncreate'    => 'Ein stadfestingskode er no send til e-postadressa di.
 Koden trengst ikkje for å få logga seg inn, men er naudsynd om ein skal aktivere e-postbaserte tenester på denne wikien.',
-'confirmemail_sendfailed' => 'Kunne ikkje sende stadfestingsmelding. Sjå til at adressa ikkje har ugyldige bokstavar.
+'confirmemail_sendfailed'  => 'Kunne ikkje sende stadfestingsmelding. Sjå til at adressa ikkje har ugyldige bokstavar.
 
 E-postsendaren gav denne meldinga: $1',
-'confirmemail_invalid'    => 'Feil stadfestingskode. Koden er kanskje for forelda.',
-'confirmemail_needlogin'  => 'Du må $1 for å stadfeste e-postadressa di.',
-'confirmemail_success'    => 'E-postadressa di er stadfest. Du kan no logge inn og kose deg med {{SITENAME}}.',
-'confirmemail_loggedin'   => 'E-postadressa di er stadfest.',
-'confirmemail_error'      => 'Noko gjekk gale når stadfestinga di skulle lagrast.',
-'confirmemail_subject'    => 'Stadfesting av e-postadresse frå {{SITENAME}}',
-'confirmemail_body'       => 'Nokon, truleg du, frå IP-adressa $1, har registrert kontoen «$2» med di e-postadresse på {{SITENAME}}.
+'confirmemail_invalid'     => 'Feil stadfestingskode. Koden er kanskje for forelda.',
+'confirmemail_needlogin'   => 'Du må $1 for å stadfeste e-postadressa di.',
+'confirmemail_success'     => 'E-postadressa di er stadfest. Du kan no logge inn og kose deg med {{SITENAME}}.',
+'confirmemail_loggedin'    => 'E-postadressa di er stadfest.',
+'confirmemail_error'       => 'Noko gjekk gale når stadfestinga di skulle lagrast.',
+'confirmemail_subject'     => 'Stadfesting av e-postadresse frå {{SITENAME}}',
+'confirmemail_body'        => 'Nokon, truleg du, frå IP-adressa $1, har registrert kontoen «$2» med di e-postadresse på {{SITENAME}}.
 
 For å stadfeste at denne kontoen faktisk høyrer til deg og for å slå på
 funksjonar tilknytt e-post på {{SITENAME}} må du opne denne lenkja i nettlesaren din:
@@ -2417,7 +2434,8 @@ Dersom dette *ikkje* er deg, følg denne lenkja for avbryte stadfestinga av e-po
 $5
 
 Denne stadfestingskoden vert forelda $4.',
-'invalidateemail'         => 'Avbryt stadfestinga av e-postadressa',
+'confirmemail_invalidated' => 'Stadfestinga av e-postadresse er avbrote',
+'invalidateemail'          => 'Avbryt stadfestinga av e-postadressa',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-tilkopling er slått av]',
@@ -2550,14 +2568,21 @@ $1',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».',
 
 # Special:SpecialPages
-'specialpages'                 => 'Spesialsider',
-'specialpages-group-other'     => 'Andre spesialsider',
-'specialpages-group-login'     => 'Innlogging / registrering',
-'specialpages-group-changes'   => 'Siste endringar og loggar',
-'specialpages-group-users'     => 'Brukarar og brukartilgangar',
-'specialpages-group-highuse'   => 'Mykje brukte sider',
-'specialpages-group-wiki'      => 'Informasjon og verktøy for wikien',
-'specialpages-group-redirects' => 'Omdirigerande spesialsider',
-'specialpages-group-spam'      => 'Spamverktøy',
+'specialpages'                   => 'Spesialsider',
+'specialpages-note'              => '----
+* Vanlege spesialsider.
+* <span class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</span>',
+'specialpages-group-maintenance' => 'Vedlikehaldsrapportar',
+'specialpages-group-other'       => 'Andre spesialsider',
+'specialpages-group-login'       => 'Innlogging / registrering',
+'specialpages-group-changes'     => 'Siste endringar og loggar',
+'specialpages-group-media'       => 'Medierapportar og opplastingar',
+'specialpages-group-users'       => 'Brukarar og brukartilgangar',
+'specialpages-group-highuse'     => 'Mykje brukte sider',
+'specialpages-group-pages'       => 'Sidelister',
+'specialpages-group-pagetools'   => 'Sideverktøy',
+'specialpages-group-wiki'        => 'Informasjon og verktøy for wikien',
+'specialpages-group-redirects'   => 'Omdirigerande spesialsider',
+'specialpages-group-spam'        => 'Spamverktøy',
 
 );
