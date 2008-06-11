@@ -265,8 +265,7 @@ class ProtectionForm {
 			Xml::openElement( 'table', array( 'id' => 'mw-protect-table2' ) ) .
 			Xml::openElement( 'tbody' );
 
-		global $wgEnableCascadingProtection;
-		if( $wgEnableCascadingProtection && $this->mTitle->exists() ) {
+		if( $this->mTitle->exists() ) {
 			$out .= '<tr>
 					<td></td>
 					<td class="mw-input">' .

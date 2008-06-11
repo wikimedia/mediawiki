@@ -1611,15 +1611,12 @@ class Title {
 	 * The restriction array is an array of each type, each of which contains an array of unique groups
 	 */
 	public function getCascadeProtectionSources( $get_pages = true ) {
-		global $wgEnableCascadingProtection, $wgRestrictionTypes;
+		global $wgRestrictionTypes;
 
 		# Define our dimension of restrictions types
 		$pagerestrictions = array();
 		foreach( $wgRestrictionTypes as $action )
 			$pagerestrictions[$action] = array();
-
-		if (!$wgEnableCascadingProtection)
-			return array( false, $pagerestrictions );
 
 		if ( isset( $this->mCascadeSources ) && $get_pages ) {
 			return array( $this->mCascadeSources, $this->mCascadingRestrictions );
