@@ -56,15 +56,7 @@ class CoreParserFunctions {
 	static function intFunction( $parser, $part1 = '' /*, ... */ ) {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
-			$opts = array();
-			if( ( $langObj = $parser->mOptions->getTargetLanguage() ) !== null ){
-				$opts['language'] = $langObj->getCode();
-			} else if( $parser->mOptions->getInterfaceMessage() ) {
-				$opts[] = 'content';
-			}
-			$msg = call_user_func_array( 'wfMsgExt', 
-				array_merge( array( $part1, $opts ), $args ) );
-			return $parser->replaceVariables( $msg );
+			return wfMsgReal( $part1, $args, true );
 		} else {
 			return array( 'found' => false );
 		}

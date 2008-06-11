@@ -36,9 +36,7 @@ class RefreshLinksJob extends Job {
 		}
 
 		wfProfileIn( __METHOD__.'-parse' );
-		$user = new User();
-		$options = new ParserOptions( $user );
-		$options->setInterfaceMessage( true );
+		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() );
 		wfProfileOut( __METHOD__.'-parse' );
 		wfProfileIn( __METHOD__.'-update' );

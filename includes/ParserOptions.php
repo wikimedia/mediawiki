@@ -5,31 +5,32 @@
  * @todo document
  * @ingroup Parser
  */
-class ParserOptions {
+class ParserOptions
+{
 	# All variables are supposed to be private in theory, although in practise this is not the case.
-	var $mUseTeX;                    //!< Use texvc to expand <math> tags
-	var $mUseDynamicDates;           //!< Use DateFormatter to format dates
-	var $mInterwikiMagic;            //!< Interlanguage links are removed and returned in an array
-	var $mAllowExternalImages;       //!< Allow external images inline
-	var $mAllowExternalImagesFrom;   //!< If not, any exception?
-	var $mSkin;                      //!< Reference to the preferred skin
-	var $mDateFormat;                //!< Date format index
-	var $mEditSection;               //!< Create "edit section" links
-	var $mNumberHeadings;            //!< Automatically number headings
-	var $mAllowSpecialInclusion;     //!< Allow inclusion of special pages
-	var $mTidy;                      //!< Ask for tidy cleanup
-	var $mInterfaceMessage;          //!< Which lang to call for PLURAL and GRAMMAR
-	var $mTargetLanguage;            //!< Overrides above setting with arbitrary language
-	var $mMaxIncludeSize;            //!< Maximum size of template expansions, in bytes
-	var $mMaxPPNodeCount;            //!< Maximum number of nodes touched by PPFrame::expand()
-	var $mMaxPPExpandDepth;          //!< Maximum recursion depth in PPFrame::expand()
-	var $mMaxTemplateDepth;          //!< Maximum recursion depth for templates within templates
-	var $mRemoveComments;            //!< Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
-	var $mTemplateCallback;          //!< Callback for template fetching
-	var $mEnableLimitReport;         //!< Enable limit report in an HTML comment on output
-	var $mTimestamp;                 //!< Timestamp used for {{CURRENTDAY}} etc.
+	var $mUseTeX;                    # Use texvc to expand <math> tags
+	var $mUseDynamicDates;           # Use DateFormatter to format dates
+	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
+	var $mAllowExternalImages;       # Allow external images inline
+	var $mAllowExternalImagesFrom;   # If not, any exception?
+	var $mSkin;                      # Reference to the preferred skin
+	var $mDateFormat;                # Date format index
+	var $mEditSection;               # Create "edit section" links
+	var $mNumberHeadings;            # Automatically number headings
+	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
+	var $mTidy;                      # Ask for tidy cleanup
+	var $mInterfaceMessage;          # Which lang to call for PLURAL and GRAMMAR
+	var $mTargetLanguage;            # Overrides above setting with arbitrary language
+	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
+	var $mMaxPPNodeCount;            # Maximum number of nodes touched by PPFrame::expand()
+	var $mMaxPPExpandDepth;          # Maximum recursion depth in PPFrame::expand()
+	var $mMaxTemplateDepth;          # Maximum recursion depth for templates within templates
+	var $mRemoveComments;            # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
+	var $mTemplateCallback;          # Callback for template fetching
+	var $mEnableLimitReport;         # Enable limit report in an HTML comment on output
+	var $mTimestamp;                 # Timestamp used for {{CURRENTDAY}} etc.
 
-	var $mUser;                      //!< Stored user object, just used to initialise the skin
+	var $mUser;                      # Stored user object, just used to initialise the skin
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -97,7 +98,7 @@ class ParserOptions {
 
 	/**
 	 * Get parser options
-	 * @param $user User
+	 * @static
 	 */
 	static function newFromUser( $user ) {
 		return new ParserOptions( $user );
@@ -108,9 +109,8 @@ class ParserOptions {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion, $wgMaxArticleSize;
 		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth;
-
-		wfProfileIn( __METHOD__ );
-
+		$fname = 'ParserOptions::initialiseFromUser';
+		wfProfileIn( $fname );
 		if ( !$userInput ) {
 			global $wgUser;
 			if ( isset( $wgUser ) ) {
@@ -144,7 +144,6 @@ class ParserOptions {
 		$this->mRemoveComments = true;
 		$this->mTemplateCallback = array( 'Parser', 'statelessFetchTemplate' );
 		$this->mEnableLimitReport = false;
-
-		wfProfileOut( __METHOD__ );
+		wfProfileOut( $fname );
 	}
 }
