@@ -1205,6 +1205,10 @@ $user: User object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserLoadDefaults': called when loading a default user
+$user: user object
+$name: user name
+
 'UserLoadFromSession': called to authenticate users on external/environmental means
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentification process
@@ -1235,6 +1239,11 @@ $talks: array of new talks page(s)
 
 'UserSaveSettings': called when saving user settings
 $user: User object
+
+'UserSetCookies': called when setting user cookies
+$user: User object
+&$session: session array, will be added to $_SESSION
+&$cookies: cookies array mapping cookie name to its value
 
 'UserSetEmail': called when changing user email address
 $user: User object
