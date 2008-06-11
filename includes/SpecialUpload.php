@@ -872,8 +872,8 @@ class UploadForm {
 	 */
 	function uploadError( $error ) {
 		global $wgOut;
-		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" ) );
-		$wgOut->addHTML( '<span class="error">' . $error . '</span>' ) );
+		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" );
+		$wgOut->addHTML( '<span class="error">' . $error . '</span>' );
 	}
 
 	/**
@@ -1043,7 +1043,7 @@ wgUploadAutoFill = {$autofill};
 		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
 		$maxUploadSize = '<div id="mw-upload-maxfilesize">' . 
 			wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ), 
-				$wgLang->formatSize( $val2 ) ) ) .
+				$wgLang->formatSize( $val2 ) ) .
 				"</div>\n";
 
 		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
