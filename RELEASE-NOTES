@@ -358,6 +358,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14496) Fix regression with parseinline on Special:Upload.
 * We no longer just give up on a missing upload base directory; it's now
   created automatically if we have sufficient permissions!
+* (bug 14479) MediaWiki:upload-maxfilesize should have a div id wrapper
 
 
 === API changes in 1.13 ===
