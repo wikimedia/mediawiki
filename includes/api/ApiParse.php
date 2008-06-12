@@ -50,6 +50,9 @@ class ApiParse extends ApiBase {
 		$revid = false;
 
 		global $wgParser, $wgUser;
+		$popts = new ParserOptions();
+		$popts->setTidy(true);
+		$popts->enableLimitReport();
 		if(!is_null($oldid) || !is_null($page))
 		{
 			if(!is_null($oldid))
@@ -62,7 +65,7 @@ class ApiParse extends ApiBase {
 					$this->dieUsage("You don't have permission to view deleted revisions", 'permissiondenied');
 				$text = $rev->getRawText();
 				$titleObj = $rev->getTitle();
-				$p_result = $wgParser->parse($text, $titleObj, new ParserOptions());
+				$p_result = $wgParser->parse($text, $titleObj, $popts);
 			}
 			else
 			{
@@ -77,7 +80,7 @@ class ApiParse extends ApiBase {
 				$pcache = ParserCache::singleton();
 				$p_result = $pcache->get($articleObj, $wgUser);
 				if(!$p_result) {
-					$p_result = $wgParser->parse($articleObj->getContent(), $titleObj, new ParserOptions());
+					$p_result = $wgParser->parse($articleObj->getContent(), $titleObj, $popts);
 					global $wgUseParserCache;
 					if($wgUseParserCache)
 						$pcache->save($p_result, $articleObj, $wgUser);
@@ -89,7 +92,7 @@ class ApiParse extends ApiBase {
 			$titleObj = Title::newFromText($title);
 			if(!$titleObj)
 				$titleObj = Title::newFromText("API");
-			$p_result = $wgParser->parse($text, $titleObj, new ParserOptions());
+			$p_result = $wgParser->parse($text, $titleObj, $popts);
 		}
 
 		// Return result
