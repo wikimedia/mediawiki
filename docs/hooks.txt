@@ -305,7 +305,7 @@ $article: article (object) being modified
 $title: title (object) used to create the article object
 $article: article (object) that will be returned
 
-'ArticleInsertComplete': After an article is created
+'ArticleInsertComplete': After a new article is created
 $article: Article created
 $user: User creating the article
 $text: New content
