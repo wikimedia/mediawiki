@@ -368,6 +368,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14500) Site feed (Recentchanges) no longer shows up on the actual
   recent changes page.
 * (bug 14511) MediaWiki:Delete-legend is no longer double escaped
+* Generate correct section anchors for numeric headers
 
 === API changes in 1.13 ===
 
