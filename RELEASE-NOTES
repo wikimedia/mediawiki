@@ -440,6 +440,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14335) Logging in to unified account using API not possible
 * Added action=emailuser to send an email to a user
 * (bug 14471) Use HTMLTidy and generate limit report in action=parse
+* (bug 14459) Added prependtext and appendtext parameters to action=edit
 
 === Languages updated in 1.13 ===
 
