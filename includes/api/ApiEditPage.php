@@ -46,8 +46,8 @@ class ApiEditPage extends ApiBase {
 		$params = $this->extractRequestParams();
 		if(is_null($params['title']))
 			$this->dieUsageMsg(array('missingparam', 'title'));
-		if(is_null($params['text']))
-			$this->dieUsageMsg(array('missingparam', 'text'));
+		if(is_null($params['text']) && is_null($params['appendtext']) && is_null($params['prependtext']))
+			$this->dieUsageMsg(array('missingtext'));
 		if(is_null($params['token']))
 			$this->dieUsageMsg(array('missingparam', 'token'));
 		if(!$wgUser->matchEditToken($params['token']))
@@ -67,14 +67,19 @@ class ApiEditPage extends ApiBase {
 		if(!empty($errors))
 			$this->dieUsageMsg($errors[0]);
 
+		$articleObj = new Article($titleObj);
+		if(!is_null($params['appendtext']) || !is_null($params['prependtext']))
+		{
+			$content = $articleObj->getContent();
+			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
+		}
+
 		# See if the MD5 hash checks out
 		if(isset($params['md5']))
 			if(md5($params['text']) !== $params['md5'])
 				$this->dieUsageMsg(array('hashcheckfailed'));
 		
-		$articleObj = new Article($titleObj);
 		$ep = new EditPage($articleObj);
-		
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
 		$reqArr = array('wpTextbox1' => $params['text'],
@@ -243,6 +248,8 @@ class ApiEditPage extends ApiBase {
 			'watch' => false,
 			'unwatch' => false,
 			'md5' => null,
+			'prependtext' => null,
+			'appendtext' => null,
 		);
 	}
 
@@ -266,6 +273,9 @@ class ApiEditPage extends ApiBase {
 			'captchaid' => 'CAPTCHA ID from previous request',
 			'captchaword' => 'Answer to the CAPTCHA',
 			'md5' => 'The MD5 hash of the new article text. If set, the edit won\'t be done unless the hash is correct',
+			'prependtext' => array( 'Add this text to the beginning of the page. Overrides text.',
+						'Don\'t use together with section: that won\'t do what you expect.'),
+			'appendtext' => 'Add this text to the end of the page. Overrides text',
 		);
 	}
 
