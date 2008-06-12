@@ -1419,12 +1419,12 @@ class OutputPage {
 		}
 
 		if( $wgFeed ) {
+			global $wgTitle;
 			foreach( $this->getSyndicationLinks() as $format => $link ) {
 				# Use the page name for the title (accessed through $wgTitle since
 				# there's no other way).  In principle, this could lead to issues
 				# with having the same name for different feeds corresponding to
 				# the same page, but we can't avoid that at this low a level.
-				global $wgTitle;
 
 				$ret .= $this->feedLink(
 					$format,
@@ -1432,19 +1432,24 @@ class OutputPage {
 					wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
 			}
 
-			# Recent changes feed should appear on every page
-			# Put it after the per-page feed to avoid changing existing behavior.
-			# It's still available, probably via a menu in your browser.
-			global $wgSitename;
+			# Recent changes feed should appear on every page (except recentchanges, 
+			# that would be redundant). Put it after the per-page feed to avoid 
+			# changing existing behavior. It's still available, probably via a 
+			# menu in your browser.
+
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-			$ret .= $this->feedLink(
-				'rss',
-				$rctitle->getFullURL( 'feed=rss' ),
-				wfMsg( 'site-rss-feed', $wgSitename ) );
-			$ret .= $this->feedLink(
-				'atom',
-				$rctitle->getFullURL( 'feed=atom' ),
-				wfMsg( 'site-atom-feed', $wgSitename ) );
+			if ( $wgTitle->getText() != $rctitle->getText() ) {
+				global $wgSitename;
+				
+				$ret .= $this->feedLink(
+					'rss',
+					$rctitle->getFullURL( 'feed=rss' ),
+					wfMsg( 'site-rss-feed', $wgSitename ) );
+				$ret .= $this->feedLink(
+					'atom',
+					$rctitle->getFullURL( 'feed=atom' ),
+					wfMsg( 'site-atom-feed', $wgSitename ) );
+			}
 		}
 
 		return $ret;

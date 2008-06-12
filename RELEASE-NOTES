@@ -364,7 +364,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14479) MediaWiki:upload-maxfilesize should have a div id wrapper
 * (bug 14497) Throw visible errors in installer scripts when SQL files
   fail due to database permission or other error
-
+* (bug 14500) Site feed (Recentchanges) no longer shows up on the actual
+  recent changes page.
 
 === API changes in 1.13 ===
 
