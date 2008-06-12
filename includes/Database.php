@@ -2116,7 +2116,7 @@ class Database {
 
 	/**
 	 * Read and execute SQL commands from a file.
-	 * Returns true on success, error string on failure
+	 * Returns true on success, error string or exception on failure (depending on object's error ignore settings)
 	 * @param string $filename File name to open
 	 * @param callback $lineCallback Optional function called before reading each line
 	 * @param callback $resultCallback Optional function called for each MySQL result
@@ -2124,7 +2124,7 @@ class Database {
 	function sourceFile( $filename, $lineCallback = false, $resultCallback = false ) {
 		$fp = fopen( $filename, 'r' );
 		if ( false === $fp ) {
-			return "Could not open \"{$filename}\".\n";
+			throw new MWException( "Could not open \"{$filename}\".\n" );
 		}
 		$error = $this->sourceStream( $fp, $lineCallback, $resultCallback );
 		fclose( $fp );
@@ -2133,7 +2133,7 @@ class Database {
 
 	/**
 	 * Read and execute commands from an open file handle
-	 * Returns true on success, error string on failure
+	 * Returns true on success, error string or exception on failure (depending on object's error ignore settings)
 	 * @param string $fp File handle
 	 * @param callback $lineCallback Optional function called before reading each line
 	 * @param callback $resultCallback Optional function called for each MySQL result
@@ -2176,7 +2176,7 @@ class Database {
 			if ( $done ) {
 				$cmd = str_replace(';;', ";", $cmd);
 				$cmd = $this->replaceVars( $cmd );
-				$res = $this->query( $cmd, __METHOD__, true );
+				$res = $this->query( $cmd, __METHOD__ );
 				if ( $resultCallback ) {
 					call_user_func( $resultCallback, $res );
 				}
