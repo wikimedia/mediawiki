@@ -819,7 +819,7 @@ $2',
 'lineno'                  => 'បន្ទាត់ទី $1:',
 'compareselectedversions' => 'ប្រៀបធៀប​កំនែប្រែ​ដែលបាន​ជ្រើសយក',
 'editundo'                => 'ធ្វើអោយ​ដូចដើមវិញ',
-'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
+'diff-multi'              => '(មិនបង្ហាញ កំណែកណ្តាល នៃ $1 ។)',
 
 # Search results
 'searchresults'            => 'លទ្ធផលស្វែងរក',

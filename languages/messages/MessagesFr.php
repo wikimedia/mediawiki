@@ -254,8 +254,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-fancysig'                => 'Signature brute (sans lien automatique)',
-'tog-externaleditor'          => 'Utiliser un éditeur externe par défaut',
-'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut',
+'tog-externaleditor'          => 'Utiliser un éditeur externe par défaut (pour les utilisateurs avancés, nécessite une configuration spéciale sur votre ordinateur)',
+'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite une configuration spéciale sur votre ordinateur)',
 'tog-showjumplinks'           => 'Activer les liens « navigation » et « recherche » en haut de page (habillages Myskin et autres)',
 'tog-uselivepreview'          => 'Utiliser l’aperçu rapide (JavaScript) (expérimental)',
 'tog-forceeditsummary'        => 'M’avertir lorsque je n’ai pas complété le contenu de la boîte de commentaires',
@@ -625,7 +625,7 @@ Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-
 'nouserspecified'            => 'Vous devez saisir un nom d’utilisateur.',
 'wrongpassword'              => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
-'passwordtooshort'           => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractères et être différent de votre nom d’utilisateur.',
+'passwordtooshort'           => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractère{{PLURAL:$1||s}} et être différent de votre nom d’utilisateur.',
 'mailmypassword'             => 'Envoyez-moi un nouveau mot de passe',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire sur {{SITENAME}}',
 'passwordremindertext'       => 'Quelqu’un (probablement vous) ayant l’adresse IP $1 a demandé à ce qu’un nouveau mot de passe vous soit envoyé pour {{SITENAME}} ($4).
@@ -638,7 +638,7 @@ Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à p
 'blocked-mailpassword'       => 'Votre adresse IP est bloquée en édition, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
 'eauthentsent'               => 'Un courriel de confirmation a été envoyé à l’adresse indiquée.
 Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.',
-'throttled-mailpassword'     => 'Un courriel de rappel de votre mot de passe a déjà été envoyé durant les $1 dernières heures. Afin d’éviter les abus, un seul courriel de rappel sera envoyé en $1 heures.',
+'throttled-mailpassword'     => 'Un courriel de rappel de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d’éviter les abus, un seul courriel de rappel sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.',
 'mailerror'                  => 'Erreur en envoyant le courriel : $1',
 'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé {{PLURAL:$1|$1 compte|$1 comptes}}. Vous ne pouvez pas en créer de nouveaux.',
 'emailauthenticated'         => 'Votre adresse de courriel a été authentifiée le $1.',
@@ -1531,7 +1531,7 @@ Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manu
 
 # Special:Categories
 'categories'                    => 'Catégories',
-'categoriespagetext'            => 'Les catégories suivantes existent dans le wiki.',
+'categoriespagetext'            => 'Les catégories suivantes contiennent des pages ou fichiers.',
 'categoriesfrom'                => 'Afficher les catégories commençant à :',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
@@ -1781,7 +1781,7 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contributions',
+'contributions' => 'Contributions de l’utilisateur',
 'mycontris'     => 'Contributions',
 'contribsub2'   => 'Liste des contributions de $1 ($2). Les pages qui ont été effacées ne sont pas affichées.',
 'nocontribs'    => 'Aucune modification correspondant à ces critères n’a été trouvée.',
@@ -2591,7 +2591,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'table_pager_prev'         => 'Page précédente',
 'table_pager_first'        => 'Première page',
 'table_pager_last'         => 'Dernière page',
-'table_pager_limit'        => 'Montrer $1 éléments par page',
+'table_pager_limit'        => 'Montrer $1 élément(s) par page',
 'table_pager_limit_submit' => 'Accéder',
 'table_pager_empty'        => 'Aucun résultat',
 

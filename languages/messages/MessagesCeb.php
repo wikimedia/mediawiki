@@ -14,6 +14,7 @@
 
 $messages = array(
 # User preference toggles
+'tog-underline'            => 'Binadlisan nga mga sumpay:',
 'tog-hideminor'            => 'Ipakita ang gamayng pag-usab sa mga bag-ong giusab',
 'tog-showtoolbar'          => 'Ipakita ang toolbar sa pag-edit (JavaScript)',
 'tog-editondblclick'       => 'I-edit ang panid inig dobol-klik (JavaScript)',
@@ -129,6 +130,7 @@ $messages = array(
 'create-this-page'  => 'Himoa kining panid',
 'delete'            => 'Papasa',
 'deletethispage'    => 'Papasa kining panid',
+'undelete_short'    => 'Ibalik ang {{PLURAL:$1|usa ka pag-usab|$1 ka mga pag-usab}}',
 'protect'           => 'Protektahi',
 'protect_change'    => 'usba ang proteksyon',
 'protectthispage'   => 'Protektahi kining panid',
@@ -235,6 +237,8 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
 'perfdisabled'       => "Pasayloa, ang kini nga  ''feature'' temporaryong gihunong tungod kay gipahinay niini ang ''database'' sa punto nga dili na magamit ang wiki.",
 
 # Login and logout pages
+'loginpagetitle'          => 'Pagdayon sa tiggamit',
+'yourname'                => 'Ngalan sa tiggamit:',
 'login'                   => 'Sulod',
 'nav-login-createaccount' => 'Rehistro / Dayon',
 'userlogin'               => 'Rehistro / Dayon',

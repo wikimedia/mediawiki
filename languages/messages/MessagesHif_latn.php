@@ -11,7 +11,15 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Links ke underline karo:',
+'tog-underline'       => 'Links ke underline karo:',
+'tog-justify'         => 'Paragraphs ke justify karo',
+'tog-hideminor'       => 'Chhota aur nawaa badlao ke lukao',
+'tog-extendwatchlist' => 'Dhyaan suchi ke khol ke sab applicable changes dekhao',
+'tog-usenewrc'        => 'Aur jaada nawaa badlao (Javascript)',
+'tog-numberheadings'  => 'Sab heading ke auto-number karo',
+'tog-showtoolbar'     => 'Badle waala toolbar dekhao (JavaScript)',
+'tog-editondblclick'  => 'Double click pe panna badlo (JavaScript)',
+'tog-editsection'     => 'Section editing via [edit] links ke enable karo',
 
 # Dates
 'sun'           => 'Sun',
@@ -536,7 +544,7 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'ipblocklist'   => 'Roka gais IP addresses aur username ke suchi',
 'blocklink'     => 'rok do',
 'unblocklink'   => 'rukawat khatam karo',
-'contribslink'  => 'sahayogi',
+'contribslink'  => 'yogdaan',
 'blocklogpage'  => 'Suchi ke roko',
 'blocklogentry' => '[[$1]] ke roka jon ki $2 $3 khala hoi',
 

@@ -1597,8 +1597,7 @@ PICT # misc.
 هذا يعني '''\$5''' تعديل متوسط لكل صفحة، و '''\$6''' عرض لكل تعديل.
 
 طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل] هو '''\$7'''.",
-'userstatstext'          => "هناك {{PLURAL:$1|مستخدم مسجل وحيد|مستخدمين مسجلين|$3 مستخدمين مسجلين|$3 مستخدم مسجل|$3 مستخدما مسجلا}}، منهم
-'''$2''' (أو '''$4%''') {{PLURAL:$2|لديه|لديهما|لديهم}} صلاحيات $5.",
+'userstatstext'          => "يوجد {{PLURAL:$1|[[Special:Listusers|مستخدم]] مسجل '''واحد'''|'''$1''' [[Special:Listusers|مستخدم]] مسجل}}، منهم '''$2''' (أو '''$4%''') {{PLURAL:$2|لديه|لديهم}} صلاحيات $5.",
 'statistics-mostpopular' => 'أكثر الصفحات مشاهدة',
 
 'disambiguations'      => 'صفحات التوضيح',
@@ -1798,7 +1797,7 @@ PICT # misc.
 'enotif_mailer'                => 'نظام {{SITENAME}} البريدي للملاحظات',
 'enotif_reset'                 => 'اعتبر كل الصفحات تم زيارتها',
 'enotif_newpagetext'           => 'هذه صفحة جديدة.',
-'enotif_impersonal_salutation' => '{{SITENAME}} مستخدم',
+'enotif_impersonal_salutation' => 'مستخدم {{SITENAME}}',
 'changed'                      => 'تم التغيير',
 'created'                      => 'أنشأ',
 'enotif_subject'               => 'صفحة {{SITENAME}} $PAGETITLE تم $CHANGEDORCREATED بواسطة $PAGEEDITOR',
@@ -2043,7 +2042,7 @@ $1',
 'unblockiptext'               => 'استخدم الحقل أدناه لاسترجاع صلاحية الكتابة
 الخاصة بعنوان أيبي أو مستخدم تم سحبها منه مسبقا.',
 'ipusubmit'                   => 'رفع منع هذا العنوان',
-'unblocked'                   => 'تم  رفع منع [[مستخدم:$1|$1]]',
+'unblocked'                   => 'تم  رفع منع [[User:$1|$1]]',
 'unblocked-id'                => 'منع $1 تم رفعه',
 'ipblocklist'                 => 'قائمة عناوين الأيبي وأسماء المستخدمين الممنوعة',
 'ipblocklist-legend'          => 'أوجد مستخدما ممنوعا',
@@ -2457,7 +2456,7 @@ $1',
 'exif-software'                    => 'البرمجيات المستخدمة',
 'exif-artist'                      => 'المؤلف',
 'exif-copyright'                   => 'مالك الحقوق المحفوظة',
-'exif-exifversion'                 => 'Exif نسخة',
+'exif-exifversion'                 => 'نسخة Exif',
 'exif-flashpixversion'             => 'نسخة فلاش بكس المدعومة',
 'exif-colorspace'                  => 'فرق اللون',
 'exif-componentsconfiguration'     => 'معنى كل مكون',
@@ -2523,7 +2522,7 @@ $1',
 'exif-gpslongitude'                => 'خط الطول',
 'exif-gpsaltituderef'              => 'مرجع الارتفاع',
 'exif-gpsaltitude'                 => 'الارتفاع',
-'exif-gpstimestamp'                => 'GPS وقت (ساعة ذرية)',
+'exif-gpstimestamp'                => 'وقت GPS (ساعة ذرية)',
 'exif-gpssatellites'               => 'الأقمار الصناعية المستخدمة في القياس',
 'exif-gpsstatus'                   => 'حالة جهاز الاستقبال',
 'exif-gpsmeasuremode'              => 'طور القياس',
@@ -2532,7 +2531,7 @@ $1',
 'exif-gpsspeed'                    => 'سرعة مستقبل جي بي إس',
 'exif-gpstrackref'                 => 'المرجع لاتجاه الحركة',
 'exif-gpstrack'                    => 'اتجاه الحركة',
-'exif-gpsimgdirectionref'          => 'المرجغ لاتجاه الصورة',
+'exif-gpsimgdirectionref'          => 'المرجع لاتجاه الصورة',
 'exif-gpsimgdirection'             => 'اتجاه الصورة',
 'exif-gpsmapdatum'                 => 'بيانات استطلاع الجيوديسيك المستخدمة',
 'exif-gpsdestlatituderef'          => 'المرجع لخط عرض الوجهة',
@@ -2765,7 +2764,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'تحذير: هذه الصفحة تم حذفها بعد أن بدأت أنت بتحريرها!',
-'confirmrecreate'     => "لقد قام المستخدم [[مستخدم:$1|$1]] ([[نقاش المستخدم:$1|نقاش]]) بحذف هذه المقالة بعد أن بدأت بتحريرها للسبب التالي:
+'confirmrecreate'     => "لقد قام المستخدم [[User:$1|$1]] ([[User talk:$1|نقاش]]) بحذف هذه المقالة بعد أن بدأت بتحريرها للسبب التالي:
 :''$2''
 الرجاء التأكد من أنك تريد إعادة إنشاء هذه المقالة.",
 'recreate'            => 'أعد الإنشاء',

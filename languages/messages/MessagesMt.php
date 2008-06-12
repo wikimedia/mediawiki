@@ -3,9 +3,14 @@
  *
  * @ingroup Language
  * @file
+ *
+ * @author Giangian15
  */
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'Links Sottolinjati:',
+
 'mytalk'     => 'Diskussjonijiet tiegħi',
 'navigation' => 'Navigazzjoni',
 

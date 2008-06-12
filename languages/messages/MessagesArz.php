@@ -492,8 +492,10 @@ $messages = array(
 'badaccess-group0' => 'انت مش مسموح لك تنفذ الطلب بتاعك',
 'badaccess-group1' => 'الفعل االلي طلبته مسموح بس لليوزرز في المجموعة $1.',
 'badaccess-group2' => 'الفعل اللي طلبته مسموح بس لليوزرز في واحدة من المجموعات $1.',
+'badaccess-groups' => 'الفعل الذي طلبته مسموح بيه بس لليوزرز  اللي في واحدة من المجموعات دي  $1.',
 
-'versionrequired' => 'لازم نسخة $1 من ميدياويكي',
+'versionrequired'     => 'لازم نسخة $1 من ميدياويكي',
+'versionrequiredtext' => ' النسخة $1 من ميدياويكي لازم علشان تستعمل الصفحة دي . شوف [[Special:Version|صفحة النسخة]]',
 
 'ok'                      => 'موافئ',
 'retrievedfrom'           => 'اتجابت من "$1"',
@@ -510,7 +512,10 @@ $messages = array(
 'hidetoc'                 => 'تخبيه',
 'thisisdeleted'           => 'عرض او استرجاع $1؟',
 'viewdeleted'             => 'عرض $1؟',
+'restorelink'             => '{{PLURAL:$1|تعديل واحد ملغي|تعديلين ملغيين|$1 تعديلات ملغية|$1 تعديل ملغي|$1 تعديل ملغي}}',
 'feedlinks'               => '(فييد) تلقيم:',
+'feed-invalid'            => 'نوع اشتراك التغذية مش صح.',
+'feed-unavailable'        => 'التغذية مش متوفرة في {{SITENAME}}',
 'site-rss-feed'           => '$1   ار‌ اس‌ اس فييد',
 'site-atom-feed'          => '$1 اتوم فييد',
 'page-rss-feed'           => '"$1" ار‌ اس‌ اس فييد',
@@ -534,6 +539,7 @@ $messages = array(
 
 # General errors
 'error'               => 'غلطة',
+'databaseerror'       => 'غلط في قاعدة البيانات',
 'noconnect'           => 'متأسفين،الويكي  عندها شوية مشاكل فنية و مش قادرة توصل ب سيرفر الداتابيز. <br />
 $1',
 'missingarticle-diff' => '(فرق: $1، $2)',
