@@ -3570,9 +3570,6 @@ class Parser
 			# HTML names must be case-insensitively unique (bug 10721)
 			$arrayKey = strtolower( $safeHeadline );
 
-			# XXX : Is $refers[$headlineCount] ever accessed, actually ?
-			$refers[$headlineCount] = $safeHeadline;
-
 			# count how many in assoc. array so we can track dupes in anchors
 			isset( $refers[$arrayKey] ) ? $refers[$arrayKey]++ : $refers[$arrayKey] = 1;
 			$refcount[$headlineCount] = $refers[$arrayKey];
