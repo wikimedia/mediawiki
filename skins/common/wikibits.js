@@ -772,7 +772,7 @@ function ts_alternate(table) {
  * Add a cute little box at the top of the screen to inform the user of
  * something, replacing any preexisting message.
  *
- * @param String message HTML to be put inside the right div
+ * @param String -or- Dom Object message HTML to be put inside the right div
  * @param String className   Used in adding a class; should be different for each
  *   call to allow CSS/JS to hide different boxes.  null = no class used.
  * @return Boolean       True on success, false on failure
@@ -811,6 +811,15 @@ function jsMsg( message, className ) {
 		messageDiv.setAttribute( 'class', 'mw-js-message-'+className );
 	}
 	messageDiv.innerHTML = message;
+	
+	if (typeof message == 'string') {
+		messageDiv.innerHTML = message;
+	}
+	else if (typeof message == 'object') {
+		while (messageDiv.hasChildNodes()) // Remove old content
+			messageDiv.removeChild(messageDiv.firstChild);
+		messageDiv.appendChild (message); // Append new content
+	}
 	return true;
 }
 
