@@ -287,7 +287,7 @@ $messages = array(
 'category-media-header'          => 'Medien in der Kategorie „$1“',
 'category-empty'                 => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
-'hidden-category-category'       => 'Versteckte Kategorien', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Versteckte Kategorie', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält folgende Unterkategorie:|{{PLURAL:$1|Folgende Unterkategorie ist eine von insgesamt $2 Unterkategorien in dieser Kategorie:|Es werden $1 von insgesamt $2 Unterkategorien in dieser Kategorie angezeigt:}}}}',
 'category-subcat-count-limited'  => 'Diese Kategorie enthält folgende {{PLURAL:$1|Unterkategorie|$1 Unterkategorien}}:',
 'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält folgende Seite:|{{PLURAL:$1|Folgende Seite ist eine von insgesamt $2 Seiten in dieser Kategorie:|Es werden $1 von insgesamt $2 Seiten in dieser Kategorie angezeigt:}}}}',
@@ -731,7 +731,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 '''Beachte:''' Nach dem Speichern musst du deinen Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userjspreview'                    => "== Vorschau Deines Benutzer-JavaScript ==
 '''Beachte:''' Nach dem Speichern musst du deinen Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
-'userinvalidcssjstitle'            => "'''Warnung:''' Es existiert kein Skin „$1“. Bitte bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also z.B. ''{{ns:user}}:Mustermann/monobook.css'' an Stelle von ''{{ns:user}}:Mustermann/Monobook.css''.",
+'userinvalidcssjstitle'            => "'''Achtung:''' Skin „$1“ existiert nicht. Bedenke, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also beispielsweise ''{{ns:user}}:Mustermann/monobook.css'' an Stelle von ''{{ns:user}}:Mustermann/Monobook.css''.",
 'updated'                          => '(Geändert)',
 'note'                             => '<strong>Hinweis:</strong>',
 'previewnote'                      => '<strong>Dies ist nur eine Vorschau, die Seite wurde noch nicht gespeichert!</strong>',
@@ -931,7 +931,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'lineno'                  => 'Zeile $1:',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',
 'editundo'                => 'rückgängig',
-'diff-multi'              => "<span style='font-size: smaller'>(Der Versionsvergleich bezieht {{PLURAL:$1|eine dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)</span>",
+'diff-multi'              => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)',
 
 # Search results
 'searchresults'             => 'Suchergebnisse',
