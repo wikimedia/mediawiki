@@ -2178,7 +2178,7 @@ class Article {
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->mTitle->getLocalURL( 'action=delete' . $par ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
-			Xml::element( 'legend', null, wfMsg( 'delete-legend' ) ) .
+			Xml::tags( 'legend', null, wfMsgExt( 'delete-legend', array( 'parsemag', 'escapenoentities' ) ) ) .
 			Xml::openElement( 'table' ) .
 			"<tr id=\"wpDeleteReasonListRow\">
 				<td align='$align'>" .
