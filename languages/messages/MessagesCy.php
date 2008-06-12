@@ -2002,7 +2002,54 @@ Mae unrhyw gysylltau eraill ar yr un llinell yn cael eu trin fel eithriadau, h.y
 
 'exif-orientation-3' => 'Wedi ei droi 180°', # 0th row: bottom; 0th column: right
 
+'exif-componentsconfiguration-0' => "nid yw'n bodoli",
+
 'exif-exposureprogram-0' => 'Heb ei ddiffinio',
+
+'exif-subjectdistance-value' => '$1 medr',
+
+'exif-meteringmode-1'   => 'Cyfartaledd',
+'exif-meteringmode-5'   => 'Patrwm',
+'exif-meteringmode-6'   => 'Rhannol',
+'exif-meteringmode-255' => 'Arall',
+
+'exif-lightsource-1'  => 'Golau dydd',
+'exif-lightsource-2'  => 'Fflwroleuol',
+'exif-lightsource-4'  => 'Flach',
+'exif-lightsource-9'  => 'Tywydd braf',
+'exif-lightsource-10' => 'Tywydd cymylog',
+'exif-lightsource-11' => 'Cysgod',
+
+'exif-focalplaneresolutionunit-2' => 'modfeddi',
+
+'exif-sensingmethod-1' => 'Heb ei ddiffinio',
+
+'exif-scenecapturetype-1' => 'Tirlun',
+'exif-scenecapturetype-2' => 'Portread',
+'exif-scenecapturetype-3' => 'Golygfa nôs',
+
+'exif-gaincontrol-0' => 'Dim',
+
+'exif-contrast-1' => 'Meddal',
+'exif-contrast-2' => 'Caled',
+
+'exif-sharpness-1' => 'Meddal',
+'exif-sharpness-2' => 'Caled',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Lledred gogledd',
+'exif-gpslatitude-s' => 'Lledred de',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Hydred dwyrain',
+'exif-gpslongitude-w' => 'Hydred gorllewin',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Cilomedr yr awr',
+'exif-gpsspeed-m' => 'Milltir yr awr',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Gwir gyfeiriad',
 
 # External editor support
 'edit-externally'      => 'Golygwch y ffeil gyda rhaglen allanol',
@@ -2079,6 +2126,7 @@ $1",
 
 # AJAX search
 'articletitles' => "Erthyglau'n dechrau gyda: ''$1''",
+'hideresults'   => "Cuddio'r canlyniadau",
 'useajaxsearch' => 'Chwilio gyda AJAX',
 
 # Multipage image navigation
@@ -2146,6 +2194,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'version-variables'        => 'Newidynnau',
 'version-other'            => 'Arall',
 'version-hooks'            => 'Bachau',
+'version-hook-name'        => 'Enw bachyn',
 'version-version'          => 'Fersiwn',
 'version-license'          => 'Trwydded',
 'version-software'         => 'Meddalwedd gosodedig',

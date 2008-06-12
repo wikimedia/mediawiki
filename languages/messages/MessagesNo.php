@@ -1267,7 +1267,7 @@ PICT # div.
 'filehist-filesize'              => 'Filstørrelse',
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Lenker',
-'linkstoimage'                   => 'Følgende sider har lenker til denne fila:',
+'linkstoimage'                   => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne fila:',
 'nolinkstoimage'                 => 'Det er ingen sider som bruker denne fila.',
 'morelinkstoimage'               => 'Vis [[Special:Whatlinkshere/$1|flere lenker]] til denne filen.',
 'redirectstofile'                => 'Følgende filer er omdirigeringer til denne filen:',

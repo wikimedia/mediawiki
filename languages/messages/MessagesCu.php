@@ -110,12 +110,12 @@ $messages = array(
 'december'      => 'декемврїи',
 'january-gen'   => 'їанѹарї',
 'february-gen'  => 'фєвроуа́рїꙗ',
-'march-gen'     => 'мартї',
+'march-gen'     => 'ма́ртїꙗ',
 'april-gen'     => 'апрїлї',
 'may-gen'       => 'ма́їꙗ',
 'june-gen'      => 'їоу́нїꙗ',
 'july-gen'      => 'їоу́лїꙗ',
-'august-gen'    => 'аѵгѹста',
+'august-gen'    => 'а́ѵгоуста',
 'september-gen' => 'септемврї',
 'october-gen'   => 'октѡврї',
 'november-gen'  => 'ноемврї',
@@ -190,6 +190,7 @@ $messages = array(
 'editsection'         => 'испра́ви',
 'editold'             => 'испра́ви',
 'hidetoc'             => 'съкрꙑи',
+'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
 'red-link-title'      => '$1 (ѥщє нє напь́сано ѥ́стъ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -253,6 +254,7 @@ $messages = array(
 'powersearch'              => 'ищи́',
 
 # Preferences page
+'preferences'         => 'строи',
 'mypreferences'       => 'мои строи',
 'prefs-rc'            => 'послѣ́дьнѩ мѣ́нꙑ',
 'searchresultshead'   => 'иска́ниѥ',
@@ -306,6 +308,7 @@ $messages = array(
 'filedelete-submit' => 'поничьжє́ниѥ',
 
 # MIME search
+'mimetype' => 'MIME тѵ́пъ :',
 'download' => 'поѩ́ти',
 
 # Random page
@@ -335,7 +338,7 @@ $messages = array(
 
 # Special:Allpages
 'allpages'       => 'вьсѩ́ страни́цѧ',
-'allpagesfrom'   => 'Страницѧ видѣти хощѫ съ начѧльнами бѹкъвами:',
+'allpagesfrom'   => 'страни́цѧ видѣ́ти хощѫ́ съ начѧ́льнами боу́къвами :',
 'allarticles'    => 'вьсѩ́ страни́цѧ',
 'allpagessubmit' => 'прѣиди́',
 
@@ -391,11 +394,19 @@ $messages = array(
 'tooltip-p-logo'          => 'гла́вьна страни́ца',
 'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ катало́гъ',
 
+# Media information
+'file-info-size' => '($1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3 · MIME тѵ́пъ : $4)',
+
 # Special:Newimages
 'ilsubmit' => 'Ищи',
 
+# EXIF tags
+'exif-artist' => 'творь́ць',
+
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'вьсꙗ́',
+
+'unit-pixel' => 'п҃ѯ',
 
 # Multipage image navigation
 'imgmultigo' => 'прѣиди́',
@@ -403,9 +414,13 @@ $messages = array(
 # Table pager
 'table_pager_limit_submit' => 'прѣиди́',
 
+# Auto-summaries
+'autosumm-new' => 'но́ва страни́ца : $1',
+
 # Special:Version
 'version'                  => 'о́браꙁъ', # Not used as normal message but as header for the special page itself
 'version-version'          => 'о́браꙁъ',
+'version-license'          => 'прощє́ниѥ',
 'version-software-version' => 'о́браꙁъ',
 
 # Special:Filepath

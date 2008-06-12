@@ -240,17 +240,12 @@ $messages = array(
 'october-gen'   => 'Outubro',
 'november-gen'  => 'Novembro',
 'december-gen'  => 'Dezembro',
-'jan'           => 'Jan',
 'feb'           => 'Fev',
-'mar'           => 'Mar',
 'apr'           => 'Abr',
 'may'           => 'Mai',
-'jun'           => 'Jun',
-'jul'           => 'Jul',
 'aug'           => 'Ago',
 'sep'           => 'Set',
 'oct'           => 'Out',
-'nov'           => 'Nov',
 'dec'           => 'Dez',
 
 # Categories related messages
@@ -261,7 +256,6 @@ $messages = array(
 'category-empty'              => "''Esta categoria no momento não possui nenhuma página de conteúdo ou arquivo multimídia.''",
 'category-file-count'         => '{{PLURAL:$2|Esta categoria possui apenas o arquivo a seguir.|Há, nesta categoria, {{PLURAL:$1|o arquivo a seguir|os $1 seguintes arquivos}} (dentre um total de $2.)}}',
 'category-file-count-limited' => 'Nesta categoria {{PLURAL:$1|há um arquivo|há $1 arquivos}}.',
-'listingcontinuesabbrev'      => 'cont.',
 
 'mainpagetext'      => "<big>'''O MediaWiki foi instalado com sucesso.'''</big>",
 'mainpagedocfooter' => 'Consulte o [http://meta.wikimedia.org/wiki/Help:Contents Manual de Usuário] para informações de como usar o software wiki.
@@ -360,8 +354,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Aviso_geral',
 'edithelp'             => 'Ajuda de edição',
 'edithelppage'         => 'Help:Editar',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Conteúdos',
 'mainpage'             => 'Página principal',
 'mainpage-description' => 'Página principal',
@@ -382,7 +374,6 @@ $messages = array(
 'versionrequired'     => 'É necessária a versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para poder ser utilizada. Consulte [[Special:Version|a página sobre a versão do sistema]].',
 
-'ok'                      => 'OK',
 'retrievedfrom'           => 'Obtido em "$1"',
 'youhavenewmessages'      => 'Você tem $1 ($2).',
 'newmessageslink'         => 'novas mensagens',
@@ -397,7 +388,6 @@ $messages = array(
 'thisisdeleted'           => 'Ver ou restaurar $1?',
 'viewdeleted'             => 'Ver $1?',
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
-'feedlinks'               => 'Feed:',
 'page-rss-feed'           => 'Feed RSS de "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -517,7 +507,6 @@ A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}
 'yourrealname'            => 'Nome real:',
 'yourlanguage'            => 'Idioma:',
 'yournick'                => 'Assinatura:',
-'email'                   => 'E-mail',
 'prefs-help-realname'     => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'              => 'Erro de autenticação',
 'noname'                  => 'Você não colocou um nome de usuário válido.',
@@ -726,7 +715,6 @@ Legenda: (atu) = diferenças da versão atual,
 'deletedrev'          => '[eliminada]',
 'histfirst'           => 'Mais antigas',
 'histlast'            => 'Mais recentes',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'        => '(vazio)',
 
 # Revision feed
@@ -874,19 +862,14 @@ para definir suas preferências.',
 'rcnotefrom'                        => "Abaixo estão as mudanças desde '''$2''' (mostradas até '''$1''').",
 'rclistfrom'                        => 'Mostrar as novas alterações a partir de $1',
 'rcshowhideminor'                   => '$1 edições menores',
-'rcshowhidebots'                    => '$1 bots',
 'rcshowhideliu'                     => '$1 usuários registrados',
 'rcshowhideanons'                   => '$1 usuários anônimos',
 'rcshowhidepatr'                    => '$1 edições verificadas',
 'rcshowhidemine'                    => '$1 as minhas edições',
 'rclinks'                           => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
 'diff'                              => 'dif',
-'hist'                              => 'hist',
 'hide'                              => 'Esconder',
 'show'                              => 'Mostrar',
-'minoreditletter'                   => 'm',
-'newpageletter'                     => 'N',
-'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|$1 usuário|$1 usuários}} vigiando]',
 'newsectionsummary'                 => '/* $1 */ nova seção',
 
@@ -969,7 +952,6 @@ Todas as datas mostradas são do servidor (UTC).',
 'filehist-dimensions'       => 'Dimensões',
 'filehist-filesize'         => 'Tamanho do arquivo',
 'filehist-comment'          => 'Comentário',
-'imagelinks'                => 'Links',
 'linkstoimage'              => 'As seguintes páginas apontam para este arquivo:',
 'nolinkstoimage'            => 'Nenhuma página aponta para este arquivo.',
 'sharedupload'              => 'Este arquivo encontra-se partilhado, podendo ser utilizado por outros projetos.',
@@ -1039,8 +1021,6 @@ Cada linha contem links para o primeiro e segundo redirecionamento, bem como a p
 'fewestrevisions' => 'Páginas com menos edições',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
-'nlinks'                  => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
 'nviews'                  => '$1 {{PLURAL:$1|acesso|acessos}}',
 'lonelypages'             => 'Páginas órfãs',
@@ -1286,7 +1266,6 @@ Se uma nova página foi criada com o mesmo nome desde a deleção, as revisões 
 'istemplate'          => 'inclusão',
 'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|$1 anteriores}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|próximo|próximos $1}}',
-'whatlinkshere-links' => '← links',
 
 # Block/unblock
 'blockip'                  => 'Bloquear usuário',
@@ -1324,7 +1303,6 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipblocklist-no-results'   => 'O endereço de IP ou nome de usuário procurado não se encontra bloqueado.',
 'blocklink'                => 'bloquear',
 'unblocklink'              => 'desbloquear',
-'contribslink'             => 'contribs',
 'autoblocker'              => 'Você foi automaticamente bloqueado, pois partilha um endereço de IP com "[[User:$1|$1]]". O motivo apresentado foi: "$2".',
 'blocklogpage'             => 'Registro de bloqueios',
 'blocklogentry'            => '"[[$1]]" foi bloqueado pelo período de $2 $3',
@@ -1494,9 +1472,6 @@ Por favor, escolha outro título.',
 # HTML dump
 'redirectingto' => 'Redirecionando para [[$1]]...',
 
-# action=purge
-'confirm_purge_button' => 'OK',
-
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'próxima página →',
@@ -1539,7 +1514,6 @@ Você também pode [[{{ns:special}}:Watchlist/edit|editar a lista da forma conve
 'version-variables'             => 'Variáveis',
 'version-other'                 => 'Diversos',
 'version-mediahandlers'         => 'Reprodutores de mídia',
-'version-hooks'                 => 'Hooks',
 'version-extension-functions'   => 'Funções da extensão',
 'version-parser-extensiontags'  => 'Etiquetas das extensões de tipo "parser"',
 'version-parser-function-hooks' => 'Funções "hooks" dos "parsers"',
