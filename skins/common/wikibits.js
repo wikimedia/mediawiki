@@ -810,15 +810,14 @@ function jsMsg( message, className ) {
 	if( className ) {
 		messageDiv.setAttribute( 'class', 'mw-js-message-'+className );
 	}
-	messageDiv.innerHTML = message;
 	
-	if (typeof message == 'string') {
-		messageDiv.innerHTML = message;
-	}
-	else if (typeof message == 'object') {
+	if (typeof message === 'object') {
 		while (messageDiv.hasChildNodes()) // Remove old content
 			messageDiv.removeChild(messageDiv.firstChild);
 		messageDiv.appendChild (message); // Append new content
+	}
+	else {
+		messageDiv.innerHTML = message;
 	}
 	return true;
 }
