@@ -266,7 +266,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			if ( $this->params['title'] !== "" ) {
 				$title = Title::newFromText( $this->params['title'] );
 				if ( !$title ) {
-					$this->dieUsage("Invalid title param");
+					$this->dieUsageMsg(array('invalidtitle', $this->params['title']));
 				} else {
 					$this->rootTitle = $title;
 				}
