@@ -1833,11 +1833,14 @@ class Article {
 				}
 				$comment = $wgContLang->ucfirst( wfMsgForContent( $comment_type, $this->mTitle->getPrefixedText() ) );
 
-				foreach( $limit as $action => $restrictions ) {
-					# Check if the group level required to edit also can protect pages
-					# Otherwise, people who cannot normally protect can "protect" pages via transclusion
-					$cascade = ( $cascade && isset($wgGroupPermissions[$restrictions]['protect']) &&
-						$wgGroupPermissions[$restrictions]['protect'] );
+				# Only restrictions with the 'protect' right can cascade...
+				# Otherwise, people who cannot normally protect can "protect" pages via transclusion
+				foreach( $limit as $action => $restriction ) {
+					# FIXME: can $restriction be an array or what? (same as fixme above)
+					if( $restriction != 'protect' && $restriction != 'sysop' ) {
+						$cascade = false;
+						break;
+					}
 				}
 
 				$cascade_description = '';
@@ -1888,7 +1891,8 @@ class Article {
 				# Update the protection log
 				$log = new LogPage( 'protect' );
 				if( $protect ) {
-					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
+					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, 
+						trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
 				} else {
 					$log->addEntry( 'unprotect', $this->mTitle, $reason );
 				}
