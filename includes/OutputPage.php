@@ -1438,7 +1438,7 @@ class OutputPage {
 			# menu in your browser.
 
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-			if ( $wgTitle->getText() != $rctitle->getText() ) {
+			if ( $wgTitle->getPrefixedText() != $rctitle->getPrefixedText() ) {
 				global $wgSitename;
 				
 				$ret .= $this->feedLink(
