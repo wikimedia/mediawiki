@@ -23,6 +23,7 @@ class SkinChick extends SkinTemplate {
 		$this->skinname  = 'chick';
 		$this->stylename = 'chick';
 		$this->template  = 'MonoBookTemplate';
+		$this->fixfiles  = array( 'IE50', 'IE55', 'IE60' );
 	}
 }
 
