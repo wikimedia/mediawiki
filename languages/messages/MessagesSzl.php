@@ -17,12 +17,6 @@
 
 $fallback = 'pl';
 
-/**
- * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as
- * the first group, and the remainder of the string as the second group.
- */
-$linkTrail = '/^([a-zćčńřśšůźž]+)(.*)$/sDu';
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podkreślyńy linkůw:',
