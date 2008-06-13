@@ -88,10 +88,10 @@ class SkinTemplate extends Skin {
 	var $template;
 
 	/**
-	 * An array of CSS fixes files to load for IE, in conditional comments.
-	 * May include: 'IE', 'IE50', 'IE55', 'IE60', 'IE70'.
+	 * An array of strings representing extra CSS files to load.  May include:
+	 * 'IE', 'IE50', 'IE55', 'IE60', 'IE70', 'rtl'.
 	 */
-	var $fixfiles;
+	var $cssfiles;
 
 	/**#@-*/
 
@@ -107,7 +107,7 @@ class SkinTemplate extends Skin {
 		$this->skinname  = 'monobook';
 		$this->stylename = 'monobook';
 		$this->template  = 'QuickTemplate';
-		$this->fixfiles = array();
+		$this->cssfiles = array();
 	}
 
 	/**
@@ -991,7 +991,7 @@ class SkinTemplate extends Skin {
 			$siteargs .= '&ts=' . $wgUser->mTouched;
 		}
 
-		if( $wgContLang->isRTL() ) {
+		if( $wgContLang->isRTL() && in_array( 'rtl', $this->cssfiles ) ) {
 			global $wgStyleVersion;
 			$sitecss .= "@import \"$wgStylePath/$this->stylename/rtl.css?$wgStyleVersion\";\n";
 		}
