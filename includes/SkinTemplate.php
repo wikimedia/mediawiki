@@ -87,6 +87,12 @@ class SkinTemplate extends Skin {
 	 */
 	var $template;
 
+	/**
+	 * An array of CSS fixes files to load for IE, in conditional comments.
+	 * May include: 'IE', 'IE50', 'IE55', 'IE60', 'IE70'.
+	 */
+	var $fixfiles;
+
 	/**#@-*/
 
 	/**
@@ -101,6 +107,7 @@ class SkinTemplate extends Skin {
 		$this->skinname  = 'monobook';
 		$this->stylename = 'monobook';
 		$this->template  = 'QuickTemplate';
+		$this->fixfiles = array();
 	}
 
 	/**
