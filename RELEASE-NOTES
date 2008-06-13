@@ -444,6 +444,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added action=emailuser to send an email to a user
 * (bug 14471) Use HTMLTidy and generate limit report in action=parse
 * (bug 14459) Added prependtext and appendtext parameters to action=edit
+* (bug 14526) Unescaped SQL in list=backlinks
 
 === Languages updated in 1.13 ===
 
