@@ -62,7 +62,7 @@ class ChangesList {
 		if( !isset( $this->message ) ) {
 			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last '.
 				'blocklink history boteditletter semicolon-separator' ) as $msg ) {
-				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
+				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 			}
 		}
 	}
