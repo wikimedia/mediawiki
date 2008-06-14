@@ -362,6 +362,12 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 					$this->extensions[] = new extensionLanguages( $group );
 				}
 			}
+		} elseif( $extension == 'wikimedia' ) {
+			$wikimedia = MessageGroups::getGroup( 'ext-0-wikimedia' );
+			foreach( $wikimedia->wmfextensions() as $extension ) {
+				$group = MessageGroups::getGroup( $extension );
+				$this->extensions[] = new extensionLanguages( $group );
+			}
 		} else {
 			$extensions = explode( ',', $extension );
 			foreach( $extensions as $extension ) {
@@ -381,7 +387,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 Run this script to check the status of a specific language in extensions, or all of them.
 Command line settings are in form --parameter[=value], except for the first one.
 Parameters:
-	* First parameter (mandatory): Extension name, multiple extension names (separated by commas) or "all" for all the extensions.
+	* First parameter (mandatory): Extension name, multiple extension names (separated by commas), "all" for all the extensions or "wikimedia" for extensions used by Wikimedia.
 	* lang: Language code (default: the installation default language).
 	* help: Show this help.
 	* level: Show the following level (default: 2).
