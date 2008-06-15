@@ -60,8 +60,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Adrêsa e-nameya min di e-nameyan înformasyonan bêlibike',
 'tog-shownumberswatching'     => 'Nîşan bide, çiqas bikarhêner dişopînin',
 'tog-fancysig'                => 'Îmze vê lînkkirinê otomatik berve rûpelê bikarhêner',
-'tog-externaleditor'          => 'Edîtorekî derva bike "standard"',
-'tog-externaldiff'            => 'Birnemijekî derva yê diff bike "standard"',
+'tog-externaleditor'          => 'Edîtorekî derva bike "standard" (bes ji zanan ra, tercihên taybetî li komputerê gerekin)',
+'tog-externaldiff'            => 'Birnemijekî derva yê diff bike "standard" (bes ji zanan ra, tercihên taybetî li komputerê gerekin)',
 'tog-showjumplinks'           => 'Lînkên "Here-berve" qebûlbike',
 'tog-uselivepreview'          => 'Pêşdîtinê "live" bikarwîne (JavaScript gireke) (ceribandin)',
 'tog-forceeditsummary'        => 'Bibêje, eger kurteyekê vala kê were tomarkirin',
@@ -276,6 +276,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Nameyên nih li $1 ji te ra hene.',
 'editsection'             => 'biguherîne',
 'editold'                 => 'biguherîne',
+'viewsourceold'           => 'çavkanî bibîne',
 'editsectionhint'         => 'Beşê biguherîne: $1',
 'toc'                     => 'Tabloya Naverokê',
 'showtoc'                 => 'nîşan bide',
@@ -430,7 +431,7 @@ Hesaba te hat afirandin. Tu dikarî niha tercîhên xwe eyar bikî.',
 'nouserspecified'            => 'Navî xwe wek bikarhêner têkê.',
 'wrongpassword'              => 'Şifreya ku te nivîsand şaşe. Ji kerema xwe careke din biceribîne.',
 'wrongpasswordempty'         => 'Cîhê şîfreya te vala ye. Carekê din binivisîne.',
-'passwordtooshort'           => 'Şîfreya te netê qebûlkirin: Şîfreya te gereke bi kêmani $1 nîşanên xwe hebe û ne wek navî tê wek bikarhêner be.',
+'passwordtooshort'           => 'Şîfreya te netê qebûlkirin: Şîfreya te gereke bi kêmani {{PLURAL:$1|nîşaneka|$1 nîşanên}} xwe hebe û ne wek navî tê wek bikarhêner be.',
 'mailmypassword'             => 'Şîfreyeke nû bi e-mail ji min re bişîne',
 'passwordremindertitle'      => 'Şîfreyakekî nuh ji hesabekî {{SITENAME}} ra',
 'passwordremindertext'       => 'Kesek (têbê tu, bi IP\'ya $1) xwast ku şîfreyekî nuh ji {{SITENAME}} ($4) ji te ra were şandin. Şîfreya nuh ji bikarhêner "$2" niha "$3" e. Tu dikarî niha têkevê û şîfreya xwe biguherînê.
@@ -440,7 +441,7 @@ Eger kesekî din vê xastinê ji te ra xast ya şîfreya kevin dîsa hate bîrê
 'passwordsent'               => 'Ji navnîşana e-mail ku ji bo "$1" hat tomarkirin şîfreyekê nû hat şandin. Vê bistîne û dîsa têkeve.',
 'blocked-mailpassword'       => "IP'ya te yê ji te niha tê bikaranin ji bo guherandinê ra hatîye astengkirin. Ji bo tiştên şaş çênebin, xastinê te ji bo şifreyeka nuh jî hatîye qedexekirin.",
 'eauthentsent'               => 'E-nameyeka naskirinê ji adresa nivîsî ra hate şandin. Berî e-name ji bikarhênerên din bi vê rêkê dikaribim bi te gên, ew adresa û rastbûna xwe gireke werin naskirin. Xêra xwe e-nameyê naskirinê bixûne!',
-'throttled-mailpassword'     => 'Berî $1 saetan şîfreyekî nuh hate xastin. Ji bo şaşbûn bi vê fonksyonê çênebin, bes her $1 saetan şîfreyekî nuh dikare were xastin.',
+'throttled-mailpassword'     => 'Berî {{PLURAL:$1|saetekê|$1 saetan}} şîfreyekî nuh hate xastin. Ji bo şaşbûn bi vê fonksyonê çênebin, bes her {{PLURAL:$1|saetekê|$1 saetan}} şîfreyekî nuh dikare were xastin.',
 'mailerror'                  => 'Şaşbûnek li cem şandina e-nameyekê: $1',
 'acct_creation_throttle_hit' => 'Biborîne! Te hesab $1 vekirine. Tu êdî nikarî hesabên din vekî.',
 'emailauthenticated'         => 'Adresa e-nameya hate naskirin: $1.',
@@ -1650,7 +1651,14 @@ $1',
 'fileduplicatesearch-submit' => 'Lêbigere',
 
 # Special:SpecialPages
-'specialpages'             => 'Rûpelên taybet',
-'specialpages-group-login' => 'Têkevê',
+'specialpages'               => 'Rûpelên taybet',
+'specialpages-note'          => '----
+* Rûpelên taybetî ji her kesan ra
+* <span class="mw-specialpagerestricted">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</span>',
+'specialpages-group-other'   => 'Rûpelên taybetî yên din',
+'specialpages-group-login'   => 'Têkevê',
+'specialpages-group-changes' => 'Guherandinên dawî û reşahîyan',
+'specialpages-group-media'   => 'Nameyên medyayan û barkirinan',
+'specialpages-group-users'   => 'Bikarhêner û maf',
 
 );

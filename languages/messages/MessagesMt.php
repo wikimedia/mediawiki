@@ -9,7 +9,10 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Links Sottolinjati:',
+'tog-underline'        => 'Links Sottolinjati:',
+'tog-rememberpassword' => 'Ftakar il-login tiegħi fuq dan il-komputer',
+
+'underline-always' => 'Dejjem',
 
 'mytalk'     => 'Diskussjonijiet tiegħi',
 'navigation' => 'Navigazzjoni',

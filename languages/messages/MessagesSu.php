@@ -1078,7 +1078,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'filehist-filesize'              => 'Ukuran koropak',
 'filehist-comment'               => 'Kamandang',
 'imagelinks'                     => 'Tumbu gambar',
-'linkstoimage'                   => 'Kaca nu numbu ka gambar ieu:',
+'linkstoimage'                   => 'Kaca ieu  {{PLURAL:$1|numbu|$1 numbu}} ka gambar ieu :',
 'nolinkstoimage'                 => 'Teu aya kaca nu numbu ka gambar ieu.',
 'sharedupload'                   => 'Ieu koropak téh muatan réréongan nu bisa jadi dipaké ku proyék-proyék lianna.',
 'shareduploadwiki'               => 'Mangga aos $1 pikeun émbaran leuwih jéntré.',

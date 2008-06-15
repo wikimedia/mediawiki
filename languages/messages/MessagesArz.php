@@ -535,26 +535,38 @@ $messages = array(
 'nstab-category'  => 'تصنيف',
 
 # Main script and global functions
-'nosuchaction' => 'مافيش فعل زى كده',
+'nosuchaction'      => 'مافيش فعل زى كده',
+'nosuchspecialpage' => 'مافيش صفحة خاصة بالاسم ده',
 
 # General errors
-'error'               => 'غلطة',
-'databaseerror'       => 'غلط في قاعدة البيانات',
-'noconnect'           => 'متأسفين،الويكي  عندها شوية مشاكل فنية و مش قادرة توصل ب سيرفر الداتابيز. <br />
+'error'                => 'غلطة',
+'databaseerror'        => 'غلط في قاعدة البيانات',
+'noconnect'            => 'متأسفين،الويكي  عندها شوية مشاكل فنية و مش قادرة توصل ب سيرفر الداتابيز. <br />
 $1',
-'missingarticle-diff' => '(فرق: $1، $2)',
-'internalerror'       => 'غلط داخلي',
-'internalerror_info'  => 'غلط داخلي: $1',
-'filecopyerror'       => 'ما قدرنا ش  ننسخ الملف "$1" لـ "$2".',
-'filedeleteerror'     => 'ما قدرنا ش نمسح الملف "$1".',
-'filenotfound'        => 'مش قادرين نلاقي الملف "$1".',
-'badarticleerror'     => 'مش ممكن ننفذ العملية دي على الصفحة دي',
-'cannotdelete'        => 'ما قدرناش نمسح الصفحة أو الملف المطلوب. (ممكن يكون حد تاني مسحه. )',
-'badtitle'            => 'عنوان غلط',
-'badtitletext'        => 'عنوان الصفحه المطلوب اما مش صحيح او فاضي، و ربما الوصلة بين اللغات أو بين المشاريع غلط. وممكن وجود رموز ماتصلحش للاستخدام في العناوين.',
-'viewsource'          => 'عرض المصدر',
-'viewsourcefor'       => 'ل $1',
-'viewsourcetext'      => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
+'nodb'                 => 'ماقدرناش نختار قاعدة البيانات $1',
+'laggedslavemode'      => 'تحذير: الصفحة يمكن ما فيهاش اخر التحديثات.',
+'readonly'             => 'قاعدة البيانات مقفولة',
+'enterlockreason'      => 'اكتب سبب القفل، وقول امتى تقريبا ح يتلغى القفل',
+'missingarticle-rev'   => '(رقم المراجعة: $1)',
+'missingarticle-diff'  => '(فرق: $1، $2)',
+'internalerror'        => 'غلط داخلي',
+'internalerror_info'   => 'غلط داخلي: $1',
+'filecopyerror'        => 'ما قدرنا ش  ننسخ الملف "$1" لـ "$2".',
+'filerenameerror'      => 'ما قدر نا ش نغير اسم الملف "$1" لـ "$2".',
+'filedeleteerror'      => 'ما قدرنا ش نمسح الملف "$1".',
+'directorycreateerror' => 'ما قدرناش نعمل المجلد "$1".',
+'filenotfound'         => 'مش قادرين نلاقي الملف "$1".',
+'fileexistserror'      => 'ما قدرناش نكتب في الملف "$1": الملف موجود',
+'unexpected'           => 'قيمة مش متوقعة: "$1"="$2".',
+'formerror'            => 'غلط: مش ممكن تقديم الاستمارة',
+'badarticleerror'      => 'مش ممكن ننفذ العملية دي على الصفحة دي',
+'cannotdelete'         => 'ما قدرناش نمسح الصفحة أو الملف المطلوب. (ممكن يكون حد تاني مسحه. )',
+'badtitle'             => 'عنوان غلط',
+'badtitletext'         => 'عنوان الصفحه المطلوب اما مش صحيح او فاضي، و ربما الوصلة بين اللغات أو بين المشاريع غلط. وممكن وجود رموز ماتصلحش للاستخدام في العناوين.',
+'viewsource'           => 'عرض المصدر',
+'viewsourcefor'        => 'ل $1',
+'protectedpagetext'    => 'الصفحة دي اتقفلت في وش التعديل.',
+'viewsourcetext'       => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
 
 # Login and logout pages
 'logouttitle'                => 'خروج اليوزر',
@@ -566,12 +578,14 @@ $1',
 'yourpassword'               => 'الباسوورد (كلمة السر):',
 'yourpasswordagain'          => 'اكتب الباسورد تاني:',
 'remembermypassword'         => 'افتكر بيانات دخولى على  الكمبيوتر ده',
+'yourdomainname'             => 'النطاق بتاعك:',
 'login'                      => 'دخول',
 'nav-login-createaccount'    => 'دخول / فتح حساب',
 'loginprompt'                => 'لازم تكون الكوكيز عندك مفعله علشان تقدر تدخل ل {{SITENAME}}.',
 'userlogin'                  => 'دخول / فتح حساب',
 'logout'                     => 'خروج',
 'userlogout'                 => 'خروج',
+'notloggedin'                => 'انت مش مسجل دخولك',
 'nologin'                    => 'مشتركتش لسه؟ $1.',
 'nologinlink'                => ' افتح حساب',
 'createaccount'              => 'افتح حساب',
@@ -579,9 +593,11 @@ $1',
 'gotaccountlink'             => 'دخول',
 'createaccountmail'          => 'بـ الايميل',
 'badretype'                  => 'كلمتين السر اللى  كتبتهم مش  زى بعضهم',
+'userexists'                 => 'اسم اليوزر اللي دخلته ب يستعمله يوزر غيرك. لو سمحت دخل اسم تاني.',
 'youremail'                  => 'الايميل:',
 'username'                   => 'اسم اليوزر:',
 'uid'                        => 'رقم اليوزر:',
+'prefs-memberingroups'       => 'عضو في {{PLURAL:$1|مجموعة|مجموعة}}:',
 'yourrealname'               => 'الاسم الحقيقى:',
 'yourlanguage'               => 'اللغة:',
 'yournick'                   => 'الإمضا:',
@@ -599,7 +615,7 @@ $1',
 'nouserspecified'            => ' لازم تحدد اسم يوزر.',
 'wrongpassword'              => 'كلمة السر اللى كتبتها مش صحيحه. من فضلك حاول تانى.',
 'wrongpasswordempty'         => 'كلمة السر المدخله كانت فاضيه. من فضلك حاول تانى.',
-'passwordtooshort'           => 'كلمة السر اللي اخترتها مش صحيحه أو قصيره قوي. لازم مايقلش طول الكلمه عن $1 حرف وتكون مختلفه عن اسم اليوزر بتاعك.',
+'passwordtooshort'           => 'كلمة السر اللي اخترتها مش صحيحه أو قصيره قوي. لازم مايقلش طول الكلمه عن {{PLURAL:$1|1 حرف|$1 حرف}} وتكون مختلفه عن اسم اليوزر بتاعك.',
 'mailmypassword'             => 'ابعتلى كلمة السر فى ايميل.',
 'passwordremindertitle'      => 'كلمة سر مؤقته جديده ل {{SITENAME}}',
 'passwordremindertext'       => 'فيه شخص ما (غالبا انت، من عنوان الااى بى $1)  طلب اننا نرسل لك كلمة سر جديده لـ{{SITENAME}} ($4).
@@ -612,9 +628,11 @@ $1',
 'passwordsent'               => '
 تم إرسال كلمة سر جديدة لعنوان الايميل المتسجل لليوزر "$1".من فضلك حاول تسجيل الدخول مره تانيه بعد استلامها.',
 'eauthentsent'               => 'فيه ايميل تأكيد اتبعت  للعنوان اللى كتبته.  علشان تبعت اي ايميل تانى للحساب ده لازم تتبع التعليمات اللى فى الايميل اللى اتبعتلك  علشان تأكد ان  الحساب ده بتاعك .',
+'mailerror'                  => ' غلط في بعتان الايميل : $1',
 'acct_creation_throttle_hit' => 'متأسفين، انت عندك $1 حساب. مش ممكن نفتح واحد تاني.',
 'emailconfirmlink'           => 'أكد عنوان الإيميل بتاعك',
 'accountcreated'             => 'الحساب اتفتح',
+'createaccount-title'        => 'فتح حساب في {{SITENAME}}',
 'loginlanguagelabel'         => 'اللغة: $1',
 
 # Password reset dialog
@@ -651,6 +669,7 @@ $1',
 'showlivepreview'        => 'بروفه حيه',
 'showdiff'               => 'بيين التعديلات',
 'anoneditwarning'        => "'''تحذير:''' انت ما عملتش لوجين؛ عنوان الااى  بى  بتاعك هايتسجل فى تاريخ الصفحه .",
+'missingcommenttext'     => 'لو سمحت اكتب تعليق تحت.',
 'summary-preview'        => 'بروفه للملخص',
 'blockedtitle'           => 'اليوزر ممنوع',
 'blockedtext'            => "
@@ -667,8 +686,13 @@ $1',
 افتكر انه مش ممكن تبعت ايميل  لليوزرز الا اذا كنت سجلت عنوان ايميل صحيح فى صفحة [[Special:Preferences|التفضيلات]] بتاعتك.
 عنوان الااى بى بتاعك حاليا هو $3 وكود المنع هو #$5.من فضلك ضيف اى واحد منهم أو كلاهما في اى رسالة للتساؤل عن المنع.",
 'blockednoreason'        => 'ما فيش سبب',
+'whitelistedittitle'     => 'لازم تسجل دخولك علشان تقدر تعدل',
+'whitelistreadtitle'     => 'تسجيل الدخول لازم  علشان تقرا',
 'whitelistacctitle'      => 'انت مش مسموح لك تفتح حساب',
+'nosuchsectiontitle'     => 'مافيش قسم بالاسم ده',
+'loginreqtitle'          => 'لازم تسجل دخولك',
 'loginreqlink'           => 'ادخل',
+'loginreqpagetext'       => 'لازم تكون $1 علشان تشوف صفحات تانية.',
 'accmailtitle'           => ' كلمة السر اتبعتت .',
 'accmailtext'            => "الباسورد بتاعة '$1' اتبعتت لـ $2.",
 'newarticle'             => '(جديد)',
@@ -677,11 +701,14 @@ $1',
 (بص على [[{{MediaWiki:Helppage}}|صفحة المساعده]] علشان معلومات اكتر)
 لو كانت زيارتك للصفحه دى بالخطأ، اضغط على زر ''رجوع'' في متصفح الإنترنت عندك.",
 'noarticletext'          => 'مافيش  دلوقتى اى نص فى  الصفحه دى ، ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه]] في الصفحات التانيه او [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعدل الصفحه دى].',
+'updated'                => '(متحدثة)',
 'previewnote'            => '<strong> دى بروفه للصفحه بس، ولسه ما تسييفتش!</strong>',
 'editing'                => 'تعديل $1',
 'editingsection'         => 'تعديل $1 (جزء)',
+'editingcomment'         => 'تعديل $1 (تعليق)',
 'editconflict'           => 'تضارب فى التحرير: $1',
 'yourtext'               => 'النص بتاعك',
+'yourdiff'               => 'الفروق',
 'copyrightwarning'       => 'من فضلك لاحظ ان كل المساهمات فى {{SITENAME}} بتتنشر حسب شروط ترخيص $2 (بص على $1 علشان تعرف  تفاصيل اكتر)
 لو مش عايز كتابتك تتعدل او تتوزع من غير مقابل و بدون اذنك ، ما تحطهاش هنا<br />. كمان انت  بتتعهد بانك كتبت كلام تعديلك بنفسك، او نسخته من مصدر يعتبر ضمن الملكيه العامه، أو مصدر حر تان.
 
@@ -725,10 +752,16 @@ $1',
 'historyempty'        => '(فاضى)',
 
 # Revision feed
+'history-feed-title'          => 'تاريخ المراجعة',
 'history-feed-item-nocomment' => '$1 فى $2', # user at time
+'history-feed-empty'          => 'الصفحة المطلوبة مش موجودة. من المحتمل تكون الصفحة أتمسحت أو أتنقلت. حاول [[Special:Search|التدوير 
+ فى الويكى]] عن صفحات جديدة ذات صلة.',
 
 # Revision deletion
-'revdelete-uname' => 'اسم اليوزر',
+'rev-deleted-user'  => '(اسم اليوزر اتشال)',
+'pagehist'          => 'تاريخ الصفحة',
+'revdelete-summary' => 'ملخص التعديل',
+'revdelete-uname'   => 'اسم اليوزر',
 
 # Diffs
 'history-title'           => 'تاريخ تعديل "$1"',
@@ -754,12 +787,15 @@ $1',
 'powersearch-redir'        => 'لستة التحويلات',
 
 # Preferences page
-'preferences'     => 'تفضيلات',
-'mypreferences'   => 'تفضيلاتى',
-'qbsettings-none' => 'ما في ش',
-'datetime'        => 'وقت وتاريخ',
-'saveprefs'       => 'حفظ',
-'retypenew'       => 'اكتب كلمة السر الجديده تانى:',
+'preferences'        => 'تفضيلات',
+'mypreferences'      => 'تفضيلاتى',
+'qbsettings-none'    => 'ما في ش',
+'datetime'           => 'وقت وتاريخ',
+'math_unknown_error' => 'غلط مش معروف',
+'saveprefs'          => 'حفظ',
+'oldpassword'        => 'الباسورد القديمة:',
+'retypenew'          => 'اكتب كلمة السر الجديده تانى:',
+'rows'               => 'صفوف:',
 
 # User rights
 'userrights-groupsavailable' => 'المجموعات المتوفرة:',
@@ -770,6 +806,7 @@ $1',
 'grouppage-sysop' => '{{ns:project}}:اداريين',
 
 # Rights
+'right-read'          => 'قراية الصفحات',
 'right-upload'        => 'حمل الملفات',
 'right-autoconfirmed' => 'تعديل الصفحات  النص محميه',
 'right-delete'        => 'مسح الصفحات',
@@ -820,10 +857,13 @@ $1',
 'uploaderror'    => 'غلطه فى التحميل',
 'uploadlogpage'  => 'سجل التحميل',
 'filename'       => 'اسم الملف',
+'filestatus'     => 'حالة حقوق النسخ:',
 'ignorewarnings' => 'اتجاهل اى تحذير',
 'uploadedimage'  => 'اتحمل "[[$1]]"',
 'uploadvirus'    => 'الملف فيه فيروس! التفاصيل: $1',
 'sourcefilename' => 'اسم الملف  بتاع المصدر:',
+
+'upload-proto-error' => 'بروتوكول مش صحيح',
 
 # Special:Imagelist
 'imagelist'      => 'لستة الملفات',
@@ -839,7 +879,7 @@ $1',
 'filehist-filesize'         => 'حجم الفايل',
 'filehist-comment'          => 'تعليق',
 'imagelinks'                => 'وصلات',
-'linkstoimage'              => 'الصفحات دى فيها وصله للفايل ده:',
+'linkstoimage'              => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
 'nolinkstoimage'            => 'مافيش صفحات بتوصل للفايل ده.',
 'sharedupload'              => 'الملف ده اتحمل علشان التشارك بين المشاريع وممكن استخدامه في المشاريع التانيه.',
 'noimage'                   => ' مافيش  ملف بالاسم ده ،ممكن انك تقوم بـ$1.',
@@ -903,6 +943,7 @@ $1',
 'ancientpages'            => 'اقدم الصفحات',
 'move'                    => 'انقل',
 'movethispage'            => 'انقل الصفحه دى',
+'nopagetitle'             => 'مافيش صفحة هدف بالاسم ده',
 
 # Book sources
 'booksources'    => 'مصادر من كتب',
@@ -933,10 +974,14 @@ $1',
 # Special:Listusers
 'listusers-noresult' => 'ما في ش يوزر',
 
+# Special:Listgrouprights
+'listgrouprights-group' => 'المجموعة',
+
 # E-mail user
 'emailuser'    => ' ابعت ايميل لليوزر ده',
 'emailpage'    => 'ابعت ايميل لليوزر ده',
 'emailfrom'    => 'من',
+'emailto'      => 'لـ',
 'emailsubject' => 'الموضوع',
 'emailsend'    => 'إبعت',
 'emailsent'    => 'الإيميل اتبعت',
@@ -988,6 +1033,7 @@ $1',
 'rollbacklink'                => 'استعاده',
 'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'              => 'سجل الحمايه',
+'protectedarticle'            => 'حمى "[[$1]]"',
 'protectcomment'              => 'تعليق:',
 'protectexpiry'               => 'تنتهى فى:',
 'protect_expiry_invalid'      => 'وقت الانتهاء مش صحيح.',
@@ -1049,6 +1095,7 @@ $1',
 'ipbother'                => 'وقت تاني:',
 'ipboptions'              => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
 'ipblocklist'             => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
+'ipblocklist-submit'      => 'تدوير',
 'blocklink'               => 'منع',
 'unblocklink'             => 'رفع المنع',
 'contribslink'            => 'تعديلات',
@@ -1154,6 +1201,9 @@ $1',
 'tooltip-watch'                   => 'ضم الصفحه دى للستة الصفحات اللى بتراقبها',
 'tooltip-upload'                  => 'ابتدي التحميل',
 
+# Attribution
+'others' => 'تانيين',
+
 # Browsing diffs
 'previousdiff' => '→ الفرق اللى قبل كده',
 'nextdiff'     => 'الفرق اللى بعد كده ←',
@@ -1194,12 +1244,17 @@ $1',
 
 'exif-exposureprogram-1' => 'يدوي',
 
+'exif-sensingmethod-1' => 'مش معرف',
+
+'exif-contrast-0' => 'طبيعي',
+
 # External editor support
 'edit-externally'      => 'عدل هذا الملف باستخدام تطبيق خارجي',
 'edit-externally-help' => 'بص على [http://meta.wikimedia.org/wiki/Help:External_editors  تعليمات الاعداد] علشان معلومات اكتر.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'الكل',
+'imagelistall'     => 'الكل',
 'watchlistall2'    => 'الكل',
 'namespacesall'    => 'الكل',
 'monthsall'        => 'الكل',
@@ -1229,18 +1284,33 @@ $1',
 'version-software-product' => 'المنتج',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'دور على الملفات المتكررة',
+'fileduplicatesearch-summary'  => 'دور على الملفات المتكررة على اساس قيمة الهاش بتاعتها.
+
+دخل اسم الملف من غير البريفكس "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => ' تدوير على مكرر',
 'fileduplicatesearch-filename' => 'اسم الفايل:',
 'fileduplicatesearch-submit'   => 'تدوير',
+'fileduplicatesearch-info'     => '$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4',
+'fileduplicatesearch-result-1' => 'الملف "$1" ما لهو ش تكرار متطابق.',
+'fileduplicatesearch-result-n' => 'الملف "$1" فيه {{PLURAL:$2|1 تكرار متطابق|$2 تكرار متطابق}}.',
 
 # Special:SpecialPages
-'specialpages'                 => 'صفحات مخصوصه',
-'specialpages-group-login'     => 'ادخل / سجل',
-'specialpages-group-changes'   => 'السجلات واحدث التغييرات',
-'specialpages-group-users'     => 'اليوزرز والصلاحيات',
-'specialpages-group-highuse'   => 'صفحات بتستخدم كتير',
-'specialpages-group-pages'     => 'لستات الصفحة',
-'specialpages-group-pagetools' => 'أدوات الصفحات',
-'specialpages-group-wiki'      => 'بيانات وأدوات الويكى',
-'specialpages-group-spam'      => 'أدوات السبام',
+'specialpages'                   => 'صفحات مخصوصه',
+'specialpages-note'              => '----
+* صفحات خاصة عادية.
+* <span class="mw-specialpagerestricted">صفحات خاصة للناس اللي مسموح لهم.</span>',
+'specialpages-group-maintenance' => 'تقارير الصيانة',
+'specialpages-group-other'       => 'صفحات خاصه تا نيه',
+'specialpages-group-login'       => 'ادخل / سجل',
+'specialpages-group-changes'     => 'السجلات واحدث التغييرات',
+'specialpages-group-media'       => 'تقارير الميديا وعمليات التحميل',
+'specialpages-group-users'       => 'اليوزرز والصلاحيات',
+'specialpages-group-highuse'     => 'صفحات بتستخدم كتير',
+'specialpages-group-pages'       => 'لستات الصفحة',
+'specialpages-group-pagetools'   => 'أدوات الصفحات',
+'specialpages-group-wiki'        => 'بيانات وأدوات الويكى',
+'specialpages-group-redirects'   => 'صفحات  التحويل الخاصه',
+'specialpages-group-spam'        => 'أدوات السبام',
 
 );

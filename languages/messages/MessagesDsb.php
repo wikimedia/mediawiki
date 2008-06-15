@@ -1025,11 +1025,14 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'right-minoredit'            => 'Změny ako snadne markěrowaś',
 'right-move'                 => 'pśesunuś boki',
 'right-move-subpages'        => 'Boki ze swójimi pódbokami pśesunuś',
+'right-suppressredirect'     => 'Pśi pśesunjenju žedne dalejpósrědnjenje ze starego mjenja napóraś',
 'right-upload'               => 'lódowaś dataje',
 'right-reupload'             => 'Eksistujucu dataju pśepisaś',
 'right-reupload-own'         => 'Dataju nagratu wót togo samogo wužywarja pśepisaś',
 'right-upload_by_url'        => 'Dataju z URL-adrese nagraś',
+'right-purge'                => 'Sedłowy cache za bok bźez wobkšuśenja prozniś',
 'right-autoconfirmed'        => 'Połšćitane boki wobźěłaś',
+'right-bot'                  => 'Wobchadanje ako awtomatiski proces',
 'right-apihighlimits'        => 'Wuše limity w API-wótpšašanjach wužywaś',
 'right-writeapi'             => 'writeAPI wužywaś',
 'right-delete'               => 'lašowaś boki',
@@ -1038,6 +1041,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'right-deletedhistory'       => 'Wulašowane wersiji w stawiznach se bśez pśisłušnego teksta wobglědaś',
 'right-browsearchive'        => 'Wulašowane boki pytaś',
 'right-undelete'             => 'Bok wótnowiś',
+'right-suppressrevision'     => 'Wersije, kótarež su pśed admibnistratorami schowane, pśeglědaś a wótnowiś',
 'right-suppressionlog'       => 'Priwatne protokole se wobglědowaś',
 'right-block'                => 'Drugim wužywarjam wobźěłowanje zawoboraś',
 'right-blockemail'           => 'Wužywarjoju słanje emailow zawoboraś',
@@ -1584,6 +1588,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'actioncomplete'              => 'Akcija jo se wugbała.',
 'deletedtext'                 => '„<nowiki>$1</nowiki>“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
 'deletedarticle'              => 'wulašowane "[[$1]]"',
+'suppressedarticle'           => '"[[$1]]" pódtłocony',
 'dellogpage'                  => 'log-lisćina wulašowanjow',
 'dellogpagetext'              => 'How jo log-lisćina wulašowanych bokow a datajow.',
 'deletionlog'                 => 'log-lisćina wulašowanjow',
@@ -2418,23 +2423,23 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'monthsall'        => 'wšykne',
 
 # E-mail address confirmation
-'confirmemail'            => 'E-mailowu adresu wobkšuśiś.',
-'confirmemail_noemail'    => 'W swójich [[Special:Preferences|nastajenjach]] njejsy płaśecu e-mailowu adresu zapódał.',
-'confirmemail_text'       => '{{SITENAME}} pomina, až wobkšuśijoš swóju e-mailowu adresu, nježlic až móžoš e-mailowe funkcije wužywaś. Tłocyš-lic na tłocatko, dostanjoš e-mailku, w kótarejž jo wótkaz z wobkšuśenskim gronidłom. Tłocenje na wótkaz wobkšuśijo, až twója e-mailowa adresa jo korektna.',
-'confirmemail_pending'    => '<div class="error">Tebje jo južo jadno wobkšuśeńske gronidło se pśimailowało. Sy-lic swójo wužywarske konto akle gano wutwórił, ga pócakaj hyšći žedne minuty na e-mail, nježlic až pominaš nowe gronidło.</div>',
-'confirmemail_send'       => 'Wobkšuśeńske gronidło pósłaś',
-'confirmemail_sent'       => 'Wobkšuśeńska e-mailka pósłana.',
-'confirmemail_oncreate'   => 'Na Twóju adresu jo se wótpósłało wobkšuśeńske gronidło. Toś ten kod njejo notny za pśizjawjenje, ale za aktiwěrowanje e-mailowych funkcijow we wikiju.',
-'confirmemail_sendfailed' => 'Wobkšuśeńska e-mailka njejo se mógła wótpósłaś. Pšosym kontrolěruj swóju e-mailowu adresu na njepłaśece znamuška.
+'confirmemail'             => 'E-mailowu adresu wobkšuśiś.',
+'confirmemail_noemail'     => 'W swójich [[Special:Preferences|nastajenjach]] njejsy płaśecu e-mailowu adresu zapódał.',
+'confirmemail_text'        => '{{SITENAME}} pomina, až wobkšuśijoš swóju e-mailowu adresu, nježlic až móžoš e-mailowe funkcije wužywaś. Tłocyš-lic na tłocatko, dostanjoš e-mailku, w kótarejž jo wótkaz z wobkšuśenskim gronidłom. Tłocenje na wótkaz wobkšuśijo, až twója e-mailowa adresa jo korektna.',
+'confirmemail_pending'     => '<div class="error">Tebje jo južo jadno wobkšuśeńske gronidło se pśimailowało. Sy-lic swójo wužywarske konto akle gano wutwórił, ga pócakaj hyšći žedne minuty na e-mail, nježlic až pominaš nowe gronidło.</div>',
+'confirmemail_send'        => 'Wobkšuśeńske gronidło pósłaś',
+'confirmemail_sent'        => 'Wobkšuśeńska e-mailka pósłana.',
+'confirmemail_oncreate'    => 'Na Twóju adresu jo se wótpósłało wobkšuśeńske gronidło. Toś ten kod njejo notny za pśizjawjenje, ale za aktiwěrowanje e-mailowych funkcijow we wikiju.',
+'confirmemail_sendfailed'  => 'Wobkšuśeńska e-mailka njejo se mógła wótpósłaś. Pšosym kontrolěruj swóju e-mailowu adresu na njepłaśece znamuška.
 
 Serwer wótegronijo:$1',
-'confirmemail_invalid'    => 'Njepłaśece wobkšuśeńske gronidło. Snaź jo kod mjaztym płaśiwosć zgubił.',
-'confirmemail_needlogin'  => 'Dejš $1 aby swóju e-mailowu adresu wobkšuśił.',
-'confirmemail_success'    => 'Twója e-mailowa adresa jo wobkšuśona, móžoš se pśizjawiś.',
-'confirmemail_loggedin'   => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
-'confirmemail_error'      => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
-'confirmemail_subject'    => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',
-'confirmemail_body'       => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z toś teju e-mailoweju adresu zregistrěrował.
+'confirmemail_invalid'     => 'Njepłaśece wobkšuśeńske gronidło. Snaź jo kod mjaztym płaśiwosć zgubił.',
+'confirmemail_needlogin'   => 'Dejš $1 aby swóju e-mailowu adresu wobkšuśił.',
+'confirmemail_success'     => 'Twója e-mailowa adresa jo wobkšuśona, móžoš se pśizjawiś.',
+'confirmemail_loggedin'    => 'Twója e-mailowa adresa jo něnto wobkšuśona.',
+'confirmemail_error'       => 'Zmólka pśi wobkšuśenju e-mailoweje adresy.',
+'confirmemail_subject'     => '{{SITENAME}} - Wobkšuśenje e-mailoweje adrese',
+'confirmemail_body'        => 'Něchten, nejskerjej ty z adresy $1, jo na boku {{SITENAME}} wužywarske konto "$2" z toś teju e-mailoweju adresu zregistrěrował.
 
 Aby wobkšuśił, až toś to konto napšawdu śi słuša a aby e-mailowe funkcije na boce {{SITENAME}} aktiwěrował, wócyń toś ten wótkaz w swójim browserje:
 
@@ -2445,6 +2450,8 @@ Jolic až *njejsy* toś to konto zregistrěrował, slěduj toś tomu wótkazoju,
 $5
 
 Toś ten wobkšuśeński kod płaśi do $4.',
+'confirmemail_invalidated' => 'Emailowe wobkšuśenje pśetergnjone',
+'invalidateemail'          => 'Emailowe wobkšuśenje pśetergnuś',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Pśidawanje interwiki jo deaktiwěrowane]',
@@ -2585,6 +2592,9 @@ Zapódaj datajowe mě bźez dodanka "{{ns:image}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Za duplikatnymi datajami pytaś',
+'fileduplicatesearch-summary'  => 'Za datajowymi duplikatami na zakłaźe gótnoty hash pytaś.
+
+Zapódaj datajowe mě bźez prefiksa "{{ns:image}}:".',
 'fileduplicatesearch-legend'   => 'pytaś duplikata',
 'fileduplicatesearch-filename' => 'Datajowe mě:',
 'fileduplicatesearch-submit'   => 'Pytaś',

@@ -122,7 +122,7 @@ $messages = array(
 'category-media-header'  => 'مدیا ته دسته "$1"',
 'category-empty'         => "''ای دسته ی هچ صفحه یا مدیا نیست''",
 'hidden-categories'      => '{{PLURAL:$1|Hidden category|Hidden categories}}',
-'listingcontinuesabbrev' => 'cont.',
+'listingcontinuesabbrev' => 'ادام.',
 
 'mainpagetext' => "<big>''مدیا وی کی گون موفقیت نصب بون.'''</big>",
 
@@ -147,7 +147,7 @@ $messages = array(
 
 'errorpagetitle'    => 'حطا',
 'returnto'          => 'تررگ به $1.',
-'tagline'           => 'چه {{SITENAME}}',
+'tagline'           => 'چه {{sitename}}',
 'help'              => 'کمک',
 'search'            => 'گردگ',
 'searchbutton'      => 'گردگ',
@@ -614,11 +614,9 @@ $2',
 'template-protected'        => '(محافظتین)',
 'template-semiprotected'    => '(نیم محافظتی)',
 'nocreatetext'              => '{{SITENAME}} شما را چه شرکتن نوکین صفحه منه کته.
-شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:Userlogin|log in or create an account]].',
-'recreate-deleted-warn'     => "'''Warning: You are recreating a page that was previously deleted.'''
-
-You should consider whether it is appropriate to continue editing this page.
-The deletion log for this page is provided here for convenience:",
+شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:Userlogin|وارد بیت یا حسابی شرکنیت]].',
+'recreate-deleted-warn'     => "'''هوژاری: شما یک صفحه ای دگه شرکینت که پیشتر حذف بوتت.'''
+شما بایدن توجه کنیت که آیا اصلاح ای صفحه مناسبنت. حذف ورودان په ای صفحه په شمی چارگ  ادان آرگ بیتت:",
 
 # History pages
 'viewpagelogs'        => 'ورودان ای صفحه بچار',
@@ -633,8 +631,8 @@ The deletion log for this page is provided here for convenience:",
 'page_first'          => 'اولین',
 'page_last'           => 'اهرین',
 'histlegend'          => 'بخش تفاوت: په مقایسه کتن نسخه یان گزینه انتخاب کنیت اینتر یا دکمه بجن.<br />
-Legend: (cur) = difference with current version,
-(last) = difference with preceding version, M = minor edit.',
+شرح: (هنو) = تفاوت گون هنوکین نسخه,
+(آهری) = تفاوت گون بعدی نسخه, جز = هوردین اصلاح.',
 'histfirst'           => 'اولین',
 'histlast'            => 'اهرین',
 
@@ -647,7 +645,7 @@ Legend: (cur) = difference with current version,
 'lineno'                  => 'خط$1:',
 'compareselectedversions' => 'مقایسه انتخاب بوتگین نسخه یان',
 'editundo'                => 'خنثی کتن',
-'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 بازبینیان میانی}} پیش دارگ نه بیت.)',
+'diff-multi'              => '({{PLURAL:$1|یک ویرایش میانی|$1 }}پیش دارگ میانی نه بوتت.)',
 
 # Search results
 'noexactmatch' => "'''صفحه ی گون عنوان نیست\"\$1\".'''
@@ -668,14 +666,14 @@ Legend: (cur) = difference with current version,
 'rightslog' => 'ورودان حقوق کاربر',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|change|تغییرات}}',
+'nchanges'                       => '$1 {{PLURAL:$1|تغییر|تغییرات}}',
 'recentchanges'                  => 'نوکین تغییرات',
 'recentchanges-feed-description' => 'آهرین تغییرات ته وی کی چه ای فید رند گر',
 'rcnote'                         => "جهل {{PLURAL:$1|هست '''1''' تغییر|هست آهرین '''$1''' تغییرات}} ته آهرین {{PLURAL:$2|روچ|'''$2''' days}}, په داب $3.",
-'rcnotefrom'                     => "جهلا تغییرات چه '''$2''' (up to '''$1''' shown). هست",
+'rcnotefrom'                     => "جهلا تغییرات هستنت چه '''$2''' (دان '''$1''' پیش دارگنت).",
 'rclistfrom'                     => 'پیش دار نوکین تغییراتآ چه $1',
 'rcshowhideminor'                => '$1 هوردین تغییرات',
-'rcshowhidebots'                 => '$1 bots',
+'rcshowhidebots'                 => '$1 روباتان',
 'rcshowhideliu'                  => '$1 کاربران وارد بوتگین',
 'rcshowhideanons'                => '$1 نا شناسین کاربران',
 'rcshowhidepatr'                 => '$1 اصلاحات کنترل بیتگین',
@@ -693,8 +691,8 @@ Legend: (cur) = difference with current version,
 'recentchangeslinked'          => 'مربوطین تغییرات',
 'recentchangeslinked-title'    => 'تغییراتی مربوط په "$1"',
 'recentchangeslinked-noresult' => 'هچ تغییری ته صفحات لینک بوتگین ته داتگین دوره نیست',
-'recentchangeslinked-summary'  => 'شی یک لیستی چه تغییراتی هستنت که نوکی اعمال بوتگنت په صفحاتی که چه یک صفحه خاصی لینک بوته( یا په اعضای یک خاصین دسته).
-صفحات ته [[ خاص: لیست چارگ| شمی لیست چارگ[[ پررنگنت',
+'recentchangeslinked-summary'  => "شی یک لیستی چه تغییراتی هستنت که نوکی اعمال بوتگنت په صفحاتی که چه یک صفحه خاصی لینک بوته( یا په اعضای یک خاصین دسته).
+صفحات ته [[Special:Watchlist|شمی لیست چارک]] '''پررنگ''' بنت",
 
 # Upload
 'upload'        => 'آپلود کتن فایل',
@@ -715,7 +713,7 @@ Legend: (cur) = difference with current version,
 'filehist-filesize'         => 'اندازه فایل',
 'filehist-comment'          => 'نظر',
 'imagelinks'                => 'لینکان',
-'linkstoimage'              => 'جهلیگین صفحات پی ای فایل لینک بوتگنت.',
+'linkstoimage'              => 'جهلیگی {{PLURAL:$1|لینکان صفحه|$1 لینک صفحات}} په ای فایل:',
 'nolinkstoimage'            => 'هچ صفحه ای نیست که به ای فایل لینک بوت.',
 'sharedupload'              => 'ای فایل یک مشترکین آپلودی فایلیت و شاید گون دگه پروژه یان استفاده بیت.',
 'noimage'                   => 'چشین فایل گون ای نام نیست، شما تونیت $1',
@@ -831,7 +829,7 @@ Legend: (cur) = difference with current version,
 'deletepage'                  => 'حذف صفحه',
 'historywarning'              => 'هوژاری: صفحه ای که شما لوٹتیت آیآ حذف کنیت یک تاریحی داریت:',
 'confirmdeletetext'           => 'شما لوٹیت یک صفحه ای گون کل تاریحانی حذف کنیت.
-لطفا تایید کنیت که شما چوش کنیت که شما زانیت آی ء عاقبتانآ و شی که شما ای کارآ گون [[{{MediaWiki:Policy-url}}|the policy]] انجام دهیت',
+لطفا تایید کنیت که شما چوش کنیت که شما زانیت آی ء عاقبتانآ و شی که شما ای کارآ گون [[{{MediaWiki:Policy-url}}|سیاست]] انجام دهیت',
 'actioncomplete'              => 'کار انجام بیت',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" حذف بیت.
 بگندیت $2 په ثبتی که نوکین حذفیات',
@@ -890,8 +888,8 @@ Legend: (cur) = difference with current version,
 'nolinkshere'         => "هچ لینک صفحه ای په '''[[:$1]]'''.",
 'isredirect'          => 'صفحه غیر مستقیم',
 'istemplate'          => 'همراهی',
-'whatlinkshere-prev'  => '{{PLURAL:$1|next|next $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|next|next $1}}',
+'whatlinkshere-prev'  => '{{PLURAL:$1|فبلی|قبلی $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|بعدی|بعدی $1}}',
 'whatlinkshere-links' => '← لینکان',
 
 # Block/unblock
@@ -998,9 +996,9 @@ Legend: (cur) = difference with current version,
 'nextdiff'     => 'تفاوت بعدی→',
 
 # Media information
-'file-info-size'       => '($1 × $2 pixel, file size: $3, MIME type: $4)',
+'file-info-size'       => '($1 × $2 پیکسل, اندازه فایل: $3, نوع مایم: $4)',
 'file-nohires'         => '<small>مزنترین رزلوشن نیست.</small>',
-'svg-long-desc'        => '(SVG file, nominally $1 × $2 pixels, file size: $3)',
+'svg-long-desc'        => '(اس وی جی فایل, گون $1 × $2 پیکسل, اندازه فایل: $3)',
 'show-big-image'       => 'کل صفحه',
 'show-big-image-thumb' => '<small>اندازه ای بازبین:$1× $2 pixels</small>',
 
@@ -1020,8 +1018,7 @@ Legend: (cur) = difference with current version,
 اگه فایل چه اولیگین حالتی تغییر داته بوته شاید لهتی کل جزییات شر پیش مداریت.',
 'metadata-expand'   => 'پیش دار گیشترین جزییات',
 'metadata-collapse' => 'پناه کن مزیدین جزییاتا',
-'metadata-fields'   => 'EXIF metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
-Others will be hidden by default.
+'metadata-fields'   => 'EXIF فیلدان متادیتا ی که ته ای کوله لیست بوتگینت شامل تصویر وهدی پیش دارگ بنت که جدول هراب بیت. دگه په طور پیش فرض پناهنت.
 * make
 * model
 * datetimeoriginal

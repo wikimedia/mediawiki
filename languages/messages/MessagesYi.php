@@ -793,7 +793,7 @@ $1 שעות.',
 'difference'              => '(אונטערשייד צווישן ווערסיעס)',
 'compareselectedversions' => 'פארגלייך סעלעקטירטע ווערסיעס',
 'editundo'                => 'טוה-אפ',
-'diff-multi'              => '({{PLURAL:$1|איין מיטלסטע ווערסיע נישט געוויזען|$1 מיטלסטע ווערסיעס נישט געוויזן}}.)',
+'diff-multi'              => '({{PLURAL:$1|איין מיטלסטע ווערסיע |$1 מיטלסטע ווערסיעס}}  נישט געוויזן.)',
 
 # Search results
 'searchresults'         => 'זוכן רעזולטאטן',
@@ -893,6 +893,7 @@ $1 שעות.',
 'right-delete'        => 'מעקן בלעטער',
 
 # Recent changes
+'nchanges'          => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 'recentchanges'     => 'לעצטע ענדערונגען',
 'rcnote'            => "אונטן {{PLURAL:$1|איז '''1''' ענדערונג | זײַנען די לעצטע '''$1''' ענדערונגען}} אין {{PLURAL:$2|דעם לעצטן טאג|די לעצטע $2 טעג}}, ביז $3.",
 'rcnotefrom'        => "פֿאלגנד זענען די ענדערונגען זײַט '''$2''' (ביז '''$1''')",
@@ -942,14 +943,23 @@ $1 שעות.',
 'filehist-user'    => 'באניצער',
 'linkstoimage'     => 'די פאלגנדע בלעטער ניצן דאס דאזיגע בילד:',
 'nolinkstoimage'   => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
+'noimage'          => "ס'איז נישטא א טעקע מיט דעם נאמען, איר קענט אבער $1.",
+'noimage-linktext' => 'ארויפלאדן א טעקע',
+
+# File reversion
+'filerevert-comment' => 'הערה:',
 
 # File deletion
-'filedelete'        => 'מעק אויס $1',
-'filedelete-legend' => 'מעק אויס טעקע',
-'filedelete-submit' => 'מעק אויס',
+'filedelete'         => 'מעק אויס $1',
+'filedelete-legend'  => 'מעק אויס טעקע',
+'filedelete-comment' => "פארוואס מ'האט געמעקט:",
+'filedelete-submit'  => 'מעק אויס',
 
 # MIME search
 'download' => 'אראפלאדירן',
+
+# List redirects
+'listredirects' => 'ליסטע פון ווײַטערפֿירונגען',
 
 # Random page
 'randompage' => 'צופֿעליגער אַרטיקל',
@@ -966,14 +976,14 @@ $1 שעות.',
 
 די [http://www.mediawiki.org/wiki/Manual:Job_queue ארבעט ריי] האט א לענג פון '''\$7'''.",
 
-'disambiguations'      => 'באדייטען בלעטער',
+'disambiguations'      => 'באדייטן בלעטער',
 'disambiguationspage'  => 'Template:באדייטן',
 'disambiguations-text' => "די קומענדיגע בלעטער פארבינדען צו '''באדייטען בלעטער'''. זיי ברויכן ווען צו פארבינדען צום רעלאווענטן טעמע בלאט אנשטאט.<br />די בלאט ווערט פארעכענט ווי א בלאט באדייטען אויב ער באנוצט זיך מיטן מוסטער וואס איז פארבינדען פון [[{{ns:mediawiki}}:Disambiguationspage|disambiguationspage]].",
 
-'doubleredirects'     => 'געדאפלטע רידיירעקטס',
+'doubleredirects'     => 'געטאפלטע ווײַטערפֿירונגען',
 'doubleredirectstext' => 'יעדע שורה אנטהאלט א לינק צום ערשטן און צווייטען רידיירעקט, ווי אויך די ערשטע טעקסט שורה פון די צווייטע רידיירעקט, וואס רוב מאל געפינט זיך די ריכטיגע ציל פונעם רידיירעקט, וואס צו איר וויל די ערשטע רידיירעקט ווייזן.',
 
-'brokenredirects'        => 'צובראָכענע רידיירעקטן',
+'brokenredirects'        => 'צעבראָכענע ווײַטערפֿירונגען',
 'brokenredirectstext'    => 'די פאלגענדע רידיירעקטס לינקן צו בלעטער וואס עקזיסטירן נאך נישט:',
 'brokenredirects-edit'   => '(ענדערן)',
 'brokenredirects-delete' => '(אויסמעקן)',
@@ -987,17 +997,21 @@ $1 שעות.',
 'lonelypages'             => "פֿאר'יתומ'טע בלעטער",
 'uncategorizedpages'      => 'בלעטער אָן קאטעגאריעס',
 'uncategorizedcategories' => 'קאטעגאריעס וואס זענען נישט קאטעגאריזירט',
-'wantedpages'             => 'װינטשט זײטן',
+'wantedcategories'        => 'געזוכטע קאטעגאריעס',
+'wantedpages'             => 'געוואונשטע זײטן',
 'mostcategories'          => 'אַרטיקלען מיט די מערקסטע קאַטעגאָריעס',
 'mostrevisions'           => 'אַרטיקלען מיט די מערקסטע באַאַרבעטונגען',
 'shortpages'              => 'קורצע בלעטער',
 'longpages'               => 'לאנגע בלעטער',
 'deadendpages'            => 'דעד-ענד בלעטער',
 'deadendpagestext'        => 'די פאלגנדע בלעטער לינקען נישט צו קיין אנדערע בלעטער אין דער וויקי.',
+'protectedpages'          => 'געשיצטע בלעטער',
+'listusers'               => 'ליסטע פון באניצערס',
 'newpages'                => 'נייע בלעטער',
 'newpages-username'       => 'באניצער נאמען:',
 'ancientpages'            => 'עלטסטע בלעטער',
 'move'                    => 'באַװעגן',
+'movethispage'            => 'באוועג דעם בלאט',
 
 # Book sources
 'booksources'               => 'דרויסנדיגע ליטעראַטור ISBN',
@@ -1008,6 +1022,7 @@ $1 שעות.',
 # Special:Log
 'specialloguserlabel'  => 'באנוצער:',
 'speciallogtitlelabel' => 'טיטול:',
+'all-logs-page'        => 'אלע לאג-ביכער',
 'alllogstext'          => 'קאמבאנירטע אויסלייג פון אלע לאגס פון{{grammar:תחילית|{{SITENAME}}}}.
 מען קען פארשמעלרן די אויסוואל דורך אויסוועלן די סארט לאג, באנוצער נאמען אדער אפעקטירטע בלעטער.',
 
@@ -1133,6 +1148,7 @@ $NEWPAGE
 דאס לעצטע ענדערונג איז געווען פון [[User:$3|$3]] ([[User_talk:$3|רעדן]]).',
 'editcomment'       => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
 'revertpage'        => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'protectlogpage'    => 'שיצן לאָג',
 
 # Undelete
 'cannotundelete' => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
@@ -1146,7 +1162,8 @@ $NEWPAGE
 'contributions' => 'באטיילונגן פון באנוצער',
 'mycontris'     => 'מײַנע טיילונגען',
 
-'sp-contributions-blocklog' => 'בלאקירן לאג',
+'sp-contributions-newbies-sub' => 'פאר נייע קאנטעס',
+'sp-contributions-blocklog'    => 'בלאקירן לאג',
 
 # What links here
 'whatlinkshere'       => 'װאָס די אױף דאָס זײט פֿאַרבינדט',
@@ -1181,6 +1198,7 @@ $NEWPAGE
 'blockipsuccesstext'       => 'באנוצער [[{{ns:special}}:Contributions/$1|$1]] איז פארשפארט.
 
 זעהט די [[{{ns:special}}:Ipblocklist|ליסטע פון בלאקירטע באנוצער]] כדי צו זעהן די בלאקירונגן.',
+'ipblocklist'              => 'ליסטע פון בלאקירטע באניצערס',
 'blocklistline'            => '$1 $2 פארשפארט $3 ($4)',
 'infiniteblock'            => 'אויף אייביק',
 'anononlyblock'            => 'אנינאנימעס בלויז',
@@ -1547,6 +1565,7 @@ $1',
 'autosumm-new'     => 'נייער בלאט: $1',
 
 # Special:Version
+'version'              => 'ווערסיע', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'ספעציעלע בלעטער',
 
 # Special:SpecialPages

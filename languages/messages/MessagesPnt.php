@@ -137,6 +137,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Μεταδογμένα:',
 
+'errorpagetitle'    => 'Λάθος',
 'returnto'          => 'Επιστροφήν σο $1.',
 'tagline'           => 'Ασό {{SITENAME}}',
 'help'              => 'Βοήθειαν',
