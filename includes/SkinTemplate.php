@@ -962,7 +962,8 @@ class SkinTemplate extends Skin {
 	function setupUserCss() {
 		wfProfileIn( __METHOD__ );
 
-		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
+		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, 
+			$wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser, $wgOut;
 
 		$sitecss = '';
 		$usercss = '';
@@ -1005,6 +1006,7 @@ class SkinTemplate extends Skin {
 			$sitecss .= '@import "' . self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) . '";' . "\n";
 			$sitecss .= '@import "' . self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $query, NS_MEDIAWIKI ) . '";' . "\n";
 			$sitecss .= '@import "' . self::makeUrl( '-', "action=raw&gen=css$siteargs$skinquery" ) . '";' . "\n";
+			if( $wgOut->isPrintable()) $sitecss .= '@import "' . self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI) . '";' . "\n";
 		}
 
 		# If we use any dynamic CSS, make a little CDATA block out of it.
