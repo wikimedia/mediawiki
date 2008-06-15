@@ -66,7 +66,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		$prop = array_flip($params['prop']);
 		$this->addFieldsIf( array( 'cat_pages', 'cat_subcats', 'cat_files' ), isset($prop['size']) );
-		//$this->addFieldsIf( 'cat_hidden', isset($prop['hidden']) );
+		$this->addFieldsIf( 'cat_hidden', isset($prop['hidden']) );
 
 		$res = $this->select(__METHOD__);
 
@@ -95,9 +95,8 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 					$item['files'] = $row->cat_files;
 					$item['subcats'] = $row->cat_subcats;
 				}
-				//Isn't populated, so doesn't work
-				//if( isset( $prop['hidden'] ) && $row->cat_hidden )
-				//	$item['hidden'] = '';
+				if( isset( $prop['hidden'] ) && $row->cat_hidden )
+					$item['hidden'] = '';
 				$categories[] = $item;
 			}
 		}
@@ -130,7 +129,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
 			),
 			'prop' => array (
-				ApiBase :: PARAM_TYPE => array( 'size', /*'hidden'*/ ),
+				ApiBase :: PARAM_TYPE => array( 'size', 'hidden' ),
 				ApiBase :: PARAM_DFLT => '',
 				ApiBase :: PARAM_ISMULTI => true
 			),

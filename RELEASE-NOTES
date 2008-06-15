@@ -445,6 +445,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14471) Use HTMLTidy and generate limit report in action=parse
 * (bug 14459) Added prependtext and appendtext parameters to action=edit
 * (bug 14526) Unescaped SQL in list=backlinks
+* Added 'hidden' flag to list=allcategories and prop=categoryinfo output
 
 === Languages updated in 1.13 ===
 
