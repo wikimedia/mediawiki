@@ -447,6 +447,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14459) Added prependtext and appendtext parameters to action=edit
 * (bug 14526) Unescaped SQL in list=backlinks
 * Added 'hidden' flag to list=allcategories and prop=categoryinfo output
+* Added nocreate parameter to action=edit
 
 === Languages updated in 1.13 ===
 

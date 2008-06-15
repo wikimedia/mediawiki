@@ -59,6 +59,8 @@ class ApiEditPage extends ApiBase {
 
 		if($params['createonly'] && $titleObj->exists())
 			$this->dieUsageMsg(array('createonly-exists'));
+		if($params['nocreate'] && !$titleObj->exists())
+			$this->dieUsageMsg(array('nocreate-missing'));
 
 		// Now let's check whether we're even allowed to do this
 		$errors = $titleObj->getUserPermissionsErrors('edit', $wgUser);
@@ -245,6 +247,7 @@ class ApiEditPage extends ApiBase {
 			'basetimestamp' => null,
 			'recreate' => false,
 			'createonly' => false,
+			'nocreate' => false,
 			'captchaword' => null,
 			'captchaid' => null,
 			'watch' => false,
@@ -269,7 +272,8 @@ class ApiEditPage extends ApiBase {
 						'Used to detect edit conflicts; leave unset to ignore conflicts.'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',
-			'createonly' => 'Don\'t create the page if it exists already',
+			'createonly' => 'Don\'t edit the page if it exists already',
+			'nocreate' => 'Throw an error if the page doesn\'t exist',
 			'watch' => 'Add the page to your watchlist',
 			'unwatch' => 'Remove the page from your watchlist',
 			'captchaid' => 'CAPTCHA ID from previous request',
