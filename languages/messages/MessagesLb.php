@@ -72,6 +72,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Onbenotzte_Biller' ),
 	'Wantedpages'               => array( 'Gewënschte_Säiten' ),
 	'Wantedcategories'          => array( 'Gewënschte_Kategorien' ),
+	'Missingfiles'              => array( 'Fichieren_déi_feelen' ),
 	'Mostlinked'                => array( 'Dacks_verlinkte_Säiten' ),
 	'Mostlinkedcategories'      => array( 'Dacks_benotzte_Kategorien' ),
 	'Mostlinkedtemplates'       => array( 'Dacks_benotzte_Schablounen' ),
