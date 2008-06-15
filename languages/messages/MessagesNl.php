@@ -212,6 +212,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'OngebruikteAfbeeldingen' ),
 	'Wantedpages'               => array( 'GevraagdePaginas', 'GevraagdePagina\'s', 'GevraagdePagina’s' ),
 	'Wantedcategories'          => array( 'GevraagdeCategorieën' ),
+	'Missingfiles'              => array( 'MissendeBestanden' ),
 	'Mostlinked'                => array( 'MeestVerwezen' ),
 	'Mostlinkedcategories'      => array( 'MeestVerwezenCategorieën' ),
 	'Mostlinkedtemplates'       => array( 'MeestVerwezenSjablonen' ),
