@@ -796,7 +796,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'                   => "'''Obs:''' Sedan du sparat sidan, måste du tömma din webbläsares cache för att se ändringarna. '''Mozilla/Safari/Firefox:''' håll ner ''skift'' och klicka på ''reload'' eller tryck ''ctrl-shift-r'', (cmd-shift-R på mac:ar); '''Internet Explorer:'''  håll ner ctr och klicka på \"Refresh\" eller tryck ''ctrl-f5'', '''Konqueror:''': klicka helt enkelt på \"Reload\" eller F5; '''Opera:''' tryck ''F5''",
 'usercssjsyoucanpreview'           => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
-'usercsspreview'                   => "'''Observera att du bara förhandsgranskar din användar-css - den har inte sparats än.'''",
+'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din CSS, den har inte sparats än!'''",
 'userjspreview'                    => "'''Kom ihåg att du bara testar/förhandsgranskar ditt JavaScript, det har inte sparats än!'''",
 'userinvalidcssjstitle'            => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Uppdaterad)',

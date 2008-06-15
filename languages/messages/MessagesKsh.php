@@ -304,7 +304,7 @@ Dat es och all op Änglesch:
 'redirectedfrom'    => '(Ömjeleit vun $1)',
 'redirectpagesub'   => 'Ömleitungssigg',
 'lastmodifiedat'    => 'Die Sigg hee wood et letz jeändert aam $1 öm $2 Uhr.', # $1 date, $2 time
-'viewcount'         => 'De Sigg es bes jetz {{PLURAL:$1|eimol|$1 Mol}} avjerofe woode.',
+'viewcount'         => 'De Sigg es bes jetz {{PLURAL:$1|eimol|$1 Mol|keijmol}} avjerofe woode.',
 'protectedpage'     => 'Jeschötzte Sigg',
 'jumpto'            => 'Jangk noh:',
 'jumptonavigation'  => 'Noh de Navigation',
@@ -437,6 +437,7 @@ De Aanfroch es: „<code>$2</code>“<br />',
 'viewsourcefor'        => 'för de Sigg: „$1“',
 'actionthrottled'      => "Dat ka'mer nit esu öff maache",
 'actionthrottledtext'  => 'Dat darf mer nor en jeweße Zahl Mole hengerenander maache. Do bes jrad aan de Jrenz jekumme. Kannze jo en e paar Menutte widder probeere.',
+'viewsourcetext'       => 'Hee es dä Sigg ier Wikitex zum Belooere un Koppeere:',
 'protectedinterface'   => 'Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed.',
 'editinginterface'     => '<strong>Opjepass:</strong> 
 Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed. Nor de Wiki-Köbese künne 
@@ -668,8 +669,17 @@ color:black">Vör-Aansich Zeije</b>-Knopp usprobeere, wat Ding neu
 Metmaacher_CSS/Java_Skripp mäht, ih dat et avspeichere deis!',
 'usercsspreview'            => '<b>Opjepass: Do bes hee nor am Usprobeere, wat Ding 
 Metmaacher_CSS mäht, et es noch nit jesechert!</b>',
-'userjspreview'             => '<b>Opjepass: Do bes hee nor am Usprobeere, wat Ding 
-Metmaacher_Java_Skripp mäht, et es noch nit jesechert!</b>',
+'userjspreview'             => "<strong>Opjepass:</strong> Do bes hee nor am Usprobeere, wat Ding 
+Metmaacher_Java_Skripp mäht, et es noch nit jesechert!
+
+<strong>Opjepass:</strong> Noh dem Avspeichere moß de Dingem Brauser noch singe Cache fottschmiiße.
+Dat jeit je noh Bauser met ongerscheedleje Knöpp —
+beim '''Mozilla''' un em '''Firefox''': ''Strg-Shift-R'' —
+em '''Internet Explorer''': ''Strg-F5'' —
+för der '''Opera''': ''F5'' —
+mem '''Safari''': ''Cmd-Shift-R'' —
+un em '''Konqueror''': ''F5'' —
+et ess en bunte Welt!",
 'userinvalidcssjstitle'     => '<strong>Opjepass:</strong> Et jitt kein Ussinn met däm Name: „<strong>$1</strong>“ - 
 denk dran, dat ene Metmaacher eije Dateie för et Ussinn han kann, un dat die met kleine Buchstave 
 aanfange dun, alsu etwa: {{ns:user}}:Name/monobook.css, un {{ns:user}}:Name/monobook.js heiße.',
@@ -1508,6 +1518,15 @@ Schirm häs.',
 'iteminvalidname'      => 'Dä Endrach „$1“ hät ene kapodde Name.',
 'wlnote'               => '{{PLURAL:$1|Hee es de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Mer han kein Äbderunge en}} de letzte {{PLURAL:$2|Stund|<strong>$2</strong> Stunde|<strong>noll</strong> Stunde}}.',
 'wlshowlast'           => 'Zeich de letzte | $1 | Stunde | $2 | Dage | $3 | aan, dun',
+'watchlist-show-bots'  => 'de Bots ier Änderunge zeije',
+'watchlist-hide-bots'  => 'de Bots ier Änderunge fottlohße',
+'watchlist-show-own'   => 'de eije Änderunge zeije',
+'watchlist-hide-own'   => 'de eije Änderunge fottlohße',
+'watchlist-show-minor' => 'klein Mini-Änderunge zeije',
+'watchlist-hide-minor' => 'klein Mini-Änderunge fottlohße',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching' => 'Drop oppasse…',
 
 'enotif_mailer'      => 'Dä {{SITENAME}} Nachrichte Versand',
 'enotif_reset'       => 'Setz all Änderunge op „Aanjeluurt“ un Erledich.',
@@ -1639,6 +1658,7 @@ un widder herjehollte Sigge.',
 'nocontribs'    => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
 'uctop'         => ' (Neuste)',
 'month'         => 'un Moohnt:',
+'year'          => 'Beß Johr:',
 
 'sp-contributions-newbies'     => 'Nor neu Metmaacher ier Beidräg zeije',
 'sp-contributions-newbies-sub' => 'För neu Metmaacher',
@@ -1648,6 +1668,7 @@ un widder herjehollte Sigge.',
 
 # What links here
 'whatlinkshere'         => 'Wat noh hee link',
+'whatlinkshere-title'   => 'Sigge, woh Links op „$1“ dren sen',
 'whatlinkshere-summary' => 'Die Sondersigg zeich Links innerhallef vom Wiki op en bestemmpte Sigg aa.
 En Klammere shteit, op wat för en Aat un Wies dä Link jemat woode es.',
 'linklistsub'           => '(Liss met de Links)',
@@ -2116,6 +2137,35 @@ $1',
 
 # Size units
 'size-bytes' => '$1 Bytes',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'En Dinge Oppassliss {{PLURAL:$1|es eine Endrach|sen $1 Endräsch|es keine Endrach}} — Klaafsigge dozoh zälle nit ëxtra.',
+'watchlistedit-noitems'        => 'Ding Oppassliss es leddisch.',
+'watchlistedit-normal-title'   => 'Oppassliss beärbeijde',
+'watchlistedit-normal-legend'  => 'Titell uß de Oppassliss eruß lohße',
+'watchlistedit-normal-explain' => 'Dat sin de Endräch in Dinge Oppassliss.
+Om einzel Titelle loss ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
+De kanns Ding Oppassliss och [[Special:Watchlist/raw|en rüh beärbeide]].',
+'watchlistedit-normal-submit'  => 'Jangk de Titele met Hökche eruß schmieße',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Eine Sigge-Tittel es|<strong>$1</strong> Sigge-Tittele sin|Keine Sigge-Tittel es}} us Dinge Opassliss erus jefloore:',
+'watchlistedit-raw-title'      => 'Rüh Oppassliss beärbeide',
+'watchlistedit-raw-legend'     => 'Rüh Oppassliss beärbeide',
+'watchlistedit-raw-explain'    => "Dat sin de Endräch in Dinge Oppassliss en rüh.
+Öm einzel Titelle loss ze wääde, kanns de de Reije met inne eruß schmieße, ov leddich maache.
+Öm neu Titelle  dobei ze don, schriev neu Reije dobei. Jede Titel moß en en Reih för sijj_allein shtonn.
+Wanns De fädig bes, dann deuß De dä Knopp „{{int:watchlistedit-raw-submit}}“.
+Natörlech kanns De di Liss och — met Dingem Brauser singe ''<span lang=\"\"en\">Copy&amp;Paste</span>''-Funkßjohn — komplett kopeere odder ußtuusche.
+De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa met Kässjer un Hökscher beärbeide]].",
+'watchlistedit-raw-titles'     => 'Endräch:',
+'watchlistedit-raw-submit'     => 'Oppassliss neu fasshallde',
+'watchlistedit-raw-done'       => 'Ding Oppassliss es fassjehallde.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Eine Sigge-Tittel wood|<strong>$1</strong> Sigge-Tittele woodte|Keine Sigge-Tittel}} dobeijedonn:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Eine Endrach es eruß jefloore:|<strong>$1</strong> Endräsh es eruß jefloore:|Keine Endrach es eruß jefloore.}}',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Oppaßliß — Änderunge zeije',
+'watchlisttools-edit' => 'beloore un beärbede',
+'watchlisttools-raw'  => 'rüh beärbeijde | expochteere | empochteere',
 
 # Special:Version
 'version'                          => 'Version vun de Wiki Soffwär zeije', # Not used as normal message but as header for the special page itself

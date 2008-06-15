@@ -508,7 +508,7 @@ $2',
 'nouserspecified'            => 'Къулланыджы адыны бельгилемек керексинъиз.',
 'wrongpassword'              => 'Кирсеткен паролинъиз янълыштыр. Лютфен, текрар этинъиз.',
 'wrongpasswordempty'         => 'Бош пароль кирменъиз/бельгилеменъиз.',
-'passwordtooshort'           => 'Паролинъиз пек къыскъа. Энъ аз $1 арифтен ве/я да ракъамдан ибарет олмалы.',
+'passwordtooshort'           => 'Паролинъиз пек къыскъа. Энъ аз $1 ариф ве я ракъамдан ибарет олмалы.',
 'mailmypassword'             => 'Янъы пароль йибер',
 'passwordremindertitle'      => '{{grammar:genitive|{{SITENAME}}}} къулланыджынынъ пароль хатырлатувы',
 'passwordremindertext'       => 'Бирев (эр алда бу сизсинъиз) $1 IP адресинден янъы къулланыджы {{SITENAME}} ($4) паролини талап этти.
@@ -999,7 +999,7 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'filehist-filesize'         => 'Файл буюклиги',
 'filehist-comment'          => 'Изаат',
 'imagelinks'                => 'Къулланылгъаны саифелер',
-'linkstoimage'              => 'Бу файлгъа багъланты олгъан саифелер:',
+'linkstoimage'              => 'Бу файлгъа багъланты олгъан $1 саифе:',
 'nolinkstoimage'            => 'Бу файлгъа багълангъан саифе ёкъ.',
 'sharedupload'              => 'Бу файл ортакъ фезагъа юкленген ве дигер проектлерде де къулланылгъан бир файл ола билир.',
 'shareduploadwiki'          => 'Тафсилятны $1 саифесинде тапмакъ мумкюн.',
@@ -1276,7 +1276,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'rollbackfailed'              => 'кери алув ишлеми мувафакъиетсиз',
 'cantrollback'                => 'Денъишикликлер кери алынамай, сонъки денъиштирген киши саифенинъ тек бир муэллифидир',
 'editcomment'                 => 'Денъиштирме изааты: "<i>$1</i>" эди.', # only shown if there is an edit comment
-'revertpage'                  => '[[User:$2|$2]] тарафындан япылгъан денъишикликлер кери алынып, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|музакере]]) тарафындан япылгъан денъишикликлер кери алынып, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Къорчалав журналы',
 'protectlogtext'              => 'Къорчалавгъа алув/чыкъарув иле багълы денъишикликлер журналыны корьмектесинъиз.
 Къорчалав алтына алынгъан саифелер там джедвели [[{{ns:special}}:Protectedpages|бу саифеде]] корип оласынъыз.',

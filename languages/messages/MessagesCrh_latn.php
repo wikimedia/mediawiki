@@ -506,7 +506,7 @@ Bu saytnıñ ayarlarını şahsıñızğa köre [[{{ns:special}}:Preferences|de�
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirsetken paroliñiz yañlıştır. Lütfen, tekrar etiñiz.',
 'wrongpasswordempty'         => 'Boş parol kirmeñiz/belgilemeñiz.',
-'passwordtooshort'           => 'Paroliñiz pek qısqa. Eñ az $1 ariften ve/ya da raqamdan ibaret olmalı.',
+'passwordtooshort'           => 'Paroliñiz pek qısqa. Eñ az $1 arif ve ya raqamdan ibaret olmalı.',
 'mailmypassword'             => 'Yañı parol yiber',
 'passwordremindertitle'      => '{{grammar:genitive|{{SITENAME}}}} qullanıcınıñ parol hatırlatuvı',
 'passwordremindertext'       => 'Birev (er alda bu sizsiñiz) $1 IP adresinden yañı qullanıcı {{SITENAME}} ($4) parolini talap etti.
@@ -996,7 +996,7 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'filehist-filesize'         => 'Fayl büyükligi',
 'filehist-comment'          => 'İzaat',
 'imagelinks'                => 'Qullanılğanı saifeler',
-'linkstoimage'              => 'Bu faylğa bağlantı olğan saifeler:',
+'linkstoimage'              => 'Bu faylğa bağlantı olğan $1 saife:',
 'nolinkstoimage'            => 'Bu faylğa bağlanğan saife yoq.',
 'sharedupload'              => 'Bu fayl ortaq fezağa yüklengen ve diger proyektlerde de qullanılğan bir fayl ola bilir.',
 'shareduploadwiki'          => 'Tafsilâtnı $1 saifesinde tapmaq mümkün.',
@@ -1273,7 +1273,7 @@ yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'rollbackfailed'              => 'keri aluv işlemi muvafaqiyetsiz',
 'cantrollback'                => 'Deñişiklikler keri alınamay, soñki deñiştirgen kişi saifeniñ tek bir müellifidir',
 'editcomment'                 => 'Deñiştirme izaatı: "<i>$1</i>" edi.', # only shown if there is an edit comment
-'revertpage'                  => '[[User:$2|$2]] tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Qorçalav jurnalı',
 'protectlogtext'              => 'Qorçalavğa aluv/çıqaruv ile bağlı deñişiklikler jurnalını körmektesiñiz.
 Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages|bu saifede]] körip olasıñız.',

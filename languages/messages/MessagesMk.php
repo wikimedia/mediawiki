@@ -982,7 +982,7 @@ ID-то на вашето блокирање е $5.
 'filehist-filesize'              => 'Големина',
 'filehist-comment'               => 'Коментар',
 'imagelinks'                     => 'Врски кон сликата',
-'linkstoimage'                   => 'Следните страници ја користат оваа слика:',
+'linkstoimage'                   => 'До оваа датотека има {{PLURAL:$1|врска од следнава страница|врски од следниве $1 страници}}:',
 'nolinkstoimage'                 => 'Нема страници кои ја користат оваа слика',
 'sharedupload'                   => 'Оваа датотека е заедничка и може да се користи од други проекти.',
 'shareduploadwiki'               => 'Ве молиме видете $1 за понатамошна информација.',
@@ -1265,7 +1265,7 @@ $NEWPAGE
 
 Последното уредување беше на [[User:$3|$3]] ([[User talk:$3|Разговор]]).',
 'editcomment'                 => 'Коментарот на уредувањето беше: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Отстрането уредување на [[Special:Contributions/$2|$2]], вратено на последната верзија на [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Отстрането уредувањето на [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]]), вратено на последната верзија на [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Откажани уредувањата на $1; вратено на последната верзија на $2.',
 'sessionfailure'              => 'Има проблем со вашата сесија;
 оваа акција е откажана како превентива против преземање сесии.
@@ -1417,7 +1417,7 @@ $NEWPAGE
 'block-log-flags-noemail'     => 'блокирана е-поштенска адреса',
 'range_block_disabled'        => 'Администраторската можност да блокираат IP групи е исклучена.',
 'ipb_expiry_invalid'          => 'Неважечки истек на рок.',
-'ipb_already_blocked'         => '"$1" е веќе блокиран',
+'ipb_already_blocked'         => '„$1“ е веќе блокиран',
 'ipb_cant_unblock'            => 'Грешка: $1 не постои. Можеби веќе е одблокиран.',
 'ip_range_invalid'            => 'Неважечки интервал за IP адреси.',
 'proxyblocker'                => 'Прокси блокирач',
@@ -1506,8 +1506,8 @@ $NEWPAGE
 'allmessagesname'           => 'Име',
 'allmessagesdefault'        => 'Текст по основно',
 'allmessagescurrent'        => 'Сегашен текст',
-'allmessagestext'           => 'Ова е листа на сите системски пораки досапни во МедијаВики: именскиот простор.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Ова е листа на системските пораки достапни во именскиот простор „МедијаВики“.
+Ве молиме одете на [http://www.mediawiki.org/wiki/Localisation Локализација на МедијаВики] и [http://translatewiki.net Бетавики] ако сакате да придонесете кон генеричката локализацијата на МедијаВики.',
 'allmessagesnotsupportedDB' => "Оваа страница не може да се користи бидејќи '''\$wgUseDatabaseMessages''' е исклучено.",
 'allmessagesfilter'         => 'Филтер за регуларни изрази:',
 'allmessagesmodified'       => 'Прикажи само изменети',
@@ -1958,9 +1958,10 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # E-mail address confirmation
 'confirmemail'            => 'Потврди е-поштенска адреса',
 'confirmemail_noemail'    => 'Немате поставено валидна е-поштенска адреса во вашите [[Special:Preferences|прилагодувања]].',
-'confirmemail_text'       => 'Ова вики бара да ја потврдите вашата поштенска адреса пред да ги користите можностите за пошта.
-Активирајте го копчето подолу за да пратите потврдна порака до вашата адреса. Оваа порака ќе содржи врска;
-отворете ја врската во вашиот прелистувач за да потврдите дека вашата поштенска адреса е валидна.',
+'confirmemail_text'       => '{{SITENAME}} бара да ја потврдите вашата е-поштенска адреса пред да ги користите можностите за е-пошта.
+Притиснете на копчето подолу за да пратите потврдувачка порака на вашата адреса.
+Во оваа порака е вклучена врска којашто содржи код;
+отворете ја врската во вашиот прелистувач за да потврдите дека вашата е-поштенска адреса е важечка.',
 'confirmemail_send'       => 'Прати код за потврда',
 'confirmemail_sent'       => 'Пораката за потврда е пратена.',
 'confirmemail_oncreate'   => 'Код за потврда е пратен на вашата е-поштенска адреса.

@@ -257,8 +257,10 @@ $messages = array(
 'preferences'         => 'строи',
 'mypreferences'       => 'мои строи',
 'prefs-rc'            => 'послѣ́дьнѩ мѣ́нꙑ',
+'prefs-watchlist'     => 'блюдє́ниꙗ',
 'searchresultshead'   => 'иска́ниѥ',
 'prefs-searchoptions' => 'иска́ниꙗ строи́',
+'files'               => 'дѣла́',
 
 # Groups
 'group-user'       => 'по́льꙃєватєлє',
@@ -283,8 +285,9 @@ $messages = array(
 'rcshowhidebots'  => '$1 аѵтома́тъ',
 'hist'            => 'їс҃т',
 'hide'            => 'съкрꙑи',
-'minoreditletter' => 'м҃',
-'newpageletter'   => 'н҃',
+'minoreditletter' => 'м҃л',
+'newpageletter'   => 'н҃в',
+'boteditletter'   => 'а҃ѵ',
 
 # Recent changes linked
 'recentchangeslinked' => 'съвѧ́ꙁанꙑ страни́цѧ',
@@ -318,12 +321,19 @@ $messages = array(
 'statistics'    => 'Статїстїка',
 'sitestats'     => '{{SITENAME}} статїстїка',
 'userstats'     => 'Польѕевателъ статїстїка',
-'sitestatstext' => "Википедїи '''$1''' {{PLURAL:$1|страница ѥстъ|страници ѥсте|страницѧ сѫтъ|страниць сѫтъ}}, посрѣдѣ {{PLURAL:$1|ѩже|ѥюже|ихъже|ихъже}} и бесѣды, и страницѧ о Википедїи, и ѕѣло малы статїѩ, и прѣнаправлѥни, и дрѹгы страницѧ сѫтъ, ѩже истиньны статїѩ не сѫтъ. Бежихъ Википедїи '''$2''' {{PLURAL:$2|страница ѥстъ|страници ѥсте|страницѧ сѫтъ|страниць сѫтъ}} ѩже {{PLURAL:$2|истиньна статї ѥстъ|истиньнѣ статїи ѥсте|истиньны статїѩ сѫтъ|истиньны статїѩ сѫтъ}}. Википедїи '''$8''' {{PLURAL:$8|дѣло ѥстъ|дѣлѣ ѥсте|дѣла сѫтъ|дѣлъ сѫтъ}}. О прьваѥго Википедїѩ дьне '''$4''' {{PLURAL:$4|исправлѥниѥ сътворѥно ѥстъ|исправлѥнии сътворѥнѣ ѥсте|исправлѥни сътворѥна сѫтъ|исправлѥнии сътворѥна сѫтъ}}. Сѥ значитъ ко кажьдо страница '''$5''' исправлѥни иматъ. [http://www.mediawiki.org/wiki/Manual:Job_queue Дѣиствъ чрѣды] дльгота '''$7''' ѥстъ.",
+'sitestatstext' => "Сьдє '''$1''' {{PLURAL:$1|страни́ца ѥ́стъ|страни́ци ѥ́стє|страни́цѧ сѫ́тъ|страни́ць сѫ́тъ}} · посрѣдѣ {{PLURAL:$1|ѩже|ѥюжє|ихъжє|ихъжє}} и бєсѣдꙑ · и страницѧ о {{SITENAME}} · и ꙃѣло малꙑ члѣ́ни · и прѣнаправлѥниꙗ · и дроугꙑ́ страницѧ сѫ́тъ · ѩжє истиньнꙑ члѣ́ни нє сѫ́тъ ⁙ Бєжихъ Википєдїи '''$2''' {{PLURAL:$2|страни́ца ѥ́стъ|страни́ци ѥ́стє|страни́цѧ сѫ́тъ|страни́ць сѫ́тъ}} ѩжє {{PLURAL:$2|истиньна члѣ́нъ ѥстъ|истиньнѣ члѣ́на ѥ́стє|истиньнꙑ члѣ́ни сѫ́тъ|истиньнꙑ члѣ́ни сѫ́тъ}}
+
+Такождє '''$8''' {{PLURAL:$8|дѣло положєно ѥстъ|дѣлѣ положєно ѥстє|дѣла положєно сѫ́тъ|дѣлъ положєно сѫ́тъ}}
+
+О прьваѥго {{grammar:genitive|{{SITENAME}}}} дьнє '''$4''' {{PLURAL:$4|исправлѥ́ниѥ сътворѥно ѥ́стъ|исправлѥ́нии сътворѥнѣ ѥ́стє|исправлѥ́ниꙗ сътворѥно сѫ́тъ|исправлѥ́нии сътворѥно сѫ́тъ}} ⁙ Сѥ значитъ ꙗко кажьдо страница '''$5''' исправлѥниꙗ иматъ · а къжьдо мѣ́на '''$6''' {{PLURAL:$6|раꙁъ съмощрѥна бѣ|раꙁа съмощрѥна бѣашєтє|раꙁъ съмощрѥна бѣ|раꙁъ съмощрѥна бѣашѧ}}  
+
+[http://www.mediawiki.org/wiki/Manual:Job_queue Дѣ́иствъ чрѣ́дꙑ] дльгота '''$7''' ѥ́стъ",
 
 'brokenredirects-edit'   => '(испра́ви)',
 'brokenredirects-delete' => '(поничьжє́ниѥ)',
 
 # Miscellaneous special pages
+'nbytes'            => '$1 {{PLURAL:$1|ба́итъ|ба́ита|ба́итъ}}',
 'listusers'         => 'по́льꙃєватєлъ катало́гъ',
 'newpages'          => 'но́ви члѣ́ни',
 'newpages-username' => 'по́льꙃєватєлꙗ и́мѧ :',
@@ -338,6 +348,7 @@ $messages = array(
 
 # Special:Allpages
 'allpages'       => 'вьсѩ́ страни́цѧ',
+'alphaindexline' => 'о́тъ $1 до $2',
 'allpagesfrom'   => 'страни́цѧ видѣ́ти хощѫ́ съ начѧ́льнами боу́къвами :',
 'allarticles'    => 'вьсѩ́ страни́цѧ',
 'allpagessubmit' => 'прѣиди́',
@@ -404,6 +415,7 @@ $messages = array(
 'exif-artist' => 'творь́ць',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'вьсꙗ́',
 'namespacesall' => 'вьсꙗ́',
 
 'unit-pixel' => 'п҃ѯ',
@@ -418,7 +430,7 @@ $messages = array(
 'autosumm-new' => 'но́ва страни́ца : $1',
 
 # Special:Version
-'version'                  => 'о́браꙁъ', # Not used as normal message but as header for the special page itself
+'version'                  => 'MediaWiki о́браꙁъ', # Not used as normal message but as header for the special page itself
 'version-version'          => 'о́браꙁъ',
 'version-license'          => 'прощє́ниѥ',
 'version-software-version' => 'о́браꙁъ',

@@ -26,6 +26,13 @@ $digitTransformTable = array(
 
 $messages = array(
 # Dates
+'sunday'        => 'འབྲུག་གཟའ་ཟླཝ་',
+'monday'        => 'འབྲུག་གཟའ་མིག་དམར་',
+'tuesday'       => 'འབྲུག་གཟའ་ལྷགཔ་',
+'wednesday'     => 'འབྲུག་གཟའ་ཕུརཔ་',
+'thursday'      => 'འབྲུག་གཟའ་པ་སངས་',
+'friday'        => 'འབྲུག་གཟའ་སྤེནཔ་',
+'saturday'      => 'འབྲུག་གཟའ་ཉིམ་',
 'sun'           => 'ཟླཝ།',
 'mon'           => 'མིགམ།',
 'tue'           => 'ལྷགཔ།',

@@ -71,8 +71,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Atklāt manu e-pasta adresi paziņojumu vēstulēs',
 'tog-shownumberswatching'     => 'Rādīt uzraudzītāju skaitu',
 'tog-fancysig'                => 'Vienkāršs paraksts (bez automātiskās saites)',
-'tog-externaleditor'          => 'Pēc noklusējuma izmantot ārēju programmu lapu izmainīšanai',
-'tog-externaldiff'            => 'Pēc noklusējuma izmantot ārēju programmu izmaiņu parādīšanai',
+'tog-externaleditor'          => 'Pēc noklusējuma izmantot ārēju programmu lapu izmainīšanai (tikai pieredzējušiem lietotājiem, nepieciešami speciāli uzstādījumi tavā datorā (lai tas darbotos))',
+'tog-externaldiff'            => 'Pēc noklusējuma izmantot ārēju programmu izmaiņu parādīšanai (tikai pieredzējušiem lietotājiem, nepieciešami speciāli uzstādījumi tavā datorā (lai tas darbotos))',
 'tog-showjumplinks'           => 'Rādīt pārlēkšanas saites',
 'tog-uselivepreview'          => 'Lietot tūlītējo priekšskatījumu (izmanto "JavaScript"; eksperimentāla iespēja).',
 'tog-forceeditsummary'        => 'Atgādināt man, ja kopsavilkuma ailīte ir tukša',
@@ -80,6 +80,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Paslēpt botu labojumus manā uzraugāmo sarakstā.',
 'tog-watchlisthideminor'      => 'Paslēpt maznozīmīgos labojumus manā uzraugāmo sarakstā',
 'tog-ccmeonemails'            => 'Sūtīt sev, citiem lietotājiem nosūtīto epastu, kopijas',
+'tog-diffonly'                => 'Nerādīt lapu saturu zem izmaiņām',
 'tog-showhiddencats'          => 'Rādīt slēptās kategorijas',
 
 'underline-always'  => 'vienmēr',
@@ -371,7 +372,7 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
 'wrongpasswordempty'         => 'Parole bija tukša. Lūdzu mēģini vēlreiz.',
-'passwordtooshort'           => 'Tava parole ir pārāk īsa. Tajā jābūt vismaz $1 zīmēm.',
+'passwordtooshort'           => 'Tava parole ir nederīga vai pārāk īsa. Tajā jābūt vismaz {{PLURAL:$1|1 zīmei|$1 zīmēm}} un jābūt atšķirīgai no tava lietotāja vārda.',
 'mailmypassword'             => 'Atsūtīt man jaunu paroli',
 'passwordremindertitle'      => 'Jauna pagaidu parole no {{SITENAME}}s',
 'passwordremindertext'       => 'Kads (iespejams, Tu pats, no IP adreses $1)
@@ -382,8 +383,8 @@ Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
 'passwordsent'               => 'Esam nosūtījuši jaunu paroli uz e-pasta adresi, kuru ir norādījis lietotājs $1. Lūdzu, nāc iekšā ar jauno paroli, kad būsi to saņēmis.',
 'blocked-mailpassword'       => "Tava IP adrese ir bloķēta un tāpēc nevar lietot paroles atjaunošanas (''recovery'') funkciju, lai nevarētu apiet bloku.",
 'eauthentsent'               => "Apstiprinājuma e-pasts tika nosūtīts uz norādīto e-pasta adresi. Lai varētu saņemt citus ''meilus'', izpildi vēstulē norādītās instrukcijas, lai apstiprinātu, ka šī tiešām ir tava e-pasta adrese.",
-'throttled-mailpassword'     => 'Paroles atgādinājums jau ir ticis nosūtīts pēdējo $1 stundu laikā.
-Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt tikai vienu paroles atgādinājumu, katras $1 stundas.',
+'throttled-mailpassword'     => 'Paroles atgādinājums jau ir ticis nosūtīts {{PLURAL:$1|pēdējās stundas|pēdējo $1 stundu}} laikā.
+Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt tikai vienu paroles atgādinājumu, {{PLURAL:$1|katru stundu|katras $1 stundas}}.',
 'mailerror'                  => 'E-pasta sūtīšanas kļūda: $1',
 'acct_creation_throttle_hit' => 'Tu jau esi izveidojis $1 kontus. Vairāk nevar.',
 'emailauthenticated'         => 'Tava e-pasta adrese tika apstiprināta $1.',
@@ -797,7 +798,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'filehist-filesize'         => 'Faila izmērs',
 'filehist-comment'          => 'Komentārs',
 'imagelinks'                => 'Attēlu saites',
-'linkstoimage'              => 'Attēls ir izmantots šajās lapās:',
+'linkstoimage'              => '{{PLURAL:$1|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
 'sharedupload'              => 'Šis fails ir no *** [[literal]] translation',
 'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, tu vari [$1].',
@@ -1043,7 +1044,7 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'alreadyrolled'               => 'Nav iespējams novērst pēdējās izmaiņas, ko lapā [[$1]] saglabāja [[User:$2|$2]] ([[User talk:$2|Diskusija]]). Kāds cits jau ir rediģējis šo lapu vai novērsis izmaiņas.
 
 Pēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]])',
-'revertpage'                  => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]], atjaunoju versiju, ko saglabāja $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Tika novērstas $1 izdarītās izmaiņas;
 un tika atjaunota iepriekšējā versija, kuru bija izveidojis $2.',
 'sessionfailure'              => "Ir radusies problēma ar sesijas autentifikāciju;

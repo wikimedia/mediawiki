@@ -151,7 +151,7 @@ $messages = array(
 'otherlanguages'   => 'Boshqa tillarda',
 'redirectedfrom'   => '($1dan yoʻnaltirildi)',
 'redirectpagesub'  => 'Yoʻnaltiruvchi sahifa',
-'lastmodifiedat'   => 'Bu sahifa oxirgi marta $2, $1 sanasida tahrirlangan.',
+'lastmodifiedat'   => 'Bu sahifa oxirgi marta $2, $1 sanasida tahrirlangan.', # $1 date, $2 time
 'viewcount'        => 'Bu sahifaga {{PLURAL:$1|bir marta|$1 marta}} murojaat qilingan.',
 'jumpto'           => 'Oʻtish:',
 'jumptonavigation' => 'foydalanish',
@@ -504,7 +504,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # Block/unblock
 'blockip'      => 'Foydalanuvchini chetlashtir',
-'ipboptions'   => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
+'ipboptions'   => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite', # display1:time1,display2:time2,...
 'ipblocklist'  => 'Chetlashtirilgan IP manzillari va foydalanuvchilar roʻyxati',
 'blocklink'    => 'chetlashtir',
 'contribslink' => 'hissasi',
@@ -514,7 +514,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'movearticle'    => "Sahifani ko'chirish",
 'movepagebtn'    => 'Sahifani koʻchir',
 'pagemovedsub'   => 'Koʻchirildi',
-'movepage-moved' => '<big>\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'</big>',
+'movepage-moved' => '<big>\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'      => "[[$1]] [[$2]]ga ko'chirildi",
 'movelogpage'    => 'Koʻchirish qaydlari',
 'movereason'     => 'Sabab:',
