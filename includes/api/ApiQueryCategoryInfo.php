@@ -55,7 +55,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		}
 
 		$this->addTables('category');
-		$this->addFields(array('cat_title', 'cat_pages', 'cat_subcats', 'cat_files'));
+		$this->addFields(array('cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'cat_hidden'));
 		$this->addWhere(array('cat_title' => $cattitles));			
 
 		$db = $this->getDB();
@@ -70,6 +70,8 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 			$vals['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
 			$vals['files'] = $row->cat_files;
 			$vals['subcats'] = $row->cat_subcats;
+			if($row->cat_hidden)
+				$vals['hidden'] = '';
 			$this->addPageSubItems($catids[$row->cat_title], $vals);
 		}
 		$db->freeResult($res);
