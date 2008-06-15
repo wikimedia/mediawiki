@@ -68,15 +68,17 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg($errors[0]);
 
 		$articleObj = new Article($titleObj);
+		$toMD5 = $params['text'];
 		if(!is_null($params['appendtext']) || !is_null($params['prependtext']))
 		{
 			$content = $articleObj->getContent();
 			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
+			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
 
 		# See if the MD5 hash checks out
 		if(isset($params['md5']))
-			if(md5($params['text']) !== $params['md5'])
+			if(md5($toMD5) !== $params['md5'])
 				$this->dieUsageMsg(array('hashcheckfailed'));
 		
 		$ep = new EditPage($articleObj);
@@ -272,7 +274,8 @@ class ApiEditPage extends ApiBase {
 			'unwatch' => 'Remove the page from your watchlist',
 			'captchaid' => 'CAPTCHA ID from previous request',
 			'captchaword' => 'Answer to the CAPTCHA',
-			'md5' => 'The MD5 hash of the new article text. If set, the edit won\'t be done unless the hash is correct',
+			'md5' => array(	'The MD5 hash of the text parameter, or the prependtext and appendtext parameters concatenated.',
+				 	'If set, the edit won\'t be done unless the hash is correct'),
 			'prependtext' => array( 'Add this text to the beginning of the page. Overrides text.',
 						'Don\'t use together with section: that won\'t do what you expect.'),
 			'appendtext' => 'Add this text to the end of the page. Overrides text',
