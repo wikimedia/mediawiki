@@ -498,7 +498,8 @@ class PageHistory {
 	 * @param string $type
 	 */
 	function feed( $type ) {
-		require_once 'SpecialRecentchanges.php';
+		global $IP;
+		require_once "$IP/includes/specials/Recentchanges.php";
 
 		global $wgFeed, $wgFeedClasses;
 
