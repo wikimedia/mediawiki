@@ -56,10 +56,10 @@ class RecentChange
 		return $rc;
 	}
 
-	public static function newFromCurRow( $row, $rc_this_oldid = 0 )
+	public static function newFromCurRow( $row )
 	{
 		$rc = new RecentChange;
-		$rc->loadFromCurRow( $row, $rc_this_oldid );
+		$rc->loadFromCurRow( $row );
 		$rc->notificationtimestamp = false;
 		$rc->numberofWatchingusers = false;
 		return $rc;
