@@ -5,11 +5,6 @@
  */
 
 /**
- *
- */
-require_once( dirname(__FILE__) . '/ChangesList.php' );
-
-/**
  * Constructor
  */
 function wfSpecialRecentchanges( $par, $specialPage ) {
