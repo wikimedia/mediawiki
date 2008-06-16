@@ -2660,13 +2660,27 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-upload'                  => 'Start upload',
 
 # Stylesheets
-'common.css'   => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it
-'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */', # only translate this message to other languages if you have to change it
-'print.css'    => '/* CSS placed here will be applied to the printable version */', # only translate this message to other languages if you have to change it
+'common.css'      => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it
+'standard.css'    => '/* CSS placed here will affect users of the Standard skin */', # only translate this message to other languages if you have to change it
+'nostalgia.css'   => '/* CSS placed here will affect users of the Nostalgia skin */', # only translate this message to other languages if you have to change it
+'cologneblue.css' => '/* CSS placed here will affect users of the Bologne Blue skin */', # only translate this message to other languages if you have to change it
+'monobook.css'    => '/* CSS placed here will affect users of the Monobook skin */', # only translate this message to other languages if you have to change it
+'myskin.css'      => '/* CSS placed here will affect users of the Myskin skin */', # only translate this message to other languages if you have to change it
+'chick.css'       => '/* CSS placed here will affect users of the Chick skin */', # only translate this message to other languages if you have to change it
+'simple.css'      => '/* CSS placed here will affect users of the Simple skin */', # only translate this message to other languages if you have to change it
+'modern.css'      => '/* CSS placed here will affect users of the Modern skin */', # only translate this message to other languages if you have to change it
+'print.css'       => '/* CSS placed here will be applied to the printable version */', # only translate this message to other languages if you have to change it
 
 # Scripts
-'common.js'   => '/* Any JavaScript here will be loaded for all users on every page load. */', # only translate this message to other languages if you have to change it
-'monobook.js' => '/* JavaScript here will be loaded for users using the MonoBook skin only. */', # only translate this message to other languages if you have to change it
+'common.js'      => '/* Any JavaScript here will be loaded for all users on every page load. */', # only translate this message to other languages if you have to change it
+'standard.js'    => '/* Any JavaScript here will be loaded for users using the Standard skin */', # only translate this message to other languages if you have to change it
+'nostalgia.js'   => '/* Any JavaScript here will be loaded for users using the Nostalgia skin */', # only translate this message to other languages if you have to change it
+'cologneblue.js' => '/* Any JavaScript here will be loaded for users using the Bologne Blue skin */', # only translate this message to other languages if you have to change it
+'monobook.js'    => '/* Any JavaScript here will be loaded for users using the MonoBook skin */', # only translate this message to other languages if you have to change it
+'myskin.js'      => '/* Any JavaScript here will be loaded for users using the Myskin skin */', # only translate this message to other languages if you have to change it
+'chick.js'       => '/* Any JavaScript here will be loaded for users using the Chick skin */', # only translate this message to other languages if you have to change it
+'simple.js'      => '/* Any JavaScript here will be loaded for users using the Simple skin */', # only translate this message to other languages if you have to change it
+'modern.js'      => '/* Any JavaScript here will be loaded for users using the Modern skin */', # only translate this message to other languages if you have to change it
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata disabled for this server.',
