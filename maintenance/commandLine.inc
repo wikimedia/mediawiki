@@ -116,6 +116,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	$wgWikiFarm = true;
 	#$cluster = trim( file_get_contents( '/etc/cluster' ) );
 	$cluster = 'pmtpa';
+	require_once( "$IP/includes/AutoLoader.php" );
 	require_once( "$IP/includes/SiteConfiguration.php" );
 
 	# Get $wgConf
@@ -199,6 +200,7 @@ if ( file_exists( '/home/wikipedia/common/langlist' ) ) {
 	}
 	$wgCommandLineMode = true;
 	$DP = $IP;
+	require_once( "$IP/includes/AutoLoader.php" );
 	#require_once( $IP.'/includes/ProfilerStub.php' );
 	require_once( $IP.'/includes/Defines.php' );
 	require_once( $settingsFile );

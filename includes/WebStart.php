@@ -69,29 +69,32 @@ define( 'MEDIAWIKI', true );
 # Makes it possible to for example to have effective exclude path in apc.
 # Also doesn't break installations using symlinked includes, like
 # dirname( __FILE__ ) would do.
-$preIP = realpath( '.' );
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = realpath( '.' );
+}
 
 # Start profiler
-require_once( "$preIP/StartProfiler.php" );
+require_once( "$IP/StartProfiler.php" );
 wfProfileIn( 'WebStart.php-conf' );
 
 # Load up some global defines.
-require_once( "$preIP/includes/Defines.php" );
+require_once( "$IP/includes/Defines.php" );
 
 # LocalSettings.php is the per site customization file. If it does not exit
 # the wiki installer need to be launched or the generated file moved from
 # ./config/ to ./
-if( !file_exists( "$preIP/LocalSettings.php" ) ) {
-	# DefaultSettings assumes $IP is defined, like it usually is when included
-	# in LocalSettings. But in this case we need to provide the default one.
-	$IP = $preIP;
-	require_once( "$preIP/includes/DefaultSettings.php" ); # used for printing the version
-	require_once( "$preIP/includes/templates/NoLocalSettings.php" );
+if( !file_exists( "$IP/LocalSettings.php" ) ) {
+	require_once( "$IP/includes/DefaultSettings.php" ); # used for printing the version
+	require_once( "$IP/includes/templates/NoLocalSettings.php" );
 	die();
 }
 
-# Include site settings. Most importantly, $IP should be available after this.
-require_once( "$preIP/LocalSettings.php" );
+# Start the autoloader, so that extensions can derive classes from core files
+require_once( "$IP/includes/AutoLoader.php" );
+
+# Include site settings. $IP may be changed (hopefully before the AutoLoader is invoked)
+require_once( "$IP/LocalSettings.php" );
 wfProfileOut( 'WebStart.php-conf' );
 
 wfProfileIn( 'WebStart.php-ob_start' );
