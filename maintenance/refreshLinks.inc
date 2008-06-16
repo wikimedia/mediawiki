@@ -5,13 +5,10 @@
  * @ingroup Maintenance
  */
 
-/** */
-define( "REPORTING_INTERVAL", 100 );
-#define( "REPORTING_INTERVAL", 1 );
-
 function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $redirectsOnly = false, $oldRedirectsOnly = false ) {
 	global $wgUser, $wgParser, $wgUseTidy;
 
+	$reportingInterval = 100;
 	$fname = 'refreshLinks';
 	$dbr = wfGetDB( DB_SLAVE );
 	$start = intval( $start );
@@ -42,7 +39,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $red
 		print "Refreshing $num old redirects from $start...\n";
 
 		while( $row = $dbr->fetchObject( $res ) ) {
-			if ( !( ++$i % REPORTING_INTERVAL ) ) {
+			if ( !( ++$i % $reportingInterval ) ) {
 				print "$i\n";
 				wfWaitForSlaves( $maxLag );
 			}
@@ -62,7 +59,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $red
 
 		$i = 0;
 		while ( $row = $dbr->fetchObject( $res ) ) {
-			if ( !( ++$i % REPORTING_INTERVAL ) ) {
+			if ( !( ++$i % $reportingInterval ) ) {
 				print "$i\n";
 				wfWaitForSlaves( $maxLag );
 			}
@@ -80,7 +77,7 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $red
 
 		for ($id = $start; $id <= $end; $id++) {
 
-			if ( !($id % REPORTING_INTERVAL) ) {
+			if ( !($id % $reportingInterval) ) {
 				print "$id\n";
 				wfWaitForSlaves( $maxLag );
 			}
