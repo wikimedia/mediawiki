@@ -58,7 +58,6 @@ if ( empty( $wgFileStore['deleted']['directory'] ) ) {
 	$wgFileStore['deleted']['directory'] = "{$wgUploadDirectory}/deleted";
 }
 
-
 /**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
@@ -115,7 +114,9 @@ if ( $wgUseSharedUploads ) {
 	}
 }
 
-require_once( "$IP/includes/AutoLoader.php" );
+if ( !class_exists( 'AutoLoader' ) ) {
+	require_once( "$IP/includes/AutoLoader.php" );
+}
 
 wfProfileIn( $fname.'-exception' );
 require_once( "$IP/includes/Exception.php" );

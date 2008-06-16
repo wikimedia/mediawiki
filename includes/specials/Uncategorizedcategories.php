@@ -5,11 +5,6 @@
  */
 
 /**
- *
- */
-require_once( "SpecialUncategorizedpages.php" );
-
-/**
  * implements Special:Uncategorizedcategories
  * @ingroup SpecialPage
  */

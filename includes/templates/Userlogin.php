@@ -6,9 +6,6 @@
  */
 if( !defined( 'MEDIAWIKI' ) ) die( -1 );
 
-/** */
-require_once( 'includes/SkinTemplate.php' );
-
 /**
  * HTML template for Special:Userlogin form
  * @ingroup Templates
