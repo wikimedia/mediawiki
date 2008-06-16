@@ -461,6 +461,7 @@ class Article {
 	 * @deprecated - just call wfGetDB( DB_MASTER ) instead
 	 */
 	function getDB() {
+		wfDeprecated( __METHOD__ );
 		return wfGetDB( DB_MASTER );
 	}
 
