@@ -4,10 +4,7 @@
  * @ingroup SpecialPage Watchlist
  */
 
-/**
- *
- */
-require_once( dirname(__FILE__) . '/SpecialRecentchanges.php' );
+require_once( dirname(__FILE__) . '/Recentchanges.php' );
 
 /**
  * Constructor
