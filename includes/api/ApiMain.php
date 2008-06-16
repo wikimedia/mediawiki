@@ -262,14 +262,20 @@ class ApiMain extends ApiBase {
 
 		$params = $this->extractRequestParams(); 
 		if($this->mSquidMaxage == -1)
-			# Nobody called setCacheMaxAge(), use the smaxage parameter
-			$this->mSquidMaxage = $params['smaxage'];
-			
+		{
+			# Nobody called setCacheMaxAge(), use the (s)maxage parameters
+			$smaxage = $params['smaxage'];
+			$maxage = $params['maxage'];
+		}
+		else
+			$smaxage = $maxage = $this->mSquidMaxage;
+
 		// Set the cache expiration at the last moment, as any errors may change the expiration.
 		// if $this->mSquidMaxage == 0, the expiry time is set to the first second of unix epoch
-		$expires = $this->mSquidMaxage == 0 ? 1 : time() + $this->mSquidMaxage;
+		$exp = min($smaxage, $maxage);
+		$expires = $exp == 0 ? 1 : time() + $this->mSquidMaxage;
 		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
-		header('Cache-Control: s-maxage=' . $this->mSquidMaxage . ', must-revalidate, max-age=0');
+		header('Cache-Control: s-maxage=' . $smaxage . ', must-revalidate, max-age=' . $maxage);
 
 		if($this->mPrinter->getIsHtml())
 			echo wfReportTime();
@@ -420,6 +426,10 @@ class ApiMain extends ApiBase {
 				ApiBase :: PARAM_TYPE => 'integer',
 				ApiBase :: PARAM_DFLT => 0
 			),
+			'maxage' => array (
+				ApiBase :: PARAM_TYPE => 'integer',
+				ApiBase :: PARAM_DFLT => 0
+			),
 		);
 	}
 
@@ -432,7 +442,8 @@ class ApiMain extends ApiBase {
 			'action' => 'What action you would like to perform',
 			'version' => 'When showing help, include version for each module',
 			'maxlag' => 'Maximum lag',
-			'smaxage' => 'Cache the result for this many seconds. Errors are never cached',
+			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
+			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
 		);
 	}
 
