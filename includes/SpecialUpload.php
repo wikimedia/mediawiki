@@ -259,6 +259,9 @@ class UploadForm {
 			if( !$this->unsaveUploadedFile() ) {
 				return;
 			}
+			# Because it is probably checked and shouldn't be
+			$this->mIgnoreWarning = false;
+			
 			$this->mainUploadForm();
 		} else if( 'submit' == $this->mAction || $this->mUploadClicked ) {
 			$this->processUpload();
@@ -909,7 +912,7 @@ class UploadForm {
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'uploadwarning' ) ) . "\n" .
-			Xml::hidden( 'wpIgnoreWarning', $this->mIgnoreWarning ) . "\n" .
+			Xml::hidden( 'wpIgnoreWarning', '1' ) . "\n" .
 			Xml::hidden( 'wpSessionKey', $this->mSessionKey ) . "\n" .
 			Xml::hidden( 'wpUploadDescription', $this->mComment ) . "\n" .
 			Xml::hidden( 'wpLicense', $this->mLicense ) . "\n" .
