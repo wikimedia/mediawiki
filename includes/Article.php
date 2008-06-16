@@ -352,7 +352,7 @@ class Article {
 	 */
 	function loadPageData( $data = 'fromdb' ) {
 		if ( $data === 'fromdb' ) {
-			$dbr = $this->getDB();
+			$dbr = wfGetDB( DB_MASTER );
 			$data = $this->pageDataFromId( $dbr, $this->getId() );
 		}
 
@@ -390,7 +390,7 @@ class Article {
 			return $this->mContent;
 		}
 
-		$dbr = $this->getDB();
+		$dbr = wfGetDB( DB_MASTER );
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
@@ -458,6 +458,7 @@ class Article {
 	 * Get the database which should be used for reads
 	 *
 	 * @return Database
+	 * @deprecated - just call wfGetDB( DB_MASTER ) instead
 	 */
 	function getDB() {
 		return wfGetDB( DB_MASTER );
@@ -581,7 +582,7 @@ class Article {
 		$id = $this->getID();
 		if ( 0 == $id ) return;
 
-		$this->mLastRevision = Revision::loadFromPageId( $this->getDB(), $id );
+		$this->mLastRevision = Revision::loadFromPageId( wfGetDB( DB_MASTER ), $id );
 		if( !is_null( $this->mLastRevision ) ) {
 			$this->mUser      = $this->mLastRevision->getUser();
 			$this->mUserText  = $this->mLastRevision->getUserText();

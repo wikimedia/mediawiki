@@ -372,6 +372,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Generate correct section anchors for numeric headers
 * (bug 14520) Don't load nonexistent CSS files for Chick/Myskin/Simple skins
 * (bug 14551) Cancel upload no longer automatically suppresses warnings
+* (bug 13878) Deprecate Article::getDB() in favor of direct wfGetDB() calls
 
 === API changes in 1.13 ===
 
