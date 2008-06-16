@@ -373,6 +373,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14520) Don't load nonexistent CSS files for Chick/Myskin/Simple skins
 * (bug 14551) Cancel upload no longer automatically suppresses warnings
 * (bug 13878) Deprecate Article::getDB() in favor of direct wfGetDB() calls
+* (bug 4977) Fix for possible squid purging errors when using HTTP purges
+  and multiple servers
 
 === API changes in 1.13 ===
 
