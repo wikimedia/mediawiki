@@ -154,7 +154,7 @@ class ApiMain extends ApiBase {
 
 		$this->mRequest = & $request;
 
-		$this->mSquidMaxage = 0;
+		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
 	}
 
@@ -260,6 +260,11 @@ class ApiMain extends ApiBase {
 			$this->printResult(true);
 		}
 
+		$params = $this->extractRequestParams(); 
+		if($this->mSquidMaxage == -1)
+			# Nobody called setCacheMaxAge(), use the smaxage parameter
+			$this->mSquidMaxage = $params['smaxage'];
+			
 		// Set the cache expiration at the last moment, as any errors may change the expiration.
 		// if $this->mSquidMaxage == 0, the expiry time is set to the first second of unix epoch
 		$expires = $this->mSquidMaxage == 0 ? 1 : time() + $this->mSquidMaxage;
@@ -411,6 +416,10 @@ class ApiMain extends ApiBase {
 			'maxlag'  => array (
 				ApiBase :: PARAM_TYPE => 'integer'
 			),
+			'smaxage' => array (
+				ApiBase :: PARAM_TYPE => 'integer',
+				ApiBase :: PARAM_DFLT => 0
+			),
 		);
 	}
 
@@ -422,7 +431,8 @@ class ApiMain extends ApiBase {
 			'format' => 'The format of the output',
 			'action' => 'What action you would like to perform',
 			'version' => 'When showing help, include version for each module',
-			'maxlag' => 'Maximum lag'
+			'maxlag' => 'Maximum lag',
+			'smaxage' => 'Cache the result for this many seconds. Errors are never cached',
 		);
 	}
 
