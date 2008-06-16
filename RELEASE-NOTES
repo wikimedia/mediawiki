@@ -371,6 +371,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14511) MediaWiki:Delete-legend is no longer double escaped
 * Generate correct section anchors for numeric headers
 * (bug 14520) Don't load nonexistent CSS files for Chick/Myskin/Simple skins
+* (bug 14551) Cancel upload no longer automatically suppresses warnings
 
 === API changes in 1.13 ===
 
