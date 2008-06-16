@@ -195,6 +195,7 @@ $wgOptionalMessages = array(
 	'media_sample',
 	'common.css',
 	'monobook.css',
+	'print.css',
 	'common.js',
 	'monobook.js',
 	'widthheight',

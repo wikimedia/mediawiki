@@ -1884,6 +1884,7 @@ $wgMessageStructure = array(
 	'stylesheets' => array(
 		'common.css',
 		'monobook.css',
+		'print.css',
 	),
 	'scripts' => array(
 		'common.js',
