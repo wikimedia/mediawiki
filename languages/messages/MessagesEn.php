@@ -946,8 +946,8 @@ You may ignore this message, if this account was created in error.',
 'loginlanguagelinks'         => '* Deutsch|de
 * English|en
 * Esperanto|eo
-* Français|fr
-* Español|es
+* FranĂ§ais|fr
+* EspaĂ±ol|es
 * Italiano|it
 * Nederlands|nl', # do not translate or duplicate this message to other languages
 
@@ -1063,7 +1063,7 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 'noarticletext'                    => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered. Please check if you want to create/edit this page.',
-'clearyourcache'                   => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Tools→Preferences''.",
+'clearyourcache'                   => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes. '''Mozilla / Firefox / Safari:''' hold down ''Shift'' while clicking ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''': simply click the ''Reload'' button, or press ''F5''; '''Opera''' users may need to completely clear their cache in ''Toolsâ†’Preferences''.",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
 'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
@@ -1173,8 +1173,8 @@ The reason given by $3 is ''$2''",
 'revision-info'         => 'Revision as of $1 by $2',
 'revision-info-current' => '-', # do not translate or duplicate this message to other languages
 'revision-nav'          => '($1) $2 | $3 ($4) | $5 ($6)', # do not translate or duplicate this message to other languages
-'previousrevision'      => '←Older revision',
-'nextrevision'          => 'Newer revision→',
+'previousrevision'      => 'â†Older revision',
+'nextrevision'          => 'Newer revisionâ†’',
 'currentrevisionlink'   => 'Current revision',
 'cur'                   => 'cur',
 'next'                  => 'next',
@@ -1405,9 +1405,9 @@ please see math/README to configure.',
 'recentchangescount'       => 'Number of edits to show in recent change, history and log pages:',
 'savedprefs'               => 'Your preferences have been saved.',
 'timezonelegend'           => 'Time zone',
-'timezonetext'             => '¹The number of hours your local time differs from server time (UTC).',
+'timezonetext'             => 'ÂąThe number of hours your local time differs from server time (UTC).',
 'localtime'                => 'Local time',
-'timezoneoffset'           => 'Offset¹',
+'timezoneoffset'           => 'OffsetÂą',
 'servertime'               => 'Server time',
 'guesstimezone'            => 'Fill in from browser',
 'allowemail'               => 'Enable e-mail from other users',
@@ -1553,7 +1553,7 @@ please see math/README to configure.',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→', # only translate this message to other languages if you have to change it
+'sectionlink'                       => 'â†’', # only translate this message to other languages if you have to change it
 'number_of_watching_users_RCview'   => '[$1]', # do not translate or duplicate this message to other languages
 'number_of_watching_users_pageview' => '[$1 watching {{PLURAL:$1|user|users}}]',
 'rc_categories'                     => 'Limit to categories (separate with "|")',
@@ -1747,7 +1747,7 @@ A click on a column header changes the sorting.',
 
 # File reversion
 'filerevert'                => 'Revert $1',
-'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
+'filerevert-backlink'       => 'â† $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
 'filerevert-intro'          => '<span class="plainlinks">You are reverting \'\'\'[[Media:$1|$1]]\'\'\' to the [$4 version as of $3, $2].</span>',
 'filerevert-comment'        => 'Comment:',
@@ -1758,7 +1758,7 @@ A click on a column header changes the sorting.',
 
 # File deletion
 'filedelete'                  => 'Delete $1',
-'filedelete-backlink'         => '← $1', # only translate this message to other languages if you have to change it
+'filedelete-backlink'         => 'â† $1', # only translate this message to other languages if you have to change it
 'filedelete-legend'           => 'Delete file',
 'filedelete-intro'            => "You are deleting '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
@@ -2017,7 +2017,7 @@ The e-mail address you entered in your user preferences will appear as the "From
 'emailuserfooter' => 'Sent automatically by {{SITENAME}} to $1 for $2.
 Please note, {{SITENAME}} cannot be held responsible for the content of this email.
 The option to remove yourself from these mailings is in your preferences.
-Check your preferences at $3 and uncheck "Enable e-mail from other users."',
+Check your preferences at $3 and uncheck "$4"',
 
 # Watchlist
 'watchlist'            => 'My watchlist',
@@ -2102,7 +2102,7 @@ Feedback and further assistance:
 'exbeforeblank'               => "content before blanking was: '$1'",
 'exblank'                     => 'page was empty',
 'delete-confirm'              => 'Delete "$1"',
-'delete-backlink'             => '← $1', # only translate this message to other languages if you have to change it
+'delete-backlink'             => 'â† $1', # only translate this message to other languages if you have to change it
 'delete-legend'               => 'Delete',
 'historywarning'              => 'Warning: The page you are about to delete has a history:',
 'confirmdeletetext'           => 'You are about to delete a page along with all of its history.
@@ -2153,7 +2153,7 @@ See the [[Special:Protectedpages|protected pages list]] for the list of currentl
 'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
 'unprotectedarticle'          => 'unprotected "[[$1]]"',
 'protect-title'               => 'Change protection level for "$1"',
-'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
+'protect-backlink'            => 'â† $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
 'protectcomment'              => 'Comment:',
 'protectexpiry'               => 'Expires:',
@@ -2283,7 +2283,7 @@ $1',
 'isimage'                  => 'image link',
 'whatlinkshere-prev'       => '{{PLURAL:$1|previous|previous $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|next|next $1}}',
-'whatlinkshere-links'      => '← links',
+'whatlinkshere-links'      => 'â† links',
 'whatlinkshere-hideredirs' => '$1 redirects',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 links',
@@ -2405,7 +2405,7 @@ To lock or unlock the database, this needs to be writable by the web server.',
 
 # Move page
 'move-page'               => 'Move $1',
-'move-page-backlink'      => '← $1', # only translate this message to other languages if you have to change it
+'move-page-backlink'      => 'â† $1', # only translate this message to other languages if you have to change it
 'move-page-legend'        => 'Move page',
 'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
@@ -2757,21 +2757,21 @@ $1',
 'filedelete-archive-read-only'    => 'The archive directory "$1" is not writable by the webserver.',
 
 # Browsing diffs
-'previousdiff' => '← Previous diff',
-'nextdiff'     => 'Next diff →',
+'previousdiff' => 'â† Previous diff',
+'nextdiff'     => 'Next diff â†’',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.<hr />",
 'imagemaxsize'         => 'Limit images on file description pages to:',
 'thumbsize'            => 'Thumbnail size:',
-'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|page|pages}}',
+'widthheight'          => '$1Ă—$2', # only translate this message to other languages if you have to change it
+'widthheightpage'      => '$1Ă—$2, $3 {{PLURAL:$3|page|pages}}',
 'file-info'            => '(file size: $1, MIME type: $2)',
-'file-info-size'       => '($1 × $2 pixel, file size: $3, MIME type: $4)',
+'file-info-size'       => '($1 Ă— $2 pixel, file size: $3, MIME type: $4)',
 'file-nohires'         => '<small>No higher resolution available.</small>',
-'svg-long-desc'        => '(SVG file, nominally $1 × $2 pixels, file size: $3)',
+'svg-long-desc'        => '(SVG file, nominally $1 Ă— $2 pixels, file size: $3)',
 'show-big-image'       => 'Full resolution',
-'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
+'show-big-image-thumb' => '<small>Size of this preview: $1 Ă— $2 pixels</small>',
 
 # Special:Newimages
 'newimages'             => 'Gallery of new files',
@@ -2784,7 +2784,7 @@ $1',
 'sp-newimages-showfrom' => 'Show new files starting from $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'video-dims'     => '$1, $2×$3', # only translate this message to other languages if you have to change it
+'video-dims'     => '$1, $2Ă—$3', # only translate this message to other languages if you have to change it
 'seconds-abbrev' => 's', # only translate this message to other languages if you have to change it
 'minutes-abbrev' => 'm', # only translate this message to other languages if you have to change it
 'hours-abbrev'   => 'h', # only translate this message to other languages if you have to change it
@@ -2987,12 +2987,12 @@ Others will be hidden by default.
 
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'Flipped horizontally', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotated 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-3' => 'Rotated 180Â°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Flipped vertically', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotated 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotated 90° CW and flipped vertically', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotated 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-5' => 'Rotated 90Â° CCW and flipped vertically', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Rotated 90Â° CW', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rotated 90Â° CW and flipped vertically', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rotated 90Â° CCW', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
@@ -3040,10 +3040,10 @@ Others will be hidden by default.
 'exif-lightsource-9'   => 'Fine weather',
 'exif-lightsource-10'  => 'Cloudy weather',
 'exif-lightsource-11'  => 'Shade',
-'exif-lightsource-12'  => 'Daylight fluorescent (D 5700 – 7100K)',
-'exif-lightsource-13'  => 'Day white fluorescent (N 4600 – 5400K)',
-'exif-lightsource-14'  => 'Cool white fluorescent (W 3900 – 4500K)',
-'exif-lightsource-15'  => 'White fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-12'  => 'Daylight fluorescent (D 5700 â€“ 7100K)',
+'exif-lightsource-13'  => 'Day white fluorescent (N 4600 â€“ 5400K)',
+'exif-lightsource-14'  => 'Cool white fluorescent (W 3900 â€“ 4500K)',
+'exif-lightsource-15'  => 'White fluorescent (WW 3200 â€“ 3700K)',
 'exif-lightsource-17'  => 'Standard light A',
 'exif-lightsource-18'  => 'Standard light B',
 'exif-lightsource-19'  => 'Standard light C',
@@ -3230,8 +3230,8 @@ $1',
 'autocomment-prefix'  => '- ', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
-'imgmultipageprev' => '← previous page',
-'imgmultipagenext' => 'next page →',
+'imgmultipageprev' => 'â† previous page',
+'imgmultipagenext' => 'next page â†’',
 'imgmultigo'       => 'Go!',
 'imgmultigoto'     => 'Go to page $1',
 
@@ -3283,8 +3283,8 @@ $1',
 'size-gigabytes' => '$1 GB', # only translate this message to other languages if you have to change it
 
 # Live preview
-'livepreview-loading' => 'Loading…',
-'livepreview-ready'   => 'Loading… Ready!',
+'livepreview-loading' => 'Loadingâ€¦',
+'livepreview-ready'   => 'Loadingâ€¦ Ready!',
 'livepreview-failed'  => 'Live preview failed! Try normal preview.',
 'livepreview-error'   => 'Failed to connect: $1 "$2". Try normal preview.',
 
@@ -3408,7 +3408,7 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'fileduplicatesearch-legend'   => 'Search for a duplicate',
 'fileduplicatesearch-filename' => 'Filename:',
 'fileduplicatesearch-submit'   => 'Search',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />File size: $3<br />MIME type: $4',
+'fileduplicatesearch-info'     => '$1 Ă— $2 pixel<br />File size: $3<br />MIME type: $4',
 'fileduplicatesearch-result-1' => 'The file "$1" has no identical duplication.',
 'fileduplicatesearch-result-n' => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
 

@@ -1662,6 +1662,10 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'emailccsubject'  => 'Kopie Vaší zprávy pro uživatele $1: $2',
 'emailsent'       => 'Zpráva odeslána',
 'emailsenttext'   => 'Váš e-mail byl odeslán.',
+'emailuserfooter' => 'Zasláno automaticky uživateli $2 z {{grammar:2sg|{{SITENAME}}}} uživatelem $1.
+Prosíme, vezměte na vědomí, že {{SITENAME}} nenese žádnou zodpovědnost za obsah tohoto e-mailu.
+Možnost zrušit si zasílání takovýchto e-mailů naleznete na své stránce nastavení.
+Zkontrolujte si nastavení na $3 a zrušte zaškrtnutí u položky „$4“.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
