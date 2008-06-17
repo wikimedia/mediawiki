@@ -60,6 +60,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Default: false
 * Removed $wgEnableCascadingProtection option. Disabling cascading protection
   is no longer possible. 
+* $wgMessageCacheType defines now the type of cache used by the MessageCache class,
+  previously it was choosen based on $wgParserCacheType
 
 === New features in 1.13 ===
 
