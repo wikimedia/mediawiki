@@ -962,11 +962,9 @@ class User {
 	 *
 	 * @param string $opt
 	 * @return string
-	 * @static
-	 * @public
 	 */
-	function getDefaultOption( $opt ) {
-		$defOpts = User::getDefaultOptions();
+	public static function getDefaultOption( $opt ) {
+		$defOpts = self::getDefaultOptions();
 		if( isset( $defOpts[$opt] ) ) {
 			return $defOpts[$opt];
 		} else {

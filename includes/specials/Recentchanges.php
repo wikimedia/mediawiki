@@ -11,12 +11,10 @@ class SpecialRecentChanges extends SpecialPage {
 	}
 
 	public function getDefaultOptions() {
-		global $wgUser;
-
 		$opts = new FormOptions();
 
-		$opts->add( 'days',  (int)$wgUser->getDefaultOption('rcdays') );
-		$opts->add( 'limit', (int)$wgUser->getDefaultOption('rclimit') );
+		$opts->add( 'days',  (int)User::getDefaultOption( 'rcdays' ) );
+		$opts->add( 'limit', (int)User::getDefaultOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
 		$opts->add( 'hideminor',     false );
@@ -46,7 +44,7 @@ class SpecialRecentChanges extends SpecialPage {
 
 		// Give precedence to subpage syntax
 		if ( $parameters !== null ) {
-			$this->parseParameters( $this->par, $opts );
+			$this->parseParameters( $parameters, $opts );
 		}
 
 		$opts->validateIntBounds( 'limit', 0, 5000 );
@@ -69,7 +67,7 @@ class SpecialRecentChanges extends SpecialPage {
 		$wgOut->setSquidMaxage( 10 );
 
 		$lastmod = $this->checkLastModified( $feedFormat );
-		if ( !$lastmod ) {
+		if( $lastmod === false ){
 			return;
 		}
 
