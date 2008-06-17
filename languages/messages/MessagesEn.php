@@ -2014,6 +2014,9 @@ The e-mail address you entered in your user preferences will appear as the "From
 'emailccsubject'  => 'Copy of your message to $1: $2',
 'emailsent'       => 'E-mail sent',
 'emailsenttext'   => 'Your e-mail message has been sent.',
+'emailuserfooter' => 'Please note, $1 cannot be held responsible for the content of this email.
+The option to remove yourself from these mailings is in your preferences
+Check your preferences at $2 and uncheck "Enable e-mail from other users."',
 
 # Watchlist
 'watchlist'            => 'My watchlist',

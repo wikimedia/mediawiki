@@ -142,11 +142,16 @@ class EmailUserForm {
 	 * check the edit token and ping limiter in advance.
 	 */
 	function doSubmit() {
-		global $wgUser, $wgUserEmailUseReplyTo;
+		global $wgUser, $wgUserEmailUseReplyTo, $wgSiteName;
 
 		$to = new MailAddress( $this->target );
 		$from = new MailAddress( $wgUser );
 		$subject = $this->subject;
+
+		$prefsTitle = Title::newFromText( 'Preferences', NS_SPECIAL );
+		
+		// Add a standard footer
+		$this->text = $this->text . "\n" . wfMsg( 'emailuserfooter', array( $wgSitename, $prefsTitle->getFullURL() ) );
 
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
 
