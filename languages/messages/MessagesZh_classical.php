@@ -7,8 +7,6 @@
  * Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */
 
-$fallback = 'zh-hant';
-
 $skinNames = array(
         'standard' => '經典',
         'nostalgia' => '懷古',
@@ -16,6 +14,7 @@ $skinNames = array(
         'monobook' => '單書',
         'myskin' => '吾風',
 	'chick' => '窈窕',
+	'simple' => '簡明',
 	'modern' => '時髦',
 );
 
@@ -1747,6 +1746,29 @@ $NEWPAGE
 'tooltip-watch'                   => '哨此報',
 'tooltip-recreate'                => '昔棄鄙，重起灶',
 'tooltip-upload'                  => '獻品備，伐步跑',
+
+# Stylesheets
+'common.css'      => '/* 此之 CSS 用於全面也 */',
+'standard.css'    => '/* 此之 CSS 用於經典面之簿也 */',
+'nostalgia.css'   => '/* 此之 CSS 用於懷古面之簿也 */',
+'cologneblue.css' => '/* 此之 CSS 用於馨藍面之簿也 */',
+'monobook.css'    => '/* 此之 CSS 用於單書面之簿也 */',
+'myskin.css'      => '/* 此之 CSS 用於吾風面之簿也 */',
+'chick.css'       => '/* 此之 CSS 用於窈窕面之簿也 */',
+'simple.css'      => '/* 此之 CSS 用於簡明面之簿也 */',
+'modern.css'      => '/* 此之 CSS 用於時髦面之簿也 */',
+'print.css'       => '/* 此之 CSS 將應用到可打印版本 */',
+
+# Scripts
+'common.js'      => '/* 此之JavaScript將載於全簿之頁。 */',
+'standard.js'    => '/* 此之JavaScript將載於用經典面之簿 */',
+'nostalgia.js'   => '/* 此之JavaScript將載於用懷古面之簿 */',
+'cologneblue.js' => '/* 此之JavaScript將載於用馨藍面之簿 */',
+'monobook.js'    => '/* 此之JavaScript將載於用單書面之簿 */',
+'myskin.js'      => '/* 此之JavaScript將載於用吾風面之簿 */',
+'chick.js'       => '/* 此之JavaScript將載於用窈窕面之簿 */',
+'simple.js'      => '/* 此之JavaScript將載於用簡明面之簿 */',
+'modern.js'      => '/* 此之JavaScript將載於用時髦面之簿 */',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}無簿者',
