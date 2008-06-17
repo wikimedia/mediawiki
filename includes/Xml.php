@@ -457,7 +457,7 @@ class Xml {
 	 * Shortcut for creating fieldsets.
 	 *
 	 * @param $legend Legend of the fieldset. If evaluates to false, legend is not added.
-	 * @param $content Pre-escaped content for the fieldset. If null, only open fieldset is returned.
+	 * @param $content Pre-escaped content for the fieldset. If false, only open fieldset is returned.
 	 * @param $attribs Any attributes to fieldset-element.
 	 */
 	public static function fieldset( $legend = false, $content = false, $attribs = array() ) {
