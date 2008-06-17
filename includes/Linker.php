@@ -277,14 +277,16 @@ class Linker {
 	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
 	 * @return the a-element
 	 */
-	function makeKnownLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
+	function makeKnownLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( !$nt instanceof Title ) {
+		if ( !$title instanceof Title ) {
 			# Fail gracefully
 			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
+
+		$nt = $this->normaliseSpecialPage( $title );
 
 		$u = $nt->escapeLocalURL( $query );
 		if ( $nt->getFragment() != '' ) {
@@ -321,14 +323,16 @@ class Linker {
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
-	function makeBrokenLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( !$nt instanceof Title ) {
+		if ( !$title instanceof Title ) {
 			# Fail gracefully
 			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
+
+		$nt = $this->normaliseSpecialPage( $title );
 
 		if( $nt->getNamespace() == NS_SPECIAL ) {
 			$q = $query;
@@ -419,6 +423,16 @@ class Linker {
 		}
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		return "<strong class=\"selflink\">{$prefix}{$text}{$inside}</strong>{$trail}";
+	}
+
+	function normaliseSpecialPage( Title $title ) {
+		if ( $title->getNamespace() == NS_SPECIAL ) {
+			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
+			if ( !$name ) return $title;
+			return SpecialPage::getTitleFor( $name, $subpage );
+		} else {
+			return $title;
+		}
 	}
 
 	/** @todo document */
