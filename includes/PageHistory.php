@@ -498,20 +498,8 @@ class PageHistory {
 	 * @param string $type
 	 */
 	function feed( $type ) {
-		global $IP;
-		require_once "$IP/includes/specials/Recentchanges.php";
-
-		global $wgFeed, $wgFeedClasses;
-
-		if ( !$wgFeed ) {
-			global $wgOut;
-			$wgOut->addWikiMsg( 'feed-unavailable' );
-			return;
-		}
-
-		if( !isset( $wgFeedClasses[$type] ) ) {
-			global $wgOut;
-			$wgOut->addWikiMsg( 'feed-invalid' );
+		global $wgFeedClasses;
+		if ( !FeedUtils::checkFeedOutput($type) ) {
 			return;
 		}
 
@@ -555,7 +543,7 @@ class PageHistory {
 	function feedItem( $row ) {
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->mTitle );
-		$text = rcFormatDiffRow( $this->mTitle,
+		$text = FeedUtils::formatDiffRow( $this->mTitle,
 			$this->mTitle->getPreviousRevisionID( $rev->getId() ),
 			$rev->getId(),
 			$rev->getTimestamp(),
