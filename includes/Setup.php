@@ -195,8 +195,8 @@ $messageMemc =& wfGetMessageCacheStorage();
 $parserMemc =& wfGetParserCacheStorage();
 
 wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
-       "\nMessage cache: " . get_class( $messageMemc ) .
-	   "\nParser cache: " . get_class( $parserMemc ) . "\n" );
+	"\nMessage cache: " . get_class( $messageMemc ) .
+	"\nParser cache: " . get_class( $parserMemc ) . "\n" );
 
 wfProfileOut( $fname.'-memcached' );
 wfProfileIn( $fname.'-SetupSession' );
@@ -241,7 +241,7 @@ $wgOut = new StubObject( 'wgOut', 'OutputPage' );
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
 $wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache',
-	array( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
+	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
 
 wfProfileOut( $fname.'-globals' );
 wfProfileIn( $fname.'-User' );
