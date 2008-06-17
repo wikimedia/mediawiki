@@ -267,8 +267,7 @@ class NewPagesForm {
 	 * @param string $type
 	 */
 	protected function feed( $type ) {
-		require_once 'SpecialRecentchanges.php';
-
+		require_once('Recentchanges.php');
 		global $wgFeed, $wgFeedClasses;
 
 		if ( !$wgFeed ) {
