@@ -8,7 +8,7 @@
 /**
  *
  */
-require_once( 'SpecialRecentchanges.php' );
+require_once( 'Recentchanges.php' );
 
 /**
  * Entrypoint
@@ -151,7 +151,6 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 				$rchanges[] = $obj;
 			}
 		}
-		require_once( "SpecialRecentchanges.php" );
 		$wgOut->disable();
 		rcDoOutputFeed( $rchanges, $feed );
 		return;
