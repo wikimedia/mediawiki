@@ -5,9 +5,6 @@
  * @ingroup SpecialPage
  */
 
-/**
- *
- */
 require_once( 'Recentchanges.php' );
 
 /**
@@ -90,14 +87,12 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 	$fields .= $uid ? ",wl_user" : "";
 
 	// Check if this should be a feed
+
 	$feed = false;
-	global $wgSitename, $wgFeedClasses, $wgContLanguageCode, $wgFeedLimit;
+	global $wgFeedLimit;
 	$feedFormat = $wgRequest->getVal( 'feed' );
-	if( $feedFormat && isset( $wgFeedClasses[$feedFormat] ) ) {
-		$feedTitle = $wgSitename . ' - ' . wfMsgForContent( 'recentchangeslinked-title', $nt->getPrefixedText() ) . 
-			' [' . $wgContLanguageCode . ']';
-		$feed = new $wgFeedClasses[$feedFormat]( $feedTitle, 
-			htmlspecialchars( wfMsgForContent('recentchangeslinked') ), $wgTitle->getFullUrl() );
+	if( $feedFormat ) {
+		$feed = new ChangesFeed( $feedFormat, false );
 		# Sanity check
 		if( $limit > $wgFeedLimit ) {
 			$limit = $wgFeedLimit;
@@ -152,7 +147,12 @@ function wfSpecialRecentchangeslinked( $par = NULL ) {
 			}
 		}
 		$wgOut->disable();
-		rcDoOutputFeed( $rchanges, $feed );
+
+		$feedObj = $feed->getFeedObject(
+			wfMsgForContent( 'recentchangeslinked-title', $nt->getPrefixedText() ),
+			wfMsgForContent( 'recentchangeslinked' )
+		);
+		ChangesFeed::generateFeed( $rchanges, $feedObj );
 		return;
 	}
 	
