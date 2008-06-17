@@ -15,8 +15,8 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$opts = new FormOptions();
 
-		$opts->add( 'days',  $wgUser->getDefaultOption('rcdays') );
-		$opts->add( 'limit', $wgUser->getDefaultOption('rclimit') );
+		$opts->add( 'days',  (int)$wgUser->getDefaultOption('rcdays') );
+		$opts->add( 'limit', (int)$wgUser->getDefaultOption('rclimit') );
 		$opts->add( 'from', '' );
 
 		$opts->add( 'hideminor',     false );
@@ -39,8 +39,8 @@ class SpecialRecentChanges extends SpecialPage {
 		global $wgUser, $wgRequest;
 
 		$opts = $this->getDefaultOptions();
-		$opts['days'] = $wgUser->getOption( 'rcdays', $opts['days'] );
-		$opts['limit'] = $wgUser->getOption( 'rclimit', $opts['limit'] );
+		$opts['days'] = (int)$wgUser->getOption( 'rcdays', $opts['days'] );
+		$opts['limit'] = (int)$wgUser->getOption( 'rclimit', $opts['limit'] );
 		$opts['hideminor'] = $wgUser->getOption( 'hideminor', $opts['hideminor'] );
 		$opts->fetchValuesFromRequest( $wgRequest );
 
@@ -336,7 +336,7 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$panel = array();
 		$panel[] = rcOptionsPanel( $defaults, $nondefaults );
-		$panel[] = '<hr >';
+		$panel[] = '<hr />';
 
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
