@@ -155,7 +155,7 @@ class EmailUserForm {
 		$footerArgs[1] = $from->name;
 		$footerArgs[2] = $to->name;
 		$footerArgs[3] = $prefsTitle->getFullURL();
-		$this->text = $this->text . "\n" . wfMsg( 'emailuserfooter', $footerArgs );
+		$this->text = $this->text . "\n" . wfMsgExt( 'emailuserfooter', 'parsemag', $footerArgs );
 		
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
 
@@ -190,7 +190,7 @@ class EmailUserForm {
 			$mailResult = UserMailer::send( $to, $mailFrom, $subject, $this->text, $replyTo );
 
 			if( WikiError::isError( $mailResult ) ) {
-				return $mailResult;			
+				return $mailResult;
 				
 			} else {
 
