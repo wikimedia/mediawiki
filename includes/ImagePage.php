@@ -685,7 +685,7 @@ EOT
 
 		$sk = $wgUser->getSkin();
 		foreach ( $redirects as $title ) {
-			$link = $sk->makeKnownLinkObj( $title, "" );
+			$link = $sk->makeKnownLinkObj( $title, "", "redirect=no" );
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul></div>\n" );
