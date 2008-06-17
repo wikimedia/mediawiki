@@ -324,6 +324,10 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.',
 'emailccsubject'  => 'Kopie Ihrer Nachricht an $1: $2',
 'emailsenttext'   => 'Ihre E-Mail wurde verschickt.',
+'emailuserfooter' => 'Der Versamd dieser {{SITENAME}}-E-Mail wurde von $1 für $2 veranlasst.
+Bitte beachten Sie, dass {{SITENAME}} für den Inhalt dieser E-Mail nicht verantwortlich ist.
+Die Möglichkeit, den Erhalt von E-Mails zu unterbinden, finden Sie in Ihren Einstellungen unter $3.
+Deaktivieren Sie dort die Option "{{int:allowemail}}".',
 
 # Watchlist
 'nowatchlist'       => 'Sie haben keine Einträge auf Ihrer Beobachtungsliste.',

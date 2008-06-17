@@ -38,9 +38,9 @@ $skinNames = array(
 	'monobook'      => 'MonoBook',
 	'myskin'        => 'MySkin',
 	'chick'         => 'Küken',
-	'simple'        => 'Einfach'
+	'simple'        => 'Einfach',
+	'modern'        => 'Modern'
 );
-
 
 $bookstoreList = array(
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
@@ -1027,7 +1027,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'contextchars'             => 'Zeichen pro Zeile:',
 'stub-threshold'           => 'Linkformatierung <a href="#" class="stub">kleiner Seiten</a> (in Byte):',
 'recentchangesdays'        => 'Anzahl der Tage, die die Liste der „Letzten Änderungen“ standardmäßig umfassen soll:',
-'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“:',
+'recentchangescount'       => 'Anzahl der Einträge in „Letzte Änderungen“, der Versionsgeschichte und den Logbüchern:',
 'savedprefs'               => 'Deine Einstellungen wurden gespeichert.',
 'timezonelegend'           => 'Zeitzone',
 'timezonetext'             => '¹Gib die Anzahl der Stunden ein, die zwischen deiner Zeitzone und UTC liegen.',
@@ -1589,6 +1589,10 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'emailccsubject'  => 'Kopie deiner Nachricht an $1: $2',
 'emailsent'       => 'E-Mail verschickt',
 'emailsenttext'   => 'Deine E-Mail wurde verschickt.',
+'emailuserfooter' => 'Der Versamd dieser {{SITENAME}}-E-Mail wurde von $1 für $2 veranlasst.
+Bitte beachte, dass {{SITENAME}} für den Inhalt dieser E-Mail nicht verantwortlich ist.
+Die Möglichkeit, den Erhalt von E-Mails zu unterbinden, findest du in deinen Einstellungen unter $3.
+Deaktiviere dort die Option „$4“.',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
@@ -2132,18 +2136,34 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-upload'                  => 'Hochladen starten',
 
 # Stylesheets
-'common.css'   => '/** CSS an dieser Stelle wirkt sich auf alle Skins aus */',
-'monobook.css' => '/** Kleinschreibung nicht erzwingen */
+'common.css'      => '/* CSS an dieser Stelle wirkt sich auf alle Skins aus */',
+'standard.css'    => '/* CSS an dieser Stelle wirkt sich auf den Klassik-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
+'nostalgia.css'   => '/* CSS an dieser Stelle wirkt sich auf den Nostalgie-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
+'cologneblue.css' => '/* CSS an dieser Stelle wirkt sich auf den Kölnisch Blau-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
+'monobook.css'    => '/* CSS an dieser Stelle wirkt sich auf den Monobook-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */
+/* Kleinschreibung nicht erzwingen */
 .portlet h5,
 .portlet h6,
 #p-personal ul,
 #p-cactions li a {
 	text-transform: none;
 }',
+'myskin.css'      => '/* CSS an dieser Stelle wirkt sich auf den MySkin-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
+'chick.css'       => '/* CSS an dieser Stelle wirkt sich auf den Küken-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
+'simple.css'      => '/* CSS an dieser Stelle wirkt sich auf den Einfach-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
+'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den MySkin-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
+'print.css'       => '/* CSS an dieser Stelle wirkt sich auf die Druckausgabe aus */',
 
 # Scripts
-'common.js'   => '/* Jedes JavaScript hier wird für alle Benutzer für jede Seite geladen. */',
-'monobook.js' => '/* Veraltet; benutzer stattdessen [[MediaWiki:common.js]] */',
+'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
+'standard.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Klassik-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'nostalgia.js'   => '/* Das folgende JavaScript wird für Benutzer geladen, die den Nostalgie-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer geladen, die den Kölnisch Blau-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'monobook.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Monobook-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'myskin.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Myskin-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'chick.js'       => '/* Das folgende JavaScript wird für Benutzer geladen, die den KükenSkin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'simple.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Einfach-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'modern.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Modern-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
 
 # Metadata
 'nodublincore'      => 'Dublin-Core-RDF-Metadaten sind für diesen Server deaktiviert.',
