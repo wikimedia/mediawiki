@@ -151,10 +151,9 @@ class EmailUserForm {
 		$prefsTitle = Title::newFromText( 'Preferences', NS_SPECIAL );
 		
 		// Add a standard footer
-		$footerArgs[0] = $wgSitename;
-		$footerArgs[1] = $from->name;
-		$footerArgs[2] = $to->name;
-		$footerArgs[3] = $prefsTitle->getFullURL();
+		$footerArgs[0] = $from->name;
+		$footerArgs[1] = $to->name;
+		$footerArgs[2] = $prefsTitle->getFullURL();
 		$this->text = $this->text . "\n" . wfMsgExt( 'emailuserfooter', 'parsemag', $footerArgs );
 		
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
