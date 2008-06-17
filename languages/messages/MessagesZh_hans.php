@@ -2004,12 +2004,27 @@ $1',
 'tooltip-upload'                  => '开始上传',
 
 # Stylesheets
-'common.css'   => '/* 此处的 CSS 将应用于所有的皮肤 */',
-'monobook.css' => '/* 此处的 CSS 将影响使用 Monobook 皮肤的用户 */',
+'common.css'      => '/* 此处的 CSS 将应用于所有的皮肤 */',
+'standard.css'    => '/* 此处的 CSS 将影响使用标准皮肤的用户 */',
+'nostalgia.css'   => '/* 此处的 CSS 将影响使用怀旧皮肤的用户 */',
+'cologneblue.css' => '/* 此处的 CSS 将影响使用科隆香水蓝皮肤的用户 */',
+'monobook.css'    => '/* 此处的 CSS 将影响使用 Monobook 皮肤的用户 */',
+'myskin.css'      => '/* 此处的 CSS 将影响使用 Myskin 皮肤的用户 */',
+'chick.css'       => '/* 此处的 CSS 将影响使用 Chick 皮肤的用户 */',
+'simple.css'      => '/* 此处的 CSS 将影响使用 Simple 皮肤的用户 */',
+'modern.css'      => '/* 此处的 CSS 将影响使用 Modern 皮肤的用户 */',
+'print.css'       => '/* 此处的 CSS 将应用到可打印版本 */',
 
 # Scripts
-'common.js'   => '/* 此处的JavaScript将载入于所有用户每一个页面。 */',
-'monobook.js' => '/* 已经不再使用；请用[[MediaWiki:common.js]] */',
+'common.js'      => '/* 此处的JavaScript将加载于所有用户每一个页面。 */',
+'standard.js'    => '/* 此处的JavaScript将加载于使用标准皮肤的用户 */',
+'nostalgia.js'   => '/* 此处的JavaScript将加载于使用怀旧皮肤的用户 */',
+'cologneblue.js' => '/* 此处的JavaScript将加载于使用科隆香水蓝皮肤的用户 */',
+'monobook.js'    => '/* 此处的JavaScript将加载于使用Monobook皮肤的用户 */',
+'myskin.js'      => '/* 此处的JavaScript将加载于使用Myskin皮肤的用户 */',
+'chick.js'       => '/* 此处的JavaScript将加载于使用Chick皮肤的用户 */',
+'simple.js'      => '/* 此处的JavaScript将加载于使用Simple皮肤的用户 */',
+'modern.js'      => '/* 此处的JavaScript将加载于使用Modern皮肤的用户 */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF 元数据在该服务器不可用。',

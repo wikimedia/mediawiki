@@ -2039,12 +2039,27 @@ $1',
 'tooltip-upload'                  => '開始上載',
 
 # Stylesheets
-'common.css'   => '/* 響呢度放 CSS 碼來改成個網站嘅畫面 */',
-'monobook.css' => '/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 畫面 */',
+'common.css'      => '/* 響呢度放 CSS 碼來改成個網站嘅畫面 */',
+'standard.css'    => '/* 響呢度放 CSS 碼去改用戶用嘅傳統畫面 */',
+'nostalgia.css'   => '/* 響呢度放 CSS 碼去改用戶用嘅懷舊畫面 */',
+'cologneblue.css' => '/* 響呢度放 CSS 碼去改用戶用嘅科隆藍畫面 */',
+'monobook.css'    => '/* 響呢度放 CSS 碼去改用戶用嘅 Monobook 畫面 */',
+'myskin.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅我嘅畫面 */',
+'chick.css'       => '/* 響呢度放 CSS 碼去改用戶用嘅俏畫面 */',
+'simple.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅簡單畫面 */',
+'modern.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅摩登畫面 */',
+'print.css'       => '/* 響呢度放 CSS 碼去改用戶用嘅可打印版本 */',
 
 # Scripts
-'common.js'   => '/* 響每一次個頁面載入時，所有用戶都會載入呢度所有嘅JavaScript。 */',
-'monobook.js' => '/* 己經唔用；用 [[MediaWiki:common.js]] */',
+'common.js'      => '/* 響每一次個頁面載入時，所有用戶都會載入呢度任何嘅JavaScript。 */',
+'standard.js'    => '/* 響每一次個頁面載入時，用標準畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'nostalgia.js'   => '/* 響每一次個頁面載入時，用懷舊畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'cologneblue.js' => '/* 響每一次個頁面載入時，用科隆藍畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'monobook.js'    => '/* 響每一次個頁面載入時，用 Monobook 畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'myskin.js'      => '/* 響每一次個頁面載入時，用我嘅畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'chick.js'       => '/* 響每一次個頁面載入時，用俏畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'simple.js'      => '/* 響每一次個頁面載入時，用簡單畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'modern.js'      => '/* 響每一次個頁面載入時，用摩登畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata 已經喺呢一個伺服器上停用。',
