@@ -149,10 +149,16 @@ class EmailUserForm {
 		$subject = $this->subject;
 
 		$prefsTitle = Title::newFromText( 'Preferences', NS_SPECIAL );
+		$emailTitle = Title::newFromText( 'Emailuser', NS_SPECIAL );
 		
 		// Add a standard footer
-		$this->text = $this->text . "\n" . wfMsg( 'emailuserfooter', array( $wgSitename, $prefsTitle->getFullURL() ) );
-
+		$footerArgs[0] = $wgSitename;
+		$footerArgs[1] = $from->name;
+		$footerArgs[2] = $to->name;
+		$footerArgs[3] = $prefsTitle->getFullURL();
+		$footerArgs[4] = $emailTitle->getFullURL() . '/' . urlencode( $from->name ); // Url to Special:Emailuser/Username
+		$this->text = $this->text . "\n" . wfMsg( 'emailuserfooter', $footerArgs );
+		
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
 
 			if( $wgUserEmailUseReplyTo ) {
