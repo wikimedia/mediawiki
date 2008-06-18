@@ -137,7 +137,7 @@ Localisation:
 	cleared by: Language::loadLocalisation()
 
 Message Cache:
-	stored in: $parserMemc
+	stored in: $messageMemc
 	key: $wgDBname:messages, $wgDBname:messages-hash, $wgDBname:messages-status
 	ex: wikidb:messages, wikidb:messages-hash, wikidb:messages-status
 	stores: an array where the keys are DB keys and the values are messages

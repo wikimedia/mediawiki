@@ -1099,7 +1099,7 @@ $funct: function called to execute the special page
 'SpecialPage_initList': called when setting up SpecialPage::$mList, use this hook to remove a core special page
 $list: list (array) of core special pages
 
-'SpecialRecentChangesPanel' called when building form options in SpecialRecentChanges
+'SpecialRecentChangesPanel': called when building form options in SpecialRecentChanges
 &$extraOpts: array of added items, to which can be added
 $opts: FormOptions for this request
 
