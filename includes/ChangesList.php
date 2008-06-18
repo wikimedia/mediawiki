@@ -121,7 +121,7 @@ class ChangesList {
 
 		# "[[x]] moved to [[y]]"
 		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
-		$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
+		$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no', '', '', '', 'class="mw-redirect"' ),
 			$this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 	}
 
