@@ -1,29 +1,21 @@
 <?php
-/**
- * @file
- * @ingroup SpecialPage
- */
-
-
-/**
- * Start point
- */
-function wfSpecialNewPages( $par, $sp ) {
-	$page = new NewPagesForm();
-	$page->execute( $par, $sp->including() );
-}
 
 /**
  * implements Special:Newpages
  * @ingroup SpecialPage
  */
-class NewPagesForm {
+class SpecialNewpages extends SpecialPage {
 
 	// Stored objects
-	protected $opts, $title, $skin;
+	protected $opts, $skin;
 
 	// Some internal settings
 	protected $showNavigation = false;
+
+	public function __construct(){
+		parent::__construct( 'Newpages' );
+		$this->includable( true );	
+	}
 
 	protected function setup( $par ) {
 		global $wgRequest, $wgUser, $wgEnableNewpagesUserFilter;
@@ -52,7 +44,6 @@ class NewPagesForm {
 
 		// Store some objects
 		$this->skin = $wgUser->getSkin();
-		$this->title = SpecialPage::getTitleFor( 'NewPages' );
 	}
 
 	protected function parseParams( $par ) {
@@ -89,16 +80,18 @@ class NewPagesForm {
 	 * Show a form for filtering namespace and username
 	 *
 	 * @param string $par
-	 * @param bool $including true if the page is being included with {{Special:Newpages}}
 	 * @return string
 	 */
-	public function execute( $par, $including ) {
+	public function execute( $par ) {
 		global $wgLang, $wgGroupPermissions, $wgUser, $wgOut;
 
-		$this->showNavigation = !$including; // Maybe changed in setup
+		$this->setHeaders();
+		$this->outputHeader();
+
+		$this->showNavigation = !$this->including(); // Maybe changed in setup
 		$this->setup( $par );
 
-		if( !$including ) {
+		if( !$this->including() ) {
 			// Settings
 			$this->form();
 
@@ -146,9 +139,10 @@ class NewPagesForm {
 		$changed = $this->opts->getChangedValues();
 		unset($changed['offset']); // Reset offset if query type changes
 
+		$self = $this->getTitle();
 		foreach ( $filters as $key => $msg ) {
 			$onoff = 1 - $this->opts->getValue($key);
-			$link = $this->skin->makeKnownLinkObj( $this->title, $showhide[$onoff],
+			$link = $this->skin->makeKnownLinkObj( $self, $showhide[$onoff],
 				wfArrayToCGI( array( $key => $onoff ), $changed )
 			);
 			$links[$key] = wfMsgHtml( $msg, $link );
@@ -177,7 +171,7 @@ class NewPagesForm {
 		$hidden = implode( "\n", $hidden );
 
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
-			Xml::hidden( 'title', $this->title->getPrefixedDBkey() ) .
+			Xml::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( wfMsg( 'newpages' ) ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			"<tr>
@@ -284,7 +278,7 @@ class NewPagesForm {
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
 			wfMsg( 'tagline' ),
-			$this->title->getFullUrl() );
+			$this->getTitle()->getFullUrl() );
 
 		$pager = new NewPagesPager( $this, $this->opts );
 		$limit = $this->opts->getValue( 'limit' );
@@ -369,7 +363,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	function getTitle(){
 		static $title = null;
 		if ( $title === null )
-			$title = SpecialPage::getTitleFor( 'Newpages' );
+			$title = $this->mForm->getTitle();
 		return $title;
 	}
 

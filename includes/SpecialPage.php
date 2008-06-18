@@ -116,7 +116,7 @@ class SpecialPage
 		'Fewestrevisions'           => array( 'SpecialPage', 'Fewestrevisions' ),
 		'Shortpages'                => array( 'SpecialPage', 'Shortpages' ),
 		'Longpages'                 => array( 'SpecialPage', 'Longpages' ),
-		'Newpages'                  => array( 'IncludableSpecialPage', 'Newpages' ),
+		'Newpages'                  => 'SpecialNewpages',
 		'Ancientpages'              => array( 'SpecialPage', 'Ancientpages' ),
 		'Deadendpages'              => array( 'SpecialPage', 'Deadendpages' ),
 		'Protectedpages'            => array( 'SpecialPage', 'Protectedpages' ),
