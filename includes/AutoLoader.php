@@ -407,7 +407,7 @@ class AutoLoader {
 		'MostlinkedPage' => 'includes/specials/Mostlinked.php',
 		'MostrevisionsPage' => 'includes/specials/Mostrevisions.php',
 		'MovePageForm' => 'includes/specials/Movepage.php',
-		'NewPagesForm' => 'includes/specials/Newpages.php',
+		'SpecialNewpages' => 'includes/specials/Newpages.php',
 		'NewPagesPager' => 'includes/specials/Newpages.php',
 		'PageArchive' => 'includes/specials/Undelete.php',
 		'PasswordResetForm' => 'includes/specials/Resetpass.php',
