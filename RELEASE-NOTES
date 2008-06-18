@@ -380,6 +380,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4977) Fix for possible squid purging errors when using HTTP purges
   and multiple servers
 * (bug 14572) Redirects listed on file links on image pages no longer redirect.
+* (bug 14537) Change interwiki name for Old Church Slavonic (cu)
 
 === API changes in 1.13 ===
 
