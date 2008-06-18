@@ -975,7 +975,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'contextchars'             => '每一行嘅字數：',
 'stub-threshold'           => '<a href="#" class="stub">楔位連結</a>格式門檻 (bytes):',
 'recentchangesdays'        => '最近更改中嘅顯示日數：',
-'recentchangescount'       => '最近更改中嘅編輯數：',
+'recentchangescount'       => '最近更改、編輯紀錄同日誌頁中嘅編輯數：',
 'savedprefs'               => '你嘅喜好設定已經儲存。',
 'timezonelegend'           => '時區',
 'timezonetext'             => '¹你嘅本地時間同伺服器時間 (UTC) 之間嘅差，以鐘頭為單位。',
@@ -1498,6 +1498,10 @@ Template:搞清楚',
 'emailccsubject'  => '你畀$1: $2封信嘅副本',
 'emailsent'       => '電郵已傳送',
 'emailsenttext'   => '你嘅電郵信息已傳送。',
+'emailuserfooter' => '由$1寄畀$2經{{SITENAME}}自動發出嘅。
+請留意，{{SITENAME}}唔能夠為呢封電郵嘅內容負責。
+響你嘅喜好設定度有一個選項係可以閂咗呢個選項嘅。
+請檢查響 $3 嘅喜好設定，然後唔好剔「$4」。',
 
 # Watchlist
 'watchlist'            => '監視清單',
