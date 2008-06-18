@@ -915,7 +915,7 @@ $2',
 'contextchars'             => '每行显示字数:',
 'stub-threshold'           => '<a href="#" class="stub">短页面链接</a>格式门槛值 (字节):',
 'recentchangesdays'        => '最近更改中的显示日数:',
-'recentchangescount'       => '最近更改中的编辑数:',
+'recentchangescount'       => '最近更改、历史及日志页面中的编辑数:',
 'savedprefs'               => '您的个人参数设置已经保存。',
 'timezonelegend'           => '时区',
 'timezonetext'             => '¹输入当地时间与服务器时间(UTC)的时差。',
@@ -1447,6 +1447,10 @@ Template:消除歧義',
 'emailccsubject'  => '将您的消息复制到 $1: $2',
 'emailsent'       => '电子邮件已发送',
 'emailsenttext'   => '您的电子邮件已经发出。',
+'emailuserfooter' => '由$1寄给$2经{{SITENAME}}自动发出的。
+请留意，{{SITENAME}}不能为这封电子邮件的内容负责。
+在您的参数设置中有一个选项是可以将自己移除这个选项的。
+请检查在 $3 的参数设置中，然后不要选取“$4”。',
 
 # Watchlist
 'watchlist'            => '监视列表',

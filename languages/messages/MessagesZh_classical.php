@@ -800,7 +800,7 @@ $2',
 'resultsperpage'        => '頁示尋',
 'contextlines'          => '尋分列',
 'contextchars'          => '列有字',
-'recentchangescount'    => '近易有題：',
+'recentchangescount'    => '近易、史與誌有題：',
 'savedprefs'            => '簿註書矣',
 'timezonelegend'        => '時區',
 'timezonetext'          => '¹與伺服器偏時有',
@@ -1252,6 +1252,10 @@ $2',
 'emailccsubject'  => '致$1複本：$2',
 'emailsent'       => '書遣矣',
 'emailsenttext'   => '書遣矣',
+'emailuserfooter' => '自$1給$2經{{SITENAME}}自發之。
+留，{{SITENAME}}無為之內書而負也。
+爾之簿註有一乃自除之項也。
+查於 $3 之簿註，無選「$4」之。',
 
 # Watchlist
 'watchlist'            => '哨站',

@@ -891,7 +891,7 @@ $2',
 'contextchars'             => '每行字數:',
 'stub-threshold'           => '<a href="#" class="stub">短頁面連結</a>格式門檻值 (位元組):',
 'recentchangesdays'        => '最近更改中的顯示日數:',
-'recentchangescount'       => '最近更改中的編輯數:',
+'recentchangescount'       => '最近更改、歷史及日誌頁面中的編輯數:',
 'savedprefs'               => '您的個人參數設置已經保存。',
 'timezonelegend'           => '時區',
 'timezonetext'             => '¹輸入當地時間與伺服器時間(UTC)的時差。',
@@ -1423,6 +1423,10 @@ Template:消除歧義',
 'emailccsubject'  => '將您的訊息複製到 $1: $2',
 'emailsent'       => '電子郵件已發送',
 'emailsenttext'   => '您的電子郵件已經發出。',
+'emailuserfooter' => '由$1寄給$2經{{SITENAME}}自動發出的。
+請留意，{{SITENAME}}不能為這封電子郵件的內容負責。
+在您的參數設置中有一個選項是可以將自己移除這個選項的。
+請檢查在 $3 的參數設置中，然後不要選取「$4」。',
 
 # Watchlist
 'watchlist'            => '監視列表',
