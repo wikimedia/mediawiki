@@ -327,7 +327,7 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'emailuserfooter' => 'Der Versamd dieser {{SITENAME}}-E-Mail wurde von $1 für $2 veranlasst.
 Bitte beachten Sie, dass {{SITENAME}} für den Inhalt dieser E-Mail nicht verantwortlich ist.
 Die Möglichkeit, den Erhalt von E-Mails zu unterbinden, finden Sie in Ihren Einstellungen unter $3.
-Deaktivieren Sie dort die Option "{{int:allowemail}}".',
+Deaktivieren Sie dort die Option „$4“.',
 
 # Watchlist
 'nowatchlist'       => 'Sie haben keine Einträge auf Ihrer Beobachtungsliste.',
