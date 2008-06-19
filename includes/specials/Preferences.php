@@ -489,6 +489,7 @@ class PreferencesForm {
 		global $wgContLang;
 
 		$align['align'] = $wgContLang->isRtl() ? 'right' : 'left';
+		$align['style'] = 'vertical-align:top;';
 
 		if ( is_null( $td3 ) ) {
 			$td3 = '';
