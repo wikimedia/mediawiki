@@ -366,6 +366,11 @@ h1, h2 {
 	font-weight: bold;
 }
 
+.pref-label, .pref-input {
+	text-align: left;
+	vertical-align: top;
+}
+
 #preftoc li.selected {
 	background-color: #bbbbbb;
 }

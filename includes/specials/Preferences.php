@@ -486,25 +486,21 @@ class PreferencesForm {
 	 * @return xhtml block
 	 */
 	function tableRow( $td1, $td2 = null, $td3 = null ) {
-		global $wgContLang;
-
-		$align['align'] = $wgContLang->isRtl() ? 'right' : 'left';
-		$align['style'] = 'vertical-align:top;';
 
 		if ( is_null( $td3 ) ) {
 			$td3 = '';
 		} else {
 			$td3 = Xml::tags( 'tr', null,
-				Xml::tags( 'td', array( 'colspan' => '2' ), $td3 )
+				Xml::tags( 'td', array( 'class' => 'pref-label', 'colspan' => '2' ), $td3 )
 			);
 		}
 
 		if ( is_null( $td2 ) ) {
-			$td1 = Xml::tags( 'td', $align + array( 'colspan' => '2' ), $td1 );
+			$td1 = Xml::tags( 'td', array( 'class' => 'pref-label', 'colspan' => '2' ), $td1 );
 			$td2 = '';
 		} else {
-			$td1 = Xml::tags( 'td', $align, $td1 );
-			$td2 = Xml::tags( 'td', $align, $td2 );
+			$td1 = Xml::tags( 'td', array( 'class' => 'pref-label' ), $td1 );
+			$td2 = Xml::tags( 'td', array( 'class' => 'pref-input' ), $td2 );
 		}
 
 		return Xml::tags( 'tr', null, $td1 . $td2 ). $td3 . "\n";
