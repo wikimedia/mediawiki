@@ -3333,6 +3333,20 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'iranian-calendar-m11' => 'Bahman', # only translate this message to other languages if you have to change it
 'iranian-calendar-m12' => 'Esfand', # only translate this message to other languages if you have to change it
 
+#Higri month names
++'hijri-calendar-m1' => 'Muharram', # only translate this message to other languages if you have to change it
++'hijri-calendar-m2' => 'Safar', # only translate this message to other languages if you have to change it
++'hijri-calendar-m3' => 'Rabi\' al-awwal', # only translate this message to other languages if you have to change it
++'hijri-calendar-m4' => 'Rabi\' al-thani', # only translate this message to other languages if you have to change it
++'hijri-calendar-m5' => 'Jumada al-awwal', # only translate this message to other languages if you have to change it
++'hijri-calendar-m6' => 'Jumada al-thani', # only translate this message to other languages if you have to change it
++'hijri-calendar-m7' => 'Rajab', # only translate this message to other languages if you have to change it
++'hijri-calendar-m8' => 'Sha\'aban', # only translate this message to other languages if you have to change it
++'hijri-calendar-m9' => 'Ramadan', # only translate this message to other languages if you have to change it
++'hijri-calendar-m10' => 'Shawwal', # only translate this message to other languages if you have to change it
++'hijri-calendar-m11' => 'Dhu al-Qi\'dah', # only translate this message to other languages if you have to change it
++'hijri-calendar-m12' => 'Dhu al-Hijjah', # only translate this message to other languages if you have to change it
+
 # Hebrew month names
 'hebrew-calendar-m1'      => 'Tishrei', # only translate this message to other languages if you have to change it
 'hebrew-calendar-m2'      => 'Cheshvan', # only translate this message to other languages if you have to change it

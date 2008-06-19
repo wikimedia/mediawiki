@@ -160,6 +160,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 2889) MediaWiki:Print.css applies to the printable version
 * (bug 14558) New system message (emailuserfooter) is now added to the footer of 
   e-mails sent with Special:Emailuser
+* Add support for Higri (Islamic) calendar
   
 === Bug fixes in 1.13 ===
 
