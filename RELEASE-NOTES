@@ -460,6 +460,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added 'hidden' flag to list=allcategories and prop=categoryinfo output
 * Added nocreate parameter to action=edit
 * (bug 14402) Added maxage and smaxage parameters to api.php
+* Added bkip parameter to list=blocks
 
 === Languages updated in 1.13 ===
 
