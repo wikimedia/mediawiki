@@ -403,11 +403,6 @@ div.prefsectiontip {
     margin-top: 1em;
 }
 
-.pref-label, .pref-input {
-	text-align: left;
-	vertical-align: top;
-}
-
 #mw_trackbacks {
 	border-style: groove;
 	padding: 0.2em;
