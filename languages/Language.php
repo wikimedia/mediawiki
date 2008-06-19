@@ -119,6 +119,13 @@ class Language {
 		'hebrew-calendar-m10-gen', 'hebrew-calendar-m11-gen', 'hebrew-calendar-m12-gen',
 		'hebrew-calendar-m6a-gen', 'hebrew-calendar-m6b-gen'
 	);
+	
+	static public $mHijriCalendarMonthMsgs = array(
+		'hijri-calendar-m1', 'hijri-calendar-m2', 'hijri-calendar-m3',
+		'hijri-calendar-m4', 'hijri-calendar-m5', 'hijri-calendar-m6',
+		'hijri-calendar-m7', 'hijri-calendar-m8', 'hijri-calendar-m9',
+		'hijri-calendar-m10', 'hijri-calendar-m11', 'hijri-calendar-m12'
+	);
 
 	/**
 	 * Create a language object for a given language code
@@ -435,8 +442,11 @@ class Language {
 	function getHebrewCalendarMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mHebrewCalendarMonthGenMsgs[$key-1] );
 	}
-
-
+	
+	function getHijriCalendarMonthName( $key ) {
+		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key-1] );
+	}
+	
 	/**
 	 * Used by date() and time() to adjust the time output.
 	 *
@@ -521,6 +531,11 @@ class Language {
 	 *    xjn  n (month number) in Hebrew calendar
 	 *    xjY  Y (full year) in Hebrew calendar
 	 *
+	 *   xmj  j (day number) in Hijri calendar
+	 *   xmF  F (month name) in Hijri calendar
+	 *   xmn  n (month number) in Hijri calendar
+	 *   xmY  Y (full year) in Hijri calendar
+	 *
 	 *    xkY  Y (full year) in Thai solar calendar. Months and days are
 	 *                       identical to the Gregorian calendar
 	 *
@@ -550,6 +565,7 @@ class Language {
 		$rawToggle = false;
 		$iranian = false;
 		$hebrew = false;
+		$hijri = false;
 		$thai = false;
 		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$num = false;
@@ -559,6 +575,7 @@ class Language {
 			}
 
 			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' ) && $p < strlen( $format ) - 1 ) {
+			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' || $code == 'xm' ) && $p < strlen( $format ) - 1 ) {
 				$code .= $format[++$p];
 			}
 
@@ -599,6 +616,10 @@ class Language {
 					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
 					$num = $iranian[2];
 					break;
+				case 'xmj':
+					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+					$num = $hijri[2];
+					break;
 				case 'xjj':
 					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
 					$num = $hebrew[2];
@@ -631,6 +652,10 @@ class Language {
 					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
 					$s .= $this->getIranianCalendarMonthName( $iranian[1] );
 					break;
+				case 'xmF':
+					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+					$s .= $this->getHijriCalendarMonthName( $hijri[1] );
+					break;
 				case 'xjF':
 					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
 					$s .= $this->getHebrewCalendarMonthName( $hebrew[1] );
@@ -647,6 +672,10 @@ class Language {
 				case 'xin':
 					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
 					$num = $iranian[1];
+					break;
+				case 'xmn':
+					if ( !$hijri ) $hijri = self::tsToHijri ( $ts );
+					$num = $hijri[1];
 					break;
 				case 'xjn':
 					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
@@ -670,6 +699,10 @@ class Language {
 				case 'xiY':
 					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
 					$num = $iranian[0];
+					break;
+				case 'xmY':
+					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+					$num = $hijri[0];
 					break;
 				case 'xjY':
 					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
@@ -822,6 +855,47 @@ class Language {
 		$jd= $jDayNo+1;
 
 		return array($jy, $jm, $jd);
+	}
+	/**
+	 * Converting Gregorian dates to Hijri dates.
+	 *
+	 * Based on a PHP-Nuke block by Sharjeel which is released under GNU/GPL license
+	 *
+	 * @link http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
+	 */
+	private static function tsToHijri ( $ts ) {
+		$year = substr( $ts, 0, 4 );
+		$month = substr( $ts, 4, 2 );
+		$day = substr( $ts, 6, 2 );
+		
+		$zyr = $year;
+		$zd=$day;
+		$zm=$month;
+		$zy=$zyr;
+
+
+
+		if (($zy>1582)||(($zy==1582)&&($zm>10))||(($zy==1582)&&($zm==10)&&($zd>14)))
+			{
+	
+	
+				    $zjd=(int)((1461*($zy + 4800 + (int)( ($zm-14) /12) ))/4) + (int)((367*($zm-2-12*((int)(($zm-14)/12))))/12)-(int)((3*(int)(( ($zy+4900+(int)(($zm-14)/12))/100)))/4)+$zd-32075;
+				    }
+		 else
+			{
+				    $zjd = 367*$zy-(int)((7*($zy+5001+(int)(($zm-9)/7)))/4)+(int)((275*$zm)/9)+$zd+1729777;
+			}
+		
+		$zl=$zjd-1948440+10632;
+		$zn=(int)(($zl-1)/10631);
+		$zl=$zl-10631*$zn+354;
+		$zj=((int)((10985-$zl)/5316))*((int)((50*$zl)/17719))+((int)($zl/5670))*((int)((43*$zl)/15238));
+		$zl=$zl-((int)((30-$zj)/15))*((int)((17719*$zj)/50))-((int)($zj/16))*((int)((15238*$zj)/43))+29;
+		$zm=(int)((24*$zl)/709);
+		$zd=$zl-(int)((709*$zm)/24);
+		$zy=30*$zn+$zj-30;
+
+		return array ($zy, $zm, $zd);
 	}
 
 	/**

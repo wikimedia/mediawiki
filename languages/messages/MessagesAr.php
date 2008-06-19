@@ -47,6 +47,7 @@ $datePreferences = array(
 	'mdy',
 	'dmy',
 	'ymd',
+	'hijri',
 	'ISO 8601',
 );
 
@@ -89,6 +90,10 @@ $dateFormats = array(
 	'ymd time' => 'H:i',
 	'ymd date' => 'Y xg j',
 	'ymd both' => 'H:i، Y xg j', # Arabic comma
+	
+	'hijri time' => 'H:i',
+	'hijri date' => 'xmj xmF xmY',
+	'hijri both' => 'H:i، xmj xmF xmY',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
@@ -2870,6 +2875,20 @@ $1',
 'iranian-calendar-m10' => 'دی',
 'iranian-calendar-m11' => 'بهمن',
 'iranian-calendar-m12' => 'اسفند',
+
+#Higri month names
+'hijri-calendar-m1' => 'محرم',
+'hijri-calendar-m2' => 'صفر',
+'hijri-calendar-m3' => 'ربيع الأول',  
+'hijri-calendar-m4' => 'ربيع الثاني',
+'hijri-calendar-m5' => 'جمادى الأولى',
+'hijri-calendar-m6' => 'جمادى الثانية',
+'hijri-calendar-m7' => 'رجب',
+'hijri-calendar-m8' => 'شعبان',
+'hijri-calendar-m9' => 'رمضان',
+'hijri-calendar-m10' => 'شوال',
+'hijri-calendar-m11' => 'ذو القعدة',
+'hijri-calendar-m12' => 'ذو الحجة',
 
 # Hebrew month names
 'hebrew-calendar-m1'      => 'تيشري',
