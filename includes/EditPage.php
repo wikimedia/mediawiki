@@ -749,13 +749,13 @@ class EditPage {
 			wfProfileOut( $fname );
 			return self::AS_SPAM_ERROR;
 		}
-		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section ) ) {
+		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, &$this->hookError, $this->summary ) ) {
 			# Error messages or other handling should be performed by the filter function
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_FILTERING;
 		}
-		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError ) ) ) {
+		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
@@ -833,7 +833,7 @@ class EditPage {
 			}
 
 			// Run post-section-merge edit filter
-			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError ) ) ) {
+			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
 				wfProfileOut( $fname );
 				return self::AS_HOOK_ERROR;
@@ -916,7 +916,7 @@ class EditPage {
 		$oldtext = $this->mArticle->getContent();
 
 		// Run post-section-merge edit filter
-		if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError ) ) ) {
+		if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR;
