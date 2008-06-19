@@ -32,8 +32,6 @@ $extraUserToggles = array(
 
 $fallback8bitEncoding = 'windows-1254';
 
-$linkPrefixExtension = true;
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Taspa',
 	NS_SPECIAL          => 'Arnaýı',
@@ -1276,8 +1274,8 @@ baptaw üşin math/README qujatın qarañız.',
 'contextlines'             => 'Nätïje saýın jol sanı:',
 'contextchars'             => 'Jol saýın tañba sanı:',
 'stub-threshold'           => '<a href="#" class="stub">Biteme siltemesin</a> pişimdew tabaldırığı (baýt):',
-'recentchangesdays'        => 'Jüıqtağı özgeristerdegi körsetiletin künder:',
-'recentchangescount'       => 'Jwıqtağı özgeristerdegi körsetiletin öñdemeler:',
+'recentchangesdays'        => 'Jüıqtağı özgeristerinde körsetpek kün sanı:',
+'recentchangescount'       => 'Jwıqtağı özgeristerdinde, tarïx jäne jwrnal betterinde körsetpek öñdeme sanı:',
 'savedprefs'               => 'Baptalımdarıñız saqtaldı.',
 'timezonelegend'           => 'Waqıt beldewi',
 'timezonetext'             => '¹ Jergilikti waqıtıñız ben server waqıtınıñ (UTC) arasındağı sağat sanı.',
@@ -1446,7 +1444,8 @@ baptaw üşin math/README qujatın qarañız.',
 'reuploaddesc'                => 'Qotarıp berwdi boldırmaw jäne qotarw pişinine qaýta kelw.',
 'uploadnologin'               => 'Kirmegensiz',
 'uploadnologintext'           => 'Faýldardı qotarıp berw üşin [[{{#special:Userlogin}}|kirwiñiz]] jön.',
-'upload_directory_read_only'  => 'Qotarıp beriletin qaltasına ($1) jazwğa veb-serverge ruqsat berilmegen.',
+'upload_directory_missing'    => 'Qotarıp bermek qaltası ($1) jetispeýdi jäne veb-server jarata almaýdı.',
+'upload_directory_read_only'  => 'Qotarıp bermek qaltasına ($1) veb-server jaza almaýdı.',
 'uploaderror'                 => 'Qotarıp berw qatesi',
 'uploadtext'                  => "Tömendegi pişindi faýldardı qotarıp berw üşin qoldanıñız. 
 Aldında qotarılıp berilgen faýldardı qaraw ne izdew üşin [[{{#special:Imagelist}}|qotarıp berilgen faýldar tizimine]] barıñız, tağı da qotarıp berwi men joywı  [[{{#special:Log}}/upload|qotarıp berw jwrnalına]] jazılıp alınadı.
@@ -1820,6 +1819,10 @@ Qatıswşı baptawıñızda engizgen e-poşta mekenjaýıñız «Kimnen» degen 
 'emailccsubject'  => '$1 degenge xatıñızdıñ köşirmesi: $2',
 'emailsent'       => 'Xat jöneltildi',
 'emailsenttext'   => 'E-poşta xatıñız jöneltildi.',
+'emailuserfooter' => '$1 degenge $2 üşin {{SITENAME}} özdiktik jönelken.
+Añğartpa: {{SITENAME}} bul xattıñ mağlumatına jawapkerşilik ustaý almaýdı.
+Bul xat taratw tiziminen öziñizdi alastawın baptalımdarıñızdan tañdaý alasız.
+$3 degendegi baptalımdarıñızdı tañdañız da «$4» degennen qusbelgini alastañız.',
 
 # Watchlist
 'watchlist'            => 'Baqılaw tizimi',
@@ -2393,6 +2396,29 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 'tooltip-watch'                   => 'Bul betti baqılaw tizimiñizge üstew',
 'tooltip-recreate'                => 'Bet joýılğanına qaramastan qaýta bastaw',
 'tooltip-upload'                  => 'Qotarıp berwdi bastaw',
+
+# Stylesheets
+'common.css'      => '/* Mında ornalastırılğan CSS barlıq mänerlerde qoldanıladı */',
+'standard.css'    => '/* Mında ornalastırılğan CSS tek «Dağdılı» (standard) mänerin paýdalanwşılarına ıqpal etedi */',
+'nostalgia.css'   => '/* Mında ornalastırılğan CSS tek «Añsaw» (nostalgia) mänerin paýdalanwşılarına ıqpal etedi */',
+'cologneblue.css' => '/* Mında ornalastırılğan CSS tek «Köln zeñgirligi» (cologneblue) mänerin paýdalanwşılarına ıqpal etedi skin */',
+'monobook.css'    => '/* Mında ornalastırılğan CSS tek «Dara kitap» (monobook) mänerin paýdalanwşılarına ıqpal etedi */',
+'myskin.css'      => '/* Mında ornalastırılğan CSS tek «Öz mänerim» (myskin) mänerin paýdalanwşılarına ıqpal etedi */',
+'chick.css'       => '/* Mında ornalastırılğan CSS tek «Balapan» (chick) mänerin paýdalanwşılarına ıqpal etedi */',
+'simple.css'      => '/* Mında ornalastırılğan CSS tek «Kädimgi» (simple) mänerin paýdalanwşılarına ıqpal etedi */',
+'modern.css'      => '/* Mında ornalastırılğan CSS tek «Zamanawï» (modern) mänerin paýdalanwşılarına ıqpal etedi */',
+'print.css'       => '/* Mında ornalastırılğan CSS basıp şığarw nusqa üşin qoldanadı */',
+
+# Scripts
+'common.js'      => '/* Mındağı ärtürli JavaScript kez kelgen bet qotarılğanda barlıq paýdalanwşılar üşin jegiledi. */',
+'standard.js'    => '/* Mındağı JavaScript tek «Dağdılı» (standard) mänerin paýdalanwşılar üşin jegiledi */',
+'nostalgia.js'   => '/* Mındağı JavaScript tek «Añsaw» (nostalgia) mänerin paýdalanwşılar üşin jegiledi*/',
+'cologneblue.js' => '/* Mındağı JavaScript tek «Köln zeñgirligi» (cologneblue) mänerin paýdalanwşılar üşin jegiledi */',
+'monobook.js'    => '/* Mındağı JavaScript tek «Dara kitap» (monobook) mänerin paýdalanwşılar üşin jegiledi */',
+'myskin.js'      => '/* Mındağı JavaScript tek «Öz mänerim» (myskin) mänerin paýdalanwşılar üşin jegiledi */',
+'chick.js'       => '/* Mındağı JavaScript tek «Balapan» (chick) mänerin paýdalanwşılar üşin jegiledi */',
+'simple.js'      => '/* Mındağı JavaScript tek «Kädimgi» (simple) mänerin paýdalanwşılar üşin jegiledi */',
+'modern.js'      => '/* Mındağı JavaScript tek «Zamanawï» (modern) mänerin paýdalanwşılar üşin jegiledi */',
 
 # Metadata
 'nodublincore'      => 'Bul serverde «Dublin Core RDF» türi qosımşa derekteri öşirilgen.',
