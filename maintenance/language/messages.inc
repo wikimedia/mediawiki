@@ -1891,7 +1891,6 @@ $wgMessageStructure = array(
 		'chick.css',
 		'simple.css',
 		'modern.css',
-		'print.css',
 	),
 	'scripts' => array(
 		'common.js',

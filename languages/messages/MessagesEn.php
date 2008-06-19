@@ -2673,7 +2673,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'chick.css'       => '/* CSS placed here will affect users of the Chick skin */', # only translate this message to other languages if you have to change it
 'simple.css'      => '/* CSS placed here will affect users of the Simple skin */', # only translate this message to other languages if you have to change it
 'modern.css'      => '/* CSS placed here will affect users of the Modern skin */', # only translate this message to other languages if you have to change it
-'print.css'       => '/* CSS placed here will be applied to the printable version */', # only translate this message to other languages if you have to change it
 
 # Scripts
 'common.js'      => '/* Any JavaScript here will be loaded for all users on every page load. */', # only translate this message to other languages if you have to change it
