@@ -2774,6 +2774,20 @@ $1',
 'iranian-calendar-m11' => 'בהמן',
 'iranian-calendar-m12' => 'אספנד',
 
+# Hijri month names
+'hijri-calendar-m1'  => 'מוחרם',
+'hijri-calendar-m2'  => 'צפר',
+'hijri-calendar-m3'  => 'רבּיע אל-אוול',
+'hijri-calendar-m4'  => "רבּיע א-ת'אני",
+'hijri-calendar-m5'  => "ג'ומאדא אל-אוּלא",
+'hijri-calendar-m6'  => "ג'ומאדא א-ת'אניה",
+'hijri-calendar-m7'  => "רג'בּ",
+'hijri-calendar-m8'  => 'שעבּאן',
+'hijri-calendar-m9'  => 'רמדאן',
+'hijri-calendar-m10' => 'שוואל',
+'hijri-calendar-m11' => "ד'ו אל-קעדה",
+'hijri-calendar-m12' => "ד'ו אל-חיג'ה",
+
 # Hebrew month names
 'hebrew-calendar-m1'      => 'תשרי',
 'hebrew-calendar-m2'      => 'חשוון',
