@@ -745,6 +745,10 @@ class EditPage {
 		$matches = array();
 		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
 			$result['spam'] = $matches[0];
+			$ip = wfGetIP();
+			$pdbk = $this->mTitle->getPrefixedDBkey();
+			$match = str_replace( "\n", '', $matches[0] );
+			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_SPAM_ERROR;
