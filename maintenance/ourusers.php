@@ -41,15 +41,17 @@ if ( @$argv[1] == 'yaseo' ) {
 		'localhost',
 		'10.0.%',
 		'66.230.200.%',
+		'208.80.152.%',
 	);
 }
 
 $databases = array(
 	'%wik%',
+	'centralauth',
 );
 
-print "/*!40100 set old_passwords=1 */;";
-print "/*!40100 set global old_passwords=1 */;";
+print "/*!40100 set old_passwords=1 */;\n";
+print "/*!40100 set global old_passwords=1 */;\n";
 
 foreach( $hosts as $host ) {
 	print "--\n-- $host\n--\n\n-- wikiuser\n\n";
