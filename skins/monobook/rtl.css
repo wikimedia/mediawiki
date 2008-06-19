@@ -195,6 +195,10 @@ li#ca-watch {
 	padding-right: 2em;
 }
 
+.pref-label, .pref-input {
+	text-align: right;
+}
+
 /* workaround for moz bug, displayed bullets on left side */
 
 #toc ul {
