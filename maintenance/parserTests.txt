@@ -1332,9 +1332,9 @@ xxx[[main Page]], xxx[[Main Page]], Xxx[[main Page]] XXX[[main Page]], XXX[[Main
 !! test
 Link with suffix
 !! input
-[[Main Page]]xxx, [[Main Page]]XXX
+[[Main Page]]xxx, [[Main Page]]XXX, [[Main Page]]!!!
 !! result
-<p><a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>XXX
+<p><a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main PageXXX</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>!!!
 </p>
 !! end
 
