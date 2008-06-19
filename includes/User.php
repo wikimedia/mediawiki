@@ -431,13 +431,7 @@ class User {
 	 * @return bool
 	 */
 	static function isIP( $name ) {
-		return IP::isIPAddress($name);
-		/*return preg_match("/^
-			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))\.
-			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))\.
-			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))\.
-			(?:[01]?\d{1,2}|2(:?[0-4]\d|5[0-5]))
-		$/x", $name);*/
+		return preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/',$name) || IP::isIPv6($name);
 	}
 
 	/**
