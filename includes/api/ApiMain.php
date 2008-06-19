@@ -339,7 +339,12 @@ class ApiMain extends ApiBase {
 
 		$this->mShowVersions = $params['version'];
 		$this->mAction = $params['action'];
-
+		
+		# For debugging -- TS
+		if ( !isset( $this->mModules[$this->mAction] ) ) {
+			throw new MWException( "Invalid action: {$this->mAction}" );
+		}
+		
 		// Instantiate the module requested by the user
 		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
 
