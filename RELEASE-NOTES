@@ -157,7 +157,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   external links.
 * (bug 14132) Allow user to disable bot edits from being output to UDP. 
 * (bug 14328) jsMsg() within Wikibits now accepts a DOM object, not just a string  
-* (bug 2889) MediaWiki:Print.css applies to the printable version
 * (bug 14558) New system message (emailuserfooter) is now added to the footer of 
   e-mails sent with Special:Emailuser
 * Add support for Hijri (Islamic) calendar
