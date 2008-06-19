@@ -3333,7 +3333,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'iranian-calendar-m11' => 'Bahman', # only translate this message to other languages if you have to change it
 'iranian-calendar-m12' => 'Esfand', # only translate this message to other languages if you have to change it
 
-#Higri month names
+#Hijri month names
 +'hijri-calendar-m1' => 'Muharram', # only translate this message to other languages if you have to change it
 +'hijri-calendar-m2' => 'Safar', # only translate this message to other languages if you have to change it
 +'hijri-calendar-m3' => 'Rabi\' al-awwal', # only translate this message to other languages if you have to change it

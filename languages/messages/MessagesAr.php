@@ -2876,7 +2876,7 @@ $1',
 'iranian-calendar-m11' => 'بهمن',
 'iranian-calendar-m12' => 'اسفند',
 
-#Higri month names
+#Hijri month names
 'hijri-calendar-m1' => 'محرم',
 'hijri-calendar-m2' => 'صفر',
 'hijri-calendar-m3' => 'ربيع الأول',  
