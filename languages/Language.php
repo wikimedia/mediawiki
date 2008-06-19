@@ -575,225 +575,226 @@ class Language {
 			}
 
 			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' ) && $p < strlen( $format ) - 1 ) {
-			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' || $code == 'xm' ) && $p < strlen( $format ) - 1 ) {
-				$code .= $format[++$p];
-			}
-
-			switch ( $code ) {
-				case 'xx':
-					$s .= 'x';
-					break;
-				case 'xn':
-					$raw = true;
-					break;
-				case 'xN':
-					$rawToggle = !$rawToggle;
-					break;
-				case 'xr':
-					$roman = true;
-					break;
-				case 'xh':
-					$hebrewNum = true;
-					break;
-				case 'xg':
-					$s .= $this->getMonthNameGen( substr( $ts, 4, 2 ) );
-					break;
-				case 'xjx':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
-					$s .= $this->getHebrewCalendarMonthNameGen( $hebrew[1] );
-					break;
-				case 'd':
-					$num = substr( $ts, 6, 2 );
-					break;
-				case 'D':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= $this->getWeekdayAbbreviation( gmdate( 'w', $unix ) + 1 );
-					break;
-				case 'j':
-					$num = intval( substr( $ts, 6, 2 ) );
-					break;
-				case 'xij':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$num = $iranian[2];
-					break;
-				case 'xmj':
-					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
-					$num = $hijri[2];
-					break;
-				case 'xjj':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
-					$num = $hebrew[2];
-					break;
-				case 'l':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= $this->getWeekdayName( gmdate( 'w', $unix ) + 1 );
-					break;
-				case 'N':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$w = gmdate( 'w', $unix );
-					$num = $w ? $w : 7;
-					break;
-				case 'w':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = gmdate( 'w', $unix );
-					break;
-				case 'z':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = gmdate( 'z', $unix );
-					break;
-				case 'W':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = gmdate( 'W', $unix );
-					break;
-				case 'F':
-					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
-					break;
-				case 'xiF':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$s .= $this->getIranianCalendarMonthName( $iranian[1] );
-					break;
-				case 'xmF':
-					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
-					$s .= $this->getHijriCalendarMonthName( $hijri[1] );
-					break;
-				case 'xjF':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
-					$s .= $this->getHebrewCalendarMonthName( $hebrew[1] );
-					break;
-				case 'm':
-					$num = substr( $ts, 4, 2 );
-					break;
-				case 'M':
-					$s .= $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
-					break;
-				case 'n':
-					$num = intval( substr( $ts, 4, 2 ) );
-					break;
-				case 'xin':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$num = $iranian[1];
-					break;
-				case 'xmn':
-					if ( !$hijri ) $hijri = self::tsToHijri ( $ts );
-					$num = $hijri[1];
-					break;
-				case 'xjn':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
-					$num = $hebrew[1];
-					break;
-				case 't':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = gmdate( 't', $unix );
-					break;
-				case 'xjt':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
-					$num = $hebrew[3];
-					break;
-				case 'L':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = gmdate( 'L', $unix );
-					break;
-				case 'Y':
-					$num = substr( $ts, 0, 4 );
-					break;
-				case 'xiY':
-					if ( !$iranian ) $iranian = self::tsToIranian( $ts );
-					$num = $iranian[0];
-					break;
-				case 'xmY':
-					if ( !$hijri ) $hijri = self::tsToHijri( $ts );
-					$num = $hijri[0];
-					break;
-				case 'xjY':
-					if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
-					$num = $hebrew[0];
-					break;
-				case 'xkY':
-					if ( !$thai ) $thai = self::tsToThai( $ts );
-					$num = $thai[0];
-					break;
-				case 'y':
-					$num = substr( $ts, 2, 2 );
-					break;
-				case 'a':
-					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'am' : 'pm';
-					break;
-				case 'A':
-					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'AM' : 'PM';
-					break;
-				case 'g':
-					$h = substr( $ts, 8, 2 );
-					$num = $h % 12 ? $h % 12 : 12;
-					break;
-				case 'G':
-					$num = intval( substr( $ts, 8, 2 ) );
-					break;
-				case 'h':
-					$h = substr( $ts, 8, 2 );
-					$num = sprintf( '%02d', $h % 12 ? $h % 12 : 12 );
-					break;					
-				case 'H':
-					$num = substr( $ts, 8, 2 );
-					break;
-				case 'i':
-					$num = substr( $ts, 10, 2 );
-					break;
-				case 's':
-					$num = substr( $ts, 12, 2 );
-					break;
-				case 'c':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= gmdate( 'c', $unix );
-					break;
-				case 'r':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$s .= gmdate( 'r', $unix );
-					break;
-				case 'U':
-					if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
-					$num = $unix;
-					break;
-				case '\\':
-					# Backslash escaping
-					if ( $p < strlen( $format ) - 1 ) {
-						$s .= $format[++$p];
-					} else {
-						$s .= '\\';
-					}
-					break;
-				case '"':
-					# Quoted literal
-					if ( $p < strlen( $format ) - 1 ) {
-						$endQuote = strpos( $format, '"', $p + 1 );
-						if ( $endQuote === false ) {
-							# No terminating quote, assume literal "
-							$s .= '"';
-						} else {
-							$s .= substr( $format, $p + 1, $endQuote - $p - 1 );
-							$p = $endQuote;
-						}
-					} else {
-						# Quote at end of string, assume literal "
-						$s .= '"';
-					}
-					break;
-				default:
-					$s .= $format[$p];
-			}
-			if ( $num !== false ) {
-				if ( $rawToggle || $raw ) {
-					$s .= $num;
-					$raw = false;
-				} elseif ( $roman ) {
-					$s .= self::romanNumeral( $num );
-					$roman = false;
-				} elseif( $hebrewNum ) {
-					$s .= self::hebrewNumeral( $num );
-					$hebrewNum = false;
-				} else {
-					$s .= $this->formatNum( $num, true );
+				if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' || $code == 'xm' ) && $p < strlen( $format ) - 1 ) {
+					$code .= $format[++$p];
 				}
-				$num = false;
+
+				switch ( $code ) {
+					case 'xx':
+						$s .= 'x';
+						break;
+					case 'xn':
+						$raw = true;
+						break;
+					case 'xN':
+						$rawToggle = !$rawToggle;
+						break;
+					case 'xr':
+						$roman = true;
+						break;
+					case 'xh':
+						$hebrewNum = true;
+						break;
+					case 'xg':
+						$s .= $this->getMonthNameGen( substr( $ts, 4, 2 ) );
+						break;
+					case 'xjx':
+						if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+						$s .= $this->getHebrewCalendarMonthNameGen( $hebrew[1] );
+						break;
+					case 'd':
+						$num = substr( $ts, 6, 2 );
+						break;
+					case 'D':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$s .= $this->getWeekdayAbbreviation( gmdate( 'w', $unix ) + 1 );
+						break;
+					case 'j':
+						$num = intval( substr( $ts, 6, 2 ) );
+						break;
+					case 'xij':
+						if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+						$num = $iranian[2];
+						break;
+					case 'xmj':
+						if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+						$num = $hijri[2];
+						break;
+					case 'xjj':
+						if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+						$num = $hebrew[2];
+						break;
+					case 'l':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$s .= $this->getWeekdayName( gmdate( 'w', $unix ) + 1 );
+						break;
+					case 'N':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$w = gmdate( 'w', $unix );
+						$num = $w ? $w : 7;
+						break;
+					case 'w':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$num = gmdate( 'w', $unix );
+						break;
+					case 'z':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$num = gmdate( 'z', $unix );
+						break;
+					case 'W':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$num = gmdate( 'W', $unix );
+						break;
+					case 'F':
+						$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
+						break;
+					case 'xiF':
+						if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+						$s .= $this->getIranianCalendarMonthName( $iranian[1] );
+						break;
+					case 'xmF':
+						if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+						$s .= $this->getHijriCalendarMonthName( $hijri[1] );
+						break;
+					case 'xjF':
+						if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+						$s .= $this->getHebrewCalendarMonthName( $hebrew[1] );
+						break;
+					case 'm':
+						$num = substr( $ts, 4, 2 );
+						break;
+					case 'M':
+						$s .= $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
+						break;
+					case 'n':
+						$num = intval( substr( $ts, 4, 2 ) );
+						break;
+					case 'xin':
+						if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+						$num = $iranian[1];
+						break;
+					case 'xmn':
+						if ( !$hijri ) $hijri = self::tsToHijri ( $ts );
+						$num = $hijri[1];
+						break;
+					case 'xjn':
+						if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+						$num = $hebrew[1];
+						break;
+					case 't':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$num = gmdate( 't', $unix );
+						break;
+					case 'xjt':
+						if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+						$num = $hebrew[3];
+						break;
+					case 'L':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$num = gmdate( 'L', $unix );
+						break;
+					case 'Y':
+						$num = substr( $ts, 0, 4 );
+						break;
+					case 'xiY':
+						if ( !$iranian ) $iranian = self::tsToIranian( $ts );
+						$num = $iranian[0];
+						break;
+					case 'xmY':
+						if ( !$hijri ) $hijri = self::tsToHijri( $ts );
+						$num = $hijri[0];
+						break;
+					case 'xjY':
+						if ( !$hebrew ) $hebrew = self::tsToHebrew( $ts );
+						$num = $hebrew[0];
+						break;
+					case 'xkY':
+						if ( !$thai ) $thai = self::tsToThai( $ts );
+						$num = $thai[0];
+						break;
+					case 'y':
+						$num = substr( $ts, 2, 2 );
+						break;
+					case 'a':
+						$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'am' : 'pm';
+						break;
+					case 'A':
+						$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'AM' : 'PM';
+						break;
+					case 'g':
+						$h = substr( $ts, 8, 2 );
+						$num = $h % 12 ? $h % 12 : 12;
+						break;
+					case 'G':
+						$num = intval( substr( $ts, 8, 2 ) );
+						break;
+					case 'h':
+						$h = substr( $ts, 8, 2 );
+						$num = sprintf( '%02d', $h % 12 ? $h % 12 : 12 );
+						break;
+					case 'H':
+						$num = substr( $ts, 8, 2 );
+						break;
+					case 'i':
+						$num = substr( $ts, 10, 2 );
+						break;
+					case 's':
+						$num = substr( $ts, 12, 2 );
+						break;
+					case 'c':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$s .= gmdate( 'c', $unix );
+						break;
+					case 'r':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$s .= gmdate( 'r', $unix );
+						break;
+					case 'U':
+						if ( !$unix ) $unix = wfTimestamp( TS_UNIX, $ts );
+						$num = $unix;
+						break;
+					case '\\':
+						# Backslash escaping
+						if ( $p < strlen( $format ) - 1 ) {
+							$s .= $format[++$p];
+						} else {
+							$s .= '\\';
+						}
+						break;
+					case '"':
+						# Quoted literal
+						if ( $p < strlen( $format ) - 1 ) {
+							$endQuote = strpos( $format, '"', $p + 1 );
+							if ( $endQuote === false ) {
+								# No terminating quote, assume literal "
+								$s .= '"';
+							} else {
+								$s .= substr( $format, $p + 1, $endQuote - $p - 1 );
+								$p = $endQuote;
+							}
+						} else {
+							# Quote at end of string, assume literal "
+							$s .= '"';
+						}
+						break;
+					default:
+						$s .= $format[$p];
+				}
+				if ( $num !== false ) {
+					if ( $rawToggle || $raw ) {
+						$s .= $num;
+						$raw = false;
+					} elseif ( $roman ) {
+						$s .= self::romanNumeral( $num );
+						$roman = false;
+					} elseif( $hebrewNum ) {
+						$s .= self::hebrewNumeral( $num );
+						$hebrewNum = false;
+					} else {
+						$s .= $this->formatNum( $num, true );
+					}
+					$num = false;
+				}
 			}
 		}
 		return $s;
