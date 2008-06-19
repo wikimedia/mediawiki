@@ -5,7 +5,7 @@
  * @ingroup SpecialPage
  */
 
-require_once( 'Recentchanges.php' );
+require_once( 'SpecialRecentchanges.php' );
 
 /**
  * Entrypoint
