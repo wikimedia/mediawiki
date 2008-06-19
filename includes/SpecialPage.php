@@ -642,7 +642,7 @@ class SpecialPage
 			$this->mFunction = $function;
 		}
 		if ( $file === 'default' ) {
-			$this->mFile = dirname(__FILE__) . "/specials/$name.php";
+			$this->mFile = dirname(__FILE__) . "/specials/Special$name.php";
 		} else {
 			$this->mFile = $file;
 		}
