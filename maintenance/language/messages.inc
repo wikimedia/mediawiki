@@ -1337,7 +1337,6 @@ $wgMessageStructure = array(
 		'emailccsubject',
 		'emailsent',
 		'emailsenttext',
-		'emailuserfooter',
 	),
 	'watchlist' => array(
 		'watchlist',
