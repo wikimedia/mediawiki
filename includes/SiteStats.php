@@ -101,7 +101,7 @@ class SiteStats {
 	static function admins() {
 		if ( !isset( self::$admins ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			self::$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), __METHOD__ );
+			self::$admins = $dbr->selectField( 'user_groups', 'COUNT(ug_group)', array( 'ug_group' => 'sysop' ), __METHOD__ );
 		}
 		return self::$admins;
 	}
