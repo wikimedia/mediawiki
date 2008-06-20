@@ -401,7 +401,7 @@ class SpecialRecentChanges extends SpecialPage {
 }
 
 function rcFilterByCategories ( &$rows, FormOptions $opts ) {
-	$categories = array_map( 'trim', explode( "|" , $categories ) );
+	$categories = array_map( 'trim', explode( "|" , $opts['categories'] ) );
 
 	if( empty($categories) ) {
 		return;
@@ -409,7 +409,7 @@ function rcFilterByCategories ( &$rows, FormOptions $opts ) {
 
 	# Filter categories
 	$cats = array();
-	foreach ( $opts['categories'] AS $cat ) {
+	foreach ( $categories as $cat ) {
 		$cat = trim( $cat );
 		if ( $cat == "" ) continue;
 		$cats[] = $cat;
