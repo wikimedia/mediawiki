@@ -17,20 +17,30 @@ $namespaceNames = array(
 	NS_SPECIAL        => 'Speciális',
 	NS_MAIN           => '',
 	NS_TALK           => 'Vita',
-	NS_USER           => 'User',
-	NS_USER_TALK      => 'User_vita',
+	NS_USER           => 'Szerkesztő',
+	NS_USER_TALK      => 'Szerkesztővita',
 	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_vita',
+	NS_PROJECT_TALK   => '$1-vita',
 	NS_IMAGE          => 'Kép',
-	NS_IMAGE_TALK     => 'Kép_vita',
+	NS_IMAGE_TALK     => 'Képvita',
 	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_vita',
+	NS_MEDIAWIKI_TALK => 'MediaWiki-vita',
 	NS_TEMPLATE       => 'Sablon',
-	NS_TEMPLATE_TALK  => 'Sablon_vita',
+	NS_TEMPLATE_TALK  => 'Sablonvita',
 	NS_HELP           => 'Segítség',
-	NS_HELP_TALK      => 'Segítség_vita',
+	NS_HELP_TALK      => 'Segítségvita',
 	NS_CATEGORY       => 'Kategória',
-	NS_CATEGORY_TALK  => 'Kategória_vita',
+	NS_CATEGORY_TALK  => 'Kategóriavita',
+);
+
+$namespaceAliases = array(
+	'User_vita'      => NS_USER_TALK,
+	'$1_vita'        => NS_PROJECT_TALK,
+	'Kép_vita'       => NS_IMAGE_TALK,
+	'MediaWiki_vita' => NS_MEDIAWIKI_TALK,
+	'Sablon_vita'    => NS_TEMPLATE_TALK,
+	'Segítség_vita'  => NS_HELP_TALK,
+	'Kategória_vita' => NS_CATEGORY_TALK,
 );
 
 $skinNames = array(
