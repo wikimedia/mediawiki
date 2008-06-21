@@ -753,7 +753,7 @@ class EditPage {
 			wfProfileOut( $fname );
 			return self::AS_SPAM_ERROR;
 		}
-		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, &$this->hookError, $this->summary ) ) {
+		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
 			# Error messages or other handling should be performed by the filter function
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
