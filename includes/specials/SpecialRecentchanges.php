@@ -334,7 +334,6 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$panel = array();
 		$panel[] = rcOptionsPanel( $defaults, $nondefaults );
-		$panel[] = '<hr />';
 
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
@@ -371,9 +370,7 @@ class SpecialRecentChanges extends SpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
-		$wgOut->addHTML(
-			Xml::fieldset( wfMsg( 'recentchanges' ), $panelString, array( 'class' => 'rcoptions' ) )
-		);
+		$wgOut->addHTML( $panelString );
 	}
 
 	/**
