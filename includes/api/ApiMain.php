@@ -273,7 +273,7 @@ class ApiMain extends ApiBase {
 		// Set the cache expiration at the last moment, as any errors may change the expiration.
 		// if $this->mSquidMaxage == 0, the expiry time is set to the first second of unix epoch
 		$exp = min($smaxage, $maxage);
-		$expires = $exp == 0 ? 1 : time() + $this->mSquidMaxage;
+		$expires = ($exp == 0 ? 1 : time() + $exp);
 		header('Expires: ' . wfTimestamp(TS_RFC2822, $expires));
 		header('Cache-Control: s-maxage=' . $smaxage . ', must-revalidate, max-age=' . $maxage);
 
