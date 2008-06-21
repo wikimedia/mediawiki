@@ -16,26 +16,26 @@ class Article {
 	/**@{{
 	 * @private
 	 */
-	var $mComment;          //!<
-	var $mContent;          //!<
-	var $mContentLoaded;    //!<
-	var $mCounter;          //!<
-	var $mForUpdate;        //!<
-	var $mGoodAdjustment;   //!<
-	var $mLatest;           //!<
-	var $mMinorEdit;        //!<
-	var $mOldId;            //!<
-	var $mRedirectedFrom;   //!<
-	var $mRedirectUrl;      //!<
-	var $mRevIdFetched;     //!<
-	var $mRevision;         //!<
-	var $mTimestamp;        //!<
-	var $mTitle;            //!<
-	var $mTotalAdjustment;  //!<
-	var $mTouched;          //!<
-	var $mUser;             //!<
-	var $mUserText;         //!<
-	var $mRedirectTarget;   //!<
+	var $mComment;			//!<
+	var $mContent;			//!<
+	var $mContentLoaded;	//!<
+	var $mCounter;			//!<
+	var $mForUpdate;		//!<
+	var $mGoodAdjustment;	//!<
+	var $mLatest;			//!<
+	var $mMinorEdit;		//!<
+	var $mOldId;			//!<
+	var $mRedirectedFrom;	//!<
+	var $mRedirectUrl;		//!<
+	var $mRevIdFetched;		//!<
+	var $mRevision;			//!<
+	var $mTimestamp;		//!<
+	var $mTitle;			//!<
+	var $mTotalAdjustment;	//!<
+	var $mTouched;			//!<
+	var $mUser;				//!<
+	var $mUserText;			//!<
+	var $mRedirectTarget;		//!<
 	var $mIsRedirect;
 	/**@}}*/
 
@@ -543,9 +543,9 @@ class Article {
 	 */
 	function isRedirect( $text = false ) {
 		if ( $text === false ) {
-			if ( $this->mDataLoaded )
+			if ( $this->mDataLoaded ) 
 				return $this->mIsRedirect;
-
+			
 			// Apparently loadPageData was never called
 			$this->loadContent();
 			$titleObj = Title::newFromRedirect( $this->fetchContent() );
@@ -924,14 +924,14 @@ class Article {
 		$this->viewUpdates();
 		wfProfileOut( __METHOD__ );
 	}
-
+	
 	protected function viewRedirect( $target, $overwriteSubtitle = true, $forceKnown = false ) {
 		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
-
+		
 		# Display redirect
 		$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 		$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
-
+		
 		if( $overwriteSubtitle ) {
 			$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 		}
@@ -943,7 +943,7 @@ class Article {
 
 		$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
 			'<span class="redirectText">'.$link.'</span>' );
-
+		
 	}
 
 	function addTrackbacks() {
@@ -1451,7 +1451,7 @@ class Article {
 
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
-
+				
 				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, $baseRevId) );
 
 				if( !$ok ) {
@@ -1523,7 +1523,7 @@ class Article {
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
-
+			
 			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1835,17 +1835,13 @@ class Article {
 				}
 				$comment = $wgContLang->ucfirst( wfMsgForContent( $comment_type, $this->mTitle->getPrefixedText() ) );
 
-				# Check if all groups that have required right to edit also can protect pages
+				# Only restrictions with the 'protect' right can cascade...
 				# Otherwise, people who cannot normally protect can "protect" pages via transclusion
-				foreach( $limit as $action => $restrictions ) {
-					# 'sysop' is checked as 'protect', so it is always allowed
-					if ($cascade && ( $restrictions != 'sysop' ) ){
-						foreach( $wgGroupPermissions as $group => $rights ){
-							if( isset( $rights[$restrictions] ) && $rights[$restrictions] && !( isset( $rights['protect'] ) && $rights['protect'] ) ){
-								$cascade = false;
-								break( 2 );
-							}
-						}
+				foreach( $limit as $action => $restriction ) {
+					# FIXME: can $restriction be an array or what? (same as fixme above)
+					if( $restriction != 'protect' && $restriction != 'sysop' ) {
+						$cascade = false;
+						break;
 					}
 				}
 
@@ -1888,16 +1884,17 @@ class Article {
 						'page_latest' => $nullRevId
 					), array( /* WHERE */
 						'page_id' => $id
-					), __METHOD__
+					), 'Article::protect'
 				);
-
+				
 				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $nullRevision, false) );
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
 
 				# Update the protection log
 				$log = new LogPage( 'protect' );
 				if( $protect ) {
-					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
+					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, 
+						trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
 				} else {
 					$log->addEntry( 'unprotect', $this->mTitle, $reason );
 				}
@@ -2251,7 +2248,7 @@ class Article {
 	function doDelete( $reason, $suppress = false ) {
 		global $wgOut, $wgUser;
 		wfDebug( __METHOD__."\n" );
-
+		
 		$id = $this->getId();
 
 		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
@@ -2523,14 +2520,14 @@ class Article {
 		if( empty( $summary ) ){
 			$summary = wfMsgForContent( 'revertpage' );
 		}
-
+		
 		# Allow the custom summary to use the same args as the default message
 		$args = array(
 			$target->getUserText(), $from, $s->rev_id,
 			$wgLang->timeanddate(wfTimestamp(TS_MW, $s->rev_timestamp), true),
 			$current->getId(), $wgLang->timeanddate($current->getTimestamp())
 		);
-		$summary = wfMsgReplaceArgs( $summary, $args );
+		$summary = wfMsgReplaceArgs( $summary, $args ); 
 
 		# Save
 		$flags = EDIT_UPDATE;
@@ -2618,7 +2615,7 @@ class Article {
 			. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
 		$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$wgOut->returnToMain( false, $this->mTitle );
-
+		
 		if( !$wgRequest->getBool( 'hidediff', false ) ) {
 			$de = new DifferenceEngine( $this->mTitle, $current->getId(), 'next', false, true );
 			$de->showDiff( '', '' );
@@ -2990,7 +2987,7 @@ class Article {
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 		$dbw->commit();
-
+		
 		wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 		wfProfileOut( __METHOD__ );

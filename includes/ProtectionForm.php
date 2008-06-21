@@ -91,7 +91,8 @@ class ProtectionForm {
 		global $wgRequest, $wgOut;
 		if( $wgRequest->wasPosted() ) {
 			if( $this->save() ) {
-				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
+				$article = new Article( $this->mTitle );
+				$q = $article->isRedirect() ? 'redirect=no' : '';
 				$wgOut->redirect( $this->mTitle->getFullUrl( $q ) );
 			}
 		} else {
@@ -189,10 +190,17 @@ class ProtectionForm {
 
 		}
 
-		# NOTE : verification of cascading protection in semi-protection mode
-		#        is in Article::updateRestriction()
+		# They shouldn't be able to do this anyway, but just to make sure, ensure that cascading restrictions aren't being applied
+		#  to a semi-protected page.
+		global $wgGroupPermissions;
 
-		if( $this->mTitle->exists() ){
+		$edit_restriction = $this->mRestrictions['edit'];
+
+		if ($this->mCascade && ($edit_restriction != 'protect') &&
+			!(isset($wgGroupPermissions[$edit_restriction]['protect']) && $wgGroupPermissions[$edit_restriction]['protect'] ) )
+			$this->mCascade = false;
+
+		if ($this->mTitle->exists()) {
 			$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade, $expiry );
 		} else {
 			$ok = $this->mTitle->updateTitleProtection( $this->mRestrictions['create'], $this->mReason, $expiry );
@@ -371,15 +379,7 @@ class ProtectionForm {
 		$script = 'var wgCascadeableLevels=';
 		$CascadeableLevels = array();
 		foreach( $wgRestrictionLevels as $key ) {
-			$canCascade = true;
-			$check = $key == 'sysop' ? 'protect' : $key;
-			foreach( $wgGroupPermissions as $group => $rights ){
-				if( isset( $rights[$check] ) && $rights[$check] && !( isset( $rights['protect'] ) && $rights['protect'] ) ){
-					$canCascade = false;
-					break;
-				}
-			}
-			if( $key != '' && $canCascade ) {
+			if ( (isset($wgGroupPermissions[$key]['protect']) && $wgGroupPermissions[$key]['protect']) || $key == 'protect' ) {
 				$CascadeableLevels[] = "'" . Xml::escapeJsString( $key ) . "'";
 			}
 		}
