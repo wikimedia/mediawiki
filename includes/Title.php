@@ -1219,10 +1219,15 @@ class Title {
 				$right = 'protect';
 			}
 			if( '' != $right && !$user->isAllowed( $right ) ) {
-				// Users with 'editprotected' permission can edit protected
-				// pages if protection is not with cascading option turned on.
-				if( $action=='edit' && $user->isAllowed( 'editprotected' ) && !$this->areRestrictionsCascading() ) {
-					// Nothing, user can edit!
+				//Users with 'editprotected' permission can edit protected pages
+				if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
+					//Users with 'editprotected' permission cannot edit protected pages
+					//with cascading option turned on.
+					if($this->mCascadeRestriction) {
+						$errors[] = array( 'protectedpagetext', $right );
+					} else {
+						//Nothing, user can edit!
+					}
 				} else {
 					$errors[] = array( 'protectedpagetext', $right );
 				}
@@ -1621,7 +1626,7 @@ class Title {
 
 		wfProfileIn( __METHOD__ );
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDb( DB_SLAVE );
 
 		if ( $this->getNamespace() == NS_IMAGE ) {
 			$tables = array ('imagelinks', 'page_restrictions');
@@ -1922,7 +1927,7 @@ class Title {
 		if ($this->mLatestID !== false)
 			return $this->mLatestID;
 
-		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB(DB_MASTER) : wfGetDB(DB_SLAVE);
 		return $this->mLatestID = $db->selectField( 'revision',
 			"max(rev_id)",
 			array('rev_page' => $this->getArticleID($flags)),
