@@ -102,7 +102,6 @@ class SpecialRecentChanges extends SpecialPage {
 			$batch->execute();
 			$this->webOutput( $rows, $opts );
 		}
-  	
 	}
 
 	public function parseParameters( $par, FormOptions $opts ) {
@@ -370,7 +369,7 @@ class SpecialRecentChanges extends SpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
-		$wgOut->addHTML( $panelString );
+		$wgOut->addHTML( '<div class="rcoptions">' . $panelString . '</div>' );
 	}
 
 	/**
