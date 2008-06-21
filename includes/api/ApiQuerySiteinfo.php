@@ -40,13 +40,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function execute() {
-
 		$params = $this->extractRequestParams();
-
-		foreach ($params['prop'] as $p) {
-			switch ($p) {
-				default :
-					ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
+		foreach($params['prop'] as $p)
+		{
+			switch ($p)
+			{
 				case 'general' :
 					$this->appendGeneralInfo($p);
 					break;
@@ -72,6 +70,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'usergroups' :
 					$this->appendUserGroups($p);
 					break;
+				default :
+					ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
 			}
 		}
 	}
@@ -79,25 +79,28 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendGeneralInfo($property) {
 		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgLanguageCode, $IP, $wgEnableWriteAPI, $wgLang;
 
-		$data = array ();
+		$data = array();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
 		$data['mainpage'] = $mainPage->getPrefixedText();
 		$data['base'] = $mainPage->getFullUrl();
 		$data['sitename'] = $wgSitename;
 		$data['generator'] = "MediaWiki $wgVersion";
 
-		$svn = SpecialVersion::getSvnRevision ( $IP );
-		if ( $svn ) $data['rev'] = $svn;
+		$svn = SpecialVersion::getSvnRevision($IP);
+		if($svn)
+			$data['rev'] = $svn;
 
 		$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
 
-		if (isset($wgRightsCode))
+		if(isset($wgRightsCode))
 			$data['rightscode'] = $wgRightsCode;
 		$data['rights'] = $wgRightsText;
 		$data['lang'] = $wgLanguageCode;
 		$data['fallback8bitEncoding'] = $wgLang->fallback8bitEncoding();
-
-		if ( $wgEnableWriteAPI )
+		
+		if(wfReadOnly())
+			$data['readonly'] = '';
+		if($wgEnableWriteAPI)
 			$data['writeapi'] = '';
 
 		$this->getResult()->addValue('query', $property, $data);
@@ -105,14 +108,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendNamespaces($property) {
 		global $wgContLang;
-
-		$data = array ();
-		foreach ($wgContLang->getFormattedNamespaces() as $ns => $title) {
+		$data = array();
+		foreach($wgContLang->getFormattedNamespaces() as $ns => $title)
+		{
 			$data[$ns] = array (
 				'id' => $ns
 			);
 			ApiResult :: setContent($data[$ns], $title);
-			if( MWNamespace::hasSubpages( $ns ) )
+			if(MWNamespace::hasSubpages($ns))
 				$data[$ns]['subpages'] = '';
 		}
 
@@ -122,9 +125,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendNamespaceAliases($property) {
 		global $wgNamespaceAliases;
-
-		$data = array ();
-		foreach ($wgNamespaceAliases as $title => $ns) {
+		$data = array();
+		foreach($wgNamespaceAliases as $title => $ns) {
 			$item = array (
 				'id' => $ns
 			);
@@ -156,13 +158,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->addTables('interwiki');
 		$this->addFields(array('iw_prefix', 'iw_local', 'iw_url'));
 
-		if($filter === 'local') {
+		if($filter === 'local')
 			$this->addWhere('iw_local = 1');
-		} elseif($filter === '!local') {
+		elseif($filter === '!local')
 			$this->addWhere('iw_local = 0');
-		} elseif($filter !== false) {
+		elseif($filter !== false)
 			ApiBase :: dieDebug(__METHOD__, "Unknown filter=$filter");
-		}
 
 		$this->addOption('ORDER BY', 'iw_prefix');
 
@@ -192,9 +193,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendDbReplLagInfo($property, $includeAll) {
 		global $wgShowHostnames;
-
 		$data = array();
-
 		if ($includeAll) {
 			if (!$wgShowHostnames)
 				$this->dieUsage('Cannot view all servers info unless $wgShowHostnames is true', 'includeAllDenied');
@@ -219,7 +218,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendStatistics($property) {
-		$data = array ();
+		$data = array();
 		$data['pages'] = intval(SiteStats::pages());
 		$data['articles'] = intval(SiteStats::articles());
 		$data['views'] = intval(SiteStats::views());
@@ -233,7 +232,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendUserGroups($property) {
 		global $wgGroupPermissions;
-
 		$data = array ();
 		foreach ($wgGroupPermissions as $group => $permissions) {
 			$arr = array ('name' => $group, 'rights' => array_keys($permissions, true));
@@ -247,7 +245,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array (
-
 			'prop' => array (
 				ApiBase :: PARAM_DFLT => 'general',
 				ApiBase :: PARAM_ISMULTI => true,
