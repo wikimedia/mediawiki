@@ -1447,10 +1447,6 @@ Template:消除歧義',
 'emailccsubject'  => '将您的消息复制到 $1: $2',
 'emailsent'       => '电子邮件已发送',
 'emailsenttext'   => '您的电子邮件已经发出。',
-'emailuserfooter' => '由$1寄给$2经{{SITENAME}}自动发出的。
-请留意，{{SITENAME}}不能为这封电子邮件的内容负责。
-在您的参数设置中有一个选项是可以将自己移除这个选项的。
-请检查在 $3 的参数设置中，然后不要选取“$4”。',
 
 # Watchlist
 'watchlist'            => '监视列表',
@@ -2017,7 +2013,6 @@ $1',
 'chick.css'       => '/* 此处的 CSS 将影响使用 Chick 皮肤的用户 */',
 'simple.css'      => '/* 此处的 CSS 将影响使用 Simple 皮肤的用户 */',
 'modern.css'      => '/* 此处的 CSS 将影响使用 Modern 皮肤的用户 */',
-'print.css'       => '/* 此处的 CSS 将应用到可打印版本 */',
 
 # Scripts
 'common.js'      => '/* 此处的JavaScript将加载于所有用户每一个页面。 */',

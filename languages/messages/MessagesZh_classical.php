@@ -1252,10 +1252,6 @@ $2',
 'emailccsubject'  => '致$1複本：$2',
 'emailsent'       => '書遣矣',
 'emailsenttext'   => '書遣矣',
-'emailuserfooter' => '自$1給$2經{{SITENAME}}自發之。
-留，{{SITENAME}}無為之內書而負也。
-爾之簿註有一乃自除之項也。
-查於 $3 之簿註，無選「$4」之。',
 
 # Watchlist
 'watchlist'            => '哨站',
@@ -1761,7 +1757,6 @@ $NEWPAGE
 'chick.css'       => '/* 此之 CSS 用於窈窕面之簿也 */',
 'simple.css'      => '/* 此之 CSS 用於簡明面之簿也 */',
 'modern.css'      => '/* 此之 CSS 用於時髦面之簿也 */',
-'print.css'       => '/* 此之 CSS 將應用到可打印版本 */',
 
 # Scripts
 'common.js'      => '/* 此之JavaScript將載於全簿之頁。 */',

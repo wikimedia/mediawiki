@@ -1498,10 +1498,6 @@ Template:搞清楚',
 'emailccsubject'  => '你畀$1: $2封信嘅副本',
 'emailsent'       => '電郵已傳送',
 'emailsenttext'   => '你嘅電郵信息已傳送。',
-'emailuserfooter' => '由$1寄畀$2經{{SITENAME}}自動發出嘅。
-請留意，{{SITENAME}}唔能夠為呢封電郵嘅內容負責。
-響你嘅喜好設定度有一個選項係可以閂咗呢個選項嘅。
-請檢查響 $3 嘅喜好設定，然後唔好剔「$4」。',
 
 # Watchlist
 'watchlist'            => '監視清單',
@@ -2052,7 +2048,6 @@ $1',
 'chick.css'       => '/* 響呢度放 CSS 碼去改用戶用嘅俏畫面 */',
 'simple.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅簡單畫面 */',
 'modern.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅摩登畫面 */',
-'print.css'       => '/* 響呢度放 CSS 碼去改用戶用嘅可打印版本 */',
 
 # Scripts
 'common.js'      => '/* 響每一次個頁面載入時，所有用戶都會載入呢度任何嘅JavaScript。 */',
