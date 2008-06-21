@@ -2284,7 +2284,7 @@ $1',
 
 # Patrol log
 'patrol-log-page' => 'سیاههٔ گشت',
-'patrol-log-line' => '$1 را $2 برچسب گشت زد $3',
+'patrol-log-line' => 'به $1 از $2 برچسب گشت زد $3',
 'patrol-log-auto' => '(خودکار)',
 'patrol-log-diff' => 'نسخه $1',
 
