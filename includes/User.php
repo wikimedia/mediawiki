@@ -133,6 +133,7 @@ class User {
 		'minoredit',
 		'move',
 		'nominornewtalk',
+		'noratelimit',
 		'patrol',
 		'protect',
 		'proxyunbannable',
