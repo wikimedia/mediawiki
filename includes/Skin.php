@@ -416,7 +416,7 @@ class Skin extends Linker {
 
 	# get the user/site-specific stylesheet, SkinTemplate loads via RawPage.php (settings are cached that way)
 	function getUserStylesheet() {
-		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage, $wgStyleVersion, $wgOut;
+		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage, $wgStyleVersion;
 		$sheet = $this->getStylesheet();
 		$s = "@import \"$wgStylePath/common/shared.css?$wgStyleVersion\";\n";
 		$s .= "@import \"$wgStylePath/common/oldshared.css?$wgStyleVersion\";\n";
@@ -428,8 +428,6 @@ class Skin extends Linker {
 			'@import "' . self::makeNSUrl( ucfirst( $this->getSkinName() . '.css' ), $query, NS_MEDIAWIKI ) . "\";\n";
 
 		$s .= $this->doGetUserStyles();
-		if($wgOut->isPrintable()) $s .= '@import "' . self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI ) . "\";\n"; 
-		else $s .= '@import "' . self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI ) . "\" print;\n"; 
 		return $s."\n";
 	}
 
