@@ -202,7 +202,6 @@ $wgOptionalMessages = array(
 	'chick.css',
 	'simple.css',
 	'modern.css',
-	'print.css',
 	'common.js',
 	'standard.js',
 	'nostalgia.js',
