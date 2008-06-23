@@ -8,7 +8,6 @@
  * @author Teferra
  * @author Siebrand
  * @author SPQRobin
- * @author Nike
  * @author M.M.S.
  * @author Jon Harald Søby
  */

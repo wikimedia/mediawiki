@@ -8,7 +8,6 @@
  * @author Rodrigo Calanca Nishino
  * @author 555
  * @author Siebrand
- * @author Nike
  * @author לערי ריינהארט
  * @author Lijealso
  * @author SPQRobin
@@ -529,7 +528,8 @@ Verifique a grafia fornecida ou crie uma nova conta de usuário.',
 'nouserspecified'         => 'É necessário especificar um nome de usuário.',
 'wrongpassword'           => 'A senha que você forneceu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'      => 'O campo de senha foi deixado em branco. Por favor, tente novamente.',
-'passwordtooshort'        => 'A sua senha é inválida ou curta demais. É necessário ter no mínimo $1 caracteres e de ser diferente de seu nome de usuário.',
+'passwordtooshort'        => 'A sua senha é inválida ou demasiado curta.
+É necessário ter, no mínimo, {{PLURAL:$1|um caractere|$1 caracteres}} e ser diferente do seu nome de usuário.',
 'mailmypassword'          => 'Envie uma nova senha por e-mail',
 'passwordremindertitle'   => 'Lembrador de senhas da {{SITENAME}}',
 'passwordremindertext'    => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
@@ -970,7 +970,7 @@ Todas as datas mostradas são do servidor (UTC).',
 'filehist-filesize'         => 'Tamanho do arquivo',
 'filehist-comment'          => 'Comentário',
 'imagelinks'                => 'Links',
-'linkstoimage'              => 'As seguintes páginas apontam para este arquivo:',
+'linkstoimage'              => '{{PLURAL:$1|A seguinte página aponta|As seguintes $1 páginas apontam}} para este arquivo:',
 'nolinkstoimage'            => 'Nenhuma página aponta para este arquivo.',
 'sharedupload'              => 'Este arquivo encontra-se partilhado, podendo ser utilizado por outros projetos.',
 'shareduploadwiki'          => 'Por gentileza, consulte a $1 para maiores informações.',
@@ -1204,7 +1204,7 @@ por [[User:$2|$2]] ([[User talk:$2|discussão]]); alguém o editou ou já o reve
 
 A última edição foi de  [[User:$3|$3]] ([[User talk:$3|Conversar com ele]]).',
 'editcomment'                 => 'O comentário de edição era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertidas as edições por [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 'protectlogpage'              => 'Registro de proteções',
 'protectedarticle'            => 'protegeu "[[$1]]"',

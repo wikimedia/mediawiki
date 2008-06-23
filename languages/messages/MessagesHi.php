@@ -8,7 +8,6 @@
  * @author לערי ריינהארט
  * @author Shyam
  * @author Sunil Mohan
- * @author Nike
  * @author Aksi great
  * @author Jon Harald Søby
  */

@@ -13,7 +13,6 @@
  * @author शࣿरीहरि
  * @author Kaustubh
  * @author SPQRobin
- * @author Nike
  * @author Siebrand
  * @author Mahitgar
  * @author प्रणव कुलकर्णी
@@ -989,7 +988,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'contextchars'             => 'प्रतिओळ संदर्भ:',
 'stub-threshold'           => '<a href="#" class="stub">अंकुरीत दुव्यांच्या</a> रचनेची नांदी (बाईट्स):',
 'recentchangesdays'        => 'अलिकडील बदल मधील दाखवावयाचे दिवस:',
-'recentchangescount'       => 'अलिकडील बदलमध्ये दाखवावयाच्या संपादनांची संख्या:',
+'recentchangescount'       => 'अलिकडील बदल, इतिहास व नोंद पानांमध्ये दाखवायाच्या संपादनांची संख्या:',
 'savedprefs'               => 'तुमच्या पसंती जतन केल्या आहेत.',
 'timezonelegend'           => 'काळवेळ प्रभाग',
 'timezonetext'             => '¹विदागारदात्याच्या वेळेपासून(UTC) तुमच्या स्थानिक वेळेचा तासांनी फरक.',
@@ -2611,7 +2610,7 @@ $1',
 'specialpages-group-pages'       => 'पृष्ठ याद्या',
 'specialpages-group-pagetools'   => 'पृष्ठ उपकरणे',
 'specialpages-group-wiki'        => 'विकि डाटा व उपकरणे',
-'specialpages-group-redirects'   => 'विशेष पृष्ठे पुनर्निर्देशित करत आहे',
+'specialpages-group-redirects'   => 'पुनर्निर्देशन करणारी विशेष पृष्ठे',
 'specialpages-group-spam'        => 'स्पॅम उपकरणे',
 
 );

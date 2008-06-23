@@ -7,7 +7,6 @@
  * @author Agurzil
  * @author Siebrand
  * @author SPQRobin
- * @author Nike
  * @author Jon Harald Søby
  * @author Teak
  */

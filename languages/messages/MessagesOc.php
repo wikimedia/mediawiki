@@ -5,7 +5,6 @@
  * @file
  *
  * @author Cedric31
- * @author Nike
  * @author Горан Анђелковић
  * @author Spacebirdy
  * @author SPQRobin

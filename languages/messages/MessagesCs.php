@@ -14,7 +14,6 @@
  * @author Helix84
  * @author Michawiki
  * @author Martin Kozák
- * @author Nike
  * @author Sp5uhe
  */
 
@@ -1125,7 +1124,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'contextchars'             => 'Počet znaků kontextu na každé řádce',
 'stub-threshold'           => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'recentchangesdays'        => 'Počet dní zobrazených v posledních změnách:',
-'recentchangescount'       => 'Počet zobrazených záznamů v posledních změnách',
+'recentchangescount'       => 'Počet zobrazených záznamů v posledních změnách, historii a knihách záznamů:',
 'savedprefs'               => 'Vaše nastavení bylo uloženo.',
 'timezonelegend'           => 'Časové pásmo',
 'timezonetext'             => 'Označte, o kolik se vaše časové pásmo liší od serveru (UTC). Například pro středoevropské časové pásmo (SEČ) vyplňte „01:00“ v zimě, „02:00“ v období platnosti letního času.',
@@ -1662,10 +1661,6 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'emailccsubject'  => 'Kopie Vaší zprávy pro uživatele $1: $2',
 'emailsent'       => 'Zpráva odeslána',
 'emailsenttext'   => 'Váš e-mail byl odeslán.',
-'emailuserfooter' => 'Zasláno automaticky uživateli $2 z {{grammar:2sg|{{SITENAME}}}} uživatelem $1.
-Prosíme, vezměte na vědomí, že {{SITENAME}} nenese žádnou zodpovědnost za obsah tohoto e-mailu.
-Možnost zrušit si zasílání takovýchto e-mailů naleznete na své stránce nastavení.
-Zkontrolujte si nastavení na $3 a zrušte zaškrtnutí u položky „$4“.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',

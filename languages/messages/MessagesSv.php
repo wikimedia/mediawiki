@@ -9,7 +9,6 @@
  * @author Gangleri
  * @author Jon Harald Søby
  * @author Siebrand
- * @author Nike
  * @author Steinninn
  * @author Lejonel
  * @author Habj
@@ -392,7 +391,7 @@ $messages = array(
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
 
 'about'          => 'Om',
-'article'        => 'Artikel',
+'article'        => 'Innehållssida',
 'newwindow'      => '(öppnas i ett nytt fönster)',
 'cancel'         => 'Avbryt',
 'qbfind'         => 'Hitta',
@@ -445,13 +444,13 @@ $messages = array(
 'specialpage'       => 'Specialsida',
 'personaltools'     => 'Personliga verktyg',
 'postcomment'       => 'Skicka en kommentar',
-'articlepage'       => 'Visa artikel',
+'articlepage'       => 'Visa innehållssida',
 'talk'              => 'Diskussion',
 'views'             => 'Visningar',
 'toolbox'           => 'Verktygslåda',
 'userpage'          => 'Visa användarsida',
 'projectpage'       => 'Visa projektsida',
-'imagepage'         => 'Visa bildsida',
+'imagepage'         => 'Visa mediasida',
 'mediawikipage'     => 'Visa meddelandesida',
 'templatepage'      => 'Visa mallsida',
 'viewhelppage'      => 'Visa hjälpsida',
@@ -1096,7 +1095,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'contextchars'             => 'Tecken per rad:',
 'stub-threshold'           => 'Formatera länkar <a href="#" class="stub">så här</a> till sidor som är kortare än:',
 'recentchangesdays'        => 'Antal dagar i "senaste ändringarna":',
-'recentchangescount'       => 'Antalet ändringar i "senaste ändringarna":',
+'recentchangescount'       => 'Antal ändringar som visas i "senaste ändringarna", sidhistoriker och loggsidor:',
 'savedprefs'               => 'Dina inställningar har sparats',
 'timezonelegend'           => 'Tidszon',
 'timezonetext'             => 'Ange skillnaden i timmar mellan din lokala tid och serverns tid (UTC).',
@@ -2668,7 +2667,7 @@ Pröva vanlig förhandsgranskning istället.',
 'watchlistedit-normal-legend'  => 'Ta bort sidor från bevakningslistan',
 'watchlistedit-normal-explain' => 'Sidorna i din bevakningslista visas nedan.
 För att ta bort en sida, kryssa i rutan intill den, och tryck på "Ta bort sidor".
-Du kan även [[Special:Watchlist/raw|redigera listan i textformat]].',
+Du kan även [[Special:Watchlist/raw|redigera listan i råformat]].',
 'watchlistedit-normal-submit'  => 'Ta bort sidor',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 sida|$1 sidor}} togs bort från din bevakningslista:',
 'watchlistedit-raw-title'      => 'Redigera bevakningslistan i råformat',
@@ -2678,7 +2677,7 @@ en sida per rad.
 Tryck på "Uppdatera bevakningslista", när du är färdig.
 Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 'watchlistedit-raw-titles'     => 'Sidor:',
-'watchlistedit-raw-submit'     => 'Uppdatera bevakningslista',
+'watchlistedit-raw-submit'     => 'Uppdatera bevakningslistan',
 'watchlistedit-raw-done'       => 'Din bevakningslista har uppdaterats.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 sida|$1 sidor}} lades till:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 sida|$1 sidor}} togs bort:',

@@ -7,7 +7,6 @@
  * @author Maartenvdbent
  * @author Pyt
  * @author Siebrand
- * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
  */

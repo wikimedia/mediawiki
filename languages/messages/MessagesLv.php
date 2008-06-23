@@ -200,6 +200,7 @@ $messages = array(
 'deletethispage'    => 'Dzēst šo lapu',
 'undelete_short'    => 'Atjaunot $1 {{PLURAL:$1|versiju|versijas}}',
 'protect'           => 'Aizsargāt',
+'protect_change'    => 'izmainīt aizsardzību',
 'protectthispage'   => 'Aizsargāt šo lapu',
 'unprotect'         => 'Neaizsargāt',
 'unprotectthispage' => 'Neaizsargāt šo lapu',
@@ -259,6 +260,7 @@ $messages = array(
 'newmessagesdifflink' => 'izmaiņu lapu, lai redzētu, kas jauns',
 'editsection'         => 'izmainīt šo sadaļu',
 'editold'             => 'rediģēt',
+'viewsourceold'       => 'aplūkot kodu',
 'editsectionhint'     => 'Rediģēt sadaļu: $1',
 'toc'                 => 'Satura rādītājs',
 'showtoc'             => 'parādīt',
@@ -622,7 +624,7 @@ m = maznozīmīgs labojums.',
 'contextlines'          => 'Cik rindiņas parādīt katram atrastajam rezultātam',
 'contextchars'          => 'Konteksta simbolu skaits vienā rindiņā',
 'recentchangesdays'     => 'Dienu skaits, kuru rādīt pēdējajās izmaiņās:',
-'recentchangescount'    => 'Virsrakstu skaits pēdējo izmaiņu lapā',
+'recentchangescount'    => 'Virsrakstu skaits pēdējo izmaiņu, hronoloģiju un reģistru lapās:',
 'savedprefs'            => 'Tavas izvēles ir saglabātas.',
 'timezonelegend'        => 'Laika josla',
 'timezonetext'          => '¹Ieraksti, par cik stundām tavs vietējais laiks atšķiras no servera laika (UTC).',
@@ -651,6 +653,40 @@ m = maznozīmīgs labojums.',
 'group-bot-member'        => 'Bots',
 'group-sysop-member'      => 'Administrators',
 'group-bureaucrat-member' => 'Birokrāts',
+
+# Rights
+'right-read'             => 'Lasīt lapas',
+'right-edit'             => 'Izmainīt lapas',
+'right-createpage'       => 'Izveidot lapas (kuras nav diskusiju lapas)',
+'right-createtalk'       => 'Izveidot diskusiju lapas',
+'right-createaccount'    => 'Izveidot jaunus lietotāja kontus',
+'right-minoredit'        => 'Atzīmēt izmaiņas kā maznozīmīgas',
+'right-move'             => 'Pārvietot lapas',
+'right-move-subpages'    => 'Pārvietot lapas kopā ar to apakšlapām',
+'right-suppressredirect' => 'Neveidot pāradresāciju no vecā nosaukuma, pārvietojot lapu',
+'right-upload'           => 'Augšuplādēt failus',
+'right-reupload'         => 'Pārrakstīt esošu failu',
+'right-reupload-own'     => 'Pārrakstīt paša augšuplādētu esošu failu',
+'right-upload_by_url'    => 'Augšuplādēt failu no URL',
+'right-autoconfirmed'    => 'Izmainīt daļēji aizsargātas lapas',
+'right-delete'           => 'Dzēst lapas',
+'right-bigdelete'        => 'Dzēst lapas ar lielām hronoloģijām',
+'right-deleterevision'   => 'Dzēst un atjaunot lapu noteiktas versijas',
+'right-deletedhistory'   => 'Skatīt izdzēstos hronoloģijas ierakstus, bez tiem piesaistītā teksta',
+'right-undelete'         => 'Atjaunot lapu',
+'right-suppressrevision' => 'Apskatīt un atjaunot versijas, kas paslēptas no adminiem',
+'right-block'            => 'Bloķēt citus lietotājus (lapu izmainīšana)',
+'right-blockemail'       => 'Bloķēt citus lietotājus (iespēja sūtīt e-pastu)',
+'right-ipblock-exempt'   => 'Apiet IP blokus, autoblokus un IP apgabalu blokus',
+'right-proxyunbannable'  => "Apiet ''proxy'' automātiskos blokus",
+'right-protect'          => 'Izmainīt aizsargātās lapas un to aizsardzības līmeni',
+'right-editinterface'    => 'Izmainīt lietotāja interfeisu',
+'right-editusercssjs'    => 'Izmainīt citu lietotāju CSS un JS failus',
+'right-import'           => 'Importēt lapas no citiem wiki',
+'right-importupload'     => 'Importēt lapas no failu augšuplādes',
+
+# User rights log
+'rightslog' => 'Lietotāju tiesību reģistrs',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
@@ -1057,10 +1093,14 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protect-legend'              => 'Apstiprināt aizsargāšanu',
 'protectcomment'              => 'Aizsargāšanas iemesls',
 'protectexpiry'               => 'Beidzas:',
+'protect_expiry_invalid'      => 'Beigu termiņš ir nederīgs.',
+'protect_expiry_old'          => 'Beigu termiņs ir pagātnē.',
 'protect-text'                => 'Šeit var apskatīties un izmainīt lapas <strong><nowiki>$1</nowiki></strong> aizsardzības līmeni.',
 'protect-level-autoconfirmed' => 'Bloķēt nereģistētos lietotājus',
 'protect-level-sysop'         => 'Tikai adminiem',
 'protect-cascade'             => "Aizsargāt šajā lapā iekļautās lapas (veidnes) ''(cascading protection)''",
+'protect-cantedit'            => 'Tu nevari izmainīt šīs lapas aizsardzības līmeņus, tāpēc, ka tur nevari izmainīt šo lapu.',
+'restriction-level'           => 'Aizsardzības līmenis:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Izmainīt',
@@ -1068,29 +1108,44 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'restriction-create' => 'Izveidot',
 'restriction-upload' => 'Augšuplādēt',
 
+# Restriction levels
+'restriction-level-sysop'         => 'pilnā aizsardzība',
+'restriction-level-autoconfirmed' => 'daļējā aizsardzība',
+
 # Undelete
-'undelete'               => 'Atjaunot dzēstu lapu',
-'undeletepage'           => 'Skatīt un atjaunot dzēstās lapas',
-'undeletepagetitle'      => "'''Šeit ir [[:$1|$1]] izdzēstās versijas'''.",
-'viewdeletedpage'        => 'Skatīt izdzēstās lapas',
-'undeletepagetext'       => 'Šīs lapas ir dzēstas, bet ir saglabātas arhīvā. Tās ir iespējams atjaunot, bet ņemiet vērā, ka arhīvs reizēm tiek tīrīts.',
-'undeleteextrahelp'      => "Lai atjaunotu visu lapu, atstāj visus ķekšus neieķeksētus uz uzspied uz '''''Atjaunot!'''''.
+'undelete'                 => 'Atjaunot dzēstu lapu',
+'undeletepage'             => 'Skatīt un atjaunot dzēstās lapas',
+'undeletepagetitle'        => "'''Šeit ir [[:$1|$1]] izdzēstās versijas'''.",
+'viewdeletedpage'          => 'Skatīt izdzēstās lapas',
+'undeletepagetext'         => 'Šīs lapas ir dzēstas, bet ir saglabātas arhīvā. Tās ir iespējams atjaunot, bet ņemiet vērā, ka arhīvs reizēm tiek tīrīts.',
+'undeleteextrahelp'        => "Lai atjaunotu visu lapu, atstāj visus ķekšus (pie \"Lapas hronoloģija\") neieķeksētus uz uzspied uz '''''Atjaunot!'''''.
 Lai atjaunotu tikai noteiktas versijas, ieķeksē vajadzīgās versijas un spied uz '''''Atjaunot!'''''. Uzspiešana uz '''''Notīrīt''''' notīrīs komentāru lauku un visus keķšus.",
-'undeleterevisions'      => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|arhivēta|arhivētas}}',
-'undeletehistory'        => 'Ja tu atjauno lapu, visas versijas tiks atjaunotas tās hronoloģijā.
+'undeleterevisions'        => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|arhivēta|arhivētas}}',
+'undeletehistory'          => 'Ja tu atjauno lapu, visas versijas tiks atjaunotas tās hronoloģijā.
 Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta. 
 Tas arī var ietekmēt failu versiju aizsardzības līmeni.',
-'undeleterevdel'         => 'Atjaunošana nenotiks, ja tas izraisīs jaunākās versijas izdzēšanu.
+'undeleterevdel'           => 'Atjaunošana nenotiks, ja tas izraisīs jaunākās versijas izdzēšanu.
 Šādos gadījumos ir vai nu jāizņem ķeksis no jaunākās versijas, vai arī jāatslēpj jaunākā versija.',
-'undeletehistorynoadmin' => 'Šī lapa ir tikusi izdzēsta. 
+'undeletehistorynoadmin'   => 'Šī lapa ir tikusi izdzēsta. 
 Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par lietotājiem, kas bija rediģējuši šo lapu pirs tās izdzēšanas. 
 Šo izdzēsto versiju teksts ir pieejams tikai administratoriem.',
-'undeletebtn'            => 'Atjaunot!',
-'undeletelink'           => 'atjaunot',
-'undeletereset'          => 'Notīrīt',
-'undeletecomment'        => 'Komentārs:',
-'undeletedarticle'       => 'atjaunoju "$1"',
-'undeletedrevisions'     => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
+'undelete-revision'        => 'Lapas $1 izdzēstā versija (kāda tā bija $2) (autors $3):',
+'undeleterevision-missing' => 'Nederīga vai neeksistējoša versija.
+Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija jau ir tikusi atjaunota, vai arī tā ir izdzēsta pavisam.',
+'undelete-nodiff'          => 'Netika atrastas iepriekšējās versijas.',
+'undeletebtn'              => 'Atjaunot!',
+'undeletelink'             => 'atjaunot',
+'undeletereset'            => 'Notīrīt',
+'undeletecomment'          => 'Komentārs:',
+'undeletedarticle'         => 'atjaunoju "$1"',
+'undeletedrevisions'       => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 versija|$1 versijas}} un {{PLURAL:$2|1 fails|$2 faili}} atjaunoti',
+'undeletedfiles'           => '{{PLURAL:$1|1 fails atjaunots|$1 faili atjaunoti}}',
+'cannotundelete'           => 'Atjaunošana neizdevās;
+kāds cits iespējams to ir atjaunojis ātrāk.',
+'undeletedpage'            => "<big>'''$1 tika atjaunots'''</big>
+
+[[Special:Log/delete|Dzēšanas reģistrā]] ir informācija par pēdējām dzēšanām un atjaunošanām.",
 
 # Namespace form on various pages
 'namespace'      => 'Lapas veids:',
@@ -1183,9 +1238,9 @@ Viņa bloķēšanas iemesls bija: "$2"',
 'proxyblocksuccess'    => 'Darīts.',
 
 # Move page
-'move-page'        => 'Pārvietot $1',
-'move-page-legend' => 'Pārvietot lapu',
-'movepagetext'     => "Šajā lapā tu vari pārdēvēt vai pārvietot lapu, kopā tās izmaiņu hronoloģiju pārvietojot to uz citu nosaukumu.
+'move-page'               => 'Pārvietot $1',
+'move-page-legend'        => 'Pārvietot lapu',
+'movepagetext'            => "Šajā lapā tu vari pārdēvēt vai pārvietot lapu, kopā tās izmaiņu hronoloģiju pārvietojot to uz citu nosaukumu.
 Iepriekšējā lapa kļūs par lapu, kas pāradresēs uz jauno lapu.
 Saites uz iepriekšējo lapu netiks mainītas, bet noteikti pārbaudi un izlabo, izskaužot dubultu pāradresāciju vai pāradresāciju uz neesošu lapu.
 Tev ir jāpārliecinās, vai saites vēl aizvien ved tur, kur tās ir paredzētas.
@@ -1196,32 +1251,55 @@ Tas nozīmē, ka tu vari pārvietot lapu atpakaļ, no kurienes tu jau reiz to es
 '''BRĪDINĀJUMS!'''
 Populārām lapām tā var būt krasa un negaidīta pārmaiņa;
 pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas.",
-'movepagetalktext' => "Saistītā diskusiju lapa, ja tāda eksistē, tiks automātiski pārvietota, '''izņemot gadījumus, kad''':
+'movepagetalktext'        => "Saistītā diskusiju lapa, ja tāda eksistē, tiks automātiski pārvietota, '''izņemot gadījumus, kad''':
 *tu pārvieto lapu uz citu palīglapu,
 *ar jauno nosaukumu jau eksistē diskusiju lapa, vai arī
 *atzīmēsi zemāk atrodamo lauciņu.
 
 Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvieno pašam.",
-'movearticle'      => 'Pārvietot lapu',
-'movenologin'      => 'Neesi iegājis kā reģistrēts lietotājs',
-'movenologintext'  => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:Userlogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
-'newtitle'         => 'Uz šādu lapu',
-'move-watch'       => 'Uzraudzīt šo lapu',
-'movepagebtn'      => 'Pārvietot lapu',
-'pagemovedsub'     => 'Pārvietošana notikusi veiksmīgi',
-'movepage-moved'   => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
-'movedto'          => 'pārvietota uz',
-'movetalk'         => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
-'1movedto2'        => '"[[$1]]" pārdēvēju par "[[$2]]"',
-'1movedto2_redir'  => '$1 pārdēvēju par $2, izmantojot pāradresāciju',
-'movelogpage'      => 'Pārvietošanas reģistrs',
-'movelogpagetext'  => 'Lapu pārvietošanas (pārdēvēšanas) reģistrs.',
-'movereason'       => 'Iemesls',
-'revertmove'       => 'atcelt',
+'movearticle'             => 'Pārvietot lapu',
+'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
+'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:Userlogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
+'newtitle'                => 'Uz šādu lapu',
+'move-watch'              => 'Uzraudzīt šo lapu',
+'movepagebtn'             => 'Pārvietot lapu',
+'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
+'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
+'movedto'                 => 'pārvietota uz',
+'movetalk'                => 'Pārvietot arī diskusiju lapu, ja tāda ir.',
+'1movedto2'               => '"[[$1]]" pārdēvēju par "[[$2]]"',
+'1movedto2_redir'         => '$1 pārdēvēju par $2, izmantojot pāradresāciju',
+'movelogpage'             => 'Pārvietošanas reģistrs',
+'movelogpagetext'         => 'Lapu pārvietošanas (pārdēvēšanas) reģistrs.',
+'movereason'              => 'Iemesls',
+'revertmove'              => 'atcelt',
+'delete_and_move_text'    => '==Nepieciešama dzēšana==
+Mērķa lapa "[[$1]]" jau eksistē.
+Vai tu to gribi izdzēst, lai atbrīvotu vietu pārvietošanai?',
+'delete_and_move_confirm' => 'Jā, dzēst lapu',
+'delete_and_move_reason'  => 'Izdzēsts, lai atbrīvotu vietu parvietošanai',
+'selfmove'                => 'Izejas un mērķa lapu nosaukumi ir vienādi;
+nevar pārvietot lapu uz sevi.',
+'immobile_namespace'      => "Izejas vai mērķa lapa ir īpašā lapa;
+nevar pārvietot lapas no un lapas uz to ''namespaci''.",
 
 # Export
-'export' => 'Eksportēt lapas',
+'export'            => 'Eksportēt lapas',
+'exporttext'        => 'Šeit var eksportēt kādas noteiktas lapas vai lapu kopas tekstus un rediģēšanas hronoloģijas, XML formātā.
+Šādus datus pēc tam varēs ieimportēt citā MediaWiki wiki lietojot [[Special:Import|Importēt lapas]]
+
+Lai eksportētu lapas, šajā laukā ievadi to nosaukumus, katrā rindiņā pa vienam, un izvēlies vai gribi tikai pašreizējo versiju ar informāciju par pēdējo izmaiņu, vai arī pašreizējo versiju kopā ar visām vecajām versijām un hronoloģiju
+
+Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] lapai "[[{{MediaWiki:Mainpage}}]]".',
+'exportcuronly'     => 'Iekļaut tikai esošo versiju (bez pilnās hronoloģijas)',
+'exportnohistory'   => "----
+'''Piezīme:''' Lapu eksportēšana kopā ar visu hronoloģiju šobrīd ir atslēgta, jo tas bremzē serveri.",
+'export-submit'     => 'Eksportēt',
+'export-addcattext' => 'Pievienot lapas no kategorijas:',
+'export-addcat'     => 'Pievienot',
+'export-download'   => 'Saglabāt kā failu',
+'export-templates'  => 'Iekļaut veidnes',
 
 # Namespace 8 related
 'allmessages'               => 'Visi sistēmas paziņojumi',
@@ -1230,11 +1308,17 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'allmessagescurrent'        => 'Pašreizējais teksts',
 'allmessagestext'           => "Šajā lapā ir visu \"'''Mediawiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
 Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net Betawiki].",
-'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages not supported because wgUseDatabaseMessages is off.',
+'allmessagesnotsupportedDB' => "Šī lapa nedarbojas, tāpēc, ka '''wgUseDatabaseMessages''' nedarbojas.",
+'allmessagesfilter'         => 'Paziņojumu nosaukuma filtrs:',
+'allmessagesmodified'       => 'Rādīt tikai izmainītos',
 
 # Thumbnails
 'thumbnail-more' => 'Palielināt',
 'filemissing'    => 'Trūkst faila',
+
+# Special:Import
+'import'          => 'Importēt lapas',
+'importnosources' => "Tiešā hronoloģijas augšuplāde ir atslēgta. Nav definēts neviens ''Transwiki'' importa avots (''source'').",
 
 # Import log
 'importlogpage' => 'Importēšanas reģistrs',

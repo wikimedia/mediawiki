@@ -37,14 +37,14 @@ $messages = array(
 'tog-previewontop'            => '到編輯框嗰上首顯示預覽',
 'tog-previewonfirst'          => '頭道修改時顯示預覽',
 'tog-nocache'                 => '停用頁面嗰緩存',
-'tog-enotifwatchlistpages'    => '偶監視框嗰頁面一有改動發email到偶',
+'tog-enotifwatchlistpages'    => '偶監視框嗰頁面一有改動發電子郵件到偶',
 'tog-enotifusertalkpages'     => '偶對話框嗰頁面一有改動發email到偶',
 'tog-enotifminoredits'        => '有細嗰改動都要發email到偶',
 'tog-enotifrevealaddr'        => '通知郵件可話到人聽偶嗰email地址',
 'tog-shownumberswatching'     => '顯示有幾多人監視',
 'tog-fancysig'                => '原始簽名（冇有自動連接）',
-'tog-externaleditor'          => '預設外部編輯器',
-'tog-externaldiff'            => '預設差異比較器',
+'tog-externaleditor'          => '默認用外部編輯器（專家用嗰功能，要在您嗰電腦上特別設置一下）',
+'tog-externaldiff'            => '默認用外部差異比較器（專家用嗰功能，要在您嗰電腦上特別設置一下）',
 'tog-showjumplinks'           => '啟用“跳到”訪問連結',
 'tog-uselivepreview'          => '使用即時預覽(JavaScript)（實驗中）',
 'tog-forceeditsummary'        => '冇改動注解時要同偶話',
@@ -120,6 +120,7 @@ $messages = array(
 'subcategories'            => '亞分類',
 'category-media-header'    => '“$1”分類中嗰媒體',
 'category-empty'           => '“箇隻分類有包到任何文章或媒體”',
+'hidden-categories'        => '{{PLURAL:$1|隻隱藏分類|隻隱藏分類}}',
 'hidden-category-category' => '弆到嗰分類', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => '續',
 
@@ -250,6 +251,7 @@ $messages = array(
 'youhavenewmessagesmulti' => '$1 上有倷嗰新消息',
 'editsection'             => '編寫',
 'editold'                 => '編寫',
+'viewsourceold'           => '眵吖原始碼',
 'editsectionhint'         => '編寫段落: $1',
 'toc'                     => '目錄',
 'showtoc'                 => '敨開',
@@ -380,7 +382,7 @@ $2',
 'yourrealname'               => '真名：',
 'yourlanguage'               => '語言：',
 'yourvariant'                => '轉換字體',
-'yournick'                   => '花名：',
+'yournick'                   => '簽名：',
 'badsig'                     => '原始簽名錯誤，請檢查HTML。',
 'badsiglength'               => '花名咁長？佢嗰長度要在$1隻字符以內。',
 'email'                      => '電子郵件',
@@ -398,7 +400,7 @@ $2',
 'nouserspecified'            => '倷要指正一隻用戶名。',
 'wrongpassword'              => '倷輸嗰密碼錯誤伓對，請試過吖囉。',
 'wrongpasswordempty'         => '倷冇輸入密碼，請試過吖囉。',
-'passwordtooshort'           => '倷嗰密碼伓對或太短嘞，佢最少要有$1隻字元，接到哈要同用戶名伓一樣。',
+'passwordtooshort'           => '倷嗰密碼伓對或太短嘞，佢最少要有$1隻字符，哈要同用戶名伓一樣。',
 'mailmypassword'             => '拿新密碼寄到偶',
 'passwordremindertitle'      => '{{SITENAME}}嗰密碼提醒',
 'passwordremindertext'       => '有人(可能係倷，IP位址$1)要偶俚拿新嗰{{SITENAME}} ($4) 嗰登入密碼寄到倷。眼下用戶"$2"嗰密碼係"$3"。請仰上就登入同到換吥密碼。要係別嗰人發嗰請求，或者倷尋回嘞倷嗰密碼，伓想改佢，倷可以嫑搭箇隻消息，繼續用舊密碼。',
@@ -406,7 +408,7 @@ $2',
 'passwordsent'               => '新嗰密碼已經寄到用戶"$1"嗰email去嘍。收到後請再登入過。',
 'blocked-mailpassword'       => '倷嗰IP地址拕封到嘞。用伓正密碼復原功能以防亂用。',
 'eauthentsent'               => '確認email寄到話正嗰地址去嘍。別嗰email發到箇隻帳戶之前，倷起先要按箇封email話嗰佢係否倷嗰。',
-'throttled-mailpassword'     => '$1鐘頭之前發出嘞密碼提醒。怕別嗰亂扤，$1隻鐘頭之內就光發一隻密碼提醒。',
+'throttled-mailpassword'     => '$1嗰鐘頭前發出嘞密碼提醒。怕別嗰人亂扤，$1嗰鐘頭之內就只會發一隻密碼提醒。',
 'mailerror'                  => '發送email錯誤: $1',
 'acct_creation_throttle_hit' => '對伓住，倷建嘞$1隻帳號。倷再建伓正囉。',
 'emailauthenticated'         => '倷嗰email已經拕$1確認有效嘍。',
@@ -1000,12 +1002,12 @@ $2',
 'sitestats'              => '{{SITENAME}} 數據',
 'userstats'              => '用戶數據',
 'sitestatstext'          => "資料庫攏共有'''$1'''頁。
-佢就含到「討論」頁、關於{{SITENAME}}頁、滴子大嗰「stub」頁、重定向頁，同到別嗰冇算到內容嗰頁面。
-冇算非內容頁嗰話，許'''$2'''頁就算得正正規嗰內容。
+佢就含到「討論」頁、關於{{SITENAME}}頁、滴古子大嗰「stub」頁、重定向頁，同到別嗰算伓正內容嗰頁。
+冇算非內容頁嗰話，許'''$2'''頁就算得正係正噠正經嗰內容。
 
 '''$8'''隻檔案上傳嘞。
 
-箇隻{{SITENAME}}建立以來，攏共有'''$3'''道瀏覽，同到'''$4'''回編輯。
+到箇隻{{SITENAME}}建正以來，攏共有'''$3'''道瀏覽，同到'''$4'''回編輯。
 平均每頁有'''$5'''道瀏覽，同到'''$6'''回編輯。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] 嗰長度係'''$7'''。",

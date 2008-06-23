@@ -96,10 +96,10 @@ $messages = array(
 'dec'           => 'dek',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
+'pagecategories'         => '{{PLURAL:$1|Turkum|Turkumlar}}',
 'category_header'        => '"$1" turkumidagi maqolalar.',
 'subcategories'          => 'Ostturkumlar',
-'category-empty'         => "''Ushbu kategoriyada hozircha sahifa yoki fayllar yoʻq.''",
+'category-empty'         => "''Ushbu turkumda hozircha sahifa yoki fayllar yoʻq.''",
 'listingcontinuesabbrev' => 'davomi',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xffʻʼ«„]+)$/sDu',
@@ -193,9 +193,9 @@ $messages = array(
 'nstab-special'  => 'Maxsus',
 'nstab-project'  => 'Loyiha sahifasi',
 'nstab-image'    => 'Fayl',
-'nstab-template' => 'Shablon',
+'nstab-template' => 'Andoza',
 'nstab-help'     => 'Yordam sahifasi',
-'nstab-category' => 'Kategoriya',
+'nstab-category' => 'Turkum',
 
 # General errors
 'badtitle'          => 'Notoʻgʻri sarlavha',
@@ -278,7 +278,7 @@ Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsa
 <strong>MUALLIFLIK HUQUQI QO'YILGAN ISHLARNI RUXSATSIZ BU YERGA JOYLASHTIRMANG!</strong>",
 'longpagewarning'        => "<strong>DIQQAT: Ushbu sahifa hajmi $1 kilobaytdir; ayrim browser'lar 32kb dan oshiq hajmli sahifalarni tahrirlashda muammolarga duch kelishi mumkin.
 Agar sizda shunday muammolar yuzaga kelsa, iltimos, sahifani butunlay emas, qismlab tahrirlang.</strong>",
-'templatesused'          => 'Ushbu sahifada ishlatilgan shablonlar:',
+'templatesused'          => 'Ushbu sahifada ishlatilgan andozalar:',
 'template-protected'     => '(himoyalangan)',
 'template-semiprotected' => '(yarim-himoyalangan)',
 'nocreatetext'           => 'Ushbu sayt yangi sahifa yaratishni taqiqlagan.
@@ -394,12 +394,25 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'randompage' => 'Tasodifiy sahifa',
 
 # Statistics
-'statistics' => 'Statistika',
+'statistics'    => 'Statistika',
+'sitestats'     => '{{SITENAME}} statistikasi',
+'userstats'     => 'Foydalanuvchilar statistikasi',
+'sitestatstext' => "Maʼlumotlar omborida jami {{PLURAL:\$1|'''1''' sahifa|'''\$1''' sahifa}} mavjud.
+Bularga maqola boʻlmagan \"munozara\" sahifalari, {{SITENAME}} haqidagi, ishoratsiz, yoʻnaltiruvchi va hokazo sahifalar kiradi.
+\"Maqola\" deb hisoblanuvchi sahifalar soni esa {{PLURAL:\$2|'''1''' donadir|'''\$2''' donadir}}.
+
+'''\$8''' {{PLURAL:\$8|dona fayl|fayllar}} yuklangan.
+
+{{SITENAME}} ochilganidan beri jami '''\$3''' {{PLURAL:\$3|sahifa|sahifalar}} koʻrilgan va '''\$4''' {{PLURAL:\$4|sahifa|sahifalar}} tahrirlangan.
+Bu bir sahifaga '''\$5''' tahrir va '''\$6''' koʻrish mos kelishini bildiradi.
+
+[http://www.mediawiki.org/wiki/Manual:Job_queue Navbatdagi vazifalar] soni - '''\$7'''.",
+'userstatstext' => "Hozirda {{PLURAL:$1|'''1''' [[Special:Listusers|foydalanuvchi]]|'''$1''' [[Special:Listusers|foydalanuvchi]]}} roʻyxatdan oʻtgan, ulardan '''$2''' nafari (yoki '''$4%''') $5 huquqlariga egadir.",
 
 'disambiguationspage' => '{{ns:template}}:Disambig',
 
 # Miscellaneous special pages
-'ncategories'             => '$1 {{PLURAL:$1|kategoriya|kategoriyalar}}',
+'ncategories'             => '$1 {{PLURAL:$1|turkum|turkumlar}}',
 'lonelypages'             => 'Yetim sahifalar',
 'uncategorizedpages'      => 'Turkumlashtirilmagan sahifalar',
 'uncategorizedcategories' => 'Turkumlashtirilmagan turkumlar',
@@ -433,7 +446,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Special:Categories
 'categories'         => 'Turkumlar',
-'categoriespagetext' => 'Ushbu kategoriyalar vikida bor.',
+'categoriespagetext' => 'Ushbu turkumlarda sahifa yoki fayllar mavjud.',
 
 # E-mail user
 'emailuser' => 'Bu foydalanuvchiga e-maktub joʻnat',
@@ -568,9 +581,9 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'tooltip-ca-nstab-project'        => "Loyiha sahifasini ko'rish",
 'tooltip-ca-nstab-image'          => "Rasm sahifasini ko'rish",
 'tooltip-ca-nstab-mediawiki'      => "Tizim xabarini ko'rish",
-'tooltip-ca-nstab-template'       => "Shablonni ko'rish",
+'tooltip-ca-nstab-template'       => 'Andozani koʻrish',
 'tooltip-ca-nstab-help'           => "Yordam sahifasini ko'rish",
-'tooltip-ca-nstab-category'       => "Kategoriya sahifasini ko'rish",
+'tooltip-ca-nstab-category'       => 'Turkum sahifasini koʻrish',
 'tooltip-minoredit'               => "Kichik o'zgarish sifatida belgilash",
 'tooltip-save'                    => "O'zgarishlarni saqlash",
 'tooltip-preview'                 => "O'zgarishlarni saqlash. Iltimos saqlashdan oldin uni ishlating!",

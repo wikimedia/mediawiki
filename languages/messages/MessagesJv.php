@@ -8,7 +8,6 @@
  * @author Helix84
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  */
 
 $fallback = 'id';

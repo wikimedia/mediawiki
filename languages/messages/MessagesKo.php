@@ -12,7 +12,6 @@
  * @author לערי ריינהארט
  * @author TheAlpha for knowledge
  * @author Kwj2772
- * @author Nike
  * @author Ficell
  * @author Jon Harald Søby
  * @author Pi.C.Noizecehx
@@ -89,8 +88,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => '알림 메일에 내 이메일 주소를 밝히기',
 'tog-shownumberswatching'     => '주시 사용자 수를 보여주기',
 'tog-fancysig'                => '서명에 링크를 걸지 않기',
-'tog-externaleditor'          => '외부 입력기를 기본값으로 사용하기',
-'tog-externaldiff'            => '외부 비교 툴을 기본값으로 사용하기',
+'tog-externaleditor'          => '외부 입력기를 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
+'tog-externaldiff'            => '외부 비교 툴을 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트, 실험적 기능)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
@@ -165,13 +164,13 @@ $messages = array(
 'subcategories'                  => '하위 분류',
 'category-media-header'          => '‘$1’ 분류에 속하는 자료',
 'category-empty'                 => '이 분류에 속하는 문서나 자료가 없습니다.',
-'hidden-categories'              => '숨겨진 분류',
+'hidden-categories'              => '{{PLURAL:$1|}}숨겨진 분류',
 'hidden-category-category'       => '숨겨진 분류', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '이 분류에는 하위 분류가 $1개 있고, 그 중 $2개를 보여주고 있습니다.',
 'category-subcat-count-limited'  => '이 분류에는 하위 분류가 $1개 있습니다.',
-'category-article-count'         => '{{PLURAL:$2|이 분류에는 1개의 문서가 있습니다.|이 분류에는 $2개의 문서가 있습니다.}}',
+'category-article-count'         => '이 분류에는 아래 $1개를 포함해 모두 $2개의 문서가 있습니다.',
 'category-article-count-limited' => '이 분류에 $1개의 문서가 속해 있습니다.',
-'category-file-count'            => '{{PLURAL:$2|이 분류에는 1개의 파일이 있습니다.|이 분류에는 $2개의 파일이 있습니다.}}',
+'category-file-count'            => '이 분류에는 아래 $1개를 포함해 $2개의 파일이 있습니다.',
 'category-file-count-limited'    => '$1개의 파일이 이 분류에 있습니다.',
 'listingcontinuesabbrev'         => ' (계속)',
 
@@ -384,7 +383,7 @@ $messages = array(
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
 'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [http://translatewiki.net/wiki/Main_Page?setlang=ko Betawiki]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
 'sqlhidden'            => '(SQL 쿼리 숨겨짐)',
-'cascadeprotected'     => '이 문서는 자동으로 보호되어 있습니다. 연쇄적 보호를 건 문서에서 이 문서를 사용하고 있습니다. 그 문서들은 다음과 같습니다:',
+'cascadeprotected'     => '{{PLURAL:$1|}}이 문서는 "연쇄적 보호"된 문서에 포함되어 있어 보호됩니다. 연쇄적 보호된 문서: $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
 'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
@@ -422,7 +421,7 @@ $messages = array(
 'youremail'                  => '이메일:',
 'username'                   => '사용자 이름:',
 'uid'                        => '사용자 ID:',
-'prefs-memberingroups'       => '가지고 있는 권한 목록:',
+'prefs-memberingroups'       => '{{PLURAL:$1}}가지고 있는 권한 목록:',
 'yourrealname'               => '실명:',
 'yourlanguage'               => '언어:',
 'yournick'                   => '서명:',
@@ -443,7 +442,8 @@ $messages = array(
 'nouserspecified'            => '사용자 이름을 입력하지 않았습니다.',
 'wrongpassword'              => '암호가 틀립니다. 다시 시도해 주세요.',
 'wrongpasswordempty'         => '비밀번호가 비었습니다. 다시 시도해 주세요.',
-'passwordtooshort'           => '암호가 너무 짧습니다. 암호 길이는 적어도 $1자 이상이어야 합니다.',
+'passwordtooshort'           => '암호가 부적절하거나 너무 짧습니다.
+암호 길이는 적어도 $1자보다 길고 사용자 이름과 달라야 합니다.',
 'mailmypassword'             => '새 암호를 이메일로 보내기',
 'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
 'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}}의 새 암호를 보내달라는 요청이 왔습니다. ($4)
@@ -454,7 +454,7 @@ $messages = array(
 'passwordsent'               => '‘$1’ 계정의 새로운 암호를 이메일로 보냈습니다. 암호를 받고 다시 로그인해 주세요.',
 'blocked-mailpassword'       => '당신의 IP 주소는 편집이 차단되어 있습니다. 따라서 암호 되살리기 기능은 악용 방지를 위해 금지됩니다.',
 'eauthentsent'               => '확인 이메일을 보냈습니다. 이메일 내용의 지시대로 계정 확인 절차를 실행해 주십시오.',
-'throttled-mailpassword'     => '비밀번호 확인 이메일을 이미 최근 $1시간 안에 보냈습니다. 악용을 방지하기 위해 확인 이메일은 $1시간당 한 개만을 보낼 수 있습니다.',
+'throttled-mailpassword'     => '비밀번호 확인 이메일을 이미 최근 $1시간 안에 보냈습니다. 악용을 방지하기 위해 비밀번호 확인은 $1시간마다 하나씩만 보낼 수 있습니다.',
 'mailerror'                  => '메일 보내기 오류: $1',
 'acct_creation_throttle_hit' => '당신은 이미 $1개의 계정이 있습니다. 더 이상 만들 수 없습니다.',
 'emailauthenticated'         => '당신의 이메일 주소는 $1에 인증되었습니다.',
@@ -601,7 +601,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'readonlywarning'                  => "'''주의: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다. 편집 내용을 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.'''",
 'protectedpagewarning'             => "'''경고: 이 문서는 관리자만이 편집할 수 있도록 보호되어 있습니다.'''",
 'semiprotectedpagewarning'         => "'''주의''': 이 문서는 등록된 사용자만이 편집할 수 있도록 잠겨 있습니다.",
-'cascadeprotectedwarning'          => "'''주의''': 이 문서는 자동으로 잠겨 있어, 관리자만이 편집할 수 있습니다. 연쇄적 보호가 걸린 문서에서 이 문서를 사용하고 있습니다. 그 문서는 다음과 같습니다:",
+'cascadeprotectedwarning'          => "{{PLURAL:$1|}}'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
 'titleprotectedwarning'            => '<strong>주의: 이 문서는 잠겨 있어, 일부 사용자만이 생성할 수 있습니다.</strong>',
 'templatesused'                    => '이 문서에서 사용한 틀:',
 'templatesusedpreview'             => '이 미리 보기에서 사용하고 있는 틀:',
@@ -614,8 +614,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nocreatetext'                     => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:Userlogin|로그인하거나 계정을 만들 수 있습니다]].',
 'nocreate-loggedin'                => '{{SITENAME}}에서 새 문서를 만들 권한이 없습니다.',
 'permissionserrors'                => '권한 오류',
-'permissionserrorstext'            => '해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
-'permissionserrorstext-withaction' => '$2 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
+'permissionserrorstext'            => '{{PLURAL:$1|}}해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
+'permissionserrorstext-withaction' => '{{PLURAL:$1|}}$2 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
 'recreate-deleted-warn'            => "'''주의: 과거에 삭제된 문서를 다시 만들고 있습니다.'''
 
 이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.
@@ -638,12 +638,12 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nohistory'           => '이 문서는 편집 역사가 없습니다.',
 'revnotfound'         => '버전 없음',
 'revnotfoundtext'     => '문서의 해당 버전을 찾지 못했습니다. 접속 URL을 확인해 주세요.',
-'currentrev'          => '현재 버전',
+'currentrev'          => '현재 판',
 'revisionasof'        => '$1 버전',
 'revision-info'       => '$2 사용자의 $1 버전',
 'previousrevision'    => '←이전 버전',
 'nextrevision'        => '다음 버전→',
-'currentrevisionlink' => '현재 버전',
+'currentrevisionlink' => '현재 판',
 'cur'                 => '현재',
 'next'                => '다음',
 'last'                => '이전',
@@ -697,7 +697,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'search-interwiki-more'    => '(더 보기)',
 'showingresults'           => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
 'showingresultsnum'        => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
-'nonefound'                => "'''참고''': ‘have’, ‘from’과 같은 일반적인 단어는 검색 색인에 들어가지 않아서, 이런 단어를 포함한 경우 검색이 효과적이지 않을 수 있습니다. 또는 여러 단어를 동시에 검색한 경우에도 효과적인 검색이 되지 않습니다(검색하려는 단어가 모두 들어 있는 문서만이 결과에 나타납니다).",
+'nonefound'                => "'''참고''': 몇개의 이름공간만 기본 검색 범위입니다. 토론이나 틀 등의 모든 자료를 검색하기 위해서는 접두어로 '''all:''' 어떤 이름공간을 위해서는 접두어로 그 이름공간을 쓸 수 있습니다.",
 'powersearch'              => '찾기',
 'powersearch-legend'       => '더 찾아보기',
 'searchdisabled'           => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
@@ -750,7 +750,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'contextchars'             => '각 줄에 보이는 글 수:',
 'stub-threshold'           => '링크를 <a href="#" class="stub">토막글 링크</a>로 표시할 문서 크기(바이트 수):',
 'recentchangesdays'        => '최근 바뀜에 표시할 날짜 수:',
-'recentchangescount'       => '최근 바뀜에 표시할 항목 수:',
+'recentchangescount'       => '최근 바뀜, 역사, 기록 보기에 표시할 문서 수:',
 'savedprefs'               => '설정을 저장했습니다.',
 'timezonelegend'           => '시간대',
 'timezonetext'             => '¹현지 시각과 서버 시각(UTC) 사이의 시차를 써 주세요.',
@@ -774,8 +774,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userrights-groupsmember'     => '현재 권한:',
 'userrights-groupsavailable'  => '가능한 권한:',
 'userrights-groups-help'      => '이 사용자의 권한을 바꿀 수 있습니다.
-표시가 된 것은 갖는 권한이고 표시가 없는 것은 갖지 않는 권한입니다.
-<nowiki>*</nowiki>표시는 은 권한을 주거나 거두는 것 중 하나만 할 수 있다는 뜻입니다.',
+* 사용자는 체크 표시가 있는 권한을 갖습니다.
+* 사용자는 체크 표시가 없는 권한을 갖지 않습니다.
+* <nowiki>*</nowiki>표시는 권한을 주거나 거두는 것 중 하나만 할 수 있다는 뜻입니다.',
 'userrights-reason'           => '바꾸는 이유:',
 'userrights-no-interwiki'     => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
 'userrights-nologin'          => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:Userlogin|로그인]]해야 합니다.',
@@ -965,7 +966,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist'                  => '파일 역사',
 'filehist-help'             => '날짜/시간을 누르면 해당 시간에 올라온 파일을 볼 수 있습니다.',
 'filehist-deleteall'        => '모두 삭제',
-'filehist-deleteone'        => '이 버전 삭제',
+'filehist-deleteone'        => '지우기',
 'filehist-revert'           => '되돌리기',
 'filehist-current'          => '현재',
 'filehist-datetime'         => '날짜/시간',
@@ -1287,7 +1288,7 @@ $NEWPAGE
 
 마지막으로 문서를 편집한 사람은[[User:$3|$3]]([[User talk:$3|토론]])입니다.',
 'editcomment'                 => "편집 요약: ''$1''", # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[Special:Contributions/$1|$1]]의 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[{{ns:User}}:$1|$1]]의 마지막 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 'sessionfailure'              => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 'protectlogpage'              => '문서 보호 기록',
@@ -1306,8 +1307,8 @@ $NEWPAGE
 'protect-locked-blocked'      => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
 'protect-locked-dblock'       => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
 'protect-locked-access'       => '문서 보호 수준을 변경할 권한이 없습니다. <strong>$1</strong> 문서의 권한은 다음과 같습니다.',
-'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다.
-이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 받지 않습니다.',
+'protect-cascadeon'           => '{{PLURAL:$1|}}다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다.
+이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 주지 않습니다.',
 'protect-default'             => '(기본값)',
 'protect-fallback'            => '‘$1’ 권한 필요',
 'protect-level-autoconfirmed' => '등록된 사용자만 가능',
@@ -1461,7 +1462,7 @@ $1',
 'block-log-flags-noemail'     => '이메일 막음',
 'range_block_disabled'        => 'IP 범위 차단 기능이 비활성화되어 있습니다.',
 'ipb_expiry_invalid'          => '차단 기간이 잘못되었습니다.',
-'ipb_already_blocked'         => '$1 사용자는 이미 차단됨',
+'ipb_already_blocked'         => '"$1" 사용자는 이미 차단됨',
 'ipb_cant_unblock'            => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
 'ip_range_invalid'            => 'IP 범위가 잘못되었습니다.',
 'proxyblocker'                => '프록시 차단',
@@ -1483,7 +1484,8 @@ $1',
 'locknoconfirm'       => '확인 체크박스를 선택하지 않았습니다.',
 'lockdbsuccesssub'    => '데이터베이스 잠김',
 'unlockdbsuccesssub'  => '데이터베이스 잠금 해제됨',
-'lockdbsuccesstext'   => '데이터베이스가 잠겼습니다.<br />관리가 끝나면 잠금을 해제하는 것을 잊지 말아 주세요.',
+'lockdbsuccesstext'   => '데이터베이스가 잠겼습니다.<br />
+관리가 끝나면 잊지 말고 [[Special:Unlockdb|잠금을 풀어]] 주세요.',
 'unlockdbsuccesstext' => '데이터베이스 잠금 상태가 해제되었습니다.',
 'lockfilenotwritable' => '데이터베이스 잠금 파일에 쓰기 권한이 없습니다. 데이터베이스를 잠그거나 잠금 해제하려면, 웹 서버에서 이 파일의 쓰기 권한을 설정해야 합니다.',
 'databasenotlocked'   => '데이터베이스가 잠겨 있지 않습니다.',
@@ -1554,7 +1556,7 @@ $1',
 'allmessagesdefault'        => '기본 내용',
 'allmessagescurrent'        => '현재 내용',
 'allmessagestext'           => 'MediaWiki 네임스페이스에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으시다면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net 베타위키]에 참가해주세요.',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 '''{{ns:special}}:Allmessages'''를 사용할 수 없습니다.",
+'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
 'allmessagesfilter'         => '다음 메시지만 보이기:',
 'allmessagesmodified'       => '변경된 것만 보여주기',
 
@@ -1748,6 +1750,7 @@ $1',
 'exif-imagedescription'  => '그림 제목',
 'exif-make'              => '카메라 제조사',
 'exif-model'             => '카메라 모델',
+'exif-datetimeoriginal'  => '날짜와 시간',
 'exif-exposuretime'      => '노출 시간',
 'exif-shutterspeedvalue' => '셔터 속도',
 

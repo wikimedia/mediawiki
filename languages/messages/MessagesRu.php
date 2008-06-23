@@ -19,6 +19,7 @@
  * @author Innv
  * @author Александр Сигачёв
  * @author Putnik
+ * @author AlexSm
  */
 
 /*
@@ -1560,7 +1561,7 @@ PICT # различные
 'prevpage'          => 'Предыдущая страница ($1)',
 'allpagesfrom'      => 'Вывести страницы, начинающиеся на:',
 'allarticles'       => 'Все статьи',
-'allinnamespace'    => 'Все страницы (пространство имён «$1»)',
+'allinnamespace'    => 'Все страницы в пространстве имён «$1»',
 'allnotinnamespace' => 'Все страницы (кроме пространства имён «$1»)',
 'allpagesprev'      => 'Предыдущие',
 'allpagesnext'      => 'Следующие',

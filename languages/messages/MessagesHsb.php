@@ -10,7 +10,6 @@
  * @author Tlustulimu
  * @author לערי ריינהארט
  * @author M.M.S.
- * @author Nike
  * @author SPQRobin
  */
 
@@ -948,7 +947,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'contextchars'             => 'Kontekst na rjadku:',
 'stub-threshold'           => 'Wotkazowe formatowanje <a href="#" class="stub">małych stronow</a> (w bajtach):',
 'recentchangesdays'        => 'Ličba dnjow w lisćinje aktualnych změnow:',
-'recentchangescount'       => 'Ličba stron w lisćinje aktualnych změnow:',
+'recentchangescount'       => 'Ličba stron w lisćinje aktualnych změnow, w stawiznach a w protokolach:',
 'savedprefs'               => 'Nastajenja buchu składowane.',
 'timezonelegend'           => 'Časowe pasmo',
 'timezonetext'             => '¹Zapisaj ličbu hodźin, wo kotrež so twój lokalny čas wot časa serwera (UTC) wotchila.',

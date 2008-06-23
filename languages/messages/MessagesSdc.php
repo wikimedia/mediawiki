@@ -9,7 +9,6 @@
  * @author Cornelia
  * @author Siebrand
  * @author SPQRobin
- * @author Nike
  * @author Jon Harald Søby
  */
 
@@ -907,7 +906,7 @@ pà culligà direttamenti l'althri tipi di file.",
 Innòmmu di lu file cariggaddu: <strong><tt>$1</tt></strong><br />
 Innòmmu di lu file esisthenti: <strong><tt>$2</tt></strong><br />
 Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènti pa lu file da carriggà.",
-'fileexists-thumb'            => "<center>'''Immàgina esisthenti'''</center>",
+'fileexists-thumb'            => "<center>'''File prisisthenti'''</center>",
 'fileexists-thumbnail-yes'    => "Lu file carriggaddu pari assé lu risulthaddu d'un'antiprimma <i>(thumbnail)</i>. Verifiggà, pa cunfrontu, lu file <strong><tt>$1</tt></strong>.<br />
 S'è la matessi immàgina, i' li misuri originari, nò è nezzessàriu carriggà althri antiprimmi.",
 'file-thumbnail-no'           => "L'innòmmu di lu file ischumenza cun <strong><tt>$1</tt></strong>. Pari assé lu risulthaddu d'un'antiprimma <i>(thumbnail)</i>.
@@ -966,7 +965,7 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'filehist'                  => 'Cronologia di lu file',
 'filehist-help'             => "Fà clic i' un gruppu data/ora pa vidé lu file cumenti era i' lu mamentu indicaddu.",
 'filehist-deleteall'        => 'canzella tuttu',
-'filehist-deleteone'        => 'canzella chistha versioni',
+'filehist-deleteone'        => 'canzella',
 'filehist-revert'           => 'turra che primma',
 'filehist-current'          => 'currenti',
 'filehist-datetime'         => 'Data/Ora',
@@ -975,7 +974,7 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'filehist-filesize'         => 'Misuri di lu file',
 'filehist-comment'          => 'Oggettu',
 'imagelinks'                => "Cullegamenti a l'immàgina",
-'linkstoimage'              => "Pàgini chi pùntani a l'immàgina:",
+'linkstoimage'              => "{{PLURAL:$1|La sighenti pàgina pùnta|Li sighenti $1 pàgini pùntani}} a l'immàgina:",
 'nolinkstoimage'            => "Nisciuna pàgina cunteni cullegamenti a l'immàgina.",
 'sharedupload'              => 'Chisthu file è unu carriggamentu cundibisu; pó assé dunca utirizaddu da più prugetti wiki.',
 'shareduploadwiki'          => 'Védi $1 pa althri infuimmazioni.',
@@ -1076,7 +1075,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coda di li pruzzessi] è long
 'lonelypagestext'         => "Li sighenti pàgini so chena cullegamenti chi prubenani d'althri pàgini di {{SITENAME}}.",
 'uncategorizedpages'      => 'Pàgini chena categuri',
 'uncategorizedcategories' => 'Categuri nò categurizzaddi',
-'uncategorizedimages'     => 'Immàgini chena categuri',
+'uncategorizedimages'     => 'File chena categuri',
 'uncategorizedtemplates'  => 'Mudelli chena categuri',
 'unusedcategories'        => 'Categuri inutirizaddi',
 'unusedimages'            => 'File inutirizaddi',
@@ -1087,7 +1086,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coda di li pruzzessi] è long
 'mostlinkedcategories'    => 'Categuri più riciamaddi',
 'mostlinkedtemplates'     => 'Mudelli più utirizaddi',
 'mostcategories'          => 'Pàgini cun più categuri',
-'mostimages'              => 'Immàgini più riciamaddi',
+'mostimages'              => 'File più riciamaddi',
 'mostrevisions'           => 'Pàgini cun più ribisioni',
 'prefixindex'             => 'Indizi di li bozi pa léttari a l’ischumenzu',
 'shortpages'              => 'Pàgini più corthi',
@@ -1106,7 +1105,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coda di li pruzzessi] è long
 'ancientpages'            => 'Pàgini mancu rizzenti',
 'move'                    => 'ippustha',
 'movethispage'            => 'Ippustha chistha pàgina',
-'unusedimagestext'        => "È pussìbiri cullegamenti a file d'althri siti, utirizendi l'indirizzu; chisthi pudiani dunca assé utilizzaddi puru si so i' l'erencu.",
+'unusedimagestext'        => "So pussìbiri cullegamenti a file d'althri siti, utirizendi l'indirizzu; chisthi pudiani dunca assé utilizzaddi puru si so i'l'erencu.",
 'unusedcategoriestext'    => 'Li pàgini di li categuri indicaddi inogghi sò isthaddi criaddi ma nò cuntenani nisciuna pàgina né sottucateguria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => "Nò ài ippizzificaddu una pàgina o un'utenti i' lu quari eseguì chistha funzioni.",
@@ -1148,7 +1147,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coda di li pruzzessi] è long
 
 # Special:Categories
 'categories'         => 'Categuri',
-'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i' lu situ.",
+'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i'lu situ.",
 
 # Special:Listusers
 'listusersfrom'      => "Musthra l'utenti parthendi da:",
@@ -1448,7 +1447,7 @@ $1",
 'block-log-flags-noemail'     => 'postha erettrònica broccadda',
 'range_block_disabled'        => "La pussibiliddai di broccà intervalli d'indirizzi IP nò è attiba abà.",
 'ipb_expiry_invalid'          => 'Duradda o ischadènzia di lu broccu nò vàridda.',
-'ipb_already_blocked'         => 'L\'utenti "$1" è già broccaddu',
+'ipb_already_blocked'         => '"$1" è già broccaddu',
 'ipb_cant_unblock'            => 'Errori: Impussìbiri acciappà lu broccu cun ID $1. Lu broccu pudia assé già isthaddu buggaddu.',
 'ipb_blocked_as_range'        => "Errori: L'indirizzu IP $1 nò è broccaddu individuaimmenti e nò pó assé ibbruccaddu. Lu broccu è inveci attibu a libellu di l'intervallu  $2, chi pó assé ibbruccaddu.",
 'ip_range_invalid'            => "Intervallu d'indirizzi ip nò vàriddu.",
@@ -1542,9 +1541,9 @@ In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{ns:
 'allmessagesname'           => 'Nommu',
 'allmessagesdefault'        => 'Testhu pridifiniddu',
 'allmessagescurrent'        => 'Testhu attuari',
-'allmessagestext'           => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki:
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nò è supporthaddu parchí l'indicadori '''\$wgUseDatabaseMessages''' nò è attibuu.",
+'allmessagestext'           => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki.
+Pa piazeri utirizà [http://www.mediawiki.org/wiki/Localisation MediaWiki Lucarizazioni] e [http://translatewiki.net Betawiki] pa l'althri traduzioni.",
+'allmessagesnotsupportedDB' => "Chistha pàgina nò è supporthadda parchí l'indicadori '''\$wgUseDatabaseMessages''' nò è attibuu.",
 'allmessagesfilter'         => "Filthru i' l'imbasciaddi:",
 'allmessagesmodified'       => 'Musthra soru chiddi mudìfiggaddi.',
 
@@ -1725,9 +1724,9 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Attinzioni''': Chisthu file pó cuntinì còdizi marignu, chi si eseguiddu pó danniggià lu propriu sisthema infuimmatigu.<hr />",
-'imagemaxsize'         => "Misura màssima di l'immàgini i' li reratibi pàgini di dischussioni:",
+'imagemaxsize'         => "Misura màssima di l'immàgini i'li reratibi pàgini di dischussioni:",
 'thumbsize'            => 'Mannària di li miniadduri:',
-'widthheightpage'      => '$1×$2, $3 pàgini',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgini}}',
 'file-info'            => 'Misuri: $1, tipu MIME: $2',
 'file-info-size'       => '($1 × $2 punti, misuri: $3, tipu MIME: $4)',
 'file-nohires'         => '<small>Nò so dipunìbiri versioni a risoruzioni maggiori.</small>',
@@ -1742,12 +1741,12 @@ $1",
 'noimages'              => "Nò v'è nudda da vidé.",
 'ilsubmit'              => 'Zercha',
 'bydate'                => 'data',
-'sp-newimages-showfrom' => "Musthra l'immàgini più rizzenti a parthì da $1",
+'sp-newimages-showfrom' => "Musthra l'immàgini più rizzenti a parthì da l'ori $2 di lu $1",
 
 # Bad image list
 'bad_image_list' => "Lu fuimmaddu è lu sighenti:
 
-So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri *). Lu primmu cullegamentu i' ugna riga déb'assé un cullegamentu a un'immàgina no disizadda. I cullugamenti chi veni appoi, i' la matessi riga, so cunsidaraddi eccezzioni (ossia, pàgini i' li quari l'immàgina pó assé riciamadda noimmaimmenti).",
+So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri *). Lu primmu cullegamentu i' ugna riga déb'assé un cullegamentu a un file no disizadda. I cullugamenti chi veni appoi, i' la matessi riga, so cunsidaraddi eccezzioni (ossia, pàgini i' li quari l'immàgina pó assé riciamadda noimmaimmenti).",
 
 # Metadata
 'metadata'          => 'Metadati',

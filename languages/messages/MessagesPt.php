@@ -16,7 +16,6 @@
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Villate
- * @author Nike
  * @author MCruz
  * @author Minh Nguyen
  * @author Lijealso
@@ -181,8 +180,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
 'tog-fancysig'                => 'Assinaturas sem atalhos automáticos',
-'tog-externaleditor'          => 'Utilizar editor externo por padrão',
-'tog-externaldiff'            => 'Utilizar diferenças externas por padrão',
+'tog-externaleditor'          => 'Utilizar editor externo por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
+'tog-externaldiff'            => 'Utilizar diferenças externas por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
 'tog-uselivepreview'          => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
@@ -577,9 +576,8 @@ Por favor, volte a efectuar a autenticação ao recebê-la.',
 'eauthentsent'               => 'Um email de confirmação foi enviado para o endereço de correio electrónico nomeado.
 Antes de qualquer outro email seja enviado para a conta, terá seguir as instruções no email,
 de modo a confirmar que a conta é mesmo sua.',
-'throttled-mailpassword'     => 'Um lembrete de palavra-chave já foi enviado nas últimas
-$1 horas. Para prevenir abusos, apenas um lembrete poderá ser enviado a cada
-$1 horas.',
+'throttled-mailpassword'     => 'Um lembrete de palavra-chave já foi enviado {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
+Para prevenir abusos, apenas um lembrete poderá ser enviado a cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Erro a enviar o email: $1',
 'acct_creation_throttle_hit' => 'Pedimos desculpa, mas já foram criadas $1 contas por si. Não lhe é possível criar mais nenhuma.',
 'emailauthenticated'         => 'O seu endereço de correio electrónico foi autenticado em $1.',
@@ -1005,7 +1003,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'contextchars'             => 'Contexto por linha:',
 'stub-threshold'           => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
 'recentchangesdays'        => 'Dias a serem exibidos nas Mudanças recentes:',
-'recentchangescount'       => 'Número de edições a serem exibidas nas Mudanças recentes:',
+'recentchangescount'       => 'Número de edições a serem exibidas nas Mudanças recentes, históricos e páginas de registos:',
 'savedprefs'               => 'As suas preferências foram salvas.',
 'timezonelegend'           => 'Fuso horário',
 'timezonetext'             => '¹Número de horas que o seu horário local difere do horário do servidor (UTC).',
@@ -1301,7 +1299,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filehist-filesize'              => 'Tamanho do ficheiro',
 'filehist-comment'               => 'Comentário',
 'imagelinks'                     => 'Ligações',
-'linkstoimage'                   => 'As seguintes páginas apontam para este ficheiro:',
+'linkstoimage'                   => '{{PLURAL:$1|A seguinte página aponta|As seguintes $1 páginas apontam}} para este ficheiro:',
 'nolinkstoimage'                 => 'Nenhuma página aponta para este ficheiro.',
 'morelinkstoimage'               => 'Ver [[Special:Whatlinkshere/$1|mais ligações]] para este ficheiro.',
 'redirectstofile'                => '{{PLURAL:$1|O seguinte ficheiro redirecciona|Os seguintes ficheiros redireccionam}} para este ficheiro:',
@@ -1379,12 +1377,11 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'userstats'              => 'Estatísticas dos utilizadores',
 'sitestatstext'          => "Há actualmente um total de {{PLURAL:\$1|'''\$1''' página|'''\$1''' páginas}} na base de dados.
 Isto inclui páginas de \"discussão\", páginas sobre o projecto ({{SITENAME}}), páginas de rascunho, redireccionamentos e outras que provavelmente não são qualificadas como páginas de conteúdo.
-Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma página de conteúdo legítima|'''\$2''' páginas que provavelmente são páginas de conteúdo legítimos}}.
+Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma página de conteúdo legítima|'''\$2''' páginas que provavelmente são páginas de conteúdo legítimas}}.
 
 '''\$8''' {{PLURAL:\$8|ficheiro foi carregado|ficheiros foram carregados}}.
 
-Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado.
-Isso nos leva a aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
+Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado, o que resulta em aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
 
 O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas] é '''\$7'''.",
 'userstatstext'          => "Há actualmente {{PLURAL:$1|'''$1''' utilizador registado|'''$1''' utilizadores registados}}, dentre os quais '''$2''' (ou '''$4%''') {{PLURAL:$2|é|são}} $5.",
@@ -1657,7 +1654,7 @@ por [[User:$2|$2]] ([[User_talk:$2|Discussão]]); alguém editou ou já reverteu
 
 A última edição foi de [[User:$3|$3]] ([[User_talk:$3|Discussão]]).',
 'editcomment'                 => 'O sumário de edição era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertidas edições por [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 'sessionfailure'              => 'Foram detectados problemas com a sua sessão;
 Esta acção foi cancelada como medida de protecção contra a intercepção de sessões.
@@ -1862,7 +1859,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'range_block_disabled'        => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'          => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'             => 'Bloqueios com nome de utilizador ocultado devem ser permanentes.',
-'ipb_already_blocked'         => '"$1" já encontra-se bloqueado',
+'ipb_already_blocked'         => '"$1" já se encontra bloqueado',
 'ipb_cant_unblock'            => 'Erro: Bloqueio com ID $1 não encontrado. Poderá já ter sido desbloqueado.',
 'ipb_blocked_as_range'        => 'Erro: O IP $1 não se encontra bloqueado de forma direta, não podendo ser desbloqueado deste modo. Se encontra bloqueado como parte do "range" $2, o qual pode ser desbloqueado.',
 'ip_range_invalid'            => 'Gama de IPs inválida.',
@@ -2089,7 +2086,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 
 # Scripts
 'common.js'   => '/* Códigos javascript aqui colocados serão carregados por todos aqueles que acessarem alguma página deste wiki */',
-'monobook.js' => '/* Em desuso, prefira utilizar [[MediaWiki:Common.js]] */',
+'monobook.js' => '/* Qualquer JavaScript aqui colocado afetará os utilizadores do skin MonoBook */',
 
 # Metadata
 'nodublincore'      => 'Os metadados RDF para Dublin Core estão desabilitados neste servidor.',

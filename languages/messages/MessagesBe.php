@@ -8,7 +8,6 @@
  * @author Mienski
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  */
 
 $skinNames = array(
@@ -904,7 +903,7 @@ $2',
 'contextchars'             => 'Кантэксту на радок:',
 'stub-threshold'           => 'Парог для паказу спасылкі <a href="#" class="stub">як на пачатковы артыкул</a> (у байтах):',
 'recentchangesdays'        => 'За колькі дзён паказваць {{lc:{{:{{ns:mediawiki}}:recentchanges/be}}}}:',
-'recentchangescount'       => 'Макс. колькасць правак для паказу:',
+'recentchangescount'       => 'Колькасць правак для паказу ў нядаўніх змяненнях, гісторыі і журналах:',
 'savedprefs'               => 'Настáўленні замацаваныя.',
 'timezonelegend'           => 'Часавы пояс',
 'timezonetext'             => '¹На колькі гадзін мясцовы час адрозніваецца ад сервернага (UTC).',

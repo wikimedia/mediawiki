@@ -11,7 +11,6 @@
  * @author NJ
  * @author SPQRobin
  * @author Siebrand
- * @author Nike
  * @author Jon Harald Søby
  */
 

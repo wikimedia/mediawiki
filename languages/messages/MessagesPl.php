@@ -9,7 +9,6 @@
  * @author Stv
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  * @author Sp5uhe
  * @author Masti
  * @author Matma Rex
@@ -446,7 +445,7 @@ $messages = array(
 'badaccess-group2' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
 'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
 
-'versionrequired'     => 'Wymagana MediaWiki w wersji $1',
+'versionrequired'     => 'Wymagane MediaWiki w wersji $1',
 'versionrequiredtext' => 'Użycie tej strony wymaga oprogramowania MediaWiki w wersji $1. Zobacz stronę [[Special:Version|wersja oprogramowania]].',
 
 'ok'                      => 'OK',
@@ -1095,7 +1094,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'contextchars'             => 'Litery kontekstu w linijce',
 'stub-threshold'           => 'Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href="#" class="stub">zalążek (stub)</a>',
 'recentchangesdays'        => 'Liczba dni do pokazania w ostatnich zmianach',
-'recentchangescount'       => 'Liczba pozycji na liście ostatnich zmian',
+'recentchangescount'       => 'Liczba pozycji na liście ostatnich zmian, w historii stron i na stronach rejestrów:',
 'savedprefs'               => 'Twoje preferencje zostały zapisane.',
 'timezonelegend'           => 'Strefa czasowa',
 'timezonetext'             => '¹Liczba godzin różnicy między Twoim czasem lokalnym, a czasem uniwersalnym (UTC).',
@@ -2314,7 +2313,7 @@ $1',
 'nextdiff'     => 'następna edycja →',
 
 # Media information
-'mediawarning'         => "'''Uwaga!''' Plik może zawierać złośliwy kod. Jeśli go otworzysz możesz zarazić swój system.<hr />",
+'mediawarning'         => "'''Uwaga!''' Plik może zawierać złośliwy kod. Jeśli go otworzysz, możesz zarazić swój system.<hr />",
 'imagemaxsize'         => 'Na stronach opisu plików ogranicz rozmiar obrazków do',
 'thumbsize'            => 'Rozmiar miniaturki',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',

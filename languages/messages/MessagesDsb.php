@@ -443,6 +443,12 @@ $1',
 'readonlytext'         => 'Datowa banka jo wochylu za nowe zapiski a druge změny zacynjona, nejskerjej dla wótwardowańskich źěłow. Pšosym wopytaj pózdźej hyšći raz.
 
 Administrator, kenž jo ju zacynił, jo pódał toś tu pśicynu: $1',
+'missing-article'      => 'Tekst boka z mjenim "$1" $2, kótaryž dej se namakaś, njejo se namakał.
+
+To se zwětšego zawinujo pśez njepłaśiwu wótchylenje abo wótkaz w stawiznach k bokoju, kótaryž jo se južo wulašował.
+
+Jolic to njepśitrjefijo, sy snaź programowu zmólku w softwarje namakał.
+Pšosym daj to a pśisłušny URL administratoroju k wěsći.',
 'missingarticle-rev'   => '(wersija: $1)',
 'missingarticle-diff'  => '(rozdźěl: $1, $2)',
 'readonly_lag'         => 'Datowa banka jo awtomatiski se zacyniła, aby wótwisne serwery se mógli z głownym serwerom wurownowaś.',
@@ -953,7 +959,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'contextchars'             => 'Znamuška na rědku:',
 'stub-threshold'           => 'Formatěrowanje  <a href="#" class="stub">wótkaza na zarodk</a> (w bytach):',
 'recentchangesdays'        => 'Licba dnjow, kenž se pokazuju w "slědnych změnach":',
-'recentchangescount'       => 'Licba wobźěłanjow w „Slědnych změnach“ a „Nowych nastawkach“:',
+'recentchangescount'       => 'Licba změnow w „Aktualne změny“, wersiskich stawiznach a protokolach:',
 'savedprefs'               => 'Twóje nastajenja su se składowali.',
 'timezonelegend'           => 'Casowa cona',
 'timezonetext'             => '¹Pódaj licbu góźinow, kótarež laže mjazy twójeju casoweju conu a UTC.',
@@ -979,6 +985,10 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'userrights-groupsmember'          => 'Cłonk kupki:',
 'userrights-groupsremovable'       => 'Kupki, kótarež daju se wótwónoźeś:',
 'userrights-groupsavailable'       => 'Eksistěrujuce kupki:',
+'userrights-groups-help'           => 'Móžoš kupki, w kótarychž wužywaŕ jo, změniś:
+* Markěrowany kašćik wóznamjenijo, až wužywaŕ jo w toś tej kupce.
+* Njemarkěrowany kašćik woznamjenijo, až wužywaŕ njejo w toś tej kupce.
+* * pódawa, až njamóžoš kupku wótwónoźeś, gaž sy ju pśidał abo nawopak.',
 'userrights-reason'                => 'Pśicyna změny:',
 'userrights-available-none'        => 'Njamaš pšawo cłonkojstwo wužywarskeje kupki změniś.',
 'userrights-available-add'         => 'Móžoš wužywarja {{PLURAL:$2|toś tej kupce|toś tyma kupkoma|toś tym kupkam}} pśidaś: $1.',
@@ -1241,8 +1251,8 @@ PICT # misc.
 'duplicatesoffile'               => '{{PLURAL:$1|Slědujuca dataja jo duplikat|Slědujucej $1 dataji stej duplikata|Slědujuce dataje $1 su duplikaty|Slědujucych $1 datajow jo duplikaty}} toś teje dataje:',
 'sharedupload'                   => 'Toś ta dataja se gromaźe wužywa - snaź teke w drugich projektach.',
 'shareduploadwiki'               => 'Za dalšne informacije glědaj $1.',
-'shareduploadwiki-desc'          => 'Wopisanje na $1 w zgromadnem skłaźišću se dołojce pókazujo.',
-'shareduploadwiki-linktext'      => 'Bok wopisanja dataje',
+'shareduploadwiki-desc'          => 'Wopisanje na $1 w zgromadnem skłaźišću Wikimedia commons se dołojce pókazujo.',
+'shareduploadwiki-linktext'      => 'boku wopisanja dataje',
 'shareduploadduplicate'          => 'Toś ta dataja jo duplikat $1 z gromaźe wužywaneje chowarnje.',
 'shareduploadduplicate-linktext' => 'druga dataja',
 'shareduploadconflict'           => 'Toś ta dataja ma to same mě kaž $1 z gromaźe wužywaneje chowarnje.',

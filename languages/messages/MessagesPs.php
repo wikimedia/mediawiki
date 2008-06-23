@@ -7,7 +7,6 @@
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author SPQRobin
  * @author Siebrand
- * @author Nike
  */
 
 $specialPageAliases = array(
@@ -737,7 +736,7 @@ $messages = array(
 'imagelinks'                => 'تړنونه',
 'linkstoimage'              => 'دغه لانديني مخونه د همدې دوتنې سره تړنې لري:',
 'nolinkstoimage'            => 'داسې هېڅ کوم مخ نه شته چې د دغې دوتنې سره تړنې ولري.',
-'duplicatesoffile'          => 'لاندينۍ دوتنې د همدې دوتنې غبرګونې لمېسې دي:',
+'duplicatesoffile'          => 'دا لاندينۍ {{PLURAL:$1| دوتنه د همدې دوتنې غبرګونې لمېسه ده|$1 دوتنې د همدې دوتنې غبرګونې لمېسې دي}}:',
 'sharedupload'              => 'دا يوه ګډه دوتنه ده او کېدای شي چې په نورو پروژو کې به هم کارېږي.',
 'shareduploadwiki'          => 'لطفاً د لا نورو مالوماتو لپاره $1 وګورۍ.',
 'shareduploadwiki-linktext' => 'د دوتنې د څرګندونې مخ',
@@ -1176,7 +1175,7 @@ $messages = array(
 'nextdiff'     => '← بل توپير',
 
 # Media information
-'widthheightpage'      => '$1×$2, $3 مخونه',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
 'file-info-size'       => '($1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4)',
 'svg-long-desc'        => '(SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3)',
 'show-big-image'       => 'بشپړه بېلن نښې',

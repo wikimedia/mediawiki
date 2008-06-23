@@ -10,7 +10,6 @@
  * @author SCriBu
  * @author לערי ריינהארט
  * @author Firilacroco
- * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
  */

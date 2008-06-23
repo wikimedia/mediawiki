@@ -6,7 +6,6 @@
  *
  * @author ka.wikipedia.org sysops
  * @author Alsandro
- * @author Nike
  * @author לערי ריינהארט
  * @author Malafaya
  * @author Siebrand

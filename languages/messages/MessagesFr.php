@@ -16,7 +16,6 @@
  * @author ChrisPtDe
  * @author Горан Анђелковић
  * @author Grondin
- * @author Nike
  * @author לערי ריינהארט
  * @author Dereckson
  * @author Meithal
@@ -848,12 +847,12 @@ La raison donnée par $3 était ''$2''.",
 'cur'                 => 'actu',
 'next'                => 'suiv',
 'last'                => 'diff',
-'page_first'          => 'premier',
+'page_first'          => 'première',
 'page_last'           => 'dernier',
 'histlegend'          => 'Légende : ({{MediaWiki:Cur}}) = différence avec la version actuelle, ({{MediaWiki:Last}}) = différence avec la version précédente, <b>m</b> = modification mineure',
 'deletedrev'          => '[supprimé]',
-'histfirst'           => 'Premières contributions',
-'histlast'            => 'Dernières contributions',
+'histfirst'           => 'toute première',
+'histlast'            => 'toute dernière',
 'historysize'         => '({{PLURAL:$1|$1 octet|$1 octets}})',
 'historyempty'        => '(vide)',
 
@@ -957,8 +956,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'notitlematches'            => 'Aucun titre d’article ne correspond à la recherche.',
 'textmatches'               => 'Correspondances dans le texte d’articles',
 'notextmatches'             => 'Aucun texte d’article ne correspond à la recherche.',
-'prevn'                     => '$1 précédents',
-'nextn'                     => '$1 suivants',
+'prevn'                     => '$1 précédentes',
+'nextn'                     => '$1 suivantes',
 'viewprevnext'              => 'Voir ($1) ($2) ($3).',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 'search-result-score'       => 'Pertinence : $1%',
@@ -1492,8 +1491,8 @@ Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manu
 'notargettext'            => 'Indiquez une page cible ou un utilisateur cible.',
 'nopagetitle'             => 'Aucune telle page cible',
 'nopagetext'              => 'La page cible que vous avez indiquée n’existe pas.',
-'pager-newer-n'           => '{{PLURAL:$1|1 plus récente|$1 plus récentes}}',
-'pager-older-n'           => '{{PLURAL:$1|1 plus ancienne|$1 plus anciennes}}',
+'pager-newer-n'           => '{{PLURAL:$1|plus récente|$1 plus récentes}}',
+'pager-older-n'           => '{{PLURAL:$1|plus ancienne|$1 plus anciennes}}',
 'suppress'                => 'Superviseur',
 
 # Book sources
@@ -1543,7 +1542,7 @@ Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manu
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Droits des groupes utilisateur',
-'listgrouprights-summary'  => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui y sont associés. Des informations complémentaires sur les droits peuvent être trouvés [[{{int:Listgrouprights-helppage}}|ici]].",
+'listgrouprights-summary'  => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui y sont associés. Des informations complémentaires sur les droits peuvent être trouvés sur [[{{MediaWiki:Listgrouprights-helppage}}]].",
 'listgrouprights-group'    => 'Groupe',
 'listgrouprights-rights'   => 'Droits associés',
 'listgrouprights-helppage' => 'Help:Droits des groupes',
@@ -1807,8 +1806,8 @@ $1',
 'isredirect'               => 'page de redirection',
 'istemplate'               => 'inclusion',
 'isimage'                  => 'lien du fichier',
-'whatlinkshere-prev'       => '{{PLURAL:$1|précédent|$1 précédents}}',
-'whatlinkshere-next'       => '{{PLURAL:$1|suivant|$1 suivants}}',
+'whatlinkshere-prev'       => '{{PLURAL:$1|précédente|$1 précédentes}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|suivante|$1 suivantes}}',
 'whatlinkshere-links'      => '← liens',
 'whatlinkshere-hideredirs' => '$1 redirections',
 'whatlinkshere-hidetrans'  => '$1 transclusions',

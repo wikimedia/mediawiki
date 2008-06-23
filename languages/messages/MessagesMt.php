@@ -13,7 +13,30 @@ $messages = array(
 'tog-rememberpassword' => 'Ftakar il-login tiegħi fuq dan il-komputer',
 
 'underline-always' => 'Dejjem',
+'underline-never'  => 'Qatt',
 
+# Dates
+'sunday'    => 'Il-Ħadd',
+'monday'    => 'It-Tnejn',
+'tuesday'   => 'It-Tlieta',
+'wednesday' => 'L-Erbgħa',
+'thursday'  => 'Il-Ħamis',
+'friday'    => 'Il-Ġimgħa',
+'saturday'  => 'Is-Sibt',
+'january'   => 'Jannar',
+'february'  => 'Frar',
+'march'     => 'Marzu',
+'april'     => 'April',
+'may_long'  => 'Mejju',
+'june'      => 'Ġunju',
+'july'      => 'Lulju',
+'august'    => 'Awissu',
+'september' => 'Settembru',
+'october'   => 'Ottubru',
+'november'  => 'Novembru',
+'december'  => 'Diċembru',
+
+'about'      => 'Dwar',
 'mytalk'     => 'Diskussjonijiet tiegħi',
 'navigation' => 'Navigazzjoni',
 

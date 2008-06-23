@@ -900,7 +900,7 @@ Se quere, pode [[:\$1|creala]].",
 'contextchars'             => 'Caracteres de contexto por liña:',
 'stub-threshold'           => 'Umbral para o formatado de <a href="#" class="stub">ligazón de bosquexo</a> (bytes):',
 'recentchangesdays'        => 'Número de días para mostrar nos cambios recentes:',
-'recentchangescount'       => 'Número de edicións para mostrar nos cambios recentes:',
+'recentchangescount'       => 'Número de edicións para mostrar nos cambios recentes, nos historiais e nas páxinas de rexistros:',
 'savedprefs'               => 'As súas preferencias foron gardadas.',
 'timezonelegend'           => 'Zona horaria',
 'timezonetext'             => '¹Insira o número de horas de diferenza entre a súa hora local e a do servidor (UTC).',
@@ -1029,7 +1029,7 @@ Se quere, pode [[:\$1|creala]].",
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recentes',
-'recentchangestext'                 => 'Seguir as modificacións máis recentes no wiki nesta páxina.',
+'recentchangestext'                 => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
 'recentchanges-feed-description'    => 'Seguir as mudanzas máis recentes deste wiki con esta fonte de noticias.',
 'rcnote'                            => "Abaixo {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $3.",
 'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
@@ -1177,7 +1177,7 @@ PICT # varias
 # Special:Imagelist
 'imagelist-summary'     => 'Esta páxina especial amosa todos os ficheiros cargados.
 Por omisión, os ficheiros enviados máis recentemente aparecen no alto da listaxe.
-Premendo nun cabezallo da columna cambia a ordenación.',
+Premendo nunha cabeceira da columna cambia a ordenación.',
 'imagelist_search_for'  => 'Buscar polo nome do ficheiro multimedia:',
 'imgfile'               => 'ficheiro',
 'imagelist'             => 'Listaxe de imaxes',
@@ -1204,7 +1204,7 @@ Premendo nun cabezallo da columna cambia a ordenación.',
 'nolinkstoimage'                 => 'Ningunha páxina liga con este ficheiro.',
 'morelinkstoimage'               => 'Ver [[Special:Whatlinkshere/$1|máis ligazóns]] cara a este ficheiro.',
 'redirectstofile'                => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
-'duplicatesoffile'               => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} deste:',
+'duplicatesoffile'               => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro:',
 'sharedupload'                   => 'Este ficheiro é un envío compartido e pode ser usado por outros proxectos.',
 'shareduploadwiki'               => 'Por favor, vexa a $1 para máis información.',
 'shareduploadwiki-desc'          => 'Embaixo móstrase a descrición da $1 no repositorio de imaxes.',
@@ -1293,8 +1293,9 @@ A lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos
 
 'disambiguations'      => 'Páxinas de homónimos',
 'disambiguationspage'  => 'Template:Homónimos',
-'disambiguations-text' => "As seguintes páxinas enlazan cunha '''páxina de homónimos'''. No canto de enlazar cos homónimos debe apuntar cara á páxina apropiada.<br />Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está enlazado
-desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
+'disambiguations-text' => "As seguintes páxinas ligan cunha '''páxina de homónimos'''.
+No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
+Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 
 'doubleredirects'     => 'Redireccións dobres',
 'doubleredirectstext' => 'Esta páxina contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é usualmente o artigo "real", á que a primeira redirección debería apuntar.',
@@ -1341,7 +1342,7 @@ desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 'shortpages'              => 'Páxinas curtas',
 'longpages'               => 'Páxinas longas',
 'deadendpages'            => 'Páxinas sen ligazóns cara a outras',
-'deadendpagestext'        => 'Estas páxinas non enlazan con ningunha outra páxina de {{SITENAME}}.',
+'deadendpagestext'        => 'Estas páxinas non ligan con ningunha outra páxina de {{SITENAME}}.',
 'protectedpages'          => 'Páxinas protexidas',
 'protectedpages-indef'    => 'Só as proteccións indefinidas',
 'protectedpagestext'      => 'As seguintes páxinas están protexidas fronte á edición ou traslado',
@@ -1611,7 +1612,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'undeleteextrahelp'            => "Para restaurar a páxina completa deixe todas as caixas sen marcar e prema en '''''Restaurar'''''.
 Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e a continuación prema en '''''Restaurar'''''.
 Premendo en '''''Borrar''''' limpa o campo comentario en todas as caixas.",
-'undeleterevisions'            => '$1 {{PLURAL:$1|revisión|revisións}} arquivadas',
+'undeleterevisions'            => '$1 {{PLURAL:$1|revisión arquivada|revisións arquivadas}}',
 'undeletehistory'              => 'Se restaura a páxina, todas as revisións van ser restauradas no historial.
 Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións restauradas van aparecer no historial anterior. Teña tamén en conta que as restricións sobre as revisións dos ficheiros pérdense cando se restauran',
 'undeleterevdel'               => 'Non se levará a cabo a reversión do borrado se ocasiona que a última revisión da páxina ou ficheiro se elimine parcialmente.
@@ -1670,7 +1671,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',
-'whatlinkshere-title'      => 'Páxinas que ligan con "$1"',
+'whatlinkshere-title'      => 'Páxinas que ligan con $1',
 'whatlinkshere-page'       => 'Páxina:',
 'linklistsub'              => '(Listaxe de ligazóns)',
 'linkshere'                => "As seguintes páxinas ligan con '''[[:$1]]''':",
@@ -1718,7 +1719,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbotheroption'              => 'outra',
 'ipbotherreason'              => 'Outros motivos adicionais:',
 'ipbhidename'                 => 'Agochar nome de usuario no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
-'ipbwatchuser'                => 'Vixiar as páxinas de usuario e a de conversa deste usuario',
+'ipbwatchuser'                => 'Vixiar a páxina de usuario e a de conversa deste usuario',
 'badipaddress'                => 'O enderezo IP non é válido',
 'blockipsuccesssub'           => 'Bloqueo con éxito',
 'blockipsuccesstext'          => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />

@@ -18,7 +18,6 @@
  * @author .anaconda
  * @author S.Örvarr.S
  * @author Nick1915
- * @author Nike
  * @author SPQRobin
  * @author Tonyfroio
  * @author Martorell
@@ -507,11 +506,11 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'externaldberror'            => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
 'loginproblem'               => "<b>Si è verificato un errore durante l'accesso.</b><br />Riprovare.",
 'login'                      => 'Entra',
-'nav-login-createaccount'    => 'Entra o crea un nuovo accesso',
+'nav-login-createaccount'    => 'Entra / Registrati',
 'loginprompt'                => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
 'userlogin'                  => 'Entra o crea un nuovo accesso',
 'logout'                     => 'Esci',
-'userlogout'                 => 'Esci',
+'userlogout'                 => 'esci',
 'notloggedin'                => 'Accesso non effettuato',
 'nologin'                    => 'Non hai ancora un accesso? $1.',
 'nologinlink'                => 'Crealo ora',
@@ -534,7 +533,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'email'                      => 'Indirizzo e-mail',
 'prefs-help-realname'        => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 'loginerror'                 => "Errore nell'accesso",
-'prefs-help-email'           => "L'inserimento del proprio indirizzo e-mail è opzionale. Se si sceglie di inserirlo, consente di essere contattati attraverso la propria pagina utente o la relativa pagina di discussione, senza dover rivelare la propria identità.",
+'prefs-help-email'           => "¹L'inserimento del proprio indirizzo e-mail è opzionale. Se si sceglie di inserirlo, consente di essere contattati attraverso la propria pagina utente o la relativa pagina di discussione, senza dover rivelare la propria identità.",
 'prefs-help-email-required'  => 'Indirizzo e-mail necessario.',
 'nocookiesnew'               => "Il nome utente per l'accesso è stato creato, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin'             => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
@@ -546,7 +545,8 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
 'wrongpasswordempty'         => 'La password inserita è vuota. Riprovare.',
-'passwordtooshort'           => 'La password inserita è troppo breve. Deve contenere almeno $1 caratteri.',
+'passwordtooshort'           => 'La password inserita non è valida o è troppo breve. 
+Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}} ed essere diversa dal tuo nome utente.',
 'mailmypassword'             => 'Invia password via e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
@@ -560,7 +560,8 @@ Per favore, effettua un accesso non appena la ricevi.',
 'blocked-mailpassword'       => 'Per prevenire abusi, non è consentito usare la funzione "Invia nuova password" da un indirizzo IP bloccato.',
 'eauthentsent'               => "Un messaggio e-mail di conferma è stato spedito all'indirizzo indicato.
 Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguire le istruzioni che vi sono indicate, in modo da confermare che si è i legittimi proprietari dell'indirizzo",
-'throttled-mailpassword'     => 'Una nuova password è già stata inviata da meno di $1 ore. Per prevenire abusi, la funzione "Invia nuova password" può essere usata solo una volta ogni $1 ore.',
+'throttled-mailpassword'     => 'Una nuova password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
+Per prevenire abusi, la funzione "Invia nuova password" può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror'                  => "Errore nell'invio del messaggio: $1",
 'acct_creation_throttle_hit' => 'Siamo spiacenti, ma hai già creato $1 account. Non puoi crearne altri.',
 'emailauthenticated'         => "L'indirizzo e-mail è stato confermato il $1.",
@@ -979,7 +980,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'timezoneoffset'           => 'Differenza¹',
 'servertime'               => 'Ora del server',
 'guesstimezone'            => "Usa l'ora del tuo browser",
-'allowemail'               => 'Consenti la ricezione di e-mail da altri utenti (1)',
+'allowemail'               => 'Abilita la ricezione di email da altri utenti¹',
 'prefs-searchoptions'      => 'Opzioni di ricerca',
 'prefs-namespaces'         => 'Namespace',
 'defaultns'                => 'Namespace predefiniti per la ricerca:',
@@ -1268,7 +1269,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'filehist-filesize'              => 'Dimensione del file',
 'filehist-comment'               => 'Oggetto',
 'imagelinks'                     => "Collegamenti all'immagine",
-'linkstoimage'                   => "Pagine che contengono collegamenti all'immagine:",
+'linkstoimage'                   => "{{PLURAL:$1|La seguente pagina contiene|Le seguenti $1 pagine contengono}} collegamenti all'immagine:",
 'nolinkstoimage'                 => "Nessuna pagina contiene collegamenti all'immagine.",
 'morelinkstoimage'               => 'Visualizza [[Special:Whatlinkshere/$1|altri link]] a questo file.',
 'redirectstofile'                => '{{PLURAL:$1|Il seguente|I seguenti $1}} file {{PLURAL:$1|è|sono}} un redirect a questo file:',
@@ -1792,7 +1793,7 @@ Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocc
 'ipblocklist-username'        => 'Nome utente o indirizzo IP:',
 'ipblocklist-submit'          => 'Ricerca',
 'blocklistline'               => '$1, $2 ha bloccato $3 ($4)',
-'infiniteblock'               => 'senza scadenza',
+'infiniteblock'               => 'infinito',
 'expiringblock'               => 'fino al $1',
 'anononlyblock'               => 'solo anonimi',
 'noautoblockblock'            => 'senza blocco automatico',
