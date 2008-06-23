@@ -272,8 +272,6 @@ if ( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'UploadForm::ajaxGetExistsWa
 if( $wgAjaxLicensePreview )
 	$wgAjaxExportList[] = 'UploadForm::ajaxGetLicensePreview';
 
-wfSeedRandom();
-
 # Placeholders in case of DB error
 $wgTitle = null;
 $wgArticle = null;
