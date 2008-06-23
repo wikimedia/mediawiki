@@ -9,7 +9,6 @@
  * @author S.Örvarr.S
  * @author M.M.S.
  * @author Siebrand
- * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
  * @author Quackor

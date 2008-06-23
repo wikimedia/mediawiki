@@ -10,7 +10,6 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Jon Harald Søby
- * @author Nike
  */
 
 $fallback = 'de';
@@ -950,7 +949,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'contextchars'             => 'Kontextcharactère pro Linn:',
 'stub-threshold'           => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',
 'recentchangesdays'        => 'Deeg déi an de Rezenten Ännerungen ugewise ginn:',
-'recentchangescount'       => 'Zuel vun Titele bei de rezenten Ännerungen an den Neie Säiten:',
+'recentchangescount'       => 'Zuel vun Den Ännerungen déi bei de rezenten Ännerungen de Versiounen an den Log-Säite gewise ginn:',
 'savedprefs'               => 'Är Astellunge goufe gespäichert.',
 'timezonelegend'           => 'Zäitzon',
 'timezonetext'             => "¹Gitt d'Zuel vun de Stonnen an, déi tëscht ärer Zäitzon an der Serverzäit (UTC) leien .",
@@ -1757,7 +1756,7 @@ $1',
 **Mëssbrauch vu verschiddene Benotzernimm
 **Net akzeptabele Benotzernumm",
 'ipbanononly'                 => 'Nëmmen anonym Benotzer spären',
-'ipbcreateaccount'            => 'Schafe vun engem neie Benotzerkont verhënneren',
+'ipbcreateaccount'            => 'Opmaache vun engem Benotzerkont verhënneren',
 'ipbemailban'                 => 'Verhënneren datt de Benotzer E-Maile verschéckt',
 'ipbenableautoblock'          => 'Automatesch all IP spären duerch déi op dëse Benotzerkont zougegraff ka ginn',
 'ipbsubmit'                   => 'Dës IP-Adress resp dëse Benotzer spären',

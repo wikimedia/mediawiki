@@ -739,7 +739,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'contextlines'             => 'Lineae per eventum:',
 'contextchars'             => 'Litterae contexti per lineam:',
 'recentchangesdays'        => 'Quot dies in nuper mutatis monstrandi:',
-'recentchangescount'       => 'Quantum rerum in nuper mutatis:',
+'recentchangescount'       => 'Quantum rerum in nuper mutatis, historiis et actis:',
 'savedprefs'               => 'Praeferentiae tuae servatae sunt.',
 'timezonetext'             => '¹Numerus horarum inter horam tuam et illam moderatri (UTC).',
 'localtime'                => 'Hora indigena',

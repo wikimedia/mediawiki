@@ -12,7 +12,6 @@
  * @author Troefkaart
  * @author Galwaygirl
  * @author Effeietsanders
- * @author Nike
  * @author לערי ריינהארט
  * @author Erwin85
  * @author Annabel
@@ -1143,7 +1142,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'contextchars'             => 'Context per regel:',
 'stub-threshold'           => 'Drempel voor markering <a href="#" class="stub">beginnetje</a>:',
 'recentchangesdays'        => 'Aantal dagen weer te geven in de recente wijzigingen:',
-'recentchangescount'       => "Aantal pagina's in Recente wijzigingen:",
+'recentchangescount'       => "Aantal bewerkingen in recente wijzigingen, geschiedenis en logboekpagina's:",
 'savedprefs'               => 'Uw voorkeuren zijn opgeslagen.',
 'timezonelegend'           => 'Tijdzone',
 'timezonetext'             => '¹Het aantal uren dat uw plaatselijke tijd afwijkt van de servertijd (UTC).',
@@ -1189,7 +1188,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 # Groups
 'group'               => 'Groep:',
 'group-user'          => 'Gebruikers',
-'group-autoconfirmed' => 'Geregistreerde gebruikers',
+'group-autoconfirmed' => 'Bevestigde gebruikers',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Beheerders',
 'group-bureaucrat'    => 'Bureaucraten',

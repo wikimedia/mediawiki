@@ -8,7 +8,6 @@
  * @author Siebrand
  * @author G - ג
  * @author Teak
- * @author Nike
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author פוילישער
@@ -392,7 +391,7 @@ $messages = array(
 'nstab-special'   => 'ספעציעל',
 'nstab-project'   => 'פראיעקט בלאט',
 'nstab-image'     => 'בילד טעקע',
-'nstab-mediawiki' => 'מעסעזש',
+'nstab-mediawiki' => 'מעלדונג',
 'nstab-template'  => 'מוסטער',
 'nstab-help'      => 'הילף בלאט',
 'nstab-category'  => 'קאַטעגאָריע',
@@ -446,12 +445,13 @@ $messages = array(
 'noconnect'            => 'אנטשולדיגט! די וויקי גייט דורך איצט טעכנישע פראבלעמען און קען זיך נישט באהעפטן צו די דאטעבאזע $1',
 'nodb'                 => 'קען נישט אויסוועילן דאטעבאזע $1',
 'cachederror'          => 'ווייטער איז א קאשעיד קאפי (Cache), וואס איז ווארשיינליך נאך נישט אפדעיטעטי, פונעם געבעטענעם בלאט.',
-'laggedslavemode'      => 'ווארענונג: בלאט טוט מעגליך נישט אנטהאלטן לעצטיגע אפדעיט.',
+'laggedslavemode'      => 'ווארענונג: בלאט טוט מעגליך נישט אנטהאלטן לעצטיגע דערהײַנטיגונגען.',
 'readonly'             => 'דאטעבאזע פארשפארט',
 'enterlockreason'      => 'שטעלט א סיבה פארן אפשפאר, אריינגערעכנט א געשאצטער צייט אויף ווען דאס וועט זיך צוריקעפענען די פארשפארונג.',
 'readonlytext'         => 'די דאטעבאזע איז איצט פארשפארט צו נייע ענדערונגן און מאדיפאקאציע. ווארשיינליך פאר רוטינע טעכנישע דאטעבאזע אויפהאלטונג, וואס דערנאך וועט דאס צוריק פאנקציאנירן נארמאל.
 
 די אדמיניסטראטור וואס האט דאס פארשפארט האט אנגעבן די סיבה: $1',
+'missingarticle-diff'  => '(אונטערשייד: $1, $2)',
 'readonly_lag'         => 'די דאטעבאזע איז אטאמטיש געווארן אפגעשפארט כדי צו ערמעגליכן פאר די אונטער דאטע באזע סערווערס צו נעמן די אפדעיטס פון די אויבער סערווער.',
 'internalerror'        => 'אינעווייניגסטער עראר',
 'internalerror_info'   => 'אינעווייניגסטער פעילער: $1',
@@ -1555,14 +1555,25 @@ $1',
 'articletitles' => "זוכט בלעטער וואס הייבן זיך אן מיט '''$1'''",
 
 # Table pager
-'ascending_abbrev'  => 'ארויף',
-'descending_abbrev' => 'נידערן',
+'ascending_abbrev'         => 'ארויף',
+'descending_abbrev'        => 'נידערן',
+'table_pager_next'         => 'נעקסטער בלאט',
+'table_pager_prev'         => 'פריערדיקער בלאט',
+'table_pager_first'        => 'ערשטער בלאט',
+'table_pager_last'         => 'לעצטער בלאט',
+'table_pager_limit'        => 'ווײַז $1 פרטים א בלאט',
+'table_pager_limit_submit' => 'גיי',
+'table_pager_empty'        => 'קיין רעזולטאטן',
 
 # Auto-summaries
-'autosumm-blank'   => 'אפגעמעקט די גאנצע אינהאלט פון בלאט',
-'autosumm-replace' => "ערזעצט דעם בלאט מיט '$1'",
+'autosumm-blank'   => 'אויסגעמעקט דעם גאנצן אינהאלט פון בלאט',
+'autosumm-replace' => "פֿאַרבײַט דעם בלאַט מיט '$1'",
 'autoredircomment' => 'ווייטערפירן צו [[$1]]',
 'autosumm-new'     => 'נייער בלאט: $1',
+
+# Live preview
+'livepreview-loading' => 'לאדנדיג…',
+'livepreview-ready'   => 'לאדנדיג… גרייט!',
 
 # Special:Version
 'version'              => 'ווערסיע', # Not used as normal message but as header for the special page itself

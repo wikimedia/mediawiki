@@ -1,5 +1,5 @@
 <?php
-/** Church Slavic (Словѣньскъ)
+/** Church Slavic (Словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
  *
  * @ingroup Language
  * @file
@@ -7,7 +7,6 @@
  * @author ОйЛ
  * @author Svetko
  * @author SPQRobin
- * @author Nike
  * @author Siebrand
  * @author Wolliger Mensch
  */
@@ -301,6 +300,7 @@ $messages = array(
 'imgfile'        => 'дѣ́ло',
 'imagelist_name' => 'и́мѧ',
 'imagelist_user' => 'по́льꙃєватєл҄ь',
+'imagelist_size' => 'мѣ́ра',
 
 # Image description page
 'filehist-deleteone' => 'поничьжє́ниѥ',
@@ -428,6 +428,9 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-new' => 'но́ва страни́ца : $1',
+
+# Size units
+'size-bytes' => '$1 Б҃',
 
 # Special:Version
 'version'                  => 'MediaWiki о́браꙁъ', # Not used as normal message but as header for the special page itself

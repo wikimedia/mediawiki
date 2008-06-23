@@ -1819,10 +1819,6 @@ Qatıswşı baptawıñızda engizgen e-poşta mekenjaýıñız «Kimnen» degen 
 'emailccsubject'  => '$1 degenge xatıñızdıñ köşirmesi: $2',
 'emailsent'       => 'Xat jöneltildi',
 'emailsenttext'   => 'E-poşta xatıñız jöneltildi.',
-'emailuserfooter' => '$1 degenge $2 üşin {{SITENAME}} özdiktik jönelken.
-Añğartpa: {{SITENAME}} bul xattıñ mağlumatına jawapkerşilik ustaý almaýdı.
-Bul xat taratw tiziminen öziñizdi alastawın baptalımdarıñızdan tañdaý alasız.
-$3 degendegi baptalımdarıñızdı tañdañız da «$4» degennen qusbelgini alastañız.',
 
 # Watchlist
 'watchlist'            => 'Baqılaw tizimi',
@@ -2407,7 +2403,6 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 'chick.css'       => '/* Mında ornalastırılğan CSS tek «Balapan» (chick) mänerin paýdalanwşılarına ıqpal etedi */',
 'simple.css'      => '/* Mında ornalastırılğan CSS tek «Kädimgi» (simple) mänerin paýdalanwşılarına ıqpal etedi */',
 'modern.css'      => '/* Mında ornalastırılğan CSS tek «Zamanawï» (modern) mänerin paýdalanwşılarına ıqpal etedi */',
-'print.css'       => '/* Mında ornalastırılğan CSS basıp şığarw nusqa üşin qoldanadı */',
 
 # Scripts
 'common.js'      => '/* Mındağı ärtürli JavaScript kez kelgen bet qotarılğanda barlıq paýdalanwşılar üşin jegiledi. */',

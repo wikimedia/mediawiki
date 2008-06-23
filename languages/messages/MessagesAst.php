@@ -9,7 +9,6 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  */
 
 $namespaceNames = array(

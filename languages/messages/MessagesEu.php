@@ -177,6 +177,9 @@ $messages = array(
 'navigation'     => 'Nabigazioa',
 'and'            => 'eta',
 
+# Metadata in edit box
+'metadata_help' => 'Metadatuak:',
+
 'errorpagetitle'    => 'Errorea',
 'returnto'          => '$1(e)ra itzuli.',
 'tagline'           => '{{SITENAME}}(e)tik',
@@ -331,6 +334,7 @@ $1',
 'readonlytext'         => 'Datu-basea artikulu berriak sortu edo aldaketak ez egiteko blokeatuta dago, seguruenik mantenu lanak direla-eta. Blokeo hori kentzerakoan beti bezala egongo da berriz.
 
 Blokeatu duen administratzaileak azalpen hau eman du: $1',
+'missingarticle-diff'  => '(Ezb: $1, $2)',
 'readonly_lag'         => 'Datu-basea automatikoki blokeatu da menpeko zerbitzariak nagusiarekin sinkronizatu bitartean',
 'internalerror'        => 'Barne errorea',
 'internalerror_info'   => 'Barne errorea: $1',
@@ -822,7 +826,8 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'newsectionsummary'                 => '/* $1 */ atal berria',
 
 # Recent changes linked
-'recentchangeslinked' => 'Lotutako orrialdeen aldaketak',
+'recentchangeslinked'      => 'Lotutako orrialdeen aldaketak',
+'recentchangeslinked-page' => 'Orriaren izena:',
 
 # Upload
 'upload'                      => 'Fitxategia igo',

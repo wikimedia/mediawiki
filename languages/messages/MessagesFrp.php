@@ -7,7 +7,6 @@
  * @author ChrisPtDe
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  * @author Jon Harald Søby
  * @author SPQRobin
  */

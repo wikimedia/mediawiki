@@ -7,7 +7,6 @@
  * @author SPQRobin
  * @author Abastillas
  * @author לערי ריינהארט
- * @author Nike
  * @author Jordz
  * @author Siebrand
  */
@@ -168,7 +167,7 @@ $messages = array(
 'copyright'            => 'Mga sulod makita sa $1.',
 'copyrightpagename'    => '{{SITENAME}} katungod sa pagpatik',
 'currentevents'        => 'Mga bag-ong panghitabo',
-'currentevents-url'    => 'Proyekto:Kasamtangang panghitabo',
+'currentevents-url'    => 'Project:Kasamtangang panghitabo',
 'disclaimers'          => 'Mga pagpasabot',
 'edithelp'             => 'Tabang sa pag-usab',
 'edithelppage'         => 'Help:Pag-usab',
@@ -260,28 +259,34 @@ Ayaw kalimot sa pag-usab sa imong {{SITENAME}} mga preperensya.',
 'userlogout'              => 'Biya',
 'notloggedin'             => 'Wala ka pa masulod',
 'nologinlink'             => 'Paghimo og akawnt',
+'userexists'              => 'Ang ngalan sa tiggamit nga imong gisulat nagamit na.
+Palihug pagpili og lain nga ngalan.',
 'loginerror'              => 'Sayop sa pagdayon',
 'loginsuccesstitle'       => 'Malamposong pagsulod',
+'loginlanguagelabel'      => 'Pinulongan: $1',
 
 # Edit pages
-'summary'          => 'Mubong sugid',
-'minoredit'        => 'Ginagmay lang nga kausaban',
-'watchthis'        => 'Bantayi kining maong panid',
-'savearticle'      => 'Tipigi ang panid',
-'preview'          => 'Paunang tan-aw',
-'showpreview'      => 'Paunang tan-aw',
-'showdiff'         => 'Ipakita ang kalainan',
-'previewnote'      => 'Usa ra kini ka paunang tan-aw;
+'summary'                   => 'Mubong sugid',
+'minoredit'                 => 'Ginagmay lang nga kausaban',
+'watchthis'                 => 'Bantayi kining maong panid',
+'savearticle'               => 'Tipigi ang panid',
+'preview'                   => 'Paunang tan-aw',
+'showpreview'               => 'Paunang tan-aw',
+'showdiff'                  => 'Ipakita ang kalainan',
+'whitelistacctitle'         => 'Gidid-an ka sa paghimo og akawnt',
+'newarticle'                => '(Bag-o)',
+'userpage-userdoesnotexist' => 'Ang akawnt sa tiggamit nga "$1" wala mareshistro. Palihug tan-awa kon buot nimong himuon/usbon kini nga panid.',
+'previewnote'               => 'Usa ra kini ka paunang tan-aw;
 
 <strong>Usa ra kini ka paunang tan-aw;
 wala pa matipigi ang mga pag-usab!</strong>',
-'editing'          => 'Nagausab sa $1',
-'yourtext'         => 'Imong gisulat',
-'yourdiff'         => 'Mga kalainan',
-'copyrightwarning' => 'Palihog hinumdomi nga ang tanang kontribusyon sa {{SITENAME}} giisip nga ubos sa $2 (basaha ang $1 alang sa dugang hisgot). Kon dili nimo buot nga ang imong mga sinulat mausab ni bisan kinsa ug maapud-apod bisan dili ka pangayoan og pagtugot, ayaw sila ibutang dinhi.<br />
+'editing'                   => 'Nagausab sa $1',
+'yourtext'                  => 'Imong gisulat',
+'yourdiff'                  => 'Mga kalainan',
+'copyrightwarning'          => 'Palihog hinumdomi nga ang tanang kontribusyon sa {{SITENAME}} giisip nga ubos sa $2 (basaha ang $1 alang sa dugang hisgot). Kon dili nimo buot nga ang imong mga sinulat mausab ni bisan kinsa ug maapud-apod bisan dili ka pangayoan og pagtugot, ayaw sila ibutang dinhi.<br />
 Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan sa usa ka publikong rekursos.
 <strong>AYAW PAGBUTANG DINHI OG MGA SINULAT NGA MAY NANAG-IYA SA KATUNGOD SA PAGPATIK!</strong>',
-'templatesused'    => 'Ang mga plantilyang gigamit niini nga panid:',
+'templatesused'             => 'Ang mga plantilyang gigamit niini nga panid:',
 
 # History pages
 'previousrevision' => '←Daang pag-usab',

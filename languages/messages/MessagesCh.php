@@ -6,7 +6,6 @@
  *
  * @author Gadao01
  * @author Jatrobat
- * @author Nike
  * @author Siebrand
  * @author Magalahi
  */

@@ -6,7 +6,6 @@
  *
  * @author Saluyot
  * @author לערי ריינהארט
- * @author Nike
  * @author SPQRobin
  * @author Siebrand
  */
@@ -1572,6 +1571,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 'exif-jpeginterchangeformatlength' => 'Bytes ti JPEG data',
 'exif-transferfunction'            => 'Transfer function',
 'exif-whitepoint'                  => 'White point chromaticity',
+'exif-primarychromaticities'       => 'Chromaticities dagiti primarities',
 'exif-imagedescription'            => 'Titulo ti imahen',
 'exif-make'                        => 'Nangpartuat iti camera',
 'exif-model'                       => 'Modelo ti camera',

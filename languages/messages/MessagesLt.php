@@ -947,9 +947,10 @@ teisės",
 'userrights-groupsmember'          => 'Narys:',
 'userrights-groupsremovable'       => 'Pašalinamos grupės:',
 'userrights-groupsavailable'       => 'Galimos grupės:',
-'userrights-groups-help'           => 'Jūs galite pakeisti grupes, kuriose yra šis naudotojas.
-Pažymėtas langelis reiškia, kad šis naudotojas yra toje grupėje.
-Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.',
+'userrights-groups-help'           => 'Jūs galite pakeisti grupes, kuriose yra šis naudotojas:
+* Pažymėtas langelis reiškia, kad šis naudotojas yra toje grupėje.
+* Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.
+* * parodo, kad jūs nebegalėsite pašalinti grupės, kai ją pridėsite, ir atvirkščiai.',
 'userrights-reason'                => 'Keitimo priežastis:',
 'userrights-available-none'        => 'Jūs negalite keisti grupės narystės.',
 'userrights-available-add'         => 'Jūs galite pridėti naudotojus į {{PLURAL:$2|šią grupę|šias grupes}}: $1.',
@@ -1170,7 +1171,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'morelinkstoimage'               => 'Žiūrėti [[Special:Whatlinkshere/$1|daugiau nuorodų]] į šį failą.',
 'sharedupload'                   => 'Šis failas yra įkeltas bendram naudojimui ir gali būti naudojamas kituose projektuose.',
 'shareduploadwiki'               => 'Žiūrėkite $1 tolimesnei informacijai.',
-'shareduploadwiki-desc'          => 'Aprašymas iš jo $1 yra rodomas žemiau.',
+'shareduploadwiki-desc'          => 'Aprašymas iš jo $1 bendrojoje saugykloje yra rodomas žemiau.',
 'shareduploadwiki-linktext'      => 'failo aprašymo puslapio',
 'shareduploadduplicate'          => 'Šis failas yra $1, esančio bendroje saugykloje, dublikatas.',
 'shareduploadduplicate-linktext' => 'kitas failas',

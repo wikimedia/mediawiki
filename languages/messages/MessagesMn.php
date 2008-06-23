@@ -8,7 +8,6 @@
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author Siebrand
- * @author Nike
  */
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';

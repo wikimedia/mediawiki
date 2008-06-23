@@ -8,7 +8,6 @@
  * @author Zordsdavini
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  */
 
 $fallback = 'lt';

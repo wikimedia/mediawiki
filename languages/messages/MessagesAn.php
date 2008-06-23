@@ -8,7 +8,6 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  * @author Willtron
  * @author Jon Harald Søby
  */
@@ -947,7 +946,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'contextchars'             => 'Caráuters de contesto por linia',
 'stub-threshold'           => 'Branquil superior ta o formateyo de <a href="#" class="stub">binclos ta borradors</a> (en bytes):',
 'recentchangesdays'        => "Días que s'amostrarán en ''zaguers cambeos'':",
-'recentchangescount'       => "Numero d'edizions que s'amostrarán en ''zaguers cambeos''",
+'recentchangescount'       => "Numero d'edizions que s'amostrarán en as pachinas de ''zaguers cambeos'', istorials y rechistros:",
 'savedprefs'               => "S'han alzato as suyas preferenzias.",
 'timezonelegend'           => 'Fuso orario',
 'timezonetext'             => "¹Escriba a esferenzia (en oras) entre a suya ora local y a d'o serbidor (UTC).",
@@ -963,7 +962,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'files'                    => 'Archibos',
 
 # User rights
-'userrights'                       => "Confegurazión de premisos d'os usuarios", # Not used as normal message but as header for the special page itself
+'userrights'                       => "Confegurazión d'os dreitos d'os usuarios", # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'           => "Confegurar collas d'usuarios",
 'userrights-user-editname'         => "Escriba un nombre d'usuario:",
 'editusergroup'                    => "Editar as collas d'usuarios",
@@ -1068,8 +1067,8 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'right-siteadmin'            => 'Trancar y estrancar a base de datos',
 
 # User rights log
-'rightslog'      => "Rechistro de premisos d'os usuarios",
-'rightslogtext'  => "Iste ye un rechistro d'os cambios en os premisos d'os usuarios",
+'rightslog'      => "Rechistro de cambios en os dreitos d'os usuarios",
+'rightslogtext'  => "Iste ye un rechistro d'os cambios en os dreitos d'os usuarios",
 'rightslogentry' => "ha cambiato os dreitos d'usuario de $1: de $2 a $3",
 'rightsnone'     => '(denguno)',
 
@@ -1656,7 +1655,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'undeleterevisions'            => '$1 {{PLURAL:$1|bersión|bersions}} archibatas',
 'undeletehistory'              => "Si restaura una pachina, todas as suyas bersions serán restauratas ta o suyo istorial. Si dende que se borró a orichinal s'ha creyato una nueba pachina con o mesmo nombre, as bersions restauradas amanixerán como anteriors á las d'a pachina autual. Pare cuenta tamién que as posibles restrizions se pierden en fer a restaurazión",
 'undeleterevdel'               => "No s'esfará o borrau si isto resulta en o borrau parzial d'a pachina d'alto u a rebisión de l'archibo. En ixe caso, deselezione u amuestre as bersions borratas más rezients.",
-'undeletehistorynoadmin'       => "L'articlo ha estato borrato. A razón d'o suyo borrau s'endica más t'abaixo en o resumen, asinas como os detalles d'as edizions feitas antis d'o borrau. O testo completo de l'articlo será disponible sólo que ta os usuarios con premisos d'almenistrador.",
+'undeletehistorynoadmin'       => "Esta pachina ye borrata. A razón d'o suyo borrau s'amuestra más t'abaixo en o resumen, asinas como os detalles d'os usuarios que eban editato a pachina antes d'o borrau. O testo completo d'istas edizions borratas ye disponible nomás ta os almenistradors.",
 'undelete-revision'            => "S'ha borrato a bersión de $1 de $2 (por $3):",
 'undeleterevision-missing'     => "Bersión no conforme u no trobata. Regular que o binclo sia incorreuto u que a bersión aiga estato restaurata u borrata de l'archibo.",
 'undelete-nodiff'              => "No s'ha trobato garra bersión anterior.",

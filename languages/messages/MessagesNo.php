@@ -6,7 +6,6 @@
  *
  * @author Samuelsen
  * @author Jon Harald Søby
- * @author Nike
  * @author Teak
  * @author לערי ריינהארט
  * @author Siebrand
@@ -977,7 +976,7 @@ se math/README for oppsett.',
 'contextchars'             => 'Tegn per linje i resultatet',
 'stub-threshold'           => 'Grense for <span class="mw-stub-example">stubblenkeformatering</span>:',
 'recentchangesdays'        => 'Antall dager som skal vises i siste endringer:',
-'recentchangescount'       => 'Antall titler i «siste endringer»:',
+'recentchangescount'       => 'Antall redigeringer som skal vises i «Siste endringer», historikker og logger.',
 'savedprefs'               => 'Innstillingene ble lagret.',
 'timezonelegend'           => 'Tidssone',
 'timezonetext'             => '¹Tast inn antall timer lokaltid differerer fra tjenertiden (UTC).',

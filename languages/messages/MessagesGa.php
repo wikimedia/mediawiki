@@ -99,8 +99,8 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Cuir línte faoi naisc:',
-'tog-highlightbroken'         => 'Cuir dath dearg ar naisc briste, <a href="" class="new">mar sin</a>
-(rogha eile: mar sin<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formáidigh na naisc briste, <a href="" class="new">mar seo</a>
+(rogha malartach: mar seo<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Comhfhadaigh na paragraif',
 'tog-hideminor'               => 'Ná taispeáin fo-athruithe i measc na n-athruithe is déanaí',
 'tog-extendwatchlist'         => 'Leathnaigh an liosta faire chun gach athrú cuí a thaispeáint',
@@ -201,7 +201,7 @@ $messages = array(
 'category-empty'         => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
 'listingcontinuesabbrev' => 'ar lean.',
 
-'mainpagetext'      => 'Suiteáladh an ríomhchlár vicí go rathúil.',
+'mainpagetext'      => "<big>'''D'éirigh le suiteáil MediaWiki.'''</big>",
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
 agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.',
 
@@ -367,7 +367,7 @@ $1',
 'cachederror'          => 'Seo í cóip taisce den leathanach atá á lorg agat (is dócha nach bhfuil sí bord ar bhord leis an leagan
 
 láithreach).',
-'laggedslavemode'      => "Fógra: B'fhéidir nach bhfuil an leathanach suas chun dáta.",
+'laggedslavemode'      => "Rabhadh: B'fhéidir nach bhfuil na nuashonrúcháin is déanaí le feiceáil ar an leathanach seo.",
 'readonly'             => 'Bunachar sonraí glasáilte',
 'enterlockreason'      => 'Iontráil cúis don glasáil, agus meastachán
 den uair a díghlasálfar an bunachar sonraí.',
@@ -378,9 +378,7 @@ Tugadh an míniú seo ag an riarthóir a ghlasáil é:
 $1',
 'missingarticle-rev'   => '(leagan#: $1)',
 'missingarticle-diff'  => '(Diof: $1, $2)',
-'readonly_lag'         => 'Glasáladh an bunachar sonraí go huathoibríoch, mar tá freastalaithe
-sclábhánta an bhunachair sonraí ag teacht suas chun dáta leis an máistirfhreastalaí
-fós.',
+'readonly_lag'         => 'Glasáladh an bunachar sonraí go huathoibríoch, go dtiocfaidh na sclábhfhreastalaithe suas leis an máistirfhreastalaí.',
 'internalerror'        => 'Earráid inmhéanach',
 'internalerror_info'   => 'Earráid inmhéanach: $1',
 'filecopyerror'        => 'Ní féidir an comhad "$1" a chóipeáil go "$2".',
@@ -396,7 +394,7 @@ fós.',
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
 'perfdisabled'         => 'Tá brón orainn! Díchumasaíodh an gné seo ar feadh tamaill chun luas an bhunachair sonraí a chosaint.',
-'perfcached'           => 'Fuarthas na sonraí seo as dtaisce, agus is dócha nach bhfuil siad suas chun dáta:',
+'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta.',
 'wrong_wfQuery_params' => 'Paraiméadair míchearta don wfQuery()<br />
 Feidhm: $1<br />
 Iarratas: $2',
@@ -464,7 +462,7 @@ Cumasaigh iad le do thoil, agus ansin logáil isteach le d'ainm úsáideora agus
 Tá fianáin díchumasaithe agat. 
 Cumasaigh iad agus bain triail eile as, le do thoil.',
 'noname'                     => 'Níor thug tú ainm úsáideora bailí.',
-'loginsuccesstitle'          => 'Logáil isteach rathúil',
+'loginsuccesstitle'          => 'Logáladh isteach thú',
 'loginsuccess'               => "'''Tá tú logáilte isteach anois sa {{SITENAME}} mar \"<nowiki>\$1</nowiki>\".'''",
 'nosuchuser'                 => 'Níl aon úsáideoir ann leis an ainm "$1".
 Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora nua a chruthú.',
@@ -835,7 +833,7 @@ an comhad agus déan athiarracht, más é do thoil é.',
 'badfilename'       => 'D\'athraíodh an comhadainm bheith "$1".',
 'emptyfile'         => "De réir a chuma, ní aon rud san chomhad a d'uaslódáil tú ach comhad folamh. Is dócha gur
 míchruinneas é seo san ainm chomhaid. Seiceáil más é an comhad seo atá le huaslódáil agat.",
-'successfulupload'  => 'Uaslódáil rathúil',
+'successfulupload'  => "D'éirigh leis an uaslódáil",
 'uploadwarning'     => 'Rabhadh suaslódála',
 'savefile'          => 'Sábháil comhad',
 'uploadedimage'     => 'D\'uaslódáladh "$1"',
@@ -1086,7 +1084,7 @@ Aiseolas agus a thuilleadh cabhrach:
 # Delete/protect/revert
 'deletepage'                  => 'Scrios an leathanach',
 'confirm'                     => 'Cinntigh',
-'excontent'                   => "is é seo a raibh an ábhar: '$1'",
+'excontent'                   => "téacs an lgh: '$1'",
 'excontentauthor'             => "seo a bhí an t-inneachar: '$1' (agus ba é '[[Special:Contributions/$2|$2]]' an t-aon dhréachtóir)",
 'exbeforeblank'               => "is é seo a raibh an ábhar roimh an folmhadh: '$1'",
 'exblank'                     => 'bhí an leathanach folamh',
@@ -1304,9 +1302,8 @@ Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lám
 'articleexists'           => 'Tá leathanach leis an teideal seo ann fós, nó níl an
 teideal a rinne tú rogha air ina theideal bailí.
 Toghaigh teideal eile le do thoil.',
-'talkexists'              => "D'athainmníodh an leathanach é féin go rathúil, ach ní raibh sé ar a chumas an
-leathanach phlé a hathainmniú dá bharr go bhfuil ceann ann cheana féin ag an teideal nua.
-Báigh tusa féin iad, le do thoil.",
+'talkexists'              => "'''D'athainmníodh an leathanach féin, ach níorbh fhéidir an leathanach plé a athainmniú de bharr go bhfuil ceann ann cheana féin ag an teideal nua.
+Cumaisc le chéile iad, le do thoil.'''",
 'movedto'                 => 'athainmnithe go',
 'movetalk'                => 'Athainmnigh an leathanach plé freisin.',
 '1movedto2'               => 'Athainmníodh $1 mar $2',

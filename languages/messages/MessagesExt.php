@@ -7,7 +7,6 @@
  * @author Better
  * @author Siebrand
  * @author M.M.S.
- * @author Nike
  * @author Jon Harald Søby
  * @author SPQRobin
  */

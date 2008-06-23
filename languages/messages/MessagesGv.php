@@ -6,19 +6,21 @@
  *
  * @author MacTire02
  * @author Siebrand
- * @author Nike
  * @author Shimmin Beg
  */
 
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'Cur linnaghyn fo chianglaghyn:',
+'tog-highlightbroken'  => 'Cur y cummey shoh <a href="" class="new">er kianglaghey brisht</a> (aght elley: myr shoh<a href="" class="internal">?</a>).',
 'tog-hideminor'        => "Follaghey myn-arraghyn ayns caghlaaghyn s'noa",
+'tog-numberheadings'   => 'Cur earrooyn gyn smooinaght er kione-linnaghyn',
 'tog-rememberpassword' => "Cooinnee m'ockle arrey",
 'tog-watchcreations'   => 'Cur duillagyn ta crooit aym lesh my rolley arrey',
 'tog-watchdefault'     => 'Cur duillagyn ta reaghit aym lesh my rolley arrey',
 'tog-watchmoves'       => 'Cur duillagyn ta scughit aym lesh my rolley arrey',
 'tog-watchdeletion'    => 'Cur duillagyn ta scryssit aym lesh my rolley arrey',
+'tog-enotifminoredits' => 'Cur dou post-l er myn-arraghey duillagyn chammah',
 'tog-showhiddencats'   => 'Ronnaghyn follit y haishbyney',
 
 'underline-always' => 'Rieau',

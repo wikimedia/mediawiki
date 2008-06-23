@@ -9,7 +9,6 @@
  * @author BrokenArrow
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  * @author Jon Harald Søby
  */
 
@@ -519,7 +518,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'showpreview'                      => 'Mostra anteprima',
 'showlivepreview'                  => "Funzion ''Live preview''",
 'showdiff'                         => 'Mostra canbiamenti',
-'anoneditwarning'                  => "'''Ocio:''' Acesso mìa efetuà. Ne ła cronołogia de ła pàxena vegnarà registrà l'indirizo IP.",
+'anoneditwarning'                  => "'''Ocio:''' Acesso mìa efetuà. Ne ła cronołogia de ła pàxena vegnarà registrà el to indirizo IP.",
 'missingsummary'                   => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
 'missingcommenttext'               => 'Inserissi un comento qua soto.',
 'missingcommentheader'             => "'''Ocio:''' No te ghè specificà l'intestazion de sto commento. Macando de novo '''Salva la pagina''' la modifica la vegnarà salvà senza intestazion.",
@@ -881,7 +880,7 @@ par poder personalixare le to preferense.',
 'contextchars'             => 'Caratteri par linea:',
 'stub-threshold'           => 'Valor minimo par i <a href="#" class="stub">colegamenti ai stub</a>:',
 'recentchangesdays'        => 'Nùmaro de giòrni da mostrar ne le ultime modifiche:',
-'recentchangescount'       => 'Nùmaro titołi in "modifeghe reçenti"',
+'recentchangescount'       => 'Nùmaro de modìfeghe da mostrar in modìfeghe reçenti, cronologia e pagine de registro:',
 'savedprefs'               => 'Le to preferense łe xè stà salvae.',
 'timezonelegend'           => 'Fuso orario',
 'timezonetext'             => "¹Inserissi el nùmaro de ore de difarensa fra la to ora locale e l'ora del server (UTC).",
@@ -1401,7 +1400,7 @@ Altre informassion sui diriti individuali se pol catarle [[{{MediaWiki:Listgroup
 'emailsenttext'   => 'La to e-mail la xè stà invià.',
 
 # Watchlist
-'watchlist'            => 'Osservati speciali',
+'watchlist'            => "Pagine tegnùe d'ocio",
 'mywatchlist'          => 'osservati speciali',
 'watchlistfor'         => "(par '''$1''')",
 'nowatchlist'          => "No te ghè indicà pagine da tegner d'ocio.",

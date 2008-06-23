@@ -11,7 +11,6 @@
  * @author לערי ריינהארט
  * @author Farrukh
  * @author Soroush
- * @author Nike
  * @author Cbrown1023
  */
 

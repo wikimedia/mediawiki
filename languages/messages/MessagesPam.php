@@ -8,7 +8,6 @@
  * @author Val2397
  * @author Siebrand
  * @author SPQRobin
- * @author Nike
  */
 
 $messages = array(

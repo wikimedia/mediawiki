@@ -14,7 +14,6 @@
  * @author Mimouni
  * @author Khaledhosny
  * @author Tarawneh
- * @author Nike
  * @author Agurzil
  * @author לערי ריינהארט
  * @author Jon Harald Søby
@@ -404,7 +403,7 @@ $messages = array(
 'tog-nolangconversion'        => 'عطل تحويل اللهجات',
 'tog-ccmeonemails'            => 'أرسل لي نسخا من رسائل البريد الإلكتروني التي أرسلها للمستخدمين الآخرين',
 'tog-diffonly'                => 'لا تعرض محتوى الصفحة أسفل الفروقات',
-'tog-showhiddencats'          => 'اظهر التّصنيفات المخفية',
+'tog-showhiddencats'          => 'أظهر التصنيفات المخفية',
 
 'underline-always'  => 'دائمًا',
 'underline-never'   => 'أبدًا',
@@ -526,9 +525,9 @@ $messages = array(
 'permalink'         => 'وصلة دائمة',
 'print'             => 'اطبع',
 'edit'              => 'عدل',
-'create'            => 'أنشيء',
+'create'            => 'أنشىء',
 'editthispage'      => 'عدل هذه الصفحة',
-'create-this-page'  => 'أنشيء هذه الصفحة',
+'create-this-page'  => 'أنشىء هذه الصفحة',
 'delete'            => 'حذف',
 'deletethispage'    => 'احذف هذه الصفحة',
 'undelete_short'    => 'استرجاع {{PLURAL:$1|تعديل واحد|تعديلان|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
@@ -737,7 +736,7 @@ $2',
 'login'                      => 'دخول',
 'nav-login-createaccount'    => 'دخول / إنشاء حساب',
 'loginprompt'                => 'يجب أن تكون الكوكيز لديك مفعلة لتتمكن من الدخول إلى {{SITENAME}}.',
-'userlogin'                  => 'سجّل الدخول / أنشيء حساب',
+'userlogin'                  => 'سجل الدخول / أنشىء حساب',
 'logout'                     => 'خروج',
 'userlogout'                 => 'خروج',
 'notloggedin'                => 'غير مسجّل الدخول',
@@ -905,7 +904,7 @@ $2',
 لإنشاء هذه الصفحة ابدأ الكتابة في الصندوق بالأسفل.
 (انظر في [[{{MediaWiki:Helppage}}|صفحة المساعدة]] للمزيد من المعلومات)
 إذا كانت زيارتك لهذه الصفحة بالخطأ، اضغط على زر ''رجوع'' في متصفح الإنترنت لديك.",
-'anontalkpagetext'                 => "----''هذه صفحة نقاش لمستخدم مجهول لم يقم بإنشاء حساب بعد أو لا يستعمل ذلك الحساب. لذا فيجب علينا استعمال رقم الأيبي للتعرف عليه/عليها. مثل هذا العنوان يمكن أن يشترك فيه عدة مستخدمين. لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:Userlogin|أنشيء حسابا أو سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
+'anontalkpagetext'                 => "----''هذه صفحة نقاش لمستخدم مجهول لم يقم بإنشاء حساب بعد أو لا يستعمل ذلك الحساب. لذا فيجب علينا استعمال رقم الأيبي للتعرف عليه/عليها. مثل هذا العنوان يمكن أن يشترك فيه عدة مستخدمين. لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:Userlogin|أنشىء حسابا أو سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
 'noarticletext'                    => 'لا يوجد حاليا أي نص في هذه الصفحة، يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة].',
 'userpage-userdoesnotexist'        => 'حساب المستخدم "$1" غير مسجل. من فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.',
 'clearyourcache'                   => "ملاحظة: قم بإعادة تحميل الصفحة لرؤية التغييرات. إذا لم تظهر التغييرات بعد إعادة التحميل، قد يكون متصفح الإنترنت الذي تستخدمه يقوم بعرض نسخة مخزنة سابقا. لتجنب عرض هذه النسخة، قد يلزم أن تقوم بأحد هذه الخطوات:
@@ -1028,7 +1027,7 @@ $2',
 
 # Revision feed
 'history-feed-title'          => 'تاريخ التعديل',
-'history-feed-description'    => 'تاريخ التعديل لهذه الصفحة في الويكي',
+'history-feed-description'    => 'تاريخ التعديل على هذه الصفحة في الويكي',
 'history-feed-item-nocomment' => '$1 في $2', # user at time
 'history-feed-empty'          => 'الصفحة المطلوبة غير موجودة. من المحتمل أن تكون هذه الصفحة قد حذفت أو نقلت. حاول [[Special:Search|البحث في الويكي]] عن صفحات جديدة ذات صلة.',
 
@@ -1215,7 +1214,7 @@ $2',
 'contextchars'             => 'عدد الأحرف في كل سطر',
 'stub-threshold'           => 'الحد لتنسيق <a href="#" class="stub">وصلة البذرة</a>:',
 'recentchangesdays'        => 'عدد الأيام المعروضة في أحدث التغييرات:',
-'recentchangescount'       => 'عدد التعديلات المعروضة في أحدث التغييرات:',
+'recentchangescount'       => 'عدد التعديلات للعرض في أحدث التغييرات، صفحات التواريخ والسجلات:',
 'savedprefs'               => 'تم حفظ تفضيلاتك.',
 'timezonelegend'           => 'المنطقة الزمنية',
 'timezonetext'             => '¹عدد الساعات بين توقيتك المحلي وتوقيت الخادم (UTC).',
@@ -1429,8 +1428,8 @@ $2',
 إن كان هو نفس الملف بالحجم الأصلي فلا داعي لرفع تصغير إضافي.',
 'file-thumbnail-no'           => 'يبدأ الملف بـ <strong><tt>$1</tt></strong>. يبدو أن الملف مصغرا لحجم أعلى <i>(تصغير)</i>.
 إذا كانت لديك الصورة في درجة دقة كاملة قم برفعها، أو قم بتغيير اسم الملف من فضلك.',
-'fileexists-forbidden'        => 'هناك ملف بنفس الاسم حاليا؛ من فضلك تراجع وأعطه اسما جديدا. [[صورة:$1|تصغير|وسط|$1]]',
-'fileexists-shared-forbidden' => 'يوجد ملف بنفس الاسم في مستودع الملفات المشترك، من فضلك ارجع و ارفع هذا الملف تحت اسم جديد. [[صورة:$1|تصغير|وسط|$1]]',
+'fileexists-forbidden'        => 'هناك ملف بنفس الاسم حاليا؛ من فضلك تراجع وأعطه اسما جديدا. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'يوجد ملف بنفس الاسم في مستودع الملفات المشترك، من فضلك ارجع و ارفع هذا الملف تحت اسم جديد. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'هذا الملف مكرر  {{PLURAL:$1|للملف|للملفات}} التالية:',
 'successfulupload'            => 'تم رفع الملف بنجاح',
 'uploadwarning'               => 'تحذير رفع الملفات',
@@ -1911,7 +1910,7 @@ $NEWPAGE
 # Restrictions (nouns)
 'restriction-edit'   => 'تعديل',
 'restriction-move'   => 'نقل',
-'restriction-create' => 'أنشيء',
+'restriction-create' => 'أنشىء',
 'restriction-upload' => 'رفع',
 
 # Restriction levels
@@ -2391,7 +2390,7 @@ $1',
 'file-info'            => '(حجم الملف: $1، نوع MIME: $2)',
 'file-info-size'       => '($1 × $2 بكسل حجم الملف: $3، نوع MIME: $4)',
 'file-nohires'         => '<small>لا توجد دقة أعلى متوفرة.</small>',
-'svg-long-desc'        => '(ملف SVG، أساسا $1 × $2 بكسل، حجم الملف: $3)',
+'svg-long-desc'        => '(ملف إس في جي، أبعاده $1 × $2 بكسل، حجم الملف: $3)',
 'show-big-image'       => 'الصورة بدقة كاملة',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
 
@@ -2421,7 +2420,7 @@ $1',
 'metadata'          => 'بيانات ميتا',
 'metadata-help'     => 'هذا الملف يحتوي على معلومات إضافية، غالبا ما تكون أضيفت من قبل الكاميرا الرقمية أو الماسح الضوئي المستخدم في نقل الملف إلى الحاسوب. إذا كان الملف قد عدل عن حالته الأصلية، فبعض التفاصيل قد لا تعبر عن الملف المعدل.',
 'metadata-expand'   => 'اظهر التفاصيل الممتدة',
-'metadata-collapse' => 'اخف التفاصيل الممتدة',
+'metadata-collapse' => 'أخف التفاصيل الممتدة',
 'metadata-fields'   => 'حقول معطيات الميتا EXIF الموجودة في هذه الرسالة سوف تعرض في صفحة الصورة عندما يكون جدول معطيات الميتا مضغوطا. الحقول الأخرى ستكون مخفية افتراضيا.
 * make
 * model
@@ -2523,14 +2522,14 @@ $1',
 'exif-gpsversionid'                => 'نسخة وسم GPS',
 'exif-gpslatituderef'              => 'شمال أو جنوب خطوط العرض',
 'exif-gpslatitude'                 => 'خط العرض',
-'exif-gpslongituderef'             => 'شرق أو غرب خطوط الطول',
+'exif-gpslongituderef'             => 'خط الطول الشرقي أو الغربي',
 'exif-gpslongitude'                => 'خط الطول',
 'exif-gpsaltituderef'              => 'مرجع الارتفاع',
 'exif-gpsaltitude'                 => 'الارتفاع',
 'exif-gpstimestamp'                => 'وقت GPS (ساعة ذرية)',
-'exif-gpssatellites'               => 'الأقمار الصناعية المستخدمة في القياس',
+'exif-gpssatellites'               => 'الأقمار الصناعية المستخدمة للقياس',
 'exif-gpsstatus'                   => 'حالة جهاز الاستقبال',
-'exif-gpsmeasuremode'              => 'طور القياس',
+'exif-gpsmeasuremode'              => 'طريقة القياس',
 'exif-gpsdop'                      => 'دقة القياس',
 'exif-gpsspeedref'                 => 'وحدة السرعة',
 'exif-gpsspeed'                    => 'سرعة مستقبل جي بي إس',
@@ -2670,7 +2669,7 @@ $1',
 'exif-contrast-2' => 'قاسي',
 
 'exif-saturation-0' => 'وضعية طبيعية',
-'exif-saturation-1' => 'تشبع منخفض',
+'exif-saturation-1' => 'تشبع قليل',
 'exif-saturation-2' => 'تشبع عالي',
 
 'exif-sharpness-0' => 'وضعية طبيعية',
@@ -2876,16 +2875,16 @@ $1',
 'iranian-calendar-m11' => 'بهمن',
 'iranian-calendar-m12' => 'اسفند',
 
-#Hijri month names
-'hijri-calendar-m1' => 'محرم',
-'hijri-calendar-m2' => 'صفر',
-'hijri-calendar-m3' => 'ربيع الأول',  
-'hijri-calendar-m4' => 'ربيع الثاني',
-'hijri-calendar-m5' => 'جمادى الأولى',
-'hijri-calendar-m6' => 'جمادى الثانية',
-'hijri-calendar-m7' => 'رجب',
-'hijri-calendar-m8' => 'شعبان',
-'hijri-calendar-m9' => 'رمضان',
+# Hijri month names
+'hijri-calendar-m1'  => 'محرم',
+'hijri-calendar-m2'  => 'صفر',
+'hijri-calendar-m3'  => 'ربيع الأول',
+'hijri-calendar-m4'  => 'ربيع الثاني',
+'hijri-calendar-m5'  => 'جمادى الأولى',
+'hijri-calendar-m6'  => 'جمادى الثانية',
+'hijri-calendar-m7'  => 'رجب',
+'hijri-calendar-m8'  => 'شعبان',
+'hijri-calendar-m9'  => 'رمضان',
 'hijri-calendar-m10' => 'شوال',
 'hijri-calendar-m11' => 'ذو القعدة',
 'hijri-calendar-m12' => 'ذو الحجة',

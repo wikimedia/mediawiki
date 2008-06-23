@@ -3,7 +3,7 @@
  *
  * @ingroup Language
  * @file
- * 
+ *
  * @author SpeedyGonsales
  * @author MayaSimFan
  * @author Roberta F.
@@ -13,7 +13,6 @@
  * @author Siebrand
  * @author Treecko
  * @author לערי ריינהארט
- * @author Nike
  * @author Suradnik13
  * @author Demicx
  */
@@ -2569,7 +2568,7 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'specialpages-summary'           => 'Slijedi popis posebnih stranica koje služe kako administratorima tako i suradnicima za lakše održavanje projekta. Molim ovdje navesti posebne stranice/kategorije za održavanje projekta.',
 'specialpages-note'              => '----
 * Normalne posebne stranice
-:<span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',
+*<span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',

@@ -7,7 +7,6 @@
  * @author Slomox
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  * @author Jon Harald Søby
  */
 
@@ -637,7 +636,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'hr_tip'          => 'Waagrechte Lien (sporsam bruken)',
 
 # Edit pages
-'summary'                          => 'Tosamenfaten',
+'summary'                          => 'Grund för’t Ännern',
 'subject'                          => 'Bedrap',
 'minoredit'                        => 'Blots lütte Ännern',
 'watchthis'                        => 'Op disse Siet oppassen',

@@ -298,6 +298,13 @@ $messages = array(
 'thisisdeleted'           => 'Bekyk of herstel $1?',
 'viewdeleted'             => 'Bekyk $1?',
 'restorelink'             => '{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}',
+'feedlinks'               => 'Voer:',
+'feed-invalid'            => 'Voertipe word nie ondersteun nie.',
+'feed-unavailable'        => 'Sindikasie voer is nie beskikbaar op {{SITENAME}}',
+'site-rss-feed'           => '$1 RSS-voer',
+'site-atom-feed'          => '$1 Atom-voer',
+'page-rss-feed'           => '"$1" RSS-voer',
+'page-atom-feed'          => '"$1" Atom-voer',
 'red-link-title'          => '$1 (nog nie geskryf nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -345,6 +352,7 @@ Die administreerder wat dit gesluit het se verduideliking:
 
 $1',
 'missingarticle-rev'   => '(weergawe#: $1)',
+'missingarticle-diff'  => '(Wysiging: $1, $2)',
 'readonly_lag'         => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
@@ -443,7 +451,8 @@ Stel u rekenaar om dit te aanvaar, dan kan u met u nuwe naam en wagwoord inteken
 'nouserspecified'            => "U moet 'n gebruikersnaam spesifiseer.",
 'wrongpassword'              => 'Ongeldige wagwoord, probeer weer.',
 'wrongpasswordempty'         => 'Die wagwoord was leeg. Probeer asseblief weer.',
-'passwordtooshort'           => 'U wagwoord is te kort. Dit moet ten minste $1 karakters hê.',
+'passwordtooshort'           => 'U wagwoord is te kort.
+Dit moet ten minste {{PLURAL:$1|1 karakter|$1 karakters}} hê en kan nie jou gebruikersnaam insluit nie.',
 'mailmypassword'             => 'E-pos nuwe wagwoord',
 'passwordremindertitle'      => 'Wagwoordwenk van {{SITENAME}}',
 'passwordremindertext'       => 'Iemand (waarskynlik U, van IP-adres $1)
@@ -459,8 +468,8 @@ Teken asseblief in na jy dit ontvang het.',
 'eauthentsent'               => "'n Bevestigingpos is gestuur na die gekose e-posadres.
 Voordat ander pos na die adres gestuur word,
 moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres werklik u adres is.",
-'throttled-mailpassword'     => "Daar is reeds in die laaste $1 uur 'n wagwoordwenk gestuur.
-Om misbruik te voorkom, word slegs een wagwoordwenk per $1 uur gestuur.",
+'throttled-mailpassword'     => "Daar is reeds 'n wagwoordwenk in die laaste {{PLURAL:$1|uur|$1 ure}} gestuur.
+Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}} gestuur.",
 'mailerror'                  => 'Fout tydens e-pos versending: $1',
 'acct_creation_throttle_hit' => 'Jammer. U het reeds $1 rekeninge geskep. U kan nie nog skep nie.',
 'emailauthenticated'         => 'U e-posadres is bevestig op $1.',
@@ -953,10 +962,10 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filehist-filesize'         => 'Lêergrootte',
 'filehist-comment'          => 'Opmerking',
 'imagelinks'                => 'Prentskakels',
-'linkstoimage'              => 'Die volgende bladsye gebruik hierdie prent:',
+'linkstoimage'              => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} gebruik hierdie prent:',
 'nolinkstoimage'            => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
-'redirectstofile'           => 'Die volgende lêers is aansture na die lêer:',
-'duplicatesoffile'          => 'Die volgende lêers is duplikate van die lêer:',
+'redirectstofile'           => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
+'duplicatesoffile'          => "Die volgende {{PLURAL:$1|lêer is 'n duplikaat|$1 lêers is duplikate}} van die lêer:",
 'sharedupload'              => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word.',
 'shareduploadwiki-linktext' => 'lêer beskrywingsbladsy',
 'noimage'                   => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
@@ -1302,6 +1311,7 @@ As 'n nuwe bladsy met dieselfde naam sedert die skrapping geskep is, sal die her
 'linkshere'           => "Die volgende bladsye skakel na '''[[:$1]]''':",
 'nolinkshere'         => "Geen bladsye skakel na '''[[:$1]]'''.",
 'isredirect'          => 'Stuur bladsy aan',
+'istemplate'          => 'insluiting',
 'whatlinkshere-prev'  => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links' => '← skakels',
