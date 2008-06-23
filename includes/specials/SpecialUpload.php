@@ -1331,7 +1331,7 @@ wgUploadAutoFill = {$autofill};
 
 		  wfDebug ( "\n\nmime: <$mime> extension: <$extension>\n\n");
 			#check mime type against file extension
-			if( !$this->verifyExtension( $mime, $extension ) ) {
+			if( !self::verifyExtension( $mime, $extension ) ) {
 				return new WikiErrorMsg( 'uploadcorrupt' );
 			}
 
@@ -1367,7 +1367,7 @@ wgUploadAutoFill = {$autofill};
 	 * @param string $extension The filename extension that the file is to be served with
 	 * @return bool
 	 */
-	function verifyExtension( $mime, $extension ) {
+	static function verifyExtension( $mime, $extension ) {
 		$magic = MimeMagic::singleton();
 
 		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
