@@ -3706,6 +3706,12 @@ class Parser
 			$tz = date( 'T', $unixts );  # might vary on DST changeover!
 			putenv( 'TZ='.$oldtz );
 		}
+		
+		$ctz = wfMsgForContent('timezone');
+		if (!wfEmptyMsg('timezone', $ctz)) {
+			$tz = $ctz;
+		}	
+					
 		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tz)";
 
 		# Variable replacement
