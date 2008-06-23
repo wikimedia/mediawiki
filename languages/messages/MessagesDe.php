@@ -1964,7 +1964,6 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'chick.css'       => '/* CSS an dieser Stelle wirkt sich auf den Küken-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
 'simple.css'      => '/* CSS an dieser Stelle wirkt sich auf den Einfach-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
 'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den MySkin-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
-'print.css'       => '/* CSS an dieser Stelle wirkt sich auf die Druckausgabe aus */',
 
 # Scripts
 'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
