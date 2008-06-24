@@ -160,6 +160,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14558) New system message (emailuserfooter) is now added to the footer of 
   e-mails sent with Special:Emailuser
 * Add support for Hijri (Islamic) calendar
+* Add a new hook LinkerMakeExternalImage to allow extensions to modify the output of
+  external (hotlinked) images.
   
 === Bug fixes in 1.13 ===
 

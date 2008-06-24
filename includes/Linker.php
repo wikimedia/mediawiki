@@ -456,6 +456,12 @@ class Linker {
 		if ( '' == $alt ) {
 			$alt = $this->fnamePart( $url );
 		}
+		$img = '';
+		$success = wfRunHooks('LinkerMakeExternalImage', array( &$url, &$alt, &$img ) );
+		if(!$success) {
+			wfDebug("Hook LinkerMakeExternalImage changed the output of external image with url {$url} and alt text {$alt} to {$img}", true);
+			return $img;
+		}
 		$s = '<img src="'.$url.'" alt="'.$alt.'" />';
 		return $s;
 	}
