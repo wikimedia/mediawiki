@@ -38,6 +38,10 @@ $namespaceAliases = array(
 	'Mediya'                => NS_MEDIA,
 	'MediyaViki'            => NS_MEDIAWIKI,
 	'MediyaViki_munozarasi' => NS_MEDIAWIKI_TALK,
+	'Shablon'               => NS_TEMPLATE,
+	'Shablon_munozarasi'    => NS_TEMPLATE_TALK,
+	'Kategoriya'            => NS_CATEGORY,
+	'Kategoriya_munozarasi' => NS_CATEGORY_TALK,
 );
 
 $linkTrail = '/^([a-zʻʼ“»]+)(.*)$/sDu';
