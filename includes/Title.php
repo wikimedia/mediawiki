@@ -2394,9 +2394,10 @@ class Title {
 	 * @param Title &$nt the new title
 	 * @param bool $auth indicates whether $wgUser's permissions
 	 * 	should be checked
+	 * @param string $reason is the log summary of the move, used for spam checking
 	 * @return mixed True on success, getUserPermissionsErrors()-like array on failure
 	 */
-	public function isValidMoveOperation( &$nt, $auth = true ) {
+	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
 		$errors = array();	
 		if( !$nt ) {
 			// Normally we'd add this to $errors, but we'll get
@@ -2446,7 +2447,7 @@ class Title {
 
 		global $wgUser;
 		$err = null;
-		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err ) ) ) {
+		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err, $reason ) ) ) {
 			$errors[] = array('hookaborted', $err);
 		}
 
@@ -2481,7 +2482,7 @@ class Title {
 	 * @return mixed true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
-		$err = $this->isValidMoveOperation( $nt, $auth );
+		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if( is_array( $err ) ) {
 			return $err;
 		}

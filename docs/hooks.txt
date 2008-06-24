@@ -254,6 +254,7 @@ $old: old title
 $nt: new title
 $user: user who is doing the move
 $err: error message
+$reason: the reason for the move (added in 1.13)
 
 'AbortNewAccount': Return false to cancel account creation.
 $user: the User object about to be created (read-only, incomplete)
