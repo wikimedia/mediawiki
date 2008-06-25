@@ -1719,12 +1719,67 @@ class Language {
 	 */
 	function getSpecialPageAliases() {
 		$this->load();
+
+		// Cache aliases because it may be slow to load them
 		if ( !isset( $this->mExtendedSpecialPageAliases ) ) {
+
+			// Initialise array
 			$this->mExtendedSpecialPageAliases = $this->specialPageAliases;
-			wfRunHooks( 'LanguageGetSpecialPageAliases', 
-				array( &$this->mExtendedSpecialPageAliases, $this->getCode() ) );
+
+			global $wgExtensionAliasesFiles;
+			foreach ( $wgExtensionAliasesFiles as $file ) {
+
+				// Fail fast
+				if ( !file_exists($file) )
+					throw new MWException( 'Aliases file does not exist' );
+
+				$aliases = array();
+				require($file);
+
+				// Check the availability of aliases
+				if ( !isset($aliases['en']) )
+					throw new MWException( 'Malformed aliases file' );
+
+				$code = $this->getCode();
+
+				if ( isset($aliases[$code]) ) {
+					$aliases[$code] = $this->fixSpecialPageAliases( $aliases[$code] );
+					/* Merge the aliases, THIS will break if there is special page name
+					* which looks like a numerical key, thanks to PHP...
+					* See the comments for wfArrayMerge in GlobalSettings.php. */
+					$this->mExtendedSpecialPageAliases = array_merge_recursive(
+						$this->mExtendedSpecialPageAliases, $aliases[$code] );
+				}
+
+				/* Add the English aliases to the end of list as aliases... unless we
+				 * already added them! */
+				if ( $code !== 'en' ) {
+					$aliases['en'] = $this->fixSpecialPageAliases( $aliases['en'] );
+					$this->mExtendedSpecialPageAliases = array_merge_recursive(
+						$this->mExtendedSpecialPageAliases, $aliases['en'] );
+				}
+					
+			}
+
+			wfRunHooks( 'LanguageGetSpecialPageAliases',
+				array( &$this->mExtendedSpecialPageAliases, $code ) );
 		}
+
 		return $this->mExtendedSpecialPageAliases;
+	}
+
+	/**
+	 * Function to fix special page aliases. Will convert the first letter to
+	 * upper case and spaces to underscores. Can be given a full aliases array,
+	 * in which case it will recursively fix all aliases.
+	 */
+	public function fixSpecialPageAliases( $mixed ) {
+		// Work recursively until in string level
+		if ( is_array($mixed) ) {
+			$callback = array( $this, 'fixSpecialPageAliases' );
+			return array_map( $callback, $mixed );
+		}
+		return str_replace( ' ', '_', $this->ucfirst( $mixed ) );
 	}
 
 	/**
@@ -2250,12 +2305,9 @@ class Language {
 		# Replace spaces with underscores in namespace names
 		$cache['namespaceNames'] = str_replace( ' ', '_', $cache['namespaceNames'] );
 
-		# And do the same for specialpage aliases. $page is an array.
-		foreach ( $cache['specialPageAliases'] as &$page ) {
-			$page = str_replace( ' ', '_', $page );
-		}
-		# Decouple the reference to prevent accidental damage
-		unset($page);
+		# And do the same for specialpage aliases.
+		$cache['specialPageAliases'] =
+			$this->fixSpecialPageAliases( $cache['specialPageAliases'] );
 		
 		# Save to both caches
 		self::$mLocalisationCache[$code] = $cache;
