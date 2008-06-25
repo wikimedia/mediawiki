@@ -202,6 +202,8 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|kekahi ho‘opololei kāpae|nā ho‘opololei kāpae $1}}',
 'site-rss-feed'           => 'RSS Feed o $1',
 'site-atom-feed'          => 'Atom Feed o $1',
+'page-rss-feed'           => 'RSS Feed o "$1"',
+'page-atom-feed'          => 'Atom Feed o "$1"',
 'red-link-title'          => '$1 (‘a‘ole kākau ‘ia)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -292,7 +294,7 @@ hō‘ike ‘ia i lalo:",
 'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:Userlogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
 'previewnote'            => '<strong>‘O keia ka nāmua;
 ‘a‘ole i mālama ‘ia ka ho‘ololi!</strong>',
-'editing'                => 'Ke ho‘opololei nei iā $1',
+'editing'                => 'Ke ho‘ololi nei iā $1',
 'editingsection'         => 'Ke ho‘opololei nei iā $1 (mahele)',
 'editingcomment'         => 'Ke ho‘ololi nei iā $1 (mana‘o)',
 'yourtext'               => 'Ko‘u ‘ōlelo',
@@ -416,7 +418,8 @@ hō‘ike ‘ia i lalo:",
 'listusers-submit' => 'Hō‘ike',
 
 # E-mail user
-'emailuser' => 'E leka uila i kēia mea ho‘ohana',
+'emailuser'    => 'E leka uila i kēia mea ho‘ohana',
+'emailmessage' => 'Memo',
 
 # Watchlist
 'watchlist'     => "Ka'u papa nānā pono",

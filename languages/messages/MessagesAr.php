@@ -1390,9 +1390,9 @@ $2',
 لعرض أو البحث في الملفات المرفوعة سابقا، راجع [[Special:Imagelist|قائمة الملفات المرفوعة]]، عمليات الرفع والحذف موجودة في [[Special:Log/upload|سجل الرفع]].
 
 لإدراج صورة في صفحة، استخدم الوصلات في الصيغ التالية:
-*'''<nowiki>[[{{ns:image}}:File.jpg]]</nowiki>'''،
-*'''<nowiki>[[{{ns:image}}:File.png|نص بديل]]</nowiki>''' أو
-*'''<nowiki>[[{{ns:media}}:File.ogg]]</nowiki>''' للوصل للملف مباشرة.",
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''،
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|نص بديل]]</nowiki>''' أو
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' للوصل للملف مباشرة.",
 'upload-permitted'            => 'أنواع الملفات المسموحة: $1.',
 'upload-preferred'            => 'أنواع الملفات المفضلة: $1.',
 'upload-prohibited'           => 'أنواع الملفات الممنوعة: $1.',
@@ -1441,7 +1441,7 @@ $2',
 'uploadscripted'              => 'هذا الملف  يضم كود HTML أو كود آخر يمكن أن يؤول بطريقة خاطئة بواسطة متصفح ويب.',
 'uploadcorrupt'               => 'هذا الملف فاسد أو له امتداد خاطيء. من فضلك تأكد من الملف وأعد الرفع مرة أخرى.',
 'uploadvirus'                 => 'الملف يحتوي على فيروس! التفاصيل: $1',
-'sourcefilename'              => 'اسم الملف المصدر:',
+'sourcefilename'              => 'اسم ملف المصدر:',
 'destfilename'                => 'اسم الملف المستهدف:',
 'upload-maxfilesize'          => 'حجم الملف الأقصى: $1',
 'watchthisupload'             => 'راقب هذه الصفحة',
@@ -1606,7 +1606,7 @@ PICT # misc.
 
 'disambiguations'      => 'صفحات التوضيح',
 'disambiguationspage'  => 'Template:توضيح',
-'disambiguations-text' => "الصفحات التالية تصل إلى '''صفحة توضيح'''. ينبغي في المقابل أن تصل إلى الضفحة الملائمة. <br />تعامل الصفحة كصفحة توضيح إذا كان بها قالب موجود في [[MediaWiki:disambiguationspage|صفحة الميدياويكي هذه]]",
+'disambiguations-text' => "الصفحات التالية تصل إلى '''صفحة توضيح'''. ينبغي في المقابل أن تصل إلى الصفحة الملائمة. <br />تعامل الصفحة كصفحة توضيح إذا كان بها قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'تحويلات مزدوجة',
 'doubleredirectstext' => "كل سطر في القائمة التالية يحتوي على وصلات للتحويلة الأولى والثانية بالإضافة إلى أول سطر من نص التحويلة الثانية والذي عادة ما يشير إلى المقالة ''المفترض'' أن يتم التحويل إليها مباشرة من التحويلة الأولى أيضا.",
@@ -2247,7 +2247,7 @@ $1',
 'tooltip-pt-mytalk'               => 'صفحة نقاشي',
 'tooltip-pt-anontalk'             => 'نقاش حول التعديلات من عنوان الأيبي هذا',
 'tooltip-pt-preferences'          => 'تفضيلاتي',
-'tooltip-pt-watchlist'            => 'قائمة بالصفحات التي تقوم بمراقبة التغييرات التي تحدث فيها',
+'tooltip-pt-watchlist'            => 'قائمة الصفحات التي تراقب التغييرات التي تحدث بها',
 'tooltip-pt-mycontris'            => 'قائمة مساهماتي',
 'tooltip-pt-login'                => 'من المفضل أن تقوم بتسجيل الدخول، هذا ليس إلزاميا.',
 'tooltip-pt-anonlogin'            => 'من المفضل أن تقوم بتسجيل الدخول، هذا ليس إلزاميا.',
@@ -2275,7 +2275,7 @@ $1',
 'tooltip-n-help'                  => 'تحتاج مساعدة؟ طالع هذه الصفحة!',
 'tooltip-n-sitesupport'           => 'ادعمنا',
 'tooltip-t-whatlinkshere'         => 'قائمة بكل الصفحات في الويكي التي تصل هنا',
-'tooltip-t-recentchangeslinked'   => 'أحدث التغييرات في الصفحات الموجودة وصلاتها هنا.',
+'tooltip-t-recentchangeslinked'   => 'أحدث التغييرات في الصفحات الموصولة من هذه الصفحة',
 'tooltip-feed-rss'                => 'تلقيم أر إس إس لهذه الصفحة',
 'tooltip-feed-atom'               => 'تلقيم أتوم لهذه الصفحة',
 'tooltip-t-contributions'         => 'اعرض قائمة مساهمات هذا المستخدم',

@@ -832,6 +832,9 @@ Dalšne administratory we {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersiju|wersiji|wersije|wersijow}}: $3',
 'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|tšojenje|tšojeni|tšojenja|tšojenjow}}',
 
+# Suppression log
+'suppressionlog' => 'Protokol pódłocowanjow',
+
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
 'mergehistory-header'              => 'Z toś tym bokom móžoš historiju wersijow žrědłowego boka z tej celowego boka zjadnośiś.

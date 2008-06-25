@@ -418,7 +418,7 @@ $messages = array(
 'returnto'          => 'Վերադառնալ $1։',
 'tagline'           => '{{SITENAME}}յից՝ ազատ հանրագիտարանից',
 'help'              => 'Օգնություն',
-'search'            => 'Որոնել',
+'search'            => 'Որոնում',
 'searchbutton'      => 'Որոնել',
 'go'                => 'Անցնել',
 'searcharticle'     => 'Անցնել',
@@ -2158,6 +2158,9 @@ $1',
 
 # Special:Version
 'version' => 'MediaWiki տարբերակը', # Not used as normal message but as header for the special page itself
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Որոնել',
 
 # Special:SpecialPages
 'specialpages' => 'Սպասարկող էջեր',

@@ -837,6 +837,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'mergehistory-box'                 => 'Historiquë vun zwou Säite fusionéieren',
 'mergehistory-from'                => 'Originalsäit:',
 'mergehistory-into'                => 'Zilsäit:',
+'mergehistory-list'                => 'Versiounen, déi zesummegeluecht kënne ginn',
 'mergehistory-go'                  => 'Weis déi Versiounen, déi zesummegeluecht kënne ginn',
 'mergehistory-submit'              => 'Versioune verschmelzen',
 'mergehistory-empty'               => 'Et kënne keng Versioune zesummegeluecht ginn.',
@@ -2024,6 +2025,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF Metadata ass op dësem Server ausgeschalt.',
 'nocreativecommons' => 'Creative Commons RDF Metadata ass op dësem Server ausgeschalt.',
+'notacceptable'     => "De Wiki-Server kann d'Donnéeë net an engem Format liwweren déi vun ärem Apparat geliest kënne ginn.",
 
 # Attribution
 'anonymous'        => 'Anonym(e) Benotzer op {{SITENAME}}',
@@ -2213,6 +2215,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpsspeedref'                 => 'Eenheet vun der Vitesse',
 'exif-gpsspeed'                    => 'Vitesse vum GPS-Empfänger',
 'exif-gpstrack'                    => 'Bewegungsrichtung',
+'exif-gpsimgdirection'             => 'Bildrichtung',
 'exif-gpsdestlatituderef'          => "Referenz fir d'Breet",
 'exif-gpsdestlatitude'             => 'Breet',
 'exif-gpsdestlongituderef'         => "Referenz fir d'Längt",
@@ -2255,6 +2258,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-lightsource-0'   => 'Onbekannt',
 'exif-lightsource-1'   => 'Dageslut',
+'exif-lightsource-2'   => 'Fluoreszéierend',
 'exif-lightsource-4'   => 'Blëtz',
 'exif-lightsource-9'   => 'Schéint Wieder',
 'exif-lightsource-10'  => 'Wollekeg',

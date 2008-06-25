@@ -69,7 +69,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Voeg bladsye wat ek verwyder by my dophoulys',
 'tog-minordefault'            => 'Merk alle wysigings automaties as klein by verstek.',
 'tog-previewontop'            => 'Wys voorskou bo wysigingsboks.',
-'tog-previewonfirst'          => 'Wys voorksou met eerste wysiging',
+'tog-previewonfirst'          => 'Wys voorskou met eerste wysiging',
 'tog-nocache'                 => 'Deaktiveer bladsykasstelsel (Engels: caching)',
 'tog-enotifwatchlistpages'    => 'Stuur vir my e-pos met bladsyveranderings',
 'tog-enotifusertalkpages'     => 'Stuur vir my e-pos as my eie besprekingsblad verander word',
@@ -78,6 +78,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'Wys die aantal gebruikers wat dophou',
 'tog-fancysig'                => 'Doodgewone handtekening (sonder outomatiese skakel)',
 'tog-externaleditor'          => "Gebruik outomaties 'n eksterne redigeringsprogram",
+'tog-externaldiff'            => "Gebruik 'n eksterne vergelykingsprogram (net vir eksperts - benodig spesiale verstellings op jou rekenaar)",
 'tog-showjumplinks'           => 'Wys "spring na"-skakels vir toeganklikheid',
 'tog-uselivepreview'          => 'Gebruik lewendige voorskou (JavaScript) (eksperimenteel)',
 'tog-forceeditsummary'        => "Let my daarop as ek nie 'n opsomming van my wysiging gee nie",
@@ -300,7 +301,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}',
 'feedlinks'               => 'Voer:',
 'feed-invalid'            => 'Voertipe word nie ondersteun nie.',
-'feed-unavailable'        => 'Sindikasie voer is nie beskikbaar op {{SITENAME}}',
+'feed-unavailable'        => 'Sindikasievoer is nie beskikbaar op {{SITENAME}}',
 'site-rss-feed'           => '$1 RSS-voer',
 'site-atom-feed'          => '$1 Atom-voer',
 'page-rss-feed'           => '"$1" RSS-voer',
@@ -588,6 +589,10 @@ Jy sal jou wysigings moet saamsmelt met die huidige teks.
 'editingold'               => "<strong>WAARSKUWING: Jy is besig om 'n ouer weergawe van hierdie bladsy te wysig.
 As jy dit stoor, sal enige wysigings sedert hierdie een weer uitgewis word.</strong>",
 'yourdiff'                 => 'Wysigings',
+'copyrightwarning'         => 'Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder die $2 (lees $1 vir meer inligting).
+As u nie wil toelaat dat u teks deur ander persone gewysig of versprei word nie, moet dit asseblief nie hier invoer nie.<br />
+Hierdeur beloof u ons dat u die byvoegings self geskryf het, of gekopieer het van publieke domein of soortgelyke vrye bronne.
+<strong>MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!</strong>',
 'longpagewarning'          => 'WAARSKUWING: Hierdie bladsy is $1 kG groot.
 Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat dit nie 32 kG oorskry nie.',
 'readonlywarning'          => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later. </strong>",
@@ -601,9 +606,14 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'template-semiprotected'   => '(half-beskerm)',
 'hiddencategories'         => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
 'nocreatetitle'            => 'Bladsy skepping beperk',
+'nocreatetext'             => '{{SITENAME}} het die skep van nuwe bladsye beperk. U kan slegs bestaande bladsye wysig, of u kan [[Spesiaal:Userlogin|aanteken of registreer]].',
 'nocreate-loggedin'        => 'U het nie regte om nuwe blaaie op {{SITENAME}} te skep nie.',
 'permissionserrors'        => 'Toestemmings Foute',
 'permissionserrorstext'    => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
+'recreate-deleted-warn'    => "'''Waarskuwing: U skep 'n bladsy wat vantevore verwyder was.'''
+
+U moet besluit of dit wys is om voort te gaan en aan die bladsy te werk. 
+Die verwyderingslogboek vir die blad word hieronder vertoon vir u gerief:",
 
 # "Undo" feature
 'undo-summary' => 'Rol weergawe $1 deur [[Spesiaal:Contributions/$2|$2]] terug. ([[Gebruikerbespreking:$2|Bespreek]])',
@@ -680,6 +690,7 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'lineno'                  => 'Lyn $1:',
 'compareselectedversions' => 'Vergelyk gekose weergawes',
 'editundo'                => 'maak ongedaan',
+'diff-multi'              => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} word nie gewys nie.)',
 
 # Search results
 'searchresults'             => 'soekresultate',
@@ -844,32 +855,37 @@ om voorkeure te spesifiseer.',
 'rightsnone'     => '(geen)',
 
 # Recent changes
-'nchanges'          => '$1 {{PLURAL:$1|wysiging|wysigings}}',
-'recentchanges'     => 'Onlangse wysigings',
-'rcnote'            => "Hier volg die laaste {{PLURAL:$1|'''$1''' wysiging|'''$1''' wysigings}} gedurende die afgelope {{PLURAL:$2|dag|'''$2''' dae}}, op $3.",
-'rcnotefrom'        => 'Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).',
-'rclistfrom'        => 'Vertoon wysigings vanaf $1',
-'rcshowhideminor'   => '$1 klein wysigings',
-'rcshowhidebots'    => '$1 robotte',
-'rcshowhideliu'     => '$1 aangetekende gebruikers',
-'rcshowhideanons'   => '$1 anonieme gebruikers',
-'rcshowhidepatr'    => '$1 gepatrolleerde wysigings',
-'rcshowhidemine'    => '$1 my wysigings',
-'rclinks'           => 'Vertoon die laaste $1 wysigings in die afgelope $2 dae<br />$3',
-'diff'              => 'verskil',
-'hist'              => 'geskiedenis',
-'hide'              => 'versteek',
-'show'              => 'Wys',
-'minoreditletter'   => 'k',
-'newpageletter'     => 'N',
-'boteditletter'     => 'b',
-'rc_categories'     => 'Beperk tot kategorië (skei met "|")',
-'rc_categories_any' => 'Enige',
-'newsectionsummary' => '/* $1 */ nuwe afdeling',
+'nchanges'                       => '$1 {{PLURAL:$1|wysiging|wysigings}}',
+'recentchanges'                  => 'Onlangse wysigings',
+'recentchanges-feed-description' => 'Spoor die mees onlangse wysigings op die wiki na in die voer.',
+'rcnote'                         => "Hier volg die laaste {{PLURAL:$1|'''$1''' wysiging|'''$1''' wysigings}} gedurende die afgelope {{PLURAL:$2|dag|'''$2''' dae}}, op $3.",
+'rcnotefrom'                     => 'Hier onder is die wysigings sedert <b>$2</b> (tot by <b>$1</b> word gewys).',
+'rclistfrom'                     => 'Vertoon wysigings vanaf $1',
+'rcshowhideminor'                => '$1 klein wysigings',
+'rcshowhidebots'                 => '$1 robotte',
+'rcshowhideliu'                  => '$1 aangetekende gebruikers',
+'rcshowhideanons'                => '$1 anonieme gebruikers',
+'rcshowhidepatr'                 => '$1 gepatrolleerde wysigings',
+'rcshowhidemine'                 => '$1 my wysigings',
+'rclinks'                        => 'Vertoon die laaste $1 wysigings in die afgelope $2 dae<br />$3',
+'diff'                           => 'verskil',
+'hist'                           => 'geskiedenis',
+'hide'                           => 'versteek',
+'show'                           => 'Wys',
+'minoreditletter'                => 'k',
+'newpageletter'                  => 'N',
+'boteditletter'                  => 'b',
+'rc_categories'                  => 'Beperk tot kategorië (skei met "|")',
+'rc_categories_any'              => 'Enige',
+'newsectionsummary'              => '/* $1 */ nuwe afdeling',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Verwante veranderings',
-'recentchangeslinked-page' => 'Bladsy naam:',
+'recentchangeslinked'          => 'Verwante veranderings',
+'recentchangeslinked-title'    => 'Wysigings verwant aan "$1"',
+'recentchangeslinked-noresult' => 'Geen veranderinge op geskakelde bladsye gedurende die periode nie.',
+'recentchangeslinked-summary'  => "Hier volg 'n lys van wysigings wat onlangs gemaak is aan bladsye wat van die gespesifiseerde bladsy geskakel word (of van lede van die gespesifiseerde kategorie)
+Bladsye op [[Spesiaal:Watchlist|jou dophoulys]] word met '''vetletters''' uitgewys.",
+'recentchangeslinked-page'     => 'Bladsy naam:',
 
 # Upload
 'upload'             => 'Laai lêer',
@@ -985,6 +1001,7 @@ Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander jou gelaaide lêe
 'filedelete-submit'           => 'Skrap',
 'filedelete-success'          => "'''$1''' is geskrap.",
 'filedelete-success-old'      => '<span class="plainlinks">Die weergawe van \'\'\'[[Media:$1|$1]]\'\'\' op $3, $2 is geskrap.</span>',
+'filedelete-otherreason'      => 'Ander/ekstra rede:',
 'filedelete-reason-otherlist' => 'Andere rede',
 'filedelete-reason-dropdown'  => '*Algemene skrappingsredes:
 ** Kopieregskending
@@ -1234,6 +1251,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'deletionlog'                 => 'skrappingslogboek',
 'reverted'                    => 'Het terug gegaan na vroeëre weergawe',
 'deletecomment'               => 'Rede vir skrapping',
+'deleteotherreason'           => 'Ander/ekstra rede:',
 'deletereasonotherlist'       => 'Andere rede',
 'rollback'                    => 'Rol veranderinge terug',
 'rollback_short'              => 'Rol terug',
@@ -1250,10 +1268,23 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'protect-legend'              => 'Bevestig beskerming',
 'protectcomment'              => 'Rede vir beskerming:',
 'protectexpiry'               => 'Verval:',
+'protect_expiry_invalid'      => 'Vervaltyd is ongeldig.',
+'protect_expiry_old'          => 'Vervaltyd is in die verlede.',
+'protect-unchain'             => 'Gee regte om te skuif',
+'protect-text'                => 'U kan die veiligheidsvlak vir blad <strong><nowiki>$1</nowiki></strong> hier bekyk of verander.',
+'protect-locked-access'       => "Jou rekening het nie regte om 'n bladsy se veiligheidsvlakke te verander nie.
+Hier is die huidige verstellings vir bladsy <strong>$1</strong>:",
+'protect-cascadeon'           => 'Die bladsy word beskerm want dit is ingesluit by die volgende {{PLURAL:$1|blad|blaaie}} wat kaskade-beskerming geniet. U kan die veiligheidsvlak van die bladsy verander, maar dit sal nie die ander kaskade blaaie beïnvloed nie.',
 'protect-default'             => '(normaal)',
 'protect-fallback'            => 'Hiervoor is "$1" regte nodig',
 'protect-level-autoconfirmed' => 'Beskerm teen anonieme wysigings',
 'protect-level-sysop'         => 'Slegs administrateurs',
+'protect-summary-cascade'     => 'kaskade',
+'protect-expiring'            => 'verval $1 (UTC)',
+'protect-cascade'             => 'Beveilig bladsye insluitend die bladsy (kaskade effek)',
+'protect-cantedit'            => 'U kan nie die veiligheidsvlak van die blad verander nie, want u het nie regte om dit te wysig nie.',
+'restriction-type'            => 'Regte:',
+'restriction-level'           => 'Beperkingsvlak:',
 'minimum-size'                => 'Minimum grootte',
 'maximum-size'                => 'Maksimum grootte:',
 'pagesize'                    => '(grepe)',
@@ -1339,6 +1370,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipbother'                 => 'Ander tydperk:',
 'ipboptions'               => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'           => 'ander',
+'ipbotherreason'           => 'Ander/ekstra rede:',
 'badipaddress'             => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub'        => 'Blokkering het geslaag',
 'blockipsuccesstext'       => 'Die IP-adres "$1" is geblokkeer.
@@ -1395,6 +1427,11 @@ Let daarop dat 'n bladsy '''nie''' geskuif sal word indien daar reeds 'n bladsy 
 <b>WAARSKUWING!</b>
 Hierdie kan 'n drastiese en onverwagte verandering vir 'n populêre bladsy wees;
 maak asseblief seker dat jy die gevolge van hierdie aksie verstaan voordat jy voortgaan. Gebruik ook die ooreenstemmende besprekingsbladsy om oorleg te pleeg met ander bydraers.",
+'movepagetalktext'        => "Die ooreenstemmende besprekingsblad sal outomaties saam geskuif word, '''tensy:'''
+*'n Besprekengsblad met die nuwe naam reeds bestaan, of
+*U die keuse hieronder deselekteer.
+
+Indien wel sal u self die blad moet skuif of versmelt (indien nodig).",
 'movearticle'             => 'Skuif bladsy',
 'movenologin'             => 'Nie ingeteken nie',
 'movenologintext'         => "Jy moet 'n geregistreerde gebruiker wees en [[Special:Userlogin|ingeteken]]
@@ -1440,7 +1477,8 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'allmessagesmodified'       => 'Wys slegs gewysigdes',
 
 # Thumbnails
-'thumbnail-more' => 'Vergroot',
+'thumbnail-more'  => 'Vergroot',
+'thumbnail_error' => 'Fout met die skep van duimnaelsketse: $1',
 
 # Special:Import
 'import'       => 'Voer bladsye in',
@@ -1448,6 +1486,7 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'importnotext' => 'Leeg of geen teks',
 
 # Import log
+'importlogpage'                    => 'Invoer logboek',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|weergawe|weergawes}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2',
 
@@ -1553,7 +1592,9 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 # Media information
 'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
+'file-info-size'       => '($1 × $2 pixels, lêergrootte: $3, MIME type: $4)',
 'file-nohires'         => '<small>Geen hoëre resolusie beskikbaar nie.</small>',
+'svg-long-desc'        => '(SVG-lêer, nominaal $1 × $2 pixels, lêergrootte: $3)',
 'show-big-image'       => 'Volle resolusie',
 'show-big-image-thumb' => '<small>Grootte van hierdie voorskou: $1 × $2 pixels</small>',
 
@@ -1564,8 +1605,27 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'ilsubmit'      => 'Soek',
 'bydate'        => 'volgens datum',
 
+# Bad image list
+'bad_image_list' => "Die formaat is as volg:
+
+Slegs lys-items (lyne wat met * begin) word verwerk.
+Die eerste skakel op 'n lyn moet na 'n ongewenste lêer skakel.
+Enige opeenvolgende skakels op dieselfde lyn word as uitsonderings beskou, b.v. blaaie waar die lêer inlyn kan voorkom.",
+
 # Metadata
-'metadata' => 'Metadata',
+'metadata'          => 'Metadata',
+'metadata-help'     => "Die lêer bevat aanvullende inligting wat moontlik deur 'n digitale kamera of skandeerder bygevoeg is. 
+As die lêer verander is, mag sekere inligting nie meer ooreenkom met die van die gewysigde lêer nie.",
+'metadata-expand'   => 'Wys uitgebreide gegewens',
+'metadata-collapse' => 'Steek uitgebreide gegewens weg',
+'metadata-fields'   => 'Die EXIF-metadatavelde wat in die boodskap gelys is sal op die beeld se bladsy ingesluit word as die metadatabel ingevou is. 
+Ander velde sal versteek wees.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'          => 'Wydte',
@@ -1699,6 +1759,10 @@ $1',
 'livepreview-loading' => 'Laai tans…',
 'livepreview-ready'   => 'Laai tans… Gereed!',
 
+# Watchlist editor
+'watchlistedit-raw-titles' => 'Titels:',
+'watchlistedit-raw-submit' => 'Opdateer Dophoulys',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Besigtig ter saaklike veranderinge',
 'watchlisttools-edit' => 'Bekyk en wysig dophoulys',
@@ -1708,8 +1772,10 @@ $1',
 'version'                   => 'Weergawe', # Not used as normal message but as header for the special page itself
 'version-extensions'        => 'Uitbreidings geïnstalleer',
 'version-specialpages'      => 'Spesiale bladsye',
+'version-parserhooks'       => 'Ontlederhoeke',
 'version-variables'         => 'Veranderlikes',
 'version-other'             => 'Ander',
+'version-mediahandlers'     => 'Mediaverwerkers',
 'version-hooks'             => 'Hoeke',
 'version-hook-name'         => 'Hoek naam',
 'version-hook-subscribedby' => 'Gebruik deur',
@@ -1740,5 +1806,8 @@ Soek vir 'n duplikaat",
 'specialpages-group-media'       => 'Media verslae en oplaai',
 'specialpages-group-users'       => 'Gebruikers en regte',
 'specialpages-group-highuse'     => 'Baie gebruikte bladsye',
+'specialpages-group-pages'       => 'Lys van bladsye',
+'specialpages-group-pagetools'   => 'Bladsyhulpmiddels',
+'specialpages-group-wiki'        => 'Wiki data en hulpmiddels',
 
 );
