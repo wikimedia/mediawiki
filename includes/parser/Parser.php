@@ -3697,7 +3697,7 @@ class Parser
 		 * (see also bug 12815)
 		 */
 		$ts = $this->mOptions->getTimestamp();
-		$tz = 'UTC';
+		$tz = wfMsgForContent( 'timezone-utc' );
 		if ( isset( $wgLocaltimezone ) ) {
 			$unixts = wfTimestamp( TS_UNIX, $ts );
 			$oldtz = getenv( 'TZ' );
@@ -3706,12 +3706,7 @@ class Parser
 			$tz = date( 'T', $unixts );  # might vary on DST changeover!
 			putenv( 'TZ='.$oldtz );
 		}
-		
-		$ctz = wfMsgForContent('timezone');
-		if (!wfEmptyMsg('timezone', $ctz)) {
-			$tz = $ctz;
-		}	
-					
+
 		$d = $wgContLang->timeanddate( $ts, false, false ) . " ($tz)";
 
 		# Variable replacement

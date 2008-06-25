@@ -310,6 +310,7 @@ $wgOptionalMessages = array(
 	'colon-separator',
 	'autocomment-prefix',
 	'listgrouprights-right-display',
+	'timezone-utc',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
