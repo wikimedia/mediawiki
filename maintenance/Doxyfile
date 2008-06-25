@@ -1,16 +1,18 @@
-# Doxyfile 1.4.6
+# Doxyfile 1.5.1
 
 #
 # Some placeholders have been added for MediaWiki usage:
 # {{OUTPUT_DIRECTORY}}
+# {{CURRENT_VERSION}}
 # {{STRIP_FROM_PATH}}
+# {{SVNSTAT}}
 # {{INPUT}}
 
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
 PROJECT_NAME           = MediaWiki
-PROJECT_NUMBER         = trunk
+PROJECT_NUMBER         = {{CURRENT_VERSION}}
 OUTPUT_DIRECTORY       = {{OUTPUT_DIRECTORY}}
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
@@ -39,7 +41,7 @@ MULTILINE_CPP_IS_BRIEF = NO
 DETAILS_AT_TOP         = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
-TAB_SIZE               = 8
+TAB_SIZE               = 4
 ALIASES                = 
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
@@ -74,7 +76,7 @@ ENABLED_SECTIONS       =
 MAX_INITIALIZER_LINES  = 30
 SHOW_USED_FILES        = YES
 SHOW_DIRECTORIES       = NO
-FILE_VERSION_FILTER    = 
+FILE_VERSION_FILTER    = {{SVNSTAT}}
 #---------------------------------------------------------------------------
 # configuration options related to warning and progress messages
 #---------------------------------------------------------------------------
@@ -132,7 +134,7 @@ FILE_PATTERNS          = *.c \
                          *.PY
 RECURSIVE              = YES
 EXCLUDE                = 
-EXCLUDE_SYMLINKS       = NO
+EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = LocalSettings.php AdminSettings.php
 EXAMPLE_PATH           = 
 EXAMPLE_PATTERNS       = *
