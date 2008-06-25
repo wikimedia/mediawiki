@@ -219,7 +219,7 @@ class SearchPostgres extends SearchEngine {
  */
 class PostgresSearchResult extends SearchResult {
 	function PostgresSearchResult( $row ) {
-		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+		parent::SearchResult($row);
 		$this->score = $row->score;
 	}
 	function getScore() {
