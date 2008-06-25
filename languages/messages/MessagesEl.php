@@ -8,7 +8,6 @@
  * @author ZaDiak
  * @author Assassingr
  * @author MF-Warburg
- * @author Nike
  * @author Consta
  * @author Siebrand
  * @author לערי ריינהארט
@@ -596,6 +595,7 @@ $2',
 'youremail'                  => 'Ηλεκτρονική διεύθυνση*',
 'username'                   => 'Όνομα χρήστη:',
 'uid'                        => 'Αριθμός αναγνώρισης χρήστη:',
+'prefs-memberingroups'       => 'Μέλος {{PLURAL:$1|ομάδας|ομάδων}}:',
 'yourrealname'               => 'Όνομα και επώνυμο*',
 'yourlanguage'               => 'Γλώσσα:',
 'yourvariant'                => 'Η γλώσσα που χρησιμοποιείτε',
@@ -901,6 +901,9 @@ $1 ώρες.',
 'revdelete-content'           => 'περιεχόμενο',
 'revdelete-summary'           => 'επεξεργασία σύνοψης',
 'revdelete-uname'             => 'όνομα χρήστη',
+
+# Suppression log
+'suppressionlog' => 'Κατάλογος διαγραφών',
 
 # History merging
 'mergehistory'                     => 'Συγχώνευση ιστορικών σελίδων',
@@ -1424,6 +1427,7 @@ $1 ώρες.',
 # Special:Categories
 'categories'                  => 'Κατηγορίες',
 'categoriespagetext'          => 'Οι ακόλουθες κατηγορίες περιέχουν σελίδες ή αρχεία.',
+'categoriesfrom'              => 'Εμφάνιση κατηγοριών που αρχίζουν από:',
 'special-categories-sort-abc' => 'αλφαβητική ταξινόμηση',
 
 # Special:Listusers
@@ -1432,7 +1436,10 @@ $1 ώρες.',
 'listusers-noresult' => 'Δεν βρέθηκε χρήστης.',
 
 # Special:Listgrouprights
-'listgrouprights' => 'Δικαιώματα ομάδων χρηστών',
+'listgrouprights'         => 'Δικαιώματα ομάδων χρηστών',
+'listgrouprights-group'   => 'Ομάδα',
+'listgrouprights-rights'  => 'Δικαιώματα',
+'listgrouprights-members' => '(κατάλογος μελών)',
 
 # E-mail user
 'mailnologin'     => 'Δεν υπάρχει διεύθυνση παραλήπτη.',

@@ -159,7 +159,7 @@ $messages = array(
 'toc'                => 'ოსხუნალ',
 'showtoc'            => 'ძირაფა',
 'hidetoc'            => 'ფულუა',
-'site-rss-feed'      => '$1 RSS Feed',
+'site-rss-feed'      => '$1-იშ არხ RSS',
 'site-atom-feed'     => '$1-იშ არხი Atom',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -197,6 +197,7 @@ $messages = array(
 'loginsuccess'            => "'''ასე მიშულირ რეთ {{SITENAME}}-ს მუჭოთ \"\$1\".'''",
 'nouserspecified'         => 'საჭირო რე მახვარებელიშ სახელიშ მიშაჭარუა.',
 'mailmypassword'          => 'ახალ პაროლიშ მოჯღონა',
+'noemail'                 => 'აქ "$1" მახვარებელიშ ელ. ფოსტაშ მისამართ წურაფილ ვარე.',
 'loginlanguagelabel'      => 'ნინა: $1',
 
 # Edit page toolbar
@@ -402,9 +403,12 @@ $messages = array(
 'rollbacklink'                => 'გაუქვება',
 'protectcomment'              => 'კომენტარ:',
 'protectexpiry'               => 'ვადა',
+'protect-unchain'             => 'გინოღალას ალობას ბლოკიშ მონწყუმა',
 'protect-default'             => '(სტანდარტულ)',
+'protect-fallback'            => 'საჭიროე "$1"-იშ ულაფა',
 'protect-level-autoconfirmed' => 'ვარეგისტრირებულ მახვარებელეფიშ დაბლოკვა',
 'protect-level-sysop'         => 'ხვალე ადმინისტრატორეფ',
+'protect-summary-cascade'     => 'იერარქიულ',
 'restriction-type'            => 'ულაფა',
 
 # Undelete
@@ -455,6 +459,7 @@ $messages = array(
 'pagemovedsub'     => 'გინოღალა რსულებულ რე',
 'movepage-moved'   => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'გინაღალულ რე',
+'movetalk'         => 'აკოხვალამირ სხუნუაშ გინოღალა',
 'movelogpage'      => 'გინოღალაშ რეგისტრაცია',
 'movereason'       => 'საბაბი',
 'revertmove'       => 'გაუქვება',

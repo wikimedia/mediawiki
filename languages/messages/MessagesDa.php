@@ -545,7 +545,7 @@ Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer
 'nouserspecified'            => 'Angiv venligst et brugernavn.',
 'wrongpassword'              => 'Den indtastede adgangskode var forkert. Prøv igen.',
 'wrongpasswordempty'         => 'Du glemte at indtaste password. Prøv igen.',
-'passwordtooshort'           => 'Dit kodeord er for kort. Det skal være mindst $1 tegn langt.',
+'passwordtooshort'           => 'Dit kodeord er for kort. Det skal være mindst {{PLURAL:$1|et tegn|$1 tegn}} langt.',
 'mailmypassword'             => 'Send et nyt password til min e-mail-adresse',
 'passwordremindertitle'      => 'Nyt password til {{SITENAME}}',
 'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-addressen $1)
@@ -563,7 +563,7 @@ Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail\
 'eauthentsent'               => 'En bekrftelsesmail er sendt til den angivne E-mail-adresse.
 
 Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
-'throttled-mailpassword'     => 'Indenfor de sidste $1 timer er der allerede sendt et nyt password. For at forhindre misbrug af funktionen, kan der kun bestilles et nyt password en gang for hver $1 timer.',
+'throttled-mailpassword'     => 'Indenfor de sidste {{PLURAL:$1|time|$1 timer}} er der allerede sendt et nyt password. For at forhindre misbrug af funktionen, kan der kun bestilles et nyt password en gang for hver {{PLURAL:$1|time|$1 timer}}.',
 'mailerror'                  => 'Fejl ved afsendelse af e-mail: $1',
 'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 brugerkonti. Du kan ikke oprette flere.',
 'emailauthenticated'         => 'Din e-mail-adresse blev bekræftet på $1.',
@@ -1264,7 +1264,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'filehist-filesize'              => 'Filstørrelse',
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Billedehenvisninger',
-'linkstoimage'                   => 'De følgende sider henviser til dette billede:',
+'linkstoimage'                   => '{{PLURAL:$1|Den følgende side|De følgende $1 sider}} henviser til dette billede:',
 'nolinkstoimage'                 => 'Der er ingen sider der henviser til dette billede.',
 'morelinkstoimage'               => 'Vis [[Special:Whatlinkshere/$1|flere henvisninger]] til denne fil.',
 'redirectstofile'                => '{{PLURAL:$1|Den følgene fil|De følgende $1 filer}} omdirigere til denne fil:',
