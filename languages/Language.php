@@ -1740,25 +1740,19 @@ class Language {
 				if ( !isset($aliases['en']) )
 					throw new MWException( 'Malformed aliases file' );
 
+				// Merge all aliases in fallback chain
 				$code = $this->getCode();
+				do {
+					if ( !isset($aliases[$code]) ) continue;
 
-				if ( isset($aliases[$code]) ) {
 					$aliases[$code] = $this->fixSpecialPageAliases( $aliases[$code] );
 					/* Merge the aliases, THIS will break if there is special page name
 					* which looks like a numerical key, thanks to PHP...
 					* See the comments for wfArrayMerge in GlobalSettings.php. */
 					$this->mExtendedSpecialPageAliases = array_merge_recursive(
 						$this->mExtendedSpecialPageAliases, $aliases[$code] );
-				}
 
-				/* Add the English aliases to the end of list as aliases... unless we
-				 * already added them! */
-				if ( $code !== 'en' ) {
-					$aliases['en'] = $this->fixSpecialPageAliases( $aliases['en'] );
-					$this->mExtendedSpecialPageAliases = array_merge_recursive(
-						$this->mExtendedSpecialPageAliases, $aliases['en'] );
-				}
-					
+				} while ( $code = self::getFallbackFor( $code ) );
 			}
 
 			wfRunHooks( 'LanguageGetSpecialPageAliases',
