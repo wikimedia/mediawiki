@@ -2189,6 +2189,18 @@ $wgSkinExtensionFunctions = array();
 $wgExtensionMessagesFiles = array();
 
 /**
+ * Aliases for special pages provided by extensions.
+ * Associative array mapping special page to array of aliases. First alternative
+ * for each special page will be used as the normalised name for it. English
+ * aliases will be added to the end of the list so that they always work. The
+ * file must define a variable $aliases.
+ *
+ * Example:
+ *    $wgExtensionAliasesFiles['Translate'] = dirname(__FILE__).'/Translate.alias.php';
+ */
+$wgExtensionAliasesFiles = array();
+
+/**
  * Parser output hooks.
  * This is an associative array where the key is an extension-defined tag
  * (typically the extension name), and the value is a PHP callback.
