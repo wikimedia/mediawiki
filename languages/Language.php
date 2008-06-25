@@ -1756,7 +1756,7 @@ class Language {
 			}
 
 			wfRunHooks( 'LanguageGetSpecialPageAliases',
-				array( &$this->mExtendedSpecialPageAliases, $code ) );
+				array( &$this->mExtendedSpecialPageAliases, $this->getCode() ) );
 		}
 
 		return $this->mExtendedSpecialPageAliases;
