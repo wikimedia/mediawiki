@@ -2548,6 +2548,7 @@ $wgMessageStructure = array(
 	'signatures' => array(
 		'signature',
 		'signature-anon',
+		'timezone-utc',
 	),
 	'CoreParserFunctions' => array(
 		'unknown_extension_tag',

@@ -3375,6 +3375,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 # Signatures
 'signature'      => '[[{{ns:user}}:$1|$2]]', # do not translate or duplicate this message to other languages
 'signature-anon' => '[[{{#special:Contributions}}/$1|$2]]', # do not translate or duplicate this message to other languages
+'timezone-utc'   => 'UTC', # only translate this message to other languages if you have to change it
 
 # Core parser functions
 'unknown_extension_tag' => 'Unknown extension tag "$1"',
