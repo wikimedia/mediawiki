@@ -526,7 +526,7 @@ table.rimage {
 */
 #bodyContent a.external,
 #bodyContent a[href ^="gopher://"] {
-	background: url(exteg) center right no-repeat;
+	background: url(external.png) center right no-repeat;
 	padding-right: 13px;
 }
 #bodyContent a[href ^="https://"],
