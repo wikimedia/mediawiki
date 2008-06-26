@@ -143,7 +143,6 @@ $wgMysqlUpdates = array(
 	array( 'maybe_do_profiling_memory_update' ),
 	array( 'do_filearchive_indices_update' ),
 	array( 'update_password_format' ),
-	array( 'add_index', 'image',      'img_mime',      'patch-index-img_mime.sql' ),
 );
 
 
