@@ -23,6 +23,10 @@ class Preprocessor_DOM implements Preprocessor {
 		return new PPFrame_DOM( $this );
 	}
 
+	function newCustomFrame( $args ) {
+		return new PPCustomFrame_DOM( $this, $args );
+	}
+
 	function memCheck() {
 		if ( $this->memoryLimit === false ) {
 			return;
@@ -1250,6 +1254,44 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	 */
 	function isTemplate() {
 		return true;
+	}
+}
+
+/**
+ * Expansion frame with custom arguments
+ * @ingroup Parser
+ */
+class PPCustomFrame_DOM extends PPFrame_DOM {
+	var $args;
+
+	function __construct( $preprocessor, $args ) {
+		$this->preprocessor = $preprocessor;
+		$this->parser = $preprocessor->parser;
+		$this->args = $args;
+	}
+
+	function __toString() {
+		$s = 'cstmframe{';
+		$first = true;
+		foreach ( $this->args as $name => $value ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$s .= ', ';
+			}
+			$s .= "\"$name\":\"" .
+				str_replace( '"', '\\"', $value->__toString() ) . '"';
+		}
+		$s .= '}';
+		return $s;
+	}
+
+	function isEmpty() {
+		return !count( $this->args );
+	}
+
+	function getArgument( $index ) {
+		return $this->args[$index];
 	}
 }
 
