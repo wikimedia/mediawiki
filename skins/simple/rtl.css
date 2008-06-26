@@ -66,7 +66,6 @@ div div.thumbcaption {
 }
 
 div.magnify,
-#div.townBox,
 #p-logo {
 	left: auto;
 	right: 0;
@@ -92,14 +91,6 @@ div.tright, div.floatright, table.floatright {
 }
 div.tleft, div.floatleft, table.floatleft {
 	clear: left;
-}
-div.townBox {
-	margin-left: 0;
-	margin-right: 1em;
-}
-div.townBox dl dd {
-	margin-left: 0;
-	margin-right: 1.1em;
 }
 
 /* Fix link icons */
