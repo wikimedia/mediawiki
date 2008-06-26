@@ -315,8 +315,7 @@ class UploadForm {
 
 			case self::OVERWRITE_EXISTING_FILE:
 				$errorText = $details['overwrite'];
-				$overwrite = new WikiError( $wgOut->parse( $errorText ) );
-				$this->uploadError( $overwrite->toString() );
+				$this->uploadError( $wgOut->parse( $errorText ) );
 				break;
 
 			case self::FILETYPE_MISSING:
