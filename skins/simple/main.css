@@ -117,26 +117,6 @@ table.rimage {
     text-align:center;
 }
 
-div.townBox {
-    position:relative;
-    float:right;
-    margin-left:1em;
-    padding:0.3em;
-    width: 200px;
-    overflow: hidden;
-    clear: right;
-}
-div.townBox dl {
-    padding: 0;
-    margin: 0 0 0.3em 0;
-}
-div.townBox dl dt {
-    background: none;
-    margin: 0.4em 0 0 0;
-}
-div.townBox dl dd {
-    margin: 0.1em 0 0 1.1em;
-}
 .portlet {
     border: none;
     float: none;
