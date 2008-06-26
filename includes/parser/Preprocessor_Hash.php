@@ -17,6 +17,10 @@ class Preprocessor_Hash implements Preprocessor {
 		return new PPFrame_Hash( $this );
 	}
 
+	function newCustomFrame( $args ) {
+		return new PPCustomFrame_Hash( $this, $args );
+	}
+
 	/**
 	 * Preprocess some wikitext and return the document tree.
 	 * This is the ghost of Parser::replace_variables().
@@ -1205,6 +1209,44 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	 */
 	function isTemplate() {
 		return true;
+	}
+}
+
+/**
+ * Expansion frame with custom arguments
+ * @ingroup Parser
+ */
+class PPCustomFrame_Hash extends PPFrame_Hash {
+	var $args;
+
+	function __construct( $preprocessor, $args ) {
+		$this->preprocessor = $preprocessor;
+		$this->parser = $preprocessor->parser;
+		$this->args = $args;
+	}
+
+	function __toString() {
+		$s = 'cstmframe{';
+		$first = true;
+		foreach ( $this->args as $name => $value ) {
+			if ( $first ) {
+				$first = false;
+			} else {
+				$s .= ', ';
+			}
+			$s .= "\"$name\":\"" .
+				str_replace( '"', '\\"', $value->__toString() ) . '"';
+		}
+		$s .= '}';
+		return $s;
+	}
+
+	function isEmpty() {
+		return !count( $this->args );
+	}
+
+	function getArgument( $index ) {
+		return $this->args[$index];
 	}
 }
 

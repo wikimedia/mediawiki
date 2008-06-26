@@ -2645,7 +2645,9 @@ class Parser
 	 *  self::OT_HTML: all templates and extension tags
 	 *
 	 * @param string $tex The text to transform
-	 * @param PPFrame $frame Object describing the arguments passed to the template
+	 * @param PPFrame $frame Object describing the arguments passed to the template. 
+	 *        Arguments may also be provided as an associative array, as was the usual case before MW1.12.
+	 *        Providing arguments this way may be useful for extensions wishing to perform variable replacement explicitly.
 	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not double-brace expansion
 	 * @private
 	 */
@@ -2661,7 +2663,8 @@ class Parser
 		if ( $frame === false ) {
 			$frame = $this->getPreprocessor()->newFrame();
 		} elseif ( !( $frame instanceof PPFrame ) ) {
-			throw new MWException( __METHOD__ . ' called using the old argument format' );
+			wfDebug( __METHOD__." called using plain parameters instead of a PPFrame instance. Creating custom frame.\n" );
+			$frame = $this->getPreprocessor()->newCustomFrame($frame);
 		}
 
 		$dom = $this->preprocessToDom( $text );

@@ -10,6 +10,9 @@ interface Preprocessor {
 	/** Create a new top-level frame for expansion of a page */
 	function newFrame();
 
+	/** Create a new custom frame for programmatic use of parameter replacement as used in some extensions */
+	function newCustomFrame( $args );
+
 	/** Preprocess text to a PPNode */
 	function preprocessToObj( $text, $flags = 0 );
 }
