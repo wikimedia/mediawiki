@@ -2878,13 +2878,13 @@ class Title {
 			 ." AND cl_from <> '0'"
 			 ." ORDER BY cl_sortkey";
 
-		$res = $dbr->query ( $sql ) ;
+		$res = $dbr->query( $sql );
 
-		if($dbr->numRows($res) > 0) {
-			while ( $x = $dbr->fetchObject ( $res ) )
+		if( $dbr->numRows( $res ) > 0 ) {
+			while( $x = $dbr->fetchObject( $res ) )
 				//$data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to);
-				$data[$wgContLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to] = $this->getFullText();
-			$dbr->freeResult ( $res ) ;
+				$data[$wgContLang->getNSText( NS_CATEGORY ).':'.$x->cl_to] = $this->getFullText();
+			$dbr->freeResult( $res );
 		} else {
 			$data = array();
 		}
@@ -2901,7 +2901,7 @@ class Title {
 		$parents = $this->getParentCategories();
 
 		if( $parents ) {
-			foreach($parents as $parent => $current) {
+			foreach( $parents as $parent => $current ) {
 				if ( array_key_exists( $parent, $children ) ) {
 					# Circular reference
 					$stack[$parent] = array();
