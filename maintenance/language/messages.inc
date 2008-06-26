@@ -2011,7 +2011,9 @@ $wgMessageStructure = array(
 		'variantname-zh-cn',
 		'variantname-zh-tw',
 		'variantname-zh-hk',
+		'variantname-zh-mo',
 		'variantname-zh-sg',
+		'variantname-zh-my',
 		'variantname-zh',
 	),
 	'variantname-sr' => array(
