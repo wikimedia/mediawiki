@@ -1,191 +1,130 @@
 <?php
+
 /**
  * This is to display changes made to all articles linked in an article.
- * @file
  * @ingroup SpecialPage
  */
+class SpecialRecentchangeslinked extends SpecialRecentchanges {
 
-require_once( 'SpecialRecentchanges.php' );
-
-/**
- * Entrypoint
- * @param string $par parent page we will look at
- */
-function wfSpecialRecentchangeslinked( $par = NULL ) {
-	global $wgUser, $wgOut, $wgLang, $wgContLang, $wgRequest, $wgTitle, $wgScript;
-
-	$days = $wgRequest->getInt( 'days' );
-	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
-	$hideminor = $wgRequest->getBool( 'hideminor' ) ? 1 : 0;
-	$showlinkedto = $wgRequest->getBool( 'showlinkedto' ) ? 1 : 0;
-
-	$title = Title::newFromURL( $target );
-	$target = $title ? $title->getPrefixedText() : '';
-
-	$wgOut->setPagetitle( wfMsg( 'recentchangeslinked' ) );
-	$sk = $wgUser->getSkin();
-
-	$wgOut->addHTML(
-		Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
-		Xml::openElement( 'fieldset' ) .
-		Xml::element( 'legend', array(), wfMsg( 'recentchangeslinked' ) ) . "\n" .
-		Xml::inputLabel( wfMsg( 'recentchangeslinked-page' ), 'target', 'recentchangeslinked-target', 40, $target ) .
-		"&nbsp;&nbsp;&nbsp;<span style='white-space: nowrap'>" .
-		Xml::check( 'showlinkedto', $showlinkedto, array('id' => 'showlinkedto') ) . ' ' .
-		Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) .
-		"</span><br/>\n" .
-		Xml::hidden( 'title', $wgTitle->getPrefixedText() ). "\n" .
-		Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
-		Xml::closeElement( 'fieldset' ) .
-		Xml::closeElement( 'form' ) . "\n"
-	);
-
-	if ( !$target ) {
-		return;
+	function __construct(){
+		SpecialPage::SpecialPage( 'Recentchangeslinked' );	
 	}
-	$nt = Title::newFromURL( $target );
-	if( !$nt ) {
-		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
-		return;
+
+	public function getDefaultOptions() {
+		$opts = parent::getDefaultOptions();
+		$opts->add( 'target', '' );
+		$opts->add( 'showlinkedto', false );
+		return $opts;
 	}
-	$id = $nt->getArticleId();
 
-	$wgOut->setPageTitle( wfMsg( 'recentchangeslinked-title', $nt->getPrefixedText() ) );
-	$wgOut->setSyndicated();
-	$wgOut->setFeedAppendQuery( "target=" . urlencode( $target ) );
-
-	if ( !$days ) {
-		$days = (int)$wgUser->getOption( 'rcdays', 7 );
+	public function parseParameters( $par, FormOptions $opts ) {
+		$opts['target'] = $par;
 	}
-	list( $limit, /* offset */ ) = wfCheckLimits( 100, 'rclimit' );
 
-	$dbr = wfGetDB( DB_SLAVE,'recentchangeslinked' );
-	$cutoff = $dbr->timestamp( time() - ( $days * 86400 ) );
-
-	$hideminor = ($hideminor ? 1 : 0);
-	if ( $hideminor ) {
-		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( 'Recentchangeslinked' ),
-	  	  wfMsg( 'show' ), 'target=' . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&days={$days}&limit={$limit}&hideminor=0&showlinkedto={$showlinkedto}" );
-	} else {
-		$mlink = $sk->makeKnownLink( $wgContLang->specialPage( "Recentchangeslinked" ),
-	  	  wfMsg( "hide" ), "target=" . htmlspecialchars( $nt->getPrefixedURL() ) .
-		  "&days={$days}&limit={$limit}&hideminor=1&showlinkedto={$showlinkedto}" );
+	public function feedSetup(){
+		global $wgRequest;
+		$opts = parent::feedSetup();
+		$opts['target'] = $wgRequest->getVal( 'target' );
+		return $opts;
 	}
-	if ( $hideminor ) {
-		$cmq = 'AND rc_minor=0';
-	} else { $cmq = ''; }
 
-	list($recentchanges, $categorylinks, $pagelinks, $watchlist) =
-	    $dbr->tableNamesN( 'recentchanges', 'categorylinks', 'pagelinks', "watchlist" );
-
-	$uid = $wgUser->getId();
-	// The fields we are selecting
-	$fields = "rc_cur_id,rc_namespace,rc_title,
-		rc_user,rc_comment,rc_user_text,rc_timestamp,rc_minor,rc_log_type,rc_log_action,rc_params,rc_deleted,
-		rc_new, rc_id, rc_this_oldid, rc_last_oldid, rc_bot, rc_patrolled, rc_type, rc_old_len, rc_new_len";
-	$fields .= $uid ? ",wl_user" : "";
-
-	// Check if this should be a feed
-
-	$feed = false;
-	global $wgFeedLimit;
-	$feedFormat = $wgRequest->getVal( 'feed' );
-	if( $feedFormat ) {
+	public function getFeedObject( $feedFormat ){
 		$feed = new ChangesFeed( $feedFormat, false );
-		# Sanity check
-		if( $limit > $wgFeedLimit ) {
-			$limit = $wgFeedLimit;
-		}
-	}
-
-	// If target is a Category, use categorylinks and invert from and to
-	if( $nt->getNamespace() == NS_CATEGORY ) {
-		$catkey = $dbr->addQuotes( $nt->getDBkey() );
-		# The table clauses
-		$tables = "$categorylinks, $recentchanges";
-		$tables .= $uid ? " LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
-
-		$sql = "SELECT /* wfSpecialRecentchangeslinked */ $fields FROM $tables 
-			WHERE rc_timestamp > '{$cutoff}' {$cmq} 
-			AND cl_from=rc_cur_id 
-			AND cl_to=$catkey 
-			GROUP BY $fields ORDER BY rc_timestamp DESC LIMIT {$limit}"; // Shitty-ass GROUP BY by for postgres apparently
-	} else {
-		if( $showlinkedto ) {
-			$ns = $dbr->addQuotes( $nt->getNamespace() );
-			$dbkey = $dbr->addQuotes( $nt->getDBkey() );
-			$joinConds = "AND pl_namespace={$ns} AND pl_title={$dbkey} AND pl_from=rc_cur_id";
-		} else {
-			$joinConds = "AND pl_namespace=rc_namespace AND pl_title=rc_title AND pl_from=$id";
-		}
-		# The table clauses
-		$tables = "$pagelinks, $recentchanges";
-		$tables .= $uid ? " LEFT JOIN $watchlist ON wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace " : "";
-
-		$sql = "SELECT /* wfSpecialRecentchangeslinked */ $fields FROM $tables
-			WHERE rc_timestamp > '{$cutoff}' {$cmq}
-			{$joinConds}
-			GROUP BY $fields ORDER BY rc_timestamp DESC LIMIT {$limit}"; // Shitty-ass GROUP BY by for postgres apparently
-	}
-	# Actually do the query
-	$res = $dbr->query( $sql, __METHOD__ );
-	$count = $dbr->numRows( $res );
-	$rchanges = array();
-	# Output feeds now and be done with it!
-	if( $feed ) {
-		if( $count ) {
-			$counter = 1;
-			while ( $limit ) {
-				if ( 0 == $count ) { break; }
-				$obj = $dbr->fetchObject( $res );
-				--$count;
-				$rc = RecentChange::newFromRow( $obj );
-				$rc->counter = $counter++;
-				--$limit;
-				$rchanges[] = $obj;
-			}
-		}
-		$wgOut->disable();
-
 		$feedObj = $feed->getFeedObject(
-			wfMsgForContent( 'recentchangeslinked-title', $nt->getPrefixedText() ),
+			wfMsgForContent( 'recentchangeslinked-title', $this->mTargetTitle->getPrefixedText() ),
 			wfMsgForContent( 'recentchangeslinked' )
 		);
-		ChangesFeed::generateFeed( $rchanges, $feedObj );
-		return;
+		return array( $feed, $feedObj );
+	}
+
+	public function doMainQuery( $conds, $opts ) {
+		global $wgUser, $wgOut;
+
+		$title = Title::newFromURL( $opts['target'] );
+		$showlinkedto = $opts['showlinkedto'];
+		$limit = $opts['limit'];
+
+		$target = $title ? $title->getPrefixedText() : '';
+		if ( $target === '' ) {
+			return false;
+		}
+		if( !$title ){
+			global $wgOut;
+			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+			return false;
+		}
+
+		$wgOut->setPageTitle( wfMsg( 'recentchangeslinked-title', $target ) );
+		$this->mTargetTitle = $title;
+
+		$dbr = wfGetDB( DB_SLAVE, 'recentchangeslinked' );
+		$id = $title->getArticleId();
+
+		$tables = array( 'recentchanges' );
+		$select = array( $dbr->tableName( 'recentchanges' ) . '.*' );
+		$join_conds = array();
+
+		if( $title->getNamespace() == NS_CATEGORY ) {
+			$tables[] = 'categorylinks';
+			$conds['cl_to'] = $title->getDBkey();
+			$join_conds['categorylinks'] = array( 'LEFT JOIN', 'cl_from=rc_cur_id' );
+		} else {
+			if( $showlinkedto ) {
+				if( $title->getNamespace() == NS_TEMPLATE ){
+					$tables[] = 'templatelinks';
+					$conds['tl_namespace'] = $title->getNamespace();
+					$conds['tl_title'] = $title->getDBkey();
+					$join_conds['templatelinks'] = array( 'LEFT JOIN', 'tl_from=rc_cur_id' );
+				} else {
+					$tables[] = 'pagelinks';
+					$conds['pl_namespace'] = $title->getNamespace();
+					$conds['pl_title'] = $title->getDBkey();
+					$join_conds['pagelinks'] = array( 'LEFT JOIN', 'pl_from=rc_cur_id' );
+				}
+			} else {
+				$tables[] = 'pagelinks';
+				$conds['pl_from'] = $id;
+				$join_conds['pagelinks'] = array( 'LEFT JOIN', 'pl_namespace = rc_namespace AND pl_title = rc_title' );
+			}
+		}
+
+		if( $uid = $wgUser->getId() ) {
+			$tables[] = 'watchlist';
+			$join_conds['watchlist'] = array( 'LEFT JOIN', "wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace" );
+			$select[] = 'wl_user';
+		}
+
+		$res = $dbr->select( $tables, $select, $conds, __METHOD__,
+			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ), $join_conds );
+
+		if( $dbr->numRows( $res ) == 0 )
+			$this->mResultEmpty = true;
+
+		return $res;
 	}
 	
-	# Otherwise, carry on with regular output...
-	$wgOut->addHTML("&lt; ".$sk->makeLinkObj($nt, "", "redirect=no" )."<br />\n");
-	$note = wfMsgExt( "rcnote", array ( 'parseinline' ), $limit, $days, $wgLang->timeAndDate( wfTimestampNow(), true ) );
-	$wgOut->addHTML( "<hr />\n{$note}\n<br />" );
-
-	$note = rcDayLimitlinks( $days, $limit, "Recentchangeslinked",
-				 "target=" . $nt->getPrefixedURL() . "&hideminor={$hideminor}&showlinkedto={$showlinkedto}",
-				 false, $mlink );
-
-	$wgOut->addHTML( $note."\n" );
-
-	$list = ChangesList::newFromUser( $wgUser );
-	$s = $list->beginRecentChangesList();
-
-	if ( $count ) {
-		$counter = 1;
-		while ( $limit ) {
-			if ( 0 == $count ) { break; }
-			$obj = $dbr->fetchObject( $res );
-			--$count;
-			$rc = RecentChange::newFromRow( $obj );
-			$rc->counter = $counter++;
-			$s .= $list->recentChangesLine( $rc , !empty( $obj->wl_user) );
-			--$limit;
-		}
-	} else {
-		$wgOut->addWikiMsg('recentchangeslinked-noresult');
+	function getExtraOptions( $opts ){
+		$opts->consumeValues( array( 'showlinkedto', 'target' ) );
+		$extraOpts = array();
+		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
+		$extraOpts['target'] = array( wfMsg( 'recentchangeslinked-page' ),
+			Xml::input( 'target', 40, $opts['target'] ) .
+			Xml::check( 'showlinkedto', $opts['showlinkedto'], array('id' => 'showlinkedto') ) . ' ' .
+			Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) );
+		$extraOpts['submit'] = Xml::submitbutton( wfMsg('allpagessubmit') );
+		return $extraOpts;
 	}
-	$s .= $list->endRecentChangesList();
-
-	$dbr->freeResult( $res );
-	$wgOut->addHTML( $s );
+	
+	function setTopText( &$out, $opts ){}
+	
+	function setBottomText( &$out, $opts ){
+		if( $target = $opts['target'] ){
+			global $wgUser;
+			$out->setFeedAppendQuery( "target=" . urlencode( $target ) );
+			$out->addHTML("&lt; ".$wgUser->getSkin()->makeLinkObj( Title::newFromUrl( $target ), "", "redirect=no" )."<hr />\n");
+		}
+		if( isset( $this->mResultEmpty ) && $this->mResultEmpty ){
+			$out->addWikiMsg( 'recentchangeslinked-noresult' );	
+		}
+	}
 }
