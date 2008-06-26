@@ -162,10 +162,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14558) New system message (emailuserfooter) is now added to the footer of 
   e-mails sent with Special:Emailuser
 * Add support for Hijri (Islamic) calendar
-* Add a new hook LinkerMakeExternalImage to allow extensions to modify the output of
-  external (hotlinked) images.
-* (bug 14604) Introduced the following features for the LanguageConverter: Multi-tag support, single conversion flag, remove conversion flag on a single page, description flag, variant name, multi-variant fallbacks.
+* Add a new hook LinkerMakeExternalImage to allow extensions to modify the output
+  of external (hotlinked) images.
+* (bug 14604) Introduced the following features for the LanguageConverter:
+  Multi-tag support, single conversion flag, remove conversion flag on a single
+  page, description flag, variant name, multi-variant fallbacks.
 * Add zh-mo and zh-my variants for the zh language
+* (bugs 4832, 9481, 12890) Special:Recentchangeslinked now has all options that
+  are in Special:Recentchanges
   
 === Bug fixes in 1.13 ===
 
