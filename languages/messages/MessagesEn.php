@@ -2802,7 +2802,9 @@ Variants for Chinese language
 'variantname-zh-cn'   => 'cn', # only translate this message to other languages if you have to change it
 'variantname-zh-tw'   => 'tw', # only translate this message to other languages if you have to change it
 'variantname-zh-hk'   => 'hk', # only translate this message to other languages if you have to change it
+'variantname-zh-mo'   => 'mo', # only translate this message to other languages if you have to change it
 'variantname-zh-sg'   => 'sg', # only translate this message to other languages if you have to change it
+'variantname-zh-my'   => 'my', # only translate this message to other languages if you have to change it
 'variantname-zh'      => 'zh', # only translate this message to other languages if you have to change it
 
 # Variants for Serbian language
