@@ -319,14 +319,13 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * This is a very simplistic utility function
-	 * to convert a non-namespaced title string to a db key.
-	 * It will replace all ' ' with '_'
+	 * Convert a title to a DB key
 	 * @param string $title Page title with spaces
 	 * @return string Page title with underscores
 	 */
 	public static function titleToKey($title) {
-		return str_replace(' ', '_', $title);
+		$t = Title::newFromText($title);
+		return $t->getDbKey();
 	}
 
 	/**
@@ -335,7 +334,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Page title with spaces
 	 */
 	public static function keyToTitle($key) {
-		return str_replace('_', ' ', $key);
+		$t = Title::newFromDbKey($key);
+		return $t->getPrefixedText();
 	}
 
 	/**
