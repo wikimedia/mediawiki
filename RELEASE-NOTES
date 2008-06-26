@@ -164,6 +164,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add support for Hijri (Islamic) calendar
 * Add a new hook LinkerMakeExternalImage to allow extensions to modify the output of
   external (hotlinked) images.
+* (bug 14604) Introduced the following features for the LanguageConverter: Multi-tag support, single conversion flag, remove conversion flag on a single page, description flag, variant name, multi-variant fallbacks.
+* Add zh-mo and zh-my variants for the zh language
   
 === Bug fixes in 1.13 ===
 
@@ -484,7 +486,8 @@ regularly. Below only new and removed languages are listed.
 * Silesian (szl) (new)
 * Tajiki (Cyrllic script) (tg-cyrl) (new)
 * Tajiki (Latin script) (tg-latn) (new)
-
+* Chinese (Macau) (zh-mo) (new)
+* Chinese (Malaysia) (zh-my) (new)
 
 == Compatibility ==
 

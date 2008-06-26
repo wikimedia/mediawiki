@@ -171,6 +171,8 @@ $wgOptionalMessages = array(
 	'variantname-zh-cn',
 	'variantname-zh-tw',
 	'variantname-zh-hk',
+	'variantname-zh-mo',
+	'variantname-zh-my',
 	'variantname-zh-sg',
 	'variantname-zh',
 	'variantname-sr-ec',

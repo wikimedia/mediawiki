@@ -283,6 +283,17 @@ class ReplacementArray {
 		$this->fss = false;
 	}
 
+	function removePair( $from ) {
+		unset($this->data[$from]);
+		$this->fss = false;
+	}
+
+	function removeArray( $data ) {
+		foreach( $data as $from => $to )
+			$this->removePair( $from );
+		$this->fss = false;
+	}
+
 	function replace( $subject ) {
 		if ( function_exists( 'fss_prep_replace' ) ) {
 			wfProfileIn( __METHOD__.'-fss' );
