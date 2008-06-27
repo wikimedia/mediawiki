@@ -838,7 +838,7 @@ $2',
 The reason given is ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Bad configuration: unknown virus scanner:",
+'virus-badscanner'     => "Bad configuration: unknown virus scanner: <i>$1</i>",
 'virus-scanfailed'     => "scan failed (code $1)",
 'virus-unknownscanner' => "unknown antivirus:",
 

@@ -1515,7 +1515,7 @@ wgUploadAutoFill = {$autofill};
 
 		if ( !$wgAntivirusSetup[$wgAntivirus] ) {
 			wfDebug( __METHOD__.": unknown virus scanner: $wgAntivirus\n" );
-			$wgOut->addHTML( "<div class='error'>" . wfMsg('virus-badscanner') . " <i>$wgAntivirus</i></div>\n" );
+			$wgOut->wrapWikiMsg( '<div class="error">$1</div>', array( 'virus-badscanner', $wgAntivirus ) );
 			return wfMsg('virus-unknownscanner') . " $wgAntivirus";
 		}
 
