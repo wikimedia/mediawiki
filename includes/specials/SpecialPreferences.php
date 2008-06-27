@@ -542,7 +542,6 @@ class PreferencesForm {
 		$togs = User::getToggles();
 
 		$titleObj = SpecialPage::getTitleFor( 'Preferences' );
-		$action = $titleObj->escapeLocalURL();
 
 		# Pre-expire some toggles so they won't show if disabled
 		$this->mUsedToggles[ 'shownumberswatching' ] = true;
@@ -588,14 +587,19 @@ class PreferencesForm {
 
 		# </FIXME>
 
-		$wgOut->addHTML( "<form action=\"$action\" method='post'>" );
-		$wgOut->addHTML( "<div id='preferences'>" );
+		$wgOut->addHTML(
+			Xml::openElement( 'form', array(
+				'action' => $titleObj->getLocalUrl(),
+				'method' => 'post',
+				'id'     => 'mw-preferences-form',
+			) ) .
+			Xml::openElement( 'div', array( 'id' => 'preferences' ) )
+		);
 
 		# User data
 
 		$wgOut->addHTML(
-			Xml::openElement( 'fieldset ' ) .
-			Xml::element( 'legend', null, wfMsg('prefs-personal') ) .
+			Xml::fieldset( wfMsg('prefs-personal') ) .
 			Xml::openElement( 'table' ) .
 			$this->tableRow( Xml::element( 'h2', null, wfMsg( 'prefs-personal' ) ) )
 		);
