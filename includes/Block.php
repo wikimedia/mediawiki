@@ -532,6 +532,7 @@ class Block
 		$ipblock->mAddress = $autoblockip;
 		$ipblock->mUser = 0;
 		$ipblock->mBy = $this->mBy;
+		$ipblock->mByName = $this->mByName;
 		$ipblock->mReason = wfMsgForContent( 'autoblocker', $this->mAddress, $this->mReason );
 		$ipblock->mTimestamp = wfTimestampNow();
 		$ipblock->mAuto = 1;
