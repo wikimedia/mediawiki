@@ -489,7 +489,7 @@ class Xml {
 						'cols' => $cols,
 						'rows' => $rows
 					) + $attribs,
-					$content );
+					$content."\n" );
 	}
 
 	/**
