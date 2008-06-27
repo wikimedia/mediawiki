@@ -638,7 +638,7 @@ class Xml {
 			$id = "mw-$labelmsg";
 			
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
-			$form .= Xml::tags( 'td', array('valign'=>'top','align' => 'right'), wfMsgExt( $labelmsg, array('parseinline') ) );
+			$form .= Xml::tags( 'td', array('class' => 'mw-label'), wfMsgExt( $labelmsg, array('parseinline') ) );
 			$form .= Xml::openElement( 'td' ) . $input . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
