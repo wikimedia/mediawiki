@@ -472,6 +472,25 @@ class Xml {
 
 		return $s;
 	}
+	
+	/**
+	 * Shortcut for creating textareas.
+	 *
+	 * @param $name The 'name' for the textarea
+	 * @param $content Content for the textarea
+	 * @param $cols The number of columns for the textarea
+	 * @param $rows The number of rows for the textarea
+	 * @param $attribs Any other attributes for the textarea
+	 */
+	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = array() ) {
+		return self::element( 'textarea',
+					array(	'name' => $name,
+						'id' => $name,
+						'cols' => $cols,
+						'rows' => $rows
+					) + $attribs,
+					$content );
+	}
 
 	/**
 	 * Returns an escaped string suitable for inclusion in a string literal
@@ -606,29 +625,29 @@ class Xml {
 	
 	/**
 	* Generate a form (without the opening form element).
-	* Output DOES include a submit button.
+	* Output optionally includes a submit button.
 	* @param $fields Associative array, key is message corresponding to a description for the field (colon is in the message), value is appropriate input.
 	* @param $submitLabel A message containing a label for the submit button.
 	* @return string HTML form.
 	*/
-	public static function buildForm( $fields, $submitLabel ) {
+	public static function buildForm( $fields, $submitLabel = null ) {
 		$form = '';
 		$form .= "<table><tbody>";
 	
 		foreach( $fields as $labelmsg => $input ) {
 			$id = "mw-$labelmsg";
+			
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
-	
-			$form .= Xml::element( 'td', array('valign' => 'top'), wfMsg( $labelmsg ) );
-	
+			$form .= Xml::tags( 'td', array('valign'=>'top','align' => 'right'), wfMsgExt( $labelmsg, array('parseinline') ) );
 			$form .= Xml::openElement( 'td' ) . $input . Xml::closeElement( 'td' );
-	
 			$form .= Xml::closeElement( 'tr' );
 		}
 	
 		$form .= "</tbody></table>";
-	
-		$form .= Xml::submitButton( wfMsg($submitLabel) );
+		
+		if ($submitLabel) {	
+			$form .= Xml::submitButton( wfMsg($submitLabel) );
+		}
 	
 		return $form;
 	}

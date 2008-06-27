@@ -1049,9 +1049,10 @@ class Title {
 	 * @param string $action action that permission needs to be checked for
 	 * @param User $user user to check
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
+	 * @param array $ignoreErrors Set this to a list of message keys whose corresponding errors may be ignored.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
-	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true ) {
+	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) {
 		if( !StubObject::isRealObject( $user ) ) {
 			//Since StubObject is always used on globals, we can unstub $wgUser here and set $user = $wgUser
 			global $wgUser;
@@ -1115,6 +1116,16 @@ class Title {
 
 			$errors[] = array( ($block->mAuto ? 'autoblockedtext' : 'blockedtext'), $link, $reason, $ip, $name, 
 				$blockid, $blockExpiry, $intended, $blockTimestamp );
+		}
+		
+		// Remove the errors being ignored.
+		
+		foreach( $errors as $index => $error ) {
+			$error_key = is_array($error) ? $error[0] : $error;
+			
+			if (in_array( $error_key, $ignoreErrors )) {
+				unset($errors[$index]);
+			}
 		}
 
 		return $errors;
