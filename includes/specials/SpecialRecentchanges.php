@@ -571,11 +571,10 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @param $options
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
-		global $wgUser, $wgContLang;
+		global $wgUser;
 		$sk = $wgUser->getSkin();
-		return $sk->makeKnownLinkObj( $this->getTitle(),
-			htmlspecialchars( $title ), wfArrayToCGI( $override, $options ), '', '',
-			$active ? 'style="font-weight: bold;"' : '' );
+		return $sk->makeKnownLinkObj( $this->getTitle(), htmlspecialchars( $title ),
+			wfArrayToCGI( $override, $options ), '', '', $active ? 'style="font-weight: bold;"' : '' );
 	}
 
 	/**

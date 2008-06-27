@@ -40,22 +40,22 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 	public function doMainQuery( $conds, $opts ) {
 		global $wgUser, $wgOut;
 
-		$title = Title::newFromURL( $opts['target'] );
+		$target = $opts['target'];
 		$showlinkedto = $opts['showlinkedto'];
 		$limit = $opts['limit'];
 
-		$target = $title ? $title->getPrefixedText() : '';
 		if ( $target === '' ) {
 			return false;
 		}
-		if( !$title ){
+		$title = Title::newFromURL( $target );
+		if( !$title || $title->getInterwiki() != '' ){
 			global $wgOut;
-			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+			$wgOut->wrapWikiMsg( '<div class="errorbox">$1</div><br clear="both" />', 'allpagesbadtitle' );
 			return false;
 		}
-
-		$wgOut->setPageTitle( wfMsg( 'recentchangeslinked-title', $target ) );
 		$this->mTargetTitle = $title;
+
+		$wgOut->setPageTitle( wfMsg( 'recentchangeslinked-title', $title->getPrefixedText() ) );
 
 		$dbr = wfGetDB( DB_SLAVE, 'recentchangeslinked' );
 		$id = $title->getArticleId();
@@ -118,10 +118,10 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 	function setTopText( &$out, $opts ){}
 	
 	function setBottomText( &$out, $opts ){
-		if( $target = $opts['target'] ){
+		if( isset( $this->mTargetTitle ) && is_object( $this->mTargetTitle ) ){
 			global $wgUser;
-			$out->setFeedAppendQuery( "target=" . urlencode( $target ) );
-			$out->addHTML("&lt; ".$wgUser->getSkin()->makeLinkObj( Title::newFromUrl( $target ), "", "redirect=no" )."<hr />\n");
+			$out->setFeedAppendQuery( "target=" . urlencode( $this->mTargetTitle->getPrefixedDBkey() ) );
+			$out->addHTML("&lt; ".$wgUser->getSkin()->makeLinkObj( $this->mTargetTitle, "", "redirect=no" )."<hr />\n");
 		}
 		if( isset( $this->mResultEmpty ) && $this->mResultEmpty ){
 			$out->addWikiMsg( 'recentchangeslinked-noresult' );	
