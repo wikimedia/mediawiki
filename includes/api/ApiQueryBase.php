@@ -325,6 +325,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public static function titleToKey($title) {
 		$t = Title::newFromText($title);
+		if(!$t)
+			$this->dieUsageMsg('invalidtitle', $title);
 		return $t->getDbKey();
 	}
 
@@ -335,6 +337,9 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public static function keyToTitle($key) {
 		$t = Title::newFromDbKey($key);
+		# This really shouldn't happen but we gotta check anyway
+		if(!$t)
+			$this->dieUsageMsg('invalidtitle', $key);
 		return $t->getPrefixedText();
 	}
 
