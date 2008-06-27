@@ -356,6 +356,10 @@ $wgMessageStructure = array(
 		'customcssjsprotected',
 		'ns-specialprotected',
 		'titleprotected',
+		'virus-badscanner',
+		'virus-badscanner',
+		'virus-scanfailed',
+		'virus-unknownscanner',
 	),
 	'login' => array(
 		'logouttitle',

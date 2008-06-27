@@ -1515,9 +1515,8 @@ wgUploadAutoFill = {$autofill};
 
 		if ( !$wgAntivirusSetup[$wgAntivirus] ) {
 			wfDebug( __METHOD__.": unknown virus scanner: $wgAntivirus\n" );
-			# @TODO: localise
-			$wgOut->addHTML( "<div class='error'>Bad configuration: unknown virus scanner: <i>$wgAntivirus</i></div>\n" );
-			return "unknown antivirus: $wgAntivirus";
+			$wgOut->addHTML( "<div class='error'>" . wfMsg('virus-badscanner') . " <i>$wgAntivirus</i></div>\n" );
+			return wfMsg('virus-unknownscanner') . " $wgAntivirus";
 		}
 
 		# look up scanner configuration
@@ -1564,7 +1563,7 @@ wgUploadAutoFill = {$autofill};
 			wfDebug( __METHOD__.": failed to scan $file (code $exitCode).\n" );
 
 			if ( $wgAntivirusRequired ) {
-				return "scan failed (code $exitCode)";
+				return wfMsg('virus-scanfailed', array( $exitCode ) );
 			} else {
 				return NULL;
 			}
