@@ -14,9 +14,10 @@ class Xml {
 	 * @param $element String: element name
 	 * @param $attribs Array: Name=>value pairs. Values will be escaped.
 	 * @param $contents String: NULL to make an open tag only; '' for a contentless closed tag (default)
+	 * @param $allowShortTag Bool: whether '' in $contents will result in a contentless closed tag
 	 * @return string
 	 */
-	public static function element( $element, $attribs = null, $contents = '') {
+	public static function element( $element, $attribs = null, $contents = '', $allowShortTag = true ) {
 		$out = '<' . $element;
 		if( !is_null( $attribs ) ) {
 			$out .=  self::expandAttributes( $attribs );
@@ -24,7 +25,7 @@ class Xml {
 		if( is_null( $contents ) ) {
 			$out .= '>';
 		} else {
-			if( $contents === '' ) {
+			if( $allowShortTag && $contents === '' ) {
 				$out .= ' />';
 			} else {
 				$out .= '>' . htmlspecialchars( $contents ) . "</$element>";
@@ -489,7 +490,7 @@ class Xml {
 						'cols' => $cols,
 						'rows' => $rows
 					) + $attribs,
-					$content."\n" );
+					$content, false );
 	}
 
 	/**
