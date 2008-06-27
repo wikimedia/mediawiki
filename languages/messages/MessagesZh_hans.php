@@ -434,6 +434,11 @@ $2',
 'ns-specialprotected'  => '特殊页面是不可以编辑的。',
 'titleprotected'       => '这个标题已经被[[User:$1|$1]]保护以防止创建。理由是<i>$2</i>。',
 
+# Virus scanner
+'virus-badscanner'     => "损坏设置: 未知的病毒扫瞄器: ''$1''",
+'virus-scanfailed'     => '扫瞄失败 (代码 $1)',
+'virus-unknownscanner' => '未知的反病毒:',
+
 # Login and logout pages
 'logouttitle'                => '退出',
 'logouttext'                 => '<strong>您现在已经退出。</strong><br />
