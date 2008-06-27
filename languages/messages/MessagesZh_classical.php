@@ -401,6 +401,11 @@ $2',
 'ns-specialprotected'  => '奇頁禁纂也。',
 'titleprotected'       => '緘焉自[[User:$1|$1]]防建也。因<i>$2</i>也。',
 
+# Virus scanner
+'virus-badscanner'     => "壞設：不明之病掃：''$1''",
+'virus-scanfailed'     => '敗掃（碼$1）',
+'virus-unknownscanner' => '不明之反毒：',
+
 # Login and logout pages
 'logouttitle'                => '去簿',
 'logouttext'                 => '<strong>子去簿矣</strong><br />

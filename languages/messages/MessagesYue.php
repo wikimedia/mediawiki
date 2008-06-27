@@ -486,6 +486,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'ns-specialprotected'  => '特別頁係唔可以編輯嘅。',
 'titleprotected'       => "呢個標題已經俾[[User:$1|$1]]保護咗防止去開。原因係''$2''。",
 
+# Virus scanner
+'virus-badscanner'     => "壞設定: 未知嘅病毒掃瞄器: ''$1''",
+'virus-scanfailed'     => '掃瞄失敗 (代碼 $1)',
+'virus-unknownscanner' => '未知嘅防病毒:',
+
 # Login and logout pages
 'logouttitle'                => '用戶登出',
 'logouttext'                 => "'''你而家已經登出咗。'''
