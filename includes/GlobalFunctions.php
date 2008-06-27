@@ -2555,6 +2555,10 @@ function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
 		$loaded[$extensionName] = array();
 	}
 
+	if ( !isset($wgExtensionMessagesFiles[$extensionName]) ) {
+		throw new MWException( "Messages file for extensions $extensionName is not defined" );
+	}
+
 	if( !$langcode && !array_key_exists( '*', $loaded[$extensionName] ) ) {
 		# Just do en, content language and user language.
 		$wgMessageCache->loadMessagesFile( $wgExtensionMessagesFiles[$extensionName], false );
