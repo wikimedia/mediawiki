@@ -75,7 +75,7 @@ function code2utf($num){
 define( 'AJAX_SEARCH_VERSION', 2 );	//AJAX search cache version
 
 function wfSajaxSearch( $term ) {
-	global $wgContLang, $wgOut, $wgUser, $wgCapitalLinks, $wgMemc;
+	global $wgContLang, $wgUser, $wgCapitalLinks, $wgMemc;
 	$limit = 16;
 	$sk = $wgUser->getSkin();
 	$output = '';
