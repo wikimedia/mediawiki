@@ -171,7 +171,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bugs 4832, 9481, 12890) Special:Recentchangeslinked now has all options that
   are in Special:Recentchanges
 * Allow an $error message to be passed to ArticleDelete hook
-  
+* Allow extensions to modify the user creation form by calling addInputItem();
+ 
 === Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository
