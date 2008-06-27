@@ -17,7 +17,7 @@ class Block
 {
 	/* public*/ var $mAddress, $mUser, $mBy, $mReason, $mTimestamp, $mAuto, $mId, $mExpiry,
 				$mRangeStart, $mRangeEnd, $mAnonOnly, $mEnableAutoblock, $mHideName,
-				$mBlockEmail, $mByName;
+				$mBlockEmail, $mByName, $mAngryAutoblock;
 	/* private */ var $mNetworkBits, $mIntegerAddr, $mForUpdate, $mFromMaster;
 
 	const EB_KEEP_EXPIRED = 1;
@@ -46,6 +46,7 @@ class Block
 		$this->mForUpdate = false;
 		$this->mFromMaster = false;
 		$this->mByName = false;
+		$this->mAngryAutoblock = false;
 		$this->initialiseRange();
 	}
 
@@ -430,17 +431,30 @@ class Block
 
 		if ($this->mEnableAutoblock && $this->mUser) {
 			wfDebug("Doing retroactive autoblocks for " . $this->mAddress . "\n");
+			
+			$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
+			$conds = array( 'rc_user_text' => $this->mAddress );
+			
+			if ($this->mAngryAutoblock) {
+				// Block any IP used in the last 7 days. Up to five IPs.
+				$conds[] = 'rc_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( time() - (7*86400) ) );
+				$options['LIMIT'] = 5;
+			} else {
+				// Just the last IP used.
+				$options['LIMIT'] = 1;
+			}
 
-			$row = $dbr->selectRow( 'recentchanges', array( 'rc_ip' ), array( 'rc_user_text' => $this->mAddress ),
-				__METHOD__ , array( 'ORDER BY' => 'rc_timestamp DESC' ) );
+			$res = $dbr->select( 'recentchanges', array( 'rc_ip' ), $conds,
+				__METHOD__ ,  $options);
 
-			if ( !$row || !$row->rc_ip ) {
+			if ( !$dbr->numRows( $res ) ) {
 				#No results, don't autoblock anything
 				wfDebug("No IP found to retroactively autoblock\n");
 			} else {
-				#Limit is 1, so no loop needed.
-				$retroblockip = $row->rc_ip;
-				return $this->doAutoblock( $retroblockip, true );
+				while ( $row = $dbr->fetchObject( $res ) ) {
+					if ( $row->rc_ip )
+						$this->doAutoblock( $row->rc_ip );
+				}
 			}
 		}
 	}

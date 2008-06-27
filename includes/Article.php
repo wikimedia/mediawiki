@@ -2250,8 +2250,10 @@ class Article {
 		wfDebug( __METHOD__."\n" );
 		
 		$id = $this->getId();
+		
+		$error = '';
 
-		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason))) {
+		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason, &$error))) {
 			if ( $this->doDeleteArticle( $reason, $suppress ) ) {
 				$deleted = $this->mTitle->getPrefixedText();
 
@@ -2264,7 +2266,10 @@ class Article {
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason, $id));
 			} else {
-				$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
+				if ($error = '')
+					$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
+				else
+					$wgOut->showFatalError( $error );
 			}
 		}
 	}
