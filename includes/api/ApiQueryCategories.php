@@ -60,13 +60,17 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			'cl_to'
 		));
 
-		$fld_sortkey = false;
+		$fld_sortkey = $fld_timestamp = false;
 		if (!is_null($prop)) {
 			foreach($prop as $p) {
 				switch ($p) {
 					case 'sortkey':
 						$this->addFields('cl_sortkey');
 						$fld_sortkey = true;
+						break;
+					case 'timestamp':
+						$this->addFields('cl_timestamp');
+						$fld_timestamp = true;
 						break;
 					default :
 						ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
@@ -100,6 +104,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				ApiQueryBase :: addTitleInfo($vals, $title);
 				if ($fld_sortkey)
 					$vals['sortkey'] = $row->cl_sortkey;
+				if ($fld_timestamp)
+					$vals['timestamp'] = $row->cl_timestamp;
 
 				$data[] = $vals;
 			}
@@ -126,6 +132,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array (
 					'sortkey',
+					'timestamp',
 				)
 			)
 		);

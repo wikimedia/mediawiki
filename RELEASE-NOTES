@@ -476,6 +476,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14402) Added maxage and smaxage parameters to api.php
 * Added bkip parameter to list=blocks
 * (bug 14651) apprefix and similar parameters are now canonicalized
+* Added clprop=timestamp to prop=categories
 
 === Languages updated in 1.13 ===
 
