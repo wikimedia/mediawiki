@@ -170,6 +170,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add zh-mo and zh-my variants for the zh language
 * (bugs 4832, 9481, 12890) Special:Recentchangeslinked now has all options that
   are in Special:Recentchanges
+* Allow an $error message to be passed to ArticleDelete hook
   
 === Bug fixes in 1.13 ===
 

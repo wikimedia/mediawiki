@@ -289,6 +289,8 @@ $content: the content (string) of the article
 $article: the article (object) being deleted
 $user: the user (object) deleting the article
 $reason: the reason (string) the article is being deleted
+$error: if the deletion was prohibited, the (raw HTML) error message to display
+  (added in 1.13)
 
 'ArticleDeleteComplete': after an article is deleted
 $article: the article that was deleted
