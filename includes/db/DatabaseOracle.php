@@ -706,15 +706,5 @@ echo "error!\n";
 	function getServer() {
 		return $this->mServer;
 	}
-	
-	/** 
-	 * No-op lock functions
-	 */
-	public function lock( $lockName, $method ) {
-		return true;
-	}
-	public function unlock( $lockName, $method ) {
-		return true;
-	}
 
 } // end DatabaseOracle class

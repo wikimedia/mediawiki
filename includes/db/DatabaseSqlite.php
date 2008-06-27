@@ -373,16 +373,6 @@ class DatabaseSqlite extends Database {
 			$this->query("$sql $matches[1],$matches[2])");
 		}
 	}
-	
-	/** 
-	 * No-op lock functions
-	 */
-	public function lock( $lockName, $method ) {
-		return true;
-	}
-	public function unlock( $lockName, $method ) {
-		return true;
-	}
 
 }
 
