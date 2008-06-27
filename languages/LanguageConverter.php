@@ -411,7 +411,7 @@ class LanguageConverter {
 			$text .= $this->mVariantNames[$k].':'.$v.';';
 		foreach($unidtable as $k => $a)
 			foreach($a as $from=>$to)
-				$text.=$from.'Ë'.$this->mVariantNames[$k].':'.$to.';';
+				$text.=$from.'â‡’'.$this->mVariantNames[$k].':'.$to.';';
 		return $text;
 	}
 

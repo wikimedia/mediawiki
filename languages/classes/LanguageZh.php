@@ -29,7 +29,7 @@ class ZhConverter extends LanguageConverter {
 			'zh-hk'   => '香港',
 			'zh-mo'   => '澳門',
 			'zh-sg'   => '新加坡',
-			'zh-my'   => '马来西亚',
+			'zh-my'   => '大马',
 		);
 		$this->mVariantNames = array_merge($this->mVariantNames,$names);
 	}
@@ -69,8 +69,8 @@ class ZhConverter extends LanguageConverter {
 	/* description of convert code in chinese language*/
 	function getRulesDesc($bidtable,$unidtable){
 		$text=parent::getRulesDesc($bidtable,$unidtable);
-		$text=str_replace(':','F',$text);
-		$text=str_replace(';','G',$text);
+		$text=str_replace(':','：',$text);
+		$text=str_replace(';','；',$text);
 		return $text;
 	}
 
