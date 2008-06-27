@@ -837,6 +837,11 @@ $2',
 'titleprotected'       => "This title has been protected from creation by [[User:$1|$1]].
 The reason given is ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => "Bad configuration: unknown virus scanner:",
+'virus-scanfailed'     => "scan failed (code $1)",
+'virus-unknownscanner' => "unknown antivirus:",
+
 # Login and logout pages
 'logouttitle'                => 'User logout',
 'logouttext'                 => '<strong>You are now logged out.</strong>

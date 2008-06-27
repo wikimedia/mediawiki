@@ -313,6 +313,9 @@ $wgOptionalMessages = array(
 	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'timezone-utc',
+	'virus-badscanner',
+	'virus-scanfailed',
+	'virus-unknownscanner',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
