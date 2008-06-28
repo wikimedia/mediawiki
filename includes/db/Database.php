@@ -1452,7 +1452,7 @@ class Database {
 		 && is_array( $wgSharedTables )
 		 && in_array( $table, $wgSharedTables ) ) { # A shared table is selected
 			$database = $wgSharedDB;
-			$prefix   = isset( $wgSharedprefix ) ? $wgSharedprefix : $prefix;
+			$prefix   = isset( $wgSharedPrefix ) ? $wgSharedPrefix : $prefix;
 		}
 		
 		# Quote the $database and $table and apply the prefix if not quoted.
