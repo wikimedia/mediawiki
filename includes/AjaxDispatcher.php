@@ -86,9 +86,13 @@ class AjaxDispatcher {
 		wfProfileIn( __METHOD__ );
 
 		if (! in_array( $this->func_name, $wgAjaxExportList ) ) {
+			wfDebug( __METHOD__ . ' Bad Request for unknown function ' . $this->func_name . "\n" );
+
 			wfHttpError( 400, 'Bad Request',
 				"unknown function " . (string) $this->func_name );
 		} else {
+			wfDebug( __METHOD__ . ' dispatching ' . $this->func_name . "\n" );
+
 			if ( strpos( $this->func_name, '::' ) !== false ) {
 				$func = explode( '::', $this->func_name, 2 );
 			} else {
@@ -98,6 +102,10 @@ class AjaxDispatcher {
 				$result = call_user_func_array($func, $this->args);
 
 				if ( $result === false || $result === NULL ) {
+					wfDebug( __METHOD__ . ' ERROR while dispatching ' 
+							. $this->func_name . "(" . var_export( $this->args, true ) . "): " 
+							. "no data returned\n" );
+
 					wfHttpError( 500, 'Internal Error',
 						"{$this->func_name} returned no data" );
 				}
@@ -108,9 +116,15 @@ class AjaxDispatcher {
 
 					$result->sendHeaders();
 					$result->printText();
+
+					wfDebug( __METHOD__ . ' dispatch complete for ' . $this->func_name . "\n" );
 				}
 
 			} catch (Exception $e) {
+				wfDebug( __METHOD__ . ' ERROR while dispatching ' 
+						. $this->func_name . "(" . var_export( $this->args, true ) . "): " 
+						. get_class($e) . ": " . $e->getMessage() . "\n" );
+
 				if (!headers_sent()) {
 					wfHttpError( 500, 'Internal Error',
 						$e->getMessage() );
