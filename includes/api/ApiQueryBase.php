@@ -323,7 +323,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $title Page title with spaces
 	 * @return string Page title with underscores
 	 */
-	public static function titleToKey($title) {
+	public function titleToKey($title) {
 		$t = Title::newFromText($title);
 		if(!$t)
 			$this->dieUsageMsg('invalidtitle', $title);
@@ -335,7 +335,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $key Page title with underscores
 	 * @return string Page title with spaces
 	 */
-	public static function keyToTitle($key) {
+	public function keyToTitle($key) {
 		$t = Title::newFromDbKey($key);
 		# This really shouldn't happen but we gotta check anyway
 		if(!$t)

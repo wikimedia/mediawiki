@@ -62,9 +62,9 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 		// Image filters
 		if (!is_null($params['from']))
-			$this->addWhere('img_name>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
+			$this->addWhere('img_name>=' . $db->addQuotes($this->titleToKey($params['from'])));
 		if (isset ($params['prefix']))
-			$this->addWhere("img_name LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+			$this->addWhere("img_name LIKE '" . $db->escapeLike($this->titleToKey($params['prefix'])) . "%'");
 
 		if (isset ($params['minsize'])) {
 			$this->addWhere('img_size>=' . intval($params['minsize']));
@@ -103,7 +103,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->img_name));
+				$this->setContinueEnumParameter('from', $this->keyToTitle($row->img_name));
 				break;
 			}
 
