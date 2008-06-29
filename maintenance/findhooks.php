@@ -26,7 +26,17 @@ include('commandLine.inc');
 # GLOBALS
 
 $doc = $IP . '/docs/hooks.txt';
-$pathinc = array( $IP.'/includes/', $IP.'/includes/api/', $IP.'/includes/filerepo/', $IP.'/languages/', $IP.'/maintenance/', $IP.'/skins/' );
+$pathinc = array(
+	$IP.'/includes/',
+	$IP.'/includes/api/',
+	$IP.'/includes/db/',
+	$IP.'/includes/filerepo/',
+	$IP.'/includes/parser/',
+	$IP.'/includes/specials/',
+	$IP.'/languages/',
+	$IP.'/maintenance/',
+	$IP.'/skins/',
+);
 
 # FUNCTIONS
 
