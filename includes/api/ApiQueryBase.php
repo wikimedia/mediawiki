@@ -326,7 +326,7 @@ abstract class ApiQueryBase extends ApiBase {
 	public function titleToKey($title) {
 		$t = Title::newFromText($title);
 		if(!$t)
-			$this->dieUsageMsg('invalidtitle', $title);
+			$this->dieUsageMsg(array('invalidtitle', $title));
 		return $t->getDbKey();
 	}
 
@@ -339,7 +339,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::newFromDbKey($key);
 		# This really shouldn't happen but we gotta check anyway
 		if(!$t)
-			$this->dieUsageMsg('invalidtitle', $key);
+			$this->dieUsageMsg(array('invalidtitle', $key));
 		return $t->getPrefixedText();
 	}
 
