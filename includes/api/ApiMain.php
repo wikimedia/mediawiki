@@ -314,14 +314,21 @@ class ApiMain extends ApiBase {
 					ApiResult :: setContent($errMessage, $this->makeHelpMsg());
 
 			} else {
+				global $wgShowSQLErrors, $wgShowExceptionDetails;
 				//
 				// Something is seriously wrong
 				//
+				if ( ( $e instanceof DBQueryError ) && !$wgShowSQLErrors ) {
+					$info = "Database query error";
+				} else {
+					$info = "Exception Caught: {$e->getMessage()}";
+				}
+
 				$errMessage = array (
 					'code' => 'internal_api_error_'. get_class($e),
-					'info' => "Exception Caught: {$e->getMessage()}"
+					'info' => $info,
 				);
-				ApiResult :: setContent($errMessage, "\n\n{$e->getTraceAsString()}\n\n");
+				ApiResult :: setContent($errMessage, $wgShowExceptionDetails ? "\n\n{$e->getTraceAsString()}\n\n" : "" );				
 			}
 
 			$this->getResult()->reset();
