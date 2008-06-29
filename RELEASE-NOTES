@@ -477,6 +477,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added bkip parameter to list=blocks
 * (bug 14651) apprefix and similar parameters are now canonicalized
 * Added clprop=timestamp to prop=categories
+* (bug 14678) API errors now respects $wgShowExceptionDetails and $wgShowSQLErrors
 
 === Languages updated in 1.13 ===
 
