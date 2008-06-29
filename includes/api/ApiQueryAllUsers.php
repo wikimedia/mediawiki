@@ -58,10 +58,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$this->addTables('user', 'u1');
 
 		if( !is_null( $params['from'] ) )
-			$this->addWhere( 'u1.user_name >= ' . $db->addQuotes( self::keyToTitle( $params['from'] ) ) );
+			$this->addWhere( 'u1.user_name >= ' . $db->addQuotes( $this->keyToTitle( $params['from'] ) ) );
 
 		if( isset( $params['prefix'] ) )
-			$this->addWhere( 'u1.user_name LIKE "' . $db->escapeLike( self::keyToTitle( $params['prefix'] ) ) . '%"' );
+			$this->addWhere( 'u1.user_name LIKE "' . $db->escapeLike( $this->keyToTitle( $params['prefix'] ) ) . '%"' );
 
 		if (!is_null($params['group'])) {
 			// Filter only users that belong to a given group
@@ -132,7 +132,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 				if ($count > $limit) {
 					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->user_name));
+					$this->setContinueEnumParameter('from', $this->keyToTitle($row->user_name));
 					break;
 				}
 

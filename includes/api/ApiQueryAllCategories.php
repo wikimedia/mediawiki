@@ -57,9 +57,9 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$this->addFields('cat_title');
 
 		if (!is_null($params['from']))
-			$this->addWhere('cat_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
+			$this->addWhere('cat_title>=' . $db->addQuotes($this->titleToKey($params['from'])));
 		if (isset ($params['prefix']))
-			$this->addWhere("cat_title LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+			$this->addWhere("cat_title LIKE '" . $db->escapeLike($this->titleToKey($params['prefix'])) . "%'");
 
 		$this->addOption('LIMIT', $params['limit']+1);
 		$this->addOption('ORDER BY', 'cat_title' . ($params['dir'] == 'descending' ? ' DESC' : ''));
@@ -78,7 +78,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 			if (++ $count > $params['limit']) {
 				// We've reached the one extra which shows that there are additional cats to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->cat_title));
+				$this->setContinueEnumParameter('from', $this->keyToTitle($row->cat_title));
 				break;
 			}
 

@@ -62,10 +62,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->addWhereIf('page_is_redirect = 0', $params['filterredir'] === 'nonredirects');
 		$this->addWhereFld('page_namespace', $params['namespace']);
 		$dir = ($params['dir'] == 'descending' ? 'older' : 'newer');
-		$from = (is_null($params['from']) ? null : ApiQueryBase::titleToKey($params['from']));
+		$from = (is_null($params['from']) ? null : $this->titleToKey($params['from']));
 		$this->addWhereRange('page_title', $dir, $from, null);
 		if (isset ($params['prefix']))
-			$this->addWhere("page_title LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+			$this->addWhere("page_title LIKE '" . $db->escapeLike($this->titleToKey($params['prefix'])) . "%'");
 
 		$forceNameTitleIndex = true;
 		if (isset ($params['minsize'])) {
@@ -130,7 +130,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('from', ApiQueryBase :: keyToTitle($row->page_title));
+				$this->setContinueEnumParameter('from', $this->keyToTitle($row->page_title));
 				break;
 			}
 

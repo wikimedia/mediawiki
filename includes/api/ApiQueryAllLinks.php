@@ -80,9 +80,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		}		
 
 		if (!is_null($params['from']))
-			$this->addWhere('pl_title>=' . $db->addQuotes(ApiQueryBase :: titleToKey($params['from'])));
+			$this->addWhere('pl_title>=' . $db->addQuotes($this->titleToKey($params['from'])));
 		if (isset ($params['prefix']))
-			$this->addWhere("pl_title LIKE '" . $db->escapeLike(ApiQueryBase :: titleToKey($params['prefix'])) . "%'");
+			$this->addWhere("pl_title LIKE '" . $db->escapeLike($this->titleToKey($params['prefix'])) . "%'");
 
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
@@ -108,7 +108,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				// TODO: Security issue - if the user has no right to view next title, it will still be shown
-				$this->setContinueEnumParameter('continue', ApiQueryBase :: keyToTitle($row->pl_title) . "|" . $row->pl_from);
+				$this->setContinueEnumParameter('continue', $this->keyToTitle($row->pl_title) . "|" . $row->pl_from);
 				break;
 			}
 
