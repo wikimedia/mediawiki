@@ -99,13 +99,16 @@ $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 /**
  * Skin names. If any key is not specified, the English one will be used.
  */
+
 $skinNames = array(
-        'standard'      => 'Standaad',
-        'nostalgia'     => 'Nostaljesch',
-        'cologneblue'   => 'Kölsch Blau',
-        'monobook'      => 'MonoBoch',
-        'myskin'        => 'Ming Skin',
-        'chick'         => 'Höhnche'
+	'standard'    => 'Klassesch',
+	'nostalgia'   => 'Nostaljesch',
+	'cologneblue' => 'Kölsch Blau',
+	'monobook'    => 'MonoBoch',
+	'myskin'      => 'Ming Skin',
+	'chick'       => 'Höhnche',
+	'simple'      => 'Eifach',
+	'modern'      => 'Modern',
 );
 
 $messages = array(
