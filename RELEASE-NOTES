@@ -63,7 +63,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgMessageCacheType defines now the type of cache used by the MessageCache class,
   previously it was choosen based on $wgParserCacheType
 * $wgExtensionAliasesFiles option to simplify adding aliases to special pages
-* provided by extensions, in a similar way to $wgExtensionMessagesFiles
+  provided by extensions, in a similar way to $wgExtensionMessagesFiles
 
 === New features in 1.13 ===
 
@@ -173,6 +173,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow an $error message to be passed to ArticleDelete hook
 * Allow extensions to modify the user creation form by calling addInputItem();
 * Add meta generator tag to HTML output
+* Two new hooks, ExtendJSGlobalVars and wfMessageCacheReplace added
+* New global function, wfSharedTable - used to get the name of a table in the
+  shared database ($wgSharedDB)
  
 === Bug fixes in 1.13 ===
 

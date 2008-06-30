@@ -363,6 +363,7 @@ class MessageCache {
 		}
 		$this->unlock();
 		$parserMemc->delete(wfMemcKey('sidebar'));
+		wfRunHooks( 'wfMessageCacheReplace', array( $title, $text ) );
 		wfProfileOut( __METHOD__ );
 	}
 
