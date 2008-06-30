@@ -457,6 +457,7 @@ class MimeMagic {
 		 */
 		$xml = new XmlTypeCheck( $file );
 		if( $xml->wellFormed ) {
+			global $wgAdditionalXMLTypes;
 			$types = array(
 				'http://www.w3.org/2000/svg:svg'    		=> 'image/svg+xml',
 				'svg'                               		=> 'image/svg+xml',
@@ -464,11 +465,12 @@ class MimeMagic {
 				'http://www.w3.org/1999/xhtml:html' 		=> 'text/html', // application/xhtml+xml?
 				'html'                              		=> 'text/html', // application/xhtml+xml?
 			);
+			
 			if( isset( $types[$xml->rootElement] ) ) {
-				$mime = $types[$xml->rootElement];
-				return $mime;
+				return $types[$xml->rootElement];
+			} elseif( isset( $wgAdditionalXMLTypes[$xml->rootElement] ) ) {
+				return $wgAdditionalXMLTypes[$xml->rootElement];
 			} else {
-				/// Fixme -- this would be the place to allow additional XML type checks
 				return 'application/xml';
 			}
 		}
