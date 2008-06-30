@@ -174,8 +174,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow extensions to modify the user creation form by calling addInputItem();
 * Add meta generator tag to HTML output
 * Two new hooks, ExtendJSGlobalVars and wfMessageCacheReplace added
-* New global function, wfSharedTable - used to get the name of a table in the
-  shared database ($wgSharedDB)
  
 === Bug fixes in 1.13 ===
 
