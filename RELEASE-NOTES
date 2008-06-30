@@ -172,6 +172,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   are in Special:Recentchanges
 * Allow an $error message to be passed to ArticleDelete hook
 * Allow extensions to modify the user creation form by calling addInputItem();
+* Add meta generator tag to HTML output
  
 === Bug fixes in 1.13 ===
 

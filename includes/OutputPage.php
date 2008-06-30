@@ -1333,7 +1333,7 @@ class OutputPage {
 	public function headElement() {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
-		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle, $wgStyleVersion, $wgVersion;
+		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle, $wgStyleVersion;
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
 			$ret = "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
@@ -1354,7 +1354,6 @@ class OutputPage {
 		}
 		$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
-		$ret .= "<meta name=\"generator\" content=\"MediaWiki " . $wgVersion . "\" />\n";
 		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
 
 		$ret .= $this->getHeadLinks();
@@ -1384,8 +1383,8 @@ class OutputPage {
 	 * @return string HTML tag links to be put in the header.
 	 */
 	public function getHeadLinks() {
-		global $wgRequest, $wgFeed;
-		$ret = '';
+		global $wgRequest, $wgFeed, $wgVersion;
+		$ret = "<meta name=\"generator\" content=\"MediaWiki " . $wgVersion . "\" />\n";
 		foreach ( $this->mMetatags as $tag ) {
 			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
 				$a = 'http-equiv';
