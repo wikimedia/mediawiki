@@ -64,6 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   previously it was choosen based on $wgParserCacheType
 * $wgExtensionAliasesFiles option to simplify adding aliases to special pages
   provided by extensions, in a similar way to $wgExtensionMessagesFiles
+* Added $wgAdditionalXMLTypes, an array of XML mimetypes we can check for
+  with MimeMagic.
 
 === New features in 1.13 ===
 
