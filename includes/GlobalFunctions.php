@@ -2675,3 +2675,24 @@ function wfGenerateToken( $salt = '' ) {
 
  	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }
+
+/**
+ * Create table name for shared database.
+ *
+ * @access public
+ * @author eloy@wikia
+ *
+ * @param string $table: table name
+ *
+ * @return string: table name with additional shared database
+ */
+function wfSharedTable( $table, $useExternal = true ) {
+	global $wgSharedDB, $wgExternalSharedDB;
+
+	if ($useExternal && !empty( $wgExternalSharedDB )) {
+		return "`$wgExternalSharedDB`.`$table`";
+	} elseif (!empty( $wgSharedDB )) {
+		return "`$wgSharedDB`.`$table`";
+	} else
+		return "`$table`";
+}
