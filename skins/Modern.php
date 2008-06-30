@@ -47,7 +47,7 @@ class ModernTemplate extends QuickTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgUser;
+		global $wgUser, $wgVersion;
 		$skin = $wgUser->getSkin();
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
@@ -62,6 +62,7 @@ class ModernTemplate extends QuickTemplate {
 		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
 		<?php $this->html('headlinks') ?>
 		<title><?php $this->text('pagetitle') ?></title>
+		<meta name="generator" content="MediaWiki <?php echo $wgVersion ?>" />
 		<?php if(empty($this->data['printable']) ) { ?>
 		<style type="text/css" media="screen, projection">/*<![CDATA[*/
 			@import "<?php $this->text('stylepath') ?>/common/shared.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
