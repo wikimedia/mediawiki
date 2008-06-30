@@ -1034,11 +1034,11 @@ function purge_cache() {
 }
 
 function do_all_updates( $shared = false, $purge = true ) {
-	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgDatabase, $wgDBtype, $IP;
+	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgSharedTables, $wgDatabase, $wgDBtype, $IP;
 
 	wfRunHooks('LoadExtensionSchemaUpdates');
 
-	$doUser = !$wgSharedDB || $shared;
+	$doUser = $shared ? $wgSharedDB && in_array('user', $wgSharedTables) : !$wgSharedDB || !in_array('user', $wgSharedTables);
 
 	if ($wgDBtype === 'postgres') {
 		do_postgres_updates();
