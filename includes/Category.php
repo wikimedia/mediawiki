@@ -11,6 +11,8 @@ class Category {
 	/** Name of the category, normalized to DB-key form */
 	private $mName = null;
 	private $mID = null;
+	/** Category page title */
+	private $mTitle = null;
 	/** Counts of membership (cat_pages, cat_subcats, cat_files) */
 	private $mPages = null, $mSubcats = null, $mFiles = null;
 
@@ -21,11 +23,12 @@ class Category {
 	 * @return bool True on success, false on failure.
 	 */
 	protected function initialize() {
+		if ( $this->mName === null && $this->mTitle ) 
+			$this->mName = $title->getDBKey();
+
 		if( $this->mName === null && $this->mID === null ) {
 			throw new MWException( __METHOD__.' has both names and IDs null' );
-		}
-		$dbr = wfGetDB( DB_SLAVE );
-		if( $this->mID === null ) {
+		} elseif( $this->mID === null ) {
 			$where = array( 'cat_title' => $this->mName );
 		} elseif( $this->mName === null ) {
 			$where = array( 'cat_id' => $this->mID );
@@ -33,6 +36,7 @@ class Category {
 			# Already initialized
 			return true;
 		}
+		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			'category',
 			array( 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats',
@@ -70,10 +74,27 @@ class Category {
 	 */
 	public static function newFromName( $name ) {
 		$cat = new self();
-		$title = Title::newFromText( "Category:$name" );
+		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
 		if( !is_object( $title ) ) {
 			return false;
 		}
+
+		$cat->mTitle = $title;
+		$cat->mName = $title->getDBKey();
+
+		return $cat;
+	}
+
+	/**
+	 * Factory function.
+	 *
+	 * @param array $title Title for the category page
+	 * @return mixed Category, or false on a totally invalid name
+	 */
+	public static function newFromTitle( $title ) {
+		$cat = new self();
+
+		$cat->mTitle = $title;
 		$cat->mName = $title->getDBKey();
 
 		return $cat;
@@ -88,6 +109,50 @@ class Category {
 	public static function newFromID( $id ) {
 		$cat = new self();
 		$cat->mID = intval( $id );
+		return $cat;
+	}
+
+	/**
+	 * Factory function, for constructing a Category object from a result set
+	 *
+	 * @param $row result set row, must contain the cat_xxx fields. If the fields are null, 
+	 *        the resulting Category object will represent an empty category if a title object
+	 *        was given. If the fields are null and no title was given, this method fails and returns false.
+	 * @param $title optional title object for the category represented by the given row.
+	 *        May be provided if it is already known, to avoid having to re-create a title object later.
+	 * @return Category
+	 */
+	public static function newFromRow( $row, $title = null ) {
+		$cat->mTitle = $title;
+
+		$cat = new self();
+
+		# NOTE: the row often results from a LEFT JOIN on categorylinks. This may result in 
+		#       all the cat_xxx fields being null, if the category page exists, but nothing
+		#       was ever added to the category. This case should be treated linke an empty
+		#       category, if possible.
+
+		if ( $row->cat_title === null ) {
+			if ( $title === null ) {
+				# the name is probably somewhere in the row, for example as page_title,
+				# but we can't know that here...
+				return false;
+			} else {
+				$cat->mName = $title->getDBKey(); # if we have a title object, fetch the category name from there
+			}
+
+			$cat->mID =   false;
+			$cat->mSubcats = 0;
+			$cat->mPages   = 0;
+			$cat->mFiles   = 0;
+		} else {
+			$cat->mName    = $row->cat_title;
+			$cat->mID      = $row->cat_id;
+			$cat->mSubcats = $row->cat_subcats;
+			$cat->mPages   = $row->cat_pages;
+			$cat->mFiles   = $row->cat_files;
+		}
+
 		return $cat;
 	}
 
@@ -106,10 +171,14 @@ class Category {
 	 * @return mixed The Title for this category, or false on failure.
 	 */
 	public function getTitle() {
+		if( $this->mTitle ) return $this->mTitle;
+		
 		if( !$this->initialize() ) {
 			return false;
 		}
-		return Title::makeTitleSafe( NS_CATEGORY, $this->mName );
+
+		$this->mTitle = Title::makeTitleSafe( NS_CATEGORY, $this->mName );
+		return $this->mTitle;
 	}
 
 	/** Generic accessor */

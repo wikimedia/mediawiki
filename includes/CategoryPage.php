@@ -135,7 +135,16 @@ class CategoryViewer {
 	}
 
 	/**
-	 * Add a subcategory to the internal lists
+	 * Add a subcategory to the internal lists, using a Category object
+	 */
+	function addSubcategoryObject( $cat, $sortkey, $pageLength ) {
+		$title = $cat->getTitle();
+		$this->addSubcategory( $title, $sortkey, $pageLength );
+	}
+
+	/**
+	 * Add a subcategory to the internal lists, using a title object 
+	 * @deprectated kept for compatibility, please use addSubcategoryObject instead
 	 */
 	function addSubcategory( $title, $sortkey, $pageLength ) {
 		global $wgContLang;
@@ -213,17 +222,17 @@ class CategoryViewer {
 			$this->flip = false;
 		}
 		$res = $dbr->select(
-			array( 'page', 'categorylinks' ),
-			array( 'page_title', 'page_namespace', 'page_len', 'page_is_redirect', 'cl_sortkey' ),
+			array( 'page', 'categorylinks', 'category' ),
+			array( 'page_title', 'page_namespace', 'page_len', 'page_is_redirect', 'cl_sortkey',
+				'cat_id', 'cat_title', 'cat_subcats', 'cat_pages', 'cat_files' ),
 			array( $pageCondition,
-			       'cl_from          =  page_id',
-			       'cl_to'           => $this->title->getDBkey()),
-			       #'page_is_redirect' => 0),
-			#+ $pageCondition,
+			       'cl_to' => $this->title->getDBkey() ),
 			__METHOD__,
 			array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' : 'cl_sortkey',
-			       'USE INDEX' => 'cl_sortkey',
-			       'LIMIT'    => $this->limit + 1 ) );
+			       'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
+			       'LIMIT'    => $this->limit + 1 ),
+			array( 'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
+		               'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ) ) );
 
 		$count = 0;
 		$this->nextPage = null;
@@ -238,7 +247,8 @@ class CategoryViewer {
 			$title = Title::makeTitle( $x->page_namespace, $x->page_title );
 
 			if( $title->getNamespace() == NS_CATEGORY ) {
-				$this->addSubcategory( $title, $x->cl_sortkey, $x->page_len );
+				$cat = Category::newFromRow( $x, $title );
+				$this->addSubcategoryObject( $cat, $x->cl_sortkey, $x->page_len );
 			} elseif( $this->showGallery && $title->getNamespace() == NS_IMAGE ) {
 				$this->addImage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			} else {
