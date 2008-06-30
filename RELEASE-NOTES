@@ -400,6 +400,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14583) Fix regression in recent changes "limit to certain categories."
 * (bug 14515) HTML nesting cleanup on edit form
 * (bug 14647) Removed unused 'townBox' CSS classes
+* (bug 14687) OutputPage::addStyle() now adds type="text/css" like it should.
 
 === API changes in 1.13 ===
 
