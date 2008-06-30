@@ -85,7 +85,8 @@ class OutputPage {
 		$this->addLink(
 				array(
 					'rel' => 'stylesheet',
-					'href' => $wgStylePath . '/' . $style . '?' . $wgStyleVersion ) );
+					'href' => $wgStylePath . '/' . $style . '?' . $wgStyleVersion,
+					'type' => 'text/css' ) );
 	}
 
 	/**
