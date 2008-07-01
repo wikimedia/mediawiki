@@ -24,28 +24,59 @@ class Linker {
 		return NULL;
 	}
 
-	/** @todo document */
-	function getExternalLinkAttributes( $link, $text, $class='' ) {
-		$link = htmlspecialchars( $link );
+	/**
+	 * Get the appropriate HTML attributes to add to the "a" element of an ex-
+	 * ternal link, as created by [wikisyntax].
+	 *
+	 * @param string $title  The (unescaped) title text for the link
+	 * @param string $unused Unused
+	 * @param string $class  The contents of the "class" attribute; if an empty
+	 *   string is passed, which is the default value, defaults to 'external'.
+	 */
+	function getExternalLinkAttributes( $title, $unused = null, $class='' ) {
+		$title = htmlspecialchars( $title );
+		if( $class === '' ) {
+			# FIXME: Parameter defaults the hard way!  We should just have
+			# $class = 'external' as the default, not $class = ''.
+			$class = 'external';
+		}
 		$class = htmlspecialchars( $class );
 
-		$r = ($class != '') ? " class=\"$class\"" : " class=\"external\"";
+		$r = " class=\"$class\"";
 
-		$r .= " title=\"{$link}\"";
+		$r .= " title=\"$title\"";
 		return $r;
 	}
 
-	function getInterwikiLinkAttributes( $link, $text, $class='' ) {
+	/**
+	 * Get the appropriate HTML attributes to add to the "a" element of an in-
+	 * terwiki link.
+	 *
+	 * @param string $title  The title text for the link, URL-encoded (???) but
+	 *   not HTML-escaped
+	 * @param string $unused Unused
+	 * @param string $class  The contents of the "class" attribute; if an empty
+	 *   string is passed, which is the default value, defaults to 'external'.
+	 */
+	function getInterwikiLinkAttributes( $title, $unused, $class='' ) {
 		global $wgContLang;
+		if( $class === '' ) {
+			# FIXME: We should just have $class = 'external' as the default,
+			# not $class = '' (as above).
+			$class = 'external';
+		}
+		$class = htmlspecialchars( $class );
 
-		$link = urldecode( $link );
-		$link = $wgContLang->checkTitleEncoding( $link );
-		$link = preg_replace( '/[\\x00-\\x1f]/', ' ', $link );
-		$link = htmlspecialchars( $link );
+		# FIXME: We have a whole bunch of handling here that doesn't happen in
+		# getExternalLinkAttributes, why?
+		$title = urldecode( $title );
+		$title = $wgContLang->checkTitleEncoding( $title );
+		$title = preg_replace( '/[\\x00-\\x1f]/', ' ', $title );
+		$title = htmlspecialchars( $title );
 
-		$r = ($class != '') ? " class=\"$class\"" : " class=\"external\"";
+		$r = " class=\"$class\"";
 
-		$r .= " title=\"{$link}\"";
+		$r .= " title=\"{$title}\"";
 		return $r;
 	}
 
