@@ -1,13 +1,10 @@
 <?php
 /**
- * Split off some of the internal bits from Skin.php.
- * These functions are used for primarily page content:
- * links, embedded images, table of contents. Links are
- * also used in the skin.
- * For the moment, Skin is a descendent class of Linker.
- * In the future, it should probably be further split
- * so that ever other bit of the wiki doesn't have to
- * go loading up Skin to get at it.
+ * Split off some of the internal bits from Skin.php. These functions are used
+ * for primarily page content: links, embedded images, table of contents. Links
+ * are also used in the skin. For the moment, Skin is a descendent class of
+ * Linker.  In the future, it should probably be further split so that every
+ * other bit of the wiki doesn't have to go loading up Skin to get at it.
  *
  * @ingroup Skins
  */
@@ -30,6 +27,7 @@ class Linker {
 	/** @todo document */
 	function getExternalLinkAttributes( $link, $text, $class='' ) {
 		$link = htmlspecialchars( $link );
+		$class = htmlspecialchars( $class );
 
 		$r = ($class != '') ? " class=\"$class\"" : " class=\"external\"";
 
