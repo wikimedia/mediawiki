@@ -136,7 +136,7 @@ class SpecialPage
 		'Categories'                => array( 'SpecialPage', 'Categories' ),
 		'Export'                    => array( 'SpecialPage', 'Export' ),
 		'Version'                   => array( 'SpecialPage', 'Version' ),
-		'Blankpage'                 => array( 'SpecialPage', 'Blankpage' ),
+		'Blankpage'                 => array( 'UnlistedSpecialPage', 'Blankpage' ),
 		'Allmessages'               => array( 'SpecialPage', 'Allmessages' ),
 		'Log'                       => array( 'SpecialPage', 'Log' ),
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),

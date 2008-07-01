@@ -433,6 +433,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'MergeHistory' ),
 	'Filepath'                  => array( 'FilePath' ),
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
+	'Blankpage'                 => array( 'BlankPage' ),
 );
 
 /**

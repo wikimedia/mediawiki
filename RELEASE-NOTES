@@ -177,6 +177,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add meta generator tag to HTML output
 * Two new hooks, ExtendJSGlobalVars and wfMessageCacheReplace added
 * MediawikiPerformAction hook is now passed the Mediawiki object
+* Added blank special page Special:BlankPage for benchmarking, etc.
  
 === Bug fixes in 1.13 ===
 
@@ -484,7 +485,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14651) apprefix and similar parameters are now canonicalized
 * Added clprop=timestamp to prop=categories
 * (bug 14678) API errors now respects $wgShowExceptionDetails and $wgShowSQLErrors
-* Added blank special page
 
 === Languages updated in 1.13 ===
 
