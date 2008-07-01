@@ -3447,4 +3447,7 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'specialpages-group-redirects'   => 'Redirecting special pages',
 'specialpages-group-spam'        => 'Spam tools',
 
+# Special:Blank
+'blankpage'              => 'Blank page',
+'intentionallyblankpage' => 'This page is intentionally left blank',
 );
