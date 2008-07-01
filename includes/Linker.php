@@ -20,8 +20,8 @@ class Linker {
 	/**
 	 * @deprecated
 	 */
-	function postParseLinkColour( $s = NULL ) {
-		return NULL;
+	function postParseLinkColour( $s = null ) {
+		return null;
 	}
 
 	/**
@@ -30,22 +30,11 @@ class Linker {
 	 *
 	 * @param string $title  The (unescaped) title text for the link
 	 * @param string $unused Unused
-	 * @param string $class  The contents of the "class" attribute; if an empty
+	 * @param string $class  The contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 */
 	function getExternalLinkAttributes( $title, $unused = null, $class='' ) {
-		$title = htmlspecialchars( $title );
-		if( $class === '' ) {
-			# FIXME: Parameter defaults the hard way!  We should just have
-			# $class = 'external' as the default, not $class = ''.
-			$class = 'external';
-		}
-		$class = htmlspecialchars( $class );
-
-		$r = " class=\"$class\"";
-
-		$r .= " title=\"$title\"";
-		return $r;
+		return $this->getLinkAttributesInternal( $title, $class, 'external' );
 	}
 
 	/**
@@ -55,53 +44,70 @@ class Linker {
 	 * @param string $title  The title text for the link, URL-encoded (???) but
 	 *   not HTML-escaped
 	 * @param string $unused Unused
-	 * @param string $class  The contents of the "class" attribute; if an empty
+	 * @param string $class  The contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 */
-	function getInterwikiLinkAttributes( $title, $unused, $class='' ) {
+	function getInterwikiLinkAttributes( $title, $unused = null, $class='' ) {
 		global $wgContLang;
-		if( $class === '' ) {
-			# FIXME: We should just have $class = 'external' as the default,
-			# not $class = '' (as above).
-			$class = 'external';
-		}
-		$class = htmlspecialchars( $class );
 
 		# FIXME: We have a whole bunch of handling here that doesn't happen in
 		# getExternalLinkAttributes, why?
 		$title = urldecode( $title );
 		$title = $wgContLang->checkTitleEncoding( $title );
 		$title = preg_replace( '/[\\x00-\\x1f]/', ' ', $title );
-		$title = htmlspecialchars( $title );
 
-		$r = " class=\"$class\"";
-
-		$r .= " title=\"{$title}\"";
-		return $r;
-	}
-
-	/** @todo document */
-	function getInternalLinkAttributes( $link, $text, $class='' ) {
-		$link = urldecode( $link );
-		$link = str_replace( '_', ' ', $link );
-		$link = htmlspecialchars( $link );
-		$r = ($class != '') ? ' class="' . htmlspecialchars( $class ) . '"' : '';
-		$r .= " title=\"{$link}\"";
-		return $r;
+		return $this->getLinkAttributesInternal( $title, $class, 'external' );
 	}
 
 	/**
-	 * @param $nt Title object.
-	 * @param $text String: FIXME
-	 * @param $class String: CSS class of the link, default ''.
+	 * Get the appropriate HTML attributes to add to the "a" element of an in-
+	 * ternal link.
+	 *
+	 * @param string $title  The title text for the link, URL-encoded (???) but
+	 *   not HTML-escaped
+	 * @param string $unused Unused
+	 * @param string $class  The contents of the class attribute, default none
 	 */
-	function getInternalLinkAttributesObj( &$nt, $text, $class = '', $titleAttr = false ) {
-		$r = ($class != '') ? ' class="' . htmlspecialchars( $class ) . '"' : '';
-		if ( $titleAttr === false ) {
-			$r .= ' title="' . $nt->getEscapedText() . '"';
-		} else {
-			$r .= ' title="' . htmlspecialchars( $titleAttr ) . '"';
+	function getInternalLinkAttributes( $title, $unused = null, $class='' ) {
+		$title = urldecode( $title );
+		$title = str_replace( '_', ' ', $title );
+		return $this->getLinkAttributesInternal( $title, $class );
+	}
+
+	/**
+	 * Get the appropriate HTML attributes to add to the "a" element of an in-
+	 * ternal link, given the Title object for the page we want to link to.
+	 *
+	 * @param Title  $nt     The Title object
+	 * @param string $unused Unused
+	 * @param string $class  The contents of the class attribute, default none
+	 * @param mixed  $title  Optional (unescaped) string to use in the title
+	 *   attribute; if false, default to the name of the page we're linking to
+	 */
+	function getInternalLinkAttributesObj( $nt, $unused = null, $class = '', $title = false ) {
+		if( $title === false ) {
+			$title = $nt->getPrefixedText();
 		}
+		return $this->getLinkAttributesInternal( $title, $class );
+	}
+
+	/**
+	 * Common code for getLinkAttributesX functions
+	 */
+	private function getLinkAttributesInternal( $title, $class, $classDefault = false ) {
+		$title = htmlspecialchars( $title );
+		if( $class === '' and $classDefault !== false ) {
+			# FIXME: Parameter defaults the hard way!  We should just have
+			# $class = 'external' or whatever as the default in the externally-
+			# exposed functions, not $class = ''.
+			$class = $classDefault;
+		}
+		$class = htmlspecialchars( $class );
+		$r = '';
+		if( $class !== '' ) {
+			$r .= " class=\"$class\"";
+		}
+		$r .= " title=\"$title\"";
 		return $r;
 	}
 
