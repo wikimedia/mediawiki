@@ -46,7 +46,18 @@ class Category {
 		);
 		if( !$row ) {
 			# Okay, there were no contents.  Nothing to initialize.
-			return false;
+			if ( $this->mTitle ) {
+				# If there is a title object but no record in the category table, treat this as an empty category
+				$this->mID      = false;
+				$this->mName    = $this->mTitle->getDBKey();
+				$this->mPages   = 0;
+				$this->mSubcats = 0;
+				$this->mFiles   = 0;
+
+				return true;
+			} else {
+				return false; # Fail
+			}
 		}
 		$this->mID      = $row->cat_id;
 		$this->mName    = $row->cat_title;
