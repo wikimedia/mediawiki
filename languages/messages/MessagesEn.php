@@ -2432,7 +2432,6 @@ In those cases, you will have to move or merge the page manually if desired.",
 'move-watch'              => 'Watch this page',
 'movepagebtn'             => 'Move page',
 'pagemovedsub'            => 'Move succeeded',
-'movepage-moved'          => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'A page of that name already exists, or the name you have chosen is not valid.
 Please choose another name.',
 'cantmove-titleprotected' => 'You cannot move a page to this location, because the new title has been protected from creation',
@@ -2443,7 +2442,7 @@ Please merge them manually.'''",
 'move-subpages'           => 'Move all subpages, if applicable',
 'move-talk-subpages'      => 'Move all subpages of talk page, if applicable',
 'movepage-page-exists'    => 'The page $1 already exists and cannot be automatically overwritten.',
-'movepage-page-moved'     => 'The page $1 has been moved to $2.',
+'movepage-page-moved'     => 'The page $1 has been moved to $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'The page $1 could not be moved to $2.',
 'movepage-max-pages'      => 'The maximum of $1 {{PLURAL:$1|page|pages}} has been moved and no more will be moved automatically.',
 '1movedto2'               => '[[$1]] moved to [[$2]]',
