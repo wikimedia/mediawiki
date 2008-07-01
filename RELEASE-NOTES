@@ -176,6 +176,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow extensions to modify the user creation form by calling addInputItem();
 * Add meta generator tag to HTML output
 * Two new hooks, ExtendJSGlobalVars and wfMessageCacheReplace added
+* MediawikiPerformAction hook is now passed the Mediawiki object
  
 === Bug fixes in 1.13 ===
 

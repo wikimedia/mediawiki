@@ -418,7 +418,7 @@ class MediaWiki {
 	function performAction( &$output, &$article, &$title, &$user, &$request ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( !wfRunHooks( 'MediaWikiPerformAction', array( $output, $article, $title, $user, $request ) ) ) {
+		if ( !wfRunHooks( 'MediaWikiPerformAction', array( $output, $article, $title, $user, $request, $this ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
