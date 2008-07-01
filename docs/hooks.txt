@@ -846,6 +846,10 @@ $article: the article edited
 $rev: the new revision
 $baseID: the revision ID this was based off, if any
 
+'OpenSearchUrls': Called when constructing the OpenSearch description XML.
+Hooks can alter or append to the array of URLs for search & suggestion formats.
+&$urls: array of associative arrays with Url element attributes
+
 'OutputPageBeforeHTML': a page has been processed by the parser and
 the resulting HTML is about to be displayed.  
 $parserOutput: the parserOutput (object) that corresponds to the page 
