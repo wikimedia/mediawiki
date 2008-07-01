@@ -2613,6 +2613,10 @@ $wgMessageStructure = array(
 		'specialpages-group-redirects',
 		'specialpages-group-spam',
 	),
+	'special-blank' => array(
+		'blankpage',
+		'intentionallyblankpage',
+	),
 );
 
 /** Comments for each block */
@@ -2801,6 +2805,7 @@ Variants for Chinese language",
 	'filepath'              => 'Special:Filepath',
 	'fileduplicatesearch'   => 'Special:FileDuplicateSearch',
 	'special-specialpages'  => 'Special:SpecialPages',
+	'special-blank'         => 'Special:Blankpage',
 );
 
 /** Short comments for standalone messages */
