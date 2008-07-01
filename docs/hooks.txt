@@ -829,6 +829,7 @@ $article: $wgArticle
 $title:   $wgTitle
 $user:    $wgUser
 $request: $wgRequest
+$this:    The $mediawiki object
 
 'MessagesPreLoad': When loading a message from the database
 $title: title of the message (string)
