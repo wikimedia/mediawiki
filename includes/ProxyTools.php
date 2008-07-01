@@ -218,6 +218,7 @@ function wfIsLocallyBlockedProxy( $ip ) {
  * @return bool
  */
 function wfIsAOLProxy( $ip ) {
+	# From http://webmaster.info.aol.com/proxyinfo.html
 	$ranges = array(
 		'64.12.96.0/19',
 		'149.174.160.0/20',
