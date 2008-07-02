@@ -6,7 +6,6 @@
  *
  * @author Bangin
  * @author Siebrand
- * @author Nike
  */
 
 $namespaceNames = array(
@@ -1347,7 +1346,6 @@ da bikarî navê wê rûpelê biguherînî.',
 'move-watch'              => 'Vê rûpelê bişopîne',
 'movepagebtn'             => 'Vê rûpelê bigerîne',
 'pagemovedsub'            => 'Gerandin serkeftî',
-'movepage-moved'          => '<big>\'\'\'"$1" çû "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Rûpela bi vî navî heye, an navê ku te hilbijart derbas nabe. Navekî din hilbijêre.',
 'movedto'                 => 'bû',
 'movetalk'                => "Rûpela '''guftûgo''' ya wê jî bigerîne, eger gengaz be.",

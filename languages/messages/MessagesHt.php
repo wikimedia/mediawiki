@@ -5,9 +5,8 @@
  * @file
  *
  * @author Masterches
- * @author Siebrand
  * @author Jvm
- * @author Nike
+ * @author Siebrand
  */
 
 $fallback = 'fr';
@@ -318,29 +317,42 @@ $messages = array(
 Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
-'error'           => 'Erè',
-'databaseerror'   => '
+'error'                => 'Erè',
+'databaseerror'        => '
 Erè nan bazdata.',
-'dberrortext'     => 'Yon demann oubyen rekèt nan baz done a bay yon erè. Sa kapab vle di ke genyen yon erè ki nan lojisyèl an (gade $5) . Dènye esè a te :
+'dberrortext'          => 'Yon demann oubyen rekèt nan baz done a bay yon erè. Sa kapab vle di ke genyen yon erè ki nan lojisyèl an (gade $5) . Dènye esè a te :
 <blockquote><tt>$1</tt></blockquote>
 depi fonksyon sa « <tt>$2</tt> ». MySQL ritounen erè sa « <tt>$3 : $4</tt> ».',
-'dberrortextcl'   => 'Yon demann nan baz done a bay yon erè.
+'dberrortextcl'        => 'Yon demann nan baz done a bay yon erè.
 Dènye esè nan baz done a te: « $1 » fèt pa fonksyon sa « $2 ». MySQL ritounen mesaj sa « $3 : $4 ».',
-'noconnect'       => 'Souple, eskize nou. Wiki a ap konnen kounye a yon erè, kèk pwoblèm teknik; li pa kapab jwenn sèvè a pou voye enfòmasyon ou mande a. <br />
+'noconnect'            => 'Souple, eskize nou. Wiki a ap konnen kounye a yon erè, kèk pwoblèm teknik; li pa kapab jwenn sèvè a pou voye enfòmasyon ou mande a. <br />
 $1',
-'nodb'            => 'Nou pa kapab seleksyone baz done $1',
-'cachederror'     => 'Paj sa a se yon paj ki te anrejistre deja, li pa kapab mete l a jou.',
-'laggedslavemode' => 'Pòte atansyon, paj sa a pa kapab anrejistre modifikasyon ki fèk fèt yo.',
-'readonly'        => 'Baz done a fème toutbon.',
-'enterlockreason' => 'Bay yon rezon pou fème baz done a epitou yon estimasyon pou tan sa ap pran w pou l ouvri ankò',
-'readonlytext'    => 'Baz done a fème kounye a; nou pa kapab ajoute pyès done anndan l. Li sanble se pou pèmèt jesyon l; apre sa, l ap reprann sèvis li.
+'nodb'                 => 'Nou pa kapab seleksyone baz done $1',
+'cachederror'          => 'Paj sa a se yon paj ki te anrejistre deja, li pa kapab mete l a jou.',
+'laggedslavemode'      => 'Pòte atansyon, paj sa a pa kapab anrejistre modifikasyon ki fèk fèt yo.',
+'readonly'             => 'Baz done a fème toutbon.',
+'enterlockreason'      => 'Bay yon rezon pou fème baz done a epitou yon estimasyon pou tan sa ap pran w pou l ouvri ankò',
+'readonlytext'         => 'Baz done a fème kounye a; nou pa kapab ajoute pyès done anndan l. Li sanble se pou pèmèt jesyon l; apre sa, l ap reprann sèvis li.
 
 Administratè a ki te fème l bay rezon sa a : $1',
-'badtitle'        => 'Tit an pa byen, li move, eseye byen ekri li',
-'badtitletext'    => 'Tit paj ou mande a pa korèk oubyen li pa egziste oubyen li nan yon lòt pwojè wiki (gade nan lòt wiki yo pou wè). Li mèt genyen tou kèk karaktè ki pa rekonèt nan sistèm an, eseye pa itilize yo nan tit ou yo.',
-'viewsource'      => 'Wè kòd tèks sa a',
-'viewsourcefor'   => 'pou $1',
-'viewsourcetext'  => 'Ou kapab gade epitou modifye kontni atik sa a pou ou travay anlè li :',
+'readonly_lag'         => 'Bazdone a bloke otomatikman pandan lòt sèvè segondè yo ap travay pou bay lanmen nan sèvè prensipal an.',
+'internalerror'        => 'Erè nan sistèm an.',
+'internalerror_info'   => 'Erè nan sistèm an : $1',
+'filecopyerror'        => 'Nou pa kapab kopye fichye  « $1 » sa nan « $2 ».',
+'filerenameerror'      => 'Nou pa kapab bay lòt non « $2 » pou fichye « $1 » sa.',
+'filedeleteerror'      => 'Nou pa kapab efase fichye « $1 » sa.',
+'directorycreateerror' => 'Nou pa kapab kreye dosye « $1 » sa.',
+'filenotfound'         => 'Nou pa kapab twouve fichye « $1 » sa.',
+'fileexistserror'      => 'Nou pa kapab ekri nan dosye « $1 » : fichye a egziste deja',
+'unexpected'           => 'Valè sa pa koresponn ak sa nou genyen nan sistèm an : « $1 » = « $2 ».',
+'formerror'            => 'Erè : nou pa kapab anrejistre fòmilè sa',
+'badarticleerror'      => 'Ou pa kapab fè aksyon sa sou paj sa.',
+'cannotdelete'         => 'Nou pa kapab efase paj oubyen fichye ou bay an. (Yon lòt moun gen dwa fè l anvan ou.)',
+'badtitle'             => 'Tit ou bay an pa bon, li pa koresponn nan sistèm an, eseye byen ekri li',
+'badtitletext'         => 'Tit, sijè paj ou mande a pa korèk oubyen li pa egziste oubyen li nan yon lòt pwojè wiki yo (gade nan lòt pwojè wiki yo pou wè toutbon). Li mèt genyen tou kèk karaktè ki pa rekonèt nan sistèm an, eseye itilize bon karaktè yo nan tit ou yo.',
+'viewsource'           => 'Wè kòd tèks sa a',
+'viewsourcefor'        => 'pou $1',
+'viewsourcetext'       => 'Ou kapab gade epitou modifye kontni atik sa a pou ou travay anlè li :',
 
 # Login and logout pages
 'yourname'                => 'Non itilizatè ou an :',
@@ -368,8 +380,8 @@ Byen gade ke ou byen ekri non ou, oubyen kreye yon nouvo kont.',
 'nouserspecified'         => 'Ou dwèt mete non itilizatè ou an.',
 'wrongpassword'           => 'Mopas an pa korèk. Eseye ankò.',
 'wrongpasswordempty'      => 'Ou pa antre mopas ou an. Eseye ankò.',
-'passwordtooshort'        => 'Mopas ou an two kout. Li dwèt kontni $1 karaktè oubyen plis epi li dwèt diferan de non itilizatè ou an.',
-'mailmypassword'          => 'Voye yon nouvo mopas',
+'passwordtooshort'        => 'Mopas ou an two kout. Li dwèt kontni $1 karaktè{{PLURAL:$1||}} oubyen plis epitou li dwèt diferan de non itilizatè ou an.',
+'mailmypassword'          => 'Voye mwen yon nouvo mopas',
 'passwordremindertitle'   => 'Nouvo mopas tanporè (yon kout tan) pou pajwèb sa a {{SITENAME}}',
 'passwordremindertext'    => 'Kèk moun (ou menm?) ki genyen adrès IP sa a $1 mande ke nou voye ou yon nouvo mopas pou {{SITENAME}} ($4).
 Mopas itilizatè « $2 » se kounye a « $3 ».
@@ -750,9 +762,6 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 'move-watch'       => 'Swiv paj sa a',
 'movepagebtn'      => 'Deplase paj an',
 'pagemovedsub'     => 'Deplasman an fèt',
-'movepage-moved'   => 'Paj « $1 » <small>([[Special:Whatlinkshere/$3|lyen yo]])</small> deplase nan direksyon « $2 » <small>([[Special:Whatlinkshere/$4|lyen yo]])</small>.
-
-Souple, byen gade ke li pa egziste pyès redireksyon de fwa epi korije yo si li nesesè.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Nou ja genyen yon atik ak non sa a oubyen non ke ou chwazi an pa valab ankò. Chwazi yon lòt.',
 'talkexists'       => 'Paj an men byen deplase. Mè paj diskisyon an pa deplase paske li te ja egziste yonn anlè nouvo paj an. Souple, fizyone de diskisyon sa yo, mete yo ansanmm anlè nouvo paj an.',
 'movedto'          => 'deplase nan',

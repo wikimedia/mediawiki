@@ -4,25 +4,25 @@
  * @ingroup Language
  * @file
  *
- * @author Hégésippe Cormier
- * @author Seb35
- * @author Korg
- * @author JeanVoisin
- * @author Cedric31
- * @author Urhixidur
- * @author Sherbrooke
- * @author Verdy p
- * @author Siebrand
- * @author ChrisPtDe
- * @author Горан Анђелковић
  * @author Grondin
- * @author לערי ריינהארט
- * @author Dereckson
+ * @author Urhixidur
  * @author Meithal
- * @author SPQRobin
- * @author Guillom
- * @author Jon Harald Søby
  * @author IAlex
+ * @author Verdy p
+ * @author Guillom
+ * @author Seb35
+ * @author לערי ריינהארט
+ * @author Sherbrooke
+ * @author Siebrand
+ * @author Hégésippe Cormier
+ * @author Korg
+ * @author Cedric31
+ * @author Dereckson
+ * @author JeanVoisin
+ * @author SPQRobin
+ * @author Горан Анђелковић
+ * @author Jon Harald Søby
+ * @author ChrisPtDe
  * @author Esbardu
  */
 
@@ -568,6 +568,11 @@ $2',
 'titleprotected'       => "Ce titre a été protégé à la création par [[User:$1|$1]].
 Le motif avancé est « ''$2'' ».",
 
+# Virus scanner
+'virus-badscanner'     => 'Mauvaise configuration : scanneur de virus inconnu : <i>$1</i>',
+'virus-scanfailed'     => 'Échec de la recherche (code $1)',
+'virus-unknownscanner' => 'antivirus inconnu :',
+
 # Login and logout pages
 'logouttitle'                => 'Déconnexion',
 'logouttext'                 => "'''Vous êtes à présent déconnecté(e).'''<br />
@@ -1105,7 +1110,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 
 # Rights
 'right-read'                 => 'Lire les pages',
-'right-edit'                 => 'Modifier les pages',
+'right-edit'                 => 'Modifier les pages (qui n’ont pas de page de discussion)',
 'right-createpage'           => 'Créer des pages (qui ne sont pas des pages de discussion)',
 'right-createtalk'           => 'Créer des pages de discussion',
 'right-createaccount'        => 'Créer de nouveaux comptes utilisateur',
@@ -1685,7 +1690,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'sessionfailure'              => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
 'protectlogpage'              => 'Historique des protections',
 'protectlogtext'              => 'Voir les [[{{MediaWiki:Policy-url}}|directives]] pour plus d’information.',
-'protectedarticle'            => 'a protégé « $1 »',
+'protectedarticle'            => 'a protégé « [[$1]] »',
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
 'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
 'protect-title'               => 'Protéger « $1 »',
@@ -1953,9 +1958,6 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'              => 'Suivre cette page',
 'movepagebtn'             => 'Renommer l’article',
 'pagemovedsub'            => 'Renommage réussi',
-'movepage-moved'          => 'La page « $1 » <small>([[Special:Whatlinkshere/$3|liens]])</small> a été renommée en « $2 » <small>([[Special:Whatlinkshere/$4|liens]])</small>.
-
-Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez celles-ci si nécessaire.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
 'cantmove-titleprotected' => 'Vous ne pouvez pas déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.',
 'talkexists'              => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',
@@ -1964,7 +1966,7 @@ Veuillez vérifier qu’il n’existe aucune double redirection, et corrigez cel
 'move-subpages'           => 'Renommer, le cas échéant, toutes les sous-pages',
 'move-talk-subpages'      => 'Renommer, le cas échéant, toutes les sous-pages des pages de discussion',
 'movepage-page-exists'    => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement;',
-'movepage-page-moved'     => 'La page $1 a été renommée en $2.',
+'movepage-page-moved'     => 'La page $1 a été renommée en $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'La page $1 ne peut être renommée en $2.',
 'movepage-max-pages'      => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
 '1movedto2'               => 'a renommé [[$1]] en [[$2]]',

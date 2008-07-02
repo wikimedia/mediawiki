@@ -8,8 +8,8 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Willtron
  * @author Jon Harald Søby
+ * @author Willtron
  */
 
 $fallback = 'es';
@@ -461,6 +461,11 @@ Consulta: $2',
 'ns-specialprotected'  => "No ye posible editar as pachinas d'o espazio de nombres {{ns:special}}.",
 'titleprotected'       => "Iste títol no puede creyar-se porque ye estato protechito por [[User:$1|$1]].
 A razón data ye ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Confegurazión incorreuta: rastriador de birus esconoixito: <i>$1</i>',
+'virus-scanfailed'     => 'o rastreyo ha fallato (codigo $1)',
+'virus-unknownscanner' => 'antibirus esconoixito:',
 
 # Login and logout pages
 'logouttitle'                => "Fin d'a sesión",
@@ -1859,7 +1864,6 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'move-watch'              => 'Cosirar iste articlo',
 'movepagebtn'             => 'Tresladar pachina',
 'pagemovedsub'            => 'Treslado feito correutament',
-'movepage-moved'          => '<big>\'\'\'"$1" ha estato tresladato á "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ya bi ha una pachina con ixe nombre u o nombre que ha eslechito no ye conforme. Por fabor trigue un atro nombre.',
 'cantmove-titleprotected' => 'No puede tresladar una pachina ta íste títol porque o nuebo títol ye protechito y no puede estar creyato',
 'talkexists'              => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
@@ -1868,7 +1872,7 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'move-subpages'           => 'Tresladar todas as sozpachinas (si ye posible)',
 'move-talk-subpages'      => "Tresladar todas as sozpachinas d'a descusión (si ye posible)",
 'movepage-page-exists'    => 'A pachina $1 ya esiste y no se puede sobrescribir automaticament.',
-'movepage-page-moved'     => "S'ha tresladato a pachina $1 ta $2.",
+'movepage-page-moved'     => "S'ha tresladato a pachina $1 ta $2.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => "No s'ha puesto tresladar a pachina $1 ta $2.",
 'movepage-max-pages'      => "S'han tresladato o masimo posible de $1 {{PLURAL:$1|pachina|pachinas}} y no se tresladarán más automaticament.",
 '1movedto2'               => '[[$1]] tresladada á [[$2]]',

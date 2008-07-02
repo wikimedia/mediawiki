@@ -7,7 +7,6 @@
  * @author Smeira
  * @author Malafaya
  * @author Siebrand
- * @author Nike
  * @author SPQRobin
  * @author לערי ריינהארט
  */
@@ -482,7 +481,8 @@ Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
 'yourlanguage'               => 'Pük:',
 'yournick'                   => 'Länem:',
 'badsig'                     => 'Dispenäd no lonöföl: dönulogolös eli HTML.',
-'badsiglength'               => 'Länem binon tu lunik (muton labön malatis läs $1).',
+'badsiglength'               => 'Länem binon tu lunik.
+Muton labön {{PLURAL:$1|malati|malatis}} läs $1.',
 'email'                      => 'Ladet leäktronik',
 'prefs-help-realname'        => 'Nem jenöfik no binon zesüdik. If vilol givön oni, pogebon ad dasevön vobi olik.',
 'loginerror'                 => 'Nunädamapöl',
@@ -1739,7 +1739,6 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 'move-watch'              => 'Pladolöd padi at ini galädalised',
 'movepagebtn'             => 'Topätükolöd padi',
 'pagemovedsub'            => 'Topätükam eplöpon',
-'movepage-moved'          => '<big>\'\'\'"$1" petopätükon lü "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Pad labü nem at ya dabinon, u nem fa ol pevälöl no lonöfon.
 Välolös nemi votik.',
 'cantmove-titleprotected' => 'No kanol topätükön padi bi jafam tiäda nulik at penemögükon.',

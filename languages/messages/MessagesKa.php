@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author ka.wikipedia.org sysops
  * @author Alsandro
- * @author לערי ריינהארט
- * @author Malafaya
- * @author Siebrand
- * @author SPQRobin
  * @author Sopho
+ * @author Malafaya
+ * @author לערי ריינהארט
+ * @author Siebrand
+ * @author ka.wikipedia.org sysops
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -1452,7 +1452,6 @@ $NEWPAGE
 'move-watch'              => 'ამ გვერდის კონტროლი',
 'movepagebtn'             => 'გვერდის გადატანა',
 'pagemovedsub'            => 'გადატანა შესრულებულია',
-'movepage-moved'          => '<big>\'\'\'"$1" გადატანილია "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'ამ დასახელების გვერდი უკვე არსებობს, ან თქვენს მიერ მითითებული დასახელება არასწორია. თუ შეიძლება, მიუთითეთ სხვა სახელი.',
 'talkexists'              => "'''თვით გვერდი წარმატებით გადავიდა, ხოლო განხილვის გვერდი ვერ გადავიდა, ვინაიდან ის უკვე არსებობს ახალი სათაურით. გთხოვთ მანუალურად განაცალკევოთ ისინი.'''",
 'movedto'                 => 'გადატანილია',

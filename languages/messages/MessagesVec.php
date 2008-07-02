@@ -389,6 +389,11 @@ $2',
 'titleprotected'       => "La creazion de na pagina con sto titolo la xe stà blocà da [[User:$1|$1]].
 La motivazion la xe sta qua: ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Eror de configurassion: antivirus sconossiùo: <i>$1</i>',
+'virus-scanfailed'     => 'scansion mìa riussìa (codice de eror $1)',
+'virus-unknownscanner' => 'antivirus sconossiùo:',
+
 # Login and logout pages
 'logouttitle'                => 'Logout utente',
 'logouttext'                 => '<strong>Logout efetuà.</strong>
@@ -1769,7 +1774,6 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'move-watch'              => "Tien d'ocio",
 'movepagebtn'             => 'Sposta sta pàxena',
 'pagemovedsub'            => 'Spostamento efetuà con sucesso',
-'movepage-moved'          => '<big>\'\'\'"$1" la xe stà spostà al titolo "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Na pàxena con sto nome la existe xà, opure el nome che te ghè sielto no'l xè vałido.<br />Siegli, par piaser, un titoło diverso par ła voçe.",
 'cantmove-titleprotected' => 'No se pol mìa spostar la pagina, in quanto el novo titolo el xe stà proteto par inpedirghene la creazion',
 'talkexists'              => "'''La pagina la xe stà spostà coretamente, ma no s'à mìa podesto spostar la pagina de discussion parché ghe ne xe xà n'altra col stesso nome. Par piaser meti insieme i contenuti de le do pagine a man.'''",
@@ -1778,7 +1782,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'move-subpages'           => 'Sposta tute le sotopagine, se aplicabile',
 'move-talk-subpages'      => 'Sposta tute le sotopagine de la pagina de discussion, se aplicabile',
 'movepage-page-exists'    => 'La pagina $1 la esiste de zà e no la pode vegner automaticamente sorascrita.',
-'movepage-page-moved'     => 'La pagina $1 la xe stà spostà a $2.',
+'movepage-page-moved'     => 'La pagina $1 la xe stà spostà a $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => "No s'à mìa podesto spostar $1 a $2.",
 'movepage-max-pages'      => "Xe stà ragiunto el nùmaro massimo consentìo de $1 {{PLURAL:$1|pagina|pagine}} spostà e nissun'altra la vegnarà spostà in automatico.",
 '1movedto2'               => '[[$1]] spostà a [[$2]]',

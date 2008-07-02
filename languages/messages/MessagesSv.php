@@ -4,22 +4,23 @@
  * @ingroup Language
  * @file
  *
+ * @author Lejonel
  * @author Sannab
- * @author Habjchen
- * @author Gangleri
+ * @author Boivie
+ * @author M.M.S.
+ * @author Habj
  * @author Jon Harald Søby
  * @author Siebrand
- * @author Steinninn
- * @author Lejonel
- * @author Habj
  * @author לערי ריינהארט
- * @author SPQRobin
- * @author Max sonnelid
- * @author M.M.S.
- * @author Grillo
  * @author Lokal Profil
- * @author Micke
  * @author Leo Johannes
+ * @author SPQRobin
+ * @author Steinninn
+ * @author Habjchen
+ * @author Gangleri
+ * @author Max sonnelid
+ * @author Grillo
+ * @author Micke
  * @author S.Örvarr.S
  */
 
@@ -439,7 +440,7 @@ $messages = array(
 'unprotect'         => 'Ta bort skrivskydd',
 'unprotectthispage' => 'Ta bort skrivskyddet från den här sidan',
 'newpage'           => 'Ny sida',
-'talkpage'          => 'Diskussionssida',
+'talkpage'          => 'Diskutera denna sida',
 'talkpagelinktext'  => 'Diskussion',
 'specialpage'       => 'Specialsida',
 'personaltools'     => 'Personliga verktyg',
@@ -503,10 +504,10 @@ $messages = array(
 'versionrequiredtext' => 'Version $1 av MediaWiki är nödvändig för att använda denna sida. Se [[Special:Version|versionssidan]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => 'Den här sidan är hämtad från $1',
+'retrievedfrom'           => 'Hämtad från "$1"',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nya meddelanden',
-'newmessagesdifflink'     => 'ändring mot tidigare version',
+'newmessagesdifflink'     => 'senaste ändring',
 'youhavenewmessagesmulti' => 'Du har nya meddelanden på $1',
 'editsection'             => 'redigera',
 'editold'                 => 'redigera',
@@ -587,7 +588,8 @@ Rapportera gärna problemet till någon administratör, ange då URL:en (webbadr
 'cannotdelete'         => 'Det gick inte att radera sidan eller bilden, kanske för att någon annan redan raderat den.',
 'badtitle'             => 'Felaktig titel',
 'badtitletext'         => 'Den sidtiteln är antingen inte tillåten, sidan är tom, eller så är sidan
-felaktigt länkad till.',
+felaktigt länkad till.
+Den kan innehålla en eller flera tecken som inte får användas i sidtitlar.',
 'perfdisabled'         => 'Denna funktion har tyvärr stängts av tillfälligt, eftersom den gör databasen så långsam att ingen kan använda wikin.',
 'perfcached'           => 'Sidan är hämtad ur ett cacheminne; det är inte säkert att det är den senaste versionen.',
 'perfcachedts'         => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1.',
@@ -611,9 +613,17 @@ $2',
 'titleprotected'       => "Den här sidtiteln har skyddats från att skapas.
 [[User:$1|$1]] skyddade sidan med motiveringen ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Dålig konfigurering: okänd virusskanner: <i>$1</i>',
+'virus-scanfailed'     => 'skanning misslyckad (kod $1)',
+'virus-unknownscanner' => 'okänt antivirusprogram:',
+
 # Login and logout pages
 'logouttitle'                => 'Användarutloggning',
-'logouttext'                 => 'Du är nu utloggad från ditt användarkonto.',
+'logouttext'                 => '<strong>Du är nu utloggad.</strong>
+
+Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du logga in igen som samma eller som en annan användare.
+Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.',
 'welcomecreation'            => '== Välkommen, $1! ==
 
 Ditt konto har skapats. Glöm inte att justera dina inställningar.',
@@ -627,8 +637,8 @@ Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'loginproblem'               => '<b>Det uppstod problem vid inloggningen.</b><br />Pröva igen!',
 'login'                      => 'Logga in',
 'nav-login-createaccount'    => 'Logga in/skapa konto',
-'loginprompt'                => 'För att logga in måste tillåta cookies för att logga in på {{SITENAME}}.',
-'userlogin'                  => 'Skapa ett konto eller logga in',
+'loginprompt'                => 'Du måste tillåta cookies för att logga in på {{SITENAME}}.',
+'userlogin'                  => 'Logga in / skapa konto',
 'logout'                     => 'Logga ut',
 'userlogout'                 => 'Logga ut',
 'notloggedin'                => 'Inte inloggad',
@@ -651,7 +661,8 @@ Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'badsiglength'               => 'Signaturen är för lång.
 Den får innehålla högst $1 {{PLURAL:$1|tecken|tecken}}.',
 'email'                      => 'E-post',
-'prefs-help-realname'        => 'Riktigt namn behöver inte anges. Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
+'prefs-help-realname'        => 'Riktigt namn behöver inte anges.
+Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'                 => 'Inloggningsproblem',
 'prefs-help-email'           => 'E-postadress behöver inte anges, men den gör det möjligt för andra användare att kontakta dig, utan att du behöver avslöja din identitet och/eller e-postadress.',
 'prefs-help-email-required'  => 'E-postadress måste anges.',
@@ -659,9 +670,9 @@ Den får innehålla högst $1 {{PLURAL:$1|tecken|tecken}}.',
 'nocookieslogin'             => '{{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din webbläsare. Försök igen med stöd för cookies aktiverat.',
 'noname'                     => 'Du har angett ett ogiltigt användarnamn.',
 'loginsuccesstitle'          => 'Inloggningen lyckades',
-'loginsuccess'               => 'Du är nu inloggad på {{SITENAME}} med användarnamnet "$1".',
+'loginsuccess'               => "'''Du är nu inloggad på {{SITENAME}} som \"\$1\".'''",
 'nosuchuser'                 => 'Det finns ingen användare som heter "$1".
-Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt konto.',
+Kontrollera stavningen, eller skapa ett nytt konto.',
 'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
@@ -669,12 +680,13 @@ Kontrollera stavningen, eller använd formuläret nedan för att skapa ett nytt 
 'passwordtooshort'           => 'Ditt lösenord är för kort.
 Det måste innehålla minst $1 tecken och det får inte vara ditt användarnamn.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
-'passwordremindertitle'      => 'Nytt lösenord från {{SITENAME}}',
-'passwordremindertext'       => 'Någon - förmodligen du - har från IP-adressen $1 bett oss sända dig ett nytt lösenord för ditt användarkonto på {{SITENAME}} ($4). 
+'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
+'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1)
+har bett oss sända dig ett nytt lösenord till {{SITENAME}} ($4). 
 Lösenordet för användaren "$2" är nu "$3".
-Du bör nu logga in, och byta lösenord.
+Du bör nu logga in och byta ditt lösenord.
 
-Om det inte var du som gjorde denna begäran, eller om du har kommit på ditt gamla lösenord och inte längre önskar ändra det så kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
+Om denna begäran gjordes av någon annan eller om du har kommit på ditt lösenord och inte längre önskar ändra det, så kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
 'noemail'                    => 'Användaren "$1" har inte registrerat någon e-postadress.',
 'passwordsent'               => 'Ett nytt lösenord har skickats till den e-postadress som användaren "$1" har registrerat. När du får meddelandet, var god logga in igen.',
 'blocked-mailpassword'       => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
@@ -688,7 +700,8 @@ För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|tim
 'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
 'noemailprefs'               => 'Det krävs att en e-postadress uppgivits för att dessa funktioner skall gå att använda.',
 'emailconfirmlink'           => 'Bekräfta din e-postadress',
-'invalidemailaddress'        => 'Denna e-postadressen kan inte godtas då formatet verkar vara felaktigt. Skriv in en adress på korrekt format, eller töm fältet.',
+'invalidemailaddress'        => 'E-postadressen kan inte godtas då formatet verkar vara felaktigt.
+Skriv in en adress med korrekt format, eller töm fältet.',
 'accountcreated'             => 'Användarkontot har skapats',
 'accountcreatedtext'         => 'Användarkontot $1 har skapats.',
 'createaccount-title'        => 'Konto skapat på {{SITENAME}}',
@@ -721,7 +734,7 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'headline_tip'    => 'Rubrik i nivå 2',
 'math_sample'     => 'Skriv formeln här',
 'math_tip'        => 'Matematisk formel (LaTeX)',
-'nowiki_sample'   => 'Skriv in icke-wiki-formaterad text här',
+'nowiki_sample'   => 'Skriv in oformaterad text här',
 'nowiki_tip'      => 'Strunta i wikiformatering',
 'image_sample'    => 'Exempel.jpg',
 'image_tip'       => 'Inbäddad fil',
@@ -740,11 +753,13 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'showpreview'                      => 'Visa förhandsgranskning',
 'showlivepreview'                  => 'Automatiskt uppdaterad förhandsvisning',
 'showdiff'                         => 'Visa ändringar',
-'anoneditwarning'                  => 'Du är inte inloggad. Därför kommer din IP-adress att synas i historiken för den här sidan när du sparar din redigering.',
-'missingsummary'                   => "'''OBS:''' Du glömde att skriva en redigeringskommentar. Om du trycker på \"Spara\" igen så kommer din redigering att sparas utan redigeringskommentar.",
+'anoneditwarning'                  => "'''Varning:''' Du är inte inloggad.
+Din IP-adress kommer att sparas i historiken för den här sidan.",
+'missingsummary'                   => "'''Påminnelse:''' Du har inte skrivit någon redigeringskommentar. 
+Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
 'missingcommentheader'             => "'''OBS:''' Du har inte skrivit någon rubrik till den här kommentaren. Om du trycker på \"Spara\" igen, så sparas kommentaren utan någon rubrik.",
-'summary-preview'                  => 'Sammanfattningsförhandsgranskning',
+'summary-preview'                  => 'Förhandsgranskning av sammanfattning',
 'subject-preview'                  => 'Rubrikförhandsgranskning',
 'blockedtitle'                     => 'Användaren är blockerad',
 'blockedtext'                      => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
@@ -801,7 +816,8 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'userinvalidcssjstitle'            => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Uppdaterad)',
 'note'                             => '<strong>Obs!</strong>',
-'previewnote'                      => '<strong>Observera att detta är en förhandsvisning, och att sidan ännu inte sparats!</strong>',
+'previewnote'                      => '<strong>Detta är bara en förhandsvisning;
+ändringar har ännu inte sparats!</strong>',
 'previewconflict'                  => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
@@ -818,8 +834,8 @@ Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.
 'editingsection'                   => 'Redigerar $1 (avsnitt)',
 'editingcomment'                   => 'Redigerar $1 (kommentar)',
 'editconflict'                     => 'Redigeringskonflikt: $1',
-'explainconflict'                  => "Någon har ändrat den här sidan efter att du började att redigera den.
-Den översta textrutan innehåller den nuvarande sparade versionen av texten
+'explainconflict'                  => "Någon annan har ändrat den här sidan efter att du började att redigera den.
+Den översta textrutan innehåller den nuvarande sparade versionen av texten.
 Din ändrade version visas i den nedre rutan.
 Om du vill spara dina ändringar så måste du infoga dem i den övre texten.
 '''Endast''' texten i den översta textrutan kommer att sparas när du trycker på \"Spara\".",
@@ -833,7 +849,9 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 'copyrightwarning2'                => 'Observera att alla bidrag till {{SITENAME}} kan komma att redigeras, ändras, eller tas bort av andra deltagare. Om du inte vill se din text förändrad efter andras gottfinnade skall du inte skriva in någon text här.<br />
 Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor - se $1 för detaljer.
 <strong>LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!</strong>',
-'longpagewarning'                  => 'Om du använder en väldigt gammal webbläsare kan du ha problem med att redigera den här artikeln, eftersom vissa äldre webbläsare inte klarar artiklar större än 32 kB, och den här är $1 kB.',
+'longpagewarning'                  => '<strong>WARNING: Den här sidan är $1 kB;
+vissa webläsare kan ha problem att redigera sidor som närmar sig eller är större än 32 kB.
+Överväg att bryta upp sidan i mindre sektioner.</strong>',
 'longpageerror'                    => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
 'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
 dina ändringar just nu. Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>',
@@ -892,7 +910,7 @@ Anledningen till blockeringen var "$2".',
 'revnotfoundtext'     => 'Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå den här sidan.',
 'currentrev'          => 'Nuvarande version',
 'revisionasof'        => 'Versionen från $1',
-'revision-info'       => 'Version från den $1; $2',
+'revision-info'       => 'Version från den $1 av $2',
 'previousrevision'    => '← Äldre version',
 'nextrevision'        => 'Nyare version →',
 'currentrevisionlink' => 'Nuvarande version',
@@ -901,7 +919,8 @@ Anledningen till blockeringen var "$2".',
 'last'                => 'föregående',
 'page_first'          => 'första',
 'page_last'           => 'sista',
-'histlegend'          => "Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
+'histlegend'          => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
+Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
 'deletedrev'          => '[raderad]',
 'histfirst'           => 'Första',
 'histlast'            => 'Senaste',
@@ -1018,7 +1037,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'notextmatches'             => 'Det finns inga sidor som innehåller sökordet',
 'prevn'                     => 'förra $1',
 'nextn'                     => 'nästa $1',
-'viewprevnext'              => 'Visa ($1) ($2) ($3).',
+'viewprevnext'              => 'Visa ($1) ($2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ord|$2 ord}})',
 'search-result-score'       => 'Relevans: $1%',
 'search-redirect'           => '(omdirigering $1)',
@@ -1223,16 +1242,16 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ändring|ändringar}}',
-'recentchanges'                     => 'Senaste ändringarna',
+'recentchanges'                     => 'Senaste ändringar',
 'recentchangestext'                 => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description'    => 'Följ de senaste ändringarna i wikin genom den här matningen.',
 'rcnote'                            => "Nedan visas {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} {{PLURAL:$2|den senaste dagen|de senaste '''$2''' dagarna}}, per $3.",
-'rcnotefrom'                        => 'Nedan visas de senaste <strong>$1</strong> ändringarna sedan <strong>$2</strong>.',
+'rcnotefrom'                        => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' visas).",
 'rclistfrom'                        => 'Visa ändringar efter $1',
 'rcshowhideminor'                   => '$1 mindre ändringar',
-'rcshowhidebots'                    => '$1 robotredigeringar',
-'rcshowhideliu'                     => '$1 ändringar av inloggade användare',
-'rcshowhideanons'                   => '$1 ändringar av oinloggade användare',
+'rcshowhidebots'                    => '$1 robotar',
+'rcshowhideliu'                     => '$1 inloggade användare',
+'rcshowhideanons'                   => '$1 oinloggade användare',
 'rcshowhidepatr'                    => '$1 kontrollerade redigeringar',
 'rcshowhidemine'                    => '$1 mina ändringar',
 'rclinks'                           => 'Visa de senaste $1 ändringarna under de senaste $2 dagarna<br />
@@ -1252,7 +1271,7 @@ $3',
 # Recent changes linked
 'recentchangeslinked'          => 'Ändringar på angränsande sidor',
 'recentchangeslinked-title'    => 'Angränsande ändringar till $1',
-'recentchangeslinked-noresult' => 'Inga angränsande sidor ändrades under den angivna tidsperioden.',
+'recentchangeslinked-noresult' => 'Inga ändringar på länkade sidor under den angivna tidsperioden.',
 'recentchangeslinked-summary'  => "Detta är en lista över de senaste ändringarna på sidor som länkas till från en given sida (eller på sidor som hör till en viss kategori).
 Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil'''.",
 'recentchangeslinked-page'     => 'Sidnamn:',
@@ -1385,19 +1404,19 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 
 # Image description page
 'filehist'                       => 'Filhistorik',
-'filehist-help'                  => 'Klicka på ett datum för att se hur filen såg ut vid den tidpunkten.',
+'filehist-help'                  => 'Klicka på ett datum/klockslag för att se filen som den såg ut då.',
 'filehist-deleteall'             => 'radera alla',
 'filehist-deleteone'             => 'radera version',
 'filehist-revert'                => 'återställ',
 'filehist-current'               => 'nuvarande',
-'filehist-datetime'              => 'Datum',
+'filehist-datetime'              => 'Datum/Tid',
 'filehist-user'                  => 'Användare',
 'filehist-dimensions'            => 'Dimensioner',
 'filehist-filesize'              => 'Filstorlek',
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Bildlänkar',
-'linkstoimage'                   => 'Följande {{PLURAL:$1|sida|sidor}} länkar till denna filen:',
-'nolinkstoimage'                 => 'Inga sidor länkar till den här bilden.',
+'linkstoimage'                   => 'Följande {{PLURAL:$1|sida|sidor}} länkar till den här filen:',
+'nolinkstoimage'                 => 'Inga sidor länkar till den här filen.',
 'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|fler länkar]] till den här filen.',
 'redirectstofile'                => 'Följande {{PLURAL:$1|fil är en omdirigering|filer är omdirigeringar}} till den här filen:',
 'duplicatesoffile'               => 'Följande {{PLURAL:$1|fil är en dubblett|filer är dubbletter}} till den här filen:',
@@ -1409,7 +1428,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'shareduploadduplicate-linktext' => 'en fil',
 'shareduploadconflict'           => 'Den här filen har samma namn som $1 i den delade filförvaringen.',
 'shareduploadconflict-linktext'  => 'en fil',
-'noimage'                        => 'Det finns ingen fil med detta namn. Du kan $1.',
+'noimage'                        => 'Det finns ingen fil med detta namn, du kan $1.',
 'noimage-linktext'               => 'ladda upp den',
 'uploadnewversion-linktext'      => 'Ladda upp en ny version av denna fil',
 'imagepage-searchdupe'           => 'Sök efter dubbletter till denna fil',
@@ -1721,7 +1740,7 @@ Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta l
 'actioncomplete'              => 'Genomfört',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
-'deletedarticle'              => 'raderade "$1"',
+'deletedarticle'              => 'raderade "[[$1]]"',
 'suppressedarticle'           => 'upphävde "[[$1]]"',
 'dellogpage'                  => 'Raderingslogg',
 'dellogpagetext'              => 'Nedan listas de senaste raderingarna och återställningarna.',
@@ -1768,14 +1787,15 @@ Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
 Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
 'protect-locked-access'       => 'Ditt konto har inte behörighet att ändra skrivskydd på sidor.
 Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
-'protect-cascadeon'           => 'Den här sidan är skrivskyddad eftersom den inkluderas på sidor som skyddats "kaskaderande". Du kan ändra skyddet av den här sidan, men det påverkar inte det "kaskaderande skyddet". Följande "kaskadskyddade" {{PLURAL:$1|sida|sidor}} inkluderar den här sidan:',
+'protect-cascadeon'           => 'Den här sidan är skrivskyddad eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som har ett kaskaderande skydd.
+Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande skyddet.',
 'protect-default'             => '(standard)',
-'protect-fallback'            => 'Behörigheten "$1"',
-'protect-level-autoconfirmed' => 'Enbart registrerade användare',
+'protect-fallback'            => 'Kräver "$1"-behörighet',
+'protect-level-autoconfirmed' => 'Blockerar oregistrerade användare',
 'protect-level-sysop'         => 'Enbart administratörer',
 'protect-summary-cascade'     => 'kaskaderande',
 'protect-expiring'            => 'upphör den $1 (UTC)',
-'protect-cascade'             => 'Kaskaderande skydd - skydda samtidigt alla sidor som inkluderas på den här sidan.',
+'protect-cascade'             => 'Skydda sidor som är inkluderade i den här sidan (kaskaderande skydd)',
 'protect-cantedit'            => 'Du kan inte ändra skyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
 'restriction-type'            => 'Typ av skydd:',
 'restriction-level'           => 'Skyddsnivå:',
@@ -1847,12 +1867,12 @@ $1',
 'mycontris'     => 'Mina bidrag',
 'contribsub2'   => 'För $1 ($2)',
 'nocontribs'    => 'Inga ändringar hittades, som motsvarar dessa kriterier',
-'uctop'         => ' (senaste)',
-'month'         => 'Månad:',
-'year'          => 'År:',
+'uctop'         => '(senaste)',
+'month'         => 'Från månad (och tidigare):',
+'year'          => 'Från år (och tidigare):',
 
 'sp-contributions-newbies'     => 'Visa endast bidrag från nya konton',
-'sp-contributions-newbies-sub' => 'För nybörjare',
+'sp-contributions-newbies-sub' => 'Från nya konton',
 'sp-contributions-blocklog'    => 'Blockeringslogg',
 'sp-contributions-search'      => 'Sök efter användarbidrag',
 'sp-contributions-username'    => 'IP-adress eller användarnamn:',
@@ -1863,7 +1883,7 @@ $1',
 'whatlinkshere-title'      => 'Sidor som länkar till $1',
 'whatlinkshere-page'       => 'Sida:',
 'linklistsub'              => '(Länklista)',
-'linkshere'                => 'Följande sidor länkar till [[:$1]]:',
+'linkshere'                => "Följande sidor länkar till '''[[:$1]]''':",
 'nolinkshere'              => 'Inga sidor länkar till [[:$1]].',
 'nolinkshere-ns'           => "Inga sidor i den angivna namnrymden länkar till '''[[:$1]]'''.",
 'isredirect'               => 'omdirigeringssida',
@@ -1879,7 +1899,7 @@ $1',
 'whatlinkshere-filters'    => 'Filtrera',
 
 # Block/unblock
-'blockip'                     => 'Blockera användare eller IP-adress',
+'blockip'                     => 'Blockera användare',
 'blockip-legend'              => 'Blockera användare',
 'blockiptext'                 => 'Formuläret nedan används för att blockera specifika användarnamns eller IP-adressers möjlighet att redigera sidor. Detta bör göras endast för att förhindra vandalism, och enligt gällande [[{{MediaWiki:Policy-url}}|policy]]. Ange orsaken nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipaddress'                   => 'IP-adress',
@@ -1920,7 +1940,7 @@ $1',
 'ipusubmit'                   => 'Ta bort blockeringen',
 'unblocked'                   => 'Blockeringen av [[User:$1|$1]] har hävts',
 'unblocked-id'                => 'Blockeringen $1 har hävts',
-'ipblocklist'                 => 'Lista över blockerade användare',
+'ipblocklist'                 => 'Lista över blockerade IP-adresser och användarnamn',
 'ipblocklist-legend'          => 'Sök efter en blockerad användare',
 'ipblocklist-username'        => 'Användarnamn eller IP-adress',
 'ipblocklist-submit'          => 'Sök',
@@ -1938,7 +1958,7 @@ $1',
 'contribslink'                => 'bidrag',
 'autoblocker'                 => 'Automatisk blockering eftersom du har samma IP-adress som "$1". Motivering till blockeringen: "$2".',
 'blocklogpage'                => 'Blockeringslogg',
-'blocklogentry'               => 'blockerade "[[$1]]" $2 $3',
+'blocklogentry'               => 'blockerade [[$1]] med blockeringstid på $2 $3',
 'blocklogtext'                => 'Detta är en logg över blockeringar och avblockeringar. Automatiskt blockerade IP-adresser listas ej. En lista över IP-adresser och användare som för närvarande är blockerade finns på [[Special:Ipblocklist|IP-blocklistan]].',
 'unblocklogentry'             => 'tog bort blockering av "$1"',
 'block-log-flags-anononly'    => 'bara oinloggade',
@@ -1995,7 +2015,9 @@ Att flytta en populär sida kan vara en drastisk och oväntad ändring;
 därför bör du vara säker på att du förstår konsekvenserna innan du fortsätter med flytten.",
 'movepagetalktext'        => "Diskussionssidan kommer att även den automatiskt flyttas '''om inte''':
 *Det redan finns en diskussionssida som inte är tom med det nya namnet, eller
-*Du avmarkerar rutan nedan.",
+*Du avmarkerar rutan nedan.
+
+I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'movearticle'             => 'Flytta sidan:',
 'movenologin'             => 'Inte inloggad',
 'movenologintext'         => 'För att flytta en sida måste du vara registrerad användare och [[Special:Userlogin|inloggad]].',
@@ -2004,20 +2026,20 @@ därför bör du vara säker på att du förstår konsekvenserna innan du forts�
 'move-watch'              => 'Bevaka denna sida',
 'movepagebtn'             => 'Flytta sidan',
 'pagemovedsub'            => 'Flyttningen lyckades',
-'movepage-moved'          => '<big>"$1" har flyttats till "$2"</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
 Välj något annat namn istället.',
 'cantmove-titleprotected' => 'Du kan inte flytta sidan till den titeln, eftersom den nya titeln har skyddats från att skapas.',
-'talkexists'              => 'Sidan flyttades, men eftersom en annan diskussionssida redan fanns på destinationen kunde diskussionssidan inte flyttas med. Försök att manuellt sammanfoga de bägge diskusionssidornas innehåll till en sida.',
+'talkexists'              => "'''Sidan flyttades, men diskussionssidan inte flyttas eftersom det redan fanns en diskussionssida med det nya namnet.
+Försök att manuellt sammanfoga dem.'''",
 'movedto'                 => 'flyttad till',
-'movetalk'                => 'Flytta även diskussionssidan ifall det går.',
+'movetalk'                => 'Flytta tillhörande diskussionssida',
 'move-subpages'           => 'Flytta alla undersidor, om det finns sådana',
 'move-talk-subpages'      => 'Flytta alla undersidor av diskussionssidan, om det finns sådana',
 'movepage-page-exists'    => 'Sidan $1 finns redan och kan inte skrivas över automatiskt.',
-'movepage-page-moved'     => 'Sidan $1 har flyttats till $2.',
+'movepage-page-moved'     => 'Sidan $1 har flyttats till $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Sidan $1 kunde inte flyttas till $2.',
 'movepage-max-pages'      => 'Gränsen på $1 {{PLURAL:$1|flyttad sida|flyttade sidor}} har uppnåtts och inga fler sidor kommer att flyttas automatiskt.',
-'1movedto2'               => 'flyttade [[$1]] till [[$2]]',
+'1movedto2'               => '[[$1]] flyttad till [[$2]]',
 '1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
 'movelogpage'             => 'Sidflyttslogg',
 'movelogpagetext'         => 'Listan nedan visar sidor som flyttats.',
@@ -2135,19 +2157,19 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-search-fulltext'         => 'Sök efter sidor som innehåller denna text',
 'tooltip-p-logo'                  => 'Huvudsida',
 'tooltip-n-mainpage'              => 'Gå till huvudsidan',
-'tooltip-n-portal'                => 'Om {{SITENAME}}, vad som kan göras, var man kan hitta olika funktioner',
+'tooltip-n-portal'                => 'Om projektet, vad du kan göra, var man kan hitta saker',
 'tooltip-n-currentevents'         => 'Information om aktuella händelser',
-'tooltip-n-recentchanges'         => 'Lista över de senaste ändringarna på {{SITENAME}}',
+'tooltip-n-recentchanges'         => 'Listan över senaste ändringar i wikin.',
 'tooltip-n-randompage'            => 'Gå till en slumpmässigt vald sida',
-'tooltip-n-help'                  => 'Hjälp och information om {{SITENAME}}',
-'tooltip-n-sitesupport'           => 'Stöd {{SITENAME}}',
+'tooltip-n-help'                  => 'Hjälp och information.',
+'tooltip-n-sitesupport'           => 'Stöd oss',
 'tooltip-t-whatlinkshere'         => 'Lista över alla sidor på {{SITENAME}} som länkar hit',
 'tooltip-t-recentchangeslinked'   => 'Visa senaste ändringarna av sidor som den här sidan länkar till',
 'tooltip-feed-rss'                => 'RSS-matning för den här sidan',
 'tooltip-feed-atom'               => 'Atom-matning för den här sidan',
 'tooltip-t-contributions'         => 'Visa lista över bidrag från den här användaren',
 'tooltip-t-emailuser'             => 'Skicka e-post till den här användaren',
-'tooltip-t-upload'                => 'Ladda upp bilder eller andra mediafiler',
+'tooltip-t-upload'                => 'Ladda upp filer',
 'tooltip-t-specialpages'          => 'Lista över alla specialsidor',
 'tooltip-t-print'                 => 'Utskriftvänlig version av den här sidan',
 'tooltip-t-permalink'             => 'Permanent länk till den här versionen av sidan',
@@ -2156,7 +2178,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-ca-nstab-media'          => 'Visa mediesidan',
 'tooltip-ca-nstab-special'        => 'Detta är en specialsida; specialsidor kan inte redigeras',
 'tooltip-ca-nstab-project'        => 'Visa projektsidan',
-'tooltip-ca-nstab-image'          => 'Se bildsidan',
+'tooltip-ca-nstab-image'          => 'Se filsidan',
 'tooltip-ca-nstab-mediawiki'      => 'Se systemmeddelandet',
 'tooltip-ca-nstab-template'       => 'Se mallen',
 'tooltip-ca-nstab-help'           => 'Se hjälpsidan',
@@ -2247,7 +2269,7 @@ $1',
 
 # Browsing diffs
 'previousdiff' => '← Gå till föregående ändring',
-'nextdiff'     => 'Gå till nästa ändring →',
+'nextdiff'     => 'Nästa ändring →',
 
 # Media information
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
@@ -2257,12 +2279,12 @@ $1',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
 'file-info-size'       => '($1 × $2 pixel, filstorlek: $3, MIME-typ: $4)',
 'file-nohires'         => '<small>Det finns ingen version med högre upplösning.</small>',
-'svg-long-desc'        => 'SVG-fil, grundstorlek: $1 × $2 pixel, filstorlek: $3)',
+'svg-long-desc'        => '(SVG-fil, grundstorlek: $1 × $2 pixel, filstorlek: $3)',
 'show-big-image'       => 'Högupplöst version',
 'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixel</small>',
 
 # Special:Newimages
-'newimages'             => 'Galleri över nya bilder',
+'newimages'             => 'Galleri över nya filer',
 'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|bild|bilder}} sorterad <strong>$2</strong>.',
 'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna',
 'showhidebots'          => '($1 robotar)',
@@ -2274,8 +2296,9 @@ $1',
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
 
-Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första länken på en rad anger en otillåten fil.
-Övriga länkar på en rad anger undantag, det vill säga sidor där filen tillåts användas.',
+Listan tar enbart hänsyn till rader som börjar med asterisk (*). 
+Den första länken på en rad måste vara en länk till en otillåten fil.
+Övriga länkar på samma rad kommer att hanteras som undantag, det vill säga sidor där filen tillåts användas.',
 
 # Metadata
 'metadata'          => 'Metadata',
@@ -2560,7 +2583,7 @@ Listan tar enbart hänsyn till rader som börjar med asterisk (*). Den första l
 'confirmemail_pending'     => 'En bekräftelsekod har redan skickats till din epostadress. Om du skapade ditt konto nyligen, så kanske du vill vänta några minuter innan du begär en ny kod.',
 'confirmemail_send'        => 'Skicka bekräftelsekod',
 'confirmemail_sent'        => 'E-post med bekräftelse skickat.',
-'confirmemail_oncreate'    => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men om du behöver koden om du vill få tillgång de epostbaserade funktionerna på wikin.',
+'confirmemail_oncreate'    => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men du behöver koden för att få tillgång till de epostbaserade funktionerna på wikin.',
 'confirmemail_sendfailed'  => 'E-post med bekräftelse kunde inte skickas.
 Kontrollera om adressen innehåller ogiltiga tecken.
 
@@ -2573,11 +2596,11 @@ Mailservern meddelade: $1',
 'confirmemail_subject'     => 'Bekräftelse av e-postadress på {{SITENAME}}',
 'confirmemail_body'        => 'Någon, troligen du, har från IP-adressen $1 registrerat användarkontot "$2" med denna e-postadress på {{SITENAME}}.
 
-För att bekräfta att detta konto verkligen är ditt, och för att aktivera funktionerna för e-post på {{SITENAME}}, klicka på denna länk:
+För att bekräfta att detta konto verkligen är ditt, och för att aktivera funktionerna för e-post på {{SITENAME}}, öppna denna länk i din webbläsare:
 
 $3
 
-Om det *inte* är du som registrerat kontot, klicka då på följande länk för att avbryta bekräftelsen av e-postadressen:
+Om det *inte* är du som registrerat kontot, följ denna länk för att avbryta bekräftelsen av e-postadressen:
 
 $5
 
@@ -2748,5 +2771,9 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'specialpages-group-wiki'        => 'Information och verktyg för wikin',
 'specialpages-group-redirects'   => 'Omdirigerande specialsidor',
 'specialpages-group-spam'        => 'Spamverktyg',
+
+# Special:Blankpage
+'blankpage'              => 'Tom sida',
+'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom.',
 
 );

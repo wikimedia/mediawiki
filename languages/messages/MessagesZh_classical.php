@@ -1594,7 +1594,6 @@ $NEWPAGE
 'move-watch'              => '派哨',
 'movepagebtn'             => '遷文',
 'pagemovedsub'            => '遷成矣',
-'movepage-moved'          => "<big>'''「$1」已遷至「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '此題早存，或名謬焉；請更之。',
 'cantmove-titleprotected' => '爾不可動頁至此，因新題已緘焉，防建之。',
 'talkexists'              => "'''文遷成而議未移，蓋早存也；請併之。'''",
@@ -1603,7 +1602,7 @@ $NEWPAGE
 'move-subpages'           => '如可，同遷議',
 'move-talk-subpages'      => '如可，同遷子議',
 'movepage-page-exists'    => '頁$1已存矣，非自覆也。',
-'movepage-page-moved'     => '頁$1遷$2矣。',
+'movepage-page-moved'     => '頁$1遷$2矣。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '頁$1遷$2不成。',
 'movepage-max-pages'      => '上之$1頁遷矣同非自遷之下。',
 '1movedto2'               => '[[$1]]遷至[[$2]]',

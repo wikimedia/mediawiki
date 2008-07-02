@@ -5,8 +5,9 @@
  * @file
  *
  * @author MacTire02
- * @author Siebrand
  * @author Shimmin Beg
+ * @author Siebrand
+ * @author Alison
  */
 
 $messages = array(
@@ -785,6 +786,16 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'ipbexpiry'                => 'Jerrey:',
 'ipbreason'                => 'Fa:',
 'ipbreasonotherlist'       => 'Fa elley',
+'ipbreason-dropdown'       => '* Oyr glassey cadjin
+** Inserting false information
+** Removing content from pages
+** Spamming links to external sites
+** Inserting nonsense/gibberish into pages
+** Intimidating behaviour/harassment
+** Abusing multiple accounts
+* Oyr elley
+** Ennym ymmydeyryn neuchooie
+** Feyshtyn eddyr-wiki',
 'ipbanononly'              => 'Ymmydeyryn neuenmyssit y ghlassey magh',
 'ipbcreateaccount'         => 'Crooaght coontys y chumrail',
 'ipbsubmit'                => 'Yn ymmydeyr shoh y ghlassey magh',
@@ -813,7 +824,6 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'move-watch'              => 'Freill arrey er y duillag shoh',
 'movepagebtn'             => 'Yn duillag y scughey',
 'pagemovedsub'            => "Va'n scughey rahoil",
-'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'aa-enmyssit myr',
 'movetalk'                => 'Scughey yn duillag resoonaght ta cochianglt lesh',
 '1movedto2'               => '[[$1]] aa-enmyssit myr [[$2]]',

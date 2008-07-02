@@ -9,8 +9,8 @@
  * @author Ergon
  * @author לערי ריינהארט
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -1697,7 +1697,6 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'move-watch'              => 'Mbikqyre këtë faqe',
 'movepagebtn'             => 'Zhvendose faqen',
 'pagemovedsub'            => 'Zhvendosja doli me sukses',
-'movepage-moved'          => '<big>\'\'\'"$1" u zhvendos tek "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Një faqe me atë titull ekziston, ose titulli që zgjodhët nuk është i saktë. Ju lutem zgjidhni një tjetër.',
 'cantmove-titleprotected' => 'Nuk mund të zhvendosni një faqe në këtë titull pasi ky titull është mbrojtur kundrejt krijimit',
 'talkexists'              => 'Faqja për vete u zhvendos, ndërsa faqja e diskutimit nuk u zhvendos sepse një e tillë ekziston tek titulli i ri. Ju lutem, përpuqini vetë.',
@@ -1706,7 +1705,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'move-subpages'           => 'Zhvendos të tëra nënfaqet nëse është e mundshme',
 'move-talk-subpages'      => 'Zhvendos të tëra nënfaqet e diskutimit nëse është e mundshme',
 'movepage-page-exists'    => "Faqja $1 ekziston prandaj s'mund ta mbivendos automatikisht",
-'movepage-page-moved'     => 'Faqja $1 është zhvendosur tek $2.',
+'movepage-page-moved'     => 'Faqja $1 është zhvendosur tek $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => "Faqja $1 s'mund të zhvendosej tek $2.",
 'movepage-max-pages'      => "Maksimumi i lejuar, $1 faqe, janë zhvendosur dhe s'do të zhvendosen më faqe të tjera automatikisht.",
 '1movedto2'               => '[[$1]] u zhvendos tek [[$2]]',

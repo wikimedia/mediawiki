@@ -6,10 +6,9 @@
  *
  * @author SPQRobin
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Sionnach
- * @author Nike
  * @author Raymond
+ * @author Siebrand
  */
 
 $messages = array(

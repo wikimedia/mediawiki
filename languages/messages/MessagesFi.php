@@ -579,7 +579,7 @@ Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{
 'passwordsent'               => 'Uusi salasana on lähetetty käyttäjän <b>$1</b> sähköpostiosoitteeseen.',
 'blocked-mailpassword'       => 'Osoitteellesi on asetettu muokkausesto, joka estää käyttämästä salasanamuistutustoimintoa.',
 'eauthentsent'               => 'Varmennussähköposti on lähetetty annettuun sähköpostiosoitteeseen. Muita viestejä ei lähetetä, ennen kuin olet toiminut viestin ohjeiden mukaan ja varmistanut, että sähköpostiosoite kuuluu sinulle.',
-'throttled-mailpassword'     => 'Salasanamuistutus on lähetetty viimeisen $1 tunnin sisällä. Salasanamuistutuksia lähetään enintään $1 tunnin välein.',
+'throttled-mailpassword'     => 'Salasanamuistutus on lähetetty {{PLURAL:$1|kuluvan|kuluvien $1}} tunnin aikana. Salasanamuistutuksia lähetään enintään {{PLURAL:$1|tunnin|$1 tunnin}} välein.',
 'mailerror'                  => 'Virhe lähetettäessä sähköpostia: $1',
 'acct_creation_throttle_hit' => 'Olet jo luonut $1 tunnusta. Et voi luoda uutta.',
 'emailauthenticated'         => 'Sähköpostiosoitteesi varmennettiin $1.',
@@ -1245,7 +1245,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'nolinkstoimage'                 => 'Tähän tiedostoon ei ole linkkejä miltään sivulta.',
 'morelinkstoimage'               => 'Näytä [[Special:Whatlinkshere/$1|lisää linkkejä]] tähän tiedostoon.',
 'redirectstofile'                => '{{PLURAL:$1|Seuraava tiedosto ohjaa|Seuraavat $1 tiedostoa ohjaavat}} tähän tiedostoon:',
-'duplicatesoffile'               => 'Seuraavat tiedostot ovat tämän tiedoston kaksoiskappaleita:',
+'duplicatesoffile'               => '{{PLURAL:$1|Seuraava tiedosto on tämän tiedoston kaksoiskappale|Seuraavat $1 tiedostoa ovat tämän tiedoston kaksoiskappaleita}}:',
 'sharedupload'                   => 'Tämä tiedosto on jaettu ja muut projektit saattavat käyttää sitä.',
 'shareduploadwiki'               => 'Katso $1 lisätietoja.',
 'shareduploadwiki-desc'          => 'Tiedot tiedoston $1 jaetussa mediavarastossa näkyvät alla.',
@@ -1832,7 +1832,6 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-watch'              => 'Tarkkaile tätä sivua',
 'movepagebtn'             => 'Siirrä sivu',
 'pagemovedsub'            => 'Siirto onnistui',
-'movepage-moved'          => "Sivu '''$1''' siirrettiin nimelle '''$2'''.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
 'cantmove-titleprotected' => 'Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.',
 'talkexists'              => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
@@ -1841,7 +1840,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-subpages'           => 'Siirrä kaikki alasivut, jos mahdollista',
 'move-talk-subpages'      => 'Siirrä kaikki keskustelusivun alasivut, jos mahdollista',
 'movepage-page-exists'    => 'Sivu $1 on jo olemassa ja sitä ei voi automaattisesti korvata.',
-'movepage-page-moved'     => 'Sivu $1 on siirretty nimelle $2.',
+'movepage-page-moved'     => 'Sivu $1 on siirretty nimelle $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Sivua $1 ei voitu siirtää nimelle $2.',
 '1movedto2'               => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
 '1movedto2_redir'         => 'siirsi sivun ”$1” ohjauksen ”$2” päälle',
@@ -1994,7 +1993,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 
 # Scripts
 'common.js'   => '/* Tämän sivun koodi liitetään jokaiseen sivulataukseen */',
-'monobook.js' => '/* Poistumassa käytöstä; käytä [[MediaWiki:common.js]]:ää. */',
+'monobook.js' => '/* Tämän sivun JavaScript-koodi liitetään MonoBook-tyyliin */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metatieto on poissa käytöstä tällä palvelimella.',

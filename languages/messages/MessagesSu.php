@@ -8,7 +8,6 @@
  * @author Irwangatot
  * @author Mssetiadi
  * @author Siebrand
- * @author Nike
  * @author לערי ריינהארט
  * @author Meursault2004
  * @author SPQRobin
@@ -914,6 +913,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'right-createaccount'    => 'Nyieun rekening anyar',
 'right-minoredit'        => 'Nandaan éditan minor',
 'right-move'             => 'Mindahkeun kaca',
+'right-move-subpages'    => 'Pindahkeun kaca katut sakabéh subkacana',
 'right-suppressredirect' => 'Henteu nyieun hiji alihan ti ngaran lila sabot mindahkeun kaca',
 'right-upload'           => 'Muatkeun koropak',
 'right-reupload'         => 'Nimpah koropak nu geus aya',
@@ -1038,6 +1038,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'uploadvirus'                 => 'Koropakna ngandung virus! Katrangan: $1',
 'sourcefilename'              => 'Ngaran koropak sumber:',
 'destfilename'                => 'Ngaran koropak tujuan:',
+'upload-maxfilesize'          => 'Ukuran koropak panggedéna: $1',
 'watchthisupload'             => 'Awaskeun kaca ieu',
 'filewasdeleted'              => 'Ngaran koropak ieu geus di hapus. Anjeun kudu ningali ka $1 sa acan muatkeun koropak deui',
 
@@ -1650,7 +1651,6 @@ Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagab
 'move-watch'              => 'Awaskeuneun kaca ieu',
 'movepagebtn'             => 'Pindahkeun kaca',
 'pagemovedsub'            => 'Mindahkeun geus hasil!',
-'movepage-moved'          => '<big>\'\'\'"$1" geus dipindahkeun ka "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Kaca nu ngaranna kitu geus aya, atawa ngaran nu dipilih ku anjeun teu sah. Mangga pilih ngaran séjén.',
 'cantmove-titleprotected' => 'Anjeun teu bisa mindahkeun kaca ka dieu, sabab éta judul dikonci',
 'talkexists'              => 'Kacana geus hasil dipindahkeun, ngan kaca obrolanana teu bisa dipindahkeun sabab geus aya nu anyar na judul anyar. Mangga gabungkeun sacara manual.',
@@ -1659,7 +1659,7 @@ Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagab
 'move-subpages'           => 'Pindahkeun kabéh sub-kaca, lamun aya',
 'move-talk-subpages'      => 'Pindahkeunn kabéh sub-kaca obrolan, lamun aya',
 'movepage-page-exists'    => 'Kaca $1 geus aya jeung teu bisa di timpahkeun sacara otomatis.',
-'movepage-page-moved'     => 'Kaca $1 geus dipindahkeun ka $2.',
+'movepage-page-moved'     => 'Kaca $1 geus dipindahkeun ka $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Kaca $1 teu bisa dipindahkeun ka $2.',
 '1movedto2'               => 'mindahkeun [[$1]] ka [[$2]]',
 '1movedto2_redir'         => '[[$1]] dipindahkeun ka [[$2]]',
@@ -1839,13 +1839,14 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 'mw_math_mathml' => 'Mun bisa MathML (uji coba)',
 
 # Patrolling
-'markaspatrolleddiff'    => 'Tandaan salaku geus diriksa',
-'markaspatrolledtext'    => 'Tandaan artikel ieu salaku geus diriksa',
-'markedaspatrolled'      => 'Tandaan salaku geus diriksa',
-'markedaspatrolledtext'  => 'Révisi nu dipilih geus ditandaan salaku geus diriksa.',
-'rcpatroldisabled'       => 'Ronda Nu Anyar Robah ditumpurkeun',
-'rcpatroldisabledtext'   => 'Fitur Ronda Nu Anyar Robah kiwari ditumpurkeun.',
-'markedaspatrollederror' => 'Teu bisa nandaan geus dipatroli',
+'markaspatrolleddiff'                 => 'Tandaan salaku geus diriksa',
+'markaspatrolledtext'                 => 'Tandaan artikel ieu salaku geus diriksa',
+'markedaspatrolled'                   => 'Tandaan salaku geus diriksa',
+'markedaspatrolledtext'               => 'Révisi nu dipilih geus ditandaan salaku geus diriksa.',
+'rcpatroldisabled'                    => 'Ronda Nu Anyar Robah ditumpurkeun',
+'rcpatroldisabledtext'                => 'Fitur Ronda Nu Anyar Robah kiwari ditumpurkeun.',
+'markedaspatrollederror'              => 'Teu bisa nandaan geus dipatroli',
+'markedaspatrollederror-noautopatrol' => 'Anjeung teu diwenangkeun nandaan pangriksa ka éditan sorangan.',
 
 # Patrol log
 'patrol-log-page' => 'Log patroli',
@@ -1859,6 +1860,7 @@ Artikel nu dituju "[[$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun?
 
 $1',
 'filedelete-missing'              => 'Koropak "$1" teu kapanggih, sahingga teu bisa dihapus.',
+'filedelete-old-unregistered'     => 'Révisi "$1" nu dimaksud euweuh dina pangkalan data.',
 'filedelete-current-unregistered' => 'Koropak "$1" euweuh dina pangkalan data.',
 
 # Browsing diffs
@@ -1868,6 +1870,7 @@ $1',
 # Media information
 'imagemaxsize'         => 'Watesan gambar na kaca dadaran gambar nepi ka:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
+'file-info'            => '(ukuran koropak: $1, tipeu MIME: $2)',
 'file-info-size'       => '($1 × $2 piksel, ukuran koropak: $3, tipeu MIME: $4)',
 'file-nohires'         => '<small>Euweuh résolusi nu leuwih luhur.</small>',
 'svg-long-desc'        => '(Koropak SVG, nominalna $1 × $2 piksel, ukuranana $3)',
@@ -1877,6 +1880,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galeri gambar anyar',
 'imagelisttext'         => "Di handap ieu daptar '''$1''' {{PLURAL:$1|gambar|gambar}} nu disusun $2.",
+'newimages-summary'     => 'Ieu kaca husus ngabéréndélkeun koropak nu alanyar dimuat',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Taya nanaon.',
 'ilsubmit'              => 'Sungsi',
@@ -1905,6 +1909,7 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-imagewidth'                  => 'Lega',
 'exif-imagelength'                 => 'Luhur',
 'exif-compression'                 => 'Skéma komprési',
+'exif-photometricinterpretation'   => 'Komposisi piksel',
 'exif-samplesperpixel'             => 'Jumlah komponén',
 'exif-planarconfiguration'         => 'Susunan data',
 'exif-ycbcrpositioning'            => 'Perenah Y jeung C',
@@ -1915,6 +1920,7 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-jpeginterchangeformat'       => 'Ofset ka JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bit data JPEG',
 'exif-transferfunction'            => 'Fungsi transfer',
+'exif-referenceblackwhite'         => 'Pasangan ajen rujukan hideung jeung bodas',
 'exif-datetime'                    => 'Wanci jeung titimangsa parobahan koropak',
 'exif-imagedescription'            => 'Judul gambar',
 'exif-make'                        => 'Produsén kaméra',
@@ -1925,6 +1931,8 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-exifversion'                 => 'Vérsi Exif',
 'exif-colorspace'                  => 'Rohangan warna',
 'exif-compressedbitsperpixel'      => 'Mode komprési gambar',
+'exif-pixelydimension'             => 'Lébar gambar nu sah',
+'exif-pixelxdimension'             => 'Jangkung gambar nu sah',
 'exif-makernote'                   => 'Catétan produsen',
 'exif-usercomment'                 => 'Koméntar pamaké',
 'exif-datetimeoriginal'            => 'Titimangsa jeung wanci dijieunna data',

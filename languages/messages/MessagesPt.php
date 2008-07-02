@@ -4,6 +4,16 @@
  * @ingroup Language
  * @file
  *
+ * @author 555
+ * @author Malafaya
+ * @author Siebrand
+ * @author Lijealso
+ * @author לערי ריינהארט
+ * @author MCruz
+ * @author SPQRobin
+ * @author Waldir
+ * @author Villate
+ * @author Minh Nguyen
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
  * @author Nuno Tavares
@@ -11,15 +21,6 @@
  * @author Manuel Menezes de Sequeira
  * @author Sérgio Ribeiro
  * @author Lugusto
- * @author 555
- * @author Malafaya
- * @author SPQRobin
- * @author לערי ריינהארט
- * @author Villate
- * @author MCruz
- * @author Minh Nguyen
- * @author Lijealso
- * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -502,6 +503,11 @@ $2',
 'ns-specialprotected'  => 'Não é possível editar páginas especiais',
 'titleprotected'       => "Este título foi protegido, para que não seja criado.
 Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Má configuração: antivírus desconhecido: <i>$1</i>',
+'virus-scanfailed'     => 'a verificação falhou (código $1)',
+'virus-unknownscanner' => 'antivírus desconhecido:',
 
 # Login and logout pages
 'logouttitle'                => 'Desautenticar do sistema',
@@ -1914,7 +1920,6 @@ Nestes casos, você terá que mover ou mesclar a página manualmente, se assim d
 'move-watch'              => 'Vigiar esta página',
 'movepagebtn'             => 'Mover página',
 'pagemovedsub'            => 'Página movida com sucesso',
-'movepage-moved'          => '<big>\'\'\'"$1" foi movido para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
 'cantmove-titleprotected' => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',
@@ -1924,7 +1929,7 @@ Por favor, escolha outro nome.',
 'move-subpages'           => 'Mover todas as sub-páginas, se aplicável',
 'move-talk-subpages'      => 'Mover todas as sub-páginas da página de discussão, se aplicável',
 'movepage-page-exists'    => 'A página $1 já existe e não pode ser substituída.',
-'movepage-page-moved'     => 'A página $1 foi movida para $2',
+'movepage-page-moved'     => 'A página $1 foi movida para $2', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'A página $1 não pôde ser movida para $2.',
 'movepage-max-pages'      => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'               => '[[$1]] foi movido para [[$2]]',
@@ -2657,5 +2662,9 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 'specialpages-group-wiki'        => 'Dados e ferramentas sobre este wiki',
 'specialpages-group-redirects'   => 'Páginas especias redirecionadoras',
 'specialpages-group-spam'        => 'Ferramentas anti-spam',
+
+# Special:Blankpage
+'blankpage'              => 'Página em branco',
+'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco e é usada para medições de performance, etc.',
 
 );

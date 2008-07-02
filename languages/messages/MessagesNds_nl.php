@@ -4,15 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @author Jens Frank
  * @author Servien
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author Slomox
  * @author SPQRobin
- * @author Nike
  * @author Erwin85
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Jens Frank
  */
 
 $fallback = 'nl';
@@ -387,7 +386,7 @@ $messages = array(
 'cancel'         => 'Annuleren',
 'qbfind'         => 'Zeuken',
 'qbbrowse'       => 'Blaojen',
-'qbedit'         => 'Bewarken',
+'qbedit'         => 'Bewark',
 'qbpageoptions'  => 'Pagina-opties',
 'qbpageinfo'     => 'Pagina-infermasie',
 'qbmyoptions'    => 'Veurkeuren',
@@ -417,7 +416,7 @@ $messages = array(
 'printableversion'  => 'Ofdrokbaore versie',
 'permalink'         => 'Vaste verwiezing',
 'print'             => 'Ofdrokken',
-'edit'              => 'bewark',
+'edit'              => 'Bewark',
 'create'            => 'Anmaken',
 'editthispage'      => 'Pagina bewarken',
 'create-this-page'  => 'Disse pagina anmaken',
@@ -671,8 +670,8 @@ De op-egeven rejen is ''$2''.",
 'throttled-mailpassword'     => 'In de leste $1 ure is der al een wachwoordherinnering estuurd. Um misbruuk te veurkoemen wonnen der mar één wachwoordherinnering per $1 ure verzunnen.',
 'mailerror'                  => "Fout bie 't versturen van berich: $1",
 'acct_creation_throttle_hit' => 'Je hemmen al $1 gebrukersnamen an-emaak. Je kunnen der neet nog meer anmaken.',
-'emailauthenticated'         => 'Joew e-mailadres is bevestigd op $1.',
-'emailnotauthenticated'      => 'E-mailadres is <strong>nog neet bevestigd</strong>. Gien e-mail wonnen ontvangen veur de onstaonde opties.',
+'emailauthenticated'         => 'Joew e-mailadres is bevestig op $1.',
+'emailnotauthenticated'      => 'E-mailadres is <strong>nog neet bevestig</strong>. Je ontvangen gien berichen veur de onstaonde opties.',
 'noemailprefs'               => '<strong>Gien e-mailadres in-evoerd</strong>, waordeur de onderstaonde functies neet warken.',
 'emailconfirmlink'           => 'Bevestig e-mailadres',
 'invalidemailaddress'        => "'t E-mailadres kon neet eaccepteerd wonnen, an-ezien de opmaak ongeldig is. Voer de juuste opmaak van 't adres in, of laot 't veld leeg.",
@@ -1043,7 +1042,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 
 # Preferences page
 'preferences'              => 'Veurkeuren',
-'mypreferences'            => 'mien veurkeuren',
+'mypreferences'            => 'Mien veurkeuren',
 'prefs-edits'              => 'Antal bewarkingen:',
 'prefsnologin'             => 'Neet an-meld',
 'prefsnologintext'         => 'Je mutten [[Special:Userlogin|an-emeld]] ween um je veurkeuren in te kunnen stellen.',
@@ -1523,7 +1522,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'newpages-username'       => 'Gebrukersnaam:',
 'ancientpages'            => 'Artikels dee lange neet bewörk bin',
 'ancientpages-summary'    => 'Hieronder steet een lieste mit artikels dee een lange tied neet an-epas bin.',
-'move'                    => 'herneum',
+'move'                    => 'Herneum',
 'movethispage'            => 'Herneum',
 'unusedimagestext'        => "Vergeet neet dat aandere wiki's meschien oek enkele van disse ofbeeldingen gebruken.",
 'unusedcategoriestext'    => 'De onderstaonde kattegerieën bin an-emaak mar wonnen neet gebruuk.',
@@ -1617,9 +1616,9 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'addedwatch'           => 'Disse pagina steet noen op joew volglieste',
 'removedwatch'         => 'Van volglieste ofhaolen',
 'removedwatchtext'     => 'De pagina "$1" is van joew volglieste op-ehaold.',
-'watch'                => 'volg',
+'watch'                => 'Volg',
 'watchthispage'        => 'Volg disse pagina',
-'unwatch'              => 'neet volgen',
+'unwatch'              => 'Neet volgen',
 'unwatchthispage'      => 'Neet volgen',
 'notanarticle'         => 'Gien artikel',
 'watchnochange'        => "Gien van de pagina's op joew volglieste is in disse periode ewiezig.",
@@ -1717,8 +1716,8 @@ Hier staon de instellingen zoas ze noen bin veur de pagina <strong>$1</strong>:"
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'bewark',
-'restriction-move'   => 'herneum',
+'restriction-edit'   => 'Bewark',
+'restriction-move'   => 'Herneum',
 'restriction-create' => 'Anmaken',
 
 # Restriction levels
@@ -1760,7 +1759,7 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 
 # Contributions
 'contributions' => 'Biedragen van disse gebruker',
-'mycontris'     => 'mien biedragen',
+'mycontris'     => 'Mien biedragen',
 'contribsub2'   => 'Veur $1 ($2)',
 'nocontribs'    => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.',
 'uctop'         => ' (leste wieziging)',
@@ -1896,7 +1895,6 @@ Mut de databanke vrie-egeven wonnen?',
 'move-watch'              => 'volg disse pagina',
 'movepagebtn'             => 'Herneum',
 'pagemovedsub'            => 'Naamwieziging succesvol',
-'movepage-moved'          => '<big>\'\'\'"$1" is ewiezig naor "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Onder disse naam besteet al een pagina. Kies een aandere naam.',
 'cantmove-titleprotected' => "Je kunnen gien pagina naor disse titel herneumen, umdat de nieje titel beveilig is tegen 't anmaken dervan.",
 'talkexists'              => "De pagina zelf is verplaos, mar de overlegpagina kon neet verplaos wonnen, umdat de doelnaam al een neet-lege overlegpagina had. Combineer de overlegpagina's haandmaotig.",
@@ -2329,6 +2327,7 @@ Der is al een bevestigingscode op-estuurd; a-j net een gebrukersnaam an-emaak he
 'confirmemail_oncreate'  => "Een bevestigingscode is naor joew e-mailadres verstuurd. Disse code is neet neudig um an te melden, mar je mutten 't wel bevestigen veurda-j de e-mailmeugelijkheen van disse wiki gebruken kunnen.",
 'confirmemail_invalid'   => 'Ongeldige bevestigingscode. De code kan verlopen ween.',
 'confirmemail_needlogin' => 'Je muttnen $1 um joew e-mailadres te bevestigen.',
+'confirmemail_success'   => 'Joew e-mailadres is bevestig. Je kunnen noen anmelden en {{SITENAME}} gebruken.',
 'confirmemail_loggedin'  => 'Joew e-mailadres is noen bevestig.',
 'confirmemail_error'     => "Der is iets fout egaon bie 't opslaon van joew bevestiging.",
 

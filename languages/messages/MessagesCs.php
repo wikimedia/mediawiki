@@ -12,8 +12,8 @@
  * @author Siebrand
  * @author Reaperman
  * @author Helix84
- * @author Michawiki
  * @author Martin Kozák
+ * @author Michawiki
  * @author Sp5uhe
  */
 
@@ -633,6 +633,11 @@ $2',
 'customcssjsprotected' => 'Nemáte povoleno editovat tuto stránku, protože obsahuje osobní nastavení jiného uživatele.',
 'ns-specialprotected'  => 'Stránky ve jmenném prostoru {{ns:special}} nelze editovat.',
 'titleprotected'       => "Stránku s tímto názvem nelze založit, protože název zamknul uživatel [[User:$1|$1]] s odůvodněním: ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Špatná konfigurace: neznámý antivirový program: <i>$1</i>',
+'virus-scanfailed'     => 'prověřování selhalo (kód $1)',
+'virus-unknownscanner' => 'neznámý antivirus:',
 
 # Login and logout pages
 'logouttitle'                => 'Na shledanou!',
@@ -2016,7 +2021,6 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-watch'              => 'Sledovat tuto stránku',
 'movepagebtn'             => 'Přesunout stránku',
 'pagemovedsub'            => 'Úspěšně přesunuto',
-'movepage-moved'          => "<big>'''Stránka „$1“ byla přesunuta na „$2“.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'cantmove-titleprotected' => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'              => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
@@ -2025,7 +2029,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-subpages'           => 'Přesunout i všechny podstránky, je-li to možné',
 'move-talk-subpages'      => 'Přesunout i všechny podstránky diskusní stránky, je-li to možné',
 'movepage-page-exists'    => 'Stránka $1 již existuje a nemůže být automaticky přepsána.',
-'movepage-page-moved'     => 'Stránka $1 byla přesunuta na $2.',
+'movepage-page-moved'     => 'Stránka $1 byla přesunuta na $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Stránka $1 nemůže být přesunuta na $2.',
 'movepage-max-pages'      => '{{PLURAL:$1|Byla přesunuta maximálně povolená jedna stránka|Byly přesunuty maximálně povolené $1 stránky|Bylo přesunuto maximálně povolených $1 stránek}}, více jich už automaticky přesunuto nebude.',
 '1movedto2'               => 'Stránka [[$1]] přemístěna na stránku [[$2]]',

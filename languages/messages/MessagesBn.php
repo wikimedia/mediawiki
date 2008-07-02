@@ -7,8 +7,8 @@
  * @author Zaheen
  * @author Bellayet
  * @author Siebrand
- * @author לערי ריינהארט
  * @author SPQRobin
+ * @author לערי ריינהארט
  * @author Jon Harald Søby
  */
 
@@ -1562,7 +1562,6 @@ $1',
 'move-watch'              => 'এই পাতাটি নজরে রাখুন',
 'movepagebtn'             => 'পাতা সরান',
 'pagemovedsub'            => 'সরিয়ে নেওয়া হয়েছে',
-'movepage-moved'          => '<big>\'\'\'"$1"-কে "$2"-তে সরানো হয়েছে\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'হয় এই শিরোনামের একটি নিবন্ধ ইতোমধ্যে সৃষ্টি হযে গেছে, অথবা আপনি যে শিরোনামটি পছন্দ করেছেন তা গ্রহণযোগ্য নয়। দয়া করে অন্য একটি শিরোনাম দিয়ে চেষ্টা করুন।',
 'cantmove-titleprotected' => 'আপনি এই অবস্থানে পাতাটিকে স্থানান্তর করতে পারেন না, কারণ এই নতুন শিরোনামটি সৃষ্টি করা থেকে সুরক্ষিত।',
 'talkexists'              => "'''পাতাটি সফলভাবে সরানো গেলেও আলোচনা পাতাটিকে সরানো যায়নি, কারণ নতুন শিরোনামের অধীনে ইতিমধ্যেই একটি আলোচনা পাতা বিদ্যমান। অনুগ্রহ নিজের হাতে এগুলিকে একত্র করুন।'''",

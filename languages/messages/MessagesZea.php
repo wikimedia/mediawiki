@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Rob Church <robchur@gmail.com>
- * @author Steinbach
- * @author Troefkaart
- * @author Adnergje
  * @author NJ
  * @author SPQRobin
  * @author Siebrand
  * @author Jon Harald Søby
+ * @author Rob Church <robchur@gmail.com>
+ * @author Steinbach
+ * @author Troefkaart
+ * @author Adnergje
  */
 
 $fallback = 'nl';

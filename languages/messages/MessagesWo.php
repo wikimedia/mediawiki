@@ -43,8 +43,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Wone sama makkaan gu mbëjfeppal ci bataaxali yëgle yi',
 'tog-shownumberswatching'     => "Wone limu jëfandikukat yi'y topp wii xët",
 'tog-fancysig'                => 'Xaatim bu ñumm (amul lëkkalekaay bu boppal)',
-'tog-externaleditor'          => 'jëfandiku soppikat bu biti saa su ne',
-'tog-externaldiff'            => 'Jëfandiku ab méngalekaay bu biti saa su ne',
+'tog-externaleditor'          => 'Jëfandiku soppikat bu biti saa su ne',
+'tog-externaldiff'            => 'Jëfandiku ab méngalekaay bu biti saa su ne (ngir jëfandikukat yu xarale yi rekk, dafa laaj yenn kocc-koccal yi ci sa nosukaay)',
 'tog-showjumplinks'           => 'Doxalal lëkkalekaay yii di « joowin » ak « seet »',
 'tog-uselivepreview'          => 'Jëfandikul wonendi gu gaaw gi (JavaScript)',
 'tog-forceeditsummary'        => 'Wax ma ko suma mottaliwul ndefu boyotu sanni-kàddu bi',
@@ -307,6 +307,12 @@ $1',
 'enterlockreason'      => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',
 'readonlytext'         => 'Ci jamono jii yokk yeek coppitey xët yi jàppandiwuñ ndax dattub njoxe bi dañ kaa caabi, xéj-na dañoo nekk ciy liggéey, su ñu noppee rekk dattub njoxe bi baaxaat.
 Yorkat bi def caabi ji, joxe na yii lay :$1',
+'missing-article'      => 'Dàttub njox bi manuta fexe ba gis mbidum ab jukki bu mu waaroona mana gis, mi ngi tudd  « $1 » $2.
+
+Li koy waral yenn saa yi mooy da ngay jéma ubbi ab lëkkalekaay, jaare ko ci ab jaar-jaar walla méngaleeb ay sumb yu aw xët wu faru.
+
+Su dul loolu kon daa am ag njuumte ci tëriinu Mediawiki bi. Di la sakku nga yegge ko ab yorkat, jox ko URL bi.',
+'missingarticle-rev'   => '(Limu sumb mi# : $1)',
 'readonly_lag'         => 'Dattub njoxe bi daa caabiwu ngir may ñaareeli joxekat yi dap joxekat bu njëkk bi.',
 'internalerror'        => 'Njuumte gu biir',
 'internalerror_info'   => 'Njuumte gu biir : $1',
@@ -407,7 +413,7 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'passwordsent'               => 'Ab baatujàll bu bees yónnee nañ ko ci màkkaanub m-bataaxal bu jëfandikukat bii di « $1 ». Jéemal a duggaat soo ko jotee.',
 'blocked-mailpassword'       => 'Ngir faggandiku ci yaq gi, ku ñu téye sa màkkaanu IP ba doo man a soppi dara, doo man a yónneelu baatujàll bu bees.',
 'eauthentsent'               => 'Yónnee nañ la ab m-bataaxalub dëggal ci màkkaanub m-bataaxal bi nga joxe. Balaa ñuy yónnee beneen m-bataaxal ci bii màkkaan, fawwu nga topp tektal yiñ la jox ngir dëggal ni yaa moom bii màkkaan.',
-'throttled-mailpassword'     => 'Ab m-bataaxal bu lay fattali sa baatujàll yónnee nañ la ko am na $1 waxtu. Ngir moytu ay say-sayee, benn m-bataaxalu fattali rek lañ lay yónnee ci diiru $1 waxtu.',
+'throttled-mailpassword'     => 'Ab m-bataaxal bu lay fattali sa baatujàll yónnee nañ la ko, am na $1 waxtu. Ngir moytu ay say-sayee, benn m-bataaxalu fattali rek lañ lay yónnee ci diiru $1 waxtu.',
 'mailerror'                  => 'Njuumte ci yónneeb m-bataaxal bi : $1',
 'acct_creation_throttle_hit' => 'Jéggalu, bindu nga $1 yoon. manoo binduwaat',
 'emailauthenticated'         => 'Ci $1 nga dëggal sa màkkaanu m-bataaxal.',

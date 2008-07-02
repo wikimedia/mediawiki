@@ -924,7 +924,6 @@ Ben suri taki den folo abrasi ben pre yu disi aksi du.",
 'move-watch'       => 'Disi papira si',
 'movepagebtn'      => 'Dribi papira',
 'pagemovedsub'     => 'Dribi fu a papira ben gu',
-'movepage-moved'   => '<big>\'\'\'"$1" ben dribi na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'A papira ben ala da efu a papira nen ben fowtu.
 Gi wan trawan papiranen.',
 'talkexists'       => "'''A papira ben dribi, ma a taki papira kan no dribi sey sins da ala wan papira nanga a nyun nen ben. Presi den takipeprewoysi yuse.'''",

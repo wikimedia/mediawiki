@@ -5,9 +5,8 @@
  * @file
  *
  * @author MCruz
- * @author Malafaya
- * @author Nike
  * @author Siebrand
+ * @author Malafaya
  */
 
 $fallback = 'pt';
@@ -544,7 +543,6 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'move-watch'       => 'Bigiar yesta página',
 'movepagebtn'      => 'Mover página',
 'pagemovedsub'     => 'Página mobida com sucesso',
-'movepage-moved'   => '<big>\'\'\'"$1" foi mobido para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'movido para',
 'movetalk'         => 'Mober tambien la página de çcusson associada.',
 '1movedto2'        => '[[$1]] foi movido para [[$2]]',

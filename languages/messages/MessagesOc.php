@@ -5,13 +5,13 @@
  * @file
  *
  * @author Cedric31
- * @author Горан Анђелковић
- * @author Spacebirdy
- * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
  * @author ChrisPtDe
  * @author Jon Harald Søby
+ * @author Spacebirdy
+ * @author Горан Анђелковић
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -572,6 +572,11 @@ $2",
 'ns-specialprotected'  => 'Las paginas dins l’espaci de noms « {{ns:special}} » pòdon pas èsser modificadas',
 'titleprotected'       => "Aqueste títol es estat protegit a la creacion per [[User:$1|$1]].
 Lo motiu avançat es « ''$2'' ».",
+
+# Virus scanner
+'virus-badscanner'     => 'Marrida configuracion : escaner de virús desconegut : <i>$1</i>',
+'virus-scanfailed'     => 'Fracàs de la recèrca (còde $1)',
+'virus-unknownscanner' => 'antivirús desconegut :',
 
 # Login and logout pages
 'logouttitle'                => 'Desconnexion',
@@ -1991,9 +1996,6 @@ en tant qu'utilizaire enregistrat.",
 'move-watch'              => 'Seguir aquesta pagina',
 'movepagebtn'             => "Tornar nomenar l'article",
 'pagemovedsub'            => 'Cambiament de nom capitat',
-'movepage-moved'          => 'La pagina « $1 » <small>([[Special:Whatlinkshere/$3|ligams]])</small> es estada renomenada en « $2 » <small>([[Special:Whatlinkshere/$4|ligams]])</small>.
-
-Verificatz qu’existís pas cap de redireccion dobla, e corregissètz-las se mestièr fa.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
 'cantmove-titleprotected' => 'Avètz pas la possibilitat de desplaçar una pagina vèrs aqueste emplaçament perque lo títol es estat protegit a la creacion.',
@@ -2005,7 +2007,7 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'move-subpages'           => 'Tornar nomenar, se fa mestièr, totas las sospaginas',
 'move-talk-subpages'      => 'Tornar nomenar, se fa mestièr, totas las sospaginas de las paginas de discussion',
 'movepage-page-exists'    => 'La pagina $1 existís ja e pòt pas èsser espotida automaticament.',
-'movepage-page-moved'     => 'La pagina $1 es estada renomenada en $2.',
+'movepage-page-moved'     => 'La pagina $1 es estada renomenada en $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'La pagina $1 pòt èsser renomenada en $2.',
 'movepage-max-pages'      => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
 '1movedto2'               => 'a renomenat [[$1]] en [[$2]]',

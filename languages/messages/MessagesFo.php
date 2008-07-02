@@ -6,12 +6,12 @@
  *
  * @author Spacebirdy
  * @author לערי ריינהארט
- * @author S.Örvarr.S
  * @author M.M.S.
+ * @author S.Örvarr.S
  * @author Siebrand
+ * @author Quackor
  * @author SPQRobin
  * @author Jon Harald Søby
- * @author Quackor
  */
 
 $skinNames = array(
@@ -967,7 +967,6 @@ Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú held
 'move-watch'              => 'Hav eftirlit við hesi síðuni',
 'movepagebtn'             => 'Flyt síðu',
 'pagemovedsub'            => 'Flyting væleydnað',
-'movepage-moved'          => '<big>\'\'\'"$1" er flutt til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ein síða finst longu við hasum navninum,
 ella er navnið tú valdi ógyldugt.
 Vinarliga vel eitt annað navn.',

@@ -5,9 +5,8 @@
  * @file
  *
  * @author Mimursal
- * @author Nike
- * @author Siebrand
  * @author Yariiska
+ * @author Siebrand
  * @author Jon Harald Søby
  */
 
@@ -339,9 +338,6 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 
 # Revision deletion
 'rev-delundel' => "i'tus/qari",
-
-# Diffs
-'diff-multi' => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
 
 # Search results
 'searchresults'         => 'Natiijooyinkii ka soo baxay raadinta',

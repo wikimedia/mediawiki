@@ -4,6 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Mahitgar
+ * @author Kaustubh
+ * @author Siebrand
+ * @author SPQRobin
+ * @author प्रणव कुलकर्णी
  * @author Angela
  * @author Hemanshu
  * @author Harshalhayat
@@ -11,11 +16,6 @@
  * @author Sankalpdravid
  * @author अभय नातू
  * @author शࣿरीहरि
- * @author Kaustubh
- * @author SPQRobin
- * @author Siebrand
- * @author Mahitgar
- * @author प्रणव कुलकर्णी
  */
 
 $specialPageAliases = array(
@@ -1886,7 +1886,6 @@ $1',
 'move-watch'              => 'या पानावर लक्ष ठेवा',
 'movepagebtn'             => 'स्थानांतरण करा',
 'pagemovedsub'            => 'स्थानांतरण यशस्वी',
-'movepage-moved'          => '<big>\'\'\'"$1" हे पान "$2" या मथळ्याखाली स्थानांतरित केले आहे.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'त्या नावाचे पृष्ठ अगोदरच अस्तित्वात आहे, किंवा तुम्ही निवडलेले
 नाव योग्य नाही आहे.
 कृपया दुसरे नाव शोधा.',
@@ -1898,7 +1897,7 @@ $1',
 'move-subpages'           => 'जर लागू असेल तर, सर्व उपपाने स्थानांतरीत करा',
 'move-talk-subpages'      => 'जर लागू असेल तर चर्चा पानाची सर्व उपपाने स्थानांतरीत करा',
 'movepage-page-exists'    => '$1 पान अगोदरच अस्तित्त्वात आहे व त्याच्यावर आपोआप पुनर्लेखन करता येणार नाही.',
-'movepage-page-moved'     => '$1 हे पान $2 या मथळ्याखाली स्थानांतरीत केले.',
+'movepage-page-moved'     => '$1 हे पान $2 या मथळ्याखाली स्थानांतरीत केले.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '$1 हे पान $2 या मथळ्याखाली स्थानांतरीत करता आलेले नाही.',
 'movepage-max-pages'      => 'जास्तीत जास्त $1 {{PLURAL:$1|पान|पाने}} स्थानांतरीत करण्यात {{PLURAL:$1|आलेले आहे|आलेली आहेत}} व आता आणखी पाने आपोआप स्थानांतरीत होणार नाहीत.',
 '1movedto2'               => '"[[$1]]" हे पान "[[$2]]" मथळ्याखाली स्थानांतरित केले.',

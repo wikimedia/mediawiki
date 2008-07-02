@@ -5,10 +5,10 @@
  * @file
  *
  * @author Singularity
+ * @author Kalani
  * @author SPQRobin
  * @author Node ue
  * @author Siebrand
- * @author Kalani
  */
 
 $messages = array(
@@ -122,6 +122,7 @@ $messages = array(
 'and'            => 'a me',
 
 'errorpagetitle'   => 'Hewa',
+'returnto'         => 'Ho‘i iā $1.',
 'tagline'          => 'Mai {{SITENAME}}',
 'help'             => 'Kōkua',
 'search'           => 'Huli',
@@ -149,6 +150,7 @@ $messages = array(
 'talkpagelinktext' => 'kūkākūkā',
 'specialpage'      => '‘Ao‘ao kūikawā',
 'talk'             => 'Kūkākūkā',
+'views'            => 'Nā nānaina',
 'toolbox'          => 'Pahu mea hana',
 'userpage'         => 'Nānā i ka ‘ao‘ao-mea ho‘ohana',
 'projectpage'      => 'Nānā i ka ‘ao‘ao papahana',

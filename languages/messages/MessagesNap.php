@@ -4,14 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Carmine Colacino
  * @author SabineCretella
  * @author Cryptex
  * @author E. abu Filumena
  * @author SPQRobin
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
+ * @author Carmine Colacino
+ * @author Siebrand
  */
 
 $fallback = 'it';

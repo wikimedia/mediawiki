@@ -4,22 +4,23 @@
  * @ingroup Language
  * @file
  *
- * @author Samuelsen
  * @author Jon Harald Søby
- * @author Teak
+ * @author Kph
  * @author לערי ריינהארט
  * @author Siebrand
- * @author SPQRobin
- * @author Max sonnelid
- * @author Eirik
- * @author Kph-no
- * @author M.M.S.
  * @author Stigmj
- * @author Kph
  * @author H92
+ * @author M.M.S.
+ * @author Eirik
+ * @author SPQRobin
  * @author Jóna Þórunn
+ * @author EivindJ
  * @author Finnrind
  * @author Boivie
+ * @author Samuelsen
+ * @author Teak
+ * @author Max sonnelid
+ * @author Kph-no
  */
 
 $skinNames = array(
@@ -505,6 +506,11 @@ $2',
 'titleprotected'       => "Denne tittelen har blitt låst for oppretting av [[User:$1|$1]].
 Den angitte grunnen er ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Dårlig konfigurasjon: ukjent virusskanner: <i>$1</i>',
+'virus-scanfailed'     => 'skanning mislyktes (kode $1)',
+'virus-unknownscanner' => 'ukjent antivirusprogram:',
+
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
 'logouttext'                 => '<strong>Du er nå logget ut.</strong><br />
@@ -653,7 +659,7 @@ Den oppgitte grunnen var:
 :'''$2'''
 
 * Blokkeringen begynte: $8
-* Blokkringen utgår: $6
+* Blokkeringen utgår: $6
 
 Du kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administratorene]] for å diskutere blokkeringen.
 
@@ -1870,7 +1876,6 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'move-watch'              => 'Overvåk denne siden',
 'movepagebtn'             => 'Flytt side',
 'pagemovedsub'            => 'Flytting gjennomført',
-'movepage-moved'          => "<big>'''«$1» ble flyttet til «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'En side med det navnet finnes fra før, eller valgte navn er ugyldig. Velg et annet navn.',
 'cantmove-titleprotected' => 'Du kan ikke flytte en side til dette navnet, fordi den nye tittelen er beskyttet fra opprettelse.',
 'talkexists'              => "'''Siden ble flyttet korrekt, men den tilhørende diskusjonssiden kunne ikke flyttes, fordi det allerede finnes en med den nye tittelen. Du er nødt til å flette dem sammen manuelt.'''",
@@ -1879,7 +1884,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'move-subpages'           => 'Flytt alle undersider, om det finnes noen',
 'move-talk-subpages'      => 'Flytt alle undersider av diskusjonssiden, om det finnes noen',
 'movepage-page-exists'    => 'Siden $1 finnes allerede og kan ikke overskrives automatisk.',
-'movepage-page-moved'     => 'Siden $1 har blitt flyttet til $2.',
+'movepage-page-moved'     => 'Siden $1 har blitt flyttet til $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Siden $1 kunne ikke flyttes til $2.',
 'movepage-max-pages'      => 'Grensen på {{PLURAL:$1|én side|$1 sider}} er nådd; ingen flere sider vil bli flyttet automatisk.',
 '1movedto2'               => '[[$1]] flyttet til [[$2]]',

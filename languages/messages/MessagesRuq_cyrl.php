@@ -6,8 +6,8 @@
  *
  * @author Макѕе
  * @author Кумулај Маркус
- * @author Siebrand
  * @author Приетен тев
+ * @author Siebrand
  */
 
 $fallback = 'mk';
@@ -89,6 +89,7 @@ $messages = array(
 'talk'             => 'дискућу',
 'views'            => 'Ви',
 'toolbox'          => 'алатуникул',
+'redirectedfrom'   => '(Редирецћионат де ла $1)',
 'jumpto'           => 'Лиа а:',
 'jumptonavigation' => 'навигацион',
 'jumptosearch'     => 'каутај',
@@ -165,19 +166,24 @@ $messages = array(
 # Edit pages
 'summary'                => 'Сумар',
 'subject'                => 'Субјект / титлур',
+'minoredit'              => 'Ацеаста есте о едитаре минорај',
 'watchthis'              => 'Клајаере це пажу',
+'showpreview'            => 'Ратај превизуализаре',
 'showdiff'               => 'Аратај шумбајрае',
 'newarticle'             => '(Нова)',
 'editing'                => 'о $1 едитаере',
 'editingsection'         => 'Едитаере $1 (секцион)',
+'copyrightwarning'       => '<!-- Гол деоцамдатај. Вертисментул се флај ен MediaWiki:Summary -->
+Те рог нотари ла дин контрибући ал {{SITENAME}} сунт консидераере релесават супра $2 (суах $1 дин детајс). Аџтеу несав те се тексти сунт едитаере деномерци дет редистрибутаере дин вент, хатае ици.<br /> Ту есте ностре промисаере бонти ус ту скрирсте це се, нега копиаере дин публик домен нега симилари ресорсуе. <strong>НЕ СУБМИТЕ КОПИЛЕГРУ СКРИЕ САС ПЕРМИћИОН!</strong>',
 'template-protected'     => '(ажатмат)',
 'template-semiprotected' => '(семи-ажатмат)',
 
 # History pages
-'currentrev'   => 'Верцион куренту',
-'revisionasof' => 'Верцион де дата $1',
-'cur'          => 'актуалу',
-'last'         => 'прецеденте',
+'currentrev'       => 'Верцион куренту',
+'revisionasof'     => 'Верцион де дата $1',
+'previousrevision' => '←Версиунеа нтериоарај',
+'cur'              => 'актуалу',
+'last'             => 'прецеденте',
 
 # Diffs
 'history-title'           => 'Едитаерехисториа пентру "$1"',
@@ -195,10 +201,14 @@ $messages = array(
 
 # Recent changes
 'recentchanges'   => 'шумбајрае рецентае',
+'rcnote'          => "Маи хос се флај {{PLURAL:$|ултима модификаре|ултимеле '''$1''' модификајри}} дин {{PLURAL:$2|ултима зи|ултимеле '''$2''' зиле}}, енцепонд цу $3.",
+'rcshowhideminor' => '$1 модификајриле миноре',
 'rcshowhidebots'  => '$1 роботи',
 'rcshowhideliu'   => '$1 утилизатори приласнаери',
 'rcshowhideanons' => '$1 утилизатори аноними',
 'rcshowhidemine'  => '$1 мес модификационс',
+'rclinks'         => 'Ратај ултимеле $1 модификајри дин ултимеле $2 зиле.<br />
+$3',
 'diff'            => 'диференћу',
 'hist'            => 'хисториа',
 'hide'            => 'аскунде',
@@ -206,6 +216,9 @@ $messages = array(
 'minoreditletter' => 'м',
 'newpageletter'   => 'Н',
 'boteditletter'   => 'б',
+
+# Recent changes linked
+'recentchangeslinked' => 'Модификајри корелате',
 
 # Upload
 'upload' => 'тримиће фиширул',
@@ -289,18 +302,23 @@ $messages = array(
 'tooltip-pt-userpage'       => 'Мој пажу дутилизатору',
 'tooltip-pt-mytalk'         => 'Мај пажу дискућус',
 'tooltip-pt-preferences'    => 'Мај префиренћу',
+'tooltip-pt-watchlist'      => 'Листа пажинилор пе царе ле мониторизез.',
 'tooltip-pt-mycontris'      => 'Листа де мес контрибуционс',
 'tooltip-pt-login'          => 'Путе приласнаере, не лест доист.',
 'tooltip-pt-logout'         => 'отластаере',
+'tooltip-ca-talk'           => 'Дискућие деспре артикол',
+'tooltip-ca-edit'           => 'Поћи едита ацеатај пажинај. Те ругајм се превизуализези конћинутул енаинте де салваре.',
 'tooltip-ca-protect'        => 'Ажатме це пажу',
 'tooltip-ca-delete'         => 'Делајре це пажу',
 'tooltip-search'            => 'Каутај ен {{SITENAME}}',
 'tooltip-n-mainpage'        => 'Вижита лпажу принципу',
 'tooltip-n-portal'          => 'Дајпул лпројецту, љуелљуес путе фараере, о трувес саби.',
+'tooltip-n-currentevents'   => 'Гајсеште информаћии деспре евениментиќ куренте',
 'tooltip-n-recentchanges'   => 'Листа дес шумбајрае рецентае ен лБики.',
 'tooltip-n-randompage'      => 'Донаре нпажу алаетоаре',
 'tooltip-n-help'            => 'Ајутор трувес иси.',
 'tooltip-n-sitesupport'     => 'Супора-ностре',
+'tooltip-t-whatlinkshere'   => 'Листа тутурор пажинилор вики царе кондуц спре ацестај пажинај',
 'tooltip-t-contributions'   => 'Ву листа де контрибући де цутилизатору',
 'tooltip-t-upload'          => 'Тремер фиширул',
 'tooltip-t-specialpages'    => 'Листа де тоат пажи специалус',
@@ -309,10 +327,20 @@ $messages = array(
 'tooltip-ca-nstab-category' => 'Ву лпажу де категориа',
 'tooltip-minoredit'         => 'Це-ест нмодификацион минару',
 'tooltip-save'              => 'Салваере тес модификационс',
+'tooltip-diff'              => 'Ратај це модификајри аи фајцут текстулуи.',
 
 # Media information
 'file-nohires'   => '<small>Це-н-ест нресолуцион маи мари.</small>',
 'show-big-image' => 'Мареште ресолуцион',
+
+# Bad image list
+'bad_image_list' => 'Форматул есте урмајторул:
+
+Нумај елементијле унеи листе сунт луате ен цонсидераере. (Аџестеа сунт линии це енцеп цу *)
+
+Прима легајтурај де пе линие требуие се фие спре ун фишиер дефецтуос.
+
+Орице легајтури це урмеазај пе аценаши линие сунт цонсидераете еџцепћии, дицај пажи унде фишиерул поате пајреа инцлус дирецт.',
 
 # Metadata
 'metadata' => 'Метадата',

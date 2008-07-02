@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Srhat
+ * @author SPQRobin
  * @author Uğur Başak
  * @author Dbl2010
  * @author Suelnur
- * @author Erkan Yilmaz
  * @author Karduelis
+ * @author Erkan Yilmaz
  * @author Runningfridgesrule
  * @author Katpatuka
  * @author Mach
@@ -1564,14 +1564,13 @@ Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'move-watch'              => 'Bu sayfayı izle',
 'movepagebtn'             => 'İsmi değiştir',
 'pagemovedsub'            => 'İsim değişikliği tamamlandı.',
-'movepage-moved'          => '<big>"$1" sayfasının yeni adı: "$2"</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
 Lütfen başka bir isim deneyiniz.',
 'talkexists'              => "'''Sayfanın kendisi başarıyla taşındı, ancak tartışma sayfası taşınamadı çünkü taşınacağı isimde zaten bir sayfa vardı. Lütfen sayfanın içeriğini diğer sayfaya kendiniz taşıyın.'''",
 'movedto'                 => 'taşındı:',
 'movetalk'                => 'Varsa "tartışma" sayfasını da aktar.',
 'movepage-page-exists'    => '$1 maddesi zaten var olmaktadır, ve otomatikman yeniden yazılamaz.',
-'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.',
+'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => '[[$1]] sayfasının yeni adı: [[$2]]',
 '1movedto2_redir'         => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
 'movelogpage'             => 'İsim değişikliği kayıtları',

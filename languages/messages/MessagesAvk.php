@@ -9,7 +9,6 @@
  * @author Siebrand
  * @author SPQRobin
  * @author Nkosi ya Cabinda
- * @author Nike
  */
 
 $messages = array(
@@ -1595,14 +1594,13 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'              => 'Busuzdara',
 'movepagebtn'             => 'Tolyoltara va teliz',
 'pagemovedsub'            => 'Tolyoltanhara',
-'movepage-moved'          => '<big>\'\'\'"$1" bu kal "$2"\'\'\' tir arrundanafu</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Milvergumveltaf teliz ixam krulder, oke kiblayan vergumvelt tir meenaf. Va ar kiblal !',
 'cantmove-titleprotected' => 'Va bu me milinde rotarrundal kire warzaf vergumvelt icde redura zo nendar',
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'movedto'                 => 'Tolyoltayan ton',
 'movetalk'                => "Renommer aussi la page « discussion », s'il y a lieu.",
 'movepage-page-exists'    => '$1 bu ixam tir nume me balkon zo rotolsuter.',
-'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.',
+'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '$1 bu ko $2 me al zo rotarrundar.',
 '1movedto2'               => '$1 arbureyen kal $2',
 '1movedto2_redir'         => '$1 arbureyen kal $2 (graskara)',

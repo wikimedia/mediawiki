@@ -4,17 +4,17 @@
  * @ingroup Language
  * @file
  *
- * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
  * @author Siebrand
  * @author SPQRobin
  * @author GerardM
  * @author Hamaryns
- * @author Troefkaart
- * @author Galwaygirl
+ * @author Annabel
  * @author Effeietsanders
+ * @author Galwaygirl
+ * @author Troefkaart
  * @author לערי ריינהארט
  * @author Erwin85
- * @author Annabel
+ * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
  */
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
@@ -629,6 +629,11 @@ $2",
 'titleprotected'       => "Het aanmaken van deze pagina is beveiligd door [[User:$1|$1]].
 De gegeven reden is ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Slechte configuratie: onbekende virusscanner: <i>$1</i>',
+'virus-scanfailed'     => 'scannen is mislukt (code $1)',
+'virus-unknownscanner' => 'onbekend antivirus:',
+
 # Login and logout pages
 'logouttitle'                => 'Gebruiker afmelden',
 'logouttext'                 => "<strong>U bent nu afgemeld.</strong><br />
@@ -793,8 +798,11 @@ De opgegeven reden is:
 * Einde blokkade: $6
 
 U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].
+
 U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
-Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens over deze blokkade reageert.",
+
+Uw blokkadenummer is $5.
+Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'blockednoreason'                  => 'geen reden opgegeven',
 'blockedoriginalsource'            => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'                => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
@@ -840,7 +848,9 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\". Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
 'updated'                          => '(Bijgewerkt)',
 'note'                             => '<strong>Opmerking:</strong>',
-'previewnote'                      => '<strong>Let op: dit is een controlepagina; uw tekst is niet opgeslagen!</strong>',
+'previewnote'                      => '<strong>Let op: dit is een controlepagina;
+uw tekst is niet opgeslagen!</strong>
+[[#editform|→ Naar het bewerkingsscherm gaan.]]',
 'previewconflict'                  => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview'             => '<strong>Sorry! Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>',
@@ -2078,7 +2088,6 @@ Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'move-watch'              => 'Deze pagina volgen',
 'movepagebtn'             => 'Pagina hernoemen',
 'pagemovedsub'            => 'Hernoemen pagina geslaagd',
-'movepage-moved'          => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'De pagina bestaat al of de paginanaam is ongeldig.
 Kies alstublieft een andere paginanaam.',
 'cantmove-titleprotected' => 'U kunt geen pagina naar deze titel hernoemen, omdat de nieuwe titel beveiligd is tegen het aanmaken ervan.',
@@ -2089,7 +2098,7 @@ Combineer de overlegpagina's alstublieft handmatig.'''",
 'move-subpages'           => "Alle subpagina's hernoemen",
 'move-talk-subpages'      => "Alle subpagina's van overlegpagina's hernoemen",
 'movepage-page-exists'    => 'De pagina $1 bestaat al en kan niet automatisch verwijderd worden.',
-'movepage-page-moved'     => 'De pagina $1 is hernoemd naar $2.',
+'movepage-page-moved'     => 'De pagina $1 is hernoemd naar $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'De pagina $1 kon niet hernoemd worden naar $2.',
 'movepage-max-pages'      => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}). De overige pagina's worden niet automatisch hernoemd.",
 '1movedto2'               => '[[$1]] hernoemd naar [[$2]]',
@@ -2852,5 +2861,9 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'specialpages-group-wiki'        => 'Wikigegevens en -hulpmiddelen',
 'specialpages-group-redirects'   => "Doorverwijzende speciale pagina's",
 'specialpages-group-spam'        => 'Spamhulpmiddelen',
+
+# Special:Blankpage
+'blankpage'              => 'Lege pagina',
+'intentionallyblankpage' => 'Deze pagina is bewust leeg gelaten en wordt gebruikt voor benchmarks, enzovoort.',
 
 );

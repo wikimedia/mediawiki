@@ -539,7 +539,6 @@ $1',
 'move-watch'              => 'Bantayan itong pahina',
 'movepagebtn'             => 'Ilipat ang pahina',
 'pagemovedsub'            => 'Matagumpay ang paglipat',
-'movepage-moved'          => '<big>\'\'\'Ang "$1" ay inilipat sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'May umiiral nang pahinang may ganitong pangalan, o ang
 pangalang pinili mo ay hindi mabisa.
 Pumili muli ng ibang pangalan.',

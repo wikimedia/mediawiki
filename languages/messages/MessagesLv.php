@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Niklas Laxström
  * @author Yyy
  * @author Knakts
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
- * @author Jon Harald Søby
  * @author M.M.S.
+ * @author Jon Harald Søby
+ * @author Niklas Laxström
  */
 
 /*
@@ -1264,7 +1264,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',
 'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
-'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'movedto'                 => 'pārvietota uz',
 'movetalk'                => 'Pārvietot arī diskusiju lapu, ja tāda ir.',

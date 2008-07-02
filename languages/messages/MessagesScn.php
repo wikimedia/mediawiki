@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Niklas Laxström
- * @author Sarvaturi
  * @author Tonyfroio
+ * @author Melos
+ * @author Sarvaturi
  * @author לערי ריינהארט
  * @author Siebrand
- * @author Melos
+ * @author Niklas Laxström
  */
 
 $fallback = 'it';
@@ -1717,7 +1717,6 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'move-watch'              => 'Talìa sta pàggina',
 'movepagebtn'             => 'Sposta la pàggina',
 'pagemovedsub'            => 'Lu spustamentu riniscìu.',
-'movepage-moved'          => "<big>L'artìculu '''\"\$1\"''' fu spustatu nti '''\"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Na pàggina cu stu nomu esisti già, oppuru lu nomu scigghiutu nun è vàlidu. Scègghiri n'àutru tìtulu.",
 'talkexists'              => "'''La pàggina hà statu spustata currettamenti, ma nun hà statu pussìbbili spustari la pàggina di discussioni pirchì nn'esisti già n'àutra cu lu tìtulu novu. Ntigrari manuarmenti li cuntinuti dî dui pàggini.'''",
 'movedto'                 => 'spustata a',

@@ -1830,7 +1830,6 @@ $1',
 'move-watch'              => 'Надгледај ову страницу',
 'movepagebtn'             => 'премести страницу',
 'pagemovedsub'            => 'Премештање успело',
-'movepage-moved'          => '<big>Страница \'\'\'"$1" је премештена на "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Страница под тим именом већ постоји, или је
 име које сте изабрали неисправно.
 Молимо изаберите друго име.',

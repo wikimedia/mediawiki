@@ -5,8 +5,8 @@
  * @file
  *
  * @author Pyt
+ * @author Snakesteuben
  * @author Siebrand
- * @author Nike
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author Maartenvdbent
@@ -1135,7 +1135,6 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 'move-watch'       => 'Dizze side folgje',
 'movepagebtn'      => 'Werneam side',
 'pagemovedsub'     => 'Werneamen slagge',
-'movepage-moved'   => '<big>\'\'\'"$1" is ferskood nei "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'In side mei dy namme bestiet al of de sidenamme is ûnjildich.
 Kies in  oare sidenamme a.j.w.',
 'talkexists'       => "It werneamen op sich is slagge, mar de eardere oerlisside is

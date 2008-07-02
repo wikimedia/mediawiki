@@ -5,6 +5,7 @@
  * @file
  *
  * @author Lloffiwr
+ * @author Thaf
  * @author Siebrand
  * @author לערי ריינהארט
  */
@@ -618,7 +619,7 @@ Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Prefe
 
 Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'blockednoreason'                  => 'dim rheswm wedi ei roi',
-'blockedoriginalsource'            => "Dengys tarddiad '''$1''' isod:",
+'blockedoriginalsource'            => "Dengosir tarddiad '''$1''' isod:",
 'whitelistedittitle'               => 'Rhaid mewngofnodi i golygu',
 'whitelistedittext'                => 'Rhaid $1 i olygu tudalennau.',
 'whitelistreadtitle'               => 'Rhaid mewngofnodi cyn darllen',
@@ -715,7 +716,7 @@ Dyma lòg dileu'r dudalen, er gwybodaeth:",
 'undo-summary' => 'Dadwneud y golygiad $1 gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Methu creu cyfrif',
+'cantcreateaccounttitle' => 'Yn methu creu cyfrif',
 'cantcreateaccount-text' => "Rhwystrwyd y gallu i greu cyfrif ar gyfer y cyfeiriad IP hwn, ('''$1'''), gan [[User:$3|$3]].
 
 Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
@@ -995,7 +996,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-editinterface'    => "Golygu'r rhyngwyneb",
 'right-import'           => 'Mewnforio tudalennau o wicïau eraill',
 'right-mergehistory'     => 'Cyfuno hanes y tudalennau',
-'right-userrights'       => 'Golygu holl hawliau defnyddwyr',
+'right-userrights'       => 'Golygu holl alluoedd defnyddwyr',
 'right-siteadmin'        => "Cloi a datgloi'r databas",
 
 # User rights log
@@ -1189,7 +1190,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'filedelete-submit'           => 'Dileer',
 'filedelete-success'          => "Mae '''$1''' wedi cael ei dileu.",
 'filedelete-nofile'           => "Nid oes '''$1''' ar y wefan {{SITENAME}}.",
-'filedelete-nofile-old'       => "Nid oes fersiwn wedi ei archifio o '''$1''' gyda'r priodoleddau a enwir.",
+'filedelete-nofile-old'       => "Nid oes fersiwn o '''$1''' gyda'r priodoleddau a enwir yn yr archif.",
 'filedelete-iscurrent'        => "Rydych yn ceisio dileu'r fersiwn diweddaraf o'r ffeil hwn. Rhaid gwrthdroi i fersiwn gynt yn gyntaf.",
 'filedelete-otherreason'      => 'Rheswm arall/ychwanegol:',
 'filedelete-reason-otherlist' => 'Rheswm arall',
@@ -1403,7 +1404,7 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'unwatch'              => 'Stopio gwylio',
 'unwatchthispage'      => 'Stopio gwylio',
 'notanarticle'         => 'Ddim yn erthygl/ffeil',
-'notvisiblerev'        => 'Diwygiad wedi cael ei ddileu',
+'notvisiblerev'        => 'Y diwygiad wedi cael ei ddileu',
 'watchnochange'        => "Ni olygwyd dim o'r erthyglau yr ydych yn cadw golwg arnynt yn ystod y cyfnod uchod.",
 'watchlist-details'    => 'Yn gwylio {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 o dudalennau}}, heb gynnwys tudalennau sgwrs.',
 'wlheader-enotif'      => '* Galluogwyd hysbysiadau trwy e-bost.',
@@ -1752,14 +1753,13 @@ Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei 
 'move-watch'              => 'Gwylier y dudalen hon',
 'movepagebtn'             => 'Symud tudalen',
 'pagemovedsub'            => 'Y symud wedi llwyddo',
-'movepage-moved'          => '<big>\'\'\'Symudwyd "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
 Dewiswch enw arall os gwelwch yn dda.",
 'talkexists'              => "'''Mae'r dudalen wedi'i symud yn llwyddiannus, ond nid oedd hi'n bosibl symud y dudalen sgwrs oherwydd bod yna dudalen sgwrs gyda'r enw newydd yn bodoli'n barod. Cyfunwch y ddwy dudalen, os gwelwch yn dda.'''",
 'movedto'                 => 'symud i',
 'movetalk'                => 'Symud y dudalen sgwrs hefyd',
 'movepage-page-exists'    => "Mae'r dudalen $1 eisoes ar gael ac ni ellir ysgrifennu drosto yn awtomatig.",
-'movepage-page-moved'     => 'Symudwyd y dudalen $1 i $2.',
+'movepage-page-moved'     => 'Symudwyd y dudalen $1 i $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Ni ellid symud y dudalen $1 i $2.',
 'movepage-max-pages'      => 'Symudwyd yr uchafswm o $1 {{PLURAL:$1|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}} y gellir eu symud yn awtomatig.',
 '1movedto2'               => 'Wedi symud [[$1]] i [[$2]]',
@@ -1991,34 +1991,70 @@ Mae unrhyw gysylltau eraill ar yr un llinell yn cael eu trin fel eithriadau, h.y
 'metadata-help'     => "Mae'r ffeil hon yn cynnwys gwybodaeth ychwanegol, sydd mwy na thebyg wedi dod o'r camera digidol neu'r sganiwr a ddefnyddiwyd i greu'r ffeil neu ei digido. Os yw'r ffeil wedi ei cael ei newid ers ei chreu efallai nad yw'r manylion hyn yn dal i fod yn gywir.",
 'metadata-expand'   => 'Dangos manylion estynedig',
 'metadata-collapse' => 'Cuddio manylion estynedig',
+'metadata-fields'   => "Pan fod tabl y metadata wedi'i grebachu fe ddangosir y meysydd metadata EXIF a restrir yn y neges hwn ar dudalen wybodaeth y ddelwedd.
+Cuddir y meysydd eraill trwy ragosodiad.
+* gwneuthurwr
+* model
+* amser a dyddiad y gwreiddiol
+* amser dinoethi
+* cymhareb agorfa
+* hyd ffocal", # Do not translate list items
 
 # EXIF tags
-'exif-artist'              => 'Awdur',
-'exif-pixelydimension'     => 'Lled delwedd dilys',
-'exif-pixelxdimension'     => 'Uchder delwedd dilys',
-'exif-makernote'           => "Nodiadau'r gwneuthurwr",
-'exif-usercomment'         => "Sylwadau'r defnyddiwr",
-'exif-relatedsoundfile'    => 'Ffeil sain cysylltiedig',
-'exif-exposuretime'        => 'Amser dinoethiad',
-'exif-exposuretime-format' => '$1 eiliad ($2)',
-'exif-exposureprogram'     => 'Rhaglen Dinoethiad',
-'exif-exposurebiasvalue'   => 'Bias dinoethiad',
-'exif-lightsource'         => 'Tarddiad golau',
-'exif-flash'               => 'Flach',
-'exif-subjectarea'         => 'Ardal pwnc',
-'exif-exposureindex'       => 'Indecs dinoethiad',
-'exif-filesource'          => 'Tarddiad ffeil',
-'exif-exposuremode'        => 'Dull dinoethiad',
-'exif-whitebalance'        => 'Cydbwysedd Gwyn',
-'exif-contrast'            => 'Cyferbyniad',
-'exif-saturation'          => 'Dirlawnder',
-'exif-sharpness'           => 'Llymder',
-'exif-gpslatituderef'      => 'Lledred Gogledd neu De',
-'exif-gpslatitude'         => 'Lledred',
-'exif-gpslongituderef'     => 'Hydred Dwyrain neu Gorllewin',
-'exif-gpslongitude'        => 'Hydred',
-'exif-gpsaltituderef'      => 'Cyfeirnod uchder',
-'exif-gpsaltitude'         => 'Uchder',
+'exif-imagewidth'                  => 'Lled',
+'exif-imagelength'                 => 'Uchder',
+'exif-bitspersample'               => 'Nifer y didau i bob cydran',
+'exif-compression'                 => 'Cynllun cywasgu',
+'exif-photometricinterpretation'   => 'Cyfansoddiad picseli',
+'exif-orientation'                 => 'Gogwydd',
+'exif-samplesperpixel'             => 'Nifer y cydrannau',
+'exif-planarconfiguration'         => 'Trefn y data',
+'exif-ycbcrsubsampling'            => 'Cymhareb is-samplo Y i C',
+'exif-ycbcrpositioning'            => 'Lleoli Y a C',
+'exif-xresolution'                 => 'Datrysiad llorweddol',
+'exif-yresolution'                 => 'Datrysiad fertigol',
+'exif-resolutionunit'              => 'Datrysiad uned X a Y',
+'exif-stripoffsets'                => "Lleoliad data'r ddelwedd",
+'exif-rowsperstrip'                => 'Nifer y rhesi i bob stribed',
+'exif-stripbytecounts'             => 'Nifer y beitiau i bob stribed cywasgedig',
+'exif-jpeginterchangeformat'       => 'Yr atred i JPEG SOI',
+'exif-jpeginterchangeformatlength' => "Nifer beitiau'r data JPEG",
+'exif-datetime'                    => "Dyddiad ac amser y newid i'r ffeil",
+'exif-imagedescription'            => 'Teitl y ddelwedd',
+'exif-make'                        => 'Gwneuthurwr y camera',
+'exif-model'                       => 'Model y camera',
+'exif-software'                    => 'Meddalwedd a ddefnyddir',
+'exif-artist'                      => 'Awdur',
+'exif-copyright'                   => 'Deiliad yr hawlfraint',
+'exif-pixelydimension'             => 'Lled delwedd dilys',
+'exif-pixelxdimension'             => 'Uchder delwedd dilys',
+'exif-makernote'                   => "Nodiadau'r gwneuthurwr",
+'exif-usercomment'                 => "Sylwadau'r defnyddiwr",
+'exif-relatedsoundfile'            => 'Ffeil sain cysylltiedig',
+'exif-exposuretime'                => 'Amser dinoethiad',
+'exif-exposuretime-format'         => '$1 eiliad ($2)',
+'exif-fnumber'                     => 'Cymhareb yr agorfa (rhif F)',
+'exif-exposureprogram'             => 'Rhaglen Dinoethiad',
+'exif-shutterspeedvalue'           => 'Cyflymder caead',
+'exif-aperturevalue'               => 'Agorfa',
+'exif-brightnessvalue'             => 'Disgleirdeb',
+'exif-exposurebiasvalue'           => 'Bias dinoethiad',
+'exif-lightsource'                 => 'Tarddiad golau',
+'exif-flash'                       => 'Fflach',
+'exif-subjectarea'                 => 'Maint a lleoliad y goddrych',
+'exif-exposureindex'               => 'Indecs dinoethiad',
+'exif-filesource'                  => 'Tarddiad ffeil',
+'exif-exposuremode'                => 'Dull dinoethiad',
+'exif-whitebalance'                => 'Cydbwysedd Gwyn',
+'exif-contrast'                    => 'Cyferbyniad',
+'exif-saturation'                  => 'Dirlawnder',
+'exif-sharpness'                   => 'Llymder',
+'exif-gpslatituderef'              => 'Lledred Gogledd neu De',
+'exif-gpslatitude'                 => 'Lledred',
+'exif-gpslongituderef'             => 'Hydred Dwyrain neu Gorllewin',
+'exif-gpslongitude'                => 'Hydred',
+'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
+'exif-gpsaltitude'                 => 'Uchder',
 
 'exif-orientation-3' => 'Wedi ei droi 180°', # 0th row: bottom; 0th column: right
 

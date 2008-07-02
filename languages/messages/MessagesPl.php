@@ -4,22 +4,22 @@
  * @ingroup Language
  * @file
  *
+ * @author Sp5uhe
  * @author Derbeth
+ * @author ToSter
+ * @author לערי ריינהארט
  * @author Wpedzich
+ * @author Leinad
+ * @author Beau
  * @author Stv
  * @author Siebrand
- * @author לערי ריינהארט
- * @author Sp5uhe
  * @author Masti
- * @author Matma Rex
- * @author Szczepan1990
- * @author Leinad
- * @author Herr Kriss
- * @author Lajsikonik
  * @author Equadus
  * @author Ymar
- * @author ToSter
- * @author Beau
+ * @author Matma Rex
+ * @author Lajsikonik
+ * @author Szczepan1990
+ * @author Herr Kriss
  */
 
 $namespaceNames = array(
@@ -567,6 +567,11 @@ $2',
 'titleprotected'       => "Utworzenie strony o tej nazwie zostało zablokowane przez [[User:$1|$1]].
 Uzasadnienie blokady: ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Zła konfiguracja – nieznany skaner antywirusowy <i>$1</i>',
+'virus-scanfailed'     => 'skanowanie nieudane (błąd $1)',
+'virus-unknownscanner' => 'nieznany program antywirusowy',
+
 # Login and logout pages
 'logouttitle'                => 'Wylogowanie użytkownika',
 'logouttext'                 => '<strong>Zostałeś wylogowany.</strong>
@@ -1027,7 +1032,7 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'search-mwsuggest-enabled'  => 'z dynamicznymi propozycjami',
 'search-mwsuggest-disabled' => 'bez dynamicznych propozycji',
 'search-relatedarticle'     => 'Pokrewne',
-'mwsuggest-disable'         => 'Wyłącz dynamiczne propozycje AJAX',
+'mwsuggest-disable'         => 'Wyłącz dynamiczne propozycje AJAX-owe',
 'searchrelated'             => 'pokrewne',
 'searchall'                 => 'wszystkie',
 'showingresults'            => "Poniżej znajduje się lista z {{PLURAL:$1|'''1''' wynikiem|'''$1''' wynikami}}, rozpoczynając od wyniku numer '''$2'''.",
@@ -2063,7 +2068,6 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'move-watch'              => 'Obserwuj',
 'movepagebtn'             => 'Przenieś stronę',
 'pagemovedsub'            => 'Przeniesienie powiodło się',
-'movepage-moved'          => "<big>'''Strona „$1” została przeniesiona do „$2”.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
 'cantmove-titleprotected' => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
@@ -2073,7 +2077,7 @@ Wybierz inną nazwę.',
 'move-subpages'           => 'Jeśli to możliwe przenieś wszystkie podstrony',
 'move-talk-subpages'      => 'Jeśli to możliwe przenieś wszystkie podstrony strony dyskusji',
 'movepage-page-exists'    => 'Strona $1 istnieje. Automatyczne nadpisanie nie jest możliwe.',
-'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.',
+'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
 'movepage-max-pages'      => 'Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.',
 '1movedto2'               => 'stronę [[$1]] przeniósł do [[$2]]',

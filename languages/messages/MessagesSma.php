@@ -6,7 +6,6 @@
  *
  * @author M.M.S.
  * @author Siebrand
- * @author Nike
  */
 
 $messages = array(
@@ -682,7 +681,6 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie <strong>$1</strong>
 'move-watch'       => 'Sïektjedh dïhte bielie',
 'movepagebtn'      => 'Jåhta bielie',
 'pagemovedsub'     => 'Jåhta lähkoe',
-'movepage-moved'   => '<big>\'\'\'"$1" åtna sjïdtedh jåhta gåajkoe "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Bielie meatan dïhte nomme gååvnese joe, jallh
 nome dov åtna veeljeme lea ijje jiiltige.
 Gïemhpes veeljeme jeatjebh nomme.',

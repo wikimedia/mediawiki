@@ -6,9 +6,9 @@
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Tenzin
- * @author Jon Harald Søby
+ * @author CFynn
  * @author Siebrand
- * @author Nike
+ * @author Jon Harald Søby
  */
 
 $digitTransformTable = array(
@@ -582,7 +582,6 @@ $messages = array(
 'move-watch'       => 'ཤོག་ལེབ་འདི་ལྟ།',
 'movepagebtn'      => 'ཤོག་ལེབ་སྤོ་བཤུད་འབད།',
 'pagemovedsub'     => 'སྤོ་བཤུད་མཐར་འཁྱོལ་བྱུང་ཡོདཔ།',
-'movepage-moved'   => '<big>\'\'\'"$1" འདི་ "$2"\'\'\'</big> ལུ་ སྤོ་བཤུད་འབད་ནུག།', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'ཤོག་ལེབ་མིང་འདི་ཧེ་མ་ལས་ཡོདཔ་ཨིནམ་དང་ ཡང་ན་ ཁྱོད་ཀྱིས་གདམ་ཁ་བརྐྱབས་མི་མིང་འདི་ ནུས་མེད་ཨིན་པས།
 མིང་གཞན་ཅིག་ གདམ་ཁ་རྐྱབས།',
 'talkexists'       => "'''ཤོག་ལེབ་འདི་ལེགས་ཤོམ་པས་སྤོ་བཤུད་འབད་ཡོད་རུང་ གཅིག་ཧེ་མ་ལས་ར་ མགོ་མིང་གསརཔ་གུ་ཡོདཔ་ལས་ བློ་ཤོག་འདི་སྤོ་བཤུད་འབད་མ་ཚུགས།

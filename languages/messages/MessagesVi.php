@@ -4,6 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Vinhtantran
+ * @author Minh Nguyen
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author SPQRobin
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
  * @author Mxn
@@ -16,11 +21,6 @@
  * @author Tttrung
  * @author Vietbio
  * @author Vương Ngân Hà
- * @author Vinhtantran
- * @author Minh Nguyen
- * @author Siebrand
- * @author לערי ריינהארט
- * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -474,6 +474,11 @@ $2',
 'ns-specialprotected'  => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
 'titleprotected'       => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
 Lý do được cung cấp là ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Cấu hình sau: không nhận ra bộ quét virus: <i>$1</i>',
+'virus-scanfailed'     => 'quét thất bại (mã $1)',
+'virus-unknownscanner' => 'không nhận ra phần mềm diệt virus:',
 
 # Login and logout pages
 'logouttitle'                => 'Đăng xuất',
@@ -1882,7 +1887,6 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'move-watch'              => 'Theo dõi trang này',
 'movepagebtn'             => 'Di chuyển trang',
 'pagemovedsub'            => 'Di chuyển thành công',
-'movepage-moved'          => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
 'cantmove-titleprotected' => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
@@ -1892,7 +1896,7 @@ Xin hãy chọn tên khác.',
 'move-subpages'           => 'Di chuyển tất cả các trang con, nếu được',
 'move-talk-subpages'      => 'Di chuyển tất cả các trang con của trang thảo luận, nếu được',
 'movepage-page-exists'    => 'Trang $1 đã tồn tại và không thể bị tự động ghi đè.',
-'movepage-page-moved'     => 'Trang $1 đã được di chuyển đến $2.',
+'movepage-page-moved'     => 'Trang $1 đã được di chuyển đến $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Trang $1 không thể di chuyển đến $2.',
 'movepage-max-pages'      => 'Đã có tối đa $1 {{PLURAL:$1|trang|trang}} đã di chuyển và không tự động di chuyển thêm được nữa.',
 '1movedto2'               => '[[$1]] đổi thành [[$2]]',

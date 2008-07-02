@@ -2241,7 +2241,6 @@ $1 بۇعاتتاۋى ٴۇشىن كەلتىرىلگەن سەبەبى: «$2».',
 'move-watch'              => 'بۇل بەتتى باقىلاۋ',
 'movepagebtn'             => 'بەتتى جىلجىت',
 'pagemovedsub'            => 'جىلجىتۋ ٴساتتى اياقتالدى',
-'movepage-moved'          => "<big>'''«$1» دەگەن «$2» دەگەنگە جىلجىتىلدى'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'وسىلاي اتالعان بەت الداقاشان بار, نە تاڭداعان اتاۋىڭىز جارامدى ەمەس.
 وزگە اتاۋدى تاڭداڭىز',
 'cantmove-titleprotected' => 'بەتتى وسى ورىنعا جىلجىتا المايسىز, سەبەبى جاڭا تاقىرىپ اتى باستاۋدان قورعالعان',
@@ -2252,7 +2251,7 @@ $1 بۇعاتتاۋى ٴۇشىن كەلتىرىلگەن سەبەبى: «$2».',
 'move-subpages'           => 'بارلىق بەتشەلەرىن جىلجىتۋ, ەگەر قولدانبالى بولسا',
 'move-talk-subpages'      => 'تالقىلاۋ بەتىنىڭ بارلىق بەتشەلەرىن جىلجىتۋ, ەگەر قولدانبالى بولسا',
 'movepage-page-exists'    => '$1 دەگەن بەت الداقاشان بار جانە ۇستىنە وزدىكتىك جازىلمايدى.',
-'movepage-page-moved'     => '$1 دەگەن بەت $2 دەگەنگە جىلجىتىلدى.',
+'movepage-page-moved'     => '$1 دەگەن بەت $2 دەگەنگە جىلجىتىلدى.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '$1 دەگەن بەت $2 دەگەنگە جىلجىتىلمايدى.',
 'movepage-max-pages'      => 'بارىنشا $1 بەت جىلجىتىلدى دا مىننان كوبى وزدىكتىك جىلجىلتىلمايدى.',
 '1movedto2'               => '[[$1]] دەگەندى [[$2]] دەگەنگە جىلجىتتى',

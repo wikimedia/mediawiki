@@ -802,6 +802,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'imagelist_description' => 'Mèu-sut',
 
 # Image description page
+'filehist-deleteone'        => 'chhù-thet',
 'imagelinks'                => 'Lièn-kiet',
 'linkstoimage'              => 'Yî-ha vùn-chông lièn-chiap to pún tóng-on:',
 'nolinkstoimage'            => 'Mò-yû vùn-chông lièn-chiap to pún tóng-on.',
@@ -811,6 +812,9 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'noimage'                   => 'Put chhùn-chhai chhṳ́ miàng-chhṳ̂n ke tóng-on, ngì khó-yî $1.',
 'noimage-linktext'          => 'song-chhòn kì',
 'uploadnewversion-linktext' => 'Song-chhòn tóng-on ke sîn pán-pún',
+
+# File deletion
+'filedelete-submit' => 'Chhù-thet',
 
 # MIME search
 'mimesearch'         => 'MIME chhà-chhìm',
@@ -1020,6 +1024,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'excontentauthor'             => 'Nui-yùng he: "$1" (song-chhiá vì-thu̍k kung-hien-chá he "$2")',
 'exbeforeblank'               => 'Pûn chhîn-khûng chhièn ke nui-yùng he: "$1"',
 'exblank'                     => 'Vùn-chông he hî-khûng',
+'delete-legend'               => 'Chhù-thet',
 'historywarning'              => 'Kín-ko: Ngì chiông-yeu chhù-hi ke chông-nui hàm-yû li̍t-sṳ́:',
 'confirmdeletetext'           => 'Ngì chiông-voi chhiùng chṳ̂-liau-khu chûng yún-yén chhù-thet yit-ke vùn-chông fe̍t-chá thù-chhiong yî-khi̍p li̍t-sṳ́. Chhiáng khok-thin ngì-yeu chin-hàng chhâu-chok, pin liáu-kié heu-kó, thùng-sṳ̀ ngì-ke hàng-vì fù-ha̍p [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Chhâu-chok vàn-sṳ̀n',
@@ -1595,6 +1600,9 @@ Sòn-chhṳ phêu-chún yi-liau.',
 
 # Special:Version
 'version' => 'Pán-pún', # Not used as normal message but as header for the special page itself
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Chhìm-cháu',
 
 # Special:SpecialPages
 'specialpages' => 'Thi̍t-sû hong-mien',

@@ -10,7 +10,6 @@
  * @author Siebrand
  * @author Glupav
  * @author לערי ריינהארט
- * @author Nike
  * @author Jon Harald Søby
  */
 
@@ -1468,7 +1467,6 @@ $NEWPAGE
 'move-watch'              => 'Набљудувај ја оваа страница',
 'movepagebtn'             => 'Премести ја страницата',
 'pagemovedsub'            => 'Преместувањето успеа',
-'movepage-moved'          => '<big>\'\'\'"$1" беше преместена во "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Страница со тоа име веќе постои, или името што го избравте не е валидно. Ве молиме изберете друго име.',
 'talkexists'              => 'Самата страница беше преместена успешно, но страницата за разговор не можеше да биде преместена бидејќи веќе постои таква на новиот наслов. Ве молиме спојте ги рачно.',
 'movedto'                 => 'преместена како',

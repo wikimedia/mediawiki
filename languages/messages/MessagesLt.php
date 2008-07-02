@@ -9,7 +9,9 @@
  * @author Matasg
  * @author Pdxx
  * @author Siebrand
+ * @author Siggis
  * @author Vpovilaitis
+ * @author Tomasdd
  * @author לערי ריינהארט
  * @author SPQRobin
  */
@@ -1794,7 +1796,6 @@ kad suprantate visas pasekmes.",
 'move-watch'              => 'Stebėti šį puslapį',
 'movepagebtn'             => 'Pervadinti puslapį',
 'pagemovedsub'            => 'Pervadinta sėkmingai',
-'movepage-moved'          => "<big>'''„$1“ buvo pervadintas į „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Puslapis tokiu pavadinimu jau egzistuoja
 arba pasirinktas vardas yra neteisingas.
 Pasirinkite kitą pavadinimą.',
@@ -1804,6 +1805,8 @@ pavadinimo puslapis jau turėjo aptarimų puslapį.
 Prašome sujungti šiuos puslapius.'''",
 'movedto'                 => 'pervardintas į',
 'movetalk'                => 'Perkelti susijusį aptarimo puslapį.',
+'movepage-page-moved'     => 'Puslapis $1 perkeltas į $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-unmoved'   => 'Puslapio $1 negalima perkelti į $2.',
 '1movedto2'               => '[[$1]] pervadintas į [[$2]]',
 '1movedto2_redir'         => '[[$1]] pervadintas į [[$2]] (anksčiau buvo nukreipiamasis)',
 'movelogpage'             => 'Pervardinimų istorija',
@@ -2435,7 +2438,7 @@ $1',
 'table_pager_prev'         => 'Ankstesnis puslapis',
 'table_pager_first'        => 'Pirmas puslapis',
 'table_pager_last'         => 'Paskutinis puslapis',
-'table_pager_limit'        => 'Rodyti $1 elementų per puslapį',
+'table_pager_limit'        => 'Rodyti po $1 puslapyje',
 'table_pager_limit_submit' => 'Rodyti',
 'table_pager_empty'        => 'Jokių rezultatų',
 
@@ -2533,7 +2536,7 @@ $1',
 'specialpages-group-media'       => 'Informacija apie failus ir jų pakrovimas',
 'specialpages-group-users'       => 'Naudotojai ir teisės',
 'specialpages-group-highuse'     => 'Plačiai naudojami puslapiai',
-'specialpages-group-pages'       => 'Puslapių sąrašai',
+'specialpages-group-pages'       => 'Puslapių sąrašas',
 'specialpages-group-pagetools'   => 'Puslapių priemonės',
 'specialpages-group-wiki'        => 'Wiki duomenys ir priemonės',
 'specialpages-group-redirects'   => 'Specialieji nukreipimo puslapiai',
