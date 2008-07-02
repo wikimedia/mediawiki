@@ -484,7 +484,7 @@ class AutoLoader {
 			if ( !$filename ) {
 				# Give up
 				wfProfileOut( __METHOD__ );
-				return false;
+				return;
 			}
 		}
 
