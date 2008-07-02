@@ -727,7 +727,9 @@ class LoginForm {
 			} elseif ( $wgUser->isBlockedFromCreateAccount() ) {
 				$this->userBlockedMessage();
 				return;
-			} elseif ( count( $permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $wgUser, true ) )>0 ) {
+			}
+			// Supress 'blockedtext' error here, we already checked above.
+			 elseif ( count( $permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $wgUser, true, array('blockedtext') ) )>0 ) {
 				$wgOut->showPermissionsErrorPage( $permErrors, 'createaccount' );
 				return;
 			}
