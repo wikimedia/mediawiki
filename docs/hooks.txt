@@ -600,10 +600,6 @@ $from: address of sending user
 $subject: subject of the mail
 $text: text of the mail
 
-'ExtendJSGlobalVars': called right before Skin::makeVariablesScript is executed
-&$vars: variable (or multiple variables) to be added into the output
-		of Skin::makeVariablesScript
-
 'FetchChangesList': When fetching the ChangesList derivative for a particular user
 &$user: User the list is being fetched for
 &$skin: Skin object to be used with the list
@@ -1301,10 +1297,6 @@ $article: article object watched
 
 'wgQueryPages': called when initialising $wgQueryPages, use this to add new query pages to be updated with maintenance/updateSpecialPages.php
 $query: $wgQueryPages itself
-
-'wfMessageCacheReplace': called after sidebar memcached key has been deleted, use this to replace core messages by using an extension
-$title: title of the MediaWiki: message page
-$text: text of the MediaWiki: message page
 
 More hooks might be available but undocumented, you can execute
 ./maintenance/findhooks.php to find hidden one.

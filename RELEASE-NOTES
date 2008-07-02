@@ -175,7 +175,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow an $error message to be passed to ArticleDelete hook
 * Allow extensions to modify the user creation form by calling addInputItem();
 * Add meta generator tag to HTML output
-* Two new hooks, ExtendJSGlobalVars and wfMessageCacheReplace added
 * MediawikiPerformAction hook is now passed the Mediawiki object
 * Added blank special page Special:BlankPage for benchmarking, etc.
 * (bug 13862) Specialpages now has a horizontal TOC if there's three or more
