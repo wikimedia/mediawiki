@@ -174,12 +174,15 @@ $messages = array(
 'mainpage'             => 'મુખપૃષ્ઠ',
 'mainpage-description' => 'મુખપૃષ્ઠ',
 'portal'               => 'સમાજ મુખપૃષ્ઠ',
+'portal-url'           => 'Project:સમાજ મુખપૃષ્ઠ',
 'privacy'              => 'ગોપનિયતા નીતિ',
 'privacypage'          => 'Project:ગોપનિયતા નીતિ',
 'sitesupport'          => 'દાન',
+'sitesupport-url'      => 'Project:સાઇટ આધાર',
 
 'ok'                  => 'મંજૂર',
 'retrievedfrom'       => '"$1" થી લીધેલું',
+'youhavenewmessages'  => 'તમારા માટે $1 ($2).',
 'newmessageslink'     => 'નૂતન સંદેશ',
 'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
 'editsection'         => 'ફેરફાર કરો',
@@ -194,10 +197,12 @@ $messages = array(
 'nstab-main'      => 'લેખ',
 'nstab-user'      => 'મારા વિષે',
 'nstab-special'   => 'ખાસ',
+'nstab-project'   => 'પરિયોજનાનું પાનું',
 'nstab-image'     => 'ફાઇલ/દસ્તાવેજ',
 'nstab-mediawiki' => 'સંદેશ',
 'nstab-template'  => 'ઢાંચો',
 'nstab-help'      => 'મદદનું પાનું',
+'nstab-category'  => 'શ્રેણી',
 
 # Main script and global functions
 'nosuchspecialpage' => 'એવું ખાસ પાનું નથી',
@@ -243,32 +248,37 @@ $messages = array(
 'hr_tip'          => 'આડી લીટી (શક્ય તેટલો ઓછો ઉપયોગ કરો)',
 
 # Edit pages
-'summary'               => 'સારાંશ',
-'subject'               => 'વિષય/શિર્ષક',
-'minoredit'             => 'આ એક નાનો સુધારો છે.',
-'watchthis'             => 'આ પાનાને ધ્યાનમાં રાખો',
-'savearticle'           => 'કાર્ય સુરક્ષિત કરો',
-'preview'               => 'પૂર્વાવલોકન',
-'showpreview'           => 'ઝલક બતાવો',
-'showdiff'              => 'ફેરફારો બતાવો',
-'anoneditwarning'       => "'''ચેતવણી:''' તમે તમારા સભ્ય નામથી પ્રવેશ કર્યો નથી.
+'summary'                => 'સારાંશ',
+'subject'                => 'વિષય/શિર્ષક',
+'minoredit'              => 'આ એક નાનો સુધારો છે.',
+'watchthis'              => 'આ પાનાને ધ્યાનમાં રાખો',
+'savearticle'            => 'કાર્ય સુરક્ષિત કરો',
+'preview'                => 'પૂર્વાવલોકન',
+'showpreview'            => 'ઝલક બતાવો',
+'showdiff'               => 'ફેરફારો બતાવો',
+'anoneditwarning'        => "'''ચેતવણી:''' તમે તમારા સભ્ય નામથી પ્રવેશ કર્યો નથી.
 આ પાનાનાં ઇતિહાસમાં તમારૂં આઇ.પી. (IP) એડ્રેસ નોંધવામાં આવશે.",
-'blockededitsource'     => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
-'newarticle'            => '(નવિન)',
-'newarticletext'        => "આપ જે કડીને અનુસરીને અહીં પહોંચ્યા છો તે પાનું અસ્તિત્વમાં નથી.
+'blockededitsource'      => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
+'newarticle'             => '(નવિન)',
+'newarticletext'         => "આપ જે કડીને અનુસરીને અહીં પહોંચ્યા છો તે પાનું અસ્તિત્વમાં નથી.
 <br>નવું પાનું બનાવવા માટે નીચે આપેલા ખાનામાં લખવાનું શરૂ કરો (વધુ માહિતિ માટે [[{{MediaWiki:Helppage}}|મદદ]] જુઓ).
 <br>જો આપ ભુલમાં અહીં આવી ગયા હોવ તો, આપનાં બ્રાઉઝર નાં '''બેક''' બટન પર ક્લિક કરીને પાછા વળો.",
-'noarticletext'         => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી, તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરો.',
-'editing'               => '$1નો ફેરફાર કરી રહ્યા છે',
-'yourdiff'              => 'ભેદ',
-'template-protected'    => '(સુરક્ષિત)',
-'recreate-deleted-warn' => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
+'noarticletext'          => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી, તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરો.',
+'editing'                => '$1નો ફેરફાર કરી રહ્યા છે',
+'editingsection'         => '$1 (વિભાગ)નું સંપાદન',
+'yourdiff'               => 'ભેદ',
+'templatesused'          => 'આ પાનામાં વપરાયેલા ઢાંચાઓ:',
+'template-protected'     => '(સુરક્ષિત)',
+'template-semiprotected' => '(અર્ધ સુરક્ષિત)',
+'recreate-deleted-warn'  => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
 
 આગળ વધતાં બે વખત વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
 પાનું હટવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી સહુલીયત માટે અહીં આપી છે:",
 
 # History pages
+'viewpagelogs'     => 'આ પાનાનાં લૉગ જુઓ',
 'nohistory'        => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
+'currentrev'       => 'હાલની આવૃત્તિ',
 'revisionasof'     => '$1 સુધીનાં પુનરાવર્તન',
 'previousrevision' => '←જુના ફેરફારો',
 'cur'              => 'વર્તમાન',
@@ -281,6 +291,8 @@ $messages = array(
 'historyempty'     => '(ખાલી)',
 
 # Diffs
+'history-title'           => '"$1" નાં ફેરફારોનો ઇતિહાસ',
+'difference'              => '(પુનરાવર્તનો વચ્ચેનો તફાવત)',
 'lineno'                  => 'લીટી $1:',
 'compareselectedversions' => 'પસંદ કરેલા સરખાવો',
 'editundo'                => 'રદ કરો',
@@ -359,6 +371,7 @@ $messages = array(
 'filehist-comment'    => 'ટિપ્પણી',
 'imagelinks'          => 'કડીઓ',
 'linkstoimage'        => 'આ ફાઇલ સાથે નીચેનાં પાનાઓ જોડાએલાં છે',
+'sharedupload'        => 'આ ફાઇલ સહિયારી રીતે ચઢાવવામાં આવી છે અને તેનો ઉપયોગ અન્ય પરિયોજનાઓમાં પણ થઇ શકે છે.',
 
 # Unused templates
 'unusedtemplates' => 'વણ વપરાયેલાં ઢાંચા',
@@ -394,6 +407,7 @@ $messages = array(
 'booksources-go'   => 'જાઓ',
 
 # Special:Log
+'log'               => 'લૉગ',
 'log-search-submit' => 'શોધો',
 
 # Special:Allpages
@@ -444,6 +458,8 @@ $messages = array(
 'confirm'        => 'ખાતરી કરો',
 'exblank'        => 'પાનું ખાલી હતું',
 'actioncomplete' => 'કામ પૂરું થઈ ગયું',
+'deletedarticle' => 'હટાવવામાં આવેલા "[[$1]]"',
+'dellogpage'     => 'હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)',
 'rollbacklink'   => 'પાછું વાળો',
 
 # Restrictions (nouns)
@@ -470,6 +486,12 @@ $messages = array(
 'whatlinkshere'       => 'અહિયાં શું જોડાય છે',
 'whatlinkshere-title' => 'પાનાંઓ કે જે $1 સાથે જોડાય છે',
 'linklistsub'         => '(કડીઓની સૂચી)',
+'linkshere'           => "નીચેના પાનાઓ '''[[:$1]]''' સાથે જોડાય છે:",
+'nolinkshere'         => "'''[[:$1]]'''ની સાથે કોઇ પાના જોડાતા નથી.",
+'isredirect'          => 'પાનું અહીં વાળો',
+'istemplate'          => 'સમાવેશ',
+'whatlinkshere-prev'  => '{{PLURAL:$1|પહેલાનું|પહેલાનાં $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|પછીનું|પછીનાં $1}}',
 'whatlinkshere-links' => '←  કડીઓ',
 
 # Block/unblock
@@ -494,6 +516,7 @@ $messages = array(
 'delete_and_move_confirm' => 'હા, આ પાનું હટાવો',
 
 # Export
+'export'        => 'પાનાઓની નિકાસ કરો/પાના અન્યત્ર મોકલો',
 'export-addcat' => 'ઉમેરો',
 
 # Namespace 8 related
@@ -532,24 +555,34 @@ $messages = array(
 'tooltip-n-help'                  => 'શોધવા માટેની જગ્યા.',
 'tooltip-n-sitesupport'           => 'અમારું સમર્થન કરો',
 'tooltip-t-whatlinkshere'         => 'અહીં જોડાતા બધાં વિકિ પાનાઓની યાદી',
+'tooltip-t-contributions'         => 'આ સભ્યનાં યોગદાનોની યાદી જુઓ',
 'tooltip-t-upload'                => 'ફાઇલ ચડાવો',
 'tooltip-t-specialpages'          => 'ખાસ પાનાંઓની સૂચિ',
 'tooltip-ca-nstab-user'           => 'સભ્યનું પાનું જુઓ',
+'tooltip-ca-nstab-project'        => 'પરિયોજનાનું પાનું',
 'tooltip-ca-nstab-image'          => 'ફાઇલ વિષેનું પાનું જુઓ',
 'tooltip-ca-nstab-template'       => 'ઢાંચો જુઓ',
 'tooltip-ca-nstab-help'           => 'મદદનું પાનું જુઓ',
+'tooltip-ca-nstab-category'       => 'શ્રેણીઓનું પાનું જુઓ',
+'tooltip-minoredit'               => 'આને નાનો ફેરફાર ગણો',
 'tooltip-save'                    => 'તમે કરેલાં ફેરફારો સુરક્ષિત કરો',
 'tooltip-preview'                 => 'તમે કરેલાં ફેરફારો જોવા મળશે, કૃપા કરી કાર્ય સુરક્ષિત કરતાં પહેલા આ જોઇ લો',
 'tooltip-diff'                    => 'તમે માહિતિમાં કયા ફેરફારો કર્યા છે તે જોવા મળશે',
 'tooltip-compareselectedversions' => 'અ પાનાનાં પસંદ કરેલા બે વૃત્તાંત વચ્ચેનાં ભેદ જુઓ.',
+'tooltip-watch'                   => 'આ પાનાને તમારી ધ્યાનસૂચિમાં ઉમેરો',
 
 # Info page
 'infosubtitle' => 'પાના વિષે માહિતી',
 'numedits'     => 'ફેરફારોની સંખ્યા (લેખ): $1',
 'numtalkedits' => 'ફેરફારોની સંખ્યા (ચર્ચાનું પાનું): $1',
 
+# Browsing diffs
+'previousdiff' => '← પહેલાનો ફેરફાર',
+'nextdiff'     => 'પછીનો ફેરફાર →',
+
 # Media information
 'file-info-size'       => '($1 × $2 પીક્સલ, ફાઇલનું કદ: $3, MIME પ્રકાર: $4)',
+'file-nohires'         => '<small>આથી વધુ આવર્તન ઉપલબ્ધ નથી.</small>',
 'show-big-image'       => 'મહત્તમ આવર્તન',
 'show-big-image-thumb' => '<small>આ પુર્વાવલોકનનું પરિમાણ: $1 × $2 પીક્સલ</small>',
 
@@ -559,7 +592,9 @@ $messages = array(
 'bydate'   => 'તારીખ પ્રમાણે',
 
 # Metadata
-'metadata' => 'મૅટાડેટા',
+'metadata'          => 'મૅટાડેટા',
+'metadata-expand'   => 'વિસ્તૃત કરેલી વિગતો બતાવો',
+'metadata-collapse' => 'વિસ્તૃત કરેલી વિગતો છુપાવો',
 
 # EXIF tags
 'exif-imagewidth'  => 'પહોળાઈ',
@@ -586,6 +621,7 @@ $messages = array(
 'exif-subjectdistancerange-0' => 'અજાણ્યો',
 
 # External editor support
+'edit-externally'      => 'બાહ્ય સોફ્ટવેર વાપરીને આ ફાઇલમાં ફેરફાર કરો',
 'edit-externally-help' => 'વધુ માહિતિ માટે જુઓ: [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages

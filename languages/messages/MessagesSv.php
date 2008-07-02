@@ -817,7 +817,8 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'updated'                          => '(Uppdaterad)',
 'note'                             => '<strong>Obs!</strong>',
 'previewnote'                      => '<strong>Detta är bara en förhandsvisning;
-ändringar har ännu inte sparats!</strong>',
+ändringar har ännu inte sparats!</strong>
+[[#editform|→ Gå till redigeringsrutan.]]',
 'previewconflict'                  => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',

@@ -9,8 +9,8 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Michawiki
- * @author Sp5uhe
  * @author Jon Harald Søby
+ * @author Sp5uhe
  * @author Valasek
  * @author Palica
  * @author Liso
@@ -508,6 +508,11 @@ $2',
 'titleprotected'       => "Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom.
 Udaný dôvod: ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Chybná konfigurácia: neznámy antivírus: <i>$1</i>',
+'virus-scanfailed'     => 'kontrola zlyhala (kód $1)',
+'virus-unknownscanner' => 'neznámy antivírus:',
+
 # Login and logout pages
 'logouttitle'                => 'Odhlásiť používateľa',
 'logouttext'                 => 'Práve ste sa odhlásili.
@@ -713,7 +718,9 @@ Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom
 'userinvalidcssjstitle'            => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Aktualizovaný)',
 'note'                             => '<strong>Poznámka: </strong>',
-'previewnote'                      => '<strong>Nezabudnite, toto je iba náhľad stránky, ktorú upravujete. Zmeny ešte nie sú uložené!</strong>',
+'previewnote'                      => '<strong>Toto je iba náhľad stránky;
+zmeny ešte nie sú uložené!</strong>
+[[#editform|→ Prejsť do poľa úprav.]]',
 'previewconflict'                  => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
 'session_fail_preview'             => '<strong>Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie. Skúste to prosím ešte raz. Ak to nebude fungovať, skúste sa odhlásiť a znovu prihlásiť.</strong>',
 'session_fail_preview_html'        => "<strong>Prepáčte! Nemohli sme spracovať vašu úpravu kvôli strate údajov relácie.</strong>
@@ -1085,7 +1092,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 
 # Rights
 'right-read'                 => 'Čítať stránky',
-'right-edit'                 => 'Upravovať stránky',
+'right-edit'                 => 'Upravovať stránky (ktoré nie sú diskusné stránky)',
 'right-createpage'           => 'Vytvárať stránky (ktoré nie sú diskusné stránky)',
 'right-createtalk'           => 'Vytvárať diskusné stránky',
 'right-createaccount'        => 'Vytvárať nové používateľské účty',
@@ -2705,5 +2712,9 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'specialpages-group-wiki'        => 'Wiki údaje a nástroje',
 'specialpages-group-redirects'   => 'Špeciálne stránky, ktoré sú presmerovania',
 'specialpages-group-spam'        => 'Nástroje proti spamu',
+
+# Special:Blankpage
+'blankpage'              => 'Prázdna stránka',
+'intentionallyblankpage' => 'Táto stránka je zámerne prázdna. Používa sa na meranie výkonnosti atď.',
 
 );
