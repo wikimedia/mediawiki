@@ -154,6 +154,7 @@ class ModernTemplate extends QuickTemplate {
 	<div class='generated-sidebar portlet' id='p-<?php echo Sanitizer::escapeId($bar) ?>'<?php echo $skin->tooltip('p-'.$bar) ?>>
 		<h5><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo $bar; else echo $out; ?></h5>
 		<div class='pBody'>
+<?php   if ( is_array( $cont ) ) { ?>
 			<ul>
 <?php 			foreach($cont as $key => $val) { ?>
 				<li id="<?php echo Sanitizer::escapeId($val['id']) ?>"<?php
@@ -161,6 +162,11 @@ class ModernTemplate extends QuickTemplate {
 				?>><a href="<?php echo htmlspecialchars($val['href']) ?>"<?php echo $skin->tooltipAndAccesskey($val['id']) ?>><?php echo htmlspecialchars($val['text']) ?></a></li>
 <?php			} ?>
 			</ul>
+<?php   } else {
+			# allow raw HTML block to be defined by extensions
+			print $cont;
+	} 
+?>
 		</div><!-- pBody -->
 	</div><!-- portlet -->
 	<?php } ?>
