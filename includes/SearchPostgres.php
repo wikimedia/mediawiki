@@ -28,7 +28,7 @@
  */
 class SearchPostgres extends SearchEngine {
 
-	function SearchPostgres( $db ) {
+	function __construct( $db ) {
 		$this->db = $db;
 	}
 
@@ -218,8 +218,8 @@ class SearchPostgres extends SearchEngine {
  * @ingroup Search
  */
 class PostgresSearchResult extends SearchResult {
-	function PostgresSearchResult( $row ) {
-		parent::SearchResult($row);
+	function __construct( $row ) {
+		parent::__construct($row);
 		$this->score = $row->score;
 	}
 	function getScore() {
@@ -231,7 +231,7 @@ class PostgresSearchResult extends SearchResult {
  * @ingroup Search
  */
 class PostgresSearchResultSet extends SearchResultSet {
-	function PostgresSearchResultSet( $resultSet, $terms ) {
+	function __construct( $resultSet, $terms ) {
 		$this->mResultSet = $resultSet;
 		$this->mTerms = $terms;
 	}
