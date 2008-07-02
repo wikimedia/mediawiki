@@ -320,11 +320,13 @@ class OutputPage {
 		}
 
 		# Add the remaining categories to the skin
-		$sk = $wgUser->getSkin();
-		foreach ( $categories as $category => $type ) {
-			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
-			$text = $wgContLang->convertHtml( $title->getText() );
-			$this->mCategoryLinks[$type][] = $sk->makeLinkObj( $title, $text );
+		if ( wfRunHooks( 'OutputPageMakeCategoryLinks', array( &$this, $categories, &$this->mCategoryLinks ) ) ) {
+			$sk = $wgUser->getSkin();
+			foreach ( $categories as $category => $type ) {
+				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+				$text = $wgContLang->convertHtml( $title->getText() );
+				$this->mCategoryLinks[$type][] = $sk->makeLinkObj( $title, $text );
+			}
 		}
 	}
 
