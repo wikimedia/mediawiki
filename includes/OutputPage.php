@@ -1357,8 +1357,8 @@ class OutputPage {
 		}
 		$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
 		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
-		array_push( $this->mMetatags, array( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" ) );
-
+		$this->addMeta( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" );
+		
 		$ret .= $this->getHeadLinks();
 		global $wgStylePath;
 		if( $this->isPrintable() ) {
@@ -1381,28 +1381,16 @@ class OutputPage {
 		$ret .= "</head>\n";
 		return $ret;
 	}
-
-	/**
-	 * @return string HTML tag links to be put in the header.
-	 */
-	public function getHeadLinks() {
-		global $wgRequest, $wgFeed, $wgVersion;
-		$ret = "<meta name=\"generator\" content=\"MediaWiki " . $wgVersion . "\" />\n";
-		foreach ( $this->mMetatags as $tag ) {
-			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
-				$a = 'http-equiv';
-				$tag[0] = substr( $tag[0], 5 );
-			} else {
-				$a = 'name';
-			}
-			$ret .= "<meta $a=\"{$tag[0]}\" content=\"{$tag[1]}\" />\n";
-		}
-
+	
+	protected function addDefaultMeta() {
+		global $wgVersion;
+		$this->addMeta( "generator", "MediaWiki $wgVersion" );
+		
 		$p = $this->mRobotpolicy;
 		if( $p !== '' && $p != 'index,follow' ) {
 			// http://www.robotstxt.org/wc/meta-user.html
 			// Only show if it's different from the default robots policy
-			$ret .= "<meta name=\"robots\" content=\"$p\" />\n";
+			$this->addMeta( 'robots', $p );
 		}
 
 		if ( count( $this->mKeywords ) > 0 ) {
@@ -1410,15 +1398,35 @@ class OutputPage {
 				"/<.*?>/" => '',
 				"/_/" => ' '
 			);
-			$ret .= "\t\t<meta name=\"keywords\" content=\"" .
-			  htmlspecialchars(preg_replace(array_keys($strip), array_values($strip),implode( ",", $this->mKeywords ))) . "\" />\n";
+			$this->addMeta( 'keywords', preg_replace(array_keys($strip), array_values($strip),implode( ",", $this->mKeywords ) ) );
+		}
+	}
+
+	/**
+	 * @return string HTML tag links to be put in the header.
+	 */
+	public function getHeadLinks() {
+		global $wgRequest, $wgFeed;
+		
+		// Ideally this should happen earlier, somewhere. :P
+		$this->addDefaultMeta();
+		
+		$tags = array();
+		
+		foreach ( $this->mMetatags as $tag ) {
+			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
+				$a = 'http-equiv';
+				$tag[0] = substr( $tag[0], 5 );
+			} else {
+				$a = 'name';
+			}
+			$tags[] = Xml::element( 'meta',
+				array(
+					$a => $tag[0],
+					'content' => $tag[1] ) );
 		}
 		foreach ( $this->mLinktags as $tag ) {
-			$ret .= "\t\t<link";
-			foreach( $tag as $attr => $val ) {
-				$ret .= " $attr=\"" . htmlspecialchars( $val ) . "\"";
-			}
-			$ret .= " />\n";
+			$tags[] = Xml::element( 'link', $tag );
 		}
 
 		if( $wgFeed ) {
@@ -1429,7 +1437,7 @@ class OutputPage {
 				# with having the same name for different feeds corresponding to
 				# the same page, but we can't avoid that at this low a level.
 
-				$ret .= $this->feedLink(
+				$tags[] = $this->feedLink(
 					$format,
 					$link,
 					wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
@@ -1444,18 +1452,18 @@ class OutputPage {
 			if ( $wgTitle->getPrefixedText() != $rctitle->getPrefixedText() ) {
 				global $wgSitename;
 				
-				$ret .= $this->feedLink(
+				$tags[] = $this->feedLink(
 					'rss',
 					$rctitle->getFullURL( 'feed=rss' ),
 					wfMsg( 'site-rss-feed', $wgSitename ) );
-				$ret .= $this->feedLink(
+				$tags[] = $this->feedLink(
 					'atom',
 					$rctitle->getFullURL( 'feed=atom' ),
 					wfMsg( 'site-atom-feed', $wgSitename ) );
 			}
 		}
 
-		return $ret;
+		return implode( "\n\t\t", $tags ) . "\n";
 	}
 
 	/**
@@ -1488,7 +1496,7 @@ class OutputPage {
 			'rel' => 'alternate',
 			'type' => "application/$type+xml",
 			'title' => $text,
-			'href' => $url ) ) . "\n";
+			'href' => $url ) );
 	}
 
 	/**
