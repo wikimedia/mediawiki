@@ -407,6 +407,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14687) OutputPage::addStyle() now adds type="text/css" like it should.
 * OpenSearch cleanup; Firefox now sends you to the search page for empty
   searches instead of the domain root (which may not even be a wiki).
+* (bug 14698) Blocks without "block account creation" set no longer block
+  account creation.
 
 
 === API changes in 1.13 ===
