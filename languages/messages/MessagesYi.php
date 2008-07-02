@@ -5,14 +5,13 @@
  * @file
  *
  * @author Yidel
+ * @author פוילישער
  * @author Siebrand
- * @author G - ג
- * @author Teak
  * @author לערי ריינהארט
  * @author SPQRobin
- * @author פוילישער
- * @author Jiddisch
  * @author Jon Harald Søby
+ * @author Jiddisch
+ * @author Teak
  */
 
 $fallback = 'he';
@@ -156,9 +155,9 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'דעק אויף מיין בליצפאסט אדרעס אין פאסט מודעות',
 'tog-shownumberswatching'     => 'ווייז די נומער פון די בלאט ליינער',
 'tog-fancysig'                => 'רויע אונטערשריפט (אנע אטאמאטישע לינק)',
-'tog-externaleditor'          => 'נוצט א דערויסענדיגער ענדערער ביי דיפאלט',
-'tog-externaldiff'            => 'נוצט דערויסענדיגער דיפ ביי דיפאלט',
-'tog-showjumplinks'           => 'באמעגליך צוטריט לינקס פון "שפרינג צו"',
+'tog-externaleditor'          => 'ניצט א דרויסנדיגן רעדאקטירער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)',
+'tog-externaldiff'            => 'ניצט א דרויסנדיגן פֿארגלייכער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)',
+'tog-showjumplinks'           => 'באמעגלעך צוטריט לינקס פון "שפרינג צו"',
 'tog-uselivepreview'          => 'באנוצט זיך מיט לייוו פאראויסדיגע ווייזונג (JavaScript) (עקספירענמעטל)',
 'tog-forceeditsummary'        => 'ווארן מיך ווען איך לייג א ליידיג קורץ ווארט ענדערונג',
 'tog-watchlisthideown'        => 'באהאלט מיינע ענדערונגען פון דער אויפפאסן ליסטע',
@@ -604,7 +603,7 @@ $1 שעות.',
 # Edit pages
 'summary'                   => 'קורץ וואָרט',
 'subject'                   => 'טעמע/קעפל',
-'minoredit'                 => 'דאס איז א קליינער ענדערונג',
+'minoredit'                 => 'דאס איז א מינערדיגע ענדערונג',
 'watchthis'                 => 'טוט אױפֿפּאַסן דעם בלאט',
 'savearticle'               => 'טוט אױפֿהיטן',
 'preview'                   => 'פאראויסדיגע ווייזונג',
@@ -918,6 +917,7 @@ $1 שעות.',
 
 # Recent changes linked
 'recentchangeslinked'         => 'פֿאַרבונדענע ענדערונגען',
+'recentchangeslinked-title'   => 'ענדערונגען פֿארבונדן מיט $1',
 'recentchangeslinked-summary' => "אט א רשימה פון נייע ענדערונגען צו בלעטער פארבונדן פון א ספעציפישן בלאט (אדער מיטגליד בלעטער פון א ספעציפישער קאטעגאריע).
 בלעטער אויף [[Special:Watchlist|אייער אויפפאסונג ליסטע]] זענען געוויזן '''דיק'''.",
 'recentchangeslinked-page'    => 'בלאט נאמען:',
@@ -941,14 +941,16 @@ $1 שעות.',
 'imagelist_name' => 'נאמען',
 
 # Image description page
-'filehist'         => 'היסטאריע פֿון דער טעקע',
-'filehist-current' => 'לויפיק',
-'filehist-user'    => 'באניצער',
-'imagelinks'       => 'פֿארבינדונגען',
-'linkstoimage'     => 'די פאלגנדע בלעטער ניצן דאס דאזיגע בילד:',
-'nolinkstoimage'   => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
-'noimage'          => "ס'איז נישטא א טעקע מיט דעם נאמען, איר קענט אבער $1.",
-'noimage-linktext' => 'ארויפלאדן א טעקע',
+'filehist'          => 'היסטאריע פֿון דער טעקע',
+'filehist-current'  => 'לויפיק',
+'filehist-datetime' => 'דאטע/צײַט',
+'filehist-user'     => 'באניצער',
+'filehist-filesize' => 'טעקע גרייס',
+'imagelinks'        => 'פֿארבינדונגען',
+'linkstoimage'      => '{{PLURAL:$1|דער פאלגנדער בלאט ניצט|די פאלגנדע בלעטער ניצן}} דאס דאזיגע בילד:',
+'nolinkstoimage'    => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
+'noimage'           => "ס'איז נישטא א טעקע מיט דעם נאמען, איר קענט אבער $1.",
+'noimage-linktext'  => 'ארויפלאדן א טעקע',
 
 # File reversion
 'filerevert-comment' => 'הערה:',
@@ -992,15 +994,18 @@ $1 שעות.',
 'brokenredirects-edit'   => '(ענדערן)',
 'brokenredirects-delete' => '(אויסמעקן)',
 
+'withoutinterwiki'        => 'בלעטער אן שפראך פֿארבינדונגען',
 'withoutinterwiki-submit' => 'ווײַז',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|בייט|בייטן}}',
 'nlinks'                  => '$1 {{PLURAL:$1|לינק|לינקען}}',
+'nmembers'                => '$1 {{PLURAL:$1|בלאט|בלעטער}}',
 'specialpage-empty'       => 'די בלאט איז ליידיג.',
 'lonelypages'             => "פֿאר'יתומ'טע בלעטער",
 'uncategorizedpages'      => 'בלעטער אָן קאטעגאריעס',
 'uncategorizedcategories' => 'קאטעגאריעס וואס זענען נישט קאטעגאריזירט',
+'unusedcategories'        => 'נישט געניצטע קאטעגאריעס',
 'unusedimages'            => 'נישט געניצטע טעקעס',
 'popularpages'            => 'פאפולערע בלעטער',
 'wantedcategories'        => 'געזוכטע קאטעגאריעס',
@@ -1182,6 +1187,7 @@ $NEWPAGE
 'revertpage'          => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'      => 'שיצן לאָג',
 'protect-level-sysop' => 'נאר סיסאפן',
+'restriction-type'    => 'ערלויבניש:',
 
 # Undelete
 'cannotundelete' => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
@@ -1194,6 +1200,10 @@ $NEWPAGE
 # Contributions
 'contributions' => 'באטיילונגן פון באנוצער',
 'mycontris'     => 'מײַנע טיילונגען',
+'contribsub2'   => 'וועגן $1 ($2)',
+'uctop'         => '(לעצטע)',
+'month'         => 'ביז חודש:',
+'year'          => 'ביז יאר:',
 
 'sp-contributions-newbies-sub' => 'פאר נייע קאנטעס',
 'sp-contributions-blocklog'    => 'בלאקירן לאג',
@@ -1204,6 +1214,9 @@ $NEWPAGE
 'linkshere'           => "די פאלגנדע בלעטער פארבינדן צום בלאט '''[[:$1]]''':",
 'nolinkshere'         => "קיין שום בלאט פארבינדט נישט צו '''[[:$1]]'''.",
 'isredirect'          => 'ווײַטערפירן בלאט',
+'whatlinkshere-prev'  => '{{PLURAL:$1|פֿריערדיגער|$1 פֿריערדיגע}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|קומענדיגער|$1 קומענדיגע}}',
+'whatlinkshere-links' => '→ פֿארבינדונגען',
 
 # Block/unblock
 'blockip'                  => 'באנוצער ארויסטרייבן',
@@ -1273,10 +1286,13 @@ $NEWPAGE
 אכטונג: דער בלאט וועט נישט ווערן אריבערגעפירט אויב עס איז שוין דא א בלאט אונטער דעם נייעם נאמען, אחוץ ווען ער איז ליידיג. אדער ער איז א ווייטערפירונג בלאט, און ער האט נישט קיין געשיכטע פון ענדערונגען. פשט דערפון, אז איר קענט איבערקערן א ווייטערפירונג וואס איר האט אט געמאכט בטעות, און איר קענט נישט אריבערשרייבן אן עקסיסטירענדן בלאט.
 
 '''ווארענונג:''' אזא ענדערונג קען זיין דראסטיש און נישט געווינטשען פאר א פאפולערן בלאט; ביטע פארזיכערט אז איר פארשטייט די ווייטגרייכענדע קאנסקווענסן צו דער אקציע בעפאר איר פירט דאס אויס.",
+'movearticle'             => 'באוועג בלאט:',
+'newtitle'                => 'צו נייעם קעפל:',
 'movepagebtn'             => 'באוועגן',
 'pagemovedsub'            => 'באַוועגט מיט הצלחה',
 'articleexists'           => 'א בלאט מיט דעם נאמען עקזיסטירט שוין, אדער די נאמען וואס איר האט אויסגעוועילט איז נישט געזעצליך.
 ביטע אויסוועילן אן אנדער נאמען.',
+'talkexists'              => "דער בלאט אליין איז באוועגט מיט דערפֿאלג, אבער דער רעדן בלאט האט מען נישט באוועגט ווײַל ס'איז שוין דא א בלאט מיט דעם זעלבן נאמען. זײַט אזוי גוט פֿאראייניגט זיי האנטלעך.",
 'movedto'                 => 'באַוועגנט צו',
 'movetalk'                => 'באוועגט אסאסיצירטע רעדן בלאט',
 '1movedto2'               => '[[:$1]] אריבערגעפירט צו [[:$2]]',
@@ -1379,7 +1395,9 @@ $NEWPAGE
 'tooltip-ca-nstab-template'       => 'זעט דעם מוסטער',
 'tooltip-ca-nstab-help'           => 'זעהט די הילף בלעטער',
 'tooltip-ca-nstab-category'       => 'זעהט די קאטעגאריע בלאט',
+'tooltip-minoredit'               => 'באצייכן דאס אלס מינערדיגע ענדערונג',
 'tooltip-save'                    => 'היט אויף אייערע ענדערונגען',
+'tooltip-preview'                 => 'פֿארויסדיגע ווײַזונג, זײַט אזוי גוט באניצט די געלעגנהייט פֿארן אויפֿהיטן!',
 'tooltip-diff'                    => 'ווײַזן אייערע ענדערונגען צום טעקסט',
 'tooltip-compareselectedversions' => 'פארגלײַכם די צוויי ווערסיעס פון דעם בלאט',
 'tooltip-watch'                   => 'לייגט צו דעם בלאט צו אייער אויפֿפאסונג ליסטע',
@@ -1431,6 +1449,21 @@ $NEWPAGE
 רק פריטי רשימה (שורות המתחילות עם *) נחשבים.
 הקישור הראשון בשורה חייב להיות קישור לתמונה שאין להציג.
 כל הקישורים הבאים באותה השורה נחשבים לחריגים, כלומר לדפים שבהם ניתן להציג את התמונה.',
+
+# Metadata
+'metadata'          => 'מעטאדאטע',
+'metadata-help'     => 'די טעקע אנטהאלט נאך אינפֿארמאציע, אפשר פֿונעם דיגיטאלן אפאראט אדער סקענער וואס האט באשאפֿן דאס בילד.
+
+ווען די טעקע איז געענדערט געווארן פון איר ארגינעלן מצב, עטלעכע פרטים זענען מעגלעך נישט פאסיג צו דער היינטיקער טעקע.',
+'metadata-expand'   => 'ווײַזן פֿארברייטערטע פרטים',
+'metadata-collapse' => 'באהאלטן פֿארברייטערטע פרטים',
+'metadata-fields'   => 'די פֿאלגנדע EXIF מעטאדאטע ווערן געוויזן אפילו ווען די מעטאדאטע טאבעלע איז אײַנגעפֿאלן:
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'               => 'ברייט',
