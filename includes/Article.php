@@ -861,7 +861,7 @@ class Article {
 			}
 
 			elseif ( $rt = Title::newFromRedirect( $text ) ) {
-				# Don't overwrite the subtitle if this was an old revision
+				# Don't append the subtitle if this was an old revision
 				$this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() );
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
 				$wgOut->addParserOutputNoText( $parseout );
@@ -925,15 +925,15 @@ class Article {
 		wfProfileOut( __METHOD__ );
 	}
 	
-	protected function viewRedirect( $target, $overwriteSubtitle = true, $forceKnown = false ) {
+	protected function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
 		
 		# Display redirect
 		$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 		$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
 		
-		if( $overwriteSubtitle ) {
-			$wgOut->setSubtitle( wfMsgHtml( 'redirectpagesub' ) );
+		if( $appendSubtitle ) {
+			$wgOut->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 		}
 		$sk = $wgUser->getSkin();
 		if ( $forceKnown )
