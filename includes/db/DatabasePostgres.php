@@ -1327,4 +1327,13 @@ END;
 		return implode( ' || ', $stringList );
 	}
 
+	/* These are not used yet, but we know we don't want the default version */
+
+	public function lock( $lockName, $method ) {
+		return true;
+	}
+	public function unlock( $lockName, $method ) {
+		return true;
+	}
+
 } // end DatabasePostgres class
