@@ -437,7 +437,7 @@ class SpecialRecentChanges extends SpecialPage {
 		$panelString = implode( "\n", $panel );
 
 		$wgOut->addHTML(
-			Xml::fieldset( wfMsg( 'recentchanges' ), $panelString, array( 'class' => 'rcoptions' ) )
+			Xml::fieldset( wfMsg( strtolower( $this->mName )  ), $panelString, array( 'class' => 'rcoptions' ) )
 		);
 
 		$this->setBottomText( $wgOut, $opts );
