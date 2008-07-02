@@ -2069,6 +2069,7 @@ $1',
 'move-watch'              => 'מעקב אחרי דף זה',
 'movepagebtn'             => 'העברה',
 'pagemovedsub'            => 'ההעברה הושלמה בהצלחה',
+'movepage-moved'          => '<big>הדף "$1" הועבר לשם "$2".</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'קיים כבר דף עם אותו שם, או שהשם שבחרתם אינו חוקי.
 אנא בחרו שם אחר.',
 'cantmove-titleprotected' => 'אינכם יכולים להעביר את הדף לשם זה, כיוון שהשם החדש הוגן מוגן העברה',
@@ -2078,7 +2079,7 @@ $1',
 'move-subpages'           => 'העברת כל דפי המשנה, אם אפשר',
 'move-talk-subpages'      => 'העברת כל דפי המשנה של דף השיחה, אם אפשר',
 'movepage-page-exists'    => 'הדף $1 קיים כבר ולא ניתן לדרוס אותו אוטומטית.',
-'movepage-page-moved'     => 'הדף $1 הועבר לשם $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'הדף $1 הועבר לשם $2.',
 'movepage-page-unmoved'   => 'לא ניתן להעביר את הדף $1 לשם $2.',
 'movepage-max-pages'      => 'המספר המקסימלי של {{PLURAL:$1|דף אחד|$1 דפים}} כבר הועבר ולא ניתן להעביר דפים נוספים אוטומטית.',
 '1movedto2'               => '[[$1]] הועבר ל[[$2]]',
