@@ -2879,4 +2879,8 @@ $1',
 'specialpages-group-redirects'   => 'صفحه‌های ویژهٔ تغییر مسیر دهنده',
 'specialpages-group-spam'        => 'ابزارهای مرتبط با هرزنگاری',
 
+# Special:Blankpage
+'blankpage'              => 'صفحهٔ خالی',
+'intentionallyblankpage' => 'این صفحه به طور عمدی خالی گذاشته شده و برای محک زدن سیستم و غیره به کار می‌رود.',
+
 );
