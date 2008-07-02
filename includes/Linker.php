@@ -478,7 +478,7 @@ class Linker {
 		} else {
 			$basename = substr( $basename, 1 );
 		}
-		return htmlspecialchars( $basename );
+		return $basename;
 	}
 
 	/** Obsolete alias */
@@ -497,8 +497,10 @@ class Linker {
 			wfDebug("Hook LinkerMakeExternalImage changed the output of external image with url {$url} and alt text {$alt} to {$img}", true);
 			return $img;
 		}
-		$s = '<img src="'.$url.'" alt="'.$alt.'" />';
-		return $s;
+		return Xml::element( 'img',
+			array(
+				'src' => $url,
+				'alt' => $alt ) );
 	}
 
 	/**

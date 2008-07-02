@@ -1495,7 +1495,7 @@ class Parser_OldPP
 		     || ( $imagesexception && strpos( $url, $imagesfrom ) === 0 ) ) {
 			if ( preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
-				$text = $sk->makeExternalImage( htmlspecialchars( $url ) );
+				$text = $sk->makeExternalImage( $url );
 			}
 		}
 		return $text;
