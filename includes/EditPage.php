@@ -62,7 +62,6 @@ class EditPage {
 	var $autoSumm = '';
 	var $hookError = '';
 	var $mPreviewTemplates;
-	var $mBaseRevision = false;
 
 	# Form values
 	var $save = false, $preview = false, $diff = false;
@@ -1723,7 +1722,8 @@ END
 		$db = wfGetDB( DB_MASTER );
 
 		// This is the revision the editor started from
-		$baseRevision = $this->getBaseRevision();
+		$baseRevision = Revision::loadFromTimestamp(
+			$db, $this->mTitle, $this->edittime );
 		if( is_null( $baseRevision ) ) {
 			wfProfileOut( $fname );
 			return false;
@@ -2319,17 +2319,6 @@ END
 			case self::AS_IMAGE_REDIRECT_LOGGED:
 				$wgOut->permissionRequired( 'upload' );
 				return false;
-		}
-	}
-	
-	function getBaseRevision() {
-		if ($this->mBaseRevision == false) {
-			$db = wfGetDB( DB_MASTER );
-			$baseRevision = Revision::loadFromTimestamp(
-				$db, $editor->mTitle, $editor->edittime );
-			return $this->mBaseRevision = $baseRevision;
-		} else {
-			return $this->mBaseRevision;
 		}
 	}
 }
