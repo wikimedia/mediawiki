@@ -291,7 +291,7 @@ class MovePageForm {
 		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
 		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
 
-		$wgOut->addWikiMsg( 'movepage-page-moved', $oldLink, $newLink, $oldText, $newText );
+		$wgOut->addWikiMsg( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
 
 		# Now we move extra pages we've been asked to move: subpages and talk
 		# pages.  First, if the old page or the new page is a talk page, we
