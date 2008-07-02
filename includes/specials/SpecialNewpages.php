@@ -231,7 +231,7 @@ class SpecialNewpages extends SpecialPage {
 		global $wgLang, $wgContLang, $wgUser;
 		$dm = $wgContLang->getDirMark();
 
-		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
+		$title = Title::makeTitleSafe( $result->page_namespace, $result->page_title );
 		$time = $wgLang->timeAndDate( $result->rc_timestamp, true );
 		$plink = $this->skin->makeKnownLinkObj( $title, '', $this->patrollable( $result ) ? 'rcid=' . $result->rc_id : '' );
 		$hist = $this->skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
@@ -305,7 +305,7 @@ class SpecialNewpages extends SpecialPage {
 	}
 
 	protected function feedItem( $row ) {
-		$title = Title::MakeTitle( intval( $row->rc_namespace ), $row->rc_title );
+		$title = Title::MakeTitle( intval( $row->page_namespace ), $row->page_title );
 		if( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
@@ -379,7 +379,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
 		if( $namespace !== false ) {
-			$conds['rc_namespace'] = $namespace;
+			$conds['page_namespace'] = $namespace;
 			$rcIndexes = array( 'new_name_timestamp' );
 		} else {
 			$rcIndexes = array( 'rc_timestamp' );
@@ -404,7 +404,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		return array(
 			'tables' => array( 'recentchanges', 'page' ),
-			'fields' => 'rc_namespace,rc_title, rc_cur_id, rc_user,rc_user_text,rc_comment,
+			'fields' => 'page_namespace,page_title, rc_cur_id, rc_user,rc_user_text,rc_comment,
 				rc_timestamp,rc_patrolled,rc_id,page_len as length, page_latest as rev_id',
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('recentchanges' => $rcIndexes) )
@@ -425,7 +425,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		while( $row = $this->mResult->fetchObject() ) {
 			$linkBatch->add( NS_USER, $row->rc_user_text );
 			$linkBatch->add( NS_USER_TALK, $row->rc_user_text );
-			$linkBatch->add( $row->rc_namespace, $row->rc_title );
+			$linkBatch->add( $row->page_namespace, $row->page_title );
 		}
 		$linkBatch->execute();
 		return "<ul>";

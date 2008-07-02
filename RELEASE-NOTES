@@ -409,7 +409,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   searches instead of the domain root (which may not even be a wiki).
 * (bug 14698) Blocks without "block account creation" set no longer block
   account creation.
-
+* (bug 3481) Pages moved shortly after creation are shown at their new title
+  on Special:Newpages.
 
 === API changes in 1.13 ===
 
