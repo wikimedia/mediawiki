@@ -276,6 +276,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'מיזוג_גרסאות' ),
 	'Filepath'                  => array( 'נתיב_לקובץ' ),
 	'Invalidateemail'           => array( 'ביטול_דואר' ),
+	'Blankpage'                 => array( 'דף_ריק' ),
 );
 
 $namespaceNames = array(
@@ -2878,5 +2879,9 @@ $1',
 'specialpages-group-wiki'        => 'מידע וכלים על האתר',
 'specialpages-group-redirects'   => 'הפניות מדפים מיוחדים',
 'specialpages-group-spam'        => 'כלי ספאם',
+
+# Special:Blankpage
+'blankpage'              => 'דף ריק',
+'intentionallyblankpage' => 'דף זה נשאר ריק במכוון ומיועד לבדיקת ביצועים וכדומה',
 
 );
