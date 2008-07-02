@@ -2236,32 +2236,6 @@ class Database {
 	}
 	
 	/**
-	 * Acquire a lock, no-op to be overridden
-	 * by subclasses as needed.
-	 */
-	public function lock( $lockName, $method ) {
-		return true;
-	}
-	/**
-	 * Release a lock, no-op to be overridden
-	 * by subclasses as needed.
-	 */
-	public function unlock( $lockName, $method ) {
-		return true;
-	}
-}
-
-/**
- * Database abstraction object for mySQL
- * Inherit all methods and properties of Database::Database(),
- * except for locking.
- *
- * @ingroup Database
- * @see Database
- */
-class DatabaseMysql extends Database {
-	
-	/**
 	 * Acquire a lock
 	 * 
 	 * Abstracted from Filestore::lock() so child classes can implement for
@@ -2284,7 +2258,6 @@ class DatabaseMysql extends Database {
 			return false;
 		}
 	}
-	
 	/**
 	 * Release a lock.
 	 * 
@@ -2299,6 +2272,17 @@ class DatabaseMysql extends Database {
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName)", $method );
 		$this->freeResult( $result );
 	}
+}
+
+/**
+ * Database abstraction object for mySQL
+ * Inherit all methods and properties of Database::Database()
+ *
+ * @ingroup Database
+ * @see Database
+ */
+class DatabaseMysql extends Database {
+	# Inherit all
 }
 
 /******************************************************************************
