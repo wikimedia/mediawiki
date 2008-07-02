@@ -67,7 +67,7 @@ class ImagePage extends Article {
 				// probably the redirect page itself. Fake the redirect symbol
 				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 				$this->viewRedirect( Title::makeTitle( NS_IMAGE, $this->img->getName() ),
-					/* $overwriteSubtitle */ true, /* $forceKnown */ true );
+					/* $appendSubtitle */ true, /* $forceKnown */ true );
 				$this->viewUpdates();
 				return;
 			}
