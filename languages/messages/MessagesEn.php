@@ -1078,7 +1078,8 @@ Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:
 'updated'                          => '(Updated)',
 'note'                             => '<strong>Note:</strong>',
 'previewnote'                      => '<strong>This is only a preview;
-changes have not yet been saved!</strong>',
+changes have not yet been saved!</strong>
+[[#editform|→ Go to the edit box.]]',
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again. If it still does not work, try logging out and logging back in.</strong>',
