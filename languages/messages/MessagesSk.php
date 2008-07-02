@@ -4,19 +4,18 @@
  * @ingroup Language
  * @file
  *
+ * @author Helix84
+ * @author Andre Engels
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Michawiki
+ * @author Sp5uhe
+ * @author Jon Harald Søby
  * @author Valasek
  * @author Palica
  * @author Liso
  * @author Maros
  * @author SPQRobin
- * @author Sp5uhe
- * @author Helix84
- * @author Siebrand
- * @author לערי ריינהארט
- * @author Kandy Talbot
- * @author Michawiki
- * @author Jon Harald Søby
- * @author Andre Engels
  */
 
 $datePreferences = array(
@@ -1951,7 +1950,6 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'move-watch'              => 'Sledovať túto stránku',
 'movepagebtn'             => 'Presunúť stránku',
 'pagemovedsub'            => 'Presun bol úspešný',
-'movepage-moved'          => '<big>\'\'\'"$1" bolo presunuté na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.
 Prosím vyberte si iný názov.',
@@ -1965,7 +1963,7 @@ Prosím, zlúčte ich ručne.'''",
 'move-subpages'           => 'Presunúť všetky podstránky ak existujú',
 'move-talk-subpages'      => 'Presunúť všetky podstránky diskusnej stránky ak existujú',
 'movepage-page-exists'    => 'Stránka $1 už existuje a nie je možné ju automaticky prepísať.',
-'movepage-page-moved'     => 'Stránka $1 bola presunutá na $2.',
+'movepage-page-moved'     => 'Stránka $1 bola presunutá na $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Stránku $1 nebolo možné presunúť na $2.',
 'movepage-max-pages'      => 'Maximum $1 {{PLURAL:$1|stránka bola presunutá|stránok bolo presunutých}} a viac nebude presunutých automaticky.',
 '1movedto2'               => '[[$1]] premiestnená na [[$2]]',

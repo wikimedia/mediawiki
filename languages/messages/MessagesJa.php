@@ -11,12 +11,11 @@
  * @author Kahusi
  * @author Emk
  * @author Siebrand
- * @author Hatukanezumi
- * @author Mzm5zbC3
  * @author Iwai.masaharu
+ * @author Mzm5zbC3
  * @author לערי ריינהארט
  * @author Kkkdc
- * @author Nike
+ * @author Hatukanezumi
  */
 
 $skinNames = array(
@@ -1658,7 +1657,6 @@ $NEWPAGE
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
 'pagemovedsub'            => '無事移動しました。',
-'movepage-moved'          => '<big>\'\'\'"$1" は "$2" へ移動されました。\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'cantmove-titleprotected' => '移動先ページが作成保護対象となっているため、ページを移動できません。',
 'talkexists'              => 'ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。',
@@ -1667,7 +1665,7 @@ $NEWPAGE
 'move-subpages'           => 'サブページもすべて移動する',
 'move-talk-subpages'      => 'ノートページのサブページもすべて移動する',
 'movepage-page-exists'    => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
-'movepage-page-moved'     => '$1 は $2 へ移動されました。',
+'movepage-page-moved'     => '$1 は $2 へ移動されました。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '$1 を $2 へ移動できませんでした。',
 'movepage-max-pages'      => '自動的に移動できるのは $1{{PLURAL:$1|ページ|ページ}} までで、それ以上は移動されません。',
 '1movedto2'               => 'ページ [[$1]] を [[$2]] へ移動',

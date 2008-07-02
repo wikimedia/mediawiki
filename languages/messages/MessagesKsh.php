@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Caesius noh en Idee vum Manes
  * @author Purodha
  * @author Siebrand
+ * @author Caesius noh en Idee vum Manes
  */
 
 /**
@@ -838,7 +838,7 @@ Ene Wiki Köbes kann de fottjeschmessene Krom immer noch aanluere un kann en och
 dem Wiki singe Installation dat anders fassjelaht woode es.',
 'revdelete-legend'            => 'Dä öffentlije Zojang enschränke',
 'revdelete-hide-text'         => 'Dä Tex vun dä Version versteiche',
-'revdelete-hide-name'         => 'Der Förjang, un och der Enndraach em Logbooch versteiche',
+'revdelete-hide-name'         => 'Der Förjang, un och der Enndraach uss_em Logbooch, versteiche',
 'revdelete-hide-comment'      => 'Dä Enhald vun „Koot Zosammejefass, Quell“ usblende',
 'revdelete-hide-user'         => 'Däm Bearbeider sing IP Adress oder Metmaacher Name versteiche',
 'revdelete-hide-restricted'   => 'Dun dat och för de Wiki Köbese esu maache wie för jede Andere',
@@ -954,7 +954,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'contextchars'             => 'Zeiche us de Ömjevvung, pro Reih:',
 'stub-threshold'           => 'Links passend för <a href="#" class="stub">klein Sigge</a> fomateere av esu vill Bytes:',
 'recentchangesdays'        => 'Aanzahl Dage en de Liss met de „Neuste Änderunge“ — als Standad:',
-'recentchangescount'       => 'Aanzahl Endräch en de Liss met de „Neuste Änderunge“ — als Standad:',
+'recentchangescount'       => 'Aanzahl Endräch en de Liss met de „Neuste Änderunge“, Fojangeheit un Logbööcher — als Standad:',
 'savedprefs'               => 'Ding Enstellunge sin jetz jesechert.',
 'timezonelegend'           => 'Ziggzone Ungerscheed',
 'timezonetext'             => '¹ Dat sin de Stunde un Minutte zwesche de Zigg op de Uhre bei Dir am Oot un däm Sörver, dä met UTC läuf.',
@@ -1038,7 +1038,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-upload_by_url'        => 'Datei vun enne URL ent Wiki huhlade',
 'right-purge'                => 'Ohne nohzefroge der Enhalt vum Cache för en Sigg fottschmiiße',
 'right-autoconfirmed'        => 'Halfjeschözte Sigge ändere',
-'right-bot'                  => 'Als enne automatesche Prozeß oddr a Projramm behandelle',
+'right-bot'                  => 'Als enne automatesche Prozeß odder e Projramm behandelt wääde',
 'right-nominornewtalk'       => 'Klein Mini-Änderunge aan anderlücks Klaafsigge brenge dänne nit „{{int:newmessageslink}}“',
 'right-apihighlimits'        => 'Hütere Jrenze em API',
 'right-writeapi'             => 'Darf de <tt>writeAPI</tt> bruche',
@@ -1300,8 +1300,12 @@ wääde, un luur Der die ander Links aan!',
 * {{PLURAL:$2|<strong>Eine</strong> dovun es|<strong>$2</strong> dovun sin|<strong>Keine</strong> es}} $5, dat {{PLURAL:$4|es|sinner|sinner}} <strong>$4%</strong>.',
 'statistics-mostpopular' => 'De miets affjeroofe Sigge',
 
-'disambiguations'     => '„(Wat es dat?)“-Sigge',
-'disambiguationspage' => 'Template:Disambig',
+'disambiguations'      => '„(Wat es dat?)“-Sigge',
+'disambiguationspage'  => 'Template:Disambig',
+'disambiguations-text' => 'En de Sigge hee noh sin Links dren op en „(Watt ėßß datt?)“-Sigg.
+De Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
+
+(En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikelle sin, weed dobei jaa nit eez metjezallt)',
 
 'doubleredirects'         => 'Ömleitunge op Ömleitunge (Dubbel Ömleitunge sin verkihrt)',
 'doubleredirects-summary' => 'Die Sondersigg hee zeich Ömleitunge op Ömleitungssigge. Domet kann de Wiki-Sofwäer nit ömjon. Die sollte alsu opjerühmp weede. Jede Reih he zeich de eetste un zweite Ömleidung, un et Ziel fun de zweite Ömleidung, wat för jewöhnlech och et Ziel vun de eetste Ömleidung sin sullt.',
@@ -1532,7 +1536,7 @@ Schirm häs.',
 'notanarticle'         => 'Keine Atikkel',
 'notvisiblerev'        => 'Di Version es fottjeschmesse',
 'watchnochange'        => 'Keine Atikkel en Dinger Oppassliss es en dä aanjezeichte Zick verändert woode.',
-'watchlist-details'    => 'Do häs {{PLURAL:$1|<strong>ein<strong> Sigg|<strong>$1</strong> Sigge|<strong>kein</strong> Sigg}} en dä Oppassliss{{PLURAL:$1|, un di Klaafsigg dozo|, un de Klaafsigge dozo|}}.',
+'watchlist-details'    => 'Do häs {{PLURAL:$1|<strong>ein</strong> Sigg|<strong>$1</strong> Sigge|<strong>kein</strong> Sigg}} en dä Oppassliss{{PLURAL:$1|, un di Klaafsigg dozo|, un de Klaafsigge dozo|}}.',
 'wlheader-enotif'      => '* Et E-mail Schecke es enjeschalt.',
 'wlheader-showupdated' => '* Wann se Einer jeändert hätt, zickdäm De se et letzte Mol aanjeluurt häs, sin die Sigge <strong>extra markeet</strong>.',
 'watchmethod-recent'   => 'Ben de letzte Änderunge jäje de Oppassliss am pröfe',
@@ -1813,7 +1817,6 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'move-watch'              => 'Op die Sigg hee oppasse',
 'movepagebtn'             => 'Ömnenne',
 'pagemovedsub'            => 'Dat Ömnenne hät jeflupp',
-'movepage-moved'          => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
 'talkexists'              => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
 'movedto'                 => 'ömjenannt en',
@@ -1821,7 +1824,7 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'move-subpages'           => 'Don de Ongersigge met_ömnënne',
 'move-talk-subpages'      => 'Don de Ongersigge von de Klaafsigge met_ömnënne',
 'movepage-page-exists'    => 'En Sigg „$1“ ham_mer ald, un di bliif och beshtonn, mer don se nit ottomatėsch ußtuusche.',
-'movepage-page-moved'     => 'Di eejemoolijje Sigg „$1“ es jëz op „$2“ ömjenannt.',
+'movepage-page-moved'     => 'Di eejemoolijje Sigg „$1“ es jëz op „$2“ ömjenannt.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Mer kůnnte di Sigg „$1“ nit op „$2“ ömnënne.',
 'movepage-max-pages'      => 'Mer han jëtz {{PLURAL:$1|ëijn Sigg|$1 Sigge|kein Sigg}} ömjenanndt. Mieh jeiht nit automatėsch.',
 '1movedto2'               => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',

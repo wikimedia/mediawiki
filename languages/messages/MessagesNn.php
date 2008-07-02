@@ -4,21 +4,22 @@
  * @ingroup Language
  * @file
  *
+ * @author Eirik
+ * @author Jon Harald Søby
+ * @author Jorunn
+ * @author M.M.S.
+ * @author Siebrand
+ * @author לערי ריינהארט
+ * @author Ranveig
+ * @author Finnrind
+ * @author Dittaeva
+ * @author H92
+ * @author Boivie
+ * @author SPQRobin
  * @author Olve Utne
  * @author Guttorm Flatabø
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Shauni
- * @author Eirik
  * @author Max sonnelid
- * @author Jon Harald Søby
- * @author SPQRobin
- * @author Dittaeva
- * @author M.M.S.
- * @author Jorunn
- * @author H92
- * @author Finnrind
- * @author Ranveig
  */
 
 /**
@@ -1887,7 +1888,6 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'move-watch'              => 'Overvak denne sida',
 'movepagebtn'             => 'Flytt side',
 'pagemovedsub'            => 'Flyttinga er gjennomført',
-'movepage-moved'          => "<big>'''«$1» er flytt til «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',
 'cantmove-titleprotected' => 'Du kan ikkje flytte sida hit, fordi det nye sidenamnet er verna mot oppretting.',
 'talkexists'              => "'''Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt flette dei saman manuelt. Dersom det ikkje er mogleg for deg å gjera dette kan du kontakte ein <a href=\"{{localurl:Project:Administratorar}}\">administrator</a> &#8212; men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på endringshistorikken.'''",

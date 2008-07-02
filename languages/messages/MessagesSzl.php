@@ -9,8 +9,8 @@
  * @author Herr Kriss
  * @author Pimke
  * @author Siebrand
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author Leinad
  * @author Danny B.
  */
@@ -1728,7 +1728,6 @@ W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z t
 'move-watch'              => 'Dej pozor',
 'movepagebtn'             => 'Přećiś artikel',
 'pagemovedsub'            => 'Přećiśńjyńće gotowe',
-'movepage-moved'          => '<big>\'\'\'"$1" přećiśńjynto ku "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Artikel s takym mjanym juž je, abo mjano je zue.
 Wybjer inkše mjano.',
 'cantmove-titleprotected' => 'Ńy možeš přećepnůńć zajty, bez tůž co jei nowe mjano je ńydozwolůne s kuli zabezpječyńo před utwořyńym',

@@ -1362,14 +1362,13 @@ Kadagitoy a kaso, masapul nga iyakar wenno itiponmo a manual ti panid no kayatmo
 'move-watch'              => 'Bantayan daytoy a panid',
 'movepagebtn'             => 'Iyakar ti panid',
 'pagemovedsub'            => 'Balligi ti panangiyakar',
-'movepage-moved'          => '<big>Naiyakar ti \'\'\'"$1" iti "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Addan panid nga addaan iti kasta a nagan, wenno ti nagan a pinilim ket saan a mabalin.
 Pangngaasim ta mangpilika iti sabali a nagan.',
 'talkexists'              => "'''Sibaballigi a naiyakar ti panid, nupay kasta saan a maiyakar ti panid ti tungtongan gapu ta addan panid-tungtongan iti baro a titulo.
 Pangngaasim ta i-manualmo lattan a pagtiponem ida.'''",
 'movedto'                 => 'naiyakar iti',
 'movetalk'                => 'Iyakar ti mainaig a panid ti tungtongan',
-'movepage-page-moved'     => 'Naiyakar ti panid a $1 iti $2.',
+'movepage-page-moved'     => 'Naiyakar ti panid a $1 iti $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Saan a maiyakar ti panid $1 iti $2.',
 '1movedto2'               => '[[$1]] naiyakar iti [[$2]]',
 '1movedto2_redir'         => '[[$1]] naiyakar iti [[$2]] over redirect',

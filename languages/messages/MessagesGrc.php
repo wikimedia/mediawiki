@@ -10,6 +10,7 @@
  * @author Nychus
  * @author Neachili
  * @author SPQRobin
+ * @author Siebrand
  * @author Yannos
  */
 
@@ -240,6 +241,7 @@ $messages = array(
 Λογισμὸν σὸν πεποίηται. Ἔχε μνήμην μεταβάλλειν τὰς τοῦ {{SITENAME}} αἱρέσεις σὰς.',
 'yourname'                => 'Ὄνομα χρωμένου:',
 'yourpassword'            => 'Σῆμα:',
+'remembermypassword'      => 'Μιμνῄσκεσυαι ἐνθάδε τὸ συνδεῖσθαι',
 'login'                   => 'Συνδεῖσθαι',
 'nav-login-createaccount' => 'Συνδεῖσθαι/λογισμὸν ποιεῖν',
 'userlogin'               => 'Συνδεῖσθαι/λογισμὸν ποιεῖν',
@@ -248,6 +250,7 @@ $messages = array(
 'notloggedin'             => 'Οὐ συνδεδεμένος',
 'nologinlink'             => 'Λογισμὸν ποιεῖν',
 'createaccount'           => 'Λογισμὸν ποιεῖν',
+'gotaccount'              => 'Ἆρα λογισμὸν ἤδη τινὰ ἔχεις; $1.',
 'gotaccountlink'          => 'Συνδεῖσθαι',
 'createaccountmail'       => 'ἠλεκτρονικῇ ἐπιστολῇ',
 'youremail'               => 'Ἠλεκτρονικαὶ ἐπιστολαὶ:',
@@ -410,20 +413,23 @@ $messages = array(
 'brokenredirects-delete' => '(διαγράφειν)',
 
 # Miscellaneous special pages
-'nbytes'         => '$1 {{PLURAL:$1|βαίς|βαίτα}}',
-'ncategories'    => '$1 {{PLURAL:$1|Γένος|Γένη}}',
-'nlinks'         => '$1 {{PLURAL:$1|σύνδεσμος|σύνδεσμοι}}',
-'nmembers'       => '$1 {{PLURAL:$1|μέλος|μέλη}}',
-'lonelypages'    => 'Δέλτοι ὀρφαναί',
-'wantedpages'    => 'Αἱ δέλτοι οἷας ἱμείρομεν',
-'shortpages'     => 'Δέλτοι μικραί',
-'longpages'      => 'Δέλτοι μακραί',
-'protectedpages' => 'Αἱ δέλτοι αἱ φυλαττόμενοι',
-'listusers'      => 'Κατάλογος πάντων τῶν χρωμένων',
-'newpages'       => 'Δέλτοι νέαι',
-'ancientpages'   => 'Αἱ παλαιόταται δέλτοι',
-'move'           => 'κινεῖν',
-'movethispage'   => 'Κινεῖν τήνδε τὴν δέλτον',
+'nbytes'                  => '$1 {{PLURAL:$1|βαίς|βαίτα}}',
+'ncategories'             => '$1 {{PLURAL:$1|Γένος|Γένη}}',
+'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμος|σύνδεσμοι}}',
+'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
+'lonelypages'             => 'Δέλτοι ὀρφαναί',
+'uncategorizedpages'      => 'Αἱ δέλτοι αἱ οὐκ ἐνοῦσαι γένεσι',
+'uncategorizedcategories' => 'Τὰ γένη τὰ οὐκ ἐνοῦντες γένεσι',
+'wantedpages'             => 'Αἱ δέλτοι οἷας ἱμείρομεν',
+'mostrevisions'           => 'Αἱ δέλτοι αἱ πλειστάκις μεταβεβλήμεναι',
+'shortpages'              => 'Δέλτοι μικραί',
+'longpages'               => 'Δέλτοι μακραί',
+'protectedpages'          => 'Αἱ δέλτοι αἱ φυλαττόμενοι',
+'listusers'               => 'Κατάλογος πάντων τῶν χρωμένων',
+'newpages'                => 'Δέλτοι νέαι',
+'ancientpages'            => 'Αἱ παλαιόταται δέλτοι',
+'move'                    => 'κινεῖν',
+'movethispage'            => 'Κινεῖν τήνδε τὴν δέλτον',
 
 # Book sources
 'booksources-go' => 'Ἰέναι',
@@ -544,7 +550,6 @@ $messages = array(
 'move-watch'       => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movepagebtn'      => 'Κινεῖν τὴν δέλτον',
 'pagemovedsub'     => 'Κεκίνηται ἡ δέλτος',
-'movepage-moved'   => '<big>\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'Κεκίνηται πρὸς',
 'movetalk'         => 'Κινεῖν τὸν διάλεκτον',
 '1movedto2'        => '[[$1]] ἐκινήθη πρὸς [[$2]]',
@@ -644,6 +649,12 @@ $messages = array(
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'Τίτλοι:',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Ὁρᾶν τε μεταγράφειν τὰ ἐφορώμενα',
+
+# Special:Version
+'version' => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
 'specialpages' => 'Εἰδικαὶ δέλτοι',

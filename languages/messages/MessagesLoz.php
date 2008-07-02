@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Ooswesthoesbes
  * @author SF-Language
  * @author Litingatinga Silozi
- * @author Ooswesthoesbes
  * @author Siebrand
  * @author Jon Harald Søby
  */
@@ -904,7 +904,6 @@ Teri yaki, a nyanganyisize.",
 'move-watch'       => 'Kentezi bye petulo',
 'movepagebtn'      => 'Nyanganyisize petulo',
 'pagemovedsub'     => 'Nyanganyisize sa afi.',
-'movepage-moved'   => '<big>\'\'\'"$1" sa nyanganyisize di "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Petulo zwa nyanganyisize afi sa, e nom sa bufosi. Xete nom sa kulikawi.',
 'talkexists'       => "'''No bufosi di nyanganyisize petulo, bufosi di nyanganyisize bulelezi, tubi hani.'''",
 'movedto'          => 'nyanganyisize di',

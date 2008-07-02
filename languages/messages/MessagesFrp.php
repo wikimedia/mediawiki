@@ -7,8 +7,8 @@
  * @author ChrisPtDe
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $fallback = 'fr';
@@ -1674,9 +1674,6 @@ Dens cél câs, vos devréd renomar ou fusionar la pâge manuèlament se vos lo 
 'move-watch'              => 'Siuvre ceta pâge',
 'movepagebtn'             => 'Renomar l’articllo',
 'pagemovedsub'            => 'Renomâjo reussi',
-'movepage-moved'          => "<big>'''La pâge « $1 » <small>([[Special:Whatlinkshere/$3|lims]])</small> at étâ renomâ en « $2 » <small>([[Special:Whatlinkshere/$4|lims]])</small>.'''</big>
-
-Volyéd controlar qu’ègziste gins de redirèccion dobla ou câssa, et corregiéd cetes se fôt.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ègziste ja un articllo portent cél titro, ou ben lo titro
 que vos éd chouèsi/cièrdu est envalido.
 Volyéd nen chouèsir/cièrdre un ôtro.',

@@ -4,16 +4,16 @@
  * @ingroup Language
  * @file
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author គីមស៊្រុន
+ * @author Lovekhmer
+ * @author Chhorran
+ * @author T-Rithy
  * @author Bunly
  * @author តឹក ប៊ុនលី
- * @author Chhorran
  * @author Siebrand
- * @author SPQRobin
- * @author គីមស៊្រុន
- * @author T-Rithy
- * @author Lovekhmer
  * @author Jon Harald Søby
+ * @author SPQRobin
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
 $digitTransformTable = array(
@@ -1671,7 +1671,6 @@ $1',
 'move-watch'              => 'តាមដានទំព័រនេះ',
 'movepagebtn'             => 'ប្តូរទីតាំង',
 'pagemovedsub'            => 'ប្តូទីតាំងដោយជោគជ័យ',
-'movepage-moved'          => '<big>ទំព័រ(អត្ថបទ)\'\'\'"$1" ត្រូវបានប្តូរទីតាំងទៅជាទំព័រ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'ទំព័រដែលមានឈ្មោះបែបនេះមានរួចហើយ ឬ ឈ្មោះដែលអ្នកបានជ្រើសរើសមិនត្រឹមត្រូវ។
 សូមជ្រើសរើសឈ្មោះមួយផ្សេងទៀត។',
 'cantmove-titleprotected' => 'អ្នកមិនអាច​ប្តូទីតាំង ទំព័រ​ ទៅទីតាំងនេះ, ព្រោះ ចំណងជើងថ្មី បានត្រូវការពារ ចំពោះការបង្កើតវា',

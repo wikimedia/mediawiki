@@ -4,6 +4,10 @@
  * @ingroup Language
  * @file
  *
+ * @author SPQRobin
+ * @author Malafaya
+ * @author SabineCretella
+ * @author Siebrand
  * @author Kemmótar
  * @author Flavio05
  * @author Clamengh
@@ -11,10 +15,6 @@
  * @author Amgine
  * @author Remulazz
  * @author DracoRoboter
- * @author SPQRobin
- * @author SabineCretella
- * @author Malafaya
- * @author Siebrand
  */
 
 $fallback = 'it';

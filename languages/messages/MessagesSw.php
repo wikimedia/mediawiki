@@ -4,13 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Robert Ullmann
  * @author Malangali
  * @author לערי ריינהארט
  * @author Siebrand
- * @author Nike
  * @author SPQRobin
  * @author Marcos
+ * @author Robert Ullmann
  */
 
 $messages = array(
@@ -619,7 +618,6 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'move-watch'       => 'Fuatilia ukurasa huu',
 'movepagebtn'      => 'Sogeza ukurasa',
 'pagemovedsub'     => 'Umefaulu kusogeza ukurasa',
-'movepage-moved'   => '<big>\'\'\'"$1" imesogezwa hadi "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',

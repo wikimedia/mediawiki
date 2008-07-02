@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Ruben Vardanyan (me@RubenVardanyan.com)
  */
 
 $separatorTransformTable = array(
@@ -1739,7 +1739,6 @@ $1',
 'move-watch'              => 'Հսկել էջը',
 'movepagebtn'             => 'Տեղափոխել էջը',
 'pagemovedsub'            => 'Էջը տեղափոխվեց',
-'movepage-moved'          => "<big>'''«$1» վերանվանված է «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Այդ անվանմամբ էջ արդեն գոյություն ունի կամ ձեր ընտրած անվանումը անթույլատրելի է։
 Խնդրում ենք ընտրել այլ անվանում։',
 'talkexists'              => "'''Էջը հաջողությամբ տեղափոխվեց, սակայն կցված քննարկման էջը հնարավոր չէր տեղափոխել, քանի որ նոր անվանմամբ էջ արդեն գոյություն ուներ։ Խնդրում ենք միաձուլել դրանք ձեռքով։'''",

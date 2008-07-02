@@ -10,6 +10,7 @@
  * @author לערי ריינהארט
  * @author Spacebirdy
  * @author Siebrand
+ * @author Krun
  * @author Friðrik Bragi Dýrfjörð
  * @author Cessator
  * @author SPQRobin
@@ -256,8 +257,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Sýna netfang mitt í tilkynningarpóstum',
 'tog-shownumberswatching'     => 'Sýna fjölda notenda sem vakta',
 'tog-fancysig'                => 'Nota hráa undirskrift (án sjálfkrafa tengils)',
-'tog-externaleditor'          => 'Nota utanaðkomandi ritil að staðaldri',
-'tog-externaldiff'            => 'Nota utanaðkomandi breytingarsíðu að staðaldri',
+'tog-externaleditor'          => 'Nota utanaðkomandi ritil að staðaldri (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
+'tog-externaldiff'            => 'Nota utanaðkomandi breytingar að staðaldri (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
 'tog-showjumplinks'           => 'Leyfa „stökkva á“ aðgengitengla',
 'tog-forceeditsummary'        => 'Birta áminningu ef útskýring er ekki gefin fyrir breytingu þegar síða er vistuð.',
 'tog-watchlisthideown'        => 'Ekki sýna mínar breytingar á vaktlistanum',
@@ -696,21 +697,21 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'hr_tip'          => 'Lárétt lína (notist sparlega)',
 
 # Edit pages
-'summary'                  => 'Breytingarágrip',
-'subject'                  => 'Fyrirsögn',
-'minoredit'                => 'Þetta er minniháttar breyting',
-'watchthis'                => 'Vakta þessa síðu',
-'savearticle'              => 'Vista síðu',
-'preview'                  => 'Forskoða',
-'showpreview'              => 'Forskoða',
-'showlivepreview'          => 'Sýning',
-'showdiff'                 => 'Sýna breytingar',
-'anoneditwarning'          => "'''Viðvörun:''' Þú ert ekki skráður inn. Vistfang þitt mun verða skráð niður í breytingaskrá síðunnar.",
-'missingcommenttext'       => 'Gerðu svo vel og skrifaðu athugasemd fyrir neðan.',
-'summary-preview'          => 'Forskoða breytingarágrip',
-'subject-preview'          => 'Forskoðun viðfangsefnis/fyrirsagnar',
-'blockedtitle'             => 'Notandi er bannaður',
-'blockedtext'              => "<big>'''Notandanafn þitt eða vistfang hefur verið bannað.'''</big>
+'summary'                          => 'Breytingarágrip',
+'subject'                          => 'Fyrirsögn',
+'minoredit'                        => 'Þetta er minniháttar breyting',
+'watchthis'                        => 'Vakta þessa síðu',
+'savearticle'                      => 'Vista síðu',
+'preview'                          => 'Forskoða',
+'showpreview'                      => 'Forskoða',
+'showlivepreview'                  => 'Sýning',
+'showdiff'                         => 'Sýna breytingar',
+'anoneditwarning'                  => "'''Viðvörun:''' Þú ert ekki skráður inn. Vistfang þitt mun verða skráð niður í breytingaskrá síðunnar.",
+'missingcommenttext'               => 'Gerðu svo vel og skrifaðu athugasemd fyrir neðan.',
+'summary-preview'                  => 'Forskoða breytingarágrip',
+'subject-preview'                  => 'Forskoðun viðfangsefnis/fyrirsagnar',
+'blockedtitle'                     => 'Notandi er bannaður',
+'blockedtext'                      => "<big>'''Notandanafn þitt eða vistfang hefur verið bannað.'''</big>
 
 Bannið var sett af $1. Ástæðan sem gefin var er eftirfarandi: ''$2''.
 
@@ -721,7 +722,7 @@ Bannið var sett af $1. Ástæðan sem gefin var er eftirfarandi: ''$2''.
 Þú getur reynt að hafa samband við $1 eða einhvern annan [[{{MediaWiki:Grouppage-sysop}}|stjórnanda]] til að ræða bannið.
 Athugaðu að möguleikinn „Senda þessum notanda tölvupóst“ er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|notandastillingum þínum]] og að þér hafi ekki verið bannaður sá möguleiki.
 Vistfangið þitt er $3 og bönnunarnúmerið er #$5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
-'autoblockedtext'          => "Vistfang þitt hefur verið sjálvirkt bannað því það var notuð af öðrum notanda, sem var bannaður af $1.
+'autoblockedtext'                  => "Vistfang þitt hefur verið sjálvirkt bannað því það var notuð af öðrum notanda, sem var bannaður af $1.
 Ástæðan sem gefin var er eftirfarandi:
 
 :''$2''
@@ -735,74 +736,75 @@ Vistfangið þitt er $3 og bönnunarnúmerið er #$5. Vinsamlegast taktu það f
 Athugið að „Senda þessum notanda tölvupóst“ möguleikinn er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|stillingunum]] þínum.
 
 Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
-'blockednoreason'          => 'engin ástæða gefin',
-'blockededitsource'        => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
-'whitelistedittitle'       => 'Innskráningar er krafist til að breyta',
-'whitelistedittext'        => 'Þú þarft að $1 til að breyta síðum.',
-'whitelistreadtitle'       => 'Innskráningar er krafist til að lesa',
-'whitelistreadtext'        => 'Þú verður að [[Special:Userlogin|skrá þig inn]] til að lesa síður.',
-'whitelistacctitle'        => 'Þér er óheimilt að búa til aðgang',
-'whitelistacctext'         => 'Til að geta búið til aðganga á {{SITENAME}} verður þú að [[Special:Userlogin|innskrá]] þig og hafa viðkomandi réttindi.',
-'confirmedittitle'         => 'Netfang þarf að staðfesta til að breyta',
-'confirmedittext'          => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
-'nosuchsectiontitle'       => 'Hluti ekki til',
-'nosuchsectiontext'        => 'Það hefur komið upp villa. Þú hefur reynt að breyta hluta $1 á síðunni, en hann er ekki til. Vinsamlegast farðu til baka og reyndu að breyta síðunni í heild.',
-'loginreqtitle'            => 'Innskráningar krafist',
-'loginreqlink'             => 'innskrá',
-'loginreqpagetext'         => 'Þú þarft að $1 til að geta séð aðrar síður.',
-'accmailtitle'             => 'Lykilorð sent.',
-'accmailtext'              => 'Lykilorðið fyrir „$1“ hefur verið sent á $2.',
-'newarticle'               => '(Ný)',
-'newarticletext'           => "Þú hefur fylgt tengli á síðu sem ekki er til.
+'blockednoreason'                  => 'engin ástæða gefin',
+'blockededitsource'                => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
+'whitelistedittitle'               => 'Innskráningar er krafist til að breyta',
+'whitelistedittext'                => 'Þú þarft að $1 til að breyta síðum.',
+'whitelistreadtitle'               => 'Innskráningar er krafist til að lesa',
+'whitelistreadtext'                => 'Þú verður að [[Special:Userlogin|skrá þig inn]] til að lesa síður.',
+'whitelistacctitle'                => 'Þér er óheimilt að búa til aðgang',
+'whitelistacctext'                 => 'Til að geta búið til aðganga á {{SITENAME}} verður þú að [[Special:Userlogin|innskrá]] þig og hafa viðkomandi réttindi.',
+'confirmedittitle'                 => 'Netfang þarf að staðfesta til að breyta',
+'confirmedittext'                  => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
+'nosuchsectiontitle'               => 'Hluti ekki til',
+'nosuchsectiontext'                => 'Það hefur komið upp villa. Þú hefur reynt að breyta hluta $1 á síðunni, en hann er ekki til. Vinsamlegast farðu til baka og reyndu að breyta síðunni í heild.',
+'loginreqtitle'                    => 'Innskráningar krafist',
+'loginreqlink'                     => 'innskrá',
+'loginreqpagetext'                 => 'Þú þarft að $1 til að geta séð aðrar síður.',
+'accmailtitle'                     => 'Lykilorð sent.',
+'accmailtext'                      => 'Lykilorðið fyrir „$1“ hefur verið sent á $2.',
+'newarticle'                       => '(Ný)',
+'newarticletext'                   => "Þú hefur fylgt tengli á síðu sem ekki er til.
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan
 (meiri upplýsingar í [[{{MediaWiki:Helppage}}|hjálpinni]]).
 Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappinn í vafranum þínum.",
-'anontalkpagetext'         => "----''Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang ennþá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það kemur fyrir að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. Vinsamlegast [[Special:Userlogin|skráðu þig sem notanda]] til að koma í veg fyrir slíkan misskilning.''",
-'noarticletext'            => 'Það er enginn texti á þessari síðu en sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
-'clearyourcache'           => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiminni vafrans til að sjá þær. Í '''Internet Explorer''': ýttu ''Ctrl-F5'', '''Mozilla''': haltu niðri ''Shift'' og smelltu á Reload (eða ýttu á ''Ctrl-Shift-R''), '''Opera'''/'''Konqueror''': ýttu á ''F5'', '''Safari''': ýttu á ''Cmd-Opt-E''.",
-'usercssjsyoucanpreview'   => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript-kóða áður en hann er vistaður.',
-'usercsspreview'           => "'''Hafðu í huga að þú ert aðeins að forskoða CSS-kóðann þinn, hann hefur ekki enn verið vistaður!'''",
-'updated'                  => '(Uppfært)',
-'note'                     => '<strong>Athugið:</strong>',
-'previewnote'              => '<strong>Það sem sést hér er aðeins forskoðun og hefur ekki enn verið vistað!</strong>',
-'session_fail_preview'     => '<strong>Því miður! Gat ekki unnið úr breytingum þínum vegna týndra lotugagna.
+'anontalkpagetext'                 => "----''Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang ennþá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það kemur fyrir að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. Vinsamlegast [[Special:Userlogin|skráðu þig sem notanda]] til að koma í veg fyrir slíkan misskilning.''",
+'noarticletext'                    => 'Það er enginn texti á þessari síðu en sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
+'clearyourcache'                   => "'''Ath:''' Eftir að þú hefur vistað breytingar getur þurft að hreinsa flýtiminni vafrans til að sjá þær. Í '''Internet Explorer''': ýttu ''Ctrl-F5'', '''Mozilla''': haltu niðri ''Shift'' og smelltu á Reload (eða ýttu á ''Ctrl-Shift-R''), '''Opera'''/'''Konqueror''': ýttu á ''F5'', '''Safari''': ýttu á ''Cmd-Opt-E''.",
+'usercssjsyoucanpreview'           => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript-kóða áður en hann er vistaður.',
+'usercsspreview'                   => "'''Hafðu í huga að þú ert aðeins að forskoða CSS-kóðann þinn, hann hefur ekki enn verið vistaður!'''",
+'updated'                          => '(Uppfært)',
+'note'                             => '<strong>Athugið:</strong>',
+'previewnote'                      => '<strong>Það sem sést hér er aðeins forskoðun og hefur ekki enn verið vistað!</strong>',
+'session_fail_preview'             => '<strong>Því miður! Gat ekki unnið úr breytingum þínum vegna týndra lotugagna.
 Vinsamlegast reyndu aftur síðar. Ef það virkar ekki heldur skaltu reyna að skrá þig út og inn á ný.</strong>',
-'editing'                  => 'Breyti $1',
-'editingsection'           => 'Breyti $1 (hluta)',
-'editingcomment'           => 'Breyti $1 (athugasemd)',
-'editconflict'             => 'Breytingaárekstur: $1',
-'explainconflict'          => 'Síðunni hefur verið breytt síðan þú byrjaðir að gera breytingar á henni, textinn í efri reitnum inniheldur núverandi útgáfu úr gagnagrunni og sá neðri inniheldur þína útgáfu, þú þarft hér að færa breytingar sem þú vilt halda úr neðri reitnum í þann efri og vista síðuna. <strong>Aðeins</strong> texti úr efri reitnum mun vera vistaður þegar þú vistar.',
-'yourtext'                 => 'Þinn texti',
-'storedversion'            => 'Geymd útgáfa',
-'editingold'               => '<strong>ATH: Þú ert að breyta gamalli útgáfu þessarar síðu og munu allar breytingar sem gerðar hafa verið á henni frá þeirri útgáfu vera fjarlægðar ef þú vistar.</strong>',
-'yourdiff'                 => 'Mismunur',
-'copyrightwarning'         => 'Vinsamlegast athugaðu að öll framlög á {{SITENAME}} eru álitin leyfisbundin samkvæmt $2 (sjá $1 fyrir frekari upplýsingar).  Ef þú vilt ekki að skrif þín falli undir þetta leyfi og öllum verði frjálst að breyta og endurútgefa efnið samkvæmt því skaltu ekki leggja þau fram hér.<br />
+'editing'                          => 'Breyti $1',
+'editingsection'                   => 'Breyti $1 (hluta)',
+'editingcomment'                   => 'Breyti $1 (athugasemd)',
+'editconflict'                     => 'Breytingaárekstur: $1',
+'explainconflict'                  => 'Síðunni hefur verið breytt síðan þú byrjaðir að gera breytingar á henni, textinn í efri reitnum inniheldur núverandi útgáfu úr gagnagrunni og sá neðri inniheldur þína útgáfu, þú þarft hér að færa breytingar sem þú vilt halda úr neðri reitnum í þann efri og vista síðuna. <strong>Aðeins</strong> texti úr efri reitnum mun vera vistaður þegar þú vistar.',
+'yourtext'                         => 'Þinn texti',
+'storedversion'                    => 'Geymd útgáfa',
+'editingold'                       => '<strong>ATH: Þú ert að breyta gamalli útgáfu þessarar síðu og munu allar breytingar sem gerðar hafa verið á henni frá þeirri útgáfu vera fjarlægðar ef þú vistar.</strong>',
+'yourdiff'                         => 'Mismunur',
+'copyrightwarning'                 => 'Vinsamlegast athugaðu að öll framlög á {{SITENAME}} eru álitin leyfisbundin samkvæmt $2 (sjá $1 fyrir frekari upplýsingar).  Ef þú vilt ekki að skrif þín falli undir þetta leyfi og öllum verði frjálst að breyta og endurútgefa efnið samkvæmt því skaltu ekki leggja þau fram hér.<br />
 Þú berð ábyrgð á framlögum þínum, þau verða að vera þín skrif eða afrit texta í almannaeigu eða sambærilegs frjáls texta.
 <strong>AFRITIÐ EKKI HÖFUNDARRÉTTARVARIN VERK Á ÞESSA SÍÐU ÁN LEYFIS</strong>',
-'copyrightwarning2'        => 'Vinsamlegast athugið að aðrir notendur geta breytt eða fjarlægt öll framlög til {{SITENAME}}.
+'copyrightwarning2'                => 'Vinsamlegast athugið að aðrir notendur geta breytt eða fjarlægt öll framlög til {{SITENAME}}.
 Ef þú vilt ekki að textanum verði breytt skaltu ekki senda hann inn hér.<br />
 Þú lofar okkur einnig að þú hafir skrifað þetta sjálfur, að efnið sé í almannaeigu eða að það heyri undir frjálst leyfi. (sjá $1).
 <strong>EKKI SENDA INN HÖFUNDARRÉTTARVARIÐ EFNI ÁN LEYFIS RÉTTHAFA!</strong>',
-'longpagewarning'          => '<strong>VIÐVÖRUN: Þessi síða er $1 kílóbæta löng; sumir
+'longpagewarning'                  => '<strong>VIÐVÖRUN: Þessi síða er $1 kílóbæta löng; sumir
 vafrar gætu átt erfitt með að gera breytingar á síðum sem nálgast eða eru lengri en 32kb.
 Vinsamlegast íhugaðu að skipta síðunni niður í smærri einingar.</strong>',
-'longpageerror'            => '<strong>VILLA: Textinn sem þú sendir inn er $1 kílóbæti að lengd, en hámarkið er $2 kílóbæti. Ekki er hægt að vista textann.</strong>',
-'readonlywarning'          => '<strong>VIÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo að þú getur ekki vistað breytingar þínar núna. Þú gætir viljað afrita breyttan texta síðunnar yfir í textaskjal og geyma hann þar til síðar.</strong>',
-'protectedpagewarning'     => '<strong>Viðvörun: Þessari síðu hefur verið læst svo aðeins notendur með möppudýraréttindi geti breytt henni.</strong>',
-'semiprotectedpagewarning' => "'''Athugið''': Þessari síðu hefur verið læst þannig að aðeins innskráðir notendur geti breytt henni.",
-'titleprotectedwarning'    => '<strong>VIÐVÖRUN: Þessari síðu hefur verið læst svo aðeins notendur geta breytt henni.</strong>',
-'templatesused'            => 'Snið notuð á þessari síðu:',
-'templatesusedpreview'     => 'Snið notuð í forskoðuninni:',
-'templatesusedsection'     => 'Snið notuð á hlutanum:',
-'template-protected'       => '(vernduð)',
-'template-semiprotected'   => '(hálfvernduð)',
-'nocreatetitle'            => 'Síðugerð takmörkuð',
-'nocreatetext'             => '{{SITENAME}} hefur takmarkað eiginleikann að gera nýjar síður.
+'longpageerror'                    => '<strong>VILLA: Textinn sem þú sendir inn er $1 kílóbæti að lengd, en hámarkið er $2 kílóbæti. Ekki er hægt að vista textann.</strong>',
+'readonlywarning'                  => '<strong>VIÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo að þú getur ekki vistað breytingar þínar núna. Þú gætir viljað afrita breyttan texta síðunnar yfir í textaskjal og geyma hann þar til síðar.</strong>',
+'protectedpagewarning'             => '<strong>Viðvörun: Þessari síðu hefur verið læst svo aðeins notendur með möppudýraréttindi geti breytt henni.</strong>',
+'semiprotectedpagewarning'         => "'''Athugið''': Þessari síðu hefur verið læst þannig að aðeins innskráðir notendur geti breytt henni.",
+'titleprotectedwarning'            => '<strong>VIÐVÖRUN: Þessari síðu hefur verið læst svo aðeins notendur geta breytt henni.</strong>',
+'templatesused'                    => 'Snið notuð á þessari síðu:',
+'templatesusedpreview'             => 'Snið notuð í forskoðuninni:',
+'templatesusedsection'             => 'Snið notuð á hlutanum:',
+'template-protected'               => '(vernduð)',
+'template-semiprotected'           => '(hálfvernduð)',
+'nocreatetitle'                    => 'Síðugerð takmörkuð',
+'nocreatetext'                     => '{{SITENAME}} hefur takmarkað eiginleikann að gera nýjar síður.
 Þú getur farið til baka og breytt núverandi síðum, eða [[Special:Userlogin|skráð þið inn eða búið til aðgang]].',
-'nocreate-loggedin'        => 'Þú hefur ekki heimild til að búa til nýjar síður á {{SITENAME}}.',
-'permissionserrors'        => 'Leyfisvillur',
-'permissionserrorstext'    => 'Þú hefur ekki leyfi til að gera þetta, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
-'recreate-deleted-warn'    => "'''Viðvörun: Þú ert að endurskapa síðu sem áður hefur verið eytt.'''
+'nocreate-loggedin'                => 'Þú hefur ekki heimild til að búa til nýjar síður á {{SITENAME}}.',
+'permissionserrors'                => 'Leyfisvillur',
+'permissionserrorstext'            => 'Þú hefur ekki leyfi til að gera þetta, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
+'permissionserrorstext-withaction' => 'Þú hefur ekki réttindi til að $2, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
+'recreate-deleted-warn'            => "'''Viðvörun: Þú ert að endurskapa síðu sem áður hefur verið eytt.'''
 
 Athuga skal hvort viðeigandi sé að gera þessa síðu.
 Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
@@ -854,9 +856,9 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'rev-deleted-user'       => '(notandanafn fjarlægt)',
 'rev-deleted-event'      => '(skráarbreyting fjarlægð)',
 'rev-delundel'           => 'sýna/fela',
-'revdelete-selected'     => "{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir '''$1:'''",
-'logdelete-selected'     => "{{PLURAL:$2|Valin aðgerð|Valdar aðgerðir}} fyrir '''$1:'''",
-'revdelete-legend'       => 'Skráðu hamlanir',
+'revdelete-selected'     => '{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir [[:$1]]:',
+'logdelete-selected'     => '{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:',
+'revdelete-legend'       => 'Setja sjáanlegar hamlanir',
 'revdelete-hide-text'    => 'Fela breytingatexta',
 'revdelete-hide-comment' => 'Fela breytingaathugasemdir',
 'revdelete-hide-user'    => 'Fela notandanafn/vistfang',
@@ -868,6 +870,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-content'      => 'efni',
 'revdelete-summary'      => 'breytingarágrip',
 'revdelete-uname'        => 'notandanafn',
+'revdelete-log-message'  => '$1 fyrir $2 {{PLURAL:$2|breytingu|breytingar}}',
 
 # History merging
 'mergehistory-from' => 'Heimildsíða:',
@@ -910,7 +913,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'searchall'                 => 'öllum',
 'showingresults'            => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
 'showingresultsnum'         => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
-'showingresultstotal'       => "Sýni að neðan útkomu '''$1 - $2''' af '''$3'''",
+'showingresultstotal'       => "Sýni að neðan {{PLURAL:$3|útkomu '''$1''' af '''$3'''|útkomur '''$1 - $2''' af '''$3'''}}",
 'nonefound'                 => "'''Athugaðu''': Það er aðeins leitað í sumum nafnrýmum sjálfkrafa. Prófaðu að setja forskeytið ''all:'' í fyrirspurnina til að leita í öllu efni (þar á meðal notandaspjallsíðum, sniðum, o.s.frv.), eða notaðu tileigandi nafnrými sem forskeyti.",
 'powersearch'               => 'Ítarleg leit',
 'powersearch-legend'        => 'Ítarlegri leit',
@@ -989,8 +992,8 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 * Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
 'userrights-reason'                => 'Ástæða fyrir breytingunni:',
 'userrights-available-none'        => 'Þú getur ekki breytt hópaðild notenda.',
-'userrights-available-add'         => 'Þú getur bætt notendum við {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
-'userrights-available-remove'      => 'Þú getur fjarlægt notendur af {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
+'userrights-available-add'         => 'Þú getur bætt hvaða notanda sem er við {{PLURAL:$2|þennan hóp|þessa hópa}}: $1.',
+'userrights-available-remove'      => 'Þú getur fjarlægt hvaða notanda sem er úr {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
 'userrights-available-remove-self' => 'Þú getur fjarlægt sjálfan þig frá {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
 'userrights-nologin'               => 'Þú verður að [[Special:Userlogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
 'userrights-notallowed'            => 'Þinn aðgangur hefur ekki réttindi til að útdeila notandaréttindum.',
@@ -1678,7 +1681,6 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'move-watch'              => 'Vakta þessa síðu',
 'movepagebtn'             => 'Færa síðu',
 'pagemovedsub'            => 'Færsla tókst',
-'movepage-moved'          => "<big>'''„$1“ hefur verið færð á „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Annaðhvort er þegar til síða undir þessum titli, eða sá titill sem þú hefur valið er ekki gildur.
 Vinsamlegast veldu annan titil.',
 'talkexists'              => "'''Færsla á síðunni sjálfri heppnaðist, en ekki var hægt að færa spjallsíðuna því hún er nú þegar til á nýja titlinum.
@@ -1686,7 +1688,7 @@ Gjörðu svo vel og færðu hana handvirkt.'''",
 'movedto'                 => 'fært á',
 'movetalk'                => 'Færa meðfylgjandi spjallsíðu',
 'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifá sjálfkrafa.',
-'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.',
+'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => '[[$1]] færð á [[$2]]',
 '1movedto2_redir'         => '[[$1]] færð á [[$2]] yfir tilvísun',
 'movelogpage'             => 'Flutningaskrá',

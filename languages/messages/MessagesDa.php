@@ -12,10 +12,10 @@
  * @author M.M.S.
  * @author Peter Andersen
  * @author Siebrand
- * @author S.Örvarr.S
  * @author H92
- * @author Ranveig
+ * @author S.Örvarr.S
  * @author Boivie
+ * @author Ranveig
  */
 
 $namespaceNames = array(
@@ -1900,7 +1900,6 @@ for at flytte en side.',
 'move-watch'              => 'Overvåg denne side',
 'movepagebtn'             => 'Flyt side',
 'pagemovedsub'            => 'Flytning gennemført',
-'movepage-moved'          => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'En side med det navn eksisterer allerede, eller det
 navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'cantmove-titleprotected' => 'Du kan ikke omdøbe en side til dette navn. Det nye navn er beskyttet mod oprettelse.',
@@ -1910,7 +1909,7 @@ navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'move-subpages'           => 'Flyt alle undersider, hvis de findes',
 'move-talk-subpages'      => 'Flyt alle undersider af diskussionssiden, hvis de findes',
 'movepage-page-exists'    => 'Siden $1 findes allerede og kan ikke overskrives automatisk.',
-'movepage-page-moved'     => 'Siden $1 er blevet flyttet til $2.',
+'movepage-page-moved'     => 'Siden $1 er blevet flyttet til $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Siden $1 kunne ikke flyttes til $2.',
 'movepage-max-pages'      => 'Grænsen på $1 {{PLURAL:$1|side|sider}} er flyttet og der kan ikke flyttes flere automatisk.',
 '1movedto2'               => '$1 flyttet til $2',

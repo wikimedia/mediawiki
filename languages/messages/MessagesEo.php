@@ -10,7 +10,6 @@
  * @author Michawiki
  * @author Siebrand
  * @author Amikeco
- * @author Nike
  * @author ArnoLagrange
  * @author SPQRobin
  * @author Gangleri
@@ -439,6 +438,11 @@ $2',
 'titleprotected'       => "Ĉi titolo estas protektita de kreado de [[User:$1|$1]].
 La kialo donata estis ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Malbona konfiguro: nekonata virusa skanilo: <i>$1</i>',
+'virus-scanfailed'     => 'skano malsukcesis (kun kodo $1)',
+'virus-unknownscanner' => 'nekonata kontraŭviruso:',
+
 # Login and logout pages
 'logouttitle'                => 'Elsaluti',
 'logouttext'                 => '<strong>Vi elsalutis kaj finis vian seancon.</strong><br />
@@ -563,7 +567,7 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'summary'                          => 'Resumo',
 'subject'                          => 'Temo/subtitolo',
 'minoredit'                        => 'Ĉi tiu ŝanĝo estas redakteto',
-'watchthis'                        => 'Atenti ĉi tiu paĝon',
+'watchthis'                        => 'Atenti ĉi tiun paĝon',
 'savearticle'                      => 'Konservi ŝanĝojn',
 'preview'                          => 'Antaŭrigardo',
 'showpreview'                      => 'Antaŭrigardo',
@@ -1167,7 +1171,7 @@ Se vi havas ĉi bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝ
 'sourcefilename'              => 'Fonta dosiernomo:',
 'destfilename'                => 'Celdosiernomo:',
 'upload-maxfilesize'          => 'Maksimuma dosier-pezo: $1',
-'watchthisupload'             => 'Atenti ĉi tiu paĝon',
+'watchthisupload'             => 'Atenti ĉi tiun paĝon',
 'filewasdeleted'              => 'Dosiero de ĉi nomo estis antaŭe alŝutita kaj poste redaktita. Vi kontrolu la $1 antaux alŝutante ĝin denove.',
 'upload-wasdeleted'           => "'''Averto: Vi alŝutas dosieron kiu estis antaŭe forigita.'''
 
@@ -1847,7 +1851,6 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'move-watch'              => 'Atenti ĉi tiun paĝon',
 'movepagebtn'             => 'Alinomigi paĝon',
 'pagemovedsub'            => 'Sukcesis movi',
-'movepage-moved'          => '<big>\'\'\'"$1" estis movita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',
 'cantmove-titleprotected' => 'Vi ne povas movi paĝo al ĉi loko, ĉar la nova titolo estis protektita kontraŭ kreado',
@@ -1859,7 +1862,7 @@ Bonvolu permane kunigi ilin.',
 'move-subpages'           => 'Alinomigi ĉiujn subpaĝojn, se fareble.',
 'move-talk-subpages'      => 'Alinomigi ĉiujn subpaĝojn de diskuto-paĝoj, se fareble.',
 'movepage-page-exists'    => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
-'movepage-page-moved'     => 'La paĝo $1 estis alinomita al $2.',
+'movepage-page-moved'     => 'La paĝo $1 estis alinomita al $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'La paĝo $1 ne povas esti alinomigita al $2.',
 'movepage-max-pages'      => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
 '1movedto2'               => '[[$1]] movita al [[$2]]',

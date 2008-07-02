@@ -1422,7 +1422,6 @@ e-mail: $PAGEEDITOR_EMAIL
 'move-watch'              => 'Бу саифени козет',
 'movepagebtn'             => 'Адыны денъиштир',
 'pagemovedsub'            => 'Ад денъишиклиги тамамланды',
-'movepage-moved'          => "<big>'''«$1» саифесининъ янъы ады: «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Бу адда бир саифе энди мевджут я да сиз язгъан ад ясакълы.
 Лютфен, башкъа бир ад сайлап язынъыз.',
 'cantmove-titleprotected' => 'Сиз язгъан янъы ад ясакълыдыр, бунынъ ичюн саифе адыны денъиштирмекнинъ чареси ёкъ.',

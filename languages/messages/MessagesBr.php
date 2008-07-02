@@ -7,7 +7,6 @@
  * @author Fulup
  * @author לערי ריינהארט
  * @author Siebrand
- * @author Nike
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -1760,7 +1759,6 @@ En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma kari
 'move-watch'              => 'Evezhiañ ar bajenn-mañ',
 'movepagebtn'             => 'Adenvel ar pennad',
 'pagemovedsub'            => "Dilec'hiadenn kaset da benn vat",
-'movepage-moved'          => '<big>\'\'\'Adkaset eo bet "$1" da "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Ur pennad gantañ an anv-se zo dija pe n'eo ket reizh an titl hoc'h eus dibabet.
 Dibabit unan all mar plij.",
 'cantmove-titleprotected' => "N'hallit ket dilec'hiañ ur bajenn d'al lec'h-mañ rak gwarezet eo bet an titl nevez p'eo bet krouet.",

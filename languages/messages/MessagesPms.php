@@ -4,15 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
- * @author Teak
  * @author Bèrto 'd Sèra
  * @author Siebrand
- * @author Nike
  * @author לערי ריינהארט
  * @author SabineCretella
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
+ * @author Teak
  */
 
 $fallback = 'it';
@@ -1679,7 +1678,6 @@ për podej tramudé na pàgina.",
 'move-watch'              => 'Ten sot euj sta pàgina-sì',
 'movepagebtn'             => 'Tramuda sta pàgina-sì',
 'pagemovedsub'            => 'San Martin bele finì!',
-'movepage-moved'          => "<big>'''\"\$1\" a l'ha fait San Martin a \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Na pàgina che as ciama parej a-i é già, ò pura ël nòm che a l'ha sërnù a va nen bin.<br />
 Che as sërna, për piasì, un nòm diferent për st'articol.",
 'cantmove-titleprotected' => "As peul pa fesse San Martin ambelelì, për via che col tìtol-lì a l'é stàit proibì e a peul pa ess-ie na pàgina ciamà parej",

@@ -4,33 +4,32 @@
  * @ingroup Language
  * @file
  *
- * @author Alhen
- * @author Alpertron
- * @author Ascánder
- * @author Baiji
- * @author Bengoa
- * @author Better
- * @author Dmcdevit
  * @author Icvav
- * @author Jurock
- * @author Lin linao
- * @author Mahadeva
- * @author Nike
- * @author Orgullomoore
- * @author Piolinfax
- * @author Platonides
- * @author SPQRobin
- * @author Sanbec
- * @author Siebrand
- * @author Spacebirdy
- * @author Technorum
- * @author Toniher
- * @author לערי ריינהארט
- * @author Dvortygirl
- * @author Cvmontuy
- * @author Drini
- * @author Jatrobat
  * @author Titoxd
+ * @author Piolinfax
+ * @author Drini
+ * @author Platonides
+ * @author Lin linao
+ * @author Dmcdevit
+ * @author לערי ריינהארט
+ * @author Jurock
+ * @author Spacebirdy
+ * @author Baiji
+ * @author Siebrand
+ * @author Sanbec
+ * @author Cvmontuy
+ * @author Alhen
+ * @author Jatrobat
+ * @author Ascánder
+ * @author Bengoa
+ * @author Orgullomoore
+ * @author Dvortygirl
+ * @author Toniher
+ * @author Alpertron
+ * @author Mahadeva
+ * @author Better
+ * @author SPQRobin
+ * @author Technorum
  */
 
 $skinNames = array(
@@ -1686,7 +1685,6 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'              => 'Vigilar este artículo',
 'movepagebtn'             => 'Renombrar página',
 'pagemovedsub'            => 'Renombrado realizado con éxito',
-'movepage-moved'          => "<big>'''«$1» ha sido trasladado a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'cantmove-titleprotected' => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
@@ -1902,8 +1900,9 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'patrol-log-auto' => '(automático)',
 
 # Image deletion
-'deletedrevision'    => 'Borrada revisión antigua $1',
-'filedelete-missing' => 'No se pudo borrar el archivo "$1" porque no existe.',
+'deletedrevision'       => 'Borrada revisión antigua $1',
+'filedeleteerror-short' => 'Se produjo un error al borrar el archivo: $1',
+'filedelete-missing'    => 'No se pudo borrar el archivo "$1" porque no existe.',
 
 # Browsing diffs
 'previousdiff' => '← Ir a diferencias anteriores',
@@ -2329,6 +2328,7 @@ Intenta la previsualización normal.',
 
 # Special:Version
 'version'                  => 'Versión', # Not used as normal message but as header for the special page itself
+'version-extensions'       => 'Extensiones instaladas',
 'version-specialpages'     => 'Páginas especiales',
 'version-parserhooks'      => "Lligams de l'analitzador",
 'version-version'          => 'Versión',

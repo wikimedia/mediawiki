@@ -628,6 +628,7 @@ ghreamú i gcomhad téacs agus é a úsáid níos déanaí.",
 'templatesusedsection'   => 'Teimpléid in úsáid san alt seo:',
 'template-protected'     => '(ghlasáil)',
 'template-semiprotected' => '(leath-ghlasáil)',
+'edittools'              => '<!-- Taispeánfar an téacs seo faoi foirmeacha eagarthóireachta agus uaslódála. -->',
 'permissionserrors'      => 'Cead rochtana earráidí',
 
 # Account creation failure
@@ -1298,7 +1299,6 @@ Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lám
 'move-watch'              => 'Déan faire an leathanach seo',
 'movepagebtn'             => 'Athainmnigh an leathanach',
 'pagemovedsub'            => "D'éirigh leis an athainmniú",
-'movepage-moved'          => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Tá leathanach leis an teideal seo ann fós, nó níl an
 teideal a rinne tú rogha air ina theideal bailí.
 Toghaigh teideal eile le do thoil.',

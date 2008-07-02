@@ -569,7 +569,6 @@ $messages = array(
 'newtitle'                => 'Naran foun:',
 'move-watch'              => "Hateke pájina ne'e",
 'movepagebtn'             => 'Book pájina',
-'movepage-moved'          => '<big>\'\'\'Ó book "$1" ba "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'book tiha ba',
 'movetalk'                => 'Book pájina diskusaun mós',
 '1movedto2'               => 'book tiha [[$1]] ba [[$2]]',

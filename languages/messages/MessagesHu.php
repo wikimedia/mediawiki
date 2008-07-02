@@ -5,12 +5,14 @@
  * @file
  *
  * @author Dani
+ * @author Siebrand
  * @author Tgr
+ * @author Samat
  * @author Bdamokos
  * @author Dorgan
+ * @author Balasyum
  * @author Cerasus
  * @author Bennó
- * @author Balasyum
  */
 
 $namespaceNames = array(
@@ -624,6 +626,11 @@ $2',
 'customcssjsprotected' => 'Nincs jogosultságod a lap szerkesztéséhez, mert egy másik szerkesztő személyes beállításait tartalmazza.',
 'ns-specialprotected'  => 'A speciális lapok nem szerkeszthetőek.',
 'titleprotected'       => "A cikk elkészítését [[User:$1|$1]] blokkolta, oka: ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Hibás beállítás: ismeretlen víruskereső: <i>$1</i>',
+'virus-scanfailed'     => 'az ellenőrzés nem sikerült (hibakód: $1)',
+'virus-unknownscanner' => 'ismeretlen antivírus:',
 
 # Login and logout pages
 'logouttitle'                => 'Kijelentkezés',
@@ -2055,7 +2062,6 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'move-watch'              => 'Figyeld a lapot',
 'movepagebtn'             => 'Lap átnevezése',
 'pagemovedsub'            => 'Átnevezés sikeres',
-'movepage-moved'          => "<big>'''A(z) „$1” lapot sikeresen átmozgattad a(z) „$2” névre.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
 'cantmove-titleprotected' => 'Nem nevezheted át a lapot, mert az új cím le van védve a létrehozás ellen.',
@@ -2065,7 +2071,7 @@ Kérlek, válassz egy másik nevet.',
 'move-subpages'           => 'Allapok átnevezése, ha lehetséges',
 'move-talk-subpages'      => 'Vitalap allapjainak átnevezése, ha lehetséges',
 'movepage-page-exists'    => 'A(z) „$1” nevű lap már létezik, és nem írható felül automatikusan.',
-'movepage-page-moved'     => 'A(z) „$1” nevű lap át lett nevezve „$2” névre.',
+'movepage-page-moved'     => 'A(z) „$1” nevű lap át lett nevezve „$2” névre.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'A(z) „$1” nevű lap nem nevezhető át „$2” névre.',
 'movepage-max-pages'      => '{{PLURAL:$1|Egy|$1}} lapnál több nem nevezhető át automatikusan, így a további lapok a helyükön maradnak.',
 '1movedto2'               => '[[$1]] lapot átneveztem [[$2]] névre',

@@ -11,16 +11,15 @@
  * @author Pasqual (ca)
  * @author Iradigalesc
  * @author לערי ריינהארט
- * @author Paucabot
- * @author Nike
  * @author Jordi Roqué
  * @author Spacebirdy
  * @author Juanpabl
- * @author Smeira
- * @author Vriullop
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author Pérez
+ * @author Vriullop
+ * @author McDutchie
+ * @author SPQRobin
+ * @author Jon Harald Søby
+ * @author Smeira
  */
 
 $skinNames = array(
@@ -180,7 +179,7 @@ $messages = array(
 'tog-previewontop'            => "Mostra una previsualització abans del quadre d'edició",
 'tog-previewonfirst'          => 'Mostra una previsualització en la primera edició',
 'tog-nocache'                 => 'Inhabilita la memòria cau de les pàgines',
-'tog-enotifwatchlistpages'    => "A les preferències de l'usuari",
+'tog-enotifwatchlistpages'    => "Notifica'm per correu electrònic dels canvis a les pàgines que vigili",
 'tog-enotifusertalkpages'     => "Notifica'm per correu quan hi hagi modificacions a la pàgina de discussió del meu compte d'usuari",
 'tog-enotifminoredits'        => "Notifica'm per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr'        => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
@@ -1938,7 +1937,6 @@ per reanomenar una pàgina.",
 'move-watch'              => 'Vigila aquesta pàgina',
 'movepagebtn'             => 'Reanomena la pàgina',
 'pagemovedsub'            => 'Reanomenament amb èxit',
-'movepage-moved'          => "<big>'''S'ha mogut «$1» a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
 Trieu-ne un altre, si us plau.',
 'cantmove-titleprotected' => "No podeu moure una pàgina a aquesta ubicació, perquè s'ha protegit la creació del títol nou",
@@ -1950,7 +1948,7 @@ Incorporeu-les manualment, si us plau.",
 'move-subpages'           => "Mou totes les pàgines (si s'escau)",
 'move-talk-subpages'      => "Mou totes les subpàgines de la discussió (si s'escau)",
 'movepage-page-exists'    => "La pàgina $1 ja existeix i no pot sobreescriure's automàticament.",
-'movepage-page-moved'     => 'La pàgina $1 ha estat traslladada a $2.',
+'movepage-page-moved'     => 'La pàgina $1 ha estat traslladada a $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => "La pàgina $1 no s'ha pogut moure a $2.",
 'movepage-max-pages'      => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
 '1movedto2'               => "[[$1]] s'ha reanomenat com [[$2]]",

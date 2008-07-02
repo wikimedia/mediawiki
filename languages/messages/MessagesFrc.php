@@ -7,7 +7,6 @@
  * @author RoyAlcatraz
  * @author JeanVoisin
  * @author Siebrand
- * @author Nike
  * @author SPQRobin
  */
 

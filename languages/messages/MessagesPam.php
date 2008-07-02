@@ -1788,7 +1788,6 @@ Nung makanyan pin ing milyari, kailangan meng iyalis o isanib (merge) ing bulung
 'move-watch'              => 'Banten ya ing bulung a ini',
 'movepagebtn'             => 'Iyalis ya ing bulung',
 'pagemovedsub'            => 'Merapat ing pamanalis',
-'movepage-moved'          => '<big>\'\'\'Ing "$1" miyalis ya king "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ing bulung a yan atinang miki lagyu, okaya
 ing lagyu ginamit mu e malyari.
 Gumamit na kang aliwang lagyu.',

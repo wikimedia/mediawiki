@@ -825,7 +825,6 @@ to upload files.',
 'move-watch'       => 'ਇਹ ਪੇਜ਼ ਵਾਚ ਕਰੋ',
 'movepagebtn'      => 'ਪੇਜ਼ ਮੂਵ ਕਰੋ',
 'pagemovedsub'     => 'ਮੂਵ ਸਫ਼ਲ ਰਿਹਾ',
-'movepage-moved'   => '<big>\'\'\'"$1" ਨੂੰ "$2"\'\'\' ਉੱਤੇ ਮੂਵ ਕੀਤਾ</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'ਮੂਵ ਕੀਤਾ',
 'movelogpage'      => 'ਮੂਵ ਲਾਗ',
 'movereason'       => 'ਕਾਰਨ:',

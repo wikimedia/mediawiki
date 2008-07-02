@@ -1802,7 +1802,6 @@ $1',
 'move-watch'              => 'Назіраць за старонкай',
 'movepagebtn'             => 'Перанесці старонку',
 'pagemovedsub'            => 'Паспяховы перанос',
-'movepage-moved'          => '<big>\'\'\'"$1" перанесена ў "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Старонка з такой назвай ужо існуе, або
 вамі выбрана недапушчальнае імя.
 Выберыце іншае імя.',
@@ -1813,7 +1812,7 @@ $1',
 'move-subpages'           => 'Перанесці ўсе пад-старонкі (калі датычыць)',
 'move-talk-subpages'      => 'Перанесці ўсе пад-старонкі размоўнай старонкі (калі датычыць)',
 'movepage-page-exists'    => 'Старонка $1 ужо існуе і не можа быць аўтаматычна перапісаная.',
-'movepage-page-moved'     => 'Старонка $1 была перанесеная ў $2.',
+'movepage-page-moved'     => 'Старонка $1 была перанесеная ў $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Не ўдалося перанесці старонку $1 у $2.',
 'movepage-max-pages'      => 'Быў перанесены дазволены максімум $1 {{PLURAL:$1|старонкі|старонак}} і больш аўтаматычных пераносаў не будзе.',
 '1movedto2'               => '[[$1]] перанесена ў [[$2]]',

@@ -1662,7 +1662,6 @@ En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhin
 'move-watch'              => 'Vehilal esta páhina',
 'movepagebtn'             => 'Movel páhina',
 'pagemovedsub'            => 'S´á moviu la páhina',
-'movepage-moved'          => '<big>\'\'\'"$1" agora s´alcuentra en "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ya desisti una páhina con esi nombri u nu se premiti el nombri qu´as lihiu.
 Pol favol, escrebi otru entítulu.',
 'cantmove-titleprotected' => "Nu t'es posibri movel la páhina ebiu a qu'el nuevu entítulu s'alcuentra atarugau",

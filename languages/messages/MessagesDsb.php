@@ -5,17 +5,17 @@
  * @file
  *
  * @author Nepl1
- * @author Pe7er
  * @author Michawiki
+ * @author Pe7er
  * @author Qualia
- * @author Dunak
- * @author Murjarik
- * @author Tlustulimu Nepl1
  * @author Dundak
  * @author Siebrand
+ * @author Murjarik
  * @author Tlustulimu
  * @author SPQRobin
  * @author Jon Harald Søby
+ * @author Dunak
+ * @author Tlustulimu Nepl1
  */
 
 $fallback = 'de';
@@ -487,6 +487,11 @@ Wótpšašanje: $2',
 'customcssjsprotected' => 'Toś te boki njesmějoš wobźěłaś, dokulaž wopśimjeju wósobinske dataje drugego wužywarja.',
 'ns-specialprotected'  => 'Njejo móžno, boki w rumje {{ns:special}} wobźěłaś.',
 'titleprotected'       => "Bok z toś tym mjenim bu wót [[User:$1|$1]] pśeśiwo napóranjeju šćitany. Pśicyna jo ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Špatna konfiguracija: njeznaty wirusowy scanner: <i>$1</i>',
+'virus-scanfailed'     => 'Scannowanje jo se njeraźiło (kod $1)',
+'virus-unknownscanner' => 'njeznaty antiwirus:',
 
 # Login and logout pages
 'logouttitle'                => 'Wužywarja wótzjawiś',
@@ -1112,6 +1117,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'recentchangeslinked-summary'  => "To jo lisćina slědnych změnow, kótarež buchu na wótkazanych bokach cynjone (resp. pśi wěstych kategorijach na cłonkach kategorije).
 Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 'recentchangeslinked-page'     => 'mě boka:',
+'recentchangeslinked-to'       => 'Změny pokazaś, kótarež město togo na dany bok wótkazuju.',
 
 # Upload
 'upload'                      => 'Dataju pósłaś',
@@ -1489,6 +1495,7 @@ Wót togo {{PLURAL:$2|jo|stej|su}} '''$2''' (=$4 %) $5.",
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Pšawa wužywarskeje kupki',
+'listgrouprights-summary'  => 'To jo lisćina wužywarskich kupkow definěrowanych w toś tom wikiju z jich zwězanymi pśistupnymi pšawami. Pśidatne informacije wó jadnotliwych pšawach daje so na [[{{MediaWiki:Listgrouprights-helppage}}]] namakaś.',
 'listgrouprights-group'    => 'Kupka',
 'listgrouprights-rights'   => 'Pšawa',
 'listgrouprights-helppage' => 'Help:Kupkowe pšawa',
@@ -1615,6 +1622,9 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 ** Wandalizm',
 'delete-edit-reasonlist'      => 'Pśicyny za lašowanje wobźěłaś',
 'delete-toobig'               => 'Toś ten bok ma dłujku historiju, wěcej ako $1 {{PLURAL:$1|wersiju|wersiji|wersije|wersijow}}. Lašowanje takich bokow bu wobgranicowane, aby se wobškoźenje z pśigódy {{GRAMMAR:genitiw|{{SITENAME}}}} zajźowało.',
+'delete-warning-toobig'       => 'Toś ten bok ma wjelike stawizny změnow, wěcej ako $ wersijow.
+Jich wulašowanje móžo źěło datoweje banki na {{SITENAME}} kazyś;
+póstupujśo z glědanim.',
 'rollback'                    => 'Wobźěłanja slědk wześ',
 'rollback_short'              => 'anulěrowaś',
 'rollbacklink'                => 'anulěrowaś',
@@ -1885,7 +1895,6 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'move-watch'              => 'Toś ten bok wobglědowaś',
 'movepagebtn'             => 'Bok pśesunuś',
 'pagemovedsub'            => 'Bok jo se pśesunuł.',
-'movepage-moved'          => "<big>'''Bok „$1“ jo se pśesunuł na „$2“.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',
 'cantmove-titleprotected' => 'Njamóžoš bok k toś tomu městnoju pśesunuś, dokulaž nowy titel jo pśeśiwo napóranjeju šćitany.',
 'talkexists'              => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',
@@ -1894,7 +1903,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'move-subpages'           => 'Wše pódboki, jolic eksistuju, sobu pśesunuś',
 'move-talk-subpages'      => 'Wše pódboki diskusijnych bokow, jolic eksistuju, sobu pśesunuś',
 'movepage-page-exists'    => 'Bok $1 južo eksistujo a njedajo se awtomatiski pśepisaś.',
-'movepage-page-moved'     => 'Bok $1 jo se do $2 pśesunuł.',
+'movepage-page-moved'     => 'Bok $1 jo se do $2 pśesunuł.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Bok $1 njejo se do $2 pśesunuś dał.',
 'movepage-max-pages'      => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',
 '1movedto2'               => '„[[$1]]“ pśesunjone na „[[$2]]“',

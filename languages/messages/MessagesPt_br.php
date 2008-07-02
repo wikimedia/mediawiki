@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Yves Marques Junqueira
- * @author Rodrigo Calanca Nishino
  * @author 555
  * @author Siebrand
- * @author לערי ריינהארט
  * @author Lijealso
+ * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Yves Marques Junqueira
+ * @author Rodrigo Calanca Nishino
  */
 
 $fallback = 'pt';
@@ -1374,7 +1374,6 @@ para mover uma página.',
 'move-watch'       => 'Vigiar esta página',
 'movepagebtn'      => 'Mover página',
 'pagemovedsub'     => 'Página movida com sucesso',
-'movepage-moved'   => '<big>\'\'\'"$1" foi movido para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Uma página com este título já existe, ou o título que você escolheu é inválido.
 Por favor, escolha outro título.',
 'talkexists'       => "'''A página em si foi movida com sucesso, porém, a página de discussão não pode ser movida já que já existe uma com este nome. Por favor, mescle-as manualmente.'''",

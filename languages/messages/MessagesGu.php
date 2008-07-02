@@ -4,12 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Dsvyas
  * @author לערי ריינהארט
  * @author Aksi great
- * @author SPQRobin
- * @author Dsvyas
  * @author Siebrand
- * @author Nike
+ * @author SPQRobin
  */
 
 $digitTransformTable = array(
@@ -256,6 +255,9 @@ $messages = array(
 આ પાનાનાં ઇતિહાસમાં તમારૂં આઇ.પી. (IP) એડ્રેસ નોંધવામાં આવશે.",
 'blockededitsource'     => "'''$1''' માટે '''તમારા ફેરફારો''' નીચે દેખાય છે:",
 'newarticle'            => '(નવિન)',
+'newarticletext'        => "આપ જે કડીને અનુસરીને અહીં પહોંચ્યા છો તે પાનું અસ્તિત્વમાં નથી.
+<br>નવું પાનું બનાવવા માટે નીચે આપેલા ખાનામાં લખવાનું શરૂ કરો (વધુ માહિતિ માટે [[{{MediaWiki:Helppage}}|મદદ]] જુઓ).
+<br>જો આપ ભુલમાં અહીં આવી ગયા હોવ તો, આપનાં બ્રાઉઝર નાં '''બેક''' બટન પર ક્લિક કરીને પાછા વળો.",
 'noarticletext'         => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી, તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરો.',
 'editing'               => '$1નો ફેરફાર કરી રહ્યા છે',
 'yourdiff'              => 'ભેદ',
@@ -500,7 +502,8 @@ $messages = array(
 'allmessagescurrent' => 'વર્તમાન દસ્તાવેજ',
 
 # Thumbnails
-'thumbnail-more' => 'વિસ્તૃત કરો',
+'thumbnail-more'  => 'વિસ્તૃત કરો',
+'thumbnail_error' => 'નાની છબી (થંબનેઇલ-thumbnail) બનાવવામાં ત્રુટિ: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'મારૂં પાનું',
@@ -547,6 +550,7 @@ $messages = array(
 
 # Media information
 'file-info-size'       => '($1 × $2 પીક્સલ, ફાઇલનું કદ: $3, MIME પ્રકાર: $4)',
+'show-big-image'       => 'મહત્તમ આવર્તન',
 'show-big-image-thumb' => '<small>આ પુર્વાવલોકનનું પરિમાણ: $1 × $2 પીક્સલ</small>',
 
 # Special:Newimages

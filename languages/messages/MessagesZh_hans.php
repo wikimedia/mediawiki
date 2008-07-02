@@ -1,11 +1,11 @@
 <?php
-/** Chinese (Simplified) (‪中文 (简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
  *
- * @author Shinjiman
  * @author O
+ * @author Shinjiman
  */
 
 $namespaceNames = array(
@@ -1839,7 +1839,6 @@ $1',
 'move-watch'              => '监视此页',
 'movepagebtn'             => '移动页面',
 'pagemovedsub'            => '移动成功',
-'movepage-moved'          => "<big>'''“$1”已经移动到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',
 'cantmove-titleprotected' => '您不可以移动这个页面到这个位置，因为该新标题已经被保护以防止创建。',
 'talkexists'              => '页面本身移动成功，
@@ -1849,7 +1848,7 @@ $1',
 'move-subpages'           => '如果可能的话，同时移动所有的子页面',
 'move-talk-subpages'      => '如果可能的话，同时移动所有的子对话页面',
 'movepage-page-exists'    => '页面$1已经存在，不可以自动地覆写。',
-'movepage-page-moved'     => '页面$1已经移动到$2。',
+'movepage-page-moved'     => '页面$1已经移动到$2。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '页面$1不可以移动到$2。',
 'movepage-max-pages'      => '最多有$1个页面已经移动同时不可以自动地再移动更多。',
 '1movedto2'               => '[[$1]]移动到[[$2]]',

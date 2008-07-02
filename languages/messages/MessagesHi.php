@@ -7,9 +7,10 @@
  * @author Kaustubh
  * @author לערי ריינהארט
  * @author Shyam
+ * @author Siebrand
  * @author Sunil Mohan
- * @author Aksi great
  * @author Jon Harald Søby
+ * @author Aksi great
  */
 
 $namespaceNames = array(
@@ -1874,7 +1875,6 @@ $1 को बाध्य करने का कारण है: "$2"',
 'move-watch'              => 'ध्यान रखें',
 'movepagebtn'             => 'नाम बदलें',
 'pagemovedsub'            => 'नाम बदल दिया गया है',
-'movepage-moved'          => "<big>'''“$1” का नाम बदलकर “$2” कर दिया गया है'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'इस नाम का एक पृष्ठ पहले से ही उपस्थित है, अथवा आप ने अमान्य नाम चुना है। कृपया दूसरा नाम चुनें।',
 'cantmove-titleprotected' => 'नया शीर्षक बनाने से रोक होने के कारण, आप इस जगह पर कोई अन्य पन्ना स्थानांतरित नहीं कर सकतें हैं।',
 'talkexists'              => "'''पन्ने का नाम बदल दिया गया है, पर उससे संबंधित वार्ता पृष्ठ नहीं बदला गया है क्योंकि वह पहले से बना हुवा है ।
@@ -1884,7 +1884,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'move-subpages'           => 'अगर उपलब्ध हैं, तो सभी उपपन्नेभी स्थानांतरित करें',
 'move-talk-subpages'      => 'अगर उपलब्ध हैं, तो वार्ता पृष्ठके सभी उपपन्नेभी स्थानांतरित करें',
 'movepage-page-exists'    => '$1 पृष्ठ पहले से अस्तित्वमें हैं और उसपर अपनेआप पुनर्लेखन नहीं कर सकतें।',
-'movepage-page-moved'     => '$1 यह पृष्ठ $2 इस नामपर स्थानांतरित कर दिया गया।',
+'movepage-page-moved'     => '$1 यह पृष्ठ $2 इस नामपर स्थानांतरित कर दिया गया।', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '$1 यह पृष्ठ $2 इस नामपर स्थानांतरित नहीं कर पायें।',
 'movepage-max-pages'      => 'ज्यादासे ज्यादा $1 पृष्ठ स्थानांतरित कर {{PLURAL:$1|दिया गया है|दिये गये हैं}}, अब और पृष्ठ अपनेआप स्थानांतरित नहीं होंगे।',
 '1movedto2'               => '$1 का नाम बदलकर $2 कर दिया गया है',

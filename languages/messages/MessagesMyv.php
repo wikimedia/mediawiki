@@ -246,7 +246,7 @@ $messages = array(
 
 'ok'                      => 'Маштови',
 'retrievedfrom'           => 'Лисмапрясь "$1"-сто',
-'youhavenewmessages'      => 'Тынь саиде $1 ($2).',
+'youhavenewmessages'      => 'Тонеть сась $1 ($2).',
 'newmessageslink'         => 'Од пачтямнэть',
 'newmessagesdifflink'     => 'меельсе полавтома',
 'youhavenewmessagesmulti' => 'Од сёрминеть учить эйсэть $1-со',
@@ -288,6 +288,7 @@ $messages = array(
 'databaseerror'        => 'Датабазань ильведькс',
 'nodb'                 => '$1 датабазась эзь кочкаво',
 'readonly'             => 'Датабазась панжома экшсэ',
+'missingarticle-rev'   => '(лиякстомтома#: $1)',
 'internalerror'        => 'Потмонь ильведькс',
 'internalerror_info'   => 'Потмонь ильведькс: $1',
 'filecopyerror'        => '"$1" файлась эзь ванстово од "$2" файлакс.',
@@ -307,6 +308,10 @@ $messages = array(
 'protectedpagetext'    => 'Те лопась панжома экшсэ, илязо понго витнемс - петнемс киненьгак.',
 'viewsourcetext'       => 'Те лопанть лисьмапрясь маштови ваномскак, лангстонзо саемс копияяк:',
 'ns-specialprotected'  => '{{ns:special}} лем марто лопатне а витневить-петневить.',
+
+# Virus scanner
+'virus-scanfailed'     => 'сканнось эзь лисе (код $1)',
+'virus-unknownscanner' => 'апак содань антивирус:',
 
 # Login and logout pages
 'logouttitle'               => 'Теицянь лисема',
@@ -411,8 +416,10 @@ $messages = array(
 'showpreview'                      => 'Максомс васнянь невтевкс',
 'showlivepreview'                  => 'Эряй васнянь невтевкс',
 'showdiff'                         => 'Невтемс мезе полавтовсь',
-'anoneditwarning'                  => "'''Ванок:''' Зярс эзить сова. IP адресэть совавтови те лопанть витнема-петнема историянтень.",
+'anoneditwarning'                  => "'''Ванок:''' Зярс эзить сова. IP адресэть совавтови те лопанть витнема-петнема икелькс умантень.",
+'missingcommenttext'               => 'Инеськеть мелеть-арьсемат путта тезэнь алов.',
 'summary-preview'                  => 'Цётомань седеикелев вановкс',
+'subject-preview'                  => 'Темань/коняксонь васнянь невтема',
 'blockedtitle'                     => 'Совицясь кардазь',
 'blockedtext'                      => "<big>'''Тонть уське коцтонь совамось эли IP-тешкстэть сёлгазь-пекстазь.'''</big><br />
 
@@ -449,6 +456,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'previewnote'                      => '<strong>Те - ансяк икелев ваномась; полавтоматне зярс апак вансто!</strong>',
 'editing'                          => 'Витнят-петнят $1',
 'editingsection'                   => 'Витнеме-петнеме $1 (секциянть)',
+'editingcomment'                   => 'Витнят-петнят $1 (мельть-арьсемат)',
 'yourtext'                         => 'Мезе сёрмадыть',
 'storedversion'                    => 'Ванстозь версия',
 'yourdiff'                         => 'Мейсэ явовить',
@@ -457,6 +465,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 <strong>ИЛЯ МАКСО ВАНСТОНЬ ВИДЕЧИСЭ ЛОМАНЕНЬ ВАЖОДЕМАНТЬ АПАК КЕВКСТНЕ!</strong>',
 'longpagewarning'                  => '<strong>ВАНОК: Те лопанть сталмозо $1 килобайтт; конат-конат интерчаматнесэ-браузертнэсэ стакасто витнемс-петнемс сёрмадовкс 32-во кб сталмосо али седе стака.
 Инеськеть, паро улевель лопанть явомс вишка пельксекс.</strong>',
+'titleprotectedwarning'            => '<strong>ВАНОК:  Те лопась сёлгозь, сон ансяк койкона теицянень тееви-шкави.</strong>',
 'templatesused'                    => 'Те лопасонть тевс нолдазь лопапарцунт:',
 'templatesusedpreview'             => 'Те икелькс вановкссонть тевс нолдазь лопа парцунт:',
 'templatesusedsection'             => 'Те пелькссэнть тевс нолдазь лопа парцунт:',
@@ -480,7 +489,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 
 # History pages
 'viewpagelogs'        => 'Сёрмадомонзо салававалонть те лопасонть',
-'nohistory'           => 'Те лопанть витнемадо-петнемадо истораязо арась.',
+'nohistory'           => 'Те лопанть витнемадо-петнемадо икелькс умазо арась.',
 'revnotfound'         => 'Лиякстомтомась а муеви',
 'currentrev'          => 'Тевате лиякстомтома',
 'revisionasof'        => '$1-це версиясь',
@@ -512,27 +521,35 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'rev-deleted-event'      => '(сёрмадсткэсь нардазь)',
 'rev-delundel'           => 'невтемс/кекшемс',
 'revisiondelete'         => 'Нардамс/вельмевтемс лиякстомтоматнень',
+'revdelete-legend'       => 'Аравтомс неявомачынь петне',
 'revdelete-hide-text'    => 'Кекшемс лиякстомтомань текстэнть',
 'revdelete-hide-comment' => 'Кекшемс витнемадо-петнемадо арсематнень',
+'revdelete-hide-user'    => 'Кекшемс витницянть-петницянть теиця лемензэ/IP-нзэ',
 'revdelete-hide-image'   => 'Кекшемс мезе файлатнесэ',
 'revdelete-log'          => 'Логто ёвтнема:',
-'pagehist'               => 'Лопанть историязо',
-'deletedhist'            => 'Нардань историязо',
+'revdel-restore'         => 'Полавтомс неявомачынзэ',
+'pagehist'               => 'Лопанть икелькс умазо',
+'deletedhist'            => 'Нардань икелькс умазо',
 'revdelete-content'      => 'потмозо',
+'revdelete-summary'      => 'витнемадо-петнемадо нурькине йовтавкс',
 'revdelete-uname'        => 'Совицянь леметь',
 'revdelete-hid'          => '$1 кекшезь',
 'revdelete-unhid'        => '$1 ливтезь лангс',
 'revdelete-log-message'  => '$1 $2 {{PLURAL:$2|лиякстомтомань туртов|лиякстомтоматнень туртов}}',
 
 # History merging
-'mergehistory'                => 'Совавтомс лопатнень лиякстомтомадо сёрмадовкстнэнь ве лувс',
-'mergehistory-box'            => 'Совавтомс кавто лопатнень лиякстомтомадо сёрмадовкстнэнь ве лувс:',
-'mergehistory-from'           => 'Лисьмапря лопа:',
-'mergehistory-into'           => 'Совавтома лопа:',
-'mergehistory-submit'         => 'Совавтомс лиякстомтоматнень вейтьс',
-'mergehistory-no-source'      => 'Лисьмапрянь $1 лопась арась.',
-'mergehistory-no-destination' => 'Норовазь $1 лопась арась.',
-'mergehistory-autocomment'    => 'Совавтомс [[:$1]] [[:$2]]-с',
+'mergehistory'                     => 'Совавтомс лопатнень лиякстомтомадо сёрмадовкстнэнь ве лувс',
+'mergehistory-box'                 => 'Совавтомс кавто лопатнень лиякстомтомадо сёрмадовкстнэнь ве лувс:',
+'mergehistory-from'                => 'Лисьмапря лопа:',
+'mergehistory-into'                => 'Совавтома лопа:',
+'mergehistory-go'                  => 'Невтемс вейтьс совавтомкс витнемат-петнемат',
+'mergehistory-submit'              => 'Совавтомс лиякстомтоматнень вейтьс',
+'mergehistory-empty'               => 'Вейкеяк лиякстомтома а совавтови вейтьс лия марто.',
+'mergehistory-no-source'           => 'Лисьмапрянь $1 лопась арась.',
+'mergehistory-no-destination'      => 'Норовазь $1 лопась арась.',
+'mergehistory-invalid-source'      => 'Ливтемкс лопанть улезэ маштовикс лем.',
+'mergehistory-invalid-destination' => 'Совавтомкс лопанть улезэ маштовикс лем.',
+'mergehistory-autocomment'         => 'Совавтомс [[:$1]] [[:$2]]-с',
 
 # Merge log
 'mergelog'    => 'Вейтьсэндямс логонть',
@@ -547,23 +564,32 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'diff-multi'              => '({{PLURAL:$1|$1 юткине версиясь апак невте|$1 юткине версиятне апак невте|$1 юткине версиятнеде апак невте.}})',
 
 # Search results
-'searchresults'         => 'Мезе муевсь',
-'searchsubtitle'        => "Вешнить '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Вешнить '''$1'''",
-'noexactmatch'          => "'''\"\$1\" конякс марто лопа арась.''' Мелеть ули, [[:\$1|теика те лопанть]].",
-'noexactmatch-nocreate' => "'''\"\$1\" лемсэ лопа арась.'''",
-'titlematches'          => 'Лопанть коняксонзо марто вейтьс прась',
-'notitlematches'        => 'Лопанть коняксонзо марто вейтьс прамот арасть',
-'textmatches'           => 'Лопанть сёрмадсткэнзэ марто вейтьс прамот',
-'notextmatches'         => 'Лопанть сёрмадсткэнзэ марто вейтьс прамот арасть',
-'prevn'                 => 'седе икелень $1',
-'nextn'                 => 'сы $1',
-'viewprevnext'          => 'Ванномс ($1) ($2) ($3)',
-'search-interwiki-more' => '(седе ламо)',
-'search-relatedarticle' => 'Малавикс',
-'searchrelated'         => 'малавикс',
-'searchall'             => 'весе',
-'powersearch'           => 'Седеяк вешнемс',
+'searchresults'             => 'Мезе муевсь',
+'searchsubtitle'            => "Вешнить '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "Вешнить '''$1'''",
+'noexactmatch'              => "'''\"\$1\" конякс марто лопа арась.''' Мелеть ули, [[:\$1|теика те лопанть]].",
+'noexactmatch-nocreate'     => "'''\"\$1\" лемсэ лопа арась.'''",
+'titlematches'              => 'Лопанть коняксонзо марто вейтьс прась',
+'notitlematches'            => 'Лопанть коняксонзо марто вейтьс прамот арасть',
+'textmatches'               => 'Лопанть сёрмадсткэнзэ марто вейтьс прамот',
+'notextmatches'             => 'Лопанть сёрмадсткэнзэ марто вейтьс прамот арасть',
+'prevn'                     => 'седе икелень $1',
+'nextn'                     => 'сы $1',
+'viewprevnext'              => 'Ванномс ($1) ($2) ($3)',
+'search-section'            => '(пелькс $1)',
+'search-suggest'            => 'Истя мерикскелить: $1',
+'search-interwiki-caption'  => 'Дугакс проектт',
+'search-interwiki-more'     => '(седе ламо)',
+'search-mwsuggest-enabled'  => 'ушодкс марто',
+'search-mwsuggest-disabled' => 'ушодкстомо',
+'search-relatedarticle'     => 'Малавикс',
+'searchrelated'             => 'малавикс',
+'searchall'                 => 'весе',
+'powersearch'               => 'Седеяк вешнемс',
+'powersearch-ns'            => 'Вешнемс не лем потмотнестэ:',
+'powersearch-redir'         => 'Лия таркав йутавтоматнень сёрмалема',
+'powersearch-field'         => 'Вешнемс',
+'search-external'           => 'Ушо йондонь вешнема',
 
 # Preferences page
 'preferences'              => 'Лия ютксто явома',
@@ -577,6 +603,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'qbsettings-floatingleft'  => 'Керш ёнга уи',
 'qbsettings-floatingright' => 'Вить ёнга уи',
 'changepassword'           => 'Салавань валонь полавтома',
+'skin'                     => 'Неемань ладсема',
 'math'                     => 'Математика',
 'dateformat'               => 'Чынь формат',
 'datedefault'              => 'Икелькс вешема арась',
@@ -597,6 +624,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'textboxsize'              => 'Витнема-петнема',
 'columns'                  => 'Палманть:',
 'searchresultshead'        => 'Вешнема',
+'resultsperpage'           => 'Зяроксть вастневи ве лопасо:',
 'contextlines'             => 'Зяро рисьметь эрьва муевкссэ:',
 'timezonelegend'           => 'Часовойть каркст',
 'localtime'                => 'Тескэнь шкась',
@@ -611,6 +639,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'editusergroup'                 => 'Витнемс-петнемс сови куротнень',
 'saveusergroups'                => 'Ванстомс сови куротнень',
 'userrights-groupsremovable'    => 'Курот, конат нардавить:',
+'userrights-groupsavailable'    => 'Кочкамкс курот:',
 'userrights-reason'             => 'Полавтомань тувтал:',
 'userrights-available-none'     => 'Тонеть а мерить лиякстомтомс тень, кие кодамо сови куросо ашти.',
 'userrights-available-add-self' => 'Ули мелеть совавтык эсь прят {{PLURAL:$2|те куронтень|не куротнес}}: $1.',
@@ -649,11 +678,13 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'right-reupload'      => 'Одонь сёрмадомга уликс файланть нардамс',
 'right-upload_by_url' => 'Йовкстамс файла URL адресстэ',
 'right-delete'        => 'Нардамс лопатнень',
-'right-bigdelete'     => 'Нардамс кувака история марто лопатнень',
+'right-bigdelete'     => 'Нардамс кувака икелькс ума марто лопатнень',
 'right-browsearchive' => 'Вешнемс нардань файлатнесэ',
 'right-undelete'      => 'Вельмевтемс нардань лопа',
 'right-block'         => 'Кардамс лия совийтнень-лисийтнень витнемадо-петнемадо',
 'right-blockemail'    => 'Кардамс лия лисийтнень-совийтнень е-сёрмань кучомадо',
+'right-editinterface' => 'Витнемс-петнемс теицянь интерчаманть (васодема йожонть)',
+'right-editusercssjs' => 'Витнемс-петнемс лия теицятнень CSS ды JS файласт',
 'right-import'        => 'Йовкстамс лия Викистэ лопат',
 'right-siteadmin'     => 'Датабазань сёлгомо ды панжомо',
 
@@ -698,12 +729,14 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'uploadnologin'      => 'Эзить сова',
 'uploaderror'        => 'Тонгомсто ильведькс',
 'upload-permitted'   => 'Файлань форматт, конат меревить: $1.',
+'uploadlog'          => 'Файлань йовкстамодо сёрмалема',
 'uploadlogpage'      => 'Файлань тонгома журналось',
 'filename'           => 'Файлонь лем',
 'filedesc'           => 'Нурькинестэ',
 'fileuploadsummary'  => 'Нурькинестэ:',
 'filesource'         => 'Лисьмапря:',
 'uploadedfiles'      => 'Тонгонь файлат',
+'minlength1'         => 'Файлалемесь аштезэ вейке эли седе ламо тешксттнэстэ.',
 'badfilename'        => 'Файланть лемесь полавтозь "$1"-кс.',
 'fileexists-thumb'   => "<center>'''Уликс файла'''</center>",
 'successfulupload'   => 'Совавтовсь кода эряви',
@@ -725,6 +758,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error28' => 'Ёвкстамо шкась весиясь',
 
+'license'            => 'Лицензиянь теема:',
 'nolicense'          => 'Лицензия арась',
 'upload_source_file' => ' (арси машинасот файла)',
 
@@ -740,7 +774,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'filehist'                       => 'Файланть эрямопингезэ',
 'filehist-help'                  => 'Лепштинк чиннть/шканть ланкс, сестэ вансынк коли файлось ульнесь теезь.',
 'filehist-deleteall'             => 'нардамс весе',
-'filehist-deleteone'             => 'нардамс тень',
+'filehist-deleteone'             => 'нардамс',
 'filehist-revert'                => 'велявтомс мекев',
 'filehist-current'               => 'неень шкань',
 'filehist-datetime'              => 'Чи/Шка',
@@ -839,7 +873,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'missingfiles'            => 'Ёмазь файлат',
 'mostlinked'              => 'Лопат конатнес сехте ламо сюлмавома пенеть невтить',
 'mostlinkedcategories'    => 'Сехте сюлмавозь категориятнень марто',
-'mostlinkedtemplates'     => 'Сехте сюлмавозь шаблонтнень марто',
+'mostlinkedtemplates'     => 'Сехте ламо сюлмавома пе марто лопапарцунт',
 'mostcategories'          => 'Весемеде ламо категория марто лопат',
 'mostimages'              => 'Весемеде ламо сюлмавкс марто файлат',
 'mostrevisions'           => 'Лопат конатнесэ теезь сехте ламо лиякстомтомат',
@@ -848,15 +882,19 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'longpages'               => 'Кувака лопат',
 'deadendpages'            => 'Поладкстомо-лисемавтомо лопат',
 'protectedpages'          => 'Ванстазь лопатьне',
+'protectedtitles'         => 'Ванстонь конякст',
 'listusers'               => 'Теицят-кить',
 'newpages'                => 'Од лопат',
 'newpages-username'       => 'Теицянь лем:',
 'ancientpages'            => 'Весемеде умонь лопат',
 'move'                    => 'Сыргамо',
 'movethispage'            => 'Ютавтомс те лопанть лияв',
+'notargettitle'           => 'Совавтома лопа арась',
 'nopagetitle'             => 'Истямо вешема лопа арась',
+'nopagetext'              => 'Истямо лопа, конань вешить, арась.',
 'pager-newer-n'           => '{{PLURAL:$1|седе од 1|седе одт $1}}',
 'pager-older-n'           => '{{PLURAL:$1|седе ташто 1|седе таштт $1}}',
+'suppress'                => 'А ванома',
 
 # Book sources
 'booksources'               => 'Кинигань лисьмапрят',
@@ -930,17 +968,19 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'watchlist-hide-bots'  => 'Кекшэмс мезе ботось витнесь-петнесь',
 'watchlist-show-own'   => 'Невтемс мезе мон витнинь-петнинь',
 'watchlist-hide-own'   => 'Кекшэмс мезе мон витнинь-петнинь',
+'watchlist-show-minor' => 'Невтемс апокшкэ витнематнень-петнематнень',
 'watchlist-hide-minor' => 'Кекшэмс апокшкэ витнемат-петнемат',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ванома...',
 'unwatching' => 'Аванома...',
 
-'enotif_newpagetext' => 'Те од лопа.',
-'changed'            => 'полавтозь',
-'created'            => 'теезь-шказь',
-'enotif_lastdiff'    => 'Те полавтоманть ваномга вант $1.',
-'enotif_anon_editor' => 'лемтеме теиця $1',
+'enotif_newpagetext'           => 'Те од лопа.',
+'enotif_impersonal_salutation' => '{{SITENAME}} теицясь',
+'changed'                      => 'полавтозь',
+'created'                      => 'теезь-шказь',
+'enotif_lastdiff'              => 'Те полавтоманть ваномга вант $1.',
+'enotif_anon_editor'           => 'лемтеме теиця $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Панемс лопанть',
@@ -949,19 +989,24 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'exblank'                     => 'лопась чаволь',
 'delete-confirm'              => 'Нардамс "$1"',
 'delete-legend'               => 'Нардамс',
-'historywarning'              => 'Икелев мерема: Лопанть, конань тынь пурнатад нардамонзо улить лиякстомань историянзо:',
-'confirmdeletetext'           => 'Тынь кевкстинк пешксе нардоманть  лопанть (али невтевкс-артовксонть)ды веси сонзе лиякстомань историянзо.<br />
-Инескеть,  кемекстынк, эсинк меленк тень коряс, ды содасынк кадовкснень тень мельга,  ды тейдяд тень видечинть (правилатьнень) коряс, конат сёрмадозь [[{{MediaWiki:Policy-url}}]].',
+'historywarning'              => 'Ванок: Лопанть, конань пурнат нардамонзо улить лиякстомтомань икелькс уманзо:',
+'confirmdeletetext'           => 'Кундыть нардамо лопа (эли невтевкс-артовкс) вейтьсэ лиякстомтоматнеде икелькс уманзо марто.<br />
+Инеськеть,  кемекстык, эсеть мелеть коряс тень тейсак, алкукс содат, мезе лияды теде мейле, ды алкукс теят тень видечинть (правилатьнень) коряс, конат сёрмадозь [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Тевень теемась топавтовсь',
 'deletedtext'                 => '"<nowiki>$1</nowiki>"-сь ульнесь нардазь.
 Вант $2 тосо веси уаль умоконь нардавксне.',
 'deletedarticle'              => 'нардазь "[[$1]]"',
 'dellogpage'                  => 'Нардомань совама-кемекстома',
+'deletionlog'                 => 'нардамонь сёрмалема',
+'reverted'                    => 'Вельмевтезь лопань седе икелень лиякстомтома',
 'deletecomment'               => 'Тувтал печкеме:',
 'deleteotherreason'           => 'Лия/топавтозь тувтал:',
 'deletereasonotherlist'       => 'Лия тувтал',
 'delete-edit-reasonlist'      => 'Витнемс-петнемс нардамонь тувталтнэнь',
+'rollback'                    => 'Кевердемс витнематнень-петнематнень мекев',
+'rollback_short'              => 'Мекев кевердема',
 'rollbacklink'                => 'кевердемс',
+'rollbackfailed'              => 'Мекев кевердемась эзь лисе',
 'protectlogpage'              => 'Ванстомань совама-кемекстома',
 'protectedarticle'            => 'ванстозь "[[$1]]"',
 'protect-legend'              => 'Кемекстынк аравтоманть лопанть ванстоманзо',
@@ -971,11 +1016,11 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'protect_expiry_old'          => 'Прядома  шкась амаштовикс.',
 'protect-unchain'             => 'Панжомс сыргамонь нолдамонть',
 'protect-text'                => 'Тесэ тынь вансынк ды лиякстомсынк ванстоманть покшолманзо лопаньте <strong>[[:$1]]</strong>.',
-'protect-locked-access'       => 'Тынк кирдицянк совамонть асатыть видечись лиякстоманьте ванстома сэреньте лопанть. Нень шкань путовксне те лопаньте <strong>[[:$1]]</strong>:',
+'protect-locked-access'       => 'Кирдицянь совамо таркат а максы видечи лиякстомтомс лопанть ванстома лувонзо. Тесэ вана лопанть уликс путовксонзо-аравтоманзо <strong>[[:$1]]</strong>:',
 'protect-cascadeon'           => 'Те лопась ванстозь,  сон путозь {{PLURAL:$1|невтезезь ало лопаньте, конаньте|невтезезь ало лопатьнене конатьнене}}-те путозь каскадонь ванстомась. Тынь лиякставсынк те ванстома сэренть, ансяк те кодаяк а полавсы каскадонь ванстоманть.',
 'protect-default'             => '(апандовкс)',
 'protect-fallback'            => 'Вешеви ве мельс прамось «$1»-нть',
-'protect-level-autoconfirmed' => 'Пекстадо апакускекотцто теицятьнень',
+'protect-level-autoconfirmed' => 'Саймас аравтомс апак сёрмадстово теицятьнень',
 'protect-level-sysop'         => 'Ансяк администраторт',
 'protect-summary-cascade'     => 'каскадонь ладсо',
 'protect-expiring'            => 'прядови $1 (UTC)',
@@ -999,14 +1044,19 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'restriction-level-all'           => 'кода мелеть виезэ',
 
 # Undelete
-'undelete'               => 'Ваномс нардазь лопатнень',
-'viewdeletedpage'        => 'Ваномс нардазь лопатнень',
-'undeletebtn'            => 'Велявтомс мекев сенень, мезе ульнесь витнемадо-петнемадо икеле',
-'undeletelink'           => 'вельмевтемс',
-'undeletecomment'        => 'Арсемат - мельть:',
-'undelete-search-prefix' => 'Невтемс лопат тестэ саезь:',
-'undelete-search-submit' => 'Вешнемс',
-'undelete-error-short'   => '"$1" файлань вельмевтемстэ лиссь ильведевкс',
+'undelete'                 => 'Ваномс нардазь лопатнень',
+'viewdeletedpage'          => 'Ваномс нардазь лопатнень',
+'undeletebtn'              => 'Велявтомс мекев сенень, мезе ульнесь витнемадо-петнемадо икеле',
+'undeletelink'             => 'вельмевтемс',
+'undeletecomment'          => 'Арсемат - мельть:',
+'undeletedarticle'         => 'вельмевтезь "[[$1]]"',
+'undeletedrevisions'       => '{{PLURAL:$1|1 лиякстомтома|$1 лиякстомтомат}} вельмевтезь',
+'undeletedrevisions-files' => '{{PLURAL:$1|1 лиякстомтома|$1 лиякстомтомат}} ды {{PLURAL:$2|1 файла|$2 файлат}} вельмевтезь',
+'undeletedfiles'           => '{{PLURAL:$1|1 файла|$1 файлат}} вельмевтезь',
+'undelete-search-box'      => 'Вешнемс нардань лопатнень йутксто',
+'undelete-search-prefix'   => 'Невтемс лопат тестэ саезь:',
+'undelete-search-submit'   => 'Вешнемс',
+'undelete-error-short'     => '"$1" файлань вельмевтемстэ лиссь ильведевкс',
 
 # Namespace form on various pages
 'namespace'      => 'Сёрмадовксонть лемезе:',
@@ -1027,37 +1077,43 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'sp-contributions-submit'      => 'Вешнемс',
 
 # What links here
-'whatlinkshere'           => 'Мезе тезэнь сюлмави',
-'whatlinkshere-title'     => 'Лопат конат сюлмазь $1 марто',
-'whatlinkshere-page'      => 'Лопа:',
-'linklistsub'             => '(Налткень потмокс)',
-'linkshere'               => "Сыця лопатьне сюлмававить '''[[:$1]]''' марто:",
-'nolinkshere'             => "Кодаткак лопат асульмавить '''[[:$1]]''' марто.",
-'isredirect'              => 'Лиякс витнинк-петнинк лопанть',
-'istemplate'              => 'совавтомс',
-'isimage'                 => 'артовксонь сюлмавома пене',
-'whatlinkshere-prev'      => '{{PLURAL:$1|икеле|седе икелень $1}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|сыця|сы $1}}',
-'whatlinkshere-links'     => '← сюлмавомапеть',
-'whatlinkshere-hidelinks' => '$1 сюлмавома петь',
-'whatlinkshere-filters'   => 'Фильтрат',
+'whatlinkshere'            => 'Мезе тезэнь сюлмави',
+'whatlinkshere-title'      => 'Лопат конат сюлмазь $1 марто',
+'whatlinkshere-page'       => 'Лопа:',
+'linklistsub'              => '(Налткень потмокс)',
+'linkshere'                => "Сыця лопатьне сюлмававить '''[[:$1]]''' марто:",
+'nolinkshere'              => "Кодаткак лопат асульмавить '''[[:$1]]''' марто.",
+'isredirect'               => 'Лиякс витнинк-петнинк лопанть',
+'istemplate'               => 'совавтомс',
+'isimage'                  => 'артовксонь сюлмавома пене',
+'whatlinkshere-prev'       => '{{PLURAL:$1|икеле|седе икелень $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|сыця|сы $1}}',
+'whatlinkshere-links'      => '← сюлмавомапеть',
+'whatlinkshere-hideredirs' => '$1 {{PLURAL:$1|тарка йутавты|таркат йутавтыть}} тей',
+'whatlinkshere-hidelinks'  => '$1 сюлмавома петь',
+'whatlinkshere-filters'    => 'Фильтрат',
 
 # Block/unblock
 'blockip'                 => 'Пекстамондо теицянть',
+'blockip-legend'          => 'Аравтомс теицянть саймас',
 'ipaddress'               => 'IP адрес:',
 'ipadressorusername'      => 'IP адрес эли теицянь лем:',
+'ipbexpiry'               => 'Пинге пезэ:',
 'ipbreason'               => 'Тувтал:',
 'ipbreasonotherlist'      => 'Лия тувтал',
 'ipbsubmit'               => 'Озавтомс те теицянть саймес',
 'ipbother'                => 'Лия шка:',
 'ipboptions'              => '2 hours:2 част,1 day:1 чи,3 days:3 чить,1 week:1 тарго,2 weeks:2 таргот,1 month:1 ков,3 months:3 ковт,6 months:6 ковт,1 year:1 ие,infinite:певтеме', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'лия',
+'ipbotherreason'          => 'Лия/поладкс тувтал:',
+'badipaddress'            => 'Амаштовикс IP адрес',
 'blockipsuccesssub'       => 'Саймес озавтовсь',
 'ipb-edit-dropdown'       => 'Витнемс-петнемс саймес озавтомань тувталтнэнь',
 'ipb-unblock-addr'        => 'Нолдамс $1-нть сайместэ',
 'ipb-blocklist-addr'      => 'Ваномс те теицянть $1 саймес озавтоманзо',
 'ipb-blocklist'           => 'Ваномс саймес озавтозетнень',
 'unblockip'               => 'Нолдамс теицянть сайместэ',
+'ipusubmit'               => 'Нолдамс те адресэнть саймасто',
 'ipblocklist'             => 'Лопась пексать IP адресстнэнь ды теицятьнень',
 'ipblocklist-submit'      => 'Вешнеме',
 'infiniteblock'           => 'певтеме',
@@ -1090,7 +1146,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 Невтевкстнэ икелень лементь лангс акармить лиякстомтовомо (инеськеть, вант улить - арасть [[Special:DoubleRedirects|кавтонь кирдань]] ды [[Special:BrokenRedirects|сезень]] печтевтемат).
 Эсеть лангсо вана невтевкстнэ невтест сев, ков эряви.
 
-Мель явт, улиндеряй анок лопа од лементь таркасо, лопась  '''а печтевтеви'''. Печтевтеви ансяк сестэ, зярдо лопась чаво эли ашти певтевтема лопакс, конань арась витнемань-петнемань историязо. Лиякс меремга, маштови одов лемдемс лопа икелень лемсэнзэ, зярдо теят ильведевкс; уликс лия лопа а нардави.
+Мель явт, улиндеряй анок лопа од лементь таркасо, лопась  '''а печтевтеви'''. Печтевтеви ансяк сестэ, зярдо лопась чаво эли ашти певтевтема лопакс, конань арась витнемань-петнемань икелькс умазо. Лиякс меремга, маштови одов лемдемс лопа икелень лемсэнзэ, зярдо теят ильведевкс; уликс лия лопа а нардави.
 
 '''ВАНОК!'''
 Одс лемдямось тусы покш ды пек апак учонь полавтовомат лопатненень, конатнес ''весеменень пек содавикст''.
@@ -1107,17 +1163,18 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'move-watch'              => 'Ваномс лопанть',
 'movepagebtn'             => 'Печтевтемс лопанть',
 'pagemovedsub'            => 'Лопась печтевтевсь',
-'movepage-moved'          => "<big>'''«$1»-сь печтевтезь «$2»-с'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Лопась истямо лем марто ули али невтезь тынк эйсэ лемесь анолдавиксев.<br />Инескеть, кочкадо лия лем.',
 'talkexists'              => "'''Сонсь лопась печтевтевсь, ансяк кортамонь лопась кодаяк эзь печтевтеве, вана мекс,  истямо лем марто лопась ули. Инеськеть, пурныть сынст вейтьс кедьсэ.'''",
 'movedto'                 => 'печтевтезь',
 'movetalk'                => 'Печтевтемань кортамо лопа',
-'movepage-page-moved'     => '"$1" лопась печтевтезь "$2"-с.',
+'movepage-page-moved'     => '"$1" лопась печтевтезь "$2"-с.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => '[[$1]] печтевтезь тей [[$2]]',
 'movelogpage'             => 'Печтевтемань журнал',
 'movereason'              => 'Тувтал:',
 'revertmove'              => 'велявтодо',
+'delete_and_move'         => 'Нардык ды печтевтик',
 'delete_and_move_confirm' => 'Нардыка те лопанть',
+'delete_and_move_reason'  => 'Печтевтемга нардазь',
 
 # Export
 'export'           => 'Экспортировамс лопат',
@@ -1135,13 +1192,18 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'thumbnail_error' => 'Миниатюрань тееманть ильветькс: $1',
 
 # Special:Import
-'import'                  => 'Таргамс лопатнень',
-'import-interwiki-submit' => 'Таргамс',
-'import-revision-count'   => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
-'importnopages'           => 'Йовкстамс лопат арасть',
-'importnotext'            => 'Чаво эли текст арась',
-'import-noarticle'        => 'Совавтомс лопат арасть!',
-'import-upload'           => 'Ёвкстамс XML датанть',
+'import'                     => 'Таргамс лопатнень',
+'import-interwiki-submit'    => 'Таргамс',
+'import-interwiki-namespace' => 'Печтевтемс лопатнень те лемпотмонтень:',
+'importstart'                => 'Лопатне совавтовить...',
+'import-revision-count'      => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
+'importnopages'              => 'Йовкстамс лопат арасть',
+'importfailed'               => 'Совавтома тевесь эзь лисе: <nowiki>$1</nowiki>',
+'importbadinterwiki'         => 'Амаштовикс интервики сюлмавома пе',
+'importnotext'               => 'Чаво эли текст арась',
+'importsuccess'              => 'Совавтомась прядовсь!',
+'import-noarticle'           => 'Совавтомс лопат арасть!',
+'import-upload'              => 'Ёвкстамс XML датанть',
 
 # Import log
 'importlogpage'                 => 'Импортонть журналось',
@@ -1151,7 +1213,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'tooltip-pt-userpage'             => 'Теицянь лопам',
 'tooltip-pt-mytalk'               => 'Кортнемалопам',
 'tooltip-pt-preferences'          => 'Монь лия ютксто явома',
-'tooltip-pt-watchlist'            => 'Лопань потмакс конататьненть Тынь вандад лиякстоманть коряс',
+'tooltip-pt-watchlist'            => 'Лопатне, конатнень мельга ванстнят: лиякстомтовить а лиякстомтовить',
 'tooltip-pt-mycontris'            => 'Мезесэ мон лездынь',
 'tooltip-pt-login'                => 'Совавтовлить эсь прят тезэнь, арась мелеть, иля.',
 'tooltip-pt-logout'               => 'Лисемс',
@@ -1159,6 +1221,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'tooltip-ca-edit'                 => 'Те лопаськак витневи-петневи. Ансяк, ванстомадо икеле яла васнянь невтевкс повнэнть лепштика.',
 'tooltip-ca-addsection'           => 'Топавтодо мельполадкс кортавтоманьте.',
 'tooltip-ca-viewsource'           => 'Те лопась ванстозь. Ули меленк ваномонзо сонзе лисмапрянть.',
+'tooltip-ca-history'              => 'Те лопанть йутазь версиянзо.',
 'tooltip-ca-protect'              => 'Аравтомс те лопанть прянь ванстомас',
 'tooltip-ca-delete'               => 'Нардамс те лопанть, илязо улеяк',
 'tooltip-ca-move'                 => 'Ютавтык те лопанть лияв',
@@ -1167,7 +1230,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'tooltip-search'                  => 'Вешнемс вана тестэ {{SITENAME}}',
 'tooltip-p-logo'                  => 'Прякс лопа',
 'tooltip-n-mainpage'              => 'Совака прякслопантень',
-'tooltip-n-portal'                => 'Проектэнть эйстэ,  мейсэ Тынь лездатад, косо муемс курмот-кармот',
+'tooltip-n-portal'                => 'Проектэнть эйстэ,  мейсэ лездамс, косто мезе муемс',
 'tooltip-n-currentevents'         => 'Муинк совавикс информациянть неень событиятнесэ',
 'tooltip-n-recentchanges'         => 'Викисэ мезе чияк полавтовсь-лиякстомтовсь.',
 'tooltip-n-randompage'            => 'Макста ловномс кодамо понгсь лопа',
@@ -1178,9 +1241,13 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'tooltip-t-emailuser'             => 'Те теицянтень кучомс е-сёрма',
 'tooltip-t-upload'                => 'Ёкстамс файлат',
 'tooltip-t-specialpages'          => 'Башка тевень лопатне мельга-мельцек',
+'tooltip-t-print'                 => 'Лопанть конёв лангс нолдавома версиязо',
+'tooltip-ca-nstab-main'           => 'Ваномс потмо лопанзо',
 'tooltip-ca-nstab-user'           => 'Ваномс теицянь лопанть',
+'tooltip-ca-nstab-media'          => 'Ваномс медиа лопанть',
 'tooltip-ca-nstab-project'        => 'Ваннынк проетной лопанть',
 'tooltip-ca-nstab-image'          => 'Ванык файлань лопанть',
+'tooltip-ca-nstab-mediawiki'      => 'Ваномс системань пачтямнэнть',
 'tooltip-ca-nstab-template'       => 'Ванномс лопапарцунонть',
 'tooltip-ca-nstab-help'           => 'Ванномс лездамонь лопанть',
 'tooltip-ca-nstab-category'       => 'Варштынк категориянь лопатьнень',
@@ -1193,12 +1260,15 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'tooltip-upload'                  => 'Ушодомс тонгоманть',
 
 # Attribution
-'anonymous' => '{{SITENAME}}-нь лемтеме теиця(т)',
-'siteuser'  => '{{SITENAME}}-нь теиця $1',
-'others'    => 'лият',
+'anonymous'   => '{{SITENAME}}-нь лемтеме теиця(т)',
+'siteuser'    => '{{SITENAME}}-нь теиця $1',
+'others'      => 'лият',
+'siteusers'   => '{{SITENAME}}-нь теиця(т) $1',
+'creditspage' => 'Лопасонть кинь путовксонзо',
 
 # Spam protection
 'spamprotectiontitle' => 'Шукшто ванстома филтра',
+'spambot_username'    => 'MediaWiki-нь шукшто ванькскавтома',
 
 # Info page
 'numedits'     => 'Зяроксть витнезь-петнезь (лопа): $1',
@@ -1208,12 +1278,15 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 # Patrol log
 'patrol-log-auto' => '(сонсь теи)',
 
+# Image deletion
+'deletedrevision' => 'Нардань ташто лиякстомтома $1',
+
 # Browsing diffs
 'previousdiff' => '← Седе икелень diff',
 'nextdiff'     => 'Сы кадовиксэсь →',
 
 # Media information
-'widthheightpage'      => '$1×$2, $3 лопат',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|лопа|лопат}}',
 'file-info'            => '(файлонть-путовксонть сталмозо: $1, MIME типезе: $2)',
 'file-info-size'       => '($1 × $2 пиксельть, файлонть-путовксонть сталмозо: $3, MIME типезе: $4)',
 'file-nohires'         => '<small>Арась версия покш разрешения марто.</small>',
@@ -1254,10 +1327,13 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'exif-yresolution'     => 'Вертикальсэ сеедезэ',
 'exif-artist'          => 'Авторось',
 'exif-colorspace'      => 'Тюс ютко',
+'exif-usercomment'     => 'Теицянь мельть-арьсемат',
 'exif-brightnessvalue' => 'Валдоксчи',
 'exif-lightsource'     => 'Валдонь лисьмапрязо',
 'exif-flash'           => 'Кивчкадема',
 'exif-filesource'      => 'Файланть саемазо',
+'exif-gpslatituderef'  => 'Йакшамо йононь эли лембе мастор йононь келезэ',
+'exif-gpslatitude'     => 'Келезэ',
 'exif-gpslongituderef' => 'Чилисемань эли чивалгомань кувалмо',
 'exif-gpslongitude'    => 'Кувалмо',
 'exif-gpsaltitude'     => 'Сэрь',
@@ -1282,6 +1358,8 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 
 'exif-lightsource-1'  => 'Чи валдо',
 'exif-lightsource-2'  => 'Флуоресцент',
+'exif-lightsource-9'  => 'Маней',
+'exif-lightsource-10' => 'Пелензазь',
 'exif-lightsource-11' => 'Сулей',
 
 'exif-focalplaneresolutionunit-2' => 'дуймат',
@@ -1300,11 +1378,16 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 
 'exif-saturation-0' => 'Эрьва чынь',
 
+'exif-sharpness-0' => 'Свал шкань',
+'exif-sharpness-1' => 'Чэвте',
+'exif-sharpness-2' => 'Калгодо',
+
 'exif-subjectdistancerange-0' => 'Апак содань',
 'exif-subjectdistancerange-2' => 'Маласто неевть',
 'exif-subjectdistancerange-3' => 'Васолдонь неевть',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Йакшамо йононь келезэ',
 'exif-gpslatitude-s' => 'Лембе масторонь келесь',
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
@@ -1312,6 +1395,9 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'exif-gpslongitude-w' => 'Чивалгомань кувалмо',
 
 'exif-gpsstatus-a' => 'Онкстамозо моли',
+
+'exif-gpsmeasuremode-2' => 'келес-кувалмс онкстамо',
+'exif-gpsmeasuremode-3' => 'келес-кувалмс-сэрьс онкстамо',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Вайгельпеть цясозонзо',
@@ -1338,11 +1424,19 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'confirmemail_send'  => 'Кучомс е-сёрмасо кемекстамонь код',
 'confirmemail_error' => 'Кемекстамот ванстомсто мезе-бути лиссь.',
 
+# Trackbacks
+'trackbackremove' => ' ([$1 Нардамс])',
+
 # Delete conflict
 'recreate' => 'Шкак-тейть одов',
 
 # action=purge
 'confirm_purge_button' => 'ОК',
+
+# AJAX search
+'searchcontaining' => "Вешнемс лопат конатнесэ ''$1''.",
+'searchnamed'      => "Вешнемс лопат конань лемест ''$1''.",
+'articletitles'    => "Лопатне конат ушодовить ''$1''",
 
 # Multipage image navigation
 'imgmultigo' => 'Адя!',
@@ -1385,7 +1479,9 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 
 # Special:SpecialPages
 'specialpages'                 => 'Башка тевень лопат',
+'specialpages-group-other'     => 'Лия башка тевень лопат',
 'specialpages-group-login'     => 'Совамо / прянь сёрмадстомо',
+'specialpages-group-users'     => 'Теицятне ды видечыст',
 'specialpages-group-highuse'   => 'Пек тевс нолдазь лопат',
 'specialpages-group-pages'     => 'Лопатнень керьксэсь',
 'specialpages-group-pagetools' => 'Лопань кедьёнкст',

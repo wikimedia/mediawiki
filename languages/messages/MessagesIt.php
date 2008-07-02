@@ -7,23 +7,25 @@
  * @author BrokenArrow
  * @author Cruccone
  * @author Melos
- * @author Siebrand
  * @author Darth Kule
+ * @author Siebrand
  * @author Gianfranco
  * @author Felis
  * @author Nemo bis
  * @author לערי ריינהארט
- * @author Ramac
  * @author Broc
+ * @author Ramac
  * @author .anaconda
+ * @author Xpensive
  * @author S.Örvarr.S
  * @author Nick1915
  * @author SPQRobin
  * @author Tonyfroio
+ * @author Pietrodn
  * @author Martorell
  * @author SabineCretella
- * @author Candalua
  * @author Cryptex
+ * @author Candalua
  */
 
 $namespaceNames = array(
@@ -488,6 +490,11 @@ $2',
 'titleprotected'       => "La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]].
 La motivazione è la seguente: ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Errore di configurazione: antivirus sconosciuto: <i>$1</i>',
+'virus-scanfailed'     => 'scansione fallita (codice $1)',
+'virus-unknownscanner' => 'antivirus sconosciuto:',
+
 # Login and logout pages
 'logouttitle'                => 'Logout utente',
 'logouttext'                 => '<strong>Logout effettuato.</strong><br />
@@ -686,7 +693,9 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'userinvalidcssjstitle'            => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/monobook.css e non {{ns:user}}:Esempio/Monobook.css.",
 'updated'                          => '(Aggiornato)',
 'note'                             => '<strong>NOTA:</strong>',
-'previewnote'                      => '<strong>Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!</strong>',
+'previewnote'                      => '<strong>Questa è solo una anteprima;
+le modifiche alla pagina NON sono ancora state salvate!</strong>
+[[#editform|→ Vai alla casella di modifica.]]',
 'previewconflict'                  => "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere 'Salva la pagina' in questo momento.",
 'session_fail_preview'             => '<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>',
 'session_fail_preview_html'        => "<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.</strong>
@@ -1359,7 +1368,7 @@ La coda dei processi da eseguire in background contiene {{PLURAL:\$7|'''1''' ele
 
 'disambiguations'      => 'Pagine di disambiguazione',
 'disambiguationspage'  => 'Template:Disambigua',
-'disambiguations-text' => "Le pagine nella lista che segue contengono dei collegamenti a '''pagine di disambiguazione''' e non all'argomento cui dovrebbero fare riferimento.<br />Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Le pagine nella lista che segue contengono dei collegamenti a '''pagine di disambiguazione''' e non all'argomento cui dovrebbero fare riferimento.<br />Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Redirect doppi',
 'doubleredirectstext' => '<b>Attenzione:</b> Questa lista può contenere risultati errati, ad esempio nel caso in cui il comando #REDIRECT sia seguito da altro testo o collegamenti.<br />
@@ -1869,7 +1878,6 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'move-watch'              => 'Aggiungi agli osservati speciali',
 'movepagebtn'             => 'Sposta la pagina',
 'pagemovedsub'            => 'Spostamento effettuato con successo',
-'movepage-moved'          => '<big>\'\'\'"$1" è stata spostata al titolo "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Una pagina con questo nome esiste già, oppure il nome scelto non è valido. Scegliere un altro titolo.',
 'cantmove-titleprotected' => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
 'talkexists'              => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
@@ -1878,7 +1886,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'move-subpages'           => 'Sposta tutte le sottopagine, se possibile',
 'move-talk-subpages'      => 'Sposta tutte le sottopagine di discussione, se possibile',
 'movepage-page-exists'    => 'La pagina $1 esiste già e non può essere automaticamente sovrascritta.',
-'movepage-page-moved'     => 'La pagina $1 è stata spostata a $2.',
+'movepage-page-moved'     => 'La pagina $1 è stata spostata a $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'La pagina $1 non può essere spostata a $2.',
 'movepage-max-pages'      => 'È stato spostato il numero massimo di $1 {{PLURAL:$1|pagina|pagine}} e non protranno essere spostate ulteriori pagine automaticamente.',
 '1movedto2'               => 'ha spostato [[$1]] a [[$2]]',
@@ -2620,5 +2628,9 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'specialpages-group-wiki'        => 'Strumenti e informazioni sul progetto',
 'specialpages-group-redirects'   => 'Pagine speciali di redirect',
 'specialpages-group-spam'        => 'Strumenti contro lo spam',
+
+# Special:Blankpage
+'blankpage'              => 'Pagina vuota',
+'intentionallyblankpage' => 'Questa pagina è lasciata volutamente vuota ed è usata per benchmark, ecc.',
 
 );

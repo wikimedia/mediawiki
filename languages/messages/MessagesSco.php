@@ -4,14 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author sco.wikipedia.org editors
  * @author OchAyeTheNoo
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Nike
  * @author Malafaya
  * @author Ushanka
+ * @author sco.wikipedia.org editors
  */
 
 $messages = array(

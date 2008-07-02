@@ -2066,7 +2066,6 @@ $1',
 'move-watch'              => 'پی‌گیری این صفحه',
 'movepagebtn'             => 'صفحه منتقل شود',
 'pagemovedsub'            => 'انتقال با موفقیت انجام شد',
-'movepage-moved'          => 'صفحه‌ٔ «$1» به «$2» منتقل شد.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'صفحه‌ای با این نام از قبل وجود دارد، یا نامی که انتخاب کرده‌اید معتبر نیست.
 لطفاً نام دیگری انتخاب کنید.',
 'cantmove-titleprotected' => 'شما نمی‌توانید صفحه را به این نشانی انتقال دهید، چرا که عنوان جدید در برابر ایجاد محافظت شده‌است',
@@ -2077,7 +2076,7 @@ $1',
 'move-subpages'           => 'تمام زیرصفحه‌ها، در صورت وجود، منتقل شود',
 'move-talk-subpages'      => 'تمام زیرصفحه‌های صفحهٔ بحث، در صورت وجود، منتقل شود',
 'movepage-page-exists'    => 'صفحهٔ $1 از قبل وجود دارد و نمی‌تواند به طور خودکار جایگزین شود.',
-'movepage-page-moved'     => 'صفحهٔ $1 به $2 انتقال یافت.',
+'movepage-page-moved'     => 'صفحهٔ $1 به $2 انتقال یافت.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'صفحهٔ $1 را نمی‌توان به $2 انتقال داد.',
 'movepage-max-pages'      => 'حداکثر تعداد صفحه‌های ممکن ($1 {{PLURAL:$1|صفحه|صفحه}}) که می‌توان انتقال داد منتقل شدند و صفحه‌های دیگر را نمی‌توان به طور خودکار منتقل کرد.',
 '1movedto2'               => '$1 به $2 منتقل شد',

@@ -5,10 +5,10 @@
  * @file
  *
  * @author SpeedyGonsales
+ * @author Dalibor Bosits
  * @author MayaSimFan
  * @author Roberta F.
  * @author Dnik
- * @author Dalibor Bosits
  * @author Luka Krstulovic
  * @author Siebrand
  * @author Treecko
@@ -1830,7 +1830,6 @@ ako to želite.",
 'move-watch'              => 'Prati ovu stranicu',
 'movepagebtn'             => 'Premjesti stranicu',
 'pagemovedsub'            => 'Premještanje uspjelo',
-'movepage-moved'          => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
 Molimo odaberite drugo ime.',
 'cantmove-titleprotected' => 'Ne možete premjestiti ovu stranicu na ovo mjesto, jer je novi naslov zaštićen od kreiranja',
@@ -1840,7 +1839,7 @@ Molimo odaberite drugo ime.',
 'move-subpages'           => 'Premjesti sve podstranice, ako je moguće',
 'move-talk-subpages'      => 'Premjesti sve podstranice od stranice za razgovor, ako je moguće',
 'movepage-page-exists'    => 'Stranica $1 već postoji i ne može biti automatski prepisana',
-'movepage-page-moved'     => 'Stranica $1 je premještena na $2.',
+'movepage-page-moved'     => 'Stranica $1 je premještena na $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Stranica $1 nije mogla biti premještena na $2.',
 'movepage-max-pages'      => 'Najveća količina od $1 {{PLURAL:$1|stranice|stranica}} je premještena i više od toga neće biti automatski premješteno.',
 '1movedto2'               => '$1 premješteno na $2',

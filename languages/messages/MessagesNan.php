@@ -729,7 +729,6 @@ Template:Khu-pia̍t-ia̍h',
 'move-watch'       => 'Kàm-sī chit ia̍h',
 'movepagebtn'      => 'Sóa ia̍h',
 'pagemovedsub'     => 'Sóa-ūi sêng-kong',
-'movepage-moved'   => '<big>\'\'\'"$1" í-keng sóa khì tī "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Kāng miâ ê ia̍h í-keng tī leh, a̍h-sī lí kéng ê miâ bô-hāu. Chhiáⁿ kéng pa̍t ê miâ.',
 'talkexists'       => "'''Ia̍h ê loē-bûn ū soá cháu, m̄-koh siong-koan ê thó-lūn-ia̍h bô toè leh soá, in-ūi sin piau-tê pun-té tō ū hit ia̍h. Chhiáⁿ iōng jîn-kang ê hoat-tō· kā ha̍p-pèng.'''",
 'movedto'          => 'sóa khì tī',

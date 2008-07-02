@@ -916,7 +916,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'move-watch'              => 'Leʻo he pēsí ni',
 'movepagebtn'             => 'Peesi ʻunu',
 'pagemovedsub'            => 'Kuo ola ʻa e ʻunu',
-'movepage-moved'          => "<big>Kuo ʻunu ʻa e '''\"\$1\"''' ki he '''\"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē, pe ʻoku ʻikai sai ʻa e hingoa ʻoku ke fiemaʻu. Kātaki fili ha hingoa kehe.',
 'talkexists'              => "'''Kuo ola ʻa e ʻunu ʻo e peesi ia, kā naʻe ʻikai ʻunu he peesi alea koeʻuhi ʻoku toe tuʻu ha peesi pehē mo e hingoa foʻou. Kātaki fakataha kinaua faiʻaki ʻa e nima.'''",
 'movedto'                 => 'kuo ʻunu ki he',

@@ -1750,7 +1750,6 @@ Vergaet neet de database opnuuj te [[Special:Unlockdb|deblokkere]] wens te klaor
 'move-watch'              => 'Volg deze pazjena',
 'movepagebtn'             => 'Verplaats pazjena',
 'pagemovedsub'            => 'De verplaatsing is gelök',
-'movepage-moved'          => '<big>\'\'\'"$1" is verplaats nao "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Dao is al 'n pazjena mit dees titel of de titel is óngeljig. <br />Kees estebleef 'n anger titel.",
 'cantmove-titleprotected' => "De kèns gein pazjena nao deze titel herneume, ómdet de nuje titel beveilig is taege 't aanmake d'rvan.",
 'talkexists'              => "De pazjena zelf is verplaats, meh de euverlikpazjena kós neet verplaats waere, ómdat d'r al 'n euverlikpazjena mit de nuje titel besjtóng. Combineer de euverlikpazjena's estebleef mit de hand.",
@@ -1759,7 +1758,7 @@ Vergaet neet de database opnuuj te [[Special:Unlockdb|deblokkere]] wens te klaor
 'move-subpages'           => "Alle subpazjena's hernömme",
 'move-talk-subpages'      => "Alle subpazjena's van euverlèkpazjena's hernömme",
 'movepage-page-exists'    => 'De pazjena $1 besteit al en kan neet automatisch gewis waere.',
-'movepage-page-moved'     => 'De pazjena $1 is hernömp nao $2.',
+'movepage-page-moved'     => 'De pazjena $1 is hernömp nao $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'De pazjena $1 kós neet hernömp waere nao $2.',
 'movepage-max-pages'      => "'t Maximaal aantal automatisch te hernömme pazjena's is bereik ($1). De euverige pazjena's waere neet automatisch hernömp.",
 '1movedto2'               => '[[$1]] verplaats nao [[$2]]',

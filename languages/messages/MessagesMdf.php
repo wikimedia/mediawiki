@@ -1753,7 +1753,6 @@ $1',
 'move-watch'              => 'Ваномс тя лопать мельге',
 'movepagebtn'             => 'Йотафтомс лопать иля вастс',
 'pagemovedsub'            => 'Йотафтомась анок',
-'movepage-moved'          => '<big>\'\'\'"$1" йотафтф "$2"\'-с\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Тя лем мархта лопась ульсь ни эли лемсь, кона тон кочкать аф кондясти.
 Арьсек иля лем.',
 'cantmove-titleprotected' => 'Аш кода йотафтомс лопать тя вастс сяс мес тя од конякссь тиемада аралаф',
@@ -1763,7 +1762,7 @@ $1',
 'move-subpages'           => 'Ётафтт сембе суб-лопатне кда эрявихть',
 'move-talk-subpages'      => 'Ётафтт сембе корхнема лопатнень суб-лопасна кда эрявихть',
 'movepage-page-exists'    => 'Лопась $1 ульсь ни и сон эслек одукс аф сёрмадови.',
-'movepage-page-moved'     => 'Лопась $1 ётафтфоль $2-с.',
+'movepage-page-moved'     => 'Лопась $1 ётафтфоль $2-с.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Лопать $1 аш кода ётафтомс $2-с.',
 'movepage-max-pages'      => 'Сембода лама $1 {{PLURAL:$1|лопа|лопат}} йотафтфольхть иля вастс и фкявок сяда тов аф кармай эслек ётафтовома.',
 '1movedto2'               => '[[$1]] йотафтф [[$2]]-с',

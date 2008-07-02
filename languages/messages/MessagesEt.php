@@ -8,7 +8,6 @@
  * @author SPQRobin
  * @author Siebrand
  * @author M.M.S.
- * @author Nike
  * @author לערי ריינהארט
  * @author Võrok
  * @author Jon Harald Søby

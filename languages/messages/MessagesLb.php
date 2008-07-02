@@ -464,6 +464,11 @@ $2',
 'ns-specialprotected'  => 'Spezialsäite kënnen net verännert ginn.',
 'titleprotected'       => "Eng Säit mat dësem Numm kann net ugeluecht ginn. Dës Spär gouf vum [[User:$1|$1]] gemaach deen als Grond ''$2'' uginn huet.",
 
+# Virus scanner
+'virus-badscanner'     => 'Schlecht Configuratioun: onbekannte  Virescanner: <i>$1</i>',
+'virus-scanfailed'     => 'De Scan huet net fonctionnéiert (Code $1)',
+'virus-unknownscanner' => 'onbekannten Antivirus:',
+
 # Login and logout pages
 'logouttitle'                => 'Benotzer-Ofmeldung',
 'logouttext'                 => '<strong>Dir sidd elo ofgemeld.</strong>
@@ -756,7 +761,7 @@ Et däerfen net méi wéi $2 ufroe sinn, aktuell sinn et $1 Ufroen.',
 'revision-info'       => 'Versioun vum $1 vum $2.',
 'previousrevision'    => '← Méi al Versioun',
 'nextrevision'        => 'Méi rezent Ännerung→',
-'currentrevisionlink' => 'aktuell Revisioun kucken',
+'currentrevisionlink' => 'Aktuell Versioun',
 'cur'                 => 'aktuell',
 'next'                => 'nächst',
 'last'                => 'lescht',
@@ -1356,7 +1361,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'ncategories'                     => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
 'nlinks'                          => '$1 {{PLURAL:$1|Link|Linken}}',
 'nmembers'                        => '$1 {{PLURAL:$1|Member|Memberen}}',
-'nrevisions'                      => '$1 {{PLURAL:$1|Revisioun|Revisiounen}}',
+'nrevisions'                      => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'nviews'                          => '$1 {{PLURAL:$1|Offro|Offroen}}',
 'specialpage-empty'               => 'Dës Säit ass eidel.',
 'lonelypages'                     => 'Weesesäiten',
@@ -1873,7 +1878,6 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-watch'              => 'Dës Säit iwwerwaachen',
 'movepagebtn'             => 'Säit réckelen',
 'pagemovedsub'            => 'Gouf geréckelt',
-'movepage-moved'          => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
 'cantmove-titleprotected' => "Dir kënnt keng Säit op dës Plaz réckelen, well dee neien Titel fir d'Uleeë gespaart ass",
 'talkexists'              => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
@@ -1882,7 +1886,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-subpages'           => 'All ënnersäite, wann et der gëtt, mattréckelen',
 'move-talk-subpages'      => 'All Ënnersäite vun Diskussiounssäiten, wann et der gëtt, matréckelen',
 'movepage-page-exists'    => "D'Säit $1 gëtt et schonn a kann net automatesch iwwerschriwwe ginn.",
-'movepage-page-moved'     => "D'Säit $1 gouf schonn op $2 geréckelt.",
+'movepage-page-moved'     => "D'Säit $1 gouf schonn op $2 geréckelt.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
 'movepage-max-pages'      => 'Déi Maximalzuel vun $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.',
 '1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
@@ -2073,7 +2077,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'patrol-log-auto' => '(automatesch)',
 
 # Image deletion
-'deletedrevision'                 => 'Al Revisioun $1 läschen',
+'deletedrevision'                 => 'Al, geläschte Versioun $1',
 'filedeleteerror-short'           => 'Feeler beim Läsche vum Fichier: $1',
 'filedeleteerror-long'            => 'Bäim Läsche vum Fichier si Feeler festgestallt ginn:
 

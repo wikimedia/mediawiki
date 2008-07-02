@@ -5,10 +5,9 @@
  * @file
  *
  * @author Cgboeree
- * @author Nike
- * @author SPQRobin
- * @author Siebrand
  * @author Malafaya
+ * @author Siebrand
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -748,7 +747,6 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'move-watch'       => 'Oserva esta paje',
 'movepagebtn'      => 'Move paje',
 'pagemovedsub'     => 'La move ia susede',
-'movepage-moved'   => '<big>\'\'\'"$1" ia es moveda a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Un paje con acel nom esiste ja, o la nom ce tu ia eleje no es un nom legal. Per favore, eleje un otra nom.',
 'talkexists'       => "'''La paje se mesma ia es moveda, ma la paje de discutes no pote es moveda, per ce un esiste ja a la titulo nova. Per favore, fusa los per mano'''",
 'movedto'          => 'moveda a',

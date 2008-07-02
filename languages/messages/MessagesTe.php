@@ -4,15 +4,15 @@
  * @ingroup Language
  * @file
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @author Mpradeep
  * @author Veeven
+ * @author Mpradeep
  * @author Chaduvari
  * @author Sunil Mohan
  * @author Siebrand
  * @author వైజాసత్య
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
 $namespaceNames = array(
@@ -412,6 +412,9 @@ $2',
 'ns-specialprotected'  => 'ప్రత్యేక పేజీలపై దిద్దుబాట్లు చేయలేరు.',
 'titleprotected'       => "సభ్యులు [[User:$1|$1]] ఈ పేజీని సృష్టించనివ్వకుండా నిరోదిస్తున్నారు.
 అందుకు ఇచ్చిన కారణం: ''$2''.",
+
+# Virus scanner
+'virus-unknownscanner' => 'అజ్ఞాత యాంటీవైరస్:',
 
 # Login and logout pages
 'logouttitle'                => 'సభ్యుని నిష్క్రమణ',
@@ -1796,7 +1799,6 @@ $NEWPAGE
 'move-watch'              => 'ఈ పేజీని గమనించు',
 'movepagebtn'             => 'పేజీని తరలించు',
 'pagemovedsub'            => 'తరలింపు విజయవంతమైనది',
-'movepage-moved'          => '<big>\'\'\'"$1" పేజీని "$2"\'\'\' కు తరలించాం</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'ఆ పేరుతో ఇప్పటికే ఒక పేజీ ఉంది, లేదా మీరు ఎంచుకున్న పేరు సరైనది కాదు. వేరే పేరు ఎంచుకోండి.',
 'cantmove-titleprotected' => 'ఈ పేరుతోఉన్న పేజీని సృష్టించనివ్వకుండా సంరక్షిస్తున్నారు, అందుకని ఈ ప్రదేశంలోకి పేజీని తరలించలేను',
 'talkexists'              => "'''పేజీని జయప్రదంగా తరలించాము, కానీ చర్చా పేజీని తరలించలేక పోయాము. కొత్త పేరుతో చర్చ పేజీ ఇప్పటికే ఉంది, ఆ రెంటినీ మీరే ఏకీకృతం చెయ్యండి.'''",
@@ -1805,7 +1807,7 @@ $NEWPAGE
 'move-subpages'           => 'అన్ని ఉపపేజీలను కూడా తరలించు, వర్తిస్తే',
 'move-talk-subpages'      => 'వర్తిస్తే, చర్చా పేజీ యొక్క అన్ని ఉపపేజీలను తరలించు',
 'movepage-page-exists'    => '$1 అనే పేజీ ఈపాటికే ఉంది మరియు దాన్ని ఆటోమెటిగ్గా ఈ పేజీతో మార్చివేయలేరు.',
-'movepage-page-moved'     => '$1 అనే పేజీని $2 కి తరలించాం.',
+'movepage-page-moved'     => '$1 అనే పేజీని $2 కి తరలించాం.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '$1 అనే పేజీని $2 కి తరలించలేకపోయాము.',
 'movepage-max-pages'      => '$1 యొక్క గరిష్ఠ పరిమితి {{PLURAL:$1|పేజీ|పేజీలు}} వరకు తరలించడమైనది. ఇక ఆటోమాటిగ్గా తరలించము.',
 '1movedto2'               => '$1, $2కు తరలించబడింది',

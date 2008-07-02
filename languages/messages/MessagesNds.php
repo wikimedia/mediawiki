@@ -1930,7 +1930,6 @@ In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'move-watch'              => 'Op disse Siet oppassen',
 'movepagebtn'             => 'Siet schuven',
 'pagemovedsub'            => 'Schuven hett Spood',
-'movepage-moved'          => "<big>'''„$1“ is nu na „$2“ schaven.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ünner dissen Naam gifft dat al ene Siet.
 Bitte söök en annern Naam ut.',
 'cantmove-titleprotected' => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',
@@ -1941,7 +1940,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'move-subpages'           => 'All Ünnersieden, wenn welk dor sünd, mit schuven',
 'move-talk-subpages'      => 'All Ünnersieden vun Diskuschoonssieden, wenn welk dor sünd, mit schuven',
 'movepage-page-exists'    => 'De Sied „$1“ gifft dat al un kann nich automaatsch överschreven warrn.',
-'movepage-page-moved'     => 'De Siet „$1“ is nu schaven na „$2“.',
+'movepage-page-moved'     => 'De Siet „$1“ is nu schaven na „$2“.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
 'movepage-max-pages'      => 'De Maximaltall vun $1 Sieden is schaven. All de annern Sieden warrt nich automaatsch schaven.',
 '1movedto2'               => '[[$1]] is nu na [[$2]] verschaven.',

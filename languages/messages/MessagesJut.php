@@ -7,7 +7,6 @@
  * @author Ælsån
  * @author Huslåke
  * @author Siebrand
- * @author Nike
  * @author M.M.S.
  */
 
@@ -731,7 +730,6 @@ I disse tilfælde er du nødt til at flytte æller sammenflette'n side manuelt."
 'move-watch'       => 'Denne side åvervåges',
 'movepagebtn'      => 'Flyt side',
 'pagemovedsub'     => 'Flytnenge gennemført',
-'movepage-moved'   => '<big>Æ side \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'En side ve det navn eksisterer ålrede, æller det
 navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'talkexists'       => 'Æ side blev flyttet korrekt, men den tilhørende diskusjeside ken ekke flyttes, førdi der ålrede eksisterer en ve den nye titel. Du erst nødt til at flette dem sammen manuelt.',

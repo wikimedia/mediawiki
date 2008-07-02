@@ -5,8 +5,8 @@
  * @file
  *
  * @author 80686
- * @author Siebrand
  * @author לערי ריינהארט
+ * @author Siebrand
  * @author Spacebirdy
  * @author Jon Harald Søby
  */

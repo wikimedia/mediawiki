@@ -5,7 +5,6 @@
  * @file
  *
  * @author Cuman
- * @author Nike
  * @author Siebrand
  */
 
@@ -787,7 +786,6 @@ Bu hallerdä läazım kendiniz ellän sayfaları aktarmaa yaki birleştirmää."
 'move-watch'       => 'Bak bu sayfaya',
 'movepagebtn'      => 'Adı diiştir',
 'pagemovedsub'     => 'Ad diişmäk tamannandı.',
-'movepage-moved'   => '<big>"$1" sayfasın eni adı: "$2"</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Bu adda bir sayfa bulunêr yaki o ad geçersiz angısını seçtiniz.
 Yalvarêrêz başka bir ad seçmää.',
 'talkexists'       => "'''Bu sayfa kendisi başarılan aktarıldı, ama konuşmaa sayfası aktarılamadı neçin ki eni ad altında bulunêr taa birisi. Yalvarêrêz onnarı ellän birleştirmää.'''",

@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Adriaan
- * @author Siebrand
- * @author Spacebirdy
- * @author Manie
  * @author Arnobarnard
- * @author Anrie
+ * @author SPQRobin
  * @author Naudefj
+ * @author Spacebirdy
+ * @author Adriaan
+ * @author Anrie
+ * @author Siebrand
+ * @author Manie
  */
 
 $skinNames = array(
@@ -615,6 +615,9 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 U moet besluit of dit wys is om voort te gaan en aan die bladsy te werk. 
 Die verwyderingslogboek vir die blad word hieronder vertoon vir u gerief:",
 
+# Parser/template warnings
+'post-expand-template-argument-category' => 'Bladsye met weggelate sjabloonargumente',
+
 # "Undo" feature
 'undo-summary' => 'Rol weergawe $1 deur [[Spesiaal:Contributions/$2|$2]] terug. ([[Gebruikerbespreking:$2|Bespreek]])',
 
@@ -684,6 +687,9 @@ Die verwyderingslogboek vir die blad word hieronder vertoon vir u gerief:",
 'mergehistory-invalid-source'      => "Bronbladsy moet 'n geldige titel wees.",
 'mergehistory-invalid-destination' => "Bestemmingsbladsy moet 'n geldige titel wees.",
 
+# Merge log
+'mergelog' => 'Versmeltings logboek',
+
 # Diffs
 'history-title'           => 'Weergawegeskiedenis van "$1"',
 'difference'              => '(Verskil tussen weergawes)',
@@ -713,6 +719,7 @@ Die verwyderingslogboek vir die blad word hieronder vertoon vir u gerief:",
 'search-interwiki-more'     => '(meer)',
 'search-mwsuggest-enabled'  => 'met voorstelle',
 'search-mwsuggest-disabled' => 'geen voorstelle',
+'search-relatedarticle'     => 'Verwante',
 'mwsuggest-disable'         => 'Deaktiveer AJAX voorstelle',
 'searchall'                 => 'alle',
 'showingresults'            => "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} wat met #'''$2''' begin.",
@@ -1440,7 +1447,6 @@ wees om 'n bladsy te skuif.",
 'move-watch'              => 'Hou hierdie bladsy dop',
 'movepagebtn'             => 'Skuif bladsy',
 'pagemovedsub'            => 'Verskuiwing het geslaag',
-'movepage-moved'          => '<big>\'\'\'"$1" geskuif na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "'n Bladsy met daardie naam bestaan reeds, of die naam wat jy gekies het, is nie geldig nie.
 Kies asseblief 'n ander naam.",
 'talkexists'              => "'''Die bladsy self is suksesvol geskuif, maar die besprekingsbladsy is nie geskuif nie omdat een reeds bestaan met die nuwe titel. Smelt hulle asseblief met die hand saam.'''",

@@ -6,11 +6,11 @@
  *
  * @author Filipinayzd
  * @author Steven*fung
- * @author Siebrand Mazeland
- * @author Niklas Laxström
  * @author Siebrand
  * @author SPQRobin
  * @author Jon Harald Søby
+ * @author Siebrand Mazeland
+ * @author Niklas Laxström
  */
 
 $skinNames = array(
@@ -1534,7 +1534,6 @@ Sa mga kasong iyan, kaipuhan mong ibalyo o isalak an páhina nin mano-mano kun b
 'move-watch'              => 'Bantayan ining pahina',
 'movepagebtn'             => 'Ibalyó an pahina',
 'pagemovedsub'            => 'Nabalyó na',
-'movepage-moved'          => 'An <big>\'\'\'"$1" binalyo na sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Igwa nang pahina sa parehong pangaran, o dai pwede an pangaran na pigpilì mo.
 Magpilì tabì nin ibang pangaran.',
 'talkexists'              => "'''An mismong páhina binalyo na, pero su páhinang orolayan dai nabalyó ta igwa na kaini sa bâgong titulo. Pagsaroon tabî ining duwa nin mano-mano.'''",

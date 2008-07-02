@@ -1698,7 +1698,6 @@ $1',
 'move-watch'              => 'Назар кардани ин саҳифа',
 'movepagebtn'             => 'Кӯчонидани саҳифа',
 'pagemovedsub'            => 'Кӯчониш бомуваффақият анҷом ёфт',
-'movepage-moved'          => '<big>\'\'\'"$1" ба "$2" кӯчонида шудааст\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Саҳифае бо ин ном вуҷуд надорад, ё номе, ки интихоб кардаед мӯътабар нест.
 Лутфан номи дигареро интихоб намоед.',
 'cantmove-titleprotected' => 'Шумо наметавонед ин саҳифаро ба ин нишона кӯчонед, барои он, ки унвони ҷадид аз эҷод кардан муҳофизат шудааст',

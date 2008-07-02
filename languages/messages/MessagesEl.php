@@ -5,21 +5,21 @@
  * @file
  *
  * @author Dead3y3
+ * @author Badseed
+ * @author Απεργός
+ * @author Lou
+ * @author Consta
  * @author ZaDiak
  * @author Assassingr
  * @author MF-Warburg
- * @author Consta
  * @author Siebrand
- * @author לערי ריינהארט
- * @author Lou
- * @author Απεργός
- * @author SPQRobin
- * @author Demmy
- * @author Badseed
- * @author Flyax
- * @author Jon Harald Søby
- * @author Sinopeus
  * @author Geraki
+ * @author לערי ריינהארט
+ * @author Sinopeus
+ * @author Demmy
+ * @author Jon Harald Søby
+ * @author Flyax
+ * @author SPQRobin
  */
 
 /**
@@ -1836,7 +1836,6 @@ $1',
 'move-watch'              => 'Παρακολούθησε αυτή τη σελίδα',
 'movepagebtn'             => 'Μετακίνηση σελίδας',
 'pagemovedsub'            => 'Η μετακίνηση ήταν επιτυχής',
-'movepage-moved'          => '<big>\'\'\'Το "$1" έχει μετακινηθεί στο "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Υπάρχει ήδη σελίδα με αυτό το όνομα. Παρακαλούμε δώστε άλλο όνομα στη σελίδα.',
 'cantmove-titleprotected' => "Δεν μπορείτε να μετακινήσετε μια σελίδα σ' αυτή τη θέση διότι έχει απαγορευθεί η δημιουργία αυτού του τίτλου",
 'talkexists'              => "Η ίδια η σελίδα μετακινήθηκε επιτυχώς αλλά όχι και η σελίδα συζήτησης, λόγω του ότι υπάρχει ήδη άλλη σελίδα συζήτησης κάτω από το νέο τίτλο. Παρακαλούμε ενοποιήστε τις δύο σελίδες με 'αντιγραφή-και-επικόλληση'.",

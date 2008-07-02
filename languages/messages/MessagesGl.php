@@ -11,8 +11,8 @@
  * @author Siebrand
  * @author Lameiro
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -262,7 +262,7 @@ $messages = array(
 'privacy'              => 'Política de Privacidade',
 'privacypage'          => 'Project:Política de Privacidade',
 'sitesupport'          => 'Doazóns',
-'sitesupport-url'      => 'Project:Axuda do sitio',
+'sitesupport-url'      => 'Project:Doazóns',
 
 'badaccess'        => 'Erro de permisos',
 'badaccess-group0' => 'Non ten autorización para executar a acción que solicitou.',
@@ -389,6 +389,11 @@ $2',
 'ns-specialprotected'  => 'Non se poden editar as páxinas no espazo de nomes {{ns:special}}.',
 'titleprotected'       => "Este título foi protexido da creación por [[User:$1|$1]].
 A razón dada foi ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Configuración errónea: escáner de virus descoñecido: <i>$1</i>',
+'virus-scanfailed'     => 'fallou o escaneado (código $1)',
+'virus-unknownscanner' => 'antivirus descoñecido:',
 
 # Login and logout pages
 'logouttitle'                => 'Saída de usuario a anónimo',
@@ -595,7 +600,8 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'updated'                          => '(Actualizado)',
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => '<strong>Lembre que esta é só unha vista previa
-e que os seus cambios aínda non foron gardados!</strong>',
+e que os seus cambios aínda non foron gardados!</strong>
+[[#editform|→ Vaia á caixa de edición.]]',
 'previewconflict'                  => 'Esta vista previa amosa o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview'             => '<strong>Sentímolo! O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, ténteo de novo. Se segue sen funcionar, probe a saír do sistema e volver entrar.</strong>',
@@ -752,7 +758,7 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 'revdelete-unsuppress'        => 'Retirar as restricións sobre as revisións restauradas',
 'revdelete-log'               => 'Comentario do rexistro:',
 'revdelete-submit'            => 'Aplicar á revisión seleccionada',
-'revdelete-logentry'          => 'mudouse a visibilidade da revisión para [[$1]]',
+'revdelete-logentry'          => 'mudou a visibilidade dunha revisión de "[[$1]]"',
 'logdelete-logentry'          => 'mudouse a visibilidade do evento para [[$1]]',
 'revdelete-success'           => "'''Configurouse sen problemas a visibilidade da revisión.'''",
 'logdelete-success'           => "'''Configurouse a visibilidade do evento sen problemas.'''",
@@ -1030,7 +1036,7 @@ Se quere, pode [[:\$1|creala]].",
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recentes',
 'recentchangestext'                 => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
-'recentchanges-feed-description'    => 'Seguir as mudanzas máis recentes deste wiki con esta fonte de noticias.',
+'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki con esta fonte de noticias.',
 'rcnote'                            => "Abaixo {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $3.",
 'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
 'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
@@ -1820,7 +1826,6 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'move-watch'              => 'Vixiar esta páxina',
 'movepagebtn'             => 'Mover a páxina',
 'pagemovedsub'            => 'O movemento foi un éxito',
-'movepage-moved'          => '<big>\'\'\'"$1" moveuse para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor escolla outro nome.',
 'cantmove-titleprotected' => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
@@ -1830,7 +1835,7 @@ Por favor escolla outro nome.',
 'move-subpages'           => 'Mover todas as subpáxinas, se cómpre',
 'move-talk-subpages'      => 'Mover todas as subpáxinas da páxina de conversa, se cómpre',
 'movepage-page-exists'    => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
-'movepage-page-moved'     => 'A páxina "$1" foi movida a "$2".',
+'movepage-page-moved'     => 'A páxina "$1" foi movida a "$2".', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'A páxina "$1" non pode ser movida a "$2".',
 'movepage-max-pages'      => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
 '1movedto2'               => 'moveu "[[$1]]" a "[[$2]]"',
@@ -1961,7 +1966,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-t-whatlinkshere'         => 'Listaxe de todas as páxinas do wiki que ligan cara a aquí',
 'tooltip-t-recentchangeslinked'   => 'Cambios recentes nas páxinas ligadas desde esta',
 'tooltip-feed-rss'                => 'Fonte de noticias RSS para esta páxina',
-'tooltip-feed-atom'               => 'Fonte de noticias atom para esta páxina',
+'tooltip-feed-atom'               => 'Fonte de noticias Atom para esta páxina',
 'tooltip-t-contributions'         => 'Ver a listaxe de contribucións deste usuario',
 'tooltip-t-emailuser'             => 'Enviarlle unha mensaxe a este usuario por correo electrónico',
 'tooltip-t-upload'                => 'Enviar ficheiros',
@@ -2463,7 +2468,7 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'O contido da páxina foi eliminado',
-'autosumm-replace' => "O contido da páxina foi substituído por '$1'",
+'autosumm-replace' => 'O contido da páxina foi substituído por "$1"',
 'autoredircomment' => 'Redirixida a [[$1]]',
 'autosumm-new'     => 'Nova páxina: $1',
 
@@ -2567,5 +2572,9 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'specialpages-group-wiki'        => 'Datos do wiki e ferramentas',
 'specialpages-group-redirects'   => 'Páxinas de redirección especiais',
 'specialpages-group-spam'        => "Ferramentas contra o ''spam''",
+
+# Special:Blankpage
+'blankpage'              => 'Baleirar a páxina',
+'intentionallyblankpage' => 'Esta páxina foi baleirada intencionadamente',
 
 );

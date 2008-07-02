@@ -4,14 +4,13 @@
  * @ingroup Language
  * @file
  *
+ * @author ZeneizeForesto
+ * @author Siebrand
+ * @author SPQRobin
+ * @author Malafaya
  * @author Jon Harald Søby
  * @author Dario vet
  * @author Dedee
- * @author SPQRobin
- * @author ZeneizeForesto
- * @author Nike
- * @author Siebrand
- * @author Malafaya
  */
 
 $fallback = 'it';
@@ -280,9 +279,10 @@ Pe piaxei prêuva a scellie 'n âtro.",
 'nosuchuser'                 => 'No gh\'è nisciûn ûtente con quello nomme "$1". Verificâ o nomme inserîo ò creâ \'n nêuvo accesso.',
 'nosuchusershort'            => 'No gh\'è nisciûn ûtente con quello nomme "<nowiki>$1</nowiki>". Verificâ o nomme inserîo.',
 'nouserspecified'            => "O se deive inserî 'n nomme d'ûtente.",
-'wrongpassword'              => "Ti g'hæ scrîo 'na paròlla d'ordine sballiâa. Tenta torna.",
+'wrongpassword'              => "Ti gh'æ scrîo 'na paròlla d'ordine sbaliâ. Tenta torna.",
 'wrongpasswordempty'         => "No ti g'hæ scrîo nisciûnn-a paròlla d'ordine. Tenta torna.",
-'passwordtooshort'           => "A paròlla d'ordine che ti g'hæa misso a no serve ò a l'è tròppo cûrta. A deive contegnî armeno $1 caratteri.",
+'passwordtooshort'           => "A paròlla d'ordine che ti gh'æ misso a no serve òu a l'è tròppo cûrta.
+A deive contegnî mìnimo $1 caratteri e êse diverza da-o têu nomme utente.",
 'mailmypassword'             => "Inviâ paròlla d'ordine (password) via e-mail",
 'passwordremindertitle'      => "Servissio Password Reminder (nêuva paròlla d'ordine temporannia) de {{SITENAME}}",
 'passwordremindertext'       => "Quarchedûn (probabilmente ti, con indirisso IP \$1) o g'ha domandòu l'invîo de 'na nêuva paròlla d'ordine pe l'accesso a {{SITENAME}} (\$4).
@@ -810,7 +810,7 @@ $1',
 'ipblocklist-empty'           => "A lista de e affermaçioin a l'è veua.",
 'blocklink'                   => 'Affermaçion',
 'unblocklink'                 => 'sblocca',
-'contribslink'                => 'Contribûssioîn',
+'contribslink'                => 'Contribuçioìn',
 'autoblocker'                 => 'Affermoö automaticamente perchè o teu indirisso IP o l\'è stæto usöo da "[[User:$1|$1]]" neuvamente. A razon dæta pe affermâ $1 a l\'è stæta:
 "$2"',
 'blocklogpage'                => 'Affermaçioin',
@@ -851,7 +851,6 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'move-watch'              => 'Azzonze a li osservæ speçiâli',
 'movepagebtn'             => 'Stramûâ a paggina',
 'pagemovedsub'            => 'Remescio fæto',
-'movepage-moved'          => "<big>'''\"\$1\" a l'è stæta stramûâa a-o tittolo \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Ghe n'æmmo zà 'na paggina con 'sto nomme, oppûre quello che ti g'hæ scelto o no l'è permisso. Cangia nomme.",
 'talkexists'              => "'''A paggina a l'è stæta stramûâa correttamente, ma o no l'è stæto poscibbile stramûâ a paggina de discûxon perché ghe n'è zà 'n'âtra co-o nêuvo tittolo. O se deive inserî manualmente i contegnûi de tûtte e doe.'''",
 'movedto'                 => 'Stramûâa a',
@@ -984,7 +983,7 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 'edit-externally-help' => "Pe ciû informassion consûltâ l' [http://meta.wikimedia.org/wiki/Help:External_editors istrûssioîn] (in ingleise)",
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'Tûtti',
+'watchlistall2' => 'Tùtti',
 'namespacesall' => 'Tûtti',
 'monthsall'     => 'Tûtti',
 

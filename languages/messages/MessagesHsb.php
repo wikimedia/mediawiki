@@ -465,6 +465,11 @@ $2',
 'titleprotected'       => "Tutón titul bu přećiwo wutworjenju přez [[User:$1|$1]] škitany.
 Podata přičina je ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Špatna konfiguracija: njeznaty wirusowy skener: <i>$1</i>',
+'virus-scanfailed'     => 'Skenowanje njeporadźiło (kode $1)',
+'virus-unknownscanner' => 'njeznaty antiwirus:',
+
 # Login and logout pages
 'logouttitle'                => 'Wotzjewjenje',
 'logouttext'                 => '<strong>Sy nětko wotzjewjeny.</strong><br />
@@ -1879,7 +1884,6 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-watch'              => 'Stronu wobkedźbować',
 'movepagebtn'             => 'Stronu přesunyć',
 'pagemovedsub'            => 'Přesunjenje wuspěšne',
-'movepage-moved'          => "<big>'''Strona „$1“ bu k nowemu titlej „$2“ přesunjena.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',
 'cantmove-titleprotected' => 'Njemóžeš stronu do tutoho městna přesunyć, dokelž nowy titul bu přećiwo wutworjenju škitany',
 'talkexists'              => 'Strona sama bu z wuspěchom přesunjena, diskusijna strona pak njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změš jeju manuelnje.',
@@ -1888,7 +1892,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-subpages'           => 'Wšě podstrony přesunyć, jeli eksistuja',
 'move-talk-subpages'      => 'Wšě podstrony diskusijnych stronow přesunyć, jeli eksistuja',
 'movepage-page-exists'    => 'Strona $1 hižo eksistuje a njeda so awtomatisce přepisać.',
-'movepage-page-moved'     => 'Strona $1 bu do $2 přesunjena.',
+'movepage-page-moved'     => 'Strona $1 bu do $2 přesunjena.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => 'Strona $1 njeda so do $2 přesunyć.',
 'movepage-max-pages'      => 'Maksimalna ličba $1 {{PLURAL:$1|strony|stronow|stronow|stronow}} bu přesunjena, dalše strony so awtomatisce njepřesunu.',
 '1movedto2'               => 'je [[$1]] pod hesło [[$2]] přesunył',

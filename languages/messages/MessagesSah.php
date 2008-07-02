@@ -1652,7 +1652,6 @@ $1',
 'move-watch'              => 'Кэтээн көрөргө',
 'movepagebtn'             => 'Аатын уларыт',
 'pagemovedsub'            => 'Аата уларыйда',
-'movepage-moved'          => '<big>\'\'\'"$1" аата маннык буолла: "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Маннык ааттаах сирэй баар, эбэтэр
 маннык аат көҥүллэммэт эбит.
 Атын аатта таларгар көрдөһөбүт.',

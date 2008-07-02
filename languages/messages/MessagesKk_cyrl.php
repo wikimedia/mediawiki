@@ -2219,7 +2219,6 @@ $1 бұғаттауы үшін келтірілген себебі: «$2».',
 'move-watch'              => 'Бұл бетті бақылау',
 'movepagebtn'             => 'Бетті жылжыт',
 'pagemovedsub'            => 'Жылжыту сәтті аяқталды',
-'movepage-moved'          => "<big>'''«$1» деген «$2» дегенге жылжытылды'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Осылай аталған бет алдақашан бар, не таңдаған атауыңыз жарамды емес.
 Өзге атауды таңдаңыз',
 'cantmove-titleprotected' => 'Бетті осы орынға жылжыта алмайсыз, себебі жаңа тақырып аты бастаудан қорғалған',
@@ -2230,7 +2229,7 @@ $1 бұғаттауы үшін келтірілген себебі: «$2».',
 'move-subpages'           => 'Барлық бетшелерін жылжыту, егер қолданбалы болса',
 'move-talk-subpages'      => 'Талқылау бетінің барлық бетшелерін жылжыту, егер қолданбалы болса',
 'movepage-page-exists'    => '$1 деген бет алдақашан бар және үстіне өздіктік жазылмайды.',
-'movepage-page-moved'     => '$1 деген бет $2 дегенге жылжытылды.',
+'movepage-page-moved'     => '$1 деген бет $2 дегенге жылжытылды.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-page-unmoved'   => '$1 деген бет $2 дегенге жылжытылмайды.',
 'movepage-max-pages'      => 'Барынша $1 бет жылжытылды да мыннан көбі өздіктік жылжылтылмайды.',
 '1movedto2'               => '[[$1]] дегенді [[$2]] дегенге жылжытты',
