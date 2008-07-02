@@ -123,6 +123,7 @@ class SpecialRecentChanges extends SpecialPage {
 			$batch->execute();
 			$this->webOutput( $rows, $opts );
 		}
+  	
 	}
 
 	/**
@@ -407,6 +408,7 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$panel = array();
 		$panel[] = $this->optionsPanel( $defaults, $nondefaults );
+		$panel[] = '<hr />';
 
 		$extraOpts = $this->getExtraOptions( $opts );
 
@@ -434,7 +436,9 @@ class SpecialRecentChanges extends SpecialPage {
 		$panel[] = $form;
 		$panelString = implode( "\n", $panel );
 
-		$wgOut->addHTML( '<div class="rcoptions">' . $panelString . '</div>' );
+		$wgOut->addHTML(
+			Xml::fieldset( wfMsg( 'recentchanges' ), $panelString, array( 'class' => 'rcoptions' ) )
+		);
 
 		$this->setBottomText( $wgOut, $opts );
 	}
