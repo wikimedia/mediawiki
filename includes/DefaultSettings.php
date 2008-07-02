@@ -367,11 +367,6 @@ $wgMimeDetectorCommand= NULL; # use internal mime_content_type function, availab
 $wgTrivialMimeDetection= false;
 
 /**
- * Additional XML types we can allow via mime-detection.
- */
-$wgAdditionalXMLTypes = array();
-
-/**
  * To set 'pretty' URL paths for actions other than
  * plain page views, add to this array. For instance:
  *   'edit' => "$wgScriptPath/edit/$1"
