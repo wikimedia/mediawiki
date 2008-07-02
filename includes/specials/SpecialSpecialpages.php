@@ -48,6 +48,14 @@ function wfSpecialSpecialpages() {
 		$groups['other'] = $other;
 	}
 
+	if ( count( $groups ) >= 3 ) {
+		$wgOut->addHTML('<ul id="filetoc">');
+		foreach( $groups as $group => $pages ) {
+			$wgOut->addHTML('<li><a href="#' . $group . '">' . wfMsgHtml("specialpages-group-$group") . '</a></li>');
+		}
+		$wgOut->addHTML('</ul>');
+	}
+
 	/** Now output the HTML */
 	foreach ( $groups as $group => $sortedPages ) {
 		$middle = ceil( count($sortedPages)/2 );

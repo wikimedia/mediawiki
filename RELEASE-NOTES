@@ -178,6 +178,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Two new hooks, ExtendJSGlobalVars and wfMessageCacheReplace added
 * MediawikiPerformAction hook is now passed the Mediawiki object
 * Added blank special page Special:BlankPage for benchmarking, etc.
+* (bug 13862) Specialpages now has a horizontal TOC if there's three or more
+  groups.
  
 === Bug fixes in 1.13 ===
 
