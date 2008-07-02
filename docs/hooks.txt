@@ -739,7 +739,7 @@ $lang: laguage code (string)
 
 'LinkerMakeExternalImage': At the end of Linker::makeExternalImage() just before the return
 &$url: the image url
-&alt: the image's alt text
+&$alt: the image's alt text
 &$img: the new image HTML (if returning false)
 
 'LinkerMakeExternalLink': At the end of Linker::makeExternalLink() just before the return
