@@ -1594,6 +1594,7 @@ $NEWPAGE
 'move-watch'              => '派哨',
 'movepagebtn'             => '遷文',
 'pagemovedsub'            => '遷成矣',
+'movepage-moved'          => "<big>'''「$1」已遷至「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '此題早存，或名謬焉；請更之。',
 'cantmove-titleprotected' => '爾不可動頁至此，因新題已緘焉，防建之。',
 'talkexists'              => "'''文遷成而議未移，蓋早存也；請併之。'''",
@@ -2070,5 +2071,9 @@ $1',
 'specialpages-group-wiki'        => 'Wiki訊與器',
 'specialpages-group-redirects'   => '轉之特查',
 'specialpages-group-spam'        => '反垃圾之器',
+
+# Special:Blankpage
+'blankpage'              => '白頁',
+'intentionallyblankpage' => '此頁為白也，試速之用',
 
 );

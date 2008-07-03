@@ -1,5 +1,5 @@
 <?php
-/** Taiwan Chinese (‪中文(台灣)‬)
+/** ‪Chinese (Taiwan) (‪中文(台灣)‬)
  *
  * @ingroup Language
  * @file
@@ -1561,6 +1561,7 @@ $1',
 'move-watch'              => '監視此頁',
 'movepagebtn'             => '移動頁面',
 'pagemovedsub'            => '移動成功',
+'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
 'talkexists'              => '頁面本身移動成功，
 但是由於新標題下已經有對話頁存在，所以對話頁無法移動。請手工合併兩個頁面。',

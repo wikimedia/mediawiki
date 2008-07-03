@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Chinese (Simplified) (‪中文 (简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -1839,6 +1839,7 @@ $1',
 'move-watch'              => '监视此页',
 'movepagebtn'             => '移动页面',
 'pagemovedsub'            => '移动成功',
+'movepage-moved'          => "<big>'''“$1”已经移动到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',
 'cantmove-titleprotected' => '您不可以移动这个页面到这个位置，因为该新标题已经被保护以防止创建。',
 'talkexists'              => '页面本身移动成功，
@@ -2608,5 +2609,9 @@ $1
 'specialpages-group-wiki'        => 'Wiki资料和工具',
 'specialpages-group-redirects'   => '重定向特殊页面',
 'specialpages-group-spam'        => '反垃圾工具',
+
+# Special:Blankpage
+'blankpage'              => '空白页面',
+'intentionallyblankpage' => '这个页面是为空白，以用来作测试速度等用途',
 
 );
