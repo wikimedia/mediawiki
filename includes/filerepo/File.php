@@ -1080,7 +1080,7 @@ abstract class File {
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
 			$res = Http::get( $renderUrl );
-			if ( $res && $this->repo->useLocalCache ) $wgMemc->set( $key, $res, time() + $wgTranscludeCacheExpiry );
+			if ( $res && $this->repo->useLocalCache ) $wgMemc->set( $key, $res, $this->repo->localCacheExpiry );
 			return $res;
 		} else {
 			return false;
