@@ -1358,6 +1358,11 @@ class Title {
 			$dbw->delete( 'protected_titles', array( 'pt_namespace' => $namespace,
 				'pt_title' => $title ), __METHOD__ );
 		}
+		if($dbw->affectedRows() == 0) {
+			//No Change
+			return true;
+		}
+
 		# Update the protection log
 		$log = new LogPage( 'protect' );
 
