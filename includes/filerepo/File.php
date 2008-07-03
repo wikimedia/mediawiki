@@ -1062,56 +1062,29 @@ abstract class File {
 	 * Get the HTML text of the description page, if available
 	 */
 	function getDescriptionText() {
+		global $wgMemc, $wgTranscludeCacheExpiry;
 		if ( !$this->repo->fetchDescription ) {
 			return false;
 		}
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName() );
 		if ( $renderUrl ) {
-			if ( $this->repo->useTransCache ) {
+			if ( $this->repo->useLocalCache ) {
 				wfDebug("Attempting to get the description from the transwiki cache...");
-				$this->purgeTransCacheEntries();
-				$dbr = wfGetDB(DB_SLAVE);
-				$obj = $dbr->selectRow('transcache', array('tc_contents'),
-											array('tc_url' => $renderUrl));
+				$key = md5($renderUrl);
+				$obj = $wgMemc->get($key);
 				if ($obj) {
 					wfDebug("success!\n");
-					return $obj->tc_contents;
+					return $obj;
 				}
 				wfDebug("miss\n");
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
 			$res = Http::get( $renderUrl );
-			if ( $res && $this->repo->useTransCache ) $this->addToTransCache( $res, $renderUrl );
+			if ( $res && $this->repo->useLocalCache ) $wgMemc->set( $key, $res, time() + $wgTranscludeCacheExpiry );
 			return $res;
 		} else {
 			return false;
 		}
-	}
-
-	/**
-	 * Purge expired transcache entries
-	 */
-	function purgeTranscacheEntries() {
-		global $wgTranscludeCacheExpiry;
-		$dbw = wfGetDB( DB_MASTER );
-		$table = $dbw->tableName('transcache');
-		$expiry = $dbw->addQuotes(time() - $wgTranscludeCacheExpiry);
-		$res = $dbw->delete( $table, array("tc_time < $expiry"), __METHOD__ );
-		if ($res) wfDebug("purging old transcache entries...");		
-	}
-	
-	/**
-	 * Add new transcache entry
-	 * 
-	 * @param string $text Text to add to the cache
-	 * @param string $url Url we're caching
-	 */
-	function addToTransCache( $text, $url ) {
-		$dbw = wfGetDB( DB_MASTER );
-				$dbw->replace('transcache', array('tc_url'), array(
-			'tc_url' => $url,
-			'tc_time' => time(),
-			'tc_contents' => $text));
 	}
 
 	/**
