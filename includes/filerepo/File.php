@@ -1068,9 +1068,9 @@ abstract class File {
 		}
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName() );
 		if ( $renderUrl ) {
-			if ( $this->repo->useLocalCache ) {
+			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug("Attempting to get the description from the transwiki cache...");
-				$key = md5($renderUrl);
+				$key = wfMemcKey( 'filedesc', 'url', md5($link));
 				$obj = $wgMemc->get($key);
 				if ($obj) {
 					wfDebug("success!\n");
@@ -1080,7 +1080,7 @@ abstract class File {
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
 			$res = Http::get( $renderUrl );
-			if ( $res && $this->repo->useLocalCache ) $wgMemc->set( $key, $res, $this->repo->localCacheExpiry );
+			if ( $res && $this->repo->descriptionCacheExpiry > 0 ) $wgMemc->set( $key, $res, $this->repo->descriptionCacheExpiry );
 			return $res;
 		} else {
 			return false;
