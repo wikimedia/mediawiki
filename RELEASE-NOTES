@@ -410,6 +410,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   account creation.
 * (bug 3481) Pages moved shortly after creation are shown at their new title
   on Special:Newpages.
+* (bug 12716) Trying to unprotect a title that isn't protected no longer 
+  generates a log entry.
 
 === API changes in 1.13 ===
 
