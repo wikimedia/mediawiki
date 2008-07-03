@@ -542,17 +542,18 @@ $2',
 'noarticletext'                    => '此頁無文。子可 [[Special:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
 'userpage-userdoesnotexist'        => '"$1"之簿未增也。請建纂本頁前查之。',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
-'''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-Shift-R''（Apple Mac為''Cmd-Shift-R''）。
-'''IE:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。
-'''Konqueror:'''點''Reload''即可，或押''F5''。
-：''Opera:'''須至''Tools→Preferences''清謄本。",
+'''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Macintosh為''Command-R''）。
+'''Konqueror:'''點''Reload''，或押''F5''。
+：''Opera:'''須至''Tools→Preferences''清謄本。
+'''Internet Explorer:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。",
 'usercssjsyoucanpreview'           => '<strong>訣：</strong>CSS/JS應先預覽而後存。',
 'usercsspreview'                   => "'''預覽CSS，尚未儲焉。'''",
 'userjspreview'                    => "'''預覽JavaScript，尚未儲焉。'''",
 'userinvalidcssjstitle'            => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如{{ns:user}}:Foo/monobook.css 而非{{ns:user}}:Foo/Monobook.css",
 'updated'                          => '（新）',
 'note'                             => '<strong>註</strong>',
-'previewnote'                      => '<strong>此乃預覽，尚未儲焉。</strong>',
+'previewnote'                      => '<strong>此乃預覽，尚未儲焉。</strong>
+[[#editform|→ 至纂框。]]',
 'session_fail_preview'             => '<strong>歉哉有變，子纂未存焉，惠再之。如復不成，重登再試也。</strong>',
 'session_fail_preview_html'        => "<strong>歉哉有變，子纂未存焉</strong>
 
