@@ -48,21 +48,13 @@ function wfSpecialSpecialpages() {
 		$groups['other'] = $other;
 	}
 
-	if ( count( $groups ) >= 3 ) {
-		$wgOut->addHTML('<ul id="filetoc">');
-		foreach( $groups as $group => $pages ) {
-			$wgOut->addHTML('<li><a href="#' . $group . '">' . wfMsgHtml("specialpages-group-$group") . '</a></li>');
-		}
-		$wgOut->addHTML('</ul>');
-	}
-
 	/** Now output the HTML */
 	foreach ( $groups as $group => $sortedPages ) {
 		$middle = ceil( count($sortedPages)/2 );
 		$total = count($sortedPages);
 		$count = 0;
 
-		$wgOut->addHTML( "<h4 class='mw-specialpagesgroup' id='$group'>".wfMsgHtml("specialpages-group-$group")."</h4>\n" );
+		$wgOut->addHTML( "<h4 class='mw-specialpagesgroup'>".wfMsgHtml("specialpages-group-$group")."</h4>\n" );
 		$wgOut->addHTML( "<table style='width: 100%;' class='mw-specialpages-table'><tr>" );
 		$wgOut->addHTML( "<td width='30%' valign='top'><ul>\n" );
 		foreach( $sortedPages as $desc => $specialpage ) {

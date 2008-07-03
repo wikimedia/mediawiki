@@ -177,8 +177,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add meta generator tag to HTML output
 * MediawikiPerformAction hook is now passed the Mediawiki object
 * Added blank special page Special:BlankPage for benchmarking, etc.
-* (bug 13862) Specialpages now has a horizontal TOC if there's three or more
-  groups.
 * Foreign repo file descriptions and thumbnails are now cached.
  
 === Bug fixes in 1.13 ===
