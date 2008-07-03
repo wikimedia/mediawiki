@@ -746,12 +746,7 @@ class Article {
 		}
 
 		# Should the parser cache be used?
-		$pcache = $wgEnableParserCache
-			&& intval( $wgUser->getOption( 'stubthreshold' ) ) == 0
-			&& $this->exists()
-			&& empty( $oldid )
-			&& !$this->mTitle->isCssOrJsPage()
-			&& !$this->mTitle->isCssJsSubpage();
+		$pcache = $this->useParserCache( $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ($pcache ? 'yes' : 'no' ) . "\n" );
 		if ( $wgUser->getOption( 'stubthreshold' ) ) {
 			wfIncrStats( 'pcache_miss_stub' );
@@ -762,7 +757,6 @@ class Article {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
-				$sk = $wgUser->getSkin();
 				$redir = $sk->makeKnownLinkObj( $this->mRedirectedFrom, '', 'redirect=no' );
 				$s = wfMsg( 'redirectedfrom', $redir );
 				$wgOut->setSubtitle( $s );
@@ -779,7 +773,6 @@ class Article {
 			// If it was reported from a trusted site, supply a backlink.
 			global $wgRedirectSources;
 			if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
-				$sk = $wgUser->getSkin();
 				$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
 				$s = wfMsg( 'redirectedfrom', $redir );
 				$wgOut->setSubtitle( $s );
@@ -797,6 +790,7 @@ class Article {
 				$outputDone = true;
 			}
 		}
+		# Fetch content and check for errors
 		if ( !$outputDone ) {
 			$text = $this->getContent();
 			if ( $text === false ) {
@@ -819,7 +813,6 @@ class Article {
 			}
 
 			# We're looking at an old revision
-
 			if ( !empty( $oldid ) ) {
 				$wgOut->setRobotpolicy( 'noindex,nofollow' );
 				if( is_null( $this->mRevision ) ) {
@@ -838,16 +831,13 @@ class Article {
 						}
 					}
 				}
-
 			}
-		}
-		if( !$outputDone ) {
+			
 			$wgOut->setRevisionId( $this->getRevIdFetched() );
 
 			 // Pages containing custom CSS or JavaScript get special treatment
 			if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
 				$wgOut->addHtml( wfMsgExt( 'clearyourcache', 'parse' ) );
-
 				// Give hooks a chance to customise the output
 				if( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->mTitle, $wgOut ) ) ) {
 					// Wrap the whole lot in a <pre> and don't parse
@@ -857,10 +847,7 @@ class Article {
 					$wgOut->addHtml( htmlspecialchars( $this->mContent ) );
 					$wgOut->addHtml( "\n</pre>\n" );
 				}
-
-			}
-
-			elseif ( $rt = Title::newFromRedirect( $text ) ) {
+			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Don't append the subtitle if this was an old revision
 				$this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() );
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
@@ -889,7 +876,6 @@ class Article {
 				if( !$this->isCurrent() ) {
 					$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
 				}
-
 			}
 		}
 		/* title may have been set from the cache */
@@ -899,8 +885,7 @@ class Article {
 		}
 
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
-		if( $ns == NS_USER_TALK &&
-			IP::isValid( $this->mTitle->getText() ) ) {
+		if( $ns == NS_USER_TALK && IP::isValid( $this->mTitle->getText() ) ) {
 			$wgOut->addWikiMsg('anontalkpagetext');
 		}
 
@@ -923,6 +908,20 @@ class Article {
 
 		$this->viewUpdates();
 		wfProfileOut( __METHOD__ );
+	}
+	
+	/* 
+	* Should the parser cache be used?
+	*/
+	protected function useParserCache( $oldid ) {
+		global $wgUser, $wgEnableParserCache;
+		
+		return $wgEnableParserCache
+			&& intval( $wgUser->getOption( 'stubthreshold' ) ) == 0
+			&& $this->exists()
+			&& empty( $oldid )
+			&& !$this->mTitle->isCssOrJsPage()
+			&& !$this->mTitle->isCssJsSubpage();
 	}
 	
 	protected function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
