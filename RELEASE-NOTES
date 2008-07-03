@@ -179,6 +179,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added blank special page Special:BlankPage for benchmarking, etc.
 * (bug 13862) Specialpages now has a horizontal TOC if there's three or more
   groups.
+* Foreign repo file descriptions via fetchDescription are now cached in the
+  transcache.
  
 === Bug fixes in 1.13 ===
 
