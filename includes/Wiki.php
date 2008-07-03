@@ -43,7 +43,7 @@ class MediaWiki {
 	 * Initialization of ... everything
 	 * Performs the request too
 	 *
-	 * @param $title Title
+	 * @param $title Title ($wgTitle)
 	 * @param $article Article
 	 * @param $output OutputPage
 	 * @param $user User
@@ -264,7 +264,7 @@ class MediaWiki {
 	 * Initialize the object to be known as $wgArticle for "standard" actions
 	 * Create an Article object for the page, following redirects if needed.
 	 *
-	 * @param $title Title
+	 * @param $title Title ($wgTitle)
 	 * @param $request WebRequest
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
@@ -280,18 +280,22 @@ class MediaWiki {
 		// Check for redirects ...
 		$file = $title->getNamespace() == NS_IMAGE ? $article->getFile() : null;
 		if( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
-					&& !$request->getVal( 'oldid' ) && 			// ... and are not old revisions
+					&& !$request->getVal( 'oldid' ) &&    // ... and are not old revisions
 					$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
-					// ... and the article is not an image page with associated file
-					!( is_object( $file ) && $file->exists() &&
-							!$file->getRedirected() ) ) { // ... unless it is really an image redirect
+					// ... and the article is not a non-redirect image page with associated file
+					!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) ) {
+
+			# Give extensions a change to ignore/handle redirects as needed
+			$ignoreRedirect = $target = false;
+			wfRunHooks( 'InitializeArticleMaybeRedirect', array( &$title, &$request, &$ignoreRedirect, &$target ) );
 
 			$dbr = wfGetDB( DB_SLAVE );
 			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
 
 			// Follow redirects only for... redirects
-			if( $article->isRedirect() ) {
-				$target = $article->followRedirect();
+			if( !$ignoreRedirect && $article->isRedirect() ) {
+				# Is the target already set by an extension?
+				$target = $target ? $target : $article->followRedirect();
 				if( is_string( $target ) ) {
 					if( !$this->getVal( 'DisableHardRedirects' ) ) {
 						// we'll need to redirect
@@ -303,9 +307,7 @@ class MediaWiki {
 					// Rewrite environment to redirected article
 					$rarticle = self::articleFromTitle( $target );
 					$rarticle->loadPageData( $rarticle->pageDataFromTitle( $dbr, $target ) );
-					if ( $rarticle->getTitle()->exists() || 
-								( is_object( $file ) && 
-								!$file->isLocal() ) ) {
+					if ( $rarticle->exists() || ( is_object( $file ) && !$file->isLocal() ) ) {
 						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
 						$title = $target;
