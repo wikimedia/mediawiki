@@ -552,8 +552,7 @@ $2',
 'userinvalidcssjstitle'            => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如{{ns:user}}:Foo/monobook.css 而非{{ns:user}}:Foo/Monobook.css",
 'updated'                          => '（新）',
 'note'                             => '<strong>註</strong>',
-'previewnote'                      => '<strong>此乃預覽，尚未儲焉。</strong>
-[[#editform|→ 至纂框。]]',
+'previewnote'                      => '<strong>此乃預覽，尚未儲焉。</strong>',
 'session_fail_preview'             => '<strong>歉哉有變，子纂未存焉，惠再之。如復不成，重登再試也。</strong>',
 'session_fail_preview_html'        => "<strong>歉哉有變，子纂未存焉</strong>
 

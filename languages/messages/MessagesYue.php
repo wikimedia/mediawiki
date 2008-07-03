@@ -685,8 +685,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userinvalidcssjstitle'            => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                          => '(己更新)',
 'note'                             => '<strong>留意:</strong>',
-'previewnote'                      => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>
-[[#editform|→ 去編輯盒。]]',
+'previewnote'                      => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'previewconflict'                  => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
 'session_fail_preview'             => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
 請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。'''",

@@ -600,8 +600,7 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'updated'                          => '(Actualizado)',
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => '<strong>Lembre que esta é só unha vista previa
-e que os seus cambios aínda non foron gardados!</strong>
-[[#editform|→ Vaia á caixa de edición.]]',
+e que os seus cambios aínda non foron gardados!</strong>',
 'previewconflict'                  => 'Esta vista previa amosa o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview'             => '<strong>Sentímolo! O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, ténteo de novo. Se segue sen funcionar, probe a saír do sistema e volver entrar.</strong>',
