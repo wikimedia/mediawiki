@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -1814,6 +1814,7 @@ $1',
 'move-watch'              => '監視此頁',
 'movepagebtn'             => '移動頁面',
 'pagemovedsub'            => '移動成功',
+'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
 'cantmove-titleprotected' => '您不可以移動這個頁面到這個位置，因為該新標題已經被保護以防止建立。',
 'talkexists'              => '頁面本身移動成功，
@@ -2583,5 +2584,9 @@ $1
 'specialpages-group-wiki'        => 'Wiki資料和工具',
 'specialpages-group-redirects'   => '重新定向特殊頁面',
 'specialpages-group-spam'        => '反垃圾工具',
+
+# Special:Blankpage
+'blankpage'              => '空白頁面',
+'intentionallyblankpage' => '這個頁面是為空白，以用來作測試速度等用途',
 
 );

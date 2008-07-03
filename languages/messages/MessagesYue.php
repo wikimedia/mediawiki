@@ -1877,6 +1877,7 @@ $1',
 'move-watch'              => '睇實呢一版',
 'movepagebtn'             => '搬頁',
 'pagemovedsub'            => '搬頁成功',
+'movepage-moved'          => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。請揀過第二個名。',
 'cantmove-titleprotected' => '你唔可以搬呢版去呢個位置，因為個新標題已經保護咗，唔畀開版。',
 'talkexists'              => "'''頁面本身已經成功搬咗，但係個討論頁搬唔到，因為已經有一個同名嘅討論頁。請手工合併佢哋。'''",
@@ -2652,5 +2653,9 @@ $1',
 'specialpages-group-wiki'        => 'Wiki資料同工具',
 'specialpages-group-redirects'   => '跳轉特別頁',
 'specialpages-group-spam'        => '反垃圾工具',
+
+# Special:Blankpage
+'blankpage'              => '空白頁',
+'intentionallyblankpage' => '呢一版係留空咗嘅，用來作測速等用嘅',
 
 );
