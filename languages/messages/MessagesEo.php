@@ -635,8 +635,7 @@ Via forbaro-identigo estas $5.  Bonvolu inkluzivi tiun identigon en iuj ajn dema
 'updated'                          => '(Ŝanĝo registrita)',
 'note'                             => '<strong>Noto:</strong>',
 'previewnote'                      => '<strong>Ĉi tio estas nur antaŭrigardo;
-ŝanĝoj ne jam estis konservita!</strong>
-[[#editform|→ Iri al la redaktilo.]]',
+ŝanĝoj ne jam estis konservita!</strong>',
 'previewconflict'                  => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
 'session_fail_preview'             => '<strong>Bedaŭrinde ne eblis trakti vian redakton pro manko de sesiaj datenoj. Bonvolu provi refoje. Se ankoraŭ ne efikas post tio, elsalutu kaj poste re-ensalutu.</strong>',

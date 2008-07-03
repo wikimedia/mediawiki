@@ -694,8 +694,7 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'updated'                          => '(Aggiornato)',
 'note'                             => '<strong>NOTA:</strong>',
 'previewnote'                      => '<strong>Questa è solo una anteprima;
-le modifiche alla pagina NON sono ancora state salvate!</strong>
-[[#editform|→ Vai alla casella di modifica.]]',
+le modifiche alla pagina NON sono ancora state salvate!</strong>',
 'previewconflict'                  => "L'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere 'Salva la pagina' in questo momento.",
 'session_fail_preview'             => '<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>',
 'session_fail_preview_html'        => "<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.</strong>

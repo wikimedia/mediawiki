@@ -849,8 +849,7 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 'updated'                          => '(Bijgewerkt)',
 'note'                             => '<strong>Opmerking:</strong>',
 'previewnote'                      => '<strong>Let op: dit is een controlepagina;
-uw tekst is niet opgeslagen!</strong>
-[[#editform|→ Naar het bewerkingsscherm gaan.]]',
+uw tekst is niet opgeslagen!</strong>',
 'previewconflict'                  => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview'             => '<strong>Sorry! Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw. Als het dan nog niet lukt, meld u zich dan af en weer aan.</strong>',
