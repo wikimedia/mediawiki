@@ -1970,6 +1970,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'move-watch'              => 'Diese Seite beobachten',
 'movepagebtn'             => 'Seite verschieben',
 'pagemovedsub'            => 'Verschiebung erfolgreich',
+'movepage-moved'          => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
 'cantmove-titleprotected' => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'              => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
@@ -1978,7 +1979,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'move-subpages'           => 'Alle Unterseiten, falls vorhanden, mitverschieben',
 'move-talk-subpages'      => 'Alle Unterseiten von Diskussionsseiten, falls vorhanden, mitverschieben',
 'movepage-page-exists'    => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
-'movepage-page-moved'     => 'Die Seite „$1“ wurde nach „$2“ verschoben.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Die Seite „$1“ wurde nach „$2“ verschoben.',
 'movepage-page-unmoved'   => 'Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.',
 'movepage-max-pages'      => 'Die Maximalanzahl von $1 {{PLURAL:$1|Seite|Seiten}} wurde verschoben, Alle weiteren Seiten können nicht automatisch verschoben werden.',
 '1movedto2'               => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
