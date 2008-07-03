@@ -339,7 +339,7 @@ class IPBlockForm {
 		if( $expirestr == 'other' )
 			$expirestr = $this->BlockOther;
 
-		if (strlen($expirestr) == 0) {
+		if ((strlen($expirestr) == 0) || (strlen($expirestr) > 50)) {
 			return array('ipb_expiry_invalid');
 		}
 		
