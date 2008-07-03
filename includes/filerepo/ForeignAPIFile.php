@@ -31,26 +31,13 @@ class ForeignAPIFile extends File {
 	}
 
 	function transform( $params, $flags = 0 ) {
-		global $wgMemc;
 		$thumbUrl = $this->repo->getThumbUrl(
 			$this->getName(),
 			isset( $params['width'] ) ? $params['width'] : -1,
 			isset( $params['height'] ) ? $params['height'] : -1 );
 		if( $thumbUrl ) {
-			if ( $this->repo->useLocalCache ) {
-				wfDebug("Attempting to get the thumb from the cache...");
-				$key = md5($thumbUrl);
-				$obj = $wgMemc->get($key);
-				if ($obj) {
-					wfDebug("success!\n");
-					return $obj;
-				}
-				wfDebug("miss\n");
-			}
-			$res = $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );;
-			if ( $res && $this->repo->useLocalCache ) $wgMemc->set( $key, $res, $this->repo->localCacheExpiry );
 			wfDebug( __METHOD__ . " got remote thumb $thumbUrl\n" );
-			return $res;
+			return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );;
 		}
 		return false;
 	}
