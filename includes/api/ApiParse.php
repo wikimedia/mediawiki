@@ -116,7 +116,7 @@ class ApiParse extends ApiBase {
 			$result_array['externallinks'] = array_keys($p_result->getExternalLinks());
 		if(isset($prop['sections']))
 			$result_array['sections'] = $p_result->getSections();
-		if($oldid !== false)
+		if(!is_null($oldid))
 			$result_array['revid'] = $oldid;
 
 		$result_mapping = array(
