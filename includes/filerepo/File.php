@@ -1067,11 +1067,51 @@ abstract class File {
 		}
 		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName() );
 		if ( $renderUrl ) {
+			if ( $this->repo->useTransCache ) {
+				wfDebug("Attempting to get the description from the transwiki cache...");
+				$this->purgeTransCacheEntries();
+				$dbr = wfGetDB(DB_SLAVE);
+				$obj = $dbr->selectRow('transcache', array('tc_contents'),
+											array('tc_url' => $renderUrl));
+				if ($obj) {
+					wfDebug("success!\n");
+					return $obj->tc_contents;
+				}
+				wfDebug("miss\n");
+			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
-			return Http::get( $renderUrl );
+			$res = Http::get( $renderUrl );
+			if ( $res && $this->repo->useTransCache ) $this->addToTransCache( $res, $renderUrl );
+			return $res;
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Purge expired transcache entries
+	 */
+	function purgeTranscacheEntries() {
+		global $wgTranscludeCacheExpiry;
+		$dbw = wfGetDB( DB_MASTER );
+		$table = $dbw->tableName('transcache');
+		$expiry = $dbw->addQuotes(time() - $wgTranscludeCacheExpiry);
+		$res = $dbw->delete( $table, array("tc_time < $expiry"), __METHOD__ );
+		if ($res) wfDebug("purging old transcache entries...");		
+	}
+	
+	/**
+	 * Add new transcache entry
+	 * 
+	 * @param string $text Text to add to the cache
+	 * @param string $url Url we're caching
+	 */
+	function addToTransCache( $text, $url ) {
+		$dbw = wfGetDB( DB_MASTER );
+				$dbw->replace('transcache', array('tc_url'), array(
+			'tc_url' => $url,
+			'tc_time' => time(),
+			'tc_contents' => $text));
 	}
 
 	/**
