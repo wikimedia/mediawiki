@@ -414,6 +414,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on Special:Newpages.
 * (bug 12716) Trying to unprotect a title that isn't protected no longer 
   generates a log entry.
+* (bug 14088) Excessively long block expiry times are rejected as invalid,
+  keeps the log page from being distorted.
 
 === API changes in 1.13 ===
 
