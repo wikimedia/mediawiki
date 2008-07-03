@@ -1062,7 +1062,7 @@ abstract class File {
 	 * Get the HTML text of the description page, if available
 	 */
 	function getDescriptionText() {
-		global $wgMemc, $wgTranscludeCacheExpiry;
+		global $wgMemc;
 		if ( !$this->repo->fetchDescription ) {
 			return false;
 		}
