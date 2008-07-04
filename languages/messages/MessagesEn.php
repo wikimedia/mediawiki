@@ -3469,6 +3469,6 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 
 # Special:Blankpage
 'blankpage'              => 'Blank page',
-'intentionallyblankpage' => 'This page is intentionally left blank and is used for benchmarking, etc.',
+'intentionallyblankpage' => 'This page is intentionally left blank',
 
 );
