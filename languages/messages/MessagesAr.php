@@ -362,6 +362,14 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكتروني' ),
 );
 
+$imageFiles = array(
+	'button-bold'     => 'button_bold_ar.png',
+	'button-italic'   => 'button_italic_ar.png',
+	'button-link'     => 'button_link_ar.png',
+	'button-headline' => 'button_headline_ar.png',
+	'button-nowiki'   => 'button_nowiki_ar.png',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ضع خطًا تحت الوصلات:',
