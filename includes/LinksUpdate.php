@@ -99,11 +99,10 @@ class LinksUpdate {
 		$existing = $this->getExistingImages();
 
 		$imageDeletes = $this->getImageDeletions( $existing );
-		$imageInserts = $this->getImageInsertions( $existing );
-		$this->incrTableUpdate( 'imagelinks', 'il', $imageDeletes, $imageInserts );
+		$this->incrTableUpdate( 'imagelinks', 'il', $imageDeletes, $this->getImageInsertions( $existing ) );
 
 		# Invalidate all image description pages which had links added or removed
-		$imageUpdates = $imageDeletions + $imageInsertions;
+		$imageUpdates = $imageDeletes + array_diff_key( $this->mImages, $existing );
 		$this->invalidateImageDescriptions( $imageUpdates );
 
 		# External links
@@ -125,11 +124,11 @@ class LinksUpdate {
 		$existing = $this->getExistingCategories();
 
 		$categoryDeletes = $this->getCategoryDeletions( $existing );
-		$categoryInserts = $this->getCategoryInsertions( $existing );
 
-		$this->incrTableUpdate( 'categorylinks', 'cl', $categoryDeletes, $categoryInserts );
+		$this->incrTableUpdate( 'categorylinks', 'cl', $categoryDeletes, $this->getCategoryInsertions( $existing ) );
 
 		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
+		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
 		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$this->invalidateCategories( $categoryUpdates );
 		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
@@ -137,13 +136,12 @@ class LinksUpdate {
 		# Page properties
 		$existing = $this->getExistingProperties();
 
-		$propertiesDeletes = $this->getPropertiesDeletions( $existing );
-		$propertiesInserts = $this->getPropertiesInsertions( $existing );
+		$propertiesDeletes = $this->getPropertyDeletions( $existing );
 
-		$this->incrTableUpdate( 'page_props', 'pp', $propertiesDeletes, $propertiesInserts );
+		$this->incrTableUpdate( 'page_props', 'pp', $propertiesDeletes, $this->getPropertyInsertions( $existing ) );
 
 		# Invalidate the necessary pages
-		$changed = $propertiesDeletes + $propertiesInserts;
+		$changed = $propertiesDeletes + array_diff_assoc( $this->mProperties, $existing );
 		$this->invalidateProperties( $changed );
 
 		# Refresh links of all pages including this page
