@@ -969,8 +969,7 @@ class LocalFile extends File
 	 */
 	function move( $target ) {
 		$this->lock();
-		$dbw = $this->repo->getMasterDB();
-		$batch = new LocalFileMoveBatch( $this, $target, $dbw );
+		$batch = new LocalFileMoveBatch( $this, $target );
 		$batch->addCurrent();
 		$batch->addOlds();
 		if( !$this->repo->canTransformVia404() ) {
@@ -1703,7 +1702,7 @@ class LocalFileRestoreBatch {
 class LocalFileMoveBatch {
 	var $file, $cur, $olds, $oldcount, $archive, $thumbs, $target, $db;
 
-	function __construct( File $file, Title $target, Database $db ) {
+	function __construct( File $file, Title $target ) {
 		$this->file = $file;
 		$this->target = $target;
 		$this->oldHash = $this->file->repo->getHashPath( $this->file->getName() );
@@ -1712,7 +1711,7 @@ class LocalFileMoveBatch {
 		$this->newName = $this->file->repo->getNameFromTitle( $this->target );
 		$this->oldRel = $this->oldHash . $this->oldName;
 		$this->newRel = $this->newHash . $this->newName;
-		$this->db = $db;
+		$this->db = $file->repo->getMasterDb();
 	}
 
 	function addCurrent() {
