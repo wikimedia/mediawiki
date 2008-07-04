@@ -363,11 +363,11 @@ $specialPageAliases = array(
 );
 
 $imageFiles = array(
-	'button-bold'     => 'button_bold_ar.png',
-	'button-italic'   => 'button_italic_ar.png',
-	'button-link'     => 'button_link_ar.png',
-	'button-headline' => 'button_headline_ar.png',
-	'button-nowiki'   => 'button_nowiki_ar.png',
+	'button-bold'     => 'ar/button_bold.png',
+	'button-italic'   => 'ar/button_italic.png',
+	'button-link'     => 'ar/button_link.png',
+	'button-headline' => 'ar/button_headline.png',
+	'button-nowiki'   => 'ar/button_nowiki.png',
 );
 
 $messages = array(
