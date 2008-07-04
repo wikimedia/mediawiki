@@ -83,13 +83,6 @@ class ApiFormatXml extends ApiFormatBase {
 
 		switch (gettype($elemValue)) {
 			case 'array' :
-				if (isset ($elemValue['_attribs'])) {
-					$attribValues = $elemValue['_attribs'];
-					unset( $elemValue['_attribs'] );
-				} else {
-					$attribValues = null;
-				}
-				
 				if (isset ($elemValue['*'])) {
 					$subElemContent = $elemValue['*'];
 					if ($this->mDoubleQuote)
@@ -120,8 +113,6 @@ class ApiFormatXml extends ApiFormatBase {
 						unset ($elemValue[$subElemId]);
 					}
 				}
-				
-				$elemValue = wfArrayMerge( $attribValues, $elemValue ); // wtf
 
 				if (is_null($subElemIndName) && !empty ($indElements))
 					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has integer keys without _element value. Use ApiResult::setIndexedTagName().");
@@ -132,7 +123,7 @@ class ApiFormatXml extends ApiFormatBase {
 				if (!is_null($subElemContent)) {
 					$this->printText($indstr . wfElement($elemName, $elemValue, $subElemContent));
 				} elseif (empty ($indElements) && empty ($subElements)) {
-					$this->printText($indstr . wfElement($elemName, $elemValue));
+						$this->printText($indstr . wfElement($elemName, $elemValue));
 				} else {
 					$this->printText($indstr . wfElement($elemName, $elemValue, null));
 
