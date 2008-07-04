@@ -178,6 +178,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * MediawikiPerformAction hook is now passed the Mediawiki object
 * Added blank special page Special:BlankPage for benchmarking, etc.
 * Foreign repo file descriptions and thumbnails are now cached.
+* (bug 11732) Allow localisation of edit button images
  
 === Bug fixes in 1.13 ===
 

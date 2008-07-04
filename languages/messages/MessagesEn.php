@@ -442,6 +442,24 @@ $specialPageAliases = array(
  */
 $linkTrail = '/^(\p{L&}+)(.*)$/usD';
 
+/**
+ * List of filenames for some ui images that can be overridden per language
+ * basis if needed.
+*/
+$imageFiles = array(
+	'button-bold'     => 'button_bold.png',
+	'button-italic'   => 'button_italic.png',
+	'button-link'     => 'button_link.png',
+	'button-extlink'  => 'button_extlink.png',
+	'button-headline' => 'button_headline.png',
+	'button-image'    => 'button_image.png',
+	'button-media'    => 'button_media.png',
+	'button-math'     => 'button_math.png',
+	'button-nowiki'   => 'button_nowiki.png',
+	'button-sig'      => 'button_sig.png',
+	'button-hr'       => 'button_hr.png',
+);
+
 #-------------------------------------------------------------------
 # Default messages
 #-------------------------------------------------------------------
