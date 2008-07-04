@@ -57,15 +57,17 @@ class Language {
 	var $mMagicExtensions = array(), $mMagicHookDone = false;
 
 	static public $mLocalisationKeys = array( 'fallback', 'namespaceNames',
-		'skinNames', 'mathNames', 
-		'bookstoreList', 'magicWords', 'messages', 'rtl', 'digitTransformTable', 
+		'skinNames', 'mathNames',
+		'bookstoreList', 'magicWords', 'messages', 'rtl', 'digitTransformTable',
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
-		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases', 
-		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap', 
-		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases' );
+		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases',
+		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
+		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
+		'imageFiles'
+	);
 
-	static public $mMergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames', 
-		'dateFormats', 'defaultUserOptionOverrides', 'magicWords' );
+	static public $mMergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames',
+		'dateFormats', 'defaultUserOptionOverrides', 'magicWords', 'imageFiles' );
 
 	static public $mMergeableListKeys = array( 'extraUserToggles' );
 
@@ -337,6 +339,11 @@ class Language {
 	function getDatePreferenceMigrationMap() {
 		$this->load();
 		return $this->datePreferenceMigrationMap;
+	}
+
+	function getImageFile( $image ) {
+		$this->load();
+		return $this->imageFiles[$image];
 	}
 
 	function getDefaultUserOptionOverrides() {
