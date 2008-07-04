@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Niklas Laxsröm
- * @author Sulev Iva (Võrok)
- * @author Nike
  * @author Võrok
+ * @author Siebrand
  * @author SPQRobin
  * @author Jon Harald Søby
+ * @author Niklas Laxsröm
+ * @author Sulev Iva (Võrok)
  */
 
 $fallback = 'et';

@@ -2074,7 +2074,7 @@ Kérlek, válassz egy másik nevet.',
 'move-subpages'           => 'Allapok átnevezése, ha lehetséges',
 'move-talk-subpages'      => 'Vitalap allapjainak átnevezése, ha lehetséges',
 'movepage-page-exists'    => 'A(z) „$1” nevű lap már létezik, és nem írható felül automatikusan.',
-'movepage-page-moved'     => 'A(z) „$1” nevű lap át lett nevezve „$2” névre.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'A(z) „$1” nevű lap át lett nevezve „$2” névre.',
 'movepage-page-unmoved'   => 'A(z) „$1” nevű lap nem nevezhető át „$2” névre.',
 'movepage-max-pages'      => '{{PLURAL:$1|Egy|$1}} lapnál több nem nevezhető át automatikusan, így a további lapok a helyükön maradnak.',
 '1movedto2'               => '[[$1]] lapot átneveztem [[$2]] névre',

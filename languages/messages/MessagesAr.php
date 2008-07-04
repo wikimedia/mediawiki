@@ -15,9 +15,9 @@
  * @author Khaledhosny
  * @author Mimouni
  * @author Agurzil
+ * @author Chaos
  * @author לערי ריינהארט
  * @author Jon Harald Søby
- * @author Chaos
  * @author SPQRobin
  */
 
@@ -2135,6 +2135,7 @@ $1',
 'move-watch'              => 'راقب هذه الصفحة',
 'movepagebtn'             => 'نقل الصفحة',
 'pagemovedsub'            => 'نقلت بنجاح',
+'movepage-moved'          => '<big>\'\'\'"$1" نقلت إلى "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'توجد صفحة بهذا الاسم،
 أو أن الاسم الذي تم اختياره غير صالح.
 يرجى اختيار اسم آخر.',
@@ -2145,7 +2146,7 @@ $1',
 'move-subpages'           => 'نقل كل الصفحات الفرعية، إذا كان هذا ممكنا',
 'move-talk-subpages'      => 'نقل كل الصفحات الفرعية لصفحة النقاش، إذا كان هذا ممكنا',
 'movepage-page-exists'    => 'الصفحة $1 موجودة حاليا ولا يمكن الكتابة فوقها تلقائيا.',
-'movepage-page-moved'     => 'تم نقل الصفحة $1 إلى $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'تم نقل الصفحة $1 إلى $2.',
 'movepage-page-unmoved'   => 'لا يمكن نقل الصفحة $1 إلى $2.',
 'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} تم نقله ولن يتم نقل المزيد تلقائيا.',
 '1movedto2'               => '[[$1]] تم نقلها إلى [[$2]]',

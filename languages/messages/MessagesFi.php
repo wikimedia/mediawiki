@@ -1840,7 +1840,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-subpages'           => 'Siirrä kaikki alasivut, jos mahdollista',
 'move-talk-subpages'      => 'Siirrä kaikki keskustelusivun alasivut, jos mahdollista',
 'movepage-page-exists'    => 'Sivu $1 on jo olemassa ja sitä ei voi automaattisesti korvata.',
-'movepage-page-moved'     => 'Sivu $1 on siirretty nimelle $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Sivu $1 on siirretty nimelle $2.',
 'movepage-page-unmoved'   => 'Sivua $1 ei voitu siirtää nimelle $2.',
 '1movedto2'               => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
 '1movedto2_redir'         => 'siirsi sivun ”$1” ohjauksen ”$2” päälle',

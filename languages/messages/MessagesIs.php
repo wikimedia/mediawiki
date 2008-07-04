@@ -1681,6 +1681,7 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 'move-watch'              => 'Vakta þessa síðu',
 'movepagebtn'             => 'Færa síðu',
 'pagemovedsub'            => 'Færsla tókst',
+'movepage-moved'          => "<big>'''„$1“ hefur verið færð á „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Annaðhvort er þegar til síða undir þessum titli, eða sá titill sem þú hefur valið er ekki gildur.
 Vinsamlegast veldu annan titil.',
 'talkexists'              => "'''Færsla á síðunni sjálfri heppnaðist, en ekki var hægt að færa spjallsíðuna því hún er nú þegar til á nýja titlinum.
@@ -1688,7 +1689,7 @@ Gjörðu svo vel og færðu hana handvirkt.'''",
 'movedto'                 => 'fært á',
 'movetalk'                => 'Færa meðfylgjandi spjallsíðu',
 'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifá sjálfkrafa.',
-'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.',
 '1movedto2'               => '[[$1]] færð á [[$2]]',
 '1movedto2_redir'         => '[[$1]] færð á [[$2]] yfir tilvísun',
 'movelogpage'             => 'Flutningaskrá',

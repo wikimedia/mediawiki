@@ -1096,6 +1096,7 @@ pro mover un pagina.',
 'move-watch'       => 'Observar iste pagina',
 'movepagebtn'      => 'Renominar pagina',
 'pagemovedsub'     => 'Renomination succedite',
+'movepage-moved'   => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
 Per favor selige un altere nomine.',
 'talkexists'       => "'''Le pagina mesme ha essite renominate con successo, mais le pagina de discussion associate non ha essite renominate proque ja existe un sub le nove titulo.

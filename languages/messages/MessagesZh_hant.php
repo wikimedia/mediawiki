@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1824,7 +1824,7 @@ $1',
 'move-subpages'           => '如果可能的話，同時移動所有的子頁面',
 'move-talk-subpages'      => '如果可能的話，同時移動所有的子對話頁面',
 'movepage-page-exists'    => '頁面$1已經存在，不可以自動地覆寫。',
-'movepage-page-moved'     => '頁面$1已經移動到$2。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '頁面$1已經移動到$2。',
 'movepage-page-unmoved'   => '頁面$1不可以移動到$2。',
 'movepage-max-pages'      => '最多有$1個頁面已經移動同時不可以自動地再移動更多。',
 '1movedto2'               => '[[$1]]移動到[[$2]]',

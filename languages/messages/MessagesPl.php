@@ -13,11 +13,11 @@
  * @author Beau
  * @author Stv
  * @author Siebrand
- * @author Masti
+ * @author Lajsikonik
  * @author Equadus
+ * @author Masti
  * @author Ymar
  * @author Matma Rex
- * @author Lajsikonik
  * @author Szczepan1990
  * @author Herr Kriss
  */
@@ -2068,6 +2068,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'move-watch'              => 'Obserwuj',
 'movepagebtn'             => 'Przenieś stronę',
 'pagemovedsub'            => 'Przeniesienie powiodło się',
+'movepage-moved'          => "<big>'''Strona „$1” została przeniesiona do „$2”.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
 'cantmove-titleprotected' => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
@@ -2077,7 +2078,7 @@ Wybierz inną nazwę.',
 'move-subpages'           => 'Jeśli to możliwe przenieś wszystkie podstrony',
 'move-talk-subpages'      => 'Jeśli to możliwe przenieś wszystkie podstrony strony dyskusji',
 'movepage-page-exists'    => 'Strona $1 istnieje. Automatyczne nadpisanie nie jest możliwe.',
-'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.',
 'movepage-page-unmoved'   => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
 'movepage-max-pages'      => 'Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.',
 '1movedto2'               => 'stronę [[$1]] przeniósł do [[$2]]',

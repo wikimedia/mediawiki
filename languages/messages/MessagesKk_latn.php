@@ -2232,7 +2232,7 @@ Bunı qolmen qosıñız.'''",
 'move-subpages'           => 'Barlıq betşelerin jıljıtw, eger qoldanbalı bolsa',
 'move-talk-subpages'      => 'Talqılaw betiniñ barlıq betşelerin jıljıtw, eger qoldanbalı bolsa',
 'movepage-page-exists'    => '$1 degen bet aldaqaşan bar jäne üstine özdiktik jazılmaýdı.',
-'movepage-page-moved'     => '$1 degen bet $2 degenge jıljıtıldı.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '$1 degen bet $2 degenge jıljıtıldı.',
 'movepage-page-unmoved'   => '$1 degen bet $2 degenge jıljıtılmaýdı.',
 'movepage-max-pages'      => 'Barınşa $1 bet jıljıtıldı da mınnan köbi özdiktik jıljıltılmaýdı.',
 '1movedto2'               => '[[$1]] degendi [[$2]] degenge jıljıttı',

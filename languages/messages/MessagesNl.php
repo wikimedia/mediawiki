@@ -831,19 +831,9 @@ Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent g
 'noarticletext'                    => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
 'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Controleer of u deze pagina wel wilt aanmaken/bewerken.',
-'clearyourcache'                   => '\'\'\'Let op!\'\'\' Leeg uw cache nadat u de wijzigingen hebt opgeslagen.
+'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
 
-{| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"
-| Mozilla/Safari/Konqueror || CTRL-SHIFT-R
-|-
-| IE || CTRL-F5
-|-
-| Opera || F5
-|-
-| Safari || CMD-R
-|-
-| Konqueror || F5
-|}',
+'''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Huidige pagina vernieuwen'' klikt, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leeg uw cache in ''Extra → Voorkeuren;'' '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS/JS te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS, deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript. De pagina is niet opgeslagen!'''",
@@ -1812,7 +1802,9 @@ Feedback en andere assistentie:
 ** Vandalisme',
 'delete-edit-reasonlist'      => 'Redenen voor verwijdering bewerken',
 'delete-toobig'               => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 versies. Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
-'delete-warning-toobig'       => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 versies. Het verwijderen van deze pagina kan de werking van de database van {{SITENAME}} verstoren. Wees voorzichtig.',
+'delete-warning-toobig'       => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 versies.
+Het verwijderen van deze pagina kan de werking van de database van {{SITENAME}} verstoren.
+Wees voorzichtig.',
 'rollback'                    => 'Wijzigingen ongedaan maken',
 'rollback_short'              => 'Terugdraaien',
 'rollbacklink'                => 'terugdraaien',
@@ -1874,7 +1866,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 # Undelete
 'undelete'                     => "Verwijderde pagina's bekijken",
 'undeletepage'                 => "Verwijderde pagina's bekijken en terugplaatsen",
-'undeletepagetitle'            => "'''Hier staan de verwijderde bewerkingen van [[:$1]]'''.",
+'undeletepagetitle'            => "'''Hieronder staan de verwijderde bewerkingen van [[:$1]]'''.",
 'viewdeletedpage'              => "Verwijderde pagina's bekijken",
 'undeletepagetext'             => "Hieronder staan pagina's die zijn verwijderd en vanuit het archief teruggeplaatst kunnen worden.",
 'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''. Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''. Als u op '''''Herinstellen''''' klikt wordt het toelichtingsveld leeggemaakt en worden alle versies gedeselecteerd.",
@@ -2089,6 +2081,7 @@ Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'move-watch'              => 'Deze pagina volgen',
 'movepagebtn'             => 'Pagina hernoemen',
 'pagemovedsub'            => 'Hernoemen pagina geslaagd',
+'movepage-moved'          => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'De pagina bestaat al of de paginanaam is ongeldig.
 Kies alstublieft een andere paginanaam.',
 'cantmove-titleprotected' => 'U kunt geen pagina naar deze titel hernoemen, omdat de nieuwe titel beveiligd is tegen het aanmaken ervan.',
@@ -2099,7 +2092,7 @@ Combineer de overlegpagina's alstublieft handmatig.'''",
 'move-subpages'           => "Alle subpagina's hernoemen",
 'move-talk-subpages'      => "Alle subpagina's van overlegpagina's hernoemen",
 'movepage-page-exists'    => 'De pagina $1 bestaat al en kan niet automatisch verwijderd worden.',
-'movepage-page-moved'     => 'De pagina $1 is hernoemd naar $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'De pagina $1 is hernoemd naar $2.',
 'movepage-page-unmoved'   => 'De pagina $1 kon niet hernoemd worden naar $2.',
 'movepage-max-pages'      => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}). De overige pagina's worden niet automatisch hernoemd.",
 '1movedto2'               => '[[$1]] hernoemd naar [[$2]]',

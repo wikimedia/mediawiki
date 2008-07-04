@@ -1,5 +1,5 @@
 <?php
-/** Southern Balochi (بلوچی)
+/** Southern Balochi (بلوچی مکرانی)
  *
  * @ingroup Language
  * @file
@@ -1945,6 +1945,7 @@ $1',
 'move-watch'              => 'این صفحه یا بچار',
 'movepagebtn'             => 'جاه په جاه کن صفحه',
 'pagemovedsub'            => 'جاه په جاهی موفقیت بود',
+'movepage-moved'          => '<big>\'\'\'"$1" جاه په اجه بوت په"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'صفحه گون آن نام پیش تر هستت، یا نامی که شما زورتت نامعتبرنت.
 یک دگه نامی بزوریت.',
 'cantmove-titleprotected' => 'شما نه تونیت یک صفحه ای به ای جاگاه جاه په جاه کنیت، په چی که نوکین عنوان محافظت بیت چه شربیگ',
@@ -1955,7 +1956,7 @@ $1',
 'move-subpages'           => 'جاه په جاه کن کل زیرصفحاتء، اگر بیت',
 'move-talk-subpages'      => 'جاه په جاه کن کل زیرصفحات صفحه گپء، اگه بیت',
 'movepage-page-exists'    => 'صفحه  $1 هنو هستن و نه تونیت اتوماتیکی سر بنویسیت.',
-'movepage-page-moved'     => 'صفحه  $1 جاه په جاه بیت په  $2', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'صفحه  $1 جاه په جاه بیت په  $2',
 'movepage-page-unmoved'   => 'صفحه $1نه تونیت جاه په جاه بیت په $2',
 'movepage-max-pages'      => 'گیشترین $1 {{PLURAL:$1|صفحه|صفحات}}جاه په جاه بوتگن  ودگه هچی اتوماتیکی جاه په جاه نه بیت.',
 '1movedto2'               => '[[$1]] چاه په چاه بوت په [[$2]]',
@@ -2822,5 +2823,9 @@ $1',
 'specialpages-group-wiki'        => 'وسایل و دیتا وی کی',
 'specialpages-group-redirects'   => 'غیر مستقیم بیگنت صفحات حاصین',
 'specialpages-group-spam'        => 'وسایل اسپم',
+
+# Special:Blankpage
+'blankpage'              => 'هالیکین صفحه',
+'intentionallyblankpage' => 'ای صفحه عمدا هالیک هلگ بوتت و په محک زتن ویا دگه چیز.',
 
 );

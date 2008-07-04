@@ -85,6 +85,7 @@ $messages = array(
 'pagecategories'           => '{{PLURAL:$1|Ronney|Ronnaghyn}}',
 'category_header'          => 'Duillagyn ayns ronney "$1"',
 'subcategories'            => 'Fo-ronnaghyn',
+'hidden-categories'        => '{{PLURAL:$1|Ronney follit|Ronnaghyn follit}}',
 'hidden-category-category' => 'Ronnaghyn follit', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'tooil.',
 
@@ -93,6 +94,7 @@ $messages = array(
 'newwindow'      => '(foshlit ayns uinnag elley eh)',
 'cancel'         => 'Dolley magh',
 'qbfind'         => 'Fow',
+'qbbrowse'       => 'Ronsaghey',
 'qbedit'         => 'Reaghey',
 'qbpageoptions'  => 'Yn duillag shoh',
 'qbpageinfo'     => 'Co-hecks',
@@ -387,19 +389,21 @@ cha nel ny caghlaaghyn sauailt foast!</strong>',
 'editundo'                => 'rassey',
 
 # Search results
-'searchresults'       => 'Eiyrtysyn y ronsaghey',
-'noexactmatch'        => "'''Cha nel duillag lesh yn ennym \"\$1\".'''<br>
+'searchresults'            => 'Eiyrtysyn y ronsaghey',
+'noexactmatch'             => "'''Cha nel duillag lesh yn ennym \"\$1\".'''<br>
 Foddee oo [[:\$1|croo yn duillag shoh]].",
-'prevn'               => 'ny $1 roish',
-'nextn'               => 'yn chied $1 elley',
-'viewprevnext'        => 'Jeeagh er ($1) ($2) ($3)',
-'search-result-score' => 'Bentynys: $1%',
-'search-section'      => '(rheynn $1)',
-'search-suggest'      => "T'ou çheet er: $1",
-'searchall'           => 'yn clane',
-'powersearch'         => 'Ard-ronsaghey',
-'powersearch-legend'  => 'Ard-ronsaghey',
-'search-external'     => 'Ronsaghey mooie',
+'prevn'                    => 'ny $1 roish',
+'nextn'                    => 'yn chied $1 elley',
+'viewprevnext'             => 'Jeeagh er ($1) ($2) ($3)',
+'search-result-score'      => 'Bentynys: $1%',
+'search-section'           => '(rheynn $1)',
+'search-suggest'           => "T'ou çheet er: $1",
+'search-interwiki-caption' => 'Shuyr-haleeghyn',
+'search-interwiki-more'    => '(ny smoo)',
+'searchall'                => 'yn clane',
+'powersearch'              => 'Ard-ronsaghey',
+'powersearch-legend'       => 'Ard-ronsaghey',
+'search-external'          => 'Ronsaghey mooie',
 
 # Preferences page
 'preferences'          => 'Tosheeaghtyn',
@@ -565,6 +569,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'listredirects' => 'Rolley duillagyn aa-enmyssit',
 
 # Unused templates
+'unusedtemplates'    => 'Clowanyn neuymmydit',
 'unusedtemplateswlh' => 'kianglaghyn elley',
 
 # Random page
@@ -800,7 +805,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'ipbcreateaccount'         => 'Crooaght coontys y chumrail',
 'ipbsubmit'                => 'Yn ymmydeyr shoh y ghlassey magh',
 'ipbother'                 => 'Mooad elley am:',
-'ipboptions'               => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 shiaghtin:1 week,2 hiaghtin:2 weeks,1 mee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 clein:1 year,neuyerrinagh:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 hiaghtin:1 week,2 hiaghtin:2 weeks,1 vee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 vlein:1 year,neuyerrinagh:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'           => 'elley',
 'ipbotherreason'           => 'Fa elley/tooilley:',
 'badipaddress'             => 'Enmys IP gyn vree',
@@ -824,6 +829,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'move-watch'              => 'Freill arrey er y duillag shoh',
 'movepagebtn'             => 'Yn duillag y scughey',
 'pagemovedsub'            => "Va'n scughey rahoil",
+'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'aa-enmyssit myr',
 'movetalk'                => 'Scughey yn duillag resoonaght ta cochianglt lesh',
 '1movedto2'               => '[[$1]] aa-enmyssit myr [[$2]]',

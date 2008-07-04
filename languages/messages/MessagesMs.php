@@ -1943,6 +1943,7 @@ Dalam kes tersebut, anda terpaksa melencongkan atau menggabungkan laman secara m
 'move-watch'              => 'Pantau laman ini',
 'movepagebtn'             => 'Pindah laman',
 'pagemovedsub'            => 'Pemindahan berjaya',
+'movepage-moved'          => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Laman dengan nama tersebut telah pun wujud,
 atau nama yang anda pilih tidak sah.
 Sila pilih nama lain.',
@@ -1953,7 +1954,7 @@ Sila pilih nama lain.',
 'move-subpages'           => 'Pindahkan semua sublaman sekali, jika boleh',
 'move-talk-subpages'      => 'Pindahkan semua sublaman bagi laman perbincangan sekali, jika boleh',
 'movepage-page-exists'    => 'Laman $1 telah pun wujud dan tidak boleh ditulis ganti secara automatik.',
-'movepage-page-moved'     => 'Laman $1 telah dipindahkan ke $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Laman $1 telah dipindahkan ke $2.',
 'movepage-page-unmoved'   => 'Laman $1 tidak dapat dipindahkan ke $2.',
 'movepage-max-pages'      => 'Jumlah maksimum $1 laman telah dipindahkan secara automatik.',
 '1movedto2'               => '[[$1]] dipindahkan ke [[$2]]',
@@ -2691,5 +2692,9 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 'specialpages-group-wiki'        => 'Data dan alatan wiki',
 'specialpages-group-redirects'   => 'Laman khas yang melencong',
 'specialpages-group-spam'        => 'Alatan spam',
+
+# Special:Blankpage
+'blankpage'              => 'Laman kosong',
+'intentionallyblankpage' => 'Laman ini sengaja dibiarkan kosong dan digunakan untuk kerja-kerja ujian dan sebagainya.',
 
 );

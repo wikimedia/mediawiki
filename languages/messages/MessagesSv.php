@@ -589,7 +589,7 @@ Rapportera gärna problemet till någon administratör, ange då URL:en (webbadr
 'badtitle'             => 'Felaktig titel',
 'badtitletext'         => 'Den sidtiteln är antingen inte tillåten, sidan är tom, eller så är sidan
 felaktigt länkad till.
-Den kan innehålla en eller flera tecken som inte får användas i sidtitlar.',
+Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'perfdisabled'         => 'Denna funktion har tyvärr stängts av tillfälligt, eftersom den gör databasen så långsam att ingen kan använda wikin.',
 'perfcached'           => 'Sidan är hämtad ur ett cacheminne; det är inte säkert att det är den senaste versionen.',
 'perfcachedts'         => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1.',
@@ -615,7 +615,7 @@ $2',
 
 # Virus scanner
 'virus-badscanner'     => 'Dålig konfigurering: okänd virusskanner: <i>$1</i>',
-'virus-scanfailed'     => 'skanning misslyckad (kod $1)',
+'virus-scanfailed'     => 'skanning misslyckades (kod $1)',
 'virus-unknownscanner' => 'okänt antivirusprogram:',
 
 # Login and logout pages
@@ -809,7 +809,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'anontalkpagetext'                 => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. {{SITENAME}} måste därför använda personens numeriska IP-adress för att identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
 'noarticletext'                    => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
-'clearyourcache'                   => "'''Obs:''' Sedan du sparat sidan, måste du tömma din webbläsares cache för att se ändringarna. '''Mozilla/Safari/Firefox:''' håll ner ''skift'' och klicka på ''reload'' eller tryck ''ctrl-shift-r'', (cmd-shift-R på mac:ar); '''Internet Explorer:'''  håll ner ctr och klicka på \"Refresh\" eller tryck ''ctrl-f5'', '''Konqueror:''': klicka helt enkelt på \"Reload\" eller F5; '''Opera:''' tryck ''F5''",
+'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din CSS, den har inte sparats än!'''",
 'userjspreview'                    => "'''Kom ihåg att du bara testar/förhandsgranskar ditt JavaScript, det har inte sparats än!'''",
@@ -849,9 +849,9 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 'copyrightwarning2'                => 'Observera att alla bidrag till {{SITENAME}} kan komma att redigeras, ändras, eller tas bort av andra deltagare. Om du inte vill se din text förändrad efter andras gottfinnade skall du inte skriva in någon text här.<br />
 Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor - se $1 för detaljer.
 <strong>LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!</strong>',
-'longpagewarning'                  => '<strong>WARNING: Den här sidan är $1 kB;
-vissa webläsare kan ha problem att redigera sidor som närmar sig eller är större än 32 kB.
-Överväg att bryta upp sidan i mindre sektioner.</strong>',
+'longpagewarning'                  => '<strong>VARNING: Den här sidan är $1 kilobyte lång;
+vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är större än 32 kB.
+Överväg att bryta upp sidan i mindre delar.</strong>',
 'longpageerror'                    => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
 'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
 dina ändringar just nu. Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>',
@@ -1884,7 +1884,7 @@ $1',
 'whatlinkshere-page'       => 'Sida:',
 'linklistsub'              => '(Länklista)',
 'linkshere'                => "Följande sidor länkar till '''[[:$1]]''':",
-'nolinkshere'              => 'Inga sidor länkar till [[:$1]].',
+'nolinkshere'              => "Inga sidor länkar till '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Inga sidor i den angivna namnrymden länkar till '''[[:$1]]'''.",
 'isredirect'               => 'omdirigeringssida',
 'istemplate'               => 'inkluderad som mall',
@@ -1896,7 +1896,7 @@ $1',
 'whatlinkshere-hidetrans'  => '$1 mallinkluderingar',
 'whatlinkshere-hidelinks'  => '$1 länkar',
 'whatlinkshere-hideimages' => '$1 fillänkar',
-'whatlinkshere-filters'    => 'Filtrera',
+'whatlinkshere-filters'    => 'Filter',
 
 # Block/unblock
 'blockip'                     => 'Blockera användare',
@@ -2026,20 +2026,21 @@ I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'move-watch'              => 'Bevaka denna sida',
 'movepagebtn'             => 'Flytta sidan',
 'pagemovedsub'            => 'Flyttningen lyckades',
+'movepage-moved'          => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
 Välj något annat namn istället.',
 'cantmove-titleprotected' => 'Du kan inte flytta sidan till den titeln, eftersom den nya titeln har skyddats från att skapas.',
-'talkexists'              => "'''Sidan flyttades, men diskussionssidan inte flyttas eftersom det redan fanns en diskussionssida med det nya namnet.
-Försök att manuellt sammanfoga dem.'''",
+'talkexists'              => "'''Sidan flyttades, men diskussionssidan kunde inte flyttas eftersom det redan fanns en diskussionssida med det nya namnet.
+Försök att sammanfoga dem manuellt.'''",
 'movedto'                 => 'flyttad till',
 'movetalk'                => 'Flytta tillhörande diskussionssida',
 'move-subpages'           => 'Flytta alla undersidor, om det finns sådana',
 'move-talk-subpages'      => 'Flytta alla undersidor av diskussionssidan, om det finns sådana',
 'movepage-page-exists'    => 'Sidan $1 finns redan och kan inte skrivas över automatiskt.',
-'movepage-page-moved'     => 'Sidan $1 har flyttats till $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Sidan $1 har flyttats till $2.',
 'movepage-page-unmoved'   => 'Sidan $1 kunde inte flyttas till $2.',
 'movepage-max-pages'      => 'Gränsen på $1 {{PLURAL:$1|flyttad sida|flyttade sidor}} har uppnåtts och inga fler sidor kommer att flyttas automatiskt.',
-'1movedto2'               => '[[$1]] flyttad till [[$2]]',
+'1movedto2'               => 'flyttade [[$1]] till [[$2]]',
 '1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
 'movelogpage'             => 'Sidflyttslogg',
 'movelogpagetext'         => 'Listan nedan visar sidor som flyttats.',
@@ -2125,7 +2126,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 # Import log
 'importlogpage'                    => 'Importlogg',
 'importlogpagetext'                => 'Administrativa sidimporter med versionshistorik från andra wikier.',
-'import-logentry-upload'           => '[[$1]]  har importerats genom uppladdning av fil',
+'import-logentry-upload'           => 'importerade [[$1]] genom filuppladdning',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versioner}}',
 'import-logentry-interwiki'        => 'överförde $1 mellan wikier',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versioner}} från $2',
@@ -2268,7 +2269,7 @@ $1',
 'filedelete-archive-read-only'    => 'Webbservern kan inte skriva till arkivkatalogen "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Gå till föregående ändring',
+'previousdiff' => '← Föregående ändring',
 'nextdiff'     => 'Nästa ändring →',
 
 # Media information
@@ -2774,6 +2775,6 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 
 # Special:Blankpage
 'blankpage'              => 'Tom sida',
-'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom.',
+'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom och används bland annat för benchmarking.',
 
 );

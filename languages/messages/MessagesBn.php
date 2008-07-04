@@ -7,8 +7,8 @@
  * @author Zaheen
  * @author Bellayet
  * @author Siebrand
- * @author SPQRobin
  * @author לערי ריינהארט
+ * @author SPQRobin
  * @author Jon Harald Søby
  */
 

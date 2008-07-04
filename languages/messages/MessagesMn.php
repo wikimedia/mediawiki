@@ -1678,6 +1678,7 @@ $1',
 'move-watch'              => 'Энэ хуудсыг хянах',
 'movepagebtn'             => 'Хуудсыг зөөх',
 'pagemovedsub'            => 'Амжилттай зөөгдлөө',
+'movepage-moved'          => '<big>\'\'\'"$1" нь "$2" руу зөөгдлөө\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ийм нэртэй хуудсыг өмнө нь үүсгэсэн, эсвэл сонгосон нэр тань хүчингүй байна.
 Өөр нэр сонгоно уу.',
 'cantmove-titleprotected' => 'Шинэ гарчигтай хуудас нь үүсгэгдэхээс хамгаалагдсан тул та ийшээ хуудсыг зөөх боломжгүй.',

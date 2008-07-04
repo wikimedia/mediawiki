@@ -1892,7 +1892,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-subpages'           => 'Wšě podstrony přesunyć, jeli eksistuja',
 'move-talk-subpages'      => 'Wšě podstrony diskusijnych stronow přesunyć, jeli eksistuja',
 'movepage-page-exists'    => 'Strona $1 hižo eksistuje a njeda so awtomatisce přepisać.',
-'movepage-page-moved'     => 'Strona $1 bu do $2 přesunjena.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Strona $1 bu do $2 přesunjena.',
 'movepage-page-unmoved'   => 'Strona $1 njeda so do $2 přesunyć.',
 'movepage-max-pages'      => 'Maksimalna ličba $1 {{PLURAL:$1|strony|stronow|stronow|stronow}} bu přesunjena, dalše strony so awtomatisce njepřesunu.',
 '1movedto2'               => 'je [[$1]] pod hesło [[$2]] přesunył',

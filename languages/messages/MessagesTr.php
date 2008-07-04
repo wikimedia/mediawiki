@@ -1570,7 +1570,7 @@ Lütfen başka bir isim deneyiniz.',
 'movedto'                 => 'taşındı:',
 'movetalk'                => 'Varsa "tartışma" sayfasını da aktar.',
 'movepage-page-exists'    => '$1 maddesi zaten var olmaktadır, ve otomatikman yeniden yazılamaz.',
-'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.',
 '1movedto2'               => '[[$1]] sayfasının yeni adı: [[$2]]',
 '1movedto2_redir'         => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
 'movelogpage'             => 'İsim değişikliği kayıtları',

@@ -499,7 +499,8 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'nouserspecified'            => 'Mutol välön gebananemi.',
 'wrongpassword'              => 'Letavöd neveräton. Steifülolös dönu.',
 'wrongpasswordempty'         => 'Letavöd vagon. Steifülolös dönu.',
-'passwordtooshort'           => 'Letavöd olik no lonöfon u binon te brefik. Muton binädon me tonats/numats pu $1 e difön de gebananem olik.',
+'passwordtooshort'           => 'Letavöd olik no lonöfon u binon tu brefik.
+Muton binädon me {{PLURAL:$1|malat|malats}} pu $1 e difön de gebananem olik.',
 'mailmypassword'             => 'Sedolös obe letavödi',
 'passwordremindertitle'      => 'Letavöd nulik nelaidik in {{SITENAME}}',
 'passwordremindertext'       => 'Ek (luveratiko ol, se ladet-IP: $1)
@@ -514,7 +515,8 @@ Nunädolös oli dönu posä ogetol oni.',
 'blocked-mailpassword'       => 'Redakam me ladet-IP olik peblokon; sekü atos, ad neletön migebi, no dalol gebön oni ad gegetön letavödi olik.',
 'eauthentsent'               => 'Pened leäktronik pesedon ladete pegivöl ad fümükön dabini onik.
 Büä pened votik alseimik okanon pasedön kale at, omutol dunön valikosi in pened at peflagöli, ad fümükön, das kal binon jenöfo olik.',
-'throttled-mailpassword'     => 'Mebapened tefü letavöd olik ya pesedon, dü düps lätik $1. Ad neletön migebi, mebapened te bal a düps $1 dalon pasedön.',
+'throttled-mailpassword'     => 'Mebapened tefü letavöd olik ya pesedon, dü {{PLURAL:$1|düp lätik|düps lätik $1}}.
+Ad neletön migebi, mebapened te bal a {{PLURAL:$1|düp|düps $1}} dalon pasedön.',
 'mailerror'                  => 'Pöl dü sedam pota: $1',
 'acct_creation_throttle_hit' => 'Säkusädolös, ya ejafol kalis $1. No plu kanol jafön kali nulik.',
 'emailauthenticated'         => 'Ladet leäktronik olik päfümükon tü düp $1.',
@@ -1163,7 +1165,7 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'filehist-filesize'         => 'Ragivagret',
 'filehist-comment'          => 'Küpet',
 'imagelinks'                => 'Yüms',
-'linkstoimage'              => 'Pads sököl payümons ko pad at:',
+'linkstoimage'              => '{{PLURAL:$1|Pad sököl payümon|Pads sököl payümons}} ko pad at:',
 'nolinkstoimage'            => 'Pads nonik peyümons ad ragiv at.',
 'sharedupload'              => 'Ragiv at binon komunik e kanon pagebön fa proyegs votik.',
 'shareduploadwiki'          => 'Logolös eli $1 ad getön nünis pluik.',
@@ -1246,7 +1248,9 @@ Lunot [http://www.mediawiki.org/wiki/Manual:Job_queue vobodapoodkeda] binon '''\
 
 'disambiguations'      => 'Telplänovapads',
 'disambiguationspage'  => 'Template:Telplänov',
-'disambiguations-text' => "Pads sököl payümons ad '''telplanövapad'''. Sötons plao payümon lü yeged pötik.<br />Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "Pads sököl payümons ad '''telplanövapad'''.
+Sötons plao payümon lü yeged pötik.<br />
+Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Lüodüköms telik',
 'doubleredirectstext' => 'Kedet alik labon yümis lü lüodüköm balid e telid, ed i kedeti balid vödema lüodüköma telid, kel nomiko ninädon padi, ko kel lüodüköm balid söton payümön.',
@@ -1739,6 +1743,7 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 'move-watch'              => 'Pladolöd padi at ini galädalised',
 'movepagebtn'             => 'Topätükolöd padi',
 'pagemovedsub'            => 'Topätükam eplöpon',
+'movepage-moved'          => '<big>\'\'\'"$1" petopätükon lü "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Pad labü nem at ya dabinon, u nem fa ol pevälöl no lonöfon.
 Välolös nemi votik.',
 'cantmove-titleprotected' => 'No kanol topätükön padi bi jafam tiäda nulik at penemögükon.',

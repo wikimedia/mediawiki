@@ -1759,7 +1759,7 @@ Dewiswch enw arall os gwelwch yn dda.",
 'movedto'                 => 'symud i',
 'movetalk'                => 'Symud y dudalen sgwrs hefyd',
 'movepage-page-exists'    => "Mae'r dudalen $1 eisoes ar gael ac ni ellir ysgrifennu drosto yn awtomatig.",
-'movepage-page-moved'     => 'Symudwyd y dudalen $1 i $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Symudwyd y dudalen $1 i $2.',
 'movepage-page-unmoved'   => 'Ni ellid symud y dudalen $1 i $2.',
 'movepage-max-pages'      => 'Symudwyd yr uchafswm o $1 {{PLURAL:$1|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}} y gellir eu symud yn awtomatig.',
 '1movedto2'               => 'Wedi symud [[$1]] i [[$2]]',

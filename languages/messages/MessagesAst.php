@@ -1796,7 +1796,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'talkexists'              => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
 'movedto'                 => 'treslladáu a',
 'movetalk'                => "Mover la páxina d'alderique asociada",
-'movepage-page-moved'     => 'Treslladóse la páxina $1 a $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Treslladóse la páxina $1 a $2.',
 'movepage-page-unmoved'   => 'Nun se pudo treslladar la páxina $1 a $2.',
 '1movedto2'               => '[[$1]] treslladáu a [[$2]]',
 '1movedto2_redir'         => '[[$1]] treslladáu a [[$2]] sobre una redireición',

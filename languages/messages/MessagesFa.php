@@ -2076,7 +2076,7 @@ $1',
 'move-subpages'           => 'تمام زیرصفحه‌ها، در صورت وجود، منتقل شود',
 'move-talk-subpages'      => 'تمام زیرصفحه‌های صفحهٔ بحث، در صورت وجود، منتقل شود',
 'movepage-page-exists'    => 'صفحهٔ $1 از قبل وجود دارد و نمی‌تواند به طور خودکار جایگزین شود.',
-'movepage-page-moved'     => 'صفحهٔ $1 به $2 انتقال یافت.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'صفحهٔ $1 به $2 انتقال یافت.',
 'movepage-page-unmoved'   => 'صفحهٔ $1 را نمی‌توان به $2 انتقال داد.',
 'movepage-max-pages'      => 'حداکثر تعداد صفحه‌های ممکن ($1 {{PLURAL:$1|صفحه|صفحه}}) که می‌توان انتقال داد منتقل شدند و صفحه‌های دیگر را نمی‌توان به طور خودکار منتقل کرد.',
 '1movedto2'               => '$1 به $2 منتقل شد',

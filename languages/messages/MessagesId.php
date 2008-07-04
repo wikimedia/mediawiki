@@ -1949,6 +1949,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'move-watch'              => 'Pantau halaman ini',
 'movepagebtn'             => 'Pindahkan halaman',
 'pagemovedsub'            => 'Pemindahan berhasil',
+'movepage-moved'          => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
 'cantmove-titleprotected' => 'Anda tidak dapat memindahkan halaman ke lokasi ini, karena judul tujuan sedang dilindungi dari pembuatan',
 'talkexists'              => 'Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.',
@@ -1957,7 +1958,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'move-subpages'           => 'Pindahkan semua sub-halaman, bila ada',
 'move-talk-subpages'      => 'Pindahkan semua sub-halaman pembicaraan, bila ada',
 'movepage-page-exists'    => 'Halaman $1 telah ada dan tidak dapat ditimpa secara otomatis.',
-'movepage-page-moved'     => 'Halaman $1 telah dipindahkan ke $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Halaman $1 telah dipindahkan ke $2.',
 'movepage-page-unmoved'   => 'Halaman $1 tidak dapat dipindahkan ke $2.',
 'movepage-max-pages'      => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
 '1movedto2'               => 'memindahkan [[$1]] ke [[$2]]',
@@ -2675,5 +2676,9 @@ Masukkan nama berkas tanpa prefiks "{{ns:image}}:".',
 'specialpages-group-wiki'        => 'Data dan peralatan wiki',
 'specialpages-group-redirects'   => 'Mengalihkan halaman istimewa',
 'specialpages-group-spam'        => 'Peralatan spam',
+
+# Special:Blankpage
+'blankpage'              => 'Halaman kosong',
+'intentionallyblankpage' => 'Halaman ini sengaja dibiarkan kosong dan digunakan di antaranya untuk pengukuran kinerja, dan lain-lain.',
 
 );

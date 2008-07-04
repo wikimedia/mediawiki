@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Lars J. Helbo <lars.helbo@gmail.com>
- * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author Jan Friberg
  * @author Morten
  * @author Jon Harald Søby
@@ -16,6 +14,8 @@
  * @author S.Örvarr.S
  * @author Boivie
  * @author Ranveig
+ * @author Lars J. Helbo <lars.helbo@gmail.com>
+ * @author Anders Wegge Jakobsen <awegge@gmail.com>
  */
 
 $namespaceNames = array(
@@ -1909,7 +1909,7 @@ navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'move-subpages'           => 'Flyt alle undersider, hvis de findes',
 'move-talk-subpages'      => 'Flyt alle undersider af diskussionssiden, hvis de findes',
 'movepage-page-exists'    => 'Siden $1 findes allerede og kan ikke overskrives automatisk.',
-'movepage-page-moved'     => 'Siden $1 er blevet flyttet til $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Siden $1 er blevet flyttet til $2.',
 'movepage-page-unmoved'   => 'Siden $1 kunne ikke flyttes til $2.',
 'movepage-max-pages'      => 'Grænsen på $1 {{PLURAL:$1|side|sider}} er flyttet og der kan ikke flyttes flere automatisk.',
 '1movedto2'               => '$1 flyttet til $2',

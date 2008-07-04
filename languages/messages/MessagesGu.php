@@ -155,6 +155,7 @@ $messages = array(
 'viewtalkpage'     => 'ચર્ચા જુઓ',
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
 'redirectedfrom'   => '($1 થી અહીં વાળેલું)',
+'redirectpagesub'  => 'પાનું અન્યત્ર વાળો',
 'lastmodifiedat'   => 'આ પાનાંમાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.', # $1 date, $2 time
 'jumpto'           => 'સીધા આના પર જાઓ:',
 'jumptonavigation' => 'ભ્રમણ',
@@ -192,6 +193,9 @@ $messages = array(
 'showtoc'             => 'બતાવો',
 'hidetoc'             => 'છુપાવો',
 'viewdeleted'         => '$1 જોવું છે?',
+'site-rss-feed'       => '$1 RSS Feed',
+'site-atom-feed'      => '$1 Atom Feed',
+'page-rss-feed'       => '"$1" RSS Feed',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'લેખ',
@@ -213,6 +217,8 @@ $messages = array(
 'viewsourcefor' => '$1ને માટે',
 
 # Login and logout pages
+'yourname'                => 'સભ્ય નામ:',
+'yourpassword'            => 'ગુપ્ત સંજ્ઞા:',
 'login'                   => 'પ્રવેશ કરો (લૉગ ઇન કરીને)',
 'nav-login-createaccount' => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
 'userlogin'               => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
@@ -264,31 +270,42 @@ $messages = array(
 <br>નવું પાનું બનાવવા માટે નીચે આપેલા ખાનામાં લખવાનું શરૂ કરો (વધુ માહિતિ માટે [[{{MediaWiki:Helppage}}|મદદ]] જુઓ).
 <br>જો આપ ભુલમાં અહીં આવી ગયા હોવ તો, આપનાં બ્રાઉઝર નાં '''બેક''' બટન પર ક્લિક કરીને પાછા વળો.",
 'noarticletext'          => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી, તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરો.',
+'previewnote'            => '<strong>આ ફક્ત પૂર્વાવલોકન છે;
+<br>ફેરફ્ફરો હજુ સુરક્ષિત કરવામાં નથી આવ્યાં!</strong>
+<br>[[#editform|→ એડિટ બોક્સ પર જાવ.]]',
 'editing'                => '$1નો ફેરફાર કરી રહ્યા છે',
-'editingsection'         => '$1 (વિભાગ)નું સંપાદન',
+'editingsection'         => '$1 (પરિચ્છેદ)નો ફેરફાર કરી રહ્યા છો',
 'yourdiff'               => 'ભેદ',
+'copyrightwarning'       => 'મહેરબાની કરીને એ વાતની નોંધ લેશો કે {{SITENAME}}માં કરેલું બધુંજ યોગદાન $2 હેઠળ પ્રકાશિત કરએલું માનવામાં આવે છે (વધુ માહિતિ માટે $1 જુઓ).
+<br>જો આપ ના ચાહતા હોવ કે તમારા યોગદાનમાં અન્ય કોઇ વ્યક્તિ બેધડક પણે ફેરફાર કરે અને તેને પુનઃપ્રકાશિત કરે, તો અહીં યોગદાન કરશો નહી.
+<br>સાથે સાથે તમે અમને એમ પણ ખાતરી આપી રહ્યા છો કે આ લખાણ તમે મૌલિક રીતે લખ્યું છે, અથવાતો પબ્લિક ડોમેઇન કે તેવા અન્ય મુક્ત સ્ત્રોતમાંથી લીધું છે.
+<br><strong>પરવાનગી વગર પ્રકાશનાધિકાર થી સુરક્ષિત (COPYRIGHTED) કાર્ય અહીં પ્રકાશિત ના કરશો!</strong>',
 'templatesused'          => 'આ પાનામાં વપરાયેલા ઢાંચાઓ:',
 'template-protected'     => '(સુરક્ષિત)',
 'template-semiprotected' => '(અર્ધ સુરક્ષિત)',
+'nocreatetext'           => '{{SITENAME}}માં નવું પાનુ બનાવવા ઉપર નિયંત્રણ આવી ગયું છે.
+<br>આપ પાછા જઇને હયાત પાનામાં ફેરફાર કરી શકો છો, નહિતર [[Special:Userlogin|પ્રવેશ કરો કે નવું ખાતું ખોલો]].',
 'recreate-deleted-warn'  => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
 
 આગળ વધતાં બે વખત વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
 પાનું હટવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી સહુલીયત માટે અહીં આપી છે:",
 
 # History pages
-'viewpagelogs'     => 'આ પાનાનાં લૉગ જુઓ',
-'nohistory'        => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
-'currentrev'       => 'હાલની આવૃત્તિ',
-'revisionasof'     => '$1 સુધીનાં પુનરાવર્તન',
-'previousrevision' => '←જુના ફેરફારો',
-'cur'              => 'વર્તમાન',
-'next'             => 'આગળ',
-'last'             => 'છેલ્લું',
-'page_first'       => 'પહેલું',
-'page_last'        => 'છેલ્લું',
-'histfirst'        => 'સૌથી જુનું',
-'histlast'         => 'સૌથી નવું',
-'historyempty'     => '(ખાલી)',
+'viewpagelogs'        => 'આ પાનાનાં લૉગ જુઓ',
+'nohistory'           => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
+'currentrev'          => 'હાલની આવૃત્તિ',
+'revisionasof'        => '$1 સુધીનાં પુનરાવર્તન',
+'previousrevision'    => '←જુના ફેરફારો',
+'nextrevision'        => 'આ પછીનું પુનરાવર્તન→',
+'currentrevisionlink' => 'વર્તમાન આવૃત્તિ',
+'cur'                 => 'વર્તમાન',
+'next'                => 'આગળ',
+'last'                => 'છેલ્લું',
+'page_first'          => 'પહેલું',
+'page_last'           => 'છેલ્લું',
+'histfirst'           => 'સૌથી જુનું',
+'histlast'            => 'સૌથી નવું',
+'historyempty'        => '(ખાલી)',
 
 # Diffs
 'history-title'           => '"$1" નાં ફેરફારોનો ઇતિહાસ',
@@ -334,8 +351,8 @@ $messages = array(
 'rclistfrom'        => '$1 બાદ થયેલા નવા ફેરફારો બતાવો',
 'rcshowhideminor'   => 'નાના ફેરફારો $1',
 'rcshowhidebots'    => 'બૉટો $1',
-'rcshowhideliu'     => '$1 સભ્યો લૉગ ઇન થયેલાં છે',
-'rcshowhideanons'   => '$1 અનામિ સભ્યો',
+'rcshowhideliu'     => 'લૉગ ઇન થયેલાં સભ્યો $1',
+'rcshowhideanons'   => 'અનામિ સભ્યો $1',
 'rcshowhidemine'    => 'મારા ફેરફારો $1',
 'rclinks'           => 'છેલ્લાં $2 દિવસમાં થયેલા છેલ્લાં $1 ફેરફારો દર્શાવો<br />$3',
 'diff'              => 'ભેદ',
@@ -351,8 +368,8 @@ $messages = array(
 'recentchangeslinked'          => 'આની સાથે જોડાયેલા ફેરફાર',
 'recentchangeslinked-title'    => '"$1" ને લગતા ફેરફારો',
 'recentchangeslinked-noresult' => 'સંકળાયેલાં પાનાંમાં સુચવેલા સમય દરમ્યાન કોઇ ફેરફાર થયાં નથી.',
-'recentchangeslinked-summary'  => "આ ખાસ પાનામાં એવા પાનાઓની યાદી છે જે અન્યત્ર જોડાયેલાં છે અને તેમાં ફેરફાર થાયા છે.
-<br>તમારી ધ્યાનસૂચિમાં હોય તેવા પાનાં '''ઘાટા અક્ષર'''માં વર્ણવ્યાં છે",
+'recentchangeslinked-summary'  => "આ એવા ફેરફારોની યાદી છે જે આ ચોક્કસ પાના (કે શ્રેણીનાં સભ્ય પાનાઓ) સાથે જોડાયેલા પાનાઓમાં તાજેતરમાં કરવામાં આવ્યા હોય.
+<br>[[Special:Watchlist|તમારી ધ્યાનસૂચિમાં]] હોય તેવા પાનાં '''ઘાટા અક્ષર'''માં વર્ણવ્યાં છે",
 
 # Upload
 'upload'     => 'ફાઇલ ચડાવો',
@@ -370,7 +387,7 @@ $messages = array(
 'filehist-filesize'   => 'ફાઇલનું કદ',
 'filehist-comment'    => 'ટિપ્પણી',
 'imagelinks'          => 'કડીઓ',
-'linkstoimage'        => 'આ ફાઇલ સાથે નીચેનાં પાનાઓ જોડાએલાં છે',
+'linkstoimage'        => 'આ ફાઇલ સાથે {{PLURAL:$1|નીચેનું પાનું જોડાયેલું|$1 નીચેનાં પાનાઓ જોડાયેલાં}} છે',
 'sharedupload'        => 'આ ફાઇલ સહિયારી રીતે ચઢાવવામાં આવી છે અને તેનો ઉપયોગ અન્ય પરિયોજનાઓમાં પણ થઇ શકે છે.',
 
 # Unused templates
@@ -403,6 +420,7 @@ $messages = array(
 'move'                    => 'નામ બદલો',
 
 # Book sources
+'booksources'      => 'પુસ્તક સ્ત્રોત',
 'booksources-isbn' => 'આઇએસબીએન:',
 'booksources-go'   => 'જાઓ',
 
@@ -428,6 +446,7 @@ $messages = array(
 'listusers-submit' => 'બતાવો',
 
 # E-mail user
+'emailuser'    => 'સભ્યને ઇ-મેલ કરો',
 'emailfrom'    => 'મોકલનાર',
 'emailto'      => 'લેનાર',
 'emailsubject' => 'વિષય',
@@ -466,6 +485,7 @@ $messages = array(
 'restriction-edit' => 'બદલો',
 
 # Undelete
+'undeletebtn'            => 'પાછું વાળો',
 'undelete-search-submit' => 'શોધો',
 
 # Namespace form on various pages
@@ -478,6 +498,8 @@ $messages = array(
 'mycontris'     => 'મારૂં યોગદાન',
 'contribsub2'   => '$1 માટે ($2)',
 'uctop'         => '(છેક ઉપર)',
+'month'         => ':મહિનાથી (અને પહેલાનાં)',
+'year'          => ':વર્ષથી (અને પહેલાનાં)',
 
 'sp-contributions-blocklog' => 'પ્રતિબંધ સૂચિ',
 'sp-contributions-submit'   => 'શોધો',
@@ -499,6 +521,7 @@ $messages = array(
 'ipbreason'          => 'કારણ',
 'ipbreasonotherlist' => 'બીજું કારણ',
 'ipbother'           => 'અન્ય સમય',
+'ipboptions'         => '2 hours:૨ કલાક,1 day:૧ દિવસ,3 days:૩ દિવસ,1 week:૧ અઠવાડિયું,2 weeks:૨ અઠવાડિયું,1 month:૧ માસ,3 months:૩ માસ,6 months:૬ માસ,1 year:૧ વર્ષ,infinite:અમર્યાદ', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'બીજું',
 'ipblocklist'        => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
 'ipblocklist-submit' => 'શોધો',
@@ -556,6 +579,7 @@ $messages = array(
 'tooltip-n-sitesupport'           => 'અમારું સમર્થન કરો',
 'tooltip-t-whatlinkshere'         => 'અહીં જોડાતા બધાં વિકિ પાનાઓની યાદી',
 'tooltip-t-contributions'         => 'આ સભ્યનાં યોગદાનોની યાદી જુઓ',
+'tooltip-t-emailuser'             => 'આ સભ્યને ઇ-મેલ મોકલો',
 'tooltip-t-upload'                => 'ફાઇલ ચડાવો',
 'tooltip-t-specialpages'          => 'ખાસ પાનાંઓની સૂચિ',
 'tooltip-ca-nstab-user'           => 'સભ્યનું પાનું જુઓ',
@@ -593,8 +617,18 @@ $messages = array(
 
 # Metadata
 'metadata'          => 'મૅટાડેટા',
+'metadata-help'     => 'આ માધ્યમ સાથે વધુ માહિતિ સંકળાયેલી છે, જે સંભવતઃ માધ્યમ (ફાઇલ) બનાવવા માટે ઉપયોગમાં લેવાયેલા ડિજીટલ કેમેરા કે સ્કેનર દ્વારા ઉમેરવામાં આવી હશે.
+<br/>જો માધ્યમને તેના મુળ રૂપમાંથી ફેરફાર કરવામાં આવશે તો શક્ય છે કે અમુક માહિતિ પુરેપુરી હાલમાં છે તેવી રીતે ના જળવાઇ રહે.',
 'metadata-expand'   => 'વિસ્તૃત કરેલી વિગતો બતાવો',
 'metadata-collapse' => 'વિસ્તૃત કરેલી વિગતો છુપાવો',
+'metadata-fields'   => 'આ સંદેશામાં સુચવેલી EXIF મૅટડેટા માહિતિ ચિત્રના પાનાનિ દ્રશ્ય આવૃત્તિમાં ઉમેરવામાં આવશે (જ્યારે મૅટડેટાનો કોઠો વિલિન થઇ જતો હશે ત્યારે).
+<br>અન્ય આપોઆપ જ છુપાઇ જશે.
+* બનાવટ
+* મોડલ
+* મુળ સમય/તારીખ
+* એક્સ્પોઝર સમય
+* એફ નંબર
+* કેન્દ્ર લંબાઇ (કેમેરાના લેન્સની)', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'  => 'પહોળાઈ',

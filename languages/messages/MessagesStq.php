@@ -1782,7 +1782,7 @@ Fersäik jädden n uur Noome.',
 'move-subpages'           => 'Aal Unnersieden, fals deer, meeferschuuwe',
 'move-talk-subpages'      => 'Aal Unnersieden fon Diskussionssieden, fals deer, meeferschuuwe',
 'movepage-page-exists'    => 'Ju Siede „$1“ is al deer un kon nit automatisk uurschrieuwen wäide.',
-'movepage-page-moved'     => 'Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.',
 'movepage-page-unmoved'   => 'Ju Siede „$1“ kuude nit ätter „$2“ ferschäuwen wäide.',
 'movepage-max-pages'      => 'Ju Maximoalantaal fon $1 {{PLURAL:$1|Siede|Sieden}} wuude ferschäuwen. Aal wiedere Sieden konnen nit automatisk ferschäuwen wäide.',
 '1movedto2'               => 'häd "[[$1]]" ätter "[[$2]]" ferschäuwen',
