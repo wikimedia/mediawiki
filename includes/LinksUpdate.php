@@ -103,7 +103,7 @@ class LinksUpdate {
 		$this->incrTableUpdate( 'imagelinks', 'il', $imageDeletes, $imageInserts );
 
 		# Invalidate all image description pages which had links added or removed
-		$imageUpdates = $imageDeletions + $imageInsertions
+		$imageUpdates = $imageDeletions + $imageInsertions;
 		$this->invalidateImageDescriptions( $imageUpdates );
 
 		# External links
