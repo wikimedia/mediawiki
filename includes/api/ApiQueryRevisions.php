@@ -44,6 +44,30 @@ class ApiQueryRevisions extends ApiQueryBase {
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
 			$fld_comment = false, $fld_user = false, $fld_content = false;
 
+	protected function getTokenFunctions() {
+		// tokenname => function
+		// function prototype is func($pageid, $title, $rev)
+		// should return token or false
+
+		// Don't call the hooks twice
+		if(isset($this->tokenFunctions))
+			return $this->tokenFunctions;
+		$this->tokenFunctions = array(
+			'rollback' => 'ApiQueryRevisions::getRollbackToken'
+		);
+		wfRunHooks('APIQueryRevisionsTokens', array(&$this->tokenFunctions));
+		return $this->tokenFunctions;
+	}
+
+	public static function getRollbackToken($pageid, $title, $rev)
+	{
+		global $wgUser;
+		if(!$wgUser->isAllowed('rollback'))
+			return false;
+		return $wgUser->editToken($title->getPrefixedText(),
+						$rev->getUserText());
+	}
+
 	public function execute() {
 		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $expandtemplates = $section = $token = null;
 		extract($this->extractRequestParams(false));
@@ -81,12 +105,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_timestamp = isset ($prop['timestamp']);
 		$this->fld_comment = isset ($prop['comment']);
 		$this->fld_size = isset ($prop['size']);
-		$this->tok_rollback = false; // Prevent PHP undefined property notice
-		if(!is_null($token))
-			$this->tok_rollback = $this->getTokenFlag($token, 'rollback');
 		$this->fld_user = isset ($prop['user']);
+		$this->token = $token;
 
-		if ( $this->tok_rollback || ( $this->fld_content && $this->expandTemplates ) || $pageCount > 0) {
+		if ( !is_null($this->token) || ( $this->fld_content && $this->expandTemplates ) || $pageCount > 0) {
 			$this->addTables( 'page' );
 			$this->addWhere('page_id=rev_page');
 			$this->addFields( Revision::selectPageFields() );
@@ -258,17 +280,21 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['comment'] = $comment;
 		}
 
-		if($this->tok_rollback || ($this->fld_content && $this->expandTemplates))
+		if(!is_null($this->token) || ($this->fld_content && $this->expandTemplates))
 			$title = $revision->getTitle();
 
-		if($this->tok_rollback) {
-			global $wgUser;
-			$vals['rollbacktoken'] = $wgUser->editToken( array(
-					$title->getPrefixedText(), 
-					$revision->getUserText(),
-			) );
+		if(!is_null($this->token))
+		{
+			$tokenFunctions = $this->getTokenFunctions();
+			foreach($this->token as $t)
+			{
+				$val = call_user_func($tokenFunctions[$t], $title->getArticleID(), $title, $revision);
+				if($val === false)
+					$this->setWarning("Action '$t' is not allowed for the current user");
+				else
+					$vals[$t . 'token'] = $val;
+			}
 		}
-
 
 		if ($this->fld_content) {
 			global $wgParser;
@@ -341,9 +367,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => 'integer'
 			),
 			'token' => array(
-				ApiBase :: PARAM_TYPE => array(
-					'rollback'
-				),
+				ApiBase :: PARAM_TYPE => array_keys($this->getTokenFunctions()),
 				ApiBase :: PARAM_ISMULTI => true
 			),
 		);

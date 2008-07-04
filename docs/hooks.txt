@@ -281,6 +281,28 @@ $EditPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 $resultArr : data in this array will be added to the API result
 
+'APIQueryInfoTokens': use this hook to add custom tokens to prop=info.
+Every token has an action, which will be used in the intoken parameter
+and in the output (actiontoken="..."), and a callback function which
+should return the token, or false if the user isn't allowed to obtain
+it. The prototype of the callback function is func($pageid, $title)
+where $pageid is the page ID of the page the token is requested for
+and $title is the associated Title object. In the hook, just add
+your callback to the $tokenFunctions array and return true (returning
+false makes no sense)
+$tokenFunctions: array(action => callback)
+
+'APIQueryRevisionsTokens': use this hook to add custom tokens to prop=revisions.
+Every token has an action, which will be used in the rvtoken parameter
+and in the output (actiontoken="..."), and a callback function which
+should return the token, or false if the user isn't allowed to obtain
+it. The prototype of the callback function is func($pageid, $title, $rev)
+where $pageid is the page ID of the page associated to the revision the
+token is requested for, $title the associated Title object and $rev the
+associated Revision object. In the hook, just add your callback to the
+$tokenFunctions array and return true (returning false makes no sense)
+$tokenFunctions: array(action => callback)
+
 'ArticleAfterFetchContent': after fetching content of an article from the database
 $article: the article (object) being loaded from the database
 $content: the content (string) of the article
