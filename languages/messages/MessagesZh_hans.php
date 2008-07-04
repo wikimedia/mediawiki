@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Chinese (Simplified) (‪中文 (简化字)‬)
  *
  * @ingroup Language
  * @file

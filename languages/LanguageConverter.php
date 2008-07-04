@@ -219,9 +219,9 @@ class LanguageConverter {
 		   3. place holders created by the parser
 		*/
 		global $wgParser;
-		if (isset($wgParser) && $wgParser->UniqPrefix()!='')
+		if (isset($wgParser) && $wgParser->UniqPrefix()!=''){
 			$marker = '|' . $wgParser->UniqPrefix() . '[\-a-zA-Z0-9]+';
-		else
+		} else
 			$marker = "";
 
 		// this one is needed when the text is inside an html markup
@@ -231,8 +231,10 @@ class LanguageConverter {
 		$codefix = '<code>.+?<\/code>|';
 		// disable convertsion of <script type="text/javascript"> ... </script>
 		$scriptfix = '<script.*?>.*?<\/script>|';
+		// disable conversion of <pre xxxx> ... </pre>
+		$prefix = '<pre.*?>.*?<\/pre>|';
 
-		$reg = '/'.$codefix . $scriptfix . '<[^>]+>|&[a-zA-Z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
+		$reg = '/'.$codefix . $scriptfix . $prefix . '<[^>]+>|&[a-zA-Z#][a-z0-9]+;' . $marker . $htmlfix . '/s';
 
 		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
@@ -256,6 +258,7 @@ class LanguageConverter {
 	 * @param string $text Text to convert
 	 * @param string $variant Variant language code
 	 * @return string Translated text
+	 * @private
 	 */
 	function translate( $text, $variant ) {
 		wfProfileIn( __METHOD__ );
@@ -323,6 +326,7 @@ class LanguageConverter {
 
 	/**
 	 * Convert text using a parser object for context
+	 * @public
 	 */
 	function parserConvert( $text, &$parser ) {
 		global $wgDisableLangConversion;
@@ -343,7 +347,7 @@ class LanguageConverter {
 
 	/**
 	 *  Parse flags with syntax -{FLAG| ... }-
-	 *
+	 * @private
 	 */
 	function parseFlags($marked){
 		$flags = array();
@@ -400,17 +404,19 @@ class LanguageConverter {
 		}
 		if ( count($flags)==0 )
 			$flags = array('S');
-
 		return array($rules,$flags);
 	}
 
+	/**
+	 * @private
+	 */
 	function getRulesDesc($bidtable,$unidtable){
 		$text='';
 		foreach($bidtable as $k => $v)
 			$text .= $this->mVariantNames[$k].':'.$v.';';
 		foreach($unidtable as $k => $a)
 			foreach($a as $from=>$to)
-				$text.=$from.'⇒'.$this->mVariantNames[$k].':'.$to.';';
+				$text.=$from.'⇁E.$this->mVariantNames[$k].':'.$to.';';
 		return $text;
 	}
 
@@ -474,8 +480,9 @@ class LanguageConverter {
 			// proces H,- flag or T only: output nothing
 			$disp = '';
 		} elseif ( in_array('S',$flags) ){
-			// the text converted 
-			if($doConvert){
+			if( count($bidtable) + count($unidtable) == 0 ){
+				$disp = $rules;
+			} elseif ($doConvert){// the text converted 
 				// display current variant in bidirectional array
 				$disp = $this->getTextInCArray($variant,$bidtable);
 				// or display current variant in fallbacks
@@ -495,7 +502,7 @@ class LanguageConverter {
 						$disp = array_values($unidtable);
 						$disp = array_values($disp[0]);
 						$disp = $disp[0];
-					}
+					} 
 				}
 			} else {// no convert
 				$disp = $rules;
@@ -510,7 +517,10 @@ class LanguageConverter {
 		return $disp;
 	}
 
-	function applyManualFlag($flags,$bidtable,$unidtable,$variant=false){
+	/**
+	 * @access private
+	 */
+	function applyManualFlag($rules,$flags,$bidtable,$unidtable,$variant=false){
 		if(!$variant) $variant = $this->getPreferredVariant();
 
 		$is_title_flag = in_array('T',  $flags);
@@ -582,11 +592,15 @@ class LanguageConverter {
 									$bidtable,$unidtable,
 									$variant,
 									$this->mDoContentConvert);
-		$this->applyManualFlag($flags,$bidtable,$unidtable);
+		$this->applyManualFlag($rules,$flags,$bidtable,$unidtable);
 
 		return $disp;
 	}
 	
+	/**
+	 *  convert title
+	 * @private
+	 */
 	function convertTitle($text){
 		// check for __NOTC__ tag
 		if( !$this->mDoTitleConvert ) {
@@ -931,6 +945,7 @@ class LanguageConverter {
 	 *
 	 * @param string $text text to be tagged for no conversion
 	 * @return string the tagged text
+	 * @public
 	 */
 	function markNoConversion($text, $noParse=false) {
 		# don't mark if already marked
@@ -972,6 +987,7 @@ class LanguageConverter {
 	/** 
 	 * Armour rendered math against conversion
 	 * Wrap math into rawoutput -{R| math }- syntax
+	 * @public
 	 */
  	function armourMath($text){ 
 		$ret = $this->mMarkup['begin'] . 'R|' . $text . $this->mMarkup['end'];
