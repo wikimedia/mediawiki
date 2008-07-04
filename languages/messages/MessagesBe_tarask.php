@@ -234,9 +234,9 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшыьэюяćčłńśšŭźža-z]+)(.*)$/sDu';
 
 $imageFiles = array(
-	'button-bold'     => 'button_bold_be-tarask.png',
-	'button-italic'   => 'button_italic_be-tarask.png',
-	'button-link'     => 'button_link_be-tarask.png',
+	'button-bold'     => 'be-tarask/button_bold.png',
+	'button-italic'   => 'be-tarask/button_italic.png',
+	'button-link'     => 'be-tarask/button_link.png',
 );
 
 $messages = array(
