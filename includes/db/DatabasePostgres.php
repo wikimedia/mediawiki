@@ -747,10 +747,16 @@ class DatabasePostgres extends Database {
 			$keys = array_keys( $args );
 		}
 
-		$ignore = in_array( 'IGNORE', $options ) ? 1 : 0;
-		if ( $ignore )
+		$ignore = in_array( 'IGNORE', $options ) ? 'mw' : '';
+		if ( $ignore ) {
+			$didbegin = 0;
+			if (! $this->mTrxLevel) {
+				$this->begin();
+				$didbegin = 1;
+			}
+			pg_query($this->mConn, "SAVEPOINT $ignore");
 			$olde = error_reporting( 0 );
-
+		}
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
@@ -785,6 +791,17 @@ class DatabasePostgres extends Database {
 
 		if ( $ignore ) {
 			$olde = error_reporting( $olde );
+			$bar = pg_last_error();
+			if ($bar !== FALSE) {
+				pg_query( $this->mConn, "ROLLBACK TO $ignore" );
+			}
+			else {
+				pg_query( $this->mConn, "RELEASE $ignore" );
+			}
+			if ($didbegin) {
+				$this->commit();
+			}
+			## IGNORE always returns true
 			return true;
 		}
 
