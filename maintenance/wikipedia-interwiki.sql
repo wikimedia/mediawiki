@@ -274,7 +274,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('yo','http://yo.wikipedia.org/wiki/$1',1),
 ('yue','http://zh-yue.wikipedia.org/wiki/$1',1),
 ('za','http://za.wikipedia.org/wiki/$1',1),
-('zea','http://zea.wikipedia.org/wiki/$1',1);
+('zea','http://zea.wikipedia.org/wiki/$1',1),
 ('zh','http://zh.wikipedia.org/wiki/$1',1),
 ('zh-cfr','http://zh-min-nan.wikipedia.org/wiki/$1',1),
 ('zh-classical','http://zh-classical.wikipedia.org/wiki/$1',1),
@@ -282,4 +282,4 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('zh-min-nan','http://zh-min-nan.wikipedia.org/wiki/$1',1),
 ('zh-tw','http://zh.wikipedia.org/wiki/$1',1),
 ('zh-yue','http://zh-yue.wikipedia.org/wiki/$1',1),
-('zu','http://zu.wikipedia.org/wiki/$1',1),
+('zu','http://zu.wikipedia.org/wiki/$1',1);
