@@ -1070,7 +1070,7 @@ abstract class File {
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug("Attempting to get the description from the transwiki cache...");
-				$key = wfMemcKey( 'filedesc', 'url', md5($link));
+				$key = wfMemcKey( 'filedesc', 'url', md5($renderUrl));
 				$obj = $wgMemc->get($key);
 				if ($obj) {
 					wfDebug("success!\n");
