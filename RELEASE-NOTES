@@ -495,6 +495,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added clprop=timestamp to prop=categories
 * (bug 14678) API errors now respects $wgShowExceptionDetails and $wgShowSQLErrors
 * (bug 14723) Added time zone and writing direction to meta=siteinfo
+* Added APIQueryInfoTokens and APIQueryRevisionsTokens hooks so extensions
+  can add their own tokens
+* Added block and unblock tokens to prop=info as well
 
 === Languages updated in 1.13 ===
 
