@@ -2066,6 +2066,7 @@ $1',
 'move-watch'              => 'پی‌گیری این صفحه',
 'movepagebtn'             => 'صفحه منتقل شود',
 'pagemovedsub'            => 'انتقال با موفقیت انجام شد',
+'movepage-moved'          => "<big>'''«$1» به «$2» منتقل شد'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'صفحه‌ای با این نام از قبل وجود دارد، یا نامی که انتخاب کرده‌اید معتبر نیست.
 لطفاً نام دیگری انتخاب کنید.',
 'cantmove-titleprotected' => 'شما نمی‌توانید صفحه را به این نشانی انتقال دهید، چرا که عنوان جدید در برابر ایجاد محافظت شده‌است',
