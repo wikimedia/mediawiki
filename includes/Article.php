@@ -111,18 +111,10 @@ class Article {
 	 *
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
-	public function followRedirect() {
+	function followRedirect() {
 		$text = $this->getContent();
-		return self::followRedirectText( $text );
-	}
-	
-	/**
-	 * Get the Title object this text redirects to
-	 *
-	 * @return mixed false, Title of in-wiki target, or string with URL
-	 */
-	public static function followRedirectText( $text ) {
 		$rt = Title::newFromRedirect( $text );
+
 		# process if title object is valid and not special:userlogout
 		if( $rt ) {
 			if( $rt->getInterwiki() != '' ) {
@@ -152,6 +144,7 @@ class Article {
 				return $rt;
 			}
 		}
+
 		// No or invalid redirect
 		return false;
 	}

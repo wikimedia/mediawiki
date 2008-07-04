@@ -698,12 +698,6 @@ $page: ImagePage object
 &$file: File object
 &$displayFile: displayed File object
 
-'InitializeArticleMaybeRedirect': MediaWiki check to see if title is a redirect
-$title: Title object ($wgTitle)
-$request: WebRequest
-$ignoreRedirect: boolean to skip redirect check
-$target: Title/string of redirect target
-
 'InitPreferencesForm': called at the end of PreferencesForm's constructor
 $form: the PreferencesForm
 $request: the web request to initialized from
