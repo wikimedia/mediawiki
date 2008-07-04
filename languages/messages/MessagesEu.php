@@ -1619,7 +1619,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'move-subpages'           => 'Ahal izanez gero azpiorrialde guztiak ere mugitu',
 'move-talk-subpages'      => 'Ahal izanez gero eztabaida orrialdearen azpiorrialde guztiak ere mugitu',
 'movepage-page-exists'    => '$1 orrialdea jada badago eta ezin da automatikoki gainetik idatzi.',
-'movepage-page-moved'     => '$1 orrialdea $2(e)ra mugitu da.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '$1 orrialdea $2(e)ra mugitu da.',
 'movepage-page-unmoved'   => '$1 orrialdea ezin da $2(e)ra mugitu.',
 '1movedto2'               => '$1 izenburua $2(r)engatik aldatu da',
 '1movedto2_redir'         => '$1 izenburua $2(r)engatik aldatu da birzuzenketaren gainetik',

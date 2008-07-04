@@ -4,11 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @author Sadik Khalid <sadik.khalid@gmail.com>
- * @author Manjith Joseph <manjithkaini@gmail.com>
- * @author Praveen Prakash <me.praveen@gmail.com>
- * @author Shiju Alex <shijualexonline@gmail.com>
  * @author Shijualex
  * @author Jacob.jose
  * @author Praveenp
@@ -16,6 +11,11 @@
  * @author Siebrand
  * @author Anoopan
  * @author Jyothis
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Sadik Khalid <sadik.khalid@gmail.com>
+ * @author Manjith Joseph <manjithkaini@gmail.com>
+ * @author Praveen Prakash <me.praveen@gmail.com>
+ * @author Shiju Alex <shijualexonline@gmail.com>
  */
 
 $namespaceNames = array(

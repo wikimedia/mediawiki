@@ -13,8 +13,8 @@
  * @author Kwj2772
  * @author Ficell
  * @author TheAlpha for knowledge
- * @author SPQRobin
  * @author Pi.C.Noizecehx
+ * @author SPQRobin
  * @author Jon Harald Søby
  */
 

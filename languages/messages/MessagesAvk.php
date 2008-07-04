@@ -1600,7 +1600,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movedto'                 => 'Tolyoltayan ton',
 'movetalk'                => "Renommer aussi la page « discussion », s'il y a lieu.",
 'movepage-page-exists'    => '$1 bu ixam tir nume me balkon zo rotolsuter.',
-'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.',
 'movepage-page-unmoved'   => '$1 bu ko $2 me al zo rotarrundar.',
 '1movedto2'               => '$1 arbureyen kal $2',
 '1movedto2_redir'         => '$1 arbureyen kal $2 (graskara)',

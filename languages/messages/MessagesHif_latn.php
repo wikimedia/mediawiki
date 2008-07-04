@@ -366,44 +366,120 @@ $2',
 Iske kaaran hai ''$2''.",
 
 # Virus scanner
-'virus-badscanner' => 'Kharaab configuration: unknown virus scanner: <i>$1</i>',
+'virus-badscanner'     => 'Kharaab configuration: unknown virus scanner: <i>$1</i>',
+'virus-scanfailed'     => 'scan fail hoe gais (code $1)',
+'virus-unknownscanner' => 'jaana waala antivirus nai hai:',
 
 # Login and logout pages
-'yourname'                => 'Username:',
-'yourpassword'            => 'Password:',
-'remembermypassword'      => 'Ii computer pe hamaar login yaad karo',
-'login'                   => 'Log in',
-'nav-login-createaccount' => 'Log in karo/ nawaa account banao',
-'loginprompt'             => '{{SITENAME}} pe login kare ke khatir aap ke cookies enable kare ke chaahi.',
-'userlogin'               => 'Log in karo/ nawaa account banao',
-'logout'                  => 'Log out',
-'userlogout'              => 'Log out',
-'nologin'                 => 'Login nai hai? $1.',
-'nologinlink'             => 'Nawaa account banao',
-'createaccount'           => 'Nawaa account banao',
-'gotaccount'              => 'Aap ke pahile account hai? $1.',
-'gotaccountlink'          => 'Log in',
-'yourrealname'            => 'Asli naam:',
-'prefs-help-realname'     => 'Asli naam ke jaruri nai hai lekin agar jo aap aapan naam diya hai to iske aap ke kaam ke attribute kare khatir use karaa jai.',
-'loginsuccesstitle'       => 'Login safal bhais',
-'loginsuccess'            => "'''Aap {{SITENAME}} me logged in hai  \"\$1\" ke naam pe.'''",
-'nosuchuser'              => '"$1" naam ke koi sadasya nai hai. Aapan spelling check karo nai ti nawaa account banao.',
-'nosuchusershort'         => '"<nowiki>$1</nowiki>" naam ke koi sadasya nai hai. Aapan spelling check karo.',
-'nouserspecified'         => 'Aap ke aapan password de ke parri.',
-'wrongpassword'           => 'Wrong password enter karaa gae hai. Fir se try karo.',
-'wrongpasswordempty'      => 'Koi password nai enter karaa gais hai. Fir se try karo.',
-'passwordtooshort'        => 'Aap ke password kharaab nai to bahut chhota hai. Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi aur username se different rahe ke chahi.',
-'mailmypassword'          => 'Password E-mail karo',
-'passwordremindertitle'   => '{{SITENAME}} ke khatir nawaa temporary password',
-'passwordremindertext'    => 'Koi ( hoe sake aap, IP address $1 se)
-{{SITENAME}} ($4) khatir nawaa password mangaa hai.
-Sadasya "$2" ke password ab "$3" hai.
-Aap ke abhi log in kar ke password badal de ke chaahi.
+'logouttitle'                => 'Sadasya logout',
+'logouttext'                 => '<strong>Aap abhi logged out hai.</strong>
 
-Agar jo aur koi ii request karis hai nai to aap aapan password yaad kar liya hai aur nai badle mangta hai, tab ii message ke ignore kar do aur aapan purana password use karte raho.',
-'noemail'                 => 'Sadasya "$1" ke koi e-mail address recorded nai hai.',
-'passwordsent'            => 'Ek nawaa password ke "$1" ke registered e-mail pe bheja gais hai. Meharbaani kar ke aap password mile ke baad lo in karna.',
-'eauthentsent'            => 'Ek confirmation e-mail nominated e-mail address be bhej dewa gais hai. Aur mail ii account pe bheje se pahile e-mail me likha instructions ke follow karo, ii confirm kare ke khatir ki account aap ke hai.',
+Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se log in kare sakta hai.
+
+Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab tak ki browser ke cache safaa nai hoe jaae.',
+'welcomecreation'            => '== Swagat, $1! ==
+Aap ke account banae dewa gais hai.
+Aapan {{SITENAME}} pasand ke badle nai bhulna.',
+'loginpagetitle'             => 'Sadasya login',
+'yourname'                   => 'Username:',
+'yourpassword'               => 'Password:',
+'yourpasswordagain'          => 'Password fir se type karo:',
+'remembermypassword'         => 'Ii computer pe hamaar login yaad rakho',
+'yourdomainname'             => 'Aap ke domain:',
+'externaldberror'            => 'Koi bahaari database authentication error hai, nai to aap ke bahaari account badle ke adhikar nai hai.',
+'loginproblem'               => '<b>Aap ke login me karrbarr hai.</b><br />Fir se kosis karo!',
+'login'                      => 'Log in karo',
+'nav-login-createaccount'    => 'Log in karo/ nawaa account banao',
+'loginprompt'                => '{{SITENAME}} pe login kare ke khatir aap ke cookies ke laabu kare ke chaahi.',
+'userlogin'                  => 'Log in karo/ nawaa account banao',
+'logout'                     => 'Log out',
+'userlogout'                 => 'Log out',
+'notloggedin'                => 'Aap logged in nai hai',
+'nologin'                    => 'Login khatir account nai hai? $1.',
+'nologinlink'                => 'Nawaa account banao',
+'createaccount'              => 'Nawaa account banao',
+'gotaccount'                 => 'Aap ke pas pahile se account hai ki nai? $1.',
+'gotaccountlink'             => 'Log in',
+'createaccountmail'          => 'e-mail se',
+'badretype'                  => 'Jon duuno password aap likha hai uu ek rakam nai hai.',
+'userexists'                 => 'Jon username aap chuna hai uske aur koi use kare hai.
+Duusra username choose karo.',
+'youremail'                  => 'E-mail:',
+'username'                   => 'Username:',
+'uid'                        => 'User ID:',
+'prefs-memberingroups'       => '{{PLURAL:$1|group|groups}} ke member:',
+'yourrealname'               => 'Asli naam:',
+'yourlanguage'               => 'Bhasa:',
+'yournick'                   => 'Signature:',
+'badsig'                     => 'Invalid raw signature; HTML tags ke check karo.',
+'badsiglength'               => 'Signature bahut lambaa hai.
+It $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
+'email'                      => 'E-mail',
+'prefs-help-realname'        => 'Asli naam ke jaruri nai hai lekin agar jo aap aapan naam diya hai to iske aap ke kaam ke pahachane khatir kaam me lawa jai.',
+'loginerror'                 => 'Login me galti hai',
+'prefs-help-email'           => 'E-mail address ke jaruri nai hai, lekin isse duusra log ke aap ke contact kare sake hai aap ke user nai to user_talk panna se, aap ke asli naam batae ke bina.',
+'prefs-help-email-required'  => 'E-mail address ke jaruri hai.',
+'nocookiesnew'               => 'Aap ke account banae dewa gais hai lekin aap loggen in nai hai.
+{{SITENAME}} me sadasya ke login khatir cookies hai.
+Aap cookies ke disabled karaa hai.
+Cookies ke enable kar ke, aapan nawaa username aur password se login karo.',
+'nocookieslogin'             => '{{SITENAME}} me sadasya ke login khatir cookies hai.
+Aap cookies ke disabled karaa hai.
+Cookies ke enable kar ke fir se kosis karo.',
+'noname'                     => 'Aap achchha user name ke nai specify karaa hai.',
+'loginsuccesstitle'          => 'Login safal bhais',
+'loginsuccess'               => "'''Aap \"\$1\" ke naam pe {{SITENAME}} me logged in hai.'''",
+'nosuchuser'                 => '"$1" naam ke koi sadasya nai hai. Aapan spelling check karo nai to nawaa account banao.',
+'nosuchusershort'            => '"<nowiki>$1</nowiki>" naam ke koi sadasya nai hai. 
+Aapan spelling check karo.',
+'nouserspecified'            => 'Aap ke aapan username de ke parri.',
+'wrongpassword'              => 'Galat password likha gais hai. Fir se kosis karo.',
+'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
+'passwordtooshort'           => 'Aap ke password kharaab nai to bahut chhota hai. Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi aur username se different rahe ke chahi.',
+'mailmypassword'             => 'Password ke E-mail karo',
+'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
+'passwordremindertext'       => 'Koi ( hoe sake aap, IP address $1 se)
+{{SITENAME}} ($4) khatir nawaa password mangis hai.
+Sadasya "$2" ke password ab "$3" hai.
+Aap ke abhi login kar ke password badle ke chaahi.
+
+Agar jo aur koi ii request karis hai nai to aap aapan password yaad kar liya hai aur nai badle mangta hai, tab ii sandes ke ignore kar do aur aapan purana password use karte raho.',
+'noemail'                    => 'Sadasya "$1" ke koi e-mail address recorded nai hai.',
+'passwordsent'               => 'Ek nawaa password ke "$1" ke registered e-mail pe bheja gais hai. Meharbaani kar ke aap password mile ke baad login karna.',
+'blocked-mailpassword'       => 'Aap ke IP address ke block kar dewa gais hai, aur iske kaaran aap ke password recovery function kaam me lae ke ijajat nai hai,',
+'eauthentsent'               => 'Ek confirmation e-mail aap ke dewa gae e-mail address be bhej dewa gais hai. Aur mail ii account pe bheje se pahile e-mail me likha instructions ke follow karo, ii confirm kare ke khatir ki account aap ke hai.',
+'throttled-mailpassword'     => 'Ek password reminder ke pichhle {{PLURAL:$1|hour|$1 hours}} me bhej dewa gais hai.
+Abuse ke roke ke khatir, khali ek password reminer har {{PLURAL:$1|hour|$1 hours}} me bheja jaai.',
+'mailerror'                  => 'Mail bheje me galti hoe gais hai: $1',
+'acct_creation_throttle_hit' => 'Maaf karna, aap $1 accounts banae liya hai.
+Aap aur account nai bane sakta hai.',
+'emailauthenticated'         => 'Aap ke e-mail address ke $1 pe authenticate karaa gais rahaa.',
+'emailnotauthenticated'      => 'Aap ke e-mail address ke abi tak authenticate nai gais hai.
+Ii sab feature khatir koi e-mail nai bheja jaai.',
+'noemailprefs'               => 'Ii sab feature ke kaam kare khatir e-mail specify karo.',
+'emailconfirmlink'           => 'aapan e-mail address ke confirm karo',
+'invalidemailaddress'        => 'E-mail address ke nai accept karaa jae sake hai kahe ki iske format invalid hai.
+Meharbaani kar ke well-formatted address ke enter karo nai to uu field ke khali kar do.',
+'accountcreated'             => 'Account banae dewa gais hai',
+'accountcreatedtext'         => '$1 khatir user account banae dewa gais hai.',
+'createaccount-title'        => '{{SITENAME}} khatir account creation',
+'createaccount-text'         => 'Koi aap ke e-mail katir {{SITENAME}} ($4) named "$2" me account banais hai jiske password hai "$3".
+Aap ke chaahi ki aap login kar ke password ke badal do.
+Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
+'loginlanguagelabel'         => 'Bhasa: $1',
+
+# Password reset dialog
+'resetpass'               => 'Account password ke reset karo',
+'resetpass_announce'      => 'Aap ek temporary e-mailed code se login bhaya hai
+Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',
+'resetpass_text'          => '<!-- Hian pe likho -->',
+'resetpass_header'        => 'Password ke reset karo',
+'resetpass_submit'        => 'Password ke set kar ke login karo',
+'resetpass_success'       => 'Aap ke password ke safalta se badal dewa gais hai! Aap ke ab login karaa jaae hai...',
+'resetpass_bad_temporary' => 'Temporary password achchha nai hai.
+Aap sait pahile password ke badal diya hoi nai to nawaa temporary password ke maang karaa hoga.',
+'resetpass_forbidden'     => '{{SITENAME}} pe password nai badlaa jae sake hai',
+'resetpass_missing'       => 'Form data nai hai.',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
@@ -448,6 +524,7 @@ Roke waala hai $1. Iske kaaran hai ''$2''.
 Aap $1 ke mile saktaa hai nai to duusra [[{{MediaWiki:Grouppage-sysop}}|administrator]] se rukawat ke baare me baat karo.
 Aap ii sadasya ke 'email this user' feature ke kaam me lae ke baat nai kare saktaa hai jab tak ki ek kanuni email address aapke [[Special:Preferences|account preferences]] me nai hai aur aap ke iske kaam me laae ke roka nai gae hai.
 Aap ke abhi ke IP address $3 hai, aur roka gae ID hai #$5. Meharbani kar ke chahe ek nai to duno ke aapan sawaal me rakho.",
+'blockednoreason'        => 'koi kaaran nai dewa gais hai',
 'newarticle'             => '(Nawaa)',
 'newarticletext'         => "Aap ek link follow kara jon ki koi panna me nai jae.
 Ii panna banae khatir, niche box me type karo (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
@@ -777,6 +854,7 @@ Ii prastithi me, aap ke manually move yah merge kare ke parri.",
 'move-watch'       => 'Ii panna pe dhyan rakho',
 'movepagebtn'      => 'Panna ke naam badlo',
 'pagemovedsub'     => 'Panna ke naam badle me safalta',
+'movepage-moved'   => '<big>\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Uu naam ke panna abhi hai, nai to jon naam aap choose karaa hai valid nai hai.
 Meharbani kar ke duusra naam choose karo.',
 'talkexists'       => "'''Panna ke naam badle me safalta hoe gais hai, lekin talk page ke naam nai badle sakaa hai kaheki uu naam ke talk page already hai. Iske manually merge karo.'''",

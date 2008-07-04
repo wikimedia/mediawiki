@@ -8,8 +8,8 @@
  * @author AS
  * @author Siebrand
  * @author Innv
- * @author EugeneZelenko
  * @author Dubyk
+ * @author EugeneZelenko
  * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
  */
@@ -2004,6 +2004,7 @@ $1',
 'move-watch'              => 'Спостерігати за цією сторінкою',
 'movepagebtn'             => 'Перейменувати сторінку',
 'pagemovedsub'            => 'Сторінка перейменована',
+'movepage-moved'          => "<big>'''Сторінка «$1» перейменована на «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Сторінка з такою назвою вже існує або зазначена вами назва недопустима.
 Будь ласка, оберіть іншу назву.',
 'cantmove-titleprotected' => 'Неможливо перейменувати сторінку, оскільки нова назва входить до списку заборонених.',
@@ -2013,7 +2014,7 @@ $1',
 'move-subpages'           => 'Перейменувати всі підсторінки, якщо можливо',
 'move-talk-subpages'      => 'Перейменувати всі підсторінки сторінки обговорення, якщо можливо',
 'movepage-page-exists'    => 'Сторінка $1 вже існує і не може бути автоматчино перезаписана.',
-'movepage-page-moved'     => 'Сторінка $1 перейменована на $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Сторінка $1 перейменована на $2.',
 'movepage-page-unmoved'   => 'Сторінка $1 не може бути перейменована на $2.',
 'movepage-max-pages'      => '$1 сторінок були перейменовані — це максимум, більше сторінок не можна перейменувати автоматично.',
 '1movedto2'               => '«[[$1]]» перейменовано на «[[$2]]»',

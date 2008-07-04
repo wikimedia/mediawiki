@@ -1163,11 +1163,12 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'move-watch'              => 'Ваномс лопанть',
 'movepagebtn'             => 'Печтевтемс лопанть',
 'pagemovedsub'            => 'Лопась печтевтевсь',
+'movepage-moved'          => "<big>'''«$1»-сь печтевтезь «$2»-с'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Лопась истямо лем марто ули али невтезь тынк эйсэ лемесь анолдавиксев.<br />Инескеть, кочкадо лия лем.',
 'talkexists'              => "'''Сонсь лопась печтевтевсь, ансяк кортамонь лопась кодаяк эзь печтевтеве, вана мекс,  истямо лем марто лопась ули. Инеськеть, пурныть сынст вейтьс кедьсэ.'''",
 'movedto'                 => 'печтевтезь',
 'movetalk'                => 'Печтевтемань кортамо лопа',
-'movepage-page-moved'     => '"$1" лопась печтевтезь "$2"-с.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '"$1" лопась печтевтезь "$2"-с.',
 '1movedto2'               => '[[$1]] печтевтезь тей [[$2]]',
 'movelogpage'             => 'Печтевтемань журнал',
 'movereason'              => 'Тувтал:',

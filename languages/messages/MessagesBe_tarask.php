@@ -2049,7 +2049,7 @@ $1',
 'move-subpages'           => 'Перанесьці ўсё падстаронкі, калі гэта магчыма',
 'move-talk-subpages'      => 'Перанесьці ўсё падстаронкі старонкі абмеркаваньня, калі гэта магчыма',
 'movepage-page-exists'    => 'Старонка $1 ужо існуе і ня можа быць перапісана аўтаматычна.',
-'movepage-page-moved'     => 'Старонка $1 перанесеная ў $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Старонка $1 перанесеная ў $2.',
 'movepage-page-unmoved'   => 'Старонка $1 ня можа быць перанесеная ў $2.',
 '1movedto2'               => '[[$1]] перанесеная ў [[$2]]',
 '1movedto2_redir'         => '[[$1]] перанесеная ў [[$2]] з выдаленьнем перанакіраваньня',

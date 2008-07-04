@@ -1354,6 +1354,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'move-watch'              => 'Hanc paginam custodire',
 'movepagebtn'             => 'Paginam movere',
 'pagemovedsub'            => 'Pagina mota est',
+'movepage-moved'          => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "'''Non licet hanc paginam movere:''' pagina cum hoc nomine iam habemus, aut invalidum est nomen electum.
 
 Quaesumus, nomen alterum elige aut opem pete [[{{MediaWiki:Grouppage-sysop}}|magistratorum]].",
@@ -1363,7 +1364,7 @@ Quaesumus, nomen alterum elige aut opem pete [[{{MediaWiki:Grouppage-sysop}}|mag
 'movetalk'                => 'Movere etiam paginam disputationis',
 'move-subpages'           => 'Movere etiam omnes subpaginas, si sunt',
 'move-talk-subpages'      => 'Movere etiam omnes subpaginas paginae disputationis, si sunt',
-'movepage-page-moved'     => 'Pagina $1 mota est ad $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Pagina $1 mota est ad $2.',
 'movepage-page-unmoved'   => 'Pagina $1 ad $2 moveri non potuit.',
 '1movedto2'               => 'movit [[$1]] ad [[$2]]',
 '1movedto2_redir'         => 'movit [[$1]] ad [[$2]] praeter redirectionem',

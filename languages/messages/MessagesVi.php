@@ -1896,7 +1896,7 @@ Xin hãy chọn tên khác.',
 'move-subpages'           => 'Di chuyển tất cả các trang con, nếu được',
 'move-talk-subpages'      => 'Di chuyển tất cả các trang con của trang thảo luận, nếu được',
 'movepage-page-exists'    => 'Trang $1 đã tồn tại và không thể bị tự động ghi đè.',
-'movepage-page-moved'     => 'Trang $1 đã được di chuyển đến $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Trang $1 đã được di chuyển đến $2.',
 'movepage-page-unmoved'   => 'Trang $1 không thể di chuyển đến $2.',
 'movepage-max-pages'      => 'Đã có tối đa $1 {{PLURAL:$1|trang|trang}} đã di chuyển và không tự động di chuyển thêm được nữa.',
 '1movedto2'               => '[[$1]] đổi thành [[$2]]',

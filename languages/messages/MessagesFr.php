@@ -15,15 +15,15 @@
  * @author Sherbrooke
  * @author Siebrand
  * @author Hégésippe Cormier
- * @author Korg
  * @author Cedric31
  * @author Dereckson
+ * @author Korg
  * @author JeanVoisin
- * @author SPQRobin
  * @author Горан Анђелковић
- * @author Jon Harald Søby
- * @author ChrisPtDe
+ * @author SPQRobin
  * @author Esbardu
+ * @author ChrisPtDe
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -1966,7 +1966,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-subpages'           => 'Renommer, le cas échéant, toutes les sous-pages',
 'move-talk-subpages'      => 'Renommer, le cas échéant, toutes les sous-pages des pages de discussion',
 'movepage-page-exists'    => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement;',
-'movepage-page-moved'     => 'La page $1 a été renommée en $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'La page $1 a été renommée en $2.',
 'movepage-page-unmoved'   => 'La page $1 ne peut être renommée en $2.',
 'movepage-max-pages'      => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
 '1movedto2'               => 'a renommé [[$1]] en [[$2]]',

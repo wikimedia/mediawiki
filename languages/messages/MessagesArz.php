@@ -1198,25 +1198,35 @@ $2',
 'log-search-submit'    => 'روح',
 
 # Special:Allpages
-'allpages'       => 'كل الصفحات',
-'alphaindexline' => '$1 ل $2',
-'nextpage'       => 'الصفحه اللى بعد كده ($1)',
-'prevpage'       => 'الصفحه اللى قبل كده ($1)',
-'allpagesfrom'   => 'عرض الصفحات بدايه من:',
-'allarticles'    => 'كل المقالات',
-'allpagesprev'   => 'اللي فلت',
-'allpagesnext'   => 'اللى بعد كده',
-'allpagessubmit' => 'روح',
-'allpagesprefix' => 'عرض الصفحات  اللى تبتدى بـ:',
+'allpages'          => 'كل الصفحات',
+'alphaindexline'    => '$1 ل $2',
+'nextpage'          => 'الصفحه اللى بعد كده ($1)',
+'prevpage'          => 'الصفحه اللى قبل كده ($1)',
+'allpagesfrom'      => 'عرض الصفحات بدايه من:',
+'allarticles'       => 'كل المقالات',
+'allinnamespace'    => 'كل الصفحات (في نطاق $1)',
+'allnotinnamespace' => 'كل الصفحات (مش في نطاق $1)',
+'allpagesprev'      => 'اللي فلت',
+'allpagesnext'      => 'اللى بعد كده',
+'allpagessubmit'    => 'روح',
+'allpagesprefix'    => 'عرض الصفحات  اللى تبتدى بـ:',
+'allpagesbadtitle'  => 'العنوان االلي اديته للصفحة مش نافع أو فيه لغات تانية أو بريفيكس إنترويكي. يمكن فيه حروف ماينفعش تنكتب بيها العناوين.',
+'allpages-bad-ns'   => '{{SITENAME}} مافيهاش نطاق "$1".',
 
 # Special:Categories
-'categories'                  => 'تصانيف',
-'special-categories-sort-abc' => 'ترتيب ابجدي',
+'categories'                    => 'تصانيف',
+'categoriespagetext'            => 'التصنيفات دي فيها صفحات أو ميديا.',
+'categoriesfrom'                => 'اعرض التصانيف من أول:',
+'special-categories-sort-count' => 'رتب بالعدد',
+'special-categories-sort-abc'   => 'ترتيب ابجدي',
 
 # Special:Listusers
+'listusersfrom'      => 'عرض اليوزرز من أول:',
+'listusers-submit'   => 'عرض',
 'listusers-noresult' => 'ما في ش يوزر',
 
 # Special:Listgrouprights
+'listgrouprights'       => 'حقوق مجموعات اليوزرز',
 'listgrouprights-group' => 'المجموعة',
 
 # E-mail user
@@ -1384,6 +1394,7 @@ $2',
 'move-watch'       => 'راقب الصفحه دى',
 'movepagebtn'      => 'نقل الصفحه',
 'pagemovedsub'     => 'تم  النقل بنجاح',
+'movepage-moved'   => '<big>\'\'\'"$1" اتنقلت ل"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => '
 
 يا اما فيه صفحه  بالاسم ده ،او ان الاسم اللى  تم اختياره مش صالح. لو سمحت اختار اسم تانى .',

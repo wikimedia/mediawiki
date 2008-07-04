@@ -1758,7 +1758,7 @@ Vergaet neet de database opnuuj te [[Special:Unlockdb|deblokkere]] wens te klaor
 'move-subpages'           => "Alle subpazjena's hernömme",
 'move-talk-subpages'      => "Alle subpazjena's van euverlèkpazjena's hernömme",
 'movepage-page-exists'    => 'De pazjena $1 besteit al en kan neet automatisch gewis waere.',
-'movepage-page-moved'     => 'De pazjena $1 is hernömp nao $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'De pazjena $1 is hernömp nao $2.',
 'movepage-page-unmoved'   => 'De pazjena $1 kós neet hernömp waere nao $2.',
 'movepage-max-pages'      => "'t Maximaal aantal automatisch te hernömme pazjena's is bereik ($1). De euverige pazjena's waere neet automatisch hernömp.",
 '1movedto2'               => '[[$1]] verplaats nao [[$2]]',

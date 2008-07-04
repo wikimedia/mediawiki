@@ -1886,7 +1886,7 @@ $1',
 'move-subpages'           => '如果可以嘅話，搬全部嘅細頁',
 'move-talk-subpages'      => '如果可以嘅話，搬全部嘅細討論頁',
 'movepage-page-exists'    => '版$1已經存在，唔可以自動噉覆寫。',
-'movepage-page-moved'     => '版$1已經搬到去$2。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '版$1已經搬到去$2。',
 'movepage-page-unmoved'   => '版$1唔可以搬到去$2。',
 'movepage-max-pages'      => '最多有$1版已經搬咗同時唔可以自動噉再搬更多。',
 '1movedto2'               => '[[$1]]搬到去[[$2]]',

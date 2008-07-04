@@ -165,7 +165,7 @@ $messages = array(
 'subcategories'                  => 'サブカテゴリ',
 'category-media-header'          => 'カテゴリ “$1” にあるメディア',
 'category-empty'                 => 'このカテゴリにはページまたはメディアがひとつもありません。',
-'hidden-categories'              => '{{PLURAL:$1|非公開カテゴリ|非公開カテゴリ}}',
+'hidden-categories'              => '非公開カテゴリ',
 'hidden-category-category'       => '非公開カテゴリ', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|以下にこのカテゴリへ所属するサブカテゴリ 1 件を表示しています。|以下にこのカテゴリへ所属するサブカテゴリ $2 件中 $1 件を表示しています。}}',
 'category-subcat-count-limited'  => '以下にこのカテゴリへ所属するサブカテゴリ $1 件を表示しています。',
@@ -599,7 +599,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'userinvalidcssjstitle'            => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
 'updated'                          => '（更新）',
 'note'                             => '<strong>お知らせ:</strong>',
-'previewnote'                      => '<strong>これはプレビューです。まだ保存されていません!</strong>',
+'previewnote'                      => '<strong>これはプレビューです。まだ保存されていません!</strong>[[#editform|→ 編集フォームへ移動]]',
 'previewconflict'                  => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview'             => '<strong>セッションが切断されたため編集を保存できません。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
 'session_fail_preview_html'        => "<strong>申し訳ありません。セッションが切断されたため編集を保存することができませんでした。</strong>
@@ -901,6 +901,15 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'grouppage-bot'           => '{{ns:project}}:ボット',
 'grouppage-sysop'         => '{{ns:project}}:管理者',
 'grouppage-bureaucrat'    => '{{ns:project}}:ビューロクラット',
+
+# Rights
+'right-read'          => 'ページの閲覧',
+'right-edit'          => 'ページの編集',
+'right-move'          => 'ページの移動',
+'right-move-subpages' => 'サブページを含めたページの移動',
+'right-editprotected' => '保護ページの編集 (カスケード保護を除く)',
+'right-editinterface' => 'ユーザーインターフェースの編集',
+'right-editusercssjs' => '他利用者のCSS・JSファイルの編集',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -1665,7 +1674,7 @@ $NEWPAGE
 'move-subpages'           => 'サブページもすべて移動する',
 'move-talk-subpages'      => 'ノートページのサブページもすべて移動する',
 'movepage-page-exists'    => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
-'movepage-page-moved'     => '$1 は $2 へ移動されました。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'   => '$1 を $2 へ移動できませんでした。',
 'movepage-max-pages'      => '自動的に移動できるのは $1{{PLURAL:$1|ページ|ページ}} までで、それ以上は移動されません。',
 '1movedto2'               => 'ページ [[$1]] を [[$2]] へ移動',
@@ -1907,7 +1916,7 @@ $NEWPAGE
 
 # Special:Newimages
 'newimages'             => '新規画像展示室',
-'imagelisttext'         => "'''$1''' {{PLURAL:$1|個|個}}のファイルを $2 に表示しています",
+'imagelisttext'         => "'''$1''' 個のファイルを $2 に表示しています",
 'newimages-summary'     => 'この特別ページでは最近、アップロードされたファイルを表示します。',
 'showhidebots'          => '（ボットを$1）',
 'noimages'              => '画像がありません。',

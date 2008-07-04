@@ -8,8 +8,8 @@
  * @author Antofa
  * @author Cornelia
  * @author Siebrand
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $messages = array(

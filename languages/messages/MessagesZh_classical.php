@@ -1603,7 +1603,7 @@ $NEWPAGE
 'move-subpages'           => '如可，同遷議',
 'move-talk-subpages'      => '如可，同遷子議',
 'movepage-page-exists'    => '頁$1已存矣，非自覆也。',
-'movepage-page-moved'     => '頁$1遷$2矣。', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => '頁$1遷$2矣。',
 'movepage-page-unmoved'   => '頁$1遷$2不成。',
 'movepage-max-pages'      => '上之$1頁遷矣同非自遷之下。',
 '1movedto2'               => '[[$1]]遷至[[$2]]',

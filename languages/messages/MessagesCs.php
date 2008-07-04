@@ -12,8 +12,8 @@
  * @author Siebrand
  * @author Reaperman
  * @author Helix84
- * @author Martin Kozák
  * @author Michawiki
+ * @author Martin Kozák
  * @author Sp5uhe
  */
 
@@ -2029,7 +2029,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-subpages'           => 'Přesunout i všechny podstránky, je-li to možné',
 'move-talk-subpages'      => 'Přesunout i všechny podstránky diskusní stránky, je-li to možné',
 'movepage-page-exists'    => 'Stránka $1 již existuje a nemůže být automaticky přepsána.',
-'movepage-page-moved'     => 'Stránka $1 byla přesunuta na $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Stránka $1 byla přesunuta na $2.',
 'movepage-page-unmoved'   => 'Stránka $1 nemůže být přesunuta na $2.',
 'movepage-max-pages'      => '{{PLURAL:$1|Byla přesunuta maximálně povolená jedna stránka|Byly přesunuty maximálně povolené $1 stránky|Bylo přesunuto maximálně povolených $1 stránek}}, více jich už automaticky přesunuto nebude.',
 '1movedto2'               => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
@@ -2799,5 +2799,9 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'specialpages-group-wiki'        => 'Informace a nástroje k celé wiki',
 'specialpages-group-redirects'   => 'Přesměrovávací speciální stránky',
 'specialpages-group-spam'        => 'Protispamové nástroje',
+
+# Special:Blankpage
+'blankpage'              => 'Prázdná stránka',
+'intentionallyblankpage' => 'Tato stránka je úmyslně prázdná. Používá se na měření výkonnosti atd.',
 
 );

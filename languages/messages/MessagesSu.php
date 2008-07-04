@@ -1659,7 +1659,7 @@ Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagab
 'move-subpages'           => 'Pindahkeun kabéh sub-kaca, lamun aya',
 'move-talk-subpages'      => 'Pindahkeunn kabéh sub-kaca obrolan, lamun aya',
 'movepage-page-exists'    => 'Kaca $1 geus aya jeung teu bisa di timpahkeun sacara otomatis.',
-'movepage-page-moved'     => 'Kaca $1 geus dipindahkeun ka $2.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-page-moved'     => 'Kaca $1 geus dipindahkeun ka $2.',
 'movepage-page-unmoved'   => 'Kaca $1 teu bisa dipindahkeun ka $2.',
 '1movedto2'               => 'mindahkeun [[$1]] ka [[$2]]',
 '1movedto2_redir'         => '[[$1]] dipindahkeun ka [[$2]]',

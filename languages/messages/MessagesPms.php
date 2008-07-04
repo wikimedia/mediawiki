@@ -8,8 +8,8 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author SabineCretella
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author Teak
  */

@@ -1,5 +1,5 @@
 <?php
-/** ‪Chinese (Taiwan) (‪中文(台灣)‬)
+/** Taiwan Chinese (‪中文(台灣)‬)
  *
  * @ingroup Language
  * @file
