@@ -452,7 +452,7 @@ function wfMsgWeirdKey ( $key ) {
  * @param string $key
  * @param bool $useDB
  * @param string $langcode Code of the language to get the message for, or
- *                         behaves as a content language switch if it is a 
+ *                         behaves as a content language switch if it is a
  *                         boolean.
  * @return string
  * @private
@@ -1732,7 +1732,7 @@ function wfMkdirParents( $fullDir, $mode = 0777 ) {
 			$currentDir = substr( $currentDir, 0, $p );
 		}
 	}
-	
+
 	if ( count( $createList ) == 0 ) {
 		# Directory specified already exists
 		return true;
@@ -1752,7 +1752,7 @@ function wfMkdirParents( $fullDir, $mode = 0777 ) {
 		wfDebugLog( 'mkdir', "Not writable: $currentDir\n" );
 		return false;
 	}
-	
+
 	foreach ( $createList as $dir ) {
 		# use chmod to override the umask, as suggested by the PHP manual
 		if ( !mkdir( $dir, $mode ) || !chmod( $dir, $mode ) ) {
@@ -1812,7 +1812,7 @@ function wfPercent( $nr, $acc = 2, $round = true ) {
 function wfEncryptPassword( $userid, $password ) {
 	wfDeprecated(__FUNCTION__);
 	# Just wrap around User::oldCrypt()
-	return User::oldCrypt($password, $userid); 
+	return User::oldCrypt($password, $userid);
 }
 
 /**
@@ -2294,12 +2294,20 @@ function wfCreateObject( $name, $p ){
 }
 
 /**
- * Aliases for modularized functions
+ * Alias for modularized function
+ * @deprecated Use Http::get() instead
  */
 function wfGetHTTP( $url, $timeout = 'default' ) {
+	wfDeprecated(__FUNCTION__);
 	return Http::get( $url, $timeout );
 }
+
+/**
+ * Alias for modularized function
+ * @deprecated Use Http::isLocalURL() instead
+ */
 function wfIsLocalURL( $url ) {
+	wfDeprecated(__FUNCTION__);
 	return Http::isLocalURL( $url );
 }
 
@@ -2307,7 +2315,7 @@ function wfHttpOnlySafe() {
 	global $wgHttpOnlyBlacklist;
 	if( !version_compare("5.2", PHP_VERSION, "<") )
 		return false;
-	
+
 	if( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
 		foreach( $wgHttpOnlyBlacklist as $regex ) {
 			if( preg_match( $regex, $_SERVER['HTTP_USER_AGENT'] ) ) {
@@ -2315,7 +2323,7 @@ function wfHttpOnlySafe() {
 			}
 		}
 	}
-	
+
 	return true;
 }
 
@@ -2454,9 +2462,9 @@ function wfSplitWikiID( $wiki ) {
  *
  * @param string $wiki The wiki ID, or false for the current wiki
  *
- * Note: multiple calls to wfGetDB(DB_SLAVE) during the course of one request 
- * will always return the same object, unless the underlying connection or load 
- * balancer is manually destroyed. 
+ * Note: multiple calls to wfGetDB(DB_SLAVE) during the course of one request
+ * will always return the same object, unless the underlying connection or load
+ * balancer is manually destroyed.
  */
 function &wfGetDB( $db = DB_LAST, $groups = array(), $wiki = false ) {
 	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );
