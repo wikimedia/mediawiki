@@ -164,7 +164,7 @@ class LinksUpdate {
 		# Refresh category pages and image description pages
 		$existing = $this->getExistingCategories();
 		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
-		$categoryDeletes = array_diff_assoc( $existing, $this->mCategoties );
+		$categoryDeletes = array_diff_assoc( $existing, $this->mCategories );
 		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$existing = $this->getExistingImages();
 		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
