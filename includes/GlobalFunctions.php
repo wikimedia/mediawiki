@@ -2293,6 +2293,16 @@ function wfCreateObject( $name, $p ){
 	}
 }
 
+/**
+ * Aliases for modularized functions
+ */
+function wfGetHTTP( $url, $timeout = 'default' ) {
+	return Http::get( $url, $timeout );
+}
+function wfIsLocalURL( $url ) {
+	return Http::isLocalURL( $url );
+}
+
 function wfHttpOnlySafe() {
 	global $wgHttpOnlyBlacklist;
 	if( !version_compare("5.2", PHP_VERSION, "<") )
