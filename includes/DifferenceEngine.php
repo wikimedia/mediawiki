@@ -1,10 +1,6 @@
 <?php
 /**
  * @defgroup DifferenceEngine DifferenceEngine
- *
- * @file
- * See diff.doc
- * @todo indicate where diff.doc can be found.
  */
 
 /**
