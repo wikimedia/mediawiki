@@ -344,31 +344,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Check whether the current user requested a certain token and 
-	 * is actually allowed to request it.
-	 * @param array $tokenArr Array of tokens the user requested
-	 * @param string $action Action to check for
-	 * @return bool true if the user requested the token and is allowed to, false otherwise
-	 */
-	public function getTokenFlag($tokenArr, $action) {
-		if ($this->getMain()->getRequest()->getVal('callback') !== null) {
-			// Don't do any session-specific data.
-			return false;
-		}
-		if (in_array($action, $tokenArr)) {
-			global $wgUser;
-			if ($wgUser->isAllowed($action))
-				return true;
-			else
-			{
-				$this->setWarning("Action '$action' is not allowed for the current user");
-				return false;
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * Get version string for use in the API help output
 	 * @return string
 	 */

@@ -52,6 +52,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 		// Don't call the hooks twice
 		if(isset($this->tokenFunctions))
 			return $this->tokenFunctions;
+
+		// If we're in JSON callback mode, no tokens can be obtained
+		if(!is_null($this->getMain()->getRequest()->getVal('callback')))
+			return array();
+
 		$this->tokenFunctions = array(
 			'rollback' => 'ApiQueryRevisions::getRollbackToken'
 		);
