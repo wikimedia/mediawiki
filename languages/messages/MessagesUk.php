@@ -219,7 +219,6 @@ $magicWords = array(
 $imageFiles = array(
 	'button-bold'   => 'uk/button_bold.png',
 	'button-italic' => 'uk/button_italic.png',
-	'button-link'   => 'uk/button_link.png',
 );
 
 $linkTrail = '/^([a-zабвгґдеєжзиіїйклмнопрстуфхцчшщьєюяёъы“»]+)(.*)$/sDu';
