@@ -507,7 +507,8 @@ moßß_De [http://ksh.wikipedia.org/wiki/Help:Cookie%C3%9F de Cookieß] en Dinge
 'yourvariant'                => 'Ding Variant',
 'yournick'                   => 'Name för en Ding Ungerschreff:',
 'badsig'                     => 'Di Ungeschreff jëijd_esu nit — luer noh dem [http://ksh.wikipedia.org/wiki/HTML HTML] do_dren un maach et rėshtėsh.',
-'email'                      => 'E-Mail',
+'badsiglength'               => 'Ding Unterschref darf nit länger wi {{PLURAL:$1|eij|$1|keij}} Zeische änthallde.',
+'email'                      => 'e-mail',
 'prefs-help-realname'        => '* Dinge richtije Name - kanns De fott looße - wann De en nenne wells, dann weed hee jebruch, öm Ding Beidräch domet ze schmöcke.',
 'loginerror'                 => 'Fähler beim Enlogge',
 'prefs-help-email'           => '* E-mail - kanns De fottlooße, un es för Andre nit ze sinn - mäht et ävver möchlich, dat mer met Dir en Kontak kumme kann, ohne dat mer Dinge Name oder Ding E-Mail Adress kenne dät.',
@@ -576,9 +577,18 @@ Alsu luur do eren, un dun et.',
 'emailnotauthenticated'      => 'Ding E-Mail Adress es <strong>nit</strong> bestätich. Dröm kann kein E-Mail aan Dich jescheck wääde för:',
 'noemailprefs'               => 'Dun en E-Mail Adress endrage, domet dat et all fluppe kann.',
 'emailconfirmlink'           => 'Dun Ding E-Mail Adress bestätije looße',
-'invalidemailaddress'        => 'Wat De do als en E-Mail Adress aanjejovve häs, süht noh Dress us. En E-Mail Adress en däm Format, dat jitt et nit. Muss De repareere - oder Do mähs dat Feld leddich un schrievs nix eren. Un dann versök  et noch ens.',
+'invalidemailaddress'        => 'Wat De do als en E-Mail Adress aanjejovve häs, süht noh Dress us. En E-Mail Adress en däm Format, dat jitt et nit. Muss De repareere - oder Do mähs dat Feld leddich un schrievs nix eren. Un dann versök et noch ens.',
 'accountcreated'             => 'Aanjemeldt',
 'accountcreatedtext'         => 'De Aanmeldung för dä Metmaacher „<strong>$1</strong>“ es durch, kann jetz enlogge.',
+'createaccount-title'        => 'Enne neue Metmaacher aanmelde för de {{SITENAME}}',
+'createaccount-text'         => 'Einer hät Desch als Medmaacher „$2“ op de {{SITENAME}} aanjemelldt.
+Dat es e Wiki, un De fengks et onger däm URL:
+ $4
+Dat Passwoot „$3“ hät sesch dat Wiki för Disch usjewörfelt.
+Don jlisch enlogge un donn et ändere. 
+
+Wann Dat all böömesch Dörver för Desch sin, da fojeß hee di
+e-mail eijfach. Wann De en däm Wikki nit metmaache wells, och.',
 'loginlanguagelabel'         => 'Sproch: $1',
 
 # Password reset dialog

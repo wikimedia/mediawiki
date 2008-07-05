@@ -11,8 +11,8 @@
  * @author Siebrand
  * @author Lameiro
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
