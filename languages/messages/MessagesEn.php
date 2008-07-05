@@ -2222,6 +2222,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'viewdeletedpage'              => 'View deleted pages',
 'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and can be restored.
 The archive may be periodically cleaned out.',
+'undelete-fieldset-title'      => 'Restore revisions',
 'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and click '''''Restore'''''.
 To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the comment field and all checkboxes.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisions}} archived',
