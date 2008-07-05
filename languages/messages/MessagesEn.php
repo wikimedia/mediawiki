@@ -2216,7 +2216,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'restriction-level-all'           => 'any level',
 
 # Undelete
-'undelete'                     => 'Restore revisions',
+'undelete'                     => 'View deleted pages',
 'undeletepage'                 => 'View and restore deleted pages',
 'undeletepagetitle'            => "'''The following consists of deleted revisions of [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'View deleted pages',
