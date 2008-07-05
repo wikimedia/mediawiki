@@ -148,7 +148,8 @@ class EmailUserForm {
 		$from = new MailAddress( $wgUser );
 		$subject = $this->subject;
 
-		$prefsTitle = Title::newFromText( 'Preferences', NS_SPECIAL );
+		// Add a standard footer
+		$this->text = $this->text . "\n ---- \n" . wfMsgForContent( 'emailuserfooter', array( $from->name, $to->name ) );
 		
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
 
