@@ -878,8 +878,17 @@ class LanguageConverter {
 		if(array_key_exists($key, $parsed))
 			return array();
 
-
-		$txt = $wgMessageCache->get( $key, true, true, true );
+		if ( strpos( $code, '/' ) === false ) {
+			$txt = $wgMessageCache->get( 'Conversiontable', true, $code );
+		} else {
+			$title = Title::makeTitleSafe( NS_MEDIAWIKI, "Conversiontable/$code" );
+			if ( $title && $title->exists() ) {
+				$article = new Article( $title );
+				$txt = $article->getContents();
+			} else {
+				$txt = '';
+			}
+		}
 
 		// get all subpage links of the form
 		// [[MediaWiki:conversiontable/zh-xx/...|...]]
