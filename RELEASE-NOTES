@@ -179,7 +179,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added blank special page Special:BlankPage for benchmarking, etc.
 * Foreign repo file descriptions and thumbnails are now cached.
 * (bug 11732) Allow localisation of edit button images
- 
+* New hook ParserBeforeTranscludeTemplate to allow extensions to modify the text
+  and title of a template being transcluded in a way similar to how
+  ParserBeforeStrip effects the page being parsed
+
 === Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository
