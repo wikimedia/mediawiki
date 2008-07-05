@@ -1004,8 +1004,10 @@ $2',
 'group'      => 'المجموعة:',
 'group-user' => 'يوزرز',
 
-'group-user-member' => 'يوزر',
+'group-user-member'     => 'يوزر',
+'group-suppress-member' => 'أوفرسايت',
 
+'grouppage-user'  => '{{ns:project}}:يوزرز',
 'grouppage-sysop' => '{{ns:project}}:اداريين',
 
 # Rights
@@ -1138,26 +1140,39 @@ $2',
 'randomredirect' => 'تحويله عشوائيه',
 
 # Statistics
-'statistics' => 'احصائيات',
-'userstats'  => 'الاحصاءات بتاعة اليوزر',
+'statistics'             => 'احصائيات',
+'userstats'              => 'الاحصاءات بتاعة اليوزر',
+'statistics-mostpopular' => 'اكتر صفحات اتشافت',
 
-'disambiguations' => 'صفحات التوضيح',
+'disambiguations'      => 'صفحات التوضيح',
+'disambiguationspage'  => 'Template:توضيح',
+'disambiguations-text' => "الصفحات دي بتوصل لـ '''صفحة توضيح'''. المفروض على العكس انهم يوصلو ل للصفحات المناسبة. <br />أي صفحة بتتعامل على انها صفحة توضيح إذا كانت بتستعمل قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects' => 'تحويلات مزدوجه',
+'doubleredirects'     => 'تحويلات مزدوجه',
+'doubleredirectstext' => 'الصفحة دي فيها لستة الصفحات اللي فيها تحويلة لصفحة تانية فيها تحويلة. كل سطر في اللستة دي  فيه لينك للتحويلة الأولانية والتانية و كمان للصفحة بتاعة التحويلة التانية و اللي غالبا هي الصفحة الاصلية اللي المفروض التحويلة الاولانية توصل ليها.',
 
 'brokenredirects'        => 'تحويلات مكسوره',
+'brokenredirectstext'    => 'التحويلات دي بتوصل لصفحات مش موجودة:',
+'brokenredirects-edit'   => '(تحرير)',
 'brokenredirects-delete' => '(مسح)',
 
 'withoutinterwiki'         => 'صفحات بدون وصلات للغات تانيه',
 'withoutinterwiki-summary' => 'الصفحات دي  مالهاش لينكات لنسخ بلغات تانية:',
+'withoutinterwiki-legend'  => 'بريفيكس',
+'withoutinterwiki-submit'  => 'عرض',
 
-'fewestrevisions' => ' اقل المقالات فى عدد التعديلات',
+'fewestrevisions' => 'اقل المقالات فى عدد التعديلات',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|بايت|بايت}}',
+'ncategories'             => '$1 {{PLURAL:$1|تصنيف واحد|تصنيفين|تصنيفات|تصنيف}}',
 'nlinks'                  => '{{PLURAL:$1|وصله واحده|وصلتين|$1 وصلات|$1 وصله}}',
 'nmembers'                => '$1 {{PLURAL:$1|عضو|اعضاء}}',
+'nrevisions'              => '{{PLURAL:$1|تعديل وحيد|تعديلين|$1 تعديلات|$1 تعديل|$1}}',
+'nviews'                  => '{{PLURAL:$1|مشاهدة واحدة|مشاهدتين|$1 مشاهدات|$1 مشاهدة}}',
+'specialpage-empty'       => 'مافيش نتايج للتقرير دا.',
 'lonelypages'             => 'صفحات يتيمه',
+'lonelypagestext'         => 'الصفحات دي ماعندهاش لينكات  من الصفحات التانية في {{SITENAME}}.',
 'uncategorizedpages'      => 'صفحات مش متصنفه',
 'uncategorizedcategories' => 'تصنيفات مش متصنفه',
 'uncategorizedimages'     => 'ملفات مش متصنفه',
@@ -1167,17 +1182,23 @@ $2',
 'popularpages'            => 'صفحات مشهورة',
 'wantedcategories'        => 'تصانيف مطلوبه',
 'wantedpages'             => 'صفحات مطلوبه',
-'mostlinked'              => 'اكتر صفحات مرتبطه بصفحات تانيه',
+'missingfiles'            => 'ملفات ضايعة',
+'mostlinked'              => 'اكتر صفحات موصولة بصفحات تانيه',
 'mostlinkedcategories'    => 'اكتر التصانيف فى عدد الارتباطات',
 'mostlinkedtemplates'     => 'اكتر القوالب فى عدد الوصلات',
 'mostcategories'          => 'اكتر الصفحات فى عدد التصانيف',
 'mostimages'              => 'اكتر الملفات فى عدد الارتباطات',
 'mostrevisions'           => 'اكتر المقالات فى عدد التعديلات',
-'prefixindex'             => 'فهرس',
+'prefixindex'             => 'فهرس البريفكسات',
 'shortpages'              => 'صفحات قصيره',
 'longpages'               => 'صفحات طويله',
 'deadendpages'            => 'صفحات ما بتوصلش  لحاجه',
+'deadendpagestext'        => 'الصفحات دي مابتوصلش  لصفحات تانية في {{SITENAME}}.',
 'protectedpages'          => 'صفحات محميه',
+'protectedpages-indef'    => 'عمليات الحماية اللي مش متحددة بس',
+'protectedpagestext'      => 'الصفحات دي محمية من النقل أو التعديل',
+'protectedpagesempty'     => 'مافيش  صفحات محمية دلوقتي  على حسب المحددات دي.',
+'protectedtitles'         => 'عناوين محمية',
 'listusers'               => 'لستة الأعضاء',
 'newpages'                => 'صفحات جديده',
 'ancientpages'            => 'اقدم الصفحات',
@@ -1196,6 +1217,7 @@ $2',
 'all-logs-page'        => 'كل السجلات',
 'log-search-legend'    => 'دور على سجلات',
 'log-search-submit'    => 'روح',
+'log-title-wildcard'   => 'التدوير على عناوين تبتدي بالنص دا',
 
 # Special:Allpages
 'allpages'          => 'كل الصفحات',
@@ -1226,19 +1248,30 @@ $2',
 'listusers-noresult' => 'ما في ش يوزر',
 
 # Special:Listgrouprights
-'listgrouprights'       => 'حقوق مجموعات اليوزرز',
-'listgrouprights-group' => 'المجموعة',
+'listgrouprights'          => 'حقوق مجموعات اليوزرز',
+'listgrouprights-summary'  => 'دي لستة بمجموعات اليوزرز المتعرفة في الويكي دا، بالحقوق اللي معاهم.
+ممكن تلاقي معلومات زيادة عن الحقوق بتاعة كل واحد  [[{{MediaWiki:Listgrouprights-helppage}}|هنا]].',
+'listgrouprights-group'    => 'المجموعة',
+'listgrouprights-rights'   => 'الحقوق',
+'listgrouprights-helppage' => 'Help: حقوق المجموعات',
+'listgrouprights-members'  => '(لستة الأعضاء)',
 
 # E-mail user
-'emailuser'    => ' ابعت ايميل لليوزر ده',
-'emailpage'    => 'ابعت ايميل لليوزر ده',
-'noemailtitle' => 'مافيش  عنوان ايميل',
-'emailfrom'    => 'من',
-'emailto'      => 'لـ',
-'emailsubject' => 'الموضوع',
-'emailsend'    => 'إبعت',
-'emailccme'    => 'ابعتلي نسخة من الايميل اللي بعته.',
-'emailsent'    => 'الإيميل اتبعت',
+'mailnologin'     => 'مافيش عنوان نبعت عليه',
+'mailnologintext' => 'لازم تعمل [[Special:Userlogin|تسجيل الدخول]] و تدخل ايميل صحيح في صفحة [[Special:Preferences|التفضيلات]] علشان تقدر تبعت ايميلات لليوزرز التانيين.',
+'emailuser'       => 'ابعت ايميل لليوزر دا',
+'emailpage'       => 'ابعت ايميل لليوزر ده',
+'emailpagetext'   => 'لو اليوزر دا دخل ايميل صحيح في التفضيلات بتاعته،
+ف حيتبعت له رسالة واحدة بس حسب الاستمارة اللي تحت دي.
+عنوان الايميل اللي دخلته في التفضيلات بتاعتك
+ح يظهر في  على انه عنوان الاستمارة و بكدة اللي حيستقبله ح يقدر يرد على الايميل.',
+'noemailtitle'    => 'مافيش  عنوان ايميل',
+'emailfrom'       => 'من',
+'emailto'         => 'لـ',
+'emailsubject'    => 'الموضوع',
+'emailsend'       => 'إبعت',
+'emailccme'       => 'ابعتلي نسخة من الايميل اللي بعته.',
+'emailsent'       => 'الإيميل اتبعت',
 
 # Watchlist
 'watchlist'            => 'لستة الصفحات اللى باراقبها',
@@ -1517,17 +1550,25 @@ $2',
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'      => 'العرض',
-'exif-model'           => 'موديل الكاميرا',
-'exif-copyright'       => 'صاحب الحقوق الممحفوظة',
-'exif-colorspace'      => 'فرق اللون',
-'exif-usercomment'     => 'تعليقات اليوزر',
-'exif-brightnessvalue' => 'الضي',
-'exif-flash'           => 'فلاش',
-'exif-flashenergy'     => 'طاقة الفلاش',
-'exif-filesource'      => 'مصدر الملف',
-'exif-gpsstatus'       => 'حالة جهاز الاستقبال',
-'exif-gpsspeedref'     => 'وحدة السرعة',
+'exif-imagewidth'       => 'العرض',
+'exif-imagedescription' => 'عنوان الصورة',
+'exif-model'            => 'موديل الكاميرا',
+'exif-copyright'        => 'صاحب الحقوق الممحفوظة',
+'exif-colorspace'       => 'فرق اللون',
+'exif-usercomment'      => 'تعليقات اليوزر',
+'exif-brightnessvalue'  => 'الضي',
+'exif-flash'            => 'فلاش',
+'exif-flashenergy'      => 'طاقة الفلاش',
+'exif-filesource'       => 'مصدر الملف',
+'exif-gpsstatus'        => 'حالة جهاز الاستقبال',
+'exif-gpsspeedref'      => 'وحدة السرعة',
+
+'exif-unknowndate' => 'تاريخ مش معروف',
+
+'exif-orientation-1' => 'عادي', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'دار بالعرض', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'دار 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'دار بالطول', # 0th row: bottom; 0th column: left
 
 'exif-componentsconfiguration-0' => 'مش موجود',
 
@@ -1579,51 +1620,96 @@ $2',
 'table_pager_empty'        => 'ما في ش نتايج',
 
 # Auto-summaries
-'autosumm-new' => 'صفحه جديده: $1',
+'autoredircomment' => 'تحويل لـ [[$1]]',
+'autosumm-new'     => 'صفحه جديده: $1',
+
+# Size units
+'size-bytes'     => '$1 بايت',
+'size-kilobytes' => '$1 كيلوبايت',
+'size-megabytes' => '$1 ميجابايت',
+'size-gigabytes' => '$1 جيجابايت',
 
 # Live preview
 'livepreview-loading' => 'تحميل…',
+'livepreview-ready'   => 'تحميل… جاهز!',
+'livepreview-failed'  => 'البروفة الحية مانفعتش!
+جرب البروفة العادية.',
+'livepreview-error'   => 'الاتصال مانفعش: $1 "$2"
+جرب البروفة العادية.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'التغييرات الأحدث من $1 ثانية ممكن ما تظهرش في اللستة دي.',
+'lag-warn-high'   => 'علشان في تأخير كبير في تحديث قاعدة البيانات بتاعة السيرفر، التغييرات أحدث من $1 ثانية
+ممكن ما تظهرش في اللستة دي.',
 
 # Watchlist editor
-'watchlistedit-noitems'       => 'لستة الرقابة بتاعتك  مافيهاش ولا عنوان.',
-'watchlistedit-normal-title'  => 'تعديل لستة المراقبة',
-'watchlistedit-normal-legend' => 'شيل العناوين من لستة المراقبة',
-'watchlistedit-normal-submit' => 'شيل العناوين',
-'watchlistedit-raw-titles'    => 'العناوين:',
-'watchlistedit-raw-done'      => 'لستة المراقبة بتاعتك اتحدثت خلاص.',
+'watchlistedit-numitems'       => 'لستة المراقبة بتاعتك  فيها{{PLURAL:$1|عنوان واحد|$1 عنوان}}، من غير صفحات المناقشة.',
+'watchlistedit-noitems'        => 'لستة الرقابة بتاعتك  مافيهاش ولا عنوان.',
+'watchlistedit-normal-title'   => 'تعديل لستة المراقبة',
+'watchlistedit-normal-legend'  => 'شيل العناوين من لستة المراقبة',
+'watchlistedit-normal-explain' => 'العناوين في لستة المراقبة بتاعتك معروضة تحت. علشان تشيل عنوان، دوس على
+	الصندوق اللي جنبه، ودوس على شيل العناوين. ممكن كمان [[Special:Watchlist/raw|تعديل اللستة الخام]].',
+'watchlistedit-normal-submit'  => 'شيل العناوين',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} اتشال من لستة المراقبة بتاعتك:',
+'watchlistedit-raw-title'      => 'تعديل لستة المراقبة الخام',
+'watchlistedit-raw-legend'     => 'تعديل لستة المراقبة الخام',
+'watchlistedit-raw-explain'    => 'العناوين في لستة مراقبتك معروضة تحت، وممكن تعدلها لما تزود او تشيل من اللستة؛ عنوان واحد في السطر. لما تخلص، دوس تحديث لستة المراقبة.
+	ممكن كمان [[Special:Watchlist/edit|تستعمل المحرر القياسي]].',
+'watchlistedit-raw-titles'     => 'العناوين:',
+'watchlistedit-raw-submit'     => 'تحديث لستة المراقبة',
+'watchlistedit-raw-done'       => 'لستة المراقبة بتاعتك اتحدثت خلاص.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} اتزود:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} اتشال:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'عرض التعديلات المرتبطه',
 'watchlisttools-edit' => 'عرض وتعديل لستة الصفحات اللى باراقبها',
 'watchlisttools-raw'  => 'عدل لستة المراقبه الخام',
 
+# Hebrew month names
+'hebrew-calendar-m11-gen' => 'آب',
+'hebrew-calendar-m12-gen' => 'أيلول',
+
+# Signatures
+'timezone-utc' => 'يو تي سي',
+
+# Core parser functions
+'unknown_extension_tag' => 'تاج بتاع امتداد مش معروف "$1"',
+
 # Special:Version
-'version'                     => 'نسخه', # Not used as normal message but as header for the special page itself
-'version-specialpages'        => 'صفحات خاصة',
-'version-variables'           => 'المتغيرات',
-'version-other'               => 'تانية',
-'version-hooks'               => 'الخطاطيف',
-'version-extension-functions' => 'وظايف الامتداد',
-'version-hook-name'           => 'اسم الخطاف',
-'version-hook-subscribedby'   => 'اشتراك باسم',
-'version-version'             => 'نسخه',
-'version-license'             => 'الترخيص',
-'version-software'            => 'السوفتوير المتستاب',
-'version-software-product'    => 'المنتج',
-'version-software-version'    => 'النسخه',
+'version'                          => 'نسخه', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'الامتدادات المتثبتة',
+'version-specialpages'             => 'صفحات مخصوصة',
+'version-parserhooks'              => 'خطاطيف البريزر',
+'version-variables'                => 'المتغيرات',
+'version-other'                    => 'تانية',
+'version-mediahandlers'            => 'متحكمات الميديا',
+'version-hooks'                    => 'الخطاطيف',
+'version-extension-functions'      => 'وظايف الامتداد',
+'version-parser-extensiontags'     => 'التاجز بتوع امتداد البريزر',
+'version-parser-function-hooks'    => 'خطاطيف دالة المحلل',
+'version-skin-extension-functions' => 'الوظايف بتاعة امتداد الواجهة',
+'version-hook-name'                => 'اسم الخطاف',
+'version-hook-subscribedby'        => 'اشتراك باسم',
+'version-version'                  => 'نسخه',
+'version-license'                  => 'الترخيص',
+'version-software'                 => 'السوفتوير المتستاب',
+'version-software-product'         => 'المنتج',
+'version-software-version'         => 'النسخه',
 
 # Special:Filepath
-'filepath'        => 'مسار ملف',
-'filepath-page'   => 'الملف:',
-'filepath-submit' => 'المسار',
+'filepath'         => 'مسار ملف',
+'filepath-page'    => 'الملف:',
+'filepath-submit'  => 'المسار',
+'filepath-summary' => 'الصفحة المخصوصة دي بتعرض المسار الكامل  بتاع ملف. الصور بتتعرض  بدقة كاملة، أنواع الملفات التانية ح تشتغل في البرنامج بتاعهم مباشرة؛ دخل اسم الملف  من غير البريفيكس"{{ns:image}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'دور على الملفات المتكررة',
 'fileduplicatesearch-summary'  => 'دور على الملفات المتكررة على اساس قيمة الهاش بتاعتها.
 
 دخل اسم الملف من غير البريفكس "{{ns:image}}:".',
-'fileduplicatesearch-legend'   => ' تدوير على مكرر',
-'fileduplicatesearch-filename' => 'اسم الفايل:',
+'fileduplicatesearch-legend'   => 'تدوير على متكرر',
+'fileduplicatesearch-filename' => 'اسم الملف:',
 'fileduplicatesearch-submit'   => 'تدوير',
 'fileduplicatesearch-info'     => '$1 × $2 بكسل<br />حجم الملف: $3<br />نوع MIME: $4',
 'fileduplicatesearch-result-1' => 'الملف "$1" ما لهو ش تكرار متطابق.',
@@ -1639,12 +1725,16 @@ $2',
 'specialpages-group-login'       => 'ادخل / سجل',
 'specialpages-group-changes'     => 'السجلات واحدث التغييرات',
 'specialpages-group-media'       => 'تقارير الميديا وعمليات التحميل',
-'specialpages-group-users'       => 'اليوزرز والصلاحيات',
+'specialpages-group-users'       => 'اليوزرز و الحقوق',
 'specialpages-group-highuse'     => 'صفحات بتستخدم كتير',
 'specialpages-group-pages'       => 'لستات الصفحة',
 'specialpages-group-pagetools'   => 'أدوات الصفحات',
 'specialpages-group-wiki'        => 'بيانات وأدوات الويكى',
 'specialpages-group-redirects'   => 'صفحات  التحويل الخاصه',
 'specialpages-group-spam'        => 'أدوات السبام',
+
+# Special:Blankpage
+'blankpage'              => 'صفحة فاضية',
+'intentionallyblankpage' => 'الصفحة دي متسابة فاضية بالقصد',
 
 );

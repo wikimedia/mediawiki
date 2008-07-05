@@ -1650,6 +1650,7 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'emailccsubject'  => 'Kopia av ditt meddelande till $1: $2',
 'emailsent'       => 'E-post har nu skickats',
 'emailsenttext'   => 'Din e-post har skickats.',
+'emailuserfooter' => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Min bevakningslista',
@@ -1815,7 +1816,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'restriction-level-all'           => 'alla nivåer',
 
 # Undelete
-'undelete'                     => 'Återställ borttagna sidor',
+'undelete'                     => 'Återställ sidversioner',
 'undeletepage'                 => 'Visa och återställ borttagna sidor',
 'undeletepagetitle'            => "'''Härunder visas en lista över raderade versioner av [[:$1]]'''.",
 'viewdeletedpage'              => 'Visa raderade sidor',
@@ -2775,6 +2776,6 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 
 # Special:Blankpage
 'blankpage'              => 'Tom sida',
-'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom och används bland annat för benchmarking.',
+'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom.',
 
 );

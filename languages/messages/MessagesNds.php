@@ -520,6 +520,11 @@ $2',
 'titleprotected'       => "Disse Siet is gegen dat nee Opstellen vun [[{{ns:user}}:$1]] schuult worrn.
 As Grund is angeven: ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Slechte Konfiguratschoon: unbekannten Virenscanner: <i>$1</i>',
+'virus-scanfailed'     => 'Scan hett nich klappt (Code $1)',
+'virus-unknownscanner' => 'Unbekannten Virenscanner:',
+
 # Login and logout pages
 'logouttitle'                => 'Bruker-Afmellen',
 'logouttext'                 => 'Du büst nu afmellt. Du kannst {{SITENAME}} nu anonym wiederbruken oder di ünner en annern Brukernaam wedder anmellen.',
@@ -1930,6 +1935,7 @@ In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'move-watch'              => 'Op disse Siet oppassen',
 'movepagebtn'             => 'Siet schuven',
 'pagemovedsub'            => 'Schuven hett Spood',
+'movepage-moved'          => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ünner dissen Naam gifft dat al ene Siet.
 Bitte söök en annern Naam ut.',
 'cantmove-titleprotected' => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',
@@ -2657,5 +2663,9 @@ Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
 'specialpages-group-wiki'        => 'Systemdaten un Warktüüch',
 'specialpages-group-redirects'   => 'Redirect-Spezialsieden',
 'specialpages-group-spam'        => 'Spam-Warktüüch',
+
+# Special:Blankpage
+'blankpage'              => 'Leddige Sied',
+'intentionallyblankpage' => 'Disse Sied is mit Afsicht leddig.',
 
 );

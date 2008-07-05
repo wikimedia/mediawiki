@@ -2780,6 +2780,6 @@ $1',
 
 # Special:Blankpage
 'blankpage'              => 'Порожня сторінка',
-'intentionallyblankpage' => 'Цю сторінку навмисне полишили порожньою',
+'intentionallyblankpage' => 'Цю сторінку навмисне залишили порожньою',
 
 );

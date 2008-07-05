@@ -726,6 +726,11 @@ $2',
 'ns-specialprotected'  => 'الصفحات في النطاق {{ns:special}} لا يمكن تعديلها.',
 'titleprotected'       => "هذا العنوان تمت حمايته من الإنشاء بواسطة [[User:$1|$1]]. السبب المعطى هو ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'سيء : ماسح فيروسات غير معروف: <i>$1</i>',
+'virus-scanfailed'     => 'فشل المسح (كود $1)',
+'virus-unknownscanner' => 'مضاد فيرس غير معروف:',
+
 # Login and logout pages
 'logouttitle'                => 'خروج المستخدم',
 'logouttext'                 => '<strong>أنت الآن غير مسجل الدخول للنظام.</strong><br />
@@ -2927,7 +2932,8 @@ $1',
 'hebrew-calendar-m11-gen' => 'آف',
 'hebrew-calendar-m12-gen' => 'أيلول',
 
-'timezone-utc'   => 'ت‌ع‌م',
+# Signatures
+'timezone-utc' => 'ت‌ع‌م',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
@@ -2988,5 +2994,9 @@ $1',
 'specialpages-group-wiki'        => 'بيانات الويكي وأدوات',
 'specialpages-group-redirects'   => 'صفحات خاصة تحول',
 'specialpages-group-spam'        => 'أدوات السبام',
+
+# Special:Blankpage
+'blankpage'              => 'صفحة فارغة',
+'intentionallyblankpage' => 'هذه الصفحة تركت فارغة عن قصد',
 
 );

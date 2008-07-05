@@ -5,8 +5,8 @@
  * @file
  *
  * @author MF-Warburg
- * @author Siebrand
  * @author SPQRobin
+ * @author Siebrand
  */
 
 $skinNames = array(

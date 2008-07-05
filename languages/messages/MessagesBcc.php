@@ -938,7 +938,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 # Preferences page
 'preferences'              => 'ترجیحات',
 'mypreferences'            => 'منی ترجیحات',
-'prefs-edits'              => 'تعداد اصلاعات:',
+'prefs-edits'              => 'تعداد اصلاحات:',
 'prefsnologin'             => 'وارد نهیت',
 'prefsnologintext'         => 'شما بایدن  [[Special:Userlogin|وارد بیت]]  په تنظیم کتن وتی ترجیحات',
 'prefsreset'               => 'ترجیحات چه ذخیره ترینگ بوتنت.',

@@ -13,9 +13,9 @@
  * @author Beau
  * @author Stv
  * @author Siebrand
- * @author Lajsikonik
- * @author Equadus
  * @author Masti
+ * @author Equadus
+ * @author Lajsikonik
  * @author Ymar
  * @author Matma Rex
  * @author Szczepan1990
