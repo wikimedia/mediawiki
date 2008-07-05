@@ -1667,7 +1667,7 @@ wiki: $PAGEEDITOR_WIKI
 'restriction-level-all'           => '任何等級',
 
 # Undelete
-'undelete'                     => '去睇刪除咗嘅頁面',
+'undelete'                     => '恢復修訂',
 'undeletepage'                 => '去睇同恢復刪除咗嘅頁面',
 'undeletepagetitle'            => "'''下面包括咗[[:$1]]嘅已刪除修訂'''。",
 'viewdeletedpage'              => '去睇被刪除咗嘅頁面',
