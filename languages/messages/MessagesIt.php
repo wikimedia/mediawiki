@@ -1512,6 +1512,7 @@ Ulteriori informazioni sui diritti individuali possono essere trovati in [[{{Med
 'emailccsubject'  => 'Copia del messaggio inviato a $1: $2',
 'emailsent'       => 'Messaggio inviato',
 'emailsenttext'   => 'Il messaggio e-mail è stato inviato.',
+'emailuserfooter' => 'Questa e-mail è stata inviata da $1 a $2 attraverso la funzione "Invia un messaggio e-mail all\'utente" su {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Osservati speciali',

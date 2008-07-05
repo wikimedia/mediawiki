@@ -1515,6 +1515,7 @@ E-mejlowa adresa, kotruž sy w swojich nastajenjach zapodał, jewi so jako adres
 'emailccsubject'  => 'Kopija twojeje powěsće wužiwarjej $1: $2',
 'emailsent'       => 'Mejlka wotesłana',
 'emailsenttext'   => 'Twoja mejlka bu wotesłana.',
+'emailuserfooter' => 'Tuta e-mejlka bu z pomocu funkcije "Wužiwarjej mejlku pósłać" na {{SITENAME}} wot $1 do $2 pósłana.',
 
 # Watchlist
 'watchlist'            => 'Wobkedźbowanki',
@@ -1678,7 +1679,7 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).
 'restriction-level-all'           => 'wšě',
 
 # Undelete
-'undelete'                     => 'Wušmórnjenu stronu wobnowić',
+'undelete'                     => 'Wersije wobnowić',
 'undeletepage'                 => 'Wušmórnjene strony wobnowić',
 'undeletepagetitle'            => "'''Slědowace wudaće pokazuje wušmórnjene wersije wot [[:$1]]'''.",
 'viewdeletedpage'              => 'Wušmórnjene strony wobhladać',
@@ -1884,6 +1885,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-watch'              => 'Stronu wobkedźbować',
 'movepagebtn'             => 'Stronu přesunyć',
 'pagemovedsub'            => 'Přesunjenje wuspěšne',
+'movepage-moved'          => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',
 'cantmove-titleprotected' => 'Njemóžeš stronu do tutoho městna přesunyć, dokelž nowy titul bu přećiwo wutworjenju škitany',
 'talkexists'              => 'Strona sama bu z wuspěchom přesunjena, diskusijna strona pak njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změš jeju manuelnje.',
@@ -2613,5 +2615,9 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:image}}:\".",
 'specialpages-group-wiki'        => 'Wikijowe daty a nastroje',
 'specialpages-group-redirects'   => 'Daleposrědkowace specialne strony',
 'specialpages-group-spam'        => 'Spamowe nastroje',
+
+# Special:Blankpage
+'blankpage'              => 'Prózdna strona',
+'intentionallyblankpage' => 'Tuta strona je z wotpohladom prózdna.',
 
 );

@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author Rafaelgarcia
  * @author לערי ריינהארט
+ * @author Omnipaedista
  * @author Siebrand
  * @author LeighvsOptimvsMaximvs
  */
@@ -58,83 +59,86 @@ $dateFormats = array(
 );
 
 $specialPageAliases = array(
-	'DoubleRedirects'           => array( 'Redirectiones_duplices' ),
-	'BrokenRedirects'           => array( 'Redirectiones_fractae' ),
-	'Disambiguations'           => array( 'Paginae_disambiguationis', 'Disambiguationes' ),
-	'Userlogin'                 => array( 'Conventum_aperire' ),
-	'Userlogout'                => array( 'Conventum_concludere' ),
-	'CreateAccount'             => array( 'Rationem_creare' ),
-	'Preferences'               => array( 'Praeferentiae' ),
-	'Watchlist'                 => array( 'Paginae_custoditae' ),
-	'Recentchanges'             => array( 'Nuper_mutata', 'Mutationes_recentes' ),
-	'Upload'                    => array( 'Fasciculos_onerare', 'Imagines_onerare' ),
-	'Imagelist'                 => array( 'Fasciculi', 'Imagines' ),
-	'Newimages'                 => array( 'Fasciculi_novi', 'Imagines_novae' ),
-	'Listusers'                 => array( 'Usores' ),
-	'Statistics'                => array( 'Census' ),
-	'Randompage'                => array( 'Pagina_fortuita' ),
-	'Lonelypages'               => array( 'Paginae_non_annexae' ),
-	'Uncategorizedpages'        => array( 'Paginae_sine_categoriis' ),
-	'Uncategorizedcategories'   => array( 'Categoriae_sine_categoriis' ),
-	'Uncategorizedimages'       => array( 'Fasciculi_sine_categoriis', 'Imagines_sine_categoriis' ),
-	'Uncategorizedtemplates'    => array( 'Formulae_sine_categoriis' ),
-	'Unusedcategories'          => array( 'Categoriae_non_in_usu', 'Categoriae_vacuae' ),
-	'Unusedimages'              => array( 'Fasciculi_non_in_usu', 'Imagines_non_in_usu' ),
-	'Wantedpages'               => array( 'Paginae_desideratae', 'Nexus_fracti' ),
-	'Wantedcategories'          => array( 'Categoriae_desideratae' ),
-	'Mostlinked'                => array( 'Paginae_maxime_annexae' ),
-	'Mostlinkedcategories'      => array( 'Categoriae_maxime_annexae' ),
-	'Mostlinkedtemplates'       => array( 'Formulae_maxime_annexae' ),
-	'Mostcategories'            => array( 'Paginae_plurimis_categoriis' ),
-	'Mostimages'                => array( 'Fasciculi_maxime_annexi', 'Imagines_maxime_annexae' ),
-	'Mostrevisions'             => array( 'Paginae_plurimum_mutatae' ),
-	'Fewestrevisions'           => array( 'Paginae_minime_mutatae' ),
-	'Shortpages'                => array( 'Paginae_breves' ),
-	'Longpages'                 => array( 'Paginae_longae' ),
-	'Newpages'                  => array( 'Paginae_novae' ),
-	'Ancientpages'              => array( 'Paginae_veterrimae' ),
-	'Deadendpages'              => array( 'Paginae_sine_nexu' ),
-	'Protectedpages'            => array( 'Paginae_protectae' ),
-	'Protectedtitles'           => array( 'Tituli_protecti' ),
-	'Allpages'                  => array( 'Paginae_omnes', 'Omnes_paginae' ),
-	'Prefixindex'               => array( 'Praefixa', 'Quaerere_per_praefixa' ),
-	'Ipblocklist'               => array( 'Usores_obstructi' ),
-	'Specialpages'              => array( 'Paginae_speciales' ),
-	'Contributions'             => array( 'Conlationes', 'Conlationes_usoris' ),
-	'Emailuser'                 => array( 'Litteras_electronicas_usori_mittere', 'Littera_electronica' ),
-	'Confirmemail'              => array( 'Inscriptionem_electronicam_confirmare' ),
-	'Whatlinkshere'             => array( 'Nexus_ad_paginam' ),
-	'Recentchangeslinked'       => array( 'Nuper_mutata_annexorum' ),
-	'Movepage'                  => array( 'Paginam_movere', 'Movere' ),
-	'Blockme'                   => array( 'Usor_obstructus' ),
-	'Booksources'               => array( 'Librorum_fontes' ),
-	'Categories'                => array( 'Categoriae' ),
-	'Export'                    => array( 'Exportare', 'Paginas_exportare' ),
-	'Version'                   => array( 'Versio' ),
-	'Allmessages'               => array( 'Nuntia_systematis' ),
-	'Log'                       => array( 'Acta' ),
-	'Blockip'                   => array( 'Usorem_obstruere' ),
-	'Undelete'                  => array( 'Paginam_restituere' ),
-	'Import'                    => array( 'Importare', 'Paginas_importare' ),
-	'Lockdb'                    => array( 'Basem_datorum_obstruere' ),
-	'Unlockdb'                  => array( 'Basem_datorum_deobstruere' ),
-	'Userrights'                => array( 'Iures_usorum' ),
-	'MIMEsearch'                => array( 'Quaerere_per_MIME' ),
-	'Unwatchedpages'            => array( 'Paginae_incustoditae' ),
-	'Listredirects'             => array( 'Redirectiones' ),
-	'Revisiondelete'            => array( 'Emendationem_delere' ),
-	'Unusedtemplates'           => array( 'Formulae_non_in_usu' ),
-	'Randomredirect'            => array( 'Redirectio_fortuita' ),
-	'Mypage'                    => array( 'Pagina_mea' ),
-	'Mytalk'                    => array( 'Disputatio_mea' ),
-	'Mycontributions'           => array( 'Conlationes_meae' ),
-	'Listadmins'                => array( 'Magistratus' ),
-	'Listbots'                  => array( 'Bots' ),
-	'Popularpages'              => array( 'Paginae_saepe_monstratae' ),
-	'Search'                    => array( 'Quaerere' ),
-	'Resetpass'                 => array( 'Tesseram_novam_creare' ),
-	'Withoutinterwiki'          => array( 'Paginae_sine_nexibus_ad_linguas_alias', 'Paginae_sine_nexibus_intervicis' ),
-	'MergeHistory'              => array( 'Historias_paginarum_confundere' ),
+	'DoubleRedirects'         => array( 'Redirectiones duplices' ),
+	'BrokenRedirects'         => array( 'Redirectiones fractae' ),
+	'Disambiguations'         => array( 'Paginae disambiguationis', 'Disambiguationes' ),
+	'Userlogin'               => array( 'Conventum aperire' ),
+	'Userlogout'              => array( 'Conventum concludere' ),
+	'CreateAccount'           => array( 'Rationem creare' ),
+	'Preferences'             => array( 'Praeferentiae' ),
+	'Watchlist'               => array( 'Paginae custoditae' ),
+	'Recentchanges'           => array( 'Nuper mutata', 'Mutationes recentes' ),
+	'Upload'                  => array( 'Fasciculos onerare', 'Imagines onerare' ),
+	'Imagelist'               => array( 'Fasciculi', 'Imagines' ),
+	'Newimages'               => array( 'Fasciculi novi', 'Imagines novae' ),
+	'Listusers'               => array( 'Usores' ),
+	'Statistics'              => array( 'Census' ),
+	'Randompage'              => array( 'Pagina fortuita' ),
+	'Lonelypages'             => array( 'Paginae non annexae' ),
+	'Uncategorizedpages'      => array( 'Paginae sine categoriis' ),
+	'Uncategorizedcategories' => array( 'Categoriae sine categoriis' ),
+	'Uncategorizedimages'     => array( 'Fasciculi sine categoriis', 'Imagines sine categoriis' ),
+	'Uncategorizedtemplates'  => array( 'Formulae sine categoriis' ),
+	'Unusedcategories'        => array( 'Categoriae non in usu', 'Categoriae vacuae' ),
+	'Unusedimages'            => array( 'Fasciculi non in usu', 'Imagines non in usu' ),
+	'Wantedpages'             => array( 'Paginae desideratae', 'Nexus fracti' ),
+	'Wantedcategories'        => array( 'Categoriae desideratae' ),
+	'Missingfiles'            => array( 'Fasciculi desiderati', 'Imagines desideratae' ),
+	'Mostlinked'              => array( 'Paginae maxime annexae' ),
+	'Mostlinkedcategories'    => array( 'Categoriae maxime annexae' ),
+	'Mostlinkedtemplates'     => array( 'Formulae maxime annexae' ),
+	'Mostcategories'          => array( 'Paginae plurimis categoriis' ),
+	'Mostimages'              => array( 'Fasciculi maxime annexi', 'Imagines maxime annexae' ),
+	'Mostrevisions'           => array( 'Paginae plurimum mutatae' ),
+	'Fewestrevisions'         => array( 'Paginae minime mutatae' ),
+	'Shortpages'              => array( 'Paginae breves' ),
+	'Longpages'               => array( 'Paginae longae' ),
+	'Newpages'                => array( 'Paginae novae' ),
+	'Ancientpages'            => array( 'Paginae veterrimae' ),
+	'Deadendpages'            => array( 'Paginae sine nexu' ),
+	'Protectedpages'          => array( 'Paginae protectae' ),
+	'Protectedtitles'         => array( 'Tituli protecti' ),
+	'Allpages'                => array( 'Paginae omnes', 'Omnes paginae' ),
+	'Prefixindex'             => array( 'Praefixa', 'Quaerere per praefixa' ),
+	'Ipblocklist'             => array( 'Usores obstructi' ),
+	'Specialpages'            => array( 'Paginae speciales' ),
+	'Contributions'           => array( 'Conlationes', 'Conlationes usoris' ),
+	'Emailuser'               => array( 'Litteras electronicas usori mittere', 'Littera electronica' ),
+	'Confirmemail'            => array( 'Inscriptionem electronicam confirmare' ),
+	'Whatlinkshere'           => array( 'Nexus ad paginam' ),
+	'Recentchangeslinked'     => array( 'Nuper mutata annexorum' ),
+	'Movepage'                => array( 'Paginam movere', 'Movere' ),
+	'Blockme'                 => array( 'Usor obstructus' ),
+	'Booksources'             => array( 'Librorum fontes' ),
+	'Categories'              => array( 'Categoriae' ),
+	'Export'                  => array( 'Exportare', 'Paginas exportare' ),
+	'Version'                 => array( 'Versio' ),
+	'Allmessages'             => array( 'Nuntia systematis' ),
+	'Log'                     => array( 'Acta' ),
+	'Blockip'                 => array( 'Usorem obstruere' ),
+	'Undelete'                => array( 'Paginam restituere' ),
+	'Import'                  => array( 'Importare', 'Paginas importare' ),
+	'Lockdb'                  => array( 'Basem datorum obstruere' ),
+	'Unlockdb'                => array( 'Basem datorum deobstruere' ),
+	'Userrights'              => array( 'Iura usorum' ),
+	'MIMEsearch'              => array( 'Quaerere per MIME' ),
+	'Unwatchedpages'          => array( 'Paginae incustoditae' ),
+	'Listredirects'           => array( 'Redirectiones' ),
+	'Revisiondelete'          => array( 'Emendationem delere' ),
+	'Unusedtemplates'         => array( 'Formulae non in usu' ),
+	'Randomredirect'          => array( 'Redirectio fortuita' ),
+	'Mypage'                  => array( 'Pagina mea' ),
+	'Mytalk'                  => array( 'Disputatio mea' ),
+	'Mycontributions'         => array( 'Conlationes meae' ),
+	'Listadmins'              => array( 'Magistratus' ),
+	'Listbots'                => array( 'Automata' ),
+	'Popularpages'            => array( 'Paginae saepe monstratae' ),
+	'Search'                  => array( 'Quaerere' ),
+	'Resetpass'               => array( 'Tesseram novam creare' ),
+	'Withoutinterwiki'        => array( 'Paginae sine nexibus ad linguas alias', 'Paginae sine nexibus intervicis' ),
+	'MergeHistory'            => array( 'Historias paginarum confundere' ),
+	'Invalidateemail'         => array( 'Adfimationem inscriptionis electronicae abrogare' ),
+	'Blankpage'               => array( 'Pagina vacua' ),
 );
 
 $messages = array(
@@ -250,6 +254,7 @@ $messages = array(
 'category-article-count-limited' => 'Huic categoriae {{PLURAL:$1|est haec pagina|sunt hae $1 paginae}}.',
 'category-file-count'            => '{{PLURAL:$2|Huic categoriae est solum unus fasciculus.|Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}} ex omnino $2 fasciculis.}}',
 'category-file-count-limited'    => 'Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'about'          => 'De hoc',
 'article'        => 'Pagina contenta continens',
@@ -268,6 +273,9 @@ $messages = array(
 'anontalk'       => 'Disputatio huius IP',
 'navigation'     => 'Navigatio',
 'and'            => 'et',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Erratum',
 'returnto'          => 'Redire ad $1.',
@@ -398,6 +406,8 @@ Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{int:spec
 'noconnect'            => 'Nos paenitet! {{SITENAME}} per aerumnas technicas agit, et server basis datorum invenire non potest. <br />
 $1',
 'cachederror'          => 'Quae sequuntur sunt ex exemplo conditivo paginae quaesitae, fortasse non recente.',
+'readonly'             => 'Basis datorum obstructa',
+'missingarticle-diff'  => '(Diff: $1, $2)',
 'internalerror'        => 'Erratum internum',
 'internalerror_info'   => 'Erratum internum: $1',
 'filecopyerror'        => 'Non potuit fasciculus "$1" ad "$2" transcribi.',
@@ -411,6 +421,7 @@ $1',
 'badtitletext'         => 'Nomen paginae quaestae fuit invalidum, vacuum, aut praeverbium interlingualem vel intervicialem habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.',
 'viewsource'           => 'Fontem videre',
 'viewsourcefor'        => 'pro $1',
+'actionthrottled'      => 'Actio strangulata',
 'protectedpagetext'    => 'Haec pagina protecta est, ut emendationes prohibeantur.',
 'viewsourcetext'       => 'Fontem videas et exscribeas:',
 'protectedinterface'   => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
@@ -418,6 +429,9 @@ $1',
 'ns-specialprotected'  => 'Paginae speciales recenseri non possunt.',
 'titleprotected'       => "Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur.
 Ratio data est ''$2''.",
+
+# Virus scanner
+'virus-unknownscanner' => 'antivirus incognitus:',
 
 # Login and logout pages
 'logouttitle'                => 'Conventum concludere',
@@ -494,7 +508,8 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
-'resetpass' => 'Tesseram novam creare',
+'resetpass'         => 'Tesseram novam creare',
+'resetpass_missing' => 'Nulla data formarum.',
 
 # Edit page toolbar
 'bold_sample'    => 'Litterae pingues',
@@ -553,6 +568,7 @@ Potes ad $1 aut [[{{MediaWiki:Grouppage-sysop}}|magistratum]] alium nuntium mitt
 Nota bene te non posse proprietate "Litteras electronicas usori mittere" uti, nisi tibi est inscriptio electronica confirmata apud [[Special:Preferences|praeferentias usoris tuas]].
 
 Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones ullas roges.',
+'blockednoreason'           => 'nulla causa data',
 'blockedoriginalsource'     => "Fons '''$1''' subter monstratur:",
 'blockededitsource'         => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
 'whitelistedittitle'        => 'Conventum aperiendum ut recenseas',
@@ -652,12 +668,15 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'historyempty'        => '(vacua)',
 
 # Revision feed
-'history-feed-title' => 'Historia',
+'history-feed-title'          => 'Historia',
+'history-feed-item-nocomment' => '$1 ad $2', # user at time
 
 # Revision deletion
 'rev-deleted-user' => '(nomen usoris remotum est)',
 'rev-delundel'     => 'monstrare/celare',
 'revisiondelete'   => 'Emendationem delere',
+'pagehist'         => 'Historia paginae',
+'revdelete-uname'  => 'nomen usoris',
 
 # History merging
 'mergehistory-from' => 'Pagina imponenda:',
@@ -687,6 +706,8 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'search-section'        => '(pars $1)',
 'search-suggest'        => 'Nonne dicere voluisti: $1',
 'search-interwiki-more' => '(plus)',
+'search-relatedarticle' => 'Relata',
+'searchrelated'         => 'relata',
 'searchall'             => 'omnia',
 'showingresults'        => "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
 'showingresultsnum'     => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
@@ -721,11 +742,14 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'math_failure'             => 'Excutare non potest',
 'math_unknown_error'       => 'error ignotus',
 'math_unknown_function'    => 'functio ignota',
+'math_lexing_error'        => 'erratum lexicale',
+'math_syntax_error'        => 'erratum syntaxis',
 'prefs-personal'           => 'Minutiae rationis',
 'prefs-rc'                 => 'Nuper mutata',
 'prefs-watchlist'          => 'Paginae custoditae',
 'prefs-watchlist-days'     => 'Numerus dierum displicandus in paginis tuis custoditis:',
 'prefs-watchlist-edits'    => 'Numerus recensionum displicandus in paginis tuis custoditis extensis:',
+'prefs-misc'               => 'Misc',
 'saveprefs'                => 'Servare praeferentias',
 'resetprefs'               => 'Reddere praeferentias',
 'oldpassword'              => 'Tessera vetus:',
@@ -741,6 +765,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'recentchangesdays'        => 'Quot dies in nuper mutatis monstrandi:',
 'recentchangescount'       => 'Quantum rerum in nuper mutatis, historiis et actis:',
 'savedprefs'               => 'Praeferentiae tuae servatae sunt.',
+'timezonelegend'           => 'Zona temporis',
 'timezonetext'             => '¹Numerus horarum inter horam tuam et illam moderatri (UTC).',
 'localtime'                => 'Hora indigena',
 'timezoneoffset'           => 'Dissimilitudo cinguli horae¹',
@@ -749,12 +774,14 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'allowemail'               => 'Sinere litteras electronicas inscriptioni electronicae meae mittere',
 'prefs-namespaces'         => 'Spatia nominalia',
 'defaultns'                => 'Quaerere per haec spatia nominalia a defalta:',
+'default'                  => 'praedeterminatum',
 'files'                    => 'Fasciculi',
 
 # User rights
 'userrights'                       => 'Usorum potestas', # Not used as normal message but as header for the special page itself
 'editusergroup'                    => 'Greges usorum recensere',
 'editinguser'                      => "Modificare iura usoris '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'         => 'Recensere greges usorum',
 'userrights-available-add'         => 'Potes usorem aliquem addere ad {{PLURAL:$2|hanc gregem|has greges}}: $1.',
 'userrights-available-remove'      => 'Potes usorem aliquem removere ex {{PLURAL:$2|hac grege|his gregibus}}: $1.',
 'userrights-available-add-self'    => 'Potes te addere ad {{PLURAL:$2|hanc gregem|has greges}}: $1.',
@@ -763,11 +790,13 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 # Groups
 'group'            => 'Grex:',
 'group-user'       => 'Usores',
+'group-bot'        => 'Automata',
 'group-sysop'      => 'Magistratus',
 'group-bureaucrat' => 'Grapheocrates',
 'group-all'        => '(omnes)',
 
 'group-user-member'       => 'Usor',
+'group-bot-member'        => 'Automaton',
 'group-sysop-member'      => 'Magistratus',
 'group-bureaucrat-member' => 'Grapheocrates',
 
@@ -787,6 +816,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'right-suppressredirect'     => 'Non creare redirectionem ex titulo vetere paginam movendo',
 'right-upload'               => 'Fasciculos imponere',
 'right-upload_by_url'        => 'Fasciculum imponere ex inscriptione URL',
+'right-autoconfirmed'        => 'Paginas semiprotectas recensere',
 'right-delete'               => 'Paginas delere',
 'right-bigdelete'            => 'Paginas magnarum historiarum delere',
 'right-deleterevision'       => 'Emendationes paginarum delere vel restituere',
@@ -820,6 +850,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'rcnotefrom'                        => 'Subter sunt <b>$1</b> nuperrime mutata in proxima <b>$2</b> die.',
 'rclistfrom'                        => 'Monstrare mutata nova incipiens ab $1',
 'rcshowhideminor'                   => '$1 recensiones minores',
+'rcshowhidebots'                    => '$1 automata',
 'rcshowhideliu'                     => '$1 usores notos',
 'rcshowhideanons'                   => '$1 usores ignotos',
 'rcshowhidemine'                    => '$1 conlationes meas',
@@ -1206,7 +1237,7 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'restriction-level-autoconfirmed' => 'semi-protecta',
 
 # Undelete
-'undelete'               => 'Paginam deletam restituere',
+'undelete'               => 'Emendationes restituere',
 'undeletepage'           => 'Videre et restituere paginas deletas',
 'viewdeletedpage'        => 'Paginas deletas inspicere',
 'undeletepagetext'       => 'Hae paginae deletae sunt sed tabulis manentes restitui possunt. Tabulae nonnumquam deletae sunt.',
@@ -1481,6 +1512,7 @@ Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic mo
 'imagemaxsize'    => 'Terminare imagines in paginis imaginum ad:',
 'thumbsize'       => 'Magnitudo pollicisunguis:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
+'show-big-image'  => 'Resolutio completa',
 
 # Special:Newimages
 'newimages'     => 'Fasciculi novi',
@@ -1588,10 +1620,13 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum inspicere vel recensere',
 
 # Special:Version
-'version'              => 'Versio', # Not used as normal message but as header for the special page itself
-'version-specialpages' => 'Paginae speciales',
-'version-other'        => 'Alia',
-'version-version'      => 'Versio',
+'version'                  => 'Versio', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Paginae speciales',
+'version-variables'        => 'Variabiles',
+'version-other'            => 'Alia',
+'version-version'          => 'Versio',
+'version-software-product' => 'Productum',
+'version-software-version' => 'Versio',
 
 # Special:Filepath
 'filepath'      => 'Fasciculorum inscriptio',
@@ -1603,5 +1638,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 
 # Special:SpecialPages
 'specialpages' => 'Paginae speciales',
+
+# Special:Blankpage
+'blankpage' => 'Pagina vacua',
 
 );

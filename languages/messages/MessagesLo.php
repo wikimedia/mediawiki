@@ -4,11 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Passawuth
  * @author Tuinui
- * @author Jon Harald Søby
- * @author Nike
+ * @author Passawuth
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(

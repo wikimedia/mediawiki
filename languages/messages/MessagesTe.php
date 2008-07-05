@@ -414,6 +414,8 @@ $2',
 అందుకు ఇచ్చిన కారణం: ''$2''.",
 
 # Virus scanner
+'virus-badscanner'     => 'తప్పుడు స్వరూపణం: తెలియని వైరస్ స్కానర్: <i>$1</i>',
+'virus-scanfailed'     => 'స్కాన్ విఫలమైంది (సంకేతం $1)',
 'virus-unknownscanner' => 'అజ్ఞాత యాంటీవైరస్:',
 
 # Login and logout pages

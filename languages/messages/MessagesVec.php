@@ -9,6 +9,7 @@
  * @author BrokenArrow
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Omnipaedista
  * @author Jon Harald Søby
  */
 
@@ -588,7 +589,7 @@ Se te si rivà qua par sbaglio, basta che te machi el boton '''Indrio''' sul to 
 ---- ''Sta quà l'è la pàxena de discussion de un utente anonimo che no'l se gà gnancora registrà o che no l'efetua el login. De conseguenza xè necessario identificarlo tramite l'[[Indirizo IP|indirizo IP]] numerico. Sto indirizo el pode èssar condivixo da diversi utenti. Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te podi [[Special:Userlogin|registrarte o efetuar el login]] par evitar confuxion con altri utenti in futuro.''",
 'noarticletext'                    => 'In sto momento ła pàxena richiesta la xè voda. Se pol [[Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre pàxene del sito opure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła pàxena desso].',
 'userpage-userdoesnotexist'        => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
-'clearyourcache'                   => "'''Nota:''' dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti: '''Mozilla:''' schiza su ''reload'' (opure ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Sugerimento:</strong> se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
 'usercsspreview'                   => "'''Sta qua la xe solo n'anteprima del proprio CSS personal; le modifiche no le xe gnancora stà salvà!'''",
 'userjspreview'                    => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
@@ -1565,7 +1566,7 @@ Le impostazion atuali par la pagina le xe <strong>$1</strong>:',
 'restriction-level-all'           => 'tuti i livèi',
 
 # Undelete
-'undelete'                     => 'Recupera na pàxena scancełà',
+'undelete'                     => 'Recupera version',
 'undeletepage'                 => 'Varda e recupera pàxene scancełàe',
 'undeletepagetitle'            => "'''Quel che segue el xe conposto da revision scancelà de [[:$1]]'''.",
 'viewdeletedpage'              => 'Varda łe pàxene scancełàe',
@@ -2512,5 +2513,9 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'specialpages-group-wiki'        => 'Dati e strumenti wiki',
 'specialpages-group-redirects'   => 'Reindirizamenti',
 'specialpages-group-spam'        => 'Strumenti anti spam',
+
+# Special:Blankpage
+'blankpage'              => 'Pàxena voda',
+'intentionallyblankpage' => 'Sta pagina la xe stà lassà voda aposta',
 
 );

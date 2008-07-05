@@ -365,6 +365,8 @@ Dat es och all op Änglesch:
 'viewdeleted'             => '$1 aanzeije?',
 'restorelink'             => '{{PLURAL:$1|eijn fottjeschmesse Änderung|$1 fottjeschmesse Änderunge|keij fottjeschmesse Änderunge}}',
 'feed-invalid'            => 'Esu en Zoot Abonnemang jitt et nit.',
+'site-rss-feed'           => 'RSS-Feed för $1',
+'site-atom-feed'          => 'Atom-Feed för $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Atikkel',
@@ -449,17 +451,22 @@ se ändere. Denk dran, hee ändere deit et Ussinn un de Wööt ändere met dänn
 'namespaceprotected'   => 'Do darfs Sigge em Appachtemang „$1“ nit ändere.',
 'customcssjsprotected' => 'Do darfs di Sigg hee nit ändere. Se jehööt enem andere Metmacher un es e Stöck funn dämm sing eije Enstellunge.',
 'ns-specialprotected'  => 'Söndersigge künne mer nit ändere.',
+'titleprotected'       => "Dä Tittel för en Sigg eß verbodde, fum [[{{ns:user}}:$1]], un dr Jrond wohr: ''„$2“''",
+
+# Virus scanner
+'virus-badscanner'     => 'Fääler en de Enstellunge: Dat Projramm <i>$1</i> fö noh Kompjuterwiere ze söke, dat kenne mer nit.',
+'virus-scanfailed'     => 'Dat Söhke eß donevve jejange, dä Koot es „$1“.',
+'virus-unknownscanner' => 'Dat Projamm fö noh Komjuterviere ze sööke kenne mer nit:',
 
 # Login and logout pages
-'logouttitle'                => 'Uslogge',
+'logouttitle'                => 'Ußß_Logge',
 'logouttext'                 => 'Jetz bes de usjelogg.
 
 * Do künnts op de {{SITENAME}} wigger maache, als ene namelose Metmaacher.
 
-* Do kanns De ävver och widder [[Special:Userlogin|enlogge]], als däselve oder och ene andere Metmaacher.
+* Do kanns De ävver och widder [[{{#special:userlogin}}|enlogge]], als däselve oder och ene andere Metmaacher.
 
-* Un Do kanns met <span class="plainlinks">[{{FULLURL:Special:Userlogin|type=signup}} ene neue Metmaacher 
-aanmelde]</span>.
+* Un Do kanns met <span class="plainlinks">{{fullurl:{{#special:userlogin}}|type=signup}} ene neue Metmaacher aanmelde</span>.
 
 <strong>Opjepass:</strong>
 
@@ -473,12 +480,13 @@ Dinge Zojang för hee es do. Do bes jetz aanjemeldt. Denk dran, Do künnts der D
 'yourpasswordagain'          => 'Noch ens dat Passwood',
 'remembermypassword'         => 'Op Duur Aanmelde',
 'yourdomainname'             => 'Ding Domain',
-'externaldberror'            => 'Do wor ene Fähler en de externe Daatebank, oder Do darfs Ding extern Daate nit ändere. Dat Aanmelde jingk donevve.',
-'loginproblem'               => '<strong>Met däm Enlogge es jet scheiv jelaufe.</strong><br />Bes esu jod, un dun et noch ens versöke!',
-'login'                      => 'Enlogge',
+'externaldberror'            => 'Do woo enne Fääler en de äxtärrne Daate_Bangk, oddo Do darrəfß Ding äxtärrn Daate nit änndere. Dat Aanmällde jingk donävve.',
+'loginproblem'               => '<strong>Med däm Ėnnlogge eß jëtt schëijf jeloufe.</strong><br />Beß esu jood, un důnn_et norr_enß fosööhke!',
+'login'                      => 'Ėnnlogge',
 'nav-login-createaccount'    => 'Enlogge, Aanmälde',
-'loginprompt'                => 'Öm op de {{SITENAME}} [[Special:Userlogin|enlogge]] ze künne, muss De de Cookies en Dingem Brauser enjeschalt han.',
-'userlogin'                  => 'Enlogge / Metmaacher wääde',
+'loginprompt'                => 'Öm op de {{SITENAME}} [[Special:Userlogin|ennlogge]] ze künne,
+moßß_De [http://ksh.wikipedia.org/wiki/Help:Cookie%C3%9F de Cookieß] en Dingem [http://ksh.wikipedia.org/wiki/Brauser Brause] ennjeschalldt hann.',
+'userlogin'                  => 'Enlogge odder Metmaacher wääde',
 'logout'                     => 'Uslogge',
 'userlogout'                 => 'Uslogge',
 'notloggedin'                => 'Nit enjelogg',
@@ -488,17 +496,17 @@ Dinge Zojang för hee es do. Do bes jetz aanjemeldt. Denk dran, Do künnts der D
 'gotaccount'                 => 'Do bes ald aanjemeldt op de {{SITENAME}}? Dann jangk nohm $1.',
 'gotaccountlink'             => 'Enlogge',
 'createaccountmail'          => 'Scheck mer en E-Mail met Passwood',
-'badretype'                  => 'Ding zwei enjejovve Passwööder sin ungerscheedlich. Do muss De Dich för ein entscheide.',
-'userexists'                 => 'Ene Metmaacher met däm Name: „<strong>$1</strong>“ jitt et ald. Schad. Do muss De Der ene andere Name usdenke.',
+'badretype'                  => 'Ding zwëij ennjejovvene Paßßwööter sinn ungerscheedlish. Do moßß_De Desch fö_ëijn änntschëijde.',
+'userexists'                 => 'Enne Metmaacher med_däm name: „<strong>$1</strong>“ jidd_et alld. Schaadt. Doh moßß De Der_enne anndere Naame ußdängke.',
 'youremail'                  => 'E-Mail *',
 'username'                   => 'Metmaacher Name:',
-'uid'                        => 'Metmaacher ID:',
+'uid'                        => 'Metmaacher Nommer:',
 'prefs-memberingroups'       => 'Bes en {{PLURAL:$1|de Metmaacherjrupp|<strong>$1</strong> Metmaacherjruppe|keijn Metmaacherjruppe}}',
 'yourrealname'               => 'Dinge richtije Name *',
 'yourlanguage'               => 'Die Sproch, die et Wiki kalle soll:',
 'yourvariant'                => 'Ding Variant',
 'yournick'                   => 'Name för en Ding Ungerschreff:',
-'badsig'                     => 'De Ungeschreff jeiht esu nit - luur noh dem HTML dodren un maach et richtich.',
+'badsig'                     => 'Di Ungeschreff jëijd_esu nit — luer noh dem [http://ksh.wikipedia.org/wiki/HTML HTML] do_dren un maach et rėshtėsh.',
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => '* Dinge richtije Name - kanns De fott looße - wann De en nenne wells, dann weed hee jebruch, öm Ding Beidräch domet ze schmöcke.',
 'loginerror'                 => 'Fähler beim Enlogge',
@@ -1107,7 +1115,9 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'newsectionsummary'                 => 'Neu Avschnet /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked' => 'Verlinkte Änderunge',
+'recentchangeslinked'      => 'Verlinkte Änderunge',
+'recentchangeslinked-page' => 'Dä Sigg iere Tittel:',
+'recentchangeslinked-to'   => 'Zeish de Änderonge fun dä Sigge, wo Lengks noh hee drop sin',
 
 # Upload
 'upload'                      => 'Daate huhlade',
@@ -1116,6 +1126,8 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'reuploaddesc'                => 'Zeröck noh de Sigg zem Huhlade.',
 'uploadnologin'               => 'Nit Enjelogg',
 'uploadnologintext'           => 'Do mööts ald [[Special:Userlogin|enjelogg]] sin, öm Daate huhzelade.',
+'upload_directory_missing'    => "<b>Doof:</b> 
+Dat Fo'zeishnis <code>$1</code> för de huhjelaade Dateie es fott, un dat Websörver Projramm kunnd_et och nit aanlääje.",
 'upload_directory_read_only'  => '<b>Doof:</b> En dat Verzeichnis <code>$1</code> för Dateie dren huhzelade, do kann dat Websörver Projramm nix erenschrieve.',
 'uploaderror'                 => 'Fähler beim Huhlade',
 'uploadtext'                  => "<div dir=\"ltr\">Met däm Formular unge kanns de Belder oder ander Daate huhlade. Do 
@@ -1914,6 +1926,7 @@ Metmaacher Name vun de Schriever wääde dobei metjenomme. All de Trans Wiki Emp
 'tooltip-pt-preferences'          => 'De eije Enstellunge',
 'tooltip-pt-watchlist'            => 'De Liss met de Sigge en Dinge eije Oppassliss',
 'tooltip-pt-mycontris'            => 'en Liss met Dinge eije Beidräch',
+'tooltip-pt-login'                => 'Do moß Desch nit Enlogge, kannz_E ävver jähn maache!',
 'tooltip-pt-logout'               => 'Uslogge',
 'tooltip-ca-talk'                 => 'Dun die Sigg met däm Klaaf övver hee de Sigg aanzeije',
 'tooltip-ca-edit'                 => 'De kanns die Sigg hee ändere — für em Avspeichere, donn eetß ens enen Bleck op de Vör-Aansich',
@@ -1926,6 +1939,7 @@ Metmaacher Name vun de Schriever wääde dobei metjenomme. All de Trans Wiki Emp
 'tooltip-p-logo'                  => 'Houpsigg',
 'tooltip-n-mainpage'              => 'Houpsigk aanzeije',
 'tooltip-n-portal'                => 'Övver dat Projek hee, wat De donn un wie de metmaache kanns, wat wo ze fenge es',
+'tooltip-n-currentevents'         => 'Hee kreß De e beßje Enfommazjohn övver wat jraad am Jang eß',
 'tooltip-n-recentchanges'         => 'En Liss met de neuste Änderunge hee aam Wiki.',
 'tooltip-n-randompage'            => 'Dun en janz zofällije Sigg ußßem Wikki trecke un aanzeije',
 'tooltip-n-help'                  => 'Do kriss De jehollfe',
