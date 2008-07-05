@@ -913,12 +913,6 @@ $parser: parser object
 $text: text being parsed
 $stripState: stripState used (object)
 
-'ParserBeforeTranscludeTemplate': Allows modification of the text and title of a
-  template which is being transcluded
-&$parser: parser object
-&$text: text being transcluded
-&$title: title object of the template
-
 'ParserBeforeTidy': called before tidy and custom tags replacements
 $parser: Parser object being used 
 $text: actual text
