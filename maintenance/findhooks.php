@@ -27,6 +27,7 @@ include('commandLine.inc');
 
 $doc = $IP . '/docs/hooks.txt';
 $pathinc = array(
+	$IP.'/',
 	$IP.'/includes/',
 	$IP.'/includes/api/',
 	$IP.'/includes/db/',
@@ -53,7 +54,7 @@ function getHooksFromDoc() {
 		$content = file_get_contents( $doc );
 		preg_match_all( "/\n'(.*?)'/", $content, $m );
 	}
-	return $m[1];
+	return array_unique( $m[1] );
 }
 
 /**
