@@ -1483,6 +1483,7 @@ $wgMessageStructure = array(
 		'undeletepagetitle',
 		'viewdeletedpage',
 		'undeletepagetext',
+		'undelete-fieldset-title',
 		'undeleteextrahelp',
 		'undeleterevisions',
 		'undeletehistory',

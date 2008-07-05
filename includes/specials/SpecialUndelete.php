@@ -981,7 +981,7 @@ class UndeleteForm {
 			}
 			$table =
 				Xml::openElement( 'fieldset' ) .
-				Xml::element( 'legend', null, wfMsg( 'undelete') ).
+				Xml::element( 'legend', null, wfMsg( 'undelete-fieldset-title' ) ).
 				Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
 					"<tr>
 						<td colspan='2'>" .
