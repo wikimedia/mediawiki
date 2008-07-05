@@ -2,16 +2,8 @@
 /**
  * @ingroup Database
  * @file
- */
-
-/**
  * This is the Postgres database abstraction layer.
  *
- * As it includes more generic version for DB functions,
- * than MySQL ones, some of them should be moved to parent
- * Database class.
- *
- * @ingroup Database
  */
 class PostgresField {
 	private $name, $tablename, $type, $nullable, $max_length;
@@ -747,20 +739,26 @@ class DatabasePostgres extends Database {
 			$keys = array_keys( $args );
 		}
 
+		// If IGNORE is set, we use savepoints to emulate mysql's behavior
 		$ignore = in_array( 'IGNORE', $options ) ? 'mw' : '';
+
+		// If we are not in a transaction, we need to be for savepoint trickery
+		$didbegin = 0;
 		if ( $ignore ) {
-			$didbegin = 0;
 			if (! $this->mTrxLevel) {
 				$this->begin();
 				$didbegin = 1;
 			}
-			pg_query($this->mConn, "SAVEPOINT $ignore");
 			$olde = error_reporting( 0 );
+			// For future use, we may want to track the number of actual inserts
+			// Right now, insert (all writes) simply return true/false
+			$numrowsinserted = 0;
 		}
+
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
-			if ( $wgDBversion >= 8.2 ) {
+			if ( $wgDBversion >= 8.2 && !$ignore ) {
 				$first = true;
 				foreach ( $args as $row ) {
 					if ( $first ) {
@@ -778,32 +776,62 @@ class DatabasePostgres extends Database {
 				foreach ( $args as $row ) {
 					$tempsql = $origsql;
 					$tempsql .= '(' . $this->makeList( $row ) . ')';
+
+					if ( $ignore ) {
+						pg_query($this->mConn, "SAVEPOINT $ignore");
+					}
+
 					$tempres = (bool)$this->query( $tempsql, $fname, $ignore );
+
+					if ( $ignore ) {
+						$bar = pg_last_error();
+						if ($bar != false) {
+							pg_query( $this->mConn, "ROLLBACK TO $ignore" );
+						}
+						else {
+							pg_query( $this->mConn, "RELEASE $ignore" );
+							$numrowsinserted++;
+						}
+					}
+
+					// If any of them fail, we fail overall for this function call
+					// Note that this will be ignored if IGNORE is set
 					if (! $tempres)
 						$res = false;
 				}
 			}
 		}
 		else {
+			// Not multi, just a lone insert
+			if ( $ignore ) {
+				pg_query($this->mConn, "SAVEPOINT $ignore");
+			}
+
 			$sql .= '(' . $this->makeList( $args ) . ')';
 			$res = (bool)$this->query( $sql, $fname, $ignore );
+
+			if ( $ignore ) {
+				$bar = pg_last_error();
+				if ($bar != false) {
+					pg_query( $this->mConn, "ROLLBACK TO $ignore" );
+				}
+				else {
+					pg_query( $this->mConn, "RELEASE $ignore" );
+					$numrowsinserted++;
+				}
+			}
 		}
 
 		if ( $ignore ) {
 			$olde = error_reporting( $olde );
-			$bar = pg_last_error();
-			if ($bar !== FALSE) {
-				pg_query( $this->mConn, "ROLLBACK TO $ignore" );
-			}
-			else {
-				pg_query( $this->mConn, "RELEASE $ignore" );
-			}
 			if ($didbegin) {
 				$this->commit();
 			}
-			## IGNORE always returns true
+
+			// IGNORE always returns true
 			return true;
 		}
+
 
 		return $res;
 
