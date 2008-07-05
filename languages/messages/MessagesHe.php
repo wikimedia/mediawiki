@@ -252,7 +252,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'הודעות_המערכת' ),
 	'Log'                       => array( 'יומנים' ),
 	'Blockip'                   => array( 'חסימת_משתמש', 'חסימה' ),
-	'Undelete'                  => array( 'שחזור_גרסאות' ),
+	'Undelete'                  => array( 'צפייה_בדפים_מחוקים' ),
 	'Import'                    => array( 'ייבוא', 'ייבוא_דפים' ),
 	'Lockdb'                    => array( 'נעילת_בסיס_הנתונים' ),
 	'Unlockdb'                  => array( 'שחרור_בסיס_הנתונים_מנעילה' ),
@@ -1850,7 +1850,7 @@ $NEWPAGE
 'restriction-level-all'           => 'כל רמה',
 
 # Undelete
-'undelete'                     => 'שחזור גרסאות',
+'undelete'                     => 'צפייה בדפים מחוקים',
 'undeletepage'                 => 'צפייה ושחזור דפים מחוקים',
 'undeletepagetitle'            => "'''זוהי רשימת הגרסאות המחוקות של [[:$1]]'''.",
 'viewdeletedpage'              => 'צפייה בדפים מחוקים',
@@ -2885,6 +2885,6 @@ $1',
 
 # Special:Blankpage
 'blankpage'              => 'דף ריק',
-'intentionallyblankpage' => 'דף זה נשאר ריק במכוון',
+'intentionallyblankpage' => 'דף זה נשאר ריק במכוון ומיועד לבדיקת ביצועים וכדומה',
 
 );
