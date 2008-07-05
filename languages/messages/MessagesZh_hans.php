@@ -1620,7 +1620,7 @@ $NEWPAGE
 'restriction-level-all'           => '任何级别',
 
 # Undelete
-'undelete'                     => '恢复被删页面',
+'undelete'                     => '恢复修订',
 'undeletepage'                 => '浏览及恢复被删页面',
 'undeletepagetitle'            => "'''以下包含[[:$1]]的已删除之修订版本'''。",
 'viewdeletedpage'              => '查看被删页面',

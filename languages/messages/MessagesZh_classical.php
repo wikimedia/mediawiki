@@ -1406,7 +1406,7 @@ $NEWPAGE
 'restriction-level-all'           => '有封',
 
 # Undelete
-'undelete'                     => '覽刪',
+'undelete'                     => '復審',
 'undeletepage'                 => '覽刪並還之',
 'undeletepagetitle'            => "'''如下含[[:$1]]刪之審'''。",
 'viewdeletedpage'              => '覽刪',

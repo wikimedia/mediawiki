@@ -1597,7 +1597,7 @@ $NEWPAGE
 'restriction-level-all'           => '任何級別',
 
 # Undelete
-'undelete'                     => '恢復被刪頁面',
+'undelete'                     => '恢復修訂',
 'undeletepage'                 => '瀏覽及恢復被刪頁面',
 'undeletepagetitle'            => "'''以下包含[[:$1]]的已刪除之修訂版本'''。",
 'viewdeletedpage'              => '檢視被刪除的頁面',
