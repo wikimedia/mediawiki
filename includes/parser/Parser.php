@@ -3039,7 +3039,7 @@ class Parser
 		// Cache miss, go to the database
 		list( $text, $title ) = $this->fetchTemplateAndTitle( $title );
 
-		wfRunHooks( 'ParserBeforeTranscludeTemplate', array( &$parser, &$text, &$title ) );
+		wfRunHooks( 'ParserBeforeTranscludeTemplate', array( &$this, &$text, &$title ) );
 
 		if ( $text === false ) {
 			$this->mTplDomCache[$titleText] = false;
