@@ -2040,19 +2040,21 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-relatedsoundfile'            => 'Ffeil sain cysylltiedig',
 'exif-datetimeoriginal'            => 'Dyddiad ac amser y cynhyrchwyd y data',
 'exif-datetimedigitized'           => 'Dyddiad ac amser y digiteiddiwyd',
-'exif-subsectimeoriginal'          => 'iseiliadau DyddiadAmserGwreiddiol',
-'exif-subsectimedigitized'         => 'iseiliadau DyddiadAmserDigidol',
-'exif-exposuretime'                => 'Amser dinoethiad',
+'exif-subsectimeoriginal'          => 'Iseiliadau DyddiadAmserGwreiddiol',
+'exif-subsectimedigitized'         => 'Iseiliadau DyddiadAmserDigidol',
+'exif-exposuretime'                => 'Amser dinoethi',
 'exif-exposuretime-format'         => '$1 eiliad ($2)',
 'exif-fnumber'                     => 'Cymhareb yr agorfa (rhif F)',
-'exif-exposureprogram'             => 'Rhaglen Dinoethiad',
+'exif-exposureprogram'             => 'Rhaglen Dinoethi',
 'exif-spectralsensitivity'         => 'Sensitifedd sbectrol',
 'exif-isospeedratings'             => 'Cyfraddiad cyflymder ISO',
 'exif-shutterspeedvalue'           => 'Cyflymder y caead',
 'exif-aperturevalue'               => 'Agorfa',
 'exif-brightnessvalue'             => 'Disgleirdeb',
 'exif-exposurebiasvalue'           => 'Bias dinoethiad',
+'exif-maxaperturevalue'            => "Maint mwyaf agorfa'r glan",
 'exif-subjectdistance'             => 'Pellter y goddrych',
+'exif-meteringmode'                => 'Modd mesur goleuni',
 'exif-lightsource'                 => 'Tarddiad golau',
 'exif-flash'                       => 'Fflach',
 'exif-focallength'                 => 'Hyd ffocal y lens',
@@ -2061,7 +2063,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-subjectlocation'             => 'Lleoliad y goddrych',
 'exif-exposureindex'               => 'Indecs dinoethiad',
 'exif-sensingmethod'               => 'Dull synhwyro',
-'exif-filesource'                  => 'Tarddiad ffeil',
+'exif-filesource'                  => 'Ffynhonnell y ffeil',
 'exif-scenetype'                   => 'Math o olygfa',
 'exif-cfapattern'                  => 'Patrwm CFA',
 'exif-exposuremode'                => 'Dull dinoethiad',
@@ -2075,6 +2077,10 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpslongitude'                => 'Hydred',
 'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
 'exif-gpsaltitude'                 => 'Uchder',
+'exif-gpsdestdistance'             => 'Pellter i ben y daith',
+'exif-gpsdatestamp'                => 'Dyddiad GPS',
+
+'exif-unknowndate' => 'Dyddiad anhysbys',
 
 'exif-orientation-3' => 'Wedi ei droi 180°', # 0th row: bottom; 0th column: right
 
@@ -2084,11 +2090,13 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-subjectdistance-value' => '$1 medr',
 
+'exif-meteringmode-0'   => 'Anhysbys',
 'exif-meteringmode-1'   => 'Cyfartaledd',
 'exif-meteringmode-5'   => 'Patrwm',
 'exif-meteringmode-6'   => 'Rhannol',
 'exif-meteringmode-255' => 'Arall',
 
+'exif-lightsource-0'  => 'Anhysbys',
 'exif-lightsource-1'  => 'Golau dydd',
 'exif-lightsource-2'  => 'Fflwroleuol',
 'exif-lightsource-4'  => 'Flach',
@@ -2111,6 +2119,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-sharpness-1' => 'Meddal',
 'exif-sharpness-2' => 'Caled',
+
+'exif-subjectdistancerange-0' => 'Anhysbys',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Lledred gogledd',
@@ -2321,5 +2331,9 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:image}}:".',
 'specialpages-group-wiki'        => 'Data ac offer y wici',
 'specialpages-group-redirects'   => 'Tudalennau arbennig ailgyfeirio',
 'specialpages-group-spam'        => 'Offer sbam',
+
+# Special:Blankpage
+'blankpage'              => 'Tudalen wag',
+'intentionallyblankpage' => 'Gadawyd y dudalen hon yn wag o fwriad',
 
 );

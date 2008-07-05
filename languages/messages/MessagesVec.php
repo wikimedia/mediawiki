@@ -1566,7 +1566,7 @@ Le impostazion atuali par la pagina le xe <strong>$1</strong>:',
 'restriction-level-all'           => 'tuti i livèi',
 
 # Undelete
-'undelete'                     => 'Recupera version',
+'undelete'                     => 'Recupera na pàxena scancełà',
 'undeletepage'                 => 'Varda e recupera pàxene scancełàe',
 'undeletepagetitle'            => "'''Quel che segue el xe conposto da revision scancelà de [[:$1]]'''.",
 'viewdeletedpage'              => 'Varda łe pàxene scancełàe',

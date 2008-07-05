@@ -1683,7 +1683,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'restriction-level-all'           => 'wšykne',
 
 # Undelete
-'undelete'                     => 'Wersije wótnowiś',
+'undelete'                     => 'Wulašowane boki nawrośiś',
 'undeletepage'                 => 'Wulašowane boki pokazaś a nawrośiś.',
 'undeletepagetitle'            => "'''Slědujuce wudaśe wobstoj z wulašowanych wersijow wót [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Wulašowane boki pokazaś',

@@ -1072,6 +1072,7 @@ $2',
 'fileuploadsummary'  => 'الخلاصة:',
 'filestatus'         => 'حالة حقوق النسخ:',
 'filesource'         => 'مصدر:',
+'uploadedfiles'      => 'الملفات المتحملة',
 'ignorewarnings'     => 'اتجاهل اى تحذير',
 'successfulupload'   => 'التحميل ناجح',
 'uploadwarning'      => 'تحذير التحميل',
@@ -1596,15 +1597,73 @@ $2',
 'namespacesall'    => 'الكل',
 'monthsall'        => 'الكل',
 
+# E-mail address confirmation
+'confirmemail_invalid'     => 'كود تفعيل غلط. يمكن صلاحيته تكون انتهت.',
+'confirmemail_needlogin'   => 'لازم $1 علشان تأكد الايميل بتاعك.',
+'confirmemail_success'     => 'الايميل بتاعك اتأكد خلاص.
+ممكن دلوقتي تسجل دخولك و تستمتع بالويكي.',
+'confirmemail_loggedin'    => 'الايميل بتاعك اتأكد خلاص.',
+'confirmemail_error'       => 'حصلت حاجة غلط و احنا بنحفظ التأكيد بتاعك.',
+'confirmemail_subject'     => 'تأكيد الايميل من {{SITENAME}}',
+'confirmemail_body'        => 'في واحد، ممكن يكون إنتا، من عنوان الأيبي $1،
+فتح حساب "$2" بعنوان الايميل دا في {{SITENAME}}.
+
+علشان نتأكد أن  الحساب دا بتاعك فعلا و علشان كمان تفعيل خواص الايميل في {{SITENAME}}، افتح اللينك دي في البراوزر بتاعك :
+
+$3
+
+إذا *ماكنتش* إنتا اللي فتحت الحساب ، دوس على اللينك دي علشان تلغي تأكيد الايميل
+:
+
+$5
+
+كود التفعيل دا ح ينتهي $4.',
+'confirmemail_invalidated' => 'تأكيد عنوان الايميل اتلغى',
+'invalidateemail'          => 'إلغى تأكيد الايميل',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[التضمين  في الإنترويكي متعطل]',
+'scarytranscludefailed'   => '[التدوير على القالب فشل ل$1؛ متأسفين]',
+'scarytranscludetoolong'  => '[عنوان طويل جدا؛ متأسفين]',
+
 # Trackbacks
-'trackbackremove' => '([$1 امسح])',
+'trackbackbox'      => '<div id="mw_trackbacks">
+التراكباك بتاع الصفحة دي:<br />
+$1
+</div>',
+'trackbackremove'   => '([$1 امسح])',
+'trackbacklink'     => 'تراكباك',
+'trackbackdeleteok' => 'التراكباك اتمسح بنجاح.',
+
+# Delete conflict
+'deletedwhileediting' => 'تحذير:  الصفحة دي اتمسحت بعد ما بدأت أنت  في تحريرها!',
+'confirmrecreate'     => "اليوزر [[User:$1|$1]] ([[User talk:$1|مناقشة]]) مسح المقالة دي بعد ما انت بدأت في تحريرها علشان:
+:''$2''
+لو سمحت تتأكد من أنك عايز تبتدي المقالة دي تاني.",
+'recreate'            => 'ابتدي تاني',
+
+'unit-pixel' => 'بيكس',
+
+# HTML dump
+'redirectingto' => 'بتتحول لـ [[$1]]...',
 
 # action=purge
+'confirm_purge'        => 'امسح الكاش بتاع الصفحة دي؟
+
+$1',
 'confirm_purge_button' => 'طيب',
 
 # AJAX search
-'searchnamed'   => "دور على الصفحات اللي اسمها ''$1''.",
-'articletitles' => "الصفحات اللي بتبتدي بـ''$1''",
+'searchcontaining' => "دور على الصفحات اللي فيها ''$1''.",
+'searchnamed'      => "دور على الصفحات اللي اسمها ''$1''.",
+'articletitles'    => "الصفحات اللي بتبتدي بـ''$1''",
+'hideresults'      => 'خبي النتايج',
+'useajaxsearch'    => 'دور بـ أجاكس',
+
+# Separators for various lists, etc.
+'semicolon-separator' => '؛',
+'comma-separator'     => '،',
+'autocomment-prefix'  => '-',
 
 # Multipage image navigation
 'imgmultipageprev' => '← الصفحة اللي فاتت',
@@ -1613,13 +1672,19 @@ $2',
 'imgmultigoto'     => 'روح لصفحة $1',
 
 # Table pager
+'ascending_abbrev'         => 'طالع',
+'descending_abbrev'        => 'نازل',
 'table_pager_next'         => 'الصفحه اللى بعد كده',
-'table_pager_first'        => 'الصفحة الأولى',
-'table_pager_last'         => 'الصفحة الأخيرة',
+'table_pager_prev'         => 'الصفحة اللي فاتت',
+'table_pager_first'        => 'أول صفحة',
+'table_pager_last'         => 'آخر صفحة',
+'table_pager_limit'        => 'اعرض $1 عنصر في الصفحة',
 'table_pager_limit_submit' => 'روح',
 'table_pager_empty'        => 'ما في ش نتايج',
 
 # Auto-summaries
+'autosumm-blank'   => 'مسح كل اللي في الصفحة',
+'autosumm-replace' => "تبديل الصفحة ب'$1'",
 'autoredircomment' => 'تحويل لـ [[$1]]',
 'autosumm-new'     => 'صفحه جديده: $1',
 

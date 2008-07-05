@@ -8,8 +8,8 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
- * @author Jon Harald Søby
  * @author Teak
+ * @author Jon Harald Søby
  */
 
 $messages = array(

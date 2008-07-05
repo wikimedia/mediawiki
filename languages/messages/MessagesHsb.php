@@ -1013,7 +1013,7 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'group-suppress-member'      => 'Dohladowar',
 
 'grouppage-user'          => '{{ns:project}}:Wužiwarjo',
-'grouppage-autoconfirmed' => '{{ns:project}}:Awotmatisce potwjerdźeni wužiwarjo',
+'grouppage-autoconfirmed' => '{{ns:project}}:Awtomatisce potwjerdźeni wužiwarjo',
 'grouppage-bot'           => '{{ns:project}}:Boćiki',
 'grouppage-sysop'         => '{{ns:project}}:Administratorojo',
 'grouppage-bureaucrat'    => '{{ns:project}}:Běrokraća',
@@ -1679,7 +1679,7 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).
 'restriction-level-all'           => 'wšě',
 
 # Undelete
-'undelete'                     => 'Wersije wobnowić',
+'undelete'                     => 'Wušmórnjenu stronu wobnowić',
 'undeletepage'                 => 'Wušmórnjene strony wobnowić',
 'undeletepagetitle'            => "'''Slědowace wudaće pokazuje wušmórnjene wersije wot [[:$1]]'''.",
 'viewdeletedpage'              => 'Wušmórnjene strony wobhladać',

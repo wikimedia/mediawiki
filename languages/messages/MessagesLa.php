@@ -407,7 +407,7 @@ Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{int:spec
 $1',
 'cachederror'          => 'Quae sequuntur sunt ex exemplo conditivo paginae quaesitae, fortasse non recente.',
 'readonly'             => 'Basis datorum obstructa',
-'missingarticle-diff'  => '(Diff: $1, $2)',
+'missingarticle-diff'  => '(Diss: $1, $2)',
 'internalerror'        => 'Erratum internum',
 'internalerror_info'   => 'Erratum internum: $1',
 'filecopyerror'        => 'Non potuit fasciculus "$1" ad "$2" transcribi.',
@@ -1129,6 +1129,7 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 'emailsend'       => 'Mittere',
 'emailsent'       => 'Litterae electronicae missae sunt',
 'emailsenttext'   => 'Nuntium tuum missum est.',
+'emailuserfooter' => 'Has litteras electronicas $1 ad $2 misit per "Litteras electronicas usori mittere" in {{grammar:ablative|{{SITENAME}}}}.',
 
 # Watchlist
 'watchlist'            => 'Paginae custoditae',
@@ -1237,7 +1238,7 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'restriction-level-autoconfirmed' => 'semi-protecta',
 
 # Undelete
-'undelete'               => 'Emendationes restituere',
+'undelete'               => 'Paginam deletam restituere',
 'undeletepage'           => 'Videre et restituere paginas deletas',
 'viewdeletedpage'        => 'Paginas deletas inspicere',
 'undeletepagetext'       => 'Hae paginae deletae sunt sed tabulis manentes restitui possunt. Tabulae nonnumquam deletae sunt.',
@@ -1622,7 +1623,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Special:Version
 'version'                  => 'Versio', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'Paginae speciales',
-'version-variables'        => 'Variabiles',
+'version-variables'        => 'Variabilia',
 'version-other'            => 'Alia',
 'version-version'          => 'Versio',
 'version-software-product' => 'Productum',

@@ -11,13 +11,13 @@
  * @author Siebrand
  * @author ترجمان05
  * @author Gharbeia
- * @author Tarawneh
  * @author Khaledhosny
+ * @author Tarawneh
  * @author Mimouni
  * @author Agurzil
- * @author Chaos
  * @author לערי ריינהארט
  * @author Jon Harald Søby
+ * @author Chaos
  * @author SPQRobin
  */
 
