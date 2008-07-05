@@ -91,7 +91,7 @@ class EmailUserForm {
 		$wgOut->addWikiMsg( "emailpagetext" );
 
 		if ( $this->subject === "" ) {
-			$this->subject = wfMsgForContent( "defemailsubject" );
+			$this->subject = wfMsgExt( 'defemailsubject', array( 'content', 'parsemag' ) );
 		}
 
 		$emf = wfMsg( "emailfrom" );
@@ -149,7 +149,8 @@ class EmailUserForm {
 		$subject = $this->subject;
 
 		// Add a standard footer
-		$this->text = $this->text . "\n ---- \n" . wfMsgForContent( 'emailuserfooter', array( $from->name, $to->name ) );
+		$this->text = $this->text . "\n ---- \n" . wfMsgExt( 'emailuserfooter',
+			array( 'content', 'parsemag' ), array( $from->name, $to->name ) );
 		
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
 
