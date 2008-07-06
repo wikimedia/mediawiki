@@ -1503,6 +1503,7 @@ Template:搞清楚',
 'emailccsubject'  => '你畀$1: $2封信嘅副本',
 'emailsent'       => '電郵已傳送',
 'emailsenttext'   => '你嘅電郵信息已傳送。',
+'emailuserfooter' => '呢封電郵係由$1寄畀$2經{{SITENAME}}嘅「電郵用戶」功能發出嘅。',
 
 # Watchlist
 'watchlist'            => '監視清單',
@@ -1667,11 +1668,12 @@ wiki: $PAGEEDITOR_WIKI
 'restriction-level-all'           => '任何等級',
 
 # Undelete
-'undelete'                     => '恢復修訂',
+'undelete'                     => '去睇刪除咗嘅頁面',
 'undeletepage'                 => '去睇同恢復刪除咗嘅頁面',
 'undeletepagetitle'            => "'''下面包括咗[[:$1]]嘅已刪除修訂'''。",
 'viewdeletedpage'              => '去睇被刪除咗嘅頁面',
 'undeletepagetext'             => '以下頁面已經刪除，但係重喺檔庫度可以恢復。檔案庫可能會定時清理。',
+'undelete-fieldset-title'      => '恢復修訂',
 'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
 'undeleterevisions'            => '$1個修訂都已經存檔',
 'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度。同時請留意響個檔案修訂嘅限制會響恢復嗰陣遺失。',

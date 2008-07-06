@@ -1452,6 +1452,7 @@ Template:消除歧義',
 'emailccsubject'  => '将您的消息复制到 $1: $2',
 'emailsent'       => '电子邮件已发送',
 'emailsenttext'   => '您的电子邮件已经发出。',
+'emailuserfooter' => '这封电邮是由$1寄给$2经{{SITENAME}}的「电邮用户」功能发出的。',
 
 # Watchlist
 'watchlist'            => '监视列表',
@@ -1620,12 +1621,13 @@ $NEWPAGE
 'restriction-level-all'           => '任何级别',
 
 # Undelete
-'undelete'                     => '恢复修订',
+'undelete'                     => '恢复被删页面',
 'undeletepage'                 => '浏览及恢复被删页面',
 'undeletepagetitle'            => "'''以下包含[[:$1]]的已删除之修订版本'''。",
 'viewdeletedpage'              => '查看被删页面',
 'undeletepagetext'             => '以下页面已经被删除，但依然在档案中并可以被恢复。
 档案库可能被定时清理。',
+'undelete-fieldset-title'      => '恢复修订',
 'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。点击 '''''重设''''' 将清除评论内容及所有复选框。",
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
