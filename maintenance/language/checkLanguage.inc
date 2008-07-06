@@ -305,6 +305,22 @@ $detailText
 
 EOL;
 	}
+
+	protected function isEmpty() {
+		$empty = true;
+		foreach( $this->results as $code => $results ) {
+			foreach( $results as $check => $messages ) {
+				if( !empty( $messages ) ) {
+					$empty = false;
+					break;
+				}
+			}
+			if( !$empty ) {
+				break;
+			}
+		}
+		return $empty;
+	}
 }
 
 class CheckExtensionsCLI extends CheckLanguageCLI {
@@ -422,26 +438,28 @@ ENDS;
 
 	protected function checkLanguage( $code ) {
 		foreach( $this->extensions as $extension ) {
-			echo $extension->name() . ":\n";
-
 			$this->L = $extension;
 			$this->results = array();
 			$this->results[$code] = parent::checkLanguage( $code );
 
-			if( $this->level > 0 ) {
-				switch( $this->output ) {
-					case 'plain':
-						$this->outputText();
-						break;
-					case 'wiki':
-						$this->outputWiki();
-						break;
-					default:
-						throw new MWException( "Invalid output type $this->output" );
-				}
-			}
+			if( !$this->isEmpty() ) {
+				echo $extension->name() . ":\n";
 
-			echo "\n";
+				if( $this->level > 0 ) {
+					switch( $this->output ) {
+						case 'plain':
+							$this->outputText();
+							break;
+						case 'wiki':
+							$this->outputWiki();
+							break;
+						default:
+							throw new MWException( "Invalid output type $this->output" );
+					}
+				}
+
+				echo "\n";
+			}
 		}
 	}
 }
