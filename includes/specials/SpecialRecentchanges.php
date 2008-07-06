@@ -599,7 +599,9 @@ class SpecialRecentChanges extends SpecialPage {
 			$note = wfMsgExt( 'rcnote', array( 'parseinline' ),
 				$wgLang->formatNum( $options['limit'] ),
 				$wgLang->formatNum( $options['days'] ),
-				$wgLang->timeAndDate( wfTimestampNow(), true ) );
+				$wgLang->timeAndDate( wfTimestampNow(), true ),
+				$wgLang->date( wfTimestampNow(), true ),
+				$wgLang->time( wfTimestampNow(), true ) );
 
 		# Sort data for display and make sure it's unique after we've added user data.
 		$wgRCLinkLimits[] = $options['limit'];
