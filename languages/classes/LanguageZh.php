@@ -98,7 +98,7 @@ class LanguageZh extends LanguageZh_hans {
 			'zh-hant' => array('zh-tw','zh-hk','zh-mo'),
 			'zh-cn'   => array('zh-hans','zh-sg','zh-my'),
 			'zh-sg'   => array('zh-hans','zh-cn','zh-my'),
-			'zh-my'   => array('zh-hant','zh-sg','zh-cn'),
+			'zh-my'   => array('zh-hans','zh-sg','zh-cn'),
 			'zh-tw'   => array('zh-hant','zh-hk','zh-mo'),
 			'zh-hk'   => array('zh-hant','zh-mo','zh-tw'),
 			'zh-mo'   => array('zh-hant','zh-hk','zh-tw'),

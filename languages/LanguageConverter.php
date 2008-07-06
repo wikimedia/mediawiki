@@ -17,7 +17,6 @@ class LanguageConverter {
 	var $mTitleDisplay='';
 	var $mDoTitleConvert=true, $mDoContentConvert=true;
 	var $mManualLevel; // 'bidirectional' 'unidirectional' 'disable' for each variants
-	var $mManualCodeError='<span style="color: red;">code error!</span>';
 	var $mTitleFromFlag = false;
 	var $mCacheKey;
 	var $mLangObj;
@@ -102,26 +101,6 @@ class LanguageConverter {
 			return $this->mVariantFallbacks[$v];
 		}
 		return $this->mMainLanguageCode;
-	}
-
-	/**
-	 * check if variants array in convert array
-	 *
-	 * @param string $variant Variant language code
-	 * @param array $carray convert array
-	 * @param string $text Text to convert
-	 * @return string Translated text
-	 * @private
-	 */
-	function getTextInCArray($variants,$carray){
-		if(is_string($variants)){ $variants=array($variants); }
-		if(!is_array($variants)) return false;
-		foreach ($variants as $variant){
-			if(array_key_exists($variant, $carray)){
-				return $carray[$variant];
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -346,191 +325,19 @@ class LanguageConverter {
 	}
 
 	/**
-	 *  Parse flags with syntax -{FLAG| ... }-
-	 * @private
-	 */
-	function parseFlags($marked){
-		$flags = array();
-
-		// for multi-FLAGs
-		if(strlen($marked) < 2 )
-			return array($marked,array('R'));
-
-		$tt = explode($this->mMarkup['flagsep'], $marked, 2);
-
-		if(count($tt) == 2) {
-			$f = explode($this->mMarkup['varsep'], $tt[0]);
-			foreach($f as $ff) {
-				$ff = trim($ff);
-				if(array_key_exists($ff, $this->mFlags) &&
-							!in_array($this->mFlags[$ff], $flags))
-					$flags[] = $this->mFlags[$ff];
-			}
-			$rules = $tt[1];
-		} else {
-			$rules = $marked;
-		}
-
-		if( !in_array('R',$flags) ){
-			//FIXME: may cause trouble here...
-			//strip &nbsp; since it interferes with the parsing, plus,
-			//all spaces should be stripped in this tag anyway.
-			$rules = str_replace('&nbsp;', '', $rules);
-			$rules = str_replace('=&gt;','=>',$rules);
-		}
-
-		//check flags
-		if( in_array('R',$flags) ){
-			$flags = array('R');// remove other flags
-		} elseif ( in_array('N',$flags) ){
-			$flags = array('N');// remove other flags
-		} elseif ( in_array('-',$flags) ){
-			$flags = array('-');// remove other flags
-		} elseif (count($flags)==1 && $flags[0]=='T'){
-			$flags[]='H'; 
-		} elseif ( in_array('H',$flags) ){
-			// replace A flag, and remove other flags except T
-			$temp=array('+','H');
-			if(in_array('T',$flags)) $temp[] = 'T';
-			if(in_array('D',$flags)) $temp[] = 'D';
-			$flags = $temp;
-		} else {
-			if ( in_array('A',$flags)) {
-				$flags[]='+';
-				$flags[]='S';
-			}
-			if ( in_array('D',$flags) )
-				$flags=array_diff($flags,array('S'));
-		}
-		if ( count($flags)==0 )
-			$flags = array('S');
-		return array($rules,$flags);
-	}
-
-	/**
-	 * @private
-	 */
-	function getRulesDesc($bidtable,$unidtable){
-		$text='';
-		foreach($bidtable as $k => $v)
-			$text .= $this->mVariantNames[$k].':'.$v.';';
-		foreach($unidtable as $k => $a)
-			foreach($a as $from=>$to)
-				$text.=$from.'⇒'.$this->mVariantNames[$k].':'.$to.';';
-		return $text;
-	}
-
-	/**
-	 * parse the manually marked conversion rule
-	 * @param string $rule the text of the rule
-	 * @return array of the translation in each variant
-	 * @private
-	 */
-	function getConvTableFromRules($rules,$flags=array()) {
-		$bidtable = array();
-		$unidtable = array();
-		$choice = explode($this->mMarkup['varsep'], $rules );
-		foreach($choice as $c) {
-			$v = explode($this->mMarkup['codesep'], $c);
-			if(count($v) != 2) 
-				continue;// syntax error, skip
-			$to=trim($v[1]);
-			$v=trim($v[0]);
-			$u = explode($this->mMarkup['unidsep'], $v);
-			if(count($u) == 1) {
-				$bidtable[$v] = $to;
-			} else if(count($u) == 2){
-				$from=trim($u[0]);$v=trim($u[1]);
-				if( array_key_exists($v,$unidtable) && !is_array($unidtable[$v]) )
-					$unidtable[$v]=array($from=>$to);
-				else
-					$unidtable[$v][$from]=$to;
-			}
-			// syntax error, pass
-		}
-		return array($bidtable,$unidtable);
-	}
-
-	/**
-	 *  get display text on markup -{...}-
-	 * @param string $rules the original code
-	 * @param array $flags FLAGs
-	 * @param array $bidtable bidirectional convert table
-	 * @param string $unidtable unidirectional convert table
-	 * @param string $variant the current variant
-	 * @param bool $$doConvert if do convert
-	 * @private
-	 */
-	function getRulesDisplay($rules,$flags,
-							$bidtable,$unidtable,
-							$variant=false,$doConvert=true){
-		if(!$variant) $variant = $this->getPreferredVariant();
-		$is_mc_disable = $this->mManualLevel[$variant]=='disable';
-
-		if( in_array('R',$flags) ) {
-			// if we don't do content convert, still strip the -{}- tags
-			$disp = $rules;
-		} elseif ( in_array('N',$flags) ){
-			// proces N flag: output current variant name
-			$disp = $this->mVariantNames[trim($rules)];
-		} elseif ( in_array('D',$flags) ){
-			// proces D flag: output rules description
-			$disp = $this->getRulesDesc($bidtable,$unidtable);
-		} elseif ( in_array('H',$flags) || in_array('-',$flags) ) {
-			// proces H,- flag or T only: output nothing
-			$disp = '';
-		} elseif ( in_array('S',$flags) ){
-			if( count($bidtable) + count($unidtable) == 0 ){
-				$disp = $rules;
-			} elseif ($doConvert){// the text converted 
-				// display current variant in bidirectional array
-				$disp = $this->getTextInCArray($variant,$bidtable);
-				// or display current variant in fallbacks
-				if(!$disp)
-					$disp = $this->getTextInCArray($this->getVariantFallbacks($variant),$bidtable);
-				// or display current variant in unidirectional array
-				if(!$disp && array_key_exists($variant,$unidtable)){
-					$disp = array_values($unidtable[$variant]);
-					$disp = $disp[0];
-				}
-				// or display frist text under disable manual convert
-				if(!$disp && $is_mc_disable) {
-					if(count($bidtable)>0){
-						$disp = array_values($bidtable);
-						$disp = $disp[0];
-					} else {
-						$disp = array_values($unidtable);
-						$disp = array_values($disp[0]);
-						$disp = $disp[0];
-					} 
-				}
-			} else {// no convert
-				$disp = $rules;
-			}
-		} elseif ( in_array('T',$flags) ) {
-			// proces T flag : output nothing
-			$disp = '';
-		}
-		else
-			$disp= $this->mManualCodeError;
-
-		return $disp;
-	}
-
-	/**
 	 * @access private
 	 */
-	function applyManualFlag($rules,$flags,$bidtable,$unidtable,$variant=false){
+	function applyManualConv($convRule,$variant){
 		if(!$variant) $variant = $this->getPreferredVariant();
+		$rules = $convRule->getRules();
+		$flags = $convRule->getFlags();
+		list($bidtable, $unidtable) = $convRule->getConvTable();
 
 		$is_title_flag = in_array('T',  $flags);
 		// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom conversion in title
 		if($is_title_flag){
 			$this->mTitleFromFlag = true;
-			$this->mTitleDisplay =  $this->getRulesDisplay($rules,array('S'),
-												$bidtable,$unidtable,
-												$variant,
-												$this->mDoTitleConvert);
+			$this->mTitleDisplay =  $convRule->getRulesTitle();
 		}
 
 		if($this->mManualLevel[$variant]=='disable') return;
@@ -546,7 +353,7 @@ class LanguageConverter {
 				fill in the missing variants, if any,
 				with fallbacks */
 			if($is_bidMC && !array_key_exists($v, $bidtable)) {
-				$vf = $this->getTextInCArray($this->getVariantFallbacks($v),$bidtable);
+				$vf = $convRule->getTextInBidtable($this->getVariantFallbacks($v) );
 				if($vf) $bidtable[$v] = $vf;
 			}
 			if($is_bidMC && array_key_exists($v,$bidtable)){
@@ -577,26 +384,6 @@ class LanguageConverter {
 		}
 	}
 
-	/**
-	 *  Parse rules and flags
-	 * @private
-	 */
-	function parseRules($rules,$flags,$variant=false){
-		if(!$variant) $variant = $this->getPreferredVariant();
-
-		list($bidtable,$unidtable) = $this->getConvTableFromRules($rules, $flags);
-		if(count($bidtable)==0 && count($unidtable)==0
-			&& !in_array('N',$flags) && !in_array('T',$flags) )
-				$flags = array('R');
-		$disp = $this->getRulesDisplay($rules,$flags,
-									$bidtable,$unidtable,
-									$variant,
-									$this->mDoContentConvert);
-		$this->applyManualFlag($rules,$flags,$bidtable,$unidtable);
-
-		return $disp;
-	}
-	
 	/**
 	 *  convert title
 	 * @private
@@ -671,9 +458,16 @@ class LanguageConverter {
 			$marked = explode($this->mMarkup['end'], $txt, 2);
 
 			// strip the flags from syntax like -{T| ... }-
-			list($rules,$flags) = $this->parseFlags($marked[0]);
-
-			$text .= $this->parseRules($rules,$flags,$plang);
+			$crule = new ConverterRule($marked[0], 
+							$this->mMarkup, $this->mFlags, 
+							$this->mVariantNames,
+							$this->mDoContentConvert,
+							$this->mDoTitleConvert);
+			$crule->parseRules($plang,
+							$this->getVariantFallbacks($plang),
+							$this->mManualLevel[$plang]=='disable');
+			$text .= $crule->getRulesDisplay();
+			$this->applyManualConv($crule,$plang);
 
 			if(array_key_exists(1, $marked)){
 				if( $this->mDoContentConvert )
@@ -1001,5 +795,295 @@ class LanguageConverter {
  	function armourMath($text){ 
 		$ret = $this->mMarkup['begin'] . 'R|' . $text . $this->mMarkup['end'];
 		return $ret;
+	}
+}
+
+/**
+ * @ingroup Language
+ * @author  fdcn <fdcn64@gmail.com>
+ */
+class ConverterRule {
+	var $mText; // original text in -{text}-
+	var $mVariantNames;
+	var $mMarkup;
+	var $mRules;
+	var $mFlags;
+	var $mManualCodeError='<span style="color: red;">code error!</span>';
+	var $mDoTitleConvert=true, $mDoContentConvert=true;
+	var $ruleDisplay = '',$ruleTitle=false;
+	var $rules = '';// string $rule the text of the rule
+	var $flags = array();
+	var $bidtable = array();// array of the translation in each variant
+	var $unidtable = array();// array of the translation in each variant
+
+	/**
+	 * Constructor
+	 *
+	 * @param string $text the text between -{ and }-
+	 * @param array $markup the supported markup for conversion
+	 * @param array $flags the supported flags for conversion
+	 * @param array $variantNames the names list of supported language
+	 * @param bool $doTitleConvert if do title convert
+	 * @param bool $doContentConvert if do content convert
+	 * @access public
+	 */
+	function __construct($text,$markup,$flags,$variantNames,
+					$doTitleConvert=true, $doContentConvert=true){
+		$this->mText = $text;
+		$this->mMarkup = $markup;
+		$this->mFlags = $flags;
+		$this->mVariantNames = $variantNames;
+		$this->mDoTitleConvert=$doTitleConvert;
+		$this->mDoContentConvert=$doContentConvert;
+	}
+
+	/**
+	 * check if variants array in convert array
+	 *
+	 * @param string $variant Variant language code
+	 * @return string Translated text
+	 * @public
+	 */
+	function getTextInBidtable($variants){
+		if(is_string($variants)){ $variants=array($variants); }
+		if(!is_array($variants)) return false;
+		foreach ($variants as $variant){
+			if(array_key_exists($variant, $this->bidtable)){
+				return $this->bidtable[$variant];
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Parse flags with syntax -{FLAG| ... }-
+	 * @private
+	 */
+	function parseFlags(){
+		$flags = array();
+		$text = $this->mText;
+
+		// for multi-FLAGs
+		if(strlen($text) < 2 )
+			return array($text,array('R'));
+
+		$tt = explode($this->mMarkup['flagsep'], $text, 2);
+
+		if(count($tt) == 2) {
+			$f = explode($this->mMarkup['varsep'], $tt[0]);
+			foreach($f as $ff) {
+				$ff = trim($ff);
+				if(array_key_exists($ff, $this->mFlags) &&
+							!in_array($this->mFlags[$ff], $flags))
+					$flags[] = $this->mFlags[$ff];
+			}
+			$rules = $tt[1];
+		} else {
+			$rules = $text;
+		}
+
+		if( !in_array('R',$flags) ){
+			//FIXME: may cause trouble here...
+			//strip &nbsp; since it interferes with the parsing, plus,
+			//all spaces should be stripped in this tag anyway.
+			$rules = str_replace('&nbsp;', '', $rules);
+			$rules = str_replace('=&gt;','=>',$rules);
+		}
+
+		//check flags
+		if( in_array('R',$flags) ){
+			$flags = array('R');// remove other flags
+		} elseif ( in_array('N',$flags) ){
+			$flags = array('N');// remove other flags
+		} elseif ( in_array('-',$flags) ){
+			$flags = array('-');// remove other flags
+		} elseif (count($flags)==1 && $flags[0]=='T'){
+			$flags[]='H'; 
+		} elseif ( in_array('H',$flags) ){
+			// replace A flag, and remove other flags except T
+			$temp=array('+','H');
+			if(in_array('T',$flags)) $temp[] = 'T';
+			if(in_array('D',$flags)) $temp[] = 'D';
+			$flags = $temp;
+		} else {
+			if ( in_array('A',$flags)) {
+				$flags[]='+';
+				$flags[]='S';
+			}
+			if ( in_array('D',$flags) )
+				$flags=array_diff($flags,array('S'));
+		}
+		if ( count($flags)==0 )
+			$flags = array('S');
+		$this->rules=$rules;
+		$this->flags=$flags;
+	}
+	
+	/**
+	 * generate conversion table
+	 * @private
+	 */
+	function generateConvTable() {
+		$rules = $this->rules;
+		$flags = $this->flags;
+		$bidtable = array();
+		$unidtable = array();
+		$choice = explode($this->mMarkup['varsep'], $rules );
+		foreach($choice as $c) {
+			$v = explode($this->mMarkup['codesep'], $c);
+			if(count($v) != 2) 
+				continue;// syntax error, skip
+			$to=trim($v[1]);
+			$v=trim($v[0]);
+			$u = explode($this->mMarkup['unidsep'], $v);
+			if(count($u) == 1) {
+				$bidtable[$v] = $to;
+			} else if(count($u) == 2){
+				$from=trim($u[0]);$v=trim($u[1]);
+				if( array_key_exists($v,$unidtable) && !is_array($unidtable[$v]) )
+					$unidtable[$v]=array($from=>$to);
+				else
+					$unidtable[$v][$from]=$to;
+			}
+			// syntax error, pass
+			if (!array_key_exists($v,$this->mVariantNames))
+				return;
+		}
+		$this->bidtable = $bidtable;
+		$this->unidtable = $unidtable;
+	}
+
+	/**
+	 * @private
+	 */
+	function getRulesDesc(){
+		$text='';
+		foreach($this->bidtable as $k => $v)
+			$text .= $this->mVariantNames[$k].':'.$v.';';
+		foreach($this->unidtable as $k => $a)
+			foreach($a as $from=>$to)
+				$text.=$from.'⇒'.$this->mVariantNames[$k].':'.$to.';';
+		return $text;
+	}
+
+	/**
+	 *  Parse rules conversion
+	 * @private
+	 */
+	function getRuleConvertedStr($variant,$variantFallbacks,
+						$doConvert,$isMCDisable=false){
+		$bidtable = $this->bidtable;
+		$unidtable = $this->unidtable;
+
+		if( count($bidtable) + count($unidtable) == 0 ){
+			return $this->rules;
+		} elseif ($doConvert){// the text converted 
+			// display current variant in bidirectional array
+			$disp = $this->getTextInBidtable($variant);
+			// or display current variant in fallbacks
+			if(!$disp)
+				$disp = $this->getTextInBidtable($variantFallbacks);
+			// or display current variant in unidirectional array
+			if(!$disp && array_key_exists($variant,$unidtable)){
+				$disp = array_values($unidtable[$variant]);
+				$disp = $disp[0];
+			}
+			// or display frist text under disable manual convert
+			if(!$disp && $isMCDisable) {
+				if(count($bidtable)>0){
+					$disp = array_values($bidtable);
+					$disp = $disp[0];
+				} else {
+					$disp = array_values($unidtable);
+					$disp = array_values($disp[0]);
+					$disp = $disp[0];
+				}
+			}
+			return $disp;
+		} else {// no convert
+			return $this->rules;
+		}
+	}
+	/**
+	 * Parse rules and flags
+	 * @public
+	 */
+	function parseRules($variant,$variantFallbacks,$isMCDisable=false){
+		$this->parseFlags();
+		$this->generateConvTable();
+
+		$rules = $this->rules;
+		$flags = $this->flags;
+
+		if(count($this->bidtable)==0 && count($this->unidtable)==0
+			&& !in_array('N',$flags) && !in_array('T',$flags) )
+				$this->flags = array('R');
+
+		if( in_array('R',$flags) ) {
+			// if we don't do content convert, still strip the -{}- tags
+			$this->ruleDisplay = $rules;
+		} elseif ( in_array('N',$flags) ){
+			// proces N flag: output current variant name
+			$this->ruleDisplay = $this->mVariantNames[trim($rules)];
+		} elseif ( in_array('D',$flags) ){
+			// proces D flag: output rules description
+			$this->ruleDisplay = $this->getRulesDesc();
+		} elseif ( in_array('H',$flags) || in_array('-',$flags) ) {
+			// proces H,- flag or T only: output nothing
+			$this->ruleDisplay = '';
+		} elseif ( in_array('S',$flags) ){
+			$this->ruleDisplay = $this->getRuleConvertedStr(
+							$variant,$variantFallbacks,
+							$this->mDoContentConvert,$isMCDisable);
+		} else {
+			$this->ruleDisplay= $this->mManualCodeError;
+		}
+		// proces T flag : output nothing
+		if ( in_array('T',$flags) ) {
+			$this->ruleTitle = $this->getRuleConvertedStr(
+							$variant,$variantFallbacks,
+							$this->mDoTitleConvert,$isMCDisable);
+		}
+	}
+	
+	/**
+	 * get display text on markup -{...}-
+	 * @param string $variant the current variant
+	 * @public
+	 */
+	function getRulesDisplay(){
+		return $this->ruleDisplay;
+	}
+	/**
+	 * get converted title
+	 * @param string $variant the current variant
+	 * @public
+	 */
+	function getRulesTitle(){
+		return $this->ruleTitle;
+	}
+
+	/**
+	 * get conversion table ( bidirectional and unidirectional conversion table )
+	 * @public
+	 */
+	function getConvTable(){
+		return array($this->bidtable, $this->unidtable);
+	}
+
+	/**
+	 * get conversion rules string
+	 * @public
+	 */
+	function getRules(){
+		return $this->rules;
+	}
+
+	/**
+	 * get conversion flags
+	 * @public
+	 */
+	function getFlags(){
+		return $this->flags;
 	}
 }
