@@ -59,10 +59,11 @@ class FeedUtils {
 
 		$skin = $wgUser->getSkin();
 		# log enties
-		if( $actiontext ) {
-			$comment = "$actiontext $comment";
-		}
-		$completeText = '<p>' . $skin->formatComment( $comment ) . "</p>\n";
+		$completeText = '<p>' . implode( ' ',
+			array_filter(
+				array(
+					$actiontext,
+					$skin->formatComment( $comment ) ) ) ) . "</p>\n";
 
 		//NOTE: Check permissions for anonymous users, not current user.
 		//      No "privileged" version should end up in the cache.
@@ -92,7 +93,7 @@ class FeedUtils {
 					$diffText = '<a href="' .
 						$diffLink .
 						'">' .
-						htmlspecialchars( wfMsgForContent( 'difference' ) ) .
+						htmlspecialchars( wfMsgForContent( 'showdiff' ) ) .
 						'</a>';
 				} elseif ( $diffText === false ) {
 					// Error in diff engine, probably a missing revision
