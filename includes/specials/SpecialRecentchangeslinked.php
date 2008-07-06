@@ -49,7 +49,6 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		}
 		$title = Title::newFromURL( $target );
 		if( !$title || $title->getInterwiki() != '' ){
-			global $wgOut;
 			$wgOut->wrapWikiMsg( '<div class="errorbox">$1</div><br clear="both" />', 'allpagesbadtitle' );
 			return false;
 		}
