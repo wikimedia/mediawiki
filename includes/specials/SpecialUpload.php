@@ -279,7 +279,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function processUpload(){
-		global $wgUser, $wgOut, $wgFileExtensions;
+		global $wgUser, $wgOut, $wgFileExtensions, $wgLang;
 	 	$details = null;
 	 	$value = null;
 	 	$value = $this->internalProcessUpload( $details );
@@ -331,7 +331,8 @@ class UploadForm {
 						implode(
 							wfMsgExt( 'comma-separator', array( 'escapenoentities' ) ),
 							$wgFileExtensions
-						)
+						),
+						$wgLang->formatNum( count($wgFileExtensions) )
 					)
 				);
 				break;
@@ -515,6 +516,7 @@ class UploadForm {
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
 				if ( !$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
+					global $wgLang;
 					$warning .= '<li>' .
 					wfMsgExt( 'filetype-unwanted-type',
 						array( 'parseinline' ),
@@ -522,7 +524,8 @@ class UploadForm {
 						implode(
 							wfMsgExt( 'comma-separator', array( 'escapenoentities' ) ),
 							$wgFileExtensions
-						)
+						),
+						$wgLang->formatNum( count($wgFileExtensions) )
 					) . '</li>';
 				}
 			}
