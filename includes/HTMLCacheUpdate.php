@@ -218,7 +218,7 @@ class HTMLCacheUpdateJob extends Job {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( $this->table, $fromField, $conds, __METHOD__ );
-		$update->invalidateIDs( new ResultWrapper( $dbr, $res ) );
+		$update->invalidateIDs( $res );
 
 		return true;
 	}
