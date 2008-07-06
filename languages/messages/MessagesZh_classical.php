@@ -1257,6 +1257,7 @@ $2',
 'emailccsubject'  => '致$1複本：$2',
 'emailsent'       => '書遣矣',
 'emailsenttext'   => '書遣矣',
+'emailuserfooter' => '此捎由$1給$2經{{SITENAME}}之「捎君」發矣。',
 
 # Watchlist
 'watchlist'            => '哨站',
@@ -1406,11 +1407,12 @@ $NEWPAGE
 'restriction-level-all'           => '有封',
 
 # Undelete
-'undelete'                     => '復審',
+'undelete'                     => '覽刪',
 'undeletepage'                 => '覽刪並還之',
 'undeletepagetitle'            => "'''如下含[[:$1]]刪之審'''。",
 'viewdeletedpage'              => '覽刪',
 'undeletepagetext'             => '如下已刪，備謄以還；曆滿乃清之。',
+'undelete-fieldset-title'      => '復審',
 'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。欲還某審，核之再令。欲清核、贊，令之'''''歸白'''''。",
 'undeleterevisions'            => '審備$1',
 'undeletehistory'              => '如還題，審亦隨焉；若存同題，還如誌，不以代焉。夫還而啟，註記之。',
