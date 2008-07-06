@@ -63,12 +63,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			return array();
 
 		$this->tokenFunctions = array(
-			'edit' => 'ApiQueryInfo::getEditToken',
-			'delete' => 'ApiQueryInfo::getDeleteToken',
-			'protect' => 'ApiQueryInfo::getProtectToken',
-			'move' => 'ApiQueryInfo::getMoveToken',
-			'block' => 'ApiQueryInfo::getBlockToken',
-			'unblock' => 'ApiQueryInfo::getUnblockToken'
+			'edit' => array( 'ApiQueryInfo', 'getEditToken' ),
+			'delete' => array( 'ApiQueryInfo', 'getDeleteToken' ),
+			'protect' => array( 'ApiQueryInfo', 'getProtectToken' ),
+			'move' => array( 'ApiQueryInfo', 'getMoveToken' ),
+			'block' => array( 'ApiQueryInfo', 'getBlockToken' ),
+			'unblock' => array( 'ApiQueryInfo', 'getUnblockToken' )
 		);
 		wfRunHooks('APIQueryInfoTokens', array(&$this->tokenFunctions));
 		return $this->tokenFunctions;
