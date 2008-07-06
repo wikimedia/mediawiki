@@ -206,11 +206,22 @@ function wfSpecialWatchlist( $par ) {
 	$wgOut->addHTML( "<hr />\n" );
 
 	if($days >= 1) {
-		$wgOut->addWikiText( wfMsgExt( 'rcnote', array( 'parseinline' ), $wgLang->formatNum( $numRows ),
-			$wgLang->formatNum( $days ), $wgLang->timeAndDate( wfTimestampNow(), true ) ) . '<br />' , false );
+		$wgOut->addHTML(
+			wfMsgExt( 'rcnote', 'parseinline',
+				$wgLang->formatNum( $numRows ),
+				$wgLang->formatNum( $days ),
+				$wgLang->timeAndDate( wfTimestampNow(), true ),
+				$wgLang->date( wfTimestampNow(), true ),
+				$wgLang->time( wfTimestampNow(), true )
+			) . '<br />'
+		);
 	} elseif($days > 0) {
-		$wgOut->addWikiText( wfMsgExt( 'wlnote', array( 'parseinline' ), $wgLang->formatNum( $numRows ),
-			$wgLang->formatNum( round($days*24) ) ) . '<br />' , false );
+		$wgOut->addHtml(
+			wfMsgExt( 'wlnote', 'parseinline',
+				$wgLang->formatNum( $numRows ),
+				$wgLang->formatNum( round($days*24) )
+			) . '<br />'
+		);
 	}
 
 	$wgOut->addHTML( "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n" );
