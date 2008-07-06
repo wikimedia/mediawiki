@@ -413,6 +413,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14088) Excessively long block expiry times are rejected as invalid,
   keeps the log page from being distorted.
 * (bug 14708) Emulate INSERT...IGNORE with standard SQL for Postgres backend.
+* (bug 14646) Fix some double-escaping of HTML in feed output
+
 
 === API changes in 1.13 ===
 
