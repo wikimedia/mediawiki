@@ -59,6 +59,7 @@ $skinNames = array(
 $fallback8bitEncoding = "iso8859-2";
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
+# Mediawiki Core 
 $specialPageAliases = array(
 	'DoubleRedirects'         => array( 'Dupla átirányítások' ),
 	'BrokenRedirects'         => array( 'Nem létező lapra mutató átirányítások' ),
@@ -72,7 +73,7 @@ $specialPageAliases = array(
 	'Upload'                  => array( 'Feltöltés' ),
 	'Imagelist'               => array( 'Képlista' ),
 	'Newimages'               => array( 'Új képek galériája' ),
-	'Listusers'               => array( 'Szereksztők listája', 'Szerkesztők', 'Felhasználók' ),
+	'Listusers'               => array( 'Szerkesztők listája', 'Szerkesztők', 'Felhasználók' ),
 	'Listgrouprights'         => array( 'Szerkesztői csoportok jogai' ),
 	'Statistics'              => array( 'Statisztikák' ),
 	'Randompage'              => array( 'Lap találomra' ),
@@ -142,6 +143,18 @@ $specialPageAliases = array(
 	'MergeHistory'            => array( 'Laptörténetek egyesítése' ),
 	'Filepath'                => array( 'Fájl elérési útja' ),
 	'Invalidateemail'         => array( 'E-mail cím érvénytelenítése' ),
+	'Blankpage'               => array( 'Üres lap' ),
+);
+
+# Category Tree 
+$aliases['hu'] = array(
+	'CategoryTree' => array( 'Kategóriafa' ),
+);
+
+# Translate 
+$aliases['hu'] = array(
+	'Translate'          => array( 'Fordítás' ),
+	'TranslationChanges' => array( 'Változások a fordításokban' ),
 );
 
 $datePreferences = array(
