@@ -216,11 +216,6 @@ $magicWords = array(
 	'pagesincategory'     => array( '1', 'PAGESINCATEGORY', 'PAGESINCAT', 'СТОР_В_КАТ' ),
 );
 
-$imageFiles = array(
-	'button-bold'   => 'uk/button_bold.png',
-	'button-italic' => 'uk/button_italic.png',
-);
-
 $linkTrail = '/^([a-zабвгґдеєжзиіїйклмнопрстуфхцчшщьєюяёъы“»]+)(.*)$/sDu';
 
 $messages = array(

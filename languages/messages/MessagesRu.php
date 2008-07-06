@@ -228,6 +228,12 @@ $magicWords = array(
 	'hiddencat'           => array( '1', '__HIDDENCAT__', '__СКРЫТАЯ_КАТЕГОРИЯ__' ),
 );
 
+$imageFiles = array(
+	'button-bold'   => 'cyrl/button_bold.png',
+	'button-italic' => 'cyrl/button_italic.png',
+	'button-link'   => 'cyrl/button_link.png',
+);
+
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя]+)(.*)$/sDu';
 
 $messages = array(
