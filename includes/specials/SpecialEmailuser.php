@@ -148,8 +148,8 @@ class EmailUserForm {
 		$from = new MailAddress( $wgUser );
 		$subject = $this->subject;
 
-		// Add a standard footer
-		$this->text = $this->text . "\n ---- \n" . wfMsgExt( 'emailuserfooter',
+		// Add a standard footer and trim up trailing newlines
+		$this->text = rtrim($this->text) . "\n\n---\n" . wfMsgExt( 'emailuserfooter',
 			array( 'content', 'parsemag' ), array( $from->name, $to->name ) );
 		
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
