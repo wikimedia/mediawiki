@@ -1452,7 +1452,7 @@ Template:消除歧義',
 'emailccsubject'  => '将您的消息复制到 $1: $2',
 'emailsent'       => '电子邮件已发送',
 'emailsenttext'   => '您的电子邮件已经发出。',
-'emailuserfooter' => '这封电邮是由$1寄给$2经{{SITENAME}}的「电邮用户」功能发出的。',
+'emailuserfooter' => '这封电邮是由$1寄给$2经{{SITENAME}}的“电邮用户”功能发出的。',
 
 # Watchlist
 'watchlist'            => '监视列表',
