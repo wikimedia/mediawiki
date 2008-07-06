@@ -1204,8 +1204,11 @@ END;
 
 	function lastModified() {
 		global $wgLang, $wgArticle;
-
-		$timestamp = $wgArticle->getTimestamp();
+		if( $this->mRevisionId ) {
+			$timestamp = Revision::getTimestampFromId( $this->mRevisionId, $wgArticle->getId() );
+		} else {
+			$timestamp = $wgArticle->getTimestamp();
+		}
 		if ( $timestamp ) {
 			$d = $wgLang->date( $timestamp, true );
 			$t = $wgLang->time( $timestamp, true );
