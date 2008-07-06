@@ -968,15 +968,19 @@ class LocalFile extends File
 	 * @return FileRepoStatus object.
 	 */
 	function move( $target ) {
+		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
 		$this->lock();
 		$batch = new LocalFileMoveBatch( $this, $target );
 		$batch->addCurrent();
 		$batch->addOlds();
 		if( !$this->repo->canTransformVia404() ) {
+			wfDebugLog( 'imagemove', 'Cannot transform via 404, so move thumbnails' );
 			$batch->addThumbs();
-		}
+		} else
+			wfDebugLog( 'imagemove', 'No moving thumbnails, ok to transform via 404' );
 
 		$status = $batch->execute();
+		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 		$this->purgeEverything();
 		$this->unlock();
 
@@ -1764,8 +1768,11 @@ class LocalFileMoveBatch {
 		$triplets = $this->getMoveTriplets();
 
 		$statusDb = $this->doDBUpdates();
+		wfDebugLog( 'imagemove', "Renamed {$this->file->name} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 		$statusMove = $repo->storeBatch( $triplets, FSRepo::DELETE_SOURCE );
+		wfDebugLog( 'imagemove', "Moved files for {$this->file->name}: {$statusMove->successCount} successes, {$statusMove->failCount} failures" );
 		if( !$statusMove->isOk() ) {
+			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
 			$this->db->rollback();
 		}
 		$status->merge( $statusDb );
@@ -1817,6 +1824,7 @@ class LocalFileMoveBatch {
 			// $move: (oldRelativePath, newRelativePath)
 			$srcUrl = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $move[0] );
 			$triplets[] = array( $srcUrl, 'public', $move[1] );
+			wfDebugLog( 'imagemove', "Generated move triplet for {$this->file->name}: {$srcUrl} :: public :: {$move[1]}" );
 		}
 		return $triplets;
 	}
