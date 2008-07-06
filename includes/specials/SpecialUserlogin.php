@@ -870,7 +870,7 @@ class LoginForm {
 				return $this->mainLoginForm( wfMsg( 'error' ) );
 			}
 		} else {
-			return $this->successfulLogin( wfMsgExt( 'loginsuccess', array( 'parseinline' ), $wgUser->getName() ) );
+			return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
 		}
 	}
 
