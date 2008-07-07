@@ -58,7 +58,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			return array();
 
 		$this->tokenFunctions = array(
-			'rollback' => 'ApiQueryRevisions::getRollbackToken'
+			'rollback' => array( 'ApiQueryRevisions','getRollbackToken' )
 		);
 		wfRunHooks('APIQueryRevisionsTokens', array(&$this->tokenFunctions));
 		return $this->tokenFunctions;
