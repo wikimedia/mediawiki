@@ -367,6 +367,7 @@ Dat es och all op Änglesch:
 'feed-invalid'            => 'Esu en Zoot Abonnemang jitt et nit.',
 'site-rss-feed'           => 'RSS-Feed för $1',
 'site-atom-feed'          => 'Atom-Feed för $1',
+'page-rss-feed'           => 'RSS-Feed för „$1“',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Atikkel',
@@ -484,8 +485,7 @@ Dinge Zojang för hee es do. Do bes jetz aanjemeldt. Denk dran, Do künnts der D
 'loginproblem'               => '<strong>Med däm Ėnnlogge eß jëtt schëijf jeloufe.</strong><br />Beß esu jood, un důnn_et norr_enß fosööhke!',
 'login'                      => 'Ėnnlogge',
 'nav-login-createaccount'    => 'Enlogge, Aanmälde',
-'loginprompt'                => 'Öm op de {{SITENAME}} [[Special:Userlogin|ennlogge]] ze künne,
-moßß_De [http://ksh.wikipedia.org/wiki/Help:Cookie%C3%9F de Cookieß] en Dingem [http://ksh.wikipedia.org/wiki/Brauser Brause] ennjeschalldt hann.',
+'loginprompt'                => 'Öm op de {{SITENAME}} [[{{#special:Userlogin}}|enlogge]] ze künne, muss De de Cookies en Dingem Brauser enjeschalt han.',
 'userlogin'                  => 'Enlogge odder Metmaacher wääde',
 'logout'                     => 'Uslogge',
 'userlogout'                 => 'Uslogge',
@@ -1101,7 +1101,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
 'recentchanges'                     => 'Neuste Änderunge',
 'recentchangestext'                 => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
-'rcnote'                            => '{{PLURAL:$1|Hee is de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Et jit <strong>kei</strong> Änderunge en}} {{PLURAL:$2|däm letzte Dag|de letzte <strong>$2</strong> Dage|dä Zick}} vun $3 aff.',
+'rcnote'                            => '{{PLURAL:$1|Hee is de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Et jit <strong>kei</strong> Änderunge en}} {{PLURAL:$2|däm letzte Dag|de letzte <strong>$2</strong> Dage|dä Zick}} vum $4 aff $5 Uhr beß jetz.',
 'rcnotefrom'                        => 'Hee sin bes <strong>$1</strong> fun de Änderunge zick <strong>$2</strong> opjeliss.',
 'rclistfrom'                        => 'Zeich de neu Änderunge vum $1 av',
 'rcshowhideminor'                   => '$1 klein Mini-Änderunge',
@@ -1140,21 +1140,19 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 Dat Fo'zeishnis <code>$1</code> för de huhjelaade Dateie es fott, un dat Websörver Projramm kunnd_et och nit aanlääje.",
 'upload_directory_read_only'  => '<b>Doof:</b> En dat Verzeichnis <code>$1</code> för Dateie dren huhzelade, do kann dat Websörver Projramm nix erenschrieve.',
 'uploaderror'                 => 'Fähler beim Huhlade',
-'uploadtext'                  => "<div dir=\"ltr\">Met däm Formular unge kanns de Belder oder ander Daate huhlade. Do 
-kanns dann Ding Werk tirek enbinge, en dä Aate:<ul style=\"list-style:none outside none; 
+'uploadtext'                  => "<div dir=\"ltr\">Met däm Formular unge kanns de Belder oder ander Daate huhlade. Do kanns dann Ding Werk tirek enbinge, en dä Aate:
+<ul style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; list-style-type:none\"><li style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
 list-style-type:none\"><code>'''[[{{ns:image}}:'''''Beldche'''''.jpg]]'''</code></li><li
 style=\"list-style:none outside none; list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''[[{{ns:image}}:'''''Esu süht dat us'''''.png | '''''ene Tex, dä die
-Brausere zeije, die kein Belder künne''''']]'''</code></li><li style=\"list-style:none outside none; 
+list-style-type:none\"><code>'''[[{{ns:image}}:'''''Su süht dat us'''''.png | '''''ene Tex, för zem zeije, wann Brausere kein Belder zeije künne oder kein Belder zeije sulle'''']]'''</code></li><li style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''[[{{ns:media}}:'''''Su hürt sich dat aan'''''.ogg]]'''</code></li></ul>
+list-style-type:none\"><code>'''[[{{ns:media}}:'''''Esu hürt sich dat aan'''''.ogg]]'''</code></li></ul>
 Usführlich met alle Möchlichkeite fings de dat bei de Hölp.
 Wann De jetz entschlosse bes, dat De et hee huhlade wells:
-* Aanluure, wat mer hee en de {{SITENAME}} ald han, kanns De en uns [[Special:Imagelist|Belder Liss]].
-* Wenn De jet söke wells, eets ens nohluure wells, wat ald huhjelade, oder villeich widder fottjeschmesse wood, 
-dat steiht em [[Special:Log/upload|Logboch vum Huhlade]].
+* Aanluure, wat mer hee en de {{SITENAME}} ald han, kanns De en uns [[{{#special:Imagelist}}|Belder Liss]].
+* Wenn De jet söke wells, eets ens nohluure wells, wat ald huhjelade, oder villeich widder fottjeschmesse wood, dat steiht em [[{{#special:Log}}/upload|Logboch vum Huhlade]].
 Esu, un jetz loss jonn:</div>
 == <span dir=\"ltr\">Daate en de {{SITENAME}} lade</span> ==",
 'upload-permitted'            => 'Nor de Dateitüpe <code>$1</code> sin zojelohße.',
@@ -1163,7 +1161,7 @@ Esu, un jetz loss jonn:</div>
 'uploadlog'                   => 'LogBoch vum Dateie Huhlade',
 'uploadlogpage'               => 'Logboch met de huhjelade Dateie',
 'uploadlogpagetext'           => 'Hee sin de Neuste huhjelade Dateie opjeliss un wä dat jedon hät.',
-'filename'                    => 'Name vun dä Datei',
+'filename'                    => 'Dä Name vun dä Datei',
 'filedesc'                    => 'Beschrievungstex un Zosammefassung',
 'fileuploadsummary'           => 'Beschrievungstex un Zosammefassung:',
 'filestatus'                  => 'Urhevver Räächsstatus:',
@@ -1171,6 +1169,7 @@ Esu, un jetz loss jonn:</div>
 'uploadedfiles'               => 'Huhjelade Dateie',
 'ignorewarning'               => 'Warnung üvverjonn, un Datei trotzdäm avspeichere.',
 'ignorewarnings'              => 'Alle Warnunge üvverjonn',
+'minlength1'                  => 'Dateiname mösse winnischßtens eij Zeijsche lang sin.',
 'illegalfilename'             => 'Schad:
 <br />
 En däm Name vun dä Datei sin Zeiche enthallde,
@@ -1179,21 +1178,30 @@ die mer en Titele vun Sigge nit bruche kann.
 Sök Der statt „$1“ jet anders us,
 un dann muss de dat Dinge noch ens huhlade.',
 'badfilename'                 => 'De Datei es en „$1“ ömjedäuf.',
+'filetype-badmime'            => 'Dateie mem MIME-Typ „<code>$1</code>“ wulle mer nit huhjelade krijje.',
+'filetype-unwanted-type'      => "Dat Dateifommaat '''„<code>.$1</code>“''' wulle mer nit esu jään huhjelaade krijje. Leever ham_mer: $2.",
+'filetype-banned-type'        => "Dat Dateifommaat '''„<code>.$1</code>“''' wulle mer nit huhjelaade krijje. Älaup sin_er: $2.",
+'filetype-missing'            => 'Di Datei, di De huhlaade wells, hät keij Fommaat em Name, wi zem Beijspöll „<code>.jpg</code>“, esu jet hätte mer ävver jähn.',
+'large-file'                  => 'Dateie sullte nit jröößer wääde, wi $1, ävver Ding Datei es $2 jroß.',
 'largefileserver'             => 'De Datei es ze jroß. Jrößer wie däm Sörver sing Enstellung erlaub.',
-'emptyfile'                   => 'Wat De hee jetz huhjelade häs, hät kein Daate dren jehatt. Künnt sin, dat De Dich 
-verdon häs, un dä Name wo verkihrt jeschrevve. Luur ens ov De wirklich <strong>die</strong> Dateie hee 
-huhlade wells.',
+'emptyfile'                   => 'Wat De hee jetz huhjelade häs, hät kein Daate dren jehatt. Künnt sin, dat De Dich verdon häs, un dä Name wo verkihrt jeschrevve. Luur ens ov De wirklich <strong>die</strong> Datei hee huhlade wells.',
 'fileexists'                  => 'Et jitt ald en Datei met däm Name. Wann De op „Datei avspeichere“ klicks, weed se ersetz. Bes esu jod  un luur Der <strong><tt>$1</tt></strong> aan, wann De nit 100% secher bes.',
+'filepageexists'              => 'En Sigg övver di Datei met däm Tittel <strong><tt>$1</tt></strong> es ald doh, ävver en Datei met däm Name ham_mer nit. Dinge Tex kütt nit automattesch op di Sigg övver di Dattei. Di Sigg moß De wann nüüdesch noch ens extra ändere.',
+'fileexists-extension'        => '<table cellspacing="0" cellpadding="0" border="0"><tr><td colspan="2">Mer han ald en Dattei, di bahl jenou esu heijß:</td></tr><tr><td>Huh am laade sim_mer:&nbsp;</td><td><strong><tt>$1</tt></strong></td></tr><tr><td>Ald om ßörve eß:</td><td><strong><tt>$2</tt></strong></td></tr><tr><td colspan="2">Bes esu joot un söök Der ene ander Name fö di Datei us.</td></tr></table>',
+'fileexists-thumb'            => "<center>'''Datei'''</center>",
+'fileexists-thumbnail-yes'    => 'Dat süühd uß, wi wann dat hee en Minni-Beldsche em Breefmarrke-Fommaat (<i><span lang="en">thumbnail</span></i>) wöhr. Don ens di Dattei <strong><tt>$1</tt></strong> prööfe. Wann dat de Orjinaaljrüß es, do moß keij för dat Beld keij extra Vör-Aansich huhjelade wäde.',
+'file-thumbnail-no'           => 'Dä Name fö di Datei fängk met <strong><tt>$1</tt></strong> aan. Dat süühd uß, wi wann dat en Minni-Beldsche em Breefmarrke-Fommaat (<i><span lang="en">thumbnail</span></i>) wöhr. Don ens di Dattei <strong><tt>$1</tt></strong> prööfe, of de nit e besser opjelööß Beld dofun häß, un don dat met singe Orjinaaljrüß huhlade, wann mööschlesch.',
 'fileexists-forbidden'        => 'Et jitt ald en Datei met däm Name. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:image}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Et jitt ald en Datei met däm Name em jemeinsame Speicher. Jangk zeröck un lad se unger enem andere Name huh. [[{{ns:image}}:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Di Dattei hät dersellve Enhallt wi hee di {{PLURAL:$1|Datei|Dateie|}}:',
 'successfulupload'            => 'Et Huhlade hät jeflupp',
 'uploadwarning'               => 'Warnung beim Huhlade',
 'savefile'                    => 'Datei avspeichere',
 'uploadedimage'               => 'hät huhjelade: „[[$1]]“',
+'overwroteimage'              => 'hät en neue Version huhjelade vun: „[[$1]]“',
 'uploaddisabled'              => 'Huhlade jesperrt',
 'uploaddisabledtext'          => 'Et Huhlade es jesperrt hee en däm Wiki.',
-'uploadscripted'              => 'En dä Datei es HTML dren oder Code vun enem 
-Skripp, dä künnt Dinge Brauser en do verkihrte Hals krije un usführe.',
+'uploadscripted'              => 'En dä Datei es HTML dren oder Code vun enem Skripp, dä künnt Dinge Brauser en do verkihrte Hals krije un usführe.',
 'uploadcorrupt'               => 'Schad.
 <br />
 De Datei es kapott, hät en verkihrte File Name Extention, oder irjends ene andere Dress es passeet.
@@ -1207,6 +1215,7 @@ En dä Datei stich e Kompjutervirus!
 De Einzelheite: $1',
 'sourcefilename'              => 'Datei zem huhlade:',
 'destfilename'                => 'Unger däm Dateiname avspeichere:',
+'upload-maxfilesize'          => 'Maximale Dateigröße: $1',
 'watchthisupload'             => 'Op die Datei hee oppasse',
 'filewasdeleted'              => 'Unger däm Name wood ald ens en Datei huhjelade. Die es enzwesche ävver widder fottjeschmesse woode. Luur leever eets ens en et $1 ih dat De se dann avspeichere deis.',
 
@@ -1716,6 +1725,7 @@ un widder herjehollte Sigge.',
 
 'sp-contributions-newbies'     => 'Nor neu Metmaacher ier Beidräg zeije',
 'sp-contributions-newbies-sub' => 'För neu Metmaacher',
+'sp-contributions-blocklog'    => 'Logboch met Metmaacher-Sperre',
 'sp-contributions-search'      => 'Söök noh Metmaacher ier Beidräg',
 'sp-contributions-username'    => 'Metmaachername odder IP-Address:',
 'sp-contributions-submit'      => 'Sööke',

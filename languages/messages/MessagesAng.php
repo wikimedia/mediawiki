@@ -1,11 +1,11 @@
 <?php
-/** Old English (Anglo Saxon)
+/** Old English (Anglo-Saxon)
  *
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author JJohnson
+ * @author SPQRobin
  * @author Wōdenhelm
  * @author Siebrand
  */

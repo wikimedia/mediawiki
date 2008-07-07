@@ -1035,7 +1035,7 @@ Se quere, pode [[:\$1|creala]].",
 'recentchanges'                     => 'Cambios recentes',
 'recentchangestext'                 => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
 'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki con esta fonte de noticias.',
-'rcnote'                            => "Abaixo {{PLURAL:$1|móstrase '''1''' cambio|móstranse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $3.",
+'rcnote'                            => "Embaixo {{PLURAL:$1|amósase '''1''' cambio|amósanse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $5 do $4.",
 'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
 'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
 'rcshowhideminor'                   => '$1 as edicións pequenas',
@@ -1101,8 +1101,10 @@ Para incluír un ficheiro na páxina, use unha ligazón do seguinte xeito:
 'illegalfilename'             => 'O nome de ficheiro "$1" contén caracteres que non están permitidos nos títulos das páxinas. Por favor cambie o nome do ficheiro e tente cargalo outra vez.',
 'badfilename'                 => 'O nome desta imaxe cambiouse a "$1".',
 'filetype-badmime'            => 'Non se permite enviar ficheiros de tipo MIME "$1".',
-'filetype-unwanted-type'      => "'''\".\$1\"''' é un tipo de arquivo non desexado.  Os tipos de arquivo preferidos son \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de ficheiro permitido.  Os tipos de ficheiros permitidos son \$2.",
+'filetype-unwanted-type'      => "'''\".\$1\"''' é un tipo de ficheiro non desexado.
+{{PLURAL:\$3|O tipo de ficheiro preferido é|Os tipos de ficheiro preferidos son}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de ficheiro permitido.
+{{PLURAL:\$3|O tipo de ficheiro permitido é|Os tipos de ficheiros permitidos son}} \$2.",
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
 'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere $1; este ficheiro ocupa $2.',
 'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
@@ -1444,6 +1446,7 @@ Se quere máis información acerca dos dereitos individuais pode atopala [[{{Med
 'emailccsubject'  => 'Copia da mensaxe para $1: $2',
 'emailsent'       => 'Mensaxe enviada',
 'emailsenttext'   => 'A súa mensaxe de correo electrónico foi enviada.',
+'emailuserfooter' => 'Este correo electrónico foi enviado por $1 a $2 mediante a función "$3" de {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'A miña listaxe de vixilancia',
@@ -1613,6 +1616,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'undeletepagetitle'            => "'''A continuación amósanse as revisións eliminadas de''' \"'''[[:\$1|\$1]]'''\".",
 'viewdeletedpage'              => 'Ver as páxinas borradas',
 'undeletepagetext'             => 'As seguintes páxinas foron borradas pero aínda están no arquivo e poden ser restauradas. O arquivo vai ser limpado periodicamente.',
+'undelete-fieldset-title'      => 'Restaurar as revisións',
 'undeleteextrahelp'            => "Para restaurar a páxina completa deixe todas as caixas sen marcar e prema en '''''Restaurar'''''.
 Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e a continuación prema en '''''Restaurar'''''.
 Premendo en '''''Borrar''''' limpa o campo comentario en todas as caixas.",

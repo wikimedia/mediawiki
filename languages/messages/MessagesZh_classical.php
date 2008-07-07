@@ -996,10 +996,10 @@ $2',
 'illegalfilename'            => '名"$1"不格，更之再焉。',
 'badfilename'                => '更名"$1。"。',
 'filetype-badmime'           => '「$1」之MIME類物檔案不能獻之。',
-'filetype-unwanted-type'     => "'''「.\$1」'''乃無需之物類也。
-議之物類有{{PLURAL:\$3|一|多}}\$2也。",
-'filetype-banned-type'       => "'''「.\$1」'''乃無允之物類也。
-允之物類有{{PLURAL:\$3|一|多}}\$2也。",
+'filetype-unwanted-type'     => "'''「.$1」'''乃無需之物類也。
+議之物類有{{PLURAL:$3|一|多}}$2也。",
+'filetype-banned-type'       => "'''「.$1」'''乃無允之物類也。
+允之物類有{{PLURAL:$3|一|多}}$2也。",
 'filetype-missing'           => '檔名無後綴也（如「.jpg」）。',
 'large-file'                 => '檔長$2仟位元組，不逾$1為佳。',
 'emptyfile'                  => '無以獻，疑謬名也，惠核之。',

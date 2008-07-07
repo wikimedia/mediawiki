@@ -1113,7 +1113,7 @@ se math/README for oppsett.',
 'recentchanges'                     => 'Siste endringer',
 'recentchangestext'                 => 'Vis de siste endringene til denne siden',
 'recentchanges-feed-description'    => 'Følg med på siste endringer i denne wikien med denne feed-en.',
-'rcnote'                            => "Nedenfor vises {{PLURAL:$1|én endring|de siste '''$1''' endringene}} fra de siste <strong>$2</strong> dagene, per $3.",
+'rcnote'                            => "Nedenfor vises {{PLURAL:$1|én endring|de siste '''$1''' endringene}} fra {{PLURAL:$2|det siste døgnet|de siste '''$2''' døgnene}} per $5 $4.",
 'rcnotefrom'                        => "Nedenfor er endringene fra '''$2''' til '''$1''' vist.",
 'rclistfrom'                        => 'Vis nye endringer med start fra $1',
 'rcshowhideminor'                   => '$1 mindre endringer',
@@ -1180,8 +1180,10 @@ For å lenke direkte til filen, skriv:
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
-'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype. Foretrukne filtyper er $2.",
-'filetype-banned-type'        => "'''«$1»''' er ikke en tillatt filtype. Foretrukne filtyper er $2.",
+'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype.
+{{PLURAL:$3|Foretrukken filtype|Foretrukne filtyper}} er $2.",
+'filetype-banned-type'        => "'''«$1»''' er ikke en tillatt filtype.
+{{PLURAL:$3|Tillatt filtype|Tillatte filtyper}} er $2.",
 'filetype-missing'            => 'Filen har ingen endelse (som «.jpg»).',
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
 'largefileserver'             => 'Denne fila er større enn det tjeneren er satt opp til å tillate.',
@@ -1507,6 +1509,7 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 'emailccsubject'  => 'Kopi av din beskjed til $1: $2',
 'emailsent'       => 'E-post sendt',
 'emailsenttext'   => 'E-postbeskjeden er sendt',
+'emailuserfooter' => 'E-posten ble sendt av $1 til $2 via «$3»-funksjonen på {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Overvåkningsliste',
@@ -1669,6 +1672,7 @@ Tilbakemeldinger og videre assistanse:
 'undeletepagetitle'            => "'''Følgende innhold er slettede revisjoner av [[:$1]].'''",
 'viewdeletedpage'              => 'Vis slettede sider',
 'undeletepagetext'             => 'Følgende sider er slettet, men finnes fortsatt i arkivet og kan gjenopprettes. Arkivet blir periodevis slettet.',
+'undelete-fieldset-title'      => 'Gjenopprett revisjoner',
 'undeleteextrahelp'            => "For å gjenopprette hele siden, la alle boksene være som de er, og klikk '''Gjenopprett'''. For å gjenopprette kun deler, kryss av revisjonenes bokser, og klikk '''Gjenopprett'''.",
 'undeleterevisions'            => '{{PLURAL:$1|Én versjon arkivert|$1 versjoner arkiverte}}',
 'undeletehistory'              => 'Om du gjenoppretter siden vil alle revisjoner gjenopprettes i historikken. Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gjenopprettede revisjonene dukke opp før denne i redigeringshistorikken. Merk også at restriksjoner på filrevisjoner mistes ved gjenoppretting.',
@@ -2631,5 +2635,9 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 'specialpages-group-wiki'        => 'Informasjon og verktøy for wikien',
 'specialpages-group-redirects'   => 'Omdirigerende spesialsider',
 'specialpages-group-spam'        => 'Spamverktøy',
+
+# Special:Blankpage
+'blankpage'              => 'Tom side',
+'intentionallyblankpage' => 'Denne siden er tom med vilje',
 
 );

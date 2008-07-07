@@ -6,7 +6,6 @@
  *
  * @author Mirzali
  * @author Belekvor
- * @author Nike
  * @author Siebrand
  * @author SPQRobin
  */

@@ -6,8 +6,8 @@
  *
  * @author Dani
  * @author Siebrand
- * @author Tgr
  * @author Samat
+ * @author Tgr
  * @author Bdamokos
  * @author Dorgan
  * @author Balasyum
@@ -72,7 +72,7 @@ $specialPageAliases = array(
 	'Upload'                  => array( 'Feltöltés' ),
 	'Imagelist'               => array( 'Képlista' ),
 	'Newimages'               => array( 'Új képek galériája' ),
-	'Listusers'               => array( 'Szereksztők listája', 'Szerkesztők', 'Felhasználók' ),
+	'Listusers'               => array( 'Szerkesztők listája', 'Szerkesztők', 'Felhasználók' ),
 	'Listgrouprights'         => array( 'Szerkesztői csoportok jogai' ),
 	'Statistics'              => array( 'Statisztikák' ),
 	'Randompage'              => array( 'Lap találomra' ),
@@ -142,6 +142,7 @@ $specialPageAliases = array(
 	'MergeHistory'            => array( 'Laptörténetek egyesítése' ),
 	'Filepath'                => array( 'Fájl elérési útja' ),
 	'Invalidateemail'         => array( 'E-mail cím érvénytelenítése' ),
+	'Blankpage'               => array( 'Üres lap' ),
 );
 
 $datePreferences = array(
@@ -832,7 +833,7 @@ Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back''' go
 'anontalkpagetext'                 => "----''Ez egy olyan anonim szerkesztő vitalapja, aki még nem regisztrált, vagy csak nem jelentkezett be. Ezért az IP-címét (<tt>{{PAGENAME}}</tt>) használjuk az azonosítására. Ugyanazon az IP-címen egy sor szerkesztő osztozhat az idők folyamán. Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, regisztrálj vagy ha már regisztráltál, lépj be, hogy ne keverjenek össze másokkal.''",
 'noarticletext'                    => 'Ez a lap jelenleg nem tartalmaz szöveget. [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]], vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].',
 'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztő. Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
-'clearyourcache'                   => "'''Megjegyzés:''' A beállítások elmentése után frissítened kell a böngésződ gyorsítótárát, hogy a változások érvénybe lépjenek. '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload'' / ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt; '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra (vagy ''Ctrl–R'' vagy ''F5''); '''Opera''' felhasználóknak teljesen ki kell üríteniük a gyorsítótárat a ''Tools→Preferences'' menüben.",
+'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.''' '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra vagy nyomj ''F5''-öt; '''Opera:''' ürítsd ki a gyorsítótárat az ''Eszközök→Személyes adatok törlése'' / ''Tools→Preferences'' menüben; '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload / Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
 'usercssjsyoucanpreview'           => '<strong>Tipp:</strong> Használd az „Előnézet megtekintése” gombot az új CSS/JS teszteléséhez mentés előtt.',
 'usercsspreview'                   => "'''Ne felejtsd el, hogy ez csak a CSS előnézete és még nincs elmentve!'''",
 'userjspreview'                    => "'''Ne felejtsd el, hogy még csak teszteled a felhasználói JavaScriptedet, és még nincs elmentve!'''",
@@ -1331,8 +1332,10 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'illegalfilename'             => 'A „$1” lap neve olyan karaktereket tartalmaz, melyek nincsenek megengedve lapcímben. Kérlek, változtasd meg a nevet, és próbálkozz a mentéssel újra.',
 'badfilename'                 => 'A kép új neve „$1”.',
 'filetype-badmime'            => '„$1” MIME-típusú fájlokat nem lehet feltölteni.',
-'filetype-unwanted-type'      => "A(z) '''„.$1”''' nem javasolt fájltípus. Az ajánlott típusok: $2.",
-'filetype-banned-type'        => "A(z) '''„.$1”''' nem megengedett fájltípus.  A megengedett típusok: $2.",
+'filetype-unwanted-type'      => "A(z) '''„.$1”''' nem javasolt fájltípus.
+Az ajánlott típusok: $2.",
+'filetype-banned-type'        => "A(z) '''„.$1”''' nem megengedett fájltípus. 
+A megengedett típusok: $2.",
 'filetype-missing'            => 'A fájlnak nincs kiterjesztése (pl. „.jpg”).',
 'large-file'                  => 'Javasoljuk, hogy a dájl ne legyen nagyobb, mint $1; ennek a fájlnak a mérete $2.',
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',
@@ -1670,6 +1673,7 @@ nem kíván másoktól leveleket kapni.',
 'emailccsubject'  => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
 'emailsent'       => 'E-mail elküldve',
 'emailsenttext'   => 'Az e-mail üzenetedet elküldtem.',
+'emailuserfooter' => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
 
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
@@ -1847,6 +1851,7 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 'viewdeletedpage'              => 'Törölt lapok megtekintése',
 'undeletepagetext'             => 'Az alábbi lapokat törölték, de még helyreállíthatók az archívumból
 (az archívumot időről időre üríthetik!).',
+'undelete-fieldset-title'      => 'Változatok helyreállítása',
 'undeleteextrahelp'            => "A lap teljes helyreállításához ne jelölj be egy jelölőnégyzetet sem, csak nyomj a '''''Helyreállítás''''' gombra. A lap részleges helyreállításához jelöld be a kívánt szerkesztések melletti jelölőnégyzeteket, és nyomj a '''''Helyreállítás''''' gombra. Ha megnyomod a '''''Vissza''''' gombot, az törli a jelölőnégyzetek és az összefoglaló jelenlegi tartalmát.",
 'undeleterevisions'            => '$1 változat archiválva',
 'undeletehistory'              => 'Ha helyreállítasz egy lapot, azzal visszahozod laptörténet összes változatát.
@@ -2065,6 +2070,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'move-watch'              => 'Figyeld a lapot',
 'movepagebtn'             => 'Lap átnevezése',
 'pagemovedsub'            => 'Átnevezés sikeres',
+'movepage-moved'          => "<big>'''„$1” átnevezve „$2” névre'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
 'cantmove-titleprotected' => 'Nem nevezheted át a lapot, mert az új cím le van védve a létrehozás ellen.',
@@ -2809,5 +2815,9 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'specialpages-group-wiki'        => 'A wiki adatai és eszközei',
 'specialpages-group-redirects'   => 'Átirányító speciális lapok',
 'specialpages-group-spam'        => 'Spam eszközök',
+
+# Special:Blankpage
+'blankpage'              => 'Üres lap',
+'intentionallyblankpage' => 'Ez a lap szándékosan maradt üresen',
 
 );

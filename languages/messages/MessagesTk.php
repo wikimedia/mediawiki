@@ -84,7 +84,7 @@ $messages = array(
 'nstab-category' => 'Kategoriya',
 
 # General errors
-'viewsource' => 'Gözbaşý gör',
+'viewsource' => 'Gözbaşy gör',
 
 # Login and logout pages
 'nav-login-createaccount' => 'Sessiýa aç / täze hasap edin',

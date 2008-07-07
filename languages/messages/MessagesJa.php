@@ -11,8 +11,8 @@
  * @author Kahusi
  * @author Emk
  * @author Siebrand
- * @author Iwai.masaharu
  * @author Mzm5zbC3
+ * @author Iwai.masaharu
  * @author לערי ריינהארט
  * @author Kkkdc
  * @author Hatukanezumi
@@ -589,7 +589,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
 'userpage-userdoesnotexist'        => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'                   => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
-* '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Shift]-[Ctrl]-[R] （Macでは [Cmd]-[Shift]-[R]）
+* '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Ctrl]-[F5] か [Ctrl]-[R] （Macintoshでは [Cmd]-[Shift]-[R]）
 * '''IE:''' [Ctrl] を押しながら [更新] をクリック、または [Ctrl]-[F5]
 * '''Konqueror:''' [再読み込み] をクリック、または [F5]
 * '''Opera:''' 「ツール」→「設定」からキャッシュをクリア。",
@@ -724,6 +724,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'logdelete-logentry'          => '[[$1]]の版の操作情報を変更しました',
 'revdelete-success'           => '版の隠蔽状態を変更しました',
 'logdelete-success'           => '操作情報の隠蔽状態を変更しました',
+'pagehist'                    => 'ページの履歴',
 'deletedhist'                 => '削除された履歴',
 'revdelete-summary'           => '編集内容の要約',
 'revdelete-uname'             => '利用者名',
@@ -907,9 +908,15 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'right-edit'          => 'ページの編集',
 'right-move'          => 'ページの移動',
 'right-move-subpages' => 'サブページを含めたページの移動',
+'right-autoconfirmed' => '半保護されたページの編集',
+'right-delete'        => 'ページの削除',
+'right-undelete'      => 'ページの復帰',
+'right-block'         => '他利用者の投稿ブロック',
+'right-blockemail'    => '電子メール送信のブロック',
 'right-editprotected' => '保護ページの編集 (カスケード保護を除く)',
 'right-editinterface' => 'ユーザーインターフェースの編集',
 'right-editusercssjs' => '他利用者のCSS・JSファイルの編集',
+'right-import'        => '他のWikiからのページのインポート',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',

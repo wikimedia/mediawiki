@@ -703,15 +703,16 @@ Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back''
 ''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza, de modo a que temos que utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser partilhado por vários utilizadores. Se é um utilizador anónimo e sente que comentários irrelevantes foram direccionados a você, por favor [[{{ns:special}}:Userlogin|crie uma conta ou autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
 'noarticletext'                    => 'Não existe actualmente texto nesta página; você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página noutras páginas]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
-'clearyourcache'                   => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.
-'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-Shift-R'' (''Cmd-Shift-R'' no Apple Mac); '''IE:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5''; '''Konqueror:''': simplesmente clique no botão ''Recarregar'', ou pressione ''F5''; utilizadores do navegador '''Opera''' talvez precisem limpar completamente a sua cache em ''Ferramentas→Preferências''.",
+'clearyourcache'                   => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
+'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ou ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' num Macintosh); '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5''; '''Opera:''' limpe a sua cache em ''Ferramentas → Preferências'' (''Tools → Preferences''); '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
 'usercssjsyoucanpreview'           => '<strong>Dica:</strong> Utilize o botão "Mostrar previsão" para testar seu novo CSS/JS antes de salvar.',
 'usercsspreview'                   => "'''Lembre-se que está apenas a prever o seu CSS particular e que ele ainda não foi salvo!'''",
 'userjspreview'                    => "'''Lembre-se que está apenas a testar/prever o seu JavaScript particular e que ele ainda não foi salvo!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/monobook.css aposto a {{ns:user}}:Alguém/Monobook.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => '<strong>Nota:</strong>',
-'previewnote'                      => '<strong>Isto é apenas uma previsão. As modificações ainda não foram salvas!</strong>',
+'previewnote'                      => '<strong>Isto é apenas uma previsão.
+As modificações ainda não foram salvas!</strong>',
 'previewconflict'                  => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'session_fail_preview'             => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
@@ -1140,7 +1141,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'recentchanges'                     => 'Mudanças recentes',
 'recentchangestext'                 => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
 'recentchanges-feed-description'    => 'Acompanhe as Mudanças recentes deste wiki por este feed.',
-'rcnote'                            => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir de $3.",
+'rcnote'                            => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom'                        => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom'                        => 'Mostrar as novas alterações a partir de $1',
 'rcshowhideminor'                   => '$1 edições menores',
@@ -1205,8 +1206,10 @@ Para incluír a imagem numa página, utilize o link na forma de
 'illegalfilename'             => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor, altere o nome do ficheiro e tente carregar novamente.',
 'badfilename'                 => 'O nome do ficheiro foi alterado para "$1".',
 'filetype-badmime'            => 'Ficheiros de tipo MIME "$1" não são permitidos de serem enviados.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' é um tipo de ficheiro não desejado. Os preferíveis são \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' é um tipo proibido de ficheiro. Os permitidos são \$2.",
+'filetype-unwanted-type'      => "'''\".\$1\"''' é um tipo de ficheiro não desejado.
+{{PLURAL:\$3|O tipo preferível é|Os tipos preferíveis são}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' é um tipo proibido de ficheiro.
+{{PLURAL:\$3|O tipo permitido é|Os tipos permitidos são}} \$2.",
 'filetype-missing'            => 'O ficheiro não possui uma extensão (como, por exemplo, ".jpg").',
 'large-file'                  => 'É recomendável que os ficheiros não sejam maiores que $1; este possui $2.',
 'largefileserver'             => 'O tamanho deste ficheiro é superior ao qual o servidor encontra-se configurado para permitir.',

@@ -7,8 +7,8 @@
  * @author Dato deutschland
  * @author Alsandro
  * @author Malafaya
- * @author Siebrand
  * @author M.M.S.
+ * @author Siebrand
  */
 
 $fallback = 'ka';
@@ -457,6 +457,7 @@ $messages = array(
 'move-watch'       => 'თე ხასილაშ კონტროლ',
 'movepagebtn'      => 'ხასილაშ გინოღალა',
 'pagemovedsub'     => 'გინოღალა რსულებულ რე',
+'movepage-moved'   => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'გინაღალულ რე',
 'movetalk'         => 'აკოხვალამირ სხუნუაშ გინოღალა',
 'movelogpage'      => 'გინოღალაშ რეგისტრაცია',
