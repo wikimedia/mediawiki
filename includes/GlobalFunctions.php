@@ -460,6 +460,8 @@ function wfMsgWeirdKey ( $key ) {
 function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
 	global $wgParser, $wgContLang, $wgMessageCache, $wgLang;
 
+	wfRunHooks('NormalizeMessageKey', array(&$key, &$useDB, &$langCode, &$transform));
+	
 	# If $wgMessageCache isn't initialised yet, try to return something sensible.
 	if( is_object( $wgMessageCache ) ) {
 		$message = $wgMessageCache->get( $key, $useDB, $langCode );

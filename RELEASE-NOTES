@@ -182,8 +182,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Allow the search box, toolbox and languages box in the Monobook sidebar to be
   moved around arbitrarily using special sections in [[MediaWiki:Sidebar]]: 
   SEARCH, TOOLBOX and LANGUAGES
-
-
+* Add a new hook NormalizeMessageKey to allow extensions to replace messages before
+  the database is potentially queried
+ 
 === Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository
