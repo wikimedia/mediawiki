@@ -745,8 +745,7 @@ CREATE TABLE /*$wgDBprefix*/image (
   INDEX img_size (img_size),
   -- Used by Special:Newimages and Special:Imagelist
   INDEX img_timestamp (img_timestamp),
-
-  -- For future use
+  -- Used in API and duplicate search
   INDEX img_sha1 (img_sha1)
 
 
