@@ -44,7 +44,7 @@ function addWiki( $lang, $site, $dbName )
 	print "Initialising tables\n";
 	dbsource( "$maintenance/tables.sql", $dbw );
 	dbsource( "$IP/extensions/OAI/update_table.sql", $dbw );
-	dbsource( "$IP/extensions/AntiSpoof/mysql/patch-antispoof.mysql.sql", $dbw );
+	dbsource( "$IP/extensions/AntiSpoof/sql/patch-antispoof.mysql.sql", $dbw );
 	dbsource( "$IP/extensions/CheckUser/cu_changes.sql", $dbw );
 	dbsource( "$IP/extensions/CheckUser/cu_log.sql", $dbw );
 	dbsource( "$IP/extensions/TitleKey/titlekey.sql", $dbw );
