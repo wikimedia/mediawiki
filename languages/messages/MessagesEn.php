@@ -2040,7 +2040,7 @@ The e-mail address you entered in your user preferences will appear as the "From
 'emailccsubject'  => 'Copy of your message to $1: $2',
 'emailsent'       => 'E-mail sent',
 'emailsenttext'   => 'Your e-mail message has been sent.',
-'emailuserfooter' => 'This e-mail was sent by $1 to $2 by the "Email user" function at {{SITENAME}}.',
+'emailuserfooter' => 'This e-mail was sent by $1 to $2 by the "$3" function at {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'My watchlist',
