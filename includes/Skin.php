@@ -1677,7 +1677,12 @@ END;
 				continue;
 			if (strpos($line, '**') !== 0) {
 				$line = trim($line, '* ');
-				$heading = $line;
+				if ( $line == 'SEARCH' || $line == 'TOOLBOX' || $line == 'LANGUAGES' ) {
+					# Special box type
+					$bar[$line] = array();
+				} else {
+					$heading = $line;
+				}
 			} else {
 				if (strpos($line, '|') !== false) { // sanity check
 					$line = array_map('trim', explode( '|' , trim($line, '* '), 2 ) );

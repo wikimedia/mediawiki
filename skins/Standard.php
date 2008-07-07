@@ -153,6 +153,9 @@ class SkinStandard extends Skin {
 
 		# Use the first heading from the Monobook sidebar as the "browse" section
 		$bar = $this->buildSidebar();
+		unset( $bar['SEARCH'] );
+		unset( $bar['LANGUAGES'] );
+		unset( $bar['TOOLBOX'] );
 		$browseLinks = reset( $bar );
 
 		foreach ( $browseLinks as $link ) {
