@@ -164,13 +164,13 @@ class MWException extends Exception {
 	 */
 	function report() {
 		global $wgCommandLineMode;
+		$log = $this->getLogMessage();
+		if ( $log ) {
+			wfDebugLog( 'exception', $log );
+		}
 		if ( $wgCommandLineMode ) {
 			fwrite( STDERR, $this->getText() );
 		} else {
-			$log = $this->getLogMessage();
-			if ( $log ) {
-				wfDebugLog( 'exception', $log );
-			}
 			$this->reportHTML();
 		}
 	}

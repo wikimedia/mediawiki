@@ -97,6 +97,7 @@ class BackupReader {
 			}
 			$this->progress( "$this->pageCount ($rate pages/sec $revrate revs/sec)" );
 		}
+		wfWaitForSlaves(5);
 	}
 
 	function progress( $string ) {

@@ -3190,11 +3190,17 @@ $wgSlaveLagCritical = 30;
  * Parser configuration. Associative array with the following members:
  *
  *  class             The class name
- *  preprocessorClass The preprocessor class, by default it is Preprocessor_Hash.
- *                    Preprocessor_DOM is also available and better tested, but
- *                    it has a dependency of the dom module of PHP.
- *                    It has no effect with Parser_OldPP parser class.
  *
+ *  preprocessorClass The preprocessor class. Two classes are currently available:
+ *                    Preprocessor_Hash, which uses plain PHP arrays for tempoarary 
+ *                    storage, and Preprocessor_DOM, which uses the DOM module for 
+ *                    temporary storage. Preprocessor_DOM generally uses less memory;
+ *                    the speed of the two is roughly the same.
+ *                    
+ *                    If this parameter is not given, it uses Preprocessor_DOM if the 
+ *                    DOM module is available, otherwise it uses Preprocessor_Hash.
+ *
+ *                    Has no effect on Parser_OldPP.
  *
  * The entire associative array will be passed through to the constructor as
  * the first parameter. Note that only Setup.php can use this variable --
@@ -3205,7 +3211,7 @@ $wgSlaveLagCritical = 30;
  */
 $wgParserConf = array(
 	'class' => 'Parser',
-	'preprocessorClass' => 'Preprocessor_Hash',
+	#'preprocessorClass' => 'Preprocessor_Hash',
 );
 
 /**

@@ -131,7 +131,10 @@ class LBFactory_Multi extends LBFactory {
 	function newLoadBalancer( $template, $loads, $groupLoads, $id ) {
 		global $wgMasterWaitTimeout;
 		$servers = $this->makeServerArray( $template, $loads, $groupLoads );
-		$lb = new LoadBalancer( $servers, false, $wgMasterWaitTimeout );
+		$lb = new LoadBalancer( array(
+			'servers' => $servers,
+			'masterWaitTimeout' => $wgMasterWaitTimeout 
+		));
 		$lb->parentInfo( array( 'id' => $id ) );
 		return $lb;
 	}
