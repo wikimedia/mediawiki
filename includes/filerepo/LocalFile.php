@@ -973,11 +973,6 @@ class LocalFile extends File
 		$batch = new LocalFileMoveBatch( $this, $target );
 		$batch->addCurrent();
 		$batch->addOlds();
-		if( !$this->repo->canTransformVia404() ) {
-			wfDebugLog( 'imagemove', 'Cannot transform via 404, so move thumbnails' );
-			$batch->addThumbs();
-		} else
-			wfDebugLog( 'imagemove', 'No moving thumbnails, ok to transform via 404' );
 
 		$status = $batch->execute();
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
@@ -1704,7 +1699,7 @@ class LocalFileRestoreBatch {
  * @ingroup FileRepo
  */
 class LocalFileMoveBatch {
-	var $file, $cur, $olds, $oldcount, $archive, $thumbs, $target, $db;
+	var $file, $cur, $olds, $oldcount, $archive, $target, $db;
 
 	function __construct( File $file, Title $target ) {
 		$this->file = $file;
@@ -1720,11 +1715,6 @@ class LocalFileMoveBatch {
 
 	function addCurrent() {
 		$this->cur = array( $this->oldRel, $this->newRel );
-	}
-
-	function addThumbs() {
-		// Thumbnails are purged, so no need to move them
-		$this->thumbs = array();
 	}
 
 	function addOlds() {
@@ -1818,7 +1808,7 @@ class LocalFileMoveBatch {
 
 	// Generates triplets for FSRepo::storeBatch()
 	function getMoveTriplets() {
-		$moves = array_merge( array( $this->cur ), $this->olds, $this->thumbs );
+		$moves = array_merge( array( $this->cur ), $this->olds );
 		$triplets = array();	// The format is: (srcUrl, destZone, destUrl)
 		foreach( $moves as $move ) {
 			// $move: (oldRelativePath, newRelativePath)
