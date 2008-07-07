@@ -155,7 +155,7 @@ CONTROL;
 
 		// Check if page is editable
 		$editable = $this->mNewRev->getTitle()->userCan( 'edit' );
-		if ( $editable && $this->mNewRev->isCurrent() && $wgUser->isAllowed('rollback') ) {
+		if ( $editable && $this->mNewRev->isCurrent() && $wgUser->isAllowed( 'rollback' ) ) {
 			$rollback = '&nbsp;&nbsp;&nbsp;' . $sk->generateRollback( $this->mNewRev );
 		} else {
 			$rollback = '';
