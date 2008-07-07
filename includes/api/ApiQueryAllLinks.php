@@ -84,21 +84,20 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		if (isset ($params['prefix']))
 			$this->addWhere("pl_title LIKE '" . $db->escapeLike($this->titleToKey($params['prefix'])) . "%'");
 
-		if (is_null($resultPageSet)) {
-			$this->addFields(array (
-				'pl_namespace',
-				'pl_title',
-				'pl_from'
-			));
-		} else {
-			$this->addFields('pl_from');
-			$pageids = array();
-		}
+		$this->addFields(array (
+			'pl_namespace',
+			'pl_title',
+			'pl_from'
+		));
 
 		$this->addOption('USE INDEX', 'pl_namespace');
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);
-		$this->addOption('ORDER BY', 'pl_title');
+		# Only order by pl_namespace if it isn't constant in the WHERE clause
+		if(count($params['namespace']) != 1)
+			$this->addOption('ORDER BY', 'pl_namespace, pl_title');
+		else
+			$this->addOption('ORDER BY', 'pl_title');
 
 		$res = $this->select(__METHOD__);
 
