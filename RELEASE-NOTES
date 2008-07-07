@@ -507,6 +507,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added APIQueryInfoTokens and APIQueryRevisionsTokens hooks so extensions
   can add their own tokens
 * Added block and unblock tokens to prop=info as well
+* Added paging (limit and continue parameters) to
+  prop={links,templatelinks,langlinks,extlinks,categories,images}
 
 === Languages updated in 1.13 ===
 
