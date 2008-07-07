@@ -1594,7 +1594,6 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'emailccsubject'  => 'Kopie deiner Nachricht an $1: $2',
 'emailsent'       => 'E-Mail verschickt',
 'emailsenttext'   => 'Deine E-Mail wurde verschickt.',
-'emailuserfooter' => 'Diese E-Mail wurde von $1 an $2 mit Hilfe der „$3“-Funktion von {{SITENAME}} versandt.',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',

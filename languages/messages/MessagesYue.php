@@ -1505,7 +1505,6 @@ Template:搞清楚',
 'emailccsubject'  => '你畀$1: $2封信嘅副本',
 'emailsent'       => '電郵已傳送',
 'emailsenttext'   => '你嘅電郵信息已傳送。',
-'emailuserfooter' => '呢封電郵係由$1寄畀$2經{{SITENAME}}嘅「$3」功能發出嘅。',
 
 # Watchlist
 'watchlist'            => '監視清單',
