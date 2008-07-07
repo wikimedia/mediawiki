@@ -5,8 +5,8 @@
  * @file
  *
  * @author Klenje
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author Helix84
  */
 

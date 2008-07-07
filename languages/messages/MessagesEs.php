@@ -6,6 +6,7 @@
  *
  * @author Icvav
  * @author Titoxd
+ * @author Boivie
  * @author Piolinfax
  * @author Drini
  * @author Platonides
@@ -22,8 +23,9 @@
  * @author Jatrobat
  * @author Ascánder
  * @author Bengoa
- * @author Orgullomoore
  * @author Dvortygirl
+ * @author Orgullomoore
+ * @author Omnipaedista
  * @author Toniher
  * @author Alpertron
  * @author Mahadeva
@@ -367,6 +369,13 @@ MySQL devolvió el error "$3: $4".',
 'readonlytext'         => 'La base de datos de {{SITENAME}} no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
 La explicación dada por el administrador que la bloqueó fue:
 <p>$1',
+'missing-article'      => 'La base de datos no encuentra el texto de una página que debería hallarse, titulada "$1" $2.
+
+La causa de esto suele deberse a un diff anacrónico o un enlace al historial de una página que ha sido borrada.
+
+Si no fuera el caso, puedes haber encontrado un \'\'bug\'\' en el software. 
+
+Por favor, avisa a un bibliotecario, tomando nota de la URL.',
 'missingarticle-rev'   => '(no. de revisión: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',
@@ -478,7 +487,8 @@ Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no 
 Por favor, identifíquese de nuevo tras recibirla.',
 'blocked-mailpassword'       => 'Tu dirección IP está bloqueada, y no se te permite el uso de la función de recuperación de contraseñas para prevenir abusos.',
 'eauthentsent'               => 'Un correo electrónico de confirmación ha sido enviado a la dirección especificada. Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las instrucciones enviadas en el mensaje,  para así confirmar que la dirección te pertenece.',
-'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en las últimas $1 horas. Para evitar los abusos, solo se enviará un recordatorio de password cada $1 horas.',
+'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
+Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Lo sentimos, ya ha creado $1 cuentas. No puede crear otra.',
 'emailauthenticated'         => 'Su dirección electrónica fue verificada en $1.',
@@ -788,6 +798,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'mergehistory-invalid-source'      => 'La página origen debe tener un título válido.',
 'mergehistory-invalid-destination' => 'La página de destino ha de tener un título válido.',
 'mergehistory-autocomment'         => 'Fusionando [[:$1]] en [[:$2]]',
+'mergehistory-comment'             => 'Fusionando [[:$1]] en [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',
@@ -804,34 +815,39 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'diff-multi'              => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 
 # Search results
-'searchresults'         => 'Resultados de la búsqueda',
-'searchresulttext'      => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Has consultado por '''[[:$1]]'''",
-'searchsubtitleinvalid' => 'Para consulta "$1"',
-'noexactmatch'          => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
-'noexactmatch-nocreate' => "'''No existe la página \"\$1\".'''",
-'toomanymatches'        => 'Los resultados fueron demasiado extensos, por favor intente una consulta diferente',
-'titlematches'          => 'Coincidencias de título de artículo',
-'notitlematches'        => 'No hay coincidencias de título de artículo',
-'textmatches'           => 'Coincidencias de texto de artículo',
-'notextmatches'         => 'No hay coincidencias de texto de artículo',
-'prevn'                 => '$1 previas',
-'nextn'                 => '$1 siguientes',
-'viewprevnext'          => 'Ver ($1) ($2) ($3).',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
-'search-result-score'   => 'Relevancia: $1%',
-'search-section'        => '(sección $1)',
-'searchall'             => 'todos',
-'showingresults'        => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
-'showingresultsnum'     => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
-'nonefound'             => '<strong>Nota</strong>: las búsquedas fallidas suelen producirse al buscar palabras comunes como "la" o "de", que no están en el índice, o por especificar más de una palabra a buscar (sólo las páginas
+'searchresults'            => 'Resultados de la búsqueda',
+'searchresulttext'         => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'           => "Has consultado por '''[[:$1]]'''",
+'searchsubtitleinvalid'    => 'Para consulta "$1"',
+'noexactmatch'             => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
+'noexactmatch-nocreate'    => "'''No existe la página \"\$1\".'''",
+'toomanymatches'           => 'Los resultados fueron demasiado extensos, por favor intente una consulta diferente',
+'titlematches'             => 'Coincidencias de título de artículo',
+'notitlematches'           => 'No hay coincidencias de título de artículo',
+'textmatches'              => 'Coincidencias de texto de artículo',
+'notextmatches'            => 'No hay coincidencias de texto de artículo',
+'prevn'                    => '$1 previas',
+'nextn'                    => '$1 siguientes',
+'viewprevnext'             => 'Ver ($1) ($2) ($3).',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
+'search-result-score'      => 'Relevancia: $1%',
+'search-section'           => '(sección $1)',
+'search-suggest'           => 'Dice usted: $1',
+'search-interwiki-default' => '$1 resultados:',
+'mwsuggest-disable'        => 'No usar AJAX al realizar búsquedas',
+'searchall'                => 'todos',
+'showingresults'           => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
+'showingresultsnum'        => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
+'showingresultstotal'      => "Debajo se muestran {{PLURAL:$3|la resultado '''$1''' de un resultado total|los resultados entre el número '''$1''' y el '''$2''', de un total de $3 resultados totales}}.",
+'nonefound'                => '<strong>Nota</strong>: las búsquedas fallidas suelen producirse al buscar palabras comunes como "la" o "de", que no están en el índice, o por especificar más de una palabra a buscar (sólo las páginas
 que contengan todos los términos de búsqueda aparecerán en el resultado).',
-'powersearch'           => 'Búsqueda',
-'powersearch-legend'    => 'Búsqueda avanzada',
-'powersearch-ns'        => 'Buscar en los espacios de nombres:',
-'powersearch-redir'     => 'Listar redirecciones',
-'search-external'       => 'Búsqueda externa',
-'searchdisabled'        => 'Las búsquedas en {{SITENAME}} está temporalmente deshabilitadas. Mientras tanto puede buscar mediante buscadores externos, pero tenga en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
+'powersearch'              => 'Búsqueda',
+'powersearch-legend'       => 'Búsqueda avanzada',
+'powersearch-ns'           => 'Buscar en los espacios de nombres:',
+'powersearch-redir'        => 'Listar redirecciones',
+'powersearch-field'        => 'Buscar',
+'search-external'          => 'Búsqueda externa',
+'searchdisabled'           => 'Las búsquedas en {{SITENAME}} está temporalmente deshabilitadas. Mientras tanto puede buscar mediante buscadores externos, pero tenga en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
 
 # Preferences page
 'preferences'              => 'Preferencias',
@@ -890,6 +906,7 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'servertime'               => 'La hora en el servidor es',
 'guesstimezone'            => 'Obtener la hora del navegador',
 'allowemail'               => 'Habilitar la recepción de correo de otros usuarios',
+'prefs-searchoptions'      => 'Opciones de búsqueda',
 'defaultns'                => 'Buscar en estos espacios de nombres por defecto:',
 'default'                  => 'por defecto',
 'files'                    => 'Archivos',
@@ -907,7 +924,12 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'userrights-groupsavailable'  => 'Grupos disponibles:',
 'userrights-reason'           => 'Motivo para el cambio:',
 'userrights-available-none'   => 'No puedes alterar la pertenencia al grupo.',
+'userrights-available-add'    => "Puedes darle el flag a cualquier usuario para que pertenezca {{PLURAL:$2|al grupo|a los grupos}} '''$1'''.",
+'userrights-available-remove' => "Puedes quitarle el flag a cualquier usuario {{PLURAL:$2|del grupo|de los grupos}} '''$1'''.",
+'userrights-no-interwiki'     => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase'       => 'La base de datos $1 no existe o no es local.',
+'userrights-nologin'          => 'Debes [[Special:Userlogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
+'userrights-notallowed'       => 'No tienes permiso para realizar cambios de grupos a usuarios.',
 'userrights-changeable-col'   => 'Grupos que puede cambiar',
 'userrights-unchangeable-col' => 'Grupos que no puede cambiar',
 
@@ -926,9 +948,11 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'group-sysop-member'         => 'Administrador',
 'group-bureaucrat-member'    => 'Burócrata',
 
-'grouppage-bot'        => '{{ns:project}}:Bot',
-'grouppage-sysop'      => '{{ns:project}}:Administradores',
-'grouppage-bureaucrat' => '{{ns:project}}:Burócratas',
+'grouppage-user'          => '{{ns:project}}:Usuarios',
+'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Administradores',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
 
 # Rights
 'right-read'             => 'Leer páginas',
@@ -1005,6 +1029,7 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'recentchangeslinked-noresult' => 'No hubo cambios en las páginas enlazadas durante el periodo indicado.',
 'recentchangeslinked-summary'  => "Esta página especial lista los últimos cambios en las páginas enlazadas. Las páginas en su lista de seguimiento están en '''negrita'''.",
 'recentchangeslinked-page'     => 'Nombre de la página:',
+'recentchangeslinked-to'       => 'Muestra los cambios recientes en lugar de la página indicada',
 
 # Upload
 'upload'                      => 'Subir archivo',
@@ -1013,6 +1038,7 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'reuploaddesc'                => 'Regresar al formulario para subir.',
 'uploadnologin'               => 'No ha iniciado sesión',
 'uploadnologintext'           => 'Tienes que [[Special:Userlogin|iniciar sesión]] para poder subir archivos.',
+'upload_directory_missing'    => 'El directorio de subida de archivos ($1) no existe, y no puede ser creado por el servidor.',
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
 'uploadtext'                  => "Utilize el siguiente formulario para subir archivos.
@@ -1023,6 +1049,9 @@ Para incluir un archivo en una página, utilice en el formulario los enlaces
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''', o
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''', para vincular directamente el archivo.",
+'upload-permitted'            => 'Tipos de archivo permitidos: $1.',
+'upload-preferred'            => 'Tipos de archivo preferidos: $1.',
+'upload-prohibited'           => 'Tipos de archivo prohibidos: $1.',
 'uploadlog'                   => 'registro de subidas',
 'uploadlogpage'               => 'Subidas de archivos',
 'uploadlogpagetext'           => 'Abajo hay una lista de los últimos archivos subidos. Todas las horas son del servidor.',
@@ -1043,6 +1072,8 @@ Para incluir un archivo en una página, utilice en el formulario los enlaces
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
 'fileexists'                  => 'Ya existe un archivo con este nombre. Por favor compruebe el existente <strong><tt>$1</tt></strong> si no está seguro de querer reemplazarlo.',
+'filepageexists'              => 'La página de descripción de este archivo ya ha sido creada en <strong><tt>$1</tt></strong>, pero no existe actualmente ningún fichero con este nombre.
+El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.',
 'fileexists-extension'        => 'Existe un archivo con un nombre similar:<br />
 Nombre del archivo que se está subiendo: <strong><tt>$1</tt></strong><br />
 Nombre del archivo ya existente: <strong><tt>$2</tt></strong><br />
@@ -1093,6 +1124,9 @@ A continuación se muestra el registro de borrado de este archivo:",
 'upload_source_file' => ' (un archivo en su ordenador)',
 
 # Special:Imagelist
+'imagelist-summary'     => 'Esta página muestra todos los archivos subidos.
+Por defecto, el último subido se muestra al principio de la lista.
+Un click sobre el encabezamiento de la columna cambia el orden.',
 'imagelist_search_for'  => 'Buscar por nombre de imagen:',
 'imgfile'               => 'archivo',
 'imagelist'             => 'Lista de imágenes',
@@ -1118,6 +1152,7 @@ archivo a esa fecha.',
 'imagelinks'                => 'Enlaces a la imagen',
 'linkstoimage'              => 'Las siguientes páginas enlazan a esta imagen:',
 'nolinkstoimage'            => 'No hay páginas que enlacen a esta imagen.',
+'morelinkstoimage'          => 'Vea [[Special:Whatlinkshere/$1|más enlaces]] a este archivo.',
 'sharedupload'              => 'Este archivo está compartido y puede usarse desde otros proyectos.',
 'shareduploadwiki'          => 'Puede consultar $1 para más información.',
 'shareduploadwiki-linktext' => 'página de descripción del archivo',
@@ -1127,9 +1162,12 @@ archivo a esa fecha.',
 'imagepage-searchdupe'      => 'Buscar archivos duplicados',
 
 # File reversion
-'filerevert'         => 'Revertir $1',
-'filerevert-comment' => 'Comentario:',
-'filerevert-submit'  => 'Revertir',
+'filerevert'            => 'Revertir $1',
+'filerevert-intro'      => '<span class="plainlinks">Estás revirtiendo \'\'\'[[Media:$1|$1]]\'\'\' a la [version $4 desde la $3, $2].</span>',
+'filerevert-comment'    => 'Comentario:',
+'filerevert-submit'     => 'Revertir',
+'filerevert-success'    => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha sido revertido a la [version $4 desde la $3, $2].</span>',
+'filerevert-badversion' => 'No existe version local previa de este archivo con esa marca de tiempo.',
 
 # File deletion
 'filedelete'                  => 'Borrar $1',
@@ -1233,10 +1271,12 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'deadendpages'            => 'Páginas sin salida',
 'deadendpagestext'        => 'Las siguientes páginas no enlazan a otras páginas de {{SITENAME}}.',
 'protectedpages'          => 'Páginas protegidas',
+'protectedpages-indef'    => 'Solamente protecciones infinitas',
 'protectedpagestext'      => 'Las siguientes páginas están protegidas para su edición o traslado',
 'protectedpagesempty'     => 'Actualmente no hay ninguna página protegida con esos parámetros.',
 'protectedtitles'         => 'Títulos protegidos',
 'protectedtitlestext'     => 'Los siguientes títulos están protegidos, por lo que no se pueden crear',
+'protectedtitlesempty'    => 'Actualmente no existen entradas protegidas con esos parámetros.',
 'listusers'               => 'Lista de usuarios',
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
@@ -1247,6 +1287,10 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'unusedcategoriestext'    => 'Las siguientes categorías han sido creadas, pero ningún artículo o categoría las utiliza.',
 'notargettitle'           => 'No hay página objetivo',
 'notargettext'            => 'Especifique sobre qué página desea llevar a cabo esta acción.',
+'nopagetitle'             => 'No existe la página destino',
+'nopagetext'              => 'La página destino que ha especificado no existe.',
+'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
+'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 
 # Book sources
 'booksources'               => 'Fuentes de libros',
@@ -1280,6 +1324,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagessubmit'    => 'Mostrar',
 'allpagesprefix'    => 'Mostrar páginas con el prefijo:',
 'allpagesbadtitle'  => 'El título dado era inválido o tenía un prefijo de enlace inter-idioma o inter-wiki. Puede contener uno o más caracteres que no se pueden usar en títulos.',
+'allpages-bad-ns'   => '{{SITENAME}} no tiene un espacio de nombres llamado "$1".',
 
 # Special:Categories
 'categories'                    => 'Categorías',
@@ -1426,6 +1471,9 @@ Véase $2 para un registro de los borrados recientes.',
 ** A petición del mismo autor
 ** Violación de copyright
 ** Vandalismo',
+'delete-edit-reasonlist'      => 'Editar razones de borrado',
+'delete-toobig'               => 'Esta página tiene un historial muy grande, de unas $1 revisiones. Borrar este tipo de páginas ha sido restringido para prevenir accidentes en {{SITENAME}}.',
+'delete-warning-toobig'       => 'Esta página tiene un historial de más de $1 revisiones. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
 'rollback'                    => 'Revertir ediciones',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'Revertir',
@@ -1433,7 +1481,7 @@ Véase $2 para un registro de los borrados recientes.',
 'cantrollback'                => 'No se pueden revertir las ediciones; el último colaborador es el único autor de este artículo.',
 'alreadyrolled'               => 'No se puede revertir la última edición de [[$1]] por [[User:$2|$2]] ([[User talk:$2|discusión]]); alguien más ya ha editado o revertido esa página. La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
 'editcomment'                 => 'El resumen de la edición es: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertidas las ediciones realizadas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); a la última edición de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User Talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'              => 'Parece que hay un problema con tu sesión;
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
@@ -1484,6 +1532,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 # Undelete
 'undelete'                 => 'Restaurar una página borrada',
 'undeletepage'             => 'Ver y restaurar páginas borradas',
+'undeletepagetitle'        => "'''Las siguientes son las revisiones borradas de [[:$1|$1]]'''.",
 'viewdeletedpage'          => 'Ver páginas borradas',
 'undeletepagetext'         => 'Las siguientes páginas han sido borradas pero aún están en el archivo y pueden ser restauradas. El archivo se puede limpiar periódicamente.',
 'undeleteextrahelp'        => "Para restaurar todas las revisiones, deja todas las casillas sin seleccionar y pulsa '''¡Restaurar!'''. Para restaurar sólo algunas revisiones, marca las revisiones que quieres restaurar y pulsa '''¡Restaurar!'''. Haciendo clic en al botón '''Nada''', se deseleccionarán todas las casillas y eliminará el comentario actual.",
@@ -1512,6 +1561,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'undelete-search-prefix'   => 'Mostrar páginas que empiecen por:',
 'undelete-search-submit'   => 'Buscar',
 'undelete-no-results'      => 'No se encontraron páginas borradas para ese criterio de búsqueda.',
+'undelete-cleanup-error'   => 'Error al borrar el archivo no utilizado "$1".',
 'undelete-error-short'     => 'Error restaurando archivo: $1',
 'undelete-error-long'      => 'Se encontraron errores mientras se restauraba el archivo:
 
@@ -1552,6 +1602,9 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|siguiente|siguientes $1}}',
 'whatlinkshere-links'      => '← enlaces',
 'whatlinkshere-hideredirs' => '$1 redirecciones',
+'whatlinkshere-hidetrans'  => '$1 inclusiones',
+'whatlinkshere-hidelinks'  => '$1 enlaces',
+'whatlinkshere-hideimages' => '$1 enlaces a imágenes',
 
 # Block/unblock
 'blockip'                     => 'Bloquear usuario',
@@ -1685,6 +1738,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'              => 'Vigilar este artículo',
 'movepagebtn'             => 'Renombrar página',
 'pagemovedsub'            => 'Renombrado realizado con éxito',
+'movepage-moved'          => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'cantmove-titleprotected' => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
@@ -1693,8 +1747,9 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-subpages'           => 'Mover todas las subpáginas si es posible',
 'move-talk-subpages'      => 'Mover todas las subpáginas de discusión, si es posible',
 'movepage-page-exists'    => 'La página $1 ya existe, por lo que no puede ser renombrada automáticamente.',
+'movepage-page-moved'     => 'La página $1 ha sido trasladado a $2.',
 'movepage-page-unmoved'   => 'La página $1 no se ha podido trasladar a $2.',
-'movepage-max-pages'      => 'Se han trasladado un máximo de $1 páginas, y no se van a mover más automáticamente.',
+'movepage-max-pages'      => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
 '1movedto2'               => '[[$1]] trasladada a [[$2]]',
 '1movedto2_redir'         => '[[$1]] trasladada a [[$2]] sobre una redirección',
 'movelogpage'             => 'Registro de traslados',
@@ -2271,6 +2326,7 @@ $1',
 'searchnamed'      => "Buscar artículos con este nombre ''$1''.",
 'articletitles'    => "Artículos que comienzan por ''$1''",
 'hideresults'      => 'Ocultar resultados',
+'useajaxsearch'    => 'Buscar usando AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
@@ -2336,13 +2392,24 @@ Intenta la previsualización normal.',
 'version-software-version' => 'Versión',
 
 # Special:Filepath
-'filepath'        => 'Ruta de archivo',
-'filepath-page'   => 'Archivo:',
-'filepath-submit' => 'Ruta',
+'filepath'         => 'Ruta de archivo',
+'filepath-page'    => 'Archivo:',
+'filepath-submit'  => 'Ruta',
+'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
+Las imágenes se muestran en resolución máxima, otros tipos de archivo arrancan directamente con su programa asociado.
+
+Ingrese el nombre del archivo sin su prefijo "{{ns:image}}:".',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Búsqueda de archivos duplicados',
+'fileduplicatesearch-summary'  => 'Búsqueda de archivos duplicados en base a su valor hash. 
+
+Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
+'fileduplicatesearch-legend'   => 'Busca duplicados',
 'fileduplicatesearch-filename' => 'Nombre del fichero:',
 'fileduplicatesearch-submit'   => 'Buscar',
+'fileduplicatesearch-result-1' => 'El archivo "$1" no tiene duplicados idénticos.',
+'fileduplicatesearch-result-n' => 'El archivo "$1" tiene {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiales',
@@ -2356,5 +2423,10 @@ Intenta la previsualización normal.',
 'specialpages-group-pages'       => 'Listas de páginas',
 'specialpages-group-pagetools'   => 'Herramientas de páginas',
 'specialpages-group-wiki'        => 'Datos sobre la wiki y herramientas',
+'specialpages-group-redirects'   => 'Búsquedas y redirecciones',
+'specialpages-group-spam'        => 'Herramientas anti-SPAM',
+
+# Special:Blankpage
+'blankpage' => 'Página vacía',
 
 );

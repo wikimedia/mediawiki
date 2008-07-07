@@ -1011,7 +1011,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 
 # Groups
 'group'               => 'Kupka:',
-'group-user'          => 'wužywaŕje',
+'group-user'          => 'Wužywarje',
 'group-autoconfirmed' => 'Wobkšuśone wužywarje',
 'group-bot'           => 'awtomatiske programy (boty)',
 'group-sysop'         => 'Administratory',
@@ -1019,15 +1019,15 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'group-suppress'      => 'Doglědowanja',
 'group-all'           => '(wše)',
 
-'group-user-member'          => 'wužywaŕ',
+'group-user-member'          => 'Wužywaŕ',
 'group-autoconfirmed-member' => 'Wobkšuśony wužywaŕ',
 'group-bot-member'           => 'awtomatiski program (bot)',
 'group-sysop-member'         => 'administrator',
 'group-bureaucrat-member'    => 'Běrokrat',
 'group-suppress-member'      => 'Doglědowanje',
 
-'grouppage-user'          => '{{ns:project}}:wužywaŕje',
-'grouppage-autoconfirmed' => '{{ns:project}}:Wobkšuśone wužywarje',
+'grouppage-user'          => '{{ns:project}}:Wužywarje',
+'grouppage-autoconfirmed' => '{{ns:project}}:Awtomatiski wobkšuśone wužywarje',
 'grouppage-bot'           => '{{ns:project}}:awtomatiske programy (boty)',
 'grouppage-sysop'         => '{{ns:project}}:Administratory',
 'grouppage-bureaucrat'    => '{{ns:project}}:Běrokraty',
@@ -1087,7 +1087,7 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'recentchanges'                     => 'Aktualne změny',
 'recentchangestext'                 => "How móžoš slědne změny we '''{{GRAMMAR:lokatiw|{{SITENAME}}}}''' slědowaś.",
 'recentchanges-feed-description'    => 'Slěduj z toś tym zapódaśim nejaktualnjejše změny we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
-'rcnote'                            => "Dołojce {{PLURAL:$1|jo '''1''' změna|stej slědnej '''$1''' změnje|su slědne '''$1''' změny}} w {{PLURAL:$2|slědnem dnju|slědnyma '''$2''' dnjoma|slědnych '''$2''' dnjach}}, staw wót $3.",
+'rcnote'                            => "Dołojce {{PLURAL:$1|jo '''1''' změna|stej slědnej '''$1''' změnje|su slědne '''$1''' změny}} w {{PLURAL:$2|slědnem dnju|slědnyma '''$2''' dnjoma|slědnych '''$2''' dnjach}}, staw wót $4, $5.",
 'rcnotefrom'                        => "Dołojce pokazuju se změny wót '''$2''' (maks. '''$1''' zapisow).",
 'rclistfrom'                        => 'Nowe změny wót $1 pokazaś.',
 'rcshowhideminor'                   => 'Snadne změny $1',
@@ -1154,8 +1154,10 @@ Aby dataju do boka zapśimjeł, wužyj wótkaz we formje
 'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška. Pšosym pśemjeni dataju a wopytaj ju wótnowotki uploadowaś.',
 'badfilename'                 => 'Mě dataje jo se změniło na „$1“.',
 'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se uploadowaś.',
-'filetype-unwanted-type'      => "'''„.$1“''' jo njewitany datajowy typ. Dowolene su: $2.",
-'filetype-banned-type'        => "'''„.$1“''' jo njedowolony datajowy typ. Dowolone su: $2.",
+'filetype-unwanted-type'      => "'''„.$1“''' jo njewitany datajowy typ. 
+{{PLURAL:$3|Dowólony datajowy typ jo|Dowólonej datajowej typa stej|Dowólene datajowe typy su}}: $2.",
+'filetype-banned-type'        => "'''„.$1“''' jo njedowólony datajowy typ. 
+{{PLURAL:$3|Dowólony datajowy typ jo|Dowólenej datajowej typa stej|Dowólone datajowe typy su}} $2.",
 'filetype-missing'            => 'Dataja njama žedno rozšyrjenje (na pś. „.jpg“).',
 'large-file'                  => 'Pó móžnosći njedejała dataja wětša byś ako $1. Toś ta dataja jo $2 wjelika.',
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',
@@ -1683,11 +1685,12 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'restriction-level-all'           => 'wšykne',
 
 # Undelete
-'undelete'                     => 'Wulašowane boki nawrośiś',
+'undelete'                     => 'Wulašowane boki woglědaś',
 'undeletepage'                 => 'Wulašowane boki pokazaś a nawrośiś.',
 'undeletepagetitle'            => "'''Slědujuce wudaśe wobstoj z wulašowanych wersijow wót [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Wulašowane boki pokazaś',
 'undeletepagetext'             => 'Slědujuce boki su se wulašowali a mógu wót administratorow zasej se nawrośiś:',
+'undelete-fieldset-title'      => 'Wersije wótnowiś',
 'undeleteextrahelp'            => '* Coš-lic bok ze wšyknymi wersijami nawrośiś, zapódaj pśicynu a tłoc na "nawrośiś".
 * Coš-lic jano wěste wersije nawrośiś, wuzwól je, zapódaj pśicynu a tłoc na "nawrośiś".
 * "Pśetergnuś" wuprozdnijo komentarowe pólo a wótpórajo wšykne markěrowanja pśi wersijach.',
@@ -2067,7 +2070,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 
 # Scripts
 'common.js'   => '/* Kuždy JavaScript how lodujo se za wšykne wužywarje na kuždem boce. */',
-'monobook.js' => '/* Zestarjone; wužywaj město togo [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Slědujucy JavaScript zacytajo se za wužywarjow, kótarež skin MonoBook wužywaju */',
 
 # Metadata
 'nodublincore'      => 'Metadaty Dublin Core RDF su za toś ten serwer deaktiwěrowane.',

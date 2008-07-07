@@ -5,8 +5,8 @@
  * @file
  *
  * @author Girmitya
- * @author M.M.S.
  * @author Siebrand
+ * @author M.M.S.
  */
 
 $messages = array(

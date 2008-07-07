@@ -6,8 +6,8 @@
  *
  * @author Aursani
  * @author SPQRobin
- * @author Jon Harald Søby
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $rtl = true;

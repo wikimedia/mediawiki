@@ -13,8 +13,8 @@
  * @author Erkan Yilmaz
  * @author Runningfridgesrule
  * @author Katpatuka
- * @author Mach
  * @author Siebrand
+ * @author Mach
  * @author לערי ריינהארט
  * @author Mskyrider
  * @author Myildirim2007
@@ -408,6 +408,7 @@ Hesabınız açıldı. {{SITENAME}} tercihlerinizi değiştirmeyi unutmayın.',
 'yourpasswordagain'          => 'Parolayı yeniden yaz',
 'remembermypassword'         => 'Parolayı hatırla.',
 'yourdomainname'             => 'Alan adınız',
+'externaldberror'            => 'Ya doğrulama vertiabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',
 'loginproblem'               => '<b>Kayıt olurken bir problem oldu.</b><br />Tekrar deneyin!',
 'login'                      => 'Oturum aç',
 'nav-login-createaccount'    => 'Oturum aç ya da yeni hesap edin',
@@ -480,6 +481,11 @@ Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'accountcreated'             => 'Hesap yaratıldı',
 'accountcreatedtext'         => '$1 için kullanıcı hesabı yaratıldı.',
 'createaccount-title'        => '{{SITENAME}} için yeni kullanıcı hesabı oluşturulması',
+'createaccount-text'         => 'Birisi {{SITENAME}} sitesinde ($4) sizin e-posta adresinizi kullarak, şifresi "$3" olan, "$2" isimli bir hesap oluşturdu.
+
+Siteye giriş yapmalı ve parolanızı değiştirmelisiniz.
+
+Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoksayabilirsiniz.',
 'loginlanguagelabel'         => 'Dil: $1',
 
 # Password reset dialog
@@ -526,7 +532,8 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'showlivepreview'                  => 'Canlı önizleme',
 'showdiff'                         => 'Değişiklikleri göster',
 'anoneditwarning'                  => 'Oturum açmadığınızdan maddenin değişiklik kayıtlarına rumuzunuz yerine IP adresiniz kaydedilecektir.',
-'missingsummary'                   => "'''Uyarı:''' Herhangi bir özet yazmadın. Kaydet tuşu bir daha bastığında sayfayı özetsiz kaydetilecek.",
+'missingsummary'                   => "'''Uyarı:''' Herhangi bir özet yazmadın. 
+Kaydet tuşuna tekrar basarsan sayfa özetsiz kaydedilecek.",
 'missingcommenttext'               => 'Lütfen aşağıda bir açıklama yazınız.',
 'missingcommentheader'             => "'''Hatırlatıcı:''' Bu yorum için konu/başlık sunmadınız. Eğer tekrar Kaydet tuşuna basarsanız, değişikliğiniz konu/başlık olmadan kaydedilecektir.",
 'summary-preview'                  => 'Önizleme özeti',
@@ -565,6 +572,7 @@ Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'whitelistreadtitle'               => 'Okumak için oturum açmalısınız',
 'whitelistreadtext'                => 'Sayfaları okuyabilmek için [[Special:Userlogin|oturum açmalısınız]].',
 'whitelistacctitle'                => 'Hesap açma izniniz yok.',
+'whitelistacctext'                 => '{{SITENAME}} sitesinde kullanıcı hesapları oluşturabilmek için [[Special:Userlogin|giriş yapmak]] ve gerekli izinlere sahip olmak zorundasınız',
 'confirmedittitle'                 => 'Değişiklik yapmak için e-posta onaylaması gerekiyor',
 'confirmedittext'                  => 'Sayfa değiştirmeden önce e-posta adresinizi onaylamalısınız. Lütfen [[Special:Preferences|tercihler]] kısmından e-postanızı ekleyin ve onaylayın.',
 'nosuchsectiontitle'               => 'Böyle bir bölüm yok',
@@ -1564,6 +1572,7 @@ Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'move-watch'              => 'Bu sayfayı izle',
 'movepagebtn'             => 'İsmi değiştir',
 'pagemovedsub'            => 'İsim değişikliği tamamlandı.',
+'movepage-moved'          => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
 Lütfen başka bir isim deneyiniz.',
 'talkexists'              => "'''Sayfanın kendisi başarıyla taşındı, ancak tartışma sayfası taşınamadı çünkü taşınacağı isimde zaten bir sayfa vardı. Lütfen sayfanın içeriğini diğer sayfaya kendiniz taşıyın.'''",

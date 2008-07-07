@@ -1245,7 +1245,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'recentchanges'                     => 'Senaste ändringar',
 'recentchangestext'                 => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description'    => 'Följ de senaste ändringarna i wikin genom den här matningen.',
-'rcnote'                            => "Nedan visas {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} {{PLURAL:$2|den senaste dagen|de senaste '''$2''' dagarna}}, per $3.",
+'rcnote'                            => "Nedan visas {{PLURAL:$1|'''1''' ändring|de senaste '''$1''' ändringarna}} från {{PLURAL:$2|den senaste dagen|de senaste '''$2''' dagarna}}, per $4, $5.",
 'rcnotefrom'                        => "Nedan visas ändringar sedan '''$2''' (upp till '''$1''' visas).",
 'rclistfrom'                        => 'Visa ändringar efter $1',
 'rcshowhideminor'                   => '$1 mindre ändringar',
@@ -1312,8 +1312,10 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp. Föredragna filtyper är \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' är inte en tillåten filtyp. Tillåtna filtyper är \$2.",
+'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp.
+{{PLURAL:\$3|Föredragen filtyp|Föredragna filtyper}} är \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' är inte en tillåten filtyp.
+{{PLURAL:\$3|Tillåtna filtyper|Tillåten filtyp}} är \$2.",
 'filetype-missing'            => 'Filnamnet saknar ändelse (t ex ".jpg").',
 'large-file'                  => 'Filer bör inte vara större än $1; denna fil är $2',
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',
@@ -1816,11 +1818,12 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'restriction-level-all'           => 'alla nivåer',
 
 # Undelete
-'undelete'                     => 'Återställ sidversioner',
+'undelete'                     => 'Visa raderade sidor',
 'undeletepage'                 => 'Visa och återställ borttagna sidor',
 'undeletepagetitle'            => "'''Härunder visas en lista över raderade versioner av [[:$1]]'''.",
 'viewdeletedpage'              => 'Visa raderade sidor',
 'undeletepagetext'             => 'Följande sidor har blivit borttagna, men finns fortfarande i ett arkiv och kan återställas. Arkivet kan ibland rensas på gamla versioner.',
+'undelete-fieldset-title'      => 'Återställ sidversioner',
 'undeleteextrahelp'            => "* För att återställa alla versioner, välj '''Återställ''' utan att kryssa i några rutor.
 * För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''.
 * '''Rensa''' tömmer kommentarfältet och kryssrutorna.",

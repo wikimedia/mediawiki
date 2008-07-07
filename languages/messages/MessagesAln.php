@@ -6,9 +6,8 @@
  *
  * @author Cradel
  * @author Dardan
- * @author Nike
- * @author M.M.S.
  * @author Siebrand
+ * @author M.M.S.
  */
 
 $fallback = 'sq';

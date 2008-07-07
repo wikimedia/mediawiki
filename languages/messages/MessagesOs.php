@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Amikeco
+ * @author לערי ריינהארט
+ * @author Siebrand
  */
 
 $fallback = 'ru';

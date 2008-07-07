@@ -14,10 +14,10 @@
  * @author Jordi Roqué
  * @author Juanpabl
  * @author Spacebirdy
- * @author Pérez
  * @author Vriullop
- * @author McDutchie
+ * @author Pérez
  * @author SPQRobin
+ * @author McDutchie
  * @author Jon Harald Søby
  * @author Smeira
  */

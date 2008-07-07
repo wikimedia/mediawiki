@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Kurniasan
+ * @author SPQRobin
  */
 
 $fallback = "id";

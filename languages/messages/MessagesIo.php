@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Albonio
- * @author Artomo
  * @author Malafaya
  * @author Lakaoso
  * @author SPQRobin
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Jon Harald Søby
+ * @author Albonio
+ * @author Artomo
  */
 
 $namespaceNames = array(

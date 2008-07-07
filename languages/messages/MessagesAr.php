@@ -9,16 +9,16 @@
  * @author Alnokta
  * @author OsamaK
  * @author Siebrand
- * @author ترجمان05
  * @author Gharbeia
- * @author Khaledhosny
+ * @author ترجمان05
  * @author Tarawneh
+ * @author Khaledhosny
  * @author Mimouni
  * @author Agurzil
  * @author לערי ריינהארט
  * @author Jon Harald Søby
- * @author Chaos
  * @author SPQRobin
+ * @author Chaos
  */
 
 $linkPrefixExtension = true;

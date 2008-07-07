@@ -6,8 +6,8 @@
  *
  * @author Gadao01
  * @author Jatrobat
- * @author Magalahi
  * @author Siebrand
+ * @author Magalahi
  */
 
 $messages = array(

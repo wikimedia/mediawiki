@@ -1,8 +1,9 @@
 <?php
-/** Bislama
+/** Bislama (Bislama)
  *
  * @ingroup Language
  * @file
+ *
  * @author Ushanka
  */
 

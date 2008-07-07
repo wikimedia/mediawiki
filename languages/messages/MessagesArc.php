@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author 334a
+ * @author SPQRobin
+ * @author Siebrand
  * @author A2raya07
  * @author The Thadman
- * @author Siebrand
- * @author SPQRobin
- * @author 334a
  */
 
 $rtl = true;

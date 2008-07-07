@@ -840,7 +840,7 @@ $2',
 'difference'              => '(ភាពខុសគ្នានៃកំនែនានា)',
 'lineno'                  => 'បន្ទាត់ទី $1:',
 'compareselectedversions' => 'ប្រៀបធៀប​កំនែប្រែ​ដែលបាន​ជ្រើសយក',
-'editundo'                => 'ធ្វើអោយ​ដូចដើមវិញ',
+'editundo'                => 'undo',
 'diff-multi'              => '(មិនបង្ហាញ កំណែកណ្តាល នៃ $1 ។)',
 
 # Search results
@@ -1339,6 +1339,7 @@ $2',
 # Special:Categories
 'categories'                    => 'ចំនាត់ថ្នាក់ក្រុម',
 'categoriespagetext'            => 'ចំនាត់ថ្នាក់ក្រុមខាងក្រោមនេះមានអត្ថបទឬមេឌាទេ ។',
+'categoriesfrom'                => 'បង្ហាញចំនាត់ថ្នាក់ក្រុមចាប់ផ្តើមដោយ៖',
 'special-categories-sort-count' => 'តំរៀបតាមចំនួន',
 'special-categories-sort-abc'   => 'តំរៀបតាមអក្ខរក្រម',
 
@@ -1388,7 +1389,7 @@ $2',
 'watchthispage'        => 'តាមដានទំព័រនេះ',
 'unwatch'              => 'ឈប់​តាមដាន',
 'unwatchthispage'      => 'ឈប់តាមដាន',
-'notanarticle'         => 'មិនមែនជា ទំព័រមាតិកា',
+'notanarticle'         => 'មិនមែនជាទំព័រមាតិកា',
 'notvisiblerev'        => 'ការកែតំរូវត្រូវបានលុបចោល',
 'watchnochange'        => 'មិនមានរបស់ដែលអ្នកកំពុងតាមដានណាមួយត្រូវបានគេកែប្រែក្នុងកំឡុងពេលដូលដែលបានបង្ហាញទេ។',
 'watchlist-details'    => 'អ្នកបានតាមដាន <b>$1</b> {{PLURAL:$1|ទំព័រ|ទំព័រ}} ដោយមិនរាប់ទាំង ទំព័រពិភាក្សា របស់អ្នក។',
@@ -1852,11 +1853,11 @@ $1',
 'numtalkauthors' => 'ចំនួនអ្នកនិពន្ធ (ទំព័រពិភាក្សា): $1',
 
 # Math options
-'mw_math_png'    => 'អោយចេញ ជានិច្ច ទំរង់ PNG',
+'mw_math_png'    => 'ជានិច្ចការជាPNG',
 'mw_math_simple' => 'ជា HTML បើសាមញ្ញបំផុត ឬ ផ្ទុយទៅវិញ ជា PNG',
 'mw_math_html'   => 'ជា HTML បើអាចទៅរួច ឬ ផ្ទុយទៅវិញ ជា PNG',
 'mw_math_source' => 'ទុកអោយនៅជា TeX (ចំពោះឧបករណ៍រាវរកអត្ថបទ)',
-'mw_math_modern' => 'ចំពោះ ឧបកររាវរក ទំនើប (អនុសាស)',
+'mw_math_modern' => 'បានផ្តល់អនុសាសន៍ចំពោះកម្មវិធីរាវរកទំនើបៗ',
 'mw_math_mathml' => 'MathML បើអាចទៅរួច (ពិសោធ)',
 
 # Patrolling

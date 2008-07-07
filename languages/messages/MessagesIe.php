@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Jmb
- * @author SPQRobin
  * @author Malafaya
+ * @author SPQRobin
  * @author לערי ריינהארט
+ * @author Jmb
  */
 
 $messages = array(
