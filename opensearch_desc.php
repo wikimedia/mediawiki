@@ -58,7 +58,7 @@ $urls = array();
 // At least Firefox and IE 7 support this.
 $searchPage = SpecialPage::getTitleFor( 'Search' );
 $urls[] = array(
-	'type' => $wgMimeType,
+	'type' => 'text/html',
 	'method' => 'get',
 	'template' => $searchPage->getFullURL( 'search={searchTerms}' ) );
 
