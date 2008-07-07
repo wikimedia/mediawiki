@@ -1069,7 +1069,7 @@ class Title {
 			$errors[] = array( 'confirmedittext' );
 		}
 
-		if ( $user->isBlockedFrom( $this ) ) {
+		if ( $user->isBlockedFrom( $this ) && $action != 'createaccount' ) {
 			$block = $user->mBlock;
 
 			// This is from OutputPage::blockedPage
