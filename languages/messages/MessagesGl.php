@@ -1446,7 +1446,6 @@ Se quere máis información acerca dos dereitos individuais pode atopala [[{{Med
 'emailccsubject'  => 'Copia da mensaxe para $1: $2',
 'emailsent'       => 'Mensaxe enviada',
 'emailsenttext'   => 'A súa mensaxe de correo electrónico foi enviada.',
-'emailuserfooter' => 'Este correo electrónico foi enviado por $1 a $2 mediante a función "$3" de {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'A miña listaxe de vixilancia',
