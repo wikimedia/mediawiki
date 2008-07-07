@@ -181,7 +181,7 @@ class LoginForm {
 			$wgUser->setCookies();
 			wfRunHooks( 'AddNewAccount', array( $wgUser ) );
 			if( $this->hasSessionCookie() ) {
-				return $this->successfulLogin( wfMsg( 'welcomecreation', $wgUser->getName() ), false );
+				return $this->successfulLogin( 'welcomecreation', $wgUser->getName(), false );
 			} else {
 				return $this->cookieRedirectCheck( 'new' );
 			}
@@ -509,7 +509,7 @@ class LoginForm {
 					global $wgLang, $wgRequest;
 					$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
 					$wgLang = Language::factory( $code );
-					return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
+					return $this->successfulLogin( 'loginsuccess', $wgUser->getName() );
 				} else {
 					return $this->cookieRedirectCheck( 'login' );
 				}
@@ -640,11 +640,12 @@ class LoginForm {
 
 
 	/**
-	 * @param string $msg Message that will be shown on success
+	 * @param string $msg Message key that will be shown on success
+	 * @param $params String: parameters for the above message
 	 * @param bool $auto Toggle auto-redirect to main page; default true
 	 * @private
 	 */
-	function successfulLogin( $msg, $auto = true ) {
+	function successfulLogin( $msg, $params, $auto = true ) {
 		global $wgUser;
 		global $wgOut;
 
@@ -656,7 +657,7 @@ class LoginForm {
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		$wgOut->setRobotpolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
-		$wgOut->addWikiText( $msg );
+		$wgOut->addWikiMsgArray( $msg, $params );
 		$wgOut->addHtml( $injected_html );
 		if ( !empty( $this->mReturnTo ) ) {
 			$wgOut->returnToMain( $auto, $this->mReturnTo );
@@ -870,7 +871,7 @@ class LoginForm {
 				return $this->mainLoginForm( wfMsg( 'error' ) );
 			}
 		} else {
-			return $this->successfulLogin( wfMsg( 'loginsuccess', $wgUser->getName() ) );
+			return $this->successfulLogin( 'loginsuccess', $wgUser->getName() );
 		}
 	}
 
