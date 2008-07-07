@@ -139,15 +139,12 @@ class MovePageForm {
 
 		if ( $err != '' ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			$errMsg = "";
 			if( $err == 'hookaborted' ) {
 				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
-			} else if (is_array($err)) {
-				$errMsg = '<p><strong class="error">' . call_user_func_array( 'wfMsgWikiHtml', $err ) . "</strong></p>\n";
+				$wgOut->addHTML( $errMsg );
 			} else {
-				$errMsg = '<p><strong class="error">' . wfMsgWikiHtml( $err ) . "</strong></p>\n";
+				$wgOut->wrapWikiMsg( '<p><strong class="error">$1</strong></p>', $err );
 			}
-			$wgOut->addHTML( $errMsg );
 		}
 
 		$wgOut->addHTML(
