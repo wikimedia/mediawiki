@@ -346,14 +346,6 @@ class SpecialVersion {
 	 * @return mixed revision number as int, or false if not a SVN checkout
 	 */
 	public static function getSvnRevision( $dir ) {
-		global $wgMemc;
-		
-		$key = wfMemcKey('svn-version');
-		if ( $svnver = $wgMemc->get( $key ) ) {
-			wfDebug("Got SVN version from cache.\n");
-			return $svnver;
-		}
-		
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
 		$entries = $dir . '/.svn/entries';
 
@@ -381,7 +373,6 @@ class SpecialVersion {
 					if( $xml->entry[0]['name'] == '' ) {
 						// The directory entry should always have a revision marker.
 						if( $entry['revision'] ) {
-							$wgMemc->set($key, intval($entry['revision']), 3600 );
 							return intval( $entry['revision'] );
 						}
 					}
@@ -390,7 +381,6 @@ class SpecialVersion {
 			return false;
 		} else {
 			// subversion is release 1.4
-			$wgMemc->set($key, intval($content[3]), 3600 );
 			return intval( $content[3] );
 		}
 	}
