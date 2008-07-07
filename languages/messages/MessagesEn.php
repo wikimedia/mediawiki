@@ -2146,9 +2146,9 @@ See $2 for a record of recent deletions.',
 ** Copyright violation
 ** Vandalism',
 'delete-edit-reasonlist'      => 'Edit delete reasons',
-'delete-toobig'               => 'This page has a large edit history, over $1 revisions.
+'delete-toobig'               => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
 Deletion of such pages has been restricted to prevent accidental disruption of {{SITENAME}}.',
-'delete-warning-toobig'       => 'This page has a large edit history, over $1 revisions.
+'delete-warning-toobig'       => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
 Deleting it may disrupt database operations of {{SITENAME}};
 proceed with caution.',
 'rollback'                    => 'Roll back edits',
