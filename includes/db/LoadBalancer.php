@@ -17,11 +17,33 @@ class LoadBalancer {
 	/* private */ var $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
 	/* private */ var $mParentInfo, $mLagTimes;
+	/* private */ var $mLoadMonitorClass, $mLoadMonitor;
 
-	function __construct( $servers, $failFunction = false, $waitTimeout = 10, $unused = false )
+	/**
+	 * @param array $params Array with keys:
+	 *    servers           Required. Array of server info structures.
+	 *    failFunction	    Deprecated, use exceptions instead.
+	 *    masterWaitTimeout Replication lag wait timeout
+	 *    loadMonitor       Name of a class used to fetch server lag and load.
+	 */
+	function __construct( $params )
 	{
-		$this->mServers = $servers;
-		$this->mFailFunction = $failFunction;
+		if ( !isset( $params['servers'] ) ) {
+			throw new MWException( __CLASS__.': missing servers parameter' );
+		}
+		$this->mServers = $params['servers'];
+
+		if ( isset( $params['failFunction'] ) ) {
+			$this->mFailFunction = $params['failFunction'];
+		} else {
+			$this->mFailFunction = false;
+		}
+		if ( isset( $params['waitTimeout'] ) ) {
+			$this->mWaitTimeout = $params['waitTimeout'];
+		} else {
+			$this->mWaitTimeout = 10;
+		}
+
 		$this->mReadIndex = -1;
 		$this->mWriteIndex = -1;
 		$this->mConns = array(
@@ -31,12 +53,13 @@ class LoadBalancer {
 		$this->mLastIndex = -1;
 		$this->mLoads = array();
 		$this->mWaitForPos = false;
-		$this->mWaitTimeout = $waitTimeout;
 		$this->mLaggedSlaveMode = false;
 		$this->mErrorConnection = false;
 		$this->mAllowLag = false;
+		$this->mLoadMonitorClass = isset( $params['loadMonitor'] ) 
+			? $params['loadMonitor'] : 'LoadMonitor_MySQL';
 
-		foreach( $servers as $i => $server ) {
+		foreach( $params['servers'] as $i => $server ) {
 			$this->mLoads[$i] = $server['load'];
 			if ( isset( $server['groupLoads'] ) ) {
 				foreach ( $server['groupLoads'] as $group => $ratio ) {
@@ -52,6 +75,17 @@ class LoadBalancer {
 	static function newFromParams( $servers, $failFunction = false, $waitTimeout = 10 )
 	{
 		return new LoadBalancer( $servers, $failFunction, $waitTimeout );
+	}
+
+	/**
+	 * Get a LoadMonitor instance
+	 */
+	function getLoadMonitor() {
+		if ( !isset( $this->mLoadMonitor ) ) {
+			$class = $this->mLoadMonitorClass;
+			$this->mLoadMonitor = new $class( $this );
+		}
+		return $this->mLoadMonitor;
 	}
 
 	/**
@@ -178,6 +212,9 @@ class LoadBalancer {
 			throw new MWException( "Empty server array given to LoadBalancer" );
 		}
 
+		# Scale the configured load ratios according to the dynamic load (if the load monitor supports it)
+		$this->getLoadMonitor()->scaleLoads( $nonErrorLoads, $group, $wiki );
+
 		$i = false;
 		$found = false;
 		$laggedSlaveMode = false;
@@ -203,7 +240,8 @@ class LoadBalancer {
 
 				if ( $i === false ) {
 					# pickRandom() returned false
-					# This is permanent and means the configuration wants us to return false
+					# This is permanent and means the configuration or the load monitor 
+					# wants us to return false.
 					wfDebugLog( 'connect', __METHOD__.": pickRandom() returned false\n" );
 					wfProfileOut( __METHOD__ );
 					return false;
@@ -219,25 +257,24 @@ class LoadBalancer {
 					continue;
 				}
 
-				if ( isset( $this->mServers[$i]['max threads'] ) ) {
-					$status = $conn->getStatus("Thread%");
-					if ( $wiki !== false ) {
-						$this->reuseConnection( $conn );
-					}
-					if ( $status['Threads_running'] > $this->mServers[$i]['max threads'] ) {
-						$totalThreadsConnected += $status['Threads_connected'];
-						$overloadedServers++;
-						unset( $currentLoads[$i] );
-					} else {
-						# Max threads satisfied, return this server
-						break 2;
-					}
+				// Perform post-connection backoff
+				$threshold = isset( $this->mServers[$i]['max threads'] ) 
+					? $this->mServers[$i]['max threads'] : false;
+				$backoff = $this->getLoadMonitor()->postConnectionBackoff( $conn, $threshold );
+
+				// Decrement reference counter, we are finished with this connection.
+				// It will be incremented for the caller later.
+				if ( $wiki !== false ) {
+					$this->reuseConnection( $conn );
+				}
+				
+				if ( $backoff ) {
+					# Post-connection overload, don't use this server for now
+					$totalThreadsConnected += $backoff;
+					$overloadedServers++;
+					unset( $currentLoads[$i] );
 				} else {
-					# No maximum, return this server
-					if ( $wiki !== false ) {
-						$this->reuseConnection( $conn );
-					}
-					$found = true;
+					# Return this server
 					break 2;
 				}
 			}
@@ -269,6 +306,7 @@ class LoadBalancer {
 		}
 
 		if ( $i !== false ) {
+			# Slave connection successful
 			# Wait for the session master pos for a short time
 			if ( $this->mWaitForPos && $i > 0 ) {
 				if ( !$this->doWait( $i ) ) {
@@ -679,6 +717,7 @@ class LoadBalancer {
 
 	/**
 	 * Get the host name or IP address of the server with the specified index
+	 * Prefer a readable name if available.
 	 */
 	function getServerName( $i ) {
 		if ( isset( $this->mServers[$i]['hostName'] ) ) {
@@ -687,6 +726,17 @@ class LoadBalancer {
 			return $this->mServers[$i]['host'];
 		} else {
 			return '';
+		}
+	}
+
+	/**
+	 * Return the server info structure for a given index, or false if the index is invalid.
+	 */
+	function getServerInfo( $i ) {
+		if ( isset( $this->mServers[$i] ) ) {
+			return $this->mServers[$i];
+		} else {
+			return false;
 		}
 	}
 
@@ -814,6 +864,20 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Call a function with each open connection object
+	 */
+	function forEachOpenConnection( $callback, $params = array() ) {
+		foreach ( $this->mConns as $conns2 ) {
+			foreach ( $conns2 as $conns3 ) {
+				foreach ( $conns3 as $conn ) {
+					$mergedParams = array_merge( array( $conn ), $params );
+					call_user_func_array( $callback, $mergedParams );
+				}
+			}
+		}
+	}
+
+	/**
 	 * Get the hostname and lag time of the most-lagged slave.
 	 * This is useful for maintenance scripts that need to throttle their updates.
 	 * May attempt to open connections to slaves on the default DB.
@@ -843,52 +907,12 @@ class LoadBalancer {
 	 * Results are cached for a short time in memcached, and indefinitely in the process cache
 	 */
 	function getLagTimes( $wiki = false ) {
-		wfProfileIn( __METHOD__ );
-
-		if ( !isset( $this->mLagTimes ) ) {
-			$expiry = 5;
-			$requestRate = 10;
-
-			global $wgMemc;
-			$masterName = $this->getServerName( 0 );
-			$memcKey = wfMemcKey( 'lag_times', $masterName );
-			$times = $wgMemc->get( $memcKey );
-			if ( $times ) {
-				# Randomly recache with probability rising over $expiry
-				$elapsed = time() - $times['timestamp'];
-				$chance = max( 0, ( $expiry - $elapsed ) * $requestRate );
-				if ( mt_rand( 0, $chance ) != 0 ) {
-					unset( $times['timestamp'] );
-					wfProfileOut( __METHOD__ );
-					return $times;
-				}
-				wfIncrStats( 'lag_cache_miss_expired' );
-			} else {
-				wfIncrStats( 'lag_cache_miss_absent' );
-			}
-
-			# Cache key missing or expired
-
-			$times = array();
-			foreach ( $this->mServers as $i => $conn ) {
-				if ($i == 0) { # Master
-					$times[$i] = 0;
-				} elseif ( false !== ( $conn = $this->getAnyOpenConnection( $i ) ) ) {
-					$times[$i] = $conn->getLag();
-				} elseif ( false !== ( $conn = $this->openConnection( $i, $wiki ) ) ) {
-					$times[$i] = $conn->getLag();
-				}
-			}
-
-			# Add a timestamp key so we know when it was cached
-			$times['timestamp'] = time();
-			$wgMemc->set( $memcKey, $times, $expiry );
-
-			# But don't give the timestamp to the caller
-			unset($times['timestamp']);
-			$this->mLagTimes = $times;
+		# Try process cache
+		if ( isset( $this->mLagTimes ) ) {
+			return $this->mLagTimes;
 		}
-		wfProfileOut( __METHOD__ );
+		# No, send the request to the load monitor
+		$this->mLagTimes = $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
 		return $this->mLagTimes;
 	}
 }

@@ -302,6 +302,8 @@ class AutoLoader {
 		'LBFactory_Multi' => 'includes/db/LBFactory_Multi.php',
 		'LBFactory_Simple' => 'includes/db/LBFactory.php',
 		'LoadBalancer' => 'includes/db/LoadBalancer.php',
+		'LoadMonitor' => 'includes/db/LoadMonitor.php',
+		'LoadMonitor_MySQL' => 'includes/db/LoadMonitor.php',
 		'MSSQLField' => 'includes/db/DatabaseMssql.php',
 		'MySQLField' => 'includes/db/Database.php',
 		'MySQLMasterPos' => 'includes/db/Database.php',

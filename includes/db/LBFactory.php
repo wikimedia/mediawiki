@@ -118,7 +118,10 @@ class LBFactory_Simple extends LBFactory {
 				));
 			}
 
-			$this->mainLB = new LoadBalancer( $wgDBservers, false, $wgMasterWaitTimeout, true );
+			$this->mainLB = new LoadBalancer( array(
+				'servers' => $wgDBservers, 
+				'masterWaitTimeout' => $wgMasterWaitTimeout 
+			));
 			$this->mainLB->parentInfo( array( 'id' => 'main' ) );
 			$this->chronProt->initLB( $this->mainLB );
 		}
@@ -131,7 +134,9 @@ class LBFactory_Simple extends LBFactory {
 			if ( !isset( $wgExternalServers[$cluster] ) ) {
 				throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
 			}
-			$this->extLBs[$cluster] = new LoadBalancer( $wgExternalServers[$cluster] );
+			$this->extLBs[$cluster] = new LoadBalancer( array(
+				'servers' => $wgExternalServers[$cluster] 
+			));
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
 		}
 		return $this->extLBs[$cluster];
