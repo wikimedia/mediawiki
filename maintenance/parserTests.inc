@@ -48,16 +48,6 @@ class ParserTest {
 	private $showOutput;
 
 	/**
-	 * boolean $useTemporaryTables Use temporary tables for the temporary database
-	 */
-	private $useTemporaryTables = true;
-
-	/**
-	 * boolean $databaseSetupDone True if the database has been set up
-	 */
-	private $databaseSetupDone = false;
-
-	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
 	 */
@@ -136,7 +126,6 @@ class ParserTest {
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runTestsFromFiles( $filenames ) {
-		$this->setupDatabase();
 		$this->recorder->start();
 		$ok = true;
 		foreach( $filenames as $filename ) {
@@ -144,7 +133,6 @@ class ParserTest {
 		}
 		$this->recorder->report();
 		$this->recorder->end();
-		$this->teardownDatabase();
 		return $ok;
 	}
 
@@ -363,6 +351,12 @@ class ParserTest {
 	 * Ideally this should replace the global configuration entirely.
 	 */
 	private function setupGlobals($opts = '') {
+		# Save the prefixed / quoted table names for later use when we make the temporaries.
+		$db = wfGetDB( DB_SLAVE );
+		$this->oldTableNames = array();
+		foreach( $this->listTables() as $table ) {
+			$this->oldTableNames[$table] = $db->tableName( $table );
+		}
 		if( !isset( $this->uploadDir ) ) {
 			$this->uploadDir = $this->setupUploadDir();
 		}
@@ -430,6 +424,7 @@ class ParserTest {
 		$GLOBALS['wgContLang'] = $langObj;
 
 		//$GLOBALS['wgMessageCache'] = new MessageCache( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
+		$this->setupDatabase();
 
 		global $wgUser;
 		$wgUser = new User();
@@ -467,139 +462,97 @@ class ParserTest {
 	 * the db will be visible to later tests in the run.
 	 */
 	private function setupDatabase() {
+		static $setupDB = false;
 		global $wgDBprefix;
-		if ( $this->databaseSetupDone ) {
-			return;
-		}
-		if ( $wgDBprefix === 'parsertest_' ) {
-			throw new MWException( 'setupDatabase should be called before setupGlobals' );
-		}
-		$this->databaseSetupDone = true;
 
-		# CREATE TEMPORARY TABLE breaks if there is more than one server
-		if ( wfGetLB()->getServerCount() != 1 ) {
-			$this->useTemporaryTables = false;
-		}
+		# Make sure we don't mess with the live DB
+		if (!$setupDB && $wgDBprefix === 'parsertest_') {
+			# oh teh horror
+			LBFactory::destroy();
+			$db = wfGetDB( DB_MASTER );
 
-		$temporary = $this->useTemporaryTables ? 'TEMPORARY' : '';
+			$tables = $this->listTables();
 
-		$db = wfGetDB( DB_MASTER );
-		$tables = $this->listTables();
-
-		if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
-			# Database that supports CREATE TABLE ... LIKE
-			global $wgDBtype;
-			if( $wgDBtype == 'postgres' ) {
-				$def = 'INCLUDING DEFAULTS';
+			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
+				# Database that supports CREATE TABLE ... LIKE
+				global $wgDBtype;
+				if( $wgDBtype == 'postgres' ) {
+					$def = 'INCLUDING DEFAULTS';
+				} else {
+					$def = '';
+				}
+				foreach ($tables as $tbl) {
+					$newTableName = $db->tableName( $tbl );
+					$tableName = $this->oldTableNames[$tbl];
+					$db->query("CREATE TEMPORARY TABLE $newTableName (LIKE $tableName $def)");
+				}
 			} else {
-				$def = '';
-			}
-			foreach ($tables as $tbl) {
-				$oldTableName = $db->tableName( $tbl );
-				# Clean up from previous aborted run
-				if ( $db->tableExists( "`parsertest_$tbl`" ) ) {
-					$db->query("DROP TABLE `parsertest_$tbl`");
+				# Hack for MySQL versions < 4.1, which don't support
+				# "CREATE TABLE ... LIKE". Note that
+				# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
+				# would not create the indexes we need....
+				foreach ($tables as $tbl) {
+					$res = $db->query("SHOW CREATE TABLE {$this->oldTableNames[$tbl]}");
+					$row = $db->fetchRow($res);
+					$create = $row[1];
+					$create_tmp = preg_replace('/CREATE TABLE `(.*?)`/', 'CREATE TEMPORARY TABLE `'
+						. $wgDBprefix . $tbl .'`', $create);
+					if ($create === $create_tmp) {
+						# Couldn't do replacement
+						wfDie("could not create temporary table $tbl");
+					}
+					$db->query($create_tmp);
 				}
-				# Create new table
-				$db->query("CREATE $temporary TABLE `parsertest_$tbl` (LIKE $oldTableName $def)");
+
 			}
-		} else {
-			# Hack for MySQL versions < 4.1, which don't support
-			# "CREATE TABLE ... LIKE". Note that
-			# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
-			# would not create the indexes we need....
-			foreach ($tables as $tbl) {
-				$oldTableName = $db->tableName( $tbl );
-				$res = $db->query("SHOW CREATE TABLE $oldTableName");
-				$row = $db->fetchRow($res);
-				$create = $row[1];
-				$create_tmp = preg_replace('/CREATE TABLE `(.*?)`/', 
-					"CREATE $temporary TABLE `parsertest_$tbl`", $create);
-				if ($create === $create_tmp) {
-					# Couldn't do replacement
-					wfDie("could not create temporary table $tbl");
-				}
-				$db->query($create_tmp);
-			}
+
+			# Hack: insert a few Wikipedia in-project interwiki prefixes,
+			# for testing inter-language links
+			$db->insert( 'interwiki', array(
+				array( 'iw_prefix' => 'Wikipedia',
+				       'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
+				       'iw_local'  => 0 ),
+				array( 'iw_prefix' => 'MeatBall',
+				       'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
+				       'iw_local'  => 0 ),
+				array( 'iw_prefix' => 'zh',
+				       'iw_url'    => 'http://zh.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ),
+				array( 'iw_prefix' => 'es',
+				       'iw_url'    => 'http://es.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ),
+				array( 'iw_prefix' => 'fr',
+				       'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ),
+				array( 'iw_prefix' => 'ru',
+				       'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
+				       'iw_local'  => 1 ),
+				) );
+
+			# Hack: Insert an image to work with
+			$db->insert( 'image', array(
+				'img_name'        => 'Foobar.jpg',
+				'img_size'        => 12345,
+				'img_description' => 'Some lame file',
+				'img_user'        => 1,
+				'img_user_text'   => 'WikiSysop',
+				'img_timestamp'   => $db->timestamp( '20010115123500' ),
+				'img_width'       => 1941,
+				'img_height'      => 220,
+				'img_bits'        => 24,
+				'img_media_type'  => MEDIATYPE_BITMAP,
+				'img_major_mime'  => "image",
+				'img_minor_mime'  => "jpeg",
+				'img_metadata'    => serialize( array() ),
+				) );
+
+			# Update certain things in site_stats
+			$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
+
+			$setupDB = true;
 		}
-
-		# Hack: insert a few Wikipedia in-project interwiki prefixes,
-		# for testing inter-language links
-		$db->insert( '`parsertest_interwiki`', array(
-			array( 'iw_prefix' => 'Wikipedia',
-				   'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
-				   'iw_local'  => 0 ),
-			array( 'iw_prefix' => 'MeatBall',
-				   'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
-				   'iw_local'  => 0 ),
-			array( 'iw_prefix' => 'zh',
-				   'iw_url'    => 'http://zh.wikipedia.org/wiki/$1',
-				   'iw_local'  => 1 ),
-			array( 'iw_prefix' => 'es',
-				   'iw_url'    => 'http://es.wikipedia.org/wiki/$1',
-				   'iw_local'  => 1 ),
-			array( 'iw_prefix' => 'fr',
-				   'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
-				   'iw_local'  => 1 ),
-			array( 'iw_prefix' => 'ru',
-				   'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
-				   'iw_local'  => 1 ),
-			) );
-
-		# Hack: Insert an image to work with
-		$db->insert( '`parsertest_image`', array(
-			'img_name'        => 'Foobar.jpg',
-			'img_size'        => 12345,
-			'img_description' => 'Some lame file',
-			'img_user'        => 1,
-			'img_user_text'   => 'WikiSysop',
-			'img_timestamp'   => $db->timestamp( '20010115123500' ),
-			'img_width'       => 1941,
-			'img_height'      => 220,
-			'img_bits'        => 24,
-			'img_media_type'  => MEDIATYPE_BITMAP,
-			'img_major_mime'  => "image",
-			'img_minor_mime'  => "jpeg",
-			'img_metadata'    => serialize( array() ),
-			) );
-
-		# Update certain things in site_stats
-		$db->insert( '`parsertest_site_stats`', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
-
-		# Change the table prefixes on all open connections
-		LBFactory::singleton()->forEachLB( array( $this, 'changeLBPrefix' ) );
-		$wgDBprefix = 'parsertest_';
 	}
 
-	public function changeLBPrefix( $lb ) {
-		$lb->forEachOpenConnection( array( $this, 'changeDBPrefix' ) );
-	}
-
-	public function changeDBPrefix( $db ) {
-		$db->tablePrefix( 'parsertest_' );
-	}
-
-	private function teardownDatabase() {
-		if ( !$this->databaseSetupDone ) {
-			return;
-		}
-		$this->databaseSetupDone = false;
-		if ( $this->useTemporaryTables ) {
-			# Don't need to do anything
-			return;
-		}
-
-		$tables = $this->listTables();
-		$db = wfGetDB( DB_MASTER );
-		foreach ( $tables as $table ) {
-			$db->query( "DROP TABLE `parsertest_$table`" );
-		}
-
-		# Close all connections which are open with the parsertest_ prefix, so that setupDatabase() will work
-		LBFactory::singleton()->forEachLBCallMethod( 'closeAll' );
-		LBFactory::destroy();
-	}
-	
 	/**
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
