@@ -1666,7 +1666,6 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'emailccsubject'  => 'Kopie Vaší zprávy pro uživatele $1: $2',
 'emailsent'       => 'Zpráva odeslána',
 'emailsenttext'   => 'Váš e-mail byl odeslán.',
-'emailuserfooter' => 'Tento e-mail byl zaslal(a) $1 uživateli/uživatelce $2 s použitím funkce „$3“ na {{grammar:6sg|{{SITENAME}}}}.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
