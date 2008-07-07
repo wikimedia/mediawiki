@@ -420,6 +420,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14646) Fix some double-escaping of HTML in feed output
 * (bug 14709) Fix login success message formatting when using cookie check
 * (bug 14710) Remove "donate" link from default sidebar
+* (bug 14745) Image moving works on sites that transform thumbnails via 404
 
 === API changes in 1.13 ===
 
