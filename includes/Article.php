@@ -2093,7 +2093,7 @@ class Article {
 			}
 		}
 
-		return $this->confirmDelete( '', $reason );
+		return $this->confirmDelete( $reason );
 	}
 
 	/**
@@ -2168,10 +2168,9 @@ class Article {
 
 	/**
 	 * Output deletion confirmation dialog
-	 * @param $par string FIXME: do we need this parameter? One Call from Article::delete with '' only.
 	 * @param $reason string Prefilled reason
 	 */
-	function confirmDelete( $par, $reason ) {
+	function confirmDelete( $reason ) {
 		global $wgOut, $wgUser, $wgContLang;
 		$align = $wgContLang->isRtl() ? 'left' : 'right';
 
@@ -2189,7 +2188,7 @@ class Article {
 			$suppress = '';
 		}
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->mTitle->getLocalURL( 'action=delete' . $par ), 'id' => 'deleteconfirm' ) ) .
+		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->mTitle->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
 			Xml::tags( 'legend', null, wfMsgExt( 'delete-legend', array( 'parsemag', 'escapenoentities' ) ) ) .
 			Xml::openElement( 'table' ) .
