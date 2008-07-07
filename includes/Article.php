@@ -635,7 +635,6 @@ class Article {
 	}
 
 	/**
-	 * @todo Document, fixme $offset never used.
 	 * @param $limit Integer: default 0.
 	 * @param $offset Integer: default 0.
 	 */
@@ -657,6 +656,8 @@ class Article {
 			ORDER BY timestamp DESC";
 
 		if ($limit > 0) { $sql .= ' LIMIT '.$limit; }
+		if ($offset > 0) { $sql .= ' OFFSET '.$offset; }
+		
 		$sql .= ' '. $this->getSelectOptions();
 
 		$res = $dbr->query($sql, __METHOD__);
