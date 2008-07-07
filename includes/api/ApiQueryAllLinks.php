@@ -172,7 +172,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'unique' => 'Only show unique links. Cannot be used with generator or prop=ids',
 			'prop' => 'What pieces of information to include',
 			'namespace' => 'The namespace to enumerate.',
-			'limit' => 'How many total links to return.'
+			'limit' => 'How many total links to return.',
+			'continue' => 'When more results are available, use this to continue.',
 		);
 	}
 
