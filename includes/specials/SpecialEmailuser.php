@@ -150,7 +150,7 @@ class EmailUserForm {
 
 		// Add a standard footer and trim up trailing newlines
 		$this->text = rtrim($this->text) . "\n\n---\n" . wfMsgExt( 'emailuserfooter',
-			array( 'content', 'parsemag' ), array( $from->name, $to->name, wfMsg ('emailuser') ) );
+			array( 'content', 'parsemag' ), array( $from->name, $to->name ) );
 		
 		if( wfRunHooks( 'EmailUser', array( &$to, &$from, &$subject, &$this->text ) ) ) {
 
