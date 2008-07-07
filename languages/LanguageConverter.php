@@ -864,8 +864,11 @@ class ConverterRule {
 		$text = $this->mText;
 
 		// for multi-FLAGs
-		if(strlen($text) < 2 )
-			return array($text,array('R'));
+		if(strlen($text) < 2 ) {
+			$this->flags = array( 'R' );
+			$this->rules = $text;
+			return;
+		}
 
 		$tt = explode($this->mMarkup['flagsep'], $text, 2);
 
@@ -1017,7 +1020,9 @@ class ConverterRule {
 
 		if(count($this->bidtable)==0 && count($this->unidtable)==0
 			&& !in_array('N',$flags) && !in_array('T',$flags) )
-				$this->flags = array('R');
+		{
+			$flags = array('R');
+		}
 
 		if( in_array('R',$flags) ) {
 			// if we don't do content convert, still strip the -{}- tags
