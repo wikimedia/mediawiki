@@ -93,7 +93,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$order = array();
 		if(count($this->getPageSet()->getGoodTitles()) != 1)
 			$order[] = "{$this->prefix}_from";
-		// pl_namespace is always constant
+		if(!isset($params['namespace']))
+			$order[] = "{$this->prefix}_namespace";
 		$order[] = "{$this->prefix}_title";
 		$this->addOption('ORDER BY', implode(", ", $order));
 		$this->addOption('USE INDEX', "{$this->prefix}_from");
