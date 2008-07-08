@@ -79,7 +79,7 @@ class LanguageConverter {
 	}
 
 	/**
-	 * @access public
+	 * @public
 	 */
 	function getVariants() {
 		return $this->mVariants;
@@ -107,7 +107,7 @@ class LanguageConverter {
 	 * get preferred language variants.
 	 * @param boolean $fromUser Get it from $wgUser's preferences
 	 * @return string the preferred language code
-	 * @access public
+	 * @public
 	 */
 	function getPreferredVariant( $fromUser = true ) {
 		global $wgUser, $wgRequest, $wgVariantArticlePath, $wgDefaultLanguageVariant;
@@ -325,7 +325,7 @@ class LanguageConverter {
 	}
 
 	/**
-	 * @access private
+	 * @private
 	 */
 	function applyManualConv($convRule,$variant){
 		if(!$variant) $variant = $this->getPreferredVariant();
@@ -337,7 +337,7 @@ class LanguageConverter {
 		// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom conversion in title
 		if($is_title_flag){
 			$this->mTitleFromFlag = true;
-			$this->mTitleDisplay =  $convRule->getRulesTitle();
+			$this->mTitleDisplay =  $convRule->getTitle();
 		}
 
 		if($this->mManualLevel[$variant]=='disable') return;
@@ -426,7 +426,7 @@ class LanguageConverter {
 	 * @param string $text text to be converted
 	 * @param bool $isTitle whether this conversion is for the article title
 	 * @return string converted text
-	 * @access public
+	 * @public
 	 */
 	function convert( $text , $isTitle=false) {
 
@@ -463,10 +463,10 @@ class LanguageConverter {
 							$this->mVariantNames,
 							$this->mDoContentConvert,
 							$this->mDoTitleConvert);
-			$crule->parseRules($plang,
+			$crule->parse($plang,
 							$this->getVariantFallbacks($plang),
 							$this->mManualLevel[$plang]=='disable');
-			$text .= $crule->getRulesDisplay();
+			$text .= $crule->getDisplay();
 			$this->applyManualConv($crule,$plang);
 
 			if(array_key_exists(1, $marked)){
@@ -489,7 +489,7 @@ class LanguageConverter {
 	 * @param string $link the name of the link
 	 * @param mixed $nt the title object of the link
 	 * @return null the input parameters may be modified upon return
-	 * @access public
+	 * @public
 	 */
 	function findVariantLink( &$link, &$nt ) {
 		global $wgDisableLangConversion;
@@ -532,7 +532,7 @@ class LanguageConverter {
     /**
 	 * returns language specific hash options
 	 *
-	 * @access public
+	 * @public
 	 */
 	function getExtraHashOptions() {
 		$variant = $this->getPreferredVariant();
@@ -542,7 +542,7 @@ class LanguageConverter {
     /**
 	 * get title text as defined in the body of the article text
 	 *
-	 * @access public
+	 * @public
 	 */
 	function getParsedTitle() {
 		return $this->mTitleDisplay;
@@ -799,6 +799,7 @@ class LanguageConverter {
 }
 
 /**
+ * parser for rules of language conversion , parse rules in -{ }- tag
  * @ingroup Language
  * @author  fdcn <fdcn64@gmail.com>
  */
@@ -860,16 +861,14 @@ class ConverterRule {
 	 * @private
 	 */
 	function parseFlags(){
-		$flags = array();
 		$text = $this->mText;
-
-		// for multi-FLAGs
 		if(strlen($text) < 2 ) {
 			$this->flags = array( 'R' );
 			$this->rules = $text;
 			return;
 		}
 
+		$flags = array();
 		$tt = explode($this->mMarkup['flagsep'], $text, 2);
 
 		if(count($tt) == 2) {
@@ -1007,11 +1006,12 @@ class ConverterRule {
 			return $this->rules;
 		}
 	}
+
 	/**
 	 * Parse rules and flags
 	 * @public
 	 */
-	function parseRules($variant,$variantFallbacks,$isMCDisable=false){
+	function parse($variant,$variantFallbacks,$isMCDisable=false){
 		$this->parseFlags();
 		$this->generateConvTable();
 
@@ -1021,7 +1021,7 @@ class ConverterRule {
 		if(count($this->bidtable)==0 && count($this->unidtable)==0
 			&& !in_array('N',$flags) && !in_array('T',$flags) )
 		{
-			$flags = array('R');
+			$this->flags = $flags = array('R');
 		}
 
 		if( in_array('R',$flags) ) {
@@ -1056,7 +1056,7 @@ class ConverterRule {
 	 * @param string $variant the current variant
 	 * @public
 	 */
-	function getRulesDisplay(){
+	function getDisplay(){
 		return $this->ruleDisplay;
 	}
 	/**
@@ -1064,7 +1064,7 @@ class ConverterRule {
 	 * @param string $variant the current variant
 	 * @public
 	 */
-	function getRulesTitle(){
+	function getTitle(){
 		return $this->ruleTitle;
 	}
 
