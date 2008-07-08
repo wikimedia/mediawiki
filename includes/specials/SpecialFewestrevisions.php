@@ -31,12 +31,18 @@ class FewestrevisionsPage extends QueryPage {
 		return "SELECT 'Fewestrevisions' as type,
 				page_namespace as namespace,
 				page_title as title,
+				page_is_redirect as redirect,
 				COUNT(*) as value
 			FROM $revision
 			JOIN $page ON page_id = rev_page
 			WHERE page_namespace = " . NS_MAIN . "
-			GROUP BY 1,2,3
+			GROUP BY 1,2,3,4
 			HAVING COUNT(*) > 1";
+			// ^^^ This was probably here to weed out redirects.
+			// Since we mark them as such now, it might be
+			// useful to remove this. People _do_ create pages
+			// and never revise them, they aren't necessarily
+			// redirects.
 	}
 
 	function sortDescending() {
@@ -53,7 +59,9 @@ class FewestrevisionsPage extends QueryPage {
 
 		$nl = wfMsgExt( 'nrevisions', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->value ) );
-		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' );
+		$redirect = $result->redirect ? ' - ' . wfMsg( 'isredirect' ) : '';
+		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' ) . $redirect;
+
 
 		return wfSpecialList( $plink, $nlink );
 	}

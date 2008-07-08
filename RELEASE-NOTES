@@ -184,6 +184,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   SEARCH, TOOLBOX and LANGUAGES
 * Add a new hook NormalizeMessageKey to allow extensions to replace messages before
   the database is potentially queried
+* (bug 9736) Redirects on Special:Fewestrevisions are now marked as such.
  
 === Bug fixes in 1.13 ===
 
