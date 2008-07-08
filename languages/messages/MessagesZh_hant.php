@@ -1430,6 +1430,7 @@ Template:消除歧義',
 'emailccsubject'  => '將您的訊息複製到 $1: $2',
 'emailsent'       => '電子郵件已發送',
 'emailsenttext'   => '您的電子郵件已經發出。',
+'emailuserfooter' => '這封電郵是由$1寄給$2經{{SITENAME}}的「電郵用戶」功能發出的。',
 
 # Watchlist
 'watchlist'            => '監視列表',
