@@ -260,12 +260,12 @@ class ApiMain extends ApiBase {
 			$this->printResult(true);
 		}
 
-		$params = $this->extractRequestParams(); 
+		global $wgRequest;
 		if($this->mSquidMaxage == -1)
 		{
 			# Nobody called setCacheMaxAge(), use the (s)maxage parameters
-			$smaxage = $params['smaxage'];
-			$maxage = $params['maxage'];
+			$smaxage = $wgRequest->getVal('smaxage', 0);
+			$maxage = $wgRequest->getVal('maxage', 0);
 		}
 		else
 			$smaxage = $maxage = $this->mSquidMaxage;
