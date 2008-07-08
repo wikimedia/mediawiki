@@ -1237,4 +1237,28 @@ CREATE TABLE /*$wgDBprefix*/updatelog (
   PRIMARY KEY (ul_key)
 ) /*$wgDBTableOptions*/;
 
+-- A table to track link changes
+-- Experimental: enable using $wgTrackLinkChanges
+CREATE TABLE /*$wgDBprefix*/recentlinkchanges (
+	rlc_id int unsigned NOT NULL auto_increment,
+
+	-- page, image, category, ...
+	rlc_type varchar(15) binary NOT NULL,
+	rlc_timestamp binary(14) NOT NULL default '',
+	-- 1: insert; 2: deletion;
+	-- should probably make this an enum...
+	rlc_action tinyint(1) NOT NULL default 0,
+	
+	-- page where the links are on
+	rlc_from int NOT NULL,
+	
+	rlc_to_namespace int,
+	rlc_to_title varchar(255) binary,
+	rlc_to_blob blob, 
+	
+	PRIMARY KEY(rlc_id),
+	KEY from_timestamp (rlc_type, rlc_timestamp),
+	KEY to_timestamp (rlc_to_namespace, rlc_to_title, rlc_timestamp)
+) /*$wgDBTableOptions*/;
+
 -- vim: sw=2 sts=2 et
