@@ -712,8 +712,6 @@ XHTML id names.
 'portal-url'           => 'Project:Community Portal',
 'privacy'              => 'Privacy policy',
 'privacypage'          => 'Project:Privacy policy',
-'sitesupport'          => 'Donations',
-'sitesupport-url'      => 'Project:Site support',
 
 'badaccess'        => 'Permission error',
 'badaccess-group0' => 'You are not allowed to execute the action you have requested.',
@@ -2595,7 +2593,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'accesskey-n-recentchanges'         => 'r', # do not translate or duplicate this message to other languages
 'accesskey-n-randompage'            => 'x', # do not translate or duplicate this message to other languages
 'accesskey-n-help'                  => '', # do not translate or duplicate this message to other languages
-'accesskey-n-sitesupport'           => '', # do not translate or duplicate this message to other languages
 'accesskey-t-whatlinkshere'         => 'j', # do not translate or duplicate this message to other languages
 'accesskey-t-recentchangeslinked'   => 'k', # do not translate or duplicate this message to other languages
 'accesskey-feed-rss'                => '', # do not translate or duplicate this message to other languages
@@ -2656,7 +2653,6 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-n-recentchanges'         => 'The list of recent changes in the wiki.',
 'tooltip-n-randompage'            => 'Load a random page',
 'tooltip-n-help'                  => 'The place to find out.',
-'tooltip-n-sitesupport'           => 'Support us',
 'tooltip-t-whatlinkshere'         => 'List of all wiki pages that link here',
 'tooltip-t-recentchangeslinked'   => 'Recent changes in pages linked from this page',
 'tooltip-feed-rss'                => 'RSS feed for this page',
