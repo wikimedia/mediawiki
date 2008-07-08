@@ -338,16 +338,6 @@ div.printfooter {
   display: none;
 }
 
-
-#ca-addsection a:before {
-  content: "Add section";
-  font-size: 10pt;
-}
-
-#ca-addsection a {
-  font-size: 0px;
-}
-
 #n-portal,
 #n-currentevents,
 #n-help,
