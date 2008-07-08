@@ -24,12 +24,15 @@ abstract class LBFactory {
 	}
 
 	/**
-	 * Destory the instance
-	 * Actually used by maintenace/parserTests.inc to force to reopen connection
-	 * when $wgDBprefix has changed
+	 * Shut down, close connections and destroy the cached instance.
+	 * 
 	 */
-	static function destroy(){
-		self::$instance = null;
+	static function destroyInstance() {
+		if ( self::$instance ) {
+			self::$instance->shutdown();
+			self::$instance->forEachLBCallMethod( 'closeAll' );
+			self::$instance = null;
+		}
 	}
 
 	/**
@@ -38,7 +41,16 @@ abstract class LBFactory {
 	abstract function __construct( $conf );
 
 	/**
-	 * Get a load balancer object.
+	 * Create a new load balancer object. The resulting object will be untracked, 
+	 * not chronology-protected, and the caller is responsible for cleaning it up.
+	 *
+	 * @param string $wiki Wiki ID, or false for the current wiki
+	 * @return LoadBalancer
+	 */
+	abstract function newMainLB( $wiki = false );
+
+	/**
+	 * Get a cached (tracked) load balancer object.
 	 *
 	 * @param string $wiki Wiki ID, or false for the current wiki
 	 * @return LoadBalancer
@@ -46,7 +58,17 @@ abstract class LBFactory {
 	abstract function getMainLB( $wiki = false );
 
 	/*
-	 * Get a load balancer for external storage
+	 * Create a new load balancer for external storage. The resulting object will be 
+	 * untracked, not chronology-protected, and the caller is responsible for 
+	 * cleaning it up.
+	 *
+	 * @param string $cluster External storage cluster, or false for core
+	 * @param string $wiki Wiki ID, or false for the current wiki
+	 */
+	abstract function newExternalLB( $cluster, $wiki = false );
+
+	/*
+	 * Get a cached (tracked) load balancer for external storage
 	 *
 	 * @param string $cluster External storage cluster, or false for core
 	 * @param string $wiki Wiki ID, or false for the current wiki
@@ -61,13 +83,13 @@ abstract class LBFactory {
 	abstract function forEachLB( $callback, $params = array() );
 
 	/**
-	 * Prepare all load balancers for shutdown
+	 * Prepare all tracked load balancers for shutdown
 	 * STUB
 	 */
 	function shutdown() {}
 
 	/**
-	 * Call a method of each load balancer
+	 * Call a method of each tracked load balancer
 	 */
 	function forEachLBCallMethod( $methodName, $args = array() ) {
 		$this->forEachLB( array( $this, 'callMethod' ), array( $methodName, $args ) );
@@ -102,41 +124,51 @@ class LBFactory_Simple extends LBFactory {
 		$this->chronProt = new ChronologyProtector;
 	}
 
+	function newMainLB( $wiki = false ) {
+		global $wgDBservers, $wgMasterWaitTimeout;
+		if ( $wgDBservers ) {
+			$servers = $wgDBservers;
+		} else {
+			global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
+			$servers = array(array(
+				'host' => $wgDBserver,
+				'user' => $wgDBuser,
+				'password' => $wgDBpassword,
+				'dbname' => $wgDBname,
+				'type' => $wgDBtype,
+				'load' => 1,
+				'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
+			));
+		}
+
+		return new LoadBalancer( array(
+			'servers' => $servers, 
+			'masterWaitTimeout' => $wgMasterWaitTimeout 
+		));
+	}
+
 	function getMainLB( $wiki = false ) {
 		if ( !isset( $this->mainLB ) ) {
-			global $wgDBservers, $wgMasterWaitTimeout;
-			if ( !$wgDBservers ) {
-				global $wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, $wgDBtype, $wgDebugDumpSql;
-				$wgDBservers = array(array(
-					'host' => $wgDBserver,
-					'user' => $wgDBuser,
-					'password' => $wgDBpassword,
-					'dbname' => $wgDBname,
-					'type' => $wgDBtype,
-					'load' => 1,
-					'flags' => ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT
-				));
-			}
-
-			$this->mainLB = new LoadBalancer( array(
-				'servers' => $wgDBservers, 
-				'masterWaitTimeout' => $wgMasterWaitTimeout 
-			));
+			$this->mainLB = $this->newMainLB( $wiki );
 			$this->mainLB->parentInfo( array( 'id' => 'main' ) );
 			$this->chronProt->initLB( $this->mainLB );
 		}
 		return $this->mainLB;
 	}
 
-	function &getExternalLB( $cluster, $wiki = false ) {
+	function newExternalLB( $cluster, $wiki = false ) {
 		global $wgExternalServers;
+		if ( !isset( $wgExternalServers[$cluster] ) ) {
+			throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
+		}
+		return new LoadBalancer( array(
+			'servers' => $wgExternalServers[$cluster] 
+		));
+	}
+
+	function &getExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
-			if ( !isset( $wgExternalServers[$cluster] ) ) {
-				throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
-			}
-			$this->extLBs[$cluster] = new LoadBalancer( array(
-				'servers' => $wgExternalServers[$cluster] 
-			));
+			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
 		}
 		return $this->extLBs[$cluster];

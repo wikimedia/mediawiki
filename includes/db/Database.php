@@ -29,7 +29,7 @@ class Database {
 	protected $mPHPError = false;
 
 	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
-	protected $mOut, $mOpened = false;
+	protected $mOpened = false;
 
 	protected $mFailFunction;
 	protected $mTablePrefix;
@@ -57,7 +57,7 @@ class Database {
 	 * FALSE means discard output
 	 */
 	function setOutputPage( $out ) {
-		$this->mOut = $out;
+		wfDeprecated();
 	}
 
 	/**
@@ -261,7 +261,6 @@ class Database {
 		if ( !isset( $wgOut ) ) {
 			$wgOut = NULL;
 		}
-		$this->mOut =& $wgOut;
 
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
