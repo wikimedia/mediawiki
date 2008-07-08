@@ -432,7 +432,7 @@ Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
 
 # Tooltip help for the actions
-'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse von der aus Sie Änderungen durchführen',
+'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
 
 # Spam protection
 'spamprotectiontext' => 'Die Seite, die Sie speichern wollen, wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
