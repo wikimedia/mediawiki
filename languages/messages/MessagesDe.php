@@ -405,8 +405,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal',
 'privacy'              => 'Datenschutz',
 'privacypage'          => 'Project:Datenschutz',
-'sitesupport'          => 'Spenden',
-'sitesupport-url'      => 'Project:Spenden',
 
 'badaccess'        => 'Keine ausreichenden Rechte',
 'badaccess-group0' => 'Du hast nicht die erforderliche Berechtigung für diese Aktion.',
@@ -2108,7 +2106,6 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-n-recentchanges'         => 'Liste der letzten Änderungen in {{SITENAME}}.',
 'tooltip-n-randompage'            => 'Zufällige Seite',
 'tooltip-n-help'                  => 'Hilfeseite anzeigen',
-'tooltip-n-sitesupport'           => 'Unterstütze uns',
 'tooltip-t-whatlinkshere'         => 'Liste aller Seiten, die hierher zeigen',
 'tooltip-t-recentchangeslinked'   => 'Letzte Änderungen an Seiten, die von hier verlinkt sind',
 'tooltip-feed-rss'                => 'RSS-Feed für diese Seite',
