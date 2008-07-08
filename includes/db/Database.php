@@ -57,7 +57,7 @@ class Database {
 	 * FALSE means discard output
 	 */
 	function setOutputPage( $out ) {
-		wfDeprecated();
+		wfDeprecated( __METHOD__ );
 	}
 
 	/**
