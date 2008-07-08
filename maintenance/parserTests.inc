@@ -48,6 +48,21 @@ class ParserTest {
 	private $showOutput;
 
 	/**
+	 * boolean $useTemporaryTables Use temporary tables for the temporary database
+	 */
+	private $useTemporaryTables = true;
+
+	/**
+	 * boolean $databaseSetupDone True if the database has been set up
+	 */
+	private $databaseSetupDone = false;
+
+	/**
+	 * string $oldTablePrefix Original table prefix
+	 */
+	private $oldTablePrefix;
+
+	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
 	 * command-line options (--color and --quick).
 	 */
@@ -83,6 +98,10 @@ class ParserTest {
 
 
 		if (isset($options['regex'])) {
+			if ( isset( $options['record'] ) ) {
+				echo "Warning: --record cannot be used with --regex, disabling --record\n";
+				unset( $options['record'] );
+			}
 			$this->regex = $options['regex'];
 		} else {
 			# Matches anything
@@ -90,11 +109,11 @@ class ParserTest {
 		}
 
 		if( isset( $options['record'] ) ) {
-			$this->recorder = new DbTestRecorder( $this->term );
+			$this->recorder = new DbTestRecorder( $this );
 		} elseif( isset( $options['compare'] ) ) {
-			$this->recorder = new DbTestPreviewer( $this->term );
+			$this->recorder = new DbTestPreviewer( $this );
 		} else {
-			$this->recorder = new TestRecorder( $this->term );
+			$this->recorder = new TestRecorder( $this );
 		}
 		$this->keepUploads = isset( $options['keep-uploads'] );
 
@@ -127,10 +146,12 @@ class ParserTest {
 	 */
 	public function runTestsFromFiles( $filenames ) {
 		$this->recorder->start();
+		$this->setupDatabase();
 		$ok = true;
 		foreach( $filenames as $filename ) {
 			$ok = $this->runFile( $filename ) && $ok;
 		}
+		$this->teardownDatabase();
 		$this->recorder->report();
 		$this->recorder->end();
 		return $ok;
@@ -351,12 +372,6 @@ class ParserTest {
 	 * Ideally this should replace the global configuration entirely.
 	 */
 	private function setupGlobals($opts = '') {
-		# Save the prefixed / quoted table names for later use when we make the temporaries.
-		$db = wfGetDB( DB_SLAVE );
-		$this->oldTableNames = array();
-		foreach( $this->listTables() as $table ) {
-			$this->oldTableNames[$table] = $db->tableName( $table );
-		}
 		if( !isset( $this->uploadDir ) ) {
 			$this->uploadDir = $this->setupUploadDir();
 		}
@@ -424,7 +439,6 @@ class ParserTest {
 		$GLOBALS['wgContLang'] = $langObj;
 
 		//$GLOBALS['wgMessageCache'] = new MessageCache( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
-		$this->setupDatabase();
 
 		global $wgUser;
 		$wgUser = new User();
@@ -462,97 +476,146 @@ class ParserTest {
 	 * the db will be visible to later tests in the run.
 	 */
 	private function setupDatabase() {
-		static $setupDB = false;
 		global $wgDBprefix;
-
-		# Make sure we don't mess with the live DB
-		if (!$setupDB && $wgDBprefix === 'parsertest_') {
-			# oh teh horror
-			LBFactory::destroy();
-			$db = wfGetDB( DB_MASTER );
-
-			$tables = $this->listTables();
-
-			if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
-				# Database that supports CREATE TABLE ... LIKE
-				global $wgDBtype;
-				if( $wgDBtype == 'postgres' ) {
-					$def = 'INCLUDING DEFAULTS';
-				} else {
-					$def = '';
-				}
-				foreach ($tables as $tbl) {
-					$newTableName = $db->tableName( $tbl );
-					$tableName = $this->oldTableNames[$tbl];
-					$db->query("CREATE TEMPORARY TABLE $newTableName (LIKE $tableName $def)");
-				}
-			} else {
-				# Hack for MySQL versions < 4.1, which don't support
-				# "CREATE TABLE ... LIKE". Note that
-				# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
-				# would not create the indexes we need....
-				foreach ($tables as $tbl) {
-					$res = $db->query("SHOW CREATE TABLE {$this->oldTableNames[$tbl]}");
-					$row = $db->fetchRow($res);
-					$create = $row[1];
-					$create_tmp = preg_replace('/CREATE TABLE `(.*?)`/', 'CREATE TEMPORARY TABLE `'
-						. $wgDBprefix . $tbl .'`', $create);
-					if ($create === $create_tmp) {
-						# Couldn't do replacement
-						wfDie("could not create temporary table $tbl");
-					}
-					$db->query($create_tmp);
-				}
-
-			}
-
-			# Hack: insert a few Wikipedia in-project interwiki prefixes,
-			# for testing inter-language links
-			$db->insert( 'interwiki', array(
-				array( 'iw_prefix' => 'Wikipedia',
-				       'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
-				       'iw_local'  => 0 ),
-				array( 'iw_prefix' => 'MeatBall',
-				       'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
-				       'iw_local'  => 0 ),
-				array( 'iw_prefix' => 'zh',
-				       'iw_url'    => 'http://zh.wikipedia.org/wiki/$1',
-				       'iw_local'  => 1 ),
-				array( 'iw_prefix' => 'es',
-				       'iw_url'    => 'http://es.wikipedia.org/wiki/$1',
-				       'iw_local'  => 1 ),
-				array( 'iw_prefix' => 'fr',
-				       'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
-				       'iw_local'  => 1 ),
-				array( 'iw_prefix' => 'ru',
-				       'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
-				       'iw_local'  => 1 ),
-				) );
-
-			# Hack: Insert an image to work with
-			$db->insert( 'image', array(
-				'img_name'        => 'Foobar.jpg',
-				'img_size'        => 12345,
-				'img_description' => 'Some lame file',
-				'img_user'        => 1,
-				'img_user_text'   => 'WikiSysop',
-				'img_timestamp'   => $db->timestamp( '20010115123500' ),
-				'img_width'       => 1941,
-				'img_height'      => 220,
-				'img_bits'        => 24,
-				'img_media_type'  => MEDIATYPE_BITMAP,
-				'img_major_mime'  => "image",
-				'img_minor_mime'  => "jpeg",
-				'img_metadata'    => serialize( array() ),
-				) );
-
-			# Update certain things in site_stats
-			$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
-
-			$setupDB = true;
+		if ( $this->databaseSetupDone ) {
+			return;
 		}
+		if ( $wgDBprefix === 'parsertest_' ) {
+			throw new MWException( 'setupDatabase should be called before setupGlobals' );
+		}
+		$this->databaseSetupDone = true;
+
+		# CREATE TEMPORARY TABLE breaks if there is more than one server
+		if ( wfGetLB()->getServerCount() != 1 ) {
+			$this->useTemporaryTables = false;
+		}
+
+		$temporary = $this->useTemporaryTables ? 'TEMPORARY' : '';
+
+		$db = wfGetDB( DB_MASTER );
+		$tables = $this->listTables();
+
+		if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
+			# Database that supports CREATE TABLE ... LIKE
+			global $wgDBtype;
+			if( $wgDBtype == 'postgres' ) {
+				$def = 'INCLUDING DEFAULTS';
+			} else {
+				$def = '';
+			}
+			foreach ($tables as $tbl) {
+				$oldTableName = $db->tableName( $tbl );
+				# Clean up from previous aborted run
+				if ( $db->tableExists( "`parsertest_$tbl`" ) ) {
+					$db->query("DROP TABLE `parsertest_$tbl`");
+				}
+				# Create new table
+				$db->query("CREATE $temporary TABLE `parsertest_$tbl` (LIKE $oldTableName $def)");
+			}
+		} else {
+			# Hack for MySQL versions < 4.1, which don't support
+			# "CREATE TABLE ... LIKE". Note that
+			# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
+			# would not create the indexes we need....
+			foreach ($tables as $tbl) {
+				$oldTableName = $db->tableName( $tbl );
+				$res = $db->query("SHOW CREATE TABLE $oldTableName");
+				$row = $db->fetchRow($res);
+				$create = $row[1];
+				$create_tmp = preg_replace('/CREATE TABLE `(.*?)`/', 
+					"CREATE $temporary TABLE `parsertest_$tbl`", $create);
+				if ($create === $create_tmp) {
+					# Couldn't do replacement
+					wfDie("could not create temporary table $tbl");
+				}
+				$db->query($create_tmp);
+			}
+		}
+
+		# Hack: insert a few Wikipedia in-project interwiki prefixes,
+		# for testing inter-language links
+		$db->insert( '`parsertest_interwiki`', array(
+			array( 'iw_prefix' => 'Wikipedia',
+				   'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
+				   'iw_local'  => 0 ),
+			array( 'iw_prefix' => 'MeatBall',
+				   'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
+				   'iw_local'  => 0 ),
+			array( 'iw_prefix' => 'zh',
+				   'iw_url'    => 'http://zh.wikipedia.org/wiki/$1',
+				   'iw_local'  => 1 ),
+			array( 'iw_prefix' => 'es',
+				   'iw_url'    => 'http://es.wikipedia.org/wiki/$1',
+				   'iw_local'  => 1 ),
+			array( 'iw_prefix' => 'fr',
+				   'iw_url'    => 'http://fr.wikipedia.org/wiki/$1',
+				   'iw_local'  => 1 ),
+			array( 'iw_prefix' => 'ru',
+				   'iw_url'    => 'http://ru.wikipedia.org/wiki/$1',
+				   'iw_local'  => 1 ),
+			) );
+
+		# Hack: Insert an image to work with
+		$db->insert( '`parsertest_image`', array(
+			'img_name'        => 'Foobar.jpg',
+			'img_size'        => 12345,
+			'img_description' => 'Some lame file',
+			'img_user'        => 1,
+			'img_user_text'   => 'WikiSysop',
+			'img_timestamp'   => $db->timestamp( '20010115123500' ),
+			'img_width'       => 1941,
+			'img_height'      => 220,
+			'img_bits'        => 24,
+			'img_media_type'  => MEDIATYPE_BITMAP,
+			'img_major_mime'  => "image",
+			'img_minor_mime'  => "jpeg",
+			'img_metadata'    => serialize( array() ),
+			) );
+
+		# Update certain things in site_stats
+		$db->insert( '`parsertest_site_stats`', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
+
+		# Change the table prefix
+		$this->oldTablePrefix = $wgDBprefix;
+		$this->changePrefix( 'parsertest_' );
 	}
 
+	/**
+	 * Change the table prefix on all open DB connections/
+	 */
+	protected function changePrefix( $prefix ) {
+		global $wgDBprefix;
+		wfGetLBFactory()->forEachLB( array( $this, 'changeLBPrefix' ), array( $prefix ) );
+		$wgDBprefix = $prefix;
+	}
+
+	public function changeLBPrefix( $lb, $prefix ) {
+		$lb->forEachOpenConnection( array( $this, 'changeDBPrefix' ), array( $prefix ) );
+	}
+
+	public function changeDBPrefix( $db, $prefix ) {
+		$db->tablePrefix( $prefix );
+	}
+
+	private function teardownDatabase() {
+		global $wgDBprefix;
+		if ( !$this->databaseSetupDone ) {
+			return;
+		}
+		$this->changePrefix( $this->oldTablePrefix );
+		$this->databaseSetupDone = false;
+		if ( $this->useTemporaryTables ) {
+			# Don't need to do anything
+			return;
+		}
+
+		$tables = $this->listTables();
+		$db = wfGetDB( DB_MASTER );
+		foreach ( $tables as $table ) {
+			$db->query( "DROP TABLE `parsertest_$table`" );
+		}
+	}
+	
 	/**
 	 * Create a dummy uploads directory which will contain a couple
 	 * of files in order to pass existence tests.
@@ -921,8 +984,12 @@ class DummyTermColorer {
 }
 
 class TestRecorder {
-	function __construct( $term ) {
-		$this->term = $term;
+	var $parent;
+	var $term;
+
+	function __construct( $parent ) {
+		$this->parent = $parent;
+		$this->term = $parent->term;
 	}
 
 	function start() {
@@ -961,14 +1028,21 @@ class TestRecorder {
 	}
 }
 
-class DbTestRecorder extends TestRecorder  {
+class DbTestPreviewer extends TestRecorder  {
+	protected $lb;      ///< Database load balancer
 	protected $db;      ///< Database connection to the main DB
 	protected $curRun;  ///< run ID number for the current run
 	protected $prevRun; ///< run ID number for the previous run, if any
+	protected $results; ///< Result array
 
-	function __construct( $term ) {
-		parent::__construct( $term );
-		$this->db = wfGetDB( DB_MASTER );
+	/**
+	 * This should be called before the table prefix is changed
+	 */
+	function __construct( $parent ) {
+		parent::__construct( $parent );
+		$this->lb = wfGetLBFactory()->newMainLB();
+		// This connection will have the wiki's table prefix, not parsertest_
+		$this->db = $this->lb->getConnection( DB_MASTER );
 	}
 
 	/**
@@ -976,22 +1050,192 @@ class DbTestRecorder extends TestRecorder  {
 	 * and all that fun stuff
 	 */
 	function start() {
-		global $wgDBtype;
+		global $wgDBtype, $wgDBprefix;
 		parent::start();
 
-		$this->db->begin();
+		if( ! $this->db->tableExists( 'testrun' ) 
+			or ! $this->db->tableExists( 'testitem' ) ) 
+		{
+			print "WARNING> `testrun` table not found in database.\n";
+			$this->prevRun = false;
+		} else {
+			// We'll make comparisons against the previous run later...
+			$this->prevRun = $this->db->selectField( 'testrun', 'MAX(tr_id)' );
+		}
+		$this->results = array();
+	}
 
-		if( ! $this->db->tableExists( 'testrun' ) or ! $this->db->tableExists( 'testitem') ) {
-			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
-            if ($wgDBtype === 'postgres')
-				dbsource( dirname(__FILE__) . '/testRunner.postgres.sql',  $this->db );
-			else
-				dbsource( dirname(__FILE__) . '/testRunner.sql',  $this->db );
-			echo "OK, resuming.\n";
+	function record( $test, $result ) {
+		parent::record( $test, $result );
+		$this->results[$test] = $result;
+	}
+
+	function report() {
+		if( $this->prevRun ) {
+			// f = fail, p = pass, n = nonexistent
+			// codes show before then after
+			$table = array(
+				'fp' => 'previously failing test(s) now PASSING! :)',
+				'pn' => 'previously PASSING test(s) removed o_O',
+				'np' => 'new PASSING test(s) :)',
+
+				'pf' => 'previously passing test(s) now FAILING! :(',
+				'fn' => 'previously FAILING test(s) removed O_o',
+				'nf' => 'new FAILING test(s) :(',
+				'ff' => 'still FAILING test(s) :(',
+			);
+
+			$res = $this->db->select( 'testitem', array( 'ti_name', 'ti_success' ),
+				array( 'ti_run' => $this->prevRun ), __METHOD__ );
+			foreach ( $res as $row ) {
+				if ( !$this->parent->regex 
+					|| preg_match( "/{$this->parent->regex}/i", $row->ti_name ) )
+				{
+					$prevResults[$row->ti_name] = $row->ti_success;
+				}
+			}
+
+			$combined = array_keys( $this->results + $prevResults );
+
+			# Determine breakdown by change type
+			$breakdown = array();
+			foreach ( $combined as $test ) {
+				if ( !isset( $prevResults[$test] ) ) {
+					$before = 'n';
+				} elseif ( $prevResults[$test] == 1 ) {
+					$before = 'p';
+				} else /* if ( $prevResults[$test] == 0 )*/ {
+					$before = 'f';
+				}
+				if ( !isset( $this->results[$test] ) ) {
+					$after = 'n';
+				} elseif ( $this->results[$test] == 1 ) {
+					$after = 'p';
+				} else /*if ( $this->results[$test] == 0 ) */ {
+					$after = 'f';
+				}
+				$code = $before . $after;
+				if ( isset( $table[$code] ) ) {
+					$breakdown[$code][$test] = $this->getTestStatusInfo( $test, $after );
+				}
+			}
+
+			# Write out results
+			foreach ( $table as $code => $label ) {
+				if( !empty( $breakdown[$code] ) ) {
+					$count = count($breakdown[$code]);
+					printf( "\n%4d %s\n", $count, $label );
+					foreach ($breakdown[$code] as $differing_test_name => $statusInfo) {
+						print "      * $differing_test_name  [$statusInfo]\n";
+					}
+				}
+			}
+		} else {
+			print "No previous test runs to compare against.\n";
+		}
+		print "\n";
+		parent::report();
+	}
+
+	/**
+	 ** Returns a string giving information about when a test last had a status change.
+	 ** Could help to track down when regressions were introduced, as distinct from tests
+	 ** which have never passed (which are more change requests than regressions).
+	 */
+	private function getTestStatusInfo($testname, $after) {
+
+		// If we're looking at a test that has just been removed, then say when it first appeared.
+		if ( $after == 'n' ) {
+			$changedRun = $this->db->selectField ( 'testitem',
+												   'MIN(ti_run)',
+												   array( 'ti_name' => $testname ),
+												   __METHOD__ );
+			$appear = $this->db->selectRow ( 'testrun',
+											 array( 'tr_date', 'tr_mw_version' ),
+											 array( 'tr_id' => $changedRun ),
+											 __METHOD__ );
+			return "First recorded appearance: "
+			       . date( "d-M-Y H:i:s",  strtotime ( $appear->tr_date ) )
+			       .  ", " . $appear->tr_mw_version;
 		}
 
-		// We'll make comparisons against the previous run later...
-		$this->prevRun = $this->db->selectField( 'testrun', 'MAX(tr_id)' );
+		// Otherwise, this test has previous recorded results.
+		// See when this test last had a different result to what we're seeing now.
+		$conds = array( 
+			'ti_name'    => $testname,
+			'ti_success' => ($after == 'f' ? "1" : "0") );
+		if ( $this->curRun ) {
+			$conds[] = "ti_run != " . $this->db->addQuotes ( $this->curRun );
+		}
+
+		$changedRun = $this->db->selectField ( 'testitem', 'MAX(ti_run)', $conds, __METHOD__ );
+
+		// If no record of ever having had a different result.
+		if ( is_null ( $changedRun ) ) {
+			if ($after == "f") {
+				return "Has never passed";
+			} else {
+				return "Has never failed";
+			}
+		}
+
+		// Otherwise, we're looking at a test whose status has changed.
+		// (i.e. it used to work, but now doesn't; or used to fail, but is now fixed.)
+		// In this situation, give as much info as we can as to when it changed status.
+		$pre  = $this->db->selectRow ( 'testrun',
+										array( 'tr_date', 'tr_mw_version' ),
+										array( 'tr_id' => $changedRun ),
+										__METHOD__ );
+		$post = $this->db->selectRow ( 'testrun',
+										array( 'tr_date', 'tr_mw_version' ),
+										array( "tr_id > " . $this->db->addQuotes ( $changedRun) ),
+										__METHOD__,
+										array( "LIMIT" => 1, "ORDER BY" => 'tr_id' )
+									 );
+
+		if ( $post ) {
+			$postDate = date( "d-M-Y H:i:s",  strtotime ( $post->tr_date  ) ) . ", {$post->tr_mw_version}";
+		} else {
+			$postDate = 'now';
+		}
+		return ( $after == "f" ? "Introduced" : "Fixed" ) . " between "
+				. date( "d-M-Y H:i:s",  strtotime ( $pre->tr_date ) ) .  ", " . $pre->tr_mw_version
+				. " and $postDate";
+
+	}
+
+	/**
+	 * Commit transaction and clean up for result recording
+	 */
+	function end() {
+		$this->lb->commitMasterChanges();
+		$this->lb->closeAll();
+		parent::end();
+	}
+
+}
+
+class DbTestRecorder extends DbTestPreviewer  {
+	/**
+	 * Set up result recording; insert a record for the run with the date
+	 * and all that fun stuff
+	 */
+	function start() {
+		global $wgDBtype, $wgDBprefix;
+		$this->db->begin();
+
+		if( ! $this->db->tableExists( 'testrun' ) 
+			or ! $this->db->tableExists( 'testitem' ) ) 
+		{
+			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
+			if ($wgDBtype === 'postgres')
+				$this->db->sourceFile( dirname(__FILE__) . '/testRunner.postgres.sql' );
+			else
+				$this->db->sourceFile( dirname(__FILE__) . '/testRunner.sql' );
+			echo "OK, resuming.\n";
+		}
+		
+		parent::start();
 
 		$this->db->insert( 'testrun',
 			array(
@@ -1022,166 +1266,5 @@ class DbTestRecorder extends TestRecorder  {
 				'ti_success' => $result ? 1 : 0,
 			),
 			__METHOD__ );
-	}
-
-	/**
-	 * Commit transaction and clean up for result recording
-	 */
-	function end() {
-		$this->db->commit();
-		parent::end();
-	}
-
-	function report() {
-		if( $this->prevRun ) {
-			$table = array(
-				array( 'previously failing test(s) now PASSING! :)', 0, 1 ),
-				array( 'previously PASSING test(s) removed o_O', 1, null ),
-				array( 'new PASSING test(s) :)', null, 1 ),
-
-				array( 'previously passing test(s) now FAILING! :(', 1, 0 ),
-				array( 'previously FAILING test(s) removed O_o', 0, null ),
-				array( 'new FAILING test(s) :(', null, 0 ),
-				array( 'still FAILING test(s) :(', 0, 0 ),
-			);
-			foreach( $table as $criteria ) {
-				list( $label, $before, $after ) = $criteria;
-				$differences = $this->compareResult( $before, $after );
-				if( $differences ) {
-					$count = count($differences);
-					printf( "\n%4d %s\n", $count, $label );
-					foreach ($differences as $differing_test_name => $statusInfo) {
-						print "      * $differing_test_name  [$statusInfo]\n";
-					}
-				}
-			}
-		} else {
-			print "No previous test runs to compare against.\n";
-		}
-		print "\n";
-		parent::report();
-	}
-
-	/**
-	 ** Returns an array of the test names with changed results, based on the specified
-	 ** before/after criteria.
-	 */
-	private function compareResult( $before, $after ) {
-		$testitem = $this->db->tableName( 'testitem' );
-		$prevRun = intval( $this->prevRun );
-		$curRun = intval( $this->curRun );
-		$prevStatus = $this->condition( $before );
-		$curStatus = $this->condition( $after );
-
-		// note: requires mysql >= ver 4.1 for subselects
-		if( is_null( $after ) ) {
-			$sql = "
-				select prev.ti_name as t from $testitem as prev
-					where prev.ti_run=$prevRun and
-						prev.ti_success $prevStatus and
-						(select current.ti_success from $testitem as current
-							where current.ti_run=$curRun
-								and prev.ti_name=current.ti_name) $curStatus";
-		} else {
-			$sql = "
-				select current.ti_name as t from $testitem as current 
-					where current.ti_run=$curRun and
-						current.ti_success $curStatus and
-						(select prev.ti_success from $testitem as prev
-							where prev.ti_run=$prevRun
-								and prev.ti_name=current.ti_name) $prevStatus";
-		}
-		$result = $this->db->query( $sql, __METHOD__ );
-		$retval = array();
-		while ($row = $this->db->fetchObject( $result )) {
-			$testname = $row->t;
-			$retval[$testname] = $this->getTestStatusInfo( $testname, $after, $curRun );
-		}
-		$this->db->freeResult( $result );
-		return $retval;
-	}
-
-	/**
-	 ** Returns a string giving information about when a test last had a status change.
-	 ** Could help to track down when regressions were introduced, as distinct from tests
-	 ** which have never passed (which are more change requests than regressions).
-	 */
-	private function getTestStatusInfo($testname, $after, $curRun) {
-
-		// If we're looking at a test that has just been removed, then say when it first appeared.
-		if ( is_null( $after ) ) {
-			$changedRun = $this->db->selectField ( 'testitem',
-												   'MIN(ti_run)',
-												   array( 'ti_name' => $testname ),
-												   __METHOD__ );
-			$appear = $this->db->selectRow ( 'testrun',
-											 array( 'tr_date', 'tr_mw_version' ),
-											 array( 'tr_id' => $changedRun ),
-											 __METHOD__ );
-			return "First recorded appearance: "
-			       . date( "d-M-Y H:i:s",  strtotime ( $appear->tr_date ) )
-			       .  ", " . $appear->tr_mw_version;
-		}
-
-		// Otherwise, this test has previous recorded results.
-		// See when this test last had a different result to what we're seeing now.
-		$changedRun = $this->db->selectField ( 'testitem',
-											   'MAX(ti_run)',
-											   array( 
-											       'ti_name'    => $testname,
-											       'ti_success' => ($after ? "0" : "1"),
-											       "ti_run != " . $this->db->addQuotes ( $curRun )
-												), 
-												__METHOD__ );
-
-		// If no record of ever having had a different result.
-		if ( is_null ( $changedRun ) ) {
-			if ($after == "0") {
-				return "Has never passed";
-			} else {
-				return "Has never failed";
-			}
-		}
-
-		// Otherwise, we're looking at a test whose status has changed.
-		// (i.e. it used to work, but now doesn't; or used to fail, but is now fixed.)
-		// In this situation, give as much info as we can as to when it changed status.
-		$pre  = $this->db->selectRow ( 'testrun',
-										array( 'tr_date', 'tr_mw_version' ),
-										array( 'tr_id' => $changedRun ),
-										__METHOD__ );
-		$post = $this->db->selectRow ( 'testrun',
-										array( 'tr_date', 'tr_mw_version' ),
-										array( "tr_id > " . $this->db->addQuotes ( $changedRun) ),
-										__METHOD__,
-										array( "LIMIT" => 1, "ORDER BY" => 'tr_id' )
-									 );
-
-		return ( $after == "0" ? "Introduced" : "Fixed" ) . " between "
-				. date( "d-M-Y H:i:s",  strtotime ( $pre->tr_date ) ) .  ", " . $pre->tr_mw_version
-				. " and "
-				. date( "d-M-Y H:i:s",  strtotime ( $post->tr_date  ) ) .  ", " . $post->tr_mw_version ;
-	}
-
-	/**
-	 ** Helper function for compareResult() database querying.
-	 */
-	private function condition( $value ) {
-		if( is_null( $value ) ) {
-			return 'IS NULL';
-		} else {
-			return '=' . intval( $value );
-		}
-	}
-
-}
-
-class DbTestPreviewer extends DbTestRecorder  {
-	/**
-	 * Commit transaction and clean up for result recording
-	 */
-	function end() {
-		$this->db->rollback();
-		TestRecorder::end();
 	}
 }
