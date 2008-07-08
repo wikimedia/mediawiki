@@ -69,7 +69,6 @@ $messages = array(
 'mainpage-description' => 'Leqephe la pele',
 'portal'               => 'Potjho e kopano',
 'portal-url'           => 'Project:Potjho e kopano',
-'sitesupport'          => 'Dimpho',
 
 'retrievedfrom'   => 'E tswa ho "$1"',
 'newmessageslink' => 'melaetsa e metjha',

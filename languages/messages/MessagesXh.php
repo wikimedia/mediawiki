@@ -62,7 +62,6 @@ $messages = array(
 'edithelp'             => 'Uncedo ngoTshintsho',
 'mainpage'             => 'Iphepha Elingundoqo',
 'mainpage-description' => 'Iphepha Elingundoqo',
-'sitesupport'          => 'Amalizo',
 
 'newmessageslink'         => 'imiyalezo emitsha',
 'youhavenewmessagesmulti' => 'Unemiyalezo emitsha ku $1',

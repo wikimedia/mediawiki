@@ -110,7 +110,6 @@ $messages = array(
 'mainpage-description' => 'Chefi pagine',
 'portal'               => 'Li komun chambre',
 'portal-url'           => 'Project:Li komun chambre',
-'sitesupport'          => 'Donationes',
 
 'badaccess' => 'Permisione erore',
 

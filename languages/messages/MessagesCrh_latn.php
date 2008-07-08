@@ -332,8 +332,6 @@ $messages = array(
 'portal-url'           => 'Project:Cemaat portalı',
 'privacy'              => 'Gizlilik esası',
 'privacypage'          => 'Project:Gizlilik esası',
-'sitesupport'          => 'Bağışlar',
-'sitesupport-url'      => 'Project:Bağış',
 
 'badaccess'        => 'İzin hatası',
 'badaccess-group0' => 'Yapacaq olğan areketiñizni yapmağa aqqıñız yoq.',
@@ -1499,7 +1497,6 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'tooltip-n-recentchanges'         => 'Vikide yapılğan soñki deñişikliklerniñ cedveli.',
 'tooltip-n-randompage'            => 'Tesadüfiy bir saifege barıñız',
 'tooltip-n-help'                  => 'Yardım almaq içün.',
-'tooltip-n-sitesupport'           => 'Maddiy destek',
 'tooltip-t-whatlinkshere'         => 'Bu saifege bağlantı bergen diger viki saifeleriniñ cedveli',
 'tooltip-t-recentchangeslinked'   => 'Bu saifege bağlantı bergen saifelerdeki soñki deñişiklikler',
 'tooltip-feed-rss'                => 'Bu saife içün RSS translâtsiyası',

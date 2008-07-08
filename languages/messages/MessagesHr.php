@@ -284,8 +284,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'portal-url'           => 'Project:Portal zajednice',
 'privacy'              => 'Zaštita privatnosti',
 'privacypage'          => 'Project:Zaštita privatnosti',
-'sitesupport'          => 'Novčani prilozi',
-'sitesupport-url'      => 'Project:Donacije',
 
 'badaccess'        => 'Pogreška u ovlaštenjima',
 'badaccess-group0' => 'Nije vam dopušteno izvršiti ovaj zahvat.',
@@ -1965,7 +1963,6 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'tooltip-n-recentchanges'         => 'Popis nedavnih promjena u wikiju.',
 'tooltip-n-randompage'            => 'Učitaj slučajnu stranicu',
 'tooltip-n-help'                  => 'Mjesto za pomoć suradnicima.',
-'tooltip-n-sitesupport'           => 'Podržite nas materijalno',
 'tooltip-t-whatlinkshere'         => 'Popis svih stranica koje sadrže poveznice ovamo',
 'tooltip-t-recentchangeslinked'   => 'Nedavne promjene na stranicama na koje vode ovdašnje poveznice',
 'tooltip-feed-rss'                => 'RSS feed za ovu stranicu',

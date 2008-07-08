@@ -212,7 +212,6 @@ $messages = array(
 'mainpage-description' => 'Przédnô starna',
 'portal'               => 'Pòrtal wëcmaniznë',
 'portal-url'           => 'Project:Pòrtal wëcmaniznë',
-'sitesupport-url'      => 'Project:Wspiarcé dlô starnë',
 
 'badaccess' => 'Procëmprawne ùdowierzenie',
 

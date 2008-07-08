@@ -182,7 +182,6 @@ $messages = array(
 'mainpage-description' => 'Bogga Hore',
 'portal'               => 'Bortaalka jaaliyada',
 'portal-url'           => 'Project:Bortaalka jaaliyada',
-'sitesupport'          => 'Tabarucid',
 
 'badaccess'        => 'Qalad dhinaca idanka',
 'badaccess-group0' => 'Laguuma ogala in aad sameyso waxaad dooneysid.',
@@ -575,7 +574,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-mainpage'         => 'Soo booqo bogga hore',
 'tooltip-n-portal'           => 'Faahfaahinta mashruuca, waxaad ku caawinkartid, xageed ka helikartaa waxaad u baahantahay',
 'tooltip-n-randompage'       => 'Ku nasiibso bog',
-'tooltip-n-sitesupport'      => 'Nacaawi',
 'tooltip-t-emailuser'        => 'U dir E-boosto isticmaalahaan',
 'tooltip-t-specialpages'     => 'Liiska boggaga qaaska ah oo dhan',
 'tooltip-ca-nstab-main'      => 'Fiiri bogga qoraalka',

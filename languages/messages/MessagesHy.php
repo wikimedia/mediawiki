@@ -493,8 +493,6 @@ $messages = array(
 'portal-url'           => 'Project:Խորհրդարան',
 'privacy'              => 'Գաղտնիության քաղաքականություն',
 'privacypage'          => 'Project:Գաղտնիության քաղաքականություն',
-'sitesupport'          => 'Դրամական նվիրատվություն',
-'sitesupport-url'      => 'Project:Դրամական նվիրատվություն',
 
 'badaccess'        => 'Թույլատրման սխալ',
 'badaccess-group0' => 'Ձեզ չի թույլատրվում կատարել տվյալ գործողությունը։',
@@ -1857,7 +1855,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => 'Վիքիում կատարված վերջին փոփոխությունների ցանկը',
 'tooltip-n-randompage'            => 'Այցելեք պատահական էջ',
 'tooltip-n-help'                  => '{{SITENAME}} նախագծի ուղեցույց',
-'tooltip-n-sitesupport'           => 'Օգնեք մեզ նվիրատվությամբ',
 'tooltip-t-whatlinkshere'         => 'Այս էջին հղվող բոլոր վիքի էջերի ցանկը',
 'tooltip-t-recentchangeslinked'   => 'Այս էջից կապված էջերի վերջին փոփոխությունները',
 'tooltip-feed-rss'                => 'Այս էջի RSS սնուցումը',

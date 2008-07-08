@@ -8,8 +8,8 @@
  * @author KlaudiuMihaila
  * @author Laurap
  * @author SCriBu
- * @author לערי ריינהארט
  * @author Firilacroco
+ * @author לערי ריינהארט
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -304,8 +304,6 @@ pe titlul secţiunii (JavaScript)',
 'portal-url'           => 'Project:Portal Comunitate',
 'privacy'              => 'Politica de confidenţialitate',
 'privacypage'          => 'Project:Politica de confidenţialitate',
-'sitesupport'          => 'Donaţii',
-'sitesupport-url'      => 'Project:Donaţii',
 
 'badaccess'        => 'Eroare permisiune',
 'badaccess-group0' => 'Execuţia acţiunii cerute nu este permisă.',
@@ -475,7 +473,7 @@ Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai cu
 'passwordsent'               => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primeşti.',
 'blocked-mailpassword'       => 'Această adresă IP este blocată la editare, şi deci nu este permisă utilizarea funcţiei de recuperare a parolei pentru a preveni abuzul.',
 'eauthentsent'               => 'Un email de confirmare a fost trimis adresei nominalizate. Înainte de a fi trimis orice alt email acestui cont, trebuie să urmaţi intrucţiunile din email, pentru a confirma că acest cont este într-adevăr al dvs.',
-'throttled-mailpassword'     => 'O parolă a fost deja trimisă în {{PLURAL:$1|ultima oră|ultimele $1 ore}}. Pentru a preveni abuzul, se poate trimite doar o parolă la {{PLURAL:$2|o oră|$2 ore}}.',
+'throttled-mailpassword'     => 'O parolă a fost deja trimisă în {{PLURAL:$1|ultima oră|ultimele $1 ore}}. Pentru a preveni abuzul, se poate trimite doar o parolă la {{PLURAL:$1|o oră|$1 ore}}.',
 'mailerror'                  => 'Eroare la trimitere e-mail: $1',
 'acct_creation_throttle_hit' => 'Ne pare rău, aţi creat deja $1 conturi de utilizator. Nu mai puteţi crea altul.',
 'emailauthenticated'         => 'Adresa de email a fost autentificată la $1.',
@@ -856,7 +854,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'recentchanges'                     => 'Schimbări recente',
 'recentchangestext'                 => 'Schimbări recente ... (Log)',
 'recentchanges-feed-description'    => 'Urmăreşte cele mai recente schimbări folosind acest flux.',
-'rcnote'                            => "Mai jos se află {{PLURAL:$|ultima modificare|1ultimele '''$1''' modificări}} din {{PLURAL:$2|ultima zi|ultimele '''$2''' zile}}, începând cu $3.",
+'rcnote'                            => "Mai jos se află {{PLURAL:$|ultima modificare|ultimele '''$1''' modificări}} din {{PLURAL:$2|ultima zi|ultimele '''$2''' zile}}, începând cu $3.",
 'rcnotefrom'                        => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afişate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom'                        => 'Arată modificările începând de la $1',
 'rcshowhideminor'                   => '$1 modificările minore',
@@ -1045,7 +1043,7 @@ Acest număr include paginile de "discuţii", paginile despre {{SITENAME}}, pagi
 În medie rezultă <b>$5</b> modificări per pagină sau <b>$6</b> vizualizări la fiecare modificare.
 
 Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>$7</b>.',
-'userstatstext'          => "Există un număr de '''$1''' utilizatori înregistraţi. Dintre aceştia '''$2''' (sau '''$4%''') sunt administratori (vezi '''$3''').",
+'userstatstext'          => "Există {{PLURAL:$1|'''1''' [[Special:Listusers|utilizator]] înregistrat|un număr de '''$1''' [[Special:Listusers|utilizatori]] înregistraţi}}. Dintre aceştia '''$2''' (sau '''$4%''') {{PLURAL:$2|are|au}} drepturi de $5.",
 'statistics-mostpopular' => 'Paginile cele mai vizualizate',
 
 'disambiguations'     => 'Pagini de dezambiguizare',
@@ -1272,7 +1270,7 @@ făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]]); altcineva a modi
 
 Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]]).',
 'editcomment'                 => 'Comentariul de modificare a fost: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Reveniri la ultima modificare de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]); revenire la ultima versiune de către [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure'              => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
 'protectlogpage'              => 'Jurnal protecţii',
 'protectlogtext'              => 'Mai jos se află lista de blocări/deblocări a paginilor. Vezi [[Special:Protectedpages]] pentru mai multe informaţii.',
@@ -1444,8 +1442,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'block-log-flags-noemail'     => 'e-mail blocat',
 'range_block_disabled'        => 'Abilitatea dezvoltatorilor de a bloca serii de adrese este dezactivată.',
 'ipb_expiry_invalid'          => 'Dată de expirare invalidă.',
-'ipb_already_blocked'         => '"$1" este deja blocat.
-Puteţi modifica setările de blocare folosind acest formular.',
+'ipb_already_blocked'         => '"$1" este deja blocat',
 'ipb_cant_unblock'            => 'Eroare: nu găsesc identificatorul $1. Probabil a fost deja deblocat.',
 'ip_range_invalid'            => 'Serie IP invalidă.',
 'proxyblocker'                => 'Blocaj de proxy',
@@ -1612,7 +1609,6 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'tooltip-n-recentchanges'         => 'Lista ultimelor schimbări realizate în acest wiki.',
 'tooltip-n-randompage'            => 'Mergi spre o pagină aleatoare',
 'tooltip-n-help'                  => 'Locul în care găseşti ajutor.',
-'tooltip-n-sitesupport'           => 'Sprijină-ne',
 'tooltip-t-whatlinkshere'         => 'Lista tuturor paginilor wiki care conduc spre această pagină',
 'tooltip-t-recentchangeslinked'   => 'Schimbări recente în legătură cu această pagină',
 'tooltip-feed-rss'                => 'Alimentează fluxul RSS pentru această pagină',
@@ -1712,7 +1708,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'imagemaxsize'         => 'Limitează imaginile pe paginile de descriere la:',
 'thumbsize'            => 'Mărime thumbnail:',
 'widthheight'          => '$1x$2',
-'widthheightpage'      => '$1×$2, $3 pagini',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagină|pagini}}',
 'file-info'            => '(mărime fişier: $1, tip MIME: $2)',
 'file-info-size'       => '($1 × $2 pixeli, mărime fişier: $3, tip MIME: $4)',
 'file-nohires'         => '<small>Rezoluţii mai mari nu sunt disponibile.</small>',
@@ -1727,7 +1723,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'noimages'              => 'Nimic de văzut.',
 'ilsubmit'              => 'Caută',
 'bydate'                => 'după dată',
-'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1',
+'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1, ora $2',
 
 # Bad image list
 'bad_image_list' => 'Formatul este următorul:

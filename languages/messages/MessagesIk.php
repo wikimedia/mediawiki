@@ -11,6 +11,5 @@ $messages = array(
 'mainpage'             => 'Makpibaaq Kanna',
 'mainpage-description' => 'Makpibaaq Kanna',
 'portal-url'           => 'Project:qargi',
-'sitesupport-url'      => 'Project:tunixabaa',
 
 );

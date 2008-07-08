@@ -133,7 +133,6 @@ $messages = array(
 'mainpage-description' => 'Principal págine',
 'portal'               => 'Págine del comunité',
 'portal-url'           => 'Project:Págine del comunité',
-'sitesupport'          => 'Donationes',
 
 'youhavenewmessages' => 'Vu have $1 ($2).',
 'newmessageslink'    => 'nov missages',

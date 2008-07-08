@@ -271,8 +271,6 @@ $messages = array(
 'portal-url'           => 'Project:Gebruikersportaal',
 'privacy'              => 'Privaatheidsbeleid',
 'privacypage'          => 'Project:Privaatheidsbeleid',
-'sitesupport'          => 'Skenkings',
-'sitesupport-url'      => 'Project:Skenkings',
 
 'badaccess'        => 'Toestemmingsfout',
 'badaccess-group0' => 'U is nie toegelaat om die aksie uit te voer wat U aangevra het nie.',
@@ -688,7 +686,7 @@ Die verwyderingslogboek vir die blad word hieronder vertoon vir u gerief:",
 'mergehistory-invalid-destination' => "Bestemmingsbladsy moet 'n geldige titel wees.",
 
 # Merge log
-'mergelog' => 'Versmeltings logboek',
+'mergelog' => 'Versmeltingslogboek',
 
 # Diffs
 'history-title'           => 'Weergawegeskiedenis van "$1"',
@@ -1526,7 +1524,6 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'tooltip-n-recentchanges'         => "'n Lys van onlangse wysigings",
 'tooltip-n-randompage'            => "Laai 'n lukrake bladsye",
 'tooltip-n-help'                  => 'Vind meer uit oor iets.',
-'tooltip-n-sitesupport'           => 'Ondersteun ons',
 'tooltip-t-whatlinkshere'         => "'n Lys bladsye wat hierheen skakel",
 'tooltip-t-recentchangeslinked'   => 'Onlangse wysigings aan bladsye wat vanaf hierdie bladsy geskakel is',
 'tooltip-feed-rss'                => 'RSS-voed vir hierdie bladsy',

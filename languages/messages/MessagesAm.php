@@ -231,8 +231,6 @@ $messages = array(
 'portal-url'           => 'Project:የኅብረተሠብ መረዳጃ',
 'privacy'              => 'የሚስጥር ፖሊሲ',
 'privacypage'          => 'Project:የግልነት ድንጋጌ',
-'sitesupport'          => 'መዋጮ ለመስጠት',
-'sitesupport-url'      => 'Project:መዋጮ ስለ መስጠት',
 
 'badaccess'        => 'ያልተፈቀደ - አይቻልም',
 'badaccess-group0' => 'የጠየቁት አድራጎት እንዲፈጸም ፈቃድ የለዎም።',
@@ -1549,7 +1547,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => 'በዚሁ ዊኪ ላይ በቅርቡ የተደረጉ ለውጦች',
 'tooltip-n-randompage'            => 'ወደ ማንኛውም ገጽ በነሲብ ለመሔድ',
 'tooltip-n-help'                  => 'ረድኤት ለማግኘት',
-'tooltip-n-sitesupport'           => 'የገንዘብ ስጦታ ለዊኪሜድያ ይስጡ',
 'tooltip-t-whatlinkshere'         => 'ወደዚሁ ገጽ የሚያያዙት ገጾች ዝርዝር በሙሉ',
 'tooltip-t-recentchangeslinked'   => 'ከዚሁ ገጽ በተያያዙ ገጾች ላይ የቅርብ ግዜ ለውጦች',
 'tooltip-feed-rss'                => 'የRSS ማጉረስ ለዚሁ ገጽ',

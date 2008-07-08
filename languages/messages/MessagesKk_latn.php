@@ -615,8 +615,6 @@ $messages = array(
 'portal-url'           => '{{ns:project}}:Qawım portalı',
 'privacy'              => 'Jeke qupïyasın saqtaw',
 'privacypage'          => '{{ns:project}}:Jeke qupïyasın saqtaw',
-'sitesupport'          => 'Demewşilik',
-'sitesupport-url'      => '{{ns:project}}:Demewşilik',
 
 'badaccess'        => 'Ruqsat qatesi',
 'badaccess-group0' => 'Suratılğan äreketiñizdi jegwiñizge ruqsat etilmeýdi.',
@@ -2362,7 +2360,6 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 'tooltip-n-recentchanges'         => 'Osı wïkïdegi jwıqtağı özgerister tizimi.',
 'tooltip-n-randompage'            => 'Kezdeýsoq betti jüktew',
 'tooltip-n-help'                  => 'Anıqtama tabw ornı.',
-'tooltip-n-sitesupport'           => 'Bizge järdem etiñiz',
 'tooltip-t-whatlinkshere'         => 'Mında siltegen barlıq betterdiñ tizimi',
 'tooltip-t-recentchangeslinked'   => 'Mınnan siltengen betterdiñ jwıqtağı özgeristeri',
 'tooltip-feed-rss'                => 'Bul bettiñ RSS arnası',

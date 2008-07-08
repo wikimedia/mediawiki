@@ -10,14 +10,14 @@
  * @author לערי ריינהארט
  * @author Wpedzich
  * @author Leinad
- * @author Beau
  * @author Stv
+ * @author Beau
  * @author Siebrand
  * @author Masti
  * @author Equadus
- * @author Lajsikonik
  * @author Ymar
  * @author Matma Rex
+ * @author Lajsikonik
  * @author Szczepan1990
  * @author Herr Kriss
  */
@@ -436,8 +436,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal społeczności',
 'privacy'              => 'Zasady ochrony prywatności',
 'privacypage'          => 'Project:Zasady ochrony prywatności',
-'sitesupport'          => 'Darowizny',
-'sitesupport-url'      => 'Project:Wspomóż nas',
 
 'badaccess'        => 'Niewłaściwe uprawnienia',
 'badaccess-group0' => 'Nie masz uprawnień wymaganych do wykonania tej operacji.',
@@ -786,10 +784,10 @@ Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komenta
 'noarticletext'                    => 'Brak strony o tym tytule. Możesz [[Special:Search/{{PAGENAME}}|poszukać {{PAGENAME}} na innych stronach]] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć stronę {{FULLPAGENAME}}].',
 'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany. Upewnij się, czy na pewno zamierzałeś utworzyć/zmodyfikować właśnie tę stronę.',
 'clearyourcache'                   => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
-*'''Mozilla, Firefox lub Safari:''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu);
-*'''IE:''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5'';
-*'''Konqueror:''': po prostu kliknij przycisk ''Odśwież'' lub wciśnij ''F5'';
-*'''Opera''' może wymagać wyczyszczenia pamięci podręcznej w menu ''Narzędzia → Preferencje''.",
+*'''Mozilla, Firefox lub Safari –''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5'' lub ''Ctrl-R'' (''Cmd-Shift-R'' na Macintoshu)
+*'''Konqueror –''' kliknij przycisk ''Odśwież'' lub wciśnij ''F5''
+*'''Opera –''' wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''
+*'''Internet Explorer –''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5''",
 'usercssjsyoucanpreview'           => '<strong>Podpowiedź:</strong> Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
 'userjspreview'                    => "'''Pamiętaj, że to tylko podgląd Twojego kodu JavaScript – nic jeszcze nie zostało zapisane!'''",
@@ -1032,7 +1030,7 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'search-mwsuggest-enabled'  => 'z dynamicznymi propozycjami',
 'search-mwsuggest-disabled' => 'bez dynamicznych propozycji',
 'search-relatedarticle'     => 'Pokrewne',
-'mwsuggest-disable'         => 'Wyłącz dynamiczne propozycje AJAX-owe',
+'mwsuggest-disable'         => 'Wyłącz dynamiczne podpowiedzi',
 'searchrelated'             => 'pokrewne',
 'searchall'                 => 'wszystkie',
 'showingresults'            => "Poniżej znajduje się lista z {{PLURAL:$1|'''1''' wynikiem|'''$1''' wynikami}}, rozpoczynając od wyniku numer '''$2'''.",
@@ -1230,7 +1228,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'recentchanges'                     => 'Ostatnie zmiany',
 'recentchangestext'                 => 'Ta strona przedstawia historię ostatnich zmian w tej wiki.',
 'recentchanges-feed-description'    => 'Obserwuj najświeższe zmiany w tej wiki.',
-'rcnote'                            => "Poniżej {{PLURAL:$1|znajduje się '''1''' ostatnia zmiana wykonana|znajdują się ostatnie '''$1''' zmiany wykonane|znajduje się ostatnich '''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniego dnia|ostatnich '''$2''' dni}}, licząc od $3.",
+'rcnote'                            => "Poniżej {{PLURAL:$1|znajduje się '''1''' ostatnia zmiana wykonana|znajdują się ostatnie '''$1''' zmiany wykonane|znajduje się ostatnich '''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniego dnia|ostatnich '''$2''' dni}}, licząc od $5 dnia $4.",
 'rcnotefrom'                        => "Poniżej pokazano zmiany wykonane po '''$2''' (nie więcej niż '''$1''' pozycji).",
 'rclistfrom'                        => 'Pokaż nowe zmiany od $1',
 'rcshowhideminor'                   => '$1 drobne zmiany',
@@ -1297,8 +1295,8 @@ Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następują
 Zmień nazwę pliku i prześlij go ponownie.',
 'badfilename'                 => 'Nazwa pliku została zmieniona na „$1”.',
 'filetype-badmime'            => 'Przesyłanie plików z typem MIME „$1” jest niedozwolone.',
-'filetype-unwanted-type'      => "'''„.$1”''' nie jest zalecanym typem pliku. Pożądane są pliki w formatach $2.",
-'filetype-banned-type'        => "'''„.$1”''' jest niedozwolonym typem pliku. Dopuszczalne są pliki w formatach $2.",
+'filetype-unwanted-type'      => "'''„.$1”''' nie jest zalecanym typem pliku. Pożądane są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
+'filetype-banned-type'        => "'''„.$1”''' jest niedozwolonym typem pliku. Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
 'filetype-missing'            => 'Plik nie ma rozszerzenia (np. „.jpg”).',
 'large-file'                  => 'Zalecane jest aby rozmiar pliku nie był większy niż {{PLURAL:$1|1 bajt|$1 bajty|$1 bajtów}}.
 Plik ma rozmiar {{PLURAL:$2|1 bajt|$2 bajty|$2 bajtów}}.',
@@ -1666,6 +1664,7 @@ Szczegółową informację o uprawnieniach odnajdziesz [[{{MediaWiki:Listgroupri
 'emailccsubject'  => 'Kopia Twojej wiadomości do $1: $2',
 'emailsent'       => 'Wiadomość została wysłana',
 'emailsenttext'   => 'Twoja wiadomość została wysłana.',
+'emailuserfooter' => 'Wiadomość e-mail została wysłana z {{GRAMMAR:D.lp|{{SITENAME}}}} do $2 przez $1 z użyciem „Wyślij e-mail do tego użytkownika”.',
 
 # Watchlist
 'watchlist'            => 'Obserwowane',
@@ -1841,6 +1840,7 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 'viewdeletedpage'              => 'Zobacz usunięte wersje',
 'undeletepagetext'             => 'Poniższe strony zostały usunięte, ale ich kopia wciąż znajduje się w archiwum.
 Archiwum co jakiś czas może być oczyszczane.',
+'undelete-fieldset-title'      => 'Odtwarzanie wersji',
 'undeleteextrahelp'            => "Jeśli chcesz odtworzyć całą stronę, pozostaw wszystkie pola niezaznaczone i kliknij '''''Odtwórz'''''.
 Częściowe odtworzenie możesz wykonać, zaznaczając odpowiednie pola, odpowiadające wersjom, które będą odtworzone, a następnie klikając '''''Odtwórz'''''.
 Naciśnięcie '''''Wyczyść''''' usunie wszystkie zaznaczenia i wyczyści pole komentarza.",
@@ -2208,7 +2208,6 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-n-recentchanges'         => 'Lista ostatnich zmian na {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'tooltip-n-randompage'            => 'Pokaż losowo wybraną stronę',
 'tooltip-n-help'                  => 'Tutaj możesz się wielu rzeczy dowiedzieć.',
-'tooltip-n-sitesupport'           => 'Wesprzyj nas',
 'tooltip-t-whatlinkshere'         => 'Pokaż listę wszystkich stron linkujących do tego artykułu',
 'tooltip-t-recentchangeslinked'   => 'Ostatnie zmiany w stronach, do których ta strona linkuje',
 'tooltip-feed-rss'                => 'Kanał RSS dla tej strony',
@@ -2853,5 +2852,9 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:image}}:”.',
 'specialpages-group-wiki'        => 'Informacje oraz narzędzia wiki',
 'specialpages-group-redirects'   => 'Specjalne strony przekierowujące',
 'specialpages-group-spam'        => 'Narzędzia walki ze spamem',
+
+# Special:Blankpage
+'blankpage'              => 'Pusta strona',
+'intentionallyblankpage' => 'Ta strona umyślnie pozostała pusta',
 
 );

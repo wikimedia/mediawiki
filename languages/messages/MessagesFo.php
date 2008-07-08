@@ -1032,7 +1032,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'       => 'Listi av seinastu broytingar í wikin.',
 'tooltip-n-randompage'          => 'Far til tilvildarliga síðu',
 'tooltip-n-help'                => 'Staðurin at finna út.',
-'tooltip-n-sitesupport'         => 'Stuðla okkum',
 'tooltip-t-whatlinkshere'       => 'Yvirlit yvir allur wikur, ið slóða higar',
 'tooltip-t-recentchangeslinked' => 'Broytingar á síðum, ið slóða higar, í seinastuni',
 'tooltip-feed-rss'              => 'RSS-fóðurið til hesa síðuna',

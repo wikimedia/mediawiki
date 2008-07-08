@@ -209,8 +209,6 @@ $messages = array(
 'portal-url'           => 'Project:Petulo Bulili',
 'privacy'              => 'Busize likunutu',
 'privacypage'          => 'Project:Busize likunutu',
-'sitesupport'          => 'Adonetarina',
-'sitesupport-url'      => 'Project:Adonetarina',
 
 'badaccess'        => 'Bufosi pemiko',
 'badaccess-group0' => 'Zwa eksyon ni sa di sebelu kwa zwa kattegorina. Kyon ni sa vanu.',
@@ -968,7 +966,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => 'Mukoloko di petuho nca di wiki.',
 'tooltip-n-randompage'            => 'Apuzi petulo fona',
 'tooltip-n-help'                  => 'Yembani di fatukile.',
-'tooltip-n-sitesupport'           => 'Sepotisize',
 'tooltip-t-whatlinkshere'         => "Mukoloko di xete petulo di wiki bye sa ling'ki",
 'tooltip-t-recentchangeslinked'   => "Petuho nca di petulo sa ling'ki di bye petulo",
 'tooltip-feed-rss'                => 'RSS feed bye petulo',

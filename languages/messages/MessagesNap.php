@@ -129,8 +129,6 @@ $messages = array(
 'mainpage-description' => 'Paggena prencepale',
 'portal'               => "Porta d''a cummunetà",
 'portal-url'           => "Project:Porta d''a cummunetà",
-'sitesupport'          => 'Donazzione',
-'sitesupport-url'      => 'Project:Donazzione',
 
 'badaccess' => "Nun haje 'e premmesse abbastante.",
 

@@ -353,8 +353,6 @@ $messages = array(
 'portal-url'           => 'Project:Porta communis',
 'privacy'              => 'Consilium de secreto',
 'privacypage'          => 'Project:Consilium de secreto',
-'sitesupport'          => 'Donationes',
-'sitesupport-url'      => 'Project:Donationes',
 
 'badaccess'        => 'Permissus erratum',
 'badaccess-group0' => 'Non licet tibi actum quod petivisti agere.',
@@ -1460,7 +1458,6 @@ Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic mo
 'tooltip-n-recentchanges'         => 'Index nuper mutatorum in hac vici',
 'tooltip-n-randompage'            => 'Ire ad paginam fortuitam',
 'tooltip-n-help'                  => 'Adiutatum de hoc vici',
-'tooltip-n-sitesupport'           => 'Adiuvare hunc vici',
 'tooltip-t-whatlinkshere'         => 'Index paginarum quae hic nectunt',
 'tooltip-t-recentchangeslinked'   => 'Nuper mutata in paginis quibus haec pagina nectit',
 'tooltip-feed-rss'                => 'RSS feed',

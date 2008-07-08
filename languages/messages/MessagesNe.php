@@ -122,7 +122,6 @@ $messages = array(
 'portal'               => 'सामाजिक पोर्टल',
 'portal-url'           => 'Project:सामाजिक पोर्टल',
 'privacy'              => 'गोपनियता नीति',
-'sitesupport'          => 'चन्दा',
 
 'badaccess'        => 'आज्ञा त्रुटी',
 'badaccess-group0' => 'तपाईले अनुरोध गर्नुभएको कार्य गर्न तपाईलाई अनुमति दिइएको छैन।',

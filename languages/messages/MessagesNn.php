@@ -480,8 +480,6 @@ $messages = array(
 'portal-url'           => 'Project:Brukarportal',
 'privacy'              => 'Personvern',
 'privacypage'          => 'Project:Personvern',
-'sitesupport'          => 'Gåver',
-'sitesupport-url'      => 'Project:Gåver',
 
 'badaccess'        => 'Tilgangsfeil',
 'badaccess-group0' => 'Du har ikkje lov til å utføre handlinga du ba om.',
@@ -1993,7 +1991,6 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'tooltip-n-recentchanges'         => 'Liste over dei siste endringane som er gjort på wikien.',
 'tooltip-n-randompage'            => 'Vis ei tilfeldig side',
 'tooltip-n-help'                  => 'Hjelp til å bruke alle funksjonane.',
-'tooltip-n-sitesupport'           => 'Støtt oss!',
 'tooltip-t-whatlinkshere'         => 'Liste over alle wikisidene som har lenkjer hit',
 'tooltip-t-recentchangeslinked'   => 'Siste endringar på sider denne sida lenkjer til',
 'tooltip-feed-rss'                => 'RSS-mating for denne sida',

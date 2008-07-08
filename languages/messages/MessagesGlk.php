@@ -30,7 +30,6 @@ $messages = array(
 'mainpage-description' => 'گت ولگ',
 'portal'               => 'امه جیگا',
 'privacy'              => 'رازبداری',
-'sitesupport'          => 'بال زئن',
 
 # Special:Categories
 'categories' => 'رجؤن',

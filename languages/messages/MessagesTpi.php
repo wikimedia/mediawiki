@@ -103,8 +103,6 @@ $messages = array(
 'mainpage-description' => 'Fran Pes',
 'portal'               => 'Bung ples',
 'portal-url'           => 'Project:Bung ples',
-'sitesupport'          => 'Givim moni',
-'sitesupport-url'      => 'Project:Givim moni',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Stori',

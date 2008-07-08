@@ -485,8 +485,6 @@ $messages = array(
 'portal-url'           => 'Project:بوابة المجتمع',
 'privacy'              => 'خصوصيه',
 'privacypage'          => 'Project:سياسة الخصوصيه',
-'sitesupport'          => 'التبرعات',
-'sitesupport-url'      => 'Project:دعم الموقع',
 
 'badaccess'        => 'غلطه فى السماح',
 'badaccess-group0' => 'انت مش مسموح لك تنفذ الطلب بتاعك',
@@ -614,6 +612,7 @@ $2',
 'titleprotected'       => "العنوان دا محمي من الإنشاء بـ[[User:$1|$1]]. السبب هو ''$2''.",
 
 # Virus scanner
+'virus-scanfailed'     => 'المسح فشل(كود $1)',
 'virus-unknownscanner' => 'انتي فيروس مش معروف:',
 
 # Login and logout pages
@@ -833,6 +832,7 @@ $2',
 'nocreatetext'              => '{{SITENAME}} حدد القدره على انشاء صفحات جديده.
 ممكن ترجع وتحرر صفحه موجوده بالفعل، او [[Special:Userlogin|الدخول / فتح حساب]].',
 'nocreate-loggedin'         => 'انت ما عندك ش صلاحية تعمل صفحات جديدة في {{SITENAME}}.',
+'permissionserrors'         => 'غلطات فى السماح',
 'permissionserrorstext'     => 'ما عندك ش صلاحية تعمل كدا،{{PLURAL:$1|علشان|علشان}}:',
 'recreate-deleted-warn'     => "'''تحذير: انت بتعيد انشاء صفحه اتمسحت قبل كده.'''
 لازم تتأكد من ان الاستمرار فى تحرير الصفحه دى ملائم.
@@ -881,6 +881,7 @@ $2',
 'revdelete-hide-user'    => 'خبي اسم/عنوان الاي بي بتاع اليوزر',
 'revdelete-hide-image'   => 'خبي المحتويات بتاعة الملف',
 'revdelete-log'          => 'تعليق  على السجل:',
+'revdelete-submit'       => 'طبق على النسخه المختاره',
 'revdel-restore'         => 'تغيير الرؤية',
 'pagehist'               => 'تاريخ الصفحة',
 'deletedhist'            => 'التاريخ الممسوح',
@@ -901,6 +902,9 @@ $2',
 'mergehistory-go'     => 'عرض التعديلات اللي ممكن تتدمج',
 'mergehistory-submit' => 'دمج النسخ',
 
+# Merge log
+'revertmerge' => 'استرجاع الدمج',
+
 # Diffs
 'history-title'           => 'تاريخ تعديل "$1"',
 'difference'              => '(الفرق بين النسخ)',
@@ -916,6 +920,7 @@ $2',
 'searchsubtitleinvalid'     => "انت دورت على '''$1'''",
 'noexactmatch'              => "'''مافيش  صفحه بالاسم \"\$1\"'''. ممكن [[:\$1| تبتدى الصفحه دى]].",
 'noexactmatch-nocreate'     => "'''مافيش صفحة بالاسم \"\$1\".'''",
+'titlematches'              => 'عنوان الصفحة زى',
 'prevn'                     => '$1 اللى قبل كده',
 'nextn'                     => '$1 اللى بعد كده',
 'viewprevnext'              => 'بص ($1) ($2) ($3)',
@@ -925,6 +930,8 @@ $2',
 'search-interwiki-more'     => '(اأكتر)',
 'search-mwsuggest-enabled'  => 'مع اقتراحات',
 'search-mwsuggest-disabled' => 'مافيش اقتراحات',
+'search-relatedarticle'     => 'مرتبطه',
+'searchrelated'             => 'مرتبطه',
 'searchall'                 => 'الكل',
 'powersearch'               => 'تدوير متفصل',
 'powersearch-legend'        => 'تدوير متقدم',
@@ -1001,8 +1008,10 @@ $2',
 'userrights-editusergroup'         => 'تعديل مجموعات اليوزر',
 'saveusergroups'                   => 'حفظ مجموعات اليوزر',
 'userrights-groupsmember'          => 'عضو في:',
+'userrights-groupsremovable'       => 'مجموعات للإزالة:',
 'userrights-groupsavailable'       => 'المجموعات المتوفرة:',
 'userrights-reason'                => 'سبب التغيير:',
+'userrights-available-none'        => 'مش ممكن انك تعدل مجموعات اليوزر.',
 'userrights-available-remove'      => 'انت تقدر تشيل اي يوزر من {{PLURAL:$2|المجموعة دي|المجموعات دي}}: $1.',
 'userrights-available-add-self'    => 'انت تقدر تضيف نفسك لـ {{PLURAL:$2|المجموعة دي|المجموعات دي}}: $1.',
 'userrights-available-remove-self' => 'انت تقدر تشيل نفسك من {{PLURAL:$2|المجموعة دي|المجموعات دي}}: $1.',
@@ -1011,12 +1020,18 @@ $2',
 'userrights-nologin'               => 'انت لازم [[Special:Userlogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
 'userrights-notallowed'            => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
 'userrights-changeable-col'        => 'المجموعات اللي تقدر تغييرها',
+'userrights-unchangeable-col'      => 'المجموعات اللى مش ممكن انك تغيرها',
 
 # Groups
-'group'      => 'المجموعة:',
-'group-user' => 'يوزرز',
+'group'            => 'المجموعة:',
+'group-user'       => 'يوزرز',
+'group-sysop'      => 'سيسوبات',
+'group-bureaucrat' => 'بيروقراطيين',
+'group-all'        => '(الكل)',
 
 'group-user-member'     => 'يوزر',
+'group-bot-member'      => 'بوت',
+'group-sysop-member'    => 'سيسوب',
 'group-suppress-member' => 'أوفرسايت',
 
 'grouppage-user'  => '{{ns:project}}:يوزرز',
@@ -1024,11 +1039,18 @@ $2',
 
 # Rights
 'right-read'           => 'قراية الصفحات',
+'right-edit'           => 'تعديل الصفحات',
+'right-createtalk'     => 'إبتدى صفحات النقاش',
+'right-createaccount'  => 'افتح حسابات يوزر جديده',
+'right-move'           => 'انقل الصفحات',
+'right-move-subpages'  => 'انقل الصفحات مع صفحاتها الفرعيه',
 'right-upload'         => 'حمل الملفات',
 'right-autoconfirmed'  => 'تعديل الصفحات  النص محميه',
 'right-delete'         => 'مسح الصفحات',
 'right-bigdelete'      => 'مسح الصفحات اللي ليها تواريخ كبيرة',
 'right-browsearchive'  => 'التدوير في الصفحات الممسوحة',
+'right-undelete'       => 'استرجاع صفحة',
+'right-block'          => 'امنع اليوزرز التانيين من التعديل',
 'right-import'         => 'استيراد الصفحات من ويكيات تانيه',
 'right-importupload'   => 'استيراد الصفحات من فايل متحمل',
 'right-unwatchedpages' => 'بين لستة الصفحات اللي مش متراقبة',
@@ -1144,7 +1166,8 @@ $2',
 'listredirects' => 'عرض التحويلات',
 
 # Unused templates
-'unusedtemplates' => 'قوالب مش مستعمله',
+'unusedtemplates'    => 'قوالب مش مستعمله',
+'unusedtemplateswlh' => 'وصلات  تانيه',
 
 # Random page
 'randompage' => 'صفحة عشوائيه',
@@ -1218,6 +1241,7 @@ $2',
 'ancientpages'            => 'اقدم الصفحات',
 'move'                    => 'انقل',
 'movethispage'            => 'انقل الصفحه دى',
+'notargettitle'           => 'مافيش هدف',
 'nopagetitle'             => 'مافيش صفحة هدف بالاسم ده',
 
 # Book sources
@@ -1231,6 +1255,7 @@ $2',
 'all-logs-page'        => 'كل السجلات',
 'log-search-legend'    => 'دور على سجلات',
 'log-search-submit'    => 'روح',
+'logempty'             => 'مافيش  سجلات مطابقة في السجل.',
 'log-title-wildcard'   => 'التدوير على عناوين تبتدي بالنص دا',
 
 # Special:Allpages
@@ -1416,6 +1441,8 @@ $2',
 'blocklogpage'            => 'سجل المنع',
 'blocklogentry'           => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
 'block-log-flags-noemail' => 'الإيميل ممنوع',
+'ipb_cant_unblock'        => 'غلطه: عنوان الااى بى الممنوع  مش موجود  $1. يمكن اترفع منعه فعلا.',
+'blockme'                 => 'امنعنى',
 'proxyblocksuccess'       => 'خلاص.',
 
 # Move page
@@ -1500,7 +1527,6 @@ $2',
 'tooltip-n-recentchanges'         => 'لسته بالتعديلات الجديده فى الويكى',
 'tooltip-n-randompage'            => 'حمل صفحة عشوائيه',
 'tooltip-n-help'                  => 'لو محتاج مساعده بص هنا',
-'tooltip-n-sitesupport'           => 'ساندنا',
 'tooltip-t-whatlinkshere'         => 'صفحات الويكى اللى بتوصل هنا',
 'tooltip-t-contributions'         => 'عرض مساهمات اليوزر ده',
 'tooltip-t-emailuser'             => 'ابعت ايميل لليوزر ده',
@@ -1570,6 +1596,7 @@ $2',
 'exif-copyright'        => 'صاحب الحقوق الممحفوظة',
 'exif-colorspace'       => 'فرق اللون',
 'exif-usercomment'      => 'تعليقات اليوزر',
+'exif-relatedsoundfile' => 'ملف صوت مرتبط',
 'exif-brightnessvalue'  => 'الضي',
 'exif-flash'            => 'فلاش',
 'exif-flashenergy'      => 'طاقة الفلاش',
@@ -1590,13 +1617,49 @@ $2',
 
 'exif-subjectdistance-value' => '$1 متر',
 
-'exif-lightsource-0' => 'مش معروف',
-'exif-lightsource-4' => 'فلاش',
+'exif-meteringmode-0'   => 'مش معروف',
+'exif-meteringmode-1'   => 'متوسط',
+'exif-meteringmode-2'   => 'متوسط موزون بالمركز',
+'exif-meteringmode-255' => 'خلافوه',
+
+'exif-lightsource-0'   => 'مش معروف',
+'exif-lightsource-4'   => 'فلاش',
+'exif-lightsource-9'   => 'جو صحو',
+'exif-lightsource-10'  => 'جو مغيم',
+'exif-lightsource-11'  => 'ضل',
+'exif-lightsource-17'  => 'ضوء قياسى  A',
+'exif-lightsource-18'  => 'ضوء قياسى B',
+'exif-lightsource-19'  => 'ضوء قياسى C',
+'exif-lightsource-255' => 'مصدر ضوء  تانى',
 
 'exif-focalplaneresolutionunit-2' => 'بوصة',
 
 'exif-sensingmethod-1' => 'مش معرف',
+'exif-sensingmethod-7' => 'حساس بتلات خطوط',
+'exif-sensingmethod-8' => 'حساس لون خطي متتابع',
 
+'exif-filesource-3' => 'دي إس سي',
+
+'exif-scenetype-1' => 'صورة متاخدة على طول',
+
+'exif-customrendered-0' => 'عملية عادية',
+'exif-customrendered-1' => 'عملية حسب الطلب',
+
+'exif-exposuremode-0' => 'تعرض أوتوماتيكي',
+'exif-exposuremode-1' => 'تعرض باللإيد',
+'exif-exposuremode-2' => 'اقواس أوتوماتيكي',
+
+'exif-whitebalance-0' => 'توازن الأبيض اوتوماتيكي',
+'exif-whitebalance-1' => 'توازن الأبيض بالإيد',
+
+'exif-scenecapturetype-0' => 'مظبوط',
+'exif-scenecapturetype-1' => 'أرضية',
+'exif-scenecapturetype-2' => 'بورتوريه',
+'exif-scenecapturetype-3' => 'منظر بالليل',
+
+'exif-gaincontrol-0' => 'مافيش',
+'exif-gaincontrol-1' => 'تحكم لفوق واطي',
+'exif-gaincontrol-2' => 'تحكم لفوق عالي',
 'exif-gaincontrol-3' => 'تحكم تحت واطي',
 'exif-gaincontrol-4' => 'تحكم تحت  عالي',
 

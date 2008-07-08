@@ -227,8 +227,6 @@ $messages = array(
 'portal-url'        => 'Project:Commonty Yett',
 'privacy'           => 'Privacy policy',
 'privacypage'       => 'Project:Privacy policy',
-'sitesupport'       => 'Propines',
-'sitesupport-url'   => 'Project:Site support',
 
 'badaccess'        => 'Permeission mishanter',
 'badaccess-group0' => 'WARNIN: Ye arnae alloued tae dae whit you hae requestit!',

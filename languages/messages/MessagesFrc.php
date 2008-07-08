@@ -219,8 +219,6 @@ $messages = array(
 'portal-url'           => 'Project:Communauté',
 'privacy'              => 'Régulations des affaires privées',
 'privacypage'          => 'Project:Régulations des affaires privées',
-'sitesupport'          => "Donner de l'argent",
-'sitesupport-url'      => "Project:Donner de l'argent",
 
 'badaccess'        => 'Erreur de permission',
 'badaccess-group0' => 'Vous avez pas assez de permission de faire ça que vous demandez.',

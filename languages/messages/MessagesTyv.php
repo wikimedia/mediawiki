@@ -196,7 +196,6 @@ $messages = array(
 'policy-url'           => 'Project:Политика',
 'portal'               => 'Ниитилелдиң хаалгазы',
 'portal-url'           => 'Project:Ниитилелдиң хаалгазы',
-'sitesupport'          => 'Белектер',
 
 'retrievedfrom'       => '"$1" деп арынында парлаттынган',
 'newmessageslink'     => 'чаа чагаалар',

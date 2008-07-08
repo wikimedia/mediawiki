@@ -506,8 +506,6 @@ $messages = array(
 'portal-url'           => 'Project:Portál {{grammar:2sg|{{SITENAME}}}}',
 'privacy'              => 'Ochrana osobních údajů',
 'privacypage'          => 'Project:Ochrana osobních údajů',
-'sitesupport'          => 'Sponzorství',
-'sitesupport-url'      => 'Project:Sponzorství',
 
 'badaccess'        => 'Nedostatečná oprávnění',
 'badaccess-group0' => 'Nemáte oprávnění k provedení požadované činnosti.',
@@ -1766,8 +1764,8 @@ Rady a kontakt:
 ** Porušení autorských práv
 ** Vandalismus',
 'delete-edit-reasonlist'      => 'Editovat důvody smazání',
-'delete-toobig'               => 'Tato stránka má velkou historii editací, přes $1 verzí. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
-'delete-warning-toobig'       => 'Tato stránka má velkou historii editací, přes $1 verzí. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}: postupujte opatrně.',
+'delete-toobig'               => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
+'delete-warning-toobig'       => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',
 'rollback'                    => 'Vrátit zpět editace',
 'rollback_short'              => 'Vrátit zpět',
 'rollbacklink'                => 'vrácení zpět',
@@ -2153,7 +2151,6 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 'tooltip-n-recentchanges'         => 'Seznam posledních změn na této wiki',
 'tooltip-n-randompage'            => 'Přejít na náhodně vybranou stránku',
 'tooltip-n-help'                  => 'Místo, kde najdete pomoc',
-'tooltip-n-sitesupport'           => 'Podpořte nás',
 'tooltip-t-whatlinkshere'         => 'Seznam všech wikistránek, které sem odkazují',
 'tooltip-t-recentchangeslinked'   => 'Nedávné změny stránek, na které je odkazováno',
 'tooltip-feed-rss'                => 'RSS kanál pro tuto stránku',

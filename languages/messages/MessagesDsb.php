@@ -369,8 +369,6 @@ $messages = array(
 'portal-url'           => 'Project:portal',
 'privacy'              => 'Šćit datow',
 'privacypage'          => 'Project:Šćit datow',
-'sitesupport'          => 'Dary',
-'sitesupport-url'      => 'Project:Dary',
 
 'badaccess'        => 'Njamaš trěbnu dowólnosć.',
 'badaccess-group0' => 'Njamaš trěbnu dowólnosć za toś tu akciju.',
@@ -2034,7 +2032,6 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-n-recentchanges'         => 'Lisćina aktualnych změnow w(e) {{SITENAME}}.',
 'tooltip-n-randompage'            => 'Pśipadny bok',
 'tooltip-n-help'                  => 'Pomocny bok pokazaś',
-'tooltip-n-sitesupport'           => 'Pódpěraj nas',
 'tooltip-t-whatlinkshere'         => 'Lisćina wšyknych wiki bokow, kótarež how wótkazuju',
 'tooltip-t-recentchangeslinked'   => 'Aktualne změny w bokach, na kótarež toś ten bok wótkazujo',
 'tooltip-feed-rss'                => 'RSS-feed za toś ten bok',

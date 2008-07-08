@@ -113,7 +113,6 @@ $messages = array(
 'portal-url'           => 'Project:ᖃᒡᒋᖅ',
 'privacy'              => 'ᓇᒻᒥᓂᖅ ᐱᓕᕆᕝᕕᖃᐅᖅᑐᓄᑦ ᐊᐅᓚᑕᐅᔪᑦ ᐊᑐᐊᒐᖅ, ᐱᓇᓱᐊᕐᓂᖅ',
 'privacypage'          => 'Project:ᓇᒻᒥᓂᖅ ᐱᓕᕆᕝᕕᖃᐅᖅᑐᓄᑦ ᐊᐅᓚᑕᐅᔪᑦ ᐊᑐᐊᒐᖅ, ᐱᓇᓱᐊᕐᓂᖅ',
-'sitesupport'          => 'ᑐᓐᓂᖅᑯᓯᐊᑦ ᑮᓇᐅᔭᐃᑦ',
 
 'youhavenewmessages'  => 'ᐃᓕᔅᓯ ᐱᒋᕚ $1 ($2).',
 'newmessageslink'     => 'ᐱᒋᕗᖅ ᑭᒡᒐᐹ',

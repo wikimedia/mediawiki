@@ -112,7 +112,6 @@ $messages = array(
 'portal'               => 'Tekohapegua',
 'privacy'              => 'Polítika marandu ñeñangareko rehegua',
 'privacypage'          => 'Project:Polítika marandu ñeñangareko rehegua',
-'sitesupport'          => "Me'ẽ rei",
 
 'newmessageslink'         => 'marandu pyahu',
 'newmessagesdifflink'     => 'Joavy oĩva mokõive jehai paha apytépe',

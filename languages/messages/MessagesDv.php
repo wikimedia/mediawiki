@@ -112,7 +112,6 @@ $messages = array(
 'mainpage-description' => 'މައި ޞަފްޙާ',
 'portal'               => 'އާންމު ހޮޅުއަށި',
 'privacy'              => 'އަމިއްލަވަންތަ ސިޔާސަތު',
-'sitesupport'          => 'ޚައިރާތުތައް',
 
 'badaccess' => 'ހުއްދައިގެ ކުށެއް',
 

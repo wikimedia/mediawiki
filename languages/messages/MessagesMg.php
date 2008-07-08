@@ -155,7 +155,6 @@ $messages = array(
 'mainpage'             => 'Fandraisana',
 'mainpage-description' => 'Fandraisana',
 'portal'               => 'Toerana iraisana',
-'sitesupport'          => 'Fanomezana',
 
 'badaccess'        => 'Tsy manana alàlana',
 'badaccess-group0' => 'Tsy afaka manantontosa ny asa nangatahinao ianao tompoko',

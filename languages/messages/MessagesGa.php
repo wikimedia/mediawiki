@@ -300,8 +300,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'portal-url'           => 'Project:Ionad pobail',
 'privacy'              => 'Polasaí príobháideachta',
 'privacypage'          => 'Project:Polasaí príobháideachta',
-'sitesupport'          => 'Síntiúis',
-'sitesupport-url'      => 'Project:Tacaíocht an tsuímh',
 
 'badaccess' => 'Earráid ceada',
 
@@ -1399,7 +1397,6 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 'tooltip-n-recentchanges'         => 'Liosta de na hathruithe is déanaí sa vicí.',
 'tooltip-n-randompage'            => 'Lódáil leathanach fánach',
 'tooltip-n-help'                  => 'An áit chun cabhair a fháil.',
-'tooltip-n-sitesupport'           => 'Tabhair tacaíocht duinn',
 'tooltip-t-whatlinkshere'         => 'Liosta de gach leathanach sa vicí ina bhfuil nasc chuig an leathanach seo',
 'tooltip-t-recentchangeslinked'   => 'Na hathruithe is déanaí ar leathanaigh a nascaíonn chuig an leathanach seo',
 'tooltip-feed-rss'                => 'Fotha RSS don leathanach seo',

@@ -9,8 +9,8 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Michawiki
- * @author Jon Harald Søby
  * @author Sp5uhe
+ * @author Jon Harald Søby
  * @author Valasek
  * @author Palica
  * @author Liso
@@ -378,8 +378,6 @@ $messages = array(
 'portal-url'           => 'Project:Portál komunity',
 'privacy'              => 'Ochrana osobných údajov',
 'privacypage'          => 'Project:Ochrana osobných údajov',
-'sitesupport'          => 'Podpora',
-'sitesupport-url'      => 'Project:Podpora',
 
 'badaccess'        => 'Chyba povolenia',
 'badaccess-group0' => 'Nemáte povolenie na vykonanie požadovanej činnosti.',
@@ -2103,7 +2101,6 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-n-recentchanges'         => 'Zoznam posledných úprav vo wiki.',
 'tooltip-n-randompage'            => 'Zobrazenie náhodnej stránky',
 'tooltip-n-help'                  => 'Pozrieť si pomoc.',
-'tooltip-n-sitesupport'           => 'Podporte nás',
 'tooltip-t-whatlinkshere'         => 'Zoznam všetkých wiki stránok, ktoré sem odkazujú',
 'tooltip-t-recentchangeslinked'   => 'Posledné úpravy v stránkach, ktoré odkazujú na túto stránku',
 'tooltip-feed-rss'                => 'RSS feed pre túto stránku',

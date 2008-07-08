@@ -447,8 +447,6 @@ $messages = array(
 'portal-url'           => 'Project:Acuèlh',
 'privacy'              => 'Politica de confidencialitat',
 'privacypage'          => 'Project:Confidencialitat',
-'sitesupport'          => 'Far un don',
-'sitesupport-url'      => 'Project:Far un don',
 
 'badaccess'        => 'Error de permission',
 'badaccess-group0' => 'Avètz pas los dreches sufisents per realizar l’accion que demandatz.',
@@ -2137,7 +2135,6 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-n-recentchanges'         => 'Lista dels darrièrs cambiaments sul wiki.',
 'tooltip-n-randompage'            => "Afichar una pagina a l'azard",
 'tooltip-n-help'                  => "L'endrech per s'assabentar.",
-'tooltip-n-sitesupport'           => 'Sostenètz lo projècte',
 'tooltip-t-whatlinkshere'         => 'Lista de las paginas ligadas a aquesta',
 'tooltip-t-recentchangeslinked'   => 'Lista dels darrièrs cambiaments de las paginas ligadas a aquesta',
 'tooltip-feed-rss'                => 'Flus RSS per aquesta pagina',

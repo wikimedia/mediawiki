@@ -284,8 +284,6 @@ $messages = array(
 'portal-url'           => 'Project:コミュニティ・ポータル',
 'privacy'              => 'プライバシー・ポリシー',
 'privacypage'          => 'Project:プライバシー・ポリシー',
-'sitesupport'          => '寄付',
-'sitesupport-url'      => 'Project:このサイトを応援する',
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
@@ -1801,7 +1799,6 @@ $NEWPAGE
 'tooltip-n-recentchanges'         => '最近更新が行われたページの一覧',
 'tooltip-n-randompage'            => 'ランダムに記事を選んで表示',
 'tooltip-n-help'                  => 'ヘルプ・使い方',
-'tooltip-n-sitesupport'           => '私たちをサポートしてください',
 'tooltip-t-whatlinkshere'         => 'このページにリンクしているページの一覧',
 'tooltip-t-recentchangeslinked'   => '最近更新が行われたこのページのリンク先',
 'tooltip-feed-rss'                => 'このページのRSSフィード',

@@ -10,8 +10,8 @@
  * @author Hamaryns
  * @author Annabel
  * @author Effeietsanders
- * @author Troefkaart
  * @author Galwaygirl
+ * @author Troefkaart
  * @author לערי ריינהארט
  * @author Erwin85
  * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
@@ -500,8 +500,6 @@ $messages = array(
 'portal-url'           => 'Project:Gebruikersportaal',
 'privacy'              => 'Privacybeleid',
 'privacypage'          => 'Project:Privacybeleid',
-'sitesupport'          => 'Donaties',
-'sitesupport-url'      => 'Project:Financieel bijdragen',
 
 'badaccess'        => 'Geen toestemming',
 'badaccess-group0' => 'U hebt geen rechten om de gevraagde handeling uit te voeren.',
@@ -1801,8 +1799,9 @@ Feedback en andere assistentie:
 ** Schending van auteursrechten
 ** Vandalisme',
 'delete-edit-reasonlist'      => 'Redenen voor verwijdering bewerken',
-'delete-toobig'               => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 versies. Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
-'delete-warning-toobig'       => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 versies.
+'delete-toobig'               => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
+Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
+'delete-warning-toobig'       => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
 Het verwijderen van deze pagina kan de werking van de database van {{SITENAME}} verstoren.
 Wees voorzichtig.',
 'rollback'                    => 'Wijzigingen ongedaan maken',
@@ -2223,7 +2222,6 @@ U kunt wel de broncode bekijken.',
 'tooltip-n-recentchanges'         => 'De lijst van recente wijzigingen in deze wiki.',
 'tooltip-n-randompage'            => 'Een willekeurige pagina bekijken',
 'tooltip-n-help'                  => 'Hulpinformatie over deze wiki',
-'tooltip-n-sitesupport'           => 'Ondersteun ons financieel',
 'tooltip-t-whatlinkshere'         => "Lijst van alle pagina's die naar deze pagina verwijzen",
 'tooltip-t-recentchangeslinked'   => "Recente wijzigingen in pagina's waar deze pagina naar verwijst",
 'tooltip-feed-rss'                => 'RSS-feed voor deze pagina',

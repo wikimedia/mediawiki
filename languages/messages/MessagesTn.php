@@ -72,7 +72,6 @@ $messages = array(
 'portal'               => 'Patlelo ya setšhaba',
 'portal-url'           => 'Project:Patlelo ya setšhaba',
 'privacy'              => 'Melawana ya sephiri',
-'sitesupport'          => 'Dimpho',
 
 'youhavenewmessages'      => 'O na le $1 ($2).',
 'newmessageslink'         => 'molaetsa o moša',

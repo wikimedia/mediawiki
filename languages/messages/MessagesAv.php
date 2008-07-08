@@ -40,7 +40,6 @@ $messages = array(
 'mainpage-description' => 'БетIераб гьумер',
 'portal'               => 'Майдан',
 'portal-url'           => 'Project:Майдан',
-'sitesupport'          => 'Садакъа',
 
 'editsection' => 'хисизабизе',
 

@@ -340,8 +340,6 @@ $messages = array(
 'portal-url'           => "Project:Portal d'a comunidat",
 'privacy'              => 'Politica de pribazidat',
 'privacypage'          => 'Project:Politica de pribazidat',
-'sitesupport'          => 'Donazions',
-'sitesupport-url'      => 'Project:Donazions',
 
 'badaccess'        => 'Error de premisos',
 'badaccess-group0' => "No tiene premisos ta fer l'aizión que ha demandato.",
@@ -1998,7 +1996,6 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'tooltip-n-recentchanges'         => "A lista d'os zaguers cambeos en o wiki",
 'tooltip-n-randompage'            => 'Cargar una pachina aleatoriament',
 'tooltip-n-help'                  => 'O puesto ta saber más.',
-'tooltip-n-sitesupport'           => 'Refirme o procheuto',
 'tooltip-t-whatlinkshere'         => "Lista de todas as pachinas d'o wiki binculatas con ista",
 'tooltip-t-recentchangeslinked'   => 'Zaguers cambeos en as pachinas que tienen binclos enta ista',
 'tooltip-feed-rss'                => "Canal RSS d'ista pachina",

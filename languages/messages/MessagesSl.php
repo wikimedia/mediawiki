@@ -246,8 +246,6 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'portal'               => 'Portal občestva',
 'portal-url'           => 'Project:Portal občestva',
 'privacy'              => 'Politika zasebnosti',
-'sitesupport'          => 'Denarni prispevki',
-'sitesupport-url'      => 'Project:Zbiranje prispevkov',
 
 'badaccess' => 'Napaka pri dovoljenju',
 
@@ -1213,7 +1211,6 @@ Ciljna stran »[[$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za
 'tooltip-n-recentchanges'         => 'Seznam zadnjih sprememb {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'tooltip-n-randompage'            => 'Naložite naključno stran',
 'tooltip-n-help'                  => 'Kraj za pomoč',
-'tooltip-n-sitesupport'           => 'Podprite nas',
 'tooltip-t-whatlinkshere'         => 'Seznam vseh s trenutno povezanih strani',
 'tooltip-t-recentchangeslinked'   => 'Zadnje spremembe na s trenutno povezanih straneh',
 'tooltip-feed-rss'                => 'RSS-dovod strani',

@@ -311,8 +311,6 @@ $messages = array(
 'portal-url'           => "Project:Ja'miyet Portalı",
 'privacy'              => "Konfidentsiallıq qag'ıydası",
 'privacypage'          => "Project:Konfidentsiallıq qag'ıydası",
-'sitesupport'          => "Ja'rdem berıw",
-'sitesupport-url'      => "Project:Ja'rdem",
 
 'badaccess'        => 'Ruxsatnama qateligi',
 'badaccess-group0' => "Soralıp atırg'an ha'reketin'izdi bejeriwge ruqsatın'ız joq.",
@@ -1385,7 +1383,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => "Wikidegi aqırg'ı o'zgerislerdin' dizimi.",
 'tooltip-n-randompage'            => "Qa'legen betti ju'klew",
 'tooltip-n-help'                  => 'Anıqlama tabıw ornı.',
-'tooltip-n-sitesupport'           => "Bizge ja'rdem berin'",
 'tooltip-t-whatlinkshere'         => 'Usı betke siltelgen barlıq betler dizimi',
 'tooltip-t-recentchangeslinked'   => "Bul betten siltengen betlerdegi aqırg'ı o'zgerisler",
 'tooltip-feed-rss'                => 'Bul bettin\' "RSS" jolag\'ı',

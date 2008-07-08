@@ -262,8 +262,6 @@ $messages = array(
 'mainpage-description' => 'Mwaisse pådje',
 'portal'               => 'Inte di nozôtes',
 'portal-url'           => 'Project:Inte di nozôtes',
-'sitesupport'          => 'Ecwårlaedje',
-'sitesupport-url'      => 'Project:Ecwårlaedje',
 
 'badaccess' => "Åk n' a nén stî avou les permissions",
 
@@ -1316,7 +1314,6 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'tooltip-n-recentchanges'         => "Li djivêye des dierins candjmints k' i gn a-st avou sol wiki.",
 'tooltip-n-randompage'            => "Tcherdjî ene pådje a l' astcheyance",
 'tooltip-n-help'                  => "Li plaece po trover les responses a vos kesses so l' eployaedje do wiki.",
-'tooltip-n-sitesupport'           => "Sopoirter l' pordjet",
 'tooltip-t-whatlinkshere'         => "Djivêye di totes les pådjes k' ont des loyéns viè cisse pådje ci",
 'tooltip-t-recentchangeslinked'   => 'Dierins candjmints fwaits so des pådjes ki cisse pådje ci a des loyéns viè zeles',
 'tooltip-feed-rss'                => 'Sindicåcion RSS po cisse pådje ci',

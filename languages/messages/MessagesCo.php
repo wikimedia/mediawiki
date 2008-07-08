@@ -124,7 +124,6 @@ $messages = array(
 'portal-url'           => 'Project:Purtone di a cumunità',
 'privacy'              => 'Pulitica pè a riservatezza',
 'privacypage'          => 'Project:Pulitica pè a riservatezza',
-'sitesupport'          => 'Dunazione',
 
 'versionrequired' => 'A version $1 di MediaWiki hè necessaria',
 

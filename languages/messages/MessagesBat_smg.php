@@ -263,8 +263,6 @@ $messages = array(
 'portal-url'           => 'Project:Kuolektīvs',
 'privacy'              => 'Privatoma puolitėka',
 'privacypage'          => 'Project:Privatoma puolitėka',
-'sitesupport'          => 'Pagelba',
-'sitesupport-url'      => 'Project:Tėnklalapė palaikīms',
 
 'badaccess'        => 'Privėlėju klaida',
 'badaccess-group0' => 'Tomstā nelēdama ivīkdītė veiksma, katruo prašiet.',
@@ -1299,7 +1297,6 @@ Paskėrties straipsnis „[[$1]]“ jau īr. A nuorėt ana ėštrintė, kū gali
 'tooltip-n-recentchanges'         => 'Vielībūju pakeitėmu sārašos tamė projektė.',
 'tooltip-n-randompage'            => 'Atidarītė bikuoki straipsni',
 'tooltip-n-help'                  => 'Vėita, katruo rasėt rūpėmus atsakīmus.',
-'tooltip-n-sitesupport'           => "Pafėnansuokėt ''Wikimedia'' pruojekta",
 'tooltip-t-whatlinkshere'         => 'Poslapiu sārašos, ruodantiu i čė',
 'tooltip-t-recentchangeslinked'   => 'Paskotėnē pakeitėmā straipsnious, pasėikiamous ėš šėta straipsnė',
 'tooltip-t-contributions'         => 'Ruodītė šėta nauduotuojė keitėmu sāraša',

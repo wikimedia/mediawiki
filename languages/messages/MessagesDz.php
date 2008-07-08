@@ -138,8 +138,6 @@ $messages = array(
 'portal-url'           => 'Project:མི་སྡེའི་སྒོ་ར།',
 'privacy'              => 'སྒེར་གསང་སྲིད་བྱུས།',
 'privacypage'          => 'Project:སྒེར་གསང་སྲིད་བྱུས།',
-'sitesupport'          => 'ཕན་འདེབས།',
-'sitesupport-url'      => 'Project:ས་ཁོངས་རྒྱབ་སྐྱོར།',
 
 'retrievedfrom'       => '"$1" ལས་ སླར་འདྲེན་འབད་ཡོདཔ།',
 'youhavenewmessages'  => 'ཁྱོད་ལུ་ $1 ($2) འདུག།',
@@ -631,7 +629,6 @@ $messages = array(
 'tooltip-n-recentchanges'         => 'ཝི་ཀི་ནང་གི་ཕྲལ་གྱི་བསྒྱུར་བཅོས་ཐོ་ཡིག།',
 'tooltip-n-randompage'            => 'རིམ་བྲལ་ཤོག་ལེབ་ཅིག་ མངོན་གསལ་འབད།',
 'tooltip-n-help'                  => 'འཚོལ་ཞིབ་འབད་སའི་ས་གནས།',
-'tooltip-n-sitesupport'           => 'ང་བཅས་ལུ་རྒྱབ་སྐྱོར་འབད།',
 'tooltip-t-whatlinkshere'         => 'ནཱ་ལུ་ འབྲེལ་མཐུད་འབད་བའི་ཝི་ཀི་ཤོག་ལེབ་ག་ར་གི་ཐོ་ཡིག།',
 'tooltip-t-contributions'         => 'ལག་ལེན་པ་འདི་གི་ཞལ་འདེབས་ཐོ་ཡིག་བལྟ།',
 'tooltip-t-emailuser'             => 'ལག་ལེན་པ་འདི་ལུ་ གློག་འཕྲིན་གཏང་།',

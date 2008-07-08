@@ -290,8 +290,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal_zajednice',
 'privacy'              => 'Pravila o anonimnosti',
 'privacypage'          => 'Project:Pravila o anonimnosti',
-'sitesupport'          => 'Donacije',
-'sitesupport-url'      => 'Project:Donacije',
 
 'versionrequired'     => 'Potrebna je verzija $1 MediaWikija',
 'versionrequiredtext' => 'Potrebna je verzija $1 MediaWikija da bi se koristila ova strana. Pogledaj [[Special:Version|verziju]].',
@@ -1137,7 +1135,6 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'tooltip-n-recentchanges'         => 'Spisak nedavnih izmjena na wiki.',
 'tooltip-n-randompage'            => 'Otvorite slučajan članak',
 'tooltip-n-help'                  => 'Mjesto gdje možete nešto da naučite.',
-'tooltip-n-sitesupport'           => 'Podržite nas',
 'tooltip-t-whatlinkshere'         => 'Spisak svih članaka koji su povezani sa ovim',
 'tooltip-t-recentchangeslinked'   => 'Nedavne izmjene na stranicama koje su povezane sa ovom',
 'tooltip-feed-rss'                => 'RSS za ovu stranicu',

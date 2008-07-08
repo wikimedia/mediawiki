@@ -7,8 +7,8 @@
  * @author Wikimistusik
  * @author Sab
  * @author Siebrand
- * @author SPQRobin
  * @author Nkosi ya Cabinda
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -229,8 +229,6 @@ $messages = array(
 'portal-url'           => 'Project:Dodatuveli',
 'privacy'              => 'Xoverteem',
 'privacypage'          => 'Project:Privacy policy',
-'sitesupport'          => 'Zobera',
-'sitesupport-url'      => 'Project:Zobera',
 
 'badaccess'        => 'Noverarokla',
 'badaccess-group0' => 'Ta kucilana skura me zo rictal.',
@@ -1706,7 +1704,6 @@ bu ika int me zo rotarrundar.',
 'tooltip-n-recentchanges'         => 'Noeltaf betakseem koe wiki.',
 'tooltip-n-randompage'            => 'Vajara va xuyavafu bu',
 'tooltip-n-help'                  => 'Trasixo.',
-'tooltip-n-sitesupport'           => 'Va cin zobel !',
 'tooltip-t-whatlinkshere'         => 'Batliz gluyas wikibueem',
 'tooltip-t-recentchangeslinked'   => 'Noeltaf betakseem koe bu yo skedasu va batu',
 'tooltip-feed-rss'                => 'RSS rust icde batu bu',

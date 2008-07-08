@@ -335,8 +335,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal',
 'privacy'              => 'Škit datow',
 'privacypage'          => 'Project:Škit datow',
-'sitesupport'          => 'Dary',
-'sitesupport-url'      => 'Project:Darić',
 
 'badaccess'        => 'Nimaš wotpowědne dowolnosće',
 'badaccess-group0' => 'Nimaš wotpowědne dowolnosće za tutu akciju.',
@@ -2020,7 +2018,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'tooltip-n-recentchanges'         => 'lisćina aktualnych změnow w tutym wikiju',
 'tooltip-n-randompage'            => 'připadny nastawk wopytać',
 'tooltip-n-help'                  => 'pomocna strona',
-'tooltip-n-sitesupport'           => 'Podpěrajće nas',
 'tooltip-t-whatlinkshere'         => 'lisćina wšěch stronow, kotrež sem wotkazuja',
 'tooltip-t-recentchangeslinked'   => 'aktualne změny w stronach, na kotrež tuta strona wotkazuje',
 'tooltip-feed-rss'                => 'RSS-feed za tutu stronu',

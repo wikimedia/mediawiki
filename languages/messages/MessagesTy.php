@@ -90,7 +90,6 @@ $messages = array(
 'mainpage'             => 'Fa’ari’ira’a',
 'mainpage-description' => 'Fa’ari’ira’a',
 'portal'               => 'Fare auhoa',
-'sitesupport'          => 'Pūpū i te ō',
 
 'newmessageslink'     => 'Te mau poro’i ’āpī',
 'newmessagesdifflink' => 'fa’ahuru-’ē-ra’a hope’a',

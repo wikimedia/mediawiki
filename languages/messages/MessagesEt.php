@@ -289,8 +289,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'portal-url'           => 'Project:Kogukonnavärav',
 'privacy'              => 'Privaatsus',
 'privacypage'          => 'Project:Privaatsus',
-'sitesupport'          => 'Annetused',
-'sitesupport-url'      => 'Project:Annetused',
 
 'badaccess' => 'Õigus puudub',
 
@@ -1232,7 +1230,6 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'tooltip-n-recentchanges'         => 'Vikis tehtud viimaste muudatuste loend.',
 'tooltip-n-randompage'            => 'Mine juhuslikule leheküljele',
 'tooltip-n-help'                  => 'Kuidas redigeerida.',
-'tooltip-n-sitesupport'           => 'Toeta meid',
 'tooltip-t-whatlinkshere'         => 'Kõik Viki leheküljed, mis siia viitavad',
 'tooltip-t-recentchangeslinked'   => 'Viimased muudatused lehekülgedel, milledele on siit viidatud',
 'tooltip-feed-rss'                => 'Selle lehekülje RSS sööt',

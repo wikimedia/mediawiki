@@ -154,7 +154,6 @@ $messages = array(
 'edithelp'             => 'Panoytoy sa Pag-ilis',
 'mainpage'             => 'Pono nga Pahina',
 'mainpage-description' => 'Pono nga Pahina',
-'sitesupport'          => 'Donasyon',
 
 'badaccess'        => 'Sayup sa lisensya',
 'badaccess-group0' => 'Indi kaw ginpasogtan nga himoon ang lihuk nga ginalaum mo.',

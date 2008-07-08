@@ -178,8 +178,6 @@ $messages = array(
 'portal-url'           => 'Project:સમાજ મુખપૃષ્ઠ',
 'privacy'              => 'ગોપનિયતા નીતિ',
 'privacypage'          => 'Project:ગોપનિયતા નીતિ',
-'sitesupport'          => 'દાન',
-'sitesupport-url'      => 'Project:સાઇટ આધાર',
 
 'ok'                  => 'મંજૂર',
 'retrievedfrom'       => '"$1" થી લીધેલું',
@@ -576,7 +574,6 @@ $messages = array(
 'tooltip-n-recentchanges'         => 'વિકિમાં હાલમા થયેલા ફેરફારો ની સૂચિ.',
 'tooltip-n-randompage'            => 'કોઇ પણ એક લેખ બતાવો',
 'tooltip-n-help'                  => 'શોધવા માટેની જગ્યા.',
-'tooltip-n-sitesupport'           => 'અમારું સમર્થન કરો',
 'tooltip-t-whatlinkshere'         => 'અહીં જોડાતા બધાં વિકિ પાનાઓની યાદી',
 'tooltip-t-contributions'         => 'આ સભ્યનાં યોગદાનોની યાદી જુઓ',
 'tooltip-t-emailuser'             => 'આ સભ્યને ઇ-મેલ મોકલો',

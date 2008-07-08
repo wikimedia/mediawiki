@@ -260,8 +260,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal del communitate',
 'privacy'              => 'Politica de confidentialitate',
 'privacypage'          => 'Project:Politica de confidentialitate',
-'sitesupport'          => 'Donationes',
-'sitesupport-url'      => 'Project:Donationes',
 
 'badaccess'        => 'Error de permission',
 'badaccess-group0' => 'Tu non ha le permission de executar le action que tu ha requestate.',
@@ -319,48 +317,82 @@ Tu demandava un pagina special que non es
 recognoscite per le systema de Mediawiki.',
 
 # General errors
-'error'           => 'Error',
-'databaseerror'   => 'Error de base de datos',
-'dberrortext'     => 'Occurreva un error de syntaxe in le consulta al base de datos.
+'error'                => 'Error',
+'databaseerror'        => 'Error de base de datos',
+'dberrortext'          => 'Occurreva un error de syntaxe in le consulta al base de datos.
 Le ultime demanda inviate al base de datos esseva:
 <blockquote><tt>$1</tt></blockquote>
 de intra le function "<tt>$2</tt>".
 MySQL retornava le error "<tt>$3: $4</tt>".',
-'dberrortextcl'   => 'Un error de syntaxe occurreva durante un consulta del base de datos.
+'dberrortextcl'        => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Le ultime consulta que se tentava es:
 "$1"
 effectuate per le function "$2".
 MySQL retornava le error "$3: $4"',
-'noconnect'       => 'Impossibile connecter al base de datos a $1',
-'nodb'            => 'Impossibile selectionar base de datos $1',
-'cachederror'     => 'Le sequente copia del pagina se recuperava del cache, e possibilemente non es actual.',
-'laggedslavemode' => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
-'readonly'        => 'Base de datos blocate',
-'enterlockreason' => 'Describe le motivo del blocage, includente un estimation
+'noconnect'            => 'Impossibile connecter al base de datos a $1',
+'nodb'                 => 'Impossibile selectionar base de datos $1',
+'cachederror'          => 'Le sequente copia del pagina se recuperava del cache, e possibilemente non es actual.',
+'laggedslavemode'      => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
+'readonly'             => 'Base de datos blocate',
+'enterlockreason'      => 'Describe le motivo del blocage, includente un estimation
 de quando illo essera terminate',
-'readonlytext'    => 'Actualmente le base de datos de {{SITENAME}} es blocate pro nove
+'readonlytext'         => 'Actualmente le base de datos de {{SITENAME}} es blocate pro nove
 entratas e altere modificationes, probabilemente pro mantenentia
 routinari del base de datos, post le qual illo retornara al normal.
 Le administrator responsabile dava iste explication:
 <p>$1',
-'internalerror'   => 'Error interne',
-'filecopyerror'   => 'Impossibile copiar file "$1" a "$2".',
-'filerenameerror' => 'Impossibile renominar file "$1" a "$2".',
-'filedeleteerror' => 'Impossibile eliminar file "$1".',
-'filenotfound'    => 'Impossibile trovar file "$1".',
-'unexpected'      => 'Valor impreviste: "$1"="$2".',
-'formerror'       => 'Error: impossibile submitter formulario',
-'badarticleerror' => 'Iste action non pote esser effectuate super iste pagina.',
-'cannotdelete'    => 'Impossibile eliminar le pagina o imagine specificate. (Illo pote ja haber essite eliminate per un altere persona.)',
-'badtitle'        => 'Titulo incorrecte',
-'badtitletext'    => 'Le titulo de pagina demandate esseva invalide, vacue, o
+'missing-article'      => 'Le base de datos non ha trovate le texto de un pagina que illo deberea haber trovate, nominate "$1" $2.
+
+Causas normal de iste problema es: tu ha consultate un \'\'diff\'\' obsolete, o tu sequeva un ligamine de historia verso un pagina que ha essite delite.
+
+Si isto non es le caso, es possibile que tu ha trovate un error in le software.
+Per favor reporta isto a un administrator, faciente nota del adresse URL.',
+'missingarticle-rev'   => '(nº del revision: $1)',
+'missingarticle-diff'  => '(Diff: $1, $2)',
+'readonly_lag'         => 'Le base de datos ha essite automaticamente blocate durante que le servitores de base de datos secundari se synchronisa con le servitor principal.',
+'internalerror'        => 'Error interne',
+'internalerror_info'   => 'Error interne: $1',
+'filecopyerror'        => 'Impossibile copiar file "$1" a "$2".',
+'filerenameerror'      => 'Impossibile renominar file "$1" a "$2".',
+'filedeleteerror'      => 'Impossibile eliminar file "$1".',
+'directorycreateerror' => 'Impossibile crear le directorio "$1".',
+'filenotfound'         => 'Impossibile trovar file "$1".',
+'fileexistserror'      => 'Impossibile scriber in le file "$1": le file ja existe',
+'unexpected'           => 'Valor impreviste: "$1"="$2".',
+'formerror'            => 'Error: impossibile submitter formulario',
+'badarticleerror'      => 'Iste action non pote esser effectuate super iste pagina.',
+'cannotdelete'         => 'Impossibile eliminar le pagina o imagine specificate. (Illo pote ja haber essite eliminate per un altere persona.)',
+'badtitle'             => 'Titulo incorrecte',
+'badtitletext'         => 'Le titulo de pagina demandate esseva invalide, vacue, o
 un titulo interlinguistic o interwiki incorrectemente ligate.',
-'perfdisabled'    => 'Pardono! Iste functionalitate es temporarimente inactivate durante
+'perfdisabled'         => 'Pardono! Iste functionalitate es temporarimente inactivate durante
 horas de grande affluentia de accessos pro motivo de performance;
 retorna inter 02:00 e 14:00 UTC e tenta de nove.',
-'viewsource'      => 'Vider codice fonte',
-'viewsourcefor'   => 'de $1',
-'viewsourcetext'  => 'Tu pote vider e copiar le codice-fonte de iste pagina:',
+'perfcached'           => "Le sequente datos se recuperava del ''cache'' e possibilemente non es actual.",
+'perfcachedts'         => 'Le sequente datos se recuperava del cache. Ultime actualisation: le $1.',
+'querypage-no-updates' => 'Le actualisationes pro iste pagina es disactivate. Pro le momento, le datos hic non se cambiara.',
+'wrong_wfQuery_params' => 'Parametros incorrecte a wfQuery()<br />
+Function: $1<br />
+Consulta: $2',
+'viewsource'           => 'Vider codice fonte',
+'viewsourcefor'        => 'de $1',
+'actionthrottled'      => 'Action limitate',
+'actionthrottledtext'  => 'Como mesura anti-spam, vos es limitate de executar iste action troppo de vices durante un curte periodo de tempore, e vos ha excedite iste limite.
+Per favor reprova lo post alcun minutas.',
+'protectedpagetext'    => 'Iste pagina ha essite protegite contra modificationes.',
+'viewsourcetext'       => 'Tu pote vider e copiar le codice-fonte de iste pagina:',
+'protectedinterface'   => 'Iste pagina contine texto pro le interfacie del software, e es protegite pro impedir le abuso.',
+'editinginterface'     => "'''Attention:''' Tu va modificar un pagina que se usa pro texto del interfacie pro le software.
+Omne modification a iste pagina cambiara le apparentia del interfacie pro altere usatores.
+Pro traductiones, per favor considera usar [http://translatewiki.net/wiki/Main_Page?setlang=ia Betawiki], le projecto pro localisar MediaWiki.",
+'sqlhidden'            => '(Consulta SQL celate)',
+'cascadeprotected'     => 'Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option "cascada":
+$2',
+'namespaceprotected'   => "Tu non ha le permission de modificar paginas in le spatio de nomines '''$1'''.",
+'customcssjsprotected' => 'Tu non ha le permission de modificar iste pagina, proque illo contine le configurationes personal de un altere usator.',
+'ns-specialprotected'  => 'Le paginas special non es modificabile.',
+'titleprotected'       => "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].
+Le ration date es ''$2''.",
 
 # Login and logout pages
 'logouttitle'             => 'Fin de session',
@@ -630,7 +662,7 @@ e illo del servitor (UTC).',
 'recentchanges'                  => 'Modificationes recente',
 'recentchangestext'              => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
 'recentchanges-feed-description' => 'Seque le modificationes le plus recente al wiki in iste syndication.',
-'rcnote'                         => "Infra es le {{PLURAL:$1|ultime modification|'''$1''' ultime modificationes}} in le {{PLURAL:$2|ultime die|'''$2''' ultime dies}}, in $3.",
+'rcnote'                         => "Infra es {{PLURAL:$1|'''1''' modification|le ultime '''$1''' modificationes}} in le ultime {{PLURAL:$2|die|'''$2''' dies}}, actualisate le $4 a $5.",
 'rcnotefrom'                     => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
 'rclistfrom'                     => 'Monstrar nove modificationes a partir de $1',
 'rcshowhideminor'                => '$1 modificationes minor',
@@ -1151,7 +1183,6 @@ Per favor fusiona los manualmente.'''",
 'tooltip-n-recentchanges'         => 'Le lista de modificationes recente in le wiki.',
 'tooltip-n-randompage'            => 'Visita un pagina qualcunque',
 'tooltip-n-help'                  => 'Le solutiones de vostre problemas.',
-'tooltip-n-sitesupport'           => 'Sustene nos',
 'tooltip-t-whatlinkshere'         => 'Lista de tote le paginas wiki con ligamines a iste pagina',
 'tooltip-t-contributions'         => 'Vider le lista de contributiones de iste usator',
 'tooltip-t-emailuser'             => 'Inviar un e-mail a iste usator',

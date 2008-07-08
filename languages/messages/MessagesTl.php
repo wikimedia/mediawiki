@@ -219,8 +219,6 @@ $messages = array(
 'portal-url'           => 'Project:Puntahan ng pamayanan',
 'privacy'              => 'Patakaran sa paglilihim',
 'privacypage'          => 'Project:Patakaran sa paglilihim',
-'sitesupport'          => 'Donasyon',
-'sitesupport-url'      => 'Project:Donasyon',
 
 'badaccess'        => 'Kamalian sa pahintulot',
 'badaccess-group0' => 'Hindi ka pinahintulutang isagawa hiniling mo.',

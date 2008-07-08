@@ -295,8 +295,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal de la comunidad',
 'privacy'              => 'Política de protección de datos',
 'privacypage'          => 'Project:Política de protección de datos',
-'sitesupport'          => 'Donaciones',
-'sitesupport-url'      => 'Project:Apoyo al proyecto',
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
@@ -1861,7 +1859,6 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'tooltip-n-recentchanges'         => 'La lista de cambios recientes en el wiki',
 'tooltip-n-randompage'            => 'Cargar una página aleatoriamente',
 'tooltip-n-help'                  => 'El lugar para aprender',
-'tooltip-n-sitesupport'           => 'Respáldenos',
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas del wiki que enlazan con ésta',
 'tooltip-t-recentchangeslinked'   => 'Cambios recientes en las páginas que enlazan con ésta',
 'tooltip-feed-rss'                => 'Sindicación RSS de esta página',

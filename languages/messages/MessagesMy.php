@@ -79,7 +79,6 @@ $messages = array(
 'mainpage'             => 'ဗ​ဟို​စာ​မျက်​နှာ​',
 'mainpage-description' => 'ဗ​ဟို​စာ​မျက်​နှာ​',
 'portal'               => 'ပြော​ရေး​ဆို​ရာ​',
-'sitesupport'          => 'လှု​ဒါန်း​မှု​',
 
 'newmessageslink'         => 'သ​တင်း​အ​သစ်​',
 'youhavenewmessagesmulti' => 'သင့်​အ​တွက်​သီ​တင်း​အ​သစ်​ $1 တွင်​ရှိ​သည်​',
@@ -245,11 +244,10 @@ $messages = array(
 'allmessages' => 'စ​နစ်​၏​သ​တင်း​များ​',
 
 # Tooltip help for the actions
-'tooltip-pt-logout'     => 'ထွက်​ပါ​',
-'tooltip-ca-delete'     => 'ဤစာမျက်နှာဖျက်ပါ',
-'tooltip-ca-move'       => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
-'tooltip-n-sitesupport' => 'အားပေးပါ',
-'tooltip-save'          => 'ပြင်ဆင်ရန်သိမ်းပါ',
+'tooltip-pt-logout' => 'ထွက်​ပါ​',
+'tooltip-ca-delete' => 'ဤစာမျက်နှာဖျက်ပါ',
+'tooltip-ca-move'   => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'tooltip-save'      => 'ပြင်ဆင်ရန်သိမ်းပါ',
 
 # Special:Newimages
 'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',

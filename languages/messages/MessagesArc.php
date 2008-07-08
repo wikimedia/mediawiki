@@ -109,7 +109,6 @@ $messages = array(
 'mainpage-description' => 'ܕܦܐ ܪܫܝܐ',
 'portal'               => 'ܬܪܥܐ ܕܟܢܫܐ',
 'portal-url'           => 'Project:ܬܪܥܐ ܕܟܢܫܐ',
-'sitesupport'          => 'ܕܚܘܝܬܐ',
 
 'ok'              => 'ܛܒ',
 'newmessageslink' => 'ܣܒܪ̈ܬܐ ܚܕ̈ܬܬܐ',

@@ -15,11 +15,12 @@
  * @author Sherbrooke
  * @author Siebrand
  * @author Hégésippe Cormier
- * @author Omnipaedista
- * @author Korg
- * @author Dereckson
  * @author Cedric31
+ * @author Korg
+ * @author Omnipaedista
+ * @author Dereckson
  * @author JeanVoisin
+ * @author Louperivois
  * @author SPQRobin
  * @author Горан Анђелковић
  * @author ChrisPtDe
@@ -450,8 +451,6 @@ $messages = array(
 'portal-url'           => 'Project:Accueil',
 'privacy'              => 'Politique de confidentialité',
 'privacypage'          => 'Project:Confidentialité',
-'sitesupport'          => 'Faire un don',
-'sitesupport-url'      => 'Project:Faire un don',
 
 'badaccess'        => 'Erreur de permission',
 'badaccess-group0' => 'Vous n’avez pas les droits suffisants pour réaliser l’action que vous demandez.',
@@ -796,7 +795,7 @@ certains navigateurs Web gèrent mal la modification des pages approchant ou dé
 'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance,
 vous ne pourrez donc pas publier vos modifications maintenant. Vous pouvez copier le texte dans un fichier texte et le publier pour plus tard.'''",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée.
-Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier..'''",
+Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.'''",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
 'cascadeprotectedwarning'          => '<strong>ATTENTION : Cette page a été protégée de manière à ce que seuls les [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.</strong>',
 'titleprotectedwarning'            => '<strong>ATTENTION : Cette page a été protégée de telle manière que seuls certains utilisateurs puissent la créer.</strong>',
@@ -1680,8 +1679,8 @@ L’heure indiquée est celle du serveur (UTC).',
 ** Violation des droits d’auteur
 ** Vandalisme',
 'delete-edit-reasonlist'      => 'Modifie les motifs de la suppression',
-'delete-toobig'               => 'Cette page possède un historique important dépassant $1 versions. La suppression de telles pages a été limitée afin d’éviter des perturbations accidentelles de {{SITENAME}}.',
-'delete-warning-toobig'       => 'Cette page possède un historique important dépassant $1 versions. La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ; à effectuer avec prudence.',
+'delete-toobig'               => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La suppression de telles pages a été limitée afin d’éviter des perturbations accidentelles de {{SITENAME}}.',
+'delete-warning-toobig'       => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ; à effectuer avec prudence.',
 'rollback'                    => 'révoquer modifications',
 'rollback_short'              => 'Révoquer',
 'rollbacklink'                => 'révoquer',
@@ -1705,7 +1704,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
 'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.
-Veuillez vous assurez que vous suivez les [[{{MediaWiki:Policy-url}}|règles internes]].',
+Veuillez vous assurer que vous suivez les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué.
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-locked-dblock'       => 'Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
@@ -2099,7 +2098,6 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-n-recentchanges'         => 'Liste des modifications récentes sur le wiki',
 'tooltip-n-randompage'            => 'Afficher une page au hasard',
 'tooltip-n-help'                  => 'Aide',
-'tooltip-n-sitesupport'           => 'Soutenez le projet',
 'tooltip-t-whatlinkshere'         => 'Liste des pages liées à celle-ci',
 'tooltip-t-recentchangeslinked'   => 'Liste des modifications récentes des pages liées à celle-ci',
 'tooltip-feed-rss'                => 'Flux RSS pour cette page',

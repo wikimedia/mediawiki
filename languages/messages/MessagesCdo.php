@@ -161,8 +161,6 @@ $messages = array(
 'portal'               => 'Tiăng-dŏng',
 'privacy'              => 'Ṳ̄ng-sṳ̆ céng-cháik',
 'privacypage'          => 'Project:Ṳ̄ng-sṳ̆ céng-cháik',
-'sitesupport'          => 'Dà̤-giŏng',
-'sitesupport-url'      => 'Project:Dà̤-giŏng',
 
 'ok'                  => 'Hō̤',
 'youhavenewmessages'  => 'Nṳ̄ ô $1 ($2).',

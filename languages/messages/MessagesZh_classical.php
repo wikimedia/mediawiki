@@ -291,8 +291,6 @@ $messages = array(
 'portal-url'           => 'Project:市集',
 'privacy'              => '隱私通例',
 'privacypage'          => 'Project:隱私通例',
-'sitesupport'          => '捐助集',
-'sitesupport-url'      => 'Project:濟',
 
 'badaccess'        => '子未逮',
 'badaccess-group0' => '子未逮，歉限之。',
@@ -1726,7 +1724,6 @@ $NEWPAGE
 'tooltip-n-recentchanges'         => '閱新易、聞脈搏、觀熱鬧',
 'tooltip-n-randompage'            => '嚐鮮味，隨遊遨',
 'tooltip-n-help'                  => '解疑惑、點明燈、掛病號',
-'tooltip-n-sitesupport'           => '濟資財、施續命、傳美皓',
 'tooltip-t-whatlinkshere'         => '何美餚，佐此料',
 'tooltip-t-recentchangeslinked'   => '足義友，借鏡照',
 'tooltip-feed-rss'                => '本卷之RSS源',

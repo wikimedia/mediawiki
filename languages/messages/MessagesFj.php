@@ -87,7 +87,6 @@ $messages = array(
 'mainpage'             => 'Tabana levu',
 'mainpage-description' => 'Tabana levu',
 'portal'               => 'Soqosoqo toso',
-'sitesupport'          => 'Soli',
 
 'editsection' => 'Veisautaki',
 'editold'     => 'Veisautaki',

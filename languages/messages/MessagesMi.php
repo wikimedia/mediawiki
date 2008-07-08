@@ -52,7 +52,6 @@ $messages = array(
 'mainpage-description' => 'Hau Kāinga',
 'portal'               => 'Tomokanga hapori',
 'portal-url'           => 'Project:Tomokanga hapori',
-'sitesupport'          => 'Koha',
 
 'toc'     => 'Rārangi kōrero',
 'showtoc' => 'whakakite',

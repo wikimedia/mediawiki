@@ -10,8 +10,8 @@
  * @author M.M.S.
  * @author Peter Andersen
  * @author Siebrand
- * @author H92
  * @author S.Örvarr.S
+ * @author H92
  * @author Boivie
  * @author Ranveig
  * @author Lars J. Helbo <lars.helbo@gmail.com>
@@ -373,8 +373,6 @@ $messages = array(
 'portal-url'           => 'Project:Forside',
 'privacy'              => 'Behandling af personlige oplysninger',
 'privacypage'          => 'Project:Behandling_af_personlige_oplysninger',
-'sitesupport'          => 'Støt siden',
-'sitesupport-url'      => 'Project:Støt siden',
 
 'badaccess'        => 'Manglende rettigheder',
 'badaccess-group0' => 'Du har ikke de nødvendige rettigheder til denne handling.',
@@ -2030,7 +2028,6 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-n-recentchanges'         => 'Listen over de seneste ændringer i wikien.',
 'tooltip-n-randompage'            => 'Gå til en tilfældig artikel',
 'tooltip-n-help'                  => 'Hvordan gør jeg ...',
-'tooltip-n-sitesupport'           => 'Støt os',
 'tooltip-t-whatlinkshere'         => 'Liste med alle sider som henviser hertil',
 'tooltip-t-recentchangeslinked'   => 'Seneste ændringer i sider som denne side henviser til',
 'tooltip-feed-rss'                => 'RSS-feed for denne side',

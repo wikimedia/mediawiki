@@ -205,8 +205,6 @@ $messages = array(
 'portal-url'           => 'Project:ГIоз',
 'privacy'              => 'Конфиденциальности бокъонаш',
 'privacypage'          => 'Project:Конфиденциальности бокъона',
-'sitesupport'          => 'СагIа',
-'sitesupport-url'      => 'Project:СагIа',
 
 'badaccess'        => 'Чу валар гIалата',
 'badaccess-group0' => 'Хьо де воалара хьюна де пурам дац',

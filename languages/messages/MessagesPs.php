@@ -287,8 +287,6 @@ $messages = array(
 'portal-url'           => 'Project:ټولګړی ورټک',
 'privacy'              => 'د محرميت تګلاره',
 'privacypage'          => 'Project:د محرميت_تګلاره',
-'sitesupport'          => 'بسپنې',
-'sitesupport-url'      => 'Project:د وېبځي ملاتړ',
 
 'badaccess'        => 'د لاسرسۍ تېروتنه',
 'badaccess-group0' => 'تاسو د غوښتل شوې کړنې د ترسره کولو اجازه نه لرۍ.',
@@ -1137,7 +1135,6 @@ $messages = array(
 'tooltip-n-recentchanges'         => 'په ويکي کې د وروستي بدلونو لړليک.',
 'tooltip-n-randompage'            => 'يو ناټاکلی مخ ښکاره کوي',
 'tooltip-n-help'                  => 'هغه ځای چېرته چې راڅرګندولای شو.',
-'tooltip-n-sitesupport'           => 'زموږ ملاتړ وکړی',
 'tooltip-t-whatlinkshere'         => 'د ويکي د ټولو هغو مخونو لړليک چې دلته تړنې لري',
 'tooltip-t-contributions'         => 'د همدې کارونکي د ونډو لړليک کتل',
 'tooltip-t-emailuser'             => 'همدې کارونکي ته يو برېښليک لېږل',
