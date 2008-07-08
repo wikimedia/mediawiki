@@ -169,8 +169,6 @@ $messages = array(
 'portal-url'           => 'Project:Gemeinschafts-Portal',
 'privacy'              => 'Daateschutz',
 'privacypage'          => 'Project:Daateschutz',
-'sitesupport'          => 'Finanzielli Hilf',
-'sitesupport-url'      => 'Project:Spenden',
 
 'badaccess' => 'Kei usreichendi Rechte.',
 
@@ -777,7 +775,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'       => 'Lischte vo de letschten Änderige i däm Wiki.',
 'tooltip-n-randompage'          => 'E zuefälligi Syte',
 'tooltip-n-help'                => 'Ds Ort zum Usefinde.',
-'tooltip-n-sitesupport'         => 'Unterstütz üs',
 'tooltip-t-whatlinkshere'       => 'Lischte vo allne Sytene, wo do ane linke',
 'tooltip-t-recentchangeslinked' => 'Letschti Änderige vo de Syte, wo vo do verlinkt sin',
 'tooltip-feed-rss'              => 'RSS-Feed für selli Syte',

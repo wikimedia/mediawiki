@@ -194,8 +194,6 @@ $messages = array(
 'portal-url'           => 'Project:社区门荡',
 'privacy'              => '隐私政策',
 'privacypage'          => 'Project:隐私政策',
-'sitesupport'          => '捐款',
-'sitesupport-url'      => 'Project:捐款',
 
 'ok'                      => '确定',
 'retrievedfrom'           => '取自“$1”',
@@ -738,7 +736,6 @@ $messages = array(
 'tooltip-n-portal'           => '关于本计划，可以做什么，应该如何做',
 'tooltip-n-recentchanges'    => '列出近段辰光个改动',
 'tooltip-n-help'             => '寻求帮助',
-'tooltip-n-sitesupport'      => '支持倪',
 'tooltip-t-whatlinkshere'    => '列出所有与此页相链个页面',
 'tooltip-t-emailuser'        => '发封信拨该个用户',
 'tooltip-t-upload'           => '上载图像或媒体文物',

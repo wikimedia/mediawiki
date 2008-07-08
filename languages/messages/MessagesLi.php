@@ -289,8 +289,6 @@ $messages = array(
 'portal-url'           => 'Project:Gebroekersportaol',
 'privacy'              => 'Privacybeleid',
 'privacypage'          => 'Project:Privacy_policy',
-'sitesupport'          => 'Donaties',
-'sitesupport-url'      => 'Project:Gifte',
 
 'badaccess'        => 'Toeganksfout',
 'badaccess-group0' => 'Doe höbs gén rechte om de gevräögde hanjeling oet te veure.',
@@ -1884,7 +1882,6 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-n-recentchanges'         => 'De lies van recènte verangeringe in de wiki.',
 'tooltip-n-randompage'            => 'Laadt n willekäörige pazjena',
 'tooltip-n-help'                  => 'De plek om informatie euver dit projèk te vinge.',
-'tooltip-n-sitesupport'           => 'Sjteun os',
 'tooltip-t-whatlinkshere'         => 'Liest van alle wiki pazjenas die hieheen linke',
 'tooltip-t-recentchangeslinked'   => 'Recènte verangeringe in pazjenas woeheen gelinkt weurd',
 'tooltip-feed-rss'                => 'RSS feed veur dees pazjena',

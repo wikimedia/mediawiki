@@ -90,7 +90,6 @@ $messages = array(
 'mainpage-description' => 'Itulau Muamua',
 'portal'               => 'Vaega mo Tagata Lautele',
 'portal-url'           => 'Project:Vaega mo Tagata Lautele',
-'sitesupport'          => 'Meaalofa tupe',
 
 'youhavenewmessages'      => "'Ua iai lau $1 ($2).",
 'newmessageslink'         => "Poloa'i fou",

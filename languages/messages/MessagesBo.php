@@ -103,7 +103,6 @@ $messages = array(
 'mainpage'             => 'གཙོ་ངོས།',
 'mainpage-description' => 'གཙོ་ངོས།',
 'portal'               => 'ཁོངས་མི་འདུ་ར།',
-'sitesupport'          => 'ཞལ་འདེབས།',
 
 'editsection' => 'རྩོམ་སྒྲིག',
 'editold'     => 'རྩོམ་སྒྲིག',

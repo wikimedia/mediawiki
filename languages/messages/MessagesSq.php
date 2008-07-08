@@ -284,8 +284,6 @@ $messages = array(
 'portal-url'           => 'Project:Wikiportal',
 'privacy'              => 'Rreth të dhënave vetjake',
 'privacypage'          => 'Project:Politika vetjake',
-'sitesupport'          => 'Dhurime',
-'sitesupport-url'      => 'Project:Dhurime',
 
 'badaccess'        => 'Gabim leje',
 'badaccess-group0' => 'Nuk ju lejohet veprimi i kërkuar',
@@ -1795,7 +1793,6 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'tooltip-n-recentchanges'         => 'Lista e ndryshimeve së fundmi në projekt',
 'tooltip-n-randompage'            => 'Shikoni një artikull të rastit.',
 'tooltip-n-help'                  => 'Vendi ku mund të gjeni ndihmë.',
-'tooltip-n-sitesupport'           => 'Përkrahni projektin',
 'tooltip-t-whatlinkshere'         => 'Lista e faqeve që lidhen tek kjo faqe',
 'tooltip-t-recentchangeslinked'   => 'Lista e ndryshimeve të faqeve që lidhen tek kjo faqe',
 'tooltip-feed-rss'                => 'Burimi ushqyes "RSS" për këtë faqe',

@@ -218,8 +218,6 @@ href="" class="internal"}?{/a}) bımocne.',
 'portal-url'           => 'Project:Portalê cemaeti',
 'privacy'              => 'Maddey dızdine',
 'privacypage'          => 'Project:Maddey dızdine',
-'sitesupport'          => 'Beğş',
-'sitesupport-url'      => 'Project:Beğş',
 
 'badaccess' => 'Xeta mısadey',
 

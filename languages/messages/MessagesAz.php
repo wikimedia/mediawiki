@@ -145,7 +145,6 @@ $messages = array(
 'mainpage-description' => 'Ana Səhifə',
 'portal'               => 'Kənd Meydani',
 'portal-url'           => 'Project:Kənd Meydani',
-'sitesupport'          => 'Bağışlar',
 
 'youhavenewmessages' => 'Hal-hazırda $1 var. ($2)',
 'newmessageslink'    => 'yeni mesajlar!',
@@ -541,7 +540,6 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'tooltip-n-recentchanges'       => 'Bu Wikidə Son dəyişikliklər siyahəsi.',
 'tooltip-n-randompage'          => 'Bir təsadufi, necə gəldi, məqaləyə baxin',
 'tooltip-n-help'                => 'Yardım almaq üçün.',
-'tooltip-n-sitesupport'         => 'Maddi kömək',
 'tooltip-t-whatlinkshere'       => 'Wikidə bu məqaləyə bağlantilar',
 'tooltip-t-recentchangeslinked' => 'Bu məqaləyə ayid başqa səhifələrdə yeni dəyişikliklər',
 'tooltip-t-contributions'       => 'Bu üzvin redaktə etmiş məqalələr siyahəsi',

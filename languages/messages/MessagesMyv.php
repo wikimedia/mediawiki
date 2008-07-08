@@ -234,8 +234,6 @@ $messages = array(
 'portal-url'           => 'Project:Вейтьсэнь вальма',
 'privacy'              => 'Салавачинь политикась',
 'privacypage'          => 'Project:Салавачинь политикась',
-'sitesupport'          => 'Лезксйармаконь максома',
-'sitesupport-url'      => 'Project:Вальмантень лездамось',
 
 'badaccess'        => 'Меревемань асатыкс',
 'badaccess-group0' => 'Тонеть а мерить теемс мезе вешить.',
@@ -1236,7 +1234,6 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'tooltip-n-recentchanges'         => 'Викисэ мезе чияк полавтовсь-лиякстомтовсь.',
 'tooltip-n-randompage'            => 'Макста ловномс кодамо понгсь лопа',
 'tooltip-n-help'                  => 'Превс путыть косо.',
-'tooltip-n-sitesupport'           => 'Макста миненек нежедематарка',
 'tooltip-t-whatlinkshere'         => 'Викинь весе лопатне, конат тезэнь сюлмазь',
 'tooltip-t-contributions'         => 'Варштык путовкс потмонть те теицянть',
 'tooltip-t-emailuser'             => 'Те теицянтень кучомс е-сёрма',

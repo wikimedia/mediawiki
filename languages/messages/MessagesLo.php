@@ -213,8 +213,6 @@ $messages = array(
 'portal-url'           => 'Project:ປະຕູສູ່ຊຸມຊົນ',
 'privacy'              => 'ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ',
 'privacypage'          => 'Project:ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ',
-'sitesupport'          => 'ບໍລິຈາກ',
-'sitesupport-url'      => 'Project:ສະໜັບສະໜຸນ',
 
 'badaccess'        => 'ການອະນຸມັດບໍ່ຖືກຕ້ອງ',
 'badaccess-group0' => 'ທ່ານ ບໍ່ໄດ້ຮັບອະນຸຍາດ ໃຫ້ປະຕິບັດການ ທີ່ ທ່ານ ສັ່ງ.',
@@ -787,7 +785,6 @@ $messages = array(
 'tooltip-n-currentevents'         => 'ຊອກຂໍ້ມູນກ່ຽວກັບກິດຈະກຳພວມດຳເນີນ',
 'tooltip-n-randompage'            => 'ໂຫຼດໜ້າໃດໜຶ່ງ',
 'tooltip-n-help'                  => 'ບ່ອນຊອກ.',
-'tooltip-n-sitesupport'           => 'ສະໜັບສະໜຸນພວກເຮົາ',
 'tooltip-t-whatlinkshere'         => 'ລາຍການຂອງທຸກໆໜ້າວິກິ ທີ່ເຊື່ອມຕໍ່ມາ',
 'tooltip-t-contributions'         => 'ເບິ່ງລາຍການປະກອບສ່ວນໂດຍຜູ້ໃຊ້ນີ້',
 'tooltip-t-emailuser'             => 'ສົ່ງອີເມລຫາຜູ້ໃຊ້ນີ້',

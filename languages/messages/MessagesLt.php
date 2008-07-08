@@ -293,8 +293,6 @@ $messages = array(
 'portal-url'           => 'Project:Bendruomenė',
 'privacy'              => 'Privatumo politika',
 'privacypage'          => 'Project:Privatumo politika',
-'sitesupport'          => 'Parama',
-'sitesupport-url'      => 'Project:Svetainės palaikymas',
 
 'badaccess'        => 'Teisių klaida',
 'badaccess-group0' => 'Jums neleidžiama įvykdyti veiksmo, kurio prašėte.',
@@ -1934,7 +1932,6 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-n-recentchanges'         => 'Paskutinių keitimų sąrašas šiame projekte.',
 'tooltip-n-randompage'            => 'Įkelti atsitiktinį puslapį',
 'tooltip-n-help'                  => 'Vieta, kur rasite rūpimus atsakymus.',
-'tooltip-n-sitesupport'           => 'Padėkite mums',
 'tooltip-t-whatlinkshere'         => 'Puslapių sąrašas, rodančių į čia',
 'tooltip-t-recentchangeslinked'   => 'Paskutiniai keitimai puslapiuose, pasiekiamuose iš šio puslapio',
 'tooltip-feed-rss'                => 'Šio puslapio RSS šaltinis',

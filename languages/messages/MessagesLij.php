@@ -180,8 +180,6 @@ $messages = array(
 'portal-url'           => 'Project:Pòrtego da comûnitæ',
 'privacy'              => 'Leze insci dæti privæ',
 'privacypage'          => 'Project:Leze insci dæti privæ',
-'sitesupport'          => 'Donasioin',
-'sitesupport-url'      => 'Project:Donassioîn',
 
 'badaccess'        => "No ti g'hæ o permisso",
 'badaccess-group0' => "No ti g'hæ o permisso pe fâ quest'assion.",
@@ -910,7 +908,6 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'tooltip-n-recentchanges'         => 'E ûrtime modiffiche into scîto',
 'tooltip-n-randompage'            => "Fâ vedde 'na paggina a brettîo.",
 'tooltip-n-help'                  => "Paggine d'agiûtto",
-'tooltip-n-sitesupport'           => 'Agiûttine',
 'tooltip-t-whatlinkshere'         => 'Lista de tûtte e paggine che son collegæ a questa chì.',
 'tooltip-t-contributions'         => "Lista de-e contribûssioîn de quest'ûtente",
 'tooltip-t-emailuser'             => "Inviâ 'n messaggio e-mail a quest'ûtente",

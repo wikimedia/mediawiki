@@ -506,8 +506,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal komunitas',
 'privacy'              => 'Kebijakan privasi',
 'privacypage'          => 'Project:Kebijakan privasi',
-'sitesupport'          => 'Donasi',
-'sitesupport-url'      => 'Project:Donasi',
 
 'badaccess'        => 'Kesalahan hak akses',
 'badaccess-group0' => 'Anda tidak diizinkan untuk melakukan tindakan yang Anda minta.',
@@ -1695,8 +1693,10 @@ Umpan balik dan bantuan lanjutan:
 ** Pelanggaran hak cipta
 ** Vandalisme',
 'delete-edit-reasonlist'      => 'Sunting alasan penghapusan',
-'delete-toobig'               => 'Halaman ini memiliki sejarah penyuntingan yang panjang yaitu melebihi $1 revisi. Penghapusan halaman dengan sejarah penyuntingan yang banyak tidak diperbolehkan untuk mencegah kerusakan di {{SITENAME}}.',
-'delete-warning-toobig'       => 'Halaman ini memiliki sejarah penyuntingan yang panjang yaitu melebihi $1 revisi. Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{SITENAME}}.',
+'delete-toobig'               => 'Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.
+Penghapusan halaman dengan sejarah penyuntingan yang panjang tidak diperbolehkan untuk mencegah kerusakan di {{SITENAME}}.',
+'delete-warning-toobig'       => 'Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.
+Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{SITENAME}}.',
 'rollback'                    => 'Kembalikan suntingan',
 'rollback_short'              => 'Kembalikan',
 'rollbacklink'                => 'kembalikan',
@@ -2086,7 +2086,6 @@ Jika Anda hanya ingin mengimpor versi sekarang, Anda juga dapat melakukan hal in
 'tooltip-n-recentchanges'         => 'Daftar perubahan terbaru dalam wiki.',
 'tooltip-n-randompage'            => 'Tampilkan sembarang halaman',
 'tooltip-n-help'                  => 'Tempat mencari bantuan.',
-'tooltip-n-sitesupport'           => 'Dukung kami',
 'tooltip-t-whatlinkshere'         => 'Daftar semua halaman wiki yang memiliki pranala ke halaman ini',
 'tooltip-t-recentchangeslinked'   => 'Perubahan terbaru halaman-halaman yang memiliki pranala ke halaman ini',
 'tooltip-feed-rss'                => 'Umpan RSS untuk halaman ini',

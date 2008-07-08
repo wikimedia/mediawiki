@@ -42,7 +42,6 @@ $messages = array(
 'mainpage-description' => 'Startseid',
 'portal'               => '{{SITENAME}}-Pordal',
 'privacy'              => 'Dadeschutz',
-'sitesupport'          => 'Spende',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Adiggel',

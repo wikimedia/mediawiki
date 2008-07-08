@@ -92,7 +92,6 @@ $messages = array(
 'mainpage-description' => 'Башбарак',
 'portal'               => 'Жамаат порталы',
 'portal-url'           => 'Project:Жамаат порталы',
-'sitesupport'          => 'Демөөр',
 
 'youhavenewmessages'      => 'Сизге $1 ($2) бар.',
 'newmessageslink'         => 'жаңы билдирүүлөр',

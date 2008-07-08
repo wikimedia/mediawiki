@@ -28,8 +28,6 @@ $messages = array(
 'mainpage'             => 'Hello jaɓɓorgo',
 'mainpage-description' => 'Hello jaɓɓorgo',
 'portal'               => 'Jaɓɓogol renndo',
-'sitesupport'          => 'Dokkal',
-'sitesupport-url'      => 'Project:Dokkal',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Winndannde',

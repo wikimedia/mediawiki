@@ -128,8 +128,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal da quemunidade',
 'privacy'              => 'Política de privacidade',
 'privacypage'          => 'Project:Política de privacidade',
-'sitesupport'          => 'Donativos',
-'sitesupport-url'      => 'Proyecto:Apoio',
 
 'retrievedfrom'       => 'Obtido an "$1"',
 'youhavenewmessages'  => 'Você tem $1 ($2).',
@@ -588,7 +586,6 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'tooltip-n-recentchanges'         => 'Lhista de mudanças recentes nesta wiki.',
 'tooltip-n-randompage'            => 'Carregar página aleatória',
 'tooltip-n-help'                  => 'Local com informação auxiliar.',
-'tooltip-n-sitesupport'           => 'Ayude-nos',
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas que se lhigam a yesta',
 'tooltip-t-contributions'         => 'Ber las contribuiçons de yeste outelizador',
 'tooltip-t-emailuser'             => 'Enbiar um e-mail a yeste outelizador',

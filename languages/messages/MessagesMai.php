@@ -266,7 +266,6 @@ $messages = array(
 'tooltip-n-recentchanges' => 'विकीमे लगक परिवर्त्तनक सूची.',
 'tooltip-n-randompage'    => 'कोनो अनिर्धारित पन्ना लोड करू',
 'tooltip-n-help'          => 'प्राप्त करबाक स्थान.',
-'tooltip-n-sitesupport'   => 'हमरा सभकेँ सहयोग करू',
 'tooltip-t-whatlinkshere' => 'सभटा विकी-पन्नाक सूची जकर एतय लिंक अछि',
 'tooltip-t-upload'        => 'चित्र आकि मीडिया फाइलकेँ अपलोड करू',
 'tooltip-t-specialpages'  => 'सभटा विशेष पन्नाक सूची',

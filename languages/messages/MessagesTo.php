@@ -168,7 +168,6 @@ $messages = array(
 'mainpage-description' => 'Peesi tali fiefia',
 'portal'               => 'Fale fakataha',
 'portal-url'           => 'Project:Fale fakataha',
-'sitesupport'          => 'Ngaahi meʻa ʻofa',
 
 'badaccess'        => 'Halaʻi fakangofua',
 'badaccess-group0' => 'ʻOku ʻikai ngofua kia te koe ʻo fai ʻa e ngāue naʻa ke eke ki ai.',

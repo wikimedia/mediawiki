@@ -55,7 +55,6 @@ $messages = array(
 'helppage'          => 'Help:Introduzione',
 'portal'            => 'Discóter e quistiunêr',
 'portal-url'        => 'Project:Bar',
-'sitesupport'       => 'Donaziòun',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Artéccol',

@@ -234,8 +234,6 @@ $messages = array(
 'portal-url'           => 'Project:Πύλη Κοινότητος',
 'privacy'              => 'Ἡ περὶ τῶν ἰδίων προαίρεσις',
 'privacypage'          => 'Βούλευμα:Περὶ τῶν ἰδιωτικῶν',
-'sitesupport'          => 'Δῶρα',
-'sitesupport-url'      => 'Project:Ὑποστήριξις ἱστοχώρου',
 
 'badaccess'        => 'Σφάλμα ἀδείας',
 'badaccess-group0' => 'Οὐκ ἔξεστί σοι ταῦτα διαπράττειν.',
@@ -411,6 +409,8 @@ $messages = array(
 'group-bureaucrat' => 'Ἔφοροι',
 'group-suppress'   => 'Παροράματα',
 
+'group-user-member'       => 'Χρήστης',
+'group-bot-member'        => 'Ροβότον',
 'group-sysop-member'      => 'Γέρων',
 'group-bureaucrat-member' => 'Ἔφορος',
 
@@ -660,7 +660,6 @@ $messages = array(
 'tooltip-n-recentchanges'   => 'Κατάλογος κατὰ πᾶσας τὰς νέας μεταβολάς.',
 'tooltip-n-randompage'      => 'Τινὰ γραφὴν χύδην δηλοῦν.',
 'tooltip-n-help'            => 'Μάθησις περὶ τῆσδε Οὐίκεως',
-'tooltip-n-sitesupport'     => 'Τρέφειν ἡμᾶς',
 'tooltip-t-whatlinkshere'   => 'Κατάλογος τῶν ἐνθάδε ἀγόντων',
 'tooltip-t-emailuser'       => 'Ἠλεκτρονικὴν ἐπιστολὴν τῷδε τῷ χρήστῳ πέμπειν',
 'tooltip-t-upload'          => 'Φορτία ἐντιθέναι',
@@ -677,11 +676,15 @@ $messages = array(
 # Attribution
 'others' => 'ἄλλοι',
 
+# Patrol log
+'patrol-log-auto' => '(αὐτόματον)',
+
 # Browsing diffs
 'previousdiff' => '← ἡ μεταβολὴ ἡ προτέρη',
 'nextdiff'     => 'ἡ μεταβολὴ ἡ ἐχομένη →',
 
 # Media information
+'show-big-image'       => 'Πλήρης ἀνάλυσις',
 'show-big-image-thumb' => '<small>Τοῦδε προεπισκοπεῖν μέγεθος: $1 × $2 εἰκονοστοιχεία</small>',
 
 # Special:Newimages
@@ -689,10 +692,19 @@ $messages = array(
 'ilsubmit'  => 'Ζητεῖν',
 
 # Metadata
+'metadata'          => 'Μεταδεδομένα',
 'metadata-expand'   => 'Δηλοῦν τὰς ἀκριβείας',
 'metadata-collapse' => 'Κρύπτειν τὰς ἀκριβείας',
 
+# EXIF tags
+'exif-exposuretime'        => 'Χρόνος ἐκθέσεως',
+'exif-exposuretime-format' => '$1 δευτ. ($2)',
+'exif-oecf'                => 'Παράγων ὀπτοηλεκτονικῆς μετατροπῆς',
+
 'exif-componentsconfiguration-0' => 'Οὐκ ἔστι',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-n' => 'Κόμβοι',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Πᾶσαι',
@@ -738,7 +750,8 @@ $messages = array(
 'version' => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
-'specialpages' => 'Εἰδικαὶ δέλτοι',
+'specialpages'             => 'Εἰδικαὶ δέλτοι',
+'specialpages-group-pages' => 'Κατάλογος δέλτων',
 
 # Special:Blankpage
 'blankpage'              => 'Κενὴ δέλτος',

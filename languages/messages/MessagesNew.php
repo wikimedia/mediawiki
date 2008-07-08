@@ -96,7 +96,6 @@ $messages = array(
 'portal'               => 'सामाजिक दबू',
 'portal-url'           => 'Project:सामाजिक दबू',
 'privacy'              => 'दुबिस्ता नियम',
-'sitesupport'          => 'दान',
 
 'ok'                      => 'ज्यु',
 'newmessageslink'         => 'न्हुगु सन्देश',

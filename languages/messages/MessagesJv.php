@@ -265,8 +265,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal komunitas',
 'privacy'              => 'Kebijakan privasi',
 'privacypage'          => 'Project:Kabijakan privasi',
-'sitesupport'          => 'Nyumbang dana',
-'sitesupport-url'      => 'Project:Nyumbang dana',
 
 'badaccess'        => 'Aksès ora olèh',
 'badaccess-group0' => 'Panjenengan ora pareng nglakokaké tindhakan sing panjenengan gayuh.',
@@ -1845,7 +1843,6 @@ Kabèh aktivitas impor transwiki bakal dilog ing [[{{ns:special}}:Log/import|log
 'tooltip-n-recentchanges'         => 'Daftar owah-owahan anyar ing wiki.',
 'tooltip-n-randompage'            => 'Tuduhna sembarang kaca',
 'tooltip-n-help'                  => 'Papan kanggo golèk pitulung.',
-'tooltip-n-sitesupport'           => 'Sokongen kita',
 'tooltip-t-whatlinkshere'         => 'Daftar kabèh kaca wiki sing nyambung menyang kaca iki',
 'tooltip-t-recentchangeslinked'   => 'Owah-owahan pungkasan kaca-kaca sing duwé pranala menyang kaca iki',
 'tooltip-feed-rss'                => "''RSS feed'' kanggo kaca iki",

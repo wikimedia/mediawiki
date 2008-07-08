@@ -264,8 +264,6 @@ $messages = array(
 'portal-url'           => 'Project:საზოგადოების გვერდები',
 'privacy'              => 'ანონიმურობის პოლიტიკა',
 'privacypage'          => 'Project:ანონიმურობის პოლიტიკა',
-'sitesupport'          => 'შეწირულობები',
-'sitesupport-url'      => 'Project:საიტის მხარდაჭერა',
 
 'badaccess'        => 'ნებართვის შეცდომა',
 'badaccess-group0' => 'თქვენ არ გაქვთ მოთხოვნილი მოქმედების შესრულების უფლება',
@@ -1538,7 +1536,6 @@ $NEWPAGE
 'tooltip-n-recentchanges'         => 'ვიკიში ბოლო ცვლილებების სია.',
 'tooltip-n-randompage'            => 'შემთხვევითი გვერდის ჩვენება',
 'tooltip-n-help'                  => 'გვერდი, სადაც იპოვით.',
-'tooltip-n-sitesupport'           => 'მხარდაჭერა',
 'tooltip-t-whatlinkshere'         => 'ყველა ვიკი გვერდის სია, რომლებშიც ეს გვერდია მითითებული',
 'tooltip-t-contributions'         => 'იხილეთ ამ მომხმარებლის წვლილის სია',
 'tooltip-t-emailuser'             => 'გაუგზავნე ელ. ფოსტა ამ მომხმარებელს',

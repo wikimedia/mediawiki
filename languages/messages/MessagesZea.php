@@ -266,8 +266,6 @@ $messages = array(
 'portal-url'           => 'Project:Durpsuus',
 'privacy'              => 'Privacybeleid',
 'privacypage'          => 'Project:Privacybeleid',
-'sitesupport'          => 'Donaoties',
-'sitesupport-url'      => 'Project:Financieel biedraehen',
 
 'badaccess'        => 'Fout in toegangsrechten',
 'badaccess-group0' => 'Jie mag de opgevraegde actie nie zelf uutvoere.',

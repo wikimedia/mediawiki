@@ -184,7 +184,6 @@ $messages = array(
 'portal-url'           => 'Project:Ka hui kaiaulu',
 'privacy'              => 'Palapala pilikino',
 'privacypage'          => 'Project:Palapala pilikino',
-'sitesupport'          => 'E lūlū mai',
 
 'badaccess' => 'Hewa ‘ae',
 
@@ -515,7 +514,6 @@ hō‘ike ‘ia i lalo:",
 'tooltip-n-recentchanges'  => 'Nā loli hou ma ka wiki.',
 'tooltip-n-randompage'     => 'Ho‘ouka i he akikala kaulele',
 'tooltip-n-help'           => 'Ka wahi e kōkua ai iā‘oe.',
-'tooltip-n-sitesupport'    => 'Kāko‘o mai',
 'tooltip-t-upload'         => 'Ho‘ouka i nā waihona',
 'tooltip-t-specialpages'   => 'Helu o nā papa nui apau',
 'tooltip-ca-nstab-project' => 'Nānā i ka ‘ao‘ao papahana',

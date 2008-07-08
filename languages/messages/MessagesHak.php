@@ -224,8 +224,6 @@ $messages = array(
 'portal-url'           => 'Project:Sa-khî',
 'privacy'              => 'Yún-sṳ̂ chṳn-chhet',
 'privacypage'          => 'Project:Yún-sṳ̂ chṳn-chhet',
-'sitesupport'          => 'Chan-chhu',
-'sitesupport-url'      => 'Project:Chan-chhu',
 
 'badaccess'        => 'Khièn-han chho-ngu',
 'badaccess-group0' => 'Ngì kông-chhòi ke chhiáng-khiù mò yún-chún chṳp-hàng.',
@@ -1363,7 +1361,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => 'Lie̍t-chhut ke-mióng-chham chûng ke chui-khiûn siû-kói',
 'tooltip-n-randompage'            => 'Sùi-kî chai-ngi̍p yit-ke vùn-chông',
 'tooltip-n-help'                  => 'Chhìm-khiù pông-chhu.',
-'tooltip-n-sitesupport'           => 'Chṳ̂-chhu',
 'tooltip-t-whatlinkshere'         => 'Lie̍t-chhut só-yû lâu pún-chông siông-lièn ke vùn-chông',
 'tooltip-t-recentchangeslinked'   => 'Vùn-chông lièn-chhut só-yû vùn-chông ke kiên-kói',
 'tooltip-feed-rss'                => 'Chṳ́-thin pún vùn-chông li̍t-sṳ́ ke RSS chṳ̂-liau',

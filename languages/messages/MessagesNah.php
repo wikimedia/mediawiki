@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Rob Church <robchur@gmail.com>
  * @author Fluence
- * @author Nike
+ * @author Ricardo gs
+ * @author Rob Church <robchur@gmail.com>
  *
  * @copyright Copyright © 2006-2007, Rob Church, Fluence
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
@@ -93,6 +93,9 @@ $messages = array(
 
 # Special:Allpages
 'allpages' => 'Mochīntīn zāzanilli',
+
+# Tooltip help for the actions
+'tooltip-p-logo' => 'Calīxatl',
 
 # Attribution
 'lastmodifiedatby' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1 īpal $3.', # $1 date, $2 time, $3 user

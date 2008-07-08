@@ -106,8 +106,7 @@ $messages = array(
 'jumptosearch'     => 'kintu',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'helppage'    => 'Help:Kellu',
-'sitesupport' => 'Elungechi',
+'helppage' => 'Help:Kellu',
 
 'ok'                      => 'Feley may',
 'youhavenewmessages'      => 'Elungeymi $1 ($2).',

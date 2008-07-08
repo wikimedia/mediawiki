@@ -108,7 +108,6 @@ $messages = array(
 'portal'               => 'Джамаат',
 'portal-url'           => 'Project:Джамаат',
 'privacy'              => 'Конфиденциальнийн политика',
-'sitesupport'          => 'Сайтан сагIа',
 
 'youhavenewmessages'      => 'Хьуна кхечи $1 ($2).',
 'newmessageslink'         => 'Керла кехаташ',

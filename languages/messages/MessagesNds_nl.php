@@ -480,8 +480,6 @@ $messages = array(
 'portal-url'           => 'Project:Gebrukerspertaol',
 'privacy'              => 'Gegevensbeleid',
 'privacypage'          => 'Project:Gegevensbeleid',
-'sitesupport'          => 'Financiële steun',
-'sitesupport-url'      => 'Project:Financiële steun',
 
 'badaccess'        => 'Gien toestemming',
 'badaccess-group0' => 'Je hemmen gien toestemming um disse actie uut te voeren.',
@@ -1999,7 +1997,6 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'tooltip-n-recentchanges'         => 'Lieste van pas verrichte veraanderingn',
 'tooltip-n-randompage'            => 'Loat ne willekeurige bladziede zeen',
 'tooltip-n-help'                  => 'Hölpinformoasie oaver {{SITENAME}}',
-'tooltip-n-sitesupport'           => 'Gef oons geald',
 'tooltip-t-whatlinkshere'         => 'Lieste van alle bladziedn dee hiernoar verwiezn',
 'tooltip-t-recentchangeslinked'   => 'Pas verrichte veraanderingn dee noar disse bladziede verwiezn',
 'tooltip-feed-rss'                => 'Rss-feed vuur disse bladziede',

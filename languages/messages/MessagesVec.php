@@ -262,8 +262,6 @@ I seguenti colegamenti i xe in lengua inglese:
 'portal-url'           => 'Project:Portałe Comunità',
 'privacy'              => 'Informazion su la privacy',
 'privacypage'          => 'Project:Informazion su la privacy',
-'sitesupport'          => 'Donassioni',
-'sitesupport-url'      => 'Project:Donasioni',
 
 'badaccess'        => 'Eròr ne i permessi',
 'badaccess-group0' => "No te ghè i permessi necessari par eseguir l'azion richiesta.",
@@ -1909,7 +1907,6 @@ Tute łe operazion de inportazion trans-wiki łe xè notà nel [[Special:Log/imp
 'tooltip-n-recentchanges'         => 'La lista de le ultime modifiche a sta wiki.',
 'tooltip-n-randompage'            => 'Mostra na pàxena a caso',
 'tooltip-n-help'                  => 'Raccolta de manuałi.',
-'tooltip-n-sitesupport'           => 'Jùtane',
 'tooltip-t-whatlinkshere'         => 'Lista de tute le pàxene che le porta a sta qua',
 'tooltip-t-recentchangeslinked'   => 'Lista de le ultime modifiche a le pàxene puntà da sta qua.',
 'tooltip-feed-rss'                => 'Feed RSS par sta pagina',

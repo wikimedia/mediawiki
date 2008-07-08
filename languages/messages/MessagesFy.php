@@ -283,8 +283,6 @@ $messages = array(
 'portal-url'           => 'Project:Brûkersportaal',
 'privacy'              => 'Privacybelied',
 'privacypage'          => 'Project:Privacybelied',
-'sitesupport'          => 'Jildlik stypje',
-'sitesupport-url'      => 'Project:Jildlik stypje',
 
 'badaccess'        => 'Gjin tastimming',
 'badaccess-group0' => 'Jo hawwe gjin rjochten om de frege hanneling út te fieren.',
@@ -1192,7 +1190,6 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'tooltip-n-recentchanges'         => 'De list fan koartlyn oanbrochte feroarings yn dizze wiki.',
 'tooltip-n-randompage'            => 'Samar in side sjen litte.',
 'tooltip-n-help'                  => 'Helpynformaasje oer dizze wiki.',
-'tooltip-n-sitesupport'           => 'Stypje ús',
 'tooltip-t-whatlinkshere'         => "List fan alle siden dy't nei dizze side ferwize",
 'tooltip-t-contributions'         => 'Bydragen fan dizze brûker',
 'tooltip-t-emailuser'             => 'Stjoer in e-mail nei dizze brûker',

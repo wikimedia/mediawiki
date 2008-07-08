@@ -233,8 +233,6 @@ Li sighenti cullegamenti so in linga ingrese:
 'portal-url'           => 'Project:Purthari comuniddai',
 'privacy'              => "Infuimmazioni i' la riseivvaddèzia",
 'privacypage'          => 'Project:Infuimmazioni i la riseivvaddèzia',
-'sitesupport'          => 'Dunazioni',
-'sitesupport-url'      => 'Project:Dunazioni',
 
 'badaccess'        => 'Primmissi no suffizenti',
 'badaccess-group0' => "Nò si diponi di li primmissi nezzessàri pa eseguì l'azioni dumandadda.",
@@ -1653,7 +1651,6 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'tooltip-n-recentchanges'         => "Erencu di l'ulthimi mudìfigghi i' lu situ",
 'tooltip-n-randompage'            => 'Musthra una pàgina a casu',
 'tooltip-n-help'                  => "Pàgini d'aggiuddu.",
-'tooltip-n-sitesupport'           => 'Supporthazi',
 'tooltip-t-whatlinkshere'         => 'Erencu di tutti li pàgini chi pùntani inogghi',
 'tooltip-t-recentchangeslinked'   => 'Erencu di li ulthimi mudìfigghi a li pàgini culligaddi a chistha',
 'tooltip-feed-rss'                => 'Feed RSS pa chistha pàgina',

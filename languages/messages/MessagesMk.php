@@ -302,8 +302,6 @@ $messages = array(
 'portal-url'           => 'Project:Портал',
 'privacy'              => 'Заштита на личните податоци',
 'privacypage'          => 'Project:Заштита на личните податоци',
-'sitesupport'          => 'Донации',
-'sitesupport-url'      => 'Project:Поддршка',
 
 'badaccess'        => 'Грешка во пермисии',
 'badaccess-group0' => 'Немате дозвола да ја извршите бараната акција.',
@@ -1576,7 +1574,6 @@ $NEWPAGE
 'tooltip-n-recentchanges'         => 'Листа на скорешни промени на викито.',
 'tooltip-n-randompage'            => 'Случајна страница',
 'tooltip-n-help'                  => 'Место каде што може да се информирате.',
-'tooltip-n-sitesupport'           => 'Поддржете ја Википедија',
 'tooltip-t-whatlinkshere'         => 'Листа на сите вики страници поврзани овде',
 'tooltip-t-recentchangeslinked'   => 'Скорешни промени поврзани од оваа страница',
 'tooltip-feed-rss'                => 'RSS feed за страницата',

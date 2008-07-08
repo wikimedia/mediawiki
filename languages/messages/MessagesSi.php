@@ -208,7 +208,6 @@ $messages = array(
 'mainpage-description' => 'මුල් පිටුව',
 'portal'               => 'ප්‍රජා ද්වාරය',
 'portal-url'           => 'Project:ප්‍රජා ද්වාරය',
-'sitesupport'          => 'පරිත්‍යාග',
 
 'ok'                  => 'හරි',
 'newmessagesdifflink' => 'අවසාන වෙනස',

@@ -261,8 +261,6 @@ $messages = array(
 'portal-url'           => 'Project:Портал',
 'privacy'              => 'Конфиденциальность йĕркисем',
 'privacypage'          => 'Project:Конфиденциальность йĕркисем',
-'sitesupport'          => 'Пожертвованисем',
-'sitesupport-url'      => 'Project:Нимелĕх',
 
 'badaccess'        => 'Доступ йăнăшĕ',
 'badaccess-group0' => 'Эсир ыйтакан ĕçе тăваймастăр',

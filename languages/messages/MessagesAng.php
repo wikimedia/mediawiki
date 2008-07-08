@@ -155,7 +155,6 @@ $messages = array(
 'mainpage-description' => 'Hēafodsīde',
 'portal'               => 'Gemǣnscipe Ingang',
 'portal-url'           => 'Project:Gemǣnscipe Ingang',
-'sitesupport'          => 'Gieldgiefa',
 
 'versionrequired' => 'Fadunge $1 þæs MediaWicis nēodaþ',
 

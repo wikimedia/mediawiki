@@ -142,7 +142,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal da {{SITENAME}}',
 'privacy'              => 'Protecziun da datas',
 'privacypage'          => 'Project:Protecziun_da_datas',
-'sitesupport'          => 'Donaziuns',
 
 'badaccess' => "Errur dad access: vus n'avais betg avunda dretgs",
 

@@ -258,8 +258,6 @@ $messages = array(
 'portal-url'           => 'Project:সম্প্রদায়ের প্রবেশদ্বার',
 'privacy'              => 'গোপনীয়তার নীতি',
 'privacypage'          => 'Project:গোপনীয়তার নীতি',
-'sitesupport'          => 'দান করুন',
-'sitesupport-url'      => 'Project:দান করুন',
 
 'badaccess'        => 'অনুমোদন ত্রুটি',
 'badaccess-group0' => 'আপনি যে কাজের জন্য অনুরোধ করেছেন, যে কাজটি সম্পন্ন করার অনুমতি নাই',
@@ -1683,7 +1681,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => 'উইকিতে সাম্প্রতিক পরিবর্তগুলির তালিকা',
 'tooltip-n-randompage'            => 'অনির্ধারিত যেকোন পাতা খুলুন',
 'tooltip-n-help'                  => 'সাহায্য খুঁজে নিন',
-'tooltip-n-sitesupport'           => 'আমাদের সহায়তা করুন',
 'tooltip-t-whatlinkshere'         => 'যে সব উইকি পাতা থেকে এখানে সংযোগ আছে',
 'tooltip-t-recentchangeslinked'   => 'এই পাতা থেকে সংযোগ আছে, এমন পাতাগুলিতে সাম্প্রতিক পরিবর্তন',
 'tooltip-feed-rss'                => 'এই পাতার জন্য আরএসএস ফিড',

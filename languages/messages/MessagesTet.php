@@ -216,7 +216,6 @@ $messages = array(
 'portal-url'           => 'Project:Portál komunidade nian',
 'privacy'              => 'Polítika privasidade nian',
 'privacypage'          => 'Project:Polítika privasidade nian',
-'sitesupport'          => 'Fó donativu ida',
 
 'badaccess-group0' => "Ó la bele halo ne'e.",
 'badaccess-group1' => "Ba halo ne'e tenke iha lubu $1.",
@@ -602,7 +601,6 @@ $messages = array(
 'tooltip-n-recentchanges'  => "Lista mudansa foufoun sira iha wiki ne'e.",
 'tooltip-n-randompage'     => 'Hola pájina ruma',
 'tooltip-n-help'           => 'Hatudu pájina ajuda.',
-'tooltip-n-sitesupport'    => 'Tulun ami',
 'tooltip-t-whatlinkshere'  => "Lista pájina nian ne'ebé bá iha ne'e",
 'tooltip-t-contributions'  => "Haree lista kontribuisaun uza-na'in ne'e nian",
 'tooltip-t-upload'         => 'Tau iha arkivu laran',

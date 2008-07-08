@@ -267,8 +267,6 @@ $messages = array(
 'portal-url'           => 'Project:Txokoa',
 'privacy'              => 'Pribatutasun politika',
 'privacypage'          => 'Project:Pribatutsan politika',
-'sitesupport'          => 'Emariak',
-'sitesupport-url'      => 'Project:Gune laguntza',
 
 'badaccess'        => 'Baimen errorea',
 'badaccess-group0' => 'Ez daukazu ekintza hori burutzeko baimenik.',
@@ -1763,7 +1761,6 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'tooltip-n-recentchanges'         => 'Wikiko azken aldaketen zerrenda.',
 'tooltip-n-randompage'            => 'Ausazko orrialde bat kargatu',
 'tooltip-n-help'                  => 'Aurkitzeko lekua.',
-'tooltip-n-sitesupport'           => 'Lagun iezaguzu',
 'tooltip-t-whatlinkshere'         => 'Hona lotzen duten wiki orrialde guztien zerrenda',
 'tooltip-t-recentchangeslinked'   => 'Orrialde honetatik lotutako orrialdeen azken aldaketak',
 'tooltip-feed-rss'                => 'Orrialde honen RSS jarioa',

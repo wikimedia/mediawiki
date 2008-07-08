@@ -268,8 +268,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal kan Komunidad',
 'privacy'              => 'Palakaw nin pribasidad',
 'privacypage'          => 'Project:Palakaw nin pribasidad',
-'sitesupport'          => 'Mga donasyon',
-'sitesupport-url'      => 'Project:Suporta sa site',
 
 'badaccess'        => 'Salang permiso',
 'badaccess-group0' => 'Dai ka tinotogotan na gibohon an aksyon na saimong hinahagad.',
@@ -1644,7 +1642,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => 'An lista nin mga bàgong pagbabàgo sa wiki.',
 'tooltip-n-randompage'            => 'Magkarga nin bàgong pahina',
 'tooltip-n-help'                  => 'An lugar para makatalastas.',
-'tooltip-n-sitesupport'           => 'Suportaran kami',
 'tooltip-t-whatlinkshere'         => 'Lista nin gabos na pahinang wiki na nakatakód digdi',
 'tooltip-t-recentchangeslinked'   => 'Mga kaaaging pagbabâgo sa mga páhinang nakatakod digdi',
 'tooltip-feed-rss'                => 'Hungit na RSS sa pahinang ini',

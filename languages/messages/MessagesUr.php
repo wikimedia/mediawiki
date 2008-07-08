@@ -153,8 +153,6 @@ $messages = array(
 'portal'               => 'دیوان عام',
 'portal-url'           => 'Project:دیوان عام',
 'privacy'              => 'اصول براۓ اخفائے راز',
-'sitesupport'          => 'رابطہ',
-'sitesupport-url'      => 'Project:رابطہ',
 
 'badaccess-group0' => 'آپ متمنی عمل کا اجراء کرنے کے مُجاز نہیں۔',
 

@@ -257,8 +257,6 @@ $messages = array(
 'portal-url'           => 'Project:শিংলুপ',
 'privacy'              => 'লুকরানির নীতিহান',
 'privacypage'          => 'Project:লুকরানির নীতিহান',
-'sitesupport'          => 'দান দেনা',
-'sitesupport-url'      => 'Project:দান দেনা',
 
 'badaccess'        => 'য়্যাথাঙে লালসে',
 'badaccess-group0' => 'তি যে কামহানর হেইচা করিসত, তরতা অহান করানির য়্যাথাং নেই।',

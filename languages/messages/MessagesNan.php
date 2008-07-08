@@ -175,8 +175,6 @@ $messages = array(
 'portal'               => 'Siā-lí mn̂g-chhùi-kháu',
 'portal-url'           => 'Project:Siā-lí mn̂g-chhùi-kháu',
 'privacy'              => 'Ín-su chèng-chhek',
-'sitesupport'          => 'Kià-hù',
-'sitesupport-url'      => 'Project:Kià-hù',
 
 'retrievedfrom'       => 'Lâi-goân: "$1"',
 'youhavenewmessages'  => 'Lí ū $1 ($2).',

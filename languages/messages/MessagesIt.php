@@ -365,8 +365,6 @@ I seguenti collegamenti sono in lingua inglese:
 'portal-url'           => 'Project:Portale comunità',
 'privacy'              => 'Informazioni sulla privacy',
 'privacypage'          => 'Project:Informazioni sulla privacy',
-'sitesupport'          => 'Donazioni',
-'sitesupport-url'      => 'Project:Donazioni',
 
 'badaccess'        => 'Permessi non sufficienti',
 'badaccess-group0' => "Non si dispone dei permessi necessari per eseguire l'azione richiesta.",
@@ -1615,8 +1613,8 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 ** Violazione di copyright
 ** Vandalismo",
 'delete-edit-reasonlist'      => 'Modifica le motivazioni per la cancellazione',
-'delete-toobig'               => 'La cronologia di questa pagina è molto lunga (oltre $1 revisioni). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
-'delete-warning-toobig'       => 'La cronologia di questa pagina è molto lunga (oltre $1 revisioni). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
+'delete-toobig'               => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
+'delete-warning-toobig'       => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
 'rollback'                    => 'Annulla le modifiche',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',
@@ -2013,7 +2011,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-n-recentchanges'         => 'Elenco delle ultime modifiche del sito',
 'tooltip-n-randompage'            => 'Mostra una pagina a caso',
 'tooltip-n-help'                  => 'Pagine di aiuto',
-'tooltip-n-sitesupport'           => 'Aiutaci',
 'tooltip-t-whatlinkshere'         => 'Elenco di tutte le pagine che sono collegate a questa',
 'tooltip-t-recentchangeslinked'   => 'Elenco delle ultime modifiche alle pagine collegate a questa',
 'tooltip-feed-rss'                => 'Feed RSS per questa pagina',

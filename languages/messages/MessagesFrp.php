@@ -293,8 +293,6 @@ $messages = array(
 'portal-url'           => 'Project:Reçua',
 'privacy'              => 'Politica de confidencialitât',
 'privacypage'          => 'Project:Politica de confidencialitât',
-'sitesupport'          => 'Balyér',
-'sitesupport-url'      => 'Project:Donacions',
 
 'badaccess'        => 'Èrror de pèrmission',
 'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion que vos demandâd.',
@@ -1802,7 +1800,6 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'tooltip-n-recentchanges'         => 'Lista des dèrriérs changements sur lo vouiqui',
 'tooltip-n-randompage'            => 'Afichiér una pâge a l’hasârd',
 'tooltip-n-help'                  => 'Éde a propôs du projèt',
-'tooltip-n-sitesupport'           => 'Sotegnéd lo projèt.',
 'tooltip-t-whatlinkshere'         => 'Lista de les pâges liyês a ceta',
 'tooltip-t-recentchangeslinked'   => 'Lista des dèrriérs changements de les pâges liyês a ceta',
 'tooltip-feed-rss'                => 'Flux RSS por ceta pâge',

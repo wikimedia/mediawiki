@@ -272,8 +272,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal de la comunidá',
 'privacy'              => 'Politica de privacidá',
 'privacypage'          => 'Project:Política de privacidá',
-'sitesupport'          => 'Donativos',
-'sitesupport-url'      => 'Project:Donativos',
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => "Nun tienes permisu pa executar l'aición solicitada.",
@@ -1925,7 +1923,6 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'tooltip-n-recentchanges'         => 'Llista de los cambeos recientes de la wiki.',
 'tooltip-n-randompage'            => 'Carga una páxina al debalu',
 'tooltip-n-help'                  => 'El llugar pa deprender',
-'tooltip-n-sitesupport'           => 'Sofítanos',
 'tooltip-t-whatlinkshere'         => "Llista de toles páxines wiki qu'enllacien equí",
 'tooltip-t-recentchangeslinked'   => "Cambeos recientes en páxines qu'enllacien dende esta páxina",
 'tooltip-feed-rss'                => 'Canal RSS pa esta páxina',

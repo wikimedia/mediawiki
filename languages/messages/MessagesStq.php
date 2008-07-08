@@ -254,8 +254,6 @@ $messages = array(
 'portal-url'           => 'Project:Portoal',
 'privacy'              => 'Doatenschuts',
 'privacypage'          => 'Project:Doatenschuts',
-'sitesupport'          => 'Spenden',
-'sitesupport-url'      => 'Project:Spenden',
 
 'badaccess'        => 'Neen uträkkende Gjuchte',
 'badaccess-group0' => 'Du hääst nit ju ärfoarderelke Begjuchtigenge foar disse Aktion.',
@@ -1905,7 +1903,6 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'tooltip-n-recentchanges'         => 'Lieste fon do lääste Annerengen in {{SITENAME}}.',
 'tooltip-n-randompage'            => 'Toufällige Siede',
 'tooltip-n-help'                  => 'Hälpesiede anwiese',
-'tooltip-n-sitesupport'           => 'Unnerstutse uus',
 'tooltip-t-whatlinkshere'         => 'Lieste fon aal Sieden, do ap disse Siede linken',
 'tooltip-t-recentchangeslinked'   => 'Lääste Annerengen an Sieden, do der fon hier ferlinked sunt',
 'tooltip-feed-rss'                => 'RSS-Feed foar disse Siede',

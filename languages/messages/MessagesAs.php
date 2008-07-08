@@ -234,8 +234,6 @@ $messages = array(
 'portal-url'           => 'Project:সমজুৱা পৃষ্ঠা',
 'privacy'              => 'গোপনীয়তা নীতি',
 'privacypage'          => 'Project:গোপনীয়তাৰ নীতি',
-'sitesupport'          => 'দান-বৰঙনি',
-'sitesupport-url'      => 'Project:চাইট সাহায্য',
 
 'badaccess'        => 'অনুমতি ভুল',
 'badaccess-group0' => 'আপুনি কৰিব বিছৰা কামতো কৰাৰ আধিকাৰ আপোনাৰ নাই।',
@@ -788,7 +786,6 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'tooltip-n-recentchanges'         => 'শেহতীয়া সালসলনিসমূহৰ সূচী',
 'tooltip-n-randompage'            => 'অ-পূৰ্বনিৰ্ধাৰিতভাবে যিকোনো এটা পৃষ্ঠা দেখুৱাবৰ কাৰণে',
 'tooltip-n-help'                  => 'সহায়ৰ বাবে ইয়াত ক্লিক কৰক',
-'tooltip-n-sitesupport'           => 'আমাক সহায় কৰক!',
 'tooltip-t-whatlinkshere'         => 'ইয়ালৈ সংযোজিত সকলো পৃষ্ঠাৰ সুচী',
 'tooltip-t-contributions'         => 'এই সদস্যজনৰ অৰিহনাসমূহৰ সূচী চাঁওক ।',
 'tooltip-t-emailuser'             => 'এই সদস্যজনলৈ ই-মেইল পঠাওক',

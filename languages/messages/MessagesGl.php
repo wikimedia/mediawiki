@@ -261,8 +261,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal da comunidade',
 'privacy'              => 'Política de Privacidade',
 'privacypage'          => 'Project:Política de Privacidade',
-'sitesupport'          => 'Doazóns',
-'sitesupport-url'      => 'Project:Doazóns',
 
 'badaccess'        => 'Erro de permisos',
 'badaccess-group0' => 'Non ten autorización para executar a acción que solicitou.',
@@ -705,7 +703,7 @@ Por favor verifique o URL que utilizou para acceder a esta páxina.',
 'last'                => 'última',
 'page_first'          => 'primeira',
 'page_last'           => 'derradeira',
-'histlegend'          => 'Selección de diferenzas: marque as versións para comparalas e prema o botón ao final.<br />
+'histlegend'          => 'Selección de diferenzas: marque as versións que queira comparar e prema no botón ao final.<br />
 Lenda: (actual) = diferenza coa versión actual,
 (última) = diferenza coa versión precedente, m = edición pequena.',
 'deletedrev'          => '[borrado]',
@@ -1524,7 +1522,7 @@ Feedback e axuda:
 'deletepage'                  => 'Borrar a páxina',
 'confirm'                     => 'Confirmar',
 'excontent'                   => "o contido era: '$1'",
-'excontentauthor'             => "O texto puña: '$1' (e o único editor foi '$2')",
+'excontentauthor'             => 'o contido era: "$1" (e o único editor foi "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank'               => "o contido antes do baleiramento era: '$1'",
 'exblank'                     => 'a páxina estaba baleira',
 'delete-confirm'              => 'Borrar "$1"',
@@ -1550,8 +1548,11 @@ No $2 pode ver unha listaxe dos borrados máis recentes.',
 ** Violación de copyright
 ** Vandalismo',
 'delete-edit-reasonlist'      => 'Editar os motivos do borrado',
-'delete-toobig'               => 'Esta páxina conta cun historial longo, de máis de $1 revisións. Restrinxiuse a eliminación destas páxinas para previr problemas de funcionamento accidentais en {{SITENAME}}.',
-'delete-warning-toobig'       => 'Esta páxina conta cun historial de edicións longo, máis de $1 revisións. Se se elimina pódense provocar problemas de funcionamento nas operacións de base de datos de {{SITENAME}}; proceda con coidado.',
+'delete-toobig'               => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
+Limitouse a eliminación destas páxinas para previr problemas de funcionamento accidentais en {{SITENAME}}.',
+'delete-warning-toobig'       => 'Esta páxina conta cun historial de edicións longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
+Ao eliminala pódense provocar problemas de funcionamento nas operacións da base de datos de {{SITENAME}};
+proceda con coidado.',
 'rollback'                    => 'Desfacer edicións',
 'rollback_short'              => 'Desfacer',
 'rollbacklink'                => 'desfacer',
@@ -1964,7 +1965,6 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'tooltip-n-recentchanges'         => 'A listaxe de modificacións recentes no wiki.',
 'tooltip-n-randompage'            => 'Carregar unha páxina ao chou',
 'tooltip-n-help'                  => 'O lugar para informarse.',
-'tooltip-n-sitesupport'           => 'Apóienos',
 'tooltip-t-whatlinkshere'         => 'Listaxe de todas as páxinas do wiki que ligan cara a aquí',
 'tooltip-t-recentchangeslinked'   => 'Cambios recentes nas páxinas ligadas desde esta',
 'tooltip-feed-rss'                => 'Fonte de noticias RSS para esta páxina',

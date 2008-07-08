@@ -341,8 +341,6 @@ $messages = array(
 'portal-url'           => 'Project:Porth y Gymuned',
 'privacy'              => 'Polisi preifatrwydd',
 'privacypage'          => 'Project:Polisi preifatrwydd',
-'sitesupport'          => 'Rhoi arian',
-'sitesupport-url'      => 'Project:Codi_arian',
 
 'badaccess'        => 'Gwall caniatâd',
 'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y ceisiasoch amdani.',
@@ -1870,7 +1868,6 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'tooltip-n-recentchanges'         => 'Rhestr y newidiadau diweddar ar y wici.',
 'tooltip-n-randompage'            => 'Dewiswch dudalen ar hap',
 'tooltip-n-help'                  => 'Tudalennau cymorth',
-'tooltip-n-sitesupport'           => "Cefnogi'n ariannol",
 'tooltip-t-whatlinkshere'         => "Rhestr o bob tudalen sy'n cysylltu â hon",
 'tooltip-t-recentchangeslinked'   => 'Newidiadau diweddar i dudalennau sydd yn cysylltu â hon',
 'tooltip-feed-rss'                => 'Porthiant RSS ar gyfer y dudalen hon',
@@ -2076,7 +2073,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-whitebalance'                => 'Cydbwysedd Gwyn',
 'exif-contrast'                    => 'Cyferbyniad',
 'exif-saturation'                  => 'Dirlawnder',
-'exif-sharpness'                   => 'Llymder',
+'exif-sharpness'                   => 'Eglurder',
 'exif-gpslatituderef'              => 'Lledred Gogledd neu De',
 'exif-gpslatitude'                 => 'Lledred',
 'exif-gpslongituderef'             => 'Hydred Dwyrain neu Gorllewin',
@@ -2134,7 +2131,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Hydred dwyrain',
-'exif-gpslongitude-w' => 'Hydred gorllewin',
+'exif-gpslongitude-w' => "Hydred i'r Gorllewin",
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Cilomedr yr awr',
@@ -2291,7 +2288,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'version-extension-functions'   => 'Ffwythiannau estyn',
 'version-parser-extensiontags'  => 'Tagiau estyn dosrannydd',
 'version-parser-function-hooks' => 'Bachau ffwythiant dosrannu',
-'version-hook-name'             => 'Enw bachyn',
+'version-hook-name'             => "Enw'r bachyn",
 'version-hook-subscribedby'     => 'Tanysgrifwyd gan',
 'version-version'               => 'Fersiwn',
 'version-license'               => 'Trwydded',

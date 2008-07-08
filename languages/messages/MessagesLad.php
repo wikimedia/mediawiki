@@ -158,7 +158,6 @@ $messages = array(
 'portal'               => 'Portal de la komunidád',
 'privacy'              => 'Politika de proteksion de informasiones',
 'privacypage'          => 'Project:Politika de proteksion de informasiones',
-'sitesupport'          => 'Donasiones',
 
 'badaccess' => 'Falta de permesos',
 

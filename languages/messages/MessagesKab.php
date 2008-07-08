@@ -237,8 +237,6 @@ $messages = array(
 'portal-url'           => 'Project:Awwur n timetti',
 'privacy'              => 'Tudert tusligt',
 'privacypage'          => 'Project:Tudert tusligt',
-'sitesupport'          => 'Efk-aɣ idrimen',
-'sitesupport-url'      => 'Project:Efk-aɣ idrimen',
 
 'badaccess'        => 'Agul n turagt',
 'badaccess-group0' => 'Ur tettalaseḍ ara ad texedmeḍ tigawt i tseqsiḍ.',
@@ -1338,7 +1336,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-recentchanges'         => 'Umuɣ n yibeddlen imaynuten deg wiki.',
 'tooltip-n-randompage'            => 'Ẓer asebter menwala',
 'tooltip-n-help'                  => 'Amkan ideg tafeḍ.',
-'tooltip-n-sitesupport'           => 'Ellil-aɣ',
 'tooltip-t-whatlinkshere'         => 'Umuɣ n akk isebtar i yesɛan azday ar dagi',
 'tooltip-t-recentchangeslinked'   => 'Ibeddlen imaynuten deg isebtar myezdin seg usebter-agi',
 'tooltip-feed-rss'                => 'RSS feed n usebter-agi',

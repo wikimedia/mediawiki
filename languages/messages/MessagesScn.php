@@ -347,8 +347,6 @@ $messages = array(
 'portal-url'           => 'Project:Porta dâ cumunitati',
 'privacy'              => 'Pulìtica supra la privacy',
 'privacypage'          => 'Project:Pulìtica rilativa â privacy',
-'sitesupport'          => 'Dunazzioni',
-'sitesupport-url'      => 'Project:Dunazzioni',
 
 'badaccess'        => 'Pirmessi nun sufficienti',
 'badaccess-group0' => "Nun hai li pirmessi nicissari p'esèquiri l'azzioni addumannata.",
@@ -1829,7 +1827,6 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'tooltip-n-recentchanges'         => "Alencu di l'ùrtimi canciamenti dû situ.",
 'tooltip-n-randompage'            => 'Ammustra na pàggina a muzzu',
 'tooltip-n-help'                  => "Pàggini d'aiutu.",
-'tooltip-n-sitesupport'           => 'Aiùtani',
 'tooltip-t-whatlinkshere'         => 'Alencu di tutti li pàggini ca sunnu culligati a chista',
 'tooltip-t-recentchangeslinked'   => "Alencu di l'ùrtimi canciamenti a li pàggini culligati a chista",
 'tooltip-feed-rss'                => 'Feed RSS pi sta pàggina',

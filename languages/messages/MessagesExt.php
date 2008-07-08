@@ -236,8 +236,6 @@ $messages = array(
 'portal-url'           => 'Project:Puertal la Comuniá',
 'privacy'              => 'Pulítica',
 'privacypage'          => 'Project:Pulítica e privaciá',
-'sitesupport'          => 'Donacionis',
-'sitesupport-url'      => 'Project:Apoyu al proyeutu',
 
 'badaccess'        => 'Marru colos tus premisus',
 'badaccess-group0' => 'Nu se te premiti hazel esa ación.',
@@ -1777,7 +1775,6 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'tooltip-n-recentchanges'         => 'La lista e los úrtimus chambus nesti güiqui.',
 'tooltip-n-randompage'            => 'Cargal cualisquiel páhina',
 'tooltip-n-help'                  => 'El lugal pa deprendel.',
-'tooltip-n-sitesupport'           => 'Ayúamus',
 'tooltip-t-whatlinkshere'         => 'Lista e tolas páhinas güiqui qu´atihan p´aquí',
 'tooltip-t-recentchangeslinked'   => 'Úrtimus chambus en páhinas atihás dendi esta páhina',
 'tooltip-feed-rss'                => 'RSS feed pa esta páhina',

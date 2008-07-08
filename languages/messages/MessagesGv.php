@@ -178,8 +178,6 @@ $messages = array(
 'portal-url'           => 'Project:Ynnyd y phobble',
 'privacy'              => 'Polasee preevaadjys',
 'privacypage'          => 'Project:Polasee preevaadjys',
-'sitesupport'          => 'Toyrtysyn',
-'sitesupport-url'      => 'Shalee:Cooney yn ynnyd',
 
 'badaccess' => 'Marranys y chied',
 
@@ -889,7 +887,6 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'tooltip-n-recentchanges'         => "Rolley caghlaaghyn s'noa ayns y wiki.",
 'tooltip-n-randompage'            => 'Duillag gyn tort y lughtaghey',
 'tooltip-n-help'                  => 'Boayl gys feddyn magh.',
-'tooltip-n-sitesupport'           => 'Cooin lhien',
 'tooltip-t-whatlinkshere'         => 'Rolley dagh ooilley ghuillag wiki ta kianglt lesh shoh',
 'tooltip-t-contributions'         => 'Jeeagh er cohortysyn yn ymmydeyr shoh',
 'tooltip-t-emailuser'             => "Cur post-L da'n ymmydeyr shoh",

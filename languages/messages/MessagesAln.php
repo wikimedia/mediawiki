@@ -230,8 +230,6 @@ $messages = array(
 'portal-url'           => 'Project:Wikiportal',
 'privacy'              => 'Rreth të dhanave vetjake',
 'privacypage'          => 'Project:Politika vetjake',
-'sitesupport'          => 'Dhurime',
-'sitesupport-url'      => 'Project:Dhurime',
 
 'badaccess'        => 'Gabim leje',
 'badaccess-group0' => 'Nuk jeni lejue me e bá kët veprim.',
@@ -580,7 +578,6 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'tooltip-n-recentchanges'         => 'Lista e ndryshimeve të fundme në projekt',
 'tooltip-n-randompage'            => 'Shikoni një artikull të rastit.',
 'tooltip-n-help'                  => 'Vendi ku muneni me gjetë ndihmë.',
-'tooltip-n-sitesupport'           => 'Përkraheni projektin',
 'tooltip-t-whatlinkshere'         => 'Lista e faqeve qi lidhen te kjo faqe',
 'tooltip-t-upload'                => 'Ngarkoni figura ose skeda tjera',
 'tooltip-t-specialpages'          => 'Lista e krejt faqeve speciale.',

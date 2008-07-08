@@ -139,8 +139,6 @@ $messages = array(
 'policy-url'           => 'Project:Polisiya',
 'portal'               => 'Ganghaan han Komunidad',
 'portal-url'           => 'Project:Ganghaan han Komunidad',
-'sitesupport'          => 'Mga Donasyon',
-'sitesupport-url'      => 'Project:Mga Donasyon',
 
 'badaccess-group0' => 'Diri ka gintutugutan pagbuhat han buruhaton nga imo ginhangyo.',
 

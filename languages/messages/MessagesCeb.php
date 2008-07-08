@@ -179,7 +179,6 @@ $messages = array(
 'portal-url'           => 'Project:Ganghaan sa Komunidad',
 'privacy'              => 'Palisiya sa personal nga impormasyon',
 'privacypage'          => 'Project:Palisiya sa pribasidad',
-'sitesupport'          => 'Mga donasyon',
 
 'badaccess-group0' => 'Wala ikaw tugoti sa pagpadayon sa aksyon nga imong gipangayo.',
 'badaccess-group1' => 'Ang aksyon nga imong gipangayo mahimo lamang ihatag sa mga miyembro sa grupong $1.',
@@ -348,7 +347,6 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan s
 'tooltip-n-recentchanges' => 'Ang listahan sa mga bag-ong gi-usab dinhi sa wiki.',
 'tooltip-n-randompage'    => 'Pag-abli og bisan unsang panid',
 'tooltip-n-help'          => 'Ang dapit nga angay mong pangitaan.',
-'tooltip-n-sitesupport'   => 'Tabangi kami',
 'tooltip-t-whatlinkshere' => 'Talaan sa mga wiki nga panid nga misumpay dinhi',
 'tooltip-t-upload'        => 'Pagsumiter og mga payl',
 'tooltip-t-specialpages'  => 'Talaan sa mga espesyal nga panid',

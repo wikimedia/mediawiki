@@ -63,7 +63,6 @@ $messages = array(
 'mainpage-description' => 'Pennfolenn/Penfolen',
 'portal'               => 'Porth kemmynieth',
 'portal-url'           => 'Project:Porth Kemmynieth',
-'sitesupport'          => 'Riansow',
 
 'ok'          => 'Sur',
 'editsection' => 'chanjya',

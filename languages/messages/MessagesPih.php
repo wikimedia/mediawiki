@@ -37,7 +37,6 @@ $messages = array(
 'mainpage'             => 'Mien Paij',
 'mainpage-description' => 'Mien Paij',
 'portal'               => "Trii'nohlij",
-'sitesupport'          => 'Doenaiishun',
 
 'editold' => 'edet',
 

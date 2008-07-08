@@ -77,7 +77,6 @@ $messages = array(
 'portal'               => 'Doras na Coimhearsnachd',
 'portal-url'           => 'Project:Doras na coimhearsnachd',
 'privacy'              => 'Polasaidh uaigneachd',
-'sitesupport'          => 'Tabhartasan',
 
 'retrievedfrom'   => 'Air tarraing à "$1"',
 'newmessageslink' => 'teachdaireachdan ùra',

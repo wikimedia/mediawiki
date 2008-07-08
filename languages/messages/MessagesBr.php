@@ -286,8 +286,6 @@ $messages = array(
 'portal-url'           => 'Project:Degemer',
 'privacy'              => 'Reolennoù prevezded',
 'privacypage'          => 'Project:Reolennoù prevezded',
-'sitesupport'          => 'Roadoù',
-'sitesupport-url'      => 'Project:Roadoù',
 
 'badaccess'        => 'Fazi aotre',
 'badaccess-group0' => "N'oc'h ket aotreet da seveniñ ar pezh hoc'h eus goulennet.",
@@ -1883,7 +1881,6 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'tooltip-n-recentchanges'         => "Roll ar c'hemmoù diwezhañ c'hoarvezet war ar wiki.",
 'tooltip-n-randompage'            => 'Diskwel ur bajenn dre zegouezh',
 'tooltip-n-help'                  => 'Skoazell.',
-'tooltip-n-sitesupport'           => 'Skoazellit ar raktres',
 'tooltip-t-whatlinkshere'         => 'Roll ar pajennoù liammet ouzh ar bajenn-mañ',
 'tooltip-t-recentchangeslinked'   => "Roll ar c'hemmoù diwezhañ war ar pajennoù liammet ouzh ar bajenn-mañ",
 'tooltip-feed-rss'                => 'Magañ ar red RSS evit ar bajenn-mañ',

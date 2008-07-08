@@ -5,8 +5,9 @@
  * @file
  *
  * @author SPQRobin
- * @author Malafaya
+ * @author Dakrismeno
  * @author SabineCretella
+ * @author Malafaya
  * @author Siebrand
  * @author Kemmótar
  * @author Flavio05
@@ -37,6 +38,11 @@ süi titul dai sezziún (JavaScript)',
 'tog-fancysig'                => 'Firma semplificava (senza al ligamm utumatich)',
 'tog-externaleditor'          => 'Druvá sémpar un prugráma da redatazziún esternu',
 'tog-externaldiff'            => 'Druvá sempar un "diff" estèrnu',
+'tog-watchlisthideown'        => "Sconda i me mudifich dai pagin che a ten d'ögg",
+'tog-watchlisthidebots'       => "Sconda i mudifich di bot da i pagin che a ten d'ögg",
+
+'underline-always' => 'Semper',
+'underline-never'  => 'Mai',
 
 # Dates
 'sunday'    => 'dumeniga',
@@ -67,6 +73,7 @@ süi titul dai sezziún (JavaScript)',
 'nov'       => 'nuv',
 
 # Categories related messages
+'pagecategories'  => '{{PLURAL:$1|Categuria|Categurij}}',
 'category_header' => 'Vus in de la categuria "$1"',
 'subcategories'   => 'Sót-categurii',
 
@@ -115,8 +122,6 @@ süi titul dai sezziún (JavaScript)',
 'portal'               => 'Purtaal da cumünitaa',
 'portal-url'           => 'Project:Purtaal da cumünitaa',
 'privacy'              => "Pulitica de la ''privacy''",
-'sitesupport'          => 'Dunazziun',
-'sitesupport-url'      => 'Project:Donazioni',
 
 'retrievedfrom'       => 'Utegnüü da "$1"',
 'youhavenewmessages'  => "Gh'hinn di $1 ($2).",
@@ -145,38 +150,39 @@ süi titul dai sezziún (JavaScript)',
 'editinginterface' => "'''Attenzion''': el testo de quella pagina chì el fà part de l'interfacia utent del sitt. Tutt i modifigh che te fet se vedaran subit su i messagg visualizzaa per tutt i utent.",
 
 # Login and logout pages
-'logouttext'            => '<strong>Adess a sii descuness.</strong><br />
+'logouttext'              => '<strong>Adess a sii descuness.</strong><br />
 A pudii ná innaanz a druvá la {{SITENAME}} in manera anònima, a pudii
 cunètas ancamò cul istéss u cunt un altar nomm. Tegnii cüünt che di
 pagin a pudarian véss visüalizaat cuma se vüü füdéssuf ancamò cuness, finn a che
 vüü a scancelii mía la memòria cava dal voost bigatt.',
-'welcomecreation'       => "== Benvegnüü, $1! ==
+'welcomecreation'         => "== Benvegnüü, $1! ==
 Ul tò permèss d'entrava l è prunt. Dismentéga mia de mudifigá i prefereenz dala {{SITENAME}}.",
-'yourname'              => 'Nomm ütent',
-'yourpassword'          => "Parola d'urdin",
-'yourpasswordagain'     => "Mett dent ammò la parola d'urdin",
-'remembermypassword'    => "Regordass la mè parola d'urdin",
-'loginprompt'           => 'Par cunett a {{SITENAME}}, a duvii abilitá i galet.',
-'userlogin'             => 'Entra/Crea un cünt',
-'logout'                => 'Và fö',
-'userlogout'            => 'Và fö',
-'nologin'               => 'Sii-f gnamò registraa? $1.',
-'nologinlink'           => 'Creé un cüünt!',
-'createaccount'         => 'Creá un cüünt',
-'createaccountmail'     => 'par adressa da cureel (e-mail)',
-'youremail'             => 'E-mail',
-'username'              => 'Nomm registraa:',
-'yourrealname'          => 'Nomm:',
-'yourlanguage'          => 'Lengua:',
-'yournick'              => 'Suranomm:',
-'email'                 => 'Indirizz de pòsta elettrònica.',
-'prefs-help-email'      => 'E-mail (mia ubligatòri): ga permètt ai óltar üteent da cuntatátt senza da büsögn che i sapia la tóa identitaa.',
-'noname'                => "Vüü avii mía specificaa un nomm d'üsüari valévul.",
-'loginsuccesstitle'     => "La cunessiun l'è scumenzada cun sücess.",
-'loginsuccess'          => 'Te set cuness a {{SITENAME}} cume "$1".',
-'mailmypassword'        => "Desmentegaa la parola d'urdin?",
-'emailauthenticated'    => 'Ul tò adrèss e-mail l è staa verificaa: $1.',
-'emailnotauthenticated' => 'Ul tò adrèss da pòsta letronica l è mia staa gnamò verificaa. Nissün mesacc al saraa mandaa par i servizzi che segütan.',
+'yourname'                => 'Nomm ütent',
+'yourpassword'            => "Parola d'urdin",
+'yourpasswordagain'       => "Mett dent ammò la parola d'urdin",
+'remembermypassword'      => "Regordass la mè parola d'urdin",
+'nav-login-createaccount' => 'Vena drenta / Crea un cünt',
+'loginprompt'             => 'Par cunett a {{SITENAME}}, a duvii abilitá i galet.',
+'userlogin'               => 'Entra/Crea un cünt',
+'logout'                  => 'Và fö',
+'userlogout'              => 'Và fö',
+'nologin'                 => 'Sii-f gnamò registraa? $1.',
+'nologinlink'             => 'Creé un cüünt!',
+'createaccount'           => 'Creá un cüünt',
+'createaccountmail'       => 'par adressa da cureel (e-mail)',
+'youremail'               => 'E-mail',
+'username'                => 'Nomm registraa:',
+'yourrealname'            => 'Nomm:',
+'yourlanguage'            => 'Lengua:',
+'yournick'                => 'Suranomm:',
+'email'                   => 'Indirizz de pòsta elettrònica.',
+'prefs-help-email'        => 'E-mail (mia ubligatòri): ga permètt ai óltar üteent da cuntatátt senza da büsögn che i sapia la tóa identitaa.',
+'noname'                  => "Vüü avii mía specificaa un nomm d'üsüari valévul.",
+'loginsuccesstitle'       => "La cunessiun l'è scumenzada cun sücess.",
+'loginsuccess'            => 'Te set cuness a {{SITENAME}} cume "$1".',
+'mailmypassword'          => "Desmentegaa la parola d'urdin?",
+'emailauthenticated'      => 'Ul tò adrèss e-mail l è staa verificaa: $1.',
+'emailnotauthenticated'   => 'Ul tò adrèss da pòsta letronica l è mia staa gnamò verificaa. Nissün mesacc al saraa mandaa par i servizzi che segütan.',
 
 # Edit pages
 'summary'              => 'Argument de la mudifica',
@@ -388,6 +394,10 @@ al butún \"tegn piü d'öcc\".",
 'watchnochange'    => "Nissün cambiameent l è stai faa süi articui/págin che ti tegnat d'öcc indal períut da teemp selezziunaa.",
 'wlshowlast'       => 'Fa vidé i ültim $1 uur $2 dí $3',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => "Giuntà ai pagin da ten d'ögg...",
+'unwatching' => "Eliminà dai pagin da ten d'ögg...",
+
 'enotif_newpagetext' => "Chesta-chí l'è una pàgina növa.",
 'changed'            => 'cambiaa',
 
@@ -473,8 +483,9 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'import' => 'Impurtá di pagin',
 
 # Tooltip help for the actions
-'tooltip-ca-addsection' => 'Taca un cument a questa discüssiun',
-'tooltip-ca-delete'     => 'Scancela questa pagina',
+'tooltip-ca-addsection'  => 'Taca un cument a questa discüssiun',
+'tooltip-ca-delete'      => 'Scancela questa pagina',
+'tooltip-t-specialpages' => 'Lista de tütt i pagin speciaal',
 
 # Attribution
 'siteuser' => '{{SITENAME}} ütent $1',

@@ -110,7 +110,6 @@ $messages = array(
 'mainpage'             => 'Lokásá ya libosó',
 'mainpage-description' => 'Lokásá ya libosó',
 'portal'               => 'Bísó na bísó',
-'sitesupport'          => 'Kofutela',
 
 'ok'                 => 'Nandimi',
 'youhavenewmessages' => 'Nazweí $1 ($2).',

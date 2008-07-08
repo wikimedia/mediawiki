@@ -377,8 +377,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal comunitário',
 'privacy'              => 'Política de privacidade',
 'privacypage'          => 'Project:Política_de_privacidade',
-'sitesupport'          => 'Doações',
-'sitesupport-url'      => 'Project:Apoio',
 
 'badaccess'        => 'Erro de permissão',
 'badaccess-group0' => 'Você não está autorizado a executar a acção requisitada.',
@@ -1545,6 +1543,7 @@ para que o destinatário lhe possa responder.',
 'emailccsubject'  => 'Cópia de sua mensagem para $1: $2',
 'emailsent'       => 'E-mail enviado',
 'emailsenttext'   => 'A sua mensagem foi enviada.',
+'emailuserfooter' => 'Este e-mail foi enviado por $1 para $2 através da opção de "contactar utilizador" da {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Artigos vigiados',
@@ -1651,8 +1650,11 @@ Consulte $2 para um registo de eliminações recentes.',
 ** Violação de direitos de autor
 ** Vandalismo',
 'delete-edit-reasonlist'      => 'Editar motivos de eiliminação',
-'delete-toobig'               => 'Esta página possui um longo histórico de edições, com mais de $1 revisões. A eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.',
-'delete-warning-toobig'       => 'Esta página possui um longo histórico de edições, com mais de $1 revisões. Eliminá-la poderá causar problemas na base de dados de {{SITENAME}}; prossiga com cuidado.',
+'delete-toobig'               => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
+A eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.',
+'delete-warning-toobig'       => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
+Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
+prossiga com cuidado.',
 'rollback'                    => 'Reverter edições',
 'rollback_short'              => 'Voltar',
 'rollbacklink'                => 'voltar',
@@ -1719,6 +1721,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 'undeletepagetitle'            => "'''Seguem-se as edições eliminadas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Ver páginas eliminadas',
 'undeletepagetext'             => 'As seguintes páginas foram eliminadas, apesar de ainda permanecem na base de dados e poderem ser restauradas. O arquivo pode periodicamente ser limpo.',
+'undelete-fieldset-title'      => 'Restaurar edições',
 'undeleteextrahelp'            => "Para restaurar a página inteira, deixe todas as caixas de selecção desseleccionadas e clique em '''''Restaurar'''''. Para efectuar uma restauração selectiva, seleccione as caixas correspondentes às
 edições a serem restauradas e clique em '''''Restaurar'''''. Clicar em '''''Limpar''''' irá limpar o
 campo de comentário e todas as caixas de selecção.",
@@ -2059,7 +2062,6 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'tooltip-n-recentchanges'         => 'A lista de mudanças recentes nesta wiki.',
 'tooltip-n-randompage'            => 'Carregar página aleatória',
 'tooltip-n-help'                  => 'Um local reservado para auxílio.',
-'tooltip-n-sitesupport'           => 'Ajude-nos',
 'tooltip-t-whatlinkshere'         => 'Lista de todas as páginas que ligam-se a esta',
 'tooltip-t-recentchangeslinked'   => 'Mudanças recentes em páginas relacionadas a esta',
 'tooltip-feed-rss'                => 'Feed RSS desta página',

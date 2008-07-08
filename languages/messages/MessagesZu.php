@@ -79,7 +79,6 @@ $messages = array(
 'mainpage-description' => 'Ikhasi Elikhulu',
 'portal'               => 'Umnyango wamgwamanda',
 'portal-url'           => 'Project:Umnyango wamgwamanda',
-'sitesupport'          => 'Izipho',
 
 'newmessageslink'         => 'Imilayezo emisha',
 'youhavenewmessagesmulti' => 'Uyanemilayezo emisha e $1',

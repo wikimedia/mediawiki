@@ -366,8 +366,6 @@ $messages = array(
 'portal-url'           => 'Project:Portal Komuniti',
 'privacy'              => 'Dasar privasi',
 'privacypage'          => 'Project:Dasar privasi',
-'sitesupport'          => 'Derma',
-'sitesupport-url'      => 'Project:Dana',
 
 'badaccess'        => 'Tidak dibenarkan',
 'badaccess-group0' => 'Anda tidak dibenarkan melaksanakan tindakan ini.',
@@ -1446,6 +1444,7 @@ menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
 'nopagetext'              => 'Laman sasaran yang anda nyatakan tidak wujud.',
 'pager-newer-n'           => '$1 berikutnya',
 'pager-older-n'           => '$1 sebelumnya',
+'suppress'                => 'Kawalan',
 
 # Book sources
 'booksources'               => 'Sumber buku',
@@ -2087,7 +2086,6 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'tooltip-n-recentchanges'         => 'Senarai perubahan terkini dalam wiki ini.',
 'tooltip-n-randompage'            => 'Buka laman rawak',
 'tooltip-n-help'                  => 'Tempat mencari jawapan.',
-'tooltip-n-sitesupport'           => 'Bantu kami',
 'tooltip-t-whatlinkshere'         => 'Senarai laman wiki yang mengandungi pautan ke laman ini',
 'tooltip-t-recentchangeslinked'   => 'Perubahan terkini bagi semua laman yang dipaut dari laman ini',
 'tooltip-feed-rss'                => 'Suapan RSS bagi laman ini',

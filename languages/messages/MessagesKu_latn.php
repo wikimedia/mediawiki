@@ -255,8 +255,6 @@ $messages = array(
 'portal-url'           => 'Project:Portala komê',
 'privacy'              => "Parastinê data'yan",
 'privacypage'          => "Project:Parastinê data'yan",
-'sitesupport'          => 'Ji bo Weqfa Wikimedia Beş',
-'sitesupport-url'      => 'Project:Alîkarîya diravî',
 
 'badaccess'        => 'Eror li bi dest Hînan',
 'badaccess-group0' => 'Tu nikanî vê tiştî bikê.',

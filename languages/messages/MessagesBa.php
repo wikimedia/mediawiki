@@ -149,8 +149,6 @@ $messages = array(
 'portal'               => 'Берләшмә',
 'portal-url'           => 'Project:Берләшмә ҡоро',
 'privacy'              => 'Сер һаҡлау сәйәсәте',
-'sitesupport'          => 'Ярҙам итеү',
-'sitesupport-url'      => 'Project:Эскерһеҙ ярҙам',
 
 'editsection' => 'үҙгәртергә',
 'toc'         => 'Эстәлеге',
