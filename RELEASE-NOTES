@@ -425,6 +425,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14745) Image moving works on sites that transform thumbnails via 404
 * (bug 14159) Use of MEMCACHE_COMPRESSED constant no longer causes E_NOTICE 
   on PHP installs with the Memcache module installed.
+* (bug 2186) Document.write() in wikibits caused failures when using
+  application/xhtml+xml. The calls to this have been removed.
 
 === API changes in 1.13 ===
 
