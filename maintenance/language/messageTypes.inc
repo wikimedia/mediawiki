@@ -40,7 +40,6 @@ $wgIgnoredMessages = array(
 	'accesskey-n-recentchanges',
 	'accesskey-n-randompage',
 	'accesskey-n-help',
-	'accesskey-n-sitesupport',
 	'accesskey-t-whatlinkshere',
 	'accesskey-t-recentchangeslinked',
 	'accesskey-feed-rss',
