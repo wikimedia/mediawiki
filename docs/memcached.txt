@@ -1,15 +1,19 @@
-memcached support for MediaWiki:
-
-From ca August 2003, MediaWiki has optional support for memcached, a
-"high-performance, distributed memory object caching system".
-For general information on it, see: http://www.danga.com/memcached/
+MediaWiki has optional support for memcached, a "high-performance, 
+distributed memory object caching system". For general information 
+on it, see: http://www.danga.com/memcached/
 
 Memcached is likely more trouble than a small site will need, but
 for a larger site with heavy load, like Wikipedia, it should help
 lighten the load on the database servers by caching data and objects
 in memory.
 
-== Requirements ==
+== Installation ==
+
+Packages are available for Fedora, Debian, Ubuntu and probably other
+Linux distributions. If you there's no package available for your 
+distribution, you can compile it from source.
+
+== Compilation ==
 
 * PHP must be compiled with --enable-sockets
 
@@ -35,18 +39,21 @@ server is appropriately firewalled, and that the port(s) used for
 memcached servers are not publicly accessible. Otherwise, anyone on
 the internet can put data into and read data from your cache.
 
-An attacker familiar with MediaWiki internals could use this to give
-themselves developer access and delete all data from the wiki's
-database, as well as getting all users' password hashes and e-mail
-addresses.
+An attacker familiar with MediaWiki internals could use this to steal
+passwords and email addresses, or to make themselves a sysop and 
+install malicious javascript on the site. There may be other types 
+of vulnerability, no audit has been done -- so be safe and keep it 
+behind a firewall.
 ********************* W A R N I N G ! ! ! ! ! ***********************
 
 == Setup ==
 
-If you want to start small, just run one memcached on your web
-server:
+If you installed memcached using a distro, the daemon should be started
+automatically using /etc/init.d/memcached.
 
-  memcached -d -l 127.0.0.1 -p 11000 -m 64
+To start the daemon manually, use something like:
+
+  memcached -d -l 127.0.0.1 -p 11211 -m 64
 
 (to run in daemon mode, accessible only via loopback interface,
 on port 11000, using up to 64MB of memory)
@@ -54,7 +61,7 @@ on port 11000, using up to 64MB of memory)
 In your LocalSettings.php file, set:
 
 	$wgMainCacheType = CACHE_MEMCACHED;
-	$wgMemCachedServers = array( "127.0.0.1:11000" );
+	$wgMemCachedServers = array( "127.0.0.1:11211" );
 
 The wiki should then use memcached to cache various data. To use
 multiple servers (physically separate boxes or multiple caches
@@ -70,15 +77,10 @@ usage evenly), make its entry a subarray:
 
 == PHP client for memcached ==
 
-As of this writing, MediaWiki includes version 1.0.10 of the PHP
-memcached client by Ryan Gilfether <hotrodder@rocketmail.com>.
-You'll find some documentation for it in the 'php-memcached'
-subdirectory under the present one.
+MediaWiki uses a fork of Ryan T. Dean's pure-PHP memcached client.
+The newer PECL module is not yet supported.
 
-We intend to track updates, but if you want to check for the lastest
-released version, see http://www.danga.com/memcached/apis.bml
-
-MediaWiki use three object for memcaching:
+MediaWiki uses three object for object caching:
 * $wgMemc, controlled by $wgMainCacheType
 * $parserMemc, controlled by $wgParserCacheType
 * $messageMemc, controlled by $wgMessageCacheType
@@ -92,6 +94,8 @@ By default, $wgMemc is used but when it is $parserMemc or $messageMemc
 this is mentionned below.
 
 == Keys used ==
+
+(incomplete, out of date)
 
 Ajax Search:
 	key: $wgDBname:ajaxsearch:md5( $search )

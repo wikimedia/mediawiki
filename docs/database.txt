@@ -158,12 +158,9 @@ enclose small groups of queries in their own transaction. Use the
 following syntax:
 
 $dbw = wfGetDB( DB_MASTER );
-$dbw->immediateBegin();
+$dbw->begin();
 /* Do queries */
-$dbw->immediateCommit();
-
-There are functions called begin() and commit() but they don't do what
-you would expect. Don't use them.
+$dbw->commit();
 
 Use of locking reads (e.g. the FOR UPDATE clause) is not advised. They
 are poorly implemented in InnoDB and will cause regular deadlock errors.
