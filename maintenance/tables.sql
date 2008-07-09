@@ -1247,7 +1247,7 @@ CREATE TABLE /*$wgDBprefix*/recentlinkchanges (
   rlc_timestamp binary(14) NOT NULL default '',
   -- 1: insert; 2: deletion;
   -- should probably make this an enum...
-  rlc_action tinyint(1) NOT NULL default 0,
+  rlc_action tinyint NOT NULL default 0,
 
   -- page where the links are on
   rlc_from int NOT NULL,
