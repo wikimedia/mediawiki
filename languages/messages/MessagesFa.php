@@ -2711,6 +2711,7 @@ $1',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '؛',
+'comma-separator'     => '،&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '&rarr; صفحهٔ پیشین',
