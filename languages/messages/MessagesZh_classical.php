@@ -1551,6 +1551,7 @@ $NEWPAGE
 'block-log-flags-nocreate'    => '禁增簿',
 'block-log-flags-noautoblock' => '止自禁',
 'block-log-flags-noemail'     => '郵禁焉',
+'block-log-flags-angry-autoblock' => '強自封用也',
 'range_block_disabled'        => '未准有秩圍禁。',
 'ipb_expiry_invalid'          => '屆期不明。',
 'ipb_expiry_temp'             => '藏簿禁封必為長久也。',
