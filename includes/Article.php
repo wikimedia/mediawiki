@@ -1458,14 +1458,14 @@ class Article {
 
 				# Update page
 				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
-				
-				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, $baseRevId) );
 
 				if( !$ok ) {
 					/* Belated edit conflict! Run away!! */
 					$good = false;
 					$dbw->rollback();
 				} else {
+					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId ) );
+
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
