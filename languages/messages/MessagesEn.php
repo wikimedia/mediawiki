@@ -2384,6 +2384,7 @@ See the [[Special:Ipblocklist|IP block list]] for the list of currently operatio
 'block-log-flags-nocreate'    => 'account creation disabled',
 'block-log-flags-noautoblock' => 'autoblock disabled',
 'block-log-flags-noemail'     => 'e-mail blocked',
+'block-log-flags-angry-autoblock' => 'enhanced autoblock enabled',
 'range_block_disabled'        => 'The sysop ability to create range blocks is disabled.',
 'ipb_expiry_invalid'          => 'Expiry time invalid.',
 'ipb_expiry_temp'             => 'Hidden username blocks must be permanent.',

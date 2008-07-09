@@ -35,7 +35,7 @@ class LogPage {
 	const DELETED_USER = 4;
     const DELETED_RESTRICTED = 8;
 	/* @access private */
-	var $type, $action, $comment, $params, $target;
+	var $type, $action, $comment, $params, $target, $doer;
 	/* @acess public */
 	var $updateRecentChanges;
 
@@ -56,7 +56,6 @@ class LogPage {
 		$fname = 'LogPage::saveContent';
 
 		$dbw = wfGetDB( DB_MASTER );
-		$uid = $wgUser->getId();
 		$log_id = $dbw->nextSequenceValue( 'log_log_id_seq' );
 
 		$this->timestamp = $now = wfTimestampNow();
@@ -65,7 +64,7 @@ class LogPage {
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $now ),
-			'log_user' => $uid,
+			'log_user' => $this->doer->getId(),
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
 			'log_comment' => $this->comment,
@@ -83,7 +82,7 @@ class LogPage {
 			if( !isset($wgLogRestrictions[$this->type]) || $wgLogRestrictions[$this->type]=='*' ) {
 				$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
 				$rcComment = $this->getRcComment();
-				RecentChange::notifyLog( $now, $titleObj, $wgUser, $rcComment, '',
+				RecentChange::notifyLog( $now, $titleObj, $this->doer, $rcComment, '',
 					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
 			}
 		}
@@ -246,8 +245,9 @@ class LogPage {
 	 * @param object &$target A title object.
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMsg.* functions
+	 * @param User $doer The user doing the action
 	 */
-	function addEntry( $action, $target, $comment, $params = array() ) {
+	function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		if ( !is_array( $params ) ) {
 			$params = array( $params );
 		}
@@ -256,6 +256,15 @@ class LogPage {
 		$this->target = $target;
 		$this->comment = $comment;
 		$this->params = LogPage::makeParamBlob( $params );
+		
+		if ($doer === null) {
+			global $wgUser;
+			$doer = $wgUser->getId();
+		} elseif (!is_object( $doer ) ) {
+			$doer = User::newFromId( $doer );
+		}
+		
+		$this->doer = $doer;
 
 		$this->actionText = LogPage::actionText( $this->type, $action, $target, NULL, $params );
 
