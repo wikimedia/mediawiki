@@ -917,7 +917,7 @@ class Revision {
 			$dbw = wfGetDB( DB_MASTER );
 			$timestamp = $dbw->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 		}
-		return $timestamp;
+		return wfTimestamp( TS_MW, $timestamp );
 	}
 
 	/**

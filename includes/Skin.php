@@ -1205,8 +1205,7 @@ END;
 	function lastModified() {
 		global $wgLang, $wgArticle;
 		if( $this->mRevisionId ) {
-			$timestamp = wfTimestamp( TS_MW, 
-				Revision::getTimestampFromId( $this->mRevisionId, $wgArticle->getId() ) );
+			$timestamp = Revision::getTimestampFromId( $this->mRevisionId, $wgArticle->getId() );
 		} else {
 			$timestamp = $wgArticle->getTimestamp();
 		}
