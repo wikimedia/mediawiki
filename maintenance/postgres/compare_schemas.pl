@@ -265,6 +265,7 @@ real NUMERIC
 float NUMERIC
 
 ## TEXT:
+varchar(15) TEXT
 varchar(32) TEXT
 varchar(70) TEXT
 varchar(255) TEXT
@@ -330,6 +331,7 @@ qc_type           varbinary(32)  TEXT
 qcc_type          varbinary(32)  TEXT
 qci_type          varbinary(32)  TEXT
 rc_params         blob           TEXT
+rlc_to_blob       blob           TEXT
 ug_group          varbinary(16)  TEXT
 user_email_token  binary(32)     TEXT
 user_ip           varbinary(40)  TEXT
@@ -364,17 +366,18 @@ math_inputhash  varbinary(16) BYTEA
 math_outputhash varbinary(16) BYTEA
 
 ## Namespaces: not need for such a high range
-ar_namespace   int SMALLINT
-job_namespace  int SMALLINT
-log_namespace  int SMALLINT
-page_namespace int SMALLINT
-pl_namespace   int SMALLINT
-pt_namespace   int SMALLINT
-qc_namespace   int SMALLINT
-rc_namespace   int SMALLINT
-rd_namespace   int SMALLINT
-tl_namespace   int SMALLINT
-wl_namespace   int SMALLINT
+ar_namespace     int SMALLINT
+job_namespace    int SMALLINT
+log_namespace    int SMALLINT
+page_namespace   int SMALLINT
+pl_namespace     int SMALLINT
+pt_namespace     int SMALLINT
+qc_namespace     int SMALLINT
+rc_namespace     int SMALLINT
+rd_namespace     int SMALLINT
+rlc_to_namespace int SMALLINT
+tl_namespace     int SMALLINT
+wl_namespace     int SMALLINT
 
 ## Easy enough to change if a wiki ever does grow this big:
 ss_good_articles bigint INTEGER
