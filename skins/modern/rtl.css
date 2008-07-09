@@ -141,9 +141,6 @@ table.filehistory th {
 html > body div#mw_contentholder ul {
 	display: table;
 }
-html > body div#mw_contentholder ol {
-	display: table;
-}
 html > body div#mw_contentholder ul#filetoc {
 	display: block;
 }
