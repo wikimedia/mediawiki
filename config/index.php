@@ -602,7 +602,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
 	$conf->setSchema( 
-		importPost( "DBschema", "mysql4" ), 
+		importPost( "DBschema", "mysql5-binary" ), 
 		importPost( "DBengine", "InnoDB" ) );
 
 	## Postgres specific:
@@ -1421,16 +1421,17 @@ if( count( $errs ) ) {
 	<div class="config-input"><label class="column">Database character set</label>
 		<div>Select one:</div>
 		<ul class="plain">
-		<li><?php aField( $conf, "DBschema", "Backwards-compatible UTF-8", "radio", "mysql4" ); ?></li>
-		<li><?php aField( $conf, "DBschema", "Experimental MySQL 4.1/5.0 UTF-8", "radio", "mysql5" ); ?></li>
-		<li><?php aField( $conf, "DBschema", "Experimental MySQL 4.1/5.0 binary", "radio", "mysql5-binary" ); ?></li>
+		<li><?php aField( $conf, "DBschema", "MySQL 4.1/5.0 binary", "radio", "mysql5-binary" ); ?></li>
+		<li><?php aField( $conf, "DBschema", "MySQL 4.1/5.0 UTF-8", "radio", "mysql5" ); ?></li>
+		<li><?php aField( $conf, "DBschema", "MySQL 4.0 backwards-compatible UTF-8", "radio", "mysql4" ); ?></li>
 		</ul>
 	</div>
 	<p class="config-desc">
-		<b>EXPERIMENTAL:</b> You can enable explicit Unicode charset support
-		for MySQL 4.1 and 5.0 servers. This is not well tested and may
-		cause things to break. <b>If upgrading an older installation, leave
-		in backwards-compatible mode.</b>
+		This option is ignored on upgrade, the same character set will be kept. 
+		<br/><br/>
+		<b>WARNING:</b> If you use <b>backwards-compatible UTF-8</b> on MySQL 4.1+, and subsequently back up the database with <tt>mysqldump</tt>, it may destroy all non-ASCII characters, irreversibly corrupting your backups!.
+		<br/><br/>
+		In <b>binary mode</b>, MediaWiki stores UTF-8 text to the database in binary fields. This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters. In <b>UTF-8 mode</b>, MySQL will know what character set your data is in, and can present and convert it appropriately, but it won't let you store characters above the <a target="_blank" href="http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes">Basic Multilingual Plane</a>.
 	</p>
 	</fieldset>
 
