@@ -2443,6 +2443,9 @@ class Title {
 				if( $nt->getNamespace() != NS_IMAGE ) {
 					$errors[] = array('imagenocrossnamespace');
 				}
+				if( !wfIsValidFileName( $nt ) ) {
+					$errors[] = array('imageinvalidfilename');
+				}
 				if( !File::checkExtensionCompatibility( $file, $nt->getDbKey() ) ) {
 					$errors[] = array('imagetypemismatch');
 				}
