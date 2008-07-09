@@ -245,10 +245,13 @@ class PageHistory {
 		}
 
 		if ( !is_null( $size = $rev->getSize() ) && $rev->userCan( Revision::DELETED_TEXT ) ) {
-			if ( $size == 0 )
-				$stxt = wfMsgHtml( 'historyempty' );
-			else
-				$stxt = wfMsgExt( 'historysize', array( 'parsemag' ), $wgLang->formatNum( $size ) );
+			if ( $size == 0 ) {
+				$stxt = wfMsg( 'historyempty' );
+			} else {
+				$stxt = wfMsg( 'nbytes', $wgLang->formatNum( $size ) );
+				$stxt = "($stxt)";
+			}
+			$stxt = htmlspecialchars( $stxt );
 			$s .= " <span class=\"history-size\">$stxt</span>";
 		}
 

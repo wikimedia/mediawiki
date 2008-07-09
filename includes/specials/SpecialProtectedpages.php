@@ -89,10 +89,13 @@ class ProtectedPagesForm {
 		}
 
 		if (!is_null($size = $row->page_len)) {
-			if ($size == 0)
-				$stxt = ' <small>' . wfMsgHtml('historyempty') . '</small>';
-			else
-				$stxt = ' <small>' . wfMsgHtml('historysize', $wgLang->formatNum( $size ) ) . '</small>';
+			if ($size == 0) {
+				$stxt = wfMsg('historyempty');
+			} else {
+				$stxt = wfMsg('nbytes', $wgLang->formatNum( $size ) );
+				$stxt = "($stxt)";
+			}
+			$stxt = htmlspecialchars( $stxt );
 			$stxt = $wgContLang->getDirMark() . $stxt;
 		}
 
