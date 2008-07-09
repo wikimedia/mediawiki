@@ -862,7 +862,10 @@ function wfMerge( $old, $mine, $yours, &$result ){
  */
 function wfVarDump( $var ) {
 	global $wgOut;
-	$s = str_replace("\n","<br />\n", var_export( $var, true ) . "\n");
+	ob_start();
+	var_dump( $var );
+	$s = str_replace("\n","<br />\n", ob_get_contents() . "\n");
+	ob_end_clean();
 	if ( headers_sent() || !@is_object( $wgOut ) ) {
 		print $s;
 	} else {
@@ -2363,4 +2366,25 @@ function wfGenerateToken( $salt = '' ) {
  	$salt = serialize($salt);
 
  	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
+}
+
+/**
+ * Checks filename for validity
+ * @param mixed $title Filename or title to check
+ */
+function wfIsValidFileName( $name ) {
+	if( !$name instanceof Title ) 
+		if( !Title::makeTitleSafe( NS_IMAGE, $name ) )
+			return false;
+	else
+		$name = $name->getText();
+
+	if( in_string( ':', $name ) )
+		return false;
+	elseif( wfBaseName( $name ) != $name )
+		return false;
+	elseif( wfIsWindows() && ( in_string( '*', $name ) || in_string( '?', $name ) ) )
+		return false;
+	else
+		return true;
 }

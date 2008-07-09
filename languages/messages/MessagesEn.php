@@ -2485,6 +2485,7 @@ cannot move a page over itself.',
 cannot move pages from and into that namespace.',
 'imagenocrossnamespace'   => 'Cannot move file to non-file namespace',
 'imagetypemismatch'       => 'The new file extension does not match its type',
+'imageinvalidfilename'    => 'Target image file name is invalid',
 
 # Export
 'export'            => 'Export pages',
