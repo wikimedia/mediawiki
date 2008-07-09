@@ -696,8 +696,8 @@ echo "error!\n";
 		return 0;
 	}
 
-	function setFakeSlaveLag() {}
-	function setFakeMaster() {}
+	function setFakeSlaveLag( $lag ) {}
+	function setFakeMaster( $enabled = true ) {}
 
 	function getDBname() {
 		return $this->mDBname;

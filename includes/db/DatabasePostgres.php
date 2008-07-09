@@ -1357,8 +1357,8 @@ END;
 		return false;
 	}
 
-	function setFakeSlaveLag() {}
-	function setFakeMaster() {}
+	function setFakeSlaveLag( $lag ) {}
+	function setFakeMaster( $enabled = true ) {}
 
 	function getDBname() {
 		return $this->mDBname;
