@@ -604,7 +604,6 @@ $wgMessageStructure = array(
 		'deletedrev',
 		'histfirst',
 		'histlast',
-		'historysize',
 		'historyempty',
 	),
 	'history-feed' => array(
@@ -1619,6 +1618,7 @@ $wgMessageStructure = array(
 		'block-log-flags-nocreate',
 		'block-log-flags-noautoblock',
 		'block-log-flags-noemail',
+		'block-log-flags-angry-autoblock',
 		'range_block_disabled',
 		'ipb_expiry_invalid',
 		'ipb_expiry_temp',
