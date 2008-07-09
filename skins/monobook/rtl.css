@@ -227,9 +227,6 @@ table.filehistory th {
 html > body div#bodyContent ul {
 	display: table;
 }
-html > body div#bodyContent ol {
-	display: table;
-}
 html > body div#bodyContent ul#filetoc {
 	display: block;
 }
