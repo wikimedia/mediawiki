@@ -193,6 +193,7 @@ class UserMailer {
 					}
 				} else {
 					$sent = mail( $to->toString(), wfQuotedPrintable( $subject ), $body, $headers );
+					print "RESULT: $sent.";
 				}
 			} else {
 				$wgErrorString = 'PHP is not configured to send mail';
@@ -222,7 +223,7 @@ class UserMailer {
 	 */
 	static function errorHandler( $code, $string ) {
 		global $wgErrorString;
-		$wgErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
+		$wgErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string . "XXXXXXXXXXXXXXXXXX");
 	}
 
 	/**
