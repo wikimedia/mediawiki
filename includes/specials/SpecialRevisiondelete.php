@@ -419,7 +419,7 @@ class RevisionDeleteForm {
 		$wgOut->addHtml(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
 				'id' => 'mw-revdel-form-filerevisions' ) ) .
-			Xml::fiedlset( wfMsg( 'revdelete-legend' ) )
+			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
 		);
 		// FIXME: all items checked for just one file are checked, even if not set for the others
 		foreach( $this->checks as $item ) {
