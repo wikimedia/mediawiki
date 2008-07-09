@@ -259,7 +259,7 @@ class LogPage {
 		
 		if ($doer === null) {
 			global $wgUser;
-			$doer = $wgUser->getId();
+			$doer = $wgUser;
 		} elseif (!is_object( $doer ) ) {
 			$doer = User::newFromId( $doer );
 		}
