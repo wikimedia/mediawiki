@@ -486,10 +486,6 @@ abstract class IndexPager implements Pager {
  * @ingroup Pager
  */
 abstract class AlphabeticPager extends IndexPager {
-	function __construct() {
-		parent::__construct();
-	}
-
 	/**
 	 * Shamelessly stolen bits from ReverseChronologicalPager,
 	 * didn't want to do class magic as may be still revamped
@@ -501,11 +497,12 @@ abstract class AlphabeticPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
+		$opts = array( 'parsemag', 'escapenoentities' );
 		$linkTexts = array(
-			'prev' => wfMsgHtml( 'prevn', $wgLang->formatNum( $this->mLimit ) ),
-			'next' => wfMsgHtml( 'nextn', $wgLang->formatNum($this->mLimit ) ),
-			'first' => wfMsgHtml( 'page_first' ),
-			'last' => wfMsgHtml( 'page_last' )
+			'prev' => wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $this->mLimit ) ),
+			'next' => wfMsgExt( 'nextn', $opts, $wgLang->formatNum($this->mLimit ) ),
+			'first' => wfMsgExt( 'page_first', $opts ),
+			'last' => wfMsgExt( 'page_last', $opts )
 		);
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
