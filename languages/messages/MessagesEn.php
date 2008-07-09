@@ -1209,7 +1209,6 @@ Legend: (cur) = difference with current version,
 'deletedrev'            => '[deleted]',
 'histfirst'             => 'Earliest',
 'histlast'              => 'Latest',
-'historysize'           => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'          => '(empty)',
 
 # Revision feed

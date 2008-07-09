@@ -1086,10 +1086,12 @@ class UndeleteForm {
 		$userLink = $sk->revUserTools( $rev );
 
 		if(!is_null($size = $row->ar_len)) {
-			if($size == 0)
-				$stxt = wfMsgHtml('historyempty');
-			else
-				$stxt = wfMsgHtml('historysize', $wgLang->formatNum( $size ) );
+			if($size == 0) {
+				$stxt = wfMsg('historyempty');
+			} else {
+				$stxt = '(' . wfMsg('nbytes', $wgLang->formatNum( $size ) ) . ')';
+			}
+			$stxt = htmlspecialchars( $stxt );
 		}
 		$comment = $sk->revComment( $rev );
 		$revdlink = '';
@@ -1131,12 +1133,13 @@ class UndeleteForm {
 		}
  		$userLink = $this->getFileUser( $file, $sk );
 		$data =
-			wfMsgHtml( 'widthheight',
+			wfMsg( 'widthheight',
 				$wgLang->formatNum( $row->fa_width ),
 				$wgLang->formatNum( $row->fa_height ) ) .
 			' (' .
-			wfMsgHtml( 'nbytes', $wgLang->formatNum( $row->fa_size ) ) .
+			wfMsg( 'nbytes', $wgLang->formatNum( $row->fa_size ) ) .
 			')';
+		$data = htmlspecialchars( $data );
 		$comment = $this->getFileComment( $file, $sk );
 		$revdlink = '';
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
