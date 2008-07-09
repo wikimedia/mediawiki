@@ -86,7 +86,7 @@ class memcached
 		/**
 		 * Flag: indicates data is compressed
 		 */
-		const MCOMPRESSED = 2;
+		const COMPRESSED = 2;
 
 		// }}}
 
@@ -908,7 +908,7 @@ class memcached
                return false;
             }
 
-            if ($this->_have_zlib && $flags & memcached::MCOMPRESSED)
+            if ($this->_have_zlib && $flags & memcached::COMPRESSED)
                $ret[$rkey] = gzuncompress($ret[$rkey]);
 
             $ret[$rkey] = rtrim($ret[$rkey]);
@@ -973,7 +973,7 @@ class memcached
                $this->_debugprint(sprintf("client: compressing data; was %d bytes is now %d bytes\n", $len, $c_len));
             $val = $c_val;
             $len = $c_len;
-            $flags |= memcached::MCOMPRESSED;
+            $flags |= memcached::COMPRESSED;
          }
       }
       if (!$this->_safe_fwrite($sock, "$cmd $key $flags $exp $len\r\n$val\r\n"))
