@@ -1,6 +1,9 @@
 <?php
 
-require_once( dirname(__FILE__).'/includes/ProfilerStub.php' );
+#require_once( dirname(__FILE__).'/includes/ProfilerStub.php' );
+
+ require_once(  dirname(__FILE__).'/includes/Profiler.php' );
+ $wgProfiler = new Profiler;
 
 /**
  * To use a profiler, delete the line above and add something like this:
