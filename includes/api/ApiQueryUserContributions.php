@@ -169,7 +169,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			));
 
 		$this->addFieldsIf('rev_page', $this->fld_ids);
-		$this->addFieldsIf('rev_id', $this->fld_ids);
+		$this->addFieldsIf('rev_id', $this->fld_ids || $this->fld_flags);
+		$this->addFieldsIf('page_latest', $this->fld_flags);
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // Should this field be exposed?
 		$this->addFieldsIf('rev_comment', $this->fld_comment);
 		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
@@ -202,6 +203,8 @@ class ApiQueryContributions extends ApiQueryBase {
 				$vals['new'] = '';
 			if ($row->rev_minor_edit)
 				$vals['minor'] = '';
+			if ($row->page_latest == $row->rev_id)
+				$vals['top'] = '';
 		}
 
 		if ($this->fld_comment && !empty ($row->rev_comment))
