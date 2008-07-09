@@ -14,6 +14,8 @@ class ZhConverter extends LanguageConverter {
 								$markup=array(),
 								$flags = array(),
 								$manualLevel = array() ) {
+		$this->mDescCodeSep = '：';
+		$this->mDescVarSep = '；';
 		parent::__construct($langobj, $maincode,
 									$variants,
 									$variantfallbacks,
@@ -63,14 +65,6 @@ class ZhConverter extends LanguageConverter {
 	   $noParse is there for compatibility with LanguageConvert::markNoConversion
 	 */
 	function markNoConversion($text, $noParse = false) {
-		return $text;
-	}
-	
-	/* description of convert code in chinese language*/
-	function getRulesDesc($bidtable,$unidtable){
-		$text=parent::getRulesDesc($bidtable,$unidtable);
-		$text=str_replace(':','：',$text);
-		$text=str_replace(';','；',$text);
 		return $text;
 	}
 
