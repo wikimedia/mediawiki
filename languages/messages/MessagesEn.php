@@ -2311,17 +2311,17 @@ $1',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
-'blockip'                     => 'Block user',
-'blockip-legend'              => 'Block user',
-'blockiptext'                 => 'Use the form below to block write access from a specific IP address or username.
+'blockip'                         => 'Block user',
+'blockip-legend'                  => 'Block user',
+'blockiptext'                     => 'Use the form below to block write access from a specific IP address or username.
 This should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].
 Fill in a specific reason below (for example, citing particular pages that were vandalized).',
-'ipaddress'                   => 'IP Address:',
-'ipadressorusername'          => 'IP Address or username:',
-'ipbexpiry'                   => 'Expiry:',
-'ipbreason'                   => 'Reason:',
-'ipbreasonotherlist'          => 'Other reason',
-'ipbreason-dropdown'          => '*Common block reasons
+'ipaddress'                       => 'IP Address:',
+'ipadressorusername'              => 'IP Address or username:',
+'ipbexpiry'                       => 'Expiry:',
+'ipbreason'                       => 'Reason:',
+'ipbreasonotherlist'              => 'Other reason',
+'ipbreason-dropdown'              => '*Common block reasons
 ** Inserting false information
 ** Removing content from pages
 ** Spamming links to external sites
@@ -2329,78 +2329,78 @@ Fill in a specific reason below (for example, citing particular pages that were 
 ** Intimidating behaviour/harassment
 ** Abusing multiple accounts
 ** Unacceptable username',
-'ipbanononly'                 => 'Block anonymous users only',
-'ipbcreateaccount'            => 'Prevent account creation',
-'ipbemailban'                 => 'Prevent user from sending e-mail',
-'ipbenableautoblock'          => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
-'ipbsubmit'                   => 'Block this user',
-'ipbother'                    => 'Other time:',
-'ipboptions'                  => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'              => 'other',
-'ipbotherreason'              => 'Other/additional reason:',
-'ipbhidename'                 => 'Hide username from the block log, active block list and user list',
-'ipbwatchuser'                => "Watch this user's user and talk pages",
-'badipaddress'                => 'Invalid IP address',
-'blockipsuccesssub'           => 'Block succeeded',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] has been blocked.<br />
+'ipbanononly'                     => 'Block anonymous users only',
+'ipbcreateaccount'                => 'Prevent account creation',
+'ipbemailban'                     => 'Prevent user from sending e-mail',
+'ipbenableautoblock'              => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
+'ipbsubmit'                       => 'Block this user',
+'ipbother'                        => 'Other time:',
+'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'other',
+'ipbotherreason'                  => 'Other/additional reason:',
+'ipbhidename'                     => 'Hide username from the block log, active block list and user list',
+'ipbwatchuser'                    => "Watch this user's user and talk pages",
+'badipaddress'                    => 'Invalid IP address',
+'blockipsuccesssub'               => 'Block succeeded',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
 See [[Special:Ipblocklist|IP block list]] to review blocks.',
-'ipb-edit-dropdown'           => 'Edit block reasons',
-'ipb-unblock-addr'            => 'Unblock $1',
-'ipb-unblock'                 => 'Unblock a username or IP address',
-'ipb-blocklist-addr'          => 'View existing blocks for $1',
-'ipb-blocklist'               => 'View existing blocks',
-'unblockip'                   => 'Unblock user',
-'unblockiptext'               => 'Use the form below to restore write access to a previously blocked IP address or username.',
-'ipusubmit'                   => 'Unblock this address',
-'unblocked'                   => '[[User:$1|$1]] has been unblocked',
-'unblocked-id'                => 'Block $1 has been removed',
-'ipblocklist'                 => 'List of blocked IP addresses and usernames',
-'ipblocklist-legend'          => 'Find a blocked user',
-'ipblocklist-username'        => 'Username or IP address:',
-'ipblocklist-summary'         => '', # only translate this message to other languages if you have to change it
-'ipblocklist-submit'          => 'Search',
-'blocklistline'               => '$1, $2 blocked $3 ($4)',
-'infiniteblock'               => 'infinite',
-'expiringblock'               => 'expires $1',
-'anononlyblock'               => 'anon. only',
-'noautoblockblock'            => 'autoblock disabled',
-'createaccountblock'          => 'account creation blocked',
-'emailblock'                  => 'e-mail blocked',
-'ipblocklist-empty'           => 'The blocklist is empty.',
-'ipblocklist-no-results'      => 'The requested IP address or username is not blocked.',
-'blocklink'                   => 'block',
-'unblocklink'                 => 'unblock',
-'contribslink'                => 'contribs',
-'autoblocker'                 => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
+'ipb-edit-dropdown'               => 'Edit block reasons',
+'ipb-unblock-addr'                => 'Unblock $1',
+'ipb-unblock'                     => 'Unblock a username or IP address',
+'ipb-blocklist-addr'              => 'View existing blocks for $1',
+'ipb-blocklist'                   => 'View existing blocks',
+'unblockip'                       => 'Unblock user',
+'unblockiptext'                   => 'Use the form below to restore write access to a previously blocked IP address or username.',
+'ipusubmit'                       => 'Unblock this address',
+'unblocked'                       => '[[User:$1|$1]] has been unblocked',
+'unblocked-id'                    => 'Block $1 has been removed',
+'ipblocklist'                     => 'List of blocked IP addresses and usernames',
+'ipblocklist-legend'              => 'Find a blocked user',
+'ipblocklist-username'            => 'Username or IP address:',
+'ipblocklist-summary'             => '', # only translate this message to other languages if you have to change it
+'ipblocklist-submit'              => 'Search',
+'blocklistline'                   => '$1, $2 blocked $3 ($4)',
+'infiniteblock'                   => 'infinite',
+'expiringblock'                   => 'expires $1',
+'anononlyblock'                   => 'anon. only',
+'noautoblockblock'                => 'autoblock disabled',
+'createaccountblock'              => 'account creation blocked',
+'emailblock'                      => 'e-mail blocked',
+'ipblocklist-empty'               => 'The blocklist is empty.',
+'ipblocklist-no-results'          => 'The requested IP address or username is not blocked.',
+'blocklink'                       => 'block',
+'unblocklink'                     => 'unblock',
+'contribslink'                    => 'contribs',
+'autoblocker'                     => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
 The reason given for $1\'s block is: "$2"',
-'blocklogpage'                => 'Block log',
-'blocklogentry'               => 'blocked [[$1]] with an expiry time of $2 $3',
-'blocklogtext'                => 'This is a log of user blocking and unblocking actions.
+'blocklogpage'                    => 'Block log',
+'blocklogentry'                   => 'blocked [[$1]] with an expiry time of $2 $3',
+'blocklogtext'                    => 'This is a log of user blocking and unblocking actions.
 Automatically blocked IP addresses are not listed.
 See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
-'unblocklogentry'             => 'unblocked $1',
-'block-log-flags-anononly'    => 'anonymous users only',
-'block-log-flags-nocreate'    => 'account creation disabled',
-'block-log-flags-noautoblock' => 'autoblock disabled',
-'block-log-flags-noemail'     => 'e-mail blocked',
+'unblocklogentry'                 => 'unblocked $1',
+'block-log-flags-anononly'        => 'anonymous users only',
+'block-log-flags-nocreate'        => 'account creation disabled',
+'block-log-flags-noautoblock'     => 'autoblock disabled',
+'block-log-flags-noemail'         => 'e-mail blocked',
 'block-log-flags-angry-autoblock' => 'enhanced autoblock enabled',
-'range_block_disabled'        => 'The sysop ability to create range blocks is disabled.',
-'ipb_expiry_invalid'          => 'Expiry time invalid.',
-'ipb_expiry_temp'             => 'Hidden username blocks must be permanent.',
-'ipb_already_blocked'         => '"$1" is already blocked',
-'ipb_cant_unblock'            => 'Error: Block ID $1 not found. It may have been unblocked already.',
-'ipb_blocked_as_range'        => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
+'range_block_disabled'            => 'The sysop ability to create range blocks is disabled.',
+'ipb_expiry_invalid'              => 'Expiry time invalid.',
+'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
+'ipb_already_blocked'             => '"$1" is already blocked',
+'ipb_cant_unblock'                => 'Error: Block ID $1 not found. It may have been unblocked already.',
+'ipb_blocked_as_range'            => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
 It is, however, blocked as part of the range $2, which can be unblocked.',
-'ip_range_invalid'            => 'Invalid IP range.',
-'blockme'                     => 'Block me',
-'proxyblocker'                => 'Proxy blocker',
-'proxyblocker-disabled'       => 'This function is disabled.',
-'proxyblockreason'            => 'Your IP address has been blocked because it is an open proxy.
+'ip_range_invalid'                => 'Invalid IP range.',
+'blockme'                         => 'Block me',
+'proxyblocker'                    => 'Proxy blocker',
+'proxyblocker-disabled'           => 'This function is disabled.',
+'proxyblockreason'                => 'Your IP address has been blocked because it is an open proxy.
 Please contact your Internet service provider or tech support and inform them of this serious security problem.',
-'proxyblocksuccess'           => 'Done.',
-'sorbs'                       => 'DNSBL', # only translate this message to other languages if you have to change it
-'sorbsreason'                 => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.',
-'sorbs_create_account_reason' => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.
+'proxyblocksuccess'               => 'Done.',
+'sorbs'                           => 'DNSBL', # only translate this message to other languages if you have to change it
+'sorbsreason'                     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.
 You cannot create an account',
 
 # Developer tools
