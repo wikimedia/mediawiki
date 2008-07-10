@@ -956,6 +956,7 @@ $3
 'deletedrev'          => '[حذف‌شده]',
 'histfirst'           => 'قدیمی‌ترین',
 'histlast'            => 'جدیدترین',
+'historysize'         => '({{PLURAL:$1|۱ بایت|$1 بایت}})',
 'historyempty'        => '(خالی)',
 
 # Revision feed
@@ -2099,6 +2100,7 @@ $1',
 'immobile_namespace'      => 'عنوان مقصد از نوع خاصی است؛ امکان انتقال صفحه‌ها به آن فضای نام وجود ندارد.',
 'imagenocrossnamespace'   => 'امکان انتقال تصویر به فضای نام غیر تصویر وجود ندارد',
 'imagetypemismatch'       => 'پسوند پرونده جدید با نوع آن سازگار نیست',
+'imageinvalidfilename'    => 'نام پروندهٔ هدف غیر مجاز است',
 
 # Export
 'export'            => 'صدور صفحه‌ها',
