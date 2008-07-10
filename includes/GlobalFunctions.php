@@ -862,10 +862,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
  */
 function wfVarDump( $var ) {
 	global $wgOut;
-	ob_start();
-	var_dump( $var );
-	$s = str_replace("\n","<br />\n", ob_get_contents() . "\n");
-	ob_end_clean();
+	$s = str_replace("\n","<br />\n", var_export( $var, true ) . "\n");
 	if ( headers_sent() || !@is_object( $wgOut ) ) {
 		print $s;
 	} else {
