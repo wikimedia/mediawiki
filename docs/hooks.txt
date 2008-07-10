@@ -1011,7 +1011,13 @@ $form: the PreferencesForm
 $user: the User object to load preferences from
 
 'RevisionInsertComplete': called after a revision is inserted into the DB
-$revision: the Revision
+&$revision: the Revision
+$data: the data stored in old_text.  The meaning depends on $flags: if external
+  is set, it's the URL of the revision text in external storage; otherwise,
+  it's the revision text itself.  In either case, if gzip is set, the revision
+  text is gzipped.
+$flags: a comma-delimited list of strings representing the options used.  May
+  include: utf8 (this will always be set for new revisions); gzip; external.
 
 'SavePreferences': called at the end of PreferencesForm::savePreferences; 
                    returning false prevents the preferences from being saved.
