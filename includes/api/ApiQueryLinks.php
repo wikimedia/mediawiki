@@ -92,7 +92,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					"original value returned by the previous query", "_badcontinue");
 			$plfrom = intval($cont[0]);
 			$plns = intval($cont[1]);
-			$pltitle = $this->getDb()->strencode($cont[2]);
+			$pltitle = $this->getDb()->addQuotes($this->titleToKey($cont[2]));
 			$this->addWhere("{$this->prefix}_from > $plfrom OR ".
 					"({$this->prefix}_from = $plfrom AND ".
 					"({$this->prefix}_namespace > $plns OR ".
@@ -128,7 +128,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
 					$this->setContinueEnumParameter('continue',
-						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}");
+						"{$row->pl_from}|{$row->pl_namespace}|" .
+						$this->keyToTitle($row->pl_title));
 					break;
 				}
 				if ($lastId != $row->pl_from) {
@@ -157,7 +158,8 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
 					$this->setContinueEnumParameter('continue',
-						"{$row->pl_from}|{$row->pl_namespace}|{$row->pl_title}");
+						"{$row->pl_from}|{$row->pl_namespace}|" .
+						$this->keyToTitle($row->pl_title));
 					break;
 				}
 				$titles[] = Title :: makeTitle($row->pl_namespace, $row->pl_title);

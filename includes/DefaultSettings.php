@@ -3141,6 +3141,9 @@ $wgEnableWriteAPI = false;
  * Extension modules may override the core modules.
  */
 $wgAPIModules = array();
+$wgAPIMetaModules = array();
+$wgAPIPropModules = array();
+$wgAPIListModules = array();
 
 /**
  * Maximum amount of rows to scan in a DB query in the API
