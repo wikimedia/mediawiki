@@ -432,6 +432,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14763) Child classes of Database (DatabasePostgres and DatabaseOracle)
   had stict standards issues with setFakeSlaveLag() and setFakeMaster().
 * (bug 451) Improve the phrase mappings of the Chinese converter arrays.
+* (bug 14778) 'limit' parameter now applies to history feeds as well as 
+  history pages
 
 === API changes in 1.13 ===
 
