@@ -1789,6 +1789,7 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 # Block/unblock
 'blockip'                     => 'Gebruker blokkeren',
 'blockiptext'                 => "Gebruuk dit formelier um een IP-adres te blokkeren. 't Is bedoeld um vandelisme te veurkoemen. Misbruuk van disse functie zal tot gevolg hemmen dat de staotus van beheerder of-eneumen zal wonnen.",
+'ipaddress'                   => 'IP-adres:',
 'ipadressorusername'          => 'IP-adres of gebrukersnaam',
 'ipbexpiry'                   => 'Verloop nao',
 'ipbreason'                   => 'Rejen',
@@ -1990,6 +1991,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'tooltip-ca-watch'                => 'Voog disse bladziede too an oewe voalglieste',
 'tooltip-ca-unwatch'              => 'Smiet disse bladziede van oewe voalglieste',
 'tooltip-search'                  => '{{SITENAME}} deurzeuken',
+'tooltip-search-fulltext'         => "De pagina's vuur disse tekst zeukn",
 'tooltip-p-logo'                  => 'Vuurziede',
 'tooltip-n-mainpage'              => 'Goa noar de vuurziede',
 'tooltip-n-portal'                => 'Informoasie oaver t projekt: wel, wat, hoo en woarum',
@@ -2024,6 +2026,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'tooltip-compareselectedversions' => 'Teun de verschillen tussen de ekeuzen versies.',
 'tooltip-watch'                   => 'Voeg disse pagina toe an joew volglieste',
 'tooltip-recreate'                => "Disse pagina opniej anmaken, ondanks 't feit dat 't vort-edaon is.",
+'tooltip-upload'                  => 'Bestaandn toovoogn',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metadata is uut-eschakeld op disse server.',
@@ -2031,9 +2034,12 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'notacceptable'     => 'De wikiserver kan de gegevens neet leveren in een vorm dee joew cliënt kan lezen.',
 
 # Attribution
+'anonymous'        => 'Annenieme gebruker(s) van {{SITENAME}}',
+'siteuser'         => '{{SITENAME}}-gebruker $1',
 'lastmodifiedatby' => "Disse pagina is 't les ewiezig op $2, $1 deur $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Ebaseerd op wark van $1.',
 'others'           => 'aandere',
+'siteusers'        => '{{SITENAME}}-gebruker(s) $1',
 'creditspage'      => 'Pagina-auteurs',
 'nocredits'        => 'Der is gien auteursinfermasie beschikbaor veur disse pagina.',
 
@@ -2438,6 +2444,9 @@ Voer de bestansnaam in zonder 't veurvoegsel \"{{ns:image}}:\".",
 
 # Special:SpecialPages
 'specialpages'                   => "Speciale pagina's",
+'specialpages-note'              => '----
+* Normale speciale pagina\'s
+* <span class="mw-specialpagerestricted">Beteund toegankelijke speciale pagina\'s</span>',
 'specialpages-group-maintenance' => 'Onderhoudsliesten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Anmelden / inschrieven',
@@ -2445,5 +2454,9 @@ Voer de bestansnaam in zonder 't veurvoegsel \"{{ns:image}}:\".",
 'specialpages-group-media'       => 'Media-overzichen en toe-evoegen bestanden',
 'specialpages-group-users'       => 'Gebrukers en rechen',
 'specialpages-group-highuse'     => "Veulgebruken pagina's",
+'specialpages-group-pages'       => 'Paginaliesten',
+'specialpages-group-pagetools'   => 'Paginahulpmiddels',
+'specialpages-group-redirects'   => "Deurverwiezende speciale pagina's",
+'specialpages-group-spam'        => "Hulpmiddels tegen 't plaosen van moek",
 
 );

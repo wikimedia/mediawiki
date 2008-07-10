@@ -13,8 +13,8 @@
  * @author Erkan Yilmaz
  * @author Runningfridgesrule
  * @author Katpatuka
- * @author Siebrand
  * @author Mach
+ * @author Siebrand
  * @author לערי ריינהארט
  * @author Mskyrider
  * @author Myildirim2007
@@ -392,6 +392,10 @@ $2',
 'ns-specialprotected'  => '{{ns:special}} alanadı içindeki sayfalar değiştirilemez.',
 'titleprotected'       => "[[User:$1|$1]] tarafından oluşturulması engellenmesi için bu sayfa koruma altına alınmıştır.
 Verilen sebep: ''$2''.",
+
+# Virus scanner
+'virus-scanfailed'     => 'tarama başarısız (kod $1)',
+'virus-unknownscanner' => 'bilinmeyen antivürüs:',
 
 # Login and logout pages
 'logouttitle'                => 'Oturumu kapat',
@@ -915,7 +919,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'recentchanges'                     => 'Son değişiklikler',
 'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
-'rcnote'                            => "$3 tarihi itibariyle, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
+'rcnote'                            => "$4 tarihi ve saat $5 itibariyle, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rcnotefrom'                        => '<b>$2</b> tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> adet madde gösterilmektedir).',
 'rclistfrom'                        => '$1 tarihinden beri yapılan değişiklikleri göster',
 'rcshowhideminor'                   => 'küçük değişiklikleri $1',

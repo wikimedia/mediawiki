@@ -128,7 +128,7 @@ $messages = array(
 'category_header'          => 'Χρήματα ἐν γένει "$1"',
 'subcategories'            => 'Ὑπογένη',
 'category-media-header'    => 'Μέσα ἐν κατηγορίᾳ "$1"',
-'hidden-categories'        => '{{ΠΛΗΘΥΝΤΙΚΟΣ:$1|Κρυμμένη Κατηγορία|Κρυμμέναι Κατηγορίαι}',
+'hidden-categories'        => '{{PLURAL:$1|Κρυμμένη Κατηγορία|Κρυμμέναι Κατηγορίαι}}',
 'hidden-category-category' => 'Κρυμμέναι κατηγορίαι', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'συνεισφ.',
 
@@ -245,6 +245,7 @@ $messages = array(
 'newmessagesdifflink' => 'ἐσχάτη μεταβολή',
 'editsection'         => 'μεταγράφειν',
 'editold'             => 'μεταγράφειν',
+'viewsourceold'       => 'ὁρᾶν πηγήν',
 'editsectionhint'     => 'Μεταγράφειν τὸ μέρος: $1',
 'toc'                 => 'Περιεχόμενα',
 'showtoc'             => 'δεικνύναι',
@@ -258,6 +259,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Χρῆμα',
 'nstab-user'      => 'Δέλτος χρωμένου',
+'nstab-media'     => 'Δέλτος μέσων',
 'nstab-special'   => 'Εἰδικόν',
 'nstab-project'   => 'Δέλτος σχεδίου',
 'nstab-image'     => 'Εἰκών',
@@ -279,6 +281,7 @@ $messages = array(
 'viewsource'      => 'Πηγήν διασκοπεῖν',
 'viewsourcefor'   => 'Ὑπὲρ τοῦ $1',
 'actionthrottled' => 'Δρᾶσις ἠγχθεῖσα',
+'viewsourcetext'  => 'Ἔξεστί σοὶ ὁρᾶν τε ἐκγράφειν τὴν τῆσε τῆς δέλτου πηγὴν:',
 'sqlhidden'       => '(πεῦσις SQL κρυμμένη)',
 
 # Virus scanner
@@ -361,13 +364,15 @@ $messages = array(
 'page_last'           => 'ἐσχάτη',
 'histfirst'           => 'πρώτη',
 'histlast'            => 'ἐσχάτη',
+'historyempty'        => '(κενόν)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 ἐπὶ $2', # user at time
 
 # Revision deletion
-'rev-delundel' => 'δεικνύναι/κρύπτειν',
-'pagehist'     => 'Ἱστορία δέλτου',
+'rev-delundel'      => 'δεικνύναι/κρύπτειν',
+'pagehist'          => 'Ἱστορία δέλτου',
+'revdelete-content' => 'περιεχόμενον',
 
 # Diffs
 'history-title' => 'Τὰ πρότερα περὶ "$1" κατὰ τὸ μεταγράφειν',
@@ -410,7 +415,7 @@ $messages = array(
 'group-suppress'   => 'Παροράματα',
 
 'group-user-member'       => 'Χρήστης',
-'group-bot-member'        => 'Ροβότον',
+'group-bot-member'        => 'Μεταβάλλων μηχανικὸς',
 'group-sysop-member'      => 'Γέρων',
 'group-bureaucrat-member' => 'Ἔφορος',
 
@@ -478,6 +483,9 @@ $messages = array(
 # Random page
 'randompage' => 'Δέλτος τυχοῦσα',
 
+# Statistics
+'statistics' => 'Τὰ περὶ τῶν δεδομένων',
+
 'brokenredirects-edit'   => '(μεταγράφειν)',
 'brokenredirects-delete' => '(διαγράφειν)',
 
@@ -501,6 +509,7 @@ $messages = array(
 'movethispage'            => 'Κινεῖν τήνδε τὴν δέλτον',
 
 # Book sources
+'booksources'    => 'Αἱ ἐν βίβλοις πηγαὶ',
 'booksources-go' => 'Ἰέναι',
 
 # Special:Log
@@ -672,9 +681,14 @@ $messages = array(
 'tooltip-save'              => 'Γράφειν τὰς μεταβολάς σου',
 'tooltip-diff'              => 'Δείξαι σὰ κατὰ τὰ γεγράμμενα μεταβολά.',
 'tooltip-watch'             => 'Ἐφορᾶν τήνδε τὴν δέλτον',
+'tooltip-upload'            => 'Ἐκκινεῖν ἀναφόρτωσιν',
 
 # Attribution
-'others' => 'ἄλλοι',
+'others'      => 'ἄλλοι',
+'creditspage' => 'Διαπιστεύσεις δέλτου',
+
+# Patrolling
+'markaspatrolleddiff' => 'Σεσημασμένη ὡς ἐπιτηρουμένη',
 
 # Patrol log
 'patrol-log-auto' => '(αὐτόματον)',

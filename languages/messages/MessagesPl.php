@@ -10,8 +10,8 @@
  * @author לערי ריינהארט
  * @author Wpedzich
  * @author Leinad
- * @author Stv
  * @author Beau
+ * @author Stv
  * @author Siebrand
  * @author Masti
  * @author Equadus

@@ -6,8 +6,8 @@
  *
  * @author Robby
  * @author Kaffi
- * @author SPQRobin
  * @author Siebrand
+ * @author SPQRobin
  * @author לערי ריינהארט
  * @author Jon Harald Søby
  */
@@ -856,6 +856,8 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 # Merge log
 'mergelog'           => 'Fusiouns-Logbuch',
 'pagemerge-logentry' => '[[$1]] zesummegeluecht an [[$2]] (Versioune bis $3)',
+'revertmerge'        => 'Zesummeféieren ophiewen',
+'mergelogpagetext'   => 'Lëscht vun de rezenten Zesummeféierungen vu Versiounsgeschichten.',
 
 # Diffs
 'history-title'           => 'Versiounshistorique vun „$1“',
@@ -1119,6 +1121,7 @@ Säiten  vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] si '''fett''' ges
 'reuploaddesc'                => 'Eroplueden ofbriechen an zréck op de Formulaire fir Eropzelueden',
 'uploadnologin'               => 'Net ageloggt',
 'uploadnologintext'           => 'Dir musst [[Special:Userlogin|agelogged sinn]], fir Fichieren eroplueden zu kënnen.',
+'upload_directory_missing'    => 'De Repertoire an deen Dir eropluede wollt ($1) feelt a konnt net vum Webserver ugeluecht ginn.',
 'upload_directory_read_only'  => 'De Webserver kann net an den Upload-Repertoire ($1) schreiwen.',
 'uploaderror'                 => 'Feeler bäim Eroplueden',
 'uploadtext'                  => "Gitt op d'[[Special:Imagelist|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen.
@@ -2207,6 +2210,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gaincontrol'                 => 'Verstäerkung',
 'exif-contrast'                    => 'Kontrast',
 'exif-sharpness'                   => 'Schäerft',
+'exif-devicesettingdescription'    => 'Beschreiwung vun den Astellunge vum Apparat',
 'exif-subjectdistancerange'        => 'Motivdistanz',
 'exif-imageuniqueid'               => 'Bild-ID',
 'exif-gpslatituderef'              => 'nördlech oder südlech Breet',

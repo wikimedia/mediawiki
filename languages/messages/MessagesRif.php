@@ -55,68 +55,83 @@ $messages = array(
 'dec'           => 'Dujanbir',
 
 # Categories related messages
-'category_header' => 'tudmawin di category "$1"',
+'category_header'        => 'Tisebtar di Taggayt "$1"',
+'listingcontinuesabbrev' => 'Amesedfar.',
 
 'about'          => 'Xf',
 'newwindow'      => '(Areẓm di tburjet ttamaynut)',
 'cancel'         => 'ur tegg ca',
 'qbfind'         => 'Aff',
-'qbedit'         => 'Beddel',
+'qbedit'         => 'Ẓreg',
 'qbspecialpages' => 'Tudmawin Special',
 'mytalk'         => 'Awal inu',
 'navigation'     => 'Asari',
 
 'returnto'         => 'Dwal ɣa $1.',
 'tagline'          => 'Zi {{SITENAME}}',
-'help'             => 'Aɛawn',
+'help'             => 'Tallalt',
 'search'           => 'Tarezzut',
 'searchbutton'     => 'Tarezzut',
 'go'               => 'Raḥ ɣa',
 'searcharticle'    => 'Raḥ',
-'history'          => 'Amzruy n tudemt',
+'history'          => 'Amzruy n tsebtert',
 'history_short'    => 'Amzruy',
-'printableversion' => 'Version n utbaε',
-'permalink'        => 'Tazdayt tẓarq',
-'edit'             => 'Beddel',
+'printableversion' => 'Talqemt n usiggez',
+'permalink'        => 'Tazdayt ttamɣlalt',
+'edit'             => 'Ẓreg',
+'editthispage'     => 'Ẓreg Tasebtert a',
 'delete'           => 'Kkes',
 'protect'          => 'ẓarq',
-'newpage'          => 'Tudemt ttamaynut',
-'talkpage'         => 'siwl x tudemt a',
+'newpage'          => 'Tasebtert ttamaynut',
+'talkpage'         => 'siwl x Tasebtert a',
 'talkpagelinktext' => 'Awal',
+'personaltools'    => 'imassen inu',
 'talk'             => 'Asiwl',
 'views'            => 'Tiẓritin',
-'redirectedfrom'   => '(itwassekd zi $1)',
+'toolbox'          => 'tafelwit n imassen',
+'redirectedfrom'   => '(i twassek-d zi $1)',
+'redirectpagesub'  => 'Tasebtert n (Redirect)',
 'jumpto'           => 'Ndu ɣa:',
 'jumptonavigation' => 'Asari',
 'jumptosearch'     => 'tarezzut',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Xf {{SITENAME}}',
-'aboutpage'            => 'Project:Xf',
-'copyrightpage'        => '{{ns:project}}:Izrefan',
+'aboutpage'            => 'Asenfar:Xf',
+'copyrightpage'        => '{{ns:project}}:izrefan ussenɣel',
+'currentevents'        => 'Mayn itemsaren rux',
+'currentevents-url'    => 'Asenfar:mayn itmesaren rux',
 'disclaimers'          => 'Unnuten',
-'disclaimerpage'       => 'Project:unnuten General',
-'edithelp'             => 'Aεawn di tirra',
-'edithelppage'         => 'Aεawn:Tirra',
-'mainpage'             => 'Tudemt Tamzwarut',
-'mainpage-description' => 'Tudemt Tamzwarut',
+'disclaimerpage'       => 'Asenfar:unnuten n umatu',
+'edithelp'             => 'Tallalt deg uẓareg',
+'edithelppage'         => 'Tallalt:Aẓareg',
+'helppage'             => 'Tallalt:igburen(Contents)',
+'mainpage'             => 'Tasebtert Tamzwarut',
+'mainpage-description' => 'Tasebtert Tamzwarut',
+'portal'               => 'Tawwart n timetti(Community)',
+'portal-url'           => 'Asenfar:tawwart n timetti(Community)',
+'privacy'              => 'Tabaḍnit',
+'privacypage'          => 'Asenfar:Tabaḍnit',
 
-'retrievedfrom'       => 'itward zi "$1"',
+'retrievedfrom'       => 'itwar-d zi "$1"',
 'youhavenewmessages'  => 'ɣak $1 ($2).',
 'newmessageslink'     => 'tibratin timaynutin',
-'newmessagesdifflink' => 'adebbel anggaru',
-'editsection'         => 'Beddel',
-'editold'             => 'beddel',
-'editsectionhint'     => 'Beddel section: $1',
-'showtoc'             => 'semmer',
+'newmessagesdifflink' => 'Taẓrigt tanggarut',
+'editsection'         => 'Ẓreg',
+'editold'             => 'ẓreg',
+'editsectionhint'     => 'Ẓreg tigezmi: $1',
+'toc'                 => 'Tingawin',
+'showtoc'             => 'semmel',
 'hidetoc'             => 'snuffar',
 'site-rss-feed'       => '$1 Asecci n RSS',
 'site-atom-feed'      => '$1 Asecci n Atom',
 'page-rss-feed'       => '"$1" Tmacca n RSS',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-project' => 'Tudemt n Project',
-'nstab-image'   => 'Afaylu',
+'nstab-user'     => 'Tasebtert n User',
+'nstab-project'  => 'Tasebtert n usenfar',
+'nstab-image'    => 'Afaylu',
+'nstab-category' => 'Taggayt(category)',
 
 # General errors
 'viewsource'    => 'Xemm aɣbal',
@@ -125,8 +140,8 @@ $messages = array(
 # Login and logout pages
 'remembermypassword'      => 'Ajj login inu deg uselkim(computer) a',
 'login'                   => 'Adeff',
-'nav-login-createaccount' => 'Adeff / egg account',
-'userlogin'               => 'Adeff / egg account',
+'nav-login-createaccount' => 'Adeff / egg amiḍan',
+'userlogin'               => 'Adeff / egg amiḍan',
 'logout'                  => 'Ffeɣ',
 'userlogout'              => 'Ffeɣ',
 'nologin'                 => 'war ɣark login? $1.',
@@ -140,40 +155,44 @@ mala tucit-id, ataf Lxdant inec a tetwassan ila inec.',
 # Edit page toolbar
 'bold_sample'    => 'Tirra ttiqebbuzin',
 'bold_tip'       => 'Tirra ttiqebbuzin',
-'italic_sample'  => 'Tirra n Italic',
-'italic_tip'     => 'Tirra n Italic',
-'link_sample'    => 'isem n uẓday',
-'link_tip'       => 'Tasɣrnt n ddixl',
-'extlink_sample' => 'http://www.example.com isem n teẓdayt',
-'extlink_tip'    => 'Taẓdayt n baṛṛa (qa tettud http:// prefix)',
+'italic_sample'  => 'Tirra titalyanin',
+'italic_tip'     => 'Tirra titalyanin',
+'link_sample'    => 'isem n tzedayt',
+'link_tip'       => 'Tazdayt n ddixl',
+'extlink_sample' => 'http://www.example.com isem n tezdayt',
+'extlink_tip'    => 'Tazdayt n baṛṛa (qa tettud http:// prefix)',
 'math_sample'    => 'Egg ijj n formula da',
-'math_tip'       => 'Formula n Math (LaTeX)',
+'math_tip'       => 'Tasemselt tusnakt (LaTeX)',
+'nowiki_sample'  => 'Sideff da tirra bla taseddast(formatting) n wiki',
+'nowiki_tip'     => 'Ur tawi x taseddast(formatting) n wiki',
 'image_tip'      => 'Afaylu war-itmesebḍi',
-'media_tip'      => 'Taẓdayt ufaylu',
-'sig_tip'        => 'Azewl(signature) inec ag lwaqt .',
+'media_tip'      => 'Tazdayt ufaylu',
+'sig_tip'        => 'Azewl(signature) inec ag Lwaqt .',
 
 # Edit pages
-'summary'                => 'Asgebr(Summary)',
-'minoredit'              => 'Manaya d-abeddel d-amẓeyan',
-'watchthis'              => 'Xemm tudemt a',
-'savearticle'            => 'Ḥaḍ tudemt',
+'summary'                => 'Asgeber(Summary)',
+'minoredit'              => 'Ta d taẓrigt ttamẓeyant',
+'watchthis'              => 'Xemm tasebtert a',
+'savearticle'            => 'Ḥaḍ Tasebtert',
 'preview'                => 'Aẓat-Xemmem',
 'showpreview'            => 'Xemm-as',
-'showdiff'               => 'Semmel-ad mayn tbeddeld.',
+'showdiff'               => 'Semmel-ad mayn teẓregd.',
 'anoneditwarning'        => "'''aya-ɣak:''' war tudifd ca s isem inec.
-address IP inac ad-iqqim deg umezruy n ibeddilen n tudemt a .",
+Tansa n IP inac ad-iqqim deg umezruy n teẓrigin n tsebtert a .",
 'newarticle'             => '(Amaynu)',
-'newarticletext'         => "tdfar-ad ijj n tẓedayt n tudemt εad war telli .
-bac attegged , beda tari di kader a swadday (xemm i[[{{MediaWiki:Helppage}}|tudemt uεawen]] i ktar n inɣmisen).
+'newarticletext'         => "Tdefar-d tazdayt n tsebtert εad war telli .
+bac attegged , arri di taflwit a swadday (xemm i[[{{MediaWiki:Helppage}}|tudemt Tallalt]] i ktar n inɣmisen).
 mala qacek da s ɣalaṭ waha, tecca di tbutunt n '''deffar''' di browser inec .",
-'noarticletext'          => 'walu tirra di tudemt a , tzemred [[Special:Search/{{PAGENAME}}|a tarzud isem n tudemt a]] di tudemawin nniḍn niɣ [{{fullurl:{{FULLPAGENAME}}|action=edit}} egg tudemt-a cek].',
-'editing'                => 'Tirra di $1',
-'editingsection'         => 'Adeddel di $1 (section)',
+'noarticletext'          => 'walu tirra di tsebtert a , tzemred [[Special:Search/{{PAGENAME}}|a tarzud isem n tsebtert a]] di tisebtar nniḍn niɣ [{{fullurl:{{FULLPAGENAME}}|action=edit}} egg tsebtert a cek].',
+'editing'                => 'Aẓreg di $1',
+'editingsection'         => 'Aẓrag  di $1 (section)',
 'templatesused'          => 'Templates ytwaggen di tudemt a:',
 'template-protected'     => '(twaḥḍa)',
 'template-semiprotected' => '(tuẓgen-ẓarq)',
 
 # History pages
+'viewpagelogs'     => 'Xemm aɣmis n tsebtert a',
+'currentrev'       => 'Afegged n ruxa',
 'revisionasof'     => 'Affegged am $1',
 'previousrevision' => '←Affegged n zic',
 'last'             => 'anggaru',
@@ -186,13 +205,15 @@ mala qacek da s ɣalaṭ waha, tecca di tbutunt n '''deffar''' di browser inec .
 'history-feed-item-nocomment' => '$1 ɣa $2', # user at time
 
 # Diffs
+'history-title'           => 'Amezruy n ufegged n "$1"',
+'difference'              => '(Amsebḍi jar ifeggiden)',
 'lineno'                  => 'Tabrit $1:',
-'compareselectedversions' => 'Smequdda versions a',
+'compareselectedversions' => 'Smequdda Tilqimin a',
 'editundo'                => 'Dwel',
 
 # Search results
-'noexactmatch' => "'''war tlli ca n tudemt qarn-as \"\$1\".'''
-tzmard ad [[:\$1|tt-arnid cak]].",
+'noexactmatch' => "'''war tlli ca n tsebtert qarn-as \"\$1\".'''
+tzemred ad [[:\$1|tt-arnid cek]].",
 'prevn'        => 'ẓẓat $1',
 'nextn'        => 'ẓẓffar $1',
 'viewprevnext' => 'Xemm ($1) ($2) ($3)',
@@ -200,22 +221,26 @@ tzmard ad [[:\$1|tt-arnid cak]].",
 'powersearch'  => 'Tarzzut cwacwayt',
 
 # Preferences page
-'preferences'       => 'itifeyyen inu',
-'mypreferences'     => 'itifeyyen inu',
+'preferences'       => 'iɣewwaren inu',
+'mypreferences'     => 'iɣewwaren inu',
 'searchresultshead' => 'Tarzzut',
 
 # Groups
 'group-all' => '(maṛṛa)',
 
 # Recent changes
-'recentchanges'   => 'ibeddilen inggura',
-'rcnote'          => "awadday {{PLURAL:$1|is '''1''' change|ed '''$1''' ibeddilen}} deg  {{PLURAL:$2|day|'''$2''' n wussan inggura}}, am $3.",
-'rcnotefrom'      => "ɣa wadday d ibeddilen zi '''$2''' (ar '''$1''' ttewamlen-d).",
-'rclistfrom'      => 'Semml-d ibeddilen imaynuten ig ibeddan zi $1',
-'rcshowhideminor' => '$1 ibeddilen d-imẓyanen',
-'rcshowhidemine'  => '$1 ideddilen inu',
-'rclinks'         => 'Mmeled $1 ibeddilen inggura di $2 n wussan inggura <br />$3',
-'diff'            => 'amṣebḍi',
+'nchanges'        => '$1 {{PLURAL:$1|tiẓregt|tiẓrigin}}',
+'recentchanges'   => 'Tiẓrigin tinggura',
+'rcnote'          => "Awadday {{PLURAL:$1|d '''1''' taẓarigt|d '''$1''' tiẓrigin tinggura}} deg {{PLURAL:$2|ass anggaru |'''$2''' ussan inggura}}, am di $5, $4.",
+'rcnotefrom'      => "ɣa wadday d tiẓrigin zi '''$2''' (ar '''$1''' ttewamlent-id).",
+'rclistfrom'      => 'Semml-d tiẓrigin timaynutin ig ibeddan zi $1',
+'rcshowhideminor' => '$1 tiẓrigin ttimeẓyanin',
+'rcshowhideliu'   => '$1 users ig yudeffen',
+'rcshowhideanons' => '$1 users war twasnen',
+'rcshowhidemine'  => '$1 tiẓrigin inu',
+'rclinks'         => 'Mmel-d $1 tiẓrigin tinggura di $2 n wussan inggura <br />$3',
+'diff'            => 'imṣebḍan',
+'hist'            => 'Amezruy',
 'hide'            => 'Snuffar',
 'show'            => 'smmel-d',
 'minoreditletter' => 'm',
@@ -223,29 +248,33 @@ tzmard ad [[:\$1|tt-arnid cak]].",
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked'          => 'ibeddilen am ta',
-'recentchangeslinked-title'    => 'ibeddilen ssaɣan-d ɣa "$1"',
-'recentchangeslinked-noresult' => 'War llin ca n ibeddilen di tudemt a di lwaqt ittucid .',
-'recentchangeslinked-summary'  => "Ta d lista n tirra ytwaggn εad mamc di tudemt id ytwaqnen zg ijjen n tudemt nnaḍni (niɣ iwdan zi category nnḍni).
-tudemt di [[Special:Watchlist|your watchlist]] tt '''bold'''.",
+'recentchangeslinked'          => 'Tiẓrigin ag ta',
+'recentchangeslinked-title'    => 'Tiẓrigin ssaɣan-d ɣa "$1"',
+'recentchangeslinked-noresult' => 'War llint ca n tiẓrigin di tsebtert a di lwaqt i d tucid .',
+'recentchangeslinked-summary'  => "Ta d Tabdart n tirra ytwaggen εad mamc di tsebtert i d-yzdin (ytwaqnen) zg ijjen n Tsebtert nnaḍni (niɣ iwdan zi category nnḍni).
+Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''bold'''.",
 
 # Upload
-'upload'            => 'Sili afaylu',
-'uploadbtn'         => 'Sili afaylu',
+'upload'            => 'Zdem-d afaylu',
+'uploadbtn'         => 'Zdem-d afaylu',
 'filedesc'          => 'Asgbr',
 'fileuploadsummary' => 'Asgbr:',
+'uploadedimage'     => 'itwazdem-d "[[$1]]"',
 'watchthisupload'   => 'Xm tasbtirt a',
 
 # Special:Imagelist
-'imagelist' => 'Lista n ifayluten',
+'imagelist' => 'Tabdart n ifayluten',
 
 # Image description page
 'filehist'           => 'Amzruy n ufaylu',
+'filehist-help'      => 'Tecca di date/time bac atẓerd afaylu mamec ja d-itban di Lwaqt a .',
 'filehist-deleteone' => 'sfaḍ',
+'filehist-current'   => 'Lux a',
 'filehist-comment'   => 'Tinit',
-'imagelinks'         => 'Tiẓdyin',
-'linkstoimage'       => '{{PLURAL:$1|tudemt a teqned|$1 tudemawin a qnent-id}} ɣa wfaylu ya :',
-'nolinkstoimage'     => 'war telli ca n tudemt teqqen-d ɣa wfaylu ya.',
+'imagelinks'         => 'Tizdayin',
+'linkstoimage'       => '{{PLURAL:$1|tasebtert a teqned|$1 Tisebtar a qnent-id}} ɣa wfaylu ya :',
+'nolinkstoimage'     => 'war telli ca n tsebtert teqqen-d ɣa wfaylu ya.',
+'sharedupload'       => 'Wa d ijj ufaylu itwacrec jar aṭṭas n isenfaren(projects).',
 'noimage'            => 'war illi ca n ufaylu s isem a , tzemred at $1.',
 
 # File deletion
@@ -255,7 +284,7 @@ tudemt di [[Special:Watchlist|your watchlist]] tt '''bold'''.",
 'mimesearch' => 'tarezzut n MIME',
 
 # Random page
-'randompage' => 'Tudemt zi ṭṭarf',
+'randompage' => 'Tasebtert zi ṭṭarf',
 
 'brokenredirects-edit'   => '(arri)',
 'brokenredirects-delete' => '(sfaḍ)',
@@ -263,29 +292,32 @@ tudemt di [[Special:Watchlist|your watchlist]] tt '''bold'''.",
 'withoutinterwiki-submit' => 'Smmrad',
 
 # Miscellaneous special pages
-'wantedpages'    => 'Tudemawin ttewaxsent aṭṭas',
-'mostlinked'     => 'Tudemawin iɣa-ad ttewaqqenen aṭṭas',
+'nbytes'         => '$1 {{PLURAL:$1|atamanḍ|itamḍanen}}',
+'nmembers'       => '$1 {{PLURAL:$1|amaslad|imasladen}}',
+'wantedpages'    => 'Tisebtar ttewaxsent aṭṭas',
+'mostlinked'     => 'Tisebtar iɣa-ad ttewaqqenen aṭṭas',
 'mostimages'     => 'ifayluten iɣa-ad ttewaqqenen aṭṭas',
 'shortpages'     => 'Tudemt ttaqudat',
-'longpages'      => 'Tudemawin ttizirarin',
-'protectedpages' => 'Tudemawin ẓarqent',
-'newpages'       => 'tudmawin timaynutin',
-'ancientpages'   => 'Tudemawin n zik qqaε',
+'longpages'      => 'Tisebtar ttizirarin',
+'protectedpages' => 'Tisebtar ẓarqent',
+'newpages'       => 'Tisebtar timaynutin',
+'ancientpages'   => 'Tisebtar n zik qqaε',
 'move'           => 'Snaql',
-'movethispage'   => 'snaql tudemt a',
+'movethispage'   => 'snaql tasebtert a',
 
 # Book sources
 'booksources'    => 'iɣbalen n udlis',
 'booksources-go' => 'Raḥ ɣa',
 
 # Special:Log
+'log'               => 'Aɣmis',
 'log-search-submit' => 'Raḥ ɣa',
 
 # Special:Allpages
-'allpages'       => 'Maṛṛa tudmawin',
+'allpages'       => 'Maṛṛa Tisebtar',
 'alphaindexline' => '$1 ɣa $2',
-'nextpage'       => 'Tudemt ẓẓat ($1)',
-'allarticles'    => 'Maṛṛa ibdillen',
+'nextpage'       => 'Tasebtert ẓẓat ($1)',
+'allarticles'    => 'Maṛṛa Tisebtar',
 'allpagessubmit' => 'Raḥ ɣa',
 
 # Special:Listusers
@@ -295,17 +327,18 @@ tudemt di [[Special:Watchlist|your watchlist]] tt '''bold'''.",
 'emailuser' => 'Ssek E-mail i bnadm a',
 
 # Watchlist
-'watchlist'          => 'lista uḥṭṭu inu',
-'mywatchlist'        => 'lista uḥṭṭu inu',
-'watchlistfor'       => "(i '''$1''')",
-'addedwatch'         => 'Temmarni ɣa lista uḥṭṭu',
-'removedwatch'       => 'twakkes zi lista uḥṭṭu',
-'removedwatchtext'   => 'Tudemt "[[:$1]]" twakkes zi lista uḥṭṭu inec.',
-'watch'              => 'Xemm',
-'watchthispage'      => 'Xemm tudemt a',
-'unwatch'            => 'War-twaẓren',
-'wlshowlast'         => 'Sseml-d $1 tisεεatin $2 ussan $3 inggura',
-'watchlist-hide-own' => 'Snuffar ibeddilen inu',
+'watchlist'            => 'Tabdart uḥṭṭu inu',
+'mywatchlist'          => 'Tabdart uḥṭṭu inu',
+'watchlistfor'         => "(i '''$1''')",
+'addedwatch'           => 'Temmarni ɣa Tabdart uḥṭṭu',
+'removedwatch'         => 'twakkes zi Tabdart uḥṭṭu',
+'removedwatchtext'     => 'Tasebtert "[[:$1]]" twakkes zi Tabdart uḥṭṭu inec.',
+'watch'                => 'Xemm',
+'watchthispage'        => 'Xemm tasebtert a',
+'unwatch'              => 'War-twaẓer',
+'wlshowlast'           => 'Sseml-d $1 tisεεatin $2 ussan $3 inggura',
+'watchlist-hide-own'   => 'Snuffar tiẓrigin inu',
+'watchlist-hide-minor' => 'Senuffar tiẓrigin timeẓyanin',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Twaxmim...',
@@ -314,6 +347,7 @@ tudemt di [[Special:Watchlist|your watchlist]] tt '''bold'''.",
 # Delete/protect/revert
 'delete-legend'  => 'Sfaḍ',
 'deletedarticle' => 'twakkes "[[$1]]"',
+'dellogpage'     => 'Aɣmis n uṣfaḍ',
 'protectcomment' => 'Tinit:',
 
 # Restrictions (nouns)
@@ -323,89 +357,109 @@ tudemt di [[Special:Watchlist|your watchlist]] tt '''bold'''.",
 'undelete-search-submit' => 'Tarzzut',
 
 # Namespace form on various pages
+'namespace'      => 'Raq n isem:',
 'blanknamespace' => '(Amenzaw)',
 
 # Contributions
-'mycontris'   => 'Arraten inu',
-'contribsub2' => 'I $1 ($2)',
-'uctop'       => '(g°jnna)',
-'month'       => 'Zg yur (ar amzwaru):',
-'year'        => 'Zi asggas (d zik):',
+'contributions' => 'Tarratin n User',
+'mycontris'     => 'Arraten inu',
+'contribsub2'   => 'i $1 ($2)',
+'uctop'         => '(g°jnna)',
+'month'         => 'Zg yur (ar amzwaru):',
+'year'          => 'Zi asggas (d zik):',
 
 'sp-contributions-submit' => 'Tarzzut',
 
 # What links here
-'whatlinkshere'       => 'Mayn diqnen da',
-'whatlinkshere-title' => 'Tudmawin id-iqnen  $1 ɣa',
-'linklistsub'         => '(Lista n tẓedyin)',
-'linkshere'           => "Tudemt a teqqen ɣa '''[[:$1]]''':",
-'nolinkshere'         => "war tlli ca n tudemt tqqen-d da '''[[:$1]]'''.",
+'whatlinkshere'       => 'Mayn i d-yzdin (ggin tazdayt) da',
+'whatlinkshere-title' => 'Tisebtar id-izdin(iqnen) ɣa $1',
+'linklistsub'         => '(Tabdart n tizdayin)',
+'linkshere'           => "Tasebtert a tzedi(teqqen) ɣa '''[[:$1]]''':",
+'nolinkshere'         => "war tlli ca n tsebtert tqqen-d da '''[[:$1]]'''.",
+'isredirect'          => 'Tasebtert n (redirect)',
 'whatlinkshere-prev'  => '{{PLURAL:$1|ẓẓeffar|ẓẓeffar $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|ẓẓat|ẓẓat $1}}',
-'whatlinkshere-links' => '← tiẓdyin',
+'whatlinkshere-links' => '← tizdayin',
 
 # Block/unblock
 'ipboptions'         => '2 tasεεat:2 hours,1 ass:1 day,3 ussan:3 days,1 amalass:1 week,2 imallasen:2 weeks,1 ayur:1 month,3 iyuren:3 months,6 iyuren:6 months,1 asggas:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipblocklist-submit' => 'Tarzzut',
+'blocklink'          => 'Ẓarqq',
 'contribslink'       => 'Tarratin',
 
 # Move page
-'movearticle'    => 'Snaqel tudemt:',
-'move-watch'     => 'Xemm tudemt a',
+'movearticle'    => 'Snaqel tasebtert:',
+'move-watch'     => 'Xemm tasebtert a',
 'movepagebtn'    => 'Snaqel tudemt',
 'movepage-moved' => '<big>\'\'\'"$1" twanql ɣa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'        => 'snaql ɣa',
-'movetalk'       => 'Snaqel tudemawin n usiwl igg illan akides',
+'movetalk'       => 'Snaqel Tisebtar n usiwl igg illan akides',
 '1movedto2'      => '[[$1]] twaneql ɣa [[$2]]',
+'movelogpage'    => 'Snaql aɣmis',
+
+# Export
+'export' => 'Sekk Tisebtar',
 
 # Thumbnails
-'thumbnail-more' => 'Semɣar',
+'thumbnail-more'  => 'Semɣar',
+'thumbnail_error' => 'war ttewagg ca tawlaft-tamẓyant (thumbnail): $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'tudemt inu',
-'tooltip-pt-mytalk'               => 'Tudemt usiwl inu',
-'tooltip-pt-preferences'          => 'itifeyyen inu',
-'tooltip-pt-watchlist'            => 'Lista n tudmawin umi txmamd bac aten tbadled',
-'tooltip-pt-mycontris'            => 'lista n arraten inu',
+'tooltip-pt-mytalk'               => 'Tasebtert usiwl inu',
+'tooltip-pt-preferences'          => 'iɣewwaren inu',
+'tooltip-pt-watchlist'            => 'Tabdart n Tsebtar umi txmamd bac aten teẓregd',
+'tooltip-pt-mycontris'            => 'Tabdart n tarratin inu',
 'tooltip-pt-login'                => 'Neqqar-ac adeff, macca war illi bessif .',
 'tooltip-pt-logout'               => 'Ffeɣ',
-'tooltip-ca-talk'                 => 'Asiwl x mayn dis di tudemt',
-'tooltip-ca-edit'                 => 'Tzemred atbedlad tudemt a .tca x preview button ẓẓat ma tteḥḥaḍeḍ .',
+'tooltip-ca-talk'                 => 'Asiwl x mayn dis di Tsebtert',
+'tooltip-ca-edit'                 => 'Tzemred at-ẓerged Tasebtert a. Tca x aẓat-ẓari  button ẓẓat ma tteḥḥaḍeḍ .',
 'tooltip-ca-addsection'           => 'Arni tinit dg usiwl a.',
-'tooltip-ca-viewsource'           => 'Tudemt a tẓarq. tzemred atẓred aɣbal nnes.',
-'tooltip-ca-protect'              => 'Ẓarq tudemt a',
-'tooltip-ca-delete'               => 'Kkes tudemt a',
+'tooltip-ca-viewsource'           => 'Tasebtert a tẓarq. tzemred atẓred aɣbal nnes.',
+'tooltip-ca-protect'              => 'Ẓarq tasebtert a',
+'tooltip-ca-delete'               => 'Kkes Tasebtert a',
 'tooltip-ca-move'                 => 'Snaql tudemt a',
-'tooltip-ca-watch'                => 'Arni tudemt a ɣa lista uḥṭṭu inec',
-'tooltip-ca-unwatch'              => 'Kkes tudemt a zi lista uḥṭṭu inec',
+'tooltip-ca-watch'                => 'Arni tasebtert a ɣa Tebdart uḥṭṭu inec',
+'tooltip-ca-unwatch'              => 'Kkes tasebtert a zi Tabdart uḥṭṭu inec',
 'tooltip-search'                  => 'Tarzzut {{SITENAME}}',
 'tooltip-p-logo'                  => 'Tasbtirt Tamzwarut',
-'tooltip-n-mainpage'              => 'Raḥ ɣa Tudemt Tamzwarut',
-'tooltip-n-portal'                => 'Xf project, man tezmerd ategged, mani ɣa tafed timslayin',
+'tooltip-n-mainpage'              => 'Raḥ ɣa Tsebtert Tamzwarut',
+'tooltip-n-portal'                => 'X usenfar, man tezmerd ategged, mani ɣa tafed tiɣawsiwin',
 'tooltip-n-currentevents'         => 'Aff inaɣmisen x manaya',
-'tooltip-n-recentchanges'         => 'lista n ibeddilen di wiki.',
-'tooltip-n-randompage'            => 'Sili-d tudemt zi ṭṭarf',
+'tooltip-n-recentchanges'         => 'Tabdart n teẓrigin timaynutin di wiki.',
+'tooltip-n-randompage'            => 'Ẓar tudemt zi ṭṭarf',
 'tooltip-n-help'                  => 'Raq di ɣa tafd.',
-'tooltip-t-whatlinkshere'         => 'Lista n maṛṛa tudmawin n wiki idi-tqnen da',
+'tooltip-t-whatlinkshere'         => 'Tabdart n maṛṛa Tisebtar n wiki i d-yzdin (qnen) da',
+'tooltip-t-contributions'         => 'Xemm Tabdart n tarratin n user a',
 'tooltip-t-emailuser'             => 'Sekk e-mail i bnadem a',
-'tooltip-t-upload'                => 'Sili-d ifayluten',
-'tooltip-t-specialpages'          => 'Lista n maṛṛa tudmawin special',
-'tooltip-ca-nstab-project'        => 'Xemm tudemt n project',
-'tooltip-ca-nstab-image'          => 'Xemm tudemt n ufaylu',
-'tooltip-ca-nstab-help'           => 'Xemm tudemt uεawen',
-'tooltip-ca-nstab-category'       => 'Xemm tudemt n category',
-'tooltip-minoredit'               => 'egg-it am tabeddelt ttamzyant',
+'tooltip-t-upload'                => 'Zdem-d ifayluten',
+'tooltip-t-specialpages'          => 'Tabdart n maṛṛa Tisebtar timeẓlitin',
+'tooltip-ca-nstab-user'           => 'Xemm Tasebtert n user',
+'tooltip-ca-nstab-project'        => 'Xemm tasebtert n usenfar',
+'tooltip-ca-nstab-image'          => 'Xemm tasebtert n ufaylu',
+'tooltip-ca-nstab-help'           => 'Xemm Tasebtert n tallalt',
+'tooltip-ca-nstab-category'       => 'Xemm Tasebtert n taggayt(category)',
+'tooltip-minoredit'               => 'egg-it am taẓrigt ttamẓyant',
 'tooltip-save'                    => 'Ḥaḍ-itt',
 'tooltip-preview'                 => 'Xemm mayn turid, ẓẓat ma ttssidfad!',
-'tooltip-diff'                    => 'Semmel-d ibeddilen i teggid di tarrat a.',
-'tooltip-compareselectedversions' => 'Ẓẓar ibeddilen jar versions a di tudemt a.',
-'tooltip-watch'                   => 'Arni tudemt a ɣa lista uḥṭṭu inec',
+'tooltip-diff'                    => 'Semmel-d tiẓrigin i teggid di tarrat a.',
+'tooltip-compareselectedversions' => 'Ẓar imsebeḍiyen jar Tilqimin a di tudemt a.',
+'tooltip-watch'                   => 'Arni tasebtert a ɣa Tabdart uḥṭṭu inec',
+
+# Browsing diffs
+'previousdiff' => '← imṣebḍan n ẓẓat',
+
+# Media information
+'file-info-size'       => '($1 × $2 pixel, tiddi(size) n ufaylu: $3, anaw(type) n MIME: $4)',
+'file-nohires'         => '<small>walu ca n resolution yemɣa x wa.</small>',
+'show-big-image'       => 'Resolution ameqran',
+'show-big-image-thumb' => '<small>Tiddi(Size) n ẓẓat-ẓari(preview): $1 × $2 pixels</small>',
 
 # Special:Newimages
 'ilsubmit' => 'Tarzzut',
 
 # External editor support
-'edit-externally'      => 'beddel afaylu a s ijj n application zi baṛṛa',
+'edit-externally'      => 'Ẓreg afaylu a s usnas zi baṛṛa',
 'edit-externally-help' => 'Xemm [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] i bezzaf n inemiɣsen.',
 
 # 'all' in various places, this might be different for inflected languages
@@ -422,16 +476,17 @@ tudemt di [[Special:Watchlist|your watchlist]] tt '''bold'''.",
 'table_pager_limit_submit' => 'Raḥ ɣa',
 
 # Watchlist editing tools
-'watchlisttools-edit' => 'Xemm t bedled lista uḥṭṭu',
-'watchlisttools-raw'  => 'Beddel lista uḥṭṭu tamenzut',
+'watchlisttools-edit' => 'Xemm d tẓregd Tabdart uḥṭṭu',
+'watchlisttools-raw'  => 'Ẓreg Tabdart uḥṭṭu tamenzut',
 
 # Special:Version
+'version'              => 'Talqemt', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'Tudmawin Special',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Tarzzut',
 
 # Special:SpecialPages
-'specialpages' => 'Tudmawin Special',
+'specialpages' => 'Tisebtar timeẓlitin',
 
 );

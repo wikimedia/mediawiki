@@ -915,6 +915,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'nonefound'                 => "'''Athugaðu''': Það er aðeins leitað í sumum nafnrýmum sjálfkrafa. Prófaðu að setja forskeytið ''all:'' í fyrirspurnina til að leita í öllu efni (þar á meðal notandaspjallsíðum, sniðum, o.s.frv.), eða notaðu tileigandi nafnrými sem forskeyti.",
 'powersearch'               => 'Ítarleg leit',
 'powersearch-legend'        => 'Ítarlegri leit',
+'powersearch-ns'            => 'Leita í nafnrýmum:',
 'powersearch-field'         => 'Leita að',
 
 # Preferences page
@@ -1044,7 +1045,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'recentchanges'                     => 'Nýlegar breytingar',
 'recentchangestext'                 => 'Hér geturðu fylgst með nýjustu breytingunum.',
 'recentchanges-feed-description'    => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
-'rcnote'                            => "Að neðan {{PLURAL:$1|er '''1''' breyting|eru síðustu '''$1''' breytingar}} síðast liðinn {{PLURAL:$2|dag|'''$2''' daga}}, frá $3, $4.",
+'rcnote'                            => "Að neðan {{PLURAL:$1|er '''1''' breyting|eru síðustu '''$1''' breytingar}} síðast {{PLURAL:$2|liðinn dag|liðna '''$2''' daga}}, frá $5, $4.",
 'rcnotefrom'                        => "Að neðan eru breytingar síðan '''$2''' (allt að '''$1''' sýndar).",
 'rclistfrom'                        => 'Sýna breytingar frá og með $1',
 'rcshowhideminor'                   => '$1 minniháttar breytingar',

@@ -9,8 +9,8 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Michawiki
- * @author Sp5uhe
  * @author Jon Harald Søby
+ * @author Sp5uhe
  * @author Valasek
  * @author Palica
  * @author Liso
@@ -1666,8 +1666,8 @@ Na $2 nájdete zoznam posledných zmazaní.',
 ** Porušenie autorských práv
 ** Vandalizmus',
 'delete-edit-reasonlist'      => 'Upraviť dôvody zmazania',
-'delete-toobig'               => 'Táto stránka má veľkú históriu úprav, viac ako $1 revízií. Mazanie takýchto stránok bolo obmedzené, aby sa zabránilo náhodnému poškodeniu {{GRAMMAR:genitív|{{SITENAME}}}}.',
-'delete-warning-toobig'       => 'Táto stránka má veľkú históriu úprav, viac ako $1 revízií. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
+'delete-toobig'               => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Mazanie takýchto stránok bolo obmedzené, aby sa zabránilo náhodnému poškodeniu {{GRAMMAR:genitív|{{SITENAME}}}}.',
+'delete-warning-toobig'       => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
 'rollback'                    => 'Rollback úprav',
 'rollback_short'              => 'Rollback',
 'rollbacklink'                => 'rollback',
@@ -1818,17 +1818,17 @@ $1',
 'whatlinkshere-filters'    => 'Filtre',
 
 # Block/unblock
-'blockip'                     => 'Zablokovať používateľa',
-'blockip-legend'              => 'Zablokovať používateľa',
-'blockiptext'                 => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
+'blockip'                         => 'Zablokovať používateľa',
+'blockip-legend'                  => 'Zablokovať používateľa',
+'blockiptext'                     => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
 Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
 Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktoré padli za obeť vandalizmu).',
-'ipaddress'                   => 'IP adresa:',
-'ipadressorusername'          => 'IP adresa/meno používateľa:',
-'ipbexpiry'                   => 'Ukončenie:',
-'ipbreason'                   => 'Dôvod:',
-'ipbreasonotherlist'          => 'Iný dôvod',
-'ipbreason-dropdown'          => '* Bežné dôvody blokovania
+'ipaddress'                       => 'IP adresa:',
+'ipadressorusername'              => 'IP adresa/meno používateľa:',
+'ipbexpiry'                       => 'Ukončenie:',
+'ipbreason'                       => 'Dôvod:',
+'ipbreasonotherlist'              => 'Iný dôvod',
+'ipbreason-dropdown'              => '* Bežné dôvody blokovania
 ** Zámerné vkladanie chybných informácií
 ** Mazanie obsahu stránok
 ** Spam odkazy na externé stránky
@@ -1836,73 +1836,74 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 ** Zastrašujúce správanie/obťažovanie
 ** Zneužívanie viacerých účtov
 ** Neprípustné používateľské meno',
-'ipbanononly'                 => 'Blokovať iba anonymných používateľov.',
-'ipbcreateaccount'            => 'Zabrániť vytváraniu účtov',
-'ipbemailban'                 => 'Zabrániť používateľovi posielať emaily',
-'ipbenableautoblock'          => 'Automaticky blokovať poslednú IP adresu, ktorú tento používateľ použil, a všetky ďalšie adresy, z ktorých sa pokúsi upravovať.',
-'ipbsubmit'                   => 'Zablokovať tohto používateľa',
-'ipbother'                    => 'Iný čas',
-'ipboptions'                  => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'              => 'iný čas',
-'ipbotherreason'              => 'Iný/ďalší dôvod',
-'ipbhidename'                 => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
-'ipbwatchuser'                => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
-'badipaddress'                => 'IP adresa má nesprávny formát.',
-'blockipsuccesssub'           => 'Zablokovanie bolo úspešné',
-'blockipsuccesstext'          => '„$1“ bol/a zablokovaný/á.<br />
+'ipbanononly'                     => 'Blokovať iba anonymných používateľov.',
+'ipbcreateaccount'                => 'Zabrániť vytváraniu účtov',
+'ipbemailban'                     => 'Zabrániť používateľovi posielať emaily',
+'ipbenableautoblock'              => 'Automaticky blokovať poslednú IP adresu, ktorú tento používateľ použil, a všetky ďalšie adresy, z ktorých sa pokúsi upravovať.',
+'ipbsubmit'                       => 'Zablokovať tohto používateľa',
+'ipbother'                        => 'Iný čas',
+'ipboptions'                      => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'iný čas',
+'ipbotherreason'                  => 'Iný/ďalší dôvod',
+'ipbhidename'                     => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
+'ipbwatchuser'                    => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
+'badipaddress'                    => 'IP adresa má nesprávny formát.',
+'blockipsuccesssub'               => 'Zablokovanie bolo úspešné',
+'blockipsuccesstext'              => '„$1“ bol/a zablokovaný/á.<br />
 [[Special:Ipblocklist|IP block list]] obsahuje zoznam blokovaní.',
-'ipb-edit-dropdown'           => 'Upraviť dôvody pre blokovanie',
-'ipb-unblock-addr'            => 'Odblokovať $1',
-'ipb-unblock'                 => 'Odblokovať používateľa alebo IP adresu',
-'ipb-blocklist-addr'          => 'Zobraziť existujúce blokovania pre $1',
-'ipb-blocklist'               => 'Zobraziť existujúce blokovania',
-'unblockip'                   => 'Odblokovať používateľa',
-'unblockiptext'               => 'Použite tento formulár na obnovenie možnosti zápisov
+'ipb-edit-dropdown'               => 'Upraviť dôvody pre blokovanie',
+'ipb-unblock-addr'                => 'Odblokovať $1',
+'ipb-unblock'                     => 'Odblokovať používateľa alebo IP adresu',
+'ipb-blocklist-addr'              => 'Zobraziť existujúce blokovania pre $1',
+'ipb-blocklist'                   => 'Zobraziť existujúce blokovania',
+'unblockip'                       => 'Odblokovať používateľa',
+'unblockiptext'                   => 'Použite tento formulár na obnovenie možnosti zápisov
 z/od momentálne zablokovanej IP adresy/používateľa.',
-'ipusubmit'                   => 'Odblokovať túto adresu',
-'unblocked'                   => '[[User:$1|$1]] bol odblokovaný',
-'unblocked-id'                => 'Blokovanie $1 bolo odstránené',
-'ipblocklist'                 => 'Zoznam zablokovaných používateľov/IP adries',
-'ipblocklist-legend'          => 'Nájsť zablokovaného používateľa',
-'ipblocklist-username'        => 'Používateľské meno alebo IP adresa:',
-'ipblocklist-submit'          => 'Hľadať',
-'blocklistline'               => '$1, $2 zablokoval $3 (ukončenie $4)',
-'infiniteblock'               => 'na neurčito',
-'expiringblock'               => 'ukončenie $1',
-'anononlyblock'               => 'iba anon.',
-'noautoblockblock'            => 'automatické blokovanie vypnuté',
-'createaccountblock'          => 'tvorba účtov bola zablokovaná',
-'emailblock'                  => 'email blokovaný',
-'ipblocklist-empty'           => 'Zoznam blokovaní je prázdny.',
-'ipblocklist-no-results'      => 'Požadovaná IP adresa alebo používateľské meno nie je blokovaná.',
-'blocklink'                   => 'zablokovať',
-'unblocklink'                 => 'odblokuj',
-'contribslink'                => 'príspevky',
-'autoblocker'                 => 'Ste zablokovaný, pretože zdieľate IP adresu s „$1“. Dôvod „$2“.',
-'blocklogpage'                => 'Záznam_blokovaní',
-'blocklogentry'               => 'zablokoval/a "[[$1]]" s časom ukončenia $2 $3',
-'blocklogtext'                => 'Toto je zoznam blokovaní a odblokovaní používateľov. Automaticky
+'ipusubmit'                       => 'Odblokovať túto adresu',
+'unblocked'                       => '[[User:$1|$1]] bol odblokovaný',
+'unblocked-id'                    => 'Blokovanie $1 bolo odstránené',
+'ipblocklist'                     => 'Zoznam zablokovaných používateľov/IP adries',
+'ipblocklist-legend'              => 'Nájsť zablokovaného používateľa',
+'ipblocklist-username'            => 'Používateľské meno alebo IP adresa:',
+'ipblocklist-submit'              => 'Hľadať',
+'blocklistline'                   => '$1, $2 zablokoval $3 (ukončenie $4)',
+'infiniteblock'                   => 'na neurčito',
+'expiringblock'                   => 'ukončenie $1',
+'anononlyblock'                   => 'iba anon.',
+'noautoblockblock'                => 'automatické blokovanie vypnuté',
+'createaccountblock'              => 'tvorba účtov bola zablokovaná',
+'emailblock'                      => 'email blokovaný',
+'ipblocklist-empty'               => 'Zoznam blokovaní je prázdny.',
+'ipblocklist-no-results'          => 'Požadovaná IP adresa alebo používateľské meno nie je blokovaná.',
+'blocklink'                       => 'zablokovať',
+'unblocklink'                     => 'odblokuj',
+'contribslink'                    => 'príspevky',
+'autoblocker'                     => 'Ste zablokovaný, pretože zdieľate IP adresu s „$1“. Dôvod „$2“.',
+'blocklogpage'                    => 'Záznam_blokovaní',
+'blocklogentry'                   => 'zablokoval/a "[[$1]]" s časom ukončenia $2 $3',
+'blocklogtext'                    => 'Toto je zoznam blokovaní a odblokovaní používateľov. Automaticky
 blokované IP adresy nie sú zahrnuté. Pozri zoznam
 [[Special:Ipblocklist|aktuálnych blokovaní]].',
-'unblocklogentry'             => 'odblokoval/a $1',
-'block-log-flags-anononly'    => 'iba anonymní používatelia',
-'block-log-flags-nocreate'    => 'možnosť vytvoriť si účet bola vypnutá',
-'block-log-flags-noautoblock' => 'autoblokovanie vypnuté',
-'block-log-flags-noemail'     => 'email blokovaný',
-'range_block_disabled'        => 'Možnosť správcov vytvárať rozsah zablokovaní je vypnutá.',
-'ipb_expiry_invalid'          => 'Neplatný čas ukončenia.',
-'ipb_expiry_temp'             => 'Blokovania skrytých používateľských mien by mali byť trvalé.',
-'ipb_already_blocked'         => '„$1“ je už zablokovaný',
-'ipb_cant_unblock'            => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
-'ipb_blocked_as_range'        => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',
-'ip_range_invalid'            => 'Neplatný IP rozsah.',
-'blockme'                     => 'Zablokuj ma',
-'proxyblocker'                => 'Blokovač proxy',
-'proxyblocker-disabled'       => 'Táto funkcia je vypnutá.',
-'proxyblockreason'            => 'Vaša IP adresa bola zablokovaná, pretože je otvorená proxy. Prosím kontaktujte vášho internetového poskytovateľa alebo technickú podporu a informujte ich o tomto vážnom bezpečnostnom probléme.',
-'proxyblocksuccess'           => 'Hotovo.',
-'sorbsreason'                 => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL.',
-'sorbs_create_account_reason' => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v databáze DNSBL, ktorú používa {{SITENAME}}. Nemôžete si vytvoriť účet.',
+'unblocklogentry'                 => 'odblokoval/a $1',
+'block-log-flags-anononly'        => 'iba anonymní používatelia',
+'block-log-flags-nocreate'        => 'možnosť vytvoriť si účet bola vypnutá',
+'block-log-flags-noautoblock'     => 'autoblokovanie vypnuté',
+'block-log-flags-noemail'         => 'email blokovaný',
+'block-log-flags-angry-autoblock' => 'rozšírené automatické blokovanie zapnuté',
+'range_block_disabled'            => 'Možnosť správcov vytvárať rozsah zablokovaní je vypnutá.',
+'ipb_expiry_invalid'              => 'Neplatný čas ukončenia.',
+'ipb_expiry_temp'                 => 'Blokovania skrytých používateľských mien by mali byť trvalé.',
+'ipb_already_blocked'             => '„$1“ je už zablokovaný',
+'ipb_cant_unblock'                => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
+'ipb_blocked_as_range'            => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',
+'ip_range_invalid'                => 'Neplatný IP rozsah.',
+'blockme'                         => 'Zablokuj ma',
+'proxyblocker'                    => 'Blokovač proxy',
+'proxyblocker-disabled'           => 'Táto funkcia je vypnutá.',
+'proxyblockreason'                => 'Vaša IP adresa bola zablokovaná, pretože je otvorená proxy. Prosím kontaktujte vášho internetového poskytovateľa alebo technickú podporu a informujte ich o tomto vážnom bezpečnostnom probléme.',
+'proxyblocksuccess'               => 'Hotovo.',
+'sorbsreason'                     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL.',
+'sorbs_create_account_reason'     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v databáze DNSBL, ktorú používa {{SITENAME}}. Nemôžete si vytvoriť účet.',
 
 # Developer tools
 'lockdb'              => 'Zamknúť databázu',
@@ -1992,6 +1993,7 @@ Cieľová stránka „[[$1]]“ už existuje. Chcete ho vymazať a vytvoriť tak
 'immobile_namespace'      => 'Cieľový názov je špeciálneho typu; nemôžem presunúť stránku do tohto menného priestoru.',
 'imagenocrossnamespace'   => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
 'imagetypemismatch'       => 'Nová prípona súboru nezodpovedá jeho typu',
+'imageinvalidfilename'    => 'Cieľový názov obrázka nie je platný',
 
 # Export
 'export'            => 'Export stránok',
