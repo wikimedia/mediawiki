@@ -115,8 +115,9 @@ tphrase.t: EZ.txt.in tsi.src
 	iconv -c -f big5 -t utf8 tsi.src | $(SED) 's/ [0-9].*//g' | $(SED) 's/[# ]//g'| $(GREP) "^.\{2,4\}"  >> t
 	sort t | uniq > tphrase.t
 
-alltradphrases.t: tphrase.t s2t_1tomany.t 
+alltradphrases.t: tphrase.t s2t_1tomany.t tradphrases_exclude.manual
 	for i in `cat s2t_1tomany.t | $(SED) 's/.*=>".//' | $(SED) 's/"//g' |$(SED) 's/,/\n/' | $(SED) 's/\(.\)/\1\n/g' |sort | uniq`; do $(GREP) -s $$i tphrase.t ; done  > alltradphrases.t || true
+	cat alltradphrases.t | $(GREP) -vf tradphrases_exclude.manual > alltradphrases.tt ; mv alltradphrases.tt alltradphrases.t
 
 
 tradphrases_2.t: alltradphrases.t
@@ -158,11 +159,12 @@ Ziranma.t: Ziranma.txt.in
 	$(SED) '1,/BEGIN_TABLE/d' Ziranma.txt.in | colrm 1 8 | $(SED) 's/\t.*//' | $(GREP) "^...*" > Ziranma.t
 
 
-allsimpphrases.t: t2s_1tomany.t ph.t Wubi.t Ziranma.t
+allsimpphrases.t: t2s_1tomany.t ph.t Wubi.t Ziranma.t simpphrases_exclude.manual
 	rm -f allsimpphrases.t
 	for i in `cat t2s_1tomany.t | $(SED) 's/.*=>".//' | $(SED) 's/"//g' | $(SED) 's/,/\n/' | $(SED) 's/\(.\)/\1\n/g' | sort | uniq `; do $(GREP) $$i Wubi.t >> allsimpphrases.t; done
 	for i in `cat t2s_1tomany.t | $(SED) 's/.*=>".//' | $(SED) 's/"//g' | $(SED) 's/,/\n/' | $(SED) 's/\(.\)/\1\n/g' | sort | uniq `; do $(GREP) $$i Ziranma.t >> allsimpphrases.t; done
 	for i in `cat t2s_1tomany.t | $(SED) 's/.*=>".//' | $(SED) 's/"//g' | $(SED) 's/,/\n/' | $(SED) 's/\(.\)/\1\n/g' | sort | uniq `; do $(GREP) $$i ph.t >> allsimpphrases.t; done
+	cat allsimpphrases.t | $(GREP) -vf simpphrases_exclude.manual > allsimpphrases.tt ; mv allsimpphrases.tt allsimpphrases.t
 
 simpphrases_2.t: allsimpphrases.t
 	cat allsimpphrases.t | $(GREP) "^..$$" | sort | uniq > simpphrases_2.t
@@ -184,23 +186,31 @@ simpphrases_4.t: allsimpphrases.t
 	$(DIFF) t3 simpphrases_4.t | $(GREP) ">" | $(SED) 's/> //' > t
 	mv t simpphrases_4.t
 
-simpphrases.t:simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
-	cat simpphrases_2.t simpphrases_3.t simpphrases_4.t > simpphrases.t
+simpphrases.t: simpphrases.manual simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
+	cat simpphrases.manual simpphrases_2.t simpphrases_3.t simpphrases_4.t > simpphrases.t
 	for i in `$(SED) 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i simpphrases.t ; done | $(DIFF) simpphrases.t - | $(GREP) '<' | $(SED) 's/< //' > t
 	mv t simpphrases.t
 
 
-simpphrases.notsure:simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
+simpphrases.notsure: simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
 	cat simpphrases_2.t simpphrases_3.t simpphrases_4.t > t
 	for i in `$(SED) 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i t ; done | $(DIFF) t - | $(GREP) '>' | $(SED) 's/> //' > simpphrases.notsure
 
-trad2simp1to1.t: t2s_1tomany.t t2s_1to1.t
+trad2simp1to1.t: t2s_1tomany.t t2s_1to1.t trad2simp_noconvert.manual
 	$(SED)  's/\(.......\).*/\1",/' t2s_1tomany.t > trad2simp1to1.t
 	cat t2s_1to1.t >> trad2simp1to1.t
+	cat trad2simp1to1.t | $(GREP) -vf trad2simp_noconvert.manual > tt
+	mv tt trad2simp1to1.t
 
-simp2trad1to1.t: s2t_1tomany.t s2t_1to1.t
-	$(SED)  's/\(.......\).*/\1",/' s2t_1tomany.t > simp2trad1to1.t
+simp2trad1to1.t: s2t_1tomany.t s2t_1to1.t simp2trad.manual simp2trad_noconvert.manual
+	$(SED)  's/\(.......\).*/\1",/' s2t_1tomany.t > tt
+	colrm 1 7 < simp2trad.manual | colrm 3 > simp2tradcharsrc.t
+	colrm 1 17 < simp2trad.manual | colrm 3 > simp2tradchardest.t
+	cat simp2tradcharsrc.t | $(GREP) -f simp2tradchardest.t > simp2tradrepeatedchar.t
+	cat tt | $(GREP) -vf simp2tradrepeatedchar.t > simp2trad1to1.t
 	cat s2t_1to1.t >> simp2trad1to1.t
+	cat simp2trad1to1.t | $(GREP) -vf simp2trad_noconvert.manual > tt
+	mv tt simp2trad1to1.t
 
 trad2simp.php: trad2simp1to1.t tradphrases.t
 	printf '<?php\n$$trad2simp=array(' > trad2simp.php
@@ -226,13 +236,15 @@ trad2simp.phrases.t: simp2trad.php simpphrases.t
 	cat simpphrases.t | $(SED)  's/\(.*\)/"\1",/' > tmp2
 	paste tmp1 tmp2 > trad2simp.phrases.t
 
-toHans.dict: trad2simp1to1.t trad2simp.phrases.t
+toHans.dict: trad2simp1to1.t trad2simp.phrases.t toSimp.manual
 	cat trad2simp1to1.t | $(SED) 's/[, \t]//g' | $(SED) 's/=>/\t/' > toHans.dict
 	cat trad2simp.phrases.t | $(SED) 's/[, \t]//g' | $(SED) 's/=>/\t/' >> toHans.dict
+	cat toSimp.manual | $(SED) 's/ //g' | $(SED) 's/\(^.*\)\t\(.*\)/"\1"\t"\2"/' >> toHans.dict
 
-toHant.dict: simp2trad1to1.t simp2trad.phrases.t
+toHant.dict: simp2trad1to1.t simp2trad.phrases.t toTrad.manual
 	cat simp2trad1to1.t | $(SED) 's/[, \t]//g' | $(SED) 's/=>/\t/' > toHant.dict
 	cat simp2trad.phrases.t | $(SED) 's/[, \t]//g' | $(SED) 's/=>/\t/' >> toHant.dict
+	cat toTrad.manual | $(SED) 's/ //g' | $(SED) 's/\(^.*\)\t\(.*\)/"\1"\t"\2"/' >> toHant.dict
 
 toTW.dict: toTW.manual
 	cat toTW.manual | $(SED) 's/ //g' | $(SED) 's/\(^.*\)\t\(.*\)/"\1"\t"\2"/' > toTW.dict
@@ -246,7 +258,7 @@ toCN.dict: toCN.manual
 toSG.dict: toSG.manual
 	cat toSG.manual | $(SED) 's/ //g' | $(SED) 's/\(^.*\)\t\(.*\)/"\1"\t"\2"/' > toSG.dict
 
-ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.phrases.t toCN.manual toHK.manual toSG.manual toTW.manual
+ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.phrases.t toSimp.manual toTrad.manual toCN.manual toHK.manual toSG.manual toTW.manual
 	printf '<?php\n/**\n * Simplified / Traditional Chinese conversion tables\n' > ZhConversion.php
 	printf ' *\n * Automatically generated using code and data in includes/zhtable/\n' >> ZhConversion.php
 	printf ' * Do not modify directly!\n */\n\n' >> ZhConversion.php
@@ -254,12 +266,14 @@ ZhConversion.php: simp2trad1to1.t simp2trad.phrases.t trad2simp1to1.t trad2simp.
 	cat simp2trad1to1.t >> ZhConversion.php
 	echo >> ZhConversion.php
 	cat simp2trad.phrases.t >> ZhConversion.php
+	$(SED) 's/\(.*\)\t\(.*\)/"\1" => "\2",/' toTrad.manual >> ZhConversion.php
 	echo ');' >> ZhConversion.php
 	echo >> ZhConversion.php
 	printf '$$zh2Hans = array(\n' >> ZhConversion.php
 	cat trad2simp1to1.t >> ZhConversion.php
 	echo >> ZhConversion.php
 	cat trad2simp.phrases.t >> ZhConversion.php
+	$(SED) 's/\(.*\)\t\(.*\)/"\1" => "\2",/' toSimp.manual >> ZhConversion.php
 	echo ');' >> ZhConversion.php
 	echo >> ZhConversion.php
 	printf '$$zh2TW = array(\n' >> ZhConversion.php
