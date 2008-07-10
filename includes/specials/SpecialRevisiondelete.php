@@ -534,9 +534,9 @@ class RevisionDeleteForm {
 	 * @returns string
 	 */
 	private function historyLine( $rev ) {
-		global $wgContLang;
+		global $wgLang;
 
-		$date = $wgContLang->timeanddate( $rev->getTimestamp() );
+		$date = $wgLang->timeanddate( $rev->getTimestamp() );
 		$difflink = $del = '';
 		// Live revisions
 		if( $this->deleteKey=='oldid' ) {
@@ -570,10 +570,10 @@ class RevisionDeleteForm {
 	 * @returns string
 	 */
 	private function fileLine( $file ) {
-		global $wgContLang, $wgTitle;
+		global $wgLang, $wgTitle;
 
 		$target = $this->page->getPrefixedText();
-		$date = $wgContLang->timeanddate( $file->getTimestamp(), true  );
+		$date = $wgLang->timeanddate( $file->getTimestamp(), true  );
 
 		$del = '';
 		# Hidden files...
@@ -593,9 +593,9 @@ class RevisionDeleteForm {
 		}
 
 		$data = wfMsg( 'widthheight',
-					$wgContLang->formatNum( $file->getWidth() ),
-					$wgContLang->formatNum( $file->getHeight() ) ) .
-			' (' . wfMsg( 'nbytes', $wgContLang->formatNum( $file->getSize() ) ) . ')';
+					$wgLang->formatNum( $file->getWidth() ),
+					$wgLang->formatNum( $file->getHeight() ) ) .
+			' (' . wfMsg( 'nbytes', $wgLang->formatNum( $file->getSize() ) ) . ')';
 		$data = htmlspecialchars( $data );
 
 		return "<li>$pageLink ".$this->fileUserTools( $file )." $data ".$this->fileComment( $file )."$del</li>";
@@ -606,10 +606,10 @@ class RevisionDeleteForm {
 	 * @returns string
 	 */
 	private function archivedfileLine( $file ) {
-		global $wgContLang, $wgTitle;
+		global $wgLang, $wgTitle;
 
 		$target = $this->page->getPrefixedText();
-		$date = $wgContLang->timeanddate( $file->getTimestamp(), true  );
+		$date = $wgLang->timeanddate( $file->getTimestamp(), true  );
 
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 		$pageLink = $this->skin->makeKnownLinkObj( $undelete, $date, "target=$target&file={$file->getKey()}" );
@@ -620,9 +620,9 @@ class RevisionDeleteForm {
 		}
 
 		$data = wfMsg( 'widthheight',
-					$wgContLang->formatNum( $file->getWidth() ),
-					$wgContLang->formatNum( $file->getHeight() ) ) .
-			' (' . wfMsg( 'nbytes', $wgContLang->formatNum( $file->getSize() ) ) . ')';
+					$wgLang->formatNum( $file->getWidth() ),
+					$wgLang->formatNum( $file->getHeight() ) ) .
+			' (' . wfMsg( 'nbytes', $wgLang->formatNum( $file->getSize() ) ) . ')';
 		$data = htmlspecialchars( $data );
 
 		return "<li> $pageLink ".$this->fileUserTools( $file )." $data ".$this->fileComment( $file )."$del</li>";
@@ -633,9 +633,9 @@ class RevisionDeleteForm {
 	 * @returns string
 	 */
 	private function logLine( $row ) {
-		global $wgContLang;
+		global $wgLang;
 
-		$date = $wgContLang->timeanddate( $row->log_timestamp );
+		$date = $wgLang->timeanddate( $row->log_timestamp );
 		$paramArray = LogPage::extractParams( $row->log_params );
 		$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 
@@ -657,7 +657,7 @@ class RevisionDeleteForm {
 			$userLink = '<span class="history-deleted">' . $userLink . '</span>';
 		}
 		// Comment
-		$comment = $wgContLang->getDirMark() . $this->skin->commentBlock( $row->log_comment );
+		$comment = $wgLang->getDirMark() . $this->skin->commentBlock( $row->log_comment );
 		if( LogEventsList::isDeleted($row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
