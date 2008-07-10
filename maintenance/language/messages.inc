@@ -604,6 +604,7 @@ $wgMessageStructure = array(
 		'deletedrev',
 		'histfirst',
 		'histlast',
+		'historysize',
 		'historyempty',
 	),
 	'history-feed' => array(
