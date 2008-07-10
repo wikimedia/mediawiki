@@ -29,6 +29,20 @@ $digitTransformTable = array(
 	'9' => '៩', # &#x17e9;
 );
 
+$datePreferences = array(
+	'default',
+	'km',
+	'ISO 8601',
+);
+ 
+$defaultDateFormat = 'km';
+ 
+$dateFormats = array(
+	'km time' => 'ម៉ោងH:i',
+	'km date' => 'l ទីd F ឆ្នាំY',
+	'km both' =>  'ម៉ោងH:i l ទីd F ឆ្នាំY',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'         => array( 'ការបញ្ជូនបន្តទ្វេដង' ),
 	'BrokenRedirects'         => array( 'ការបញ្ជូនបន្តដែលខូច' ),
