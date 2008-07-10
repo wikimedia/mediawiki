@@ -1,5 +1,5 @@
 <?php
-/** British English ()
+/** British English (British English)
  *
  * @ingroup Language
  * @file

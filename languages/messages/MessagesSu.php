@@ -946,7 +946,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'recentchanges'                     => 'Nu anyar robah',
 'recentchangestext'                 => 'Lacak parobahan ka wiki panganyarna na kaca ieu.',
 'recentchanges-feed-description'    => 'Manggihan parobahan panganyarna dina wiki di asupan ieu.',
-'rcnote'                            => "Di handap ieu '''$1''' {{PLURAL:$1|parobahan|parobahan}} ahir na  '''$2''' poé ieu tina $3.",
+'rcnote'                            => "Di handap ieu {{PLURAL:$1|'''1''' parobahan| '''$1''' parobahan anyar}} dina  {{PLURAL:$2|poé|'''$2''' poé}} ahir, nepi $5, $4.",
 'rcnotefrom'                        => 'Di handap ieu parobahan saprak <b>$2</b> (nu ditémbongkeun nepi ka <b>$1</b>).',
 'rclistfrom'                        => 'Témbongkeun nu anyar robah nepi ka $1',
 'rcshowhideminor'                   => '$1 éditan minor',
@@ -1013,8 +1013,10 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'illegalfilename'             => 'Ngaran koropak "$1" ngandung aksara nu teu diwenangkeun pikeun judul kaca. Mangga gentos ngaranna tur cobi muatkeun deui.',
 'badfilename'                 => 'Ngaran gambar geus dirobah jadi "$1".',
 'filetype-badmime'            => 'Koropak tipeu MIME "$1" teu meunang dimuatkeun.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' kaasup tipeu koropak nu teu dipiharep. Nu dianjurkeun nyaéta \$2.",
-'filetype-banned-type'        => '".$1" kaasup tipeu koropak nu teu dicaram. Nu diwidian nyaéta $2.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' kaasup tipeu koropak nu teu dipiharep. 
+{{PLURAL:\$3|Nu dianjurkeun nyaéta|Nu dianjurkeun nyaéta}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' kaasup tipeu koropak nu teu dicaram.
+{{PLURAL:\$3|Nu diwidian nyaéta|Nu diwidian nyaéta}} \$2.",
 'filetype-missing'            => 'Koropakna teu boga éksténsi (misalna ".jpg").',
 'large-file'                  => 'Hadéna mah koropak nu dimuat téh teu leuwih ti $1 bit; ieu koropak gedéna $2 bit.',
 'largefileserver'             => 'Ieu koropak badag teuing, ngaleuwihan wates nu diwenangkeun ku server.',
@@ -1402,8 +1404,9 @@ Asupan jeung bantuan salajengna:
 ** Ngarumpak hak cipta
 ** Vandalismeu',
 'delete-edit-reasonlist'      => 'Alesan ngahapus éditan',
-'delete-toobig'               => 'Jujutan édit ieu kaca panjang pisan, leuwih ti $1 révisi. Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
-'delete-warning-toobig'       => 'Jujutan ieu kaca panjang pisan, leuwih ti $1 révisi. Dihapusna ieu kaca bisa ngaruksak jalanna pangkalan data {{SITENAME}}; sing ati-ati.',
+'delete-toobig'               => 'Jujutan édit ieu kaca panjang pisan, leuwih ti {{PLURAL:$1|révisi|révisi}}.
+Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
+'delete-warning-toobig'       => 'Jujutan ieu kaca panjang pisan, leuwih ti{{PLURAL:$1|révisi|révisi}}. Dihapusna ieu kaca bisa ngaruksak jalanna pangkalan data {{SITENAME}}; sing ati-ati.',
 'rollback'                    => 'Balikkeun éditan',
 'rollback_short'              => 'Balikkeun',
 'rollbacklink'                => 'balikkeun',

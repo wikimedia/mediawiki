@@ -803,6 +803,8 @@ na kome bi se izvela ova funkcija.',
 # Special:Allpages
 'allpages'       => 'Sve stranice',
 'alphaindexline' => '$1 do $2',
+'prevpage'       => 'Prethodna stranica ($1)',
+'allpagesfrom'   => 'Prikaži stranice počev od:',
 'allarticles'    => 'Svi članci',
 'allpagessubmit' => 'Idi',
 
@@ -965,6 +967,8 @@ neće biti automatski zamijenjena.',
 'uctop'         => ' (vrh)',
 'month'         => 'Od mjeseca (i ranije):',
 'year'          => 'Od godine (i ranije):',
+
+'sp-contributions-blocklog' => 'Evidencija blokiranja',
 
 # What links here
 'whatlinkshere'       => 'Šta je povezano ovdje',
@@ -1187,6 +1191,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 
 # Browsing diffs
 'previousdiff' => '← Prethodna izmjena',
+'nextdiff'     => 'Slijedeća razlika →',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ovaj fajl sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.
@@ -1256,6 +1261,12 @@ Ako ovo niste vi, ne pratite poveznicu. Ovaj kod za potvrdu će isteći u $4.',
 : ''$2''
 
 Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
+
+# Multipage image navigation
+'imgmultipageprev' => '← prethodna stranica',
+
+# Table pager
+'table_pager_prev' => 'Prethodna stranica',
 
 # Special:Version
 'version' => 'Verzija', # Not used as normal message but as header for the special page itself

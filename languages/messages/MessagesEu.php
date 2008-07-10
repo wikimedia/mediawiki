@@ -1715,6 +1715,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'importhistoryconflict'      => 'Gatazka sortzen ari den berrikuspen historia dago (baliteke orrialdea lehenago inportatu izana)',
 'importnosources'            => 'Ez dago wikien arteko inportazio iturririk eta historialak zuzenean igotzea ezgaituta dago.',
 'importnofile'               => 'Ez da inportazio fitxategirik igo.',
+'importuploaderrortemp'      => 'Inportatze fitxategiaren igoeran akatsa egon da. Karpeta tenporal bat falta da.',
 'import-parse-failure'       => 'XML inportatze parseak akatsa izan du',
 'import-noarticle'           => 'Ez dago inportatzeko orrialderik!',
 'import-nonewrevisions'      => 'Berrikuspen guztiak aurrez inportatu ziren.',

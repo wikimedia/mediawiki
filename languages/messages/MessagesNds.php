@@ -1554,6 +1554,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'emailccsubject'  => 'Kopie vun diene Naricht an $1: $2',
 'emailsent'       => 'E-Mail afsennt',
 'emailsenttext'   => 'Dien E-Mail is afsennt worrn.',
+'emailuserfooter' => 'Disse E-Mail hett $1 över de Funkschoon „{{int:emailuser}}“ vun {{SITENAME}} an $2 schickt.',
 
 # Watchlist
 'watchlist'            => 'Mien Oppasslist',

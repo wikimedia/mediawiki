@@ -7,6 +7,7 @@
  * @author Agurzil
  * @author Siebrand
  * @author SPQRobin
+ * @author Agzennay
  * @author Jon Harald Søby
  * @author Teak
  */
@@ -438,7 +439,7 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'headline_tip'    => 'Aswir 2 n uzwel azellum',
 'math_sample'     => 'Ssekcem tasemselt dagi',
 'math_tip'        => 'Tasemselt tusnakt (LaTeX)',
-'nowiki_sample'   => 'Ssekcem aḍris mebla taseddast n wiki dagi',
+'nowiki_sample'   => 'Sideff da tirra bla taseddast(formatting) n wiki',
 'nowiki_tip'      => 'Ttu taseddast n wiki',
 'image_sample'    => 'Amedya.jpg',
 'image_tip'       => 'Tugna yettussekcmen',
@@ -862,6 +863,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'imagelist_description' => 'Aglam',
 
 # Image description page
+'filehist-current'          => 'Lux a',
 'filehist-user'             => 'Amseqdac',
 'imagelinks'                => 'Izdayen',
 'linkstoimage'              => 'isebtar-agi sɛan azday ar afaylu-agi',

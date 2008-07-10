@@ -2037,10 +2037,11 @@ $1',
 'hours-abbrev' => 'U',
 
 # Bad image list
-'bad_image_list' => 'Formoat:
+'bad_image_list' => 'Dät Formoat is as foulget:
 
-Bloot Riegen, do der mäd n * ounfange, wäide betrachted. As eerste ätter dän * mout ne Ferbiendenge ap ne nit wonskede Bielde stounde.
-Deerap foulgjende Siedenferbiendengen in jusälge Riege definierje Uutnoamen, in dän Kontext wierfon ju Bielde daach ärschiene duur.',
+Bloot Liestnummere (Riegen, do der mäd n * ounfange), wäide betrachted. 
+As eerste ap ne Riege mout ne Ferbiendenge ap ne nit wonskede Doatäi stounde.
+Deerap foulgjende Siedenferbiendengen in jusälge Riege wäide as Uutnoamen betrachted, dät sunt Sieden wierap ju Doatäi daach ärschiene duur.',
 
 # Metadata
 'metadata'          => 'Metadoaten',

@@ -803,6 +803,10 @@ $2',
 'anontalkpagetext'          => "----'' صفحة النقاش دي بتاعة يوزر مجهول لسة ما فتحش لنفسه حساب أو عنده واحد بس ما بيستعملوش. علشان كدا لازم تستعمل رقم الأيبي علشان تتعرف عليه/عليها. العنوان دا ممكن اكتر من واحد يكونو بيستعملوه. لو انت يوزر مجهول و حاسس  ان في تعليقات بتتوجهلك مع انك مالكش دعوة بيها ،من فضلك [[Special:Userlogin|افتحلك حساب أو سجل الدخول]] علشان تتجنب اللخبطة اللي ممكن تحصل في المستقبل مع يوزرز مجهولين تانيين.''",
 'noarticletext'             => 'مافيش  دلوقتى اى نص فى  الصفحه دى ، ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه]] في الصفحات التانيه او [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعدل الصفحه دى].',
 'userpage-userdoesnotexist' => 'حساب اليوزر "$1" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
+'usercssjsyoucanpreview'    => "<strong>ملاحظة:</strong> استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل حفظ الصفحة.",
+'usercsspreview'            => "'''افتكرأنك  بتعرض  (CSS) بتاع اليوزر بس وانها لسة ماتحفظتش!'''",
+'userjspreview'             => "'''أفتكر أنك بس بتجرب/بتعرض الجافا سكريبت بتاع اليوزر بتاعك، و انها لسة ماتحفظتش!'''",
+'userinvalidcssjstitle'     => "'''تحذير:'''مافيش واجهة  \"\$1\". افتكر أن ملفات ال.css و ال.js بتستخدم حروف صغيرة في العنوان ، مثلا {{ns:user}}:Foo/monobook.css و مش {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(متحدثة)',
 'note'                      => '<strong>ملحوظه:</strong>',
 'previewnote'               => '<strong> دى بروفه للصفحه بس، ولسه ما تسييفتش!</strong>',
@@ -1342,6 +1346,7 @@ $2',
 
 # Delete/protect/revert
 'deletepage'                  => 'امسح الصفحه',
+'confirm'                     => 'أكد',
 'exblank'                     => 'الصفحه كانت فاضيه',
 'delete-confirm'              => 'مسح"$1"',
 'delete-legend'               => 'مسح',
@@ -1485,8 +1490,9 @@ $2',
 'export-addcat' => 'زيادة',
 
 # Namespace 8 related
-'allmessages'     => 'رسايل النظام',
-'allmessagesname' => 'اسم',
+'allmessages'        => 'رسايل النظام',
+'allmessagesname'    => 'اسم',
+'allmessagescurrent' => 'النص دلوقتى',
 
 # Thumbnails
 'thumbnail-more'  => 'كبر',
@@ -1536,6 +1542,7 @@ $2',
 'tooltip-ca-nstab-special'        => 'الصفحة دي صفحة مخصوصة ، مش ممكن تعدل الصفحة نفسها',
 'tooltip-ca-nstab-project'        => 'اعرض صفحة المشروع',
 'tooltip-ca-nstab-image'          => 'اعرض صفحة الفايل',
+'tooltip-ca-nstab-mediawiki'      => 'اعرض رسالة النظام',
 'tooltip-ca-nstab-template'       => 'اعرض القالب',
 'tooltip-ca-nstab-help'           => 'اعرض صفحة المساعده',
 'tooltip-ca-nstab-category'       => 'اعرض صفحة التصنيف',
@@ -1549,6 +1556,12 @@ $2',
 
 # Attribution
 'others' => 'تانيين',
+
+# Spam protection
+'spamprotectiontitle' => 'فلتر الحمايه من السبام',
+
+# Info page
+'infosubtitle' => 'معلومات للصفحه',
 
 # Patrol log
 'patrol-log-auto' => '(اوتوماتيكي)',
@@ -1601,8 +1614,14 @@ $2',
 'exif-flash'            => 'فلاش',
 'exif-flashenergy'      => 'طاقة الفلاش',
 'exif-filesource'       => 'مصدر الملف',
+'exif-gpslatitude'      => 'خط العرض',
+'exif-gpslongitude'     => 'خط الطول',
+'exif-gpsaltitude'      => 'الارتفاع',
 'exif-gpsstatus'        => 'حالة جهاز الاستقبال',
 'exif-gpsspeedref'      => 'وحدة السرعة',
+
+# EXIF attributes
+'exif-compression-1' => 'مش مضغوط',
 
 'exif-unknowndate' => 'تاريخ مش معروف',
 
@@ -1613,28 +1632,53 @@ $2',
 
 'exif-componentsconfiguration-0' => 'مش موجود',
 
+'exif-exposureprogram-0' => 'مش معروف',
 'exif-exposureprogram-1' => 'يدوي',
+'exif-exposureprogram-2' => 'برنامج عادى',
+'exif-exposureprogram-6' => 'برنامج الفعل (بيميل ناحية سرعة القفل)',
+'exif-exposureprogram-7' => 'وضع البورتريه (لصور القفل مع الخلفية بعيدة عن البؤرة)',
+'exif-exposureprogram-8' => 'وضع الأرضية (لصور الأرضية مع الخلفية في البؤرة)',
 
 'exif-subjectdistance-value' => '$1 متر',
 
 'exif-meteringmode-0'   => 'مش معروف',
 'exif-meteringmode-1'   => 'متوسط',
 'exif-meteringmode-2'   => 'متوسط موزون بالمركز',
-'exif-meteringmode-255' => 'خلافوه',
+'exif-meteringmode-3'   => 'بقعة',
+'exif-meteringmode-4'   => 'مالتي سبوت',
+'exif-meteringmode-5'   => 'نمط',
+'exif-meteringmode-6'   => 'جزئي',
+'exif-meteringmode-255' => 'تاني',
 
 'exif-lightsource-0'   => 'مش معروف',
+'exif-lightsource-1'   => 'نورالنهار',
+'exif-lightsource-2'   => 'فلورسنت',
+'exif-lightsource-3'   => 'تنجستين (ضوء مشع)',
 'exif-lightsource-4'   => 'فلاش',
 'exif-lightsource-9'   => 'جو صحو',
 'exif-lightsource-10'  => 'جو مغيم',
 'exif-lightsource-11'  => 'ضل',
+'exif-lightsource-12'  => 'فلورسنت نور النهار (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'فلورسنت نهار أبيض (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'فلورسنت أبيض كوول(W 3900 – 4500K)',
+'exif-lightsource-15'  => 'فلورسنت أبيض (WW 3200 – 3700K)',
 'exif-lightsource-17'  => 'ضوء قياسى  A',
 'exif-lightsource-18'  => 'ضوء قياسى B',
 'exif-lightsource-19'  => 'ضوء قياسى C',
-'exif-lightsource-255' => 'مصدر ضوء  تانى',
+'exif-lightsource-20'  => 'دي55',
+'exif-lightsource-21'  => 'دي65',
+'exif-lightsource-22'  => 'دي75',
+'exif-lightsource-23'  => 'دي50',
+'exif-lightsource-24'  => 'تنجستين ستوديو أيزو',
+'exif-lightsource-255' => 'مصدر  نور تانى',
 
 'exif-focalplaneresolutionunit-2' => 'بوصة',
 
-'exif-sensingmethod-1' => 'مش معرف',
+'exif-sensingmethod-1' => 'مش متعرف',
+'exif-sensingmethod-2' => 'حساس لون المساحة من راق واحد',
+'exif-sensingmethod-3' => 'حساس لون المساحة من راقين',
+'exif-sensingmethod-4' => 'حساس لون المساحة من تلات راقات',
+'exif-sensingmethod-5' => 'حساس لون مساحة متتابع',
 'exif-sensingmethod-7' => 'حساس بتلات خطوط',
 'exif-sensingmethod-8' => 'حساس لون خطي متتابع',
 

@@ -10,8 +10,8 @@
  * @author M.M.S.
  * @author Peter Andersen
  * @author Siebrand
- * @author S.Örvarr.S
  * @author H92
+ * @author S.Örvarr.S
  * @author Boivie
  * @author Ranveig
  * @author Lars J. Helbo <lars.helbo@gmail.com>
@@ -1631,8 +1631,8 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 ** Overtrædelse af ophavsret
 ** Hærværk',
 'delete-edit-reasonlist'      => 'Redigér sletningsbegrundelser',
-'delete-toobig'               => 'Denne side har en stor historik, over $1 versioner. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
-'delete-warning-toobig'       => 'Denne side har en stor historik, over $1 versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
+'delete-toobig'               => 'Denne side har en stor historik, over $1 {{PLURAL:$1|version|versioner}}. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
+'delete-warning-toobig'       => 'Denne side har en stor historik, over $1 {{PLURAL:$1|version|versioner}}, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
 'rollback'                    => 'Fjern redigeringer',
 'rollback_short'              => 'Fjern redigering',
 'rollbacklink'                => 'fjern redigering',

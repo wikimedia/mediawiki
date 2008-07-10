@@ -7,7 +7,6 @@
  * @author SPQRobin
  * @author Siebrand
  * @author Alno
- * @author Nike
  * @author לערי ריינהארט
  */
 
@@ -258,8 +257,8 @@ Voaforona ny kaontinao. Aza adinoina ny manova ny mombamomba anao ao amin'ny {{S
 'loginprompt'                => "
 Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'userlogin'                  => 'Ampidiro ny solonanarana',
-'logout'                     => 'Hidio',
-'userlogout'                 => 'Hidio',
+'logout'                     => 'Hiala',
+'userlogout'                 => 'Hiala',
 'notloggedin'                => 'Tsy tafiditra',
 'nologin'                    => 'Tsy manana solonanarana? $1.',
 'nologinlink'                => 'Manokafa kaonty',
