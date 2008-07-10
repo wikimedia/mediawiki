@@ -13,7 +13,10 @@ class LanguageMt extends Language {
 
 		$forms = $this->preConvertPlural( $forms, 4 );
 
-		$index = (n==1 ? 0 : n==0 or ( n%100>1 && n%100<11) ? 1 : (n%100>10 && n%100<20 ) ? 2 : 3);
+		if ( $count === 1 ) $index = 0;
+		elseif ( $count === 0 || ( $count%100>1 && $count%100<11) ) $index = 1;
+		elseif ( $count%100>10 && $count%100<20 ) $index = 2;
+		else $index = 3;
 		return $forms[$index];
 	}
 }
