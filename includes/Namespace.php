@@ -52,8 +52,7 @@ class MWNamespace {
 	 * @return bool
 	 */
 	public static function isMovable( $index ) {
-		global $wgAllowImageMoving;
-		return !( $index < NS_MAIN || ($index == NS_IMAGE && !$wgAllowImageMoving)  || $index == NS_CATEGORY );
+		return !( $index < NS_MAIN || $index == NS_CATEGORY );
 	}
 
 	/**
