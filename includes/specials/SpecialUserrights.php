@@ -197,8 +197,8 @@ class UserrightsPage extends SpecialPage {
 			$user->getUserPage(),
 			$wgRequest->getText( 'user-reason' ),
 			array(
-				$this->makeGroupNameList( $oldGroups ),
-				$this->makeGroupNameList( $newGroups )
+				$this->makeGroupNameListForLog( $oldGroups ),
+				$this->makeGroupNameListForLog( $newGroups )
 			)
 		);
 	}
@@ -292,6 +292,14 @@ class UserrightsPage extends SpecialPage {
 			return wfMsg( 'rightsnone' );
 		} else {
 			return implode( ', ', $ids );
+		}
+	}
+
+	function makeGroupNameListForLog( $ids ) {
+		if( empty( $ids ) ) {
+			return '';
+		} else {
+			return $this->makeGroupNameList( $ids );
 		}
 	}
 
