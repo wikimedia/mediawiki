@@ -42,6 +42,7 @@ class LanguageConverter {
 	 * @param array $variantfallback the fallback language of each variant
 	 * @param array $markup array defining the markup used for manual conversion
 	 * @param array $flags array defining the custom strings that maps to the flags
+	 * @param array $manualLevel limit for supported variants
 	 * @public
 	 */
 	function __construct($langobj, $maincode,
@@ -323,15 +324,14 @@ class LanguageConverter {
 			$this->mTitleDisplay =  $title;
 		}
 
-		//add manual conversion table to global table
+		//apply manual conversion table to global table
 		$convTable = $convRule->getConvTable();
-		$isAdd = $convRule->getRulesAction()=="add";
-		$isRemove = $convRule->getRulesAction()=="remove";
+		$action = $convRule->getRulesAction();
 		foreach($convTable as $v=>$t) {
 			if( !in_array($v,$this->mVariants) )continue;
-			if( $isAdd )
+			if( $action=="add" )
 				$this->mTables[$v]->mergeArray($t);
-			elseif ( $isRemove )
+			elseif ( $action=="remove" )
 				$this->mTables[$v]->removeArray($t);
 		}
 	}
@@ -841,14 +841,6 @@ class ConverterRule {
 			$rules = $text;
 		}
 
-		if( !in_array('R',$flags) ){
-			//FIXME: may cause trouble here...
-			//strip &nbsp; since it interferes with the parsing, plus,
-			//all spaces should be stripped in this tag anyway.
-			$rules = str_replace('&nbsp;', '', $rules);
-			$rules = str_replace('=&gt;','=>',$rules);
-		}
-
 		//check flags
 		if( in_array('R',$flags) ){
 			$flags = array('R');// remove other flags
@@ -976,7 +968,6 @@ class ConverterRule {
 	 * @private
 	 */
 	function generateConvTable(){
-		//$rules = $this->mRules;
 		$flags = $this->mFlags;
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
@@ -1027,10 +1018,19 @@ class ConverterRule {
 		if(!$variant) $variant = $this->mConverter->getPreferredVariant();
 
 		$this->parseFlags();
-		$this->parseRules();
-
-		$rules = $this->mRules;
 		$flags = $this->mFlags;
+
+		if( !in_array('R',$flags) || !in_array('N',$flags) ){
+			//FIXME: may cause trouble here...
+			//strip &nbsp; since it interferes with the parsing, plus,
+			//all spaces should be stripped in this tag anyway.
+			$this->mRules = str_replace('&nbsp;', '', $this->mRules);
+			// decode => HTML entities modified by Sanitizer::removeHTMLtags 
+			$this->mRules = str_replace('=&gt;','=>',$this->mRules);
+
+			$this->parseRules();
+		}
+		$rules = $this->mRules;
 
 		if(count($this->mBidtable)==0 && count($this->mUnidtable)==0){
 			if(in_array('+',$flags) || in_array('-',$flags))
@@ -1059,7 +1059,7 @@ class ConverterRule {
 		} else {
 			$this->mRuleDisplay= $this->mManualCodeError;
 		}
-		// proces T flag : output nothing
+		// proces T flag
 		if ( in_array('T',$flags) ) {
 			$this->mRuleTitle = $this->getRuleConvertedStr($variant,
 							$this->mConverter->mDoTitleConvert);
@@ -1082,7 +1082,6 @@ class ConverterRule {
 
 	/**
 	 * get display text on markup -{...}-
-	 * @param string $variant the current variant
 	 * @public
 	 */
 	function getDisplay(){
@@ -1090,7 +1089,6 @@ class ConverterRule {
 	}
 	/**
 	 * get converted title
-	 * @param string $variant the current variant
 	 * @public
 	 */
 	function getTitle(){
