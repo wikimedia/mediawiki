@@ -616,7 +616,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 --
 CREATE TABLE /*$wgDBprefix*/hitcounter (
   hc_id int unsigned NOT NULL
-) TYPE=HEAP MAX_ROWS=25000;
+) ENGINE=HEAP MAX_ROWS=25000;
 
 
 --
@@ -994,7 +994,7 @@ CREATE TABLE /*$wgDBprefix*/searchindex (
   FULLTEXT si_title (si_title),
   FULLTEXT si_text (si_text)
 
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 --
 -- Recognized interwiki link prefixes

@@ -8,4 +8,4 @@ CREATE TABLE /*$wgDBprefix*/profiling (
   pf_name varchar(255) NOT NULL default '',
   pf_server varchar(30) NOT NULL default '',
   UNIQUE KEY pf_name_server (pf_name, pf_server)
-) TYPE=HEAP;
+) ENGINE=HEAP;

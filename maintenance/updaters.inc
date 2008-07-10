@@ -555,7 +555,7 @@ function do_schema_restructuring() {
   			UNIQUE INDEX name_title (page_namespace,page_title),
   			INDEX (page_random),
   			INDEX (page_len)
-			) TYPE=InnoDB", $fname );
+			) ENGINE=InnoDB", $fname );
 		$wgDatabase->query("CREATE TABLE $revision (
   			rev_id int(8) unsigned NOT NULL auto_increment,
   			rev_page int(8) unsigned NOT NULL,
@@ -573,7 +573,7 @@ function do_schema_restructuring() {
   			INDEX page_timestamp (rev_page,rev_timestamp),
   			INDEX user_timestamp (rev_user,rev_timestamp),
   			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
-			) TYPE=InnoDB", $fname );
+			) ENGINE=InnoDB", $fname );
 
 		echo wfTimestamp( TS_DB );
 		echo "......Locking tables.\n";
