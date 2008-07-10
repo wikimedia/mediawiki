@@ -862,7 +862,10 @@ function wfMerge( $old, $mine, $yours, &$result ){
  */
 function wfVarDump( $var ) {
 	global $wgOut;
-	$s = str_replace("\n","<br />\n", var_export( $var, true ) . "\n");
+	ob_start();
+	var_dump( $var );
+	$s = str_replace("\n","<br />\n", ob_get_contents() . "\n");
+	ob_end_clean();
 	if ( headers_sent() || !@is_object( $wgOut ) ) {
 		print $s;
 	} else {
@@ -2363,4 +2366,14 @@ function wfGenerateToken( $salt = '' ) {
  	$salt = serialize($salt);
 
  	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
+}
+
+/**
+ * Replace all invalid characters with -
+ * @param mixed $title Filename to process
+ */
+function wfStripIllegalFilenameChars( $name ) {
+	$name = wfBaseName( $name );
+	$name = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $name );
+	return $name;
 }
