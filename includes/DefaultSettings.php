@@ -3265,8 +3265,3 @@ $wgSitemapNamespaces = false;
  * ting this variable false.
  */
 $wgUseAutomaticEditSummaries = true;
-
-/*
- * Track link changes 
- */
-$wgTrackLinkChanges = false;

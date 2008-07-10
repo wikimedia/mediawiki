@@ -12,19 +12,12 @@ class LinksUpdate {
 	var $mId,            //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
 		$mLinks,         //!< Map of title strings to IDs for the links in the document
-		$mExistingLinks,
 		$mImages,        //!< DB keys of the images used, in the array key only
-		$mExistingImages,
 		$mTemplates,     //!< Map of title strings to IDs for the template references, including broken ones
-		$mExistingTemplates,
 		$mExternals,     //!< URLs of external links, array key only
-		$mExistingExternals,
 		$mCategories,    //!< Map of category names to sort keys
-		$mExistingCategories,
 		$mInterlangs,    //!< Map of language codes to titles
-		$mExistingInterlangs,
 		$mProperties,    //!< Map of arbitrary name to value
-		$mExistingProperties,
 		$mDb,            //!< Database connection reference
 		$mOptions,       //!< SELECT options to be used (array)
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
@@ -82,7 +75,7 @@ class LinksUpdate {
 	 * Update link tables with outgoing links from an updated article
 	 */
 	function doUpdate() {
-		global $wgUseDumbLinkUpdate, $wgTrackLinkChanges;
+		global $wgUseDumbLinkUpdate;
 
 		wfRunHooks( 'LinksUpdate', array( &$this ) );
 		if ( $wgUseDumbLinkUpdate ) {
@@ -90,8 +83,6 @@ class LinksUpdate {
 		} else {
 			$this->doIncrementalUpdate();
 		}
-		if ( $wgTrackLinkChanges )
-			$this->makeRecentlinkchanges();
 		wfRunHooks( 'LinksUpdateComplete', array( &$this ) );
 
 	}
@@ -574,9 +565,6 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingLinks() {
-		if ( is_array( $this->mExistingLinks ) )
-			return $this->mExistingLinks;
-		
 		$res = $this->mDb->select( 'pagelinks', array( 'pl_namespace', 'pl_title' ),
 			array( 'pl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -587,7 +575,7 @@ class LinksUpdate {
 			$arr[$row->pl_namespace][$row->pl_title] = 1;
 		}
 		$this->mDb->freeResult( $res );
-		return $this->mExistingLinks = $arr;
+		return $arr;
 	}
 
 	/**
@@ -595,9 +583,6 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingTemplates() {
-		if ( is_array( $this->mExistingTemplates ) )
-			return $this->mExistingTemplates;
-		
 		$res = $this->mDb->select( 'templatelinks', array( 'tl_namespace', 'tl_title' ),
 			array( 'tl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -608,7 +593,7 @@ class LinksUpdate {
 			$arr[$row->tl_namespace][$row->tl_title] = 1;
 		}
 		$this->mDb->freeResult( $res );
-		return $this->mExistingTemplates = $arr;
+		return $arr;
 	}
 
 	/**
@@ -616,9 +601,6 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingImages() {
-		if ( is_array( $this->mExistingImages ) )
-			return $this->mExistingImages;
-		
 		$res = $this->mDb->select( 'imagelinks', array( 'il_to' ),
 			array( 'il_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -626,7 +608,7 @@ class LinksUpdate {
 			$arr[$row->il_to] = 1;
 		}
 		$this->mDb->freeResult( $res );
-		return $this->mExistingImages = $arr;
+		return $arr;
 	}
 
 	/**
@@ -634,9 +616,6 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingExternals() {
-		if ( is_array( $this->mExistingExternals ) )
-			return $this->mExistingExternals;
-		
 		$res = $this->mDb->select( 'externallinks', array( 'el_to' ),
 			array( 'el_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -644,7 +623,7 @@ class LinksUpdate {
 			$arr[$row->el_to] = 1;
 		}
 		$this->mDb->freeResult( $res );
-		return $this->mExistingExternals = $arr;
+		return $arr;
 	}
 
 	/**
@@ -652,9 +631,6 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingCategories() {
-		if ( is_array( $this->mExistingCategories ) )
-			return $this->mExistingCategories;
-		
 		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey' ),
 			array( 'cl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -662,7 +638,7 @@ class LinksUpdate {
 			$arr[$row->cl_to] = $row->cl_sortkey;
 		}
 		$this->mDb->freeResult( $res );
-		return $this->mExistingCategories = $arr;
+		return $arr;
 	}
 
 	/**
@@ -671,16 +647,13 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingInterlangs() {
-		if ( is_array( $this->mExistingInterlangs ) )
-			return $this->mExistingInterlangs;
-			
 		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ),
 			array( 'll_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
 		while ( $row = $this->mDb->fetchObject( $res ) ) {
 			$arr[$row->ll_lang] = $row->ll_title;
 		}
-		return $this->mExistingInterlangs = $arr;
+		return $arr;
 	}
 
 	/**
@@ -688,9 +661,6 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getExistingProperties() {
-		if ( is_array( $this->mExistingProperties ) )
-			return $this->mExistingProperties;
-			
 		$res = $this->mDb->select( 'page_props', array( 'pp_propname', 'pp_value' ),
 			array( 'pp_page' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -698,7 +668,7 @@ class LinksUpdate {
 			$arr[$row->pp_propname] = $row->pp_value;
 		}
 		$this->mDb->freeResult( $res );
-		return $this->mExistingProperties = $arr;
+		return $arr;
 	}
 
 
@@ -727,125 +697,5 @@ class LinksUpdate {
 				}
 			}
 		}
-	}
-	
-	// Recentlinkchanges constants
-	const INSERTION = 1;
-	const DELETION = 2;
-	private static $rlcFields = array( 
-		'rlc_type', 
-		'rlc_timestamp', 
-		'rlc_action',
-		'rlc_from', 
-		'rlc_to_namespace', 
-		'rlc_to_title', 
-		'rlc_to_blob' 
-	);
-	/*
-	 * Insert items to recentlinkchanges
-	 */
-	function makeRecentlinkchanges() {
-		$insert = array();
-		$now = $this->mDb->timestamp();
-		
-		// Category changes
-		$existing = array_keys( $this->getExistingCategories() );
-		$current = array_keys( $this->mCategories );
-		$this->simpleAddToLinkchanges( $insert, 'category', $now, $existing, $current, NS_CATEGORY );
-		
-		// External links
-		$existing = array_keys( $this->getExistingExternals() );
-		$current = array_keys( $this->mExternals );
-		$insertions = array_diff( $current, $existing );
-		foreach ( $insertions as $item )
-			$insert[] = array(
-				'external', $now, self::INSERTION,
-				$this->mId, null, null, $item );
-		$deletions = array_diff( $existing, $current );
-		foreach ( $deletions as $item )
-			$insert[] = array(
-				'external', $now, self::DELETION,
-				$this->mId, null, null, $item );
-		
-		// Image changes
-		$existing = array_keys( $this->getExistingImages() );
-		$current = array_keys( $this->mImages );
-		$this->simpleAddToLinkchanges( $insert, 'image', $now, $existing, $current, NS_IMAGE );
-		
-		// Interlangs
-		$existing = $this->getExistingInterlangs();
-		$current = $this->mInterlangs;
-		$this->assocAddToLinkchanges( $insert, 'interlang', $existing, $current );
-		
-		// Page links
-		$existing = $this->getExistingLinks();
-		$current = $this->mLinks;
-		$this->addToLinkChangesByNamespace( $insert, 'page', $now, $existing, $current);
-
-		// Properties
-		$existing = $this->getExistingProperties();
-		$current = $this->mProperties;
-		$this->assocAddToLinkchanges( $insert, 'property', $existing, $current );
-		
-		// Templates
-		$existing = $this->getExistingTemplates();
-		$current = $this->mTemplates;
-		$this->addToLinkChangesByNamespace( $insert, 'template', $now, $existing, $current);
-
-		$this->mDb->insert( 'recentlinkchanges', $insert, __METHOD__ );
-		
-	}
-	
-	/* 
-	 * Compute the difference for arrays of titles with namespace $ns and add
-	 * them to $insert.
-	 */
-	private function simpleAddToLinkchanges( &$insert, $type, $now, $existing, $current, $ns ) {
-		
-		$insertions = array_diff( $current, $existing );
-		foreach ( $insertions as $item )
-			$insert[] = array_combine(self::$rlcFields, array(
-				$type, $now, self::INSERTION, 
-				$this->mId, $ns, $item, null
-			) );
-		$deletions = array_diff( $existing, $current );
-		foreach ( $deletions as $item )
-			$insert[] = array_combine(self::$rlcFields, array(
-				$type, $now, self::DELETION, 
-				$this->mId, $ns, $item, null
-			) );
-		
-	}
-	
-	/*
-	 * Compute the difference for associative arrays and insert them to 
-	 * $insert as title => blob.
-	 */
-	function assocAddToLinkChanges( &$insert, $type, $now, $existing, $current ) {
-		$insertions = array_diff_assoc( $current, $existing );
-		foreach ( $insertions as $key => $value )
-			$insert[] = array_combine(self::$rlcFields, array( 
-				$type, $now, self::INSERTION,
-				$this->mId, null, $key, $value
-			) );
-		$deletions = array_diff_assoc( $existing, $current );
-		foreach ( $deletions as $key => $value )
-			$insert[] = array_combine(self::$rlcFields, array( 
-				$type, $now, self::DELETION,
-				$this->mId, null, $key, $value 
-			) );		
-	}
-	
-	/*
-	 * Format arrays in the form $namespace => $titleArray for use in
-	 * simpleAddLinkLinkChanges
-	 */
-	function addToLinkChangesByNamespace( &$insert, $type, $now, $existing, $current ) {
-		$namespaces = array_merge( array_keys( $existing ), array_keys( $current ) );
-		foreach ( $namespaces as $ns )
-			$this->simpleAddToLinkchanges( $insert, $type, $now, 
-				isset( $existing[$ns] ) ? array_keys( $existing[$ns] ) : array(),
-				isset( $current[$ns] ) ? array_keys( $current[$ns] ) : array(),
-				$ns );
 	}
 }
