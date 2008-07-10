@@ -427,8 +427,6 @@ class UploadForm {
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
 		$filtered = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $filtered );
-		if( wfIsWindows() )
-			$filtered = preg_replace ( "/[*?]/", '-', $filtered );
 		$nt = Title::makeTitleSafe( NS_IMAGE, $filtered );
 		if( is_null( $nt ) ) {
 			$resultDetails = array( 'filtered' => $filtered );

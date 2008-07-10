@@ -431,7 +431,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on non-mySQL schemas.
 * (bug 14763) Child classes of Database (DatabasePostgres and DatabaseOracle)
   had stict standards issues with setFakeSlaveLag() and setFakeMaster().
-* Image now can't contain "*" or "?" characters under Windows
 
 === API changes in 1.13 ===
 

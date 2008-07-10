@@ -1692,7 +1692,6 @@ $wgMessageStructure = array(
 		'immobile_namespace',
 		'imagenocrossnamespace',
 		'imagetypemismatch',
-		'imageinvalidfilename',
 	),
 	'export' => array(
 		'export',
