@@ -58,7 +58,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				$this->dieUsage("Invalid continue param. You should pass the " .
 					"original value returned by the previous query", "_badcontinue");
 			$llfrom = intval($cont[0]);
-			$lllang = $this->getDb()->addQuotes($cont[1]);
+			$lllang = $this->getDb()->strencode($cont[1]);
 			$this->addWhere("ll_from > $llfrom OR ".
 					"(ll_from = $llfrom AND ".
 					"ll_lang >= '$lllang')");
