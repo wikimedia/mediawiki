@@ -1592,7 +1592,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'emailccsubject'  => 'Kopie deiner Nachricht an $1: $2',
 'emailsent'       => 'E-Mail verschickt',
 'emailsenttext'   => 'Deine E-Mail wurde verschickt.',
-'emailuserfooter' => 'Diese E-Mail wurde von $1 an $2 mit Hilfe der „E-Mail an diesen Benutzer“-Funktion von {{SITENAME}} versandt.',
+'emailuserfooter' => 'Diese E-Mail wurde von „Benutzer:$1“ an „Benutzer:$2“ mit Hilfe der „E-Mail an diesen Benutzer“-Funktion von {{SITENAME}} versandt.',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
@@ -1919,6 +1919,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'block-log-flags-nocreate'    => 'Erstellung von Benutzerkonten gesperrt',
 'block-log-flags-noautoblock' => 'Autoblock deaktiviert',
 'block-log-flags-noemail'     => 'E-Mail-Versand gesperrt',
+'block-log-flags-angry-autoblock' => 'erweiterter Autoblock aktiviert',
 'range_block_disabled'        => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'          => 'Die eingegebene Dauer ist ungültig.',
 'ipb_expiry_temp'             => 'Versteckte Benutzernamens-Sperren sollen permanent sein.',
@@ -1998,6 +1999,7 @@ Die Seite „[[$1]]“ existiert bereits. Möchtest du diese löschen, um die Se
 'immobile_namespace'      => 'Der Quell- oder Zielnamensraum ist geschützt; Verschiebungen in diesen Namensraum hinein oder aus diesem heraus sind nicht möglich.',
 'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
 'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
+'imageinvalidfilename'    => 'Der Ziel-Dateiname ist ungültig',
 
 # Export
 'export'            => 'Seiten exportieren',
