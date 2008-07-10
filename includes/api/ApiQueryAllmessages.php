@@ -75,7 +75,6 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		//Get all requested messages
 		$messages = array();
 		foreach( $messages_target as $message ) {
-			$message = trim( $message );	//Message list can be formatted like "msg1 | msg2 | msg3", so let's trim() it
 			$messages[$message] = wfMsg( $message );
 		}
 
