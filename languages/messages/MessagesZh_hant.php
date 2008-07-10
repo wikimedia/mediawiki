@@ -1846,6 +1846,7 @@ $1',
 'immobile_namespace'      => '目標標題屬於特別類型；不能將頁面移入這個名字空間。',
 'imagenocrossnamespace'   => '不可以移動檔案到非檔案名字空間',
 'imagetypemismatch'       => '該新副檔名不匹配它的類型',
+'imageinvalidfilename'    => '目標檔案名稱是無效的',
 
 # Export
 'export'            => '匯出頁面',

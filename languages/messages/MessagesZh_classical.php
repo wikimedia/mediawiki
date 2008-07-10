@@ -1625,6 +1625,7 @@ $NEWPAGE
 'immobile_namespace'      => '鄉遷其一，名冊特異，不可遷也。',
 'imagenocrossnamespace'   => '非勳檔至非檔名間',
 'imagetypemismatch'       => '其新副檔名非配其類也',
+'imageinvalidfilename'    => '標之檔名乃無效也',
 
 # Export
 'export'            => '出匯',

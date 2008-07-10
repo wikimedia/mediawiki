@@ -1871,6 +1871,7 @@ $1',
 'immobile_namespace'      => '目标标题属于特别类型；不能将页面移入这个名字空间。',
 'imagenocrossnamespace'   => '不可以移动文件到非文件名字空间',
 'imagetypemismatch'       => '该新副档名不匹配它的类型',
+'imageinvalidfilename'    => '目标文件名称是无效的',
 
 # Export
 'export'            => '导出页面',

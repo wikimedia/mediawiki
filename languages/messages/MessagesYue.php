@@ -1908,6 +1908,7 @@ $1',
 'immobile_namespace'      => '來源或目的標題屬於特別類型；唔可以將頁面搬自或搬去嗰個空間名。',
 'imagenocrossnamespace'   => '唔可以搬檔案到非檔案空間名',
 'imagetypemismatch'       => '個新副檔名唔配佢嘅類型',
+'imageinvalidfilename'    => '個目標檔名係無效嘅',
 
 # Export
 'export'            => '倒出/導出/匯出（Export）頁面',
