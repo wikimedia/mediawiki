@@ -960,6 +960,7 @@ $2',
 'deletedrev'          => '[נמחק]',
 'histfirst'           => 'ראשונות',
 'histlast'            => 'אחרונות',
+'historysize'         => '({{PLURAL:$1|בית אחד|$1 בתים}})',
 'historyempty'        => '(ריק)',
 
 # Revision feed
@@ -2098,6 +2099,7 @@ $1',
 'immobile_namespace'      => 'כותרת המקור או היעד היא סוג מיוחד של דף; לא ניתן להעביר דפים לתוך או מתוך מרחב שם זה.',
 'imagenocrossnamespace'   => 'לא ניתן להעביר תמונה למרחב שם אחר',
 'imagetypemismatch'       => 'סיומת הקובץ החדשה אינה מתאימה לסוג הקובץ',
+'imageinvalidfilename'    => 'שם קובץ היעד אינו תקין',
 
 # Export
 'export'            => 'ייצוא דפים',
