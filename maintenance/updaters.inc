@@ -1423,7 +1423,6 @@ function do_postgres_updates() {
 		array("page_restrictions", "patch-page_restrictions.sql"),
 		array("profiling",         "patch-profiling.sql"),
 		array("protected_titles",  "patch-protected_titles.sql"),
-		array("recentlinkchanges", "patch-recentlinkchanges.sql"),
 		array("redirect",          "patch-redirect.sql"),
 		array("updatelog",         "patch-updatelog.sql"),
 	);

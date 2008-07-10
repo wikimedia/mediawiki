@@ -185,9 +185,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add a new hook NormalizeMessageKey to allow extensions to replace messages before
   the database is potentially queried
 * (bug 9736) Redirects on Special:Fewestrevisions are now marked as such.
-* (bug 13588) Experimentally track link changes if $wgTrackLinkChanges is set
-  to true. Requires schema change.
-
+ 
 === Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository

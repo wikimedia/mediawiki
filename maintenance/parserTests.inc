@@ -454,7 +454,7 @@ class ParserTest {
 			'protected_titles', 'revision', 'text', 'pagelinks', 'imagelinks',
 			'categorylinks', 'templatelinks', 'externallinks', 'langlinks',
 			'site_stats', 'hitcounter',	'ipblocks', 'image', 'oldimage',
-			'recentchanges', 'recentlinkchanges', 'watchlist', 'math', 'interwiki',
+			'recentchanges', 'watchlist', 'math', 'interwiki',
 			'querycache', 'objectcache', 'job', 'redirect', 'querycachetwo',
 			'archive', 'user_groups', 'page_props', 'category'
 		);
