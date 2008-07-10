@@ -426,7 +426,6 @@ class UploadForm {
 			return self::MIN_LENGHT_PARTNAME;
 		}
 
-		
 		$nt = Title::makeTitleSafe( NS_IMAGE, $filtered );
 		if( is_null( $nt ) ) {
 			$resultDetails = array( 'filtered' => $filtered );
