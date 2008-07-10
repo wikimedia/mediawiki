@@ -86,7 +86,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				$this->dieUsage("Invalid continue param. You should pass the " .
 					"original value returned by the previous query", "_badcontinue");
 			$clfrom = intval($cont[0]);
-			$clto = $this->getDb()->addQuotes($this->titleToKey($cont[1]));
+			$clto = $this->getDb()->strencode($cont[1]);
 			$this->addWhere("cl_from > $clfrom OR ".
 					"(cl_from = $clfrom AND ".
 					"cl_to >= '$clto')");
@@ -109,8 +109,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if (++$count > $params['limit']) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue', $row->cl_from .
-							'|' . $this->keyToTitle($row->cl_to));
+					$this->setContinueEnumParameter('continue', "{$row->cl_from}|{$row->cl_to}");
 					break;
 				}
 				if ($lastId != $row->cl_from) {
@@ -144,8 +143,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if (++$count > $params['limit']) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue', $row->cl_from .
-							'|' . $this->keyToTitle($row->cl_to));
+					$this->setContinueEnumParameter('continue', "{$row->il_from}|{$row->il_to}");
 					break;
 				}
 

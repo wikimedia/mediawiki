@@ -66,7 +66,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				$this->dieUsage("Invalid continue param. You should pass the " .
 					"original value returned by the previous query", "_badcontinue");
 			$ilfrom = intval($cont[0]);
-			$ilto = $this->getDb()->addQuotes($this->titleToKey($cont[1]));
+			$ilto = $this->getDb()->strencode($cont[1]);
 			$this->addWhere("il_from > $ilfrom OR ".
 					"(il_from = $ilfrom AND ".
 					"il_to >= '$ilto')");
@@ -90,8 +90,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				if (++$count > $params['limit']) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue', $row->il_from .
-							'|' . $this->keyToTitle($row->il_to));
+					$this->setContinueEnumParameter('continue', "{$row->il_from}|{$row->il_to}");
 					break;
 				}
 				if ($lastId != $row->il_from) {
@@ -119,8 +118,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				if (++$count > $params['limit']) {
 					// We've reached the one extra which shows that
 					// there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter('continue', $row->il_from .
-							'|' . $this->keyToTitle($row->il_to));
+					$this->setContinueEnumParameter('continue', "{$row->il_from}|{$row->il_to}");
 					break;
 				}
 				$titles[] = Title :: makeTitle(NS_IMAGE, $row->il_to);
