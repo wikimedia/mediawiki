@@ -108,8 +108,8 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	public function getParamDescription() {
 		return array (
 			'messages' => 'Which messages to output. "*" means all messages',
-			'filter' => 'Return only messages that contains specified string',
-			'lang' => 'Language code',
+			'filter' => 'Return only messages that contain this string',
+			'lang' => 'Return messages in this language',
 		);
 	}
 

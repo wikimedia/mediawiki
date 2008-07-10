@@ -29,7 +29,7 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * This query adds <images> subelement to all pages with the list of images embedded into those pages.
+ * This query adds <categories> subelement to all pages with the list of images embedded into those pages.
  *
  * @ingroup API
  */

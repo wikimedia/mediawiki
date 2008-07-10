@@ -29,7 +29,7 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * This is three-in-one module to query:
+ * This is a three-in-one module to query:
  *   * backlinks  - links pointing to the given page,
  *   * embeddedin - what pages transclude the given page within themselves,
  *   * imageusage - what pages use the given image
