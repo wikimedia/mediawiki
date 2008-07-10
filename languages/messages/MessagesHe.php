@@ -1469,7 +1469,7 @@ PICT # שונות
 'filerevert-defaultcomment' => 'שוחזר לגרסה מ־$2, $1',
 'filerevert-submit'         => 'שחזור',
 'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' שוחזרה ל[גרסה $4 מ־$3, $2].</span>',
-'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המצוין.',
+'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המבוקש.',
 
 # File deletion
 'filedelete'                  => 'מחיקת $1',
@@ -1482,7 +1482,7 @@ PICT # שונות
 'filedelete-success'          => "'''$1''' נמחק.",
 'filedelete-success-old'      => '<span class="plainlinks">הגרסה של \'\'\'[[Media:$1|$1]]\'\'\' מ־$3, $2 נמחקה.</span>',
 'filedelete-nofile'           => "'''$1''' אינו קיים באתר זה.",
-'filedelete-nofile-old'       => "אין גרסה ישנה של '''$1''' עם התכונות המצוינות.",
+'filedelete-nofile-old'       => "אין גרסה ישנה של '''$1''' עם התכונות המבוקשות.",
 'filedelete-iscurrent'        => 'אתם מנסים למחוק את הגרסה החדשה ביותר של הקובץ. אנא שחזרו קודם לגרסה ישנה יותר.',
 'filedelete-otherreason'      => 'סיבה נוספת/אחרת:',
 'filedelete-reason-otherlist' => 'סיבה אחרת',
