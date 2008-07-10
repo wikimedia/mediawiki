@@ -1295,7 +1295,7 @@ class Linker {
 		$editurl = '&section='.$section;
 		$url = $this->makeKnownLinkObj(
 			$nt,
-			wfMsg('editsection'),
+			htmlspecialchars(wfMsg('editsection')),
 			'action=edit'.$editurl,
 			'', '', '',  $hint
 		);
@@ -1311,9 +1311,9 @@ class Linker {
 		// For reverse compatibility, add the brackets *after* the hook is run,
 		// and even add them to hook-provided text.
 		if( is_null( $result ) ) {
-			$result = wfMsg( 'editsection-brackets', $url );
+			$result = wfMsgHtml( 'editsection-brackets', $url );
 		} else {
-			$result = wfMsg( 'editsection-brackets', $result );
+			$result = wfMsgHtml( 'editsection-brackets', $result );
 		}
 		return "<span class=\"editsection\">$result</span>";
 	}
