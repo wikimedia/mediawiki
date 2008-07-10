@@ -1550,9 +1550,6 @@ $wgAllowExternalImages = false;
   */
 $wgAllowExternalImagesFrom = '';
 
-/** Allows to move images and other media files. Experemintal, not sure if it always works */
-$wgAllowImageMoving = false;
-
 /** Disable database-intensive features */
 $wgMiserMode = false;
 /** Disable all query pages if miser mode is on, not just some */
