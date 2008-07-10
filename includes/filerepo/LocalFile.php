@@ -1699,7 +1699,7 @@ class LocalFileRestoreBatch {
  * @ingroup FileRepo
  */
 class LocalFileMoveBatch {
-	var $file, $cur, $olds, $oldcount, $archive, $target, $db;
+	var $file, $cur, $olds, $oldCount, $archive, $target, $db;
 
 	function __construct( File $file, Title $target ) {
 		$this->file = $file;
@@ -1713,14 +1713,20 @@ class LocalFileMoveBatch {
 		$this->db = $file->repo->getMasterDb();
 	}
 
+	/*
+	 * Add the current image to the batch
+	 */
 	function addCurrent() {
 		$this->cur = array( $this->oldRel, $this->newRel );
 	}
 
+	/*
+	 * Add the old versions of the image to the batch
+	 */
 	function addOlds() {
 		$archiveBase = 'archive';
 		$this->olds = array();
-		$this->oldcount = 0;
+		$this->oldCount = 0;
 
 		$result = $this->db->select( 'oldimage',
 			array( 'oi_archive_name', 'oi_deleted' ),
@@ -1728,10 +1734,10 @@ class LocalFileMoveBatch {
 			__METHOD__
 		);
 		while( $row = $this->db->fetchObject( $result ) ) {
-			$oldname = $row->oi_archive_name;
-			$bits = explode( '!', $oldname, 2 );
+			$oldName = $row->oi_archive_name;
+			$bits = explode( '!', $oldName, 2 );
 			if( count( $bits ) != 2 ) {
-				wfDebug( 'Invalid old file name: ' . $oldname );
+				wfDebug( 'Invalid old file name: ' . $oldName );
 				continue;
 			}
 			list( $timestamp, $filename ) = $bits;
@@ -1739,8 +1745,8 @@ class LocalFileMoveBatch {
 				wfDebug( 'Invalid old file name:' . $oldName );
 				continue;
 			}
-			$this->oldcount++;
-			// Do we want to add those to oldcount?
+			$this->oldCount++;
+			// Do we want to add those to oldCount?
 			if( $row->oi_deleted & File::DELETED_FILE ) {
 				continue;
 			}
@@ -1752,6 +1758,9 @@ class LocalFileMoveBatch {
 		$this->db->freeResult( $result );
 	}
 
+	/*
+	 * Perform the move.
+	 */
 	function execute() {
 		$repo = $this->file->repo;
 		$status = $repo->newGood();
@@ -1770,6 +1779,10 @@ class LocalFileMoveBatch {
 		return $status;
 	}
 
+	/*
+	 * Do the database updates and return a new WikiError indicating how many
+	 * rows where updated.
+	 */
 	function doDBUpdates() {
 		$repo = $this->file->repo;
 		$status = $repo->newGood();
@@ -1799,14 +1812,16 @@ class LocalFileMoveBatch {
 			__METHOD__
 		);
 		$affected = $dbw->affectedRows();
-		$total = $this->oldcount;
+		$total = $this->oldCount;
 		$status->successCount += $affected;
 		$status->failCount += $total - $affected;
 
 		return $status;
 	}
 
-	// Generates triplets for FSRepo::storeBatch()
+	/*
+	 * Generate triplets for FSRepo::storeBatch().
+	 */ 
 	function getMoveTriplets() {
 		$moves = array_merge( array( $this->cur ), $this->olds );
 		$triplets = array();	// The format is: (srcUrl, destZone, destUrl)
