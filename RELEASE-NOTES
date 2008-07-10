@@ -12,13 +12,19 @@ Changes since 1.12.0:
 * (bug 12077) Fix HTML nesting for TOC
 * (bug 13532) Use proper timestamp call when reverting images
 * (bug 13649, 14084) Bad call to wfTimestamp()
-* (bug 13770) Use Preprocessor_Hash by default to avoid missing DOM module errors
-* (bug 13442) Missing pages in prop=langlinks and prop=extlinks are now 
+* (bug 13770) Use Preprocessor_Hash by default to avoid missing DOM module 
+  errors
+* (bug 13442) API: Missing pages in prop=langlinks and prop=extlinks are now
   handled properly.
-* (bug 13482) Disabled search types handled properly
-* (bug 13836) Fixed fatal errors resulting from combining iiprop=metadata with
-  format=xml
-
+* (bug 13482) API: Disabled search types handled properly
+* (bug 13836) API: Fixed fatal errors resulting from combining iiprop=metadata 
+  with format=xml
+* (bug 11633) API: Explicitly convert redirect titles to strings due to PHP's
+  very weak typing on array keys.
+* API: Fixing main page display in meta=siteinfo
+* (bug 11719) API: Remove trailing blanks in YAML output.
+* (bug 13718) API: Return the proper continue parameter for cmsort=timestamp
+ 
 == MediaWiki 1.12.0 ==
 
 This is the quarterly branch release of MediaWiki for Winter 2008.
