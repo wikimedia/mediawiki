@@ -413,7 +413,7 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'italic_tip'      => 'Italique',
 'link_sample'     => 'Nom du lien',
 'link_tip'        => 'Lien intérieur',
-'extlink_sample'  => 'http://www.exemple.com nom du lien',
+'extlink_sample'  => 'http://www.example.org nom du lien',
 'extlink_tip'     => 'Lien extérieur (Oubliez pas de mettre http:// avant.)',
 'headline_sample' => 'Sujet',
 'headline_tip'    => 'Sujet niveau 2',

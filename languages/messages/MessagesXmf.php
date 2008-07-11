@@ -7,8 +7,8 @@
  * @author Dato deutschland
  * @author Alsandro
  * @author Malafaya
- * @author Siebrand
  * @author M.M.S.
+ * @author Siebrand
  */
 
 $fallback = 'ka';
@@ -211,7 +211,7 @@ $messages = array(
 'italic_tip'      => 'კურსივ',
 'link_sample'     => 'რსხილიშ სახელ',
 'link_tip'        => 'დინახალენ რსხილ',
-'extlink_sample'  => 'http://www.example.com რსხილიშ სათაურ',
+'extlink_sample'  => 'http://www.example.org რსხილიშ სათაურ',
 'extlink_tip'     => 'გალე რსხილ (ქორშუდათი http:// პრეფიქს)',
 'headline_sample' => 'სათაურიშ ტექსტ',
 'headline_tip'    => 'ქვესათაურ',

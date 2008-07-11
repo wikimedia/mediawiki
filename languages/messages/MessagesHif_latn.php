@@ -486,7 +486,7 @@ Aap sait pahile password ke badal diya hoi nai to nawaa temporary password ke ma
 'italic_tip'      => 'Italic text',
 'link_sample'     => 'Jorr ke title',
 'link_tip'        => 'Bhitari jorr',
-'extlink_sample'  => 'http://www.example.com link title',
+'extlink_sample'  => 'http://www.example.org link title',
 'extlink_tip'     => 'Bahari jorr (yaad rakhna http:// prefix)',
 'headline_sample' => 'Headline text',
 'headline_tip'    => 'Duusra level ke headline',

@@ -228,7 +228,7 @@ $messages = array(
 
 # Edit page toolbar
 'link_sample'    => 'съвѧ́ꙁи и́мѧ',
-'extlink_sample' => 'http://www.example.com съвѧ́ꙁи и́мѧ',
+'extlink_sample' => 'http://www.example.org съвѧ́ꙁи и́мѧ',
 
 # Edit pages
 'summary'        => 'опьса́ниѥ',

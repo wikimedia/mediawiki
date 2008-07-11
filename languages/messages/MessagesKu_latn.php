@@ -470,7 +470,7 @@ Eger kesekî din vê xastinê ji te ra xast ya şîfreya kevin dîsa hate bîrê
 'italic_tip'      => 'Nivîsa xwar (îtalîk)',
 'link_sample'     => 'Navê lînkê',
 'link_tip'        => 'Lînka hundir',
-'extlink_sample'  => 'http://www.minak.com navê lînkê',
+'extlink_sample'  => 'http://www.example.org navê lînkê',
 'extlink_tip'     => 'Lînka derve (http:// di destpêkê de ji bîr neke)',
 'headline_sample' => 'Nivîsara sernameyê',
 'headline_tip'    => 'Sername asta 2',

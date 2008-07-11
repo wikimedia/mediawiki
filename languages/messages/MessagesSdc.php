@@ -8,8 +8,8 @@
  * @author Antofa
  * @author Cornelia
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -457,7 +457,7 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'italic_tip'      => 'Cursibu',
 'link_sample'     => 'Tìturu di lu cullegamentu',
 'link_tip'        => 'Cullegamentu internu',
-'extlink_sample'  => 'http://www.esempiu.com tìturu di lu cullegamentu',
+'extlink_sample'  => 'http://www.example.org tìturu di lu cullegamentu',
 'extlink_tip'     => 'Cullegamentu esthernu (nota lu prefissu http:// )',
 'headline_sample' => 'Intisthazioni',
 'headline_tip'    => 'Sottu-intisthazioni',

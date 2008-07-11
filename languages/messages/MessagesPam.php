@@ -474,7 +474,7 @@ Mapaliaring melaus na ing pamanalili mung password, o mekapaniad na kang bayung 
 'italic_tip'      => 'Makakiling a kulitan (italic)',
 'link_sample'     => 'Bansag ning suglung',
 'link_tip'        => 'Suglung a pangkilub',
-'extlink_sample'  => 'http://www.example.com bansag ning suglung',
+'extlink_sample'  => 'http://www.example.org bansag ning suglung',
 'extlink_tip'     => 'Suglung a palwal (tandanan me ing http:// prefix)',
 'headline_sample' => 'Letra ning pamagat (headline text)',
 'headline_tip'    => 'Pamagat a level 2',

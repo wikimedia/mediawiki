@@ -7,8 +7,8 @@
  * @author Better
  * @author Siebrand
  * @author M.M.S.
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -226,7 +226,7 @@ $messages = array(
 'disclaimers'          => 'Avisu legal',
 'disclaimerpage'       => 'Project:Arrayu heneral de responsabiliá',
 'edithelp'             => "Ayua d'eición",
-'edithelppage'         => 'Ayua:Eitandu',
+'edithelppage'         => 'Help:Eitandu',
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Ayua:Continius',
 'mainpage'             => 'Páhina prencipal',
@@ -464,7 +464,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'italic_tip'      => 'Testu en letra "Itálica"',
 'link_sample'     => 'Atihal entítulu',
 'link_tip'        => 'Atihu entelnu',
-'extlink_sample'  => 'http://www.sabulugal.com Entítulu el atihu',
+'extlink_sample'  => 'http://www.example.org Entítulu el atihu',
 'extlink_tip'     => 'Atihu esternu (alcuerdati el prefihu http://)',
 'headline_sample' => 'Entítulu',
 'headline_tip'    => 'Entítulu e nivel 2',
@@ -1259,7 +1259,7 @@ El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] e
 'listgrouprights'          => "Derechus del grupu d'usuárius",
 'listgrouprights-group'    => 'Grupu',
 'listgrouprights-rights'   => 'Derechus',
-'listgrouprights-helppage' => 'Ayua:Derechus del grupu',
+'listgrouprights-helppage' => 'Help:Derechus del grupu',
 'listgrouprights-members'  => '(lista e miembrus)',
 
 # E-mail user

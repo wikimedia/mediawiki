@@ -62,7 +62,7 @@ $messages = array(
 'tog-showjumplinks'           => 'Ἐνεργοποιεῖν τοὺς "ἅλμα πρὸς" συνδέσμους προσβασιμότητος',
 'tog-watchlisthideown'        => 'Οὐ δηλοῦν τὰς ἐμὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
 'tog-watchlisthidebots'       => 'Ἀποκρύπτειν τὰς αὐτοματας μεταγραφ ὰς ἐκ τῆς αγρυπνοδιαλογῆς',
-'tog-watchlisthideminor'      => 'Οὐ δηλοῦν τὰς μικρὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
+'tog-watchlisthideminor'      => 'Οὐ δηλοῦν τὰς μικρὰς μεταβολὰς ἐν τὰ ἐφορώμενά μου',
 'tog-showhiddencats'          => 'Κεκρυμμένας κατηγορίας δηλοῦν',
 
 'underline-always'  => 'Ἀεὶ',
@@ -233,7 +233,7 @@ $messages = array(
 'portal'               => 'Πύλη πολιτείας',
 'portal-url'           => 'Project:Πύλη Κοινότητος',
 'privacy'              => 'Ἡ περὶ τῶν ἰδίων προαίρεσις',
-'privacypage'          => 'Βούλευμα:Περὶ τῶν ἰδιωτικῶν',
+'privacypage'          => 'Project:Περὶ τῶν ἰδιωτικῶν',
 
 'badaccess'        => 'Σφάλμα ἀδείας',
 'badaccess-group0' => 'Οὐκ ἔξεστί σοι ταῦτα διαπράττειν.',
@@ -328,7 +328,7 @@ $messages = array(
 'italic_tip'     => 'Γράμματα πλάγια',
 'link_sample'    => 'Συνδέσμου ὄνομα',
 'link_tip'       => 'Σύνδεσμος οἰκεῖος',
-'extlink_sample' => 'http://www.example.com ὄνομα συνδέσμου',
+'extlink_sample' => 'http://www.example.org ὄνομα συνδέσμου',
 'media_tip'      => 'Τὸ προσάγον πρὸς τὸ φορτίον',
 
 # Edit pages
@@ -344,6 +344,7 @@ $messages = array(
 'loginreqlink'          => 'συνδεῖσθαι',
 'newarticle'            => '(νέα)',
 'userinvalidcssjstitle' => "'''Προσοχή:''' Οὐκ ὑφίσταται skin \"\$1\". Μέμνησο: οἱ προσηρμοσμέναι δέλτοι .css και .js χρησιμοποιούν ένα ἐπώνυμον ἔχον μικρά γράμματα, π.χ. {{ns:user}}:Foo/monobook.css ἐν ἀντίθεσει πρὸς τὸ {{ns:user}}:Foo/Monobook.css.",
+'note'                  => '<strong>Ἐπισήμανσις:</strong>',
 'editing'               => 'Μεταγράφων $1',
 'editingsection'        => 'Μεταγράφων $1 (μέρος)',
 'yourtext'              => 'Τὰ ὑπό σου γραφόμενα',
@@ -373,6 +374,11 @@ $messages = array(
 'rev-delundel'      => 'δεικνύναι/κρύπτειν',
 'pagehist'          => 'Ἱστορία δέλτου',
 'revdelete-content' => 'περιεχόμενον',
+'revdelete-uname'   => 'ὄνομα χρήστου',
+
+# History merging
+'mergehistory' => 'Merge page histories
+Συγχωνεύειν ἱστορίας δέλτων',
 
 # Diffs
 'history-title' => 'Τὰ πρότερα περὶ "$1" κατὰ τὸ μεταγράφειν',
@@ -622,6 +628,7 @@ $messages = array(
 'unblocklink'        => 'χαλᾶν',
 'contribslink'       => 'Ἔρανοι',
 'blocklogpage'       => 'Τὰ ἀποκλῄειν',
+'blocklogentry'      => 'Κεκλῄμενος [[$1]] μέχρι οὗ $2 $3',
 
 # Move page
 'move-page-legend' => 'Κινεῖν τὴν δέλτον',

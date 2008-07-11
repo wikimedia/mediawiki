@@ -573,7 +573,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'italic_tip'      => 'Kursiwny tekst',
 'link_sample'     => 'Mjeno wotkaza',
 'link_tip'        => 'Znutřkowny wotkaz',
-'extlink_sample'  => 'http://www.přikład.de Mjeno wotkaza',
+'extlink_sample'  => 'http://www.example.org Mjeno wotkaza',
 'extlink_tip'     => 'Zwonkowny wotkaz (pomysli sej na prefiks http://)',
 'headline_sample' => 'Nadpismo',
 'headline_tip'    => 'Nadpismo runiny 2',

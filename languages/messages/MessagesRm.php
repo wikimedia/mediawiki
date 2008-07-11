@@ -234,7 +234,7 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'bold_tip'       => 'Text grass',
 'italic_sample'  => 'Text cursiv',
 'italic_tip'     => 'Text cursiv',
-'extlink_sample' => 'http://www.example.com link title',
+'extlink_sample' => 'http://www.example.org link title',
 'extlink_tip'    => 'Link extern (risguardar il prefix http:// )',
 'image_sample'   => 'Exempel.jpg',
 'sig_tip'        => 'Tia suttascripziun cun data e temp',

@@ -706,7 +706,7 @@ $2 մասնակցի նոր գաղտնաբառն է՝ <code>$3</code>։
 'italic_tip'      => 'Շեղատառ տեքստ',
 'link_sample'     => 'Հղման վերնագիր',
 'link_tip'        => 'Ներքին հղում',
-'extlink_sample'  => 'http://www.example.com հղման վերնագիրը',
+'extlink_sample'  => 'http://www.example.org հղման վերնագիրը',
 'extlink_tip'     => 'Արտաքին հղում (հիշեք http:// նախածանցը)',
 'headline_sample' => 'Ենթագլուխ',
 'headline_tip'    => 'Ենթագլուխ',

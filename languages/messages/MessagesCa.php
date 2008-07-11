@@ -12,13 +12,13 @@
  * @author Iradigalesc
  * @author לערי ריינהארט
  * @author Jordi Roqué
- * @author Juanpabl
  * @author Spacebirdy
+ * @author Juanpabl
+ * @author McDutchie
  * @author Vriullop
  * @author Pérez
  * @author Jon Harald Søby
  * @author SPQRobin
- * @author McDutchie
  * @author Smeira
  */
 
@@ -619,7 +619,7 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'italic_tip'      => 'Text en cursiva',
 'link_sample'     => "Títol de l'enllaç",
 'link_tip'        => 'Enllaç intern',
-'extlink_sample'  => "http://www.exemple.cat títol de l'enllaç",
+'extlink_sample'  => "http://www.example.org títol de l'enllaç",
 'extlink_tip'     => 'Enllaç extern (recordeu el prefix http://)',
 'headline_sample' => "Text per a l'encapçalament",
 'headline_tip'    => 'Encapçalat de secció de 2n nivell',

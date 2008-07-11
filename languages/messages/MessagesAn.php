@@ -568,7 +568,7 @@ Si a cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'italic_tip'      => 'Testo en cursiba',
 'link_sample'     => "Títol d'o binclo",
 'link_tip'        => 'Binclo interno',
-'extlink_sample'  => "http://www.exemplo.com Títol d'o binclo",
+'extlink_sample'  => "http://www.example.org Títol d'o binclo",
 'extlink_tip'     => "Binclo esterno (alcuerde-se d'adibir o prefixo http://)",
 'headline_sample' => 'Testo de tetular',
 'headline_tip'    => 'Tetular de libel 2',
@@ -1889,6 +1889,7 @@ A pachina de destino ("[[$1]]") ya esiste. Quiere borrar-la ta premitir o tresla
 'immobile_namespace'      => "O títol de destino ye d'una mena espezial. No se puede tresladar pachinas ta iste espazio de nombres.",
 'imagenocrossnamespace'   => "No se puede tresladar un archibo ta un espazio de nombres que no sía t'archibos",
 'imagetypemismatch'       => "A nueba estensión no concuerda con o tipo d'archibo",
+'imageinvalidfilename'    => "O nombre de l'archibo obchetibo no ye conforme",
 
 # Export
 'export'            => 'Esportar as pachinas',

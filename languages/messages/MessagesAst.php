@@ -503,7 +503,7 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'italic_tip'      => 'Testu en cursiva',
 'link_sample'     => 'Títulu del enllaz',
 'link_tip'        => 'Enllaz internu',
-'extlink_sample'  => 'http://www.exemplu.com títulu del enllaz',
+'extlink_sample'  => 'http://www.example.org títulu del enllaz',
 'extlink_tip'     => "Enllaz esternu (recuerda'l prefixu http://)",
 'headline_sample' => 'Testu de cabecera',
 'headline_tip'    => 'Testu cabecera nivel 2',
@@ -1370,7 +1370,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 Pue atopase información adicional tocante a drechos individuales [[{{MediaWiki:Listgrouprights-helppage}}|equí]].",
 'listgrouprights-group'    => 'Grupu',
 'listgrouprights-rights'   => 'Drechos',
-'listgrouprights-helppage' => 'Aida:Drechos de grupu',
+'listgrouprights-helppage' => 'Help:Drechos de grupu',
 'listgrouprights-members'  => '(llista de miembros)',
 
 # E-mail user

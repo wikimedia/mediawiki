@@ -550,7 +550,7 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'italic_tip'      => 'İtalik (kursiv) yazılış',
 'link_sample'     => 'Saifeniñ serlevası',
 'link_tip'        => 'İçki bağlantı',
-'extlink_sample'  => 'http://www.example.com saifeniñ serlevası',
+'extlink_sample'  => 'http://www.example.org saifeniñ serlevası',
 'extlink_tip'     => 'Tış bağlantı (Adres ögüne http:// qoymağa unutmañız)',
 'headline_sample' => 'Serleva yazısı',
 'headline_tip'    => '2-nci seviye serleva',
