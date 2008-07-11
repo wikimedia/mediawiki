@@ -507,7 +507,7 @@ Dinge Zojang för hee es do. Do bes jetz aanjemeldt. Denk dran, Do künnts der D
 'yourlanguage'               => 'Die Sproch, die et Wiki kalle soll:',
 'yourvariant'                => 'Ding Variant',
 'yournick'                   => 'Name för en Ding Ungerschreff:',
-'badsig'                     => 'Di Ungeschreff jëijd_esu nit — luer noh dem [http://ksh.wikipedia.org/wiki/HTML HTML] do_dren un maach et rėshtėsh.',
+'badsig'                     => 'Di Ungeschreff jëijd_esu nit — luer noh dem HTML do_dren un maach et rėshtėsh.',
 'badsiglength'               => 'Ding Unterschref darf nit länger wi {{PLURAL:$1|eij|$1|keij}} Zeische änthallde.',
 'email'                      => 'e-mail',
 'prefs-help-realname'        => '* Dinge richtije Name - kanns De fott looße - wann De en nenne wells, dann weed hee jebruch, öm Ding Beidräch domet ze schmöcke.',
@@ -798,7 +798,7 @@ Die Sigg hee es halv jesperrt, wie mer sage, dat heiß, Do muss [[Special:Userlo
 'undo-success' => 'De Änderung könnte mer zeröck nämme. Beloor Der de Ungerscheed un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenung esu.',
 'undo-failure' => '<span class="error">Dat kunnt mer nit zeröck nämme, dä Afschnedd wood enzwesche ald widder beärbeidt.</span>',
 'undo-norev'   => '<span class="error">Do ka\'mer nix zeröck nämme. Di Version jidd_et nit, odder se es verstoche odder fottjeschmesse woode.</span>',
-'undo-summary' => 'De Änderung $1 fum [[{{#special:Contributions}}/$2|$2]] ([[{{ns:User talk}}:$2|Klaaf]]) zeröck jenomme.',
+'undo-summary' => 'De Änderung $1 fum [[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|Klaaf]]) zeröck jenomme.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kann keine Zojang enrichte',

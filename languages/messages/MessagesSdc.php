@@ -8,8 +8,8 @@
  * @author Antofa
  * @author Cornelia
  * @author Siebrand
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -737,7 +737,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'powersearch'           => 'Zercha abanzadda',
 'powersearch-legend'    => 'Zercha abanzadda',
 'powersearch-ns'        => "Zercha i' li tipi di pàgina:",
-'searchdisabled'        => 'Abà no pói zirchà in {{SITENAME}}; proba cun [http://www.google.it/search?q=site%3Asdc.wikipedia.org Google] o sìmiri, ma ammèntaddi chi li cuntinuddi di {{SITENAME}} poni assé no aggiornaddi.',
+'searchdisabled'        => 'Abà no pói zirchà in {{SITENAME}}; proba cun Google o sìmiri, ma ammèntaddi chi li cuntinuddi di {{SITENAME}} poni assé no aggiornaddi.',
 
 # Preferences page
 'preferences'              => 'Prifirenzi',

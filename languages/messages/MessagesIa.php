@@ -1104,7 +1104,7 @@ articulos legitime.
 Il habeva un total de '''\$3''' {{PLURAL:\$3|visita a paginas|visitas a paginas}}, e '''\$4''' {{PLURAL:\$4|modification|modificationes}} de paginas
 desde le actualisation de {{SITENAME}}.
 Isto representa un media de '''\$5''' modificationes per pagina, e '''\$6''' visitas per modification.",
-'userstatstext' => "Il ha {{PLURAL:$1|'''1''' [[{{ns:Special}}:Listusers|usator]]|'''$1''' [[{{ns:Special}}:Listusers|usatores]]}} registrate, del quales '''$2''' (o '''$4%''') ha derectos de $5.",
+'userstatstext' => "Il ha {{PLURAL:$1|'''1''' [[Special:Listusers|usator]]|'''$1''' [[Special:Listusers|usatores]]}} registrate, del quales '''$2''' (o '''$4%''') ha derectos de $5.",
 
 'disambiguations'     => 'Paginas de disambiguation',
 'disambiguationspage' => '{{ns:project}}:Ligamines_a_paginas_de_disambiguation',

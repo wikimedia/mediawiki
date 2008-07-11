@@ -5,8 +5,8 @@
  * @file
  *
  * @author Giangian15
- * @author Chrisportelli
  * @author Siebrand
+ * @author Chrisportelli
  */
 
 $messages = array(
@@ -213,26 +213,26 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Dwar {{SITENAME}}',
-'aboutpage'            => 'Proġett:Dwar',
+'aboutpage'            => 'Project:Dwar',
 'bugreports'           => 'Rapporti dwar żballji',
-'bugreportspage'       => 'Proġett:Rapporti dwar żballji',
+'bugreportspage'       => 'Project:Rapporti dwar żballji',
 'copyright'            => 'Kontenut aċċessibli taħt $1.',
 'copyrightpagename'    => '{{SITENAME}} propjetá letterarja',
 'copyrightpage'        => '{{ns:project}}:Propjetá letterarja',
 'currentevents'        => 'Ġrajjiet kurrenti',
-'currentevents-url'    => 'Proġett:Ġrajjiet kurrenti',
+'currentevents-url'    => 'Project:Ġrajjiet kurrenti',
 'disclaimers'          => 'Ċaħdiet',
-'disclaimerpage'       => 'Proġett:Ċaħdiet ġenerali',
+'disclaimerpage'       => 'Project:Ċaħdiet ġenerali',
 'edithelp'             => 'Għajnuna bil-modifika',
 'edithelppage'         => 'Help:Modifika',
 'faq'                  => 'FAQ',
-'faqpage'              => 'Proġett:FAQ',
-'helppage'             => 'Għajnuna:Kontenut',
+'faqpage'              => 'Project:FAQ',
+'helppage'             => 'Help:Kontenut',
 'mainpage'             => 'Paġna prinċipali',
 'mainpage-description' => 'Paġna prinċipali',
-'policy-url'           => 'Proġett:Politika',
+'policy-url'           => 'Project:Politika',
 'portal'               => 'Portal tal-komunità',
-'portal-url'           => 'Proġett:Portal tal-komunità',
+'portal-url'           => 'Project:Portal tal-komunità',
 'privacy'              => 'Politika dwar segretezza',
 'privacypage'          => 'Project:Politika dwar segretezza',
 

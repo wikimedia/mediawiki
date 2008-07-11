@@ -823,9 +823,9 @@ contenant tous les termes apparaissent dans les résultats).",
 
 'grouppage-user'          => '{{ns:project}}:Favesikeem',
 'grouppage-autoconfirmed' => '{{ns:project}}:Miv gruyeyen favesik yo',
-'grouppage-bot'           => '{{ns:project}} : Stiernikeem',
-'grouppage-sysop'         => '{{ns:project}} : Ristusikeem',
-'grouppage-bureaucrat'    => '{{ns:project}} : Stujesikeem',
+'grouppage-bot'           => '{{ns:project}}:Stiernikeem',
+'grouppage-sysop'         => '{{ns:project}}:Ristusikeem',
+'grouppage-bureaucrat'    => '{{ns:project}}:Stujesikeem',
 'grouppage-suppress'      => '{{ns:project}}:Rokla',
 
 # Rights
