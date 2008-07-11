@@ -2153,7 +2153,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'myskin.css'      => '/* CSS an dieser Stelle wirkt sich auf den MySkin-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'chick.css'       => '/* CSS an dieser Stelle wirkt sich auf den Küken-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'simple.css'      => '/* CSS an dieser Stelle wirkt sich auf den Einfach-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den MySkin-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den Modern-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 
 # Scripts
 'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
@@ -2511,6 +2511,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpslongitude-w' => 'westl. Länge',
 
 'exif-gpsstatus-a' => 'Messung läuft',
+'exif-gpsstatus-v' => 'Interoperabilität von Messungen',
 
 'exif-gpsmeasuremode-2' => '2-dimensionale Messung',
 'exif-gpsmeasuremode-3' => '3-dimensionale Messung',
@@ -2598,7 +2599,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
 
 # action=purge
-'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
+'confirm_purge' => 'Diese Seite aus dem Server-Cache löschen? $1',
 'confirm_purge_button' => 'OK',
 
 # AJAX search

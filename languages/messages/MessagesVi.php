@@ -1805,7 +1805,6 @@ $1',
 'ipblocklist'                     => 'Danh sách cấm',
 'ipblocklist-legend'              => 'Tìm một thành viên bị cấm',
 'ipblocklist-username'            => 'Tên thành viên hoặc địa chỉ IP:',
-'ipblocklist-summary'             => 'Xem [http://tools.wikimedia.de/~krimpet/rbhelper.php?db=viwiki_p công cụ này] để tìm tất cả các nhật trình khóa dải IP đối với một IP cụ thể nào đó.',
 'ipblocklist-submit'              => 'Tìm kiếm',
 'blocklistline'                   => '$1, $2 đã cấm $3 (hết hạn $4)',
 'infiniteblock'                   => 'vô hạn',
@@ -1930,7 +1929,7 @@ Trang với tên “[[$1]]” đã tồn tại. Bạn có muốn xóa nó để 
 
 Để xuất các trang, nhập vào tên trang trong hộp soạn thảo ở dưới, mỗi dòng một tên, và lựa chọn bạn muốn phiên bản hiện tại cũng như tất cả phiên bản cũ, với các dòng lịch sử trang, hay chỉ là phiên bản hiện tại với thông tin về lần sửa đổi cuối.
 
-Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví dụ [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]] để biểu thị trang “[[{{MediaWiki:Mainpage}}]]”.',
+Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví dụ [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] để biểu thị trang “[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Chỉ xuất phiên bản hiện hành, không xuất tất cả lịch sử trang',
 'exportnohistory'   => "----
 '''Chú ý:''' Chức năng xuất lịch sử trang đầy đủ bằng mẫu này bị tắt do vấn đề hiệu suất.",

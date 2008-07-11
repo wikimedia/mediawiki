@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Dakrismeno
+ * @author SPQRobin
  * @author SabineCretella
  * @author Malafaya
  * @author Siebrand
@@ -96,6 +96,8 @@ süi titul dai sezziún (JavaScript)',
 'printableversion' => 'Versiun də stampà',
 'permalink'        => 'Culegament permanent',
 'edit'             => 'Mudifica',
+'editthispage'     => 'Mudifica cula pagina chi',
+'create-this-page' => 'Crea cula pagina chi',
 'delete'           => 'Scancela',
 'undelete_short'   => 'Rimett a post {{PLURAL:$1|1 mudifica|$1 mudifich}}',
 'protect'          => 'Bloca',
@@ -123,16 +125,17 @@ süi titul dai sezziún (JavaScript)',
 'portal-url'           => 'Project:Purtaal da cumünitaa',
 'privacy'              => "Pulitica de la ''privacy''",
 
-'retrievedfrom'       => 'Utegnüü da "$1"',
-'youhavenewmessages'  => "Gh'hinn di $1 ($2).",
-'newmessageslink'     => 'messacc nööf',
-'newmessagesdifflink' => 'diferenza par rapòort a la versiun da prima',
-'editsection'         => 'Mudifica',
-'toc'                 => 'Cuntegnüü',
-'showtoc'             => 'varda',
-'hidetoc'             => 'scuunt',
-'thisisdeleted'       => 'Varda o rimett a pòst $1?',
-'restorelink'         => '{{PLURAL:$1|1 mudifica scancelada|$1 mudifich scancelaa}}',
+'retrievedfrom'           => 'Utegnüü da "$1"',
+'youhavenewmessages'      => "Gh'hinn di $1 ($2).",
+'newmessageslink'         => 'messacc nööf',
+'newmessagesdifflink'     => 'diferenza par rapòort a la versiun da prima',
+'youhavenewmessagesmulti' => "Te gh'è di messagg növ ins'el $1",
+'editsection'             => 'Mudifica',
+'toc'                     => 'Cuntegnüü',
+'showtoc'                 => 'varda',
+'hidetoc'                 => 'scuunt',
+'thisisdeleted'           => 'Varda o rimett a pòst $1?',
+'restorelink'             => '{{PLURAL:$1|1 mudifica scancelada|$1 mudifich scancelaa}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Vus',
@@ -216,10 +219,13 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'compareselectedversions' => 'Cumpara i versiun selezziunaa',
 
 # Search results
-'prevn'        => 'preçedeent $1',
-'nextn'        => 'pròssim $1',
-'viewprevnext' => 'Vidé ($1) ($2) ($3).',
-'powersearch'  => 'Truvá',
+'noexactmatch'          => "'''La pagina \"\$1\" la esista no.''' L'è pussibil [[:\$1|creala adèss]].",
+'noexactmatch-nocreate' => "'''La pagina cun el titul \"\$1\" la esista no.'''",
+'toomanymatches'        => "Gh'è tropi curispundens. Mudifichè la richiesta.",
+'prevn'                 => 'preçedeent $1',
+'nextn'                 => 'pròssim $1',
+'viewprevnext'          => 'Vidé ($1) ($2) ($3).',
+'powersearch'           => 'Truvá',
 
 # Preferences page
 'preferences'        => 'Prefereenz',

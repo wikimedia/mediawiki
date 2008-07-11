@@ -1445,7 +1445,7 @@ eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til bak
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User_talk:$3|Spjall]]).',
 'editcomment'                 => 'Beytingarágripið var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Tók aftur breytingar [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user talk}}:$2|spjall]]), breytt til síðustu útgáfu [[{{ns:user}}:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User_talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Fyrir neðan er listi yfir síðuverndanir og -afverndanir.
