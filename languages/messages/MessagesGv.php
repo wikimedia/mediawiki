@@ -438,16 +438,14 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'files'                => 'Coadanyn',
 
 # User rights
-'userrights'                 => 'Reireydys kiartyn ymmydeyr', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Possanyn ymmydeyr y stiurey',
-'userrights-user-editname'   => 'Screeu stiagh ennym ymmydeyr:',
-'editusergroup'              => 'Possanyn ymmydeyr y reaghey',
-'userrights-editusergroup'   => 'Possanyn ymmydeyr y reaghey',
-'saveusergroups'             => 'Possanyn ymmydeyr y sauail',
-'userrights-groupsmember'    => 'Oltey jeh:',
-'userrights-groupsremovable' => 'Possanyn yn-scughey:',
-'userrights-groupsavailable' => 'Possanyn ry-gheddyn:',
-'userrights-reason'          => 'Fa yn chaghlaa:',
+'userrights'               => 'Reireydys kiartyn ymmydeyr', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Possanyn ymmydeyr y stiurey',
+'userrights-user-editname' => 'Screeu stiagh ennym ymmydeyr:',
+'editusergroup'            => 'Possanyn ymmydeyr y reaghey',
+'userrights-editusergroup' => 'Possanyn ymmydeyr y reaghey',
+'saveusergroups'           => 'Possanyn ymmydeyr y sauail',
+'userrights-groupsmember'  => 'Oltey jeh:',
+'userrights-reason'        => 'Fa yn chaghlaa:',
 
 # Groups
 'group'            => 'Possan:',

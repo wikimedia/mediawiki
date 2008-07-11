@@ -889,32 +889,25 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'files'                    => 'Bestenj',
 
 # User rights
-'userrights'                       => 'Gebroekersrechtebeheer', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Beheer gebroekersgróppe',
-'userrights-user-editname'         => "Veur 'ne gebroekersnaam in:",
-'editusergroup'                    => 'Bewirk gebroekersgróppe',
-'editinguser'                      => "Bezig mit bewèrke van 't gebroekersrech van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Bewirk gebroekersgróppe',
-'saveusergroups'                   => 'Gebroekersgróppe opsjlaon',
-'userrights-groupsmember'          => 'Leed van:',
-'userrights-groupsremovable'       => 'Verwiederbare groepe:',
-'userrights-groupsavailable'       => 'Besjikbaar gróppe:',
-'userrights-groups-help'           => "De kèns de gróppe verangere woe deze gebroeker lid van is.
+'userrights'                  => 'Gebroekersrechtebeheer', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Beheer gebroekersgróppe',
+'userrights-user-editname'    => "Veur 'ne gebroekersnaam in:",
+'editusergroup'               => 'Bewirk gebroekersgróppe',
+'editinguser'                 => "Bezig mit bewèrke van 't gebroekersrech van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Bewirk gebroekersgróppe',
+'saveusergroups'              => 'Gebroekersgróppe opsjlaon',
+'userrights-groupsmember'     => 'Leed van:',
+'userrights-groups-help'      => "De kèns de gróppe verangere woe deze gebroeker lid van is.
 * 'n Aangekruuts vinkvekske beteikent det de gebroeker lid is van de gróp.
 * 'n Neet aangekruuts vinkvekske beteikent det de gebroeker neet lid is van de gróp.
 * \"*\" Beteikent dets te 'ne gebroeker neet oet 'ne gróp eweg kèns haole naodets te die daobie höbs gedoon, of angersóm.",
-'userrights-reason'                => "Reje veur 't verangere:",
-'userrights-available-none'        => 'Doe moogs gein gebroekersrechte verangere.',
-'userrights-available-add'         => 'De kèns gebroekers bie {{PLURAL:$2|deze gróp|dees gróppe}} doon: $1.',
-'userrights-available-remove'      => 'De kèns gebroekers eweghaole oet {{PLURAL:$2|deze gróp|dees gróppe}}: $1.',
-'userrights-available-add-self'    => 'De kèns dichzelf bie {{PLURAL:$2|deze gróp|dees gróppe}} doon: $1.',
-'userrights-available-remove-self' => 'De kèns dichzelf wusje oet {{PLURAL:$2|deze gróp|dees gróppe}}: $1.',
-'userrights-no-interwiki'          => "Doe höbs gein rechte om gebroekersrechte op anger wiki's te wiezige.",
-'userrights-nodatabase'            => 'Database $1 besteit neet of is gein plaatselike database.',
-'userrights-nologin'               => "Doe mos dich [[Special:Userlogin|aanmelle]] mit 'ne gebroeker mit de zjuuste rech om gebroekersrech toe te wieze.",
-'userrights-notallowed'            => 'Doe höbs gein rechte om gebroekersrechte toe te wieze.',
-'userrights-changeable-col'        => 'Gróppe dies te kèns behere',
-'userrights-unchangeable-col'      => 'Gróppe dies te neet kèns behere',
+'userrights-reason'           => "Reje veur 't verangere:",
+'userrights-no-interwiki'     => "Doe höbs gein rechte om gebroekersrechte op anger wiki's te wiezige.",
+'userrights-nodatabase'       => 'Database $1 besteit neet of is gein plaatselike database.',
+'userrights-nologin'          => "Doe mos dich [[Special:Userlogin|aanmelle]] mit 'ne gebroeker mit de zjuuste rech om gebroekersrech toe te wieze.",
+'userrights-notallowed'       => 'Doe höbs gein rechte om gebroekersrechte toe te wieze.',
+'userrights-changeable-col'   => 'Gróppe dies te kèns behere',
+'userrights-unchangeable-col' => 'Gróppe dies te neet kèns behere',
 
 # Groups
 'group'               => 'Groep:',

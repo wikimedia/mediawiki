@@ -994,32 +994,25 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'files'                    => '檔案',
 
 # User rights
-'userrights'                       => '用戶權限管理', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => '管理用戶組',
-'userrights-user-editname'         => '輸入一個用戶名：',
-'editusergroup'                    => '編輯用戶組',
-'editinguser'                      => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
-'userrights-editusergroup'         => '編輯用戶組',
-'saveusergroups'                   => '儲存用戶組',
-'userrights-groupsmember'          => '屬於：',
-'userrights-groupsremovable'       => '拎得走嘅組：',
-'userrights-groupsavailable'       => '可用嘅組：',
-'userrights-groups-help'           => '你可以改呢位用戶所屬嘅組:
+'userrights'                  => '用戶權限管理', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => '管理用戶組',
+'userrights-user-editname'    => '輸入一個用戶名：',
+'editusergroup'               => '編輯用戶組',
+'editinguser'                 => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
+'userrights-editusergroup'    => '編輯用戶組',
+'saveusergroups'              => '儲存用戶組',
+'userrights-groupsmember'     => '屬於：',
+'userrights-groups-help'      => '你可以改呢位用戶所屬嘅組:
 * 剔咗嘅盒代表個用戶係屬於嗰組。
 * 未剔嘅盒代表個用戶唔係屬於嗰組。
 * 一個 * 表示你加入咗佢之後唔可以拎走，反之亦然。',
-'userrights-reason'                => '更改嘅原因:',
-'userrights-available-none'        => '你唔可以改組成員。',
-'userrights-available-add'         => '你可以加入任何用戶到{{PLURAL:$2|呢一組|呢幾組}}: $1。',
-'userrights-available-remove'      => '你可以響{{PLURAL:$2|呢一組|呢幾組}}度拎走任何用戶: $1。',
-'userrights-available-add-self'    => '你可以將你自己加入到{{PLURAL:$2|呢一組|呢幾組}}: $1。',
-'userrights-available-remove-self' => '你可以響{{PLURAL:$2|呢一組|呢幾組}}度拎走你自己: $1。',
-'userrights-no-interwiki'          => '你並無權限去編輯響其它wiki嘅用戶權限。',
-'userrights-nodatabase'            => '資料庫$1唔存在或者唔係本地嘅。',
-'userrights-nologin'               => '你一定要以操作員戶口[[Special:Userlogin|登入]]咗之後先可以指定用戶權限。',
-'userrights-notallowed'            => '你嘅戶口無權限去指定用戶權限。',
-'userrights-changeable-col'        => '你可以改嘅組',
-'userrights-unchangeable-col'      => '你唔可以改嘅組',
+'userrights-reason'           => '更改嘅原因:',
+'userrights-no-interwiki'     => '你並無權限去編輯響其它wiki嘅用戶權限。',
+'userrights-nodatabase'       => '資料庫$1唔存在或者唔係本地嘅。',
+'userrights-nologin'          => '你一定要以操作員戶口[[Special:Userlogin|登入]]咗之後先可以指定用戶權限。',
+'userrights-notallowed'       => '你嘅戶口無權限去指定用戶權限。',
+'userrights-changeable-col'   => '你可以改嘅組',
+'userrights-unchangeable-col' => '你唔可以改嘅組',
 
 # Groups
 'group'               => '組：',

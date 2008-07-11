@@ -1289,32 +1289,25 @@ baptaw üşin math/README qujatın qarañız.',
 'files'                    => 'Faýldar',
 
 # User rights
-'userrights'                       => 'Qatıswşı quqıqtarın rettew', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Qatıswşı toptarın rettew',
-'userrights-user-editname'         => 'Qatıswşı atın engiziñiz:',
-'editusergroup'                    => 'Qatıswşı toptarın öñdew',
-'editinguser'                      => "Qatıswşı quqıqtarın özgertw: '''[[{{ns:user}}:$1|$1]]''' ([[{{ns:user_talk}}:$1|{{int:talkpagelinktext}}]] | [[{{#special:Contributions}}/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Qatıswşı toptarın öñdew',
-'saveusergroups'                   => 'Qatıswşı toptarın saqtaw',
-'userrights-groupsmember'          => 'Müşeligi:',
-'userrights-groupsremovable'       => 'Alastalatın toptar:',
-'userrights-groupsavailable'       => 'Jetimdi toptar:',
-'userrights-groups-help'           => 'Bul qatıswşı kiretin toptardı retteý alasız.
+'userrights'                  => 'Qatıswşı quqıqtarın rettew', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Qatıswşı toptarın rettew',
+'userrights-user-editname'    => 'Qatıswşı atın engiziñiz:',
+'editusergroup'               => 'Qatıswşı toptarın öñdew',
+'editinguser'                 => "Qatıswşı quqıqtarın özgertw: '''[[{{ns:user}}:$1|$1]]''' ([[{{ns:user_talk}}:$1|{{int:talkpagelinktext}}]] | [[{{#special:Contributions}}/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Qatıswşı toptarın öñdew',
+'saveusergroups'              => 'Qatıswşı toptarın saqtaw',
+'userrights-groupsmember'     => 'Müşeligi:',
+'userrights-groups-help'      => 'Bul qatıswşı kiretin toptardı retteý alasız.
 * Qusbelgi qoýılğan közi qatıswşı bul topqa kirgenin körsetedi;
 * Qusbelgi alıp tastalğan köz qatıswşı bul topqa kirmegenin körsetedi;
 * Keltirilgen * toptı bir üstegeninen keýin alastaý almaýtındığın, ne qarama-qarsısın körsetedi.',
-'userrights-reason'                => 'Özgertw sebebi:',
-'userrights-available-none'        => 'Top müşeligin özgerte almaýsız.',
-'userrights-available-add'         => 'Qatıswşılardı mına {{PLURAL:$2|topqa|toptarğa}} üsteý alasız: $1.',
-'userrights-available-remove'      => 'Ärqaýsı qatıswşılardı mına {{PLURAL:$2|toptan|toptardan}} alastaý alasız: $1.',
-'userrights-available-add-self'    => 'Öziñizdi mına {{PLURAL:$2|topqa|toptarğa}} üsteý alasız: $1.',
-'userrights-available-remove-self' => 'Öziñizdi mına {{PLURAL:$2|toptan|toptardan}} alastaý alasız: $1.',
-'userrights-no-interwiki'          => 'Basqa wïkïlerdegi paýdalanwşı quqıqtarın öñdewge ruqsatıñız joq.',
-'userrights-nodatabase'            => '$1 derekqorı joq ne jergilikti emes.',
-'userrights-nologin'               => 'Qatıswşı quqıqtarın tağaýındaw üşin äkimşi tirkelgisimen [[{{#special:Userlogin}}|kirwiñiz]] jön.',
-'userrights-notallowed'            => 'Qatıswşı quqıqtarın tağaýındaw üşin tirkelgiñizde ruqsat joq.',
-'userrights-changeable-col'        => 'Özgerte alatın toptar',
-'userrights-unchangeable-col'      => 'Özgerte almaýtın toptar',
+'userrights-reason'           => 'Özgertw sebebi:',
+'userrights-no-interwiki'     => 'Basqa wïkïlerdegi paýdalanwşı quqıqtarın öñdewge ruqsatıñız joq.',
+'userrights-nodatabase'       => '$1 derekqorı joq ne jergilikti emes.',
+'userrights-nologin'          => 'Qatıswşı quqıqtarın tağaýındaw üşin äkimşi tirkelgisimen [[{{#special:Userlogin}}|kirwiñiz]] jön.',
+'userrights-notallowed'       => 'Qatıswşı quqıqtarın tağaýındaw üşin tirkelgiñizde ruqsat joq.',
+'userrights-changeable-col'   => 'Özgerte alatın toptar',
+'userrights-unchangeable-col' => 'Özgerte almaýtın toptar',
 
 # Groups
 'group'               => 'Top:',

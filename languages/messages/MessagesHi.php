@@ -932,32 +932,25 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'files'                    => 'फ़ाईलें',
 
 # User rights
-'userrights'                       => 'सदस्य अधिकार व्यवस्थापन', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'सदस्य ग्रुपोंका व्यवस्थापन करें',
-'userrights-user-editname'         => 'सदस्यनाम दें:',
-'editusergroup'                    => 'सदस्य ग्रुपका संपादन करें',
-'editinguser'                      => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])के सदस्य अधिकारोंमें बदलाव कियें जा रहें हैं।",
-'userrights-editusergroup'         => 'सदस्य ग्रुपोंका संपादन करें',
-'saveusergroups'                   => 'सदस्य ग्रुप संजोयें',
-'userrights-groupsmember'          => 'का सदस्य:',
-'userrights-groupsremovable'       => 'निकालने के लिये ग्रुप्स:',
-'userrights-groupsavailable'       => 'उपलब्ध ग्रुप्स:',
-'userrights-groups-help'           => 'आप इस सदस्य का ग्रुप सदस्यत्व बदल सकतें हैं:
+'userrights'                  => 'सदस्य अधिकार व्यवस्थापन', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'सदस्य ग्रुपोंका व्यवस्थापन करें',
+'userrights-user-editname'    => 'सदस्यनाम दें:',
+'editusergroup'               => 'सदस्य ग्रुपका संपादन करें',
+'editinguser'                 => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])के सदस्य अधिकारोंमें बदलाव कियें जा रहें हैं।",
+'userrights-editusergroup'    => 'सदस्य ग्रुपोंका संपादन करें',
+'saveusergroups'              => 'सदस्य ग्रुप संजोयें',
+'userrights-groupsmember'     => 'का सदस्य:',
+'userrights-groups-help'      => 'आप इस सदस्य का ग्रुप सदस्यत्व बदल सकतें हैं:
 * एक चुना हुआ बक्सा मतलब सदस्य उस ग्रुपमें हैं।
 * एक ना चुना हुआ बक्सा मतलब सदस्य उस ग्रुपमें नहीं हैं।
 * एक * का मतलब आप एकबार बढाने के बाद ग्रुप निकाल नहीं सकते या फिर निकालने के बाद बढा नहीं सकतें हैं।',
-'userrights-reason'                => 'बदलाव के कारण:',
-'userrights-available-none'        => 'आप शायद ग्रुप सदस्यत्व बदल नहीं सकतें।',
-'userrights-available-add'         => 'आप {{PLURAL:$2|इस ग्रुपमें|इन ग्रुपोंमें}} कोई भी सदस्य को बढ़ा सकतें हैं: $1।',
-'userrights-available-remove'      => 'आप {{PLURAL:$2|इस ग्रुप से|इन ग्रुपों से}} कोईभी सदस्य हटा सकतें हैं: $1।',
-'userrights-available-add-self'    => 'आप अपने आपको {{PLURAL:$2|इस ग्रुप का|इन ग्रुपोंका}} सदस्य बना सकतें हैं: $1।',
-'userrights-available-remove-self' => 'आप अपने आप को {{PLURAL:$2|इस ग्रुप से|इन ग्रुपों से}} हटा सकतें हैं: $1।',
-'userrights-no-interwiki'          => 'अन्य विकियोंपर आपको सदस्य अधिकार बदलने की अनुमति नहीं हैं।',
-'userrights-nodatabase'            => 'डाटाबेस $1 या तो अस्तित्वमें नहीं हैं या फिर स्थानीय नहीं हैं।',
-'userrights-nologin'               => 'सदस्य अधिकार बदलने के लिये आपने प्रबंधक खाते से [[Special:Userlogin|लॉग इन]] किया हुआ होना आवश्यक हैं।',
-'userrights-notallowed'            => 'आपके सदस्य खातेको सदस्य अधिकार बदलनेकी अनुमति नहीं हैं।',
-'userrights-changeable-col'        => 'ग्रुप जिन्हें आप बदल सकतें हैं',
-'userrights-unchangeable-col'      => 'ग्रुप जिन्हें आप नहीं बदल सकते हैं',
+'userrights-reason'           => 'बदलाव के कारण:',
+'userrights-no-interwiki'     => 'अन्य विकियोंपर आपको सदस्य अधिकार बदलने की अनुमति नहीं हैं।',
+'userrights-nodatabase'       => 'डाटाबेस $1 या तो अस्तित्वमें नहीं हैं या फिर स्थानीय नहीं हैं।',
+'userrights-nologin'          => 'सदस्य अधिकार बदलने के लिये आपने प्रबंधक खाते से [[Special:Userlogin|लॉग इन]] किया हुआ होना आवश्यक हैं।',
+'userrights-notallowed'       => 'आपके सदस्य खातेको सदस्य अधिकार बदलनेकी अनुमति नहीं हैं।',
+'userrights-changeable-col'   => 'ग्रुप जिन्हें आप बदल सकतें हैं',
+'userrights-unchangeable-col' => 'ग्रुप जिन्हें आप नहीं बदल सकते हैं',
 
 # Groups
 'group'               => 'ग्रुप:',

@@ -617,12 +617,11 @@ $messages = array(
 'files'                 => 'دوتنې',
 
 # User rights
-'userrights-user-editname'   => 'يو کارن نوم وليکۍ:',
-'userrights-editusergroup'   => 'د کاروونکو ډلې سمادول',
-'saveusergroups'             => 'د کارونکي ډلې خوندي کول',
-'userrights-groupsmember'    => 'غړی د:',
-'userrights-groupsavailable' => 'شته ډلې:',
-'userrights-reason'          => 'د بدلون سبب:',
+'userrights-user-editname' => 'يو کارن نوم وليکۍ:',
+'userrights-editusergroup' => 'د کاروونکو ډلې سمادول',
+'saveusergroups'           => 'د کارونکي ډلې خوندي کول',
+'userrights-groupsmember'  => 'غړی د:',
+'userrights-reason'        => 'د بدلون سبب:',
 
 # Groups
 'group'     => 'ډله:',

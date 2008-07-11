@@ -1237,32 +1237,25 @@ $2',
 'files'                    => 'ملفات',
 
 # User rights
-'userrights'                       => 'إدارة صلاحيات المستخدم', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'إدارة مجموعات المستخدم',
-'userrights-user-editname'         => 'أدخل اسم مستخدم:',
-'editusergroup'                    => 'تعديل مجموعات المستخدم',
-'editinguser'                      => "تغيير صلاحيات المستخدم للمستخدم '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'تعديل مجموعات المستخدم',
-'saveusergroups'                   => 'حفظ مجموعات المستخدم',
-'userrights-groupsmember'          => 'عضو في:',
-'userrights-groupsremovable'       => 'المجموعات للإزالة:',
-'userrights-groupsavailable'       => 'المجموعات المتوفرة:',
-'userrights-groups-help'           => 'يمكنك تغيير المجموعات التي هذا المستخدم بها.
+'userrights'                  => 'إدارة صلاحيات المستخدم', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'إدارة مجموعات المستخدم',
+'userrights-user-editname'    => 'أدخل اسم مستخدم:',
+'editusergroup'               => 'تعديل مجموعات المستخدم',
+'editinguser'                 => "تغيير صلاحيات المستخدم للمستخدم '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'تعديل مجموعات المستخدم',
+'saveusergroups'              => 'حفظ مجموعات المستخدم',
+'userrights-groupsmember'     => 'عضو في:',
+'userrights-groups-help'      => 'يمكنك تغيير المجموعات التي هذا المستخدم بها.
 * صندوق معلم يعني أن المستخدم في هذه المجموعة.
 * صندوق غير معلم يعني أن المستخدم ليس في هذه المجموعة.
 * علامة * تعني أنك لا يمكنك إزالة المجموعة متى أضفتها، أو العكس.',
-'userrights-reason'                => 'سبب التغيير:',
-'userrights-available-none'        => 'لا يمكنك تعديل مجموعات المستخدم.',
-'userrights-available-add'         => 'يمكنك إضافة أي مستخدم إلى {{PLURAL:$2|هذه المجموعة|هذه المجموعات}}: $1.',
-'userrights-available-remove'      => 'يمكنك إزالة أي مستخدم من {{PLURAL:$2|هذه المجموعة|هذه المجموعات}}: $1.',
-'userrights-available-add-self'    => 'يمكنك إضافة نفسك إلى {{PLURAL:$2|هذه المجموعة|هذه المجموعات}}: $1.',
-'userrights-available-remove-self' => 'يمكنك إزالة نفسك من {{PLURAL:$2|هذه المجموعة|هذه المجموعات}}: $1.',
-'userrights-no-interwiki'          => 'أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.',
-'userrights-nodatabase'            => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
-'userrights-nologin'               => 'يجب عليك [[Special:Userlogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
-'userrights-notallowed'            => 'حسابك لا يمتلك السماح لتعديل صلاحيات المستخدم.',
-'userrights-changeable-col'        => 'المجموعات التي يمكنك تغييرها',
-'userrights-unchangeable-col'      => 'المجموعات التي لا يمكنك تغييرها',
+'userrights-reason'           => 'سبب التغيير:',
+'userrights-no-interwiki'     => 'أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.',
+'userrights-nodatabase'       => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
+'userrights-nologin'          => 'يجب عليك [[Special:Userlogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
+'userrights-notallowed'       => 'حسابك لا يمتلك السماح لتعديل صلاحيات المستخدم.',
+'userrights-changeable-col'   => 'المجموعات التي يمكنك تغييرها',
+'userrights-unchangeable-col' => 'المجموعات التي لا يمكنك تغييرها',
 
 # Groups
 'group'               => 'المجموعة:',

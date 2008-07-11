@@ -801,19 +801,15 @@ $2',
 'files'                    => '檔案',
 
 # User rights
-'userrights'                  => '使用者權限管理', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => '管理使用者群組',
-'userrights-user-editname'    => '輸入使用者帳號:',
-'editusergroup'               => '編輯使用者群組',
-'editinguser'                 => "正在編輯使用者'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => '編輯使用者群組',
-'saveusergroups'              => '保存使用者群組',
-'userrights-groupsmember'     => '屬於:',
-'userrights-groupsavailable'  => '可用群組:',
-'userrights-reason'           => '更改原因:',
-'userrights-available-none'   => '您不可以更改組別成員。',
-'userrights-available-add'    => '您可以加入使用者到$1。',
-'userrights-available-remove' => '您可以從$1中移除使用者。',
+'userrights'               => '使用者權限管理', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => '管理使用者群組',
+'userrights-user-editname' => '輸入使用者帳號:',
+'editusergroup'            => '編輯使用者群組',
+'editinguser'              => "正在編輯使用者'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => '編輯使用者群組',
+'saveusergroups'           => '保存使用者群組',
+'userrights-groupsmember'  => '屬於:',
+'userrights-reason'        => '更改原因:',
 
 # Groups
 'group'               => '群組:',

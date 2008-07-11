@@ -953,32 +953,25 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'files'                    => 'Dosieroj',
 
 # User rights
-'userrights'                       => 'Administrado de uzantorajtoj', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Administru uzantogrupojn',
-'userrights-user-editname'         => 'Entajpu uzantonomon:',
-'editusergroup'                    => 'Redaktu Uzantgrupojn',
-'editinguser'                      => "Redaktante uzanto-rajtojn de uzanto '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Redaktu uzantogrupojn.',
-'saveusergroups'                   => 'Konservu uzantogrupojn',
-'userrights-groupsmember'          => 'Membro de:',
-'userrights-groupsremovable'       => 'Forigeblaj grupoj:',
-'userrights-groupsavailable'       => 'Disponeblaj grupoj:',
-'userrights-groups-help'           => 'Vi povas modifi la grupojn kiun ĉi uzanto enestas.
+'userrights'                  => 'Administrado de uzantorajtoj', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Administru uzantogrupojn',
+'userrights-user-editname'    => 'Entajpu uzantonomon:',
+'editusergroup'               => 'Redaktu Uzantgrupojn',
+'editinguser'                 => "Redaktante uzanto-rajtojn de uzanto '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Redaktu uzantogrupojn.',
+'saveusergroups'              => 'Konservu uzantogrupojn',
+'userrights-groupsmember'     => 'Membro de:',
+'userrights-groups-help'      => 'Vi povas modifi la grupojn kiun ĉi uzanto enestas.
 * Markita markbutono signifas ke la uzanto estas en tiu grupo.
 * Nemarkita markbutono signifas ke la uzanto ne estas in tiu grupo.
 * Steleto (*) signifas ke vi ne povas forigi la grupon post vi aldonis ĝin, aŭ male.',
-'userrights-reason'                => 'Kialo por ŝanĝo:',
-'userrights-available-none'        => 'Vi ne eblas ŝanĝi membrecon de grupoj.',
-'userrights-available-add'         => 'Vi povas aldoni iujn ajn uzantojn al {{PLURAL:$2|ĉi tiu grupo|ĉi tiuj grupoj}}: $1.',
-'userrights-available-remove'      => 'Vi povas forigi iujn ajn uzantojn de {{PLURAL:$2|ĉi tiu grupo|ĉi tiuj grupoj}}: $1',
-'userrights-available-add-self'    => 'Vi povas aldoni vin al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1',
-'userrights-available-remove-self' => 'Vi povas forigi vin al {{PLURAL:$2|jena grupo|jenaj grupoj}}: $1.',
-'userrights-no-interwiki'          => 'Vi ne havas permeson redakti uzanto-rajtojn en aliaj vikioj.',
-'userrights-nodatabase'            => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
-'userrights-nologin'               => 'Vi nepre [[Special:Userlogin|ensalutu]] kun administranto-konto doni uzanto-rajtojn.',
-'userrights-notallowed'            => 'Via konto ne havas permeson doni uzanto-rajtojn.',
-'userrights-changeable-col'        => 'Grupoj kiujn vi povas ŝanĝi',
-'userrights-unchangeable-col'      => 'Grupoj kiujn vi ne povas ŝanĝi',
+'userrights-reason'           => 'Kialo por ŝanĝo:',
+'userrights-no-interwiki'     => 'Vi ne havas permeson redakti uzanto-rajtojn en aliaj vikioj.',
+'userrights-nodatabase'       => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
+'userrights-nologin'          => 'Vi nepre [[Special:Userlogin|ensalutu]] kun administranto-konto doni uzanto-rajtojn.',
+'userrights-notallowed'       => 'Via konto ne havas permeson doni uzanto-rajtojn.',
+'userrights-changeable-col'   => 'Grupoj kiujn vi povas ŝanĝi',
+'userrights-unchangeable-col' => 'Grupoj kiujn vi ne povas ŝanĝi',
 
 # Groups
 'group'               => 'Grupo:',

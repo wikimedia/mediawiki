@@ -1002,32 +1002,25 @@ $3ने ''$2'' कारण दिले आहे.",
 'files'                    => 'संचिका',
 
 # User rights
-'userrights'                       => 'सदस्य अधिकार व्यवस्थापन', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'सदस्य गटांचे(ग्रूप्स) व्यवस्थापन करा.',
-'userrights-user-editname'         => 'सदस्य नाव टाका:',
-'editusergroup'                    => 'सदस्य गट (ग्रूप्स) संपादीत करा',
-'editinguser'                      => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])चे सदस्य अधिकारात बदल केला जात आहे.",
-'userrights-editusergroup'         => 'सदस्य मंडळे संपादीत करा',
-'saveusergroups'                   => 'सदस्य गट जतन करा',
-'userrights-groupsmember'          => '(चा) सभासद:',
-'userrights-groupsremovable'       => 'वगळण्यायोग्य गट:',
-'userrights-groupsavailable'       => 'उपलब्ध गट:',
-'userrights-groups-help'           => 'तुम्ही एखाद्या सदस्याचे गट सदस्यत्व बदलू शकता:
+'userrights'                  => 'सदस्य अधिकार व्यवस्थापन', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'सदस्य गटांचे(ग्रूप्स) व्यवस्थापन करा.',
+'userrights-user-editname'    => 'सदस्य नाव टाका:',
+'editusergroup'               => 'सदस्य गट (ग्रूप्स) संपादीत करा',
+'editinguser'                 => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])चे सदस्य अधिकारात बदल केला जात आहे.",
+'userrights-editusergroup'    => 'सदस्य मंडळे संपादीत करा',
+'saveusergroups'              => 'सदस्य गट जतन करा',
+'userrights-groupsmember'     => '(चा) सभासद:',
+'userrights-groups-help'      => 'तुम्ही एखाद्या सदस्याचे गट सदस्यत्व बदलू शकता:
 * निवडलेला चौकोन म्हणजे सदस्य त्या गटात आहे.
 * न निवडलेला चौकोन म्हणजे सदस्य त्या गटात नाही.
 * एक * चा अर्थ तुम्ही एकदा समावेश केल्यानंतर तो गट बदलू शकत नाही, किंवा काढल्यानंतर समावेश करू शकत नाही.',
-'userrights-reason'                => 'बदलाचे कारण:',
-'userrights-available-none'        => 'तुम्ही गट सदस्यत्व बदलू शकत नाही.',
-'userrights-available-add'         => 'तुम्ही {{PLURAL:$2|या ग्रुपमध्ये|या ग्रुप्समध्ये}} कुठलाही सदस्य वाढवू शकता: $1.',
-'userrights-available-remove'      => 'तुम्ही {{PLURAL:$2|या ग्रुपमधून|या ग्रुप्समधून}} कुठलाही सदस्य वगळू शकता: $1.',
-'userrights-available-add-self'    => 'तुम्ही {{PLURAL:$2|या ग्रुपचे|या ग्रुप्सचे}} सदस्यत्व घेऊ शकता: $1.',
-'userrights-available-remove-self' => 'तुम्ही {{PLURAL:$2|या ग्रुपचे|या ग्रुप्सचे}} सदस्यत्व रद्द करू शकता: $1.',
-'userrights-no-interwiki'          => 'इतर विकींवरचे सदस्य अधिकार बदलण्याची परवानगी तुम्हाला नाही.',
-'userrights-nodatabase'            => 'विदा $1 अस्तीत्वात नाही अथवा स्थानिक नाही.',
-'userrights-nologin'               => 'सदस्य अधिकार देण्यासाठी तुम्ही प्रबंधक म्हणून [[Special:Userlogin|प्रवेश केलेला]] असणे आवश्यक आहे.',
-'userrights-notallowed'            => 'तुमच्या सदस्य खात्यास सदस्य अधिकारांची निश्चिती करण्याची परवानगी नाही.',
-'userrights-changeable-col'        => 'गट जे तुम्ही बदलू शकता',
-'userrights-unchangeable-col'      => 'गट जे तुम्ही बदलू शकत नाही',
+'userrights-reason'           => 'बदलाचे कारण:',
+'userrights-no-interwiki'     => 'इतर विकींवरचे सदस्य अधिकार बदलण्याची परवानगी तुम्हाला नाही.',
+'userrights-nodatabase'       => 'विदा $1 अस्तीत्वात नाही अथवा स्थानिक नाही.',
+'userrights-nologin'          => 'सदस्य अधिकार देण्यासाठी तुम्ही प्रबंधक म्हणून [[Special:Userlogin|प्रवेश केलेला]] असणे आवश्यक आहे.',
+'userrights-notallowed'       => 'तुमच्या सदस्य खात्यास सदस्य अधिकारांची निश्चिती करण्याची परवानगी नाही.',
+'userrights-changeable-col'   => 'गट जे तुम्ही बदलू शकता',
+'userrights-unchangeable-col' => 'गट जे तुम्ही बदलू शकत नाही',
 
 # Groups
 'group'               => 'गट:',

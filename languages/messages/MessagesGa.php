@@ -761,14 +761,13 @@ den am an freastalaí (UTC).',
 'files'                    => 'Comhaid',
 
 # User rights
-'userrights'                 => 'Bainistíocht cearta úsáideora', # Not used as normal message but as header for the special page itself
-'userrights-user-editname'   => 'Iontráil ainm úsáideora:',
-'editusergroup'              => 'Cuir Grúpái Úsáideoirí In Eagar',
-'editinguser'                => "Ag athrú ceart don úsáideoir '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Cuir grúpaí na n-úsáideoirí in eagar',
-'saveusergroups'             => 'Sábháil Grúpaí na n-Úsáideoirí',
-'userrights-groupsmember'    => 'Ball de:',
-'userrights-groupsavailable' => 'Grúpaí atá le fáil:',
+'userrights'               => 'Bainistíocht cearta úsáideora', # Not used as normal message but as header for the special page itself
+'userrights-user-editname' => 'Iontráil ainm úsáideora:',
+'editusergroup'            => 'Cuir Grúpái Úsáideoirí In Eagar',
+'editinguser'              => "Ag athrú ceart don úsáideoir '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Cuir grúpaí na n-úsáideoirí in eagar',
+'saveusergroups'           => 'Sábháil Grúpaí na n-Úsáideoirí',
+'userrights-groupsmember'  => 'Ball de:',
 
 # Groups
 'group'     => 'Grúpa:',

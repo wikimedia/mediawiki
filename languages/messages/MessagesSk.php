@@ -1037,32 +1037,25 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'files'                    => 'Súbory',
 
 # User rights
-'userrights'                       => 'Spravovanie používateľských práv', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Spravovať skupiny používateľov',
-'userrights-user-editname'         => 'Zadajte meno používateľa:',
-'editusergroup'                    => 'Upraviť skupinu používateľa',
-'editinguser'                      => "Zmena oprávnení používateľa '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Upraviť skupiny používateľa',
-'saveusergroups'                   => 'Uložiť skupiny používateľa',
-'userrights-groupsmember'          => 'Člen skupiny:',
-'userrights-groupsremovable'       => 'Odstrániteľné skupiny:',
-'userrights-groupsavailable'       => 'Dostupné skupiny:',
-'userrights-groups-help'           => 'Môžete zmeniť, v ktorých skupinách sa používateľ nachádza.
+'userrights'                  => 'Spravovanie používateľských práv', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Spravovať skupiny používateľov',
+'userrights-user-editname'    => 'Zadajte meno používateľa:',
+'editusergroup'               => 'Upraviť skupinu používateľa',
+'editinguser'                 => "Zmena oprávnení používateľa '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Upraviť skupiny používateľa',
+'saveusergroups'              => 'Uložiť skupiny používateľa',
+'userrights-groupsmember'     => 'Člen skupiny:',
+'userrights-groups-help'      => 'Môžete zmeniť, v ktorých skupinách sa používateľ nachádza.
 * Zaškrtnuté pole znamená, že používateľ je v skupine.
 * Nezaškrtnuté pole znamená, že používateľ nie je v skupine.
 * „*“ znamená, že nemôžete odstrániť skupinu, keď ste ju už pridali resp. naopak.',
-'userrights-reason'                => 'Dôvod zmeny:',
-'userrights-available-none'        => 'Nie ste oprávnený meniť členstvo v skupine.',
-'userrights-available-add'         => 'Môžete pridať ľubovoľného používateľa do {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
-'userrights-available-remove'      => 'Môžete odobrať ľubovoľného používateľa z {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
-'userrights-available-add-self'    => 'Môžete sa pridať do {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
-'userrights-available-remove-self' => 'Môžete sa odstrániť z {{PLURAL:$2|tejto skupiny|týchto skupín}}: $1.',
-'userrights-no-interwiki'          => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
-'userrights-nodatabase'            => 'Databáza $1 neexistuje alebo nie je lokálna.',
-'userrights-nologin'               => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:Userlogin|prihlásiť]] s účtom správcu.',
-'userrights-notallowed'            => 'Váš účet nemá oprávnenia prideľovať používateľom oprávnenia.',
-'userrights-changeable-col'        => 'Skupiny, ktoré môžete zmeniť',
-'userrights-unchangeable-col'      => 'Skupiny, ktoré nemôžete zmeniť',
+'userrights-reason'           => 'Dôvod zmeny:',
+'userrights-no-interwiki'     => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
+'userrights-nodatabase'       => 'Databáza $1 neexistuje alebo nie je lokálna.',
+'userrights-nologin'          => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:Userlogin|prihlásiť]] s účtom správcu.',
+'userrights-notallowed'       => 'Váš účet nemá oprávnenia prideľovať používateľom oprávnenia.',
+'userrights-changeable-col'   => 'Skupiny, ktoré môžete zmeniť',
+'userrights-unchangeable-col' => 'Skupiny, ktoré nemôžete zmeniť',
 
 # Groups
 'group'               => 'Skupina:',

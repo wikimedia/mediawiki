@@ -675,15 +675,14 @@ Informacion: (curt) = quiíxde vercion currentua,
 'files'                 => 'Ciúchán',
 
 # User rights
-'userrights-lookup-user'     => "Yoc' polámde caitom",
-'userrights-user-editname'   => 'Caitom ID ra:',
-'editusergroup'              => 'Ticpatlöx Polám Caitóm',
-'editinguser'                => "Ticpatlöx caitom '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Ticpatlöx polám caitóm',
-'saveusergroups'             => 'Xuniim Polámde Caitom',
-'userrights-groupsmember'    => 'Ctamde:',
-'userrights-groupsavailable' => 'Polám avaylbul:',
-'userrights-reason'          => "Rade'reset:",
+'userrights-lookup-user'   => "Yoc' polámde caitom",
+'userrights-user-editname' => 'Caitom ID ra:',
+'editusergroup'            => 'Ticpatlöx Polám Caitóm',
+'editinguser'              => "Ticpatlöx caitom '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Ticpatlöx polám caitóm',
+'saveusergroups'           => 'Xuniim Polámde Caitom',
+'userrights-groupsmember'  => 'Ctamde:',
+'userrights-reason'        => "Rade'reset:",
 
 # Groups
 'group'               => 'Polám:',

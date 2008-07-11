@@ -1054,35 +1054,26 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'files'                    => 'Fichiers',
 
 # User rights
-'userrights'                       => 'Gestion des droits utilisateur', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Gestion des droits utilisateur',
-'userrights-user-editname'         => 'Entrez un nom d’utilisateur :',
-'editusergroup'                    => 'Modification des groupes utilisateurs',
-'editinguser'                      => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] |
+'userrights'                  => 'Gestion des droits utilisateur', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Gestion des droits utilisateur',
+'userrights-user-editname'    => 'Entrez un nom d’utilisateur :',
+'editusergroup'               => 'Modification des groupes utilisateurs',
+'editinguser'                 => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] |
 [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Modifier les groupes de l’utilisateur',
-'saveusergroups'                   => 'Sauvegarder les groupes utilisateur',
-'userrights-groupsmember'          => 'Membre de :',
-'userrights-groupsremovable'       => 'Groupes supprimables :',
-'userrights-groupsavailable'       => 'Groupes disponibles :',
-'userrights-groups-help'           => "Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
+'userrights-editusergroup'    => 'Modifier les groupes de l’utilisateur',
+'saveusergroups'              => 'Sauvegarder les groupes utilisateur',
+'userrights-groupsmember'     => 'Membre de :',
+'userrights-groups-help'      => "Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
 * Une case non cochée signifie qu'il ne s’y trouve pas.
 * Une * indique que vous ne pouvez pas retirer ce groupe une fois que vous l'ayez ajouté et vice-versa.",
-'userrights-reason'                => 'Motif du changement :',
-'userrights-available-none'        => 'Vous ne pouvez pas changer l’appartenance aux différents groupes.',
-'userrights-available-add'         => '* Le paramètre $1 est la liste des groupes dont un utilisateur est autorisé pour y ajouter les autres.
-* Le paramètre $2 est le nombre des groupes dans la liste (pour {{PLURAL:}}).',
-'userrights-available-remove'      => '* Le paramètre $1 est la liste des groupes dont un utilisateur est autorisé pour y enlever les autres.
-* Le paramètre $2 est le nombre des groupes dans la liste (pour {{PLURAL:}}).',
-'userrights-available-add-self'    => 'Vous pouvez vous ajouter vous-même à {{PLURAL:$2|ce groupe|ces groupes}} : $1.',
-'userrights-available-remove-self' => 'Vous pouvez vous enlever vous-même de {{PLURAL:$2|ce groupe|ces groupes}} : $1.',
-'userrights-no-interwiki'          => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
-'userrights-nodatabase'            => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
-'userrights-nologin'               => 'Vous devez vous [[Special:Userlogin|connecter]] avec un compte d’administrateur pour modifier des droits d’utilisateur.',
-'userrights-notallowed'            => 'Votre compte n’a pas la permission de modifier des droits d’utilisateur.',
-'userrights-changeable-col'        => 'Les groupes que vous pouvez modifier',
-'userrights-unchangeable-col'      => 'Les groupes que vous ne pouvez pas modifier',
+'userrights-reason'           => 'Motif du changement :',
+'userrights-no-interwiki'     => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
+'userrights-nodatabase'       => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
+'userrights-nologin'          => 'Vous devez vous [[Special:Userlogin|connecter]] avec un compte d’administrateur pour modifier des droits d’utilisateur.',
+'userrights-notallowed'       => 'Votre compte n’a pas la permission de modifier des droits d’utilisateur.',
+'userrights-changeable-col'   => 'Les groupes que vous pouvez modifier',
+'userrights-unchangeable-col' => 'Les groupes que vous ne pouvez pas modifier',
 
 # Groups
 'group'               => 'Groupe :',

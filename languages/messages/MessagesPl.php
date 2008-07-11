@@ -1113,32 +1113,25 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'files'                    => 'Pliki',
 
 # User rights
-'userrights'                       => 'Zarządzaj uprawnieniami użytkowników', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Zarządzaj grupami użytkownika',
-'userrights-user-editname'         => 'Wprowadź nazwę użytkownika',
-'editusergroup'                    => 'Edytuj grupy użytkownika',
-'editinguser'                      => "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Edytuj grupy użytkownika',
-'saveusergroups'                   => 'Zapisz',
-'userrights-groupsmember'          => 'Należy do:',
-'userrights-groupsremovable'       => 'Usuwalny z grup:',
-'userrights-groupsavailable'       => 'Dostępne grupy:',
-'userrights-groups-help'           => 'Możesz zmienić przynależność tego użytkownika do podanych grup:
+'userrights'                  => 'Zarządzaj uprawnieniami użytkowników', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Zarządzaj grupami użytkownika',
+'userrights-user-editname'    => 'Wprowadź nazwę użytkownika',
+'editusergroup'               => 'Edytuj grupy użytkownika',
+'editinguser'                 => "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Edytuj grupy użytkownika',
+'saveusergroups'              => 'Zapisz',
+'userrights-groupsmember'     => 'Należy do:',
+'userrights-groups-help'      => 'Możesz zmienić przynależność tego użytkownika do podanych grup:
 * Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
 * Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
 * Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
-'userrights-reason'                => 'Powód zmiany',
-'userrights-available-none'        => 'Nie możesz zmieniać przynależności do grup.',
-'userrights-available-add'         => 'Możesz dodać dowolnego użytkownika do {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-remove'      => 'Możesz usunąć dowolnego użytkownika z {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-add-self'    => 'Nie możesz dodać siebie do {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-remove-self' => 'Nie możesz usunąć siebie z {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-no-interwiki'          => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
-'userrights-nodatabase'            => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
-'userrights-nologin'               => 'Musisz [[Special:Userlogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
-'userrights-notallowed'            => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
-'userrights-changeable-col'        => 'Grupy, które możesz wybrać',
-'userrights-unchangeable-col'      => 'Grupy, których nie możesz wybrać',
+'userrights-reason'           => 'Powód zmiany',
+'userrights-no-interwiki'     => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
+'userrights-nodatabase'       => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
+'userrights-nologin'          => 'Musisz [[Special:Userlogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
+'userrights-notallowed'       => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
+'userrights-changeable-col'   => 'Grupy, które możesz wybrać',
+'userrights-unchangeable-col' => 'Grupy, których nie możesz wybrać',
 
 # Groups
 'group'               => 'Grupa',

@@ -876,32 +876,25 @@ pakilawe me ing math/README ba meng i-configure.',
 'files'                    => 'Simpan (files)',
 
 # User rights
-'userrights'                       => 'Pamanibala king katuliran da reng talagamit (user rights management)', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Panibalan la reng grupung talagamit',
-'userrights-user-editname'         => 'Mangibili kang lagyungtalagamit (username):',
-'editusergroup'                    => 'I-edit ya ing Grupung Talagamit',
-'editinguser'                      => "Alilan mu la reng katuliran nang talagamit (user rights) nang talagamit a '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'I-edit la reng grupung talagamit',
-'saveusergroups'                   => 'I-save la reng Grupung Talagamit (User Groups)',
-'userrights-groupsmember'          => 'Kayanib ning:',
-'userrights-groupsremovable'       => 'Grupung maliaring ilako:',
-'userrights-groupsavailable'       => 'Grupung makabusni (available groups):',
-'userrights-groups-help'           => 'Maliari mong alilan deng grupu nung nu ya kayabe ing talagamit.
+'userrights'                  => 'Pamanibala king katuliran da reng talagamit (user rights management)', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Panibalan la reng grupung talagamit',
+'userrights-user-editname'    => 'Mangibili kang lagyungtalagamit (username):',
+'editusergroup'               => 'I-edit ya ing Grupung Talagamit',
+'editinguser'                 => "Alilan mu la reng katuliran nang talagamit (user rights) nang talagamit a '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'I-edit la reng grupung talagamit',
+'saveusergroups'              => 'I-save la reng Grupung Talagamit (User Groups)',
+'userrights-groupsmember'     => 'Kayanib ning:',
+'userrights-groups-help'      => 'Maliari mong alilan deng grupu nung nu ya kayabe ing talagamit.
 * Nung maka-check ya ing kahun, atyu king grupung ita ing talagamit.
 * Nung e maka-check ing kahun, ala yu king grupung ita ing talagamit.
 * Ing buri nang sabian ning *, e mu ne alako ing grupu kabud adagdag me, o vice versa.',
-'userrights-reason'                => 'Sangkan king pamanalili:',
-'userrights-available-none'        => 'E mu maliaring alilan ing panga-miembru/pamiyanib king grupu.',
-'userrights-available-add'         => 'Maliari meng idagdag ing ninumang talagamit {{PLURAL:$2|king grupung iti|kareng grupung deti}}: $1.',
-'userrights-available-remove'      => 'Maliari meng ilako ing talagamit {{PLURAL:$2|king grupung iti|kareng grupung deti}}: $1.',
-'userrights-available-add-self'    => 'Maliari meng idagdag ing sarili mu {{PLURAL:$2|king grupung iti|kareng grupung deti}}: $1.',
-'userrights-available-remove-self' => 'Maliari meng ilako ing sarili mu {{PLURAL:$2|keting grupu|kareting grupu}}: $1.',
-'userrights-no-interwiki'          => 'Ala kang paintulut a i-edit la reng katuliran da reng talagamit (user rights) kareng aliwang wiki.',
-'userrights-nodatabase'            => 'Alang database a $1 o e ya lokal iti.',
-'userrights-nologin'               => 'Kailangan mung [[Special:Userlogin|mag-login]] king metung a administrator account ba kang makapamieng katulirang talagamit (user rights).',
-'userrights-notallowed'            => 'Ala yang paintulut mamieng katulirang talagamit (user rights) ing kekang account.',
-'userrights-changeable-col'        => 'Deng grupung maliari mung alilan',
-'userrights-unchangeable-col'      => 'Deng grupung e mu maliaring alilan',
+'userrights-reason'           => 'Sangkan king pamanalili:',
+'userrights-no-interwiki'     => 'Ala kang paintulut a i-edit la reng katuliran da reng talagamit (user rights) kareng aliwang wiki.',
+'userrights-nodatabase'       => 'Alang database a $1 o e ya lokal iti.',
+'userrights-nologin'          => 'Kailangan mung [[Special:Userlogin|mag-login]] king metung a administrator account ba kang makapamieng katulirang talagamit (user rights).',
+'userrights-notallowed'       => 'Ala yang paintulut mamieng katulirang talagamit (user rights) ing kekang account.',
+'userrights-changeable-col'   => 'Deng grupung maliari mung alilan',
+'userrights-unchangeable-col' => 'Deng grupung e mu maliaring alilan',
 
 # Groups
 'group'               => 'Grupu:',

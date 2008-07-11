@@ -908,32 +908,25 @@ $3 చెప్పిన కారణం: ''$2''",
 'files'                    => 'ఫైళ్ళు',
 
 # User rights
-'userrights'                       => 'సభ్యుల హక్కుల మేనేజిమెంటు', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'సభ్యుల సమూహాలను మేనేజి చెయ్యండి',
-'userrights-user-editname'         => 'సభ్యనామాన్ని ఇవ్వండి:',
-'editusergroup'                    => 'వాడుకరి గుంపులను మార్చు',
-'editinguser'                      => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) అనే పేరుగల సభ్యునికి హక్కులను మారుస్తున్నాము.",
-'userrights-editusergroup'         => 'సభ్యుల సమూహాలను మార్చండి',
-'saveusergroups'                   => 'వాడుకరి గుంపులను భద్రపరచు',
-'userrights-groupsmember'          => 'సభ్యులు:',
-'userrights-groupsremovable'       => 'తొలగించదగ్గ గుంపులు:',
-'userrights-groupsavailable'       => 'అందుబాటులో ఉన్న సమూహాలు:',
-'userrights-groups-help'           => 'ఈ వాడుకరి ఏయే గుంపులలో ఉండవచ్చో మీరు మార్చవచ్చు.
+'userrights'                  => 'సభ్యుల హక్కుల మేనేజిమెంటు', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'సభ్యుల సమూహాలను మేనేజి చెయ్యండి',
+'userrights-user-editname'    => 'సభ్యనామాన్ని ఇవ్వండి:',
+'editusergroup'               => 'వాడుకరి గుంపులను మార్చు',
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) అనే పేరుగల సభ్యునికి హక్కులను మారుస్తున్నాము.",
+'userrights-editusergroup'    => 'సభ్యుల సమూహాలను మార్చండి',
+'saveusergroups'              => 'వాడుకరి గుంపులను భద్రపరచు',
+'userrights-groupsmember'     => 'సభ్యులు:',
+'userrights-groups-help'      => 'ఈ వాడుకరి ఏయే గుంపులలో ఉండవచ్చో మీరు మార్చవచ్చు.
 * టిక్కు పెట్టివుంటే ఆ గుంపులో ఈ వాడుకరి ఉన్నట్టు.
 * టిక్కు లేకుంటే ఆ గుంపులో ఈ వాడుకరి లేనట్టు.
 * <nowiki>*</nowiki> ఉంటే ఒకసారి ఆ గుంపుని చేర్చాకా మీరు తీసివేయలేరు, లేదా తీసివేసాకా తిరిగి చేర్చలేరు.',
-'userrights-reason'                => 'మార్పుకు కారణం:',
-'userrights-available-none'        => 'మీరు గుంపు సభ్యత్వాన్ని మార్చలేరు.',
-'userrights-available-add'         => 'ఈ {{PLURAL:$2|గుంపు|గుంపుల}}లకు ఏ వాడుకరినైనా మీరు చేర్చవచ్చు: $1.',
-'userrights-available-remove'      => 'ఈ {{PLURAL:$2|గుంపు|గుంపుల}} నుండి ఏ వాడుకరినైనా మీరు తొలగించవచ్చు: $1.',
-'userrights-available-add-self'    => 'మిమ్మల్ని మీరు ఈ {{PLURAL:$2|గుంపు|గుంపుల}}లో చేర్చుకోవచ్చు: $1.',
-'userrights-available-remove-self' => 'మిమ్మల్ని మీరు ఈ {{PLURAL:$2|గుంపు|గుంపుల}} నుండి తొలగించుకోవచ్చు: $1.',
-'userrights-no-interwiki'          => 'ఇతర వికీలలో వాడుకరి హక్కులను మార్చడానికి మీకు అనుమతి లేదు.',
-'userrights-nodatabase'            => '$1 అనే డేటాబేసు లేదు లేదా అది స్థానికం కాదు.',
-'userrights-nologin'               => 'వాడుకరి హక్కులను ఇవ్వడానికి మీరు తప్పనిసరిగా ఓ నిర్వాహక ఖాతాతో [[Special:Userlogin|లోనికి ప్రవేశించాలి]].',
-'userrights-notallowed'            => 'వాడుకరి హక్కులను మార్చగలిగే అనుమతి మీ ఖాతాకు లేదు.',
-'userrights-changeable-col'        => 'మీరు మార్చదగిన గుంపులు',
-'userrights-unchangeable-col'      => 'మీరు మార్చలేని గుంపులు',
+'userrights-reason'           => 'మార్పుకు కారణం:',
+'userrights-no-interwiki'     => 'ఇతర వికీలలో వాడుకరి హక్కులను మార్చడానికి మీకు అనుమతి లేదు.',
+'userrights-nodatabase'       => '$1 అనే డేటాబేసు లేదు లేదా అది స్థానికం కాదు.',
+'userrights-nologin'          => 'వాడుకరి హక్కులను ఇవ్వడానికి మీరు తప్పనిసరిగా ఓ నిర్వాహక ఖాతాతో [[Special:Userlogin|లోనికి ప్రవేశించాలి]].',
+'userrights-notallowed'       => 'వాడుకరి హక్కులను మార్చగలిగే అనుమతి మీ ఖాతాకు లేదు.',
+'userrights-changeable-col'   => 'మీరు మార్చదగిన గుంపులు',
+'userrights-unchangeable-col' => 'మీరు మార్చలేని గుంపులు',
 
 # Groups
 'group'               => 'గుంపు:',

@@ -883,31 +883,24 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'files'                    => "Bestan'n",
 
 # User rights
-'userrights'                       => 'Gebrukersrechenbeheer', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Gebrukershroep'n beheern",
-'userrights-user-editname'         => 'Voer een gebrukersnaem in:',
-'editusergroup'                    => "Gebrukershroep'n wiezigen",
-'editinguser'                      => "Bezig mie wiezigen van de gebrukersrechen van gebruker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => "Gebrukershroep'n wiezigen",
-'saveusergroups'                   => "Gebrukershroep'n opslaene",
-'userrights-groupsmember'          => 'Lid van:',
-'userrights-groupsremovable'       => "Verwiederbaere hroep'n:",
-'userrights-groupsavailable'       => "Beschikbaere hroep'n:",
-'userrights-groups-help'           => "Je kan de hroep'n wiezigen wir a deêze gebruker lid van is.
+'userrights'                  => 'Gebrukersrechenbeheer', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Gebrukershroep'n beheern",
+'userrights-user-editname'    => 'Voer een gebrukersnaem in:',
+'editusergroup'               => "Gebrukershroep'n wiezigen",
+'editinguser'                 => "Bezig mie wiezigen van de gebrukersrechen van gebruker '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => "Gebrukershroep'n wiezigen",
+'saveusergroups'              => "Gebrukershroep'n opslaene",
+'userrights-groupsmember'     => 'Lid van:',
+'userrights-groups-help'      => "Je kan de hroep'n wiezigen wir a deêze gebruker lid van is.
 Een anekruusd vienkvakje beteêken da de gebruker lid is van de hroep.
 Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
-'userrights-reason'                => "Reeën voe 't verandern:",
-'userrights-available-none'        => 'Je mag hin gebrukersrechen verandern.',
-'userrights-available-add'         => "Je kan gebrukers toevoehen an deêze {{PLURAL:$2|hroep|hroep'n}}: $1.",
-'userrights-available-remove'      => "Je kan gebrukers verwiederen uut deêze {{PLURAL:$2|hroep|hroep'n}}: $1.",
-'userrights-available-add-self'    => "Je kan jen eihen toevoehen an deze {{PLURAL:$2|hroep|hroep'n}}: $1.",
-'userrights-available-remove-self' => "Je kan jen eihen verwiedern uut deze {{PLURAL:$2|hroep|hroep'n}}: $1.",
-'userrights-no-interwiki'          => "Je ei hin rechen om gebrukersrechen op aore wiki's te wiezigen.",
-'userrights-nodatabase'            => 'Database $1 besti nie of is hin plaetselijke database.',
-'userrights-nologin'               => 'Je mò jen eihen[[Special:Userlogin|anmelden]] mie een gebruker mie de juuste rechen om gebrukersrechen toe te wiezen.',
-'userrights-notallowed'            => 'Je ei hin rechen om gebrukersrechen toe te wiezen.',
-'userrights-changeable-col'        => "Hroep'n die a je kan beheern",
-'userrights-unchangeable-col'      => "Hroep'n die a je nie kan beheern",
+'userrights-reason'           => "Reeën voe 't verandern:",
+'userrights-no-interwiki'     => "Je ei hin rechen om gebrukersrechen op aore wiki's te wiezigen.",
+'userrights-nodatabase'       => 'Database $1 besti nie of is hin plaetselijke database.',
+'userrights-nologin'          => 'Je mò jen eihen[[Special:Userlogin|anmelden]] mie een gebruker mie de juuste rechen om gebrukersrechen toe te wiezen.',
+'userrights-notallowed'       => 'Je ei hin rechen om gebrukersrechen toe te wiezen.',
+'userrights-changeable-col'   => "Hroep'n die a je kan beheern",
+'userrights-unchangeable-col' => "Hroep'n die a je nie kan beheern",
 
 # Groups
 'group'               => 'Hroep:',

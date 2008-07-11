@@ -966,32 +966,25 @@ Móžeš [[{{ns:special}}:Allpages|alfabetiski indeks přepytować]] abo [[:$1|s
 'files'                    => 'Dataje',
 
 # User rights
-'userrights'                       => 'Zrjadowanje wužiwarskich prawow', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Wužiwarske skupiny zrjadować',
-'userrights-user-editname'         => 'Wužiwarske mjeno:',
-'editusergroup'                    => 'Wužiwarske skupiny wobdźěłać',
-'editinguser'                      => "Měnja so wužiwarske prawa wot wužiwarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Wužiwarske skupiny wobdźěłać',
-'saveusergroups'                   => 'Wužiwarske skupiny składować',
-'userrights-groupsmember'          => 'Čłon skupiny:',
-'userrights-groupsremovable'       => 'Wotstronjomne skupiny:',
-'userrights-groupsavailable'       => 'K dispoziciji stejace skupiny:',
-'userrights-groups-help'           => 'Móžeš skupiny změnić, w kotrychž wužiwar je.
+'userrights'                  => 'Zrjadowanje wužiwarskich prawow', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Wužiwarske skupiny zrjadować',
+'userrights-user-editname'    => 'Wužiwarske mjeno:',
+'editusergroup'               => 'Wužiwarske skupiny wobdźěłać',
+'editinguser'                 => "Měnja so wužiwarske prawa wot wužiwarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Wužiwarske skupiny wobdźěłać',
+'saveusergroups'              => 'Wužiwarske skupiny składować',
+'userrights-groupsmember'     => 'Čłon skupiny:',
+'userrights-groups-help'      => 'Móžeš skupiny změnić, w kotrychž wužiwar je.
 * Markěrowany kašćik woznamjenja, zo wužiwar je w tej skupinje.
 * Njemarkěrowany kašćik woznamjenja, zo wužiwar w tej skupinje njeje.
 * "*" podawa, zo njemóžeš skupinu wotstronić, tak ruče kaž sy ju přidał abo nawopak.',
-'userrights-reason'                => 'Přičina:',
-'userrights-available-none'        => 'Njesměš wužiwarske prawa změnić.',
-'userrights-available-add'         => 'Móžeš wužiwarja k {{PLURAL:$2|tutej skupinje|tutymaj skupinomaj|tutym skupinam|tutym skupinam}} přidać: $1.',
-'userrights-available-remove'      => 'Móžeš wužiwarja z {{PLURAL:$2|tuteje skupiny|tuteju skupinow|tutych skupinow|tutych skupinow}} wotstronić: $1.',
-'userrights-available-add-self'    => 'Móžeš so k {{PLURAL:$2|tutej skupinje|tutymaj skupinomaj|tutym skupinam|tutym skupinam}} přidać: $1.',
-'userrights-available-remove-self' => 'Móžeš so z {{PLURAL:$2|tuteje skupiny|tuteju skupinow|tutych skupinow|tutych skupinow}} wotstronić: $1.',
-'userrights-no-interwiki'          => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
-'userrights-nodatabase'            => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
-'userrights-nologin'               => 'Dyrbiš so z admininstratorowym kontom [[Special:Userlogin|přizjewić]], zo by wužiwarske prawa změnił.',
-'userrights-notallowed'            => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźělił.',
-'userrights-changeable-col'        => 'Skupiny, kotrež móžeš změnić',
-'userrights-unchangeable-col'      => 'Skupiny, kotrež njemóžeš změnić',
+'userrights-reason'           => 'Přičina:',
+'userrights-no-interwiki'     => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
+'userrights-nodatabase'       => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
+'userrights-nologin'          => 'Dyrbiš so z admininstratorowym kontom [[Special:Userlogin|přizjewić]], zo by wužiwarske prawa změnił.',
+'userrights-notallowed'       => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźělił.',
+'userrights-changeable-col'   => 'Skupiny, kotrež móžeš změnić',
+'userrights-unchangeable-col' => 'Skupiny, kotrež njemóžeš změnić',
 
 # Groups
 'group'               => 'Skupina:',

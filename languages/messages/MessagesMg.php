@@ -489,13 +489,12 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'files'                 => 'Rakitra',
 
 # User rights
-'userrights'                 => 'Fandrindràna ny fahazoan-dàlana', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Handrindra vondrom-pikambana',
-'userrights-user-editname'   => 'Manomeza solonanarana:',
-'userrights-editusergroup'   => 'Hanova vondrom-pikambana',
-'saveusergroups'             => 'Tehirizo ny vondrom-pikambana',
-'userrights-groupsmember'    => "Mpikambana amin'ny vondrona:",
-'userrights-groupsavailable' => 'Vondrona misy:',
+'userrights'               => 'Fandrindràna ny fahazoan-dàlana', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Handrindra vondrom-pikambana',
+'userrights-user-editname' => 'Manomeza solonanarana:',
+'userrights-editusergroup' => 'Hanova vondrom-pikambana',
+'saveusergroups'           => 'Tehirizo ny vondrom-pikambana',
+'userrights-groupsmember'  => "Mpikambana amin'ny vondrona:",
 
 # User rights log
 'rightslogtext' => "Tantaran'asa momba ny fahazoan-dàlan'ny mpikambana.",

@@ -996,32 +996,25 @@ se math/README for oppsett.',
 'files'                    => 'Filer',
 
 # User rights
-'userrights'                       => 'Brukerrettighetskontroll', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Ordne brukergrupper',
-'userrights-user-editname'         => 'Skriv inn et brukernavn:',
-'editusergroup'                    => 'Endre brukergrupper',
-'editinguser'                      => "Endrer brukerrettighetene til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Rediger brukergrupper',
-'saveusergroups'                   => 'Lagre brukergrupper',
-'userrights-groupsmember'          => 'Medlem av:',
-'userrights-groupsremovable'       => 'Fjernbare grupper:',
-'userrights-groupsavailable'       => 'Tilgjengelige grupper:',
-'userrights-groups-help'           => 'Du kan endre hvilke grupper denne brukeren er medlem av.
+'userrights'                  => 'Brukerrettighetskontroll', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Ordne brukergrupper',
+'userrights-user-editname'    => 'Skriv inn et brukernavn:',
+'editusergroup'               => 'Endre brukergrupper',
+'editinguser'                 => "Endrer brukerrettighetene til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Rediger brukergrupper',
+'saveusergroups'              => 'Lagre brukergrupper',
+'userrights-groupsmember'     => 'Medlem av:',
+'userrights-groups-help'      => 'Du kan endre hvilke grupper denne brukeren er medlem av.
 * En avkrysset boks betyr at brukeren er medlem av gruppen.
 * En uavkrysset boks betyr at brukeren ikke er medlem av gruppen.
 * En * betyr at du ikke kan fjerne gruppemedlemskapet når du har lagt det til, eller vice versa.',
-'userrights-reason'                => 'Endringsgrunn:',
-'userrights-available-none'        => 'Du kan ikke endre gruppemedlemsskaper.',
-'userrights-available-add'         => 'Du kan legge til brukere i {{PLURAL:$2|denne gruppa|disse gruppene}}: $1.',
-'userrights-available-remove'      => 'Du kan fjerne brukere fra {{PLURAL:$2|denne gruppa|disse gruppene}}: $1.',
-'userrights-available-add-self'    => 'Du kan legge deg selv inn i {{PLURAL:$2|denne gruppa|disse gruppene}}: $1',
-'userrights-available-remove-self' => 'Du kan fjerne deg selv fra {{PLURAL:$2|denne gruppa|disse gruppene}}: $1.',
-'userrights-no-interwiki'          => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
-'userrights-nodatabase'            => 'Databasen $1 finnes ikke, eller er ikke lokal.',
-'userrights-nologin'               => 'Du må [[Special:Userlogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
-'userrights-notallowed'            => 'Kontoen din har ikke tillatelse til å endre brukerrettigheter.',
-'userrights-changeable-col'        => 'Grupper du kan endre',
-'userrights-unchangeable-col'      => 'Grupper du ikke kan endre',
+'userrights-reason'           => 'Endringsgrunn:',
+'userrights-no-interwiki'     => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
+'userrights-nodatabase'       => 'Databasen $1 finnes ikke, eller er ikke lokal.',
+'userrights-nologin'          => 'Du må [[Special:Userlogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
+'userrights-notallowed'       => 'Kontoen din har ikke tillatelse til å endre brukerrettigheter.',
+'userrights-changeable-col'   => 'Grupper du kan endre',
+'userrights-unchangeable-col' => 'Grupper du ikke kan endre',
 
 # Groups
 'group'               => 'Gruppe:',

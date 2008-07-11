@@ -645,15 +645,14 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'files'                    => 'Datoteke',
 
 # User rights
-'userrights'                 => 'Upravljanje s pravicami uporabnikov', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Upravljanje z uporabniškimi skupinami',
-'userrights-user-editname'   => 'Vpišite uporabniško ime:',
-'editusergroup'              => 'Uredi uporabniške skupine',
-'editinguser'                => "Urejanje '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Urejanje uporabniških skupin',
-'saveusergroups'             => 'Shrani spremembe',
-'userrights-groupsmember'    => 'Član skupine:',
-'userrights-groupsavailable' => 'Skupine, ki so na razpolago:',
+'userrights'               => 'Upravljanje s pravicami uporabnikov', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Upravljanje z uporabniškimi skupinami',
+'userrights-user-editname' => 'Vpišite uporabniško ime:',
+'editusergroup'            => 'Uredi uporabniške skupine',
+'editinguser'              => "Urejanje '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Urejanje uporabniških skupin',
+'saveusergroups'           => 'Shrani spremembe',
+'userrights-groupsmember'  => 'Član skupine:',
 
 # Groups
 'group'            => 'Skupina:',

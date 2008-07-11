@@ -1442,27 +1442,27 @@ please see math/README to configure.',
 'files'                    => 'Files',
 
 # User rights
-'userrights'                       => 'User rights management', # Not used as normal message but as header for the special page itself
-'userrights-summary'               => '', # only translate this message to other languages if you have to change it
-'userrights-lookup-user'           => 'Manage user groups',
-'userrights-user-editname'         => 'Enter a username:',
-'editusergroup'                    => 'Edit User Groups',
-'editinguser'                      => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Edit user groups',
-'saveusergroups'                   => 'Save User Groups',
-'userrights-groupsmember'          => 'Member of:',
-'userrights-groups-help'           => 'You may alter the groups this user is in:
+'userrights'                     => 'User rights management', # Not used as normal message but as header for the special page itself
+'userrights-summary'             => '', # only translate this message to other languages if you have to change it
+'userrights-lookup-user'         => 'Manage user groups',
+'userrights-user-editname'       => 'Enter a username:',
+'editusergroup'                  => 'Edit User Groups',
+'editinguser'                    => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'       => 'Edit user groups',
+'saveusergroups'                 => 'Save User Groups',
+'userrights-groupsmember'        => 'Member of:',
+'userrights-groups-help'         => 'You may alter the groups this user is in:
 * A checked box means the user is in that group.
 * An unchecked box means the user is not in that group.
 * A * indicates that you cannot remove the group once you have added it, or vice versa.',
-'userrights-reason'                => 'Reason for change:',
-'userrights-no-interwiki'          => 'You do not have permission to edit user rights on other wikis.',
-'userrights-nodatabase'            => 'Database $1 does not exist or is not local.',
-'userrights-nologin'               => 'You must [[Special:Userlogin|log in]] with an administrator account to assign user rights.',
-'userrights-notallowed'            => 'Your account does not have permission to assign user rights.',
-'userrights-changeable-col'        => 'Groups you can change',
-'userrights-unchangeable-col'      => 'Groups you cannot change',
-'userrights-irreversible-marker'   => '$1*', # only translate this message to other languages if you have to change it
+'userrights-reason'              => 'Reason for change:',
+'userrights-no-interwiki'        => 'You do not have permission to edit user rights on other wikis.',
+'userrights-nodatabase'          => 'Database $1 does not exist or is not local.',
+'userrights-nologin'             => 'You must [[Special:Userlogin|log in]] with an administrator account to assign user rights.',
+'userrights-notallowed'          => 'Your account does not have permission to assign user rights.',
+'userrights-changeable-col'      => 'Groups you can change',
+'userrights-unchangeable-col'    => 'Groups you cannot change',
+'userrights-irreversible-marker' => '$1*', # only translate this message to other languages if you have to change it
 
 # Groups
 'group'               => 'Group:',

@@ -1018,32 +1018,25 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'files'                    => 'Fail',
 
 # User rights
-'userrights'                       => 'Pengurusan hak pengguna', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Urus kumpulan pengguna',
-'userrights-user-editname'         => 'Masukkan nama pengguna:',
-'editusergroup'                    => 'Sunting Kumpulan Pengguna',
-'editinguser'                      => "Mengubah hak pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Ubah kumpulan pengguna',
-'saveusergroups'                   => 'Simpan Kumpulan Pengguna',
-'userrights-groupsmember'          => 'Ahli bagi:',
-'userrights-groupsremovable'       => 'Kumpulan boleh buang:',
-'userrights-groupsavailable'       => 'Kumpulan sedia ada:',
-'userrights-groups-help'           => 'Anda boleh mengubah keahlian kumpulan bagi pengguna ini:
+'userrights'                  => 'Pengurusan hak pengguna', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Urus kumpulan pengguna',
+'userrights-user-editname'    => 'Masukkan nama pengguna:',
+'editusergroup'               => 'Sunting Kumpulan Pengguna',
+'editinguser'                 => "Mengubah hak pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Ubah kumpulan pengguna',
+'saveusergroups'              => 'Simpan Kumpulan Pengguna',
+'userrights-groupsmember'     => 'Ahli bagi:',
+'userrights-groups-help'      => 'Anda boleh mengubah keahlian kumpulan bagi pengguna ini:
 * Petak yang bertanda bererti pengguna tersebut adalah ahli kumpulan itu.
 * Petak yang tidak bertanda bererti bahawa pengguna tersebut bukan ahli kumpulan itu.
 * Tanda bintang (*) menandakan bahawa anda tidak boleh melucutkan keahlian pengguna tersebut setelah anda melantiknya, dan begitulah sebaliknya.',
-'userrights-reason'                => 'Sebab perubahan:',
-'userrights-available-none'        => 'Anda tidak boleh mengubah keahlian kumpulan.',
-'userrights-available-add'         => 'Anda boleh menambahkan pengguna ke dalam {{PLURAL:$2|kumpulan|kumpulan-kumpulan}} ini: $1.',
-'userrights-available-remove'      => 'Anda boleh membuang pengguna daripada {{PLURAL:$2|kumpulan|kumpulan-kumpulan}} ini: $1.',
-'userrights-available-add-self'    => 'Anda boleh menyertai {{PLURAL:$2|kumpulan|kumpulan-kumpulan}} ini: $1.',
-'userrights-available-remove-self' => 'Anda boleh keluar daripada {{PLURAL:$2|kumpulan|kumpulan-kumpulan}} ini: $1.',
-'userrights-no-interwiki'          => 'Anda tidak mempunyai keizinan untuk mengubah hak-hak pengguna di wiki lain.',
-'userrights-nodatabase'            => 'Pangkalan data $1 tiada atau bukan tempatan.',
-'userrights-nologin'               => 'Anda mesti [[Special:Userlogin|log masuk]] dengan akaun pentadbir terlebih dahulu untuk memperuntukkan hak-hak pengguna.',
-'userrights-notallowed'            => 'Anda tidak mempunyai keizinan untuk memperuntukkan hak-hak pengguna.',
-'userrights-changeable-col'        => 'Kumpulan yang anda boleh ubah',
-'userrights-unchangeable-col'      => 'Kumpulan yang anda tak boleh ubah',
+'userrights-reason'           => 'Sebab perubahan:',
+'userrights-no-interwiki'     => 'Anda tidak mempunyai keizinan untuk mengubah hak-hak pengguna di wiki lain.',
+'userrights-nodatabase'       => 'Pangkalan data $1 tiada atau bukan tempatan.',
+'userrights-nologin'          => 'Anda mesti [[Special:Userlogin|log masuk]] dengan akaun pentadbir terlebih dahulu untuk memperuntukkan hak-hak pengguna.',
+'userrights-notallowed'       => 'Anda tidak mempunyai keizinan untuk memperuntukkan hak-hak pengguna.',
+'userrights-changeable-col'   => 'Kumpulan yang anda boleh ubah',
+'userrights-unchangeable-col' => 'Kumpulan yang anda tak boleh ubah',
 
 # Groups
 'group'               => 'Kumpulan:',

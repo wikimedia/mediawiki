@@ -1151,31 +1151,24 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'files'                    => 'Fájlok',
 
 # User rights
-'userrights'                       => 'Felhasználói jogok kezelése', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Felhasználócsoportok kezelése',
-'userrights-user-editname'         => 'Írd be a felhasználónevet:',
-'editusergroup'                    => 'Felhasználócsoportok módosítása',
-'editinguser'                      => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Felhasználócsoportok módosítása',
-'saveusergroups'                   => 'Felhasználócsoportok mentése',
-'userrights-groupsmember'          => 'Csoporttag:',
-'userrights-groupsremovable'       => 'Eltávolítható csoportok:',
-'userrights-groupsavailable'       => 'Létező csoportok:',
-'userrights-groups-help'           => 'Beállíthatod, hogy a felhasználó mely csoportokba tartozik.
+'userrights'                  => 'Felhasználói jogok kezelése', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Felhasználócsoportok kezelése',
+'userrights-user-editname'    => 'Írd be a felhasználónevet:',
+'editusergroup'               => 'Felhasználócsoportok módosítása',
+'editinguser'                 => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Felhasználócsoportok módosítása',
+'saveusergroups'              => 'Felhasználócsoportok mentése',
+'userrights-groupsmember'     => 'Csoporttag:',
+'userrights-groups-help'      => 'Beállíthatod, hogy a felhasználó mely csoportokba tartozik.
 * A bepipált doboz azt jelenti, hogy a felhasználó benne van a csoportban, az üres azt, hogy nem.
 * A * az olyan csoportokat jelöli, amelyeket ha egyszer hozzáadtál, nem távolíthatod el, vagy nem adhatod hozzá.',
-'userrights-reason'                => 'A változtatás indoka:',
-'userrights-available-none'        => 'A csoporttagságot nem módosíthatod.',
-'userrights-available-add'         => 'A következő {{PLURAL:$2|csoportokhoz|csoporthoz}} adhatsz hozzá felhasználókat: $1.',
-'userrights-available-remove'      => 'Bármelyik felhasználót eltávolíthatod {{PLURAL:$2|ebből a csoportból|ezekből a csoportokból}}: $1.',
-'userrights-available-add-self'    => 'A következő {{PLURAL:$2|csoporthoz|csoportokhoz}} adhatod hozzá magadat: $1.',
-'userrights-available-remove-self' => 'A következő {{PLURAL:$2|csoportból|csoportokból}} távolíthatod el magad: $1.',
-'userrights-no-interwiki'          => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
-'userrights-nodatabase'            => '$1 adatbázis nem létezik vagy nem helyi.',
-'userrights-nologin'               => '[[Special:Userlogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy felhasználói jogokat adhass.',
-'userrights-notallowed'            => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
-'userrights-changeable-col'        => 'Megváltoztatható csoportok',
-'userrights-unchangeable-col'      => 'Nem megváltoztatható csoportok',
+'userrights-reason'           => 'A változtatás indoka:',
+'userrights-no-interwiki'     => 'Nincs jogod a felhasználók jogainak szerkesztésére más wikiken.',
+'userrights-nodatabase'       => '$1 adatbázis nem létezik vagy nem helyi.',
+'userrights-nologin'          => '[[Special:Userlogin|Be kell jelentkezned]] egy adminisztrátori fiókkal, hogy felhasználói jogokat adhass.',
+'userrights-notallowed'       => 'A fiókoddal nincs jogod felhasználói jogokat osztani.',
+'userrights-changeable-col'   => 'Megváltoztatható csoportok',
+'userrights-unchangeable-col' => 'Nem megváltoztatható csoportok',
 
 # Groups
 'group'               => 'Csoport:',

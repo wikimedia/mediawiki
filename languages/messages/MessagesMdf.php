@@ -869,32 +869,25 @@ $3 макссь туфталсь - ''$2''",
 'files'                    => 'Файлхт',
 
 # User rights
-'userrights'                       => 'Тиинь видекснень вятема', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Тиихнень полгаснон вятемасна',
-'userrights-user-editname'         => 'Путт тиить лемонц:',
-'editusergroup'                    => 'Полафтомс тиить полганзон',
-'editinguser'                      => "'''[[User:$1|$1]]'''-нь тиить видексонзон полафнема ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Полафтомс тиить полганзон',
-'saveusergroups'                   => 'Ванфтомс тиить полганзон',
-'userrights-groupsmember'          => 'Сувси полгас:',
-'userrights-groupsremovable'       => 'Валхтови полгат:',
-'userrights-groupsavailable'       => 'Сатови полгат:',
-'userrights-groups-help'           => 'Тондейть ули кода полафнемс полгат конат эса ули тя тиись.
+'userrights'                  => 'Тиинь видекснень вятема', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Тиихнень полгаснон вятемасна',
+'userrights-user-editname'    => 'Путт тиить лемонц:',
+'editusergroup'               => 'Полафтомс тиить полганзон',
+'editinguser'                 => "'''[[User:$1|$1]]'''-нь тиить видексонзон полафнема ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Полафтомс тиить полганзон',
+'saveusergroups'              => 'Ванфтомс тиить полганзон',
+'userrights-groupsmember'     => 'Сувси полгас:',
+'userrights-groups-help'      => 'Тондейть ули кода полафнемс полгат конат эса ули тя тиись.
 * Тяште мархта кудня няфнесы тя тиись ся полгаса.
 * Тяштьфтома кудня няфнесытя тиись  аш ся полгаса.
 * Тяштькс * няфнесы тондейть аш кода нардамс полгать сонь поладомада меле эли меколанкт.',
-'userrights-reason'                => 'Полафтома туфтал:',
-'userrights-available-none'        => 'Тондейть аф мярьгови полафнемс тиихнень лувксонц полгава.',
-'userrights-available-add'         => 'Тондейть ули кода тиихнень сувафтомс {{PLURAL:$2| полгас|полгас}}: $1.',
-'userrights-available-remove'      => 'Тондейть ули кода тиихнень лихтемс {{PLURAL:$2|полгаста|полгаста}}: $1.',
-'userrights-available-add-self'    => 'Тондейть ули кода эсь пряцень сувафтомс {{PLURAL:$2|тя полгас|ня полгас}}: $1.',
-'userrights-available-remove-self' => 'Тондейть ули кода эсь пряцень  лихтемс {{PLURAL:$2|тя полгаста|ня полгаста}}: $1.',
-'userrights-no-interwiki'          => 'Тондейть аф мярьгови полафтомс тиихнень видекссна иля Викива.',
-'userrights-nodatabase'            => 'Датабаза $1 аш эли сон аф тястоконь.',
-'userrights-nologin'               => 'Тондейть эряви [[Special:Userlogin|сувамс]] оцюнянь сёрматфтомать вельде тиихнень видексснон макссеманкса.',
-'userrights-notallowed'            => 'Тонь сёрматфтомацень вельде аф мярьгови макссемс видекст иля тиихненди.',
-'userrights-changeable-col'        => 'Полгатне конатнень тондейть ули кода полафтомс',
-'userrights-unchangeable-col'      => 'Полгатне, конатнень тондейть аш кода полафтомс',
+'userrights-reason'           => 'Полафтома туфтал:',
+'userrights-no-interwiki'     => 'Тондейть аф мярьгови полафтомс тиихнень видекссна иля Викива.',
+'userrights-nodatabase'       => 'Датабаза $1 аш эли сон аф тястоконь.',
+'userrights-nologin'          => 'Тондейть эряви [[Special:Userlogin|сувамс]] оцюнянь сёрматфтомать вельде тиихнень видексснон макссеманкса.',
+'userrights-notallowed'       => 'Тонь сёрматфтомацень вельде аф мярьгови макссемс видекст иля тиихненди.',
+'userrights-changeable-col'   => 'Полгатне конатнень тондейть ули кода полафтомс',
+'userrights-unchangeable-col' => 'Полгатне, конатнень тондейть аш кода полафтомс',
 
 # Groups
 'group'               => 'Полга:',

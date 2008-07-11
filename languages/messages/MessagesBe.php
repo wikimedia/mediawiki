@@ -922,32 +922,25 @@ $2',
 'files'                    => 'Файлы',
 
 # User rights
-'userrights'                       => 'Распараджэнне правамі ўдзельніка', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Распараджацца групамі ўдзельнікаў',
-'userrights-user-editname'         => 'Увядзіце імя ўдзельніка:',
-'editusergroup'                    => 'Правіць групы ўдзельнікаў',
-'editinguser'                      => "Папраўляюцца дазволы для ўдзельніка '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Распараджацца групамі ўдзельніка',
-'saveusergroups'                   => 'Захаваць групы ўдзельнікаў',
-'userrights-groupsmember'          => 'У групе:',
-'userrights-groupsremovable'       => 'Групы для выдалення:',
-'userrights-groupsavailable'       => 'Наяўныя групы:',
-'userrights-groups-help'           => 'Тут можна мяняць групы, да якіх належыць гэты ўдзельнік.
+'userrights'                  => 'Распараджэнне правамі ўдзельніка', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Распараджацца групамі ўдзельнікаў',
+'userrights-user-editname'    => 'Увядзіце імя ўдзельніка:',
+'editusergroup'               => 'Правіць групы ўдзельнікаў',
+'editinguser'                 => "Папраўляюцца дазволы для ўдзельніка '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Распараджацца групамі ўдзельніка',
+'saveusergroups'              => 'Захаваць групы ўдзельнікаў',
+'userrights-groupsmember'     => 'У групе:',
+'userrights-groups-help'      => 'Тут можна мяняць групы, да якіх належыць гэты ўдзельнік.
 * Адзначанае поле выбару азначае ўваходжанне ўдзельніка ў пэўную групу.
 * Чыстае поле выбару азначае неўваходжанне.
 * Знак * азначае, што нельга выняць удзельніка з групы, калі ён ужо там, або наадварот.',
-'userrights-reason'                => 'Тлумачэнне змянення:',
-'userrights-available-none'        => 'Вы не можаце мяняць групавай прыналежнасці.',
-'userrights-available-add'         => 'Вам дазволена дадаваць удзельнікаў да {{PLURAL:$2|гэтай групы|гэтых групаў}}: $1.',
-'userrights-available-remove'      => 'Вам дазволена выдаляць удзельнікаў з {{PLURAL:$2|гэтай групы|гэтых групаў}}: $1.',
-'userrights-available-add-self'    => 'Вы можаце дадаць сябе да {{PLURAL:$2|гэтай групы|гэтых груп}}: $1.',
-'userrights-available-remove-self' => 'Вы можаце спыніць свой удзел у {{PLURAL:$2|гэтай групе|гэтых групах}}: $1.',
-'userrights-no-interwiki'          => 'Вам не дазволена мяняць дазволаў карыстальнікам на іншых Вікі-ах.',
-'userrights-nodatabase'            => 'Не знойдзена тут, або не існуе база даных $1.',
-'userrights-nologin'               => 'Належыць [[Special:Userlogin|увайсці ў сістэму]] на рахунак адміністратара, каб прызначаць дазволы ўдзельнікам.',
-'userrights-notallowed'            => 'Ваш рахунак не мае дазволаў, каб мяняць дазволы ўдзельнікаў.',
-'userrights-changeable-col'        => 'Групы, якія вам дазволена мяняць',
-'userrights-unchangeable-col'      => 'Групы, якія вам не дазволена мяняць',
+'userrights-reason'           => 'Тлумачэнне змянення:',
+'userrights-no-interwiki'     => 'Вам не дазволена мяняць дазволаў карыстальнікам на іншых Вікі-ах.',
+'userrights-nodatabase'       => 'Не знойдзена тут, або не існуе база даных $1.',
+'userrights-nologin'          => 'Належыць [[Special:Userlogin|увайсці ў сістэму]] на рахунак адміністратара, каб прызначаць дазволы ўдзельнікам.',
+'userrights-notallowed'       => 'Ваш рахунак не мае дазволаў, каб мяняць дазволы ўдзельнікаў.',
+'userrights-changeable-col'   => 'Групы, якія вам дазволена мяняць',
+'userrights-unchangeable-col' => 'Групы, якія вам не дазволена мяняць',
 
 # Groups
 'group'               => 'Група:',

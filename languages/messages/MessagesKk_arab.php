@@ -1308,32 +1308,25 @@ latex, dvips, gs جانە convert باعدارلامالارىنىڭ دۇرىس 
 'files'                    => 'فايلدار',
 
 # User rights
-'userrights'                       => 'قاتىسۋشى قۇقىقتارىن رەتتەۋ', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'قاتىسۋشى توپتارىن رەتتەۋ',
-'userrights-user-editname'         => 'قاتىسۋشى اتىن ەنگىزىڭىز:',
-'editusergroup'                    => 'قاتىسۋشى توپتارىن وڭدەۋ',
-'editinguser'                      => "قاتىسۋشى قۇقىقتارىن وزگەرتۋ: '''[[{{ns:user}}:$1|$1]]''' ([[{{ns:user_talk}}:$1|{{int:talkpagelinktext}}]] | [[{{#special:Contributions}}/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'قاتىسۋشى توپتارىن وڭدەۋ',
-'saveusergroups'                   => 'قاتىسۋشى توپتارىن ساقتاۋ',
-'userrights-groupsmember'          => 'مۇشەلىگى:',
-'userrights-groupsremovable'       => 'الاستالاتىن توپتار:',
-'userrights-groupsavailable'       => 'جەتىمدى توپتار:',
-'userrights-groups-help'           => 'بۇل قاتىسۋشى كىرەتىن توپتاردى رەتتەي الاسىز.
+'userrights'                  => 'قاتىسۋشى قۇقىقتارىن رەتتەۋ', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'قاتىسۋشى توپتارىن رەتتەۋ',
+'userrights-user-editname'    => 'قاتىسۋشى اتىن ەنگىزىڭىز:',
+'editusergroup'               => 'قاتىسۋشى توپتارىن وڭدەۋ',
+'editinguser'                 => "قاتىسۋشى قۇقىقتارىن وزگەرتۋ: '''[[{{ns:user}}:$1|$1]]''' ([[{{ns:user_talk}}:$1|{{int:talkpagelinktext}}]] | [[{{#special:Contributions}}/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'قاتىسۋشى توپتارىن وڭدەۋ',
+'saveusergroups'              => 'قاتىسۋشى توپتارىن ساقتاۋ',
+'userrights-groupsmember'     => 'مۇشەلىگى:',
+'userrights-groups-help'      => 'بۇل قاتىسۋشى كىرەتىن توپتاردى رەتتەي الاسىز.
 * قۇسبەلگى قويىلعان كوزى قاتىسۋشى بۇل توپقا كىرگەنىن كورسەتەدى;
 * قۇسبەلگى الىپ تاستالعان كوز قاتىسۋشى بۇل توپقا كىرمەگەنىن كورسەتەدى;
 * كەلتىرىلگەن * توپتى ٴبىر ۇستەگەنىنەن كەيىن الاستاي المايتىندىعىن, نە قاراما-قارسىسىن كورسەتەدى.',
-'userrights-reason'                => 'وزگەرتۋ سەبەبى:',
-'userrights-available-none'        => 'توپ مۇشەلىگىن وزگەرتە المايسىز.',
-'userrights-available-add'         => 'قاتىسۋشىلاردى مىنا {{PLURAL:$2|توپقا|توپتارعا}} ۇستەي الاسىز: $1.',
-'userrights-available-remove'      => 'ارقايسى قاتىسۋشىلاردى مىنا {{PLURAL:$2|توپتان|توپتاردان}} الاستاي الاسىز: $1.',
-'userrights-available-add-self'    => 'ٴوزىڭىزدى مىنا {{PLURAL:$2|توپقا|توپتارعا}} ۇستەي الاسىز: $1.',
-'userrights-available-remove-self' => 'ٴوزىڭىزدى مىنا {{PLURAL:$2|توپتان|توپتاردان}} الاستاي الاسىز: $1.',
-'userrights-no-interwiki'          => 'باسقا ۋىيكىيلەردەگى پايدالانۋشى قۇقىقتارىن وڭدەۋگە رۇقساتىڭىز جوق.',
-'userrights-nodatabase'            => '$1 دەرەكقورى جوق نە جەرگىلىكتى ەمەس.',
-'userrights-nologin'               => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن اكىمشى تىركەلگىسىمەن [[{{#special:Userlogin}}|كىرۋىڭىز]] ٴجون.',
-'userrights-notallowed'            => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن تىركەلگىڭىزدە رۇقسات جوق.',
-'userrights-changeable-col'        => 'وزگەرتە الاتىن توپتار',
-'userrights-unchangeable-col'      => 'وزگەرتە المايتىن توپتار',
+'userrights-reason'           => 'وزگەرتۋ سەبەبى:',
+'userrights-no-interwiki'     => 'باسقا ۋىيكىيلەردەگى پايدالانۋشى قۇقىقتارىن وڭدەۋگە رۇقساتىڭىز جوق.',
+'userrights-nodatabase'       => '$1 دەرەكقورى جوق نە جەرگىلىكتى ەمەس.',
+'userrights-nologin'          => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن اكىمشى تىركەلگىسىمەن [[{{#special:Userlogin}}|كىرۋىڭىز]] ٴجون.',
+'userrights-notallowed'       => 'قاتىسۋشى قۇقىقتارىن تاعايىنداۋ ٴۇشىن تىركەلگىڭىزدە رۇقسات جوق.',
+'userrights-changeable-col'   => 'وزگەرتە الاتىن توپتار',
+'userrights-unchangeable-col' => 'وزگەرتە المايتىن توپتار',
 
 # Groups
 'group'               => 'توپ:',

@@ -1074,32 +1074,25 @@ per modificar vòstras preferéncias d'utilizaire.",
 'files'                    => 'Fichièrs',
 
 # User rights
-'userrights'                       => "Gestion dels dreches d'utilizaire", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Gestion dels dreches d'utilizaire",
-'userrights-user-editname'         => 'Entrar un nom d’utilizaire :',
-'editusergroup'                    => "Modificacion dels gropes d'utilizaires",
-'editinguser'                      => "Cambiament dels dreches de l'utilizaire '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Modificar los gropes de l’utilizaire',
-'saveusergroups'                   => "Salvar los gropes d'utilizaires",
-'userrights-groupsmember'          => 'Membre de :',
-'userrights-groupsremovable'       => 'Gropes suprimibles :',
-'userrights-groupsavailable'       => 'Gropes disponibles :',
-'userrights-groups-help'           => "Podètz modificar los gropes alsquals aparten aqueste utilizaire.
+'userrights'                  => "Gestion dels dreches d'utilizaire", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Gestion dels dreches d'utilizaire",
+'userrights-user-editname'    => 'Entrar un nom d’utilizaire :',
+'editusergroup'               => "Modificacion dels gropes d'utilizaires",
+'editinguser'                 => "Cambiament dels dreches de l'utilizaire '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Modificar los gropes de l’utilizaire',
+'saveusergroups'              => "Salvar los gropes d'utilizaires",
+'userrights-groupsmember'     => 'Membre de :',
+'userrights-groups-help'      => "Podètz modificar los gropes alsquals aparten aqueste utilizaire.
 * Una casa marcada significa que l'utilizaire se tròba dins aqueste grop.
 * Una casa pas marcada significa, al contrari, que s’i tròba pas.
 * Una * indica que podretz pas levar aqueste grop un còp que l'auretz apondut e vice-versa.",
-'userrights-reason'                => 'Motiu del cambiament :',
-'userrights-available-none'        => 'Podètz pas cambiar l’apartenéncia als diferents gropes.',
-'userrights-available-add'         => "Podètz apondre d'utilizaires a {{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.",
-'userrights-available-remove'      => "Podètz levar d'utilizaires d'{{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.",
-'userrights-available-add-self'    => 'Vos podètz apondre vos-meteis dins {{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.',
-'userrights-available-remove-self' => "Vos podètz levar vos-meteis d'{{PLURAL:$2|aqueste grop|aquestes gropes}} : $1.",
-'userrights-no-interwiki'          => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
-'userrights-nodatabase'            => 'La banca de donadas « $1 » existís pas o es pas en local.',
-'userrights-nologin'               => "Vos cal [[Special:Userlogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
-'userrights-notallowed'            => "Vòstre compte es pas abilitat per modificar de dreches d'utilizaire.",
-'userrights-changeable-col'        => 'Los gropes que podètz cambiar',
-'userrights-unchangeable-col'      => 'Los gropes que podètz pas cambiar',
+'userrights-reason'           => 'Motiu del cambiament :',
+'userrights-no-interwiki'     => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
+'userrights-nodatabase'       => 'La banca de donadas « $1 » existís pas o es pas en local.',
+'userrights-nologin'          => "Vos cal [[Special:Userlogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
+'userrights-notallowed'       => "Vòstre compte es pas abilitat per modificar de dreches d'utilizaire.",
+'userrights-changeable-col'   => 'Los gropes que podètz cambiar',
+'userrights-unchangeable-col' => 'Los gropes que podètz pas cambiar',
 
 # Groups
 'group'               => 'Grop :',

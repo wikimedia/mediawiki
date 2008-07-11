@@ -1046,31 +1046,24 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'files'                    => 'Dateien',
 
 # User rights
-'userrights'                       => 'Benutzerrechteverwaltung', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Verwalte Gruppenzugehörigkeit',
-'userrights-user-editname'         => 'Benutzername:',
-'editusergroup'                    => 'Benutzerrechte bearbeiten',
-'editinguser'                      => "Ändere Benutzerrechte von '''[[{{ns:user}}:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[{{#Special:Contributions}}/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
-'saveusergroups'                   => 'Gruppenzugehörigkeit ändern',
-'userrights-groupsmember'          => 'Mitglied von:',
-'userrights-groupsremovable'       => 'Entfernbare Gruppen:',
-'userrights-groupsavailable'       => 'Verfügbare Gruppen:',
-'userrights-groups-help'           => 'Du kannst du Gruppenzugehörigkeit für diesen Benutzer ändern:
+'userrights'                  => 'Benutzerrechteverwaltung', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Verwalte Gruppenzugehörigkeit',
+'userrights-user-editname'    => 'Benutzername:',
+'editusergroup'               => 'Benutzerrechte bearbeiten',
+'editinguser'                 => "Ändere Benutzerrechte von '''[[{{ns:user}}:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[{{#Special:Contributions}}/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
+'saveusergroups'              => 'Gruppenzugehörigkeit ändern',
+'userrights-groupsmember'     => 'Mitglied von:',
+'userrights-groups-help'      => 'Du kannst du Gruppenzugehörigkeit für diesen Benutzer ändern:
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
-'userrights-reason'                => 'Grund:',
-'userrights-available-none'        => 'Du darfst keine Benutzerrechte verändern.',
-'userrights-available-add'         => 'Du kannst Benutzer {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} hinzufügen: $1.',
-'userrights-available-remove'      => 'Du kannst Benutzer aus {{PLURAL:$2|der folgenden Gruppe|den folgenden $2 Gruppen}} entfernen: $1.',
-'userrights-available-add-self'    => 'Du kannst dich selbst {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} hinzufügen: $1.',
-'userrights-available-remove-self' => 'Du kannst dich selbst aus {{PLURAL:$2|dieser Gruppe|diesen Gruppen}} entfernen: $1.',
-'userrights-no-interwiki'          => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
-'userrights-nodatabase'            => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
-'userrights-nologin'               => 'Du musst dich mit einem Administrator-Benutzerkonto [[{{#special:Userlogin}}|anmelden]], um Benutzerrechte zu ändern.',
-'userrights-notallowed'            => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
-'userrights-changeable-col'        => 'Gruppenzugehörigkeit, die du ändern kannst',
-'userrights-unchangeable-col'      => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
+'userrights-reason'           => 'Grund:',
+'userrights-no-interwiki'     => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
+'userrights-nodatabase'       => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
+'userrights-nologin'          => 'Du musst dich mit einem Administrator-Benutzerkonto [[{{#special:Userlogin}}|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-notallowed'       => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-changeable-col'   => 'Gruppenzugehörigkeit, die du ändern kannst',
+'userrights-unchangeable-col' => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -2599,7 +2592,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
 
 # action=purge
-'confirm_purge' => 'Diese Seite aus dem Server-Cache löschen? $1',
+'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
 'confirm_purge_button' => 'OK',
 
 # AJAX search

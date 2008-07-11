@@ -880,32 +880,25 @@ $1',
 'files'                    => 'Файлҳо',
 
 # User rights
-'userrights'                       => 'Мудирияти ихтиёроти корбарӣ', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Мудирияти гурӯҳҳои корбарӣ',
-'userrights-user-editname'         => 'Номи корбарро дохил кунед:',
-'editusergroup'                    => 'Гуруҳҳои корбарро вироиш кунед',
-'editinguser'                      => "Дар ҳоли вироиши корбар '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Вироиши гурӯҳҳои корбарӣ',
-'saveusergroups'                   => 'Сабти гурӯҳҳои корбарӣ',
-'userrights-groupsmember'          => 'Аъзои:',
-'userrights-groupsremovable'       => 'Гурӯҳҳои қобили ҳазф:',
-'userrights-groupsavailable'       => 'Гурӯҳҳои мавҷуд:',
-'userrights-groups-help'           => 'Шумо метавонед гурӯҳҳое, ки корбар дар он қарор доштаро тағйир диҳед.
+'userrights'                  => 'Мудирияти ихтиёроти корбарӣ', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Мудирияти гурӯҳҳои корбарӣ',
+'userrights-user-editname'    => 'Номи корбарро дохил кунед:',
+'editusergroup'               => 'Гуруҳҳои корбарро вироиш кунед',
+'editinguser'                 => "Дар ҳоли вироиши корбар '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Вироиши гурӯҳҳои корбарӣ',
+'saveusergroups'              => 'Сабти гурӯҳҳои корбарӣ',
+'userrights-groupsmember'     => 'Аъзои:',
+'userrights-groups-help'      => 'Шумо метавонед гурӯҳҳое, ки корбар дар он қарор доштаро тағйир диҳед.
 * Қуттии аломатхӯрда ба ин маънӣ аст, ки корбар дар он гурӯҳ қарор дорад.
 * Қуттии аломатнахӯрда ба ин маънӣ аст, ки корбар дар он гурӯҳ қарор надорад.
 * "*" маънои онро дорад, ки шумо қобили ҳазф кардани гурӯҳе нестед дар ҳоле ки шумо онро илова карда бошед, ин ё он.',
-'userrights-reason'                => 'Иллати тағйир:',
-'userrights-available-none'        => 'Шумо узвияти дар гурӯҳҳоро наметавонед тағйир диҳед.',
-'userrights-available-add'         => 'Шумо метавонед ҳар корбареро ба ин {{PLURAL:$2|гурӯҳ|гурӯҳо}}: $1 илова кунед.',
-'userrights-available-remove'      => 'Шумо метавонед ҳар корбареро аз ин {{PLURAL:$2|гурӯҳ|гурӯҳо}}: $1 ҳазф кунед.',
-'userrights-available-add-self'    => 'Шумо метавонед худро ба ин {{PLURAL:$2|гурӯҳ|гурӯҳо}}: $1 илова бикунед.',
-'userrights-available-remove-self' => 'Шумо метавонед худро аз ин {{PLURAL:$2|гурӯҳ|гурӯҳо}}: $1 ҳазф бикунед.',
-'userrights-no-interwiki'          => 'Шумо иҷозати тағйири ихтиёроти корбарони дигар викиҳоро надоред.',
-'userrights-nodatabase'            => 'Пойгоҳи дода $1 вуҷуд надорад ё маҳаллӣ нест.',
-'userrights-nologin'               => 'Шумо бояд бо як ҳисоби корбарӣ дорои ихтиёроти мудириятӣ [[Special:Userlogin|ба систем вуруд кунед]], то битавонед ихтиёроти корбаронро таъйид кунед.',
-'userrights-notallowed'            => 'Ҳисоби корбарии шумо иҷозати тағйири ихтиёроти корбариро надорад.',
-'userrights-changeable-col'        => 'Гурӯҳҳое, ки шумо метавонед тағйир диҳед',
-'userrights-unchangeable-col'      => 'Гурӯҳҳое, ки шумо наметавонед тағйир диҳед',
+'userrights-reason'           => 'Иллати тағйир:',
+'userrights-no-interwiki'     => 'Шумо иҷозати тағйири ихтиёроти корбарони дигар викиҳоро надоред.',
+'userrights-nodatabase'       => 'Пойгоҳи дода $1 вуҷуд надорад ё маҳаллӣ нест.',
+'userrights-nologin'          => 'Шумо бояд бо як ҳисоби корбарӣ дорои ихтиёроти мудириятӣ [[Special:Userlogin|ба систем вуруд кунед]], то битавонед ихтиёроти корбаронро таъйид кунед.',
+'userrights-notallowed'       => 'Ҳисоби корбарии шумо иҷозати тағйири ихтиёроти корбариро надорад.',
+'userrights-changeable-col'   => 'Гурӯҳҳое, ки шумо метавонед тағйир диҳед',
+'userrights-unchangeable-col' => 'Гурӯҳҳое, ки шумо наметавонед тағйир диҳед',
 
 # Groups
 'group'               => 'Гурӯҳ:',

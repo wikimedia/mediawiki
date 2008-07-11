@@ -544,18 +544,15 @@ $1 | $2',
 'files'                    => 'Fiillat',
 
 # User rights
-'userrights'                  => 'Geavaheaddjirivttiid stivren', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'Geavaheaddjirivttiid stivren',
-'userrights-user-editname'    => 'Geavaheaddjidovddaldat',
-'editusergroup'               => 'Rievdat geavaheaddjijoavkkuid',
-'editinguser'                 => "Rievdadit siiddu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Geavaheaddji joavkkut',
-'saveusergroups'              => 'Vurke',
-'userrights-groupsmember'     => 'Lahttun čuovvovaš joavkkuin:',
-'userrights-groupsavailable'  => 'Joavkkut mat dihttot',
-'userrights-reason'           => 'Sivva',
-'userrights-available-add'    => 'Sáhtat lasihit geavaheddjiid joavkui $1.',
-'userrights-available-remove' => 'Sáhtat sirdit geavaheddjiid joavkkus $1.',
+'userrights'               => 'Geavaheaddjirivttiid stivren', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Geavaheaddjirivttiid stivren',
+'userrights-user-editname' => 'Geavaheaddjidovddaldat',
+'editusergroup'            => 'Rievdat geavaheaddjijoavkkuid',
+'editinguser'              => "Rievdadit siiddu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Geavaheaddji joavkkut',
+'saveusergroups'           => 'Vurke',
+'userrights-groupsmember'  => 'Lahttun čuovvovaš joavkkuin:',
+'userrights-reason'        => 'Sivva',
 
 # Groups
 'group'            => 'Joavku',

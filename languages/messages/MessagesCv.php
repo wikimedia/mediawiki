@@ -624,16 +624,14 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'files'              => 'Файлсем',
 
 # User rights
-'userrights'                 => 'Хутшăнакансен прависемпе ĕçлесси', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Хутшăнакансен ушкăнĕсемпе ĕçлесси',
-'userrights-user-editname'   => 'Хутшăнакан ятне кăтартăр:',
-'editinguser'                => "тӳрлетни '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Хутшăнакансен ушкăнĕсене улăштар',
-'saveusergroups'             => 'Хутшăнаканăн ушкăнĕсем астуса юл',
-'userrights-groupsmember'    => 'Çак ушкăнсене кĕрет:',
-'userrights-groupsavailable' => 'Çак ушкăнсем пур:',
-'userrights-reason'          => 'Улăштару сăлтавĕ:',
-'userrights-available-none'  => 'Эсир ушкăнри хутшăнакансене кăларса парахма е урăхла улăштарма пултараймастăр.',
+'userrights'               => 'Хутшăнакансен прависемпе ĕçлесси', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Хутшăнакансен ушкăнĕсемпе ĕçлесси',
+'userrights-user-editname' => 'Хутшăнакан ятне кăтартăр:',
+'editinguser'              => "тӳрлетни '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Хутшăнакансен ушкăнĕсене улăштар',
+'saveusergroups'           => 'Хутшăнаканăн ушкăнĕсем астуса юл',
+'userrights-groupsmember'  => 'Çак ушкăнсене кĕрет:',
+'userrights-reason'        => 'Улăштару сăлтавĕ:',
 
 # Groups
 'group'               => 'Ушкăн:',

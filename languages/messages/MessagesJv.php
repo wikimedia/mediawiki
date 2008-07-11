@@ -838,32 +838,25 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'files'                    => 'Berkas',
 
 # User rights
-'userrights'                       => 'Manajemen hak panganggo', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Ngatur kelompok panganggo',
-'userrights-user-editname'         => 'Lebokna jeneng panganggo:',
-'editusergroup'                    => 'Sunting kelompok panganggo',
-'editinguser'                      => "Ngowahi hak-hak aksès panganggo saka panganggo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Sunting kelompok panganggo',
-'saveusergroups'                   => 'Simpen kelompok panganggo',
-'userrights-groupsmember'          => 'Anggota saka:',
-'userrights-groupsremovable'       => 'Grup sing bisa dijabel:',
-'userrights-groupsavailable'       => 'Grup sing bisa diwènèhaké:',
-'userrights-groups-help'           => 'Panjenengan bisa ngowahi grup-grup sing ana panganggoné iki.
+'userrights'                  => 'Manajemen hak panganggo', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Ngatur kelompok panganggo',
+'userrights-user-editname'    => 'Lebokna jeneng panganggo:',
+'editusergroup'               => 'Sunting kelompok panganggo',
+'editinguser'                 => "Ngowahi hak-hak aksès panganggo saka panganggo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Sunting kelompok panganggo',
+'saveusergroups'              => 'Simpen kelompok panganggo',
+'userrights-groupsmember'     => 'Anggota saka:',
+'userrights-groups-help'      => 'Panjenengan bisa ngowahi grup-grup sing ana panganggoné iki.
 * Kothak sing dicenthang tegesé panganggo iki ana sajroné grup iku.
 * Kothak sing ora dicenthang tegesé panganggo iku ora ana ing grup iku.
 * Tandha bintang * tegesé panjenengan ora bisa ngilangi grup iku yèn wis tau nambah, utawa sawalikané.',
-'userrights-reason'                => 'Alesané ngowahi:',
-'userrights-available-none'        => 'Panjenengan ora pareng ngowahi kaanggotan kelompok.',
-'userrights-available-add'         => 'Panjenengan bisa nglebokaké panganggo ing {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-available-remove'      => 'Panjenengan bisa ngwetokaké panganggo saka {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-available-add-self'    => 'Panjenengan bisa nambah panjenengan dhéwé menyang {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-available-remove-self' => 'Panjenengan bisa ngwetokaké panjenengan dhéwé saka {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-no-interwiki'          => 'Panjenengan ora ana hak kanggo ngowahi hak panganggo ing wiki liyané.',
-'userrights-nodatabase'            => 'Basis data $1 ora ana utawa ora lokal.',
-'userrights-nologin'               => 'Panjenengan kudu [[Special:Userlogin|mlebu log]] mawa nganggo akun utawa rékening pangurus supaya bisa ngowahi hak panganggo.',
-'userrights-notallowed'            => 'Panjenengan ora ndarbèni hak kanggo ngowahi hak panganggo.',
-'userrights-changeable-col'        => 'Grup sing bisa panjenengan owahi',
-'userrights-unchangeable-col'      => 'Grup sing ora bisa diowahi panjenengan',
+'userrights-reason'           => 'Alesané ngowahi:',
+'userrights-no-interwiki'     => 'Panjenengan ora ana hak kanggo ngowahi hak panganggo ing wiki liyané.',
+'userrights-nodatabase'       => 'Basis data $1 ora ana utawa ora lokal.',
+'userrights-nologin'          => 'Panjenengan kudu [[Special:Userlogin|mlebu log]] mawa nganggo akun utawa rékening pangurus supaya bisa ngowahi hak panganggo.',
+'userrights-notallowed'       => 'Panjenengan ora ndarbèni hak kanggo ngowahi hak panganggo.',
+'userrights-changeable-col'   => 'Grup sing bisa panjenengan owahi',
+'userrights-unchangeable-col' => 'Grup sing ora bisa diowahi panjenengan',
 
 # Groups
 'group'               => 'Kelompok:',

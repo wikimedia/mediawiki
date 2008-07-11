@@ -900,32 +900,25 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'files'                    => 'Archivos',
 
 # User rights
-'userrights'                       => "Remanamientu de derechos d'usuariu", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Remanamientu de grupos d'usuariu",
-'userrights-user-editname'         => "Escribi un nome d'usuariu:",
-'editusergroup'                    => "Modificar grupos d'usuariu",
-'editinguser'                      => "Camudando los drechos del usuariu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => "Editar los grupos d'usuariu",
-'saveusergroups'                   => "Guardar los grupos d'usuariu",
-'userrights-groupsmember'          => 'Miembru de:',
-'userrights-groupsremovable'       => "Grupos d'onde pue ser elimináu:",
-'userrights-groupsavailable'       => 'Grupos disponibles:',
-'userrights-groups-help'           => "Pues camudar los grupos a los que pertenez esti usuariu.
+'userrights'                  => "Remanamientu de derechos d'usuariu", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Remanamientu de grupos d'usuariu",
+'userrights-user-editname'    => "Escribi un nome d'usuariu:",
+'editusergroup'               => "Modificar grupos d'usuariu",
+'editinguser'                 => "Camudando los drechos del usuariu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => "Editar los grupos d'usuariu",
+'saveusergroups'              => "Guardar los grupos d'usuariu",
+'userrights-groupsmember'     => 'Miembru de:',
+'userrights-groups-help'      => "Pues camudar los grupos a los que pertenez esti usuariu.
 * Un caxellu marcáu significa que l'usuariu ta nesi grupu.
 * Un caxellu non marcáu significa que l'usuariu nun ta nesi grupu.
 * Un * indica que nun pues eliminalu del grupu una vegada tea inxeríu, o viceversa.",
-'userrights-reason'                => 'Motivu del cambéu:',
-'userrights-available-none'        => 'Nun pues modificar la pertenencia a un grupu.',
-'userrights-available-add'         => 'Pues añader cualesquier usuariu a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
-'userrights-available-remove'      => "Pues eliminar cualesquier usuariu d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
-'userrights-available-add-self'    => 'Pues añadete tu mesmu a {{PLURAL:$2|esti grupu|estos grupos}}: $1.',
-'userrights-available-remove-self' => "Pues eliminate tu mesmu d'{{PLURAL:$2|esti grupu|estos grupos}}: $1.",
-'userrights-no-interwiki'          => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
-'userrights-nodatabase'            => 'La base de datos $1 nun esiste o nun ye llocal.',
-'userrights-nologin'               => "Has tar [[Special:Userlogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
-'userrights-notallowed'            => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
-'userrights-changeable-col'        => 'Grupos que pues camudar',
-'userrights-unchangeable-col'      => 'Grupos que nun pues camudar',
+'userrights-reason'           => 'Motivu del cambéu:',
+'userrights-no-interwiki'     => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
+'userrights-nodatabase'       => 'La base de datos $1 nun esiste o nun ye llocal.',
+'userrights-nologin'          => "Has tar [[Special:Userlogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
+'userrights-notallowed'       => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
+'userrights-changeable-col'   => 'Grupos que pues camudar',
+'userrights-unchangeable-col' => 'Grupos que nun pues camudar',
 
 # Groups
 'group'               => 'Grupu:',

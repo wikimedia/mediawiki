@@ -776,14 +776,10 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'files'                    => 'Fasciculi',
 
 # User rights
-'userrights'                       => 'Usorum potestas', # Not used as normal message but as header for the special page itself
-'editusergroup'                    => 'Greges usorum recensere',
-'editinguser'                      => "Modificare iura usoris '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Recensere greges usorum',
-'userrights-available-add'         => 'Potes usorem aliquem addere ad {{PLURAL:$2|hanc gregem|has greges}}: $1.',
-'userrights-available-remove'      => 'Potes usorem aliquem removere ex {{PLURAL:$2|hac grege|his gregibus}}: $1.',
-'userrights-available-add-self'    => 'Potes te addere ad {{PLURAL:$2|hanc gregem|has greges}}: $1.',
-'userrights-available-remove-self' => 'Potes te removere ex {{PLURAL:$2|hac grege|his gregibus}}: $1.',
+'userrights'               => 'Usorum potestas', # Not used as normal message but as header for the special page itself
+'editusergroup'            => 'Greges usorum recensere',
+'editinguser'              => "Modificare iura usoris '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Recensere greges usorum',
 
 # Groups
 'group'            => 'Grex:',

@@ -1164,32 +1164,25 @@ $2',
 'files'                    => 'קבצים',
 
 # User rights
-'userrights'                       => 'ניהול הרשאות משתמש', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'ניהול קבוצות משתמש',
-'userrights-user-editname'         => 'שם משתמש:',
-'editusergroup'                    => 'עריכת קבוצות משתמשים',
-'editinguser'                      => "שינוי הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'עריכת קבוצות משתמש',
-'saveusergroups'                   => 'שמירת קבוצות משתמש',
-'userrights-groupsmember'          => 'חבר בקבוצות:',
-'userrights-groupsremovable'       => 'ניתן להסירו מהקבוצות:',
-'userrights-groupsavailable'       => 'קבוצות זמינות:',
-'userrights-groups-help'           => 'באפשרותכם לשנות את הקבוצות שמשתמש זה חבר בהן:
+'userrights'                  => 'ניהול הרשאות משתמש', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'ניהול קבוצות משתמש',
+'userrights-user-editname'    => 'שם משתמש:',
+'editusergroup'               => 'עריכת קבוצות משתמשים',
+'editinguser'                 => "שינוי הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'עריכת קבוצות משתמש',
+'saveusergroups'              => 'שמירת קבוצות משתמש',
+'userrights-groupsmember'     => 'חבר בקבוצות:',
+'userrights-groups-help'      => 'באפשרותכם לשנות את הקבוצות שמשתמש זה חבר בהן:
 * תיבה מסומנת פירושה שהמשתמש חבר בקבוצה.
 * תיבה בלתי מסומנת פירושה שהמשתמש אינו חבר בקבוצה.
 * סימון * פירושו שלא תוכלו להסיר משתמש מהקבוצה מרגע שהוספתם אותו אליה, או להיפך.',
-'userrights-reason'                => 'סיבה לשינוי:',
-'userrights-available-none'        => 'אינכם יכולים לשנות את ההשתייכות לקבוצות.',
-'userrights-available-add'         => 'באפשרותכם להוסיף כל משתמש {{PLURAL:$2|לקבוצה הבאה|לקבוצות הבאות}}: $1.',
-'userrights-available-remove'      => 'באפשרותכם להסיר כל משתמש {{PLURAL:$2|מהקבוצה הבאה|מהקבוצות הבאות}}: $1.',
-'userrights-available-add-self'    => 'באפשרותכם להוסיף את עצמכם {{PLURAL:$2|לקבוצה הבאה|לקבוצות הבאות}}: $1.',
-'userrights-available-remove-self' => 'באפשרותכם להסיר את עצמכם {{PLURAL:$2|מהקבוצה הבאה|מהקבוצות הבאות}}: $1.',
-'userrights-no-interwiki'          => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
-'userrights-nodatabase'            => 'בסיס הנתונים $1 אינו קיים או אינו מקומי.',
-'userrights-nologin'               => 'עליכם [[Special:Userlogin|להיכנס לחשבון]] עם הרשאות מתאימות כדי לשנות הרשאות של משתמשים.',
-'userrights-notallowed'            => 'לחשבון המשתמש שלכם אין הרשאה לשנות הרשאות של משתמשים.',
-'userrights-changeable-col'        => 'קבוצות שבאפשרותכם לשנות',
-'userrights-unchangeable-col'      => 'קבוצות שאין באפשרותכם לשנות',
+'userrights-reason'           => 'סיבה לשינוי:',
+'userrights-no-interwiki'     => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
+'userrights-nodatabase'       => 'בסיס הנתונים $1 אינו קיים או אינו מקומי.',
+'userrights-nologin'          => 'עליכם [[Special:Userlogin|להיכנס לחשבון]] עם הרשאות מתאימות כדי לשנות הרשאות של משתמשים.',
+'userrights-notallowed'       => 'לחשבון המשתמש שלכם אין הרשאה לשנות הרשאות של משתמשים.',
+'userrights-changeable-col'   => 'קבוצות שבאפשרותכם לשנות',
+'userrights-unchangeable-col' => 'קבוצות שאין באפשרותכם לשנות',
 
 # Groups
 'group'               => 'קבוצה:',

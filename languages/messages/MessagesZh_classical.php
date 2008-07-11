@@ -819,33 +819,26 @@ $2',
 'files'                 => '檔',
 
 # User rights
-'userrights'                       => '齋權管', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => '司社',
-'userrights-user-editname'         => '簿名：',
-'editusergroup'                    => '治社',
-'editinguser'                      => "正纂簿'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權",
-'userrights-editusergroup'         => '治社',
-'saveusergroups'                   => '定之',
-'userrights-groupsmember'          => '有員：',
-'userrights-groupsremovable'       => '社可治無：',
-'userrights-groupsavailable'       => '社可治有：',
-'userrights-groups-help'           => '爾動員之社也：
+'userrights'                     => '齋權管', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'         => '司社',
+'userrights-user-editname'       => '簿名：',
+'editusergroup'                  => '治社',
+'editinguser'                    => "正纂簿'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 之權",
+'userrights-editusergroup'       => '治社',
+'saveusergroups'                 => '定之',
+'userrights-groupsmember'        => '有員：',
+'userrights-groups-help'         => '爾動員之社也：
 * 選解員之社屬。
 * 未選則非社屬。
 * 一＊即選屬後無倒之，反亦之。',
-'userrights-reason'                => '因：',
-'userrights-available-none'        => '爾非改組員也。',
-'userrights-available-add'         => '爾可加任簿至{{PLURAL:$2|單組|數組}}也：$1。',
-'userrights-available-remove'      => '爾可自{{PLURAL:$2|單組|數組}}減任簿也：$1。',
-'userrights-available-add-self'    => '爾可加己至{{PLURAL:$2|單組|數組}}也：$1。',
-'userrights-available-remove-self' => '爾可自{{PLURAL:$2|單組|數組}}減己也：$1。',
-'userrights-no-interwiki'          => '爾無權改他山wiki之簿權也。',
-'userrights-nodatabase'            => '資料庫$1無存或非本地也。',
-'userrights-nologin'               => '爾以有秩乲簿[[Special:Userlogin|登]]後以定簿之權也。',
-'userrights-notallowed'            => '爾之簿無權定簿之權也。',
-'userrights-changeable-col'        => '爾可動之社',
-'userrights-unchangeable-col'      => '爾非動之社',
-'userrights-irreversible-marker'   => '$1＊',
+'userrights-reason'              => '因：',
+'userrights-no-interwiki'        => '爾無權改他山wiki之簿權也。',
+'userrights-nodatabase'          => '資料庫$1無存或非本地也。',
+'userrights-nologin'             => '爾以有秩乲簿[[Special:Userlogin|登]]後以定簿之權也。',
+'userrights-notallowed'          => '爾之簿無權定簿之權也。',
+'userrights-changeable-col'      => '爾可動之社',
+'userrights-unchangeable-col'    => '爾非動之社',
+'userrights-irreversible-marker' => '$1＊',
 
 # Groups
 'group'               => '社：',

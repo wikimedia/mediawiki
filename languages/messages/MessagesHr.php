@@ -916,32 +916,25 @@ za podešavanje suradničkih postavki.',
 'files'                    => 'Datoteke',
 
 # User rights
-'userrights'                       => 'Upravljanje suradničkim pravima', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Upravljaj skupinama suradnika',
-'userrights-user-editname'         => 'Unesite suradničko ime:',
-'editusergroup'                    => 'Uredi suradničke skupine',
-'editinguser'                      => "Promjena suradničkog statusa za suradnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Uredi skupine suradnika',
-'saveusergroups'                   => 'Snimi skupine suradnika',
-'userrights-groupsmember'          => 'Član:',
-'userrights-groupsremovable'       => 'Uklonjive grupe:',
-'userrights-groupsavailable'       => 'Dostupne skupine:',
-'userrights-groups-help'           => 'Možete promjeniti skupine za ovog suradnika.
+'userrights'                  => 'Upravljanje suradničkim pravima', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Upravljaj skupinama suradnika',
+'userrights-user-editname'    => 'Unesite suradničko ime:',
+'editusergroup'               => 'Uredi suradničke skupine',
+'editinguser'                 => "Promjena suradničkog statusa za suradnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Uredi skupine suradnika',
+'saveusergroups'              => 'Snimi skupine suradnika',
+'userrights-groupsmember'     => 'Član:',
+'userrights-groups-help'      => 'Možete promjeniti skupine za ovog suradnika.
 * Označena kućica pokazuje da suradnik pripada skupini.
 * Neoznačena kućica pokazuje da suradnik ne pripada skupini.
 * Zvjezdica * označava da ne možete ukloniti skupinu kad ju jednom dodate, ili obratno.',
-'userrights-reason'                => 'Razlog za promjenu:',
-'userrights-available-none'        => 'Ne možete mijenjati prava grupe.',
-'userrights-available-add'         => 'Možete dodavati suradnike {{PLURAL:$2|grupi|grupama}}: $1.',
-'userrights-available-remove'      => 'Možete ukloniti bilo kojeg suradnika iz {{PLURAL:$2|ove skupine|ovih skupina}}: $1.',
-'userrights-available-add-self'    => 'Možete dodati sebe u {{PLURAL:$2|ovu grupu|ove grupe}}: $1.',
-'userrights-available-remove-self' => 'Možete isključiti sebe iz {{PLURAL:$2|ove grupe|ovih grupa}}: $1.',
-'userrights-no-interwiki'          => 'Nemate prava da uređujete prava suradnika na drugim wikijima.',
-'userrights-nodatabase'            => 'Baza podataka $1 ne postoji ili nije lokalno dostupna.',
-'userrights-nologin'               => 'Trebate se [[Special:Userlogin|prijaviti]] s administratorskim računom da bi mogli dodijeliti suradnička prava.',
-'userrights-notallowed'            => 'Vaš trenutačni suradnički račun nema ovlasti mijenjanja suradničkih prava.',
-'userrights-changeable-col'        => 'Grupe koje možete promjeniti',
-'userrights-unchangeable-col'      => 'Grupe koje nemožete promjeniti',
+'userrights-reason'           => 'Razlog za promjenu:',
+'userrights-no-interwiki'     => 'Nemate prava da uređujete prava suradnika na drugim wikijima.',
+'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalno dostupna.',
+'userrights-nologin'          => 'Trebate se [[Special:Userlogin|prijaviti]] s administratorskim računom da bi mogli dodijeliti suradnička prava.',
+'userrights-notallowed'       => 'Vaš trenutačni suradnički račun nema ovlasti mijenjanja suradničkih prava.',
+'userrights-changeable-col'   => 'Grupe koje možete promjeniti',
+'userrights-unchangeable-col' => 'Grupe koje nemožete promjeniti',
 
 # Groups
 'group'               => 'Grupa:',

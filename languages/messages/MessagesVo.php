@@ -919,32 +919,25 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'files'                    => 'Ragivs',
 
 # User rights
-'userrights'                       => 'Guvam gebanagitätas', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Guvön gebanagrupis',
-'userrights-user-editname'         => 'Penolös gebananemi:',
-'editusergroup'                    => 'Redakön Gebanagrupis',
-'editinguser'                      => "Votükam gitätas gebana: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Redakön gebanagrupis',
-'saveusergroups'                   => 'Dakipolöd gebanagrupis',
-'userrights-groupsmember'          => 'Liman grupa(s):',
-'userrights-groupsremovable'       => 'Grups moükovik:',
-'userrights-groupsavailable'       => 'Grups gebidik:',
-'userrights-groups-help'           => 'Dalol votükön grupis, lü kels geban at duton.
+'userrights'                  => 'Guvam gebanagitätas', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Guvön gebanagrupis',
+'userrights-user-editname'    => 'Penolös gebananemi:',
+'editusergroup'               => 'Redakön Gebanagrupis',
+'editinguser'                 => "Votükam gitätas gebana: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Redakön gebanagrupis',
+'saveusergroups'              => 'Dakipolöd gebanagrupis',
+'userrights-groupsmember'     => 'Liman grupa(s):',
+'userrights-groups-help'      => 'Dalol votükön grupis, lü kels geban at duton.
 * Bügil fulik sinifon, das geban duton lü grup tefik.
 * Bügil vagik sinifon, das geban no duton lü grup tefik.
 * El * sinifon, das no kanol moükön grupi posä iläükol oni, u güo.',
-'userrights-reason'                => 'Kod votükama:',
-'userrights-available-none'        => 'No dalol votükön grupalimanami.',
-'userrights-available-add'         => 'Dalol lüükön gebani alseimik {{PLURAL:$2|grupe|grupes}} at: $1.',
-'userrights-available-remove'      => 'Dalol moükön gebani alseimik se {{PLURAL:$2|grup|grups}} at: $1.',
-'userrights-available-add-self'    => 'Dalol lüükön oli it lü {{PLURAL:$2|grup|grups}} at: $1.',
-'userrights-available-remove-self' => 'Dalol moükön oli it se {{PLURAL:$2|grup|grups}} at: $1.',
-'userrights-no-interwiki'          => 'No labol däli ad votükön gebanagitätis in vüks votik.',
-'userrights-nodatabase'            => 'Nünodem: $1 no dabinon, u no binon topik.',
-'userrights-nologin'               => 'Mutol [[Special:Userlogin|nunädön oli]] me guvanakal ad dalön gevön gitätis gebanes.',
-'userrights-notallowed'            => 'Kal olik no labon däli ad votükön gebanagitätis.',
-'userrights-changeable-col'        => 'Grups fa ol votükoviks',
-'userrights-unchangeable-col'      => 'Grups fa ol nevotükoviks',
+'userrights-reason'           => 'Kod votükama:',
+'userrights-no-interwiki'     => 'No labol däli ad votükön gebanagitätis in vüks votik.',
+'userrights-nodatabase'       => 'Nünodem: $1 no dabinon, u no binon topik.',
+'userrights-nologin'          => 'Mutol [[Special:Userlogin|nunädön oli]] me guvanakal ad dalön gevön gitätis gebanes.',
+'userrights-notallowed'       => 'Kal olik no labon däli ad votükön gebanagitätis.',
+'userrights-changeable-col'   => 'Grups fa ol votükoviks',
+'userrights-unchangeable-col' => 'Grups fa ol nevotükoviks',
 
 # Groups
 'group'               => 'Grup:',

@@ -1286,32 +1286,25 @@ latex, dvips, gs және convert бағдарламаларының дұрыс 
 'files'                    => 'Файлдар',
 
 # User rights
-'userrights'                       => 'Қатысушы құқықтарын реттеу', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Қатысушы топтарын реттеу',
-'userrights-user-editname'         => 'Қатысушы атын енгізіңіз:',
-'editusergroup'                    => 'Қатысушы топтарын өңдеу',
-'editinguser'                      => "Қатысушы құқықтарын өзгерту: '''[[{{ns:user}}:$1|$1]]''' ([[{{ns:user_talk}}:$1|{{int:talkpagelinktext}}]] | [[{{#special:Contributions}}/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Қатысушы топтарын өңдеу',
-'saveusergroups'                   => 'Қатысушы топтарын сақтау',
-'userrights-groupsmember'          => 'Мүшелігі:',
-'userrights-groupsremovable'       => 'Аласталатын топтар:',
-'userrights-groupsavailable'       => 'Жетімді топтар:',
-'userrights-groups-help'           => 'Бұл қатысушы кіретін топтарды реттей аласыз.
+'userrights'                  => 'Қатысушы құқықтарын реттеу', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Қатысушы топтарын реттеу',
+'userrights-user-editname'    => 'Қатысушы атын енгізіңіз:',
+'editusergroup'               => 'Қатысушы топтарын өңдеу',
+'editinguser'                 => "Қатысушы құқықтарын өзгерту: '''[[{{ns:user}}:$1|$1]]''' ([[{{ns:user_talk}}:$1|{{int:talkpagelinktext}}]] | [[{{#special:Contributions}}/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Қатысушы топтарын өңдеу',
+'saveusergroups'              => 'Қатысушы топтарын сақтау',
+'userrights-groupsmember'     => 'Мүшелігі:',
+'userrights-groups-help'      => 'Бұл қатысушы кіретін топтарды реттей аласыз.
 * Құсбелгі қойылған көзі қатысушы бұл топқа кіргенін көрсетеді;
 * Құсбелгі алып тасталған көз қатысушы бұл топқа кірмегенін көрсетеді;
 * Келтірілген * топты бір үстегенінен кейін аластай алмайтындығын, не қарама-қарсысын көрсетеді.',
-'userrights-reason'                => 'Өзгерту себебі:',
-'userrights-available-none'        => 'Топ мүшелігін өзгерте алмайсыз.',
-'userrights-available-add'         => 'Қатысушыларды мына {{PLURAL:$2|топқа|топтарға}} үстей аласыз: $1.',
-'userrights-available-remove'      => 'Әрқайсы қатысушыларды мына {{PLURAL:$2|топтан|топтардан}} аластай аласыз: $1.',
-'userrights-available-add-self'    => 'Өзіңізді мына {{PLURAL:$2|топқа|топтарға}} үстей аласыз: $1.',
-'userrights-available-remove-self' => 'Өзіңізді мына {{PLURAL:$2|топтан|топтардан}} аластай аласыз: $1.',
-'userrights-no-interwiki'          => 'Басқа уикилердегі пайдаланушы құқықтарын өңдеуге рұқсатыңыз жоқ.',
-'userrights-nodatabase'            => '$1 дерекқоры жоқ не жергілікті емес.',
-'userrights-nologin'               => 'Қатысушы құқықтарын тағайындау үшін әкімші тіркелгісімен [[{{#special:Userlogin}}|кіруіңіз]] жөн.',
-'userrights-notallowed'            => 'Қатысушы құқықтарын тағайындау үшін тіркелгіңізде рұқсат жоқ.',
-'userrights-changeable-col'        => 'Өзгерте алатын топтар',
-'userrights-unchangeable-col'      => 'Өзгерте алмайтын топтар',
+'userrights-reason'           => 'Өзгерту себебі:',
+'userrights-no-interwiki'     => 'Басқа уикилердегі пайдаланушы құқықтарын өңдеуге рұқсатыңыз жоқ.',
+'userrights-nodatabase'       => '$1 дерекқоры жоқ не жергілікті емес.',
+'userrights-nologin'          => 'Қатысушы құқықтарын тағайындау үшін әкімші тіркелгісімен [[{{#special:Userlogin}}|кіруіңіз]] жөн.',
+'userrights-notallowed'       => 'Қатысушы құқықтарын тағайындау үшін тіркелгіңізде рұқсат жоқ.',
+'userrights-changeable-col'   => 'Өзгерте алатын топтар',
+'userrights-unchangeable-col' => 'Өзгерте алмайтын топтар',
 
 # Groups
 'group'               => 'Топ:',

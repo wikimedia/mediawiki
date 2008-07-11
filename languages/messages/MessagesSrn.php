@@ -521,20 +521,14 @@ A kan ben trowe efu dribi.
 'files'                    => 'Gefre',
 
 # User rights
-'userrights-lookup-user'           => 'Masyinguru kenki',
-'userrights-user-editname'         => 'Wan masyinnen gi:',
-'editusergroup'                    => 'Masyinguru kenki',
-'editinguser'                      => "Kenki fu lesi fu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Masyinguru kenki',
-'saveusergroups'                   => 'Masyinguru oponaki',
-'userrights-groupsmember'          => 'Masyin fu:',
-'userrights-groupsremovable'       => 'Guru dy trowe kan:',
-'userrights-groupsavailable'       => 'Guru dy mudenki sey:',
-'userrights-available-add'         => 'Yu kan masyin presi a disi {{PLURAL:$2|guru|guru}}: $1.',
-'userrights-available-remove'      => 'Yu kan masyin trowe fu disi {{PLURAL:$2|guru|guru}}: $1.',
-'userrights-available-add-self'    => 'Yu kan yuse presi a disi {{PLURAL:$2|guru|guru}}: $1.',
-'userrights-available-remove-self' => 'Yu kan yuse trowe fu disi {{PLURAL:$2|guru|guru}}: $1.',
-'userrights-no-interwiki'          => 'Yu abi no lesi tu kenki fu masyinlesi opo trawan wiki.',
+'userrights-lookup-user'   => 'Masyinguru kenki',
+'userrights-user-editname' => 'Wan masyinnen gi:',
+'editusergroup'            => 'Masyinguru kenki',
+'editinguser'              => "Kenki fu lesi fu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Masyinguru kenki',
+'saveusergroups'           => 'Masyinguru oponaki',
+'userrights-groupsmember'  => 'Masyin fu:',
+'userrights-no-interwiki'  => 'Yu abi no lesi tu kenki fu masyinlesi opo trawan wiki.',
 
 # Groups
 'group'               => 'Guru:',

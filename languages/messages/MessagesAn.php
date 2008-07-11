@@ -961,32 +961,25 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'files'                    => 'Archibos',
 
 # User rights
-'userrights'                       => "Confegurazión d'os dreitos d'os usuarios", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Confegurar collas d'usuarios",
-'userrights-user-editname'         => "Escriba un nombre d'usuario:",
-'editusergroup'                    => "Editar as collas d'usuarios",
-'editinguser'                      => "S'esta cambiando os dreitos de l'usuario  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => "Editar as collas d'usuarios",
-'saveusergroups'                   => "Alzar as collas d'usuarios",
-'userrights-groupsmember'          => 'Miembro de:',
-'userrights-groupsremovable'       => 'Collas sacables:',
-'userrights-groupsavailable'       => 'Collas disponibles:',
-'userrights-groups-help'           => "Puede cambiar as collas an que bi ye iste usuario.
+'userrights'                  => "Confegurazión d'os dreitos d'os usuarios", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Confegurar collas d'usuarios",
+'userrights-user-editname'    => "Escriba un nombre d'usuario:",
+'editusergroup'               => "Editar as collas d'usuarios",
+'editinguser'                 => "S'esta cambiando os dreitos de l'usuario  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => "Editar as collas d'usuarios",
+'saveusergroups'              => "Alzar as collas d'usuarios",
+'userrights-groupsmember'     => 'Miembro de:',
+'userrights-groups-help'      => "Puede cambiar as collas an que bi ye iste usuario.
 * Un caxa siñalata sinnifica que l'usuario bi ye en ixa colla.
 * Una caxa no siñalata sinnifica que l'usuario no ye en ixa colla.
 * Un * endica que bustet no puede sacar a colla dimpués d'adibir-la, u bize-bersa.",
-'userrights-reason'                => 'Razón ta o cambeo:',
-'userrights-available-none'        => "No puede cambiar a pertenenzia á las collas d'usuarios.",
-'userrights-available-add'         => 'Puede adibir cualsiquier usuario ta {{PLURAL:$2|ista colla|istas collas}}: $1.',
-'userrights-available-remove'      => "Puede sacar cualsiquier usuario d'{{PLURAL:$2|ista colla|istas collas}}: $1.",
-'userrights-available-add-self'    => 'Puede adibir-se bustet mesmo ta {{PLURAL:$2|iste grupo|istos grupos}}: $1.',
-'userrights-available-remove-self' => "Puede sacar-se bustet mesmo d'{{PLURAL:$2|iste grupo|istos grupos}}: $1.",
-'userrights-no-interwiki'          => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
-'userrights-nodatabase'            => 'A base de datos $1 no esiste u no ye local.',
-'userrights-nologin'               => "Ha d'[[Special:Userlogin|enzetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
-'userrights-notallowed'            => "A suya cuenta no tiene premisos ta dar dreitos d'usuario.",
-'userrights-changeable-col'        => 'Grupos que puede cambiar',
-'userrights-unchangeable-col'      => 'Collas que no puede cambiar',
+'userrights-reason'           => 'Razón ta o cambeo:',
+'userrights-no-interwiki'     => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
+'userrights-nodatabase'       => 'A base de datos $1 no esiste u no ye local.',
+'userrights-nologin'          => "Ha d'[[Special:Userlogin|enzetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
+'userrights-notallowed'       => "A suya cuenta no tiene premisos ta dar dreitos d'usuario.",
+'userrights-changeable-col'   => 'Grupos que puede cambiar',
+'userrights-unchangeable-col' => 'Collas que no puede cambiar',
 
 # Groups
 'group'               => 'Colla:',

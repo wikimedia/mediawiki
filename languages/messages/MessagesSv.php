@@ -1128,32 +1128,25 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'files'                    => 'Filer',
 
 # User rights
-'userrights'                       => 'Användarrättigheter', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Hantera användargrupper',
-'userrights-user-editname'         => 'Skriv in ett användarnamn:',
-'editusergroup'                    => 'Ändra användargrupper',
-'editinguser'                      => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Ändra användargrupper',
-'saveusergroups'                   => 'Spara användargrupper',
-'userrights-groupsmember'          => 'Medlem i:',
-'userrights-groupsremovable'       => 'Grupper som kan tas bort:',
-'userrights-groupsavailable'       => 'Tillgängliga grupper:',
-'userrights-groups-help'           => 'Du kan ändra vilka grupper denna användare är medlem i.
+'userrights'                  => 'Användarrättigheter', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Hantera användargrupper',
+'userrights-user-editname'    => 'Skriv in ett användarnamn:',
+'editusergroup'               => 'Ändra användargrupper',
+'editinguser'                 => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Ändra användargrupper',
+'saveusergroups'              => 'Spara användargrupper',
+'userrights-groupsmember'     => 'Medlem i:',
+'userrights-groups-help'      => 'Du kan ändra vilka grupper denna användare är medlem i.
 * En ikryssad ruta betyder användaren är medlem i den gruppen.
 * En okryssad ruta betyder att användaren inte är medlem i den gruppen.
 * En asterisk (*) markerar att du inte kan ta bort gruppen när du har lagt till den, eller vice versa.',
-'userrights-reason'                => 'Anledning till ändringen:',
-'userrights-available-none'        => 'Du kan inte ändra några grupptillhörigheter.',
-'userrights-available-add'         => 'Du kan lägga till användare i {{PLURAL:$2|denna grupp|dessa grupper}}: $1.',
-'userrights-available-remove'      => 'Du kan ta bort användare från {{PLURAL:$2|denna grupp|dessa grupper}}: $1.',
-'userrights-available-add-self'    => 'Du kan lägga till dig själv till följande {{PLURAL:$2|grupp|grupper}}: $1.',
-'userrights-available-remove-self' => 'Du kan ta bort dig själv från följande {{PLURAL:$2|grupp|grupper}}: $1.',
-'userrights-no-interwiki'          => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
-'userrights-nodatabase'            => 'Databasen $1 finns inte eller så är den inte lokal.',
-'userrights-nologin'               => 'Du måste [[Special:Userlogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
-'userrights-notallowed'            => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
-'userrights-changeable-col'        => 'Grupper du kan ändra',
-'userrights-unchangeable-col'      => 'Grupper du inte kan ändra',
+'userrights-reason'           => 'Anledning till ändringen:',
+'userrights-no-interwiki'     => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
+'userrights-nodatabase'       => 'Databasen $1 finns inte eller så är den inte lokal.',
+'userrights-nologin'          => 'Du måste [[Special:Userlogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
+'userrights-notallowed'       => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
+'userrights-changeable-col'   => 'Grupper du kan ändra',
+'userrights-unchangeable-col' => 'Grupper du inte kan ändra',
 
 # Groups
 'group'               => 'Grupp:',

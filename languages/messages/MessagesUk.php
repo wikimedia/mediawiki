@@ -1106,32 +1106,25 @@ $3 зазначив наступну причину: ''$2''",
 'files'                    => 'Файли',
 
 # User rights
-'userrights'                       => 'Управління правами користувачів', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Управління групами користувача',
-'userrights-user-editname'         => "Введіть ім'я користувача:",
-'editusergroup'                    => 'Редагувати групи користувачів',
-'editinguser'                      => "Зміна прав користувача '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Змінити групи користувача',
-'saveusergroups'                   => 'Зберегти групи користувача',
-'userrights-groupsmember'          => 'Член груп:',
-'userrights-groupsremovable'       => 'Групи для відкликання:',
-'userrights-groupsavailable'       => 'Доступні групи:',
-'userrights-groups-help'           => 'Ви можете змінити групи, до яких належить цей користувач:
+'userrights'                  => 'Управління правами користувачів', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Управління групами користувача',
+'userrights-user-editname'    => "Введіть ім'я користувача:",
+'editusergroup'               => 'Редагувати групи користувачів',
+'editinguser'                 => "Зміна прав користувача '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Змінити групи користувача',
+'saveusergroups'              => 'Зберегти групи користувача',
+'userrights-groupsmember'     => 'Член груп:',
+'userrights-groups-help'      => 'Ви можете змінити групи, до яких належить цей користувач:
 * Якщо біля назви групи стоїть позначка, то користувач належить до цієї групи.
 * Якщо позначка не стоїть — користувач не належить до відповідної групи.
 * Зірочка означає, що ви не можете вилучити користувача з групи, якщо додасте його до неї, і навпаки.',
-'userrights-reason'                => 'Причина зміни:',
-'userrights-available-none'        => 'Ви не можете змінювати членство в групі.',
-'userrights-available-add'         => 'Ви можете додати будь-якого користувача {{PLURAL:$2|до групи $1|до груп: $1}}.',
-'userrights-available-remove'      => 'Ви можете вилучити будь-якого користувача {{PLURAL:$2|з групи $1|з груп: $1}}.',
-'userrights-available-add-self'    => 'Ви можете включити себе до {{PLURAL:$2|групи $1|наступних груп: $1}}.',
-'userrights-available-remove-self' => 'Ви можете виключити себе з {{PLURAL:$2|групи $1|наступних груп: $1}}.',
-'userrights-no-interwiki'          => 'У вас нема дозволу змінювати права користувачів на інших вікі.',
-'userrights-nodatabase'            => 'База даних $1 не існує або не є локальною.',
-'userrights-nologin'               => 'Ви повинні [[Special:Userlogin|ввійти до системи]] з обліковим записом адміністратора, щоб призначати права користувачам.',
-'userrights-notallowed'            => 'Із вашого облікового запису не дозволено призначати права користувачам.',
-'userrights-changeable-col'        => 'Групи, які ви можете змінити',
-'userrights-unchangeable-col'      => 'Групи, які ви не можете змінити',
+'userrights-reason'           => 'Причина зміни:',
+'userrights-no-interwiki'     => 'У вас нема дозволу змінювати права користувачів на інших вікі.',
+'userrights-nodatabase'       => 'База даних $1 не існує або не є локальною.',
+'userrights-nologin'          => 'Ви повинні [[Special:Userlogin|ввійти до системи]] з обліковим записом адміністратора, щоб призначати права користувачам.',
+'userrights-notallowed'       => 'Із вашого облікового запису не дозволено призначати права користувачам.',
+'userrights-changeable-col'   => 'Групи, які ви можете змінити',
+'userrights-unchangeable-col' => 'Групи, які ви не можете змінити',
 
 # Groups
 'group'               => 'Група:',

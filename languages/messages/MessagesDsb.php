@@ -988,32 +988,25 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'files'                    => 'Dataje',
 
 # User rights
-'userrights'                       => 'Zastojanje wužywarskich pšawow', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Wužywarske kupki zastojaś',
-'userrights-user-editname'         => 'Wužywarske mě:',
-'editusergroup'                    => 'Wužywarske kupki wobźěłaś.',
-'editinguser'                      => "Změnjaju se wužywarske pšawa wužywarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Pšawa wužywarskich kupkow wobźěłaś',
-'saveusergroups'                   => 'Wužywarske kupki składowaś',
-'userrights-groupsmember'          => 'Cłonk kupki:',
-'userrights-groupsremovable'       => 'Kupki, kótarež daju se wótwónoźeś:',
-'userrights-groupsavailable'       => 'Eksistěrujuce kupki:',
-'userrights-groups-help'           => 'Móžoš kupki, w kótarychž wužywaŕ jo, změniś:
+'userrights'                  => 'Zastojanje wužywarskich pšawow', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Wužywarske kupki zastojaś',
+'userrights-user-editname'    => 'Wužywarske mě:',
+'editusergroup'               => 'Wužywarske kupki wobźěłaś.',
+'editinguser'                 => "Změnjaju se wužywarske pšawa wužywarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Pšawa wužywarskich kupkow wobźěłaś',
+'saveusergroups'              => 'Wužywarske kupki składowaś',
+'userrights-groupsmember'     => 'Cłonk kupki:',
+'userrights-groups-help'      => 'Móžoš kupki, w kótarychž wužywaŕ jo, změniś:
 * Markěrowany kašćik wóznamjenijo, až wužywaŕ jo w toś tej kupce.
 * Njemarkěrowany kašćik woznamjenijo, až wužywaŕ njejo w toś tej kupce.
 * * pódawa, až njamóžoš kupku wótwónoźeś, gaž sy ju pśidał abo nawopak.',
-'userrights-reason'                => 'Pśicyna změny:',
-'userrights-available-none'        => 'Njamaš pšawo cłonkojstwo wužywarskeje kupki změniś.',
-'userrights-available-add'         => 'Móžoš wužywarja {{PLURAL:$2|toś tej kupce|toś tyma kupkoma|toś tym kupkam}} pśidaś: $1.',
-'userrights-available-remove'      => 'Móžoš wužywarja ze {{PLURAL:$2|toś teje kupki|toś teju kupkowu|toś tych kupkow}} wulašowaś: $1.',
-'userrights-available-add-self'    => 'Móžoš se samego {{PLURAL:$2|toś tej kupce|toś tyma kupkoma|toś tym kupkam}} pśidaś: $1.',
-'userrights-available-remove-self' => 'Móžoš se samego z {{PLURAL:$2|teje kupki|teju kupkowu|tych kupkow}} wótwónoźeś: $1.',
-'userrights-no-interwiki'          => 'Njamaš pšawo wužywarske pšawa w drugich wikijach změniś.',
-'userrights-nodatabase'            => 'Datowa banka $1 njeeksistěrujo abo njejo lokalna.',
-'userrights-nologin'               => 'Musyš se z administratorowym kontom [[Special:Userlogin|pśizjawiś]], aby wužywarske pšawa změnił.',
-'userrights-notallowed'            => 'Twóje konto njama pšawa, aby wužywarske pšawa změniło.',
-'userrights-changeable-col'        => 'Kupki, kótarež móžoš změniś',
-'userrights-unchangeable-col'      => 'Kupki, kótarež njamóžoš změniś',
+'userrights-reason'           => 'Pśicyna změny:',
+'userrights-no-interwiki'     => 'Njamaš pšawo wužywarske pšawa w drugich wikijach změniś.',
+'userrights-nodatabase'       => 'Datowa banka $1 njeeksistěrujo abo njejo lokalna.',
+'userrights-nologin'          => 'Musyš se z administratorowym kontom [[Special:Userlogin|pśizjawiś]], aby wužywarske pšawa změnił.',
+'userrights-notallowed'       => 'Twóje konto njama pšawa, aby wužywarske pšawa změniło.',
+'userrights-changeable-col'   => 'Kupki, kótarež móžoš změniś',
+'userrights-unchangeable-col' => 'Kupki, kótarež njamóžoš změniś',
 
 # Groups
 'group'               => 'Kupka:',

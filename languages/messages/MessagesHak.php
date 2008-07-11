@@ -653,16 +653,15 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'files'                    => 'Tóng-on',
 
 # User rights
-'userrights'                 => 'Yung-fu khièn-han kón-lî', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Kón-lî yung-fu khiùn-chung',
-'userrights-user-editname'   => 'Sû-ngi̍p yung-fu-miàng:',
-'editusergroup'              => 'Phiên-cho yung-fu khiùn-chû',
-'editinguser'                => "Chang-chhai phiên-siá yung-fu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Phiên-chho yung-fu khiùn-chung',
-'saveusergroups'             => 'Pó-chhùn yung-fu khiùn-chû',
-'userrights-groupsmember'    => 'Su̍k-yî:',
-'userrights-groupsavailable' => 'Hí-khó yung khiùn-chû:',
-'userrights-reason'          => 'Kiên-kói ngièn-yîn:',
+'userrights'               => 'Yung-fu khièn-han kón-lî', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Kón-lî yung-fu khiùn-chung',
+'userrights-user-editname' => 'Sû-ngi̍p yung-fu-miàng:',
+'editusergroup'            => 'Phiên-cho yung-fu khiùn-chû',
+'editinguser'              => "Chang-chhai phiên-siá yung-fu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Phiên-chho yung-fu khiùn-chung',
+'saveusergroups'           => 'Pó-chhùn yung-fu khiùn-chû',
+'userrights-groupsmember'  => 'Su̍k-yî:',
+'userrights-reason'        => 'Kiên-kói ngièn-yîn:',
 
 # Groups
 'group'            => 'Khiùn-chû:',

@@ -977,32 +977,25 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'files'                    => 'Tập tin',
 
 # User rights
-'userrights'                       => 'Quản lý quyền thành viên', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Quản lý nhóm thành viên',
-'userrights-user-editname'         => 'Nhập tên thành viên:',
-'editusergroup'                    => 'Sửa nhóm thành viên',
-'editinguser'                      => "Thay đổi quyền hạn của thành viên '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Sửa nhóm thành viên',
-'saveusergroups'                   => 'Lưu nhóm thành viên',
-'userrights-groupsmember'          => 'Thuộc nhóm:',
-'userrights-groupsremovable'       => 'Các nhóm có thể xóa được:',
-'userrights-groupsavailable'       => 'Các nhóm hiện nay:',
-'userrights-groups-help'           => 'Bạn có thể xếp thành viên này vào nhóm khác:
+'userrights'                  => 'Quản lý quyền thành viên', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Quản lý nhóm thành viên',
+'userrights-user-editname'    => 'Nhập tên thành viên:',
+'editusergroup'               => 'Sửa nhóm thành viên',
+'editinguser'                 => "Thay đổi quyền hạn của thành viên '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Sửa nhóm thành viên',
+'saveusergroups'              => 'Lưu nhóm thành viên',
+'userrights-groupsmember'     => 'Thuộc nhóm:',
+'userrights-groups-help'      => 'Bạn có thể xếp thành viên này vào nhóm khác:
 * Hộp kiểm được đánh dấu có nghĩa rằng thành viên thuộc về nhóm đó.
 * Hộp không được đánh dấu có nghĩa rằng thành viên không thuộc về nhóm đó.
 * Dấu * có nghĩa là bạn sẽ không thể loại thành viên ra khỏi nhóm một khi bạn đã đưa thành viên vào, hoặc ngược lại.',
-'userrights-reason'                => 'Lý do thay đổi:',
-'userrights-available-none'        => 'Có thể bạn không được thay đổi thành viên trong nhóm.',
-'userrights-available-add'         => 'Bạn có thể thêm thành viên vào {{PLURAL:$2|nhóm|các nhóm}}: $1.',
-'userrights-available-remove'      => 'Bạn có thể dời thành viên khỏi {{PLURAL:$2|nhóm|các nhóm}}: $1.',
-'userrights-available-add-self'    => 'Bạn có thể tự thêm mình vào {{PLURAL:$2|nhóm này|các nhóm này}}: $1.',
-'userrights-available-remove-self' => 'Bạn có thể tự xóa mình ra khỏi {{PLURAL:$2|nhóm này|các nhóm này}}: $1.',
-'userrights-no-interwiki'          => 'Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.',
-'userrights-nodatabase'            => 'Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.',
-'userrights-nologin'               => 'Bạn phải [[Special:Userlogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
-'userrights-notallowed'            => 'Tài khoản của bạn không có quyền gán quyền cho thành viên.',
-'userrights-changeable-col'        => 'Những nhóm bạn có thể thay đổi',
-'userrights-unchangeable-col'      => 'Những nhóm bạn không thể thay đổi',
+'userrights-reason'           => 'Lý do thay đổi:',
+'userrights-no-interwiki'     => 'Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.',
+'userrights-nodatabase'       => 'Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.',
+'userrights-nologin'          => 'Bạn phải [[Special:Userlogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
+'userrights-notallowed'       => 'Tài khoản của bạn không có quyền gán quyền cho thành viên.',
+'userrights-changeable-col'   => 'Những nhóm bạn có thể thay đổi',
+'userrights-unchangeable-col' => 'Những nhóm bạn không thể thay đổi',
 
 # Groups
 'group'               => 'Nhóm:',

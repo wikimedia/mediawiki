@@ -1032,31 +1032,24 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'files'                    => 'Datein',
 
 # User rights
-'userrights'                       => 'Brukerrechten inrichten', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Brukergruppen verwalten',
-'userrights-user-editname'         => 'Brukernaam ingeven:',
-'editusergroup'                    => 'Brukergruppen bearbeiden',
-'editinguser'                      => "Ännern vun Brukerrechten vun '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Brukergruppen ännern',
-'saveusergroups'                   => 'Brukergruppen spiekern',
-'userrights-groupsmember'          => 'Liddmaat vun:',
-'userrights-groupsremovable'       => 'Gruppen, de wegnahmen warrn köönt:',
-'userrights-groupsavailable'       => 'vörhannene Gruppen:',
-'userrights-groups-help'           => 'Du kannst de Gruppen för dissen Bruker ännern:
+'userrights'                  => 'Brukerrechten inrichten', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Brukergruppen verwalten',
+'userrights-user-editname'    => 'Brukernaam ingeven:',
+'editusergroup'               => 'Brukergruppen bearbeiden',
+'editinguser'                 => "Ännern vun Brukerrechten vun '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Brukergruppen ännern',
+'saveusergroups'              => 'Brukergruppen spiekern',
+'userrights-groupsmember'     => 'Liddmaat vun:',
+'userrights-groups-help'      => 'Du kannst de Gruppen för dissen Bruker ännern:
 * En ankrüüzt Kasten bedüüdt, dat de Bruker Maat vun de Grupp is.
 * En * bedüüdt, dat du dat Brukerrecht na dat Tokennen nich wedder trüchnehmen kannst (un annersrüm).',
-'userrights-reason'                => 'Grund:',
-'userrights-available-none'        => 'Du dröffst kene Brukerrechten ännern.',
-'userrights-available-add'         => 'Du kannst Brukers to disse Grupp{{PLURAL:$2||en}} tofögen: $1.',
-'userrights-available-remove'      => 'Du kannst Brukers ut disse Grupp{{PLURAL:$2||en}} rutnehmen: $1.',
-'userrights-available-add-self'    => 'Du kannst di sülvst to {{PLURAL:$2|disse Grupp|disse Gruppen}} tofögen: $1.',
-'userrights-available-remove-self' => 'Du kannst di sülvst ut {{PLURAL:$2|disse Grupp|disse Gruppen}} rutnehmen: $1.',
-'userrights-no-interwiki'          => 'Du hest nich de Rechten, Brukerrechten in annere Wikis to setten.',
-'userrights-nodatabase'            => 'Datenbank $1 gifft dat nich oder is nich lokal.',
-'userrights-nologin'               => 'Du musst mit en Administrater-Brukerkonto [[Special:Userlogin|anmellt]] wesen, dat du Brukerrechten ännern kannst.',
-'userrights-notallowed'            => 'Du hest nich de Rechten, Brukerrechten to setten.',
-'userrights-changeable-col'        => 'Gruppen, de du ännern kannst',
-'userrights-unchangeable-col'      => 'Gruppen, de du nich ännern kannst',
+'userrights-reason'           => 'Grund:',
+'userrights-no-interwiki'     => 'Du hest nich de Rechten, Brukerrechten in annere Wikis to setten.',
+'userrights-nodatabase'       => 'Datenbank $1 gifft dat nich oder is nich lokal.',
+'userrights-nologin'          => 'Du musst mit en Administrater-Brukerkonto [[Special:Userlogin|anmellt]] wesen, dat du Brukerrechten ännern kannst.',
+'userrights-notallowed'       => 'Du hest nich de Rechten, Brukerrechten to setten.',
+'userrights-changeable-col'   => 'Gruppen, de du ännern kannst',
+'userrights-unchangeable-col' => 'Gruppen, de du nich ännern kannst',
 
 # Groups
 'group'               => 'Grupp:',

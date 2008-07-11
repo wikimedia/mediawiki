@@ -1095,32 +1095,25 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'files'                    => 'Berkas',
 
 # User rights
-'userrights'                       => 'Manajemen hak pengguna', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Mengatur kelompok pengguna',
-'userrights-user-editname'         => 'Masukkan nama pengguna:',
-'editusergroup'                    => 'Sunting kelompok pengguna',
-'editinguser'                      => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Sunting kelompok pengguna',
-'saveusergroups'                   => 'Simpan kelompok pengguna',
-'userrights-groupsmember'          => 'Anggota dari:',
-'userrights-groupsremovable'       => 'Grup yang dapat dicabut:',
-'userrights-groupsavailable'       => 'Grup yang dapat diberikan:',
-'userrights-groups-help'           => 'Anda dapat mengubah kelompok pengguna ini:
+'userrights'                  => 'Manajemen hak pengguna', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Mengatur kelompok pengguna',
+'userrights-user-editname'    => 'Masukkan nama pengguna:',
+'editusergroup'               => 'Sunting kelompok pengguna',
+'editinguser'                 => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Sunting kelompok pengguna',
+'saveusergroups'              => 'Simpan kelompok pengguna',
+'userrights-groupsmember'     => 'Anggota dari:',
+'userrights-groups-help'      => 'Anda dapat mengubah kelompok pengguna ini:
 * Kotak dengan tanda cek merupakan kelompok pengguna yang bersangkutan
 * Kotak tanpa tanda cek berarti pengguna ini bukan anggota kelompok tersebut
 * Tanda * menandai bahwa Anda tidak dapat membatalkan kelompok tersebut bila Anda telah menambahkannya, atau sebaliknya.',
-'userrights-reason'                => 'Alasan pengubahan:',
-'userrights-available-none'        => 'Anda tak dapat mengganti keanggotaan kelompok.',
-'userrights-available-add'         => 'Anda dapat memasukkan pengguna ke {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-available-remove'      => 'Anda dapat mengeluarkan pengguna dari {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-available-add-self'    => 'Anda dapat menambahkan Anda sendiri ke {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-available-remove-self' => 'Anda dapat mengeluarkan Anda sendiri dari {{PLURAL:$2|grup|grup-grup}}: $1.',
-'userrights-no-interwiki'          => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
-'userrights-nodatabase'            => 'Basis data $1 tidak ada atau bukan lokal.',
-'userrights-nologin'               => 'Anda harus [[Special:Userlogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
-'userrights-notallowed'            => 'Anda tidak berhak untuk mengubah hak pengguna',
-'userrights-changeable-col'        => 'Kelompok yang dapat Anda ubah',
-'userrights-unchangeable-col'      => 'Kelompok yang tidak dapat Anda ubah',
+'userrights-reason'           => 'Alasan pengubahan:',
+'userrights-no-interwiki'     => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
+'userrights-nodatabase'       => 'Basis data $1 tidak ada atau bukan lokal.',
+'userrights-nologin'          => 'Anda harus [[Special:Userlogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
+'userrights-notallowed'       => 'Anda tidak berhak untuk mengubah hak pengguna',
+'userrights-changeable-col'   => 'Kelompok yang dapat Anda ubah',
+'userrights-unchangeable-col' => 'Kelompok yang tidak dapat Anda ubah',
 
 # Groups
 'group'               => 'Kelompok:',
