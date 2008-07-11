@@ -995,7 +995,7 @@ You may have already successfully changed your password or requested a new tempo
 'italic_tip'      => 'Italic text',
 'link_sample'     => 'Link title',
 'link_tip'        => 'Internal link',
-'extlink_sample'  => 'http://www.example.com link title',
+'extlink_sample'  => 'http://www.example.org link title',
 'extlink_tip'     => 'External link (remember http:// prefix)',
 'headline_sample' => 'Headline text',
 'headline_tip'    => 'Level 2 headline',
