@@ -193,6 +193,11 @@ class LogPage {
 				if( $key == 'rights/rights' ) {
 					if ($skin) {
 						$rightsnone = wfMsg( 'rightsnone' );
+						foreach ( $params as &$param ) {
+							$groupArray = array_map( 'trim', explode( ',', $param ) );
+							$groupArray = array_map( array( 'User', 'getGroupName' ), $groupArray );
+							$param = $wgLang->listToText( $groupArray );
+						}
 					} else {
 						$rightsnone = wfMsgForContent( 'rightsnone' );
 					}
