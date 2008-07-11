@@ -1224,7 +1224,8 @@ For å lenkje direkte til fila, skriv:
 'illegalfilename'             => 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
 'badfilename'                 => 'Namnet på fila har vorte endra til «$1».',
 'filetype-badmime'            => 'Filer av MIME-typen «$1» kan ikkje lastast opp.',
-'filetype-unwanted-type'      => "«'''.$1'''» er ein uynskt filtype. Føretrekte filtypar er $2.",
+'filetype-unwanted-type'      => "«'''.$1'''» er ein uynskt filtype.
+{{PLURAL:$3|Føretrekt filtype er|Føretrekte filtypar er}} $2.",
 'filetype-banned-type'        => "«'''.$1'''» er ikkje ein tillaten filtype. Tillatne filtypar er $2.",
 'filetype-missing'            => 'Fila har inga ending (som t.d. «.jpg»).',
 'large-file'                  => 'Det er tilrådd at filene ikkje er større enn $1, denne fila er $2.',

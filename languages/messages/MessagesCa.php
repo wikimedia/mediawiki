@@ -2663,7 +2663,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'filepath-summary' => "Aquesta pàgina especial retorna un camí complet d'un fitxer.
 Les imatges es mostren en plena resolució; altres tipus de fitxer s'incien amb el seu programa associat directament.
 
-Introduïu el nom del fitxer sense el prefix «{{ns:imatge}}»:",
+Introduïu el nom del fitxer sense el prefix «{{ns:image}}»:",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cerca fitxers duplicats',

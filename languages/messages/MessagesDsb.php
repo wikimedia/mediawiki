@@ -742,7 +742,13 @@ Pšosym pśespytuj kradosćiwje, lic wótpowědujo dalšne wótnowjenje bokow sm
 Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótaremž namakajoš teke pśicyny wulašowanja.",
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => 'Warnowanje: Toś ten bok wopśimujo pśewjele wołanjow parserowych funkcijow wupominajucuych wusoke wugbaśe.
+
+Njesměju wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|wołanjow}}, něnto {{PLURAL:$1|jo|stej|su|jo}} $1.',
+'expensive-parserfunction-category'       => 'Boki z pśewjele paerserowymi funkcijami, kótarež pominaju sebje wusoke wugbaśe.',
+'post-expand-template-inclusion-warning'  => 'Warnowanje: Wjelikosć zapśěgnjonych pśedłogow jo pśewjelika. Někotare pśedłogi se njezapśěgu.',
 'post-expand-template-inclusion-category' => 'Boki, w kótarychž maksimalna wjelikosć zapśěgnjonych pśedłogow jo pśekšocona.',
+'post-expand-template-argument-warning'   => 'Warnowanje: Toś ten bok wopśimujo nanejmjenjej jaden argument w pśedłoze, kótaryž jo pśwjeliki pó ekspanděrowanju. Toś te argumenty se wuwóstajiju.',
 'post-expand-template-argument-category'  => 'Boki, kótarež wuwóstajone pśedłogowe argumenty wopśimuju',
 
 # "Undo" feature
@@ -1069,10 +1075,13 @@ Móžoš bok ale teke [[$1|sam załožyś]].",
 'right-editprotected'        => 'Šćitane boki wobźěłaś (bśez kaskadowego šćita)',
 'right-editinterface'        => 'Wužywański pówjerch wobźěłaś',
 'right-editusercssjs'        => 'Dataje CSS a JS drugich wužywarjow wobźěłaś',
+'right-noratelimit'          => 'Pśez žedne limity wobgranicowany',
 'right-import'               => 'Boki z drugich wikijow importowaś',
 'right-importupload'         => 'Boki pśez nagraśe datajow importowaś',
 'right-patrol'               => 'Změny ako doglědowane markěrowaś',
+'right-patrolmarks'          => 'Kontrolne wobznamjenja w aktualnych změnach',
 'right-unwatchedpages'       => 'Lisćinu njewobglědowanych bokow woglědaś',
+'right-trackback'            => 'Trackback wótpósłaś',
 'right-mergehistory'         => 'Stawizny wersijow bokow zjadnośiś',
 'right-userrights'           => 'Wšykne wužywarske pšawa wobźěłaś',
 'right-userrights-interwiki' => 'Wužywarske pšawa w drugich wikijach wobźěłaś',

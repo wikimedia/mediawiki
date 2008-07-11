@@ -210,7 +210,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tungkul {{SITENAME}}',
-'aboutpage'            => 'Proyektu:tungkul',
+'aboutpage'            => 'Project:tungkul',
 'bugreports'           => 'Tala da reng bug',
 'bugreportspage'       => 'Project:Ulat kareng bug',
 'copyright'            => 'Mipaintulutan ing laman na niti lalam ning $1.',

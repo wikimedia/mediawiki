@@ -6,6 +6,7 @@
  *
  * @author Jose77
  * @author Kguirnela
+ * @author Siebrand
  */
 
 $messages = array(
@@ -103,16 +104,16 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Nahanungod sa {{SITENAME}}',
-'aboutpage'            => 'Proyekto:Nahanungod',
+'aboutpage'            => 'Project:Nahanungod',
 'currentevents'        => 'Mga Hitabo Subong',
 'disclaimers'          => 'Diskleymer',
-'disclaimerpage'       => 'Proyekto:Kabilogan nga diskleymer',
+'disclaimerpage'       => 'Project:Kabilogan nga diskleymer',
 'edithelp'             => 'Bulig sa pag Ilis',
 'mainpage'             => 'Mayor nga Panid',
 'mainpage-description' => 'Mayor nga Panid',
 'portal'               => 'Portal sang Banwa',
 'privacy'              => 'Polisa sa Pribisidad',
-'privacypage'          => 'Proyekto:Polisa sa Pribisidad',
+'privacypage'          => 'Project:Polisa sa Pribisidad',
 
 'retrievedfrom'           => 'Ginkuha halin sa "$1"',
 'youhavenewmessages'      => 'Ikaw may $1 ($2).',
