@@ -904,32 +904,25 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'files'                    => 'Figura',
 
 # User rights
-'userrights'                       => 'Ndrysho privilegjet e përdoruesve', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Ndrysho grupet e përdoruesit',
-'userrights-user-editname'         => 'Fusni emrin e përdoruesit:',
-'editusergroup'                    => 'Redakto grupet e përdoruesve',
-'editinguser'                      => "Duke ndryshuar privilegjet e përdoruesit '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Anëtarësimi tek grupet',
-'saveusergroups'                   => 'Ruaj Grupin e Përdoruesve',
-'userrights-groupsmember'          => 'Anëtar i:',
-'userrights-groupsremovable'       => 'Grupet që mund të hiqen:',
-'userrights-groupsavailable'       => 'Të mundshme:',
-'userrights-groups-help'           => 'Mund të ndryshoni anëtarësimin e këtij përdoruesi në grupe:
+'userrights'                  => 'Ndrysho privilegjet e përdoruesve', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Ndrysho grupet e përdoruesit',
+'userrights-user-editname'    => 'Fusni emrin e përdoruesit:',
+'editusergroup'               => 'Redakto grupet e përdoruesve',
+'editinguser'                 => "Duke ndryshuar privilegjet e përdoruesit '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Anëtarësimi tek grupet',
+'saveusergroups'              => 'Ruaj Grupin e Përdoruesve',
+'userrights-groupsmember'     => 'Anëtar i:',
+'userrights-groups-help'      => 'Mund të ndryshoni anëtarësimin e këtij përdoruesi në grupe:
 * Kutia e zgjedhur shënon që përdoruesi është anëtar në atë grup
 * Kutia e pazgjedhur shënon që përdoruesi nuk është anëtar në atë grup
 * Një * shënon që nuk mund ta hiqni grupin pasi ta keni shtuar (dhe anasjelltas).',
-'userrights-reason'                => 'Arsyeja për ndryshimin:',
-'userrights-available-none'        => 'Nuk ju lejohet anëtarsimi.',
-'userrights-available-add'         => 'Mund të anëtarësoni cilindo përdorues tek {{PLURAL:$2|ky grup|këto grupe}}: $1.',
-'userrights-available-remove'      => 'Mund të çanëtarësoni cilindo përdorues nga {{PLURAL:$2|ky grup|këto grupe}}: $1.',
-'userrights-available-add-self'    => 'Mund të anëtarësoheni tek {{PLURAL:$2|ky grup|këto grupe}}: $1.',
-'userrights-available-remove-self' => 'Mund të çanëtarësoheni nga {{PLURAL:$2|ky grup|këto grupe}}: $1.',
-'userrights-no-interwiki'          => 'Nuk keni leje për të ndryshuar privilegjet e përdoruesve në wiki të tjera.',
-'userrights-nodatabase'            => 'Regjistri $1 nuk ekziston ose nuk është vendor.',
-'userrights-nologin'               => 'Duhet të [[Special:Userlogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
-'userrights-notallowed'            => 'Llogaria juaj nuk ju lejon të ndryshoni privilegjet e përdoruesve.',
-'userrights-changeable-col'        => 'Grupe që mund të ndryshoni',
-'userrights-unchangeable-col'      => "Grupe që s'mund të ndryshoni",
+'userrights-reason'           => 'Arsyeja për ndryshimin:',
+'userrights-no-interwiki'     => 'Nuk keni leje për të ndryshuar privilegjet e përdoruesve në wiki të tjera.',
+'userrights-nodatabase'       => 'Regjistri $1 nuk ekziston ose nuk është vendor.',
+'userrights-nologin'          => 'Duhet të [[Special:Userlogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
+'userrights-notallowed'       => 'Llogaria juaj nuk ju lejon të ndryshoni privilegjet e përdoruesve.',
+'userrights-changeable-col'   => 'Grupe që mund të ndryshoni',
+'userrights-unchangeable-col' => "Grupe që s'mund të ndryshoni",
 
 # Groups
 'group'               => 'Grupi:',

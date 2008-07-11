@@ -999,32 +999,25 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'files'                    => 'فایلان',
 
 # User rights
-'userrights'                       => 'مدیریت حقوق کاربر', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'مدیریت گروه کاربر',
-'userrights-user-editname'         => 'یک نام کاربری وارد کن',
-'editusergroup'                    => 'اصلاح گروه کاربر',
-'editinguser'                      => "عوض کنت حقوق کاربر  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'اصلاح گروه کاربر',
-'saveusergroups'                   => 'ذخیره گروه کاربر',
-'userrights-groupsmember'          => 'عضو انت:',
-'userrights-groupsremovable'       => 'گروهان قابل حذف:',
-'userrights-groupsavailable'       => 'موجودین گروهان:',
-'userrights-groups-help'           => 'شما شاید گروه ای کاربرء هست ته:
+'userrights'                  => 'مدیریت حقوق کاربر', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'مدیریت گروه کاربر',
+'userrights-user-editname'    => 'یک نام کاربری وارد کن',
+'editusergroup'               => 'اصلاح گروه کاربر',
+'editinguser'                 => "عوض کنت حقوق کاربر  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'اصلاح گروه کاربر',
+'saveusergroups'              => 'ذخیره گروه کاربر',
+'userrights-groupsmember'     => 'عضو انت:',
+'userrights-groups-help'      => 'شما شاید گروه ای کاربرء هست ته:
 * یک جعبه علامتی یعنی شی که کاربر تا آ گروه انت.
 * یک بی علامتین جعبه یعنی شی که کاربر ته آ گروه نهنت.
 * A * پیش داریت که شما نه تونیت بزور گروهی که یک بری که آیء اضافه کت یا برعکس.',
-'userrights-reason'                => 'دلیل په عوض کتن:',
-'userrights-available-none'        => 'شما شاید عضویت گروه عوض کنیت.',
-'userrights-available-add'         => 'شما تونیت هر کاربری اضافه کینت ته {{PLURAL:$2|ای گروه|ای گروهان}}: $1.',
-'userrights-available-remove'      => 'شما تونیت بزوریت هر کاربری چه {{PLURAL:$2|ای گروه|ای گروهان}}: $1.',
-'userrights-available-add-self'    => 'شما تونیت وتاء اضافه کنیت په {{PLURAL:$2|ای گروه|ای گروهان}}: $1.',
-'userrights-available-remove-self' => 'شما تونیت وتاء بزوریت چه {{PLURAL:$2|ای گروه|ای گروهان}}: $1.',
-'userrights-no-interwiki'          => 'شما را اجازت نیست دان حقوق کاربر ته دگ ویکی آن اصلاح کنیت.',
-'userrights-nodatabase'            => 'دیتابیس $1  موجود نهنت یا محلی نهنت.',
-'userrights-nologin'               => 'شما باید [[Special:Userlogin|وارد بیت]]  گون حساب مدیریتی په مشخص کتن حقوق کاربر.',
-'userrights-notallowed'            => 'شمی حساب اجازت په مشخص کتن حقوق کاربر نیست.',
-'userrights-changeable-col'        => 'گروهانی که شما تونیت عوض کنیت',
-'userrights-unchangeable-col'      => 'گروهانی که شما نه نونیت عوض کنیت',
+'userrights-reason'           => 'دلیل په عوض کتن:',
+'userrights-no-interwiki'     => 'شما را اجازت نیست دان حقوق کاربر ته دگ ویکی آن اصلاح کنیت.',
+'userrights-nodatabase'       => 'دیتابیس $1  موجود نهنت یا محلی نهنت.',
+'userrights-nologin'          => 'شما باید [[Special:Userlogin|وارد بیت]]  گون حساب مدیریتی په مشخص کتن حقوق کاربر.',
+'userrights-notallowed'       => 'شمی حساب اجازت په مشخص کتن حقوق کاربر نیست.',
+'userrights-changeable-col'   => 'گروهانی که شما تونیت عوض کنیت',
+'userrights-unchangeable-col' => 'گروهانی که شما نه نونیت عوض کنیت',
 
 # Groups
 'group'               => 'گروه:',

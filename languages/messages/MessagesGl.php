@@ -918,32 +918,25 @@ Se quere, pode [[:\$1|creala]].",
 'files'                    => 'Ficheiros',
 
 # User rights
-'userrights'                       => 'Xestión dos dereitos de usuario', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Administrar os grupos do usuario',
-'userrights-user-editname'         => 'Escriba o nome do usuario:',
-'editusergroup'                    => 'Editar os grupos do usuario',
-'editinguser'                      => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Editar os grupos do usuario',
-'saveusergroups'                   => 'Gardar os grupos do usuario',
-'userrights-groupsmember'          => 'Membro de:',
-'userrights-groupsremovable'       => 'Grupos eliminábeis:',
-'userrights-groupsavailable'       => 'Grupos dispoñíbeis:',
-'userrights-groups-help'           => 'Pode cambiar os grupos aos que o usuario pertence:
+'userrights'                  => 'Xestión dos dereitos de usuario', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Administrar os grupos do usuario',
+'userrights-user-editname'    => 'Escriba o nome do usuario:',
+'editusergroup'               => 'Editar os grupos do usuario',
+'editinguser'                 => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Editar os grupos do usuario',
+'saveusergroups'              => 'Gardar os grupos do usuario',
+'userrights-groupsmember'     => 'Membro de:',
+'userrights-groups-help'      => 'Pode cambiar os grupos aos que o usuario pertence:
 * Se a caixa ten un sinal (✓) significa que o usuario pertence a ese grupo.
 * Se, pola contra, non o ten, significa que non pertence.
 * Un asterisco (*) indica que non pode eliminar o grupo unha vez que o engadiu, e viceversa.',
-'userrights-reason'                => 'Razón para a modificación:',
-'userrights-available-none'        => 'Non pode mudar a pertenza ao grupo.',
-'userrights-available-add'         => 'Pode engadir calquera usuario a {{PLURAL:$2|este grupo|estes grupos}}: $1.',
-'userrights-available-remove'      => 'Pode eliminar calquera usuario {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
-'userrights-available-add-self'    => 'Pódese sumar vostede mesmo/a a {{PLURAL:$2|este grupo|estes grupos}}: $1.',
-'userrights-available-remove-self' => 'Pódese retirar vostede mesmo/a {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
-'userrights-no-interwiki'          => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
-'userrights-nodatabase'            => 'A base de datos $1 non existe ou non é local.',
-'userrights-nologin'               => 'Ten que [[Special:Userlogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
-'userrights-notallowed'            => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
-'userrights-changeable-col'        => 'Os grupos que pode cambiar',
-'userrights-unchangeable-col'      => 'Os grupos que non pode cambiar',
+'userrights-reason'           => 'Razón para a modificación:',
+'userrights-no-interwiki'     => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
+'userrights-nodatabase'       => 'A base de datos $1 non existe ou non é local.',
+'userrights-nologin'          => 'Ten que [[Special:Userlogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
+'userrights-notallowed'       => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
+'userrights-changeable-col'   => 'Os grupos que pode cambiar',
+'userrights-unchangeable-col' => 'Os grupos que non pode cambiar',
 
 # Groups
 'group'               => 'Grupo:',

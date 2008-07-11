@@ -786,17 +786,15 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'files'                    => 'Teedüstüq',
 
 # User rights
-'userrights'                 => 'Pruukja õiguisi muutminõ', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Pruukjaõiguisi muutminõ',
-'userrights-user-editname'   => 'Kirodaq pruukjanimi:',
-'editusergroup'              => 'Muudaq pruukjidõ rühmi',
-'editinguser'                => "Pruukja '''[[User:$1|$1]]''' õigusõq ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Pruukjidõrühmä valik',
-'saveusergroups'             => 'Pästäq pruukjidõrühmä muutmisõq',
-'userrights-groupsmember'    => 'Kuulus rühmä:',
-'userrights-groupsremovable' => 'Ärqvõetavaq rühmäq:',
-'userrights-groupsavailable' => 'Või mano pandaq rühmihe:',
-'userrights-reason'          => 'Muutmisõ põhjus:',
+'userrights'               => 'Pruukja õiguisi muutminõ', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Pruukjaõiguisi muutminõ',
+'userrights-user-editname' => 'Kirodaq pruukjanimi:',
+'editusergroup'            => 'Muudaq pruukjidõ rühmi',
+'editinguser'              => "Pruukja '''[[User:$1|$1]]''' õigusõq ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Pruukjidõrühmä valik',
+'saveusergroups'           => 'Pästäq pruukjidõrühmä muutmisõq',
+'userrights-groupsmember'  => 'Kuulus rühmä:',
+'userrights-reason'        => 'Muutmisõ põhjus:',
 
 # Groups
 'group'            => 'Rühm:',

@@ -1015,19 +1015,15 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'files'                    => 'Ֆայլեր',
 
 # User rights
-'userrights'                  => 'Մասնակիցների իրավունքների կառավարում', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'Մասնակիցների խմբերի կառավարում',
-'userrights-user-editname'    => 'Մուտքագրեք մասնակցի անուն.',
-'editusergroup'               => 'Խմբագրել մասնակիցների խմբերը',
-'editinguser'                 => '<b>$1</b> մասնակցի համար ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
-'userrights-editusergroup'    => 'Խմբագրել մասնակցի խմբերը',
-'saveusergroups'              => 'Հիշել մասնակցի խմբերը',
-'userrights-groupsmember'     => 'Անդամ է.',
-'userrights-groupsavailable'  => 'Առկա խմբեր.',
-'userrights-reason'           => 'Փոփոխության պատճառը.',
-'userrights-available-none'   => 'Դուք չեք կարող փոփոխել խմբի անդամակցությունը։',
-'userrights-available-add'    => 'Դուք կարող եք ավելացնել մասնակիցներ $1 խմբին։',
-'userrights-available-remove' => 'Դուք կարող եք հեռացնել մասնակիցներ $1 խմբից։',
+'userrights'               => 'Մասնակիցների իրավունքների կառավարում', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Մասնակիցների խմբերի կառավարում',
+'userrights-user-editname' => 'Մուտքագրեք մասնակցի անուն.',
+'editusergroup'            => 'Խմբագրել մասնակիցների խմբերը',
+'editinguser'              => '<b>$1</b> մասնակցի համար ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
+'userrights-editusergroup' => 'Խմբագրել մասնակցի խմբերը',
+'saveusergroups'           => 'Հիշել մասնակցի խմբերը',
+'userrights-groupsmember'  => 'Անդամ է.',
+'userrights-reason'        => 'Փոփոխության պատճառը.',
 
 # Groups
 'group'               => 'Խումբ.',

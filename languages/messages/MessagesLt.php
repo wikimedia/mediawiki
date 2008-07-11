@@ -936,33 +936,26 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'files'                    => 'Failai',
 
 # User rights
-'userrights'                       => 'Naudotojų teisių valdymas', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Tvarkyti naudotojo grupes',
-'userrights-user-editname'         => 'Įveskite naudotojo vardą:',
-'editusergroup'                    => 'Redaguoti naudotojo grupes',
-'editinguser'                      => "Taisomos naudotojo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])
+'userrights'                  => 'Naudotojų teisių valdymas', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Tvarkyti naudotojo grupes',
+'userrights-user-editname'    => 'Įveskite naudotojo vardą:',
+'editusergroup'               => 'Redaguoti naudotojo grupes',
+'editinguser'                 => "Taisomos naudotojo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])
 teisės",
-'userrights-editusergroup'         => 'Redaguoti naudotojų grupes',
-'saveusergroups'                   => 'Saugoti naudotojų grupes',
-'userrights-groupsmember'          => 'Narys:',
-'userrights-groupsremovable'       => 'Pašalinamos grupės:',
-'userrights-groupsavailable'       => 'Galimos grupės:',
-'userrights-groups-help'           => 'Jūs galite pakeisti grupes, kuriose yra šis naudotojas:
+'userrights-editusergroup'    => 'Redaguoti naudotojų grupes',
+'saveusergroups'              => 'Saugoti naudotojų grupes',
+'userrights-groupsmember'     => 'Narys:',
+'userrights-groups-help'      => 'Jūs galite pakeisti grupes, kuriose yra šis naudotojas:
 * Pažymėtas langelis reiškia, kad šis naudotojas yra toje grupėje.
 * Nepažymėtas langelis reiškia, kad šis naudotojas nėra toje grupėje.
 * * parodo, kad jūs nebegalėsite pašalinti grupės, kai ją pridėsite, ir atvirkščiai.',
-'userrights-reason'                => 'Keitimo priežastis:',
-'userrights-available-none'        => 'Jūs negalite keisti grupės narystės.',
-'userrights-available-add'         => 'Jūs galite pridėti naudotojus į {{PLURAL:$2|šią grupę|šias grupes}}: $1.',
-'userrights-available-remove'      => 'Jūs galite pašalinti naudotojus iš {{PLURAL:$2|šios grupės|šių grupių}}: $1.',
-'userrights-available-add-self'    => 'Jūs galite pridėti save prie {{PLURAL:$2|šios grupės|šių grupių}}: $1.',
-'userrights-available-remove-self' => 'Jūs galite save pašalinti iš {{PLURAL:$2|šios grupės|šių grupių}}: $1.',
-'userrights-no-interwiki'          => 'Jūs neturite leidimo keisti naudotojų teises kituose projektuose.',
-'userrights-nodatabase'            => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
-'userrights-nologin'               => 'Jūs privalote [[Special:Userlogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.',
-'userrights-notallowed'            => 'Jūsų paskyra neturi teisių priskirti naudotojų teises.',
-'userrights-changeable-col'        => 'Grupės, kurias galite keisti',
-'userrights-unchangeable-col'      => 'Grupės, kurių negalite keisti',
+'userrights-reason'           => 'Keitimo priežastis:',
+'userrights-no-interwiki'     => 'Jūs neturite leidimo keisti naudotojų teises kituose projektuose.',
+'userrights-nodatabase'       => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
+'userrights-nologin'          => 'Jūs privalote [[Special:Userlogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.',
+'userrights-notallowed'       => 'Jūsų paskyra neturi teisių priskirti naudotojų teises.',
+'userrights-changeable-col'   => 'Grupės, kurias galite keisti',
+'userrights-unchangeable-col' => 'Grupės, kurių negalite keisti',
 
 # Groups
 'group'               => 'Grupė:',

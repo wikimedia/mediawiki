@@ -739,15 +739,14 @@ wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.',
 'allowemail'               => 'ndigëlël yeneeni jëfëndikookat mën laa yòonnee bataaxal',
 
 # User rights
-'userrights-lookup-user'     => 'Yorinu yelleefu jëfëndikookat',
-'userrights-user-editname'   => 'Duggal am turu jëfëndikookat :',
-'editusergroup'              => 'Coppiteg mbooloo Jëfëndikookat yi',
-'editinguser'                => "Coppiteg '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Soppi mbooloo yu jëfëndikookat bi',
-'saveusergroups'             => 'Duggal mbooloo jëjëndikookat yi',
-'userrights-groupsmember'    => 'Way-bokk gu:',
-'userrights-groupsavailable' => 'Mbooloo yi jappandi:',
-'userrights-reason'          => 'Ngirtey coppite yi :',
+'userrights-lookup-user'   => 'Yorinu yelleefu jëfëndikookat',
+'userrights-user-editname' => 'Duggal am turu jëfëndikookat :',
+'editusergroup'            => 'Coppiteg mbooloo Jëfëndikookat yi',
+'editinguser'              => "Coppiteg '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Soppi mbooloo yu jëfëndikookat bi',
+'saveusergroups'           => 'Duggal mbooloo jëjëndikookat yi',
+'userrights-groupsmember'  => 'Way-bokk gu:',
+'userrights-reason'        => 'Ngirtey coppite yi :',
 
 # Groups
 'group'       => 'Mbooloo :',

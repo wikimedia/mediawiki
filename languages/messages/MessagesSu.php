@@ -852,32 +852,25 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'files'                    => 'Koropak',
 
 # User rights
-'userrights'                       => 'Manajemén hak pamaké', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Atur gorombolan pamaké',
-'userrights-user-editname'         => 'Asupkeun landihan:',
-'editusergroup'                    => 'Édit Golongan Pamaké',
-'editinguser'                      => "Ngarobah hak pamaké '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Édit gorombolan pamaké',
-'saveusergroups'                   => 'Simpen Grup Pamaké',
-'userrights-groupsmember'          => 'Anggota ti:',
-'userrights-groupsremovable'       => 'Grup nu bisa dikaluarkeun:',
-'userrights-groupsavailable'       => 'Gorombolan nu aya:',
-'userrights-groups-help'           => 'Anjeun bisa ngarobah jumplukan pamaké ieu:
+'userrights'                  => 'Manajemén hak pamaké', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Atur gorombolan pamaké',
+'userrights-user-editname'    => 'Asupkeun landihan:',
+'editusergroup'               => 'Édit Golongan Pamaké',
+'editinguser'                 => "Ngarobah hak pamaké '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Édit gorombolan pamaké',
+'saveusergroups'              => 'Simpen Grup Pamaké',
+'userrights-groupsmember'     => 'Anggota ti:',
+'userrights-groups-help'      => 'Anjeun bisa ngarobah jumplukan pamaké ieu:
 * Kotak jeung tanda cék mangrupa jumplukan pamaké anu dimaksud
 * Kotak tanpa tanda cék hartosna pamaké ieu lain anggota jumplukan kasebut
 * Tanda * nandakeun yén Anjeun henteu bisa ngabolaykeun jumplukan kasebut lamun Anjeun geus nambahanana, atawa sabalikna.',
-'userrights-reason'                => 'Alesan ngarobah :',
-'userrights-available-none'        => 'Anjeun teu bisa ngaganti kaangotaan jumplukan.',
-'userrights-available-add'         => 'Anjeun bisa ngasupkeun pamaké ka {{PLURAL:$2|ieu grup|grup-grup}}: $1.',
-'userrights-available-remove'      => 'Anjeun bisa ngaluarkeun pamaké ti {{PLURAL:$2|ieu grup|grup-grup}}: $1.',
-'userrights-available-add-self'    => 'Anjeun bisa ngasupkeun manéh ka {{PLURAL:$2|ieu grup|grup}} $1.',
-'userrights-available-remove-self' => 'Anjeun bisa ngaluarkeun manéh ti {{PLURAL:$2|ieu grup|grup}} $1.',
-'userrights-no-interwiki'          => 'Anjeung teu diwenangkeun ngarobah hak pamaké dina wiki séjén.',
-'userrights-nodatabase'            => 'Pangkalan data $1 euweuh atawa henteu lokal.',
-'userrights-nologin'               => 'Pikeun ngatur hak pamaké, anjeun kudu [[Special:Userlogin|asup log]] migunakeun rekening kuncén.',
-'userrights-notallowed'            => 'Rekening anjeun teu diwenangkeun ngatur hak pamaké.',
-'userrights-changeable-col'        => 'Jumplukan anu bisa Anjeun robah',
-'userrights-unchangeable-col'      => 'Jumplukan anu teu bisa Anjeun robah',
+'userrights-reason'           => 'Alesan ngarobah :',
+'userrights-no-interwiki'     => 'Anjeung teu diwenangkeun ngarobah hak pamaké dina wiki séjén.',
+'userrights-nodatabase'       => 'Pangkalan data $1 euweuh atawa henteu lokal.',
+'userrights-nologin'          => 'Pikeun ngatur hak pamaké, anjeun kudu [[Special:Userlogin|asup log]] migunakeun rekening kuncén.',
+'userrights-notallowed'       => 'Rekening anjeun teu diwenangkeun ngatur hak pamaké.',
+'userrights-changeable-col'   => 'Jumplukan anu bisa Anjeun robah',
+'userrights-unchangeable-col' => 'Jumplukan anu teu bisa Anjeun robah',
 
 # Groups
 'group'               => 'Gorombolan:',

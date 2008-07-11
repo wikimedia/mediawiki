@@ -1024,32 +1024,25 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'files'                    => 'Ficheiros',
 
 # User rights
-'userrights'                       => 'Gestão de privilégios de utilizadores', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Gerir grupos de utilizadores',
-'userrights-user-editname'         => 'Intruduza um nome de utilizador:',
-'editusergroup'                    => 'Editar Grupos de Utilizadores',
-'editinguser'                      => "Modificando privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Editar grupos do utilizador',
-'saveusergroups'                   => 'Salvar Grupos do Utilizador',
-'userrights-groupsmember'          => 'Membro de:',
-'userrights-groupsremovable'       => 'Grupos com remoção possível:',
-'userrights-groupsavailable'       => 'Grupos disponíveis:',
-'userrights-groups-help'           => 'É possível alterar os grupos em que este utilizador se encontra:
+'userrights'                  => 'Gestão de privilégios de utilizadores', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Gerir grupos de utilizadores',
+'userrights-user-editname'    => 'Intruduza um nome de utilizador:',
+'editusergroup'               => 'Editar Grupos de Utilizadores',
+'editinguser'                 => "Modificando privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Editar grupos do utilizador',
+'saveusergroups'              => 'Salvar Grupos do Utilizador',
+'userrights-groupsmember'     => 'Membro de:',
+'userrights-groups-help'      => 'É possível alterar os grupos em que este utilizador se encontra:
 * Uma caixa de selecção seleccionada significa que o utilizador se encontra no grupo.
 * Uma caixa de selecção desseleccionada significa que o utilizador não se encontra no grupo.
 * Um * indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
-'userrights-reason'                => 'Motivo de alterações:',
-'userrights-available-none'        => 'Não será possível alterar o grupo de acesso.',
-'userrights-available-add'         => 'É possível adicionar qualquer utilizador a {{PLURAL:$2|este grupo|estes grupos}}: $1',
-'userrights-available-remove'      => 'É possível remover qualquer utilizador {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
-'userrights-available-add-self'    => 'Você pode adicionar a si mesmo {{PLURAL:$2|neste grupo|nestes grupos}}: $1.',
-'userrights-available-remove-self' => 'Você pode remover a si mesmo {{PLURAL:$2|deste grupo|destes grupos}}: $1.',
-'userrights-no-interwiki'          => 'Você não tem permissão de alterar privilégios de utilizadores em outras wikis.',
-'userrights-nodatabase'            => 'A base de dados $1 não existe ou não é uma base de dados local.',
-'userrights-nologin'               => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de utilizador.',
-'userrights-notallowed'            => 'Sua conta não possui permissão para conceder privilégios a utilizadores.',
-'userrights-changeable-col'        => 'Grupos que pode alterar',
-'userrights-unchangeable-col'      => 'Grupos que não pode alterar',
+'userrights-reason'           => 'Motivo de alterações:',
+'userrights-no-interwiki'     => 'Você não tem permissão de alterar privilégios de utilizadores em outras wikis.',
+'userrights-nodatabase'       => 'A base de dados $1 não existe ou não é uma base de dados local.',
+'userrights-nologin'          => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de utilizador.',
+'userrights-notallowed'       => 'Sua conta não possui permissão para conceder privilégios a utilizadores.',
+'userrights-changeable-col'   => 'Grupos que pode alterar',
+'userrights-unchangeable-col' => 'Grupos que não pode alterar',
 
 # Groups
 'group'               => 'Grupo:',

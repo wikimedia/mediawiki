@@ -1105,32 +1105,25 @@ $3 указал следующую причину: ''$2''",
 'files'                    => 'Файлы',
 
 # User rights
-'userrights'                       => 'Управление правами участников', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Управление группами участников',
-'userrights-user-editname'         => 'Введите имя участника:',
-'editusergroup'                    => 'Изменить группы участника',
-'editinguser'                      => "Изменение прав участника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Изменить группы участника',
-'saveusergroups'                   => 'Сохранить группы участника',
-'userrights-groupsmember'          => 'Член групп:',
-'userrights-groupsremovable'       => 'Изменяемые группы:',
-'userrights-groupsavailable'       => 'Доступные группы:',
-'userrights-groups-help'           => 'Вы можете изменить группы, в которые входит этот участник.
+'userrights'                  => 'Управление правами участников', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Управление группами участников',
+'userrights-user-editname'    => 'Введите имя участника:',
+'editusergroup'               => 'Изменить группы участника',
+'editinguser'                 => "Изменение прав участника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Изменить группы участника',
+'saveusergroups'              => 'Сохранить группы участника',
+'userrights-groupsmember'     => 'Член групп:',
+'userrights-groups-help'      => 'Вы можете изменить группы, в которые входит этот участник.
 * Если около названия группы стоит отметка, значит участник входит в эту группу.
 * Если отметка не стоит — участник не относится к соответствующей группе.
 * Знак * отмечает, что вы не можете удалить из группы участника, если добавите его в неё или наоборот.',
-'userrights-reason'                => 'Причина изменения:',
-'userrights-available-none'        => 'Вы не можете изменять членство в группе.',
-'userrights-available-add'         => 'Вы можете добавить любого участника {{PLURAL:$2|в группу|в группы}}: $1.',
-'userrights-available-remove'      => 'Вы можете удалить любого участника {{PLURAL:$2|из группы|из групп}}: $1.',
-'userrights-available-add-self'    => 'Вы можете включить себя в {{PLURAL:$2|группу $1|следующие группы: $1}}.',
-'userrights-available-remove-self' => 'Вы можете исключить себя из {{PLURAL:$2|группы $1|следующих групп: $1}}.',
-'userrights-no-interwiki'          => 'У вас нет разрешения изменять права участников на других вики.',
-'userrights-nodatabase'            => 'База данных $1 не существует или не является локальной.',
-'userrights-nologin'               => 'Вы должны [[Special:Userlogin|представиться системе]] с учётной записи администратора, чтобы назначать права пользователям.',
-'userrights-notallowed'            => 'С вашей учётной записи не разрешено назначать права пользователям.',
-'userrights-changeable-col'        => 'Группы, которые вы можете изменять',
-'userrights-unchangeable-col'      => 'Группы, которые вы не можете изменять',
+'userrights-reason'           => 'Причина изменения:',
+'userrights-no-interwiki'     => 'У вас нет разрешения изменять права участников на других вики.',
+'userrights-nodatabase'       => 'База данных $1 не существует или не является локальной.',
+'userrights-nologin'          => 'Вы должны [[Special:Userlogin|представиться системе]] с учётной записи администратора, чтобы назначать права пользователям.',
+'userrights-notallowed'       => 'С вашей учётной записи не разрешено назначать права пользователям.',
+'userrights-changeable-col'   => 'Группы, которые вы можете изменять',
+'userrights-unchangeable-col' => 'Группы, которые вы не можете изменять',
 
 # Groups
 'group'               => 'Группа:',

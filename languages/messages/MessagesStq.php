@@ -887,31 +887,24 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju Siede „[[$1]]“ fer
 'files'                    => 'Doatäie',
 
 # User rights
-'userrights'                       => 'Benutsergjuchteferwaltenge', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Ferwaltede Gruppentouheeregaid',
-'userrights-user-editname'         => 'Benutsernoome anreeke:',
-'editusergroup'                    => 'Beoarbaidede Benutsergjuchte',
-'editinguser'                      => "Uur Benutsergjuchte fon '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Beoarbaidje Gruppentouheeregaid fon dän Benutser',
-'saveusergroups'                   => 'Spiekerje Gruppentouheeregaid',
-'userrights-groupsmember'          => 'Meeglid fon:',
-'userrights-groupsremovable'       => 'Gruppen, do der wächhoald wäide konnen:',
-'userrights-groupsavailable'       => 'Ferföigboare Gruppen:',
-'userrights-groups-help'           => 'Du koast ju Gruppentouheeregaid foar dissen Benutser annerje:
+'userrights'                  => 'Benutsergjuchteferwaltenge', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Ferwaltede Gruppentouheeregaid',
+'userrights-user-editname'    => 'Benutsernoome anreeke:',
+'editusergroup'               => 'Beoarbaidede Benutsergjuchte',
+'editinguser'                 => "Uur Benutsergjuchte fon '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Beoarbaidje Gruppentouheeregaid fon dän Benutser',
+'saveusergroups'              => 'Spiekerje Gruppentouheeregaid',
+'userrights-groupsmember'     => 'Meeglid fon:',
+'userrights-groups-help'      => 'Du koast ju Gruppentouheeregaid foar dissen Benutser annerje:
 * Aan markierde Kasten betjut, dät die Benutser Meeglid fon disse Gruppe is
 * Aan * betjut, dät du dät Benutsergjucht ätter Oureeken nit wier touräächnieme koast (of uumekierd).',
-'userrights-reason'                => 'Gruund:',
-'userrights-available-none'        => 'Du duurst neen Benutsergjuchte ferannerje.',
-'userrights-available-add'         => 'Du koast Benutsere an {{PLURAL:$2|ju foulgjende Gruppe|do foulgjende $2 Gruppen}} bietouföigje: $1.',
-'userrights-available-remove'      => 'Du duurst Benutsere ut {{PLURAL:$2|ju foulgjende Gruppe|do foulgjende $2 Gruppen}} wächhoalje: $1.',
-'userrights-available-add-self'    => 'Du koast die sälwen an {{PLURAL:$2|disse Gruppe|disse Gruppen}} bietouföigje: $1.',
-'userrights-available-remove-self' => 'Du koast die sälwen uut {{PLURAL:$2|disse Gruppe|disse Gruppen}} wächhoalje: $1.',
-'userrights-no-interwiki'          => 'Du hääst neen Begjuchtigenge, do Benutsergjuchte in uur Wikis tou annerjen.',
-'userrights-nodatabase'            => 'Ju Doatenboank $1 is nit deer of nit lokoal.',
-'userrights-nologin'               => 'Du moast die mäd n Administrator-Benutserkonto [[Special:Userlogin|anmäldje]], uum Benutsergjuchte tou annerjen.',
-'userrights-notallowed'            => 'Du hääst neen Begjuchtigenge, uum Benutsergjuchte tou reeken.',
-'userrights-changeable-col'        => 'Gruppentouheeregaid, ju du annerje koast',
-'userrights-unchangeable-col'      => 'Gruppentouheeregaid, ju du nit annerje koast',
+'userrights-reason'           => 'Gruund:',
+'userrights-no-interwiki'     => 'Du hääst neen Begjuchtigenge, do Benutsergjuchte in uur Wikis tou annerjen.',
+'userrights-nodatabase'       => 'Ju Doatenboank $1 is nit deer of nit lokoal.',
+'userrights-nologin'          => 'Du moast die mäd n Administrator-Benutserkonto [[Special:Userlogin|anmäldje]], uum Benutsergjuchte tou annerjen.',
+'userrights-notallowed'       => 'Du hääst neen Begjuchtigenge, uum Benutsergjuchte tou reeken.',
+'userrights-changeable-col'   => 'Gruppentouheeregaid, ju du annerje koast',
+'userrights-unchangeable-col' => 'Gruppentouheeregaid, ju du nit annerje koast',
 
 # Groups
 'group'               => 'Gruppe:',

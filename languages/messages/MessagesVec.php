@@ -900,32 +900,25 @@ par poder personalixare le to preferense.',
 'files'                    => 'Imagini',
 
 # User rights
-'userrights'                       => 'Gestion dei parmessi relativi ai utenti', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Gestion de i gruppi utente',
-'userrights-user-editname'         => 'Inserir el nome utente:',
-'editusergroup'                    => 'Modifica grupi utente',
-'editinguser'                      => "Modifica dei diriti assegnà a l'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Modifica grupi utente',
-'saveusergroups'                   => 'Salva grupi utente',
-'userrights-groupsmember'          => 'Apartien ai grupi:',
-'userrights-groupsremovable'       => 'Grupi eliminabili:',
-'userrights-groupsavailable'       => 'Grupi disponibili:',
-'userrights-groups-help'           => "Se pol modificar i grupi a cui l'utente l'è assegnà.
+'userrights'                  => 'Gestion dei parmessi relativi ai utenti', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Gestion de i gruppi utente',
+'userrights-user-editname'    => 'Inserir el nome utente:',
+'editusergroup'               => 'Modifica grupi utente',
+'editinguser'                 => "Modifica dei diriti assegnà a l'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Modifica grupi utente',
+'saveusergroups'              => 'Salva grupi utente',
+'userrights-groupsmember'     => 'Apartien ai grupi:',
+'userrights-groups-help'      => "Se pol modificar i grupi a cui l'utente l'è assegnà.
 * Na casela de spunta selezionà la indica l'apartenenza de l'utente al grupo.
 * Na casela de spunta deselezionà la indica la so mancata apartenenza al grupo.
 * N'asterisco (*) l'indica che no te pol cavar un utente da un grupo na olta che te l'è zontà, o viceversa.",
-'userrights-reason'                => 'Motivo de la modifica:',
-'userrights-available-none'        => "No se pol modificar l'apartenenza ai grupi.",
-'userrights-available-add'         => 'Se pol associar i utenti {{PLURAL:$2|al grupo|ai grupi}}: $1.',
-'userrights-available-remove'      => 'Se pol cavar i utenti {{PLURAL:$2|dal grupo|dai grupi}}: $1.',
-'userrights-available-add-self'    => 'Te pol zontar el to account {{PLURAL:$2|al grupo indicà|ai grupi indicà}} de seguito: $1.',
-'userrights-available-remove-self' => 'Te pol cavar el to account {{PLURAL:$2|dal grupo|dai grupi}} indicà de seguito: $1.',
-'userrights-no-interwiki'          => 'No te ghè i parmessi necessari par modificar i diriti dei utenti su altri siti.',
-'userrights-nodatabase'            => "El database $1 no l'esiste mìa o no l'è un database local.",
-'userrights-nologin'               => "Par assegnarghe diriti ai utenti te ghè da [[Special:Userlogin|efetuar l'acesso]] come aministrador.",
-'userrights-notallowed'            => 'No te ghè i parmessi necessari par assegnarghe diriti ai utenti.',
-'userrights-changeable-col'        => 'Grupi che te pol canbiar',
-'userrights-unchangeable-col'      => 'Grupi che no te pol canbiar',
+'userrights-reason'           => 'Motivo de la modifica:',
+'userrights-no-interwiki'     => 'No te ghè i parmessi necessari par modificar i diriti dei utenti su altri siti.',
+'userrights-nodatabase'       => "El database $1 no l'esiste mìa o no l'è un database local.",
+'userrights-nologin'          => "Par assegnarghe diriti ai utenti te ghè da [[Special:Userlogin|efetuar l'acesso]] come aministrador.",
+'userrights-notallowed'       => 'No te ghè i parmessi necessari par assegnarghe diriti ai utenti.',
+'userrights-changeable-col'   => 'Grupi che te pol canbiar',
+'userrights-unchangeable-col' => 'Grupi che no te pol canbiar',
 
 # Groups
 'group'               => 'Grupo:',

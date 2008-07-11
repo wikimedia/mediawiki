@@ -999,32 +999,25 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'files'                    => 'Dateie',
 
 # User rights
-'userrights'                       => 'Metmaacher ehr Räächde verwalte', # Not used as normal message but as header for the special page itself
-'userrights-summary'               => 'He kanns De ennem bestemmpte Metmaacher sing Rääschte ändere, indemm dat De en en einzel Medmaacher-Jroppe erin deihß odder uß esu en Medmaacher-Jroppe eruß nimmbs.',
-'userrights-lookup-user'           => 'Metmaacher Jruppe verwalte',
-'userrights-user-editname'         => 'Metmaacher Name:',
-'editusergroup'                    => 'Däm Metmaacher sing Jruppe Räächde bearbeide',
-'editinguser'                      => "Däm '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) sing Metmaachersigg ändere",
-'userrights-editusergroup'         => 'Metmaacher Jruppe aanpasse',
-'saveusergroups'                   => 'Metmaacher Jruppe avspeichere',
-'userrights-groupsmember'          => 'Es en de Metmaacher Jruppe:',
-'userrights-groupsremovable'       => 'Nemm eruß us de Jruppe:',
-'userrights-groupsavailable'       => 'Es nit en de Metmaacher Jruppe:',
-'userrights-groups-help'           => 'Do kanns de Jruppe för dä Metmaacher hee ändere.
+'userrights'                  => 'Metmaacher ehr Räächde verwalte', # Not used as normal message but as header for the special page itself
+'userrights-summary'          => 'He kanns De ennem bestemmpte Metmaacher sing Rääschte ändere, indemm dat De en en einzel Medmaacher-Jroppe erin deihß odder uß esu en Medmaacher-Jroppe eruß nimmbs.',
+'userrights-lookup-user'      => 'Metmaacher Jruppe verwalte',
+'userrights-user-editname'    => 'Metmaacher Name:',
+'editusergroup'               => 'Däm Metmaacher sing Jruppe Räächde bearbeide',
+'editinguser'                 => "Däm '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) sing Metmaachersigg ändere",
+'userrights-editusergroup'    => 'Metmaacher Jruppe aanpasse',
+'saveusergroups'              => 'Metmaacher Jruppe avspeichere',
+'userrights-groupsmember'     => 'Es en de Metmaacher Jruppe:',
+'userrights-groups-help'      => 'Do kanns de Jruppe för dä Metmaacher hee ändere.
 * E Käßje met Höksche bedüg, dat dä Metmaacher en dä Jrupp is.
 * E Stähnsche bedüg, dat De dat Rääsch zwa ändere, ävver de Änderung nit mieh zeröck nämme kanns.',
-'userrights-reason'                => 'Aanlaß odder Jrund:',
-'userrights-available-none'        => 'Du darfs der Metmaacher ier Rääschte nit verändere.',
-'userrights-available-add'         => 'Do kanns ander Metmaacher {{PLURAL:$2|nur en ein Jrupp erin donn: $1.|en $2 Jruppe erin donn: $1.|en kein Jrupp erin donn. $1}}',
-'userrights-available-remove'      => 'Do kanns jede Metmaacher {{PLURAL:$2|nur us ein Jrupp eruß nemme: $1.|us beß zo $2 Jruppe eruß nemme: $1.|uß kein Jrupp eruß nemme. $1}}',
-'userrights-available-add-self'    => 'Do kanns Dich sellver in {{PLURAL:$2|die Jrupp erin donn: $1.|die Jruppe erin donn: $1.|kein Jrupp erin donn. $1}}',
-'userrights-available-remove-self' => 'Do kanns Dich sellver uß {{PLURAL:$2|dä Jrupp eruß nemme: $1.|dä Jruppe eruß nemme: $1.|kein Jrupp eruß nemme. $1}}',
-'userrights-no-interwiki'          => 'Do häs nit dat Rääsch, Metmaacher ier Rääschte in ander Wikis ze ändere.',
-'userrights-nodatabase'            => 'De Datebank „<strong>$1</strong>“ is nit doh, oder se litt op enem andere Söver.',
-'userrights-nologin'               => 'Do moss als ene Wiki-Köbes [[{{#special:Userlogin}}|enjelog sin]], för dat De Metmaacher ier Rääschte ändere kanns.',
-'userrights-notallowed'            => 'Do häs nit dat Rääsch, Rääschte aan Metmaacher ze verdeile.',
-'userrights-changeable-col'        => 'Jruppe, die De ändere kanns',
-'userrights-unchangeable-col'      => 'Jruppe, die De nit ändere kanns',
+'userrights-reason'           => 'Aanlaß odder Jrund:',
+'userrights-no-interwiki'     => 'Do häs nit dat Rääsch, Metmaacher ier Rääschte in ander Wikis ze ändere.',
+'userrights-nodatabase'       => 'De Datebank „<strong>$1</strong>“ is nit doh, oder se litt op enem andere Söver.',
+'userrights-nologin'          => 'Do moss als ene Wiki-Köbes [[{{#special:Userlogin}}|enjelog sin]], för dat De Metmaacher ier Rääschte ändere kanns.',
+'userrights-notallowed'       => 'Do häs nit dat Rääsch, Rääschte aan Metmaacher ze verdeile.',
+'userrights-changeable-col'   => 'Jruppe, die De ändere kanns',
+'userrights-unchangeable-col' => 'Jruppe, die De nit ändere kanns',
 
 # Groups
 'group'               => 'Jrupp:',

@@ -873,31 +873,24 @@ math/README-г уншиж тохируулна уу.',
 'files'                    => 'Файлууд',
 
 # User rights
-'userrights'                       => 'Хэрэглэгчдийн эрхийн удирдлага', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Хэрэглэгчдийн бүлгүүдийг удирдах',
-'userrights-user-editname'         => 'Хэрэглэгчийн нэрээ оруулна уу:',
-'editusergroup'                    => 'Хэрэглэгчийн бүлгийг засварлах',
-'editinguser'                      => "Дараах хэрэглэгчийн эрхийг засварлаж байна: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Хэрэглэгчийн бүлгүүдийг засварлах',
-'saveusergroups'                   => 'Хэрэглэгчийн бүлгүүдийг хадгалах',
-'userrights-groupsmember'          => 'Үүний гишүүн:',
-'userrights-groupsremovable'       => 'Авч хаяж болох бүлгүүд:',
-'userrights-groupsavailable'       => 'Байгаа бүлгүүд:',
-'userrights-groups-help'           => 'Та энэ хэрэглэгчийн гишүүн болсон бүлгүүдийг өөрчлөх боломжтой.
+'userrights'                  => 'Хэрэглэгчдийн эрхийн удирдлага', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Хэрэглэгчдийн бүлгүүдийг удирдах',
+'userrights-user-editname'    => 'Хэрэглэгчийн нэрээ оруулна уу:',
+'editusergroup'               => 'Хэрэглэгчийн бүлгийг засварлах',
+'editinguser'                 => "Дараах хэрэглэгчийн эрхийг засварлаж байна: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Хэрэглэгчийн бүлгүүдийг засварлах',
+'saveusergroups'              => 'Хэрэглэгчийн бүлгүүдийг хадгалах',
+'userrights-groupsmember'     => 'Үүний гишүүн:',
+'userrights-groups-help'      => 'Та энэ хэрэглэгчийн гишүүн болсон бүлгүүдийг өөрчлөх боломжтой.
 Хайрцгийг тэмдэглэсэн байвал хэрэглэгч тэр бүлэгт байгаа, тэмдэглээгүй байвал бүлэгт байхгүй гэсэн үг.
 <nowiki>*</nowiki> гэдэг нь нэгэнт нэмсэн бол бүлгийг авч болохгүй, эсвэл түүний эсрэгээр байна гэсэн үг.',
-'userrights-reason'                => 'Өөрчилсөн шалтгаан:',
-'userrights-available-none'        => 'Та бүлгийн гишүүнчлэлийг өөрчилж болохгүй.',
-'userrights-available-add'         => 'Та ямар ч хэрэглэгчийг дараах {{PLURAL:$2|бүлэгт|бүлгүүдэд}} нэмж болно: $1.',
-'userrights-available-remove'      => 'Та ямар ч хэрэглэгчийг дараах {{PLURAL:$2|бүлгээс|бүлгүүдээс}} хасч болно: $1.',
-'userrights-available-add-self'    => 'Та өөрийгөө дараах {{PLURAL:$2|бүлэгт|бүлгүүдэд}} нэмж болно: $1.',
-'userrights-available-remove-self' => 'Та өөрийгөө дараах {{PLURAL:$2|бүлгээс|бүлгүүдээс}} хасч болно: $1.',
-'userrights-no-interwiki'          => 'Таньд өөр викинүүдэд хэрэглэгчдийн эрхийг өөрчлөх зөвшөөрөл байхгүй.',
-'userrights-nodatabase'            => '$1 мэдээллийн сан байхгүй, эсвэл дотоодынх биш байна.',
-'userrights-nologin'               => 'Та хэрэглэгчдийн эрхийг хуваарилахбн тулд администраторын бүртгэлтэйгээр [[Special:Userlogin|нэвтэрч орох]] шаардлагатай.',
-'userrights-notallowed'            => 'Таны бүртгэл хэрэглэгчдийн эрхийг хуваарилах зөвшөөрөлгүй байна.',
-'userrights-changeable-col'        => 'Таны өөрчилж болох бүлгүүд',
-'userrights-unchangeable-col'      => 'Таны өөрчилж болохгүй бүлгүүд',
+'userrights-reason'           => 'Өөрчилсөн шалтгаан:',
+'userrights-no-interwiki'     => 'Таньд өөр викинүүдэд хэрэглэгчдийн эрхийг өөрчлөх зөвшөөрөл байхгүй.',
+'userrights-nodatabase'       => '$1 мэдээллийн сан байхгүй, эсвэл дотоодынх биш байна.',
+'userrights-nologin'          => 'Та хэрэглэгчдийн эрхийг хуваарилахбн тулд администраторын бүртгэлтэйгээр [[Special:Userlogin|нэвтэрч орох]] шаардлагатай.',
+'userrights-notallowed'       => 'Таны бүртгэл хэрэглэгчдийн эрхийг хуваарилах зөвшөөрөлгүй байна.',
+'userrights-changeable-col'   => 'Таны өөрчилж болох бүлгүүд',
+'userrights-unchangeable-col' => 'Таны өөрчилж болохгүй бүлгүүд',
 
 # Groups
 'group'               => 'Бүлэг:',

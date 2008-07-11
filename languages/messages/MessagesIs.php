@@ -975,29 +975,23 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'files'                   => 'Skrár',
 
 # User rights
-'userrights'                       => 'Breyta notandaréttindum', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Yfirlit notandahópa',
-'userrights-user-editname'         => 'Skráðu notandanafn:',
-'editusergroup'                    => 'Breyta notandahópum',
-'editinguser'                      => "Breyti réttindum '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Breyta notandahópum',
-'saveusergroups'                   => 'Vista notandahóp',
-'userrights-groupsmember'          => 'Meðlimur:',
-'userrights-groupsremovable'       => 'Færanlegir hópar:',
-'userrights-groupsavailable'       => 'Tiltækir flokkar:',
-'userrights-groups-help'           => 'Þú getur breytt hópunum sem að þessi notandi er í.
+'userrights'                  => 'Breyta notandaréttindum', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Yfirlit notandahópa',
+'userrights-user-editname'    => 'Skráðu notandanafn:',
+'editusergroup'               => 'Breyta notandahópum',
+'editinguser'                 => "Breyti réttindum '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Breyta notandahópum',
+'saveusergroups'              => 'Vista notandahóp',
+'userrights-groupsmember'     => 'Meðlimur:',
+'userrights-groups-help'      => 'Þú getur breytt hópunum sem að þessi notandi er í.
 * Valinn reitur þýðir að notandinn er í hópnum.
 * Óvalinn reitur þýðir að notandinn er ekki í hópnum.
 * Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
-'userrights-reason'                => 'Ástæða fyrir breytingunni:',
-'userrights-available-none'        => 'Þú getur ekki breytt hópaðild notenda.',
-'userrights-available-add'         => 'Þú getur bætt hvaða notanda sem er við {{PLURAL:$2|þennan hóp|þessa hópa}}: $1.',
-'userrights-available-remove'      => 'Þú getur fjarlægt hvaða notanda sem er úr {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
-'userrights-available-remove-self' => 'Þú getur fjarlægt sjálfan þig frá {{PLURAL:$2|þessum hóp|þessum hópum}}: $1.',
-'userrights-nologin'               => 'Þú verður að [[Special:Userlogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
-'userrights-notallowed'            => 'Þinn aðgangur hefur ekki réttindi til að útdeila notandaréttindum.',
-'userrights-changeable-col'        => 'Hópar sem þú getur breytt',
-'userrights-unchangeable-col'      => 'Hópar sem þú getur ekki breytt',
+'userrights-reason'           => 'Ástæða fyrir breytingunni:',
+'userrights-nologin'          => 'Þú verður að [[Special:Userlogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
+'userrights-notallowed'       => 'Þinn aðgangur hefur ekki réttindi til að útdeila notandaréttindum.',
+'userrights-changeable-col'   => 'Hópar sem þú getur breytt',
+'userrights-unchangeable-col' => 'Hópar sem þú getur ekki breytt',
 
 # Groups
 'group'               => 'Hópur:',

@@ -1080,32 +1080,25 @@ $2',
 'files'                    => 'Файлове',
 
 # User rights
-'userrights'                       => 'Управление на потребителските права', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Управляване на потребителските групи',
-'userrights-user-editname'         => 'Потребителско име:',
-'editusergroup'                    => 'Редактиране на потребителските групи',
-'editinguser'                      => "Промяна на потребителските права на потребител '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Редактиране на потребителските групи',
-'saveusergroups'                   => 'Съхраняване на потребителските групи',
-'userrights-groupsmember'          => 'Член на:',
-'userrights-groupsremovable'       => 'Премахваеми групи:',
-'userrights-groupsavailable'       => 'Групи на разположение:',
-'userrights-groups-help'           => 'Можете да променяте групите, в които е потребителят:
+'userrights'                  => 'Управление на потребителските права', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Управляване на потребителските групи',
+'userrights-user-editname'    => 'Потребителско име:',
+'editusergroup'               => 'Редактиране на потребителските групи',
+'editinguser'                 => "Промяна на потребителските права на потребител '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Редактиране на потребителските групи',
+'saveusergroups'              => 'Съхраняване на потребителските групи',
+'userrights-groupsmember'     => 'Член на:',
+'userrights-groups-help'      => 'Можете да променяте групите, в които е потребителят:
 * Поставена отметка означава, че потребителят е член на групата.
 * Поле без отметка означава, че потребителят не е член на групата.
 * Символът * показва, че не можете да премахнете групата, след като е вече добавена (или обратно).',
-'userrights-reason'                => 'Причина за промяната:',
-'userrights-available-none'        => 'Не можете да променяте групова принадлежност.',
-'userrights-available-add'         => 'Предоставя се възможност за добавянее на потребители към {{PLURAL:$2|следната група|следните групи}}: $1.',
-'userrights-available-remove'      => 'Предоставя се възможност за премахване на потребители от {{PLURAL:$2|следната група|следните групи}}: $1.',
-'userrights-available-add-self'    => 'Предоставя се възможност да се добавяте в {{PLURAL:$2|следната група|следните групи}}: $1.',
-'userrights-available-remove-self' => 'Предоставя се възможност да се премахнете от {{PLURAL:$2|следната група|следните групи}}: $1.',
-'userrights-no-interwiki'          => 'Нямате права да редактирате потребителските групи на други уикита.',
-'userrights-nodatabase'            => 'Базата данни $1 не съществува или не е на локалния сървър.',
-'userrights-nologin'               => 'За управление на потребителските права е необходимо [[Special:Userlogin|влизане]] с администраторска сметка.',
-'userrights-notallowed'            => 'Не ви е позволено да променяте потребителски права.',
-'userrights-changeable-col'        => 'Групи, които можете да променяте',
-'userrights-unchangeable-col'      => 'Групи, които не можете да променяте',
+'userrights-reason'           => 'Причина за промяната:',
+'userrights-no-interwiki'     => 'Нямате права да редактирате потребителските групи на други уикита.',
+'userrights-nodatabase'       => 'Базата данни $1 не съществува или не е на локалния сървър.',
+'userrights-nologin'          => 'За управление на потребителските права е необходимо [[Special:Userlogin|влизане]] с администраторска сметка.',
+'userrights-notallowed'       => 'Не ви е позволено да променяте потребителски права.',
+'userrights-changeable-col'   => 'Групи, които можете да променяте',
+'userrights-unchangeable-col' => 'Групи, които не можете да променяте',
 
 # Groups
 'group'               => 'Потребителска група:',

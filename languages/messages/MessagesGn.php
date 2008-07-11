@@ -224,15 +224,14 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
 'searchresultshead' => 'Jeheka',
 
 # User rights
-'userrights-lookup-user'     => 'Configurar grupos de usuarios',
-'userrights-user-editname'   => 'Ehaimi peteĩ téra puruháragua:',
-'editusergroup'              => 'Modificar grupos de usuarios',
-'editinguser'                => "Ojehaihína '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Modificar grupos de usuarios',
-'saveusergroups'             => 'Guardar grupos de usuarios',
-'userrights-groupsmember'    => 'Pehengue:',
-'userrights-groupsavailable' => 'Grupos disponibles:',
-'userrights-reason'          => 'Motivo para el cambio:',
+'userrights-lookup-user'   => 'Configurar grupos de usuarios',
+'userrights-user-editname' => 'Ehaimi peteĩ téra puruháragua:',
+'editusergroup'            => 'Modificar grupos de usuarios',
+'editinguser'              => "Ojehaihína '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Modificar grupos de usuarios',
+'saveusergroups'           => 'Guardar grupos de usuarios',
+'userrights-groupsmember'  => 'Pehengue:',
+'userrights-reason'        => 'Motivo para el cambio:',
 
 # Groups
 'group-all' => '(opaite)',

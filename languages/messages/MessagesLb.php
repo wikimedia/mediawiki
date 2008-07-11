@@ -972,32 +972,25 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'files'                    => 'Fichieren',
 
 # User rights
-'userrights'                       => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Benotzergrupp verwalten',
-'userrights-user-editname'         => 'Benotzernumm uginn:',
-'editusergroup'                    => 'Benotzergruppen änneren',
-'editinguser'                      => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Benotzergruppen änneren',
-'saveusergroups'                   => 'Benotzergruppe späicheren',
-'userrights-groupsmember'          => 'Member vun:',
-'userrights-groupsremovable'       => 'Gruppen déi geläscht kënne ginn:',
-'userrights-groupsavailable'       => "Et ginn d'Gruppen:",
-'userrights-groups-help'           => "Dir kënnt d'Gruppen zu denen dëse Benutzer gehéiert änneren. 
+'userrights'                  => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Benotzergrupp verwalten',
+'userrights-user-editname'    => 'Benotzernumm uginn:',
+'editusergroup'               => 'Benotzergruppen änneren',
+'editinguser'                 => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Benotzergruppen änneren',
+'saveusergroups'              => 'Benotzergruppe späicheren',
+'userrights-groupsmember'     => 'Member vun:',
+'userrights-groups-help'      => "Dir kënnt d'Gruppen zu denen dëse Benutzer gehéiert änneren. 
 * Een ugekräizten Haischen bedeit, datt de Benotzer Member vun dësem Grupp ass.
 * Een ugekräizten Haischen bedeit, datt de Benotzer net Member vun dësem Grupp ass.
 * E * bedeit datt Dir de Grupp net méi ewech huele kënnt wann e bis eemol derbäigesat ass oder gouf.",
-'userrights-reason'                => 'Grond:',
-'userrights-available-none'        => 'Dir däerft keng Benotzerrechter änneren.',
-'userrights-available-add'         => 'Dir kënnt Benotzer an {{PLURAL:$2|dëse Grupp|dës Grupppen}} derbäisetzen: $1.',
-'userrights-available-remove'      => 'Dir kënnt Benotzer aus {{PLURAL:$2|dëser Gruppe|dëse Gruppen}} eraushuelen: $1.',
-'userrights-available-add-self'    => 'Dir kënnt iech selwer an {{PLURAL:$2|dëse Grupp|dës Gruppen}} derbäisetzen: $1.',
-'userrights-available-remove-self' => 'Dir kënnt iech selwer aus {{PLURAL:$2|dësem Grupp|dëse Gruppen}} eraushuelen: $1.',
-'userrights-no-interwiki'          => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
-'userrights-nodatabase'            => "D'Datebank $1 gëtt et net oder se ass net lokal.",
-'userrights-nologin'               => 'Dir musst mat engem Administrateurs-Benutzerkont [[{{#special:Userlogin}}|agelogged sinn]], fir Benotzerrechter änneren ze kënnen.',
-'userrights-notallowed'            => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
-'userrights-changeable-col'        => 'Gruppen déi Dir ännere kënnt',
-'userrights-unchangeable-col'      => 'Gruppen déi Dir net ännere kënnt',
+'userrights-reason'           => 'Grond:',
+'userrights-no-interwiki'     => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
+'userrights-nodatabase'       => "D'Datebank $1 gëtt et net oder se ass net lokal.",
+'userrights-nologin'          => 'Dir musst mat engem Administrateurs-Benutzerkont [[{{#special:Userlogin}}|agelogged sinn]], fir Benotzerrechter änneren ze kënnen.',
+'userrights-notallowed'       => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
+'userrights-changeable-col'   => 'Gruppen déi Dir ännere kënnt',
+'userrights-unchangeable-col' => 'Gruppen déi Dir net ännere kënnt',
 
 # Groups
 'group'               => 'Grupp:',

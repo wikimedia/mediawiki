@@ -532,17 +532,14 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'files'                 => 'ਫਾਇਲਾਂ',
 
 # User rights
-'userrights-lookup-user'      => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਦੇਖਭਾਲ',
-'userrights-user-editname'    => 'ਇੱਕ ਯੂਜ਼ਰ ਨਾਂ ਦਿਓ:',
-'editusergroup'               => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
-'editinguser'                 => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
-'userrights-editusergroup'    => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
-'saveusergroups'              => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੰਭਾਲੋ',
-'userrights-groupsmember'     => 'ਇਸ ਦਾ ਮੈਂਬਰ:',
-'userrights-groupsavailable'  => 'ਉਪਲੱਬਧ ਗਰੁੱਪ:',
-'userrights-reason'           => 'ਬਦਲਣ ਦੇ ਕਾਰਨ:',
-'userrights-available-add'    => 'ਤੁਸੀਂ ਯੂਜ਼ਰਾਂ ਨੂੰ $1 ਵਿੱਚ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ।',
-'userrights-available-remove' => 'ਤੁਸੀਂ ਯੂਜ਼ਰਾਂ ਨੂੰ $1 ਵਿੱਚ ਹਟਾ ਕਰ ਸਕਦੇ ਹੋ।',
+'userrights-lookup-user'   => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਦੇਖਭਾਲ',
+'userrights-user-editname' => 'ਇੱਕ ਯੂਜ਼ਰ ਨਾਂ ਦਿਓ:',
+'editusergroup'            => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
+'editinguser'              => '<b>$1</b> ਯੂਜ਼ਰ ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',
+'userrights-editusergroup' => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੋਧ',
+'saveusergroups'           => 'ਯੂਜ਼ਰ ਗਰੁੱਪ ਸੰਭਾਲੋ',
+'userrights-groupsmember'  => 'ਇਸ ਦਾ ਮੈਂਬਰ:',
+'userrights-reason'        => 'ਬਦਲਣ ਦੇ ਕਾਰਨ:',
 
 # Groups
 'group' => 'ਗਰੁੱਪ:',

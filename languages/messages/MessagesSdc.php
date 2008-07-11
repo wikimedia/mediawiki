@@ -801,24 +801,19 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'files'                    => 'File',
 
 # User rights
-'userrights'                  => "Gisthioni di li primissi reratibi a l'utenti", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'Gisthioni di li gruppi utenti',
-'userrights-user-editname'    => "Insirì l'innòmu utenti:",
-'editusergroup'               => 'Mudìfigga gruppi utenti',
-'editinguser'                 => "Mudifigga di li diritti di l'utenti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Mudìfigga gruppi utenti',
-'saveusergroups'              => 'Sàivva gruppi utenti',
-'userrights-groupsmember'     => 'Appartheni a li gruppi:',
-'userrights-groupsremovable'  => 'Gruppi supprimibiri:',
-'userrights-groupsavailable'  => 'Gruppi dipunìbiri:',
-'userrights-reason'           => 'Mutibu di la mudìffiga:',
-'userrights-available-none'   => "Nò t'è cunsintiddu mudìffigà l'apparthinènzia a li gruppi.",
-'userrights-available-add'    => 'È pussìbiri assuzià utenti a {{PLURAL:$2|chisthu gruppu|chisthi gruppi}}: $1.',
-'userrights-available-remove' => "È pussìbiri buggà l'utenti da {{PLURAL:$2|chisthu gruppu|chisthi gruppi}}: $1.",
-'userrights-no-interwiki'     => "Nò ài lu primmissu pa mudìfiggà li diritti di l'utenti i' althri siti.",
-'userrights-nodatabase'       => 'La bancadati $1 nò isisthi o nò è in lucari.',
-'userrights-nologin'          => 'Débi [[Special:Userlogin|intrà]] cumenti amministhradori pa assignà li diritti utenti.',
-'userrights-notallowed'       => "La registhrazioni tóia nò à lu primissu d'assignà li diritti utenti.",
+'userrights'               => "Gisthioni di li primissi reratibi a l'utenti", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Gisthioni di li gruppi utenti',
+'userrights-user-editname' => "Insirì l'innòmu utenti:",
+'editusergroup'            => 'Mudìfigga gruppi utenti',
+'editinguser'              => "Mudifigga di li diritti di l'utenti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Mudìfigga gruppi utenti',
+'saveusergroups'           => 'Sàivva gruppi utenti',
+'userrights-groupsmember'  => 'Appartheni a li gruppi:',
+'userrights-reason'        => 'Mutibu di la mudìffiga:',
+'userrights-no-interwiki'  => "Nò ài lu primmissu pa mudìfiggà li diritti di l'utenti i' althri siti.",
+'userrights-nodatabase'    => 'La bancadati $1 nò isisthi o nò è in lucari.',
+'userrights-nologin'       => 'Débi [[Special:Userlogin|intrà]] cumenti amministhradori pa assignà li diritti utenti.',
+'userrights-notallowed'    => "La registhrazioni tóia nò à lu primissu d'assignà li diritti utenti.",
 
 # Groups
 'group'               => 'Gruppu:',

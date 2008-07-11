@@ -809,22 +809,16 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'files'                   => 'Fişiere',
 
 # User rights
-'userrights'                       => 'Administrarea drepturilor de utilizator', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Administrare grupuri de utilizatori',
-'userrights-user-editname'         => 'Introdu un nume de utilizator:',
-'editusergroup'                    => 'Modificare grup de utilizatori',
-'editinguser'                      => "modificare drepturi de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Modifică grupul de utilizatori',
-'saveusergroups'                   => 'Salvează grupul de utilizatori',
-'userrights-groupsmember'          => 'Membru al:',
-'userrights-groupsavailable'       => 'Grupuri disponibile:',
-'userrights-reason'                => 'Motivul schimbării:',
-'userrights-available-none'        => 'Nu poţi modifica apartenenţa la grup.',
-'userrights-available-add'         => 'Poţi adăuga utilizatorii la {{PLURAL:$2|acest grup|aceste grupuri}}: $1.',
-'userrights-available-remove'      => 'Poţi muta utilizatorii din {{PLURAL:$2|acest grup|aceste grupuri}}: $1.',
-'userrights-available-add-self'    => 'Te poţi adăuga singur la {{PLURAL:$2|acest grup|aceste grupuri}}: $1.',
-'userrights-available-remove-self' => 'Te poţi elimina singur din {{PLURAL:$2|acest grup|aceste grupuri}}: $1.',
-'userrights-nodatabase'            => 'Baza de date $1 nu există sau nu este locală.',
+'userrights'               => 'Administrarea drepturilor de utilizator', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Administrare grupuri de utilizatori',
+'userrights-user-editname' => 'Introdu un nume de utilizator:',
+'editusergroup'            => 'Modificare grup de utilizatori',
+'editinguser'              => "modificare drepturi de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Modifică grupul de utilizatori',
+'saveusergroups'           => 'Salvează grupul de utilizatori',
+'userrights-groupsmember'  => 'Membru al:',
+'userrights-reason'        => 'Motivul schimbării:',
+'userrights-nodatabase'    => 'Baza de date $1 nu există sau nu este locală.',
 
 # Groups
 'group'               => 'Grup:',

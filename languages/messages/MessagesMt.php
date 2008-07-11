@@ -899,32 +899,25 @@ Tista' tfittex bl-użu ta' Google għalissa.
 'files'                    => 'Fajls',
 
 # User rights
-'userrights'                       => "Treġija tal-permessi relativi 'l utenti", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Treġija tal-gruppijiet ta' utenti",
-'userrights-user-editname'         => 'Daħħal l-isem tal-utent:',
-'editusergroup'                    => "Modifika l-gruppijiet ta' l-utenti",
-'editinguser'                      => "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => "Modifika tal-gruppijiet ta' l-utenti",
-'saveusergroups'                   => 'Modifika Gruppijiet tal-Utenti',
-'userrights-groupsmember'          => "Membru ta':",
-'userrights-groupsremovable'       => 'Gruppijiet eliminabli:',
-'userrights-groupsavailable'       => 'Gruppijiet disponnibli:',
-'userrights-groups-help'           => "Huwa possibli li tagħmel modifiki għal f'liem grupp dan l-utent huwa.
+'userrights'                  => "Treġija tal-permessi relativi 'l utenti", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Treġija tal-gruppijiet ta' utenti",
+'userrights-user-editname'    => 'Daħħal l-isem tal-utent:',
+'editusergroup'               => "Modifika l-gruppijiet ta' l-utenti",
+'editinguser'                 => "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => "Modifika tal-gruppijiet ta' l-utenti",
+'saveusergroups'              => 'Modifika Gruppijiet tal-Utenti',
+'userrights-groupsmember'     => "Membru ta':",
+'userrights-groups-help'      => "Huwa possibli li tagħmel modifiki għal f'liem grupp dan l-utent huwa.
 * Kaxxa bil-punta magħżula tfisser li l-utent huwa fil-grupp
 * Kaxxa bil-punta mhux magħżula tfisser li l-utent mhux fil-grupp
 * Il-Simbolu * jindika li mhux possibli telimina l-grupp wara jiġi maħluq (jew viċe versa)",
-'userrights-reason'                => 'Raġuni għal modifika:',
-'userrights-available-none'        => 'Ma tistax tagħmel modifiki għas-sħubija tal-grupp.',
-'userrights-available-add'         => "Tista' iżżid kwalunkwe utent f'{{PLURAL:$2|dan il-grupp|dawn il-gruppijiet}}: $1.",
-'userrights-available-remove'      => "Tista' tneħħi kwalunkwe utent minn {{PLURAL:$2|dan il-grupp|dawn il-gruppijiet}}: $1.",
-'userrights-available-add-self'    => "Tista' iżżid lilhek innifsek f'{{PLURAL:$2|dan il-grupp|dawn il-gruppijiet}}: $1.",
-'userrights-available-remove-self' => "Tista' tneħħi lilhek innifsek minn {{PLURAL:$2|dan il-grupp|dawn il-gruppijiet}}: $1.",
-'userrights-no-interwiki'          => "M'għandhekx il-permess li tagħmel modifiki fid-drittijiet tal-utenti fuq siti oħrajn.",
-'userrights-nodatabase'            => 'Id-Database $1 ma jeżistix jew inkella mhux database lokali.',
-'userrights-nologin'               => "Sabiex tkun tista' tagħti d-drittijiet lil utenti huwa neċessarju li [[Special:Userlogin|tidħol]] bħalha amministratur.",
-'userrights-notallowed'            => "L-Utent m'għandux permessi neċessarji sabiex ikun jista' jagħti drittijiet lil utenti.",
-'userrights-changeable-col'        => "Gruppijiet f'liem tista' tagħmel modifiki",
-'userrights-unchangeable-col'      => "Gruppijiet f'liem ma tistax tagħmel modifiki",
+'userrights-reason'           => 'Raġuni għal modifika:',
+'userrights-no-interwiki'     => "M'għandhekx il-permess li tagħmel modifiki fid-drittijiet tal-utenti fuq siti oħrajn.",
+'userrights-nodatabase'       => 'Id-Database $1 ma jeżistix jew inkella mhux database lokali.',
+'userrights-nologin'          => "Sabiex tkun tista' tagħti d-drittijiet lil utenti huwa neċessarju li [[Special:Userlogin|tidħol]] bħalha amministratur.",
+'userrights-notallowed'       => "L-Utent m'għandux permessi neċessarji sabiex ikun jista' jagħti drittijiet lil utenti.",
+'userrights-changeable-col'   => "Gruppijiet f'liem tista' tagħmel modifiki",
+'userrights-unchangeable-col' => "Gruppijiet f'liem ma tistax tagħmel modifiki",
 
 # Groups
 'group'               => 'Grupp:',

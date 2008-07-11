@@ -846,32 +846,25 @@ Možyš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańa.",
 'files'                    => 'Pliki',
 
 # User rights
-'userrights'                       => 'Zařůndzańe prowami užytkowńikůw', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Zažůndzej prawami užytkownika',
-'userrights-user-editname'         => 'Wklepej sam nazwa užytkowńika:',
-'editusergroup'                    => 'Sprowjej grupy užytkowńika',
-'editinguser'                      => "Zmjana uprawńyń užytkowńika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Sprowjej grupy užytkowńika',
-'saveusergroups'                   => 'Naškryflej',
-'userrights-groupsmember'          => 'Noležy do:',
-'userrights-groupsremovable'       => 'Idźe go wyćepać ze grup:',
-'userrights-groupsavailable'       => 'Dostympne grupy :',
-'userrights-groups-help'           => 'Možeš půmjyńać přinoležność tygo užytkowńika do podanych grup.
+'userrights'                  => 'Zařůndzańe prowami užytkowńikůw', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Zažůndzej prawami užytkownika',
+'userrights-user-editname'    => 'Wklepej sam nazwa užytkowńika:',
+'editusergroup'               => 'Sprowjej grupy užytkowńika',
+'editinguser'                 => "Zmjana uprawńyń užytkowńika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Sprowjej grupy užytkowńika',
+'saveusergroups'              => 'Naškryflej',
+'userrights-groupsmember'     => 'Noležy do:',
+'userrights-groups-help'      => 'Možeš půmjyńać přinoležność tygo užytkowńika do podanych grup.
 *Zaznačůne pole uoznačo přinoležność užytkowńika do danej grupy.
 *Ńy zaznačůne pole uoznačo, aže užytkowńik ńy noležy do danej grupy.
 * Gwjozdka * infomuje, co ńy možeš wyćepać s grupy po dodańu do ńij abo dodać po wyćepańu s grupy.',
-'userrights-reason'                => 'S kuli čego je půmjeńeńe:',
-'userrights-available-none'        => 'Ńy možeš půmjyńać přinoležnośći do grup.',
-'userrights-available-add'         => 'Možeš dodać jakigokolwjek užytkowńika do {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-remove'      => 'Možeš wyćepać jakigokolwjek užytkowńika ze {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-add-self'    => 'Ńy možeš dodać śebje do {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-available-remove-self' => 'Ńy možeš wyćepać śebje ze {{PLURAL:$2|grupy|grup}}: $1.',
-'userrights-no-interwiki'          => 'Ńy moš dostympu do sprowjańo uprawńyń.',
-'userrights-nodatabase'            => 'Baza danych $1 ńy istńije abo ńy je lokalno.',
-'userrights-nologin'               => 'Muśyš [[Special:Userlogin|zalůgować śe]] na kůnto admińistratora, coby nadować uprawńyńo užytkowńikům.',
-'userrights-notallowed'            => 'Ńy moš dostympu do nadawańo uprawńyń užytkowńikům.',
-'userrights-changeable-col'        => 'Grupy, kere možeš wybrać',
-'userrights-unchangeable-col'      => 'Grupy, kerych ńy možeš wybrać',
+'userrights-reason'           => 'S kuli čego je půmjeńeńe:',
+'userrights-no-interwiki'     => 'Ńy moš dostympu do sprowjańo uprawńyń.',
+'userrights-nodatabase'       => 'Baza danych $1 ńy istńije abo ńy je lokalno.',
+'userrights-nologin'          => 'Muśyš [[Special:Userlogin|zalůgować śe]] na kůnto admińistratora, coby nadować uprawńyńo užytkowńikům.',
+'userrights-notallowed'       => 'Ńy moš dostympu do nadawańo uprawńyń užytkowńikům.',
+'userrights-changeable-col'   => 'Grupy, kere možeš wybrać',
+'userrights-unchangeable-col' => 'Grupy, kerych ńy možeš wybrać',
 
 # Groups
 'group'               => 'Grupa:',

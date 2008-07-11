@@ -882,32 +882,25 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'files'                    => 'Willañiqikuna',
 
 # User rights
-'userrights'                       => 'Ruraqkunata saqillanap allinkachinan', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Ruraqkunap huñunkunata allinkachiy',
-'userrights-user-editname'         => 'Ruraqpa sutinta qillqamuy:',
-'editusergroup'                    => 'Ruraqkunap huñunkunata hukchay',
-'editinguser'                      => "Kay ruraqpa hayñinkunata hukchaspa: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Ruraqkunap huñunkunata hukchay',
-'saveusergroups'                   => 'Ruraq huñukunata waqaychay',
-'userrights-groupsmember'          => 'Kayman kapuq:',
-'userrights-groupsremovable'       => 'Qichunalla huñukuna:',
-'userrights-groupsavailable'       => 'Makihawa huñukuna:',
-'userrights-groups-help'           => 'Ima huñukunapichus kay ruraq kachkan, chaytam hukchayta atinki.
+'userrights'                  => 'Ruraqkunata saqillanap allinkachinan', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Ruraqkunap huñunkunata allinkachiy',
+'userrights-user-editname'    => 'Ruraqpa sutinta qillqamuy:',
+'editusergroup'               => 'Ruraqkunap huñunkunata hukchay',
+'editinguser'                 => "Kay ruraqpa hayñinkunata hukchaspa: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Ruraqkunap huñunkunata hukchay',
+'saveusergroups'              => 'Ruraq huñukunata waqaychay',
+'userrights-groupsmember'     => 'Kayman kapuq:',
+'userrights-groups-help'      => 'Ima huñukunapichus kay ruraq kachkan, chaytam hukchayta atinki.
 * Sananchasqa kahacha niyta munan, ruraqqa kay huñupim kachkan, nispa.
 * Mana sananchasqa kahachataq niyta munan, ruraqqa manam kay huñupichu kachkan, nispa.
 * <nowiki>*</nowiki> quyllurchataq niyta munan, yaparqaspaykiqa manam atinkichu huñuta qichuyta, qichurqaspaykitaq manam atinkichu yapayta, nispa.',
-'userrights-reason'                => 'Imarayku hukchasqa:',
-'userrights-available-none'        => 'Manam saqillasunkichu ruraqpa huñunman kapuy hukchayta.',
-'userrights-available-add'         => 'Ima ruraqtapas kay {{PLURAL:$2|huñumanmi|huñukunamanmi}} yapayta atinki: $1.',
-'userrights-available-remove'      => 'Ima ruraqtapas kay {{PLURAL:$2|huñumantam|huñukunamantam}} qichuyta atinki: $1.',
-'userrights-available-add-self'    => 'Kikiykitaqa kay {{PLURAL:$2|huñumanmi|huñukunamanmi}} yapakamuyta atinki: $1.',
-'userrights-available-remove-self' => 'Kikiykitaqa kay {{PLURAL:$2|huñumantam|huñukunamantam}} qichukuyta atinki: $1.',
-'userrights-no-interwiki'          => 'Manam saqillasunkichu huk wikikunapi ruraqkunap hayñinkunata hukchayta.',
-'userrights-nodatabase'            => '$1 sutiyuq willañiqintinqa manam kanchu icha manam kayllapichu.',
-'userrights-nologin'               => 'Kamachiqpa rakiqunaykiwan [[Special:Userlogin|yaykunaykim]] tiyan ruraqkunap hayñinkunata rurapunaykipaq.',
-'userrights-notallowed'            => 'Qampa rakiqunaykiwanqa manam ruraqkunap hayñinkunata rurapuyta atinkichu.',
-'userrights-changeable-col'        => 'Hukchanayki huñukuna',
-'userrights-unchangeable-col'      => 'Mana hukchanayki huñukuna',
+'userrights-reason'           => 'Imarayku hukchasqa:',
+'userrights-no-interwiki'     => 'Manam saqillasunkichu huk wikikunapi ruraqkunap hayñinkunata hukchayta.',
+'userrights-nodatabase'       => '$1 sutiyuq willañiqintinqa manam kanchu icha manam kayllapichu.',
+'userrights-nologin'          => 'Kamachiqpa rakiqunaykiwan [[Special:Userlogin|yaykunaykim]] tiyan ruraqkunap hayñinkunata rurapunaykipaq.',
+'userrights-notallowed'       => 'Qampa rakiqunaykiwanqa manam ruraqkunap hayñinkunata rurapuyta atinkichu.',
+'userrights-changeable-col'   => 'Hukchanayki huñukuna',
+'userrights-unchangeable-col' => 'Mana hukchanayki huñukuna',
 
 # Groups
 'group'               => 'Huñu:',

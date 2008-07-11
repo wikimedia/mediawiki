@@ -720,18 +720,15 @@ i yesɛan akk awalen i banen-d).",
 'files'                    => 'Ifayluwen',
 
 # User rights
-'userrights'                  => 'Laɛej iserfan n wemseqdac', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'Laɛej iderman n yimseqdacen',
-'userrights-user-editname'    => 'Ssekcem isem n wemseqdac:',
-'editusergroup'               => 'Beddel iderman n yimseqdacen',
-'editinguser'                 => "Abeddel n wemseqdac '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Beddel iderman n wemseqdac',
-'saveusergroups'              => 'Smekti iderman n yimseqdacen',
-'userrights-groupsmember'     => 'Amaslad deg:',
-'userrights-groupsavailable'  => 'Iderman i yellan:',
-'userrights-reason'           => 'Ayɣer yettubeddel:',
-'userrights-available-add'    => 'Tzemreḍ ad ternuḍ imseqdacen i $1.',
-'userrights-available-remove' => 'Tzemreḍ ad tekkseḍ imseqdacen seg $1.',
+'userrights'               => 'Laɛej iserfan n wemseqdac', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Laɛej iderman n yimseqdacen',
+'userrights-user-editname' => 'Ssekcem isem n wemseqdac:',
+'editusergroup'            => 'Beddel iderman n yimseqdacen',
+'editinguser'              => "Abeddel n wemseqdac '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Beddel iderman n wemseqdac',
+'saveusergroups'           => 'Smekti iderman n yimseqdacen',
+'userrights-groupsmember'  => 'Amaslad deg:',
+'userrights-reason'        => 'Ayɣer yettubeddel:',
 
 # Groups
 'group'       => 'Adrum:',

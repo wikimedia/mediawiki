@@ -993,32 +993,25 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'files'                    => 'File',
 
 # User rights
-'userrights'                       => 'Gestione dei permessi relativi agli utenti', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Gestione dei gruppi utente',
-'userrights-user-editname'         => 'Inserire il nome utente:',
-'editusergroup'                    => 'Modifica gruppi utente',
-'editinguser'                      => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Modifica gruppi utente',
-'saveusergroups'                   => 'Salva gruppi utente',
-'userrights-groupsmember'          => 'Appartiene ai gruppi:',
-'userrights-groupsremovable'       => 'Gruppi eliminabili:',
-'userrights-groupsavailable'       => 'Gruppi disponibili:',
-'userrights-groups-help'           => "È possibile modificare i gruppi cui è assegnato l'utente.
+'userrights'                  => 'Gestione dei permessi relativi agli utenti', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Gestione dei gruppi utente',
+'userrights-user-editname'    => 'Inserire il nome utente:',
+'editusergroup'               => 'Modifica gruppi utente',
+'editinguser'                 => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Modifica gruppi utente',
+'saveusergroups'              => 'Salva gruppi utente',
+'userrights-groupsmember'     => 'Appartiene ai gruppi:',
+'userrights-groups-help'      => "È possibile modificare i gruppi cui è assegnato l'utente.
 * Una casella di spunta selezionata indica l'appartenenza dell'utente al gruppo
 * Una casella di spunta deselezionata indica la sua mancata appartenenza al gruppo.
 * Il simbolo * indica che non è possibile eliminare l'appartenenza al gruppo dopo averla aggiunta (o vice versa).",
-'userrights-reason'                => 'Motivo della modifica:',
-'userrights-available-none'        => "Non è consentito modificare l'appartenenza ai gruppi.",
-'userrights-available-add'         => 'È possibile associare gli utenti {{PLURAL:$2|al gruppo|ai gruppi}}: $1.',
-'userrights-available-remove'      => 'È possibile rimuovere gli utenti {{PLURAL:$2|dal gruppo|dai gruppi}}: $1.',
-'userrights-available-add-self'    => 'È possibile aggiungere il proprio account {{PLURAL:$2|al gruppo indicato|ai gruppi indicati}} di seguito: $1.',
-'userrights-available-remove-self' => 'È possibile rimuovere il proprio account {{PLURAL:$2|dal gruppo indicato|dai gruppi indicati}} di seguito: $1.',
-'userrights-no-interwiki'          => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
-'userrights-nodatabase'            => 'Il database $1 non esiste o non è un database locale.',
-'userrights-nologin'               => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
-'userrights-notallowed'            => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
-'userrights-changeable-col'        => 'Gruppi modificabili',
-'userrights-unchangeable-col'      => 'Gruppi non modificabili',
+'userrights-reason'           => 'Motivo della modifica:',
+'userrights-no-interwiki'     => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
+'userrights-nodatabase'       => 'Il database $1 non esiste o non è un database locale.',
+'userrights-nologin'          => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
+'userrights-notallowed'       => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
+'userrights-changeable-col'   => 'Gruppi modificabili',
+'userrights-unchangeable-col' => 'Gruppi non modificabili',
 
 # Groups
 'group'               => 'Gruppo:',

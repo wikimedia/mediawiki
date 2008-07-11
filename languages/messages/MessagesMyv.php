@@ -632,17 +632,13 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'files'                    => 'Файлат',
 
 # User rights
-'userrights-lookup-user'        => 'Сови куротнень ветямось',
-'userrights-user-editname'      => 'Сёрмадт теицянь лем:',
-'editusergroup'                 => 'Витнемс-петнемс сови куротнень',
-'saveusergroups'                => 'Ванстомс сови куротнень',
-'userrights-groupsremovable'    => 'Курот, конат нардавить:',
-'userrights-groupsavailable'    => 'Кочкамкс курот:',
-'userrights-reason'             => 'Полавтомань тувтал:',
-'userrights-available-none'     => 'Тонеть а мерить лиякстомтомс тень, кие кодамо сови куросо ашти.',
-'userrights-available-add-self' => 'Ули мелеть совавтык эсь прят {{PLURAL:$2|те куронтень|не куротнес}}: $1.',
-'userrights-changeable-col'     => 'Курот, конат тонеть полавтовить',
-'userrights-unchangeable-col'   => 'Курот, конат тонеть а полавтовить',
+'userrights-lookup-user'      => 'Сови куротнень ветямось',
+'userrights-user-editname'    => 'Сёрмадт теицянь лем:',
+'editusergroup'               => 'Витнемс-петнемс сови куротнень',
+'saveusergroups'              => 'Ванстомс сови куротнень',
+'userrights-reason'           => 'Полавтомань тувтал:',
+'userrights-changeable-col'   => 'Курот, конат тонеть полавтовить',
+'userrights-unchangeable-col' => 'Курот, конат тонеть а полавтовить',
 
 # Groups
 'group'               => 'Группа:',

@@ -910,32 +910,25 @@ $2',
 'files'                    => '檔案',
 
 # User rights
-'userrights'                       => '用戶權限管理', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => '管理用戶群組',
-'userrights-user-editname'         => '輸入用戶名:',
-'editusergroup'                    => '編輯用戶群組',
-'editinguser'                      => "正在更改用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限",
-'userrights-editusergroup'         => '編輯用戶群組',
-'saveusergroups'                   => '保存用戶群組',
-'userrights-groupsmember'          => '屬於:',
-'userrights-groupsremovable'       => '可移除群組:',
-'userrights-groupsavailable'       => '可用群組:',
-'userrights-groups-help'           => '您可以改動這位用戶所屬的群組:
+'userrights'                  => '用戶權限管理', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => '管理用戶群組',
+'userrights-user-editname'    => '輸入用戶名:',
+'editusergroup'               => '編輯用戶群組',
+'editinguser'                 => "正在更改用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限",
+'userrights-editusergroup'    => '編輯用戶群組',
+'saveusergroups'              => '保存用戶群組',
+'userrights-groupsmember'     => '屬於:',
+'userrights-groups-help'      => '您可以改動這位用戶所屬的群組:
 * 已剔選的核取方塊代表該用戶屬於該群組。
 * 未剔選的核取方塊代表該用戶不是屬於該群組。
 * 一個 * 表示當您加入群組之後更不能移除它，反之亦然。',
-'userrights-reason'                => '更改原因:',
-'userrights-available-none'        => '您不可以更改組別成員。',
-'userrights-available-add'         => '您可以加入任何用戶到{{PLURAL:$2|一個|多個}}組中: $1。',
-'userrights-available-remove'      => '您可以從{{PLURAL:$2|一個|多個}}組中移除任何用戶: $1。',
-'userrights-available-add-self'    => '您可以加入您自己到{{PLURAL:$2|一個|多個}}組中: $1。',
-'userrights-available-remove-self' => '您可以從{{PLURAL:$2|一個|多個}}組中移除您自己: $1。',
-'userrights-no-interwiki'          => '您並沒有權限去編輯在其它wiki上的用戶權限。',
-'userrights-nodatabase'            => '資料庫$1不存在或並非為本地的。',
-'userrights-nologin'               => '您必須要以操作員帳戶[[Special:Userlogin|登入]]之後才可以指定用戶權限。',
-'userrights-notallowed'            => '您的帳戶無權限去指定用戶權限。',
-'userrights-changeable-col'        => '您可以更改的群組',
-'userrights-unchangeable-col'      => '您不可以更改的群組',
+'userrights-reason'           => '更改原因:',
+'userrights-no-interwiki'     => '您並沒有權限去編輯在其它wiki上的用戶權限。',
+'userrights-nodatabase'       => '資料庫$1不存在或並非為本地的。',
+'userrights-nologin'          => '您必須要以操作員帳戶[[Special:Userlogin|登入]]之後才可以指定用戶權限。',
+'userrights-notallowed'       => '您的帳戶無權限去指定用戶權限。',
+'userrights-changeable-col'   => '您可以更改的群組',
+'userrights-unchangeable-col' => '您不可以更改的群組',
 
 # Groups
 'group'               => '群組:',

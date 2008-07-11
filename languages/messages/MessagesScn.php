@@ -912,32 +912,25 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'files'                    => 'Mmàggini',
 
 # User rights
-'userrights'                       => 'Gistioni dî dritti utenti', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Gistisci li gruppi di l'utenti",
-'userrights-user-editname'         => "Trasi nu nomu d'utenti:",
-'editusergroup'                    => 'Cancia gruppi utenti',
-'editinguser'                      => "Canciamentu dî dritti di l'utenti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => "Cancia li gruppi di l'utenti",
-'saveusergroups'                   => 'Sarva gruppi utenti',
-'userrights-groupsmember'          => 'Membru di:',
-'userrights-groupsremovable'       => 'Gruppi eliminabili:',
-'userrights-groupsavailable'       => 'Gruppi dispunìbbili:',
-'userrights-groups-help'           => "È pussibili canciari li gruppi cui è assegnatu l'utenti.
+'userrights'                  => 'Gistioni dî dritti utenti', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Gistisci li gruppi di l'utenti",
+'userrights-user-editname'    => "Trasi nu nomu d'utenti:",
+'editusergroup'               => 'Cancia gruppi utenti',
+'editinguser'                 => "Canciamentu dî dritti di l'utenti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => "Cancia li gruppi di l'utenti",
+'saveusergroups'              => 'Sarva gruppi utenti',
+'userrights-groupsmember'     => 'Membru di:',
+'userrights-groups-help'      => "È pussibili canciari li gruppi cui è assegnatu l'utenti.
 * Na casedda di spunta silizzionata ndica l'appartinenza dill'utenti ô gruppu
 * Na casedda di spunta nun silizzionata ndica la sou mancata appartinenza ô gruppu.
 * Lu simbulu * ndica ca nun è pussibili livari l'appartinenza ô gruppo dopo avirla junciuta (o vici versa).",
-'userrights-reason'                => 'Mutivu dû canciu:',
-'userrights-available-none'        => "Nun è cunzintitu canciari l'appartinenza a li gruppi.",
-'userrights-available-add'         => "Poi assuciari l'utenti {{PLURAL:$2|a lu gruppu|a li gruppi}}: $1.",
-'userrights-available-remove'      => "È pussìbbili cancillari l'utenti {{PLURAL:$2|dû gruppu|dî gruppi}}: $1.",
-'userrights-available-add-self'    => 'È possibili junciri lu propriu account {{PLURAL:$2|ô gruppu ndicato |ê gruppi ndicati}} ccà: $1.',
-'userrights-available-remove-self' => 'È possibili livari lu propriu account {{PLURAL:$2|dô gruppu ndicatu|dê gruppi ndicati}} ccà: $1.',
-'userrights-no-interwiki'          => "Nun si disponi di li pirmessi nicissari pi canciari li diritti di l'utenti ni autri siti.",
-'userrights-nodatabase'            => 'Lu database $1 nu esisti o nun è lu database locali.',
-'userrights-nologin'               => "Pi assignari li diritti di l'utenti è nicissariu [[Special:Userlogin|trasiri]] comu amministraturi.",
-'userrights-notallowed'            => "L'utenti nun disponi dê pirmessi nicissari pi assignari diritti all'utenti.",
-'userrights-changeable-col'        => 'Gruppi canciabili',
-'userrights-unchangeable-col'      => 'Gruppi nun canciabili',
+'userrights-reason'           => 'Mutivu dû canciu:',
+'userrights-no-interwiki'     => "Nun si disponi di li pirmessi nicissari pi canciari li diritti di l'utenti ni autri siti.",
+'userrights-nodatabase'       => 'Lu database $1 nu esisti o nun è lu database locali.',
+'userrights-nologin'          => "Pi assignari li diritti di l'utenti è nicissariu [[Special:Userlogin|trasiri]] comu amministraturi.",
+'userrights-notallowed'       => "L'utenti nun disponi dê pirmessi nicissari pi assignari diritti all'utenti.",
+'userrights-changeable-col'   => 'Gruppi canciabili',
+'userrights-unchangeable-col' => 'Gruppi nun canciabili',
 
 # Groups
 'group'               => 'Gruppu:',

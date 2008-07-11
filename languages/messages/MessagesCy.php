@@ -932,32 +932,25 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'files'                    => 'Ffeiliau',
 
 # User rights
-'userrights'                       => 'Rheoli galluoedd defnyddwyr', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Rheoli grwpiau defnyddiwr',
-'userrights-user-editname'         => 'Rhowch enw defnyddiwr:',
-'editusergroup'                    => 'Golygu Grwpiau Defnyddwyr',
-'editinguser'                      => "Newid galluoedd y defnyddiwr '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Golygu grwpiau defnyddwyr',
-'saveusergroups'                   => "Cadw'r Grwpiau Defnyddwyr",
-'userrights-groupsmember'          => 'Yn aelod o:',
-'userrights-groupsremovable'       => 'Grwpiau y gellir eu tynnu:',
-'userrights-groupsavailable'       => 'Grwpiau ar gael:',
-'userrights-groups-help'           => 'Gallwch newid y grwpiau y perthyn y defnyddiwr hwn iddynt:
+'userrights'                  => 'Rheoli galluoedd defnyddwyr', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Rheoli grwpiau defnyddiwr',
+'userrights-user-editname'    => 'Rhowch enw defnyddiwr:',
+'editusergroup'               => 'Golygu Grwpiau Defnyddwyr',
+'editinguser'                 => "Newid galluoedd y defnyddiwr '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Golygu grwpiau defnyddwyr',
+'saveusergroups'              => "Cadw'r Grwpiau Defnyddwyr",
+'userrights-groupsmember'     => 'Yn aelod o:',
+'userrights-groups-help'      => 'Gallwch newid y grwpiau y perthyn y defnyddiwr hwn iddynt:
 * Mae defnyddiwr yn perthyn i grŵp pan mae tic yn y bocs.
 * Nid yw defnyddiwr yn perthyn i grŵp pan nad oes tic yn y bocs.
 * Mae * yn golygu na fyddwch yn gallu dad-wneud unrhyw newid yn y grŵp hwnnw.',
-'userrights-reason'                => 'Y rheswm dros y newid:',
-'userrights-available-none'        => 'Ni allwch newid aelodaeth grwpiau.',
-'userrights-available-add'         => 'Gallwch ychwanegu defnyddiwr at y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.',
-'userrights-available-remove'      => "Gallwch dynnu defnyddiwr o'r {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
-'userrights-available-add-self'    => "Gallwch ychwanegu'ch hunan at y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
-'userrights-available-remove-self' => "Gallwch dynnu'ch hunan oddi ar y {{PLURAL:$2|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol: $1.",
-'userrights-no-interwiki'          => "Nid yw'r gallu ganddoch i newid galluoedd defnyddwyr ar wicïau eraill.",
-'userrights-nodatabase'            => "Nid yw'r bas data $1 yn bod neu nid yw'n un lleol.",
-'userrights-nologin'               => 'Rhaid i chi [[Special:Userlogin|fewngofnodi]] ar gyfrif gweinyddwr er mwyn pennu galluoedd defnyddwyr.',
-'userrights-notallowed'            => "Nid yw'r gallu i bennu galluoedd defnyddwyr ynghlwm wrth eich cyfrif defnyddiwr.",
-'userrights-changeable-col'        => 'Grwpiau y gallwch eu newid',
-'userrights-unchangeable-col'      => 'Grwpiau na allwch eu newid',
+'userrights-reason'           => 'Y rheswm dros y newid:',
+'userrights-no-interwiki'     => "Nid yw'r gallu ganddoch i newid galluoedd defnyddwyr ar wicïau eraill.",
+'userrights-nodatabase'       => "Nid yw'r bas data $1 yn bod neu nid yw'n un lleol.",
+'userrights-nologin'          => 'Rhaid i chi [[Special:Userlogin|fewngofnodi]] ar gyfrif gweinyddwr er mwyn pennu galluoedd defnyddwyr.',
+'userrights-notallowed'       => "Nid yw'r gallu i bennu galluoedd defnyddwyr ynghlwm wrth eich cyfrif defnyddiwr.",
+'userrights-changeable-col'   => 'Grwpiau y gallwch eu newid',
+'userrights-unchangeable-col' => 'Grwpiau na allwch eu newid',
 
 # Groups
 'group'               => 'Grŵp:',

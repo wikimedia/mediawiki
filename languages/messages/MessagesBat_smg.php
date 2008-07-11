@@ -639,16 +639,14 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'files'                 => 'Failā',
 
 # User rights
-'userrights'                 => 'Nauduotuoju teisiu valdīms', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Tvarkītė nauduotuojė gropės',
-'userrights-user-editname'   => 'Iveskėt nauduotuojė varda:',
-'editusergroup'              => 'Redagoutė nauduotuojė gropes',
-'editinguser'                => "Taisuoms nauduotuos '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Keistė nauduotuoju gropes',
-'userrights-groupsmember'    => 'Narīs:',
-'userrights-groupsavailable' => 'Galėmas gropės:',
-'userrights-reason'          => 'Keitėma prižastis:',
-'userrights-available-none'  => 'Tamsta nagalėt keistė gropės narīstės.',
+'userrights'               => 'Nauduotuoju teisiu valdīms', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Tvarkītė nauduotuojė gropės',
+'userrights-user-editname' => 'Iveskėt nauduotuojė varda:',
+'editusergroup'            => 'Redagoutė nauduotuojė gropes',
+'editinguser'              => "Taisuoms nauduotuos '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Keistė nauduotuoju gropes',
+'userrights-groupsmember'  => 'Narīs:',
+'userrights-reason'        => 'Keitėma prižastis:',
 
 # Groups
 'group'            => 'Gropė:',

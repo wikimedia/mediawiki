@@ -691,16 +691,15 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'files'                    => 'Fitchîs',
 
 # User rights
-'userrights'                 => 'Manaedjî les liveas des uzeus', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => "Manaedjî les groupes d' èn uzeu",
-'userrights-user-editname'   => "Tapez on no d' uzeu:",
-'editusergroup'              => "Candjî les groupes di l' uzeu",
-'editinguser'                => "Candjant '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => "Candjî groupes d' uzeus",
-'saveusergroups'             => "Schaper des groupes d' uzeus",
-'userrights-groupsmember'    => 'Mimbes di:',
-'userrights-groupsavailable' => "Groupes k' i gn a:",
-'userrights-reason'          => 'Råjhon do candjmint:',
+'userrights'               => 'Manaedjî les liveas des uzeus', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => "Manaedjî les groupes d' èn uzeu",
+'userrights-user-editname' => "Tapez on no d' uzeu:",
+'editusergroup'            => "Candjî les groupes di l' uzeu",
+'editinguser'              => "Candjant '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => "Candjî groupes d' uzeus",
+'saveusergroups'           => "Schaper des groupes d' uzeus",
+'userrights-groupsmember'  => 'Mimbes di:',
+'userrights-reason'        => 'Råjhon do candjmint:',
 
 # Groups
 'group'            => 'Groupe:',

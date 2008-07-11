@@ -829,15 +829,14 @@ ID-то на вашето блокирање е $5.
 'files'                    => 'Датотеки',
 
 # User rights
-'userrights'                 => 'Управување со кориснички права', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Управувај со корисничките групи',
-'userrights-user-editname'   => 'Внеси корисничко име:',
-'editusergroup'              => 'Уреди кориснички групи',
-'editinguser'                => "Менување на корисничките права на корисникот '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Уреди ги корисничките групи',
-'saveusergroups'             => 'Зачувај ги корисничките групи',
-'userrights-groupsmember'    => 'Член на:',
-'userrights-groupsavailable' => 'Достапни групи:',
+'userrights'               => 'Управување со кориснички права', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Управувај со корисничките групи',
+'userrights-user-editname' => 'Внеси корисничко име:',
+'editusergroup'            => 'Уреди кориснички групи',
+'editinguser'              => "Менување на корисничките права на корисникот '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Уреди ги корисничките групи',
+'saveusergroups'           => 'Зачувај ги корисничките групи',
+'userrights-groupsmember'  => 'Член на:',
 
 # Groups
 'group'            => 'Група:',

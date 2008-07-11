@@ -1000,32 +1000,25 @@ $1 | $2',
 'files'                    => 'Tiedostot',
 
 # User rights
-'userrights'                       => 'Käyttöoikeuksien hallinta', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Käyttöoikeuksien hallinta',
-'userrights-user-editname'         => 'Käyttäjätunnus',
-'editusergroup'                    => 'Muokkaa käyttäjän ryhmiä',
-'editinguser'                      => "Käyttäjän '''[[User:$1|$1]]''' oikeudet ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Käyttäjän ryhmät',
-'saveusergroups'                   => 'Tallenna',
-'userrights-groupsmember'          => 'Jäsenenä ryhmissä',
-'userrights-groupsremovable'       => 'Poistettavat ryhmät',
-'userrights-groupsavailable'       => 'Saatavilla olevat ryhmät',
-'userrights-groups-help'           => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on.
+'userrights'                  => 'Käyttöoikeuksien hallinta', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Käyttöoikeuksien hallinta',
+'userrights-user-editname'    => 'Käyttäjätunnus',
+'editusergroup'               => 'Muokkaa käyttäjän ryhmiä',
+'editinguser'                 => "Käyttäjän '''[[User:$1|$1]]''' oikeudet ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Käyttäjän ryhmät',
+'saveusergroups'              => 'Tallenna',
+'userrights-groupsmember'     => 'Jäsenenä ryhmissä',
+'userrights-groups-help'      => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on.
 * Merkattu valintaruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
 * Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.
 * <nowiki>*</nowiki> tarkoittaa, että et pysty kumoamaan kyseistä operaatiota.',
-'userrights-reason'                => 'Kommentti',
-'userrights-available-none'        => 'Et voi muuttaa ryhmäjäsenyyksiä.',
-'userrights-available-add'         => 'Voit lisätä käyttäjiä {{PLURAL:$2|ryhmään|ryhmiin}} $1.',
-'userrights-available-remove'      => 'Voit poistaa käyttäjiä {{PLURAL:$2|ryhmästä|ryhmistä}} $1.',
-'userrights-available-add-self'    => 'Voit lisätä itsesi {{PLURAL:$2|ryhmään|näihin ryhmiin}}: $1.',
-'userrights-available-remove-self' => 'Voit poistaa itsesi {{PLURAL:$2|ryhmästä|näistä ryhmistä}}: $1.',
-'userrights-no-interwiki'          => 'Sinulla ei ole lupaa muokata käyttöoikeuksia muissa wikeissä.',
-'userrights-nodatabase'            => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
-'userrights-nologin'               => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]] ylläpitäjätunnuksella, jotta voisit muuttaa käyttöoikeuksia.',
-'userrights-notallowed'            => 'Tunnuksellasi ei ole lupaa muuttaa käyttöoikeuksia.',
-'userrights-changeable-col'        => 'Ryhmät, joita voit muuttaa',
-'userrights-unchangeable-col'      => 'Ryhmät, joita et voi muuttaa',
+'userrights-reason'           => 'Kommentti',
+'userrights-no-interwiki'     => 'Sinulla ei ole lupaa muokata käyttöoikeuksia muissa wikeissä.',
+'userrights-nodatabase'       => 'Tietokantaa $1 ei ole tai se ei ole paikallinen.',
+'userrights-nologin'          => 'Sinun täytyy [[Special:Userlogin|kirjautua sisään]] ylläpitäjätunnuksella, jotta voisit muuttaa käyttöoikeuksia.',
+'userrights-notallowed'       => 'Tunnuksellasi ei ole lupaa muuttaa käyttöoikeuksia.',
+'userrights-changeable-col'   => 'Ryhmät, joita voit muuttaa',
+'userrights-unchangeable-col' => 'Ryhmät, joita et voi muuttaa',
 
 # Groups
 'group'               => 'Ryhmä',

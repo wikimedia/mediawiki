@@ -829,24 +829,19 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'files'                    => 'Fitxategiak',
 
 # User rights
-'userrights'                    => 'Erabiltzaile baimenen kudeaketa', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'        => 'Erabiltzaile taldeak kudeatu',
-'userrights-user-editname'      => 'Erabiltzaile izena idatzi:',
-'editusergroup'                 => 'Erabiltzaile taldeak editatu',
-'editinguser'                   => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) erabiltzailea aldatzen",
-'userrights-editusergroup'      => 'Erabiltzaile taldeak editatu',
-'saveusergroups'                => 'Erabiltzaile taldeak gorde',
-'userrights-groupsmember'       => 'Partaide da hemen:',
-'userrights-groupsremovable'    => 'Ezabatu daitezkeen taldeak:',
-'userrights-groupsavailable'    => 'Existitzen diren taldeak:',
-'userrights-reason'             => 'Aldatzeko arrazoia:',
-'userrights-available-none'     => 'Ez zenuke talde kidetza aldatu beharko.',
-'userrights-available-add'      => 'Edozein kide gehitu dezakezu talde {{PLURAL:$2|honetan|hauetan}}: $1.',
-'userrights-available-add-self' => 'Zure burua honako {{PLURAL:$2|talde honetara|talde hauetara}} gehitu dezakezu: $1',
-'userrights-no-interwiki'       => 'Ez duzu beste wikietan lankide eskumenak aldatzeko baimenik.',
-'userrights-notallowed'         => 'Zure kontuak ez du baimenik lankide eskumenak emateko.',
-'userrights-changeable-col'     => 'Alda ditzakezun taldeak',
-'userrights-unchangeable-col'   => 'Aldatu ezin ditzakezun taldeak',
+'userrights'                  => 'Erabiltzaile baimenen kudeaketa', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Erabiltzaile taldeak kudeatu',
+'userrights-user-editname'    => 'Erabiltzaile izena idatzi:',
+'editusergroup'               => 'Erabiltzaile taldeak editatu',
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) erabiltzailea aldatzen",
+'userrights-editusergroup'    => 'Erabiltzaile taldeak editatu',
+'saveusergroups'              => 'Erabiltzaile taldeak gorde',
+'userrights-groupsmember'     => 'Partaide da hemen:',
+'userrights-reason'           => 'Aldatzeko arrazoia:',
+'userrights-no-interwiki'     => 'Ez duzu beste wikietan lankide eskumenak aldatzeko baimenik.',
+'userrights-notallowed'       => 'Zure kontuak ez du baimenik lankide eskumenak emateko.',
+'userrights-changeable-col'   => 'Alda ditzakezun taldeak',
+'userrights-unchangeable-col' => 'Aldatu ezin ditzakezun taldeak',
 
 # Groups
 'group'               => 'Taldea:',

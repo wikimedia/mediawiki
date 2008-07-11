@@ -735,15 +735,13 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'files'                    => 'Atkibu siha',
 
 # User rights
-'userrights'                 => "Inenkåtgan i direchun muna'sesetbi", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => "Maneha i grupun muna'sesetbi",
-'userrights-user-editname'   => "Po'lo nå'an muna'sesetbi:",
-'editusergroup'              => "Tulaika grupun muna'sesetbi",
-'userrights-editusergroup'   => "Tulaika grupun muna'sesetbi",
-'saveusergroups'             => "Såtba Grupun Muna'sesetbi",
-'userrights-groupsmember'    => 'Miembron:',
-'userrights-groupsremovable' => 'Grupu suhayon',
-'userrights-groupsavailable' => 'Grupu ni manggaige:',
+'userrights'               => "Inenkåtgan i direchun muna'sesetbi", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => "Maneha i grupun muna'sesetbi",
+'userrights-user-editname' => "Po'lo nå'an muna'sesetbi:",
+'editusergroup'            => "Tulaika grupun muna'sesetbi",
+'userrights-editusergroup' => "Tulaika grupun muna'sesetbi",
+'saveusergroups'           => "Såtba Grupun Muna'sesetbi",
+'userrights-groupsmember'  => 'Miembron:',
 
 # Groups
 'group' => 'Grupu:',

@@ -771,7 +771,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userrights-editusergroup'    => '사용자 그룹 편집',
 'saveusergroups'              => '사용자 권한 저장',
 'userrights-groupsmember'     => '현재 권한:',
-'userrights-groupsavailable'  => '가능한 권한:',
 'userrights-groups-help'      => '이 사용자의 권한을 바꿀 수 있습니다.
 * 사용자는 체크 표시가 있는 권한을 갖습니다.
 * 사용자는 체크 표시가 없는 권한을 갖지 않습니다.

@@ -663,15 +663,14 @@ sisse logida.',
 'files'                   => 'Failid',
 
 # User rights
-'userrights'                 => 'Kasutaja õiguste muutmine', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Muuda kasutajagruppi',
-'userrights-user-editname'   => 'Sisesta kasutajatunnus:',
-'editusergroup'              => 'Muuda kasutajagruppi',
-'editinguser'                => "Redigeerimisel on '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Kasutajagrupi valik',
-'saveusergroups'             => 'Salvesta grupi muudatused',
-'userrights-groupsmember'    => 'Kuulub gruppi:',
-'userrights-groupsavailable' => 'Võimalik lisada gruppidesse:',
+'userrights'               => 'Kasutaja õiguste muutmine', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Muuda kasutajagruppi',
+'userrights-user-editname' => 'Sisesta kasutajatunnus:',
+'editusergroup'            => 'Muuda kasutajagruppi',
+'editinguser'              => "Redigeerimisel on '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Kasutajagrupi valik',
+'saveusergroups'           => 'Salvesta grupi muudatused',
+'userrights-groupsmember'  => 'Kuulub gruppi:',
 
 # Groups
 'group'            => 'Grupp:',

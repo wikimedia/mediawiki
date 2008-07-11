@@ -851,15 +851,14 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'files'                    => 'Fajlovi',
 
 # User rights
-'userrights'                 => 'Upravljanje korisničkim pravima', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'     => 'Upravljaj korisničkim grupama',
-'userrights-user-editname'   => 'Unesite korisničko ime:',
-'editusergroup'              => 'Menjaj grupe korisnika',
-'editinguser'                => "Uređujete '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'   => 'Promeni korisničke grupe',
-'saveusergroups'             => 'Sačuvaj korisničke grupe',
-'userrights-groupsmember'    => 'Član:',
-'userrights-groupsavailable' => 'Dostupne grupe:',
+'userrights'               => 'Upravljanje korisničkim pravima', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'Upravljaj korisničkim grupama',
+'userrights-user-editname' => 'Unesite korisničko ime:',
+'editusergroup'            => 'Menjaj grupe korisnika',
+'editinguser'              => "Uređujete '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup' => 'Promeni korisničke grupe',
+'saveusergroups'           => 'Sačuvaj korisničke grupe',
+'userrights-groupsmember'  => 'Član:',
 
 # Groups
 'group'            => 'Grupa:',

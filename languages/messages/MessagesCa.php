@@ -1019,32 +1019,25 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'files'                    => 'Fitxers',
 
 # User rights
-'userrights'                       => "Gestió dels permisos d'usuari", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Gestiona els grups d'usuari",
-'userrights-user-editname'         => "Introduïu un nom d'usuari:",
-'editusergroup'                    => "Edita els grups d'usuaris",
-'editinguser'                      => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => "Edita els grups d'usuaris",
-'saveusergroups'                   => "Desa els grups d'usuari",
-'userrights-groupsmember'          => 'Membre de:',
-'userrights-groupsremovable'       => 'Grups dels quals us podeu treure:',
-'userrights-groupsavailable'       => 'Grups disponibles:',
-'userrights-groups-help'           => "Podeu modificar els grups als quals pertany aquest usuari.
+'userrights'                  => "Gestió dels permisos d'usuari", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Gestiona els grups d'usuari",
+'userrights-user-editname'    => "Introduïu un nom d'usuari:",
+'editusergroup'               => "Edita els grups d'usuaris",
+'editinguser'                 => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => "Edita els grups d'usuaris",
+'saveusergroups'              => "Desa els grups d'usuari",
+'userrights-groupsmember'     => 'Membre de:',
+'userrights-groups-help'      => "Podeu modificar els grups als quals pertany aquest usuari.
 * Els requadres marcats indiquen que l'usuari és dins del grup.
 * Els requadres sense macar indiquen que l'usuari no hi pertany.
 * Un asterisc (*) indica que no el podeu treure del grup una vegada l'hàgiu afegit o viceversa.",
-'userrights-reason'                => 'Motiu del canvi:',
-'userrights-available-none'        => "No podeu alterar l'afiliació al grup.",
-'userrights-available-add'         => 'Podeu afegir usuaris {{PLURAL:$2|al grup|als grups:}} $1.',
-'userrights-available-remove'      => 'Podeu treure usuaris {{PLURAL:$2|del grup|dels grups:}} $1.',
-'userrights-available-add-self'    => 'Podeu afegir-vos a {{PLURAL:$2|aquest grup|aquests grups}}: $1.',
-'userrights-available-remove-self' => "Us podeu treure d'{{PLURAL:$2|aquest grup|aquests grups}}: $1.",
-'userrights-no-interwiki'          => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
-'userrights-nodatabase'            => 'La base de dades $1 no existeix o no és local.',
-'userrights-nologin'               => "Heu [[Special:Userlogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
-'userrights-notallowed'            => "El vostre compte no té permisos per a assignar permisos d'usuari.",
-'userrights-changeable-col'        => 'Grups que podeu canviar',
-'userrights-unchangeable-col'      => 'Grups que no podeu canviar',
+'userrights-reason'           => 'Motiu del canvi:',
+'userrights-no-interwiki'     => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
+'userrights-nodatabase'       => 'La base de dades $1 no existeix o no és local.',
+'userrights-nologin'          => "Heu [[Special:Userlogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
+'userrights-notallowed'       => "El vostre compte no té permisos per a assignar permisos d'usuari.",
+'userrights-changeable-col'   => 'Grups que podeu canviar',
+'userrights-unchangeable-col' => 'Grups que no podeu canviar',
 
 # Groups
 'group'               => 'Grup:',

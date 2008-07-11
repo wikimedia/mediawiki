@@ -1090,32 +1090,25 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'files'                    => 'Bestanden',
 
 # User rights
-'userrights'                       => 'Gebrukersrechenbeheer', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Beheer gebrukersgroepen',
-'userrights-user-editname'         => 'Vul een gebrukersnaam in:',
-'editusergroup'                    => 'Bewark gebrukersgroepen',
-'editinguser'                      => "Doonde mit 't wiezigen van de gebrukersrechen van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Bewark gebrukersgroep',
-'saveusergroups'                   => 'Gebrukergroepen opslaon',
-'userrights-groupsmember'          => 'Lid van:',
-'userrights-groupsremovable'       => 'Vorthaolen uut groepen:',
-'userrights-groupsavailable'       => 'Beschikbaore groepen:',
-'userrights-groups-help'           => 'Je kunnen de groepen wiezigen waor as de gebruker lid van is.
+'userrights'                  => 'Gebrukersrechenbeheer', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Beheer gebrukersgroepen',
+'userrights-user-editname'    => 'Vul een gebrukersnaam in:',
+'editusergroup'               => 'Bewark gebrukersgroepen',
+'editinguser'                 => "Doonde mit 't wiezigen van de gebrukersrechen van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Bewark gebrukersgroep',
+'saveusergroups'              => 'Gebrukergroepen opslaon',
+'userrights-groupsmember'     => 'Lid van:',
+'userrights-groups-help'      => 'Je kunnen de groepen wiezigen waor as de gebruker lid van is.
 * Een an-evink vakjen betekent dat de gebruker lid is van de groep.
 * Een neet an-evink vakjen betekent dat de gebruker gien lid is van de groep.
 * Een "*" betekent da-j een gebruker neet uut een groep vort kunnen haolen naoda-j-m deran toe-evoeg hemmen, of aandersumme.',
-'userrights-reason'                => 'Rejen:',
-'userrights-available-none'        => 'Je kunnen gien gebrukersrechen veraanderen.',
-'userrights-available-add'         => 'Je kunnen gebrukers toevoegen an {{PLURAL:$2|disse groep|disse groepen}}: $1.',
-'userrights-available-remove'      => 'Je kunnen gebrukers vorthaolen uut {{PLURAL:$2|disse groep|disse groepen}}: $1.',
-'userrights-available-add-self'    => 'Je kunnen je eigen toevoegen an disse {{PLURAL:$2|groep|groepen}}: $1.',
-'userrights-available-remove-self' => 'Je kunnen je eigen vorthaolen uut disse {{PLURAL:$2|groep|groepen}}: $1.',
-'userrights-no-interwiki'          => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
-'userrights-nodatabase'            => 'Databanke $1 besteet neet of is gien plaoselijke databanke.',
-'userrights-nologin'               => 'Je mutten [[Special:Userlogin|an-emeld]] ween en as gebruker de juuste rechen hemmen um gebrukersrechen toe te kunnen wiezen.',
-'userrights-notallowed'            => 'Je hemmen gien rechen um gebrukersrechen toe te kunnen wiezen.',
-'userrights-changeable-col'        => 'Groepen dee-j beheren kunnen',
-'userrights-unchangeable-col'      => 'Groepen dee-j neet beheren kunnen',
+'userrights-reason'           => 'Rejen:',
+'userrights-no-interwiki'     => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
+'userrights-nodatabase'       => 'Databanke $1 besteet neet of is gien plaoselijke databanke.',
+'userrights-nologin'          => 'Je mutten [[Special:Userlogin|an-emeld]] ween en as gebruker de juuste rechen hemmen um gebrukersrechen toe te kunnen wiezen.',
+'userrights-notallowed'       => 'Je hemmen gien rechen um gebrukersrechen toe te kunnen wiezen.',
+'userrights-changeable-col'   => 'Groepen dee-j beheren kunnen',
+'userrights-unchangeable-col' => 'Groepen dee-j neet beheren kunnen',
 
 # Groups
 'group'               => 'Groep:',

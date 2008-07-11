@@ -837,32 +837,25 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'files'                    => 'Archivus',
 
 # User rights
-'userrights'                       => "Alministral premisus d'usuárius", # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => "Alministral grupus d'usuárius",
-'userrights-user-editname'         => 'Escrebi un nombri d´usuáriu:',
-'editusergroup'                    => "Eital grupus d'usuárius",
-'editinguser'                      => "Chambandu los derechus del usuáriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => "Eital grupus d'usuárius",
-'saveusergroups'                   => "Emburacal grupus d'usuárius",
-'userrights-groupsmember'          => 'Miembru e:',
-'userrights-groupsremovable'       => 'Grupus esborrabris:',
-'userrights-groupsavailable'       => 'Grupus disponibris:',
-'userrights-groups-help'           => "Pueis chambal los grupus enos qu'está esti usuáriu.
+'userrights'                  => "Alministral premisus d'usuárius", # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => "Alministral grupus d'usuárius",
+'userrights-user-editname'    => 'Escrebi un nombri d´usuáriu:',
+'editusergroup'               => "Eital grupus d'usuárius",
+'editinguser'                 => "Chambandu los derechus del usuáriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => "Eital grupus d'usuárius",
+'saveusergroups'              => "Emburacal grupus d'usuárius",
+'userrights-groupsmember'     => 'Miembru e:',
+'userrights-groups-help'      => "Pueis chambal los grupus enos qu'está esti usuáriu.
 * Un cuairu aseñalau endica qu'el usuáriu está nesi grupu.
 * Un cuairu sin aseñalal endica qu'el usuáriu nu está nesi grupu.
 * Una * endica que nu pudrás esborralu del grupu una vezi lo aigas añiiu, u vice versa.",
-'userrights-reason'                => 'Razón el chambu:',
-'userrights-available-none'        => 'Nu pueis chambal los miembrus del grupu.',
-'userrights-available-add'         => 'Pueis añiil cualisquiel usuáriu a {{PLURAL:$2|esti grupu|estus grupus}}: $1.',
-'userrights-available-remove'      => 'Pueis esborral usuárius {{PLURAL:$2|del siguienti grupu|de los siguientis grupus}}: $1.',
-'userrights-available-add-self'    => 'Pueis uñilti tu mesmu {{PLURAL:$2|al siguienti grupu|a los siguientis grupus}}: $1.',
-'userrights-available-remove-self' => 'Pueis esborralti {{PLURAL:$2|del siguienti grupu|de los siguientis grupus}}: $1.',
-'userrights-no-interwiki'          => 'Nu tienis premisu pa eital los derechus los usuárius en otras güiquis.',
-'userrights-nodatabase'            => 'La basi e datus $1 nu desisti, u nu es local.',
-'userrights-nologin'               => "Ebis [[Special:Userlogin|rustrilti]] con una cuenta d'alministraol pa puel asinal derechus a los usuárius.",
-'userrights-notallowed'            => "Nu tienis los permisus nesezárius p'asinal derechus a los usuárius.",
-'userrights-changeable-col'        => 'Grupus que pueis chambal',
-'userrights-unchangeable-col'      => 'Grupus que nu pueis chambal',
+'userrights-reason'           => 'Razón el chambu:',
+'userrights-no-interwiki'     => 'Nu tienis premisu pa eital los derechus los usuárius en otras güiquis.',
+'userrights-nodatabase'       => 'La basi e datus $1 nu desisti, u nu es local.',
+'userrights-nologin'          => "Ebis [[Special:Userlogin|rustrilti]] con una cuenta d'alministraol pa puel asinal derechus a los usuárius.",
+'userrights-notallowed'       => "Nu tienis los permisus nesezárius p'asinal derechus a los usuárius.",
+'userrights-changeable-col'   => 'Grupus que pueis chambal',
+'userrights-unchangeable-col' => 'Grupus que nu pueis chambal',
 
 # Groups
 'group'               => 'Grupu:',

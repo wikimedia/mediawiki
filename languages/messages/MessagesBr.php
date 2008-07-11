@@ -905,32 +905,25 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'files'                    => 'Restroù',
 
 # User rights
-'userrights'                       => 'Merañ statud an implijerien', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'Merañ strolladoù an implijer',
-'userrights-user-editname'         => 'Lakait un anv implijer :',
-'editusergroup'                    => 'Kemmañ ar strolladoù implijerien',
-'editinguser'                      => "Kemmañ gwirioù an implijer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'Kemmañ strolladoù an implijer',
-'saveusergroups'                   => 'Enrollañ ar strolladoù implijer',
-'userrights-groupsmember'          => 'Ezel eus :',
-'userrights-groupsremovable'       => "Strolladoù a c'haller diverkañ :",
-'userrights-groupsavailable'       => 'Strolladoù zo :',
-'userrights-groups-help'           => "Cheñch strollad an implijer a c'hallit ober.
+'userrights'                  => 'Merañ statud an implijerien', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Merañ strolladoù an implijer',
+'userrights-user-editname'    => 'Lakait un anv implijer :',
+'editusergroup'               => 'Kemmañ ar strolladoù implijerien',
+'editinguser'                 => "Kemmañ gwirioù an implijer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Kemmañ strolladoù an implijer',
+'saveusergroups'              => 'Enrollañ ar strolladoù implijer',
+'userrights-groupsmember'     => 'Ezel eus :',
+'userrights-groups-help'      => "Cheñch strollad an implijer a c'hallit ober.
 * Ul log asket a verk emañ an implijer er strollad.
 * Ul log diask a verk n'emañ ket an implijer er strollad.
 * Ur * a verk n'hallit ket dilemel ar strollad ur wech bet ouzhpennet, pe ar c'hontrol.",
-'userrights-reason'                => 'Abeg kemmañ :',
-'userrights-available-none'        => "N'hallit ket cheñch roll perzhidi ar strollad",
-'userrights-available-add'         => "Gallout a rit ouzhpennañ implijerien d'ar {{PLURAL:$2|strolladoù-mañ|strollad-mañ}} : $1.",
-'userrights-available-remove'      => 'Gallout a rit tennañ implijerien eus {{PLURAL:$2|ar strollad-mañ|ar strolladoù-mañ}} : $1.',
-'userrights-available-add-self'    => 'Gallout a rit emezelañ er {{PLURAL:$2|strollad-mañ|strolladoù-mañ}} : $1.',
-'userrights-available-remove-self' => 'Gallout a rit diemezelañ eus ar {{PLURAL:$2|strollad-mañ|strolladoù-mañ}} : $1.',
-'userrights-no-interwiki'          => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
-'userrights-nodatabase'            => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
-'userrights-nologin'               => "Ret eo deoc'h [[Special:Userlogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
-'userrights-notallowed'            => "N'eo ket aotreet ho kont da reiñ gwirioù implijer.",
-'userrights-changeable-col'        => "Ar strolladoù a c'hallit cheñch",
-'userrights-unchangeable-col'      => "Ar strolladoù n'hallit ket cheñch",
+'userrights-reason'           => 'Abeg kemmañ :',
+'userrights-no-interwiki'     => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
+'userrights-nodatabase'       => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
+'userrights-nologin'          => "Ret eo deoc'h [[Special:Userlogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
+'userrights-notallowed'       => "N'eo ket aotreet ho kont da reiñ gwirioù implijer.",
+'userrights-changeable-col'   => "Ar strolladoù a c'hallit cheñch",
+'userrights-unchangeable-col' => "Ar strolladoù n'hallit ket cheñch",
 
 # Groups
 'group'               => 'Strollad :',
