@@ -632,54 +632,54 @@ Skuli: ''$2''",
 'revnotfoundtext'     => 'Ńy idźe znejść staršyj wersyji zajty. Sprawdź, proša, URL kery žeś užůu coby uzyskać dostymp do tyj zajty.',
 'currentrev'          => 'Aktualno wersyjo',
 'revisionasof'        => 'Wersyjo s dńa $1',
-'revision-info'       => 'Wersyjo z dńa $1; $2',
+'revision-info'       => 'Wersyjo s dńa $1; $2',
 'previousrevision'    => '← popředńo wersyjo',
-'nextrevision'        => 'Naštympno wersyjo→',
+'nextrevision'        => 'Nastympno wersyjo→',
 'currentrevisionlink' => 'Aktualno wersyjo',
-'cur'                 => 'biež',
+'cur'                 => 'bjež.',
 'next'                => 'nastympno',
-'last'                => 'popř',
-'page_first'          => 'počůntek',
-'page_last'           => 'kůńyc',
-'histlegend'          => 'Wybůr růžńic do porůwnańo: postow kropki we boksach i naćiś enter abo knefel na dole.<br />
-Lygynda: (bjež) - růžńice s wersyjo bježůncům, (popř) - růžńice s wersyjo popředzajůncům, d - drobne zmjany',
+'last'                => 'popř.',
+'page_first'          => 'počůnek',
+'page_last'           => 'kůńec',
+'histlegend'          => 'Wybůr růžńic do porůwnańo: postow kropki we boksach a naćiś enter abo knefel na dole.<br />
+Legynda: (bjež.) - růžńice s wersyjům bježůncům, (popř.) - růžńice s wersyjům popředzajůncům, d - drobne zmjany',
 'deletedrev'          => '[wyćepano]',
-'histfirst'           => 'od počůntku',
-'histlast'            => 'od uostatka',
+'histfirst'           => 'uod počůnku',
+'histlast'            => 'uod uostatka',
 'historysize'         => '({{PLURAL:$1|1 bajt|$1 bajty|$1 bajtůw}})',
 'historyempty'        => '(pusto)',
 
 # Revision feed
-'history-feed-title'          => 'Historia wersji',
-'history-feed-description'    => 'Historio wersji tej zajty wiki',
+'history-feed-title'          => 'Historyjo wersyje',
+'history-feed-description'    => 'Historyjo wersyje tyj zajty wiki',
 'history-feed-item-nocomment' => '$1 uo $2', # user at time
 'history-feed-empty'          => 'Wybrano zajta ńy istńije. Můgua zostać wyćepano abo přećepano pod inkše mjano. Možeš tyž [[{{ns:special}}:Search|šnupać]] za tům zajtům.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(komyntorz wyćepany)',
+'rev-deleted-comment'         => '(kůmyntoř wyćepany)',
 'rev-deleted-user'            => '(užytkowńik wyćepany)',
-'rev-deleted-event'           => '(škryflańe wyćepane)',
+'rev-deleted-event'           => '(škryflańy wyćepane)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Wersyjo tej zajty zostoua wyćepano i ńy je dostympna publičńy. Ščygůuy idźe znejść we [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rejeře wyćepań].
+Wersyjo tyj zajty uostoua wyćepano a ńy je dostympna publičńy. Ščygůuy idźe znejść we [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rejeře wyćepań].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ta wersyjo zajty zostoua wyćepano i ńy je dostympna publičńy.
-Ale jako admińistrator {{GRAMMAR:MS.lp|{{SITENAME}}}} možeš jům uobejřeć.
+Ta wersyjo zajty uostoua wyćepano a ńy je dostympna publičńy.
+Atoli kej admińistrator {{GRAMMAR:MS.lp|{{SITENAME}}}} možeš jům uobejřeć.
 Powody wyćepańo idźe znejść we [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejeře wyćepań]
 </div>',
 'rev-delundel'                => 'pokož/schrůń',
 'revisiondelete'              => 'Wyćep/wćep nazod wersyje',
-'revdelete-nooldid-title'     => 'Ńy wybrano wersji',
+'revdelete-nooldid-title'     => 'Ńy wybrano wersyji',
 'revdelete-nooldid-text'      => 'Ńy wybrano wersyji na kerych mo zostać wykůnano ta uoperacyjo.',
 'revdelete-selected'          => '{{PLURAL:$2|Wybrano wersyja|Wybrane wersyje}} zajty [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}} dlo '''$1:'''",
-'revdelete-text'              => 'Wyćepane wersyje bydům dali widočne w historii zajty, ale jeich treść ńy bydźe publičńy dostympna.
+'logdelete-selected'          => "{{PLURAL:$2|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}} lo '''$1:'''",
+'revdelete-text'              => 'Wyćepane wersyje bydům dali widočne w historyji zajty, nale jejich treść ńy bydźe publičńy dostympna.
 
-Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji i bydům můgli je wćepać nazod, chyba aže uoperator serwisu nouožůu dodatkowe uůgrańičyńo.',
-'revdelete-legend'            => 'Naštaluj uůgrańičyńo do wersyji:',
+Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aže uoperator serwisu nouožůu dodatkowe uograńičyńo.',
+'revdelete-legend'            => 'Naštaluj uograńičyńo lo wersyji:',
 'revdelete-hide-text'         => 'Schrůń tekst wersyji',
-'revdelete-hide-name'         => 'Schrůń akcyjo i cel',
-'revdelete-hide-comment'      => 'Schrůń kůmyntař sprowjyńa',
+'revdelete-hide-name'         => 'Schrůń akcyjo a cyl',
+'revdelete-hide-comment'      => 'Schrůń kůmyntoř sprowjyńo',
 'revdelete-hide-user'         => 'Schrůń mjano užytkowńika/adres IP',
 'revdelete-hide-restricted'   => 'Wprowadź te uůgrańičyńo zarůwno do admińistratorůw jak i do inkšych',
 'revdelete-suppress'          => 'Schrůń informacyje zarůwno před admińistratorůma jak i před inkšymi',

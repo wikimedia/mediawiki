@@ -1068,9 +1068,9 @@ $3 చెప్పిన కారణం: ''$2''",
 ఎగుమతులు మరియు తొలగింపులు [[Special:Log/upload|అప్‌లోడు దినచర్య]]లో కూడా నమోదవుతాయి.
 
 ఫైలును ఏదైనా పేజీలో చేర్చడానికి, ఈ విధంగా లింకుని వాడండి
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:File.png|ప్రత్యామ్నాయ పాఠ్యం]]</nowiki>''' లేదా
-* నేరుగా ఫైలుకే లింకు ఇవ్వడానికి '''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:File.ogg]]</nowiki>'''.",
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|ప్రత్యామ్నాయ పాఠ్యం]]</nowiki>''' లేదా
+* నేరుగా ఫైలుకే లింకు ఇవ్వడానికి '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''.",
 'upload-permitted'            => 'అనుమతిగల ఫైలు రకాలు: $1.',
 'upload-preferred'            => 'అనుమతించే ఫైలు రకాలు: $1.',
 'upload-prohibited'           => 'నిషేధించిన ఫైలు రకాలు: $1.',

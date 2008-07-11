@@ -13,8 +13,8 @@
  * @author Erkan Yilmaz
  * @author Runningfridgesrule
  * @author Katpatuka
- * @author Mach
  * @author Siebrand
+ * @author Mach
  * @author לערי ריינהארט
  * @author Mskyrider
  * @author Myildirim2007
@@ -962,10 +962,10 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 yüklenenler ve silinmişler [[Special:Log/upload|yükleme kaydı sayfasında da]] görülebilir.
 
 Sayfaya resim koymak için formdaki linklerdimelerşi kullanın;
-*'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Örnek.jpg]]</nowiki>'''
-*'''<nowiki>[[</nowiki>{{ns:Image}}<nowiki>:Örnek.png|açıklama]]</nowiki>'''
+*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Örnek.jpg]]</nowiki>'''
+*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Örnek.png|açıklama]]</nowiki>'''
 veya doğrudan bağlantı için
-*'''<nowiki>[[</nowiki>{{ns:Media}}<nowiki>:Örnek.ogg]]</nowiki>'''",
+*'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Örnek.ogg]]</nowiki>'''",
 'upload-permitted'            => 'İzin verilen dosya türleri: $1.',
 'upload-preferred'            => 'Tercih edilen dosya türleri: $1.',
 'upload-prohibited'           => 'Yasaklanan dosya türleri: $1.',

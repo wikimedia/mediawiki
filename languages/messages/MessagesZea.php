@@ -1099,8 +1099,8 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'blockip'                     => 'Blokkeer gebruker',
 'badipaddress'                => 'Ongeldig IP-adres',
 'blockipsuccesssub'           => 'Blokkaode is gelukt.',
-'blockipsuccesstext'          => "[[{{ns:Special}}:Contributions/$1|$1]] is geblokkeerd.
-<br />Ziet de [[{{ns:Special}}:Ipblocklist|IP-blokliest]] vo 'n overzicht van blokkaodes.",
+'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
+Ziet de [[Special:Ipblocklist|IP-blokliest]] vo 'n overzicht van blokkaodes.",
 'anononlyblock'               => 'alleêne anon.',
 'blocklink'                   => 'blokkeer',
 'contribslink'                => 'biedraegen',
