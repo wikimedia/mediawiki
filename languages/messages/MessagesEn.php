@@ -483,7 +483,10 @@ XHTML id names.
 ** currentevents-url|currentevents
 ** recentchanges-url|recentchanges
 ** randompage-url|randompage
-** helppage|help', # do not translate or duplicate this message to other languages
+** helppage|help
+* SEARCH
+* TOOLBOX
+* LANGUAGES', # do not translate or duplicate this message to other languages
 
 # User preference toggles
 'tog-underline'               => 'Underline links:',
