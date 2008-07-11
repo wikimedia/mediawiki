@@ -1451,18 +1451,11 @@ please see math/README to configure.',
 'userrights-editusergroup'         => 'Edit user groups',
 'saveusergroups'                   => 'Save User Groups',
 'userrights-groupsmember'          => 'Member of:',
-'userrights-groupsremovable'       => 'Removable groups:',
-'userrights-groupsavailable'       => 'Available groups:',
 'userrights-groups-help'           => 'You may alter the groups this user is in:
 * A checked box means the user is in that group.
 * An unchecked box means the user is not in that group.
 * A * indicates that you cannot remove the group once you have added it, or vice versa.',
 'userrights-reason'                => 'Reason for change:',
-'userrights-available-none'        => 'You may not alter group membership.',
-'userrights-available-add'         => 'You can add any user to {{PLURAL:$2|this group|these groups}}: $1.',
-'userrights-available-remove'      => 'You can remove any user from {{PLURAL:$2|this group|these groups}}: $1.',
-'userrights-available-add-self'    => 'You can add yourself to {{PLURAL:$2|this group|these groups}}: $1.',
-'userrights-available-remove-self' => 'You can remove yourself from {{PLURAL:$2|this group|these groups}}: $1.',
 'userrights-no-interwiki'          => 'You do not have permission to edit user rights on other wikis.',
 'userrights-nodatabase'            => 'Database $1 does not exist or is not local.',
 'userrights-nologin'               => 'You must [[Special:Userlogin|log in]] with an administrator account to assign user rights.',
