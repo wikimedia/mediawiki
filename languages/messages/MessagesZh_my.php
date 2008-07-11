@@ -1,6 +1,6 @@
 <?php
 /**
- * Chinese (Singapore) (中文 (马来西亚))
+ * Chinese (Malaysia) (中文 (马来西亚))
  *
  * @ingroup Language
  * @file
