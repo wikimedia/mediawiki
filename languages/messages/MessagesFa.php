@@ -1157,31 +1157,24 @@ $3
 'files'                    => 'پرونده‌ها',
 
 # User rights
-'userrights'                       => 'مدیریت اختیارات کاربر', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'           => 'مدیریت گروه‌های کاربری',
-'userrights-user-editname'         => 'یک نام کاربری وارد کنید:',
-'editusergroup'                    => 'ویرایش گروه‌های کاربری',
-'editinguser'                      => "تغییر اختیارات کاربری برای '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'         => 'ویرایش گروه‌های کاربری',
-'saveusergroups'                   => 'ثبت گروه‌های کاربری',
-'userrights-groupsmember'          => 'عضو:',
-'userrights-groupsremovable'       => 'گروه‌های قابل حذف:',
-'userrights-groupsavailable'       => 'گروه‌های موجود:',
-'userrights-groups-help'           => 'شما می‌توانید گروه‌هایی که کاربر در آن قرار دارد را تغییر دهید.
+'userrights'                  => 'مدیریت اختیارات کاربر', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'مدیریت گروه‌های کاربری',
+'userrights-user-editname'    => 'یک نام کاربری وارد کنید:',
+'editusergroup'               => 'ویرایش گروه‌های کاربری',
+'editinguser'                 => "تغییر اختیارات کاربری برای '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'ویرایش گروه‌های کاربری',
+'saveusergroups'              => 'ثبت گروه‌های کاربری',
+'userrights-groupsmember'     => 'عضو:',
+'userrights-groups-help'      => 'شما می‌توانید گروه‌هایی که کاربر در آن قرار دارد را تغییر دهید.
 یک جعبه علامت خورده به این معنی است که کاربر در آن گروه قرار دارد.
 یک جعبه خالی به این معنی است که کاربر در آن گروه قرار ندارد.',
-'userrights-reason'                => 'علت تغییر:',
-'userrights-available-none'        => 'شما نمی‌توانید عضویت در گروه‌ها را تغییر دهید.',
-'userrights-available-add'         => 'شما می‌توانید کاربرانی را به این {{PLURAL:$2|گروه|گروه‌ها}} اضافه کنید: $1.',
-'userrights-available-remove'      => 'شما می‌توانید کاربرانی را از این {{PLURAL:$2|گروه|گروه‌ها}} حذف کنید: $1.',
-'userrights-available-add-self'    => 'شما می‌توانید خود را عضو این {{PLURAL:$2|گروه|گروه‌ها}} بکنید: $1.',
-'userrights-available-remove-self' => 'شما می‌توانید خود را از عضویت در این {{PLURAL:$2|گروه|گروه‌ها}} در آورید: $1.',
-'userrights-no-interwiki'          => 'شما اجازه تغییر اختیارات کاربران دیگر ویکی‌ها را ندارید.',
-'userrights-nodatabase'            => 'پایگاه داده $1 وجود ندارد یا محلی نیست.',
-'userrights-nologin'               => 'شما باید با یک حساب کاربری دارای اختیار مدیریتی [[Special:Userlogin|به سیستم وارد شوید]] تا بتوانید اختیارات کاربران را تعیین کنید.',
-'userrights-notallowed'            => 'حساب کاربری شما اجازه تغییر اختیارات کاربری را ندارد.',
-'userrights-changeable-col'        => 'گروه‌هایی که می‌توانید تغییر دهید',
-'userrights-unchangeable-col'      => 'گروه‌هایی که نمی‌توانید تغییر دهید',
+'userrights-reason'           => 'علت تغییر:',
+'userrights-no-interwiki'     => 'شما اجازه تغییر اختیارات کاربران دیگر ویکی‌ها را ندارید.',
+'userrights-nodatabase'       => 'پایگاه داده $1 وجود ندارد یا محلی نیست.',
+'userrights-nologin'          => 'شما باید با یک حساب کاربری دارای اختیار مدیریتی [[Special:Userlogin|به سیستم وارد شوید]] تا بتوانید اختیارات کاربران را تعیین کنید.',
+'userrights-notallowed'       => 'حساب کاربری شما اجازه تغییر اختیارات کاربری را ندارد.',
+'userrights-changeable-col'   => 'گروه‌هایی که می‌توانید تغییر دهید',
+'userrights-unchangeable-col' => 'گروه‌هایی که نمی‌توانید تغییر دهید',
 
 # Groups
 'group'               => 'گروه:',
