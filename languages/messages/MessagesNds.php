@@ -623,7 +623,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'italic_tip'      => 'Kursiven Text',
 'link_sample'     => 'Link-Text',
 'link_tip'        => 'Internen Link',
-'extlink_sample'  => 'http://www.bispeel.com Link-Text',
+'extlink_sample'  => 'http://www.example.org Link-Text',
 'extlink_tip'     => 'Externen Link (http:// is wichtig)',
 'headline_sample' => 'Evene 2 Överschrift',
 'headline_tip'    => 'Evene 2 Överschrift',

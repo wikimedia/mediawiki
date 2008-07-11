@@ -541,7 +541,7 @@ Ba'lkim a'lle qashan parolin'izdi o'zgertken shıg'arsız yamasa jan'a waqtınsh
 'italic_tip'      => 'Kursiv tekst',
 'link_sample'     => 'Siltew ataması',
 'link_tip'        => 'İshki siltew',
-'extlink_sample'  => 'http://www.example.com siltew ataması',
+'extlink_sample'  => 'http://www.example.org siltew ataması',
 'extlink_tip'     => "Sırtqı siltew (http:// prefiksin kiritin')",
 'headline_sample' => 'Atama teksti',
 'headline_tip'    => "2-shi da'rejeli atama",

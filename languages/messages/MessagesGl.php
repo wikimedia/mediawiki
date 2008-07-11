@@ -11,8 +11,8 @@
  * @author Siebrand
  * @author Lameiro
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -504,7 +504,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'italic_tip'      => 'Texto en cursiva',
 'link_sample'     => 'Título de ligazón',
 'link_tip'        => 'Ligazón interna',
-'extlink_sample'  => 'http://www.exemplo.com título de ligazón',
+'extlink_sample'  => 'http://www.example.org título de ligazón',
 'extlink_tip'     => 'Ligazón externa (lembre o prefixo http://)',
 'headline_sample' => 'Texto de cabeceira',
 'headline_tip'    => 'Cabeceira de nivel 2',

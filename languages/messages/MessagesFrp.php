@@ -7,8 +7,8 @@
  * @author ChrisPtDe
  * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'fr';
@@ -517,7 +517,7 @@ Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',
 'italic_tip'      => 'Tèxte étalico',
 'link_sample'     => 'Titro du lim',
 'link_tip'        => 'Lim de dedens',
-'extlink_sample'  => 'http://www.ègzemplo.com titro du lim',
+'extlink_sample'  => 'http://www.example.org titro du lim',
 'extlink_tip'     => 'Lim de defôr (oubliâd pas lo prèfixe http://)',
 'headline_sample' => 'Tèxte de sot-titro',
 'headline_tip'    => 'Sot-titro nivô 2',

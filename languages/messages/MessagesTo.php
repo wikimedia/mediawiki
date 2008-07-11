@@ -317,7 +317,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'italic_tip'      => 'Mataʻitohi mahei',
 'link_sample'     => 'Hingoa ʻo e fehokotaki',
 'link_tip'        => 'Fehokotaki fakalotovā',
-'extlink_sample'  => 'Hingoa fakafehokotaki http://www.fakatātā.to',
+'extlink_sample'  => 'http://www.example.org Hingoa fakafehokotaki',
 'extlink_tip'     => 'Fehokotaki ki tuʻa (manatuʻi ko e fakapipikimuʻa — http://)',
 'headline_sample' => 'Mataʻitohi tuʻumuʻa',
 'headline_tip'    => 'Tuʻumuʻa fakatuʻunga hono 2',

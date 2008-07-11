@@ -479,7 +479,7 @@ In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ätterg
 'italic_tip'      => 'Kursive Text',
 'link_sample'     => 'Link-Text',
 'link_tip'        => 'Internen Link',
-'extlink_sample'  => 'http://www.Biespil.de Link-Text',
+'extlink_sample'  => 'http://www.example.org Link-Text',
 'extlink_tip'     => 'Externen Link (http:// beoachtje)',
 'headline_sample' => 'Ieuwene 2 Uurschrift',
 'headline_tip'    => 'Ieuwene 2 Uurschrift',

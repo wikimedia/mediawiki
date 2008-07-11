@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Behzod Saidov <behzodsaidov@gmail.com>
  * @author Abdulla
  * @author Siebrand
+ * @author Behzod Saidov <behzodsaidov@gmail.com>
  */
 
 $fallback8bitEncoding = 'windows-1252';
@@ -236,7 +236,7 @@ $messages = array(
 'italic_tip'      => 'Kursiv',
 'link_sample'     => 'Ishorat nomi',
 'link_tip'        => 'Ichki ishorat',
-'extlink_sample'  => 'http://www.example.com ishorat nomi',
+'extlink_sample'  => 'http://www.example.org ishorat nomi',
 'extlink_tip'     => 'Tashqi ishorat (http:// prefiksini unutmang)',
 'headline_sample' => 'Sarlavha',
 'math_sample'     => 'Formula qoʻying',
@@ -526,12 +526,13 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'blocklogpage' => 'Chetlashtirish qaydlari',
 
 # Move page
-'movearticle'  => "Sahifani ko'chirish",
-'movepagebtn'  => 'Sahifani koʻchir',
-'pagemovedsub' => 'Koʻchirildi',
-'1movedto2'    => "[[$1]] [[$2]]ga ko'chirildi",
-'movelogpage'  => 'Koʻchirish qaydlari',
-'movereason'   => 'Sabab:',
+'movearticle'    => "Sahifani ko'chirish",
+'movepagebtn'    => 'Sahifani koʻchir',
+'pagemovedsub'   => 'Koʻchirildi',
+'movepage-moved' => '<big>\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'1movedto2'      => "[[$1]] [[$2]]ga ko'chirildi",
+'movelogpage'    => 'Koʻchirish qaydlari',
+'movereason'     => 'Sabab:',
 
 # Thumbnails
 'thumbnail-more' => 'Kattalashtir',

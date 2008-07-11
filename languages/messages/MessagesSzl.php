@@ -469,7 +469,7 @@ Coby powstřimać nadužyća možliwość wysyuańa připůmńeń naštalowano n
 'italic_tip'      => 'Tekst pochylůny',
 'link_sample'     => 'Titel linka',
 'link_tip'        => 'Link wewnyntřny',
-'extlink_sample'  => 'http://www.przikuod.szl.com titel zajty',
+'extlink_sample'  => 'http://www.example.org titel zajty',
 'extlink_tip'     => 'Link zewnyntřny (pamjyntej uo prefikśe http:// )',
 'headline_sample' => 'Tekst naguůwka',
 'headline_tip'    => 'Naguůwek 2. poźůma',

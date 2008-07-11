@@ -4,12 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author Krice from Tyvanet.com
- * @author friends at tyvawiki.org
- * @author Nike
  * @author Sborsody
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Krice from Tyvanet.com
+ * @author friends at tyvawiki.org
  */
 
 $namespaceNames = array(
@@ -283,7 +282,7 @@ $1',
 'italic_sample'   => 'Ийлендирер',
 'link_sample'     => 'Холбаа ады',
 'link_tip'        => 'Иштики холбаа',
-'extlink_sample'  => 'http://www.чижек.com холбаа ады',
+'extlink_sample'  => 'http://www.example.org холбаа ады',
 'extlink_tip'     => 'Даштыкы холбаа ("http://" чүве сактып алыр)',
 'headline_sample' => 'Кол сөс сөзүглел',
 'nowiki_sample'   => 'Форматтаваан сөзүглелини бээр салыр',

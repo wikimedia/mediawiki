@@ -334,7 +334,7 @@ MySQL retornava le error "$3: $4"',
 'cachederror'          => 'Le sequente copia del pagina se recuperava del cache, e possibilemente non es actual.',
 'laggedslavemode'      => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
 'readonly'             => 'Base de datos blocate',
-'enterlockreason'      => 'Describe le motivo del blocage, includente un estimation
+'enterlockreason'      => 'Describe le motivo del blocada, includente un estimation
 de quando illo essera terminate',
 'readonlytext'         => 'Actualmente le base de datos de {{SITENAME}} es blocate pro nove
 entratas e altere modificationes, probabilemente pro mantenentia
@@ -433,10 +433,13 @@ Non oblida personalisar {{SITENAME}} secundo tu preferentias.',
 'youremail'                  => 'E-mail:',
 'username'                   => 'Nomine de usator:',
 'uid'                        => 'ID del usator:',
+'prefs-memberingroups'       => 'Membro de {{PLURAL:$1|gruppo|gruppos}}:',
 'yourrealname'               => 'Nomine real:',
 'yourlanguage'               => 'Lingua:',
 'yournick'                   => 'Tu pseudonymo (pro signaturas)',
 'badsig'                     => 'Signatura crude invalide; verificar le etiquettas HTML.',
+'badsiglength'               => 'Le signatura es troppo longe.
+Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Le nomine real es optional.
 Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',
@@ -517,7 +520,7 @@ Es possibile que tu jam ha cambiate tu contrasigno o ha requestate un nove contr
 'italic_tip'      => 'Texto italic',
 'link_sample'     => 'Titulo del ligamine',
 'link_tip'        => 'Ligamine interne',
-'extlink_sample'  => 'http://www.exemplo.com titulo del ligamine',
+'extlink_sample'  => 'http://www.example.org titulo del ligamine',
 'extlink_tip'     => 'Ligamine externe (non oblida le prefixo http://)',
 'headline_sample' => 'Texto del titulo',
 'headline_tip'    => 'Titulo de nivello 2',
@@ -531,26 +534,26 @@ Es possibile que tu jam ha cambiate tu contrasigno o ha requestate un nove contr
 'hr_tip'          => 'Linea horizontal (usa con moderation)',
 
 # Edit pages
-'summary'                   => 'Summario',
-'subject'                   => 'Subjecto/titulo',
-'minoredit'                 => 'Isto es un modification minor',
-'watchthis'                 => 'Observar iste pagina',
-'savearticle'               => 'Salvar articulo',
-'preview'                   => 'Previsualisar',
-'showpreview'               => 'Monstrar previsualisation',
-'showlivepreview'           => 'Previsualisation directe',
-'showdiff'                  => 'Monstrar cambios',
-'anoneditwarning'           => "'''Attention:''' Tu non te ha identificate.
+'summary'                          => 'Summario',
+'subject'                          => 'Subjecto/titulo',
+'minoredit'                        => 'Isto es un modification minor',
+'watchthis'                        => 'Observar iste pagina',
+'savearticle'                      => 'Salvar articulo',
+'preview'                          => 'Previsualisar',
+'showpreview'                      => 'Monstrar previsualisation',
+'showlivepreview'                  => 'Previsualisation directe',
+'showdiff'                         => 'Monstrar cambios',
+'anoneditwarning'                  => "'''Attention:''' Tu non te ha identificate.
 Tu adresse IP essera registrate in le historia de modificationes a iste pagina.",
-'missingsummary'            => "'''Memento:''' Tu non entrava alcun summario del modification.
+'missingsummary'                   => "'''Memento:''' Tu non entrava alcun summario del modification.
 Si tu clicca super Salvar de novo, le modification essera publicate sin summario.",
-'missingcommenttext'        => 'Per favor entra un commento infra.',
-'missingcommentheader'      => "'''Memento:''' Tu non entrava un subjecto/titulo pro iste commento.
+'missingcommenttext'               => 'Per favor entra un commento infra.',
+'missingcommentheader'             => "'''Memento:''' Tu non entrava un subjecto/titulo pro iste commento.
 Si tu clicca super Salvar de novo, tu commento essera publicate sin subjecto/titulo.",
-'summary-preview'           => 'Previsualisation del summario',
-'subject-preview'           => 'Previsualisation del subjecto/titulo',
-'blockedtitle'              => 'Le usator es blocate',
-'blockedtext'               => "<big>'''Tu nomine de usator o adresse IP ha essite blocate.'''</big>
+'summary-preview'                  => 'Previsualisation del summario',
+'subject-preview'                  => 'Previsualisation del subjecto/titulo',
+'blockedtitle'                     => 'Le usator es blocate',
+'blockedtext'                      => "<big>'''Tu nomine de usator o adresse IP ha essite blocate.'''</big>
 
 Le blocada esseva facite per $1. Le motivo presentate es ''$2''.
 
@@ -562,7 +565,7 @@ Tu pote contactar $1 o un del altere [[{{MediaWiki:Grouppage-sysop}}|administrat
 Tu non pote usar le function 'inviar e-mail a iste usator' salvo que un adresse de e-mail valide es specificate in le
 [[Special:Preferences|preferentias de tu conto]] e que tu non ha essite blocate de usar lo.
 Tu adresse IP actual es $3, e le ID del blocada es #$5. Per favor include un de iste informationes o ambes in omne questiones.",
-'autoblockedtext'           => 'Tu adresse de IP ha essite automaticamente blocate proque un altere usator lo usava qui esseva blocate per $1.
+'autoblockedtext'                  => 'Tu adresse de IP ha essite automaticamente blocate proque un altere usator lo usava qui esseva blocate per $1.
 Le ration date es:
 
 :\'\'$2\'\'
@@ -576,114 +579,129 @@ Nota que tu non pote utilisar le function "inviar e-mail a iste usator" si tu no
 
 Le ID de iste blocada es $5.
 Per favor include iste ID in omne correspondentia.',
-'blockednoreason'           => 'nulle ration date',
-'blockedoriginalsource'     => "Le codice-fonte de '''$1''' se monstra infra:",
-'blockededitsource'         => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
-'whitelistedittitle'        => 'Session requirite pro modificar',
-'whitelistedittext'         => 'Tu debe $1 pro poter modificar paginas.',
-'whitelistreadtitle'        => 'Session requirite pro leger',
-'whitelistreadtext'         => 'Tu debe [[Special:Userlogin|aperir un session]] pro poter leger paginas.',
-'whitelistacctitle'         => 'Tu non ha le permission de crear un conto',
-'whitelistacctext'          => 'Le permission de crear contos in {{SITENAME}} require que tu [[Special:Userlogin|aperi un session]] e que tu ha le autorisation appropriate.',
-'confirmedittitle'          => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
-'confirmedittext'           => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
+'blockednoreason'                  => 'nulle ration date',
+'blockedoriginalsource'            => "Le codice-fonte de '''$1''' se monstra infra:",
+'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
+'whitelistedittitle'               => 'Session requirite pro modificar',
+'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
+'whitelistreadtitle'               => 'Session requirite pro leger',
+'whitelistreadtext'                => 'Tu debe [[Special:Userlogin|aperir un session]] pro poter leger paginas.',
+'whitelistacctitle'                => 'Tu non ha le permission de crear un conto',
+'whitelistacctext'                 => 'Le permission de crear contos in {{SITENAME}} require que tu [[Special:Userlogin|aperi un session]] e que tu ha le autorisation appropriate.',
+'confirmedittitle'                 => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
+'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
 Per favor defini e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].',
-'nosuchsectiontitle'        => 'Tal section non existe',
-'nosuchsectiontext'         => 'Tu essayava modificar un section que non existe.
+'nosuchsectiontitle'               => 'Tal section non existe',
+'nosuchsectiontext'                => 'Tu essayava modificar un section que non existe.
 Viste que il non ha alcun section $1, il non ha alcun location pro publicar tu modification.',
-'loginreqtitle'             => 'Session requirite',
-'loginreqlink'              => 'aperir un session',
-'loginreqpagetext'          => 'Tu debe $1 pro poter vider altere paginas.',
-'accmailtitle'              => 'Contrasigno inviate.',
-'accmailtext'               => 'Le contrasigno pro "$1" ha essite inviate a $2.',
-'newarticle'                => '(Nove)',
-'newarticletext'            => "Tu ha sequite un ligamine a un pagina que ancora non existe.
+'loginreqtitle'                    => 'Session requirite',
+'loginreqlink'                     => 'aperir un session',
+'loginreqpagetext'                 => 'Tu debe $1 pro poter vider altere paginas.',
+'accmailtitle'                     => 'Contrasigno inviate.',
+'accmailtext'                      => 'Le contrasigno pro "$1" ha essite inviate a $2.',
+'newarticle'                       => '(Nove)',
+'newarticletext'                   => "Tu ha sequite un ligamine a un pagina que ancora non existe.
 Pro crear un nove pagina, comencia a scriber in le cassa infra.
 (Vide le [[{{MediaWiki:Helppage}}|pagina de adjuta]] pro plus information.)
 Si tu es hic per error, simplemente clicca le button '''Retornar''' de tu navigator.",
-'anontalkpagetext'          => "---- ''Iste es le pagina de discussion pro un usator anonyme qui ancora non ha create un conto o qui non lo usa. Consequentemente nos debe usar le [[adresse de IP]] numeric pro identificar le/la. Un tal adresse de IP pote esser usate in commun per varie personas. Si tu es un usator anonyme e senti que commentarios irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
-'noarticletext'             => 'Actualmente il non ha texto in iste pagina. Tu pote [[Special:Search/{{PAGENAME}}|cercar iste titulo]] in le texto de altere paginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
-'userpage-userdoesnotexist' => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
-'clearyourcache'            => "'''Nota - Post le publication, es possibile que tu debe temporarimente disactivar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
-'usercssjsyoucanpreview'    => "<strong>Consilio:</strong> Usa le button 'Monstrar previsualisation' pro testar tu nove CSS/JS ante de publicar lo.",
-'usercsspreview'            => "'''Memora que isto es solmente un previsualisation de tu CSS personalisate, illo non ha ancora essite immagazinate!'''",
-'userjspreview'             => "'''Memora que isto es solmente un test/previsualisation de tu JavaScript personalisate, illo non ha ancora essite immagazinate!'''",
-'userinvalidcssjstitle'     => "'''Attention:''' Le stilo \"\$1\" non existe.
+'anontalkpagetext'                 => "---- ''Iste es le pagina de discussion pro un usator anonyme qui ancora non ha create un conto o qui non lo usa. Consequentemente nos debe usar le [[adresse de IP]] numeric pro identificar le/la. Un tal adresse de IP pote esser usate in commun per varie personas. Si tu es un usator anonyme e senti que commentarios irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
+'noarticletext'                    => 'Actualmente il non ha texto in iste pagina. Tu pote [[Special:Search/{{PAGENAME}}|cercar iste titulo]] in le texto de altere paginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
+'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
+'clearyourcache'                   => "'''Nota - Post le publication, es possibile que tu debe temporarimente disactivar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
+'usercssjsyoucanpreview'           => "<strong>Consilio:</strong> Usa le button 'Monstrar previsualisation' pro testar tu nove CSS/JS ante de publicar lo.",
+'usercsspreview'                   => "'''Memora que isto es solmente un previsualisation de tu CSS personalisate, illo non ha ancora essite immagazinate!'''",
+'userjspreview'                    => "'''Memora que isto es solmente un test/previsualisation de tu JavaScript personalisate, illo non ha ancora essite immagazinate!'''",
+'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
 Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/monobook.css e non {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(Actualisate)',
-'note'                      => '<strong>Nota:</strong>',
-'previewnote'               => '<strong>Isto es solmente un previsualisation;
+'updated'                          => '(Actualisate)',
+'note'                             => '<strong>Nota:</strong>',
+'previewnote'                      => '<strong>Isto es solmente un previsualisation;
 le modificationes non ha ancora essite salvate!</strong>',
-'previewconflict'           => 'Iste previsualisation reflecte le apparentia final del texto in le area de redaction superior
+'previewconflict'                  => 'Iste previsualisation reflecte le apparentia final del texto in le area de redaction superior
 si tu opta pro salvar lo.',
-'session_fail_preview'      => '<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.
+'session_fail_preview'             => '<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.
 Per favor reprova. Si illo ancora non va, prova clauder e reaperir tu session.</strong>',
-'session_fail_preview_html' => "<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.</strong>
+'session_fail_preview_html'        => "<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.</strong>
 
 ''Viste que HTML crude es active in {{SITENAME}}, le previsualisation es celate como precaution contra attaccos via JavaScript.''
 
 <strong>Si isto es un tentativa de modification legitime, per favor reprova lo. Si illo ancora non va, prova clauder e reaperir tu session.</strong>",
-'token_suffix_mismatch'     => "<strong>Tu modification ha essite refusate proque tu cliente corrumpeva le characteres de punctuation in le indicio de modification.
+'token_suffix_mismatch'            => "<strong>Tu modification ha essite refusate proque tu cliente corrumpeva le characteres de punctuation in le indicio de modification.
 Iste refusa es pro evitar le corruption del texto del pagina.
 Isto pote occurrer quando tu usa un servicio problematic de ''proxy'' anonyme a base de web.</strong>",
-'editing'                   => 'Modification de $1',
-'editingsection'            => 'Modification de $1 (section)',
-'editingcomment'            => 'Modification de $1 (commento)',
-'editconflict'              => 'Conflicto de edition: $1',
-'explainconflict'           => 'Alcuno ha modificate iste pagina post que tu
+'editing'                          => 'Modification de $1',
+'editingsection'                   => 'Modification de $1 (section)',
+'editingcomment'                   => 'Modification de $1 (commento)',
+'editconflict'                     => 'Conflicto de edition: $1',
+'explainconflict'                  => 'Alcuno ha modificate iste pagina post que tu
 ha comenciate a modificar lo.
 Le area de texto superior contine le texto del pagina tal como illo existe actualmente.
 Tu modificationes es monstrate in le area de texto inferior.
 Tu debera incorporar tu modificationes al texto existente.
 <b>Solmente</b> le texto del area superior essera salvate
 quando tu premera "Salvar pagina".<br />',
-'yourtext'                  => 'Tu texto',
-'storedversion'             => 'Version immagazinate',
-'nonunicodebrowser'         => '<strong>ATTENTION: Tu utilisa un navigator non compatibile con le characteres Unicode.
+'yourtext'                         => 'Tu texto',
+'storedversion'                    => 'Version immagazinate',
+'nonunicodebrowser'                => '<strong>ATTENTION: Tu utilisa un navigator non compatibile con le characteres Unicode.
 Se ha activate un systema de modification alternative que te permittera modificar articulos con securitate: le characteres non-ASCII apparera in le quadro de modification como codices hexadecimal.</strong>',
-'editingold'                => '<strong>ADVERTIMENTO: In iste momento tu modifica
+'editingold'                       => '<strong>ADVERTIMENTO: In iste momento tu modifica
 un version obsolete de iste pagina.
 Si tu lo salvara, tote le modificationes facite post iste revision essera perdite.</strong>',
-'yourdiff'                  => 'Differentias',
-'copyrightwarning'          => 'Nota ben que tote le contributiones a {{SITENAME}} es considerate public secundo le $2 (vide plus detalios in $1).
+'yourdiff'                         => 'Differentias',
+'copyrightwarning'                 => 'Nota ben que tote le contributiones a {{SITENAME}} es considerate public secundo le $2 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite a voluntate, alora non lo submitte hic.<br />
 In addition, tu nos garanti que tu es le autor de tu contributiones, o que tu los ha copiate de un ressource libere de derectos.
 <strong>NON USA MATERIAL COPERITE PER DERECTOS DE AUTOR (COPYRIGHT) SIN AUTORISATION EXPRESSE!</strong>',
-'copyrightwarning2'         => 'Nota ben que tote le contributiones a {{SITENAME}} pote esser redigite, alterate, o eliminate per altere contributores.
+'copyrightwarning2'                => 'Nota ben que tote le contributiones a {{SITENAME}} pote esser redigite, alterate, o eliminate per altere contributores.
 Si tu non vole que tu scripto sia modificate impietosemente, alora non lo submitte hic.<br />
 In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate de un ressource a dominio public o alteremente libere de derectos (vide detalios in $1).
 <strong>NON SUBMITTE MATERIAL SUBJECTE A COPYRIGHT SIN AUTORISATION EXPRESSE!</strong>',
-'longpagewarning'           => 'ADVERTIMENTO: Iste pagina ha $1 kilobytes de longitude;
+'longpagewarning'                  => 'ADVERTIMENTO: Iste pagina ha $1 kilobytes de longitude;
 alcun navigatores pote presentar problemas in editar
 paginas de approximatemente o plus de 32kb.
 Considera fragmentar le pagina in sectiones minor.',
-'longpageerror'             => '<strong>ERROR: Le texto que tu submitteva es $1 kilobytes de longor, excedente le maximo de $2 kilobytes.
+'longpageerror'                    => '<strong>ERROR: Le texto que tu submitteva es $1 kilobytes de longor, excedente le maximo de $2 kilobytes.
 Illo non pote esser immagazinate.</strong>',
-'readonlywarning'           => '<strong>ATTENTION: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote immagazinar tu modificationes justo nunc.
+'readonlywarning'                  => '<strong>ATTENTION: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote immagazinar tu modificationes justo nunc.
 Nos recommenda copiar-e-collar le texto pro salveguardar lo in un file de texto, assi que tu potera publicar lo plus tarde.</strong>',
-'protectedpagewarning'      => '<strong>ATTENTION:  Iste pagina ha essite protegite. Solmente administratores pote modificar lo.</strong>',
-'semiprotectedpagewarning'  => "'''Nota:''' Iste pagina ha essite protegite de maniera que solmente usatores registrate pote modificar lo.",
-'cascadeprotectedwarning'   => "'''Attention:''' Iste pagina ha essite protegite de maniera que solmente administratores pote modificar lo, proque illo es includite in le protection in cascada del sequente {{PLURAL:$1|pagina|paginas}}:",
-'titleprotectedwarning'     => '<strong>ATTENTION:  Iste pagina ha essite protegite de maniera que solmente certe usatores specific pote crear lo.</strong>',
-'templatesused'             => 'Patronos usate in iste pagina:',
-'templatesusedpreview'      => 'Patronos usate in iste previsualisation:',
-'templatesusedsection'      => 'Patronos usate in iste section:',
-'template-protected'        => '(protegite)',
-'template-semiprotected'    => '(semi-protegite)',
-'nocreatetitle'             => 'Creation de paginas limitate',
-'nocreatetext'              => '{{SITENAME}} ha restringite le permission de crear nove paginas.
+'protectedpagewarning'             => '<strong>ATTENTION:  Iste pagina ha essite protegite. Solmente administratores pote modificar lo.</strong>',
+'semiprotectedpagewarning'         => "'''Nota:''' Iste pagina ha essite protegite de maniera que solmente usatores registrate pote modificar lo.",
+'cascadeprotectedwarning'          => "'''Attention:''' Iste pagina ha essite protegite de maniera que solmente administratores pote modificar lo, proque illo es includite in le protection in cascada del sequente {{PLURAL:$1|pagina|paginas}}:",
+'titleprotectedwarning'            => '<strong>ATTENTION:  Iste pagina ha essite protegite de maniera que solmente certe usatores specific pote crear lo.</strong>',
+'templatesused'                    => 'Patronos usate in iste pagina:',
+'templatesusedpreview'             => 'Patronos usate in iste previsualisation:',
+'templatesusedsection'             => 'Patronos usate in iste section:',
+'template-protected'               => '(protegite)',
+'template-semiprotected'           => '(semi-protegite)',
+'hiddencategories'                 => 'Iste pagina es membro de {{PLURAL:$1|1 categoria|$1 categorias}} celate:',
+'nocreatetitle'                    => 'Creation de paginas limitate',
+'nocreatetext'                     => '{{SITENAME}} ha restringite le permission de crear nove paginas.
 Tu pote retornar e modificar un pagina existente, o [[Special:Userlogin|identificar te, o crear un conto]].',
-'nocreate-loggedin'         => 'Tu non ha le permission de crear nove paginas in {{SITENAME}}.',
-'permissionserrors'         => 'Errores de permissiones',
-'permissionserrorstext'     => 'Tu non ha le permission de facer isto, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
-'recreate-deleted-warn'     => "'''Attention: Tu va recrear un pagina que esseva anteriormente eliminate.'''
+'nocreate-loggedin'                => 'Tu non ha le permission de crear nove paginas in {{SITENAME}}.',
+'permissionserrors'                => 'Errores de permissiones',
+'permissionserrorstext'            => 'Tu non ha le permission de facer isto, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
+'permissionserrorstext-withaction' => 'Tu non ha le permission de $2, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
+'recreate-deleted-warn'            => "'''Attention: Tu va recrear un pagina que esseva anteriormente eliminate.'''
 
 Tu deberea considerar si il es appropriate crear iste pagina de novo.
 Le registro de eliminationes pro iste pagina se revela hic pro major commoditate:",
 
+# Parser/template warnings
+'expensive-parserfunction-warning'        => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.
+
+Illo debe haber minus de $2, sed al momento ha $1.',
+'expensive-parserfunction-category'       => 'Paginas con troppo de appellos costose al functiones del analysator syntactic',
+'post-expand-template-inclusion-warning'  => 'Attention: Le grandor del patronos includite ha excedite le maximo.
+Alcun patronos non essera includite.',
+'post-expand-template-inclusion-category' => 'Paginas excedente le grandor maximal del patronos includite',
+'post-expand-template-argument-warning'   => 'Attention: Iste pagina contine al minus un parametro de patrono que ha un grandor de expansion excessive.
+Iste parametros ha essite omittite.',
+'post-expand-template-argument-category'  => 'Paginas que omitte alcun parametros de patrono',
+
 # "Undo" feature
 'undo-success' => 'Le modification es reversibile. Per favor controla le comparation infra pro verificar que tu vole facer isto, e alora immagazina le modificationes infra pro completar le reversion del modification.',
 'undo-failure' => 'Le modification non poteva esser revertite a causa de conflicto con modificationes intermedie.',
+'undo-norev'   => 'Impossibile reverter le modification proque illo non existe o esseva delite.',
 'undo-summary' => 'Reverte le revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])',
 
 # Account creation failure
@@ -739,7 +757,10 @@ es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FU
 'rev-delundel'                => 'revelar/celar',
 'revisiondelete'              => 'Deler/restaurar revisiones',
 'revdelete-nooldid-title'     => 'Le revision visate es invalide',
+'revdelete-nooldid-text'      => 'O tu non ha specificate alcun revision(es) visate pro executar iste 
+function, o le revision specificate non existe, o tu essaya celar le revision actual.',
 'revdelete-selected'          => '{{PLURAL:$2|Revision seligite|Revisiones seligite}} de [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|Evento|Eventos}} de registro seligite:',
 'revdelete-text'              => 'Le revisiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.
 
 Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.',
@@ -748,6 +769,7 @@ Altere administratores in {{SITENAME}} continuara a poter acceder al contento ce
 'revdelete-hide-name'         => 'Celar action e objectivo',
 'revdelete-hide-comment'      => 'Celar commento de modification',
 'revdelete-hide-user'         => 'Celar nomine de usator o adresse IP del modificator',
+'revdelete-hide-restricted'   => 'Applicar iste restrictiones al administratores e blocar iste interfacie',
 'revdelete-suppress'          => 'Supprimer datos e de Administratores e de alteres',
 'revdelete-hide-image'        => 'Celar contento del file',
 'revdelete-unsuppress'        => 'Eliminar restrictiones super revisiones restaurate',
@@ -757,9 +779,28 @@ Altere administratores in {{SITENAME}} continuara a poter acceder al contento ce
 'logdelete-logentry'          => 'cambiava le visibilitate de eventos pro [[$1]]',
 'revdelete-success'           => "'''Le visibilitate de revisiones ha essite definite con successo.'''",
 'logdelete-success'           => "'''Le visibilitate del registro ha essite definite con successo.'''",
+'revdel-restore'              => 'Cambiar visibilitate',
+'pagehist'                    => 'Historia del pagina',
+'deletedhist'                 => 'Historia delite',
+'revdelete-content'           => 'contento',
+'revdelete-summary'           => 'summario del modification',
+'revdelete-uname'             => 'nomine de usator',
+'revdelete-restricted'        => 'restrictiones applicate al administratores',
+'revdelete-unrestricted'      => 'restrictiones eliminate pro administratores',
+'revdelete-hid'               => 'celava $1',
+'revdelete-unhid'             => 'revelava $1',
+'revdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|revision|revisiones}}',
+'logdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|evento|eventos}}',
+
+# Suppression log
+'suppressionlog'     => 'Registro de suppressiones',
+'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
+Vide le [[Special:Ipblocklist|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historias del paginas',
+'mergehistory-header'              => 'Iste pagina te permitte fusionar revisiones del historia de un pagina de origine in un pagina plus nove.
+Assecura te que iste cambio mantenera le continuitate historic del pagina.',
 'mergehistory-box'                 => 'Fusionar le revisiones de duo paginas:',
 'mergehistory-from'                => 'Pagina de origine:',
 'mergehistory-into'                => 'Pagina de destination:',
@@ -776,6 +817,8 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergehistory-no-destination'      => 'Le pagina de destination $1 non existe.',
 'mergehistory-invalid-source'      => 'Le pagina de origine debe esser un titulo valide.',
 'mergehistory-invalid-destination' => 'Le pagina de destination debe esser un titulo valide.',
+'mergehistory-autocomment'         => 'Fusionava [[:$1]] in [[:$2]]',
+'mergehistory-comment'             => 'Fusionava [[:$1]] in [[:$2]]: $3',
 
 # Merge log
 'mergelog'           => 'Fusionar registro',
@@ -792,30 +835,50 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'diff-multi'              => '({{PLURAL:$1|Un revision intermedie|$1 revisiones intermedie}} non se revela.)',
 
 # Search results
-'searchresults'         => 'Resultatos del recerca',
-'searchresulttext'      => 'Pro plus information super le recerca de {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Pro le consulta "[[:$1]]"',
-'searchsubtitleinvalid' => 'Pro le consulta "$1"',
-'noexactmatch'          => "'''Non existe un pagina con le titulo \"\$1\".'''
+'searchresults'             => 'Resultatos del recerca',
+'searchresulttext'          => 'Pro plus information super le recerca de {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Pro le consulta "[[:$1]]"',
+'searchsubtitleinvalid'     => 'Pro le consulta "$1"',
+'noexactmatch'              => "'''Non existe un pagina con le titulo \"\$1\".'''
 Tu pote [[:\$1|crear iste pagina]].",
-'noexactmatch-nocreate' => "'''Non existe un pagina con titulo \"\$1\".'''",
-'toomanymatches'        => 'Se retornava troppo de resultatos. Per favor prova un altere consulta.',
-'titlematches'          => 'Coincidentias con titulos de articulos',
-'notitlematches'        => 'Necun coincidentia',
-'textmatches'           => 'Coincidentias con textos de articulos',
-'notextmatches'         => 'Necun coincidentia',
-'prevn'                 => '$1 precedentes',
-'nextn'                 => '$1 sequentes',
-'viewprevnext'          => 'Vider ($1) ($2) ($3).',
-'showingresults'        => "Monstra de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir de nº '''$2'''.",
-'showingresultsnum'     => "Se monstra infra {{PLURAL:$3|'''1''' resultato|'''$3''' resultatos}} comenciante a #'''$2'''.",
-'nonefound'             => '<strong>Nota</strong>: recercas frustrate frequentemente
+'noexactmatch-nocreate'     => "'''Non existe un pagina con titulo \"\$1\".'''",
+'toomanymatches'            => 'Se retornava troppo de resultatos. Per favor prova un altere consulta.',
+'titlematches'              => 'Coincidentias con titulos de articulos',
+'notitlematches'            => 'Necun coincidentia',
+'textmatches'               => 'Coincidentias con textos de articulos',
+'notextmatches'             => 'Necun coincidentia',
+'prevn'                     => '$1 precedentes',
+'nextn'                     => '$1 sequentes',
+'viewprevnext'              => 'Vider ($1) ($2) ($3).',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 parola|$2 parolas}})',
+'search-result-score'       => 'Relevantia: $1%',
+'search-redirect'           => '(redirection $1)',
+'search-section'            => '(section $1)',
+'search-suggest'            => 'Esque tu vole dicer: $1',
+'search-interwiki-caption'  => 'Projectos-sorores',
+'search-interwiki-default'  => 'Resultatos de $1:',
+'search-interwiki-more'     => '(plus)',
+'search-mwsuggest-enabled'  => 'con suggestiones',
+'search-mwsuggest-disabled' => 'sin suggestiones',
+'search-relatedarticle'     => 'Connexe',
+'mwsuggest-disable'         => 'Disactivar suggestiones via AJAX',
+'searchrelated'             => 'connexe',
+'searchall'                 => 'totes',
+'showingresults'            => "Monstra de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir de nº '''$2'''.",
+'showingresultsnum'         => "Se monstra infra {{PLURAL:$3|'''1''' resultato|'''$3''' resultatos}} comenciante a #'''$2'''.",
+'showingresultstotal'       => "Infra se monstra le {{PLURAL:$3|resultato '''$1''' de '''$3'''|resultatos '''$1 - $2''' de '''$3'''}}",
+'nonefound'                 => '<strong>Nota</strong>: recercas frustrate frequentemente
 es causate per le inclusion de vocabulos commun como "que" e "illo",
 que non es includite in le indice, o per le specification de plure
 terminos de recerca (solmente le paginas que contine tote le terminos
 de recerca apparera in le resultato).',
-'powersearch'           => 'Recercar',
-'searchdisabled'        => 'Le recerca in {{SITENAME}} es disactivate.
+'powersearch'               => 'Recerca avantiate',
+'powersearch-legend'        => 'Recerca avantiate',
+'powersearch-ns'            => 'Cercar in spatios de nomines:',
+'powersearch-redir'         => 'Listar redirectiones',
+'powersearch-field'         => 'Cercar',
+'search-external'           => 'Recerca externe',
+'searchdisabled'            => 'Le recerca in {{SITENAME}} es disactivate.
 Tu pote cercar via Google in le interim.
 Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 
@@ -848,7 +911,14 @@ pro definir tu preferentias.',
 controla que le installation sia correcte del programmas ''latex, dvips, gs,'' e ''convert''.",
 'math_bad_tmpdir'          => 'Non pote scriber in o crear le directorio temporari "math".',
 'math_bad_output'          => 'Non pote scriber in o crear le directorio de output "math".',
+'math_notexvc'             => "Le executabile ''texvc'' manca;
+per favor vide math/README pro configurar lo.",
+'prefs-personal'           => 'Profilo del usator',
 'prefs-rc'                 => 'Modificationes recente',
+'prefs-watchlist'          => 'Observatorio',
+'prefs-watchlist-days'     => 'Numero de dies a monstrar in le observatorio:',
+'prefs-watchlist-edits'    => 'Numero maximal de cambios a monstrar in le observatorio expandite:',
+'prefs-misc'               => 'Misc',
 'saveprefs'                => 'Salvar preferentias',
 'resetprefs'               => 'Restaurar preferentias',
 'oldpassword'              => 'Contrasigno actual:',
@@ -861,16 +931,25 @@ controla que le installation sia correcte del programmas ''latex, dvips, gs,'' e
 'resultsperpage'           => 'Coincidentias per pagina',
 'contextlines'             => 'Lineas per coincidentia',
 'contextchars'             => 'Characteres de contexto per linea',
+'stub-threshold'           => 'Limite pro formatar le ligamines in <a href="#" class="stub">stilo de peciettas</a> (bytes):',
+'recentchangesdays'        => 'Numero de dies a monstrar in modificationes recente:',
 'recentchangescount'       => 'Quantitate de titulos in modificationes recente',
 'savedprefs'               => 'Tu preferentias ha essite salvate.',
+'timezonelegend'           => 'Fuso horari',
 'timezonetext'             => 'Scribe le differentia de horas inter tu fuso horari
 e illo del servitor (UTC).',
 'localtime'                => 'Hora local',
 'timezoneoffset'           => 'Differentia de fuso horari',
+'servertime'               => 'Hora del servitor',
+'guesstimezone'            => 'Obtener del navigator',
+'allowemail'               => 'Activar reception de e-mail de altere usatores',
 'default'                  => 'predefinition',
 
 # User rights
 'editinguser' => "Cambiamento del derectos del usator '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+
+# Groups
+'group-all' => '(totes)',
 
 'grouppage-sysop'      => '{{ns:project}}:Administratores',
 'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrates',
@@ -1279,9 +1358,9 @@ specific que ha essite vandalisate).',
 'ipboptions'         => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotherreason'     => 'Motivo altere/additional:',
 'badipaddress'       => 'Adresse IP mal formate.',
-'blockipsuccesssub'  => 'Blocage con successo',
+'blockipsuccesssub'  => 'Blocada succedite',
 'blockipsuccesstext' => 'Le adresse IP "$1" ha essite blocate.
-<br />Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocages.',
+<br />Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocadas.',
 'unblockip'          => 'Disblocar adresse IP',
 'unblockiptext'      => 'Usa le formulario infra pro restaurar le accesso de scriptura
 a un adresse IP blocate previemente.',
@@ -1297,15 +1376,15 @@ a un adresse IP blocate previemente.',
 # Developer tools
 'lockdb'              => 'Blocar base de datos',
 'unlockdb'            => 'Disblocar base de datos',
-'lockdbtext'          => 'Le blocage del base de datos suspendera le capacitate de tote
-le usatores de modificar paginas, modificar lor preferentias e listas de paginas sub observation,
+'lockdbtext'          => 'Le blocada del base de datos suspendera le capacitate de tote
+le usatores de modificar paginas, modificar lor preferentias e observatorios,
 e altere actiones que require modificationes in le base de datos.
-Per favor confirma que iste es tu intention, e que tu disblocara le
+Per favor confirma que isto es tu intention, e que tu disblocara le
 base de datos immediatemente post completar tu mantenentia.',
-'unlockdbtext'        => 'Le disblocage del base de datos restaurara le capacitate de tote
-le usatores de modificar paginas, modificar lor preferentias e listas de paginas sub observation,
+'unlockdbtext'        => 'Le disblocada del base de datos restaurara le capacitate de tote
+le usatores de modificar paginas, modificar lor preferentias e observatorios,
 e altere actiones que require modificationes in le base de datos.
-Per favor confirma que iste es tu intention.',
+Per favor confirma que isto es tu intention.',
 'lockconfirm'         => 'Si, io realmente vole blocar le base de datos.',
 'unlockconfirm'       => 'Si, io realmente vole disblocar le base de datos.',
 'lockbtn'             => 'Blocar base de datos',
@@ -1475,9 +1554,11 @@ Alteres essera celate initialmente.
 'edit-externally-help' => 'Vide le [http://meta.wikimedia.org/wiki/Help:External_editors instructiones de configuration] pro ulterior informationes.',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'totes',
-'namespacesall' => 'tote',
-'monthsall'     => 'tote',
+'recentchangesall' => 'totes',
+'imagelistall'     => 'totes',
+'watchlistall2'    => 'totes',
+'namespacesall'    => 'totes',
+'monthsall'        => 'totes',
 
 # action=purge
 'confirm_purge_button' => 'OK',

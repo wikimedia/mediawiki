@@ -492,7 +492,7 @@ Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argi
 'italic_tip'      => 'Testu etzana',
 'link_sample'     => 'Loturaren izenburua',
 'link_tip'        => 'Barne lotura',
-'extlink_sample'  => 'http://www.adibidea.com loturaren izenburua',
+'extlink_sample'  => 'http://www.example.org loturaren izenburua',
 'extlink_tip'     => 'Kanpo lotura (gogoratu http:// aurrizkia)',
 'headline_sample' => 'Goiburuko testua',
 'headline_tip'    => '2. mailako goiburukoa',

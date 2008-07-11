@@ -550,7 +550,7 @@ $2 къулланыджысы ичюн пароль <code>$3</code> оларак
 'italic_tip'      => 'Италик (курсив) язылыш',
 'link_sample'     => 'Саифенинъ серлевасы',
 'link_tip'        => 'Ички багъланты',
-'extlink_sample'  => 'http://www.example.com саифенинъ серлевасы',
+'extlink_sample'  => 'http://www.example.org саифенинъ серлевасы',
 'extlink_tip'     => 'Тыш багъланты (Адрес огюне http:// къоймагъа унутманъыз)',
 'headline_sample' => 'Серлева язысы',
 'headline_tip'    => '2-нджи севие серлева',

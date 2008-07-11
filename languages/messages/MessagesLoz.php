@@ -357,7 +357,7 @@ Sa ku bye fatukile zwa sebu dafi e a ni petuho, ni petuho e mulumiwasibukirisize
 'italic_tip'      => 'Selt itali',
 'link_sample'     => "Sebu di ling'ko",
 'link_tip'        => "Ling'ko bulili in",
-'extlink_sample'  => "http://www.example.com sebu di ling'ko",
+'extlink_sample'  => "http://www.example.org sebu di ling'ko",
 'extlink_tip'     => "Ling'ko bulili out (¡con http://!)",
 'headline_sample' => 'Selt di pagafi',
 'headline_tip'    => 'Pagafi (2)',

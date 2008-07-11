@@ -466,7 +466,7 @@ Panjenengan bisa nglirwakaké pesen iki yèn akun utawa rékening iki digawé d�
 'italic_tip'      => 'Cithak miring',
 'link_sample'     => 'Judhul pranala',
 'link_tip'        => 'Pranala njero',
-'extlink_sample'  => 'http://www.contoh.com/ judhul pranala',
+'extlink_sample'  => 'http://www.example.org judhul pranala',
 'extlink_tip'     => 'Pranala njaba (aja lali wiwitan http:// )',
 'headline_sample' => 'Tèks judhul',
 'headline_tip'    => 'Subbagian tingkat 1',

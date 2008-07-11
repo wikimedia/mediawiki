@@ -434,7 +434,7 @@ Divant d' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instru
 'italic_tip'      => 'Tecse e clintcheyès letes',
 'link_sample'     => 'Tecse pol loyén',
 'link_tip'        => 'Divintrin loyén',
-'extlink_sample'  => 'http://www.egzimpe.com tecse pol hårdêye',
+'extlink_sample'  => 'http://www.example.org tecse pol hårdêye',
 'extlink_tip'     => 'Difoûtrinne hårdêye (en rovyîz nén di mete «http://» pa dvant)',
 'headline_sample' => 'Tecse di tite',
 'headline_tip'    => 'Tite di 2inme livea',
