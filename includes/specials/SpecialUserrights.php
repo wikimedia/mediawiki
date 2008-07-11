@@ -349,7 +349,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param $groups    Array:  Array of groups the user is in
 	 */
 	protected function showEditUserGroupsForm( $user, $groups ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgLang;
 
 		list( $addable, $removable ) = $this->splitGroups( $groups );
 
@@ -359,7 +359,8 @@ class UserrightsPage extends SpecialPage {
 
 		$grouplist = '';
 		if( count( $list ) > 0 ) {
-			$grouplist = Xml::tags( 'p', null, wfMsgHtml( 'userrights-groupsmember' ) . ' ' . implode( ', ', $list ) );
+			$grouplist = wfMsgHtml( 'userrights-groupsmember' );
+			$grouplist = '<p>' . $grouplist  . ' ' . $wgLang->listToText( $list ) . '</p>';
 		}
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
