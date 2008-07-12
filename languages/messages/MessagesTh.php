@@ -1952,12 +1952,12 @@ $1',
 'metadata-expand'   => 'แสดงข้อมูลเพิ่มเติม',
 'metadata-collapse' => 'ซ่อนข้อมูลเพิ่มเติม',
 'metadata-fields'   => 'ค่าเอกซิฟ (Exif) ของภาพด้านล่างจะแสดงควบคู่ไปกับภาพ
-* ผู้ผลิตกล้อง
-* รุ่นกล้อง
-* วันที่ถ่าย
-* ความไวชัตเตอร์
-* ค่ารูรับแสง (f)
-* ความยาวโฟกัส', # Do not translate list items
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'กว้าง',

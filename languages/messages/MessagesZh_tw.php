@@ -1830,12 +1830,12 @@ Variants for Chinese language
 'metadata-collapse' => '隱藏詳細資料',
 'metadata-fields'   => '在本訊息中所列出的 EXIF 元數據域將包含在圖片顯示頁面,
 當元數據表損壞時只顯示以下訊息，其他的元數據預設為隱藏。
-* 相機製造商
-* 相機型號
-* 原始日期時間
-* 曝光時間
-* 光圈(F值)
-* 焦距', # Do not translate list items
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => '寬度',
