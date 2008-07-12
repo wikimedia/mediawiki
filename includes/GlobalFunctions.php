@@ -70,29 +70,6 @@ if ( !function_exists( 'mb_strlen' ) ) {
 	}
 }
 
-if ( !function_exists( 'mb_str_pad' ) ) {
-	/**
-	 * Fallback implementation of mb_str_pad, hardcoded to UTF-8.
-	 * @param $input String: input string
-	 * @param $pad_length Integer: how much to pad
-	 * @param $pad_string Character used for padding, only one!
-	 * @param $pad_type Only STR_PAD_LEFT and STR_PAD_RIGHT supported.
-	 * @return int
-	 */
-	function mb_str_pad( $input, $pad_length, $pad_string, $pad_type ) {
-		$toPad = $pad_length - mb_strlen( $input );
-		if ( $toPad <= 0 ) return $input;
-		for ( $i = 0; $i < $toPad; $i++ ) {
-			if ( $pad_type === STR_PAD_LEFT ) {
-				$input = $pad_string . $input;
-			} elseif( $pad_type === STR_PAD_RIGHT ) {
-				$input .= $pad_string;
-			}
-		}
-		return $input;
-	}
-}
-
 if ( !function_exists( 'array_diff_key' ) ) {
 	/**
 	 * Exists in PHP 5.1.0+
