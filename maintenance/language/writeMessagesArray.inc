@@ -125,7 +125,7 @@ class MessageWriter {
 			ksort( $sortedMessages['unknown'] );
 			$messagesText .= self::writeMessagesBlock( 'Unknown messages', $sortedMessages['unknown'] );
 		}
-			$messagesText .= ");
+		$messagesText .= ");
 ";
 		return array( $messagesText, $sortedMessages );
 	}
