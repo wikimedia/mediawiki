@@ -19,6 +19,9 @@
  * @author Jon Harald Søby
  * @author Chaos
  * @author SPQRobin
+ * @author Jak
+ * @author عصام بايزيدي
+ * @author Oxydo
  */
 
 $linkPrefixExtension = true;
