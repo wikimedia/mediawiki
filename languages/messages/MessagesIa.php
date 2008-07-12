@@ -520,7 +520,7 @@ Es possibile que tu jam ha cambiate tu contrasigno o ha requestate un nove contr
 'italic_tip'      => 'Texto italic',
 'link_sample'     => 'Titulo del ligamine',
 'link_tip'        => 'Ligamine interne',
-'extlink_sample'  => 'http://www.example.org titulo del ligamine',
+'extlink_sample'  => 'http://www.example.com titulo del ligamine',
 'extlink_tip'     => 'Ligamine externe (non oblida le prefixo http://)',
 'headline_sample' => 'Texto del titulo',
 'headline_tip'    => 'Titulo de nivello 2',

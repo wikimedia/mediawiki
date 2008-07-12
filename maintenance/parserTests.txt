@@ -536,11 +536,11 @@ External links: numbered
 !! input
 Numbered: [http://example.com]
 Numbered: [http://example.net]
-Numbered: [http://example.org]
+Numbered: [http://example.com]
 !! result
 <p>Numbered: <a href="http://example.com" class="external autonumber" title="http://example.com" rel="nofollow">[1]</a>
 Numbered: <a href="http://example.net" class="external autonumber" title="http://example.net" rel="nofollow">[2]</a>
-Numbered: <a href="http://example.org" class="external autonumber" title="http://example.org" rel="nofollow">[3]</a>
+Numbered: <a href="http://example.com" class="external autonumber" title="http://example.com" rel="nofollow">[3]</a>
 </p>
 !!end
 
@@ -1468,9 +1468,9 @@ Link containing double-single-quotes '' in text embedded in italics (bug 4598 sa
 !! test
 Plain link to URL
 !! input
-[[http://www.example.org]]
+[[http://www.example.com]]
 !! result
-<p>[<a href="http://www.example.org" class="external autonumber" title="http://www.example.org" rel="nofollow">[1]</a>]
+<p>[<a href="http://www.example.com" class="external autonumber" title="http://www.example.com" rel="nofollow">[1]</a>]
 </p>
 !! end
 
@@ -1481,16 +1481,16 @@ Plain link to URL
 # ----
 # I'm changing it to match the current output--it arguably makes more
 # sense in the light of the test above. Old expected result was:
-#<p>Piped link to URL: <a href="/index.php?title=Http://www.example.org&amp;action=edit" class="new" title="Http://www.example.org">an example URL</a>
+#<p>Piped link to URL: <a href="/index.php?title=Http://www.example.com&amp;action=edit" class="new" title="Http://www.example.com">an example URL</a>
 #</p>
 # But I think this test is bordering on "garbage in, garbage out" anyway.
 # -- wtm
 !! test
 Piped link to URL
 !! input
-Piped link to URL: [[http://www.example.org|an example URL]]
+Piped link to URL: [[http://www.example.com|an example URL]]
 !! result
-<p>Piped link to URL: [<a href="http://www.example.org|an" class="external text" title="http://www.example.org|an" rel="nofollow">example URL</a>]
+<p>Piped link to URL: [<a href="http://www.example.com|an" class="external text" title="http://www.example.com|an" rel="nofollow">example URL</a>]
 </p>
 !! end
 

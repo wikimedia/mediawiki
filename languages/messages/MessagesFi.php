@@ -627,7 +627,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'italic_tip'      => 'Kursivointi',
 'link_sample'     => 'linkki',
 'link_tip'        => 'Sisäinen linkki',
-'extlink_sample'  => 'http://www.example.org linkin otsikko',
+'extlink_sample'  => 'http://www.example.com linkin otsikko',
 'extlink_tip'     => 'Ulkoinen linkki (muista http:// edessä)',
 'headline_sample' => 'Otsikkoteksti',
 'headline_tip'    => 'Otsikko',

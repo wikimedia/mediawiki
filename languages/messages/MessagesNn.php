@@ -692,7 +692,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'italic_tip'      => 'Kursivskrift',
 'link_sample'     => 'Lenkjetittel',
 'link_tip'        => 'Intern lenkje',
-'extlink_sample'  => 'http://www.example.org lenkjetittel',
+'extlink_sample'  => 'http://www.example.com lenkjetittel',
 'extlink_tip'     => 'Ekstern lenkje (hugs http:// prefiks)',
 'headline_sample' => 'Overskriftstekst',
 'headline_tip'    => '2. nivå-overskrift',

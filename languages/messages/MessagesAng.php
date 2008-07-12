@@ -232,7 +232,7 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'italic_tip'      => 'Flōwende traht',
 'link_sample'     => 'Bendtítul',
 'link_tip'        => 'Inlic bend',
-'extlink_sample'  => 'http://www.example.org bendtītul',
+'extlink_sample'  => 'http://www.example.com bendtītul',
 'extlink_tip'     => 'Ūtanweard bend (gemune http:// foredǣl)',
 'headline_sample' => 'Hēafodlīnan traht',
 'image_sample'    => 'Bisen.jpg',

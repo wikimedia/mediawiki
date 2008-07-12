@@ -409,7 +409,7 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 'italic_tip'      => 'Teksts kursīvā',
 'link_sample'     => 'Lapas nosaukums',
 'link_tip'        => 'Iekšējā saite',
-'extlink_sample'  => 'http://www.example.org saites apraksts',
+'extlink_sample'  => 'http://www.example.com saites apraksts',
 'extlink_tip'     => 'Ārējā saite (neaizmirsti sākumā pierakstīt "http://")',
 'headline_sample' => 'Virsraksta teksts',
 'headline_tip'    => '2. līmeņa virsraksts',

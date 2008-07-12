@@ -535,7 +535,7 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'italic_tip'      => 'Tekstas kursyvu',
 'link_sample'     => 'Nuorodos pavadinimas',
 'link_tip'        => 'Vidinė nuoroda',
-'extlink_sample'  => 'http://www.example.org nuorodos pavadinimas',
+'extlink_sample'  => 'http://www.example.com nuorodos pavadinimas',
 'extlink_tip'     => 'Išorinė nuoroda (nepamirškite http:// priedėlio)',
 'headline_sample' => 'Skyriaus pavadinimas',
 'headline_tip'    => 'Antro lygio skyriaus pavadinimas',

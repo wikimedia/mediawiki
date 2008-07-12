@@ -328,7 +328,7 @@ $messages = array(
 'italic_tip'     => 'Γράμματα πλάγια',
 'link_sample'    => 'Συνδέσμου ὄνομα',
 'link_tip'       => 'Σύνδεσμος οἰκεῖος',
-'extlink_sample' => 'http://www.example.org ὄνομα συνδέσμου',
+'extlink_sample' => 'http://www.example.com ὄνομα συνδέσμου',
 'media_tip'      => 'Τὸ προσάγον πρὸς τὸ φορτίον',
 
 # Edit pages
