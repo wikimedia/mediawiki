@@ -2342,6 +2342,7 @@ $1',
 
 # Live preview
 'livepreview-loading' => 'Загрузка…',
+'livepreview-ready'   => 'Загрузка… Гатова!',
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'Рэдагаваць сьпіс назіраньня',
@@ -2379,6 +2380,11 @@ $1',
 'specialpages'               => 'Спэцыяльныя старонкі',
 'specialpages-group-other'   => 'Іншыя спэцыяльныя старонкі',
 'specialpages-group-changes' => 'Апошнія зьмены і журналы падзей',
+'specialpages-group-users'   => 'Удзельнікі і правы',
 'specialpages-group-pages'   => 'Сьпісы старонак',
+
+# Special:Blankpage
+'blankpage'              => 'Пустая старонка',
+'intentionallyblankpage' => 'Гэтая старонка наўмысна пакінутая пустой',
 
 );

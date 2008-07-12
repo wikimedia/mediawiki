@@ -7,8 +7,8 @@
  * @author Klutzy
  * @author ToePeu
  * @author PuzzletChung
- * @author Siebrand
  * @author ITurtle
+ * @author Siebrand
  * @author לערי ריינהארט
  * @author Kwj2772
  * @author Ficell
@@ -16,6 +16,7 @@
  * @author Pi.C.Noizecehx
  * @author SPQRobin
  * @author Jon Harald Søby
+ * @author Albamhandae
  */
 
 $namespaceNames = array(
@@ -510,6 +511,7 @@ $messages = array(
 'showdiff'                         => '차이 보기',
 'anoneditwarning'                  => "'''주의''': 로그인하고 있지 않습니다. 당신의 IP 주소가 문서 역사에 남게 됩니다.",
 'missingsummary'                   => "'''알림:''' 편집 요약을 적지 않았습니다. 그대로 저장하면 편집 요약 없이 저장됩니다.",
+'missingcommenttext'               => '아래에 내용을 채워 넣어 주세요.',
 'summary-preview'                  => '편집 요약 미리 보기',
 'subject-preview'                  => '주제/제목 미리 보기',
 'blockedtitle'                     => '차단됨',
@@ -1515,6 +1517,7 @@ $1',
 'move-watch'              => '이 문서 주시하기',
 'movepagebtn'             => '이동',
 'pagemovedsub'            => '문서 이동함',
+'movepage-moved'          => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected' => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",

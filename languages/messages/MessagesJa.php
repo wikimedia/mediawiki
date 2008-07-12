@@ -363,6 +363,8 @@ MySQL returned error "$3: $4"',
 'readonlytext'         => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらく定期的なメンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。データベースをロックしたサーバー管理者は次のような説明をしています:
 
 $1',
+'missingarticle-rev'   => '(版#: $1)',
+'missingarticle-diff'  => '(差分: $1, $2)',
 'readonly_lag'         => 'データベースはスレーブ・サーバーがマスタ・サーバーに同期するまで自動的にロックされています。しばらくお待ちください。',
 'internalerror'        => '内部処理エラー',
 'internalerror_info'   => '内部エラー: $1',
@@ -401,6 +403,11 @@ $2',
 'ns-specialprotected'  => '{{ns:special}}名前空間内にあるページは編集できません。',
 'titleprotected'       => "このページは [[User:$1|$1]] によりページの作成が保護されています。
 保護の理由は次の通りです。: ''$2''",
+
+# Virus scanner
+'virus-badscanner'     => '環境設定が不適合です: 不明なウイルス検知ソフト: <i>$1</i>',
+'virus-scanfailed'     => 'スキャンに失敗しました (コード $1)',
+'virus-unknownscanner' => '不明なウイルス駆除プログラム:',
 
 # Login and logout pages
 'logouttitle'                => 'ログアウト',
@@ -649,6 +656,13 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 
 このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
 
+# Parser/template warnings
+'expensive-parserfunction-warning'       => '警告: このページは条件文関数の呼び出し負荷が高過ぎます。
+
+現在は $1 です。$2 より低い必要があります。',
+'expensive-parserfunction-category'      => '条件文関数の呼び出しが高負荷となっているページ',
+'post-expand-template-inclusion-warning' => '警告: テンプレートのデータサイズが大き過ぎます。いくつかのテンプレートが含まれません。',
+
 # "Undo" feature
 'undo-success' => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
 'undo-failure' => '中間の版での編集と競合したため、自動取り消しできませんでした。',
@@ -778,8 +792,11 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'nextn'                    => '次 $1',
 'viewprevnext'             => '（$1）（$2）（$3）を見る',
 'search-result-size'       => '$1 ({{PLURAL:$2|1語|$2語}})',
+'search-result-score'      => '関連度: $1%',
 'search-redirect'          => '($1 のリダイレクト)',
+'search-section'           => '(節 $1)',
 'search-interwiki-caption' => '姉妹プロジェクト',
+'search-interwiki-default' => '$1の結果:',
 'mwsuggest-disable'        => 'AJAX によるサジェストを無効にする',
 'searchall'                => 'all',
 'showingresults'           => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
@@ -791,6 +808,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'powersearch-ns'           => '名前空間を指定して検索:',
 'powersearch-redir'        => 'リダイレクトの一覧',
 'powersearch-field'        => '検索キーワード:',
+'search-external'          => '外部検索',
 'searchdisabled'           => '<p>全文検索はサーバー負荷の都合から、一時的に使用停止しています。元に戻るまでGoogleでの全文検索を利用してください。検索結果は少し古い内容となります。</p>',
 
 # Preferences page
@@ -897,6 +915,9 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 # Rights
 'right-read'          => 'ページの閲覧',
 'right-edit'          => 'ページの編集',
+'right-createpage'    => 'ページの作成（ノートページ以外）',
+'right-createtalk'    => 'ノートページの作成',
+'right-createaccount' => '新しい利用者アカウントの作成',
 'right-move'          => 'ページの移動',
 'right-move-subpages' => 'サブページを含めたページの移動',
 'right-autoconfirmed' => '半保護されたページの編集',
@@ -981,8 +1002,8 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'illegalfilename'             => 'ファイル名 "$1" にページ・タイトルとして使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
 'badfilename'                 => 'ファイル名は "$1" へ変更されました。',
 'filetype-badmime'            => 'MIME タイプ "$1" のファイルのアップロードは許可されていません。',
-'filetype-unwanted-type'      => "'''\".\$1\"''' は好ましくないファイル形式です。次のファイル形式を推奨します： \$2",
-'filetype-banned-type'        => "'''\".\$1\"''' は許可されていないファイル形式です。次のファイル形式を利用してください： \$2",
+'filetype-unwanted-type'      => "'''\".\$1\"''' は好ましくないファイル形式です。次の{{PLURAL:\$3|ファイル形式|ファイル形式}}を推奨します： \$2",
+'filetype-banned-type'        => "'''\".\$1\"''' は許可されていないファイル形式です。次の{{PLURAL:\$3|ファイル形式|ファイル形式}}を利用してください： \$2",
 'filetype-missing'            => 'ファイルに拡張子 (".jpg" など）がありません。',
 'large-file'                  => 'ファイルサイズは $1 バイト以下に抑えることが推奨されています。このファイルは $2 バイトです。',
 'largefileserver'             => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
@@ -1397,8 +1418,8 @@ $NEWPAGE
 ** 著作権侵害
 ** 荒らし',
 'delete-edit-reasonlist'      => '削除理由を編集する',
-'delete-toobig'               => 'このページには、$1版を超える多くの編集履歴があります。処理負荷増大によって{{SITENAME}}に偶発的なトラブルが起こることを防ぐため、このようなページの削除は制限されています。',
-'delete-warning-toobig'       => 'このページには、$1版を超える多くの編集履歴があります。削除の際、{{SITENAME}}のデータベース処理に大きな負荷がかかりますので、十分に注意してください。',
+'delete-toobig'               => 'このページには、$1 {{PLURAL:$1|版|版}}を超える多くの編集履歴があります。処理負荷増大によって{{SITENAME}}に偶発的なトラブルが起こることを防ぐため、このようなページの削除は制限されています。',
+'delete-warning-toobig'       => 'このページには、 $1 {{PLURAL:$1|版|版}}を超える多くの編集履歴があります。削除の際、{{SITENAME}}のデータベース処理に大きな負荷がかかりますので、十分に注意してください。',
 'rollback'                    => '編集の差し戻し',
 'rollback_short'              => '差し戻し',
 'rollbacklink'                => '差し戻し',

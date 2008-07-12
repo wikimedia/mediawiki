@@ -12,8 +12,8 @@
  * @author MCruz
  * @author SPQRobin
  * @author Waldir
- * @author Villate
  * @author Minh Nguyen
+ * @author Villate
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
  * @author Nuno Tavares

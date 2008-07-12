@@ -200,7 +200,7 @@ $messages = array(
 'create'            => 'Crear',
 'editthispage'      => 'Modificar iste pagina',
 'create-this-page'  => 'Crear iste pagina',
-'delete'            => 'Eliminar',
+'delete'            => 'Deler',
 'deletethispage'    => 'Eliminar iste pagina',
 'undelete_short'    => 'Recuperar {{PLURAL:$1|un modification|$1 modificationes}}',
 'protect'           => 'Proteger',
@@ -301,7 +301,7 @@ $messages = array(
 'nstab-media'     => 'Pagina de multimedia',
 'nstab-special'   => 'Special',
 'nstab-project'   => 'Pagina de projecto',
-'nstab-image'     => 'Archivo',
+'nstab-image'     => 'File',
 'nstab-mediawiki' => 'Message',
 'nstab-template'  => 'Patrono',
 'nstab-help'      => 'Pagina de adjuta',
@@ -538,7 +538,7 @@ Es possibile que tu jam ha cambiate tu contrasigno o ha requestate un nove contr
 'subject'                          => 'Subjecto/titulo',
 'minoredit'                        => 'Isto es un modification minor',
 'watchthis'                        => 'Observar iste pagina',
-'savearticle'                      => 'Salvar articulo',
+'savearticle'                      => 'Publicar articulo',
 'preview'                          => 'Previsualisar',
 'showpreview'                      => 'Monstrar previsualisation',
 'showlivepreview'                  => 'Previsualisation directe',
@@ -546,10 +546,10 @@ Es possibile que tu jam ha cambiate tu contrasigno o ha requestate un nove contr
 'anoneditwarning'                  => "'''Attention:''' Tu non te ha identificate.
 Tu adresse IP essera registrate in le historia de modificationes a iste pagina.",
 'missingsummary'                   => "'''Memento:''' Tu non entrava alcun summario del modification.
-Si tu clicca super Salvar de novo, le modification essera publicate sin summario.",
+Si tu clicca super Publicar de novo, le modification essera publicate sin summario.",
 'missingcommenttext'               => 'Per favor entra un commento infra.',
 'missingcommentheader'             => "'''Memento:''' Tu non entrava un subjecto/titulo pro iste commento.
-Si tu clicca super Salvar de novo, tu commento essera publicate sin subjecto/titulo.",
+Si tu clicca super Publicar de novo, tu commento essera publicate sin subjecto/titulo.",
 'summary-preview'                  => 'Previsualisation del summario',
 'subject-preview'                  => 'Previsualisation del subjecto/titulo',
 'blockedtitle'                     => 'Le usator es blocate',
@@ -616,9 +616,9 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 'updated'                          => '(Actualisate)',
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => '<strong>Isto es solmente un previsualisation;
-le modificationes non ha ancora essite salvate!</strong>',
-'previewconflict'                  => 'Iste previsualisation reflecte le apparentia final del texto in le area de redaction superior
-si tu opta pro salvar lo.',
+le modificationes non ha ancora essite publicate!</strong>',
+'previewconflict'                  => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
+si tu opta pro publicar lo.',
 'session_fail_preview'             => '<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.
 Per favor reprova. Si illo ancora non va, prova clauder e reaperir tu session.</strong>',
 'session_fail_preview_html'        => "<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.</strong>
@@ -633,20 +633,20 @@ Isto pote occurrer quando tu usa un servicio problematic de ''proxy'' anonyme a 
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (commento)',
 'editconflict'                     => 'Conflicto de edition: $1',
-'explainconflict'                  => 'Alcuno ha modificate iste pagina post que tu
+'explainconflict'                  => "Alcuno ha modificate iste pagina post que tu
 ha comenciate a modificar lo.
-Le area de texto superior contine le texto del pagina tal como illo existe actualmente.
-Tu modificationes es monstrate in le area de texto inferior.
-Tu debera incorporar tu modificationes al texto existente.
-<b>Solmente</b> le texto del area superior essera salvate
-quando tu premera "Salvar pagina".<br />',
+Le area de texto superior contine le texto del pagina como illo existe actualmente.
+Tu modificationes se monstra in le area de texto inferior.
+Tu debera incorporar tu modificationes in le texto existente.
+'''Solmente''' le texto del area superior essera publicate
+quando tu cliccara super \"Publicar articulo\".",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Version immagazinate',
 'nonunicodebrowser'                => '<strong>ATTENTION: Tu utilisa un navigator non compatibile con le characteres Unicode.
 Se ha activate un systema de modification alternative que te permittera modificar articulos con securitate: le characteres non-ASCII apparera in le quadro de modification como codices hexadecimal.</strong>',
-'editingold'                       => '<strong>ADVERTIMENTO: In iste momento tu modifica
+'editingold'                       => '<strong>ATTENTION: In iste momento tu modifica
 un version obsolete de iste pagina.
-Si tu lo salvara, tote le modificationes facite post iste revision essera perdite.</strong>',
+Si tu lo publica, tote le modificationes facite post iste revision essera perdite.</strong>',
 'yourdiff'                         => 'Differentias',
 'copyrightwarning'                 => 'Nota ben que tote le contributiones a {{SITENAME}} es considerate public secundo le $2 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite a voluntate, alora non lo submitte hic.<br />
@@ -889,7 +889,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefsnologin'             => 'Tu non ha aperite un session',
 'prefsnologintext'         => 'Tu debe [[Special:Userlogin|aperir un session]]
 pro definir tu preferentias.',
-'prefsreset'               => 'Tu preferentias salvate previemente ha essite restaurate.',
+'prefsreset'               => 'Tu preferentias anterior ha essite restaurate.',
 'qbsettings'               => 'Configuration del barra de utensiles',
 'qbsettings-none'          => 'Nulle',
 'qbsettings-fixedleft'     => 'Fixe a sinistra',
@@ -901,7 +901,7 @@ pro definir tu preferentias.',
 'math'                     => 'Exhibition de formulas',
 'dateformat'               => 'Formato de datas',
 'datedefault'              => 'Nulle preferentia',
-'datetime'                 => 'Data e tempore',
+'datetime'                 => 'Data e hora',
 'math_failure'             => 'Impossibile analysar',
 'math_unknown_error'       => 'error incognite',
 'math_unknown_function'    => 'function incognite',
@@ -919,8 +919,8 @@ per favor vide math/README pro configurar lo.",
 'prefs-watchlist-days'     => 'Numero de dies a monstrar in le observatorio:',
 'prefs-watchlist-edits'    => 'Numero maximal de cambios a monstrar in le observatorio expandite:',
 'prefs-misc'               => 'Misc',
-'saveprefs'                => 'Salvar preferentias',
-'resetprefs'               => 'Restaurar preferentias',
+'saveprefs'                => 'Confirmar',
+'resetprefs'               => 'Reverter cambios',
 'oldpassword'              => 'Contrasigno actual:',
 'newpassword'              => 'Nove contrasigno:',
 'retypenew'                => 'Confirma le nove contrasigno:',
@@ -934,7 +934,7 @@ per favor vide math/README pro configurar lo.",
 'stub-threshold'           => 'Limite pro formatar le ligamines in <a href="#" class="stub">stilo de peciettas</a> (bytes):',
 'recentchangesdays'        => 'Numero de dies a monstrar in modificationes recente:',
 'recentchangescount'       => 'Quantitate de titulos in modificationes recente',
-'savedprefs'               => 'Tu preferentias ha essite salvate.',
+'savedprefs'               => 'Tu preferentias ha essite confirmate.',
 'timezonelegend'           => 'Fuso horari',
 'timezonetext'             => 'Scribe le differentia de horas inter tu fuso horari
 e illo del servitor (UTC).',
@@ -943,42 +943,142 @@ e illo del servitor (UTC).',
 'servertime'               => 'Hora del servitor',
 'guesstimezone'            => 'Obtener del navigator',
 'allowemail'               => 'Activar reception de e-mail de altere usatores',
+'prefs-searchoptions'      => 'Optiones de recerca',
+'prefs-namespaces'         => 'Spatios de nomines',
+'defaultns'                => 'Cercar in iste spatios de nomines per predefinition:',
 'default'                  => 'predefinition',
+'files'                    => 'Files',
 
 # User rights
-'editinguser' => "Cambiamento del derectos del usator '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights'                  => 'Gestion de derectos de usator', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Gerer gruppos de usatores',
+'userrights-user-editname'    => 'Entra un nomine de usator:',
+'editusergroup'               => 'Modificar gruppos de usatores',
+'editinguser'                 => "Cambiamento del derectos del usator '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Modificar gruppos de usatores',
+'saveusergroups'              => 'Immagazinar gruppos de usatores',
+'userrights-groupsmember'     => 'Membro de:',
+'userrights-groups-help'      => 'Tu pote alterar le gruppos del quales iste usator es membro:
+* Un quadrato marcate significa que le usator es membro del gruppo in question.
+* Un non marcate significa que ille non es membro de illo.
+* Un * indica que tu non potera eliminar le gruppo quando tu lo ha addite, o vice versa.',
+'userrights-reason'           => 'Motivo pro le cambio:',
+'userrights-no-interwiki'     => 'Tu non ha le permission de modificar le derectos de usatores in altere wikis.',
+'userrights-nodatabase'       => 'Le base de datos $1 non existe o non es local.',
+'userrights-nologin'          => 'Tu debe [[Special:Userlogin|aperir un session]] con un conto de administrator pro poter assignar derectos de usator.',
+'userrights-notallowed'       => 'Tu conto non ha le permission de assignar derectos de usator.',
+'userrights-changeable-col'   => 'Gruppos que tu pote modificar',
+'userrights-unchangeable-col' => 'Gruppos que tu non pote modificar',
 
 # Groups
-'group-all' => '(totes)',
+'group'               => 'Gruppo:',
+'group-user'          => 'Usatores',
+'group-autoconfirmed' => 'Usatores autoconfirmate',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Administratores',
+'group-bureaucrat'    => 'Bureaucrates',
+'group-suppress'      => 'Supervisores',
+'group-all'           => '(totes)',
 
-'grouppage-sysop'      => '{{ns:project}}:Administratores',
-'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrates',
+'group-user-member'          => 'Usator',
+'group-autoconfirmed-member' => 'Usator autoconfirmate',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Administrator',
+'group-bureaucrat-member'    => 'Bureaucrate',
+'group-suppress-member'      => 'Supervisor',
+
+'grouppage-user'          => '{{ns:project}}:Usatores',
+'grouppage-autoconfirmed' => '{{ns:project}}:Usatores autoconfirmate',
+'grouppage-bot'           => '{{ns:project}}:Bots',
+'grouppage-sysop'         => '{{ns:project}}:Administratores',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bureaucrates',
+'grouppage-suppress'      => '{{ns:project}}:Supervisores',
+
+# Rights
+'right-read'                 => 'Leger paginas',
+'right-edit'                 => 'Modificar paginas',
+'right-createpage'           => 'Crear paginas (non discussion)',
+'right-createtalk'           => 'Crear paginas de discussion',
+'right-createaccount'        => 'Crear nove contos de usator',
+'right-minoredit'            => 'Marcar modificationes como minor',
+'right-move'                 => 'Renominar paginas',
+'right-move-subpages'        => 'Renominar paginas con lor subpaginas',
+'right-suppressredirect'     => 'Non rediriger le ancian nomine verso le nove quando se renomina un pagina',
+'right-upload'               => 'Cargar files',
+'right-reupload'             => 'Suberscriber un file existente',
+'right-reupload-own'         => 'Superscriber un file anteriormente cargate per uno mesme',
+'right-reupload-shared'      => 'Supplantar localmente le files del respositorio commun de media',
+'right-upload_by_url'        => 'Cargar un file ab un adresse URL',
+'right-purge'                => 'Purgar le cache de un pagina in le sito sin confirmation',
+'right-autoconfirmed'        => 'Modificar paginas semiprotegite',
+'right-bot'                  => 'Esser tractate como processo automatic',
+'right-nominornewtalk'       => 'Non reciper notification de nove messages quando se face modificationes minor in le pagina de discussion',
+'right-apihighlimits'        => 'Usar limites plus alte in consultas via API',
+'right-writeapi'             => 'Uso del API pro modificar le wiki',
+'right-delete'               => 'Deler paginas',
+'right-bigdelete'            => 'Deler paginas con historias longe',
+'right-deleterevision'       => 'Deler e restaurar revisiones specific de paginas',
+'right-deletedhistory'       => 'Vider entratas de historia delite, sin lor texto associate',
+'right-browsearchive'        => 'Cercar in paginas delite',
+'right-undelete'             => 'Restaurar un pagina',
+'right-suppressrevision'     => 'Revider e restaurar revisiones celate ab administratores',
+'right-suppressionlog'       => 'Vider registros private',
+'right-block'                => 'Blocar altere usatores de facer modificationes',
+'right-blockemail'           => 'Blocar un usator de inviar e-mail',
+'right-hideuser'             => 'Blocar un nomine de usator, celante lo del publico',
+'right-ipblock-exempt'       => 'Facer deviation circa le blocadas de adresses IP, blocadas automatic e blocadas de gammas IP',
+'right-proxyunbannable'      => 'Facer deviation circa le blocadas automatic de proxy',
+'right-protect'              => 'Cambiar nivellos de protection e modificar paginas protegite',
+'right-editprotected'        => 'Modificar paginas protegite (sin cascada)',
+'right-editinterface'        => 'Modificar le interfacie de usator',
+'right-editusercssjs'        => 'Modificar le files CSS e JS de altere usatores',
+'right-rollback'             => 'Rapidemente reverter le modificationes del ultime usator que modificava un pagina particular',
+'right-markbotedits'         => 'Marcar modificationes de reversion como facite per un bot',
+'right-noratelimit'          => 'Non esser subjecte al limites de frequentia de actiones',
+'right-import'               => 'Importar paginas de altere wikis',
+'right-importupload'         => 'Importar paginas specificate in un file que tu carga',
+'right-patrol'               => 'Marcar le modificationes de alteres como patruliate',
+'right-autopatrol'           => 'Marcar automaticamente le proprie modificationes como patruliate',
+'right-patrolmarks'          => 'Vider marcas de patrulia in le modificationes recente',
+'right-unwatchedpages'       => 'Vider un lista de paginas non observate',
+'right-trackback'            => 'Submitter un retroligamine',
+'right-mergehistory'         => 'Fusionar le historia de paginas',
+'right-userrights'           => 'Modificar tote le derectos de usator',
+'right-userrights-interwiki' => 'Modificar le derectos de usatores in altere wikis',
+'right-siteadmin'            => 'Blocar e disblocar le base de datos',
 
 # User rights log
-'rightslog' => 'Registro de derectos de usator',
+'rightslog'      => 'Registro de derectos de usator',
+'rightslogtext'  => 'Isto es un registro de cambios in derectos de usator.',
+'rightslogentry' => 'cambiava le membrato de gruppos del usator $1 de $2 a $3',
+'rightsnone'     => '(nulle)',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|modification|modificationes}}',
-'recentchanges'                  => 'Modificationes recente',
-'recentchangestext'              => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
-'recentchanges-feed-description' => 'Seque le modificationes le plus recente al wiki in iste syndication.',
-'rcnote'                         => "Infra es {{PLURAL:$1|'''1''' modification|le ultime '''$1''' modificationes}} in le ultime {{PLURAL:$2|die|'''$2''' dies}}, actualisate le $4 a $5.",
-'rcnotefrom'                     => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
-'rclistfrom'                     => 'Monstrar nove modificationes a partir de $1',
-'rcshowhideminor'                => '$1 modificationes minor',
-'rcshowhidebots'                 => '$1 bots',
-'rcshowhideliu'                  => '$1 usatores registrate',
-'rcshowhideanons'                => '$1 usatores anonyme',
-'rcshowhidepatr'                 => '$1 modificationes patruliate',
-'rcshowhidemine'                 => '$1 mi modificationes',
-'rclinks'                        => 'Monstrar le $1 ultime modificationes in le $2 ultime dies<br />$3',
-'diff'                           => 'diff',
-'hist'                           => 'prec',
-'hide'                           => 'Celar',
-'show'                           => 'Revelar',
-'minoreditletter'                => 'M',
-'newpageletter'                  => 'N',
-'boteditletter'                  => 'b',
+'nchanges'                          => '$1 {{PLURAL:$1|modification|modificationes}}',
+'recentchanges'                     => 'Modificationes recente',
+'recentchangestext'                 => 'Seque le plus recente modificationes a {{SITENAME}} in iste pagina.',
+'recentchanges-feed-description'    => 'Seque le modificationes le plus recente al wiki in iste syndication.',
+'rcnote'                            => "Infra es {{PLURAL:$1|'''1''' modification|le ultime '''$1''' modificationes}} in le ultime {{PLURAL:$2|die|'''$2''' dies}}, actualisate le $4 a $5.",
+'rcnotefrom'                        => 'infra es le modificationes a partir de <b>$2</b> (usque a <b>$1</b>).',
+'rclistfrom'                        => 'Monstrar nove modificationes a partir de $1',
+'rcshowhideminor'                   => '$1 modificationes minor',
+'rcshowhidebots'                    => '$1 bots',
+'rcshowhideliu'                     => '$1 usatores registrate',
+'rcshowhideanons'                   => '$1 usatores anonyme',
+'rcshowhidepatr'                    => '$1 modificationes patruliate',
+'rcshowhidemine'                    => '$1 mi modificationes',
+'rclinks'                           => 'Monstrar le $1 ultime modificationes in le $2 ultime dies<br />$3',
+'diff'                              => 'diff',
+'hist'                              => 'prec',
+'hide'                              => 'Celar',
+'show'                              => 'Revelar',
+'minoreditletter'                   => 'M',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usator|usatores}} observante]',
+'rc_categories'                     => 'Limite a categorias (separar con "|")',
+'rc_categories_any'                 => 'Qualcunque',
+'newsectionsummary'                 => '/* $1 */ nove section',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificationes correlate',
@@ -986,17 +1086,21 @@ e illo del servitor (UTC).',
 'recentchangeslinked-noresult' => 'Nulle modificationes in paginas ligate durante iste periodo.',
 'recentchangeslinked-summary'  => "Isto es un lista de modificationes facite recentemente a paginas al quales se refere ligamines in un altere pagina specific (o a membros de un categoria specific).
 Le paginas presente in [[Special:Watchlist|tu observatorio]] se revela in litteras '''grasse'''.",
+'recentchangeslinked-page'     => 'Nomine del pagina:',
+'recentchangeslinked-to'       => 'Monstrar modificationes in le paginas al quales le pagina que tu specificava contine ligamines',
 
 # Upload
-'upload'            => 'Cargar file',
-'uploadbtn'         => 'Cargar file',
-'reupload'          => 'Recargar',
-'reuploaddesc'      => 'Retornar al formulario de carga.',
-'uploadnologin'     => 'Tu non ha aperite un session',
-'uploadnologintext' => 'Tu debe [[Special:Userlogin|aperir un session]]
+'upload'                      => 'Cargar file',
+'uploadbtn'                   => 'Cargar file',
+'reupload'                    => 'Recargar',
+'reuploaddesc'                => 'Retornar al formulario de carga.',
+'uploadnologin'               => 'Tu non ha aperite un session',
+'uploadnologintext'           => 'Tu debe [[Special:Userlogin|aperir un session]]
 pro poter cargar files.',
-'uploaderror'       => 'Error de carga',
-'uploadtext'        => "'''STOP!''' Ante cargar files al servitor,
+'upload_directory_missing'    => 'Le directorio de cargamento ($1) manca, e le servitor de web non poteva crear lo.',
+'upload_directory_read_only'  => 'Le servitor de web non ha le permission de scriber in le directorio de cargamento ($1).',
+'uploaderror'                 => 'Error de carga',
+'uploadtext'                  => "'''STOP!''' Ante cargar files al servitor,
 prende cognoscentia del politica de {{SITENAME}} super le uso de imagines,
 e assecura te de respectar lo.
 
@@ -1031,83 +1135,230 @@ Nota que, justo como occurre con le paginas de {{SITENAME}}, alteros
 pote modificar o eliminar le files cargate si illes considera que
 isto beneficia le encyclopedia, e tu pote haber tu derecto
 de carga blocate si tu abusa del systema.",
-'uploadlog'         => 'registro de cargas',
-'uploadlogpage'     => 'Registro_de_cargas',
-'uploadlogpagetext' => 'Infra es un lista del plus recente cargas de files.
-Tote le tempores monstrate es in le fuso horari del servitor (UCT).',
-'filename'          => 'Nomine del file',
-'filedesc'          => 'Description',
-'filestatus'        => 'Stato de copyright:',
-'filesource'        => 'Fonte:',
-'uploadedfiles'     => 'Files cargate',
-'badfilename'       => 'Le nomine del imagine esseva cambiate a "$1".',
-'successfulupload'  => 'Carga complete',
-'uploadwarning'     => 'Advertimento de carga',
-'savefile'          => 'Salvar file',
-'uploadedimage'     => '"[[$1]]" cargate',
-'watchthisupload'   => 'Observar iste pagina',
+'upload-permitted'            => 'Typos de file permittite: $1.',
+'upload-preferred'            => 'Typos de file preferite: $1.',
+'upload-prohibited'           => 'Typos de file prohibite: $1.',
+'uploadlog'                   => 'registro de cargas',
+'uploadlogpage'               => 'Registro de cargas',
+'uploadlogpagetext'           => 'Infra es un lista del plus recente cargas de files.',
+'filename'                    => 'Nomine del file',
+'filedesc'                    => 'Summario',
+'fileuploadsummary'           => 'Summario:',
+'filestatus'                  => 'Stato de copyright:',
+'filesource'                  => 'Fonte:',
+'uploadedfiles'               => 'Files cargate',
+'ignorewarning'               => 'Ignorar le advertimento e immagazinar totevia le file',
+'ignorewarnings'              => 'Ignorar omne advertimentos',
+'minlength1'                  => 'Le nomines de file debe haber al minus un littera.',
+'illegalfilename'             => 'Le nomine de file "$1" contine characteres que non es permittite in le titulos de paginas.
+Per favor renomina le file e prova recargar lo.',
+'badfilename'                 => 'Le nomine del imagine esseva cambiate a "$1".',
+'filetype-badmime'            => 'Non es permittite cargar files del typo MIME "$1".',
+'filetype-unwanted-type'      => "'''\".\$1\"''' es un typo de file non desirate.
+Le {{PLURAL:\$3|typo|typos}} de file preferite es \$2.",
+'filetype-banned-type'        => "Le typo de file '''\".\$1\"''' non es permittite.
+Le {{PLURAL:\$3|typo|typos}} de file permittite es \$2.",
+'filetype-missing'            => 'Le nomine del file non ha un extension (como ".jpg").',
+'large-file'                  => 'Es recommendate que le files non sia plus grande de $1;
+iste file occupa $2.',
+'largefileserver'             => 'Le grandor de iste file excede le limite configurate in le servitor.',
+'emptyfile'                   => 'Le file que tu cargava pare esser vacue. Isto pote esser debite a un error in le nomine del file.
+Per favor assecura que tu realmente vole cargar un file con precisemente iste nomine.',
+'fileexists'                  => 'Un file con iste nomine jam existe. Per favor verifica <strong><tt>$1</tt></strong> si tu non es secur de voler cambiar lo.',
+'filepageexists'              => 'Le pagina de description correspondente a iste file jam ha essite create a <strong><tt>$1</tt></strong>, sed un file con iste nomine non existe al momento.
+Le summario que tu entra non apparera in le pagina de description.
+Si tu vole que illo appare, tu debe inserer lo manualmente.',
+'fileexists-extension'        => 'Un file con un nomine similar jam existe:<br />
+Nomine del file que tu carga: <strong><tt>$1</tt></strong><br />
+Nomine del file existente: <strong><tt>$2</tt></strong><br />
+Per favor selige un altere nomine.',
+'fileexists-thumb'            => "<center>'''File existente'''</center>",
+'fileexists-thumbnail-yes'    => 'Iste file pare esser un imagine a grandor reducite <i>(miniatura)</i>.
+Per favor verifica le file <strong><tt>$1</tt></strong>.<br />
+Si le file verificate es le mesme imagine a grandor original, non es necessari cargar un miniatura additional.',
+'file-thumbnail-no'           => 'Le nomine del file comencia con <strong><tt>$1</tt></strong>.
+Illo pare esser un imagine a grandor reducite <i>(miniatura)</i>.
+Si tu possede iste imagine in plen resolution, carga lo, alteremente cambia le nomine del file per favor.',
+'fileexists-forbidden'        => 'Un file con iste nomine jam existe;
+per favor retorna e carga iste file sub un altere nomine. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Un file con iste nomine jam existe in le repositorio de files commun;
+per favor retorna e carga iste file sub un altere nomine. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Iste file es un duplicato del sequente {{PLURAL:$1|file|files}}:',
+'successfulupload'            => 'Carga complete',
+'uploadwarning'               => 'Advertimento de carga',
+'savefile'                    => 'Immagazinar file',
+'uploadedimage'               => '"[[$1]]" cargate',
+'overwroteimage'              => 'cargava un nove version de "[[$1]]"',
+'uploaddisabled'              => 'Cargamentos disactivate',
+'uploaddisabledtext'          => 'Le cargamento de files es disactivate in {{SITENAME}}.',
+'uploadscripted'              => 'Iste file contine codice de HTML o de script que pote esser interpretate erroneemente per un navigator del web.',
+'uploadcorrupt'               => 'Le file es corrupte o su nomine ha un extension incorrecte.
+Per favor verifica le file e recarga lo.',
+'uploadvirus'                 => 'Le file contine un virus! Detalios: $1',
+'sourcefilename'              => 'Nomine del file de origine:',
+'destfilename'                => 'Nomine del file de destination:',
+'upload-maxfilesize'          => 'Grandor maximal del files: $1',
+'watchthisupload'             => 'Observar iste pagina',
+'filewasdeleted'              => 'Un file con iste nomine ha anteriormente essite cargate e postea delite.
+Tu debe revider le $1 ante de proceder e recargar lo.',
+'upload-wasdeleted'           => "'''Attention: Tu va cargar un file que esseva anteriormente delite.'''
+
+Tu debe considerar si es appropriate continuar a cargar iste file.
+Pro major commoditate se trova hic le registro de eliminationes correspondente a iste file:",
+'filename-bad-prefix'         => 'Le nomine del file que tu va cargar comencia con <strong>"$1"</strong>, le qual es un nomine non descriptive, typicamente assignate automaticamente per le cameras digital.
+Per favor selige un nomine plus descriptive pro tu file.',
+
+'upload-proto-error'      => 'Protocollo incorrecte',
+'upload-proto-error-text' => 'Le cargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
+'upload-file-error'       => 'Error interne',
+'upload-file-error-text'  => 'Un error interne occurreva quando se tentava crear un file temporari in le servitor.
+Per favor contacta un administrator de systemas.',
+'upload-misc-error'       => 'Error de cargamento non cognoscite',
+'upload-misc-error-text'  => 'Un error non cognoscite occurreva durante le cargamento.
+Per favor verifica que le adresse URL sia valide e accessible, e reprova.
+Si le problema persiste, contacta un administrator de systemas.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'Non poteva acceder al URL',
+'upload-curl-error6-text'  => 'Le adresse URL fornite es inaccessibile.
+Per favor reverifica que le adresse URL sia correcte e que le sito sia in operation.',
+'upload-curl-error28'      => 'Le cargamento se prolongava troppo',
+'upload-curl-error28-text' => 'Le sito non respondeva intra le limite de tempore.
+Per favor controla que le sito sia in operation, attende un poco e reprova.
+Pote esser preferite reprovar quando le sito es minus occupate.',
+
+'license'            => 'Licentia:',
+'nolicense'          => 'Necun licentia seligite',
+'license-nopreview'  => '(Previsualisation non disponibile)',
+'upload_source_url'  => ' (un adresse URL valide e publicamente accessibile)',
+'upload_source_file' => ' (un file in tu computator)',
 
 # Special:Imagelist
-'imagelist' => 'Lista de imagines',
+'imagelist-summary'     => 'Iste pagina special monstra tote le files cargate.
+Per predefinition le ultime files cargate se monstra al initio del lista.
+Tu pote reordinar le lista con un clic super le titulo de un columna.',
+'imagelist_search_for'  => 'Cercar un nomine de media:',
+'imgfile'               => 'file',
+'imagelist'             => 'Lista de imagines',
+'imagelist_date'        => 'Data',
+'imagelist_name'        => 'Nomine',
+'imagelist_user'        => 'Usator',
+'imagelist_size'        => 'Grandor',
+'imagelist_description' => 'Description',
 
 # Image description page
-'filehist'                  => 'Historia del file',
-'filehist-help'             => 'Clicca super un data/hora pro vider le file como appareva a ille tempore.',
-'filehist-revert'           => 'reverter',
-'filehist-current'          => 'actual',
-'filehist-datetime'         => 'Data/Hora',
-'filehist-user'             => 'Usator',
-'filehist-dimensions'       => 'Dimensiones',
-'filehist-filesize'         => 'Grandor del file',
-'filehist-comment'          => 'Commento',
-'imagelinks'                => 'Ligamines',
-'linkstoimage'              => 'Le paginas sequente se liga a iste imagine:',
-'nolinkstoimage'            => 'Necun pagina se liga a iste imagine.',
-'sharedupload'              => 'Iste file ha essite cargate pro uso in commun; altere projectos pote usar lo.',
-'noimage'                   => 'Non existe un file con iste nomine. Vos pote $1.',
-'noimage-linktext'          => 'cargar lo',
-'uploadnewversion-linktext' => 'Cargar un nove version de iste file',
+'filehist'                       => 'Historia del file',
+'filehist-help'                  => 'Clicca super un data/hora pro vider le file como appareva a ille tempore.',
+'filehist-deleteall'             => 'deler totes',
+'filehist-deleteone'             => 'deler',
+'filehist-revert'                => 'reverter',
+'filehist-current'               => 'actual',
+'filehist-datetime'              => 'Data/Hora',
+'filehist-user'                  => 'Usator',
+'filehist-dimensions'            => 'Dimensiones',
+'filehist-filesize'              => 'Grandor del file',
+'filehist-comment'               => 'Commento',
+'imagelinks'                     => 'Ligamines',
+'linkstoimage'                   => 'Le paginas sequente se liga a iste imagine:',
+'nolinkstoimage'                 => 'Necun pagina se liga a iste imagine.',
+'morelinkstoimage'               => 'Vider [[Special:Whatlinkshere/$1|plus ligamines]] a iste file.',
+'redirectstofile'                => 'Le sequente {{PLURAL:$1|file|$1 files}} se redirige a iste file:',
+'duplicatesoffile'               => 'Le sequente {{PLURAL:$1|files es un duplicato|$1 files es duplicatos}} de iste file:',
+'sharedupload'                   => 'Iste file ha essite cargate pro uso in commun; altere projectos pote usar lo.',
+'shareduploadwiki'               => 'Per favor vide le $1 pro ulterior informationes.',
+'shareduploadwiki-desc'          => 'Infra se monstra le description in su $1 in le repositorio commun.',
+'shareduploadwiki-linktext'      => 'pagina de description de file',
+'shareduploadduplicate'          => 'Iste file es un duplicato de $1 del repositorio commun.',
+'shareduploadduplicate-linktext' => 'un altere file',
+'shareduploadconflict'           => 'Iste file ha le mesme nomine que $1 del repositorio commun.',
+'shareduploadconflict-linktext'  => 'un altere file',
+'noimage'                        => 'Non existe un file con iste nomine. Vos pote $1.',
+'noimage-linktext'               => 'cargar lo',
+'uploadnewversion-linktext'      => 'Cargar un nove version de iste file',
+'imagepage-searchdupe'           => 'Cercar files duplicate',
 
 # File reversion
-'filerevert-comment' => 'Commento:',
-'filerevert-submit'  => 'Reverter',
+'filerevert'                => 'Reverter $1',
+'filerevert-legend'         => 'Reverter file',
+'filerevert-intro'          => '<span class="plainlinks">Tu reverte \'\'\'[[Media:$1|$1]]\'\'\' al [$4 version del $3 a $2].</span>',
+'filerevert-comment'        => 'Commento:',
+'filerevert-defaultcomment' => 'Revertite al version del $2 a $1',
+'filerevert-submit'         => 'Reverter',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha essite revertite al [$4 version del $3 a $2].</span>',
+'filerevert-badversion'     => 'Non existe un version local anterior de iste file con le data e hora providite.',
 
 # File deletion
+'filedelete'                  => 'Deler $1',
+'filedelete-legend'           => 'Deler file',
+'filedelete-intro'            => "Tu va deler '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">Tu va deler le version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a $2].</span>',
+'filedelete-comment'          => 'Motivo pro deletion:',
+'filedelete-submit'           => 'Deler',
+'filedelete-success'          => "'''$1''' ha essite delite.",
+'filedelete-success-old'      => '<span class="plainlinks">Le version de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a $2 ha essite delite.</span>',
+'filedelete-nofile'           => "'''$1''' non existe in {{SITENAME}}.",
+'filedelete-nofile-old'       => "Non existe un version archivate de '''$1''' con le attributos specificate.",
+'filedelete-iscurrent'        => 'Tu essaya deler le version le plus recente de iste file.
+Per favor reverte lo primo a un version anterior.',
 'filedelete-otherreason'      => 'Motivo altere/additional:',
 'filedelete-reason-otherlist' => 'Altere motivo',
+'filedelete-reason-dropdown'  => '*Motivos habitual pro deletion
+** Violation de copyright
+** File duplicate',
+'filedelete-edit-reasonlist'  => 'Modificar motivos pro deletion',
 
 # MIME search
-'mimesearch' => 'Recerca de typo MIME',
+'mimesearch'         => 'Recerca de typo MIME',
+'mimesearch-summary' => 'Iste pagina permitte filtrar le files a base de lor typos MIME.
+Syntaxe: typo/subtypo, p.ex. <tt>image/jpeg</tt>.',
+'mimetype'           => 'Typo MIME:',
+'download'           => 'discargar',
+
+# Unwatched pages
+'unwatchedpages' => 'Paginas non observate',
 
 # List redirects
 'listredirects' => 'Listar redirectiones',
 
 # Unused templates
-'unusedtemplates' => 'Patronos non usate',
+'unusedtemplates'     => 'Patronos non usate',
+'unusedtemplatestext' => 'Iste pagina es un lista de tote le paginas in le spatio de nomines "Patrono" que non es includite in un altere pagina.
+Memora verificar que non existe altere ligamines al patronos ante que tu los dele.',
+'unusedtemplateswlh'  => 'altere ligamines',
 
 # Random page
-'randompage' => 'Pagina aleatori',
+'randompage'         => 'Pagina aleatori',
+'randompage-nopages' => 'Il non ha paginas in iste spatio de nomines.',
 
 # Random redirect
-'randomredirect' => 'Redirection aleatori',
+'randomredirect'         => 'Redirection aleatori',
+'randomredirect-nopages' => 'Il non ha redirectiones in iste spatio de nomines.',
 
 # Statistics
-'statistics'    => 'Statisticas',
-'sitestats'     => 'Statisticas de accesso',
-'userstats'     => 'Statisticas de usator',
-'sitestatstext' => "Le base de datos contine un total de {{PLURAL:\$1|'''1''' pagina|'''\$1''' paginas}}.
-Iste numero include paginas de \"discussion\", paginas super {{SITENAME}}, paginas de \"residuo\"
-minime, paginas de redirection, e alteres que probabilemente non se qualifica como articulos.
-A parte de istes, il ha {{PLURAL:\$2|'''1''' pagina|'''\$2''' paginas}} que probabilemente es
-articulos legitime.
+'statistics'             => 'Statisticas',
+'sitestats'              => 'Statisticas de accesso',
+'userstats'              => 'Statisticas de usator',
+'sitestatstext'          => "Le base de datos contine un total de {{PLURAL:\$1|'''1''' pagina|'''\$1''' paginas}}.
+Iste numero include paginas de \"discussion\", paginas super {{SITENAME}}, \"peciettas\"
+minimal, redirectiones, e altere paginas que probabilemente non se qualifica como articulos.
+Excludente {{PLURAL:\$1|iste|istes}}, il remane {{PLURAL:\$2|'''1''' pagina|'''\$2''' paginas}} que probabilemente es
+{{PLURAL:\$2|un articulo|articulos}} legitime.
 
-Il habeva un total de '''\$3''' {{PLURAL:\$3|visita a paginas|visitas a paginas}}, e '''\$4''' {{PLURAL:\$4|modification|modificationes}} de paginas
-desde le actualisation de {{SITENAME}}.
-Isto representa un media de '''\$5''' modificationes per pagina, e '''\$6''' visitas per modification.",
-'userstatstext' => "Il ha {{PLURAL:$1|'''1''' [[Special:Listusers|usator]]|'''$1''' [[Special:Listusers|usatores]]}} registrate, del quales '''$2''' (o '''$4%''') ha derectos de $5.",
+'''\$8''' {{PLURAL:\$8|file|files}} ha essite cargate.
 
-'disambiguations'     => 'Paginas de disambiguation',
-'disambiguationspage' => '{{ns:project}}:Ligamines_a_paginas_de_disambiguation',
+Il habeva un total de '''\$3''' {{PLURAL:\$3|visita a un pagina|visitas a paginas}}, e '''\$4''' {{PLURAL:\$4|modification de un pagina|modificationes de paginas}}
+desde le establimento de {{SITENAME}}.
+Isto representa un media de '''\$5''' modificationes per pagina, e '''\$6''' visitas per modification.
+
+Le longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones] es '''\$7'''.",
+'userstatstext'          => "Il ha {{PLURAL:$1|'''1''' [[Special:Listusers|usator]]|'''$1''' [[Special:Listusers|usatores]]}} registrate, del quales '''$2''' (i.e. '''$4%''') ha le derectos de $5.",
+'statistics-mostpopular' => 'Le paginas plus visitate',
+
+'disambiguations'      => 'Paginas de disambiguation',
+'disambiguationspage'  => '{{ns:project}}:Ligamines_a_paginas_de_disambiguation',
+'disambiguations-text' => "Le sequente paginas ha ligamines a un '''pagina de disambiguation'''.
+Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
+Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
 
 'doubleredirects'     => 'Redirectiones duple',
 'doubleredirectstext' => '<b>Attention:</b> Iste lista pote continer items false.
@@ -1116,12 +1367,15 @@ Cata linea contine ligamines al prime e secunde redirection, assi como le prime 
 secunde texto de redirection, generalmente exhibiente le articulo scopo "real",
 al qual le prime redirection deberea referer se.',
 
-'brokenredirects'      => 'Redirectiones van',
-'brokenredirectstext'  => 'Le redirectiones sequente se liga a articulos inexistente.',
-'brokenredirects-edit' => '(modificar)',
+'brokenredirects'        => 'Redirectiones van',
+'brokenredirectstext'    => 'Le redirectiones sequente se liga a articulos inexistente.',
+'brokenredirects-edit'   => '(modificar)',
+'brokenredirects-delete' => '(deler)',
 
-'withoutinterwiki'        => 'Paginas sin ligamines de lingua',
-'withoutinterwiki-submit' => 'Revelar',
+'withoutinterwiki'         => 'Paginas sin ligamines de lingua',
+'withoutinterwiki-summary' => 'Le sequente paginas non ha ligamines a versiones in altere linguas:',
+'withoutinterwiki-legend'  => 'Prefixo',
+'withoutinterwiki-submit'  => 'Revelar',
 
 'fewestrevisions' => 'Paginas le minus modificate',
 
@@ -1193,6 +1447,9 @@ executar iste function.',
 # Special:Listusers
 'listusers-submit' => 'Revelar',
 
+# Special:Listgrouprights
+'listgrouprights-group' => 'Gruppo',
+
 # E-mail user
 'mailnologin'     => 'Necun adresse de invio',
 'mailnologintext' => 'Tu debe [[Special:Userlogin|aperir un session]]
@@ -1249,6 +1506,7 @@ facilitar su identification.",
 # Delete/protect/revert
 'deletepage'                  => 'Eliminar pagina',
 'confirm'                     => 'Confirmar',
+'delete-legend'               => 'Deler',
 'historywarning'              => 'Attention: Le pagina que tu va deler ha un historia:',
 'confirmdeletetext'           => 'Tu es a puncto de eliminar permanentemente un pagina
 o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
@@ -1258,14 +1516,15 @@ e tu lo face de accordo con [[{{MediaWiki:Policy-url}}]].',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
 'deletedarticle'              => '"$1" eliminate',
-'dellogpage'                  => 'Registro_de_eliminationes',
+'dellogpage'                  => 'Registro de eliminationes',
 'dellogpagetext'              => 'Infra es un lista del plus recente eliminationes.
 Tote le horas es in le fuso horari del servitor (UTC).',
 'deletionlog'                 => 'registro de eliminationes',
 'reverted'                    => 'Revertite a revision anterior',
-'deletecomment'               => 'Motivo del elimination',
+'deletecomment'               => 'Motivo pro deletion:',
 'deleteotherreason'           => 'Motivo altere/additional:',
 'deletereasonotherlist'       => 'Altere motivo',
+'delete-edit-reasonlist'      => 'Modificar motivos pro deletion',
 'rollback'                    => 'Revocar modificationes',
 'rollbacklink'                => 'revocar',
 'cantrollback'                => 'Impossibile revocar le modification; le ultime contribuente es le unic autor de iste articulo.',
@@ -1495,8 +1754,8 @@ Per favor fusiona los manualmente.'''",
 'tooltip-ca-nstab-help'           => 'Vider le pagina de adjuta',
 'tooltip-ca-nstab-category'       => 'Vide le pagina del categoria',
 'tooltip-minoredit'               => 'Marcar isto como un modification minor',
-'tooltip-save'                    => 'Salvar tu modificationes',
-'tooltip-preview'                 => 'Previsualisar tu cambios, per favor usa isto ante salvar!',
+'tooltip-save'                    => 'Confirmar tu modificationes',
+'tooltip-preview'                 => 'Per favor verifica tu modificationes ante que tu los publica!',
 'tooltip-diff'                    => 'Detaliar le modificationes que tu ha facite al texto.',
 'tooltip-compareselectedversions' => 'Vide le differentias inter le duo versiones selectionate de iste pagina.',
 'tooltip-watch'                   => 'Adder iste pagina a tu observatorio',
@@ -1575,6 +1834,9 @@ Alteres essera celate initialmente.
 # Special:Version
 'version'              => 'Version', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'Paginas special',
+
+# Special:Filepath
+'filepath-page' => 'File:',
 
 # Special:SpecialPages
 'specialpages' => 'Paginas special',

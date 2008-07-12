@@ -377,8 +377,7 @@ $messages = array(
 'revdelete-uname'   => 'ὄνομα χρήστου',
 
 # History merging
-'mergehistory' => 'Merge page histories
-Συγχωνεύειν ἱστορίας δέλτων',
+'mergehistory' => 'Συγχωνεύειν ἱστορίας δέλτων',
 
 # Diffs
 'history-title' => 'Τὰ πρότερα περὶ "$1" κατὰ τὸ μεταγράφειν',

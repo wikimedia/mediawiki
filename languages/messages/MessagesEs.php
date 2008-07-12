@@ -6,15 +6,15 @@
  *
  * @author Icvav
  * @author Titoxd
- * @author Boivie
  * @author Piolinfax
+ * @author Boivie
  * @author Drini
  * @author Platonides
  * @author Lin linao
  * @author Dmcdevit
  * @author לערי ריינהארט
- * @author Jurock
  * @author Spacebirdy
+ * @author Jurock
  * @author Baiji
  * @author Siebrand
  * @author Sanbec
@@ -23,12 +23,13 @@
  * @author Jatrobat
  * @author Ascánder
  * @author Bengoa
- * @author Dvortygirl
  * @author Orgullomoore
+ * @author Dvortygirl
  * @author Omnipaedista
  * @author Toniher
- * @author Alpertron
+ * @author McDutchie
  * @author Mahadeva
+ * @author Alpertron
  * @author Better
  * @author SPQRobin
  * @author Technorum
@@ -1061,7 +1062,7 @@ Para incluir un archivo en una página, utilice en el formulario los enlaces
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a "$1".',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
 'filetype-missing'            => 'El archivo no tiene extensión (como ".jpg").',
-'large-file'                  => 'Se recomienda que los archivos no sean mayores de de $1; este archivo ocupa $2.',
+'large-file'                  => 'Se recomienda que los archivos no sean mayores de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
 'fileexists'                  => 'Ya existe un archivo con este nombre. Por favor compruebe el existente <strong><tt>$1</tt></strong> si no está seguro de querer reemplazarlo.',
