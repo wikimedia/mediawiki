@@ -457,7 +457,7 @@ se ändere. Denk dran, hee ändere deit et Ussinn un de Wööt ändere met dänn
 
 # Virus scanner
 'virus-badscanner'     => 'Fääler en de Enstellunge: Dat Projramm <i>$1</i> fö noh Kompjuterwiere ze söke, dat kenne mer nit.',
-'virus-scanfailed'     => 'Dat Söhke eß donevve jejange, dä Koot es „$1“.',
+'virus-scanfailed'     => 'Dat Söhke eß donevve jejange, dä Kood för dä Fähler es „$1“.',
 'virus-unknownscanner' => 'Dat Projamm fö noh Komjuterviere ze sööke kenne mer nit:',
 
 # Login and logout pages
@@ -1877,6 +1877,7 @@ Dä Atikkel „[[$1]]“ jitt et ald. Wollts De en fottschmieße, öm hee dä At
 'delete_and_move_reason'  => 'Fottjeschmesse, öm Platz för et Ömnenne ze maache',
 'selfmove'                => 'Du Doof! - dä ahle Name un dä neue Name es däselve - do hät et Ömnenne winnich Senn.',
 'immobile_namespace'      => 'Do künne mer Sigge nit hen ömnenne, dat Appachtemeng es speziell, un dä neue Name för de Sigg jeiht deswäje nit.',
+'imageinvalidfilename'    => 'Dä Ziel-Name för de Datei es verkeht',
 
 # Export
 'export'          => 'Sigge Exporteere',

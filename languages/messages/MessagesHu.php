@@ -2090,6 +2090,7 @@ Az átnevezés céljaként megadott „[[$1]]” szócikk már létezik.  Ha az 
 'immobile_namespace'      => 'A forrás- vagy a célcím speciális típusú; nem helyezetsz át lapokat abba a névtérbe vagy onnan.',
 'imagenocrossnamespace'   => 'A fájlok nem helyezhetőek át más névtérbe',
 'imagetypemismatch'       => 'Az új kiterjesztés nem egyezik meg a fájl típusával',
+'imageinvalidfilename'    => 'A célnév érvénytelen',
 
 # Export
 'export'            => 'Lapok exportálása',

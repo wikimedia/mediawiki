@@ -1763,7 +1763,7 @@ $1',
 'ipbanononly'                 => 'Nëmmen anonym Benotzer spären',
 'ipbcreateaccount'            => 'Opmaache vun engem Benotzerkont verhënneren',
 'ipbemailban'                 => 'Verhënneren datt de Benotzer E-Maile verschéckt',
-'ipbenableautoblock'          => 'Automatesch all IP spären duerch déi op dëse Benotzerkont zougegraff ka ginn',
+'ipbenableautoblock'          => 'Automatesch déi lescht IP-Adress spären déi vun dësem Benotzer benotzt gouf, an all IP-Adressen vun denen dëse Benotzer versicht Ännerunge virzehuelen',
 'ipbsubmit'                   => 'Dës IP-Adress resp dëse Benotzer spären',
 'ipbother'                    => 'Aner Dauer:',
 'ipboptions'                  => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...

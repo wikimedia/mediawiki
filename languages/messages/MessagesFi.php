@@ -1007,7 +1007,7 @@ $1 | $2',
 'editinguser'                 => "Käyttäjän '''[[User:$1|$1]]''' oikeudet ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Käyttäjän ryhmät',
 'saveusergroups'              => 'Tallenna',
-'userrights-groupsmember'     => 'Jäsenenä ryhmissä',
+'userrights-groupsmember'     => 'Käyttäjä on jäsenenä ryhmissä',
 'userrights-groups-help'      => 'Voit muuttaa ryhmiä, joissa tämä käyttäjä on.
 * Merkattu valintaruutu tarkoittaa, että käyttäjä on kyseisessä ryhmässä.
 * Merkkaamaton valintaruutu tarkoittaa, että käyttäjä ei ole kyseisessä ryhmässä.

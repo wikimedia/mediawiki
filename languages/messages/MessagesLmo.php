@@ -102,6 +102,7 @@ süi titul dai sezziún (JavaScript)',
 'undelete_short'   => 'Rimett a post {{PLURAL:$1|1 mudifica|$1 mudifich}}',
 'protect'          => 'Bloca',
 'unprotect'        => 'sbloca',
+'newpage'          => 'Pagina növa',
 'specialpage'      => 'Pagina speciala',
 'talk'             => 'Discüssiun',
 'toolbox'          => 'Strüment',
@@ -147,10 +148,12 @@ süi titul dai sezziún (JavaScript)',
 'nstab-category'  => 'Categuría',
 
 # General errors
-'internalerror'    => 'Erur in del sistema',
-'badtitle'         => 'Títul mía bun',
-'viewsource'       => 'Còdas surgeent',
-'editinginterface' => "'''Attenzion''': el testo de quella pagina chì el fà part de l'interfacia utent del sitt. Tutt i modifigh che te fet se vedaran subit su i messagg visualizzaa per tutt i utent.",
+'internalerror'     => 'Erur in del sistema',
+'badtitle'          => 'Títul mía bun',
+'viewsource'        => 'Còdas surgeent',
+'protectedpagetext' => "Cula pagina chi l'è stata blucà per impedinn la mudifica.",
+'viewsourcetext'    => "L'è pussibil vèd e cupià el codes surgent de cula pagina chí:",
+'editinginterface'  => "'''Attenzion''': el testo de quella pagina chì el fà part de l'interfacia utent del sitt. Tutt i modifigh che te fet se vedaran subit su i messagg visualizzaa per tutt i utent.",
 
 # Login and logout pages
 'logouttext'              => '<strong>Adess a sii descuness.</strong><br />
