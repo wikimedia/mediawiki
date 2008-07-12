@@ -27,9 +27,9 @@ class MessageWriter {
 	 * @param $write Write to the messages file?
 	 * @param $listUnknown List the unknown messages?
 	 */
-	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown ) {
+	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown ) {
 		# Rewrite the messages array
-		$messages = self::writeMessagesArray( $messages, $code == 'en' );
+		$messages = self::writeMessagesArray( $messages, $code == 'en', false, $removeUnknown );
 		$messagesText = $messages[0];
 		$sortedMessages = $messages[1];
 
@@ -51,7 +51,10 @@ class MessageWriter {
 				}
 			}
 			if( $listUnknown && isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
-				echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
+				if ( $removeUnknown )
+					echo "\nThe following " . count( $sortedMessages['unknown'] ) . " unknown messages have been removed:\n";
+				else
+					echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
 				foreach( $sortedMessages['unknown'] as $key => $value ) {
 					echo "* " . $key . "\n";
 				}
@@ -69,10 +72,10 @@ class MessageWriter {
 	 *
 	 * @return Array of the PHP text and the sorted messages array.
 	 */
-	public static function writeMessagesArray( $messages, $ignoredComments = false, $prefix = false ) {
+	public static function writeMessagesArray( $messages, $ignoredComments = false, $prefix = false, $removeUnknown = false ) {
 		# Load messages
 		$dir = $prefix ? $prefix : dirname( __FILE__ );
-		
+
 		require( $dir . '/messages.inc' );
 		self::$messageStructure = $wgMessageStructure;
 		self::$blockComments = $wgBlockComments;
@@ -118,11 +121,12 @@ class MessageWriter {
 
 		# Write the unknown messages, alphabetically sorted.
 		# Of course, we don't have any comments for them, because the are unknown.
-		ksort( $sortedMessages['unknown'] );
-		$messagesText .= self::writeMessagesBlock( 'Unknown messages', $sortedMessages['unknown'] );
-		$messagesText .= ");
+		if ( !$removeUnknown ) {
+			ksort( $sortedMessages['unknown'] );
+			$messagesText .= self::writeMessagesBlock( 'Unknown messages', $sortedMessages['unknown'] );
+		}
+			$messagesText .= ");
 ";
-
 		return array( $messagesText, $sortedMessages );
 	}
 
