@@ -334,7 +334,7 @@ Go thibela go hlapanya/kgobošo, kgopotšo e tee ka diiri tše $1 e tla romellwa
 'italic_tip'      => 'Mongwala wa Italic',
 'link_sample'     => 'Thaetlele ya hlomaganyo',
 'link_tip'        => 'Hlomaganyo ya kagare',
-'extlink_sample'  => 'http://www.example.org hlomaganyo thaetlele',
+'extlink_sample'  => 'http://www.example.com hlomaganyo thaetlele',
 'extlink_tip'     => 'Hlomaganyo ya ka ntle (gopola go thoma ka http://)',
 'headline_sample' => 'Tlhaka ya hlogotaba',
 'headline_tip'    => 'Hlogotaba ya boemo 2',

@@ -870,7 +870,7 @@ Mümkin qupïya söziñizdi aldaqaşan sätti özgertken bolarsız nemese jaña 
 'italic_tip'      => 'Qïğaş mätin',
 'link_sample'     => 'Silteme taqırıbın atı',
 'link_tip'        => 'İşki silteme',
-'extlink_sample'  => 'http://www.example.org silteme taqırıbın atı',
+'extlink_sample'  => 'http://www.example.com silteme taqırıbın atı',
 'extlink_tip'     => 'Şettik silteme (aldınan http:// engizwin umıtpañız)',
 'headline_sample' => 'Bas jol mätini',
 'headline_tip'    => '2-şi deñgeýli bas jol',

@@ -443,7 +443,7 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'italic_tip'      => 'Test in corsîf',
 'link_sample'     => 'Titul dal leam',
 'link_tip'        => 'Leams internis',
-'extlink_sample'  => 'http://www.example.org titul leam',
+'extlink_sample'  => 'http://www.example.com titul leam',
 'extlink_tip'     => 'Leam esterni (visiti dal prefìs http://)',
 'headline_sample' => 'Test dal titul',
 'headline_tip'    => 'Titul di nivel 2',

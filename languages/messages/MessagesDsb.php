@@ -595,7 +595,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'italic_tip'      => 'Kursiwny tekst',
 'link_sample'     => 'Tekst wótkaza',
 'link_tip'        => 'Interny wótkaz',
-'extlink_sample'  => 'http://www.example.org nadpismo wótkaza',
+'extlink_sample'  => 'http://www.example.com nadpismo wótkaza',
 'extlink_tip'     => 'Eksterny wótkaz (źiwaś na http://)',
 'headline_sample' => 'Nadpismo',
 'headline_tip'    => 'Nadpismo rowniny 2',

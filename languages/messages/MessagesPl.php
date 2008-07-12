@@ -694,7 +694,7 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'italic_tip'      => 'Tekst pochyłą czcionką',
 'link_sample'     => 'Tytuł linku',
 'link_tip'        => 'Link wewnętrzny',
-'extlink_sample'  => 'http://www.example.org nazwa linku',
+'extlink_sample'  => 'http://www.example.com nazwa linku',
 'extlink_tip'     => 'Link zewnętrzny (pamiętaj o przedrostku http:// )',
 'headline_sample' => 'Tekst nagłówka',
 'headline_tip'    => 'Nagłówek 2. poziomu',

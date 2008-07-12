@@ -95,7 +95,7 @@ $messages = array(
 'bold_tip'        => 'Galyň ýazgy',
 'italic_tip'      => 'Italik ýazgy',
 'link_tip'        => 'Iç aragatnaşyk',
-'extlink_sample'  => 'http://www.example.org aragatnaşyk suratlandyrmasy',
+'extlink_sample'  => 'http://www.example.com aragatnaşyk suratlandyrmasy',
 'extlink_tip'     => 'Daş aragatnaşyk (Adresiň öňüňe http:// goýmaýy unutma)',
 'headline_sample' => 'Sözbaşy ýazgysy',
 

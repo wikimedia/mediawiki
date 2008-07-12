@@ -486,7 +486,7 @@ Jista jkun li diġa b'suċċess bidilt il-password jew għamilt rikjesta għal p
 'italic_tip'      => 'Kliem korsiv',
 'link_sample'     => 'Titlu tal-link',
 'link_tip'        => 'Link intern',
-'extlink_sample'  => 'http://www.example.org titlu tal-link',
+'extlink_sample'  => 'http://www.example.com titlu tal-link',
 'extlink_tip'     => 'Link estern (ftakar il-prefiss http://)',
 'headline_sample' => "Kliem ta' l-ewwel vers",
 'headline_tip'    => "L-ewwel vers ta' livell 2",

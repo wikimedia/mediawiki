@@ -633,7 +633,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 'italic_tip'      => 'Kursiver Text',
 'link_sample'     => 'Link-Text',
 'link_tip'        => 'Interner Link',
-'extlink_sample'  => 'http://www.example.org Link-Text',
+'extlink_sample'  => 'http://www.example.com Link-Text',
 'extlink_tip'     => 'Externer Link (http:// beachten)',
 'headline_sample' => 'Ebene 2 Überschrift',
 'headline_tip'    => 'Ebene 2 Überschrift',

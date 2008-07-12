@@ -331,7 +331,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'italic_sample'   => 'kursiv gschribe',
 'italic_tip'      => 'Kursiv gschribe',
 'link_sample'     => 'Stichwort',
-'extlink_sample'  => 'http://www.example.org Linktekscht',
+'extlink_sample'  => 'http://www.example.com Linktekscht',
 'extlink_tip'     => 'Externer Link (http:// beachte)',
 'headline_sample' => 'Abschnitts-Überschrift',
 'math_sample'     => 'Formel do yfüge',

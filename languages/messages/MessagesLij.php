@@ -312,7 +312,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'italic_tip'      => 'Corscivo',
 'link_sample'     => "Nomme de l'inganço",
 'link_tip'        => 'Inganço interno',
-'extlink_sample'  => "http://www.example.org Nomme de l'inganço",
+'extlink_sample'  => "http://www.example.com Nomme de l'inganço",
 'extlink_tip'     => 'Collegamento esterno (inclûdde o prefisso http:// )',
 'headline_sample' => 'Tittolo',
 'headline_tip'    => 'Tittolo de 2° livello',

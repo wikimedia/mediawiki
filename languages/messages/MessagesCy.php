@@ -560,7 +560,7 @@ Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwne
 'italic_tip'      => 'Testun italig',
 'link_sample'     => 'Teitl y cyswllt',
 'link_tip'        => 'Cyswllt mewnol',
-'extlink_sample'  => 'http://www.example.org teitl y cyswllt',
+'extlink_sample'  => 'http://www.example.com teitl y cyswllt',
 'extlink_tip'     => 'Cyswllt allanol (cofiwch y rhagddodiad http:// )',
 'headline_sample' => 'Testun pennawd',
 'headline_tip'    => 'Pennawd lefel 2',

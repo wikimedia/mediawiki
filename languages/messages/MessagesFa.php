@@ -754,7 +754,7 @@ $3
 'italic_tip'      => 'متن ایتالیک',
 'link_sample'     => 'عنوان پیوند',
 'link_tip'        => 'پیوند داخلی',
-'extlink_sample'  => 'http://www.example.org عنوان پیوند',
+'extlink_sample'  => 'http://www.example.com عنوان پیوند',
 'extlink_tip'     => 'پیوند به بیرون (پیشوند http:// را فراموش نکنید)',
 'headline_sample' => 'متن عنوان',
 'headline_tip'    => 'عنوان سطح ۲',

@@ -585,7 +585,7 @@ Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefr
 'italic_tip'      => 'Kursiven Text',
 'link_sample'     => 'Link-Text',
 'link_tip'        => 'Interne Link',
-'extlink_sample'  => 'http://www.example.org Link Titel',
+'extlink_sample'  => 'http://www.example.com Link Titel',
 'extlink_tip'     => 'Externe Link (Vergiesst net den http:// Prefix)',
 'headline_sample' => 'Titel Text',
 'headline_tip'    => 'Iwwerschrëft vum Niveau 2',

@@ -481,7 +481,7 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 'italic_tip'      => 'Test an corsiv',
 'link_sample'     => "Tìtol dl'anliura",
 'link_tip'        => 'Anliura interna',
-'extlink_sample'  => "http://www.example.org tìtol dl'anliura",
+'extlink_sample'  => "http://www.example.com tìtol dl'anliura",
 'extlink_tip'     => 'Anliura esterna (che as visa dë buté ël prefiss http://)',
 'headline_sample' => "Antestassion dl'artìcol",
 'headline_tip'    => 'Antestassion dë scond livel',

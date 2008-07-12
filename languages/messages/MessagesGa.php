@@ -514,7 +514,7 @@ Ná tabhair aird don teachtaireacht seo má cruthaíodh an cuntas seo trí earr�
 'italic_tip'      => 'Cló Iodáileach',
 'link_sample'     => 'Ainm naisc',
 'link_tip'        => 'Nasc inmhéanach',
-'extlink_sample'  => 'http://www.example.org ainm naisc',
+'extlink_sample'  => 'http://www.example.com ainm naisc',
 'extlink_tip'     => 'Nasc seachtrach (cuimhnigh an réimír http://)',
 'headline_sample' => 'Cló ceannlíne',
 'headline_tip'    => 'Ceannlíne Leibhéil 2',

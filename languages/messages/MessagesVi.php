@@ -579,7 +579,7 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'italic_tip'      => 'Chữ xiên',
 'link_sample'     => 'Liên kết',
 'link_tip'        => 'Liên kết',
-'extlink_sample'  => 'http://www.example.org liên kết ngoài',
+'extlink_sample'  => 'http://www.example.com liên kết ngoài',
 'extlink_tip'     => 'Liên kết ngoài (nhớ ghi http://)',
 'headline_sample' => 'Đề mục',
 'headline_tip'    => 'Đề mục cấp 2',
