@@ -431,7 +431,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   had stict standards issues with setFakeSlaveLag() and setFakeMaster().
 * (bug 451) Improve the phrase mappings of the Chinese converter arrays.
 * (bug 12487) Rights log is not fully internationalized
-* (bug 8604) padright: and similar functions fail with non-ASCII arguments
 
 === API changes in 1.13 ===
 
