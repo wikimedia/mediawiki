@@ -4,17 +4,16 @@
  * @ingroup Language
  * @file
  *
- * @author Li-sung
  * @author Danny B.
- * @author Matěj Grabovský
- * @author לערי ריינהארט
- * @author Mormegil
- * @author Siebrand
- * @author Reaperman
  * @author Helix84
- * @author Michawiki
+ * @author Li-sung
  * @author Martin Kozák
- * @author Sp5uhe
+ * @author Matěj Grabovský
+ * @author Michawiki
+ * @author Mormegil
+ * @author Reaperman
+ * @author Siebrand
+ * @author לערי ריינהארט
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -53,34 +52,70 @@ $skinNames = array(
 	'modern'      => 'Moderní',
 );
 
+/**
+ * Date formats list for Special:Preferences
+ * see $dateFormats for definitions
+ */
 $datePreferences =  array(
-	'dmy',
-	'alt dmy',
-	'ISO 8601',
-);
-
-$defaultDateFormat = 'dmy';
-
-$dateFormats = array(
-	'dmy time' => 'H:i',
-	'dmy date' => 'j. n. Y',
-	'dmy both' => 'H:i, j. n. Y',
-
-	'alt dmy time' => 'H.i',
-	'alt dmy date' => 'j. xg Y',
-	'alt dmy both' => 'H.i, j. xg Y',
-
-	'ISO 8601 time' => 'xnH:xni:xns',
-	'ISO 8601 date' => 'xnY-xnm-xnd',
-	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+	'ČSN basic dt',
+	'ČSN padded dt',
+	'ČSN basic td',
+	'ČSN padded td',
+	'PČP dt',
+	'PČP td',
+	'ISO dt',
 );
 
 /**
- * Hledání knihy podle ISBN
+ * Default date format to be used 
+ */
+$defaultDateFormat = 'ČSN basic dt';
+
+/**
+ * Date formats definitions
+ *
+ * ČSN - Česká státní norma 01 6910 / Czech state norm 01 6910; numeral representation, basic = 1-12(31), padded = 01-12(31)
+ * PČP - Pravidla českého pravopisu / The rules of Czech ortography (ISBN 80-200-0475-0); verbal representation
+ * ISO - ISO 8601:2004 - Data elements and interchange formats -- Information interchange -- Representation of dates and times
+ * dt - date, time order
+ * td - time, date order
+ */
+$dateFormats = array(
+	'ČSN basic dt time' => 'H:i',
+	'ČSN basic dt date' => 'j. n. Y',
+	'ČSN basic dt both' => 'j. n. Y, H:i',
+
+	'ČSN padded dt time' => 'H:i',
+	'ČSN padded dt date' => 'd.m.Y',
+	'ČSN padded dt both' => 'd.m.Y, H:i',
+
+	'ČSN basic td time' => 'H:i',
+	'ČSN basic td date' => 'j. n. Y',
+	'ČSN basic td both' => 'H:i, j. n. Y',
+
+	'ČSN padded td time' => 'H:i',
+	'ČSN padded td date' => 'd.m.Y',
+	'ČSN padded td both' => 'H:i, d.m.Y',
+
+	'PČP dt time' => 'H.i',
+	'PČP dt date' => 'j. xg Y',
+	'PČP dt both' => 'j. xg Y, H.i',
+
+	'PČP td time' => 'H.i',
+	'PČP td date' => 'j. xg Y',
+	'PČP td both' => 'H.i, j. xg Y',
+
+	'ISO dt time' => 'xnH:xni:xns',
+	'ISO dt date' => 'xnY-xnm-xnd',
+	'ISO dt both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
+
+/**
  * Default list of book sources
+ * Hledání knihy podle ISBN
  */
 $bookstoreList = array(
-    'Národní knihovna'			=> 'http://sigma.nkp.cz/F/?func=find-a&find_code=ISN&request=$1',
+	'Národní knihovna'          => 'http://sigma.nkp.cz/F/?func=find-a&find_code=ISN&request=$1',
 	'Státní technická knihovna' => 'http://www.stk.cz/cgi-bin/dflex/CZE/STK/BROWSE?A=01&V=$1',
 	'inherit' => true,
 );
@@ -208,7 +243,6 @@ $magicWords = array(
  */
 # Písmena, která se mají objevit jako část odkazu ve formě '[[jazyk]]y' atd:
 $linkTrail = '/^([a-záčďéěíňóřšťúůýž]+)(.*)$/sDu';
-
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
