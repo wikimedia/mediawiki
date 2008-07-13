@@ -410,7 +410,7 @@ Parameters:
 	* links: Link the message values (default off).
 	* wikilang: For the links, what is the content language of the wiki to display the output in (default en).
 	* whitelist: Do only the following checks (form: code,code).
-	* blacklist: Don't do the following checks (form: code,code).
+	* blacklist: Do not perform the following checks (form: code,code).
 	* duplicate: Additionally check for messages which are translated the same to English (default off).
 Check codes (ideally, all of them should result 0; all the checks are executed by default (except duplicate and language specific check blacklists in checkLanguage.inc):
 	* untranslated: Messages which are required to translate, but are not translated.
