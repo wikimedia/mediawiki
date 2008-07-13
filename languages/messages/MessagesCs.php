@@ -4,16 +4,16 @@
  * @ingroup Language
  * @file
  *
- * @author Danny B.
- * @author Helix84
  * @author Li-sung
- * @author Martin Kozák
+ * @author Danny B.
  * @author Matěj Grabovský
- * @author Michawiki
- * @author Mormegil
- * @author Reaperman
- * @author Siebrand
  * @author לערי ריינהארט
+ * @author Mormegil
+ * @author Siebrand
+ * @author Reaperman
+ * @author Helix84
+ * @author Michawiki
+ * @author Martin Kozák
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -1285,7 +1285,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'recentchanges'                     => 'Poslední změny',
 'recentchangestext'                 => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
 'recentchanges-feed-description'    => 'Na tomto kanále sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}}.',
-'rcnote'                            => 'Níže {{PLURAL:$1|je poslední|jsou poslední|je posledních}} <strong>$1</strong> {{PLURAL:$1|změna|změny|změn}} za {{PLURAL:$2|poslední|poslední|posledních}} <strong>$2</strong> {{PLURAL:$2|den|dny|dnů}} před $3.',
+'rcnote'                            => 'Níže {{plural:$1|je poslední|jsou poslední|je posledních}} <strong>$1</strong> {{plural:$1|změna|změny|změn}} za {{PLURAL:$2|poslední|poslední|posledních}} <strong>$2</strong> {{plural:$2|den|dny|dnů}} před $4, $5.',
 'rcnotefrom'                        => 'Níže {{PLURAL:$1|je|jsou|je}} nejvýše <b>$1</b> {{PLURAL:$1|změna|změny|změn}} od <b>$2</b>.',
 'rclistfrom'                        => 'Ukázat nové změny, počínaje od $1',
 'rcshowhideminor'                   => '$1 malé editace',
@@ -1456,7 +1456,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filehist-filesize'              => 'Velikost souboru',
 'filehist-comment'               => 'Komentář',
 'imagelinks'                     => 'Odkazy k souboru',
-'linkstoimage'                   => 'Na soubor odkazují tyto stránky:',
+'linkstoimage'                   => 'Na soubor {{plural:$1|odkazuje tato stránka|odkazují tyto stránky}}:',
 'nolinkstoimage'                 => 'Na tento soubor neodkazuje žádná stránka.',
 'morelinkstoimage'               => 'Zobrazit [[{{#special:Whatlinkshere}}/$1|další odkazy]] na tento soubor.',
 'redirectstofile'                => '{{plural:$1|Následující soubor přesměrovává|Následující $1 soubory přesměrovávají|Následujících $1 souborů přesměrovává}} na tento soubor:',
@@ -1545,7 +1545,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 
 'disambiguations'      => 'Stránky odkazující na rozcestníky',
 'disambiguationspage'  => 'Template:Rozcestník',
-'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]).',
+'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
 
 'doubleredirects'     => 'Dvojitá přesměrování',
 'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucí na další přesměrování. Každý řádek obsahuje odkaz na první a druhé přesměrování, a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.',
@@ -2215,7 +2215,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 
 # Scripts
 'common.js'   => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',
-'monobook.js' => '/* Zastaralé; použijte [[MediaWiki:common.js]] */',
+'monobook.js' => '/* JavaScript pro uživatele používající vzhled MonoBook */',
 
 # Metadata
 'nodublincore'      => 'Na tomto serveru je vypnuto generování metadat Dublin Core RDF.',

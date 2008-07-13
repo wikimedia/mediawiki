@@ -2228,12 +2228,12 @@ $1',
 'metadata-expand'   => 'Показване на допълнителните данни',
 'metadata-collapse' => 'Скриване на допълнителните данни',
 'metadata-fields'   => 'EXIF данните, показани в това съобщение, ще бъдат включени на медийната страница, когато информационната таблица е сгъната. Останалите данни ще са скрити по подразбиране.
-* производител
-* модел
-* дата и час на създаване
-* време за експонация
-* F (бленда)
-* фокусно разстояние', # Do not translate list items
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                => 'Ширина',

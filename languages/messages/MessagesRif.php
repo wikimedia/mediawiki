@@ -56,6 +56,7 @@ $messages = array(
 
 # Categories related messages
 'category_header'        => 'Tisebtar di Taggayt "$1"',
+'subcategories'          => 'Tadu-ggayin',
 'category-media-header'  => 'imediaten di ucategory "$1"',
 'listingcontinuesabbrev' => 'Amesedfar.',
 
@@ -99,7 +100,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Xeff {{SITENAME}}',
-'aboutpage'            => 'Asenfar:Xeff',
+'aboutpage'            => 'Project:Xeff',
 'copyrightpage'        => '{{ns:project}}:izrefan ussenɣel',
 'currentevents'        => 'Mayn itemsaren rux',
 'currentevents-url'    => 'Project:mayn itmesaren rux',
@@ -113,7 +114,7 @@ $messages = array(
 'portal'               => 'Tawwart n timetti(Community)',
 'portal-url'           => 'Project:tawwart n timetti(Community)',
 'privacy'              => 'tasligt',
-'privacypage'          => 'Asenfar:tasligt',
+'privacypage'          => 'Project:tasligt',
 
 'retrievedfrom'       => 'itwar-d zi "$1"',
 'youhavenewmessages'  => 'ɣak $1 ($2).',
@@ -207,7 +208,7 @@ Tansa n IP inac ad-iqqim deg umezruy n teẓrigin n tsebtert a .",
 'summary-preview'        => 'Azar-ascan n ugzul',
 'newarticle'             => '(Amaynu)',
 'newarticletext'         => "Tdefar-d tazdayt n tsebtert εad war telli .
-bac attegged , arri di taflwit a swadday (xemm i[[{{MediaWiki:Helppage}}|tudemt Tallalt]] i ktar n inɣmisen).
+bac attegged , arri di taflwit a swadday (xemm i [[{{MediaWiki:Helppage}}| Tasebtert Tallalt]] i ktar n inɣmisen).
 mala qacek da s ɣalaṭ waha, tecca di tbutunt n '''deffar''' di browser inec .",
 'noarticletext'          => 'walu tirra di tsebtert a , tzemred [[Special:Search/{{PAGENAME}}|a tarzud isem n tsebtert a]] di tisebtar nniḍn niɣ [{{fullurl:{{FULLPAGENAME}}|action=edit}} egg tsebtert a cek].',
 'previewnote'            => '<strong>Wa d Azar-ascan waha;
@@ -352,12 +353,16 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''bold'''.",
 'uncategorizedcategories' => 'Taggayin bla taggayt',
 'uncategorizedimages'     => 'ifayluten bla taggayt',
 'uncategorizedtemplates'  => 'Timudmiwin bla taggayt',
+'unusedcategories'        => 'Taggayin war twasxedment ca',
 'unusedimages'            => 'ifayluten war twasxedmen',
+'wantedcategories'        => 'Taggayin twaxsent',
 'wantedpages'             => 'Tisebtar ttewaxsent aṭṭas',
 'mostlinked'              => 'Tisebtar iɣa-ad ttewaqqenen aṭṭas',
+'mostlinkedcategories'    => 'Taggayin iɣa-ad ttewaqqenen aṭṭas',
 'mostlinkedtemplates'     => 'Timudmiwin iɣa d tewaqqenen aṭṭas',
+'mostcategories'          => 'Tasebtert iɣa ylla taggayin aṭṭas',
 'mostimages'              => 'ifayluten iɣa d tewaqqenen aṭṭas',
-'shortpages'              => 'Tudemt ttaqudat',
+'shortpages'              => 'Tasebtert d taqudat',
 'longpages'               => 'Tisebtar ttizirarin',
 'protectedpages'          => 'Tisebtar ẓarqent',
 'listusers'               => 'Tabdart n iseqdacen',
@@ -385,6 +390,9 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''bold'''.",
 'allpagesfrom'   => 'Scan-d tisebetar beddant zi:',
 'allarticles'    => 'Maṛṛa Tisebtar',
 'allpagessubmit' => 'Raḥ ɣa',
+
+# Special:Categories
+'categories' => 'Taggayin',
 
 # Special:Listusers
 'listusers-submit' => 'Smmrad',
@@ -429,6 +437,7 @@ Xemm $2 i tikkas timaynutin.',
 'protectexpiry'               => 'itsala:',
 'protect_expiry_invalid'      => 'Akud n usali war icni ca.',
 'protect_expiry_old'          => 'Akud usali yeεda.',
+'protect-unchain'             => 'Arzem ipirmiyen n usnaqel',
 'protect-default'             => '(amzwar)',
 'protect-fallback'            => 'itxessat "$1"',
 'protect-level-autoconfirmed' => 'Bluka iseqdacen war ɣasen ca amiḍan',
@@ -436,8 +445,8 @@ Xemm $2 i tikkas timaynutin.',
 'protect-summary-cascade'     => 'Asmuzzar',
 'protect-expiring'            => 'itsala deg $1 (UTC)',
 'protect-cascade'             => 'Ḥḍa tisebtar i yudfen di tsebtert a (cascading protection)',
-'protect-cantedit'            => 'war tezemred ca ad tbedeld iswiren n uḥeṭṭu n tsebtert a, mayenzi war ɣark illi ujji bac ad tẓregd.',
-'restriction-type'            => 'Ajji:',
+'protect-cantedit'            => 'war tezemred ca ad tbedeld iswiren n uḥeṭṭu n tsebtert a, mayenzi war ɣark illi apirmi bac ad tẓregd.',
+'restriction-type'            => 'Apirmi:',
 'restriction-level'           => 'Aswir n uceraf:',
 
 # Restrictions (nouns)
@@ -487,6 +496,7 @@ Xemm $2 i tikkas timaynutin.',
 
 # Move page
 'movearticle'    => 'Snaqel tasebtert:',
+'newtitle'       => 'ɣa isem amaynu:',
 'move-watch'     => 'Ẓar tasebtert a',
 'movepagebtn'    => 'Snaqel tudemt',
 'pagemovedsub'   => 'Asnaqel itwagg',
@@ -516,7 +526,7 @@ snaqlitent s ufus.'''",
 'importlogpage' => 'Kter-d aɣmis',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'tudemt inu',
+'tooltip-pt-userpage'             => 'Tasebtert inu',
 'tooltip-pt-mytalk'               => 'Tasebtert usiwl inu',
 'tooltip-pt-preferences'          => 'iɣewwaren inu',
 'tooltip-pt-watchlist'            => 'Tabdart n Tsebtar umi txmamd bac aten teẓregd',
@@ -529,7 +539,7 @@ snaqlitent s ufus.'''",
 'tooltip-ca-viewsource'           => 'Tasebtert a tẓarq. tzemred atẓred aɣbal nnes.',
 'tooltip-ca-protect'              => 'Ẓarq tasebtert a',
 'tooltip-ca-delete'               => 'Kkes Tasebtert a',
-'tooltip-ca-move'                 => 'Snaql tudemt a',
+'tooltip-ca-move'                 => 'Snaql Tasebtert a',
 'tooltip-ca-watch'                => 'Arni tasebtert a ɣa Tebdart uḥṭṭu inec',
 'tooltip-ca-unwatch'              => 'Kkes tasebtert a zi Tabdart uḥṭṭu inec',
 'tooltip-search'                  => 'Tarezzut {{SITENAME}}',
@@ -538,7 +548,7 @@ snaqlitent s ufus.'''",
 'tooltip-n-portal'                => 'Xeff usenfar, mayn tezmerd ad tegged, mani ɣa tafed tilɣa',
 'tooltip-n-currentevents'         => 'Aff tilɣa x manaya',
 'tooltip-n-recentchanges'         => 'Tabdart n teẓrigin timaynutin di wiki.',
-'tooltip-n-randompage'            => 'Ẓar tudemt zi ṭṭarf',
+'tooltip-n-randompage'            => 'Ẓar Tasebtert zi ṭṭarf',
 'tooltip-n-help'                  => 'Raq di ɣa tafd.',
 'tooltip-t-whatlinkshere'         => 'Tabdart n maṛṛa Tisebtar n wiki i d-yzdin (qnen) da',
 'tooltip-t-contributions'         => 'Ẓar Tabdart n tiggawin n useqdac a',
@@ -555,7 +565,7 @@ snaqlitent s ufus.'''",
 'tooltip-save'                    => 'Ḥaḍ-itt',
 'tooltip-preview'                 => 'Ẓar mayn turid, ẓẓat ma ttssidfad!',
 'tooltip-diff'                    => 'Semmel-d tiẓrigin i teggid di tarrat a.',
-'tooltip-compareselectedversions' => 'Ẓar imsebeḍiyen jar Tilqimin a di tudemt a.',
+'tooltip-compareselectedversions' => 'Ẓar imsebeḍiyen jar Tilqimin a di Tasebtert a.',
 'tooltip-watch'                   => 'Arni tasebtert a ɣa Tabdart uḥṭṭu inec',
 
 # Browsing diffs

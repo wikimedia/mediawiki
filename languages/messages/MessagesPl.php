@@ -13,10 +13,11 @@
  * @author Beau
  * @author Stv
  * @author Siebrand
+ * @author Maikking
  * @author Masti
- * @author Equadus
  * @author Ymar
  * @author Matma Rex
+ * @author Equadus
  * @author Lajsikonik
  * @author Szczepan1990
  * @author Herr Kriss
@@ -2092,6 +2093,7 @@ Strony nie można przenieść na nią samą.',
 Nie można przenieść z lub do tej przestrzeni nazw.',
 'imagenocrossnamespace'   => 'Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik',
 'imagetypemismatch'       => 'Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość',
+'imageinvalidfilename'    => 'Nazwa pliku docelowego jest nieprawidłowa',
 
 # Export
 'export'            => 'Eksport stron',

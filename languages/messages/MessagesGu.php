@@ -619,13 +619,13 @@ $messages = array(
 'metadata-expand'   => 'વિસ્તૃત કરેલી વિગતો બતાવો',
 'metadata-collapse' => 'વિસ્તૃત કરેલી વિગતો છુપાવો',
 'metadata-fields'   => 'આ સંદેશામાં સુચવેલી EXIF મૅટડેટા માહિતિ ચિત્રના પાનાનિ દ્રશ્ય આવૃત્તિમાં ઉમેરવામાં આવશે (જ્યારે મૅટડેટાનો કોઠો વિલિન થઇ જતો હશે ત્યારે).
-<br>અન્ય આપોઆપ જ છુપાઇ જશે.
-* બનાવટ
-* મોડલ
-* મુળ સમય/તારીખ
-* એક્સ્પોઝર સમય
-* એફ નંબર
-* કેન્દ્ર લંબાઇ (કેમેરાના લેન્સની)', # Do not translate list items
+>અન્ય આપોઆપ જ છુપાઇ જશે.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'  => 'પહોળાઈ',

@@ -112,14 +112,15 @@ $messages = array(
 'history_short'    => 'ისტორია',
 'info_short'       => 'ინფორმაცია',
 'printableversion' => 'ობეშტალ ვერსია',
-'permalink'        => 'ირალ რსხილ',
+'permalink'        => 'ირიათონ რსხილ',
 'print'            => 'დობეჭდი',
-'edit'             => 'რედაქტირება',
+'edit'             => 'რედაქტირაფა',
 'editthispage'     => 'ხასილაშ რედაქტირება',
 'delete'           => 'წაშალი',
 'deletethispage'   => 'წაშალ თე ხასილა',
 'protect'          => 'დობლოკი',
 'newpage'          => 'ახალ ხასილა',
+'talkpage'         => 'მოჩამილ ხასილაშ სხუნუა',
 'talkpagelinktext' => 'სხუნუა',
 'specialpage'      => 'სპეციალურ ხასილა',
 'personaltools'    => 'საკუთარ მოღეეფ',
@@ -139,11 +140,11 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:ავტორიშ ულაფეფ',
 'currentevents'        => 'მიმალ მოლინეფ',
 'currentevents-url'    => 'Project:მიმალ მოლინეფ',
-'disclaimers'          => 'პასუხისმგებლობაშ მონწყუმა',
+'disclaimers'          => 'გამამინჯალაშ მონწყუმა',
 'disclaimerpage'       => 'Project::პასუხისმგებლობაშ ვარება',
 'edithelp'             => 'მოხვარა',
 'edithelppage'         => 'Help:ტექსტიშ რედაქტირაფა (იოლი)',
-'helppage'             => 'Help:დახვარება',
+'helppage'             => 'Help:მოხვარა',
 'mainpage'             => 'დუდ ხასილა',
 'mainpage-description' => 'დუდ ხასილა',
 'portal'               => 'საზოგადოებაშ ხასილეფ',
@@ -154,7 +155,7 @@ $messages = array(
 'ok'                  => 'ჯგირ',
 'retrievedfrom'       => 'გორილ რე "$1"-იშე',
 'youhavenewmessages'  => 'თქვა გიღუნა $1 ($2).',
-'newmessageslink'     => 'ახალ შეტყვინაფეფ',
+'newmessageslink'     => 'ახალ ტყობინაფეფ',
 'newmessagesdifflink' => 'შხვანობა ოწოხოლენ ვერსიაწკუმა',
 'editsection'         => 'რედაქტირაფა',
 'editold'             => 'რედაქტირაფა',
@@ -180,20 +181,25 @@ $messages = array(
 'nosuchspecialpage' => 'სპეციალურ ხასილეფ ვაარსეენც',
 
 # General errors
-'badtitle'      => 'ცაგანა სათაური',
-'viewsource'    => 'ქოძირ წყუ',
-'viewsourcefor' => '$1-იშ',
+'badtitle'       => 'ცაგანა სათაური',
+'badtitletext'   => 'მოთხილ ხასილაშ ოდუდალე ვა რდუ სწორი, ვარა ცალიორ რდუ, ვარა ხოლო გოხოლუდეს ნინეფშქა დო ინტერ-ვიკი ოდუდალეშ ჩილათირო დოქიმინელ რსხი.',
+'viewsource'     => 'ქოძირ წყუ',
+'viewsourcefor'  => '$1-იშ',
+'viewsourcetext' => 'თქვა შეგილებუნა ქოძირათ თე ხასილაშ დაჭყაფურ ფაილ დო ქუდარსხუათ თიშ მანგი:',
 
 # Login and logout pages
 'yourname'                => 'მახვარებელ',
 'yourpassword'            => 'პაროლ',
+'remembermypassword'      => 'ქიმკომიწონი',
 'yourdomainname'          => 'თქვან დომენ',
 'login'                   => 'მინულა',
 'nav-login-createaccount' => 'მინულა',
+'loginprompt'             => 'ვიკიპედიაშა მიშაულარო ოხვილუთ კუკიშ გოაქტირაფას.',
 'userlogin'               => 'მინულა',
 'logout'                  => 'გუმულა',
-'userlogout'              => 'გუმულა',
+'userlogout'              => 'გიშულა',
 'nologin'                 => 'დიორდე ვარეთ რეგისტრირებულ? $1.',
+'nologinlink'             => 'გონწყით ანგარიშ',
 'gotaccount'              => 'უკვე რეგისტრირებულ რეთ? $1',
 'gotaccountlink'          => 'მინულა',
 'yourrealname'            => 'ნანდულ სახელ *',
@@ -234,6 +240,7 @@ $messages = array(
 'showpreview'            => 'ოწოხიან გინოჯინა',
 'showdiff'               => 'თირაფეფიშ ძირაფა',
 'anoneditwarning'        => "'''გათხილება:''' თქვა ვარეთ რეგისტრირებულ. თქვან IP მისამართ დინოჭარილ იჸიი თე ხასილაშ რედაქტირაფაშ ისტორიას.",
+'summary-preview'        => 'რეზიუმეშ ოწოხიან გინოჯინა',
 'blockedtext'            => "<big>'''თქვან მახვარებუშ ჯოხო ვარა IP მიოწურაფუქ ბლოკირქ იჸუ. '''</big> ბლოკირაფა ღოლუ $-ქ. სამანჯელო წუმორინაფილქ იჸუ გეჸვენჯიქ: ''$2''.
 * ბლოკუაშ დაჭყაფურ: $8
 * ბლოკიშ ვადაშ გულა ბორჯი: $6
@@ -249,6 +256,7 @@ $messages = array(
 (ძირ.[[{{ns:help}}:Contents|მოხვარაშ ხასილა]] გეძინელ ინფორმაციაშო).
 თე ხასილას ჩილათირო მოხვადით და, დირთით უკახალე თქვან ბრაუზერიშ ხენწყუალათ.',
 'noarticletext'          => 'ასე თე ხასილას ტექსტ ვარე, [[Special:Search/{{PAGENAME}}|მიგორეთ თე ხასილაშ სახელ]] შხვა ხასილებს ვარა [{{fullurl:{{FULLPAGENAME}}|action=edit}} დოჭარით თენა ხასილა].',
+'previewnote'            => '<strong> ენა ხვალე ნიმუშიე; თირაფეფ დიო ვა ჩუალე!</strong>',
 'editing'                => 'რედაქტირაფა - $1',
 'editingsection'         => 'რედაქტირაფა - $1 (სექცია)',
 'yourtext'               => 'თქვან ტექსტ',
@@ -256,6 +264,7 @@ $messages = array(
 თქვა ხოლო პიჯალას დუთმოდვანთ, ნამდა თენა თქვან ნაჭარა რე, ვარა გინოღალირ რე ოირკოჩე დომენშე, დო ვარა თიშ მანგურ დუდშულ წყუშე. 
 <strong> ვა მიშეღათ ოავტორე უფლებებით თხილერ ნახანდი ავტორიშ ქოჸიაშ უმშო!</strong>',
 'templatesused'          => 'თე ხასილას გიმორინაფილ თარგეფ:',
+'templatesusedpreview'   => 'თარგეფ, ნამუთ ოწოხიან გინოჯინაშ ხასილას რე გიმორინაფილ',
 'template-protected'     => '(თხილერი)',
 'template-semiprotected' => '(გვერდო თხილერ)',
 'nocreatetext'           => 'თე ხასილას ვა შილებე ახალ ხასილაშ გექიმინუა დორცხუაფილ ვარიაშ გეშა. თქვა შეგილებუნა კინორთა დო გექიმინელ ხასილაშ რედაქტირაფა, ვარა [[სპეციალურ:Userlogin|მიშულა დო ანგარიშიშ დორცხუაფა]]',
@@ -265,23 +274,25 @@ $messages = array(
 ინფორმაციაშო თუდოლე მოჩამილიე თე ხასილაშ ლასუაშ ისტორია:",
 
 # History pages
-'viewpagelogs'     => 'თე ხასილაშა სარეგისტრაციე ჟურნალეფიშ ძირაფა',
-'currentrev'       => 'მიმალ გიშანწყუალა',
-'revisionasof'     => '$1-იშ ვერსია',
-'previousrevision' => '←ჯვეშ ვერსია',
-'nextrevision'     => 'უკულ ვერსია→',
-'cur'              => 'მიმალ',
-'last'             => 'ბოლო',
-'page_first'       => 'პირველი',
-'page_last'        => 'ბოლო',
-'histlegend'       => '<div style="font-size:95%">
+'viewpagelogs'        => 'თე ხასილაშა სარეგისტრაციე ჟურნალეფიშ ძირაფა',
+'currentrev'          => 'მიმალ გიშანწყუალა',
+'revisionasof'        => '$1-იშ ვერსია',
+'revision-info'       => '$1-იშ ვერსია, $2-იშ მიშაღალირ',
+'previousrevision'    => '←ჯვეშ ვერსია',
+'nextrevision'        => 'უკულ ვერსია→',
+'currentrevisionlink' => 'მიმალ ვერსია',
+'cur'                 => 'მიმალ',
+'last'                => 'ბოლო',
+'page_first'          => 'პირველი',
+'page_last'           => 'ბოლო',
+'histlegend'          => '<div style="font-size:95%">
 *ვერსიაშ გოთოლორაფა: ქოგეუნჭირით კორნებულ ვერსიაშ ფარანს თიშ გათოლორაფალო.
 *ვერსიეფიშ მეზიმაფა: გაგიშაგორით კორნებულ ვერსიეფ რადიო-ქართეფიშ გეღანკუათ დო გეუნჭირით მეზიმაფაშ კონჭის.
 *კუნტარაფეფ: (მიმ.) = შხვანობა მიმალ ვერსიაწკუმა, (ეკ.) = შხვაობა ოწოხოლენ ვერსიაწკუმა, ჭ = ჭიჭე გიშანწყუალეფ.</div>',
-'histfirst'        => 'პირველი',
-'histlast'         => 'ბოლო',
-'historysize'      => '($1 ბაიტ)',
-'historyempty'     => '(ცალიერ)',
+'histfirst'           => 'პირველი',
+'histlast'            => 'ბოლო',
+'historysize'         => '($1 ბაიტ)',
+'historyempty'        => '(ცალიერ)',
 
 # Revision feed
 'history-feed-title'          => 'რედაქტირებიშ ისტორია',
@@ -296,7 +307,7 @@ $messages = array(
 'editundo'                => 'გაუქვება',
 
 # Search results
-'noexactmatch' => "'''ხასილა თე სახელით \"\$1\" ვაარსეენს.''' თქვა შეილებნა [[:\$1|თე გვერდიშ კეთება]].",
+'noexactmatch' => "'''ხასილა თე სახელით \"\$1\" ვაარსეენს.''' თქვა შეილებნა [[:\$1|თე გვერდიშ ღოლამა]].",
 'prevn'        => 'წოხლენ $1',
 'nextn'        => 'უკულ $1',
 'viewprevnext' => 'ქოძირ  ($1) ($2) ($3).',
@@ -315,12 +326,14 @@ $messages = array(
 'nchanges'                       => '$1 თირუა',
 'recentchanges'                  => 'ბოლო თირაფეფ',
 'recentchanges-feed-description' => 'ვიკიშ უახალაშ თირაფეფიშ თოლჸუჯ თე არხის.',
-'rcnote'                         => 'თუდო ქოძირ ბოლო <strong>$1</strong> თირუა უკანასკნელი <strong>$2</strong> დღაშ $3 დგომარებათ.',
+'rcnote'                         => 'თუდოლე ძირით ეკონია <strong>$1</strong> თირაფა ბოლო <strong>$2</strong> დღაშ მალობას, $3 რენჯობათ',
+'rcnotefrom'                     => 'თუდო მოჸუნაფილიე თირაფეფ, ”’$2””-შე (ძირაფილიე ”’$1”’)',
 'rclistfrom'                     => 'ახალ თირაფეფიშ ძირაფა დოჭყაფულ $1-იშე',
 'rcshowhideminor'                => 'ჭიჭე რედაქტირებაშ $1',
 'rcshowhidebots'                 => 'რობოტეფიშ  $1',
 'rcshowhideliu'                  => 'რეგისტრირებულ მახვარებელეფიშ $1',
 'rcshowhideanons'                => 'ანონიმურ მახვარებელეფიშ $1',
+'rcshowhidepatr'                 => 'გოკონტროლაფირ თირაფეფიშ $1',
 'rcshowhidemine'                 => 'ჩქიმ რედაქტირებაშ $1',
 'rclinks'                        => 'ბოლო $1 თირუეფიშ ძირაფა უკანასკნელი $2 დღა გარგვალებურს<br />$3',
 'diff'                           => 'შხვანერობა',
@@ -337,11 +350,13 @@ $messages = array(
 'recentchangeslinked-noresult' => 'წურაფილ პერიოდს თირაფეფ აკოხვალამირ ხასილეფს ვა ჸოფერენ.',
 
 # Upload
-'upload'        => 'ფაილიშ გეთება',
+'upload'        => 'ფაილიშ გეძინა',
 'uploadbtn'     => 'ფაილიშ გეთება',
+'uploadlogpage' => 'გიმოხარგუაშ რეგისტრაცია',
 'uploadedimage' => 'გეთებაა "[[$1]]"',
 
 # Special:Imagelist
+'imagelist'      => 'სურათეფიშ ერკებულ',
 'imagelist_name' => 'სახელ',
 
 # Image description page
@@ -355,6 +370,7 @@ $messages = array(
 'filehist-comment'    => 'კომენტარ',
 'imagelinks'          => 'რსხილეფ',
 'linkstoimage'        => 'გეჸვენჯი ხასილეფ მორცხუ თე ფაილს',
+'nolinkstoimage'      => 'ვა რე თე ფაილწკუმა მერსხილ ხასილეფ.',
 'sharedupload'        => 'თენა ფაილ გეთებულ რე საართო სარგებლობაშოთ დო შილებე თიში გიმორინაფა შხვა პროექტეფს.',
 'noimage'             => 'ფაილ თე სახელით ვაარსეენც, თქვან შეგილებუნთ $1.',
 
@@ -379,12 +395,16 @@ $messages = array(
 'mostlinked'              => 'ხასილეფ, ნამუდგა არძას ბრალ ბუნილეფ უღუნა',
 'mostlinkedcategories'    => 'კატეგორიეფ, ნამუდგა არძას ბრალ რსხილეფ უღუნა',
 'mostcategories'          => 'სტატიეფ, ნამუდგა არძას ბრალ კატეგორიეფ უღუნა',
+'prefixindex'             => 'ოგორალ ზიტყვაშ დაჭყაფურიშ მეჯინათ',
 'shortpages'              => 'ჭიჭე ხასილეფ',
 'longpages'               => 'გინძე ხასილეფ',
 'newpages'                => 'ახალ ხასილეფ',
 'ancientpages'            => 'ჯვეშ ხასილეფ',
 'move'                    => 'გინოღალა',
 'movethispage'            => 'თე გვერდიშ გინოღალა',
+
+# Book sources
+'booksources' => 'წინგიშ წყუეფ',
 
 # Special:Log
 'specialloguserlabel'  => 'მახვარებელ:',
@@ -404,6 +424,9 @@ $messages = array(
 # Special:Categories
 'categories' => '{{PLURAL:$1|კატეგორია|კატეგორიეფ}}',
 
+# E-mail user
+'emailuser' => 'მიდუჯღონით ელ.ფოშტა ათე მახვარებუს',
+
 # Watchlist
 'watchlist'            => 'ჩქიმ კონტროლიშ ხასილეფ',
 'mywatchlist'          => 'ჩქიმ კონტროლიშ ერკებულ',
@@ -412,6 +435,7 @@ $messages = array(
 'watch'                => 'კონტროლ',
 'watchthispage'        => 'თე ხასილაშ კონტროლ',
 'unwatch'              => 'კონტროლიშ გაუქვება',
+'watchlist-details'    => '$1 ხასილას კილმაჯინეთ სხუნუაშ ხასილაშ უკოროცხუო.',
 'wlshowlast'           => 'ძირაფა ბოლო $1 საათიშ $2 დღაშ $3',
 'watchlist-hide-bots'  => 'რობოტიშ თირუეფიშ ფულუა',
 'watchlist-hide-own'   => 'ჩქიმ რედაქტირებაშ ფულუა',
@@ -429,6 +453,7 @@ $messages = array(
 'deleteotherreason'           => 'შხვა/დამატებით ბაძაძი:',
 'deletereasonotherlist'       => 'შხვა ბაძაძი',
 'rollbacklink'                => 'გაუქვება',
+'protectlogpage'              => 'თხილუაშ ისტორია',
 'protectcomment'              => 'კომენტარ:',
 'protectexpiry'               => 'ვადა',
 'protect-unchain'             => 'გინოღალას ალობას ბლოკიშ მონწყუმა',
@@ -440,6 +465,7 @@ $messages = array(
 'restriction-type'            => 'ულაფა',
 
 # Undelete
+'undeletebtn'            => 'ახალშო ეკონწყუალა',
 'undelete-search-submit' => 'გორუა',
 
 # Namespace form on various pages
@@ -448,17 +474,18 @@ $messages = array(
 'blanknamespace' => '(დუდ)',
 
 # Contributions
-'contributions' => 'მახვარებელიშ ნახანდი',
+'contributions' => 'მახვარებელიშ ნახანდ',
 'mycontris'     => 'ჩქიმ ნახანდ',
 'contribsub2'   => '$1 ($2) შენი',
 'uctop'         => '(დუდ)',
 'month'         => 'თუთა:',
 'year'          => 'წანა:',
 
-'sp-contributions-blocklog' => 'ბლოკირებაშ ისტორია',
+'sp-contributions-newbies-sub' => 'ახალეფშოთ',
+'sp-contributions-blocklog'    => 'ბლოკირებაშ ისტორია',
 
 # What links here
-'whatlinkshere'       => 'სო რე თენა გვერდ წურაფილ',
+'whatlinkshere'       => 'სო რე თენა ხასილა წურაფილ',
 'whatlinkshere-title' => 'ხასილეფ, სოდეთ რენა რსხილეფ $1-ს',
 'whatlinkshere-page'  => 'გვერდ:',
 'linklistsub'         => '(რსხილეფ)',
@@ -475,10 +502,11 @@ $messages = array(
 'ipboptions'         => '2 საათი:2 hours,1 დღა:1 დღა,3 დღა:3 დღალეფ,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'შხვა',
 'ipblocklist-submit' => 'გორუა',
-'blocklink'          => 'ბლოკირება',
+'blocklink'          => 'ბლოკირაფა',
 'unblocklink'        => 'ბლოკიშ მონწყუმა',
 'contribslink'       => 'ნახანდ',
 'blocklogpage'       => 'ბლოკირეფიშ ერკება',
+'blocklogentry'      => '"[[$1]]" ბლოკირაფაშ ვადაშ გულა ბორჯი $2 $3.',
 
 # Move page
 'move-page-legend' => 'გვერდიშ გინოღალა',
@@ -490,6 +518,7 @@ $messages = array(
 'movepage-moved'   => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'გინაღალულ რე',
 'movetalk'         => 'აკოხვალამირ სხუნუაშ გინოღალა',
+'1movedto2'        => '[[$1]] გინოღალირიე ხასილაშა [[$2]]',
 'movelogpage'      => 'გინოღალაშ რეგისტრაცია',
 'movereason'       => 'საბაბი',
 'revertmove'       => 'გაუქვება',
@@ -528,16 +557,18 @@ $messages = array(
 'tooltip-n-mainpage'              => 'დუდ ხასილაშ ძირაფა',
 'tooltip-n-portal'                => 'პროექტიშენი, მუშ ქიმინუა შეილებჷნა, სოდეთ ძირჷნთ',
 'tooltip-n-currentevents'         => 'ქიჩინით რსული ინფორმაცია ასეიან მოლინეფიშენ',
-'tooltip-n-recentchanges'         => 'ვიკიშ ბოლო თირაფეფ',
+'tooltip-n-recentchanges'         => 'ვიკიშ ეკონია თირაფეფ',
 'tooltip-n-randompage'            => 'ქუმოძირ ნებისმიერ ხასილა',
 'tooltip-n-help'                  => 'ხასილა, სოდეთ ძირჷნთ.',
 'tooltip-t-whatlinkshere'         => 'არძო ვიკი ხასილაშ სია ნამუდგა მიკოკირილ რე თაქ.',
 'tooltip-t-contributions'         => 'ქოძირეთ თე მახვარებელიშ ნახანდ',
+'tooltip-t-emailuser'             => 'მიდუჯღონით ელ.ფოშტა ათე მახვარებუს',
 'tooltip-t-upload'                => 'ქიმკაკირ ფაილ',
 'tooltip-t-specialpages'          => 'ირ სპეციალურ ხასილა',
 'tooltip-ca-nstab-user'           => 'მახვარებელიშ ხასილაშ ძირაფა',
 'tooltip-ca-nstab-project'        => 'პროექტიშ ხასილა',
 'tooltip-ca-nstab-image'          => 'სურათიშ ხასილაშ ძირაფა',
+'tooltip-ca-nstab-template'       => 'თარგიშ ძირაფა',
 'tooltip-ca-nstab-help'           => 'ქოძირეთ დახვარებაშ გვერდ',
 'tooltip-ca-nstab-category'       => 'ხასილაშ კატეგორიაშ ძირა',
 'tooltip-minoredit'               => 'ქიმიოღანკი, მუჭოთ ჭიჭე რედაქტირაფა [alt-i]',
@@ -554,6 +585,7 @@ $messages = array(
 # Media information
 'file-info-size'       => '($1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4)',
 'file-nohires'         => '<small> უმოს მაღალ გიშაგორადალა ვა რე შელებუან.</small>',
+'svg-long-desc'        => '(ფაილ SVG, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3)',
 'show-big-image'       => 'რსული გარჩევადობა',
 'show-big-image-thumb' => '<small>ზომა ოწმახ ძირაშ დროს: $1 × $2 პიქსელ</small>',
 
@@ -583,7 +615,9 @@ $messages = array(
 'monthsall'     => 'არძა',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'მერსხილ თირაფეფიშ ძირაფა',
 'watchlisttools-edit' => 'კონტროლიშ ხასილეფიშ ძირაფა დო რედაქტირება',
+'watchlisttools-raw'  => 'კონტროლიშ ერკებულიშ რედაქტირაფა ტექსტიშ ფორმატის',
 
 # Special:Version
 'version' => 'ვერსია', # Not used as normal message but as header for the special page itself
