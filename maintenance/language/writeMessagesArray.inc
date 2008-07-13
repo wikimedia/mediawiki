@@ -120,7 +120,7 @@ class MessageWriter {
 		}
 
 		# Write the unknown messages, alphabetically sorted.
-		# Of course, we don't have any comments for them, because the are unknown.
+		# Of course, we don't have any comments for them, because they are unknown.
 		if ( !$removeUnknown ) {
 			ksort( $sortedMessages['unknown'] );
 			$messagesText .= self::writeMessagesBlock( 'Unknown messages', $sortedMessages['unknown'] );
