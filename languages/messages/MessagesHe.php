@@ -1457,11 +1457,11 @@ PICT # שונות
 'filerevert'                => 'שחזור $1',
 'filerevert-backlink'       => '→ $1',
 'filerevert-legend'         => 'שחזור קובץ',
-'filerevert-intro'          => '<span class="plainlinks">משחזר את \'\'\'[[Media:$1|$1]]\'\'\' ל[גרסה $4 מ־$3, $2].</span>',
+'filerevert-intro'          => '<span class="plainlinks">משחזר את \'\'\'[[Media:$1|$1]]\'\'\' ל[$4 גרסה מ־$3, $2].</span>',
 'filerevert-comment'        => 'הערה:',
 'filerevert-defaultcomment' => 'שוחזר לגרסה מ־$2, $1',
 'filerevert-submit'         => 'שחזור',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' שוחזרה ל[גרסה $4 מ־$3, $2].</span>',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' שוחזרה ל[$4 גרסה מ־$3, $2].</span>',
 'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המבוקש.',
 
 # File deletion
