@@ -10,6 +10,17 @@
 
 $fallback = 'fa';
 
+$skinNames = array(
+	'standard'    => 'کلاسیک',
+	'nostalgia'   => 'نوستالجیک',
+	'cologneblue' => 'نیلی کولاجن',
+	'monobook'    => 'منوبوک',
+	'myskin'      => 'منی جلد',
+	'chick'       => 'شیک',
+	'simple'      => 'ساده',
+	'modern'      => 'مدرن',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'         => array( 'دوبل غیر مستقیم' ),
 	'BrokenRedirects'         => array( 'پرشتگین غیرمستقیم' ),
