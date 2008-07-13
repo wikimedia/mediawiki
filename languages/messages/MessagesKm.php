@@ -29,6 +29,10 @@ $digitTransformTable = array(
 	'9' => '៩', # &#x17e9;
 );
 
+$separatorTransformTable = array(
+	'.' => ','
+);
+
 $datePreferences = array(
 	'default',
 	'km',
