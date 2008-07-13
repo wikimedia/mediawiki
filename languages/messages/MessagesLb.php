@@ -160,8 +160,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Meng E-Mailadress an de Benoriichtigungsmaile weisen.',
 'tog-shownumberswatching'     => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-fancysig'                => 'Ënnerschrëft ouni automatesche Link op déi eege Benotzersäit',
-'tog-externaleditor'          => 'Externen Editor als Standard benotzen (Nëmme fir Experten, et musse seziell Astellungen op ärem Computer gemaach ginn.',
-'tog-externaldiff'            => 'En Externen Diff-Programm als Standard benotzen (nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn.',
+'tog-externaleditor'          => 'Externen Editor als Standard benotzen (Nëmme fir Experten, et musse seziell Astellungen op ärem Computer gemaach ginn)',
+'tog-externaldiff'            => 'En Externen Diff-Programm als Standard benotzen (nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn)',
 'tog-showjumplinks'           => 'Aktivéiere vun de "Sprang op"-Linken',
 'tog-uselivepreview'          => 'Live-Preview notzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wa beim Späicheren de Resumé feelt',
@@ -798,7 +798,7 @@ Prezisiounen iwwert d\'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Speci
 'revdelete-nooldid-title'     => 'Ongülteg Zilversioun',
 'revdelete-nooldid-text'      => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Diruginn huet gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
 'revdelete-selected'          => "{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :",
-'logdelete-selected'          => "Ausgewielten {{PLURAL:$2|Evenement|Evenementer}} aus dem Logbuch fir '''$1:'''",
+'logdelete-selected'          => 'Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:',
 'revdelete-text'              => 'Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.
 
 {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.',
@@ -899,7 +899,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'searchrelated'             => 'a Verbindng',
 'searchall'                 => 'all',
 'showingresults'            => "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaang mat #'''$2'''.",
-'showingresultsnum'         => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
+'showingresultsnum'         => "Hei gesitt der  {{PLURAL:$3|'''1''' Resultat|'''$3''' Resultater}}, ugefaange mat #'''$2'''.",
 'showingresultstotal'       => "Weis ënnendrënner d'{{PLURAL:$3|Resultat|Resultater}} '''$1 - $2''' vu(n) '''$3'''",
 'nonefound'                 => "'''Opgepasst''': Nëmmen e puer Nimmraim gi ''par default'' duerchsicht. Versicht an ärer Ufro ''all:'' anzestellen fir de dsamte contenu (inklusiv Diskussiounssäiten, Schablonen, ...), oder benotzed déi gwënscht Nimmräim als Virastellung.",
 'powersearch'               => 'Erweidert Sich',
@@ -1271,7 +1271,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filedelete-success'          => "'''$1''' gouf geläscht.",
 'filedelete-success-old'      => "<span class=\"plainlinks\">D'Versioun vum Fichier '''[[Media:\$1|\$1]]''' vum \$2, \$3 Auer gouf geläscht.</span>",
 'filedelete-nofile'           => "'''$1''' gëtt et net op {{SITENAME}}.",
-'filedelete-nofile-old'       => "Et gëtt vun '''$1''' keng Versioun vum $2, $3 Auer.",
+'filedelete-nofile-old'       => "Et gëtt vun '''$1''' keng archivéiert Versioun mat den Attributer déi dir uginn hutt.",
 'filedelete-iscurrent'        => "Dir versicht déi aktuell Versioun vun dësem Fichier ze läschen.
 Setzt dëse w.e.g. vir d'éischt op méi eng al Versioun zréck.",
 'filedelete-otherreason'      => 'Aneren/zousätzleche Grond:',
@@ -1584,7 +1584,7 @@ Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{
 'deletepage'                  => 'Säit läschen',
 'confirm'                     => 'Konfirméieren',
 'excontent'                   => "Inhalt war: '$1'",
-'excontentauthor'             => "Op der Säit stong: '$1' (An als eenzegen dru geschriwwen hat de '[[Special:Contributions/$2|$2]]'.",
+'excontentauthor'             => "Op der Säit stong: '$1' (An als eenzegen dru geschriwwen hat de '[[Special:Contributions/$2|$2]]').",
 'exbeforeblank'               => "Den Inhalt virum Läsche war: '$1'",
 'exblank'                     => "D'Säit war eidel",
 'delete-confirm'              => 'Läsche vu(n) "$1"',
@@ -1622,6 +1622,9 @@ dës Aktioun soll mat Vierssiicht gemaach ginn.",
 'editcomment'                 => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Ännerunge vum [[User:$2|$2]] ([[Special:Contributions/$2|Kontributioune]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
+'sessionfailure'              => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
+Dës Aktioun gouf aus Sécherheetsgrënn afgebrach, fir ze verhënneren datt är Séance eine piratéiert ka ginn.
+KLickt w.e.g. op "Zréck" a lued déi Sàit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'protectlogtext'              => "Dëst ass d'Lëscht vun de Säitespären.
 Kuckt d'[[{{ns:special}}:Protectedpages|Lëscht vun de protegéierte Säite]] fir eng L!escht vun den aktuelle Säite-Protectiounen.",
@@ -1707,7 +1710,7 @@ $1',
 'blanknamespace' => '(Haapt)',
 
 # Contributions
-'contributions' => 'Kontributiounen',
+'contributions' => 'Kontributiounen vum Benotzer',
 'mycontris'     => 'Meng Kontributiounen',
 'contribsub2'   => 'Fir $1 ($2)',
 'nocontribs'    => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',

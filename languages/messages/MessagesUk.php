@@ -1109,7 +1109,7 @@ $3 зазначив наступну причину: ''$2''",
 'userrights'                  => 'Управління правами користувачів', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Управління групами користувача',
 'userrights-user-editname'    => "Введіть ім'я користувача:",
-'editusergroup'               => 'Редагувати групи користувачів',
+'editusergroup'               => 'Редагувати групи користувача',
 'editinguser'                 => "Зміна прав користувача '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Змінити групи користувача',
 'saveusergroups'              => 'Зберегти групи користувача',

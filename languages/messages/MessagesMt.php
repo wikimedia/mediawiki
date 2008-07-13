@@ -1917,15 +1917,28 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Il-Paġna tal-utent tiegħi',
-'tooltip-pt-login'                => 'Tireġistra ruħek huwa kuraġġut, mhux obbligatorja però.',
-'tooltip-pt-anonlogin'            => 'Tireġistra ruħek huwa kuraġġut, anki jekk mhux obbligatorja.',
+'tooltip-pt-anonuserpage'         => "Il-Paġna tal-utent ta' dan l-indirizz tal-IP",
+'tooltip-pt-mytalk'               => 'Il-Paġna tad-diskussjoni tiegħi',
+'tooltip-pt-anontalk'             => 'Diskussjoni dwar il-modifiki magħmula minn dan l-indirizz tal-IP',
+'tooltip-pt-preferences'          => 'Il-Preferenzi tiegħi',
+'tooltip-pt-watchlist'            => 'Il-Lista tal-paġni li qiegħed tosserva',
+'tooltip-pt-mycontris'            => 'Lista tal-kontributi tiegħi',
+'tooltip-pt-login'                => 'Tirreġistra ruħek huwa avviżat però mhux obbligatorju.',
+'tooltip-pt-anonlogin'            => 'Tirreġistra ruħek huwa avviżat, anki jekk mhux obbligatorju.',
 'tooltip-pt-logout'               => 'Oħroġ (logout)',
 'tooltip-ca-talk'                 => 'Diskussjoni dwar il-kontenut tal-paġna',
-'tooltip-ca-edit'                 => "Tista' tagħmel modifiki fuq din il-paġna. Jekk jogħġbok uża l-buttuna tal-previżjoni qabel ma tagħmel il-modifika.",
-'tooltip-ca-addsection'           => "Żid kumment f'din id-diskussjoni.",
+'tooltip-ca-edit'                 => "Tista' tagħmel modifiki fuq din il-paġna. Jekk jogħġbok uża l-buttuna tal-previżjoni qabel ma tagħmel il-modifiki.",
+'tooltip-ca-addsection'           => "Żied kumment f'din id-diskussjoni.",
 'tooltip-ca-viewsource'           => "Din il-paġna hija protetta. Int tista' tara l-kodiċi sorġenti",
+'tooltip-ca-history'              => "Verżjonijiet preċedenti ta' din il-paġna",
+'tooltip-ca-protect'              => 'Protieġi din il-paġna',
+'tooltip-ca-delete'               => 'Ħassar din il-paġna',
+'tooltip-ca-undelete'             => "Irkupra l-modifiki magħmula f'din il-paġna qabel ma ġiet imħassra",
+'tooltip-ca-move'                 => 'Ċaqlaq din il-paġna',
+'tooltip-ca-watch'                => 'Żied din il-paġna fl-osservazzjonijiet speċjali tiegħek',
+'tooltip-ca-unwatch'              => 'Neħħi din il-paġna mill-osservazzjonijiet speċjali tiegħek',
 'tooltip-search'                  => 'Fittex fil-{{SITENAME}}',
-'tooltip-search-go'               => "Mur f'paġna bit-titlu indikat, jekk jeżisti",
+'tooltip-search-go'               => 'Mur fil-paġna bit-titlu indikat, jekk teżisti',
 'tooltip-search-fulltext'         => 'Fittex it-test indikat fil-paġni',
 'tooltip-p-logo'                  => 'Paġna prinċipali',
 'tooltip-n-mainpage'              => 'Żur il-paġna prinċipali',
@@ -1936,11 +1949,11 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'tooltip-n-help'                  => 'Il-Post fejn issir taf.',
 'tooltip-t-whatlinkshere'         => 'Lista tal-paġni tal-wiki kollha li jwasslu hawn',
 'tooltip-t-recentchangeslinked'   => "Link għal modifiki riċenti ta' paġni relatati",
-'tooltip-feed-rss'                => 'RSS feed għal din il-paġna',
+'tooltip-feed-rss'                => 'Feed RSS għal din il-paġna',
 'tooltip-feed-atom'               => 'Feed Atom għal din il-paġna',
-'tooltip-t-contributions'         => "Uri l-lista ta' kontribuzzjonijiet ta' dan l-utent",
+'tooltip-t-contributions'         => "Uri l-lista tal-kontribuzzjonijiet ta' dan l-utent",
 'tooltip-t-emailuser'             => 'Ibgħat posta elettronika lil dan l-utent',
-'tooltip-t-upload'                => "Tella' fajl",
+'tooltip-t-upload'                => "Tella' fajls",
 'tooltip-t-specialpages'          => 'Lista tal-paġni speċjali kollha',
 'tooltip-t-print'                 => "Verżjoni tal-ipprintjar ta' din il-paġna",
 'tooltip-t-permalink'             => 'Link permanenti għal din il-verżjoni tal-paġna',
@@ -2007,6 +2020,80 @@ Din hija wisq probabli kawża ta' link għal sit estern.",
 'spamprotectionmatch' => 'It-test segwenti huwa li ġab l-attenżjoni tal-filters tal-ispam: $1',
 'spambot_username'    => 'Nadaf MedjaWiki mill-ispam',
 'spam_reverting'      => "Erġa' lura għall-aħħar verżjoni li m'għandiex link għal $1",
+'spam_blanking'       => 'Paġna svojtjata, kull verżjoni kellu link għal $1',
+
+# Info page
+'infosubtitle'   => 'Informazzjoni għal paġna',
+'numedits'       => "Numru ta' modifiki (paġna): $1",
+'numtalkedits'   => "Numru ta' modifiki (paġna tad-diskussjoni): $1",
+'numwatchers'    => "Numru ta' osservanti: $1",
+'numauthors'     => "Numru ta' awturi distinti (paġna): $1",
+'numtalkauthors' => "Numru ta' awturi distinti (paġna tad-diskussjoni): $1",
+
+# Math options
+'mw_math_png'    => "Uri dejjem f'PNG",
+'mw_math_simple' => 'HTML jekk sempliċi ħafna, inkella PNG',
+'mw_math_html'   => 'HTML jekk possibli inkella PNG',
+'mw_math_source' => "Ħallija bħala TeX (għal browsers ta' test)",
+'mw_math_modern' => 'Rakkomandat għal browsers moderni',
+'mw_math_mathml' => 'MathML jekk possibli (esperimentali)',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Marka l-modifiki bħalha verifikati',
+'markaspatrolledtext'                 => 'Marka din il-paġna bħalha verifikata',
+'markedaspatrolled'                   => 'Markat bħalha verifikat',
+'markedaspatrolledtext'               => 'Ir-Reviżjoni magħżula hija markata bħalha verifikata.',
+'rcpatroldisabled'                    => 'Modifikar riċenti verifikar disattivat',
+'rcpatroldisabledtext'                => "Il-Funżjoni ta' verifika tal-aħħar modifiki bħalissa mhux attivata.",
+'markedaspatrollederror'              => 'Ma jistax jiġi markat bħalha verifikat',
+'markedaspatrollederrortext'          => 'Int trid tispeċifika r-reviżjoni li trida tkun verifikata.',
+'markedaspatrollederror-noautopatrol' => "Int m'għandhekx id-drittijiet neċessarji biex timmarka l-modifiki tiegħek bħala verifikati.",
+
+# Patrol log
+'patrol-log-page' => 'Modifiki verifikati',
+'patrol-log-line' => 'markajt $1 tal-paġna $2 bħala verifikat $3',
+'patrol-log-auto' => '(verifika awtomatika)',
+'patrol-log-diff' => 'modifika $1',
+
+# Image deletion
+'deletedrevision'                 => 'Reviżjoni preċedenti, mħassra: $1',
+'filedeleteerror-short'           => 'Problema waqt li kont qiegħed tħassar il-fajl: $1',
+'filedeleteerror-long'            => 'Ġew verifikati xi problemi waqt li kont qiegħed tħassar il-fajl:
+
+$1',
+'filedelete-missing'              => 'Il-Fajl "$1" ma setgħax jiġi mħassar, minħabba li ma jeżistix.',
+'filedelete-old-unregistered'     => 'Ir-Reviżjoni speċifikati tal-fajl "$1" mhux qiegħed fid-database.',
+'filedelete-current-unregistered' => 'Il-Fajl speċifikat "$1" mhux qiegħed fid-database.',
+'filedelete-archive-read-only'    => 'L-Arkivju tad-direttorju "$1" ma jistax jinkiteb mill-webserver.',
+
+# Browsing diffs
+'previousdiff' => '← Differenza preċedenti',
+'nextdiff'     => 'Differenza suċċessiva →',
+
+# Media information
+'mediawarning'         => "'''Twissija''': Dan il-fajl jista' jkun fih kodiċi malinja, jekk tagħżel li tiftħu jista' jagħmel ħsara fis-sistema informatika tiegħek.<hr />",
+'imagemaxsize'         => 'Daqs massimu tas-stampi fuq il-paġni relativi tad-diskussjoni:',
+'thumbsize'            => "Daqs ta' ''thumbnail'':",
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paġna|paġni}}',
+'file-info'            => "(Dimensjoni: $1, tip ta' MIME: $2)",
+'file-info-size'       => "($1 × $2 pixel, dimensjoni: $3, tip ta' MIME: $4)",
+'file-nohires'         => "<small>Mhux disponibli verżjonijiet b'risoluzzjoni akbar.</small>",
+'svg-long-desc'        => '(Fajl fil-format SVG, dimensjoni nominali $1 × $2 pixel, dimensjoni tal-fajl: $3)',
+'show-big-image'       => "Verżjoni b'risoluzzjoni sħiħa",
+'show-big-image-thumb' => '<small>Dimensjoni tal-previżjoni: $1 × $2 pixel</small>',
+
+# Special:Newimages
+'newimages'             => "Gallerija ta' fajls ġodda",
+'imagelisttext'         => "Il-Lista t'hawn taħt ta' '''$1''' {{PLURAL:$1|fajl|fajls}} irranġati $2.",
+'newimages-summary'     => "Din il-paġna speċjali turi l-aħħar fajls li ġew mtella' riċentament",
+'showhidebots'          => '($1 bots)',
+'noimages'              => "M'hawn xejn x'tara.",
+'ilsubmit'              => 'Fittex',
+'bydate'                => 'data',
+'sp-newimages-showfrom' => "Uri l-fajls l-aktar riċenti mill-ħin $2 ta' $1",
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 'S',
 
 # Bad image list
 'bad_image_list' => "Il-format huwa dan segwenti:
@@ -2014,6 +2101,184 @@ Din hija wisq probabli kawża ta' link għal sit estern.",
 Jiġi konsidrat biss ikoni puntati (linji li jibdew b'*) biss.
 L-ewwel link fil-linja hija link għal fajl ħażin.
 Il-Links suċċessivi fuq l-istess linja huma konsidrata eċċeżjoni. (paġni fejn il-fajl jista' jiġi rikjamat)",
+
+# Metadata
+'metadata'          => 'Metadata',
+'metadata-help'     => 'Dan il-fajl fih aktar informazzjoni, probabli miżjud minn kamera diġitali jew skanner użat sabiex joħolqu jew inkella sabiex jagħmlu diġitali. 
+Jekk il-fajl ġie modifikat mill-istat oriġinal, ftit dettalji mhux biżżejjed.',
+'metadata-expand'   => 'Uri dettalji estiż',
+'metadata-collapse' => 'Aħbi dettalji',
+'metadata-fields'   => "EXIF metadata mniżżel f'din il-lista tal-messaġġ se jiġu inkluż fil-veduta tal-paġna tal-istampa meta t-tabella tiġi murija fil-forma qasira. 
+Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija. 
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength", # Do not translate list items
+
+# EXIF tags
+'exif-imagewidth'                  => "Wisa'",
+'exif-imagelength'                 => 'Għoli',
+'exif-bitspersample'               => 'Bit per komponent',
+'exif-compression'                 => 'Skema tar-rassa',
+'exif-photometricinterpretation'   => 'Struttura tal-pixel',
+'exif-orientation'                 => 'Orjentazzjoni',
+'exif-samplesperpixel'             => "Numru ta' komponenti",
+'exif-planarconfiguration'         => 'Tqassim tad-data',
+'exif-ycbcrsubsampling'            => 'Rapport tal-provi Y / C',
+'exif-ycbcrpositioning'            => 'Pożizzjonament tal-komponenti Y u C',
+'exif-xresolution'                 => 'Riżoluzzjoni oriżżontali',
+'exif-yresolution'                 => 'Riżoluzzjoni vertikali',
+'exif-resolutionunit'              => 'Unita tar-riżoluzzjoni X u Y',
+'exif-stripoffsets'                => 'Post fejn jinsab id-data tal-istampa',
+'exif-rowsperstrip'                => "Numru ta' fillieri għal kull strixxa",
+'exif-stripbytecounts'             => 'Bytes għal kull strixxa kompressa',
+'exif-jpeginterchangeformat'       => 'Pożizzjoni byte SOI JPEG',
+'exif-jpeginterchangeformatlength' => "Numru ta' bytes ta' data JPEG",
+'exif-transferfunction'            => "Funżjoni ta' transferiment",
+'exif-whitepoint'                  => 'Kromatiku tal-punt abjad',
+'exif-primarychromaticities'       => 'Kromitiku tal-kuluri primarji',
+'exif-ycbcrcoefficients'           => 'Koeffiċjent matriċi tat-trasformazzjoni spazji tal-kuluri',
+'exif-referenceblackwhite'         => "Par ta' valuri tar-riferiment (iswed jew abjad)",
+'exif-datetime'                    => "Data jew ħin ta' modifiki tal-fajl",
+'exif-imagedescription'            => 'Titlu tal-istampa',
+'exif-make'                        => 'Manifattur tal-kameri',
+'exif-model'                       => 'Mudell tal-kamera',
+'exif-software'                    => 'Software',
+'exif-artist'                      => 'Awtur',
+'exif-copyright'                   => 'Informazzjoni dwar il-propjetá letterarja',
+'exif-exifversion'                 => 'Verżjoni tal-format Exif',
+'exif-flashpixversion'             => "Verżjoni sapportata ta' Flashpix",
+'exif-colorspace'                  => 'Spazju tal-kulur',
+'exif-componentsconfiguration'     => 'Tfissira dwar kull komponent',
+'exif-compressedbitsperpixel'      => 'Għamla tal-kompressjoni tal-istampa',
+'exif-pixelydimension'             => "Wisa' valida tal-istampa",
+'exif-pixelxdimension'             => 'Għoli validu tal-istampa',
+'exif-makernote'                   => 'Noti dwar il-maniffatur',
+'exif-usercomment'                 => 'Noti tal-utent',
+'exif-relatedsoundfile'            => 'Fajl relatat mal-ismiegħ',
+'exif-datetimeoriginal'            => 'Data u ħin tal-ħolqien tad-data',
+'exif-datetimedigitized'           => 'Data u ħin tad-diġitazzjoni',
+'exif-subsectime'                  => "Data u ħin, frazzjoni ta' sekondi",
+'exif-subsectimeoriginal'          => "Data u ħin tal-ħolqien, frazzjoni ta' sekonda",
+'exif-subsectimedigitized'         => "Data u ħin ta' diġitazzjoni, frazzjoni ta' sekonda",
+'exif-exposuretime'                => 'Ħin tal-wirja',
+'exif-exposuretime-format'         => '$1 s ($2)',
+'exif-fnumber'                     => 'Numru fokali',
+'exif-exposureprogram'             => 'Programm tal-wirja',
+'exif-spectralsensitivity'         => 'Sensitività spettrali',
+'exif-isospeedratings'             => 'Sensibilità ISO',
+'exif-oecf'                        => "Fattur ta' konverżjoni optoelettronika",
+'exif-shutterspeedvalue'           => "Ħin ta' wirja",
+'exif-aperturevalue'               => 'Ftuħ',
+'exif-brightnessvalue'             => 'Ċarezza',
+'exif-exposurebiasvalue'           => "Inklinazzjoni ta' wirja",
+'exif-maxaperturevalue'            => 'Ftuħ massimu',
+'exif-subjectdistance'             => 'Distanza mis-suġġett',
+'exif-meteringmode'                => "Metodu ta' misurazzjoni",
+'exif-lightsource'                 => 'Sorġent tad-dawl',
+'exif-flash'                       => 'Flash',
+'exif-focallength'                 => 'Distanza fokali objettiva',
+'exif-subjectarea'                 => 'Spazju tas-suġġett',
+'exif-flashenergy'                 => 'Saħħa tal-flash',
+'exif-spatialfrequencyresponse'    => 'Risposta fi frekwenza spazjali',
+'exif-focalplanexresolution'       => 'Risoluzzjoni X fuq il-witja fokali',
+'exif-focalplaneyresolution'       => 'Risoluzzjoni Y fuq il-witja fokali',
+'exif-focalplaneresolutionunit'    => "Unita ta' qisien tar-risoluzzjoni fuq il-witja fokali",
+'exif-subjectlocation'             => 'Post tas-suġġett',
+'exif-exposureindex'               => 'Indiċi tal-wirja',
+'exif-sensingmethod'               => 'Metodu ta tħaffif',
+'exif-filesource'                  => 'Oriġini tal-fajl',
+'exif-scenetype'                   => 'Tip tax-xena',
+'exif-cfapattern'                  => 'Dispożizzjoni tal-filtru tal-kulur',
+'exif-customrendered'              => 'Proċessar tal-istampi personalizzati',
+'exif-exposuremode'                => "Stat ta' wirja",
+'exif-whitebalance'                => 'Bilanċ l-abjad',
+'exif-digitalzoomratio'            => 'Rapport zoom diġitali',
+'exif-focallengthin35mmfilm'       => 'Daqs fokali ġo film 35mm',
+'exif-scenecapturetype'            => "Tip ta' akwistazzjoni",
+'exif-gaincontrol'                 => 'Kontroll tax-xena',
+'exif-contrast'                    => 'Kontrolla kuntrast',
+'exif-saturation'                  => 'Kontrolla saturazzjoni',
+'exif-sharpness'                   => 'Kontrolla xfir',
+'exif-devicesettingdescription'    => 'Deskrizzjoni tal-preferenzi dispositivi',
+'exif-subjectdistancerange'        => 'Skala tad-distanza tas-suġġett',
+'exif-imageuniqueid'               => 'ID uniku tal-istampa',
+'exif-gpsversionid'                => "Verżjoni ta' tabella GPS",
+'exif-gpslatituderef'              => 'Latitudni Tramuntana/Nofs inhar',
+'exif-gpslatitude'                 => 'Latitudni',
+'exif-gpslongituderef'             => 'Lonġitudni Lvant/Punent',
+'exif-gpslongitude'                => 'Lonġitudni',
+'exif-gpsaltituderef'              => 'Riferiment għall-għoli',
+'exif-gpsaltitude'                 => 'Għoli',
+'exif-gpstimestamp'                => 'Ħin GPS (arloġġ atomiku)',
+'exif-gpssatellites'               => 'Satelliti użat għal qisien',
+'exif-gpsstatus'                   => "Statut ta' minn jirċievi",
+'exif-gpsmeasuremode'              => "Stat ta' qisien",
+'exif-gpsdop'                      => 'Preċiżjoni tal-qisien',
+'exif-gpsspeedref'                 => "Unit ta' miżuri ta' veloċita",
+'exif-gpsspeed'                    => 'Veloċita tal-reċivitur tal-GPS',
+'exif-gpstrackref'                 => 'Referiment tad-direzzjoni tal-moviment',
+'exif-gpstrack'                    => 'Direzzjoni tal-moviment',
+'exif-gpsimgdirectionref'          => 'Referiment tad-direzzjoni tal-istampa',
+'exif-gpsimgdirection'             => 'Direzzjoni tal-istampa',
+'exif-gpsmapdatum'                 => 'Informazzjoni geodetiku użat',
+'exif-gpsdestlatituderef'          => 'Referiment tal-latitudni tad-destinazzjoni',
+'exif-gpsdestlatitude'             => 'Destinazzjoni tal-latitudni',
+'exif-gpsdestlongituderef'         => 'Referiment għal lonġitudni tad-destinazzjoni',
+'exif-gpsdestlongitude'            => 'Destinazzjoni tal-lonġitudni',
+'exif-gpsdestbearingref'           => 'Referiment tal-bronżina tad-destinazzjoni',
+'exif-gpsdestbearing'              => 'Bronżina tad-destinazzjoni',
+'exif-gpsdestdistanceref'          => 'Referiment għal distanza tad-destinazzjoni',
+'exif-gpsdestdistance'             => 'Distanza tad-destinazzjoni',
+'exif-gpsprocessingmethod'         => 'Isem tal-metodu tal-proċessar GPS',
+'exif-gpsareainformation'          => 'Isem taż-żona tal-GPS',
+'exif-gpsdatestamp'                => 'Data tal-GPS',
+'exif-gpsdifferential'             => 'Tiswija differenzjali tal-GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'L-Ebda',
+
+'exif-unknowndate' => 'Data mhux magħrufa',
+
+'exif-orientation-1' => 'Normali', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Maqlub oriżżontali', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Imdawwar 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Maqlub vertikali', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Imdawwar 90° fis-sens kontra l-arloġġ u maqlub vertikali', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Imdawwar 90° fis-sens tal-arloġġ', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Imdawwar 90° fis-sens tal-arloġġ u maqlub vertikalment', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Imdawwar 90° fis-sens kontra l-arloġġ', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'format imbaċċaċ',
+'exif-planarconfiguration-2' => 'format tal-ippjanar',
+
+'exif-componentsconfiguration-0' => 'nieqes',
+
+'exif-exposureprogram-0' => 'Mhux definit',
+'exif-exposureprogram-1' => 'Manwali',
+'exif-exposureprogram-2' => 'Programma normali',
+'exif-exposureprogram-3' => 'Priorita tal-ftuħ',
+'exif-exposureprogram-4' => 'Priorita tal-għeluq',
+'exif-exposureprogram-5' => 'Programm kreativ (inklinat lejn il-fond tal-linja)',
+'exif-exposureprogram-6' => "Programm ta' azzjoni (inklinat lejn veloċita aktar mgħaġġla mill-ġdid)",
+'exif-exposureprogram-7' => 'Ritratt (suġġett għal viċin bl-isfond mhux fokat)',
+'exif-exposureprogram-8' => 'Panorama (suġġett il-bogħod bl-isfond mhux fokat)',
+
+'exif-subjectdistance-value' => '$1 metri',
+
+'exif-meteringmode-0'   => 'Mhux magħruf',
+'exif-meteringmode-1'   => 'Medja',
+'exif-meteringmode-2'   => 'Medja tal-piż ċentrali',
+'exif-meteringmode-3'   => 'Spot',
+'exif-meteringmode-4'   => 'MultiSpot',
+'exif-meteringmode-5'   => 'Mudell',
+'exif-meteringmode-6'   => 'Parzjali',
+'exif-meteringmode-255' => 'Ieħor',
+
+'exif-lightsource-0' => 'Mhux magħruf',
+'exif-lightsource-1' => "B'inhar",
 
 # Special:Version
 'version' => 'Verżjoni', # Not used as normal message but as header for the special page itself

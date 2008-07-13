@@ -904,7 +904,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'showingresults'            => "Dưới đây là {{PLURAL:$1|'''1'''|'''$1'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'         => "Dưới đây là {{PLURAL:$3|'''1'''|'''$3'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultstotal'       => "Dưới đây là {{PLURAL:$3|kết quả '''$1''' trong '''$3'''|những kết quả từ '''$1 - $2''' trong tổng số '''$3'''}}",
-'nonefound'                 => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (như [[:en:Main Page|tiếng Anh]], ví dụ, Tiêu bản là ''Template:'', Thể loại là ''Category:''...).",
+'nonefound'                 => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (ví dụ ''Thảo luận:'', ''Tiêu bản:'', ''Thể loại:''…).",
 'powersearch'               => 'Tìm kiếm nâng cao',
 'powersearch-legend'        => 'Tìm kiếm nâng cao',
 'powersearch-ns'            => 'Tìm trong không gian tên:',
@@ -2056,7 +2056,7 @@ Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa Medi
 
 # Scripts
 'common.js'   => '/* Bất kỳ mã JavaScript ở đây sẽ được tải cho tất cả các thành viên khi tải một trang nào đó lên. */',
-'monobook.js' => '/* Đã không còn sử dụng; hãy dùng [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Những người dùng hình dạng MonoBook tải mã JavaScript ở đây */',
 
 # Metadata
 'nodublincore'      => 'Máy chủ không hỗ trợ siêu dữ liệu Dublin Core RDF.',

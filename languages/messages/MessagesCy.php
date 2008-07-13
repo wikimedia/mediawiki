@@ -1990,12 +1990,12 @@ Mae unrhyw gysylltau eraill ar yr un llinell yn cael eu trin fel eithriadau, h.y
 'metadata-collapse' => 'Cuddio manylion estynedig',
 'metadata-fields'   => "Pan fod tabl y metadata wedi'i grebachu fe ddangosir y meysydd metadata EXIF a restrir yn y neges hwn ar dudalen wybodaeth y ddelwedd.
 Cuddir y meysydd eraill trwy ragosodiad.
-* gwneuthurwr
+* make
 * model
-* amser a dyddiad y gwreiddiol
-* amser dinoethi
-* cymhareb agorfa
-* hyd ffocal", # Do not translate list items
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lled',
