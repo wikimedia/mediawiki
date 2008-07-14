@@ -1591,15 +1591,6 @@ Lütfen başka bir isim deneyiniz.',
 
 # Export
 'export'            => 'Sayfa kaydet',
-'exporttext'        => 'You can export the text and editing history of a particular page or
-set of pages wrapped in some XML. This can be imported into another wiki using MediaWiki
-via the Special:Import page.
-
-To export pages, enter the titles in the text box below, one title per line, and
-select whether you want the current version as well as all old versions, with the page
-history lines, or just the current version with the info about the last edit.
-
-In the latter case you can also use a link, e.g. [[Special:Export/{{int:Mainpage}}]] for the page {{int:Mainpage}}.',
 'exportcuronly'     => 'Geçmiş sürümleri almadan sadece son sürümü al',
 'export-submit'     => 'Aktar',
 'export-addcattext' => 'Aşağıdaki kategoriden maddeler ekle:',
