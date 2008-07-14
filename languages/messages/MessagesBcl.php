@@ -734,6 +734,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'prevn'                 => 'dati $1',
 'nextn'                 => 'sunod $1',
 'viewprevnext'          => 'Hilingón ($1) ($2) ($3)',
+'search-interwiki-more' => '(dakol pa)',
 'searchall'             => 'gabos',
 'showingresults'        => "Pigpapahiling sa babâ sagkod sa {{PLURAL:$1|'''1''' resulta|'''$1''' mga resulta}} poon sa #'''$2'''.",
 'showingresultsnum'     => "Pigpapahiling sa babâ {{PLURAL:$3|'''1''' resulta|'''$3''' mga resulta}} poon sa #'''$2'''.",

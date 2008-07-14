@@ -8,8 +8,8 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author ChrisPtDe
- * @author Jon Harald Søby
  * @author Spacebirdy
+ * @author Jon Harald Søby
  * @author Горан Анђелковић
  * @author SPQRobin
  */
@@ -763,7 +763,7 @@ Se sètz arribat(ada) aicí per error, clicatz sul boton '''retorn''' de vòstre
 Per aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça d'aqueste tipe pòt èsser partejada entre mantuns utilizaires. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:Userlogin|crear un compte o vos connectar]] per evitar tota confusion venenta amb d’autres contributors anonims.''",
 'noarticletext'                    => "Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[Special:Search/{{PAGENAME}}|aviar una recèrca sul títol d'aquesta pagina]], verificar qu’es pas estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} suprimida] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar aquesta pagina].",
 'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
-'clearyourcache'                   => 'Nòta : Aprèp aver salvat, vos cal forçar lo recargament de la pagina per veire los cambiaments : Mozilla / Konqueror / Firefox : ctrl-shift-r, IE / Opera : ctrl-f5, Safari : cmd-r.',
+'clearyourcache'                   => "'''Nòta :''' Aprèp publicat la pagina, vos cal forçar son recargament complet tot ignrant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "<strong>Astúcia :</strong> Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.",
 'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS e qu’encara es pas estat enregistrat !'''",
 'userjspreview'                    => "'''Remembratz-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
@@ -1182,7 +1182,7 @@ per modificar vòstras preferéncias d'utilizaire.",
 'recentchanges'                     => 'Darrièrs cambiaments',
 'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flus.",
-'rcnote'                            => "Vaquí {{PLURAL:$1|lo darrièr cambiament|los '''$1''' darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los '''$2''' darrièrs jorns}}, determinat{{PLURAL:$1||s}} aqueste $3.",
+'rcnote'                            => 'Vaquí {{PLURAL:$1|lo darrièr cambiament|los $1 darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los <b>$2</b> darrièrs jorns}}, determinat{{PLURAL:$1||s}} lo $4, a $5.',
 'rcnotefrom'                        => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximom).",
 'rclistfrom'                        => 'Afichar las modificacions novèlas dempuèi lo $1.',
 'rcshowhideminor'                   => '$1 cambiaments menors',
@@ -1248,8 +1248,10 @@ Per enclure un imatge dins una pagina, utilizatz un ligam de la forma
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo tornar nomenar e de lo copiar tornarmai.',
 'badfilename'                 => "L'imatge es estat renomenat « $1 ».",
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
-'filetype-unwanted-type'      => "'''«.$1»''' es d'un format pas desirat. Los que son preferits son $2.",
-'filetype-banned-type'        => "'''\".\$1\"''' es dins un format pas admes.  Los que son acceptats son \$2.",
+'filetype-unwanted-type'      => "«.$1»''' es un format de fichièr pas desirat.
+{{PLURAL:$3|Lo tipe de fichièr preconizat es|Los tipes de fichièrs preconizats son}} $2.",
+'filetype-banned-type'        => "'''\".\$1\"''' es dins un format pas admes.
+{{PLURAL:\$3|Lo qu'es acceptat es|Los que son acceptats son}} \$2.",
 'filetype-missing'            => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
 'large-file'                  => 'Los fichièrs importats deurián pas èsser mai gros que $1 ; aqueste fichièr fa $2.',
 'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximom autorizat.",
@@ -1599,6 +1601,7 @@ L\'adreça electronica qu\'avètz indicada dins vòstras preferéncias apareisse
 'emailccsubject'  => 'Còpia de vòstre messatge a $1 : $2',
 'emailsent'       => 'Messatge mandat',
 'emailsenttext'   => 'Vòstre messatge es estat mandat.',
+'emailuserfooter' => 'Aqueste corrièr electronic es estat mandat per « $1 » a « $2 » per la foncion « Mandar un corrièr electronic a l’utilizaire » sus {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Lista de seguit',
@@ -1704,8 +1707,11 @@ Vejatz $2 per una lista de las supressions recentas.',
 ** Violacion dels dreches d'autor
 ** Vandalisme",
 'delete-edit-reasonlist'      => 'Modifica los motius de la supression',
-'delete-toobig'               => "Aquesta pagina dispausa d'un istoric important, depassant $1 versions. La supression de talas paginas es estada limitada per evitar de perturbacions accidentalas de {{SITENAME}}.",
-'delete-warning-toobig'       => "Aquesta pagina dispausa d'un istoric important, depassant $1 versions. La suprimir pòt perturbar lo foncionament de la banca de donada de {{SITENAME}}. D'efectuar amb prudéncia.",
+'delete-toobig'               => "Aquesta pagina dispausa d'un istoric important, depassant {{PLURAL:$1|revision|revisions}}.
+La supression de talas paginas es estada limitada per evitar de perturbacions accidentalas de {{SITENAME}}.",
+'delete-warning-toobig'       => "Aquesta pagina dispausa d'un istoric important, depassant {{PLURAL:$1|revision|revisions}}.
+La suprimir pòt perturbar lo foncionament de la banca de donada de {{SITENAME}}.
+D'efectuar amb prudéncia.",
 'rollback'                    => 'Anullar las modificacions',
 'rollback_short'              => 'Anullar',
 'rollbacklink'                => 'anullar',
@@ -1769,6 +1775,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'viewdeletedpage'              => 'Istoric de la pagina suprimida',
 'undeletepagetext'             => "Aquestas paginas son estadas escafadas e se tròban dins l'archiu. Figuran totjorn dins la banca de donada e pòdon èsser restablidas.
 L'archiu pòt èsser escafat periodicament.",
+'undelete-fieldset-title'      => 'Restablir las versions',
 'undeleteextrahelp'            => "Per restablir totas las versions d'aquesta pagina, daissatz vèrjas totas las casas de marcar, puèi clicatz sus '''''Procedir al restabliment'''''.<br />Per procedir a un restabliment selectiu, marcatz las casas correspondent a las versions que son de restablir, puèi clicatz sus '''''Procedir a la restabliment'''''.<br />En clicant sul boton '''''Reïnicializar''''', la bóstia de resumit e las casas marcadas seràn remesas a zèro.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision archivada|revisions archivadas}}',
 'undeletehistory'              => "Se restablissètz la pagina, totas las revisions seràn restablidas dins l'istoric.
@@ -1848,17 +1855,17 @@ $1",
 'whatlinkshere-filters'    => 'Filtres',
 
 # Block/unblock
-'blockip'                     => 'Blocar en escritura',
-'blockip-legend'              => 'Blocar en escritura',
-'blockiptext'                 => "Utilizatz lo formulari çaijós per blocar l'accès en escritura a partir d'una adreça IP donada.
+'blockip'                         => 'Blocar en escritura',
+'blockip-legend'                  => 'Blocar en escritura',
+'blockiptext'                     => "Utilizatz lo formulari çaijós per blocar l'accès en escritura a partir d'una adreça IP donada.
 Una tala mesura deu pas èsser presa pas que per empachar lo vandalisme e en acòrdi amb las [[{{MediaWiki:Policy-url|règlas intèrnas}}]].
 Donatz çaijós una rason precisa (per exemple en indicant las paginas que son estadas vandalizadas).",
-'ipaddress'                   => 'Adreça IP :',
-'ipadressorusername'          => 'Adreça IP o nom d’utilizaire :',
-'ipbexpiry'                   => 'Durada del blocatge :',
-'ipbreason'                   => 'Motiu :',
-'ipbreasonotherlist'          => 'Autre motiu',
-'ipbreason-dropdown'          => '* Motius de blocatge mai frequents
+'ipaddress'                       => 'Adreça IP :',
+'ipadressorusername'              => 'Adreça IP o nom d’utilizaire :',
+'ipbexpiry'                       => 'Durada del blocatge :',
+'ipbreason'                       => 'Motiu :',
+'ipbreasonotherlist'              => 'Autre motiu',
+'ipbreason-dropdown'              => '* Motius de blocatge mai frequents
 ** Vandalisme
 ** Insercion d’informacions faussas
 ** Supression de contengut sens justificacion
@@ -1867,73 +1874,74 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 ** Temptativa d’intimidacion o agarriment
 ** Abús d’utilizacion de comptes multiples
 ** Nom d’utilizaire inacceptable, injuriós o difamant',
-'ipbanononly'                 => 'Blocar unicament los utilizaires anonims',
-'ipbcreateaccount'            => 'Empachar la creacion de compte',
-'ipbemailban'                 => 'Empachar l’utilizaire de mandar de corrièrs electronics',
-'ipbenableautoblock'          => 'Blocar automaticament las adreças IP utilizadas per aqueste utilizaire',
-'ipbsubmit'                   => 'Blocar aqueste utilizaire',
-'ipbother'                    => 'Autra durada',
-'ipboptions'                  => '2 oras:2 hours,1 jorn:1 day,3 jorns:3 days,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'              => 'autre',
-'ipbotherreason'              => 'Motiu diferent o suplementari',
-'ipbhidename'                 => "Amagar lo nom d’utilizaire de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
-'ipbwatchuser'                => "Seguir las paginas d'utilizaire e de discussion d'aqueste utilizaire",
-'badipaddress'                => "L'adreça IP es incorrècta",
-'blockipsuccesssub'           => 'Blocatge capitat',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
+'ipbanononly'                     => 'Blocar unicament los utilizaires anonims',
+'ipbcreateaccount'                => 'Empachar la creacion de compte',
+'ipbemailban'                     => 'Empachar l’utilizaire de mandar de corrièrs electronics',
+'ipbenableautoblock'              => 'Blocar automaticament las adreças IP utilizadas per aqueste utilizaire',
+'ipbsubmit'                       => 'Blocar aqueste utilizaire',
+'ipbother'                        => 'Autra durada',
+'ipboptions'                      => '2 oras:2 hours,1 jorn:1 day,3 jorns:3 days,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'autre',
+'ipbotherreason'                  => 'Motiu diferent o suplementari',
+'ipbhidename'                     => "Amagar lo nom d’utilizaire de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
+'ipbwatchuser'                    => "Seguir las paginas d'utilizaire e de discussion d'aqueste utilizaire",
+'badipaddress'                    => "L'adreça IP es incorrècta",
+'blockipsuccesssub'               => 'Blocatge capitat',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
 Podètz consultar la [[Special:Ipblocklist|lista dels comptes e de las adreças IP blocats]].',
-'ipb-edit-dropdown'           => 'Modificar los motius de blocatge per defaut',
-'ipb-unblock-addr'            => 'Desblocar $1',
-'ipb-unblock'                 => "Desblocar un compte d'utilizaire o una adreça IP",
-'ipb-blocklist-addr'          => 'Vejatz los blocatges existents per $1',
-'ipb-blocklist'               => 'Vejatz los blocatges existents',
-'unblockip'                   => 'Desblocar un utilizaire o una adreça IP',
-'unblockiptext'               => "Utilizatz lo formulari çaijós per restablir l'accès en escritura
+'ipb-edit-dropdown'               => 'Modificar los motius de blocatge per defaut',
+'ipb-unblock-addr'                => 'Desblocar $1',
+'ipb-unblock'                     => "Desblocar un compte d'utilizaire o una adreça IP",
+'ipb-blocklist-addr'              => 'Vejatz los blocatges existents per $1',
+'ipb-blocklist'                   => 'Vejatz los blocatges existents',
+'unblockip'                       => 'Desblocar un utilizaire o una adreça IP',
+'unblockiptext'                   => "Utilizatz lo formulari çaijós per restablir l'accès en escritura
 a partir d'una adreça IP precedentament blocada.",
-'ipusubmit'                   => 'Desblocar aquesta adreça',
-'unblocked'                   => '[[User:$1|$1]] es estat desblocat',
-'unblocked-id'                => 'Lo blocatge $1 es estat levat',
-'ipblocklist'                 => 'Lista de las adreças IP e utilizaires blocats',
-'ipblocklist-legend'          => 'Cercar un utilizaire blocat',
-'ipblocklist-username'        => 'Nom de l’utilizaire o adreça IP :',
-'ipblocklist-summary'         => 'La lista çaijós mòstra totes los utilizaires e adreças IP blocats, per òrdre anticronologic. Consultatz lo [[Special:Log/block|jornal de blocatge]] per veire las darrièras accions de blocatge e desblocatge efectuadas.',
-'ipblocklist-submit'          => 'Recercar',
-'blocklistline'               => '$1, $2 a blocat $3 ($4)',
-'infiniteblock'               => 'permanent',
-'expiringblock'               => 'expira lo $1',
-'anononlyblock'               => 'utilizaire anonim unicament',
-'noautoblockblock'            => 'blocatge automatic desactivat',
-'createaccountblock'          => 'La creacion de compte es blocada.',
-'emailblock'                  => 'mandadís de corrièr electronic blocat',
-'ipblocklist-empty'           => 'La lista dels blocatges es voida.',
-'ipblocklist-no-results'      => 'L’adreça IP o l’utilizaire es pas esta blocat.',
-'blocklink'                   => 'blocar',
-'unblocklink'                 => 'desblocar',
-'contribslink'                => 'contribucions',
-'autoblocker'                 => 'Sètz estat autoblocat perque partejatz una adreça IP amb "[[User:$1|$1]]".
+'ipusubmit'                       => 'Desblocar aquesta adreça',
+'unblocked'                       => '[[User:$1|$1]] es estat desblocat',
+'unblocked-id'                    => 'Lo blocatge $1 es estat levat',
+'ipblocklist'                     => 'Lista de las adreças IP e utilizaires blocats',
+'ipblocklist-legend'              => 'Cercar un utilizaire blocat',
+'ipblocklist-username'            => 'Nom de l’utilizaire o adreça IP :',
+'ipblocklist-summary'             => 'La lista çaijós mòstra totes los utilizaires e adreças IP blocats, per òrdre anticronologic. Consultatz lo [[Special:Log/block|jornal de blocatge]] per veire las darrièras accions de blocatge e desblocatge efectuadas.',
+'ipblocklist-submit'              => 'Recercar',
+'blocklistline'                   => '$1, $2 a blocat $3 ($4)',
+'infiniteblock'                   => 'permanent',
+'expiringblock'                   => 'expira lo $1',
+'anononlyblock'                   => 'utilizaire anonim unicament',
+'noautoblockblock'                => 'blocatge automatic desactivat',
+'createaccountblock'              => 'La creacion de compte es blocada.',
+'emailblock'                      => 'mandadís de corrièr electronic blocat',
+'ipblocklist-empty'               => 'La lista dels blocatges es voida.',
+'ipblocklist-no-results'          => 'L’adreça IP o l’utilizaire es pas esta blocat.',
+'blocklink'                       => 'blocar',
+'unblocklink'                     => 'desblocar',
+'contribslink'                    => 'contribucions',
+'autoblocker'                     => 'Sètz estat autoblocat perque partejatz una adreça IP amb "[[User:$1|$1]]".
 La rason balhada per $1 es : « $2 ».',
-'blocklogpage'                => 'Istoric dels blocatges',
-'blocklogentry'               => 'a blocat « [[$1]] » - durada : $2 $3',
-'blocklogtext'                => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires. Las adreças IP automaticament blocadas son pas listadas. Consultatz la [[Special:Ipblocklist|lista dels utilizaires blocats]] per veire qui es actualament efectivament blocat.",
-'unblocklogentry'             => 'a desblocat « $1 »',
-'block-log-flags-anononly'    => 'utilizaires anonims solament',
-'block-log-flags-nocreate'    => 'creacion de compte interdicha',
-'block-log-flags-noautoblock' => 'autoblocatge de las IP desactivat',
-'block-log-flags-noemail'     => 'Mandadís de corrièr electronic blocat',
-'range_block_disabled'        => "Lo blocatge de plajas d'IP es estat desactivat.",
-'ipb_expiry_invalid'          => 'Temps d’expiracion invalid.',
-'ipb_expiry_temp'             => 'Las plajas dels utilizaires amagats deurián èsser permanentas.',
-'ipb_already_blocked'         => '« $1 » ja es blocat',
-'ipb_cant_unblock'            => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
-'ipb_blocked_as_range'        => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquala pòt èsser deblocada.",
-'ip_range_invalid'            => 'Plaja IP incorrècta.',
-'blockme'                     => 'Blocatz-me',
-'proxyblocker'                => 'Blocaire de mandatari (proxy)',
-'proxyblocker-disabled'       => 'Aquesta foncion es desactivada.',
-'proxyblockreason'            => "Vòstra ip es estada blocada perque s’agís d’un proxy dobert. Mercé de contactar vòstre fornidor d’accès internet o vòstre supòrt tecnic e de l’informar d'aqueste problèma de seguretat.",
-'proxyblocksuccess'           => 'Acabat.',
-'sorbsreason'                 => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.',
-'sorbs_create_account_reason' => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.
+'blocklogpage'                    => 'Istoric dels blocatges',
+'blocklogentry'                   => 'a blocat « [[$1]] » - durada : $2 $3',
+'blocklogtext'                    => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires. Las adreças IP automaticament blocadas son pas listadas. Consultatz la [[Special:Ipblocklist|lista dels utilizaires blocats]] per veire qui es actualament efectivament blocat.",
+'unblocklogentry'                 => 'a desblocat « $1 »',
+'block-log-flags-anononly'        => 'utilizaires anonims solament',
+'block-log-flags-nocreate'        => 'creacion de compte interdicha',
+'block-log-flags-noautoblock'     => 'autoblocatge de las IP desactivat',
+'block-log-flags-noemail'         => 'Mandadís de corrièr electronic blocat',
+'block-log-flags-angry-autoblock' => 'autoblocatge melhorat en servici',
+'range_block_disabled'            => "Lo blocatge de plajas d'IP es estat desactivat.",
+'ipb_expiry_invalid'              => 'Temps d’expiracion invalid.',
+'ipb_expiry_temp'                 => 'Las plajas dels utilizaires amagats deurián èsser permanentas.',
+'ipb_already_blocked'             => '« $1 » ja es blocat',
+'ipb_cant_unblock'                => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
+'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquala pòt èsser deblocada.",
+'ip_range_invalid'                => 'Plaja IP incorrècta.',
+'blockme'                         => 'Blocatz-me',
+'proxyblocker'                    => 'Blocaire de mandatari (proxy)',
+'proxyblocker-disabled'           => 'Aquesta foncion es desactivada.',
+'proxyblockreason'                => "Vòstra ip es estada blocada perque s’agís d’un proxy dobert. Mercé de contactar vòstre fornidor d’accès internet o vòstre supòrt tecnic e de l’informar d'aqueste problèma de seguretat.",
+'proxyblocksuccess'               => 'Acabat.',
+'sorbsreason'                     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.
 Podètz pas crear un compte',
 
 # Developer tools
@@ -2020,6 +2028,7 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas vèrs aqueste espaci de noms.',
 'imagenocrossnamespace'   => 'Pòt pas desplaçar un imatge vèrs un espaci de nomenatge que siá pas un imatge.',
 'imagetypemismatch'       => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
+'imageinvalidfilename'    => 'Lo nom del fichièr cibla es incorrècte',
 
 # Export
 'export'            => 'Exportar de paginas',
@@ -2743,5 +2752,9 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
 'specialpages-group-wiki'        => 'Donadas del wiki e espleches',
 'specialpages-group-redirects'   => 'Redireccions',
 'specialpages-group-spam'        => 'Espleches pel spam',
+
+# Special:Blankpage
+'blankpage'              => 'Pagina voida',
+'intentionallyblankpage' => 'Aquesta pagina es intencionalament voida e es utilizada coma un tèst de performància, eca.',
 
 );

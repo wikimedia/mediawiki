@@ -334,7 +334,7 @@ $messages = array(
 'viewtalkpage'      => 'Lihat perbincangan',
 'otherlanguages'    => 'Bahasa lain',
 'redirectedfrom'    => '(Dilencongkan dari $1)',
-'redirectpagesub'   => 'Laman pelencongan',
+'redirectpagesub'   => 'Laman lencongan',
 'lastmodifiedat'    => 'Laman ini diubah buat kali terakhir pada $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Laman ini telah dilihat {{PLURAL:$1|sekali|sebanyak $1 kali}}.',
 'protectedpage'     => 'Laman dilindungi',
@@ -1334,7 +1334,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'unwatchedpages' => 'Laman tidak dipantau',
 
 # List redirects
-'listredirects' => 'Senarai pelencongan',
+'listredirects' => 'Senarai lencongan',
 
 # Unused templates
 'unusedtemplates'     => 'Templat tidak digunakan',
@@ -1346,15 +1346,15 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'randompage-nopages' => 'Tiada laman dalam ruang nama ini.',
 
 # Random redirect
-'randomredirect'         => 'Pelencongan rawak',
-'randomredirect-nopages' => 'Tiada pelencongan dalam ruang nama ini.',
+'randomredirect'         => 'Lencongan rawak',
+'randomredirect-nopages' => 'Tiada lencongan dalam ruang nama ini.',
 
 # Statistics
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik {{SITENAME}}',
 'userstats'              => 'Statistik pengguna',
 'sitestatstext'          => "Terdapat sejumlah '''\$1''' laman dalam pangkalan data kami. Jumlah ini termasuklah laman \"perbincangan\", laman mengenai {{SITENAME}}, laman ringkas,
-pelencongan, dan lain-lain yang tidak layak menjadi laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
+lencongan, dan lain-lain yang tidak layak menjadi laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
 
 '''\$8''' buah fail telah dimuat naik.
 
@@ -1368,11 +1368,11 @@ Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ia
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Pelencongan berganda',
-'doubleredirectstext' => 'Laman ini menyenaraikan laman yang melencong ke laman pelencongan yang lain. Setiap baris mengandungi pautan ke laman pelencongan pertama dan kedua, serta baris pertama bagi teks pelencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh pelencongan pertama.',
+'doubleredirects'     => 'Lencongan berganda',
+'doubleredirectstext' => 'Berikut ialah sebarai laman yang melencong ke laman lencongan yang lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.',
 
-'brokenredirects'        => 'Pelencongan rosak',
-'brokenredirectstext'    => 'Pelencongan-pelencongan berikut memaut ke laman yang tidak wujud:',
+'brokenredirects'        => 'Lencongan rosak',
+'brokenredirectstext'    => 'Lencongan-lencongan berikut menuju ke laman yang tidak wujud:',
 'brokenredirects-edit'   => '(sunting)',
 'brokenredirects-delete' => '(hapus)',
 
@@ -1776,7 +1776,7 @@ $1',
 'linkshere'                => "Laman-laman berikut mengandungi pautan ke '''[[:$1]]''':",
 'nolinkshere'              => "Tiada laman yang mengandungi pautan ke '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Tiada laman yang mengandungi pautan ke '''[[:$1]]''' dalam ruang nama yang dinyatakan.",
-'isredirect'               => 'laman pelencongan',
+'isredirect'               => 'laman lencongan',
 'istemplate'               => 'penyertaan',
 'isimage'                  => 'pautan imej',
 'whatlinkshere-prev'       => '{{PLURAL:$1|sebelumnya|$1 sebelumnya}}',
@@ -1907,24 +1907,13 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 # Move page
 'move-page'               => 'Pindah $1',
 'move-page-legend'        => 'Pindah laman',
-'movepagetext'            => "Gunakan borang di bawah untuk mengubah nama laman dan
-memindahkan semua maklumat sejarahnya kepada nama baru.
-Tajuk yang lama akan dijadikan pelencongan ke tajuk yang baru.
-Pautan ke tajuk yang lama tidak akan diubah; pastikan anda menyemak
-sekiranya terdapat pelencongan berganda atau pelencongan rosak.
-Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang
-sepatutnya.
+'movepagetext'            => "Gunakan borang di bawah untuk menukar nama laman dan memindahkan semua maklumat sejarahnya kepada nama baru. Tajuk yang lama akan dijadikan lencongan ke tajuk yang baru. Pautan ke tajuk yang lama tidak akan diubah, oleh itu sila semak sekiranya terdapat lencongan berganda atau lencongan rosak. Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang sepatutnya.
 
-Sila ambil perhatian bahawa laman tersebut '''tidak''' akan dipindahkan
-seandainya sudah wujud laman dengan tajuk yang baru tadi, melainkan apabila
-laman tersebut kosong atau merupakan laman pelencongan dan tidak mempunyai
-sejarah suntingan. Ini bermakna anda boleh menukar semula nama sesebuah
-laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menindan laman yang sudah ada.
+Sila ambil perhatian bahawa laman tersebut '''tidak''' akan dipindahkan sekiranya laman dengan tajuk yang baru tadi telah wujud, melainkan apabila
+laman tersebut kosong atau merupakan laman lencongan dan tidak mempunyai sejarah penyuntingan. Ini bermakna anda boleh menukar semula nama sesebuah
+laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menulis ganti laman yang telah wujud.
 
-<b>AMARAN!</b>
-Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik
-bagi laman popular; sila pastikan anda faham akibat yang mungkin timbul
-sebelum menyambung.",
+<b>AMARAN!</b> Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular; sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
 'movepagetalktext'        => "Laman perbincangan yang berkaitan, jika ada, akan dipindahkan bersama-sama laman ini secara automatik '''kecuali''':
 * Sebuah laman perbincangan dengan nama baru telah pun wujud, atau
 * Anda membuang tanda kotak di bawah.

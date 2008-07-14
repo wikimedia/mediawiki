@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author គីមស៊្រុន
  * @author Lovekhmer
+ * @author គីមស៊្រុន
  * @author Chhorran
  * @author T-Rithy
  * @author Bunly
@@ -547,6 +547,9 @@ $2',
 'titleprotected'       => "ចំនងជើងនេះត្រូវបានការពារមិនអោយបង្កើត ដោយ [[User:$1|$1]]។
 ហេតុផលលើកឡើងគឺ ''$2''។",
 
+# Virus scanner
+'virus-unknownscanner' => 'កម្មវិធីកំចាត់មេរោគដែលមិនស្គាល់:',
+
 # Login and logout pages
 'logouttitle'                => 'ការចាកចេញរបស់អ្នកប្រើប្រាស់',
 'logouttext'                 => "<strong>ឥឡូវនេះលោកអ្នកបានចាកចេញពីគណនីរបស់លោកអ្នកហើយ!</strong> 
@@ -610,7 +613,7 @@ $2',
 'wrongpasswordempty'         => 'ពាក្យសំងាត់ដែលបានបញ្ចូលមិនត្រូវ​ទេ។ សូមព្យាយាម​ម្តងទៀត។',
 'passwordtooshort'           => 'ពាក្យសំងាត់របស់អ្នក មិនមានសុពលភាព ឬ​ ខ្លីពេក។ វាត្រូវមានយ៉ាងតិច $1 {{PLURAL:$1|1 អក្សរ|$1 អក្សរ}} និង ត្រូវផ្សេងពីឈ្មោះអ្នកប្រើប្រាស់របស់អ្នក។',
 'mailmypassword'             => 'អ៊ីមែលមកខ្ញុំនូវពាក្យសំងាត់ថ្មី',
-'passwordremindertitle'      => 'ពាក្យសំងាត់ថ្មី បណ្តោះអាសន្ន សំរាប់ {{SITENAME}}',
+'passwordremindertitle'      => 'ពាក្យសំងាត់បណ្តោះអាសន្នថ្មីសំរាប់{{SITENAME}}',
 'passwordremindertext'       => 'មានអ្នកណាម្នាក់ (ប្រហែលជា អ្នក, ពី អាស័យដ្ឋាន IP $1)
 បានស្នើយើង អោយផ្ញើអ្នក មួយពាក្យសំងាត់ថ្មី សំរាប់ {{SITENAME}} ($4) ។
 ពាក្យសំងាត់ ថ្មី សំរាប់ អ្នកប្រើប្រាស់ "$2" ឥឡូវ ជា "$3" ។
@@ -984,7 +987,7 @@ $2',
 'prefs-rc'                 => 'បំលាស់ប្តូរថ្មីៗ',
 'prefs-watchlist'          => 'បញ្ជីតាមដាន',
 'prefs-watchlist-days'     => 'ចំនួនថ្ងៃត្រូវបង្ហាញក្នុងបញ្ជីតាមដាន៖',
-'prefs-watchlist-edits'    => 'ចំនួន បំលាស់ប្តូរ ត្រូវបង្ហាញ ក្នុង បញ្ជីតាមដាន ដែលបានពង្រីក ៖',
+'prefs-watchlist-edits'    => 'ចំនួនអតិប្បរមានៃបំលាស់ប្តូរត្រូវបង្ហាញក្នុងបញ្ជីតាមដានដែលបានពង្រីក៖',
 'prefs-misc'               => 'ផ្សេងៗ',
 'saveprefs'                => 'រក្សាទុក',
 'resetprefs'               => 'លុបចោលបំលាស់ប្ដូរមិនបានរក្សាទុក',
@@ -1023,7 +1026,7 @@ $2',
 'editinguser'                 => "ការប្តូរសិទ្ធិអ្នកប្រើប្រាស់ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'កែប្រែក្រុមអ្នកប្រើប្រាស់',
 'saveusergroups'              => 'រក្សាក្រុមអ្នកប្រើប្រាស់ទុក',
-'userrights-groupsmember'     => 'សមាជិកនៃ៖',
+'userrights-groupsmember'     => 'ក្រុមសមាជិកភាព៖',
 'userrights-reason'           => 'មូលហេតុនៃការផ្លាស់ប្តូរ៖',
 'userrights-no-interwiki'     => 'អ្នកមិនមានការអនុញ្ញាតិ កែប្រែសិទ្ធិ នៃអ្នកប្រើប្រាស់ លើ វិគី ផ្សេង ទេ។',
 'userrights-nodatabase'       => 'មូលដ្ឋានទិន្នន័យ $1 មិនមាន ឬ ថិតនៅខាងក្រៅ។',
@@ -1239,7 +1242,7 @@ $2',
 'sharedupload'                   => 'ឯកសារនេះ​ត្រូវបានផ្ទុកឡើង​ដើម្បីចែករំលែក និង អាចត្រូវបានប្រើប្រាស់​នៅគំរោង​ដទៃ ។',
 'shareduploadwiki'               => 'សូម​មើល $1 សំរាប់ពត៌មានបន្ថែម ។',
 'shareduploadwiki-desc'          => 'សេចក្តីអធិប្បាយរបស់ឯកសារដែលមាននៅក្នុង$1 គឺត្រូវបានបង្ហាញដូចខាងក្រោម។',
-'shareduploadwiki-linktext'      => 'ទំព័រពិពណ៌នា ឯកសារ',
+'shareduploadwiki-linktext'      => 'ទំព័រពិពណ៌នាអំពីឯកសារ',
 'shareduploadduplicate-linktext' => 'ឯកសារមួយទៀត',
 'shareduploadconflict-linktext'  => 'ឯកសារមួយទៀត',
 'noimage'                        => 'គ្មានរូបភាពដែលមានឈ្មោះនេះទេ។ អ្នកអាច $1 ។',
@@ -1257,7 +1260,7 @@ $2',
 'filedelete'                  => 'លុបចេញ $1',
 'filedelete-legend'           => 'លុបឯកសារចោល',
 'filedelete-intro'            => "អ្នកកំពុងលុបចេញ '''[[Media:$1|$1]]'''។",
-'filedelete-comment'          => 'ហេតុផល ចំពោះ ការលុបចេញ ៖',
+'filedelete-comment'          => 'ហេតុផលចំពោះការលុបចេញ៖',
 'filedelete-submit'           => 'លុបចេញ',
 'filedelete-success'          => "'''$1''' ត្រូវបានលុបចោលហើយ",
 'filedelete-nofile'           => "គ្មាន '''$1''' លើ {{SITENAME}}។",
@@ -1385,7 +1388,7 @@ $2',
 'log-search-legend'    => 'ស្វែងរកកំណត់ហេតុ',
 'log-search-submit'    => 'ទៅ',
 'logempty'             => 'គ្មានអ្វីក្នុងកំណត់ហេតុត្រូវនឹងទំព័រនេះទេ។',
-'log-title-wildcard'   => 'ស្វែងរកចំណងជើងនានាដែលចាប់ផ្តើមដោយអត្ថបទនេះ',
+'log-title-wildcard'   => 'ស្វែងរកចំនងជើងចាប់ផ្តើមដោយឃ្លានេះ',
 
 # Special:Allpages
 'allpages'          => 'ទំព័រទាំងអស់',
@@ -1467,7 +1470,7 @@ $2',
 'watchlistcontains'    => 'បញ្ជីតាមដាន របស់អ្នក មាន $1 {{PLURAL:$1|ទំព័រ|ទំព័រ}}។',
 'iteminvalidname'      => "មានបញ្ហាជាមួយនឹង'$1'​។ ឈ្មោះគឺមិនត្រឹមត្រូវ...",
 'wlnote'               => "ខាងក្រោមនេះជា {{PLURAL:$1|បំលាស់ប្តូរចុងក្រោយ|'''$1'''បំលាស់ប្តូរចុងក្រោយ}}ក្នុងរយះពេល{{PLURAL:$2|'''$2'''ម៉ោង}}ចុងក្រោយ។",
-'wlshowlast'           => 'បង្ហាញ $1 ម៉ោងចុងក្រោយ, $2 ថ្ងៃចុងក្រោយ, ឬ $3',
+'wlshowlast'           => 'បង្ហាញ $1ម៉ោងចុងក្រោយ $2ថ្ងៃចុងក្រោយ ឬ$3',
 'watchlist-show-bots'  => 'បង្ហាញកំនែប្រែរបស់រូបយន្ត',
 'watchlist-hide-bots'  => 'លាក់ការកែប្រែធ្វើឡើងដោយរូបយន្ត',
 'watchlist-show-own'   => 'បង្ហាញកំនែប្រែរបស់ខ្ញុំ',
@@ -1967,21 +1970,21 @@ $1',
 'thumbsize'            => 'ទំហំកូនរូបភាព៖',
 'widthheightpage'      => '$1×$2, $3{{PLURAL:$3|ទំព័រ|ទំព័រ}}',
 'file-info'            => '(ទំហំឯកសារ៖ $1, ប្រភេទ MIME ៖ $2)',
-'file-info-size'       => '($1 × $2 ធាតុរូបភាព, ទំហំឯកសារ៖ $3, ប្រភេទ MIME ៖ $4)',
+'file-info-size'       => '($1 × $2 ភីកសែល ទំហំឯកសារ៖ $3 ប្រភេទ MIME៖ $4)',
 'file-nohires'         => '<small>គ្មានភាពម៉ត់ ដែលខ្ពស់ជាង។</small>',
 'svg-long-desc'        => '(ឯកសារប្រភេទSVG  $1 × $2 ភីកសែល ទំហំឯកសារ៖ $3)',
 'show-big-image'       => 'រូបភាពពេញ',
-'show-big-image-thumb' => '<small>ទំហំ​នៃការមើលមុននេះ៖ $1 × $2 ធាតុរូបភាព</small>',
+'show-big-image-thumb' => '<small>ទំហំ​នៃការមើលជាមុននេះ៖ $1 × $2 ភីកសែល</small>',
 
 # Special:Newimages
 'newimages'             => 'វិចិត្រសាលរូបភាពថ្មីៗ',
-'imagelisttext'         => "នេះជា បញ្ជី '''$1''' {{PLURAL:$1|ឯកសារ|ឯកសារ}} បានរៀបតាមលំដាប់ $2 ។",
+'imagelisttext'         => "ខាងក្រោមនេះជាបញ្ជី'''$1'''{{PLURAL:$1|ឯកសារ|ឯកសារ}}បានរៀបតាមលំដាប់$2។",
 'newimages-summary'     => 'ទំព័រពិសេសនេះបង្ហាញឯកសារដែលទើបផ្ទុកឡើង',
-'showhidebots'          => '($1 រូបយន្ត)',
+'showhidebots'          => '($1រូបយន្ត)',
 'noimages'              => 'គ្មានឃើញអី សោះ។',
 'ilsubmit'              => 'ស្វែងរក',
 'bydate'                => 'តាមកាលបរិច្ឆេទ',
-'sp-newimages-showfrom' => 'បង្ហាញឯកសារថ្មីៗចាប់ពីម៉ោង $2 ថ្ងៃទី $1',
+'sp-newimages-showfrom' => 'បង្ហាញឯកសារថ្មីៗចាប់ពី$2 $1',
 
 # Bad image list
 'bad_image_list' => 'ទំរង់ ដូចតទៅ ៖

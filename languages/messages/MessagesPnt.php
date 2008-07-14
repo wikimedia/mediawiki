@@ -388,7 +388,7 @@ $messages = array(
 'filehist-filesize'   => 'Μέγεθος',
 'filehist-comment'    => 'Σχόλιον',
 'imagelinks'          => 'Σύνδεσμοι',
-'linkstoimage'        => "Ατά τα σελίδας δεκνίζ'νε σην εικόναν:",
+'linkstoimage'        => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
 'nolinkstoimage'      => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
 
 # MIME search
