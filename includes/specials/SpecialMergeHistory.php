@@ -247,13 +247,7 @@ class MergehistoryForm {
 		$userLink = $this->sk->revUserTools( $rev );
 
 		if(!is_null($size = $row->rev_len)) {
-			if($size == 0) {
-				$stxt = wfMsg('historyempty');
-			} else {
-				$stxt = wfMsg('nbytes', $wgLang->formatNum( $size ) );
-				$stxt = "($stxt)";
-			}
-			$stxt = htmlspecialchars( $stxt );
+			$stxt = $this->sk->formatRevisionSize( $size );
 		}
 		$comment = $this->sk->revComment( $rev );
 
