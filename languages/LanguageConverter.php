@@ -125,7 +125,11 @@ class LanguageConverter {
 			return $this->mPreferredVariant;
 
 		// figure out user lang without constructing wgLang to avoid infinite recursion
-		$userLang = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
+		if( $fromUser )
+			$defaultUserLang = $wgUser->getOption( 'language' );
+		else
+			$defaultUserLang = $this->mMainLanguageCode;
+		$userLang = $wgRequest->getVal( 'uselang', $defaultUserLang );
 		// see if interface language is same as content, if not, prevent conversion
 		if( $this->mMainLanguageCode != $userLang ){ 
 			$this->mPreferredVariant = $this->mMainLanguageCode; // no conversion
