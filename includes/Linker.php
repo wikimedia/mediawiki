@@ -108,6 +108,7 @@ class Linker {
 			$r .= " class=\"$class\"";
 		}
 		$r .= " title=\"$title\"";
+		wfRunHooks( 'LinkerLinkAttributes', array( &$this, $title, $class, &$r ) );
 		return $r;
 	}
 
