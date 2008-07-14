@@ -628,9 +628,7 @@ function wfMsgExt( $key, $options ) {
 	if ( in_array('escape', $options) ) {
 		$string = htmlspecialchars ( $string );
 	} elseif ( in_array( 'escapenoentities', $options ) ) {
-		$string = htmlspecialchars( $string );
-		$string = str_replace( '&amp;', '&', $string );
-		$string = Sanitizer::normalizeCharReferences( $string );
+		$string = Sanitizer::escapeHtmlAllowEntities( $string );
 	}
 
 	if( in_array('replaceafter', $options) ) {

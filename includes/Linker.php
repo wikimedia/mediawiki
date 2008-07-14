@@ -1045,7 +1045,8 @@ class Linker {
 
 		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
-		$comment = htmlspecialchars( $comment );
+		# Allow HTML entities (for bug 13815)
+		$comment = Sanitizer::escapeHtmlAllowEntities( $comment );
 
 		# Render autocomments and make links:
 		$comment = $this->formatAutoComments( $comment, $title, $local );
