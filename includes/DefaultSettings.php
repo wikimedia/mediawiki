@@ -648,7 +648,7 @@ $wgDBservers		= false;
  * $wgDBserver, etc., so overriding it may cause those globals to be ignored.
  *
  * The LBFactory_Multi class is provided for this purpose, please see
- * includes/LBFactory_Multi.php for configuration information.
+ * includes/db/LBFactory_Multi.php for configuration information.
  */
 $wgLBFactoryConf    = array( 'class' => 'LBFactory_Simple' );
 
