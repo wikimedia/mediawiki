@@ -1201,9 +1201,9 @@ Nome do arquivo que está sendo enviado: <strong><tt>$1</tt></strong><br />
 Nome do arquivo existente: <strong><tt>$2</tt></strong><br />
 Por gentileza, escolha um nome diferente.',
 'fileexists-thumb'            => "<center>'''arquivo existente'''</center>",
-'fileexists-thumbnail-yes'    => 'O arquivo aparenta ser uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail)</i>. Por gentileza, verifique o arquivo <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => 'O arquivo aparenta ser uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail</i>). Por gentileza, verifique o arquivo <strong><tt>$1</tt></strong>.<br />
 Se o arquivo enviado é o mesmo do de tamanho original, não é necessário enviar uma versão de miniatura adicional.',
-'file-thumbnail-no'           => 'O nome do arquivo começa com <strong><tt>$1</tt></strong>. Isso faz parecer se tratar de uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail)</i>.
+'file-thumbnail-no'           => 'O nome do arquivo começa com <strong><tt>$1</tt></strong>. Isso faz parecer se tratar de uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail</i>).
 Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-la no lugar desta. Caso não seja o caso, altere o nome de arquivo.',
 'fileexists-forbidden'        => 'Já existe um arquivo com este nome. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Já existe um arquivo com este nome no repositório de arquivo partilhados. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[Image:$1|thumb|center|$1]]',
@@ -1252,9 +1252,9 @@ PICT # misc.
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
-'upload-curl-error6-text'  => 'Não foi possível acessar o endereço (URL) fornecido. Por gentileza, se certifique de o endereço foi fornecido corretamente e de que o sítio esteja acessível.',
+'upload-curl-error6-text'  => 'Não foi possível acessar o endereço (URL) fornecido. Por gentileza, se certifique que o endereço foi fornecido corretamente e de que o site esteja acessível.',
 'upload-curl-error28'      => 'Tempo limite para o envio do arquivo excedido',
-'upload-curl-error28-text' => 'O site demorou muito tempo a responder. Por gentileza, verifique se o site está acessível, aguarde alguns momentos e tente novamente. Talvez você deseje fazer nova tentativa em um horário menos congestionado.',
+'upload-curl-error28-text' => 'O site demorou muito tempo para responder. Por gentileza, verifique se o site está acessível, aguarde alguns momentos e tente novamente. Talvez você deseje fazer nova tentativa em um horário menos congestionado.',
 
 'license'            => 'Licença:',
 'nolicense'          => 'Nenhuma selecionada',
@@ -1262,6 +1262,7 @@ PICT # misc.
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um arquivo no seu computador)',
 
+######## 
 # Special:Imagelist
 'imagelist-summary'     => 'Esta página especial mostra todos os arquivos carregados.
 Por defeito, os últimos arquivos carregados são mostrados no topo da lista.
@@ -1453,7 +1454,7 @@ O tamanho atual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de taref
 'booksources'               => 'Fontes de livros',
 'booksources-search-legend' => 'Procurar por fontes de livrarias',
 'booksources-go'            => 'Ir',
-'booksources-text'          => 'É exibida a seguir uma listagem de links para outros sítios que vendem livros novos e usados e que possam possuir informações adicionais sobre os livros que você está pesquisando:',
+'booksources-text'          => 'É exibida a seguir uma listagem de links para outros sites que vendem livros novos e usados e que possam possuir informações adicionais sobre os livros que você está pesquisando:',
 
 # Special:Log
 'specialloguserlabel'  => 'Usuário:',
@@ -1794,7 +1795,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbreason-dropdown'              => '*Razões comuns para um bloqueio
 ** Inserindo informações falsas
 ** Removendo o conteúdo de páginas
-** Fazendo "spam" de sítios externos
+** Fazendo "spam" de sites externos
 ** Inserindo conteúdo sem sentido/incompreensível nas páginas
 ** Comportamento intimidador/inoportuno
 ** Uso abusivo de contas múltiplas
@@ -2099,7 +2100,7 @@ Todas as acções de importação transwiki são registradas no [[{{ns:special}}
 # Spam protection
 'spamprotectiontitle' => 'Filtro de proteção contra spam',
 'spamprotectiontext'  => 'A página que deseja salvar foi bloqueada pelo filtro de spam. Tal bloqueio foi provavelmente causado por uma ligação para um website externo.',
-'spamprotectionmatch' => 'O seguinte texto activou o filtro de spam: $1',
+'spamprotectionmatch' => 'O seguinte texto ativou o filtro de spam: $1',
 'spambot_username'    => 'MediaWiki limpeza de spam',
 'spam_reverting'      => 'Revertendo para a última versão não contendo hiperligações para $1',
 'spam_blanking'       => 'Todas revisões contendo hiperligações para $1, limpando',
