@@ -186,6 +186,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the database is potentially queried
 * (bug 9736) Redirects on Special:Fewestrevisions are now marked as such.
 * New date/time formats in Cs localization according to ČSN and PČP.
+* HTML entities like &nbsp; now work (are not escaped) in edit summaries.
+* (bug 13815) In the comment for page moves, use the colon-separator message
+  instead of a hardcoded colon.
  
 === Bug fixes in 1.13 ===
 
