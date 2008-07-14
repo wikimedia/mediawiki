@@ -54,7 +54,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		// Find the right prefix
 		global $wgUrlProtocols;
-		if(!is_null($protocol) && $protocol != '' && !in_array($protocol, $wgUrlProtocols))
+		if(!is_null($protocol) && !empty($protocol) && !in_array($protocol, $wgUrlProtocols))
 		{
 			foreach ($wgUrlProtocols as $p) {
 				if( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
@@ -63,6 +63,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				}
 			}
 		}
+		else
+			$protocol = null;
 
 		$db = $this->getDb();
 		$this->addTables(array('page','externallinks'));	// must be in this order for 'USE INDEX'
@@ -72,12 +74,17 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		if(!is_null($query) || $query != '')
 		{
-			$likeQuery = LinkFilter::makeLike($query , $protocol);
+			if(is_null($protocol))
+				$protocol = 'http';
+
+			$likeQuery = LinkFilter::makeLike($query, $protocol);
 			if (!$likeQuery)
 				$this->dieUsage('Invalid query', 'bad_query');
 			$likeQuery = substr($likeQuery, 0, strpos($likeQuery,'%')+1);
 			$this->addWhere('el_index LIKE ' . $db->addQuotes( $likeQuery ));
 		}
+		else if(!is_null($protocol))
+			$this->addWhere('el_index LIKE ' . $db->addQuotes( "$protocol%" ));
 
 		$prop = array_flip($params['prop']);
 		$fld_ids = isset($prop['ids']);
@@ -139,7 +146,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		global $wgUrlProtocols;
-		$protocols = array();
+		$protocols = array('');
 		foreach ($wgUrlProtocols as $p) {
 			$protocols[] = substr($p, 0, strpos($p,':'));
 		}
@@ -159,7 +166,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			),
 			'protocol' => array (
 				ApiBase :: PARAM_TYPE => $protocols,
-				ApiBase :: PARAM_DFLT => 'http',
+				ApiBase :: PARAM_DFLT => '',
 			),
 			'query' => null,
 			'namespace' => array (
@@ -180,8 +187,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		return array (
 			'prop' => 'What pieces of information to include',
 			'offset' => 'Used for paging. Use the value returned for "continue"',
-			'protocol' => 'Protocol of the url',
-			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links (euprotocol will be ignored)',
+			'protocol' => array(	'Protocol of the url. If empty and euquery set, the protocol is http.',
+						'Leave both this and euquery empty to list all external links'),
+			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links',
 			'namespace' => 'The page namespace(s) to enumerate.',
 			'limit' => 'How many entries to return.'
 		);
