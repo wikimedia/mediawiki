@@ -96,7 +96,7 @@ class ProtectedPagesForm {
 				$stxt = "($stxt)";
 			}
 			$stxt = htmlspecialchars( $stxt );
-			$stxt = $wgContLang->getDirMark() . $stxt;
+			$stxt = $wgContLang->getDirMark() . ' ' . $stxt;
 		}
 
 		# Show a link to the change protection form for allowed users otherwise a link to the protection log
