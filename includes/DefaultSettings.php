@@ -542,22 +542,30 @@ $wgDBname           = 'wikidb';
 $wgDBconnection     = '';
 /** Database username */
 $wgDBuser           = 'wikiuser';
-/** Database type
- */
-$wgDBtype           = "mysql";
+/** Database user's password */
+$wgDBpassword       = '';
+/** Database type */
+$wgDBtype           = 'mysql';
+
 /** Search type
  * Leave as null to select the default search engine for the
- * selected database type (eg SearchMySQL4), or set to a class
+ * selected database type (eg SearchMySQL), or set to a class
  * name to override to a custom search engine.
  */
 $wgSearchType	    = null;
+
 /** Table name prefix */
 $wgDBprefix         = '';
 /** MySQL table options to use during installation or update */
-$wgDBTableOptions = 'ENGINE=InnoDB';
+$wgDBTableOptions   = 'ENGINE=InnoDB';
+
+/** Mediawiki schema */
+$wgDBmwschema       = 'mediawiki';
+/** Tsearch2 schema */
+$wgDBts2schema      = 'public';
 
 /** To override default SQLite data directory ($docroot/../data) */
-$wgSQLiteDataDir = '';
+$wgSQLiteDataDir    = '';
 
 /**
  * Make all database connections secretly go to localhost. Fool the load balancer
