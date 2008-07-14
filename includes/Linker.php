@@ -1215,6 +1215,7 @@ class Linker {
 		if ( $size == 0 ) {
 			$stxt = wfMsgExt( 'historyempty', 'parsemag' );
 		} else {
+			global $wgLang;
 			$stxt = wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $size ) );
 			$stxt = "($stxt)";
 		}
