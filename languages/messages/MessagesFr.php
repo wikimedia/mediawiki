@@ -1428,7 +1428,7 @@ Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manu
 'disambiguations'      => 'Pages d’homonymie',
 'disambiguationspage'  => 'Template:Homonymie',
 'disambiguations-text' => "Les pages suivantes pointent vers une '''page d’homonymie'''.
-Elles devraient plutôt pointer vers une page pertinente.<br />
+Elles devraient plutôt pointer le sujet approprié.<br />
 Une page est traitée comme une page d’homonymie si elle utilise un modèle qui est lié à partir de [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Doubles redirections',

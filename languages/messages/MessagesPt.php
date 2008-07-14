@@ -1998,7 +1998,7 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 'import-interwiki-namespace' => 'Transferir páginas para o espaço nominal:',
 'importtext'                 => 'Por favor, exporte o ficheiro da fonte wiki utilizando a ferramenta {{ns:special}}:Export, salve o ficheiro para o seu disco e importe-o aqui.',
 'importstart'                => 'Importando páginas...',
-'import-revision-count'      => '$1 {{PLURAL:$1|revisão|revisões}}',
+'import-revision-count'      => '{{PLURAL:$1|uma edição|$1 edições}}',
 'importnopages'              => 'Não existem páginas a importar.',
 'importfailed'               => 'A importação falhou: $1',
 'importunknownsource'        => 'Tipo de fonte de importação desconhecida',
@@ -2021,10 +2021,10 @@ Todas as acções de importação transwiki são registadas no [[{{ns:special}}:
 # Import log
 'importlogpage'                    => 'Registo de importações',
 'importlogpagetext'                => 'Importações administrativas de páginas com a preservação do histórico de edição de outras wikis.',
-'import-logentry-upload'           => 'importado [[$1]] através de ficheiro de importação',
-'import-logentry-upload-detail'    => '{{PLURAL:$1|revisão|revisões}}',
+'import-logentry-upload'           => 'importou [[$1]] através de ficheiro de importação',
+'import-logentry-upload-detail'    => '{{PLURAL:$1|uma edição|$1 edições}}',
 'import-logentry-interwiki'        => 'transwiki $1',
-'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 revisão|$1 revisões}} de $2',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Minha página de utilizador',

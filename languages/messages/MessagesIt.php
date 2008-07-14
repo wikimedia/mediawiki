@@ -5,8 +5,8 @@
  * @file
  *
  * @author BrokenArrow
- * @author Cruccone
  * @author Darth Kule
+ * @author Cruccone
  * @author Melos
  * @author Siebrand
  * @author Gianfranco
@@ -2036,12 +2036,26 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'tooltip-upload'                  => 'Inizia il caricamento',
 
 # Stylesheets
-'common.css'   => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',
-'monobook.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */',
+'common.css'      => '/* Gli stili CSS inseriti qui si applicano a tutte le skin */',
+'standard.css'    => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Standard */',
+'nostalgia.css'   => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Nostalgia */',
+'cologneblue.css' => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Cologne Blue */',
+'monobook.css'    => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Monobook */',
+'myskin.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Myskin */',
+'chick.css'       => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Chick */',
+'simple.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Simple */',
+'modern.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Modern */',
 
 # Scripts
-'common.js'   => '/* Il codice JavaScript inserito qui viene caricato da ciascuna pagina, per tutti gli utenti. */',
-'monobook.js' => "/* L'uso di questo messaggio è deprecato; preferire [[MediaWiki:common.js]] */",
+'common.js'      => '/* Il codice JavaScript inserito qui viene caricato da ciascuna pagina, per tutti gli utenti. */',
+'standard.js'    => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Standard */',
+'nostalgia.js'   => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Nostalgia */',
+'cologneblue.js' => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Cologne Blue */',
+'monobook.js'    => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin MonoBook */',
+'myskin.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Myskin */',
+'chick.js'       => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Chick */',
+'simple.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Simple */',
+'modern.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Modern */',
 
 # Metadata
 'nodublincore'      => 'Metadati Dublin Core RDF non attivi su questo server.',

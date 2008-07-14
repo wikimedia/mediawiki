@@ -14,6 +14,7 @@
  * @author Mzm5zbC3
  * @author Iwai.masaharu
  * @author לערי ריינהארט
+ * @author Aotake
  * @author Kkkdc
  * @author Hatukanezumi
  */
@@ -971,6 +972,8 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'recentchangeslinked-title'    => '"$1" からリンクされているページの更新状況',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に更新はありませんでした。',
 'recentchangeslinked-summary'  => "この特別ページはリンク先の更新状況です。あなたのウォッチリストにあるページは'''太字'''で表示されます。",
+'recentchangeslinked-page'     => 'ページ名:',
+'recentchangeslinked-to'       => 'リンク元の更新状況に切り替える',
 
 # Upload
 'upload'                      => 'アップロード',

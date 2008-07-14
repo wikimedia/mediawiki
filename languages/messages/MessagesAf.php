@@ -564,7 +564,7 @@ U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adr
 'confirmedittext'           => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'nosuchsectiontitle'        => 'Afdeling bestaan nie',
 'nosuchsectiontext'         => "U probeer 'n afdeling wysig wat nie bestaan nie.
-Omdat die afdeling nie bestaan nie kan u wysigings nie gestoor word nie.",
+Omdat die afdeling $1 nie bestaan nie, kan u wysigings nie gestoor word nie.",
 'loginreqtitle'             => 'Inteken Benodig',
 'loginreqlink'              => 'teken in',
 'loginreqpagetext'          => 'U moet $1 om ander bladsye te bekyk.',

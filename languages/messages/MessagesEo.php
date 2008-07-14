@@ -1876,6 +1876,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'immobile_namespace'      => 'La celtitolo estas de speciala speco; ne eblas movi paĝojn en tiun nomspacon.',
 'imagenocrossnamespace'   => 'Ne eblas movi dosieron al nedosiera nomspaco',
 'imagetypemismatch'       => 'La nova dosierfinaĵo ne kongruas ĝian dosiertipon.',
+'imageinvalidfilename'    => 'La cela dosiernomo estas nevalida',
 
 # Export
 'export'            => 'Eksporti paĝojn',
