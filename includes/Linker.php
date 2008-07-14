@@ -1211,6 +1211,17 @@ class Linker {
 		return $block;
 	}
 
+	public function formatRevisionSize( $size ) {
+		if ( $size == 0 ) {
+			$stxt = wfMsgExt( 'historyempty', 'parsemag' );
+		} else {
+			$stxt = wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $size ) );
+			$stxt = "($stxt)";
+		}
+		$stxt = htmlspecialchars( $stxt );
+		return "<span class=\"history-size\">$stxt</span>";
+	}
+
 	/** @todo document */
 	function tocIndent() {
 		return "\n<ul>";

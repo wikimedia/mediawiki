@@ -1086,12 +1086,7 @@ class UndeleteForm {
 		$userLink = $sk->revUserTools( $rev );
 
 		if(!is_null($size = $row->ar_len)) {
-			if($size == 0) {
-				$stxt = wfMsg('historyempty');
-			} else {
-				$stxt = '(' . wfMsg('nbytes', $wgLang->formatNum( $size ) ) . ')';
-			}
-			$stxt = htmlspecialchars( $stxt );
+			$stxt = $sk->formatRevisionSize( $size );
 		}
 		$comment = $sk->revComment( $rev );
 		$revdlink = '';

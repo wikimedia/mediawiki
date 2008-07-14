@@ -595,7 +595,7 @@ class RevisionDeleteForm {
 		$data = wfMsg( 'widthheight',
 					$wgLang->formatNum( $file->getWidth() ),
 					$wgLang->formatNum( $file->getHeight() ) ) .
-			' (' . wfMsg( 'nbytes', $wgLang->formatNum( $file->getSize() ) ) . ')';
+			' (' . wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $file->getSize() ) ) . ')';
 		$data = htmlspecialchars( $data );
 
 		return "<li>$pageLink ".$this->fileUserTools( $file )." $data ".$this->fileComment( $file )."$del</li>";
@@ -622,7 +622,7 @@ class RevisionDeleteForm {
 		$data = wfMsg( 'widthheight',
 					$wgLang->formatNum( $file->getWidth() ),
 					$wgLang->formatNum( $file->getHeight() ) ) .
-			' (' . wfMsg( 'nbytes', $wgLang->formatNum( $file->getSize() ) ) . ')';
+			' (' . wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $file->getSize() ) ) . ')';
 		$data = htmlspecialchars( $data );
 
 		return "<li> $pageLink ".$this->fileUserTools( $file )." $data ".$this->fileComment( $file )."$del</li>";
