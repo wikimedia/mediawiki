@@ -158,7 +158,7 @@ $messages = array(
 'tog-editsection'             => 'Habilitar edição de seção via links [editar]',
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
-'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
+'tog-rememberpassword'        => 'Lembrar senha entre sessões',
 'tog-editwidth'               => 'Caixa de edição com largura completa',
 'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
 'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
@@ -249,7 +249,7 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
 'category_header'                => 'Páginas na categoria "$1"',
 'subcategories'                  => 'Subcategorias',
-'category-media-header'          => 'Multimédia na categoria "$1"',
+'category-media-header'          => 'Multimídia na categoria "$1"',
 'category-empty'                 => "''Esta categoria no momento não possui nenhuma página de conteúdo ou arquivo de multimídia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category'       => 'Categorias ocultas', # Name of the category where hidden categories will be listed
@@ -547,7 +547,7 @@ Seria necessário que possuísse menos de $1 {{PLURAL:$1|caractere|caracteres}}.
 'loginerror'                 => 'Erro de autenticação',
 'prefs-help-email'           => 'O fornecimento de um endereço de e-mail é opcional, mas permite que os usuários entrem em contato consigo sem que tenha de lhes revelar o seu endereço de e-mail.',
 'prefs-help-email-required'  => 'O endereço de e-mail é requerido.',
-'nocookiesnew'               => 'A conta do usuário foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os usuários às suas contas. Por favor, os ative, depois autentique-se com o seu nome de usuário e a sua palavra-chave.',
+'nocookiesnew'               => 'A conta do usuário foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os usuários às suas contas. Por favor, os ative, depois autentique-se com o seu nome de usuário e a sua senha.',
 'nocookieslogin'             => 'Você tem os <i>cookies</i> desativados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os usuários às suas contas. Por favor os ative e tente novamente.',
 'noname'                     => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
@@ -556,11 +556,11 @@ Seria necessário que possuísse menos de $1 {{PLURAL:$1|caractere|caracteres}}.
 Verifique o nome que introduziu, ou crie uma nova conta de usuário.',
 'nosuchusershort'            => 'Não existe um usuário com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de usuário.',
-'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
-'wrongpasswordempty'         => 'A palavra-chave introduzida está em branco. Por favor, tente novamente.',
-'passwordtooshort'           => 'A sua palavra-chave é inválida ou muito curta.
+'wrongpassword'              => 'A senha que introduziu é inválida. Por favor, tente novamente.',
+'wrongpasswordempty'         => 'A senha introduzida está em branco. Por favor, tente novamente.',
+'passwordtooshort'           => 'A sua senha é inválida ou muito curta.
 Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do seu nome de usuário.',
-'mailmypassword'             => 'Enviar uma nova palavra-chave por e-mail electrónico',
+'mailmypassword'             => 'Enviar uma nova senha por e-mail',
 'passwordremindertext'    => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
 A senha do usuário "$2" é, a partir de agora, "$3". Você pode entrar na sua conta e alterar a senha, caso prefira.
 
@@ -568,10 +568,10 @@ Se foi outra pessoa quem fez este pedido, ou caso você já se tenha lembrado da
 'noemail'                 => 'Não há um endereço de e-mail associado ao usuário "$1".',
 'passwordsent'            => 'Uma nova senha está sendo enviada para o endereço de e-mail registrado para "$1".
 Por favor, reconecte-se ao recebê-lo.',
-'blocked-mailpassword'       => 'O seu endereço de IP foi bloqueado de editar e, portanto, não será possível utilizar o lembrete de palavra-chave (para serem evitados envios abusivos a outras pessoas).',
+'blocked-mailpassword'       => 'O seu endereço de IP foi bloqueado de editar e, portanto, não será possível utilizar o lembrete de senha (para serem evitados envios abusivos a outras pessoas).',
 'eauthentsent'            => 'Uma mensagem de confirmação foi enviada para o endereço de e-mail fornecido.
 Antes de qualquer outro e-mail ser enviado para a sua conta, você precisará seguir as instruções da mensagem, de modo a confirmar que a conta é mesmo sua.',
-'throttled-mailpassword'     => 'Um lembrete de palavra-chave já foi enviado {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
+'throttled-mailpassword'     => 'Um lembrete de senha já foi enviado {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para prevenir abusos, apenas um lembrete poderá ser enviado a cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Erro a enviar o email: $1',
 'acct_creation_throttle_hit' => 'Pedimos desculpas, mas já foram criadas $1 contas por si. Não lhe é possível criar mais nenhuma.',
@@ -583,7 +583,7 @@ Para prevenir abusos, apenas um lembrete poderá ser enviado a cada {{PLURAL:$1|
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta do usuário para $1 foi criada.',
 'createaccount-title'        => 'Criação de conta em {{SITENAME}}',
-'createaccount-text'         => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como palavra-chave #$3". Você deve se autenticar e alterar sua palavra-chave.
+'createaccount-text'         => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha #$3". Você deve se autenticar e alterar sua senha.
 
 Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'loginlanguagelabel'         => 'Idioma: $1',
@@ -595,7 +595,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'resetpass_header'        => 'Criar nova senha',
 'resetpass_submit'        => 'Definir senha e entrar',
 'resetpass_success'       => 'Sua senha foi alterada com sucesso! Autenticando-se...',
-'resetpass_bad_temporary' => 'Senha temporária incorreta. Pode ser que você já tenha conseguido alterar a sua senha ou pedido que uma nova temporária fosse gerada.',
+'resetpass_bad_temporary' => 'Senha temporária incorreta. Pode ser que você já tenha conseguido alterar a sua senha ou pedido que uma nova senha temporária fosse gerada.',
 'resetpass_forbidden'     => 'Não é possível alterar senha neste wiki',
 'resetpass_missing'       => 'Sem dados no formulário.',
 
@@ -694,8 +694,8 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 'clearyourcache'            => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ou ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh); '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5''; '''Opera:''' limpe a sua cache em ''Ferramentas → Preferências'' (''Tools → Preferences''); '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
 'usercssjsyoucanpreview'           => '<strong>Dica:</strong> Utilize o botão "Mostrar previsão" para testar seu novo CSS/JS antes de salvar.',
-'usercsspreview'                   => "'''Lembre-se que está apenas a prever o seu CSS particular e que ele ainda não foi salvo!'''",
-'userjspreview'                    => "'''Lembre-se que está apenas a testar/prever o seu JavaScript particular e que ele ainda não foi salvo!'''",
+'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular e que ele ainda não foi salvo!'''",
+'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/monobook.css aposto a {{ns:user}}:Alguém/Monobook.css.",
 'updated'                          => '(Atualizado)',
 'note'                             => '<strong>Nota:</strong>',
@@ -706,7 +706,7 @@ As modificações ainda não foram salvas!</strong>',
 Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
 'session_fail_preview_html'        => "<strong>Desculpe-nos! Não foi possível processar a sua edição devido a uma perda de dados de sessão.</strong>
 
-''Devido a este wiki possuir HTML raw activo, a previsão não será exibida como forma de precaução contra ataques por JavaScript.''
+''Devido a este wiki possuir HTML raw ativo, a previsão não será exibida como forma de precaução contra ataques por JavaScript.''
 
 <strong>Por favor, tente novamente caso esta seja uma tentativa de edição legítima. Caso continue a não funcionar, tente desautenticar-se e voltar a entrar na sua conta.</strong>",
 'token_suffix_mismatch'            => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
@@ -727,7 +727,7 @@ Você terá que mesclar suas modificações no texto existente.
 Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>',
 'yourdiff'                         => 'Diferenças',
 'copyrightwarning'          => 'Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
-Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por você mesmo ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.
+Você está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você mesmo ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
 'copyrightwarning2'                => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
@@ -737,7 +737,7 @@ Por gentileza, considere quebrar a página em sessões menores.</strong>',
 'longpageerror'                    => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
 'readonlywarning'           => '<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.
 No momento não é possível salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo ao wiki mais tarde.</strong>',
-'protectedpagewarning'      => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop podem editar esta página pois ela foi bloqueada.</strong>',
+'protectedpagewarning'      => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop (Administradores) podem editar esta página pois ela foi bloqueada.</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.",
 'cascadeprotectedwarning'   => "'''Atenção:''' Esta página se encontra protegida; apenas {{int:group-sysop}} podem editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
 'titleprotectedwarning'     => '<strong>ATENÇÃO: Esta página foi protegida, apenas alguns usuários poderão criá-la.</strong>',
@@ -755,7 +755,7 @@ Volte à tela anterior e edite uma página já existente, ou [[{{ns:special}}:Us
 'permissionserrors'         => 'Erros de permissões',
 'permissionserrorstext'     => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext'     => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'recreate-deleted-warn'     => "'''Atenção: Você está re-criando uma página já eliminada em outra ocasião.'''
+'recreate-deleted-warn'     => "'''Atenção: Você está recriando uma página já eliminada em outra ocasião.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registro de eliminação desta página é exibido a seguir, para sua comodidade:",
@@ -836,7 +836,7 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de 
 'revdelete-nooldid-text'      => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
 'revdelete-selected'          => '{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:',
 'logdelete-selected'          => '{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:',
-'revdelete-text'              => "Revisões eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
+'revdelete-text'              => "Revisões eliminadas continuarão aparecendo no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
 
 Outros administradores nesta wiki continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
 'revdelete-legend'            => 'Definir restrições de visualização',
@@ -939,7 +939,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'showingresults'            => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
 'showingresultsnum'         => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
 'showingresultstotal'       => "Exibindo {{PLURAL:$3|o resultado '''$1''' de '''$3'''|os resultados '''$1 a $2''' de '''$3'''}}",
-'nonefound'                 => "'''Nota''': apenas alguns espaços nominais são pesquisados por padrão. Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos deste wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
+'nonefound'                 => "'''Nota''': apenas alguns espaços nominais são pesquisados por padrão. Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos desta wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
 'powersearch'               => 'Pesquisa avançada',
 'powersearch-legend'        => 'Pesquisa avançada',
 'powersearch-ns'            => 'Pesquisar nos espaços nominais:',
@@ -962,7 +962,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'qbsettings-fixedright'    => 'Fixo à direita',
 'qbsettings-floatingleft'  => 'Flutuando à esquerda',
 'qbsettings-floatingright' => 'Flutuando à direita',
-'changepassword'           => 'Alterar palavra-chave',
+'changepassword'           => 'Alterar senha',
 'skin'                     => 'Tema',
 'math'                     => 'Matemática',
 'dateformat'               => 'Formato da data',
