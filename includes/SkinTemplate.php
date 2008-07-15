@@ -964,62 +964,54 @@ class SkinTemplate extends Skin {
 
 		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
 
-		$stylesheets = array();
-		$rawcss = '';
+		$sitecss = '';
+		$usercss = '';
 		$siteargs = '&maxage=' . $wgSquidMaxage;
-		$userPreview = false;
 		if( $this->loggedin ) {
 			// Ensure that logged-in users' generated CSS isn't clobbered
 			// by anons' publicly cacheable generated CSS.
 			$siteargs .= '&smaxage=0';
-			
-			// If we allow user-specific code append some arguments for it
-			if( $wgAllowUserCss ) {
-				$action = $wgRequest->getText('action');
-				$userPreview = $this->mTitle->isCssSubpage() && $this->userCanPreview( $action );
-				$siteargs .= '&ts=' . $wgUser->mTouched;
-				if( $userPreview ) $siteargs = "&smaxage=0&maxage=0";
-			}
 		}
-		
+
+		# Add user-specific code if this is a user and we allow that kind of thing
+
+		if ( $wgAllowUserCss && $this->loggedin ) {
+			$action = $wgRequest->getText('action');
+
+			# if we're previewing the CSS page, use it
+			if( $this->mTitle->isCssSubpage() and $this->userCanPreview( $action ) ) {
+				$siteargs = "&smaxage=0&maxage=0";
+				$usercss = $wgRequest->getText('wpTextbox1');
+			} else {
+				$usercss = '@import "' .
+				  self::makeUrl($this->userpage . '/'.$this->skinname.'.css',
+								 'action=raw&ctype=text/css') . '";' ."\n";
+			}
+
+			$siteargs .= '&ts=' . $wgUser->mTouched;
+		}
+
 		if( $wgContLang->isRTL() && in_array( 'rtl', $this->cssfiles ) ) {
 			global $wgStyleVersion;
-			$stylesheets['skinrtl'] = "$wgStylePath/$this->stylename/rtl.css?$wgStyleVersion";
+			$sitecss .= "@import \"$wgStylePath/$this->stylename/rtl.css?$wgStyleVersion\";\n";
 		}
-		
+
 		# If we use the site's dynamic CSS, throw that in, too
-		if( $wgUseSiteCss ) {
+		if ( $wgUseSiteCss ) {
 			$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
 			$skinquery = '';
 			if (($us = $wgRequest->getVal('useskin', '')) !== '')
 				$skinquery = "&useskin=$us";
-			$stylesheets['sitecommon'] = self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI);
-			$stylesheets['siteskin']   = self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $query, NS_MEDIAWIKI );
-			$stylesheets['gen']        = self::makeUrl( '-', "action=raw&gen=css$siteargs$skinquery" );
+			$sitecss .= '@import "' . self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) . '";' . "\n";
+			$sitecss .= '@import "' . self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $query, NS_MEDIAWIKI ) . '";' . "\n";
+			$sitecss .= '@import "' . self::makeUrl( '-', "action=raw&gen=css$siteargs$skinquery" ) . '";' . "\n";
 		}
-		
-		# Add user-specific code if this is a user and we allow that kind of thing
-		if( $wgAllowUserCss && $this->loggedin ) {
-			# if we're previewing the CSS page, use it
-			if( $userPreview ) {
-				$rawcss .= $wgRequest->getText('wpTextbox1');
-			} else {
-				$stylesheets['userskin'] = self::makeUrl(
-					$this->userpage . '/'.$this->skinname.'.css',
-					'action=raw&ctype=text/css');
-			}
-		}
-		
-		wfRunHooks( 'SkinSetupSiteCss', array( &$stylesheets, &$rawcss, $query ) );
-		
+
 		# If we use any dynamic CSS, make a little CDATA block out of it.
-		$s = '';
-		foreach( $stylesheets as $link ) {
-			$s .= "@import \"$link\";\n";
+
+		if ( !empty($sitecss) || !empty($usercss) ) {
+			$this->usercss = "/*<![CDATA[*/\n" . $sitecss . $usercss . '/*]]>*/';
 		}
-		$s .= $rawcss;
-		if( $s != '' ) $this->usercss = "/*<![CDATA[*/\n{$s}/*]]>*/";
-		
 		wfProfileOut( __METHOD__ );
 	}
 
