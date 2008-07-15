@@ -1696,7 +1696,7 @@ END;
 				} else {
 					$cont = null;
 					# Allow extensions to start a special box
-					if( !wfRunHooks( 'SkinSidebarSpecialBox', array( &$this, $line, &$cont ) ); ) {
+					if( !wfRunHooks( 'SkinSidebarSpecialBox', array( &$this, $line, &$cont ) ) ) {
 						# Extension special box type
 						$bar[$line] = $cont;
 						$specialBox = true;
