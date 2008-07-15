@@ -536,6 +536,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   prop={links,templatelinks,langlinks,extlinks,categories,images}
 * Added flag "top" to list=usercontribs if the user is the last contributor to
   the page
+* list=exturlusage in "list all links" mode can now filter by protocol
 
 === Languages updated in 1.13 ===
 
