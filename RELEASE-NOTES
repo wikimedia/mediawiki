@@ -181,7 +181,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11732) Allow localisation of edit button images
 * Allow the search box, toolbox and languages box in the Monobook sidebar to be
   moved around arbitrarily using special sections in [[MediaWiki:Sidebar]]: 
-  SEARCH, TOOLBOX and LANGUAGES
+  SEARCH, TOOLBOX and LANGUAGES extensions may also add new custom boxes to the
+  sidebar by hooking into SkinSidebarSpecialBox to define the box and into
+  SkinSidebarOutputSpecialBox to output data for the box.
 * Add a new hook NormalizeMessageKey to allow extensions to replace messages before
   the database is potentially queried
 * (bug 9736) Redirects on Special:Fewestrevisions are now marked as such.
@@ -190,7 +192,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * HTML entities like &nbsp; now work (are not escaped) in edit summaries.
 * (bug 13815) In the comment for page moves, use the colon-separator message
   instead of a hardcoded colon.
- 
+* Add a new hook SkinSetupSiteCss to allow extensions to define new stylesheets
+  to load site wide, or modify the list of stylesheets to load. This can be useful
+  for wiki farms who need a specific placement of the stylesheets to cascade right.
+* Add a new hook SkinGlobalVariables to allow extensions to add new global variables
+  to be exported for JavaScript code to make use of.
+
 === Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository
