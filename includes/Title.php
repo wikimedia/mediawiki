@@ -2718,9 +2718,7 @@ class Title {
 		$fname = 'MovePageForm::moveToNewTitle';
 		$comment = wfMsgForContent( '1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
 		if ( $reason ) {
-			$comment .= wfMsgExt( 'colon-separator',
-				array( 'escapenoentities', 'content' ) );
-			$comment .= $reason;
+			$comment .= ": $reason";
 		}
 
 		$newid = $nt->getArticleID();
