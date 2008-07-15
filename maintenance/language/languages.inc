@@ -326,6 +326,8 @@ class languages {
 			'<br *\\?>',
 			'<hr/>',
 			'<br/>',
+			'<hr>',
+			'<br>',
 		);
 		$wrongPhrases = '~(' . implode( '|', $wrongPhrases ) . ')~sDu';
 		$nonXHTMLMessages = array();
