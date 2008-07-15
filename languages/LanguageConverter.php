@@ -131,7 +131,7 @@ class LanguageConverter {
 			$defaultUserLang = $this->mMainLanguageCode;
 		$userLang = $wgRequest->getVal( 'uselang', $defaultUserLang );
 		// see if interface language is same as content, if not, prevent conversion
-		if( $this->mMainLanguageCode != $userLang ){ 
+		if( ! in_array( $userLang, $this->mVariants ) ){ 
 			$this->mPreferredVariant = $this->mMainLanguageCode; // no conversion
 			return $this->mPreferredVariant;
 		}
