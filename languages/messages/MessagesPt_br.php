@@ -754,7 +754,6 @@ Volte à tela anterior e edite uma página já existente, ou [[{{ns:special}}:Us
 'nocreate-loggedin'         => 'Você não possui permissões de criar novas páginas neste wiki.',
 'permissionserrors'         => 'Erros de permissões',
 'permissionserrorstext'     => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'permissionserrorstext'     => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'recreate-deleted-warn'     => "'''Atenção: Você está recriando uma página já eliminada em outra ocasião.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
@@ -2654,4 +2653,5 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:image}}:".',
 # Special:Blankpage
 'blankpage'              => 'Página em branco',
 'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco e é usada para medições de performance, etc.',
+
 );
