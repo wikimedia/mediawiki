@@ -993,8 +993,7 @@ Amporisihina ho an'ny navigateur moderna",
 'nextdiff'     => 'fampitahana manaraka →',
 
 # Media information
-'mediawarning' => "'''Fampitandremana''': Tsy azo antoka ho tsy misy viriosy ity rakitra ity, ahiana hanimba ny solosainao ny fandefasana azy.
-<hr>",
+'mediawarning' => "'''Fampitandremana''': Tsy azo antoka ho tsy misy viriosy ity rakitra ity, ahiana hanimba ny solosainao ny fandefasana azy.<hr />",
 'imagemaxsize' => "Ferana ny haben'ny sary ao amin'ny pejy famaritana ho:",
 'thumbsize'    => "Haben'ny thumbnail",
 

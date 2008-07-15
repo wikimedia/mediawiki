@@ -288,7 +288,7 @@ $messages = array(
 'nosuchspecialpage' => 'L-Ebda paġna speċjali',
 'nospecialpagetext' => "<big>'''Inti għamilt rikjesta għal paġna speċjali invalida.'''</big>
 
-Lista ta' paġni speċjali validi tinsab hawn [[Special:SpecialPages|{{int:specialpages}}]].",
+Lista ta' paġni speċjali validi tinsab hawn [[Special:Specialpages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Problema',
@@ -833,7 +833,7 @@ Inti tista' [[:\$1|toħloq din il-paġna]].",
 'search-external'           => 'Tfittxija esterna',
 'searchdisabled'            => "It-Tfittxija tal-{{SITENAME}} mhux attiva.
 Tista' tfittex bl-użu ta' Google għalissa.
-(Nota li l-indiċi ta' {{SITENAME}} preżenti jistgħu ma jkunux aġġornati.",
+(Nota li l-indiċi ta' {{SITENAME}} preżenti jistgħu ma jkunux aġġornati.)",
 
 # Preferences page
 'preferences'              => 'Preferenzi',

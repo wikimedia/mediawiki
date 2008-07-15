@@ -399,7 +399,7 @@ De oanfierde reden is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Ofmelde',
-'logouttext'                 => "Jo binne no ôfmeld.
+'logouttext'                 => "<strong>Jo binne no ôfmeld.</strong><br />
 Jo kinne de {{SITENAME}} fierders anonym brûke,
 of jo op 'e nij [[{{ns:special}}:Userlogin|oanmelde]] ûnder in oare namme.",
 'welcomecreation'            => '<h2>Wolkom, $1!</h2><p>Jo ynstellings bin oanmakke.
@@ -818,8 +818,7 @@ It tal fan behearders dêrfan is: <b>$2</b>.',
 
 'disambiguations'      => 'Trochverwizings',
 'disambiguationspage'  => 'Project:trochferwizing',
-'disambiguations-text' => 'Dizze siden binne keppele fia in
-[[MediaWiki:disambiguationspage]].
+'disambiguations-text' => 'Dizze siden binne keppele fia in [[MediaWiki:Disambiguationspage]].
 Se soenen mei de side sels keppele wurde moatte.<br />
 (Allinnich siden út deselde nammeromte binne oanjûn.)',
 
@@ -1073,8 +1072,8 @@ Meld de krekte reden! Begelyk, neam de siden dy't oantaaste waarden.",
 'ipboptions'         => '15 minuten:15 min,1 oere:1 hour,2 oeren:2 hours,6 oeren:6 hours,12 oeren:12 hours,1 dei:1 day,3 dagen:3 days,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite', # display1:time1,display2:time2,...
 'badipaddress'       => 'Dy brûker bestiet net',
 'blockipsuccesssub'  => 'Utsluting slagge',
-'blockipsuccesstext' => 'Brûker "$1" is útsletten.<br />
-(List fan [[{{ns:special}}:Ipblocklist|útslette brûkers]].)',
+'blockipsuccesstext' => 'Brûker [[Special:Contributions/$1|$1]] is útsletten.<br />
+(List fan [[Special:Ipblocklist|útslette brûkers]].)',
 'unblockip'          => 'Lit brûker der wer yn',
 'unblockiptext'      => 'Brûk dizze fjilden om in brûker wer skriuwtagong te jaan.',
 'ipusubmit'          => 'Lit dizze brûker der wer yn',
@@ -1277,8 +1276,7 @@ Faaks is de koade ferrûn.',
 'confirmemail_loggedin'   => 'Jo netpostadres is no befêstige.',
 'confirmemail_error'      => 'Der is wat skeefgongen by it fêstlizzen fan jo befêstiging.',
 'confirmemail_subject'    => '{{SITENAME}} netpostbefêstiging',
-'confirmemail_body'       => 'Immen, nei gedachten jo, hat dit netpostadres brûkt by de ynskriuwing as 
-meidogger "$2" oan {{SITENAME}}.
+'confirmemail_body'       => 'Immen, nei gedachten jo, hat dit netpostadres ($1) brûkt by de ynskriuwing as meidogger "$2" oan {{SITENAME}}.
 
 Jo wurdt frege de neikommende keppeling oer te nimmen yn jo blêder, ta it befêstigjen dat jo dy meidogger binne. Hjirtroch komme ek de netpostfunksjes fan {{SITENAME}} foar jo beskikber. At jo dit *net* west hawwe, brûk de keppeling dan net.
 
@@ -1291,7 +1289,7 @@ $5
 Dit berjocht jildt oant $4.',
 
 # Delete conflict
-'confirmrecreate' => "Sûnt jo begûn binne dizze side te bewurkjen, hat meidogger [[Meidogger:$1|$1]] ([[Meidogger oerlis:$1|oerlis]]) de side wiske. De reden dy't derfoar jûn waard wie:
+'confirmrecreate' => "Sûnt jo begûn binne dizze side te bewurkjen, hat meidogger [[User:$1|$1]] ([[User talk:$1|oerlis]]) de side wiske. De reden dy't derfoar jûn waard wie:
 : ''$2''
 Wolle jo de side wier op 'e nij skriuwe?",
 

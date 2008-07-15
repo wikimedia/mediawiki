@@ -296,6 +296,7 @@ $messages = array(
 'helppage'             => 'Help:Innihald',
 'mainpage'             => 'Forsíða',
 'mainpage-description' => 'Forsíða',
+'policy-url'           => 'Project:Handfaring av persónligum upplýsingum',
 'portal'               => 'Forsíða fyri høvundar',
 'portal-url'           => 'Project:Forsíða fyri høvundar',
 'privacy'              => 'Handfaring av persónligum upplýsingum',

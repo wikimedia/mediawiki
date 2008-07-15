@@ -680,7 +680,7 @@ Kanol redakön padi dabinöl, u [[Special:Userlogin|nunädön oli u jafön kali]
 'permissionserrorstext'     => 'No dalol dunön atosi sekü {{PLURAL:$1|kod|kods}} sököl:',
 'recreate-deleted-warn'     => "'''NUNED: Dönujafol padi pemoüköl.'''
 
-Vätälolös, va binos pötik ad lairedakön padi at.<br>
+Vätälolös, va binos pötik ad lairedakön padi at.
 Jenotalised moükama pada at pajonon is as yuf.",
 
 # Parser/template warnings

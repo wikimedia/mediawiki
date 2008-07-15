@@ -294,7 +294,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'histlegend'          => 'Per vesair las differenzas tranter duas versiuns, marca ils quaderins da la versiuns che ti vul cumparegliar e clicca sin "cumparegliar las versiuns selecziunadas".
 * (act) = differenzas cun la versiun actuala
 * (davosa) = differenza cun la versiun precedenta
-* M = Midà be bagatellas<br><br>',
+* M = Midà be bagatellas',
 'deletedrev'          => '[stidà]',
 'histfirst'           => 'pli veglia',
 'histlast'            => 'pli nova',
@@ -372,12 +372,12 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'reupload'          => 'chargiar si danovamain',
 'reuploaddesc'      => 'Anavos tar la pagina da chargiar si.',
 'uploadnologintext' => "Ti stos [[Special:Userlogin|t'annunziar]] per chargiar si files.",
-'uploadtext'        => 'Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:Imagelist|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
+'uploadtext'        => "Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:Imagelist|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
 
 Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals suandants cumonds: 
-* <nowiki>[[{{ns:image}}:file.png|text alternativ]]</nowiki>
-* <nowiki>[[{{ns:image}}:file.jpg|left|thumb|200px|Descripziun dal maletg]]</nowiki>
-* <nowiki>[[{{ns:media}}:file.ogg]]</nowiki><br><br>',
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>'''",
 'filedesc'          => 'Resumaziun',
 'fileuploadsummary' => 'Resumaziun:',
 'ignorewarnings'    => 'Ignorar tut ils avertiments (Warnung)',

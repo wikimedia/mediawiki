@@ -51,7 +51,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Activar modification de sectiones con clic-a-derecta super lor titulos (JavaScript)',
 'tog-showtoc'                 => 'Monstrar tabula de contento (in paginas con plus de 3 sectiones)',
 'tog-rememberpassword'        => 'Memorar mi contrasigno in iste computator',
-'tog-editwidth'               => 'Le quadro de modification occupa tote le largor del fenestra',
+'tog-editwidth'               => 'Le quadro de modification occupa tote le latitude del fenestra',
 'tog-watchcreations'          => 'Adder le paginas que io crea a mi observatorio',
 'tog-watchdefault'            => 'Adder le paginas que io modifica a mi observatorio',
 'tog-watchmoves'              => 'Adder le paginas que io renomina a mi observatorio',
@@ -999,7 +999,7 @@ per favor vide math/README pro configurar lo.",
 'right-move-subpages'        => 'Renominar paginas con lor subpaginas',
 'right-suppressredirect'     => 'Non rediriger le ancian nomine verso le nove quando se renomina un pagina',
 'right-upload'               => 'Cargar files',
-'right-reupload'             => 'Suberscriber un file existente',
+'right-reupload'             => 'Superscriber un file existente',
 'right-reupload-own'         => 'Superscriber un file anteriormente cargate per uno mesme',
 'right-reupload-shared'      => 'Supplantar localmente le files del respositorio commun de media',
 'right-upload_by_url'        => 'Cargar un file ab un adresse URL',
@@ -1904,7 +1904,7 @@ Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate."
 'movenologintext'         => 'Tu debe esser un usator registrate e [[Special:Userlogin|aperir un session]]
 pro mover un pagina.',
 'movenotallowed'          => 'Tu non ha le permission de renominar paginas in {{SITENAME}}.',
-'newtitle'                => 'Al nove titulo',
+'newtitle'                => 'Al nove titulo:',
 'move-watch'              => 'Observar iste pagina',
 'movepagebtn'             => 'Renominar pagina',
 'pagemovedsub'            => 'Renomination succedite',
@@ -2088,6 +2088,28 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'anonymous'        => 'Usator(es) anonyme de {{SITENAME}}',
 'siteuser'         => 'Usator $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Le modification le plus recente de iste pagina esseva facite le $1 a $2 per $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'A base de contributiones per $1.',
+'others'           => 'alteres',
+'siteusers'        => 'Usator(es) de {{SITENAME}} $1',
+'creditspage'      => 'Autores del pagina',
+'nocredits'        => 'Nulle information es disponibile super le autores de iste pagina.',
+
+# Spam protection
+'spamprotectiontitle' => 'Filtro de protection antispam',
+'spamprotectiontext'  => 'Le pagina que tu voleva immagazinar esseva blocate per le filtro antispam.
+Le causa es probabilemente un ligamine a un sito externe.',
+'spamprotectionmatch' => 'Le sequente texto es lo que activava nostre filtro antispam: $1',
+'spambot_username'    => 'Nettamento de spam in MediaWiki',
+'spam_reverting'      => 'Revertite al ultime version que non contine ligamines a $1',
+'spam_blanking'       => 'Tote le revisiones contineva ligamines a $1. Le pagina ha essite vacuate.',
+
+# Info page
+'infosubtitle'   => 'Informationes del pagina',
+'numedits'       => 'Numero de modificationes (pagina): $1',
+'numtalkedits'   => 'Numero de modificationes (pagina de discussion): $1',
+'numwatchers'    => 'Numero de observatores: $1',
+'numauthors'     => 'Numero de autores distincte (pagina): $1',
+'numtalkauthors' => 'Numero de autores distincte (pagina de discussion): $1',
 
 # Math options
 'mw_math_png'    => 'Sempre producer PNG',
@@ -2097,11 +2119,43 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'mw_math_modern' => 'Recommendate pro navigatores moderne',
 'mw_math_mathml' => 'MathML',
 
+# Patrolling
+'markaspatrolleddiff'                 => 'Marcar como patruliate',
+'markaspatrolledtext'                 => 'Marcar iste pagina como patruliate',
+'markedaspatrolled'                   => 'Marcate como patruliate',
+'markedaspatrolledtext'               => 'Le revision seligite ha essite marcate como patruliate.',
+'rcpatroldisabled'                    => 'Patrulia de modificationes recente disactivate',
+'rcpatroldisabledtext'                => 'Le functionalitate de patrulia de modificationes recente es disactivate al momento.',
+'markedaspatrollederror'              => 'Impossibile marcar como patruliate',
+'markedaspatrollederrortext'          => 'Tu debe specificar un revision a marcar como patruliate.',
+'markedaspatrollederror-noautopatrol' => 'Tu non es permittite a marcar tu proprie modificationes como patruliate.',
+
+# Patrol log
+'patrol-log-page' => 'Registro de patrulia',
+'patrol-log-line' => 'marcava $1 de $2 como patruliate $3',
+'patrol-log-auto' => '(automaticamente)',
+
+# Image deletion
+'deletedrevision'                 => 'Deleva le ancian revision $1',
+'filedeleteerror-short'           => 'Error durante le deletion del file: $1',
+'filedeleteerror-long'            => 'Se incontrava errores durante le deletion del file:
+
+$1',
+'filedelete-missing'              => 'Le file "$1" non pote esser delite, proque illo non existe.',
+'filedelete-old-unregistered'     => 'Le revision del file specificate "$1" non existe in le base de datos.',
+'filedelete-current-unregistered' => 'Le file specificate "$1" non existe in le base de datos.',
+'filedelete-archive-read-only'    => 'Le servitor de web non pote scriber al directorio de archivo "$1".',
+
 # Browsing diffs
 'previousdiff' => '← Precedente diff',
 'nextdiff'     => 'Sequente diff →',
 
 # Media information
+'mediawarning'         => "'''Attention''': Iste file pote continer codice maligne. Si tu lo executa, tu systema pote esser compromittite.<hr />",
+'imagemaxsize'         => 'Limitar le imagines in paginas de description de files a:',
+'thumbsize'            => 'Grandor del miniaturas:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'file-info'            => '(grandor del file: $1, typo MIME: $2)',
 'file-info-size'       => '($1 × $2 pixel, grandor del file: $3, typo MIME: $4)',
 'file-nohires'         => '<small>Non es disponibile un resolution plus alte.</small>',
 'svg-long-desc'        => '(File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3)',
@@ -2109,11 +2163,14 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'show-big-image-thumb' => '<small>Dimensiones de iste previsualisation: $1 × $2 pixels</small>',
 
 # Special:Newimages
-'newimages'     => 'Galleria de nove files',
-'imagelisttext' => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
-'showhidebots'  => '($1 bots)',
-'ilsubmit'      => 'Cercar',
-'bydate'        => 'per data',
+'newimages'             => 'Galleria de nove files',
+'imagelisttext'         => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
+'newimages-summary'     => 'Iste pagina special detalia le recente files cargate',
+'showhidebots'          => '($1 bots)',
+'noimages'              => 'Nihil a vider.',
+'ilsubmit'              => 'Cercar',
+'bydate'                => 'per data',
+'sp-newimages-showfrom' => 'Monstrar nove files a partir del $1 a $2',
 
 # Bad image list
 'bad_image_list' => 'Le formato es como seque:
@@ -2137,7 +2194,256 @@ Le alteres essera initialmente celate.
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-imagewidth'                  => 'Latitude',
+'exif-imagelength'                 => 'Altitude',
+'exif-bitspersample'               => 'Bits per componente',
+'exif-compression'                 => 'Schema de compression',
+'exif-photometricinterpretation'   => 'Composition de pixel',
+'exif-orientation'                 => 'Orientation',
+'exif-samplesperpixel'             => 'Numero de componentes',
+'exif-planarconfiguration'         => 'Arrangiamento del datos',
+'exif-ycbcrsubsampling'            => 'Ration de reduction de Y to C',
+'exif-ycbcrpositioning'            => 'Positionamento Y e C',
+'exif-xresolution'                 => 'Resolution horizontal',
+'exif-yresolution'                 => 'Resolution vertical',
+'exif-resolutionunit'              => 'Unitate de resolution X e Y',
+'exif-stripoffsets'                => 'Location del datos del imagine',
+'exif-rowsperstrip'                => 'Numero de lineas per banda',
+'exif-stripbytecounts'             => 'Bytes per banda comprimite',
+'exif-jpeginterchangeformat'       => 'Position de JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Bytes del datos JPEG',
+'exif-transferfunction'            => 'Function de transferimento',
+'exif-whitepoint'                  => 'Chromaticitate del puncto blanc',
+'exif-primarychromaticities'       => 'Chromaticitates del colores primari',
+'exif-ycbcrcoefficients'           => 'Coefficientes del matrice de transformation del spatio de colores',
+'exif-referenceblackwhite'         => 'Par de valores de referentia nigre e blanc',
+'exif-datetime'                    => 'Data e hora de modification del file',
+'exif-imagedescription'            => 'Titulo del imagine',
+'exif-make'                        => 'Fabricante del camera',
+'exif-model'                       => 'Modello del camera',
+'exif-software'                    => 'Software usate',
+'exif-artist'                      => 'Autor',
+'exif-copyright'                   => 'Titular del copyright',
+'exif-exifversion'                 => 'Version de Exif',
+'exif-flashpixversion'             => 'Version supportate de Flashpix',
+'exif-colorspace'                  => 'Spatio de colores',
+'exif-componentsconfiguration'     => 'Significato de cata componente',
+'exif-compressedbitsperpixel'      => 'Modo de compression del imagine',
+'exif-pixelydimension'             => 'Latitude valide del imagine',
+'exif-pixelxdimension'             => 'Altitude valide del imagine',
+'exif-makernote'                   => 'Notas del fabricante',
+'exif-usercomment'                 => 'Commentos del usator',
+'exif-relatedsoundfile'            => 'File audio connexe',
+'exif-datetimeoriginal'            => 'Data e hora del generation del datos',
+'exif-datetimedigitized'           => 'Data e hora del digitalisation',
+'exif-subsectime'                  => 'Fractiones de secundas DateTime',
+'exif-subsectimeoriginal'          => 'Fractiones de secundas DateTimeOriginal',
+'exif-subsectimedigitized'         => 'Fractiones de secundas DateTimeDigitized',
+'exif-exposuretime'                => 'Tempore de exposition',
+'exif-exposuretime-format'         => '$1 sec ($2)',
+'exif-fnumber'                     => 'Numero F',
+'exif-exposureprogram'             => 'Programma de exposition',
+'exif-spectralsensitivity'         => 'Sensibilitate spectral',
+'exif-isospeedratings'             => 'Classification de velocitate ISO',
+'exif-oecf'                        => 'Factor de conversion optoelectronic',
+'exif-shutterspeedvalue'           => 'Velocitate del obturator',
+'exif-aperturevalue'               => 'Apertura',
+'exif-brightnessvalue'             => 'Luminositate',
+'exif-exposurebiasvalue'           => 'Correction de exposition',
+'exif-maxaperturevalue'            => 'Apertura maxime pro terra',
+'exif-subjectdistance'             => 'Distantia del subjecto',
+'exif-meteringmode'                => 'Modo de mesura',
+'exif-lightsource'                 => 'Fonte de lumine',
+'exif-flash'                       => 'Flash',
+'exif-focallength'                 => 'Longitude focal del lente',
+'exif-subjectarea'                 => 'Area de subjecto',
+'exif-flashenergy'                 => 'Energia del flash',
+'exif-spatialfrequencyresponse'    => 'Responsa de frequentia spatial',
+'exif-focalplanexresolution'       => 'Resolution X del plano focal',
+'exif-focalplaneyresolution'       => 'Resolution Y del plano focal',
+'exif-focalplaneresolutionunit'    => 'Unitate del resolution del plano focal',
+'exif-subjectlocation'             => 'Location del subjecto',
+'exif-exposureindex'               => 'Indice de exposition',
+'exif-sensingmethod'               => 'Methodo de sensor',
+'exif-filesource'                  => 'Origine del file',
+'exif-scenetype'                   => 'Typo de scena',
+'exif-cfapattern'                  => 'Patrono CFA',
+'exif-customrendered'              => 'Processamento de imagines personalisate',
+'exif-exposuremode'                => 'Modo de exposition',
+'exif-whitebalance'                => 'Balancia de blanc',
+'exif-digitalzoomratio'            => 'Ration de zoom digital',
+'exif-focallengthin35mmfilm'       => 'Longitude focal in film de 35 mm',
+'exif-scenecapturetype'            => 'Typo de captura de scena',
+'exif-gaincontrol'                 => 'Controlo de scena',
+'exif-contrast'                    => 'Contrasto',
+'exif-saturation'                  => 'Saturation',
+'exif-sharpness'                   => 'Nitiditate',
+'exif-devicesettingdescription'    => 'Description del configurationes del apparato',
+'exif-subjectdistancerange'        => 'Intervallo de distantia del subjecto',
+'exif-imageuniqueid'               => 'ID unic del imagine',
+'exif-gpsversionid'                => 'Version del etiquetta GPS',
+'exif-gpslatituderef'              => 'Latitude nord o sud',
+'exif-gpslatitude'                 => 'Latitude',
+'exif-gpslongituderef'             => 'Longitude est o west',
+'exif-gpslongitude'                => 'Longitude',
+'exif-gpsaltituderef'              => 'Referentia de altitude',
+'exif-gpsaltitude'                 => 'Altitude',
+'exif-gpstimestamp'                => 'Hora GPS (horologio atomic)',
+'exif-gpssatellites'               => 'Satellites usate pro mesura',
+'exif-gpsstatus'                   => 'Stato del receptor',
+'exif-gpsmeasuremode'              => 'Modo de mesura',
+'exif-gpsdop'                      => 'Precision de mesura',
+'exif-gpsspeedref'                 => 'Unitate de velocitate',
+'exif-gpsspeed'                    => 'Velocitate del receptor GPS',
+'exif-gpstrackref'                 => 'Referentia pro direction de movimento',
+'exif-gpstrack'                    => 'Direction de movimento',
+'exif-gpsimgdirectionref'          => 'Referentia pro direction de imagine',
+'exif-gpsimgdirection'             => 'Direction de imagine',
+'exif-gpsmapdatum'                 => 'Datos de examination geodesic usate',
+'exif-gpsdestlatituderef'          => 'Referentia pro latitude de destination',
+'exif-gpsdestlatitude'             => 'Latitude de destination',
+'exif-gpsdestlongituderef'         => 'Referentia pro longitude de destination',
+'exif-gpsdestlongitude'            => 'Longitude de destination',
+'exif-gpsdestbearingref'           => 'Referentia pro relevamento de destination',
+'exif-gpsdestbearing'              => 'Relevamento de destination',
+'exif-gpsdestdistanceref'          => 'Referentia pro distantia a destination',
+'exif-gpsdestdistance'             => 'Distantia a destination',
+'exif-gpsprocessingmethod'         => 'Nomine de methodo de processamento GPS',
+'exif-gpsareainformation'          => 'Nomine de area GPS',
+'exif-gpsdatestamp'                => 'Data GPS',
+'exif-gpsdifferential'             => 'Correction differential GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'Non comprimite',
+
+'exif-unknowndate' => 'Data incognite',
+
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Invertite horizontalmente', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Rotate 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Invertite verticalmente', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Rotate 90° in senso antihorologic e invertite verticalmente', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Rotate 90° in senso horologic', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Rotate 90° in senso horologic e invertite verticalmente', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rotate 90° in senso antihorologic', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'formato a blocos (chunky)',
+'exif-planarconfiguration-2' => 'formato planar',
+
+'exif-componentsconfiguration-0' => 'non existe',
+
+'exif-exposureprogram-0' => 'Non definite',
+'exif-exposureprogram-1' => 'Manual',
+'exif-exposureprogram-2' => 'Programma normal',
+'exif-exposureprogram-3' => 'Prioritate del apertura',
+'exif-exposureprogram-4' => 'Prioritate del obturator',
+'exif-exposureprogram-5' => 'Programma creative (preferentia verso profunditate de campo)',
+'exif-exposureprogram-6' => 'Programma de action (preferentia verso rapiditate del obturator)',
+'exif-exposureprogram-7' => 'Modo de portrait (pro subjectos vicin con fundo foras de foco)',
+'exif-exposureprogram-8' => 'Modo panorama (pro photos de panoramas con fundo in foco)',
+
+'exif-subjectdistance-value' => '$1 metros',
+
+'exif-meteringmode-0'   => 'Incognite',
+'exif-meteringmode-1'   => 'Media',
+'exif-meteringmode-2'   => 'Media pesate in centro',
+'exif-meteringmode-3'   => 'Puncto',
+'exif-meteringmode-4'   => 'MultiPuncto',
+'exif-meteringmode-5'   => 'Patrono',
+'exif-meteringmode-6'   => 'Partial',
 'exif-meteringmode-255' => 'Altere',
+
+'exif-lightsource-0'   => 'Incognite',
+'exif-lightsource-1'   => 'Lumine diurne',
+'exif-lightsource-2'   => 'Fluorescente',
+'exif-lightsource-3'   => 'Tungsten (lumine incandescente)',
+'exif-lightsource-4'   => 'Flash',
+'exif-lightsource-9'   => 'Tempore clar',
+'exif-lightsource-10'  => 'Tempore nubilose',
+'exif-lightsource-11'  => 'Umbra',
+'exif-lightsource-12'  => 'Fluorescente de lumine diurne (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Fluorescente blanc diurne (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Fluorescente blanc fresc (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Fluorescente blanc (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Lumine standard A',
+'exif-lightsource-18'  => 'Lumine standard B',
+'exif-lightsource-19'  => 'Lumine standard C',
+'exif-lightsource-24'  => 'Tungsten de studio ISO',
+'exif-lightsource-255' => 'Altere origine de lumine',
+
+'exif-focalplaneresolutionunit-2' => 'uncias',
+
+'exif-sensingmethod-1' => 'Non definite',
+'exif-sensingmethod-2' => 'Sensor de area de colores a singule chip',
+'exif-sensingmethod-3' => 'Sensor de area de colores a duo chips',
+'exif-sensingmethod-4' => 'Sensor de area de colores a tres chips',
+'exif-sensingmethod-5' => 'Sensor de area sequential de colores',
+'exif-sensingmethod-7' => 'Sensor trilinear',
+'exif-sensingmethod-8' => 'Sensor de color linear sequential',
+
+'exif-scenetype-1' => 'Un imagine directemente photographiate',
+
+'exif-customrendered-0' => 'Processo normal',
+'exif-customrendered-1' => 'Processo personalisate',
+
+'exif-exposuremode-0' => 'Exposition automatic',
+'exif-exposuremode-1' => 'Exposition manual',
+'exif-exposuremode-2' => 'Bracketing automatic',
+
+'exif-whitebalance-0' => 'Balancia de blanc automatic',
+'exif-whitebalance-1' => 'Balancia de blanc manual',
+
+'exif-scenecapturetype-0' => 'Standard',
+'exif-scenecapturetype-1' => 'Panorama',
+'exif-scenecapturetype-2' => 'Portrait',
+'exif-scenecapturetype-3' => 'Scena nocturne',
+
+'exif-gaincontrol-0' => 'Nulle',
+'exif-gaincontrol-1' => 'Basse ganio positive',
+'exif-gaincontrol-2' => 'Alte ganio positive',
+'exif-gaincontrol-3' => 'Basse ganio negative',
+'exif-gaincontrol-4' => 'Alte ganio negative',
+
+'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Suave',
+'exif-contrast-2' => 'Forte',
+
+'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Basse saturation',
+'exif-saturation-2' => 'Alte saturation',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Dulce',
+'exif-sharpness-2' => 'Dur',
+
+'exif-subjectdistancerange-0' => 'Incognite',
+'exif-subjectdistancerange-1' => 'Macro',
+'exif-subjectdistancerange-2' => 'Vista proxime',
+'exif-subjectdistancerange-3' => 'Vista distante',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Latitude nord',
+'exif-gpslatitude-s' => 'Latitude sud',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Longitude est',
+'exif-gpslongitude-w' => 'Longitude west',
+
+'exif-gpsstatus-a' => 'Mesura in progresso',
+'exif-gpsstatus-v' => 'Interoperabilitate del mesura',
+
+'exif-gpsmeasuremode-2' => 'Mesura bidimensional',
+'exif-gpsmeasuremode-3' => 'Mesura tridimensional',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometros per hora',
+'exif-gpsspeed-m' => 'Millias per hora',
+'exif-gpsspeed-n' => 'Nodos',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Direction real',
+'exif-gpsdirection-m' => 'Direction magnetic',
 
 # External editor support
 'edit-externally'      => 'Modifica iste file con un programma externe',
@@ -2150,30 +2456,209 @@ Le alteres essera initialmente celate.
 'namespacesall'    => 'totes',
 'monthsall'        => 'totes',
 
+# E-mail address confirmation
+'confirmemail'             => 'Confirmar adresse de e-mail',
+'confirmemail_noemail'     => 'Tu non ha configurate un adresse de e-mail valide in tu [[Special:Preferences|preferentias de usator]].',
+'confirmemail_text'        => '{{SITENAME}} require que tu valida tu adresse de e-mail ante que tu usa functiones involvente e-mail.
+Activa le button infra pro inviar un message de confirmation a tu adresse.
+Le message includera un ligamine continente un codice;
+visita le ligamine in tu navigator pro confirmar que tu adresse de e-mail es valide.',
+'confirmemail_pending'     => '<div class="error">Un codice de confirmation ha ja essite inviate a te;
+si tu ha recentemente create tu conto, es recommendate attender le arrivata de illo durante alcun minutas ante de provar requestar un nove codice.</div>',
+'confirmemail_send'        => 'Inviar un codice de confirmation',
+'confirmemail_sent'        => 'Message de confirmation inviate.',
+'confirmemail_oncreate'    => 'Un codice de confirmation ha essite inviate a tu adresse de e-mail.
+Iste codice non es necessari pro aperir un session, ma es requirite pro activar omne functiones a base de e-mail in le wiki.',
+'confirmemail_sendfailed'  => 'Non poteva inviar message de confirmation.
+Verifica que le adresse non ha characteres invalide.
+
+Le servitor de e-mail retornava: $1',
+'confirmemail_invalid'     => 'Codice de confirmation invalide.
+Es possibile que le codice ha expirate.',
+'confirmemail_needlogin'   => 'Tu debe $1 pro confirmar tu adresse de e-mail.',
+'confirmemail_success'     => 'Tu adresse de e-mail ha essite confirmate.
+Tu pote ora aperir un session e fruer te del wiki.',
+'confirmemail_loggedin'    => 'Tu adresse de e-mail ha ora essite confirmate.',
+'confirmemail_error'       => 'Un problema occureva durante le immagazinage de tu confirmation.',
+'confirmemail_subject'     => 'Confirmation de adresses de e-mail in {{SITENAME}}',
+'confirmemail_body'        => 'Un persona, probabilemente tu, usante le adresse IP $1,
+ha registrate un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
+
+Pro confirmar que iste conto es de facto tue, e pro activar le functiones
+de e-mail in {{SITENAME}}, visita iste ligamine in tu navigator:
+
+$3
+
+Si tu *non* ha registrate le conto, seque iste ligamine
+pro cancellar le confirmation del adresse de e-mail:
+
+$5
+
+Iste codice de confirmation expirara a $4.',
+'confirmemail_invalidated' => 'Confirmation del adresse de e-mail cancellate',
+'invalidateemail'          => 'Cancellar confirmation del adresse de e-mail',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Le transclusion interwiki es disactivate]',
+'scarytranscludefailed'   => '[Falleva de obtener patrono pro $1; pardono]',
+'scarytranscludetoolong'  => '[URL es troppo longe; pardono]',
+
+# Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">Retroligamines a iste pagina:<br />
+$1
+</div>',
+'trackbackremove'   => ' ([$1 Deler])',
+'trackbacklink'     => 'Retroligamine',
+'trackbackdeleteok' => 'Le retroligamine ha essite delite con successo.',
+
+# Delete conflict
+'deletedwhileediting' => 'Attention: Iste pagina ha essite delite post que tu comenciava a modificar lo!',
+'confirmrecreate'     => "Le usator [[User:$1|$1]] ([[User talk:$1|discussion]]) ha delite iste pagina post que tu comenciava a modificar lo, dante le motivo:
+: ''$2''
+Per favor confirma que tu realmente vole recrear iste pagina.",
+'recreate'            => 'Recrear',
+
+# HTML dump
+'redirectingto' => 'Redirection verso [[$1]] in progresso...',
+
 # action=purge
+'confirm_purge'        => 'Rader le cache de iste pagina?
+
+$1',
 'confirm_purge_button' => 'OK',
 
+# AJAX search
+'searchcontaining' => "Cercar paginas continente ''$1''.",
+'searchnamed'      => "Cercar paginas nominate ''$1''.",
+'articletitles'    => "Paginas comenciante con ''$1''",
+'hideresults'      => 'Celar resultatos',
+'useajaxsearch'    => 'Usar cerca con AJAX',
+
+# Multipage image navigation
+'imgmultipageprev' => '← precedente pagina',
+'imgmultipagenext' => 'sequente pagina →',
+'imgmultigo'       => 'Ir!',
+'imgmultigoto'     => 'Visitar pagina $1',
+
+# Table pager
+'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'desc',
+'table_pager_next'         => 'Sequente pagina',
+'table_pager_prev'         => 'Precedente pagina',
+'table_pager_first'        => 'Prime pagina',
+'table_pager_last'         => 'Ultime pagina',
+'table_pager_limit'        => 'Monstrar $1 entratas per pagina',
+'table_pager_limit_submit' => 'Ir',
+'table_pager_empty'        => 'Nulle resultatos',
+
+# Auto-summaries
+'autosumm-blank'   => 'Se elimina tote le contento del pagina',
+'autosumm-replace' => "Reimplacia contento del pagina con '$1'",
+'autoredircomment' => 'Redirection verso [[$1]]',
+'autosumm-new'     => 'Nove pagina: $1',
+
+# Live preview
+'livepreview-loading' => 'Cargamento in progresso…',
+'livepreview-ready'   => 'Cargamento in progresso… Preste!',
+'livepreview-failed'  => 'Le previsualisation directe ha fallite! Prova le previsualisation normal.',
+'livepreview-error'   => 'Impossibile connecter: $1 "$2". Prova le previsualisation normal.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Le modificationes plus nove que $1 secundas possibilemente non se revela in iste lista.',
+'lag-warn-high'   => 'A causa de un alte latentia del servitor de base de datos, le modificationes plus nove que $1 secundas possibilemente non se revela in iste lista.',
+
 # Watchlist editor
-'watchlistedit-raw-title'  => 'Modification del observatorio in forma crude',
-'watchlistedit-raw-legend' => 'Modification del observatorio in forma de un lista simple de titulos',
+'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',
+'watchlistedit-noitems'        => 'Tu observatorio contine nulle titulos.',
+'watchlistedit-normal-title'   => 'Modificar observatorio',
+'watchlistedit-normal-legend'  => 'Eliminar titulos del observatorio',
+'watchlistedit-normal-explain' => 'Le titulos in tu observatorio se monstra infra.
+Pro eliminar un titulo, marca le quadrato correspondente, e clicca "Eliminar titulos".
+Tu pote etiam [[Special:Watchlist/raw|modificar le lista in forma crude]].',
+'watchlistedit-normal-submit'  => 'Eliminar titulos',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate de tu observatorio:',
+'watchlistedit-raw-title'      => 'Modification del observatorio in forma crude',
+'watchlistedit-raw-legend'     => 'Modification del observatorio in forma de un lista simple de titulos',
+'watchlistedit-raw-explain'    => 'Le titulos in tu observatorio se monstra infra, e tu pote adder e eliminar entratas del lista;
+un titulo per linea.
+Quando tu ha finite, clicca "Actualisar observatorio".
+Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
+'watchlistedit-raw-titles'     => 'Titulos:',
+'watchlistedit-raw-submit'     => 'Actualisar observatorio',
+'watchlistedit-raw-done'       => 'Tu observatorio ha essite actualisate.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite addite:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vider cambios relevante',
 'watchlisttools-edit' => 'Vider e modificar le observatorio',
 'watchlisttools-raw'  => 'Modificar observatorio crude',
 
+# Core parser functions
+'unknown_extension_tag' => 'Etiquetta de extension incognite "$1"',
+
 # Special:Version
-'version'              => 'Version', # Not used as normal message but as header for the special page itself
-'version-specialpages' => 'Paginas special',
-'version-other'        => 'Altere',
+'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'Extensiones installate',
+'version-specialpages'             => 'Paginas special',
+'version-parserhooks'              => 'Uncinos del analysator syntactic',
+'version-variables'                => 'Variabiles',
+'version-other'                    => 'Altere',
+'version-mediahandlers'            => 'Executores de media',
+'version-hooks'                    => 'Uncinos',
+'version-extension-functions'      => 'Functiones de extensiones',
+'version-parser-extensiontags'     => 'Etiquettas de extension del analysator syntactic',
+'version-parser-function-hooks'    => 'Uncinos de functiones del analysator syntactic',
+'version-skin-extension-functions' => 'Functiones de extension de stilos',
+'version-hook-name'                => 'Nomine del uncino',
+'version-hook-subscribedby'        => 'Subscribite per',
+'version-version'                  => 'Version',
+'version-license'                  => 'Licentia',
+'version-software'                 => 'Software installate',
+'version-software-product'         => 'Producto',
+'version-software-version'         => 'Version',
 
 # Special:Filepath
-'filepath-page' => 'File:',
+'filepath'         => 'Cammino del file',
+'filepath-page'    => 'File:',
+'filepath-submit'  => 'Cammino',
+'filepath-summary' => 'Iste pagina special contine le cammino complete de un file.
+Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.
+
+Entra le nomine del file sin le prefixo "{{ns:image}}:".',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Cercar',
+'fileduplicatesearch'          => 'Cercar files duplicate',
+'fileduplicatesearch-summary'  => "Cercar files duplicate a base de lor summas de verification ''(hash).''
+
+Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
+'fileduplicatesearch-legend'   => 'Cercar un duplicato',
+'fileduplicatesearch-filename' => 'Nomine del file:',
+'fileduplicatesearch-submit'   => 'Cercar',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Grandor del file: $3<br />Typo MIME: $4',
+'fileduplicatesearch-result-1' => 'Le file "$1" ha nulle duplicato identic.',
+'fileduplicatesearch-result-n' => 'Le file "$1" ha {{PLURAL:$2|1 duplicato|$2 duplicatos}} identic.',
 
 # Special:SpecialPages
-'specialpages' => 'Paginas special',
+'specialpages'                   => 'Paginas special',
+'specialpages-note'              => '----
+* Paginas special normal.
+* <span class="mw-specialpagerestricted">Paginas special restringite.</span>',
+'specialpages-group-maintenance' => 'Reportos de mantenentia',
+'specialpages-group-other'       => 'Altere paginas special',
+'specialpages-group-login'       => 'Aperir session / crear conto',
+'specialpages-group-changes'     => 'Modificationes recente e registros',
+'specialpages-group-media'       => 'Reportos de media e cargas',
+'specialpages-group-users'       => 'Usatores e derectos',
+'specialpages-group-highuse'     => 'Paginas multo usate',
+'specialpages-group-pages'       => 'Lista de paginas',
+'specialpages-group-pagetools'   => 'Instrumentos pro paginas',
+'specialpages-group-wiki'        => 'Datos e instrumentos pro Wiki',
+'specialpages-group-redirects'   => 'Redirection de paginas special',
+'specialpages-group-spam'        => 'Instrumentos antispam',
+
+# Special:Blankpage
+'blankpage'              => 'Pagina vacue',
+'intentionallyblankpage' => 'Iste pagina es intentionalmente vacue',
 
 );

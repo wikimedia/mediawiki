@@ -539,8 +539,7 @@ Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:Specialpages|{
 'error'                => 'Foutmelding',
 'databaseerror'        => 'Fout in de databanke',
 'dberrortext'          => 'Bie \'t zeuken is een syntaxfout in de databanke op-etrejen.
-De oorzake hiervan kan een illegale zeukactie ween (zie $5),
-of \'t kan dujen op een fout in de pregrammetuur.
+De oorzake hiervan kan dujen op een fout in de pregrammetuur.
 
 De leste zeukpoging in de databanke was:
 <blockquote><tt>$1</tt></blockquote>
@@ -657,7 +656,8 @@ De op-egeven rejen is ''$2''.",
 'nouserspecified'            => 'Vul asjeblief een naam in',
 'wrongpassword'              => "verkeerd wachwoord, prebeer 't opniej.",
 'wrongpasswordempty'         => "Gien wachwoord in-evoerd. Prebeer 't opniej.",
-'passwordtooshort'           => "Wachwoord is te kort. 't Mut uut minstens $1 tekens bestaon.",
+'passwordtooshort'           => "Wachwoord is te kort.
+'t Mut uut minstens $1 {{PLURAL:$1|teken|tekens}} bestaon.",
 'mailmypassword'             => 'Niej wachwoord opsturen',
 'passwordremindertitle'      => 'niej tiedelik wachwoord veur {{SITENAME}}',
 'passwordremindertext'       => 'Iemand vanof \'t IP-adres $1 (werschienlijk jiezelf) hef evreugen um een niej wachwoord veur {{SITENAME}} ($4) toe te sturen. \'t Nieje wachwoord veur gebruker "$2" is "$3". Advies: noen anmelden en \'t wachwoord wiezigigen.',
@@ -665,7 +665,8 @@ De op-egeven rejen is ''$2''.",
 'passwordsent'               => 'Der is een niej wachwoord verstuurd naor \'t e-mailadres van gebruker "$1". Meld an, a-j \'t wachwoord ontvangen.',
 'blocked-mailpassword'       => 'Dit IP-adres is eblokkeerd. Dit betekent da-j neet bewarken kunnen en dat {{SITENAME}} joew wachwoord neet weerummehaolen kan, dit wonnen edaon um misbruuk tegen te gaon.',
 'eauthentsent'               => "Der is een bevestigingsberich naor 't op-egeven e-mailadres verstuurd. Veurdat der veerdere berichen naor dit e-mailadres verstuurd kunnen wonnen, mu-j de instructies volgen in 't toe-esturen berich, um te bevestigen da-j joe eigen daodwarkelijk an-emeld hemmen.",
-'throttled-mailpassword'     => 'In de leste $1 ure is der al een wachwoordherinnering estuurd. Um misbruuk te veurkoemen wonnen der mar één wachwoordherinnering per $1 ure verzunnen.',
+'throttled-mailpassword'     => 'In de leste {{PLURAL:$1|uur|$1 ure}} is der al een wachwoordherinnering estuurd.
+Um misbruuk te veurkoemen wonnen der mar één wachwoordherinnering per {{PLURAL:$1|uur|$1 ure}} verzunnen.',
 'mailerror'                  => "Fout bie 't versturen van berich: $1",
 'acct_creation_throttle_hit' => 'Je hemmen al $1 gebrukersnamen an-emaak. Je kunnen der neet nog meer anmaken.',
 'emailauthenticated'         => 'Joew e-mailadres is bevestig op $1.',
@@ -676,8 +677,8 @@ De op-egeven rejen is ''$2''.",
 'accountcreated'             => 'Gebrukersprefiel is an-emaak',
 'accountcreatedtext'         => 'De gebrukersnaam veur $1 is an-emaak.',
 'createaccount-title'        => 'Gebrukers anmaken veur {{SITENAME}}',
-'createaccount-text'         => 'Der hef der ene ($1) een gebruker veur $2 an-emaak op {{SITENAME}}
-($4). \'t Wachwoord veur "$2" is "$3". Meld je noen an en wiezig \'t wachwoord.
+'createaccount-text'         => 'Der hef der ene een gebruker veur $2 an-emaak op {{SITENAME}} ($4). \'t Wachwoord veur "$2" is "$3".
+Meld je noen an en wiezig \'t wachwoord.
 
 Negeer dit berich as disse gebruker zonder joew toestemming an-emaak is.',
 'loginlanguagelabel'         => 'Taal: $1',
@@ -753,7 +754,7 @@ De rejen hierveur was:
 * Verloop nao: $6
 
 Je kunnen kontak opnemen mit $1 of een van de aandere
-[[{{MediaWiki:grouppage-sysop}}|beheerders]] um de blokkering te bespreken.
+[[{{MediaWiki:Grouppage-sysop}}|beheerders]] um de blokkering te bespreken.
 
 NB: je kunnen de optie "een berich sturen" neet gebruken, behalven a-j een geldig e-mailadres op-egeven hemmen in de [[Special:Preferences|gebrukersveurkeuren]].
 
@@ -1206,7 +1207,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'rcshowhideanons'                   => '$1 annenieme gebrukers',
 'rcshowhidepatr'                    => '$1 nao-ekeken bewarkingen',
 'rcshowhidemine'                    => '$1 mien bewarkingen',
-'rclinks'                           => 'Bekiek de leste $1 wiezigingen van de of-eleupen $2 dagen<br>$3',
+'rclinks'                           => 'Bekiek de leste $1 wiezigingen van de of-eleupen $2 dagen<br />$3',
 'diff'                              => 'wiezig',
 'hist'                              => 'gesch',
 'hide'                              => 'verbarg',
@@ -1262,8 +1263,9 @@ Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken
 'illegalfilename'             => 'De bestansnaam "$1" bevat karakters dee neet in namen van artikels veur maggen koemen. Geef \'t bestand een aandere naam, en prebeer \'t dan opniej toe te voegen.',
 'badfilename'                 => 'De naam van \'t bestand is ewiezig naor "$1".',
 'filetype-badmime'            => 'Bestanden mit \'t MIME-type "$1" maggen hier neet toe-evoeg wonnen.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' is een ongewunst bestanstype. An-ewezen bestanstypes bin \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' is gien toe-eleuten bestanstype. Toe-eleuten bestanstypes bin \$2.",
+'filetype-unwanted-type'      => "'''\".\$1\"''' is een ongewunst bestanstype. An-ewezen {{PLURAL:\$3|bestanstype is|bestanstypes bin}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' is gien toe-eleuten bestanstype.
+Toe-eleuten {{PLURAL:\$3|bestanstype is|bestanstypes bin}} \$2.",
 'filetype-missing'            => 'Dit bestand hef gien extensie (bv. ".jpg").',
 'large-file'                  => "'t Wonnen an-raojen dat bestanden neet groter bin as $1, dit bestand is $2.",
 'largefileserver'             => "'t Bestand is groter as dat de server toesteet.",
@@ -1281,8 +1283,8 @@ Naam van 't bestaonde bestand: <strong><tt>$2</tt></strong><br />
 As de ofbeelding dee-j krek nao-ekeken hemmen dezelfde grootte hef, dan is 't neet neudig um 't opniej toe te voegen.",
 'file-thumbnail-no'           => "De bestansnaam begint mit <strong><tt>$1</tt></strong>. Dit is werschienlijk een verkleinde ofbeelding <i>(overzichsofbeelding)</i>.
 A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de bestansnaam.",
-'fileexists-forbidden'        => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't toe te voegen onder een aandere naam.
-[[Ofbeelding:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Een ofbeelding mit disse naam besteet al;
+je wonnen verzoch 't toe te voegen onder een aandere naam. [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Een bestand mit disse naam besteet al in de gezamelijke bestanslokasie; gao weerumme en laod 't bestand onder een nieje naam. [[Image:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dit bestand is liekeleens as {{PLURAL:$1|'t volgende bestand|de volgende bestanden}}:",
 'successfulupload'            => 'Bestanstoevoeging was succesvol',
@@ -1351,7 +1353,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'filehist-filesize'              => 'Bestansgrootte',
 'filehist-comment'               => 'Opmarkingen',
 'imagelinks'                     => 'Gebruuk van dit bestand',
-'linkstoimage'                   => "Disse ofbeelding wonnen gebruuk op de volgende pagina's:",
+'linkstoimage'                   => "Disse ofbeelding wonnen gebruuk op de volgende {{PLURAL:$1|pagina|$1 pagina's}}:",
 'nolinkstoimage'                 => 'Ofbeelding is neet in gebruuk.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Meer verwiezingen]] naor dit bestand bekieken.',
 'redirectstofile'                => "{{PLURAL:$1|'t Volgende bestand verwies|De volgende $1 bestanden verwiezen}} deur naor dit bestand:",
@@ -2083,7 +2085,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'nextdiff'     => 'volgende wieziging →',
 
 # Media information
-'mediawarning'         => "'''Waorschuwing:''' dit bestand bevat meschien codering dee slich is veur 't systeem. <hr>",
+'mediawarning'         => "'''Waorschuwing:''' dit bestand bevat meschien codering dee slich is veur 't systeem. <hr />",
 'imagemaxsize'         => 'Maximumgrootte van ofbeeldingen op de beschrievingspagina:',
 'thumbsize'            => "Grootte van 't ofbeeldingsoverzichte (thumbnail):",
 'file-info'            => 'Bestansgrootte: $1, MIME-type: $2',
@@ -2306,7 +2308,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 
 # External editor support
 'edit-externally'      => 'Wiezig dit bestand mit een extern pregramma',
-'edit-externally-help' => 'Zie de [[meta:Help:External editors|installasie-instructies]] veur meer infermasie.',
+'edit-externally-help' => 'Zie de [http://meta.wikimedia.org/wiki/Help:External_editors installasie-instructies] veur meer infermasie.',
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall'  => 'alles',
@@ -2400,13 +2402,16 @@ Kiek de pagina op de normale meniere nao.',
 'watchlistedit-noitems'        => 'Joew volglieste is leeg.',
 'watchlistedit-normal-title'   => 'Volglieste bewarken',
 'watchlistedit-normal-legend'  => "Disse pagina's van mien volglieste ofhaolen.",
-'watchlistedit-normal-explain' => "Pagina's op joew volglieste wonnen hieronder weer-egeven. Um een pagina van joew volglieste of te haolen mu-j 't vakjen dernaos sillekteren, en klik dan op 'Pagina's derof haolen'. Je kunnen
-	oek [[Special:Watchlist/raw|de roege lieste bewarken]],
-	of [[Special:Watchlist/clear|haol alle pagina's derof]].",
+'watchlistedit-normal-explain' => "Pagina's op joew volglieste wonnen hieronder weer-egeven.
+Um een pagina van joew volglieste of te haolen mu-j 't vakjen dernaos sillekteren, en klik dan op 'Pagina's derof haolen'.
+Je kunnen oek [[Special:Watchlist/raw|de roege lieste bewarken]].",
 'watchlistedit-normal-submit'  => "Pagina's derof haolen",
 'watchlistedit-raw-title'      => 'Roewe volglieste bewarken',
 'watchlistedit-raw-legend'     => 'Roewe volglieste bewarken',
-'watchlistedit-raw-explain'    => "Hieronder staon pagina’s op joew volglieste. Je kunnen de lieste bewarken deur pagina’s deruut vort te haolen en derbie te te doon. Eén pagina per regel. A-j ree bin, klik dan op ‘Volglieste biewarken’. Je kunnen oek [[Speciaal:Watchlist/edit|'t standard bewarkingsscharm gebruken]].",
+'watchlistedit-raw-explain'    => "Hieronder staon pagina’s op joew volglieste. Je kunnen de lieste bewarken deur pagina’s deruut vort te haolen en derbie te te doon. 
+Eén pagina per regel.
+A-j ree bin, klik dan op ‘Volglieste biewarken’.
+Je kunnen oek [[Special:Watchlist/edit|'t standard bewarkingsscharm gebruken]].",
 'watchlistedit-raw-titles'     => 'Titels:',
 'watchlistedit-raw-submit'     => 'Volglieste biewarken',
 'watchlistedit-raw-done'       => 'Joew volglieste is bie-ewörk.',

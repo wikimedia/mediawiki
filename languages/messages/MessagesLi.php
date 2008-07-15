@@ -346,8 +346,7 @@ $messages = array(
 'error'                => 'Fout',
 'databaseerror'        => 'Databasefout',
 'dberrortext'          => 'Bie \'t zeuke is \'n syntaxfout in de database opgetreje.
-Dit kint zien veroorzaak door \'n óngeljige zeukactie (zuug $5),
-of \'t duujt op \'n fout in de software.
+Dit kint zien veroorzaak door \'n fout in de software.
 De lètste zeukpoeging in de database waor:
 <blockquote><tt>$1</tt></blockquote>
 vanoet de functie "<tt>$2</tt>".
@@ -554,7 +553,10 @@ De opgegaeve reje is:
 * Aanvang blokkade: $8
 * Einde blokkade: $6
 
-Doe kins deze blokkaasj bespraeke mèt $1 of 'ne angere [[{{MediaWiki:Grouppage-sysop}}|beheerder]]. Doe kins gén gebroek make van de functie 'e-mail deze gebroeker', tenzijse 'n geldig e-mailadres opgegaeve höbs in dien [[{{ns:special}}:Preferences|veurkeure]] en 't gebroek van deze functie neet is geblokkeerd. Dien hujig IP-adres is $3 en ' nömmer vanne blokkaasj is #$5. Vermeld beide gegaeves esse örges euver deze blokkaasj reageers.",
+Doe kins deze blokkaasj bespraeke mèt $1 of 'ne angere [[{{MediaWiki:Grouppage-sysop}}|beheerder]]. Doe kins gén gebroek make van de functie 'e-mail deze gebroeker', tenzijse 'n geldig e-mailadres opgegaeve höbs in dien [[Special:Preferences|veurkeure]] en 't gebroek van deze functie neet is geblokkeerd.
+
+Dien nömmer vanne blokkaasj is #$5.
+Vermeld das esse örges euver deze blokkaasj reageers.",
 'blockednoreason'                  => 'geine ree opgegaeve',
 'blockedoriginalsource'            => "Hiej onger stuit de bronteks van '''$1''':",
 'blockededitsource'                => "Hiej onger stuit de teks van '''dien bewèrkinge''' aan '''$1''':",
@@ -576,7 +578,8 @@ Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäö
 'accmailtext'                      => "'t Wachwaord veur '$1' is nao $2 versjtuurd.",
 'newarticle'                       => '(Nuuj)',
 'newarticletext'                   => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit.
-Type in de box hiejónger óm de pazjena te beginne (zuug de [[Help:Contents|helppazjena]] veur mier informatie). Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp van diene browser.",
+Type in de box hiejónger óm de pazjena te beginne (zuug de [[{{MediaWiki:Helppage}}|helppazjena]] veur mier informatie).
+Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp van diene browser.",
 'anontalkpagetext'                 => "----''Dit is de euverlèkpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemaak of dae 't neet gebroek. Daoveur gebroeke v'r 't IP-adres óm de gebroeker te identificere. Dat adres kan waere gedeild doer mierdere gebroekers. Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:Userlogin|'n account crëere of inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
 'noarticletext'                    => 'Dees pazjena bevat gein teks.
 De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pazjena\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pazjena bewirke]</span>.',
@@ -1148,7 +1151,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'filehist-filesize'              => 'Bestandjsgrootte',
 'filehist-comment'               => 'Opmèrking',
 'imagelinks'                     => 'Aafbeildingsverwiezinge',
-'linkstoimage'                   => "Dees aafbeilding weurt op de volgende pazjena's gebroek:",
+'linkstoimage'                   => "Dees aafbeilding weurt op de volgende {{PLURAL:$1|pazjena|pazjena's}} gebroek:",
 'nolinkstoimage'                 => 'Gein enkele pazjena gebroek dees aafbeilding.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
 'redirectstofile'                => 'De volgende bestaande verwèèze door naor dit bestaand:',
@@ -1237,7 +1240,9 @@ De lengde van de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '
 
 'disambiguations'      => "Verdudelikingspazjena's",
 'disambiguationspage'  => 'Template:Verdudeliking',
-'disambiguations-text' => "Hiej onger staon pagina's die verwieze nao 'ne '''redirect'''. Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen. <br />'ne pagina wörd gezeen es redirect wen d'r 'n sjabloon op stuit det gelink is vanaaf [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Hiej onger staon pagina's die verwieze nao 'ne '''redirect'''.
+Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen.<br />
+'ne pagina wörd gezeen es redirect wen d'r 'n sjabloon op stuit det gelink is vanaaf [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Dobbel redirects',
 'doubleredirectstext' => '<b>Kiek oet:</b> In dees lies kanne redirects sjtaon die neet dao-in toeshure. Dat kump meistal doordat nao de #REDIRECT nog anger links op de pazjena sjtaon.<br />
@@ -1342,7 +1347,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'allpages-bad-ns'   => '{{SITENAME}} haet gein naamruumde mit de naam "$1".',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Categorie|Categorieë}}',
+'categories'                    => 'Categorieë',
 'categoriespagetext'            => 'De wiki haet de volgende categorieë:',
 'categoriesfrom'                => 'Categorië waergaeve vanaaf:',
 'special-categories-sort-count' => 'op aantal sortere',
@@ -1501,7 +1506,8 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 'rollback-success'            => 'Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.',
 'sessionfailure'              => "d'r Liek 'n probleem te zeen mit dien aanmelsessie. Diene hanjeling is gestop oet veurzorg taenge 'n beveiligingsrisico (det bestuit oet meugelik \"hijacking\"(euverkape) van deze sessie). Gao 'n pazjena trök, laaj die pazjena opnuuj en probeer 't nog ins.",
 'protectlogpage'              => "Logbook besjermde pazjena's",
-'protectlogtext'              => "Hiej onger staon pazjena's die recèntelik beveilig zeen, of wo van de beveiliging is opgeheve. Zuug de [[{{ns:special}}:Protectedpages|lies mit beveiligde pazjena's]] veur alle hujige beveiligde pazjena's.",
+'protectlogtext'              => "Hiej onger staon pazjena's die recèntelik beveilig zeen, of wo van de beveiliging is opgeheve.
+Zuug de [[Special:Protectedpages|lies mit beveiligde pazjena's]] veur alle hujige beveiligde pazjena's.",
 'protectedarticle'            => '$1 besjermd',
 'modifiedarticleprotection'   => 'verangerde beveiligingsniveau van "[[$1]]"',
 'unprotectedarticle'          => 'besjerming van $1 opgeheve',
@@ -1570,8 +1576,8 @@ Dit zeen de hujige instellinge veur de pazjena <strong>[[$1]]</strong>:",
 'cannotundelete'               => "Verwiedere mislùk. Mesjien haet 'ne angere gebroeker de pazjena al verwiederd.",
 'undeletedpage'                => "<big>'''$1 is trökgeplaats'''</big>
 
-In 't [[{{ns:special}}:Log/delete|logbook verwiederde pazjena's]] staon recènte verwiederinge en herstelhanjelinge.",
-'undelete-header'              => "Zuug [[{{ns:special}}:Log/delete|'t logbook verwiederde pazjena's]] veur recènt verwiederde pazjena's.",
+In 't [[Special:Log/delete|logbook verwiederde pazjena's]] staon recènte verwiederinge en herstelhanjelinge.",
+'undelete-header'              => "Zuug [[Special:Log/delete|'t logbook verwiederde pazjena's]] veur recènt verwiederde pazjena's.",
 'undelete-search-box'          => "Doorzeuk verwiederde pazjena's",
 'undelete-search-prefix'       => "Tuun pazjena's die beginne mit:",
 'undelete-search-submit'       => 'Zeuk',
@@ -1775,7 +1781,7 @@ De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make 
 
 Gaef in 't óngersjtaonde veldj de name van de te exportere pazjena's op, ein pazjena per regel, en gaef aan ofs te alle versies mit de bewerkingssamevatting of allein de hujige versies mit de bewirkingssamevatting wils exportere.
 
-In 't letste geval kèns te ouch 'ne link gebroeken, bieveurbild [[Special:Export/{{Mediawiki:Mainpage}}]] veur de pazjena \"{{Mediawiki:Mainpage}}\".",
+In 't letste geval kèns te ouch 'ne link gebroeken, bieveurbild [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] veur de pazjena \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Allein de letste versie, neet de volledige gesjiedenis',
 'exportnohistory'   => "----
 '''Let op:''' 't exportere van de ganse gesjiedenis is oetgezat waeges prestatieree.",
@@ -2279,7 +2285,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 
 # E-mail address confirmation
 'confirmemail'             => 'Bevèstig e-mailadres',
-'confirmemail_noemail'     => 'Doe höbs gein geldig e-mailadres ingegaeve in dien [[{{ns:special}}:Preferences|veurkäöre]].',
+'confirmemail_noemail'     => 'Doe höbs gein geldig e-mailadres ingegaeve in dien [[Special:Preferences|veurkäöre]].',
 'confirmemail_text'        => "Deze wiki vereis dats te dien e-mailadres instèls iedats te e-mailfuncties
 gebroeks. Klik op de knop hieónger óm e bevèstegingsberich nao dien adres te
 sjikke. D'n e-mail zal 'ne link mèt 'n code bevatte; eupen de link in diene
@@ -2390,12 +2396,16 @@ Probeer normaal veurvertuin.',
 'watchlistedit-noitems'        => "Dao sjtaon gein pazjena's op dien volglies.",
 'watchlistedit-normal-title'   => 'Volglies bewirke',
 'watchlistedit-normal-legend'  => "Pazjena's ewegsjaffe van dien volglies",
-'watchlistedit-normal-explain' => "Pazjena's op dien volglies waere hiejónger getuind. Klik op 't veerkentje d'rnaeve óm 'n pazjena eweg te sjaffe. Klik daonao op 'Pazjena's ewegsjaffe'. De kèns ouch [[{{ns:special}}:Watchlist/raw|de roew lies bewirke]].",
+'watchlistedit-normal-explain' => "Pazjena's op dien volglies waere hiejónger getuind.
+Klik op 't veerkentje d'rnaeve óm 'n pazjena eweg te sjaffe. Klik daonao op 'Pazjena's ewegsjaffe'.
+De kèns ouch [[Special:Watchlist/raw|de roew lies bewirke]].",
 'watchlistedit-normal-submit'  => "Pazjena's ewegsjaffe",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|1 pazjena is|$1 pazjena's zeen}} eweggesjaf van dien volglies:",
 'watchlistedit-raw-title'      => 'Roew volglies bewirke',
 'watchlistedit-raw-legend'     => 'Roew volglies bewirke',
-'watchlistedit-raw-explain'    => "Hiejónger sjtaon pazjena's op dien volglies. De kèns de lies bewirke door pazjena's eweg te sjaffe en d'rbie te doon. Ein pazjena per regel. Wens te vaerdig bis, klik dan op 'Volglies biewirke'. De kèns ouch [[{{ns:special}}:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]].",
+'watchlistedit-raw-explain'    => "Hiejónger sjtaon pazjena's op dien volglies. De kèns de lies bewirke door pazjena's eweg te sjaffe en d'rbie te doon. Ein pazjena per regel.
+Wens te vaerdig bis, klik dan op 'Volglies biewirke'.
+De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]].",
 'watchlistedit-raw-titles'     => "Pazjena's:",
 'watchlistedit-raw-submit'     => 'Volglies biewirke',
 'watchlistedit-raw-done'       => 'Dien volglies is biegewirk.',

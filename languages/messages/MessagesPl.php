@@ -10,14 +10,14 @@
  * @author לערי ריינהארט
  * @author Wpedzich
  * @author Leinad
+ * @author Siebrand
  * @author Beau
  * @author Stv
- * @author Siebrand
  * @author Maikking
  * @author Masti
+ * @author Equadus
  * @author Ymar
  * @author Matma Rex
- * @author Equadus
  * @author Lajsikonik
  * @author Szczepan1990
  * @author Herr Kriss
@@ -2083,7 +2083,7 @@ Wybierz inną nazwę.',
 'revertmove'              => 'cofnij',
 'delete_and_move'         => 'Usuń i przenieś',
 'delete_and_move_text'    => '== Przeniesienie wymaga usunięcia innej strony ==
-Strona docelowa „[[:$1|$1]]” istnieje.
+Strona docelowa „[[$1]]” istnieje.
 Czy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?',
 'delete_and_move_confirm' => 'Tak, usuń stronę',
 'delete_and_move_reason'  => 'Usunięto, by zrobić miejsce dla przenoszonej strony',

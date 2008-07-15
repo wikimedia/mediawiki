@@ -392,6 +392,9 @@ $2',
 'ns-specialprotected'  => 'Les páxines especiales nun puen ser editaes.',
 'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye ''$2''.",
 
+# Virus scanner
+'virus-unknownscanner' => 'antivirus desconocíu:',
+
 # Login and logout pages
 'logouttitle'                => 'Desconexón',
 'logouttext'                 => "<strong>Yá tas desconectáu.</strong><br />
@@ -448,7 +451,8 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'nouserspecified'            => "Has especificar un nome d'usuariu.",
 'wrongpassword'              => 'Clave errónea.  Inténtalo otra vuelta.',
 'wrongpasswordempty'         => 'La clave taba en blanco. Inténtalo otra vuelta.',
-'passwordtooshort'           => "La to clave nun ye válida o ye demasiao curtia. Ha tener a lo menos $1 carauteres y ser distinta del to nome d'usuariu.",
+'passwordtooshort'           => "La to clave nun ye válida o ye demasiao curtia.
+Ha tener a lo menos {{PLURAL:$1|1 caráuter|$1 carauteres}} y ser distinta del to nome d'usuariu.",
 'mailmypassword'             => 'Unviame per corréu la clave',
 'passwordremindertitle'      => 'Nueva clave provisional pa {{SITENAME}}',
 'passwordremindertext'       => 'Daquién (seique tu, dende la direición IP $1)
@@ -835,6 +839,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'powersearch-legend'        => 'Busca avanzada',
 'powersearch-ns'            => 'Buscar nos espacios de nome:',
 'powersearch-redir'         => 'Llistar redireiciones',
+'powersearch-field'         => 'Buscar',
 'search-external'           => 'Busca esterna',
 'searchdisabled'            => "La busca en {{SITENAME}} ta desactivada. Mentanto, pues buscar en Google. Has fixate en que'l conteníu de los sos índices de {{SITENAME}} pue tar desfasáu.",
 
@@ -886,7 +891,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'contextchars'             => 'Carauteres de testu per llinia:',
 'stub-threshold'           => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'recentchangesdays'        => "Díes qu'amosar nos cambeos recientes:",
-'recentchangescount'       => "Númberu d'ediciones amosaes en cambeos recientes:",
+'recentchangescount'       => "Númberu d'ediciones amosaes nes páxines de cambeos recientes, historial y rexistru:",
 'savedprefs'               => 'Les tos preferencies quedaron grabaes.',
 'timezonelegend'           => 'Zona horaria',
 'timezonetext'             => '¹Diferencia horaria ente la UTC y la to hora llocal.',
@@ -895,6 +900,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'servertime'               => 'Hora del servidor',
 'guesstimezone'            => 'Obtener del navegador',
 'allowemail'               => 'Dexar a los otros usuarios mandate correos',
+'prefs-searchoptions'      => 'Opciones de busca',
+'prefs-namespaces'         => 'Espacios de nome',
 'defaultns'                => 'Buscar por defeutu nestos espacios de nome:',
 'default'                  => 'por defeutu',
 'files'                    => 'Archivos',
@@ -952,6 +959,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'right-createaccount'        => "Crear cuentes nueves d'usuariu",
 'right-minoredit'            => 'Marcar ediciones como menores',
 'right-move'                 => 'Treslladar páxines',
+'right-move-subpages'        => 'Treslladar les páxines coles sos subpáxines',
 'right-suppressredirect'     => "Nun crear una redireición dende'l nome antiguu cuando se tresllada una páxina",
 'right-upload'               => 'Xubir archivos',
 'right-reupload'             => 'Sobreescribir un archivu esistente',
@@ -1005,7 +1013,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'recentchanges'                     => 'Cambeos recientes',
 'recentchangestext'                 => 'Sigui los cambeos más recientes na wiki nesta páxina.',
 'recentchanges-feed-description'    => 'Sigue nesti canal los cambeos más recientes de la wiki.',
-'rcnote'                            => "Equí embaxo {{PLURAL:$1|pue vese '''1''' cambéu|puen vese los caberos '''$1''' cambeos}} {{PLURAL:$2|nel caberu día|nos caberos '''$2''' díes}}, a fecha de $3.",
+'rcnote'                            => "Equí embaxo {{PLURAL:$1|pue vese '''1''' cambéu|puen vese los caberos '''$1''' cambeos}} {{PLURAL:$2|nel caberu día|nos caberos '''$2''' díes}}, a fecha de $5, $4.",
 'rcnotefrom'                        => 'Abaxo tán los cambeos dende <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom'                        => 'Amosar los cambeos recientes dende $1',
 'rcshowhideminor'                   => '$1 ediciones menores',
@@ -1069,8 +1077,10 @@ P'amiestar un archivu nuna páxina, usa un enllaz col formatu
 'illegalfilename'             => 'El nome d\'archivu "$1" contién carauteres non permitíos en títulos de páxina. Por favor renoma l\'archivu y xúbilu otra vuelta.',
 'badfilename'                 => 'Nome de la imaxe camudáu a "$1".',
 'filetype-badmime'            => 'Los archivos de la triba MIME "$1" nun tienen permitida la xubida.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' ye una mena d'archivu non recomendáu. Les menes d'archivu preferíes son \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' nun ye una mena d'archivu permitida. Les menes d'archivu permitíes son \$2.",
+'filetype-unwanted-type'      => "'''\".\$1\"''' ye una mena d'archivu non recomendáu.
+{{PLURAL:\$3|La mena d'archivu preferida ye|Les menes d'archivu preferíes son}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' nun ye una mena d'archivu permitida.
+{{PLURAL:\$3|La mena d'archivu permitida ye|Les menes d'archivu permitíes son}} \$2.",
 'filetype-missing'            => 'L\'archivu nun tien estensión (como ".jpg").',
 'large-file'                  => 'Encamiéntase a que los archivos nun pasen de $1; esti archivu tien $2.',
 'largefileserver'             => 'Esti archivu ye mayor de lo que permite la configuración del servidor.',
@@ -1349,6 +1359,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 # Special:Categories
 'categories'                    => 'Categoríes',
 'categoriespagetext'            => 'Les categoríes que vienen darréu contienen páxines o archivos multimedia.',
+'categoriesfrom'                => "Amosar categoríes qu'emprimen por:",
 'special-categories-sort-count' => 'ordenar por tamañu',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
@@ -1562,6 +1573,7 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 'viewdeletedpage'              => 'Ver páxines borraes',
 'undeletepagetext'             => "Les siguientes páxines foron borraes pero tovía tán nel archivu y puen
 ser restauraes. L'archivu pue ser purgáu periódicamente.",
+'undelete-fieldset-title'      => 'Restaurar revisiones',
 'undeleteextrahelp'            => "Pa restaurar tola páxina, deseleiciona toles caxelles y calca en
 '''''Restaurar'''''. Pa realizar una restauración selectiva, seleiciona les caxelles de la revisión
 que quies restaurar y calca en '''''Restaurar'''''. Calcando en '''''Llimpiar''''' quedarán vacios
@@ -1782,11 +1794,15 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'move-watch'              => 'Vixilar esta páxina',
 'movepagebtn'             => 'Treslladar la páxina',
 'pagemovedsub'            => 'Treslláu correctu',
+'movepage-moved'          => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
 'cantmove-titleprotected' => "Nun pues mover una páxina a esti llugar porque'l nuevu títulu foi protexíu de la so creación",
 'talkexists'              => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
 'movedto'                 => 'treslladáu a',
 'movetalk'                => "Mover la páxina d'alderique asociada",
+'move-subpages'           => 'Treslladar toles subpáxines si ye posible',
+'move-talk-subpages'      => "Treslladar toles subpáxines de la páxina d'alderique si ye posible",
+'movepage-page-exists'    => 'La páxina $1 yá esiste y nun se pue sobreescribir automáticamente.',
 'movepage-page-moved'     => 'Treslladóse la páxina $1 a $2.',
 'movepage-page-unmoved'   => 'Nun se pudo treslladar la páxina $1 a $2.',
 '1movedto2'               => '[[$1]] treslladáu a [[$2]]',
@@ -2511,6 +2527,12 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'specialpages-group-media'       => 'Informes multimedia y xubíes',
 'specialpages-group-users'       => 'Usuarios y drechos',
 'specialpages-group-highuse'     => 'Páxines mui usaes',
+'specialpages-group-pages'       => 'Llista de páxines',
+'specialpages-group-pagetools'   => 'Ferramientes de páxina',
 'specialpages-group-spam'        => 'Ferramientes pa spam',
+
+# Special:Blankpage
+'blankpage'              => 'Páxina en blanco',
+'intentionallyblankpage' => 'Esta páxina ta en blanco arrémente',
 
 );

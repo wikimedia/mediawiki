@@ -1097,8 +1097,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'nextdiff'     => 'Gang tae neist diff →',
 
 # Media information
-'mediawarning' => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.
-<hr>",
+'mediawarning' => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.<hr />",
 'imagemaxsize' => 'Limit eimages on eimage description pages tae:',
 
 # Special:Newimages
