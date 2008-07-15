@@ -74,6 +74,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Excluder mi proprie modificationes del observatorio',
 'tog-watchlisthidebots'       => 'Excluder le modificationes per bots del observatorio',
 'tog-watchlisthideminor'      => 'Excluder le modificationes minor del observatorio',
+'tog-nolangconversion'        => 'Disactivar conversion de variantes',
 'tog-ccmeonemails'            => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
 'tog-diffonly'                => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
 'tog-showhiddencats'          => 'Monstrar categorias celate',
@@ -436,6 +437,7 @@ Per favor selige un altere nomine.',
 'prefs-memberingroups'       => 'Membro de {{PLURAL:$1|gruppo|gruppos}}:',
 'yourrealname'               => 'Nomine real:',
 'yourlanguage'               => 'Lingua:',
+'yourvariant'                => 'Variante:',
 'yournick'                   => 'Signatura:',
 'badsig'                     => 'Signatura crude invalide; verificar le etiquettas HTML.',
 'badsiglength'               => 'Le signatura es troppo longe.
@@ -505,6 +507,7 @@ Tu pote ignorar iste message si iste conto se creava in error.',
 'resetpass'               => 'Redefinir contrasigno del conto',
 'resetpass_announce'      => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.
 Pro completar le session, tu debe definir un nove contrasigno hic:',
+'resetpass_text'          => '<!-- Adde texto hic -->',
 'resetpass_header'        => 'Redefinir contrasigno',
 'resetpass_submit'        => 'Definir contrasigno e aperir un session',
 'resetpass_success'       => 'Tu contrasigno ha essite cambiate! Ora se aperi tu session...',
@@ -528,7 +531,9 @@ Es possibile que tu ha ja cambiate tu contrasigno o ha requestate un nove contra
 'math_tip'        => 'Formula mathematic (LaTeX)',
 'nowiki_sample'   => 'Inserer texto non formatate hic',
 'nowiki_tip'      => 'Ignorar formatation wiki',
+'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'File incastrate',
+'media_sample'    => 'Exemplo.ogg',
 'media_tip'       => 'Ligamine a un file',
 'sig_tip'         => 'Tu signatura con data e hora',
 'hr_tip'          => 'Linea horizontal (usa con moderation)',
@@ -673,6 +678,7 @@ Nos recommenda copiar-e-collar le texto pro salveguardar lo in un file de texto,
 'template-protected'               => '(protegite)',
 'template-semiprotected'           => '(semi-protegite)',
 'hiddencategories'                 => 'Iste pagina es membro de {{PLURAL:$1|1 categoria|$1 categorias}} celate:',
+'edittools'                        => '<!-- Iste texto se monstrara sub le formularios de modificar articulos e de cargar files. -->',
 'nocreatetitle'                    => 'Creation de paginas limitate',
 'nocreatetext'                     => '{{SITENAME}} ha restringite le permission de crear nove paginas.
 Tu pote retornar e modificar un pagina existente, o [[Special:Userlogin|identificar te, o crear un conto]].',
@@ -1172,6 +1178,20 @@ Tu debe considerar si es appropriate continuar a cargar iste file.
 Pro major commoditate se trova hic le registro de eliminationes correspondente a iste file:",
 'filename-bad-prefix'         => 'Le nomine del file que tu va cargar comencia con <strong>"$1"</strong>, le qual es un nomine non descriptive, typicamente assignate automaticamente per le cameras digital.
 Per favor selige un nomine plus descriptive pro tu file.',
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# Le syntaxe es como seque:
+#   * Toto a partir de un character "#" usque al fin del linea es un commento
+#   * Cata linea non vacue es un prefixo pro tal nomines de file como automaticamente assignate per cameras digital
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # alcun telephonos mobile
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'Protocollo incorrecte',
 'upload-proto-error-text' => 'Le cargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
@@ -2078,6 +2098,28 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'tooltip-watch'                   => 'Adder iste pagina a tu observatorio',
 'tooltip-recreate'                => 'Recrear le pagina nonobstante que illo ha essite delite',
 'tooltip-upload'                  => 'Comencia cargar',
+
+# Stylesheets
+'common.css'      => '/* Le CSS placiate hic se applicara a tote le stilos */',
+'standard.css'    => '/* Le CSS placiate hic afficera le usatores del stilo Standard */',
+'nostalgia.css'   => '/* Le CSS placiate hic afficera le usatores del stilo Nostalgia */',
+'cologneblue.css' => '/* Le CSS placiate hic afficera le usatores del stilo Cologne Blue */',
+'monobook.css'    => '/* Le CSS placiate hic afficera le usatores del stilo Monobook */',
+'myskin.css'      => '/* Le CSS placiate hic afficera le usatores del stilo Myskin */',
+'chick.css'       => '/* Le CSS placiate hic afficera le usatores del stilo Chick */',
+'simple.css'      => '/* Le CSS placiate hic afficera le usatores del stilo Simple */',
+'modern.css'      => '/* Le CSS placiate hic afficera le usatores del stilo Modern */',
+
+# Scripts
+'common.js'      => '/* Omne JavaScript hic se executara pro tote le usatores a cata carga de pagina. */',
+'standard.js'    => '/* Omne JavaScript hic se executara pro le usatores del stilo Standard */',
+'nostalgia.js'   => '/* Omne JavaScript hic se executara pro le usatores del stilo Nostalgia */',
+'cologneblue.js' => '/* Omne JavaScript hic se executara pro le usatores del stilo Cologne Blue */',
+'monobook.js'    => '/* Omne JavaScript hic se executara pro le usatores del stilo MonoBook */',
+'myskin.js'      => '/* Omne JavaScript hic se executara pro le usatores del stilo Myskin */',
+'chick.js'       => '/* Omne JavaScript hic se executara pro le usatores del stilo Chick */',
+'simple.js'      => '/* Omne JavaScript hic se executara pro le usatores del stilo Simple */',
+'modern.js'      => '/* Omne JavaScript hic se executara pro le usatores del stilo Modern */',
 
 # Metadata
 'nodublincore'      => 'Le metadatos Dublin Core RDF ha essite disactivate in iste servitor.',

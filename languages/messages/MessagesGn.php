@@ -4,9 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Hugo.arg
- * @author Nike
  * @author Siebrand
+ * @author Hugo.arg
  */
 
 $fallback = 'es';

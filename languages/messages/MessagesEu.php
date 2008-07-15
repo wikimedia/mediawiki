@@ -7,8 +7,8 @@
  * @author SPQRobin
  * @author Theklan
  * @author Bengoa
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author Malafaya
  * @author Kaustubh
  * @author Helix84
@@ -318,7 +318,9 @@ $messages = array(
 'nosuchaction'      => 'Ekintza hori ez da existitizen',
 'nosuchactiontext'  => 'URL bidez zehaztutako ekintza ez du wikiak ezagutzen',
 'nosuchspecialpage' => 'Ez da aparteko orrialde hori existitzen',
-'nospecialpagetext' => 'Baliogabeko aparteko orrialde bat eskatu duzu; existitzen direnen zerrenda ikus dezakezu  [[{{ns:special}}:Specialpages]] orrialdean.',
+'nospecialpagetext' => "<big>'''Baliogabeko aparteko orrialde bat eskatu duzu.'''</big>
+
+Existitzen direnen zerrenda ikus dezakezu  [[Special:Specialpages|{{int:specialpages}}]] orrialdean.",
 
 # General errors
 'error'                => 'Errorea',
@@ -431,7 +433,8 @@ Zure kontua sortu egin da. Ez ahaztu {{SITENAME}}(e)ko hobespenak aldatzea.',
 'yourvariant'                => 'Aldaera',
 'yournick'                   => 'Erabiltzaile izena:',
 'badsig'                     => 'Baliogabeko sinadura; egiaztatu HTML etiketak.',
-'badsiglength'               => 'Ezizen luzeegia hautatu duzu; $1 karakteretik behera izan behar du.',
+'badsiglength'               => 'Ezizen luzeegia hautatu duzu;
+$1 karakteretik behera izan behar du.',
 'email'                      => 'E-posta',
 'prefs-help-realname'        => '* Benetako izena (aukerakoa): zehaztea erabakiz gero, zure lanarentzako atribuzio bezala balioko du.',
 'loginerror'                 => 'Errorea saioa hastean',
@@ -447,7 +450,8 @@ Zure kontua sortu egin da. Ez ahaztu {{SITENAME}}(e)ko hobespenak aldatzea.',
 'nouserspecified'            => 'Erabiltzaile izena zehaztu beharra daukazu.',
 'wrongpassword'              => 'Pasahitza ez da zuzena. Saiatu berriz.',
 'wrongpasswordempty'         => 'Pasahitza hutsik dago. Saiatu berriz.',
-'passwordtooshort'           => 'Zure pasahitza laburregia da. $1 karaktere izan behar ditu gutxienez.',
+'passwordtooshort'           => 'Zure pasahitza laburregia da.
+$1 karaktere izan behar ditu gutxienez.',
 'mailmypassword'             => 'Pasahitza e-postaz bidali',
 'passwordremindertitle'      => 'Pasahitzaren gogorarazpena {{SITENAME}}(e)tik',
 'passwordremindertext'       => 'Norbaitek (zuk ziurrenik, $1 IP helbidetik)
@@ -462,7 +466,8 @@ Mesedez, saioa hasi jasotakoan.',
 'blocked-mailpassword'       => 'Zure IP helbidea aldaketak egiteko blokeatuta dago, eta beraz ezin da pasahitza berreskuratzeko aukera erabili.',
 'eauthentsent'               => 'Egiaztapen mezu bat bidali da zehaztutako e-posta helbidera.
 Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argibideak jarraitu behar dituzu, e-posta hori zurea dela egiaztatzeko.',
-'throttled-mailpassword'     => 'Pasahitz gogorarazle bat bidali da jada azken $1 orduetan. Bandalismoa saihesteko pasahitz eskaera bat baino ezin da egin $1 orduz behin.',
+'throttled-mailpassword'     => 'Pasahitz gogorarazle bat bidali da jada azken $1 orduetan.
+Bandalismoa saihesteko pasahitz eskaera bat baino ezin da egin $1 orduz behin.',
 'mailerror'                  => 'Errorea mezua bidaltzerakoan: $1',
 'acct_creation_throttle_hit' => 'Sentitzen dugu, $1 erabiltzaile kontu sortu dituzu dagoeneko. Ezin duzu gehiago sortu.',
 'emailauthenticated'         => 'Zure e-posta helbidea egiaztatu zeneko data: $1.',
@@ -755,8 +760,8 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'mwsuggest-disable'         => 'AJAX gomendioak ezgaitu',
 'searchrelated'             => 'harremana',
 'searchall'                 => 'guztia',
-'showingresults'            => 'Jarraian <b>$1</b> emaitz ikus daitezke, <b>$2</b>.etik hasita.',
-'showingresultsnum'         => 'Hasieran #<b>$2</b> duten <b>$3</b> emaitza erakusten dira jarraian.',
+'showingresults'            => "Jarraian '''$1''' emaitz ikus daitezke, '''$2'''.etik hasita.",
+'showingresultsnum'         => "Hasieran #'''$2''' duten '''$3''' emaitza erakusten dira jarraian.",
 'nonefound'                 => "'''Oharra''': Arrakastarik gabeko bilaketen arrazoi nagusietako bat \"dute\" eta \"da\" bezalako hitz arruntak bilatzea izan ohi da, edo baita bilaketan hitz gehiegi zehazteagatik ere (emaitzetan hitz guztiak dituzten emaitzak baino ez dira azalduko).",
 'powersearch'               => 'Bilatu',
 'powersearch-legend'        => 'Bilaketa aurreratua',
@@ -1133,9 +1138,9 @@ Horiek baztertzen, <b>$2</b> artikulu dira datu-basean.
 
 '''$8''' files have been uploaded.
 
-Guztira <b>$3</b> bisitaturiko orri, eta <b>$4</b> artikulu aldaketa egon dira software-a berritu zenetik (2002.eko uztailaren 20a).
+Guztira '''$3''' bisitaturiko orri, eta <b>$4</b> artikulu aldaketa egon dira software-a berritu zenetik (2002.eko uztailaren 20a).
 
-Emaitza hauekin hurrengo arrazoiak atera daitezke: <b>$5</b> aldaketa egon dira orrialde bakoitzeko, eta <b>$6</b> bisita aldaketa bakoitzeko.
+Emaitza hauekin hurrengo arrazoiak atera daitezke: '''$5''' aldaketa egon dira orrialde bakoitzeko, eta '''$6''' bisita aldaketa bakoitzeko.
 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.",
 'userstatstext'          => "'''$1''' erabiltzaile daude izen emanda, horietatik '''$2''' (edo '''$4%''') $5ek eskumenak {{PLURAL:$2|dituelarik|dituztelarik}}.",
@@ -1246,7 +1251,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7''
 'allpages-bad-ns'   => '{{SITENAME}}(e)k ez dauka "$1" izeneko izen-tarterik.',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Kategoria|Kategoriak}}',
+'categories'                    => 'Kategoriak',
 'categoriespagetext'            => 'Hurrengo kategoriak daude wiki honetan:',
 'categoriesfrom'                => 'Honela hasten diren kategoriak erakutsi:',
 'special-categories-sort-count' => 'kontatetzearen arabera ordenatu',
@@ -1540,7 +1545,8 @@ $1',
 'ipbwatchuser'                => 'Erabiltzaile honen erabiltzaile eta eztabaida orrialdeak jarraitu',
 'badipaddress'                => 'Baliogabeko IP helbidea',
 'blockipsuccesssub'           => 'Blokeoa burutu da',
-'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio. Ikus [[{{ns:special}}:Ipblocklist|IP blokeoen zerrenda]] blokeoak aztertzeko.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
+Ikus [[Special:Ipblocklist|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'ipb-edit-dropdown'           => 'Lankide bat blokeatzeko arrazoiak',
 'ipb-unblock-addr'            => '$1 lankide edo IP helbideari blokeoa baliogabetu',
 'ipb-unblock'                 => 'Erabiltzaile izen edo IP helbide bati blokeoa kendu',
@@ -1657,11 +1663,11 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 
 # Export
 'export'            => 'Orrialdeak esportatu',
-'exporttext'        => 'Orrialde bat edo batzuen testua eta historia esportatu dezakezu XML fitxategi batzuetan. Ondoren, MediaWiki erabiltzen duen beste wiki baten jarri dezakezu Special:Import orrialdea erabiliz.
+'exporttext'        => 'Orrialde bat edo batzuen testua eta historia esportatu dezakezu XML fitxategi batzuetan. Ondoren, MediaWiki erabiltzen duen beste wiki baten jarri dezakezu [[Special:Import|import page]] orrialdea erabiliz.
 
 Orrialdeak esportatzeko zehaztu hauen izenburuak beheko koadroan, izenburu bat lerroko, eta aukeratu zein bertsio esportatu nahi dituzun.
 
-Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Export/{{int:mainpage}}]] {{int:mainpage}} orrialdearentzako.',
+Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
 'exportcuronly'     => 'Oraingo berrikuspena bakarrik hartu, ez historia guztia',
 'exportnohistory'   => "----
 '''Oharra:''' Formulario honen bitartez orrialdeen historia osoak esportatzeko aukera ezgaitu egin da, errendimendua dela-eta.",

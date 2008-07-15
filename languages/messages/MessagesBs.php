@@ -6,8 +6,8 @@
  *
  * @author Demicx
  * @author Kal-El
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author CERminator
  * @author Gangleri
  */
@@ -487,7 +487,7 @@ Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog 
 'whitelistreadtext'        => 'Morate da se [[Special:Userlogin|prijavite]] da bi ste čitali članke.',
 'whitelistacctitle'        => 'Nije vam dozvoljeno da napravite nalog',
 'whitelistacctext'         => 'Da bi vam bilo dozvoljeno da napravite naloge na ovom Vikiju, morate da se [[Special:Userlogin|prijavite]] i imate odgovarajuća ovlašćenja.',
-'loginreqtitle'            => 'Potrebno je [[Special:Userlogin|prijavljivanje]]',
+'loginreqtitle'            => 'Potrebno je prijavljivanje',
 'accmailtitle'             => 'Lozinka poslata.',
 'accmailtext'              => "Lozinka za nalog '$1' je poslata na adresu $2.",
 'newarticle'               => '(Novi)',
@@ -538,8 +538,7 @@ Molimo Vas da razmotrite razbijanje stranice na manje dijelove.</strong>',
 'readonlywarning'          => '<strong>PAŽNJA:  Baza je zaključana zbog održavanja,
 tako da nećete moći da sačuvate svoje izmjene za sada.  Možda želite da kopirate
 i nalijepite tekst u tekst editor i sačuvate ga za kasnije.</strong>',
-'protectedpagewarning'     => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa
-administratorkim privilegijama mogu da je mijenjaju. Uvjerite se da pratite [[Special:Protectedpages|pravila o zaštiti stranica]]</strong>.',
+'protectedpagewarning'     => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorkim privilegijama mogu da je mijenjaju.</strong>',
 'semiprotectedpagewarning' => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
 'templatesused'            => 'Šabloni koji su upotrebljeni na ovoj stranici:',
 'template-protected'       => '(zaštićeno)',
@@ -577,7 +576,7 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 # Search results
 'searchresults'         => 'Rezultati pretrage',
 'searchresulttext'      => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => 'Tražili ste [[$1]] [[Special:Allpages/$1|&#x5B;Sadržaj&#x5D;]]',
+'searchsubtitle'        => "Tražili ste '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Tražili ste $1',
 'noexactmatch'          => "Nema stranice sa takvim imenom.
 

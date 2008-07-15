@@ -318,9 +318,12 @@ Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages|{{int:spe
 'error'                => 'Erè',
 'databaseerror'        => '
 Erè nan bazdata.',
-'dberrortext'          => 'Yon demann oubyen rekèt nan baz done a bay yon erè. Sa kapab vle di ke genyen yon erè ki nan lojisyèl an (gade $5) . Dènye esè a te :
+'dberrortext'          => 'Yon demann oubyen rekèt nan baz done a bay yon erè.
+Sa kapab vle di ke genyen yon erè ki nan lojisyèl an.
+Dènye esè a te :
 <blockquote><tt>$1</tt></blockquote>
-depi fonksyon sa « <tt>$2</tt> ». MySQL ritounen erè sa « <tt>$3 : $4</tt> ».',
+depi fonksyon sa « <tt>$2</tt> ».
+MySQL ritounen erè sa « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Yon demann nan baz done a bay yon erè.
 Dènye esè nan baz done a te: « $1 » fèt pa fonksyon sa « $2 ». MySQL ritounen mesaj sa « $3 : $4 ».',
 'noconnect'            => 'Souple, eskize nou. Wiki a ap konnen kounye a yon erè, kèk pwoblèm teknik; li pa kapab jwenn sèvè a pou voye enfòmasyon ou mande a. <br />
@@ -849,7 +852,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'addedwatchtext'       => 'Paj « <nowiki>$1</nowiki> » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
 Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <b>fonse </b> nan [[Special:Recentchanges|chanjman ki fèk fèt]] pou ou kapab wè yo pli fasilman.',
 'removedwatch'         => 'Retire nan lis swivi',
-'removedwatchtext'     => 'Paj « [[:$1]] » byen retire nan [[Special:Watchlist|lis swivi ou an]].',
+'removedwatchtext'     => 'Paj « [[:$1]] » byen retire nan lis swivi ou an.',
 'watch'                => 'Swiv',
 'watchthispage'        => 'Swiv paj sa a',
 'unwatch'              => 'Pa swiv ankò',
@@ -883,8 +886,7 @@ Gade $2 pou wè yon lis efasman resan.',
 'protect_expiry_invalid'      => 'Dat ou mete a pou li ekspire pa bon',
 'protect_expiry_old'          => 'dat ekspirasyon an ja pase;',
 'protect-unchain'             => 'Debloàke pèmisyon yo pou renonmen, deplase',
-'protect-text'                => 'Ou mèt konsilte epi modifye nivo pwoteksyon paj sa a <strong><nowiki>$1</nowiki></strong>.
-Souple, gade byen ke ou ap swivdwa ak [[{{MediaWiki:Policy-url}}|lwa nan medyawiki]].',
+'protect-text'                => 'Ou mèt konsilte epi modifye nivo pwoteksyon paj sa a <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'Ou pa genyen dwa ki ap pèmèt ou modifye pwoteksyon paj sa a.
 Men reglaj pou paj <strong>$1</strong> an kounye a:',
 'protect-cascadeon'           => 'paj sa a pwoteje kounye a paske li nan {{PLURAL:$1|paj swivan|paj swivan yo}}, {{PLURAL:$1|ki li menm menm te pwoteje|ki yo menm menm te pwoteje}} epi opsyon pwoteksyon "enbrike" aktif. Ou mèt chanje nivo pwoteksyon paj sa a san ke li modifye pwoteksyon enbrike an.',

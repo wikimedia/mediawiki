@@ -7,16 +7,16 @@
  * @author Klutzy
  * @author ToePeu
  * @author PuzzletChung
- * @author ITurtle
  * @author Siebrand
+ * @author ITurtle
+ * @author Albamhandae
  * @author לערי ריינהארט
  * @author Kwj2772
- * @author Ficell
  * @author TheAlpha for knowledge
+ * @author Ficell
  * @author Pi.C.Noizecehx
  * @author SPQRobin
  * @author Jon Harald Søby
- * @author Albamhandae
  */
 
 $namespaceNames = array(
@@ -395,7 +395,7 @@ $messages = array(
 
 계정이 만들어졌습니다. [[Special:Preferences|사용자 환경 설정]]에서 당신의 {{SITENAME}} 사용자 환경 설정을 바꿀 수 있습니다.',
 'loginpagetitle'             => '로그인',
-'yourname'                   => '사용자 이름:',
+'yourname'                   => '계정 이름:',
 'yourpassword'               => '비밀번호:',
 'yourpasswordagain'          => '암호 확인',
 'remembermypassword'         => '로그인 상태를 저장하기',
@@ -418,7 +418,7 @@ $messages = array(
 'badretype'                  => '암호가 서로 다릅니다.',
 'userexists'                 => '사용자 이름이 이미 등록되어 있습니다. 다른 이름으로 만들어주십시오.',
 'youremail'                  => '이메일:',
-'username'                   => '사용자 이름:',
+'username'                   => '계정 이름:',
 'uid'                        => '사용자 ID:',
 'prefs-memberingroups'       => '{{PLURAL:$1}}가지고 있는 권한 목록:',
 'yourrealname'               => '실명:',
@@ -1365,7 +1365,7 @@ $NEWPAGE
 $1',
 
 # Namespace form on various pages
-'namespace'      => '네임스페이스:',
+'namespace'      => '이름 공간:',
 'invert'         => '선택 반전',
 'blanknamespace' => '(일반)',
 
@@ -1491,6 +1491,7 @@ $1',
 'databasenotlocked'   => '데이터베이스가 잠겨 있지 않습니다.',
 
 # Move page
+'move-page'               => '이동 $1',
 'move-page-legend'        => '문서 이동하기',
 'movepagetext'            => "아래 틀을 채워 문서의 이름을 바꿀 수 있습니다.
 문서의 역사도 모두 새 문서로 옮겨집니다.
@@ -1523,6 +1524,7 @@ $1',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
 'movetalk'                => '딸린 토론도 함께 이동합니다.',
+'movepage-page-exists'    => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
 '1movedto2'               => '[[$1]]을(를) [[$2]](으)로 옮김',
 '1movedto2_redir'         => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
 'movelogpage'             => '이동 기록',
@@ -1597,6 +1599,8 @@ $1',
 'tooltip-ca-watch'                => '이 문서를 주시문서 목록에 추가합니다.',
 'tooltip-ca-unwatch'              => '이 문서를 주시문서 목록에서 제거합니다.',
 'tooltip-search'                  => '{{SITENAME}} 찾기',
+'tooltip-search-go'               => '이 이름의 문서가 존재하면 그 문서로 바로가기',
+'tooltip-search-fulltext'         => '이 문자열이 포함된 문서 찾기',
 'tooltip-p-logo'                  => '대문',
 'tooltip-n-mainpage'              => '대문으로',
 'tooltip-n-portal'                => '이 프로젝트에 대해',

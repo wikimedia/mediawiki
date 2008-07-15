@@ -1258,7 +1258,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'recentchanges'                     => 'Friss változtatások',
 'recentchangestext'                 => 'A wiki legutóbbi változtatásainak követése ezen a lapon.',
 'recentchanges-feed-description'    => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',
-'rcnote'                            => 'Alább az utolsó <strong>$2</strong> nap utolsó <strong>$1</strong> változtatása látható. A lap generálásának időpontja $3.',
+'rcnote'                            => "Alább az utolsó '''$2''' nap utolsó '''$1''' változtatása látható. A lap generálásának időpontja $3.",
 'rcnotefrom'                        => 'Alább láthatóak a <b>$2</b> óta történt változások (<b>$1</b>-ig).',
 'rclistfrom'                        => 'Az új változtatások kijelzése $1 után',
 'rcshowhideminor'                   => 'apró módosítások $1',
@@ -1510,12 +1510,14 @@ Ezeket is beleszámítva '''$1''' lapunk van.
 Összesen '''$3''' alkalommal tekintették meg az oldalakat, és '''$4''' szerkesztés történt a {{SITENAME}} indulása óta, ami oldalanként '''$5''' szerkesztésnek és '''$6''' megtekintésnek számít.
 
 A [http://www.mediawiki.org/wiki/Manual:Job_queue szerver számára sorban álló feladatok] száma '''$7'''.",
-'userstatstext'          => 'Jelenleg <b>$1</b> regisztrált szerkesztőnk van; közülük <b>$2</b> ($4%) $5.',
+'userstatstext'          => "Jelenleg '''$1''' regisztrált szerkesztőnk van; közülük '''$2''' ($4%) $5.",
 'statistics-mostpopular' => 'Legtöbbször megtekintett lapok',
 
 'disambiguations'      => 'Egyértelműsítő lapok',
 'disambiguationspage'  => 'Template:Egyért',
-'disambiguations-text' => "A következő oldalak '''egyértelműsítő lapra''' mutató hivatkozást tartalmaznak. A megfelelő szócikkre kellene mutatniuk inkább. <br /> Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
+'disambiguations-text' => "A következő oldalak '''egyértelműsítő lapra''' mutató hivatkozást tartalmaznak.
+A megfelelő szócikkre kellene mutatniuk inkább.<br />
+Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
 
 'doubleredirects'     => 'Dupla átirányítások',
 'doubleredirectstext' => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy a #REDIRECT alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
@@ -1686,14 +1688,14 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'notanarticle'         => 'Nem szócikk',
 'notvisiblerev'        => 'A változat törölve lett',
 'watchnochange'        => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
-'watchlist-details'    => '<strong>$1</strong> lap van a figyelőlistádon (a vitalapokon kívül).',
+'watchlist-details'    => '$1 lap van a figyelőlistádon (a vitalapokon kívül).',
 'wlheader-enotif'      => '* Email értesítés engedélyezve.',
 'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
 'watchmethod-recent'   => 'a figyelt lapokon belüli legfrissebb szerkesztések',
 'watchmethod-list'     => 'a legfrissebb szerkesztésekben található figyelt lapok',
 'watchlistcontains'    => 'A figyelőlistádon $1 lap szerepel.',
 'iteminvalidname'      => "Probléma a '$1' elemmel: érvénytelen név...",
-'wlnote'               => 'Az utolsó <b>$2</b> óra $1 változtatása látható az alábbiakban.',
+'wlnote'               => "Az utolsó '''$2''' óra '''$1''' változtatása látható az alábbiakban.",
 'wlshowlast'           => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
 'watchlist-show-bots'  => 'Botok szerkesztéseinek megjelenítése',
 'watchlist-hide-bots'  => 'Botok szerkesztéseinek elrejtése',
@@ -1779,7 +1781,8 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'rollbacklink'                => 'visszaállítás',
 'rollbackfailed'              => 'A visszaállítás nem sikerült',
 'cantrollback'                => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
-'alreadyrolled'               => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|Vita]] | [[Special:Contributions/$2|Szerkesztései]] | [[Special:blockip/$2|Blokkolás]]) általi szerkesztését nem lehet visszavonni: időközben valaki már visszavonta, vagy szerkesztette a lapot.
+'alreadyrolled'               => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|Vita]]) általi szerkesztését nem lehet visszavonni:
+időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]) végezte.',
 'editcomment'                 => 'A változtatás összefoglalója „<i>$1</i>” volt.', # only shown if there is an edit comment
@@ -1970,7 +1973,6 @@ $1',
 'ipblocklist'                 => 'Blokkolt IP-címek listája',
 'ipblocklist-legend'          => 'Blokkolt felhasználó keresése',
 'ipblocklist-username'        => 'Felhasználónév vagy IP-cím:',
-'ipblocklist-summary'         => 'Lásd még a [[Special:Log/block|blokkolási naplót]].',
 'ipblocklist-submit'          => 'Keresés',
 'blocklistline'               => '$1, $2 blokkolta $3 felhasználót (lejárat: $4)',
 'infiniteblock'               => 'végtelen',
@@ -2665,7 +2667,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Figyelmeztetés: Ezt a lapot a szerkesztés megkezdése után törölték!',
-'confirmrecreate'     => "Miután elkezdted szerkeszteni, [[User:$1|$1]] ([[User vita:$1|vita]]) törölte ezt a lapot a következő indokkal:
+'confirmrecreate'     => "Miután elkezdted szerkeszteni, [[User:$1|$1]] ([[User talk:$1|vita]]) törölte ezt a lapot a következő indokkal:
 : ''$2''
 Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'recreate'            => 'Újraírás',

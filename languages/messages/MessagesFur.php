@@ -5,8 +5,8 @@
  * @file
  *
  * @author Klenje
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author Helix84
  */
 
@@ -481,7 +481,7 @@ Il bloc al è stât metût di $1. La reson furnide e je: ''$2''
 
 Se tu vuelis tu puedis contatâ $1 o un altri [[{{MediaWiki:Grouppage-sysop}}|aministradôrs]] par fevelâ dal bloc.
 
-Visiti che no tu puedis doprâ la funzion 'Messaç di pueste a chest utent' se no tu âs specificât une direzion di pueste eletroniche valide tes [[{{ns:special}}:Preferences|preferencis]].
+Visiti che no tu puedis doprâ la funzion 'Messaç di pueste a chest utent' se no tu âs specificât une direzion di pueste eletroniche valide tes [[Special:Preferences|preferencis]].
 
 Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in ogni richieste di sclariments.",
 'whitelistedittext'      => 'Tu scugnis $1 par cambiâ lis pagjinis.',
@@ -571,7 +571,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'nextn'                 => 'prossims $1',
 'viewprevnext'          => 'Cjale ($1) ($2) ($3).',
 'showingresults'        => "Ca sot {{PLURAL:$1|al è fin a '''1''' risultât|a son fin a '''$1''' risultâts}} scomençant dal numar '''$2'''.",
-'showingresultsnum'     => "Ca sot {{PLURAL:$3|al è '''1''' risultât|a son '''$1''' risultâts}} scomençant dal numar '''$2'''.",
+'showingresultsnum'     => "Ca sot {{PLURAL:$3|al è '''1''' risultât|a son '''$3''' risultâts}} scomençant dal numar '''$2'''.",
 'powersearch'           => 'Cîr',
 'searchdisabled'        => 'La ricercje in {{SITENAME}} no je ative. Tu puedis doprâ Google intant. Sta atent che i lôr indis sul contignût di {{SITENAME}} a puedin jessi pôc inzornâts.',
 

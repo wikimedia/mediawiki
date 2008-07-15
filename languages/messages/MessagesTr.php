@@ -1166,7 +1166,6 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'newpages'                => 'Yeni sayfalar',
 'newpages-username'       => 'Kullanıcı adı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
-'ancientpages-summary'    => 'En son değişiklik yapıldığından bu yana en fazla zaman geçmiş, geliştirilmesi unutulmuş sayfaların listesi.',
 'move'                    => 'Adını değiştir',
 'movethispage'            => 'Sayfayı taşı',
 'unusedcategoriestext'    => 'Aşağıda bulunan kategoriler mevcut olduğu halde, hiçbir madde ya da kategori tarafından kullanılmıyor.',
@@ -1174,7 +1173,6 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 
 # Book sources
 'booksources'               => 'Kaynak kitaplar',
-'booksources-summary'       => 'Bu sayfada bir ISBN numarası girip fazla bilgi alabilirsiniz.',
 'booksources-search-legend' => 'Kitap kaynaklarını ara',
 'booksources-go'            => 'Git',
 
@@ -1193,7 +1191,6 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 
 # Special:Allpages
 'allpages'          => 'Tüm sayfalar',
-'allpages-summary'  => 'Bu sayfa sitedeki bütün sayfaları listeler.',
 'alphaindexline'    => '$1 sayfası ile $2 sayfası arasındaki sayfaların listesi',
 'nextpage'          => 'Sonraki sayfa ($1)',
 'prevpage'          => 'Önceki sayfa ($1)',

@@ -352,8 +352,7 @@ Una lista de les pâges spèciâles pôt étre trovâ dessus [[Special:Specialpa
 'error'                => 'Èrror',
 'databaseerror'        => 'Èrror de la bâsa de balyês',
 'dberrortext'          => 'Èrror de sintaxa dens la bâsa de balyês.
-Ceta èrror est pôt-étre diua a una requéta de rechèrche fôssa
-(vêde $5) ou una èrror dens la programeria.
+Ceta èrror est pôt-étre diua a una requéta de rechèrche fôssa ou una èrror dens la programeria.
 La dèrriére requéta trètâ per la bâsa de balyês ére :
 <blockquote><tt>$1</tt></blockquote>
 dês la fonccion « <tt>$2</tt> ».
@@ -416,8 +415,8 @@ La rêson avanciê est « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Dèconèccion',
-'logouttext'                 => '<strong>Orendrêt, vos éte dèconèctâ ([[Special:Userlogin|sè tornar conèctar]]).</strong><br />
-Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben vos tornar conèctar desot lo mémo nom ou un ôtro.',
+'logouttext'                 => "'''Orendrêt, vos éte dèconèctâ.'''<br />
+Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben vos tornar conèctar desot lo mémo nom ou un ôtro.",
 'welcomecreation'            => '== Benvegnua, $1 ! ==
 
 Voutron compto utilisator at étâ crèâ. Oubliâd pas de pèrsonalisar voutres prèferences dessus {{SITENAME}}.',
@@ -570,7 +569,8 @@ Vos pouede vos veriér vers $1 ou yon des ôtros [[{{MediaWiki:Grouppage-sysop}}
 
 Se vos éd balyê una adrèce de mèl valida dens voutres [[Special:Preferences|prèferences]] et que son usâjo vos est pas dèfendu, vos pouede utilisar la fonccion « Emmandar un mèssâjo a ceti utilisator » por vos veriér vers un administrator.
 
-Voutra adrèce IP est $3 et voutron identifiant de blocâjo est #$5. Volyéd los spècefiar dens tota requéta.",
+Voutron identifiant de blocâjo est #$5.
+Volyéd los spècefiar dens tota requéta.",
 'blockednoreason'           => 'Niona rêson balyê',
 'blockedoriginalsource'     => "Lo code sôrsa de '''$1''' est endicâ ce-desot :",
 'blockededitsource'         => "Lo contegnu de '''voutres modificacions''' aplicâs a '''$1''' est endicâ ce-desot :",
@@ -639,7 +639,7 @@ vos porréd vêr pas sôvar voutres modificacions d’abôrd. Vos pouede copiyé
 'protectedpagewarning'      => '<strong>ATENCION : ceta pâge est protègiê.
 Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.</strong>',
 'semiprotectedpagewarning'  => "'''Nota :''' ceta pâge at étâ protègiê de façon que solèts los contributors enregistrâs pouessont la modifiar.",
-'cascadeprotectedwarning'   => "<strong>ATENCION : ceta pâge at étâ protègiê por cen que solèts los [[{{MediaWiki:grouppage-sysop}}|administrators]] pouessont l’èditar. Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|una pâge protègiê|des pâges protègiês}} avouéc la « protèccion en cascâda » activâ.</strong> Por suprimar la protèccion un administrator dêt enlevar l’encllusion de ''{{FULLPAGENAME}}'' de {{PLURAL:$1|la pâge siuventa|les pâges siuventes}} :",
+'cascadeprotectedwarning'   => "'''ATENCION :''' ceta pâge at étâ protègiê por cen que solèts los administrators pouessont l’èditar. Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|una pâge protègiê|des pâges protègiês}} avouéc la « protèccion en cascâda » activâ.",
 'titleprotectedwarning'     => '<strong>ATENCION : ceta pâge at étâ protègiê de façon que solèts cèrtins utilisators pouessont la crèar.</strong>',
 'templatesused'             => 'Modèlos utilisâs sur ceta pâge :',
 'templatesusedpreview'      => 'Modèlos utilisâs dens ceta prèvisualisacion :',
@@ -1144,7 +1144,7 @@ S’on èxcllut celes pâges, réste {{PLURAL:$2|'''1''' pâge qu’est probâbl
 Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modificacions}} per pâge et de {{PLURAL:$6|'''1''' consulta|'''$6''' consultes}} por una modificacion.</p>
 
 <p>Y at ora {{PLURAL:$7|'''1''' ovrâjo|'''$7''' ovrâjos}} dens la [http://www.mediawiki.org/wiki/Manual:Job_queue fela d’atenta des travâlys].</p>",
-'userstatstext'          => "Y at {{PLURAL:$1|'''1''' [[Special:Listusers|utilisator enregistrâ]]|'''$1''' [[Special:Listusers|utilisators enregistrâs]]}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5 (vêde $3).",
+'userstatstext'          => "Y at {{PLURAL:$1|'''1''' [[Special:Listusers|utilisator enregistrâ]]|'''$1''' [[Special:Listusers|utilisators enregistrâs]]}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5.",
 'statistics-mostpopular' => 'Pâges les ples consultâs',
 
 'disambiguations'      => 'Pâges d’homonimia',
@@ -1299,7 +1299,7 @@ Les modificacions que vegnont de cela pâge et de la pâge de discussion associy
 
 Por suprimar cela pâge de voutra lista de siuvu, clicâd dessus « pas més siuvre » dens lo câdro de navigacion.",
 'removedwatch'         => 'Enlevâ de la lista de siuvu',
-'removedwatchtext'     => 'La pâge « [[:$1]] » at étâ enlevâ de voutra [[Special:Watchlist|lista de siuvu]].',
+'removedwatchtext'     => 'La pâge « [[:$1]] » at étâ enlevâ de voutra lista de siuvu.',
 'watch'                => 'Siuvre',
 'watchthispage'        => 'Siuvre ceta pâge',
 'unwatch'              => 'Pas més siuvre',
@@ -1364,7 +1364,7 @@ Retôrn et assistance :
 'deletepage'                  => 'Suprimar una pâge',
 'confirm'                     => 'Confirmar',
 'excontent'                   => 'contegnent « $1 »',
-'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor nen ére « [[User talk:$2|$2]] » ([[Special:Contributions/$2|Contribucions]])',
+'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor nen ére « [[Special:Contributions/$2|$2]] ».',
 'exbeforeblank'               => 'contegnéve devant blanchiment : « $1 »',
 'exblank'                     => 'pâge voueda',
 'delete-confirm'              => 'Suprimar « $1 »',
@@ -1416,8 +1416,7 @@ Clicâd dessus « Prècèdent » et rechargiéd la pâge de yô que vos vegnéd,
 'protect_expiry_invalid'      => 'Lo temps d’èxpiracion est envalido.',
 'protect_expiry_old'          => 'Lo temps d’èxpiracion est ja passâ.',
 'protect-unchain'             => 'Dèblocar les pèrmissions de renomâjo',
-'protect-text'                => 'Vos pouede consultar et modifiar lo nivô de protèccion de la pâge <strong><nowiki>$1</nowiki></strong>.
-Volyéd vos assurar que vos siude les [[Special:Protectedpages|règlles de dedens]].',
+'protect-text'                => 'Vos pouede consultar et modifiar lo nivô de protèccion de la pâge <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Vos pouede pas modifiar lo nivô de protèccion tant que vos éte blocâ.
 Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
 'protect-locked-dblock'       => 'Lo nivô de protèccion pôt pas étre modifiâ perce que la bâsa de balyês est blocâ.
@@ -1577,7 +1576,6 @@ d’una adrèce IP prècèdament blocâ.',
 'ipblocklist'                 => 'Lista des utilisators blocâs',
 'ipblocklist-legend'          => 'Chèrchiér un utilisator blocâ',
 'ipblocklist-username'        => 'Nom d’utilisator ou adrèce IP :',
-'ipblocklist-summary'         => 'La lista ce-desot montre tôs los utilisators et totes les adrèces IP blocâs, per ôrdre anticronologico. Consultâd lo [[Special:Log/block|jornal des blocâjos]] por vêre les dèrriéres accions de blocâjo et dèblocâjo fêtes.',
 'ipblocklist-submit'          => 'Chèrchiér',
 'blocklistline'               => '$1 ($4) : $2 at blocâ $3',
 'infiniteblock'               => 'sen fin',

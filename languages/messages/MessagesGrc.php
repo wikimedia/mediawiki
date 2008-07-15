@@ -6,8 +6,8 @@
  *
  * @author LeighvsOptimvsMaximvs
  * @author Omnipaedista
- * @author AndreasJS
  * @author Lefcant
+ * @author AndreasJS
  * @author Nychus
  * @author Neachili
  * @author SPQRobin
@@ -43,17 +43,17 @@ $messages = array(
 'tog-editsection'             => 'Τμῆμα διὰ συνδέσμου [μεταγράφειν] μεταγράφειν παρέχειν',
 'tog-editsectiononrightclick' => 'Τμῆμα μεταγράφειν παρέχειν <br /> διὰ τίτλον δεξιῷ ὀμφαλῷ θλίβειν (JavaScript)',
 'tog-showtoc'                 => 'Δεικνύναι πίνακα περιεχομένων (ἐν δέλτοις περιεχούσαις πλείους τῶν 3 ἐπικεφαλίδων)',
-'tog-rememberpassword'        => 'Ἐνθυμεῖσθαι σύνδεσίν μου ἐν τῷδε ὑπολογιστῇ',
-'tog-editwidth'               => 'Πλαίσιον ἐπιμελείας εἰς πλήρες πλάτος',
-'tog-watchcreations'          => 'Προστιθέναι τὰς δέλτους ἃς ποιῶ τοῖς ἐφορώμενοῖς ἔμου',
-'tog-watchdefault'            => 'Προστιθέναι τὰς δέλτους ἃς μεταγράφω τοῖς ἐφορώμενοῖς ἔμου',
-'tog-watchmoves'              => 'Προστιθέναι τὰς δέλτους ἃς κινῶ τοῖς ἐφορώμενοῖς ἔμου',
-'tog-watchdeletion'           => 'Προστιθέναι τὰς δέλτους ἃς διαγράφω τοῖς ἐφορώμενοῖς ἔμου',
+'tog-rememberpassword'        => 'Ἐνθυμεῖσθαι ἐμὴν σύνδεσιν ἐν τῷδε ὑπολογιστῇ',
+'tog-editwidth'               => 'Πλαίσιον ἐπιμελείας εἰς πλῆρες πλάτος',
+'tog-watchcreations'          => 'Προστιθέναι τὰς δέλτους ἃς ποιῶ τοῖς ἐφορωμένοις μου',
+'tog-watchdefault'            => 'Προστιθέναι τὰς δέλτους ἃς μεταγράφω τοῖς ἐφορωμένοις μου',
+'tog-watchmoves'              => 'Προστιθέναι τὰς δέλτους ἃς κινῶ τοῖς ἐφορωμένοις μου',
+'tog-watchdeletion'           => 'Προστιθέναι τὰς δέλτους ἃς διαγράφω τοῖς ἐφορωμένοις μου',
 'tog-minordefault'            => 'Σημαίνειν ὅλας τὰς μεταγραφὰς ὡς ἥττονες προκαθωρισμένως',
 'tog-previewontop'            => 'Δεικνύναι τὸ προεπισκοπεῖν πρὸ τοῦ κυτίου μεταγραφῆς',
-'tog-previewonfirst'          => 'Τῆς πρῶτης μεταγράφης, δεικνύναι τὸ προεπισκοπεῖν',
+'tog-previewonfirst'          => 'Τῆς πρώτης μεταγραφῆς, δεικνύναι τὸ προεπισκοπεῖν',
 'tog-nocache'                 => 'Ἀπενεργοποιεῖν τὸ κρύπτειν τὰς δέλτους',
-'tog-enotifwatchlistpages'    => 'Ἄγγειλον μοι ὅταν μία δέλτος ἐν τῇ ἀγρυπνοδιαλογή μου μεταβάλληται',
+'tog-enotifwatchlistpages'    => 'Ἄγγειλον μοι ὅταν μία δέλτος ἐν τῇ ἐφορειοδιαλογή μου μεταβάλληται',
 'tog-enotifusertalkpages'     => 'Ἄγγειλον μοι ὅταν ἡ δέλτος ὁμιλίας χρήστου μου μεταβάλληται',
 'tog-enotifminoredits'        => 'Ἄγγειλον μοι ἐπἴσης τὰς ἥττονες ἀλλαγὰς δέλτων',
 'tog-enotifrevealaddr'        => 'Ἀποκαλύπτειν τὴν ταχυδρομικὴν μου διεύθυνσιν ἐν τῇ εἰδοποιητηρίᾳ ἀλληλογραφίᾳ',
@@ -62,7 +62,7 @@ $messages = array(
 'tog-showjumplinks'           => 'Ἐνεργοποιεῖν τοὺς "ἅλμα πρὸς" συνδέσμους προσβασιμότητος',
 'tog-forceeditsummary'        => 'Προειδοποίησόν με εἰ εἰσάγω κενὴ περίληψιν μεταγραφῆς',
 'tog-watchlisthideown'        => 'Οὐ δηλοῦν τὰς ἐμὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
-'tog-watchlisthidebots'       => 'Ἀποκρύπτειν τὰς αὐτοματας μεταγραφ ὰς ἐκ τῆς αγρυπνοδιαλογῆς',
+'tog-watchlisthidebots'       => 'Ἀποκρύπτειν τὰς αὐτοματας μεταγραφ ὰς ἐκ τῆς ἐφορειοδιαλογῆς',
 'tog-watchlisthideminor'      => 'Οὐ δηλοῦν τὰς μικρὰς μεταβολὰς ἐν τὰ ἐφορώμενά μου',
 'tog-showhiddencats'          => 'Κεκρυμμένας κατηγορίας δηλοῦν',
 
@@ -216,8 +216,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Περὶ {{SITENAME}}',
 'aboutpage'            => 'Project:Περί',
-'bugreports'           => 'Ἀναφορὰ σφαλμάτων',
-'bugreportspage'       => 'Project:Ἀναφορὰ σφαλμάτων',
+'bugreports'           => 'Ἀναφορὰ πλανῶν',
+'bugreportspage'       => 'Project:Ἀναφορὰ πλανῶν',
 'copyrightpage'        => '{{ns:project}}:Πνευματικὰ Δικαιώματα',
 'currentevents'        => 'Τὰ γιγνόμενα',
 'currentevents-url'    => 'Project:Τὰ γιγνόμενα',
@@ -272,12 +272,12 @@ $messages = array(
 # General errors
 'error'           => 'Σφάλμα',
 'databaseerror'   => 'Σφάλμα βάσεως δεδομένων',
-'dberrortext'     => 'Ἓν σφάλμα συντάξεως πεύσεως βάσεως δεδομένων ἀπάντησε,
-ὅπερ ὑποδηλοῖ τὴν ὕπαρξιν ἑνὸς σφάλματος ἐν τῷ λογισμικῷ.
+'dberrortext'     => 'Ἓν σφάλμα συντάξεως τῆς πεύσεως βάσεως δεδομένων ἀπήντησεν,
+ὅπερ ὑποδηλοῖ τὴν ὕπαρξιν μίας πλάνης ἐν τῷ λογισμικῷ.
 Ἡ ἔσχατη ἀποπειραθεῖσα πεῦσις βάσεως δεδομένων ἦν:
 <blockquote><tt>$1</tt></blockquote>
 ἐξ ἐντὸς τῆς τελέσεως "<tt>$2</tt>".
-Ἡ MySQL ἐπέστρεψε σφάλμα "<tt>$3: $4</tt>".',
+Ἡ MySQL ἐπέστρεψεν σφάλμα "<tt>$3: $4</tt>".',
 'readonly'        => 'Βάσις δεδομένων ἀποκεκλεισμένη',
 'filenotfound'    => 'Γραφὴ "$1" οὐχ ηὑρέθη',
 'formerror'       => 'Σφάλμα: οὐ δυναμένη ἡ ὑποβολὴ τοῦ τύπου ἐστίν',
@@ -327,6 +327,12 @@ $messages = array(
 'wrongpassword'           => 'Εἰσηγμένον σύνθημα ἐσφαλμένον. Πείρασον πάλιν.',
 'mailmypassword'          => 'Τὸ σύνθημα ἠλεκτρονικῇ ἐπιστολῇ πέμπειν',
 'passwordremindertitle'   => 'Νέον ἐφήμερον σύνθημα διὰ {{SITENAME}}',
+'loginlanguagelabel'      => 'Γλῶττα: $1',
+
+# Password reset dialog
+'resetpass'        => 'Ἀναδιορισμὸς συνθήματος λογισμοῦ',
+'resetpass_header' => 'Ἀναδιορισμὸς συνθήματος',
+'resetpass_submit' => 'Ἀναδιορισμὸς συνθήματος καὶ σύνδεσις',
 
 # Edit page toolbar
 'bold_sample'     => 'Γράμματα παχέα',
@@ -336,6 +342,7 @@ $messages = array(
 'link_sample'     => 'Συνδέσμου ὄνομα',
 'link_tip'        => 'Σύνδεσμος οἰκεῖος',
 'extlink_sample'  => 'http://www.example.com ὄνομα συνδέσμου',
+'extlink_tip'     => 'Ἐξώτερος σύνδεσμος (μέμνησο τὸ πρόθεμα http:// )',
 'headline_sample' => 'Κείμενον ἐπικεφαλίδος',
 'headline_tip'    => 'Κλίμακος 2 ἐπικεφαλίς',
 'math_sample'     => 'Εἰσάγειν τύπον ὧδε',
@@ -367,6 +374,11 @@ $messages = array(
 'editingsection'         => 'Μεταγράφων $1 (μέρος)',
 'yourtext'               => 'Τὰ ὑπό σου γραφόμενα',
 'yourdiff'               => 'Τὰ διαφέροντα',
+'copyrightwarning'       => "Ολαι αι συνεισφοραι εις το {{SITENAME}} θεωρουνται ως σύμφωναι προς την $2 (βλ. $1 δια τας ακριβεῖας).
+Ει ουκ επιθυμείτε τα υμέτερα κείμενά μεταγράψιμα και διαδόσιμα εισιν υπο αλλων χρωμένων, κατα την βούλησίν των, παρακαλουμε σας ινα μην αυτα αναρτειτε εν τουτω χώρω. Ο,τι συνεισφέρετε ενθάδε (κείμενα, διαγράμματα, στοιχεια η εικόνες) δει είναι υμέτερον έργον, η ανηκον τω δημοσίω τομει, ή προερχόμενον εξ ελευθέρων η ανοικτων πηγων μετα ρητης αδείας αναδημοσιεύσεως. <br />
+
+Βεβαιουτε ημας περι της πρωτοτυπίας οτου εργου γραφομένου υφ'υμας ενθαδε. Βεβαιουτε ημας επισης περι της μη εκχωρήσεως αυτου εις αλλοτρίους προς υμας του δικαιώματος δημοσιεύσεως και ονήσεως του, ηντινα εκτασιν αυτο εχει.
+<strong>ΠΑΡΑΚΑΛΟΥΜΕ ΙΝΑ ΜΗΝ ΑΝΑΡΤΕΙΤΕ ΚΕΙΜΕΝΑ ΑΛΛΟΤΡΙΩΝ ΕΙ ΜΗ ΕΧΕΤΕ ΤΗΝ ΑΔΕΙΑ ΤΟΥ ΙΔΙΟΚΤΗΤΟΥ ΤΩΝ ΠΝΕΥΜΑΤΙΚΩΝ ΔΙΚΑΙΩΜΑΤΩΝ!</strong>",
 'templatesused'          => 'Πρότυπα κεχρησμένα ἐν τοιαύτῃ δελτῳ:',
 'templatesusedpreview'   => 'Πρότυπα κεχρησμένα ἐν ταύτῃ πρόβλεψει:',
 'template-protected'     => '(φυλλάττεται)',
@@ -474,6 +486,7 @@ $messages = array(
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|μεταβολή|μεταβολαί}}',
 'recentchanges'   => 'Αἱ νέαι μεταβολαί',
+'rcnote'          => "Κατωτέρω εἰσὶ {{PLURAL:$1|'''1''' ἀλλαγὴ|αἱ τελευταίαι '''$1''' ἀλλαγαὶ}} ἐν {{PLURAL:$2|τῇ τελευταίᾳ ἡμέρᾳ|ταῖς τελευταίαις '''$2''' ἡμέραις}}, ὡς καὶ $5, $4.",
 'rcshowhideminor' => '$1 μικραὶ μεταβολαὶ',
 'rcshowhidebots'  => '$1 αὐτόματα',
 'rcshowhideliu'   => '$1 χρωμένους συνδεδεμένους',
@@ -545,17 +558,20 @@ $messages = array(
 'fewestrevisions' => 'Δέλτοι ἔχουσαι τὰς ὀλιγωτέρας ἀναθεωρήσεις',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|βαίς|βαίτα}}',
-'ncategories'             => '$1 {{PLURAL:$1|Γένος|Γένη}}',
+'nbytes'                  => '$1 {{PLURAL:$1|ψηφιολέξις|ψηφιολέξεις}}',
+'ncategories'             => '$1 {{PLURAL:$1|κατηγορία|κατηγορίαι}}',
 'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμος|σύνδεσμοι}}',
 'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
+'nrevisions'              => '$1 {{PLURAL:$1|ἀναθεώρησις|ἀναθεωρήσεις}}',
+'nviews'                  => '$1 {{PLURAL:$1|βλέψις|βλέψεις}}',
 'lonelypages'             => 'Δέλτοι ὀρφαναί',
 'uncategorizedpages'      => 'Αἱ δέλτοι αἱ οὐκ ἐνοῦσαι γένεσι',
-'uncategorizedcategories' => 'Τὰ γένη τὰ οὐκ ἐνοῦντες γένεσι',
+'uncategorizedcategories' => 'Τὰ γένη τὰ οὐκ ἐνοῦντα γένεσι',
 'uncategorizedimages'     => 'Ἀκατηγοριοποίητα ἀρχεῖα',
 'uncategorizedtemplates'  => 'Ἀκατηγοριοποίητα πρότυπα',
 'unusedcategories'        => 'Ἄχρησται κατηγορίαι',
 'unusedimages'            => 'Ἄχρηστα ἀρχεῖα',
+'wantedcategories'        => 'Αἰτούμεναι κατηγορίαι',
 'wantedpages'             => 'Αἱ δέλτοι οἷας ἱμείρομεν',
 'mostlinked'              => 'Αἱ πλέον προσσυνδεδεμέναι δέλτοι',
 'mostlinkedcategories'    => 'Αἱ πλέον προσσυνδεδεμέναι κατηγορίαι',
@@ -627,6 +643,7 @@ $messages = array(
 'deletepage'                  => 'Διαγράφειν τὴν δέλτον',
 'confirm'                     => 'Κυροῦν',
 'exblank'                     => 'δέλτος κενὴ ἦν',
+'historywarning'              => 'Προσοχή: Ἡ δέλτος ἥντινα βούλεσαι διαγράψειν ἔχει ἱστορίαν:',
 'actioncomplete'              => 'Τέλειον τὸ ποιώμενον',
 'deletedarticle'              => 'Ἐσβέσθη τὴν δέλτον "[[$1]]"',
 'dellogpage'                  => 'Τὰ ἐσβέσμενα',
@@ -639,6 +656,7 @@ $messages = array(
 'protectexpiry'               => 'Ἐξήξει:',
 'protect_expiry_invalid'      => 'Ἄκυρος χρόνος λήξεως.',
 'protect_expiry_old'          => 'Χρόνος λήξεως ἐν τῷ παρελθόντι ἐστίν.',
+'protect-unchain'             => 'Δικαιώματα μετακινήσεως ἐκκλειδοῦν',
 'protect-default'             => '(κριτήριον)',
 'protect-fallback'            => 'Δεῖ ἐχεῖν τὴν "$1" οὐσίαν',
 'protect-level-autoconfirmed' => 'Ἀποκλῄειν τοὺς ἀγράφους',
@@ -754,6 +772,7 @@ $messages = array(
 'tooltip-p-logo'            => 'Δέλτος Μεγίστη',
 'tooltip-n-mainpage'        => 'Πορεύεσθαι τὴν κυρίαν Δέλτον',
 'tooltip-n-portal'          => 'Τὰ περὶ ταῦτης τε τὴς ἐνκυκλοπαιδείας, τῶν τε οἷων ἔξεστι σοὶ πράττεις, οὗ παρεστὶ τινά',
+'tooltip-n-currentevents'   => 'Πληροφορίαι διὰ ἐπίκαιρα γεγονότα',
 'tooltip-n-recentchanges'   => 'Κατάλογος κατὰ πᾶσας τὰς νέας μεταβολάς.',
 'tooltip-n-randompage'      => 'Τινὰ γραφὴν χύδην δηλοῦν.',
 'tooltip-n-help'            => 'Μάθησις περὶ τῆσδε Οὐίκεως',
@@ -798,6 +817,14 @@ $messages = array(
 # Special:Newimages
 'newimages' => 'Τὰ νέα φορτία δεῦρο ἀθροίζει',
 'ilsubmit'  => 'Ζητεῖν',
+'bydate'    => 'κατὰ χρονολογίαν',
+
+# Bad image list
+'bad_image_list' => 'Ἡ μορφοποιία ὡς ἑξῆς ἐστίν:
+
+Μόνον ἀντικείμενα διαλογῆς (γραμμαὶ ἐκκινουμέναι μετὰ τοῦ *) δεκτὰ εἰσί. 
+Ὁ πρῶτος σύνδεσμος ἐν ἐνίτινι γραμμῇ ὀφείλει εἶναι σύνδεσμος πρὸς ἕνα κακὸν ἀρχεῖον.
+Οἷοι δή ποτε ἐπακόλουθοι σύνδεσμοι ἐν τῇ αυτῇ γραμμῇ θεωρουμένοι ἐξαιρέσεις εἰσίν, δῆλα δὴ δέλτοι ὅπου ἡ εἰκὼν δύναται ξυμβῆναι ἐν συνδέσει.',
 
 # Metadata
 'metadata'          => 'Μεταδεδομένα',
@@ -805,11 +832,26 @@ $messages = array(
 'metadata-collapse' => 'Κρύπτειν τὰς ἀκριβείας',
 
 # EXIF tags
+'exif-imagewidth'          => 'Πλάτος',
+'exif-imagelength'         => 'Ὕψος',
+'exif-orientation'         => 'Προσανατόλισις',
+'exif-planarconfiguration' => 'Παράταξις δεδομένων',
+'exif-xresolution'         => 'Ὁριζόντιος ἀνάλυσις',
+'exif-yresolution'         => 'Κάθετος ἀνάλυσις',
 'exif-exposuretime'        => 'Χρόνος ἐκθέσεως',
 'exif-exposuretime-format' => '$1 δευτ. ($2)',
 'exif-oecf'                => 'Παράγων ὀπτοηλεκτονικῆς μετατροπῆς',
+'exif-filesource'          => 'Πηγὴ ἀρχείου',
+'exif-gpslatitude'         => 'Πλάτος γεωγραφικόν',
+'exif-gpsaltituderef'      => 'Ἀναφορὰ ὕψους γεωγραφικοῦ',
+'exif-gpsdatestamp'        => 'Χρονολογία GPS',
 
 'exif-componentsconfiguration-0' => 'Οὐκ ἔστι',
+
+'exif-subjectdistance-value' => '$1 μέτρα',
+
+'exif-meteringmode-5' => 'Ὑπόδειγμα',
+'exif-meteringmode-6' => 'Μερικόν',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-n' => 'Κόμβοι',
@@ -833,6 +875,8 @@ $messages = array(
 'imgmultigo'       => 'Ἰέναι!',
 
 # Table pager
+'ascending_abbrev'         => 'ἀναβ',
+'descending_abbrev'        => 'καταβ',
 'table_pager_next'         => 'Δέλτος ἡ ἐχομένη',
 'table_pager_prev'         => 'Δέλτος προτέρα',
 'table_pager_first'        => 'Δέλτος πρώτη',
@@ -848,14 +892,22 @@ $messages = array(
 'size-megabytes' => '$1 ΜΔ',
 'size-gigabytes' => '$1 ΓΔ',
 
+# Live preview
+'livepreview-loading' => 'Φορτεῖν…',
+
 # Watchlist editor
-'watchlistedit-raw-titles' => 'Τίτλοι:',
+'watchlistedit-raw-titles' => 'Ἐπιγραφαί:',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Ὁρᾶν τε μεταγράφειν τὰ ἐφορώμενα',
 
 # Special:Version
-'version' => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself
+'version'              => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself
+'version-specialpages' => 'Εἰδικαὶ δέλτοι',
+'version-other'        => 'Ἄλλα',
+
+# Special:Filepath
+'filepath-page' => 'Ἀρχεῖον:',
 
 # Special:SpecialPages
 'specialpages'               => 'Εἰδικαὶ δέλτοι',

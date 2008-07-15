@@ -8,9 +8,9 @@
  * @author Marine-Blue
  * @author JtFuruhata
  * @author Broad-Sky
+ * @author Siebrand
  * @author Kahusi
  * @author Emk
- * @author Siebrand
  * @author Mzm5zbC3
  * @author Iwai.masaharu
  * @author לערי ריינהארט
@@ -204,7 +204,7 @@ $messages = array(
 'and'            => 'および',
 
 # Metadata in edit box
-'metadata_help' => 'メタデータ（[[{{int:metadata-url}}]]を参照）',
+'metadata_help' => 'メタデータ:',
 
 'errorpagetitle'    => 'エラー',
 'returnto'          => '$1 に戻る。',
@@ -416,8 +416,7 @@ $2',
 <p>※いくつかのページはブラウザのキャッシュをクリアするまでログインしているかのように表示されることがあります。</p>',
 'welcomecreation'            => '== $1 さん、ようこそ！ ==
 あなたのアカウントができました。
-
-お好みに合わせて[[Special:Preferences|オプション]]を変更することができます。',
+お好みに合わせてオプションを変更することができます。',
 'loginpagetitle'             => 'ログイン',
 'yourname'                   => '利用者名',
 'yourpassword'               => 'パスワード',
@@ -555,7 +554,7 @@ $2',
 *ブロック解除予定: $6
 *ブロック対象: $7
 
-$1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
+$1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'autoblockedtext'                  => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
@@ -565,7 +564,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 ブロック解除予定: $6<br />
 ブロック対象: $8
 
-$1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件について問い合わせることができます。
+$1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件について問い合わせることができます。
 
 ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
@@ -605,7 +604,8 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'userinvalidcssjstitle'            => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
 'updated'                          => '（更新）',
 'note'                             => '<strong>お知らせ:</strong>',
-'previewnote'                      => '<strong>これはプレビューです。まだ保存されていません!</strong>[[#editform|→ 編集フォームへ移動]]',
+'previewnote'                      => '<strong>これはプレビューです。
+まだ保存されていません!</strong>',
 'previewconflict'                  => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview'             => '<strong>セッションが切断されたため編集を保存できません。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
 'session_fail_preview_html'        => "<strong>申し訳ありません。セッションが切断されたため編集を保存することができませんでした。</strong>
@@ -780,7 +780,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 # Search results
 'searchresults'            => '検索結果',
 'searchresulttext'         => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:Helppage}}|{{int:help}}]]をご覧ください。',
-'searchsubtitle'           => "検索語: '''[[:$1]]''' （[[Special:Prefixindex/$1|全ページ]]/[[Special:Whatlinkshere/$1|リンク元]]）",
+'searchsubtitle'           => "検索語: '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "検索語: '''$1'''",
 'noexactmatch'             => '"$1" というタイトルのページは存在しませんでした。[[:$1|新規作成する]]。',
 'noexactmatch-nocreate'    => "''\"\$1\"'' というタイトルのページは存在しませんでした。",
@@ -919,16 +919,20 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'right-createpage'    => 'ページの作成（ノートページ以外）',
 'right-createtalk'    => 'ノートページの作成',
 'right-createaccount' => '新しい利用者アカウントの作成',
-'right-minoredit'     => '細部の編集',
+'right-minoredit'     => '編集を細部の編集としてマークする',
 'right-move'          => 'ページの移動',
 'right-move-subpages' => 'サブページを含めたページの移動',
 'right-reupload'      => '存在するファイルの上書き',
 'right-reupload-own'  => '自らがアップロードした存在するファイルの上書き',
+'right-purge'         => '確認画面を表示せずにキャッシュの破棄を行う',
 'right-autoconfirmed' => '半保護されたページの編集',
+'right-bot'           => '自動的に行われた作業として認識させる',
+'right-writeapi'      => '編集APIの使用',
 'right-delete'        => 'ページの削除',
 'right-undelete'      => 'ページの復帰',
 'right-block'         => '他利用者の投稿ブロック',
 'right-blockemail'    => '電子メール送信のブロック',
+'right-protect'       => '保護レベルの変更と保護されたページの編集',
 'right-editprotected' => '保護ページの編集 (カスケード保護を除く)',
 'right-editinterface' => 'ユーザーインターフェースの編集',
 'right-editusercssjs' => '他利用者のCSS・JSファイルの編集',
@@ -1010,7 +1014,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'filetype-badmime'            => 'MIME タイプ "$1" のファイルのアップロードは許可されていません。',
 'filetype-unwanted-type'      => "'''\".\$1\"''' は好ましくないファイル形式です。次の{{PLURAL:\$3|ファイル形式|ファイル形式}}を推奨します： \$2",
 'filetype-banned-type'        => "'''\".\$1\"''' は許可されていないファイル形式です。次の{{PLURAL:\$3|ファイル形式|ファイル形式}}を利用してください： \$2",
-'filetype-missing'            => 'ファイルに拡張子 (".jpg" など）がありません。',
+'filetype-missing'            => 'ファイルに拡張子 (".jpg" など)がありません。',
 'large-file'                  => 'ファイルサイズは $1 バイト以下に抑えることが推奨されています。このファイルは $2 バイトです。',
 'largefileserver'             => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
 'emptyfile'                   => 'あなたがアップロードしようとしているファイルは内容が空であるか、もしくはファイル名の指定が間違っています。もう一度、ファイル名が正しいか、あるいはアップロードしようとしたファイルであるかどうかを確認してください。',
@@ -1098,6 +1102,7 @@ $1 または他の[[{{MediaWiki:grouppage-sysop}}|管理者]]にこの件につ�
 'nolinkstoimage'            => 'このファイルを使用しているページはありません。',
 'morelinkstoimage'          => 'このファイルの[[Special:Whatlinkshere/$1|リンク元]]を見る。',
 'redirectstofile'           => 'このファイルへ{{PLURAL:$1|リダイレクトされているファイル|リダイレクトされている $1 ファイル}}の一覧:',
+'duplicatesoffile'          => '以下にこのファイルと同一のファイル $1 件を表示しています:',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'          => '詳しい情報は$1を参照してください。',
 'shareduploadwiki-desc'     => '共有リポジトリ内の$1にあるこのファイルの説明は以下の通りです。',
@@ -1408,7 +1413,8 @@ $NEWPAGE
 'delete-confirm'              => '"$1" の削除',
 'delete-legend'               => '削除',
 'historywarning'              => '警告: 削除しようとしているページには履歴があります:',
-'confirmdeletetext'           => '指定されたページまたは画像は、その変更履歴と共にデータベースから永久に削除されようとしています。あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたのしようとしていることが[[{{int:policy-url}}|方針]]に即したものであることを確認してください。',
+'confirmdeletetext'           => '指定されたページまたは画像は、その変更履歴と共にデータベースから永久に削除されようとしています。
+あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたのしようとしていることが[[{{MediaWiki:Policy-url}}|方針]]に即したものであることを確認してください。',
 'actioncomplete'              => '完了しました',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" は削除されました。最近の削除に関しては $2 を参照してください。',
 'deletedarticle'              => '"$1" を削除しました。',
@@ -1431,9 +1437,10 @@ $NEWPAGE
 'rollbacklink'                => '差し戻し',
 'rollbackfailed'              => '差し戻しに失敗しました',
 'cantrollback'                => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'               => 'ページ [[:$1]] の [[User:$2|$2]] ([[User_talk:$2|会話]] | [[Special:Contributions/$2|履歴]]) による編集の差し戻しに失敗しました。誰か他の利用者が編集を行ったか差し戻しされたのかもしれません。
+'alreadyrolled'               => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]])
+による編集の差し戻しに失敗しました。誰か他の利用者が編集を行ったか差し戻しされたのかもしれません。
 
-このページの最後の編集は [[User:$3|$3]] ([[User_talk:$3|会話]] | [[Special:Contributions/$3|履歴]]) によるものです。',
+このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]]) によるものです。',
 'editcomment'                 => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
 'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
@@ -1593,7 +1600,8 @@ $NEWPAGE
 'ipbwatchuser'                => 'この利用者の利用者ページと利用者‐会話ページをウォッチリストに追加',
 'badipaddress'                => 'IPアドレスが異常です。',
 'blockipsuccesssub'           => 'ブロックに成功しました。',
-'blockipsuccesstext'          => '利用者またはIPアドレス [[User:$1|$1]]（[[User talk:$1|会話]]|[[Special:Contributions/$1|履歴]]） の投稿をブロックしました。<br /> [[Special:Ipblocklist|{{int:ipblocklist}}]]で確認できます。',
+'blockipsuccesstext'          => '利用者またはIPアドレス [[Special:Contributions/$1|$1]] の投稿をブロックしました。<br />
+[[Special:Ipblocklist|投稿ブロック中の利用者やIPアドレス]]で確認できます。',
 'ipb-edit-dropdown'           => 'ブロック理由を編集する',
 'ipb-unblock-addr'            => '$1 のブロックを解除',
 'ipb-unblock'                 => '利用者またはIPアドレスのブロックを解除する',
@@ -1658,7 +1666,7 @@ $NEWPAGE
 'lockdbsuccesssub'    => 'データベースはロックされました。',
 'unlockdbsuccesssub'  => 'データベースのロックは解除されました',
 'lockdbsuccesstext'   => 'データベースをロックしました。<br />
-メンテナンスが終了したら忘れずに[[Special:Unblockdb|ロックを解除]]してください。',
+メンテナンスが終了したら忘れずに[[Special:Unlockdb|ロックを解除]]してください。',
 'unlockdbsuccesstext' => 'データベースのロックは解除されました。',
 'lockfilenotwritable' => 'データベースのロックファイルに書き込めません。データベースのロック・解除をするには、サーバー上のロックファイルに書き込める必要があります。',
 'databasenotlocked'   => 'データベースはロックされていません。',
@@ -1693,6 +1701,7 @@ $NEWPAGE
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
 'pagemovedsub'            => '無事移動しました。',
+'movepage-moved'          => '<big>\'\'\'"$1"は"$2"へ移動されました。\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'cantmove-titleprotected' => '移動先ページが作成保護対象となっているため、ページを移動できません。',
 'talkexists'              => 'ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。',
@@ -2252,7 +2261,7 @@ Variants for Chinese language
 
 # E-mail address confirmation
 'confirmemail'            => 'メールアドレスの確認',
-'confirmemail_noemail'    => '[[{{ns:special}}:Preferences|オプション設定]]で有効なメールアドレスが指定されていません。',
+'confirmemail_noemail'    => '[[Special:Preferences|オプション設定]]で有効なメールアドレスが指定されていません。',
 'confirmemail_text'       => 'このウィキではメール通知を受け取る前にメールアドレスの確認が必要です。以下のボタンを押すと「{{int:Confirmemail_subject}}」という件名の確認メールがあなたのメールアドレスに送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
 'confirmemail_pending'    => '<div class="error">
 確認メールは既に送信されています。あなたがこのアカウントを作成したばかりであれば、数分待って既にメールが送信されていないかを確かめてください。
@@ -2304,9 +2313,9 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => "'''警告:''' このページはあなたが編集し始めた後、削除されました!!",
-'confirmrecreate'     => 'あなたがこのページを編集し始めた後に、このページは[[User:$1|$1]] ([[User_talk:$1|会話]]) によって削除されました。その理由は次の通りです:
-:$2
-このままこのページを新規作成して良いか確認してください。',
+'confirmrecreate'     => "あなたがこのページを編集し始めた後に、このページは[[User:$1|$1]] ([[User talk:$1|会話]]) によって削除されました。その理由は次の通りです:
+: ''$2''
+このままこのページを新規作成して良いか確認してください。",
 'recreate'            => '新規作成する',
 
 # HTML dump
@@ -2366,7 +2375,7 @@ $1',
 'lag-warn-high'   => 'データベースサーバの負荷のため同期が遅れています。この一覧には$1秒前までの編集が反映されていない可能性があります。',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'あなたのウォッチリストには $1タイトルが登録されています（ノートページを除く）。',
+'watchlistedit-numitems'       => 'あなたのウォッチリストには $1タイトルが登録されています（ノートページもあわせて登録されています）。',
 'watchlistedit-noitems'        => 'あなたのウォッチリストには、現在タイトルがありません。',
 'watchlistedit-normal-title'   => 'ウォッチリストの編集',
 'watchlistedit-normal-legend'  => 'ウォッチリストからタイトルを削除',

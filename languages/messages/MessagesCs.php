@@ -8,8 +8,8 @@
  * @author Danny B.
  * @author Matěj Grabovský
  * @author לערי ריינהארט
- * @author Mormegil
  * @author Siebrand
+ * @author Mormegil
  * @author Reaperman
  * @author Helix84
  * @author Michawiki
@@ -676,7 +676,8 @@ $2',
 'logouttext'                 => 'Nyní jste odhlášeni.<br />
 Tento počítač může být používán k prohlížení a editaci {{grammar:2sg|{{SITENAME}}}} bez uživatelského jména, nebo pro přihlášení jiného uživatele. Upozorňujeme, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni. Tento jev potrvá do smazání cache vašeho prohlížeče.',
 'welcomecreation'            => '== Vítejte, $1! ==
-Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|nastavení]]!',
+Váš účet byl vytvořen.
+Nezapomeňte si upravit své nastavení!',
 'loginpagetitle'             => 'Přihlaste se',
 'yourname'                   => 'Uživatelské jméno:',
 'yourpassword'               => 'Vaše heslo',
@@ -1326,31 +1327,23 @@ $3',
 'upload_directory_missing'    => 'Adresář pro nahrávání souborů ($1) chybí a webový server ho nedokáže vytvořit.',
 'upload_directory_read_only'  => 'Do adresáře pro načítané soubory ($1) nemá webserver právo zápisu.',
 'uploaderror'                 => 'Při načítání došlo k chybě',
-'uploadtext'                  => 'Pro prohlížení a hledání již dříve nahraných souborů se podívejte
-na [[Special:Imagelist|seznam načtených souborů]], popř.
-[[Special:Newimages|galerii nových obrázků]]. Všechna načtení
-a smazání jsou zaznamenány v [[Special:Log|protokolovacích záznamech]].
+'uploadtext'                  => 'Pro prohlížení a hledání již dříve nahraných souborů se podívejte na [[Special:Imagelist|seznam načtených souborů]].
+Všechna načtení a smazání jsou zaznamenány v [[Special:Log|protokolovacích záznamech]].
 
-Pomocí níže uvedeného formuláře můžete na wiki nahrát obrázky a jiné
-soubory, které poté budete moci použít v článcích. Ve většině prohlížečů
-je zobrazeno tlačítko „Procházet…“, pomocí kterého budete moci
-vybrat soubor k načtení, jehož jméno se poté objeví v políčku
-vedle tlačítka. Poté stiskněte tlačítko „Načíst soubor“ k
-dokončení načtení. Buďte trpěliví, nahrávání může chvíli trvat.
+Pomocí níže uvedeného formuláře můžete na wiki nahrát obrázky a jiné soubory, které poté budete moci použít v článcích.
+Ve většině prohlížečů je zobrazeno tlačítko „Procházet…“, pomocí kterého budete moci vybrat soubor k načtení, jehož jméno se poté objeví v políčku vedle tlačítka.
+Poté stiskněte tlačítko „Načíst soubor“ k dokončení načtení. Buďte trpěliví, nahrávání může chvíli trvat.
 
-Preferované formáty jsou JPEG pro fotografie, PNG pro schémata
-a OGG pro zvuky. Používejte laskavě smysluplná jména souborů,
-soubor po načtení nelze přejmenovat.
+Preferované formáty jsou JPEG pro fotografie, PNG pro schémata a OGG pro zvuky. Používejte laskavě smysluplná jména souborů, soubor po načtení nelze přejmenovat.
 
 Pro vložení obrázku do stránky použijte syntaxi
 <code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:soubor.jpg]]</nowiki></code> nebo
 <code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:soubor.png|popisek]]</nowiki></code>, popř.
 <code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:soubor.ogg]]</nowiki></code> pro zvuky.
 
-Uvědomte si laskavě, že stejně jako u ostatních wikistránek mohou
-ostatní uživatelé vámi nahraný soubor smazat či upravit, pokud to
-uznají za vhodné; pokud budete tuto funkci zneužívat, může být
-váš uživatelský účet zablokován.',
+Uvědomte si laskavě, že stejně jako u ostatních wikistránek mohou ostatní uživatelé vámi nahraný soubor smazat či upravit, pokud to
+uznají za vhodné;
+pokud budete tuto funkci zneužívat, může být váš uživatelský účet zablokován.',
 'upload-permitted'            => 'Povolené formáty souborů: $1.',
 'upload-preferred'            => 'Upřednostňované formáty souborů: $1.',
 'upload-prohibited'           => 'Zakázané formáty souborů: $1.',
@@ -1387,8 +1380,8 @@ Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvláš�
 'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>.
 Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
-'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento soubor je duplikát {{PLURAL:$1|následujícího souboru|následujících souborů}}:',
 'successfulupload'            => 'Načtení úspěšně provedeno!',
 'uploadwarning'               => 'Varování',
@@ -1458,7 +1451,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'imagelinks'                     => 'Odkazy k souboru',
 'linkstoimage'                   => 'Na soubor {{plural:$1|odkazuje tato stránka|odkazují tyto stránky}}:',
 'nolinkstoimage'                 => 'Na tento soubor neodkazuje žádná stránka.',
-'morelinkstoimage'               => 'Zobrazit [[{{#special:Whatlinkshere}}/$1|další odkazy]] na tento soubor.',
+'morelinkstoimage'               => 'Zobrazit [[Special:Whatlinkshere/$1|další odkazy]] na tento soubor.',
 'redirectstofile'                => '{{plural:$1|Následující soubor přesměrovává|Následující $1 soubory přesměrovávají|Následujících $1 souborů přesměrovává}} na tento soubor:',
 'duplicatesoffile'               => '{{plural:$1|Následující soubor je duplikát|Následující $1 soubory jsou duplikáty|Následujících $1 souborů jsou duplikáty}} tohoto souboru:',
 'sharedupload'                   => 'Tento soubor je sdílený a může být používán ostatními projekty.',
@@ -1768,7 +1761,7 @@ Rady a kontakt:
 'deletepage'                  => 'Smazat stránku',
 'confirm'                     => 'Potvrdit',
 'excontent'                   => 'obsah byl: „$1“',
-'excontentauthor'             => 'obsah byl: „$1“ (a jediným přispěvatelem byl „[[Speciální:Contributions/$2|$2]]“)',
+'excontentauthor'             => 'obsah byl: „$1“ (a jediným přispěvatelem byl „[[Special:Contributions/$2|$2]]“)',
 'exbeforeblank'               => 'obsah před vyprázdněním byl: „$1“',
 'exblank'                     => 'stránka byla prázdná',
 'delete-confirm'              => 'Smazání stránky „$1“',
@@ -1934,7 +1927,9 @@ $1',
 # Block/unblock
 'blockip'                         => 'Zablokovat uživatele',
 'blockip-legend'                  => 'Zablokovat uživatele',
-'blockiptext'                     => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména. Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]]. Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny). Pro odblokování se podívejte na [[Special:Ipblocklist|seznam blokovaných IP adres]].',
+'blockiptext'                     => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.
+Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].
+Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny).',
 'ipaddress'                       => 'IP adresa',
 'ipadressorusername'              => 'IP adresa nebo uživatelské jméno',
 'ipbexpiry'                       => 'Čas vypršení',
@@ -1961,7 +1956,8 @@ $1',
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
-'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován. <br />Podívejte se na [[Special:Ipblocklist|seznam zablokovaných]], [[Special:Log/block|kniha zablokování]] zaznamenává všechny podobné úkony.',
+'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
+Podívejte se na [[Special:Ipblocklist|seznam zablokovaných]] zaznamenává všechny podobné úkony.',
 'ipb-edit-dropdown'               => 'Editace seznamu důvodů zablokování',
 'ipb-unblock-addr'                => 'Odblokovat uživatele nebo IP $1',
 'ipb-unblock'                     => 'Odblokovat uživatele nebo IP adresu',
@@ -2080,7 +2076,7 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 
 # Export
 'export'            => 'Exportovat stránky',
-'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[{{ns:special}}:Import]].
+'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[Special:Import]].
 
 Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.',
 'exportcuronly'     => 'Zahrnout jen současnou verzi, ne plnou historii',

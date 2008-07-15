@@ -446,8 +446,8 @@ La kialo donata estis ''$2''.",
 'logouttext'                 => '<strong>Vi elsalutis kaj finis vian seancon.</strong><br />
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas reensaluti kiel la sama aŭ kiel alia uzanto.',
 'welcomecreation'            => '== Bonvenon, $1! ==
-
-Via konto estas kreita. <span style="color:#ff0000">Ne forgesu fari viajn [[special:Preferences|{{SITENAME}}-preferojn]]!</span>',
+Via konto estas kreita.
+Ne forgesu fari viajn {{SITENAME}}-preferojn.',
 'loginpagetitle'             => 'Ensaluti / enskribi',
 'yourname'                   => 'Salutnomo:',
 'yourpassword'               => 'Via pasvorto',
@@ -597,7 +597,7 @@ La donita kialo estas:
 *Komenco de forbaro: $8
 *Limdato de la blokado: $6
 
-Vi povas kontakti $1 aux iun ajn el la aliaj [[{{MediaWiki:grouppage-sysop}}|administrantojn]] por diskuti la blokon.
+Vi povas kontakti $1 aux iun ajn el la aliaj [[{{MediaWiki:Grouppage-sysop}}|administrantojn]] por diskuti la blokon.
 
 Notu, ke vi ne povas uzi la servon "Retposxtu cxi tiu uzanton" krom se vi havas validan retpost-adreson registritan en viaj [[Special:Preferences|vikipediistajn preferojn]], kaj vi estas ne blokita kontraux gxia uzado.
 
@@ -674,7 +674,7 @@ Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.</strong>',
 pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
 la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'protectedpagewarning'             => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado.</strong>',
-'semiprotectedpagewarning'         => '<strong>Notu:</strong> Ĉi paĝo estas protektita tiel ke nur [[Special:Userlogin|ensalutintaj]] uzantoj povas redakti ĝin.',
+'semiprotectedpagewarning'         => "'''Notu:''' Ĉi paĝo estas protektita tiel ke nur ensalutintaj uzantoj povas redakti ĝin.",
 'cascadeprotectedwarning'          => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
 'titleprotectedwarning'            => '<strong>AVERTO: Ĉi paĝo estis ŝlosita tial nur iuj uzantoj povas krei ĝin.</strong>',
 'templatesused'                    => 'Ŝablonoj uzitaj sur ĉi paĝo:',
@@ -711,7 +711,7 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'undo-success' => 'La redakto estas malfarebla. Bonvolu konfirmi la jenan komparajxon por verigi cxi tiel vi volas, kaj konservu la sxangxojn suben fini malfarante la redakton.',
 'undo-failure' => 'Ne eblas nuligi redakton pro konfliktaj intermezaj redaktoj.',
 'undo-norev'   => 'La redakto ne eblis esti malfarita ĉar ĝi aŭ ne ekzistas aŭ estis forigita.',
-'undo-summary' => 'Nuligis revizion $1 de [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskuto]])',
+'undo-summary' => 'Nuligis revizion $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne povas krei konton',
@@ -1305,7 +1305,9 @@ La nuna longeco de la [http://www.mediawiki.org/wiki/Manual:Job_queue laborenda 
 
 'disambiguations'      => 'Misligitaj apartigiloj',
 'disambiguationspage'  => 'Template:Apartigilo',
-'disambiguations-text' => 'La jenaj paĝoj alligas <i>paĝon-apartigilon</i>. Ili devus anstataŭe alligi la ĝustan temon.<br />Oni konsideras tiujn paĝojn, kiujn alligas $1 apartigiloj.<br />Ligado el ne-artikolaj sekcioj <i>ne</i> listiĝas ĉi tie.',
+'disambiguations-text' => "La jenaj paĝoj alligas '''paĝon-apartigilon'''.
+Ili devus anstataŭe alligi la ĝustan temon.<br />
+Oni konsideras tiujn paĝojn, kiujn alligas $1 apartigiloj. Ligado el ne-artikolaj sekcioj <i>ne</i> listiĝas ĉi tie.",
 
 'doubleredirects'     => 'Duoblaj alidirektadoj',
 'doubleredirectstext' => '<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br />
@@ -1416,7 +1418,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'allpages-bad-ns'   => '{{SITENAME}} ne havas nomspacon "$1".',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Kategorio|Kategorioj}}',
+'categories'                    => 'Kategorioj',
 'categoriespagetext'            => 'La sekvantaj kategorioj ekzistas jam en la vikio.',
 'categoriesfrom'                => 'Montri kategoriojn komencante de:',
 'special-categories-sort-count' => 'oridigu laŭ nombrado',
@@ -1429,7 +1431,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Gruprajtoj de uzantoj',
-'listgrouprights-summary'  => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj. Aldona informo pri individuaj rajtoj estas trovebla [[{{int:Listgrouprights-helppage}}|ĉi tie]].',
+'listgrouprights-summary'  => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.
+Aldona informo pri individuaj rajtoj estas trovebla [[{{MediaWiki:Listgrouprights-helppage}}|ĉi tie]].',
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Rajtoj',
 'listgrouprights-helppage' => 'Help:Grupaj rajtoj',
@@ -1574,7 +1577,7 @@ Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj pro
 'protectlogpage'              => 'Protokolo de protektoj',
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
 Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj.',
-'protectedarticle'            => 'protektita [[:$1]]',
+'protectedarticle'            => 'protektita [[$1]]',
 'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[$1]]"',
 'unprotectedarticle'          => 'malprotektita [[$1]]',
 'protect-title'               => 'Protektante "$1"',
@@ -1584,7 +1587,7 @@ Vidu [[Special:Protectedpages|liston de protektitaj paĝoj]] por pli da informoj
 'protect_expiry_invalid'      => 'Nevalida findaŭro.',
 'protect_expiry_old'          => 'Eksvalidiĝa tempo jam pasis.',
 'protect-unchain'             => 'Malŝlosi movpermesojn',
-'protect-text'                => 'Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo [[$1]]. Bonvolu certiĝi ke vi respektas la [[Special:Protectedpages|gvidliniojn de la projekto]].',
+'protect-text'                => 'Vi povas ĉi tie vidi kaj ŝanĝi la protektnivelon de la paĝo <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Vi ne povas ŝanĝi prokekto-nivelojn dum forbarita. Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Ne eblas ŝanĝi nivelojn de protekto pro aktiva datumbaza ŝloso.
 Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',

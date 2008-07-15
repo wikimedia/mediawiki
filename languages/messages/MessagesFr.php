@@ -15,16 +15,16 @@
  * @author Sherbrooke
  * @author Siebrand
  * @author Hégésippe Cormier
- * @author Omnipaedista
- * @author Cedric31
  * @author Dereckson
  * @author Korg
- * @author JeanVoisin
- * @author Горан Анђелковић
- * @author McDutchie
- * @author SPQRobin
+ * @author Cedric31
+ * @author Omnipaedista
  * @author Louperivois
+ * @author JeanVoisin
+ * @author SPQRobin
+ * @author McDutchie
  * @author ChrisPtDe
+ * @author Горан Анђелковић
  * @author Jon Harald Søby
  * @author Esbardu
  */
@@ -1693,7 +1693,8 @@ L’heure indiquée est celle du serveur (UTC).',
 'rollback-success'            => 'Révocation des modifications de $1 ; retour à la version de $2.',
 'sessionfailure'              => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
 'protectlogpage'              => 'Historique des protections',
-'protectlogtext'              => 'Voir les [[{{MediaWiki:Policy-url}}|directives]] pour plus d’information.',
+'protectlogtext'              => 'Voici une liste des protections et des déprotections.
+Consultez la [[Special:Protectedpages|liste des pages protégées]] pour la liste des protections actuelles.',
 'protectedarticle'            => 'a protégé « [[$1]] »',
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
 'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
@@ -1704,8 +1705,7 @@ L’heure indiquée est celle du serveur (UTC).',
 'protect_expiry_invalid'      => 'Le temps d’expiration est invalide.',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
-'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.
-Veuillez vous assurer que vous suivez les [[{{MediaWiki:Policy-url}}|règles internes]].',
+'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué.
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-locked-dblock'       => 'Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
@@ -1875,7 +1875,6 @@ Vous pouvez consulter la [[Special:Ipblocklist|liste des comptes et des adresses
 'ipblocklist'                     => 'Liste des utilisateurs bloqués',
 'ipblocklist-legend'              => 'Chercher un utilisateur bloqué',
 'ipblocklist-username'            => 'Nom de l’utilisateur ou adresse IP :',
-'ipblocklist-summary'             => 'La liste ci-dessous montre tous les utilisateurs et adresses IP bloqués, par ordre anti-chronologique. Consulter le [[Special:Log/block|journal de blocage]] pour voir les dernières actions de blocage et déblocage effectuées.',
 'ipblocklist-submit'              => 'Chercher',
 'blocklistline'                   => '$1 ($4) : $2 a bloqué $3',
 'infiniteblock'                   => 'permanent',

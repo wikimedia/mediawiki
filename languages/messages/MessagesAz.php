@@ -445,7 +445,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'watchmethod-recent'   => 'yeni dəyişikliklər izlənilən səhifələr üçün yoxlanılır',
 'watchmethod-list'     => 'izlənilən səhifələr yeni dəyişikliklər üçün yoxlanılır',
 'watchlistcontains'    => 'İzləmə siyahınızda $1 səhifə var.',
-'wlnote'               => 'Aşağıdakılar son <b>$2</b> saatdakı son $1 dəyişiklikdir.',
+'wlnote'               => "Aşağıdakılar son '''$2''' saatdakı son $1 dəyişiklikdir.",
 'wlshowlast'           => 'Bunları göstər: son $1 saatı $2 günü $3',
 
 # Delete/protect/revert

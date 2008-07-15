@@ -1258,7 +1258,7 @@ PICT # misc.
 'filedelete-comment'          => 'हटाने का कारण:',
 'filedelete-submit'           => 'हटायें',
 'filedelete-success'          => "'''$1''' को हटा दिया गया हैं।",
-'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' के [$4 $3, $2 के अवतरण] हटा दिये गयें हैं।</span>',
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' के [$3, $2 के अवतरण] हटा दिये गयें हैं।</span>',
 'filedelete-nofile'           => "'''$1''' {{SITENAME}} पर अस्तित्वमें नहीं हैं।",
 'filedelete-nofile-old'       => "दिये हुए विशेशता से मेल खाने वालें '''$1''' के अवतरण नहीं हैं।",
 'filedelete-iscurrent'        => 'आप इस फ़ाईलका सबसे नया अवतरण हटा रहें हैं।
@@ -1438,7 +1438,7 @@ PICT # misc.
 
 # Special:Listgrouprights
 'listgrouprights'          => 'सदस्य ग्रुप अधिकार',
-'listgrouprights-summary'  => 'नीचे विकिपर बनायें गये ग्रुपोंकी सूची उन ग्रुपोंके सदस्योंको प्राप्त अधिकारोंके साथ दर्शायी गई हैं। हर एक के अधिकार के बारे में अधिक जानकारी [[{{int:Listgrouprights-helppage}}|यहां]] दी गई हैं।',
+'listgrouprights-summary'  => 'नीचे विकिपर बनायें गये ग्रुपोंकी सूची उन ग्रुपोंके सदस्योंको प्राप्त अधिकारोंके साथ दर्शायी गई हैं। हर एक के अधिकार के बारे में अधिक जानकारी [[{{MediaWiki:Listgrouprights-helppage}}|यहां]] दी गई हैं।',
 'listgrouprights-group'    => 'ग्रुप',
 'listgrouprights-rights'   => 'अधिकार',
 'listgrouprights-helppage' => 'Help:ग्रुप अधिकार',

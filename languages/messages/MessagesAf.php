@@ -389,7 +389,7 @@ Probeer asseblief weer oor 'n paar minute.",
 'namespaceprotected'   => "U het nie toestemming om bladsye in die '''$1'''-naamruimte te wysig nie.",
 'customcssjsprotected' => "U het nie toestemming om hierdie bladsy te redigeer nie, want dit bevat 'n ander gebruiker se persoonlike verstellings.",
 'ns-specialprotected'  => 'Spesiale bladsye kan nie geredigeer word nie.',
-'titleprotected'       => "Hierdie titel is beskerm teen skepping deur [[Gebruiker:$1|$1]].
+'titleprotected'       => "Hierdie titel is beskerm teen skepping deur [[User:$1|$1]].
 Die rede gegee is ''$2''.",
 
 # Virus scanner
@@ -619,7 +619,8 @@ Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat di
 'template-semiprotected'    => '(half-beskerm)',
 'hiddencategories'          => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
 'nocreatetitle'             => 'Bladsy skepping beperk',
-'nocreatetext'              => '{{SITENAME}} het die skep van nuwe bladsye beperk. U kan slegs bestaande bladsye wysig, of u kan [[Spesiaal:Userlogin|aanteken of registreer]].',
+'nocreatetext'              => '{{SITENAME}} het die skep van nuwe bladsye beperk.
+U kan slegs bestaande bladsye wysig, of u kan [[Special:Userlogin|aanteken of registreer]].',
 'nocreate-loggedin'         => 'U het nie regte om nuwe blaaie op {{SITENAME}} te skep nie.',
 'permissionserrors'         => 'Toestemmings Foute',
 'permissionserrorstext'     => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
@@ -637,7 +638,7 @@ Daar is $1 funksies, terwyl die bladsy minder as $2 moet hê.',
 
 # "Undo" feature
 'undo-failure' => 'Die wysiging kan nie ongedaan gemaak word nie omdat dit met intermediêre wysigings bots.',
-'undo-summary' => 'Rol weergawe $1 deur [[Spesiaal:Contributions/$2|$2]] terug. ([[Gebruikerbespreking:$2|Bespreek]])',
+'undo-summary' => 'Rol weergawe $1 deur [[Special:Contributions/$2|$2]] terug. ([[User talk:$2|Bespreek]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan nie rekening skep nie',
@@ -678,6 +679,8 @@ Daar is $1 funksies, terwyl die bladsy minder as $2 moet hê.',
 'rev-delundel'            => 'wys/versteek',
 'revisiondelete'          => 'Verwyder/herstel weergawes',
 'revdelete-nooldid-title' => 'Ongeldige teiken weergawe',
+'revdelete-selected'      => 'Geselekteerde {{PLURAL:$2|wysiging|wysigings}} vir [[:$1]]:',
+'logdelete-selected'      => 'Geselekteerde {{PLURAL:$1|logboek aksie|logboek aksies}}:',
 'revdelete-legend'        => 'Stel sigbaarheid beperkinge',
 'revdelete-hide-text'     => 'Steek hersiening teks weg',
 'revdelete-hide-name'     => 'Steek aksie en teiken weg',
@@ -706,6 +709,8 @@ Daar is $1 funksies, terwyl die bladsy minder as $2 moet hê.',
 'mergehistory-no-destination'      => 'Bestemmingsbladsy $1 bestaan nie.',
 'mergehistory-invalid-source'      => "Bronbladsy moet 'n geldige titel wees.",
 'mergehistory-invalid-destination' => "Bestemmingsbladsy moet 'n geldige titel wees.",
+'mergehistory-autocomment'         => '[[:$1]] saamgevoeg by [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] saamgevoeg by [[:$2]]: $3',
 
 # Merge log
 'mergelog' => 'Versmeltingslogboek',
@@ -725,6 +730,7 @@ Daar is $1 funksies, terwyl die bladsy minder as $2 moet hê.',
 'searchsubtitleinvalid'     => 'Vir navraag "$1"',
 'noexactmatch'              => "'''Geen bladsy met die titel \"\$1\" bestaan nie.''' Probeer 'n volteksnavraag of [[:\$1|skep die bladsy]].",
 'noexactmatch-nocreate'     => "'''Daar bestaan geen bladsy met titel \"\$1\" nie.'''",
+'toomanymatches'            => "Te veel resultate. Probeer asseblief 'n ander soektog.",
 'titlematches'              => 'Artikeltitel resultate',
 'notitlematches'            => 'Geen artikeltitel resultate nie',
 'textmatches'               => 'Artikelteks resultate',
@@ -813,6 +819,7 @@ om voorkeure te spesifiseer.',
 'servertime'               => 'Tyd op die bediener is nou',
 'guesstimezone'            => 'Vul in vanaf webblaaier',
 'allowemail'               => 'Laat e-pos van ander toe',
+'prefs-searchoptions'      => 'Soekopsies',
 'prefs-namespaces'         => 'Naamruimtes',
 'defaultns'                => 'Verstek naamruimtes vir soektog:',
 'default'                  => 'verstek',
@@ -876,6 +883,7 @@ om voorkeure te spesifiseer.',
 'right-suppressionlog' => 'Besigtig privaat logboeke',
 'right-editinterface'  => 'Wysig die gebruikerskoppelvlak',
 'right-userrights'     => 'Wysig alle gebruiker regte',
+'right-siteadmin'      => 'Sluit en ontsluit die datbasis',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -914,7 +922,7 @@ om voorkeure te spesifiseer.',
 'recentchangeslinked-title'    => 'Wysigings verwant aan "$1"',
 'recentchangeslinked-noresult' => 'Geen veranderinge op geskakelde bladsye gedurende die periode nie.',
 'recentchangeslinked-summary'  => "Hier volg 'n lys van wysigings wat onlangs gemaak is aan bladsye wat van die gespesifiseerde bladsy geskakel word (of van lede van die gespesifiseerde kategorie)
-Bladsye op [[Spesiaal:Watchlist|jou dophoulys]] word met '''vetletters''' uitgewys.",
+Bladsye op [[Special:Watchlist|jou dophoulys]] word met '''vetletters''' uitgewys.",
 'recentchangeslinked-page'     => 'Bladsy naam:',
 
 # Upload

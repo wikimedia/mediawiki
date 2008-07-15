@@ -557,7 +557,7 @@ $1 საათში.',
 'newarticle'                => '(ახალი)',
 'newarticletext'            => 'ბმულის მეშვებით თქვენ მოხვდით გვერდზე, რომელიც ჯერ არ არსებობს.
 გვერდის შესაქმნელად შეიყვანეთ ინფორმაცია ქვემო ფანჯარაში
-(იხ. [[{{ns:help}}:Contents|დახმარების გვერდი]] დამატებითი ინფორმაციისთვის).
+(იხ. [[{{MediaWiki:Helppage}}|დახმარების გვერდი]] დამატებითი ინფორმაციისთვის).
 თუ ამ გვერდზე შეცდომით მოხვდით, დაბრუნდით უკან თქვენი ბრაუზერის მეშვეობით.',
 'anontalkpagetext'          => "----''ეს არის ანონიმური მომხმარებლის განხილვის გვერდი, რომელსაც ანგარიში ჯერ არ შეუქმნია ან არ იყენებს მას. შესაბამისად, ჩვენ მისი ციფრული IP მისამართი უნდა გამოვიყენოთ მისი იდენტიფიცირებისთვის. ამგვარი მისამართი შეიძლება რამდენიმე მომხმარებელმა გამოიყენოს. თუ თქვენ ანონიმური მომხმარებელი ხართ და თვლით, რომ სხვისთვის გამიზნული მითითება მიიღეთ, გთხოვთ [[Special:Userlogin|შექმენით ანგარიში ან დარეგისტრირდით]] მომავალში გაუგებრობის თავიდან ასაცილებლად.''",
 'noarticletext'             => 'ამჟამად ამ გვერდზე ტექსტი არ არსებობს, თქვენ შგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ამ გვერდის სათაური]] სხვა გვერდებზე ან [{{fullurl:{{FULLPAGENAME}}|action=edit}} დაიწყოთ ამ გვერდის რედაქტირება].',
@@ -1017,14 +1017,7 @@ $1 საათში.',
 'statistics-mostpopular' => 'ყველზე ხშირად ხილვადი გვერდები',
 
 'disambiguations'     => 'მრავალმნიშვნელოვანი გვერდები',
-'disambiguationspage' => "Admins, please maintain this page by including links to all disambiguation templates and any redirects to them.
-
-The list is used by [[Special:Disambiguations]] to show any pages linking to disambiguation articles. The list will also be used by various bots.
-
-<small>Note: This page may be translated and reformatted. Any links to '''<nowiki>[[template:...]]</nowiki>''' will be treated as links to disambiguation templates.</small>
-
-* [[თარგი:მრავალმნიშვნელოვანი]]
-* [[თარგი:მრავმნიშ]]",
+'disambiguationspage' => 'Template:მრავალმნიშვნელოვანი',
 
 'doubleredirects'     => 'ორმაგი გადამისამართება',
 'doubleredirectstext' => 'ყოველი მწკრივი შეიცავს ბმულებს პირველ და მეორე გადამისამართებაზე, აგრეთვე მეორე გადამისამართების ტექსტის პირველ სტრიქონს, რომელშიც ჩვეულებრივ მითითებულია რეალური “სამიზნე” გვერდის სათაური. საჭიროა, რომ პირველი გადამისამართებაც უთითებდეს ამ გვერდზე.',
@@ -1116,7 +1109,7 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'allpages-bad-ns'   => '{{SITENAME}} "$1" არ აქვს სახელთა სივრცე.',
 
 # Special:Categories
-'categories'                  => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'categories'                  => 'კატეგორიები',
 'categoriespagetext'          => 'ვიკიპედიაში შემდეგი კატეგორიებია.',
 'special-categories-sort-abc' => 'ანბანზე დალაგება',
 
@@ -1380,8 +1373,8 @@ $NEWPAGE
 'ipbotherreason'           => 'სხვა/დამატებითი მიზეზი:',
 'badipaddress'             => 'არასწორი IP მისამართი',
 'blockipsuccesssub'        => 'ბლოკირება შესრულებულია',
-'blockipsuccesstext'       => '[[{{ns:special}}:Contributions/$1|$1]] ბლოკირებულ იქნა.
-<br />იხილეთ [[{{ns:special}}:Ipblocklist|ბლოკირებული IP მისამართების სია]].',
+'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] ბლოკირებულ იქნა.<br />
+იხილეთ [[Special:Ipblocklist|ბლოკირებული IP მისამართების სია]].',
 'ipb-edit-dropdown'        => 'დაბლოკვის მიზეზების რედაქტირება',
 'ipb-unblock-addr'         => 'ბლოკის მოხსნა $1',
 'ipb-unblock'              => 'მომხმარებლის სახელზე ან IP მისამართზე ბლოკის მოხსნა',

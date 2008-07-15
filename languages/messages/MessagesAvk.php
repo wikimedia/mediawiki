@@ -1090,13 +1090,14 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 'statistics'             => 'Enkopaca yo',
 'sitestats'              => 'Enkopaca yo va xo',
 'userstats'              => 'Enkopaca yo va favesik',
-'sitestatstext'          => 'Origak va <b>$1</b> bu noelon ruldar. Bata ota va se "prilarabu" is bu icde {{SITENAME}} is yupbu is graskarabu is aru metelizkorafu bu ruldar. Divlapuson va batu bu se, <b>$2</b> lanon telizkorafu bu zavzad. <br />
+'sitestatstext'          => "Origak va '''\$1''' bu noelon ruldar.
+Bata ota va se \"prilarabu\" is bu icde {{SITENAME}} is yupbu is graskarabu is aru metelizkorafu bu ruldar. Divlapuson va batu bu se, '''\$2''' lanon telizkorafu bu zavzad.
 
-\'\'\'$8\'\'\' iyeltak tid kalvajayan. <br />
+'''\$8''' iyeltak tid kalvajayan.
 
-<b>$3</b> bu zo rupeyed ise <b>$4</b> zo betayad. Va mialuk va <b>$5</b> betara fuxe bu is <b>$6</b> rupera fuxe betara batcoba tadler. <br />
+'''\$3''' bu zo rupeyed ise '''\$4''' zo betayad. Va mialuk va '''\$5''' betara fuxe bu is '''\$6''' rupera fuxe betara batcoba tadler.
 
-Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue "job queue"] tir \'\'\'$7\'\'\'.',
+Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir '''\$7'''.",
 'userstatstext'          => "{{PLURAL:$1|Tir '''1''' vertokayan [[Special:Listusers|favesik]]|Tid '''$1''' vertokayan [[Special:Listusers|favesik]]}}. Vanmiaeon '''$2''' (ok '''$4%''') va $5 roka {{PLURAL:$2|digir|digid}}.",
 'statistics-mostpopular' => 'Tel lorupen bueem',
 

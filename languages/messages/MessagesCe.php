@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author SPQRobin
+ * @author Siebrand
  * @author Girdi
  * @author Mega programmer
  * @author Chechenka
- * @author SPQRobin
- * @author Siebrand
  */
 
 $fallback = 'ru';
@@ -168,7 +168,9 @@ $messages = array(
 'accmailtitle'    => 'Тешаман дош дахьийтина.',
 'accmailtext'     => '$1ий тешаман дош дахьийтина $2ан.',
 'newarticle'      => '(Kерла)',
-'newarticletext'  => "ХІар тептар хІинца а кхоьллина дац. Керл тептар кхолла лаахь, дІаязде текст лахара кор чохь (см. [[{{MediaWiki:helppage}}|гІо тептар]] еша кхин информацинаш хаар хьам). Хьо кхуза гІалат вал кхаьчнехь, '''тІехьа воьрзу''' кнопку таІ йе хьан браузера тІехь.",
+'newarticletext'  => "ХІар тептар хІинца а кхоьллина дац.
+Керл тептар кхолла лаахь, дІаязде текст лахара кор чохь (см. [[{{MediaWiki:Helppage}}|гІо тептар]] еша кхин информацинаш хаар хьам).
+Хьо кхуза гІалат вал кхаьчнехь, '''тІехьа воьрзу''' кнопку таІ йе хьан браузера тІехь.",
 'editing'         => 'Хийца $1',
 'editingsection'  => 'Хийца $1 (секция)',
 'editingcomment'  => 'Хийца $1 (комментарий)',

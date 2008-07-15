@@ -1146,7 +1146,7 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'filehist-filesize'              => 'Ment ar restr',
 'filehist-comment'               => 'Notenn',
 'imagelinks'                     => 'Liammoù war-du ar skeudenn',
-'linkstoimage'                   => 'Ul liamm war-du ar skeudenn-mañ zo war ar pajennoù a-is :',
+'linkstoimage'                   => "Liammet eo ar {{PLURAL:$1|bajenn-mañ|$1 ar pajennoù-mañ}} d'ar restr-mañ :",
 'nolinkstoimage'                 => "N'eus liamm ebet war-du ar skeudenn-mañ war pajenn ebet.",
 'sharedupload'                   => 'Rannet eo ar restr-mañ. Gallout a ra bezañ implijet evit raktresoù all.',
 'shareduploadwiki'               => "Gwelit an $1 mar plij evit gouzout hiroc'h.",
@@ -1233,7 +1233,9 @@ Hirder al [http://www.mediawiki.org/wiki/Manual:Job_queue lostennad labour] zo p
 
 'disambiguations'      => 'Pajennoù digejañ',
 'disambiguationspage'  => 'Project:Liammoù_ouzh_ar_pajennoù_disheñvelaat',
-'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn digejañ'''. Padal e tlefent kas war-eeun d'an danvez anezho.<br />Sellet e vez ouzh ur bajenn evel ur bajenn digejañ m'eo liammet adal $1.<br />Ne gemerer ket e kont al liammoù adal <em>esaouennoù anv</em> all.",
+'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn digejañ'''.
+Padal e tlefent kas war-eeun d'an danvez anezho.<br />
+Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom liammet ouzh [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Adkasoù doubl',
 'doubleredirectstext' => '<b>Diwallit:</b> Gallout a ra bezañ "pozitivoù faos er roll-mañ. D\'ar mare-se eo moarvat peogwir ez eus testenn war bajenn an #REDIRECT kentañ ivez.<br />War bep linenn emañ al liammoù war-du pajenn an adkas kentañ hag en eil hag ivez linenn gentañ pajenn an eil adkas zo sañset reiñ ar pal "gwirion". War-du ar pal-se e tlefe liammañ an #REDIRECT kentañ.',
