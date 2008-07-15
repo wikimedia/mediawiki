@@ -188,7 +188,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the database is potentially queried
 * (bug 9736) Redirects on Special:Fewestrevisions are now marked as such.
 * New date/time formats in Cs localization according to ČSN and PČP.
-* Added new hook LinkerLinkAttributes for modifying attributes of <a> tags.
 * Add a new hook SkinSetupSiteCss to allow extensions to define new stylesheets
   to load site wide, or modify the list of stylesheets to load. This can be useful
   for wiki farms who need a specific placement of the stylesheets to cascade right.
