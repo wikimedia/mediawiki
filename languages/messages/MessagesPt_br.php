@@ -7,8 +7,8 @@
  * @author 555
  * @author Siebrand
  * @author Lijealso
- * @author לערי ריינהארט
  * @author SPQRobin
+ * @author לערי ריינהארט
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
  * @author LeonardoG
@@ -505,42 +505,42 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 'logouttext'                 => '<strong>Você agora está desautenticado.</strong><br />
 Você pode continuar a usar a {{SITENAME}} anonimamente, ou pode autenticar-se novamente com o mesmo nome de usuário ou com um nome de usuário diferente. Tenha em mente que algumas páginas poderão
 continuar a ser apresentadas como se você ainda estivesse autenticado até que a cache de seu navegador seja limpa.',
-'welcomecreation'         => '== Bem-vindo, $1! ==
+'welcomecreation'            => '== Bem-vindo, $1! ==
 
 A sua conta foi criada. Não se esqueça de personalizar as suas [[{{ns:special}}:Preferences|preferências]] na {{SITENAME}}.',
-'loginpagetitle'          => 'Autenticação de usuário',
-'yourname'                => 'Nome de usuário:',
-'yourpassword'            => 'Senha:',
-'yourpasswordagain'       => 'Redigite sua senha',
-'remembermypassword'      => 'Lembrar de minha senha em outras sessões.',
-'yourdomainname'          => 'Seu domínio:',
-'externaldberror'         => 'Ocorreu um erro externo ao banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
-'loginproblem'            => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
-'login'                   => 'Entrar',
-'nav-login-createaccount' => 'Criar uma conta ou entrar',
-'loginprompt'             => 'É necessário estar com os <i>cookies</i> ativados para poder autenticar-se na {{SITENAME}}.',
-'userlogin'               => 'Criar uma conta ou entrar',
-'logout'                  => 'Sair',
-'userlogout'              => 'Sair',
-'notloggedin'             => 'Não autenticado',
-'nologin'                 => 'Não possui uma conta? $1.',
-'nologinlink'             => 'Criar uma conta',
-'createaccount'           => 'Criar nova conta',
-'gotaccount'              => 'Já possui uma conta? $1.',
-'gotaccountlink'          => 'Entrar',
-'createaccountmail'       => 'por e-mail',
-'badretype'               => 'As senhas que você digitou não são iguais.',
-'userexists'              => 'O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.',
-'youremail'               => 'Seu e-mail:',
-'username'                => 'Nome de usuário:',
-'uid'                     => 'Número de identificação:',
-'prefs-memberingroups'    => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
-'yourrealname'            => 'Nome verdadeiro:',
-'yourlanguage'            => 'Idioma:',
-'yourvariant'             => 'Variante',
-'yournick'                => 'Assinatura:',
-'badsig'                  => 'Assinatura inválida; verifique o código HTML utilizado.',
-'badsiglength'            => 'Assinatura muito longa.
+'loginpagetitle'             => 'Autenticação de usuário',
+'yourname'                   => 'Nome de usuário:',
+'yourpassword'               => 'Senha:',
+'yourpasswordagain'          => 'Redigite sua senha',
+'remembermypassword'         => 'Lembrar de minha senha em outras sessões.',
+'yourdomainname'             => 'Seu domínio:',
+'externaldberror'            => 'Ocorreu um erro externo ao banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
+'loginproblem'               => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
+'login'                      => 'Entrar',
+'nav-login-createaccount'    => 'Criar uma conta ou entrar',
+'loginprompt'                => 'É necessário estar com os <i>cookies</i> ativados para poder autenticar-se na {{SITENAME}}.',
+'userlogin'                  => 'Criar uma conta ou entrar',
+'logout'                     => 'Sair',
+'userlogout'                 => 'Sair',
+'notloggedin'                => 'Não autenticado',
+'nologin'                    => 'Não possui uma conta? $1.',
+'nologinlink'                => 'Criar uma conta',
+'createaccount'              => 'Criar nova conta',
+'gotaccount'                 => 'Já possui uma conta? $1.',
+'gotaccountlink'             => 'Entrar',
+'createaccountmail'          => 'por e-mail',
+'badretype'                  => 'As senhas que você digitou não são iguais.',
+'userexists'                 => 'O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.',
+'youremail'                  => 'Seu e-mail:',
+'username'                   => 'Nome de usuário:',
+'uid'                        => 'Número de identificação:',
+'prefs-memberingroups'       => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
+'yourrealname'               => 'Nome verdadeiro:',
+'yourlanguage'               => 'Idioma:',
+'yourvariant'                => 'Variante',
+'yournick'                   => 'Assinatura:',
+'badsig'                     => 'Assinatura inválida; verifique o código HTML utilizado.',
+'badsiglength'               => 'Assinatura muito longa.
 Seria necessário que possuísse menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
@@ -561,15 +561,15 @@ Verifique o nome que introduziu, ou crie uma nova conta de usuário.',
 'passwordtooshort'           => 'A sua senha é inválida ou muito curta.
 Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do seu nome de usuário.',
 'mailmypassword'             => 'Enviar uma nova senha por e-mail',
-'passwordremindertext'    => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
+'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
 A senha do usuário "$2" é, a partir de agora, "$3". Você pode entrar na sua conta e alterar a senha, caso prefira.
 
 Se foi outra pessoa quem fez este pedido, ou caso você já se tenha lembrado da sua senha e não deseja a alterar, pode ignorar esta mensagem e continuar a utilizar a senha antiga.',
-'noemail'                 => 'Não há um endereço de e-mail associado ao usuário "$1".',
-'passwordsent'            => 'Uma nova senha está sendo enviada para o endereço de e-mail registrado para "$1".
+'noemail'                    => 'Não há um endereço de e-mail associado ao usuário "$1".',
+'passwordsent'               => 'Uma nova senha está sendo enviada para o endereço de e-mail registrado para "$1".
 Por favor, reconecte-se ao recebê-lo.',
 'blocked-mailpassword'       => 'O seu endereço de IP foi bloqueado de editar e, portanto, não será possível utilizar o lembrete de senha (para serem evitados envios abusivos a outras pessoas).',
-'eauthentsent'            => 'Uma mensagem de confirmação foi enviada para o endereço de e-mail fornecido.
+'eauthentsent'               => 'Uma mensagem de confirmação foi enviada para o endereço de e-mail fornecido.
 Antes de qualquer outro e-mail ser enviado para a sua conta, você precisará seguir as instruções da mensagem, de modo a confirmar que a conta é mesmo sua.',
 'throttled-mailpassword'     => 'Um lembrete de senha já foi enviado {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para prevenir abusos, apenas um lembrete poderá ser enviado a cada {{PLURAL:$1|hora|$1 horas}}.',
@@ -693,48 +693,48 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 'userpage-userdoesnotexist' => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'clearyourcache'            => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ou ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh); '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5''; '''Opera:''' limpe a sua cache em ''Ferramentas → Preferências'' (''Tools → Preferences''); '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
-'usercssjsyoucanpreview'           => '<strong>Dica:</strong> Utilize o botão "Mostrar previsão" para testar seu novo CSS/JS antes de salvar.',
-'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular e que ele ainda não foi salvo!'''",
-'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
-'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/monobook.css aposto a {{ns:user}}:Alguém/Monobook.css.",
-'updated'                          => '(Atualizado)',
-'note'                             => '<strong>Nota:</strong>',
-'previewnote'                      => '<strong>Isto é apenas uma previsão.
+'usercssjsyoucanpreview'    => '<strong>Dica:</strong> Utilize o botão "Mostrar previsão" para testar seu novo CSS/JS antes de salvar.',
+'usercsspreview'            => "'''Lembre-se que está apenas prevendo o seu CSS particular e que ele ainda não foi salvo!'''",
+'userjspreview'             => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
+'userinvalidcssjstitle'     => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/monobook.css aposto a {{ns:user}}:Alguém/Monobook.css.",
+'updated'                   => '(Atualizado)',
+'note'                      => '<strong>Nota:</strong>',
+'previewnote'               => '<strong>Isto é apenas uma previsão.
 As modificações ainda não foram salvas!</strong>',
 'previewconflict'           => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
-'session_fail_preview'             => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
+'session_fail_preview'      => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
 Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
-'session_fail_preview_html'        => "<strong>Desculpe-nos! Não foi possível processar a sua edição devido a uma perda de dados de sessão.</strong>
+'session_fail_preview_html' => "<strong>Desculpe-nos! Não foi possível processar a sua edição devido a uma perda de dados de sessão.</strong>
 
 ''Devido a este wiki possuir HTML raw ativo, a previsão não será exibida como forma de precaução contra ataques por JavaScript.''
 
 <strong>Por favor, tente novamente caso esta seja uma tentativa de edição legítima. Caso continue a não funcionar, tente desautenticar-se e voltar a entrar na sua conta.</strong>",
-'token_suffix_mismatch'            => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
+'token_suffix_mismatch'     => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.</strong>',
-'editing'                          => 'Editando $1',
-'editingsection'                   => 'Editando $1 (seção)',
-'editingcomment'                   => 'Editando $1 (comentário)',
-'editconflict'                     => 'Conflito de edição: $1',
+'editing'                   => 'Editando $1',
+'editingsection'            => 'Editando $1 (seção)',
+'editingcomment'            => 'Editando $1 (comentário)',
+'editconflict'              => 'Conflito de edição: $1',
 'explainconflict'           => 'Alguém mudou a página enquanto você a estava editando.
 A área de texto acima mostra o texto original.
 Suas mudanças são mostradas na área abaixo.
 Você terá que mesclar suas modificações no texto existente.
 <b>SOMENTE</b> o texto na área acima será salvo quando você pressionar "Salvar página".<br />',
-'yourtext'                         => 'Seu texto',
-'storedversion'                    => 'Versão guardada',
-'nonunicodebrowser'                => '<strong>AVISO: O seu navegador não é compatível com as especificações unicode. Um contorno terá de ser utilizado para permitir que você possa editar com segurança os artigos: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.</strong>',
+'yourtext'                  => 'Seu texto',
+'storedversion'             => 'Versão guardada',
+'nonunicodebrowser'         => '<strong>AVISO: O seu navegador não é compatível com as especificações unicode. Um contorno terá de ser utilizado para permitir que você possa editar com segurança os artigos: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.</strong>',
 'editingold'                => '<strong>CUIDADO: Você está editando uma revisão desatualizada deste artigo.
 Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.</strong>',
-'yourdiff'                         => 'Diferenças',
+'yourdiff'                  => 'Diferenças',
 'copyrightwarning'          => 'Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
 Você está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você mesmo ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS AUTORAIS SEM A DEVIDA PERMISSÃO!</strong>',
-'copyrightwarning2'                => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
+'copyrightwarning2'         => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
 'longpagewarning'           => '<strong>CUIDADO: Esta página tem $1 kilobytes; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
 Por gentileza, considere quebrar a página em sessões menores.</strong>',
-'longpageerror'                    => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
+'longpageerror'             => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
 'readonlywarning'           => '<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.
 No momento não é possível salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo ao wiki mais tarde.</strong>',
 'protectedpagewarning'      => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop (Administradores) podem editar esta página pois ela foi bloqueada.</strong>',
@@ -1013,13 +1013,13 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'files'                    => 'Arquivos',
 
 # User rights
-'userrights'               => 'Gestão de privilégios de usuários', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'   => 'Administrar grupos de usuários',
-'userrights-user-editname' => 'Forneça um nome de usuário:',
-'editusergroup'            => 'Editar grupos de usuários',
-'editinguser'              => "Modificando privilégios do usuário '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup' => 'Editar grupos do usuário',
-'saveusergroups'           => 'Salvar grupos do usuário',
+'userrights'                  => 'Gestão de privilégios de usuários', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Administrar grupos de usuários',
+'userrights-user-editname'    => 'Forneça um nome de usuário:',
+'editusergroup'               => 'Editar grupos de usuários',
+'editinguser'                 => "Modificando privilégios do usuário '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'Editar grupos do usuário',
+'saveusergroups'              => 'Salvar grupos do usuário',
 'userrights-groupsmember'     => 'Membro de:',
 'userrights-groups-help'      => 'É possível alterar os grupos em que este usuário se encontra:
 * Uma caixa de seleção selecionada significa que o usuário se encontra no grupo.
@@ -1027,9 +1027,9 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 * Um * indica que não pode remover o grupo depois de o adicionar, ou vice-versa.',
 'userrights-reason'           => 'Motivo de alterações:',
 'userrights-no-interwiki'     => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
-'userrights-nodatabase'    => 'O banco de dados $1 não existe ou não é um banco de dados local.',
-'userrights-nologin'       => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
-'userrights-notallowed'    => 'Sua conta não possui permissão para conceder privilégios a usuários.',
+'userrights-nodatabase'       => 'O banco de dados $1 não existe ou não é um banco de dados local.',
+'userrights-nologin'          => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
+'userrights-notallowed'       => 'Sua conta não possui permissão para conceder privilégios a usuários.',
 'userrights-changeable-col'   => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
 

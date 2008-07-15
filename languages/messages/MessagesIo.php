@@ -304,7 +304,8 @@ Voluntez, ne obliviez chanjor vua preferaji.',
 'gotaccountlink'             => 'Enirar',
 'createaccountmail'          => 'per elek-posto',
 'badretype'                  => 'La pasovorti vu donis ne esas sama.',
-'userexists'                 => 'La uzantonomo, quan vu skribis, ja selektesis antee.<br> Voluntez, elektez ula diferanta uzantonomo.',
+'userexists'                 => 'La uzantonomo, quan vu skribis, ja selektesis antee.
+Voluntez, elektez ula diferanta uzantonomo.',
 'youremail'                  => 'Vua e-adreso:',
 'username'                   => 'Uzantonomo:',
 'uid'                        => 'ID dil uzanto:',
@@ -394,7 +395,8 @@ Se vu esas hike erore, kliktez sur la butono por retrovenar en vua ''browser''."
 'explainconflict'      => 'Ulu chanjis ica pagino depos vu editeskis ol. La supra texto-areo kontenas la texto dil pagino quale ol existas aktuale. Vua chanji montresas en la infra texto-areo. Vu devas atachar vua chanji en la existanta texto. <b>Nur</b> la texto en la supra texto-areo registragesos kande vu presez sur "Registragar".',
 'yourtext'             => 'Vua texto',
 'storedversion'        => 'Gardita versiono',
-'editingold'           => '<strong>EGARDEZ: Vu redaktas anciena versiono di ca pagino.<br> Se vu gardus ol, la chanji facita pos ita revizo perdesos.</strong>',
+'editingold'           => '<strong>EGARDEZ: Vu redaktas anciena versiono di ca pagino.
+Se vu gardus ol, la chanji facita pos ita revizo perdesos.</strong>',
 'yourdiff'             => 'Diferi',
 'copyrightwarning'     => "Voluntez memorar ke omna kontributi a {{SITENAME}} esas sub la $2 (Videz $1 por detali).
 Se vu ne deziras ke altri modifikez vua artikli od oli distributesez libere, lore voluntez ne skribar oli hike.<br />
@@ -409,7 +411,8 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 # History pages
 'nohistory'           => 'Ne esas redakto-historio por ica pagino.',
 'revnotfound'         => 'Versiono ne trovita',
-'revnotfoundtext'     => "L' anciena versiono di la pagino, quan vu demandis, ne povis trovesar. <br>Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
+'revnotfoundtext'     => "L' anciena versiono di la pagino, quan vu demandis, ne povis trovesar.
+Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'currentrev'          => 'Aktuala versiono',
 'revisionasof'        => 'Versiono ye $1',
 'revision-info'       => 'Versiono en $1 per $2',
@@ -421,7 +424,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'last'                => 'lasta',
 'page_first'          => 'unesma',
 'page_last'           => 'finala',
-'histlegend'          => "Selektez la versioni por komparar e lore presez la butono infre.<br> 
+'histlegend'          => "Selektez la versioni por komparar e lore presez la butono infre.<br /> 
 :nuna = diferi kun l' aktuala versiono, 
 :lasta = diferi kun l' antea versiono, 
 :m = mikra edito.",
@@ -867,7 +870,7 @@ Videz [[Special:Ipblocklist|IP-blokuslisto]] por revizor blokusadi.',
 'locknoconfirm'       => 'Vu ne pulsis la buxeto por konfirmo.',
 'lockdbsuccesssub'    => 'Datumaro blokusita sucese',
 'unlockdbsuccesssub'  => 'La desblokuso facesis sucese',
-'lockdbsuccesstext'   => 'La datumaro blokusesis.<br> 
+'lockdbsuccesstext'   => 'La datumaro blokusesis.<br />
 Memorez [[Special:Unlockdb|efacar la blokuso]] kande vua mantenado finos.',
 'unlockdbsuccesstext' => 'La datumaro desblokusesis.',
 

@@ -376,7 +376,7 @@ Yu IP-adresi ben $3 now nanga a spikrinumro ben #$5. Aksa ala tu a infrumasi lek
 'whitelistedittitle'     => 'Yu mu kon fu a kenki',
 'whitelistedittext'      => 'Yu mu $1 fu a kenki fu peprewoysi.',
 'whitelistreadtitle'     => 'Yu mu kon fu a leysi',
-'whitelistreadtext'      => 'Yu mu [[Special:Preferences|kon]] fu a leysi fu peprewoysi.',
+'whitelistreadtext'      => 'Yu mu [[Special:Userlogin|kon]] fu a leysi fu peprewoysi.',
 'whitelistacctitle'      => 'Yu kan no masyin skopu',
 'loginreqtitle'          => 'Yu mu kon',
 'loginreqlink'           => 'kon',

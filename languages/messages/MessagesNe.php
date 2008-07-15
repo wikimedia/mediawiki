@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author ne.wikipedia.org sysops
  * @author SPQRobin
- * @author Nike
+ * @author Siebrand
+ * @author ne.wikipedia.org sysops
  */
 
 $digitTransformTable = array(
@@ -377,8 +377,7 @@ $messages = array(
 'listusers-submit' => 'देखाउनुहोस्',
 
 # E-mail user
-'mailnologin'     => 'ईमेल पठाउने ठेगाना नै भएन । 
-<br>No send address',
+'mailnologin'     => 'ईमेल पठाउने ठेगाना नै भएन ।',
 'mailnologintext' => 'तपाईले अरु प्रयोगकर्ताहरुलाई ईमेल पठाउनको लागी आफु पहिले [[Special:Userlogin|प्रवेश(लगइन)गरेको]] हुनुपर्छ र [[Special:Preferences|आफ्नो रोजाइहरुमा]] यौटा वैध ईमेल ठेगाना भएको हुनुपर्छ।',
 'emailuser'       => 'यो प्रयोगकर्तालाई ई-मेल पठाउनुहोस्',
 'emailpage'       => 'प्रयोगकर्तालाई इमेल गर्नुहोस्',

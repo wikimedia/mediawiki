@@ -1547,6 +1547,7 @@ Alles klor?',
 'emailccsubject'  => 'En Kopie vun Dinger E-Mail aan $1: $2',
 'emailsent'       => 'E-Mail es ungerwähs',
 'emailsenttext'   => 'Ding E-Mail es jetz lossjescheck woode.',
+'emailuserfooter' => 'Hee di e-mail hät dä „$1“ an „$2“ jescheck, un doför en de {{SITENAME}} dat „{{int:emailuser}}“ jebruch.',
 
 # Watchlist
 'watchlist'            => 'ming Oppassliss',

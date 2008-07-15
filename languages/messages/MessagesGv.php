@@ -5,8 +5,8 @@
  * @file
  *
  * @author MacTire02
- * @author Shimmin Beg
  * @author Siebrand
+ * @author Shimmin Beg
  * @author Alison
  */
 
@@ -247,16 +247,16 @@ $messages = array(
 'loginerror'                 => 'Marranys claare stiagh',
 'loginsuccesstitle'          => "T'ou claarit stiagh",
 'loginsuccess'               => "'''T'ou claarit stiagh ayns {{SITENAME}} myr \"\$1\".'''",
-'nosuchuser'                 => 'Cha nel ymmydeyr lesh yn ennym "$1".<br>
+'nosuchuser'                 => 'Cha nel ymmydeyr lesh yn ennym "$1".
 Cur streean er dty lettraghey, ny croo coontys noa.',
-'nosuchusershort'            => 'Cha nel ymmydeyr lesh yn ennym "<nowiki>$1</nowiki>".<br>
+'nosuchusershort'            => 'Cha nel ymmydeyr lesh yn ennym "<nowiki>$1</nowiki>".
 Cur streean er dty lettraghey.',
 'nouserspecified'            => 'Shegin dhyt ennym ymmydeyr y honraghey.',
 'wrongpassword'              => 'Va fockle arrey neuchiart screeuit. Screeu eh reesht eh.',
 'wrongpasswordempty'         => "Va'n fockle arrey screeuit bane. Aascreeu, my sailliu.",
 'mailmypassword'             => "Cur dou m'ockle arrey er post-L",
 'passwordremindertitle'      => 'Fockle arrey noa shallidagh gys {{SITENAME}}',
-'acct_creation_throttle_hit' => 'Gow my leshtal, ta $1 coontysyn crooit ayd.<br>
+'acct_creation_throttle_hit' => 'Gow my leshtal, ta $1 coontysyn crooit ayd.
 Cha nod oo ny smoo y chroo.',
 'accountcreated'             => 'Coontys crooit',
 'accountcreatedtext'         => 'Ta coontys ymmydeyr da $1 crooit.',
@@ -296,7 +296,7 @@ Cha nod oo ny smoo y chroo.',
 'showpreview'            => 'Roie-haishbynys y haishbyney',
 'showlivepreview'        => 'Roie-haishbynys bio',
 'showdiff'               => 'Caghlaaghyn y haishbyney',
-'anoneditwarning'        => "'''Raaue:''' Cha nel ou claarit stiagh.<br>
+'anoneditwarning'        => "'''Raaue:''' Cha nel ou claarit stiagh.
 Bee dt'enmys IP recortyssit ayns shennaghys reaghey yn duillag shoh.",
 'missingcommenttext'     => 'Taggloo er heese, my sailt.',
 'summary-preview'        => 'Roie-haishbynys y ghiare-choontey',
@@ -321,7 +321,7 @@ She $3 dt'enmys IP troa, as she dt'enney ghlass ny #$5. Cur ad lesh dagh ooilley
 'accmailtext'            => 'Ta fockle yn arrey da "$1" currit dy $2.',
 'newarticle'             => '(Noa)',
 'note'                   => '<strong>Note:</strong>',
-'previewnote'            => '<strong>Ta shoh roie-haishbynys;<br>
+'previewnote'            => '<strong>Ta shoh roie-haishbynys;
 cha nel ny caghlaaghyn sauailt foast!</strong>',
 'editing'                => 'Reaghey $1',
 'editingsection'         => 'Reaghey $1 (rheynn)',
@@ -393,7 +393,7 @@ Chammah as shen, t’ou gialdyn dooin dy screeu oo hene eh, ny ren oo coip jeh n
 
 # Search results
 'searchresults'            => 'Eiyrtysyn y ronsaghey',
-'noexactmatch'             => "'''Cha nel duillag lesh yn ennym \"\$1\".'''<br>
+'noexactmatch'             => "'''Cha nel duillag lesh yn ennym \"\$1\".'''
 Foddee oo [[:\$1|croo yn duillag shoh]].",
 'prevn'                    => 'ny $1 roish',
 'nextn'                    => 'yn chied $1 elley',

@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Siebrand
  * @author XJamRastafire
  * @author romanm
- * @author Nike
- * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -1149,8 +1148,8 @@ Ciljna stran »[[$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za
 
 Če želite izvoziti članke, v spodnje polje vpišite njihove naslove (enega v vsako vrstico) in označite, ali želite le trenutno različico s podatki o trenutnem urejanju ali tudi vse prejšnje z vrsticami o zgodovini strani.
 
-Če gre za slednje, lahko uporabite tudi povezavo, npr. [[Special:Export/{{MediaWiki:Mainpage}}]] za 
-članek {{MediaWiki:Mainpage}}.",
+Če gre za slednje, lahko uporabite tudi povezavo, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za 
+članek \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly' => 'Vključi le trenutno redakcijo, ne pa celotne zgodovine.',
 'export-submit' => 'Izvozi',
 

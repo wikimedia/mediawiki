@@ -896,6 +896,8 @@ Pentru a include un fişier de sunet într-un articol, foloseşti o legătură d
 pentru a include un fişier de sunet într-un articol, foloseşti o legătură de forma
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''.",
 'upload-permitted'            => 'Tipuri de fişiere permise: $1.',
+'upload-preferred'            => 'Tipuri de fişiere preferate: $1.',
+'upload-prohibited'           => 'Tipuri de fişiere interzise: $1.',
 'uploadlog'                   => 'Raportul fişierelor trimise',
 'uploadlogpage'               => 'Raportul fişierelor trimise',
 'uploadlogpagetext'           => 'Găseşti mai jos lista ultimelor fişiere trimise.',
@@ -911,6 +913,8 @@ pentru a include un fişier de sunet într-un articol, foloseşti o legătură d
 'illegalfilename'             => 'Numele fişierului "$1" conţine caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiţi fişierul şi încercaţi să îl încărcaţi din nou.',
 'badfilename'                 => 'Numele imaginii a fost schimbat; noul nume este "[[:$1]]".',
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
+'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fişier nedorit.
+{{PLURAL:\$3|Tipul de fişier preferat este|Tipurile de fişiere preferate sunt}} \$2.",
 'filetype-missing'            => 'Fişierul nu are extensie (precum ".jpg").',
 'large-file'                  => 'Este recomandat ca fişierele să nu fie mai mari de $1; acest fişier are $2.',
 'largefileserver'             => 'Fişierul este mai mare decât este configurat serverul să permită.',
