@@ -1599,7 +1599,7 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'uploaderror'                 => 'Upload error',
 'upload-summary'              => '', # do not translate or duplicate this message to other languages
 'uploadtext'                  => "Use the form below to upload files.
-To view or search previously uploaded files go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
+To view or search previously uploaded files go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]] and the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in the form
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -2427,8 +2427,7 @@ To lock or unlock the database, this needs to be writable by the web server.',
 'move-page-legend'        => 'Move page',
 'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
-Links to the old page title will not be changed;
-be sure to check for [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken]] redirects.
+Links to the old page title will not be changed; be sure to check for [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken]] redirects.
 You are responsible for making sure that links continue to point where they are supposed to go.
 
 Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history. This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
