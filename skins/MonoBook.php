@@ -158,6 +158,7 @@ class MonoBookTemplate extends QuickTemplate {
 		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
 		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
 		if ( !isset( $sidebar['LANGUAGES'] ) ) $sidebar['LANGUAGES'] = true;
+		
 		foreach ($sidebar as $boxName => $cont) {
 			if ( $boxName == 'SEARCH' ) {
 				$this->searchBox();
@@ -166,7 +167,10 @@ class MonoBookTemplate extends QuickTemplate {
 			} elseif ( $boxName == 'LANGUAGES' ) {
 				$this->languageBox();
 			} else {
-				$this->customBox( $boxName, $cont );
+				if( wfRunHooks( 'SkinSidebarOutputSpecialBox', array( &$this, $boxName, $cont ) ) ) {
+					# If no hook returned false, then output a normal box
+					$this->customBox( $boxName, $cont );
+				}
 			}
 		}
 ?>
