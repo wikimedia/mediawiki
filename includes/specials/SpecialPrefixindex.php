@@ -140,7 +140,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				$namespaceparam = $namespace ? "&namespace=$namespace" : "";
 				$out2 .= " | " . $sk->makeKnownLink(
 					$wgContLang->specialPage( $this->name ),
-					wfMsg ( 'nextpage', $s->page_title ),
+					wfMsgHtml( 'nextpage', htmlspecialchars( $s->page_title ) ),
 					"from=" . wfUrlEncode ( $s->page_title ) .
 					"&prefix=" . wfUrlEncode ( $prefix ) . $namespaceparam );
 			}
