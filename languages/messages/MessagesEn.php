@@ -1377,7 +1377,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 
 # Preferences page
 'preferences'              => 'Preferences',
-'preferences-summary'      => '', # only translate this message to other languages if you have to change it
+'preferences-summary'      => '', # do not translate or duplicate this message to other languages
 'mypreferences'            => 'My preferences',
 'prefs-edits'              => 'Number of edits:',
 'prefsnologin'             => 'Not logged in',
@@ -1443,7 +1443,7 @@ please see math/README to configure.',
 
 # User rights
 'userrights'                     => 'User rights management', # Not used as normal message but as header for the special page itself
-'userrights-summary'             => '', # only translate this message to other languages if you have to change it
+'userrights-summary'             => '', # do not translate or duplicate this message to other languages
 'userrights-lookup-user'         => 'Manage user groups',
 'userrights-user-editname'       => 'Enter a username:',
 'editusergroup'                  => 'Edit User Groups',
@@ -1597,7 +1597,7 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'upload_directory_missing'    => 'The upload directory ($1) is missing and could not be created by the webserver.',
 'upload_directory_read_only'  => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'                 => 'Upload error',
-'upload-summary'              => '', # only translate this message to other languages if you have to change it
+'upload-summary'              => '', # do not translate or duplicate this message to other languages
 'uploadtext'                  => "Use the form below to upload files.
 To view or search previously uploaded files go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
@@ -1805,15 +1805,15 @@ Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Unwatched pages
 'unwatchedpages'         => 'Unwatched pages',
-'unwatchedpages-summary' => '', # only translate this message to other languages if you have to change it
+'unwatchedpages-summary' => '', # do not translate or duplicate this message to other languages
 
 # List redirects
 'listredirects'         => 'List redirects',
-'listredirects-summary' => '', # only translate this message to other languages if you have to change it
+'listredirects-summary' => '', # do not translate or duplicate this message to other languages
 
 # Unused templates
 'unusedtemplates'         => 'Unused templates',
-'unusedtemplates-summary' => '', # only translate this message to other languages if you have to change it
+'unusedtemplates-summary' => '', # do not translate or duplicate this message to other languages
 'unusedtemplatestext'     => 'This page lists all pages in the template namespace which are not included in another page.
 Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh'      => 'other links',
@@ -1846,18 +1846,18 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'statistics-footer'      => '', # do not translate or duplicate this message to other languages
 
 'disambiguations'         => 'Disambiguation pages',
-'disambiguations-summary' => '', # only translate this message to other languages if you have to change it
+'disambiguations-summary' => '', # do not translate or duplicate this message to other languages
 'disambiguationspage'     => 'Template:disambig',
 'disambiguations-text'    => "The following pages link to a '''disambiguation page'''.
 They should link to the appropriate topic instead.<br />
 A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'         => 'Double redirects',
-'doubleredirects-summary' => '', # only translate this message to other languages if you have to change it
+'doubleredirects-summary' => '', # do not translate or duplicate this message to other languages
 'doubleredirectstext'     => 'This page lists pages which redirect to other redirect pages. Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
 
 'brokenredirects'         => 'Broken redirects',
-'brokenredirects-summary' => '', # only translate this message to other languages if you have to change it
+'brokenredirects-summary' => '', # do not translate or duplicate this message to other languages
 'brokenredirectstext'     => 'The following redirects link to non-existent pages:',
 'brokenredirects-edit'    => '(edit)',
 'brokenredirects-delete'  => '(delete)',
@@ -1868,7 +1868,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'withoutinterwiki-submit'  => 'Show',
 
 'fewestrevisions'         => 'Pages with the fewest revisions',
-'fewestrevisions-summary' => '', # only translate this message to other languages if you have to change it
+'fewestrevisions-summary' => '', # do not translate or duplicate this message to other languages
 
 # Miscellaneous special pages
 'nbytes'                          => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -1879,63 +1879,63 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'nviews'                          => '$1 {{PLURAL:$1|view|views}}',
 'specialpage-empty'               => 'There are no results for this report.',
 'lonelypages'                     => 'Orphaned pages',
-'lonelypages-summary'             => '', # only translate this message to other languages if you have to change it
+'lonelypages-summary'             => '', # do not translate or duplicate this message to other languages
 'lonelypagestext'                 => 'The following pages are not linked from other pages in {{SITENAME}}.',
 'uncategorizedpages'              => 'Uncategorized pages',
-'uncategorizedpages-summary'      => '', # only translate this message to other languages if you have to change it
+'uncategorizedpages-summary'      => '', # do not translate or duplicate this message to other languages
 'uncategorizedcategories'         => 'Uncategorized categories',
-'uncategorizedcategories-summary' => '', # only translate this message to other languages if you have to change it
+'uncategorizedcategories-summary' => '', # do not translate or duplicate this message to other languages
 'uncategorizedimages'             => 'Uncategorized files',
-'uncategorizedimages-summary'     => '', # only translate this message to other languages if you have to change it
+'uncategorizedimages-summary'     => '', # do not translate or duplicate this message to other languages
 'uncategorizedtemplates'          => 'Uncategorized templates',
-'uncategorizedtemplates-summary'  => '', # only translate this message to other languages if you have to change it
+'uncategorizedtemplates-summary'  => '', # do not translate or duplicate this message to other languages
 'unusedcategories'                => 'Unused categories',
 'unusedimages'                    => 'Unused files',
 'popularpages'                    => 'Popular pages',
-'popularpages-summary'            => '', # only translate this message to other languages if you have to change it
+'popularpages-summary'            => '', # do not translate or duplicate this message to other languages
 'wantedcategories'                => 'Wanted categories',
-'wantedcategories-summary'        => '', # only translate this message to other languages if you have to change it
+'wantedcategories-summary'        => '', # do not translate or duplicate this message to other languages
 'wantedpages'                     => 'Wanted pages',
-'wantedpages-summary'             => '', # only translate this message to other languages if you have to change it
+'wantedpages-summary'             => '', # do not translate or duplicate this message to other languages
 'missingfiles'                    => 'Missing files',
-'missingfiles-summary'            => '', # only translate this message to other languages if you have to change it
+'missingfiles-summary'            => '', # do not translate or duplicate this message to other languages
 'mostlinked'                      => 'Most linked-to pages',
-'mostlinked-summary'              => '', # only translate this message to other languages if you have to change it
+'mostlinked-summary'              => '', # do not translate or duplicate this message to other languages
 'mostlinkedcategories'            => 'Most linked-to categories',
-'mostlinkedcategories-summary'    => '', # only translate this message to other languages if you have to change it
+'mostlinkedcategories-summary'    => '', # do not translate or duplicate this message to other languages
 'mostlinkedtemplates'             => 'Most linked-to templates',
-'mostlinkedtemplates-summary'     => '', # only translate this message to other languages if you have to change it
+'mostlinkedtemplates-summary'     => '', # do not translate or duplicate this message to other languages
 'mostcategories'                  => 'Pages with the most categories',
-'mostcategories-summary'          => '', # only translate this message to other languages if you have to change it
+'mostcategories-summary'          => '', # do not translate or duplicate this message to other languages
 'mostimages'                      => 'Most linked-to files',
-'mostimages-summary'              => '', # only translate this message to other languages if you have to change it
+'mostimages-summary'              => '', # do not translate or duplicate this message to other languages
 'mostrevisions'                   => 'Pages with the most revisions',
-'mostrevisions-summary'           => '', # only translate this message to other languages if you have to change it
+'mostrevisions-summary'           => '', # do not translate or duplicate this message to other languages
 'prefixindex'                     => 'Prefix index',
-'prefixindex-summary'             => '', # only translate this message to other languages if you have to change it
+'prefixindex-summary'             => '', # do not translate or duplicate this message to other languages
 'shortpages'                      => 'Short pages',
-'shortpages-summary'              => '', # only translate this message to other languages if you have to change it
+'shortpages-summary'              => '', # do not translate or duplicate this message to other languages
 'longpages'                       => 'Long pages',
-'longpages-summary'               => '', # only translate this message to other languages if you have to change it
+'longpages-summary'               => '', # do not translate or duplicate this message to other languages
 'deadendpages'                    => 'Dead-end pages',
-'deadendpages-summary'            => '', # only translate this message to other languages if you have to change it
+'deadendpages-summary'            => '', # do not translate or duplicate this message to other languages
 'deadendpagestext'                => 'The following pages do not link to other pages in {{SITENAME}}.',
 'protectedpages'                  => 'Protected pages',
 'protectedpages-indef'            => 'Indefinite protections only',
-'protectedpages-summary'          => '', # only translate this message to other languages if you have to change it
+'protectedpages-summary'          => '', # do not translate or duplicate this message to other languages
 'protectedpagestext'              => 'The following pages are protected from moving or editing',
 'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
 'protectedtitles'                 => 'Protected titles',
-'protectedtitles-summary'         => '', # only translate this message to other languages if you have to change it
+'protectedtitles-summary'         => '', # do not translate or duplicate this message to other languages
 'protectedtitlestext'             => 'The following titles are protected from creation',
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
-'listusers-summary'               => '', # only translate this message to other languages if you have to change it
+'listusers-summary'               => '', # do not translate or duplicate this message to other languages
 'newpages'                        => 'New pages',
-'newpages-summary'                => '', # only translate this message to other languages if you have to change it
+'newpages-summary'                => '', # do not translate or duplicate this message to other languages
 'newpages-username'               => 'Username:',
 'ancientpages'                    => 'Oldest pages',
-'ancientpages-summary'            => '', # only translate this message to other languages if you have to change it
+'ancientpages-summary'            => '', # do not translate or duplicate this message to other languages
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
 'unusedimagestext'                => 'Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.',
@@ -1950,7 +1950,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 
 # Book sources
 'booksources'               => 'Book sources',
-'booksources-summary'       => '', # only translate this message to other languages if you have to change it
+'booksources-summary'       => '', # do not translate or duplicate this message to other languages
 'booksources-search-legend' => 'Search for book sources',
 'booksources-isbn'          => 'ISBN:', # only translate this message to other languages if you have to change it
 'booksources-go'            => 'Go',
@@ -1974,7 +1974,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 
 # Special:Allpages
 'allpages'          => 'All pages',
-'allpages-summary'  => '', # only translate this message to other languages if you have to change it
+'allpages-summary'  => '', # do not translate or duplicate this message to other languages
 'alphaindexline'    => '$1 to $2',
 'nextpage'          => 'Next page ($1)',
 'prevpage'          => 'Previous page ($1)',
@@ -1992,7 +1992,7 @@ It may contain one or more characters which cannot be used in titles.',
 
 # Special:Categories
 'categories'                    => 'Categories',
-'categories-summary'            => '', # only translate this message to other languages if you have to change it
+'categories-summary'            => '', # do not translate or duplicate this message to other languages
 'categoriespagetext'            => 'The following categories contain pages or media.',
 'categoriesfrom'                => 'Display categories starting at:',
 'special-categories-sort-count' => 'sort by count',
@@ -2288,9 +2288,9 @@ $1',
 # What links here
 'whatlinkshere'            => 'What links here',
 'whatlinkshere-title'      => 'Pages that link to $1',
-'whatlinkshere-summary'    => '', # only translate this message to other languages if you have to change it
+'whatlinkshere-summary'    => '', # do not translate or duplicate this message to other languages
 'whatlinkshere-page'       => 'Page:',
-'whatlinkshere-barrow'     => '>', # only translate this message to other languages if you have to change it
+'whatlinkshere-barrow'     => '>', # do not translate or duplicate this message to other languages
 'linklistsub'              => '(List of links)',
 'linkshere'                => "The following pages link to '''[[:$1]]''':",
 'nolinkshere'              => "No pages link to '''[[:$1]]'''.",
@@ -2354,7 +2354,7 @@ See [[Special:Ipblocklist|IP block list]] to review blocks.',
 'ipblocklist'                     => 'List of blocked IP addresses and usernames',
 'ipblocklist-legend'              => 'Find a blocked user',
 'ipblocklist-username'            => 'Username or IP address:',
-'ipblocklist-summary'             => '', # only translate this message to other languages if you have to change it
+'ipblocklist-summary'             => '', # do not translate or duplicate this message to other languages
 'ipblocklist-submit'              => 'Search',
 'blocklistline'                   => '$1, $2 blocked $3 ($4)',
 'infiniteblock'                   => 'infinite',
@@ -3447,7 +3447,7 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Special pages',
-'specialpages-summary'           => '', # only translate this message to other languages if you have to change it
+'specialpages-summary'           => '', # do not translate or duplicate this message to other languages
 'specialpages-note'              => '----
 * Normal special pages.
 * <span class="mw-specialpagerestricted">Restricted special pages.</span>',

@@ -6,7 +6,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-/** Ignored messages, which should be exist only in the English messages file. */
+/** Ignored messages, which should exist only in the English messages file. */
 $wgIgnoredMessages = array(
 	'sidebar',
 	'accesskey-pt-userpage',
@@ -111,16 +111,6 @@ $wgIgnoredMessages = array(
 	'uploadfooter',
 	'listgrouprights-link',
 	'search-interwiki-custom',
-);
-
-/** Optional messages, which may be translated only if changed in the other language. */
-$wgOptionalMessages = array(
-	'linkprefix',
-	'editsection-brackets',
-	'feed-atom',
-	'feed-rss',
-	'sectionlink',
-	'unit-pixel',
 	'allpages-summary',
 	'booksources-summary',
 	'categories-summary',
@@ -152,7 +142,6 @@ $wgOptionalMessages = array(
 	'ancientpages-summary',
 	'unwatchedpages-summary',
 	'userrights-summary',
-	'userrights-irreversible-marker',
 	'brokenredirects-summary',
 	'deadendpages-summary',
 	'protectedpages-summary',
@@ -163,6 +152,17 @@ $wgOptionalMessages = array(
 	'fewestrevisions-summary',
 	'missingfiles-summary',
 	'upload-summary',
+);
+
+/** Optional messages, which may be translated only if changed in the target language. */
+$wgOptionalMessages = array(
+	'linkprefix',
+	'editsection-brackets',
+	'feed-atom',
+	'feed-rss',
+	'sectionlink',
+	'unit-pixel',
+	'userrights-irreversible-marker',
 	'tog-nolangconversion',
 	'yourvariant',
 	'variantname-zh-hans',
