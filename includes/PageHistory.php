@@ -494,7 +494,7 @@ class PageHistory {
 	 * @param string $type
 	 */
 	function feed( $type ) {
-		global $wgFeedClasses;
+		global $wgFeedClasses, $wgRequest, $wgFeedLimit;
 		if ( !FeedUtils::checkFeedOutput($type) ) {
 			return;
 		}
@@ -505,7 +505,14 @@ class PageHistory {
 			wfMsgForContent( 'history-feed-description' ),
 			$this->mTitle->getFullUrl( 'action=history' ) );
 
-		$items = $this->fetchRevisions(10, 0, PageHistory::DIR_NEXT);
+		// Get a limit on number of feed entries. Provide a sane default
+		// of 10 if none is defined (but limit to $wgFeedLimit max)
+		$limit = $wgRequest->getInt( 'limit', 10 );
+		if( $limit > $wgFeedLimit || $limit < 1 ) {
+			$limit = 10;
+		}
+ 		$items = $this->fetchRevisions($limit, 0, PageHistory::DIR_NEXT);
+
 		$feed->outHeader();
 		if( $items ) {
 			foreach( $items as $row ) {
