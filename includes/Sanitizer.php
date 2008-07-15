@@ -827,22 +827,6 @@ class Sanitizer {
 	}
 
 	/**
-	 * Given HTML input, escape with htmlspecialchars but un-escape entites.
-	 * This allows (generally harmless) entities like &nbsp; to survive.
-	 *
-	 * @param  string $html String to escape
-	 * @return string Escaped input
-	 */
-	static function escapeHtmlAllowEntities( $html ) {
-		# It seems wise to escape ' as well as ", as a matter of course.  Can't
-		# hurt.
-		$html = htmlspecialchars( $html, ENT_QUOTES );
-		$html = str_replace( '&amp;', '&', $html );
-		$html = Sanitizer::normalizeCharReferences( $html );
-		return $html;
-	}
-
-	/**
 	 * Regex replace callback for armoring links against further processing.
 	 * @param array $matches
 	 * @return string
