@@ -1015,10 +1015,10 @@ class SkinTemplate extends Skin {
 		# If we use any dynamic CSS, make a little CDATA block out of it.
 		$s = '';
 		foreach( $stylesheets as $link ) {
-			$s .= "\t\t\t@import \"$link\";\n";
+			$s .= "@import \"$link\";\n";
 		}
 		$s .= $rawcss;
-		if( $s != '' ) $this->usercss = "/*<![CDATA[*/\n{$s}\t\t/*]]>*/";
+		if( $s != '' ) $this->usercss = "/*<![CDATA[*/\n{$s}/*]]>*/";
 		
 		wfProfileOut( __METHOD__ );
 	}
