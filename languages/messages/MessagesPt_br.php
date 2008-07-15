@@ -1262,10 +1262,9 @@ PICT # misc.
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um arquivo no seu computador)',
 
-######## 
 # Special:Imagelist
 'imagelist-summary'     => 'Esta página especial mostra todos os arquivos carregados.
-Por defeito, os últimos arquivos carregados são mostrados no topo da lista.
+Por padrão, os últimos arquivos carregados são mostrados no topo da lista.
 Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'imagelist_search_for'  => 'Pesquisar por nome de imagem:',
 'imgfile'               => 'arquivo',
@@ -1464,7 +1463,7 @@ O tamanho atual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de taref
 'log-search-legend'    => 'Pesquisar nos registros',
 'log-search-submit'    => 'Ir',
 'alllogstext'          => 'Exposição combinada de todos registros disponíveis no wiki {{SITENAME}}.
-Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário, ou uma página afectada.',
+Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário, ou uma página afetada.',
 'logempty'             => 'Nenhum item idêntico no registro.',
 'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com o seguinte texto',
 
@@ -1507,7 +1506,7 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário,
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',
 'mailnologintext' => 'Necessita de estar [[Special:Userlogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros usuários.',
-'emailuser'       => 'Contactar este usuários',
+'emailuser'       => 'Contactar este usuário',
 'emailpage'       => 'Contactar usuário',
 'emailpagetext'   => 'Se este usuário disponibilizou um endereço válido de e-mail em suas preferências, o formulário a seguir enviará uma mensagem única.
 O endereço de e-mail que você disponibilizou em suas preferências aparecerá como remetente da mensagem, então, o usuário poderá responder a você diretamente.',
@@ -1703,7 +1702,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 'viewdeletedpage'              => 'Ver páginas eliminadas',
 'undeletepagetext'             => 'As seguintes páginas foram eliminadas, apesar de ainda permanecem na base de dados e poderem ser restauradas. O arquivo pode periodicamente ser limpo.',
 'undelete-fieldset-title'      => 'Restaurar edições',
-'undeleteextrahelp'            => "Para restaurar a página inteira, deixe todas as caixas de seleção desselecionadas e clique em '''''Restaurar'''''. Para efetuar uma restauração selectiva, selecione as caixas correspondentes às
+'undeleteextrahelp'            => "Para restaurar a página inteira, deixe todas as caixas de seleção desselecionadas e clique em '''''Restaurar'''''. Para efetuar uma restauração seletiva, selecione as caixas correspondentes às
 edições a serem restauradas e clique em '''''Restaurar'''''. Clicar em '''''Limpar''''' irá limpar o
 campo de comentário e todas as caixas de seleção.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|edição disponível|edições disponíveis}}',
@@ -1831,7 +1830,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'blocklistline'                   => '$1, $2 bloqueou $3 ($4)',
 'infiniteblock'                   => 'infinito',
 'expiringblock'                   => 'expira em $1',
-'anononlyblock'                   => 'anón. apenas',
+'anononlyblock'                   => 'anôn. apenas',
 'noautoblockblock'                => 'bloqueio automático desabilitado',
 'createaccountblock'              => 'criação de conta de usuário bloqueada',
 'emailblock'                      => 'impedido de enviar e-mail',
@@ -2057,7 +2056,7 @@ Todas as acções de importação transwiki são registradas no [[{{ns:special}}
 'tooltip-t-permalink'             => 'Link permanente para esta versão desta página',
 'tooltip-ca-nstab-main'           => 'Ver a página de conteúdo',
 'tooltip-ca-nstab-user'           => 'Ver a página de usuário',
-'tooltip-ca-nstab-media'          => 'Ver a página de media',
+'tooltip-ca-nstab-media'          => 'Ver a página de mídia',
 'tooltip-ca-nstab-special'        => 'Esta é uma página especial, não pode ser editada.',
 'tooltip-ca-nstab-project'        => 'Ver a página de projeto',
 'tooltip-ca-nstab-image'          => 'Ver a página de arquivo',
@@ -2175,10 +2174,10 @@ $1',
 'sp-newimages-showfrom' => 'Mostrar novos arquivos a partir de $2, $1',
 
 # Bad image list
-'bad_image_list' => 'The format is as follows:
+'bad_image_list' => 'O formato é o seguinte:
 
-Only list items (lines starting with *) are considered. The first link on a line must be a link to a bad image.
-Any subsequent links on the same line are considered to be exceptions, i.e. articles where the image may occur inline.',
+Só itens da lista (linhas começando com *) são considerados. O primeiro link em uma linha deve ser um link para uma má imagem.
+Qualquer link posterior na mesma linha são consideradas como exceções, ou seja, artigos onde a imagem pode ficar como linha.',
 
 # Metadata
 'metadata'          => 'Metadados',
@@ -2382,7 +2381,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-sensingmethod-7' => 'Sensor trilinear',
 'exif-sensingmethod-8' => 'Sensor linear sequencial de cores',
 
-'exif-scenetype-1' => 'Imagem fotografada directamente',
+'exif-scenetype-1' => 'Imagem fotografada diretamente',
 
 'exif-customrendered-0' => 'Processo normal',
 'exif-customrendered-1' => 'Processo personalizado',
@@ -2459,7 +2458,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar endereço de E-mail',
 'confirmemail_noemail'     => 'Não possui um endereço de e-mail válido indicado nas suas [[{{ns:special}}:Preferences|preferências de usuário]].',
-'confirmemail_text'        => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Active o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
+'confirmemail_text'        => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Ative o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
 'confirmemail_pending'     => '<div class="error">
 Um código de confirmação já foi enviado para você; caso tenha criado sua conta recentemente, é recomendável aguardar alguns minutos para o receber antes de tentar pedir um novo código.
 </div>',
@@ -2655,5 +2654,4 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:image}}:".',
 # Special:Blankpage
 'blankpage'              => 'Página em branco',
 'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco e é usada para medições de performance, etc.',
-
 );
