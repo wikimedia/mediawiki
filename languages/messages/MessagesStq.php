@@ -7,8 +7,8 @@
  * @author Maartenvdbent
  * @author Pyt
  * @author Siebrand
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -373,6 +373,11 @@ $2',
 'titleprotected'       => "Ne Siede mäd dissen Noome kon nit moaked wäide.
 Ju Speere wuude truch [[User:$1|$1]] mäd ju Begruundenge ''$2'' ienroat.",
 
+# Virus scanner
+'virus-badscanner'     => 'Failerhafte Konfiguration: uunbekoanden Virenscanner: <i>$1</i>',
+'virus-scanfailed'     => 'Scan failsloain (code $1)',
+'virus-unknownscanner' => 'Uunbekoanden Virenscanner:',
+
 # Login and logout pages
 'logouttitle'                => 'Benutser-Oumäldenge',
 'logouttext'                 => 'Du bäst nu oumälded.
@@ -566,9 +571,7 @@ Wan du n uunbekoanden Benutser bääst un du toankst dät du Kommentare krichst 
 'clearyourcache'                   => "'''Bemäärkenge: Ätter dät Fäästlääsen kon dät nöödich weese, dän Browser-Cache loostoumoakjen, uum do Annerengen sjo tou konnen.'''
 '''Mozilla / Firefox / Safari:''' hoold ''Shift'' deel un klik ''Reload,'' of tai ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' ap n Macintosh); '''Konqueror: '''klik ''Reload'' of tai ''F5;'' '''Opera:''' moak dän cache loos in ''Tools → Preferences;'' '''Internet Explorer:''' hoold ''Ctrl'' deel un klik ''Refresh,'' of tai ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => '<strong>Tipp:</strong> Benutse dän Foarschau-Knoop, uum dien näi CSS/JavaScript foar dät Spiekerjen tou tästjen.',
-'usercsspreview'                   => "==Foarschau fon die Benutser-CSS ==
-'''Beoachtje:''' Ätter dät Spiekerjen moast du dien Browser kweede, ju näie Version tou leeden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''. Truch do Cache-
-Mechanismen fon dän Server kon dät uk ne Wiele duurje, bit eene oolde Doatäi truch ne Näie ärsät wäd.",
+'usercsspreview'                   => "'''Betoank, dät dit bloot n Foarschau is fon din Benutser-CSS, hie is noch nit spiekerd!'''",
 'userjspreview'                    => "== Foarschau fon dien Benutser-CSS ==
 '''Beoachtje:''' Ätter dät Spiekerjen moast du dien Browser kweede, ju näie Version tou leeden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userinvalidcssjstitle'            => "'''Woarschauenge:''' Deer existiert neen Skin \"\$1\". Betoank jädden, dät benutserspezifiske .css- un .js-Sieden män n Littek-Bouksteeuwe anfange mouten, also t.B. ''{{ns:user}}:Mustermann/monobook.css'', nit ''{{ns:user}}:Mustermann/Monobook.css''.",
@@ -981,9 +984,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'recentchanges'                     => 'Lääste Annerengen',
 'recentchangestext'                 => "Ap disse Siede koast du do lääste Annerengen ap '''{{SITENAME}}''' ättergunge.",
 'recentchanges-feed-description'    => 'Ferfoulge mäd dissen Feed do lääste Annerengen in {{SITENAME}}.',
-'rcnote'                            => "Anwiesd {{PLURAL:$1|wäd '''1''' Annerenge|wäide do lääste '''$1''' Annerengen}} in {{PLURAL:$2|dän lääste Dai|do lääste '''$2''' Deege}}, fon $3. 
-(<b><tt>Näi</tt></b>&nbsp;– näien Artikkel; <b><tt>L</tt></b>&nbsp;– litje Annerenge)
-<b><tt>B</tt></b>&nbsp;– Annerenge truch n Bot; ''(± Taal)''&nbsp;– Gröötenannerenge in Byte)",
+'rcnote'                            => "Anwiesd {{PLURAL:$1|wäd '''1''' Annerenge|wäide do lääste '''$1''' Annerengen}} in {{PLURAL:$2|dän lääste Dai|do lääste '''$2''' Deege}} siet $5, $4.",
 'rcnotefrom'                        => "Anwiesd wäide do Annerengen siet '''$2''' (max. '''$1''' Iendraage).",
 'rclistfrom'                        => 'Bloot näie Annerengen siet $1 wiese.',
 'rcshowhideminor'                   => 'Litje Annerengen $1',
@@ -1024,19 +1025,13 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'upload_directory_missing'    => 'Dät Upload-Ferteeknis ($1) failt un kuud truch dän Webserver uk nit moaked wäide.',
 'upload_directory_read_only'  => 'Die Webserver häd neen Schrieuwgjuchte foar dät Upload-Ferteeknis ($1).',
 'uploaderror'                 => 'Failer bie dät Hoochleeden',
-'uploadtext'                  => "Uum hoochleedene Bielden tou säiken un tou bekiekjen, gunge jädden tou ju [[Special:Imagelist|Lieste fon hoochleedene Bielden]]. 
+'uploadtext'                  => "Bruuk dät Formular hier unner uum Doatäie hoochtouleeden.
+Gung, uum eer hoochleedene Doatäie tou bekiekjen of tou säiken, ätter ju [[Special:Imagelist|Lieste fon hoochleedene Doatäie]]. Hoochleedengen un Läskengen sunt uk apnuumen in dät [[Special:Log/upload|Hoochleede-Logbouk]]. 
 
-Benutse jädden dät Formular, uum näie Bielden hoochtouleeden un do in Artikkele tou ferweenden. In do maaste Browsere wollen Jie n \"Truchsäike\"-Fäild sjoo, dät n Standoard-Doatäidialog eepent. Säik jädden ne Doatäi uut. Ju Doatäi wäd dan in dät Textfäild anwiesd. Bestäätigje Jie dan ju Copyright-Fereenboarenge. Toulääst drukke Jie dän \"Hoochleede\"-Knoop. Dät kon ne Wiele duurje, besunners bie ne loangsoame Internet-Ferbiendenge. Foar Photos is ap Bääste dät JPEG-Formoat, foar Teekengen un Symbole dät PNG-Formoat. 
-
-Uum ne Bielde in n Artikkel tou ferweenden, schrieuwe Jie an ju Steede fon de Bielde:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Doatäi.jpg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Doatäi.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
-
-Uum ne Medium in n Artikkel tou ferweenden, schrieuwe Jie an ju Steede fon de Medium:
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:Doatäi.ogg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:Doatäi.ogg|Link-Text<nowiki>]]</nowiki></tt>'''
-
-Jädden beoachtje Jie, dät, juust as bie do Artikkele, uur Benutsere hiere Doatäie läskje of annerje konnen.",
+Uum ne Doatäi in n Artikkel tou ferweenden, benutsje ne Ferbiendenge in ju Foarm 
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' of
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' uum fluks mäd ju Doatäi tou ferbienden.",
 'upload-permitted'            => 'Ferlööwede Doatäitypen: $1.',
 'upload-preferred'            => 'Ljoost antouweenden Doatäitypen: $1.',
 'upload-prohibited'           => 'Nit ferlööwede Doatäitypen: $1.',
@@ -1078,7 +1073,7 @@ Wan et sik uum ju Bielde in Originoalgrööte honnelt, dan houget neen apaate Fo
 Pröif, of du ju Bielde in fulle Aplöösenge foarlääsen hääst un leed ju unner dän Originoalnoome hooch.',
 'fileexists-forbidden'        => 'Mäd dissen Noome bestoant al ne Doatäi.
 Gung jädden tourääch un leede dien Doatäi unner n uur Noome hooch. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Mäd dissen Noome bestoant al ne Doatäi ap Wikipedia Commons.
+'fileexists-shared-forbidden' => 'Mäd dissen Noome bestoant al ne Doatäi in dät deelde Doatäileeger.
 Gung jädden tourääch un leede dien Doatäi unner n uur Noome hooch. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Disse Doatäi is n Duplikoat fon foulgjende {{PLURAL:$1|Doatäi|$1 Doatäie}}:',
 'successfulupload'            => 'Mäd Ärfoulch hoochleeden',
@@ -1184,7 +1179,7 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 'filedelete-success'          => "'''\"\$1\"''' wuude läsked.",
 'filedelete-success-old'      => '<span class="plainlinks">Fon ju Doatäi \'\'\'„[[Media:$1|$1]]“\'\'\' wuud ju Version $2, $3 Uure läsked.</span>',
 'filedelete-nofile'           => "'''„$1“''' is ap {{SITENAME}} nit deer.",
-'filedelete-nofile-old'       => "Et rakt fon '''„$1“''' neen Version fon $2, $3 Uure.",
+'filedelete-nofile-old'       => "Et rakt neen archivierde Version fon '''$1''' mäd do spezifizierde Määrkmoale.",
 'filedelete-iscurrent'        => 'Du fersäkst, ju aktuelle Version fon disse Doatäi tou läskjen. Sät foartied ap ne allere Version tourääch.',
 'filedelete-otherreason'      => 'Uur/touföigeden Gruund:',
 'filedelete-reason-otherlist' => 'Uur Gruund',
@@ -1748,9 +1743,17 @@ Reek jädden [[Special:Unlockdb|ju Doatenboank wier fräi]], so gau ju Fersuurge
 # Move page
 'move-page'               => 'Ferschuuwe „$1“',
 'move-page-legend'        => 'Siede ferschuuwe',
-'movepagetext'            => 'Mäd dissen Formular koast du ne Siede touhoope mäd aal Versione tou n uur Noome ferschuuwe.
+'movepagetext'            => "Mäd dissen Formular koast du ne Siede touhoope mäd aal Versione tou n uur Noome ferschuuwe.
 Foar dän oolde Noome wäd ne Fäärelaitenge tou dän Näie iengjucht.
-Ferwiese ap dän oolde Noome wäide nit annerd.',
+Ferwiese ap dän oolde Noome wäide nit annerd;
+wääs die sicher dubbelde un breekene Fäärelaitengen ättertoupröiwjen.
+Du bäst deerfoar feroantwoudelk, dät Ferbiendengen noch altied waiwiese ätter wier jo dieden.
+
+Beoachtje, dät ju Siede '''nit''' ferschäuwen wäd, wan dät al ne Siede mäd dän näie Tittel rakt, of et moaste weese dät ju loos is of ne Fäärelaitenge un dät ju nit neen allere Versione häd. Dät hat, dät du ne Siede ferschuuwe koast tou dän Noome, dän ju juust hiede, wan du die fersäin hiest. Un uk, dät du neen bestoundene Siede uurschrieuwe koast.
+
+'''WOARSCHAUENGE!'''
+Dit kon ne drastiske un uunferwachtede Ferannerenge reeke foar ne beljoowede Siede;
+wääs die deeruum sicher, dät du do Konsequenzen deerfon iensjuchst, eer du fääre moakest.",
 'movepagetalktext'        => "Ju touheerige Diskussionssiede wäd, sofier deer, mee ferschäuwen, '''of dät moast weese dät'''
 * der bestoant al n Diskussionssiede mäd dän näie Noome
 * du wäälst ju unnerstoundene Option ou.
@@ -1764,6 +1767,7 @@ In disse Falle moast du ju Siede, wan wonsked, fon Hounde ferschuuwe. Jädden d�
 'move-watch'              => 'Disse Siede beooboachtje',
 'movepagebtn'             => 'Siede ferschuuwe',
 'pagemovedsub'            => 'Ferschuuwenge mäd Ärfoulch',
+'movepage-moved'          => "<big>'''Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Dät rakt al n Siede mäd disse Noome, of uurs is die Noome dän du anroat hääst, nit toulät.
 Fersäik jädden n uur Noome.',
 'cantmove-titleprotected' => 'Ju Ferschuuwenge kon nit truchfierd wäide, deeruum dät die Sieltittel speerd is uum tou moakjen.',
@@ -1792,6 +1796,7 @@ Moatest du him foar ju Ferschuuwenge läskje?',
 'immobile_namespace'      => 'Die wonskede Siedentittel is aan besunneren; ju Siede kon nit in dissen (uur) Noomensruum ferschäuwen wäide.',
 'imagenocrossnamespace'   => 'Doatäie konnen nit uut dän {{ns:image}}-Noomensruum hääruut ferschäuwen wäide',
 'imagetypemismatch'       => 'Ju näie Doatäifergratterenge is nit mäd ju oolde identisk',
+'imageinvalidfilename'    => 'Die Siel-Doatäinoome is nit gultich',
 
 # Export
 'export'            => 'Sieden exportierje',
@@ -1811,8 +1816,8 @@ Moatest du him foar ju Ferschuuwenge läskje?',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Dissen Text',
 'allmessagestext'           => 'Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' is in Momänt nit muugelk, deeruum dät die Doatenboank offline is.",
+Besäik jädden [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net Betawiki], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.',
+'allmessagesnotsupportedDB' => 'Disse Spezioalsiede stoant nit tou Ferföigenge, deer ju uur dän Parameter <tt>$wgUseDatabaseMessages</tt> deaktivierd wuude.',
 'allmessagesfilter'         => 'Ättergjuchtennoomensfilter:',
 'allmessagesmodified'       => 'Bloot annerde wiese',
 
@@ -2008,7 +2013,7 @@ $1',
 'mediawarning'         => "'''Warnung:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden of Eepenjen fon dissen Doatäi kon dän Computer Schoade toubroacht wäide. Al dät Anklikken fon dän Link kon deertou fiere, dät die Browser ju Doatäi eepen moaket un uunbekoande Programcode tou Uutfierenge kumt. Do Bedrieuwere fon ju Wikipedia uurnieme neen Feroantwoudenge foar dän Inhoold fon disse Doatäi! Schuul disse Doatäi wuddelk schoadelke Programcode änthoolde, schuul n Administrator informierd wäide.<hr />",
 'imagemaxsize'         => 'Maximoale Bieldegrööte ap Bieldebeschrieuwengssieden:',
 'thumbsize'            => 'Grööte fon do Foarschaubielden (thumbnails):',
-'widthheightpage'      => '$1×$2, $3 Sieden',
+'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',
 'file-info'            => '(Doatäigrööte: $1, MIME-Typ: $2)',
 'file-info-size'       => '($1 × $2 Pixel, Doatäigrööte: $3, MIME-Typ: $4)',
 'file-nohires'         => '<small>Neen haagere Aplöösenge foarhounden.</small>',
@@ -2018,13 +2023,13 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Näie Bielden',
-'imagelisttext'         => 'Hier is ne Lieste fon $1 Bielden, sortierd $2.',
+'imagelisttext'         => "Hier is ne Lieste fon '''$1''' {{PLURAL:$1|Doatäi|Doatäie}}, sortierd $2.",
 'newimages-summary'     => 'Disse Spezioalsiede wiest do toulääst hoochleedene Doatäie an.',
 'showhidebots'          => '(Bots $1)',
 'noimages'              => 'neen Bielden fuunen.',
 'ilsubmit'              => 'Säik',
 'bydate'                => 'ätter Doatum',
-'sp-newimages-showfrom' => 'Wies näie Doatäie, ounfangend mäd $1',
+'sp-newimages-showfrom' => 'Wies näie Doatäie, ounfangend mäd $1, $2 Uure',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'U',
@@ -2038,7 +2043,8 @@ Deerap foulgjende Siedenferbiendengen in jusälge Riege wäide as Uutnoamen betr
 
 # Metadata
 'metadata'          => 'Metadoaten',
-'metadata-help'     => 'Disse Doatäi änthaalt wiedere Informatione, do in de Räägel von dän Digitoalkamera of dän ferwoanden Scanner stammen dwo. Truch ätterdraine Beoarbaidenge fon ju Originoaldoatäi konnen eenige Details annerd wuuden weese.',
+'metadata-help'     => 'Disse Doatäi änthaalt wiedere Informatione, do in de Räägel von dän Digitoalkamera of dän ferwoanden Scanner stammen dwo. 
+Truch ätterdraine Beoarbaidenge fon ju Originoaldoatäi konnen eenige Details annerd wuuden weese.',
 'metadata-expand'   => 'Wiedere Details ienbländje',
 'metadata-collapse' => 'Details uutbländje',
 'metadata-fields'   => 'Do foulgjende Fäildere fon do EXIF-Metadoaten in disse Media Wiki-Ättergjucht wäide ap Bieldbeschrieuwengssieden anwiesd;
@@ -2332,7 +2338,7 @@ Touräächmäldenge fon dän Mailserver: $1',
 'confirmemail_subject'     => '[{{SITENAME}}] - Bestäätigenge fon ju E-Mail-Adresse',
 'confirmemail_body'        => 'Moin,
 
-wäl mäd ju IP-Adresse $1, woarschienelk du sälwen, häd ne Bestäätigenge fon disse E-Mail-Adresse foar dät Benutserkonto "$2" in {{SITENAME}} anfoarderd. 
+wäl mäd ju IP-Adresse $1, woarschienelk du sälwen, häd dät Benutserkonto "$2" in {{SITENAME}} registrierd.
 
 Uum ju E-Mail-Funktion foar {{SITENAME}} (wier) tou aktivierjen un uum tou bestäätigjen, dät dit Benutserkonto wuddelk tou dien E-Mail-Adresse un deermäd tou die heert, eepenje ju foulgjende Web-Adresse:
 
@@ -2340,12 +2346,11 @@ $3
 
 Schuul ju foarstoundende Adresse in dien E-Mail-Program uur moorere Riegen gunge, moast du ju eventuell mäd de Hounde in ju Adressriege fon din Web-Browser ienföigje. 
 
-Disse Bestäätigengscode is gultich bit $4.
+Wan du dät naamde Benutserkonto *nit* registrierd hääst, foulgje dissen Link, uum dän Bestäätigengsprozess outoubreeken:
 
-Wan disse E-Mail-Adresse nit tou dän naamde Benutserkonto heert, foulgje ju Ferbiendenge ljauer nit.
+$5
 
--- 
-{{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
+Disse Bestäätigengscode is gultich bit $4.',
 'confirmemail_invalidated' => 'E-Mail-Adressbestäätigenge oubreeke',
 'invalidateemail'          => 'E-Mail-Adressbestäätigenge oubreeke',
 
@@ -2475,9 +2480,37 @@ $1',
 'filepath-summary' => 'Mäd disse Spezialsiede lät sik die komplette Paad fon ju aktuelle Version fon ne Doatäi sunner Uumwai oufräigje. Ju anfräigede Doatäi wäd fluks deerstoald blw. mäd ju ferknätte Anweendenge started.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch' => 'Doatäi-Duplikoat-Säike',
+'fileduplicatesearch'          => 'Doatäi-Duplikoat-Säike',
+'fileduplicatesearch-summary'  => 'Säike ätter Doatäi-Duplikoate ap Basis fon hieren Hash-Wäid.
+
+Ju Iengoawe mout sunner dän Tousats „{{ns:image}}:“ geböäre.',
+'fileduplicatesearch-legend'   => 'Säike ätter Duplikoate',
+'fileduplicatesearch-filename' => 'Doatäinoome:',
+'fileduplicatesearch-submit'   => 'Säike',
+'fileduplicatesearch-info'     => '$1 × $2 Pixel<br />Doatäigrööte: $3<br />MIME-Typ: $4',
+'fileduplicatesearch-result-1' => 'Ju Doatäi „$1“ häd neen identiske Duplikoate.',
+'fileduplicatesearch-result-n' => 'Ju Doatäi „$1“ häd {{PLURAL:$2|1 identisk Duplikoat|$2 identiske Duplikoate}}.',
 
 # Special:SpecialPages
-'specialpages' => 'Spezioalsieden',
+'specialpages'                   => 'Spezioalsieden',
+'specialpages-note'              => '----
+* Spezioalsieden foar Älkuneen
+* <span class="mw-specialpagerestricted">Spezioalsieden foar Benutsere mäd ärwiederde Gjuchte</span>',
+'specialpages-group-maintenance' => 'Fersuurgengsliesten',
+'specialpages-group-other'       => 'Uur Spezioalsieden',
+'specialpages-group-login'       => 'Anmäldje',
+'specialpages-group-changes'     => 'Lääste Ferannerengen un Logbouke',
+'specialpages-group-media'       => 'Medien',
+'specialpages-group-users'       => 'Benutsere un Gjuchte',
+'specialpages-group-highuse'     => 'Oafte benutsede Sieden',
+'specialpages-group-pages'       => 'Siedenliesten',
+'specialpages-group-pagetools'   => 'Siedenreewen',
+'specialpages-group-wiki'        => 'Systemdoaten un Reewen',
+'specialpages-group-redirects'   => 'Fäärelaitjende Spezioalsieden',
+'specialpages-group-spam'        => 'Spam-Reewen',
+
+# Special:Blankpage
+'blankpage'              => 'Loose Siede',
+'intentionallyblankpage' => 'Disse Siede is apsichtelk sunner Inhoold. Ju wäd foar Benchmarks ferwoand.',
 
 );

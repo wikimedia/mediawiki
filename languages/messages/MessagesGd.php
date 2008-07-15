@@ -5,10 +5,10 @@
  * @file
  *
  * @author SPQRobin
+ * @author Siebrand
  * @author לערי ריינהארט
  * @author Sionnach
  * @author Raymond
- * @author Siebrand
  */
 
 $messages = array(
@@ -173,8 +173,8 @@ $1",
 'prevn'             => '$1 mu dheireadh',
 'nextn'             => 'an ath $1',
 'viewprevnext'      => 'Seall ($1) ($2) ($3).',
-'showingresults'    => "A'nochdadh <b>$1</b> toraidhean gu h-ìosal a'tòiseachadh le #<b>$2</b>.",
-'showingresultsnum' => "A'nochdadh <b>$3</b> toraidhean gu h-ìosal a'tòiseachadh le #<b>$2</b>.",
+'showingresults'    => "A'nochdadh '''$1''' toraidhean gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'showingresultsnum' => "A'nochdadh '''$3''' toraidhean gu h-ìosal a'tòiseachadh le #'''$2'''.",
 'powersearch'       => 'Rannsaich',
 
 # Preferences page

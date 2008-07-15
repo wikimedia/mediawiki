@@ -1,11 +1,11 @@
 <?php
-/** ‪Chinese (Taiwan) (‪中文(台灣)‬)
+/** Taiwan Chinese (‪中文(台灣)‬)
  *
  * @ingroup Language
  * @file
  *
- * @author Roc michael
  * @author Siebrand
+ * @author Roc michael
  * @author לערי ריינהארט
  * @author BobChao
  */
@@ -1783,7 +1783,7 @@ $1',
 'nextdiff'     => '下一個→',
 
 # Media information
-'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr>",
+'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr />",
 'imagemaxsize'         => '在圖片描述頁對圖片大小限制為:',
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',

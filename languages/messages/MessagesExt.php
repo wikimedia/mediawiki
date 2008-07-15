@@ -440,8 +440,8 @@ pol ca $1 oras.",
 'accountcreated'             => 'Cuenta criá',
 'accountcreatedtext'         => "La cuenta d'usuáriu pa $1 á siu criá.",
 'createaccount-title'        => 'Criaeru e cuentas de {{SITENAME}}',
-'createaccount-text'         => 'Alguien ($1) á criau una cuenta pa $2 en {{SITENAME}}
-($4). La consínia pa "$2" es "$3". Eberias entral ena tu cuenta i chambal la tu consínia.
+'createaccount-text'         => 'Alguien á criau una cuenta pa $2 en {{SITENAME}} ($4). La consínia pa "$2" es "$3".
+Eberias entral ena tu cuenta i chambal la tu consínia.
 
 Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'loginlanguagelabel'         => 'Palra: $1',

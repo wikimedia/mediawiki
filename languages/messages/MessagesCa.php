@@ -12,12 +12,12 @@
  * @author Iradigalesc
  * @author לערי ריינהארט
  * @author Jordi Roqué
- * @author Spacebirdy
  * @author Juanpabl
- * @author McDutchie
+ * @author Spacebirdy
  * @author Vriullop
- * @author Pérez
  * @author Jon Harald Søby
+ * @author McDutchie
+ * @author Pérez
  * @author SPQRobin
  * @author Smeira
  */
@@ -675,7 +675,7 @@ Podeu contactar l'usuari $1 o algun altre dels [[{{MediaWiki:Grouppage-sysop}}|a
 
 Recordeu que per a poder usar l'opció «Envia un missatge de correu electrònic a aquest usuari» haureu d'haver validat una adreça de correu electrònic a les vostres [[Special:Preferences|preferències]].
 
-La vostra adreça IP és $3, i el núm. ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
+El número d'identificació ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
 'blockednoreason'                  => "no s'ha donat cap motiu",
 'blockedoriginalsource'            => "La font de '''$1''' es mostra a sota:",
 'blockededitsource'                => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
@@ -746,7 +746,7 @@ A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o b�
 'readonlywarning'                  => '<strong>ADVERTÈNCIA: La base de dades està tancada per manteniment
 i no podeu desar les vostres contribucions en aquests moments. podeu retallar i enganxar el codi
 en un fitxer de text i desar-lo més tard.</strong>',
-'protectedpagewarning'             => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris [[{{MediaWiki:Grouppage-sysop}}|administradors]].</strong>',
+'protectedpagewarning'             => '<strong>ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris administradors.</strong>',
 'semiprotectedpagewarning'         => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
 'cascadeprotectedwarning'          => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden editar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
 'titleprotectedwarning'            => '<strong>ATENCIÓ: Aquesta pàgina està protegida de tal manera que només certs usuaris poden crear-la.</strong>',
@@ -1281,7 +1281,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'filehist-filesize'              => 'Mida del fitxer',
 'filehist-comment'               => 'Comentari',
 'imagelinks'                     => 'Enllaços a la imatge',
-'linkstoimage'                   => 'Les següents pàgines enllacen a aquesta imatge:',
+'linkstoimage'                   => '{{PLURAL:$1|La següent pàgina enllaça|Les següents pàgines enllacen}} a aquesta imatge:',
 'nolinkstoimage'                 => 'No hi ha pàgines que enllacin aquesta imatge.',
 'morelinkstoimage'               => 'Visualitza [[Special:Whatlinkshere/$1|més enllaços]] que porten al fitxer.',
 'redirectstofile'                => '{{PLURAL:$1|El fitxer següent redirigeix cap aquest fitxer|Els següents $1 fitxers redirigeixen cap aquest fitxer:}}',
@@ -1375,7 +1375,9 @@ La mida de la [http://www.mediawiki.org/wiki/Manual:Job_queue cua de treballs] �
 
 'disambiguations'      => 'Pàgines de desambiguació',
 'disambiguationspage'  => 'Template:Desambiguació',
-'disambiguations-text' => "Les següents pàgines enllacen a una '''pàgina de desambiguació'''. Per això, caldria que enllacessin al tema apropiat.<br />Una pàgina es tracta com de desambiguació si utilitza una plantilla que prové de [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Les següents pàgines enllacen a una '''pàgina de desambiguació'''.
+Per això, caldria que enllacessin al tema apropiat.<br />
+Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Redireccions dobles',
 'doubleredirectstext' => '<b>Atenció:</b> aquest llistat pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
@@ -1967,6 +1969,7 @@ La pàgina de destinació, «[[$1]]», ja existeix. Voleu eliminar-la per a fer 
 'immobile_namespace'      => "El títol d'origen o de destinació és d'un tipus especial; no és possible reanomenar pàgines a aquest espai de noms.",
 'imagenocrossnamespace'   => 'No es pot moure la imatge a un espai de noms on no li correspon',
 'imagetypemismatch'       => 'La nova extensió de fitxer no coincideix amb el seu tipus',
+'imageinvalidfilename'    => 'El nom de fitxer indicat no és vàlid',
 
 # Export
 'export'            => 'Exporta les pàgines',
@@ -1974,7 +1977,7 @@ La pàgina de destinació, «[[$1]]», ja existeix. Voleu eliminar-la per a fer 
 
 Per a exportar pàgines, escriviu els títols que desitgeu al quadre de text de sota, un títol per línia, i seleccioneu si desitgeu o no la versió actual juntament amb totes les versions antigues, amb la pàgina d'historial, o només la pàgina actual amb la informació de la darrera modificació.
 
-En el darrer cas, podeu fer servir un enllaç com ara [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] per a la pàgina {{Mediawiki:mainpage}}.",
+En el darrer cas, podeu fer servir un enllaç com ara [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] per a la pàgina «[[{{MediaWiki:Mainpage}}]]».",
 'exportcuronly'     => "Exporta únicament la versió actual en voltes de l'historial sencer",
 'exportnohistory'   => "----
 '''Nota:''' s'ha inhabilitat l'exportació sencera d'historial de pàgines mitjançant aquest formulari a causa de problemes de rendiment del servidor.",

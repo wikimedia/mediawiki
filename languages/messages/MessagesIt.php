@@ -1322,8 +1322,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'download'           => 'scarica',
 
 # Unwatched pages
-'unwatchedpages'         => 'Pagine non osservate',
-'unwatchedpages-summary' => 'Pagine NON sotto osservazione',
+'unwatchedpages' => 'Pagine non osservate',
 
 # List redirects
 'listredirects' => 'Elenco dei redirect',
@@ -1903,7 +1902,7 @@ La pagina di destinazione [[$1]] esiste già. Si desidera cancellarla per render
 
 # Export
 'export'            => 'Esporta pagine',
-'exporttext'        => "È possibile esportare il testo e la cronologia delle modifiche di una pagina o di un gruppo di pagine in formato XML per importarle in altri siti che utilizzano il software MediaWiki, attraverso la pagina Special:Import.
+'exporttext'        => "È possibile esportare il testo e la cronologia delle modifiche di una pagina o di un gruppo di pagine in formato XML per importarle in altri siti che utilizzano il software MediaWiki, attraverso la [[Special:Import|pagina delle importazioni]].
 
 Per esportare le pagine indicare i titoli nella casella di testo sottostante, uno per riga, e specificare se si desidera ottenere la versione corrente e tutte le versioni precedenti, con i dati della cronologia della pagina, oppure soltanto l'ultima versione e i dati corrispondenti all'ultima modifica.
 

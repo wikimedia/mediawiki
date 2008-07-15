@@ -955,16 +955,22 @@ $2',
 'imagelist_name' => 'נאמען',
 
 # Image description page
-'filehist'          => 'היסטאריע פֿון דער טעקע',
-'filehist-current'  => 'לויפיק',
-'filehist-datetime' => 'דאטע/צײַט',
-'filehist-user'     => 'באניצער',
-'filehist-filesize' => 'טעקע גרייס',
-'imagelinks'        => 'פֿארבינדונגען',
-'linkstoimage'      => '{{PLURAL:$1|דער פאלגנדער בלאט ניצט|די פאלגנדע בלעטער ניצן}} דאס דאזיגע בילד:',
-'nolinkstoimage'    => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
-'noimage'           => "ס'איז נישטא א טעקע מיט דעם נאמען, איר קענט אבער $1.",
-'noimage-linktext'  => 'ארויפלאדן א טעקע',
+'filehist'            => 'היסטאריע פֿון דער טעקע',
+'filehist-help'       => 'קליקט אויף א דאטע/צײַט צו זען דאס בילד אזוי ווי עס איז דעמאלסט געווען',
+'filehist-deleteall'  => 'אויסמעקן אלץ',
+'filehist-deleteone'  => 'אויסמעקן',
+'filehist-revert'     => 'צוריקגיין',
+'filehist-current'    => 'לויפיק',
+'filehist-datetime'   => 'דאטע/צײַט',
+'filehist-user'       => 'באניצער',
+'filehist-dimensions' => 'געמעסטן',
+'filehist-filesize'   => 'טעקע גרייס',
+'filehist-comment'    => 'באמערקונג',
+'imagelinks'          => 'פֿארבינדונגען',
+'linkstoimage'        => '{{PLURAL:$1|דער פאלגנדער בלאט ניצט|די פאלגנדע בלעטער ניצן}} דאס דאזיגע בילד:',
+'nolinkstoimage'      => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
+'noimage'             => "ס'איז נישטא א טעקע מיט דעם נאמען, איר קענט אבער $1.",
+'noimage-linktext'    => 'ארויפלאדן א טעקע',
 
 # File reversion
 'filerevert-comment' => 'הערה:',
@@ -1453,6 +1459,11 @@ $NEWPAGE
 # Browsing diffs
 'previousdiff' => 'פריעריגע אונטערשייד →',
 'nextdiff'     => 'קומענדיקע אונטערשייד ←',
+
+# Media information
+'file-info-size' => '($1 × $2 פיקסעל, טעקע גרייס: $3, טיפ MIME: $4)',
+'file-nohires'   => '<small>נישטא מיט א העכערע רעזאלוציע.</small>',
+'svg-long-desc'  => '(טעקע SVG, נאמינעל: $1 × $2 פיקסעלן, טעקע גרייס: $3)',
 
 # Special:Newimages
 'newimages'         => 'גאַלעריע אויף נײַע בילדער',

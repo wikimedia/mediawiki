@@ -450,7 +450,7 @@ Consulta: $2',
 'actionthrottledtext'  => "Como mida anti-spam, bi ha un limite en o numero de begadas que puede fer ista aizión en un curto espazio de tiempo, y ha brincato d'iste limite. Aspere bels menutos y prebe de fer-lo nuebament.",
 'protectedpagetext'    => 'Ista pachina ha estato protechita ta aprebenir a suya edizión.',
 'viewsourcetext'       => "Puede beyer y copiar o codigo fuent d'ista pachina:",
-'protectedinterface'   => "Ista pachina furne o testo d'a interfaz ta o software. Ye protechita ta pribar o bandalismo. Si creye que bi ha bella error, contaute con un [[{{MediaWiki:Grouppage-sysop}}|Almenistrador]].",
+'protectedinterface'   => "Ista pachina furne o testo d'a interfaz ta o software. Ye protechita ta pribar o bandalismo. Si creye que bi ha bella error, contaute con un almenistrador.",
 'editinginterface'     => "'''Pare cuenta:''' Ye editando una pachina emplegata ta furnir o testo d'a interfaz de {{SITENAME}}. Os cambeos en ista pachina tendrán efeuto en l'aparenzia d'a interfaz ta os atros usuarios. Ta fer traduzions d'a interfaz, puede considerar fer serbir [http://translatewiki.net/wiki/Main_Page?setlang=an Betawiki], o procheuto de localizazión de MediaWiki.",
 'sqlhidden'            => '(Consulta SQL amagata)',
 'cascadeprotected'     => 'Ista pachina ye protechita y no se puede editar porque ye encluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que son protechitas con a opzión de "cascada": $2',
@@ -470,8 +470,8 @@ A razón data ye ''$2''.",
 'logouttext'                 => "Ha rematato a sesión.
 Puede continar nabegando por {{SITENAME}} anonimament, u puede enzetar una nueba sesión con o mesmo u atro nombre d'usuario. Pare cuenta que, entre que se limpia a caché d'o nabegador, bellas pachinas encara se pueden amostrar como si continase en a sesión anterior.",
 'welcomecreation'            => "== ¡Bienbeniu(da), $1! ==
-
-S'ha creyato a suya cuenta. No xublide presonalizar as [[Special:Preferences|preferenzias]].",
+S'ha creyato a suya cuenta.
+No xublide presonalizar as preferenzias.",
 'loginpagetitle'             => 'Enzetar a sesión',
 'yourname'                   => "Nombre d'usuario:",
 'yourpassword'               => 'Palabra de paso:',
@@ -1329,7 +1329,9 @@ d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
 
 'disambiguations'      => 'Pachinas de desambigazión',
 'disambiguationspage'  => 'Template:Desambigazión',
-'disambiguations-text' => "As siguients pachinas tienen binclos ta una '''pachina de desambigazión'''. Ixos binclos abrían de ir millor t'a pachina espezifica apropiada.<br />Una pachina se considera pachina de desambigazión si fa serbir una plantilla probenient de  [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "As siguients pachinas tienen binclos ta una '''pachina de desambigazión'''.
+Ixos binclos abrían de ir millor t'a pachina espezifica apropiada.<br />
+Una pachina se considera pachina de desambigazión si fa serbir una plantilla probenient de  [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Reendrezeras dobles',
 'doubleredirectstext' => "En ista pachina s'amuestran as pachinas que son reendrezatas enta atras reendrezeras.  Cada ringlera contiene o binclo t'a primer y segunda reendrezeras, y tamién o destino d'a segunda reendrezera, que ye á sobent a pachina \"reyal\" á la que a primer pachina abría d'endrezar.",
@@ -2507,7 +2509,10 @@ Prebe con a prebisualizazión normal.",
 'watchlistedit-normal-done'    => "{{PLURAL:$1|S'ha borrato 1 pachina|s'han borratas $1 pachinas}} d'a suya lista de seguimiento:",
 'watchlistedit-raw-title'      => 'Editar a lista de seguimiento en formato testo',
 'watchlistedit-raw-legend'     => 'Editar a lista de seguimiento en formato testo',
-'watchlistedit-raw-explain'    => "Contino s'amuestran as pachinas d'a suya lista de seguimiento. Puede editar ista lista adibiendo u borrando líneas d'a lista; una pachina por linia. Cuan remate, punche ''esbiellar lista de seguimiento''. Tamién puede fer serbir o [[Especial:Watchlist/edit|editor estándar]].",
+'watchlistedit-raw-explain'    => "Contino s'amuestran as pachinas d'a suya lista de seguimiento.
+Puede editar ista lista adibiendo u borrando líneas d'a lista; una pachina por linia.
+Cuan remate, punche ''esbiellar lista de seguimiento''.
+Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 'watchlistedit-raw-titles'     => 'Pachinas:',
 'watchlistedit-raw-submit'     => 'Esbiellar lista de seguimiento',
 'watchlistedit-raw-done'       => "S'ha esbiellato a suya lista de seguimiento.",

@@ -9,8 +9,8 @@
  * @author MayaSimFan
  * @author Roberta F.
  * @author Dnik
- * @author Luka Krstulovic
  * @author Siebrand
+ * @author Luka Krstulovic
  * @author Treecko
  * @author לערי ריינהארט
  * @author Suradnik13
@@ -1184,7 +1184,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'filehist-filesize'              => 'Veličina datoteke',
 'filehist-comment'               => 'Komentar',
 'imagelinks'                     => 'Poveznice slike',
-'linkstoimage'                   => 'Sljedeće stranice povezuju na ovu sliku:',
+'linkstoimage'                   => '{{PLURAL:$1|Sljedeća stranica povezuje|$1 Sljedeće stranice povezuju}} na ovu datoteku:',
 'nolinkstoimage'                 => 'Nijedna stranica ne povezuje na ovu sliku.',
 'morelinkstoimage'               => 'Pogledaj [[Special:Whatlinkshere/$1|više poveznica]] za ovu datoteku.',
 'redirectstofile'                => '{{PLURAL:$1|Sljedeća datoteka preusmjerava|$1 Sljedeće datoteke preusmjeravaju}} na ovu datoteku:',
@@ -1279,7 +1279,9 @@ Duljina [http://www.mediawiki.org/wiki/Manual:Job_queue zadataka za izvršavanje
 
 'disambiguations'      => 'Razdvojbene stranice',
 'disambiguationspage'  => 'Template:Razdvojba',
-'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''. Umjesto toga bi trebale povezivati na prikladnu temu. <br />Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''.
+Umjesto toga bi trebale povezivati na prikladnu temu.<br />
+Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Dvostruka preusmjeravanja',
 'doubleredirectstext' => 'Ovo je popis preusmjeravanja na stranice za preusmjeravanje.
@@ -1571,8 +1573,7 @@ Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutačno 
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',
 'protect-unchain'             => 'Otključaj ovlaštenja za premještanje',
-'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.
-Pripazite da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
+'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Ne možete mijenjati nivo zaštite dok ste blokirani.
 Slijede postavke stranice <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Razina zaštite ne može biti promijenjena jer je baza zaključana.
@@ -1725,8 +1726,8 @@ vandalizirane).',
 'ipbwatchuser'                    => 'Prati suradničku stranicu i stranicu za razgovor ovog suradnika',
 'badipaddress'                    => 'Nevaljana IP adresa.',
 'blockipsuccesssub'               => 'Uspješno blokirano',
-'blockipsuccesstext'              => 'Suradnik [[{{ns:special}}:Contributions/$1|$1]] je blokiran.
-<br />Pogledaj [[{{ns:special}}:Ipblocklist|popis blokiranih IP adresa]] za pregled.',
+'blockipsuccesstext'              => 'Suradnik [[Special:Contributions/$1|$1]] je blokiran.<br />
+Pogledaj [[Special:Ipblocklist|popis blokiranih IP adresa]] za pregled.',
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
 'ipb-unblock-addr'                => 'Odblokiraj $1',
 'ipb-unblock'                     => 'Odblokiraj suradničko ime ili IP adresu',
@@ -1735,7 +1736,7 @@ vandalizirane).',
 'unblockip'                       => 'Deblokiraj suradnika',
 'unblockiptext'                   => 'Ovaj se obrazac koristi za vraćanje prava na pisanje prethodno blokiranoj IP adresi.',
 'ipusubmit'                       => 'Deblokiraj ovu adresu',
-'unblocked'                       => '[[Suradnik:$1|$1]] je deblokiran',
+'unblocked'                       => '[[User:$1|$1]] je deblokiran',
 'unblocked-id'                    => 'Blok $1 je uklonjen',
 'ipblocklist'                     => 'Popis blokiranih IP adresa',
 'ipblocklist-legend'              => 'Pronađi blokiranog suradnika',
@@ -1801,22 +1802,16 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 # Move page
 'move-page'               => 'Premjesti $1',
 'move-page-legend'        => 'Premjesti stranicu',
-'movepagetext'            => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene
-na novo ime.
+'movepagetext'            => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
 Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.
-Poveznice na stari naslov ostat će iste; bilo bi dobro da
-[[Special:Maintenance|provjerite]] je li preusmjeravanje ispravno.
-Na vama je da se pobrinete da poveznice i dalje vode tamo
-gdje bi trebale.
+Poveznice na stari naslov ostat će iste; bilo bi dobro da provjerite je li preusmjeravanje ispravno.
+Na vama je da se pobrinete da poveznice i dalje vode tamo gdje bi trebale.
 
-Stranica se '''neće''' premjestiti ako već postoji stranica s novim naslovom,
-osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema
-nikakvih starih izmjena. To znači: 1. ako pogriješite, možete opet preimenovati
-stranicu na stari naslov, 2. ne može vam se dogoditi da izbrišete neku postojeću stranicu.
+Stranica se '''neće''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena.
+To znači: 1. ako pogriješite, možete opet preimenovati stranicu na stari naslov, 2. ne može vam se dogoditi da izbrišete neku postojeću stranicu.
 
-<b>OPREZ!</b>
-Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice,
-i zato dobro razmislite prije nego što preimenujete stranicu.",
+'''OPREZ!'''
+Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice, i zato dobro razmislite prije nego što preimenujete stranicu.",
 'movepagetalktext'        => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
 *premještate stranicu iz jednog prostora u drugi,
 *pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili
@@ -2567,7 +2562,6 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 
 # Special:SpecialPages
 'specialpages'                   => 'Posebne stranice',
-'specialpages-summary'           => 'Slijedi popis posebnih stranica koje služe kako administratorima tako i suradnicima za lakše održavanje projekta. Molim ovdje navesti posebne stranice/kategorije za održavanje projekta.',
 'specialpages-note'              => '----
 * Normalne posebne stranice
 *<span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',

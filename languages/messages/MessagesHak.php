@@ -450,7 +450,9 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'accmailtitle'              => 'Pi-Me̍t yí-kîn ki-chhut.',
 'accmailtext'               => "'$1' ke pi-me̍t yí-kîn ki-kî to $2.",
 'newarticle'                => '(Sîn)',
-'newarticletext'            => 'Ngì hien-chhai chin-ngi̍p yit-ke hàn-mò chhóng-kien ke vùn-chông. Yeu kien-chho ke vùn-chông, chhiáng chhai ha-mien ke phiên-cho-khiông chûng sû-ngi̍p nui-yùng (Chhâm-siòng [[Help:Pông-chhu|Pông-chhu]]). Kó-yèn ngì-he put-séu-sîm to chhṳ́ hong-mien, chhṳ̍t-chiap tiám-kit ngì hi-khí chûng ke "fì-chón" on-néu fán-fì.',
+'newarticletext'            => 'Ngì hien-chhai chin-ngi̍p yit-ke hàn-mò chhóng-kien ke vùn-chông.
+Yeu kien-chho ke vùn-chông, chhiáng chhai ha-mien ke phiên-cho-khiông chûng sû-ngi̍p nui-yùng (Chhâm-siòng [[{{MediaWiki:Helppage}}|Pông-chhu]]).
+Kó-yèn ngì-he put-séu-sîm to chhṳ́ hong-mien, chhṳ̍t-chiap tiám-kit ngì hi-khí chûng ke "fì-chón" on-néu fán-fì.',
 'anontalkpagetext'          => "---- ''Liá-he yit-ke hàn-mò kien-li̍p chong-ho ke ngia̍k-miàng yung-fu ke tui-fa-hong. Só-yî chṳ́-nèn yung IP thi-tiám lòi lâu kí lièn-lo̍k. Ke-IP thi-tiám khó-nèn yù-chhai kí-miàng yung-fu khiung-hióng. Kó-yèn ngì-he yit-miàng ngia̍k-miàng yung-fu ngin-vì pún-hong song ke phìn-lî kiên ngì mò-kôan, chhiáng [[Special:Userlogin|Chhóng-kien sîn chong-ho fe̍t-chá Tên-ngi̍p]] khó-yî phit-miên lòi-yì khì-thâ ngia̍k-miàng yung-fu ke fun-lon.''",
 'noarticletext'             => 'Chhṳ́-chông muk-chhièn hàn-mò nui-yùng, ngì khó-yî chhai khì-thâ hong [[Special:Search/{{PAGENAME}}|sêu-chhà chhṳ́-chông phêu-thì]] fe̍t-chá [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} phiên-chho chhṳ́-chông].',
 'clearyourcache'            => "'''Chu-yi:''' Chhai tú-chhùn yî-heu, ngì pit-sî khoai chhái-chhí chhîn-chhù hi-khí chhòi-nèn khon-tó chok-chhut ke kói-pien. '''Mozilla / Firefox / Safari:''' on-tén ''Shift'' chai tiám-kit '' Chhùng-sîn chṳ́n-lî ''(fe̍t-chá on-hâ ''Ctrl-Shift-R'', chhai Phìn-kó Mac song on-hâ ''Cmd-Shift-R''); '''IE:''' on-tén ''Ctrl'' chai tiám-kit ''Chhùng-sîn chṳ́n-lî'', fe̍t-he on-hâ ''Ctrl-F5''；'''Konqueror:''' chak  sî-yeu tiám-kit ''Chhùng-sîn chṳ́n-lî''; '''Opera:''' yung-fu sî-yeu chhai ''kûng-khí-sat-thin'' chûng vàn-cháng-thi chhîn-chhù ke khoai-chhí.",
@@ -586,8 +588,8 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'prevn'                 => 'Chhièn $1-ke',
 'nextn'                 => 'hâ $1-ke',
 'viewprevnext'          => 'Kiám-sṳ ($1) ($2) ($3).',
-'showingresults'        => 'Ha-mien hién-sṳ chhiùng thi-<b>$2</b>-thiàu khôi-sṳ́ ke <b>$1</b>-thiàu kiet-kó:',
-'showingresultsnum'     => 'Ha-mien hién-sṳ chhiùng thi-<b>$2</b>-thiàu khôi-sṳ́ ke <b>$3</b>-thiàu kiet-kó:',
+'showingresults'        => "Ha-mien hién-sṳ chhiùng thi-'''$2'''-thiàu khôi-sṳ́ ke '''$1'''-thiàu kiet-kó:",
+'showingresultsnum'     => "Ha-mien hién-sṳ chhiùng thi-'''$2'''-thiàu khôi-sṳ́ ke '''$3'''-thiàu kiet-kó:",
 'nonefound'             => '<strong>Chu-yi：</strong> Sṳt-phai ke sêu-chhà vông-vông he chhut-yì chhṳ-thù sêu-chhà chû-yì "ke" fe̍t-chá "lâu" chṳ̂-lui ke sòng-kien-sṳ só yîn-hí.',
 'powersearch'           => 'Chhìm-cháu',
 'searchdisabled'        => '{{SITENAME}} sin-nèn fông-mien ke ngièn-yîn, chhiòn-vùn chhìm-cháu yí-kîn pûn chhiam-sṳ̀ thìn-yung. Ngì khó-yî chhiam-sṳ̀ theu-ko Google chhà-chhìm. Chhiáng liù-yi sok-yîn khó-nèn voi ko-sṳ̀.',
@@ -842,7 +844,16 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'statistics'             => 'Thúng-kie',
 'sitestats'              => '{{SITENAME}} thúng-kie su-kí',
 'userstats'              => 'Yung-fu thúng-kie',
-'sitestatstext'          => "Chṳ̂-liau-khu chûng khiung-yû '''\$1''' vùn-chông. Khì-chûng pâu-hàm tui-fa-hong, su̍k-yî {{SITENAME}} ke vùn-chông, chui-séu liòng ke \"stub\", chhùng-thiun hiong ke vùn-chông, yî-khi̍p hàn-mò tha̍t-tó vùn-chông chṳt-liòng ke vùn-chông. Chhù-chhṳ́ chṳ̂-ngoi hàn-yû '''\$2''' khó-nèn he ha̍p-fû phêu-chún ke vùn-chông. '''\$8'''-ke tóng-on yí-kîn pûn song-chhòn. Chhiùng {{SITENAME}} sat-thin yî-lòi, chhiòn mióng-chham khiung-yû hong-mien '''\$3'''-chhṳ, vùn-chông phiên-si̍p '''\$4'''-chhṳ. Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá heu vùn-chông ke mî-ke pán-pún phìn-kiûn '''\$6'''-chhṳ. [http://www.mediawiki.org/wiki/Manual:Job_queue kûng-chok chhui-lie̍t] ke chhòng-thu he '''\$7'''.",
+'sitestatstext'          => "Chṳ̂-liau-khu chûng khiung-yû '''\$1''' vùn-chông.
+Khì-chûng pâu-hàm tui-fa-hong, su̍k-yî {{SITENAME}} ke vùn-chông, chui-séu liòng ke \"stub\", chhùng-thiun hiong ke vùn-chông, yî-khi̍p hàn-mò tha̍t-tó vùn-chông chṳt-liòng ke vùn-chông.
+Chhù-chhṳ́ chṳ̂-ngoi hàn-yû '''\$2''' khó-nèn he ha̍p-fû phêu-chún ke vùn-chông.
+
+'''\$8'''-ke tóng-on yí-kîn pûn song-chhòn.
+
+Chhiùng {{SITENAME}} sat-thin yî-lòi, chhiòn mióng-chham khiung-yû hong-mien '''\$3'''-chhṳ, vùn-chông phiên-si̍p '''\$4'''-chhṳ.
+Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá heu vùn-chông ke mî-ke pán-pún phìn-kiûn '''\$6'''-chhṳ. 
+
+[http://www.mediawiki.org/wiki/Manual:Job_queue kûng-chok chhui-lie̍t] ke chhòng-thu he '''\$7'''.",
 'userstatstext'          => "Muk-chhièn yû '''$1'''-ke chu-chhak yung-fu. Khì-chûng '''$2'''-ngìn (chit '''$4%''') he kón-lî-yèn (chhâm-siòng $3).",
 'statistics-mostpopular' => 'Pûn-ngìn chhà-khon chhṳ-su chui-tô ke vùn-chông',
 
@@ -1088,7 +1099,8 @@ Yî-ha he <strong>$1</strong> hien-sṳ̀ ke pó-fu khi̍p-phe̍t:',
 'undeleterevisions'        => '$1 pán-pún chhùn-tong',
 'undeletehistory'          => 'Kó-yèn ngì fî-fu̍k liáu ke-vùn-chông, só-yû pán-pún chiông-voi pûn fî-fu̍k to siû-thin li̍t-sṳ́ chûng. Kó-yèn pún-chông chhù-hi heu yû yit-ke thùng-miàng ke sîn vùn-chông kien-li̍p, pûn fî-fu̍k ke pán-pún chiông-voi chhṳ̂n-vi kha-sîn ke li̍t-sṳ́, sîn vùn-chông ke tong-chhièn pán-pún chiông mò-fap pûn chhṳ-thung fu̍k-ngièn.',
 'undeleterevdel'           => 'Kó-yèn pá chui-sîn siû-thin phu-fun chhù-thet, fán chhù-hi phien mò-fap chin-hàng. Kó-yèn ngi-to liá-chúng chhìn-khóng, ngì pit-sî fán-sién fe̍t-chá fán-chhòng chui-sîn yí-kîn chhù-hi ke siû-thin. Tui-yî ngì mò-yû khièn-han hi kiám-sṳ ke siû-thin he mò-fap fî-fu̍k ke.',
-'undeletehistorynoadmin'   => 'Liá-ke vùn-chông yí-kîn pûn chhù-thet, chhù-hi ngièn-yîn hién-sṳ chhai hâ-fông phiên-si̍p chak-yeu chûng. Pûn chhù-thet chhièn ke só-yû siû-thin pán-pún, lièn-thùng chhù-thet chhièn kung-hien yung-fu tén-tén se-chiet chṳ́-yû [[{{MediaWiki:Grouppage-sysop}}|Kón-lî-yèn]] khó-yî khon-kien.',
+'undeletehistorynoadmin'   => 'Liá-ke vùn-chông yí-kîn pûn chhù-thet, chhù-hi ngièn-yîn hién-sṳ chhai hâ-fông phiên-si̍p chak-yeu chûng.
+Pûn chhù-thet chhièn ke só-yû siû-thin pán-pún, lièn-thùng chhù-thet chhièn kung-hien yung-fu tén-tén se-chiet chṳ́-yû kón-lî-yèn khó-yî khon-kien.',
 'undelete-revision'        => 'Chhù-thet pán-pún $1 chhṳ $2：',
 'undeleterevision-missing' => 'Chhṳ́ pán-pún ke nui-yùng put chṳn-khok fe̍t-chá yí-kîn yì-sṳt. Khó-nèn lièn-kiet chho-ngu, pûn yì-chhù fe̍t-he yí-kîn pûn fî-fu̍k.',
 'undeletebtn'              => 'Fî-fu̍k',
@@ -1273,7 +1285,12 @@ Ngì khok-ngin sî-yeu chhù-thet ngièn hong-mien khi̍p chin-hàng yì-thung m
 
 # Export
 'export'            => 'Thô-chhut vùn-chông',
-'exporttext'        => 'Ngì khó-yî chiông thi̍t-thin vùn-chông fe̍t-he yit-chû vùn-chông ke vùn-pún yî-khi̍p phiên-cho li̍t-sṳ́ yung XML kak-sṳt thô-chhut; liá-yong khó-yî chiông yû-kôan vùn-chông theu-ko "[[Special:Import|Thô-chhut vùn-chông]]" hong-mien thô-chhut to nang-ngoi yit-ke yun-hàng MediaWiki ke mióng-chham. Yeu thô-chhut vùn-chông, chhiáng chhai ha-mien ke vùn-sṳ-khiông chûng sû-ngi̍p vùn-chông phêu-thì, mî-hàng yit-ke phêu-thì, pin sién-chet ngì he-feu sî-yeu thô-chhut tai-yû vùn-chông li̍t-sṳ́ yî-chhièn ke pán-pún, fe̍t-he chak sién-chet thô-chhut tai-yû chui-heu yit-chhṳ phiên-cho sêu-sit ke tông-chhièn pán-pún. Nang-ngoi ngì hí-khó li-yung lièn-kiet thô-chhut tóng-on, yì-yi ngì hí-khó sṳ́-yung [[{{ns:special}}:Export/{{int:mainpage}}]] thô-chhut {{int:mainpage}} vùn-chông.',
+'exporttext'        => 'Ngì khó-yî chiông thi̍t-thin vùn-chông fe̍t-he yit-chû vùn-chông ke vùn-pún yî-khi̍p phiên-cho li̍t-sṳ́ yung XML kak-sṳt thô-chhut;
+liá-yong khó-yî chiông yû-kôan vùn-chông theu-ko "[[Special:Import|Thô-chhut vùn-chông]]" hong-mien thô-chhut to nang-ngoi yit-ke yun-hàng MediaWiki ke mióng-chham.
+
+Yeu thô-chhut vùn-chông, chhiáng chhai ha-mien ke vùn-sṳ-khiông chûng sû-ngi̍p vùn-chông phêu-thì, mî-hàng yit-ke phêu-thì, pin sién-chet ngì he-feu sî-yeu thô-chhut tai-yû vùn-chông li̍t-sṳ́ yî-chhièn ke pán-pún, fe̍t-he chak sién-chet thô-chhut tai-yû chui-heu yit-chhṳ phiên-cho sêu-sit ke tông-chhièn pán-pún.
+
+Nang-ngoi ngì hí-khó li-yung lièn-kiet thô-chhut tóng-on, yì-yi ngì hí-khó sṳ́-yung [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] thô-chhut [[{{MediaWiki:Mainpage}}]] vùn-chông.',
 'exportcuronly'     => 'Chak thô-chhut tông-chhièn pán-pún, put pâu-hàm vàn-cháng ke li̍t-sṳ́ pán-pún.',
 'exportnohistory'   => "----
 '''Chu-yi:''' Chhut-yì sin-nèn ngièn-yîn, chhiùng-chhṳ péu-tân thô-chhut vùn-chông ke chhiòn-phu li̍t-sṳ́ yí-kîn pûn thìn yung.",
@@ -1459,7 +1476,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'nextdiff'     => 'Hâ yit-ke →',
 
 # Media information
-'mediawarning'         => "'''Kín-ko''': Ke-tóng-on khó-nèn pâu-hàm ok-yi am-ho, chṳp-hàng kì khó-nèn tui ngì-ke ne-thúng tai-lòi ngùi-hiám.<hr>",
+'mediawarning'         => "'''Kín-ko''': Ke-tóng-on khó-nèn pâu-hàm ok-yi am-ho, chṳp-hàng kì khó-nèn tui ngì-ke ne-thúng tai-lòi ngùi-hiám.<hr />",
 'imagemaxsize'         => 'Chhai thù-chhiong mèu-siá chông tui thù-chhiong thai-séu han-chṳ he:',
 'thumbsize'            => 'Lio̍k-thù thai-séu:',
 'file-info'            => '(tóng-on thai-séu: $1, MIME lui-hìn: $2)',

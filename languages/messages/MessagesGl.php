@@ -401,7 +401,7 @@ Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co
 Teña en conta que mentres se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivesen dentro do sistema.',
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
 Creouse a súa conta.
-Non esqueza [[Special:Preferences|personalizar]] as súas preferencias en {{SITENAME}}.',
+Non esqueza personalizar as súas preferencias en {{SITENAME}}.',
 'loginpagetitle'             => 'Acceso de usuario',
 'yourname'                   => 'O seu nome de usuario:',
 'yourpassword'               => 'O seu contrasinal:',
@@ -717,8 +717,8 @@ Lenda: (actual) = diferenza coa versión actual,
 'history-feed-description'    => 'Historial de revisións desta páxina no wiki',
 'history-feed-item-nocomment' => '$1 en $2', # user at time
 'history-feed-empty'          => 'A páxina solicitada non existe.
-Puido <span class="plainlinks">[{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} borrarse]</span> ou moverse a outro nome.
-Probe a [[{{ns:special}}:Search/{{PAGENAME}}|buscar no wiki]] para atopar as páxinas relacionadas.',
+Puido borrarse ou moverse a outro nome.
+Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(comentario eliminado)',

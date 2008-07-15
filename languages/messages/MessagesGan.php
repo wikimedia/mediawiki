@@ -1007,7 +1007,8 @@ $2',
 'statistics-mostpopular' => '眵嗰人最多嗰頁面',
 
 'disambiguations'      => '扤清楚頁',
-'disambiguations-text' => '底下嗰頁面都有到<b>扤清楚頁</b>嗰連結, 但係佢俚應當係連到正當嗰標題。<br />如果一隻頁面係連結自[[MediaWiki:disambiguationspage]]，佢會拕當成扤清楚頁。',
+'disambiguations-text' => "底下嗰頁面都有到'''扤清楚頁'''嗰連結, 但係佢俚應當係連到正當嗰標題。<br />
+如果一隻頁面係連結自[[MediaWiki:Disambiguationspage]]，佢會拕當成扤清楚頁。",
 
 'doubleredirects'     => '雙重重定向頁面',
 'doubleredirectstext' => '底下嗰重定向連結到別隻重定向頁面:',
@@ -1494,7 +1495,7 @@ $NEWPAGE
 'export'            => '導出頁面',
 'exporttext'        => '通過XML格式倷能搦特定嗰頁面或一組頁面嗰文本同到佢編輯嗰歷史一齊導出；噉通過"[[Special:Import|導入頁面]]"就導入得到別嗰MediaWiki網站。要導出頁面嗰話，請到下底嗰文字框寫正標題，一行一隻標題，再話正倷係否要導出含歷史嗰舊版本，或單就選導出最晏一回編輯嗰相關內容。
 
-再就係通過連結倷哈導出得正檔案，比如倷用得正[[{{ns:special}}:Export/{{int:mainpage}}]]導出"[[{{int:mainpage}}]]"頁面',
+再就係通過連結倷哈導出得正檔案，比如倷用得正[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]導出"[[{{MediaWiki:Mainpage}}]]"頁面',
 'exportcuronly'     => '獨今吖嗰改動，伓係全部嗰歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能嗰原因，箇隻表格導出嗰頁面嗰全部歷史都拕禁用。",
@@ -1700,7 +1701,7 @@ $1',
 'nextdiff'     => '下一隻差異→',
 
 # Media information
-'mediawarning'         => "'''警告''': 話伓定箇隻檔案含到惡意代碼，執行佢話伓定會損壞倷嗰系統。<hr>",
+'mediawarning'         => "'''警告''': 話伓定箇隻檔案含到惡意代碼，執行佢話伓定會損壞倷嗰系統。<hr />",
 'imagemaxsize'         => '檔案解釋頁嗰圖像大細限制到:',
 'thumbsize'            => '縮略圖大細:',
 'widthheightpage'      => '$1×$2,$3頁',

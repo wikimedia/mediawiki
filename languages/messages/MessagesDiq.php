@@ -395,7 +395,7 @@ It must have at least $1 characters and be different from your username.',
 'allpagessubmit' => 'Şo',
 
 # Special:Categories
-'categories' => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
+'categories' => 'Kategoriy',
 
 # Special:Listusers
 'listusers-submit' => 'Bımocne',
