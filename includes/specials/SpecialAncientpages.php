@@ -25,7 +25,6 @@ class AncientPagesPage extends QueryPage {
 		$db = wfGetDB( DB_SLAVE );
 		$page = $db->tableName( 'page' );
 		$revision = $db->tableName( 'revision' );
-		#$use_index = $db->useIndexClause( 'cur_timestamp' ); # FIXME! this is gone
 		$epoch = $wgDBtype == 'mysql' ? 'UNIX_TIMESTAMP(rev_timestamp)' :
 			'EXTRACT(epoch FROM rev_timestamp)';
 		return
