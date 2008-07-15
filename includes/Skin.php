@@ -361,8 +361,6 @@ class Skin extends Linker {
 			}
 			$vars['wgAjaxWatch'] = $msgs;
 		}
-		
-		wfRunHooks('SkinGlobalVariables', array(&$vars));
 
 		return self::makeVariablesScript( $vars );
 	}
@@ -420,25 +418,17 @@ class Skin extends Linker {
 	function getUserStylesheet() {
 		global $wgStylePath, $wgRequest, $wgContLang, $wgSquidMaxage, $wgStyleVersion;
 		$sheet = $this->getStylesheet();
+		$s = "@import \"$wgStylePath/common/shared.css?$wgStyleVersion\";\n";
+		$s .= "@import \"$wgStylePath/common/oldshared.css?$wgStyleVersion\";\n";
+		$s .= "@import \"$wgStylePath/$sheet?$wgStyleVersion\";\n";
+		if($wgContLang->isRTL()) $s .= "@import \"$wgStylePath/common/common_rtl.css?$wgStyleVersion\";\n";
+
 		$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
-		
-		$stylesheets = array();
-		$stylesheets['shared']    = "$wgStylePath/common/shared.css?$wgStyleVersion";
-		$stylesheets['oldshared'] = "$wgStylePath/common/oldshared.css?$wgStyleVersion";
-		$stylesheets['skin']      = "$wgStylePath/$sheet?$wgStyleVersion";
-		if($wgContLang->isRTL()) $stylesheets['rtl'] = "$wgStylePath/common/common_rtl.css?$wgStyleVersion";
-		$stylesheets['sitecommon'] = self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI );
-		$stylesheets['siteskin']  = self::makeNSUrl( ucfirst( $this->getSkinName() . '.css' ), $query, NS_MEDIAWIKI );
-		
-		$rawcss = $this->doGetUserStyles();
-		
-		wfRunHooks( 'SkinSetupSiteCss', array( &$stylesheets, &$rawcss, $query ) );
-		
-		$s = '';
-		foreach( $stylesheets as $link ) {
-			$s .= "@import \"$link\";\n";
-		}
-		return "{$s}{$rawcss}\n";
+		$s .= '@import "' . self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) . "\";\n" .
+			'@import "' . self::makeNSUrl( ucfirst( $this->getSkinName() . '.css' ), $query, NS_MEDIAWIKI ) . "\";\n";
+
+		$s .= $this->doGetUserStyles();
+		return $s."\n";
 	}
 
 	/**
@@ -1682,35 +1672,19 @@ END;
 		$bar = array();
 		$lines = explode( "\n", wfMsgForContent( 'sidebar' ) );
 		$heading = '';
-		$specialBox = false;
 		foreach ($lines as $line) {
 			if (strpos($line, '*') !== 0)
 				continue;
 			if (strpos($line, '**') !== 0) {
 				$line = trim($line, '* ');
-				
 				if ( $line == 'SEARCH' || $line == 'TOOLBOX' || $line == 'LANGUAGES' ) {
-					# Internal special box type
+					# Special box type
 					$bar[$line] = array();
-					$specialBox = true;
 				} else {
-					$cont = null;
-					# Allow extensions to start a special box
-					if( !wfRunHooks( 'SkinSidebarSpecialBox', array( &$this, $line, &$cont ) ) ) {
-						# Extension special box type
-						$bar[$line] = $cont;
-						$specialBox = true;
-					} else {
-						# Normal box
-						$specialBox = false;
-					}
+					$heading = $line;
 				}
-				$heading = $line;
 			} else {
-				if( $specialBox ) {
-					# Inside a special box, we just append the lines into the $cont
-					$bar[$heading][] = $line;
-				} elseif (strpos($line, '|') !== false) { // sanity check
+				if (strpos($line, '|') !== false) { // sanity check
 					$line = array_map('trim', explode( '|' , trim($line, '* '), 2 ) );
 					$link = wfMsgForContent( $line[0] );
 					if ($link == '-')

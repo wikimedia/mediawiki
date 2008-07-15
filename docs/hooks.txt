@@ -1056,27 +1056,6 @@ $skin: Skin object
 &$text: bottomScripts Text
 Append to $text to add additional text/scripts after the stock bottom scripts.
 
-'SkinGlobalVariables': Allows modification of the JS global variables exported to the browser
-&$vars: The list of variables
-
-'SkinSetupSiteCss': Allows modification of the stylesheets and css imported into the skin
-&$stylesheets: The list of stylesheet urls for importing, keys allow for internal things to be
-unset or have query arguments appended
-&$rawcss: Raw css to be exported
-$msgQuery: Query containing caching and other params to use when adding a stylesheet url
-that comes from a MediaWiki: message page
-
-'SkinSidebarOutputSpecialBox': Allows for custom outputting of special sidebar boxes
-&$skin: Skin object
-$boxName: Name of the skin box to output
-$cont: Content array which may be used for options
-
-'SkinSidebarSpecialBox': Allows for extension definition of custom special sidebar boxes
-Set $cont to an array of initial data and return false to define a new sidebar box
-&$skin: Skin object
-$boxName: Name of the custom box to match
-&$cont: Content array
-
 'SkinSubPageSubtitle': At the beginning of Skin::subPageSubtitle()
 $skin: Skin object
 &$subpages: Subpage links HTML
