@@ -5,8 +5,8 @@
  * @file
  *
  * @author Aviator
- * @author Aurora
  * @author Siebrand
+ * @author Aurora
  * @author לערי ריינהארט
  */
 
@@ -576,7 +576,7 @@ Sila masukkan alamat e-mel yang betul atau kosongkan sahaja ruangan tersebut.',
 'accountcreated'             => 'Akaun dibuka',
 'accountcreatedtext'         => 'Akaun pengguna bagi $1 telah dibuka.',
 'createaccount-title'        => 'Pembukaan akaun {{SITENAME}}',
-'createaccount-text'         => 'Seseorang ($1) telah membuka akaun untuk
+'createaccount-text'         => 'Seseorang telah membuka akaun untuk
 alamat e-mel anda di {{SITENAME}} ($4) dengan nama "$2" dan kata laluan "$3".
 Anda boleh log masuk dan tukar kata laluan anda sekarang.
 
@@ -814,7 +814,7 @@ Petunjuk: (kini) = perbezaan dengan versi terkini,
 'history-feed-item-nocomment' => '$1 pada $2', # user at time
 'history-feed-empty'          => 'Laman yang diminta tidak wujud.
 Mungkin ia telah dihapuskan atau namanya telah ditukar.
-Cuba [[Special:Gelintar|cari]] laman lain yang mungkin berkaitan.',
+Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(komen dibuang)',
@@ -1962,14 +1962,11 @@ Laman destinasi "[[$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supay
 # Export
 'export'            => 'Eksport laman',
 'exporttext'        => 'Anda boleh mengeksport teks dan sejarah suntingan untuk laman-laman tertentu yang ke dalam fail XML.
-Fail ini boleh diimport ke dalam wiki lain yang menggunakan perisian MediaWiki
-melalui [[Special:Import|laman import]].
+Fail ini boleh diimport ke dalam wiki lain yang menggunakan perisian MediaWiki melalui [[Special:Import|laman import]].
 
-Untuk mengeksport laman, masukkan tajuk dalam kotak teks di bawah (satu tajuk
-bagi setiap baris) dan pilih sama ada anda mahukan semua versi dan catatan
-sejarah atau hanya versi semasa berserta maklumat mengenai suntingan terakhir.
+Untuk mengeksport laman, masukkan tajuk dalam kotak teks di bawah (satu tajuk bagi setiap baris) dan pilih sama ada anda mahukan semua versi dan catatan sejarah atau hanya versi semasa berserta maklumat mengenai suntingan terakhir.
 
-Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:special}}:Eksport/{{MediaWiki:Mainpage}}]] untuk laman "[[{{MediaWiki:Mainpage}}]]".',
+Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] untuk laman "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Hanya eksport semakan semasa, bukan keseluruhan sejarah.',
 'exportnohistory'   => "----
 '''Catatan:''' Ciri eksport sejarah penuh laman melalui borang ini telah dimatikan atas sebab-sebab prestasi.",

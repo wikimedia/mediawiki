@@ -2591,6 +2591,7 @@ $1',
 'specialpages-group-wiki'        => 'Βικι δεδομένα και εργαλεία',
 
 # Special:Blankpage
-'blankpage' => 'Κενή σελίδα',
+'blankpage'              => 'Κενή σελίδα',
+'intentionallyblankpage' => 'Αυτή η σελίδα έχει αφεθεί σκοπίμως κενή',
 
 );

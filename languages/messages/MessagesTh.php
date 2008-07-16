@@ -2450,6 +2450,7 @@ $1',
 'fileduplicatesearch-legend'   => 'ค้นหาไฟล์ที่ซ้ำกัน',
 'fileduplicatesearch-filename' => 'ชื่อไฟล์ :',
 'fileduplicatesearch-submit'   => 'ค้นหา',
+'fileduplicatesearch-info'     => '$1 × $2 พิกเซล<br />ขนาดไฟล์: $3<br />ชนิดของไมม์: $4',
 'fileduplicatesearch-result-1' => 'ไม่มีไฟล์ที่ซ้ำกับไฟล์ "$1"',
 'fileduplicatesearch-result-n' => 'มี {{PLURAL:$2|ไฟล์เดียว|$2 ไฟล์}}ที่ซ้ำกับไฟล์ "$1"',
 

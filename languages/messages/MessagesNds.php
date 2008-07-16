@@ -474,7 +474,7 @@ As Grund för de Sparr is angeven: $1',
 
 Dat kann vörkamen, wenn een op en olen Lenk op den Ünnerscheed twischen twee Versionen oder to en ole Version klickt hett un de Sied al wegsmeten is.
 
-Wenn dat nich de Fall is, denn hest du villicht en Fehler in de Software funnen. Mell dat an en [[{{MediaWiki:Grouppage-sysop}}|Administrater]] vun {{SITENAME}} un segg em ok de URL.',
+Wenn dat nich de Fall is, denn hest du villicht en Fehler in de Software funnen. Mell dat an en Administrater vun {{SITENAME}} un segg em ok de URL.',
 'missingarticle-rev'   => '(Versionsnr.: $1)',
 'missingarticle-diff'  => '(Ünnerscheed: $1, $2)',
 'readonly_lag'         => 'De Datenbank is automaatsch sperrt worrn, dat sik de opdeelten Datenbankservers mit den Hööft-Datenbankserver afglieken köönt.',
@@ -515,7 +515,7 @@ $2',
 'namespaceprotected'   => "Du hest keen Rechten, Sieden in’n Naamruum '''$1''' to ännern.",
 'customcssjsprotected' => 'Du hest keen Rechten, disse Siet to ännern. Dor sünd persönliche Instellungen vun en annern Bruker in.',
 'ns-specialprotected'  => 'Spezialsieden köönt nich ännert warrn.',
-'titleprotected'       => "Disse Siet is gegen dat nee Opstellen vun [[{{ns:user}}:$1]] schuult worrn.
+'titleprotected'       => "Disse Siet is gegen dat nee Opstellen vun [[User:$1|$1]] schuult worrn.
 As Grund is angeven: ''$2''.",
 
 # Virus scanner
@@ -526,8 +526,9 @@ As Grund is angeven: ''$2''.",
 # Login and logout pages
 'logouttitle'                => 'Bruker-Afmellen',
 'logouttext'                 => 'Du büst nu afmellt. Du kannst {{SITENAME}} nu anonym wiederbruken oder di ünner en annern Brukernaam wedder anmellen.',
-'welcomecreation'            => '<h2>Willkomen, $1!</h2><p>Dien Brukerkonto is nu inricht.
-Vergeet nich, dien [[Special:Preferences|Instellen]] antopassen.',
+'welcomecreation'            => '== Willkomen, $1! ==
+Dien Brukerkonto is nu inricht.
+Vergeet nich, dien Instellen antopassen.',
 'loginpagetitle'             => 'Bruker-Anmellen',
 'yourname'                   => 'Dien Brukernaam',
 'yourpassword'               => 'Dien Passwoort',
@@ -668,19 +669,17 @@ Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{Medi
 * IP-Adress: $3
 * Block-ID: #$5
 * Wokeen hett blockt: $1',
-'autoblockedtext'                  => 'Diene IP-Adress is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
-As Grund is angeven: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbookindrag]</span>, de Block-ID is $5).
+'autoblockedtext'                  => "Diene IP-Adress is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
+As Grund is angeven: ''$2'' (de Block-ID is $5).
 
 Du dröffst aver jümmer noch lesen. Blot dat Schrieven geiht nich.
 
-Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{MediaWiki:Grouppage-sysop}}|Administraters]]. Geev bi Fragen jümmer ok dien IP-Adress ($3) oder de ID vun den Block (#$5) mit an.
+Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{MediaWiki:Grouppage-sysop}}|Administraters]]. Geev bi Fragen jümmer ok dien IP-Adress oder de ID vun den Block (#$5) mit an.
 
 * Anfang vun’n Block: $8
 * Enn vun’n Block: $6
-* Block vun: $7
-* IP-Adress: $3
 * Block-ID: #$5
-* Wokeen hett blockt: $1',
+* Wokeen hett blockt: $1",
 'blockednoreason'                  => 'keen Grund angeven',
 'blockedoriginalsource'            => "De Borntext vun '''$1''' warrt hier wiest:",
 'blockededitsource'                => "De Text vun '''diene Ännern''' an '''$1''':",
@@ -701,9 +700,10 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 'accmailtext'                      => 'Dat Passwoort vun $1 is an $2 schickt worrn.',
 'newarticle'                       => '(Nee)',
 'newarticletext'                   => 'Hier den Text vun de ne’e Siet indregen. Jümmer in ganze Sätz schrieven un kene Texten vun Annern, de en Oorheverrecht ünnerliggt, hierher kopeern.',
-'anontalkpagetext'                 => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker. Wi mööt hier de numerische [[IP-Adress]]
-verwennen, üm den Bruker to identifizeern. So en Adress kann vun verscheden Brukern bruukt warrn. Wenn du en anonymen Bruker büst un meenst,
-dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di doch an]], dormit dat Problem nich mehr besteiht.''",
+'anontalkpagetext'                 => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker.
+Wi mööt hier de numerische IP-Adress verwennen, üm den Bruker to identifizeern.
+So en Adress kann vun verscheden Brukern bruukt warrn.
+Wenn du en anonymen Bruker büst un meenst, dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di doch an]], dormit dat Problem nich mehr besteiht.''",
 'noarticletext'                    => 'Dor is opstunns keen Text op disse Siet. Du kannst [[Special:Search/{{PAGENAME}}|na dissen Utdruck in annere Sieden söken]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Siet ännern].',
 'userpage-userdoesnotexist'        => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
 'clearyourcache'                   => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -791,7 +791,7 @@ Nu sünd dor $1, wesen dröfft dat blot $2.',
 'undo-success' => 'De Ännern kann trüchdreiht warrn. Vergliek ünnen de Versionen, dat ok allens richtig is, un spieker de Sied denn af.',
 'undo-failure' => '<span class="error">Kunn de Siet nich op de vörige Version trüchdreihn. De Afsnitt is twischendör al wedder ännert worrn.</span>',
 'undo-norev'   => 'De Ännern kunn nich trüchdreiht warrn, de gifft dat nich oder is wegsmeten worrn.',
-'undo-summary' => 'Ännern $1 vun [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskuschoon]]) trüchdreiht.',
+'undo-summary' => 'Ännern $1 vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) trüchdreiht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brukerkonto kann nich anleggt warrn',
@@ -1180,11 +1180,9 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'upload_directory_missing'    => 'De Dateimapp för hoochladene Datein ($1) fehlt un de Webserver kunn ehr ok nich nee opstellen.',
 'upload_directory_read_only'  => 'De Server kann nich in’n Orner för dat Hoochladen vun Datein ($1) schrieven.',
 'uploaderror'                 => 'Fehler bi dat Hoochladen',
-'uploadtext'                  => "
-Üm hoochladene Biller to söken un antokieken,
-geih to de [[Special:Imagelist|List vun hoochladene Biller]].
+'uploadtext'                  => "Bruuk dat Formular, üm niege Biller hoochtoladen un disse in Sieten to bruken.
+Üm hoochladene Biller to söken un antokieken, geih to de [[Special:Imagelist|List vun hoochladene Biller]].
 
-Bruuk dat Formular, üm niege Biller hoochtoladen un disse in Sieten to bruken.
 In de mehrsten Browser warrt en „Durchsuchen“-Feld wiest, dat en Standard-Dateidialog apent.
 Wähl de Datei ut, de du hoochladen wullst. De Dateinaam warrt denn in dat Textfeld wiest.
 Bestätig dann den Copyright-Henwies.
@@ -1194,13 +1192,7 @@ Dat kann en Stoot duern, sünnerlich bi en langsamen Internet-Verbinnen.
 För Fotos is dat JPEG-Format, för Grafiken un Symbolen dat PNG-Format best.
 Üm en Bild in en Siet to bruken, schriev an Stell vun dat Bild
 '''[[Image:datei.jpg]]''' oder
-'''[[Image:datei.jpg|Beschrieven]]'''.
-
-Denk doran, dat, lieks as bi de annern Sieten, annere Bruker dien Datein löschen oder ännern könen.',
-'uploadlog'                => 'Datei-Logbook',
-'uploadlogpage'     => 'Datei-Logbook',
-'uploadlogpagetext' => 'Hier is de List vun de letzten hoochladenen Datein.
-Alle Tieden sünd UTC.",
+'''[[Image:datei.jpg|Beschrieven]]'''.",
 'upload-permitted'            => 'Verlöövte Dateitypen: $1.',
 'upload-preferred'            => 'Vörtagene Dateitypen: $1.',
 'upload-prohibited'           => 'Verbadene Dateitypen: $1.',
@@ -1394,7 +1386,7 @@ Dat heet, jede Siet is '''$5''' Maal ännert un '''$6''' maal ankeken worrn.
 
 De List, mit de Opgaven, de de Software noch maken mutt, hett {{PLURAL:$7|een Indrag|'''$7''' Indrääg}}.",
 'userstatstext'          => "Dat gifft {{PLURAL:$1|'''een''' anmellt Bruker|'''$1''' anmellt Brukers}}.
-Dorvun {{PLURAL:$2|hett '''een'''|hebbt '''$2'''}} {{PLURAL:$1||($4 %)}} $5-Rechten (kiek $3).",
+Dorvun {{PLURAL:$2|hett '''een'''|hebbt '''$2'''}} {{PLURAL:$1||($4 %)}} $5-Rechten.",
 'statistics-mostpopular' => 'opmehrst ankekene Sieden',
 
 'disambiguations'      => 'Mehrdüdige Begrepen',
@@ -1508,7 +1500,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'allpages-bad-ns'   => '{{SITENAME}} hett keen Naamruum „$1“.',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Kategorie|Kategorien}}',
+'categories'                    => 'Kategorien',
 'categoriespagetext'            => 'In disse Kategorien staht Sieden oder Mediendatein.',
 'categoriesfrom'                => 'Wies Kategorien anfungen mit:',
 'special-categories-sort-count' => 'na Tall sorteren',
@@ -1655,11 +1647,9 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'rollbacklink'                => 'Trüchnehmen',
 'rollbackfailed'              => 'Trüchnahm hett kenen Spood',
 'cantrollback'                => 'De Ännern kann nich trüchnahmen warrn; de letzte Autor is de eenzige.',
-'alreadyrolled'               => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]]
-([[User_talk:$2|Diskuschoonssiet]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm ween is.
+'alreadyrolled'               => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]] ([[User talk:$2|Diskuschoonssiet]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm ween is.
 
-De letzte Ännern is vun [[User:$3|$3]]
-([[User talk:$3|Diskuschoon]])',
+De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]]).',
 'editcomment'                 => "De Ännerkommentar weer: ''$1''.", # only shown if there is an edit comment
 'revertpage'                  => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
@@ -1741,7 +1731,7 @@ Den Text vun de wegsmetene Sied köönt blot Administraters sehn.',
 'undeletedpage'                => "<big>'''$1''' wedderhaalt.</big>
 
 In dat [[Special:Log/delete|Lösch-Logbook]] steiht en Översicht över de wegsmetenen un wedderhaalten Sieden.",
-'undelete-header'              => 'Kiek in dat [[{{ns:special}}:Log/delete|Lösch-Logbook]] för Sieden, de nuletzt wegsmeten worrn sünd.',
+'undelete-header'              => 'Kiek in dat [[Special:Log/delete|Lösch-Logbook]] för Sieden, de nuletzt wegsmeten worrn sünd.',
 'undelete-search-box'          => 'Wegsmetene Sieden söken',
 'undelete-search-prefix'       => 'Wies Sieden, de anfangt mit:',
 'undelete-search-submit'       => 'Söken',
@@ -1857,10 +1847,10 @@ Ok den Grund för dat Blocken indregen.',
 'contribslink'                => 'Bidrääg',
 'autoblocker'                 => 'Automatisch Block, vun wegen dat du en IP-Adress bruukst mit „$1“. Grund: „$2“.',
 'blocklogpage'                => 'Brukerblock-Logbook',
-'blocklogentry'               => 'block [[User:$1|$1]] - ([[Special:Contributions/$1|Bidreeg]]) för en Tiedruum vun: $2 $3',
+'blocklogentry'               => 'block [[$1]] för en Tiedruum vun: $2 $3',
 'blocklogtext'                => 'Dit is en Logbook över Blocks un Freegaven vun Brukern. Automatisch blockte IP-Adressen sünd nich opföhrt.
 Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.',
-'unblocklogentry'             => 'Block vun [[User:$1]] ophoven',
+'unblocklogentry'             => 'Block vun [[$1]] ophoven',
 'block-log-flags-anononly'    => 'blots anonyme Brukers',
 'block-log-flags-nocreate'    => 'Brukerkonten opstellen sperrt',
 'block-log-flags-noautoblock' => 'Autoblock utschalt',
@@ -1941,7 +1931,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'movepage-page-exists'    => 'De Sied „$1“ gifft dat al un kann nich automaatsch överschreven warrn.',
 'movepage-page-moved'     => 'De Siet „$1“ is nu schaven na „$2“.',
 'movepage-page-unmoved'   => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
-'movepage-max-pages'      => 'De Maximaltall vun $1 Sieden is schaven. All de annern Sieden warrt nich automaatsch schaven.',
+'movepage-max-pages'      => 'De Maximaltall vun $1 {{PLURAL:$1|Siet|Sieden}} is schaven. All de annern Sieden warrt nich automaatsch schaven.',
 '1movedto2'               => '[[$1]] is nu na [[$2]] verschaven.',
 '1movedto2_redir'         => '[[$1]] is nu na [[$2]] verschaven un hett den olen Redirect överschreven.',
 'movelogpage'             => 'Schuuv-Logbook',
@@ -2553,10 +2543,10 @@ $1',
 'table_pager_empty'        => 'nix funnen',
 
 # Auto-summaries
-'autosumm-blank'   => '[[{{ns:help}}:Autokommentar|AK]]: Siet leddig maakt',
-'autosumm-replace' => '[[{{ns:help}}:Autokommentar|AK]]: Siet leddig maakt un ‚$1‘ rinschreven',
-'autoredircomment' => '[[{{ns:help}}:Autokommentar|AK]]: Redirect sett na [[$1]]',
-'autosumm-new'     => '[[{{ns:help}}:Autokommentar|AK]]: Ne’e Siet: ‚$1‘',
+'autosumm-blank'   => 'Siet leddig maakt',
+'autosumm-replace' => 'Siet leddig maakt un ‚$1‘ rinschreven',
+'autoredircomment' => 'Redirect sett na [[$1]]',
+'autosumm-new'     => 'Ne’e Siet: ‚$1‘',
 
 # Live preview
 'livepreview-loading' => 'Läädt…',

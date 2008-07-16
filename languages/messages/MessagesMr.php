@@ -1473,7 +1473,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Special:Listgrouprights
 'listgrouprights'          => 'सदस्य गट अधिकार',
-'listgrouprights-summary'  => 'खाली या विकिवर दिलेली सदस्य गटांची यादी त्यांच्या अधिकारांसकट दर्शविलेली आहे. प्रत्येकाच्या अधिकारांची अधिक माहिती [[{{int:Listgrouprights-helppage}}|इथे]] दिलेली आहे.',
+'listgrouprights-summary'  => 'खाली या विकिवर दिलेली सदस्य गटांची यादी त्यांच्या अधिकारांसकट दर्शविलेली आहे. प्रत्येकाच्या अधिकारांची अधिक माहिती [[{{MediaWiki:Listgrouprights-helppage}}|इथे]] दिलेली आहे.',
 'listgrouprights-group'    => 'गट',
 'listgrouprights-rights'   => 'अधिकार',
 'listgrouprights-helppage' => 'Help:गट अधिकार',

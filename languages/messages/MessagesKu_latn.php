@@ -263,7 +263,7 @@ $messages = array(
 'badaccess-groups' => 'Ev tişta yê tu dixazê bikê bes ji bikarhênerên ra ye, yê bi kêmani di grupê $1 da ne.',
 
 'versionrequired'     => 'Verzîyonê $1 ji MediaWiki pêwîste',
-'versionrequiredtext' => 'Verzîyonê $1 ji MediaWiki pêwîste ji bo bikaranîna vê rûpelê. Li [[Special:version|versyon]] seke.',
+'versionrequiredtext' => 'Verzîyonê $1 ji MediaWiki pêwîste ji bo bikaranîna vê rûpelê. Li [[Special:Version|versyon]] seke.',
 
 'ok'                      => 'Temam',
 'retrievedfrom'           => 'Ji "$1" hatiye standin.',
@@ -308,7 +308,7 @@ $messages = array(
 'nosuchspecialpage' => 'Rûpeleke taybet bi vê rengê tune',
 'nospecialpagetext' => "<big>'''Rûpelê taybetî yê te xwastîyê tune ye.'''</big>
 
-Hemû rûpelên taybetî di [[{{ns:special}}:Specialpages|lîsteya rûpelên taybetî]] da werin dîtin.",
+Hemû rûpelên taybetî di [[Special:Specialpages|lîsteya rûpelên taybetî]] da werin dîtin.",
 
 # General errors
 'error'                => 'Çewtî (Error)',
@@ -344,12 +344,7 @@ Sedemê girtinê ev e: $1",
 'badtitle'             => 'Sernivîsa nebaş',
 'badtitletext'         => "Sernavê rûpelê xastî qedexe ye, vala ye ya lînkekî zimanekî wîkî'yekî din e.",
 'perfdisabled'         => "Bibexşîne! Ev fonksîyona ji bo westîyanê server'ê niha hatîye sikinandin.",
-'perfcached'           => "The following data is cached and may not be up to date.
-
-Ev data'yan ji cache'ê ne û belkî ne zindî bin.
-----
-<div style=\"text-align:center; font-size:90%\">'''Rûpelên taybetî:''' [[Special:Shortpages|Gotarên kin]] · [[Special:Longpages|Gotarên dirêj]] · [[Special:Wantedpages|Rûpelên xastî]] · [[Special:Newpages|Gotarên nuh]] · [[Special:Lonelypages|Rûpelên sêwî]] · [[Special:Deadendpages|Gotarên bê dergeh]] · [[Special:CrossNamespaceLinks|Gotar bi lînkan berve namespace'ên din]] · [[Special:Protectedpages|Rûpelên parastî]]</div>
-----",
+'perfcached'           => "Ev data'yan ji cache'ê ne û belkî ne zindî bin.",
 'perfcachedts'         => "Ev data'ya hatîye cache'kirin û carê paşîn $1 hate zindîkirin.",
 'querypage-no-updates' => "Fonksîyonê zindîkirinê yê vê rûpelê hatîye sikinandin. Data'yên vir netên zindîkirin.",
 'wrong_wfQuery_params' => "Parameter'ên şaş ji bo wfQuery()<br />
@@ -449,7 +444,10 @@ Eger kesekî din vê xastinê ji te ra xast ya şîfreya kevin dîsa hate bîrê
 'accountcreated'             => 'Account hate çêkirin',
 'accountcreatedtext'         => 'Hesabê bikarhêneran ji $1 ra hate çêkirin.',
 'createaccount-title'        => 'Çêkirina hesabekî ji {{SITENAME}}',
-'createaccount-text'         => 'Kesek ($1) ji te ra account\'ekî bikarhêneran "$2" li {{SITENAME}} ($4) çêkir. Şîfreya otomatîk ji "$2" ra "$3" ye. Niha ê baş be eger tu xwe qeyd bikê û tu şîfreya xwe biguherînê. Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.',
+'createaccount-text'         => 'Kesek ji te ra account\'ekî bikarhêneran "$2" li {{SITENAME}} ($4) çêkir. Şîfreya otomatîk ji "$2" ra "$3" ye.
+Niha ê baş be eger tu xwe qeyd bikê û tu şîfreya xwe biguherînê.
+
+Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.',
 'loginlanguagelabel'         => 'Ziman: $1',
 
 # Password reset dialog
@@ -513,29 +511,23 @@ Astengkirinê te ji $1 hate çêkirin. Sedemê astengkirinê te ev e: ''$2''.
 Tu dikarî bi $1 ya [[{{MediaWiki:Grouppage-sysop}}|koordînatorekî]] din ra ji astengkirinê te ra dengkê. Tu nikanê 'Ji vê/î bikarhênerê/î re e-name bişîne' bikarwîne eger te di [[Special:Preferences|tercihên xwe]] da adrêsê e-nameyekê nenivîsandîye ya tu ji vê fonksîyonê ra jî hatîyê astengkirin.
 
 IP'yê te yê niha $3 ye, û ID'ya astengkirinê te #$5 e. Xêra xwe yek ji van nimran têke peyamê xwe.",
-'autoblockedtext'           => 'Adrêsa IP ya te otomatîk hate astenkirin, ji ber ku bikarhênerekî din bi wê kardikir, yê niha ji $1 hate astengkirin.
+'autoblockedtext'           => "Adrêsa IP ya te otomatîk hate astenkirin, ji ber ku bikarhênerekî din bi wê kardikir, yê niha ji $1 hate astengkirin.
 Sedemê astengkirinê ev e:
 
-:$2
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">\'\'\'Xandina rûpelan tê qebûlkirin, nivîsandina tiştan di guftûgoya te da jî tê qebûlkirin,\'\'\' bes guherandina û çêkirina gotaran hatîye girtin. Eger ev nivîsandina tê wêşandan ji ber ku te li lînkekê xist, te li lînkekî sor xist.</p>
+: ''$2''
 
-Destpêka astengkirinê: $8
-Dawîya astengkirinê: $6 (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Agahdarî]</span>)
+*Destpêka astengkirinê: $8
+*Dawîya astengkirinê: $6
 
 Eger tu difikirê ku ev astengkirina ne serrast e, xêra xwe bi $1 ya yekî din ji [[{{MediaWiki:Grouppage-sysop}}|koordînatoran]] ra dengke.
 
 Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercihên xwe]] da adrêsa e-nameyan binivîsînê. Tu nikanê e-nameya bişînê eger ew tişta jî hatîye qedexekirin ji te ra.
 
-<div style="border-style: solid; border-color: red; border-width: 1px; padding:5px;">
-\'\'\'Eger tu dixazê nivîsarekê bişînê, xêra xwe van tiştan têke nameya xwe:\'\'\'
+'''Eger tu dixazê nivîsarekê bişînê, xêra xwe van tiştan têke nameya xwe:'''
 
 *Koordînator, yê te astengkir: $1
 *Sedema astengkirinê: $2
-*Destpêka astengkirinê: $8
-*Dawîya astengkirinê: $6
-*Adrêsa IP: $3
-*ID\'ya astengkirinê: #$5
-</div>',
+*ID'ya astengkirinê: #$5",
 'blockednoreason'           => 'sedem nehatîye gotin',
 'blockedoriginalsource'     => "Çavkanîya '''$1''' tê wêşandan:",
 'blockededitsource'         => "Nivîsarên '''guherandinên te''' di '''$1''' da tê wêşandan:",
@@ -793,11 +785,9 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:Imagelist|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an file'ê di gotarê de bikar bihîne:
-
-* '''<nowiki>[[{{ns:image}}:File.jpg]]</nowiki>'''
-* '''<nowiki>[[{{ns:image}}:File.png|alt text]]</nowiki>'''
-anjî ji bo file'ên dengî
-* '''<nowiki>[[{{ns:media}}:File.ogg]]</nowiki>'''",
+'''<nowiki>[[</nowiki>{{ns:image}}:File.jpg<nowiki>]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}:File.png|alt text<nowiki>]]</nowiki>''',
+anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]]</nowiki>'''",
 'upload-permitted'       => "Formatên data'yan, yên tên qebûlkirin: $1.",
 'upload-preferred'       => "Formatên data'yan, yên tên xastin: $1.",
 'upload-prohibited'      => "Formatên data'yan, yên ne tên qebûlkirin: $1.",
@@ -979,7 +969,6 @@ Dirêjahîya [http://www.mediawiki.org/wiki/Manual:Job_queue ''job queue''] '''$
 
 # Book sources
 'booksources'               => 'Çavkaniyên pirtûkan',
-'booksources-summary'       => "Di vê rûpelê da tu dikarî li pirtûkan bi rêkê ISBN'ê wan bigerê. Xet ya cihên boş mişkla ji bo lêgerînê ra çênakin.",
 'booksources-search-legend' => 'Li pirtûkan bigere',
 'booksources-go'            => 'Lêbigere',
 'booksources-text'          => 'Li vir listek ji lînkên rûpelên, yê pirtûkên nuh ya kevin difiroşin, heye. Hên jî li vir tu dikarî înformasyonan li ser wan pirtûkan tê derxê.',
@@ -1014,7 +1003,7 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'allpages-bad-ns'   => 'Namespace\'a "$1" di {{SITENAME}} da tune ye.',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Kategorî|Kategorî}}',
+'categories'                    => 'Kategorî',
 'categoriespagetext'            => 'Di vê wîkiyê de ev kategorî hene:',
 'special-categories-sort-count' => 'hatîye rêzkirin li gorî hejmaran',
 'special-categories-sort-abc'   => 'hatîye rêzkirin li gorî alfabeyê',

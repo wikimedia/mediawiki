@@ -470,11 +470,11 @@ Illo debe haber al minus {{PLURAL:$1|1 character|$1 characteres}} e debe differe
 'mailmypassword'             => 'Inviar contrasigno in e-mail',
 'passwordremindertitle'      => 'Nove contrasigno temporari pro {{SITENAME}}',
 'passwordremindertext'       => 'Alcuno (probabilemente tu, con le adresse IP $1)
-demandava inviar te un nove contrasigno pro {{SITENAME}} ($4).
-Le contrasigno pro le usator "$2" ora es "$3".
-Nos consilia que tu initia un session e cambia le contrasigno le plus tosto possibile.
+demandava que nos te invia un nove contrasigno pro {{SITENAME}} ($4).
+Le contrasigno pro le usator "$2" es ora "$3".
+Tu deberea initiar un session e cambiar tu contrasigno le plus tosto possibile.
 
-Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contrasigno e tu non vole cambiar lo plus, tu pote ignorar iste message e continuar a usar tu presente contrasigno.',
+Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contrasigno e tu non vole plus cambiar lo, tu pote ignorar iste message e continuar a usar tu contrasigno original.',
 'noemail'                    => 'Il non ha un adresse de e-mail registrate pro le usator "$1".',
 'passwordsent'               => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
@@ -2008,7 +2008,7 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferer paginas verso le spatio de nomines:',
-'importtext'                 => 'Per favor exporta le file del wiki de origine con le facilitate Special:Export, immagazina lo in vostre disco e carga lo hic.',
+'importtext'                 => 'Per favor exporta le file del wiki de origine con le function Special:Export, immagazina lo in tu disco e carga lo hic.',
 'importstart'                => 'In processo de importar paginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|revisiones}}',
 'importnopages'              => 'Nulle paginas a importar.',

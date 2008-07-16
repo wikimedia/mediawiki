@@ -311,8 +311,8 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'prevn'             => 'davos $1',
 'nextn'             => 'proxims $1',
 'viewprevnext'      => 'Mussar ($1) ($2) ($3).',
-'showingresults'    => 'Qua èn <b>$1</b> resultats, cumenzond cun il number <b>$2</b>.',
-'showingresultsnum' => 'Qua èn <b>$3</b> resultats, cumenzond cun il number <b>$2</b>.',
+'showingresults'    => "Qua èn '''$1''' resultats, cumenzond cun il number '''$2'''.",
+'showingresultsnum' => "Qua èn '''$3''' resultats, cumenzond cun il number '''$2'''.",
 'powersearch'       => 'retschertgar',
 
 # Preferences page
@@ -483,10 +483,8 @@ La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '
 'watchnologin'         => "Ti n'es betg s'annunzià!",
 'watchnologintext'     => "Ti stos [[Special:Userlogin|t'annunziar]] per midar tia glista d'observaziun.",
 'addedwatch'           => 'Agiuntà a la glista dad observaziun',
-'addedwatchtext'       => "L'artitgel \"<nowiki>\$1</nowiki>\" è vegnì agiuntà a vossa [[Special:Watchlist|glista dad observaziun]]. 
-Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan enumeradas là e l'artitgel vegn marcà '''grass''' en la [[Spezial:Recentchanges|glista da las ultimas midadas]]. 
-
-<p>Sche vus vulais stidar l'artitgel da la [[Special:Watchlist|glista dad observaziun]], cliccai sin la pagina dil artitgel pertutgant sin \"Betg pli observar\".",
+'addedwatchtext'       => "L'artitgel \"[[:\$1]]\" è vegnì agiuntà a vossa [[Special:Watchlist|glista dad observaziun]]. 
+Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan enumeradas là e l'artitgel vegn marcà '''grass''' en la [[Special:Recentchanges|glista da las ultimas midadas]].",
 'watch'                => 'observar',
 'watchthispage'        => 'Guarda questa pagina!',
 'unwatch'              => 'betg pli observar',
@@ -496,7 +494,7 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 'watchmethod-list'     => 'intercurir las paginas observadas davart novas midadas',
 'watchlistcontains'    => "Tia glista d'observaziun cuntegn $1 paginas.",
 'iteminvalidname'      => "Problem cun endataziun '$1', num nunvalaivel...",
-'wlnote'               => 'Sutvart èn las $1 davosas midadas durant las davosas <b>$2</b> uras.',
+'wlnote'               => "Sutvart èn las $1 davosas midadas durant las davosas '''$2''' uras.",
 'wlshowlast'           => 'Mussar: las ultimas $1 uras, ils ultims $2 dis u $3.',
 
 'changed' => 'midà',
@@ -512,7 +510,9 @@ Conferma per plaschair che ti ta es conscient da las consequenzas e che ti agesc
 Sin $2 chattas ti ina glista dals davos artitgels stidads.',
 'deletedarticle'              => '"[[$1]]" è stidà',
 'deletecomment'               => 'Motiv per il stidar',
-'alreadyrolled'               => "I n'è betg pussaivel da reconstruir l'artigel [[$1]] da [[User:$2|$2]] ([[User_talk:$2|discussiun]]), perquai che insatgi auter ha midà u reconstruì la pagina. Quest calöri è  [[User:$3|$3]] ([[User_talk:$3|discussiun]]).",
+'alreadyrolled'               => "I n'è betg pussaivel da reconstruir l'artigel [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussiun]]), perquai che insatgi auter ha midà u reconstruì la pagina.
+
+Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 'protect-legend'              => 'Midar il status da protecziun da la pagina.',
 'protect-default'             => '(standard)',
 'protect-level-autoconfirmed' => 'Bloccar utilisaders na-registrads',
@@ -544,7 +544,7 @@ Sin $2 chattas ti ina glista dals davos artitgels stidads.',
 'ipblocklist'        => "Glista da las adressas dad IP ni dals nums d'utilisader bloccads",
 'ipblocklist-submit' => 'Tschertgar',
 'contribslink'       => 'contribuziuns',
-'autoblocker'        => "Vossa adressa dad IP è vegnida bloccada perquai che vus utilisais ina adressa dad IP cun [[utilisader:$1|$1]]. Motiv per bolccar $1: '''$2'''.",
+'autoblocker'        => "Vossa adressa dad IP è vegnida bloccada perquai che vus utilisais ina adressa dad IP cun [[User:$1|$1]]. Motiv per bolccar $1: '''$2'''.",
 
 # Developer tools
 'databasenotlocked' => 'Questa banca da datas è betg bloccada.',

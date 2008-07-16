@@ -701,6 +701,9 @@ Daar is $1 funksies, terwyl die bladsy minder as $2 moet hê.',
 'revdelete-log-message'   => '$1 vir $2 {{PLURAL:$2|weergawe|weergawes}}',
 'logdelete-log-message'   => '$1 vir $2 {{PLURAL:$2|gebeurtenis|gebeurtenisse}}',
 
+# Suppression log
+'suppressionlog' => 'Verbergingslogboek',
+
 # History merging
 'mergehistory'                     => 'Geskiedenis van bladsy samesmeltings',
 'mergehistory-from'                => 'Bronbladsy:',
@@ -1004,7 +1007,8 @@ die lêer is $2.',
 'upload-misc-error'  => 'Onbekende laai fout',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'Kon nie die URL bereik nie',
+'upload-curl-error6'  => 'Kon nie die URL bereik nie',
+'upload-curl-error28' => 'Oplaai neem te lank',
 
 'license'            => 'Lisensiëring:',
 'nolicense'          => 'Niks gekies',
@@ -1023,29 +1027,31 @@ die lêer is $2.',
 'imagelist_description' => 'Beskryving',
 
 # Image description page
-'filehist'                  => 'Lêergeskiedenis',
-'filehist-help'             => 'Klik op die datum/tyd om te sien hoe die lêer destyds gelyk het.',
-'filehist-deleteall'        => 'verwyder alles',
-'filehist-deleteone'        => 'skrap',
-'filehist-revert'           => 'rol terug',
-'filehist-current'          => 'huidig',
-'filehist-datetime'         => 'Datum/Tyd',
-'filehist-user'             => 'Gebruiker',
-'filehist-dimensions'       => 'Dimensies',
-'filehist-filesize'         => 'Lêergrootte',
-'filehist-comment'          => 'Opmerking',
-'imagelinks'                => 'Prentskakels',
-'linkstoimage'              => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} gebruik hierdie prent:',
-'nolinkstoimage'            => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
-'redirectstofile'           => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
-'duplicatesoffile'          => "Die volgende {{PLURAL:$1|lêer is 'n duplikaat|$1 lêers is duplikate}} van die lêer:",
-'sharedupload'              => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word.',
-'shareduploadwiki'          => 'Sien $1 vir verdere inligting.',
-'shareduploadwiki-linktext' => 'lêer beskrywingsbladsy',
-'noimage'                   => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
-'noimage-linktext'          => 'laai dit',
-'uploadnewversion-linktext' => 'Laai een nuwe weergawe van hierdie lêer',
-'imagepage-searchdupe'      => 'Soek vir duplikaat lêers',
+'filehist'                       => 'Lêergeskiedenis',
+'filehist-help'                  => 'Klik op die datum/tyd om te sien hoe die lêer destyds gelyk het.',
+'filehist-deleteall'             => 'verwyder alles',
+'filehist-deleteone'             => 'skrap',
+'filehist-revert'                => 'rol terug',
+'filehist-current'               => 'huidig',
+'filehist-datetime'              => 'Datum/Tyd',
+'filehist-user'                  => 'Gebruiker',
+'filehist-dimensions'            => 'Dimensies',
+'filehist-filesize'              => 'Lêergrootte',
+'filehist-comment'               => 'Opmerking',
+'imagelinks'                     => 'Prentskakels',
+'linkstoimage'                   => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} gebruik hierdie prent:',
+'nolinkstoimage'                 => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
+'redirectstofile'                => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
+'duplicatesoffile'               => "Die volgende {{PLURAL:$1|lêer is 'n duplikaat|$1 lêers is duplikate}} van die lêer:",
+'sharedupload'                   => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word.',
+'shareduploadwiki'               => 'Sien $1 vir verdere inligting.',
+'shareduploadwiki-linktext'      => 'lêer beskrywingsbladsy',
+'shareduploadduplicate-linktext' => "'n ander lêer",
+'shareduploadconflict-linktext'  => "'n ander lêer",
+'noimage'                        => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
+'noimage-linktext'               => 'laai dit',
+'uploadnewversion-linktext'      => 'Laai een nuwe weergawe van hierdie lêer',
+'imagepage-searchdupe'           => 'Soek vir duplikaat lêers',
 
 # File reversion
 'filerevert'         => 'Maak $1 ongedaan',
@@ -1148,6 +1154,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'popularpages'            => 'Gewilde bladsye',
 'wantedcategories'        => 'Gesoekte kategorieë',
 'wantedpages'             => 'Gesogte bladsye',
+'missingfiles'            => 'Lêers wat nie bestaan nie',
 'mostlinked'              => 'Bladsye met meeste skakels daarheen',
 'mostlinkedcategories'    => 'Kategorieë met die meeste skakels daarheen',
 'mostlinkedtemplates'     => 'Sjablone met die meeste skakels daarheen',
@@ -1268,7 +1275,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'notanarticle'         => "Nie 'n artikel",
 'notvisiblerev'        => 'Weergawe is verwyder',
 'watchnochange'        => 'Geen item op die dophoulys is geredigeer in die gekose periode nie.',
-'watchlist-details'    => '{{PLURAL:$1|$1 bladsy|$1 bladsye}} in dophoulys (beskrekinsbadsye uitgesluit).',
+'watchlist-details'    => '{{PLURAL:$1|$1 bladsy|$1 bladsye}} in dophoulys, besprekingsbladsye uitgesluit.',
 'wlheader-enotif'      => '* E-pos notifikasie is aangeskakel.',
 'wlheader-showupdated' => "* Bladsye wat gewysig is sedert U laaste besoek aan hulle word in '''vetdruk''' gewys",
 'watchmethod-recent'   => 'Kontroleer onlangse wysigings aan bladsye op dophoulys',
@@ -1799,16 +1806,16 @@ Ander velde sal versteek wees.
 'monthsall'        => 'alle',
 
 # E-mail address confirmation
-'confirmemail'          => 'Bevestig e-posadres',
-'confirmemail_text'     => "Hierdie wiki vereis dat u e-posadres bevestig word voordat epos-funksies gebruik word. Klik onderstaande knoppie om 'n bevestigingspos na u adres te stuur. Die pos sal 'n skakel met 'n kode insluit; maak hierdie skakel oop in u webblaaier om te bevestig dat die adres geldig is.",
-'confirmemail_send'     => "Pos 'n bevestigingkode",
-'confirmemail_sent'     => 'Bevestigingpos gestuur.',
-'confirmemail_invalid'  => 'Ongeldige bevestigingkode. Die kode het moontlik verval.',
-'confirmemail_success'  => 'U e-posadres is bevestig. U kan nou aanteken en die wiki gebruik.',
-'confirmemail_loggedin' => 'U e-posadres is nou bevestig.',
-'confirmemail_error'    => 'Iets het foutgegaan met die stoor van u bevestiging.',
-'confirmemail_subject'  => '{{SITENAME}}: E-posadres-bevestiging',
-'confirmemail_body'     => 'Iemand, waarskynlik van u IP-adres: $1, het \'n rekening "$2" geregistreer met hierdie e-posadres by {{SITENAME}}.
+'confirmemail'             => 'Bevestig e-posadres',
+'confirmemail_text'        => "Hierdie wiki vereis dat u e-posadres bevestig word voordat epos-funksies gebruik word. Klik onderstaande knoppie om 'n bevestigingspos na u adres te stuur. Die pos sal 'n skakel met 'n kode insluit; maak hierdie skakel oop in u webblaaier om te bevestig dat die adres geldig is.",
+'confirmemail_send'        => "Pos 'n bevestigingkode",
+'confirmemail_sent'        => 'Bevestigingpos gestuur.',
+'confirmemail_invalid'     => 'Ongeldige bevestigingkode. Die kode het moontlik verval.',
+'confirmemail_success'     => 'U e-posadres is bevestig. U kan nou aanteken en die wiki gebruik.',
+'confirmemail_loggedin'    => 'U e-posadres is nou bevestig.',
+'confirmemail_error'       => 'Iets het foutgegaan met die stoor van u bevestiging.',
+'confirmemail_subject'     => '{{SITENAME}}: E-posadres-bevestiging',
+'confirmemail_body'        => 'Iemand, waarskynlik van u IP-adres: $1, het \'n rekening "$2" geregistreer met hierdie e-posadres by {{SITENAME}}.
 
 Om te bevestig dat hierdie adres werklik aan u behoort, en om die posfasiliteite by {{SITENAME}} te aktiveer, besoek hierdie skakel in u blaaier:
 
@@ -1820,7 +1827,8 @@ Follow this link to cancel the e-mail address confirmation:
 $5
 
 Hierde bevestigingkode verval om $4.',
-'invalidateemail'       => 'Kanselleer e-pos bevestiging',
+'confirmemail_invalidated' => 'Die e-pos bevestiging is gekanselleer.',
+'invalidateemail'          => 'Kanselleer e-pos bevestiging',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL is te lank; jammer]',
@@ -1878,11 +1886,17 @@ $1',
 'livepreview-loading' => 'Laai tans…',
 'livepreview-ready'   => 'Laai tans… Gereed!',
 
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Veranderinge nuwer as $1 sekondes mag moontlik nie gewys word nie.',
+
 # Watchlist editor
+'watchlistedit-numitems'      => 'U dophoulys bevat {{PLURAL:$1|1 bladsy|$1 bladsye}}, besprekingsbladsye uitgesluit.',
 'watchlistedit-noitems'       => 'U dophoulys bevat geen bladsye.',
 'watchlistedit-normal-title'  => 'Wysig dophoulys',
 'watchlistedit-normal-legend' => 'Verwyder titels van dophoulys',
 'watchlistedit-normal-submit' => 'Verwyder Titels',
+'watchlistedit-raw-title'     => 'Wysig u dophoulys se bronkode',
+'watchlistedit-raw-legend'    => 'Wysig u dophoulys se bronkode',
 'watchlistedit-raw-titles'    => 'Titels:',
 'watchlistedit-raw-submit'    => 'Opdateer Dophoulys',
 'watchlistedit-raw-done'      => 'U dophoulys is opgedateer.',
@@ -1892,7 +1906,7 @@ $1',
 # Watchlist editing tools
 'watchlisttools-view' => 'Besigtig ter saaklike veranderinge',
 'watchlisttools-edit' => 'Bekyk en wysig dophoulys',
-'watchlisttools-raw'  => 'Redigeer brondophoulys',
+'watchlisttools-raw'  => 'Redigeer brokode van dophoulys',
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende etiket "$1"',
@@ -1928,6 +1942,9 @@ $1',
 Soek vir 'n duplikaat",
 'fileduplicatesearch-filename' => 'Lêernaam:',
 'fileduplicatesearch-submit'   => 'Soek',
+'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Lêergrootte: $3<br />MIME-tipe: $4',
+'fileduplicatesearch-result-1' => 'Die lêer "$1" het geen identiese duplikate nie.',
+'fileduplicatesearch-result-n' => 'Die lêer het {{PLURAL:$2|een identiese duplikaat|$2 identiese duplikate}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Spesiale bladsye',
@@ -1944,5 +1961,11 @@ Soek vir 'n duplikaat",
 'specialpages-group-pages'       => 'Lys van bladsye',
 'specialpages-group-pagetools'   => 'Bladsyhulpmiddels',
 'specialpages-group-wiki'        => 'Wiki data en hulpmiddels',
+'specialpages-group-redirects'   => 'Aanstuur gewone bladsye',
+'specialpages-group-spam'        => 'Spam-hulpmiddels',
+
+# Special:Blankpage
+'blankpage'              => 'Leë bladsy',
+'intentionallyblankpage' => 'Die bladsy is bewustelik leeg gelaat',
 
 );

@@ -1,9 +1,10 @@
 <?php
-/**  Kurdish (Arab)
+/** ‫كوردي (عەرەبی)‬ (‫كوردي (عەرەبی)‬)
  *
  * @ingroup Language
  * @file
  *
+ * @author Siebrand
  * @author Aras Noori
  */
 
@@ -222,7 +223,8 @@ $messages = array(
 'mainpage-description' => 'ده‌ستپێك',
 
 'versionrequired'     => 'پێویستیت به‌ وه‌شانی $1 ـی‌ ویكیمیدیایه‌',
-'versionrequiredtext' => 'پێویستیت به‌ وه‌شانی $1 ـێ ویكیمیدیا هه‌یه‌ بۆ به‌كاربردنی ئه‌م په‌ڕه‌یه‌. ته‌ماشای [[Special:version|وه‌شانی]] بكه‌.',
+'versionrequiredtext' => 'پێویستیت به‌ وه‌شانی $1 ـێ ویكیمیدیا هه‌یه‌ بۆ به‌كاربردنی ئه‌م په‌ڕه‌یه‌
+. ته‌ماشای [[Special:Version|وه‌شانی]] بكه‌.',
 
 'ok'                      => 'باشه‌',
 'retrievedfrom'           => 'له‌ لایه‌ن "$1" گه‌ڕاوه‌ته‌وه‌.',
@@ -256,7 +258,7 @@ $messages = array(
 'nosuchspecialpage' => 'په‌ڕه‌ی تایبه‌تی له‌و شێوه‌یه‌ نییه‌',
 'nospecialpagetext' => "<big>''په‌ڕه‌یكی تایبه‌ت ده‌خوازیت كه‌ بوونی نییه‌'''</big>
 
-لیستی په‌ڕه‌ تایبه‌تییه‌كان له‌ [[{{ns:special}}:Specialpages|لیسته‌ی په‌ڕه‌ تایبه‌ته‌كان]] ده‌توانرێت ببینرێت.",
+لیستی په‌ڕه‌ تایبه‌تییه‌كان له‌ [[Special:Specialpages|لیسته‌ی په‌ڕه‌ تایبه‌ته‌كان]] ده‌توانرێت ببینرێت.",
 
 # General errors
 'error'              => 'هه‌ڵه‌',
@@ -332,7 +334,7 @@ $messages = array(
 'showdiff'        => 'گۆڕانكارییه‌كان نیشانبده‌',
 
 # Special:Categories
-'categories' => '{{PLURAL:$1|هاوپۆل|هاوپۆله‌كان}}',
+'categories' => 'هاوپۆله‌كان',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'په‌ڕه‌ی تایبه‌تی خۆم',

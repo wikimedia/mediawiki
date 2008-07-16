@@ -8,9 +8,9 @@
  * @author Cryptex
  * @author E. abu Filumena
  * @author SPQRobin
+ * @author Siebrand
  * @author לערי ריינהארט
  * @author Carmine Colacino
- * @author Siebrand
  */
 
 $fallback = 'it';
@@ -291,7 +291,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'allinnamespace' => "Tutt' 'e ppaggene d&#39;&#39;o namespace $1",
 
 # Special:Categories
-'categories'         => '{{PLURAL:$1|Categurìa|Categurìe}}',
+'categories'         => 'Categurìe',
 'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
 
 # Watchlist

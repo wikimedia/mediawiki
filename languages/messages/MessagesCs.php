@@ -1957,7 +1957,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
 'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
-Podívejte se na [[Special:Ipblocklist|seznam zablokovaných]] zaznamenává všechny podobné úkony.',
+Můžete si prohlédnout [[Special:Ipblocklist|seznam zablokovaných uživatelů]].',
 'ipb-edit-dropdown'               => 'Editace seznamu důvodů zablokování',
 'ipb-unblock-addr'                => 'Odblokovat uživatele nebo IP $1',
 'ipb-unblock'                     => 'Odblokovat uživatele nebo IP adresu',

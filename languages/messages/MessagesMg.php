@@ -226,7 +226,7 @@ Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tomp
 'unexpected'      => 'Tsy nandrasana: "$1"="$2".',
 'formerror'       => 'Tsy mety: tsy lasa ny fisy',
 'badarticleerror' => "Tsy azo atao eto amin'ity pejy ity io asa io.",
-'cannotdelete'    => 'Tsy voafafa ny pejy na rakitra nomenao. (Angamba efa nisy olon-kafa namafa ilay izy).)',
+'cannotdelete'    => 'Tsy voafafa ny pejy na rakitra nomenao. (Angamba efa nisy olon-kafa namafa ilay izy.)',
 'badtitle'        => 'Tsy mety ny lohateny',
 'badtitletext'    => "Tsy mety io anaram-pejy nangatahinao io na tsy misy n'inon'inona na rohy dikan-teny vahiny misy diso tsipelina.",
 'perfcached'      => 'Ireto angona ireto dia nalaina tao anaty cache koa mety ho efa lany daty.:',
@@ -287,12 +287,13 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'nosuchusershort'            => 'Tsy misy mpikambana hoe "<nowiki>$1</nowiki>". Hamarino ny tsipelina.',
 'wrongpassword'              => 'Diso ny tenimiafina. Manandrama tenimiafina hafa azafady.',
 'wrongpasswordempty'         => 'Tsy nampiditra tenimiafina ianao, azafady mba avereno indray.',
-'passwordtooshort'           => 'Fohy loatra io tenimiafina io. Farafahakeliny tokony hisy litera $1 ny tenimiafina.',
+'passwordtooshort'           => 'Fohy loatra io tenimiafina io.
+Farafahakeliny tokony hisy litera $1 ny tenimiafina.',
 'mailmypassword'             => 'Alefaso imailaka ny tenimiafiko',
 'passwordremindertitle'      => "Fampatsiahivana tenimiafina avy amin'i {{SITENAME}}",
 'passwordremindertext'       => 'Nisy olona, izay ianao ihany angamba, avy tamin\'ny adiresy IP $1, nangataka
 ny handefasanay tenimiafina vaovao ho an\'ny sehatra {{SITENAME}} ao amin\'ny
-{{SERVERNAME}}.
+$4.
 Lasa "$3" ankehitriny ny tenimiafin\'i "$2"
 Afaka miditra ary ianao ankehitriny ary manova ny tenimiafinao.
 
@@ -925,7 +926,7 @@ Ny fomba fanondranana pejy dia, manomeza lohateny izay na maromaro eto amin'ny b
 ary safidio na ny votoatiny ankehitriny ihany no ilainao na miaraka amin'ny endriky ny pejy rehetra taloha, sy hoe ny votoatiny ankehitriny
 miampy fampahalalana momba ny fanovana farany fotsiny ve sa miaraka amin'ny tantaran'ny fanovana rehetra.
 
-Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] ho an'ny [[{{Mediawiki:Mainpage}}]].",
+Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] ho an'ny [[{{MediaWiki:Mainpage}}]].",
 'exportcuronly'   => "Ny votoatiny ankehitriny ihany no haondrana fa tsy miaraka amin'ny tantarany iray manontolo",
 'exportnohistory' => "
 ----
