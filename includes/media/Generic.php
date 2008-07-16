@@ -235,7 +235,9 @@ abstract class MediaHandler {
 	function getLongDesc( $file ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
-		return wfMsg( 'file-info', $sk->formatSize( $file->getSize() ), $file->getMimeType() );
+		return wfMsgExt( 'file-info', 'parseinline',
+			$sk->formatSize( $file->getSize() ),
+			$file->getMimeType() );
 	}
 
 	function getDimensionsString( $file ) {
@@ -410,8 +412,11 @@ abstract class ImageHandler extends MediaHandler {
 
 	function getLongDesc( $file ) {
 		global $wgLang;
-		return wfMsgHtml('file-info-size', $wgLang->formatNum( $file->getWidth() ), $wgLang->formatNum( $file->getHeight() ),
-			$wgLang->formatSize( $file->getSize() ), $file->getMimeType() );
+		return wfMsgExt('file-info-size', 'parseinline',
+			$wgLang->formatNum( $file->getWidth() ),
+			$wgLang->formatNum( $file->getHeight() ),
+			$wgLang->formatSize( $file->getSize() ),
+			$file->getMimeType() );
 	}
 
 	function getDimensionsString( $file ) {
