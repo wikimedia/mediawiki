@@ -723,7 +723,8 @@ XHTML id names.
 'badaccess-groups' => 'The action you have requested is limited to users in one of the groups $1.',
 
 'versionrequired'     => 'Version $1 of MediaWiki required',
-'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page. See [[Special:Version|version page]].',
+'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page.
+See [[Special:Version|version page]].',
 
 'ok'                           => 'OK',
 'sitetitle'                    => '{{SITENAME}}', # do not translate or duplicate this message to other languages
@@ -832,7 +833,8 @@ It may contain one or more characters which cannot be used in titles.',
 'perfdisabled'         => 'Sorry! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
 'perfcached'           => 'The following data is cached and may not be up to date.',
 'perfcachedts'         => 'The following data is cached, and was last updated $1.',
-'querypage-no-updates' => 'Updates for this page are currently disabled. Data here will not presently be refreshed.',
+'querypage-no-updates' => 'Updates for this page are currently disabled.
+Data here will not presently be refreshed.',
 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
 Query: $2',
@@ -926,8 +928,10 @@ Check your spelling, or create a new account.',
 'nosuchusershort'            => 'There is no user by the name "<nowiki>$1</nowiki>".
 Check your spelling.',
 'nouserspecified'            => 'You have to specify a username.',
-'wrongpassword'              => 'Incorrect password entered. Please try again.',
-'wrongpasswordempty'         => 'Password entered was blank. Please try again.',
+'wrongpassword'              => 'Incorrect password entered.
+Please try again.',
+'wrongpasswordempty'         => 'Password entered was blank.
+Please try again.',
 'passwordtooshort'           => 'Your password is invalid or too short.
 It must have at least {{PLURAL:$1|1 character|$1 characters}} and be different from your username.',
 'mailmypassword'             => 'E-mail password',
@@ -1032,7 +1036,8 @@ If you click Save again, your edit will be saved without one.",
 'blockedtitle'                     => 'User is blocked',
 'blockedtext'                      => "<big>'''Your user name or IP address has been blocked.'''</big>
 
-The block was made by $1. The reason given is ''$2''.
+The block was made by $1.
+The reason given is ''$2''.
 
 * Start of block: $8
 * Expiry of block: $6
@@ -1040,7 +1045,8 @@ The block was made by $1. The reason given is ''$2''.
 
 You can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'e-mail this user' feature unless a valid e-mail address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
-Your current IP address is $3, and the block ID is #$5. Please include either or both of these in any queries.",
+Your current IP address is $3, and the block ID is #$5.
+Please include either or both of these in any queries.",
 'autoblockedtext'                  => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is this:
 
@@ -1081,12 +1087,14 @@ To create the page, start typing in the box below (see the [[{{MediaWiki:Helppag
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon'               => '{{int:newarticletext}}', # do not translate or duplicate this message to other languages
 'talkpagetext'                     => '<!-- MediaWiki:talkpagetext -->', # do not translate or duplicate this message to other languages
-'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her.
+'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it.
+We therefore have to use the numerical IP address to identify him/her.
 Such an IP address can be shared by several users.
 If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
 'noarticletext'                    => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
-'userpage-userdoesnotexist'        => 'User account "$1" is not registered. Please check if you want to create/edit this page.',
+'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
+Please check if you want to create/edit this page.',
 'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
@@ -1099,12 +1107,14 @@ Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:
 changes have not yet been saved!</strong>',
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => '<strong>Sorry! We could not process your edit due to a loss of session data.
-Please try again. If it still does not work, try logging out and logging back in.</strong>',
+Please try again.
+If it still does not work, try logging out and logging back in.</strong>',
 'session_fail_preview_html'        => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
-<strong>If this is a legitimate edit attempt, please try again. If it still does not work, try logging out and logging back in.</strong>",
+<strong>If this is a legitimate edit attempt, please try again.
+If it still does not work, try logging out and logging back in.</strong>",
 'token_suffix_mismatch'            => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
 The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
@@ -1139,7 +1149,7 @@ Please consider breaking the page into smaller sections.</strong>',
 It cannot be saved.</strong>',
 'readonlywarning'                  => '<strong>WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.
 You may wish to cut-n-paste the text into a text file and save it for later.</strong>',
-'protectedpagewarning'             => '<strong>WARNING:  This page has been locked so that only users with sysop privileges can edit it.</strong>',
+'protectedpagewarning'             => '<strong>WARNING: This page has been locked so that only users with sysop privileges can edit it.</strong>',
 'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
 'titleprotectedwarning'            => '<strong>WARNING:  This page has been locked so that only some users can create it.</strong>',
@@ -1175,7 +1185,8 @@ These arguments have been omitted.',
 'post-expand-template-argument-category'  => 'Pages containing omitted template arguments',
 
 # "Undo" feature
-'undo-success' => 'The edit can be undone. Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',
+'undo-success' => 'The edit can be undone.
+Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',
 'undo-failure' => 'The edit could not be undone due to conflicting intermediate edits.',
 'undo-norev'   => 'The edit could not be undone because it does not exist or was deleted.',
 'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
@@ -1191,7 +1202,8 @@ The reason given by $3 is ''$2''",
 'viewpagelogs'          => 'View logs for this page',
 'nohistory'             => 'There is no edit history for this page.',
 'revnotfound'           => 'Revision not found',
-'revnotfoundtext'       => 'The old revision of the page you asked for could not be found. Please check the URL you used to access this page.',
+'revnotfoundtext'       => 'The old revision of the page you asked for could not be found.
+Please check the URL you used to access this page.',
 'currentrev'            => 'Current revision',
 'revisionasof'          => 'Revision as of $1',
 'revision-info'         => 'Revision as of $1 by $2',
@@ -1348,7 +1360,8 @@ You can [[:\$1|create this page]].",
 'showingresults'            => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} starting with #'''$2'''.",
 'showingresultsnum'         => "Showing below {{PLURAL:$3|'''1''' result|'''$3''' results}} starting with #'''$2'''.",
 'showingresultstotal'       => "Showing below {{PLURAL:$3|result '''$1''' of '''$3'''|results '''$1 - $2''' of '''$3'''}}",
-'nonefound'                 => "'''Note''': Only some namespaces are searched by default. Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.",
+'nonefound'                 => "'''Note''': Only some namespaces are searched by default.
+Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.",
 'powersearch'               => 'Advanced search',
 'powersearch-legend'        => 'Advanced search',
 'powersearch-ns'            => 'Search in namespaces:',
@@ -1633,7 +1646,8 @@ Permitted {{PLURAL:\$3|file type is|file types are}} \$2.",
 'large-file'                  => 'It is recommended that files are no larger than $1;
 this file is $2.',
 'largefileserver'             => 'This file is bigger than the server is configured to allow.',
-'emptyfile'                   => 'The file you uploaded seems to be empty. This might be due to a typo in the file name.
+'emptyfile'                   => 'The file you uploaded seems to be empty.
+This might be due to a typo in the file name.
 Please check whether you really want to upload this file.',
 'fileexists'                  => 'A file with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
 'filepageexists'              => 'The description page for this file has already been created at <strong><tt>$1</tt></strong>, but no file with this name currently exists.
@@ -1854,7 +1868,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 
 'doubleredirects'         => 'Double redirects',
 'doubleredirects-summary' => '', # do not translate or duplicate this message to other languages
-'doubleredirectstext'     => 'This page lists pages which redirect to other redirect pages. Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
+'doubleredirectstext'     => 'This page lists pages which redirect to other redirect pages.
+Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
 
 'brokenredirects'         => 'Broken redirects',
 'brokenredirects-summary' => '', # do not translate or duplicate this message to other languages
@@ -2219,7 +2234,8 @@ You can change this page's protection level, but it will not affect the cascadin
 The archive may be periodically cleaned out.',
 'undelete-fieldset-title'      => 'Restore revisions',
 'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and click '''''Restore'''''.
-To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''Restore'''''. Clicking '''''Reset''''' will clear the comment field and all checkboxes.",
+To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''Restore'''''.
+Clicking '''''Reset''''' will clear the comment field and all checkboxes.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisions}} archived',
 'undeletehistory'              => 'If you restore the page, all revisions will be restored to the history.
 If a new page with the same name has been created since the deletion, the restored revisions will appear in the prior history.
@@ -2385,7 +2401,8 @@ See the [[Special:Ipblocklist|IP block list]] for the list of currently operatio
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
 'ipb_already_blocked'             => '"$1" is already blocked',
-'ipb_cant_unblock'                => 'Error: Block ID $1 not found. It may have been unblocked already.',
+'ipb_cant_unblock'                => 'Error: Block ID $1 not found.
+It may have been unblocked already.',
 'ipb_blocked_as_range'            => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
 It is, however, blocked as part of the range $2, which can be unblocked.',
 'ip_range_invalid'                => 'Invalid IP range.',
@@ -2431,7 +2448,8 @@ Links to the old page title will not be changed;
 be sure to check for double or broken redirects.
 You are responsible for making sure that links continue to point where they are supposed to go.
 
-Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history. This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
+Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history.
+This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
 
 '''WARNING!'''
 This can be a drastic and unexpected change for a popular page;
@@ -2542,9 +2560,12 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'importhistoryconflict'      => 'Conflicting history revision exists (may have imported this page before)',
 'importnosources'            => 'No transwiki import sources have been defined and direct history uploads are disabled.',
 'importnofile'               => 'No import file was uploaded.',
-'importuploaderrorsize'      => 'Upload of import file failed. The file is bigger than the allowed upload size.',
-'importuploaderrorpartial'   => 'Upload of import file failed. The file was only partially uploaded.',
-'importuploaderrortemp'      => 'Upload of import file failed. A temporary folder is missing.',
+'importuploaderrorsize'      => 'Upload of import file failed.
+The file is bigger than the allowed upload size.',
+'importuploaderrorpartial'   => 'Upload of import file failed.
+The file was only partially uploaded.',
+'importuploaderrortemp'      => 'Upload of import file failed.
+A temporary folder is missing.',
 'import-parse-failure'       => 'XML import parse failure',
 'import-noarticle'           => 'No page to import!',
 'import-nonewrevisions'      => 'All revisions were previously imported.',
@@ -2631,9 +2652,11 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'tooltip-pt-anonlogin'            => 'You are encouraged to log in, it is not mandatory however.',
 'tooltip-pt-logout'               => 'Log out',
 'tooltip-ca-talk'                 => 'Discussion about the content page',
-'tooltip-ca-edit'                 => 'You can edit this page. Please use the preview button before saving.',
+'tooltip-ca-edit'                 => 'You can edit this page.
+Please use the preview button before saving.',
 'tooltip-ca-addsection'           => 'Add a comment to this discussion.',
-'tooltip-ca-viewsource'           => 'This page is protected. You can view its source.',
+'tooltip-ca-viewsource'           => 'This page is protected.
+You can view its source.',
 'tooltip-ca-history'              => 'Past versions of this page.',
 'tooltip-ca-protect'              => 'Protect this page',
 'tooltip-ca-delete'               => 'Delete this page',
@@ -3304,7 +3327,8 @@ $1',
 'livepreview-loading' => 'Loading…',
 'livepreview-ready'   => 'Loading… Ready!',
 'livepreview-failed'  => 'Live preview failed! Try normal preview.',
-'livepreview-error'   => 'Failed to connect: $1 "$2". Try normal preview.',
+'livepreview-error'   => 'Failed to connect: $1 "$2".
+Try normal preview.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Changes newer than $1 seconds may not be shown in this list.',
