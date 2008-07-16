@@ -747,7 +747,7 @@ Maliari mu lang isanib deng mibayu king amlat ning metung a bulung a pikuanan ke
 'mergehistory-list'                => 'Amlat ding miyalilan a maliaring pisanib (mergeable edit history)',
 'mergehistory-merge'               => 'Maliari lang isanib king [[:$2]] deng makatuking miyalilan king [[:$1]].
 Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bayu ing mesabing oras ing misanib. Tandanan mung misubli (ma-reset) ya ining kolum nung gamitan la reng suglung a paglibut (navigational links).',
-'mergehistory-go'                  => 'Pakit la reng mibayung maliaring pisanib (mergeable edits(',
+'mergehistory-go'                  => 'Pakit la reng mibayung maliaring pisanib (mergeable edits)',
 'mergehistory-submit'              => 'Pisamut la reng meyalili',
 'mergehistory-empty'               => 'Alang mibayu/miyalilan a maliaring pisanib.',
 'mergehistory-success'             => 'Melaus ing pamisanib ning/da ring $3 {{PLURAL:$3|pamagbayu|pamagbayu}} ning [[:$1]] king [[:$2]].',
@@ -1861,7 +1861,7 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 'importbadinterwiki'         => 'Maki diperensia ya ing suglung a interwiki',
 'importnotext'               => 'Ala yang laman o sulat',
 'importsuccess'              => 'Yari na ing pamaglub! (import finished)',
-'importhistoryconflict'      => 'E la mipapareu deng pamagbayu king amlat (mapaliaring milub neng sadia ing bulung a aini.',
+'importhistoryconflict'      => 'E la mipapareu deng pamagbayu king amlat (mapaliaring milub neng sadia ing bulung a aini).',
 'importnosources'            => 'Alang pikuanan a transwiki kareng pamaglub (imports)  a mituldu (defined), at makapatda ing diretsung pamaglulan kareng amlat.',
 'importnofile'               => 'Alang milulan a simpan a milub (import file).',
 'importuploaderrorsize'      => 'E melaus ing pamaglulan kareng simpan a milub (import file). Mas maragul ya ing simpan kesa ketang dagul a mipaintulutan.',

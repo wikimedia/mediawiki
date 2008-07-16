@@ -30,7 +30,7 @@ $messages = array(
 'personaltools'  => 'Perseenliche Werkzeische',
 'talk'           => 'Gebabbel',
 'toolbox'        => 'Werkzeiche',
-'viewcount'      => 'Die Seid isch bis jetzerd $1 mol uffgerufe worre.',
+'viewcount'      => 'Die Seid isch bis jetzerd {{PLURAL:$1|$1|$1}} mol uffgerufe worre.',
 'jumptosearch'   => 'Suche',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

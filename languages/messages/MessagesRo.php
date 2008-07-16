@@ -10,6 +10,7 @@
  * @author SCriBu
  * @author Firilacroco
  * @author לערי ריינהארט
+ * @author Siebrand
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -358,7 +359,12 @@ pe titlul secţiunii (JavaScript)',
 # General errors
 'error'                => 'Eroare',
 'databaseerror'        => 'Eroare la baza de date',
-'dberrortext'          => 'A apărut o eroare în execuţia query-ului. Aceasta se poate datora unui query ilegal (vezi $5), sau poate indica o problemă în program. Ultimul query încercat a fost: <blockquote><tt>$1</tt></blockquote> în cadrul funcţiei "<tt>$2</tt>". MySQL a returnat eroarea "<tt>$3: $4</tt>".',
+'dberrortext'          => 'A apărut o eroare în execuţia query-ului.
+Aceasta se poate datora unui query ilegal, sau poate indica o problemă în program.
+Ultimul query încercat a fost:
+<blockquote><tt>$1</tt></blockquote>
+în cadrul funcţiei "<tt>$2</tt>".
+MySQL a returnat eroarea "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'A apărut o eroare de sintaxă în query. Ultimul query încercat a fost: "$1" din funcţia "$2". MySQL a returnat eroarea "$3: $4".',
 'noconnect'            => 'Nu s-a putut conecta baza de date pe $1',
 'nodb'                 => 'Nu s-a putut selecta baza de date $1',
@@ -619,12 +625,12 @@ Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe ca
 'copyrightwarning'          => "<!-- Gol deocamdată. Avertismentul se află în MediaWiki:Summary -->
 Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br /> You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource. <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
 'copyrightwarning2'         => 'Reţineţi că toate contribuţiile la {{SITENAME}} sunt considerate ca respectând $2 (vezi $1 pentru detalii).<br />
-Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici. Ceea ce aţi scris a fost compoziţie proprie sau copie dintr-o resursă publică sau liberă (vedeţi $1 pentru detalii).<br />',
+Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici. Ceea ce aţi scris a fost compoziţie proprie sau copie dintr-o resursă publică sau liberă (vedeţi $1 pentru detalii).',
 'longpagewarning'           => '<strong>ATENŢIE! Conţinutul acestei pagini are $1 KB; unele browsere au probleme la modificarea paginilor în jur de 32 KB sau mai mari. Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai multe secţiuni.</strong>',
 'longpageerror'             => '<strong>EROARE: Textul pe care vrei să-l salvezi are $1 kilobytes,
 ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este posibilă.</strong>',
 'readonlywarning'           => '<strong>ATENŢIE! Baza de date a fost blocată pentru întreţinere, deci nu vei putea să salvezi editările în acest moment. Poţi copia textul într-un fişier text local pentru a modifica conţinutul în {{SITENAME}} când va fi posibil.</strong>',
-'protectedpagewarning'      => '<strong>ATENŢIE! Această pagină a fost protejată la scriere şi numai utilizatorii cu privilegii de administrator o pot modifica. Vă rugăm urmaţi sugestiile [[Special:Protectedpages|despre pagini protejate]] când modificaţi.</strong>',
+'protectedpagewarning'      => '<strong>ATENŢIE! Această pagină a fost protejată la scriere şi numai utilizatorii cu privilegii de administrator o pot modifica.</strong>',
 'semiprotectedpagewarning'  => "'''Atenţie:''' Această pagină poate fi modificată numai de utilizatorii înregistraţi.",
 'cascadeprotectedwarning'   => "'''Atenţie:''' Această pagină a fost blocată astfel încât numai administratorii o pot modifica, deoarece este inclusă în {{PLURAL:$1|următoarea pagină protejată|următoarele pagini protejate}} în cascadă:",
 'templatesused'             => 'Formate folosite în această pagină:',
@@ -645,7 +651,7 @@ Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aic
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificaţi diferenţa de dedesupt şi apoi salvaţi pentru a termina anularea modificării.',
-'undo-summary' => 'Anularea modificării $1 făcute de [[Special:Contributions/$2|$2]] ([[User_talk:$2|discuţie]])',
+'undo-summary' => 'Anularea modificării $1 făcute de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Crearea contului nu poate fi realizată',
@@ -911,7 +917,7 @@ pentru a include un fişier de sunet într-un articol, foloseşti o legătură d
 'ignorewarnings'              => 'Ignoră orice avertismente',
 'minlength1'                  => 'Numele fişierelor trebuie să fie cel puţin o literă.',
 'illegalfilename'             => 'Numele fişierului "$1" conţine caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiţi fişierul şi încercaţi să îl încărcaţi din nou.',
-'badfilename'                 => 'Numele imaginii a fost schimbat; noul nume este "[[:$1]]".',
+'badfilename'                 => 'Numele imaginii a fost schimbat; noul nume este "$1".',
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fişier nedorit.
 {{PLURAL:\$3|Tipul de fişier preferat este|Tipurile de fişiere preferate sunt}} \$2.",
@@ -1134,7 +1140,7 @@ Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>$7</
 'allpages-bad-ns'   => '{{SITENAME}} nu are spaţiul de nume "$1".',
 
 # Special:Categories
-'categories'                  => '{{PLURAL:$1|Categorie|Categorii}}',
+'categories'                  => 'Categorii',
 'categoriespagetext'          => 'Următoarele categorii conţin pagini sau fişiere.',
 'special-categories-sort-abc' => 'sortează alfabetic',
 
@@ -1716,7 +1722,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 
 # Special:Newimages
 'newimages'             => 'Galeria de imagini noi',
-'imagelisttext'         => 'Mai jos se află lista a $1 imagini ordonate $2.',
+'imagelisttext'         => "Mai jos se află lista a '''$1''' imagini ordonate $2.",
 'showhidebots'          => '($1 roboţi)',
 'noimages'              => 'Nimic de văzut.',
 'ilsubmit'              => 'Caută',

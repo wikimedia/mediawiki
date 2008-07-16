@@ -6,6 +6,7 @@
  *
  * @author SPQRobin
  * @author Eruedin
+ * @author Siebrand
  */
 
 $fallback = 'fr';
@@ -250,7 +251,7 @@ $messages = array(
 'allpagessubmit' => 'kokɛndɛ',
 
 # Special:Categories
-'categories' => '{{PLURAL:$1|Loléngé|Ndéngé}}',
+'categories' => 'Ndéngé',
 
 # E-mail user
 'defemailsubject' => '{{SITENAME}} mokánda',

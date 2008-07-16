@@ -505,7 +505,9 @@ Una lista de las paginas especialas pòt èsser trobada sus [[Special:Specialpag
 # General errors
 'error'                => 'Error',
 'databaseerror'        => 'Error de la banca de donadas',
-'dberrortext'          => 'Error de sintaxi dins la banca de donadas. Benlèu qu\'aquesta error es deguda a una requèsta de recèrca incorrècta (veire $5) o a una error dins lo logicial. La darrièra requèsta tractada per la banca de donadas èra :
+'dberrortext'          => 'Error de sintaxi dins la banca de donadas.
+Benlèu qu\'aquesta error es deguda a una requèsta de recèrca incorrècta o a una error dins lo logicial.
+La darrièra requèsta tractada per la banca de donadas èra :
 <blockquote><tt>$1</tt></blockquote>
 dempuèi la foncion "<tt>$2</tt>".
 MySQL a renviat l\'error "<tt>$3: $4</tt>".',
@@ -803,7 +805,8 @@ doncas poiretz pas salvar vòstras modificacions ara. Podètz copiar lo tèxt di
 'protectedpagewarning'             => "<strong>AVERTIMENT : Aquesta pagina es protegida.
 Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Asseguratz-vos que seguissètz las directivas concernent las paginas protegidas.</strong>",
 'semiprotectedpagewarning'         => "'''Nòta:''' Aquesta pagina es estada blocada, pòt pas èsser editada que pels utilizaires enregistats.",
-'cascadeprotectedwarning'          => '<strong>ATENCION : Aquesta pagina es estada protegida de biais que sols los [[{{MediaWiki:Grouppage-sysop}}|administrators]] pòscan l’editar. Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins {{PLURAL:$1|una pagina protegida|de paginas protegidas}} amb la « proteccion en cascada » activada.</strong>',
+'cascadeprotectedwarning'          => "'''ATENCION :''' Aquesta pagina es estada protegida de biais que sols los administrators pòscan l’editar.
+Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins {{PLURAL:$1|una pagina protegida|de paginas protegidas}} amb la « proteccion en cascada » activada.",
 'titleprotectedwarning'            => '<strong>ATENCION : Aquesta pagina es estada protegida de tal biais que sols cèrts utilizaires pòscan la crear.</strong>',
 'templatesused'                    => 'Modèls utilizats sus aquesta pagina :',
 'templatesusedpreview'             => 'Modèls utilizats dins aquesta previsualizacion :',
@@ -875,8 +878,8 @@ La rason balhada per $3 èra ''$2''.",
 'history-feed-description'    => 'Istoric per aquesta pagina sul wiki',
 'history-feed-item-nocomment' => '$1 lo $2', # user at time
 'history-feed-empty'          => 'La pagina demandada existís pas.
-Benlèu es estada <span class="plainlinks">[{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada]</span> o renomenada.
-Ensajatz de [[{{ns:special}}:Search/{{PAGENAME}}|recercar sul wiki]] per trobar de paginas en rapòrt.',
+Benlèu es estada escafada o renomenada.
+Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòrt.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(comentari suprimit)',
@@ -1404,8 +1407,7 @@ Un clic en tèsta de colomna cambia l’òrdre d’afichatge.',
 'unwatchedpages' => 'Paginas pas seguidas',
 
 # List redirects
-'listredirects'         => 'Lista de las redireccions',
-'listredirects-summary' => 'Aquesta pagina lista totas las [[Ajuda:Redireccion|paginas de redireccions]].',
+'listredirects' => 'Lista de las redireccions',
 
 # Unused templates
 'unusedtemplates'     => 'Modèls inutilizats',
@@ -1435,13 +1437,16 @@ Se s'exclutz aquestes paginas,  <b>{{PLURAL:\$2|'''\$2''' pagina es probablament
 
 Aquò representa una mejana de {{PLURAL:\$5|'''\$5''' modificacion|'''\$5''' modificacions}} per pagina e de {{PLURAL:\$6|'''\$6''' consultacion|'''\$6''' consultacions}} per una modificacion.
 
-I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_queue|la fila de prètzfaches]].",
-'userstatstext'          => "I a {{PLURAL:$1|'''$1''' [[Special:Listusers|utilizaire enregistrat]]. I a '''$2''' (o '''$4%''') que es $5 (vejatz $3).|'''$1''' [[Special:Listusers|utilizaires enregistrats]]. Demest eles, '''$2''' (o '''$4%''') son $5 (vejatz $3).}}",
+I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [http://www.mediawiki.org/wiki/Manual:Job_queue la fila de prètzfaches].",
+'userstatstext'          => "I a {{PLURAL:$1|'''$1''' [[Special:Listusers|utilizaire enregistrat]]. I a '''$2''' (o '''$4%''') que es|'''$1''' [[Special:Listusers|utilizaires enregistrats]]. Demest eles, '''$2''' (o '''$4%''') son}} $5.",
 'statistics-mostpopular' => 'Paginas mai consultadas',
 
 'disambiguations'      => "Paginas d'omonimia",
 'disambiguationspage'  => 'Template:Omonimia',
-'disambiguations-text' => 'Las paginas seguentas ligan vèrs una <i>pagina d’omonimia</i>. Deurián puslèu ligar vèrs una pagina pertinenta.<br /> Una pagina es tractada coma una pagina d’omonimia se es ligada dempuèi $1.<br /> Los ligams dempuèi d’autres espacis de noms <i>son pas</i> listats aicí.',
+'disambiguations-text' => "Las paginas seguentas ligan vèrs una '''pagina d’omonimia'''.
+Deurián puslèu ligar vèrs una pagina pertinenta.<br />
+Una pagina es tractada coma una pagina d’omonimia se es ligada dempuèi $1.
+Los ligams dempuèi d’autres espacis de noms <i>son pas</i> listats aicí.",
 
 'doubleredirects'     => 'Redireccions doblas',
 'doubleredirectstext' => 'Cada casa conten de ligams vèrs la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, vèrs laquala la primièra redireccion deuriá redirigir.',
@@ -1459,70 +1464,58 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'fewestrevisions' => 'Articles mens modificats',
 
 # Miscellaneous special pages
-'nbytes'                          => '$1 {{PLURAL:$1|octet|octets}}',
-'ncategories'                     => '$1 {{PLURAL:$1|categoria|categorias}}',
-'nlinks'                          => '$1 {{PLURAL:$1|ligam|ligams}}',
-'nmembers'                        => '$1 {{PLURAL:$1|membre|membres}}',
-'nrevisions'                      => '$1 {{PLURAL:$1|revision|revisions}}',
-'nviews'                          => '$1 {{PLURAL:$1|consultacion|consultacions}}',
-'specialpage-empty'               => 'Aquesta pagina es voida.',
-'lonelypages'                     => 'Paginas orfanèlas',
-'lonelypages-summary'             => "Vejatz tanben lo '''paginas orfanèlas'''.",
-'lonelypagestext'                 => 'Las paginas seguentas son pas ligadas a partir d’autras paginas de {{SITENAME}}.',
-'uncategorizedpages'              => 'Paginas sens categorias',
-'uncategorizedpages-summary'      => "Vejatz tanben lo '''articles sens categorias'''.",
-'uncategorizedcategories'         => 'Categorias sens categorias',
-'uncategorizedcategories-summary' => "Aquesta pagina especiala lista totas las categorias qu'an pas de categoria parenta. A l'excepcion de la categoria rasiga, totas las categorias deurián èsser elas-meteissas inclusas dins una autra categoria per formar una arborescéncia (vejatz [[Ajuda:Categoria]]).",
-'uncategorizedimages'             => 'Fichièrs sens categorias',
-'uncategorizedimages-summary'     => "Aquesta pagina especiala dona una lista dels imatges sens categorias. Çaquelà, totes los bendèls de licéncia incluisson l'imatge dins al mens una categoria ; los imatges çaijós an doncas probablament pas de licéncia.",
-'uncategorizedtemplates'          => 'Modèls sens categoria',
-'unusedcategories'                => 'Categorias inutilizadas',
-'unusedimages'                    => 'Imatges orfanèls',
-'popularpages'                    => 'Paginas mai consultadas',
-'wantedcategories'                => 'Categorias mai demandadas',
-'wantedcategories-summary'        => "Aquesta pagina compta totes los ligams, e tanben los que son inserits via de modèls de navigacion. Per una lista dels articles mai demandats, vejatz articles mai demandats, que comptabiliza pas que las referéncias provenent de l'espaci de nom dels articles.",
-'wantedpages'                     => 'Paginas mai demandadas',
-'wantedpages-summary'             => "Aquesta pagina compta totes los ligams, incluses los inserits via de modèls de navigacion. Per una lista dels articles mai demandats, vejatz articles mai demandats, que comptabiliza pas que las referéncias que provenon de l'espaci de nom dels articles. Vejatz tanben lo '''articles mai demandats'''.",
-'missingfiles'                    => 'Fichièrs mancants',
-'mostlinked'                      => 'Paginas mai ligadas',
-'mostlinkedcategories'            => 'Categorias mai utilizadas',
-'mostlinkedtemplates'             => 'Modèls mai utilizats',
-'mostcategories'                  => 'Articles utilizant mai de categorias',
-'mostimages'                      => 'Fichièrs mai utilizats',
-'mostrevisions'                   => 'Articles mai modificats',
-'prefixindex'                     => 'Totas las paginas per primièras letras',
-'prefixindex-summary'             => "Aquesta pagina especiala aficha totas las paginas d'un espaci de nom donat que comença per las letras picadas çaijós. Atencion, aquesta recèrca pren en compte las majusculas e los accents. Los ligams coma aquò son de paginas de redireccion.",
-'shortpages'                      => 'Paginas brèvas',
-'shortpages-summary'              => "Aquesta pagina provesís una lista dels articles mai brèus de l'espaci principal, redireccions simplas excluidas. Demest las « paginas brevas » figuran sovent de vandalismes o de paginas blanquidas (0 octet), prèstas a èsser suprimidas. :'''Administrators''' : verificatz l'istoric abans de suprimir una d'aquestas paginas. L'esplech GPC vos pòt ajudar a far lo menatge. Vejatz tanben lo '''articles brèus'''.",
-'longpages'                       => 'Paginas longas',
-'longpages-summary'               => "Aquesta pagina especiala presenta una lista dels articles mai longs del wiki, per òrdre descreissent de talha. Vejatz tanben lo '''articles longs'''.",
-'deadendpages'                    => "Paginas sul camin d'enlòc",
-'deadendpages-summary'            => "Las paginas seguentas contenon pas cap de ligam vèrs d'autras paginas del wiki. Vos podètz referir a la pagina de coordinacion paginas sul camin d'enlòc.",
-'deadendpagestext'                => 'Las paginas seguentas contenon pas cap de ligam vèrs d’autras paginas de {{SITENAME}}.',
-'protectedpages'                  => 'Paginas protegidas',
-'protectedpages-indef'            => 'Unicament las proteccions permanentas',
-'protectedpagestext'              => 'Las paginas seguentas son protegidas contra las modificacions e/o lo cambiament de nom :',
-'protectedpagesempty'             => 'Cap de pagina es pas protegida actualament.',
-'protectedtitles'                 => 'Títols protegits',
-'protectedtitlestext'             => 'Los títols seguents son protegits a la creacion',
-'protectedtitlesempty'            => 'Cap de títol es pas actualament protegit amb aquestes paramètres.',
-'listusers'                       => 'Lista dels participants',
-'listusers-summary'               => "Aquesta pagina aficha la lista de totes los comptes d'utilizaires, qu'ajan efectuats de contribucions o pas. La causida del « grop » correspon als diferents estatuts possibles.",
-'newpages'                        => 'Paginas novèlas',
-'newpages-summary'                => "Aquesta pagina lista las paginas creadas a partir de la mai recenta. Las entradas amb un fons jaune espèran d'èsser verificadas pels utilizaires.",
-'newpages-username'               => "Nom d'utilizaire :",
-'ancientpages'                    => 'Articles mai ancians',
-'move'                            => 'Tornar nomenar',
-'movethispage'                    => 'Tornar nomenar la pagina',
-'unusedimagestext'                => "Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
-'unusedcategoriestext'            => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
-'notargettitle'                   => 'Pas de cibla',
-'notargettext'                    => 'Indicatz una pagina cibla o un utilizaire cibla.',
-'nopagetitle'                     => 'Cap de pagina cibla',
-'nopagetext'                      => "La pagina cibla qu'avètz indicada existís pas.",
-'pager-newer-n'                   => '{{PLURAL:$1|1 mai recenta|$1 mai recentas}}',
-'pager-older-n'                   => '{{PLURAL:$1|1 mai anciana|$1 mai ancianas}}',
-'suppress'                        => 'Supervisor',
+'nbytes'                  => '$1 {{PLURAL:$1|octet|octets}}',
+'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
+'nlinks'                  => '$1 {{PLURAL:$1|ligam|ligams}}',
+'nmembers'                => '$1 {{PLURAL:$1|membre|membres}}',
+'nrevisions'              => '$1 {{PLURAL:$1|revision|revisions}}',
+'nviews'                  => '$1 {{PLURAL:$1|consultacion|consultacions}}',
+'specialpage-empty'       => 'Aquesta pagina es voida.',
+'lonelypages'             => 'Paginas orfanèlas',
+'lonelypagestext'         => 'Las paginas seguentas son pas ligadas a partir d’autras paginas de {{SITENAME}}.',
+'uncategorizedpages'      => 'Paginas sens categorias',
+'uncategorizedcategories' => 'Categorias sens categorias',
+'uncategorizedimages'     => 'Fichièrs sens categorias',
+'uncategorizedtemplates'  => 'Modèls sens categoria',
+'unusedcategories'        => 'Categorias inutilizadas',
+'unusedimages'            => 'Imatges orfanèls',
+'popularpages'            => 'Paginas mai consultadas',
+'wantedcategories'        => 'Categorias mai demandadas',
+'wantedpages'             => 'Paginas mai demandadas',
+'missingfiles'            => 'Fichièrs mancants',
+'mostlinked'              => 'Paginas mai ligadas',
+'mostlinkedcategories'    => 'Categorias mai utilizadas',
+'mostlinkedtemplates'     => 'Modèls mai utilizats',
+'mostcategories'          => 'Articles utilizant mai de categorias',
+'mostimages'              => 'Fichièrs mai utilizats',
+'mostrevisions'           => 'Articles mai modificats',
+'prefixindex'             => 'Totas las paginas per primièras letras',
+'shortpages'              => 'Paginas brèvas',
+'longpages'               => 'Paginas longas',
+'deadendpages'            => "Paginas sul camin d'enlòc",
+'deadendpagestext'        => 'Las paginas seguentas contenon pas cap de ligam vèrs d’autras paginas de {{SITENAME}}.',
+'protectedpages'          => 'Paginas protegidas',
+'protectedpages-indef'    => 'Unicament las proteccions permanentas',
+'protectedpagestext'      => 'Las paginas seguentas son protegidas contra las modificacions e/o lo cambiament de nom :',
+'protectedpagesempty'     => 'Cap de pagina es pas protegida actualament.',
+'protectedtitles'         => 'Títols protegits',
+'protectedtitlestext'     => 'Los títols seguents son protegits a la creacion',
+'protectedtitlesempty'    => 'Cap de títol es pas actualament protegit amb aquestes paramètres.',
+'listusers'               => 'Lista dels participants',
+'newpages'                => 'Paginas novèlas',
+'newpages-username'       => "Nom d'utilizaire :",
+'ancientpages'            => 'Articles mai ancians',
+'move'                    => 'Tornar nomenar',
+'movethispage'            => 'Tornar nomenar la pagina',
+'unusedimagestext'        => "Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
+'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
+'notargettitle'           => 'Pas de cibla',
+'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
+'nopagetitle'             => 'Cap de pagina cibla',
+'nopagetext'              => "La pagina cibla qu'avètz indicada existís pas.",
+'pager-newer-n'           => '{{PLURAL:$1|1 mai recenta|$1 mai recentas}}',
+'pager-older-n'           => '{{PLURAL:$1|1 mai anciana|$1 mai ancianas}}',
+'suppress'                => 'Supervisor',
 
 # Book sources
 'booksources'               => 'Obratges de referéncia',
@@ -1544,7 +1537,6 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 
 # Special:Allpages
 'allpages'          => 'Totas las paginas',
-'allpages-summary'  => 'Aquesta pagina presenta totas las paginas d\'un [[Ajuda:Espaci de nom|espaci de nom donat]], triadas per òrdre alfabetic. Es possible de seleccionar un punt de partida dins la bóstia çaijós. Los ligams <span class="allpagesredirect">[[Ajuda:Redirect|coma aquò]]</span> son de [[Ajuda:Redireccion|paginas de redireccion]].',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pagina seguenta ($1)',
 'prevpage'          => 'Pagina precedenta ($1)',
@@ -1560,7 +1552,7 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 'allpages-bad-ns'   => '{{SITENAME}} a pas d’espaci de noms « $1 ».',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Categoria|Categorias}}',
+'categories'                    => 'Categorias',
 'categoriespagetext'            => 'Las categorias seguentas contenon de paginas o de mèdias.',
 'categoriesfrom'                => 'Afichar las categorias que començan a :',
 'special-categories-sort-count' => 'triada per compte',
@@ -1573,7 +1565,8 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [[meta:Help:Job_que
 
 # Special:Listgrouprights
 'listgrouprights'          => "Dreches dels gropes d'utilizaires",
-'listgrouprights-summary'  => "Aquesta pagina conten una tièra de gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats. D'entresenhas complementàrias suls dreches pòdon èsser trobats [[{{int:Listgrouprights-helppage}}|aicí]].",
+'listgrouprights-summary'  => "Aquesta pagina conten una tièra de gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats.
+D'entresenhas complementàrias suls dreches pòdon èsser trobats [[{{MediaWiki:Listgrouprights-helppage}}|aicí]].",
 'listgrouprights-group'    => 'Grop',
 'listgrouprights-rights'   => 'Dreches associats',
 'listgrouprights-helppage' => 'Help:Dreches dels gropes',
@@ -1903,7 +1896,6 @@ a partir d'una adreça IP precedentament blocada.",
 'ipblocklist'                     => 'Lista de las adreças IP e utilizaires blocats',
 'ipblocklist-legend'              => 'Cercar un utilizaire blocat',
 'ipblocklist-username'            => 'Nom de l’utilizaire o adreça IP :',
-'ipblocklist-summary'             => 'La lista çaijós mòstra totes los utilizaires e adreças IP blocats, per òrdre anticronologic. Consultatz lo [[Special:Log/block|jornal de blocatge]] per veire las darrièras accions de blocatge e desblocatge efectuadas.',
 'ipblocklist-submit'              => 'Recercar',
 'blocklistline'                   => '$1, $2 a blocat $3 ($4)',
 'infiniteblock'                   => 'permanent',
@@ -1995,9 +1987,7 @@ en tant qu'utilizaire enregistrat.",
 'move-watch'              => 'Seguir aquesta pagina',
 'movepagebtn'             => "Tornar nomenar l'article",
 'pagemovedsub'            => 'Cambiament de nom capitat',
-'movepage-moved'          => 'La pagina « $1 » <small>([[Special:Whatlinkshere/$3|ligams]])</small> es estada renomenada en « $2 » <small>([[Special:Whatlinkshere/$4|ligams]])</small>.
-
-Verificatz qu’existís pas cap de redireccion dobla, e corregissètz-las se mestièr fa.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => 'La pagina « $1 » es estada renomenada en « $2 ».', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
 'cantmove-titleprotected' => 'Avètz pas la possibilitat de desplaçar una pagina vèrs aqueste emplaçament perque lo títol es estat protegit a la creacion.',
@@ -2036,7 +2026,7 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 
 Per exportar de paginas, entratz lors títols dins la boita de tèxt çai jos, un títol per linha, e seleccionatz se o desiratz o pas la version actuala amb totas las versions ancianas, amb la pagina d’istoric, o simplament la pagina actuala amb d'informacions sus la darrièra modificacion.
 
-Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] per la pagina {{Mediawiki:mainpage}}.",
+Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] per la pagina [[{{MediaWiki:Mainpage}}]].",
 'exportcuronly'     => 'Exportar unicament la version correnta sens l’istoric complet',
 'exportnohistory'   => "----
 '''Nòta :''' l’exportacion complèta de l’istoric de las paginas amb l’ajuda d'aqueste formulari es estada desactivada per de rasons de performàncias.",

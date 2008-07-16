@@ -9,11 +9,11 @@
  * @author PuzzletChung
  * @author Siebrand
  * @author ITurtle
- * @author Albamhandae
  * @author לערי ריינהארט
  * @author Kwj2772
- * @author TheAlpha for knowledge
+ * @author Albamhandae
  * @author Ficell
+ * @author TheAlpha for knowledge
  * @author Pi.C.Noizecehx
  * @author SPQRobin
  * @author Jon Harald Søby
@@ -386,14 +386,15 @@ $messages = array(
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
 'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
-'titleprotected'       => "[[{{ns:user}}:$1|$1]] 사용자가 문서 생성을 금지했습니다. 이유는 다음과 같습니다. ‘''$2''’",
+'titleprotected'       => "[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다.
+이유는 다음과 같습니다. ‘''$2''’",
 
 # Login and logout pages
 'logouttitle'                => '로그아웃',
 'logouttext'                 => "'''{{SITENAME}}에서 로그아웃했습니다.''' 이대로 이름없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 로그인해서 이용할 수 있습니다. 웹 브라우저의 캐시를 지우지 않으면 몇몇 문서에서 로그인이 되어 있는 것처럼 보일 수 있다는 점을 유의해 주세요.",
 'welcomecreation'            => '== $1 님, 환영합니다! ==
-
-계정이 만들어졌습니다. [[Special:Preferences|사용자 환경 설정]]에서 당신의 {{SITENAME}} 사용자 환경 설정을 바꿀 수 있습니다.',
+계정이 만들어졌습니다.
+사용자 환경 설정에서 당신의 {{SITENAME}} 사용자 환경 설정을 바꿀 수 있습니다.',
 'loginpagetitle'             => '로그인',
 'yourname'                   => '계정 이름:',
 'yourpassword'               => '비밀번호:',
@@ -1054,7 +1055,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 'disambiguations'      => '동음이의 문서 목록',
 'disambiguationspage'  => 'Template:Disambig',
-'disambiguations-text' => "다음의 문서들은 '''동음이의 문서'''를 가리키고 있습니다. 그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />[[MediaWiki:disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
+'disambiguations-text' => "다음의 문서들은 '''동음이의 문서'''를 가리키고 있습니다.
+그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
+[[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
 'doubleredirects'     => '이중 넘겨주기 목록',
 'doubleredirectstext' => '각 열의 첫번째 문서는 두번째 문서로, 두번째 문서는 세번째 문서로 연결됩니다. 첫번째 문서를 마지막 문서로 연결해 주어야 합니다.',
@@ -1288,7 +1291,7 @@ $NEWPAGE
 
 마지막으로 문서를 편집한 사람은[[User:$3|$3]]([[User talk:$3|토론]])입니다.',
 'editcomment'                 => "편집 요약: ''$1''", # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[{{ns:user}}:$1|$1]]의 마지막 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 'sessionfailure'              => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 'protectlogpage'              => '문서 보호 기록',
@@ -1546,7 +1549,7 @@ $1',
 
 문서를 내보내려면, 내보내려는 문서 제목을 한 줄에 하나씩 입력해주세요. 그리고 문서의 전체 역사가 필요한지, 혹은 현재 버전만이 필요한지를 선택해 주세요.
 
-특정 문서를 내보내려면, 예를 들어 ‘[[{{Mediawiki:Mainpage}}]]’ 문서를 내보내려면 [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
+특정 문서를 내보내려면, 예를 들어 ‘[[{{MediaWiki:Mainpage}}]]’ 문서를 내보내려면 [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
 'exportcuronly'   => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
 'exportnohistory' => "----
 '''주의:''' 전체 문서 역사를 내보내는 기능은 성능 문제로 인해 비활성되어 있습니다.",

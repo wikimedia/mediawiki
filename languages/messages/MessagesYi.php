@@ -1238,6 +1238,7 @@ $NEWPAGE
 # What links here
 'whatlinkshere'       => 'װאָס די אױף דאָס זײט פֿאַרבינדט',
 'whatlinkshere-title' => 'בלעטער וואס פארבינדן צו $1',
+'linklistsub'         => '(ליסטע פֿון פֿארבינדונגען)',
 'linkshere'           => "די פאלגנדע בלעטער פארבינדן צום בלאט '''[[:$1]]''':",
 'nolinkshere'         => "קיין שום בלאט פארבינדט נישט צו '''[[:$1]]'''.",
 'isredirect'          => 'ווײַטערפירן בלאט',
@@ -1358,7 +1359,11 @@ $NEWPAGE
 'allmessagesmodified'       => 'ווייז נאר מאדיפיצירטע',
 
 # Thumbnails
-'thumbnail-more' => 'פארגרעסער',
+'thumbnail-more'           => 'פארגרעסער',
+'thumbnail_error'          => 'גרײַז בײַם באשאפֿן דאס קליינבילד: $1',
+'djvu_page_error'          => 'DjVu בלאט ארויס פֿון גרייך',
+'djvu_no_xml'              => "מ'קען נישט באקומען דעם XML פֿאַר דער DjVu טעקע",
+'thumbnail_invalid_params' => 'אומגילטיגע קליינבילד פאראמעטערס',
 
 # Special:Import
 'importbadinterwiki'    => 'שלעכטע אינטערוויקי לינק',
@@ -1461,15 +1466,17 @@ $NEWPAGE
 'nextdiff'     => 'קומענדיקע אונטערשייד ←',
 
 # Media information
-'file-info-size' => '($1 × $2 פיקסעל, טעקע גרייס: $3, טיפ MIME: $4)',
-'file-nohires'   => '<small>נישטא מיט א העכערע רעזאלוציע.</small>',
-'svg-long-desc'  => '(טעקע SVG, נאמינעל: $1 × $2 פיקסעלן, טעקע גרייס: $3)',
+'file-info-size'       => '($1 × $2 פיקסעל, טעקע גרייס: $3, טיפ MIME: $4)',
+'file-nohires'         => '<small>נישטא מיט א העכערע רעזאלוציע.</small>',
+'svg-long-desc'        => '(טעקע SVG, נאמינעל: $1 × $2 פיקסעלן, טעקע גרייס: $3)',
+'show-big-image'       => 'בילד מיט דער גרעסטער רעזאלוציע',
+'show-big-image-thumb' => '<small>גרייס פון דער ווײַזונג: $1 × $2 פיקסעלן</small>',
 
 # Special:Newimages
-'newimages'         => 'גאַלעריע אויף נײַע בילדער',
+'newimages'         => 'גאַלעריע פֿון נײַע בילדער',
 'imagelisttext'     => 'פאלגנד א ליסטע פון {{PLURAL:$1|איין בילד|$1 בילדער}}, סארטירט $2:',
 'newimages-summary' => 'דער באזונדערער בלאט ווײַזט די לעצטע ארויפגעלאדענע טעקעס',
-'showhidebots'      => '($1 ראָבאָמן)',
+'showhidebots'      => '($1 ראָבאָטן)',
 'noimages'          => 'נישטא קיין בילדער.',
 'ilsubmit'          => 'זוכן',
 'bydate'            => 'לויטן דאטום',
