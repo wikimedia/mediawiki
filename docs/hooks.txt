@@ -753,13 +753,6 @@ $lang: laguage code (string)
 $specialPageAliases: associative array of magic words synonyms
 $lang: laguage code (string)
 
-'LinkerLinkAttributes': At the end of Linker::getLinkAttributesInternal() just before the return
-&$this: Linker object
-&$nt: Title object of link target, or null
-$title: 'title' attribute string
-$class: 'class' attribute string
-&$result: Final attribute string
-
 'LinkerMakeExternalImage': At the end of Linker::makeExternalImage() just before the return
 &$url: the image url
 &$alt: the image's alt text
