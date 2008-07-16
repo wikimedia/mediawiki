@@ -34,7 +34,7 @@ class Linker {
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 */
 	function getExternalLinkAttributes( $title, $unused = null, $class='' ) {
-		return $this->getLinkAttributesInternal( $title, $class, 'external' );
+		return $this->getLinkAttributesInternal( null, $title, $class, 'external' );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Linker {
 		$title = $wgContLang->checkTitleEncoding( $title );
 		$title = preg_replace( '/[\\x00-\\x1f]/', ' ', $title );
 
-		return $this->getLinkAttributesInternal( $title, $class, 'external' );
+		return $this->getLinkAttributesInternal( null, $title, $class, 'external' );
 	}
 
 	/**
@@ -71,7 +71,7 @@ class Linker {
 	function getInternalLinkAttributes( $title, $unused = null, $class='' ) {
 		$title = urldecode( $title );
 		$title = str_replace( '_', ' ', $title );
-		return $this->getLinkAttributesInternal( $title, $class );
+		return $this->getLinkAttributesInternal( null, $title, $class );
 	}
 
 	/**
@@ -88,13 +88,13 @@ class Linker {
 		if( $title === false ) {
 			$title = $nt->getPrefixedText();
 		}
-		return $this->getLinkAttributesInternal( $title, $class );
+		return $this->getLinkAttributesInternal( $nt, $title, $class );
 	}
 
 	/**
 	 * Common code for getLinkAttributesX functions
 	 */
-	private function getLinkAttributesInternal( $title, $class, $classDefault = false ) {
+	private function getLinkAttributesInternal( $nt, $title, $class, $classDefault = false ) {
 		$title = htmlspecialchars( $title );
 		if( $class === '' and $classDefault !== false ) {
 			# FIXME: Parameter defaults the hard way!  We should just have
@@ -108,6 +108,7 @@ class Linker {
 			$r .= " class=\"$class\"";
 		}
 		$r .= " title=\"$title\"";
+		wfRunHooks( 'LinkerLinkAttributes', array( &$this, &$nt, $title, $class, &$r ) );
 		return $r;
 	}
 
@@ -323,6 +324,12 @@ class Linker {
 
 		$nt = $this->normaliseSpecialPage( $title );
 
+		if ( $text == '' ) {
+			$text = htmlspecialchars( $nt->getPrefixedText() );
+		}
+		if ( $style == '' ) {
+			$style = $this->getInternalLinkAttributesObj( $nt, $text );
+		}
 		$u = $nt->escapeLocalURL( $query );
 		if ( $nt->getFragment() != '' ) {
 			if( $nt->getPrefixedDbkey() == '' ) {
@@ -332,12 +339,6 @@ class Linker {
 				}
 			}
 			$u .= $nt->getFragmentForURL();
-		}
-		if ( $text == '' ) {
-			$text = htmlspecialchars( $nt->getPrefixedText() );
-		}
-		if ( $style == '' ) {
-			$style = $this->getInternalLinkAttributesObj( $nt, $text );
 		}
 
 		if ( $aprops !== '' ) $aprops = ' ' . $aprops;
