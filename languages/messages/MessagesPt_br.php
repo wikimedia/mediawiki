@@ -1794,7 +1794,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbreason-dropdown'              => '*Razões comuns para um bloqueio
 ** Inserindo informações falsas
 ** Removendo o conteúdo de páginas
-** Fazendo "spam" de sítios externos
+** Fazendo "spam" de sites externos
 ** Inserindo conteúdo sem sentido/incompreensível nas páginas
 ** Comportamento intimidador/inoportuno
 ** Uso abusivo de contas múltiplas
