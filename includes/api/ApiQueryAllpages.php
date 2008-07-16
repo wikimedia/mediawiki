@@ -51,7 +51,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	private function run($resultPageSet = null) {
-
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
@@ -97,6 +96,29 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->dieUsage('prlevel may not be used without prtype', 'params');
 		}
 
+		// Only allow watched page filtering if the user has the 'unwatchedpages' permission
+		// $wgMiserMode disables this
+		global $wgUser, $wgMiserMode;
+		if ($wgUser->isAllowed('unwatchedpages') && !$wgMiserMode) {
+			if($params['filterwatched'] != 'all') {
+				$this->addTables('watchlist');
+				$this->addJoinConds(array('watchlist' => array('LEFT JOIN', array(
+						'wl_namespace = page_namespace',
+						'wl_title = page_title'))));
+			}
+			if($params['filterwatched'] == 'unwatched') {
+				$this->addWhere('wl_title IS NULL');
+			}
+			else if ($params['filterwatched'] == 'watched') {
+				$this->addWhere('wl_title IS NOT NULL');
+			}
+		}
+		else if($params['filterwatched'] != 'all') {
+			if($wgMiserMode)
+				$this->setWarning('apfilterwatched is disabled on this wiki for performance reasons');
+			else
+				$this->setWarning('You don\'t have permission to filter by watched status');
+		}
 		if($params['filterlanglinks'] == 'withoutlanglinks') {
 			$this->addTables('langlinks');
 			$this->addJoinConds(array('langlinks' => array('LEFT JOIN', 'page_id=ll_from')));
@@ -108,7 +130,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$forceNameTitleIndex = false;
 		}
 		if ($forceNameTitleIndex)
-			$this->addOption('USE INDEX', 'name_title');
+			$this->addOption('USE INDEX', array('page' => 'name_title'));
 
 		if (is_null($resultPageSet)) {
 			$this->addFields(array (
@@ -206,6 +228,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 					'all'
 				),
 				ApiBase :: PARAM_DFLT => 'all'
+			),
+			'filterwatched' => array(
+				ApiBase :: PARAM_TYPE => array(
+					'watched',
+					'unwatched',
+					'all'
+				),
+				ApiBase :: PARAM_DFLT => 'all'
 			)
 		);
 	}
@@ -222,6 +252,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			'prtype' => 'Limit to protected pages only',
 			'prlevel' => 'The protection level (must be used with apprtype= parameter)',
 			'filterlanglinks' => 'Filter based on whether a page has langlinks',
+			'filterwatched' => 'Filter based on whther a page is watched (requires \'unwatchedpages\' right)',
 			'limit' => 'How many total pages to return.'
 		);
 	}
