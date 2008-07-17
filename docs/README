@@ -1,17 +1,14 @@
 [May 31st 2007]
 
-The 'docs' directory contain various text files that should help you
-understand the most importants classes in MediaWiki.
+The 'docs' directory contain various text files that should help you understand
+the most importants classes in MediaWiki.
 
 API documentation is automatically generated and updated daily at:
   http://svn.wikimedia.org/doc/
 
-You can get a fresh version using 'make doc' or mwdocgen.php
-in the ../maintenance/ directory.
+You can get a fresh version using 'make doc' or mwdocgen.php in the
+../maintenance/ directory.
 
 
-
-For end user / administrators, most of the documentation
-is located online at:
+For end user / administrators, most of the documentation is located online at:
   http://www.mediawiki.org/wiki/Help:Contents
-
