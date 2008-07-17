@@ -1226,10 +1226,10 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	
 	// Kill the --- and +++ lines. They're not useful.
 	$diff_lines = explode( "\n", $diff );
-	if (strpos( '---', $diff_lines[0] ) == 0) {
+	if (strpos( $diff_lines[0], '---' ) === 0) {
 		unset($diff_lines[0]);
 	}
-	if (strpos( '+++', $diff_lines[1] ) == 0) {
+	if (strpos( $diff_lines[1], '+++' ) === 0) {
 		unset($diff_lines[1]);
 	}
 	
