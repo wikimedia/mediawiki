@@ -43,7 +43,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		list( $index, $userCond ) = $this->getUserCond();
 		$conds = array_merge( array('page_id=rev_page'), $userCond, $this->getNamespaceCond() );
-		return array(
+		$queryInfo = array(
 			'tables' => array( 'page', 'revision' ),
 			'fields' => array(
 				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'rev_id', 'rev_page',
@@ -51,8 +51,10 @@ class ContribsPager extends ReverseChronologicalPager {
 				'rev_user_text', 'rev_parent_id', 'rev_deleted'
 			),
 			'conds' => $conds,
-			'options' => array( 'USE INDEX' => $index )
+			'options' => array( 'USE INDEX' => array('revision' => $index) )
 		);
+		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
+		return $queryInfo;
 	}
 
 	function getUserCond() {
@@ -209,6 +211,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
+		// Let extensions add data
+		wfRunHooks( 'ContributionsLineEnding', array( &$this, &$ret, $row ) );
+		
 		$ret = "<li>$ret</li>\n";
 		wfProfileOut( __METHOD__ );
 		return $ret;
