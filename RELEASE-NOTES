@@ -530,7 +530,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added flag "top" to list=usercontribs if the user is the last contributor to
   the page
 * list=exturlusage in "list all links" mode can now filter by protocol
-* (bug 14020) Added apfilterwatched parameter to list=allpages
 
 === Languages updated in 1.13 ===
 
