@@ -121,7 +121,6 @@ $wgIgnoredMessages = array(
 	'preferences-summary',
 	'specialpages-summary',
 	'whatlinkshere-summary',
-	'whatlinkshere-barrow',
 	'listredirects-summary',
 	'uncategorizedpages-summary',
 	'uncategorizedcategories-summary',
@@ -312,6 +311,7 @@ $wgOptionalMessages = array(
 	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'timezone-utc',
+	'whatlinkshere-barrow',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
