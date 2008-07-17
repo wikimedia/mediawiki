@@ -212,7 +212,7 @@ class EditPage {
 	 * @param $preload String: the title of the page.
 	 * @return string The contents of the page.
 	 */
-	private function getPreloadedText($preload) {
+	protected function getPreloadedText($preload) {
 		if ( $preload === '' )
 			return '';
 		else {
@@ -508,7 +508,7 @@ class EditPage {
 	 *
 	 * @return bool
 	 */
-	private function previewOnOpen() {
+	protected function previewOnOpen() {
 		global $wgRequest, $wgUser;
 		if( $wgRequest->getVal( 'preview' ) == 'yes' ) {
 			// Explicit override from request
@@ -660,7 +660,7 @@ class EditPage {
 	/**
 	 * Show all applicable editing introductions
 	 */
-	private function showIntro() {
+	protected function showIntro() {
 		global $wgOut, $wgUser;
 		if( $this->suppressIntro )
 			return;
@@ -693,7 +693,7 @@ class EditPage {
 	 *
 	 * @return bool
 	 */
-	private function showCustomIntro() {
+	protected function showCustomIntro() {
 		if( $this->editintro ) {
 			$title = Title::newFromText( $this->editintro );
 			if( $title instanceof Title && $title->exists() && $title->userCanRead() ) {
@@ -1449,7 +1449,7 @@ END
 	 *
 	 * @param string $text The HTML to be output for the preview.
 	 */
-	private function showPreview( $text ) {
+	protected function showPreview( $text ) {
 		global $wgOut;
 
 		$wgOut->addHTML( '<div id="wikiPreview">' );
@@ -2247,7 +2247,7 @@ END
 	 *
 	 * @param OutputPage $out
 	 */
-	private function showDeletionLog( $out ) {
+	protected function showDeletionLog( $out ) {
 		global $wgUser;
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
 		$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
