@@ -799,7 +799,7 @@ có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPA
 'revdelete-nooldid-text'      => 'Có thể bạn chưa xác định (các) phiên bản đích để thực hiện tác vụ,
 hoặc phiên bản đích không tồn tại,
 hoặc bạn đang tìm cách giấu phiên bản hiện tại.',
-'revdelete-selected'          => '{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[$1:]]:',
+'revdelete-selected'          => '{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:',
 'logdelete-selected'          => '{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:',
 'revdelete-text'              => 'Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.
 
@@ -1285,11 +1285,11 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'filedelete'                  => 'Xóa $1',
 'filedelete-legend'           => 'Xóa tập tin',
 'filedelete-intro'            => "Bạn đang xóa '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[{{ns:media}}:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
+'filedelete-intro-old'        => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
 'filedelete-comment'          => 'Lý do:',
 'filedelete-submit'           => 'Xóa',
 'filedelete-success'          => "'''$1''' đã bị xóa.",
-'filedelete-success-old'      => '<span class="plainlinks">Phiên bản của \'\'\'[[{{ns:media}}:$1|$1]]\'\'\' vào lúc $3, $2 đã bị xóa.</span>',
+'filedelete-success-old'      => '<span class="plainlinks">Phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc $3, $2 đã bị xóa.</span>',
 'filedelete-nofile'           => "'''$1''' không tồn tại trên {{SITENAME}}.",
 'filedelete-nofile-old'       => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
 'filedelete-iscurrent'        => 'Bạn đang cố xóa phiên bản mới nhất của tập tin này. Xin hãy lui tập tin về một phiên bản cũ hơn đã.',
@@ -1918,7 +1918,8 @@ Trang với tên “[[$1]]” đã tồn tại. Bạn có muốn xóa nó để 
 
 # Export
 'export'            => 'Xuất các trang',
-'exporttext'        => 'Bạn có thể xuất nội dung và lịch sử sửa đổi của một trang hoặc tập hợp trang vào tập tin XML. Những tập tin này cũng có thể được nhập vào wiki khác có sử dụng MediaWiki thông qua [[{{ns:Special}}:Import|nhập trang]].
+'exporttext'        => 'Bạn có thể xuất nội dung và lịch sử sửa đổi của một trang hoặc tập hợp trang vào tập tin XML.
+Những tập tin này cũng có thể được nhập vào wiki khác có sử dụng MediaWiki thông qua [[Special:Import|nhập trang]].
 
 Để xuất các trang, nhập vào tên trang trong hộp soạn thảo ở dưới, mỗi dòng một tên, và lựa chọn bạn muốn phiên bản hiện tại cũng như tất cả phiên bản cũ, với các dòng lịch sử trang, hay chỉ là phiên bản hiện tại với thông tin về lần sửa đổi cuối.
 
@@ -1955,7 +1956,9 @@ Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa Medi
 # Special:Import
 'import'                     => 'Nhập các trang',
 'importinterwiki'            => 'Nhập giữa các wiki',
-'import-interwiki-text'      => 'Chọn tên trang và wiki để nhập trang vào. Ngày của phiên bản và tên người viết trang sẽ được giữ nguyên. Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[{{ns:Special}}:Log/import|nhật trình nhập trang]].',
+'import-interwiki-text'      => 'Chọn tên trang và wiki để nhập trang vào.
+Ngày của phiên bản và tên người viết trang sẽ được giữ nguyên.
+Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[Special:Log/import|nhật trình nhập trang]].',
 'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
 'import-interwiki-submit'    => 'Nhập trang',
 'import-interwiki-namespace' => 'Chuyển các trang vào không gian tên:',
@@ -2557,7 +2560,9 @@ $1',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được xóa khỏi danh sách các trang theo dõi:',
 'watchlistedit-raw-title'      => 'Sửa danh sách theo dõi dạng thô',
 'watchlistedit-raw-legend'     => 'Sửa danh sách theo dõi dạng thô',
-'watchlistedit-raw-explain'    => 'Tên các trang bạn theo dõi đuọc hiển thị dưới đây, và có thể được sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng. Khi xong, nhấn nút ”Cập nhật Trang tôi theo dõi”. Bạn cũng có thể [[{{ns:Special}}:Watchlist/edit|dùng trình soạn thảo chuẩn]] để sửa danh sách này.',
+'watchlistedit-raw-explain'    => 'Tên các trang bạn theo dõi đuọc hiển thị dưới đây, và có thể được sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng.
+Khi xong, nhấn nút ”Cập nhật Trang tôi theo dõi”.
+Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩn]] để sửa danh sách này.',
 'watchlistedit-raw-titles'     => 'Tên các trang:',
 'watchlistedit-raw-submit'     => 'Cập nhật Trang tôi theo dõi',
 'watchlistedit-raw-done'       => 'Danh sách các trang bạn theo dõi đã được cập nhật.',

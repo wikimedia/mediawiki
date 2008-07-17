@@ -1926,6 +1926,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'importbadinterwiki'         => 'Falschen Interwiki-Link',
 'importnotext'               => 'Eidel oder keen Text',
 'importsuccess'              => 'Den Import ass fäerdeg!',
+'importhistoryconflict'      => 'Et gëtt Konflikter am Historique vun de Versionen, (méiglecherweis gouf dës Säit virdrun importéiert).',
 'importnosources'            => 'Fir den Transwiki-Import si keng Quellen definéiert an et ass net méiglech fir Säite mat alle Versiounen aus dem Transwiki-Tëschespäicher eropzelueden.',
 'importnofile'               => 'Et gouf keen importéierte Fichier eropgelueden',
 'importuploaderrorsize'      => 'DEropluede vum importéierte Fichier huet net fonctionnéiert. De Fichier ass méi grouss wéi maximal erlaabt.',

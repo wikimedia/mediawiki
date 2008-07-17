@@ -649,7 +649,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'allpagesprefix' => 'Gösterin sayfaları angıları çekeder bukvalarlan ani buraya yazdınız:',
 
 # Special:Categories
-'categories' => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
+'categories' => 'Kategoriyalar',
 
 # E-mail user
 'emailuser' => 'Gönder bu kullanıcıya bir e-mail',

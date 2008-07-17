@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author SF-Language
  * @author SPQRobin
+ * @author M.M.S.
  * @author Jon Harald Søby
  */
 
@@ -422,7 +423,7 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'accountcreated'             => 'léegi bindu nga.',
 'accountcreatedtext'         => 'Mbindug jëfandikukat bii di $1 jàll na',
 'createaccount-title'        => 'Sosum sàq ci {{SITENAME}}',
-'createaccount-text'         => 'Kenn ($1) ku sos am sàq ci {{SITENAME}} te tuddu $2 ($4).
+'createaccount-text'         => 'Kenn ku sos am sàq ci {{SITENAME}} te tuddu $2 ($4).
 Baatujàll bu « $2 » mooy « $3 ». Li gën mooy nga duggu ci teel te soppi baatujàll bi.
 
 Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
@@ -566,7 +567,7 @@ kon doo man a denc say coppite fi mu nekk nii. Man ngaa duppi mbind mi taf ko ci
 'protectedpagewarning'      => "'''Moytul : wii xët dañ kaa aar.
 Jëfandikukat yi nekk yorkat rekk a ko man a soppi.'''",
 'semiprotectedpagewarning'  => "'''Karmat :''' wii xët dañ kaa aar ba nga xam ne ñi bindu rekk a ko man a soppi.",
-'cascadeprotectedwarning'   => '<strong>MOYTUL : Xët wii dañ kaa aar ba nga xam ne [[{{MediaWiki:Grouppage-sysop}}|yorkat yi]] rek ñoo koy man a soppi. Kaaraange googu dañ kaa def ndaxte xët wii dañ kaa dugal ci biir {{PLURAL:$1|aw xët wu ñu aar|ay xët yu ñu aar}}.</strong>',
+'cascadeprotectedwarning'   => "'''MOYTUL :''' Xët wii dañ kaa aar ba nga xam ne yorkat yi rek ñoo koy man a soppi. Kaaraange googu dañ kaa def ndaxte xët wii dañ kaa dugal ci biir {{PLURAL:$1|aw xët wu ñu aar|ay xët yu ñu aar}}.",
 'titleprotectedwarning'     => '<strong>MOYTUL: wii xët dañ kaa aar ci anam boo xam ne yenn jëfandikukat yi rekk a ko man a sos.</strong>',
 'templatesused'             => 'Royuwaay yi nekk ci wii xët :',
 'templatesusedpreview'      => 'Royuwaay yi nekk ci gii wonendi :',
@@ -654,6 +655,7 @@ Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti
 'logdelete-logentry'          => 'Gisub xew-xew bii [[$1]] dañ kaa soppi',
 'revdelete-success'           => "'''Coppiteg gisinug sumb mi, baax na.'''",
 'logdelete-success'           => "'''Gisub xew-xew bi soppiku na bu baax.'''",
+'revdelete-uname'             => 'turu jëfandikukat',
 
 # History merging
 'mergehistory'                     => 'Booleb jaar-jaar yu aw xët',
@@ -1160,7 +1162,9 @@ Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 'watchlistedit-noitems'        => 'Sa limu toppte amul benn xët.',
 'watchlistedit-normal-title'   => 'Coppiteg xëtu toppte gi',
 'watchlistedit-normal-legend'  => 'Dindi ay xët yi limu toppte gi',
-'watchlistedit-normal-explain' => 'xët yu sa limu toppte ñooy gisu fii ci suuf. Ngir dindi am xët (ak xëtu waxtaanukaayam) ci lim gi, kligal ci néeg moomu ci wetam te nga klig ci suuf. Man nga tamit  [[Special:Watchlist/raw|soppi ko]] walla [[Special:Watchlist/clear|setal lepp]].',
+'watchlistedit-normal-explain' => 'xët yu sa limu toppte ñooy gisu fii ci suuf.
+Ngir dindi am xët (ak xëtu waxtaanukaayam) ci lim gi, kligal ci néeg moomu ci wetam te nga klig ci suuf.
+Man nga tamit  [[Special:Watchlist/raw|soppi ko]].',
 'watchlistedit-normal-submit'  => 'Dindi xët yi nga tann',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Dindi nañ am xët|$1 ciy xët dindi nañ leen}} ci sa limu toppte :',
 'watchlistedit-raw-title'      => 'Coppiteg limu toppte gi',

@@ -199,7 +199,7 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
 
 # Revision deletion
 'rev-delundel'       => 'hechauka/toñemi',
-'logdelete-selected' => "Seleccionados $2 eventos de registro para '''$1:'''",
+'logdelete-selected' => 'Seleccionados $2 eventos de registro:',
 
 # Diffs
 'difference' => "(Mba'épe ojaovy oñemyatyrõva'ekue)",

@@ -720,7 +720,7 @@ pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE
 'revdelete-nooldid-title'     => 'Pas de ciba por la vèrsion',
 'revdelete-nooldid-text'      => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes por utilisar cela fonccion.',
 'revdelete-selected'          => "{{PLURAL:$2|Vèrsion sèlèccionâ|Vèrsions sèlèccionâs}} de '''$1''' :",
-'logdelete-selected'          => "{{PLURAL:$2|Èvènement de jornal sèlèccionâ|Èvènements de jornal sèlèccionâs}} por '''$1''' :",
+'logdelete-selected'          => '{{PLURAL:$1|Èvènement de jornal sèlèccionâ|Èvènements de jornal sèlèccionâs}}:',
 'revdelete-text'              => 'Les vèrsions et los èvènements suprimâs aparètront adés dens l’historico de l’articllo et los jornals,
 mas lor contegnu tèxtuèl serat pas accèssiblo u publico.
 

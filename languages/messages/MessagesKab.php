@@ -611,7 +611,7 @@ Waqila yella kter n talɣut [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 'revdelete-nooldid-title'     => 'Ulac nnican i tasiwelt',
 'revdelete-nooldid-text'      => 'Ur textareḍ ara tasiwelt nnican akken ad txedmeḍ tawuri fell-as.',
 'revdelete-selected'          => "{{PLURAL:$2|Tasiwelt tettwafren|Tisiwal ttwafernen}} n '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}} n '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}}:',
 'revdelete-text'              => 'Tisiwal i yettumḥan ad baben deg umezruy n usebter d weɣmis,
 meɛna imuren seg-sen zemren imdanen a ten-ẓren.
 

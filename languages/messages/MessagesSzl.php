@@ -371,8 +371,8 @@ Powůd zawarćo: ''$2''.",
 'logouttitle'                => 'Wylůgowańy užytkowńika',
 'logouttext'                 => '<strong>Terozki ježeś wylůgowany</strong>.<br />Možeš dali sam sprowjać zajty kej ńyzalůgowany užytkowńik, abo zalůgować śe nazod kej tyn som abo inkšy užytkowńik.',
 'welcomecreation'            => '== Witej, $1! ==
-
-Uotwarli my sam lo Ćebje kůnto. Ńy zapomńij poštalować [[{{ns:special}}:Preferences|prefyrencyji]].',
+Uotwarli my sam lo Ćebje kůnto.
+Ńy zapomńij poštalować prefyrencyji.',
 'loginpagetitle'             => 'Lůgowańy',
 'yourname'                   => 'Mjano užytkowńika:',
 'yourpassword'               => 'Hasuo:',
@@ -541,8 +541,10 @@ Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
 'accmailtext'                      => 'Hasuo užytkowńika "$1" zostauo wysuane pod adres $2.',
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => 'Ńy ma sam ješče artikla uo tym tytule. W polu ńižyj možeš naškryflać jygo pjyršy fragmynt. Kej chćoužeś zrobić co inkše, naćiś ino knefel "Nazod".',
-'anontalkpagetext'                 => "---- ''To jest zajta godki lo užytkowńikůw anůnimowych - takich, keři ńy majům ješče swojigo kůnta abo ńy chcům go terozki užywać. By ich identyfikować, užywomy numerůw IP. Jeli ježeś anůnimowym užytkowńikym a wydowo Ći śe, aže zamjyščůne sam kůmyntoře ńy sům skjyrowane do Ćebje, [[{{ns:special}}:Userlogin|utwůř proša kůnto abo zalůguj śe]] - bez tůž uńikńeš potym podobnych ńyporozumjyń.''",
-'noarticletext'                    => 'Ńy mo ješče zajty uo tym titelu. Možeš [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{FULLPAGENAME}}|šnupać za {{FULLPAGENAME}} w inkšych artiklach]].',
+'anontalkpagetext'                 => "---- ''To jest zajta godki lo užytkowńikůw anůnimowych - takich, keři ńy majům ješče swojigo kůnta abo ńy chcům go terozki užywać.
+By ich identyfikować, užywomy numerůw IP.
+Jeli ježeś anůnimowym užytkowńikym a wydowo Ći śe, aže zamjyščůne sam kůmyntoře ńy sům skjyrowane do Ćebje, [[Special:Userlogin|utwůř proša kůnto abo zalůguj śe]] - bez tůž uńikńeš potym podobnych ńyporozumjyń.''",
+'noarticletext'                    => 'Ńy mo ješče zajty uo tym titelu. Možeš [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{PAGENAME}}|šnupać za {{PAGENAME}} w inkšych artiklach]].',
 'userpage-userdoesnotexist'        => 'Užytkowńik "$1" ńy je zareještrowany. Sprowdź eli na pewno chćoužeś stwořyć/pomjynić gynau ta zajta.',
 'clearyourcache'                   => "'''Dej pozůr:''' Coby uobejřeć pomjyńańo pů naškryflańu nowych štalowań poleć přeglůndorce wyčyśćić zawartość pamjyńći podrynčnyj (cache). '''Mozilla / Firefox / Safari:''' přitřimej ''Shift'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' přitřimej ''Ctrl'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodśwjyž'' abo wciś ''F5''; užytkowńicy '''Opery''' mogům być zmušeńi coby coukym wyčyśćić jejich pamjyńć podrynčno we menu ''Werkcojgi→Preferencyje''.",
 'usercssjsyoucanpreview'           => '<strong>Podpowjydź:</strong> Užyj knefla "Podglůnd", coby přetestować Twůj nowy arkuš stylůw CSS abo kod JavaScript před jego zašrajbowańym.',
@@ -593,7 +595,8 @@ By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wjyrchu.
 'template-semiprotected'           => '(tajlowo zawarte)',
 'hiddencategories'                 => 'Ta zajta je {{PLURAL:$1|w jednyj schrůńunyj katygoryji|we $1 schrůńunych katygoryjach}}:',
 'nocreatetitle'                    => 'Uograńičůno wćepywańy zajtůw',
-'nocreatetext'                     => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} twořyńy nowych zajtůw uograńičůno. Možeš sprowjać te co juž sům, abo [[{{ns:special}}:Userlogin|zalogować śe, abo zauožyć konto]].',
+'nocreatetext'                     => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} twořyńy nowych zajtůw uograńičůno.
+Možeš sprowjać te co juž sům, abo [[Special:Userlogin|zalogować śe, abo zauožyć konto]].',
 'nocreate-loggedin'                => 'Ńy moš uprowńyń do škryflańo zajtůw na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'permissionserrors'                => 'Felerne uprowńyńa',
 'permissionserrorstext'            => 'Ńy moš uprowńyń do takij akcyje {{PLURAL:$1|skuli tego, co:|bestůž, co:}}',
@@ -653,7 +656,9 @@ Legynda: (bjež.) - růžńice s wersyjům bježůncům, (popř.) - růžńice s
 'history-feed-title'          => 'Historyjo wersyje',
 'history-feed-description'    => 'Historyjo wersyje tyj zajty wiki',
 'history-feed-item-nocomment' => '$1 uo $2', # user at time
-'history-feed-empty'          => 'Wybrano zajta ńy istńije. Můgua zostać wyćepano abo přećepano pod inkše mjano. Možeš tyž [[{{ns:special}}:Search|šnupać]] za tům zajtům.',
+'history-feed-empty'          => 'Wybrano zajta ńy istńije.
+Můgua zostać wyćepano abo přećepano pod inkše mjano.
+Možeš tyž [[Special:Search|šnupać]] za tům zajtům.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(kůmyntoř wyćepany)',
@@ -672,7 +677,7 @@ Powody wyćepańo idźe znejść we [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nooldid-title'     => 'Ńy wybrano wersyji',
 'revdelete-nooldid-text'      => 'Ńy wybrano wersyji na kerych mo zostać wykůnano ta uoperacyjo.',
 'revdelete-selected'          => '{{PLURAL:$2|Wybrano wersyja|Wybrane wersyje}} zajty [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}} lo '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}}:',
 'revdelete-text'              => 'Wyćepane wersyje bydům dali widočne w historyji zajty, nale jejich treść ńy bydźe publičńy dostympna.
 
 Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aže uoperator serwisu nouožůu dodatkowe uograńičyńo.',
@@ -1195,7 +1200,8 @@ Duůgość [http://www.mediawiki.org/wiki/Manual:Job_queue kolejki zadań] je ''
 
 'disambiguations'      => 'Zajty ujydnoznačńajůnce',
 'disambiguationspage'  => '{{ns:template}}:disambig',
-'disambiguations-text' => "Artikle půńižej uodwouujům śe do '''zajtůw ujydnoznačńajůncych''', a powinny uodwouywać śe bezpośredńo do hasua kere je zwjůnzane ze treśćům artikla. Zajta uznawano je za ujydnoznačńajůnco kej zawiyro šablůn uokreślůny we [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "Artikle půńižej uodwouujům śe do '''zajtůw ujydnoznačńajůncych''', a powinny uodwouywać śe bezpośredńo do hasua kere je zwjůnzane ze treśćům artikla.<br />
+Zajta uznawano je za ujydnoznačńajůnco kej zawiyro šablůn uokreślůny we [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Podwůjne překierowańa',
 'doubleredirectstext' => 'Na tyi liśće mogům znojdować śe překerowańo pozorne. Uoznača to, aže půńižej pjyrwšej lińii artikla, zawjerajůncyj "#REDIRECT ...", može znojdować śe dodotkowy tekst. Koždy wjerš listy zawjero uodwouańo do pjyrwšygo i drůgygo překerowańo a pjyrwšom lińjům tekstu drůgygo překerowańo. Uůmožliwjo to na ogůu uodnaleźyńy wuaśćiwygo artikla, do kerygo powinno śe překerowywać.',
@@ -1313,7 +1319,8 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Uprawńyńo grup užytkowńikůw',
-'listgrouprights-summary'  => 'Půńižy znojdowo śe spis grup užytkowńikůw zdefińowanych na tej wiki, s wyščygůlńyńym přidźelůnych im praw dostympu. Wjyncyj informacyji uo indywidualnych prawach idźe znejść [[{{int:Listgrouprights-helppage}}|sam tukej]].',
+'listgrouprights-summary'  => 'Půńižy znojdowo śe spis grup užytkowńikůw zdefińowanych na tej wiki, s wyščygůlńyńym přidźelůnych im praw dostympu.
+Wjyncyj informacyji uo indywidualnych prawach idźe znejść [[{{MediaWiki:Listgrouprights-helppage}}|sam tukej]].',
 'listgrouprights-group'    => 'Grupa',
 'listgrouprights-rights'   => 'Uprawńyńo',
 'listgrouprights-helppage' => 'Help:Uprawńyńo grup užytkowńikůw',
@@ -1321,7 +1328,7 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 
 # E-mail user
 'mailnologin'     => 'Brak adresu',
-'mailnologintext' => 'Muśyš śe [[Special:Userlogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Specjal:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.',
+'mailnologintext' => 'Muśyš śe [[Special:Userlogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Special:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.',
 'emailuser'       => 'Wyślij e-brif do tygo užytkowńika',
 'emailpage'       => 'Wyślij e-brif do užytkowńika',
 'emailpagetext'   => 'Půńižšy formulař pozwala na wysuańy jydnej wjadůmośći do užytkowńika pod warůnkym, aže wpisou uůn poprawny adres e-brif w swojich preferyncyjoch. Adres e-brif, kery zostou bez Ćebje wprowadzůny w Twoich preferyncyjoch ukaže śe w polu „Uod”, bez tůž uodbjorca bydźe můg Ci uodpowjydźeć.',
@@ -1348,11 +1355,8 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 'watchnologin'         => 'Ńy jest žeś zalůgowany',
 'watchnologintext'     => 'Muśyš śe [[Special:Userlogin|zalůgować]] coby modyfikować lista zajtůw, na kere dowoš pozůr.',
 'addedwatch'           => 'Dodane do pozorlisty',
-'addedwatchtext'       => 'Zajta "[[:$1|$1]]" zostoua dodano do Twojyj [[{{ns:special}}:Watchlist|listy artikli, na kere dowoš pozůr]].
-Na tyi liśće bydzieš miou rejer přišuych sprawjyń tyi zajty i jei zajty godki, a mjano zajty bydziesz miou škryflane \'\'\'tůustym\'\'\' na [[{{ns:special}}:Recentchanges|liśće pomjyńanych na ůostatku]],
-cobyś miou wygoda w jei pomjyńańa filować. 
-
-Kiejbyś chciou wyćepać ta zajta z Twojiy listy artikli, na kere dowoš pozůr, kliknij na zakuadka "skůńč dować pozůr".',
+'addedwatchtext'       => "Zajta \"[[:\$1]]\" zostoua dodano do Twojyj [[Special:Watchlist|listy artikli, na kere dowoš pozůr]].
+Na tyi liśće bydzieš miou rejer přišuych sprawjyń tyi zajty i jei zajty godki, a mjano zajty bydziesz miou škryflane '''tůustym''' na [[Special:Recentchanges|liśće pomjyńanych na ůostatku]], cobyś miou wygoda w jei pomjyńańa filować.",
 'removedwatch'         => 'Wyćepńjynte s pozorlisty',
 'removedwatchtext'     => 'Artikel "[[:$1]]" zostou wyćepńjynty s pozorlisty.',
 'watch'                => 'Dej pozor',
@@ -1751,7 +1755,7 @@ Wybjer inkše mjano.',
 'revertmove'              => 'cofej',
 'delete_and_move'         => 'Wyćep i przećep',
 'delete_and_move_text'    => '== Přećepańy wymaga wyćepańo inkšyj zajty ==
-Zajta docelowo „[[:$1|$1]]” juž sam jest.
+Zajta docelowo „[[$1]]” juž sam jest.
 Čy chceš jům wyćepać, coby zrobić plac do přećepywanej zajty?',
 'delete_and_move_confirm' => 'Toć, wyćep zajta',
 'delete_and_move_reason'  => 'Wyćepano coby zrobić plac do přećepywanyj zajty',

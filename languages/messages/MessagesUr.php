@@ -357,7 +357,6 @@ $messages = array(
 'minoreditletter'   => 'م',
 'newpageletter'     => 'نیا ..',
 'boteditletter'     => ' خودکار',
-'sectionlink'       => '<font face="Symbol">&amp;#172;</font>',
 
 # Recent changes linked
 'recentchangeslinked' => 'متعلقہ تبدیلیاں',
@@ -504,7 +503,7 @@ $messages = array(
 'allpagesprefix' => 'مطلوبہ سابقہ سے شروع ہونے والے صفحات کی نمائش:',
 
 # Special:Categories
-'categories'         => '{{PLURAL:$1|زمرہ|زمرہ جات}}',
+'categories'         => 'زمرہ',
 'categoriespagetext' => 'مندرجہ ذیل زمرہ جات اس وکی میں موجود ہیں۔',
 
 # E-mail user

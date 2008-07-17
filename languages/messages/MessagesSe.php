@@ -270,7 +270,8 @@ $messages = array(
 'logouttitle'                => 'Olggosčállin',
 'logouttext'                 => 'Leat dál čálligoahtán olggos {{GRAMMAR:elative|{{SITENAME}}}}. Sáhtat joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman, dahje čálligoahtit ođđasit sisa.',
 'welcomecreation'            => '== Bures boahtin, $1! ==
-Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Preferences|{{GRAMMAR:genitive|{{SITENAME}}}} iežat ásahusaid]].',
+Du geavaheaddjidovddaldat lea dál anus.
+Ále vajáldahte rievdadit {{GRAMMAR:genitive|{{SITENAME}}}} iežat ásahusaid.',
 'loginpagetitle'             => 'Sisačállin',
 'yourname'                   => 'Geavaheaddjidovddaldat',
 'yourpassword'               => 'Suollemassátni:',
@@ -456,7 +457,7 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'revisiondelete'          => 'Sihko dahje máhcat veršuvnnaid',
 'revdelete-nooldid-title' => 'Ii veršuvdna',
 'revdelete-selected'      => "{{PLURAL:$2|Válljejuvvon veršuvdna|Válljejuvvon veršuvnnat}} siiddus '''$1:'''",
-'logdelete-selected'      => "{{PLURAL:$2|Válljejuvvon logmearkkastat|Válljejuvvon logmearkkastagat}} siidui '''$1:'''",
+'logdelete-selected'      => '{{PLURAL:$1|Válljejuvvon logmearkkastat|Válljejuvvon logmearkkastagat}}:',
 'revdelete-text'          => 'Sihkojuvvon veršuvnnat oidnojit siiddu siidohistorjjás, muhto daid sisdoallu ii leat álmmolaš.
 
 Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.',
@@ -908,7 +909,8 @@ $1 | $2',
 'historywarning'              => 'Siiddu, man aiggot sihkut, lea rievdaduvvon dávjit go oktii:',
 'confirmdeletetext'           => 'Leat sihkumin siiddu dahje fiilla ja buot dan historjjá. Ádde dagu váikkuhsaid ja sihko {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|geavahaid]] mielde.',
 'actioncomplete'              => 'Doaibma lea dahkkon',
-'deletedtext'                 => "'''[[Special:Undelete/$1|$1]]''' lea sihkojuvvon. Siiddus $2 lea listu maŋimus sihkomiin.",
+'deletedtext'                 => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
+Siiddus $2 lea listu maŋimus sihkomiin.',
 'deletedarticle'              => 'sihkoi siiddu $1',
 'dellogpage'                  => 'Sihkkunlogga',
 'dellogpagetext'              => 'Vuolábealde lea logga maŋimus sihkkumiin.',
@@ -920,7 +922,7 @@ $1 | $2',
 'rollbacklink'                => 'máhcat',
 'rollbackfailed'              => 'Máhccan ii lihkosmuvvan',
 'cantrollback'                => 'Máhcaheapmi ovddit veršuvdnii ii leat vejolaš, daningo maŋimuš čálli lea siiddu aidna dahkki.',
-'alreadyrolled'               => 'Rievdadusat, maid geavaheaddji [[User:$2|$2]] ([[User_talk:$2|ságastallan]]) lea dahkan, siidui $1 ii sáhte sihkkut, daningo geavaheaddji [[User:$3|$3]] ([[User_talk:$3|ságastallan]]) lea dahkan ođđa rievdadusaid.',
+'alreadyrolled'               => 'Rievdadusat, maid geavaheaddji [[User:$2|$2]] ([[User talk:$2|ságastallan]]) lea dahkan, siidui $1 ii sáhte sihkkut, daningo geavaheaddji [[User:$3|$3]] ([[User talk:$3|ságastallan]]) lea dahkan ođđa rievdadusaid.',
 'editcomment'                 => 'Rievdadusa čoahkkáigeassu lei: <i>$1</i>.', # only shown if there is an edit comment
 'revertpage'                  => 'Geavaheaddji [[Special:Contributions/$2|$2]] ([[User_talk:$2|ságastallan]]) rievdadusat sihkkojuvvui ja siidu máhcahuvvui veršuvdnii, man geavaheaddji [[User:$1|$1]] lei dahkan.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Rievdadusat, maid geavaheaddji ”$1” lei dahkan, sihkojuvvui ja artihkal máhcaduvvui veršuvdnii, man geavaheaddji $2 lei dahkan.',
@@ -1175,7 +1177,7 @@ $1 | $2',
 
 # Special:Newimages
 'newimages'             => 'Ođđa govat',
-'imagelisttext'         => 'Vuolábealde lea <strong>$1</strong> fiilla ordnejuvvon <strong>$2</strong>.',
+'imagelisttext'         => "Vuolábealde lea '''$1''' fiilla ordnejuvvon $2.",
 'ilsubmit'              => 'Oza',
 'bydate'                => 'beaivemeari mielde',
 'sp-newimages-showfrom' => 'Čájet ođđa govaid $1 rájes',

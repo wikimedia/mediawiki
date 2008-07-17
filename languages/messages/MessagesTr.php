@@ -12,8 +12,8 @@
  * @author Karduelis
  * @author Erkan Yilmaz
  * @author Runningfridgesrule
- * @author Katpatuka
  * @author Siebrand
+ * @author Katpatuka
  * @author Mach
  * @author לערי ריינהארט
  * @author Mskyrider
@@ -758,7 +758,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 # Search results
 'searchresults'             => 'Arama sonuçları',
 'searchresulttext'          => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
-'searchsubtitle'            => 'Aranan: "[[:$1]]" [[Special:Allpages/$1|&#x5B;Indeks&#x5D;]]',
+'searchsubtitle'            => "Aranan: \"'''[[:\$1]]'''\"",
 'searchsubtitleinvalid'     => 'Aranan: "$1"',
 'noexactmatch'              => "''Başlığı \"\$1\" olan bir madde bulunamadı.''' Bu sayfayı siz [[:\$1|oluşturabilirsiniz]].",
 'noexactmatch-nocreate'     => "'''\"\$1\" başlıklı sayfa bulunmamaktadır.'''",
@@ -854,7 +854,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'userrights-lookup-user'      => 'Kullanıcı gruplarını düzenle',
 'userrights-user-editname'    => 'Kullanıcı adı giriniz:',
 'editusergroup'               => 'Kullanıcı grupları düzenle',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User_talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
 'userrights-editusergroup'    => 'Kullanıcı grupları düzenle',
 'saveusergroups'              => 'Kullanıcı grupları kaydet',
 'userrights-groupsmember'     => 'İçinde olduğu gruplar:',
@@ -1205,7 +1205,7 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'allpagesbadtitle'  => 'Girilen sayfa ismi diller arası bağlantı ya da vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Kategori|Kategoriler}}',
+'categories'                    => 'Kategoriler',
 'categoriespagetext'            => 'Vikide aşağıdaki kategoriler mevcuttur.',
 'special-categories-sort-count' => 'sayılarına göre sırala',
 'special-categories-sort-abc'   => 'alfabetik olarak sırala',

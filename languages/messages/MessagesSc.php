@@ -455,7 +455,7 @@ Tutti i tempi sono in ora del server (UTC).',
 'deletecomment'     => 'Motivazione della cancellazione',
 'rollback'          => 'Usa una revisione precdente',
 'cantrollback'      => "Impossibile tornare ad una versione precedente: l'ultima modifica è stata apportata dall'unico utente che abbia lavorato a questo articolo.",
-'revertpage'        => 'Riportata alla revisione precedente da $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'        => 'Riportata alla revisione precedente da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Undelete
 'undelete'          => 'Recupera una pagina cancellata',
@@ -522,12 +522,14 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 'move-page-legend' => 'Spostamento di pagina',
 'movepagetext'     => "Con il modulo sottostante puoi rinominare una pagina, spostando anche tutta la sua cronologia al nuovo nome.
 Il vecchior titolo diverrà automaticamente un redirect che punta al nuovo titolo.
-I link alla vecchia pagina non saranno aggiornati (e punteranno quindi al redirect); accertati di [[Special:Manutenzioni|controllare con cura]] che non si creino doppi redirects o redirects interrotti.
+I link alla vecchia pagina non saranno aggiornati (e punteranno quindi al redirect);
+accertati di controllare con cura che non si creino doppi redirects o redirects interrotti.
 Resta nella tua responsabilità di accertarti che i link continuino a puntare verso dove devono dirigersi.
 
-Nota bene: la pagina '''non''' sarà spostata se vi fosse già un articolo con il nuovo nome, a meno che non sia una pagina vuota o un redirect e che non abbia cronologia. Questo significa che, se commetti un errore, puoi nuovamente rinominare una pagina col vecchio titolo, ma non puoi sovrascrivere una pagina già esistente.
+Nota bene: la pagina '''non''' sarà spostata se vi fosse già un articolo con il nuovo nome, a meno che non sia una pagina vuota o un redirect e che non abbia cronologia.
+Questo significa che, se commetti un errore, puoi nuovamente rinominare una pagina col vecchio titolo, ma non puoi sovrascrivere una pagina già esistente.
 
-<b>ATTENZIONE!</b>
+'''ATTENZIONE!'''
 Questo cambiamento drastico potrebbe creare inattesi contrattempi, specialmente se si tratta di una pagina molto visitata. Accertati di aver ben valutato le conseguenze dello spostamento, prima di procedere. Nel dubbio, contatta un Amministratore.",
 'movepagetalktext' => "La corrispondente pagina di discussione, se esiste, sarà spostata automaticamente insieme all'articolo, '''tranne che nei seguenti casi:'''
 *Spostamento della pagina fra i namespaces,

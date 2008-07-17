@@ -893,7 +893,7 @@ Dessa parametrar har uteslutits.',
 'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
 'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
 'undo-norev'   => 'Ändringen kan inte avlägsnas eftersom den inte finns eller har raderats.',
-'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskussion]])',
+'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -1496,7 +1496,9 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 
 'disambiguations'      => 'Sidor som länkar till förgreningssidor',
 'disambiguationspage'  => 'Template:Förgrening',
-'disambiguations-text' => "Följande sidor länkar till ''förgreningssidor''. Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<br />En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "Följande sidor länkar till ''förgreningssidor''.
+Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<br />
+En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Dubbla omdirigeringar',
 'doubleredirectstext' => 'Det här är en lista över sidor som omdirigerar till andra omdirigeringssidor. Varje rad innehåller länkar till den första och den andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.',
@@ -2046,7 +2048,7 @@ Försök att sammanfoga dem manuellt.'''",
 'revertmove'              => 'flytta tillbaka',
 'delete_and_move'         => 'Radera och flytta',
 'delete_and_move_text'    => '==Radering krävs==
-Den titel du vill flytta sidan till, "[[:$1|$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
+Den titel du vill flytta sidan till, "[[$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
 'delete_and_move_confirm' => 'Ja, radera sidan',
 'delete_and_move_reason'  => 'Raderad för att flytta hit en annan sida.',
 'selfmove'                => 'Ursprungstitel och destinationstitel är identiska. Sidan kan inte flyttas till sig själv.',
@@ -2057,11 +2059,13 @@ Den titel du vill flytta sidan till, "[[:$1|$1]]", finns redan. Vill du radera d
 
 # Export
 'export'            => 'Exportera sidor',
-'exporttext'        => 'Du kan exportera text och versionshistorik för en eller flera sidor i XML-format. Filen kan sedan importeras till en annan MediaWiki-wiki med hjälp av sidan [[{{ns:special}}:Import|importera]].
+'exporttext'        => 'Du kan exportera text och versionshistorik för en eller flera sidor i XML-format.
+Filen kan sedan importeras till en annan MediaWiki-wiki med hjälp av sidan [[Special:Import|importera]].
 
-Exportera sidor genom att skriva in sidtitlarna i rutan här nedan. Skriv en titel per rad och välj om du du vill exportera alla versioner av texten med sidhistorik, eller om du enbart vill exportera den nuvarande versionen med information om den senaste redigeringen.
+Exportera sidor genom att skriva in sidtitlarna i rutan här nedan.
+Skriv en titel per rad och välj om du du vill exportera alla versioner av texten med sidhistorik, eller om du enbart vill exportera den nuvarande versionen med information om den senaste redigeringen.
 
-I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] för sidan {{Mediawiki:Mainpage}}.',
+I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] för sidan "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Inkludera endast den nuvarande versionen, inte hela historiken',
 'exportnohistory'   => "----
 '''OBS:''' export av fullständig sidhistorik med hjälp av detta formulär har stängts av på grund av prestandaskäl.",
@@ -2626,7 +2630,7 @@ Bekräfta att du verkligen vill återskapa sidan.",
 'recreate'            => 'Återskapa',
 
 # HTML dump
-'redirectingto' => 'Omdirigerar till [[:$1|$1]]...',
+'redirectingto' => 'Omdirigerar till [[$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Rensa denna sidas cache?

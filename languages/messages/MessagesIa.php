@@ -294,7 +294,7 @@ $messages = array(
 'site-atom-feed'          => 'Syndication Atom de $1',
 'page-rss-feed'           => 'Syndication RSS de "$1"',
 'page-atom-feed'          => 'Syndication Atom de "$1"',
-'red-link-title'          => '$1 (non scribite ancora)',
+'red-link-title'          => '$1 (non ancora scribite)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pagina',
@@ -446,7 +446,7 @@ Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
 'prefs-help-realname'        => 'Le nomine real es optional.
 Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',
 'loginerror'                 => 'Error in le apertura del session',
-'prefs-help-email'           => 'Le adresse de e-mail es optional, sed illo permitte que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
+'prefs-help-email'           => 'Le adresse de e-mail es optional, sed permitte que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
 'prefs-help-email-required'  => 'Le adresse de e-mail es requirite.',
 'nocookiesnew'               => "Le conto de usator ha essite create, sed tu non ha aperite un session.
 {{SITENAME}} usa ''cookies'' pro mantener le sessiones del usatores.
@@ -613,7 +613,7 @@ Un tal adresse IP pote esser usate in commun per varie personas.
 Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
 'noarticletext'                    => 'Actualmente il non ha texto in iste pagina. Tu pote [[Special:Search/{{PAGENAME}}|cercar iste titulo]] in le texto de altere paginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
-'clearyourcache'                   => "'''Nota - Post le publication, es possibile que tu debe temporarimente disactivar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Consilio:</strong> Usa le button 'Monstrar previsualisation' pro testar tu nove CSS/JS ante de publicar lo.",
 'usercsspreview'                   => "'''Memora que isto es solmente un previsualisation de tu CSS personalisate, illo non ha ancora essite immagazinate!'''",
 'userjspreview'                    => "'''Memora que isto es solmente un test/previsualisation de tu JavaScript personalisate, illo non ha ancora essite immagazinate!'''",
@@ -1408,10 +1408,7 @@ al qual le prime redirection deberea referer se.',
 'ancientpages'            => 'Paginas le plus ancian',
 'move'                    => 'Renominar',
 'movethispage'            => 'Renominar iste pagina',
-'unusedimagestext'        => '<p>Nota que altere sitos del web
-tal como le {{SITENAME}}s international pote ligar se a un imagine
-con un URL directe, e consequentemente illos pote esser listate
-hic malgrado esser in uso active.',
+'unusedimagestext'        => 'Per favor nota que altere sitos web pote ligar se a un file con un adresse URL directe. Ergo, tal files pote figurar hic malgrado esser in uso active.',
 'unusedcategoriestext'    => 'Le sequente paginas de categoria existe ben que nulle altere pagina o categoria los utilisa.',
 'notargettitle'           => 'Sin scopo',
 'notargettext'            => 'Tu non ha specificate un pagina o usator super le qual
@@ -1470,7 +1467,7 @@ Es possibile que illo contine un o plus characteres que non pote esser usate in 
 'listusers-noresult' => 'Nulle usator trovate.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Derectos de gruppos de usatores',
+'listgrouprights'          => 'Derectos del gruppos de usatores',
 'listgrouprights-summary'  => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.
 Informationes additional super derectos individual se trova a [[{{MediaWiki:Listgrouprights-helppage}}]].',
 'listgrouprights-group'    => 'Gruppo',

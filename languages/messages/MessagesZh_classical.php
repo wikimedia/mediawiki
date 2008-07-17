@@ -1,10 +1,12 @@
 <?php
-/** Old Chinese / Late Middle Chinese (文言)
+/** Classical Chinese (文言)
  *
  * @ingroup Language
  * @file
  *
- * Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
+ * @author Siebrand
+ * @author Itsmine
+ * @comment Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */
 
 $skinNames = array(
@@ -168,12 +170,12 @@ $messages = array(
 'dec'           => '十二月',
 
 # Categories related messages
-'pagecategories'                 => '$1類',
+'pagecategories'                 => '類',
 'category_header'                => '「$1」中之頁',
 'subcategories'                  => '次類',
 'category-media-header'          => '「$1」中之媒',
 'category-empty'                 => "''無頁或媒也。''",
-'hidden-categories'              => '$1隱類',
+'hidden-categories'              => '隱類',
 'hidden-category-category'       => '隱類', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|門有戶壹。|門有戶$1，有$2戶也。}}',
 'category-subcat-count-limited'  => '門有戶$1。',
@@ -409,7 +411,7 @@ $2',
 'logouttext'                 => '<strong>子去簿矣</strong><br />
 子可匿名還覽{{SITENAME}}，或復登同簿、異簿。未清謄本，覽器文舊，且慎之。',
 'welcomecreation'            => '== $1大駕光臨! ==
-子簿增矣，敬更[[Special:Preferences|簿註]]。',
+子簿增矣，敬更簿註。',
 'loginpagetitle'             => '合符節',
 'yourname'                   => '名',
 'yourpassword'               => '符節',
@@ -999,6 +1001,8 @@ $2',
 'fileexists-thumb'           => "<center>'''現存之檔'''</center>",
 'file-exists-duplicate'      => '此檔乃重檔{{PLURAL:$1|一|數}}：',
 'successfulupload'           => '檔案安矣',
+'uploadwarning'              => '慎焉！',
+'savefile'                   => '存之',
 'overwroteimage'             => '新置「[[$1]]」矣',
 'sourcefilename'             => '源名：',
 'destfilename'               => '欲置檔名：',
@@ -1508,7 +1512,7 @@ $NEWPAGE
 'ipbwatchuser'                    => '哨該簿之齋與議',
 'badipaddress'                    => 'IP不格',
 'blockipsuccesssub'               => '禁焉',
-'blockipsuccesstext'              => '[[{{ns:special}}:Contributions/$1|$1]]禁焉。表禁<br />見[[{{ns:special}}:Ipblocklist|此]]。',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]禁焉。表禁<br />見[[Special:Ipblocklist|此]]。',
 'ipb-edit-dropdown'               => '改證',
 'ipb-unblock-addr'                => '赦$1',
 'ipb-unblock'                     => '赦簿、址',
@@ -1622,7 +1626,7 @@ $NEWPAGE
 
 # Export
 'export'            => '出匯',
-'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:special}}:Export/{{MediaWiki:mainpage}}]]匯"[[{{MediaWiki:mainpage}}]]"。',
+'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]匯"[[{{MediaWiki:Mainpage}}]]"。',
 'exportcuronly'     => '獨匯今審',
 'exportnohistory'   => "----
 '''囑記，'''封匯全誌，因累甚也。",

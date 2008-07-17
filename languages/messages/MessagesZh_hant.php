@@ -165,12 +165,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => '$1個分類',
+'pagecategories'                 => '個分類',
 'category_header'                => '類別「$1」中的頁面',
 'subcategories'                  => '附分類',
 'category-media-header'          => '"$1"分類中的媒體',
 'category-empty'                 => "''這個分類中尚未包含任何頁面或媒體。''",
-'hidden-categories'              => '$1個隱藏分類',
+'hidden-categories'              => '個隱藏分類',
 'hidden-category-category'       => '隱藏分類', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
 'category-subcat-count-limited'  => '這個分類下有$1個子分類。',
@@ -1849,7 +1849,7 @@ $1',
 並選擇你是否需要匯出帶有頁面歷史的以前的版本，
 或是只選擇匯出帶有最後一次編輯訊息的當前版本。
 
-此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]匯出"[[{{int:mainpage}}]]"頁面。',
+此外你還可以利用連結匯出檔案，例如你可以使用[[{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
 'exportcuronly'     => '僅包含當前的修訂，而不是全部的歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",

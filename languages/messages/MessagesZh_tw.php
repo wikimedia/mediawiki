@@ -148,12 +148,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                => '$1個分類',
+'pagecategories'                => '個分類',
 'category_header'               => '類別「$1」中的頁面',
 'subcategories'                 => '子分類',
 'category-media-header'         => '"$1"分類中的媒體',
 'category-empty'                => "''這個分類中尚未包含任何頁面或媒體。''",
-'hidden-categories'             => '$1個隱藏分類',
+'hidden-categories'             => '個隱藏分類',
 'hidden-category-category'      => '隱藏分類', # Name of the category where hidden categories will be listed
 'category-subcat-count'         => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
 'category-subcat-count-limited' => '這個分類下有$1個子分類。',
@@ -450,7 +450,7 @@ $2',
 'accountcreated'             => '已建立帳號',
 'accountcreatedtext'         => '$1的帳號已經被建立。',
 'createaccount-title'        => '在{{SITENAME}}中建立新帳號',
-'createaccount-text'         => '有人 ($1) 在{{SITENAME}}中為 $2 建立了一個新帳號($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
+'createaccount-text'         => '有人 在{{SITENAME}}中為 $2 建立了一個新帳號($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
 
 如果該帳號建立錯誤的話，您可以忽略此信息。',
 'loginlanguagelabel'         => '語言: $1',
@@ -669,7 +669,7 @@ $2',
 'revdelete-nooldid-title'     => '沒有目標修訂',
 'revdelete-nooldid-text'      => '您沒有指定此操作的目標修訂。',
 'revdelete-selected'          => "選取'''$1'''的$2次修訂:",
-'logdelete-selected'          => "選取'''$1'''的$2個日誌項目:",
+'logdelete-selected'          => '選取的$1個日誌項目:',
 'revdelete-text'              => '刪除的修訂仍將顯示在修訂記錄中, 但它們的文字內容已不能被公眾訪問。
 
 在此網站的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面復原刪除，除非網站工作者進行了一些附加的限制。',
@@ -884,9 +884,9 @@ $2',
 上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
 
 要在頁面中加入圖片，使用以下形式的連接:
-'''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''，
-'''<nowiki>[[{{ns:image}}:file.png|替換文字]]</nowiki>''' 或
-'''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
+'''<nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki>'''，
+'''<nowiki>[[</nowiki>{{ns:image}}:file.png|替換文字<nowiki>]]</nowiki>''' 或
+'''<nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki>'''。",
 'uploadlog'                   => '上載紀錄',
 'uploadlogpage'               => '上載紀錄',
 'uploadlogpagetext'           => '以下是最近上載的檔案的一覽表。',
@@ -1063,7 +1063,9 @@ Template:消歧义
 Template:消除歧义
 Template:消歧義
 Template:消除歧義',
-'disambiguations-text' => '以下的頁面都有到<b>消歧義頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:disambiguationspage]]。',
+'disambiguations-text' => '以下的頁面都有到<b>消歧義頁</b>的鏈接,
+但它們應該是連到適當的標題。<br />
+個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
 
 'doubleredirects'     => '雙重重定向頁面',
 'doubleredirectstext' => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
@@ -1584,7 +1586,7 @@ $1',
 並選擇你是否需要匯出帶有修訂記錄的以前的版本，
 或是只選擇匯出帶有最後一次編輯訊息的當前版本。
 
-此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]匯出"[[{{int:mainpage}}]]"頁面。',
+此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
 'exportcuronly'     => '僅包含當前的修訂，而不是全部的歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",

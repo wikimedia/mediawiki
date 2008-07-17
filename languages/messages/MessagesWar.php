@@ -241,7 +241,7 @@ $messages = array(
 'allpagessubmit' => 'Kadto-a',
 
 # Special:Categories
-'categories' => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
+'categories' => 'Mga Kategorya',
 
 # Watchlist
 'watchlist'     => 'Akon barantayan',

@@ -526,22 +526,22 @@ U het u wagwoord al gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'hr_tip'          => 'Horisontale streep (selde nodig)',
 
 # Edit pages
-'summary'                   => 'Opsomming',
-'subject'                   => 'Onderwerp/opskrif',
-'minoredit'                 => 'Klein wysiging',
-'watchthis'                 => 'Hou bladsy dop',
-'savearticle'               => 'Stoor bladsy',
-'preview'                   => 'Voorskou',
-'showpreview'               => 'Wys voorskou',
-'showlivepreview'           => 'Lewendige voorskou',
-'showdiff'                  => 'Wys veranderings',
-'anoneditwarning'           => "'''Waarskuwing:''' Aangesien u nie aangeteken is nie, sal u IP-adres in dié blad se wysigingsgeskiedenis gestoor word.",
-'missingsummary'            => "'''Onthou:''' Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer geklik word, word die wysiging sonder opsomming gestoor.",
-'missingcommenttext'        => 'Tik die opsomming onder.',
-'summary-preview'           => 'Opsomming nakijken',
-'subject-preview'           => 'Onderwerp/ opskrif voorskou',
-'blockedtitle'              => 'Gebruiker is geblokkeer',
-'blockedtext'               => "<big>'''U gebruikersnaam of IP-adres is geblokkeer.'''</big>
+'summary'                          => 'Opsomming',
+'subject'                          => 'Onderwerp/opskrif',
+'minoredit'                        => 'Klein wysiging',
+'watchthis'                        => 'Hou bladsy dop',
+'savearticle'                      => 'Stoor bladsy',
+'preview'                          => 'Voorskou',
+'showpreview'                      => 'Wys voorskou',
+'showlivepreview'                  => 'Lewendige voorskou',
+'showdiff'                         => 'Wys veranderings',
+'anoneditwarning'                  => "'''Waarskuwing:''' Aangesien u nie aangeteken is nie, sal u IP-adres in dié blad se wysigingsgeskiedenis gestoor word.",
+'missingsummary'                   => "'''Onthou:''' Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer geklik word, word die wysiging sonder opsomming gestoor.",
+'missingcommenttext'               => 'Tik die opsomming onder.',
+'summary-preview'                  => 'Opsomming nakijken',
+'subject-preview'                  => 'Onderwerp/ opskrif voorskou',
+'blockedtitle'                     => 'Gebruiker is geblokkeer',
+'blockedtext'                      => "<big>'''U gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
 Die blokkering is deur $1 gedoen. Die rede gegee is ''$2''.
 
@@ -551,80 +551,81 @@ Die blokkering is deur $1 gedoen. Die rede gegee is ''$2''.
 
 U mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
 U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in U [[Special:Preferences|rekening voorkeure]] en U is nie geblokkeer om dit te gebruik nie. U huidige IP-adres is $3, en die blokkering ID is #$5. Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
-'blockednoreason'           => 'geen rede gegeef nie',
-'blockedoriginalsource'     => "Die bronteks van '''$1''' word onder gewys:",
-'blockededitsource'         => "Die teks van '''jou wysigings''' aan '''$1''' word hieronder vertoon:",
-'whitelistedittitle'        => 'Inteken benodig om te redigeer',
-'whitelistedittext'         => 'U moet $1 om bladsye te wysig.',
-'whitelistreadtitle'        => 'Inteken benodig om te bekyk',
-'whitelistreadtext'         => 'U moet [[Special:Userlogin|inteken]] om bladsye te lees.',
-'whitelistacctitle'         => "U kan nie 'n rekening te skep nie",
-'whitelistacctext'          => 'Om toegelaat te word om rekeninge te skep op {{SITENAME}} moet u [[Special:Userlogin|aanteken]] en regte hê om dit te mag doen.',
-'confirmedittitle'          => 'E-pos-bevestiging nodig om te redigeer',
-'confirmedittext'           => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
-'nosuchsectiontitle'        => 'Afdeling bestaan nie',
-'nosuchsectiontext'         => "U probeer 'n afdeling wysig wat nie bestaan nie.
+'blockednoreason'                  => 'geen rede gegeef nie',
+'blockedoriginalsource'            => "Die bronteks van '''$1''' word onder gewys:",
+'blockededitsource'                => "Die teks van '''jou wysigings''' aan '''$1''' word hieronder vertoon:",
+'whitelistedittitle'               => 'Inteken benodig om te redigeer',
+'whitelistedittext'                => 'U moet $1 om bladsye te wysig.',
+'whitelistreadtitle'               => 'Inteken benodig om te bekyk',
+'whitelistreadtext'                => 'U moet [[Special:Userlogin|inteken]] om bladsye te lees.',
+'whitelistacctitle'                => "U kan nie 'n rekening te skep nie",
+'whitelistacctext'                 => 'Om toegelaat te word om rekeninge te skep op {{SITENAME}} moet u [[Special:Userlogin|aanteken]] en regte hê om dit te mag doen.',
+'confirmedittitle'                 => 'E-pos-bevestiging nodig om te redigeer',
+'confirmedittext'                  => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
+'nosuchsectiontitle'               => 'Afdeling bestaan nie',
+'nosuchsectiontext'                => "U probeer 'n afdeling wysig wat nie bestaan nie.
 Omdat die afdeling $1 nie bestaan nie, kan u wysigings nie gestoor word nie.",
-'loginreqtitle'             => 'Inteken Benodig',
-'loginreqlink'              => 'teken in',
-'loginreqpagetext'          => 'U moet $1 om ander bladsye te bekyk.',
-'accmailtitle'              => 'Wagwoord gestuur.',
-'accmailtext'               => "Die wagwoord van '$1' is gestuur aan $2.",
-'newarticle'                => '(Nuut)',
-'newarticletext'            => "Die bladsy waarna geskakel is, bestaan nie.
+'loginreqtitle'                    => 'Inteken Benodig',
+'loginreqlink'                     => 'teken in',
+'loginreqpagetext'                 => 'U moet $1 om ander bladsye te bekyk.',
+'accmailtitle'                     => 'Wagwoord gestuur.',
+'accmailtext'                      => "Die wagwoord van '$1' is gestuur aan $2.",
+'newarticle'                       => '(Nuut)',
+'newarticletext'                   => "Die bladsy waarna geskakel is, bestaan nie.
 Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:Helppage}}|hulpbladsy]]
 vir meer inligting.
 Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knop.",
-'anontalkpagetext'          => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
-'noarticletext'             => 'Daar is tans geen inligting vir hierdie artikel nie. Jy kan [[Special:Search/{{PAGENAME}}|soek vir hierdie bladsytitel]] in ander bladsye of [{{fullurl:{{FULLPAGENAME}}|action=edit}} wysig hierdie bladsy].',
-'userpage-userdoesnotexist' => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
-'clearyourcache'            => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
-'usercssjsyoucanpreview'    => '<strong>Wenk:</strong> Gebruik die "Wys voorskou"-knoppie om u nuwe CSS/JS te toets voor u stoor.',
-'usercsspreview'            => "'''Onthou hierdie is slegs 'n voorskou van u gebruiker-CSS, dit is nog nie gestoor nie.'''",
-'userjspreview'             => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
-'updated'                   => '(Gewysig)',
-'note'                      => '<strong>Nota:</strong>',
-'previewnote'               => "<strong>Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!</strong>",
-'previewconflict'           => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien jy die bladsy stoor.',
-'session_fail_preview'      => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
+'anontalkpagetext'                 => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien jy 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen jou gerig is, [[Special:Userlogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
+'noarticletext'                    => 'Daar is tans geen inligting vir hierdie artikel nie. Jy kan [[Special:Search/{{PAGENAME}}|soek vir hierdie bladsytitel]] in ander bladsye of [{{fullurl:{{FULLPAGENAME}}|action=edit}} wysig hierdie bladsy].',
+'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
+'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'usercssjsyoucanpreview'           => '<strong>Wenk:</strong> Gebruik die "Wys voorskou"-knoppie om u nuwe CSS/JS te toets voor u stoor.',
+'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u gebruiker-CSS, dit is nog nie gestoor nie.'''",
+'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
+'updated'                          => '(Gewysig)',
+'note'                             => '<strong>Nota:</strong>',
+'previewnote'                      => "<strong>Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!</strong>",
+'previewconflict'                  => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien jy die bladsy stoor.',
+'session_fail_preview'             => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te teken.</strong>',
-'editing'                   => 'Besig om $1 te wysig',
-'editingsection'            => 'Besig om $1 (onderafdeling) te wysig',
-'editingcomment'            => 'Besig om $1 (kommentaar) te wysig',
-'editconflict'              => 'Wysigingskonflik: $1',
-'explainconflict'           => 'Iemand anders het hierdie bladsy gewysig sedert jy dit begin verander het.
+'editing'                          => 'Besig om $1 te wysig',
+'editingsection'                   => 'Besig om $1 (onderafdeling) te wysig',
+'editingcomment'                   => 'Besig om $1 (kommentaar) te wysig',
+'editconflict'                     => 'Wysigingskonflik: $1',
+'explainconflict'                  => 'Iemand anders het hierdie bladsy gewysig sedert jy dit begin verander het.
 Die boonste invoerboks het die teks wat tans bestaan.
 Jou wysigings word in die onderste invoerboks gewys.
 Jy sal jou wysigings moet saamsmelt met die huidige teks.
 <strong>Slegs</strong> die teks in die boonste invoerboks sal gestoor word wanneer jy "Stoor bladsy" druk.<br />',
-'yourtext'                  => 'Jou teks',
-'storedversion'             => 'Gestoorde weergawe',
-'editingold'                => "<strong>WAARSKUWING: Jy is besig om 'n ouer weergawe van hierdie bladsy te wysig.
+'yourtext'                         => 'Jou teks',
+'storedversion'                    => 'Gestoorde weergawe',
+'editingold'                       => "<strong>WAARSKUWING: Jy is besig om 'n ouer weergawe van hierdie bladsy te wysig.
 As jy dit stoor, sal enige wysigings sedert hierdie een weer uitgewis word.</strong>",
-'yourdiff'                  => 'Wysigings',
-'copyrightwarning'          => 'Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder die $2 (lees $1 vir meer inligting).
+'yourdiff'                         => 'Wysigings',
+'copyrightwarning'                 => 'Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder die $2 (lees $1 vir meer inligting).
 As u nie wil toelaat dat u teks deur ander persone gewysig of versprei word nie, moet dit asseblief nie hier invoer nie.<br />
 Hierdeur beloof u ons dat u die byvoegings self geskryf het, of gekopieer het van publieke domein of soortgelyke vrye bronne.
 <strong>MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!</strong>',
-'longpagewarning'           => 'WAARSKUWING: Hierdie bladsy is $1 kG groot.
+'longpagewarning'                  => 'WAARSKUWING: Hierdie bladsy is $1 kG groot.
 Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat dit nie 32 kG oorskry nie.',
-'readonlywarning'           => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later. </strong>",
-'protectedpagewarning'      => '<strong>WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.</strong>',
-'semiprotectedpagewarning'  => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
-'titleprotectedwarning'     => '<strong>WAARSKUWING:  Die bladsy is gesluit sodat net sekere gebruikers dit kan skep.</strong>',
-'templatesused'             => 'Sjablone in gebruik op hierdie blad:',
-'templatesusedpreview'      => 'Sjablone in hierdie voorskou gebruik:',
-'templatesusedsection'      => 'Sjablone gebruik in hierdie afdeling:',
-'template-protected'        => '(beskermd)',
-'template-semiprotected'    => '(half-beskerm)',
-'hiddencategories'          => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
-'nocreatetitle'             => 'Bladsy skepping beperk',
-'nocreatetext'              => '{{SITENAME}} het die skep van nuwe bladsye beperk.
+'readonlywarning'                  => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later. </strong>",
+'protectedpagewarning'             => '<strong>WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.</strong>',
+'semiprotectedpagewarning'         => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
+'titleprotectedwarning'            => '<strong>WAARSKUWING:  Die bladsy is gesluit sodat net sekere gebruikers dit kan skep.</strong>',
+'templatesused'                    => 'Sjablone in gebruik op hierdie blad:',
+'templatesusedpreview'             => 'Sjablone in hierdie voorskou gebruik:',
+'templatesusedsection'             => 'Sjablone gebruik in hierdie afdeling:',
+'template-protected'               => '(beskermd)',
+'template-semiprotected'           => '(half-beskerm)',
+'hiddencategories'                 => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
+'nocreatetitle'                    => 'Bladsy skepping beperk',
+'nocreatetext'                     => '{{SITENAME}} het die skep van nuwe bladsye beperk.
 U kan slegs bestaande bladsye wysig, of u kan [[Special:Userlogin|aanteken of registreer]].',
-'nocreate-loggedin'         => 'U het nie regte om nuwe blaaie op {{SITENAME}} te skep nie.',
-'permissionserrors'         => 'Toestemmings Foute',
-'permissionserrorstext'     => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
-'recreate-deleted-warn'     => "'''Waarskuwing: U skep 'n bladsy wat vantevore verwyder was.'''
+'nocreate-loggedin'                => 'U het nie regte om nuwe blaaie op {{SITENAME}} te skep nie.',
+'permissionserrors'                => 'Toestemmings Foute',
+'permissionserrorstext'            => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
+'permissionserrorstext-withaction' => 'U het geen regte om $2, vir die volgende {{PLURAL:$1|rede|redes}}:',
+'recreate-deleted-warn'            => "'''Waarskuwing: U skep 'n bladsy wat vantevore verwyder was.'''
 
 U moet besluit of dit wys is om voort te gaan en aan die bladsy te werk. 
 Die verwyderingslogboek vir die blad word hieronder vertoon vir u gerief:",
@@ -1944,7 +1945,7 @@ Soek vir 'n duplikaat",
 'fileduplicatesearch-submit'   => 'Soek',
 'fileduplicatesearch-info'     => '$1 × $2 pixels<br />Lêergrootte: $3<br />MIME-tipe: $4',
 'fileduplicatesearch-result-1' => 'Die lêer "$1" het geen identiese duplikate nie.',
-'fileduplicatesearch-result-n' => 'Die lêer het {{PLURAL:$2|een identiese duplikaat|$2 identiese duplikate}}.',
+'fileduplicatesearch-result-n' => 'Die lêer "$1" het {{PLURAL:$2|een identiese duplikaat|$2 identiese duplikate}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Spesiale bladsye',

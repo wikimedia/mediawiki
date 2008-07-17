@@ -93,14 +93,14 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                => '$1个分类',
+'pagecategories'                => '个分类',
 'category_header'               => '“$1”分类中个页面',
 'subcategories'                 => '亚类',
 'category-media-header'         => '"$1"分类中个媒体',
 'category-empty'                => "''该个分类中尚未包含任何文章或媒体。''",
-'hidden-categories'             => '$1个囥脱分类',
+'hidden-categories'             => '个囥脱分类',
 'hidden-category-category'      => '囥脱分类', # Name of the category where hidden categories will be listed
-'category-subcat-count-limited' => '该个分类中有$1个亚类。',
+'category-subcat-count-limited' => '该个分类中有个亚类。',
 
 'mainpagetext'      => "<big>'''已成功安装MediaWiki！'''</big>",
 'mainpagedocfooter' => '请访问[http://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件的信息！
@@ -144,7 +144,7 @@ $messages = array(
 'editthispage'      => '编辑此页',
 'delete'            => '删除',
 'deletethispage'    => '删除此页',
-'undelete_short'    => '反删除$1项修订',
+'undelete_short'    => '反删除项修订',
 'protect'           => '保护',
 'protect_change'    => '更改保护',
 'protectthispage'   => '保护此页',
@@ -209,7 +209,7 @@ $messages = array(
 'hidetoc'                 => '隐藏',
 'thisisdeleted'           => '查看或者恢复$1？',
 'viewdeleted'             => '望望$1看？',
-'restorelink'             => '$1个被删除个版本',
+'restorelink'             => '个被删除个版本',
 'site-rss-feed'           => '$1的RSS订阅',
 'site-atom-feed'          => '$1的Atom订阅',
 
@@ -622,7 +622,7 @@ $messages = array(
 'rollback_short'  => '恢复',
 'rollbacklink'    => '恢复',
 'rollbackfailed'  => '恢复失败',
-'revertpage'      => '恢复[[Special:Contributions/$2|$2]] ([[User_talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'      => '恢复[[Special:Contributions/$2|$2]] ([[User talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'  => '保护日志',
 'protectcomment'  => '保护理由:',
 'protect-default' => '(默认)',

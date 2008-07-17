@@ -768,7 +768,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 # Search results
 'searchresults'             => 'தேடல் முடிவுகள்',
-'searchresulttext'          => '{{SITENAME}} தளத்தில் தேடுவது தொடர்பான மேலதிகத் தகவல்களுக்கு [[{{Mediawiki:Helppage}}|{{int:help}}]] பக்கத்தைப் பார்க்க.',
+'searchresulttext'          => '{{SITENAME}} தளத்தில் தேடுவது தொடர்பான மேலதிகத் தகவல்களுக்கு [[{{MediaWiki:Helppage}}|{{int:help}}]] பக்கத்தைப் பார்க்க.',
 'searchsubtitle'            => 'நீர் தேடியப் பக்கம் "[[:$1]]"',
 'searchsubtitleinvalid'     => 'நீர் தேடியப் பக்கம் "$1"',
 'noexactmatch'              => "'''\"\$1\" என்றத் தலைப்பில் பக்கமெதுவுமில்லை.''' நீங்கள் [[:\$1|இப்பக்கத்தை உருவாக்கலாம்]].",
@@ -1278,7 +1278,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'allpages-bad-ns'   => '{{SITENAME}} தளத்தில் "$1" பெயர்வெளி கிடையாது.',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|பகுப்பு|பகுப்புகள்}}',
+'categories'                    => 'பகுப்புகள்',
 'categoriespagetext'            => 'பின்வரும் பகுப்புகள் பக்கங்களையோ அலது ஊடகங்களையோ கொண்டுள்ளன.',
 'special-categories-sort-count' => 'எண்ணிக்கையின் படி ஒழுங்குப் படுத்துக',
 'special-categories-sort-abc'   => 'அகரவரிசைப்படி ஒழுங்குப் படுத்துக',

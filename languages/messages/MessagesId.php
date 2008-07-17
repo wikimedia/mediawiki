@@ -854,7 +854,7 @@ Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special
 'permissionserrors'                => 'Kesalahan Hak Akses',
 'permissionserrorstext'            => 'Anda tak memiliki hak untuk melakukan hal itu karena {{PLURAL:$1|alasan|alasan-alasan}} berikut:',
 'permissionserrorstext-withaction' => 'Anda tidak memiliki hak untuk $2, karena {{PLURAL:$1|alasan|alasan}} berikut:',
-'recreate-deleted-warn'            => "'''Peringatan: Anda membuat ulang suatu halaman yang sudah pernah dihapus.''',
+'recreate-deleted-warn'            => "'''Peringatan: Anda membuat ulang suatu halaman yang sudah pernah dihapus.'''
 
 Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dari halaman ini:",
@@ -1738,7 +1738,7 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]).',
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
 'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
-'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun ).',
+'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun)',
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
 'restriction-type'            => 'Perlindungan:',
 'restriction-level'           => 'Tingkatan:',

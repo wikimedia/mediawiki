@@ -6,8 +6,8 @@
  *
  * @author Kandar
  * @author Irwangatot
- * @author Mssetiadi
  * @author Siebrand
+ * @author Mssetiadi
  * @author לערי ריינהארט
  * @author Meursault2004
  * @author SPQRobin
@@ -534,7 +534,8 @@ ID peungpeukan anjeun $5. Mangga sebatkeun éta ID dina pamundut-pamundut anjeun
 'whitelistacctitle'                => 'Anjeun teu diwenangkeun nyieun rekening',
 'whitelistacctext'                 => 'Sangkan diwenangkeun nyieun rekening na wiki ieu, anjeun kudu asup [[Special:Userlogin|log]] sarta boga kawenangan nu cukup.',
 'confirmedittitle'                 => 'Konfirmasi surélék diperlukeun pikeun ngédit.',
-'confirmedittext'                  => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun. Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[{{ns:special}}:Preferences|préferénsi pamaké]].',
+'confirmedittext'                  => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun.
+Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences|préferénsi pamaké]].',
 'nosuchsectiontitle'               => 'Subbab éta teu aya',
 'nosuchsectiontext'                => 'Anjeun geus nyoba ngarobah bab $1 nu sabenerna euweuh, ku kituna robahan anjeun teu bisa disimpen.',
 'loginreqtitle'                    => 'Kudu asup log',
@@ -600,7 +601,8 @@ Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti doma
 'hiddencategories'                 => 'Ieu kaca kaasup {{PLURAL:$1|1 kategori nyumput|$1 kategori nyumput}}:',
 'edittools'                        => '<!-- Téks di dieu bakal némbongan di handapeun formulir édit jeung muat.-->',
 'nocreatetitle'                    => 'Nyieun kaca kakara diwatesan',
-'nocreatetext'                     => '{{SITENAME}} nutup kabisa nyieun kaca anyar. Mangga édit artikel nu geus aya, atawa [[{{ns:special}}:Userlogin|asup log/daptar heula]].',
+'nocreatetext'                     => '{{SITENAME}} nutup kabisa nyieun kaca anyar.
+Mangga édit artikel nu geus aya, atawa [[Special:Userlogin|asup log/daptar heula]].',
 'nocreate-loggedin'                => 'Anjeun teu ngabogaan hak aksés pikeun nyieun kaca anyar di {{SITENAME}}.',
 'permissionserrors'                => 'Kasalahan Hak Aksés',
 'permissionserrorstext'            => 'Anjeung teu boga kawenangan pikeun peta kitu, kalawan {{PLURAL:$1|alesan|alesan}} di handap ieu:',
@@ -662,7 +664,9 @@ Katerangan: (kiw) = bédana jeung vérsi kiwari,
 'history-feed-title'          => 'Sajarah révisi',
 'history-feed-description'    => 'Sajarah révisi kaca ieu di wiki',
 'history-feed-item-nocomment' => '$1 dina $2', # user at time
-'history-feed-empty'          => 'Kaca nu dipundut teu kapanggih. Bisa jadi geus dihapus ti wiki atawa diganti ngaranna. Cobaan [[{{ns:special}}:Sungsi|sungsi di wiki]] pikeun kaca-kaca nu sarimbag.',
+'history-feed-empty'          => 'Kaca nu dipundut teu kapanggih.
+Bisa jadi geus dihapus ti wiki atawa diganti ngaranna.
+Cobaan [[Special:Search|sungsi di wiki]] pikeun kaca-kaca nu sarimbag.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(koméntar dihapus)',
@@ -977,7 +981,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'uploadnologintext'           => 'Anjeun kudu [[Special:Userlogin|asup log]] pikeun ngamuat koropak.',
 'upload_directory_read_only'  => 'Diréktori muatan ($1) teu bisa ditulis ku server ramat.',
 'uploaderror'                 => 'Kasalahan muat',
-'uploadtext'                  => "<strong>HEUP!</strong> Méméh anjeun ngamuat di dieu, pastikeun yén anjeun geus maca sarta tumut ka [[{{MediaWiki:Policy-url}}|kawijakan maké gambar]].
+'uploadtext'                  => "<strong>HEUP!</strong> Méméh anjeun ngamuat di dieu, pastikeun yén anjeun geus maca sarta tumut ka kawijakan maké gambar.
 
 Mun geus aya koropak na wiki nu ngaranna sarua jeung nu disebutkeun ku anjeun, koropak nu geus lila bakal diganti otomatis. Mangka, iwal ti pikeun ngaropéa hiji koropak, tangtu leuwih hadé mun anjeun mariksa heula bisi koropak nu sarupa geus aya.
 
@@ -1156,7 +1160,9 @@ Jumlah-jamléh geus aya '''\$3''' {{PLURAL:\$3|kaca}} ulasan sarta '''\$4''' {{P
 
 'disambiguations'      => 'Kaca disambiguasi',
 'disambiguationspage'  => 'Project:Tumbu_ka_kaca_disambiguasi',
-'disambiguations-text' => "Kaca-kaca ieu ngabogaan tumbu ka hiji ''kaca disambiguasi''. Kaca eta sakuduna numbu ka topik-topik anu luyu.<br />Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun citakan anu nyambung ka [[Mediawiki:disambiguationspage]].",
+'disambiguations-text' => "Kaca-kaca ieu ngabogaan tumbu ka hiji ''kaca disambiguasi''.
+Kaca eta sakuduna numbu ka topik-topik anu luyu.<br />
+Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun citakan anu nyambung ka [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Alihan ganda',
 'doubleredirectstext' => 'Unggal baris ngandung tumbu ka pangalihan kahiji jeung kadua, kitu ogé téks dina baris kahiji pangalihan kadua, nu biasana méré kaca tujuan nu bener, nu sakuduna ditujul dina pangalihan kahiji.',
@@ -1272,7 +1278,8 @@ Jumlah-jamléh geus aya '''\$3''' {{PLURAL:\$3|kaca}} ulasan sarta '''\$4''' {{P
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Hak-hak grup pamaké',
-'listgrouprights-summary'  => 'Ieu mangrupa daptar jumplukan pamaké anu aya di wiki ieu, kalawan daptar hak aksés maranéhanana. Informasi leuwih luyu ngeunaan hak pamaké bisa ditingali di [[{{Mediawiki:Listgrouprights-helppage}}]].',
+'listgrouprights-summary'  => 'Ieu mangrupa daptar jumplukan pamaké anu aya di wiki ieu, kalawan daptar hak aksés maranéhanana.
+Informasi leuwih luyu ngeunaan hak pamaké bisa ditingali di [[{{MediaWiki:Listgrouprights-helppage}}]].',
 'listgrouprights-group'    => 'Jumplukan',
 'listgrouprights-rights'   => 'Hak',
 'listgrouprights-helppage' => 'Help:Hak Jumplukan',
@@ -1461,7 +1468,9 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'undeletepagetext'             => 'Kaca di handap ieu geus dihapus tapi masih kénéh aya na arsip sarta bisa disimpen deui. Arsip aya kalana dibersihan.',
 'undeleterevisions'            => '$1 {{PLURAL:$1|révisi|révisi}} diarsipkeun',
 'undeletehistory'              => 'Mun anjeun nyimpen deui kacana, sadaya révisi bakal disimpen deui dina jujutan. Mun aya kaca anyar nu ngaranna sarua dijieun deui satutasna dihapus, révisi nu disimpen tadi bakal némbongan salaku jujutan nu ti heula, sarta révisi kiwari kaca nu hirup moal otomatis kaganti.',
-'undeletehistorynoadmin'       => 'Artikel ieu geus dihapus. Alesanana bisa dibaca dina katrangan di handap, katut saha waé nu geus ngédit ieu artikel saméméh dihapus. Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku [[{{MediaWiki:Grouppage-sysop}}|kuncén]].',
+'undeletehistorynoadmin'       => 'Artikel ieu geus dihapus.
+Alesanana bisa dibaca dina katrangan di handap, katut saha waé nu geus ngédit ieu artikel saméméh dihapus.
+Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku kuncén.',
 'undelete-revision'            => 'Révisi nu dihapus ti $1 (nepi ka $2) ku $3:',
 'undelete-nodiff'              => 'Euweuh revisi nu lewih lila',
 'undeletebtn'                  => 'Simpen deui!',
@@ -1474,7 +1483,7 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'cannotundelete'               => 'Gagal ngabolaykeun hapusan; sigana kapiheulaan ngabolaykeun hapusan ku nu séjén.',
 'undeletedpage'                => "<big>'''$1 hasil dibalikeun'''</big>
 
-Tempo [[{{ns:special}}:Log/delete|log hapusan]] keur data ngahapus jeung malikeun.",
+Tempo [[Special:Log/delete|log hapusan]] keur data ngahapus jeung malikeun.",
 'undelete-header'              => 'Tempo [[Special:Log/delete|log hapusan]] pikeun béréndélan kaca nu anyar dihapus.',
 'undelete-search-box'          => 'Téang kaca nu dihapus',
 'undelete-search-prefix'       => 'Témbongkeun kaca dimimitian ku',
@@ -1623,14 +1632,14 @@ $1',
 'move-page-legend'        => 'Pindahkeun kaca',
 'movepagetext'            => "Migunakeun formulir di handap bakal ngaganti ngaran hiji kaca, mindahkeun sadaya jujutanana ka ngaran anyar.
 Judul nu heubeul bakal jadi kaca alihan ka judul nu anyar.
-Tumbu ka judul kaca nu heubeul mola robah; pastikeun yén anjeun [[Special:Maintenance|marios]] alihan ganda atawa alihan nu buntu.
+Tumbu ka judul kaca nu heubeul mola robah; pastikeun yén anjeun marios alihan ganda atawa alihan nu buntu.
 Anjeun tanggel waler pikeun mastikeun yén tumbu-tumbu tetep nujul ka tempat nu sakuduna dituju.
 
 Catet yén kacana '''moal''' pindah mun geus aya kaca na judul nu anyar, iwal mun kosong atawa mangrupa alihan sarta teu mibanda jujutan éditan heubeul. Ieu ngandung harti yén anjeun bisa ngaganti ngaran hiji kaca balik deui ka nu cikénéh diganti ngaranna mun anjeun nyieun kasalahan, sarta anjeun teu bisa  nimpah kaca nu geus aya.
 
-<b>AWAS!</b> This can be a drastic and unexpected change for a popular page;
-please be sure you understand the consequences of this before
-proceeding.",
+'''AWAS!'''
+This can be a drastic and unexpected change for a popular page;
+please be sure you understand the consequences of this before proceeding.",
 'movepagetalktext'        => "Kaca obrolan nu patali, mun aya, bakal sacara otomatis kapindahkeun, '''iwal:'''
 *Anjeun mindahkeun kacana meuntas spasingaran nu béda,
 *Kaca obrolan dina ngaran nu anyar geus aya eusian, atawa
