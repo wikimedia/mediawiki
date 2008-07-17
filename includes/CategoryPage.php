@@ -507,7 +507,7 @@ class CategoryViewer {
 			return wfMsgExt("category-$type-count-limited", 'parse',
 				$wgLang->formatNum( $rescnt ) );
 		}
-		return wfMsgExt( "category-$type-count", 'parse', $rescnt,
+		return wfMsgExt( "category-$type-count", 'parse', $wgLang->formatNum( $rescnt ),
 			$wgLang->formatNum( $totalcnt ) );
 	}
 }
