@@ -657,7 +657,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'allpagesprefix' => 'এই উপশব্দৰে আৰম্ভ হোৱা পৃষ্ঠা দেখুৱাওক:',
 
 # Special:Categories
-'categories' => '{{PLURAL:$1|শ্রেণী|শ্রেণী}}',
+'categories' => 'শ্রেণী',
 
 # E-mail user
 'emailuser' => 'এই সদস্যজনলৈ ই-মেইল পথাওক',

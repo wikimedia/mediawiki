@@ -659,7 +659,8 @@ Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:Ipblocklis
 'confirmedittext'                  => 'Do muss Ding E-Mail Adress ald bestätich han, ih dat De hee Sigge ändere darfs.
 Drag Ding E-Mail Adress en Ding [[Special:Preferences|ming Enstellunge]] en, un dun „Dun Ding E-Mail Adress bestätije looße“ klicke.',
 'nosuchsectiontitle'               => "Dä Afschnitt ham'mer nit",
-'nosuchsectiontext'                => 'Do häß versooch, ene Avschnet ze ändere, dä mer janit han. Esu lang wie et dä nit jit, hätte mer keine Plaz, wo hen met Dingem Täx.',
+'nosuchsectiontext'                => 'Do häß versooch, ene Avschnet ze ändere, dä mer janit han.
+Esu lang wie et dä nit jit, hätte mer keine Plaz, wo hen met Dingem Täx.',
 'loginreqtitle'                    => 'Enlogge es nüdich',
 'loginreqlink'                     => 'enjelogg sin',
 'loginreqpagetext'                 => 'Do mööts eets ens $1, öm ander Sigge aanzeluure.',
@@ -787,6 +788,10 @@ Dun se bei Dir om Rechner fasshalde un versök et späder noch ens.',
 'permissionserrorstext'            => 'Do häs nit dat Rääch, dat ze maache, {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}',
 'permissionserrorstext-withaction' => 'Do häs nit dat Rääch för dä Opdraach „<code>action=$2</code>“,
 {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}',
+'recreate-deleted-warn'            => "'''Opjepaß:''' Do bes om bäste Wääsh, en Sigg neu aanzelääje, di doför ald ens fottjeschmeße woode wohr.
+Bes förseschtesch un övverlääsch Der, of dat en joode Idee es, di Sigg widder opzemaache.
+Domet De Bescheid weiß, hee dä Endraach em Logbooch vum Sigge-Fottschmieße mem Jrond,
+woröm di Sigg dohmohls fottjeschmesse woode es:",
 
 # "Undo" feature
 'undo-success' => 'De Änderung könnte mer zeröck nämme. Beloor Der de Ungerscheed un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenung esu.',
@@ -1251,6 +1256,7 @@ De Einzelheite: $1',
 'filehist-deleteall'        => 'All Versione fottschmieße',
 'filehist-deleteone'        => 'Schmieß die Version fott',
 'filehist-revert'           => 'Zeröck nemme',
+'filehist-current'          => 'Von jetz',
 'filehist-datetime'         => 'Version vom',
 'filehist-user'             => 'Metmaacher',
 'filehist-dimensions'       => 'Pixelle Breed×Hühte (Dateiömfang)',
@@ -1259,7 +1265,7 @@ De Einzelheite: $1',
 'imagelinks'                => 'Jebruch en',
 'linkstoimage'              => 'Hee {{PLURAL:$1|kütt di Sigg|kumme de Sigge|sin keij Sigge}}, die op die Datei linke dun:',
 'nolinkstoimage'            => 'Nix link op hee die Datei.',
-'duplicatesoffile'          => 'De Datei{{PLURAL:$1||e|e}} hee noh {{PLURAL:$1|is&x20;|s}}en dubbelte fon he dä Datei, un {{PLURAL:$1|hät|han|}} dersellve Enhalldt:',
+'duplicatesoffile'          => 'De Datei{{PLURAL:$1||e|e}} hee noh {{PLURAL:$1|is en|sen}} dubbelte fon he dä Datei, un {{PLURAL:$1|hät|han|}} dersellve Enhalldt:',
 'sharedupload'              => 'De Datei es esu parat jelaht, dat se en diverse, ungerscheedlije Projekte jebruch wääde kann.',
 'shareduploadwiki'          => 'Mieh Informatione fings De hee: $1.',
 'shareduploadwiki-linktext' => 'Hee es en Datei beschrevve',
@@ -1616,6 +1622,8 @@ De Neuste letzte Änderung es jetz vun däm Metmaacher „[[User:$3|$3]]“ ([[U
 'protectexpiry'               => 'Duur, wi lang:',
 'protect-unchain'             => 'Et Schötze jäje Ömnenne extra enstelle looße',
 'protect-text'                => 'Hee kanns De dä Schotz jäje Veränderunge för de Sigg „<strong><nowiki>$1</nowiki></strong>“ aanluure un ändere.',
+'protect-locked-access'       => 'Do häs nit dat Rääsch, hee em Wiki Sigge ze schötze udder dä Schotz widder opzehevve.
+Di Sigg <strong>„$1“:</strong> es jetz jrad:',
 'protect-default'             => '-(Standaad)-',
 'protect-level-autoconfirmed' => 'nor Metmaacher dranlooße, die sich aanjemeldt han',
 'protect-level-sysop'         => 'Nor de Wiki Köbese dranlooße',
@@ -2032,6 +2040,7 @@ All de Trans Wiki Emporte wääde em [[Special:Log/import|Emport_Logboch]] fassj
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|eij Sigg|$3 Sigge|keij Sigge}}',
 'file-info-size'       => '({{PLURAL:$1|Ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle}} huh, de Datei hät $3, dä MIME-Typ es: <code>$4</code>)',
 'file-nohires'         => '<small>Mer han kein hüütere Oplösung vun däm Beld.</small>',
+'svg-long-desc'        => '(SVG-Datei, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle}} breed × {{PLURAL:$1|ei Pixel|$1 Pixelle}} huh, dä Dateiömfang es $3)',
 'show-big-image'       => 'Jröößer Oplöösung',
 'show-big-image-thumb' => '<small>Di Vör-Aansich es $1 × $2 Pixelle jroß</small>',
 

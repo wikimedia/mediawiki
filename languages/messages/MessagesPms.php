@@ -696,7 +696,7 @@ a peul esse che a sio restajne chèich marca ant ël [{{fullurl:Special:Log/dele
 'revdelete-nooldid-title'     => 'Version nen specificà',
 'revdelete-nooldid-text'      => "A l'ha pa visasse dë dì ansima a che version dla pàgina che a venta fé sossì.",
 'revdelete-selected'          => '{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Event|Event}} dël registr selessionà për '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Event|Event}} dël registr selessionà:',
 'revdelete-text'              => "Le version scancelà a së s-ciaireran sempe ant la stòria dla pàgina,
 ma sò test al pùblich a-j andran pì nen.
 

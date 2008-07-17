@@ -834,7 +834,7 @@ Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nooldid-title'     => 'Tiada semakan sasaran',
 'revdelete-nooldid-text'      => 'Anda tidak menyatakan semakan sasaran.',
 'revdelete-selected'          => "{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:",
-'logdelete-selected'          => "{{PLURAL:$2|Peristiwa|Peristiwa-peristiwa}} log yang dipilih bagi '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:',
 'revdelete-text'              => 'Semakan dan peristiwa yang dihapuskan masih muncul dalam sejarah laman dan log,
 akan tetapi kandungannya tidak boleh dilihat oleh orang awam.
 

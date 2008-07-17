@@ -699,7 +699,7 @@ Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{f
 'revdelete-nooldid-title'     => 'Uunjäildige Siel-Beoarbaidenge',
 'revdelete-nooldid-text'      => 'Du hääst neen Version ounroat, wierap disse Aktion uutfierd wäide schäl, ju wäälde Version is nit deer of du fersäkst, ju aktuelle Version wächtouhoaljen.',
 'revdelete-selected'          => '{{PLURAL:$2|Uutwäälde Version|Uutwäälde Versione}} fon [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$2|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}}:',
+'logdelete-selected'          => '{{PLURAL:$1|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}}:',
 'revdelete-text'              => 'Die Inhoold of uur Bestanddeele fon läskede Versione sunt nit moor eepentelk ientousjoon, man ärschiene wieders as Iendraage in ju Versionsgeschichte.
 
 Uur Administratore ap {{SITENAME}} konnen dän wächhoalde Inhoold of uur wächhoalde Bestanddeele wieders ienkiekje un wier häärstaale, of dät moaste weese, dät fäästlaid wuude, dät do Tougongsbeschränkengen uk foar Administratore jäilde.',

@@ -1,8 +1,9 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
+ *
  */
 
 $skinNames = array(
@@ -238,12 +239,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => '屬於$1類',
+'pagecategories'                 => '屬於類',
 'category_header'                => '"$1" 類中嘅版',
 'subcategories'                  => '分類',
 'category-media-header'          => ' "$1" 類嘅媒體',
 'category-empty'                 => "''呢類無任何版或媒體檔。''",
-'hidden-categories'              => '屬於$1隱類',
+'hidden-categories'              => '屬於隱類',
 'hidden-category-category'       => '隱藏類', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|呢類淨係有下面嘅細類。|呢類有下面嘅$1個細類，總共有$2類。}}',
 'category-subcat-count-limited'  => '呢個類別入邊有$1個細類別。',
@@ -1775,8 +1776,8 @@ $1',
 'ipbwatchuser'                    => '監視呢位用戶嘅用戶頁同埋佢嘅討論頁',
 'badipaddress'                    => '無效嘅IP地址',
 'blockipsuccesssub'               => '封鎖成功',
-'blockipsuccesstext'              => '[[{{ns:special}}:Contributions/$1|$1]]已經封鎖。<br />
-去[[{{ns:special}}:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經封鎖。<br />
+去[[Special:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
 'ipb-edit-dropdown'               => '改封鎖原因',
 'ipb-unblock-addr'                => '解封$1',
 'ipb-unblock'                     => '解封一個用戶名或IP地址',

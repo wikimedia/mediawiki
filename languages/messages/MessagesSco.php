@@ -386,7 +386,8 @@ Yer accoont haes been creatit. Mynd an chynge yer {{SITENAME}} preferences.',
 'nouserspecified'            => 'Ye hae tae merk up a uisername.',
 'wrongpassword'              => 'The password ye entered is wrang. Please gie it anither shot.',
 'wrongpasswordempty'         => 'The password ye entered is blank. Please gie it anither shot.',
-'passwordtooshort'           => 'Yer password is ower short. It maun hae at laest $1 characters.',
+'passwordtooshort'           => 'Yer password is ower short.
+It maun hae at laest $1 characters.',
 'mailmypassword'             => 'E-mail passwaird',
 'passwordremindertitle'      => 'Password reminder frae {{SITENAME}}',
 'passwordremindertext'       => 'Somebodie (maist likely you, frae IP address $1)
@@ -723,7 +724,14 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'uploadnologin'               => 'Nae loggit in',
 'uploadnologintext'           => 'Ye maun be [[Special:Userlogin|loggit in]] til uplaid files.',
 'uploaderror'                 => 'Uplaid error',
-'uploadtext'                  => "Uise the form ablo tae uplaid new files; tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imagelist|leet o uplaidit files]]; uplaids an deletions is recordit in the [[Special:Log|project log]]. Ye maun forbye tick the kist affirmin that ye arna brakkin onie copyrichts bi uplaidin the file. Dab the \"Uplaid\" button tae feinish the uplaid. Tae pit the eimage intae a page, uise an airtin i the form '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>''', '''<nowiki>[[{{ns:image}}:file.png|alt text]]</nowiki>''' or '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>''' for pyntin strecht tae the file",
+'uploadtext'                  => "Uise the form ablo tae uplaid new files;
+tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imagelist|leet o uplaidit files]];
+uplaids an deletions is recordit in the [[Special:Log|project log]].
+
+Tae pit the eimage intae a page, uise an airtin i the form
+'''<nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}:file.png|alt text<nowiki>]]</nowiki>''' or
+'''<nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki>''' for pyntin strecht tae the file",
 'uploadlog'                   => 'uplaid log',
 'uploadlogpage'               => 'Uplaid log',
 'uploadlogpagetext'           => 'Ablo is a leet o the maist recent file uplaids.',
@@ -754,7 +762,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 
 # Image description page
 'imagelinks'     => 'Eimage airtins',
-'linkstoimage'   => 'The follaein pages airts tae this image:',
+'linkstoimage'   => 'The follaein $1 pages airts tae this image:',
 'nolinkstoimage' => "The'r nae pages airts tae this eimage.",
 'noimage'        => 'Nae file wi this name exists, ye can [$1 uplaid it]',
 
@@ -987,7 +995,18 @@ tae an afore-blockit IP address or uisername.',
 
 # Move page
 'move-page-legend'        => 'Flit page',
-'movepagetext'            => "Uisin the form ablo will rename a page, flittin aa its history tae the new name. The auld teitle will become a reguidal page tae the new teitle. Airtins tae the auld page teitle willna be chynged; be siccar tae [[Special:Maintenance|check]] for dooble or brucken reguidals. You ar responsible for makkin siccar that airtins continues tae pynt whaur thay ar supposed tae gang. Mynd that the page '''willna''' be flittit gin the'r aareadies a page at the new teitle, unless it is tuim or a reguidal and haes nae past edit history. This means that ye can rename a page back tae whaur it wis juist renamed frae gin ye mak a mistak, an ye canna owerwrite an existin page. <b>WARNIN!</b> This can be a drastic and unexpectit chynge for a popular page; please be siccar ye unnerstaun the consequences o this afore proceedin.",
+'movepagetext'            => "Uisin the form ablo will rename a page, flittin aa its history tae the new name.
+The auld teitle will become a reguidal page tae the new teitle.
+Airtins tae the auld page teitle willna be chynged;
+be siccar tae check for dooble or brucken reguidals.
+You ar responsible for makkin siccar that airtins continues tae pynt whaur thay ar supposed tae gang.
+
+Mynd that the page '''willna''' be flittit gin the'r aareadies a page at the new teitle, unless it is tuim or a reguidal and haes nae past edit history.
+This means that ye can rename a page back tae whaur it wis juist renamed frae gin ye mak a mistak, an ye canna owerwrite an existin page
+
+'''WARNIN!'''
+This can be a drastic and unexpectit chynge for a popular page;
+please be siccar ye unnerstaun the consequences o this afore proceedin.",
 'movepagetalktext'        => "The associate Collogue page, gin onie, will be autaematically flittit alang wi it '''unless:''' *Ye'r flittin the page across namespaces, *A collogue page that isna tuim aareadies exists unner the new name, or *Ye tak the tick oot o the box ablo. In thae cases, ye maun flit or merge the page manually later gin ye hae saicont thochts.",
 'movearticle'             => 'Flit page:',
 'movenologin'             => 'No loggit in',

@@ -7,8 +7,8 @@
  * @author Dori
  * @author Cradel
  * @author Ergon
- * @author לערי ריינהארט
  * @author Siebrand
+ * @author לערי ריינהארט
  * @author SPQRobin
  * @author Jon Harald Søby
  */
@@ -342,8 +342,10 @@ njihet nga wiki software',
 # General errors
 'error'                => 'Gabim',
 'databaseerror'        => 'Gabim regjistri',
-'dberrortext'          => 'Ka ndodhur një gabim me pyetjen e regjistrit. Kjo mund të ndodhi n.q.s. pyetja nuk është e vlehshme (shikoni $5),
-ose mund të jetë një yçkël e softuerit. Pyetja e fundit që i keni bërë regjistrit ishte:
+'dberrortext'          => 'Ka ndodhur një gabim me pyetjen e regjistrit.
+Kjo mund të ndodhi n.q.s. pyetja nuk është e vlehshme,
+ose mund të jetë një yçkël e softuerit.
+Pyetja e fundit që i keni bërë regjistrit ishte:
 <blockquote><tt>$1</tt></blockquote>
 nga funksioni "<tt>$2</tt>".
 MySQL kthehu gabimin "<tt>$3: $4</tt>".',
@@ -402,7 +404,8 @@ $2',
 'namespaceprotected'   => "Nuk ju lejohet redaktimi i faqeve të hapësirës '''$1'''.",
 'customcssjsprotected' => 'Nuk keni leje ta ndryshoni këtë faqe sepse përmban informata personale të një përdoruesi tjetër',
 'ns-specialprotected'  => "Faqet speciale s'mund të redaktohen.",
-'titleprotected'       => "Ky titull është mbrojtur nga [[Përdoruesi:$1|$1]] dhe s'mund të krijohet një faqe nën të. Arsyeja e dhënë është ''$2''.",
+'titleprotected'       => "Ky titull është mbrojtur nga [[User:$1|$1]] dhe s'mund të krijohet një faqe nën të.
+Arsyeja e dhënë është ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Përdoruesi doli',
@@ -584,7 +587,9 @@ Përderisa nuk ka seksion $1 nuk ka vend për të ruajtur ndryshimet tuaja.",
 'accmailtext'                      => "Fjalëkalimi për '$1' u dërgua tek $2.",
 'newarticle'                       => '(I Ri)',
 'newarticletext'                   => "{{SITENAME}} nuk ka akoma një ''{{NAMESPACE}} faqe'' të quajtur '''{{PAGENAME}}'''. Shtypni '''redaktoni''' më sipër ose [[Special:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]]",
-'anontalkpagetext'                 => "---- ''Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka hapur akoma një llogari ose nuk e përdor atë. Prandaj, më duhet të përdor numrin e adresës [[IP adresë|IP]] për ta identifikuar. Kjo adresë mund të përdoret nga disa njerëz. Në qoftë se jeni një përdorues anonim dhe mendoni se komente kot janë drejtuar ndaj jush, ju lutem [[Special:Userlogin|krijoni një llogari ose hyni brënda]] për të mos u ngatarruar me përdorues të tjerë anonim.''",
+'anontalkpagetext'                 => "---- ''Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka hapur akoma një llogari ose nuk e përdor atë.
+Prandaj, më duhet të përdor numrin e adresës IP për ta identifikuar.
+Kjo adresë mund të përdoret nga disa njerëz. Në qoftë se jeni një përdorues anonim dhe mendoni se komente kot janë drejtuar ndaj jush, ju lutem [[Special:Userlogin|krijoni një llogari ose hyni brënda]] për të mos u ngatarruar me përdorues të tjerë anonim.''",
 'noarticletext'                    => 'Tani për tani nuk ka tekst në këtë faqe, mund ta [[Special:Search/{{PAGENAME}}|kërkoni]] këtë titull në faqe të tjera ose mund ta [{{fullurl:{{FULLPAGENAME}}|action=edit}} filloni] atë.',
 'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "$1" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'clearyourcache'                   => "'''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
@@ -629,7 +634,7 @@ Konsideroni ta ndani faqen në disa seksione më të vogla.',
 'longpageerror'                    => '<strong>GABIM: Tesksti që ju po e redaktoni është $1 KB i gjatë dhe është më i gjatë se maksimumi i lejuar prej $2 KB. Ndryshimet nuk mund të ruhen.</strong>',
 'readonlywarning'                  => 'KUJDES: Regjistri është bllokuar për mirëmbajtje,
 kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopjoni dhe ruani tekstin në një skedë për më vonë.',
-'protectedpagewarning'             => 'KUJDES: Kjo faqe është bllokuar kështu që vetëm përdorues me titullin administrator mund ta redaktojnë. Ju lutem ndiqni rregullat e dhëna tek [[{{SITENAME}}:Faqe e mbrojtur|faqet e mbrojtura]].',
+'protectedpagewarning'             => '<strong>KUJDES: Kjo faqe është bllokuar kështu që vetëm përdorues me titullin administrator mund ta redaktojnë. Ju lutem ndiqni rregullat e dhëna tek [[{{SITENAME}}:Faqe e mbrojtur|faqet e mbrojtura]].</strong>',
 'semiprotectedpagewarning'         => "'''Shënim:''' Redaktimi i kësaj faqeje mund të bëhet vetëm nga përdorues të regjistruar.",
 'cascadeprotectedwarning'          => "'''Vini re:''' Kjo faqe është e mbrojtur dhe vetëm përdoruesit me privilegje administrative mund ta redaktojnë pasi është përfshirë në mbrotjen \"ujëvarë\" të {{PLURAL:\$1|faqes së|faqeve të}} mëposhtme:",
 'titleprotectedwarning'            => '<strong>VINI RE:  Kjo faqe është e mbrojtur dhe vetëm disa përdorues mund ta krijojnë.</strong>',
@@ -1210,7 +1215,9 @@ Gjatësia e [http://www.mediawiki.org/wiki/Manual:Job_queue radhës së punëve]
 
 'disambiguations'      => 'Faqe kthjelluese',
 'disambiguationspage'  => 'Template:Kthjellim',
-'disambiguations-text' => "Faqet e mëposhtme lidhen tek një '''faqe kthjelluese'''. Ato duhet të kenë lidhje të drejtpërdrejtë tek artikujt e nevojshëm.<br /> Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Faqet e mëposhtme lidhen tek një '''faqe kthjelluese'''.
+Ato duhet të kenë lidhje të drejtpërdrejtë tek artikujt e nevojshëm.<br />
+Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Përcjellime dopjo',
 'doubleredirectstext' => '<b>Kujdes:</b> Kjo listë mund të ketë lidhje gabim. D.m.th. ka tekst dhe lidhje mbas #REDIRECT-it të parë.
@@ -1459,7 +1466,8 @@ Redaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|Diskutim]])
 'rollback-success'            => 'Ndryshimet e $1 u kthyen mbrapsh; artikulli ndodhet tek verzioni i $2.',
 'sessionfailure'              => 'Më duket se ka një problem me seancën tuaj të hyrjes. Veprimi juaj nuk është kryer për tu mbrojtur nga ndonjë veprim dashakeq kundrejt shfletimit tuaj. Ju lutem kthehuni mbrapsh, rifreskoni faqen prej nga erdhët dhe provojeni përsëri veprimin.',
 'protectlogpage'              => 'Regjistri i mbrojtjeve',
-'protectlogtext'              => 'Më poshtë është një listë e "mbrojtjeve/lirimeve" të faqeve. Shikoni [[{{SITENAME}}:Faqe e mbrojtur]] për më shumë informacion.',
+'protectlogtext'              => 'Më poshtë është një listë e "mbrojtjeve/lirimeve" të faqeve.
+Shikoni Faqe e mbrojtur për më shumë informacion.',
 'protectedarticle'            => 'mbrojti [[$1]]',
 'modifiedarticleprotection'   => 'ndryshoi mbrojtjen e faqes "[[$1]]"',
 'unprotectedarticle'          => 'liroi [[$1]]',
@@ -1598,9 +1606,8 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipbotherreason'              => 'Arsye tjetër/shtesë',
 'badipaddress'                => 'Nuk ka asnjë përdorues me atë emër',
 'blockipsuccesssub'           => 'Bllokimi u bë me sukses',
-'blockipsuccesstext'          => 'Përdoruesi/IP-Adresa [[{{ns:special}}:Contributions/$1|$1]] u bllokua. Veprimi u regjistrua te [[{{ns:special}}:Log/block|Regjistri i bllokimeve]]. 
-
-Shiko te [[{{ns:special}}:Ipblocklist|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
+'blockipsuccesstext'          => 'Përdoruesi/IP-Adresa [[Special:Contributions/$1|$1]] u bllokua.<br />
+Shiko te [[Special:Ipblocklist|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
 'ipb-edit-dropdown'           => 'Redakto arsyet e bllokimit',
 'ipb-unblock-addr'            => 'Çblloko $1',
 'ipb-unblock'                 => 'Çblloko përdorues dhe IP të bllokuara',
@@ -1666,13 +1673,16 @@ Shërbyesi i rrjetit duhet të jetë në gjendje të shkruaj këtë skedë për 
 # Move page
 'move-page'               => 'Zhvendose $1',
 'move-page-legend'        => 'Zhvendose faqen',
-'movepagetext'            => "Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri. Titulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri. Lidhjet tek faqja e vjetër nuk do të ndryshohen; duhet të kontrolloni [[Special:SpecialPages|mirëmbajtjen]] për përcjellime të dyfishta ose të prishura.
+'movepagetext'            => "Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri.
+Titulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri.
+Lidhjet tek faqja e vjetër nuk do të ndryshohen;
+duhet të kontrolloni mirëmbajtjen për përcjellime të dyfishta ose të prishura.
 Keni përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.
 
-Vini re se kjo faqe '''nuk''' do të zhvendoset n.q.s. ekziston një faqe me titullin e ri, përveçse kur ajo të jetë bosh ose një përcjellim dhe të mos ketë një histori të vjetër. Kjo do të thotë se mund ta zhvendosni një faqe prapë tek emri
-i vjetër n.q.s. keni bërë një gabim, dhe s'mund ta prishësh një faqe që ekziston.
+Vini re se kjo faqe '''nuk''' do të zhvendoset n.q.s. ekziston një faqe me titullin e ri, përveçse kur ajo të jetë bosh ose një përcjellim dhe të mos ketë një histori të vjetër.
+Kjo do të thotë se mund ta zhvendosni një faqe prapë tek emri i vjetër n.q.s. keni bërë një gabim, dhe s'mund ta prishësh një faqe që ekziston.
 
-<b>KUJDES!</b>
+'''KUJDES!'''
 Ky mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin për një faqe të shumë-frekuentuar; ju lutem, kini kujdes dhe mendohuni mirë para se të përdorni këtë funksion.",
 'movepagetalktext'        => "Faqja a bashkangjitur e diskutimit, n.q.s. ekziston, do të zhvendoset automatikisht '''përveçse''' kur:
 *Zhvendosni një faqe midis hapësirave të ndryshme,

@@ -182,7 +182,7 @@ $messages = array(
 'loginproblem'            => '<b>Tatizo limetokea wakati ulipojaribu kuingia.</b><br />Jaribu tena!',
 'login'                   => 'Ingia',
 'nav-login-createaccount' => 'Ingia/ sajili akaunti',
-'loginprompt'             => 'Lazima kompyuta yako ipokee [[kuki]] ili uweze kuingia kwenye {{SITENAME}}.',
+'loginprompt'             => 'Lazima kompyuta yako ipokee kuki ili uweze kuingia kwenye {{SITENAME}}.',
 'userlogin'               => 'Ingia/ sajili akaunti',
 'logout'                  => 'Toka',
 'userlogout'              => 'Toka',
@@ -198,7 +198,9 @@ $messages = array(
 'prefs-help-realname'     => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
 'loginerror'              => 'Kosa la kuingia',
 'nocookiesnew'            => "Umesajiliwa, lakini bado hujaingizwa. {{SITENAME}} inatumia ''kuki'' ili watumiaji waingizwe. Kompyuta yako inazuia ''kuki''. Tafadhali, ondoa kizuizi hicho uingie kwa kutumia jina mpya na neno la siri.",
-'nocookieslogin'          => '{{SITENAME}} inatumia [[kuki]] ili watumiaji waweze kuingia. Kompyuta yako inakataa kupokea kuki. Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
+'nocookieslogin'          => '{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.
+Kompyuta yako inakataa kupokea kuki.
+Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
 'loginsuccesstitle'       => 'Umefaulu kuingia',
 'loginsuccess'            => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
 'nosuchuser'              => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya, au sajili akaunti mpya.',

@@ -970,7 +970,7 @@ Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részle
 'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozato(ka)t, a megadott változat nem létezik,
 vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-selected'          => "{{PLURAL:$2|Kiválasztott változat|Kiválasztott változatok}} - '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Kiválasztott naplóesemény|Kiválasztott naplóesemények}} - '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:',
 'revdelete-text'              => 'A törölt változatok és események még láthatók lesznek a lap előzményeiben és naplójában,
 azonban a tartalmuknak csak egy része lesz a nyilvánosság számára hozzáférhetetlen.
 

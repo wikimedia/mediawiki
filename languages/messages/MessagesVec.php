@@ -477,7 +477,8 @@ Par piaser, fà subito un login \'pena che la te riva.',
 'accountcreated'             => 'Acesso creà',
 'accountcreatedtext'         => "Xè stà creà un acesso par l'utente $1.",
 'createaccount-title'        => 'Creazion de un acesso a {{SITENAME}}',
-'createaccount-text'         => 'Qualcheduni ($1) gà creà un acesso a {{SITENAME}} ($4) a nome de $2, associà a sto indirizo de posta eletronica. La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
+'createaccount-text'         => 'Qualcheduni gà creà un acesso a {{SITENAME}} ($4) a nome de $2, associà a sto indirizo de posta eletronica.
+La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
 
 Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'loginlanguagelabel'         => 'Lengua: $1',
@@ -539,7 +540,7 @@ El bloco el xe stà messo da $1. La motivazion del bloco la xe sta qua: ''$2''
 
 Se te vol, te pol contatar $1 o n'altro [[{{MediaWiki:Grouppage-sysop}}|aministrador]] par discùtar del bloco.
 
-Nota che la funzion 'Scrivi a l'utente' no la xe mìa ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[{{ns:special}}:Preferences|preferenze]].
+Nota che la funzion 'Scrivi a l'utente' no la xe mìa ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[Special:Preferences|preferenze]].
 
 Se prega de specificare l'indirizo IP atuale ($3) o el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
 'autoblockedtext'                  => "Sto indirizo IP el xe stà blocà automaticamente parché condiviso con n'altro utente, a so volta blocà da $1.
@@ -578,13 +579,10 @@ Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de c
 Se te desideri crear ła pàxena desso, basta che te tachi a scrìvar el testo ne ła caseła qua soto
 (fà riferimento a łe [[{{MediaWiki:Helppage}}|pàxene de ajuto]] par majori informassion).
 Se te si rivà qua par sbaglio, basta che te machi el boton '''Indrio''' sul to browser.",
-'anontalkpagetext'                 => "----
-
-
-
-
-
----- ''Sta quà l'è la pàxena de discussion de un utente anonimo che no'l se gà gnancora registrà o che no l'efetua el login. De conseguenza xè necessario identificarlo tramite l'[[Indirizo IP|indirizo IP]] numerico. Sto indirizo el pode èssar condivixo da diversi utenti. Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te podi [[Special:Userlogin|registrarte o efetuar el login]] par evitar confuxion con altri utenti in futuro.''",
+'anontalkpagetext'                 => "----''Sta quà l'è la pàxena de discussion de un utente anonimo che no'l se gà gnancora registrà o che no l'efetua el login.
+De conseguenza xè necessario identificarlo tramite l'indirizo IP numerico.
+Sto indirizo el pode èssar condivixo da diversi utenti.
+Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te podi [[Special:Userlogin|registrarte o efetuar el login]] par evitar confuxion con altri utenti in futuro.''",
 'noarticletext'                    => 'In sto momento ła pàxena richiesta la xè voda. Se pol [[Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre pàxene del sito opure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła pàxena desso].',
 'userpage-userdoesnotexist'        => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
@@ -723,7 +721,7 @@ Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scanc
 'revdelete-nooldid-title'     => 'Version mìa specificà',
 'revdelete-nooldid-text'      => 'No xe stà specificà alcuna version de la pagina su cui eseguir sta funzion.',
 'revdelete-selected'          => '{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Evento del registro selezionà|Eventi del registro selezionè}} par '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:',
 'revdelete-text'              => "Le versioni scancelàe le resta visibili ne la cronologia de la pagina, mentre el testo contegnùo no'l xe acessibile al publico.
 
 I altri aministradori del sito i podarà accédar istesso ai contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion in fase de instalazion del sito.",
@@ -1251,7 +1249,8 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' pro
 
 'disambiguations'      => 'Pàxene de disanbiguazion',
 'disambiguationspage'  => 'Template:Disambigua',
-'disambiguations-text' => "Le pagine ne la lista che segue le contien dei colegamenti a '''pagine de disanbiguazion''' e no a l'argomento a cui le dovarìà far riferimento.<br />Vien considerà pagine de disanbiguazion tute quele che contien i template elencà in [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Le pagine ne la lista che segue le contien dei colegamenti a '''pagine de disanbiguazion''' e no a l'argomento a cui le dovarìà far riferimento.<br />
+Vien considerà pagine de disanbiguazion tute quele che contien i template elencà in [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Redirect dopi',
 'doubleredirectstext' => '<b>Ocio:</b> Stà lista la pode talvolta contegnere dei risultati mìa giusti. Podaria magari sucédar parché ghe fusse del testo agiuntivo o dei colegamenti dopo el tag #REDIRECT.<br /> Ogni riga la contegne i colegamenti al primo ed al secondo redirect, oltre a la prima riga de testo del secondo redirect che de solito contegne el "reale" articolo de destinassion, quelo al quale anca el primo redirect dovaria puntar.',
@@ -1356,7 +1355,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' pro
 'allpages-bad-ns'   => 'El namespace "$1" no l\'esiste mìa su {{SITENAME}}.',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|Categoria|Categorie}}',
+'categories'                    => 'Categorie',
 'categoriespagetext'            => 'Elenco par intiero de le categorie presenti sul sito.',
 'categoriesfrom'                => 'Mostra le categorie tacando da :',
 'special-categories-sort-count' => 'ordina par nùmaro',

@@ -333,7 +333,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 
 # Search results
 'searchresults'    => 'Ohtsedh resultaateh',
-'searchresulttext' => 'Ihke jeenjebe bïevnesh bïjre ohtsedh {{SITENAME}}, vuejnedh [[{{Mediawiki:Helppage}}|{{int:help}}]].',
+'searchresulttext' => 'Ihke jeenjebe bïevnesh bïjre ohtsedh {{SITENAME}}, vuejnedh [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'   => "Dov ohtsedh ihke '''[[:$1]]'''",
 'noexactmatch'     => "'''Dïhte gååvnese ijje bielie meatan nommej \"\$1\".''' Dov dorje [[:\$1|skaepede dïhte bielie]].",
 'prevn'            => 'övtebe $1',

@@ -124,7 +124,7 @@ $messages = array(
 'category-article-count-limited' => 'Din il-kategorija għanda {{PLURAL:$1|l-paġna indikata|l-$1 paġni indikati}}.',
 'category-file-count'            => "{{PLURAL:$2|Din il-kategorija għanda biss dan il-fajl, kif indikat|Din il-kategorija għanda {{PLURAL:$1|fajl, kif indikat|$1 fajls, indikati}}, minn total ta' $2.}}",
 'category-file-count-limited'    => "Il-{{PLURAL:$1|fajl indikat huwa|$1 fajls indikati huma}} f'din il-kategorija.",
-'listingcontinuesabbrev'         => 'kont.',
+'listingcontinuesabbrev'         => 'kompli.',
 
 'linkprefix'        => '/^(.*?)([a-żA-Ż\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MedjaWiki ġiet installat b'suċċess.'''</big>",
@@ -1239,8 +1239,7 @@ Daħħal: tip/subtip, e.ż. <tt>image/jpeg</tt>.",
 'download'           => 'niżżel',
 
 # Unwatched pages
-'unwatchedpages'         => 'Paġni mhux osservati',
-'unwatchedpages-summary' => 'Paġni MHUX taħt osservazzjoni',
+'unwatchedpages' => 'Paġni mhux osservati',
 
 # List redirects
 'listredirects' => "Lista ta' rindirizzi",

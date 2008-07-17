@@ -509,7 +509,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'localtime'          => 'Lokala tempo',
 'timezoneoffset'     => 'Difero',
 'servertime'         => 'La kloko en la servanto esas',
-'guesstimezone'      => 'Obtenar la kloko dil &quot;browser&quot;',
+'guesstimezone'      => 'Obtenar la kloko dil "browser"',
 'defaultns'          => 'Serchar en la spaco-nomi omise:',
 'files'              => 'Arkivi',
 

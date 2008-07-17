@@ -613,9 +613,9 @@ Si eam servaveris, omnes mutationes recentiores obrogatae peribunt!</strong>',
 Nisi vis verba tua crudelissime recenseri, mutari, et ad libidinem redistribui, noli ea submittere.<br />
 Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in "dominio publico" exscripsisse.
 <strong>NOLI OPERIBUS SUB IURE DIVULGANDI UTI SINE POTESTATE!</strong>',
-'copyrightwarning2'         => 'Nota bene omnia contributa divulgari sub {{SITENAME}} (vide singula apud $1).
-Nisi vis verba tua crudelissime recenseri, mutari, et ad libidinem redistribui, noli ea submittere.<br />
-Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in "dominio publico" exscripsisse.
+'copyrightwarning2'         => 'Nota bene omnia contributa apud {{grammar:accusative|{{SITENAME}}}} ab aliis recenseri, mutari vel removi posse.
+Nisi vis verba tua crudelissime recenseri, noli ea submittere.<br />
+Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in "dominio publico" vel ex  libere fonte simili exscripsisse (vide singula apud $1).
 <strong>NOLI OPERIBUS SUB IURE DIVULGANDI UTI SINE POTESTATE!</strong>',
 'longpagewarning'           => 'MONITIO: Haec pagina est $1 chilioctetis longa;
 aliquae navigatra paginas longiores quam 32 chiliocteti recensere non possunt.
@@ -1382,8 +1382,8 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movepagebtn'             => 'Paginam movere',
 'pagemovedsub'            => 'Pagina mota est',
 'movepage-moved'          => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Non licet hanc paginam movere: pagina cum hoc nomine iam habemus, aut invalidum est nomen electum.
-Quaesumus, nomen alterum elige.',
+'articleexists'           => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
+Quaesumus, titulum alterum elige.',
 'cantmove-titleprotected' => 'Tibi non licet paginam ad hunc titulum movere, quia hic titulus protectus est ne creetur',
 'talkexists'              => "'''Pagina prospere mota est, sed pagina disputationis not moveri potuit quia iam est pagina disputationis sub titulo novo. Disputationes recensendo iunge.'''",
 'movedto'                 => 'mota ad',

@@ -444,8 +444,8 @@ Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tu
 'accountcreated'             => 'Pruukjanimi luudi',
 'accountcreatedtext'         => 'Luudi pruukjanimi pruukjalõ $1.',
 'createaccount-title'        => 'Vahtsõ {{SITENAME}} pruukjanime luuminõ',
-'createaccount-text'         => 'Kiäki ($1) om loonuq pruukjanime $2 lehistüle {{SITENAME}}
-($4). Pruukjanime "$2" salasõna om "$3". Mineq nimega sisse ja vaihtaq salasõna ärq.
+'createaccount-text'         => 'Kiäki om loonuq pruukjanime $2 lehistüle {{SITENAME}} ($4). Pruukjanime "$2" salasõna om "$3".
+Mineq nimega sisse ja vaihtaq salasõna ärq.
 
 Ku taa pruukjanimi om luud kogõmaldaq, olõ-i sul vaia taast sõnomist vällä tetäq.',
 'loginlanguagelabel'         => 'Kiil: $1',
@@ -659,7 +659,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'revdelete-nooldid-title'     => 'Olõ-i säänest kujjo',
 'revdelete-nooldid-text'      => 'Sa olõ-i valinuq kujjo vai kujjõ.',
 'revdelete-selected'          => "{{PLURAL:$2|Valit kujo|Validuq kujoq}} lehele '''$1:'''",
-'logdelete-selected'          => "{{PLURAL:$2|Valit muutminõ|Validuq muutmisõq}} lehele '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Valit muutminõ|Validuq muutmisõq}}:',
 'revdelete-text'              => 'Kistudõduq kujoq ommaq olõman lehe aoluun, a näide sissu saa-i avaligult nätäq. Seo viki tõõsõq kõrraldajaq saavaq taad käkitüt teksti lukõq ja taa tagasi avaligult nättäväs tetäq, ku olõ-i säet muid piirdmiisi.',
 'revdelete-legend'            => 'Nättävüse piirdmiseq',
 'revdelete-hide-text'         => 'Käkiq kujo sisu',

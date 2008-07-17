@@ -1425,7 +1425,7 @@ PICT # misc.
 'allpages-bad-ns'   => '{{SITENAME}} में "$1" यह नामस्थान नहीं हैं ।',
 
 # Special:Categories
-'categories'                    => '{{PLURAL:$1|श्रेणि|श्रेणियाँ}}',
+'categories'                    => 'श्रेणियाँ',
 'categoriespagetext'            => 'निम्न श्रेणियाँ विकि मे अस्तित्वमान हैं।',
 'categoriesfrom'                => 'इस शब्दसे शुरू होनेवाली श्रेणीयाँ दर्शायें:',
 'special-categories-sort-count' => 'संख्यानुसार वर्ग दर्शायें',

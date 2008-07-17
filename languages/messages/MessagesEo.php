@@ -498,7 +498,8 @@ Bonvolu kontroli vian literumadon, aŭ uzu la malsupran formularon por krei nova
 'nouserspecified'            => 'Vi devas entajpi uzantonomon.',
 'wrongpassword'              => 'Vi tajpis malĝustan pasvorton. Bonvolu provi denove.',
 'wrongpasswordempty'         => 'Vi tajpis malplenan pasvorton. Bonvolu provi denove.',
-'passwordtooshort'           => 'Via pasvorto estas tro mallonga. Ĝi entenu minimume $1 karaktrojn.',
+'passwordtooshort'           => 'Via pasvorto estas nevalida aŭ tro mallonga. 
+Ĝi entenu minimume $1 {{PLURAL:$1|1 signon|$1 signojn}} kaj nepre malsamas vian salutnomon.',
 'mailmypassword'             => 'Retpoŝti al mi novan pasvorton',
 'passwordremindertitle'      => 'Rememorigo el {{SITENAME}} pri perdita pasvorto',
 'passwordremindertext'       => 'Iu (probable vi, el IP-adreso $1)
@@ -1215,7 +1216,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'filehist-filesize'              => 'Pezo de dosiero',
 'filehist-comment'               => 'Komento',
 'imagelinks'                     => 'Ligiloj al la dosiero',
-'linkstoimage'                   => 'La jenaj paĝoj ligas al ĉi tiu dosiero:',
+'linkstoimage'                   => 'La {{PLURAL:$1|jena paĝo|jenaj paĝoj}} ligas al ĉi tiu dosiero:',
 'nolinkstoimage'                 => 'Neniu paĝo ligas al ĉi tiu dosiero.',
 'morelinkstoimage'               => 'Rigardi [[Special:Whatlinkshere/$1|pliajn ligilojn]] al ĉi tiu dosiero.',
 'redirectstofile'                => 'Jen {{PLURAL:$1|dosiero liganta|dosieroj ligantaj}} al ĉi tiu dosiero:',
@@ -1305,9 +1306,9 @@ La nuna longeco de la [http://www.mediawiki.org/wiki/Manual:Job_queue laborenda 
 
 'disambiguations'      => 'Misligitaj apartigiloj',
 'disambiguationspage'  => 'Template:Apartigilo',
-'disambiguations-text' => "La jenaj paĝoj alligas '''paĝon-apartigilon'''.
+'disambiguations-text' => "La jenaj paĝoj alligas '''apartigilon'''.
 Ili devus anstataŭe alligi la ĝustan temon.<br />
-Oni konsideras tiujn paĝojn, kiujn alligas $1 apartigiloj. Ligado el ne-artikolaj sekcioj <i>ne</i> listiĝas ĉi tie.",
+Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Duoblaj alidirektadoj',
 'doubleredirectstext' => '<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br />

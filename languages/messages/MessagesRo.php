@@ -359,11 +359,11 @@ pe titlul secţiunii (JavaScript)',
 # General errors
 'error'                => 'Eroare',
 'databaseerror'        => 'Eroare la baza de date',
-'dberrortext'          => 'A apărut o eroare în execuţia query-ului.
+'dberrortext'          => 'A apărut o eroare în sintaxa interogării.
 Aceasta se poate datora unui query ilegal, sau poate indica o problemă în program.
-Ultimul query încercat a fost:
+Ultima interogare încercată a fost:
 <blockquote><tt>$1</tt></blockquote>
-în cadrul funcţiei "<tt>$2</tt>".
+din cadrul funcţiei "<tt>$2</tt>".
 MySQL a returnat eroarea "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'A apărut o eroare de sintaxă în query. Ultimul query încercat a fost: "$1" din funcţia "$2". MySQL a returnat eroarea "$3: $4".',
 'noconnect'            => 'Nu s-a putut conecta baza de date pe $1',
@@ -451,7 +451,7 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi preferinţe
 'yournick'                   => 'Semnătură:',
 'badsig'                     => 'Semnătură brută incorectă; verificaţi tag-urile HTML.',
 'badsiglength'               => 'Semnătura este prea lungă.
-Dimensiunea trebuie să fie mai mică de $1 caractere.',
+Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '* Numele dumneavoastră real (opţional): Dacă decideţi introducerea numelui real aici, acesta va fi folosit pentru a vă atribui munca.<br />',
 'loginerror'                 => 'Eroare de autentificare',
@@ -624,8 +624,10 @@ Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe ca
 'yourdiff'                  => 'Diferenţe',
 'copyrightwarning'          => "<!-- Gol deocamdată. Avertismentul se află în MediaWiki:Summary -->
 Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br /> You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource. <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-'copyrightwarning2'         => 'Reţineţi că toate contribuţiile la {{SITENAME}} sunt considerate ca respectând $2 (vezi $1 pentru detalii).<br />
-Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici. Ceea ce aţi scris a fost compoziţie proprie sau copie dintr-o resursă publică sau liberă (vedeţi $1 pentru detalii).',
+'copyrightwarning2'         => 'Reţineţi că toate contribuţiile la {{SITENAME}} pot fi modificate, alterate sau şterse de alţi contribuitori.
+Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici.<br/>
+De asemenea, ne asiguraţi că ceea ce aţi scris a fost compoziţie proprie sau copie dintr-o resursă publică sau liberă (vedeţi $1 pentru detalii).
+<strong>NU INTRODUCEŢI MATERIALE CU DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>',
 'longpagewarning'           => '<strong>ATENŢIE! Conţinutul acestei pagini are $1 KB; unele browsere au probleme la modificarea paginilor în jur de 32 KB sau mai mari. Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai multe secţiuni.</strong>',
 'longpageerror'             => '<strong>EROARE: Textul pe care vrei să-l salvezi are $1 kilobytes,
 ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este posibilă.</strong>',
@@ -749,8 +751,8 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'prevn'                 => 'anterioarele $1',
 'nextn'                 => 'următoarele $1',
 'viewprevnext'          => 'Vezi ($1) ($2) ($3).',
-'showingresults'        => 'Mai jos apar <b>$1</b> rezultate începând cu #<b>$2</b>.',
-'showingresultsnum'     => 'Mai jos apar <b>$3</b> rezultate începând cu #<b>$2</b>.',
+'showingresults'        => "Mai jos {{PLURAL:$1|apare '''1''' rezultat|apar '''$1''' rezultate}} începând cu #<b>$2</b>.",
+'showingresultsnum'     => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate}} cu #<b>$2</b>.",
 'nonefound'             => "'''Notă''': căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
 'powersearch'           => 'Căutare avansată',
 'searchdisabled'        => '<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanţă. Între timp puteţi folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>',
@@ -854,7 +856,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'recentchanges'                     => 'Schimbări recente',
 'recentchangestext'                 => 'Schimbări recente ... (Log)',
 'recentchanges-feed-description'    => 'Urmăreşte cele mai recente schimbări folosind acest flux.',
-'rcnote'                            => "Mai jos se află {{PLURAL:$|ultima modificare|ultimele '''$1''' modificări}} din {{PLURAL:$2|ultima zi|ultimele '''$2''' zile}}, începând cu $3.",
+'rcnote'                            => "Mai jos se află {{PLURAL:$|ultima modificare|ultimele '''$1''' modificări}} din {{PLURAL:$2|ultima zi|ultimele '''$2''' zile}}, începând cu $5, $4.",
 'rcnotefrom'                        => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afişate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom'                        => 'Arată modificările începând de la $1',
 'rcshowhideminor'                   => '$1 modificările minore',
@@ -917,7 +919,7 @@ pentru a include un fişier de sunet într-un articol, foloseşti o legătură d
 'ignorewarnings'              => 'Ignoră orice avertismente',
 'minlength1'                  => 'Numele fişierelor trebuie să fie cel puţin o literă.',
 'illegalfilename'             => 'Numele fişierului "$1" conţine caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiţi fişierul şi încercaţi să îl încărcaţi din nou.',
-'badfilename'                 => 'Numele imaginii a fost schimbat; noul nume este "$1".',
+'badfilename'                 => 'Numele fişierului a fost schimbat în "$1".',
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fişier nedorit.
 {{PLURAL:\$3|Tipul de fişier preferat este|Tipurile de fişiere preferate sunt}} \$2.",
@@ -1037,16 +1039,16 @@ pentru a include un fişier de sunet într-un articol, foloseşti o legătură d
 'statistics'             => 'Statistici',
 'sitestats'              => 'Statisticile sitului {{SITENAME}}',
 'userstats'              => 'Statistici legate de utilizatori',
-'sitestatstext'          => 'Există un număr total de <b>$1</b> pagini în baza de date.
-Acest număr include paginile de "discuţii", paginile despre {{SITENAME}}, pagini minimale ("cioturi"), pagini de redirecţionare şi altele care probabil că nu intră de fapt în categoria articolelor reale.
-În afară de acestea, există <b>$2</b> pagini care sunt probabil articole (numărate automat, în funcţie strict de mărime).<br />
+'sitestatstext'          => "Există un număr total de {{PLURAL:\$1|'''1''' pagină|'''\$1''' pagini}} în baza de date.
+Acest număr include paginile de \"discuţii\", paginile despre {{SITENAME}}, pagini minimale (\"cioturi\"), pagini de redirecţionare şi altele care probabil că nu intră de fapt în categoria articolelor reale.
+În afară de acestea, există {{PLURAL:\$2|'''1''' pagină care este|'''\$2''' pagini care sunt}} probabil din categoria articole (numărate automat, în funcţie strict de mărime).<br />
 
-<b>$8</b> pagini au fost transferate (upload).
+<b>\$8</b> pagini au fost transferate (upload).
 
-În total au fost <b>$3</b> vizite (accesări) şi <b>$4</b> modificări de la lansarea acestei wiki.
-În medie rezultă <b>$5</b> modificări per pagină sau <b>$6</b> vizualizări la fiecare modificare.
+În total au fost '''\$3''' {{PLURAL:\$3|vizită (accesare)|vizite (accesări)}} şi {{PLURAL:\$4|modificare|modificări}} de la lansarea acestei wiki.
+În medie, rezultă <b>\$5</b> modificări per pagină şi <b>\$6</b> vizualizări la fiecare modificare.
 
-Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>$7</b>.',
+Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>\$7</b>.",
 'userstatstext'          => "Există {{PLURAL:$1|'''1''' [[Special:Listusers|utilizator]] înregistrat|un număr de '''$1''' [[Special:Listusers|utilizatori]] înregistraţi}}. Dintre aceştia '''$2''' (sau '''$4%''') {{PLURAL:$2|are|au}} drepturi de $5.",
 'statistics-mostpopular' => 'Paginile cele mai vizualizate',
 
@@ -1194,9 +1196,9 @@ Dacă doreşti să elimini această pagină din lista ta de pagini urmărite în
 'wlheader-showupdated' => "* Paginile care au modificări de la ultima ta vizită sunt afişate '''îngroşat'''",
 'watchmethod-recent'   => 'căutarea schimbărilor recente pentru paginile urmărite',
 'watchmethod-list'     => 'căutarea paginilor urmărite pentru schimbări recente',
-'watchlistcontains'    => 'Lista de pagini urmărite conţine $1 elemente.',
+'watchlistcontains'    => 'Lista de pagini urmărite conţine $1 {{PLURAL:$1|element|elemente}}.',
 'iteminvalidname'      => "E o problemă cu elementul '$1', numele este invalid...",
-'wlnote'               => 'Mai jos se află ultimele $1 schimbări din ultimele <b>$2</b> ore.',
+'wlnote'               => "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele $1 schimbări}} din {{PLURAL:$2|ultima oră|ultimele '''$2''' ore}}.",
 'wlshowlast'           => 'Arată ultimele $1 ore $2 zile $3',
 'watchlist-show-bots'  => 'Arată editările roboţilor',
 'watchlist-hide-bots'  => 'Ascunde editările roboţilor',
@@ -1322,10 +1324,10 @@ Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'viewdeletedpage'          => 'Vezi paginile şterse',
 'undeletepagetext'         => 'Următoarele pagini au fost şterse, dar încă se află în arhivă şi pot fi recuperate. Reţine că arhiva se poate şterge din timp în timp.',
 'undeleteextrahelp'        => "Pentru a recupera întreaga pagină lăsaţi toate căsuţele nebifate şi apăsaţi butonul '''''Recuperează'''''. Pentru a realiza o recuperare selectivă bifaţi versiunile pe care doriţi să le recuperaţi şi apăsaţi butonul '''''Recuperează'''''. Butonul '''''Resetează'''''  va şterge comentariul şi toate bifările.",
-'undeleterevisions'        => '$1 versiuni arhivate',
+'undeleterevisions'        => '$1 {{PLURAL:$1|versiune arhivată|versiuni arhivate}}',
 'undeletehistory'          => 'Dacă recuperaţi pagina, toate versiunile asociate vor fi adăugate retroactiv în istorie. Dacă o pagină nouă cu acelaşi nume a fost creată de la momentul ştergerii acesteia, versiunile recuperate vor apărea în istoria paginii, iar versiunea curentă a paginii nu va fi înlocuită automat de către versiunea recuperată.',
 'undeletehistorynoadmin'   => 'Acest articol a fost şters. Motivul ştergerii apare mai jos, alături de detaliile utilzatorilor care au editat această pagină înainte de ştergere. Textul prorpiu-zis al reviziilor şterse este disponibil doar administratorilor.',
-'undelete-revision'        => 'Ştergere revizia $1 din $2:',
+'undelete-revision'        => 'Ştergere revizia $1 (din $2) de către $3:',
 'undelete-nodiff'          => 'Nu s-a găsit vreo revizie anterioară.',
 'undeletebtn'              => 'Recuperează',
 'undeletereset'            => 'Resetează',
@@ -1563,7 +1565,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'import-interwiki-namespace' => 'Transferă paginile la spaţiul de nume:',
 'importtext'                 => 'Te rog exportă fişierul din sursa wiki folosind funcţia Special:Export, salvează-l pe discul tău şi trimite-l aici.',
 'importstart'                => 'Se importă paginile...',
-'import-revision-count'      => '$1 revizie(i)',
+'import-revision-count'      => '$1 {{PLURAL:$1|versiune|versiuni}}',
 'importnopages'              => 'Nu există pagini de importat.',
 'importfailed'               => 'Import eşuat: $1',
 'importunknownsource'        => 'Tipul sursei de import este necunoscut',
@@ -1579,9 +1581,9 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'importlogpage'                    => 'Log import',
 'importlogpagetext'                => 'Imoprturi administrative de pagini de la alte wiki, cu istoricul editărilor.',
 'import-logentry-upload'           => '$1 importate prin upload',
-'import-logentry-upload-detail'    => '$1 revizie(i)',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versiune|versiuni}}',
 'import-logentry-interwiki'        => 'transwikificat $1',
-'import-logentry-interwiki-detail' => '$1 revizie(i) de la $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versiune|versiuni}} de la $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Pagina mea de utilizator',
@@ -1722,7 +1724,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 
 # Special:Newimages
 'newimages'             => 'Galeria de imagini noi',
-'imagelisttext'         => "Mai jos se află lista a '''$1''' imagini ordonate $2.",
+'imagelisttext'         => "Mai jos se află lista a '''$1''' {{PLURAL:$1|fişier ordonat|fişiere ordonate}} $2.",
 'showhidebots'          => '($1 roboţi)',
 'noimages'              => 'Nimic de văzut.',
 'ilsubmit'              => 'Caută',

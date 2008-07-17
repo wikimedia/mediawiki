@@ -9,6 +9,7 @@
  * @author M.M.S.
  * @author S.Örvarr.S
  * @author Siebrand
+ * @author Krun
  * @author Quackor
  * @author SPQRobin
  * @author Jon Harald Søby
@@ -284,7 +285,7 @@ $messages = array(
 'bugreportspage'       => 'Project:Lúsa frágreiðingar',
 'copyright'            => 'Innihald er tøkt undir $1.',
 'copyrightpagename'    => '{{SITENAME}} útgávurættur',
-'copyrightpage'        => '{{ns:project}}:Útgávurættar',
+'copyrightpage'        => '{{ns:project}}:Útgávurættur',
 'currentevents'        => 'Núverandi hendingar',
 'currentevents-url'    => 'Project:Núverandi hendingar',
 'disclaimers'          => 'Fyrivarni',
@@ -313,7 +314,7 @@ $messages = array(
 'editsection'             => 'rætta',
 'editold'                 => 'rætta',
 'viewsourceold'           => 'vís keldu',
-'editsectionhint'         => 'Rætta partur: $1',
+'editsectionhint'         => 'Rætta part: $1',
 'toc'                     => 'Innihaldsyvirlit',
 'showtoc'                 => 'skoða',
 'hidetoc'                 => 'fjal',
@@ -433,16 +434,16 @@ verður sendur fyri nakað av fylgjandi hentleikum.',
 'link_tip'        => 'Innanhýsis slóð',
 'extlink_sample'  => 'http://www.example.com slóðarheiti',
 'extlink_tip'     => 'Útvortis slóð (minst til http:// forskoytið)',
-'headline_sample' => 'Yvirskrift tekstur',
-'headline_tip'    => 'Snið 2 yvirskrift',
+'headline_sample' => 'Yvirskriftartekstur',
+'headline_tip'    => 'Annars stigs yvirskrift',
 'math_sample'     => 'Set formil her',
-'math_tip'        => 'Støddfrøðiligur formul (LaTeX)',
-'nowiki_tip'      => 'Ignorera wiki forsniðan',
+'math_tip'        => 'Støddfrøðiligur formil (LaTeX)',
+'nowiki_tip'      => 'Ignorera wiki-forsniðan',
 'image_sample'    => 'Dømi.jpg',
 'image_tip'       => 'Innset mynd',
 'media_sample'    => 'Dømi.ogg',
 'media_tip'       => 'Miðlafíluslóð',
-'sig_tip'         => 'Tín undurskrift við tíðarstempli',
+'sig_tip'         => 'Tín undirskrift við tíðarstempli',
 'hr_tip'          => 'Vatnrøtt linja (vera sparin við)',
 
 # Edit pages
@@ -481,8 +482,8 @@ Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru ven
 'storedversion'            => 'Goymd útgáva',
 'yourdiff'                 => 'Munir',
 'copyrightwarning'         => "Alt íkast til {{SITENAME}} er útgivið undir $2 (sí $1 fyri smálutir). Vilt tú ikki hava skriving tína broytta miskunnarleyst og endurspjadda frítt, so send hana ikki inn.<br />
-Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at tú hevur avritað tað frá tilfeingi ið er almenn ogn &#8212; hetta umfatar '''ikki''' flestu vevsíður.
-<strong>IKKI SENDA UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!</strong>",
+Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at tú hevur avritað tað frá tilfeingi ið er almenn ogn &mdash; hetta umfatar '''ikki''' flestu vevsíður.
+<strong>SEND IKKI UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!</strong>",
 'longpagewarning'          => '<strong>ÁVARING: Henda síðan er $1 kilobýt long.
 Summir sneytarar kunnu hava trupulleikar við at viðgerða síður upp ímóti ella longri enn 32kb.
 Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
@@ -662,13 +663,13 @@ fyri at leggja fílur upp.',
 'imagelist_user' => 'Brúkari',
 
 # Image description page
-'filehist'          => 'Mynd søga',
+'filehist'          => 'Søga fílu',
 'filehist-current'  => 'streymur',
 'filehist-datetime' => 'Dagur/Tíð',
 'filehist-user'     => 'Brúkari',
 'filehist-filesize' => 'Fílu stødd',
 'filehist-comment'  => 'Viðmerking',
-'imagelinks'        => 'Myndarslóðir',
+'imagelinks'        => 'Slóðir',
 'linkstoimage'      => 'Hesar síður slóða til hesa mynd:',
 'nolinkstoimage'    => 'Ongar síður slóða til hesa myndina.',
 'sharedupload'      => 'This file is a shared upload and may be used by other projects.',
@@ -1028,15 +1029,15 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-move'               => 'Flyt hesa síðuna',
 'tooltip-ca-watch'              => 'Legg hesa síðuna undir mítt eftirlit',
 'tooltip-ca-unwatch'            => 'Fá hesa síðuna úr mínum eftirliti',
-'tooltip-search'                => 'Leita {{SITENAME}}',
+'tooltip-search'                => 'Leita í {{SITENAME}}',
 'tooltip-p-logo'                => 'Forsíða',
-'tooltip-n-mainpage'            => 'Vitja høvuðssíðuna',
+'tooltip-n-mainpage'            => 'Vitja forsíðuna',
 'tooltip-n-portal'              => 'Um verkætlanina, hvat tú kanst gera, hvar tú finnur ymiskt',
 'tooltip-n-currentevents'       => 'Finn bakgrundsupplýsingar um aktuellar hendingar',
-'tooltip-n-recentchanges'       => 'Listi av seinastu broytingar í wikin.',
+'tooltip-n-recentchanges'       => 'Listi av teimum seinastu broytingunum í wikinum.',
 'tooltip-n-randompage'          => 'Far til tilvildarliga síðu',
 'tooltip-n-help'                => 'Staðurin at finna út.',
-'tooltip-t-whatlinkshere'       => 'Yvirlit yvir allur wikur, ið slóða higar',
+'tooltip-t-whatlinkshere'       => 'Yvirlit yvir allar wikisíður, ið slóða higar',
 'tooltip-t-recentchangeslinked' => 'Broytingar á síðum, ið slóða higar, í seinastuni',
 'tooltip-feed-rss'              => 'RSS-fóðurið til hesa síðuna',
 'tooltip-feed-atom'             => 'Atom-fóðurið til hesa síðuna',
@@ -1054,7 +1055,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-nstab-template'     => 'Brúka formin',
 'tooltip-ca-nstab-help'         => 'Skoða hjálparsíðuna',
 'tooltip-ca-nstab-category'     => 'Skoða bólkasíðuna',
-'tooltip-save'                  => 'Goym mítt broytast',
+'tooltip-save'                  => 'Goym broytingar mínar',
 
 # Attribution
 'anonymous'     => 'Dulnevndir brúkarar í {{SITENAME}}',
