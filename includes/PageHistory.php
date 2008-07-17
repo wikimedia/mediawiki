@@ -592,10 +592,10 @@ class PageHistoryPager extends ReverseChronologicalPager {
 
 	function getQueryInfo() {
 		$queryInfo = array(
-			'tables' => array('revision'),
-			'fields' => Revision::selectFields(),
-			'conds' => array('rev_page' => $this->mPageHistory->mTitle->getArticleID() ),
-			'options' => array( 'USE INDEX' => array('revision','page_timestamp') )
+			'tables'  => array('revision'),
+			'fields'  => Revision::selectFields(),
+			'conds'   => array('rev_page' => $this->mPageHistory->mTitle->getArticleID() ),
+			'options' => array( 'USE INDEX' => array('revision' => 'page_timestamp') )
 		);
 		wfRunHooks( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;
