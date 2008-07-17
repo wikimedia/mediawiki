@@ -1192,7 +1192,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	# This check may also protect against code injection in
 	# case of broken installations.
 	if(! file_exists( $wgDiff ) ){
-		wfDebug( "diff3 not found\n" );
+		wfDebug( "diff executable not found\n" );
 		return false;
 	}
 
