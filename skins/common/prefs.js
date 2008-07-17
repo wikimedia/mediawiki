@@ -23,7 +23,7 @@ function tabbedprefs() {
 			}
 			var legends = children[i].getElementsByTagName('legend');
 			sections[seci] = {};
-			legends[0].className = 'mainLegend';
+			if (legends[0]) legends[0].className = 'mainLegend';
 			if (legends[0] && legends[0].firstChild.nodeValue) {
 				sections[seci].text = legends[0].firstChild.nodeValue;
 			} else {
