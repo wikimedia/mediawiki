@@ -435,6 +435,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10837) Language variants no longer override other languages than base
 * (bug 14778) 'limit' parameter now applies to history feeds as well as
   history pages
+* (bug 14845) Bug in prefs javascript: Calling an array item without checking
+  its existance.
 
 === API changes in 1.13 ===
 
