@@ -73,7 +73,7 @@ class WhatLinksHerePage {
 
 		$this->selfTitle = SpecialPage::getTitleFor( 'Whatlinkshere', $this->target->getPrefixedDBkey() );
 
-		$wgOut->setPageTitle( wfMsgExt( 'whatlinkshere-title', 'escape', $this->target->getPrefixedText() ) );
+		$wgOut->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsgHtml( 'linklistsub' ) );
 
 		$wgOut->addHTML( wfMsgExt( 'whatlinkshere-barrow', array( 'escapenoentities') ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
