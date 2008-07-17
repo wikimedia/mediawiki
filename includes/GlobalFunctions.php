@@ -1179,6 +1179,66 @@ function wfMerge( $old, $mine, $yours, &$result ){
 }
 
 /**
+ * Returns unified plain-text diff of two texts.
+ * Useful for machine processing of diffs.
+ * @param $before string The text before the changes.
+ * @param $after string The text after the changes.
+ * @param $params string Command-line options for the diff command.
+ * @return string Unified diff of $before and $after
+ */
+function wfDiff( $before, $after, $params = '-u' ) {
+	global $wgDiff;
+
+	# This check may also protect against code injection in
+	# case of broken installations.
+	if(! file_exists( $wgDiff ) ){
+		wfDebug( "diff3 not found\n" );
+		return false;
+	}
+
+	# Make temporary files
+	$td = wfTempDir();
+	$oldtextFile = fopen( $oldtextName = tempnam( $td, 'merge-old-' ), 'w' );
+	$newtextFile = fopen( $newtextName = tempnam( $td, 'merge-your-' ), 'w' );
+
+	fwrite( $oldtextFile, $before ); fclose( $oldtextFile );
+	fwrite( $newtextFile, $after ); fclose( $newtextFile );
+	
+	// Get the diff of the two files
+	$cmd = "$wgDiff " . $params . ' ' .wfEscapeShellArg( $oldtextName, $newtextName );
+	
+	$h = popen( $cmd, 'r' );
+	
+	$diff = '';
+	
+	do {
+		$data = fread( $h, 8192 );
+		if ( strlen( $data ) == 0 ) {
+			break;
+		}
+		$diff .= $data;
+	} while ( true );
+	
+	// Clean up
+	pclose( $h );
+	unlink( $oldtextName );
+	unlink( $newtextName );
+	
+	// Kill the --- and +++ lines. They're not useful.
+	$diff_lines = explode( "\n", $diff );
+	if (strpos( '---', $diff_lines[0] ) == 0) {
+		unset($diff_lines[0]);
+	}
+	if (strpos( '+++', $diff_lines[1] ) == 0) {
+		unset($diff_lines[1]);
+	}
+	
+	$diff = implode( "\n", $diff_lines );
+	
+	return $diff;
+}
+
+/**
  * @todo document
  */
 function wfVarDump( $var ) {
