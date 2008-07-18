@@ -31,7 +31,7 @@ class MostcategoriesPage extends QueryPage {
 			FROM $categorylinks
 			LEFT JOIN $page ON cl_from = page_id
 			WHERE page_namespace = " . NS_MAIN . "
-			GROUP BY 1,2,3
+			GROUP BY page_namespace, page_title
 			HAVING COUNT(*) > 1
 			";
 	}

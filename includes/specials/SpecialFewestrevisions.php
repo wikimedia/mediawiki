@@ -36,7 +36,7 @@ class FewestrevisionsPage extends QueryPage {
 			FROM $revision
 			JOIN $page ON page_id = rev_page
 			WHERE page_namespace = " . NS_MAIN . "
-			GROUP BY 1,2,3,4
+			GROUP BY page_namespace, page_title, page_is_redirect
 			HAVING COUNT(*) > 1";
 			// ^^^ This was probably here to weed out redirects.
 			// Since we mark them as such now, it might be

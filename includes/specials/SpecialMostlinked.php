@@ -36,7 +36,7 @@ class MostlinkedPage extends QueryPage {
 				page_namespace
 			FROM $pagelinks
 			LEFT JOIN $page ON pl_namespace=page_namespace AND pl_title=page_title
-			GROUP BY 1,2,3,5
+			GROUP BY pl_namespace, pl_title, page_namespace
 			HAVING COUNT(*) > 1";
 	}
 
