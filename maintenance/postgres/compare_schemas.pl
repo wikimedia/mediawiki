@@ -101,7 +101,7 @@ sub parse_sql {
 			$info{$table}{name}=$table;
 		}
 		elsif (m{^\) /\*\$wgDBTableOptions\*/}) {
-			$info{$table}{engine} = 'TYPE';
+			$info{$table}{engine} = 'ENGINE';
 			$info{$table}{type} = 'variable';
 		}
 		elsif (/^\) ($engine)=($tabletype);$/) {
@@ -181,9 +181,7 @@ for my $oldfile (@old) {
 ## MySQL sanity checks
 for my $table (sort keys %{$old{$oldfile}}) {
 	my $t = $old{$oldfile}{$table};
-	if (($oldfile =~ /5/ and $t->{engine} ne 'ENGINE')
-		or
-		($oldfile !~ /5/ and $t->{engine} ne 'TYPE')) {
+	if ($t->{engine} eq 'TYPE') {
 		die "Invalid engine for $oldfile: $t->{engine}\n" unless $t->{name} eq 'profiling';
 	}
 	my $charset = $t->{charset} || '';
