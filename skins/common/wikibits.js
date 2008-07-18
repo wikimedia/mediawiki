@@ -504,11 +504,10 @@ function redirectToFragment(fragment) {
 }
 
 /*
- * Table sorting script  by Joost de Valk, check it out at http://www.joostdevalk.nl/code/sortable-table/.
- * Based on a script from http://www.kryogenix.org/code/browser/sorttable/.
- * Distributed under the MIT license: http://www.kryogenix.org/code/browser/licence.html .
- *
- * Copyright (c) 1997-2006 Stuart Langridge, Joost de Valk.
+ * Table sorting script based on one (c) 1997-2006 Stuart Langridge and Joost
+ * de Valk:
+ * http://www.joostdevalk.nl/code/sortable-table/
+ * http://www.kryogenix.org/code/browser/sorttable/
  *
  * @todo don't break on colspans/rowspans (bug 8028)
  * @todo language-specific digit grouping/decimals (bug 8063)
