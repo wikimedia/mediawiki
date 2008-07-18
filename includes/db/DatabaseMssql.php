@@ -868,10 +868,10 @@ class DatabaseMssql extends Database {
 
 	/**
 	 * Should determine if the last failure was due to a deadlock
-	 * - don't know how to do this in MSSQL
+	 * @return bool
 	 */
 	function wasDeadlock() {
-		return false;
+		return $this->lastErrno() == 1205;
 	}
 
 	/**
