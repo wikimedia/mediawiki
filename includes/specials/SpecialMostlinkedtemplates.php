@@ -64,7 +64,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 			COUNT(*) AS value
 			FROM {$templatelinks}
 			WHERE tl_namespace = " . NS_TEMPLATE . "
-			GROUP BY 1, 2, 3";
+			GROUP BY tl_title";
 	}
 
 	/**
