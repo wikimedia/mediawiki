@@ -7,8 +7,9 @@
 use strict;
 use warnings;
 use Data::Dumper;
+use Cwd;
 
-check_includes_dir();
+check_valid_sql();
 
 my @old = ('../tables.sql');
 my $new = 'tables.sql';
@@ -457,72 +458,65 @@ for (sort keys %new) {
 } ## end each file to be parsed
 
 
-sub check_includes_dir {
+sub check_valid_sql {
 
-	## Check for some common errors in the files in the includes directory
+	## Check for a few common problems in most php files
 
-	print "Checking files in includes directory...\n";
-	my $dir = '../../includes';
-	opendir my $dh, $dir or die qq{Could not opendir $dir: $!\n};
-	for my $file (grep { -f "$dir/$_" and /\.php$/ } readdir $dh) {
-		$file = "$dir/$file";
-		open my $fh, '<', $file or die qq{Could not open "$file": $!\n};
-		while (<$fh>) {
-			if (/FORCE INDEX/ and $file !~ /Database.php/) {
-				warn "Found FORCE INDEX string at line $. of $file\n";
-			}
-			if (/REPLACE INTO/ and $file !~ /Database/) {
-				warn "Found REPLACE INTO string at line $. of $file\n";
-			}
-			if (/\bIF\s*\(/ and $file !~ /Database.php/) {
-				warn "Found IF string at line $. of $file\n";
-			}
-			if (/\bCONCAT\b/ and $file !~ /Database.php/) {
-				warn "Found CONCAT string at line $. of $file\n";
-			}
-		}
-		close $fh or die qq{Could not close "$file": $!\n};
+	my $olddir = getcwd();
+	chdir("../..");
+	for my $basedir (qw/includes extensions/) {
+		scan_dir($basedir);
 	}
-	rewinddir $dh;
-	for my $subdir (grep { -d "$dir/$_" and ! /\./ } readdir $dh) {
-		print "Entering directory $subdir\n";
-		opendir my $dh, "$dir/$subdir" or die qq{Could not opendir "$dir/$subdir": $!\n};
-		scan_dir("$dir/$subdir" => $dh);
-		closedir $dh;
-	}
-	closedir $dh or die qq{Closedir failed?!\n};
+	chdir $olddir;
 
 	return;
 
-} ## end of check_includes_dir
+} ## end of check_valid_sql
+
 
 sub scan_dir {
 
-	my ($dir, $dh) = @_;
+	my $dir = shift;
 
+	opendir my $dh, $dir or die qq{Could not opendir $dir: $!\n};
+	print "Scanning $dir...\n";
 	for my $file (grep { -f "$dir/$_" and /\.php$/ } readdir $dh) {
-		$file = "$dir/$file";
-		open my $fh, '<', $file or die qq{Could not open "$file": $!\n};
-		while (<$fh>) {
-			if (/FORCE INDEX/ and $file !~ /Database\w*\.php/) {
-				warn "Found FORCE INDEX string at line $. of $file\n";
-			}
-			if (/REPLACE INTO/ and $file !~ /Database\w*\.php/) {
-				warn "Found REPLACE INTO string at line $. of $file\n";
-			}
-			if (/\bIF\s*\(/ and $file !~ /DatabaseMySQL\.php/) {
-				warn "Found IF string at line $. of $file\n";
-			}
-			if (/\bCONCAT\b/ and $file !~ /Database\w*\.php/) {
-				warn "Found CONCAT string at line $. of $file\n";
-			}
-		}
-		close $fh or die qq{Could not close "$file": $!\n};
+		find_problems("$dir/$file");
 	}
-
+	rewinddir $dh;
+	for my $subdir (grep { -d "$dir/$_" and ! /\./ } readdir $dh) {
+		scan_dir("$dir/$subdir");
+	}
+	closedir $dh or die qq{Closedir failed: $!\n};
 	return;
 
 } ## end of scan_dir
+
+sub find_problems {
+
+	my $file = shift;
+	open my $fh, '<', $file or die qq{Could not open "$file": $!\n};
+	while (<$fh>) {
+		if (/FORCE INDEX/ and $file !~ /Database\w*\.php/) {
+			warn "Found FORCE INDEX string at line $. of $file\n";
+		}
+		if (/REPLACE INTO/ and $file !~ /Database\w*\.php/) {
+			warn "Found REPLACE INTO string at line $. of $file\n";
+		}
+		if (/\bIF\s*\(/ and $file !~ /DatabaseMySQL\.php/) {
+			warn "Found IF string at line $. of $file\n";
+		}
+		if (/\bCONCAT\b/ and $file !~ /Database\w*\.php/) {
+			warn "Found CONCAT string at line $. of $file\n";
+		}
+		if (/\bGROUP\s+BY\s*\d\b/i and $file !~ /Database\w*\.php/) {
+			warn "Found GROUP BY # at line $. of $file\n";
+		}
+	}
+	close $fh or die qq{Could not close "$file": $!\n};
+	return;
+
+} ## end of find_problems
 
 
 __DATA__
