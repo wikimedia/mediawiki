@@ -66,6 +66,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   provided by extensions, in a similar way to $wgExtensionMessagesFiles
 * Added $wgXMLMimeTypes, an array of XML mimetypes we can check for
   with MimeMagic.
+* Added $wgDirectoryMode, which allows for setting the default CHMOD value when
+  creating new directories.
 
 === New features in 1.13 ===
 
