@@ -1966,7 +1966,7 @@ END
 			);
 			$checkboxes['minor'] =
 				Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-				"&nbsp;<label for='wpMinoredit'".$skin->tooltipAndAccesskey('minoredit').">{$minorLabel}</label>";
+				"&nbsp;<label for='wpMinoredit'".$skin->tooltip('minoredit').">{$minorLabel}</label>";
 		}
 
 		$watchLabel = wfMsgExt('watchthis', array('parseinline'));
@@ -1979,7 +1979,7 @@ END
 			);
 			$checkboxes['watch'] =
 				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
-				"&nbsp;<label for='wpWatchthis'".$skin->tooltipAndAccesskey('watch').">{$watchLabel}</label>";
+				"&nbsp;<label for='wpWatchthis'".$skin->tooltip('watch').">{$watchLabel}</label>";
 		}
 		return $checkboxes;
 	}
