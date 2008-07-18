@@ -165,7 +165,7 @@ $wgUploadBaseUrl    = "";
 /**
  * Default value for chmoding of new directories.
  */
-$wgDefaultDirectoryChmod = 0777;
+$wgDirectoryMode = 0777;
 
 /**
  * New file storage paths; currently used only for deleted files.

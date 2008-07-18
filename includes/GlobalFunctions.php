@@ -1771,18 +1771,18 @@ function wfTempDir() {
  * Make directory, and make all parent directories if they don't exist
  * 
  * @param string $fullDir Full path to directory to create
- * @param int $mode Chmod value to use, default is $wgDefaultDirectoryChmod
+ * @param int $mode Chmod value to use, default is $wgDirectoryMode
  * @return bool
  */
 function wfMkdirParents( $fullDir, $mode = null ) {
-	global $wgDefaultDirectoryChmod;
+	global $wgDirectoryMode;
 	if( strval( $fullDir ) === '' )
 		return true;
 	if( file_exists( $fullDir ) )
 		return true;
 	// If not defined or isn't an int, set to default
 	if ( !$mode || !is_int($mode) ) {
-		$mode = $wgDefaultDirectoryChmod;
+		$mode = $wgDirectoryMode;
 	}
 
 
