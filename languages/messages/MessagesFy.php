@@ -543,23 +543,23 @@ Negearje it berjocht as dizze brûker sûnder jo meiwitten oanmakke is.',
 'hr_tip'          => 'Horizontale streek (net tefolle brûke)',
 
 # Edit pages
-'summary'                   => 'Gearfetting',
-'subject'                   => 'Mêd',
-'minoredit'                 => 'Dit is in tekstwiziging',
-'watchthis'                 => 'Folgje dizze side',
-'savearticle'               => 'Fêstlizze',
-'preview'                   => 'Oerlêze',
-'showpreview'               => "Oerlêze foar't de side fêstlein is",
-'showlivepreview'           => 'Bewurking foar kontrôle besjen',
-'showdiff'                  => 'Feroarings sjen litte',
-'anoneditwarning'           => "'''Warskôging:''' Jo binne net oanmeld. Jo IP-adres wurdt opslein as jo feroarings op dizze side meitsje.",
-'missingsummary'            => "'''Wink:''' jo hawwe gjin gearfetting jûn foar jo bewurking. As jo nochris op ''Side opslaan'' klikke wurdt de bewurking sûnder gearfetting opslein.",
-'missingcommenttext'        => 'Set jo opmerking beleaven hjir ûnder.',
-'missingcommentheader'      => "'''Tink derom:''' Jo hawwe gjin ûnderwerp/kop foar dizze opmerking opjûn. As jo op 'e nij op \"opslaan\" klikke, wurdt jo feroaring sûnder in ûnderwerp/kop opslein.",
-'summary-preview'           => 'Gearfetting neisjen',
-'subject-preview'           => 'Neisjen ûnderwerp/kop',
-'blockedtitle'              => 'Brûker is útsletten troch',
-'blockedtext'               => "<big>'''Jo brûkersname of Ynternet-adres is útsletten.'''</big>
+'summary'                          => 'Gearfetting',
+'subject'                          => 'Mêd',
+'minoredit'                        => 'Dit is in tekstwiziging',
+'watchthis'                        => 'Folgje dizze side',
+'savearticle'                      => 'Fêstlizze',
+'preview'                          => 'Oerlêze',
+'showpreview'                      => "Oerlêze foar't de side fêstlein is",
+'showlivepreview'                  => 'Bewurking foar kontrôle besjen',
+'showdiff'                         => 'Feroarings sjen litte',
+'anoneditwarning'                  => "'''Warskôging:''' Jo binne net oanmeld. Jo IP-adres wurdt opslein as jo feroarings op dizze side meitsje.",
+'missingsummary'                   => "'''Wink:''' jo hawwe gjin gearfetting jûn foar jo bewurking. As jo nochris op ''Side opslaan'' klikke wurdt de bewurking sûnder gearfetting opslein.",
+'missingcommenttext'               => 'Set jo opmerking beleaven hjir ûnder.',
+'missingcommentheader'             => "'''Tink derom:''' Jo hawwe gjin ûnderwerp/kop foar dizze opmerking opjûn. As jo op 'e nij op \"opslaan\" klikke, wurdt jo feroaring sûnder in ûnderwerp/kop opslein.",
+'summary-preview'                  => 'Gearfetting neisjen',
+'subject-preview'                  => 'Neisjen ûnderwerp/kop',
+'blockedtitle'                     => 'Brûker is útsletten troch',
+'blockedtext'                      => "<big>'''Jo brûkersname of Ynternet-adres is útsletten.'''</big>
 
 De útsluting is útfierd troch $1.
 De opjûne reden is ''$2''.
@@ -571,7 +571,7 @@ De opjûne reden is ''$2''.
 Jo kinne kontakt opnimme mei $1 of in oare [[{{MediaWiki:Grouppage-sysop}}|behearder]] om de útsluting te besprekken.
 Jo kinne gjin gebrûk meitsje fan 'e funksje 'e-mail dizze brûker', of jo moatte in jildich e-mailadres opjûn hawwe yn jo [[Special:Preferences|foarkarren]] en it gebrûk fan dy funksje moat net útsletten wêze.
 Jo tsjintwurdich e-mailadres is $3 en it útslútnûmer is #$5. Neam beide gegevens as jo earne op dizze útsluting reagearje.",
-'autoblockedtext'           => "Jo IP-adres is automatysk blokkearre om't brûkt is troch in oare brûker, dy't blokkearre is troch $1.
+'autoblockedtext'                  => "Jo IP-adres is automatysk blokkearre om't brûkt is troch in oare brûker, dy't blokkearre is troch $1.
 De opjûne reden is:
 
 :''$2''
@@ -585,99 +585,109 @@ U kinne gjin gebrûk meitsje fan 'e funksje 'e-mail dizze brûker', of jo moatte
 
 Jo blokkadenûmer is $5.
 Jou beide gegevens op as jo earne oer dizze blokkade reagearje.",
-'blockednoreason'           => 'gjin reden opjûn',
-'blockedoriginalsource'     => "Hjir ûnder stiet de boarnetekst fan '''$1''':",
-'blockededitsource'         => "Hjir ûnder stiet de tekst fan '''jo bewurkings''' oan '''$1''':",
-'whitelistedittitle'        => 'Foar bewurkjen is oanmelden ferplichte',
-'whitelistedittext'         => 'Jo moatte $1 om siden te bewurkjen.',
-'whitelistreadtitle'        => 'Foar lêstagong is oanmelden ferplichte',
-'whitelistreadtext'         => '[[Special:Userlogin|Meld jo oan]] foar lêstagong ta siden.',
-'whitelistacctitle'         => 'Jo kinnne gjin brûker registreareje',
-'whitelistacctext'          => 'Jo moatte [[Special:Userlogin|oanmeld]] wêze en de krekte rjochten hawwe om brûkers oan te meitsjen yn {{SITENAME}}.',
-'confirmedittitle'          => 'Netpostbefêstiging frege foar bewurkjen',
-'confirmedittext'           => "Jo moatte jo e-mailadres befêstichje foar't jo siden feroarje kinne. Fier in e-mailedres yn by jo [[Special:Preferences|ynstellings]] en befêstichje it.",
-'nosuchsectiontitle'        => 'Dizze subkop bestiet net',
-'nosuchsectiontext'         => "Jo besochten in subkop te bewurkjen dy't net bestiet. Om't subkop $1 net bestiet, kin jo bewurking ek net opslein wurde.",
-'loginreqtitle'             => 'Oanmelden ferplichte',
-'loginreqlink'              => 'Oanmelde',
-'loginreqpagetext'          => '$1 is ferplichte om oare siden sjen te kinnen.',
-'accmailtitle'              => 'Wachtwurd ferstjoerd.',
-'accmailtext'               => 'It wachtwurd foar "$1" is ferstjoerd nei $2.',
-'newarticle'                => '(Nij)',
-'newarticletext'            => "Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
+'blockednoreason'                  => 'gjin reden opjûn',
+'blockedoriginalsource'            => "Hjir ûnder stiet de boarnetekst fan '''$1''':",
+'blockededitsource'                => "Hjir ûnder stiet de tekst fan '''jo bewurkings''' oan '''$1''':",
+'whitelistedittitle'               => 'Foar bewurkjen is oanmelden ferplichte',
+'whitelistedittext'                => 'Jo moatte $1 om siden te bewurkjen.',
+'whitelistreadtitle'               => 'Foar lêstagong is oanmelden ferplichte',
+'whitelistreadtext'                => '[[Special:Userlogin|Meld jo oan]] foar lêstagong ta siden.',
+'whitelistacctitle'                => 'Jo kinnne gjin brûker registreareje',
+'whitelistacctext'                 => 'Jo moatte [[Special:Userlogin|oanmeld]] wêze en de krekte rjochten hawwe om brûkers oan te meitsjen yn {{SITENAME}}.',
+'confirmedittitle'                 => 'Netpostbefêstiging frege foar bewurkjen',
+'confirmedittext'                  => "Jo moatte jo e-mailadres befêstichje foar't jo siden feroarje kinne. Fier in e-mailedres yn by jo [[Special:Preferences|ynstellings]] en befêstichje it.",
+'nosuchsectiontitle'               => 'Dizze subkop bestiet net',
+'nosuchsectiontext'                => "Jo besochten in subkop te bewurkjen dy't net bestiet. Om't subkop $1 net bestiet, kin jo bewurking ek net opslein wurde.",
+'loginreqtitle'                    => 'Oanmelden ferplichte',
+'loginreqlink'                     => 'Oanmelde',
+'loginreqpagetext'                 => '$1 is ferplichte om oare siden sjen te kinnen.',
+'accmailtitle'                     => 'Wachtwurd ferstjoerd.',
+'accmailtext'                      => 'It wachtwurd foar "$1" is ferstjoerd nei $2.',
+'newarticle'                       => '(Nij)',
+'newarticletext'                   => "Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
 Om sels tekst te meistjsen kinne jo dy gewoan yntype in dit bewurkingsfjild
 ([[{{MediaWiki:Helppage}}|Mear ynformaasje oer bewurkjen]].)
 Oars kinne jo tebek mei de tebek-knop fan jo blêder.",
-'anontalkpagetext'          => "----
+'anontalkpagetext'                 => "----
 ''Dit is de oerlisside fan in ûnbekinde brûker; in brûker dy't him/har net oanmeld hat. Om't der gjin namme bekend is, wurdt it Ynternet-adres brûkt om oan te jaan wa. Mar faak is it sa dat sa'n adres net altyd troch deselde persoan brûkt wurdt. As jo it idee hawwe dat jo as ûnbekinde brûker opmerkings foar in oar krije, dan kinne jo jo [[Special:Userlogin|oanmelde]], sadat jo allinnich opmerkings foar josels krije.''",
-'noarticletext'             => 'Der stjit noch gjin tekst op dizze side. Jo kinne
+'noarticletext'                    => 'Der stjit noch gjin tekst op dizze side. Jo kinne
 [[Special:Search/{{PAGENAME}}|hjirboppe nei dy tekst sykje]], of [{{fullurl:{{FULLPAGENAME}}|action=edit}} de side skriuwe].',
-'userpage-userdoesnotexist' => 'Jo bewurkje in brûkersside fan in brûker dy\'t net bestiet (brûker "$1").
+'userpage-userdoesnotexist'        => 'Jo bewurkje in brûkersside fan in brûker dy\'t net bestiet (brûker "$1").
 Kontrolearje oft jo dizze side wol oanmeitsje/bewurkje wolle.',
-'clearyourcache'            => '\'\'\'Opmerking:\'\'\' Nei it fêstlizzen, kin it nedich wêze de oerslach fan dyn blêdzjer te leechjen foardat de wizigings te sjen binne.
+'clearyourcache'                   => "'''Opmerking:''' Nei it fêstlizzen kin it nedich wêze de oerslach fan dyn blêder te leegjen foardat de wizigings te sjen binne.
 
-{| border="1" cellpadding="3" class=toccolours style="border: 1px #AAAAAA solid; border-collapse: collapse;"
-| Mozilla (incl. Firefox) || ctrl-shift-r
-|-
-| IE || ctrl-f5  
-|-
-| Opera || f5
-|-
-| Safari || cmd-r
-|-
-| Konqueror || f5
-|}',
-'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Brûk de knop 'Earst oerlêze' om jo nije CSS/JS te testen foar it fêstlizzen.",
-'usercsspreview'            => "'''Dit is allinne mar it oerlêzen fan jo peroanlike CSS, hy is noch net fêstlein!'''",
-'userjspreview'             => "'''Tink derom: jo besjogge no jo persoanlike JavaScript. De side is net fêstlein!'''",
-'userinvalidcssjstitle'     => "'''Warskôging:''' der is gjin skin \"\$1\". Tink derom: jo eigen .css- en .js-siden begjinne mei in lytse letter, bygelyks {{ns:user}}:Namme/monobook.css ynsté fan {{ns:user}}:Namme/Monobook.css.",
-'updated'                   => '(Bewurke)',
-'note'                      => '<strong>Opmerking:</strong>',
-'previewnote'               => '<strong>Tink der om dat dizze side noch net fêstlein is!</strong>',
-'previewconflict'           => 'Dizze side belanget allinich it earste bewurkingsfjild oan.',
-'session_fail_preview'      => "<strong>Spitich! Jo bewurking is net ferwurke, om't de sessygegevens ferlern gien binne.
+'''Mozilla / Firefox / Safari:''' hâld ''Shift'' yntreaun wylst jo op ''Dizze side fernije'' klikke, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op in Macintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leegje jo cache yn ''Extra → Voorkeuren;'' '''Internet Explorer:''' hâld ''Ctrl'' yntreaun wylst jo ''Vernieuwen'' klikke of typ ''Ctrl-F5.''",
+'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Brûk de knop 'Earst oerlêze' om jo nije CSS/JS te testen foar it fêstlizzen.",
+'usercsspreview'                   => "'''Dit is allinne mar it oerlêzen fan jo peroanlike CSS, hy is noch net fêstlein!'''",
+'userjspreview'                    => "'''Tink derom: jo besjogge no jo persoanlike JavaScript. De side is net fêstlein!'''",
+'userinvalidcssjstitle'            => "'''Warskôging:''' der is gjin skin \"\$1\". Tink derom: jo eigen .css- en .js-siden begjinne mei in lytse letter, bygelyks {{ns:user}}:Namme/monobook.css ynsté fan {{ns:user}}:Namme/Monobook.css.",
+'updated'                          => '(Bewurke)',
+'note'                             => '<strong>Opmerking:</strong>',
+'previewnote'                      => '<strong>Tink der om dat dizze side noch net fêstlein is!</strong>',
+'previewconflict'                  => 'Dizze side belanget allinich it earste bewurkingsfjild oan.',
+'session_fail_preview'             => "<strong>Spitich! Jo bewurking is net ferwurke, om't de sessygegevens ferlern gien binne.
 Besykje it nochris. As it dan noch net slagget, meld jo dan ôf en wer oan.</strong>",
-'token_suffix_mismatch'     => "<strong>Jo bewurking is wegere om't jo blêder de lêstekens yn it bewurkingstoken ûnkrekt behannele hat.
+'token_suffix_mismatch'            => "<strong>Jo bewurking is wegere om't jo blêder de lêstekens yn it bewurkingstoken ûnkrekt behannele hat.
 De bewurking is wegere om skeinen fan 'e sidetekst tefoaren te kommen.
 Dat bart soms as der in webbasearre proxytsjinst brûkt wurdt dy't flaters befettet.</strong>",
-'editing'                   => 'Bewurkje "$1"',
-'editingsection'            => 'Dwaande mei bewurkjen fan $1 (dielside)',
-'editingcomment'            => 'Dwaande mei bewurkjen fan $1 (opmerking)',
-'editconflict'              => 'Tagelyk bewurke: "$1"',
-'explainconflict'           => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen.
+'editing'                          => 'Bewurkje "$1"',
+'editingsection'                   => 'Dwaande mei bewurkjen fan $1 (dielside)',
+'editingcomment'                   => 'Dwaande mei bewurkjen fan $1 (opmerking)',
+'editconflict'                     => 'Tagelyk bewurke: "$1"',
+'explainconflict'                  => "In oar hat de side feroare sûnt jo begûn binne mei it bewurkjen.
 It earste bewurkingsfjild is hoe't de tekst wilens wurde is.
 Jo feroarings stean yn it twadde fjild.
 Dy wurde allinnich tapasse safier as jo se yn it earste fjild ynpasse.
 <b>Allinnich</b> de tekst út it earste fjild kin fêstlein wurde.<br />",
-'yourtext'                  => 'Jo tekst',
-'storedversion'             => 'Fêstleine ferzje',
-'editingold'                => '<strong>Waarskôging: Jo binne dwaande mei in âldere ferzje fan dizze side.
+'yourtext'                         => 'Jo tekst',
+'storedversion'                    => 'Fêstleine ferzje',
+'editingold'                       => '<strong>Waarskôging: Jo binne dwaande mei in âldere ferzje fan dizze side.
 Soenen jo dizze fêstlizze, dan is al wat sûnt dy tiid feroare is kwyt.</strong>',
-'yourdiff'                  => 'Feroarings',
-'copyrightwarning'          => "Tink derom dat alle bydragen oan {{SITENAME}} beskôge wurde frijjûn te wêzen ûnder de $2 (sjoch $1 foar bysûnderheden). As jo net wolle dat jo tekst troch oaren neffens eigen goedfinen bewurke en ferspraat wurde kin, kies dan net foar 'Side Bewarje'.</br>
+'yourdiff'                         => 'Feroarings',
+'copyrightwarning'                 => "Tink derom dat alle bydragen oan {{SITENAME}} beskôge wurde frijjûn te wêzen ûnder de $2 (sjoch $1 foar bysûnderheden). As jo net wolle dat jo tekst troch oaren neffens eigen goedfinen bewurke en ferspraat wurde kin, kies dan net foar 'Side Bewarje'.</br>
 Hjirby sizze jo tagelyk ta, dat jo dizze tekst sels skreaun hawwe, of oernommen hawwe út in frije, iepenbiere boarne.</br/>
 <strong>BRûK GJIN MATERIAAL DAT BESKERME WURDT TROCH AUTERURSRJOCHT, OF JO MOATTE DêR TASTIMMING TA HAWWE!</STRONG>",
-'longpagewarning'           => "<strong>Warskôging: Dizze side is $1 kilobyte lang;
+'longpagewarning'                  => "<strong>Warskôging: Dizze side is $1 kilobyte lang;
 der binne blêders dy't problemen hawwe mei siden fan tsjin de 32kb. of langer.
 Besykje de side yn lytsere stikken te brekken.</strong>",
-'readonlywarning'           => '<strong>Waarskôging: De databank is ôfsletten foar
+'readonlywarning'                  => '<strong>Waarskôging: De databank is ôfsletten foar
 ûnderhâld, dus jo kinne jo bewurkings no net fêstlizze.
 It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>',
-'protectedpagewarning'      => '<strong>Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.</strong>',
-'semiprotectedpagewarning'  => "'''Tink derom:''' dizze side is befeilige en kin allinne troch registrearre brûkers bewurke wurde.",
-'cascadeprotectedwarning'   => "'''Warskoging:''' Dizze side is skoattele sadat allinnich behearders de side wizigje kinne, om't der in ûnderdiel útmakket fan de neikommende siden {{PLURAL:\$1|page|pages}}, dy't skoattele binne mei de \"ûnderlizzende siden\" opsje ynskeakele:",
-'titleprotectedwarning'     => '<strong>WARSKÔGING: Dizze side is befeilige, dat allinne inkelde brûkers kinne him oanmeitsje.</strong>',
-'templatesused'             => 'Op dizze side brûkte sjabloanen:',
-'templatesusedpreview'      => 'Yn dit proefbyld sjabloanen:',
-'templatesusedsection'      => "Sjabloanen dy't brûkt wurde yn dizze subkop:",
-'template-protected'        => '(befeilige)',
-'template-semiprotected'    => '(semi-befeilige)',
-'nocreatetitle'             => 'It oanmeitsjen fan siden is beheind',
-'nocreatetext'              => '{{SITENAME}} hat de mûglikheid beheind om nije siden te meitsjen.
+'protectedpagewarning'             => '<strong>Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.</strong>',
+'semiprotectedpagewarning'         => "'''Tink derom:''' dizze side is befeilige en kin allinne troch registrearre brûkers bewurke wurde.",
+'cascadeprotectedwarning'          => "'''Warskoging:''' Dizze side is skoattele sadat allinnich behearders de side wizigje kinne, om't der in ûnderdiel útmakket fan de neikommende siden {{PLURAL:\$1|page|pages}}, dy't skoattele binne mei de \"ûnderlizzende siden\" opsje ynskeakele:",
+'titleprotectedwarning'            => '<strong>WARSKÔGING: Dizze side is befeilige, dat allinne inkelde brûkers kinne him oanmeitsje.</strong>',
+'templatesused'                    => 'Op dizze side brûkte sjabloanen:',
+'templatesusedpreview'             => 'Yn dit proefbyld sjabloanen:',
+'templatesusedsection'             => "Sjabloanen dy't brûkt wurde yn dizze subkop:",
+'template-protected'               => '(befeilige)',
+'template-semiprotected'           => '(semi-befeilige)',
+'hiddencategories'                 => 'Dizze side falt yn de folgjende ferburgen
+{{PLURAL:$1|kategory|kategoryen}}:',
+'nocreatetitle'                    => 'It oanmeitsjen fan siden is beheind',
+'nocreatetext'                     => '{{SITENAME}} hat de mûglikheid beheind om nije siden te meitsjen.
 Jo kinne al besteande siden feroarje of jo kinne [[Special:Userlogin|jo oanmelde of in brûker oanmeitsje]].',
-'recreate-deleted-warn'     => "'''Warskôging: Jo binne dwaande in side oan te meitsjen dy't earder weidien is.'''
+'nocreate-loggedin'                => 'Jo kinne gjin nije siden meitsje op {{SITENAME}}.',
+'permissionserrors'                => 'Flaters yn rjochten',
+'permissionserrorstext'            => 'Jo hawwe gjin rjochtem dit te dwaan om de folgjende {{PLURAL:$1|reden|redenen}}:',
+'permissionserrorstext-withaction' => 'Jo hawwe gjin rjocht ta $2 om de folgjende {{PLURAL:$1|reden|redenen}}:',
+'recreate-deleted-warn'            => "'''Warskôging: Jo binne dwaande in side oan te meitsjen dy't earder weidien is.'''
 
 Betink oft it gaadlik is dat jo dizze side fierder bewurkje. Foar jo geriif stiet hjirûnder it lochboek oer it weidwaan fan dizze side:",
+
+# Parser/template warnings
+'expensive-parserfunction-warning'        => 'Warskôging: Dizze side brûkt tefolle kostbere parserfunksjes.
+
+No binne it $1, wylst it minder as $2 wêze moatte.',
+'expensive-parserfunction-category'       => "Siden dy't tefolle kostbere parserfuksjes brûke",
+'post-expand-template-inclusion-category' => "Side wêrfoar't de maksimale trânsklúzjegrutte teboppe gien is",
+'post-expand-template-argument-category'  => "Siden dy't missende sjabloaneleminten befetsje",
+
+# "Undo" feature
+'undo-failure' => 'De feroaring kin net ûngedien makke wurde fanwege oare stridige bewurkings.',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Registrearjen is mislearre.',
 
 # History pages
 'viewpagelogs'        => 'Lochboek foar dizze side sjen litte',
@@ -698,6 +708,7 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 'page_last'           => 'lêste',
 'histlegend'          => "Utlis: (no) = ferskil mei de side sa't dy no is,
 (doe) = ferskill mei de side sa't er doe wie, foar de feroaring, T = Tekstwiziging",
+'deletedrev'          => '[fuorthelle]',
 'histfirst'           => 'Aldste',
 'histlast'            => 'Nijste',
 

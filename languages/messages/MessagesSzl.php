@@ -9,6 +9,7 @@
  * @author Herr Kriss
  * @author Pimke
  * @author Siebrand
+ * @author Ozi64
  * @author SPQRobin
  * @author Jon Harald Søby
  * @author Leinad
@@ -912,7 +913,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'right-reupload-own'         => 'Nadpisuj plik wćepany sam bez tygo somygo užytkowńika',
 'right-reupload-shared'      => 'Nadpisuj pliki ůmješčůne w repozytorjům dźelůnych plikůw na lokalnyj kopje',
 'right-upload_by_url'        => 'Wćepńij sam plik ze adresa URL',
-'right-purge'                => 'Wyčyść pamjyńć podrynčnům do zajty za wyjůntkym zajty potwjerdzyńo',
+'right-purge'                => 'Wyčyść pamjyńć podrynčno do zajty za wyjůntkym zajty potwjerdzyńo',
 'right-autoconfirmed'        => 'Sprowjej zajty zawarte lo ńyzalůgowanych',
 'right-bot'                  => 'Traktuj kej proces autůmatyčny',
 'right-nominornewtalk'       => 'Wyuůnčyńy uopcyje powjadamjańo uo drobnych půmjyńańach na zajće godki',
@@ -1200,7 +1201,7 @@ Duůgość [http://www.mediawiki.org/wiki/Manual:Job_queue kolejki zadań] je ''
 
 'disambiguations'      => 'Zajty ujydnoznačńajůnce',
 'disambiguationspage'  => '{{ns:template}}:disambig',
-'disambiguations-text' => "Artikle půńižej uodwouujům śe do '''zajtůw ujydnoznačńajůncych''', a powinny uodwouywać śe bezpośredńo do hasua kere je zwjůnzane ze treśćům artikla.<br />
+'disambiguations-text' => "Artikle půńižej uodwouůjům śe do '''zajtůw ujydnoznačńajůncych''', a powinny uodwouywać śe bezpostředńo do hasua kere je zwjůnzane ze treśćům artikla.<br />
 Zajta uznawano je za ujydnoznačńajůnco kej zawiyro šablůn uokreślůny we [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Podwůjne překierowańa',

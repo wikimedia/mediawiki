@@ -1042,10 +1042,12 @@ die lêer is $2.',
 'imagelinks'                     => 'Prentskakels',
 'linkstoimage'                   => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} gebruik hierdie prent:',
 'nolinkstoimage'                 => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
+'morelinkstoimage'               => 'Wys [[Special:Whatlinkshere/$1|meer skakels]] na die lêer.',
 'redirectstofile'                => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
 'duplicatesoffile'               => "Die volgende {{PLURAL:$1|lêer is 'n duplikaat|$1 lêers is duplikate}} van die lêer:",
 'sharedupload'                   => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word.',
 'shareduploadwiki'               => 'Sien $1 vir verdere inligting.',
+'shareduploadwiki-desc'          => 'Die $1 uit die gedeelde lêerbank word hieronder weergegee.',
 'shareduploadwiki-linktext'      => 'lêer beskrywingsbladsy',
 'shareduploadduplicate-linktext' => "'n ander lêer",
 'shareduploadconflict-linktext'  => "'n ander lêer",
@@ -1545,6 +1547,8 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 
 # Export
 'export'            => 'Eksporteer bladsye',
+'exportcuronly'     => 'Slegs die laaste weergawes, sonder volledige geskiedenis',
+'export-submit'     => 'Eksporteer',
 'export-addcattext' => 'Voeg bladsye by van kategorie:',
 'export-addcat'     => 'Voeg by',
 'export-download'   => 'Stoor as lêer',
@@ -1567,10 +1571,19 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 
 # Special:Import
 'import'                     => 'Voer bladsye in',
+'import-interwiki-submit'    => 'importeer',
 'import-interwiki-namespace' => 'Plaas bladsye in naamruimte:',
+'importstart'                => 'Importeer bladsye...',
+'import-revision-count'      => '$1 {{PLURAL:$1|weergawe|weergawes}}',
+'importnopages'              => 'Geen bladsye om te $1 importeer.',
 'importfailed'               => 'Intrek onsuksesvol: $1',
+'importunknownsource'        => 'Onbekende brontipe.',
+'importcantopen'             => 'Kon nie lêer oopmaak nie',
 'importbadinterwiki'         => 'Verkeerde interwiki skakel',
 'importnotext'               => 'Leeg of geen teks',
+'importsuccess'              => 'Klaar met importering!',
+'import-noarticle'           => 'Geen bladsye om te importeer nie!',
+'import-upload'              => 'Laai XML-data op',
 
 # Import log
 'importlogpage'                    => 'Invoer logboek',
@@ -1838,9 +1851,10 @@ Hierde bevestigingkode verval om $4.',
 'trackbackremove' => ' ([$1 Skrap])',
 
 # Delete conflict
-'confirmrecreate' => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''
+'deletedwhileediting' => 'Let op: die bladsy was verwyder terwyl u besig was om dit te wysig!',
+'confirmrecreate'     => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''
 Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
-'recreate'        => 'Herskep',
+'recreate'            => 'Herskep',
 
 # HTML dump
 'redirectingto' => 'Stuur aan na [[$1]]...',
@@ -1852,9 +1866,11 @@ $1',
 'confirm_purge_button' => 'OK',
 
 # AJAX search
-'articletitles' => "Artikels wat met ''$1'' begin",
-'hideresults'   => 'Steek resultate weg',
-'useajaxsearch' => 'Gebruik AJAX-soek',
+'searchcontaining' => "Soek na bladsye wat ''$1'' bevat.",
+'searchnamed'      => "Soek vir bladsye genaamd ''$1''.",
+'articletitles'    => "Artikels wat met ''$1'' begin",
+'hideresults'      => 'Steek resultate weg',
+'useajaxsearch'    => 'Gebruik AJAX-soek',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige bladsy',
