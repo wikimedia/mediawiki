@@ -468,7 +468,9 @@ ENDS;
 $checkBlacklist = array(
 #'code'        => array( 'check1', 'check2' ... )
 'gan'          => array( 'plural' ),
+'gn'           => array( 'plural' ),
 'hak'          => array( 'plural' ),
+'hu'           => array( 'plural' ),
 'ja'           => array( 'plural' ), // Does not use plural
 'ka'           => array( 'plural' ),
 'kk-arab'      => array( 'plural' ),
@@ -478,6 +480,7 @@ $checkBlacklist = array(
 'mn'           => array( 'plural' ),
 'ms'           => array( 'plural' ),
 'my'           => array( 'chars' ),  // Uses a lot zwnj
+'sah'          => array( 'plural' ),
 'sq'           => array( 'plural' ),
 'tet'          => array( 'plural' ),
 'th'           => array( 'plural' ),
