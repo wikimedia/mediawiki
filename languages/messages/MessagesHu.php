@@ -9,9 +9,9 @@
  * @author Samat
  * @author Tgr
  * @author Bdamokos
+ * @author Cerasus
  * @author Dorgan
  * @author Balasyum
- * @author Cerasus
  * @author Bennó
  */
 
@@ -1774,8 +1774,8 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 ** Jogsértő
 ** Vandalizmus',
 'delete-edit-reasonlist'      => 'Törlési okok szerkesztése',
-'delete-toobig'               => 'Ennek a lapnak nagy laptörténete van, több, mint {{PLURAL:$1|egy|$1}} változattal. Az ilyen lapok törlése nem engedélyezett a wiki rendjének megőrzése céljából.',
-'delete-warning-toobig'       => 'Ennek a lapnak nagy laptörténete van, több, mint {{PLURAL:$1|egy|$1}} változattal. Törlése fennakadásokat okozhat a wiki adatbázisműveleteiben; óvatosan járj el.',
+'delete-toobig'               => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. A szervert kímélendő az ilyen lapok törlése nem engedélyezett.',
+'delete-warning-toobig'       => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. Törlése fennakadásokat okozhat a wiki adatbázis-műveleteiben; óvatosan járj el.',
 'rollback'                    => 'Szerkesztések visszaállítása',
 'rollback_short'              => 'Visszaállítás',
 'rollbacklink'                => 'visszaállítás',

@@ -371,7 +371,8 @@ $messages = array(
 'boteditletter'                  => 'b',
 
 # Recent changes linked
-'recentchangeslinked-title' => 'Αλλαγάς τη "$1"',
+'recentchangeslinked-title'    => 'Αλλαγάς τη "$1"',
+'recentchangeslinked-noresult' => "Σ' αβούτα τα σελίδας 'κ εγένταν αλλάγματα.",
 
 # Upload
 'upload'        => 'Φόρτωμα αρχείου',

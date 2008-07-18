@@ -210,15 +210,18 @@ $messages = array(
 'nosuchspecialpage' => 'એવું ખાસ પાનું નથી',
 
 # General errors
-'badtitle'      => 'ખરાબ નામ',
-'viewsource'    => 'સ્ત્રોત જુઓ',
-'viewsourcefor' => '$1ને માટે',
+'badtitle'       => 'ખરાબ નામ',
+'viewsource'     => 'સ્ત્રોત જુઓ',
+'viewsourcefor'  => '$1ને માટે',
+'viewsourcetext' => 'આપ આ પાનાંનો મૂળ સ્ત્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:',
 
 # Login and logout pages
 'yourname'                => 'સભ્ય નામ:',
 'yourpassword'            => 'ગુપ્ત સંજ્ઞા:',
+'remembermypassword'      => 'આ કોમ્યૂટર પર મારી લૉગ ઇન વિગતો ધ્યાનમાં રાખો',
 'login'                   => 'પ્રવેશ કરો (લૉગ ઇન કરીને)',
 'nav-login-createaccount' => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
+'loginprompt'             => '{{SITENAME}}માં પ્રવેશ કરવા માટે તમારા બ્રાઉઝરમાં કુકીઝ એનેબલ કરેલી હોવી જોઇશે.',
 'userlogin'               => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
 'userlogout'              => 'બહાર નીકળો/લૉગ આઉટ',
 'nologin'                 => 'શું તમારૂં ખાતું નથી? $1.',
@@ -229,6 +232,7 @@ $messages = array(
 'yourlanguage'            => 'ભાષા',
 'loginsuccess'            => "'''તમે હવે {{SITENAME}}માં \"\$1\" તરીકે પ્રવેશી ચુક્યા છો.'''",
 'nosuchusershort'         => '"<nowiki>$1</nowiki>" નામનો કોઇ સભ્ય નથી, તમારી જોડણી તપાસો.',
+'mailmypassword'          => 'પાસવર્ડ ઇ-મેલમાં મોકલો',
 'accountcreated'          => 'ખાતું ખોલવામાં આવ્યું છે',
 
 # Edit page toolbar
@@ -269,8 +273,7 @@ $messages = array(
 <br />જો આપ ભુલમાં અહીં આવી ગયા હોવ તો, આપનાં બ્રાઉઝર નાં '''બેક''' બટન પર ક્લિક કરીને પાછા વળો.",
 'noarticletext'          => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી, તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરો.',
 'previewnote'            => '<strong>આ ફક્ત પૂર્વાવલોકન છે;
-<br />ફેરફ્ફરો હજુ સુરક્ષિત કરવામાં નથી આવ્યાં!</strong>
-<br />[[#editform|→ એડિટ બોક્સ પર જાવ.]]',
+ફેરફ્ફરો હજુ સુરક્ષિત કરવામાં નથી આવ્યાં!</strong>',
 'editing'                => '$1નો ફેરફાર કરી રહ્યા છે',
 'editingsection'         => '$1 (પરિચ્છેદ)નો ફેરફાર કરી રહ્યા છો',
 'yourdiff'               => 'ભેદ',
@@ -293,6 +296,7 @@ $messages = array(
 'nohistory'           => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
 'currentrev'          => 'હાલની આવૃત્તિ',
 'revisionasof'        => '$1 સુધીનાં પુનરાવર્તન',
+'revision-info'       => '$2 દ્વારા $1 સુધીમાં કરવામાં આવેલાં ફેરફારો',
 'previousrevision'    => '←જુના ફેરફારો',
 'nextrevision'        => 'આ પછીનું પુનરાવર્તન→',
 'currentrevisionlink' => 'વર્તમાન આવૃત્તિ',
@@ -386,6 +390,7 @@ $messages = array(
 'filehist-comment'    => 'ટિપ્પણી',
 'imagelinks'          => 'કડીઓ',
 'linkstoimage'        => 'આ ફાઇલ સાથે {{PLURAL:$1|નીચેનું પાનું જોડાયેલું|$1 નીચેનાં પાનાઓ જોડાયેલાં}} છે',
+'nolinkstoimage'      => 'આ ફાઇલ સાથે કોઇ પાનાં જોડાયેલાં નથી.',
 'sharedupload'        => 'આ ફાઇલ સહિયારી રીતે ચઢાવવામાં આવી છે અને તેનો ઉપયોગ અન્ય પરિયોજનાઓમાં પણ થઇ શકે છે.',
 
 # Unused templates
@@ -459,6 +464,7 @@ $messages = array(
 'unwatch'              => 'ધ્યાનસૂચિમાંથી હટાવો',
 'watchlist-details'    => 'ચર્ચા વાળા પાના ન ગણતા {{PLURAL:$1|$1 પાનું|$1 પાનાં}} ધ્યાનસૂચી મા છે.',
 'watchlistcontains'    => 'તમારી ધ્યાનસૂચીમાં $1 {{PLURAL:$1|પાનું|પાનાં}} છે.',
+'wlshowlast'           => 'છેલ્લા $1 કલાક $2 દિવસ $3 બતાવો',
 'watchlist-hide-bots'  => 'બૉટના ફેરફાર સંતાડો',
 'watchlist-hide-own'   => 'મારા ફેરફાર સંતાડો',
 'watchlist-hide-minor' => 'નાના ફેરફાર સંતાડો',
@@ -681,7 +687,9 @@ $messages = array(
 'autosumm-new' => 'નવું પાનું : $1',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'બંધબેસતાં ફેરફારો નિહાળો',
 'watchlisttools-edit' => 'ધ્યાનસૂચી જુઓ અને બદલો',
+'watchlisttools-raw'  => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 
 # Special:SpecialPages
 'specialpages' => 'ખાસ પાનાં',

@@ -1361,8 +1361,11 @@ $NEWPAGE
 'djvu_page_error'          => 'DjVu בלאט ארויס פֿון גרייך',
 'djvu_no_xml'              => "מ'קען נישט באקומען דעם XML פֿאַר דער DjVu טעקע",
 'thumbnail_invalid_params' => 'אומגילטיגע קליינבילד פאראמעטערס',
+'thumbnail_dest_directory' => "מ'קען נישט שאפֿן דעם ציל קארטאטעק",
 
 # Special:Import
+'import'                => 'אימפארטירן בלעטער',
+'importinterwiki'       => 'אריבערוויקי אימפארט',
 'importbadinterwiki'    => 'שלעכטע אינטערוויקי לינק',
 'importnotext'          => 'ליידיג אדער נישט קיין טעקסט',
 'importsuccess'         => '!אימפארט אדורכגעפירט מיט דערפאלג!',
