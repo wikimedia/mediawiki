@@ -162,7 +162,7 @@ user_newtalk
 updatelog
 ';
 
-## Make sure all tables in main tables.sql are accounted for int the parsertest.
+## Make sure all tables in main tables.sql are accounted for in the parsertest.
 for my $table (sort keys %{$old{'../tables.sql'}}) {
 	$ptable{$table}++;
 	next if $ptable{$table} > 2;
@@ -483,11 +483,47 @@ sub check_includes_dir {
 		}
 		close $fh or die qq{Could not close "$file": $!\n};
 	}
+	rewinddir $dh;
+	for my $subdir (grep { -d "$dir/$_" and ! /\./ } readdir $dh) {
+		print "Entering directory $subdir\n";
+		opendir my $dh, "$dir/$subdir" or die qq{Could not opendir "$dir/$subdir": $!\n};
+		scan_dir("$dir/$subdir" => $dh);
+		closedir $dh;
+	}
 	closedir $dh or die qq{Closedir failed?!\n};
 
 	return;
 
 } ## end of check_includes_dir
+
+sub scan_dir {
+
+	my ($dir, $dh) = @_;
+
+	for my $file (grep { -f "$dir/$_" and /\.php$/ } readdir $dh) {
+		$file = "$dir/$file";
+		open my $fh, '<', $file or die qq{Could not open "$file": $!\n};
+		while (<$fh>) {
+			if (/FORCE INDEX/ and $file !~ /Database\w*\.php/) {
+				warn "Found FORCE INDEX string at line $. of $file\n";
+			}
+			if (/REPLACE INTO/ and $file !~ /Database\w*\.php/) {
+				warn "Found REPLACE INTO string at line $. of $file\n";
+			}
+			if (/\bIF\s*\(/ and $file !~ /DatabaseMySQL\.php/) {
+				warn "Found IF string at line $. of $file\n";
+			}
+			if (/\bCONCAT\b/ and $file !~ /Database\w*\.php/) {
+				warn "Found CONCAT string at line $. of $file\n";
+			}
+		}
+		close $fh or die qq{Could not close "$file": $!\n};
+	}
+
+	return;
+
+} ## end of scan_dir
+
 
 __DATA__
 ## Known exceptions
