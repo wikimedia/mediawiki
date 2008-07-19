@@ -1,5 +1,6 @@
 <?php
 /**
+ * @see wfWaitForSlaves()
  * @file
  * @ingroup Maintenance
  */

@@ -1,5 +1,8 @@
 <?php
 /**
+ * This script make several set, incr and get requests on every
+ * memcached server and show a report.
+ *
  * $Id$
  * @file
  * @ingroup Maintenance

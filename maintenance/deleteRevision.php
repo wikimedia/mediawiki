@@ -1,5 +1,8 @@
 <?php
 /**
+ * Delete a given list of revision.
+ * The revision is in fact moved to the archive table.
+ *
  * @file
  * @ingroup Maintenance
  */

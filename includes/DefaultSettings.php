@@ -923,9 +923,11 @@ $wgRedirectSources = false;
 
 
 $wgShowIPinHeader	= true; # For non-logged in users
-$wgMaxNameChars		= 255;  # Maximum number of bytes in username
 $wgMaxSigChars		= 255;  # Maximum number of Unicode characters in signature
 $wgMaxArticleSize	= 2048; # Maximum article size in kilobytes
+# Maximum number of bytes in username. You want to run the maintenance
+# script ./maintenancecheckUsernames.php once you have changed this value
+$wgMaxNameChars		= 255;
 
 $wgMaxPPNodeCount = 1000000;  # A complexity limit on template expansion
 
