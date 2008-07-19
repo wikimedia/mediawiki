@@ -1781,7 +1781,7 @@ function wfMkdirParents( $fullDir, $mode = null ) {
 	if( file_exists( $fullDir ) )
 		return true;
 	// If not defined or isn't an int, set to default
-	if ( !$mode || !is_int($mode) ) {
+	if ( is_null( $mode ) ) {
 		$mode = $wgDirectoryMode;
 	}
 
