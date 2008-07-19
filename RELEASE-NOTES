@@ -441,6 +441,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   its existance.
 * Accesskeys for minor edit/watch checkboxes on edit now work in Firefox 3
 * (bug 12384) Comments in maintenance/*php
+* (bug 12441) ./maintenance/generateSitemap.php fix -fspath requiring
+  a trailing slash.
 
 === API changes in 1.13 ===
 
