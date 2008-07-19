@@ -3,6 +3,8 @@ require_once 'counter.php';
 /**
  * Run all updaters.
  *
+ * This is used when the database schema is modified and we need to apply patches.
+ *
  * @file
  * @todo document
  * @ingroup Maintenance

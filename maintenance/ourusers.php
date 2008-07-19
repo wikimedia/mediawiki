@@ -1,5 +1,11 @@
 <?php
 /**
+ * Wikimedia specific
+ *
+ * This script generates SQL used to update MySQL users on a hardcoded
+ * list of hosts. It takes care of setting the wikiuser for every
+ * database as well as setting up wikiadmin.
+ *
  * @todo document
  * @file
  * @ingroup Maintenance

@@ -1,5 +1,11 @@
 <?php
 /**
+ * This script starts pending jobs.
+ *
+ * Usage:
+ *  --maxjobs <num> (default 10000)
+ *  --type <job_cmd>
+ *
  * @file
  * @ingroup Maintenance
  */
