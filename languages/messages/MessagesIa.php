@@ -1322,7 +1322,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 # Statistics
 'statistics'             => 'Statisticas',
 'sitestats'              => 'Statisticas de accesso',
-'userstats'              => 'Statisticas de usator',
+'userstats'              => 'Statisticas de usatores',
 'sitestatstext'          => "Le base de datos contine un total de {{PLURAL:\$1|'''1''' pagina|'''\$1''' paginas}}.
 Iste numero include paginas de \"discussion\", paginas super {{SITENAME}}, \"peciettas\"
 minimal, redirectiones, e altere paginas que probabilemente non se qualifica como articulos.
@@ -1739,7 +1739,7 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contributiones de usator',
+'contributions' => 'Contributiones del usator',
 'mycontris'     => 'Mi contributiones',
 'contribsub2'   => 'Pro $1 ($2)',
 'nocontribs'    => 'Necun modification ha essite trovate secundo iste criterios.',
@@ -2485,7 +2485,7 @@ Le alteres essera initialmente celate.
 'exif-gpsdirection-m' => 'Direction magnetic',
 
 # External editor support
-'edit-externally'      => 'Modifica iste file con un programma externe',
+'edit-externally'      => 'Modificar iste file con un programma externe',
 'edit-externally-help' => 'Vide le [http://meta.wikimedia.org/wiki/Help:External_editors instructiones de configuration] pro ulterior informationes.',
 
 # 'all' in various places, this might be different for inflected languages
@@ -2629,7 +2629,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titulo|$1 titulos}} ha essite eliminate:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Vider cambios relevante',
+'watchlisttools-view' => 'Vider modificationes pertinente',
 'watchlisttools-edit' => 'Vider e modificar le observatorio',
 'watchlisttools-raw'  => 'Modificar observatorio crude',
 

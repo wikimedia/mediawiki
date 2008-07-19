@@ -308,7 +308,7 @@ I seguenti collegamenti sono in lingua inglese:
 'delete'            => 'Cancella',
 'deletethispage'    => 'Cancella questa pagina',
 'undelete_short'    => 'Recupera {{PLURAL:$1|una revisione|$1 revisioni}}',
-'protect'           => 'Blocca',
+'protect'           => 'Proteggi',
 'protect_change'    => 'modifica protezione',
 'protectthispage'   => 'Proteggi questa pagina',
 'unprotect'         => 'Sblocca',

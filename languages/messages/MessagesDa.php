@@ -1864,6 +1864,7 @@ for at flytte en side.',
 'move-watch'              => 'Overvåg denne side',
 'movepagebtn'             => 'Flyt side',
 'pagemovedsub'            => 'Flytning gennemført',
+'movepage-moved'          => '<big>\'\'\'"$1" er blevet flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'En side med det navn eksisterer allerede, eller det
 navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'cantmove-titleprotected' => 'Du kan ikke omdøbe en side til dette navn. Det nye navn er beskyttet mod oprettelse.',
