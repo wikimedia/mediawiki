@@ -148,14 +148,32 @@ class GenerateSitemap {
 
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;
-		$this->fspath = isset( $fspath ) ? $fspath : '';
+		$this->fspath = self::init_path( $fspath );
+
 		$this->compress = $compress;
 
 		$this->stderr = fopen( 'php://stderr', 'wt' );
 		$this->dbr = wfGetDB( DB_SLAVE );
 		$this->generateNamespaces();
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
+
+
 		$this->findex = fopen( "{$this->fspath}sitemap-index-" . wfWikiID() . ".xml", 'wb' );
+	}
+
+	/**
+	 * Create directory if it does not exist and return pathname with a trailing slash
+	 */
+	private static function init_path( $fspath ) {
+		if( !isset( $fspath ) ) {
+			return null;
+		}
+		# Create directory if needed
+		if( $fspath && !is_dir( $fspath ) ) {
+			mkdir( $fspath, 0755 ) or die("Can not create directory $fspath.\n");
+		}
+
+		return realpath( $fspath ). DIRECTORY_SEPARATOR ;
 	}
 
 	/**
@@ -260,7 +278,7 @@ class GenerateSitemap {
 					$this->file = $this->open( $this->fspath . $filename, 'wb' );
 					$this->write( $this->file, $this->openFile() );
 					fwrite( $this->findex, $this->indexEntry( $filename ) );
-					$this->debug( "\t$filename" );
+					$this->debug( "\t$this->fspath$filename" );
 					$length = $this->limit[0];
 					$i = 1;
 				}
@@ -457,7 +475,7 @@ if ( in_array( '--help', $argv ) ) {
 Usage: php generateSitemap.php [options]
 	--help			show this message
 
-	--fspath=<path>		The file system path to save to, e.g /tmp/sitemap/
+	--fspath=<path>		The file system path to save to, e.g /tmp/sitemap
 
 	--server=<server>	The protocol and server name to use in URLs, e.g.
 		http://en.wikipedia.org. This is sometimes necessary because
