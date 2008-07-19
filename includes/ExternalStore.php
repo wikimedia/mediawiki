@@ -17,38 +17,38 @@ class ExternalStore {
 	static function fetchFromURL($url) {
 		global $wgExternalStores;
 
-		if (!$wgExternalStores)
+		if( !$wgExternalStores )
 			return false;
 
-		@list($proto,$path)=explode('://',$url,2);
+		@list( $proto, $path ) = explode( '://', $url, 2 );
 		/* Bad URL */
-		if ($path=="")
+		if( $path == '' )
 			return false;
 
-		$store =& ExternalStore::getStoreObject( $proto );
+		$store = self::getStoreObject( $proto );
 		if ( $store === false )
 			return false;
-		return $store->fetchFromURL($url);
+		return $store->fetchFromURL( $url );
 	}
 
 	/**
 	 * Get an external store object of the given type
 	 */
-	static function &getStoreObject( $proto ) {
+	static function getStoreObject( $proto ) {
 		global $wgExternalStores;
-		if (!$wgExternalStores)
+		if( !$wgExternalStores )
 			return false;
 		/* Protocol not enabled */
-		if (!in_array( $proto, $wgExternalStores ))
+		if( !in_array( $proto, $wgExternalStores ) )
 			return false;
 
-		$class='ExternalStore'.ucfirst($proto);
+		$class = 'ExternalStore' . ucfirst( $proto );
 		/* Any custom modules should be added to $wgAutoLoadClasses for on-demand loading */
-		if (!class_exists($class)) {
+		if( !class_exists( $class ) ){
 			return false;
 		}
-		$store=new $class();
-		return $store;
+
+		return new $class();
 	}
 
 	/**
@@ -59,7 +59,7 @@ class ExternalStore {
 	 */
 	static function insert( $url, $data ) {
 		list( $proto, $params ) = explode( '://', $url, 2 );
-		$store =& ExternalStore::getStoreObject( $proto );
+		$store = self::getStoreObject( $proto );
 		if ( $store === false ) {
 			return false;
 		} else {
