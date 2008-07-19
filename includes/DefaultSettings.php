@@ -2737,7 +2737,7 @@ $wgSpecialPageGroups = array(
 	'Lockdb'                    => 'wiki',
 	'Unlockdb'                  => 'wiki',
 	'Allmessages'               => 'wiki',
-	'PopularPages'              => 'wiki',
+	'Popularpages'              => 'wiki',
 
 	'Specialpages'              => 'other',
 	'Blockme'                   => 'other',
