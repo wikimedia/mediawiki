@@ -13,6 +13,7 @@
  * @author ArnoLagrange
  * @author SPQRobin
  * @author Gangleri
+ * @author Malafaya
  * @author Jon Harald Søby
  */
 
@@ -321,7 +322,7 @@ $messages = array(
 'newmessageslink'         => 'nova mesaĝo',
 'newmessagesdifflink'     => 'ŝanĝoj kompare kun antaŭlasta versio',
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
-'editsection'             => '<small>redakti</small>',
+'editsection'             => 'redakti',
 'editold'                 => 'redakti',
 'viewsourceold'           => 'rigardu fonttekston',
 'editsectionhint'         => 'Redaktu sekcion: $1',

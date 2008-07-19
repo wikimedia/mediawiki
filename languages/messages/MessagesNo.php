@@ -2045,7 +2045,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 
 # Scripts
 'common.js'   => '/* All JavaScript i denne fila vil bli lastet for alle brukere på hver side. */',
-'monobook.js' => '/* Foreldet; bruk [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Javascript herfra lastes for brukere som bruker utseendet Monobook */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metadata er slått av på denne tjeneren.',

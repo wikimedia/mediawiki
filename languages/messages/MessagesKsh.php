@@ -872,6 +872,7 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'revdelete-log'               => 'Bemerkung för et LogBoch:',
 'revdelete-submit'            => 'Op de aanjekrützte Version aanwende',
 'revdelete-logentry'          => 'Zojang zo de Versione verändert för „[[$1]]“',
+'pagehist'                    => 'Älldere Versione',
 'deletedhist'                 => 'Fottjeschmesse Versione',
 'revdelete-content'           => 'dä Enhalt fun dä Sigg',
 'revdelete-summary'           => 'dä Täx en „{{int:summary}}“',
@@ -980,7 +981,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'searchresultshead'        => 'Beim Söke',
 'resultsperpage'           => 'Zeich Treffer pro Sigg:',
 'contextlines'             => 'Reihe för jede Treffer:',
-'contextchars'             => 'Zeiche us de Ömjevvung, pro Reih:',
+'contextchars'             => 'Zëijshe uß de Ömjävung, pro Rëij:',
 'stub-threshold'           => 'Links passend för <a href="#" class="stub">klein Sigge</a> fomateere av esu vill Bytes:',
 'recentchangesdays'        => 'Aanzahl Dage en de Liss met de „Neuste Änderunge“ — als Standad:',
 'recentchangescount'       => 'Aanzahl Endräch en de Liss met de „Neuste Änderunge“, Fojangeheit un Logbööcher — als Standad:',
@@ -1226,21 +1227,28 @@ En dä Datei stich e Kompjutervirus!
 De Einzelheite: $1',
 'sourcefilename'              => 'Datei zem huhlade:',
 'destfilename'                => 'Unger däm Dateiname avspeichere:',
-'upload-maxfilesize'          => 'Maximale Dateigröße: $1',
+'upload-maxfilesize'          => 'Der jüüßte mööschlesche Ömfang för en Datei es $1',
 'watchthisupload'             => 'Op die Datei hee oppasse',
 'filewasdeleted'              => 'Unger däm Name wood ald ens en Datei huhjelade. Die es enzwesche ävver widder fottjeschmesse woode. Luur leever eets ens en et $1 ih dat De se dann avspeichere deis.',
 
 'upload-proto-error'     => 'Verkihrt Protokoll',
 'upload-file-error'      => 'Fääler em Wiki beim Huhlade',
-'upload-file-error-text' => 'Ene internal error es passeet beim Aanläje vun en Datei om Server.  Verzäll et enem system administrator.',
+'upload-file-error-text' => 'Ene ennere Fääler es opjekumme beim Aanläje vun en Datei om Server.
+Verzäll et enem Eiki-Köbes.',
 'upload-misc-error'      => 'Dat Huhlaade jing donevve',
-'upload-misc-error-text' => 'Dat Huhlaade jing donevve. Mer wesse nit woröm.  Pröf de URL un versök et noch ens.  Wann et nit flupp, verzäll et enem system administrator.',
+'upload-misc-error-text' => 'Dat Huhlaade jing donevve.
+Mer wesse nit woröm.
+Pröf de URL un versök et noch ens.
+Wann et nit flupp, verzäll et enem Wiki-Köbes.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => "Couldn't reach URL",
-'upload-curl-error6-text'  => 'The URL provided could not be reached.  Please double-check that the URL is correct and the site is up.',
+'upload-curl-error6'       => 'Keij Antwoot vun dä URL',
+'upload-curl-error6-text'  => 'Dä ßööver för di URL hät zo lang nit jeantwoot. Bes esu joot un fingk eruß, ov däövverhoup aam Laufe es, un don_ens jenou pröfe, ov di URL stemmp.',
 'upload-curl-error28'      => "Dat Huhlade hät zo lang jedooert, do ha'mer't jestopp",
-'upload-curl-error28-text' => 'The site took too long to respond. Please check the site is up, wait a short while and try again. You may want to try at a less busy time.',
+'upload-curl-error28-text' => 'Dä ßööver för di URL hät zo lang nit jeantwoot.
+Bes esu joot un fingk eruß, ov dä övverhoup aam Laufe es.
+Waat ene Moment un versök et nor_ens.
+Velleich probees De et och zo en Zick, wo winnijer loss es.',
 
 'license'            => 'Lizenz:',
 'nolicense'          => 'Nix usjesök',
@@ -1351,7 +1359,7 @@ De Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 
 (En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikelle sin, weed dobei jaa nit eez metjezallt)',
 
-'doubleredirects'     => 'Ömleitunge op Ömleitunge (Dubbel Ömleitunge sin verkihrt)',
+'doubleredirects'     => 'Ömleitunge op Ömleitunge',
 'doubleredirectstext' => 'Dubbel Ömleitunge sin immer verkihrt, weil däm Wiki sing Soffwär de eetse Ömleitung 
 folg, de zweite Ömleitung ävver dann aanzeije deit - un dat well mer jo normal nit han.
 Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de 
@@ -1360,7 +1368,7 @@ jonn sollt.
 Met däm „(Ändere)“-link kanns De de eetste Sigg tirek aanpacke. Tipp: Merk Der dat Lemma - de Üvverschreff - 
 vun dä Sigg dovör.',
 
-'brokenredirects'        => 'Ömleitunge, die en et Leere jonn (kapott oder op Vörrod aanjelaht)',
+'brokenredirects'        => 'Ömleitunge, die en et Leere jonn',
 'brokenredirectstext'    => 'Die Ömleitunge hee jonn op Sigge, die mer jar nit han:',
 'brokenredirects-delete' => '(fottschmieße)',
 
@@ -1397,7 +1405,7 @@ vun dä Sigg dovör.',
 'mostrevisions'           => 'Atikkele met de miehste Änderunge',
 'prefixindex'             => 'All Sigge, die dänne ehr Name met enem bestemmte Wood oder Tex aanfange deit',
 'shortpages'              => 'Sigge zoteet vun koot noh lang',
-'longpages'               => 'Sigge zoteet vun lang noh koot',
+'longpages'               => 'Atikelle zoteet vun lang noh koot',
 'deadendpages'            => 'Sigge ohne Links dren',
 'deadendpagestext'        => 'De Atikelle hee han kein Links op ander Atikelle em Wiki.',
 'protectedpages'          => 'Jeschötzte Sigge',
@@ -1449,7 +1457,8 @@ wadd_Er am Sööke sidt.',
 'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher.
 Dä Logböcher ehre Enhald ka'mer all noh de Aat, de Metmaacher, oder de Sigge ehr Name, un esu, einzel zoteet 
 aanluure.",
-'logempty'             => '<i>Mer han kein passende Endräch en däm Logboch.</i>',
+'logempty'             => '<i>Mer han kein zopass Endräch en däm Logboch.</i>',
+'log-title-wildcard'   => 'Sök noh Titelle, di aanfange met …',
 
 # Special:Allpages
 'allpages'          => 'All Sigge',
@@ -1534,7 +1543,7 @@ Schirm häs.',
 'watch'                => 'Drop Oppasse',
 'watchthispage'        => 'Op die Sigg oppasse',
 'unwatch'              => 'Nimieh drop Oppasse',
-'unwatchthispage'      => 'Nimieh op die Sigg oppasse',
+'unwatchthispage'      => 'Nit mieh op die Sigg oppasse',
 'notanarticle'         => 'Keine Atikkel',
 'notvisiblerev'        => 'Di Version es fottjeschmesse',
 'watchnochange'        => 'Keine Atikkel en Dinger Oppassliss es en dä aanjezeichte Zick verändert woode.',
@@ -1738,7 +1747,7 @@ Dat sollt nor jedon wääde om sujenannte Vandaale ze bremse. Un mer müsse uns 
 Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passeet. Nenn un Link op de Sigge wo Einer kapott jemaat hät, zem Beispill.',
 'ipaddress'                   => 'IP-Adress',
 'ipadressorusername'          => 'IP Adress oder Metmaacher Name',
-'ipbexpiry'                   => 'Duur för wie lang',
+'ipbexpiry'                   => 'Duur, för wie lang',
 'ipbreason'                   => 'Aanlass:',
 'ipbreasonotherlist'          => 'Ne andere Bejründung',
 'ipbreason-dropdown'          => '* Alljemein Jrönd för et Sperre
@@ -1753,19 +1762,18 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 * Op en IP-Adräß betrocke Jrönd
 ** dat es en Proxy ßööver övver dänn de Lück zo vill Driß aanjestellt han',
 'ipbanononly'                 => 'Nor de namelose Metmaacher sperre',
-'ipbcreateaccount'            => 'Neu aanmelde verbeede',
+'ipbcreateaccount'            => 'et neu Aanmelde verbeede',
 'ipbemailban'                 => 'Et e-mail-Verschecke ongerbenge',
 'ipbenableautoblock'          => 'Dun automatisch de letzte IP-Adress sperre, die dä Metmaacher jehatt hät, un och all die IP-Adresse, vun wo dä versök, jet ze ändere.',
 'ipbsubmit'                   => 'Dun dä Metmaacher sperre',
-'ipbother'                    => 'En ander Zigg',
+'ipbother'                    => 'För en ander Duur:',
 'ipboptions'                  => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Söns wie lang',
 'ipbotherreason'              => 'Ander Jrund oder Zosätzlich:',
-'badipaddress'                => 'Wat De do jeschrevve häs, dat es kein öntlije 
-IP-Adress.',
-'blockipsuccesssub'           => 'De IP-Adress es jesperrt',
+'badipaddress'                => 'Wat De do jeschrevve häs, dat es kein öntlije IP-Adress.',
+'blockipsuccesssub'           => 'De IP-Adress es jetz jesperrt',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] es jetz jesperrt.
-Luur op [[Special:Ipblocklist|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperrunge han wells, 
+Luur op [[Special:Ipblocklist|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperre han wells, 
 un och wann De se ändere wells.',
 'ipb-unblock-addr'            => '„$1“ widder zohlohße',
 'ipb-unblock'                 => 'En IP-Addräß ov ene Metmaacher widder zohlohße',
@@ -1777,7 +1785,7 @@ un och wann De se ändere wells.',
 'ipblocklist-submit'          => 'Sööke',
 'blocklistline'               => '$1, $2 hät „$3“ jesperrt ($4)',
 'infiniteblock'               => 'för iwich',
-'expiringblock'               => 'endt am $1',
+'expiringblock'               => 'leuf am $1 uß',
 'anononlyblock'               => 'nor namelose',
 'noautoblockblock'            => 'automatisch Sperre avjeschalt',
 'createaccountblock'          => 'Aanmelde nit möchlich',
@@ -1787,14 +1795,13 @@ un och wann De se ändere wells.',
 'autoblocker'                 => 'Automatich jesperrt. Ding IP_Adress wood vör kootem vun däm Metmaacher „[[User:$1|$1]]“ jebruch. Dä es jesperrt woode wäje: „<i>$2</i>“',
 'blocklogpage'                => 'Logboch met Metmaacher-Sperre',
 'blocklogentry'               => 'hät „[[$1]]“ fö de Zick vun $2 un $3 jesperrt.',
-'blocklogtext'                => 'Hee es dat Logboch för et Metmaacher Sperre un Freijevve. Automatich jesperrte 
-IP-Adresse sin nit hee, ävver em 
-[[Special:Ipblocklist|Logboch met jesperrte IP-Adresse]] ze finge.',
+'blocklogtext'                => 'Hee es dat Logboch för et Metmaacher Sperre un Freijevve.
+Automatich jesperrte IP-Adresse sin nit hee, ävver em [[Special:Ipblocklist|Logboch met jesperrte IP-Adresse]] ze finge.',
 'unblocklogentry'             => 'Metmaacher „$1“ freijejovve',
 'range_block_disabled'        => 'Adresse Jebeede ze sperre, es nit erlaub.',
 'ipb_expiry_invalid'          => 'De Duur es Dress. Jevv se richtich aan.',
 'ipb_already_blocked'         => '„$1“ es ald jesperrt',
-'ipb_cant_unblock'            => 'Ene Fähler: De Sperr Nummer $1 es nit ze finge. Se künnt ald widder freijejovve woode sin.',
+'ipb_cant_unblock'            => '<strong>Ene Fähler:</strong> En Sperr met dä Nummer $1 es nit ze finge. Se künnt ald widder freijejovve woode sin.',
 'ip_range_invalid'            => 'Dä Bereich vun IP_Adresse es nit en Oodnung.',
 'proxyblocker'                => 'Proxy_Blocker',
 'proxyblockreason'            => 'Unger Ding IP_Adress läuf ene offe Proxy.
@@ -1828,7 +1835,7 @@ Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service P
 Domet kritt die Sigg ene neue Name, un all vörherije Versione vun dä Sigg och.
 Unger däm ahle Name weed automatisch en Ömleitung op dä neue Name enjedrage.
 Links op dä ahle Name blieve ävver wie se wore.
-Dat heiß, Do muss selver nohluure, ov do jetz [[Special:doubleredirects|dubbelde]] oder [[Special:brokenredirects|kapodde]] Ömleitunge bei eruskumme.
+Dat heiß, Do muss selver nohluure, ov do jetz [[{{#special:doubleredirects}}|dubbelde]] oder [[{{#special:brokenredirects}}|kapodde]] Ömleitunge bei eruskumme.
 Wann De en Sigg ömnenne deis, häs Do och doför ze sorje, dat de betroffene Links do henjonn, wo se hen jonn solle. 
 Alsu holl Der de Liss „Wat noh hee link“ un jangk se durch!
 De Sigg weed '''nit''' ömjenannt, wann et met däm neue Name ald en Sigg jitt, <strong>usser</strong> do es nix drop, oder et es en Ömleitung un se es noch nie jeändert woode.
@@ -1920,7 +1927,7 @@ All de Trans Wiki Emporte wääde em [[Special:Log/import|Emport_Logboch]] fassj
 'import-interwiki-submit'    => 'Huhlade!',
 'import-interwiki-namespace' => 'Dun de Sigge emporteere em Appachtemeng:',
 'importtext'                 => 'Dun de Daate met däm „[[Special:Export|Export]]“ vun do vun enem Wiki Exporteere, dobei dun et - etwa bei Dir om Rechner - avspeichere, un dann hee huhlade.',
-'importstart'                => 'Ben Sigge am emporteere â€¦',
+'importstart'                => 'Ben Sigge am emporteere …',
 'import-revision-count'      => '({{PLURAL:$1|ein Version|$1 Versione|kein Version}})',
 'importnopages'              => 'Kein Sigg för ze Emporteere jefunge.',
 'importfailed'               => 'Dat Importeere es donevve jejange: $1',
@@ -1929,8 +1936,9 @@ All de Trans Wiki Emporte wääde em [[Special:Log/import|Emport_Logboch]] fassj
 'importbadinterwiki'         => 'Verkihrte Interwiki Link',
 'importnotext'               => 'En dä Datei wor nix dren enthallde, oder winnichstens keine Tex',
 'importsuccess'              => 'Dat Emporteere hät jeflupp!',
-'importhistoryconflict'      => 'Mer han zwei ahle Versione jefunge, die dun sich bieße - die ein wor ald do - de ander en dä Emport Datei. möchlich, Ehr hatt die Daate ald ens emporteet.',
-'importnosources'            => 'Hee sin kein Quell för dä Trans Wiki Emport enjerich. Dat ahle Versione Huhlade es avjeschalt  un nit möchlich.',
+'importhistoryconflict'      => 'Mer han zwei ahle Versione jefunge, die dun sich bieße - die ein wor ald do - de ander en dä Emport Datei. Möchlich, Ehr hatt die Daate ald ens emporteet.',
+'importnosources'            => 'Hee es kein Quell för dä Tikek-Emport vun ander Wikis enjerich.
+Dat ahle Versione Huhlade es avjeschalt, un es nit möchlich.',
 'importnofile'               => 'Et wood kein Datei huhjelade för ze Emporteere.',
 'xml-error-string'           => '$1 — en {{PLURAL:$2|eetz|$2-}}te Reih en de {{PLURAL:$3|eetz|$3-}}te Spalde, dat ess_et {{PLURAL:$4|eetz|$4-}}te Byte: $5',
 'import-upload'              => 'En XML-Datei impochteere',
@@ -1940,7 +1948,7 @@ All de Trans Wiki Emporte wääde em [[Special:Log/import|Emport_Logboch]] fassj
 'importlogpagetext'                => 'Sigge met ehre Versione vun ander Wikis emporteere.',
 'import-logentry-upload'           => '„[[$1]]“ emporteet',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|ein Version|$1 Versione|kein Version}} emporteet',
-'import-logentry-interwiki'        => 'trans_wiki_emporteet: „$1“',
+'import-logentry-interwiki'        => 'hät tirek vum ander Wiki emporteet: „$1“',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|ein Version|$1 Versione|kein Version}} vun „$2“',
 
 # Tooltip help for the actions
@@ -2096,7 +2104,7 @@ All de Trans Wiki Emporte wääde em [[Special:Log/import|Emport_Logboch]] fassj
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|eij Sigg|$3 Sigge|keij Sigge}}',
 'file-info-size'       => '({{PLURAL:$1|Ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle}} huh, de Datei hät $3, dä MIME-Typ es: <code>$4</code>)',
 'file-nohires'         => '<small>Mer han kein hüütere Oplösung vun däm Beld.</small>',
-'svg-long-desc'        => '(SVG-Datei, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle}} breed × {{PLURAL:$1|ei Pixel|$1 Pixelle}} huh, dä Dateiömfang es $3)',
+'svg-long-desc'        => '(SVG-Datei, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|ei Pixel|$2 Pixelle}} huh, dä Dateiömfang es $3)',
 'show-big-image'       => 'Jröößer Oplöösung',
 'show-big-image-thumb' => '<small>Di Vör-Aansich es $1 × $2 Pixelle jroß</small>',
 
