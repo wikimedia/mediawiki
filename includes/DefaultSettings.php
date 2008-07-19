@@ -2737,6 +2737,7 @@ $wgSpecialPageGroups = array(
 	'Lockdb'                    => 'wiki',
 	'Unlockdb'                  => 'wiki',
 	'Allmessages'               => 'wiki',
+	'PopularPages'              => 'wiki',
 
 	'Specialpages'              => 'other',
 	'Blockme'                   => 'other',
@@ -3215,12 +3216,12 @@ $wgSlaveLagCritical = 30;
  *  class             The class name
  *
  *  preprocessorClass The preprocessor class. Two classes are currently available:
- *                    Preprocessor_Hash, which uses plain PHP arrays for tempoarary 
- *                    storage, and Preprocessor_DOM, which uses the DOM module for 
+ *                    Preprocessor_Hash, which uses plain PHP arrays for tempoarary
+ *                    storage, and Preprocessor_DOM, which uses the DOM module for
  *                    temporary storage. Preprocessor_DOM generally uses less memory;
  *                    the speed of the two is roughly the same.
- *                    
- *                    If this parameter is not given, it uses Preprocessor_DOM if the 
+ *
+ *                    If this parameter is not given, it uses Preprocessor_DOM if the
  *                    DOM module is available, otherwise it uses Preprocessor_Hash.
  *
  *                    Has no effect on Parser_OldPP.
