@@ -8,10 +8,11 @@
  * Example config:
  *
  * $wgForeignFileRepos[] = array(
- *   'class'            => 'ForeignAPIRepo',
- *   'name'             => 'shared',
- *   'apibase'          => 'http://en.wikipedia.org/w/api.php',
- *   'fetchDescription' => true, // Optional
+ *   'class'                  => 'ForeignAPIRepo',
+ *   'name'                   => 'shared',
+ *   'apibase'                => 'http://en.wikipedia.org/w/api.php',
+ *   'fetchDescription'       => true, // Optional
+ *   'descriptionCacheExpiry' => 3600,
  * );
  *
  * @ingroup FileRepo
