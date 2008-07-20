@@ -443,6 +443,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12384) Comments in maintenance/*php
 * (bug 12441) ./maintenance/generateSitemap.php fix -fspath requiring
   a trailing slash.
+* (bug 12568) configuration script now produce valid XHTML.
 
 === API changes in 1.13 ===
 
