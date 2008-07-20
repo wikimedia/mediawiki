@@ -188,6 +188,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the database is potentially queried
 * (bug 9736) Redirects on Special:Fewestrevisions are now marked as such.
 * New date/time formats in Cs localization according to ČSN and PČP.
+* (bug 2971) Standardize format of links to hist/diff in Special:Contributions.
  
 === Bug fixes in 1.13 ===
 
