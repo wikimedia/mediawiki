@@ -46,7 +46,7 @@ Primary scripts:
     dropdown box at the top of the page.
 
   thumb.php
-    Script used to resize images if it is configured to be done when to web
+    Script used to resize images if it is configured to be done when the web
     browser requests the image and not when generating the page. This script can
     be used as a 404 handler to generate image thumbs when they don't exist.
 
