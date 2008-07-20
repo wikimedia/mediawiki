@@ -514,9 +514,13 @@ $unpatrolled:  Whether or not we are showing unpatrolled changes.
 $watched:      Whether or not the change is watched by the user.
 
 'ContribsPager::getQueryInfo': Before the contributions query is about to run
-&$this:        Pager object for contributions
-&queryInfo:    The query for the contribs Pager
+&$pager: Pager object for contributions
+&queryInfo: The query for the contribs Pager
 
+'ContributionsLineEnding': Called before a contributions HTML line is finished
+$page: SpecialPage object for contributions
+$ret: the HTML line
+$row: the DB row for this line
 
 'ContributionsToolLinks': Change tool links above Special:Contributions
 $id: User identifier
@@ -1229,11 +1233,6 @@ string &$error: output: HTML error to show if upload canceled by returning false
 
 'UploadComplete': Upon completion of a file upload
 $uploadForm: Upload form object. File can be accessed by $uploadForm->mLocalFile.
-
-'ContributionsLineEnding': Called before a contributions HTML line is finished
-$this: SpecialPage object for contributions
-$ret: the HTML line
-$row: the DB row for this line
 
 'UserArrayFromResult': called when creating an UserArray object from a database result
 &$userArray: set this to an object to override the default object returned
