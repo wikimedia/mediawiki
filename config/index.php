@@ -80,10 +80,10 @@ $ourdb['mssql']['bgcolor']       = '#ffc0cb';
 $ourdb['mssql']['rootuser']      = 'administrator';
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>MediaWiki <?php echo( $wgVersion ); ?> Installation</title>
 	<style type="text/css">
 
@@ -205,19 +205,18 @@ $ourdb['mssql']['rootuser']      = 'administrator';
 <h1>MediaWiki <?php print $wgVersion ?> Installation</h1>
 
 <?php
+$mainListOpened = false; # Is the main list (environement checking) opend ? Used by dieout
 
 /* Check for existing configurations and bug out! */
 
 if( file_exists( "../LocalSettings.php" ) ) {
 	$script = defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php';
- dieout( "<p><strong>Setup has completed, <a href='../$script'>your wiki</a> is configured.</strong></p>
-
-	<p>Please delete the /config directory for extra security.</p></div></div></div></div>" );
+	dieout( "<p><strong>Setup has completed, <a href='../$script'>your wiki</a> is configured.</strong></p>
+	<p>Please delete the /config directory for extra security.</p>" );
 }
 
 if( file_exists( "./LocalSettings.php" ) ) {
 	writeSuccessMessage();
-
 	dieout( '' );
 }
 
@@ -293,6 +292,8 @@ class ConfigData {
 <p><em>Please include all of the lines below when reporting installation problems.</em></p>
 <ul class="env-check">
 <?php
+$mainListOpened = true;
+
 $endl = "
 ";
 define( 'MW_NO_OUTPUT_BUFFER', 1 );
@@ -322,7 +323,8 @@ if (!$phpdatabases) {
 		print "<li>For <b>$full</b>, compile PHP using <b>--with-$comp</b>, "
 			."or install the $comp.so module</li>\n";
 	}
-	dieout( "</ul></ul>" );
+	echo '</ul>';
+	dieout( '' );
 }
 
 print "<li>Found database drivers for:";
@@ -355,7 +357,7 @@ if( wfIniGetBool( "magic_quotes_runtime" ) ) {
 	$fatal = true;
 	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime'>magic_quotes_runtime</a> is active!</strong>
 	This option corrupts data input unpredictably; you cannot install or use
-	MediaWiki unless this option is disabled.
+	MediaWiki unless this option is disabled.</li>
 	<?php
 }
 
@@ -363,7 +365,7 @@ if( wfIniGetBool( "magic_quotes_sybase" ) ) {
 	$fatal = true;
 	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.sybase.php#ini.magic-quotes-sybase'>magic_quotes_sybase</a> is active!</strong>
 	This option corrupts data input unpredictably; you cannot install or use
-	MediaWiki unless this option is disabled.
+	MediaWiki unless this option is disabled.</li>
 	<?php
 }
 
@@ -371,7 +373,7 @@ if( wfIniGetBool( "mbstring.func_overload" ) ) {
 	$fatal = true;
 	?><li class='error'><strong>Fatal: <a href='http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload'>mbstring.func_overload</a> is active!</strong>
 	This option causes errors and may corrupt data unpredictably;
-	you cannot install or use MediaWiki unless this option is disabled.
+	you cannot install or use MediaWiki unless this option is disabled.</li>
 	<?php
 }
 
@@ -379,13 +381,13 @@ if( wfIniGetBool( "zend.ze1_compatibility_mode" ) ) {
 	$fatal = true;
 	?><li class="error"><strong>Fatal: <a href="http://www.php.net/manual/en/ini.core.php">zend.ze1_compatibility_mode</a> is active!</strong>
 	This option causes horrible bugs with MediaWiki; you cannot install or use
-	MediaWiki unless this option is disabled.
+	MediaWiki unless this option is disabled.</li>
 	<?php
 }
 
 
 if( $fatal ) {
-	dieout( "</ul><p>Cannot install MediaWiki.</p>" );
+	dieout( "Cannot install MediaWiki." );
 }
 
 if( wfIniGetBool( "safe_mode" ) ) {
@@ -477,11 +479,11 @@ if ( $conf->turck ) {
 
 $conf->xcache = function_exists( 'xcache_get' );
 if( $conf->xcache )
-	print "<li><a href=\"http://trac.lighttpd.net/xcache/\">XCache</a> installed</li>";
+	print "<li><a href=\"http://trac.lighttpd.net/xcache/\">XCache</a> installed</li>\n";
 
 $conf->apc = function_exists('apc_fetch');
 if ($conf->apc ) {
-	print "<li><a href=\"http://www.php.net/apc\">APC</a> installed</li>";
+	print "<li><a href=\"http://www.php.net/apc\">APC</a> installed</li>\n";
 }
 
 $conf->eaccel = function_exists( 'eaccelerator_get' );
@@ -583,9 +585,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 		: $_SERVER["SERVER_ADMIN"];
 	$conf->EmergencyContact = importPost( "EmergencyContact", $defaultEmail );
 	$conf->DBtype = importPost( "DBtype", $DefaultDBtype );
-?>
 
-<?php
 	$conf->DBserver = importPost( "DBserver", "localhost" );
 	$conf->DBname = importPost( "DBname", "wikidb" );
 	$conf->DBuser = importPost( "DBuser", "wikiuser" );
@@ -736,13 +736,12 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		chdir( ".." );
 		$ok = eval( $local );
 		if( $ok === false ) {
-			dieout( "Errors in generated configuration; " .
+			dieout( "<p>Errors in generated configuration; " .
 				"most likely due to a bug in the installer... " .
-				"Config file was: " .
+				"Config file was: </p>" .
 				"<pre>" .
 				htmlspecialchars( $local ) .
-				"</pre>" .
-				"</ul>" );
+				"</pre>" );
 		}
 		$conf->DBtypename = '';
 		foreach (array_keys($ourdb) as $db) {
@@ -786,7 +785,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 
 		$wgTitle = Title::newFromText( "Installation script" );
 		error_reporting( E_ALL );
-		print "<li>Loading class: $dbclass";
+		print "<li>Loading class: $dbclass</li>\n";
 		$dbc = new $dbclass;
 
 		if( $conf->DBtype == 'mysql' ) {
@@ -888,7 +887,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		print "<li>Connected to $myver";
 		if ($conf->DBtype == 'mysql') {
 			if( version_compare( $myver, "4.0.14" ) < 0 ) {
-				dieout( " -- mysql 4.0.14 or later required. Aborting." );
+				print "</li>\n";
+				dieout( "-- mysql 4.0.14 or later required. Aborting." );
 			}
 			$mysqlNewAuth = version_compare( $myver, "4.1.0", "ge" );
 			if( $mysqlNewAuth && $mysqlOldClient ) {
@@ -936,7 +936,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		}
 		else if ($conf->DBtype == 'postgres') {
 			if( version_compare( $myver, "PostgreSQL 8.0" ) < 0 ) {
-				dieout( " <b>Postgres 8.0 or later is required</b>. Aborting.</li></ul>" );
+				dieout( "<b>Postgres 8.0 or later is required</b>. Aborting." );
 			}
 		}
 
@@ -1113,27 +1113,26 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$f = fopen( "LocalSettings.php", 'xt' );
 
 		if( $f == false ) {
+			print( "</li>\n" );
 			dieout( "<p>Couldn't write out LocalSettings.php. Check that the directory permissions are correct and that there isn't already a file of that name here...</p>\n" .
 			"<p>Here's the file that would have been written, try to paste it into place manually:</p>\n" .
 			"<pre>\n" . htmlspecialchars( $localSettings ) . "</pre>\n" );
 		}
 		if(fwrite( $f, $localSettings ) ) {
 			fclose( $f );
-			print "</li></ul><hr/>\n";
+			print "<hr/>\n";
 			writeSuccessMessage();
+			print "</li>\n";
 		} else {
 			fclose( $f );
-			die("<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p>\n");
-			print "</li></ul>\n";
+			dieout( "<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p></li>\n" );
 		}
 
 	} while( false );
 }
-?>
-</ul>
 
-
-<?php
+print "</ul>\n";
+$mainListOpened = false;
 
 if( count( $errs ) ) {
 	/* Display options form */
@@ -1145,39 +1144,30 @@ if( count( $errs ) ) {
 
 <form action="<?php echo defined('MW_INSTALL_PHP5_EXT') ? 'index.php5' : 'index.php'; ?>" name="config" method="post">
 
-
 <h2>Site config</h2>
 
 <div class="config-section">
 	<div class="config-input">
-		<?php
-		aField( $conf, "Sitename", "Wiki name:" );
-		?>
+		<?php aField( $conf, "Sitename", "Wiki name:" ); ?>
 	</div>
 	<p class="config-desc">
 		Preferably a short word without punctuation, i.e. "Wikipedia".<br />
 		Will appear as the namespace name for "meta" pages, and throughout the interface.
 	</p>
-
-	<div class="config-input">
-		<?php
-		aField( $conf, "EmergencyContact", "Contact e-mail:" );
-		?>
-	</div>
+	<div class="config-input"><?php aField( $conf, "EmergencyContact", "Contact e-mail:" ); ?></div>
 	<p class="config-desc">
 		Displayed to users in some error messages, used as the return address for password reminders, and used as the default sender address of e-mail notifications.
 	</p>
 
 	<div class="config-input">
 		<label class='column' for="LanguageCode">Language:</label>
-		<select id="LanguageCode" name="LanguageCode">
-
-		<?php
+		<select id="LanguageCode" name="LanguageCode"><?php
 			$list = getLanguageList();
 			foreach( $list as $code => $name ) {
 				$sel = ($code == $conf->LanguageCode) ? 'selected="selected"' : '';
-				echo "\t\t<option value=\"$code\" $sel>$name</option>\n";
+				echo "\n\t\t<option value=\"$code\" $sel>$name</option>";
 			}
+			echo "\n";
 		?>
 		</select>
 	</div>
@@ -1199,15 +1189,14 @@ if( count( $errs ) ) {
 			$icon = urlencode( "$wgServer$wgUploadPath/wiki.png" );
 			$ccApp = htmlspecialchars( "http://creativecommons.org/license/?partner=$partner&exit_url=$exit&partner_icon_url=$icon" );
 			print "<a href=\"$ccApp\" target='_blank'>choose</a>";
-			?>
-		<?php if( $conf->License == "cc" ) { ?>
+			if( $conf->License == "cc" ) { ?>
 			<ul>
-				<li><?php aField( $conf, "RightsIcon", "<img src=\"" . htmlspecialchars( $conf->RightsIcon ) . "\" alt='(Creative Commons icon)' />", "hidden" ); ?></li>
-				<li><?php aField( $conf, "RightsText", htmlspecialchars( $conf->RightsText ), "hidden" ); ?></li>
-				<li><?php aField( $conf, "RightsCode", "code: " . htmlspecialchars( $conf->RightsCode ), "hidden" ); ?></li>
-				<li><?php aField( $conf, "RightsUrl", "<a href=\"" . htmlspecialchars( $conf->RightsUrl ) . "\">" . htmlspecialchars( $conf->RightsUrl ) . "</a>", "hidden" ); ?></li>
+			<li><?php aField( $conf, "RightsIcon", "<img src=\"" . htmlspecialchars( $conf->RightsIcon ) . "\" alt='(Creative Commons icon)' />", "hidden" ); ?></li>
+			<li><?php aField( $conf, "RightsText", htmlspecialchars( $conf->RightsText ), "hidden" ); ?></li>
+			<li><?php aField( $conf, "RightsCode", "code: " . htmlspecialchars( $conf->RightsCode ), "hidden" ); ?></li>
+			<li><?php aField( $conf, "RightsUrl", "<a href=\"" . htmlspecialchars( $conf->RightsUrl ) . "\">" . htmlspecialchars( $conf->RightsUrl ) . "</a>", "hidden" ); ?></li>
 			</ul>
-		<?php } ?>
+			<?php } ?>
 			</li>
 		</ul>
 	</div>
@@ -1241,22 +1230,22 @@ if( count( $errs ) ) {
 			if ( $conf->turck ) {
 				echo "<li>";
 				aField( $conf, "Shm", "Turck MMCache", "radio", "turck" );
-				echo "</li>";
+				echo "</li>\n";
 			}
 			if( $conf->xcache ) {
-				echo( '<li>' );
+				echo "<li>";
 				aField( $conf, 'Shm', 'XCache', 'radio', 'xcache' );
-				echo( '</li>' );
+				echo "</li>\n";
 			}
 			if ( $conf->apc ) {
 				echo "<li>";
 				aField( $conf, "Shm", "APC", "radio", "apc" );
-				echo "</li>";
+				echo "</li>\n";
 			}
 			if ( $conf->eaccel ) {
 				echo "<li>";
 				aField( $conf, "Shm", "eAccelerator", "radio", "eaccel" );
-				echo "</li>";
+				echo "</li>\n";
 			}
 			if ( $conf->dba ) {
 				echo "<li>";
@@ -1331,7 +1320,7 @@ if( count( $errs ) ) {
 	</div>
 	<div class="config-desc">
 		<p>If this option is enabled, users have to confirm their e-mail address using a magic link sent to them whenever they set or change it, and only authenticated e-mail addresses can receive mails from other users and/or
-		change notification mails. Setting this option is <B>recommended</B> for public wikis because of potential abuse of the e-mail features above.</p>
+		change notification mails. Setting this option is <b>recommended</b> for public wikis because of potential abuse of the e-mail features above.</p>
 	</div>
 
 </div>
@@ -1340,30 +1329,24 @@ if( count( $errs ) ) {
 
 <div class="config-section">
 <div class="config-input">
-		<label class='column'>Database type:</label>
-<?php if (isset($errs['DBpicktype'])) print "<span class='error'>$errs[DBpicktype]</span>\n"; ?>
-		<ul class='plain'><?php database_picker($conf) ?></ul>
+	<label class='column'>Database type:</label>
+<?php if (isset($errs['DBpicktype'])) print "\t<span class='error'>$errs[DBpicktype]</span>\n"; ?>
+	<ul class='plain'><?php 
+		database_picker($conf); 
+	?></ul>
 	</div>
 
-	<div class="config-input" style="clear:left"><?php
-		aField( $conf, "DBserver", "Database host:" );
-	?></div>
+	<div class="config-input" style="clear:left">
+	<?php aField( $conf, "DBserver", "Database host:" ); ?>
+	</div>
 	<p class="config-desc">
 		If your database server isn't on your web server, enter the name or IP address here.
 	</p>
 
-	<div class="config-input"><?php
-		aField( $conf, "DBname", "Database name:" );
-	?></div>
-	<div class="config-input"><?php
-		aField( $conf, "DBuser", "DB username:" );
-	?></div>
-	<div class="config-input"><?php
-		aField( $conf, "DBpassword", "DB password:", "password" );
-	?></div>
-	<div class="config-input"><?php
-		aField( $conf, "DBpassword2", "DB password confirm:", "password" );
-	?></div>
+	<div class="config-input"><?php aField( $conf, "DBname", "Database name:" ); ?></div>
+	<div class="config-input"><?php aField( $conf, "DBuser", "DB username:" ); ?></div>
+	<div class="config-input"><?php aField( $conf, "DBpassword", "DB password:", "password" ); ?></div>
+	<div class="config-input"><?php aField( $conf, "DBpassword2", "DB password confirm:", "password" ); ?></div>
 	<p class="config-desc">
 		If you only have a single user account and database available,
 		enter those here. If you have database root access (see below)
@@ -1374,19 +1357,11 @@ if( count( $errs ) ) {
 
 	<div class="config-input">
 		<label class="column">Superuser account:</label>
-		<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?>/>
+		<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?> />
 		&nbsp;<label for="useroot">Use superuser account</label>
 	</div>
-	<div class="config-input">
-		<?php
-		aField( $conf, "RootUser", "Superuser name:", "superuser" );
-		?>
-	</div>
-	<div class="config-input">
-		<?php
-		aField( $conf, "RootPW", "Superuser password:", "password" );
-		?>
-	</div>
+	<div class="config-input"><?php aField( $conf, "RootUser", "Superuser name:", "text" ); ?></div>
+	<div class="config-input"><?php aField( $conf, "RootPW", "Superuser password:", "password" ); ?></div>
 
 	<p class="config-desc">
 		If the database user specified above does not exist, or does not have access to create
@@ -1395,9 +1370,7 @@ if( count( $errs ) ) {
 	</p>
 
 	<?php database_switcher('mysql'); ?>
-	<div class="config-input"><?php
-		aField( $conf, "DBprefix", "Database table prefix:" );
-	?></div>
+	<div class="config-input"><?php aField( $conf, "DBprefix", "Database table prefix:" ); ?></div>
 	<div class="config-desc">
 		<p>If you need to share one database between multiple wikis, or
 		between MediaWiki and another web application, you may choose to
@@ -1436,15 +1409,9 @@ if( count( $errs ) ) {
 	</fieldset>
 
 	<?php database_switcher('postgres'); ?>
-	<div class="config-input"><?php
-		aField( $conf, "DBport", "Database port:" );
-	?></div>
-	<div class="config-input"><?php
-		aField( $conf, "DBmwschema", "Schema for mediawiki:" );
-	?></div>
-	<div class="config-input"><?php
-		aField( $conf, "DBts2schema", "Schema for tsearch2:" );
-	?></div>
+	<div class="config-input"><?php aField( $conf, "DBport", "Database port:" ); ?></div>
+	<div class="config-input"><?php aField( $conf, "DBmwschema", "Schema for mediawiki:" ); ?></div>
+	<div class="config-input"><?php aField( $conf, "DBts2schema", "Schema for tsearch2:" ); ?></div>
 	<div class="config-desc">
 		<p>The username specified above (at "DB username") will have its search path set to the above schemas, 
 		so it is recommended that you create a new user. The above schemas are generally correct: 
@@ -1485,9 +1452,8 @@ if( count( $errs ) ) {
 		<label class='column'>&nbsp;</label>
 		<input type="submit" value="Install MediaWiki!" class="btn-install" />
 	</div>
-
 </div>
-
+</form>
 <script type="text/javascript">
 window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>',
 <?php
@@ -1495,9 +1461,6 @@ window.onload = toggleDBarea('<?php echo $conf->DBtype; ?>',
 	echo strlen(importPost('RootUser', '')) ? 0 : 1;
 ?>);
 </script>
-
-</form>
-
 <?php
 }
 
@@ -1693,23 +1656,24 @@ if ( \$wgCommandLineMode ) {
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
+## For more information on customizing the URLs please see:
+## http://www.mediawiki.org/wiki/Manual:Short_URL
 \$wgScriptPath       = \"{$slconf['ScriptPath']}\";
 \$wgScriptExtension  = \"{$slconf['ScriptExtension']}\";
 
-## For more information on customizing the URLs please see:
-## http://www.mediawiki.org/wiki/Manual:Short_URL
+## UPO means: this is also a user preference option
 
 \$wgEnableEmail      = $enableemail;
-\$wgEnableUserEmail  = $enableuseremail;
+\$wgEnableUserEmail  = $enableuseremail; # UPO
 
 \$wgEmergencyContact = \"{$slconf['EmergencyContact']}\";
 \$wgPasswordSender = \"{$slconf['PasswordSender']}\";
 
-## UPO means: this is also a user preference option
 \$wgEnotifUserTalk = $enotifusertalk; # UPO
 \$wgEnotifWatchlist = $enotifwatchlist; # UPO
 \$wgEmailAuthentication = $eauthent;
 
+## Database settings
 \$wgDBtype           = \"{$slconf['DBtype']}\";
 \$wgDBserver         = \"{$slconf['DBserver']}\";
 \$wgDBname           = \"{$slconf['DBname']}\";
@@ -1771,7 +1735,14 @@ if ( \$wgCommandLineMode ) {
 }
 
 function dieout( $text ) {
-	die( $text . "\n\n</body>\n</html>" );
+	global $mainListOpened;
+	if( $mainListOpened ) echo( "</ul>" );
+	if( $text != '' && substr( $text, 0, 2 ) != '<p'  && substr( $text, 0, 2 ) != '<h' ){
+		echo "<p>$text</p>\n";
+	} else {
+		echo $text;
+	}
+	die( "\n\n</div>\n</div>\n</div>\n</div>\n</body>\n</html>" );
 }
 
 function importVar( &$var, $name, $default = "" ) {
@@ -1814,10 +1785,8 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 	if ($type == 'radio')
 		$id .= $radioCount++;
 
-	if( $nolabel ) {
-		echo "\t\t<label>";
-	} else {
-		echo "\t\t<label class='column' for=\"$id\">$text</label>\n";
+	if( !$nolabel ) {
+		echo "<label class='column' for=\"$id\">$text</label>";
 	}
 
 	if( $type == "radio" && $value == $conf->$field ) {
@@ -1825,7 +1794,7 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 	} else {
 		$checked = "";
 	}
-	echo "\t\t<input $xtype name=\"$field\" id=\"$id\" class=\"iput-$type\" $checked ";
+	echo "<input $xtype name=\"$field\" id=\"$id\" class=\"iput-$type\" $checked ";
 	if ($onclick) {
 		echo " onclick='toggleDBarea(\"$value\",1)' " ;
 	}
@@ -1837,9 +1806,9 @@ function aField( &$conf, $field, $text, $type = "text", $value = "", $onclick = 
 	}
 
 
-	echo "\" />\n";
+	echo "\" />";
 	if( $nolabel ) {
-		echo " $text</label>\n";
+		echo "<label for=\"$id\">$text</label>";
 	}
 
 	global $errs;
@@ -1946,12 +1915,12 @@ function database_picker($conf) {
 	print "\n";
 	foreach(array_keys($ourdb) as $db) {
 		if ($ourdb[$db]['havedriver']) {
-			print "<li>";
+			print "\t<li>";
 			aField( $conf, "DBtype", $ourdb[$db]['fullname'], 'radio', $db, 'onclick');
 			print "</li>\n";
 		}
 	}
-	print "\n";
+	print "\n\t";
 }
 
 function database_switcher($db) {
@@ -1968,7 +1937,7 @@ function printListItem( $item ) {
 ?>
 
 	<div class="license">
-	<hr>
+	<hr/>
 	<p>This program is free software; you can redistribute it and/or modify
 	 it under the terms of the GNU General Public License as published by
 	 the Free Software Foundation; either version 2 of the License, or
@@ -2001,10 +1970,13 @@ function printListItem( $item ) {
 			<li><a href="../README">Readme</a></li>
 			<li><a href="../RELEASE-NOTES">Release notes</a></li>
 			<li><a href="../docs/">Documentation</a></li>
-			<li><a href="http://meta.wikipedia.org/wiki/MediaWiki_User's_Guide">User's Guide</a></li>
+			<li><a href="http://www.mediawiki.org/wiki/Help:Contents">User's Guide</a></li>
+			<li><a href="http://www.mediawiki.org/wiki/Manual:Contents">Administrator's Guide</a></li>
 			<li><a href="http://www.mediawiki.org/wiki/Manual:FAQ">FAQ</a></li>
 		</ul>
-		<p style="font-size:90%;margin-top:1em">MediaWiki is Copyright &copy; 2001-2008 by Magnus Manske, Brion Vibber, Lee Daniel Crocker, Tim Starling, Erik M&ouml;ller, Gabriel Wicke and others.</p>
+		<p style="font-size:90%;margin-top:1em">MediaWiki is Copyright © 2001-2008 by Magnus Manske, Brion Vibber,
+		 Lee Daniel Crocker, Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason, Niklas Laxström,
+		 Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor, Aaron Schulz and others.</p>
 	</div></div>
 </div>
 
