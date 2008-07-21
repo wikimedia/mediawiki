@@ -48,8 +48,8 @@ class ModernTemplate extends QuickTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgUser, $wgRequest;
-		$this->skin = $skin = $wgUser->getSkin();
+		global $wgRequest;
+		$this->skin = $skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
@@ -64,7 +64,7 @@ class ModernTemplate extends QuickTemplate {
 		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
 		<?php $this->html('headlinks') ?>
 		<title><?php $this->text('pagetitle') ?></title>
-		<?php if(empty($this->data['printable']) ) { ?>
+<?php 	if(empty($this->data['printable']) ) { ?>
 		<style type="text/css" media="screen, projection">/*<![CDATA[*/
 			@import "<?php $this->text('stylepath') ?>/common/shared.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
 			@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/main.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
