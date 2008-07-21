@@ -277,6 +277,14 @@ p {
 	margin: 1em 0 1em 0;
 }
 
+hr {
+	height: 1px;
+	color: #aaa;
+	background-color: #aaa;
+	border: 0;
+	margin: .2em 0 .2em 0;
+}
+
 #contentSub {
 	color: #888;
 	font-size: small;
