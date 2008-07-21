@@ -1528,6 +1528,12 @@ $wgCookieSecure = ($wgProto == 'https');
 $wgDisableCookieCheck = false;
 
 /**
+ * Set $wgCookiePrefix to use a custom one. Setting to false sets the default of
+ * using the database name.
+ */
+$wgCookiePrefix = false;
+
+/**
  * Set authentication cookies to HttpOnly to prevent access by JavaScript,
  * in browsers that support this feature. This can mitigates some classes of
  * XSS attack.
