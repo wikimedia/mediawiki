@@ -1191,9 +1191,11 @@ function wfDiff( $before, $after, $params = '-u' ) {
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	if(! file_exists( $wgDiff ) ){
+	if( !file_exists( $wgDiff ) ){
 		wfDebug( "diff executable not found\n" );
-		return false;
+		$diffs = new Diff( explode( "\n", $before ), explode( "\n", $after ) );
+		$format = new UnifiedDiffFormatter();
+		return $format->format( $diffs );
 	}
 
 	# Make temporary files
