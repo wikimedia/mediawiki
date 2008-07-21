@@ -46,8 +46,8 @@ class MonoBookTemplate extends QuickTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgUser, $wgRequest;
-		$this->skin = $skin = $wgUser->getSkin();
+		global $wgRequest;
+		$this->skin = $skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
