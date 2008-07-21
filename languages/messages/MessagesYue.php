@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -239,12 +239,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => '屬於類',
+'pagecategories'                 => '屬於$1類',
 'category_header'                => '"$1" 類中嘅版',
 'subcategories'                  => '分類',
 'category-media-header'          => ' "$1" 類嘅媒體',
 'category-empty'                 => "''呢類無任何版或媒體檔。''",
-'hidden-categories'              => '屬於隱類',
+'hidden-categories'              => '屬於$1隱類',
 'hidden-category-category'       => '隱藏類', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|呢類淨係有下面嘅細類。|呢類有下面嘅$1個細類，總共有$2類。}}',
 'category-subcat-count-limited'  => '呢個類別入邊有$1個細類別。',

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Chinese (Simplified) (‪中文 (简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -183,12 +183,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => '个分类',
+'pagecategories'                 => '$1个分类',
 'category_header'                => '"$1"分类中的页面',
 'subcategories'                  => '亚类',
 'category-media-header'          => '"$1"分类中的媒体',
 'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
-'hidden-categories'              => '个隐藏分类',
+'hidden-categories'              => '$1个隐藏分类',
 'hidden-category-category'       => '隐藏分类', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|这个分类中只有以下的亚类。|这个分类中有以下的$1个亚类，共有$2个附分类。}}',
 'category-subcat-count-limited'  => '这个分类中有$1个亚类。',

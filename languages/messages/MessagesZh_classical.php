@@ -1,5 +1,5 @@
 <?php
-/** Classical Chinese (文言)
+/** Old Chinese / Late Middle Chinese (文言)
  *
  * @ingroup Language
  * @file
@@ -170,12 +170,12 @@ $messages = array(
 'dec'           => '十二月',
 
 # Categories related messages
-'pagecategories'                 => '類',
+'pagecategories'                 => '$1類',
 'category_header'                => '「$1」中之頁',
 'subcategories'                  => '次類',
 'category-media-header'          => '「$1」中之媒',
 'category-empty'                 => "''無頁或媒也。''",
-'hidden-categories'              => '隱類',
+'hidden-categories'              => '$1隱類',
 'hidden-category-category'       => '隱類', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|門有戶壹。|門有戶$1，有$2戶也。}}',
 'category-subcat-count-limited'  => '門有戶$1。',
