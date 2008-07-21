@@ -162,7 +162,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		if( $row->rev_id == $row->page_latest ) {
 			$topmarktext .= '<strong>' . $this->messages['uctop'] . '</strong>';
 			if( !$row->page_is_new ) {
-				$difftext .= $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=0' );
+				$difftext .= '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=0' ) . ')';
 			} else {
 				$difftext .= $this->messages['newarticle'];
 			}
@@ -175,11 +175,11 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		# Is there a visible previous revision?
 		if( $rev->userCan(Revision::DELETED_TEXT) ) {
-			$difftext = $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=prev&oldid='.$row->rev_id );
+			$difftext = '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
 		} else {
-			$difftext = $this->messages['diff'];
+			$difftext = '(' . $this->messages['diff'] . ')';
 		}
-		$histtext = $sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' );
+		$histlink='('.$sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' ) . ')';
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
@@ -207,7 +207,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$mflag = '';
 		}
 
-		$ret = "$d ($difftext; $histtext) {$nflag}{$mflag} {$link}{$userlink}{$comment} $topmarktext";
+		$ret = "{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink}{$comment} {$topmarktext}";
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
