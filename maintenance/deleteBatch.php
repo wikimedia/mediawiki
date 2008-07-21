@@ -1,7 +1,7 @@
 <?php
 
 /**
- * delete a batch of pages
+ * Deletes a batch of pages
  * Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
  * where
  * 	<listfile> is a file where each line contains the title of a page to be deleted.

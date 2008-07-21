@@ -1,7 +1,7 @@
 <?php
 /**
- * This script make several set, incr and get requests on every
- * memcached server and show a report.
+ * This script makes several 'set', 'incr' and 'get' requests on every
+ * memcached server and shows a report.
  *
  * $Id$
  * @file

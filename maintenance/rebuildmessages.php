@@ -1,6 +1,6 @@
 <?php
 /**
- * This script purge languages messages from memcached
+ * This script purges all language messages from memcached
  * @file
  * @ingroup Maintenance
  */

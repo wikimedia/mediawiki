@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Delete arcived (deleted from public) revisions from the database
+ * Delete archived (deleted from public) revisions from the database
  *
  * @file
  * @ingroup Maintenance
