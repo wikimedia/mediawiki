@@ -48,8 +48,9 @@ class ModernTemplate extends QuickTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgUser;
+		global $wgUser, $wgRequest;
 		$this->skin = $skin = $wgUser->getSkin();
+		$action = $wgRequest->getText( 'action' );
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
