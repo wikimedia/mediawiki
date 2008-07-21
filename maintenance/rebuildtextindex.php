@@ -3,8 +3,8 @@
  * Rebuild search index table from scratch.  This takes several
  * hours, depending on the database size and server configuration.
  *
- * This is only for MySQL (see bug 9905). For postgres we can probably
- * use SearchPostgres::update($pageid);
+ * This is only for MySQL (see bug 9905).
+ * Postgres is trigger-based and should never need rebuilding.
  *
  * @file
  * @todo document
