@@ -1,7 +1,6 @@
 <?php
 /**
  * This script remove all statistics tracking from memcached
- * for ALL wiki !
  * 
  * @file
  * @ingroup Maintenance

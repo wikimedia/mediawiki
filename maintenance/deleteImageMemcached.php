@@ -1,6 +1,6 @@
 <?php
 /**
- * This script delete image informations from memcached.
+ * This script delete image information from memcached.
  *
  * Usage example:
  * php deleteImageMemcached.php --until "2005-09-05 00:00:00" --sleep 0 --report 10

@@ -1,6 +1,6 @@
 <?php
 /**
- * This script verify that database usernames are actually valid.
+ * This script verifies that database usernames are actually valid.
  * An existing usernames can become invalid if User::isValidUserName()
  * is altered or if we change the $wgMaxNameChars
  * @file

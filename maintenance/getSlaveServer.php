@@ -1,6 +1,6 @@
 <?php
 /**
- * This script report the hostname of a slave server.
+ * This script reports the hostname of a slave server.
  *
  * @file
  * @ingroup Maintenance
