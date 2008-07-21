@@ -204,14 +204,16 @@ wfProfileIn( $fname.'-SetupSession' );
 # Set default shared prefix
 if( $wgSharedPrefix === false ) $wgSharedPrefix = $wgDBprefix;
 
-if ( in_array('user', $wgSharedTables) && $wgSharedDB && $wgSharedPrefix ) {
-	$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
-} elseif ( in_array('user', $wgSharedTables) && $wgSharedDB ) {
-	$wgCookiePrefix = $wgSharedDB;
-} elseif ( $wgDBprefix ) {
-	$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
-} else {
-	$wgCookiePrefix = $wgDBname;
+if( !$wgCookiePrefix ) {
+	if ( in_array('user', $wgSharedTables) && $wgSharedDB && $wgSharedPrefix ) {
+		$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
+	} elseif ( in_array('user', $wgSharedTables) && $wgSharedDB ) {
+		$wgCookiePrefix = $wgSharedDB;
+	} elseif ( $wgDBprefix ) {
+		$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
+	} else {
+		$wgCookiePrefix = $wgDBname;
+	}
 }
 $wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
 

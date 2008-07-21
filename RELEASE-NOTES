@@ -68,6 +68,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   with MimeMagic.
 * Added $wgDirectoryMode, which allows for setting the default CHMOD value when
   creating new directories.
+* (bug 14843) $wgCookiePrefix can be set by LocalSettings now, false defaults 
+  current behavior.
 
 === New features in 1.13 ===
 
