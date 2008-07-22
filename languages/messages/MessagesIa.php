@@ -376,8 +376,8 @@ Consulta: $2',
 'viewsource'           => 'Vider codice-fonte',
 'viewsourcefor'        => 'de $1',
 'actionthrottled'      => 'Action limitate',
-'actionthrottledtext'  => 'Como mesura anti-spam, vos es limitate de executar iste action troppo de vices durante un curte periodo de tempore, e vos ha excedite iste limite.
-Per favor reprova lo post alcun minutas.',
+'actionthrottledtext'  => 'Como mesura anti-spam, tu es limitate de executar iste action troppo de vices durante un curte periodo de tempore, e tu ha excedite iste limite.
+Per favor reprova post alcun minutas.',
 'protectedpagetext'    => 'Iste pagina ha essite protegite contra modificationes.',
 'viewsourcetext'       => 'Tu pote vider e copiar le codice-fonte de iste pagina:',
 'protectedinterface'   => 'Iste pagina contine texto pro le interfacie del software, e es protegite pro impedir le abuso.',
@@ -907,7 +907,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'math_unknown_error'       => 'error incognite',
 'math_unknown_function'    => 'function incognite',
 'math_lexing_error'        => 'error lexic',
-'math_syntax_error'        => 'error syntactic',
+'math_syntax_error'        => 'error de syntaxe',
 'math_image_error'         => "Le conversion in PNG ha fallite;
 verifica que le installation sia correcte del programmas ''latex, dvips, gs,'' e ''convert''.",
 'math_bad_tmpdir'          => 'Non pote scriber in o crear le directorio temporari "math".',
@@ -1026,8 +1026,8 @@ per favor vide math/README pro configurar lo.",
 'right-block'                => 'Blocar altere usatores de facer modificationes',
 'right-blockemail'           => 'Blocar un usator de inviar e-mail',
 'right-hideuser'             => 'Blocar un nomine de usator, celante lo del publico',
-'right-ipblock-exempt'       => 'Facer deviation circa le blocadas de adresses IP, blocadas automatic e blocadas de intervallos IP',
-'right-proxyunbannable'      => 'Facer deviation circa le blocadas automatic de proxy',
+'right-ipblock-exempt'       => 'Contornar le blocadas de adresses IP, blocadas automatic e blocadas de intervallos IP',
+'right-proxyunbannable'      => 'Contornar le blocadas automatic de proxy',
 'right-protect'              => 'Cambiar nivellos de protection e modificar paginas protegite',
 'right-editprotected'        => 'Modificar paginas protegite (sin cascada)',
 'right-editinterface'        => 'Modificar le interfacie de usator',
@@ -1257,7 +1257,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'shareduploadduplicate-linktext' => 'un altere file',
 'shareduploadconflict'           => 'Iste file ha le mesme nomine que $1 del repositorio commun.',
 'shareduploadconflict-linktext'  => 'un altere file',
-'noimage'                        => 'Non existe un file con iste nomine. Vos pote $1.',
+'noimage'                        => 'Non existe un file con iste nomine. Tu pote $1.',
 'noimage-linktext'               => 'cargar lo',
 'uploadnewversion-linktext'      => 'Cargar un nove version de iste file',
 'imagepage-searchdupe'           => 'Cercar files duplicate',
@@ -1559,7 +1559,7 @@ facilitar su identification.",
 'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
 
-The pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATE per $PAGEEDITOR. Vide $PAGETITLE_URL pro le version actual.
+Le pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATE per $PAGEEDITOR. Vide $PAGETITLE_URL pro le version actual.
 
 $NEWPAGE
 
@@ -2062,7 +2062,7 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'tooltip-search-fulltext'         => 'Cercar iste texto in le paginas',
 'tooltip-p-logo'                  => 'Frontispicio',
 'tooltip-n-mainpage'              => 'Visitar le Frontispicio',
-'tooltip-n-portal'                => 'A proposito del projecto, que vos pote facer, ubi trovar cosas',
+'tooltip-n-portal'                => 'A proposito del projecto, que tu pote facer, ubi trovar cosas',
 'tooltip-n-currentevents'         => 'Cerca informationes de fundo relative al actualitate',
 'tooltip-n-recentchanges'         => 'Le lista de modificationes recente in le wiki.',
 'tooltip-n-randompage'            => 'Visita un pagina qualcunque',

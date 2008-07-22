@@ -13,8 +13,8 @@
  * @author Putnik
  * @author Kalan
  * @author SPQRobin
- * @author Innv
  * @author EugeneZelenko
+ * @author Innv
  * @author Flrn
  * @author HalanTul
  * @author AlexSm
@@ -2834,7 +2834,7 @@ $1',
 'specialpages-group-other'       => 'Другие служебные страницы',
 'specialpages-group-login'       => 'Представиться / Зарегистрироваться',
 'specialpages-group-changes'     => 'Свежие правки и журналы',
-'specialpages-group-media'       => 'Отчёты о медиа-материалах и загрузках',
+'specialpages-group-media'       => 'Отчёты о медиа-материалах и загрузка',
 'specialpages-group-users'       => 'Участники и права',
 'specialpages-group-highuse'     => 'Интенсивно использующиеся страницы',
 'specialpages-group-pages'       => 'Списки страниц',

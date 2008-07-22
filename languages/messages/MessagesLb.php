@@ -1905,10 +1905,11 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'allmessagesmodified'       => 'Nëmme geännerter weisen',
 
 # Thumbnails
-'thumbnail-more'  => 'vergréisseren',
-'filemissing'     => 'Fichier feelt',
-'thumbnail_error' => 'Feeler beim Erstellen vum Thumbnail vun: $1',
-'djvu_page_error' => 'DjVu-Säit baussent dem Säiteberäich',
+'thumbnail-more'           => 'vergréisseren',
+'filemissing'              => 'Fichier feelt',
+'thumbnail_error'          => 'Feeler beim Erstellen vum Thumbnail vun: $1',
+'djvu_page_error'          => 'DjVu-Säit baussent dem Säiteberäich',
+'thumbnail_invalid_params' => 'Ongëlteg Thumbnail-Parameter',
 
 # Special:Import
 'import'                     => 'Säiten importéieren',
@@ -2179,6 +2180,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-customrendered'              => 'Benotzerdefinéiert Bildveraarbechtung',
 'exif-exposuremode'                => 'Beliichtungsmodus',
 'exif-whitebalance'                => 'Wäissofgläich',
+'exif-digitalzoomratio'            => 'Digitalzoom',
 'exif-focallengthin35mmfilm'       => 'Brennwäit (Klengbildäquivalent)',
 'exif-scenecapturetype'            => 'Aart vun der Opnam',
 'exif-gaincontrol'                 => 'Verstäerkung',

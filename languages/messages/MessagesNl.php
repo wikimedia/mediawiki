@@ -554,7 +554,7 @@ $messages = array(
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
 'nospecialpagetext' => "<big>'''U hebt een onbestaande speciale pagina opgevraagd.'''</big>
 
-Een lijst met speciale pagina’s staat op [[Special:Specialpages|speciale pagina’s]].",
+Een lijst met bestaande speciale pagina’s staat op [[Special:Specialpages|speciale pagina’s]].",
 
 # General errors
 'error'                => 'Fout',
@@ -1457,7 +1457,7 @@ Klikken op een kolomkop verandert de sortering.',
 'redirectstofile'                => '{{PLURAL:$1|Het volgende bestand verwijst|De volgende $1 bestanden verwijzen}} door naar dit bestand:',
 'duplicatesoffile'               => '{{PLURAL:$1|Het volgende bestand is|De volgende $1 bestanden zijn}} identiek aan dit bestand:',
 'sharedupload'                   => 'Dit bestand is een gedeelde upload en kan ook door andere projecten gebruikt worden.',
-'shareduploadwiki'               => 'Zie $1 voor verdere informatie.',
+'shareduploadwiki'               => 'Zie de $1 voor verdere informatie.',
 'shareduploadwiki-desc'          => 'De $1 in de gedeelde bestandsbank wordt hieronder weergegeven.',
 'shareduploadwiki-linktext'      => 'bestandsbeschrijving',
 'shareduploadduplicate'          => 'Dit bestand is identiek aan $1 in de gedeelde mediabank.',

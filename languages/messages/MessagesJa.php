@@ -645,7 +645,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'templatesusedsection'             => 'この節で使われているテンプレート:',
 'template-protected'               => '（保護）',
 'template-semiprotected'           => '（半保護）',
-'hiddencategories'                 => 'このページは{{PLURAL:$1|1個の非公開カテゴリ|$1個の非公開カテゴリ}}に属しています:',
+'hiddencategories'                 => 'このページは1個の非公開カテゴリに属しています:',
 'edittools'                        => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'                    => 'ページを作成できません',
 'nocreatetext'                     => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',
@@ -1298,6 +1298,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'listgrouprights-group'    => 'グループ',
 'listgrouprights-rights'   => '権限',
 'listgrouprights-helppage' => 'Help:グループと権限',
+'listgrouprights-members'  => '(該当者一覧)',
 
 # E-mail user
 'mailnologin'     => 'メールアドレスの記載がありません。',
@@ -1712,7 +1713,7 @@ $NEWPAGE
 'movepage-page-exists'    => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
 'movepage-page-moved'     => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'   => '$1 を $2 へ移動できませんでした。',
-'movepage-max-pages'      => '自動的に移動できるのは $1{{PLURAL:$1|ページ|ページ}} までで、それ以上は移動されません。',
+'movepage-max-pages'      => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
 '1movedto2'               => 'ページ [[$1]] を [[$2]] へ移動',
 '1movedto2_redir'         => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
 'movelogpage'             => '移動記録',
