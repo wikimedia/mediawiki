@@ -180,7 +180,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	public function getParamDescription() {
 		return array (
 			'prop' => 'Which additional properties to get for each category.',
-			'limit' => 'How many langlinks to return',
+			'limit' => 'How many categories to return',
 			'continue' => 'When more results are available, use this to continue',
 		);
 	}
