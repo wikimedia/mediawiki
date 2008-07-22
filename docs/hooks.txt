@@ -265,6 +265,10 @@ before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
 $EditPage : the EditPage object
 
+'AlternateSkinPreferences': before creating the content of the 'skin'
+tab in preferences
+$prefsform : the PreferencesForm object
+
 'APIEditBeforeSave': before saving a page with api.php?action=edit,
 after processing request parameters. Return false to let the request
 fail, returning an error message or an <edit result="Failure"> tag
