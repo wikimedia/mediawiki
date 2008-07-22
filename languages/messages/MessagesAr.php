@@ -255,14 +255,14 @@ $magicWords = array(
 );
 
 $skinNames = array(
-	'standard'    => 'كلاسيك',
+	'standard'    => 'كلاسيكية',
 	'nostalgia'   => 'نوستالجيا',
 	'cologneblue' => 'كولون بلو',
 	'monobook'    => 'مونوبوك',
 	'myskin'      => 'واجهتي',
 	'chick'       => 'تشيك',
-	'simple'      => 'سيمبل',
-	'modern'      => 'مودرن',
+	'simple'      => 'بسيطة',
+	'modern'      => 'حديثة',
 );
 
 $digitTransformTable = array(
