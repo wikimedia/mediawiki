@@ -17,36 +17,35 @@ function wfSpecialMovepage( $par = null ) {
 	}
 
 	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
-	$oldTitle = $wgRequest->getText( 'wpOldTitle', $target );
-	$newTitle = $wgRequest->getText( 'wpNewTitle' );
+	$oldTitleText = $wgRequest->getText( 'wpOldTitle', $target );
+	$newTitleText = $wgRequest->getText( 'wpNewTitle' );
 
-	# Variables beginning with 'o' for old article 'n' for new article
-	$ot = Title::newFromText( $oldTitle );
-	$nt = Title::newFromText( $newTitle );
+	$oldTitle = Title::newFromText( $oldTitleText );
+	$newTitle = Title::newFromText( $newTitleText );
 
-	if( is_null( $ot ) ) {
+	if( is_null( $oldTitle ) ) {
 		$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
 		return;
 	}
-	if( !$ot->exists() ) {
+	if( !$oldTitle->exists() ) {
 		$wgOut->showErrorPage( 'nopagetitle', 'nopagetext' );
 		return;
 	}
 
 	# Check rights
-	$permErrors = $ot->getUserPermissionsErrors( 'move', $wgUser );
+	$permErrors = $oldTitle->getUserPermissionsErrors( 'move', $wgUser );
 	if( !empty( $permErrors ) ) {
 		$wgOut->showPermissionsErrorPage( $permErrors );
 		return;
 	}
 
-	$f = new MovePageForm( $ot, $nt );
+	$form = new MovePageForm( $oldTitle, $newTitle );
 
 	if ( 'submit' == $action && $wgRequest->wasPosted()
 		&& $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) ) ) {
-		$f->doSubmit();
+		$form->doSubmit();
 	} else {
-		$f->showForm( '' );
+		$form->showForm( '' );
 	}
 }
 
@@ -56,7 +55,7 @@ function wfSpecialMovepage( $par = null ) {
  */
 class MovePageForm {
 	var $oldTitle, $newTitle, $reason; # Text input
-	var $moveTalk, $deleteAndMove, $moveSubpages;
+	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects;
 
 	private $watch = false;
 
@@ -73,17 +72,17 @@ class MovePageForm {
 		}
 		$this->moveSubpages = $wgRequest->getBool( 'wpMovesubpages', false );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
+		$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', true );
 		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
 	function showForm( $err, $hookErr = '' ) {
 		global $wgOut, $wgUser;
 
-		$ot = $this->oldTitle;
-		$sk = $wgUser->getSkin();
+		$skin = $wgUser->getSkin();
 
-		$oldTitleLink = $sk->makeLinkObj( $ot );
-		$oldTitle = $ot->getPrefixedText();
+		$oldTitleLink = $skin->makeLinkObj( $this->oldTitle );
+		$oldTitle = $this->oldTitle->getPrefixedText();
 
 		$wgOut->setPagetitle( wfMsg( 'move-page', $oldTitle ) );
 		$wgOut->setSubtitle( wfMsg( 'move-page-backlink', $oldTitleLink ) );
@@ -99,7 +98,7 @@ class MovePageForm {
 					# If a title was supplied, probably from the move log revert
 					# link, check for validity. We can then show some diagnostic
 					# information and save a click.
-					$newerr = $ot->isValidMoveOperation( $nt );
+					$newerr = $this->oldTitle->isValidMoveOperation( $nt );
 					if( is_string( $newerr ) ) {
 						$err = $newerr;
 					}
@@ -127,9 +126,16 @@ class MovePageForm {
 			$confirm = false;
 		}
 
-		$oldTalk = $ot->getTalkPage();
-		$considerTalk = ( !$ot->isTalkPage() && $oldTalk->exists() );
+		$oldTalk = $this->oldTitle->getTalkPage();
+		$considerTalk = ( !$this->oldTitle->isTalkPage() && $oldTalk->exists() );
 
+		$dbr = wfGetDB( DB_SLAVE );
+		$hasRedirects = $dbr->selectField( 'redirect', '1', 
+			array( 
+				'rd_namespace' => $this->oldTitle->getNamespace(),
+				'rd_title' => $this->oldTitle->getDBkey(),
+			) , __METHOD__ );
+		
 		if ( $considerTalk ) {
 			$wgOut->addWikiMsg( 'movepagetalktext' );
 		}
@@ -190,28 +196,41 @@ class MovePageForm {
 			);
 		}
 
-		if( ($ot->hasSubpages() || $ot->getTalkPage()->hasSubpages())
-		&& $ot->userCan( 'move-subpages' ) ) {
+		if ( $hasRedirects ) {
+			$wgOut->addHTML( "
+				<tr>
+					<td></td>
+					<td class='mw-input' >" .
+						Xml::checkLabel( wfMsg( 'fix-double-redirects' ), 'wpFixRedirects', 
+							'wpFixRedirects', $this->fixRedirects ) .
+					"</td>
+				</td>"
+			);
+		}
+
+		if( ($this->oldTitle->hasSubpages() || $this->oldTitle->getTalkPage()->hasSubpages())
+		&& $this->oldTitle->userCan( 'move-subpages' ) ) {
 			$wgOut->addHTML( "
 				<tr>
 					<td></td>
 					<td class=\"mw-input\">" .
 				Xml::checkLabel( wfMsgHtml(
-						$ot->hasSubpages()
+						$this->oldTitle->hasSubpages()
 						? 'move-subpages'
 						: 'move-talk-subpages'
 					),
 					'wpMovesubpages', 'wpMovesubpages',
 					# Don't check the box if we only have talk subpages to
 					# move and we aren't moving the talk page.
-					$this->moveSubpages && ($ot->hasSubpages() || $this->moveTalk)
+					$this->moveSubpages && ($this->oldTitle->hasSubpages() || $this->moveTalk)
 				) .
 					"</td>
 				</tr>"
 			);
 		}
 
-		$watchChecked = $this->watch || $wgUser->getBoolOption( 'watchmoves' ) || $ot->userIsWatching();
+		$watchChecked = $this->watch || $wgUser->getBoolOption( 'watchmoves' ) 
+			|| $this->oldTitle->userIsWatching();
 		$wgOut->addHTML( "
 			<tr>
 				<td></td>
@@ -233,7 +252,7 @@ class MovePageForm {
 			"\n"
 		);
 
-		$this->showLogFragment( $ot, $wgOut );
+		$this->showLogFragment( $this->oldTitle, $wgOut );
 
 	}
 
@@ -275,6 +294,10 @@ class MovePageForm {
 			# FIXME: showForm() should handle multiple errors
 			call_user_func_array(array($this, 'showForm'), $error[0]);
 			return;
+		}
+
+		if ( $this->fixRedirects ) {
+			DoubleRedirectJob::fixRedirects( 'move', $ot, $nt );
 		}
 
 		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this , &$ot , &$nt ) )	;
@@ -358,40 +381,43 @@ class MovePageForm {
 				continue;
 			}
 
-			$oldPage = Title::newFromRow( $row );
+			$oldSubpage = Title::newFromRow( $row );
 			$newPageName = preg_replace(
 				'#^'.preg_quote( $ot->getDBKey(), '#' ).'#',
 				$nt->getDBKey(),
-				$oldPage->getDBKey()
+				$oldSubpage->getDBKey()
 			);
-			if( $oldPage->isTalkPage() ) {
+			if( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();
 			} else {
 				$newNs = $nt->getSubjectPage()->getNamespace();
 			}
 			# Bug 14385: we need makeTitleSafe because the new page names may
 			# be longer than 255 characters.
-			$newPage = Title::makeTitleSafe( $newNs, $newPageName );
-			if( !$newPage ) {
-				$oldLink = $skin->makeKnownLinkObj( $oldPage );
+			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
+			if( !$newSubpage ) {
+				$oldLink = $skin->makeKnownLinkObj( $oldSubpage );
 				$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink,
 					htmlspecialchars(Title::makeName( $newNs, $newPageName )));
 				continue;
 			}
 
 			# This was copy-pasted from Renameuser, bleh.
-			if ( $newPage->exists() && !$oldPage->isValidMoveTarget( $newPage ) ) {
-				$link = $skin->makeKnownLinkObj( $newPage );
+			if ( $newSubpage->exists() && !$oldSubpage->isValidMoveTarget( $newSubpage ) ) {
+				$link = $skin->makeKnownLinkObj( $newSubpage );
 				$extraOutput []= wfMsgHtml( 'movepage-page-exists', $link );
 			} else {
-				$success = $oldPage->moveTo( $newPage, true, $this->reason );
+				$success = $oldSubpage->moveTo( $newSubpage, true, $this->reason );
 				if( $success === true ) {
-					$oldLink = $skin->makeKnownLinkObj( $oldPage, '', 'redirect=no' );
-					$newLink = $skin->makeKnownLinkObj( $newPage );
+					if ( $this->fixRedirects ) {
+						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
+					}
+					$oldLink = $skin->makeKnownLinkObj( $oldSubpage, '', 'redirect=no' );
+					$newLink = $skin->makeKnownLinkObj( $newSubpage );
 					$extraOutput []= wfMsgHtml( 'movepage-page-moved', $oldLink, $newLink );
 				} else {
-					$oldLink = $skin->makeKnownLinkObj( $oldPage );
-					$newLink = $skin->makeLinkObj( $newPage );
+					$oldLink = $skin->makeKnownLinkObj( $oldSubpage );
+					$newLink = $skin->makeLinkObj( $newSubpage );
 					$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink, $newLink );
 				}
 			}

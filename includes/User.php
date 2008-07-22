@@ -497,12 +497,21 @@ class User {
 	 */
 	static function isUsableName( $name ) {
 		global $wgReservedUsernames;
-		return
-			// Must be a valid username, obviously ;)
-			self::isValidUserName( $name ) &&
+		// Must be a valid username, obviously ;)
+		if ( !self::isValidUserName( $name ) ) {
+			return false;
+		}
 
-			// Certain names may be reserved for batch processes.
-			!in_array( $name, $wgReservedUsernames );
+		// Certain names may be reserved for batch processes.
+		foreach ( $wgReservedUsernames as $reserved ) {
+			if ( substr( $reserved, 0, 4 ) == 'msg:' ) {
+				$reserved = wfMsgForContent( substr( $reserved, 4 ) );
+			}
+			if ( $reserved == $name ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**

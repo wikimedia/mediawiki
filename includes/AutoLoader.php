@@ -43,6 +43,7 @@ class AutoLoader {
 		'_DiffOp' => 'includes/DifferenceEngine.php',
 		'DjVuImage' => 'includes/DjVuImage.php',
 		'DoubleReplacer' => 'includes/StringUtils.php',
+		'DoubleRedirectJob' => 'includes/DoubleRedirectJob.php',
 		'Dump7ZipOutput' => 'includes/Export.php',
 		'DumpBZip2Output' => 'includes/Export.php',
 		'DumpFileOutput' => 'includes/Export.php',
