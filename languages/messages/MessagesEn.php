@@ -1871,6 +1871,9 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'doubleredirectstext'     => 'This page lists pages which redirect to other redirect pages.
 Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
 
+'double-redirect-fixed-move'   => '[[$1]] has been moved, it is now just a redirect to [[$2]]',
+'double-redirect-fixer'   => 'Redirect fixer',
+
 'brokenredirects'         => 'Broken redirects',
 'brokenredirects-summary' => '', # do not translate or duplicate this message to other languages
 'brokenredirectstext'     => 'The following redirects link to non-existent pages:',
@@ -2500,6 +2503,7 @@ cannot move pages from and into that namespace.',
 'imagenocrossnamespace'   => 'Cannot move file to non-file namespace',
 'imagetypemismatch'       => 'The new file extension does not match its type',
 'imageinvalidfilename'    => 'The target file name is invalid',
+'fix-double-redirects'    => 'Update any redirects that point to the original title',
 
 # Export
 'export'            => 'Export pages',

@@ -1595,6 +1595,7 @@ $wgJobClasses = array(
 	'html_cache_update' => 'HTMLCacheUpdateJob', // backwards-compatible
 	'sendMail' => 'EmaillingJob',
 	'enotifNotify' => 'EnotifNotifyJob',
+	'fixDoubleRedirect' => 'DoubleRedirectJob',
 );
 
 /**
@@ -3078,6 +3079,7 @@ $wgReservedUsernames = array(
 	'Conversion script', // Used for the old Wikipedia software upgrade
 	'Maintenance script', // Maintenance scripts which perform editing, image import script
 	'Template namespace initialisation script', // Used in 1.2->1.3 upgrade
+	'msg:double-redirect-fixer', // Automatic double redirect fix
 );
 
 /**

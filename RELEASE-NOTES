@@ -194,6 +194,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Recentchangeslinked now includes changes to transcluded pages and
   displayed images; also, the "Show changes to pages linked" checkbox now works on
   category pages too, showing all links that are not categorizations
+* (bug 4578) Automatically fix redirects broken by a page move 
 
 === Bug fixes in 1.13 ===
 
