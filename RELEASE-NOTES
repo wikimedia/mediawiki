@@ -191,7 +191,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9736) Redirects on Special:Fewestrevisions are now marked as such.
 * New date/time formats in Cs localization according to ČSN and PČP.
 * (bug 14883) Create hook AlternateSkinPreferences to alternate skin section in user preferences
- 
+* Special:Recentchangeslinked now includes changes to transcluded pages and
+  displayed images; also, the "Show changes to pages linked" checkbox now works on
+  category pages too, showing all links that are not categorizations
+
 === Bug fixes in 1.13 ===
 
 * (bug 10677) Add link to the file description page on the shared repository

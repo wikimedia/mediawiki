@@ -56,45 +56,94 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 
 		$wgOut->setPageTitle( wfMsg( 'recentchangeslinked-title', $title->getPrefixedText() ) );
 
+		/*
+		 * Ordinary links are in the pagelinks table, while transclusions are
+		 * in the templatelinks table, categorizations in categorylinks and
+		 * image use in imagelinks.  We need to somehow combine all these.
+		 * Special:Whatlinkshere does this by firing multiple queries and
+		 * merging the results, but the code we inherit from our parent class
+		 * expects only one result set so we use UNION instead.
+		 */
+
 		$dbr = wfGetDB( DB_SLAVE, 'recentchangeslinked' );
 		$id = $title->getArticleId();
+		$ns = $title->getNamespace();
+		$dbkey = $title->getDBkey();
 
 		$tables = array( 'recentchanges' );
 		$select = array( $dbr->tableName( 'recentchanges' ) . '.*' );
 		$join_conds = array();
 
-		if( $title->getNamespace() == NS_CATEGORY ) {
-			$tables[] = 'categorylinks';
-			$conds['cl_to'] = $title->getDBkey();
-			$join_conds['categorylinks'] = array( 'LEFT JOIN', 'cl_from=rc_cur_id' );
-		} else {
-			if( $showlinkedto ) {
-				if( $title->getNamespace() == NS_TEMPLATE ){
-					$tables[] = 'templatelinks';
-					$conds['tl_namespace'] = $title->getNamespace();
-					$conds['tl_title'] = $title->getDBkey();
-					$join_conds['templatelinks'] = array( 'LEFT JOIN', 'tl_from=rc_cur_id' );
-				} else {
-					$tables[] = 'pagelinks';
-					$conds['pl_namespace'] = $title->getNamespace();
-					$conds['pl_title'] = $title->getDBkey();
-					$join_conds['pagelinks'] = array( 'LEFT JOIN', 'pl_from=rc_cur_id' );
-				}
-			} else {
-				$tables[] = 'pagelinks';
-				$conds['pl_from'] = $id;
-				$join_conds['pagelinks'] = array( 'LEFT JOIN', 'pl_namespace = rc_namespace AND pl_title = rc_title' );
-			}
-		}
-
+		// left join with watchlist table to highlight watched rows
 		if( $uid = $wgUser->getId() ) {
 			$tables[] = 'watchlist';
-			$join_conds['watchlist'] = array( 'LEFT JOIN', "wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace" );
 			$select[] = 'wl_user';
+			$join_conds['watchlist'] = array( 'LEFT JOIN', "wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace" );
 		}
 
-		$res = $dbr->select( $tables, $select, $conds, __METHOD__,
-			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ), $join_conds );
+		// XXX: parent class does this, should we too?
+		// wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
+
+		if( $ns == NS_CATEGORY && !$showlinkedto ) {
+			// special handling for categories
+			// XXX: should try to make this less klugy
+			$link_tables = array( 'categorylinks' );
+			$showlinkedto = true;
+		} else {
+			// for now, always join on these tables; really should be configurable as in whatlinkshere
+			$link_tables = array( 'pagelinks', 'templatelinks' );
+			// imagelinks only contains links to pages in NS_IMAGE
+			if( $ns == NS_IMAGE || !$showlinkedto ) $link_tables[] = 'imagelinks';
+		}
+
+		// field name prefixes for all the various tables we might want to join with
+		$prefix = array( 'pagelinks' => 'pl', 'templatelinks' => 'tl', 'categorylinks' => 'cl', 'imagelinks' => 'il' );
+
+		$subsql = array(); // SELECT statements to combine with UNION
+
+		foreach( $link_tables as $link_table ) {
+			$pfx = $prefix[$link_table];
+
+			// imagelinks and categorylinks tables have no xx_namespace field, and have xx_to instead of xx_title
+			if( $link_table == 'imagelinks' ) $link_ns = NS_IMAGE;
+			else if( $link_table == 'categorylinks' ) $link_ns = NS_CATEGORY;
+			else $link_ns = 0;
+
+			if( $showlinkedto ) {
+				// find changes to pages linking to this page
+				if( $link_ns ) {
+					if( $ns != $link_ns ) continue; // should never happen, but check anyway
+					$subconds = array( "{$pfx}_to" => $dbkey );
+				} else {
+					$subconds = array( "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey );
+				}
+				$subjoin = "rc_cur_id = {$pfx}_from";
+			} else {
+				// find changes to pages linked from this page
+				$subconds = array( "{$pfx}_from" => $id );
+				if( $link_table == 'imagelinks' || $link_table == 'categorylinks' ) {
+					$subconds["rc_namespace"] = $link_ns;
+					$subjoin = "rc_title = {$pfx}_to";
+				} else {
+					$subjoin = "rc_namespace = {$pfx}_namespace AND rc_title = {$pfx}_title";
+				}
+			}
+
+			$subsql[] = $dbr->selectSQLText( array_merge( $tables, array( $link_table ) ), $select, $conds + $subconds,
+							 __METHOD__, array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ),
+							 $join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) ) );
+		}
+
+		if( count($subsql) == 0 )
+			return false; // should never happen
+		if( count($subsql) == 1 )
+			$sql = $subsql[0];
+		else {
+			// need to resort and relimit after union
+			$sql = "(" . implode( ") UNION (", $subsql ) . ") ORDER BY rc_timestamp DESC LIMIT {$limit}";
+		}
+
+		$res = $dbr->query( $sql, __METHOD__ );
 
 		if( $dbr->numRows( $res ) == 0 )
 			$this->mResultEmpty = true;
