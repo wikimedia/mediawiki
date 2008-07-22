@@ -492,6 +492,7 @@ $messages = array(
 'rcshowhidebots'  => '$1 αὐτόματα',
 'rcshowhideliu'   => '$1 χρωμένους συνδεδεμένους',
 'rcshowhideanons' => '$1 χρώμενοι ἀνώνυμοι',
+'rcshowhidepatr'  => '$1 Τὰς φυλασσόμενας μεταβολὰς',
 'rcshowhidemine'  => '$1 μεταβολὰς μου',
 'diff'            => 'διαφ.',
 'hist'            => 'Προτ.',
@@ -700,8 +701,9 @@ $messages = array(
 'month'         => 'Μήν:',
 'year'          => 'Ἔτος:',
 
-'sp-contributions-blocklog' => 'Τὰ ἀποκλῄειν',
-'sp-contributions-submit'   => 'Ζητεῖν',
+'sp-contributions-newbies-sub' => 'Ἔρανοί νέων χρωμένων',
+'sp-contributions-blocklog'    => 'Τὰ ἀποκλῄειν',
+'sp-contributions-submit'      => 'Ζητεῖν',
 
 # What links here
 'whatlinkshere'       => 'Τὰ ἐνθάδε ἄγοντα',
@@ -770,6 +772,8 @@ $messages = array(
 'tooltip-pt-logout'         => 'Ἐξέρχεσθαι',
 'tooltip-ca-talk'           => 'Διάλεκτος περὶ τῆς δέλτου',
 'tooltip-ca-edit'           => 'Ἔξεστι σοι μεταγράφειν τήνδε τὴν δέλτον. Προεπισκοπεῖν πρὶν ἂν γράφῃς τὴν δέλτον.',
+'tooltip-ca-viewsource'     => 'Σῴζεται ἣδε ἡ δέλτος.
+Ἔξεστι σοὶ τὴν πηγήν διασκοπεῖν.',
 'tooltip-ca-protect'        => 'Ἀμύνειν τῇδε τῇ δέλτῳ',
 'tooltip-ca-delete'         => 'Διαγράφειν τήνδε τὴν δέλτον',
 'tooltip-ca-move'           => 'Κινεῖν τήνδε τὴν δέλτον',
@@ -863,6 +867,9 @@ $messages = array(
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-n' => 'Κόμβοι',
+
+# External editor support
+'edit-externally-help' => 'Εἰ πλειόντα βούλει μαθεῖν, [http://meta.wikimedia.org/wiki/Help:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] λέγε.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Πᾶσαι',

@@ -1470,12 +1470,29 @@ $2',
 'restriction-level'           => 'مستوى القيود :',
 'minimum-size'                => 'أقل حجم',
 'maximum-size'                => 'أكبر حجم',
+'pagesize'                    => '(بايت)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'تعديل',
+'restriction-move'   => 'انقل',
+'restriction-create' => 'اعمل',
 'restriction-upload' => 'تحميل',
 
+# Restriction levels
+'restriction-level-sysop'         => 'محمية بالكامل',
+'restriction-level-autoconfirmed' => 'نص محمية',
+'restriction-level-all'           => 'أي مستوى',
+
 # Undelete
+'undelete'                 => 'عرض الصفحات الممسوحة',
+'undeletepage'             => 'عرض واسترجاع الصفحات المسوحة',
+'undeletepagetitle'        => "'''دا بيتكون من النسخ الممسوحة لـ[[:$1]]'''.",
+'viewdeletedpage'          => 'عرض الصفحات الممسوحة',
+'undeletepagetext'         => ' الصفحات دي إتمسحت بس لسة موجودة في الأرشيف و ممكن تترجع. الأرشيف ممكن يتنضف كل شوية..',
+'undelete-fieldset-title'  => 'رجع النسخ',
+'undeleteextrahelp'        => " علشان ترجع الصفحة كلها، سيب كل الصناديق فاضية و دوس
+ '''''ترجيع'''''. علشان ترجع جزء من الصفحة، حط علامة في الصناديق أدام التعديلات اللي عايز  ترجعهاو دوس '''''ترجيع'''''. لو دوست على  '''''إبتدي تاني'''''  التعليق ح يتمسح و كل العلامات  اللي في الصناديق ح تتحذف.",
+'undeleterevisions'        => '$1 {{PLURAL:$1|نسخة|نسخة}} اتحطت في  الارشيف',
 'undelete-nodiff'          => 'ما لقيناش نسخة قديمة.',
 'undeletebtn'              => 'استعاده',
 'undeletelink'             => 'استرجاع',
@@ -1546,6 +1563,8 @@ $2',
 'proxyblocksuccess'       => 'خلاص.',
 
 # Move page
+'move-page'        => 'انقل $1',
+'move-page-legend' => 'انقل الصفحة',
 'movepagetext'     => "
 لو استعملت النموذج ده ممكن تغير اسم الصفحه، و تنقل تاريخها للاسم الجديد.
 هاتبتدى تحويله من العنوان القديم للصفحه بالعنوان الجديد.
@@ -1564,6 +1583,9 @@ $2',
 
 وفي الحالات  دى، لو عايز  تنقل صفحة المناقشه  لازم تنقل أو تدمج محتوياتها  يدويا.',
 'movearticle'      => 'انقل الصفحه:',
+'movenologin'      => 'مش متسجل',
+'movenologintext'  => 'لازم تكون يوزر متسجل و تعمل [[Special:Userlogin|دخول]] علشان تنقل الصفحة.',
+'movenotallowed'   => 'ماعندكش الصلاحية لنقل الصفحات في {{SITENAME}}.',
 'newtitle'         => 'للعنوان الجديد:',
 'move-watch'       => 'راقب الصفحه دى',
 'movepagebtn'      => 'نقل الصفحه',
@@ -1796,14 +1818,21 @@ $2',
 'exif-gpsdestlatitude'             => 'خط عرض الهدف',
 'exif-gpsdestlongituderef'         => 'المرجع لخط طول الهدف',
 'exif-gpsdestlongitude'            => 'خط طول الهدف',
+'exif-gpsdestbearingref'           => 'المرجع لتحمل الهدف',
 'exif-gpsdestbearing'              => 'تحمل الهدف',
 'exif-gpsdestdistanceref'          => 'المرجع للمسافه للهدف',
 'exif-gpsdestdistance'             => 'المسافه للهدف',
+'exif-gpsprocessingmethod'         => 'اسم طريقة معالجة جي بي إس',
 'exif-gpsareainformation'          => 'اسم لمنطقة ال چى پى إس',
 'exif-gpsdatestamp'                => 'تاريخ GPS',
+'exif-gpsdifferential'             => 'تصحيح GPS التفاضلي',
 
 # EXIF attributes
 'exif-compression-1' => 'مش مضغوط',
+'exif-compression-6' => 'جيه بي إي جي',
+
+'exif-photometricinterpretation-2' => 'آر جي بي',
+'exif-photometricinterpretation-6' => 'واي سب سر',
 
 'exif-unknowndate' => 'تاريخ مش معروف',
 

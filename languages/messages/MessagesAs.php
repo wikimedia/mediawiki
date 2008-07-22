@@ -28,7 +28,7 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'সংযোগ সমুহ অধোৰেখিত কৰক:',
-'tog-justify'                 => 'অধ্যায় সমুহৰ দুয়োফাল সমান কৰক',
+'tog-justify'                 => 'লেখা বিলাকৰ দুয়োকাষ সমান কৰা হওক',
 'tog-hideminor'               => 'সাম্প্রতিক সাল-সলনিত অগুৰুত্বপূর্ণ সম্পাদনা নেদেখুৱাব',
 'tog-extendwatchlist'         => 'লক্ষ্য-তালিকাৰ সকলো সাল-সলনি বহলাই দেখুৱাওক',
 'tog-usenewrc'                => 'বর্দ্ধিত সাম্প্রতিক সাল-সলনি (JavaScript)',

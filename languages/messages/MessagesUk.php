@@ -2760,17 +2760,17 @@ $1',
 'specialpages-note'              => '----
 * Звичайні спеціальні сторінки.
 * <span class="mw-specialpagerestricted">Спеціальні сторінки з обмеженим доступом.</span>',
-'specialpages-group-maintenance' => 'Звіти технічного обслуговування',
-'specialpages-group-other'       => 'Інші спеціальні сторінки',
+'specialpages-group-maintenance' => 'Технічні звіти',
+'specialpages-group-other'       => 'Інші',
 'specialpages-group-login'       => 'Вхід до системи / реєстрація',
 'specialpages-group-changes'     => 'Останні зміни і журнали',
-'specialpages-group-media'       => 'Робота з файлами',
+'specialpages-group-media'       => 'Файли',
 'specialpages-group-users'       => 'Користувачі і права',
-'specialpages-group-highuse'     => 'Сторінки, що інтенсивно використовуються',
+'specialpages-group-highuse'     => 'Часто вживані',
 'specialpages-group-pages'       => 'Списки сторінок',
-'specialpages-group-pagetools'   => 'Інструменти для сторінок',
+'specialpages-group-pagetools'   => 'Інструменти',
 'specialpages-group-wiki'        => 'Вікі-дані та інструменти',
-'specialpages-group-redirects'   => 'Спеціальні сторінки-перенаправлення',
+'specialpages-group-redirects'   => 'Перенаправлення',
 'specialpages-group-spam'        => 'Інструменти проти спаму',
 
 # Special:Blankpage
