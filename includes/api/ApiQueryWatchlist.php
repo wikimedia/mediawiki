@@ -305,7 +305,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'end' => 'The timestamp to end enumerating.',
 			'namespace' => 'Filter changes to only the given namespace(s).',
 			'dir' => 'In which direction to enumerate pages.',
-			'limit' => 'How many total pages to return per request.',
+			'limit' => 'How many total results to return per request.',
 			'prop' => 'Which additional items to get (non-generator mode only).',
 			'show' => array (
 				'Show only items that meet this criteria.',

@@ -192,7 +192,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	{
 		return array(
 				'namespace' => "Show {$this->description}s in this namespace(s) only",
-				'limit' => 'How many links to return',
+				'limit' => "How many {$this->description}s to return",
 				'continue' => 'When more results are available, use this to continue',
 		);
 	}

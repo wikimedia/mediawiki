@@ -191,7 +191,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 						'Leave both this and euquery empty to list all external links'),
 			'query' => 'Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links',
 			'namespace' => 'The page namespace(s) to enumerate.',
-			'limit' => 'How many entries to return.'
+			'limit' => 'How many pages to return.'
 		);
 	}
 
