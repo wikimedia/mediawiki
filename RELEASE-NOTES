@@ -24,7 +24,8 @@ None yet
 
 === New features in 1.14 ===
 
-None yet
+* (bug 8068) New __INDEX__ and __NOINDEX__ magic words allow control of search
+engine indexing on a per-article basis.
 
 === Bug fixes in 1.14 ===
 
