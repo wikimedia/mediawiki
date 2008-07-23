@@ -484,7 +484,7 @@ class SpecialPage
 		if ( !$page ) {
 			if ( !$including ) {
 				$wgOut->setArticleRelated( false );
-				$wgOut->setRobotpolicy( 'noindex,nofollow' );
+				$wgOut->setRobotPolicy( 'noindex,nofollow' );
 				$wgOut->setStatusCode( 404 );
 				$wgOut->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
 			}

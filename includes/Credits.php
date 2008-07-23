@@ -34,7 +34,7 @@ function showCreditsPage($article) {
 	$wgOut->setSubtitle( wfMsg( 'creditspage' ) );
 	$wgOut->setArticleFlag( false );
 	$wgOut->setArticleRelated( true );
-	$wgOut->setRobotpolicy( 'noindex,nofollow' );
+	$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 	if( $article->mTitle->getArticleID() == 0 ) {
 		$s = wfMsg( 'nocredits' );
