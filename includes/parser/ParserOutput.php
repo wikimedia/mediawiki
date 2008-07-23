@@ -23,7 +23,8 @@ class ParserOutput
 		$mOutputHooks,      # Hook tags as per $wgParserOutputHooks
 		$mWarnings,         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections,         # Table of contents
-		$mProperties;       # Name/value pairs to be cached in the DB
+		$mProperties,       # Name/value pairs to be cached in the DB
+		$mIndexPolicy;		# 'index' or 'noindex'?  Default is null
 
 	/**
 	 * Overridden title for display
@@ -52,6 +53,7 @@ class ParserOutput
 		$this->mOutputHooks = array();
 		$this->mWarnings = array();
 		$this->mProperties = array();
+		$this->mIndexPolicy = null;
 	}
 
 	function getText()                   { return $this->mText; }
