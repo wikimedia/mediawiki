@@ -105,6 +105,8 @@ class MagicWord {
 		'numberofadmins',
 		'defaultsort',
 		'pagesincategory',
+		'index',
+		'noindex',
 	);
 
 	/* Array of caching hints for ParserCache */
@@ -153,6 +155,8 @@ class MagicWord {
 		'noeditsection',
 		'newsectionlink',
 		'hiddencat',
+		'index',
+		'noindex',
 	);
 
 
