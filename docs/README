@@ -1,7 +1,7 @@
 [July 22nd 2008]
 
 The 'docs' directory contain various text files that should help you understand
-the most importants parts of the code of MediaWiki. More in-depth documentation
+the most important parts of the code of MediaWiki. More in-depth documentation
 can be found at http://www.mediawiki.org/wiki/Manual:Code.
 
 API documentation is automatically generated and updated daily at:
