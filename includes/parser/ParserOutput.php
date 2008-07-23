@@ -24,6 +24,7 @@ class ParserOutput
 		$mWarnings,         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections,         # Table of contents
 		$mProperties;       # Name/value pairs to be cached in the DB
+	private $mIndexPolicy = '';	# 'index' or 'noindex'?  Any other value will result in no change.
 
 	/**
 	 * Overridden title for display
@@ -69,6 +70,7 @@ class ParserOutput
 	function getSubtitle()               { return $this->mSubtitle; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
+	function getIndexPolicy()            { return $this->mIndexPolicy; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -78,6 +80,7 @@ class ParserOutput
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
 	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
+	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
