@@ -1474,7 +1474,7 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'nbytes'                  => '$1 {{PLURAL:$1|bita|bita}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategori|kategori}}',
 'nlinks'                  => '$1 {{PLURAL:$1|pranala|pranala}}',
-'nmembers'                => '$1 {{PLURAL:$1|pengguna|pengguna}}',
+'nmembers'                => '$1 {{PLURAL:$1|isi|isi}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revisi|revisi}}',
 'nviews'                  => '$1 {{PLURAL:$1|penampilan|penampilan}}',
 'specialpage-empty'       => 'Tak ada yang perlu dilaporkan.',

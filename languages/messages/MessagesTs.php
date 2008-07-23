@@ -31,6 +31,7 @@ $messages = array(
 'november'  => 'Hukuri',
 'december'  => "N'wendzamhala",
 
+'newwindow'      => '(Yi pfula e ndhzawini yintswa)',
 'cancel'         => 'Thsika',
 'qbfind'         => 'Kuma',
 'qbedit'         => 'Lulamisa',
@@ -54,18 +55,24 @@ $messages = array(
 'searcharticle'    => 'Nghena',
 'history'          => 'Matimu yaTluka',
 'history_short'    => 'Matimu',
+'printableversion' => 'Vona Ngangliso',
 'edit'             => 'Lulamisa',
 'create'           => 'Tumbuluxa',
 'editthispage'     => 'Lulamisa Tluka leri',
 'create-this-page' => 'Tumbuluxa tluka leri',
 'delete'           => 'Sula',
 'deletethispage'   => 'Sula tluka leri',
+'protect'          => 'Sirhelela',
+'newpage'          => 'Tluka rintswa',
 'talkpagelinktext' => 'Mbulavulo',
 'talk'             => 'Mbulavuriswano',
+'toolbox'          => 'Bokisi ra switirhisiwa',
+'jumptosearch'     => 'Lava',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'ta {{SITENAME}}',
 'aboutpage'            => 'Project:ta',
+'currentevents'        => 'Leswi endlekaka sweswi',
 'disclaimers'          => 'Swi alanandzu',
 'disclaimerpage'       => 'Project:Swithsuxa nadzu hikuangara',
 'edithelp'             => 'Mpfuno hi ta mindzulamiso',
@@ -76,7 +83,7 @@ $messages = array(
 'mainpage'             => 'Tlukankulu',
 'mainpage-description' => 'Tluka-Nkulu',
 'policy-url'           => 'Project:Policy',
-'portal'               => 'Community portal',
+'portal'               => 'Ntsindza wa muganga',
 'portal-url'           => 'Project:Community Portal',
 'privacy'              => 'Privacy policy',
 'privacypage'          => 'Project:Privacy policy',
@@ -118,15 +125,15 @@ See [[Special:Version|version page]].',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Tluka',
-'nstab-user'      => 'User page',
+'nstab-user'      => 'Tluka ra mutirhisi',
 'nstab-media'     => 'Media page',
 'nstab-special'   => 'Hlawuleka',
-'nstab-project'   => 'Project page',
+'nstab-project'   => 'Tluka ra Phurojeki',
 'nstab-image'     => 'Fayili',
 'nstab-mediawiki' => 'Rungula',
 'nstab-template'  => 'Template',
 'nstab-help'      => 'Tluka ra mpfuno',
-'nstab-category'  => 'Category',
+'nstab-category'  => 'Xiyenge',
 
 # Main script and global functions
 'nosuchaction'      => 'Kuhava xiendlo xo tano',
@@ -193,20 +200,34 @@ Data here will not presently be refreshed.',
 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
 Function: $1<br />
 Query: $2',
+'viewsource'           => 'Vona tsalwa-tumbuluxa',
 
 # Login and logout pages
-'yourrealname' => 'Vito ra ntiyiso:',
-'yourlanguage' => 'Ririmi:',
+'yourpassword'            => 'Vito-mpfungulo:',
+'login'                   => 'Pfula u nghena',
+'nav-login-createaccount' => 'Pfula unghena / Tumbuluxa akhawunti',
+'userlogin'               => 'Pfula unghena / Tumbuluxa akhawunti',
+'logout'                  => 'Pfala u famba',
+'userlogout'              => 'Pfala u famba',
+'nologinlink'             => 'Tumbuluxa akhawunti',
+'createaccount'           => 'Tumbuluxa akhawunti',
+'yourrealname'            => 'Vito ra ntiyiso:',
+'yourlanguage'            => 'Ririmi:',
 
 # Edit pages
-'summary'     => 'Nkomiso',
-'watchthis'   => 'Langutisa tluka leri',
-'savearticle' => 'Hlayisa tluka',
-'preview'     => 'Ringanisa',
-'showpreview' => 'Komba kuringanisa',
-'showdiff'    => 'Komba ku cinca',
-'previewnote' => '<strong>Lowu i ndzinganiso ntsena;
+'summary'          => 'Nkomiso',
+'minoredit'        => 'Lowu i ndzulamiso wu tsongo',
+'watchthis'        => 'Langutisa tluka leri',
+'savearticle'      => 'Hlayisa tluka',
+'preview'          => 'Ringanisa',
+'showpreview'      => 'Komba kuringanisa',
+'showdiff'         => 'Komba ku cinca',
+'previewnote'      => '<strong>Lowu i ndzinganiso ntsena;
 kucinca a ku sihlayisiwa!</strong>',
+'copyrightwarning' => 'Xiya leswaku minyikelo hinkwayo e ka {{SITENAME}} yi tekiwa yitshuxiwe e hansi ka $2 (Vona $1 ku kuma vuxokoxoko).
+loko unga tsakeli leswaku vutsari bya wena byi lulamisiwa no aviwa handle ko tweriwa vusiwana, unga tsari laha.<br />
+U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe leswi u swinyikelaka u swi tekile e xihloveni xa lerivaleni kumbe laha kunga na mpfumelelo wa mani na mani.
+<strong>UNGA RHUMERI MATSALWA LA MA SIRHELERIWEKE HANDLE KA MPFUMELELO!</strong>',
 
 # History pages
 'next'       => 'Leswilandzelaka',
@@ -241,7 +262,15 @@ kucinca a ku sihlayisiwa!</strong>',
 'right-createtalk' => 'Tumbuluxa matluka ya mbulavulo',
 
 # Recent changes
-'hide' => 'Tumbeta',
+'recentchanges' => 'Ku cinca ka sweswi-nyana',
+'hide'          => 'Tumbeta',
+'show'          => 'Komba',
+
+# Recent changes linked
+'recentchangeslinked' => 'Kuncica loku yelanaka',
+
+# Upload
+'upload' => 'Khandziyisa fayili',
 
 # Special:Imagelist
 'imgfile'        => 'fayili',
@@ -253,12 +282,33 @@ kucinca a ku sihlayisiwa!</strong>',
 'filehist-deleteall' => 'sula hinkwaswo',
 'filehist-deleteone' => 'Dlaya',
 'filehist-revert'    => 'thlerisela',
+'filehist-user'      => 'Mutirhisi',
+
+# Miscellaneous special pages
+'newpages'     => 'Matluka mantswa',
+'move'         => 'Yi sa kunwana',
+'movethispage' => 'Yisa tluka leri ndhzawini yinwana',
+
+# Special:Log
+'specialloguserlabel' => 'Mutirhisi:',
+
+# Special:Allpages
+'allpages'    => 'Matluka hinkwawo',
+'allarticles' => 'Matluka hinkwawo',
+
+# E-mail user
+'emailuser' => 'rhumela mutirhisi loyi E-mail',
 
 # Watchlist
-'watchlist'   => 'Leswi ndziswilanguteke',
-'mywatchlist' => 'Leswi ndziswilanguteke',
-'watch'       => 'Languta',
-'unwatch'     => 'Ungalanguti',
+'watchlist'     => 'Leswi ndziswilanguteke',
+'mywatchlist'   => 'Leswi ndziswilanguteke',
+'watch'         => 'Languta',
+'watchthispage' => 'Languta tluka leri',
+'unwatch'       => 'Ungalanguti',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Ulangutile...',
+'unwatching' => 'Utshika ku languta...',
 
 # Namespace form on various pages
 'invert'         => 'Invert selection',
@@ -277,9 +327,28 @@ kucinca a ku sihlayisiwa!</strong>',
 'sp-contributions-newbies-sub' => 'Eka ti akhawunti ti ntswa',
 'sp-contributions-search'      => 'Lava minyikelo',
 
+# What links here
+'whatlinkshere' => 'Leswi khwekelaka laha',
+
+# Block/unblock
+'contribslink' => 'Minyikelo',
+
 # Tooltip help for the actions
-'tooltip-pt-preferences' => 'Minyikelo ya mina',
-'tooltip-n-mainpage'     => 'Endzela tlukankulu',
+'tooltip-pt-userpage'     => 'Tluka ra vutirhisi',
+'tooltip-pt-mytalk'       => 'Mbulavulo namina',
+'tooltip-pt-preferences'  => 'Minyikelo ya mina',
+'tooltip-pt-mycontris'    => 'Nxaxamelo wa minyikelo ya mina',
+'tooltip-pt-logout'       => 'pfala u famba',
+'tooltip-ca-protect'      => 'Sirhelela tluka leri',
+'tooltip-ca-delete'       => 'Sula tluka leri',
+'tooltip-ca-move'         => 'Veka tluka endhzawini yinwana',
+'tooltip-n-mainpage'      => 'Endzela tlukankulu',
+'tooltip-t-whatlinkshere' => 'Nxaxamelo wa matluka lama khwekelaka laha',
+'tooltip-t-upload'        => 'Khandziyisa tifayili',
+'tooltip-t-specialpages'  => 'Nxaxamelo wa matluka yo hlawuleka',
+'tooltip-ca-nstab-user'   => 'Vona tluka ra mutirhisi',
+'tooltip-save'            => 'Hlayiso ku cinca ka wena',
+'tooltip-preview'         => 'Ringanisa ku cinca loku uku endleke, Tirhisa Xitirhisiwa lexi ungasi hlayisa tluka leri!',
 
 # Special:SpecialPages
 'specialpages' => 'Matluka yo hlawuleka',
