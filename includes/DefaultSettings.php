@@ -2800,9 +2800,14 @@ $wgNoFollowNsExceptions = array();
 $wgDefaultRobotPolicy = 'index,follow';
 
 /**
- * Robot policies per namespaces.
- * The default policy is given above, the array is made of namespace
- * constants as defined in includes/Defines.php
+ * Robot policies per namespaces. The default policy is given above, the array
+ * is made of namespace constants as defined in includes/Defines.php.  You can-
+ * not specify a different default policy for NS_SPECIAL: it is always noindex,
+ * nofollow.  This is because a number of special pages (e.g., ListPages) have
+ * many permutations of options that display the same data under redundant
+ * URLs, so search engine spiders risk getting lost in a maze of twisty special
+ * pages, all alike, and never reaching your actual content.
+ *
  * Example:
  *   $wgNamespaceRobotPolicies = array( NS_TALK => 'noindex' );
  */
