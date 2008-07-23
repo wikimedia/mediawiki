@@ -204,7 +204,7 @@ class Article {
 
 		if ( 0 == $this->getID() ) {
 			wfProfileOut( __METHOD__ );
-			$wgOut->setRobotpolicy( 'noindex,nofollow' );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$wgMessageCache->loadAllMessages();
@@ -822,7 +822,7 @@ class Article {
 
 			# We're looking at an old revision
 			if ( !empty( $oldid ) ) {
-				$wgOut->setRobotpolicy( 'noindex,nofollow' );
+				$wgOut->setRobotPolicy( 'noindex,nofollow' );
 				if( is_null( $this->mRevision ) ) {
 					// FIXME: This would be a nice place to load the 'no such page' text.
 				} else {
@@ -1034,7 +1034,7 @@ class Article {
 				"</form>\n", $msg );
 
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-			$wgOut->setRobotpolicy( 'noindex,nofollow' );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->addHTML( $msg );
 		}
 	}
@@ -1696,7 +1696,7 @@ class Article {
 
 		if( $this->doWatch() ) {
 			$wgOut->setPagetitle( wfMsg( 'addedwatch' ) );
-			$wgOut->setRobotpolicy( 'noindex,nofollow' );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 			$wgOut->addWikiMsg( 'addedwatchtext', $this->mTitle->getPrefixedText() );
 		}
@@ -1741,7 +1741,7 @@ class Article {
 
 		if( $this->doUnwatch() ) {
 			$wgOut->setPagetitle( wfMsg( 'removedwatch' ) );
-			$wgOut->setRobotpolicy( 'noindex,nofollow' );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 			$wgOut->addWikiMsg( 'removedwatchtext', $this->mTitle->getPrefixedText() );
 		}
@@ -2177,7 +2177,7 @@ class Article {
 		wfDebug( "Article::confirmDelete\n" );
 
 		$wgOut->setSubtitle( wfMsg( 'delete-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->mTitle ) ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
 
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
@@ -2264,7 +2264,7 @@ class Article {
 				$deleted = $this->mTitle->getPrefixedText();
 
 				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-				$wgOut->setRobotpolicy( 'noindex,nofollow' );
+				$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 				$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
 

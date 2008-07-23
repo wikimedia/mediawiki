@@ -130,7 +130,7 @@ class LoginForm {
 		wfRunHooks( 'AddNewAccount', array( $u, true ) );
 
 		$wgOut->setPageTitle( wfMsg( 'accmailtitle' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
 		if( WikiError::isError( $result ) ) {
@@ -655,7 +655,7 @@ class LoginForm {
 		wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));
 
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->addWikiMsgArray( $msg, $params );
 		$wgOut->addHtml( $injected_html );
@@ -671,7 +671,7 @@ class LoginForm {
 		global $wgOut;
 
 		$wgOut->setPageTitle( wfMsg( 'permissionserrors' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikitext( $wgOut->formatPermissionsErrorMessage( $errors, 'createaccount' ) );
@@ -694,7 +694,7 @@ class LoginForm {
 		# out.
 
 		$wgOut->setPageTitle( wfMsg( 'cantcreateaccounttitle' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
 		$ip = wfGetIP();
@@ -810,7 +810,7 @@ class LoginForm {
 		}
 
 		$wgOut->setPageTitle( wfMsg( 'userlogin' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->disallowUserJs();  // just in case...
 		$wgOut->addTemplate( $template );

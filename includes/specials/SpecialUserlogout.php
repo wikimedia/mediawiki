@@ -12,7 +12,7 @@ function wfSpecialUserlogout() {
 
 	$oldName = $wgUser->getName();
 	$wgUser->logout();
-	$wgOut->setRobotpolicy( 'noindex,nofollow' );
+	$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 	// Hook.
 	$injected_html = '';

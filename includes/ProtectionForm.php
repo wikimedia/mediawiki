@@ -103,7 +103,7 @@ class ProtectionForm {
 	function show( $err = null ) {
 		global $wgOut, $wgUser;
 
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		if( is_null( $this->mTitle ) ||
 			$this->mTitle->getNamespace() == NS_MEDIAWIKI ) {

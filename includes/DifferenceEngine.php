@@ -142,7 +142,7 @@ CONTROL;
 			$wgOut->setPageTitle( $oldTitle . ', ' . $newTitle );
 		}
 		$wgOut->setSubtitle( wfMsg( 'difference' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
 			$wgOut->loginToUse();
@@ -363,7 +363,7 @@ CONTROL;
 		$wgOut->addHTML( $header );
 
 		$wgOut->setSubtitle( wfMsg( 'difference' ) );
-		$wgOut->setRobotpolicy( 'noindex,nofollow' );
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		wfProfileOut( __METHOD__ );
 	}

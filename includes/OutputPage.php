@@ -8,7 +8,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
 class OutputPage {
 	var $mMetatags, $mKeywords;
 	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
-	var $mHTMLtitle, $mRobotpolicy, $mIsarticle, $mPrintable;
+	var $mHTMLtitle, $mIsarticle, $mPrintable;
 	var $mSubtitle, $mRedirect, $mStatusCode;
 	var $mLastModified, $mETag, $mCategoryLinks;
 	var $mScripts, $mLinkColours, $mPageLinkTitle;
@@ -30,6 +30,9 @@ class OutputPage {
 	var $mPageTitleActionText = '';
 	var $mParseWarnings = array();
 
+	private $mIndexPolicy = 'index';
+	private $mFollowPolicy = 'follow';
+
 	/**
 	 * Constructor
 	 * Initialise private variables
@@ -39,9 +42,8 @@ class OutputPage {
 		$this->mAllowUserJs = $wgAllowUserJs;
 		$this->mMetatags = $this->mKeywords = $this->mLinktags = array();
 		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
-		$this->mRedirect = $this->mLastModified =
-		$this->mSubtitle = $this->mDebugtext = $this->mRobotpolicy =
-		$this->mOnloadHandler = $this->mPageLinkTitle = '';
+		$this->mRedirect = $this->mLastModified = $this->mSubtitle =
+		$this->mDebugtext = $this->mOnloadHandler = $this->mPageLinkTitle = '';
 		$this->mIsArticleRelated = $this->mIsarticle = $this->mPrintable = true;
 		$this->mSuppressQuickbar = $this->mPrintable = false;
 		$this->mLanguageLinks = array();
@@ -223,7 +225,61 @@ class OutputPage {
 		}
 	}
 
-	public function setRobotpolicy( $str ) { $this->mRobotpolicy = $str; }
+	/**
+	 * Set the robot policy for the page: <http://www.robotstxt.org/meta.html>
+	 *
+	 * @param $policy string The literal string to output as the contents of
+	 *   the meta tag.  Will be parsed according to the spec and output in
+	 *   standardized form.
+	 * @return null
+	 */
+	public function setRobotPolicy( $policy ) {
+		$policy = explode( ',', $policy );
+		$policy = array_map( 'trim', $policy );
+
+		# The default policy is follow, so if nothing is said explicitly, we
+		# do that.
+		if( in_array( 'nofollow', $policy ) ) {
+			$this->mFollowPolicy = 'nofollow';
+		} else {
+			$this->mFollowPolicy = 'follow';
+		}
+
+		if( in_array( 'noindex', $policy ) ) {
+			$this->mIndexPolicy = 'noindex';
+		} else {
+			$this->mIndexPolicy = 'index';
+		}
+	}
+
+	/**
+	 * Set the index policy for the page, but leave the follow policy un-
+	 * touched.
+	 *
+	 * @param $policy string Either 'index' or 'noindex'.
+	 * @return null
+	 */
+	public function setIndexPolicy( $policy ) {
+		$policy = trim( $policy );
+		if( in_array( $policy, array( 'index', 'noindex' ) ) ) {
+			$this->mIndexPolicy = $policy;
+		}
+	}
+
+	/**
+	 * Set the follow policy for the page, but leave the index policy un-
+	 * touched.
+	 *
+	 * @param $policy string Either 'follow' or 'nofollow'.
+	 * @return null
+	 */
+	public function setFollowPolicy( $policy ) {
+		$policy = trim( $policy );
+		if( in_array( $policy, array( 'follow', 'nofollow' ) ) ) {
+			$this->mFollowPolicy = $policy;
+		}
+	}
+
 	public function setHTMLTitle( $name ) {$this->mHTMLtitle = $name; }
 	public function setPageTitle( $name ) {
 		global $action, $wgContLang;
@@ -879,7 +935,7 @@ class OutputPage {
 		global $wgUser, $wgContLang, $wgTitle, $wgLang;
 
 		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
 		$name = User::whoIs( $wgUser->blockedBy() );
@@ -945,7 +1001,7 @@ class OutputPage {
 		}
 		$this->setPageTitle( wfMsg( $title ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
@@ -971,7 +1027,7 @@ class OutputPage {
 		$wgTitle->getPrefixedText() . "\n";
 		$this->setPageTitle( wfMsg( 'permissionserrors' ) );
 		$this->setHTMLTitle( wfMsg( 'permissionserrors' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
@@ -994,7 +1050,7 @@ class OutputPage {
 	public function versionRequired( $version ) {
 		$this->setPageTitle( wfMsg( 'versionrequired', $version ) );
 		$this->setHTMLTitle( wfMsg( 'versionrequired', $version ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
 
@@ -1012,7 +1068,7 @@ class OutputPage {
 
 		$this->setPageTitle( wfMsg( 'badaccess' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
-		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
 
@@ -1148,7 +1204,7 @@ class OutputPage {
 		global $wgUser, $wgTitle;
 		$skin = $wgUser->getSkin();
 
-		$this->setRobotpolicy( 'noindex,nofollow' );
+		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
 		// If no reason is given, just supply a default "I can't let you do
@@ -1238,7 +1294,7 @@ class OutputPage {
 
 	public function showFatalError( $message ) {
 		$this->setPageTitle( wfMsg( "internalerror" ) );
-		$this->setRobotpolicy( "noindex,nofollow" );
+		$this->setRobotPolicy( "noindex,nofollow" );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
@@ -1386,8 +1442,8 @@ class OutputPage {
 		global $wgVersion;
 		$this->addMeta( "generator", "MediaWiki $wgVersion" );
 		
-		$p = $this->mRobotpolicy;
-		if( $p !== '' && $p != 'index,follow' ) {
+		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
+		if( $p !== 'index,follow' ) {
 			// http://www.robotstxt.org/wc/meta-user.html
 			// Only show if it's different from the default robots policy
 			$this->addMeta( 'robots', $p );
