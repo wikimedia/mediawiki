@@ -1155,6 +1155,8 @@ $wgMessageStructure = array(
 		'doubleredirects',
 		'doubleredirects-summary',
 		'doubleredirectstext',
+		'double-redirect-fixed-move',
+		'double-redirect-fixer',
 	),
 	'brokenredirects' => array(
 		'brokenredirects',
@@ -1687,6 +1689,7 @@ $wgMessageStructure = array(
 		'imagenocrossnamespace',
 		'imagetypemismatch',
 		'imageinvalidfilename',
+		'fix-double-redirects',
 	),
 	'export' => array(
 		'export',
