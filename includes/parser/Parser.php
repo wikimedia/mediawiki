@@ -3947,6 +3947,9 @@ class Parser
 	 * The callback function should have the form:
 	 *    function myParserFunction( &$parser, $arg1, $arg2, $arg3 ) { ... }
 	 *
+	 * Or with SFH_OBJECT_ARGS:
+	 *    function myParserFunction( $parser, $frame, $args ) { ... }
+	 *
 	 * The callback may either return the text result of the function, or an array with the text
 	 * in element 0, and a number of flags in the other elements. The names of the flags are
 	 * specified in the keys. Valid flags are:
@@ -3960,7 +3963,26 @@ class Parser
 	 * @param string $id The magic word ID
 	 * @param mixed $callback The callback function (and object) to use
 	 * @param integer $flags a combination of the following flags:
-	 *                SFH_NO_HASH No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
+	 *     SFH_NO_HASH   No leading hash, i.e. {{plural:...}} instead of {{#if:...}}
+	 *
+	 *     SFH_OBJECT_ARGS   Pass the template arguments as PPNode objects instead of text. This 
+	 *     allows for conditional expansion of the parse tree, allowing you to eliminate dead
+	 *     branches and thus speed up parsing. It is also possible to analyse the parse tree of 
+	 *     the arguments, and to control the way they are expanded.
+	 *
+	 *     The $frame parameter is a PPFrame. This can be used to produce expanded text from the
+	 *     arguments, for instance:
+	 *         $text = isset( $args[0] ) ? $frame->expand( $args[0] ) : '';
+	 *
+	 *     For technical reasons, $args[0] is pre-expanded and will be a string. This may change in 
+	 *     future versions. Please call $frame->expand() on it anyway so that your code keeps
+	 *     working if/when this is changed.
+	 *
+	 *     If you want whitespace to be trimmed from $args, you need to do it yourself, post-
+	 *     expansion.
+	 *
+	 *     Please read the documentation in includes/parser/Preprocessor.php for more information 
+	 *     about the methods available in PPFrame and PPNode.
 	 *
 	 * @return The old callback function for this name, if any
 	 */
