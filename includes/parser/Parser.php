@@ -3380,15 +3380,6 @@ class Parser
 				wfDebug( __METHOD__.": [[MediaWiki:hidden-category-category]] is not a valid title!\n" );
 			}
 		}
-		# (bug 8068) Allow control over whether robots index a page.  FIXME:
-		# __INDEX__ always overrides __NOINDEX__ here!  This is not desirable,
-		# the last one on the page should win.
-		if( isset( $this->mDoubleUnderscores['noindex'] ) ) {
-			$this->mOutput->setIndexPolicy( 'noindex' );
-		} elseif( isset( $this->mDoubleUnderscores['index'] ) ) {
-			$this->mOutput->setIndexPolicy( 'index' );
-		}
-
 		return $text;
 	}
 
