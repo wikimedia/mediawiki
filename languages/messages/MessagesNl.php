@@ -1548,10 +1548,12 @@ De lengte van de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '
 Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.
 <br />Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Dubbele doorverwijzingen',
-'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
+'doubleredirects'            => 'Dubbele doorverwijzingen',
+'doubleredirectstext'        => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
 Elke rij bevat verwijzingen naar de eerste en de tweede doorverwijspagina en een verwijzing naar de doelpagina van de tweede doorverwijspagina.
 Meestal is de laatste pagina het eigenlijke doel.",
+'double-redirect-fixed-move' => '[[$1]] is verplaatst en is nu een doorverwijzing naar [[$2]]',
+'double-redirect-fixer'      => 'Doorverwijzingen opschonen',
 
 'brokenredirects'        => 'Onjuiste doorverwijzingen',
 'brokenredirectstext'    => "Hieronder staan doorverwijspagina's die een doorverwijzing bevatten naar een niet-bestaande pagina.",
@@ -2112,6 +2114,7 @@ Wilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?',
 'imagenocrossnamespace'   => 'Een mediabestand kan niet naar een andere naamruimte verplaatst worden',
 'imagetypemismatch'       => 'De nieuwe bestandsextensie is niet gelijk aan het bestandstype',
 'imageinvalidfilename'    => 'De nieuwe bestandsnaam is ongeldig',
+'fix-double-redirects'    => 'Alle doorverwijzingen bijwerken die verwijzen naar de originele paginanaam',
 
 # Export
 'export'            => 'Exporteren',

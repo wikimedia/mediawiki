@@ -352,6 +352,12 @@ $1',
 'readonlytext'         => "Nestos momentos la base de datos ta protexida pa nueves entraes y otres modificaciones, seique por un mantenimientu de rutina, depués d'él tará accesible de nuevo.
 
 L'alministrador que la protexó conseñó esti motivu: $1",
+'missing-article'      => "La base de datos nun atopó'l testu d'una páxina qu'habría tener atopao, nomada \"\$1\" \$2.
+
+Esto débese davezu a siguir una dif caducada o un enllaz d'historial a una páxina que foi borrada.
+
+Si ésti nun ye'l casu, seique tengas atopao un bug nel software.
+Por favor informa d'esto a un alministrador, anotando la URL.",
 'missingarticle-rev'   => '(revisión: $1)',
 'missingarticle-diff'  => '(dif: $1, $2)',
 'readonly_lag'         => 'La base de datos foi protexida automáticamente mentes los servidores de la base de datos esclava se sincronicen cola maestra',
@@ -393,6 +399,8 @@ $2',
 'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye ''$2''.",
 
 # Virus scanner
+'virus-badscanner'     => 'Configuración errónea: escáner de virus desconocíu: <i>$1</i>',
+'virus-scanfailed'     => "fallu d'escaniáu (códigu $1)",
 'virus-unknownscanner' => 'antivirus desconocíu:',
 
 # Login and logout pages
@@ -471,9 +479,8 @@ Por favor identifícate de nuevo depués de recibila.',
 nun se pue usar la función de recuperación de clave pa evitar abusos.',
 'eauthentsent'               => "Unvióse una confirmación de corréu electrónicu a la direición indicada.
 Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucciones del corréu electrónicu, pa confirmar que la cuenta ye de to.",
-'throttled-mailpassword'     => "Yá s'unvió un recordatoriu de la clave nes caberes $1
-hores. Pa evitar l'abusu, namás sedrá unviáu un recordatoriu
-cada $1 hores.",
+'throttled-mailpassword'     => "Yá s'unvió un recordatoriu de la clave {{PLURAL:$1|na cabera hora|nes caberes $1 hores}}.
+Pa evitar l'abusu, namái sedrá unviáu un recordatoriu cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror'                  => "Error unviando'l corréu: $1",
 'acct_creation_throttle_hit' => 'Yá creasti $1 cuentes. Nun pues abrir más.',
 'emailauthenticated'         => 'La to dirección de corréu confirmóse a les $1.',
@@ -523,23 +530,23 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'hr_tip'          => 'Llinia horizontal (úsala con moderación)',
 
 # Edit pages
-'summary'                   => 'Resume',
-'subject'                   => 'Asuntu/títulu',
-'minoredit'                 => 'Esta ye una edición menor',
-'watchthis'                 => 'Vixilar esta páxina',
-'savearticle'               => 'Grabar páxina',
-'preview'                   => 'Previsualizar',
-'showpreview'               => 'Amosar previsualización',
-'showlivepreview'           => 'Vista rápida',
-'showdiff'                  => 'Amosar cambeos',
-'anoneditwarning'           => "'''Avisu:''' Nun tas identificáu. La to IP va quedar grabada nel historial d'edición d'esta páxina.",
-'missingsummary'            => "'''Recordatoriu:''' Nun escribisti un resume d'edición. Si vuelves a calcar en Guardar, la to edición sedrá guardada ensin nengún resume.",
-'missingcommenttext'        => 'Por favor, escribi un comentariu embaxo.',
-'missingcommentheader'      => "'''Recordatoriu:''' Nun-y punxisti tema/títulu a esti comentariu. Si vuelves a calcar en Guardar, la to edición va grabase ensin él.",
-'summary-preview'           => 'Previsualización del resume',
-'subject-preview'           => 'Previsualización del tema/títulu',
-'blockedtitle'              => "L'usuariu ta bloquiáu",
-'blockedtext'               => "<big>'''El to nome d'usuariu o la to direición IP foi bloquiáu.'''</big>
+'summary'                          => 'Resume',
+'subject'                          => 'Asuntu/títulu',
+'minoredit'                        => 'Esta ye una edición menor',
+'watchthis'                        => 'Vixilar esta páxina',
+'savearticle'                      => 'Grabar páxina',
+'preview'                          => 'Previsualizar',
+'showpreview'                      => 'Amosar previsualización',
+'showlivepreview'                  => 'Vista rápida',
+'showdiff'                         => 'Amosar cambeos',
+'anoneditwarning'                  => "'''Avisu:''' Nun tas identificáu. La to IP va quedar grabada nel historial d'edición d'esta páxina.",
+'missingsummary'                   => "'''Recordatoriu:''' Nun escribisti un resume d'edición. Si vuelves a calcar en Guardar, la to edición sedrá guardada ensin nengún resume.",
+'missingcommenttext'               => 'Por favor, escribi un comentariu embaxo.',
+'missingcommentheader'             => "'''Recordatoriu:''' Nun-y punxisti tema/títulu a esti comentariu. Si vuelves a calcar en Guardar, la to edición va grabase ensin él.",
+'summary-preview'                  => 'Previsualización del resume',
+'subject-preview'                  => 'Previsualización del tema/títulu',
+'blockedtitle'                     => "L'usuariu ta bloquiáu",
+'blockedtext'                      => "<big>'''El to nome d'usuariu o la to direición IP foi bloquiáu.'''</big>
 
 El bloquéu féxolu $1. El motivu conseñáu ye ''$2''.
 
@@ -551,7 +558,7 @@ Pues ponete en contautu con $1 o con cualesquier otru [[{{MediaWiki:Grouppage-sy
 Nun pues usar la funcionalidá 'manda-y un email a esti usuariu' a nun ser que tea especificada una direición de corréu válida
 na to [[Special:Preferences|páxina de preferencies]] y que nun te tengan bloquiao el so usu.
 La to direición IP actual ye $3, y el númberu d'identificación del bloquéu ye $5. Por favor, amiesta dalgún o dambos d'estos datos nes tos consultes.",
-'autoblockedtext'           => "La to direición IP foi bloquiada automáticamente porque foi usada por otru usuariu que foi bloquiáu por \$1.
+'autoblockedtext'                  => "La to direición IP foi bloquiada automáticamente porque foi usada por otru usuariu que foi bloquiáu por \$1.
 El motivu conseñáu foi esti:
 
 :''\$2''
@@ -565,105 +572,112 @@ Pues contautar con \$1 o con otru
 Fíxate en que nun pues usar la funcionalidá d'\"unvia-y un corréu a esti usuariu\" a nun se que tengas una direición de corréu válida rexistrada na to [[Special:Preferences|páxina de preferencies]] y que nun teas bloquiáu pa usala.
 
 El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códigu nes consultes que faigas.",
-'blockednoreason'           => 'nun se dio nengún motivu',
-'blockedoriginalsource'     => "El códigu fonte de '''$1''' amuésase equí:",
-'blockededitsource'         => "El testu de '''les tos ediciones''' en '''$1''' amuésase equí:",
-'whitelistedittitle'        => 'Ye necesario tar identificáu pa poder editar',
-'whitelistedittext'         => 'Tienes que $1 pa editar páxines.',
-'whitelistreadtitle'        => 'Necesítase identificación pa lleer',
-'whitelistreadtext'         => "Tienes que t'[[Special:Userlogin|identificar]] pa lleer páxines.",
-'whitelistacctitle'         => 'Nun tienes permisu pa crear una cuenta',
-'whitelistacctext'          => 'Pa poder crear cuentes en {{SITENAME}} has tar [[Special:Userlogin|identificáu]] y tener los permisos afayadizos.',
-'confirmedittitle'          => 'Requerida la confirmación de corréu electrónicu pa editar',
-'confirmedittext'           => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
-'nosuchsectiontitle'        => 'Nun esiste tala seición',
-'nosuchsectiontext'         => 'Intentasti editar una seición que nun esiste.  Como nun hai seición $1, nun hai sitiu pa guardar la to edición.',
-'loginreqtitle'             => 'Identificación Requerida',
-'loginreqlink'              => 'identificase',
-'loginreqpagetext'          => 'Has $1 pa ver otres páxines.',
-'accmailtitle'              => 'Clave unviada.',
-'accmailtext'               => 'La clave de "$1" foi unviada a $2.',
-'newarticle'                => '(Nuevu)',
-'newarticletext'            => 'Siguisti un enllaz a un artículu qu\'inda nun esiste. Pa crealu, empecipia a escribir na caxa d\'equí embaxo. Si llegasti equí por enquivocu, namás tienes que calcar nel botón "atrás" del to navegador.',
-'anontalkpagetext'          => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:Userlogin|crea una cuenta o rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
-'noarticletext'             => "Nestos momentos nun hai testu nesta páxina. Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu]] n'otres páxines, o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí].",
-'userpage-userdoesnotexist' => 'La cuenta d\'usuariu "$1" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
-'clearyourcache'            => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
+'blockednoreason'                  => 'nun se dio nengún motivu',
+'blockedoriginalsource'            => "El códigu fonte de '''$1''' amuésase equí:",
+'blockededitsource'                => "El testu de '''les tos ediciones''' en '''$1''' amuésase equí:",
+'whitelistedittitle'               => 'Ye necesario tar identificáu pa poder editar',
+'whitelistedittext'                => 'Tienes que $1 pa editar páxines.',
+'whitelistreadtitle'               => 'Necesítase identificación pa lleer',
+'whitelistreadtext'                => "Tienes que t'[[Special:Userlogin|identificar]] pa lleer páxines.",
+'whitelistacctitle'                => 'Nun tienes permisu pa crear una cuenta',
+'whitelistacctext'                 => 'Pa poder crear cuentes en {{SITENAME}} has tar [[Special:Userlogin|identificáu]] y tener los permisos afayadizos.',
+'confirmedittitle'                 => 'Requerida la confirmación de corréu electrónicu pa editar',
+'confirmedittext'                  => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
+'nosuchsectiontitle'               => 'Nun esiste tala seición',
+'nosuchsectiontext'                => 'Intentasti editar una seición que nun esiste.  Como nun hai seición $1, nun hai sitiu pa guardar la to edición.',
+'loginreqtitle'                    => 'Identificación Requerida',
+'loginreqlink'                     => 'identificase',
+'loginreqpagetext'                 => 'Has $1 pa ver otres páxines.',
+'accmailtitle'                     => 'Clave unviada.',
+'accmailtext'                      => 'La clave de "$1" foi unviada a $2.',
+'newarticle'                       => '(Nuevu)',
+'newarticletext'                   => 'Siguisti un enllaz a un artículu qu\'inda nun esiste. Pa crealu, empecipia a escribir na caxa d\'equí embaxo. Si llegasti equí por enquivocu, namás tienes que calcar nel botón "atrás" del to navegador.',
+'anontalkpagetext'                 => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:Userlogin|crea una cuenta o rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
+'noarticletext'                    => "Nestos momentos nun hai testu nesta páxina. Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu]] n'otres páxines, o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí].",
+'userpage-userdoesnotexist'        => 'La cuenta d\'usuariu "$1" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
+'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
 *'''Mozilla / Firefox / Safari:''' caltién ''Shift'' mentes calques en ''Reload'', o calca ''Ctrl-Shift-R'' (''Cmd-Shift-R'' en Apple Mac)
 *'''IE:''' caltién ''Ctrl'' mentes calques ''Refresh'', o calca ''Ctrl-F5''
 *'''Konqueror:''' calca nel botón ''Reload'', o calca ''F5''
 *'''Opera:''' los usuarios d'Opera seique necesiten borrar dafechu'l caché en ''Tools→Preferences''",
-'usercssjsyoucanpreview'    => "<strong>Conseyu:</strong> Usa'l bottón 'Amosar previsualización' pa probar el to nuevu CSS/JS enantes de guardalu.",
-'usercsspreview'            => "'''¡Recuerda que namái tas previsualizando'l CSS d'usuariu, entá nun se grabó!'''",
-'userjspreview'             => "'''¡Recuerda que namái tas probando/previsualizando'l to JavaScript d'usuariu, entá nun se grabó!'''",
-'userinvalidcssjstitle'     => "'''Avisu:''' Nun hai piel \"\$1\". Recuerda que les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
-'updated'                   => '(Actualizao)',
-'note'                      => '<strong>Nota:</strong>',
-'previewnote'               => "<strong>¡Alcuérdate de qu'esto ye sólo una previsualización y los cambeos entá nun se grabaron!</strong>",
-'previewconflict'           => "Esta previsualización amuesa'l testu del área d'edición d'enriba talo y como apaecerá si guardes los cambeos.",
-'session_fail_preview'      => "<strong>¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
+'usercssjsyoucanpreview'           => "<strong>Conseyu:</strong> Usa'l bottón 'Amosar previsualización' pa probar el to nuevu CSS/JS enantes de guardalu.",
+'usercsspreview'                   => "'''¡Recuerda que namái tas previsualizando'l CSS d'usuariu, entá nun se grabó!'''",
+'userjspreview'                    => "'''¡Recuerda que namái tas probando/previsualizando'l to JavaScript d'usuariu, entá nun se grabó!'''",
+'userinvalidcssjstitle'            => "'''Avisu:''' Nun hai piel \"\$1\". Recuerda que les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
+'updated'                          => '(Actualizao)',
+'note'                             => '<strong>Nota:</strong>',
+'previewnote'                      => "<strong>¡Alcuérdate de qu'esto ye sólo una previsualización y los cambeos entá nun se grabaron!</strong>",
+'previewconflict'                  => "Esta previsualización amuesa'l testu del área d'edición d'enriba talo y como apaecerá si guardes los cambeos.",
+'session_fail_preview'             => "<strong>¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.</strong>",
-'session_fail_preview_html' => "<strong>¡Sentímoslo! Nun se pudo procesar la to edición pola mor d'una perda de datos de sesión.</strong>
+'session_fail_preview_html'        => "<strong>¡Sentímoslo! Nun se pudo procesar la to edición pola mor d'una perda de datos de sesión.</strong>
 
 ''Como {{SITENAME}} tien activáu'l HTML puru, la previsualización nun s'amosará como precaución escontra ataques en JavaScript.''
 
 <strong>Si esti ye un intentu llexítimu d'edición, por favor inténtalo otra vuelta. Si tovía asina nun furrula, intenta desconeutate y volver a identificate.</strong>",
-'token_suffix_mismatch'     => "<strong>La to edición nun foi aceutada porque'l to navegador mutiló los carauteres de puntuación
+'token_suffix_mismatch'            => "<strong>La to edición nun foi aceutada porque'l to navegador mutiló los carauteres de puntuación
 nel editor. La edición nun foi aceutada pa prevenir corrupciones na páxina de testu. Esto hai vegaes
 que pasa cuando tas usando un proxy anónimu basáu en web que seya problemáticu.</strong>",
-'editing'                   => 'Editando $1',
-'editingsection'            => 'Editando $1 (seición)',
-'editingcomment'            => 'Editando $1 (comentariu)',
-'editconflict'              => "Conflictu d'edición: $1",
-'explainconflict'           => "Daquién más camudó esta páxina dende qu'empecipiasti a editala.
+'editing'                          => 'Editando $1',
+'editingsection'                   => 'Editando $1 (seición)',
+'editingcomment'                   => 'Editando $1 (comentariu)',
+'editconflict'                     => "Conflictu d'edición: $1",
+'explainconflict'                  => "Daquién más camudó esta páxina dende qu'empecipiasti a editala.
 Na área de testu d'enriba ta'l testu de la páxina como ta nestos momentos.
 Los tos cambeos amuésense na área de testu d'embaxo.
 Vas tener que fusionar los tos cambeos dientro del testu esistente.
 '''Namái''' va guardase'l testu de l'área d'enriba cuando calques en \"Guardar páxina\".",
-'yourtext'                  => 'El to testu',
-'storedversion'             => 'Versión almacenada',
-'nonunicodebrowser'         => "<strong>AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.</strong>",
-'editingold'                => "<strong>AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa revisión van perdese.</strong>",
-'yourdiff'                  => 'Diferencies',
-'copyrightwarning'          => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} considérense feches públiques baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
+'yourtext'                         => 'El to testu',
+'storedversion'                    => 'Versión almacenada',
+'nonunicodebrowser'                => "<strong>AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.</strong>",
+'editingold'                       => "<strong>AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa revisión van perdese.</strong>",
+'yourdiff'                         => 'Diferencies',
+'copyrightwarning'                 => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} considérense feches públiques baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao.
 <strong>¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!</strong>",
-'copyrightwarning2'         => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} puen ser editaes, alteraes o eliminaes por otros usuarios. Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
+'copyrightwarning2'                => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} puen ser editaes, alteraes o eliminaes por otros usuarios. Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte
 llibre de dominiu públicu o asemeyao (ver $1 pa más detalles).
 <strong>¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!</strong>",
-'longpagewarning'           => '<strong>AVISU: Esta páxina tien más de $1 quilobytes; dellos navegadores puen tener problemes editando páxines de 32 ó más kb. Habríes dixebrar la páxina en seiciones más pequeñes.</strong>',
-'longpageerror'             => "<strong>ERROR: El testu qu'unviasti tien $1 quilobytes, que ye
+'longpagewarning'                  => '<strong>AVISU: Esta páxina tien más de $1 quilobytes; dellos navegadores puen tener problemes editando páxines de 32 ó más kb. Habríes dixebrar la páxina en seiciones más pequeñes.</strong>',
+'longpageerror'                    => "<strong>ERROR: El testu qu'unviasti tien $1 quilobytes, que ye
 más que'l máximu de $2 quilobytes. Nun pue ser grabáu.</strong>",
-'readonlywarning'           => '<strong>AVISU: La base de datos ta protexida por mantenimientu,
+'readonlywarning'                  => '<strong>AVISU: La base de datos ta protexida por mantenimientu,
 polo que nun vas poder grabar les tos ediciones nestos momentos. Seique habríes copiar
 el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
-'protectedpagewarning'      => '<strong>AVISU: Esta páxina ta protexida pa que sólo los alministradores puean editala.</strong>',
-'semiprotectedpagewarning'  => "'''Nota:''' Esta páxina foi protexida pa que nun puean editala namái que los usuarios rexistraos.",
-'cascadeprotectedwarning'   => "'''Avisu:''' Esta páxina ta protexida pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
-'titleprotectedwarning'     => '<strong>AVISU: Esta páxina foi bloquiada pa que namái dalgunos usuarios puean creala.</strong>',
-'templatesused'             => 'Plantíes usaes nesta páxina:',
-'templatesusedpreview'      => 'Plantíes usaes nesta previsualización:',
-'templatesusedsection'      => 'Plantíes usaes nesta seición:',
-'template-protected'        => '(protexida)',
-'template-semiprotected'    => '(semi-protexida)',
-'hiddencategories'          => 'Esta páxina pertenez a {{PLURAL:$1|una categoría oculta|$1 categoríes ocultes}}:',
-'nocreatetitle'             => 'Creación de páxines limitada',
-'nocreatetext'              => '{{SITENAME}} tien restrinxida la capacidá de crear páxines nueves.
+'protectedpagewarning'             => '<strong>AVISU: Esta páxina ta protexida pa que sólo los alministradores puean editala.</strong>',
+'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi protexida pa que nun puean editala namái que los usuarios rexistraos.",
+'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta protexida pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
+'titleprotectedwarning'            => '<strong>AVISU: Esta páxina foi bloquiada pa que namái dalgunos usuarios puean creala.</strong>',
+'templatesused'                    => 'Plantíes usaes nesta páxina:',
+'templatesusedpreview'             => 'Plantíes usaes nesta previsualización:',
+'templatesusedsection'             => 'Plantíes usaes nesta seición:',
+'template-protected'               => '(protexida)',
+'template-semiprotected'           => '(semi-protexida)',
+'hiddencategories'                 => 'Esta páxina pertenez a {{PLURAL:$1|una categoría oculta|$1 categoríes ocultes}}:',
+'nocreatetitle'                    => 'Creación de páxines limitada',
+'nocreatetext'                     => '{{SITENAME}} tien restrinxida la capacidá de crear páxines nueves.
 Pues volver atrás y editar una páxina esistente, o bien [[Special:Userlogin|identificate o crear una cuenta]].',
-'nocreate-loggedin'         => 'Nun tienes permisu pa crear páxines nueves en {{SITENAME}}.',
-'permissionserrors'         => 'Errores de Permisos',
-'permissionserrorstext'     => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
-'recreate-deleted-warn'     => "'''Avisu: Tas volviendo a crear una páxina que foi borrada anteriormente.'''
+'nocreate-loggedin'                => 'Nun tienes permisu pa crear páxines nueves en {{SITENAME}}.',
+'permissionserrors'                => 'Errores de Permisos',
+'permissionserrorstext'            => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
+'permissionserrorstext-withaction' => 'Nun tienes permisu pa $2 {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
+'recreate-deleted-warn'            => "'''Avisu: Tas volviendo a crear una páxina que foi borrada anteriormente.'''
 
 Habríes considerar si ye afechisco siguir editando esta páxina.
 Equí tienes el rexistru de borraos d'esta páxina:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => "Avisu: Esta páxina contién demasiaes llamaes costoses a funciones d'análisis sintáuticu.
+'expensive-parserfunction-warning'        => "Avisu: Esta páxina contién demasiaes llamaes costoses a funciones d'análisis sintáuticu.
 
 Habría tener menos de $2, y agora tien $1.",
-'expensive-parserfunction-category' => "Páxines con demasiaes llamaes costoses a funciones d'análisis sintáuticu",
+'expensive-parserfunction-category'       => "Páxines con demasiaes llamaes costoses a funciones d'análisis sintáuticu",
+'post-expand-template-inclusion-warning'  => 'Avisu: Esta páxina tien demasiaes inclusiones de plantíes.
+Dalgunes plantíes nun van ser incluyíes.',
+'post-expand-template-inclusion-category' => "Páxines con escesu d'inclusiones de plantíes",
+'post-expand-template-argument-warning'   => "Avisu: Esta páxina contién a lo menos un parámetru de plantía que tien un tamañu d'espansión demasiao llargu.
+Estos parámetros van ser omitíos.",
+'post-expand-template-argument-category'  => 'Páxines con parámetros de plantía omitíos',
 
 # "Undo" feature
 'undo-success' => "La edición pue esfacese. Por favor comprueba la comparanza d'embaxo pa verificar que ye eso lo que quies facer, y depués guarda los cambeos p'acabar d'esfacer la edición.",
@@ -971,6 +985,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'right-bot'                  => 'Tratar como un procesu automatizáu',
 'right-nominornewtalk'       => "Nun amosar l'avisu de nuevos mensaxes cuando se faen ediciones menores en páxines d'alderique",
 'right-apihighlimits'        => 'Usar los llímites superiores nes consultes API',
+'right-writeapi'             => "Usar l'API d'escritura",
 'right-delete'               => 'Borrar páxines',
 'right-bigdelete'            => 'Borrar páxines con historiales grandes',
 'right-deleterevision'       => 'Eliminar y restaurar revisiones específiques de les páxines',
@@ -990,6 +1005,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'right-editusercssjs'        => "Editar los archivos CSS y JS d'otros usuarios",
 'right-rollback'             => "Revertir rápido a un usuariu qu'editó una páxina determinada",
 'right-markbotedits'         => 'Marcar les ediciones revertíes como ediciones de bot',
+'right-noratelimit'          => 'Nun tar afeutáu polos llímites de tasa',
 'right-import'               => 'Importar páxines dende otres wikis',
 'right-importupload'         => 'Importar páxines dende un archivu',
 'right-patrol'               => 'Marcar les ediciones como supervisaes',
@@ -1050,6 +1066,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'reuploaddesc'                => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'uploadnologin'               => 'Nun tas identificáu',
 'uploadnologintext'           => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder xubir archivos.',
+'upload_directory_missing'    => 'El direutoriu de xubida ($1) nun esiste y nun pudo ser creáu pol servidor de web.',
 'upload_directory_read_only'  => "El servidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
 'uploaderror'                 => 'Error de xubida',
 'uploadtext'                  => "Usa'l formulariu d'abaxo pa xubir archivos.
@@ -1098,6 +1115,7 @@ Si l'archivu comprobáu tien el mesmu tamañu que la imaxe orixinal, nun ye nece
 Si tienes esta imaxe a resolución completa xúbila; si non, por favor camuda'l nome del archivu.",
 'fileexists-forbidden'        => 'Yá esiste un archivu con esti nome; por favor vuelvi atrás y xubi esti archivu con otru nome. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Yá esiste un archivu con esti nome na base de datos común; por favor vuelvi atrás y xubi esti archivu con otru nome. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Esti archivu ye un duplicáu {{PLURAL:$1|del siguiente archivu|de los siguientes archivos}}:',
 'successfulupload'            => 'Xubida correuta',
 'uploadwarning'               => "Avisu de xubíes d'archivos",
 'savefile'                    => 'Grabar archivu',
@@ -1168,9 +1186,10 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'nolinkstoimage'                 => "Nun hai páxines qu'enllacien a esti archivu.",
 'morelinkstoimage'               => 'Ver [[Special:Whatlinkshere/$1|más enllaces]] a esti archivu.',
 'redirectstofile'                => '{{PLURAL:$1|El siguiente archivu redirixe|Los siguientes $1 archivos redirixen}} a esti archivu:',
+'duplicatesoffile'               => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu:",
 'sharedupload'                   => "L'archivu ye una xubida compartida y pue tar siendo usáu por otros proyeutos.",
 'shareduploadwiki'               => 'Por favor mira la $1 pa más información.',
-'shareduploadwiki-desc'          => "La descripción del so $1 ye l'amosada embaxo.",
+'shareduploadwiki-desc'          => "La descripción de la so $1 nel direutoriu compartíu ye l'amosada embaxo.",
 'shareduploadwiki-linktext'      => 'páxina de descripción del archivu',
 'shareduploadduplicate'          => 'Esti archivu ye un duplicáu de $1 del depósitu compartíu.',
 'shareduploadduplicate-linktext' => 'otru archivu',
@@ -1291,6 +1310,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'popularpages'            => 'Páxines populares',
 'wantedcategories'        => 'Categoríes buscaes',
 'wantedpages'             => 'Páxines buscaes',
+'missingfiles'            => 'Archivos non esistentes',
 'mostlinked'              => 'Páxines más enllaciaes',
 'mostlinkedcategories'    => 'Categoríes más enllaciaes',
 'mostlinkedtemplates'     => 'Plantíes más enllaciaes',
@@ -1319,6 +1339,8 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'unusedcategoriestext'    => "Les siguientes categoríes esisten magar que nengún artículu o categoría faiga usu d'elles.",
 'notargettitle'           => 'Nun hai oxetivu',
 'notargettext'            => 'Nun especificasti una páxina oxetivu o un usuariu sobre los que realizar esta función.',
+'nopagetitle'             => 'Nun esiste la páxina oxetivu',
+'nopagetext'              => "La páxina oxetivu qu'especificasti nun esiste.",
 'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
 'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 'suppress'                => 'Güeyador',
@@ -1399,6 +1421,7 @@ o nun quier recibir correos d'otros usuarios.",
 'emailccsubject'  => 'Copia del to mensaxe a $1: $2',
 'emailsent'       => 'Corréu unviáu',
 'emailsenttext'   => 'El to corréu foi unviáu.',
+'emailuserfooter' => 'Esti corréu electrónicu foi unviáu por $1 a $2 per acidu de la funxión "Manda-y un corréu a un usuariu" de {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'La mio páxina de vixilancia',
@@ -1504,8 +1527,11 @@ Mira en $2 la llista de les últimes páxines borraes.',
 ** Violación de Copyright
 ** Vandalismu',
 'delete-edit-reasonlist'      => 'Editar los motivos de borráu',
-'delete-toobig'               => "Esta páxina tien un historial d'ediciones grande, más de $1 revisiones. Restrinxóse'l borráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
-'delete-warning-toobig'       => "Esta páxina tien un historial d'ediciones grande, más de $1 revisiones. Borralu pue perturbar les operaciones de la base de datos de {{SITENAME}}; obra con precaución.",
+'delete-toobig'               => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
+Restrinxóse'l borráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
+'delete-warning-toobig'       => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
+Borralu pue perturbar les operaciones de la base de datos de {{SITENAME}};
+obra con precaución.",
 'rollback'                    => 'Revertir ediciones',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'revertir',
@@ -1649,25 +1675,27 @@ $1",
 'nolinkshere-ns'           => "Nenguna páxina enllaza a '''[[:$1]]''' nel espaciu de nome conseñáu.",
 'isredirect'               => 'páxina redirixida',
 'istemplate'               => 'inclusión',
+'isimage'                  => "enllaz d'imaxe",
 'whatlinkshere-prev'       => '{{PLURAL:$1|anterior|anteriores $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|siguiente|siguientes $1}}',
 'whatlinkshere-links'      => '← enllaces',
 'whatlinkshere-hideredirs' => '$1 redireiciones',
 'whatlinkshere-hidetrans'  => '$1 tresclusiones',
 'whatlinkshere-hidelinks'  => '$1 enllaces',
+'whatlinkshere-hideimages' => "$1 enllaces d'imaxe",
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
-'blockip'                     => 'Bloquiar usuariu',
-'blockip-legend'              => 'Bloquiar usuariu',
-'blockiptext'                 => "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.
+'blockip'                         => 'Bloquiar usuariu',
+'blockip-legend'                  => 'Bloquiar usuariu',
+'blockiptext'                     => "Usa'l siguiente formulariu pa bloquiar el permisu d'escritura a una IP o a un usuariu concretu.
 Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWiki:Policy-url}}|polítiques]]. Da un motivu específicu (como por exemplu citar páxines que fueron vandalizaes).",
-'ipaddress'                   => 'Dirección IP:',
-'ipadressorusername'          => "Dirección IP o nome d'usuariu:",
-'ipbexpiry'                   => 'Caducidá:',
-'ipbreason'                   => 'Motivu:',
-'ipbreasonotherlist'          => 'Otru motivu',
-'ipbreason-dropdown'          => "*Motivos comunes de bloquéu
+'ipaddress'                       => 'Dirección IP:',
+'ipadressorusername'              => "Dirección IP o nome d'usuariu:",
+'ipbexpiry'                       => 'Caducidá:',
+'ipbreason'                       => 'Motivu:',
+'ipbreasonotherlist'              => 'Otru motivu',
+'ipbreason-dropdown'              => "*Motivos comunes de bloquéu
 ** Enxertamientu d'información falso
 ** Dexar les páxines en blanco
 ** Enllaces spam a páxines esternes
@@ -1675,71 +1703,73 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 ** Comportamientu intimidatoriu o d'acosu
 ** Abusu de cuentes múltiples
 ** Nome d'usuariu inaceutable",
-'ipbanononly'                 => 'Bloquiar namái usuarios anónimos',
-'ipbcreateaccount'            => 'Evitar creación de cuentes',
-'ipbemailban'                 => "Torgar al usuariu l'unviu de corréu electrónicu",
-'ipbenableautoblock'          => "Bloquiar automáticamente la cabera direición IP usada por esti usuariu y toles IP posteriores dende les qu'intente editar",
-'ipbsubmit'                   => 'Bloquiar esti usuariu',
-'ipbother'                    => 'Otru periodu:',
-'ipboptions'                  => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'              => 'otru',
-'ipbotherreason'              => 'Otru motivu/motivu adicional:',
-'ipbhidename'                 => "Ocultar el nome d'usuariu del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
-'ipbwatchuser'                => "Vixilar les páxines d'usuariu y d'alderique d'esti usuariu",
-'badipaddress'                => 'IP non válida',
-'blockipsuccesssub'           => 'Bloquéu fechu correctamente',
-'blockipsuccesstext'          => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
+'ipbanononly'                     => 'Bloquiar namái usuarios anónimos',
+'ipbcreateaccount'                => 'Evitar creación de cuentes',
+'ipbemailban'                     => "Torgar al usuariu l'unviu de corréu electrónicu",
+'ipbenableautoblock'              => "Bloquiar automáticamente la cabera direición IP usada por esti usuariu y toles IP posteriores dende les qu'intente editar",
+'ipbsubmit'                       => 'Bloquiar esti usuariu',
+'ipbother'                        => 'Otru periodu:',
+'ipboptions'                      => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'otru',
+'ipbotherreason'                  => 'Otru motivu/motivu adicional:',
+'ipbhidename'                     => "Ocultar el nome d'usuariu del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
+'ipbwatchuser'                    => "Vixilar les páxines d'usuariu y d'alderique d'esti usuariu",
+'badipaddress'                    => 'IP non válida',
+'blockipsuccesssub'               => 'Bloquéu fechu correctamente',
+'blockipsuccesstext'              => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
 <br />Mira na [[Special:Ipblocklist|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
-'ipb-edit-dropdown'           => 'Editar motivos de bloquéu',
-'ipb-unblock-addr'            => 'Desbloquiar $1',
-'ipb-unblock'                 => "Desbloquiar un nome d'usuariu o direición IP",
-'ipb-blocklist-addr'          => 'Ver los bloqueos esistentes de $1',
-'ipb-blocklist'               => 'Ver los bloqueos esistentes',
-'unblockip'                   => 'Desbloquiar usuariu',
-'unblockiptext'               => "Usa'l formulariu d'abaxo pa restablecer l'accesu d'escritura a una direicion IP o a un nome d'usuariu previamente bloquiáu.",
-'ipusubmit'                   => 'Desbloquiar esta direición',
-'unblocked'                   => '[[User:$1|$1]] foi desbloquiáu',
-'unblocked-id'                => 'El bloquéu $1 foi elimináu',
-'ipblocklist'                 => "Llista de direiciones IP y nomes d'usuarios bloquiaos",
-'ipblocklist-legend'          => 'Atopar un usuariu bloquiáu',
-'ipblocklist-username'        => "Nome d'usuariu o direición IP:",
-'ipblocklist-submit'          => 'Buscar',
-'blocklistline'               => '$1, $2 bloquió a $3 ($4)',
-'infiniteblock'               => 'pa siempre',
-'expiringblock'               => "caduca'l $1",
-'anononlyblock'               => 'namái anón.',
-'noautoblockblock'            => 'bloquéu automáticu desactiváu',
-'createaccountblock'          => 'bloquiada la creación de cuentes',
-'emailblock'                  => 'corréu electrónicu bloquiáu',
-'ipblocklist-empty'           => 'La llista de bloqueos ta vacia.',
-'ipblocklist-no-results'      => "La direición IP o nome d'usuariu solicitáu nun ta bloquiáu.",
-'blocklink'                   => 'bloquiar',
-'unblocklink'                 => 'desbloquiar',
-'contribslink'                => 'contribuciones',
-'autoblocker'                 => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[User:$1|$1]]". El motivu del bloquéu de $1 ye: "$2"',
-'blocklogpage'                => 'Rexistru de bloqueos',
-'blocklogentry'               => 'bloquió [[$1]] con una caducidá de $2 $3',
-'blocklogtext'                => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios.
+'ipb-edit-dropdown'               => 'Editar motivos de bloquéu',
+'ipb-unblock-addr'                => 'Desbloquiar $1',
+'ipb-unblock'                     => "Desbloquiar un nome d'usuariu o direición IP",
+'ipb-blocklist-addr'              => 'Ver los bloqueos esistentes de $1',
+'ipb-blocklist'                   => 'Ver los bloqueos esistentes',
+'unblockip'                       => 'Desbloquiar usuariu',
+'unblockiptext'                   => "Usa'l formulariu d'abaxo pa restablecer l'accesu d'escritura a una direicion IP o a un nome d'usuariu previamente bloquiáu.",
+'ipusubmit'                       => 'Desbloquiar esta direición',
+'unblocked'                       => '[[User:$1|$1]] foi desbloquiáu',
+'unblocked-id'                    => 'El bloquéu $1 foi elimináu',
+'ipblocklist'                     => "Llista de direiciones IP y nomes d'usuarios bloquiaos",
+'ipblocklist-legend'              => 'Atopar un usuariu bloquiáu',
+'ipblocklist-username'            => "Nome d'usuariu o direición IP:",
+'ipblocklist-submit'              => 'Buscar',
+'blocklistline'                   => '$1, $2 bloquió a $3 ($4)',
+'infiniteblock'                   => 'pa siempre',
+'expiringblock'                   => "caduca'l $1",
+'anononlyblock'                   => 'namái anón.',
+'noautoblockblock'                => 'bloquéu automáticu desactiváu',
+'createaccountblock'              => 'bloquiada la creación de cuentes',
+'emailblock'                      => 'corréu electrónicu bloquiáu',
+'ipblocklist-empty'               => 'La llista de bloqueos ta vacia.',
+'ipblocklist-no-results'          => "La direición IP o nome d'usuariu solicitáu nun ta bloquiáu.",
+'blocklink'                       => 'bloquiar',
+'unblocklink'                     => 'desbloquiar',
+'contribslink'                    => 'contribuciones',
+'autoblocker'                     => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[User:$1|$1]]". El motivu del bloquéu de $1 ye: "$2"',
+'blocklogpage'                    => 'Rexistru de bloqueos',
+'blocklogentry'                   => 'bloquió [[$1]] con una caducidá de $2 $3',
+'blocklogtext'                    => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios.
 Les direcciones IP bloquiaes automáticamente nun salen equí.
 Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
-'unblocklogentry'             => 'desbloquió $1',
-'block-log-flags-anononly'    => 'namái usuarios anónimos',
-'block-log-flags-nocreate'    => 'creación de cuentes deshabilitada',
-'block-log-flags-noautoblock' => 'bloquéu automáticu deshabilitáu',
-'block-log-flags-noemail'     => 'corréu electrónicu bloquiáu',
-'range_block_disabled'        => "La capacidá d'alministrador pa crear bloqueos d'intervalos ta desactivada.",
-'ipb_expiry_invalid'          => 'Tiempu incorrectu.',
-'ipb_already_blocked'         => '"$1" yá ta bloqueáu',
-'ipb_cant_unblock'            => "Error: Nun s'atopó'l bloquéu númberu $1. Seique yá fuera desbloquiáu.",
-'ipb_blocked_as_range'        => 'Error: La IP $1 nun ta bloquiada direutamente, polo que nun pue ser desloquiada. Sicasí, foi bloquiada como parte del intervalu $2, que pue ser desbloquiáu.',
-'ip_range_invalid'            => 'Rangu IP non válidu.',
-'blockme'                     => 'Blóquiame',
-'proxyblocker'                => 'Bloquiador de proxys',
-'proxyblocker-disabled'       => 'Esta función ta deshabilitada.',
-'proxyblockreason'            => "La to direición IP foi bloquiada porque ye un proxy abiertu. Por favor contauta col to proveedor de serviciones d'Internet o col to servicio d'asistencia téunica y infórmalos d'esti seriu problema de seguridá.",
-'proxyblocksuccess'           => 'Fecho.',
-'sorbsreason'                 => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
-'sorbs_create_account_reason' => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}. Nun pues crear una cuenta',
+'unblocklogentry'                 => 'desbloquió $1',
+'block-log-flags-anononly'        => 'namái usuarios anónimos',
+'block-log-flags-nocreate'        => 'creación de cuentes deshabilitada',
+'block-log-flags-noautoblock'     => 'bloquéu automáticu deshabilitáu',
+'block-log-flags-noemail'         => 'corréu electrónicu bloquiáu',
+'block-log-flags-angry-autoblock' => 'autobloquéu ameyoráu activáu',
+'range_block_disabled'            => "La capacidá d'alministrador pa crear bloqueos d'intervalos ta desactivada.",
+'ipb_expiry_invalid'              => 'Tiempu incorrectu.',
+'ipb_expiry_temp'                 => "Los bloqueos de nome d'usuariu escondíos han ser permanentes.",
+'ipb_already_blocked'             => '"$1" yá ta bloqueáu',
+'ipb_cant_unblock'                => "Error: Nun s'atopó'l bloquéu númberu $1. Seique yá fuera desbloquiáu.",
+'ipb_blocked_as_range'            => 'Error: La IP $1 nun ta bloquiada direutamente, polo que nun pue ser desloquiada. Sicasí, foi bloquiada como parte del intervalu $2, que pue ser desbloquiáu.',
+'ip_range_invalid'                => 'Rangu IP non válidu.',
+'blockme'                         => 'Blóquiame',
+'proxyblocker'                    => 'Bloquiador de proxys',
+'proxyblocker-disabled'           => 'Esta función ta deshabilitada.',
+'proxyblockreason'                => "La to direición IP foi bloquiada porque ye un proxy abiertu. Por favor contauta col to proveedor de serviciones d'Internet o col to servicio d'asistencia téunica y infórmalos d'esti seriu problema de seguridá.",
+'proxyblocksuccess'               => 'Fecho.',
+'sorbsreason'                     => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}. Nun pues crear una cuenta',
 
 # Developer tools
 'lockdb'              => 'Protexer la base de datos',
@@ -1805,6 +1835,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'movepage-page-exists'    => 'La páxina $1 yá esiste y nun se pue sobreescribir automáticamente.',
 'movepage-page-moved'     => 'Treslladóse la páxina $1 a $2.',
 'movepage-page-unmoved'   => 'Nun se pudo treslladar la páxina $1 a $2.',
+'movepage-max-pages'      => "Treslladóse'l máximu de $1 {{PLURAL:$1|páxina|páxinees}} y nun van treslladase más automáticamente.",
 '1movedto2'               => '[[$1]] treslladáu a [[$2]]',
 '1movedto2_redir'         => '[[$1]] treslladáu a [[$2]] sobre una redireición',
 'movelogpage'             => 'Rexistru de tresllaos',
@@ -1821,6 +1852,7 @@ La páxina de destín "[[$1]]" yá esiste. ¿Quies borrala pa dexar sitiu pal tr
 'immobile_namespace'      => "El nome d'orixe o'l de destín ye d'una triba especial; nun se puen mover páxines dende nin a esti espaciu de nomes.",
 'imagenocrossnamespace'   => "Nun se pue treslladar una imaxe a nun espaciu de nomes que nun ye d'imáxenes",
 'imagetypemismatch'       => 'La estensión nueva del archivu nun concueya cola so mena',
+'imageinvalidfilename'    => 'El nome del archivu oxetivu nun ye válidu',
 
 # Export
 'export'            => 'Esportar páxines',
@@ -1891,6 +1923,7 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'import-noarticle'           => '¡Nun hai páxina pa importar!',
 'import-nonewrevisions'      => 'Toles revisiones fueran importaes previamente.',
 'xml-error-string'           => '$1 na llinia $2, col $3 (byte $4): $5',
+'import-upload'              => 'Xubir datos XML',
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",
@@ -2529,6 +2562,8 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'specialpages-group-highuse'     => 'Páxines mui usaes',
 'specialpages-group-pages'       => 'Llista de páxines',
 'specialpages-group-pagetools'   => 'Ferramientes de páxina',
+'specialpages-group-wiki'        => 'Datos wiki y ferramientes',
+'specialpages-group-redirects'   => 'Páxines especiales de redireición',
 'specialpages-group-spam'        => 'Ferramientes pa spam',
 
 # Special:Blankpage

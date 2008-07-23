@@ -25,11 +25,12 @@
  * @author Bengoa
  * @author Orgullomoore
  * @author Dvortygirl
- * @author Omnipaedista
  * @author Toniher
+ * @author Omnipaedista
  * @author McDutchie
  * @author Mahadeva
  * @author Alpertron
+ * @author Fluence
  * @author Better
  * @author SPQRobin
  * @author Technorum
@@ -1008,7 +1009,7 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'rclinks'                           => 'Ver los últimos $1 cambios en los últimos $2 días.<br />$3',
 'diff'                              => 'dif',
 'hist'                              => 'hist',
-'hide'                              => 'ocultar',
+'hide'                              => 'Ocultar',
 'show'                              => 'mostrar',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',

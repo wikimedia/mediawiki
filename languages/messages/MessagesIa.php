@@ -2242,7 +2242,7 @@ Le alteres essera initialmente celate.
 'exif-orientation'                 => 'Orientation',
 'exif-samplesperpixel'             => 'Numero de componentes',
 'exif-planarconfiguration'         => 'Arrangiamento del datos',
-'exif-ycbcrsubsampling'            => 'Ration de reduction de Y to C',
+'exif-ycbcrsubsampling'            => 'Ration de reduction de Y a C',
 'exif-ycbcrpositioning'            => 'Positionamento Y e C',
 'exif-xresolution'                 => 'Resolution horizontal',
 'exif-yresolution'                 => 'Resolution vertical',

@@ -2189,6 +2189,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-devicesettingdescription'    => 'Beschreiwung vun den Astellunge vum Apparat',
 'exif-subjectdistancerange'        => 'Motivdistanz',
 'exif-imageuniqueid'               => 'Bild-ID',
+'exif-gpsversionid'                => 'Versioun vum GPS-Tag',
 'exif-gpslatituderef'              => 'nördlech oder südlech Breet',
 'exif-gpslatitude'                 => 'Geografesch Breet',
 'exif-gpslongituderef'             => 'östlech oder westlech geografesch Längt',

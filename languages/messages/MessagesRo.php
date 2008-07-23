@@ -201,7 +201,7 @@ pe titlul secţiunii (JavaScript)',
 'category-empty'                 => "''Această categorie nu conţine articole sau fişiere media.''",
 'hidden-categories'              => '{{PLURAL:$1|categorie ascunsă|categorii ascunse}}',
 'hidden-category-category'       => 'Categorii ascunse', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Această categorie conţine doar următoarea subcategorie.|Această categorie conţine {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}}, dintr-un total de $2.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Această categorie conţine doar următoarea subcategorie.|Această categorie conţine {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}, dintr-un total de $2.}}',
 'category-subcat-count-limited'  => 'Această categorie conţine {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}.',
 'category-article-count'         => '{{PLURAL:$2|Această categorie conţine doar următoarea pagină.|{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în această categorie, dintr-un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în categoria curentă.',

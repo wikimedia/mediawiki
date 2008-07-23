@@ -285,7 +285,7 @@ $messages = array(
 'viewsource'      => 'Πηγήν διασκοπεῖν',
 'viewsourcefor'   => 'Ὑπὲρ τοῦ $1',
 'actionthrottled' => 'Δρᾶσις ἠγχθεῖσα',
-'viewsourcetext'  => 'Ἔξεστί σοὶ ὁρᾶν τε ἐκγράφειν τὴν τῆσε τῆς δέλτου πηγὴν:',
+'viewsourcetext'  => 'Ἔξεστί σοὶ ὁρᾶν τε ἀντιγράφειν τὴν τῆς δέλτου πηγὴν:',
 'sqlhidden'       => '(πεῦσις SQL keκρυμμένη)',
 
 # Virus scanner
@@ -299,7 +299,7 @@ $messages = array(
 'loginpagetitle'          => 'Συνδεῖσθαι χρήστου',
 'yourname'                => 'Ὄνομα χρωμένου:',
 'yourpassword'            => 'Σῆμα:',
-'remembermypassword'      => 'Μιμνῄσκεσυαι ἐνθάδε τὸ συνδεῖσθαι',
+'remembermypassword'      => 'Μίμνῃσκε ἐνθάδε τὸ συνδεῖσθαι',
 'yourdomainname'          => 'Ὁ τομεύς σου:',
 'login'                   => 'Συνδεῖσθαι',
 'nav-login-createaccount' => 'Συνδεῖσθαι/λογισμὸν ποιεῖν',
@@ -307,6 +307,7 @@ $messages = array(
 'logout'                  => 'Ἐξέρχεσθαι',
 'userlogout'              => 'Ἐξέρχεσθαι',
 'notloggedin'             => 'Οὐ συνδεδεμένος',
+'nologin'                 => 'Ἆρα λογισμὸν οὐκ ἔχεις? $1.',
 'nologinlink'             => 'Λογισμὸν ποιεῖν',
 'createaccount'           => 'Λογισμὸν ποιεῖν',
 'gotaccount'              => 'Ἆρα λογισμὸν ἤδη τινὰ ἔχεις; $1.',
@@ -325,6 +326,8 @@ $messages = array(
 'loginsuccess'            => "'''συνδέδεσαι ἤδη τῷ {{SITENAME}} ὡς \"\$1\".'''",
 'nouserspecified'         => 'Ὄνομα χρωμένου καθοριστέον ὑποχρεωτικώς.',
 'wrongpassword'           => 'Εἰσηγμένον σύνθημα ἐσφαλμένον. Πείρασον πάλιν.',
+'wrongpasswordempty'      => 'Σύνθημα οὐκ ἐγράψας.
+Αὖθις πειρῶ.',
 'mailmypassword'          => 'Τὸ σύνθημα ἠλεκτρονικῇ ἐπιστολῇ πέμπειν',
 'passwordremindertitle'   => 'Νέον ἐφήμερον σύνθημα διὰ {{SITENAME}}',
 'loginlanguagelabel'      => 'Γλῶττα: $1',
@@ -492,7 +495,7 @@ $messages = array(
 'rcshowhidebots'  => '$1 αὐτόματα',
 'rcshowhideliu'   => '$1 χρωμένους συνδεδεμένους',
 'rcshowhideanons' => '$1 χρώμενοι ἀνώνυμοι',
-'rcshowhidepatr'  => '$1 Τὰς φυλασσόμενας μεταβολὰς',
+'rcshowhidepatr'  => '$1 Τὰς φυλασσόμενας μεταβολάς',
 'rcshowhidemine'  => '$1 μεταβολὰς μου',
 'diff'            => 'διαφ.',
 'hist'            => 'Προτ.',
@@ -513,7 +516,7 @@ $messages = array(
 'uploadlogpage'     => 'Ἐπιφόρτωσις καταλόγου',
 'filedesc'          => 'Τὸ κεφάλαιον',
 'fileuploadsummary' => 'Τὸ κεφάλαιον:',
-'uploadedimage'     => 'Ἐγκεῖται "[[$1]]"',
+'uploadedimage'     => 'ἐπιφορτισμένον "[[$1]]"',
 'watchthisupload'   => 'Ἐφορᾶν τήνδε τὴν δέλτον',
 
 # Special:Imagelist
@@ -555,7 +558,9 @@ $messages = array(
 # Statistics
 'statistics' => 'Τὰ περὶ τῶν δεδομένων',
 
-'doubleredirects' => 'Ἀναδιευθύνσεις διαπλαζόμεναι',
+'disambiguations' => 'Αἱ τινὰ ἱστᾶσαι εἰς τὸ ἀναμφισβήτητον δέλτοι',
+
+'doubleredirects' => 'Ἀναδιευθύνσεις διπλασιοζόμεναι',
 
 'brokenredirects'        => 'Ἀναδιευθύνσεις οὐκέτι προὔργου οὖσαι',
 'brokenredirects-edit'   => '(μεταγράφειν)',
@@ -599,7 +604,7 @@ $messages = array(
 'movethispage'            => 'Κινεῖν τήνδε τὴν δέλτον',
 
 # Book sources
-'booksources'    => 'Αἱ ἐν βίβλοις πηγαὶ',
+'booksources'    => 'Αἱ ἐν βίβλοις πηγαί',
 'booksources-go' => 'Ἰέναι',
 
 # Special:Log
@@ -621,7 +626,7 @@ $messages = array(
 'categories' => 'Γένη',
 
 # E-mail user
-'emailuser'    => 'Ἠλεκτρονικὴν ἐπιστολὴν τῷδε τῷ χρήστῳ πέμπειν',
+'emailuser'    => 'Ἠλεκτρονικὴν ἐπιστολὴν τῷδε τῷ χρήστῃ πέμπειν',
 'emailmessage' => 'Ἀγγελία',
 'emailsend'    => 'Πέμπειν',
 
@@ -652,9 +657,9 @@ $messages = array(
 'confirm'                     => 'Κυροῦν',
 'exblank'                     => 'δέλτος κενὴ ἦν',
 'historywarning'              => 'Προσοχή: Ἡ δέλτος ἥντινα βούλεσαι διαγράψειν ἔχει ἱστορίαν:',
-'actioncomplete'              => 'Τέλειον τὸ ποιώμενον',
+'actioncomplete'              => 'Τέλειον τὸ ποιούμενον',
 'deletedarticle'              => 'Ἐσβέσθη τὴν δέλτον "[[$1]]"',
-'dellogpage'                  => 'Τὰ ἐσβέσμενα',
+'dellogpage'                  => 'Τὰ ἐσβεσένα',
 'deletecomment'               => 'Αἰτία τοῦ σβεννύναι:',
 'deleteotherreason'           => 'Αἰτία ἄλλα:',
 'deletereasonotherlist'       => 'Αἰτία ἄλλα',
@@ -701,7 +706,7 @@ $messages = array(
 'month'         => 'Μήν:',
 'year'          => 'Ἔτος:',
 
-'sp-contributions-newbies-sub' => 'Ἔρανοί νέων χρωμένων',
+'sp-contributions-newbies-sub' => 'Ἔρανοι νέων χρωμένων',
 'sp-contributions-blocklog'    => 'Τὰ ἀποκλῄειν',
 'sp-contributions-submit'      => 'Ζητεῖν',
 
@@ -726,7 +731,7 @@ $messages = array(
 'unblocklink'        => 'χαλᾶν',
 'contribslink'       => 'Ἔρανοι',
 'blocklogpage'       => 'Τὰ ἀποκλῄειν',
-'blocklogentry'      => 'Κεκλῄμενος [[$1]] μέχρι οὗ $2 $3',
+'blocklogentry'      => 'Κεκλῃμένος [[$1]] μέχρι οὗ $2 $3',
 
 # Move page
 'move-page-legend' => 'Κινεῖν τὴν δέλτον',
@@ -772,8 +777,8 @@ $messages = array(
 'tooltip-pt-logout'         => 'Ἐξέρχεσθαι',
 'tooltip-ca-talk'           => 'Διάλεκτος περὶ τῆς δέλτου',
 'tooltip-ca-edit'           => 'Ἔξεστι σοι μεταγράφειν τήνδε τὴν δέλτον. Προεπισκοπεῖν πρὶν ἂν γράφῃς τὴν δέλτον.',
-'tooltip-ca-viewsource'     => 'Σῴζεται ἣδε ἡ δέλτος.
-Ἔξεστι σοὶ τὴν πηγήν διασκοπεῖν.',
+'tooltip-ca-viewsource'     => 'Σῴζεται ἥδε ἡ δέλτος.
+Ἔξεστι σοὶ τὴν πηγήν ἐπισκοπεῖν.',
 'tooltip-ca-protect'        => 'Ἀμύνειν τῇδε τῇ δέλτῳ',
 'tooltip-ca-delete'         => 'Διαγράφειν τήνδε τὴν δέλτον',
 'tooltip-ca-move'           => 'Κινεῖν τήνδε τὴν δέλτον',
@@ -788,7 +793,8 @@ $messages = array(
 'tooltip-n-randompage'      => 'Τινὰ γραφὴν χύδην δηλοῦν.',
 'tooltip-n-help'            => 'Μάθησις περὶ τῆσδε Οὐίκεως',
 'tooltip-t-whatlinkshere'   => 'Κατάλογος τῶν ἐνθάδε ἀγόντων',
-'tooltip-t-emailuser'       => 'Ἠλεκτρονικὴν ἐπιστολὴν τῷδε τῷ χρήστῳ πέμπειν',
+'tooltip-t-contributions'   => 'Ὁρᾶν τοὺς τοῦδε τοῦ χρωνένου ἐράνους',
+'tooltip-t-emailuser'       => 'Ἠλεκτρονικὴν ἐπιστολὴν τῷδε τῷ χρήστῃ πέμπειν',
 'tooltip-t-upload'          => 'Φορτία ἐντιθέναι',
 'tooltip-t-specialpages'    => 'Κατάλογος κατὰ πᾶσας τὰς εἰδικὰς δέλτους',
 'tooltip-ca-nstab-main'     => 'χρῆμα δέλτον ὁρᾶν',
@@ -869,7 +875,7 @@ $messages = array(
 'exif-gpsspeed-n' => 'Κόμβοι',
 
 # External editor support
-'edit-externally-help' => 'Εἰ πλειόντα βούλει μαθεῖν, [http://meta.wikimedia.org/wiki/Help:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] λέγε.',
+'edit-externally-help' => 'Εἰ πλείοντα βούλει μαθεῖν, [http://meta.wikimedia.org/wiki/Help:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] λέξε.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Πᾶσαι',
@@ -915,7 +921,7 @@ $messages = array(
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ὁρᾶν τὰς πρὸς ταῦτα μεταβολὰς',
-'watchlisttools-edit' => 'Ὁρᾶν τε μεταγράφειν τὰ ἐφορώμενα',
+'watchlisttools-edit' => 'Ὁρᾶν τε μεταγράφειν τὰ ἐφορωμένα',
 
 # Special:Version
 'version'              => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself

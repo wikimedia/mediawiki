@@ -1257,7 +1257,7 @@ En dä Datei stich e Kompjutervirus!
 De Einzelheite: $1',
 'sourcefilename'              => 'Datei zem huhlade:',
 'destfilename'                => 'Unger däm Dateiname avspeichere:',
-'upload-maxfilesize'          => 'Der jüüßte mööschlesche Ömfang för en Datei es $1',
+'upload-maxfilesize'          => 'Der jüütßte mööschlesche Ömfang för en Datei es $1.',
 'watchthisupload'             => 'Op die Datei hee oppasse',
 'filewasdeleted'              => 'Unger däm Name wood ald ens en Datei huhjelade. Die es enzwesche ävver widder fottjeschmesse woode. Luur leever eets ens en et $1 ih dat De se dann avspeichere deis.',
 
@@ -2208,11 +2208,18 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 
 'exif-lightsource-4' => 'Bletz',
 
+'exif-scenecapturetype-0' => 'Nomaal',
+
 'exif-contrast-0' => 'Nomal',
 
 'exif-saturation-0' => 'Nomal',
 
 'exif-sharpness-0' => 'Nomal',
+
+'exif-subjectdistancerange-0' => 'Onbikannt',
+'exif-subjectdistancerange-1' => 'Janz deesch draan (Makro-Opnahm)',
+'exif-subjectdistancerange-2' => 'Vun Noh',
+'exif-subjectdistancerange-3' => 'Vun Fähn',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Breed nöödlesch',
@@ -2221,6 +2228,13 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Läng ößlesch',
 'exif-gpslongitude-w' => 'Läng weßlesch',
+
+'exif-gpsmeasuremode-2' => 'Zweidimensjonal Mohß',
+'exif-gpsmeasuremode-3' => 'Dreidimensjonal Mohß',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Wohre Rechtung',
+'exif-gpsdirection-m' => 'Mangneetesche Rechtung',
 
 # External editor support
 'edit-externally'      => 'Dun de Datei met enem externe Projramm bei Dr om Rechner bearbeide',

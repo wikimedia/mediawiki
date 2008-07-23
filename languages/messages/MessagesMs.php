@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author Aurora
  * @author לערי ריינהארט
+ * @author Kurniasan
  */
 
 /**
@@ -387,8 +388,8 @@ $messages = array(
 'viewsourceold'           => 'lihat sumber',
 'editsectionhint'         => 'Sunting bahagian: $1',
 'toc'                     => 'Senarai kandungan',
-'showtoc'                 => 'buka',
-'hidetoc'                 => 'tutup',
+'showtoc'                 => 'bentang',
+'hidetoc'                 => 'lipat',
 'thisisdeleted'           => 'Lihat atau pulihkan $1?',
 'viewdeleted'             => 'Lihat $1?',
 'restorelink'             => '{{PLURAL:$1|satu|$1}} suntingan dihapuskan',
@@ -834,7 +835,7 @@ Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nooldid-title'     => 'Tiada semakan sasaran',
 'revdelete-nooldid-text'      => 'Anda tidak menyatakan semakan sasaran.',
 'revdelete-selected'          => "{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:",
-'logdelete-selected'          => '{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:',
+'logdelete-selected'          => '{{PLURAL:$1|Peristiwa log terpilih|Peristiwa-peristiwa log terpilih}}:',
 'revdelete-text'              => 'Semakan dan peristiwa yang dihapuskan masih muncul dalam sejarah laman dan log,
 akan tetapi kandungannya tidak boleh dilihat oleh orang awam.
 

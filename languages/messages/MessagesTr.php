@@ -8,8 +8,8 @@
  * @author SPQRobin
  * @author Uğur Başak
  * @author Dbl2010
- * @author Suelnur
  * @author Karduelis
+ * @author Suelnur
  * @author Erkan Yilmaz
  * @author Runningfridgesrule
  * @author Siebrand
@@ -1592,6 +1592,7 @@ Lütfen başka bir isim deneyiniz.',
 'export-submit'     => 'Aktar',
 'export-addcattext' => 'Aşağıdaki kategoriden maddeler ekle:',
 'export-addcat'     => 'Ekle',
+'export-download'   => 'Farklı kaydet',
 'export-templates'  => 'Şablonları dahil et',
 
 # Namespace 8 related
@@ -1804,6 +1805,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-componentsconfiguration'   => 'Her bir bileşenin anlamı',
 'exif-compressedbitsperpixel'    => 'Resim sıkıştırma modu',
 'exif-pixelydimension'           => 'Geçerli resim genişliği',
+'exif-makernote'                 => 'Yapımcı notları',
 'exif-usercomment'               => 'Kullanıcı yorumları',
 'exif-datetimeoriginal'          => 'Orjinal yaratma zamanı',
 'exif-datetimedigitized'         => 'Dijitalleştirme zamanı',
@@ -1817,6 +1819,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-aperturevalue'             => 'Diyafram açıklığı',
 'exif-brightnessvalue'           => 'parlaklık',
 'exif-exposurebiasvalue'         => 'Poz eğilim değeri',
+'exif-maxaperturevalue'          => 'Maksimum açıklık değeri',
 'exif-meteringmode'              => 'Ölçüm modu',
 'exif-lightsource'               => 'Işık durumu',
 'exif-flash'                     => 'Flaş',
@@ -1826,6 +1829,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-focalplaneyresolution'     => 'Odaksal düzey Y çözünürlüğü',
 'exif-focalplaneresolutionunit'  => 'Odaksal düzey çözünürlük ünitesi',
 'exif-exposureindex'             => 'Poz dizini',
+'exif-sensingmethod'             => 'Algılama metodu',
 'exif-filesource'                => 'Dosya kaynağı',
 'exif-scenetype'                 => 'Çekim tipi',
 'exif-cfapattern'                => 'CFA modeli',
@@ -1834,11 +1838,13 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-whitebalance'              => 'Beyaz denge',
 'exif-digitalzoomratio'          => 'Yakınlaştırma oranı',
 'exif-focallengthin35mmfilm'     => "35 mm'lik filmde odak uzaklığı",
+'exif-scenecapturetype'          => 'Sahne yakalama tipi',
 'exif-gaincontrol'               => 'Sahne kontrolü',
 'exif-contrast'                  => 'Karşıtlık',
 'exif-saturation'                => 'Doygunluk',
 'exif-sharpness'                 => 'Netlik',
 'exif-devicesettingdescription'  => 'Aygıt ayar tanımları',
+'exif-imageuniqueid'             => 'Resim özel kimliği',
 'exif-gpslatitude'               => 'Enlem',
 'exif-gpslongitude'              => 'Boylam',
 'exif-gpsaltituderef'            => 'Yükseklik kaynağı',
@@ -1846,6 +1852,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-gpstimestamp'              => 'GPS saati (atom saati)',
 'exif-gpssatellites'             => 'Ölçmek için kullandığı uydular',
 'exif-gpsstatus'                 => 'Alıcının durumu',
+'exif-gpsdop'                    => 'Ölçüm işlemi',
 'exif-gpsspeedref'               => 'Sürat birimi',
 'exif-gpstrack'                  => 'Hareket yönü',
 'exif-gpsimgdirection'           => 'Resim yönü',
@@ -1856,34 +1863,42 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-compression-1' => 'Sıkıştırılmamış',
 
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Yatay kırılma', # 0th row: top; 0th column: right
 'exif-orientation-3' => '180° döndürülmüş', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Düşey (dikey) kırılma', # 0th row: bottom; 0th column: left
 
 'exif-componentsconfiguration-0' => 'yok',
 
 'exif-exposureprogram-0' => 'Tanımlanmamış',
 'exif-exposureprogram-1' => 'Elle',
 'exif-exposureprogram-3' => 'Açıklık önceliği',
+'exif-exposureprogram-7' => 'Portre modu (Arka planları bulanıklaştırıp nesneyi netleştirerek çeker)',
 'exif-exposureprogram-8' => 'Peyzaj modu',
 
 'exif-subjectdistance-value' => '$1 metre',
 
 'exif-meteringmode-0'   => 'Bilinmiyor',
 'exif-meteringmode-1'   => 'Orta',
+'exif-meteringmode-2'   => 'CenterWeightedAverage',
+'exif-meteringmode-3'   => 'Noktalı',
+'exif-meteringmode-4'   => 'Çok noktalı',
+'exif-meteringmode-5'   => 'Desenli',
 'exif-meteringmode-255' => 'Diğer',
 
-'exif-lightsource-0'  => 'Bilinmiyor',
-'exif-lightsource-1'  => 'Gün ışığı',
-'exif-lightsource-2'  => 'Floresan',
-'exif-lightsource-4'  => 'Flaş',
-'exif-lightsource-9'  => 'Açık',
-'exif-lightsource-10' => 'Kapalı',
-'exif-lightsource-11' => 'Gölge',
-'exif-lightsource-13' => 'Gün ışığı beyazı floresan (N 4600 – 5400K)',
-'exif-lightsource-14' => 'Doğal beyaz floresan (W 3900 – 4500K)',
-'exif-lightsource-15' => 'Beyaz floresan (WW 3200 – 3700K)',
-'exif-lightsource-17' => 'A tipi standart ışık',
-'exif-lightsource-18' => 'B tipi standart ışık',
-'exif-lightsource-19' => 'C tipi standart ışık',
+'exif-lightsource-0'   => 'Bilinmiyor',
+'exif-lightsource-1'   => 'Gün ışığı',
+'exif-lightsource-2'   => 'Floresan',
+'exif-lightsource-4'   => 'Flaş',
+'exif-lightsource-9'   => 'Açık',
+'exif-lightsource-10'  => 'Kapalı',
+'exif-lightsource-11'  => 'Gölge',
+'exif-lightsource-13'  => 'Gün ışığı beyazı floresan (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Doğal beyaz floresan (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Beyaz floresan (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'A tipi standart ışık',
+'exif-lightsource-18'  => 'B tipi standart ışık',
+'exif-lightsource-19'  => 'C tipi standart ışık',
+'exif-lightsource-255' => 'Diğer ışık kaynakları',
 
 'exif-focalplaneresolutionunit-2' => 'inç',
 
@@ -1895,6 +1910,8 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-exposuremode-0' => 'Otomatik pozlama',
 'exif-exposuremode-1' => 'Manuel pozlama',
 'exif-exposuremode-2' => 'Otomatik kenetleme',
+
+'exif-whitebalance-0' => 'Otomatik beyaz denge',
 
 'exif-scenecapturetype-0' => 'Standart',
 'exif-scenecapturetype-1' => 'Manzara',

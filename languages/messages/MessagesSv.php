@@ -14,8 +14,9 @@
  * @author לערי ריינהארט
  * @author Lokal Profil
  * @author Leo Johannes
- * @author SPQRobin
  * @author Steinninn
+ * @author SPQRobin
+ * @author Skalman
  * @author Habjchen
  * @author Gangleri
  * @author Max sonnelid
@@ -1659,7 +1660,7 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'addedwatchtext'       => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:Recentchanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
 'removedwatch'         => 'Borttagen från bevakningslista',
-'removedwatchtext'     => 'Sidan "[[:$1]]" har blivit borttagen från din bevakningslista.',
+'removedwatchtext'     => 'Sidan "[[:$1]]" har tagits bort från din bevakningslista.',
 'watch'                => 'bevaka',
 'watchthispage'        => 'Bevaka denna sida',
 'unwatch'              => 'avbevaka',

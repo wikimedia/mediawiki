@@ -56,8 +56,8 @@ $messages = array(
 'tog-extendwatchlist'         => 'Brei dophoulys uit om alle toepaslike wysigings te wys',
 'tog-usenewrc'                => 'Verbeterde onlangse wysigingslys (vir moderne blaaiers).',
 'tog-numberheadings'          => 'Nommer opskrifte outomaties',
-'tog-showtoolbar'             => 'Wys redigeergereedskap',
-'tog-editondblclick'          => 'Wysig blaaie met dubbelkliek (JavaScript).',
+'tog-showtoolbar'             => 'Wys redigeergereedskap (vereis JavaScript)',
+'tog-editondblclick'          => 'Dubbelkliek om blaaie te wysig (benodig JavaScript).',
 'tog-editsection'             => 'Wys [wysig]-skakels vir elke afdeling',
 'tog-editsectiononrightclick' => 'Wysig afdeling met regskliek op afdeling se titel (JavaScript)',
 'tog-showtoc'                 => 'Wys inhoudsopgawe (by bladsye met meer as drie opskrifte)',
@@ -2106,6 +2106,8 @@ $1',
 # Live preview
 'livepreview-loading' => 'Laai tans…',
 'livepreview-ready'   => 'Laai tans… Gereed!',
+'livepreview-failed'  => 'Lewendige voorskou het gefaal.
+Probeer normale voorskou.',
 'livepreview-error'   => 'Verbinding het misluk: $1 "$2".
 Probeer normale voorskou.',
 
