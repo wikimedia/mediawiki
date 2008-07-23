@@ -1084,7 +1084,7 @@ Since there is no section $1, there is no place to save your edit.',
 'newarticle'                       => '(New)',
 'newarticletext'                   => "You have followed a link to a page that does not exist yet.
 To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
-If you are here by mistake, just click your browser's '''back''' button.",
+If you are here by mistake, click your browser's '''back''' button.",
 'newarticletextanon'               => '{{int:newarticletext}}', # do not translate or duplicate this message to other languages
 'talkpagetext'                     => '<!-- MediaWiki:talkpagetext -->', # do not translate or duplicate this message to other languages
 'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it.
@@ -1871,7 +1871,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'doubleredirectstext'     => 'This page lists pages which redirect to other redirect pages.
 Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
 
-'double-redirect-fixed-move'   => '[[$1]] has been moved, it is now just a redirect to [[$2]]',
+'double-redirect-fixed-move'   => '[[$1]] has been moved, it is now a redirect to [[$2]]',
 'double-redirect-fixer'   => 'Redirect fixer',
 
 'brokenredirects'         => 'Broken redirects',
@@ -2452,7 +2452,7 @@ be sure to check for double or broken redirects.
 You are responsible for making sure that links continue to point where they are supposed to go.
 
 Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history.
-This means that you can rename a page back to where it was just renamed from if you make a mistake, and you cannot overwrite an existing page.
+This means that you can rename a page back to where it was renamed from if you make a mistake, and you cannot overwrite an existing page.
 
 '''WARNING!'''
 This can be a drastic and unexpected change for a popular page;
@@ -2510,7 +2510,7 @@ cannot move pages from and into that namespace.',
 'exporttext'        => 'You can export the text and editing history of a particular page or set of pages wrapped in some XML.
 This can be imported into another wiki using MediaWiki via the [[Special:Import|import page]].
 
-To export pages, enter the titles in the text box below, one title per line, and select whether you want the current version as well as all old versions, with the page history lines, or just the current version with the info about the last edit.
+To export pages, enter the titles in the text box below, one title per line, and select whether you want the current version as well as all old versions, with the page history lines, or the current version with the info about the last edit.
 
 In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for the page "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Include only the current revision, not the full history',
