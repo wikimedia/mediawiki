@@ -78,11 +78,15 @@ class DoubleRedirectJob extends Job {
 			wfDebug( __METHOD__.": skipping, already good\n" );
 		}
 
+		# Preserve fragment (bug 14904)
+		$newTitle = Title::makeTitle( $newTitle->getNamespace(), $newTitle->getDBkey(), 
+			$currentDest->getFragment() );
+
 		# Fix the text
 		# Remember that redirect pages can have categories, templates, etc.,
 		# so the regex has to be fairly general
 		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x', 
-			'[[' . $newTitle->getPrefixedText() . ']]',
+			'[[' . $newTitle->getFullText() . ']]',
 			$text, 1 );
 
 		if ( $newText === $text ) {
