@@ -20,12 +20,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.14 ===
 
-None yet
+* (bug 8068) $wgAllowUserRobotsControl (false by default) can enable new
+  __INDEX__ and __NOINDEX__ magic words, which allow user control of search en-
+  gine indexing on a per-article basis.
 
 === New features in 1.14 ===
 
-* (bug 8068) New __INDEX__ and __NOINDEX__ magic words allow control of search
-engine indexing on a per-article basis.
+None yet
 
 === Bug fixes in 1.14 ===
 
