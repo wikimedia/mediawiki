@@ -1355,8 +1355,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 Template:搞清楚',
 'disambiguations-text' => "以下呢啲頁面連結去一個'''搞清楚頁'''。佢哋先至應該指去正確嘅主題。<br />如果一個頁面連結自[[MediaWiki:Disambiguationspage]]，噉就會當佢係搞清楚頁。",
 
-'doubleredirects'     => '雙重跳轉',
-'doubleredirectstext' => '呢一版列出咗全部跳轉頁跳轉到另一版跳轉頁嘅版。每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅目標。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面。',
+'doubleredirects'            => '雙重跳轉',
+'doubleredirectstext'        => '呢一版列出咗全部跳轉頁跳轉到另一版跳轉頁嘅版。每一行包括指去第一個同第二個跳轉嘅連結，以及第二個跳轉嘅目標。呢行文字通常畀出咗第一個跳轉應該指去嘅嗰個「真正」嘅目標頁面。',
+'double-redirect-fixed-move' => '[[$1]]已經搬好咗，佢而家跳轉過去[[$2]]',
+'double-redirect-fixer'      => '跳轉修正器',
 
 'brokenredirects'        => '破碎嘅跳轉',
 'brokenredirectstext'    => '以下嘅跳轉係指向唔存在嘅頁面：',
@@ -1903,6 +1905,7 @@ $1',
 'imagenocrossnamespace'   => '唔可以搬檔案到非檔案空間名',
 'imagetypemismatch'       => '個新副檔名唔配佢嘅類型',
 'imageinvalidfilename'    => '個目標檔名係無效嘅',
+'fix-double-redirects'    => '更新指到原先標題嘅任何跳轉',
 
 # Export
 'export'            => '倒出/導出/匯出（Export）頁面',

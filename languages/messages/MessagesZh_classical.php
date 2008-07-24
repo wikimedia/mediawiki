@@ -1121,8 +1121,10 @@ $2',
 'disambiguations'      => '釋義',
 'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',
 
-'doubleredirects'     => '窮渡',
-'doubleredirectstext' => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。',
+'doubleredirects'            => '窮渡',
+'doubleredirectstext'        => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。',
+'double-redirect-fixed-move' => '[[$1]]遷畢，現渡至[[$2]]',
+'double-redirect-fixer'      => '修渡',
 
 'brokenredirects'        => '斷渡',
 'brokenredirectstext'    => '頁下斷渡：',
@@ -1623,6 +1625,7 @@ $NEWPAGE
 'imagenocrossnamespace'   => '非勳檔至非檔名間',
 'imagetypemismatch'       => '其新副檔名非配其類也',
 'imageinvalidfilename'    => '標之檔名乃無效也',
+'fix-double-redirects'    => '更指原題之任渡',
 
 # Export
 'export'            => '出匯',
