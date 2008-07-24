@@ -1167,6 +1167,16 @@ END;
 	function fieldInfo( $table, $field ) {
 		return PostgresField::fromText($this, $table, $field);
 	}
+	
+	/**
+	 * pg_field_type() wrapper
+	 */
+	function fieldType( $res, $index ) {
+		if ( $res instanceof ResultWrapper ) {
+			$res = $res->result;
+		}
+		return pg_field_type( $res, $index );
+	}
 
 	function begin( $fname = 'DatabasePostgres::begin' ) {
 		$this->query( 'BEGIN', $fname );
