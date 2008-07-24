@@ -472,11 +472,15 @@ class OutputPage {
 	 * @param ParserOutput object &$parserOutput
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
+		global $wgAllowUserRobotsControl;
+
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
-		# FIXME: This probably overrides $wgArticleRobotPolicies, is that wise?
-		$this->setIndexPolicy( $parserOutput->getIndexPolicy() );
+		if( $wgAllowUserRobotsControl ) {
+			# FIXME: This probably overrides $wgArticleRobotPolicies, is that wise?
+			$this->setIndexPolicy( $parserOutput->getIndexPolicy() );
+		}
 		$this->addKeywords( $parserOutput );
 		$this->mParseWarnings = $parserOutput->getWarnings();
 		if ( $parserOutput->getCacheTime() == -1 ) {
