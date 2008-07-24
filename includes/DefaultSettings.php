@@ -2793,9 +2793,9 @@ $wgNoFollowLinks = true;
 $wgNoFollowNsExceptions = array();
 
 /**
- * Default robot policy.
- * The default policy is to encourage indexing and following of links.
- * It may be overridden on a per-namespace and/or per-page basis.
+ * Default robot policy.  The default policy is to encourage indexing and fol-
+ * lowing of links.  It may be overridden on a per-namespace and/or per-page
+ * basis.
  */
 $wgDefaultRobotPolicy = 'index,follow';
 
@@ -2814,12 +2814,21 @@ $wgDefaultRobotPolicy = 'index,follow';
 $wgNamespaceRobotPolicies = array();
 
 /**
- * Robot policies per article.
- * These override the per-namespace robot policies.
- * Must be in the form of an array where the key part is a properly
- * canonicalised text form title and the value is a robot policy.
+ * Robot policies per article. These override the per-namespace robot policies.
+ * Must be in the form of an array where the key part is a properly canonical-
+ * ised text form title and the value is a robot policy.
  * Example:
- *   $wgArticleRobotPolicies = array( 'Main Page' => 'noindex' );
+ *   $wgArticleRobotPolicies = array( 'Main Page' => 'noindex,follow',
+ *     'User:Bob' => 'index,follow' );
+ * Example that DOES NOT WORK because the names are not canonical text forms:
+ *   $wgArticleRobotPolicies = array(
+ *     # Underscore, not space!
+ *     'Main_Page' => 'noindex,follow',
+ *     # "Project", not the actual project name!
+ *     'Project:X' => 'index,follow',
+ *     # Needs to be "Abc", not "abc" (unless $wgCapitalLinks is false)!
+ *     'abc' => 'noindex,nofollow'
+ *   );
  */
 $wgArticleRobotPolicies = array();
 
@@ -2833,8 +2842,8 @@ $wgArticleRobotPolicies = array();
 $wgExemptFromUserRobotsControl = null;
 
 /**
- * Specifies the minimal length of a user password. If set to
- * 0, empty passwords are allowed.
+ * Specifies the minimal length of a user password. If set to 0, empty pass-
+ * words are allowed.
  */
 $wgMinimalPasswordLength = 0;
 
@@ -2849,9 +2858,8 @@ $wgUseExternalEditor = true;
 $wgSortSpecialPages = true;
 
 /**
- * Specify the name of a skin that should not be presented in the
- * list of available skins.
- * Use for blacklisting a skin which you do not want to remove
+ * Specify the name of a skin that should not be presented in the list of a-
+ * vailable skins.  Use for blacklisting a skin which you do not want to remove
  * from the .../skins/ directory
  */
 $wgSkipSkin = '';
@@ -2863,7 +2871,8 @@ $wgSkipSkins = array(); # More of the same
 $wgDisabledActions = array();
 
 /**
- * Disable redirects to special pages and interwiki redirects, which use a 302 and have no "redirected from" link
+ * Disable redirects to special pages and interwiki redirects, which use a 302
+ * and have no "redirected from" link.
  */
 $wgDisableHardRedirects = false;
 
@@ -2874,21 +2883,19 @@ $wgEnableSorbs = false;
 $wgSorbsUrl = 'http.dnsbl.sorbs.net.';
 
 /**
- * Proxy whitelist, list of addresses that are assumed to be non-proxy despite what the other
- * methods might say
+ * Proxy whitelist, list of addresses that are assumed to be non-proxy despite
+ * what the other methods might say.
  */
 $wgProxyWhitelist = array();
 
 /**
- * Simple rate limiter options to brake edit floods.
- * Maximum number actions allowed in the given number of seconds;
- * after that the violating client receives HTTP 500 error pages
- * until the period elapses.
+ * Simple rate limiter options to brake edit floods.  Maximum number actions
+ * allowed in the given number of seconds; after that the violating client re-
+ * ceives HTTP 500 error pages until the period elapses.
  *
  * array( 4, 60 ) for a maximum of 4 hits in 60 seconds.
  *
- * This option set is experimental and likely to change.
- * Requires memcached.
+ * This option set is experimental and likely to change. Requires memcached.
  */
 $wgRateLimits = array(
 	'edit' => array(
