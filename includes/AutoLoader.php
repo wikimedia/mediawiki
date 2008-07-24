@@ -7,7 +7,8 @@ ini_set('unserialize_callback_func', '__autoload' );
 # Locations of core classes
 # Extension classes are specified with $wgAutoloadClasses
 # This array is a global instead of a static member of AutoLoader to work around a bug in APC
-global $wgAutoloadLocalClasses = array( 
+global $wgAutoloadLocalClasses;
+$wgAutoloadLocalClasses = array( 
 	# Includes
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 	'AjaxResponse' => 'includes/AjaxResponse.php',
@@ -466,7 +467,7 @@ global $wgAutoloadLocalClasses = array(
 
 );
 
-class AutoLoader
+class AutoLoader {
 	/**
 	 * autoload - take a class name and attempt to load it
 	 * 
