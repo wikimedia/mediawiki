@@ -833,7 +833,7 @@ $wgAmericanDates    = false;
  * For Hindi and Arabic use local numerals instead of Western style (0-9)
  * numerals in interface.
  */
-$wgTranslateNumerals = true;
+$wgTranslateNumerals = false;
 
 /**
  * Translation using MediaWiki: namespace.
