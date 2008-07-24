@@ -1180,19 +1180,13 @@ Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de 
 'upload_directory_missing'    => 'De Dateimapp för hoochladene Datein ($1) fehlt un de Webserver kunn ehr ok nich nee opstellen.',
 'upload_directory_read_only'  => 'De Server kann nich in’n Orner för dat Hoochladen vun Datein ($1) schrieven.',
 'uploaderror'                 => 'Fehler bi dat Hoochladen',
-'uploadtext'                  => "Bruuk dat Formular, üm niege Biller hoochtoladen un disse in Sieten to bruken.
-Üm hoochladene Biller to söken un antokieken, geih to de [[Special:Imagelist|List vun hoochladene Biller]].
+'uploadtext'                  => "Bruuk dit Formular, ne’e Datein hoochtoladen.
+Dat du hoochladene Datein söken un ankieken kannst, gah na de [[Special:Imagelist|List vun hoochladene Datein]]. Dat Hoochladen un Wegsmieten vun Datein warrt ok in dat [[Special:Log/upload|Hoochlade-Logbook]] fasthollen.
 
-In de mehrsten Browser warrt en „Durchsuchen“-Feld wiest, dat en Standard-Dateidialog apent.
-Wähl de Datei ut, de du hoochladen wullst. De Dateinaam warrt denn in dat Textfeld wiest.
-Bestätig dann den Copyright-Henwies.
-Toletzt muttst du den „Hoochladen“-Knopp klicken.
-Dat kann en Stoot duern, sünnerlich bi en langsamen Internet-Verbinnen.
-
-För Fotos is dat JPEG-Format, för Grafiken un Symbolen dat PNG-Format best.
-Üm en Bild in en Siet to bruken, schriev an Stell vun dat Bild
-'''[[Image:datei.jpg]]''' oder
-'''[[Image:datei.jpg|Beschrieven]]'''.",
+Üm en Datei in en Sied to bruken, schriev dat hier in de Sied rin:
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:datei.jpg]]</nowiki>''' oder
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:datei.jpg|Beschrieven]]</nowiki>''' oder
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' för en direkten Lenk op de Datei.",
 'upload-permitted'            => 'Verlöövte Dateitypen: $1.',
 'upload-preferred'            => 'Vörtagene Dateitypen: $1.',
 'upload-prohibited'           => 'Verbadene Dateitypen: $1.',
@@ -1393,11 +1387,13 @@ Dorvun {{PLURAL:$2|hett '''een'''|hebbt '''$2'''}} {{PLURAL:$1||($4 %)}} $5-Rech
 'disambiguationspage'  => 'Template:Mehrdüdig_Begreep',
 'disambiguations-text' => 'Disse Sieden wist na Sieden för mehrdüdige Begrepen. Se schöölt lever op de Sieden wiesen, de egentlich meent sünd.<br />Ene Siet warrt as Siet för en mehrdüdigen Begreep ansehn, wenn [[MediaWiki:Disambiguationspage]] na ehr wiest.<br />Lenken ut annere Naamrüüm sünd nich mit in de List.',
 
-'doubleredirects'     => 'Dubbelte Wiederleiden',
-'doubleredirectstext' => '<b>Wohrscho:</b> Disse List kann „falsche Positive“ bargen.
+'doubleredirects'            => 'Dubbelte Wiederleiden',
+'doubleredirectstext'        => '<b>Wohrscho:</b> Disse List kann „falsche Positive“ bargen.
 Dat passeert denn, wenn en Wiederleiden blangen de Wiederleiden-Verwies noch mehr Text mit annere Verwiesen hett.
 De schallen denn löscht warrn. Elk Reeg wiest de eerste un tweete Wiederleiden un de eerste Reeg Text ut de Siet,
 to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleiden mehrst wiesen schall.',
+'double-redirect-fixed-move' => '[[$1]] is schaven worrn un wiest nu na [[$2]]',
+'double-redirect-fixer'      => 'Redirect-Utbeterer',
 
 'brokenredirects'        => 'Kaputte Wiederleiden',
 'brokenredirectstext'    => 'Disse Wiederleiden wiest na en Siet, de dat nich gifft.',
@@ -1787,89 +1783,90 @@ $1',
 'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
-'blockip'                     => 'IP-Adress blocken',
-'blockip-legend'              => 'Bruker blocken',
-'blockiptext'                 => 'Bruuk dat Formular, ene IP-Adress to blocken.
+'blockip'                         => 'IP-Adress blocken',
+'blockip-legend'                  => 'Bruker blocken',
+'blockiptext'                     => 'Bruuk dat Formular, ene IP-Adress to blocken.
 Dit schall blots maakt warrn, Vandalismus to vermasseln, aver jümmer in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]].
 Ok den Grund för dat Blocken indregen.',
-'ipaddress'                   => 'IP-Adress',
-'ipadressorusername'          => 'IP-Adress oder Brukernaam:',
-'ipbexpiry'                   => 'Aflooptiet',
-'ipbreason'                   => 'Grund',
-'ipbreasonotherlist'          => 'Annern Grund',
-'ipbreason-dropdown'          => '* Allgemene Sperrgrünn
+'ipaddress'                       => 'IP-Adress',
+'ipadressorusername'              => 'IP-Adress oder Brukernaam:',
+'ipbexpiry'                       => 'Aflooptiet',
+'ipbreason'                       => 'Grund',
+'ipbreasonotherlist'              => 'Annern Grund',
+'ipbreason-dropdown'              => '* Allgemene Sperrgrünn
 ** Tofögen vun verkehrte Infos
 ** Leddigmaken vun Sieden
 ** Schrifft Tüdelkraam in Sieden
 ** Bedroht annere
 ** Brukernaam nich akzeptabel',
-'ipbanononly'                 => 'Blot anonyme Brukers blocken',
-'ipbcreateaccount'            => 'Anleggen vun Brukerkonto verhinnern',
-'ipbemailban'                 => 'E-Mail schrieven sperren',
-'ipbenableautoblock'          => 'Sperr de aktuell vun dissen Bruker bruukte IP-Adress un automaatsch all de annern, vun de ut he Sieden ännern oder Brukers anleggen will',
-'ipbsubmit'                   => 'Adress blocken',
-'ipbother'                    => 'Annere Tiet:',
-'ipboptions'                  => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'              => 'Annere Duer',
-'ipbotherreason'              => 'Annern Grund:',
-'ipbhidename'                 => 'Brukernaam in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
-'ipbwatchuser'                => 'Op Brukersiet un Brukerdiskuschoon oppassen',
-'badipaddress'                => 'De IP-Adress hett en falsch Format.',
-'blockipsuccesssub'           => 'Blocken hett Spood',
-'blockipsuccesstext'          => 'De IP-Adress „$1“ is nu blockt.
+'ipbanononly'                     => 'Blot anonyme Brukers blocken',
+'ipbcreateaccount'                => 'Anleggen vun Brukerkonto verhinnern',
+'ipbemailban'                     => 'E-Mail schrieven sperren',
+'ipbenableautoblock'              => 'Sperr de aktuell vun dissen Bruker bruukte IP-Adress un automaatsch all de annern, vun de ut he Sieden ännern oder Brukers anleggen will',
+'ipbsubmit'                       => 'Adress blocken',
+'ipbother'                        => 'Annere Tiet:',
+'ipboptions'                      => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'Annere Duer',
+'ipbotherreason'                  => 'Annern Grund:',
+'ipbhidename'                     => 'Brukernaam in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
+'ipbwatchuser'                    => 'Op Brukersiet un Brukerdiskuschoon oppassen',
+'badipaddress'                    => 'De IP-Adress hett en falsch Format.',
+'blockipsuccesssub'               => 'Blocken hett Spood',
+'blockipsuccesstext'              => 'De IP-Adress „$1“ is nu blockt.
 
 <br />Op de [[Special:Ipblocklist|IP-Blocklist]] is en List vun alle Blocks to finnen.',
-'ipb-edit-dropdown'           => 'Blockgrünn bearbeiden',
-'ipb-unblock-addr'            => '„$1“ freegeven',
-'ipb-unblock'                 => 'IP-Adress/Bruker freegeven',
-'ipb-blocklist-addr'          => 'Aktuelle Sperren för „$1“ wiesen',
-'ipb-blocklist'               => 'Aktuelle Sperren wiesen',
-'unblockip'                   => 'IP-Adress freegeven',
-'unblockiptext'               => 'Bruuk dat Formular, üm en blockte IP-Adress freetogeven.',
-'ipusubmit'                   => 'Disse Adress freegeven',
-'unblocked'                   => '[[User:$1|$1]] freegeven',
-'unblocked-id'                => 'Sperr $1 freegeven',
-'ipblocklist'                 => 'List vun blockte IP-Adressen',
-'ipblocklist-legend'          => 'Blockten Bruker finnen',
-'ipblocklist-username'        => 'Brukernaam oder IP-Adress:',
-'ipblocklist-submit'          => 'Söken',
-'blocklistline'               => '$1, $2 hett $3 blockt ($4)',
-'infiniteblock'               => 'unbegrenzt',
-'expiringblock'               => 'löppt $1 af',
-'anononlyblock'               => 'blot Anonyme',
-'noautoblockblock'            => 'Autoblock afstellt',
-'createaccountblock'          => 'Brukerkonten opstellen sperrt',
-'emailblock'                  => 'E-Mail schrieven sperrt',
-'ipblocklist-empty'           => 'De List is leddig.',
-'ipblocklist-no-results'      => 'De söchte IP-Adress/Brukernaam is nich sperrt.',
-'blocklink'                   => 'blocken',
-'unblocklink'                 => 'freegeven',
-'contribslink'                => 'Bidrääg',
-'autoblocker'                 => 'Automatisch Block, vun wegen dat du en IP-Adress bruukst mit „$1“. Grund: „$2“.',
-'blocklogpage'                => 'Brukerblock-Logbook',
-'blocklogentry'               => 'block [[$1]] för en Tiedruum vun: $2 $3',
-'blocklogtext'                => 'Dit is en Logbook över Blocks un Freegaven vun Brukern. Automatisch blockte IP-Adressen sünd nich opföhrt.
+'ipb-edit-dropdown'               => 'Blockgrünn bearbeiden',
+'ipb-unblock-addr'                => '„$1“ freegeven',
+'ipb-unblock'                     => 'IP-Adress/Bruker freegeven',
+'ipb-blocklist-addr'              => 'Aktuelle Sperren för „$1“ wiesen',
+'ipb-blocklist'                   => 'Aktuelle Sperren wiesen',
+'unblockip'                       => 'IP-Adress freegeven',
+'unblockiptext'                   => 'Bruuk dat Formular, üm en blockte IP-Adress freetogeven.',
+'ipusubmit'                       => 'Disse Adress freegeven',
+'unblocked'                       => '[[User:$1|$1]] freegeven',
+'unblocked-id'                    => 'Sperr $1 freegeven',
+'ipblocklist'                     => 'List vun blockte IP-Adressen',
+'ipblocklist-legend'              => 'Blockten Bruker finnen',
+'ipblocklist-username'            => 'Brukernaam oder IP-Adress:',
+'ipblocklist-submit'              => 'Söken',
+'blocklistline'                   => '$1, $2 hett $3 blockt ($4)',
+'infiniteblock'                   => 'unbegrenzt',
+'expiringblock'                   => 'löppt $1 af',
+'anononlyblock'                   => 'blot Anonyme',
+'noautoblockblock'                => 'Autoblock afstellt',
+'createaccountblock'              => 'Brukerkonten opstellen sperrt',
+'emailblock'                      => 'E-Mail schrieven sperrt',
+'ipblocklist-empty'               => 'De List is leddig.',
+'ipblocklist-no-results'          => 'De söchte IP-Adress/Brukernaam is nich sperrt.',
+'blocklink'                       => 'blocken',
+'unblocklink'                     => 'freegeven',
+'contribslink'                    => 'Bidrääg',
+'autoblocker'                     => 'Automatisch Block, vun wegen dat du en IP-Adress bruukst mit „$1“. Grund: „$2“.',
+'blocklogpage'                    => 'Brukerblock-Logbook',
+'blocklogentry'                   => 'block [[$1]] för en Tiedruum vun: $2 $3',
+'blocklogtext'                    => 'Dit is en Logbook över Blocks un Freegaven vun Brukern. Automatisch blockte IP-Adressen sünd nich opföhrt.
 Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.',
-'unblocklogentry'             => 'Block vun [[$1]] ophoven',
-'block-log-flags-anononly'    => 'blots anonyme Brukers',
-'block-log-flags-nocreate'    => 'Brukerkonten opstellen sperrt',
-'block-log-flags-noautoblock' => 'Autoblock utschalt',
-'block-log-flags-noemail'     => 'E-Mail schrieven sperrt',
-'range_block_disabled'        => 'De Mööglichkeit, ganze Adressrüüm to sparren, is nich aktiveert.',
-'ipb_expiry_invalid'          => 'De angeven Aflooptiet is nich güllig.',
-'ipb_expiry_temp'             => 'Versteken Brukernaam-Sperren schöölt duurhaft wesen.',
-'ipb_already_blocked'         => '„$1“ is al blockt.',
-'ipb_cant_unblock'            => 'Fehler: Block-ID $1 nich funnen. De Sperr is villicht al wedder ophoven.',
-'ipb_blocked_as_range'        => 'Fehler: De IP-Adress $1 is as Deel vun de IP-Reeg $2 indirekt sperrt worrn. De Sperr trüchnehmen för $1 alleen geiht nich.',
-'ip_range_invalid'            => 'Ungüllig IP-Addressrebeet.',
-'blockme'                     => 'Sperr mi',
-'proxyblocker'                => 'Proxyblocker',
-'proxyblocker-disabled'       => 'Disse Funkschoon is afstellt.',
-'proxyblockreason'            => 'Dien IP-Adress is blockt, vun wegen dat se en apenen Proxy is.
+'unblocklogentry'                 => 'Block vun [[$1]] ophoven',
+'block-log-flags-anononly'        => 'blots anonyme Brukers',
+'block-log-flags-nocreate'        => 'Brukerkonten opstellen sperrt',
+'block-log-flags-noautoblock'     => 'Autoblock utschalt',
+'block-log-flags-noemail'         => 'E-Mail schrieven sperrt',
+'block-log-flags-angry-autoblock' => 'utwiedt Autoblock aktiv',
+'range_block_disabled'            => 'De Mööglichkeit, ganze Adressrüüm to sparren, is nich aktiveert.',
+'ipb_expiry_invalid'              => 'De angeven Aflooptiet is nich güllig.',
+'ipb_expiry_temp'                 => 'Versteken Brukernaam-Sperren schöölt duurhaft wesen.',
+'ipb_already_blocked'             => '„$1“ is al blockt.',
+'ipb_cant_unblock'                => 'Fehler: Block-ID $1 nich funnen. De Sperr is villicht al wedder ophoven.',
+'ipb_blocked_as_range'            => 'Fehler: De IP-Adress $1 is as Deel vun de IP-Reeg $2 indirekt sperrt worrn. De Sperr trüchnehmen för $1 alleen geiht nich.',
+'ip_range_invalid'                => 'Ungüllig IP-Addressrebeet.',
+'blockme'                         => 'Sperr mi',
+'proxyblocker'                    => 'Proxyblocker',
+'proxyblocker-disabled'           => 'Disse Funkschoon is afstellt.',
+'proxyblockreason'                => 'Dien IP-Adress is blockt, vun wegen dat se en apenen Proxy is.
 Kontakteer dien Provider oder diene Systemtechnik un informeer se över dat möögliche Sekerheitsproblem.',
-'proxyblocksuccess'           => 'Trech.',
-'sorbsreason'                 => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY.',
-'sorbs_create_account_reason' => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY. Du kannst keen Brukerkonto nee opstellen.',
+'proxyblocksuccess'               => 'Trech.',
+'sorbsreason'                     => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY.',
+'sorbs_create_account_reason'     => 'Diene IP-Adress steiht in de DNSBL vun {{SITENAME}} as apen PROXY. Du kannst keen Brukerkonto nee opstellen.',
 
 # Developer tools
 'lockdb'              => 'Datenbank sparren',
@@ -1948,6 +1945,8 @@ De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schav
 'immobile_namespace'      => 'De Utgangs- oder Teelnaamruum is schuult; Schuven na oder ut dissen Naamruum geiht nich.',
 'imagenocrossnamespace'   => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
 'imagetypemismatch'       => 'De ne’e Dateiennen passt nich to de ole',
+'imageinvalidfilename'    => 'De ne’e Dateinaam is ungüllig',
+'fix-double-redirects'    => 'All Redirects, de na den olen Titel wiest, op den ne’en ännern',
 
 # Export
 'export'            => 'Sieden exporteren',

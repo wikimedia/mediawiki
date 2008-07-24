@@ -12,12 +12,12 @@
  * @author Iradigalesc
  * @author לערי ריינהארט
  * @author Jordi Roqué
+ * @author Vriullop
  * @author Juanpabl
  * @author Spacebirdy
- * @author Vriullop
+ * @author Pérez
  * @author Jon Harald Søby
  * @author McDutchie
- * @author Pérez
  * @author SPQRobin
  * @author Smeira
  */
@@ -1380,7 +1380,7 @@ Per això, caldria que enllacessin al tema apropiat.<br />
 Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Redireccions dobles',
-'doubleredirectstext' => '<b>Atenció:</b> aquest llistat pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
+'doubleredirectstext' => '<b>Atenció:</b> aquesta llista pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
 Cada fila conté enllaços a la segona i tercera redirecció, així com la primera línia de la segona redirecció, la qual cosa dóna normalment l\'article "real", al que el primer redirecció hauria d\'apuntar.',
 
 'brokenredirects'        => 'Redireccions rompudes',
@@ -1630,7 +1630,7 @@ Mostra $2 per a un registre dels esborrats més recents.',
 'deletedarticle'              => 'eliminat "[[$1]]"',
 'suppressedarticle'           => "s'ha suprimit «[[$1]]»",
 'dellogpage'                  => "Registre d'eliminació",
-'dellogpagetext'              => 'Davall hi ha un llistat dels esborraments més recents.',
+'dellogpagetext'              => 'Davall hi ha una llista dels esborraments més recents.',
 'deletionlog'                 => "Registre d'esborrats",
 'reverted'                    => 'Invertit amb una revisió anterior',
 'deletecomment'               => 'Motiu per a ser esborrat:',
@@ -1888,7 +1888,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'lockdb'              => 'Bloca la base de dades',
 'unlockdb'            => 'Desbloca la base de dades',
 'lockdbtext'          => "Blocant la base de dades s'anul·larà la capacitat de tots els
-usuaris d'editar pàgines, canviar les preferències, editar els llistats de seguiments, i
+usuaris d'editar pàgines, canviar les preferències, editar la llista de seguiment, i
 altres canvis que requereixen canvis en la base de dades.
 Confirmeu que això és el que intenteu fer, i sobretot no us oblideu
 de desblocar la base de dades quan acabeu el manteniment.",

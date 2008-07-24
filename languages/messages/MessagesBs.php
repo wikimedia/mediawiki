@@ -532,13 +532,13 @@ Ukoliko ne želite da vaši članci budu podložni izmjenama i slobodnom rastura
 nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da ste ga napisali sami, ili da ste ga kopirali iz izvora u javnom domenu ili sličnog slobodnog izvora.
 
 <strong>NEMOJTE SLATI RAD ZAŠTIĆEN AUTORSKIM PRAVIMA BEZ DOZVOLE AUTORA!</strong>',
-'longpagewarning'          => '<strong>PAŽNJA:  Ova stranica ima $1 kilobajta; niki
-brauzeri mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
+'longpagewarning'          => '<strong>PAŽNJA: Ova stranica ima $1 kilobajta; neki
+preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
 Molimo Vas da razmotrite razbijanje stranice na manje dijelove.</strong>',
 'readonlywarning'          => '<strong>PAŽNJA:  Baza je zaključana zbog održavanja,
 tako da nećete moći da sačuvate svoje izmjene za sada.  Možda želite da kopirate
 i nalijepite tekst u tekst editor i sačuvate ga za kasnije.</strong>',
-'protectedpagewarning'     => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorkim privilegijama mogu da je mijenjaju.</strong>',
+'protectedpagewarning'     => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorskim privilegijama mogu da je mijenjaju.</strong>',
 'semiprotectedpagewarning' => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
 'templatesused'            => 'Šabloni koji su upotrebljeni na ovoj stranici:',
 'template-protected'       => '(zaštićeno)',
@@ -578,9 +578,9 @@ Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 'searchresulttext'      => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "Tražili ste '''[[:$1]]'''",
 'searchsubtitleinvalid' => 'Tražili ste $1',
-'noexactmatch'          => "Nema stranice sa takvim imenom.
+'noexactmatch'          => "Nema stranice sa imenom \"\$1\".
 
-Možete '''[[:$1|da napravite članak sa tim naslovom]]''' ili [[{{MediaWiki:Helppage}}|da stavite zahtjev za ovaj članak]] ili [[Special:Allpages/$1|potražite na drugim stranicama]].
+Možete '''[[:\$1|da napravite članak sa tim naslovom]]''' ili [[{{MediaWiki:Helppage}}|da stavite zahtjev za ovaj članak]] ili [[Special:Allpages/\$1|potražite na drugim stranicama]].
 
 ::*'''''<u>Opomena: Nemojte da kopirate materijale za koje nemate dozvolu!</u>'''''",
 'titlematches'          => 'Naslov članka odgovara',
@@ -722,7 +722,7 @@ da bi ste slali fajlove.',
 'filehist-filesize'   => 'Veličina datoteke',
 'filehist-comment'    => 'Komentar',
 'imagelinks'          => 'Upotreba slike',
-'linkstoimage'        => 'Sledeće stranice koriste ovu sliku:',
+'linkstoimage'        => '{{PLURAL:$1|Slijedeća stranica koristi|Slijedećih $1 stranica koriste}} ovu sliku:',
 'nolinkstoimage'      => 'Nema stranica koje koriste ovu sliku.',
 'sharedupload'        => 'Ova datoteka se nalazi na [[Commons:Početna strana|Wikimedia Commons]] i može se koristiti i na drugim projektima.',
 
@@ -1047,7 +1047,7 @@ na članak pod novim imenom. Linkovi koji vode na članak sa
 starim imenom neće biti preusmjereni. Vaša je dužnost da se 
 pobrinete da svi linkovi koji vode na članak sa starim imenom 
 budu adekvatno preusmjereni (stranica posebne namjene za 
-[[Special:Maintenance|održavanje]] je korisna za obavještenje 
+održavanje je korisna za obavještenje 
 o mrtvim i duplim preusmjerenjima).
 
 Imajte na umu da članak '''neće''' biti preusmjeren ukoliko 
@@ -1093,7 +1093,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 # Namespace 8 related
 'allmessages'               => 'Sve sistemske poruke',
 'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:mediawiki}} imenskom prostoru.',
-'allmessagesnotsupportedDB' => '[[{{ns:special}}:Allmessages|sistemske poruke]] nisu podržane zato što je <i>wgUseDatabaseMessages</i> isključen.',
+'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 
 # Thumbnails
 'thumbnail-more'  => 'uvećajte',

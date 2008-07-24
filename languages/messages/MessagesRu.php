@@ -16,8 +16,8 @@
  * @author EugeneZelenko
  * @author Innv
  * @author Flrn
- * @author HalanTul
  * @author AlexSm
+ * @author HalanTul
  * @author MaxSem
  * @author Kaganer
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
@@ -2048,6 +2048,7 @@ IP-адреса.',
 'imagenocrossnamespace'   => 'Невозможно дать изображению имя из другого пространства имён',
 'imagetypemismatch'       => 'Новое расширение файла не соответствует его типу',
 'imageinvalidfilename'    => 'Целевое имя файла ошибочно',
+'fix-double-redirects'    => 'Исправить перенаправления на прежнее название',
 
 # Export
 'export'            => 'Экспортирование статей',

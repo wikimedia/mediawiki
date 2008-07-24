@@ -1396,8 +1396,10 @@ O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tare
 'disambiguations-text' => "As páginas a seguir ligam a \"''páginas de desambiguação''\" ao invés de aos tópicos adequados.<br /> 
 Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redireccionamentos duplos',
-'doubleredirectstext' => 'Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino "real", que devia ser o destino do primeiro redireccionamento.',
+'doubleredirects'            => 'Redireccionamentos duplos',
+'doubleredirectstext'        => 'Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino "real", que devia ser o destino do primeiro redireccionamento.',
+'double-redirect-fixed-move' => '[[$1]] foi movido, passando a redirecionar para [[$2]]',
+'double-redirect-fixer'      => 'Corretor de redirecionamentos',
 
 'brokenredirects'        => 'Redireccionamentos quebrados',
 'brokenredirectstext'    => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
@@ -1956,6 +1958,7 @@ A página de destino ("[[$1]]") já existe. Deseja eliminá-la de modo a poder m
 'imagenocrossnamespace'   => 'Não é possível mover imagem para espaço nominal que não de imagens',
 'imagetypemismatch'       => 'A extensão do novo ficheiro não corresponde ao seu tipo',
 'imageinvalidfilename'    => 'O nome do ficheiro alvo é inválido',
+'fix-double-redirects'    => 'Atualizar todos os redirecionamentos que apontem para o título original',
 
 # Export
 'export'            => 'Exportação de páginas',
