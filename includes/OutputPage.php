@@ -472,15 +472,23 @@ class OutputPage {
 	 * @param ParserOutput object &$parserOutput
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
-		global $wgAllowUserRobotsControl;
+		global $wgTitle, $wgExemptFromUserRobotsControl, $wgContentNamespaces;
 
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
-		if( $wgAllowUserRobotsControl ) {
-			# FIXME: This probably overrides $wgArticleRobotPolicies, is that wise?
+
+		if( is_null( $wgExemptFromUserRobotsControl ) ) {
+			$bannedNamespaces = $wgContentNamespaces;
+		} else {
+			$bannedNamespaces = $wgExemptFromUserRobotsControl;
+		}
+		if( !in_array( $wgTitle->getNamespace(), $bannedNamespaces ) ) {
+			# FIXME (bug 14900): This overrides $wgArticleRobotPolicies, and it
+			# shouldn't
 			$this->setIndexPolicy( $parserOutput->getIndexPolicy() );
 		}
+
 		$this->addKeywords( $parserOutput );
 		$this->mParseWarnings = $parserOutput->getWarnings();
 		if ( $parserOutput->getCacheTime() == -1 ) {

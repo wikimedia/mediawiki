@@ -2824,11 +2824,13 @@ $wgNamespaceRobotPolicies = array();
 $wgArticleRobotPolicies = array();
 
 /**
- * Set to true to allow the __INDEX__ and __NOINDEX__ magic words to function.
- * These will allow users to control whether any page they can edit is indexed
- * by search engines.
+ * An array of namespace keys in which the __INDEX__/__NOINDEX__ magic words
+ * will not function, so users can't decide whether pages in that namespace are
+ * indexed by search engines.  If set to null, default to $wgContentNamespaces.
+ * Example:
+ *   $wgExemptFromUserRobotsControl = array( NS_MAIN, NS_TALK, NS_PROJECT );
  */
-$wgAllowUserRobotsControl = false;
+$wgExemptFromUserRobotsControl = null;
 
 /**
  * Specifies the minimal length of a user password. If set to
