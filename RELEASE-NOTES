@@ -23,6 +23,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgExemptFromUserRobotsControl is an array of namespaces to be exempt from
   the effect of the new __INDEX__/__NOINDEX__ magic words.  (Default: null, ex-
   empt all content namespaces.)
+* $wgTranslateNumerals is now set to false by default. Those who wants to use the
+  Eastern Arabic numerals should set it to true.
 
 === New features in 1.14 ===
 
