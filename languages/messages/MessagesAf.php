@@ -1402,6 +1402,7 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 ** Op aanvraag van outeur
 ** Skending van kopieregte
 ** Vandalisme',
+'delete-edit-reasonlist'      => 'Wysig skrap redes',
 'rollback'                    => 'Rol veranderinge terug',
 'rollback_short'              => 'Rol terug',
 'rollbacklink'                => 'Rol terug',

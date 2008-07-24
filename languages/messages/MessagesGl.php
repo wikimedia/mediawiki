@@ -1294,8 +1294,10 @@ A lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
 Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 
-'doubleredirects'     => 'Redireccións dobres',
-'doubleredirectstext' => 'Esta páxina contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é usualmente o artigo "real", á que a primeira redirección debería apuntar.',
+'doubleredirects'            => 'Redireccións dobres',
+'doubleredirectstext'        => 'Esta páxina contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é usualmente o artigo "real", á que a primeira redirección debería apuntar.',
+'double-redirect-fixed-move' => 'A páxina "[[$1]]" foi movida, agora é unha redirección cara a "[[$2]]"',
+'double-redirect-fixer'      => 'Amañador de redireccións',
 
 'brokenredirects'        => 'Redireccións rotas',
 'brokenredirectstext'    => 'Estas redireccións ligan cara a unha páxina que non existe:',
@@ -1853,6 +1855,7 @@ O artigo de destino "[[$1]]" xa existe. Quéreo eliminar para facer sitio para m
 'imagenocrossnamespace'   => 'Non se pode mover o ficheiro a un espazo de nomes que non o admite',
 'imagetypemismatch'       => 'A nova extensión do fiheiro non coincide co seu tipo',
 'imageinvalidfilename'    => 'O nome da imaxe é inválido',
+'fix-double-redirects'    => 'Actualizar calquera redirección que apunte cara ao título orixinal',
 
 # Export
 'export'            => 'Exportar páxinas',

@@ -1359,9 +1359,11 @@ La coda dei processi da eseguire in background contiene {{PLURAL:\$7|'''1''' ele
 'disambiguationspage'  => 'Template:Disambigua',
 'disambiguations-text' => "Le pagine nella lista che segue contengono dei collegamenti a '''pagine di disambiguazione''' e non all'argomento cui dovrebbero fare riferimento.<br />Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redirect doppi',
-'doubleredirectstext' => '<b>Attenzione:</b> Questa lista può contenere risultati errati, ad esempio nel caso in cui il comando #REDIRECT sia seguito da altro testo o collegamenti.<br />
+'doubleredirects'            => 'Redirect doppi',
+'doubleredirectstext'        => '<b>Attenzione:</b> Questa lista può contenere risultati errati, ad esempio nel caso in cui il comando #REDIRECT sia seguito da altro testo o collegamenti.<br />
 Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene la pagina di destinazione "corretta" alla quale dovrebbe puntare anche il primo redirect.',
+'double-redirect-fixed-move' => '[[$1]] è stata spostata, ora è un redirect a [[$2]]',
+'double-redirect-fixer'      => 'Correttore di redirct',
 
 'brokenredirects'        => 'Redirect errati',
 'brokenredirectstext'    => 'I seguenti redirect puntano a pagine inesistenti:',
@@ -1899,6 +1901,7 @@ La pagina di destinazione [[$1]] esiste già. Si desidera cancellarla per render
 'imagenocrossnamespace'   => "Non puoi spostare un'immagine fuori del namespace Immagine.",
 'imagetypemismatch'       => 'La nuova estensione del file non corrisponde alla sua reale estensione',
 'imageinvalidfilename'    => "Il nome dell'immagine non è valido",
+'fix-double-redirects'    => 'Aggiorna tutti i redirect che puntano al titolo originale',
 
 # Export
 'export'            => 'Esporta pagine',

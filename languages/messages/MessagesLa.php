@@ -1010,7 +1010,9 @@ Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutatione
 Eae ad aptas paginas magis nectendae sunt.<br />
 Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambiguationspage]] nectit.",
 
-'doubleredirects' => 'Redirectiones duplices',
+'doubleredirects'            => 'Redirectiones duplices',
+'double-redirect-fixed-move' => '[[$1]] mota est et nunc redirigit ad [[$2]]',
+'double-redirect-fixer'      => 'Rectificator redirectionum',
 
 'brokenredirects'        => 'Redirectiones fractae',
 'brokenredirectstext'    => 'Hae redirectiones ad paginas inexistentes nectunt:',
@@ -1359,11 +1361,11 @@ Adfirma te basem datorum obstruere velle, et te dein basem datorum deobstruendum
 # Move page
 'move-page-legend'        => 'Paginam movere',
 'movepagetext'            => "Formam inferam utere ad paginam renominandum et ad historiam eius ad nomen novum movendum.
-Index vetus paginam redirectionis ad indicem novum fiet.
+Titulus vetus paginam redirectionis ad titulum novum fiet.
 Nexus ad paginam veterem non mutabuntur;
 redirectiones duplices aut fractas quaerere et figere debebis.
 
-Pagina '''non''' movebitur si pagina sub indice novo iam est, nisi est vacua aut pagina redirectionis et nullam historiam habet.
+Pagina '''non''' movebitur si pagina sub titulo novo iam est, nisi est vacua aut pagina redirectionis et nullam historiam habet.
 
 '''MONITUM!'''
 Haec mutatio vehemens et improvisa potest esse pro pagina populare;
@@ -1377,7 +1379,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movearticle'             => 'Paginam movere:',
 'movenologin'             => 'Conventum non apertum',
 'movenologintext'         => 'Rationem usoris habere et [[Special:Userlogin|conventum aperire]] debes ad movendum paginam.',
-'newtitle'                => 'Ad indicem novum:',
+'newtitle'                => 'Ad titulum novum:',
 'move-watch'              => 'Hanc paginam custodire',
 'movepagebtn'             => 'Paginam movere',
 'pagemovedsub'            => 'Pagina mota est',
@@ -1401,6 +1403,7 @@ Quaesumus, titulum alterum elige.',
 Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic moveatur?',
 'delete_and_move_confirm' => 'Ita, paginam delere',
 'delete_and_move_reason'  => 'Deleta ut moveatur',
+'fix-double-redirects'    => 'Rectificare redirectiones ad titulum veterem',
 
 # Export
 'export'            => 'Paginas exportare',
