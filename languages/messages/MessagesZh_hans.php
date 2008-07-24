@@ -1299,8 +1299,10 @@ Template:消歧義
 Template:消除歧義',
 'disambiguations-text' => '以下的页面都有到<b>消含糊页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消含糊页如果它是链自[[MediaWiki:Disambiguationspage]]。',
 
-'doubleredirects'     => '双重重定向页面',
-'doubleredirectstext' => '这一页列出所有重定向页面重定向到另一个重定向页的页面。每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
+'doubleredirects'            => '双重重定向页面',
+'doubleredirectstext'        => '这一页列出所有重定向页面重定向到另一个重定向页的页面。每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
+'double-redirect-fixed-move' => '[[$1]]已经完成移动，它现在重定向到[[$2]]',
+'double-redirect-fixer'      => '重定向修正器',
 
 'brokenredirects'        => '损坏的重定向页',
 'brokenredirectstext'    => '以下的重定向页面指向的是不存在的页面:',
@@ -1865,6 +1867,7 @@ $1',
 'imagenocrossnamespace'   => '不可以移动文件到非文件名字空间',
 'imagetypemismatch'       => '该新副档名不匹配它的类型',
 'imageinvalidfilename'    => '目标文件名称是无效的',
+'fix-double-redirects'    => '更新指到原先标题的任何重定向',
 
 # Export
 'export'            => '导出页面',
