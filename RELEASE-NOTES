@@ -453,6 +453,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12568) configuration script now produce valid XHTML.
 * The accesskey to edit a page is now disabled when editing the page, to pre-
   vent conflicts with Safari shortcuts.
+* (bug 14907) DatabasePostgres::fieldType now defined.
 
 === API changes in 1.13 ===
 
