@@ -1501,8 +1501,10 @@ Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|g
 Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<br />
 En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Dubbla omdirigeringar',
-'doubleredirectstext' => 'Det här är en lista över sidor som omdirigerar till andra omdirigeringssidor. Varje rad innehåller länkar till den första och den andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.',
+'doubleredirects'            => 'Dubbla omdirigeringar',
+'doubleredirectstext'        => 'Det här är en lista över sidor som omdirigerar till andra omdirigeringssidor. Varje rad innehåller länkar till den första och den andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.',
+'double-redirect-fixed-move' => '[[$1]] har flyttats, och är nu en omdirigering till [[$2]]',
+'double-redirect-fixer'      => 'Omdirigeringsrättaren',
 
 'brokenredirects'        => 'Dåliga omdirigeringar',
 'brokenredirectstext'    => 'Följande länkar omdirigerar till sidor som inte existerar.',
@@ -2057,6 +2059,7 @@ Den titel du vill flytta sidan till, "[[$1]]", finns redan. Vill du radera den f
 'imagenocrossnamespace'   => 'Kan inte flytta bilder till andra namnrymder än bildnamnrymden',
 'imagetypemismatch'       => 'Den nya filändelsen motsvarar inte filtypen',
 'imageinvalidfilename'    => 'Önskat filnamn är ogiltigt',
+'fix-double-redirects'    => 'Uppdatera omdirigeringar som leder till den gamla titeln',
 
 # Export
 'export'            => 'Exportera sidor',

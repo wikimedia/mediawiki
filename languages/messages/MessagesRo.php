@@ -753,7 +753,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'mergehistory-invalid-destination' => 'Pagina de destinaţie trebuie să aibă un titlu valid.',
 
 # Merge log
-'mergelog' => 'Uneşte jurnalul',
+'mergelog' => 'Jurnal unificări',
 
 # Diffs
 'history-title'           => 'Istoria reviziilor pentru "$1"',

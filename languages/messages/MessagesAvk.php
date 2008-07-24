@@ -342,6 +342,10 @@ Erura : $2',
 'titleprotected'       => "Bat vergumvelt gan [[User:$1|$1]] zo reduranendar.
 Batdume : ''$2''.",
 
+# Virus scanner
+'virus-scanfailed'     => 'rodjeyena drunara ($1 beksa)',
+'virus-unknownscanner' => 'megrupena kevkioxeka :',
+
 # Login and logout pages
 'logouttitle'                => 'Solgluyara',
 'logouttext'                 => 'Rin daletoe til solgluyanaf.
@@ -1018,7 +1022,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filehist-filesize'              => 'Iyeltakaldo',
 'filehist-comment'               => 'Sebuks',
 'imagelinks'                     => 'Gluyasiki se',
-'linkstoimage'                   => 'Vlevef bueem va bata ewava ruldar :',
+'linkstoimage'                   => 'Vlevefi {{PLURAL:$1|bugluyasiki|$1 bugluyasiki}} va bat iyeltak :',
 'nolinkstoimage'                 => 'Meku bu va bata ewava ruldar.',
 'morelinkstoimage'               => 'Rupera va [[Special:Whatlinkshere/$1|lofi skedasiki]] va bat iyeltak.',
 'redirectstofile'                => 'Vlevef {{PLURAL:$1|graskan iyeltak|$1 graskan iyeltak}} va bat iyeltak :',
@@ -1104,8 +1108,9 @@ Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir 
 'disambiguations'     => 'Bu dem milyoltaca yo',
 'disambiguationspage' => '{{ns:template}}:Milyoltaca',
 
-'doubleredirects'     => 'Jontolafa graskara',
-'doubleredirectstext' => "<b>Attention:</b> cette liste peut contenir des « faux positifs ». Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la « vraie » destination. Le premier #REDIRECT devrait lier vers cette destination.",
+'doubleredirects'            => 'Jontolafa graskara',
+'doubleredirectstext'        => "<b>Attention:</b> cette liste peut contenir des « faux positifs ». Dans ce cas, c'est probablement la page du premier #REDIRECT contient aussi du texte.<br />Chaque ligne contient les liens à la 1re et 2e page de redirection, ainsi que la première ligne de cette dernière, qui donne normalement la « vraie » destination. Le premier #REDIRECT devrait lier vers cette destination.",
+'double-redirect-fixed-move' => 'arrundayan [[$1]], dure graskan kal [[$2]]',
 
 'brokenredirects'        => 'Arlizafa graskaraja yo',
 'brokenredirectstext'    => 'Kal metisu bu bata graskara yo stad.',
@@ -1205,6 +1210,7 @@ Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir 
 # Special:Categories
 'categories'                    => 'Bulomeem',
 'categoriespagetext'            => 'Radimiasa loma se moe wiki krulded :',
+'categoriesfrom'                => 'Nedira va loma tozakirafa gu :',
 'special-categories-sort-count' => 'Otafa mubera',
 'special-categories-sort-abc'   => 'Abavafa mubera',
 
@@ -1593,6 +1599,8 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'movedto'                 => 'Tolyoltayan ton',
 'movetalk'                => "Renommer aussi la page « discussion », s'il y a lieu.",
+'move-subpages'           => 'Arrundara va volveybueem, ede rotisa',
+'move-talk-subpages'      => 'Arrundara va volveybueem ke prilarabu, ede rotisa',
 'movepage-page-exists'    => '$1 bu ixam tir nume me balkon zo rotolsuter.',
 'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.',
 'movepage-page-unmoved'   => '$1 bu ko $2 me al zo rotarrundar.',
@@ -1610,6 +1618,7 @@ Kas ta askira va darka ta arrundara va in djusulal ?',
 'delete_and_move_reason'  => 'Sulayan ta dark ta arrundara',
 'selfmove'                => 'Malef vergumvelt isu kalef tid mil;
 bu ika int me zo rotarrundar.',
+'imageinvalidfilename'    => 'Jalaf iyeltakyolt tir meenaf',
 
 # Export
 'export'            => 'Budivburera',
@@ -2186,5 +2195,9 @@ $1',
 'specialpages-group-pagetools' => 'Buxekeem',
 'specialpages-group-wiki'      => 'Wiki origeem isu xekeem',
 'specialpages-group-redirects' => 'Graskara va aptabu',
+'specialpages-group-spam'      => 'Spam xekeem',
+
+# Special:Blankpage
+'blankpage' => 'Butuvlardara',
 
 );

@@ -1434,8 +1434,10 @@ Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manu
 Elles devraient plutôt pointer le sujet approprié.<br />
 Une page est traitée comme une page d’homonymie si elle utilise un modèle qui est lié à partir de [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Doubles redirections',
-'doubleredirectstext' => 'Chaque case contient des liens vers la première et la seconde redirection, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.',
+'doubleredirects'            => 'Doubles redirections',
+'doubleredirectstext'        => 'Chaque case contient des liens vers la première et la seconde redirection, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.',
+'double-redirect-fixed-move' => '[[$1]] a été renommé, ceci est maintenant une redirection vers [[$2]]',
+'double-redirect-fixer'      => 'Correcteur de redirection',
 
 'brokenredirects'        => 'Redirections cassées',
 'brokenredirectstext'    => 'Ces redirections mènent vers des pages qui n’existent pas :',
@@ -1993,6 +1995,7 @@ L’article de destination « [[$1]] » existe déjà. Voulez-vous le supprimer 
 'imagenocrossnamespace'   => 'Ne peut déplacer une image vers un espace de nommage qui ne soit pas une image.',
 'imagetypemismatch'       => 'La nouvelle extension de ce fichier ne reconnaît pas ce format.',
 'imageinvalidfilename'    => 'Le nom du fichier cible est incorrect',
+'fix-double-redirects'    => 'Mettre à jour les redirections pointant vers l’ancien titre',
 
 # Export
 'export'            => 'Exporter des pages',

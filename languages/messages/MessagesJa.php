@@ -1185,8 +1185,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'disambiguations-text' => "以下のページは'''曖昧さ回避ページ'''へリンクしています。これらのページはより適した主題のページへリンクされるべきです。<br />
 [[MediaWiki:Disambiguationspage]] からリンクされたテンプレートを使用しているページは曖昧さ回避ページと見なされます。",
 
-'doubleredirects'     => '二重リダイレクト',
-'doubleredirectstext' => '各列は最初及び2つ目のリダイレクトへのリンクが記されています。2つ目のそれ同様、最初のものを本来のページへリダイレクトしなおしてください。',
+'doubleredirects'            => '二重リダイレクト',
+'doubleredirectstext'        => '各列は最初及び2つ目のリダイレクトへのリンクが記されています。2つ目のそれ同様、最初のものを本来のページへリダイレクトしなおしてください。',
+'double-redirect-fixed-move' => '[[$1]] が移動されているため、リダイレクト先を移動先の [[$2]] へ変更しました。',
 
 'brokenredirects'        => '迷子のリダイレクト',
 'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです。',
@@ -1727,6 +1728,7 @@ $NEWPAGE
 'delete_and_move_reason'  => '移動のための削除',
 'selfmove'                => '移動元と移動先のページ名が同じです。自分自身へは移動できません。',
 'immobile_namespace'      => '移動先のページ名は特別なページです。その名前空間にページを移動することはできません。',
+'fix-double-redirects'    => 'このページへのリダイレクトがあればそのリダイレクトを修正する',
 
 # Export
 'export'            => 'ページデータの書き出し',
