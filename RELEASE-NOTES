@@ -29,7 +29,7 @@ engine indexing on a per-article basis.
 
 === Bug fixes in 1.14 ===
 
-None yet
+* (bug 14907) DatabasePostgres::fieldType now defined.
 
 === API changes in 1.14 ===
 
