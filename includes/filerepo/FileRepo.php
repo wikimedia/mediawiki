@@ -30,7 +30,8 @@ abstract class FileRepo {
 		// Optional settings
 		$this->initialCapital = true; // by default
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
-			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection', 'descriptionCacheExpiry' ) as $var )
+			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection', 
+			'descriptionCacheExpiry', 'apiThumbCacheExpiry', 'apiThumbCacheDir' ) as $var )
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];

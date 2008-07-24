@@ -31,12 +31,18 @@ class ForeignAPIFile extends File {
 	}
 
 	function transform( $params, $flags = 0 ) {
-		$thumbUrl = $this->repo->getThumbUrl(
-			$this->getName(),
-			isset( $params['width'] ) ? $params['width'] : -1,
-			isset( $params['height'] ) ? $params['height'] : -1 );
+		if ( $this->repo->apiThumbCacheExpiry > 0 ) {
+			$thumbUrl = $this->repo->getThumbUrlFromCache(
+				$this->getName(),
+				isset( $params['width'] ) ? $params['width'] : -1,
+				isset( $params['height'] ) ? $params['height'] : -1 );
+		} else {
+			$thumbUrl = $this->repo->getThumbUrl(
+				$this->getName(),
+				isset( $params['width'] ) ? $params['width'] : -1,
+				isset( $params['height'] ) ? $params['height'] : -1 );
+		}
 		if( $thumbUrl ) {
-			wfDebug( __METHOD__ . " got remote thumb $thumbUrl\n" );
 			return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );;
 		}
 		return false;
