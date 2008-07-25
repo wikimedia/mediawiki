@@ -1455,8 +1455,10 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://www.me
 Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
 Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut menggunakan templat yang terhubung ke [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Pengalihan ganda',
-'doubleredirectstext' => 'Halaman ini memuat daftar halaman yang beralih ke halaman pengalihan yang lain. Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang sebenarnya. Halaman peralihan pertama seharusnya dialihkan ke halaman target tersebut.',
+'doubleredirects'            => 'Pengalihan ganda',
+'doubleredirectstext'        => 'Halaman ini memuat daftar halaman yang beralih ke halaman pengalihan yang lain. Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang sebenarnya. Halaman peralihan pertama seharusnya dialihkan ke halaman target tersebut.',
+'double-redirect-fixed-move' => '[[$1]] telah dipindahkan, sekarang menjadi halaman peralihan ke [[$2]]',
+'double-redirect-fixer'      => 'Pengguna yang memperbaiki pengalihan',
 
 'brokenredirects'        => 'Pengalihan rusak',
 'brokenredirectstext'    => 'Halaman-halaman berikut dialihkan ke halaman yang tidak ada.',
@@ -1996,6 +1998,7 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 'imagenocrossnamespace'   => 'Tidak dapat memindahkan berkas ke ruang nama non-berkas',
 'imagetypemismatch'       => 'Ekstensi yang diberikan tidak cocok dengan tipe berkas',
 'imageinvalidfilename'    => 'Nama berkas tujuan tidak sah',
+'fix-double-redirects'    => 'Perbaiki semua pengalihan yang merujuk ke artikel aslinya',
 
 # Export
 'export'            => 'Ekspor halaman',

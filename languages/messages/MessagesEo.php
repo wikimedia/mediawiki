@@ -1311,9 +1311,11 @@ La nuna longeco de la [http://www.mediawiki.org/wiki/Manual:Job_queue laborenda 
 Ili devus anstataŭe alligi la ĝustan temon.<br />
 Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Duoblaj alidirektadoj',
-'doubleredirectstext' => '<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br />
+'doubleredirects'            => 'Duoblaj alidirektadoj',
+'doubleredirectstext'        => '<b>Atentu:</b> Eblas, ke la jena listo enhavas falsajn rezultojn. Ĝenerale, tio signifas, ke estas plua teksto kun ligiloj post la #REDIRECT.<br />
 Ĉiu linio montras ligilojn ĉe la unua kaj dua alidirektadoj, kaj la unua linio de la teksto de la dua alidirektado, kiu ĝenerale montras la "veran" artikolon, kiu devus celi la unuan alidirektadon.',
+'double-redirect-fixed-move' => '[[$1]] estis alinomita; ĝi nun alidirektas al [[$2]]',
+'double-redirect-fixer'      => 'Alidirektila riparilo',
 
 'brokenredirects'        => 'Rompitaj alidirektadoj',
 'brokenredirectstext'    => 'La jenaj alidirektadoj ligas al neekzistantaj artikoloj.',
@@ -1882,6 +1884,7 @@ La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon p
 'imagenocrossnamespace'   => 'Ne eblas movi dosieron al nedosiera nomspaco',
 'imagetypemismatch'       => 'La nova dosierfinaĵo ne kongruas ĝian dosiertipon.',
 'imageinvalidfilename'    => 'La cela dosiernomo estas nevalida',
+'fix-double-redirects'    => 'Ĝisdatigi iujn alidirektilojn kiuj direktas al la originala titolo',
 
 # Export
 'export'            => 'Eksporti paĝojn',

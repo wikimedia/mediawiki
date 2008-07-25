@@ -421,9 +421,9 @@ All Spezialsäiten déi et gëtt sinn op der [[Special:Specialpages|Lescht vun d
 'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
 'readonly'             => "D'Datebank ass gespaart",
 'enterlockreason'      => "Gitt w.e.g. e Grond u firwat d'Datebak gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
-'readonlytext'         => 'Datebank ass am Moment fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
+'readonlytext'         => 'Datebank ass elo fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
 
-Den Administrateur huet folgend Erklärung uginn: $1',
+Den Administrateur huet dës Erklärung uginn: $1',
 'missingarticle-rev'   => '(Versiounsnummer: $1)',
 'missingarticle-diff'  => '(Ënnerscheed tësche Versiounen: $1, $2)',
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
@@ -1077,7 +1077,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'rcnote'                            => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}, Stand: $4 ëm $5 Auer.",
 'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
-'rclistfrom'                        => 'Nëmmen Ännerungen zënter $1 weisen.',
+'rclistfrom'                        => 'Weis Ännerunge vun $1 un',
 'rcshowhideminor'                   => 'Kleng Ännerunge $1',
 'rcshowhidebots'                    => 'Botte $1',
 'rcshowhideliu'                     => 'Ugemellte Benotzer $1',
@@ -1102,8 +1102,8 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'recentchangeslinked'          => 'Ännerungen op verlinkte Säiten',
 'recentchangeslinked-title'    => 'Ännerungen a Verbindung matt "$1"',
 'recentchangeslinked-noresult' => 'Am ausgewielten Zäitraum goufen op de verlinkte Säite keng Ännerunge gemaach.',
-'recentchangeslinked-summary'  => "Dëst ass eng Lëscht matt Ännerungen vu verlinkte Säiten op eng Bestëmmte Säit (oder vu Membersäite vun der spetifiéierter Kategorie).
-Säiten  vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] si '''fett''' geschriwwen.",
+'recentchangeslinked-summary'  => "Dëst ass eng Lëscht matt Ännerunge vu verlinkte Säiten op eng bestëmmte Säit (oder vu Membersäite vun der spetifizéierter Kategorie).
+Säite vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] si '''fett''' geschriwwen.",
 'recentchangeslinked-page'     => 'Säitennumm:',
 'recentchangeslinked-to'       => 'Weis Ännerungen zu de verlinkte Säiten aplaz vun der gefroter Säit',
 

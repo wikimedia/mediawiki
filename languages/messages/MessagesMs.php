@@ -1370,8 +1370,10 @@ Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ia
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Lencongan berganda',
-'doubleredirectstext' => 'Berikut ialah sebarai laman yang melencong ke laman lencongan yang lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.',
+'doubleredirects'            => 'Lencongan berganda',
+'doubleredirectstext'        => 'Berikut ialah sebarai laman yang melencong ke laman lencongan yang lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.',
+'double-redirect-fixed-move' => '[[$1]] dilencongkan ke [[$2]]',
+'double-redirect-fixer'      => 'Pembaiki lencongan',
 
 'brokenredirects'        => 'Lencongan rosak',
 'brokenredirectstext'    => 'Lencongan-lencongan berikut menuju ke laman yang tidak wujud:',
@@ -1960,6 +1962,7 @@ Laman destinasi "[[$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supay
 'imagenocrossnamespace'   => 'Tidak boleh memindah fail ke ruang nama lain',
 'imagetypemismatch'       => 'Sambungan baru fail tersebut tidak sepadan dengan jenisnya',
 'imageinvalidfilename'    => 'Nama fail imej sasaran tidak sah',
+'fix-double-redirects'    => 'Kemas kinikan semua lencongan yang menuju ke tajuk asal',
 
 # Export
 'export'            => 'Eksport laman',

@@ -15,18 +15,18 @@
  * @author Sherbrooke
  * @author Siebrand
  * @author Hégésippe Cormier
- * @author Dereckson
+ * @author Louperivois
  * @author Cedric31
  * @author Korg
- * @author Louperivois
+ * @author Dereckson
  * @author McDutchie
  * @author Omnipaedista
  * @author JeanVoisin
+ * @author Горан Анђелковић
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author ChrisPtDe
  * @author Esbardu
- * @author Jon Harald Søby
- * @author Горан Анђелковић
  */
 
 $skinNames = array(
@@ -2512,7 +2512,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 # External editor support
 'edit-externally'      => 'Modifier ce fichier en utilisant une application externe',
-'edit-externally-help' => 'Voir [http://meta.wikimedia.org/wiki/Help:External_editors les instructions] pour plus d’informations.',
+'edit-externally-help' => "Consulter [http://meta.wikimedia.org/wiki/Aide:Éditeurs_externes les instructions d'installation] pour plus d’informations.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'toutes',
