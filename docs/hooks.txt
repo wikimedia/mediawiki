@@ -396,17 +396,6 @@ $section: (No longer used)
 $flags: Flags passed to Article::doEdit()
 $revision: New Revision of the article
 
-'ArticleSaveComplete': after an article is saved
-$article: the article (object) saved
-$user: the user (object) who saved the article
-$text: the new article text
-$summary: the article summary (comment)
-$isminor: minor flag
-$iswatch: watch flag
-$section: section #
-
-wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text, $summary, $flags & EDIT_MINOR, null, null, &$flags, $revision ) );
-
 'ArticleUndelete': When one or more revisions of an article are restored
 $title: Title corresponding to the article restored
 $create: Whether or not the restoration caused the page to be created
