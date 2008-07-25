@@ -176,8 +176,8 @@ class FormOptions implements ArrayAccess {
 					throw new MWException( 'Unsupported datatype' );
 			}
 
-			if ( $value !== $default && $value !== null ) {
-				$this->options[$name]['value'] = $value;
+			if ( $value !== null ) {
+				$this->options[$name]['value'] = $value === $default ? null : $value;
 			}
 		}
 	}
