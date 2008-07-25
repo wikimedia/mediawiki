@@ -6,7 +6,7 @@
  */
 class SpecialRecentChanges extends SpecialPage {
 	public function __construct() {
-  		SpecialPage::SpecialPage( 'Recentchanges' );
+  		parent::__construct( 'Recentchanges' );
 		$this->includable( true );
 	}
 
@@ -16,13 +16,14 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
+		global $wgUser;
 		$opts = new FormOptions();
 
-		$opts->add( 'days',  (int)User::getDefaultOption( 'rcdays' ) );
-		$opts->add( 'limit', (int)User::getDefaultOption( 'rclimit' ) );
+		$opts->add( 'days',  (int)$wgUser->getOption( 'rcdays' ) );
+		$opts->add( 'limit', (int)$wgUser->getOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor',     false );
+		$opts->add( 'hideminor',     (bool)$wgUser->getOption( 'hideminor' ) );
 		$opts->add( 'hidebots',      true  );
 		$opts->add( 'hideanons',     false );
 		$opts->add( 'hideliu',       false );
@@ -34,7 +35,6 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
-
 		return $opts;
 	}
 
@@ -44,12 +44,9 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @return FormOptions
 	 */
 	public function setup( $parameters ) {
-		global $wgUser, $wgRequest;
+		global $wgRequest;
 
 		$opts = $this->getDefaultOptions();
-		$opts['days'] = (int)$wgUser->getOption( 'rcdays', $opts['days'] );
-		$opts['limit'] = (int)$wgUser->getOption( 'rclimit', $opts['limit'] );
-		$opts['hideminor'] = $wgUser->getOption( 'hideminor', $opts['hideminor'] );
 		$opts->fetchValuesFromRequest( $wgRequest );
 
 		// Give precedence to subpage syntax
