@@ -3278,7 +3278,7 @@ class Article {
 		$res = $dbr->select( array( 'templatelinks' ),
 			array( 'tl_namespace', 'tl_title' ),
 			array( 'tl_from' => $id ),
-			'Article:getUsedTemplates' );
+			__METHOD__ );
 		if ( false !== $res ) {
 			if ( $dbr->numRows( $res ) ) {
 				while ( $row = $dbr->fetchObject( $res ) ) {
@@ -3308,7 +3308,7 @@ class Article {
 			array( 'cl_to' ),
 			array( 'cl_from' => $id, 'pp_page=page_id', 'pp_propname' => 'hiddencat',
 				'page_namespace' => NS_CATEGORY, 'page_title=cl_to'),
-			'Article:getHiddenCategories' );
+			__METHOD__ );
 		if ( false !== $res ) {
 			if ( $dbr->numRows( $res ) ) {
 				while ( $row = $dbr->fetchObject( $res ) ) {
@@ -3406,7 +3406,7 @@ class Article {
 			$res = $dbr->select( array( 'templatelinks' ),
 				array( 'tl_namespace', 'tl_title' ),
 				array( 'tl_from' => $id ),
-				'Article:getUsedTemplates' );
+				__METHOD__ );
 
 			global $wgContLang;
 
