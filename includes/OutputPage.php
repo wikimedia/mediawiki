@@ -6,20 +6,22 @@ if ( ! defined( 'MEDIAWIKI' ) )
  * @todo document
  */
 class OutputPage {
-	var $mMetatags, $mKeywords;
-	var $mLinktags, $mPagetitle, $mBodytext, $mDebugtext;
-	var $mHTMLtitle, $mIsarticle, $mPrintable;
-	var $mSubtitle, $mRedirect, $mStatusCode;
-	var $mLastModified, $mETag, $mCategoryLinks;
-	var $mScripts, $mLinkColours, $mPageLinkTitle;
+	var $mMetatags = array(), $mKeywords = array(), $mLinktags = array();
+	var $mPagetitle = '', $mBodytext = '', $mDebugtext = '';
+	var $mHTMLtitle = '', $mIsarticle = true, $mPrintable = false;
+	var $mSubtitle = '', $mRedirect = '', $mStatusCode;
+	var $mLastModified = '', $mETag = false;
+	var $mCategoryLinks = array(), $mLanguageLinks = array();
+	var $mScripts = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
+	var $mTemplateIds = array();
 
 	var $mAllowUserJs;
-	var $mSuppressQuickbar;
-	var $mOnloadHandler;
-	var $mDoNothing;
-	var $mContainsOldMagic, $mContainsNewMagic;
-	var $mIsArticleRelated;
-	protected $mParserOptions; // lazy initialised, use parserOptions()
+	var $mSuppressQuickbar = false;
+	var $mOnloadHandler = '';
+	var $mDoNothing = false;
+	var $mContainsOldMagic = 0, $mContainsNewMagic = 0;
+	var $mIsArticleRelated = true;
+	protected $mParserOptions = null; // lazy initialised, use parserOptions()
 	var $mShowFeedLinks = false;
 	var $mFeedLinksAppendQuery = false;
 	var $mEnableClientCache = true;
@@ -29,6 +31,8 @@ class OutputPage {
 	var $mNoGallery = false;
 	var $mPageTitleActionText = '';
 	var $mParseWarnings = array();
+	var $mSquidMaxage = 0;
+	var $mRevisionId = null;
 
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
@@ -40,24 +44,6 @@ class OutputPage {
 	function __construct() {
 		global $wgAllowUserJs;
 		$this->mAllowUserJs = $wgAllowUserJs;
-		$this->mMetatags = $this->mKeywords = $this->mLinktags = array();
-		$this->mHTMLtitle = $this->mPagetitle = $this->mBodytext =
-		$this->mRedirect = $this->mLastModified = $this->mSubtitle =
-		$this->mDebugtext = $this->mOnloadHandler = $this->mPageLinkTitle = '';
-		$this->mIsArticleRelated = $this->mIsarticle = $this->mPrintable = true;
-		$this->mSuppressQuickbar = $this->mPrintable = false;
-		$this->mLanguageLinks = array();
-		$this->mCategoryLinks = array();
-		$this->mDoNothing = false;
-		$this->mContainsOldMagic = $this->mContainsNewMagic = 0;
-		$this->mParserOptions = null;
-		$this->mSquidMaxage = 0;
-		$this->mScripts = '';
-		$this->mHeadItems = array();
-		$this->mETag = false;
-		$this->mRevisionId = null;
-		$this->mNewSectionLink = false;
-		$this->mTemplateIds = array();
 	}
 
 	public function redirect( $url, $responsecode = '302' ) {

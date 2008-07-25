@@ -5,26 +5,26 @@
  */
 class ParserOutput
 {
-	var $mText,             # The output text
-		$mLanguageLinks,    # List of the full text of language links, in the order they appear
-		$mCategories,       # Map of category names to sort keys
-		$mContainsOldMagic, # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
-		$mCacheTime,        # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
-		$mVersion,          # Compatibility check
-		$mTitleText,        # title text of the chosen language variant
-		$mLinks,            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
-		$mTemplates,        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
-		$mTemplateIds,      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
-		$mImages,           # DB keys of the images used, in the array key only
-		$mExternalLinks,    # External link URLs, in the key only
-		$mNewSection,       # Show a new section link?
-		$mNoGallery,        # No gallery on category page? (__NOGALLERY__)
-		$mHeadItems,        # Items to put in the <head> section
-		$mOutputHooks,      # Hook tags as per $wgParserOutputHooks
-		$mWarnings,         # Warning text to be returned to the user. Wikitext formatted, in the key only
-		$mSections,         # Table of contents
-		$mProperties;       # Name/value pairs to be cached in the DB
-	private $mIndexPolicy = '';	# 'index' or 'noindex'?  Any other value will result in no change.
+	var $mText,                       # The output text
+		$mLanguageLinks,              # List of the full text of language links, in the order they appear
+		$mCategories,                 # Map of category names to sort keys
+		$mContainsOldMagic,           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
+		$mTitleText,                  # title text of the chosen language variant
+		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
+		$mVersion = Parser::VERSION,  # Compatibility check
+		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
+		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
+		$mTemplateIds = array(),      # 2-D map of NS/DBK to rev ID for the template references. ID=zero for broken.
+		$mImages = array(),           # DB keys of the images used, in the array key only
+		$mExternalLinks = array(),    # External link URLs, in the key only
+		$mNewSection = false,         # Show a new section link?
+		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
+		$mHeadItems = array(),        # Items to put in the <head> section
+		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
+		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
+		$mSections = array(),         # Table of contents
+		$mProperties = array();       # Name/value pairs to be cached in the DB
+	private $mIndexPolicy = '';	      # 'index' or 'noindex'?  Any other value will result in no change.
 
 	/**
 	 * Overridden title for display
@@ -38,21 +38,7 @@ class ParserOutput
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
-		$this->mCacheTime = '';
-		$this->mVersion = Parser::VERSION;
 		$this->mTitleText = $titletext;
-		$this->mSections = array();
-		$this->mLinks = array();
-		$this->mTemplates = array();
-		$this->mImages = array();
-		$this->mExternalLinks = array();
-		$this->mNewSection = false;
-		$this->mNoGallery = false;
-		$this->mHeadItems = array();
-		$this->mTemplateIds = array();
-		$this->mOutputHooks = array();
-		$this->mWarnings = array();
-		$this->mProperties = array();
 	}
 
 	function getText()                   { return $this->mText; }
