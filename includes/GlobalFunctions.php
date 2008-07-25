@@ -2626,6 +2626,8 @@ function wfBoolToStr( $value ) {
  * @param string $extensionName Name of extension to load messages from\for.
  * @param string $langcode Language to load messages for, or false for default
  *                         behvaiour (en, content language and user language).
+ * @since r24808 (v1.11) Using this method of loading extension messages will not work
+ * on MediaWiki prior to that
  */
 function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
 	global $wgExtensionMessagesFiles, $wgMessageCache, $wgLang, $wgContLang;
