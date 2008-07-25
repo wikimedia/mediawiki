@@ -1190,6 +1190,10 @@ $term: string of search term
 'SpecialVersionExtensionTypes': called when generating the extensions credits, use this to change the tables headers
 $extTypes: associative array of extensions types
 
+'TitleArrayFromResult': called when creating an TitleArray object from a database result
+&$titleArray: set this to an object to override the default object returned
+$res: database result used to create the object
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title
