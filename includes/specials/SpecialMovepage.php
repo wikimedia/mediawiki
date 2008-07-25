@@ -363,25 +363,26 @@ class MovePageForm {
 			$conds = null;
 		}
 
-		$extrapages = array();
+		$extraPages = array();
 		if( !is_null( $conds ) ) {
-			$extrapages = $dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title' ),
-				$conds,
-				__METHOD__
+			$extraPages = TitleArray::newFromResult(
+				$dbr->select( 'page',
+					array( 'page_id', 'page_namespace', 'page_title' ),
+					$conds,
+					__METHOD__
+				)
 			);
 		}
 
 		$extraOutput = array();
 		$skin = $wgUser->getSkin();
 		$count = 1;
-		foreach( $extrapages as $row ) {
-			if( $row->page_id == $ot->getArticleId() ) {
+		foreach( $extraPages as $oldSubpage ) {
+			if( $oldSubpage->getArticleId() == $ot->getArticleId() ) {
 				# Already did this one.
 				continue;
 			}
 
-			$oldSubpage = Title::newFromRow( $row );
 			$newPageName = preg_replace(
 				'#^'.preg_quote( $ot->getDBKey(), '#' ).'#',
 				$nt->getDBKey(),
