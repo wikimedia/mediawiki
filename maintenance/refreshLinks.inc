@@ -17,7 +17,9 @@ function refreshLinks( $start, $newOnly = false, $maxLag = false, $end = 0, $red
 	$wgUser->setOption('math', MW_MATH_SOURCE);
 
 	# Don't generate extension images (e.g. Timeline)
-	$wgParser->clearTagHooks();
+	if( method_exists( $wgParser, "clearTagHooks" ) ) {
+		$wgParser->clearTagHooks();
+	}
 
 	# Don't use HTML tidy
 	$wgUseTidy = false;
@@ -110,13 +112,13 @@ function fixRedirect( $id ){
 
 function fixLinksFromArticle( $id ) {
 	global $wgTitle, $wgParser;
-	
+
 	$wgTitle = Title::newFromID( $id );
 	$dbw = wfGetDB( DB_MASTER );
 
 	$linkCache =& LinkCache::singleton();
 	$linkCache->clear();
-	
+
 	if ( is_null( $wgTitle ) ) {
 		return;
 	}
