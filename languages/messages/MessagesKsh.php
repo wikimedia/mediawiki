@@ -2209,6 +2209,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 'exif-lightsource-4' => 'Bletz',
 
 'exif-scenecapturetype-0' => 'Nomaal',
+'exif-scenecapturetype-1' => 'Queerfommaat',
 
 'exif-contrast-0' => 'Nomal',
 

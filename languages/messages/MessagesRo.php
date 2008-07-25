@@ -666,6 +666,9 @@ Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:Userlogin|
 
 Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aici jurnalul ştergerilor:",
 
+# Parser/template warnings
+'post-expand-template-argument-category' => 'Pagini care conţin formate cu argumente omise',
+
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificaţi diferenţa de dedesupt şi apoi salvaţi pentru a termina anularea modificării.',
 'undo-summary' => 'Anularea modificării $1 făcute de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]])',
@@ -737,7 +740,9 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'revdel-restore'              => 'Schimbă vizibilitatea',
 'pagehist'                    => 'Istoricul paginii',
 'deletedhist'                 => 'Istoric şters',
+'revdelete-content'           => 'conţinut',
 'revdelete-uname'             => 'nume de utilizator',
+'revdelete-hid'               => 'ascuns $1',
 'revdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|versiune|versiuni}}',
 'logdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|eveniment|evenimente}}',
 

@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Ghaly
  * @author Ramsis1978
+ * @author Ghaly
  * @author Alnokta
  * @author Meno25
  * @author Siebrand
@@ -1065,6 +1065,10 @@ $2',
 'userrights-editusergroup'    => 'تعديل مجموعات اليوزر',
 'saveusergroups'              => 'حفظ مجموعات اليوزر',
 'userrights-groupsmember'     => 'عضو في:',
+'userrights-groups-help'      => 'إنت ممكن تغير المجموعات اللي اليوزر دا عضو فيها .
+* صندوق متعلم يعني اليوزر دا عضو في المجموعة دي.
+* صندوق مش متعلم يعني  اليوزر دا مش عضو في المجموعة دي.
+* علامة * يعنى انك مش ممكن تشيل المجموعات بعد ما تضيفها و العكس بالعكس.',
 'userrights-reason'           => 'سبب التغيير:',
 'userrights-no-interwiki'     => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
 'userrights-nodatabase'       => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
@@ -1134,6 +1138,7 @@ $2',
 'right-import'           => 'استيراد الصفحات من ويكيات تانيه',
 'right-importupload'     => 'استيراد الصفحات من فايل متحمل',
 'right-unwatchedpages'   => 'بين لستة الصفحات اللي مش متراقبة',
+'right-mergehistory'     => 'ادمج تاريخ الصفحات',
 'right-userrights'       => 'تعديل كل الحقوق بتاعة اليوزر',
 'right-siteadmin'        => 'قفل وفتح قاعدة البيانات',
 
@@ -1173,37 +1178,60 @@ $2',
 'recentchangeslinked-page'     => 'اسم الصفحه :',
 
 # Upload
-'upload'             => 'حمل',
-'uploadbtn'          => 'حمل الملف',
-'reupload'           => 'حمل مره تانيه',
-'uploaderror'        => 'غلطه فى التحميل',
-'upload-prohibited'  => 'أنواع الملفات الممنوعة: $1.',
-'uploadlog'          => 'سجل التحميل',
-'uploadlogpage'      => 'سجل التحميل',
-'uploadlogpagetext'  => 'تحت في لستة بأحدث عمليات تحميل الملفات.',
-'filename'           => 'اسم الملف',
-'filedesc'           => 'الخلاصة',
-'fileuploadsummary'  => 'الخلاصة:',
-'filestatus'         => 'حالة حقوق النسخ:',
-'filesource'         => 'مصدر:',
-'uploadedfiles'      => 'الملفات المتحملة',
-'ignorewarning'      => 'إتجاهل التحذير و احفظ الملف وخلاص',
-'ignorewarnings'     => 'اتجاهل اى تحذير',
-'minlength1'         => 'أسامي الملفات لازم تكون متكونة من حرف واحد على الأقل.',
-'successfulupload'   => 'التحميل ناجح',
-'uploadwarning'      => 'تحذير التحميل',
-'savefile'           => 'حفظ الملف',
-'uploadedimage'      => 'اتحمل "[[$1]]"',
-'overwroteimage'     => 'اتحملت  نسخة جديدة من "[[$1]]"',
-'uploaddisabled'     => 'التحميل متعطل',
-'uploaddisabledtext' => 'تحميل الملفات متعطل في {{SITENAME}}.',
-'uploadscripted'     => 'الملف دا  فيه كود HTML أو كود تاني يمكن البراوزر يفهمه غلط.',
-'uploadcorrupt'      => 'الملف دا  بايظ أو ليه امتداد غلط. لو سمحت ا تأكد من الملف و حمله مرة تانية.',
-'uploadvirus'        => 'الملف فيه فيروس! التفاصيل: $1',
-'sourcefilename'     => 'اسم الملف  بتاع المصدر:',
-'watchthisupload'    => 'حط الصفحة دي تحت المراقبة',
+'upload'                    => 'حمل',
+'uploadbtn'                 => 'حمل الملف',
+'reupload'                  => 'حمل مره تانيه',
+'uploaderror'               => 'غلطه فى التحميل',
+'upload-prohibited'         => 'أنواع الملفات الممنوعة: $1.',
+'uploadlog'                 => 'سجل التحميل',
+'uploadlogpage'             => 'سجل التحميل',
+'uploadlogpagetext'         => 'تحت في لستة بأحدث عمليات تحميل الملفات.',
+'filename'                  => 'اسم الملف',
+'filedesc'                  => 'الخلاصة',
+'fileuploadsummary'         => 'الخلاصة:',
+'filestatus'                => 'حالة حقوق النسخ:',
+'filesource'                => 'مصدر:',
+'uploadedfiles'             => 'الملفات المتحملة',
+'ignorewarning'             => 'إتجاهل التحذير و احفظ الملف وخلاص',
+'ignorewarnings'            => 'اتجاهل اى تحذير',
+'minlength1'                => 'أسامي الملفات لازم تكون متكونة من حرف واحد على الأقل.',
+'successfulupload'          => 'التحميل ناجح',
+'uploadwarning'             => 'تحذير التحميل',
+'savefile'                  => 'حفظ الملف',
+'uploadedimage'             => 'اتحمل "[[$1]]"',
+'overwroteimage'            => 'اتحملت  نسخة جديدة من "[[$1]]"',
+'uploaddisabled'            => 'التحميل متعطل',
+'uploaddisabledtext'        => 'تحميل الملفات متعطل في {{SITENAME}}.',
+'uploadscripted'            => 'الملف دا  فيه كود HTML أو كود تاني يمكن البراوزر يفهمه غلط.',
+'uploadcorrupt'             => 'الملف دا  بايظ أو ليه امتداد غلط. لو سمحت ا تأكد من الملف و حمله مرة تانية.',
+'uploadvirus'               => 'الملف فيه فيروس! التفاصيل: $1',
+'sourcefilename'            => 'اسم الملف  بتاع المصدر:',
+'watchthisupload'           => 'حط الصفحة دي تحت المراقبة',
+'filename-prefix-blacklist' => ' #<!-- leave this line exactly as it is --> <pre>
+# الصيغة كدا: 
+#   * كل حاجة من أول علامة "#" لحد أخر السطر هي تعليق
+#   * كل سطر مش فاضي هو بريفيكس لأسماء الملفات النمطية اللي بتحطها اوتوماتيكي  الكاميرات الديجيتال
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
 
-'upload-proto-error' => 'بروتوكول مش صحيح',
+'upload-proto-error'      => 'بروتوكول مش صحيح',
+'upload-proto-error-text' => 'االتحميل عن بعد لازمله يوأرإل بيبتدي بـ <code>http://</code> أو <code>ftp://</code>.',
+'upload-file-error'       => 'غلط داخلي',
+'upload-file-error-text'  => 'حصل غلط داخلي واحنا بنحاول نعمل ملف مؤقت على السيرفر. لو سمحت اتصل بإداري نظام.',
+'upload-misc-error'       => 'غلط مش معروف في التحميل',
+'upload-misc-error-text'  => 'حصل غلط مش معروف وإنت بتحمل. لو سمحت تتاكد أن اليوأرإل صح و ممكن تدخل عليه و بعدين حاول تاني. إذا المشكلة تنتها موجودة،اتصل بإداري نظام.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'      => 'ما قدرناش نوصل لليو أر إل',
+'upload-curl-error6-text' => 'ما قدرناش نوصل لليوأرإل إللي انت عاوزه. لو سمحت تشيك تاني إن اليوأرإل صح و إن السايت شغال.',
 
 'license'   => 'ترخيص:',
 'nolicense' => 'مش متحدد',
@@ -1698,26 +1726,94 @@ $2',
 'tooltip-watch'                   => 'ضم الصفحه دى للستة الصفحات اللى بتراقبها',
 'tooltip-upload'                  => 'ابتدي التحميل',
 
+# Scripts
+'common.js'      => '/*  أي جافاسكريبت  هناح يتحمل لكل اليوزرز مع كل تحميل للصفحة. */',
+'standard.js'    => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة ستاندرد */',
+'nostalgia.js'   => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة نوستالجيا */',
+'cologneblue.js' => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة كولون بلو */',
+'monobook.js'    => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة مونوبوك */',
+'myskin.js'      => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة ماي سكين */',
+'chick.js'       => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة تشيك */',
+'simple.js'      => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة سيمبل */',
+'modern.js'      => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة مودرن */',
+
+# Metadata
+'nodublincore'      => 'Dublin Core RDF metadata متعطلة للسيرفر دا.',
+'nocreativecommons' => 'Creative Commons RDF metadata متعطلة  للسيرفر دا.',
+'notacceptable'     => 'السيرفر بتاع الويكي مش ممكن يديلك بيانات بصيغة ممكن عميلك يقراها.',
+
 # Attribution
-'others'      => 'تانيين',
-'creditspage' => 'حقوق الصفحة',
+'anonymous'        => 'يوزر مجهول ل {{SITENAME}}',
+'siteuser'         => 'يوزر {{SITENAME}} $1',
+'lastmodifiedatby' => 'آخر تعديل  للصفحة دي كان في $2، $1 عن طريق $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'بناء على عمل $1.',
+'others'           => 'تانيين',
+'siteusers'        => '{{SITENAME}} يوزر(و) $1',
+'creditspage'      => 'حقوق الصفحة',
+'nocredits'        => 'مافيش معلومات حقوق متوفرة للصفحة دي.',
 
 # Spam protection
 'spamprotectiontitle' => 'فلتر الحمايه من السبام',
+'spamprotectiontext'  => 'السبام فيلتر منعك من إنك تحفظ الصفحة دي. السبب يمكن  علشان في لينك لسايت خارجي.',
+'spamprotectionmatch' => 'النص دا هو اللي نشط السبام فيلتر بتاعنا: $1',
 'spambot_username'    => 'تنظيف سبام ميدياويكى',
+'spam_reverting'      => 'ترجيع آخر نسخة مافيهاش لينكات لـ $1',
+'spam_blanking'       => 'كل النسخ فيها لينكات ل $1، فضيها',
 
 # Info page
-'infosubtitle' => 'معلومات للصفحه',
+'infosubtitle'   => 'معلومات للصفحه',
+'numedits'       => 'عدد التعديلات (صفحة): $1',
+'numtalkedits'   => 'عدد التعديلات (صفحة نقاش): $1',
+'numwatchers'    => 'عدد المراقبين: $1',
+'numauthors'     => 'عدد المؤلفين المميزين (صفحة): $1',
+'numtalkauthors' => 'عدد المؤلفين المميزين (صحفة نقاش): $1',
+
+# Math options
+'mw_math_png'    => 'دايما اعرض PNG',
+'mw_math_simple' => 'يا إما HTML لو بسيطة قوي أو PNG',
+'mw_math_html'   => 'ياإما HTML لو ممكن أو PNG',
+'mw_math_source' => 'اعرض على هيئة TeX (للبراوزرات النصية)',
+'mw_math_modern' => 'أحسن للبراوزرات الحديثة',
+'mw_math_mathml' => 'اعرض بصيغة MathML لو ممكن (تحت التجريب)',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'علم عليها انها متراجعة',
+'markaspatrolledtext'                 => 'علم على المقاله دي إنها متراجعة',
+'markedaspatrolled'                   => 'اتعلم عليها متراجعة',
+'markedaspatrolledtext'               => 'النسخة المختارة اتعلم عيها انها متراجعة',
+'rcpatroldisabled'                    => 'مراجعة أخر التغييرات متعطلة',
+'rcpatroldisabledtext'                => 'خاصية مراجعة أحدث التغييرات متعطلة  دلوقتي',
+'markedaspatrollederror'              => 'مش ممكن تعلم علها إنها متراجعة',
+'markedaspatrollederrortext'          => 'لازم تختار النسخة اللي عاوز تعلم عليها إنها متراجعة',
+'markedaspatrollederror-noautopatrol' => 'مش مسموح ليك تعلم على تغييراتك الشخصية كأنها متراجعة.',
 
 # Patrol log
+'patrol-log-page' => 'سجل المراجعة',
+'patrol-log-line' => 'علم على $1 من $2 كأنها متراجعة $3',
 'patrol-log-auto' => '(اوتوماتيكي)',
+'patrol-log-diff' => 'ن$1',
+
+# Image deletion
+'deletedrevision'                 => 'مسح النسخة القديمة $1',
+'filedeleteerror-short'           => 'غلط مسح الملف: $1',
+'filedeleteerror-long'            => 'حصلت غلطات و الملف دا بيتمسح :
+
+$1',
+'filedelete-missing'              => 'الملف "$1" ما ينفعش يتمسح لأنه مش موجود.',
+'filedelete-old-unregistered'     => 'نسخة الملف المحددة "$1" مش في قاعدة البيانات.',
+'filedelete-current-unregistered' => 'الملف المحدد "$1" مش في قاعدة البيانات.',
+'filedelete-archive-read-only'    => 'مش ممكن تكتب على مجلد الأرشيف "$1" بالويب سيرفر',
 
 # Browsing diffs
 'previousdiff' => '→ الفرق اللى قبل كده',
 'nextdiff'     => 'الفرق اللى بعد كده ←',
 
 # Media information
-'thumbsize'            => 'حجم العرض المصغر:',
+'mediawarning'         => "'''تحذير''': الملف دا فيه كود خبيث، يمكن عند تشغيله يبوظ الكمبيوتر بتاعك.<hr />",
+'imagemaxsize'         => 'حدد الصور في صفحات وصف الملفات لـ:',
+'thumbsize'            => 'حجم العرض المتصغر:',
+'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',
+'file-info'            => '(حجم الملف: $1، نوع MIME: $2)',
 'file-info-size'       => '($1 × $2 بكسل حجم الفايل: $3، نوع MIME: $4)',
 'file-nohires'         => '<small>مافيش  ريزوليوشن اعلى متوفر.</small>',
 'svg-long-desc'        => '(ملف SVG، اساسا $1 × $2 بكسل، حجم الملف: $3)',
@@ -1725,10 +1821,20 @@ $2',
 'show-big-image-thumb' => '<small>حجم البروفه دى: $1 × $2 بكسل</small>',
 
 # Special:Newimages
-'newimages'    => 'جاليرى الصور الجديده',
-'showhidebots' => '($1 بوتات)',
-'ilsubmit'     => 'تدوير',
-'bydate'       => 'على حسب التاريخ',
+'newimages'             => 'جاليرى الصور الجديده',
+'imagelisttext'         => 'دي لستة بـ$1 {{PLURAL:$1|ملف|ملفات}} مترتبة $2.',
+'newimages-summary'     => ' الصفحةالمخصوصة دي بتعرض آخر الملفات المتحملة',
+'showhidebots'          => '($1 بوتات)',
+'noimages'              => 'مافيش حاجة للعرض.',
+'ilsubmit'              => 'تدوير',
+'bydate'                => 'على حسب التاريخ',
+'sp-newimages-showfrom' => 'بين الملفات الجديدة  من أول $2، $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1، $2×$3',
+'seconds-abbrev' => 'ث',
+'minutes-abbrev' => 'ق',
+'hours-abbrev'   => 'س',
 
 # Bad image list
 'bad_image_list' => 'الصيغه بالشكل ده:
@@ -1758,16 +1864,25 @@ $2',
 'exif-photometricinterpretation'   => 'تركيب البكسل',
 'exif-orientation'                 => 'التوجيه',
 'exif-samplesperpixel'             => 'عدد المكونات',
+'exif-planarconfiguration'         => 'ترتيب البيانات',
+'exif-ycbcrsubsampling'            => 'نسبة العينة الفرعية بتاعة Y لـ C',
 'exif-ycbcrpositioning'            => 'وضع Y و C',
+'exif-xresolution'                 => 'الدقة الأفقية',
+'exif-yresolution'                 => 'الدقة الرأسية',
 'exif-resolutionunit'              => 'وحدة تحليل X و Y',
 'exif-stripoffsets'                => 'موقع بيانات الصورة',
+'exif-rowsperstrip'                => 'عدد الصفوف لكل ستريب',
+'exif-stripbytecounts'             => 'بايت لكل ستريب مضغوط',
 'exif-jpeginterchangeformat'       => 'الحد ل JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'بايت من بيانات JPEG',
 'exif-transferfunction'            => 'وظيفة النقل',
-'exif-whitepoint'                  => 'ألوان النقطة البيضاء',
+'exif-whitepoint'                  => 'ألوان النقطة البيضا',
+'exif-primarychromaticities'       => 'ألوان الأساسيات',
+'exif-ycbcrcoefficients'           => 'معاملات مصفوفة تحويل فراغ اللون',
+'exif-referenceblackwhite'         => 'جوز من قيم المرجع السودا والبيضا',
 'exif-datetime'                    => 'تاريخ و وقت تغيير الملف',
 'exif-imagedescription'            => 'عنوان الصورة',
-'exif-make'                        => 'منتج آلة التصوير',
+'exif-make'                        => 'منتج الكاميرا',
 'exif-model'                       => 'موديل الكاميرا',
 'exif-software'                    => 'البرمجيات المستخدمة',
 'exif-artist'                      => 'المؤلف',
@@ -1785,10 +1900,12 @@ $2',
 'exif-datetimeoriginal'            => 'تاريخ و وقت الإنتاج',
 'exif-datetimedigitized'           => 'تاريخ و وقت التحويل الرقمى',
 'exif-subsectime'                  => 'وقت تاريخ ثوانى فرعية',
+'exif-subsectimeoriginal'          => 'وقت تاريخ أصلي ثواني فرعية',
 'exif-subsectimedigitized'         => 'وقت تاريخ رقمى ثوانى فرعية',
 'exif-exposuretime'                => 'مدة التعرض',
 'exif-exposuretime-format'         => '$1 ثانية ($2)',
 'exif-fnumber'                     => 'العدد البؤرى',
+'exif-fnumber-format'              => 'البعد البؤري/$1',
 'exif-exposureprogram'             => 'برنامج التعرض',
 'exif-spectralsensitivity'         => 'الحساسية الطيفية',
 'exif-isospeedratings'             => 'تقييم سرعة أيزو',
@@ -1800,15 +1917,17 @@ $2',
 'exif-maxaperturevalue'            => 'أقصى قافل أرضى',
 'exif-subjectdistance'             => 'مسافة من الجسم',
 'exif-meteringmode'                => 'طور القياس بالمتر',
-'exif-lightsource'                 => 'مصدر الضوء',
+'exif-lightsource'                 => 'مصدر النور',
 'exif-flash'                       => 'فلاش',
 'exif-focallength'                 => 'البعد البؤرى  للعدسة',
-'exif-subjectarea'                 => ' منطقة الجسم',
+'exif-focallength-format'          => '$1 ملم',
+'exif-subjectarea'                 => 'منطقة الجسم',
 'exif-flashenergy'                 => 'طاقة الفلاش',
+'exif-spatialfrequencyresponse'    => 'استجابة التردد الفراغي',
 'exif-focalplanexresolution'       => 'تحليل المستوى البؤرى X',
 'exif-focalplaneyresolution'       => 'تحليل المستوى البؤرى Y',
 'exif-focalplaneresolutionunit'    => 'وحدة تحليل المستوى البؤرى',
-'exif-subjectlocation'             => 'موضع الجسم',
+'exif-subjectlocation'             => 'مكان الجسم',
 'exif-exposureindex'               => 'فهرس التعرض',
 'exif-sensingmethod'               => 'وسيلة الاستشعار',
 'exif-filesource'                  => 'مصدر الملف',

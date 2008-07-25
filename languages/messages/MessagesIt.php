@@ -1363,7 +1363,7 @@ La coda dei processi da eseguire in background contiene {{PLURAL:\$7|'''1''' ele
 'doubleredirectstext'        => '<b>Attenzione:</b> Questa lista può contenere risultati errati, ad esempio nel caso in cui il comando #REDIRECT sia seguito da altro testo o collegamenti.<br />
 Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene la pagina di destinazione "corretta" alla quale dovrebbe puntare anche il primo redirect.',
 'double-redirect-fixed-move' => '[[$1]] è stata spostata, ora è un redirect a [[$2]]',
-'double-redirect-fixer'      => 'Correttore di redirct',
+'double-redirect-fixer'      => 'Correttore di redirect',
 
 'brokenredirects'        => 'Redirect errati',
 'brokenredirectstext'    => 'I seguenti redirect puntano a pagine inesistenti:',
