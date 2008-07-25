@@ -191,6 +191,7 @@ $wgAutoloadLocalClasses = array(
 	'ThumbnailImage' => 'includes/MediaTransformOutput.php',
 	'TitleDependency' => 'includes/CacheDependency.php',
 	'Title' => 'includes/Title.php',
+	'TitleArray' => 'includes/TitleArray.php',
 	'TitleListDependency' => 'includes/CacheDependency.php',
 	'TransformParameterError' => 'includes/MediaTransformOutput.php',
 	'TurckBagOStuff' => 'includes/BagOStuff.php',
