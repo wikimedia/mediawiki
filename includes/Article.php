@@ -16,27 +16,30 @@ class Article {
 	/**@{{
 	 * @private
 	 */
-	var $mComment;			//!<
-	var $mContent;			//!<
-	var $mContentLoaded;	//!<
-	var $mCounter;			//!<
-	var $mForUpdate;		//!<
-	var $mGoodAdjustment;	//!<
-	var $mLatest;			//!<
-	var $mMinorEdit;		//!<
-	var $mOldId;			//!<
-	var $mRedirectedFrom;	//!<
-	var $mRedirectUrl;		//!<
-	var $mRevIdFetched;		//!<
-	var $mRevision;			//!<
-	var $mTimestamp;		//!<
-	var $mTitle;			//!<
-	var $mTotalAdjustment;	//!<
-	var $mTouched;			//!<
-	var $mUser;				//!<
-	var $mUserText;			//!<
-	var $mRedirectTarget;		//!<
-	var $mIsRedirect;
+	var $mComment = '';               //!<
+	var $mContent;                    //!<
+	var $mContentLoaded = false;      //!<
+	var $mCounter = -1;               //!< Not loaded
+	var $mCurID = -1;                 //!< Not loaded
+	var $mDataLoaded = false;         //!<
+	var $mForUpdate = false;          //!<
+	var $mGoodAdjustment = 0;         //!<
+	var $mIsRedirect = false;         //!<
+	var $mLatest = false;             //!<
+	var $mMinorEdit;                  //!<
+	var $mOldId;                      //!<
+	var $mPreparedEdit = false;       //!< Title object if set
+	var $mRedirectedFrom = null;      //!< Title object if set
+	var $mRedirectTarget = null;      //!< Title object if set
+	var $mRedirectUrl = false;        //!<
+	var $mRevIdFetched = 0;           //!<
+	var $mRevision;                   //!<
+	var $mTimestamp = '';             //!<
+	var $mTitle;                      //!<
+	var $mTotalAdjustment = 0;        //!<
+	var $mTouched = '19700101000000'; //!<
+	var $mUser = -1;                  //!< Not loaded
+	var $mUserText = '';              //!<
 	/**@}}*/
 
 	/**
@@ -47,7 +50,6 @@ class Article {
 	function __construct( Title $title, $oldId = null ) {
 		$this->mTitle =& $title;
 		$this->mOldId = $oldId;
-		$this->clear();
 	}
 
 	/**

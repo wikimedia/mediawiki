@@ -44,27 +44,30 @@ class Title {
 	 * @private
 	 */
 
-	var $mTextform;           	# Text form (spaces not underscores) of the main part
-	var $mUrlform;            	# URL-encoded form of the main part
-	var $mDbkeyform;          	# Main part with underscores
-	var $mUserCaseDBKey;        # DB key with the initial letter in the case specified by the user
-	var $mNamespace;          	# Namespace index, i.e. one of the NS_xxxx constants
-	var $mInterwiki;          	# Interwiki prefix (or null string)
-	var $mFragment;           	# Title fragment (i.e. the bit after the #)
-	var $mArticleID;          	# Article ID, fetched from the link cache on demand
-	var $mLatestID;         	# ID of most recent revision
-	var $mRestrictions;       	# Array of groups allowed to edit this article
-	var $mCascadeRestriction;	# Cascade restrictions on this page to included templates and images?
-	var $mRestrictionsExpiry;	# When do the restrictions on this page expire?
-	var $mHasCascadingRestrictions;	# Are cascading restrictions in effect on this page?
-	var $mCascadeRestrictionSources;# Where are the cascading restrictions coming from on this page?
-	var $mRestrictionsLoaded; 	# Boolean for initialisation on demand
-	var $mPrefixedText;       	# Text form including namespace/interwiki, initialised on demand
-	var $mDefaultNamespace;   	# Namespace index when there is no namespace
-	                    		# Zero except in {{transclusion}} tags
-	var $mWatched;      		# Is $wgUser watching this page? NULL if unfilled, accessed through userIsWatching()
-	var $mLength;              # The page length, 0 for special pages
-	var $mRedirect;            # Is the article at this title a redirect?
+	var $mTextform = '';           	  # Text form (spaces not underscores) of the main part
+	var $mUrlform = '';            	  # URL-encoded form of the main part
+	var $mDbkeyform = '';          	  # Main part with underscores
+	var $mUserCaseDBKey;              # DB key with the initial letter in the case specified by the user
+	var $mNamespace = NS_MAIN;        # Namespace index, i.e. one of the NS_xxxx constants
+	var $mInterwiki = '';          	  # Interwiki prefix (or null string)
+	var $mFragment;           	      # Title fragment (i.e. the bit after the #)
+	var $mArticleID = -1;             # Article ID, fetched from the link cache on demand
+	var $mLatestID = false;           # ID of most recent revision
+	var $mRestrictions = array();     # Array of groups allowed to edit this article
+	var $mOldRestrictions = false;
+	var $mCascadeRestriction;	      # Cascade restrictions on this page to included templates and images?
+	var $mRestrictionsExpiry;	      # When do the restrictions on this page expire?
+	var $mHasCascadingRestrictions;	  # Are cascading restrictions in effect on this page?
+	var $mCascadeRestrictionSources;  # Where are the cascading restrictions coming from on this page?
+	var $mRestrictionsLoaded = false; # Boolean for initialisation on demand
+	var $mPrefixedText;       	      # Text form including namespace/interwiki, initialised on demand
+	# Don't change the following default, NS_MAIN is hardcoded in several
+	# places.  See bug 696.
+	var $mDefaultNamespace = NS_MAIN; # Namespace index when there is no namespace
+	                    		      # Zero except in {{transclusion}} tags
+	var $mWatched = null;      		  # Is $wgUser watching this page? null if unfilled, accessed through userIsWatching()
+	var $mLength = -1;                # The page length, 0 for special pages
+	var $mRedirect = null;            # Is the article at this title a redirect?
 	/**#@-*/
 
 
@@ -72,22 +75,7 @@ class Title {
 	 * Constructor
 	 * @private
 	 */
-	/* private */ function __construct() {
-		$this->mInterwiki = $this->mUrlform =
-		$this->mTextform = $this->mDbkeyform = '';
-		$this->mArticleID = -1;
-		$this->mNamespace = NS_MAIN;
-		$this->mRestrictionsLoaded = false;
-		$this->mRestrictions = array();
-		# Dont change the following, NS_MAIN is hardcoded in several place
-		# See bug #696
-		$this->mDefaultNamespace = NS_MAIN;
-		$this->mWatched = NULL;
-		$this->mLatestID = false;
-		$this->mOldRestrictions = false;
-		$this->mLength = -1;
-		$this->mRedirect = NULL;
-	}
+	/* private */ function __construct() {}
 
 	/**
 	 * Create a new Title from a prefixed DB key
