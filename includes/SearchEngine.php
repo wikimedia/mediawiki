@@ -98,19 +98,6 @@ class SearchEngine {
 				return $title;
 			}
 
-			global $wgCapitalLinks, $wgContLang;
-			if( !$wgCapitalLinks ) {
-				// Catch differs-by-first-letter-case-only
-				$title = Title::newFromText( $wgContLang->ucfirst( $term ) );
-				if ( $title && $title->exists() ) {
-					return $title;
-				}
-				$title = Title::newFromText( $wgContLang->lcfirst( $term ) );
-				if ( $title && $title->exists() ) {
-					return $title;
-				}
-			}
-
 			// Give hooks a chance at better match variants
 			$title = null;
 			if( !wfRunHooks( 'SearchGetNearMatch', array( $term, &$title ) ) ) {
