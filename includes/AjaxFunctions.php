@@ -75,15 +75,13 @@ function code2utf($num){
 define( 'AJAX_SEARCH_VERSION', 2 );	//AJAX search cache version
 
 function wfSajaxSearch( $term ) {
-	global $wgContLang, $wgUser, $wgCapitalLinks, $wgMemc;
+	global $wgContLang, $wgUser, $wgMemc;
 	$limit = 16;
 	$sk = $wgUser->getSkin();
 	$output = '';
 
 	$term = trim( $term );
 	$term = $wgContLang->checkTitleEncoding( $wgContLang->recodeInput( js_unescape( $term ) ) );
-	if ( $wgCapitalLinks )
-		$term = $wgContLang->ucfirst( $term );
 	$term_title = Title::newFromText( $term );
 
 	$memckey = $term_title ? wfMemcKey( 'ajaxsearch', md5( $term_title->getFullText() ) ) : wfMemcKey( 'ajaxsearch', md5( $term ) );
