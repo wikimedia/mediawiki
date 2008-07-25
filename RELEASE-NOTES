@@ -37,7 +37,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === API changes in 1.14 ===
 
-None yet
+* Registration time of users registered before the DB field was created is now
+  shown as empty instead of the current time.
 
 === Languages updated in 1.14 ===
 
