@@ -320,6 +320,47 @@ function wfReadOnlyReason() {
 }
 
 /**
+ * Return a Language object from $langcode
+ * @param $langcode Mixed: either:
+ *                  - a Language object
+ *                  - code of the language to get the message for, if it is
+ *                    a valid code create a language for that language, if
+ *                    it is a string but not a valid code then make a basic
+ *                    language object
+ *                  - a boolean: if it's false then use the current users
+ *                    language (as a fallback for the old parameter
+ *                    functionality), or if it is true then use the wikis
+ * @return Language object
+ */
+function wfGetLangObj( $langcode = false ){
+	# Identify which language to get or create a language object for.
+	if( $langcode instanceof Language )
+		# Great, we already have the object!
+		return $langcode;
+		
+	global $wgContLang;
+	if( $langcode === $wgContLang->getCode() || $langcode === true )
+		# $langcode is the language code of the wikis content language object.
+		# or it is a boolean and value is true
+		return $wgContLang;
+	
+	global $wgLang;
+	if( $langcode === $wgLang->getCode() || $langcode === false )
+		# $langcode is the language code of user language object.
+		# or it was a boolean and value is false
+		return $wgLang;
+
+	$validCodes = array_keys( Language::getLanguageNames() );
+	if( in_array( $langcode, $validCodes ) )
+		# $langcode corresponds to a valid language.
+		return Language::factory( $langcode );
+
+	# $langcode is a string, but not a valid language code; use content language.
+	wfDebug( 'Invalid language code passed to wfGetLangObj, falling back to content language.' );
+	return $wgContLang;
+}
+
+/**
  * Get a message from anywhere, for the current user language.
  *
  * Use wfMsgForContent() instead if the message should NOT
@@ -458,7 +499,7 @@ function wfMsgWeirdKey ( $key ) {
  * @private
  */
 function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
-	global $wgParser, $wgContLang, $wgMessageCache, $wgLang;
+	global $wgContLang, $wgMessageCache;
 
 	wfRunHooks('NormalizeMessageKey', array(&$key, &$useDB, &$langCode, &$transform));
 	
@@ -469,21 +510,7 @@ function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
 			$message = $wgMessageCache->transform( $message );
 		}
 	} else {
-		if( $langCode === true ) {
-			$lang = &$wgContLang;
-		} elseif( $langCode === false ) {
-			$lang = &$wgLang;
-		} else {
-			$validCodes = array_keys( Language::getLanguageNames() );
-			if( in_array( $langCode, $validCodes ) ) {
-				# $langcode corresponds to a valid language.
-				$lang = Language::factory( $langCode );
-			} else {
-				# $langcode is a string, but not a valid language code; use content language.
-				$lang =& $wgContLang;
-				wfDebug( 'Invalid language code passed to wfMsgGetKey, falling back to content language.' );
-			}
-		}
+		$lang = wfGetLangObj( $langCode );
 
 		# MessageCache::get() does this already, Language::getMessage() doesn't
 		# ISSUE: Should we try to handle "message/lang" here too?

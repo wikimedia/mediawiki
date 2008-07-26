@@ -498,29 +498,9 @@ class MessageCache {
 	 * @param bool $isFullKey Specifies whether $key is a two part key "lang/msg".
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
-		global $wgContLanguageCode, $wgContLang, $wgLang;
+		global $wgContLanguageCode, $wgContLang;
 
-		# Identify which language to get or create a language object for.
-		if( $langcode === $wgContLang->getCode() || $langcode === true ) {
-			# $langcode is the language code of the wikis content language object.
-			# or it is a boolean and value is true
-			$lang =& $wgContLang;
-		} elseif( $langcode === $wgLang->getCode() || $langcode === false ) {
-			# $langcode is the language code of user language object.
-			# or it was a boolean and value is false
-			$lang =& $wgLang;
-		} else {
-			$validCodes = array_keys( Language::getLanguageNames() );
-			if( in_array( $langcode, $validCodes ) ) {
-				# $langcode corresponds to a valid language.
-				$lang = Language::factory( $langcode );
-			} else {
-				# $langcode is a string, but not a valid language code; use content language.
-				$lang =& $wgContLang;
-				wfDebug( 'Invalid language code passed to MessageCache::get, falling back to content language.' );
-			}
-		}
-
+		$lang = wfGetLangObj( $langcode );
 		$langcode = $lang->getCode();
 
 		# If uninitialised, someone is trying to call this halfway through Setup.php
