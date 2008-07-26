@@ -102,7 +102,7 @@ class SpecialRecentChanges extends SpecialPage {
 			return;
 		}
 		$dbr = wfGetDB( DB_SLAVE );
-		while( $row = $dbr->fetchObject( $res ) ){
+		while( $row = $res->fetchObject() ){
 			$rows[] = $row;
 			if ( !$feedFormat ) {
 				// User page and talk links
@@ -111,7 +111,7 @@ class SpecialRecentChanges extends SpecialPage {
 			}
 
 		}
-		$dbr->freeResult( $res );
+		$res->free();
 
 		if ( $feedFormat ) {
 			list( $feed, $feedObj ) = $this->getFeedObject( $feedFormat );
