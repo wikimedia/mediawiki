@@ -264,6 +264,10 @@ class MovePageForm {
 			return;
 		}
 
+		if( ! wfRunHooks( 'SpecialMovepageBeforeMove', array(&$this) ) ) {
+			return;
+		}
+
 		$ot = $this->oldTitle;
 		$nt = $this->newTitle;
 
