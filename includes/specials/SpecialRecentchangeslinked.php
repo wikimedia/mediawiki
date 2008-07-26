@@ -145,7 +145,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 
 		$res = $dbr->query( $sql, __METHOD__ );
 
-		if( $dbr->numRows( $res ) == 0 )
+		if( $res->numRows() == 0 )
 			$this->mResultEmpty = true;
 
 		return $res;
