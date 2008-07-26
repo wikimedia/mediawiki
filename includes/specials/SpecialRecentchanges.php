@@ -101,7 +101,7 @@ class SpecialRecentChanges extends SpecialPage {
 			$this->doHeader( $opts );
 			return;
 		}
-		$dbr = wfGetDB( DB_SLAVE );
+
 		while( $row = $res->fetchObject() ){
 			$rows[] = $row;
 			if ( !$feedFormat ) {
