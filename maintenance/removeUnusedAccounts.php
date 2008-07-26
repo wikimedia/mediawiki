@@ -8,9 +8,6 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-/**
- * @todo Don't delete sysops or bureaucrats
- */
 
 $options = array( 'help', 'delete' );
 require_once( 'commandLine.inc' );
@@ -27,10 +24,15 @@ if( isset( $options['help'] ) ) {
 echo( "Checking for unused user accounts...\n" );
 $del = array();
 $dbr = wfGetDB( DB_SLAVE );
-$res = $dbr->select( 'user', array( 'user_id', 'user_name' ), '', $fname );
+$res = $dbr->select( 'user', array( 'user_id', 'user_name', 'user_touched' ), '', $fname );
+$excludedGroups = array( 'sysop', 'bureaucrat' );
 while( $row = $dbr->fetchObject( $res ) ) {
-	# Check the account, but ignore it if it's the primary administrator
-	if( $row->user_id > 1 && isInactiveAccount( $row->user_id, true ) ) {
+	# Check the account, but ignore it if it's within the "sysop" or "bureaucrat" group.
+	$instance = User::newFromId( $row->user_id );
+	if( count( array_intersect( $instance->getGroups(), $excludedGroups ) ) == 0
+		&& isInactiveAccount( $row->user_id, true ) 
+		&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - 604800 ) 
+		) {
 		# Inactive; print out the name and flag it
 		$del[] = $row->user_id;
 		echo( $row->user_name . "\n" );
@@ -53,5 +55,3 @@ if( $count > 0 && isset( $options['delete'] ) ) {
 		echo( "\nRun the script again with --delete to remove them from the database.\n" );
 }
 echo( "\n" );
-
-
