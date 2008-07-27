@@ -1885,6 +1885,7 @@ class Article {
 				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
 				$nullRevId = $nullRevision->insertOn( $dbw );
 
+				$latest = $this->getLatest();
 				# Update page record
 				$dbw->update( 'page',
 					array( /* SET */
@@ -1896,7 +1897,7 @@ class Article {
 					), 'Article::protect'
 				);
 				
-				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $nullRevision, false) );
+				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $nullRevision, $latest) );
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
 
 				# Update the protection log
