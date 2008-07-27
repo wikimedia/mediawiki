@@ -4,21 +4,22 @@
  * @file
  */
 
-/** */
 if ( !class_exists( 'UtfNormal' ) ) {
 	require_once( dirname(__FILE__) . '/normal/UtfNormal.php' );
 }
 
 define ( 'GAID_FOR_UPDATE', 1 );
 
-# Title::newFromTitle maintains a cache to avoid
-# expensive re-normalization of commonly used titles.
-# On a batch operation this can become a memory leak
-# if not bounded. After hitting this many titles,
-# reset the cache.
+/**
+ * Title::newFromText maintains a cache to avoid expensive re-normalization of
+ * commonly used titles. On a batch operation this can become a memory leak
+ * if not bounded. After hitting this many titles reset the cache.
+ */
 define( 'MW_TITLECACHE_MAX', 1000 );
 
-# Constants for pr_cascade bitfield
+/**
+ * Constants for pr_cascade bitfield
+ */
 define( 'CASCADE', 1 );
 
 /**
@@ -325,17 +326,14 @@ class Title {
 	 * @param int $id the page_id of the article
 	 * @return Title an object representing the article, or NULL
 	 * 	if no such article was found
-	 * @static
-	 * @access public
 	 */
-	function nameOf( $id ) {
-		$fname = 'Title::nameOf';
+	public static function nameOf( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$s = $dbr->selectRow( 'page', array( 'page_namespace','page_title' ),  array( 'page_id' => $id ), $fname );
+		$s = $dbr->selectRow( 'page', array( 'page_namespace','page_title' ),  array( 'page_id' => $id ), __METHOD__ );
 		if ( $s === false ) { return NULL; }
 
-		$n = Title::makeName( $s->page_namespace, $s->page_title );
+		$n = self::makeName( $s->page_namespace, $s->page_title );
 		return $n;
 	}
 
