@@ -3336,8 +3336,8 @@ $1',
 Try normal preview.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Changes newer than $1 seconds may not be shown in this list.',
-'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 seconds may not be shown in this list.',
+'lag-warn-normal' => 'Changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
+'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
