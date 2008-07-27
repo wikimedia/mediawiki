@@ -1932,7 +1932,7 @@ $1
 'deletedwhileediting' => '警：纂中見刪。',
 'confirmrecreate'     => "[[User:$1|$1]]（[[User talk:$1|議]]）刪之有由：
 ''$2''
-請審視之。",
+請爾審視之。",
 'recreate'            => '復',
 
 # HTML dump
