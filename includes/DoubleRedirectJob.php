@@ -66,6 +66,13 @@ class DoubleRedirectJob extends Job {
 			return true;
 		}
 
+		# Check for a suppression tag (used e.g. in periodically archived discussions)
+		$mw = MagicWord::get( 'staticredirect' );
+		if ( $mw->match( $text ) ) {
+			wfDebug( __METHOD__.": skipping: suppressed with __STATICREDIRECT__\n" );
+			return true;
+		}
+
 		# Find the current final destination
 		$newTitle = self::getFinalDestination( $this->redirTitle );
 		if ( !$newTitle ) {

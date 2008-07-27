@@ -157,6 +157,7 @@ class MagicWord {
 		'hiddencat',
 		'index',
 		'noindex',
+		'staticredirect',
 	);
 
 
