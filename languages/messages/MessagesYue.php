@@ -2518,7 +2518,7 @@ $1
 'deletedwhileediting' => '警告：你寫緊文嗰陣，有用戶洗咗呢版！',
 'confirmrecreate'     => "你寫緊文嗰陣，阿用戶 [[User:$1|$1]] ([[User talk:$1|talk]]) 洗咗呢一頁。以下係佢個理由：
 : ''$2''
-你係咪真係想重新整過呢版？",
+請確認你係咪真係想重新整過呢版。",
 'recreate'            => '重新整過',
 
 # HTML dump

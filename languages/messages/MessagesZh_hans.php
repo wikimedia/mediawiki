@@ -2472,7 +2472,8 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => '警告: 此页在您开始编辑之后已经被删除！',
-'confirmrecreate'     => '在您编辑这个页面后，用户[[User:$1|$1]]([[User talk:$1|对话]])以下列原因删除了这个页面: $2。请在重新创建页面前三思。',
+'confirmrecreate'     => '在您编辑这个页面后，用户[[User:$1|$1]]([[User talk:$1|对话]])以下列原因删除了这个页面: $2。
+请确认在您重新创建页面前三思。',
 'recreate'            => '重建',
 
 # HTML dump
