@@ -342,6 +342,7 @@ $magicWords = array(
 	'pagesize'               => array( 1,    'PAGESIZE'               ),
 	'index'                  => array( 1,    '__INDEX__'              ),
 	'noindex'                => array( 1,    '__NOINDEX__'            ),
+	'staticredirect'         => array( 1,    '__STATICREDIRECT__'     ),
 );
 
 /**
