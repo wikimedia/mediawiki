@@ -230,8 +230,8 @@ $messages = array(
 'otherlanguages'    => 'In altere linguas',
 'redirectedfrom'    => '(Redirigite de $1)',
 'redirectpagesub'   => 'Pagina de redirection',
-'lastmodifiedat'    => 'Iste pagina esseva modificate le plus recentemente le $1 a $2.', # $1 date, $2 time
-'viewcount'         => 'Iste pagina esseva accessate {{PLURAL:$1|un vice|$1 vices}}.',
+'lastmodifiedat'    => 'Ultime modification de iste pagina: le $1 a $2.', # $1 date, $2 time
+'viewcount'         => 'Iste pagina ha essite visitate {{PLURAL:$1|un vice|$1 vices}}.',
 'protectedpage'     => 'Pagina protegite',
 'jumpto'            => 'Saltar a:',
 'jumptonavigation'  => 'navigation',
@@ -1075,7 +1075,7 @@ per favor vide math/README pro configurar lo.",
 'minoreditletter'                   => 'M',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usator|usatores}} observante]',
+'number_of_watching_users_pageview' => '[observate per $1 {{PLURAL:$1|usator|usatores}}]',
 'rc_categories'                     => 'Limite a categorias (separar con "|")',
 'rc_categories_any'                 => 'Qualcunque',
 'newsectionsummary'                 => '/* $1 */ nove section',
@@ -1345,12 +1345,14 @@ Le longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]
 Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
 Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
 
-'doubleredirects'     => 'Redirectiones duple',
-'doubleredirectstext' => '<b>Attention:</b> Iste lista pote continer items false.
+'doubleredirects'            => 'Redirectiones duple',
+'doubleredirectstext'        => '<b>Attention:</b> Iste lista pote continer items false.
 Illo generalmente significa que il ha texto additional con ligamines sub le prime #REDIRECT.<br />
 Cata linea contine ligamines al prime e secunde redirection, assi como le prime linea del
 secunde texto de redirection, generalmente exhibiente le articulo scopo "real",
 al qual le prime redirection deberea referer se.',
+'double-redirect-fixed-move' => '[[$1]] ha essite renominate, e es ora un redirection verso [[$2]]',
+'double-redirect-fixer'      => 'Corrector de redirectiones',
 
 'brokenredirects'        => 'Redirectiones van',
 'brokenredirectstext'    => 'Le redirectiones sequente se liga a articulos inexistente.',
@@ -1958,6 +1960,7 @@ non pote renominar paginas ex o verso iste spatio de nomines.',
 'imagenocrossnamespace'   => 'Non pote renominar file verso un spatio de nomines non-file',
 'imagetypemismatch'       => 'Le nove extension del nomine del file non corresponde al typo del file',
 'imageinvalidfilename'    => 'Le nomine del file de destination es invalide',
+'fix-double-redirects'    => 'Actualisar tote le redirectiones que puncta verso le titulo original',
 
 # Export
 'export'            => 'Exportar paginas',

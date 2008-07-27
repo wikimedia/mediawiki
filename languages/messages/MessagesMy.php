@@ -17,6 +17,13 @@ $messages = array(
 'thursday'      => 'ကြာ​သာ​ပ​တေး​',
 'friday'        => 'သော​ကြာ​',
 'saturday'      => 'စ​နေ​',
+'sun'           => 'တနင်္ဂနွေ',
+'mon'           => 'တနင်္ဂလာ',
+'tue'           => 'အင်္ဂါ',
+'wed'           => 'ဗုဒ္ဓဟူး',
+'thu'           => 'ကြာသပတေး',
+'fri'           => 'သောကြာ',
+'sat'           => 'စနေ',
 'january'       => 'ဇန်​န​ဝါ​ရီ​',
 'february'      => 'ဖေ​ဖော်​ဝါ​ရီ​',
 'march'         => 'မတ်​',
@@ -171,7 +178,8 @@ $messages = array(
 'imagelist' => 'ဖိုင်စာရင်း',
 
 # Image description page
-'filehist' => 'ဖိုင်မှတ်တမ်း',
+'filehist'          => 'ဖိုင်မှတ်တမ်း',
+'filehist-datetime' => 'နေ့စွဲ/အချိန်',
 
 # Random page
 'randompage' => 'ကျ​ပန်း​စာ​မျက်​နှာ​',

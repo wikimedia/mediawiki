@@ -1202,7 +1202,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'right-createaccount'        => 'új felhasználói fiók készítése',
 'right-minoredit'            => 'szerkesztések apróként jelölésének lehetősége',
 'right-move'                 => 'lapok átnevezése',
-'right-move-subpages'        => 'Lapok átnevezése az allapjukkal együtt',
+'right-move-subpages'        => 'lapok átnevezése az allapjukkal együtt',
 'right-suppressredirect'     => 'nem készít átirányítást a régi néven lapok átnevezésekor',
 'right-upload'               => 'fájlok feltöltése',
 'right-reupload'             => 'létező fájlok felülírása',
@@ -1234,7 +1234,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'right-editusercssjs'        => 'más felhasználók CSS és JS fájljainak szerkesztése',
 'right-rollback'             => 'a lap utolsó szerkesztésének gyors visszaállítása',
 'right-markbotedits'         => 'visszaállított szerkesztések botként való jelölése',
-'right-noratelimit'          => 'Az arány határok nem érintik.',
+'right-noratelimit'          => 'sebességkorlát figyelmen kívül hagyása',
 'right-import'               => 'lapok importálása más wikikből',
 'right-importupload'         => 'lapok importálása fájl feltöltésével',
 'right-patrol'               => 'szerkesztések ellenőrzöttként való jelölése',
@@ -1324,9 +1324,9 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'badfilename'                 => 'A kép új neve „$1”.',
 'filetype-badmime'            => '„$1” MIME-típusú fájlokat nem lehet feltölteni.',
 'filetype-unwanted-type'      => "A(z) '''„.$1”''' nem javasolt fájltípus.
-Az ajánlott típusok: $2.",
+Az ajánlott {{PLURAL:$3|típus|típusok}}: $2.",
 'filetype-banned-type'        => "A(z) '''„.$1”''' nem megengedett fájltípus. 
-A megengedett típusok: $2.",
+Az engedélyezett {{PLURAL:$3|típus|típusok}}: $2.",
 'filetype-missing'            => 'A fájlnak nincs kiterjesztése (pl. „.jpg”).',
 'large-file'                  => 'Javasoljuk, hogy a fájl ne legyen nagyobb, mint $1;
 a fájl, amit fel akarsz tölteni $2.',
@@ -1429,7 +1429,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'filehist-filesize'              => 'Fájlméret',
 'filehist-comment'               => 'Megjegyzés',
 'imagelinks'                     => 'Képhivatkozások',
-'linkstoimage'                   => 'Az alábbi lapok hivatkoznak erre a képre:',
+'linkstoimage'                   => 'Az alábbi {{PLURAL:$1|lap hivatkozik|lapok hivatkoznak}} erre a fájlra:',
 'nolinkstoimage'                 => 'Erre a képre nem hivatkozik lap.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|További hivatkozások]] megtekintése',
 'redirectstofile'                => 'A következő {{PLURAL:$1|fájl|$1 fájl}} van átirányítva erre a névre:',
@@ -1525,8 +1525,10 @@ A [http://www.mediawiki.org/wiki/Manual:Job_queue szerver számára sorban áll�
 A megfelelő szócikkre kellene mutatniuk inkább.<br />
 Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
 
-'doubleredirects'     => 'Dupla átirányítások',
-'doubleredirectstext' => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy a #REDIRECT alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
+'doubleredirects'            => 'Dupla átirányítások',
+'doubleredirectstext'        => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy a #REDIRECT alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
+'double-redirect-fixed-move' => '[[$1]] átnevezve, a továbbiakban átirányításként működik a(z) [[$2]] lapra',
+'double-redirect-fixer'      => 'Átirányítás-javító',
 
 'brokenredirects'        => 'Nem létező lapra mutató átirányítások',
 'brokenredirectstext'    => 'Az alábbi átirányítások nem létező lapokra mutatnak.',
@@ -2100,6 +2102,7 @@ Az átnevezés céljaként megadott „[[$1]]” szócikk már létezik.  Ha az 
 'imagenocrossnamespace'   => 'A fájlok nem helyezhetőek át más névtérbe',
 'imagetypemismatch'       => 'Az új kiterjesztés nem egyezik meg a fájl típusával',
 'imageinvalidfilename'    => 'A célnév érvénytelen',
+'fix-double-redirects'    => 'Az eredeti címre mutató hivatkozások frissítése',
 
 # Export
 'export'            => 'Lapok exportálása',

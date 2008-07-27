@@ -1410,8 +1410,10 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 Mali by však odkazovať priamo na príslušnú tému.<br />
 Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Dvojité presmerovania',
-'doubleredirectstext' => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.',
+'doubleredirects'            => 'Dvojité presmerovania',
+'doubleredirectstext'        => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.',
+'double-redirect-fixed-move' => 'Stránka [[$1]] bola presunutá, teraz je presmerovaním na [[$2]]',
+'double-redirect-fixer'      => 'Korektor presmerovaní',
 
 'brokenredirects'        => 'Pokazené presmerovania',
 'brokenredirectstext'    => 'Tieto presmerovania odkazujú na neexistujúcu stránku.',
@@ -1990,6 +1992,7 @@ Cieľová stránka „[[$1]]“ už existuje. Chcete ho vymazať a vytvoriť tak
 'imagenocrossnamespace'   => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
 'imagetypemismatch'       => 'Nová prípona súboru nezodpovedá jeho typu',
 'imageinvalidfilename'    => 'Cieľový názov obrázka nie je platný',
+'fix-double-redirects'    => 'Aktualizovať všetky presmerovania odkazujúce na pôvodný názov',
 
 # Export
 'export'            => 'Export stránok',

@@ -1252,8 +1252,10 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' pro
 'disambiguations-text' => "Le pagine ne la lista che segue le contien dei colegamenti a '''pagine de disanbiguazion''' e no a l'argomento a cui le dovarìà far riferimento.<br />
 Vien considerà pagine de disanbiguazion tute quele che contien i template elencà in [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redirect dopi',
-'doubleredirectstext' => '<b>Ocio:</b> Stà lista la pode talvolta contegnere dei risultati mìa giusti. Podaria magari sucédar parché ghe fusse del testo agiuntivo o dei colegamenti dopo el tag #REDIRECT.<br /> Ogni riga la contegne i colegamenti al primo ed al secondo redirect, oltre a la prima riga de testo del secondo redirect che de solito contegne el "reale" articolo de destinassion, quelo al quale anca el primo redirect dovaria puntar.',
+'doubleredirects'            => 'Redirect dopi',
+'doubleredirectstext'        => '<b>Ocio:</b> Stà lista la pode talvolta contegnere dei risultati mìa giusti. Podaria magari sucédar parché ghe fusse del testo agiuntivo o dei colegamenti dopo el tag #REDIRECT.<br /> Ogni riga la contegne i colegamenti al primo ed al secondo redirect, oltre a la prima riga de testo del secondo redirect che de solito contegne el "reale" articolo de destinassion, quelo al quale anca el primo redirect dovaria puntar.',
+'double-redirect-fixed-move' => '[[$1]] xe stà spostà, desso el xe solo un rimando a [[$2]]',
+'double-redirect-fixer'      => 'Coretòr de redirect',
 
 'brokenredirects'        => 'Redirect mìa giusti',
 'brokenredirectstext'    => 'I seguenti redirect i punta a articoli gnancora creai.',
@@ -1797,6 +1799,7 @@ La voçe specificà come destinassion "[[$1]]" l\'esiste xà. Vóto scancełarla
 'imagenocrossnamespace'   => 'No se pol spostar na imagine verso un namespace diverso da quelo de le imagini',
 'imagetypemismatch'       => "L'estension nova del file no la corisponde mìa al tipo de file",
 'imageinvalidfilename'    => "El nome file de destinassion no'l xe mia valido",
+'fix-double-redirects'    => 'Agiorna tuti quanti i redirect che ponta al titolo originàl',
 
 # Export
 'export'            => 'Esporta pàxene',

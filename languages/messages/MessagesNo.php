@@ -1362,8 +1362,10 @@ Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}},
 De burde i stedet lenke til en passende innholdsside.<br />
 En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Doble omdirigeringer',
-'doubleredirectstext' => "'''NB:''' Denne listen kan inneholde gale resultater. Det er som regel fordi siden inneholder ekstra tekst under den første <tt>#redirect</tt>.<br />Hver linje inneholder lenker til den første og den andre omdirigeringen, og den første linjen fra den andre omdirigeringsteksten. Det gir som regel den «riktige» målartikkelen, som den første omdirigeringen skulle ha pekt på.",
+'doubleredirects'            => 'Doble omdirigeringer',
+'doubleredirectstext'        => "'''NB:''' Denne listen kan inneholde gale resultater. Det er som regel fordi siden inneholder ekstra tekst under den første <tt>#redirect</tt>.<br />Hver linje inneholder lenker til den første og den andre omdirigeringen, og den første linjen fra den andre omdirigeringsteksten. Det gir som regel den «riktige» målartikkelen, som den første omdirigeringen skulle ha pekt på.",
+'double-redirect-fixed-move' => '[[$1]] har blitt flyttet, og er nå en omdirigering til [[$2]]',
+'double-redirect-fixer'      => 'Omdirigeringsfikser',
 
 'brokenredirects'        => 'Brutte omdirigeringer',
 'brokenredirectstext'    => 'Følgende omdirigeringer peker til ikkeeksisterende sider.',
@@ -1903,6 +1905,7 @@ Målsiden «[[$1]]» finnes allerede. Vil du slette den så denne siden kan flyt
 'imagenocrossnamespace'   => 'Kan ikke flytte bilder til andre navnerom enn bildenavnerommet',
 'imagetypemismatch'       => 'Den nye filendelsen tilsvarer ikke filtypen',
 'imageinvalidfilename'    => 'Målnavnet er ugyldig',
+'fix-double-redirects'    => 'Oppdater omdirigeringer som fører til den gamle tittelen',
 
 # Export
 'export'            => 'Eksportsider',

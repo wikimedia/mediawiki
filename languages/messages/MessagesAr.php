@@ -10,15 +10,15 @@
  * @author OsamaK
  * @author Siebrand
  * @author Gharbeia
- * @author Tarawneh
  * @author Khaledhosny
  * @author Agurzil
  * @author Mimouni
  * @author ترجمان05
+ * @author Tarawneh
  * @author Chaos
- * @author SPQRobin
  * @author לערי ריינהארט
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Jak
  * @author عصام بايزيدي
  * @author Oxydo
@@ -1515,7 +1515,7 @@ $2',
 سجل الحذف لهذا الملف معروض هنا:",
 'filename-bad-prefix'         => 'اسم الملف الذي ترفعه يبدأ ب<strong>"$1"</strong>، وهو اسم غير وصفي عادة يوضع تلقائيا من الكاميرات الرقمية.
 من فضلك اختر اسما أكثر وصفا لملفك.',
-'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- اترك هذا السطر تماما كما هو --> <pre>
 # الصيغة كالتالي: 
 #   * كل شيء من علامة "#" إلى آخر السطر هو تعليق
 #   * كل سطر غير فارغ هو بادئة لأسماء الملفات النمطية التي توضع تلقائيا من قبل الكاميرات الرقمية
@@ -1528,7 +1528,7 @@ IMG # generic
 JD # Jenoptik
 MGP # Pentax
 PICT # misc.
- #</pre> <!-- leave this line exactly as it is -->',
+ #</pre> <!-- اترك هذا السطر تماما كما هو -->',
 
 'upload-proto-error'      => 'بروتوكول غير صحيح',
 'upload-proto-error-text' => 'الرفع عن بعد يتطلب مسارا يبدأ بـ <code>http://</code> أو <code>ftp://</code>.',
@@ -1844,7 +1844,7 @@ PICT # misc.
 'watchnologintext'     => 'يجب أن تكون [[Special:Userlogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
 'addedwatch'           => 'تمت الإضافة لقائمة المراقبة',
 'addedwatchtext'       => "تمت إضافة الصفحة  \"\$1\" إلى [[Special:Watchlist|قائمة المراقبتك]].
-التغييرات القادمة على هذه الصفحة وصفحة النقاش الخاصة بها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
+التغييرات القادمة على هذه الصفحة وصفحة النقاش الخاصة بها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:Recentchanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
 'removedwatch'         => 'تمت الإزالة من قائمة المراقبة',
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من قائمة مراقبتك.',
 'watch'                => 'مراقبة',
@@ -1959,7 +1959,7 @@ $NEWPAGE
 من فضلك اضغط على مفتاح "رجوع" لتحميل الصفحة التي جئت منها، ثم حاول مرة أخرى.',
 'protectlogpage'              => 'سجل الحماية',
 'protectlogtext'              => 'بالأسفل قائمة بالصفحات التي تمت حمايتها أو إزالة الحماية عنها.
-انظر [[Special:ProtectedPages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',
+انظر [[Special:Protectedpages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',
 'protectedarticle'            => 'حمى "[[$1]]"',
 'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
 'unprotectedarticle'          => 'أزال حماية [[$1]]',
@@ -2276,14 +2276,14 @@ $1',
 
 # Export
 'export'            => 'تصدير صفحات',
-'exporttext'        => 'يمكنك تصدير النص وتاريخ تعديلات صفحة أو مجموعة صفحات خاصة في صيغة إكس إم إل. وذلك بقصد استيرادها في ويكي آخر يستعمل ميدياويكي بواسطة الصفحة [[Special:Import|صفحة الاستيراد]].
+'exporttext'        => 'يمكنك تصدير النص وتاريخ تعديلات صفحة أو مجموعة صفحات في صيغة XML. هذا يمكن استيراده في ويكي آخر يستعمل ميدياويكي بواسطة الصفحة [[Special:Import|صفحة الاستيراد]].
 
-لتصدير صفحات، اكتب العناوين في الصندوق أسفله، عنوان واحد في كل السطر، مع اختيار ما إذا كنت ترغب في النسخة الحالية بالإضافة إلى النسخ القديمة كاملة أو مع معلومات تاريخ الصفحة عنها أو فقط النسخة الحالية مع معلومات عن التعديل الأخير.
+لتصدير صفحات، أدخل العناوين في الصندوق أسفله، عنوان واحد في كل سطر، مع اختيار ما إذا كنت ترغب في النسخة الحالية بالإضافة إلى النسخ القديمة كاملة، أو مع معلومات تاريخ الصفحة عنها، أو فقط النسخة الحالية مع معلومات عن التعديل الأخير.
 
-في الحالة الأخيرة يمكنك استخدام وصلة مباشرة، كمثال [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] للصفحة [[{{MediaWiki:Mainpage}}]].',
+في الحالة الأخيرة يمكنك أيضا استخدام وصلة، على سبيل المثال [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] للصفحة "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'ضمن المراجعة الحالية فقط، وليس التاريخ الكامل',
 'exportnohistory'   => "----
-ملاحظة:''' تم توقيف التصدير الكامل لتاريخ الصفحة بهذه الترسيمة لأسباب تحسينية'''",
+ملاحظة:''' تصدير التاريخ الكامل للصفحات من خلال هذه الاستمارة تم تعطيله لأسباب تتعلق بالأداء'''",
 'export-submit'     => 'تصدير',
 'export-addcattext' => 'أضف صفحات من تصنيف:',
 'export-addcat'     => 'إضافة',
@@ -2299,7 +2299,7 @@ $1',
 من فضلك زر [http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB' => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
 'allmessagesfilter'         => 'بحث باسم الرسالة:',
-'allmessagesmodified'       => 'اعرض المتغير فقط',
+'allmessagesmodified'       => 'عرض المتغير فقط',
 
 # Thumbnails
 'thumbnail-more'           => 'تكبير',
@@ -2313,44 +2313,46 @@ $1',
 # Special:Import
 'import'                     => 'استيراد صفحات',
 'importinterwiki'            => 'استيراد ترانسويكي',
-'import-interwiki-text'      => 'اختر الويكي و عنوان الصفحة المطلوب استيرادها.
-تواريخ التعديلات و أسماء المحررين سيتم الحفاظ عليها.
-كل عمليات الاستيراد عبر مواقع الويكي يتم تسجيلها في [[Special:Log/import|سجل الاستيراد]].',
+'import-interwiki-text'      => 'اختر ويكي وعنوان الصفحة للاستيراد.
+تواريخ المراجعات وأسماء المحررين سيتم حفظها.
+كل أفعال الاستيراد عبر الويكي يتم تسجيلها في [[Special:Log/import|سجل الاستيراد]].',
 'import-interwiki-history'   => 'انسخ كل نسخ التاريخ لهذه الصفحة',
 'import-interwiki-submit'    => 'استيراد',
 'import-interwiki-namespace' => 'انقل الصفحات إلى النطاق:',
-'importtext'                 => 'من فضلك صدّر الملف من الويكي المصدر عن طريق Special:Export، احفظها على جهازك ثم ارفعها هنا.',
+'importtext'                 => 'من فضلك صدر الملف من الويكي المصدر عن طريق Special:Export، احفظها على جهازك ثم ارفعها هنا.',
 'importstart'                => 'استيراد صفحات...',
-'import-revision-count'      => '{{PLURAL:$1|نسخة واحدة|نسخة}} $1',
+'import-revision-count'      => '{{PLURAL:$1|مراجعة واحدة|مراجعة}} $1',
 'importnopages'              => 'لا صفحات للاستيراد',
-'importfailed'               => 'فشل استيراد: $1',
-'importunknownsource'        => 'نوع مجهول لمصدر الاستيراد',
+'importfailed'               => 'فشل الاستيراد: <nowiki>$1</nowiki>',
+'importunknownsource'        => 'نوع مصدر استيراد مجهول',
 'importcantopen'             => 'لم يمكن فتح ملف الاستيراد',
-'importbadinterwiki'         => 'وصلة إنترويكي خاطئة',
+'importbadinterwiki'         => 'وصلة إنترويكي سيئة',
 'importnotext'               => 'فارغ أو لا نص',
 'importsuccess'              => 'الاستيراد انتهى!',
-'importhistoryconflict'      => 'هناك تاريخ تعديلات يتعارض مع تاريخ هذه الصفحة (ربما تكون قد استوردت الصفحة من قبل)',
-'importnosources'            => 'لم يتم تحديد مصادر للاستيراد الويكي و الاستيراد المباشر عن طريق الرفع غير فعال.',
+'importhistoryconflict'      => 'هناك مراجعة تاريخ متعارضة موجودة (ربما تكون قد استوردت هذه الصفحة من قبل)',
+'importnosources'            => 'لم يتم تعريف مصادر للاستيراد عبر الويكي وعمليات رفع التاريخ المباشرة معطلة.',
 'importnofile'               => 'لم يتم رفع ملف استيراد.',
-'importuploaderrorsize'      => 'رفع ملف الاستيراد فشل. الملف أكبر من حجم الرفع المسموح.',
+'importuploaderrorsize'      => 'رفع ملف الاستيراد فشل.
+الملف أكبر من حجم الرفع المسموح.',
 'importuploaderrorpartial'   => 'رفع ملف الاستيراد فشل. الملف تم رفعه جزئيا.',
-'importuploaderrortemp'      => 'رفع ملف الاستيراد فشل. هناك مجلد مؤقت مفقود.',
-'import-parse-failure'       => 'فشل بارس استيراد XML',
+'importuploaderrortemp'      => 'رفع ملف الاستيراد فشل.
+هناك مجلد مؤقت مفقود.',
+'import-parse-failure'       => 'فشل تحليل استيراد XML',
 'import-noarticle'           => 'لا صفحة للاستيراد!',
-'import-nonewrevisions'      => 'كل النسخ تم استيرادها من قبل.',
+'import-nonewrevisions'      => 'كل المراجعات تم استيرادها من قبل.',
 'xml-error-string'           => '$1 عند السطر $2، العمود $3 (بايت $4): $5',
-'import-upload'              => 'ارفع بيانات إكس‌إم‌إل',
+'import-upload'              => 'رفع بيانات XML',
 
 # Import log
 'importlogpage'                    => 'سجل الاستيراد',
-'importlogpagetext'                => 'استيرادات إدارية (للإداريين فقط) لصفحات من مواقع ويكي أخرى.',
+'importlogpagetext'                => 'عمليات الاستيراد الإدارية للصفحات مع تاريخ التعديل من ويكيات أخرى.',
 'import-logentry-upload'           => 'استورد [[$1]] بواسطة رفع ملف',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تعديل واحد|تعديل}}',
-'import-logentry-interwiki'        => 'استيراد ويكي $1',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|تعديل واحد|تعديل}} من $2',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|مراجعة واحدة|مراجعة}}',
+'import-logentry-interwiki'        => 'استورد عبر الويكي $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|مراجعة واحدة|مراجعة}} من $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'صفحتي الخاصة',
+'tooltip-pt-userpage'             => 'صفحة مستخدمي',
 'tooltip-pt-anonuserpage'         => 'صفحة المستخدم للأيبي الذي تقوم بالتحرير من خلاله',
 'tooltip-pt-mytalk'               => 'صفحة نقاشي',
 'tooltip-pt-anontalk'             => 'نقاش حول التعديلات من عنوان الأيبي هذا',
@@ -2361,13 +2363,15 @@ $1',
 'tooltip-pt-anonlogin'            => 'من المفضل أن تقوم بتسجيل الدخول، هذا ليس إلزاميا.',
 'tooltip-pt-logout'               => 'خروج',
 'tooltip-ca-talk'                 => 'نقاش حول صفحة المحتوى',
-'tooltip-ca-edit'                 => 'بإمكانك تعديل هذه الصفحة، برجاء استعمال زر عرض مسبق قبل الحفظ',
-'tooltip-ca-addsection'           => 'علق على هذا النقاش.',
-'tooltip-ca-viewsource'           => 'هذه الصفحة محمية. يمكنك رؤية مصدرها.',
+'tooltip-ca-edit'                 => 'يمكنك تعديل هذه الصفحة.
+من فضلك استخدم زر العرض المسبق قبل الحفظ.',
+'tooltip-ca-addsection'           => 'أضف تعليقا إلى هذا النقاش.',
+'tooltip-ca-viewsource'           => 'هذه الصفحة محمية.
+يمكنك رؤية مصدرها.',
 'tooltip-ca-history'              => 'النسخ السابقة من هذه الصفحة',
 'tooltip-ca-protect'              => 'احم هذه الصفحة',
 'tooltip-ca-delete'               => 'احذف هذه الصفحة',
-'tooltip-ca-undelete'             => 'استرجاع التعديلات التي تمت على هذه الصفحة قبل حذفها',
+'tooltip-ca-undelete'             => 'استرجع التعديلات التي تمت على هذه الصفحة قبل حذفها',
 'tooltip-ca-move'                 => 'انقل هذه الصفحة',
 'tooltip-ca-watch'                => 'أضف هذه الصفحة إلى قائمة مراقبتك',
 'tooltip-ca-unwatch'              => 'أزل هذه الصفحة من قائمة مراقبتك',
@@ -2375,32 +2379,32 @@ $1',
 'tooltip-search-go'               => 'اذهب إلى صفحة بنفس هذا الاسم إن وجدت',
 'tooltip-search-fulltext'         => 'ابحث في الصفحات عن هذا النص',
 'tooltip-p-logo'                  => 'الصفحة الرئيسية',
-'tooltip-n-mainpage'              => 'زيارة الصفحة الرئيسية',
+'tooltip-n-mainpage'              => 'زر الصفحة الرئيسية',
 'tooltip-n-portal'                => 'حول المشروع، ماذا يمكن أن تفعل، أين يمكن أن تجد ما تحتاجه',
 'tooltip-n-currentevents'         => 'مطالعة سريعة لأهم الأحداث الجارية',
-'tooltip-n-recentchanges'         => 'قائمة بأحدث التغييرات في الويكي.',
+'tooltip-n-recentchanges'         => 'قائمة أحدث التغييرات في الويكي.',
 'tooltip-n-randompage'            => 'حمل صفحة عشوائية',
 'tooltip-n-help'                  => 'تحتاج مساعدة؟ طالع هذه الصفحة!',
-'tooltip-t-whatlinkshere'         => 'قائمة بكل الصفحات في الويكي التي تصل هنا',
+'tooltip-t-whatlinkshere'         => 'قائمة بكل صفحات الويكي التي تصل هنا',
 'tooltip-t-recentchangeslinked'   => 'أحدث التغييرات في الصفحات الموصولة من هذه الصفحة',
 'tooltip-feed-rss'                => 'تلقيم أر إس إس لهذه الصفحة',
 'tooltip-feed-atom'               => 'تلقيم أتوم لهذه الصفحة',
-'tooltip-t-contributions'         => 'اعرض قائمة مساهمات هذا المستخدم',
+'tooltip-t-contributions'         => 'رؤية قائمة مساهمات هذا المستخدم',
 'tooltip-t-emailuser'             => 'أرسل رسالة لهذا المستخدم',
-'tooltip-t-upload'                => 'رفع ملفات',
+'tooltip-t-upload'                => 'ارفع ملفات',
 'tooltip-t-specialpages'          => 'قائمة بكل الصفحات الخاصة',
 'tooltip-t-print'                 => 'نسخة للطباعة لهذه الصفحة',
 'tooltip-t-permalink'             => 'وصلة دائمة لهذه النسخة من الصفحة',
-'tooltip-ca-nstab-main'           => 'اعرض صفحة المحتوى',
+'tooltip-ca-nstab-main'           => 'رؤية صفحة المحتوى',
 'tooltip-ca-nstab-user'           => 'اعرض صفحة المستخدم',
-'tooltip-ca-nstab-media'          => 'اعرض صفحة ملف الميديا',
+'tooltip-ca-nstab-media'          => 'رؤية صفحة الميديا',
 'tooltip-ca-nstab-special'        => 'هذه صفحة خاصة، لا تستطيع أن تعدل الصفحة نفسها',
-'tooltip-ca-nstab-project'        => 'اعرض صفحة المشروع',
-'tooltip-ca-nstab-image'          => 'اعرض صفحة الملف',
-'tooltip-ca-nstab-mediawiki'      => 'اعرض رسالة النظام',
-'tooltip-ca-nstab-template'       => 'اعرض القالب',
-'tooltip-ca-nstab-help'           => 'اعرض صفحة المساعدة',
-'tooltip-ca-nstab-category'       => 'اعرض صفحة التصنيف',
+'tooltip-ca-nstab-project'        => 'رؤية صفحة المشروع',
+'tooltip-ca-nstab-image'          => 'رؤية صفحة الملف',
+'tooltip-ca-nstab-mediawiki'      => 'رؤية رسالة النظام',
+'tooltip-ca-nstab-template'       => 'رؤية القالب',
+'tooltip-ca-nstab-help'           => 'رؤية صفحة المساعدة',
+'tooltip-ca-nstab-category'       => 'رؤية صفحة التصنيف',
 'tooltip-minoredit'               => 'علم على هذا كتعديل طفيف',
 'tooltip-save'                    => 'احفظ تغييراتك',
 'tooltip-preview'                 => 'اعرض تغييراتك، من فضلك استخدم هذا قبل الحفظ!',
@@ -2415,7 +2419,7 @@ $1',
 'standard.css'    => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة ستاندرد */',
 'nostalgia.css'   => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة نوستالشيا */',
 'cologneblue.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة كولون بلو */',
-'monobook.css'    => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة المونوبوك */',
+'monobook.css'    => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة مونوبوك */',
 'myskin.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة ماي سكين */',
 'chick.css'       => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة تشيك */',
 'simple.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمي واجهة سيمبل */',
@@ -2441,17 +2445,18 @@ $1',
 'anonymous'        => 'مستخدم مجهول ل{{SITENAME}}',
 'siteuser'         => 'مستخدم {{SITENAME}} $1',
 'lastmodifiedatby' => 'آخر تعديل لهذه الصفحة كان في $2، $1 بواسطة $3.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'بناء على عمل $1.',
+'othercontribs'    => 'بناء على العمل بواسطة $1.',
 'others'           => 'أخرى',
 'siteusers'        => '{{SITENAME}} مستخدم(و) $1',
 'creditspage'      => 'حقوق الصفحة',
 'nocredits'        => 'لا توجد معلومات حقوق متوفرة لهذه الصفحة.',
 
 # Spam protection
-'spamprotectiontitle' => 'فلتر الحماية من السخام',
-'spamprotectiontext'  => 'تم منع حفظ الصفحة عن طريق مانع السخام. من المحتمل أن يكون هذا بسبب وصلة خارجية.',
-'spamprotectionmatch' => 'النص التالي هو ما نشط مانع السخام الخاص بنا: $1',
-'spambot_username'    => 'تنظيف سخام ميدياويكي',
+'spamprotectiontitle' => 'فلتر الحماية من السبام',
+'spamprotectiontext'  => 'الصفحة التي أردت حفظها تم منعها بواسطة مانع السبام.
+من المحتمل أن يكون هذا بسبب وصلة إلى موقع خارجي.',
+'spamprotectionmatch' => 'النص التالي هو ما نشط مانع السبام الخاص بنا: $1',
+'spambot_username'    => 'تنظيف سبام ميدياويكي',
 'spam_reverting'      => 'استرجاع آخر نسخة ليس بها وصلات إلى $1',
 'spam_blanking'       => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
 
@@ -2469,17 +2474,17 @@ $1',
 'mw_math_html'   => 'اعرض بصيغة HTML إن أمكن، وإلا فاعرض كهيئة PNG',
 'mw_math_source' => 'اعرض على هيئة TeX (للمتصفحات النصية)',
 'mw_math_modern' => 'مستحسن للمتصفحات الحديثة',
-'mw_math_mathml' => 'اعرض بصيغة MathML إن أمكن (تحت التجريب)',
+'mw_math_mathml' => 'اعرض بصيغة MathML إن أمكن (تجريبي)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'تمت مراجعتها',
-'markaspatrolledtext'                 => 'هذه المقالة تمت مراجعتها',
-'markedaspatrolled'                   => 'تمت مراجعتها',
-'markedaspatrolledtext'               => 'تمت الإشارة إلى النسخة المختارة كمراجعة.',
+'markaspatrolleddiff'                 => 'علم كمراجعة',
+'markaspatrolledtext'                 => 'علم على هذه الصفحة كمراجعة',
+'markedaspatrolled'                   => 'تم التعليم كمراجعة',
+'markedaspatrolledtext'               => 'المراجعة المختارة تم التعليم عليها كمراجعة.',
 'rcpatroldisabled'                    => 'مراجعة أحدث التغييرات معطلة',
 'rcpatroldisabledtext'                => 'خاصية مراجعة أحدث التغييرات معطلة حاليا',
 'markedaspatrollederror'              => 'لا يمكن التعليم بالمراجعة',
-'markedaspatrollederrortext'          => 'يجب عليك اختيار النسخة التي تريد أن تشير أنها مراجعة',
+'markedaspatrollederrortext'          => 'يجب عليك اختيار المراجعة التي تريد أن تشير أنها مراجعة',
 'markedaspatrollederror-noautopatrol' => 'من غير المسموح لك التعليم على تغييراتك الشخصية كمراجعة.',
 
 # Patrol log
@@ -2489,13 +2494,13 @@ $1',
 'patrol-log-diff' => 'ن$1',
 
 # Image deletion
-'deletedrevision'                 => 'حذف النسخة القديمة $1',
+'deletedrevision'                 => 'حذف المراجعة القديمة $1',
 'filedeleteerror-short'           => 'خطأ حذف الملف: $1',
 'filedeleteerror-long'            => 'حدثت أخطاء أثناء حذف الملف:
 
 $1',
 'filedelete-missing'              => 'الملف "$1" لم يمكن حذفه، لأنه غير موجود.',
-'filedelete-old-unregistered'     => 'نسخة الملف المحددة "$1" ليست في قاعدة البيانات.',
+'filedelete-old-unregistered'     => 'مراجعة الملف المحددة "$1" ليست في قاعدة البيانات.',
 'filedelete-current-unregistered' => 'الملف المحدد "$1" ليس في قاعدة البيانات.',
 'filedelete-archive-read-only'    => 'مجلد الأرشيف "$1" لا يمكن الكتابة عليه بواسطة خادم الويب.',
 
@@ -2511,12 +2516,12 @@ $1',
 'file-info'            => '(حجم الملف: $1، نوع MIME: $2)',
 'file-info-size'       => '($1 × $2 بكسل حجم الملف: $3، نوع MIME: $4)',
 'file-nohires'         => '<small>لا توجد دقة أعلى متوفرة.</small>',
-'svg-long-desc'        => '(ملف إس في جي، أبعاده $1 × $2 بكسل، حجم الملف: $3)',
-'show-big-image'       => 'الصورة بدقة كاملة',
+'svg-long-desc'        => '(ملف SVG، أبعاده $1 × $2 بكسل، حجم الملف: $3)',
+'show-big-image'       => 'دقة كاملة',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
 
 # Special:Newimages
-'newimages'             => 'معرض الصور الجديدة',
+'newimages'             => 'معرض الملفات الجديدة',
 'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
 'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة',
 'showhidebots'          => '($1 بوتات)',
@@ -2534,15 +2539,18 @@ $1',
 # Bad image list
 'bad_image_list' => 'الصيغة كالتالي:
 
-فقط عناصر القائمة (السطور التي تبدأ ب *) يتم أخذها في الاعتبار. أول وصلة في السطر يجب أن تكون وصلة لملف سيىء.
+فقط عناصر القائمة (السطور التي تبدأ ب *) يتم أخذها في الاعتبار.
+أول وصلة في السطر يجب أن تكون وصلة لملف سيىء.
 أي وصلات تالية في نفس السطر سيتم اعتبارها استثناءات، بمعنى آخر مقالات حيث الملف يمكن أن يكون موجودا.',
 
 # Metadata
 'metadata'          => 'بيانات ميتا',
-'metadata-help'     => 'هذا الملف يحتوي على معلومات إضافية، غالبا ما تكون أضيفت من قبل الكاميرا الرقمية أو الماسح الضوئي المستخدم في نقل الملف إلى الحاسوب. إذا كان الملف قد عدل عن حالته الأصلية، فبعض التفاصيل قد لا تعبر عن الملف المعدل.',
-'metadata-expand'   => 'اظهر التفاصيل الممتدة',
-'metadata-collapse' => 'أخف التفاصيل الممتدة',
-'metadata-fields'   => 'حقول معطيات الميتا EXIF الموجودة في هذه الرسالة سوف تعرض في صفحة الصورة عندما يكون جدول معطيات الميتا مضغوطا. الحقول الأخرى ستكون مخفية افتراضيا.
+'metadata-help'     => 'هذا الملف يحتوي على معلومات إضافية، غالبا ما تكون أضيفت من قبل الكاميرا الرقمية أو الماسح الضوئي المستخدم في نقل الملف إلى الحاسوب.
+إذا كان الملف قد عدل عن حالته الأصلية، فبعض التفاصيل قد لا تعبر عن الملف المعدل.',
+'metadata-expand'   => 'عرض التفاصيل الممتدة',
+'metadata-collapse' => 'إخفاء التفاصيل الممتدة',
+'metadata-fields'   => 'حقول معطيات الميتا EXIF الموجودة في هذه الرسالة سوف تعرض في صفحة الصورة عندما يكون جدول معطيات الميتا مضغوطا.
+الحقول الأخرى ستكون مخفية افتراضيا.
 * make
 * model
 * datetimeoriginal
@@ -2552,7 +2560,7 @@ $1',
 
 # EXIF tags
 'exif-imagewidth'                  => 'العرض',
-'exif-imagelength'                 => 'الطول',
+'exif-imagelength'                 => 'الارتفاع',
 'exif-bitspersample'               => 'بت لكل مكون',
 'exif-compression'                 => 'نظام الضغط',
 'exif-photometricinterpretation'   => 'تركيب البكسل',
@@ -2565,8 +2573,8 @@ $1',
 'exif-yresolution'                 => 'الدقة الرأسية',
 'exif-resolutionunit'              => 'وحدة تحليل X و Y',
 'exif-stripoffsets'                => 'موقع بيانات الصورة',
-'exif-rowsperstrip'                => 'عدد الصفوف لكل ستريب',
-'exif-stripbytecounts'             => 'بايت لكل ستريب مضغوط',
+'exif-rowsperstrip'                => 'عدد الصفوف لكل شريحة',
+'exif-stripbytecounts'             => 'بايت لكل شريحة مضغوطة',
 'exif-jpeginterchangeformat'       => 'الحد ل JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'بايت من بيانات JPEG',
 'exif-transferfunction'            => 'وظيفة النقل',
@@ -2574,13 +2582,13 @@ $1',
 'exif-primarychromaticities'       => 'ألوان الأساسيات',
 'exif-ycbcrcoefficients'           => 'معاملات مصفوفة تحويل فراغ اللون',
 'exif-referenceblackwhite'         => 'زوج من قيم المرجع السوداء والبيضاء',
-'exif-datetime'                    => 'تاريخ و وقت تغيير الملف',
+'exif-datetime'                    => 'تاريخ ووقت تغيير الملف',
 'exif-imagedescription'            => 'عنوان الصورة',
-'exif-make'                        => 'منتج آلة التصوير',
+'exif-make'                        => 'مصنع آلة التصوير',
 'exif-model'                       => 'نوع آلة التصوير',
 'exif-software'                    => 'البرمجيات المستخدمة',
 'exif-artist'                      => 'المؤلف',
-'exif-copyright'                   => 'مالك الحقوق المحفوظة',
+'exif-copyright'                   => 'مالك الحقوق',
 'exif-exifversion'                 => 'نسخة Exif',
 'exif-flashpixversion'             => 'نسخة فلاش بكس المدعومة',
 'exif-colorspace'                  => 'فرق اللون',
@@ -2588,15 +2596,15 @@ $1',
 'exif-compressedbitsperpixel'      => 'طور ضغط الصورة',
 'exif-pixelydimension'             => 'عرض صورة صحيح',
 'exif-pixelxdimension'             => 'ارتفاع صورة صحيح',
-'exif-makernote'                   => 'ملاحظات الصانع',
+'exif-makernote'                   => 'ملاحظات المصنع',
 'exif-usercomment'                 => 'تعليقات المستخدم',
 'exif-relatedsoundfile'            => 'ملف صوتي مرتبط',
-'exif-datetimeoriginal'            => 'تاريخ و وقت الإنتاج',
-'exif-datetimedigitized'           => 'تاريخ و وقت التحويل الرقمي',
+'exif-datetimeoriginal'            => 'تاريخ ووقت توليد البيانات',
+'exif-datetimedigitized'           => 'تاريخ ووقت التحويل الرقمي',
 'exif-subsectime'                  => 'وقت تاريخ ثواني فرعية',
 'exif-subsectimeoriginal'          => 'وقت تاريخ أصلي ثواني فرعية',
 'exif-subsectimedigitized'         => 'وقت تاريخ رقمي ثواني فرعية',
-'exif-exposuretime'                => 'مدة التعرض',
+'exif-exposuretime'                => 'زمن التعرض',
 'exif-exposuretime-format'         => '$1 ثانية ($2)',
 'exif-fnumber'                     => 'العدد البؤري',
 'exif-fnumber-format'              => 'البعد البؤري/$1',
@@ -2626,23 +2634,23 @@ $1',
 'exif-sensingmethod'               => 'وسيلة الاستشعار',
 'exif-filesource'                  => 'مصدر الملف',
 'exif-scenetype'                   => 'نوع المشهد',
-'exif-cfapattern'                  => 'نمط سي إف إيه',
+'exif-cfapattern'                  => 'نمط CFA',
 'exif-customrendered'              => 'معالجة الصورة حسب الطلب',
 'exif-exposuremode'                => 'طور التعرض',
 'exif-whitebalance'                => 'توازن الأبيض',
-'exif-digitalzoomratio'            => 'نسبة الزوم الرقمية',
+'exif-digitalzoomratio'            => 'نسبة التقريب الرقمية',
 'exif-focallengthin35mmfilm'       => 'البعد البؤري في فيلم 35 مم',
 'exif-scenecapturetype'            => 'نوع إمساك المشهد',
 'exif-gaincontrol'                 => 'التحكم بالمشهد',
 'exif-contrast'                    => 'التعارض',
 'exif-saturation'                  => 'التشبع',
 'exif-sharpness'                   => 'الحدة',
-'exif-devicesettingdescription'    => 'وصف إعدادات الأداة',
+'exif-devicesettingdescription'    => 'وصف إعدادات الجهاز',
 'exif-subjectdistancerange'        => 'نطاق مسافة الجسم',
 'exif-imageuniqueid'               => 'رقم الصورة الفريد',
 'exif-gpsversionid'                => 'نسخة وسم GPS',
-'exif-gpslatituderef'              => 'شمال أو جنوب خطوط العرض',
-'exif-gpslatitude'                 => 'خط العرض',
+'exif-gpslatituderef'              => 'دائرة العرض الشمالية أو الجنوبية',
+'exif-gpslatitude'                 => 'دائرة العرض',
 'exif-gpslongituderef'             => 'خط الطول الشرقي أو الغربي',
 'exif-gpslongitude'                => 'خط الطول',
 'exif-gpsaltituderef'              => 'مرجع الارتفاع',
@@ -2653,21 +2661,21 @@ $1',
 'exif-gpsmeasuremode'              => 'طريقة القياس',
 'exif-gpsdop'                      => 'دقة القياس',
 'exif-gpsspeedref'                 => 'وحدة السرعة',
-'exif-gpsspeed'                    => 'سرعة مستقبل جي بي إس',
+'exif-gpsspeed'                    => 'سرعة مستقبل GPS',
 'exif-gpstrackref'                 => 'المرجع لاتجاه الحركة',
 'exif-gpstrack'                    => 'اتجاه الحركة',
 'exif-gpsimgdirectionref'          => 'المرجع لاتجاه الصورة',
 'exif-gpsimgdirection'             => 'اتجاه الصورة',
 'exif-gpsmapdatum'                 => 'بيانات استطلاع الجيوديسيك المستخدمة',
-'exif-gpsdestlatituderef'          => 'المرجع لخط عرض الوجهة',
-'exif-gpsdestlatitude'             => 'خط عرض الوجهة',
+'exif-gpsdestlatituderef'          => 'المرجع لدائرة عرض الوجهة',
+'exif-gpsdestlatitude'             => 'دائرة عرض الوجهة',
 'exif-gpsdestlongituderef'         => 'المرجع لخط طول الوجهة',
 'exif-gpsdestlongitude'            => 'خط طول الوجهة',
 'exif-gpsdestbearingref'           => 'المرجع لتحمل الوجهة',
 'exif-gpsdestbearing'              => 'تحمل الوجهة',
 'exif-gpsdestdistanceref'          => 'المرجع للمسافة للهدف',
 'exif-gpsdestdistance'             => 'المسافة للهدف',
-'exif-gpsprocessingmethod'         => 'اسم وسيلة معالجة جي بي إس',
+'exif-gpsprocessingmethod'         => 'اسم وسيلة معالجة GPS',
 'exif-gpsareainformation'          => 'اسم مساحة GPS',
 'exif-gpsdatestamp'                => 'تاريخ GPS',
 'exif-gpsdifferential'             => 'تصحيح GPS التفاضلي',
@@ -2681,7 +2689,7 @@ $1',
 
 'exif-unknowndate' => 'تاريخ غير معروف',
 
-'exif-orientation-1' => 'وضعية طبيعية', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'عادي', # 0th row: top; 0th column: left
 'exif-orientation-2' => 'دار عرضيا', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'دار 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'دار أفقيا', # 0th row: bottom; 0th column: left
@@ -2691,7 +2699,7 @@ $1',
 'exif-orientation-8' => 'دار 90° عكس عقارب الساعة', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'صيغة تشنكي',
-'exif-planarconfiguration-2' => 'الصيغة المستوية',
+'exif-planarconfiguration-2' => 'صيغة مستوية',
 
 'exif-xyresolution-i' => '$1 نقطة لكل بوصة',
 'exif-xyresolution-c' => '$1 دي بي سي',
@@ -2709,7 +2717,7 @@ $1',
 
 'exif-exposureprogram-0' => 'غير معرف',
 'exif-exposureprogram-1' => 'يدوي',
-'exif-exposureprogram-2' => 'برنامج اعتيادي',
+'exif-exposureprogram-2' => 'برنامج عادي',
 'exif-exposureprogram-3' => 'أولوية الغالق',
 'exif-exposureprogram-4' => 'أولوية الإغلاق',
 'exif-exposureprogram-5' => 'برنامج الصنع (يميل تجاه عمق الحقل)',
@@ -2764,7 +2772,7 @@ $1',
 
 'exif-scenetype-1' => 'صورة ملتقطة بشكل مباشر',
 
-'exif-customrendered-0' => 'عملية طبيعية',
+'exif-customrendered-0' => 'عملية عادية',
 'exif-customrendered-1' => 'عملية حسب الطلب',
 
 'exif-exposuremode-0' => 'تعرض تلقائي',
@@ -2785,15 +2793,15 @@ $1',
 'exif-gaincontrol-3' => 'تحكم أسفل منخفض',
 'exif-gaincontrol-4' => 'تحكم أسفل مرتفع',
 
-'exif-contrast-0' => 'وضعية طبيعية',
+'exif-contrast-0' => 'عادي',
 'exif-contrast-1' => 'ناعم',
 'exif-contrast-2' => 'قاسي',
 
-'exif-saturation-0' => 'وضعية طبيعية',
+'exif-saturation-0' => 'عادي',
 'exif-saturation-1' => 'تشبع قليل',
 'exif-saturation-2' => 'تشبع عالي',
 
-'exif-sharpness-0' => 'وضعية طبيعية',
+'exif-sharpness-0' => 'عادي',
 'exif-sharpness-1' => 'ناعم',
 'exif-sharpness-2' => 'قاسي',
 
@@ -2839,22 +2847,26 @@ $1',
 # E-mail address confirmation
 'confirmemail'             => 'أكد عنوان البريد الإلكتروني',
 'confirmemail_noemail'     => 'ليس لديك عنوان بريد إلكتروني صحيح مسجل في [[Special:Preferences|تفضيلاتك]].',
-'confirmemail_text'        => '{{SITENAME}} يتطلب تأكيد عنوانك الإلكتروني قبل استخدام خصائص البريد الإلكتروني. اضغط على زر التفعيل بالأسفل ليتم إرسال رسالة تأكيد لعنوانك. ستتضمن الرسالة رمز تفعيل؛ اضغط على الوصلة التي تحتوي الرمز لتأكيد أن عنوانك الإلكتروني صحيح.',
-'confirmemail_pending'     => "<div class=\"error\">
-'''تم إرسال كود التأكيد بالفعل من قبل إلى بريدك الإلكتروني، إذا كان حسابك قد تم عمله حالا، ربما يجب أن تنتظر بضع دقائق قبل طلبك لكود آخر.'''
-</div>",
-'confirmemail_send'        => 'أرسل رمز التفعيل',
+'confirmemail_text'        => '{{SITENAME}} يتطلب تأكيد عنوانك الإلكتروني قبل استخدام خصائص البريد الإلكتروني.
+اضغط على زر التفعيل بالأسفل ليتم إرسال رسالة تأكيد لعنوانك.
+ستتضمن الرسالة رمز تفعيل؛
+اضغط على الوصلة التي تحتوي الرمز لتأكيد أن عنوانك الإلكتروني صحيح.',
+'confirmemail_pending'     => '<div class="error">تم إرسال كود التأكيد بالفعل من قبل إلى بريدك الإلكتروني؛
+إذا كان حسابك قد تم عمله حالا، ربما يجب أن تنتظر بضع دقائق قبل طلبك لكود آخر.</div>',
+'confirmemail_send'        => 'أرسل كود تأكيد',
 'confirmemail_sent'        => 'تم إرسال رسالة التأكيد، شكرا لك.',
 'confirmemail_oncreate'    => 'تم إرسال كود تأكيد لعنوان بريدك الإلكتروني.
-لا يشترط أن تستخدم الكود للدخول للموسوعة باسمك، ولكن يجب أن تقوم بإدخاله قبل
-استخدامك أيا من خواص البريد الإلكتروني المستخدمة هنا في الويكي.',
-'confirmemail_sendfailed'  => 'لم نستطع إرسال رسالة التأكيد. من فضلك، تأكد من بريدك الإلكتروني.
+لا يشترط أن تستخدم الكود للدخول للموسوعة باسمك، ولكن يجب أن تقوم بإدخاله قبل استخدامك أيا من خواص البريد الإلكتروني المستخدمة هنا في الويكي.',
+'confirmemail_sendfailed'  => 'لم يمكن إرسال رسالة التأكيد.
+راجع العنوان لحروف غير صحيحة.
 
-الخطأ الذي حدث: $1',
-'confirmemail_invalid'     => 'رمز تفعيل خاطئ. ربما انتهت فترة صلاحيته.',
-'confirmemail_needlogin'   => 'يجب عليك $1 لتأكيد البريد الإلكتروني الخاص بك.',
-'confirmemail_success'     => 'تم تأكيد بريدك الإلكتروني، بإمكانك الآن الدخول و التمتع بالويكي.',
-'confirmemail_loggedin'    => 'تم تأكيد بريدك الإلكتروني، شكرا لك.',
+خادم البريد أرجع: $1',
+'confirmemail_invalid'     => 'كود تأكيد غير صحيح.
+ربما انتهت فترة صلاحيته.',
+'confirmemail_needlogin'   => 'يجب عليك $1 لتأكيد بريدك الإلكتروني.',
+'confirmemail_success'     => 'تم تأكيد بريدك الإلكتروني.
+يمكنك الآن الدخول والتمتع بالويكي.',
+'confirmemail_loggedin'    => 'بريدك الإلكتروني تم تأكيده الآن.',
 'confirmemail_error'       => 'ثمة شئ خطأ حدث عند محاولة حفظ تأكيدك.',
 'confirmemail_subject'     => 'رسالة تأكيد البريد من {{SITENAME}}',
 'confirmemail_body'        => 'شخص ما، من المحتمل أن يكون أنت، من عنوان الأيبي $1،
@@ -2869,29 +2881,28 @@ $3
 
 $5
 
-كود التفعيل هذا ينتهي $4.',
+كود التفعيل هذا سينتهي في $4.',
 'confirmemail_invalidated' => 'تأكيد عنوان البريد الإلكتروني تم إلغاؤه',
 'invalidateemail'          => 'إلغاء تأكيد البريد الإلكتروني',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[التضمين بالإنترويكي معطل]',
 'scarytranscludefailed'   => '[البحث عن القالب فشل ل$1؛ عذرا]',
-'scarytranscludetoolong'  => '[عنوان طويل للغاية؛ معذرة]',
+'scarytranscludetoolong'  => '[مسار طويل للغاية؛ عذرا]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-المتابعات الخاصة بهذه المقالة:<br />
+'trackbackbox'      => '<div id="mw_trackbacks">المتابعات لهذه الصفحة:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 حذف])',
 'trackbacklink'     => 'متابعة',
-'trackbackdeleteok' => 'حذفت المراجعة بنجاح.',
+'trackbackdeleteok' => 'المتابعة تم حذفها بنجاح.',
 
 # Delete conflict
 'deletedwhileediting' => 'تحذير: هذه الصفحة تم حذفها بعد أن بدأت أنت بتحريرها!',
-'confirmrecreate'     => "لقد قام المستخدم [[User:$1|$1]] ([[User talk:$1|نقاش]]) بحذف هذه المقالة بعد أن بدأت بتحريرها للسبب التالي:
+'confirmrecreate'     => "المستخدم [[User:$1|$1]] ([[User talk:$1|نقاش]]) حذف هذه الصفحة بعد أن بدأت أنت بتحريرها للسبب التالي:
 :''$2''
-الرجاء التأكد من أنك تريد إعادة إنشاء هذه المقالة.",
+الرجاء التأكد من أنك تريد إعادة إنشاء هذه الصفحة.",
 'recreate'            => 'أعد الإنشاء',
 
 'unit-pixel' => 'بك',
@@ -2907,7 +2918,7 @@ $1',
 
 # AJAX search
 'searchcontaining' => "ابحث عن الصفحات المحتوية على ''$1''.",
-'searchnamed'      => "ابحث عن الصفحات المعنونة ''$1''.",
+'searchnamed'      => "ابحث عن الصفحات المسماة ''$1''.",
 'articletitles'    => "الصفحات التي تبدأ ب''$1''",
 'hideresults'      => 'إخفاء النتائج',
 'useajaxsearch'    => 'استخدم بحث أجاكس',
@@ -2929,7 +2940,7 @@ $1',
 'table_pager_prev'         => 'الصفحة السابقة',
 'table_pager_first'        => 'الصفحة الأولى',
 'table_pager_last'         => 'الصفحة الأخيرة',
-'table_pager_limit'        => 'اعرض $1 عنصر في الصفحة',
+'table_pager_limit'        => 'اعرض $1 مدخلة في الصفحة',
 'table_pager_limit_submit' => 'اذهب',
 'table_pager_empty'        => 'لا نتائج',
 
@@ -2955,22 +2966,23 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'التغييرات الأحدث من $1 ثانية قد لا تظهر في هذه القائمة.',
-'lag-warn-high'   => 'نتيجة لوجود تأخر كبير في تحديث قاعدة بيانات الخادم، التغييرات أحدث من $1 ثانية
-ربما لا تكون ظاهرة في هذه القائمة.',
+'lag-warn-high'   => 'نتيجة لوجود تأخر كبير في تحديث قاعدة بيانات الخادم، التغييرات أحدث من $1 ثانية ربما لا تكون ظاهرة في هذه القائمة.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'قائمة مراقبتك تحتوي على {{PLURAL:$1|عنوان واحد|$1 عنوان}}، بدون احتساب صفحات النقاش.',
 'watchlistedit-noitems'        => 'قائمة مراقبتك لا تحتوي على أية عناوين.',
 'watchlistedit-normal-title'   => 'تعديل قائمة المراقبة',
-'watchlistedit-normal-legend'  => 'أزل عناوين من قائمة المراقبة',
-'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل. لإزالة عنوان، اضغط على
-	الصندوق بجواره، واضغط إزالة العناوين. يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
-'watchlistedit-normal-submit'  => 'أزل العناوين',
+'watchlistedit-normal-legend'  => 'إزالة عناوين من قائمة المراقبة',
+'watchlistedit-normal-explain' => 'العناوين في قائمة مراقبتك معروضة بالأسفل.
+لإزالة عنوان، اضغط على الصندوق بجواره، واضغط إزالة العناوين.
+يمكنك أيضا [[Special:Watchlist/raw|تعديل القائمة الخام]].',
+'watchlistedit-normal-submit'  => 'إزالة العناوين',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته من قائمة مراقبتك:',
 'watchlistedit-raw-title'      => 'عدل قائمة المراقبة الخام',
-'watchlistedit-raw-legend'     => 'عدل قائمة المراقبة',
-'watchlistedit-raw-explain'    => 'العناوين في قائمة مراقبتك معروضة بالأسفل، ويمكن تعديلها عن طريق الإضافة والإزالة من القائمة؛ عنوان واحد لكل سطر. عند الانتهاء، اضغط تحديث قائمة المراقبة.
-	يمكنك أيضا [[Special:Watchlist/edit|استخدام المحرر القياسي]].',
+'watchlistedit-raw-legend'     => 'عدل قائمة المراقبة الخام',
+'watchlistedit-raw-explain'    => 'العناوين في قائمة مراقبتك معروضة بالأسفل، ويمكن تعديلها عن طريق الإضافة والإزالة من القائمة؛ عنوان واحد لكل سطر.
+عند الانتهاء، اضغط تحديث قائمة المراقبة.
+يمكنك أيضا [[Special:Watchlist/edit|استخدام المحرر القياسي]].',
 'watchlistedit-raw-titles'     => 'العناوين:',
 'watchlistedit-raw-submit'     => 'تحديث قائمة المراقبة',
 'watchlistedit-raw-done'       => 'قائمة مراقبتك تم تحديثها.',
@@ -3071,7 +3083,10 @@ $1',
 'filepath'         => 'مسار ملف',
 'filepath-page'    => 'الملف:',
 'filepath-submit'  => 'المسار',
-'filepath-summary' => 'هذه الصفحة الخاصة تعرض المسار الكامل لملف. ستعرض الصور بأقصى دقة، ستعمل أنواع الملفات الأخرى بالبرنامج المخصص لهم مباشرة؛ أدخل اسم الملف بدون البادئة "{{ns:image}}:"',
+'filepath-summary' => 'هذه الصفحة الخاصة تعرض المسار الكامل لملف.
+ستعرض الصور بأقصى دقة، ستعمل أنواع الملفات الأخرى بالبرنامج المخصص لهم مباشرة.
+
+أدخل اسم الملف بدون البادئة "{{ns:image}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'بحث عن ملفات مكررة',

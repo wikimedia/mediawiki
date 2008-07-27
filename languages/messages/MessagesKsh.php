@@ -1769,6 +1769,7 @@ un widder herjehollte Sigge.',
 # What links here
 'whatlinkshere'       => 'Wat noh hee link',
 'whatlinkshere-title' => 'Sigge, woh Links op „$1“ dren sen',
+'whatlinkshere-page'  => 'Sigg:',
 'linklistsub'         => '(Liss met de Links)',
 'linkshere'           => 'Dat sin de Sigge, die op <strong>„[[:$1]]“</strong> linke dun:',
 'nolinkshere'         => 'Kein Sigg link noh <strong>„[[:$1]]“</strong>.',
@@ -2208,8 +2209,11 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 
 'exif-lightsource-4' => 'Bletz',
 
+'exif-sensingmethod-1' => 'Onbikannt',
+
 'exif-scenecapturetype-0' => 'Nomaal',
 'exif-scenecapturetype-1' => 'Queerfommaat',
+'exif-scenecapturetype-2' => 'Huhkant',
 
 'exif-contrast-0' => 'Nomal',
 
@@ -2232,6 +2236,11 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 
 'exif-gpsmeasuremode-2' => 'Zweidimensjonal Mohß',
 'exif-gpsmeasuremode-3' => 'Dreidimensjonal Mohß',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Killomeeter en de Shtondt',
+'exif-gpsspeed-m' => 'Meile en de Shtondt',
+'exif-gpsspeed-n' => 'Knote',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wohre Rechtung',

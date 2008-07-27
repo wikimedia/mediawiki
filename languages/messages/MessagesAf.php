@@ -419,7 +419,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'loginproblem'               => '<b>Daar was probleme met jou intekening.</b><br />Probeer weer.',
 'login'                      => 'Teken in',
 'nav-login-createaccount'    => 'Teken in',
-'loginprompt'                => 'U blaaier moet koekies toelaat om by {{SITENAME}} aan te teken.',
+'loginprompt'                => 'U blaaier moet koekies toelaat om by {{SITENAME}} te kan aanteken.',
 'userlogin'                  => 'Teken in',
 'logout'                     => 'Teken uit',
 'userlogout'                 => 'Teken uit',
@@ -918,26 +918,30 @@ om voorkeure te spesifiseer.',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokrate',
 
 # Rights
-'right-read'           => 'Lees bladsye',
-'right-edit'           => 'Wysig bladsye',
-'right-createpage'     => 'Skep bladsye (nie besprekingsblaaie nie)',
-'right-createtalk'     => 'Skep besprekingsbladsye',
-'right-createaccount'  => 'Skep nuwe gebruikersrekeninge',
-'right-minoredit'      => "Merk as 'n klein verandering",
-'right-move'           => 'Skuif bladsye',
-'right-upload'         => 'Laai lêers op',
-'right-reupload'       => "Oorskryf 'n bestaande lêer",
-'right-reupload-own'   => "Oorskryf 'n lêer wat u self opgelaai het",
-'right-delete'         => 'Vee bladsye uit',
-'right-bigdelete'      => 'Skrap bladsye met groot geskiedenisse',
-'right-deleterevision' => 'Skrap en ontskrap spesifieke hersienings van bladsye',
-'right-browsearchive'  => 'Soek uigeveede bladsye',
-'right-undelete'       => "Ontskrap 'n bladsy",
-'right-suppressionlog' => 'Besigtig privaat logboeke',
-'right-editinterface'  => 'Wysig die gebruikerskoppelvlak',
-'right-mergehistory'   => 'Versmelt die geskiedenis van bladsye',
-'right-userrights'     => 'Wysig alle gebruiker regte',
-'right-siteadmin'      => 'Sluit en ontsluit die datbasis',
+'right-read'                 => 'Lees bladsye',
+'right-edit'                 => 'Wysig bladsye',
+'right-createpage'           => 'Skep bladsye (nie besprekingsblaaie nie)',
+'right-createtalk'           => 'Skep besprekingsbladsye',
+'right-createaccount'        => 'Skep nuwe gebruikersrekeninge',
+'right-minoredit'            => "Merk as 'n klein verandering",
+'right-move'                 => 'Skuif bladsye',
+'right-upload'               => 'Laai lêers op',
+'right-reupload'             => "Oorskryf 'n bestaande lêer",
+'right-reupload-own'         => "Oorskryf 'n lêer wat u self opgelaai het",
+'right-delete'               => 'Vee bladsye uit',
+'right-bigdelete'            => 'Skrap bladsye met groot geskiedenisse',
+'right-deleterevision'       => 'Skrap en ontskrap spesifieke hersienings van bladsye',
+'right-browsearchive'        => 'Soek uigeveede bladsye',
+'right-undelete'             => "Ontskrap 'n bladsy",
+'right-suppressionlog'       => 'Besigtig privaat logboeke',
+'right-editinterface'        => 'Wysig die gebruikerskoppelvlak',
+'right-import'               => "Importeer bladsye vanaf ander wiki's",
+'right-importupload'         => "Importeer bladsye vanaf 'n lêer",
+'right-patrol'               => 'Merk ander se wysigings as gepatrolleer',
+'right-mergehistory'         => 'Versmelt die geskiedenis van bladsye',
+'right-userrights'           => 'Wysig alle gebruiker regte',
+'right-userrights-interwiki' => 'Wysig gebruikersregte van gebruikers op ander wikis',
+'right-siteadmin'            => 'Sluit en ontsluit die datbasis',
 
 # User rights log
 'rightslog'      => 'Gebruikersregtelogboek',
@@ -1185,9 +1189,10 @@ Die ''[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]''-lengte is '''
 Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
 'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Dubbele aansture',
-'doubleredirectstext' => '<b>Let op:</b> Hierdie lys bevat moontlik false positiewe. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT is.<br />
-Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuurteks, wat gewoonlik die "regte" teikenbladsy gee waarna die eerste aanstuur behoort te wys.',
+'doubleredirects'       => 'Dubbele aansture',
+'doubleredirectstext'   => '<b>Let op:</b> Hierdie lys bevat moontlik vals positiewes. Dit beteken gewoonlik dat daar nog teks met skakels onder die eerste #REDIRECT/#AANSTUUR is.<br />
+Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reël van van die tweede aanstuur se teks, wat gewoonlik die "regte" teiken bladsy gee waarna die eerste aanstuur behoort te wys.',
+'double-redirect-fixer' => 'Aanstuur hersteller',
 
 'brokenredirects'        => 'Stukkende aansture',
 'brokenredirectstext'    => "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
@@ -1365,6 +1370,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'watching'   => 'Plaas op dophoulys...',
 'unwatching' => 'Verwyder van dophoulys...',
 
+'enotif_mailer'                => '{{SITENAME}} E-pos kennisgewings',
 'enotif_reset'                 => 'Merk alle bladsye as besoek',
 'enotif_newpagetext'           => "Dis 'n nuwe bladsy.",
 'enotif_impersonal_salutation' => '{{SITENAME}} gebruiker',
@@ -1374,6 +1380,28 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'enotif_lastvisited'           => 'Sien $1 vir alle wysigings sedert U laaste besoek.',
 'enotif_lastdiff'              => 'Sien $1 om hierdie wysiging te bekyk.',
 'enotif_anon_editor'           => 'anonieme gebruiker $1',
+'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
+
+Die bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, sien $PAGETITLE_URL vir die nuutste weergawe.
+
+$NEWPAGE
+
+Samevatting van die wysiging: $PAGESUMMARY $PAGEMINOREDIT
+
+Outeur se kontakdetails:
+E-pos: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Tensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie. U kan ook die waarskuwingsvlag op u dophoulys verstel.
+
+             Groete van die {{SITENAME}} waarskuwingssisteem.
+
+--
+U kan u dophoulys wysig by:
+{{fullurl:Special:Watchlist/edit}}
+
+Terugvoer en verdere bystand:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Skrap bladsy',
@@ -1403,6 +1431,8 @@ Kyk na $2 vir \'n rekord van onlangse skrappings.',
 ** Skending van kopieregte
 ** Vandalisme',
 'delete-edit-reasonlist'      => 'Wysig skrap redes',
+'delete-toobig'               => "Die bladsy het 'n lang wysigingsgeskiedenis, meer as $1 {{PLURAL:$1|weergawe|weergawes}}.
+Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te voorkom.",
 'rollback'                    => 'Rol veranderinge terug',
 'rollback_short'              => 'Rol terug',
 'rollbacklink'                => 'Rol terug',
@@ -1500,18 +1530,22 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 'sp-contributions-submit'      => 'Vertoon',
 
 # What links here
-'whatlinkshere'         => 'Skakels hierheen',
-'whatlinkshere-title'   => 'Bladsye die skakel na $1',
-'whatlinkshere-page'    => 'Bladsy:',
-'linklistsub'           => '(Lys van skakels)',
-'linkshere'             => "Die volgende bladsye skakel na '''[[:$1]]''':",
-'nolinkshere'           => "Geen bladsye skakel na '''[[:$1]]'''.",
-'isredirect'            => 'Stuur bladsy aan',
-'istemplate'            => 'insluiting',
-'whatlinkshere-prev'    => '{{PLURAL:$1|vorige|vorige $1}}',
-'whatlinkshere-next'    => '{{PLURAL:$1|volgende|volgende $1}}',
-'whatlinkshere-links'   => '← skakels',
-'whatlinkshere-filters' => 'Filters',
+'whatlinkshere'            => 'Skakels hierheen',
+'whatlinkshere-title'      => 'Bladsye die skakel na $1',
+'whatlinkshere-page'       => 'Bladsy:',
+'linklistsub'              => '(Lys van skakels)',
+'linkshere'                => "Die volgende bladsye skakel na '''[[:$1]]''':",
+'nolinkshere'              => "Geen bladsye skakel na '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Geen bladsye skakel na '''[[:$1]]''' in die verkose naamruimte nie.",
+'isredirect'               => 'Stuur bladsy aan',
+'istemplate'               => 'insluiting',
+'whatlinkshere-prev'       => '{{PLURAL:$1|vorige|vorige $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
+'whatlinkshere-links'      => '← skakels',
+'whatlinkshere-hideredirs' => '$1 aansture',
+'whatlinkshere-hidelinks'  => '$1 skakels',
+'whatlinkshere-hideimages' => '$1 beeldskakels',
+'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
 'blockip'                  => 'Blok gebruiker',
@@ -1532,6 +1566,8 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 ** Intimiderende gedrag (teistering)
 ** Misbruik van veelvuldige rekeninge
 ** Onaanvaarbare gebruikersnaam',
+'ipbanononly'              => 'Blokkeer slegs anonieme gebruikers',
+'ipbcreateaccount'         => 'Blokkeer registrasie van gebruikers',
 'ipbemailban'              => 'Verbied gebruiker om e-pos te stuur',
 'ipbsubmit'                => 'Versper hierdie adres',
 'ipbother'                 => 'Ander tydperk:',
@@ -1651,6 +1687,7 @@ Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir di
 'delete_and_move_reason'  => 'Geskrap om plek te maak vir skuif',
 'selfmove'                => 'Bron- en teikentitels is dieselfde; kan nie bladsy oor homself skuif nie.',
 'imageinvalidfilename'    => 'Die nuwe lêernaam is ongeldig',
+'fix-double-redirects'    => 'Opdateer alle aansture wat na die oorspronklike titel wys',
 
 # Export
 'export'            => 'Eksporteer bladsye',
@@ -1866,8 +1903,11 @@ Ander velde sal versteek wees.
 'exif-imagewidth'          => 'Wydte',
 'exif-imagelength'         => 'Hoogte',
 'exif-orientation'         => 'Oriëntasie',
+'exif-samplesperpixel'     => 'Aantal komponente',
+'exif-ycbcrpositioning'    => 'Y- en C-posisionering',
 'exif-xresolution'         => 'Horisontale resolusie',
 'exif-yresolution'         => 'Vertikale resolusie',
+'exif-resolutionunit'      => 'Eenheid X en Y resolusie',
 'exif-imagedescription'    => 'Beeldtitel',
 'exif-make'                => 'Kamera vervaardiger:',
 'exif-model'               => 'Kamera model',

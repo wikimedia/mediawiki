@@ -1345,8 +1345,10 @@ Có '''$8''' tập tin đã được tải lên.
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những tiêu bản được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Đổi hướng kép',
-'doubleredirectstext' => 'Trang này liệt kê các trang chuyển hướng đến một trang chuyển hướng khác. Mỗi hàng có chứa các liên kết đến trang chuyển hướng thứ nhất và thứ hai, cũng như mục tiêu của trang chuyển hướng thứ hai, thường chỉ tới trang đích “thực sự”, là nơi mà trang chuyển hướng đầu tiên nên trỏ đến.',
+'doubleredirects'            => 'Đổi hướng kép',
+'doubleredirectstext'        => 'Trang này liệt kê các trang chuyển hướng đến một trang chuyển hướng khác. Mỗi hàng có chứa các liên kết đến trang chuyển hướng thứ nhất và thứ hai, cũng như mục tiêu của trang chuyển hướng thứ hai, thường chỉ tới trang đích “thực sự”, là nơi mà trang chuyển hướng đầu tiên nên trỏ đến.',
+'double-redirect-fixed-move' => '[[$1]] đã được đổi tên, giờ nó là trang đổi hướng đến [[$2]]',
+'double-redirect-fixer'      => 'Người sửa trang đổi hướng',
 
 'brokenredirects'        => 'Đổi hướng sai',
 'brokenredirectstext'    => 'Các trang đổi hướng sau đây liên kết đến một trang không tồn tại.',
@@ -1915,6 +1917,7 @@ Trang với tên “[[$1]]” đã tồn tại. Bạn có muốn xóa nó để 
 'imagenocrossnamespace'   => 'Không được di chuyển tập tin ra khỏi không gian tên Tập tin',
 'imagetypemismatch'       => 'Phần mở rộng trong tên tập tin mới không hợp dạng của tập tin',
 'imageinvalidfilename'    => 'Tên tập tin đích không hợp lệ',
+'fix-double-redirects'    => 'Cập nhật tất cả các trang đổi hướng chỉ đến tựa đề cũ',
 
 # Export
 'export'            => 'Xuất các trang',

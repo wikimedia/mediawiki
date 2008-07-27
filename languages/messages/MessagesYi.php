@@ -559,7 +559,7 @@ $2',
 'eauthentsent'               => 'א באשטעטיגונג אימעיל איז געשיקט געווארן צו די נאמינירטע אימעיל אדרעס. בעפאר סיי וואס אנדערע אימעיל ווערן געשיקט צו דעם אקאונט, וועסטו דארפן אויספילן די אנווייזונגען אין דיין אינבאקס כדי צו זיין זיכער אז די אקאונט איז טאקע דיינס.',
 'throttled-mailpassword'     => "א פאסווארט דערמאנונג איז שוין געשיקט געווארן, אין {{PLURAL:$1|דער לעצטער שעה|די לעצטע $1 שעה'ן}}. כדי צו פארמײַדן שלעכט באניצן, נאר איין פאסווארט דערמאנונג וועט געשיקט ווערן אין {{PLURAL:$1|א שעה |$1 שעה'ן}}.",
 'mailerror'                  => 'פעילער שיקענדיג מעיל: $1',
-'acct_creation_throttle_hit' => 'צום באַדױערן, איר האָט שױן באַשאַפֿן 1$ קאָנטעס. איר קענט נישט מער שאַפֿן נײַע קאָנטעס.',
+'acct_creation_throttle_hit' => 'צום באַדױערן, איר האָט שױן באַשאַפֿן $1 קאָנטעס. איר קענט נישט מער שאַפֿן נײַע קאָנטעס.',
 'emailauthenticated'         => 'דיין אי-מעיל אדרעס איז באשטעטיגט געווארן דורך $1.',
 'emailnotauthenticated'      => 'דיין אי-מעיל אדרעס איז נאכנישט באשטעטיגט. קיין אי-מעיל וועט נישט געשיקט ווערן פון קיין איינע פון די פאלגענדע פישטערס.',
 'noemailprefs'               => 'ספעציפיר אן אי-מעיל אדרעס פאר די פיטשערס צו ארבייטן.',
@@ -1070,12 +1070,14 @@ $2',
 'booksources'               => 'דרויסנדיגע ליטעראַטור ISBN',
 'booksources-search-legend' => 'זוכט פאר דערויסענדע ביכער מקורות',
 'booksources-go'            => 'גיי',
-'booksources-text'          => 'אונטען איז א ליסטע פון סייטס וואס פארקויפן נייע און גענוצטע ביכער און האבן אויך נאך אינפארמאציע איבער די ספרים וואס איר זוכט:',
+'booksources-text'          => 'אונטן איז א ליסטע פון סייטס וואס פֿארקויפֿן נייע און גענוצטע ביכער און האבן אויך נאך אינפֿארמאציע וועגן די ביכער וואס איר זוכט:',
 
 # Special:Log
-'specialloguserlabel'  => 'באנוצער:',
-'speciallogtitlelabel' => 'טיטול:',
+'specialloguserlabel'  => 'באַניצער:',
+'speciallogtitlelabel' => 'קעפל:',
+'log'                  => 'לאג-ביכער',
 'all-logs-page'        => 'אלע לאג-ביכער',
+'log-search-submit'    => 'ווײַז',
 'alllogstext'          => 'קאמבאנירטע אויסלייג פון אלע לאגס פון{{grammar:תחילית|{{SITENAME}}}}.
 מען קען פארשמעלרן די אויסוואל דורך אויסוועלן די סארט לאג, באנוצער נאמען אדער אפעקטירטע בלעטער.',
 
@@ -1226,7 +1228,8 @@ $NEWPAGE
 'restriction-type'    => 'ערלויבניש:',
 
 # Undelete
-'cannotundelete' => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
+'cannotundelete'         => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
+'undelete-search-submit' => 'זוכן',
 
 # Namespace form on various pages
 'namespace'      => 'נאמענטייל:',
@@ -1243,17 +1246,25 @@ $NEWPAGE
 
 'sp-contributions-newbies-sub' => 'פאר נייע קאנטעס',
 'sp-contributions-blocklog'    => 'בלאקירן לאג',
+'sp-contributions-submit'      => 'זוכן',
 
 # What links here
-'whatlinkshere'       => 'װאָס די אױף דאָס זײט פֿאַרבינדט',
-'whatlinkshere-title' => 'בלעטער וואס פארבינדן צו $1',
-'linklistsub'         => '(ליסטע פֿון פֿארבינדונגען)',
-'linkshere'           => "די פאלגנדע בלעטער פארבינדן צום בלאט '''[[:$1]]''':",
-'nolinkshere'         => "קיין שום בלאט פארבינדט נישט צו '''[[:$1]]'''.",
-'isredirect'          => 'ווײַטערפירן בלאט',
-'whatlinkshere-prev'  => '{{PLURAL:$1|פֿריערדיגער|$1 פֿריערדיגע}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|קומענדיגער|$1 קומענדיגע}}',
-'whatlinkshere-links' => '→ פֿארבינדונגען',
+'whatlinkshere'            => 'װאָס די אױף דאָס זײט פֿאַרבינדט',
+'whatlinkshere-title'      => 'בלעטער וואס פארבינדן צו $1',
+'whatlinkshere-page'       => 'בלאַט:',
+'linklistsub'              => '(ליסטע פֿון פֿארבינדונגען)',
+'linkshere'                => "די פאלגנדע בלעטער פארבינדן צום בלאט '''[[:$1]]''':",
+'nolinkshere'              => "קיין שום בלאט פארבינדט נישט צו '''[[:$1]]'''.",
+'isredirect'               => 'ווײַטערפירן בלאט',
+'istemplate'               => 'אײַנשליסן',
+'isimage'                  => 'ווײַזן א בילד',
+'whatlinkshere-prev'       => '{{PLURAL:$1|פֿריערדיגער|$1 פֿריערדיגע}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|קומענדיגער|$1 קומענדיגע}}',
+'whatlinkshere-links'      => '→ פֿארבינדונגען',
+'whatlinkshere-hideredirs' => '$1 ווײַטערפֿירונגען',
+'whatlinkshere-hidetrans'  => '$1 אַריבערשליסונגען',
+'whatlinkshere-hidelinks'  => '$1 פֿאַרבינדונגען',
+'whatlinkshere-hideimages' => '$1 בילדער פֿאַרבינדונגען',
 
 # Block/unblock
 'blockip'                  => 'באנוצער ארויסטרייבן',
@@ -1263,7 +1274,7 @@ $NEWPAGE
 
 ביטע שרייבט ארויס קלאר וואס די וואנדאליזם באשטייט, און וועלכע בלאט ער האט וואנדאליזירט.',
 'ipbother'                 => 'אַנדער צײַט',
-'ipboptions'               => '15 מינוטן:15 minutes,
+'ipboptions'               => '15 מינוט:15 minutes,
 1 שעה:1 hour,
 2 שעהן:2 hours,
 1 טאָג:1 day,
@@ -1281,10 +1292,11 @@ $NEWPAGE
 'blockipsuccesstext'       => 'באנוצער [[Special:Contributions/$1|$1]] <br />איז פארשפארט.
 זעהט די [[Special:Ipblocklist|ליסטע פון בלאקירטע באנוצער]] כדי צו זעהן די בלאקירונגן.',
 'ipblocklist'              => 'ליסטע פון בלאקירטע באניצערס',
+'ipblocklist-submit'       => 'זוכן',
 'blocklistline'            => '$1 $2 פארשפארט $3 ($4)',
 'infiniteblock'            => 'אויף אייביק',
 'anononlyblock'            => 'אנינאנימעס בלויז',
-'createaccountblock'       => 'אקאונט באשאף איז בלאקירט',
+'createaccountblock'       => 'קאנטע באשאפֿן בלאקירט',
 'emailblock'               => 'בליצפאסט בלאקירט',
 'ipblocklist-empty'        => 'בלאקירן ליסטע איז  ליידיג.',
 'blocklink'                => 'ארויסטרייבן',
@@ -1310,6 +1322,8 @@ $NEWPAGE
 'databasenotlocked' => 'די דאטעבאזע איז נישט פארשפארט.',
 
 # Move page
+'move-page'               => 'באַוועגן $1',
+'move-page-legend'        => 'באַוועגן בלאַט',
 'movepagetext'            => "זיך באניצן מיט דעם פארעם וועט פארענדערן דעם נאמען פון דעם בלאט, און וועט אריבערפירן זיין געשיכטע צום נייעם נאמען.
 
 דער אלטער קעפל וועט ווערן א א ווייטערפירן בלאט צום נייעם נאמען.
@@ -1328,7 +1342,7 @@ $NEWPAGE
 'articleexists'           => 'א בלאט מיט דעם נאמען עקזיסטירט שוין, אדער די נאמען וואס איר האט אויסגעוועילט איז נישט געזעצליך.
 ביטע אויסוועילן אן אנדער נאמען.',
 'talkexists'              => "דער בלאט אליין איז באוועגט מיט דערפֿאלג, אבער דער רעדן בלאט האט מען נישט באוועגט ווײַל ס'איז שוין דא א בלאט מיט דעם זעלבן נאמען. זײַט אזוי גוט פֿאראייניגט זיי האנטלעך.",
-'movedto'                 => 'באַוועגנט צו',
+'movedto'                 => 'באַוועגט צו',
 'movetalk'                => 'באוועגט אסאסיצירטע רעדן בלאט',
 '1movedto2'               => '[[$1]] אריבערגעפירט צו [[$2]]',
 '1movedto2_redir'         => '[[$1]] איז אַריבער צו [[$2]] אַנטשטאָט א ווײַטערפֿירונג',
@@ -1373,6 +1387,7 @@ $NEWPAGE
 
 # Thumbnails
 'thumbnail-more'           => 'פארגרעסער',
+'filemissing'              => 'טעקע פֿעלט',
 'thumbnail_error'          => 'גרײַז בײַם באשאפֿן דאס קליינבילד: $1',
 'djvu_page_error'          => 'DjVu בלאט ארויס פֿון גרייך',
 'djvu_no_xml'              => "מ'קען נישט באקומען דעם XML פֿאַר דער DjVu טעקע",
@@ -1445,10 +1460,10 @@ $NEWPAGE
 'tooltip-t-upload'                => 'לייגט ארויף פיילס און בילדער',
 'tooltip-t-specialpages'          => 'אלע ספעציעלע בלעטער',
 'tooltip-t-print'                 => 'דרוק ווערסיע פון דעם בלאט',
-'tooltip-ca-nstab-main'           => 'זעהט די אינהאלט בלאט',
+'tooltip-ca-nstab-main'           => 'זעט דעם אינהאַלט בלאַט',
 'tooltip-ca-nstab-user'           => 'זעט דעם באניצער בלאט',
 'tooltip-ca-nstab-media'          => 'קוקט אין די מידיע בלעטער',
-'tooltip-ca-nstab-special'        => "דאס איז א ספעציעלע בלאט, מ'קען איר נישט ענדערן",
+'tooltip-ca-nstab-special'        => "דאס איז א ספעציעלער בלאט, מ'קען אים נישט ענדערן",
 'tooltip-ca-nstab-project'        => 'זעהט די פראיעקט בלאט',
 'tooltip-ca-nstab-image'          => 'באקוקט דעם טעקע בלאט',
 'tooltip-ca-nstab-mediawiki'      => 'זעהט די סיסטעם מעסעזשעס',
@@ -1715,6 +1730,25 @@ $1',
 'version-specialpages' => 'ספעציעלע בלעטער',
 
 # Special:SpecialPages
-'specialpages' => 'ספּעציעלע זײטן',
+'specialpages'                   => 'ספּעציעלע זײטן',
+'specialpages-note'              => '----
+* נארמאַלע ספעציעלע בלעטער.
+* <span class="mw-specialpagerestricted">באַגרענעצטע ספעציעלע בלעטער.</span>',
+'specialpages-group-maintenance' => 'אויפֿהאַלטונג באַריכטן',
+'specialpages-group-other'       => 'אַנדערע ספעציעלע בלעטער',
+'specialpages-group-login'       => 'ארײַנלאגירן / אײַנשרײַבן',
+'specialpages-group-changes'     => 'לעצטע ענדערונגען און לאג-ביכער',
+'specialpages-group-media'       => 'מעדיע באַריכטן און ארויפֿלאדן',
+'specialpages-group-users'       => 'באַניצערס און רעכטן',
+'specialpages-group-highuse'     => 'בלעטער וואס זענען געניצט אסאך',
+'specialpages-group-pages'       => 'ליסטעס פֿון בלעטער',
+'specialpages-group-pagetools'   => 'געצייג פֿאר בלעטער',
+'specialpages-group-wiki'        => 'וויקי דאַטן און געצייג',
+'specialpages-group-redirects'   => 'ווײַטערפֿירן ספעציעלע בלעטער',
+'specialpages-group-spam'        => 'ספאַם געצייג',
+
+# Special:Blankpage
+'blankpage'              => 'ליידיגער בלאַט',
+'intentionallyblankpage' => 'דער בלאַט איז ליידיג בכוונה',
 
 );

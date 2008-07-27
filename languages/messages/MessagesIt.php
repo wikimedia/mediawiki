@@ -9,9 +9,9 @@
  * @author Cruccone
  * @author Melos
  * @author Siebrand
+ * @author Nemo bis
  * @author Gianfranco
  * @author Felis
- * @author Nemo bis
  * @author לערי ריינהארט
  * @author Broc
  * @author Ramac
@@ -513,7 +513,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra / Registrati',
 'loginprompt'                => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
-'userlogin'                  => 'Entra o crea un nuovo accesso',
+'userlogin'                  => 'Entra / Registrati',
 'logout'                     => 'Esci',
 'userlogout'                 => 'esci',
 'notloggedin'                => 'Accesso non effettuato',
@@ -1301,7 +1301,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'filedelete-legend'           => 'Cancella il file',
 'filedelete-intro'            => "Stai per cancellare '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">Stai cancellando la versione di \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3, $2].</span>',
-'filedelete-comment'          => 'Motivazione:',
+'filedelete-comment'          => 'Motivo della cancellazione:',
 'filedelete-submit'           => 'Cancella',
 'filedelete-success'          => "Il file '''$1''' è stato cancellato.",
 'filedelete-success-old'      => '<span class="plainlinks">La versione del $3, $2 del file \'\'\'[[Media:$1|$1]]\'\'\' è stata cancellata.</span>',
@@ -1362,7 +1362,7 @@ La coda dei processi da eseguire in background contiene {{PLURAL:\$7|'''1''' ele
 'doubleredirects'            => 'Redirect doppi',
 'doubleredirectstext'        => '<b>Attenzione:</b> Questa lista può contenere risultati errati, ad esempio nel caso in cui il comando #REDIRECT sia seguito da altro testo o collegamenti.<br />
 Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene la pagina di destinazione "corretta" alla quale dovrebbe puntare anche il primo redirect.',
-'double-redirect-fixed-move' => '[[$1]] è stata spostata, ora è un redirect a [[$2]]',
+'double-redirect-fixed-move' => '[[$1]] è stata spostata automaticamente, ora è un redirect a [[$2]]',
 'double-redirect-fixer'      => 'Correttore di redirect',
 
 'brokenredirects'        => 'Redirect errati',
@@ -1593,14 +1593,14 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'historywarning'              => 'Attenzione: La pagina che si sta per cancellare ha una cronologia:',
 'confirmdeletetext'           => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Azione completata',
-'deletedtext'                 => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata. Consultare il $2 per un elenco delle pagine cancellate di recente.',
+'deletedtext'                 => "La pagina \"'''{{FULLPAGENAME}}'''\" è stata cancellata ([[Special:Undelete/{{FULLPAGENAME}}|ripristina]]). Consultare il log delle \$2 per l'elenco delle pagine cancellate di recente.",
 'deletedarticle'              => 'ha cancellato "[[$1]]"',
 'suppressedarticle'           => 'soppresso "[[$1]]"',
 'dellogpage'                  => 'Cancellazioni',
 'dellogpagetext'              => 'Di seguito sono elencate le pagine cancellate di recente.',
 'deletionlog'                 => 'Log delle cancellazioni',
 'reverted'                    => 'Ripristinata la versione precedente',
-'deletecomment'               => 'Motivo della cancellazione',
+'deletecomment'               => 'Motivo della cancellazione:',
 'deleteotherreason'           => 'Altra motivazione o motivazione aggiuntiva:',
 'deletereasonotherlist'       => 'Altra motivazione',
 'deletereason-dropdown'       => "*Motivazioni più comuni per la cancellazione
@@ -1891,9 +1891,9 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movereason'              => 'Motivo',
 'revertmove'              => 'ripristina',
 'delete_and_move'         => 'Cancella e sposta',
-'delete_and_move_text'    => '==Richiesta di cancellazione==
+'delete_and_move_text'    => '==Cancellazione richiesta==
 
-La pagina di destinazione [[$1]] esiste già. Si desidera cancellarla per rendere possibile lo spostamento?',
+La pagina specificata come destinazione "[[$1]]" esiste già. Vuoi cancellarla per proseguire con lo spostamento?',
 'delete_and_move_confirm' => 'Sì, sovrascrivi la pagina esistente',
 'delete_and_move_reason'  => 'Cancellata per rendere possibile lo spostamento',
 'selfmove'                => 'Il nuovo titolo è uguale al vecchio; impossibile spostare la pagina su se stessa.',
@@ -2496,7 +2496,7 @@ $1
 'trackbackdeleteok' => 'Informazioni di trackback eliminate correttamente.',
 
 # Delete conflict
-'deletedwhileediting' => 'Attenzione: Questa pagina è stata cancellata dopo che hai iniziato a modificarla.',
+'deletedwhileediting' => 'Attenzione: questa pagina è stata cancellata dopo che hai cominciato a modificarla!',
 'confirmrecreate'     => "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''
 Per favore, conferma che desideri veramente ricreare questa pagina.",
 'recreate'            => 'Ricrea',

@@ -910,6 +910,7 @@ $2',
 'revdelete-hide-name'         => 'تخبية الإجراء والهدف منه',
 'revdelete-hide-comment'      => 'إخفاء تعليق التعديل',
 'revdelete-hide-user'         => 'خبي اسم/عنوان الاي بي بتاع اليوزر',
+'revdelete-suppress'          => 'تخبية البيانات عن السيسوبات و اليوزرز التانيين',
 'revdelete-hide-image'        => 'خبي المحتويات بتاعة الملف',
 'revdelete-log'               => 'تعليق  على السجل:',
 'revdelete-submit'            => 'طبق على النسخه المختاره',
@@ -932,6 +933,7 @@ $2',
 
 # History merging
 'mergehistory'                => 'دمج تواريخ الصفحة',
+'mergehistory-box'            => 'دمج تعديلات صفحتين:',
 'mergehistory-from'           => 'الصفحه المصدر:',
 'mergehistory-into'           => 'الصفحه الهدف:',
 'mergehistory-list'           => 'تاريخ التعديل اللي ممكن يتدمج',
@@ -1195,6 +1197,7 @@ $2',
 'ignorewarning'             => 'إتجاهل التحذير و احفظ الملف وخلاص',
 'ignorewarnings'            => 'اتجاهل اى تحذير',
 'minlength1'                => 'أسامي الملفات لازم تكون متكونة من حرف واحد على الأقل.',
+'fileexists-thumb'          => "<center>'''الملف الموجود'''</center>",
 'successfulupload'          => 'التحميل ناجح',
 'uploadwarning'             => 'تحذير التحميل',
 'savefile'                  => 'حفظ الملف',
@@ -1232,21 +1235,27 @@ PICT # misc.
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'      => 'ما قدرناش نوصل لليو أر إل',
 'upload-curl-error6-text' => 'ما قدرناش نوصل لليوأرإل إللي انت عاوزه. لو سمحت تشيك تاني إن اليوأرإل صح و إن السايت شغال.',
+'upload-curl-error28'     => 'انتهاء مهلة التحميل',
 
 'license'   => 'ترخيص:',
 'nolicense' => 'مش متحدد',
 
 # Special:Imagelist
-'imgfile'        => 'ملف',
-'imagelist'      => 'لستة الملفات',
-'imagelist_date' => 'تاريخ',
-'imagelist_name' => 'اسم',
-'imagelist_user' => 'يوزر',
+'imagelist_search_for'  => 'دور على اسم الميديا:',
+'imgfile'               => 'ملف',
+'imagelist'             => 'لستة الملفات',
+'imagelist_date'        => 'تاريخ',
+'imagelist_name'        => 'اسم',
+'imagelist_user'        => 'يوزر',
+'imagelist_size'        => 'حجم',
+'imagelist_description' => 'وصف',
 
 # Image description page
 'filehist'                       => 'تاريخ الملف',
 'filehist-help'                  => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
+'filehist-deleteall'             => 'امسح كله',
 'filehist-deleteone'             => 'مسح',
+'filehist-revert'                => 'استرجع',
 'filehist-current'               => 'دلوقتي',
 'filehist-datetime'              => 'الساعه / التاريخ',
 'filehist-user'                  => 'يوزر',
@@ -1258,15 +1267,24 @@ PICT # misc.
 'nolinkstoimage'                 => 'مافيش صفحات بتوصل للفايل ده.',
 'sharedupload'                   => 'الملف ده اتحمل علشان التشارك بين المشاريع وممكن استخدامه في المشاريع التانيه.',
 'shareduploadduplicate-linktext' => 'ملف تاني',
+'shareduploadconflict-linktext'  => 'ملف تانى',
 'noimage'                        => ' مافيش  ملف بالاسم ده ،ممكن انك تقوم بـ$1.',
 'noimage-linktext'               => 'تحميله',
 'uploadnewversion-linktext'      => 'حمل نسخه جديده من الملف ده',
+'imagepage-searchdupe'           => 'دور على ملفات متكررة',
+
+# File reversion
+'filerevert'         => 'استرجع $1',
+'filerevert-legend'  => 'استرجع الملف',
+'filerevert-comment' => 'تعليق:',
+'filerevert-submit'  => 'استرجع',
 
 # File deletion
-'filedelete'         => 'امسح $1',
-'filedelete-legend'  => 'امسح الملف',
-'filedelete-comment' => 'سبب المسح:',
-'filedelete-submit'  => 'مسح',
+'filedelete'                 => 'امسح $1',
+'filedelete-legend'          => 'امسح الملف',
+'filedelete-comment'         => 'سبب المسح:',
+'filedelete-submit'          => 'مسح',
+'filedelete-edit-reasonlist' => 'عدل أسباب المسح',
 
 # MIME search
 'mimesearch' => 'تدوير MIME',
@@ -1472,6 +1490,7 @@ PICT # misc.
 # Delete/protect/revert
 'deletepage'                  => 'امسح الصفحه',
 'confirm'                     => 'أكد',
+'excontent'                   => "المحتوى كان: '$1'",
 'exblank'                     => 'الصفحه كانت فاضيه',
 'delete-confirm'              => 'مسح"$1"',
 'delete-legend'               => 'مسح',
@@ -1483,6 +1502,7 @@ PICT # misc.
 'deletedarticle'              => 'اتمسحت "[[$1]]"',
 'dellogpage'                  => 'سجل المسح',
 'deletionlog'                 => 'سجل المسح',
+'reverted'                    => 'استرجع لنسخة أقدم',
 'deletecomment'               => 'سبب المسح:',
 'deleteotherreason'           => 'سبب تانى/اضافي:',
 'deletereasonotherlist'       => 'سبب تانى',
@@ -1580,6 +1600,7 @@ PICT # misc.
 
 'sp-contributions-newbies-sub' => 'للحسابات الجديده',
 'sp-contributions-blocklog'    => 'سجل المنع',
+'sp-contributions-search'      => 'دور على مساهمات',
 
 # What links here
 'whatlinkshere'           => 'ايه بيوصل هنا',
@@ -1597,28 +1618,60 @@ PICT # misc.
 'whatlinkshere-hidelinks' => '$1 لينكات',
 
 # Block/unblock
-'blockip'                 => 'منع يوزر',
-'ipbexpiry'               => 'مدة المنع:',
-'ipbreason'               => 'السبب:',
-'ipbemailban'             => 'منع اليوزر ده من بعتان إيميل',
-'ipbother'                => 'وقت تاني:',
-'ipboptions'              => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
-'ipblocklist'             => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
-'ipblocklist-submit'      => 'تدوير',
-'blocklink'               => 'منع',
-'unblocklink'             => 'رفع المنع',
-'contribslink'            => 'تعديلات',
-'blocklogpage'            => 'سجل المنع',
-'blocklogentry'           => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
-'block-log-flags-noemail' => 'الإيميل ممنوع',
-'ipb_cant_unblock'        => 'غلطه: عنوان الااى بى الممنوع  مش موجود  $1. يمكن اترفع منعه فعلا.',
-'blockme'                 => 'امنعنى',
-'proxyblocksuccess'       => 'خلاص.',
+'blockip'                     => 'منع يوزر',
+'ipbexpiry'                   => 'مدة المنع:',
+'ipbreason'                   => 'السبب:',
+'ipbemailban'                 => 'منع اليوزر ده من بعتان إيميل',
+'ipbother'                    => 'وقت تاني:',
+'ipboptions'                  => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
+'ipb-unblock-addr'            => 'رفع منع $1',
+'unblockip'                   => 'رفع منع يوزر',
+'ipusubmit'                   => 'رفع منع  العنوان ده',
+'ipblocklist'                 => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
+'ipblocklist-legend'          => 'دور على مستخدم ممنوع',
+'ipblocklist-submit'          => 'تدوير',
+'blocklistline'               => '$1, $2 منع $3 ($4)',
+'infiniteblock'               => 'دايم',
+'expiringblock'               => 'ينتهى فى $1',
+'anononlyblock'               => 'مجهول بس',
+'noautoblockblock'            => 'المنع التلقائى متعطل',
+'createaccountblock'          => ' فتح الحسابات ممنوع',
+'emailblock'                  => 'الإيميل ممنوع',
+'ipblocklist-empty'           => 'لستة المنع فاضية.',
+'blocklink'                   => 'منع',
+'unblocklink'                 => 'رفع المنع',
+'contribslink'                => 'تعديلات',
+'blocklogpage'                => 'سجل المنع',
+'blocklogentry'               => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
+'unblocklogentry'             => 'رفع منع $1',
+'block-log-flags-anononly'    => 'اليوزرز المجهولين  بس',
+'block-log-flags-nocreate'    => ' فتح الحسابات ممنوع',
+'block-log-flags-noautoblock' => 'المنع التلقائى متعطل',
+'block-log-flags-noemail'     => 'الإيميل ممنوع',
+'ipb_expiry_invalid'          => 'تاريخ الانتهاء مش صحيح.',
+'ipb_already_blocked'         => '"$1" ممنوع فعلا',
+'ipb_cant_unblock'            => 'غلطه: عنوان الااى بى الممنوع  مش موجود  $1. يمكن اترفع منعه فعلا.',
+'ip_range_invalid'            => 'نطاق عناوين الأيبي مش صحيح.',
+'blockme'                     => 'امنعنى',
+'proxyblocker'                => 'مانع البروكسي',
+'proxyblocksuccess'           => 'خلاص.',
+
+# Developer tools
+'lockdb'              => 'اقفل قاعدة البيانات',
+'unlockdb'            => 'افتح قاعدة البيانات',
+'lockconfirm'         => 'أيوه، أنا فعلا عايز اقفل قاعدة البيانات.',
+'unlockconfirm'       => 'أيوه، أنا فعلا عايز افتح قاعدة البيانات.',
+'lockbtn'             => 'قفل قاعدة البيانات',
+'unlockbtn'           => 'افتح قاعدة البيانات',
+'lockdbsuccesssub'    => 'نجح قفل قاعدة البيانات',
+'unlockdbsuccesssub'  => 'قفل قاعدة البيانات إتشال.',
+'unlockdbsuccesstext' => 'قاعدة البيانات إتفتحت تانى',
+'databasenotlocked'   => 'قاعدة البيانات بتاعتك مش  مقفولة.',
 
 # Move page
-'move-page'        => 'انقل $1',
-'move-page-legend' => 'انقل الصفحة',
-'movepagetext'     => "
+'move-page'               => 'انقل $1',
+'move-page-legend'        => 'انقل الصفحة',
+'movepagetext'            => "
 لو استعملت النموذج ده ممكن تغير اسم الصفحه، و تنقل تاريخها للاسم الجديد.
 هاتبتدى تحويله من العنوان القديم للصفحه بالعنوان الجديد.
 لكن،  الوصلات في الصفحات اللى تتصل بالصفحه دى مش ها تتغير؛ اتأكد من ان مافيش وصلات مقطوعه، أو وصلات متتاليه، للتأكد من أن المقالات تتصل مع بعضها بشكل مناسب.
@@ -1627,7 +1680,7 @@ PICT # misc.
 
 '''تحذير!'''
 نقل الصفحه ممكن يكون له اثار كبيرة، وتغييرات مش متوقعه بالنسبة للصفحات المشهوره. من فضلك  اتأكد من فهم عواقب نقل الصفحات قبل ما تقوم بنقل الصفحه.",
-'movepagetalktext' => '
+'movepagetalktext'        => '
 
 صفحة المناقشه بتاعة المقاله هاتتنقل برضه، لو كانت موجوده. لكن صفحة المناقشه مش هاتتنقل فى الحالات  دى:
 * نقل الصفحة عبر نطاقات  مختلفه.
@@ -1635,56 +1688,130 @@ PICT # misc.
 * لو انت شلت اختيار نقل صفحة المناقشه .
 
 وفي الحالات  دى، لو عايز  تنقل صفحة المناقشه  لازم تنقل أو تدمج محتوياتها  يدويا.',
-'movearticle'      => 'انقل الصفحه:',
-'movenologin'      => 'مش متسجل',
-'movenologintext'  => 'لازم تكون يوزر متسجل و تعمل [[Special:Userlogin|دخول]] علشان تنقل الصفحة.',
-'movenotallowed'   => 'ماعندكش الصلاحية لنقل الصفحات في {{SITENAME}}.',
-'newtitle'         => 'للعنوان الجديد:',
-'move-watch'       => 'راقب الصفحه دى',
-'movepagebtn'      => 'نقل الصفحه',
-'pagemovedsub'     => 'تم  النقل بنجاح',
-'movepage-moved'   => '<big>\'\'\'"$1" اتنقلت ل"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => '
+'movearticle'             => 'انقل الصفحه:',
+'movenologin'             => 'مش متسجل',
+'movenologintext'         => 'لازم تكون يوزر متسجل و تعمل [[Special:Userlogin|دخول]] علشان تنقل الصفحة.',
+'movenotallowed'          => 'ماعندكش الصلاحية لنقل الصفحات في {{SITENAME}}.',
+'newtitle'                => 'للعنوان الجديد:',
+'move-watch'              => 'راقب الصفحه دى',
+'movepagebtn'             => 'نقل الصفحه',
+'pagemovedsub'            => 'تم  النقل بنجاح',
+'movepage-moved'          => '<big>\'\'\'"$1" اتنقلت ل"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => '
 
 يا اما فيه صفحه  بالاسم ده ،او ان الاسم اللى  تم اختياره مش صالح. لو سمحت اختار اسم تانى .',
-'talkexists'       => "'''الصفحه دى اتنقلت لصفحة بنجاح، ولكن صفحة المناقشه بتاعتها ما اتنقلتش  علشان فيه صفحة مناقشه تحت العنوان الجديد. من فضلك انقل محتويات صفحة المناقشه يدويا، وادمجها مع المحتويات اللى قبل كده.'''",
-'movedto'          => 'اتنقلت ل',
-'movetalk'         => 'انقل صفحة المناقشه.',
-'1movedto2'        => '[[$1]] اتنقلت ل [[$2]]',
-'movelogpage'      => 'سجل النقل',
-'movereason'       => 'السبب:',
-'revertmove'       => 'استعاده',
+'talkexists'              => "'''الصفحه دى اتنقلت لصفحة بنجاح، ولكن صفحة المناقشه بتاعتها ما اتنقلتش  علشان فيه صفحة مناقشه تحت العنوان الجديد. من فضلك انقل محتويات صفحة المناقشه يدويا، وادمجها مع المحتويات اللى قبل كده.'''",
+'movedto'                 => 'اتنقلت ل',
+'movetalk'                => 'انقل صفحة المناقشه.',
+'move-subpages'           => 'انقل كل الصفحات الفرعية، إن امكن',
+'movepage-page-exists'    => 'الصفحة $1 موجودة فعلا ومش ممكن الكتابة عليها اوتوماتيكي..',
+'movepage-page-moved'     => 'الصفحة $1 اتنقلت لـ $2.',
+'movepage-page-unmoved'   => 'ماقدرناش ننقل الصفحة $1 لـ $2.',
+'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} اتنقل. و مافيش حاجة تاني ح تتنقل اوتوماتيكي.',
+'1movedto2'               => '[[$1]] اتنقلت ل [[$2]]',
+'1movedto2_redir'         => '[[$1]] انقلت لـ[[$2]] فوق التحويلة',
+'movelogpage'             => 'سجل النقل',
+'movelogpagetext'         => 'تحت في لستة الصفحات اللي اتنقلت.',
+'movereason'              => 'السبب:',
+'revertmove'              => 'استعاده',
+'delete_and_move'         => 'مسح ونقل',
+'delete_and_move_text'    => '==المسح مطلوب==
+الصفحة الهدف "[[$1]]" موجودة فعلا.
+انت عايز تمسحها علشان تقدر تنقلها؟',
+'delete_and_move_confirm' => 'ايوة، امسح الصفحة',
+'delete_and_move_reason'  => 'اتمسحت علشان تسمح للنقل',
+'selfmove'                => 'عنوان المصدر والهدف هو نفسه؛
+مش ممكن نقل الصفحة على نفسها.',
+'immobile_namespace'      => 'عنوان المصدر أو الهدف ليه طبيعة خاصة؛
+مش ممكن تنقل الصفحات من و للنطاق دا.',
+'imagenocrossnamespace'   => 'مش ممكن تنقل الملف لنطاق غير نطاق الملفات',
+'imagetypemismatch'       => 'امتداد الملف الجديد مش ماشي مع نوعه',
+'imageinvalidfilename'    => 'اسم الملف الهدف مش صحيح',
+'fix-double-redirects'    => 'اعمل تحديث لاي تحويلات بتشاور على العنوان الاصلي',
 
 # Export
-'export'        => 'تصدير صفحات',
-'export-addcat' => 'زيادة',
+'export'            => 'تصدير صفحات',
+'exporttext'        => 'انت ممكن تصدر النص وتاريخ تعديلات صفحة معينة أو مجموعة صفحات في صيغة إكس إم إل. لو قصدكو بكدا ممكن استيرادها في ويكي تاني بيستعمل ميدياويكي عن طريق الصفحة [[Special:Import|صفحة الاستيراد]].
+
+علشان تصدر الصفحات، اكتب العناوين في الصندوق اللي تحت، عنوان واحد في كل السطر، و اختار اذا كنت عايز  النسخة الحالية بالإضافة  للنسخ القديمة كاملة أو مع معلومات تاريخ الصفحة عنها ولا بس النسخة الحالية مع معلومات عن التعديل الأخير.
+
+في الحالة التانية ممكن تستخدم لينك مباشرة، مثلا [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] للصفحة [[{{MediaWiki:Mainpage}}]].',
+'exportcuronly'     => 'ضمن المراجعة دي بس، ومش التاريخ الكامل',
+'exportnohistory'   => "----
+ملاحظة:''' التصدير الكامل لتاريخ الصفحة  بالطريقة دي مش شغال بسبب الاداء'''",
+'export-submit'     => 'تصدير',
+'export-addcattext' => 'ضيف صفحات من تصنيف:',
+'export-addcat'     => 'زيادة',
+'export-download'   => 'احفظ كملف',
+'export-templates'  => 'دخل القوالب',
 
 # Namespace 8 related
-'allmessages'        => 'رسايل النظام',
-'allmessagesname'    => 'اسم',
-'allmessagescurrent' => 'النص دلوقتى',
+'allmessages'               => 'رسايل النظام',
+'allmessagesname'           => 'اسم',
+'allmessagesdefault'        => 'النص الاوتوماتيكي',
+'allmessagescurrent'        => 'النص دلوقتى',
+'allmessagestext'           => 'دي لستة برسايل النظام المتوفرة في نطاق ميدياويكي.
+لو سمحت تزور[http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت عايز تساهم في ترجمة ميدياويكي الاصلية.',
+'allmessagesnotsupportedDB' => "الصفحة دي مش يمكن حد يستعملها علشان'''\$wgUseDatabaseMessages''' متعطل.",
+'allmessagesfilter'         => 'فلتر اسم الرسالة:',
+'allmessagesmodified'       => 'اعرض اللي اتعدل بس',
 
 # Thumbnails
-'thumbnail-more'  => 'كبر',
-'filemissing'     => 'الملف ضايع',
-'thumbnail_error' => 'غلطه فى انشاء صوره مصغره: $1',
+'thumbnail-more'           => 'كبر',
+'filemissing'              => 'الملف ضايع',
+'thumbnail_error'          => 'غلطه فى انشاء صوره مصغره: $1',
+'djvu_page_error'          => 'صفحة DjVu بره النطاق',
+'djvu_no_xml'              => 'مش ممكن تجيب XML لملف DjVu',
+'thumbnail_invalid_params' => 'محددات التصغير مش صحيحة',
+'thumbnail_dest_directory' => 'مش قادر ينشئ المجلد الهدف',
 
 # Special:Import
-'import'                  => 'استيراد صفحات',
-'import-interwiki-submit' => 'استيراد',
-'importbadinterwiki'      => 'اللينك بتاعة الانترويكي دي غلط',
-'importnotext'            => 'فاضي او مافيش نص',
+'import'                     => 'استيراد صفحات',
+'importinterwiki'            => 'استيراد ترانسويكي',
+'import-interwiki-text'      => 'اختار الويكي و عنوان الصفحة اللي عاوز تستوردها.
+تواريخ التعديلات و اسامي المحررين  ح يتحافظ عليها.
+كل عمليات الاستيراد للترانسويكي بتتسجل في [[Special:Log/import|سجل الاستيراد]].',
+'import-interwiki-history'   => 'انسخ كل نسخ التاريخ للصفحة دي',
+'import-interwiki-submit'    => 'استيراد',
+'import-interwiki-namespace' => 'انقل الصفحات للنطاق:',
+'importtext'                 => 'لو سمحت تصدّر الملف من الويكي المصدر عن طريق Special:Export، احفظه على جهازك و بعدين حمله هنا.',
+'importstart'                => 'استيراد صفحات...',
+'import-revision-count'      => '{{PLURAL:$1|نسخة واحدة|نسخة}} $1',
+'importnopages'              => 'مافيش صفحات للاستيراد',
+'importfailed'               => 'فشل استيراد: $1',
+'importunknownsource'        => 'نوع مصدر الاستيراد مش معروف',
+'importcantopen'             => 'ماقدرناش نفتح ملف الاستيراد',
+'importbadinterwiki'         => 'اللينك بتاعة الانترويكي دي غلط',
+'importnotext'               => 'فاضي او مافيش نص',
+'importsuccess'              => 'الاستيراد خلص!',
+'importhistoryconflict'      => 'في تاريخ تعديلات متعارض مع بعضه(يمكن الصفحة دي تكون استوردت قبل كدا)',
+'importnosources'            => ' مصادر استيراد الترانسويكي ما تحددتش  و الاستيراد المباشر عن طريق التحميل مش شغال.',
+'importnofile'               => 'ملف الاستيراد ما تحملش.',
+'importuploaderrorsize'      => 'تحميل ملف الاستيراد فشل. الملف أكبر من حجم التحميل المسموح.',
+'importuploaderrorpartial'   => 'تحميل ملف الاستيراد فشل.  جزء من الملف بس اتحمل',
+'importuploaderrortemp'      => 'تحميل ملف الاستيراد فشل. في مجلد مؤقت ضايع.',
+'import-parse-failure'       => 'فشل بارس استيراد XML',
+'import-noarticle'           => 'مافيش صفحة للاستيراد!',
+'import-nonewrevisions'      => 'كل النسخ استوردت قبل كدا.',
+'xml-error-string'           => '$1 عند السطر $2، العمود $3 (بايت $4): $5',
+'import-upload'              => 'حمل بيانات إكس‌إم‌إل',
 
 # Import log
-'importlogpage'             => 'سجل الاستيراد',
-'import-logentry-interwiki' => 'استيراد ويكى $1',
+'importlogpage'                    => 'سجل الاستيراد',
+'importlogpagetext'                => 'استيرادات إدارية لصفحات ليها تاريخ تعديل من مواقع ويكي تانية.',
+'import-logentry-upload'           => 'استورد [[$1]] بواسطة تحميل ملف',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تعديل واحد|تعديل}}',
+'import-logentry-interwiki'        => 'استيراد ويكى $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|تعديل واحد|تعديل}} من $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'صفحتى الخاصه',
+'tooltip-pt-anonuserpage'         => 'صفحة اليوزر للأيبي اللي انت بتعمل منه تحرير',
 'tooltip-pt-mytalk'               => 'صفحة مناقشاتى',
+'tooltip-pt-anontalk'             => 'نقاش حوالين التعديلات من عنوان الأيبي دا',
 'tooltip-pt-preferences'          => 'تفضيلاتى',
 'tooltip-pt-watchlist'            => 'لسته بالصفحات اللى انت بتراقب التعديلات فيها',
-'tooltip-pt-mycontris'            => ' لسته بتعديلاتى',
+'tooltip-pt-mycontris'            => 'لسته بتعديلاتى',
 'tooltip-pt-login'                => 'من الافضل انك تسجل دخولك، لكن ده مش شرط',
 'tooltip-pt-anonlogin'            => 'من الأفضل انك تسجل دخولك، لكن ده مش إجبارى.',
 'tooltip-pt-logout'               => 'خروج',
@@ -1692,12 +1819,16 @@ PICT # misc.
 'tooltip-ca-edit'                 => 'ممكن تعدل  الصفحه دى، بس لو سمحت استعمل زرار البروفه قبل ما تسييفها',
 'tooltip-ca-addsection'           => 'ضيف تعليق للمناقشه دى.',
 'tooltip-ca-viewsource'           => 'الصفحه دى محميه. ممكن تشوف مصدرها.',
+'tooltip-ca-history'              => 'النسخ القديمة من الصفحة دي',
 'tooltip-ca-protect'              => 'احمى الصفحه دى',
 'tooltip-ca-delete'               => 'امسح الصفحه دى',
+'tooltip-ca-undelete'             => 'رجع التعديلات اللي حصلت على الصفحة دي قبل ما تتمسح',
 'tooltip-ca-move'                 => 'انقل الصفحه دى',
 'tooltip-ca-watch'                => 'حط الصفحة دى فى لسته الصفحات اللى باراقب التعديلات فيها',
 'tooltip-ca-unwatch'              => 'شيل الصفحه دى من لستة الصفحات اللى بتراقبها',
 'tooltip-search'                  => 'دور فى {{SITENAME}}',
+'tooltip-search-go'               => 'روح  لصفحة بنفس الاسم دا لو موجودة',
+'tooltip-search-fulltext'         => 'دور في الصفحات  على النص دا',
 'tooltip-p-logo'                  => 'الصفحه الرئيسيه',
 'tooltip-n-mainpage'              => 'زور الصفحه الرئيسيه',
 'tooltip-n-portal'                => 'عن المشروع، ممكن تعمل ايه، و فين تلاقى اللى بتدور عليه',
@@ -1706,11 +1837,18 @@ PICT # misc.
 'tooltip-n-randompage'            => 'حمل صفحة عشوائيه',
 'tooltip-n-help'                  => 'لو محتاج مساعده بص هنا',
 'tooltip-t-whatlinkshere'         => 'صفحات الويكى اللى بتوصل هنا',
+'tooltip-t-recentchangeslinked'   => 'اخر التغييرات في الصفحات الموصولة من الصفحة دي',
+'tooltip-feed-rss'                => 'تلقيم أر إس إس للصفحة دي',
+'tooltip-feed-atom'               => 'تلقيم أتوم للصفحة دي',
 'tooltip-t-contributions'         => 'عرض مساهمات اليوزر ده',
 'tooltip-t-emailuser'             => 'ابعت ايميل لليوزر ده',
 'tooltip-t-upload'                => 'حمل ملفات',
 'tooltip-t-specialpages'          => 'لسته بكل الصفحات المخصوصه',
+'tooltip-t-print'                 => 'نسخة للطباعة لصفحة دي',
+'tooltip-t-permalink'             => 'لينك دايمة للنسخة دي من الصفحة',
+'tooltip-ca-nstab-main'           => 'اعرض صفحة المحتوى',
 'tooltip-ca-nstab-user'           => 'اعرض صفحة اليوزر',
+'tooltip-ca-nstab-media'          => 'اعرض صفحة الميديا',
 'tooltip-ca-nstab-special'        => 'الصفحة دي صفحة مخصوصة ، مش ممكن تعدل الصفحة نفسها',
 'tooltip-ca-nstab-project'        => 'اعرض صفحة المشروع',
 'tooltip-ca-nstab-image'          => 'اعرض صفحة الفايل',
@@ -1724,6 +1862,7 @@ PICT # misc.
 'tooltip-diff'                    => 'اعرض التعديلات اللى انت عملتها على النص.',
 'tooltip-compareselectedversions' => 'شوف الفروق بين النسختين المختارتين للصفحه دى.',
 'tooltip-watch'                   => 'ضم الصفحه دى للستة الصفحات اللى بتراقبها',
+'tooltip-recreate'                => 'إنشيء الصفحة تاني مع انها اتمسحت قبل كدا',
 'tooltip-upload'                  => 'ابتدي التحميل',
 
 # Scripts
