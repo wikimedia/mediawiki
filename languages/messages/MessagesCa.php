@@ -1379,9 +1379,11 @@ La mida de la [http://www.mediawiki.org/wiki/Manual:Job_queue cua de treballs] �
 Per això, caldria que enllacessin al tema apropiat.<br />
 Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redireccions dobles',
-'doubleredirectstext' => '<b>Atenció:</b> aquesta llista pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
+'doubleredirects'            => 'Redireccions dobles',
+'doubleredirectstext'        => '<b>Atenció:</b> aquesta llista pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
 Cada fila conté enllaços a la segona i tercera redirecció, així com la primera línia de la segona redirecció, la qual cosa dóna normalment l\'article "real", al que el primer redirecció hauria d\'apuntar.',
+'double-redirect-fixed-move' => "S'ha reanomenat [[$1]], ara és una redirecció a [[$2]]",
+'double-redirect-fixer'      => 'Supressor de dobles redireccions',
 
 'brokenredirects'        => 'Redireccions rompudes',
 'brokenredirectstext'    => 'Les següents redireccions enllacen a pàgines inexistents:',
@@ -1970,6 +1972,7 @@ La pàgina de destinació, «[[$1]]», ja existeix. Voleu eliminar-la per a fer 
 'imagenocrossnamespace'   => 'No es pot moure la imatge a un espai de noms on no li correspon',
 'imagetypemismatch'       => 'La nova extensió de fitxer no coincideix amb el seu tipus',
 'imageinvalidfilename'    => 'El nom de fitxer indicat no és vàlid',
+'fix-double-redirects'    => "Actualitza també redireccions que apuntin a l'article original",
 
 # Export
 'export'            => 'Exporta les pàgines',

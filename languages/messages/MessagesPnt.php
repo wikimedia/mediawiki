@@ -279,6 +279,8 @@ $messages = array(
 # Edit page toolbar
 'bold_sample'     => 'Σκιρόν κείμενον',
 'bold_tip'        => 'Σκιρόν κείμενον',
+'italic_sample'   => 'Ψιλόν κείμενον',
+'italic_tip'      => 'Ψιλόν κείμενον',
 'link_sample'     => 'Τίτλος σύνδεσμονος',
 'link_tip'        => 'Εσωτερικόν σύνδεσμον',
 'extlink_sample'  => 'http://www.example.com τίτλος σύνδεσμονος',

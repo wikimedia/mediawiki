@@ -7,8 +7,8 @@
  * @author SPQRobin
  * @author Theklan
  * @author Bengoa
- * @author Siebrand
  * @author לערי ריינהארט
+ * @author Siebrand
  * @author Malafaya
  * @author Kaustubh
  * @author Helix84
@@ -1134,15 +1134,15 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'userstats'              => 'Erabiltzaile estatistikak',
 'sitestatstext'          => "Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, birzuzenketak eta artikulu laburrak barne hartzen.
 
-Horiek baztertzen, <b>$2</b> artikulu dira datu-basean.
+Horiek baztertzen, <b>$2</b> artikulu dauzakagu datu-basean.
 
-'''$8''' files have been uploaded.
+'''$8''' irudi igo dira.
 
 Guztira '''$3''' bisitaturiko orri, eta <b>$4</b> artikulu aldaketa egon dira software-a berritu zenetik (2002.eko uztailaren 20a).
 
 Emaitza hauekin hurrengo arrazoiak atera daitezke: '''$5''' aldaketa egon dira orrialde bakoitzeko, eta '''$6''' bisita aldaketa bakoitzeko.
 
-The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.",
+Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.",
 'userstatstext'          => "'''$1''' erabiltzaile daude izen emanda, horietatik '''$2''' (edo '''$4%''') $5ek eskumenak {{PLURAL:$2|dituelarik|dituztelarik}}.",
 'statistics-mostpopular' => 'Orrialde bisitatuenak',
 
@@ -2020,6 +2020,8 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-customrendered-1' => 'Prozesu pertsonalizatua',
 
 'exif-scenecapturetype-2' => 'Erretratua',
+
+'exif-gaincontrol-0' => 'Ezer',
 
 'exif-contrast-0' => 'Arrunta',
 'exif-contrast-1' => 'Leuna',
