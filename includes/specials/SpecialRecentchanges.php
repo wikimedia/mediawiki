@@ -96,22 +96,19 @@ class SpecialRecentChanges extends SpecialPage {
 		$rows = array();
 		$batch = new LinkBatch;
 		$conds = $this->buildMainQueryConds( $opts );
-		$res = $this->doMainQuery( $conds, $opts );
-		if( $res === false ){
+		$rows = $this->doMainQuery( $conds, $opts );
+		if( $rows === false ){
 			$this->doHeader( $opts );
 			return;
 		}
 
-		while( $row = $res->fetchObject() ){
-			$rows[] = $row;
+		foreach( $rows as $row ) {
 			if ( !$feedFormat ) {
 				// User page and talk links
 				$batch->add( NS_USER, $row->rc_user_text  );
 				$batch->add( NS_USER_TALK, $row->rc_user_text  );
 			}
-
 		}
-		$res->free();
 
 		if ( $feedFormat ) {
 			list( $feed, $feedObj ) = $this->getFeedObject( $feedFormat );
@@ -120,7 +117,8 @@ class SpecialRecentChanges extends SpecialPage {
 			$batch->execute();
 			$this->webOutput( $rows, $opts );
 		}
-  	
+
+		$rows->free();
 	}
 
 	/**
