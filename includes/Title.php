@@ -209,7 +209,7 @@ class Title {
 			'page_id IN (' . $dbr->makeList( $ids ) . ')', __METHOD__ );
 
 		$titles = array();
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
 		return $titles;
@@ -1661,7 +1661,7 @@ class Title {
 		$now = wfTimestampNow();
 		$purgeExpired = false;
 
-		while( $row = $dbr->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
 			if( $expiry > $now ) {
 				if ($get_pages) {
@@ -1750,7 +1750,7 @@ class Title {
 			$now = wfTimestampNow();
 			$purgeExpired = false;
 
-			while ($row = $dbr->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				# Cycle through all the restrictions.
 
 				// Don't take care of restrictions types that aren't in $wgRestrictionTypes
@@ -2277,12 +2277,12 @@ class Title {
 				"{$prefix}_from=page_id",
 				"{$prefix}_namespace" => $this->getNamespace(),
 				"{$prefix}_title"     => $this->getDBkey() ),
-			'Title::getLinksTo',
+			__METHOD__,
 			$options );
 
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				if ( $titleObj = Title::makeTitle( $row->page_namespace, $row->page_title ) ) {
 					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redirect );
 					$retVal[] = $titleObj;
@@ -2342,7 +2342,7 @@ class Title {
 
 		$retVal = array();
 		if ( $db->numRows( $res ) ) {
-			while ( $row = $db->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				$retVal[] = Title::makeTitle( $row->pl_namespace, $row->pl_title );
 			}
 		}
@@ -2890,9 +2890,9 @@ class Title {
 		$res = $dbr->query( $sql );
 
 		if( $dbr->numRows( $res ) > 0 ) {
-			while( $x = $dbr->fetchObject( $res ) )
-				//$data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$x->cl_to);
-				$data[$wgContLang->getNSText( NS_CATEGORY ).':'.$x->cl_to] = $this->getFullText();
+			foreach( $res as $row )
+				//$data[] = Title::newFromText($wgContLang->getNSText ( NS_CATEGORY ).':'.$row->cl_to);
+				$data[$wgContLang->getNSText( NS_CATEGORY ).':'.$row->cl_to] = $this->getFullText();
 			$dbr->freeResult( $res );
 		} else {
 			$data = array();
@@ -3205,7 +3205,7 @@ class Title {
 		);
 		if ( !is_null($ns) ) $where['page_namespace'] = $ns;
 		
-		$result = $dbr->select(
+		$res = $dbr->select(
 			array( 'redirect', 'page' ),
 			array( 'page_namespace', 'page_title' ),
 			$where,
@@ -3213,7 +3213,7 @@ class Title {
 		);
 
 
-		while( $row = $dbr->fetchObject( $result ) ) {
+		foreach( $res as $row ) {
 			$redirs[] = self::newFromRow( $row );
 		}
 		return $redirs;

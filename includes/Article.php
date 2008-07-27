@@ -1977,7 +1977,7 @@ class Article {
 		$row = $dbw->fetchObject($res);
 		$onlyAuthor = $row->rev_user_text;
 		// Try to find a second contributor
-		while( $row = $dbw->fetchObject($res) ) {
+		foreach( $res as $row ) {
 			if($row->rev_user_text != $onlyAuthor) {
 				$onlyAuthor = false;
 				break;
@@ -3281,11 +3281,9 @@ class Article {
 			array( 'tl_namespace', 'tl_title' ),
 			array( 'tl_from' => $id ),
 			__METHOD__ );
-		if ( false !== $res ) {
-			if ( $dbr->numRows( $res ) ) {
-				while ( $row = $dbr->fetchObject( $res ) ) {
-					$result[] = Title::makeTitle( $row->tl_namespace, $row->tl_title );
-				}
+		if( false !== $res ) {
+			foreach( $res as $row ) {
+				$result[] = Title::makeTitle( $row->tl_namespace, $row->tl_title );
 			}
 		}
 		$dbr->freeResult( $res );
@@ -3312,10 +3310,8 @@ class Article {
 				'page_namespace' => NS_CATEGORY, 'page_title=cl_to'),
 			__METHOD__ );
 		if ( false !== $res ) {
-			if ( $dbr->numRows( $res ) ) {
-				while ( $row = $dbr->fetchObject( $res ) ) {
-					$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
-				}
+			foreach( $res as $row ) {
+				$result[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 			}
 		}
 		$dbr->freeResult( $res );
@@ -3413,10 +3409,8 @@ class Article {
 			global $wgContLang;
 
 			if ( false !== $res ) {
-				if ( $dbr->numRows( $res ) ) {
-					while ( $row = $dbr->fetchObject( $res ) ) {
-						$tlTemplates[] = $wgContLang->getNsText( $row->tl_namespace ) . ':' . $row->tl_title ;
-					}
+				foreach( $res as $row ) {
+					$tlTemplates[] = $wgContLang->getNsText( $row->tl_namespace ) . ':' . $row->tl_title ;
 				}
 			}
 

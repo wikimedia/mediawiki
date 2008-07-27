@@ -36,6 +36,10 @@ class UserArrayFromResult extends UserArray {
 		}
 	}
 
+	public function count() {
+		return $this->res->numRows();
+	}
+
 	function current() {
 		return $this->current;
 	}

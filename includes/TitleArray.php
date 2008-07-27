@@ -51,6 +51,10 @@ class TitleArrayFromResult extends TitleArray {
 		}
 	}
 
+	public function count() {
+		return $this->res->numRows();
+	}
+
 	function current() {
 		return $this->current;
 	}

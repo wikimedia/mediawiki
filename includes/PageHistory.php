@@ -444,20 +444,14 @@ class PageHistory {
 
 		$page_id = $this->mTitle->getArticleID();
 
-		$res = $dbr->select(
+		return $dbr->select(
 			'revision',
 			Revision::selectFields(),
 			array_merge(array("rev_page=$page_id"), $offsets),
 			__METHOD__,
 			array('ORDER BY' => "rev_timestamp $dirs",
 				'USE INDEX' => 'page_timestamp', 'LIMIT' => $limit)
-			);
-
-		$result = array();
-		while (($obj = $dbr->fetchObject($res)) != NULL)
-			$result[] = $obj;
-
-		return $result;
+		);
 	}
 
 	/** @todo document */
