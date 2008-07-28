@@ -29,8 +29,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8068) New __INDEX__ and __NOINDEX__ magic words allow user control of
   search engine indexing on a per-article basis.
 * Handheld stylesheet options
-* Added 'DoEditSectionLink' hook as a cleaner unified version of the old
-  'EditSectionLink' and 'EditSectionLinkForOther' hooks
 
 === Bug fixes in 1.14 ===
 
