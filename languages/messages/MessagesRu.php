@@ -10,12 +10,12 @@
  * @author Siebrand
  * @author Illusion
  * @author VasilievVV
- * @author Putnik
  * @author Kalan
- * @author SPQRobin
+ * @author Putnik
  * @author EugeneZelenko
- * @author Innv
+ * @author SPQRobin
  * @author Flrn
+ * @author Innv
  * @author AlexSm
  * @author HalanTul
  * @author MaxSem
@@ -1735,7 +1735,7 @@ $NEWPAGE
 'rollbacklink'                => 'откатить',
 'rollbackfailed'              => 'Ошибка при совершении отката',
 'cantrollback'                => 'Невозможно откатить изменения; последний, кто вносил изменения, является единственным автором этой статьи.',
-'alreadyrolled'               => 'Невозможно откатить последние изменения [[:$1]],сделанные [[User:$2|$2]] ([[User talk:$2|Обсуждение]]);
+'alreadyrolled'               => 'Невозможно откатить последние изменения [[:$1]], сделанные [[User:$2|$2]] ([[User talk:$2|Обсуждение]]);
 кто-то другой уже отредактировал или откатил эту страницу.
 
 Последние изменения внёс [[User:$3|$3]] ([[User talk:$3|Обсуждение]]).',

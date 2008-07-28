@@ -13,8 +13,8 @@
  * @author Beau
  * @author Siebrand
  * @author Stv
- * @author Masti
  * @author Maikking
+ * @author Masti
  * @author Ymar
  * @author Matma Rex
  * @author Equadus
@@ -2084,6 +2084,7 @@ Nie można przenieść z lub do tej przestrzeni nazw.',
 'imagenocrossnamespace'   => 'Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik',
 'imagetypemismatch'       => 'Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość',
 'imageinvalidfilename'    => 'Nazwa pliku docelowego jest nieprawidłowa',
+'fix-double-redirects'    => 'Popraw przekierowania wskazujące na oryginalny tytuł strony',
 
 # Export
 'export'            => 'Eksport stron',

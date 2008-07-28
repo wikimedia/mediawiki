@@ -8,8 +8,8 @@
  * @author AS
  * @author Siebrand
  * @author Innv
- * @author EugeneZelenko
  * @author Dubyk
+ * @author EugeneZelenko
  * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
  */

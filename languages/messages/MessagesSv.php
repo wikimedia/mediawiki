@@ -14,9 +14,9 @@
  * @author לערי ריינהארט
  * @author Lokal Profil
  * @author Leo Johannes
- * @author Steinninn
- * @author SPQRobin
  * @author Skalman
+ * @author SPQRobin
+ * @author Steinninn
  * @author Habjchen
  * @author Gangleri
  * @author Max sonnelid

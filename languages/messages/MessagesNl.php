@@ -2766,8 +2766,8 @@ Probeer normale voorvertoning.',
 Probeer normale voorvertoning.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Veranderingen die nieuwer zijn dan $1 seconden worden misschien niet weergegeven in deze lijst.',
-'lag-warn-high'   => 'Door een hoge database-servertoevoer zijn wijzigingen nieuwer dan $1 seconden mogelijk niet beschikbaar in de lijst.',
+'lag-warn-normal' => 'Veranderingen die nieuwer zijn dan $1 {{PLURAL:$1|seconde|seconden}} worden misschien niet weergegeven in deze lijst.',
+'lag-warn-high'   => 'Door een hoge database-servertoevoer zijn wijzigingen nieuwer dan $1 {{PLURAL:$1|seconde|seconden}} mogelijk niet beschikbaar in de lijst.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Uw volglijst bevat {{PLURAL:$1|1 pagina|$1 pagina’s}}, zonder overlegpagina’s.',

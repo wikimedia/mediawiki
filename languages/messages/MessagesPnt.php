@@ -315,6 +315,7 @@ $messages = array(
 'editingold'             => "<strong>ΩΡΙΑ: Εφτάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
 Εάν θα κρατείτε ατά, ούλ' τ' επεκεί αλλαγάς θα χάνταν.</strong>",
 'templatesused'          => "Πρότυπα το μεταχειρίσκουνταν σ' αβούτεν την σελίδαν:",
+'templatesusedpreview'   => "Πρότυπα σ' αβούτον το πρώτον τέρεμαν:",
 'template-protected'     => '(ασπαλιγμένον)',
 'template-semiprotected' => '(ημψά-ασπαλιγμένον)',
 
@@ -362,6 +363,7 @@ $messages = array(
 'rcshowhidebots'                 => '$1 bots',
 'rcshowhideliu'                  => '$1 χρήστες με λογαρίαν',
 'rcshowhideanons'                => '$1 αναγνώριμοι χρήστες',
+'rcshowhidepatr'                 => "$1 αλλαγάς ντ' ωράουνταν",
 'rcshowhidemine'                 => "$1 τ' επεξεργασίων ιμ",
 'rclinks'                        => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
 'diff'                           => 'διαφορά',
@@ -393,6 +395,7 @@ $messages = array(
 'imagelinks'          => 'Σύνδεσμοι',
 'linkstoimage'        => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
 'nolinkstoimage'      => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
+'noimage-linktext'    => "σκώσ' ατό",
 
 # MIME search
 'mimesearch' => 'Αράεμαν MIME',
@@ -434,6 +437,7 @@ $messages = array(
 'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
 
 # Book sources
+'booksources'               => 'Βιβλιογραφικά πηγάς',
 'booksources-search-legend' => 'Αράεμαν τη βιβλίων',
 'booksources-go'            => 'Δέβα',
 
@@ -525,6 +529,8 @@ $messages = array(
 'whatlinkshere-links' => '← σύνδεσμοι',
 
 # Block/unblock
+'blockip'      => 'Ασπάλιγμαν τη χρήστε',
+'ipblocklist'  => "Λίσταν με τ' ασπαλιγμένα τα IP και τα λογαρίας",
 'blocklink'    => 'ασπάλιγμαν',
 'contribslink' => "Δουλείαν ατ'",
 

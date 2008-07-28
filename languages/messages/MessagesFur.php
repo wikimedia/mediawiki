@@ -149,6 +149,7 @@ $messages = array(
 'tog-externaldiff'            => 'Dopre editôr difarencis esterni come opzion predeterminade',
 'tog-watchlisthideown'        => 'Plate i miei cambiaments inte liste des pagjinis tignudis di voli',
 'tog-ccmeonemails'            => 'Mandimi une copie dai messaçs che o mandi ai altris utents',
+'tog-showhiddencats'          => 'Mostre categoriis platadis',
 
 'underline-always'  => 'Simpri',
 'underline-never'   => 'Mai',
@@ -209,12 +210,20 @@ $messages = array(
 'dec'           => 'Dic',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Categorie|Categoriis}}',
-'category_header'        => 'Vôs inte categorie "$1"',
-'subcategories'          => 'Sot categoriis',
-'category-media-header'  => 'Files inte categorie "$1"',
-'category-empty'         => "''Par cumò la categorie no conten ni pagjinis ni files multimediâi.''",
-'listingcontinuesabbrev' => 'cont.',
+'pagecategories'                 => '{{PLURAL:$1|Categorie|Categoriis}}',
+'category_header'                => 'Vôs inte categorie "$1"',
+'subcategories'                  => 'Sot categoriis',
+'category-media-header'          => 'Files inte categorie "$1"',
+'category-empty'                 => "''Par cumò la categorie no conten ni pagjinis ni files multimediâi.''",
+'hidden-categories'              => '{{PLURAL:$1|Categorie platade|Categoriis platadis}}',
+'hidden-category-category'       => 'Categoriis platadis', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Cheste categorie e conten une sot categorie, mostrade ca sot.|Cheste categorie e conten {{PLURAL:$1|la sot categorie|lis $1 sot categoriis}} ca sot suntun totâl di $2.}}',
+'category-subcat-count-limited'  => 'Cheste categorie e conten {{PLURAL:$1|une sot categorie, mostrade|$1 sot categoriis, mostradis}} sot.',
+'category-article-count'         => '{{PLURAL:$2|Cheste categorie e conten dome une pagjine mostrade ca sot.|Cheste categorie e conten {{PLURAL:$1|la pagjine indicade|lis $1 pagjinis indicadis}} di seguit, suntun totâl di $2.}}',
+'category-article-count-limited' => 'Cheste categorie e conten {{PLURAL:$1|la pagjine|lis $1 pagjinis}} ca sot.',
+'category-file-count'            => '{{PLURAL:$2|Cheste categorie e conten dome un file, mostrât ca sot.|Cheste categorie e conten {{PLURAL:$1|un file, mostrât|$1 files, mostrâts}} ca sot, suntun totâl di $2.}}',
+'category-file-count-limited'    => 'Cheste categorie e conten {{PLURAL:$1|il file mostrât|i $1 files mostrâts}} ca sot.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
 
@@ -466,8 +475,10 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'savearticle'            => 'Salve la pagjine',
 'preview'                => 'Anteprime',
 'showpreview'            => 'Mostre anteprime',
+'showlivepreview'        => "Anteprime ''live''",
 'showdiff'               => 'Mostre cambiaments',
 'anoneditwarning'        => 'No tu sês jentrât cuntun non utent. La to direzion IP e vignarà regjistrade tal storic di cheste pagjine.',
+'missingcommenttext'     => 'Inserìs un coment ca sot.',
 'summary-preview'        => 'Anteprime dal somari',
 'subject-preview'        => 'Anteprime ogjet/intestazion',
 'blockedtitle'           => 'Utent blocât',
@@ -772,6 +783,7 @@ La code dai [http://www.mediawiki.org/wiki/Manual:Job_queue procès di fâ] e co
 'nlinks'                  => '$1 {{PLURAL:$1|leam|leams}}',
 'nmembers'                => '$1 {{PLURAL:$1|element|elements}}',
 'lonelypages'             => 'Pagjinis solitaris',
+'lonelypagestext'         => 'Nissune pagjine in {{SITENAME}} e à leams aes pagjinis ca sot.',
 'uncategorizedpages'      => 'Pagjinis cence categorie',
 'uncategorizedcategories' => 'Categoriis cence categorie',
 'uncategorizedimages'     => 'Files cence une categorie',
@@ -830,9 +842,15 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 # Special:Categories
 'categories'         => 'Categoriis',
 'categoriespagetext' => 'Te wiki a esistin lis categoriis ca sot.',
+'categoriesfrom'     => 'Mostre lis categoriis scomençant di:',
 
 # Special:Listusers
+'listusersfrom'    => 'Mostre i utents scomençant di:',
 'listusers-submit' => 'Mostre',
+
+# Special:Listgrouprights
+'listgrouprights-group'  => 'Grup',
+'listgrouprights-rights' => 'Dirits',
 
 # E-mail user
 'emailuser'       => 'Messaç di pueste a chest utent',
@@ -865,6 +883,7 @@ e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins
 'watchthispage'        => 'Ten di voli cheste pagjine',
 'unwatch'              => 'No stâ tignî di voli',
 'unwatchthispage'      => 'No stâ tignî di voli plui',
+'notanarticle'         => 'Cheste pagjine no je une vôs',
 'watchnochange'        => 'Nissun element di chei tignûts di voli al è stât cambiât tal periodi mostrât.',
 'watchlist-details'    => '{{PLURAL:$1|$1 pagjine tignude|$1 pagjinis tignudis}} di voli cence contâ lis pagjinis di discussion.',
 'wlheader-enotif'      => '* Notifiche par pueste eletroniche ativade.',
@@ -883,8 +902,10 @@ e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins
 'watching'   => 'Daûr a zontâ aes pagjinis tignudis di voli...',
 'unwatching' => 'Daûr a gjavâ des pagjinis tignudis di voli...',
 
-'changed' => 'cambiade',
-'created' => 'creade',
+'enotif_impersonal_salutation' => 'Utent di {{SITENAME}}',
+'changed'                      => 'cambiade',
+'created'                      => 'creade',
+'enotif_anon_editor'           => 'utent anonim $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Elimine pagjine',
@@ -932,13 +953,18 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'protect-cantedit'            => 'No tu puedis cambiâ i nivei di protezion par cheste pagjine, parcè che no tu âs i permès par modificâle.',
 'restriction-type'            => 'Permès:',
 'restriction-level'           => 'Nivel di restrizion:',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Cambie',
-'restriction-move' => 'Spostament',
+'restriction-edit'   => 'Cambie',
+'restriction-move'   => 'Spostament',
+'restriction-create' => 'Creazion',
 
 # Undelete
-'undeletebtn' => 'Ripristine',
+'undeletebtn'            => 'Ripristine',
+'undeletecomment'        => 'Coment:',
+'undeletedarticle'       => 'al à recuperât "[[$1]]"',
+'undelete-search-submit' => 'Cîr',
 
 # Namespace form on various pages
 'namespace'      => 'Non dal spazi:',
@@ -956,20 +982,23 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 
 'sp-contributions-newbies-sub' => 'Pai gnûfs utents',
 'sp-contributions-blocklog'    => 'Regjistri dai blocs',
+'sp-contributions-submit'      => 'Cîr',
 
 # What links here
-'whatlinkshere'       => 'Leams a cheste vôs',
-'whatlinkshere-title' => 'Pagjinis che a son leadis a $1',
-'whatlinkshere-page'  => 'Pagjine:',
-'linklistsub'         => '(Liste di leams)',
-'linkshere'           => "Lis pagjinis ca sot a son leadis a '''[[:$1]]''':",
-'nolinkshere'         => "Nissune pagjine e à leams a '''[[:$1]]'''.",
-'nolinkshere-ns'      => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",
-'isredirect'          => 'pagjine di reindirizament',
-'istemplate'          => 'includude',
-'whatlinkshere-prev'  => '{{PLURAL:$1|precedent|precedents $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
-'whatlinkshere-links' => '← leams',
+'whatlinkshere'           => 'Leams a cheste vôs',
+'whatlinkshere-title'     => 'Pagjinis che a son leadis a $1',
+'whatlinkshere-page'      => 'Pagjine:',
+'linklistsub'             => '(Liste di leams)',
+'linkshere'               => "Lis pagjinis ca sot a son leadis a '''[[:$1]]''':",
+'nolinkshere'             => "Nissune pagjine e à leams a '''[[:$1]]'''.",
+'nolinkshere-ns'          => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",
+'isredirect'              => 'pagjine di reindirizament',
+'istemplate'              => 'includude',
+'whatlinkshere-prev'      => '{{PLURAL:$1|precedent|precedents $1}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
+'whatlinkshere-links'     => '← leams',
+'whatlinkshere-hidelinks' => '$1 leams',
+'whatlinkshere-filters'   => 'Filtris',
 
 # Block/unblock
 'blockip'            => 'Bloche utent',
@@ -1144,6 +1173,7 @@ Sielç par plasê un altri non.',
 
 # Media information
 'thumbsize'            => 'Dimension miniature:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagjine|pagjinis}}',
 'file-info'            => 'Dimensions: $1, gjenar MIME: $2',
 'file-info-size'       => '($1 × $2 pixel, dimensions: $3, gjenar MIME: $4)',
 'file-nohires'         => '<small>No son disponibilis versions cun risoluzion plui alte.</small>',
@@ -1183,14 +1213,18 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # EXIF tags
 'exif-imagewidth'       => 'Largjece',
 'exif-imagelength'      => 'Altece',
+'exif-orientation'      => 'Orientament',
+'exif-xresolution'      => 'Risoluzion orizontâl',
+'exif-yresolution'      => 'Risoluzion verticâl',
 'exif-imagedescription' => 'Titul de figure',
 'exif-make'             => 'Produtôr machine',
 'exif-model'            => 'Model di machine fotografiche',
-'exif-software'         => 'Software doprÂt',
+'exif-software'         => 'Software doprât',
 'exif-artist'           => 'Autôr',
 'exif-datetimeoriginal' => 'Date e ore di creazion dai dâts',
 'exif-exposuretime'     => 'Timp di esposizion',
 'exif-flash'            => 'Flash',
+'exif-focallength'      => 'Lungjece focâl obietîf',
 'exif-contrast'         => 'Control contrast',
 
 # EXIF attributes
@@ -1243,8 +1277,12 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # Multipage image navigation
 'imgmultipageprev' => '← pagjine precedente',
 'imgmultipagenext' => 'pagjine sucessive →',
+'imgmultigo'       => 'Va!',
+'imgmultigoto'     => 'Va ae pagjine $1',
 
 # Table pager
+'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'disc',
 'table_pager_next'         => 'Pagjine sucessive',
 'table_pager_prev'         => 'Pagjine precedente',
 'table_pager_first'        => 'Prime pagjine',
@@ -1258,11 +1296,14 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # Live preview
 'livepreview-loading' => 'Daûr a cjamâ…',
+'livepreview-ready'   => 'Daûr a cjamâ… pront!',
 
 # Watchlist editor
 'watchlistedit-numitems'      => 'La liste des pagjinis tignudis di voli e conten {{PLURAL:$1|une pagjine|$1 pagjinis}}, cence contâ lis pagjinis di discussion.',
 'watchlistedit-noitems'       => 'La liste des pagjinis tignudis di voli e je vueide.',
+'watchlistedit-normal-title'  => 'Modifiche tignûts di voli',
 'watchlistedit-normal-submit' => 'Elimine pagjinis',
+'watchlistedit-normal-done'   => '{{PLURAL:$1|1 pagjine e je stade eliminade|$1 pagjinis a son stadis eliminadis}} de liste des pagjinis tignudis di voli:',
 'watchlistedit-raw-titles'    => 'Pagjinis:',
 
 # Watchlist editing tools
@@ -1271,10 +1312,22 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'watchlisttools-raw'  => 'Modifiche la liste des pagjinis tignudis di voli in formât testuâl',
 
 # Special:Version
-'version'         => 'Version', # Not used as normal message but as header for the special page itself
-'version-version' => 'Version',
+'version'                  => 'Version', # Not used as normal message but as header for the special page itself
+'version-version'          => 'Version',
+'version-software-version' => 'Version',
+
+# Special:Filepath
+'filepath-page' => 'Non dal file:',
 
 # Special:SpecialPages
-'specialpages' => 'Pagjinis speciâls',
+'specialpages'                 => 'Pagjinis speciâls',
+'specialpages-note'            => '----
+* Pagjinis speciâls no riservadis.
+* <span class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</span>',
+'specialpages-group-other'     => 'Altris pagjinis speciâls',
+'specialpages-group-changes'   => 'Ultins cambiaments e regjistris',
+'specialpages-group-users'     => 'Utents e dirits',
+'specialpages-group-pages'     => 'Listis di pagjinis',
+'specialpages-group-pagetools' => 'Imprescj utii pes pagjinis',
 
 );

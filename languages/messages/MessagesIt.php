@@ -8,14 +8,14 @@
  * @author Darth Kule
  * @author Cruccone
  * @author Melos
- * @author Siebrand
  * @author Nemo bis
+ * @author Siebrand
  * @author Gianfranco
  * @author Felis
  * @author לערי ריינהארט
  * @author Broc
- * @author Ramac
  * @author .anaconda
+ * @author Ramac
  * @author Xpensive
  * @author S.Örvarr.S
  * @author Nick1915
@@ -23,9 +23,9 @@
  * @author Tonyfroio
  * @author Pietrodn
  * @author Martorell
- * @author SabineCretella
  * @author Cryptex
  * @author Candalua
+ * @author SabineCretella
  */
 
 $namespaceNames = array(
@@ -461,7 +461,7 @@ Si prega di segnalare l\'accaduto a un amministratore specificando la URL in que
 'unexpected'           => 'Valore imprevisto: "$1"="$2".',
 'formerror'            => 'Errore: impossibile inviare il modulo',
 'badarticleerror'      => 'Operazione non consentita per questa pagina.',
-'cannotdelete'         => 'Impossibile cancellare la pagina o il file richiesto. (Potrebbe essere stato già cancellato.)',
+'cannotdelete'         => 'Impossibile cancellare la pagina o il file richiesto (potrebbe essere stato già cancellato).',
 'badtitle'             => 'Titolo non corretto',
 'badtitletext'         => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
 'perfdisabled'         => 'Siamo spiacenti, questa funzionalità è temporaneamente disabilitata perché il suo uso rallenta il database fino a rendere il sito inutilizzabile per tutti gli utenti.',
@@ -530,7 +530,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'uid'                        => 'ID utente:',
 'prefs-memberingroups'       => 'Membro {{PLURAL:$1|del gruppo|dei gruppi}}:',
 'yourrealname'               => 'Nome vero:',
-'yourlanguage'               => 'Lingua:',
+'yourlanguage'               => "Lingua dell'interfaccia:",
 'yourvariant'                => 'Variante:',
 'yournick'                   => 'Soprannome (nickname):',
 'badsig'                     => 'Errore nella firma non standard, verificare i tag HTML.',
@@ -549,7 +549,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'nosuchusershort'            => 'Non è registrato alcun utente di nome "<nowiki>$1</nowiki>". Verificare il nome inserito.',
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
-'wrongpasswordempty'         => 'La password inserita è vuota. Riprovare.',
+'wrongpasswordempty'         => 'Non è stata inserita alcuna password. Riprovare.',
 'passwordtooshort'           => 'La password inserita non è valida o è troppo breve. 
 Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}} ed essere diversa dal tuo nome utente.',
 'mailmypassword'             => 'Invia password via e-mail',
@@ -602,7 +602,7 @@ Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'link_sample'     => 'Titolo del collegamento',
 'link_tip'        => 'Collegamento interno',
 'extlink_sample'  => 'http://www.example.com titolo del collegamento',
-'extlink_tip'     => 'Collegamento esterno (notare il prefisso http:// )',
+'extlink_tip'     => 'Collegamento esterno (ricorda il prefisso http:// )',
 'headline_sample' => 'Intestazione',
 'headline_tip'    => 'Intestazione di 2° livello',
 'math_sample'     => 'Inserire qui la formula',
@@ -989,7 +989,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'allowemail'               => 'Abilita la ricezione di email da altri utenti¹',
 'prefs-searchoptions'      => 'Opzioni di ricerca',
 'prefs-namespaces'         => 'Namespace',
-'defaultns'                => 'Namespace predefiniti per la ricerca:',
+'defaultns'                => 'Cerca in questi namespace se non diversamente specificato:',
 'default'                  => 'predefinito',
 'files'                    => 'File',
 
@@ -1162,7 +1162,7 @@ per generare un collegamento diretto al file.",
 'filestatus'                  => 'Informazioni sul copyright:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Elenco dei file caricati',
-'ignorewarning'               => "Ignora l'avvertimento e salva comunque il file.",
+'ignorewarning'               => "Ignora l'avviso e salva comunque il file. La versione esistente verrà sovrascritta.",
 'ignorewarnings'              => 'Ignora i messaggi di avvertimento del sistema',
 'minlength1'                  => "Il nome del file dev'essere composto da almeno un carattere.",
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
@@ -1445,7 +1445,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'all-logs-page'        => 'Tutti i registri',
 'log-search-legend'    => 'Ricerca nei registri',
 'log-search-submit'    => 'Vai',
-'alllogstext'          => 'Presentazione unificata dei log relativi alle operazioni di caricamento, cancellazione, protezione, blocco e amministrazione del sito. Riempiendo gli appositi campi si può limitare la visualizzazione a uno specifico log, nome utente o pagina.',
+'alllogstext'          => "Presentazione unificata dei registri relativi alle operazioni di caricamento, cancellazione, protezione, blocco e amministrazione del sito. Puoi restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata.",
 'logempty'             => 'Il log non contiene elementi corrispondenti alla ricerca.',
 'log-title-wildcard'   => 'Ricerca dei titoli che iniziano con',
 
@@ -1516,9 +1516,11 @@ Ulteriori informazioni sui diritti individuali possono essere trovati in [[{{Med
 'watchnologin'         => 'Accesso non effettuato',
 'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
-'addedwatchtext'       => "La pagina  \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]].
+'addedwatchtext'       => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. 
 D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
-il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile.",
+il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile. 
+
+Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osservati speciali, fare clic su \"non seguire\" nella barra in alto.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
 'removedwatchtext'     => 'La pagina  "[[:$1]]" è stata eliminata dalla lista degli osservati speciali.',
 'watch'                => 'Segui',
@@ -1590,7 +1592,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'exblank'                     => 'la pagina era vuota',
 'delete-confirm'              => 'Cancella "$1"',
 'delete-legend'               => 'Cancella',
-'historywarning'              => 'Attenzione: La pagina che si sta per cancellare ha una cronologia:',
+'historywarning'              => 'Attenzione! La pagina che si sta per cancellare ha una cronologia:',
 'confirmdeletetext'           => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Azione completata',
 'deletedtext'                 => "La pagina \"'''{{FULLPAGENAME}}'''\" è stata cancellata ([[Special:Undelete/{{FULLPAGENAME}}|ripristina]]). Consultare il log delle \$2 per l'elenco delle pagine cancellate di recente.",
@@ -1718,8 +1720,8 @@ $1',
 'contribsub2'   => 'Per $1 ($2)',
 'nocontribs'    => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
 'uctop'         => ' (ultima per la pagina)',
-'month'         => 'A partire dal mese (e precedenti):',
-'year'          => "A partire dall'anno (e precedenti):",
+'month'         => 'Dal mese (e precedenti):',
+'year'          => "Dall'anno (e precedenti):",
 
 'sp-contributions-newbies'     => 'Mostra solo i contributi dei nuovi utenti',
 'sp-contributions-newbies-sub' => 'Per i nuovi utenti',
@@ -1751,7 +1753,15 @@ $1',
 # Block/unblock
 'blockip'                         => 'Blocco utente',
 'blockip-legend'                  => "Blocca l'utente",
-'blockiptext'                     => "Usare il modulo sottostante per bloccare l'accesso in scrittura ad uno specifico utente o indirizzo IP. Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]]. Specificare in dettaglio il motivo del blocco nel campo seguente (ad es. indicando i titoli delle pagine oggetto di vandalismo).",
+'blockiptext'                     => 'Usa il modulo sottostante per bloccare l\'accesso in scrittura a uno specifico indirizzo IP o un utente registrato. 
+
+Il blocco dev\'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]].
+
+Indica il motivo specifico per il quale procedi al blocco dell\'indirizzo IP o dell\'utente (per esempio, cita i titoli di eventuali pagine che siano state oggetto di vandalismo).
+
+Le durate del blocco diverse da quelle predefinite si possono specificare \'\'\'in lingua inglese\'\'\' usando il formato standard GNU, descritto nel [http://www.gnu.org/software/shishi/manual/html_node/Relative-items-in-date-strings.html manuale di tar] (per esempio: "1 hour", "2 days", "next Wednesday", "1 January 2017"). In alternativa, il blocco può essere "indefinite" o "infinite" (senza scadenza). 
+
+Per sbloccare qualcuno utilizza la [[{{ns:Special}}:Ipblocklist|lista degli IP e degli utenti bloccati]]. Ricorda infine che viene mantenuto un [[Special:Log/block|log dei blocchi]].',
 'ipaddress'                       => 'Indirizzo IP:',
 'ipadressorusername'              => 'Indirizzo IP o nome utente:',
 'ipbexpiry'                       => 'Scadenza del blocco:',
@@ -1780,7 +1790,7 @@ $1',
 'blockipsuccesssub'               => 'Blocco eseguito',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
 Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocchi attivi.',
-'ipb-edit-dropdown'               => 'Motivi per il blocco',
+'ipb-edit-dropdown'               => 'Modifica i motivi per il blocco',
 'ipb-unblock-addr'                => 'Sblocca $1',
 'ipb-unblock'                     => 'Sblocca un utente o un indirizzo IP',
 'ipb-blocklist-addr'              => 'Elenca i blocchi attivi per $1',
@@ -1873,7 +1883,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepagebtn'             => 'Sposta la pagina',
 'pagemovedsub'            => 'Spostamento effettuato con successo',
 'movepage-moved'          => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Una pagina con questo nome esiste già, oppure il nome scelto non è valido. Scegliere un altro titolo.',
+'articleexists'           => 'Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br /> Scegli, per cortesia, un titolo diverso per la pagina.',
 'cantmove-titleprotected' => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
 'talkexists'              => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
 'movedto'                 => 'spostata a',
@@ -1974,7 +1984,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'importlogpagetext'                => "Registro delle importazioni d'ufficio di pagine provenienti da altre wiki, complete di cronologia.",
 'import-logentry-upload'           => 'ha importato [[$1]] tramite upload',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',
-'import-logentry-interwiki'        => 'ha trasferito da altra wiki la pagina $1',
+'import-logentry-interwiki'        => 'ha trasferito da altra wiki la pagina [[$1]]',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}} da $2',
 
 # Tooltip help for the actions
@@ -2117,7 +2127,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'patrol-log-diff' => 'modifica $1',
 
 # Image deletion
-'deletedrevision'                 => 'Revisione precedente, cancellata: $1',
+'deletedrevision'                 => 'Cancellata la vecchia revisione di $1.',
 'filedeleteerror-short'           => 'Errore nella cancellazione del file: $1',
 'filedeleteerror-long'            => 'Si sono verificati degli errori nel tentativo di cancellare il file:
 
