@@ -23,7 +23,9 @@ class SkinSimple extends SkinTemplate {
 		$this->skinname  = 'simple';
 		$this->stylename = 'simple';
 		$this->template  = 'MonoBookTemplate';
-		$this->cssfiles  = array( 'rtl' );
+		$this->addStyle( 'simple/main.css', 'screen' );
+		$this->addStyle( 'simple/rtl.css', '', '', 'rtl' );
+
 	}
 
 	function reallyDoGetUserStyles() {
