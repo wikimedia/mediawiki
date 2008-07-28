@@ -11,11 +11,13 @@ require_once('commandLine.inc');
 if( get_class( $wgMemc ) == 'FakeMemCachedClient' ) {
 	die("You are running FakeMemCachedClient, I can not provide any statistics.\n");
 }
-
-print "Requests\n";
 $session = intval($wgMemc->get(wfMemcKey('stats','request_with_session')));
 $noSession = intval($wgMemc->get(wfMemcKey('stats','request_without_session')));
 $total = $session + $noSession;
+if ( $total == 0 ) {
+	die("You either have no stats or memcached isn't running. Aborting.");
+}
+print "Requests\n";
 printf( "with session:      %-10d %6.2f%%\n", $session, $session/$total*100 );
 printf( "without session:   %-10d %6.2f%%\n", $noSession, $noSession/$total*100 );
 printf( "total:             %-10d %6.2f%%\n", $total, 100 );
