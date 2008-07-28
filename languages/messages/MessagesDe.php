@@ -1376,7 +1376,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'listredirects-summary' => 'Diese Spezialseite listet Weiterleitungen auf.',
 
 # Unused templates
-'unusedtemplates'         => 'Nicht benutzte Vorlagen',
+'unusedtemplates'         => 'Unbenutzte Vorlagen',
 'unusedtemplates-summary' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfe andere Links zu den Vorlagen, bevor du diese löscht.',
 'unusedtemplatestext'     => '',
 'unusedtemplateswlh'      => 'Andere Links',
