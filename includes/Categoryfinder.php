@@ -86,9 +86,15 @@ class Categoryfinder {
 	 * This functions recurses through the parent representation, trying to match the conditions
 	 * @param $id The article/category to check
 	 * @param $conds The array of categories to match
+	 * @param $path used to check for recursion loops
 	 * @return bool Does this match the conditions?
 	 */
-	function check ( $id , &$conds ) {
+	function check ( $id , &$conds, $path=array() ) {
+		// Check for loops and stop!
+		if( in_array( $id, $path ) )
+			return false;
+		$path[] = $id;
+
 		# Shortcut (runtime paranoia): No contitions=all matched
 		if ( count ( $conds ) == 0 ) return true ;
 
@@ -120,7 +126,7 @@ class Categoryfinder {
 				# No sub-parent
 				continue ;
 			}
-			$done = $this->check ( $this->name2id[$pname] , $conds ) ;
+			$done = $this->check ( $this->name2id[$pname] , $conds, $path );
 			if ( $done OR count ( $conds ) == 0 ) {
 				# Subparents have done it!
 				return true ;
