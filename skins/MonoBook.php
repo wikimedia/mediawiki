@@ -21,13 +21,26 @@ if( !defined( 'MEDIAWIKI' ) )
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
 	function initPage( &$out ) {
+		global $wgHandheldStyle;
+		
 		SkinTemplate::initPage( $out );
 		$this->skinname  = 'monobook';
 		$this->stylename = 'monobook';
 		$this->template  = 'MonoBookTemplate';
-		# Bug 14520: skins that just include this file shouldn't load nonexis-
-		# tent CSS fix files.
-		$this->cssfiles = array( 'IE', 'IE50', 'IE55', 'IE60', 'IE70', 'rtl' );
+		
+		// Append to the default screen common & print styles...
+		$this->addStyle( 'monobook/main.css', 'screen' );
+		if( $wgHandheldStyle ) {
+			// Currently in testing... try 'chick/main.css'
+			$this->addStyle( $wgHandheldStyle, 'handheld' );
+		}
+		
+		$this->addStyle( 'monobook/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
+		$this->addStyle( 'monobook/IE55Fixes.css', 'screen', 'IE 5.5000' );
+		$this->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
+		$this->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
+		
+		$this->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );
 	}
 }
 
@@ -62,17 +75,10 @@ class MonoBookTemplate extends QuickTemplate {
 		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
 		<?php $this->html('headlinks') ?>
 		<title><?php $this->text('pagetitle') ?></title>
-		<style type="text/css" media="screen, projection">/*<![CDATA[*/
-			@import "<?php $this->text('stylepath') ?>/common/shared.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
-			@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/main.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
-		/*]]>*/</style>
-		<link rel="stylesheet" type="text/css" <?php if(empty($this->data['printable']) ) { ?>media="print"<?php } ?> href="<?php $this->text('printcss') ?>?<?php echo $GLOBALS['wgStyleVersion'] ?>" />
-		<?php if( in_array( 'IE50', $skin->cssfiles ) ) { ?><!--[if lt IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE50Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-		<?php } if( in_array( 'IE55', $skin->cssfiles ) ) { ?><!--[if IE 5.5000]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE55Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-		<?php } if( in_array( 'IE60', $skin->cssfiles ) ) { ?><!--[if IE 6]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE60Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-		<?php } if( in_array( 'IE70', $skin->cssfiles ) ) { ?><!--[if IE 7]><style type="text/css">@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/IE70Fixes.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";</style><![endif]-->
-		<?php } ?><!--[if lt IE 7]><?php if( in_array( 'IE', $skin->cssfiles ) ) { ?><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-		<?php } ?><meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+<?php $this->html('csslinks') ?>
+
+		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
 		
 		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
                 

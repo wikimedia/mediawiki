@@ -23,7 +23,12 @@ class SkinChick extends SkinTemplate {
 		$this->skinname  = 'chick';
 		$this->stylename = 'chick';
 		$this->template  = 'MonoBookTemplate';
-		$this->fixfiles  = array( 'IE50', 'IE55', 'IE60' );
+
+		// Append to the default screen common & print styles...
+		$this->addStyle( 'chick/main.css', 'screen,handheld' );
+		$this->addStyle( 'chick/IE50Fixes.css', 'screen,handheld', 'lt IE 5.5000' );
+		$this->addStyle( 'chick/IE55Fixes.css', 'screen,handheld', 'IE 5.5000' );
+		$this->addStyle( 'chick/IE60Fixes.css', 'screen,handheld', 'IE 6' );
 	}
 }
 

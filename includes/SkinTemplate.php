@@ -86,12 +86,13 @@ class SkinTemplate extends Skin {
 	 * will actually fill the template.
 	 */
 	var $template;
-
+	
 	/**
-	 * An array of strings representing extra CSS files to load.  May include:
-	 * 'IE', 'IE50', 'IE55', 'IE60', 'IE70', 'rtl'.
+	 * An array of stylesheet filenames (relative from skins path), with options
+	 * for CSS media, IE conditions, and RTL/LTR direction.
+	 * For internal use; add settings in the skin via $this->addStyle()
 	 */
-	var $cssfiles;
+	var $styles = array();
 
 	/**#@-*/
 
@@ -107,7 +108,9 @@ class SkinTemplate extends Skin {
 		$this->skinname  = 'monobook';
 		$this->stylename = 'monobook';
 		$this->template  = 'QuickTemplate';
-		$this->cssfiles = array();
+		
+		$this->addStyle( 'common/shared.css', 'screen' );
+		$this->addStyle( 'common/commonPrint.css', 'print' );
 	}
 
 	/**
@@ -247,6 +250,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'skinclass', get_class( $this ) );
 		$tpl->setRef( 'stylename', $this->stylename );
 		$tpl->set( 'printable', $wgRequest->getBool( 'printable' ) );
+		$tpl->set( 'handheld', $wgRequest->getBool( 'handheld' ) );
+		$tpl->set( 'csslinks', $this->buildCssLinks() );
 		$tpl->setRef( 'loggedin', $this->loggedin );
 		$tpl->set('nsclass', 'ns-'.$this->mTitle->getNamespace());
 		$tpl->set('notspecialpage', $this->mTitle->getNamespace() != NS_SPECIAL);
@@ -274,7 +279,6 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href']);
 		$tpl->set( 'userlang', $wgLang->getCode() );
 		$tpl->set( 'pagecss', $this->setupPageCss() );
-		$tpl->set( 'printcss', $this->getPrintCss() );
 		$tpl->setRef( 'usercss', $this->usercss);
 		$tpl->setRef( 'userjs', $this->userjs);
 		$tpl->setRef( 'userjsprev', $this->userjsprev);
@@ -964,54 +968,49 @@ class SkinTemplate extends Skin {
 
 		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
 
-		$sitecss = '';
 		$usercss = '';
 		$siteargs = '&maxage=' . $wgSquidMaxage;
 		if( $this->loggedin ) {
 			// Ensure that logged-in users' generated CSS isn't clobbered
 			// by anons' publicly cacheable generated CSS.
 			$siteargs .= '&smaxage=0';
-		}
-
-		# Add user-specific code if this is a user and we allow that kind of thing
-
-		if ( $wgAllowUserCss && $this->loggedin ) {
-			$action = $wgRequest->getText('action');
-
-			# if we're previewing the CSS page, use it
-			if( $this->mTitle->isCssSubpage() and $this->userCanPreview( $action ) ) {
-				$siteargs = "&smaxage=0&maxage=0";
-				$usercss = $wgRequest->getText('wpTextbox1');
-			} else {
-				$usercss = '@import "' .
-				  self::makeUrl($this->userpage . '/'.$this->skinname.'.css',
-								 'action=raw&ctype=text/css') . '";' ."\n";
-			}
-
 			$siteargs .= '&ts=' . $wgUser->mTouched;
 		}
 
-		if( $wgContLang->isRTL() && in_array( 'rtl', $this->cssfiles ) ) {
-			global $wgStyleVersion;
-			$sitecss .= "@import \"$wgStylePath/$this->stylename/rtl.css?$wgStyleVersion\";\n";
-		}
-
 		# If we use the site's dynamic CSS, throw that in, too
+		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
 			$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
 			$skinquery = '';
 			if (($us = $wgRequest->getVal('useskin', '')) !== '')
 				$skinquery = "&useskin=$us";
-			$sitecss .= '@import "' . self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) . '";' . "\n";
-			$sitecss .= '@import "' . self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $query, NS_MEDIAWIKI ) . '";' . "\n";
-			$sitecss .= '@import "' . self::makeUrl( '-', "action=raw&gen=css$siteargs$skinquery" ) . '";' . "\n";
+			
+			$this->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) );
+			$this->addStyle( self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $query, NS_MEDIAWIKI ),
+				'screen' );
 		}
 
-		# If we use any dynamic CSS, make a little CDATA block out of it.
+		// Per-user styles based on preferences
+		$this->addStyle( self::makeUrl( '-', "action=raw&gen=css$siteargs$skinquery" ), 'screen' );
 
-		if ( !empty($sitecss) || !empty($usercss) ) {
-			$this->usercss = "/*<![CDATA[*/\n" . $sitecss . $usercss . '/*]]>*/';
+		// Per-user custom style pages
+		if ( $wgAllowUserCss && $this->loggedin ) {
+			$action = $wgRequest->getVal('action');
+
+			# if we're previewing the CSS page, use it
+			if( $this->mTitle->isCssSubpage() and $this->userCanPreview( $action ) ) {
+				$previewCss = $wgRequest->getText('wpTextbox1');
+				
+				/// @fixme properly escape the cdata!
+				$this->usercss = "/*<![CDATA[*/\n" .
+					$previewCss .
+					"/*]]>*/";
+			} else {
+				$this->addStyle( self::makeUrl($this->userpage . '/'.$this->skinname.'.css',
+								 'action=raw&ctype=text/css'), 'screen' );
+			}
 		}
+		
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -1063,17 +1062,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Returns the print stylesheet for this skin.  In all default skins this
-	 * is just commonPrint.css, but third-party skins may want to modify it.
-	 *
-	 * @return string
-	 */
-	protected function getPrintCss() {
-		global $wgStylePath;
-		return $wgStylePath . "/common/commonPrint.css";
-	}
-
-	/**
 	 * This returns MediaWiki:Common.js and MediaWiki:[Skinname].js concate-
 	 * nated together.  For some bizarre reason, it does *not* return any
 	 * custom user JS from subpages.  Huh?
@@ -1102,6 +1090,118 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
+	
+	/**
+	 * Add a local or specified stylesheet, with the given media options.
+	 * Meant primarily for internal use...
+	 *
+	 * @param $media -- to specify a media type, 'screen', 'printable', 'handheld' or any.
+	 * @param $conditional -- for IE conditional comments, specifying an IE version
+	 * @param $dir -- set to 'rtl' or 'ltr' for direction-specific sheets
+	 */
+	public function addStyle( $style, $media='', $condition='', $dir='' ) {
+		$options = array();
+		if( $media )
+			$options['media'] = $media;
+		if( $condition )
+			$options['condition'] = $condition;
+		if( $dir )
+			$options['dir'] = $dir;
+		$this->styles[$style] = $options;
+	}
+
+	/**
+	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
+	 * These will be applied to various media & IE conditionals.
+	 */
+	protected function buildCssLinks() {
+		global $wgContLang;
+		
+		foreach( $this->styles as $file => $options ) {
+			$links[] = $this->styleLink( $file, $options );
+		}
+		
+		return implode( "\n", $links );
+	}
+	
+	protected function styleLink( $style, $options ) {
+		global $wgRequest;
+		
+		if( isset( $options['dir'] ) ) {
+			global $wgContLang;
+			$siteDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+			if( $siteDir != $options['dir'] )
+				return '';
+		}
+		
+		if( isset( $options['media'] ) ) {
+			$media = $this->transformCssMedia( $options['media'] );
+			if( is_null( $media ) ) {
+				return '';
+			}
+		} else {
+			$media = '';
+		}
+		
+		if( substr( $style, 0, 1 ) == '/' ||
+			substr( $style, 0, 5 ) == 'http:' ||
+			substr( $style, 0, 6 ) == 'https:' ) {
+			$url = $style;
+		} else {
+			global $wgStylePath, $wgStyleVersion;
+			$url = $wgStylePath . '/' . $style . '?' . $wgStyleVersion;
+		}
+		
+		$attribs = array(
+			'rel' => 'stylesheet',
+			'href' => $url,
+			'type' => 'text/css' );
+		if( $media ) {
+			$attribs['media'] = $media;
+		}
+
+		$link = Xml::element( 'link', $attribs );
+
+		if( isset( $options['condition'] ) ) {
+			$condition = htmlspecialchars( $options['condition'] );
+			$link = "<!--[if $condition]>$link<![endif]-->";
+		}
+		return $link;
+	}
+	
+	function transformCssMedia( $media ) {
+		global $wgRequest, $wgHandheldForIPhone;
+		
+		// Switch in on-screen display for media testing
+		$switches = array(
+			'printable' => 'print',
+			'handheld' => 'handheld',
+		);
+		foreach( $switches as $switch => $targetMedia ) {
+			if( $wgRequest->getBool( $switch ) ) {
+				if( $media == $targetMedia ) {
+					$media = '';
+				} elseif( $media == 'screen' ) {
+					return null;
+				}
+			}
+		}
+		
+		// Expand longer media queries as iPhone doesn't grok 'handheld'
+		if( $wgHandheldForIPhone ) {
+			$mediaAliases = array(
+				'screen' => 'screen and (min-device-width: 481px)',
+				'handheld' => 'handheld, only screen and (max-device-width: 480px)',
+			);
+		
+			if( isset( $mediaAliases[$media] ) ) {
+				$media = $mediaAliases[$media];
+			}
+		}
+		
+		return $media;
+	}
+
 }
 
 /**
