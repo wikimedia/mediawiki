@@ -28,8 +28,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * (bug 8068) New __INDEX__ and __NOINDEX__ magic words allow user control of
   search engine indexing on a per-article basis.
-* Added SpecialMovepageBeforeMove hook to allow extensions to interfere with
-  page moves (useful for blacklist-type extensions, for example)
 
 === Bug fixes in 1.14 ===
 
