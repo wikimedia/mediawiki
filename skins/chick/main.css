@@ -419,7 +419,7 @@ div.gallerytext {
         padding: 2px 4px;
 }       
 
-#jump-to-nav {
+#xjump-to-nav {
   display: none;
 }
 
@@ -429,4 +429,22 @@ div.gallerytext {
 div#mw-upload-deleted-warn ul li,
 div#mw-recreate-deleted-warn ul li {
 	font-size: 95%;
+}
+
+
+.printfooter {
+	display: none;
+}
+
+#footer {
+	background-color: white;
+	border-top: 1px solid #fabd23;
+	border-bottom: 1px solid #fabd23;
+	margin: .6em 0 1em 0;
+	padding: .4em 0 1.2em 0;
+	text-align: center;
+	font-size: 90%;
+}
+#f-poweredbyico, #f-copyrightico {
+	display: inline;
 }
