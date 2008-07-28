@@ -92,7 +92,6 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
 				$wgOut->returnToMain( true, $title );
 			}
-			wfRunHooks( 'ConfirmEmailComplete', array( &$user ) );
 		} else {
 			$wgOut->addWikiMsg( 'confirmemail_invalid' );
 		}
