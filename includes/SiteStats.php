@@ -7,6 +7,7 @@ class SiteStats {
 	static $row, $loaded = false;
 	static $admins, $jobs;
 	static $pageCount = array();
+	static $groupMemberCounts = array();
 
 	static function recache() {
 		self::load( true );
@@ -98,12 +99,26 @@ class SiteStats {
 		return self::$row->ss_images;
 	}
 
+	/**
+	 * @deprecated Use self::numberingroup('sysop') instead
+	 */
 	static function admins() {
-		if ( !isset( self::$admins ) ) {
+		wfDeprecated(__METHOD__);
+		return self::numberingroup('sysop');
+	}
+	
+	/**
+	 * Find the number of users in a given user group.
+	 * @param string $group Name of group
+	 * @return int
+	 */
+	static function numberingroup($group) {
+		if ( !isset( self::$groupMemberCounts[$group] ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			self::$admins = $dbr->selectField( 'user_groups', 'COUNT(*)', array( 'ug_group' => 'sysop' ), __METHOD__ );
+			self::$groupMemberCounts[$group] = $dbr->selectField( 'user_groups', 'COUNT(*)', 
+													array( 'ug_group' => $group ), __METHOD__ );
 		}
-		return self::$admins;
+		return self::$groupMemberCounts[$group];		
 	}
 
 	static function jobs() {
