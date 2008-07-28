@@ -7,8 +7,8 @@
  * @author Maartenvdbent
  * @author Pyt
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'de';

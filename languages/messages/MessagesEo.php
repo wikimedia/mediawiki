@@ -12,7 +12,6 @@
  * @author Amikeco
  * @author ArnoLagrange
  * @author SPQRobin
- * @author Gangleri
  * @author Malafaya
  * @author Jon Harald Søby
  */

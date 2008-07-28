@@ -1883,6 +1883,7 @@ $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
 'imagenocrossnamespace'   => 'Tiedostoja ei voi siirtää pois tiedostonimiavaruudesta.',
 'imagetypemismatch'       => 'Uusi tiedostopääte ei vastaa tiedoston tyyppiä',
 'imageinvalidfilename'    => 'Kohdenimi on virheellinen',
+'fix-double-redirects'    => 'Päivitä kaikki tänne viittaavat uudelleenohjaukset ohjaamaan uudelle nimelle',
 
 # Export
 'export'            => 'Sivujen vienti',

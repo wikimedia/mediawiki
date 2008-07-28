@@ -15,9 +15,9 @@
  * @author Vriullop
  * @author Juanpabl
  * @author Spacebirdy
- * @author Pérez
  * @author Jon Harald Søby
  * @author McDutchie
+ * @author Pérez
  * @author SPQRobin
  * @author Smeira
  */

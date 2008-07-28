@@ -1935,6 +1935,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'importnosources'            => 'Fir den Transwiki-Import si keng Quellen definéiert an et ass net méiglech fir Säite mat alle Versiounen aus dem Transwiki-Tëschespäicher eropzelueden.',
 'importnofile'               => 'Et gouf keen importéierte Fichier eropgelueden',
 'importuploaderrorsize'      => 'DEropluede vum importéierte Fichier huet net fonctionnéiert. De Fichier ass méi grouss wéi maximal erlaabt.',
+'importuploaderrorpartial'   => "D'Eropluede vum Fichier huet net geklappt. De Fichier gouf nëmmen deelweis eropgelueden.",
 'import-parse-failure'       => 'Feeler bei engem XML-Import',
 'import-noarticle'           => "Keng Säit fir z'importéieren!",
 'import-nonewrevisions'      => "All d'Versioune goufe scho virdrunn importéiert.",
