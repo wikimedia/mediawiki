@@ -1418,6 +1418,8 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' Benutzer (=$4 %) $5-Rechte.",
 Jede Zeile enthält Links zu der ersten und zweiten Weiterleitungs sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist,
 auf die bereits die erste Weiterleitung zeigen sollte.',
 'doubleredirectstext'     => '',
+'double-redirect-fixed-move'   => 'doppelte Weiterleitung aufgelöst: [[$1]] → [[$2]]',
+'double-redirect-fixer'   => 'RedirectBot',
 
 'brokenredirects'         => 'Kaputte Weiterleitungen',
 'brokenredirects-summary' => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
@@ -1969,7 +1971,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'cantmove-titleprotected' => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'              => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
 'movedto'                 => 'verschoben nach',
-'movetalk'                => 'Die Diskussionsseite mitverschieben, wenn möglich.',
+'movetalk'                => 'Die Diskussionsseite mitverschieben, wenn möglich',
 'move-subpages'           => 'Alle Unterseiten, falls vorhanden, mitverschieben',
 'move-talk-subpages'      => 'Alle Unterseiten von Diskussionsseiten, falls vorhanden, mitverschieben',
 'movepage-page-exists'    => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
@@ -1993,6 +1995,7 @@ Die Seite „[[$1]]“ existiert bereits. Möchtest du diese löschen, um die Se
 'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
 'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
 'imageinvalidfilename'    => 'Der Ziel-Dateiname ist ungültig',
+'fix-double-redirects'    => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
 
 # Export
 'export'            => 'Seiten exportieren',
@@ -2635,8 +2638,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'livepreview-error'   => 'Verbindung nicht möglich: $1 „$2“. Bitte die normale Vorschau benutzen.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Bearbeitungen der letzten $1 Sekunden werden in dieser Liste noch nicht angezeigt.',
-'lag-warn-high'   => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten $1 Sekunden in dieser Liste noch nicht angezeigt.',
+'lag-warn-normal' => 'Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} werden in dieser Liste noch nicht angezeigt.',
+'lag-warn-high'   => 'Auf Grund hoher Datenbankauslastung werden die Bearbeitungen der letzten {{PLURAL:$1|Sekunde|$1 Sekunden}} in dieser Liste noch nicht angezeigt.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Deine Beobachtungsliste enthält {{PLURAL:$1|1 Eintrag |$1 Einträge}}, Diskussionsseiten werden nicht gezählt.',
