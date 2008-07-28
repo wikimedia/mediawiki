@@ -827,7 +827,8 @@ class Revision {
 
 		$text = self::getRevisionText( $row );
 
-		if( $wgRevisionCacheExpiry ) {
+		# No negative caching -- negative hits on text rows may be due to corrupted slave servers
+		if( $wgRevisionCacheExpiry && $text !== false ) {
 			$wgMemc->set( $key, $text, $wgRevisionCacheExpiry );
 		}
 
