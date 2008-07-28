@@ -454,6 +454,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The accesskey to edit a page is now disabled when editing the page, to pre-
   vent conflicts with Safari shortcuts.
 * (bug 14907) DatabasePostgres::fieldType now defined.
+* (bug 14966) Fix SearchEngineDummy class for silently non-functional search
+  on Sqlite instead of horribly fatal error breaky one.
 
 === API changes in 1.13 ===
 
