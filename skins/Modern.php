@@ -32,6 +32,7 @@ class SkinModern extends SkinTemplate {
 		$this->template  = 'ModernTemplate';
 		
 		$this->addStyle( 'common/shared.css', 'screen' );
+		$this->addStyle( 'modern/main.css', 'screen' );
 		$this->addStyle( 'modern/print.css', 'print' );
 	}
 }
