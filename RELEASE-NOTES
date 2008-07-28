@@ -38,6 +38,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14659) Passing the default limit param to Special:Recentchanges no more
   falls back to the user option
 * (bug 14954) Fix regression in Modern and Simple skins
+* Recursion loop check added to Categoryfinder class
 
 === API changes in 1.14 ===
 
