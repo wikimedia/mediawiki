@@ -3000,7 +3000,7 @@ class Title {
 	 * @param Title $title
 	 * @return bool
 	 */
-	public function equals( $title ) {
+	public function equals( Title $title ) {
 		// Note: === is necessary for proper matching of number-like titles.
 		return $this->getInterwiki() === $title->getInterwiki()
 			&& $this->getNamespace() == $title->getNamespace()
