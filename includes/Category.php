@@ -192,6 +192,33 @@ class Category {
 		return $this->mTitle;
 	}
 
+	/**
+	 * Fetch a TitleArray of up to $limit category members, beginning after the
+	 * category sort key $offset.
+	 * @param $limit integer
+	 * @param $offset string
+	 * @return TitleArray object for category members.
+	 */
+	public function getMembers( $limit = false, $offset = '' ) {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$conds = array( 'cl_to' => $this->getName(), 'cl_from = page_id' );
+		$options = array( 'ORDER BY' => 'cl_sortkey' );
+		if( $limit ) $options[ 'LIMIT' ] = $limit;
+		if( $offset !== '' ) $conds[] = 'cl_sortkey > ' . $dbr->addQuotes( $offset );
+
+		return TitleArray::newFromResult(
+			$dbr->select(
+				array( 'page', 'categorylinks' ),
+				array( 'page_id', 'page_namespace','page_title', 'page_len',
+					'page_is_redirect', 'page_latest' ),
+				$conds,
+				__METHOD__,
+				$options
+			)
+		);
+	}
+
 	/** Generic accessor */
 	private function getX( $key ) {
 		if( !$this->initialize() ) {
