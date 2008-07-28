@@ -502,9 +502,6 @@ $catpage: CategoryPage instance
 $unpatrolled:  Whether or not we are showing unpatrolled changes.
 $watched:      Whether or not the change is watched by the user.
 
-'ConfirmEmailComplete': Called after a user's email has been confirmed successfully
-&$user: user (object) whose email is being confirmed
-
 'ContribsPager::getQueryInfo': Before the contributions query is about to run
 &$pager: Pager object for contributions
 &queryInfo: The query for the contribs Pager
