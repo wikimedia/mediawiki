@@ -1276,6 +1276,7 @@ class Linker {
 	 * @param $section Integer: section number.
 	 */
 	public function editSectionLinkForOther( $title, $section ) {
+		wfDeprecated( __METHOD__ );
 		$title = Title::newFromText( $title );
 		return $this->doEditSectionLink( $title, $section, '', 'EditSectionLinkForOther' );
 	}
@@ -1286,48 +1287,55 @@ class Linker {
 	 * @param $hint Link String: title, or default if omitted or empty
 	 */
 	public function editSectionLink( Title $nt, $section, $hint='' ) {
-		if( $hint != '' ) {
-			$hint = wfMsgHtml( 'editsectionhint', htmlspecialchars( $hint ) );
-			$hint = " title=\"$hint\"";
-		}
+		wfDeprecated( __METHOD__ );
 		return $this->doEditSectionLink( $nt, $section, $hint, 'EditSectionLink' );
 	}
 
 	/**
-	 * Implement editSectionLink and editSectionLinkForOther.
+	 * Create a section edit link.  This supersedes editSectionLink() and
+	 * editSectionLinkForOther().
 	 *
-	 * @param $nt      Title object
-	 * @param $section Integer, section number
-	 * @param $hint    String, for HTML title attribute
-	 * @param $hook    String, name of hook to run
-	 * @return         String, HTML to use for edit link
+	 * @param $nt      Title  The title being linked to (may not be the same as
+	 *   $wgTitle, if the section is included from a template)
+	 * @param $section string The designation of the section being pointed to,
+	 *   to be included in the link, like "&section=$section"
+	 * @param $tooltip string The tooltip to use for the link: will be escaped
+	 *   and wrapped in the 'editsectionhint' message
+	 * @return         string HTML to use for edit link
 	 */
-	protected function doEditSectionLink( Title $nt, $section, $hint, $hook ) {
-		global $wgContLang;
-		$editurl = '&section='.$section;
+	public function doEditSectionLink( Title $nt, $section, $tooltip='' ) {
+		$attribs = '';
+		if( $tooltip ) {
+			$attribs = wfMsgHtml( 'editsectionhint', htmlspecialchars( $tooltip ) );
+			$attribs = " title=\"$attribs\"";
+		}
+
 		$url = $this->makeKnownLinkObj(
 			$nt,
 			htmlspecialchars(wfMsg('editsection')),
-			'action=edit'.$editurl,
-			'', '', '',  $hint
+			"action=edit&section=$section",
+			'', '', '',  $attribs
 		);
+
+		# Run the old hook
 		$result = null;
-
-		// The two hooks have slightly different interfaces . . .
-		if( $hook == 'EditSectionLink' ) {
-			wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $hint, $url, &$result ) );
-		} elseif( $hook == 'EditSectionLinkForOther' ) {
-			wfRunHooks( 'EditSectionLinkForOther', array( &$this, $nt, $section, $url, &$result ) );
-		}
-
-		// For reverse compatibility, add the brackets *after* the hook is run,
-		// and even add them to hook-provided text.
-		if( is_null( $result ) ) {
+		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $url, &$result ) );
+		if( !is_null( $result ) ) {
+			# For reverse compatibility, add the brackets *after* the hook is
+			# run, and even add them to hook-provided text.  (This is the main
+			# reason that the EditSectionLink hook is deprecated in favor of
+			# DoEditSectionLink: it can't change the brackets or the span.)
 			$result = wfMsgHtml( 'editsection-brackets', $url );
-		} else {
-			$result = wfMsgHtml( 'editsection-brackets', $result );
+			return "<span class=\"editsection\">$result</span>";
 		}
-		return "<span class=\"editsection\">$result</span>";
+
+		# Add the brackets and the span, and *then* run the nice new hook, with
+		# clean and non-redundant arguments.
+		$result = wfMsgHtml( 'editsection-brackets', $url );
+		$result = "<span class=\"editsection\">$result</span>";
+
+		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result ) );
+		return $result;
 	}
 
 	/**
