@@ -277,6 +277,8 @@ class SearchEngine {
 	 * Load up the appropriate search engine class for the currently
 	 * active database backend, and return a configured instance.
 	 *
+	 * @fixme Ask the database class for his default search class
+	 * instead of knowing about every backend here.
 	 * @return SearchEngine
 	 */
 	public static function create() {
@@ -481,6 +483,9 @@ class SearchResultTooMany {
 
 
 /**
+ * @fixme This class is horribly factored. It would probably be better to have
+ * a useful base class to which you pass some standard information, then let
+ * the fancy self-highlighters extend that.
  * @ingroup Search
  */
 class SearchResult {
@@ -1126,16 +1131,11 @@ class SearchHighlighter {
 }
 
 /**
+ * Dummy class to be used when non-supported Database engine is present.
+ * @fixme Dummy class should probably try something at least mildly useful,
+ * such as a LIKE search through titles.
  * @ingroup Search
  */
-class SearchEngineDummy {
-	function search( $term ) {
-		return null;
-	}
-	function setLimitOffset($l, $o) {}
-	function legalSearchChars() {}
-	function update() {}
-	function setnamespaces() {}
-	function searchtitle() {}
-	function searchtext() {}
+class SearchEngineDummy extends SearchEngine {
+	// no-op
 }
