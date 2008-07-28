@@ -1144,7 +1144,9 @@ class EditPage {
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagewarning';
 			}
+			$wgOut->addHTML( "<div id='mw-edit-$noticeMsg'>\n" );
 			$wgOut->addWikiMsg( $noticeMsg );
+			$wgOut->addHTML( "</div>\n" );
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
@@ -1166,9 +1168,13 @@ class EditPage {
 			$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		}
 		if ( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
-			$wgOut->addWikiMsg( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgMaxArticleSize );
+			$wgOut->addHTML( "<div id='mw-edit-longpageerror'>\n" );
+			$wgOut->addWikiMsg( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgLang->formatNum( $wgMaxArticleSize ) );
+			$wgOut->addHTML( "</div>\n" );
 		} elseif( $this->kblength > 29 ) {
+			$wgOut->addHTML( "<div id='mw-edit-longpagewarning'>\n" );
 			$wgOut->addWikiMsg( 'longpagewarning', $wgLang->formatNum( $this->kblength ) );
+			$wgOut->addHTML( "</div>\n" );
 		}
 
 		#need to parse the preview early so that we know which templates are used,
