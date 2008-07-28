@@ -28,12 +28,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * (bug 8068) New __INDEX__ and __NOINDEX__ magic words allow user control of
   search engine indexing on a per-article basis.
+* Handheld stylesheet options
 
 === Bug fixes in 1.14 ===
 
 * (bug 14907) DatabasePostgres::fieldType now defined.
 * (bug 14659) Passing the default limit param to Special:Recentchanges no more
   falls back to the user option
+* (bug 14954) Fix regression in Modern and Simple skins
 
 === API changes in 1.14 ===
 
