@@ -193,6 +193,7 @@ $magicWords = array(
 	'pagesize'              => array( 1,    'גודל דף',                            'PAGESIZE'               ),
 	'index'                 => array( 1,    '__לחיפוש__',                         '__INDEX__'              ),
 	'noindex'               => array( 1,    '__לא_לחיפוש__',                      '__NOINDEX__'            ),
+	'staticredirect'        => array( 1,    '__הפניה_קבועה__',                     '__STATICREDIRECT__'     ),
 );
 
 $specialPageAliases = array(
@@ -2739,8 +2740,8 @@ $1',
 'livepreview-error'   => 'ההתחברות נכשלה: $1 "$2". נסו להשתמש בתצוגה מקדימה רגילה.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'שינויים שבוצעו לפני פחות מ־$1 שניות אינם מוצגים ברשימה זו.',
-'lag-warn-high'   => 'בגלל עיכוב בעדכון בסיס הנתונים, שינויים שבוצעו לפני פחות מ־$1 שניות אינם מוצגים ברשימה זו.',
+'lag-warn-normal' => 'שינויים שבוצעו לפני פחות מ{{PLURAL:$1|שנייה אחת|־$1 שניות}} אינם מוצגים ברשימה זו.',
+'lag-warn-high'   => 'בגלל עיכוב בעדכון בסיס הנתונים, שינויים שבוצעו לפני פחות מ{{PLURAL:$1|שנייה אחת|־$1 שניות}} אינם מוצגים ברשימה זו.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'יש לכם {{PLURAL:$1|פריט אחד|$1 פריטים}} ברשימת המעקב, לא כולל דפי שיחה.',
