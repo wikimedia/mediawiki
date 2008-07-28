@@ -960,17 +960,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Callback to get args for CSS query string, a bit like wfArrayTpCGI, but
-	 * does not escape args
-	 *
-	 * @param $val
-	 * @param $key
-	 */
-	static function cssWalkCallback( &$val, $key ){
-		$val = "$key=$val";
-	}
-
-	/**
 	 * @private
 	 */
 	function setupUserCss() {
@@ -992,15 +981,13 @@ class SkinTemplate extends Skin {
 		// If we use the site's dynamic CSS, throw that in, too
 		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
-			$query = array(
+			$query = wfArrayToCGI( array(
 				'usemsgcache' => 'yes',
 				'ctype' => 'text/css',
 				'smaxage' => $wgSquidMaxage
-			) + $siteargs;
-			array_walk( $query, array( __CLASS__, 'cssWalkCallback' ) );
-			$queryString = implode( '&', $query );
-			$this->addStyle( self::makeNSUrl( 'Common.css', $queryString, NS_MEDIAWIKI ) );
-			$this->addStyle( self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $queryString, NS_MEDIAWIKI ),
+			) + $siteargs );
+			$this->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) );
+			$this->addStyle( self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $query, NS_MEDIAWIKI ),
 				'screen' );
 		}
 
@@ -1008,8 +995,7 @@ class SkinTemplate extends Skin {
 		$siteargs['gen'] = 'css';
 		if( ( $us = $wgRequest->getVal( 'useskin', '' ) ) !== '' )
 			$siteargs['useskin'] = $us;
-		array_walk( $siteargs, array( __CLASS__, 'cssWalkCallback' ) );
-		$this->addStyle( self::makeUrl( '-', implode( '&', $siteargs ) ), 'screen' );
+		$this->addStyle( self::makeUrl( '-', wfArrayToCGI( $siteargs ) ), 'screen' );
 
 		// Per-user custom style pages
 		if ( $wgAllowUserCss && $this->loggedin ) {
@@ -1134,7 +1120,9 @@ class SkinTemplate extends Skin {
 	 */
 	protected function buildCssLinks() {
 		foreach( $this->styles as $file => $options ) {
-			$links[] = $this->styleLink( $file, $options );
+			$link = $this->styleLink( $file, $options );
+			if( $link )
+				$links[] = $link;
 		}
 		
 		return implode( "\n\t\t", $links );
