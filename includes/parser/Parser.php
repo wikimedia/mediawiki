@@ -2548,7 +2548,7 @@ class Parser
 			case 'numberofpages':
 				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::pages() );
 			case 'numberofadmins':
-				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::admins() );
+				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::numberingroup('sysop') );
 			case 'numberofedits':
 				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::edits() );
 			case 'currenttimestamp':

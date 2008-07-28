@@ -23,7 +23,7 @@ function wfSpecialStatistics( $par = '' ) {
 	$images = SiteStats::images();
 	$total = SiteStats::pages();
 	$users = SiteStats::users();
-	$admins = SiteStats::admins();
+	$admins = SiteStats::numberingroup('sysop');
 	$numJobs = SiteStats::jobs();
 
 	if( $wgRequest->getVal( 'action' ) == 'raw' ) {

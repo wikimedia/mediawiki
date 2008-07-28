@@ -207,7 +207,7 @@ class CoreParserFunctions {
 		return self::formatRaw( SiteStats::images(), $raw );
 	}
 	static function numberofadmins( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::admins(), $raw );
+		return self::formatRaw( SiteStats::numberingroup('sysop'), $raw );
 	}
 	static function numberofedits( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::edits(), $raw );
