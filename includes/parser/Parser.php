@@ -3609,9 +3609,9 @@ class Parser
 				if( $isTemplate ) {
 					# Put a T flag in the section identifier, to indicate to extractSections()
 					# that sections inside <includeonly> should be counted.
-					$editlink = $sk->editSectionLinkForOther($titleText, "T-$sectionIndex");
+					$editlink = $sk->doEditSectionLink(Title::newFromText( $titleText ), "T-$sectionIndex");
 				} else {
-					$editlink = $sk->editSectionLink($this->mTitle, $sectionIndex, $headlineHint);
+					$editlink = $sk->doEditSectionLink($this->mTitle, $sectionIndex, $headlineHint);
 				}
 			} else {
 				$editlink = '';
