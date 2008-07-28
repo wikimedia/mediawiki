@@ -142,7 +142,7 @@ class SkinTemplate extends Skin {
 		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
-		global $wgUseTrackbacks;
+		global $wgUseTrackbacks, $wgUseSiteJs;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgLang, $wgCanonicalNamespaceNames;
 
 		wfProfileIn( __METHOD__ );
@@ -282,8 +282,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'usercss', $this->usercss);
 		$tpl->setRef( 'userjs', $this->userjs);
 		$tpl->setRef( 'userjsprev', $this->userjsprev);
-		global $wgUseSiteJs;
-		if ($wgUseSiteJs) {
+		if( $wgUseSiteJs ) {
 			$jsCache = $this->loggedin ? '&smaxage=0' : '';
 			$tpl->set( 'jsvarurl',
 				self::makeUrl('-',
@@ -330,7 +329,7 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__."-stuff3" );
 		$tpl->setRef( 'newtalk', $ntl );
-		$tpl->setRef( 'skin', $this);
+		$tpl->setRef( 'skin', $this );
 		$tpl->set( 'logo', $this->logoText() );
 		if ( $wgOut->isArticle() and (!isset( $oldid ) or isset( $diff )) and
 			$wgArticle and 0 != $wgArticle->getID() )
@@ -961,44 +960,63 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Callback to get args for CSS query string, a bit like wfArrayTpCGI, but
+	 * does not escape args
+	 *
+	 * @param $val
+	 * @param $key
+	 */
+	static function cssWalkCallback( &$val, $key ){
+		$val = "$key=$val";
+	}
+
+	/**
 	 * @private
 	 */
 	function setupUserCss() {
+		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
+		
 		wfProfileIn( __METHOD__ );
 
-		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
-
-		$usercss = '';
-		$siteargs = '&maxage=' . $wgSquidMaxage;
+		$siteargs = array(
+			'action' => 'raw',
+			'maxage' => $wgSquidMaxage,
+		);
 		if( $this->loggedin ) {
 			// Ensure that logged-in users' generated CSS isn't clobbered
 			// by anons' publicly cacheable generated CSS.
-			$siteargs .= '&smaxage=0';
-			$siteargs .= '&ts=' . $wgUser->mTouched;
+			$siteargs['smaxage'] = '0';
+			$siteargs['ts'] = $wgUser->mTouched;
 		}
 
-		# If we use the site's dynamic CSS, throw that in, too
+		// If we use the site's dynamic CSS, throw that in, too
 		// Per-site custom styles
 		if ( $wgUseSiteCss ) {
-			$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
-			$skinquery = '';
-			if (($us = $wgRequest->getVal('useskin', '')) !== '')
-				$skinquery = "&useskin=$us";
-			
-			$this->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) );
-			$this->addStyle( self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $query, NS_MEDIAWIKI ),
+			$query = array(
+				'usemsgcache' => 'yes',
+				'ctype' => 'text/css',
+				'smaxage' => $wgSquidMaxage
+			) + $siteargs;
+			array_walk( $query, array( __CLASS__, 'cssWalkCallback' ) );
+			$queryString = implode( '&', $query );
+			$this->addStyle( self::makeNSUrl( 'Common.css', $queryString, NS_MEDIAWIKI ) );
+			$this->addStyle( self::makeNSUrl( ucfirst( $this->skinname ) . '.css', $queryString, NS_MEDIAWIKI ),
 				'screen' );
 		}
 
 		// Per-user styles based on preferences
-		$this->addStyle( self::makeUrl( '-', "action=raw&gen=css$siteargs$skinquery" ), 'screen' );
+		$siteargs['gen'] = 'css';
+		if( ( $us = $wgRequest->getVal( 'useskin', '' ) ) !== '' )
+			$siteargs['useskin'] = $us;
+		array_walk( $siteargs, array( __CLASS__, 'cssWalkCallback' ) );
+		$this->addStyle( self::makeUrl( '-', implode( '&', $siteargs ) ), 'screen' );
 
 		// Per-user custom style pages
 		if ( $wgAllowUserCss && $this->loggedin ) {
 			$action = $wgRequest->getVal('action');
 
 			# if we're previewing the CSS page, use it
-			if( $this->mTitle->isCssSubpage() and $this->userCanPreview( $action ) ) {
+			if( $this->mTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
 				$previewCss = $wgRequest->getText('wpTextbox1');
 				
 				/// @fixme properly escape the cdata!
@@ -1115,13 +1133,11 @@ class SkinTemplate extends Skin {
 	 * These will be applied to various media & IE conditionals.
 	 */
 	protected function buildCssLinks() {
-		global $wgContLang;
-		
 		foreach( $this->styles as $file => $options ) {
 			$links[] = $this->styleLink( $file, $options );
 		}
 		
-		return implode( "\n", $links );
+		return implode( "\n\t\t", $links );
 	}
 	
 	protected function styleLink( $style, $options ) {

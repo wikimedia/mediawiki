@@ -280,14 +280,14 @@ class Skin extends Linker {
 	static function makeVariablesScript( $data ) {
 		global $wgJsMimeType;
 
-		$r = "<script type= \"$wgJsMimeType\">/*<![CDATA[*/\n";
+		$r = array( "<script type= \"$wgJsMimeType\">/*<![CDATA[*/" );
 		foreach ( $data as $name => $value ) {
 			$encValue = Xml::encodeJsVar( $value );
-			$r .= "var $name = $encValue;\n";
+			$r[] = "var $name = $encValue;";
 		}
-		$r .= "/*]]>*/</script>\n";
+		$r[] = "/*]]>*/</script>\n";
 
-		return $r;
+		return implode( "\n\t\t", $r );
 	}
 
 	/**
