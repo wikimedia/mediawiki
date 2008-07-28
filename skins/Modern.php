@@ -21,15 +21,18 @@ class SkinModern extends SkinTemplate {
 	 * skin L&F.
 	 */
 	function getPoweredBy() {
-	global	$wgVersion;
+		global	$wgVersion;
 		return "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
 	}
 
 	function initPage( &$out ) {
-		SkinTemplate::initPage( $out );
+		Skin::initPage( $out );
 		$this->skinname  = 'modern';
 		$this->stylename = 'modern';
 		$this->template  = 'ModernTemplate';
+		
+		$this->addStyle( 'common/shared.css', 'screen' );
+		$this->addStyle( 'modern/print.css', 'print' );
 	}
 }
 
@@ -69,8 +72,8 @@ class ModernTemplate extends QuickTemplate {
 			@import "<?php $this->text('stylepath') ?>/common/shared.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
 			@import "<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/main.css?<?php echo $GLOBALS['wgStyleVersion'] ?>";
 		/*]]>*/</style>
-		<?php } ?>
-		<link rel="stylesheet" type="text/css" <?php if(empty($this->data['printable']) ) { ?>media="print"<?php } ?> href="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/print.css?<?php echo $GLOBALS['wgStyleVersion'] ?>" />
+		<?php }
+		$this->html('csslinks') ?>
 		<!--[if lt IE 7]><meta http-equiv="imagetoolbar" content="no" /><![endif]-->
 		
 		<?php print Skin::makeGlobalVariablesScript( $this->data ); ?>
