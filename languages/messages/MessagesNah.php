@@ -17,6 +17,23 @@
 # understand Spanish if a Nah translation is not available
 $fallback = 'es';
 
+$specialPageAliases = array(
+	'Userlogin'               => array( 'Tlacalaquiliztli', 'Registrarse' ),
+	'Upload'                  => array( 'Quetza', 'Subir' ),
+	'Shortpages'              => array( 'Zāzaniltōn', 'PáginasCortas' ),
+	'Longpages'               => array( 'HuēiyacZāzaniltin', 'PáginasLargas' ),
+	'Newpages'                => array( 'YancuīcZāzaniltin', 'PáginasNuevas' ),
+	'Ancientpages'            => array( 'HuēhuehZāzaniltin', 'PáginasViejas' ),
+	'Allpages'                => array( 'MochīntīnZāzaniltin', 'TodasPáginas' ),
+	'Specialpages'            => array( 'NōncuahquīzquiĀmatl', 'PáginasEspeciales' ),
+	'Emailuser'               => array( 'EmailTlācatl', 'CorreoUsuario' ),
+	'Categories'              => array( 'Neneuhcāyōtl', 'Categorías' ),
+	'Mypage'                  => array( 'Nozāzanil', 'MiPágina' ),
+	'Mytalk'                  => array( 'Notēixnāmiquiliz', 'MiDiscusión' ),
+	'Mycontributions'         => array( 'Notlahcuilōl', 'MisContribuciones' ),
+	'Search'                  => array( 'Tlatēmōz', 'Buscar' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-hideminor'            => 'Tiquintlātīz tlapatlatzintli yancuīc tlapatlalizpan',

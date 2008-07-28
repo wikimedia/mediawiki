@@ -185,6 +185,7 @@ $magicWords = array(
 	'hiddencat'           => array( '1', '__HIDDENCAT__', '__VERBORGENCAT__' ),
 	'pagesincategory'     => array( '1', 'PAGESINCATEGORY', 'PAGESINCAT', 'PAGINASINCATEGORIE', 'PAGINASINCAT' ),
 	'pagesize'            => array( '1', 'PAGESIZE', 'PAGINAGROOTTE' ),
+	'noindex'             => array( '1', '__NOINDEX__', '__GEENINDEX__' ),
 );
 
 $specialPageAliases = array(

@@ -133,6 +133,7 @@ $magicWords = array(
 	'newsectionlink'      => array( '1', '__NEWSECTIONLINK__', '__ВРЪЗКА_ЗА_НОВ_РАЗДЕЛ__' ),
 	'language'            => array( '0', '#LANGUAGE:', '#ЕЗИК:' ),
 	'numberofadmins'      => array( '1', 'NUMBEROFADMINS', 'БРОЙАДМИНИСТРАТОРИ' ),
+	'defaultsort'         => array( '0', 'СОРТКАТ:' ),
 	'hiddencat'           => array( '1', '__HIDDENCAT__', '__СКРИТАКАТЕГОРИЯ__' ),
 );
 
