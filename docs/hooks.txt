@@ -1131,9 +1131,6 @@ $movePage: MovePageForm object
 $oldTitle: old title (object)
 $newTitle: new title (object)
 
-'SpecialMovepageBeforeMove': Called before moving a page
-&$movePage: MovePageForm object
-
 'SpecialPageExecuteAfterPage': called after executing a special page
 Warning: Not all the special pages call this hook
 $specialPage: SpecialPage object
