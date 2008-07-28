@@ -19,6 +19,7 @@
  */
 class ForeignAPIRepo extends FileRepo {
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
+	var $apiThumbCacheExpiry = 0;
 	protected $mQueryCache = array();
 	
 	function __construct( $info ) {
