@@ -3411,11 +3411,7 @@ class Parser
 		global $wgMaxTocLevel, $wgContLang;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-		if( !$this->mTitle->quickUserCan( 'edit' ) ) {
-			$showEditLink = 0;
-		} else {
-			$showEditLink = $this->mOptions->getEditSection();
-		}
+		$showEditLink = $this->mOptions->getEditSection();
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
@@ -3609,9 +3605,19 @@ class Parser
 				if( $isTemplate ) {
 					# Put a T flag in the section identifier, to indicate to extractSections()
 					# that sections inside <includeonly> should be counted.
-					$editlink = $sk->doEditSectionLink(Title::newFromText( $titleText ), "T-$sectionIndex");
+					$titleObj = Title::newFromText( $titleText );
+					$section = "T-$sectionIndex";
+					$tooltip = $headlineHint;
 				} else {
-					$editlink = $sk->doEditSectionLink($this->mTitle, $sectionIndex, $headlineHint);
+					$titleObj = $this->mTitle;
+					$section = $sectionIndex;
+					$tooltip = '';
+				}
+				// Use Title::getUserPermissionsErrorsInternal() so that we can pass our User object
+				if( $titleObj->getUserPermissionsErrorsInternal( 'edit', $this->mOptions->getUser(), false ) === array() ){
+					$editlink = $sk->doEditSectionLink( $titleObj, $section, $tooltip );
+				} else {
+					$editlink = '';
 				}
 			} else {
 				$editlink = '';
@@ -4042,7 +4048,6 @@ class Parser
 	 * $options is a bit field, RLH_FOR_UPDATE to select for update
 	 */
 	function replaceLinkHolders( &$text, $options = 0 ) {
-		global $wgUser;
 		global $wgContLang;
 
 		$fname = 'Parser::replaceLinkHolders';
@@ -4058,7 +4063,7 @@ class Parser
 			wfProfileIn( $fname.'-check' );
 			$dbr = wfGetDB( DB_SLAVE );
 			$page = $dbr->tableName( 'page' );
-			$threshold = $wgUser->getOption('stubthreshold');
+			$threshold = $this->mOptions->getStubThreshold();
 
 			# Sort by namespace
 			asort( $this->mLinkHolders['namespaces'] );
