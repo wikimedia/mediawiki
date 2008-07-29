@@ -1134,7 +1134,7 @@ class Title {
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
-	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
+	public function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
 		wfProfileIn( __METHOD__ );
 
 		$errors = array();
