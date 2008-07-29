@@ -1288,8 +1288,7 @@ class Linker {
 	public function doEditSectionLink( Title $nt, $section, $tooltip='' ) {
 		$attribs = '';
 		if( $tooltip ) {
-			$attribs = wfMsgHtml( 'editsectionhint', htmlspecialchar
-s( $tooltip ) );
+			$attribs = wfMsgHtml( 'editsectionhint', htmlspecialchars( $tooltip ) );
 			$attribs = " title=\"$attribs\"";
 		}
 
