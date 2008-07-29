@@ -302,10 +302,7 @@ class Linker {
 	 * @param $query  String: link target
 	 * @param $trail  String: text after link
 	 * @param $prefix String: text before link text
-	 * @param $aprops Mixed: extra attributes to the a-element.  If a string,
-	 *   inserted literally into the HTML, with a space prepended.  It can also
-	 *   be an associative array.  In this case the keys are attributes, and
-	 *   values are *unescaped* attribute values.
+	 * @param $aprops String: extra attributes to the a-element
 	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
 	 * @return the a-element
 	 */
@@ -331,16 +328,7 @@ class Linker {
 			$style = $this->getInternalLinkAttributesObj( $nt, $text );
 		}
 
-		if( is_string( $aprops ) && $aprops != '' ) {
-			$aprops = " $aprops";
-		} elseif( is_array( $aprops ) ) {
-			$attributes = $aprops;
-			$aprops = '';
-			foreach( $attributes as $key => $value ) {
-				$value = htmlspecialchars( $value );
-				$aprops .= " $key=\"$value\"";
-			}
-		}
+		if ( $aprops !== '' ) $aprops = " $aprops";
 
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
@@ -1298,22 +1286,23 @@ class Linker {
 	 * @return         string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip='' ) {
+		$attribs = '';
+		if( $tooltip ) {
+			$attribs = wfMsgHtml( 'editsectionhint', htmlspecialchar
+s( $tooltip ) );
+			$attribs = " title=\"$attribs\"";
+		}
+
 		$url = $this->makeKnownLinkObj(
 			$nt,
 			htmlspecialchars(wfMsg('editsection')),
 			"action=edit&section=$section",
-			'', '', '',
-			array( 'title' => wfMsg( 'editsectionhint', $tooltip ) )
+			'', '', '', $attribs
 		);
 
-		# Run the old hook.  This takes up most of the function . . . hopefully
+		# Run the old hook.  This takes up half of the function . . . hopefully
 		# we can rid of it someday.
 		$result = null;
-		$attribs = '';
-		if( $tooltip ) {
-			$attribs = wfMsgHtml( 'editsectionhint', htmlspecialchars( $tooltip ) );
-			$attribs = " title=\"$attribs\"";
-		}
 		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $url, &$result ) );
 		if( !is_null( $result ) ) {
 			# For reverse compatibility, add the brackets *after* the hook is
