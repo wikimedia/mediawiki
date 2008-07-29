@@ -43,6 +43,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14954) Fix regression in Modern and Simple skins
 * Recursion loop check added to Categoryfinder class
 * Fixed few performance troubles of large job queue processing
+* (bugs 6089, 13079) Show edit section links for transcluded template if, and
+  only if the user can edit it
 
 === API changes in 1.14 ===
 
