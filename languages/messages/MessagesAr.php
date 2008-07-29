@@ -16,9 +16,9 @@
  * @author ترجمان05
  * @author Tarawneh
  * @author Chaos
- * @author SPQRobin
  * @author לערי ריינהארט
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Jak
  * @author عصام بايزيدي
  * @author Oxydo
@@ -2965,8 +2965,8 @@ $1',
 حاول تجربة العرض العادي.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'التغييرات الأحدث من $1 ثانية قد لا تظهر في هذه القائمة.',
-'lag-warn-high'   => 'نتيجة لوجود تأخر كبير في تحديث قاعدة بيانات الخادم، التغييرات أحدث من $1 ثانية ربما لا تكون ظاهرة في هذه القائمة.',
+'lag-warn-normal' => 'التغييرات الأحدث من $1 {{PLURAL:$1|ثانية|ثانية}} قد لا تظهر في هذه القائمة.',
+'lag-warn-high'   => 'نتيجة لوجود تأخر كبير في تحديث قاعدة بيانات الخادم، التغييرات الأحدث من $1 {{PLURAL:$1|ثانية|ثانية}} ربما لا تكون ظاهرة في هذه القائمة.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'قائمة مراقبتك تحتوي على {{PLURAL:$1|عنوان واحد|$1 عنوان}}، بدون احتساب صفحات النقاش.',

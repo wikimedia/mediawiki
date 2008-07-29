@@ -137,6 +137,7 @@ $messages = array(
 # Edit page toolbar
 'italic_sample' => 'စာသားဆောင်း',
 'italic_tip'    => 'စာသားဆောင်း',
+'math_sample'   => 'သည်မှာသင်္ချာပုံသေနည်းအားထည့်',
 'math_tip'      => 'သင်္ချာပုံသေနည်း (LaTeX)',
 'hr_tip'        => 'မျဉ်းလဲ',
 
@@ -188,6 +189,7 @@ $messages = array(
 'hide'            => 'ဝှက်',
 'show'            => 'ပြ',
 'newpageletter'   => 'သစ်',
+'boteditletter'   => 'ဆ',
 
 # Recent changes linked
 'recentchangeslinked' => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
@@ -318,11 +320,15 @@ $messages = array(
 'thumbnail-more' => 'ချဲ့',
 
 # Tooltip help for the actions
-'tooltip-pt-logout'  => 'ထွက်​ပါ​',
-'tooltip-ca-protect' => 'ဤစာမျက်နှာကို ထိန်းသိမ်းပါ',
-'tooltip-ca-delete'  => 'ဤစာမျက်နှာဖျက်ပါ',
-'tooltip-ca-move'    => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
-'tooltip-save'       => 'ပြင်ဆင်ရန်သိမ်းပါ',
+'tooltip-pt-userpage'    => 'ကျွန်တော့စာမျက်နှာ',
+'tooltip-pt-mytalk'      => 'ကျွန်​တော့​ပြော​ရေး​ဆို​ရာ​',
+'tooltip-pt-preferences' => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
+'tooltip-pt-logout'      => 'ထွက်​ပါ​',
+'tooltip-ca-protect'     => 'ဤစာမျက်နှာကို ထိန်းသိမ်းပါ',
+'tooltip-ca-delete'      => 'ဤစာမျက်နှာဖျက်ပါ',
+'tooltip-ca-move'        => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'tooltip-t-upload'       => 'ဖိုင်တင်ပါ',
+'tooltip-save'           => 'ပြင်ဆင်ရန်သိမ်းပါ',
 
 # Special:Newimages
 'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',

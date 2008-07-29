@@ -93,8 +93,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Mien e-mailadres tune in e-mailberichter',
 'tog-shownumberswatching'     => "'t Aantal gebroekers tune die deze pazjena volge",
 'tog-fancysig'                => 'Handjteikening zónger link nao dien gebroekerspazjena',
-'tog-externaleditor'          => "Standaard 'ne externe teksbewèrker gebroeke",
-'tog-externaldiff'            => "Standaard 'n extern vergeliekingsprogramma gebroeke",
+'tog-externaleditor'          => "Standaard 'ne externe teksbewèrker gebroeke (noer veur henkels, speciaal instellige zi'jn neudig)",
+'tog-externaldiff'            => "Standaard 'n extern vergeliekingsprogramma gebroeke (noer veur henkels, speciaal instellige zi'jn neudig)",
 'tog-showjumplinks'           => '"gank nao"-toegankelikheidslinks mäögelik make',
 'tog-uselivepreview'          => '"live veurbesjouwing" gebroeke (vereis JavaScript - experimenteel)',
 'tog-forceeditsummary'        => "'ne Meljing gaeve biej 'n laege samevatting",
@@ -365,6 +365,12 @@ MySQL brach fout "$3" nao veure: "$4"',
 'readonlytext'         => 'De database van {{SITENAME}} is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
 De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
 <p>$1',
+'missing-article'      => "In de database is gein inhaald aongetroffe veur de pagina \"\$1\" die tr wéél zaw motte zi'jn (\$2).
+
+Dit kan veurkomme as g'r ein veraalderde verwi'jzing naor 't verschil tusse twee versies van ein pagina volgt of ein versie opvraogt die is verwi'jderd.
+
+As dit neet 't geval is, hebt g'r wééllicht ein faalt in de software gevonge.
+Maok hiervan melding bi'j ein systeembeheerder van {{SITENAME}} en vermeld daorbi'j de URL van deze pagina.",
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wijziging: $1, $2)',
 'readonly_lag'         => 'De database is automatisch vergrendeld wiele de slave databaseservers synchronisere mèt de master.',
@@ -405,6 +411,11 @@ $2",
 'ns-specialprotected'  => 'Pazjena\'s in de naamruumde "{{ns:special}}" kinne neet bewèrk waere.',
 'titleprotected'       => "'t aanmake van deze pagina is beveilig door [[User:$1|$1]].
 De gegaeve ree is ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Slechte configuratie: onbekenge virusscanner: <i>$1</i>',
+'virus-scanfailed'     => 'scanne is mislukt (code $1)',
+'virus-unknownscanner' => 'onbekeng antivirus:',
 
 # Login and logout pages
 'logouttitle'                => 'Aafmèlde gebroeker',
@@ -458,7 +469,7 @@ De gegaeve ree is ''$2''.",
 'nouserspecified'            => "Doe deens 'ne gebroekersnaam op te gaeve.",
 'wrongpassword'              => "'t Ingegaeve wachwaord is neet zjus. Perbeer 't obbenuujts.",
 'wrongpasswordempty'         => "'t Ingegaeve wachwoord waor laeg. Perbeer 't obbenuujts.",
-'passwordtooshort'           => "Dien wachwaord is te kort. 't Mót minstes oet $1 teikes besjtaon.",
+'passwordtooshort'           => "Dien wachwaord is te kort. 't Mót minstes oet {{PLURAL:$1|1 teike|$1 teikes}} besjtaon.",
 'mailmypassword'             => "Sjik mich 'n nuuj wachwaord",
 'passwordremindertitle'      => 'Nuuj tiedelik wachwaord van {{SITENAME}}',
 'passwordremindertext'       => 'Emes (waarsjienliek dich zelf) vanaaf IP-adres $1 haet verzoch u een nieuw wachtwoord voor {{SITENAME}} toe te zenden ($4). Het nieuwe wachtwoord voor gebroeker "$2" is "$3". Advies: nu aanmelden en uw wachtwoord wijzigigen.',
@@ -469,7 +480,7 @@ Gelieve na ontvangst opnieuw aan te melden.',
 'eauthentsent'               => "Dao is 'ne bevèstigingse-mail nao 't genomineerd e-mailadres gesjik.
 Iedat anger mail nao dat account versjik kan weure, mós te de insjtructies in daen e-mail volge,
 óm te bevèstige dat dit wirkelik dien account is.",
-'throttled-mailpassword'     => "'n Wachwaordherinnering wörd gedurende de letste $1 oer verzönje. Om misbroek te veurkomme, wörd d'r sjlechs éin herinnering per $1 oer verzönje.",
+'throttled-mailpassword'     => "'n Wachwaordherinnering wörd gedurende de letste {{PLURAL:$1|1 oer|$1 oer}} verzönje. Om misbroek te veurkomme, wörd d'r sjlechs éin herinnering per {{PLURAL:$1|oer|$1 oer}} verzönje.",
 'mailerror'                  => "Fout bie 't versjture van mail: $1",
 'acct_creation_throttle_hit' => "Sorry, de höbs al $1 accounts aangemak. De kins d'r gein mië aanmake.",
 'emailauthenticated'         => 'Dien e-mailadres is op $1 geauthentiserd.',
@@ -819,7 +830,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'searchall'                 => 'alle',
 'showingresults'            => 'Hieonger staon de <b>$1</b> {{PLURAL:$1|resultaat|resultaat}}, vanaaf #<b>$2</b>.',
 'showingresultsnum'         => "Hieonger {{PLURAL:$3|steit '''1''' resultaat|staon '''$3''' resultate}} vanaaf #<b>$2</b>.",
-'showingresultstotal'       => "Hie onger waere de resultate '''$1 toet $2''' van '''$3''' weergegaeve",
+'showingresultstotal'       => "Hie onger {{PLURAL:$3|wordt resultaat '''$1'''|waere de resultate '''$1 toet $2''' van '''$3'''}} weergegaeve",
 'nonefound'                 => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'               => 'Zeuke',
 'powersearch-legend'        => 'Oetgebrèd zeuke',
@@ -887,6 +898,8 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'servertime'               => 'Server tied is noe',
 'guesstimezone'            => 'Invulle van browser',
 'allowemail'               => 'E-mail van anger gebroekers toesjtaon',
+'prefs-searchoptions'      => 'Zeukinstellinge',
+'prefs-namespaces'         => 'Naamruimte',
 'defaultns'                => 'Zeuk sjtandaard in dees naomruumdes:',
 'default'                  => 'sjtandaard',
 'files'                    => 'Bestenj',
@@ -944,6 +957,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'right-createaccount'        => 'Nuwe gebroekers aanmake',
 'right-minoredit'            => 'Bewerkinge markere as klein',
 'right-move'                 => "Pagina's hernaome",
+'right-move-subpages'        => "Pagina's inclusief subpagina's verplaatse",
 'right-suppressredirect'     => "Een doorverwijzing op de doelpagina verwijdere bie 't hernaome van 'n pagina",
 'right-upload'               => 'Bestande uploade',
 'right-reupload'             => "'n bestaond bestand euversjrieve",
@@ -975,6 +989,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'right-editusercssjs'        => 'De CSS- en JS-bestande van angere gebroekers bewerke',
 'right-rollback'             => "Snel de letste bewerking(e) van 'n gebroeker van 'n pagina terugdraaie",
 'right-markbotedits'         => 'Teruggedraaide bewerkinge markere es botbewerkinge',
+'right-noratelimit'          => "Heet gein ti'jdsafhankelijke beperkinge",
 'right-import'               => "Pagina's oet angere wiki's importere",
 'right-importupload'         => "Pagina's importere oet 'n bestandsupload",
 'right-patrol'               => 'Bewerkinge es gecontroleerd markere',

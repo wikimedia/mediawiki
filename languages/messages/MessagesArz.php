@@ -6,8 +6,8 @@
  *
  * @author Ramsis1978
  * @author Ghaly
- * @author Alnokta
  * @author Meno25
+ * @author Alnokta
  * @author Siebrand
  */
 
@@ -1185,6 +1185,8 @@ $2',
 'uploadbtn'                 => 'حمل الملف',
 'reupload'                  => 'حمل مره تانيه',
 'uploaderror'               => 'غلطه فى التحميل',
+'upload-permitted'          => 'أنواع الملفات المسموحة: $1.',
+'upload-preferred'          => 'أنواع الملفات المفضلة: $1.',
 'upload-prohibited'         => 'أنواع الملفات الممنوعة: $1.',
 'uploadlog'                 => 'سجل التحميل',
 'uploadlogpage'             => 'سجل التحميل',
@@ -1266,24 +1268,36 @@ PICT # misc.
 'imagelinks'                     => 'وصلات',
 'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
 'nolinkstoimage'                 => 'مافيش صفحات بتوصل للفايل ده.',
+'morelinkstoimage'               => 'عرض [[Special:Whatlinkshere/$1|لينكات اكتر]] للملف دا.',
+'redirectstofile'                => '{{PLURAL:$1| الملف|ال$1 ملف}} اللي جاي  بيحول للملف دا:',
+'duplicatesoffile'               => '{{PLURAL:$1| الملف|ال$1 ملف اللي بعده}} مكررات للملف دا:',
 'sharedupload'                   => 'الملف ده اتحمل علشان التشارك بين المشاريع وممكن استخدامه في المشاريع التانيه.',
 'shareduploadwiki'               => 'لو سمحت تشوف $1 اللي فيه معلوات زيادة.',
+'shareduploadwiki-desc'          => 'الوصف على $1 في المخزن المشترك معروض تحت.',
+'shareduploadwiki-linktext'      => 'صفحة وصف الملف',
+'shareduploadduplicate'          => 'الملف دا تكرار ل$1 من المخزن المشترك.',
 'shareduploadduplicate-linktext' => 'ملف تاني',
+'shareduploadconflict'           => 'الملف دا ليه نفس الاسم زي $1 من المخزن المشترك.',
 'shareduploadconflict-linktext'  => 'ملف تانى',
-'noimage'                        => ' مافيش  ملف بالاسم ده ،ممكن انك تقوم بـ$1.',
+'noimage'                        => 'مافيش  ملف بالاسم ده ،ممكن انك  تـ$1.',
 'noimage-linktext'               => 'تحميله',
 'uploadnewversion-linktext'      => 'حمل نسخه جديده من الملف ده',
 'imagepage-searchdupe'           => 'دور على ملفات متكررة',
 
 # File reversion
-'filerevert'         => 'استرجع $1',
-'filerevert-legend'  => 'استرجع الملف',
-'filerevert-comment' => 'تعليق:',
-'filerevert-submit'  => 'استرجع',
+'filerevert'                => 'استرجع $1',
+'filerevert-legend'         => 'استرجع الملف',
+'filerevert-intro'          => '<span class="plainlinks">أنت بترجع \'\'\'[[Media:$1|$1]]\'\'\' [$4 للنسخةاللي بتاريخ $2، $3].</span>',
+'filerevert-comment'        => 'تعليق:',
+'filerevert-defaultcomment' => 'رجع النسخة اللي بتاريخ $1، $2',
+'filerevert-submit'         => 'استرجع',
+'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' اترجعت [$4 للنسخةاللي بتاريخ $2، $3].</span>',
+'filerevert-badversion'     => 'مافيش نسخة محلية قديمة  للملف دا بالتاريخ المتقدم',
 
 # File deletion
 'filedelete'                 => 'امسح $1',
 'filedelete-legend'          => 'امسح الملف',
+'filedelete-intro'           => "أنت بتمسح '''[[Media:$1|$1]]'''.",
 'filedelete-comment'         => 'سبب المسح:',
 'filedelete-submit'          => 'مسح',
 'filedelete-edit-reasonlist' => 'عدل أسباب المسح',
@@ -1376,8 +1390,9 @@ PICT # misc.
 'suppress'                => 'أوفرسايت',
 
 # Book sources
-'booksources'    => 'مصادر من كتب',
-'booksources-go' => 'روح',
+'booksources'               => 'مصادر من كتب',
+'booksources-search-legend' => 'التدوير على مصادر الكتب',
+'booksources-go'            => 'روح',
 
 # Special:Log
 'specialloguserlabel'  => 'اليوزر:',
@@ -1471,6 +1486,7 @@ PICT # misc.
 'watchlistcontains'    => 'لستة المراقبة بتاعتك فيها $1 {{PLURAL:$1|صفحة|صفحات}}.',
 'iteminvalidname'      => "مشكلة في '$1'، اسم مش صحيح...",
 'wlshowlast'           => 'عرض اخر $1 ساعات $2 ايام $3',
+'watchlist-show-bots'  => 'عرض تعديلات البوتات',
 'watchlist-hide-bots'  => 'تخبية تعديلات البوت',
 'watchlist-hide-own'   => 'اخفاء تعديلاتى',
 'watchlist-hide-minor' => 'خبى التعديلات الصغيره',
@@ -1603,71 +1619,130 @@ PICT # misc.
 'sp-contributions-newbies-sub' => 'للحسابات الجديده',
 'sp-contributions-blocklog'    => 'سجل المنع',
 'sp-contributions-search'      => 'دور على مساهمات',
+'sp-contributions-submit'      => 'تدوير',
 
 # What links here
-'whatlinkshere'           => 'ايه بيوصل هنا',
-'whatlinkshere-title'     => 'الصفحات اللي بتودي ل $1',
-'whatlinkshere-page'      => 'الصفحة:',
-'linklistsub'             => '(لسته بالوصلات)',
-'linkshere'               => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
-'nolinkshere'             => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
-'isredirect'              => 'صفحة تحويل',
-'istemplate'              => 'متضمن',
-'isimage'                 => 'لينك صورة',
-'whatlinkshere-prev'      => '{{PLURAL:$1|اللى قبل كده|الـ $1 اللى قبل كده}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|اللى بعد كده|الـ $1 اللى بعد كده}}',
-'whatlinkshere-links'     => '← وصلات',
-'whatlinkshere-hidelinks' => '$1 لينكات',
+'whatlinkshere'            => 'ايه بيوصل هنا',
+'whatlinkshere-title'      => 'الصفحات اللي بتودي ل $1',
+'whatlinkshere-page'       => 'الصفحة:',
+'linklistsub'              => '(لسته بالوصلات)',
+'linkshere'                => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
+'nolinkshere'              => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
+'isredirect'               => 'صفحة تحويل',
+'istemplate'               => 'متضمن',
+'isimage'                  => 'لينك صورة',
+'whatlinkshere-prev'       => '{{PLURAL:$1|اللى قبل كده|الـ $1 اللى قبل كده}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|اللى بعد كده|الـ $1 اللى بعد كده}}',
+'whatlinkshere-links'      => '← وصلات',
+'whatlinkshere-hideredirs' => '$1 التحويلات',
+'whatlinkshere-hidetrans'  => '$1 التضمينات',
+'whatlinkshere-hidelinks'  => '$1 لينكات',
+'whatlinkshere-hideimages' => '$1 وصلة صورة',
+'whatlinkshere-filters'    => 'مرشحات',
 
 # Block/unblock
-'blockip'                     => 'منع يوزر',
-'ipbexpiry'                   => 'مدة المنع:',
-'ipbreason'                   => 'السبب:',
-'ipbemailban'                 => 'منع اليوزر ده من بعتان إيميل',
-'ipbother'                    => 'وقت تاني:',
-'ipboptions'                  => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
-'ipb-unblock-addr'            => 'رفع منع $1',
-'unblockip'                   => 'رفع منع يوزر',
-'ipusubmit'                   => 'رفع منع  العنوان ده',
-'ipblocklist'                 => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
-'ipblocklist-legend'          => 'دور على مستخدم ممنوع',
-'ipblocklist-submit'          => 'تدوير',
-'blocklistline'               => '$1, $2 منع $3 ($4)',
-'infiniteblock'               => 'دايم',
-'expiringblock'               => 'ينتهى فى $1',
-'anononlyblock'               => 'مجهول بس',
-'noautoblockblock'            => 'المنع التلقائى متعطل',
-'createaccountblock'          => ' فتح الحسابات ممنوع',
-'emailblock'                  => 'الإيميل ممنوع',
-'ipblocklist-empty'           => 'لستة المنع فاضية.',
-'blocklink'                   => 'منع',
-'unblocklink'                 => 'رفع المنع',
-'contribslink'                => 'تعديلات',
-'blocklogpage'                => 'سجل المنع',
-'blocklogentry'               => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
-'unblocklogentry'             => 'رفع منع $1',
-'block-log-flags-anononly'    => 'اليوزرز المجهولين  بس',
-'block-log-flags-nocreate'    => ' فتح الحسابات ممنوع',
-'block-log-flags-noautoblock' => 'المنع التلقائى متعطل',
-'block-log-flags-noemail'     => 'الإيميل ممنوع',
-'ipb_expiry_invalid'          => 'تاريخ الانتهاء مش صحيح.',
-'ipb_already_blocked'         => '"$1" ممنوع فعلا',
-'ipb_cant_unblock'            => 'غلطه: عنوان الااى بى الممنوع  مش موجود  $1. يمكن اترفع منعه فعلا.',
-'ip_range_invalid'            => 'نطاق عناوين الأيبي مش صحيح.',
-'blockme'                     => 'امنعنى',
-'proxyblocker'                => 'مانع البروكسي',
-'proxyblocksuccess'           => 'خلاص.',
+'blockip'                         => 'منع يوزر',
+'blockip-legend'                  => 'منع اليوزر',
+'ipaddress'                       => 'عنوان الأيبي:',
+'ipadressorusername'              => 'عنوان الأيبي أو اسم اليوزر:',
+'ipbexpiry'                       => 'مدة المنع:',
+'ipbreason'                       => 'السبب:',
+'ipbreasonotherlist'              => 'سبب تاني',
+'ipbreason-dropdown'              => '*أسباب المنع المشهورة
+** تدخيل معلومات غلط
+** مسح المحتوى من الصفحات
+** سبام لينك لمواقع خارجية
+** كتابة كلام مالوش معنى في الصفحات
+** سلوك عدواني/تحرش
+** إساءة استخدام اكتر من حسابات 
+** اسم يوزر مش مقبول',
+'ipbanononly'                     => 'امنع اليوزرز المجهولين بس',
+'ipbemailban'                     => 'منع اليوزر ده من بعتان إيميل',
+'ipbsubmit'                       => 'منع اليوزر دا',
+'ipbother'                        => 'وقت تاني:',
+'ipboptions'                      => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,تلات-ت-أيام:3 days,أسبوع:1 week,أسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست-ت- شهور:6 months,سنة واحدة:1 year,على طول:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'كمان',
+'ipbotherreason'                  => 'سبب تاني:',
+'ipbhidename'                     => 'خبي اسم اليوزر من سجل المنع، لستة المنع النشطة ولستة اليوزرز',
+'ipbwatchuser'                    => 'راقب صفحات اليوزر و النقاش بتوع اليوزر دا',
+'badipaddress'                    => 'عنوان أيبي مش صحيح',
+'blockipsuccesssub'               => 'المنع حصل بنجاح',
+'blockipsuccesstext'              => 'اتمنع [[Special:Contributions/$1|$1]].<br />
+شوف [[Special:Ipblocklist|لستة منع الأيبي]] علشان تراجع حالات المنع.',
+'ipb-edit-dropdown'               => 'عدل أسباب المنع',
+'ipb-unblock-addr'                => 'رفع منع $1',
+'ipb-unblock'                     => 'رفع المنع عن يوزر أو عنوان أيبي',
+'ipb-blocklist-addr'              => 'عرض المنع الموجود ل$1',
+'unblockip'                       => 'رفع منع يوزر',
+'ipusubmit'                       => 'رفع منع  العنوان ده',
+'unblocked-id'                    => 'منع $1 اترفع',
+'ipblocklist'                     => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
+'ipblocklist-legend'              => 'دور على مستخدم ممنوع',
+'ipblocklist-username'            => 'اسم اليوزر او عنوان ال اي بي.',
+'ipblocklist-submit'              => 'تدوير',
+'blocklistline'                   => '$1, $2 منع $3 ($4)',
+'infiniteblock'                   => 'دايم',
+'expiringblock'                   => 'ينتهى فى $1',
+'anononlyblock'                   => 'مجهول بس',
+'noautoblockblock'                => 'المنع التلقائى متعطل',
+'createaccountblock'              => ' فتح الحسابات ممنوع',
+'emailblock'                      => 'الإيميل ممنوع',
+'ipblocklist-empty'               => 'لستة المنع فاضية.',
+'ipblocklist-no-results'          => 'عنوان الأيبي أو اسم اليوزر المطلوب مش ممنوع.',
+'blocklink'                       => 'منع',
+'unblocklink'                     => 'رفع المنع',
+'contribslink'                    => 'تعديلات',
+'autoblocker'                     => 'انت اتمنعت اوتوماتيكي لأن الأيبي بتاعك استعمله"[[User:$1|$1]]" في الفترة الاخيرة. 
+السبب   اللي خلا $1 يتمنع هو: "$2"',
+'blocklogpage'                    => 'سجل المنع',
+'blocklogentry'                   => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
+'blocklogtext'                    => 'دا سجل بعمليات المنع ورفع المنع.
+عناوين الأيبي اللي اتمنعت اوتوماتيكي مش معروضة.
+شوف [[Special:Ipblocklist|عناوين الأيبي الممنوعة]] علشان تشوف عمليات المنع الشغالة دلوقتي.',
+'unblocklogentry'                 => 'رفع منع $1',
+'block-log-flags-anononly'        => 'اليوزرز المجهولين  بس',
+'block-log-flags-nocreate'        => ' فتح الحسابات ممنوع',
+'block-log-flags-noautoblock'     => 'المنع التلقائى متعطل',
+'block-log-flags-noemail'         => 'الإيميل ممنوع',
+'block-log-flags-angry-autoblock' => 'المنع الاوتوماتيكي المتقدم متفعل',
+'range_block_disabled'            => 'إمكانيةالسيسوب لمنع نطاق متعطلة.',
+'ipb_expiry_invalid'              => 'تاريخ الانتهاء مش صحيح.',
+'ipb_expiry_temp'                 => 'عمليات منع أسماء اليوزرز المستخبية لازم تكون على طول.',
+'ipb_already_blocked'             => '"$1" ممنوع فعلا',
+'ipb_cant_unblock'                => 'غلطه: عنوان الااى بى الممنوع  مش موجود  $1. يمكن اترفع منعه فعلا.',
+'ipb_blocked_as_range'            => 'غلط: الأيبي $1 مش ممنوع مباشرةو مش ممكن رفع المنع عنه.
+بس هو، على الرغم من كدا،ممنوع لانه جزء من النطاق $2، و اللي ممكن رفع المنع عنه.',
+'ip_range_invalid'                => 'نطاق عناوين الأيبي مش صحيح.',
+'blockme'                         => 'امنعنى',
+'proxyblocker'                    => 'مانع البروكسي',
+'proxyblocker-disabled'           => 'الخاصية دي متعطلة.',
+'proxyblockreason'                => 'عنوان الأيبي بتاعك اتمنع لانه بروكسي مفتوح.
+لو سمحت تتصل بمزود خدمة الإنترنت بتاعك أو الدعم الفني و قولهم على المشكلة الامنية الخطيرة دي.',
+'proxyblocksuccess'               => 'خلاص.',
+'sorbs'                           => 'دي إن إس بي إل',
+'sorbsreason'                     => 'عنوان الأيبي بتاعك موجود كبروكسي مفتوح في DNSBL اللي بيستعمله{{SITENAME}}.',
+'sorbs_create_account_reason'     => 'عنوان الأيبي بتاعك موجود كبروكسي مفتوح في ال DNSBL اللي بيستعمله{{SITENAME}}. 
+ما ينفعش تفتح حساب.',
 
 # Developer tools
 'lockdb'              => 'اقفل قاعدة البيانات',
 'unlockdb'            => 'افتح قاعدة البيانات',
+'lockdbtext'          => 'قفل قاعدة البيانات ح يمنع كل اليوزرز من تحرير الصفحات وتغيير التفضيلات بتاعتهم وتعديل لستة المراقبة حاجات تانية بتحتاج تغيير قاعدة البيانات.
+لو سمحت تتأكد من  ان هو دا اللي انت عايز تعمله فعلا، ومن إنك ح تشيل القفل بعد ما تخلص الصيانة.',
+'unlockdbtext'        => 'فتح قاعدة البيانات ح يخلى كل اليوزرز يقدرو يحررو الصفحات، يغيرو  تفضيلاتهم،يعدلو لستة المراقبة  بتاعتهم، و حاجات تانية محتاجين يغيروها في قاعدة البانات.
+. لو سمحت تتاكد ان هو دا اللي انت عايز تعمله',
 'lockconfirm'         => 'أيوه، أنا فعلا عايز اقفل قاعدة البيانات.',
 'unlockconfirm'       => 'أيوه، أنا فعلا عايز افتح قاعدة البيانات.',
 'lockbtn'             => 'قفل قاعدة البيانات',
 'unlockbtn'           => 'افتح قاعدة البيانات',
+'locknoconfirm'       => 'انت ما علمتش على صندوق التأكيد.',
 'lockdbsuccesssub'    => 'نجح قفل قاعدة البيانات',
 'unlockdbsuccesssub'  => 'قفل قاعدة البيانات إتشال.',
+'lockdbsuccesstext'   => 'قاعدة البانات اتقفلت خلاص.<br />
+ماتنساش [[Special:Unlockdb|تشيل القفل]] بعد أعمال الصيانة ما تخلص .',
 'unlockdbsuccesstext' => 'قاعدة البيانات إتفتحت تانى',
+'lockfilenotwritable' => 'ملف قفل قاعدة البيانات مش ممكن يتكتب عليه.
+علشان تقفل قاعدة البيانات أو تشيل القفل لازم سيرفر الويب يسمح بالكتابة على الملف دا .',
 'databasenotlocked'   => 'قاعدة البيانات بتاعتك مش  مقفولة.',
 
 # Move page
@@ -2392,8 +2467,8 @@ $1',
 جرب البروفة العادية.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'التغييرات الأحدث من $1 ثانية ممكن ما تظهرش في اللستة دي.',
-'lag-warn-high'   => 'علشان في تأخير كبير في تحديث قاعدة البيانات بتاعة السيرفر، التغييرات أحدث من $1 ثانية
+'lag-warn-normal' => 'التغييرات الأحدث من $1 {{PLURAL:$1|ثانية|ثانية}} ثانية ممكن ما تظهرش في اللستة دي.',
+'lag-warn-high'   => 'علشان في تأخير كبير في تحديث قاعدة البيانات بتاعة السيرفر، التغييرات أحدث من $1 {{PLURAL:$1|ثانية|ثانية}}
 ممكن ما تظهرش في اللستة دي.',
 
 # Watchlist editor
