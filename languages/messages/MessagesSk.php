@@ -2625,8 +2625,8 @@ Skúste obyčajný náhľad.',
 Skúste obyčajný náhľad.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Zmeny novšie ako $1 sekúnd sa nemôžu v tomto zozname zobraziť.',
-'lag-warn-high'   => 'Z dôvodu dlhej odozvy databázového servera sa zmeny novšie ako $1 sekúnd nemôžu v tomto zozname zobraziť.',
+'lag-warn-normal' => 'Zmeny novšie ako $1 {{PLURAL:$1|sekunda|sekundy|sekúnd}} nemožno v tomto zozname zobraziť.',
+'lag-warn-high'   => 'Z dôvodu dlhej odozvy databázového servera zmeny novšie ako $1 {{PLURAL:$1|sekunda|sekundy|sekúnd}} nemožno v tomto zozname zobraziť.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Váš zoznam sledovaných stránok obsahuje {{PLURAL:$1|jednu stránku|$1 stránky|$1 stránok}} nepočítajúc diskusné stránky.',

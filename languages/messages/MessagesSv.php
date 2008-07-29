@@ -14,9 +14,9 @@
  * @author לערי ריינהארט
  * @author Lokal Profil
  * @author Leo Johannes
- * @author Skalman
- * @author SPQRobin
  * @author Steinninn
+ * @author SPQRobin
+ * @author Skalman
  * @author Habjchen
  * @author Gangleri
  * @author Max sonnelid
@@ -2688,7 +2688,7 @@ Pröva vanlig förhandsgranskning istället.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Ändringar nyare än $1 sekunder kanske inte visas i den här listan.',
-'lag-warn-high'   => 'På grund av stor fördröjning i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
+'lag-warn-high'   => 'På grund av stor fördröjning i databasen, så visas kanske inte ändringar nyare än $1 {{PLURAL:$1|sekund|sekunder}} i den här listan.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Din bevakningslista innehåller {{PLURAL:$1|1 sida|$1 sidor}}, utöver diskussionsidor.',

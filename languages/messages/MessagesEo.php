@@ -2495,8 +2495,8 @@ $1',
 'livepreview-error'   => 'Malsukcesis konekti: $1 "$2". Provu norman antaŭvidon.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Ŝanĝoj pli novaj ol $1 sekundoj eble ne estos montrataj en ĉi listo.',
-'lag-warn-high'   => 'Pro malrapideco de la servila datumbazo, ŝanĝoj pli novaj ol $1 sekundoj eble ne montriĝos en ĉi listo.',
+'lag-warn-normal' => 'Ŝanĝoj pli novaj ol $1 {{PLURAL:$1|sekundo|sekundoj}} eble ne estos montrataj en ĉi tiu listo.',
+'lag-warn-high'   => 'Pro malrapideco de la servila datumbazo, ŝanĝoj pli novaj ol $1 {{PLURAL:$1|sekundo|sekundoj}} eble ne montriĝos en ĉi tiu listo.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Via atentaro enhavas {{PLURAL:$1|1 titolon|$1 titolojn}}, escepte de diskuto-paĝoj.',

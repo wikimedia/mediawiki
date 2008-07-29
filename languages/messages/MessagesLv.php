@@ -1611,8 +1611,8 @@ $1",
 'livepreview-error'   => 'Neizdevās pievienoties: $1 "$2". Pamēģini parasto pirmskatu.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Izmaiņas, kas ir jaunākas par  $1 sekundēm, var neparādīties šajā sarakstā.',
-'lag-warn-high'   => 'Sakarā ar lielu datubāzes servera lagu, izmaiņas, kas svaigākas par $1 sekundēm šajā sarakstā var neparādīties.',
+'lag-warn-normal' => 'Izmaiņas, kas ir jaunākas par  $1 {{PLURAL:$1|sekundi|sekundēm}}, var neparādīties šajā sarakstā.',
+'lag-warn-high'   => 'Sakarā ar lielu datubāzes servera lagu, izmaiņas, kas svaigākas par $1 {{PLURAL:$1|sekundi|sekundēm}}, šajā sarakstā var neparādīties.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tavs uzraugāmo lapu saraksts satur {{PLURAL:$1|1 lapu|$1 lapas}}, neieskaitot diskusiju lapas.',

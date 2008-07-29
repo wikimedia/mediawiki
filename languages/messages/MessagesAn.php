@@ -2499,8 +2499,8 @@ Prebe con a prebisualizazión normal.",
 'livepreview-error'   => 'No s\'ha puesto coneutar: $1 "$2". Prebe con l\'ambiesta prebia normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => "Talment no s'amuestren en ista lista as edizions feitas en os zaguers $1 segundos.",
-'lag-warn-high'   => "Por o retardo d'o serbido d'a base de datos, talment no s'amuestren en ista lista as edizions feitas en os zaguers $1 segundos.",
+'lag-warn-normal' => "Talment no s'amuestren en ista lista as edizions feitas en {{PLURAL:$1|o zaguer segundo|os zaguers $1 segundos}}.",
+'lag-warn-high'   => "Por o retardo d'o serbidor d'a base de datos, talment no s'amuestren en ista lista as edizions feitas en {{PLURAL:$1|o zaguer segundo|os zaguers $1 segundos}}.",
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'A suya lista de seguimiento tiene {{PLURAL:$1|una pachina |$1 pachinas}}, sin contar-ie as pachinas de descusión.',

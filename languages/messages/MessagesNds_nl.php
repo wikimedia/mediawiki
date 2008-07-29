@@ -779,7 +779,7 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'accmailtitle'                     => 'Wachwoord is verzunnen.',
 'accmailtext'                      => "Wachwoord veur '$1' is verzunnen naor $2.",
 'newarticle'                       => '(Niej)',
-'newarticletext'                   => '<div class=plainlinks style="border: 1px solid #ccc; padding: .2em 1em; margin-bottom: .8em; color: #000;"><div align=right style="font-size:110%; float:right; border:none; width:40%;">[[Special:Prefixindex/{{PAGENAME}}|Prefixindex]] | [[Special:Search/{{PAGENAME}}|Zeuken]]</div><div style="font-size:110%;">Je bin de pagina "{{FULLPAGENAME}}" an \'t schrieven...</div></div>',
+'newarticletext'                   => "Disse pagina besteet nog neet. Hieronder ku-j wat schrieven en naokieken of opslaon. A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um weerumme te gaon.",
 'anontalkpagetext'                 => "<hr style=\"margin-top:2em;\">
 <em>Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:Userlogin|een gebrukersnaam anmaken of anmelden]].</em>",
 'noarticletext'                    => 'Disse pagina besteet nog neet.

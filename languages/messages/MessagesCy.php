@@ -419,6 +419,7 @@ $1",
 'readonlytext'         => "Mae databas Wicipedia ar glo; nid yw'n bosib cadw erthyglau newydd na gwneud unrhyw newid arall. Mae'n debygol fod hyn er mwyn cynnal a chadw'r databas -- fe fydd ar gael eto cyn bo hir.
 
 Rhoddwyd y rheswm canlynol gan y gweinyddwr a'i glodd: $1",
+'missingarticle-diff'  => '(Gwahaniaeth: $1, $2)',
 'readonly_lag'         => "Mae'r databas wedi'i gloi'n awtomatig tra bod y gwas-weinyddion yn asio gyda'r prif weinydd",
 'internalerror'        => 'Gwall mewnol',
 'internalerror_info'   => 'Gwall mewnol: $1',
@@ -444,6 +445,8 @@ Gofyniad: $2',
 'viewsource'           => 'Dangos côd y dudalen',
 'viewsourcefor'        => 'ar gyfer $1',
 'actionthrottled'      => 'Tagwyd y weithred',
+'actionthrottledtext'  => "Mae camau gwrth-sbam y wici yn cyfyngu ar ba mor aml y gall defnyddwyr ailwneud y weithred hon mewn byr amser, ac rydych chi wedi croesi'r terfyn.
+Ceisiwch eto ymhen rhai munudau.",
 'protectedpagetext'    => "Mae'r dudalen hon wedi'i diogelu rhag cael ei golygu.",
 'viewsourcetext'       => 'Cewch weld a chopïo côd y dudalen:',
 'protectedinterface'   => 'Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli.',
@@ -783,6 +786,7 @@ gall fod manylion yn y [lòg dileu {{fullurl:Special:Log/delete|page={{FULLPAGEN
 'logdelete-success'           => "'''Llwyddwyd i guddio'r digwyddiad.'''",
 'revdel-restore'              => 'Newid gwelededd',
 'pagehist'                    => 'Hanes y dudalen',
+'deletedhist'                 => 'Hanes dilëedig',
 'revdelete-content'           => 'cynnwys',
 'revdelete-summary'           => 'crynodeb golygu',
 'revdelete-uname'             => 'yr enw defnyddiwr ar gyfer',
@@ -927,6 +931,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'servertime'               => 'Amser y gweinydd yw',
 'guesstimezone'            => 'Llenwi oddi wrth y porwr',
 'allowemail'               => 'Galluogi e-bost oddi wrth ddefnyddwyr eraill',
+'prefs-searchoptions'      => 'Dewisiadau chwilio',
+'prefs-namespaces'         => 'Parthau',
 'defaultns'                => 'Chwiliwch y parthau rhagosodedig isod:',
 'default'                  => 'rhagosodyn',
 'files'                    => 'Ffeiliau',
@@ -1550,6 +1556,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'viewdeletedpage'              => "Gweld tudalennau sydd wedi'u dileu",
 'undeletepagetext'             => "Mae'r tudalennau isod wedi cael eu dileu ond mae cofnod ohonynt o hyd yn yr archif, felly mae'n bosibl eu hadfer. 
 Gall yr archif gael ei glanhau o dro i dro.",
+'undelete-fieldset-title'      => 'Dewis ac adfer diwygiadau',
 'undeleteextrahelp'            => "I adfer y dudalen gyfan, gadewch pob blwch ticio'n wag a phwyswch y botwm '''''Adfer'''''. I adfer rhai diwygiadau'n unig, ticiwch y blychau ar gyfer y diwygiadau dewisedig, a phwyswch ar '''''Adfer'''''. Os y pwyswch ar '''''Ailosod''''' bydd y blwch sylwadau a phob blwch ticio yn gwacáu.",
 'undeleterevisions'            => 'Gosodwyd $1 {{PLURAL:$1|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn}} yn yr archif',
 'undeletehistory'              => "Os adferwch y dudalen, fe fydd yr hanes gyfan yn cael ei atgyfodi hefyd. 
@@ -2207,9 +2214,11 @@ $1",
 'confirm_purge_button' => 'Iawn',
 
 # AJAX search
-'articletitles' => "Erthyglau'n dechrau gyda: ''$1''",
-'hideresults'   => "Cuddio'r canlyniadau",
-'useajaxsearch' => 'Chwilio gyda AJAX',
+'searchcontaining' => "Chwilio am dudalennau yn cynnwys ''$1''.",
+'searchnamed'      => "Chwilio am dudalennau a'r enw ''$1''.",
+'articletitles'    => "Erthyglau'n dechrau gyda: ''$1''",
+'hideresults'      => "Cuddio'r canlyniadau",
+'useajaxsearch'    => 'Chwilio gyda AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => "← i'r dudalen gynt",
@@ -2240,8 +2249,8 @@ $1",
 'livepreview-error'   => 'Wedi methu cysylltu: $1 "$2". Rhowch gynnig ar y rhagolwg arferol.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Hwyrach na ddangosir isod y newidiadau a ddigwyddodd o fewn y $1 eiliad ddiwethaf.',
-'lag-warn-high'   => 'Mae gweinydd y data-bas ar ei hôl hi: efallai nad ymddengys newidiadau o fewn y $1 eiliad ddiwethaf ar y rhestr.',
+'lag-warn-normal' => 'Hwyrach na ddangosir isod y newidiadau a ddigwyddodd o fewn y $1 {{PLURAL:$1|eiliad|eiliad|eiliad|eiliad|eiliad|eiliad}} ddiwethaf.',
+'lag-warn-high'   => 'Mae gweinydd y data-bas ar ei hôl hi: efallai nad ymddengys newidiadau o fewn y $1 {{PLURAL:$1|eiliad|eiliad|eiliad|eiliad|eiliad|eiliad}} ddiwethaf ar y rhestr.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Mae {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 o dudalennau}} ar eich rhestr gwylio, heb gynnwys tudalennau sgwrs.',

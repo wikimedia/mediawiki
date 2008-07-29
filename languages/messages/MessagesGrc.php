@@ -299,7 +299,7 @@ $messages = array(
 <blockquote><tt>$1</tt></blockquote>
 ἐξ ἐντὸς τῆς τελέσεως "<tt>$2</tt>".
 Ἡ MySQL ἐπέστρεψεν σφάλμα "<tt>$3: $4</tt>".',
-'noconnect'            => 'Συγγνώμην! Τὸ wiki is experiencing some technical difficulties, καὶ οὐ δύναται contact the database server.<br />
+'noconnect'            => 'Συγγνώμην! Τὸ οὐίκι ἔχει τεχνικὰς δυσχέρειας καὶ οὐ δύναται ἐπιμείγνυναι πρὸς τὸ ἐξυπηρετικὸν δεδομένων.<br />
 $1',
 'nodb'                 => 'Ἀδύνατον τὸ ἐπιλέγειν βάσιν δεδομένων $1',
 'readonly'             => 'Βάσις δεδομένων ἀποκεκλεισμένη',

@@ -1443,13 +1443,14 @@ I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [http://www.mediawi
 
 'disambiguations'      => "Paginas d'omonimia",
 'disambiguationspage'  => 'Template:Omonimia',
-'disambiguations-text' => "Las paginas seguentas ligan vèrs una '''pagina d’omonimia'''.
-Deurián puslèu ligar vèrs una pagina pertinenta.<br />
-Una pagina es tractada coma una pagina d’omonimia se es ligada dempuèi $1.
-Los ligams dempuèi d’autres espacis de noms <i>son pas</i> listats aicí.",
+'disambiguations-text' => "Las paginas seguentas puntan cap a una '''pagina d’omonimia'''.
+Deurián puslèu puntar cap a una pagina apropriada.<br />
+Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redireccions doblas',
-'doubleredirectstext' => 'Cada casa conten de ligams vèrs la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, vèrs laquala la primièra redireccion deuriá redirigir.',
+'doubleredirects'            => 'Redireccions doblas',
+'doubleredirectstext'        => 'Cada casa conten de ligams vèrs la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, vèrs laquala la primièra redireccion deuriá redirigir.',
+'double-redirect-fixed-move' => '[[$1]] es estat renomenat, aquò es ara una redireccion cap a [[$2]]',
+'double-redirect-fixer'      => 'Corrector de redireccion',
 
 'brokenredirects'        => 'Redireccions copadas',
 'brokenredirectstext'    => "Aquestas redireccions mènan a una pagina qu'existís pas.",
@@ -2019,6 +2020,7 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'imagenocrossnamespace'   => 'Pòt pas desplaçar un imatge vèrs un espaci de nomenatge que siá pas un imatge.',
 'imagetypemismatch'       => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
 'imageinvalidfilename'    => 'Lo nom del fichièr cibla es incorrècte',
+'fix-double-redirects'    => 'Metre a jorn las redireccions que puntant cap al títol ancian',
 
 # Export
 'export'            => 'Exportar de paginas',
@@ -2092,7 +2094,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importlogpagetext'                => 'Impòrts administratius de paginas amb l’istoric a partir dels autres wikis.',
 'import-logentry-upload'           => 'a importat (telecargament) [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
-'import-logentry-interwiki'        => '$1 version(s) dempuèi $2',
+'import-logentry-interwiki'        => 'a importat (transwiki) [[$1]]',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} dempuèi $2',
 
 # Tooltip help for the actions
@@ -2656,8 +2658,8 @@ Ensajatz la previsualizacion normala.',
 Ensajatz la previsualizacion normala.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Los cambiaments datant de mens de $1 segondas pòdon aparéisser pas dins aquesta lista.',
-'lag-warn-high'   => 'En rason d’una fòrta carga de las bancas de donadas, los cambiaments datant de mens de $1 segondas pòdon aparéisser pas dins aquesta lista.',
+'lag-warn-normal' => 'Los cambiaments que datan de mens de $1 segondas pòdon aparéisser pas dins aquesta tièra.',
+'lag-warn-high'   => 'En rason d’una fòrta carga de las bancas de donadas, los cambiaments que datan de mens de $1 {{PLURAL:$1|segonda|segondas}} pòdon aparéisser pas dins aquesta tièra.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Vòstra lista de seguit conten {{PLURAL:$1|una pagina|$1 paginas}}, sens comptar las paginas de discussion',
