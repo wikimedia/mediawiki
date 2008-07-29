@@ -8,6 +8,38 @@
  * @author Hintha
  */
 
+$digitTransformTable = array(
+	'0' => '၀',
+	'1' => '၁',
+	'2' => '၂',
+	'3' => '၃',
+	'4' => '၄',
+	'5' => '၅',
+	'6' => '၆',
+	'7' => '၇',
+	'8' => '၈',
+	'9' => '၉',
+);
+
+$datePreferences = array(
+	'default',
+	'my normal',
+	'my long',
+	'ISO 8601',
+);
+ 
+$defaultDateFormat = 'my normal';
+ 
+$dateFormats = array(
+	'my normal time' => 'H:i',
+	'my normal date' => 'j F Y',
+	'my normal both' => ' H:i"၊" j F Y',
+ 
+	'my long time' => 'H:i',
+	'my long date' => 'Y "ဇန်နဝါရီ" F"လ" j "ရက်"',
+	'my long both' => 'H:i"၊" Y "ဇန်နဝါရီ" F"လ" j "ရက်"',
+);
+
 $messages = array(
 # User preference toggles
 'tog-watchcreations' => 'ကျွန်တော်ထွင်သည့်စာမျက်နှာများကို စောင့်​ကြည့်​စာ​ရင်း​ထဲ ပေါင်းထည့်ပါ',
