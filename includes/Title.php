@@ -999,12 +999,11 @@ class Title {
 	 *
 	 * May provide false positives, but should never provide a false negative.
 	 *
-	 * @param $action String: action that permission needs to be checked for
-	 * @param $user User object, optional
+	 * @param string $action action that permission needs to be checked for
 	 * @return boolean
  	 */
-	public function quickUserCan( $action, $user = null ) {
-		return $this->userCan( $action, false, $user );
+	public function quickUserCan( $action ) {
+		return $this->userCan( $action, false );
 	}
 
 	/**
@@ -1026,17 +1025,13 @@ class Title {
 
 	/**
 	 * Can $wgUser perform $action on this page?
-	 * @param $action String: action that permission needs to be checked for
-	 * @param $doExpensiveQueries Bool: set this to false to avoid doing unnecessary queries.
-	 * @param $user User object, optional 
+	 * @param string $action action that permission needs to be checked for
+	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return boolean
  	 */
-	public function userCan( $action, $doExpensiveQueries = true, $user = null ) {
-		if( $user === null ){
-			global $wgUser;
-			$user = $wgUser;
-		}
-		return ( $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries ) === array());
+	public function userCan( $action, $doExpensiveQueries = true ) {
+		global $wgUser;
+		return ( $this->getUserPermissionsErrorsInternal( $action, $wgUser, $doExpensiveQueries ) === array());
 	}
 
 	/**
