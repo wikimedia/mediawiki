@@ -234,15 +234,9 @@ class Linker {
 	 *                      the end of the link.
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
-	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
+	function makeLinkObj( Title $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
-
-		if ( !$nt instanceof Title ) {
-			# Fail gracefully
-			wfProfileOut( __METHOD__ );
-			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
-		}
 
 		if ( $nt->isExternal() ) {
 			$u = $nt->getFullURL();
@@ -308,18 +302,15 @@ class Linker {
 	 * @param $query  String: link target
 	 * @param $trail  String: text after link
 	 * @param $prefix String: text before link text
-	 * @param $aprops String: extra attributes to the a-element
+	 * @param $aprops Mixed: extra attributes to the a-element.  If a string,
+	 *   inserted literally into the HTML, with a space prepended.  It can also
+	 *   be an associative array.  In this case the keys are attributes, and
+	 *   values are *unescaped* attribute values.
 	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
 	 * @return the a-element
 	 */
-	function makeKnownLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
+	function makeKnownLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
 		wfProfileIn( __METHOD__ );
-
-		if ( !$title instanceof Title ) {
-			# Fail gracefully
-			wfProfileOut( __METHOD__ );
-			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
-		}
 
 		$nt = $this->normaliseSpecialPage( $title );
 
@@ -340,7 +331,16 @@ class Linker {
 			$style = $this->getInternalLinkAttributesObj( $nt, $text );
 		}
 
-		if ( $aprops !== '' ) $aprops = ' ' . $aprops;
+		if( is_string( $aprops ) && $aprops != '' ) {
+			$aprops = " $aprops";
+		} elseif( is_array( $aprops ) ) {
+			$attributes = $aprops;
+			$aprops = '';
+			foreach( $attributes as $key => $value ) {
+				$value = htmlspecialchars( $value );
+				$aprops .= " $key=\"$value\"";
+			}
+		}
 
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
@@ -358,14 +358,8 @@ class Linker {
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
-	function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeBrokenLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfProfileIn( __METHOD__ );
-
-		if ( !$title instanceof Title ) {
-			# Fail gracefully
-			wfProfileOut( __METHOD__ );
-			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
-		}
 
 		$nt = $this->normaliseSpecialPage( $title );
 
@@ -406,6 +400,7 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__ );
 		return $this->makeColouredLinkObj( $nt, 'stub', $text, $query, $trail, $prefix );
 	}
 
@@ -421,7 +416,6 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
-
 		if($colour != ''){
 			$style = $this->getInternalLinkAttributesObj( $nt, $text, $colour );
 		} else $style = '';
@@ -1304,21 +1298,22 @@ class Linker {
 	 * @return         string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip='' ) {
+		$url = $this->makeKnownLinkObj(
+			$nt,
+			htmlspecialchars(wfMsg('editsection')),
+			"action=edit&section=$section",
+			'', '', '',
+			array( 'title' => wfMsg( 'editsectionhint', $tooltip ) )
+		);
+
+		# Run the old hook.  This takes up most of the function . . . hopefully
+		# we can rid of it someday.
+		$result = null;
 		$attribs = '';
 		if( $tooltip ) {
 			$attribs = wfMsgHtml( 'editsectionhint', htmlspecialchars( $tooltip ) );
 			$attribs = " title=\"$attribs\"";
 		}
-
-		$url = $this->makeKnownLinkObj(
-			$nt,
-			htmlspecialchars(wfMsg('editsection')),
-			"action=edit&section=$section",
-			'', '', '',  $attribs
-		);
-
-		# Run the old hook
-		$result = null;
 		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $url, &$result ) );
 		if( !is_null( $result ) ) {
 			# For reverse compatibility, add the brackets *after* the hook is
