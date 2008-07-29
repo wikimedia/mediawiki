@@ -3613,8 +3613,7 @@ class Parser
 					$section = $sectionIndex;
 					$tooltip = '';
 				}
-				// Use Title::getUserPermissionsErrorsInternal() so that we can pass our User object
-				if( $titleObj->getUserPermissionsErrorsInternal( 'edit', $this->mOptions->getUser(), false ) === array() ){
+				if( $titleObj->quickUserCan( 'edit', $this->mOptions->getUser() ) ){
 					$editlink = $sk->doEditSectionLink( $titleObj, $section, $tooltip );
 				} else {
 					$editlink = '';

@@ -999,11 +999,12 @@ class Title {
 	 *
 	 * May provide false positives, but should never provide a false negative.
 	 *
-	 * @param string $action action that permission needs to be checked for
+	 * @param $action String: action that permission needs to be checked for
+	 * @param $user User object, optional
 	 * @return boolean
  	 */
-	public function quickUserCan( $action ) {
-		return $this->userCan( $action, false );
+	public function quickUserCan( $action, $user = null ) {
+		return $this->userCan( $action, false, $user );
 	}
 
 	/**
@@ -1025,13 +1026,17 @@ class Title {
 
 	/**
 	 * Can $wgUser perform $action on this page?
-	 * @param string $action action that permission needs to be checked for
-	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
+	 * @param $action String: action that permission needs to be checked for
+	 * @param $doExpensiveQueries Bool: set this to false to avoid doing unnecessary queries.
+	 * @param $user User object, optional 
 	 * @return boolean
  	 */
-	public function userCan( $action, $doExpensiveQueries = true ) {
-		global $wgUser;
-		return ( $this->getUserPermissionsErrorsInternal( $action, $wgUser, $doExpensiveQueries ) === array());
+	public function userCan( $action, $doExpensiveQueries = true, $user = null ) {
+		if( $user === null ){
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return ( $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries ) === array());
 	}
 
 	/**
@@ -1134,7 +1139,7 @@ class Title {
 	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
 	 * @return array Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
-	public function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
+	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
 		wfProfileIn( __METHOD__ );
 
 		$errors = array();
