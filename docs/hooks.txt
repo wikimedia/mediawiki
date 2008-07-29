@@ -871,12 +871,6 @@ $baseID: the revision ID this was based off, if any
   whether to use the content language (true) or site language (false) (bool)
 &$transform: whether or not to expand variables and templates in the message (bool)
 
-'ObjectArrayFromResult': called when creating an ObjectArray object from a
-  database result.
-$class: The class of object that this array represents (e.g., 'User', 'Title')
-&$array: set this to an object to override the default object returned
-$res: database result used to create the object
-
 'OpenSearchUrls': Called when constructing the OpenSearch description XML.
 Hooks can alter or append to the array of URLs for search & suggestion formats.
 &$urls: array of associative arrays with Url element attributes
@@ -1185,6 +1179,10 @@ $term: string of search term
 'SpecialVersionExtensionTypes': called when generating the extensions credits, use this to change the tables headers
 $extTypes: associative array of extensions types
 
+'TitleArrayFromResult': called when creating an TitleArray object from a database result
+&$titleArray: set this to an object to override the default object returned
+$res: database result used to create the object
+
 'TitleMoveComplete': after moving an article (title)
 $old: old title
 $nt: new title
@@ -1231,6 +1229,10 @@ string &$error: output: HTML error to show if upload canceled by returning false
 
 'UploadComplete': Upon completion of a file upload
 $uploadForm: Upload form object. File can be accessed by $uploadForm->mLocalFile.
+
+'UserArrayFromResult': called when creating an UserArray object from a database result
+&$userArray: set this to an object to override the default object returned
+$res: database result used to create the object
 
 'userCan': To interrupt/advise the "user can do X to Y article" check.
 	If you want to display an error message, try getUserPermissionsErrors.
