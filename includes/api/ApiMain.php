@@ -347,6 +347,10 @@ class ApiMain extends ApiBase {
 		$this->mShowVersions = $params['version'];
 		$this->mAction = $params['action'];
 
+		if( !is_string( $this->mAction ) ) {
+			$this->dieUsage( "The API requires a valid action parameter", 'unknown_action' );
+		}
+
 		// Instantiate the module requested by the user
 		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
 
