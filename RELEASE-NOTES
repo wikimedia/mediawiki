@@ -23,6 +23,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgExemptFromUserRobotsControl is an array of namespaces to be exempt from
   the effect of the new __INDEX__/__NOINDEX__ magic words.  (Default: null, ex-
   empt all content namespaces.)
+* $wgForwardSearchUrl has been removed entirely. Documented setting since 1.4
+  has been $wgSearchForwardUrl.
 
 === New features in 1.14 ===
 
