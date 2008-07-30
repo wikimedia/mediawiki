@@ -219,16 +219,7 @@ class Linker {
 			$query['redlink'] = '1';
 		}
 
-		$queryString = array();
-		foreach( $query as $key => $val ) {
-			$queryString []= urlencode( $key ) . '=' . urlencode( $val );
-		}
-		$queryString = implode( '&', $queryString );
-
-		if( $target->isExternal() ) {
-			return $target->getFullURL( $queryString );
-		}
-		return $target->getLocalURL( $queryString );
+		return $target->getLocalURL( wfArrayToCGI( $query ) );
 	}
 
 	private function linkAttribs( $target, $attribs, $options ) {
