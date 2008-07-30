@@ -2220,8 +2220,10 @@ $1',
 
 # Special:Newimages
 'newimages'             => 'Neue Dateien',
-'imagelisttext'         => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
+'imagelisttext'         => "Hier ist eine Liste mit '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
 'newimages-summary'     => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.',
+'newimages-legend'      => 'Dateiname',
+'newimages-label'       => 'Dateiname (oder ein Teil davon):',
 'showhidebots'          => '(Bots $1)',
 'noimages'              => 'Keine Dateien gefunden.',
 'ilsubmit'              => 'Suchen',
