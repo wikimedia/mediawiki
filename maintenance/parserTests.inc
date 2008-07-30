@@ -1085,6 +1085,8 @@ class DbTestPreviewer extends TestRecorder  {
 				'ff' => 'still FAILING test(s) :(',
 			);
 
+			$prevResults = array();
+
 			$res = $this->db->select( 'testitem', array( 'ti_name', 'ti_success' ),
 				array( 'ti_run' => $this->prevRun ), __METHOD__ );
 			foreach ( $res as $row ) {
