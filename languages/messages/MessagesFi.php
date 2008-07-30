@@ -11,6 +11,7 @@
  * @author Jack Phoenix
  * @author M.M.S.
  * @author Str4nd
+ * @author Jaakonam
  * @author לערי ריינהארט
  */
 
@@ -1346,8 +1347,9 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'disambiguationspage'  => 'Template:Täsmennyssivu',
 'disambiguations-text' => "Seuraavat artikkelit linkittävät ''täsmennyssivuun''. Täsmennyssivun sijaan niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan täsmennyssivuna jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Kaksinkertaiset ohjaukset',
-'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT- tai #OHJAUS-komennon jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.',
+'doubleredirects'            => 'Kaksinkertaiset ohjaukset',
+'doubleredirectstext'        => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT- tai #OHJAUS-komennon jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.',
+'double-redirect-fixed-move' => '[[$1]] on siirretty, se on nyt ohjaus sivulle [[$2]]',
 
 'brokenredirects'        => 'Virheelliset ohjaukset',
 'brokenredirectstext'    => 'Seuraavat ohjaukset osoittavat sivuihin, joita ei ole olemassa.',
@@ -2504,8 +2506,8 @@ Yritä normaalia esikatselua.',
 Yritä normaalia esikatselua.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
-'lag-warn-high'   => 'Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
+'lag-warn-normal' => 'Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.',
+'lag-warn-high'   => 'Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}} keskustelusivuja lukuun ottamatta.',

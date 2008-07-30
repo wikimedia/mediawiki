@@ -1112,8 +1112,8 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos.
 Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:Imagelist|lista d'archibos cargatos]]. As cargas y borraus d'archibos tamién son rechistratos en o [[Special:Log/upload|rechistro de cargas]].
 
-Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|testo alternatibo]]</nowiki>''' u
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.
+Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.png|testo alternatibo]]</nowiki>''' u
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archibo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.
 
 
 To include a file in a page, use a link in the form
@@ -1135,13 +1135,13 @@ To include a file in a page, use a link in the form
 'ignorewarning'               => "Inorar l'abiso y alzar l'archibo en cualsiquier caso",
 'ignorewarnings'              => 'Inorar cualsiquier abiso',
 'minlength1'                  => "Os nombres d'archibo han de tener á lo menos una letra.",
-'illegalfilename'             => "O nombre d'archivo «$1» contiene caráuters no premititos en títols de pachinas. Por fabor, cambee o nombre de l'archibo y mire de tornar á cargarlo.",
+'illegalfilename'             => "O nombre d'archibo «$1» tiene caráuters no premititos en títols de pachinas. Por fabor, cambee o nombre de l'archibo y mire de tornar á cargarlo.",
 'badfilename'                 => 'O nombre d\'a imachen s\'ha cambiato por "$1".',
 'filetype-badmime'            => 'No se premite cargar archibos de tipo MIME "$1".',
 'filetype-unwanted-type'      => "Os '''\".\$1\"''' son un tipo d'archibo no deseyato.  Se prefieren os archibos {{PLURAL:\$3|de tipo|d'os tipos}} \$2.",
 'filetype-banned-type'        => "No se premiten os archibos de tipo '''\".\$1\"'''. {{PLURAL:\$3|O tipo premitito ye|Os tipos premititos son}} \$2.",
 'filetype-missing'            => 'L\'archibo no tiene garra estensión (como ".jpg").',
-'large-file'                  => 'Se consella que os archibos no sigan mayors de $1; iste archbo este archivo ocupa $2.',
+'large-file'                  => 'Se consella que os archibos no sigan mayors de $1; iste archibo ocupa $2.',
 'largefileserver'             => "A grandaria d'iste archibo ye mayor d'a que a confegurazión d'iste serbidor premite.",
 'emptyfile'                   => "Parixe que l'archibo que se miraba de cargar ye buedo; por fabor, comprebe que ixe ye reyalment l'archibo que quereba cargar.",
 'fileexists'                  => "Ya bi ha un archibo con ixe nombre. Por fabor, Por favor mire-se l'archibo esistent <strong><tt>$1</tt></strong> si no ye seguro de querer sustituyir-lo.",
@@ -1153,8 +1153,9 @@ Por fabor, trigue un nombre diferent.",
 'fileexists-thumb'            => "<center>'''Archibo esistent'''</center>",
 'fileexists-thumbnail-yes'    => "Parixe que l'archibo ye una imachen prou chicota <i>(miniatura)</i>. Comprebe por fabor l'archibo <strong><tt>$1</tt></strong>.<br />
 Si l'archibo comprebato ye a mesma imachen en tamaño orichinal no cal cargar una nueba miniatura.",
-'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
-Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nombre del archivo.',
+'file-thumbnail-no'           => "O nombre de l'archibo prenzipia con <strong><tt>$1</tt></strong>. 
+Pareix que estase una imachen no guaire gran <i>(thumbnail)</i>.
+Si tiene ista imachen a toda resoluzión, cargue-la, si no, por fabor, cambee o nombre de l'archibo.",
 'fileexists-forbidden'        => "Ya bi ha un archibo con iste nombre. Por fabor, cambee o nombre de l'archibo y torne á cargar-lo. [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Ya bi ha un archibo con ixe nombre en o repositorio compartito; por fabor, torne t'a pachina anterior y cargue o suyo archibo con atro nombre. [[Image:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Iste archibo ye un duplicau {{PLURAL:$1|d'o siguient archibo|d'os siguients archibos}}:",
@@ -1168,7 +1169,7 @@ Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nom
 'uploadscripted'              => 'Iste archibo contiene codigo de script u HTML que puede estar interpretado incorreutament por un nabegador.',
 'uploadcorrupt'               => "Iste archibo ye corrompito u tiene una estensión incorreuta. Por fabor, comprebe l'archibo y cargue-lo una atra begada.",
 'uploadvirus'                 => 'Iste archibo tiene un birus! Detalles: $1',
-'sourcefilename'              => "Nombre de l'archivo d'orichen:",
+'sourcefilename'              => "Nombre de l'archibo d'orichen:",
 'destfilename'                => "Nombre de l'archibo de destín:",
 'upload-maxfilesize'          => "Masima grandaria de l'archibo: $1",
 'watchthisupload'             => 'Cosirar ista pachina',
@@ -1311,13 +1312,13 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 
 # Statistics
 'statistics'             => 'Estadisticas',
-'sitestats'              => "Estadisticas d'a {{SITENAME}}",
+'sitestats'              => 'Estadisticas de {{SITENAME}}',
 'userstats'              => "Estadisticas d'usuario",
 'sitestatstext'          => "Bi ha un total de {{PLURAL:$1|'''1''' pachina|'''$1''' pachinas}} en a base de datos.
 Isto encluye pachinas de descusión, pachinas sobre {{SITENAME}}, borradors menimos, reendrezeras y atras que cal que no puedan estar consideratas pachinas de contenius.
 Sacando ixas pachinas, regular que bi aiga {{PLURAL:$2|1 pachina|'''$2''' pachinas}} de conteniu lechitimo.
 
-Bi ha '''$8''' {{PLURAL:$8|archibo alzato|archivos alzatos}} en o serbidor.
+Bi ha '''$8''' {{PLURAL:$8|archibo alzato|archibos alzatos}} en o serbidor.
 
 Dende a debantadera d'o wiki bi ha abito un total de '''$3''' {{PLURAL:$3|besitas|besitas}} y '''$4''' {{PLURAL:$4|edizión de pachina|edizions de pachinas}}.
 Isto resulta en una meya de '''$5''' {{PLURAL:$5|edizión|edizions}} por pachina y '''$6''' {{PLURAL:$6|besita|besitas}} por edizión.
@@ -1359,7 +1360,7 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'nviews'                  => '$1 {{PLURAL:$1|besita|besitas}}',
 'specialpage-empty'       => 'Ista pachina ye bueda.',
 'lonelypages'             => 'Pachinas popiellas',
-'lonelypagestext'         => "Garra pachina de {{SITENAME}} wiki tiene binclos t'as pachinas que se listan contino.",
+'lonelypagestext'         => "Garra pachina de {{SITENAME}} tiene binclos t'as pachinas que se listan contino.",
 'uncategorizedpages'      => 'Pachinas sin categorizar',
 'uncategorizedcategories' => 'Categorías sin categorizar',
 'uncategorizedimages'     => 'Archibos sin categorizar',
@@ -1478,7 +1479,7 @@ L'adreza de correu-e que endicó en as suyas preferenzias d'usuario amanixerá e
 'emailccsubject'  => "Copia d'o suyo mensache ta $1: $2",
 'emailsent'       => 'Mensache de correu nimbiato',
 'emailsenttext'   => "S'ha nimbiato o suyo correu.",
-'emailuserfooter' => 'Iste correu-e s\'ha nimbiato por $1 ta $2 fendo serbir a funzion "Email user" de {{SITENAME}}.',
+'emailuserfooter' => 'Iste correu-e s\'ha nimbiato por $1 ta $2 fendo serbir a funzión "Email user" de {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
@@ -1585,8 +1586,8 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 ** trencadura de copyright
 ** Bandalismo",
 'delete-edit-reasonlist'      => "Editar as razons d'o borrau",
-'delete-toobig'               => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersions|bersions}}. S'ha restrinchito o borrau d'ista mena de pachinas ta aprebenir d'a corrompizión azidental de {{SITENAME}}.",
-'delete-warning-toobig'       => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersions|bersions}}. Si la borra puede corromper as operazions d'a base de datos de {{SITENAME}}; contine con ficazio.",
+'delete-toobig'               => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. S'ha restrinchito o borrau d'ista mena de pachinas ta aprebenir d'a corrompizión azidental de {{SITENAME}}.",
+'delete-warning-toobig'       => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. Si la borra puede corromper as operazions d'a base de datos de {{SITENAME}}; contine con ficazio.",
 'rollback'                    => 'Esfer edizions',
 'rollback_short'              => 'Esfer',
 'rollbacklink'                => 'Esfer',
@@ -2101,7 +2102,7 @@ $1",
 'thumbsize'            => "Midas d'a miniatura:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pachina|pachinas}}',
 'file-info'            => "(grandaria de l'archibo: $1; tipo MIME: $2)",
-'file-info-size'       => "($1 × $2 píxels; grandaria de l'archivo: $3; tipo MIME: $4)",
+'file-info-size'       => "($1 × $2 píxels; grandaria de l'archibo: $3; tipo MIME: $4)",
 'file-nohires'         => '<small>No bi ha garra bersión con mayor resoluzión.</small>',
 'svg-long-desc'        => '(archibo SVG, nominalment $1 × $2 píxels, grandaria: $3)',
 'show-big-image'       => 'Imachen en a maisima resoluzión',

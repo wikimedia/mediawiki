@@ -5,7 +5,6 @@
  * @file
  *
  * @author Helix84
- * @author Andre Engels
  * @author Siebrand
  * @author לערי ריינהארט
  * @author Michawiki

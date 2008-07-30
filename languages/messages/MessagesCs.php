@@ -12,8 +12,8 @@
  * @author Siebrand
  * @author Reaperman
  * @author Helix84
- * @author Michawiki
  * @author Martin Kozák
+ * @author Michawiki
  */
 
 $fallback8bitEncoding = 'cp1250';

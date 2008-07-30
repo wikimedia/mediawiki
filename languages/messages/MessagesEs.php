@@ -23,8 +23,8 @@
  * @author Jatrobat
  * @author Ascánder
  * @author Bengoa
- * @author Orgullomoore
  * @author Dvortygirl
+ * @author Orgullomoore
  * @author Toniher
  * @author Omnipaedista
  * @author McDutchie

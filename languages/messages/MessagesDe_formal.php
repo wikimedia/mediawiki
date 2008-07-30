@@ -4,16 +4,21 @@
  * @ingroup Language
  * @file
  *
+ * @author Raymond
+ * @author Siebrand
+ * @author Leithian
+ * @author Pill
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
- * @author Siebrand
  */
 
 $fallback = 'de';
 
 $messages = array(
 # User preference toggles
+'tog-underline'        => 'Links unterstreichen:',
+'tog-nocache'          => 'Seitencache deaktivieren',
 'tog-enotifrevealaddr' => 'Ihre E-Mail-Adresse wird in Benachrichtigungs-E-Mails angezeigt.',
 
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
@@ -135,7 +140,6 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administra
 *Sperrgrund: $2
 *Beginn der Sperre: $8
 *Sperr-Ende: $6
-*IP-Adresse: $3
 *Sperr-ID: #$5
 </div>',
 'blockededitsource'                => "Der Quelltext '''Ihrer Änderungen''' an '''$1''':",
@@ -148,7 +152,7 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administra
 'loginreqpagetext'                 => 'Sie müssen sich $1, um Seiten lesen zu können.',
 'anontalkpagetext'                 => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können sie ignorieren.''",
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfen Sie, ob Sie diese Seite wirklich erstellen/bearbeiten möchten.',
-'clearyourcache'                   => "'''Hinweis:''' Leeren Sie nach dem Speichern den Browser-Cache, um die Änderungen zu sehen: '''Mozilla/Firefox:''' ''Shift-Strg-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''⌘-R'', '''Konqueror:''' ''Strg-R''.",
+'clearyourcache'                   => "'''Hinweis - Leeren Sie nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei auf ''Aktualisieren'' klicken.",
 'usercssjsyoucanpreview'           => '<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues CSS/JS vor dem Speichern zu testen.',
 'usercsspreview'                   => "== Vorschau Ihres Benutzer-CSS ==
 '''Hinweis:''' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -224,10 +228,9 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
-'preferences-summary' => 'Auf dieser Spezialseite können Sie Ihre Zugangsdaten ändern und bestimmte Teile der Oberfläche individuell anpassen.',
-'prefsnologintext'    => 'Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
-'savedprefs'          => 'Ihre Einstellungen wurden gespeichert.',
-'timezonetext'        => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
+'prefsnologintext' => 'Sie müssen [[Special:Userlogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
+'savedprefs'       => 'Ihre Einstellungen wurden gespeichert.',
+'timezonetext'     => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
 
 # User rights
 'userrights-groups-help'      => 'Sie können die Gruppenzugehörigkeit für diesen Benutzer ändern.
@@ -305,14 +308,11 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'filedelete-iscurrent' => 'Sie versuchen die aktuelle Version dieser Datei zu löschen. Bitte setzen Sie diese vorher auf eine ältere Version zurück.',
 
 # Unused templates
-'unusedtemplates-summary' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+'unusedtemplatestext' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 
 # Miscellaneous special pages
 'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
 'notargettext'     => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
-
-# Book sources
-'booksources-summary' => 'Auf dieser Spezialseite können Sie eine ISBN eingeben und erhalten dann eine Liste mit Onlinekatalogen und Bezugsmöglichkeiten zur gesuchten ISBN. Bindestriche oder Leerzeichen zwischen den Ziffern spielen für die Suche keine Rolle.',
 
 # E-mail user
 'mailnologintext' => 'Sie müssen [[Special:Userlogin|angemeldet sein]] und eine [[Special:Confirmemail|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
@@ -469,8 +469,8 @@ Dieser Bestätigungscode ist gültig bis $4.',
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten!
 Sehen Sie im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach,
 warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu angelegt.</span>',
-'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User_talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
-''$2''
+'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
+: ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 
 # Watchlist editor

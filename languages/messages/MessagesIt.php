@@ -12,20 +12,20 @@
  * @author Siebrand
  * @author Gianfranco
  * @author Felis
- * @author לערי ריינהארט
  * @author Broc
+ * @author לערי ריינהארט
  * @author .anaconda
  * @author Ramac
- * @author S.Örvarr.S
  * @author Xpensive
+ * @author S.Örvarr.S
  * @author Nick1915
  * @author SPQRobin
  * @author Tonyfroio
  * @author Pietrodn
  * @author Martorell
  * @author SabineCretella
- * @author Cryptex
  * @author Candalua
+ * @author Cryptex
  */
 
 $namespaceNames = array(

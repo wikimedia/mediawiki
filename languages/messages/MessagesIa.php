@@ -2606,8 +2606,8 @@ $1',
 'livepreview-error'   => 'Impossibile connecter: $1 "$2". Prova le previsualisation normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Le modificationes plus nove que $1 secundas possibilemente non se revela in iste lista.',
-'lag-warn-high'   => 'A causa de un alte latentia del servitor de base de datos, le modificationes plus nove que $1 secundas possibilemente non se revela in iste lista.',
+'lag-warn-normal' => 'Le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
+'lag-warn-high'   => 'A causa de un alte latentia del servitor de base de datos, le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',

@@ -9,8 +9,8 @@
  * @author Siebrand
  * @author Mssetiadi
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Meursault2004
+ * @author SPQRobin
  */
 
 $fallback = 'id';

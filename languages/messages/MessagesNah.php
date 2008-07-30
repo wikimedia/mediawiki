@@ -266,7 +266,9 @@ $messages = array(
 'badtitle'            => 'Ahcualli tōcāitl',
 'viewsource'          => 'Tiquittāz tlahtōlcaquiliztilōni',
 'viewsourcefor'       => '$1 ītechcopa',
+'actionthrottled'     => 'Tlachīhualiztli ōmotzacuili',
 'viewsourcetext'      => 'Tihuelīti tiquitta auh ticcopīna inīn zāzanilli ītlahtōlcaquiliztilōni:',
+'sqlhidden'           => '(Tlatēmoliztli SQL omotlāti)',
 'namespaceprotected'  => "Ahmo tiquihuelīti tiquimpatla zāzaniltin īpan '''$1'''.",
 'ns-specialprotected' => 'Ahmohuelīti quimpatla nōncuahquīzqui zāzaniltin.',
 
@@ -289,6 +291,7 @@ $messages = array(
 'youremail'                 => 'E-mail:',
 'username'                  => 'Tlatequitiltilīltōcāitl:',
 'uid'                       => 'Tlatequitiltilīlli ID:',
+'prefs-memberingroups'      => 'Tlācatl {{PLURAL:$1|olōlco|olōlco}}:',
 'yourrealname'              => 'Melāhuac motōcā:',
 'yourlanguage'              => 'Motlahtōl:',
 'yournick'                  => 'Motōcātlaliz:',
@@ -366,7 +369,10 @@ Xiquimpiya motlahtōl.',
 
 # History pages
 'viewpagelogs'        => 'Tiquinttāz tlahcuilōlloh inīn zāzaniltechcopa',
+'revnotfound'         => 'Ahmo ōmonēxti tlachiyaliztli',
 'currentrev'          => 'Āxcān tlapatlaliztli',
+'revisionasof'        => 'Tlachiyaliztli īpan $1',
+'revision-info'       => 'Tlachiyaliztli īpan $1; $2',
 'previousrevision'    => '← Huēhueh tlapatlaliztli',
 'nextrevision'        => 'Yancuīc tlapatlaliztli →',
 'currentrevisionlink' => 'Āxcān tlapatlaliztli',
@@ -382,7 +388,9 @@ Xiquimpiya motlahtōl.',
 'historyempty'        => '(iztāc)',
 
 # Revision feed
-'history-feed-empty' => 'In zāzanilli tiquiēlēhuia ahmo ia.
+'history-feed-title'       => 'Tlachiyaliztli tlahcuilōlloh',
+'history-feed-description' => 'Tlachiyaliztli tlahcuilōlloh inīn zāzaniltechcopa huiquipan',
+'history-feed-empty'       => 'In zāzanilli tiquiēlēhuia ahmo ia.
 Hueliz ōmopolo huiqui nozo ōmozacac.
 [[Special:Search|Xitēmoa huiquipan]] yancuīc huēyi zāzaniltin.',
 

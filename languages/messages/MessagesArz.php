@@ -6,8 +6,8 @@
  *
  * @author Ramsis1978
  * @author Ghaly
- * @author Meno25
  * @author Alnokta
+ * @author Meno25
  * @author Siebrand
  */
 
@@ -612,6 +612,7 @@ $2',
 'titleprotected'       => "العنوان دا محمي من الإنشاء بـ[[User:$1|$1]]. السبب هو ''$2''.",
 
 # Virus scanner
+'virus-badscanner'     => 'غلطه : ماسح فيروسات مش معروف: <i>$1</i>',
 'virus-scanfailed'     => 'المسح فشل(كود $1)',
 'virus-unknownscanner' => 'انتي فيروس مش معروف:',
 
@@ -1184,6 +1185,7 @@ $2',
 'upload'                    => 'حمل',
 'uploadbtn'                 => 'حمل الملف',
 'reupload'                  => 'حمل مره تانيه',
+'uploadnologin'             => 'ما سجلتش الدخول',
 'uploaderror'               => 'غلطه فى التحميل',
 'upload-permitted'          => 'أنواع الملفات المسموحة: $1.',
 'upload-preferred'          => 'أنواع الملفات المفضلة: $1.',
@@ -1212,6 +1214,7 @@ $2',
 'uploadcorrupt'             => 'الملف دا  بايظ أو ليه امتداد غلط. لو سمحت ا تأكد من الملف و حمله مرة تانية.',
 'uploadvirus'               => 'الملف فيه فيروس! التفاصيل: $1',
 'sourcefilename'            => 'اسم الملف  بتاع المصدر:',
+'upload-maxfilesize'        => 'حجم الملف الأقصى: $1',
 'watchthisupload'           => 'حط الصفحة دي تحت المراقبة',
 'filename-prefix-blacklist' => ' #<!-- leave this line exactly as it is --> <pre>
 # الصيغة كدا: 
@@ -1240,8 +1243,9 @@ PICT # misc.
 'upload-curl-error6-text' => 'ما قدرناش نوصل لليوأرإل إللي انت عاوزه. لو سمحت تشيك تاني إن اليوأرإل صح و إن السايت شغال.',
 'upload-curl-error28'     => 'انتهاء مهلة التحميل',
 
-'license'   => 'ترخيص:',
-'nolicense' => 'مش متحدد',
+'license'           => 'ترخيص:',
+'nolicense'         => 'مش متحدد',
+'license-nopreview' => '(البروفه مش متوفره)',
 
 # Special:Imagelist
 'imagelist_search_for'  => 'دور على اسم الميديا:',
@@ -1295,15 +1299,17 @@ PICT # misc.
 'filerevert-badversion'     => 'مافيش نسخة محلية قديمة  للملف دا بالتاريخ المتقدم',
 
 # File deletion
-'filedelete'                 => 'امسح $1',
-'filedelete-legend'          => 'امسح الملف',
-'filedelete-intro'           => "أنت بتمسح '''[[Media:$1|$1]]'''.",
-'filedelete-comment'         => 'سبب المسح:',
-'filedelete-submit'          => 'مسح',
-'filedelete-edit-reasonlist' => 'عدل أسباب المسح',
+'filedelete'                  => 'امسح $1',
+'filedelete-legend'           => 'امسح الملف',
+'filedelete-intro'            => "أنت بتمسح '''[[Media:$1|$1]]'''.",
+'filedelete-comment'          => 'سبب المسح:',
+'filedelete-submit'           => 'مسح',
+'filedelete-reason-otherlist' => 'سبب تانى',
+'filedelete-edit-reasonlist'  => 'عدل أسباب المسح',
 
 # MIME search
 'mimesearch' => 'تدوير MIME',
+'mimetype'   => 'نوع الملف:',
 'download'   => 'تنزيل',
 
 # List redirects
@@ -1328,8 +1334,9 @@ PICT # misc.
 'disambiguationspage'  => 'Template:توضيح',
 'disambiguations-text' => "الصفحات دي بتوصل لـ '''صفحة توضيح'''. المفروض على العكس انهم يوصلو ل للصفحات المناسبة. <br />أي صفحة بتتعامل على انها صفحة توضيح إذا كانت بتستعمل قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'تحويلات مزدوجه',
-'doubleredirectstext' => 'الصفحة دي فيها لستة الصفحات اللي فيها تحويلة لصفحة تانية فيها تحويلة. كل سطر في اللستة دي  فيه لينك للتحويلة الأولانية والتانية و كمان للصفحة بتاعة التحويلة التانية و اللي غالبا هي الصفحة الاصلية اللي المفروض التحويلة الاولانية توصل ليها.',
+'doubleredirects'       => 'تحويلات مزدوجه',
+'doubleredirectstext'   => 'الصفحة دي فيها لستة الصفحات اللي فيها تحويلة لصفحة تانية فيها تحويلة. كل سطر في اللستة دي  فيه لينك للتحويلة الأولانية والتانية و كمان للصفحة بتاعة التحويلة التانية و اللي غالبا هي الصفحة الاصلية اللي المفروض التحويلة الاولانية توصل ليها.',
+'double-redirect-fixer' => 'مصلح التحويل',
 
 'brokenredirects'        => 'تحويلات مكسوره',
 'brokenredirectstext'    => 'التحويلات دي بتوصل لصفحات مش موجودة:',
@@ -1454,6 +1461,7 @@ PICT # misc.
 'emailfrom'       => 'من',
 'emailto'         => 'لـ',
 'emailsubject'    => 'الموضوع',
+'emailmessage'    => 'الرساله',
 'emailsend'       => 'إبعت',
 'emailccme'       => 'ابعتلي نسخة من الايميل اللي بعته.',
 'emailsent'       => 'الإيميل اتبعت',
@@ -1488,7 +1496,9 @@ PICT # misc.
 'wlshowlast'           => 'عرض اخر $1 ساعات $2 ايام $3',
 'watchlist-show-bots'  => 'عرض تعديلات البوتات',
 'watchlist-hide-bots'  => 'تخبية تعديلات البوت',
+'watchlist-show-own'   => 'عرض تعديلاتى',
 'watchlist-hide-own'   => 'اخفاء تعديلاتى',
+'watchlist-show-minor' => 'عرض التعديلات الطفيفة',
 'watchlist-hide-minor' => 'خبى التعديلات الصغيره',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1612,13 +1622,16 @@ PICT # misc.
 'contributions' => 'مساهمات اليوزر',
 'mycontris'     => 'تعديلاتى',
 'contribsub2'   => 'لليوزر $1 ($2)',
+'nocontribs'    => 'مالقيناش   تغييرات تطابق المحددات دي.',
 'uctop'         => '(فوق)',
 'month'         => 'من شهر (واللى قبل كده):',
 'year'          => 'من سنة (واللى قبل كده):',
 
+'sp-contributions-newbies'     => 'عرض مساهمات الحسابات الجديدة بس',
 'sp-contributions-newbies-sub' => 'للحسابات الجديده',
 'sp-contributions-blocklog'    => 'سجل المنع',
 'sp-contributions-search'      => 'دور على مساهمات',
+'sp-contributions-username'    => 'عنوان أيبي أو اسم يوزر:',
 'sp-contributions-submit'      => 'تدوير',
 
 # What links here
@@ -1628,6 +1641,7 @@ PICT # misc.
 'linklistsub'              => '(لسته بالوصلات)',
 'linkshere'                => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
 'nolinkshere'              => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
+'nolinkshere-ns'           => "مافيش صفحات بتوصل لـ '''[[:$1]]''' في النطاق اللي انت اختارته.",
 'isredirect'               => 'صفحة تحويل',
 'istemplate'               => 'متضمن',
 'isimage'                  => 'لينك صورة',
@@ -1638,11 +1652,15 @@ PICT # misc.
 'whatlinkshere-hidetrans'  => '$1 التضمينات',
 'whatlinkshere-hidelinks'  => '$1 لينكات',
 'whatlinkshere-hideimages' => '$1 وصلة صورة',
-'whatlinkshere-filters'    => 'مرشحات',
+'whatlinkshere-filters'    => 'فلاتر',
 
 # Block/unblock
 'blockip'                         => 'منع يوزر',
 'blockip-legend'                  => 'منع اليوزر',
+'blockiptext'                     => 'استخدم الاستمارة اللي تحت لمنع عنوان أيبي أو يوزر معين من الكتابة.
+دا لازم يحصل بس علشان تمنع التخريب ،و على حسب 
+[[{{MediaWiki:Policy-url}}|السياسة]].
+اكتب سبب محدد تحت (يعنى مثلا، اكتب الصفحات المعينة اللي اتخربت بسببه)).',
 'ipaddress'                       => 'عنوان الأيبي:',
 'ipadressorusername'              => 'عنوان الأيبي أو اسم اليوزر:',
 'ipbexpiry'                       => 'مدة المنع:',
@@ -1657,7 +1675,9 @@ PICT # misc.
 ** إساءة استخدام اكتر من حسابات 
 ** اسم يوزر مش مقبول',
 'ipbanononly'                     => 'امنع اليوزرز المجهولين بس',
+'ipbcreateaccount'                => 'امنع فتح الحسابات',
 'ipbemailban'                     => 'منع اليوزر ده من بعتان إيميل',
+'ipbenableautoblock'              => ' امنع آخر عنوان أيبي استخدمه اليوزر دا اوتوماتيكي، وأي عناوين أيبي تانية يحاول التحرير منها',
 'ipbsubmit'                       => 'منع اليوزر دا',
 'ipbother'                        => 'وقت تاني:',
 'ipboptions'                      => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,تلات-ت-أيام:3 days,أسبوع:1 week,أسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست-ت- شهور:6 months,سنة واحدة:1 year,على طول:infinite', # display1:time1,display2:time2,...
@@ -1673,8 +1693,11 @@ PICT # misc.
 'ipb-unblock-addr'                => 'رفع منع $1',
 'ipb-unblock'                     => 'رفع المنع عن يوزر أو عنوان أيبي',
 'ipb-blocklist-addr'              => 'عرض المنع الموجود ل$1',
+'ipb-blocklist'                   => 'عرض حالات المنع الموجودة دلوقتي',
 'unblockip'                       => 'رفع منع يوزر',
+'unblockiptext'                   => 'استخدم الاستمارة اللي تحت علشان ترجع حق الكتابة بتاعة عنوان أيبي أو يوزر اتسحب منه الحق دا قبل كدا.',
 'ipusubmit'                       => 'رفع منع  العنوان ده',
+'unblocked'                       => 'المنع اترفع عن [[User:$1|$1]]',
 'unblocked-id'                    => 'منع $1 اترفع',
 'ipblocklist'                     => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
 'ipblocklist-legend'              => 'دور على مستخدم ممنوع',

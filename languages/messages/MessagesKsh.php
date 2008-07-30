@@ -499,7 +499,7 @@ Denk dran, Do künnts der Ding Enstellunge hee op de {{SITENAME}} zeräächmaach
 'gotaccountlink'             => 'Enlogge',
 'createaccountmail'          => 'Scheck mer en E-Mail met Passwood',
 'badretype'                  => 'Ding zwëij ennjejovve Paßßwööter sinn nit ejaal. Do muss De Dich för ein entscheide.',
-'userexists'                 => 'Ene Metmaacher met däm Name: „<strong>$1</strong>“ jitt et ald. Schad. Do muss De Der ene andere Name usdenke.',
+'userexists'                 => 'Ene Metmaacher met däm Name jitt et ald. Schad. Do muss De Der ene andere Name usdenke.',
 'youremail'                  => 'E-Mail *',
 'username'                   => 'Metmaacher Name:',
 'uid'                        => 'Metmaacher Nommer:',
@@ -810,8 +810,7 @@ Jetz kanns De Ding Änderunge nit mieh avspeichere.
 Dun se bei Dir om Rechner fasshalde un versök et späder noch ens.',
 'protectedpagewarning'             => "'''Opjepass:''' Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbese künne se ändere.</strong>",
 'semiprotectedpagewarning'         => "'''Opjepass:''' Die Sigg hee es halv jesperrt, wie mer sage, dat heiß, Do muss aanjemeldt un enjelogg sin, wann De dran ändere wells.",
-'cascadeprotectedwarning'          => "'''Opjepaß:''' Die Sigg es jeschöz, un nur de Wiki-Köbesse künne se ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
-$2",
+'cascadeprotectedwarning'          => "'''Opjepaß:''' Die Sigg es jeschöz, un nur de Wiki-Köbesse künne se ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:",
 'titleprotectedwarning'            => '<strong> <span style="text-transform:uppercase"> Opjepaß! </span> Di Sigg hee is jesperrt woode. Bloß bestemmpte Metmaacher dörve di Sigg neu aanläje.</strong>',
 'templatesused'                    => 'De Schablone, die vun dä Sigg hee jebruch wääde, sinn:',
 'templatesusedpreview'             => 'Schablone en dä Vör-Aansich hee:',
@@ -831,6 +830,12 @@ $2",
 Bes förseschtesch un övverlääsch Der, of dat en joode Idee es, di Sigg widder opzemaache.
 Domet De Bescheid weiß, hee dä Endraach em Logbooch vum Sigge-Fottschmieße mem Jrond,
 woröm di Sigg dohmohls fottjeschmesse woode es:",
+
+# Parser/template warnings
+'expensive-parserfunction-warning'  => "'''Opjepaß:''' Die Sigge hee määt zovill Opwand met Paaser-Funkßjohne.
+
+{{PLURAL:$2|Eine Oproof|Beß $2 Oproofe|Keine Oproof}} es älaup, {{PLURAL:$1|un eine Oproof|ävver $1 Oproofe|un keine Oproof}} määt di Sigg.",
+'expensive-parserfunction-category' => 'Sigge met zovill Opwand en Paaser-Funkßjohne',
 
 # "Undo" feature
 'undo-success' => 'De Änderung könnte mer zeröck nämme. Beloor Der de Ungerscheed un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenung esu.',
@@ -936,6 +941,7 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'noexactmatch'              => 'Mer han kein Sigg met jenau däm Name „<strong>$1</strong>“ jefunge.
 Do kanns se [[:$1|aanläje]], wann De wells.',
 'noexactmatch-nocreate'     => "'''Et jitt kei Sigg met däm Titel „$1“.'''",
+'toomanymatches'            => 'Dat wore zo vill Treffer, beß esu joot, un donn en annder Ußwahl probeere!',
 'titlematches'              => 'Zopass Üvverschrefte',
 'notitlematches'            => 'Kein zopass Üvverschrefte',
 'textmatches'               => 'Sigge met däm Täx',
@@ -1334,6 +1340,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 # File deletion
 'filedelete'                  => 'Schmieß „$1“ fott',
 'filedelete-legend'           => 'Schmieß de Datei fott',
+'filedelete-intro-old'        => 'Do schmiiß de Version $4 fum $2 öm $3 Uhr fun dä Datei „[[Media:$1|$1]]“ fott.',
 'filedelete-comment'          => 'Der Jrund för et Fottschmieße:',
 'filedelete-submit'           => 'Fottschmieße',
 'filedelete-otherreason'      => 'Ander Jrund oder Zosätzlich:',
@@ -2247,31 +2254,54 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'  => 'Breejd',
-'exif-imagelength' => 'Läng',
-'exif-make'        => 'dä Kammera ier Heershtäller',
-'exif-model'       => 'dat Kammerra-Modäll',
-'exif-artist'      => 'Fotojraf odder Maacher',
-'exif-exifversion' => 'Exif-Version',
-'exif-lightsource' => 'Leechquell',
-'exif-flash'       => 'Bletz',
-'exif-contrast'    => 'der Kontraß',
-'exif-saturation'  => 'de Färfsättijung',
-'exif-sharpness'   => 'de Beldschärf',
+'exif-imagewidth'    => 'Breejd',
+'exif-imagelength'   => 'Läng',
+'exif-compression'   => 'Kompräßjonßtüp',
+'exif-make'          => 'dä Kammera ier Heershtäller',
+'exif-model'         => 'dat Kammerra-Modäll',
+'exif-artist'        => 'Fotojraf odder Maacher',
+'exif-exifversion'   => 'Exif-Version',
+'exif-lightsource'   => 'Leechquell',
+'exif-flash'         => 'Bletz',
+'exif-contrast'      => 'der Kontraß',
+'exif-saturation'    => 'de Färfsättijung',
+'exif-sharpness'     => 'de Beldschärf',
+'exif-imageuniqueid' => 'Eindeutije Kännong för dat Beld',
+'exif-gpsdatestamp'  => 'GPS-Dattum',
+
+# EXIF attributes
+'exif-compression-1' => 'Oohne Kompressjohn',
+
+'exif-unknowndate' => 'Dattum onbikannt',
 
 'exif-orientation-1' => 'Nomal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Op der Kopp jespeejelt', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Op der Kopp jedrieht', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Links-Räähß jespeejelt', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'En Veedelsdriejong mem Uhrzeijer un dann links-räähß jespeejelt', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'En Veedelsdriejong mem Uhrzeijer', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'En Veedelsdriejong jääje der Uhrzeijer un dann links-räähß jespeejelt', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'En Veedelsdriejong jääje der Uhrzeijer', # 0th row: left; 0th column: bottom
+
+'exif-exposureprogram-7' => 'Us de Nöhde en huhkant opjenomme, mem Bleck op Fürre',
+'exif-exposureprogram-8' => 'Landschaff em Querfommaat opjenomme, mem Bleck op der Hengerjrond',
 
 'exif-subjectdistance-value' => '{{PLURAL:$1|eine|$1|keine}} Meter',
 
 'exif-meteringmode-0'   => 'Onbikannt',
 'exif-meteringmode-1'   => 'Meddelmääßesch',
+'exif-meteringmode-5'   => 'Muster',
 'exif-meteringmode-255' => 'Ander',
 
 'exif-lightsource-0'   => 'Onbikannt',
 'exif-lightsource-1'   => 'Daresleech',
 'exif-lightsource-4'   => 'Bletz',
 'exif-lightsource-9'   => 'Joodt Wedder',
+'exif-lightsource-10'  => 'Wedder met Wolke',
 'exif-lightsource-11'  => 'Schadde',
+'exif-lightsource-17'  => 'Standat Leech Tüp A',
+'exif-lightsource-18'  => 'Standat Leech Tüp B',
+'exif-lightsource-19'  => 'Standat Leech Tüp C',
 'exif-lightsource-255' => 'Söns en Leechquell',
 
 'exif-focalplaneresolutionunit-2' => 'Zoll',
@@ -2287,10 +2317,13 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 'exif-scenecapturetype-0' => 'Nomaal',
 'exif-scenecapturetype-1' => 'Queerfommaat',
 'exif-scenecapturetype-2' => 'Huhkant',
+'exif-scenecapturetype-3' => 'Et Naakß',
 
 'exif-contrast-0' => 'Nomal',
 
 'exif-saturation-0' => 'Nomal',
+'exif-saturation-1' => 'Winnisch Sättejung',
+'exif-saturation-2' => 'En hue Sättejung',
 
 'exif-sharpness-0' => 'Nomal',
 

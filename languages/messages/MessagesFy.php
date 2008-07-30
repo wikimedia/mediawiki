@@ -721,6 +721,25 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 'history-feed-description'    => 'Sideskiednis foar dizze side op de wiki',
 'history-feed-item-nocomment' => '$1 op $2', # user at time
 
+# Revision deletion
+'rev-deleted-comment'  => '(opmerking wiske)',
+'rev-deleted-user'     => '(meidoggernamme wiske)',
+'revisiondelete'       => 'Wiskje/weromsette ferzjes',
+'revdelete-selected'   => 'Spesifisearre {{PLURAL:$2|ferzje|ferzjes}} fan [[:$1]]:',
+'revdelete-hide-user'  => 'Meidoggernamme/IP fan de meidogger ferskûlje',
+'revdelete-hide-image' => 'Triem ynhâld ferskûlje',
+'pagehist'             => 'Sideskiednis',
+'deletedhist'          => 'Wiske skiednis',
+'revdelete-content'    => 'ynhâld',
+'revdelete-uname'      => 'meidoggernamme',
+
+# History merging
+'mergehistory'           => 'Skiednis fan kombinearjen',
+'mergehistory-box'       => 'Ferzjes fan twa siden kombinearje:',
+'mergehistory-from'      => 'Triemnamme boarne:',
+'mergehistory-into'      => 'Bestimmingside:',
+'mergehistory-no-source' => 'Boarneside $1 bestiet net.',
+
 # Diffs
 'history-title'           => 'Skiednis fan "$1"',
 'difference'              => '(Ferskil tusken ferzjes)',
@@ -744,10 +763,16 @@ Jo kinne de [[:\$1|side oanmeitsje]].",
 'prevn'                    => 'foarige $1',
 'nextn'                    => 'folgende $1',
 'viewprevnext'             => '($1) ($2) ($3) besjen.',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 wurd|$2 wurden}})',
+'search-result-score'      => 'Relevante: $1%',
 'search-redirect'          => '(trochferwizing $1)',
 'search-section'           => '(seksje $1)',
+'search-suggest'           => 'Bedoele jo: $1',
+'search-interwiki-caption' => 'Susterprojekten',
 'search-interwiki-default' => '$1 resultaten:',
 'search-interwiki-more'    => '(mear)',
+'search-relatedarticle'    => 'Besibbe',
+'searchrelated'            => 'besibbe',
 'searchall'                => 'alle',
 'showingresults'           => "{{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} fan #'''$2''' ôf.",
 'showingresultsnum'        => "{{PLURAL:$3|'''1''' resultaat|'''$3''' resultaten}} fan #'''$2''' ôf.",
@@ -755,6 +780,7 @@ Jo kinne de [[:\$1|side oanmeitsje]].",
 wurde kin om wurden as "it" en "in", om\'t dy net byhâlden wurde, en dat as der mear
 wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn wurde.',
 'powersearch'              => 'Sykje',
+'powersearch-field'        => 'Sykje op',
 'searchdisabled'           => "<p>Op it stuit stjit it trochsykjen fan tekst net oan, om't de
 tsjinner it net oankin. Mei't we nije apparatuer krije wurdt it nei alle gedanken wer
 mooglik. Foar now kinne jo sykje fia Google:</p>",
@@ -811,7 +837,10 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'servertime'               => 'UTC',
 'guesstimezone'            => 'Freegje de blêder',
 'allowemail'               => 'Netpost fan oare meidoggers tastean',
+'prefs-searchoptions'      => 'Sykje-ynstellings',
+'prefs-namespaces'         => 'Nammeromten',
 'defaultns'                => "Nammeromten dy't normaal trochsocht wurde:",
+'default'                  => 'standert',
 'files'                    => 'Triemen',
 
 # User rights
@@ -823,6 +852,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'userrights-editusergroup' => 'Wizigje meidoggerrjochten',
 'saveusergroups'           => 'Meidoggerrjochten fêstlizze',
 'userrights-groupsmember'  => 'Sit yn group:',
+'userrights-reason'        => 'Utlis foar wizigjen:',
 'userrights-nologin'       => 'Jo moatte jo [[Special:Userlogin|oanmelde]] as rjochtenútfurder om rjochten fan meidoggers wizigje te kinnen.',
 'userrights-notallowed'    => 'Jo hawwe gjin rjochten om rjochten fan meidoggers te wizigjen.',
 
@@ -844,6 +874,16 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'grouppage-sysop'      => '{{ns:project}}:Behearders',
 'grouppage-bureaucrat' => '{{ns:project}}:Rjochtenútfurders',
 
+# Rights
+'right-read'           => 'Siden sjen',
+'right-edit'           => 'Siden bewurkjen',
+'right-minoredit'      => 'Bydragen markearje as tekstwiziging',
+'right-move'           => 'Siden werneamen',
+'right-upload'         => 'Triemmen oanbieden',
+'right-reupload'       => 'In besteande triem oerskriuwen',
+'right-delete'         => 'Siden wiskjen',
+'right-deleterevision' => 'Spesifisearre ferzjes fan siden wiskjen',
+
 # User rights log
 'rightslog'  => 'Brûkersrjochte-lochboek',
 'rightsnone' => '(gjin)',
@@ -853,7 +893,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'recentchanges'                  => 'Koarts feroare',
 'recentchangestext'              => 'De lêste feroarings fan de {{SITENAME}}.',
 'recentchanges-feed-description' => 'Mei dizze feed kinne jo de nijste feroarings yn dizze wiki besjen.',
-'rcnote'                         => 'Dit binne de lêste <strong>$1</strong> feroarings yn de lêste <strong>$2</strong> dagen.',
+'rcnote'                         => "Dit {{PLURAL:$1|is de lêste feroaring|binne de lêste '''$1''' feroarings}} yn de lêste {{PLURAL:$2|dei|'''$2''' dagen}}, fan $4 $5.",
 'rcnotefrom'                     => 'Dit binne de feroarings sûnt <b>$2</b> (maksimaal <b>$1</b>).',
 'rclistfrom'                     => 'Jou nije feroarings, begjinnende mei $1',
 'rcshowhideminor'                => 'lytse feroarings $1',
@@ -875,7 +915,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'recentchangeslinked'          => 'Folgje keppelings',
 'recentchangeslinked-title'    => 'Feroarings yn ferbân mei "$1"',
 'recentchangeslinked-noresult' => "Der hawwe gjin bewurkings yn 'e bedoelde perioade west op'e siden dy't hjirwei linke wurde.",
-'recentchangeslinked-summary'  => "Dizze spesjale side lit de lêste bewurkings sjen op siden dy't linke wurde fan dizze side ôf. Siden dy't op [[Special:Watchlist|jo folchlist]] steane, wurde '''tsjûk''' werjûn.",
+'recentchangeslinked-summary'  => "Dizze spesjale side lit de lêste bewurkings sjen op siden dy't keppele wurde fan in spesifisearre side ôf (of fan in spesifisearre Kategory ôf). Siden dy't op [[Special:Watchlist|jo folchlist]] steane, wurde '''tsjûk''' werjûn.",
 'recentchangeslinked-page'     => 'Sidenamme:',
 
 # Upload
@@ -1636,6 +1676,9 @@ Wolle jo de side wier op 'e nij skriuwe?",
 # Live preview
 'livepreview-loading' => 'Ynlade...',
 
+# Watchlist editor
+'watchlistedit-raw-titles' => 'Siden:',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Folchlist besjen',
 'watchlisttools-edit' => 'Folchlist besjen en bewurkje',
@@ -1652,7 +1695,8 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'filepath-page' => 'Triem:',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Sykje',
+'fileduplicatesearch-filename' => 'Triemnamme:',
+'fileduplicatesearch-submit'   => 'Sykje',
 
 # Special:SpecialPages
 'specialpages'                   => 'Bysûndere siden',
@@ -1663,5 +1707,9 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'specialpages-group-media'       => 'Oanbieden en oare triemsiden',
 'specialpages-group-users'       => 'Meidoggers en rjochten',
 'specialpages-group-highuse'     => "Siden dy't in protte brûkt wurde",
+'specialpages-group-pages'       => 'List fan siden',
+
+# Special:Blankpage
+'blankpage' => 'Side is leech',
 
 );

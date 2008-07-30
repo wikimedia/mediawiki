@@ -2089,20 +2089,23 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-componentsconfiguration-0' => "nid yw'n bodoli",
 
-'exif-exposureprogram-0' => 'Heb ei ddiffinio',
+'exif-exposureprogram-0' => 'Heb ei gosod',
 
 'exif-subjectdistance-value' => '$1 medr',
 
 'exif-meteringmode-0'   => 'Anhysbys',
-'exif-meteringmode-1'   => 'Cyfartaledd',
-'exif-meteringmode-5'   => 'Patrwm',
+'exif-meteringmode-1'   => 'Cyfartaleddu',
+'exif-meteringmode-2'   => 'Cyfartaleddu canol-bwysedig',
+'exif-meteringmode-3'   => 'Smotyn',
+'exif-meteringmode-4'   => 'Smotiau',
+'exif-meteringmode-5'   => 'Patrymu',
 'exif-meteringmode-6'   => 'Rhannol',
 'exif-meteringmode-255' => 'Arall',
 
 'exif-lightsource-0'  => 'Anhysbys',
 'exif-lightsource-1'  => 'Golau dydd',
-'exif-lightsource-2'  => 'Fflwroleuol',
-'exif-lightsource-4'  => 'Flach',
+'exif-lightsource-2'  => 'Fflworoleuol',
+'exif-lightsource-4'  => 'Fflach',
 'exif-lightsource-9'  => 'Tywydd braf',
 'exif-lightsource-10' => 'Tywydd cymylog',
 'exif-lightsource-11' => 'Cysgod',
@@ -2113,7 +2116,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-scenecapturetype-1' => 'Tirlun',
 'exif-scenecapturetype-2' => 'Portread',
-'exif-scenecapturetype-3' => 'Golygfa nôs',
+'exif-scenecapturetype-3' => 'Golygfa nos',
 
 'exif-gaincontrol-0' => 'Dim',
 
@@ -2126,11 +2129,11 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-subjectdistancerange-0' => 'Anhysbys',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'Lledred gogledd',
-'exif-gpslatitude-s' => 'Lledred de',
+'exif-gpslatitude-n' => "Lledred i'r Gogledd",
+'exif-gpslatitude-s' => "Lledred i'r De",
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => 'Hydred dwyrain',
+'exif-gpslongitude-e' => "Hydred i'r Dwyrain",
 'exif-gpslongitude-w' => "Hydred i'r Gorllewin",
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef

@@ -5,8 +5,8 @@
  * @file
  *
  * @author SPQRobin
- * @author Tauʻolunga
  * @author Siebrand
+ * @author Tauʻolunga
  * @author לערי ריינהארט
  * @author Cbrown1023
  */
