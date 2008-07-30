@@ -627,10 +627,9 @@ class Sanitizer {
 	}
 
 	/**
-	 * Merge two sets of HTML attributes.
-	 * Conflicting items in the second set will override those
-	 * in the first, except for 'class' attributes which will be
-	 * combined.
+	 * Merge two sets of HTML attributes.  Conflicting items in the second set
+	 * will override those in the first, except for 'class' attributes which
+	 * will be combined (if they're both strings).
 	 *
 	 * @todo implement merging for other attributes such as style
 	 * @param array $a
@@ -639,16 +638,12 @@ class Sanitizer {
 	 */
 	static function mergeAttributes( $a, $b ) {
 		$out = array_merge( $a, $b );
-		if( isset( $a['class'] )
-			&& isset( $b['class'] )
-			&& $a['class'] !== $b['class'] ) {
-
-			$out['class'] = implode( ' ',
-				array_unique(
-					preg_split( '/\s+/',
-						$a['class'] . ' ' . $b['class'],
-						-1,
-						PREG_SPLIT_NO_EMPTY ) ) );
+		if( isset( $a['class'] ) && isset( $b['class'] )
+		&& is_string( $a['class'] ) && is_string( $b['class'] )
+		&& $a['class'] !== $b['class'] ) {
+			$classes = preg_split( '/\s+/', "{$a['class']} {$b['class']}",
+				-1, PREG_SPLIT_NO_EMPTY );
+			$out['class'] = implode( ' ', array_unique( $classes ) );
 		}
 		return $out;
 	}

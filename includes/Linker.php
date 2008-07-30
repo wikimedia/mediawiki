@@ -257,11 +257,9 @@ class Linker {
 
 		# Finally, merge the custom attribs with the default ones, and iterate
 		# over that, deleting all "false" attributes.
-		if( !empty( $attribs['class'] ) and !empty( $defaults['class'] ) ) {
-			$attribs['class'] .= ' '.$defaults['class'];
-		}
 		$ret = array();
-		foreach( array_merge( $defaults, $attribs ) as $key => $val ) {
+		$merged = Sanitizer::mergeAttributes( $defaults, $attribs );
+		foreach( $merged as $key => $val ) {
 			# A false value suppresses the attribute, and we don't want the
 			# href attribute to be overridden.
 			if( $key != 'href' and $val !== false ) {
