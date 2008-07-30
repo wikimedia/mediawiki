@@ -2786,7 +2786,7 @@ This is probably caused by a link to an external site.',
 
 # Patrol log
 'patrol-log-page'   => 'Patrol log',
-'patrol-log-header' => '', # do not translate or duplicate this message to other languages
+'patrol-log-header' => 'This is a log of patrolled revisions.',
 'patrol-log-line'   => 'marked $1 of $2 patrolled $3',
 'patrol-log-auto'   => '(automatic)',
 'patrol-log-diff'   => 'r$1', # only translate this message to other languages if you have to change it
