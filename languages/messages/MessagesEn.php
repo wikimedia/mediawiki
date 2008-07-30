@@ -1768,7 +1768,9 @@ A click on a column header changes the sorting.',
 'morelinkstoimage'               => 'View [[Special:Whatlinkshere/$1|more links]] to this file.',
 'redirectstofile'                => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
 'duplicatesoffile'               => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file:',
-'sharedupload'                   => 'This file is a shared upload and may be used by other projects.',
+'sharedupload'                   => 'This file is a shared upload and may be used by other projects.
+
+$1',
 'shareduploadwiki'               => 'Please see the $1 for further information.',
 'shareduploadwiki-desc'          => 'The description on its $1 on the shared repository is shown below.',
 'shareduploadwiki-linktext'      => 'file description page',
