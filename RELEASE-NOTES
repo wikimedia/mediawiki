@@ -43,6 +43,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14954) Fix regression in Modern and Simple skins
 * Recursion loop check added to Categoryfinder class
 * Fixed few performance troubles of large job queue processing
+* (bug 14977) Installations on servers using IPv6 addresses for $wgServer
+  were largely unusable because $wgServer didn't wrap the IP in brackets.
 
 === API changes in 1.14 ===
 
