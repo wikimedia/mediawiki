@@ -242,6 +242,8 @@ $messages = array(
 'editing'        => 'исправлѥ́ниѥ: $1',
 
 # History pages
+'cur'          => 'нꙑ҃н',
+'last'         => 'пс҃лд',
 'historyempty' => '(поу́сто)',
 
 # Revision feed
@@ -286,6 +288,7 @@ $messages = array(
 'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
 'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'  => '$1 аѵтома́тъ',
+'diff'            => 'ра҃ꙁн',
 'hist'            => 'їс҃т',
 'hide'            => 'съкрꙑи',
 'minoreditletter' => 'м҃л',

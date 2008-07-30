@@ -11,12 +11,12 @@
  * @author ITurtle
  * @author Albamhandae
  * @author לערי ריינהארט
- * @author Kwj2772
  * @author TheAlpha for knowledge
+ * @author Kwj2772
  * @author Ficell
  * @author Pi.C.Noizecehx
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $namespaceNames = array(

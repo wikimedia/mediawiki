@@ -18,7 +18,6 @@
  * @author SPQRobin
  * @author Skalman
  * @author Habjchen
- * @author Gangleri
  * @author Max sonnelid
  * @author Grillo
  * @author Micke
@@ -2687,7 +2686,7 @@ Pröva vanlig förhandsgranskning istället.',
 Pröva vanlig förhandsgranskning istället.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Ändringar nyare än $1 sekunder kanske inte visas i den här listan.',
+'lag-warn-normal' => 'Ändringar under {{PLURAL:$1|den senaste sekunden|de $1 senaste sekunderna}} kanske inte visas i den här listan.',
 'lag-warn-high'   => 'På grund av stor fördröjning i databasen, så visas kanske inte ändringar nyare än $1 {{PLURAL:$1|sekund|sekunder}} i den här listan.',
 
 # Watchlist editor

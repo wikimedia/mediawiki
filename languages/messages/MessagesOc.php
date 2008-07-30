@@ -8,8 +8,8 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author ChrisPtDe
- * @author Spacebirdy
  * @author Jon Harald Søby
+ * @author Spacebirdy
  * @author Горан Анђелковић
  * @author SPQRobin
  */

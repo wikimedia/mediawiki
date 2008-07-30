@@ -7,14 +7,14 @@
  * @author 555
  * @author Malafaya
  * @author Siebrand
- * @author Lijealso
  * @author לערי ריינהארט
+ * @author Lijealso
  * @author MCruz
  * @author SPQRobin
  * @author Rei-artur
  * @author Waldir
- * @author Minh Nguyen
  * @author Villate
+ * @author Minh Nguyen
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
  * @author Nuno Tavares

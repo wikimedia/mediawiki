@@ -1656,7 +1656,7 @@ Az egyes csoportokról [[{{MediaWiki:Listgrouprights-helppage}}|itt]] találhat�
 
 # E-mail user
 'mailnologin'     => 'Nincs feladó',
-'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:Userlogin|be kell jelentkezned]] és meg kell adnod egy érvényes email címet a [[Special:Preferences|beállításaidban]].',
+'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:Userlogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
 'emailpagetext'   => 'Ha ez a felhasználó érvényes e-mail-címet adott meg, akkor ezen űrlap kitöltésével e-mailt tudsz neki küldeni. Feladóként a beállításaid között megadott e-mail-címed fog szerepelni, hogy a címzett válaszolni tudjon.',
@@ -1697,7 +1697,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'notvisiblerev'        => 'A változat törölve lett',
 'watchnochange'        => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
 'watchlist-details'    => '{{PLURAL:$1|Egy|$1}} lap van a figyelőlistádon (a vitalapokon kívül).',
-'wlheader-enotif'      => '* Email értesítés engedélyezve.',
+'wlheader-enotif'      => '* E-mail értesítés engedélyezve.',
 'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
 'watchmethod-recent'   => 'a figyelt lapokon belüli legfrissebb szerkesztések',
 'watchmethod-list'     => 'a legfrissebb szerkesztésekben található figyelt lapok',
@@ -1933,7 +1933,7 @@ $1',
 'whatlinkshere-hideredirs' => 'átirányítások $1',
 'whatlinkshere-hidetrans'  => 'beillesztések $1',
 'whatlinkshere-hidelinks'  => 'linkek $1',
-'whatlinkshere-hideimages' => '$1 képhivatkozás',
+'whatlinkshere-hideimages' => 'képhivatkozás $1',
 'whatlinkshere-filters'    => 'Szűrés',
 
 # Block/unblock

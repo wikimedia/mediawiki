@@ -12,6 +12,7 @@
  * @author Tupikovs
  * @author Sura
  * @author M.M.S.
+ * @author Spacebirdy
  * @author Jon Harald Søby
  */
 
@@ -1104,7 +1105,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'ipbreasonotherlist'      => 'Лия тувтал',
 'ipbsubmit'               => 'Озавтомс те теицянть саймес',
 'ipbother'                => 'Лия шка:',
-'ipboptions'              => '2 hours:2 част,1 day:1 чи,3 days:3 чить,1 week:1 тарго,2 weeks:2 таргот,1 month:1 ков,3 months:3 ковт,6 months:6 ковт,1 year:1 ие,infinite:певтеме', # display1:time1,display2:time2,...
+'ipboptions'              => '2 част:2 hours,1 чи:1 day,3 чить:3 days,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'лия',
 'ipbotherreason'          => 'Лия/поладкс тувтал:',
 'badipaddress'            => 'Амаштовикс IP адрес',

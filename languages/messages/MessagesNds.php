@@ -2556,8 +2556,8 @@ Versöök de normale Vörschau.',
 Versöök de normale Vörschau.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Ännern, de jünger as $1 Sekunnen sünd, warrt in de List noch nich wiest.',
-'lag-warn-high'   => 'De Datenbank is temlich dull utlast. Ännern, de jünger as $1 Sekunnen sünd, warrt in de List noch nich wiest.',
+'lag-warn-normal' => 'Ännern, de jünger as {{PLURAL:$1|ene Sekunn|$1 Sekunnen}} sünd, warrt in de List noch nich wiest.',
+'lag-warn-high'   => 'De Datenbank is temlich dull utlast. Ännern, de jünger as $1 {{PLURAL:$1|Sekunn|Sekunnen}} sünd, warrt in de List noch nich wiest.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Du hest {{PLURAL:$1|ene Siet|$1 Sieden}} op diene Oppasslist, Diskuschoonssieden nich tellt.',

@@ -5,10 +5,10 @@
  * @file
  *
  * @author Siebrand
- * @author Red Baron
  * @author Raymond
- * @author Omnipaedista
+ * @author Red Baron
  * @author Purodha
+ * @author Omnipaedista
  * @author לערי ריינהארט
  * @author Pill
  * @author Spacebirdy
@@ -1381,7 +1381,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 
 # Unused templates
 'unusedtemplates'     => 'Unbenutzte Vorlagen',
-'unusedtemplatestext' => '',
+'unusedtemplatestext' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfe andere Links zu den Vorlagen, bevor du diese löscht.',
 'unusedtemplateswlh'  => 'Andere Links',
 
 # Random page
@@ -1417,12 +1417,13 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' Benutzer (=$4 %) $5-Rechte.",
 'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie verlinkt.<br />Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'            => 'Doppelte Weiterleitungen',
-'doubleredirectstext'        => '',
+'doubleredirectstext'        => 'Diese Liste enthält Weiterleitungen, die auf eine weitere Weiterleitungen verlinken.
+Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.',
 'double-redirect-fixed-move' => 'doppelte Weiterleitung aufgelöst: [[$1]] → [[$2]]',
 'double-redirect-fixer'      => 'RedirectBot',
 
 'brokenredirects'        => 'Kaputte Weiterleitungen',
-'brokenredirectstext'    => '',
+'brokenredirectstext'    => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
 'brokenredirects-edit'   => '(bearbeiten)',
 'brokenredirects-delete' => '(löschen)',
 
@@ -1466,10 +1467,10 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' Benutzer (=$4 %) $5-Rechte.",
 'deadendpagestext'        => '',
 'protectedpages'          => 'Geschützte Seiten',
 'protectedpages-indef'    => 'Nur unbeschränkt geschützte Seiten zeigen',
-'protectedpagestext'      => '',
+'protectedpagestext'      => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
 'protectedpagesempty'     => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
 'protectedtitles'         => 'Gesperrte Titel',
-'protectedtitlestext'     => '',
+'protectedtitlestext'     => 'Die folgenden Titel wurden zur Neuerstellung gesperrt.',
 'protectedtitlesempty'    => 'Zur Zeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'               => 'Benutzerverzeichnis',
 'newpages'                => 'Neue Seiten',

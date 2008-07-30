@@ -611,7 +611,7 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'extlink_tip'     => 'Pautan luar (ingat awalan http://)',
 'headline_sample' => 'Teks tajuk',
 'headline_tip'    => 'Tajuk peringkat 2',
-'math_sample'     => 'Masukkan formula di sini',
+'math_sample'     => 'Masukkan rumus di sini',
 'math_tip'        => 'Formula matematik (LaTeX)',
 'nowiki_sample'   => 'Masukkan teks tak berformat di sini',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
@@ -1361,11 +1361,11 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'sitestats'              => 'Statistik {{SITENAME}}',
 'userstats'              => 'Statistik pengguna',
 'sitestatstext'          => "Terdapat sejumlah '''\$1''' laman dalam pangkalan data kami. Jumlah ini termasuklah laman \"perbincangan\", laman mengenai {{SITENAME}}, laman ringkas,
-lencongan, dan lain-lain yang tidak layak menjadi laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
+lencongan, dan lain-lain yang tidak dikira sebagai laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
 
 '''\$8''' buah fail telah dimuat naik.
 
-Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dimulakan. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
+Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dibuka. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
 
 Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
 'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.",

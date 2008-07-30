@@ -1165,6 +1165,9 @@ Erlaabt {{PLURAL:$3|ass|sinn}}: $2.",
 
 Dir kënnt also äre Fichier eroplueden, mee déi Beschreiwung déi dir aginn hutt gëtt net op d'Beschreiwungssäit iwwerholl. D'Beschreiwungssäit musst der nom Eropluede vum Fichier nach manuell änneren.",
 'fileexists-thumb'            => "<center>'''Dëse Fichier gëtt et'''</center>",
+'file-thumbnail-no'           => 'Den Numm vum Fichier fänkt mat <strong><tt>$1</tt></strong> unn.
+Da däit drop hin dat et e Bild vu reduzéierter Gréisst <i>(thumbnail)</i> ass.
+Kuckt w.e.g. no ob Dir dat Bild net a méi enger grousser Opléisung hutt a lued dëst dann ënnert sengem Orginialnumm erop.',
 'fileexists-forbidden'        => "Et gëtt schonn e Fichier mat ësem Nummm. Gitt w.e.g. z'réck a lued dëse Fichier ënntert engem aner Numm erop. [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn;
 gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[Image:$1|thumb|center|$1]]',
@@ -1879,6 +1882,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'imagenocrossnamespace'   => 'Fichiere kënnen net an aner Nummraim geréckelt ginn',
 'imagetypemismatch'       => 'Déi nei Dateierweiderung ass net mat dem Fichier kompatibel',
 'imageinvalidfilename'    => 'Den Numm vum Zil-Fichier ass ongëlteg',
+'fix-double-redirects'    => 'All Viruleedungen déi op den Originaltitel weisen aktualiséieren',
 
 # Export
 'export'            => 'Säiten exportéieren',
@@ -1936,6 +1940,7 @@ Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net 
 'importnofile'               => 'Et gouf keen importéierte Fichier eropgelueden',
 'importuploaderrorsize'      => 'DEropluede vum importéierte Fichier huet net fonctionnéiert. De Fichier ass méi grouss wéi maximal erlaabt.',
 'importuploaderrorpartial'   => "D'Eropluede vum Fichier huet net geklappt. De Fichier gouf nëmmen deelweis eropgelueden.",
+'importuploaderrortemp'      => "D'Eropluede vum Fichier huet net fonctionnéiert. En temporäre Repertoire feelt.",
 'import-parse-failure'       => 'Feeler bei engem XML-Import',
 'import-noarticle'           => "Keng Säit fir z'importéieren!",
 'import-nonewrevisions'      => "All d'Versioune goufe scho virdrunn importéiert.",

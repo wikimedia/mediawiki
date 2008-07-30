@@ -17,8 +17,8 @@
  * @author Tarawneh
  * @author Chaos
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author Jak
  * @author عصام بايزيدي
  * @author Oxydo
@@ -2138,7 +2138,7 @@ $1',
 'ipb-blocklist-addr'              => 'عرض المنع الحالي ل$1',
 'ipb-blocklist'                   => 'عرض حالات المنع الحالية',
 'unblockip'                       => 'رفع منع مستخدم',
-'unblockiptext'                   => 'استخدم اللستمارة أدناه لاسترجاع صلاحية الكتابة الخاصة بعنوان أيبي أو مستخدم تم سحبها منه مسبقا.',
+'unblockiptext'                   => 'استخدم الاستمارة أدناه لاسترجاع صلاحية الكتابة الخاصة بعنوان أيبي أو مستخدم تم سحبها منه مسبقا.',
 'ipusubmit'                       => 'رفع منع هذا العنوان',
 'unblocked'                       => 'تم  رفع منع [[User:$1|$1]]',
 'unblocked-id'                    => 'منع $1 تم رفعه',

@@ -16,17 +16,17 @@
  * @author Siebrand
  * @author Hégésippe Cormier
  * @author Louperivois
+ * @author Dereckson
  * @author Cedric31
  * @author Korg
- * @author Dereckson
  * @author McDutchie
  * @author Omnipaedista
  * @author JeanVoisin
- * @author Горан Анђелковић
  * @author SPQRobin
  * @author Jon Harald Søby
  * @author ChrisPtDe
  * @author Esbardu
+ * @author Горан Анђелковић
  */
 
 $skinNames = array(
