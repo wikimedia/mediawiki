@@ -69,6 +69,12 @@ if( isset( $_SERVER['SERVER_NAME'] ) ) {
 	$wgServerName = 'localhost';
 }
 
+# Before we put http:// and other things onto it, need to 
+# wrap IPv6 in []. Bug 14977.
+if ( IP::isIPv6( $wgServerName ) ) {
+	$wgServerName = '[' . $wgServerName . ']';
+}
+
 # check if server use https:
 $wgProto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
 
