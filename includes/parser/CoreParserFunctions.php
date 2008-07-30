@@ -121,9 +121,9 @@ class CoreParserFunctions {
 	static function fullurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getFullURL', $s, $arg ); }
 	static function fullurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeFullURL', $s, $arg ); }
 	static function apiurl( $parser, $s = '', $arg = null ) { 
-		global $wgEnableApi;
+		global $wgEnableAPI;
 		# Don't bother linking to the API if they can't use it.
-		if ( $wgEnableApi === false ) {
+		if ( $wgEnableAPI === false ) {
 			return array( 'found' => false );
 		}
 		global $wgServer, $wgApiScript;
