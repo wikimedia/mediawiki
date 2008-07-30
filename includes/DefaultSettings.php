@@ -166,6 +166,7 @@ $wgMathPath         = false; ///< defaults to "{$wgUploadPath}/math"
 $wgMathDirectory    = false; ///< defaults to "{$wgUploadDirectory}/math"
 $wgTmpDirectory     = false; ///< defaults to "{$wgUploadDirectory}/tmp"
 $wgUploadBaseUrl    = "";
+$wgApiScript        = false; ///< defaults to "{$wgScriptPath}/api{$wgScriptExtension}"
 /**@}*/
 
 /**
