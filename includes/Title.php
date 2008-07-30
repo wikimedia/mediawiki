@@ -2140,9 +2140,9 @@ class Title {
 		}
 
 		/**
-		 * Pages with "/./" or "/../" appearing in the URLs will
-		 * often be unreachable due to the way web browsers deal
-		 * with 'relative' URLs. Forbid them explicitly.
+		 * Pages with "/./" or "/../" appearing in the URLs will often be un-
+		 * reachable due to the way web browsers deal with 'relative' URLs.
+		 * Also, they conflict with subpage syntax.  Forbid them explicitly.
 		 */
 		if ( strpos( $dbkey, '.' ) !== false &&
 		     ( $dbkey === '.' || $dbkey === '..' ||
