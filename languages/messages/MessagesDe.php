@@ -2185,10 +2185,11 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'markedaspatrollederror-noautopatrol' => 'Es ist nicht erlaubt, eigene Bearbeitungen als kontrolliert zu markieren.',
 
 # Patrol log
-'patrol-log-page' => 'Kontroll-Logbuch',
-'patrol-log-line' => 'hat $1 von „$2“ als kontrolliert markiert $3',
-'patrol-log-auto' => '(automatisch)',
-'patrol-log-diff' => 'Version $1',
+'patrol-log-page'   => 'Kontroll-Logbuch',
+'patrol-log-header' => 'Dies ist das Kontroll-Logbuch.',
+'patrol-log-line'   => 'hat $1 von „$2“ als kontrolliert markiert $3',
+'patrol-log-auto'   => '(automatisch)',
+'patrol-log-diff'   => 'Version $1',
 
 # Image deletion
 'deletedrevision'                 => 'alte Version: $1',
