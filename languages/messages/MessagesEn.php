@@ -1879,12 +1879,12 @@ Each row contains links to the first and second redirect, as well as the target 
 
 'brokenredirects'         => 'Broken redirects',
 'brokenredirects-summary' => '', # do not translate or duplicate this message to other languages
-'brokenredirectstext'     => 'The following redirects link to non-existent pages:',
+'brokenredirectstext'     => 'The following redirects link to non-existent pages.',
 'brokenredirects-edit'    => '(edit)',
 'brokenredirects-delete'  => '(delete)',
 
 'withoutinterwiki'         => 'Pages without language links',
-'withoutinterwiki-summary' => 'The following pages do not link to other language versions:',
+'withoutinterwiki-summary' => 'The following pages do not link to other language versions.',
 'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Show',
 
@@ -2822,7 +2822,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Gallery of new files',
 'imagelisttext'         => "Below is a list of '''$1''' {{PLURAL:$1|file|files}} sorted $2.",
-'newimages-summary'     => 'This special page shows the last uploaded files',
+'newimages-summary'     => 'This special page shows the last uploaded files.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nothing to see.',
 'ilsubmit'              => 'Search',
