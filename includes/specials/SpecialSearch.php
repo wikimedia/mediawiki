@@ -139,9 +139,9 @@ class SpecialSearch {
 
 		global $wgDisableTextSearch;
 		if ( $wgDisableTextSearch ) {
-			global $wgForwardSearchUrl;
-			if( $wgForwardSearchUrl ) {
-				$url = str_replace( '$1', urlencode( $term ), $wgForwardSearchUrl );
+			global $wgSearchForwardUrl;
+			if( $wgSearchForwardUrl ) {
+				$url = str_replace( '$1', urlencode( $term ), $wgSearchForwardUrl );
 				$wgOut->redirect( $url );
 				return;
 			}
