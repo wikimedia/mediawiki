@@ -25,6 +25,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'localurle',        array( __CLASS__, 'localurle'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'fullurl',          array( __CLASS__, 'fullurl'          ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'fullurle',         array( __CLASS__, 'fullurle'         ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'apiurl',           array( __CLASS__, 'apiurl'           ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'formatnum',        array( __CLASS__, 'formatnum'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'grammar',          array( __CLASS__, 'grammar'          ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'plural',           array( __CLASS__, 'plural'           ), SFH_NO_HASH );
@@ -119,6 +120,19 @@ class CoreParserFunctions {
 	static function localurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeLocalURL', $s, $arg ); }
 	static function fullurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getFullURL', $s, $arg ); }
 	static function fullurle( $parser, $s = '', $arg = null ) { return self::urlFunction( 'escapeFullURL', $s, $arg ); }
+	static function apiurl( $parser, $s = '', $arg = null ) { 
+		global $wgEnableApi;
+		# Don't bother linking to the API if they can't use it.
+		if ( $wgEnableApi === false ) {
+			return array( 'found' => false );
+		}
+		global $wgServer, $wgApiScript;
+		$path = $wgServer . $wgApiScript . '?action=' . $s;
+		if ( !is_null($arg ) ) {
+			$path .= '&' . $arg;
+		}
+		return $path;
+	}
 
 	static function urlFunction( $func, $s = '', $arg = null ) {
 		$title = Title::newFromText( $s );
