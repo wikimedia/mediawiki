@@ -1057,22 +1057,22 @@ $2',
 # File reversion
 'filerevert'                => '還$1',
 'filerevert-legend'         => '還檔',
-'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'欲還回$2$3之版$4。</span>',
+'filerevert-intro'          => "'''[[Media:$1|$1]]'''欲還回$2$3之版$4。",
 'filerevert-comment'        => '註：',
 'filerevert-defaultcomment' => '還$1$2之版矣',
 'filerevert-submit'         => '還',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'，$2$3之版$4還矣。</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''，$2$3之版$4還矣。",
 'filerevert-badversion'     => '該日無版也。',
 
 # File deletion
 'filedelete'                  => '刪$1',
 'filedelete-legend'           => '刪檔',
 'filedelete-intro'            => "欲刪'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => '<span class="plainlinks">欲刪\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版$4。</span>',
+'filedelete-intro-old'        => "欲刪'''[[Media:$1|$1]]'''$2$3之版$4。",
 'filedelete-comment'          => '刪因：',
 'filedelete-submit'           => '刪',
 'filedelete-success'          => "'''$1'''刪矣。",
-'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版刪矣。</span>',
+'filedelete-success-old'      => "'''[[Media:$1|$1]]'''$2$3之版刪矣。",
 'filedelete-nofile'           => "{{SITENAME}}無'''$1'''也。",
 'filedelete-nofile-old'       => "無合'''$1'''藏也。",
 'filedelete-iscurrent'        => '刪版乃新，先還舊焉。',
@@ -1127,12 +1127,12 @@ $2',
 'double-redirect-fixer'      => '修渡',
 
 'brokenredirects'        => '斷渡',
-'brokenredirectstext'    => '頁下斷渡：',
+'brokenredirectstext'    => '頁下斷渡。',
 'brokenredirects-edit'   => '(替)',
 'brokenredirects-delete' => '(刪)',
 
 'withoutinterwiki'         => '孤語',
-'withoutinterwiki-summary' => '頁下無鏈他語：',
+'withoutinterwiki-summary' => '頁下無鏈他語。',
 'withoutinterwiki-legend'  => '首',
 'withoutinterwiki-submit'  => '示',
 
@@ -1823,9 +1823,10 @@ $NEWPAGE
 'markedaspatrollederror-noautopatrol' => '己易不可哨。',
 
 # Patrol log
-'patrol-log-page' => '誌哨',
-'patrol-log-line' => '令哨$2之$1$3',
-'patrol-log-auto' => '（自行）',
+'patrol-log-page'   => '誌哨',
+'patrol-log-header' => '此乃誌哨也。',
+'patrol-log-line'   => '令哨$2之$1$3',
+'patrol-log-auto'   => '（自行）',
 
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',
@@ -1853,7 +1854,9 @@ $NEWPAGE
 # Special:Newimages
 'newimages'             => '新圖之廊',
 'imagelisttext'         => "下表乃按$2排之的'''$1'''檔。",
-'newimages-summary'     => '此奇頁示最後呈上之檔也',
+'newimages-summary'     => '此奇頁示最後呈上之檔也。',
+'newimages-legend'      => '案名',
+'newimages-label'       => '案名（或其之部）：',
 'showhidebots'          => '（$1僕）',
 'noimages'              => '無可見。',
 'ilsubmit'              => '尋檔',
