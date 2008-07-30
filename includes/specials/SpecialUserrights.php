@@ -384,7 +384,7 @@ class UserrightsPage extends SpecialPage {
 				<tr>
 					<td></td>
 					<td class='mw-submit'>" .
-						Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups' ) ) .
+						Xml::submitButton( wfMsg( 'saveusergroups' ), array( 'name' => 'saveusergroups', 'accesskey' => 's' ) ) .
 					"</td>
 				</tr>" .
 			Xml::closeElement( 'table' ) . "\n" .

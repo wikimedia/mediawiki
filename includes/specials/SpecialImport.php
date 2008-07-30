@@ -159,7 +159,7 @@ function wfSpecialImport( $page = '' ) {
 				<td>
 				</td>
 				<td>" .
-					Xml::submitButton( wfMsg( 'import-interwiki-submit' ) ) .
+					Xml::submitButton( wfMsg( 'import-interwiki-submit' ), array( 'accesskey' = 's' ) ) .
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ).

@@ -278,7 +278,7 @@ function wfSpecialExport( $page = '' ) {
 	//$form .= Xml::checkLabel( wfMsg( 'export-images' ), 'images', 'wpExportImages', false ) . '<br />';
 	$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
 
-	$form .= Xml::submitButton( wfMsg( 'export-submit' ) );
+	$form .= Xml::submitButton( wfMsg( 'export-submit' ), array( 'accesskey' => 's' ) );
 	$form .= Xml::closeElement( 'form' );
 	$wgOut->addHtml( $form );
 }
