@@ -1785,11 +1785,11 @@ A click on a column header changes the sorting.',
 'filerevert'                => 'Revert $1',
 'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
-'filerevert-intro'          => '<span class="plainlinks">You are reverting \'\'\'[[Media:$1|$1]]\'\'\' to the [$4 version as of $3, $2].</span>',
+'filerevert-intro'          => 'You are reverting \'\'\'[[Media:$1|$1]]\'\'\' to the [$4 version as of $3, $2].',
 'filerevert-comment'        => 'Comment:',
 'filerevert-defaultcomment' => 'Reverted to version as of $2, $1',
 'filerevert-submit'         => 'Revert',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' has been reverted to the [$4 version as of $3, $2].</span>',
+'filerevert-success'        => '\'\'\'[[Media:$1|$1]]\'\'\' has been reverted to the [$4 version as of $3, $2].',
 'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
@@ -1797,7 +1797,7 @@ A click on a column header changes the sorting.',
 'filedelete-backlink'         => '← $1', # only translate this message to other languages if you have to change it
 'filedelete-legend'           => 'Delete file',
 'filedelete-intro'            => "You are deleting '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
+'filedelete-intro-old'        => 'You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].',
 'filedelete-comment'          => 'Reason for deletion:',
 'filedelete-submit'           => 'Delete',
 'filedelete-success'          => "'''$1''' has been deleted.",
