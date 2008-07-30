@@ -25,9 +25,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   empt all content namespaces.)
 * $wgForwardSearchUrl has been removed entirely. Documented setting since 1.4
   has been $wgSearchForwardUrl.
-* $wgApiScript can now be defined if your API isn't named api.php or it's not
-  in the usual location. Setting to false defaults to "$wgScriptPath/api
-  $wgScriptExtension".
 
 === New features in 1.14 ===
 
@@ -39,8 +36,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'EditSectionLinkForOther' hook has been removed, but 'EditSectionLink' is
   run in all cases instead, so extensions using the old hooks should still work
   if they ran roughly the same code for both hooks (as is almost certain).
-* New parser function {{apiurl:}} links to the local API. {{apiurl:help}} would
-  link to action=help. Other params are passed as well.
 
 === Bug fixes in 1.14 ===
 
