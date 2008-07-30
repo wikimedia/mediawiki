@@ -1991,6 +1991,8 @@ $wgMessageStructure = array(
 		'newimages',
 		'imagelisttext',
 		'newimages-summary',
+		'newimages-legend',
+		'newimages-label',
 		'showhidebots',
 		'noimages',
 		'ilsubmit',

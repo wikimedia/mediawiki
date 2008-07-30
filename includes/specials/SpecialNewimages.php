@@ -147,22 +147,24 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$lastTimestamp = $timestamp;
 	}
 
-	$bydate = wfMsg( 'bydate' );
-	$lt = $wgLang->formatNum( min( $shownImages, $limit ) );
-	if ($shownav) {
-		$text = wfMsgExt( 'imagelisttext', array('parse'), $lt, $bydate );
-		$wgOut->addHTML( $text . "\n" );
+	$titleObj = SpecialPage::getTitleFor( 'Newimages' );
+	$action = $titleObj->getLocalURL( $hidebots ? '' : 'hidebots=0' );
+	if ( $shownav && !$wgMiserMode ) {
+		$wgOut->addHTML(
+			Xml::openElement( 'form', array( 'action' => $action, 'id' => 'imagesearch' ) ) .
+			Xml::fieldset( wfMsg( 'newimages-legend' ) ) .
+			Xml::inputLabel( wfMsg( 'newimages-label' ), 'wpIlMatch', 'wpIlMatch', 20, $wpIlMatch ) . ' ' .
+			Xml::submitButton( wfMsg( 'ilsubmit' ), array( 'name' => 'wpIlSubmit' ) ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' )
+		 );
 	}
 
-	$sub = wfMsg( 'ilsubmit' );
-	$titleObj = SpecialPage::getTitleFor( 'Newimages' );
-	$action = $titleObj->escapeLocalURL( $hidebots ? '' : 'hidebots=0' );
-	if ($shownav && !$wgMiserMode) {
-		$wgOut->addHTML( "<form id=\"imagesearch\" method=\"post\" action=\"" .
-		  "{$action}\">" .
-			Xml::input( 'wpIlMatch', 20, $wpIlMatch ) . ' ' .
-		  Xml::submitButton( $sub, array( 'name' => 'wpIlSubmit' ) ) .
-		  "</form>" );
+	$bydate = wfMsg( 'bydate' );
+	$lt = $wgLang->formatNum( min( $shownImages, $limit ) );
+	if ( $shownav && count( $images ) ) {
+		$text = wfMsgExt( 'imagelisttext', array( 'parse' ), $lt, $bydate );
+		$wgOut->addHTML( $text . "\n" );
 	}
 
 	/**
