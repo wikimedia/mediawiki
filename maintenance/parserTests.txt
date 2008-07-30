@@ -6834,6 +6834,183 @@ pst
 <!-- ~~~~ -->
 !! end
 
+!! test
+Paragraphs inside divs (no extra line breaks)
+!! input
+<div>Line one
+
+Line two</div>
+!! result
+<div>Line one
+Line two</div>
+
+!! end
+
+!! test
+Paragraphs inside divs (extra line break on open)
+!! input
+<div>
+Line one
+
+Line two</div>
+!! result
+<div>
+<p>Line one
+</p>
+Line two</div>
+
+!! end
+
+!! test
+Paragraphs inside divs (extra line break on close)
+!! input
+<div>Line one
+
+Line two
+</div>
+!! result
+<div>Line one
+<p>Line two
+</p>
+</div>
+
+!! end
+
+!! test
+Paragraphs inside divs (extra line break on open and close)
+!! input
+<div>
+Line one
+
+Line two
+</div>
+!! result
+<div>
+<p>Line one
+</p><p>Line two
+</p>
+</div>
+
+!! end
+
+# Bug 6200: <blockquote> should behave like <div> with respect to line breaks
+!! test
+Bug 6200: paragraphs inside blockquotes (no extra line breaks)
+!! input
+<blockquote>Line one
+
+Line two</blockquote>
+!! result
+<blockquote>Line one
+Line two</blockquote>
+
+!! end
+
+!! test
+Bug 6200: paragraphs inside blockquotes (extra line break on open)
+!! input
+<blockquote>
+Line one
+
+Line two</blockquote>
+!! result
+<blockquote>
+<p>Line one
+</p>
+Line two</blockquote>
+
+!! end
+
+!! test
+Bug 6200: paragraphs inside blockquotes (extra line break on close)
+!! input
+<blockquote>Line one
+
+Line two
+</blockquote>
+!! result
+<blockquote>Line one
+<p>Line two
+</p>
+</blockquote>
+
+!! end
+
+!! test
+Bug 6200: paragraphs inside blockquotes (extra line break on open and close)
+!! input
+<blockquote>
+Line one
+
+Line two
+</blockquote>
+!! result
+<blockquote>
+<p>Line one
+</p><p>Line two
+</p>
+</blockquote>
+
+!! end
+
+!! test
+Paragraphs inside blockquotes/divs (no extra line breaks)
+!! input
+<blockquote><div>Line one
+
+Line two</div></blockquote>
+!! result
+<blockquote><div>Line one
+Line two</div></blockquote>
+
+!! end
+
+!! test
+Paragraphs inside blockquotes/divs (extra line break on open)
+!! input
+<blockquote><div>
+Line one
+
+Line two</div></blockquote>
+!! result
+<blockquote><div>
+<p>Line one
+</p>
+Line two</div></blockquote>
+
+!! end
+
+!! test
+Paragraphs inside blockquotes/divs (extra line break on close)
+!! input
+<blockquote><div>Line one
+
+Line two
+</div></blockquote>
+!! result
+<blockquote><div>Line one
+<p>Line two
+</p>
+</div></blockquote>
+
+!! end
+
+!! test
+Paragraphs inside blockquotes/divs (extra line break on open and close)
+!! input
+<blockquote><div>
+Line one
+
+Line two
+</div></blockquote>
+!! result
+<blockquote><div>
+<p>Line one
+</p><p>Line two
+</p>
+</div></blockquote>
+
+!! end
 #
 #
 #
