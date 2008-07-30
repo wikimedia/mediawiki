@@ -130,7 +130,7 @@ class EmailUserForm {
 <textarea id=\"wpText\" name=\"wpText\" rows='20' cols='80' style=\"width: 100%;\">" . htmlspecialchars( $this->text ) .
 "</textarea>
 " . wfCheckLabel( $emc, 'wpCCMe', 'wpCCMe', $wgUser->getBoolOption( 'ccmeonemails' ) ) . "<br />
-<input type='submit' name=\"wpSend\" value=\"{$ems}\" />
+<input type='submit' name=\"wpSend\" value=\"{$ems}\" accesskey=\"s\" />
 <input type='hidden' name='wpEditToken' value=\"$token\" />
 </form>\n" );
 
