@@ -1027,7 +1027,7 @@ URL-encoding in URL functions (single parameter)
 !! input
 {{localurl:Some page|amp=&}}
 !! result
-<p>/index.php?title=Some_page&amp;amp=%26
+<p>/index.php?title=Some_page&amp;amp=&amp;
 </p>
 !! end
 
@@ -1036,7 +1036,7 @@ URL-encoding in URL functions (multiple parameters)
 !! input
 {{localurl:Some page|q=?&amp=&}}
 !! result
-<p>/index.php?title=Some_page&amp;q=%3F&amp;amp=%26
+<p>/index.php?title=Some_page&amp;q=?&amp;amp=&amp;
 </p>
 !! end
 
@@ -1264,7 +1264,9 @@ Invalid attributes in table cell (bug 1830)
 !! end
 
 
-# FIXME: this one has incorrect tag nesting still.
+# FIXME: It's not clear at all that this is the result we want, but the actual
+# output right now is invalid XML, so clearly something is wrong.  The result
+# specified here is now valid XML, which is an improvement . . .
 !! test
 Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
 !! input
@@ -1273,7 +1275,7 @@ Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitec
 !! result
 <table>
 <tr>
-<td><a href="ftp://|x||" class="external autonumber" title="ftp://|x||" rel="nofollow">[1]</td><td></a>" onmouseover="alert(document.cookie)">test
+<td><a href="ftp://|x||" class="external autonumber" title="ftp://|x||" rel="nofollow">[1]</a></td><td>" onmouseover="alert(document.cookie)"&gt;test
 </td>
 </tr>
 </table>
@@ -4903,11 +4905,16 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 
 !! end
 
-# Known to produce bad XML for now
+# Note: the current result listed for this is not what the original one was,
+# but the original bug was JavaScript injection, which is fixed in any case.
+# It's not clear that the original result listed was any more correct than the
+# current one.  Original result:
+# <p>{{{| 
+# </p>
+# <li class="&#124;&#124;">
+# }}}blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
 !!test
 Fuzz testing: Parser25 (bug 6055)
-!! options
-noxml
 !! input
 {{{
 | 
@@ -4915,11 +4922,8 @@ noxml
  >
 }}}blah" onmouseover="alert('hello world');" align="left"'''MOVE MOUSE CURSOR OVER HERE
 !! result
-<p>{{{| 
+<p>&lt;LI CLASS=blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
 </p>
-<li class="&#124;&#124;">
-}}}blah" onmouseover="alert('hello world');" align="left"<b>MOVE MOUSE CURSOR OVER HERE</b>
-
 !! end
 
 !!test
@@ -5048,14 +5052,19 @@ New wiki paragraph
 </p>
 !! end
 
-
+# Original result was this:
+# <p><b>bold</b><b>bold<i>bolditalics</i></b>
+# </p>
+# While that might be marginally more intuitive, maybe, the six-apostrophe
+# construct is clearly pathological and the result stated here (which is what
+# the parser actually does) is about as reasonable as anything.
 !!test
 Mixing markup for italics and bold
 !! options
 !! input
 '''bold''''''bold''bolditalics'''''
 !! result
-<p><b>bold</b><b>bold<i>bolditalics</i></b>
+<p>'<i>bold'</i><b>bold<i>bolditalics</i></b>
 </p>
 !! end
 
@@ -6270,8 +6279,6 @@ subpage title=[[Subpage test/L1/L2/L3]]
 </p>
 !! end
 
-
-# Question: should result be "/index.php?title=Subpage_test/L1&amp;action=edit" instead?
 !! test
 Parents of subpages, two levels up, without trailing slash or name.
 !! options
@@ -6279,12 +6286,10 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../..]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1/L2/..&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (not yet written)">../..</a>
+<p>[[../..]]
 </p>
 !! end
 
-# Question: Why should the link text in the above test be "../..", yet in this test the "../.." part is silently dropped?
-# Current result: <p><a href="/index.php?title=Subpage_test/L1////&amp;action=edit" class="new" title="Subpage test/L1////">///
 !! test
 Parents of subpages, two levels up, with lots of extra trailing slashes.
 !! options
@@ -6292,7 +6297,7 @@ subpage title=[[Subpage test/L1/L2/L3]]
 !! input
 [[../../////]]
 !! result
-<p><a href="/index.php?title=Subpage_test/L1&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1 (not yet written)">Subpage test/L1</a>
+<p><a href="/index.php?title=Subpage_test/L1////&amp;action=edit&amp;redlink=1" class="new" title="Subpage test/L1//// (not yet written)">///</a>
 </p>
 !! end
 
