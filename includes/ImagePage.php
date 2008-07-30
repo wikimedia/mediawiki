@@ -596,21 +596,18 @@ EOT
 	 * If the page we've just displayed is in the "Image" namespace,
 	 * we follow it with an upload history of the image and its usage.
 	 */
-	function imageHistory()
-	{
+	function imageHistory() {
 		global $wgOut, $wgUseExternalEditor;
 
 		$this->loadFile();
 		if ( $this->img->exists() ) {
 			$list = new ImageHistoryList( $this );
 			$file = $this->img;
-			$dims = $file->getDimensionsString();
 			$s = $list->beginImageHistoryList();
 			$s .= $list->imageHistoryLine( true, $file );
 			// old image versions
 			$hist = $this->img->getHistory();
 			foreach( $hist as $file ) {
-				$dims = $file->getDimensionsString();
 				$s .= $list->imageHistoryLine( false, $file );
 			}
 			$s .= $list->endImageHistoryList();
