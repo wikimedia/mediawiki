@@ -1463,10 +1463,10 @@ please see math/README to configure.',
 'userrights-summary'             => '', # do not translate or duplicate this message to other languages
 'userrights-lookup-user'         => 'Manage user groups',
 'userrights-user-editname'       => 'Enter a username:',
-'editusergroup'                  => 'Edit User Groups',
+'editusergroup'                  => 'Edit user groups',
 'editinguser'                    => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'       => 'Edit user groups',
-'saveusergroups'                 => 'Save User Groups',
+'saveusergroups'                 => 'Save user groups',
 'userrights-groupsmember'        => 'Member of:',
 'userrights-groups-help'         => 'You may alter the groups this user is in:
 * A checked box means the user is in that group.
