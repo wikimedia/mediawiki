@@ -132,16 +132,30 @@ class Linker {
 	}
 
 	/**
-	 * This function returns an HTML link to the given target.  It serves a few purposes:
-	 *   1) If $target is a Title, the correct URL to link to will be figured out automatically.
-	 *   2) It automatically adds the usual classes for various types of link targets: "new" for red links, "extern" for external links, etc.
+	 * This function returns an HTML link to the given target.  It serves a few
+	 * purposes:
+	 *   1) If $target is a Title, the correct URL to link to will be figured
+	 *      out automatically.
+	 *   2) It automatically adds the usual classes for various types of link
+	 *      targets: "new" for red links, "stub" for short articles, etc.
 	 *   3) It escapes all attribute values safely so there's no risk of XSS.
-	 *   4) It provides a default tooltip if the target is a Title (the page name of the target).
+	 *   4) It provides a default tooltip if the target is a Title (the page
+	 *      name of the target).
+	 * link() replaces the old functions in the makeLink() family.
 	 *
-	 * @param $target        Title  Can currently only be a Title, but this may change.
-	 * @param $text          string The HTML contents of the <a> element, i.e., the link text.  This is raw HTML and will not be escaped.  If null, defaults to the page name of the Title or Image, or the text of the URL if $target is a URL.
-	 * @param $query         array  The query string to append to the URL you're linking to, in key => value array form.  Useful mainly for Titles and Images.  Query keys and values will be URL-encoded.
-	 * @param $customAttribs array  A key => value array of extra HTML attributes, such as title and class.  (href is ignored.)  Classes will be merged with the default classes, while other attributes will replace default attributes.  All passed attribute values will be HTML-escaped.  A false attribute value means to suppress that attribute.
+	 * @param $target        Title  Can currently only be a Title, but this may
+	 *   change to support Images, literal URLs, etc.
+	 * @param $text          string The HTML contents of the <a> element, i.e.,
+	 *   the link text.  This is raw HTML and will not be escaped.  If null,
+	 *   defaults to the page name of the Title.
+	 * @param $query         array  The query string to append to the URL
+	 *   you're linking to, in key => value array form.  Query keys and values
+	 *   will be URL-encoded.
+	 * @param $customAttribs array  A key => value array of extra HTML attri-
+	 *   butes, such as title and class.  (href is ignored.)  Classes will be
+	 *   merged with the default classes, while other attributes will replace
+	 *   default attributes.  All passed attribute values will be HTML-escaped.
+	 *   A false attribute value means to suppress that attribute.
 	 * @param $options       mixed  String or array of strings:
 	 *     'known': Page is known to exist, so don't check if it does.
 	 *     'broken': Page is known not to exist, so don't check if it does.
@@ -257,6 +271,8 @@ class Linker {
 		}
 		$ret = array();
 		foreach( array_merge( $defaults, $attribs ) as $key => $val ) {
+			# A false value suppresses the attribute, and we don't want the
+			# href attribute to be overridden.
 			if( $key != 'href' and $val !== false ) {
 				$ret[$key] = $val;
 			}
