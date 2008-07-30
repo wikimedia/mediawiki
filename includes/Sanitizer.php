@@ -1301,7 +1301,7 @@ class Sanitizer {
 		return $out;
 	}
 
-	static function cleanUrl( $url, $hostname=true ) {
+	static function cleanUrl( $url ) {
 		# Normalize any HTML entities in input. They will be
 		# re-escaped by makeExternalLink().
 		$url = Sanitizer::decodeCharReferences( $url );
