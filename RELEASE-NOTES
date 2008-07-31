@@ -56,6 +56,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   or other engine which doesn't support a separate title search function.
   This means you can use API search on Wikipedia without explicitly adding
   &srwhat=text to the query.
+* Added iiprop=bitdepth to imageinfo and aiprop=bitdepth to allimages
 
 
 === Languages updated in 1.14 ===

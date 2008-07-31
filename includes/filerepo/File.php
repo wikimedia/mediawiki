@@ -264,7 +264,14 @@ abstract class File {
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
 	 */
-	function getMetadata() { return false; }
+	public function getMetadata() { return false; }
+
+	/**
+	 * Return the bit depth of the file
+	 * Overridden by LocalFile
+	 * STUB
+	 */
+	public function getBitDepth() { return 0; }
 
 	/**
 	 * Return the size of the image file, in bytes

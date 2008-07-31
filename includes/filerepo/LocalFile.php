@@ -453,6 +453,11 @@ class LocalFile extends File
 		return $this->metadata;
 	}
 
+	function getBitDepth() {
+		$this->load();
+		return $this->bits;
+	}
+
 	/**
 	 * Return the size of the image file, in bytes
 	 * @public

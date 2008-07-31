@@ -162,7 +162,8 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 					'dimensions', // Obsolete
 					'mime',
 					'sha1',
-					'metadata'
+					'metadata',
+					'bitdepth',
 				),
 				ApiBase :: PARAM_DFLT => 'timestamp|url',
 				ApiBase :: PARAM_ISMULTI => true
