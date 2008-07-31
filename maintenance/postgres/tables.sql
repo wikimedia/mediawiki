@@ -365,7 +365,7 @@ CREATE TABLE watchlist (
   wl_notificationtimestamp  TIMESTAMPTZ
 );
 CREATE UNIQUE INDEX wl_user_namespace_title ON watchlist (wl_namespace, wl_title, wl_user);
-
+CREATE INDEX wl_user ON watchlist (wl_user);
 
 CREATE TABLE math (
   math_inputhash              BYTEA     NOT NULL  UNIQUE,

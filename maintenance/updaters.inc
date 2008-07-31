@@ -1520,6 +1520,7 @@ function do_postgres_updates() {
 		array("oldimage",      "oi_sha1",            "(oi_sha1)"),
 		array("revision",      "rev_text_id_idx",    "(rev_text_id)"),
 		array("recentchanges", "rc_timestamp_nobot", "(rc_timestamp) WHERE rc_bot = 0"),
+		array("watchlist",     "wl_user",            "(wl_user)"),
 	);
 
 	$newrules = array(
