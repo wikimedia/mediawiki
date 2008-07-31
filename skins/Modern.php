@@ -98,9 +98,7 @@ class ModernTemplate extends QuickTemplate {
  class="mediawiki <?php $this->text('nsclass') ?> <?php $this->text('dir') ?> <?php $this->text('pageclass') ?>">
 
 	<!-- heading -->
-	<div id="mw_header">
-		<h1 id="firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></h1>
-	</div>
+	<div id="mw_header"><h1 id="firstHeading"><?php $this->data['displaytitle']!=""?$this->html('title'):$this->text('title') ?></h1></div>
 
 	<div id="mw_main">
 	<div id="mw_contentwrapper">
