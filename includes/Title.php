@@ -2602,6 +2602,7 @@ class Title {
 		$now = wfTimestampNow();
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
+		$latest = $this->getLatestRevID();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -2630,7 +2631,7 @@ class Title {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $this );
-		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -2716,6 +2717,7 @@ class Title {
 
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
+		$latest = $this->getLatestRevId();
 		
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin();
@@ -2726,7 +2728,7 @@ class Title {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $this );
-		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
 
 		# Rename page entry
 		$dbw->update( 'page',
@@ -2941,16 +2943,16 @@ class Title {
 	/**
 	 * Get the revision ID of the previous revision
 	 *
-	 * @param integer $revision  Revision ID. Get the revision that was before this one.
+	 * @param integer $revId Revision ID. Get the revision that was before this one.
 	 * @param integer $flags, GAID_FOR_UPDATE
 	 * @return integer $oldrevision|false
 	 */
-	public function getPreviousRevisionID( $revision, $flags=0 ) {
+	public function getPreviousRevisionID( $revId, $flags=0 ) {
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleId($flags),
-				'rev_id < ' . intval( $revision )
+				'rev_id < ' . intval( $revId )
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id DESC' )
@@ -2960,16 +2962,16 @@ class Title {
 	/**
 	 * Get the revision ID of the next revision
 	 *
-	 * @param integer $revision  Revision ID. Get the revision that was after this one.
+	 * @param integer $revId Revision ID. Get the revision that was after this one.
 	 * @param integer $flags, GAID_FOR_UPDATE
 	 * @return integer $oldrevision|false
 	 */
-	public function getNextRevisionID( $revision, $flags=0 ) {
+	public function getNextRevisionID( $revId, $flags=0 ) {
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
 				'rev_page' => $this->getArticleId($flags),
-				'rev_id > ' . intval( $revision )
+				'rev_id > ' . intval( $revId )
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id' )
