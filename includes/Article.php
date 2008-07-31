@@ -103,7 +103,9 @@ class Article {
 		$dbw->replace('redirect', array('rd_from'), array(
 				'rd_from' => $this->getID(),
 				'rd_namespace' => $retval->getNamespace(),
-				'rd_title' => $retval->getDBKey()
+				'rd_title' => $retval->getDBKey(),
+				'rd_interwiki' => $retval->getInterwiki(),
+				'rd_fragment'  => $retval->getFragment(),
 		), __METHOD__);
 		return $retval;
 	}
@@ -1182,6 +1184,8 @@ class Article {
 					'rd_namespace' => $redirectTitle->getNamespace(),
 					'rd_title'     => $redirectTitle->getDBkey(),
 					'rd_from'      => $this->getId(),
+					'rd_interwiki' => $redirectTitle->getInterwiki(),
+					'rd_fragment'  => $redirectTitle->getFragment(),
 				);
 
 				$dbw->replace( 'redirect', array( 'rd_from' ), $set, __METHOD__ );

@@ -1034,6 +1034,8 @@ If you click Save again, your edit will be saved without one.",
 'missingcommenttext'               => 'Please enter a comment below.',
 'missingcommentheader'             => "'''Reminder:''' You have not provided a subject/headline for this comment.
 If you click Save again, your edit will be saved without one.",
+'creatingdoubleredirect'           => "'''Caution:''' You are attempting to redirect this page to [[$1]], but it redirects to 
+[[$2]]. Redirects that redirect two or more times do not work.",
 'summary-preview'                  => 'Summary preview',
 'subject-preview'                  => 'Subject/headline preview',
 'blockedtitle'                     => 'User is blocked',
