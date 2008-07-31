@@ -49,6 +49,7 @@ class ParserOptions
 	function getRemoveComments()                { return $this->mRemoveComments; }
 	function getTemplateCallback()              { return $this->mTemplateCallback; }
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
+	function getCleanSignatures()               { return $this->mCleanSignatures; }
 
 	function getSkin() {
 		if ( !isset( $this->mSkin ) ) {
@@ -91,6 +92,7 @@ class ParserOptions
 	function setTemplateCallback( $x )          { return wfSetVar( $this->mTemplateCallback, $x ); }
 	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
 	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
+	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
 
 	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
@@ -108,7 +110,7 @@ class ParserOptions
 	function initialiseFromUser( $userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion, $wgMaxArticleSize;
-		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth;
+		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
@@ -144,6 +146,7 @@ class ParserOptions
 		$this->mRemoveComments = true;
 		$this->mTemplateCallback = array( 'Parser', 'statelessFetchTemplate' );
 		$this->mEnableLimitReport = false;
+		$this->mCleanSignatures = $wgCleanSignatures;
 		wfProfileOut( $fname );
 	}
 }

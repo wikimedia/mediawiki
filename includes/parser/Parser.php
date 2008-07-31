@@ -3839,6 +3839,11 @@ class Parser
 			$this->setOutputType = self::OT_PREPROCESS;
 		}
 
+		# Option to disable this feature
+		if ( !$this->mOptions->getCleanSignatures() ) {
+			return $text;
+		}
+
 		# FIXME: regex doesn't respect extension tags or nowiki
 		#  => Move this logic to braceSubstitution()
 		$substWord = MagicWord::get( 'subst' );
