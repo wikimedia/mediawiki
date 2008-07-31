@@ -36,6 +36,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'EditSectionLinkForOther' hook has been removed, but 'EditSectionLink' is
   run in all cases instead, so extensions using the old hooks should still work
   if they ran roughly the same code for both hooks (as is almost certain).
+* Signature (~~~~) "cleaning", i.e. template removal, can be disabled with 
+  $wgCleanSignatures=false
 
 === Bug fixes in 1.14 ===
 

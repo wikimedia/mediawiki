@@ -940,6 +940,11 @@ $wgMaxPPNodeCount = 1000000;  # A complexity limit on template expansion
 $wgMaxTemplateDepth = 40;
 $wgMaxPPExpandDepth = 40;
 
+/**
+ * If true, removes (substitutes) templates in "~~~~" signatures.
+ */
+$wgCleanSignatures = true;
+
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
