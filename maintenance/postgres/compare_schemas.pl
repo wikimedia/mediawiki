@@ -479,7 +479,7 @@ sub scan_dir {
 	my $dir = shift;
 
 	opendir my $dh, $dir or die qq{Could not opendir $dir: $!\n};
-	print "Scanning $dir...\n";
+	#print "Scanning $dir...\n";
 	for my $file (grep { -f "$dir/$_" and /\.php$/ } readdir $dh) {
 		find_problems("$dir/$file");
 	}
