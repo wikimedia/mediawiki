@@ -7,6 +7,7 @@
  * @author Wikimistusik
  * @author Sab
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author Nkosi ya Cabinda
  * @author SPQRobin
  */
@@ -1051,7 +1052,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filedelete'                  => 'Sulara va $1',
 'filedelete-legend'           => 'Sulara va iyeltak',
 'filedelete-intro'            => "Rin va '''[[Media:$1|$1]]''' sulal.",
-'filedelete-intro-old'        => '<span class="plainlinks">Rin va siatos ke \'\'\'[[Media:$1|$1]]\'\'\' wetce [$4 $3, $2] sulal.</span>',
+'filedelete-intro-old'        => "Rin va siatos ke '''[[Media:$1|$1]]''' wetce [$4 $3, $2] sulal.",
 'filedelete-comment'          => 'Sebuks :',
 'filedelete-submit'           => 'Sulara',
 'filedelete-success'          => "'''$1''' al zo sular.",
@@ -1820,7 +1821,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Warzaf ewaviyeltak yo',
 'imagelisttext'         => "Tir vexala dem '''$1''' {{PLURAL:$1|iyeltak|iyeltak}} $2 pulana.",
-'newimages-summary'     => 'Batu aptafu bu va ironokaf kalvajayan iyeltakeem nedir',
+'newimages-summary'     => 'Batu aptafu bu va ironokaf kalvajayan iyeltakeem nedir.',
 'showhidebots'          => '($1 stiernik)',
 'noimages'              => 'Mecoba rowina',
 'ilsubmit'              => 'Aneyara',

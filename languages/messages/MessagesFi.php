@@ -11,6 +11,7 @@
  * @author Jack Phoenix
  * @author M.M.S.
  * @author Str4nd
+ * @author Jon Harald Søby
  * @author Jaakonam
  * @author לערי ריינהארט
  */

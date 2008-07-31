@@ -1155,15 +1155,15 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'group-bot'           => 'Robotar',
 'group-sysop'         => 'Administratörer',
 'group-bureaucrat'    => 'Byråkrater',
-'group-suppress'      => 'Oversightare',
+'group-suppress'      => 'Versionsraderare',
 'group-all'           => '(alla)',
 
-'group-user-member'          => 'Användare',
-'group-autoconfirmed-member' => 'Bekräftad användare',
-'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Administratör',
-'group-bureaucrat-member'    => 'Byråkrat',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'          => 'användare',
+'group-autoconfirmed-member' => 'bekräftad användare',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administratör',
+'group-bureaucrat-member'    => 'byråkrat',
+'group-suppress-member'      => 'versionsraderare',
 
 'grouppage-user'          => '{{ns:project}}:Användare',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
@@ -1511,7 +1511,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'brokenredirects-delete' => '(radera)',
 
 'withoutinterwiki'         => 'Sidor utan språklänkar',
-'withoutinterwiki-summary' => 'Följande sidor innehåller inte några länkar till andra språkversioner:',
+'withoutinterwiki-summary' => 'Följande sidor innehåller inte några länkar till andra språkversioner.',
 'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Visa',
 
@@ -2257,10 +2257,11 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
 
 # Patrol log
-'patrol-log-page' => 'Patrulleringslogg',
-'patrol-log-line' => 'markerade $1 av $2 som patrullerad $3',
-'patrol-log-auto' => '(automatiskt)',
-'patrol-log-diff' => 'version $1',
+'patrol-log-page'   => 'Patrulleringslogg',
+'patrol-log-header' => 'Detta är en logg över patrullerade sidversioner.',
+'patrol-log-line'   => 'markerade $1 av $2 som patrullerad $3',
+'patrol-log-auto'   => '(automatiskt)',
+'patrol-log-diff'   => 'version $1',
 
 # Image deletion
 'deletedrevision'                 => 'Raderade gammal sidversion $1',
@@ -2292,7 +2293,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleri över nya filer',
 'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|bild|bilder}} sorterad <strong>$2</strong>.',
-'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna',
+'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna.',
 'showhidebots'          => '($1 robotar)',
 'noimages'              => 'Ingenting att se.',
 'ilsubmit'              => 'Sök',

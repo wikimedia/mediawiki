@@ -6,6 +6,7 @@
  *
  * @author Bangin
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -877,7 +878,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'filedelete'                  => '$1 jêbibe',
 'filedelete-legend'           => 'Data jêbibe',
 'filedelete-intro'            => "Tu kê '''[[Media:$1|$1]]''' jêbibê.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tu niha verzyona \'\'\'[[Media:$1|$1]]\'\'\' [$4 verzyon, ji $2, saet $3] jêdibê.</span>',
+'filedelete-intro-old'        => "Tu niha verzyona '''[[Media:$1|$1]]''' [$4 verzyon, ji $2, saet $3] jêdibê.",
 'filedelete-comment'          => 'Nivîs:',
 'filedelete-submit'           => 'Jêbibe',
 'filedelete-success'          => "'''$1''' hate jêbirin.",

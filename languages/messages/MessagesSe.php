@@ -7,9 +7,9 @@
  * @author Skuolfi
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author Teak
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -689,18 +689,18 @@ $1 | $2',
 # File reversion
 'filerevert'                => 'Fiilla $1 máhcaheapmi',
 'filerevert-legend'         => 'Fiilla máhcaheapmi',
-'filerevert-intro'          => '<span class="plainlinks">Leat máhcaheami fiilla \'\'\'[[Media:$1|$1]]\'\'\' [$4 veršuvdnii, mii ráhdaduvvui $2 diibmu $3].</span>',
+'filerevert-intro'          => "Leat máhcaheami fiilla '''[[Media:$1|$1]]''' [$4 veršuvdnii, mii ráhdaduvvui $2 diibmu $3].",
 'filerevert-comment'        => 'Sivva',
 'filerevert-defaultcomment' => 'Máhcahuvvui veršuvdnii, mii ráhkaduvvui $1 diibmu $2',
 'filerevert-submit'         => 'Máhcat',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' lea máhcahvvon [$4 veršuvdnii, mii ráhkaduvvui $2 diibmu $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' lea máhcahvvon [$4 veršuvdnii, mii ráhkaduvvui $2 diibmu $3].",
 'filerevert-badversion'     => 'Fiillas ii leat ráhkaduvvon veršuvdna dalle.',
 
 # File deletion
 'filedelete'           => 'Sihko $1',
 'filedelete-legend'    => 'Sihko fiilla',
 'filedelete-intro'     => "Don leat sihkomin '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old' => '<span class="plainlinks">Don leat sihkomin veršuvdna \'\'\'[[Media:$1|$1]]\'\'\'  [$4 $3, $2].</span>',
+'filedelete-intro-old' => "Don leat sihkomin veršuvdna '''[[Media:$1|$1]]'''  [$4 $3, $2].",
 'filedelete-comment'   => 'Kommeanta:',
 'filedelete-submit'    => 'Sihko',
 'filedelete-success'   => "'''$1''' lea sihkojuvvon.",

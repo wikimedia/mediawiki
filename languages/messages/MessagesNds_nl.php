@@ -10,6 +10,7 @@
  * @author Slomox
  * @author SPQRobin
  * @author Erwin85
+ * @author Jon Harald Søby
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Jens Frank
  */
@@ -1375,7 +1376,7 @@ Klikken op een kelomkop veraandert de sortering.',
 # File reversion
 'filerevert'                => '$1 weerummedreien',
 'filerevert-legend'         => 'Bestand weerummezetten',
-'filerevert-intro'          => '<span class="plainlinks">Je bin \'\'\'[[Media:$1|$1]]\'\'\' an \'t weerummedreien tot de [$4 versie van $2, $3]</span>.',
+'filerevert-intro'          => "Je bin '''[[Media:$1|$1]]''' an 't weerummedreien tot de [$4 versie van $2, $3]",
 'filerevert-comment'        => 'Opmarkingen:',
 'filerevert-defaultcomment' => 'Weerummedreid tot de versie van $1, $2',
 'filerevert-submit'         => 'Weerummedreien',
@@ -1386,7 +1387,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'filedelete'                  => '$1 vortdoon',
 'filedelete-legend'           => 'Bestand vortdoon',
 'filedelete-intro'            => "Je doon '''[[Media:$1|$1]]''' noen vort.",
-'filedelete-intro-old'        => '<span class="plainlinks">Je bin de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] vort an \'t doon.</span>',
+'filedelete-intro-old'        => "Je bin de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] vort an 't doon.",
 'filedelete-comment'          => 'Opmarking:',
 'filedelete-submit'           => 'Vortdoon',
 'filedelete-success'          => "'''$1''' is vort-edaon.",

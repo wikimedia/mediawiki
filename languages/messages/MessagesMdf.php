@@ -8,8 +8,8 @@
  * @author Numulunj pilgae
  * @author Khazar II
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallbak = 'ru';
@@ -1150,18 +1150,18 @@ $3 макссь туфталсь - ''$2''",
 # File reversion
 'filerevert'                => 'Мърдафтомс $1',
 'filerevert-legend'         => 'Мърдафтомс файл',
-'filerevert-intro'          => '<span class="plainlinks">Тон мърдафнесак \'\'\'[[Media:$1|$1]]\'\'\' [$4 верзиенза $3, $2-с].</span>',
+'filerevert-intro'          => "Тон мърдафнесак '''[[Media:$1|$1]]''' [$4 верзиенза $3, $2-с].",
 'filerevert-comment'        => 'Мяльполаткс:',
 'filerevert-defaultcomment' => 'Мърдаф верзиес $2, $1',
 'filerevert-submit'         => 'Мърдафтомс',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' мърдаф [$4 верзиенза $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' мърдаф [$4 верзиенза $3, $2].",
 'filerevert-badversion'     => 'Тя файлть сядынгольдень верзинц вешф пингоняфкс мархта тяса аш.',
 
 # File deletion
 'filedelete'                  => 'Нардамс $1',
 'filedelete-legend'           => 'Нардамс файлть',
 'filedelete-intro'            => "Тон нардасак '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Тон нардасак   \'\'\'[[Media:$1|$1]]\'\'\'-ть верзиенза [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Тон нардасак   '''[[Media:$1|$1]]'''-ть верзиенза [$4 $3, $2].",
 'filedelete-comment'          => 'Нардама туфтал:',
 'filedelete-submit'           => 'Нардамс',
 'filedelete-success'          => "'''$1''' нардаф.",
@@ -2010,7 +2010,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Од файлхнень пърдафкс',
 'imagelisttext'         => "Ала'''$1''' {{PLURAL:$1|файлонь|файлхнень}} лувомась кочкаф $2.",
-'newimages-summary'     => 'Тя башка тевонь лопась няфнесыне мекольце тонкф файлхт',
+'newimages-summary'     => 'Тя башка тевонь лопась няфнесыне мекольце тонкф файлхт.',
 'showhidebots'          => '($1 робот програпт)',
 'noimages'              => 'Мезеге аш.',
 'ilsubmit'              => 'Вешендемс',

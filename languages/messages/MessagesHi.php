@@ -1243,18 +1243,18 @@ PICT # misc.
 # File reversion
 'filerevert'                => '$1 पूर्ववत करें',
 'filerevert-legend'         => 'फ़ाईल पूर्ववत करें',
-'filerevert-intro'          => '<span class="plainlinks">आप \'\'\'[[Media:$1|$1]]\'\'\' के [$3, $2 तक के अवतरण, $4 की तरफ] वापिस भेज रहें हैं।</span>',
+'filerevert-intro'          => "आप '''[[Media:$1|$1]]''' के [$3, $2 तक के अवतरण, $4 की तरफ] वापिस भेज रहें हैं।",
 'filerevert-comment'        => 'टिप्पणी:',
 'filerevert-defaultcomment' => '$2, $1 के अवतरण पूर्ववत कियें',
 'filerevert-submit'         => 'पूर्ववत करें',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' के [$3, $2 तक के अवतरण, $4 की तरफ] वापिस भेज दिये गयें हैं।</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' के [$3, $2 तक के अवतरण, $4 की तरफ] वापिस भेज दिये गयें हैं।",
 'filerevert-badversion'     => 'दिये हुए समयसे मेल खाने वाला, इस फ़ाईलका पुराना अवतरण नहीं हैं।',
 
 # File deletion
 'filedelete'                  => '$1 हटायें',
 'filedelete-legend'           => 'फ़ाइल हटायें',
 'filedelete-intro'            => "आप '''[[Media:$1|$1]]''' हटा रहें हैं।",
-'filedelete-intro-old'        => '<span class="plainlinks">आप \'\'\'[[Media:$1|$1]]\'\'\' के [$4 $3, $2 के अवतरण] हटा रहें हैं।</span>',
+'filedelete-intro-old'        => "आप '''[[Media:$1|$1]]''' के [$4 $3, $2 के अवतरण] हटा रहें हैं।",
 'filedelete-comment'          => 'हटाने का कारण:',
 'filedelete-submit'           => 'हटायें',
 'filedelete-success'          => "'''$1''' को हटा दिया गया हैं।",

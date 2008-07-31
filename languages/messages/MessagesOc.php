@@ -7,8 +7,8 @@
  * @author Cedric31
  * @author Siebrand
  * @author לערי ריינהארט
- * @author ChrisPtDe
  * @author Jon Harald Søby
+ * @author ChrisPtDe
  * @author Spacebirdy
  * @author Горан Анђелковић
  * @author SPQRobin
@@ -1375,14 +1375,14 @@ Un clic en tèsta de colomna cambia l’òrdre d’afichatge.',
 'filerevert-comment'        => 'Comentari :',
 'filerevert-defaultcomment' => 'Revocat fins a la version del $1 a $2',
 'filerevert-submit'         => 'Revocar',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' es estat revocat fins a [$4 la version del $2 a $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' es estat revocat fins a [$4 la version del $2 a $3].",
 'filerevert-badversion'     => 'I a pas de version mai anciana del fichièr amb lo Timestamp donat.',
 
 # File deletion
 'filedelete'                  => 'Suprimir $1',
 'filedelete-legend'           => 'Suprimir lo fichièr',
 'filedelete-intro'            => "Sètz a suprimir '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Sètz a escafar la version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $2 a $3].</span>',
+'filedelete-intro-old'        => "Sètz a escafar la version de '''[[Media:$1|$1]]''' del [$4 $2 a $3].",
 'filedelete-comment'          => "Motiu de l'escafament :",
 'filedelete-submit'           => 'Suprimir',
 'filedelete-success'          => "'''$1''' es estat suprimit.",
@@ -2252,7 +2252,7 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galariá dels fichièrs novèls',
 'imagelisttext'         => "Vaquí una lista de '''$1''' {{PLURAL:$1|fichièr|fichièrs}} classats $2.",
-'newimages-summary'     => 'Aquesta pagina especiala aficha los darrièrs fichièrs importats',
+'newimages-summary'     => 'Aquesta pagina especiala aficha los darrièrs fichièrs importats.',
 'showhidebots'          => '($1 bòts)',
 'noimages'              => "Cap d'imatge d'afichar pas.",
 'ilsubmit'              => 'Cercar',

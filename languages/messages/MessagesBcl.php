@@ -7,8 +7,8 @@
  * @author Filipinayzd
  * @author Steven*fung
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Siebrand Mazeland
  * @author Niklas Laxström
  */
@@ -990,18 +990,18 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 # File reversion
 'filerevert'                => 'Ibalik an $1',
 'filerevert-legend'         => 'Ibalik an dokumento',
-'filerevert-intro'          => '<span class="plainlinks">Pigbabalik mo an \'\'\'[[Media:$1|$1]]\'\'\' sa [$4 version as of $3, $2].</span>',
+'filerevert-intro'          => "Pigbabalik mo an '''[[Media:$1|$1]]''' sa [$4 version as of $3, $2].",
 'filerevert-comment'        => 'Komento:',
 'filerevert-defaultcomment' => 'Pigbalik sa bersyon sa ngonyan $2, $1',
 'filerevert-submit'         => 'Ibalik',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' binalik sa [$4 version as of $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' binalik sa [$4 version as of $3, $2].",
 'filerevert-badversion'     => "Mayong dating bersyón na lokal kaining ''file'' na may taták nin oras na arog sa tinao.",
 
 # File deletion
 'filedelete'             => 'Parâon an $1',
 'filedelete-legend'      => 'Parâon an dokumento',
 'filedelete-intro'       => "Pigpaparâ mo an '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Pigpaparâ mo an bersyon kan \'\'\'[[Media:$1|$1]]\'\'\' sa ngonyan [$4 $3, $2].</span>',
+'filedelete-intro-old'   => "Pigpaparâ mo an bersyon kan '''[[Media:$1|$1]]''' sa ngonyan [$4 $3, $2].",
 'filedelete-comment'     => 'Komento:',
 'filedelete-submit'      => 'Parâon',
 'filedelete-success'     => "An '''$1''' pinarâ na.",

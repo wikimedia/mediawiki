@@ -8,6 +8,7 @@
  * @author Mienski
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -1202,18 +1203,18 @@ $2',
 # File reversion
 'filerevert'                => 'Адкаціць $1',
 'filerevert-legend'         => 'Адкат файла',
-'filerevert-intro'          => '<span class="plainlinks">Вы адкочваеце \'\'\'[[Media:$1|$1]]\'\'\' да [$4 версіі з $3, $2].</span>',
+'filerevert-intro'          => "Вы адкочваеце '''[[Media:$1|$1]]''' да [$4 версіі з $3, $2].",
 'filerevert-comment'        => 'Каментарый:',
 'filerevert-defaultcomment' => 'Адкочана да версіі з $2, $1',
 'filerevert-submit'         => 'Адкаціць',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' быў адкочаны да [$4 версіі з $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' быў адкочаны да [$4 версіі з $3, $2].",
 'filerevert-badversion'     => 'Няма старэйшай тутэйшай версіі гэтага файла з прапанаванай часавай меткай.',
 
 # File deletion
 'filedelete'                  => 'Выдаліць $1',
 'filedelete-legend'           => 'Выдаліць файл',
 'filedelete-intro'            => "Вы сціраеце '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Вы сціраеце версію \'\'\'[[Media:$1|$1]]\'\'\' з [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Вы сціраеце версію '''[[Media:$1|$1]]''' з [$4 $3, $2].",
 'filedelete-comment'          => 'Каментарый:',
 'filedelete-submit'           => 'Выдаліць',
 'filedelete-success'          => "'''$1''' быў выдалены.",
@@ -2062,7 +2063,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Новыя файлы',
 'imagelisttext'         => "Ніжэй даецца спіс з '''$1''' {{PLURAL:$1|файла|файлаў}} у парадку $2.",
-'newimages-summary'     => 'Тут паказаныя нядаўна ўкладзеныя файлы',
+'newimages-summary'     => 'Тут паказаныя нядаўна ўкладзеныя файлы.',
 'showhidebots'          => '($1 робатаў)',
 'noimages'              => 'Тут нічога няма.',
 'ilsubmit'              => 'Знайсці',

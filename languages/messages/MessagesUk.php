@@ -8,8 +8,9 @@
  * @author AS
  * @author Siebrand
  * @author Innv
- * @author Dubyk
+ * @author Jon Harald Søby
  * @author EugeneZelenko
+ * @author Dubyk
  * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
  */
@@ -1402,18 +1403,18 @@ $3 зазначив наступну причину: ''$2''",
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',
 'filerevert-legend'         => 'Повернути версію файлу',
-'filerevert-intro'          => '<span class="plainlinks">Ви повертаєте \'\'\'[[Media:$1|$1]]\'\'\' до [$4 версії від $3, $2].</span>',
+'filerevert-intro'          => "Ви повертаєте '''[[Media:$1|$1]]''' до [$4 версії від $3, $2].",
 'filerevert-comment'        => 'Примітка:',
 'filerevert-defaultcomment' => 'Повернення до версії від $2, $1',
 'filerevert-submit'         => 'Повернути',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' був повернутий до [$4 версії від $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' був повернутий до [$4 версії від $3, $2].",
 'filerevert-badversion'     => 'Немає локальної версії цього файлу з вказаною поміткою дати і часу.',
 
 # File deletion
 'filedelete'                  => 'Вилучення $1',
 'filedelete-legend'           => 'Вилучити файл',
 'filedelete-intro'            => "Ви вилучаєте '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Ви вилучаєте версію \'\'\'[[Media:$1|$1]]\'\'\' від [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Ви вилучаєте версію '''[[Media:$1|$1]]''' від [$4 $3, $2].",
 'filedelete-comment'          => 'Причина вилучення:',
 'filedelete-submit'           => 'Вилучити',
 'filedelete-success'          => "'''$1''' було вилучено.",
@@ -2281,7 +2282,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Галерея нових файлів',
 'imagelisttext'         => "Нижче подано список з '''$1''' {{PLURAL:$1|файлу|файлів|файлів}}, відсортованих $2.",
-'newimages-summary'     => 'Ця спеціальна сторінка показує останні завантажені файли',
+'newimages-summary'     => 'Ця спеціальна сторінка показує останні завантажені файли.',
 'showhidebots'          => '($1 ботів)',
 'noimages'              => 'Файли відсутні.',
 'ilsubmit'              => 'Шукати',

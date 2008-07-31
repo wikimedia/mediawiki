@@ -6,9 +6,9 @@
  *
  * @author Better
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author M.M.S.
  * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -1069,18 +1069,18 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 # File reversion
 'filerevert'                => 'Revertil $1',
 'filerevert-legend'         => 'Revertil archivu',
-'filerevert-intro'          => '<span class="plainlinks">Estás revirtiendu \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 velsión del $3 a las $2].</span>',
+'filerevert-intro'          => "Estás revirtiendu '''[[Media:$1|$1]]''' a la [$4 velsión del $3 a las $2].",
 'filerevert-comment'        => 'Comentáriu:',
 'filerevert-defaultcomment' => 'Revertiu a la velsión de $2, $1',
 'filerevert-submit'         => 'Revertil',
-'filerevert-success'        => '<span class="plainlinks">S\'á revertiu \'\'\'[[Media:$1|$1]]\'\'\' a [$4 velsión de $3, $2].</span>',
+'filerevert-success'        => "S'á revertiu '''[[Media:$1|$1]]''' a [$4 velsión de $3, $2].",
 'filerevert-badversion'     => "Nu desisti denguna velsión local prévia d'esti archivu cola fecha aseñalá.",
 
 # File deletion
 'filedelete'                  => 'Esborral $1',
 'filedelete-legend'           => 'Esborral archivu',
 'filedelete-intro'            => "Estás esborrandu '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Estás esborrandu la velsón de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a las $2].</span>',
+'filedelete-intro-old'        => "Estás esborrandu la velsón de '''[[Media:$1|$1]]''' del [$4 $3 a las $2].",
 'filedelete-comment'          => 'Comentáriu:',
 'filedelete-submit'           => 'Esborral',
 'filedelete-success'          => "S´á esborrau '''$1'''.",

@@ -6,9 +6,9 @@
  *
  * @author Agurzil
  * @author Siebrand
- * @author SPQRobin
- * @author Agzennay
  * @author Jon Harald Søby
+ * @author Agzennay
+ * @author SPQRobin
  * @author Teak
  */
 

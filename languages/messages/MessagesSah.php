@@ -7,8 +7,8 @@
  * @author HalanTul
  * @author Bert Jickty
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -1060,18 +1060,18 @@ PICT # misc.
 # File reversion
 'filerevert'                => 'Төннөр $1',
 'filerevert-legend'         => 'Билэни төннөр',
-'filerevert-intro'          => '<span class="plainlinks">Эн бу билэни  \'\'\'[[Media:$1|$1]]\'\'\'  [$4 торумҥа от $3, $2] төннөрөҕүн.</span>',
+'filerevert-intro'          => "Эн бу билэни  '''[[Media:$1|$1]]'''  [$4 торумҥа от $3, $2] төннөрөҕүн.",
 'filerevert-comment'        => 'Хос быһаарыы:',
 'filerevert-defaultcomment' => 'Торумҥа төннүү $2, $1',
 'filerevert-submit'         => 'Төннөрүү',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' бу торумҥа төннөрүлүннэ [$4 торум Filetype-missingот $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' бу торумҥа төннөрүлүннэ [$4 торум Filetype-missingот $3, $2].",
 'filerevert-badversion'     => 'Бу билэ этиллибит күҥҥэ-ыйга/кэмҥэ оҥоһуллубут урукку торума суох.',
 
 # File deletion
 'filedelete'                  => 'Сот: $1',
 'filedelete-legend'           => 'Билэни сот',
 'filedelete-intro'            => "Маны сотон эрэҕин '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Манна баар [$4 $3, $2]  \'\'\'[[Media:$1|$1]]\'\'\' торумнара сотулуннулар.</span>',
+'filedelete-intro-old'        => "Манна баар [$4 $3, $2]  '''[[Media:$1|$1]]''' торумнара сотулуннулар.",
 'filedelete-comment'          => 'Быһаарыыта:',
 'filedelete-submit'           => 'Сотуу',
 'filedelete-success'          => "'''$1''' сотулунна.",
@@ -1902,7 +1902,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Саҥа билэлэр галереялара',
 'imagelisttext'         => "Манна {{PLURAL:$1|билэ|билэлэр}} испииһэктэрэ ('''$1''') көстөр, суортаммыт: $2.",
-'newimages-summary'     => 'Бу анал сирэй киллэриллибит билэлэр испииһэктэрин көрдөрөр',
+'newimages-summary'     => 'Бу анал сирэй киллэриллибит билэлэр испииһэктэрин көрдөрөр.',
 'showhidebots'          => '($1 робот)',
 'noimages'              => 'Ойуу суох.',
 'ilsubmit'              => 'Көрдөт',

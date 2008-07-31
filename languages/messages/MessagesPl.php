@@ -13,6 +13,7 @@
  * @author Beau
  * @author Siebrand
  * @author Stv
+ * @author Jon Harald Søby
  * @author Masti
  * @author Maikking
  * @author Ymar
@@ -1426,18 +1427,18 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 # File reversion
 'filerevert'                => 'Przywracanie $1',
 'filerevert-legend'         => 'Przywracanie poprzedniej wersji pliku',
-'filerevert-intro'          => '<span class="plainlinks">Zamierzasz przywrócić \'\'\'[[Media:$1|$1]]\'\'\' do [wersji $4 z $3, $2].</span>',
+'filerevert-intro'          => "Zamierzasz przywrócić '''[[Media:$1|$1]]''' do [wersji $4 z $3, $2].",
 'filerevert-comment'        => 'Komentarz:',
 'filerevert-defaultcomment' => 'Przywrócono wersję z $2, $1',
 'filerevert-submit'         => 'Przywróć',
-'filerevert-success'        => '<span class="plainlinks">Plik \'\'\'[[Media:$1|$1]]\'\'\' został cofnięty do [wersji $4 z $3, $2].</span>',
+'filerevert-success'        => "Plik '''[[Media:$1|$1]]''' został cofnięty do [wersji $4 z $3, $2].",
 'filerevert-badversion'     => 'Brak poprzedniej lokalnej wersji tego pliku z podaną datą.',
 
 # File deletion
 'filedelete'                  => 'Usuń „$1”',
 'filedelete-legend'           => 'Usuń plik',
 'filedelete-intro'            => "Usuwasz '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Usuwasz wersję pliku \'\'\'[[Media:$1|$1]]\'\'\' z datą [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Usuwasz wersję pliku '''[[Media:$1|$1]]''' z datą [$4 $3, $2].",
 'filedelete-comment'          => 'Komentarz:',
 'filedelete-submit'           => 'Usuń',
 'filedelete-success'          => "Usunięto plik '''$1'''.",

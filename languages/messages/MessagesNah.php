@@ -369,6 +369,7 @@ Xiquimpiya motlahtōl.',
 
 # History pages
 'viewpagelogs'        => 'Tiquinttāz tlahcuilōlloh inīn zāzaniltechcopa',
+'nohistory'           => 'Ahmo cah tlapatlaliztechcopa tlahcuilōlloh inīn zāzaniltechcopa.',
 'revnotfound'         => 'Ahmo ōmonēxti tlachiyaliztli',
 'currentrev'          => 'Āxcān tlapatlaliztli',
 'revisionasof'        => 'Tlachiyaliztli īpan $1',
@@ -396,6 +397,8 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 
 # Revision deletion
 'rev-delundel'         => 'tiquittāz/tictlātīz',
+'revdelete-selected'   => '{{PLURAL:$2|Tlachiyaliztli ōmoēlēhui|Tlachiyaliztli ōmoēlēhuih}} [[:$1]] ītechcopa:',
+'revdelete-hide-text'  => 'Tictlātīz tlachiyaliztli ītlahcuilōl',
 'revdelete-hide-image' => 'Tictlātīz tlahcuilōlli ītlapiyaliz',
 'pagehist'             => 'Zāzanilli tlahcuilōlloh',
 'deletedhist'          => 'Ōtlapolo tlahcuilōlloh',
@@ -421,10 +424,12 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'searchresults'            => 'Tlatēmoliztli',
 'searchsubtitle'           => "Ōtictēmōz '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "Ōtictēmōz '''$1'''",
+'noexactmatch'             => "'''Ahmo ia zāzanilli ītōcā \"\$1\".''' Tihuelīti [[:\$1|ticchīhua]].",
 'noexactmatch-nocreate'    => "'''Ahmo ia \"\$1\" zāzanilli.'''",
 'prevn'                    => '$1 achtopa',
 'nextn'                    => 'niman $1',
 'viewprevnext'             => 'Xiquintta ($1) ($2) ($3).',
+'search-redirect'          => '(tlacuepaliztli $1)',
 'search-suggest'           => 'Mohtoa ahnozo: $1',
 'search-interwiki-caption' => 'Tlachīhualiztli īcnīhuān',
 'search-interwiki-more'    => '(huehca ōmpa)',

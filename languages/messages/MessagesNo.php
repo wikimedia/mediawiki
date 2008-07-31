@@ -1291,18 +1291,18 @@ PICT # div.
 # File reversion
 'filerevert'                => 'Tilbakestill $1',
 'filerevert-legend'         => 'Tilbakestill fil',
-'filerevert-intro'          => '<span class="plainlinks">Du tilbakestiller \'\'\'[[Media:$1|$1]]\'\'\' til [$4 versjonen à $2, $3].</span>',
+'filerevert-intro'          => "Du tilbakestiller '''[[Media:$1|$1]]''' til [$4 versjonen à $2, $3].",
 'filerevert-comment'        => 'Kommentar:',
 'filerevert-defaultcomment' => 'Tilbakestilte til versjonen à $1, $2',
 'filerevert-submit'         => 'Tilbakestill',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ble tilbakestilt til [$4 versjonen à $2, $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ble tilbakestilt til [$4 versjonen à $2, $3].",
 'filerevert-badversion'     => 'Det er ingen tidligere lokal versjon av denne filen med det gitte tidstrykket.',
 
 # File deletion
 'filedelete'                  => 'Slett $1',
 'filedelete-legend'           => 'Slett fil',
 'filedelete-intro'            => "Du sletter '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Du sletter versjonen av \'\'\'[[Media:$1|$1]]\'\'\' à [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Du sletter versjonen av '''[[Media:$1|$1]]''' à [$4 $3, $2].",
 'filedelete-comment'          => 'Slettingsårsak:',
 'filedelete-submit'           => 'Slett',
 'filedelete-success'          => "'''$1''' ble slettet.",
@@ -2101,9 +2101,10 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'markedaspatrollederror-noautopatrol' => 'Du kan ikke merke dine egne endringer som godkjente.',
 
 # Patrol log
-'patrol-log-page' => 'Godkjenningslogg',
-'patrol-log-line' => 'merket $1 av $2 godkjent $3',
-'patrol-log-auto' => '(automatisk)',
+'patrol-log-page'   => 'Godkjenningslogg',
+'patrol-log-header' => 'Dette er en logg over patruljerte sideversjoner.',
+'patrol-log-line'   => 'merket $1 av $2 godkjent $3',
+'patrol-log-auto'   => '(automatisk)',
 
 # Image deletion
 'deletedrevision'                 => 'Slettet gammel revisjon $1.',

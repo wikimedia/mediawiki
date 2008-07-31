@@ -3,6 +3,9 @@
  *
  * @ingroup Language
  * @file
+ *
+ * @author ОйЛ
+ * @author לערי ריינהארט
  */
 
 $fallback = 'ru';
@@ -35,27 +38,76 @@ $separatorTransformTable = array(',' => ' ', '.' => ',' );
 $messages = array(
 'linkprefix' => '/^(.*?)(„|«)$/sDu',
 
-'article' => 'Статья',
-'mytalk'  => 'викиавтор сярысь вераськон',
+'article'        => 'Статья',
+'qbspecialpages' => 'Панельёс',
+'mytalk'         => 'викиавтор сярысь вераськон',
 
-'history'       => 'Бамлэн историез',
-'history_short' => 'история',
-'edit'          => 'тупатыны',
+'help'             => 'Валэктонъёс',
+'history'          => 'Бамлэн историез',
+'history_short'    => 'история',
+'printableversion' => 'Печатламон версия',
+'permalink'        => 'Ӵапак та версиезлы линк',
+'edit'             => 'тупатыны',
+'delete'           => 'Быдтыны',
+'protect'          => 'Утьыны',
+'talk'             => 'Вераськон',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'currentevents'        => 'Выль иворъёс',
+'currentevents-url'    => 'Project:Выль иворъёс',
+'helppage'             => 'Help:Валэктон',
+'mainpage'             => 'Кутскон бам',
+'mainpage-description' => 'Кутскон бам',
+
+'editsection' => 'тупатыны',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user' => 'викиавтор',
 
+# General errors
+'viewsource' => 'Кодзэ учкыны',
+
 # Login and logout pages
 'login'         => 'Википедие пырон',
+'logout'        => 'Кошкыны',
+'userlogout'    => 'Кошкыны',
 'createaccount' => 'выль вики-авторлэн регистрациез',
 
 # Preferences page
 'preferences' => 'настройкаос',
 
 # Recent changes
-'hist' => 'история',
+'recentchanges' => 'Выль тупатонъёс',
+'hist'          => 'история',
+
+# Recent changes linked
+'recentchangeslinked' => 'Герӟаськем тупатонъёс',
+
+# Upload
+'upload' => 'Файл поныны',
+
+# Random page
+'randompage' => 'Олокыӵе статья',
+
+# Miscellaneous special pages
+'move' => 'Мукет интые выжтыны',
+
+# Watchlist
+'watchlist' => 'Чаклано статьяос',
+'watch'     => 'Чаклано',
+'unwatch'   => 'Чакламысь дугдыны',
 
 # Contributions
 'mycontris' => 'мынам статьяосы',
+
+# What links here
+'whatlinkshere' => 'Татчы линкъёс',
+
+# Move page
+'movearticle'     => 'Статьяез мукет интые выжтыны',
+'delete_and_move' => 'Быдтыны но мукет интые выжтыны',
+
+# Special:SpecialPages
+'specialpages' => 'Ваньмыз панельёс',
 
 );

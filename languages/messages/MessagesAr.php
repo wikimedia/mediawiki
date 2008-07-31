@@ -11,6 +11,7 @@
  * @author Siebrand
  * @author Gharbeia
  * @author Khaledhosny
+ * @author Jon Harald Søby
  * @author Agurzil
  * @author Mimouni
  * @author ترجمان05
@@ -18,7 +19,6 @@
  * @author Chaos
  * @author לערי ריינהארט
  * @author SPQRobin
- * @author Jon Harald Søby
  * @author Jak
  * @author عصام بايزيدي
  * @author Oxydo
@@ -1605,18 +1605,18 @@ PICT # misc.
 # File reversion
 'filerevert'                => 'استرجع $1',
 'filerevert-legend'         => 'استرجع الملف',
-'filerevert-intro'          => '<span class="plainlinks">أنت تسترجع \'\'\'[[Media:$1|$1]]\'\'\' [$4 لنسخة بتاريخ $2، $3].</span>',
+'filerevert-intro'          => "أنت تسترجع '''[[Media:$1|$1]]''' [$4 لنسخة بتاريخ $2، $3].",
 'filerevert-comment'        => 'تعليق:',
 'filerevert-defaultcomment' => 'استرجع للنسخة بتاريخ $1، $2',
 'filerevert-submit'         => 'استرجع',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' تم استرجاعها [$4 لنسخة بتاريخ $2، $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' تم استرجاعها [$4 لنسخة بتاريخ $2، $3].",
 'filerevert-badversion'     => 'لا توجد نسخة محلية سابقة لهذا الملف بالتاريخ المعطى.',
 
 # File deletion
 'filedelete'                  => 'احذف $1',
 'filedelete-legend'           => 'احذف الملف',
 'filedelete-intro'            => "أنت تحذف '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">أنت تحذف نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ [$4 $3، $2].</span>',
+'filedelete-intro-old'        => "أنت تحذف نسخة '''[[Media:$1|$1]]''' بتاريخ [$4 $3، $2].",
 'filedelete-comment'          => 'السبب للحذف:',
 'filedelete-submit'           => 'حذف',
 'filedelete-success'          => "'''$1''' تم حذفه.",
@@ -2491,10 +2491,11 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'من غير المسموح لك التعليم على تغييراتك الشخصية كمراجعة.',
 
 # Patrol log
-'patrol-log-page' => 'سجل المراجعة',
-'patrol-log-line' => 'علم على $1 من $2 كمراجعة $3',
-'patrol-log-auto' => '(تلقائيا)',
-'patrol-log-diff' => 'ن$1',
+'patrol-log-page'   => 'سجل المراجعة',
+'patrol-log-header' => 'هذا سجل بالمراجعات المراجعة.',
+'patrol-log-line'   => 'علم على $1 من $2 كمراجعة $3',
+'patrol-log-auto'   => '(تلقائيا)',
+'patrol-log-diff'   => 'ن$1',
 
 # Image deletion
 'deletedrevision'                 => 'حذف المراجعة القديمة $1',
@@ -2526,7 +2527,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'معرض الملفات الجديدة',
 'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
-'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة',
+'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة.',
 'showhidebots'          => '($1 بوتات)',
 'noimages'              => 'لا شيء للعرض.',
 'ilsubmit'              => 'بحث',

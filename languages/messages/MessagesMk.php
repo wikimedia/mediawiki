@@ -995,11 +995,11 @@ ID-то на вашето блокирање е $5.
 # File reversion
 'filerevert'                => 'Врати $1',
 'filerevert-legend'         => 'Врати датотека',
-'filerevert-intro'          => '<span class="plainlinks">Ја враќата \'\'\'[[Media:$1|$1]]\'\'\' на [$4 верзија од $3, $2].</span>',
+'filerevert-intro'          => "Ја враќата '''[[Media:$1|$1]]''' на [$4 верзија од $3, $2].",
 'filerevert-comment'        => 'Коментар:',
 'filerevert-defaultcomment' => 'Вратена на верзија од $2, $1',
 'filerevert-submit'         => 'Врати',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' е вратен на [$4 верзија од $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' е вратен на [$4 верзија од $3, $2].",
 'filerevert-badversion'     => 'Нема претходна локална верзија на оваа датотека со даденото време.',
 
 # MIME search

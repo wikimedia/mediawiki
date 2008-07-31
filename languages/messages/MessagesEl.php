@@ -15,12 +15,12 @@
  * @author MF-Warburg
  * @author Siebrand
  * @author Geraki
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Sinopeus
  * @author Demmy
- * @author Jon Harald Søby
- * @author Flyax
  * @author SPQRobin
+ * @author Flyax
  */
 
 /**
@@ -1283,18 +1283,18 @@ $1 ώρες.',
 # File reversion
 'filerevert'                => 'Επαναφορά $1',
 'filerevert-legend'         => 'Επαναφορά αρχείου',
-'filerevert-intro'          => '<span class="plainlinks">Επαναφέρετε το \'\'\'[[Media:$1|$1]]\'\'\' στην [$4 εκδοχή της $3, $2].</span>',
+'filerevert-intro'          => "Επαναφέρετε το '''[[Media:$1|$1]]''' στην [$4 εκδοχή της $3, $2].",
 'filerevert-comment'        => 'Σχόλιο:',
 'filerevert-defaultcomment' => 'Αναστράφηκε στην εκδοχή της $2, $1',
 'filerevert-submit'         => 'Αναστροφή',
-'filerevert-success'        => 'Το <span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' έχει αναστραφεί στην [$4 εκδοχή της $3, $2].</span>',
+'filerevert-success'        => "Το '''[[Media:$1|$1]]''' έχει αναστραφεί στην [$4 εκδοχή της $3, $2].",
 'filerevert-badversion'     => 'Δεν υπάρχει προηγούμενη τοπική έκδοση αυτού του αρχείου με την χρονική σφραγίδα που παραχωρήθηκε.',
 
 # File deletion
 'filedelete'                  => 'Διαγραφή του $1',
 'filedelete-legend'           => 'Διαγραφή αρχείου',
 'filedelete-intro'            => "Διαγράφετε το '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Διαγράφετε την έκδοση του \'\'\'[[Media:$1|$1]]\'\'\' από τις [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Διαγράφετε την έκδοση του '''[[Media:$1|$1]]''' από τις [$4 $3, $2].",
 'filedelete-comment'          => 'Λόγος διαγραφής:',
 'filedelete-submit'           => 'Διαγραφή',
 'filedelete-success'          => "Το αρχείο '''$1''' έχει διαγραφεί.",
@@ -2132,7 +2132,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Πινακοθήκη νέων εικόνων',
 'imagelisttext'         => "Ακολουθεί κατάλογος '''$1''' {{PLURAL:$1|αρχείου|αρχείων}} ταξινομημένων κατά σειρά $2.",
-'newimages-summary'     => 'Αυτή η ειδική σελίδα δείχνει τα πιο πρόσφατα φορτωμένα αρχεία',
+'newimages-summary'     => 'Αυτή η ειδική σελίδα δείχνει τα πιο πρόσφατα φορτωμένα αρχεία.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Δεν υπάρχουν εικόνες.',
 'ilsubmit'              => 'Αναζήτηση',

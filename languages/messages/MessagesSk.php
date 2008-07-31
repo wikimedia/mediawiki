@@ -6,9 +6,9 @@
  *
  * @author Helix84
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Michawiki
- * @author Jon Harald Søby
  * @author Sp5uhe
  * @author Valasek
  * @author Palica
@@ -1335,18 +1335,18 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 # File reversion
 'filerevert'                => 'Obnoviť $1',
 'filerevert-legend'         => 'Obnoviť súbor',
-'filerevert-intro'          => '<span class="plainlinks">Obnovujete \'\'\'[[Media:$1|$1]]\'\'\' na [$4 verziu z $2, $3].</span>',
+'filerevert-intro'          => "Obnovujete '''[[Media:$1|$1]]''' na [$4 verziu z $2, $3].",
 'filerevert-comment'        => 'komentár:',
 'filerevert-defaultcomment' => 'Obnovená verzia z $1, $2',
 'filerevert-submit'         => 'Obnoviť',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' bol obnovený na [$4 verziu z $2, $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' bol obnovený na [$4 verziu z $2, $3].",
 'filerevert-badversion'     => 'Neexistuje predchádzajúca lokálna verzia tohto súboru s požadovanopu časovou známkou.',
 
 # File deletion
 'filedelete'                  => 'Zmazať $1',
 'filedelete-legend'           => 'Zmazať súbor',
 'filedelete-intro'            => "Mažete '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Mažete verziu súboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Mažete verziu súboru '''[[Media:$1|$1]]''' z [$4 $3, $2].",
 'filedelete-comment'          => 'Komentár:',
 'filedelete-submit'           => 'Zmazať',
 'filedelete-success'          => "'''$1''' bol zmazaný.",
@@ -2224,7 +2224,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galéria nových obrázkov',
 'imagelisttext'         => "Tu je zoznam {{PLURAL:$1|jedného súboru|'''$1''' súborov|'''$1''' súborov}} zoradený $2.",
-'newimages-summary'     => 'Táto špeciálna stránka zobrazuje posledné nahrané súbory',
+'newimages-summary'     => 'Táto špeciálna stránka zobrazuje posledné nahrané súbory.',
 'showhidebots'          => '($1 botov)',
 'noimages'              => 'Niet čo zobraziť.',
 'ilsubmit'              => 'Hľadať',

@@ -11,6 +11,7 @@
  * @author Siebrand
  * @author వైజాసత్య
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
@@ -1193,18 +1194,18 @@ $3 చెప్పిన కారణం: ''$2''",
 # File reversion
 'filerevert'                => '$1 ను వెనక్కు తీసుకుపో',
 'filerevert-legend'         => 'ఫైలును వెనక్కు తీసుకుపో',
-'filerevert-intro'          => '<span class="plainlinks">మీరు \'\'\'[[Media:$1|$1]]\'\'\' ను [$3, $2 నాటి $4 కూర్పు]కు తీసుకు వెళ్తున్నారు.</span>',
+'filerevert-intro'          => "మీరు '''[[Media:$1|$1]]''' ను [$3, $2 నాటి $4 కూర్పు]కు తీసుకు వెళ్తున్నారు.",
 'filerevert-comment'        => 'వ్యాఖ్య:',
 'filerevert-defaultcomment' => '$2, $1 నాటి కూర్పుకు తీసుకువెళ్ళాం',
 'filerevert-submit'         => 'వెనక్కు తీసుకువెళ్ళు',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ను  [$3, $2 నాటి $4 కూర్పు]కు తీసుకువెళ్ళాం.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ను  [$3, $2 నాటి $4 కూర్పు]కు తీసుకువెళ్ళాం.",
 'filerevert-badversion'     => 'మీరిచ్చిన టైముస్టాంపుతో ఈ ఫైలుకు స్థానిక కూర్పేమీ లేదు.',
 
 # File deletion
 'filedelete'                  => '$1ని తొలగించు',
 'filedelete-legend'           => 'ఫైలుని తొలగించు',
 'filedelete-intro'            => "'''[[Media:$1|$1]]'''ని మీరు తొలగిస్తున్నారు.",
-'filedelete-intro-old'        => '<span class="plainlinks">మీరు \'\'\'[[Media:$1|$1]]\'\'\' యొక్క  [$4 $3, $2] నాటి కూర్పును తొలగిస్తున్నారు.</span>',
+'filedelete-intro-old'        => "మీరు '''[[Media:$1|$1]]''' యొక్క  [$4 $3, $2] నాటి కూర్పును తొలగిస్తున్నారు.",
 'filedelete-comment'          => 'వ్యాఖ్య:',
 'filedelete-submit'           => 'తొలగించు',
 'filedelete-success'          => "'''$1'''ని తొలగించాం.",

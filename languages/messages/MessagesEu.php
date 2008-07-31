@@ -11,6 +11,7 @@
  * @author Siebrand
  * @author Malafaya
  * @author Kaustubh
+ * @author Jon Harald Søby
  * @author Helix84
  */
 
@@ -1090,7 +1091,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'filedelete'                  => '$1 ezabatu',
 'filedelete-legend'           => 'Fitxategia ezabatu',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' ezabatzen ari zara.",
-'filedelete-intro-old'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'ren bertsioa ezabatzen ari zara, [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "'''[[Media:$1|$1]]'''ren bertsioa ezabatzen ari zara, [$4 $3, $2].",
 'filedelete-comment'          => 'Iruzkina:',
 'filedelete-submit'           => 'Ezabatu',
 'filedelete-success'          => "'''$1''' ezabatu da.",

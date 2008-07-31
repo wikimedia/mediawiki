@@ -7,9 +7,9 @@
  * @author Stretsh
  * @author Adfokati
  * @author Jordi
+ * @author Jon Harald Søby
  * @author Siebrand
  * @author Ooswesthoesbes
- * @author Jon Harald Søby
  */
 
 $fallback = 'nl';
@@ -721,17 +721,17 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 # File reversion
 'filerevert'                => '$1 bakadray',
 'filerevert-legend'         => 'Gefre bakadray',
-'filerevert-intro'          => '<span class="plainlinks">Yu ben \'\'\'[[Media:$1|$1]]\'\'\' bakadrayn tu a [$4 si opo $2, $3]</span>.',
+'filerevert-intro'          => "Yu ben '''[[Media:$1|$1]]''' bakadrayn tu a [$4 si opo $2, $3]",
 'filerevert-comment'        => 'Opotaki:',
 'filerevert-defaultcomment' => 'E bakadray tu a si opo $1, $2',
 'filerevert-submit'         => 'Bakadray',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ben bakadray tu a [$4 si opo $2, $3]</span>.',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ben bakadray tu a [$4 si opo $2, $3]",
 
 # File deletion
 'filedelete'             => '"$1" trowe',
 'filedelete-legend'      => 'Gefre trowe',
 'filedelete-intro'       => "Yu ben '''[[Media:$1|$1]]''' trowen.",
-'filedelete-intro-old'   => '<span class="plainlinks">Yu ben a si fu \'\'\'[[Media:$1|$1]]\'\'\' fu [$4 $3, $2] trowen.</span>',
+'filedelete-intro-old'   => "Yu ben a si fu '''[[Media:$1|$1]]''' fu [$4 $3, $2] trowen.",
 'filedelete-comment'     => 'Opotaki:',
 'filedelete-submit'      => 'Trowe',
 'filedelete-success'     => "'''$1''' ben e trowe.",

@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
  * @author Mxn
@@ -1274,18 +1275,18 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
 'filerevert-legend'         => 'Lùi lại tập tin',
-'filerevert-intro'          => '<span class="plainlinks">Bạn đang lùi \'\'\'[[Media:$1|$1]]\'\'\' về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-intro'          => "Bạn đang lùi '''[[Media:$1|$1]]''' về [$4 phiên bản lúc $3, $2].",
 'filerevert-comment'        => 'Lý do:',
 'filerevert-defaultcomment' => 'Đã lùi về phiên bản lúc $2, $1',
 'filerevert-submit'         => 'Lùi lại',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' đã được lùi về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' đã được lùi về [$4 phiên bản lúc $3, $2].",
 'filerevert-badversion'     => 'Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.',
 
 # File deletion
 'filedelete'                  => 'Xóa $1',
 'filedelete-legend'           => 'Xóa tập tin',
 'filedelete-intro'            => "Bạn đang xóa '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Bạn đang xóa phiên bản của '''[[Media:$1|$1]]''' vào lúc [$4 $3, $2].",
 'filedelete-comment'          => 'Lý do:',
 'filedelete-submit'           => 'Xóa',
 'filedelete-success'          => "'''$1''' đã bị xóa.",

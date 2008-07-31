@@ -11,6 +11,7 @@
  * @author לערי ריינהארט
  * @author Farrukh
  * @author Soroush
+ * @author Jon Harald Søby
  * @author Cbrown1023
  */
 
@@ -1111,18 +1112,18 @@ $1',
 # File reversion
 'filerevert'                => 'Вогардонии $1',
 'filerevert-legend'         => 'Вогардонии парванда',
-'filerevert-intro'          => '<span class="plainlinks">Шумо дар ҳоли вогардонии \'\'\'[[Media:$1|$1]]\'\'\' ба [$4 нусхаи аз $3, $2] ҳастед.</span>',
+'filerevert-intro'          => "Шумо дар ҳоли вогардонии '''[[Media:$1|$1]]''' ба [$4 нусхаи аз $3, $2] ҳастед.",
 'filerevert-comment'        => 'Тавзеҳ:',
 'filerevert-defaultcomment' => 'Вогардонӣ ба нусхаи $2, $1',
 'filerevert-submit'         => 'бирав',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' вогардонида шуд ба [нусхаи $4 аз таърихи $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' вогардонида шуд ба [нусхаи $4 аз таърихи $3, $2].",
 'filerevert-badversion'     => 'Нусхаи кӯҳнатаре аз ин парванда вуҷуд надошт.',
 
 # File deletion
 'filedelete'                  => 'Ҳазфи $1',
 'filedelete-legend'           => 'Ҳазфи парванда',
 'filedelete-intro'            => "Шумо дар ҳоли ҳазф кардани '''[[Media:$1|$1]]''' ҳастед.",
-'filedelete-intro-old'        => '<span class="plainlinks">Шумо дар ҳоли ҳазфи нусхаи \'\'\'[[Media:$1|$1]]\'\'\' аз таърихи [$4 $3, $2] ҳастед.</span>',
+'filedelete-intro-old'        => "Шумо дар ҳоли ҳазфи нусхаи '''[[Media:$1|$1]]''' аз таърихи [$4 $3, $2] ҳастед.",
 'filedelete-comment'          => 'Сабаби ҳазф:',
 'filedelete-submit'           => 'Ҳазф',
 'filedelete-success'          => "'''$1''' ҳазф шуд.",
@@ -1929,7 +1930,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Намоишгоҳи парвандаҳои ҷадид',
 'imagelisttext'         => "Дар зер феҳристи '''$1''' {{PLURAL:$1|парвандаи|парвандаҳои}} ба тартиб оварда шуда, омадааст $2.",
-'newimages-summary'     => 'Ин саҳифаи вижа охирин парвандаҳои боршударо намоиш медиҳад',
+'newimages-summary'     => 'Ин саҳифаи вижа охирин парвандаҳои боршударо намоиш медиҳад.',
 'showhidebots'          => '($1 ботҳо)',
 'noimages'              => 'Чизе барои дидан нест.',
 'ilsubmit'              => 'Ҷустуҷӯи',

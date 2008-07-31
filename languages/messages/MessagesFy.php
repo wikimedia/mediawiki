@@ -10,6 +10,7 @@
  * @author לערי ריינהארט
  * @author SPQRobin
  * @author Maartenvdbent
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -989,7 +990,7 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 # File deletion
 'filedelete'           => 'Wiskje $1',
 'filedelete-legend'    => 'Wiskje triem',
-'filedelete-intro-old' => '<span class="plainlinks">Jo wiskje de ferzje fan \'\'\'[[Media:$1|$1]]\'\'\' fan [$4 $3, $2].</span>',
+'filedelete-intro-old' => "Jo wiskje de ferzje fan '''[[Media:$1|$1]]''' fan [$4 $3, $2].",
 'filedelete-comment'   => 'Reden foar it wiskjen:',
 'filedelete-submit'    => 'Wiskje',
 

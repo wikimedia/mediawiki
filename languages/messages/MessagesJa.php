@@ -13,6 +13,7 @@
  * @author Emk
  * @author Mzm5zbC3
  * @author Iwai.masaharu
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Aotake
  * @author Kkkdc
@@ -1115,18 +1116,18 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # File reversion
 'filerevert'                => '$1 を差し戻す',
 'filerevert-legend'         => 'ファイルを差し戻す',
-'filerevert-intro'          => '<span class="plainlinks">あなたは\'\'\'[[Media:$1|$1]]\'\'\'の[$4 $3, $2]の版を差し戻そうとしています。</span>',
+'filerevert-intro'          => "あなたは'''[[Media:$1|$1]]'''の[$4 $3, $2]の版を差し戻そうとしています。",
 'filerevert-comment'        => 'コメント:',
 'filerevert-defaultcomment' => '$1 $2 の版へ差し戻し',
 'filerevert-submit'         => '差し戻す',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'は[$4 $3, $2]の版に差し戻されました。</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''は[$4 $3, $2]の版に差し戻されました。",
 'filerevert-badversion'     => '指定されたタイムスタンプより前の版のファイルはありません。',
 
 # File deletion
 'filedelete'                  => '$1の削除',
 'filedelete-legend'           => 'ファイルの削除',
 'filedelete-intro'            => "あなたは'''[[Media:$1|$1]]'''を削除しようとしています。",
-'filedelete-intro-old'        => '<span class="plainlinks">あなたは\'\'\'[[Media:$1|$1]]\'\'\'の[$4 $3, $2]の版を削除しようとしています。</span>',
+'filedelete-intro-old'        => "あなたは'''[[Media:$1|$1]]'''の[$4 $3, $2]の版を削除しようとしています。",
 'filedelete-comment'          => 'コメント:',
 'filedelete-submit'           => '削除する',
 'filedelete-success'          => "'''$1''' は削除されました。",

@@ -17,6 +17,7 @@
  * @author Mach
  * @author לערי ריינהארט
  * @author Mskyrider
+ * @author Jon Harald Søby
  * @author Myildirim2007
  */
 
@@ -1753,7 +1754,7 @@ Lütfen başka bir isim deneyiniz.',
 # Special:Newimages
 'newimages'             => 'Yeni resimler',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş '''$1''' adet dosyayı göstermektedir.",
-'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir',
+'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir.',
 'showhidebots'          => '(botları $1)',
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',

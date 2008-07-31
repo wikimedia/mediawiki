@@ -11,13 +11,13 @@
  * @author Pasqual (ca)
  * @author Iradigalesc
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Jordi Roqué
  * @author Vriullop
  * @author Juanpabl
  * @author Spacebirdy
- * @author Pérez
- * @author Jon Harald Søby
  * @author McDutchie
+ * @author Pérez
  * @author SPQRobin
  * @author Smeira
  */
@@ -1302,18 +1302,18 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 # File reversion
 'filerevert'                => 'Reverteix $1',
 'filerevert-legend'         => 'Reverteix el fitxer',
-'filerevert-intro'          => '<span class="plainlinks">Esteu revertint \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 versió de  $3, $2].</span>',
+'filerevert-intro'          => "Esteu revertint '''[[Media:$1|$1]]''' a la [$4 versió de  $3, $2].",
 'filerevert-comment'        => 'Comentari:',
 'filerevert-defaultcomment' => "S'ha revertit a la versió com de $2, $1",
 'filerevert-submit'         => 'Reverteix',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha estat revertit a la [$4 versió de $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ha estat revertit a la [$4 versió de $3, $2].",
 'filerevert-badversion'     => "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",
 
 # File deletion
 'filedelete'                  => 'Suprimeix $1',
 'filedelete-legend'           => 'Suprimeix el fitxer',
 'filedelete-intro'            => "Esteu eliminant '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Esteu eliminant la versió de \'\'\'[[Media:$1|$1]]\'\'\' com de [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Esteu eliminant la versió de '''[[Media:$1|$1]]''' com de [$4 $3, $2].",
 'filedelete-comment'          => 'Comentari:',
 'filedelete-submit'           => 'Suprimeix',
 'filedelete-success'          => "'''$1''' s'ha eliminat.",
@@ -2167,9 +2167,10 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'markedaspatrollederror-noautopatrol' => 'No podeu marcar les vostres pròpies modificacions com a supervisades.',
 
 # Patrol log
-'patrol-log-page' => 'Registre de supervisió',
-'patrol-log-line' => "s'ha marcat la versió $1 de $2 com a supervisat $3",
-'patrol-log-auto' => '(automàtic)',
+'patrol-log-page'   => 'Registre de supervisió',
+'patrol-log-header' => 'Això és un registre de les revisions patrullades.',
+'patrol-log-line'   => "s'ha marcat la versió $1 de $2 com a supervisat $3",
+'patrol-log-auto'   => '(automàtic)',
 
 # Image deletion
 'deletedrevision'                 => "S'ha eliminat la revisió antiga $1.",
@@ -2201,12 +2202,15 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galeria de nous fitxers',
 'imagelisttext'         => "Llista {{PLURAL:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
-'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats',
+'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Res per veure.',
 'ilsubmit'              => 'Cerca',
 'bydate'                => 'per data',
 'sp-newimages-showfrom' => 'Mostra fitxers nous des del $1 a les $2',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes-abbrev' => 'min',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:
@@ -2604,8 +2608,8 @@ Proveu-ho amb la previsualització normal.',
 Proveu-ho amb la previsualització normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Els canvis més nous de $1 segons podrien no mostrar-se a la llista.',
-'lag-warn-high'   => 'A causa de la lenta resposta del servidor de base de dades, els canvis més nous de $1 segons potser no es mostren aquesta llista.',
+'lag-warn-normal' => 'Els canvis més nous de $1 {{PLURAL:$1|segon|segons}} podrien no mostrar-se a la llista.',
+'lag-warn-high'   => 'A causa de la lenta resposta del servidor de base de dades, els canvis més nous de $1 {{PLURAL:$1|segon|segons}} potser no es mostren aquesta llista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'La vostra llista de seguiment conté {{PLURAL:$1|1 títol|$1 títols}}, excloent-ne les pàgines de discussió.',

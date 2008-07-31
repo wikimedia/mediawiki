@@ -253,6 +253,7 @@ $messages = array(
 'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
 
 # Search results
+'searchresults'            => 'иска́ниꙗ ито́гъ',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
 'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
 'searchall'                => 'вьсꙗ́',

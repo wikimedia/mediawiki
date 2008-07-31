@@ -7,8 +7,8 @@
  * @author Symane
  * @author Vipuser
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'zh-hant';
@@ -939,18 +939,18 @@ $2',
 # File reversion
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
-'filerevert-intro'          => '<span class="plainlinks">眼下倷在恢復\'\'\'[[Media:$1|$1]]\'\'\'到[$4 於$2 $3嗰版本]。</span>',
+'filerevert-intro'          => "眼下倷在恢復'''[[Media:$1|$1]]'''到[$4 於$2 $3嗰版本]。",
 'filerevert-comment'        => '說明:',
 'filerevert-defaultcomment' => '恢復到嘞$1, $2嗰版本',
 'filerevert-submit'         => '恢復',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'恢復到嘞[$4 於$2 $3嗰版本]。</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''恢復到嘞[$4 於$2 $3嗰版本]。",
 'filerevert-badversion'     => '箇隻檔案所提供嗰時間標記並冇早先嗰本地版本。',
 
 # File deletion
 'filedelete'                  => '刪吥 $1',
 'filedelete-legend'           => '刪吥檔案',
 'filedelete-intro'            => "倷正刪吥'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => '<span class="plainlinks">倷正刪吥\'\'\'[[Media:$1|$1]]\'\'\'到[$4 $2 $3]嗰版本。</span>',
+'filedelete-intro-old'        => "倷正刪吥'''[[Media:$1|$1]]'''到[$4 $2 $3]嗰版本。",
 'filedelete-comment'          => '說明:',
 'filedelete-submit'           => '刪吥',
 'filedelete-success'          => "'''$1'''刪吥嘞。",

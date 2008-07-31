@@ -14,6 +14,7 @@
  * @author Treecko
  * @author לערי ריינהארט
  * @author Suradnik13
+ * @author Jon Harald Søby
  * @author Demicx
  */
 
@@ -1205,18 +1206,18 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 # File reversion
 'filerevert'                => 'Ukloni ← $1',
 'filerevert-legend'         => 'Vrati datoteku',
-'filerevert-intro'          => '<span class="plainlinks">Vraćate \'\'\'[[Media:$1|$1]]\'\'\' na [$4 promjenu od $3, $2].</span>',
+'filerevert-intro'          => "Vraćate '''[[Media:$1|$1]]''' na [$4 promjenu od $3, $2].",
 'filerevert-comment'        => 'Komentar:',
 'filerevert-defaultcomment' => 'Vraćeno na inačicu od $2, $1',
 'filerevert-submit'         => 'Vrati',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' je vraćena na [$4 promjenu od $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' je vraćena na [$4 promjenu od $3, $2].",
 'filerevert-badversion'     => 'Nema prethodne lokalne inačice datoteke s zadanim datumom i vremenom.',
 
 # File deletion
 'filedelete'                  => 'Izbriši $1',
 'filedelete-legend'           => 'Izbriši datoteku',
 'filedelete-intro'            => "Brišete datoteku '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Brišete inačicu \'\'\'[[Media:$1|$1]]\'\'\' od [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Brišete inačicu '''[[Media:$1|$1]]''' od [$4 $3, $2].",
 'filedelete-comment'          => 'Komentar:',
 'filedelete-submit'           => 'Izbriši',
 'filedelete-success'          => "Datoteka '''$1''' je izbrisana.",
@@ -2087,7 +2088,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerija novih datoteka',
 'imagelisttext'         => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
-'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke',
+'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke.',
 'showhidebots'          => '($1 botova)',
 'noimages'              => 'Nema slika.',
 'ilsubmit'              => 'Traži',

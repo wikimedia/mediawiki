@@ -10,8 +10,8 @@
  * @author Siebrand
  * @author Kale
  * @author לערי ריינהארט
- * @author Јованвб
  * @author Jon Harald Søby
+ * @author Јованвб
  */
 
 $namespaceNames = array(
@@ -1353,18 +1353,18 @@ ID ваше блокаде је $5. Молимо вас наведите ова�
 # File reversion
 'filerevert'                => 'Врати $1',
 'filerevert-legend'         => 'Врати фајл',
-'filerevert-intro'          => '<span class="plainlinks">Враћате \'\'\'[[Media:$1|$1]]\'\'\' на [$4 верзију од $3, $2].</span>',
+'filerevert-intro'          => "Враћате '''[[Media:$1|$1]]''' на [$4 верзију од $3, $2].",
 'filerevert-comment'        => 'Коментар:',
 'filerevert-defaultcomment' => 'Враћено на верзију од $2, $1',
 'filerevert-submit'         => 'Врати',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' је враћен на [$4 верзију од $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' је враћен на [$4 верзију од $3, $2].",
 'filerevert-badversion'     => 'Не постоји претходна локална верзија фајла са унесеним временом.',
 
 # File deletion
 'filedelete'                  => 'Обриши $1',
 'filedelete-legend'           => 'Обриши фајл',
 'filedelete-intro'            => "Бришете '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Бришете верзију фајла \'\'\'[[Media:$1|$1]]\'\'\' од [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Бришете верзију фајла '''[[Media:$1|$1]]''' од [$4 $3, $2].",
 'filedelete-comment'          => 'Коментар:',
 'filedelete-submit'           => 'Обриши',
 'filedelete-success'          => "'''$1''' је обрисан.",

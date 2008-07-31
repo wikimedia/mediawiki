@@ -7,8 +7,9 @@
  * @author Smeira
  * @author Malafaya
  * @author Siebrand
- * @author SPQRobin
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -1170,18 +1171,18 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 # File reversion
 'filerevert'                => 'Geükön padi: $1',
 'filerevert-legend'         => 'Geükön ragivi',
-'filerevert-intro'          => '<span class="plainlinks">Anu geükol padi: \'\'\'[[Media:$1|$1]]\'\'\' ad [fomam $4: $3, $2].</span>',
+'filerevert-intro'          => "Anu geükol padi: '''[[Media:$1|$1]]''' ad [fomam $4: $3, $2].",
 'filerevert-comment'        => 'Küpet:',
 'filerevert-defaultcomment' => 'Pegeükon ad fomam: $2, $1',
 'filerevert-submit'         => 'Geükön',
-'filerevert-success'        => '<span class="plainlinks">Pad: \'\'\'[[Media:$1|$1]]\'\'\' pegeükon ad [fomam $4: $3, $2].</span>',
+'filerevert-success'        => "Pad: '''[[Media:$1|$1]]''' pegeükon ad [fomam $4: $3, $2].",
 'filerevert-badversion'     => 'No dabinon fomam topik büik ragiva at labü timamäk pegevöl',
 
 # File deletion
 'filedelete'                  => 'Moükön padi: $1',
 'filedelete-legend'           => 'Moükön ragivi',
 'filedelete-intro'            => "Moükol padi: '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Anu moükol fomami pada: \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Anu moükol fomami pada: '''[[Media:$1|$1]]''' [$4 $3, $2].",
 'filedelete-comment'          => 'Küpet:',
 'filedelete-submit'           => 'Moükön',
 'filedelete-success'          => "'''$1''' pemoükon.",

@@ -11,6 +11,7 @@
  * @author BloodIce
  * @author לערי ריינהארט
  * @author Петър Петров
+ * @author Jon Harald Søby
  * @author Daggerstab
  */
 
@@ -1362,18 +1363,18 @@ $2',
 # File reversion
 'filerevert'                => 'Възвръщане на $1',
 'filerevert-legend'         => 'Възвръщане на файла',
-'filerevert-intro'          => '<span class="plainlinks">Възвръщане на \'\'\'[[Media:$1|$1]]\'\'\' към [$4 версията от $3, $2].</span>',
+'filerevert-intro'          => "Възвръщане на '''[[Media:$1|$1]]''' към [$4 версията от $3, $2].",
 'filerevert-comment'        => 'Коментар:',
 'filerevert-defaultcomment' => 'Възвръщане към версия от $2, $1',
 'filerevert-submit'         => 'Възвръщане',
-'filerevert-success'        => '<span class="plainlinks">Файлът \'\'\'[[Media:$1|$1]]\'\'\' беше възвърнат към [$4 версия от $3, $2].</span>',
+'filerevert-success'        => "Файлът '''[[Media:$1|$1]]''' беше възвърнат към [$4 версия от $3, $2].",
 'filerevert-badversion'     => 'Не съществува предишна локална версия на файла със зададения времеви отпечатък.',
 
 # File deletion
 'filedelete'                  => 'Изтриване на $1',
 'filedelete-legend'           => 'Изтриване на файл',
 'filedelete-intro'            => "На път сте да изтриете '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Изтривате версията на \'\'\'[[Media:$1|$1]]\'\'\' към [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Изтривате версията на '''[[Media:$1|$1]]''' към [$4 $3, $2].",
 'filedelete-comment'          => 'Коментар:',
 'filedelete-submit'           => 'Изтриване',
 'filedelete-success'          => "Файлът '''$1''' беше изтрит.",
@@ -2182,10 +2183,11 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'Не е разрешено да маркирате своите редакции като проверени.',
 
 # Patrol log
-'patrol-log-page' => 'Дневник на патрула',
-'patrol-log-line' => 'отбеляза $1 от $2 като проверена $3',
-'patrol-log-auto' => '(автоматично)',
-'patrol-log-diff' => 'версия $1',
+'patrol-log-page'   => 'Дневник на патрула',
+'patrol-log-header' => 'Тази страница съдържа дневник на проверените версии.',
+'patrol-log-line'   => 'отбеляза $1 от $2 като проверена $3',
+'patrol-log-auto'   => '(автоматично)',
+'patrol-log-diff'   => 'версия $1',
 
 # Image deletion
 'deletedrevision'                 => 'Изтрита стара версия $1',

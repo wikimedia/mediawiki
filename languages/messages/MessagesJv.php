@@ -7,6 +7,7 @@
  * @author Meursault2004
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Helix84
  */
 
@@ -1119,18 +1120,18 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 # File reversion
 'filerevert'                => 'Balèkna $1',
 'filerevert-legend'         => 'Balèkna berkas',
-'filerevert-intro'          => '<span class="plainlinks">Panjenengan mbalèkaké \'\'\'[[Media:$1|$1]]\'\'\' menyang [vèrsi $4 ing $3, $2].</span>',
+'filerevert-intro'          => "Panjenengan mbalèkaké '''[[Media:$1|$1]]''' menyang [vèrsi $4 ing $3, $2].",
 'filerevert-comment'        => 'Komentar:',
 'filerevert-defaultcomment' => 'Dibalèkaké menyang vèrsi ing $2, $1',
 'filerevert-submit'         => 'Balèkna',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wis dibalèkaké menyang [vèrsi $4 ing $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' wis dibalèkaké menyang [vèrsi $4 ing $3, $2].",
 'filerevert-badversion'     => 'Ora ana vèrsi lokal sadurungé saka berkas iki mawa stèmpel wektu sing dikarepaké.',
 
 # File deletion
 'filedelete'                  => 'Mbusak $1',
 'filedelete-legend'           => 'Mbusak berkas',
 'filedelete-intro'            => "Panjenengan mbusak '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Panjenengan mbusak vèrsi \'\'\'[[Media:$1|$1]]\'\'\' per [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Panjenengan mbusak vèrsi '''[[Media:$1|$1]]''' per [$4 $3, $2].",
 'filedelete-comment'          => 'Alesan mbusak:',
 'filedelete-submit'           => 'Busak',
 'filedelete-success'          => "'''$1''' wis dibusak.",
@@ -1955,7 +1956,7 @@ Mbok-menawa iki disebabaké anané pranala jaba tartamtu.',
 # Special:Newimages
 'newimages'             => 'Galeri berkas anyar',
 'imagelisttext'         => "Ing ngisor iki kapacak daftar '''$1''' {{PLURAL:$1|berkas|berkas}} sing diurutaké $2.",
-'newimages-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké daftar berkas anyar dhéwé sing diunggahaké',
+'newimages-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké daftar berkas anyar dhéwé sing diunggahaké.',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Ora ana sing dideleng.',
 'ilsubmit'              => 'Golek',

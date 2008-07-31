@@ -7,8 +7,9 @@
  * @author SPQRobin
  * @author Siebrand
  * @author Tauʻolunga
- * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Cbrown1023
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -579,11 +580,11 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 # File reversion
 'filerevert'                => 'Toe foki $1 ki hono tuʻunga muʻa',
 'filerevert-legend'         => 'Toe foki ʻa e faile ki hono tuʻunga muʻa',
-'filerevert-intro'          => '<span class="plainlinks">ʻOku ke toe foki ʻa e \'\'\'[[Media:$1|$1]]\'\'\' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.</span>',
+'filerevert-intro'          => "ʻOku ke toe foki ʻa e '''[[Media:$1|$1]]''' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.",
 'filerevert-comment'        => 'Fakamatala:',
 'filerevert-defaultcomment' => 'Kuo toe foki $1 ki hono tuʻunga muʻa ʻo e $2',
 'filerevert-submit'         => 'Toe foki ki hono tuʻunga muʻa',
-'filerevert-success'        => '<span class="plainlinks">Kuo toe foki ʻa e \'\'\'[[Media:$1|$1]]\'\'\' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.</span>',
+'filerevert-success'        => "Kuo toe foki ʻa e '''[[Media:$1|$1]]''' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.",
 
 # MIME search
 'mimesearch' => 'Kumi fakaMIME',

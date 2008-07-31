@@ -1077,18 +1077,18 @@ PICT # de totes sôrtes
 # File reversion
 'filerevert'                => 'Rèvocar $1',
 'filerevert-legend'         => 'Rèvocar lo fichiér',
-'filerevert-intro'          => '<span class="plainlinks">Vos voléd rèvocar \'\'\'[[Media:$1|$1]]\'\'\' tant qu’a [$4 la vèrsion du $2 a $3].</span>',
+'filerevert-intro'          => "Vos voléd rèvocar '''[[Media:$1|$1]]''' tant qu’a [$4 la vèrsion du $2 a $3].",
 'filerevert-comment'        => 'Comentèro :',
 'filerevert-defaultcomment' => 'Rèvocâ tant qu’a la vèrsion du $1 a $2',
 'filerevert-submit'         => 'Rèvocar',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' at étâ rèvocâ tant qu’a [$4 la vèrsion du $2 a $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' at étâ rèvocâ tant qu’a [$4 la vèrsion du $2 a $3].",
 'filerevert-badversion'     => 'Y at pas de vèrsion ples vielye du fichiér avouéc la dâta balyê.',
 
 # File deletion
 'filedelete'                  => 'Suprime $1',
 'filedelete-legend'           => 'Suprimar lo fichiér',
 'filedelete-intro'            => "Vos éte aprés suprimar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Vos éte aprés èfaciér la vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 a $3].</span>',
+'filedelete-intro-old'        => "Vos éte aprés èfaciér la vèrsion de '''[[Media:$1|$1]]''' du [$4 $2 a $3].",
 'filedelete-comment'          => 'Comentèro :',
 'filedelete-submit'           => 'Suprimar',
 'filedelete-success'          => "'''$1''' at étâ suprimâ.",

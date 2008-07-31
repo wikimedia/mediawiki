@@ -12,12 +12,12 @@
  * @author Siebrand
  * @author Gianfranco
  * @author Felis
- * @author Broc
  * @author לערי ריינהארט
+ * @author Broc
  * @author .anaconda
  * @author Ramac
- * @author Xpensive
  * @author S.Örvarr.S
+ * @author Xpensive
  * @author Nick1915
  * @author SPQRobin
  * @author Tonyfroio
@@ -1289,18 +1289,18 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 # File reversion
 'filerevert'                => 'Ripristina $1',
 'filerevert-legend'         => 'Ripristina file',
-'filerevert-intro'          => '<span class="plainlinks">Si sta per ripristinare il file \'\'\'[[Media:$1|$1]]\'\'\' alla [versione $4 del $2, $3].</span>',
+'filerevert-intro'          => "Si sta per ripristinare il file '''[[Media:$1|$1]]''' alla [$4 versione del $2, $3].",
 'filerevert-comment'        => 'Oggetto:',
 'filerevert-defaultcomment' => 'Ripristinata la versione del $2, $1',
 'filerevert-submit'         => 'Ripristina',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'Il file [[Media:$1|$1]]\'\'\' è stato ripristinato alla [$4 versione del $2, $3].</span>',
+'filerevert-success'        => "'''Il file [[Media:$1|$1]]''' è stato ripristinato alla [$4 versione del $2, $3].",
 'filerevert-badversion'     => 'Non esistono versioni locali precedenti del file con il timestamp richiesto.',
 
 # File deletion
 'filedelete'                  => 'Cancella $1',
 'filedelete-legend'           => 'Cancella il file',
 'filedelete-intro'            => "Stai per cancellare '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Stai cancellando la versione di \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Stai cancellando la versione di '''[[Media:$1|$1]]''' del [$4 $2, $3].",
 'filedelete-comment'          => 'Motivo della cancellazione:',
 'filedelete-submit'           => 'Cancella',
 'filedelete-success'          => "Il file '''$1''' è stato cancellato.",
@@ -2123,10 +2123,11 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'markedaspatrollederror-noautopatrol' => 'Non si dispone dei permessi necessari per segnare le proprie modifiche come verificate.',
 
 # Patrol log
-'patrol-log-page' => 'Modifiche verificate',
-'patrol-log-line' => 'ha segnato la $1 alla pagina $2 come verificata $3',
-'patrol-log-auto' => '(verifica automatica)',
-'patrol-log-diff' => 'modifica $1',
+'patrol-log-page'   => 'Modifiche verificate',
+'patrol-log-header' => 'Di seguito sono elencate le verifiche delle modifiche.',
+'patrol-log-line'   => 'ha segnato la $1 alla pagina $2 come verificata $3',
+'patrol-log-auto'   => '(verifica automatica)',
+'patrol-log-diff'   => 'modifica $1',
 
 # Image deletion
 'deletedrevision'                 => 'Cancellata la vecchia revisione di $1.',
@@ -2158,7 +2159,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleria dei nuovi file',
 'imagelisttext'         => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
-'newimages-summary'     => 'Questa pagina speciale mostra i file caricati più di recente',
+'newimages-summary'     => 'Questa pagina speciale mostra i file caricati più di recente.',
 'showhidebots'          => '($1 i bot)',
 'noimages'              => "Non c'è nulla da vedere.",
 'ilsubmit'              => 'Ricerca',

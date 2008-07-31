@@ -8,6 +8,7 @@
  * @author Siebrand
  * @author Aurora
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Putera Luqman Tunku Andre
  * @author Kurniasan
  */
@@ -946,8 +947,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mwsuggest-disable'         => 'Matikan ciri cadangan AJAX',
 'searchrelated'             => 'berkaitan',
 'searchall'                 => 'semua',
-'showingresults'            => 'Terpapar di bawah adalah hasil pencarian dari <b>$1</b> hingga <b>$2</b>.',
-'showingresultsnum'         => 'Terpapar di bawah <b>$3</b> adalah hasil pencarian yang bermula dengan #<b>$2</b>.',
+'showingresults'            => "Berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
+'showingresultsnum'         => "Berikut ialah '''$3''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 'showingresultstotal'       => "Berikut ialah {{PLURAL:$3|hasil '''$1'''|hasil '''$1 - $2'''}} daripada '''$3'''",
 'nonefound'                 => "'''Catatan''': Kegagalan pencarian biasanya
 disebabkan oleh pencarian perkataan-perkataan yang terlalu umum, seperti \"ada\"
@@ -2157,10 +2158,11 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'markedaspatrollederror-noautopatrol' => 'Anda tidak dibenarkan menandakan perubahan anda sendiri sebagai telah diperiksa.',
 
 # Patrol log
-'patrol-log-page' => 'Log pemeriksaan',
-'patrol-log-line' => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
-'patrol-log-auto' => '(automatik)',
-'patrol-log-diff' => 's$1',
+'patrol-log-page'   => 'Log pemeriksaan',
+'patrol-log-header' => 'Berikut ialah log rondaan bagi semakan.',
+'patrol-log-line'   => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
+'patrol-log-auto'   => '(automatik)',
+'patrol-log-diff'   => 's$1',
 
 # Image deletion
 'deletedrevision'                 => 'Menghapuskan semakan lama $1.',
@@ -2192,7 +2194,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galeri fail baru',
 'imagelisttext'         => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
-'newimages-summary'     => 'Laman khas ini memaparkan senarai fail muat naik terakhir',
+'newimages-summary'     => 'Laman khas ini memaparkan senarai fail muat naik terakhir.',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Tiada imej.',
 'ilsubmit'              => 'Cari',

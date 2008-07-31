@@ -8,6 +8,7 @@
  * @author Kaustubh
  * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author प्रणव कुलकर्णी
  * @author Angela
  * @author Hemanshu
@@ -1289,18 +1290,18 @@ $3ने ''$2'' कारण दिले आहे.",
 # File reversion
 'filerevert'                => '$1 पूर्वपद',
 'filerevert-legend'         => 'संचिका पूर्वपदास',
-'filerevert-intro'          => '<span class="plainlinks">तुम्ही [$3, $2 प्रमाणे आवर्तन$4 कडे] [[Media:$1|$1]]  उलटवत आहात.</span>',
+'filerevert-intro'          => 'तुम्ही [$3, $2 प्रमाणे आवर्तन$4 कडे] [[Media:$1|$1]]  उलटवत आहात.',
 'filerevert-comment'        => 'प्रतिक्रीया:',
 'filerevert-defaultcomment' => '$2, $1 च्या आवृत्तीत पूर्वपदास',
 'filerevert-submit'         => 'पूर्वपद',
-'filerevert-success'        => '<span class="plainlinks"> [$3, $2 प्रमाणे आवर्तन $4]कडे \'\'\'[[Media:$1|$1]]\'\'\' उलटवण्यात आली.</span>',
+'filerevert-success'        => "[$3, $2 प्रमाणे आवर्तन $4]कडे '''[[Media:$1|$1]]''' उलटवण्यात आली.",
 'filerevert-badversion'     => 'दिलेलेल्या वेळ मापनानुसार,या संचिकेकरिता कोणतीही पूर्वीची स्थानिक आवृत्ती नाही.',
 
 # File deletion
 'filedelete'                  => '$1 वगळा',
 'filedelete-legend'           => 'संचिका वगळा',
 'filedelete-intro'            => "तुम्ही '''[[Media:$1|$1]]''' वगळत आहात.",
-'filedelete-intro-old'        => '<span class="plainlinks">[$4 $3, $2]च्या वेळेचे \'\'\'[[Media:$1|$1]]\'\'\'चे आवर्तन तुम्ही वगळत आहात.</span>',
+'filedelete-intro-old'        => "[$4 $3, $2]च्या वेळेचे '''[[Media:$1|$1]]'''चे आवर्तन तुम्ही वगळत आहात.",
 'filedelete-comment'          => 'वगळ्ण्याची कारणे:',
 'filedelete-submit'           => 'वगळा',
 'filedelete-success'          => "'''$1'''वगळण्यात आले.",

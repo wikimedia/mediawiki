@@ -14,4 +14,7 @@ $messages = array(
 'mainpage'             => 'Ихадоу адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
 
+# Edit pages
+'summary' => 'Ятарлă саспаллисем:',
+
 );
