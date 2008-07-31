@@ -142,6 +142,9 @@ tradphrases_4.t: alltradphrases.t
 tradphrases.t: tradphrases.manual tradphrases_2.t tradphrases_3.t tradphrases_4.t t2s_1tomany.t
 	cat tradphrases.manual tradphrases_2.t tradphrases_3.t tradphrases_4.t |sort | uniq > tradphrases.t
 	for i in `$(SED) 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i tradphrases.t ; done | $(DIFF) tradphrases.t - | $(GREP) '<' | $(SED) 's/< //' > t
+	for i in `$(SED) 's/"\(..\)..*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i tradphrases.t ; done | $(DIFF) tradphrases.t - | $(GREP) '<' | $(SED) 's/< //' >> t
+	mv t tradphrases.t
+	cat tradphrases.t | sort | uniq > t
 	mv t tradphrases.t
 
 tradphrases.notsure: tradphrases_2.t tradphrases_3.t tradphrases_4.t t2s_1tomany.t
@@ -189,8 +192,10 @@ simpphrases_4.t: allsimpphrases.t
 simpphrases.t: simpphrases.manual simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
 	cat simpphrases.manual simpphrases_2.t simpphrases_3.t simpphrases_4.t > simpphrases.t
 	for i in `$(SED) 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i simpphrases.t ; done | $(DIFF) simpphrases.t - | $(GREP) '<' | $(SED) 's/< //' > t
+	for i in `$(SED) 's/"\(..\)..*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i simpphrases.t ; done | $(DIFF) simpphrases.t - | $(GREP) '<' | $(SED) 's/< //' >> t
 	mv t simpphrases.t
-
+	cat simpphrases.t | sort | uniq > t
+	mv t simpphrases.t
 
 simpphrases.notsure: simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany.t
 	cat simpphrases_2.t simpphrases_3.t simpphrases_4.t > t
@@ -212,24 +217,30 @@ simp2trad1to1.t: s2t_1tomany.t s2t_1to1.t simp2trad.manual simp2trad_noconvert.m
 	cat simp2trad1to1.t | $(GREP) -vf simp2trad_noconvert.manual > tt
 	mv tt simp2trad1to1.t
 
-trad2simp.php: trad2simp1to1.t tradphrases.t
+trad2simp.php: trad2simp1to1.t tradphrases.t trad2simp_supp_unset.manual
 	printf '<?php\n$$trad2simp=array(' > trad2simp.php
 	cat trad2simp1to1.t >> trad2simp.php
 	printf ');\n$$str=\n"' >> trad2simp.php
 	cat tradphrases.t >> trad2simp.php
 	printf '";\n$$t=strtr($$str, $$trad2simp);\necho $$t;\n?>' >> trad2simp.php
+	cat trad2simp1to1.t | $(GREP) -vf trad2simp_supp_unset.manual > tt
+	mv tt trad2simp1to1.t
 
-simp2trad.php: simp2trad1to1.t simpphrases.t
+simp2trad.php: simp2trad1to1.t simpphrases.t simp2trad_supp_set.manual
 	printf '<?php\n$$simp2trad=array(' > simp2trad.php
 	cat simp2trad1to1.t >> simp2trad.php
+	$(SED) 's/\(.*\)\t\(.*\)/"\1" => "\2",/' simp2trad_supp_set.manual >> simp2trad.php
 	printf ');\n$$str=\n"' >> simp2trad.php
 	cat simpphrases.t >> simp2trad.php
 	printf '";\n$$t=strtr($$str, $$simp2trad);\necho $$t;\n?>' >> simp2trad.php
 
-simp2trad.phrases.t: trad2simp.php tradphrases.t
+simp2trad.phrases.t: trad2simp.php tradphrases.t simp2trad_supp_set.manual
 	php -f trad2simp.php | $(SED)  's/\(.*\)/"\1" => /' > tmp1
 	cat tradphrases.t | $(SED)  's/\(.*\)/"\1",/' > tmp2
 	paste tmp1 tmp2 > simp2trad.phrases.t
+	colrm 3 < simp2trad_supp_set.manual > simp2trad_supp_noconvert.t
+	cat trad2simp.php | $(GREP) -vf simp2trad_supp_noconvert.t > trad2simp.tt
+	mv trad2simp.tt trad2simp.php
 
 trad2simp.phrases.t: simp2trad.php simpphrases.t
 	php -f simp2trad.php | $(SED)  's/\(.*\)/"\1" => /' > tmp1
