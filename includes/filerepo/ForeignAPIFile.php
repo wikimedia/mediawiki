@@ -31,7 +31,7 @@ class ForeignAPIFile extends File {
 	}
 
 	function transform( $params, $flags = 0 ) {
-		if ( $this->repo->apiThumbCacheExpiry > 0 ) {
+		if ( $this->repo->apiThumbCacheExpiry > 0 && $this->repo->apiThumbCacheDir ) {
 			$thumbUrl = $this->repo->getThumbUrlFromCache(
 				$this->getName(),
 				isset( $params['width'] ) ? $params['width'] : -1,
