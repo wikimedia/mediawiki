@@ -41,7 +41,6 @@ class EditPage {
 	const AS_SPAM_ERROR			= 232;
 	const AS_IMAGE_REDIRECT_ANON		= 233;
 	const AS_IMAGE_REDIRECT_LOGGED		= 234;
-	const AS_DOUBLE_REDIRECT            = 235;
 
 	var $mArticle;
 	var $mTitle;
@@ -59,7 +58,6 @@ class EditPage {
 	var $kblength = false;
 	var $missingComment = false;
 	var $missingSummary = false;
-	var $doubleRedirect = false;
 	var $allowBlankSummary = false;
 	var $autoSumm = '';
 	var $hookError = '';
@@ -929,11 +927,6 @@ class EditPage {
 			return self::AS_HOOK_ERROR;
 		}
 
-		# Are we creating a double redirect?
-		if ( $redirectTitle = Title::newFromRedirect( $this->textbox1 ) && $redirectTitle->isRedirect() ) {
-			$this->doubleRedirect = $redirectTitle;
-		}
-
 		# Handle the user preference to force summaries here, but not for null edits
 		if( $this->section != 'new' && !$this->allowBlankSummary &&  $wgUser->getOption( 'forceeditsummary') && 
 			0 != strcmp($oldtext, $text) && 
@@ -1092,11 +1085,6 @@ class EditPage {
 
 			if ( $this->missingComment ) {
 				$wgOut->wrapWikiMsg( '<div id="mw-missingcommenttext">$1</div>',  'missingcommenttext' );
-			}
-
-			if ( $this->doubleRedirect instanceof Title ) {
-				$wgOut->wrapWikiMsg( '<div id="mw-creatingdoubleredirect">$1</div>', 
-							array( 'creatingdoubleredirect', $this->mTitle->getText(), $this->doubleRedirect->getText() ) );
 			}
 
 			if( $this->missingSummary && $this->section != 'new' ) {
@@ -1372,9 +1360,6 @@ END
 			// But don't add a newline if the ext is empty, or Firefox in XHTML
 			// mode will show an extra newline. A bit annoying.
 			$encodedtext .= "\n";
-		}
-		if ( $this->doubleRedirect instanceof Title ) {
-			$wgOut->addHTML( Xml::hidden( 'wpIgnoreDoubleRedirect', true ) );
 		}
 
 		$wgOut->addHTML( <<<END

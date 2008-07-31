@@ -143,10 +143,6 @@ $wgMysqlUpdates = array(
 	array( 'maybe_do_profiling_memory_update' ),
 	array( 'do_filearchive_indices_update' ),
 	array( 'update_password_format' ),
-	
-	// 1.14
-	array( 'add_field', 'redirect',      'rd_interwiki',     'patch-rd_interwiki.sql' ),
-	array( 'add_field', 'redirect',      'rd_fragment',      'patch-rd_fragment.sql'  ),
 );
 
 
@@ -1719,5 +1715,4 @@ function do_postgres_updates() {
 
 	return;
 }
-
 
