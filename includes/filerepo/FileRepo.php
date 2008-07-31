@@ -15,6 +15,7 @@ abstract class FileRepo {
 	var $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
 	var $pathDisclosureProtection = 'paranoid';
+	var $descriptionCacheExpiry, $apiThumbCacheExpiry, $apiThumbCacheDir;
 
 	/**
 	 * Factory functions for creating new files
