@@ -1157,8 +1157,6 @@ CREATE TABLE /*$wgDBprefix*/redirect (
   -- goes by.
   rd_namespace int NOT NULL default '0',
   rd_title varchar(255) binary NOT NULL default '',
-  rd_interwiki varchar(32) default NULL,
-  rd_fragment varchar(255) binary DEFAULT NULL,
 
   PRIMARY KEY rd_from (rd_from),
   KEY rd_ns_title (rd_namespace,rd_title,rd_from)
