@@ -272,7 +272,7 @@
 	'sk' => 'Slovenčina',	# Slovak
 	'sl' => 'Slovenščina',	# Slovenian
 	'sm' => 'Gagana Samoa',	# Samoan
-	'sma' => 'Åarjelsaemien gïele',	# Southern Sami
+	'sma' => 'Åarjelsaemien',	# Southern Sami
 	'sn' => 'chiShona',		# Shona
 	'so' => 'Soomaaliga',	# Somali
 	'sq' => 'Shqip',		# Albanian
