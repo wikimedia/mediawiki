@@ -148,6 +148,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		
 		if( isset( $prop['archivename'] ) && $file->isOld() )
 			$vals['archivename'] = $file->getArchiveName();
+			
+		if( isset( $prop['bitdepth'] ) )
+			$vals['bitdepth'] = $file->getBitDepth();
 
 		return $vals;
 	}
@@ -166,7 +169,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					'sha1',
 					'mime',
 					'metadata',
-					'archivename'
+					'archivename',
+					'bitdepth',
 				)
 			),
 			'limit' => array(
