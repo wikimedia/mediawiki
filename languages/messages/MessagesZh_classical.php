@@ -1855,8 +1855,6 @@ $NEWPAGE
 'newimages'             => '新圖之廊',
 'imagelisttext'         => "下表乃按$2排之的'''$1'''檔。",
 'newimages-summary'     => '此奇頁示最後呈上之檔也。',
-'newimages-legend'      => '案名',
-'newimages-label'       => '案名（或其之部）：',
 'showhidebots'          => '（$1僕）',
 'noimages'              => '無可見。',
 'ilsubmit'              => '尋檔',
