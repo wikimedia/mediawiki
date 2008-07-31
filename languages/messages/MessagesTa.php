@@ -8,8 +8,8 @@
  * @author Mayooranathan
  * @author Siebrand
  * @author Sundar
- * @author לערי ריינהארט
  * @author Jon Harald Søby
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -1108,18 +1108,18 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # File reversion
 'filerevert'                => '$1 ஐ முன்நிலையாக்கு',
 'filerevert-legend'         => 'கோப்பை முன்நிலையாக்கு',
-'filerevert-intro'          => '<span class="plainlinks">நீங்கள் [$3, $2 இன் திருத்தம் $4க்கு] \'\'\'[[Media:$1|$1]]\'\'\' ஊடகத்தை முன்நிலையாக்குகிறீர்கள்.</span>',
+'filerevert-intro'          => "நீங்கள் [$3, $2 இன் திருத்தம் $4க்கு] '''[[Media:$1|$1]]''' ஊடகத்தை முன்நிலையாக்குகிறீர்கள்.",
 'filerevert-comment'        => 'கருத்து:',
 'filerevert-defaultcomment' => '$2, $1 இல் உள்ளபடியான பதிப்புக்கு முன்நிலையாக்கப்பட்டது',
 'filerevert-submit'         => 'முன்நிலையாக்கு',
-'filerevert-success'        => '<span class="plainlinks">ஊடகம் \'\'\'[[Media:$1|$1]]\'\'\' $3, $2 இல் உள்ளபடியான $4 பதிப்புக்கு முன்நிலையாக்கப்பட்டது.</span>',
+'filerevert-success'        => "ஊடகம் '''[[Media:$1|$1]]''' $3, $2 இல் உள்ளபடியான $4 பதிப்புக்கு முன்நிலையாக்கப்பட்டது.",
 'filerevert-badversion'     => 'குறித்த நேர முத்திரையுடன் கூடிய முந்தைய உள்ளக திருத்தங்கள் காணப்படவில்லை.',
 
 # File deletion
 'filedelete'                  => '$1 கோப்பை நீக்கு',
 'filedelete-legend'           => 'கோப்பை நீக்கு',
 'filedelete-intro'            => "நீங்கள் '''[[Media:$1|$1]]''' கோப்பை நீக்குகிறீர்கள்.",
-'filedelete-intro-old'        => '<span class="plainlinks"> \'\'\'[[Media:$1|$1]]\'\'\' என்றப் பெயருள்ள ஊடகத்தின் [$4 $3, $2] இல் உள்ளப் படியான பதிப்பை நீக்குகிறீர்கள்.</span>',
+'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' என்றப் பெயருள்ள ஊடகத்தின் [$4 $3, $2] இல் உள்ளப் படியான பதிப்பை நீக்குகிறீர்கள்.",
 'filedelete-comment'          => 'நீக்கலுக்கான காரணம்:',
 'filedelete-submit'           => 'நீக்கு',
 'filedelete-success'          => "'''$1''' நீக்கப்பட்டுவிட்டது.",

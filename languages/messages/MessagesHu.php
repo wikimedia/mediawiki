@@ -12,6 +12,7 @@
  * @author Cerasus
  * @author Dorgan
  * @author Balasyum
+ * @author Jon Harald Søby
  * @author Bennó
  */
 
@@ -2302,9 +2303,10 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
 
 # Patrol log
-'patrol-log-page' => 'Ellenőrzési napló',
-'patrol-log-line' => 'megjelölve $1 / $2 ellenőrizve $3',
-'patrol-log-auto' => '(automatikus)',
+'patrol-log-page'   => 'Ellenőrzési napló',
+'patrol-log-header' => 'Ez az ellenőrzött változatok naplója.',
+'patrol-log-line'   => 'megjelölve $1 / $2 ellenőrizve $3',
+'patrol-log-auto'   => '(automatikus)',
 
 # Image deletion
 'deletedrevision'                 => 'Régebbi változat törölve: $1',
@@ -2336,7 +2338,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Új képek galériája',
 'imagelisttext'         => 'Lentebb $1 kép látható, $2 rendezve.',
-'newimages-summary'     => 'Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok',
+'newimages-summary'     => 'Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok.',
 'showhidebots'          => '($1 robot)',
 'noimages'              => 'Nem tekinthető meg semmi.',
 'ilsubmit'              => 'Keresés',

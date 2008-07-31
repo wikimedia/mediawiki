@@ -11,6 +11,7 @@
  * @author Siebrand
  * @author Cicero
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $fallback = 'nl';
@@ -1187,18 +1188,18 @@ Klikke op 'ne kolomkop verangert de sortering.",
 # File reversion
 'filerevert'                => '$1 trökdrèjje',
 'filerevert-legend'         => 'Bestandj trökdrejje',
-'filerevert-intro'          => '<span class="plainlinks">Doe bös \'\'\'[[Media:$1|$1]]\'\'\' aan \'t trökdrèjje tot de [$4 versie op $2, $3]</span>.',
+'filerevert-intro'          => "Doe bös '''[[Media:$1|$1]]''' aan 't trökdrèjje tot de [$4 versie op $2, $3]",
 'filerevert-comment'        => 'Opmèrking:',
 'filerevert-defaultcomment' => 'Trökgedrèjt tot de versie op $1, $2',
 'filerevert-submit'         => 'Trökdrèjje',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' is trökgedrèjt tot de [$4 versie op $2, $3]</span>.',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' is trökgedrèjt tot de [$4 versie op $2, $3]",
 'filerevert-badversion'     => "d'r is geine vörge lokale versie van dit bestand mit 't opgegaeve tiejdstip.",
 
 # File deletion
 'filedelete'                  => 'Wis $1',
 'filedelete-legend'           => 'Wis bestand',
 'filedelete-intro'            => "Doe bös '''[[Media:$1|$1]]''' aan 't wisse.",
-'filedelete-intro-old'        => '<span class="plainlinks">Doe bös de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] aan \'t wisse.</span>',
+'filedelete-intro-old'        => "Doe bös de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] aan 't wisse.",
 'filedelete-comment'          => 'Opmèrking:',
 'filedelete-submit'           => 'Wisse',
 'filedelete-success'          => "'''$1''' is gewis.",
@@ -2018,7 +2019,7 @@ $1",
 # Special:Newimages
 'newimages'             => 'Nuuj plaetjes',
 'imagelisttext'         => "Hie volg 'n lies mit $1 {{PLURAL:$1|aafbeilding|aafbeildinge}} geordend $2.",
-'newimages-summary'     => 'Op dees speciaal pazjena waere de meis recènt toegevoogde bestenj weergegaeve',
+'newimages-summary'     => 'Op dees speciaal pazjena waere de meis recènt toegevoogde bestenj weergegaeve.',
 'showhidebots'          => '($1 Bots)',
 'noimages'              => 'Niks te zeen.',
 'ilsubmit'              => 'Zeuk',

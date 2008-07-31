@@ -10,6 +10,7 @@
  * @author Manop
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author วรากร อึ้งวิเชียร (Varakorn Ungvichian)
  * @author จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae
@@ -1180,7 +1181,7 @@ $1 เป็นผู้ดำเนินการระงับการใ�
 'filedelete'                  => 'ลบ $1',
 'filedelete-legend'           => 'ลบไฟล์',
 'filedelete-intro'            => "คุณกำลังลบ '''[[Media:$1|$1]]'''",
-'filedelete-intro-old'        => '<span class="plainlinks">คุณกำลังลบ \'\'\'[[Media:$1|$1]]\'\'\' รุ่น [$4 $3, $2]</span>',
+'filedelete-intro-old'        => "คุณกำลังลบ '''[[Media:$1|$1]]''' รุ่น [$4 $3, $2]",
 'filedelete-comment'          => 'เหตุผลในการลบ:',
 'filedelete-submit'           => 'ลบ',
 'filedelete-success'          => "ลบไฟล์ '''$1''' เรียบร้อยแล้ว",

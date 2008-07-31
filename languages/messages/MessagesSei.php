@@ -7,8 +7,8 @@
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Teak
  */
 

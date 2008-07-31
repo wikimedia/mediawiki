@@ -13,6 +13,7 @@
  * @author Vpovilaitis
  * @author Tomasdd
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author SPQRobin
  */
 
@@ -2057,7 +2058,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Naujausių failų galerija',
 'imagelisttext'         => "Žemiau yra '''$1''' {{PLURAL:$1|failo|failų|failų}} sąrašas, surūšiuotas $2.",
-'newimages-summary'     => 'Šis specialus puslapis rodo paskiausiai įkeltus failus',
+'newimages-summary'     => 'Šis specialus puslapis rodo paskiausiai įkeltus failus.',
 'showhidebots'          => '($1 robotus)',
 'noimages'              => 'Nėra ką parodyti.',
 'ilsubmit'              => 'Ieškoti',

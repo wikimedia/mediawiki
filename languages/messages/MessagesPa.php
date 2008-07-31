@@ -469,6 +469,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'revdelete-hide-image'    => 'ਫਾਇਲ ਸਮੱਗਰੀ ਓਹਲੇ',
 'revdelete-log'           => 'ਲਾਗ ਟਿੱਪਣੀ:',
 'revdelete-submit'        => 'ਚੁਣੇ ਰੀਵਿਜ਼ਨ ਉੱਤੇ ਲਾਗੂ ਕਰੋ',
+'pagehist'                => 'ਪੇਜ ਦਾ ਅਤੀਤ',
 'deletedhist'             => 'ਹਟਾਇਆ ਗਿਆ ਅਤੀਤ',
 
 # Diffs
@@ -556,6 +557,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'rcshowhidemine'    => '$1 ਮੇਰਾ ਐਡਿਟ',
 'hide'              => 'ਓਹਲੇ',
 'show'              => 'ਵੇਖਾਓ',
+'minoreditletter'   => 'ਮ',
 'rc_categories_any' => 'ਕੋਈ ਵੀ',
 
 # Recent changes linked
@@ -685,6 +687,7 @@ to upload files.',
 
 # Special:Allpages
 'allpages'          => 'ਸਭ ਪੇਜ',
+'alphaindexline'    => '$1 ਤੋਂ $2',
 'nextpage'          => 'ਅੱਗੇ ਪੇਜ ($1)',
 'prevpage'          => 'ਪਿੱਛੇ ਪੇਜ ($1)',
 'allarticles'       => 'ਸਭ ਲੇਖ',

@@ -16,17 +16,17 @@
  * @author Siebrand
  * @author Hégésippe Cormier
  * @author Louperivois
- * @author Dereckson
- * @author Cedric31
  * @author Korg
- * @author McDutchie
- * @author Omnipaedista
- * @author JeanVoisin
- * @author SPQRobin
+ * @author Cedric31
+ * @author Dereckson
  * @author Jon Harald Søby
+ * @author JeanVoisin
+ * @author Omnipaedista
+ * @author McDutchie
+ * @author SPQRobin
+ * @author Горан Анђелковић
  * @author ChrisPtDe
  * @author Esbardu
- * @author Горан Анђелковић
  */
 
 $skinNames = array(
@@ -1370,7 +1370,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filedelete'                  => 'Supprimer $1',
 'filedelete-legend'           => 'Supprimer le fichier',
 'filedelete-intro'            => "Vous êtes en train de supprimer '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Vous êtes en train d’effacer la version de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 à $3].</span>',
+'filedelete-intro-old'        => "Vous êtes en train d’effacer la version de '''[[Media:$1|$1]]''' du [$4 $2 à $3].",
 'filedelete-comment'          => 'Commentaire :',
 'filedelete-submit'           => 'Supprimer',
 'filedelete-success'          => "'''$1''' a été supprimé.",
@@ -2192,10 +2192,11 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme surveillées.',
 
 # Patrol log
-'patrol-log-page' => 'Historique des versions patrouillées',
-'patrol-log-line' => 'a marqué la version $1 de $2 comme vérifiée $3',
-'patrol-log-auto' => '(automatique)',
-'patrol-log-diff' => 'v$1',
+'patrol-log-page'   => 'Historique des versions patrouillées',
+'patrol-log-header' => 'Voici un journal des versions patrouillées.',
+'patrol-log-line'   => 'a marqué la version $1 de $2 comme vérifiée $3',
+'patrol-log-auto'   => '(automatique)',
+'patrol-log-diff'   => 'v$1',
 
 # Image deletion
 'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',
@@ -2228,7 +2229,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerie des nouveaux fichiers',
 'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
-'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés',
+'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Aucune image à afficher.',
 'ilsubmit'              => 'Chercher',

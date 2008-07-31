@@ -18,6 +18,7 @@
  * @author Innv
  * @author AlexSm
  * @author HalanTul
+ * @author Jon Harald Søby
  * @author MaxSem
  * @author Kaganer
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
@@ -1407,7 +1408,7 @@ PICT # различные
 'filerevert-comment'        => 'Примечание:',
 'filerevert-defaultcomment' => 'Возврат к версии от $2, $1',
 'filerevert-submit'         => 'Возвратить',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' был возвращён к [$4 версии от $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' был возвращён к [$4 версии от $3, $2].",
 'filerevert-badversion'     => 'Не существует предыдущей локальной версии этого файла с указанной отметкой даты и времени.',
 
 # File deletion
@@ -2293,7 +2294,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Галерея новых файлов',
 'imagelisttext'         => "Ниже представлен список из '''$1''' {{PLURAL:$1|файла|файлов|файлов}}, отсортированных $2.",
-'newimages-summary'     => 'Эта служебная страница показывает недавно загруженные файлы',
+'newimages-summary'     => 'Эта служебная страница показывает недавно загруженные файлы.',
 'showhidebots'          => '($1 ботов)',
 'noimages'              => 'Изображения отсутствуют.',
 'ilsubmit'              => 'Найти',

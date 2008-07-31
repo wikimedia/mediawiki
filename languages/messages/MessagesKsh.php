@@ -6,6 +6,7 @@
  *
  * @author Purodha
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author Caesius noh en Idee vum Manes
  */
 
@@ -2195,10 +2196,11 @@ Dat ahle Versione Huhlade es avjeschalt, un es nit möchlich.',
 'markedaspatrollederror-noautopatrol' => 'Do darrefs Ding eije Änderunge nit op „Nohjeloort“ setze!',
 
 # Patrol log
-'patrol-log-page' => 'Logboch vun de nohjeloorte Änderunge',
-'patrol-log-line' => 'hät $1 von „$2“ $3 nohjeloort.',
-'patrol-log-auto' => '(automatisch)',
-'patrol-log-diff' => 'de Version $1',
+'patrol-log-page'   => 'Logboch vun de nohjeloorte Änderunge',
+'patrol-log-header' => '<!-- -->',
+'patrol-log-line'   => 'hät $1 von „$2“ $3 nohjeloort.',
+'patrol-log-auto'   => '(automatisch)',
+'patrol-log-diff'   => 'de Version $1',
 
 # Image deletion
 'deletedrevision' => 'De ahl Version „$1“ es fottjeschmesse',
@@ -2569,7 +2571,7 @@ Der Name moß ohne der Försatz „{{ns:image}}:“ aanjejovve wääde.',
 'fileduplicatesearch-legend'   => 'Sök noh ene dubbelte Datei',
 'fileduplicatesearch-filename' => 'Dateiname:',
 'fileduplicatesearch-submit'   => 'Sööke',
-'fileduplicatesearch-info'     => '{{PLURAL|$1|Ei Pixel|$1 Pixelle|Nit}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle|nix}} huh<br />Dateiömfang: $3<br />MIME-Tüp: <code>$4</code>',
+'fileduplicatesearch-info'     => '{{PLURAL:$1|Ei Pixel|$1 Pixelle|Nit}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle|nix}} huh<br />Dateiömfang: $3<br />MIME-Tüp: <code>$4</code>',
 'fileduplicatesearch-result-1' => 'Mer han kein akoraat dubbelte Dateie för „$1“ jefonge.',
 'fileduplicatesearch-result-n' => "Vun dä Datei „$1“ ham'mer '''{{PLURAL:$2|ein|$2|kein}}''' dubbelte mem selve Enhalt jefonge.",
 

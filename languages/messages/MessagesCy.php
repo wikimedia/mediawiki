@@ -7,6 +7,7 @@
  * @author Lloffiwr
  * @author Thaf
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -622,7 +623,7 @@ Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Prefe
 
 Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'blockednoreason'                  => 'dim rheswm wedi ei roi',
-'blockedoriginalsource'            => "Dengosir tarddiad '''$1''' isod:",
+'blockedoriginalsource'            => "Dangosir côd '''$1''' isod:",
 'whitelistedittitle'               => 'Rhaid mewngofnodi i golygu',
 'whitelistedittext'                => 'Rhaid $1 i olygu tudalennau.',
 'whitelistreadtitle'               => 'Rhaid mewngofnodi cyn darllen',
@@ -713,7 +714,7 @@ Ystyriwch a fyddai'n dda o beth i barhau i olygu'r dudalen hon.
 Dyma lòg dileu'r dudalen, er gwybodaeth:",
 
 # Parser/template warnings
-'post-expand-template-inclusion-category' => 'Tudalennau lle mae maint cynnwys templed wedi ei ragori',
+'post-expand-template-inclusion-category' => "Tudalennau a phatrymlun ynddynt sy'n fwy na chyfyngiad y meddalwedd",
 
 # "Undo" feature
 'undo-success' => "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
@@ -765,9 +766,9 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 Tynnwyd y dudalen hon o\'r archif cyhoeddus.
 Hwyrach bod manylion pellach ar y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].</div>',
 'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
-Mae'r diwygiad hon o'r dudalen wedi cael ei ddiddymu o'r archifau cyhoeddus.
+Mae'r diwygiad hwn o'r dudalen wedi cael ei ddiddymu o'r archifau cyhoeddus.
 Fel gweinyddwr ar {{SITENAME}} gallwch ei weld;
-gall fod manylion yn y [lòg dileu {{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}].</div>",
+gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].</div>",
 'rev-delundel'                => 'dangos/cuddio',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
 'revdelete-selected'          => 'Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:',
@@ -1178,11 +1179,11 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 # File reversion
 'filerevert'                => 'Gwrthdroi $1',
 'filerevert-legend'         => "Gwrthdroi'r ffeil",
-'filerevert-intro'          => '<span class="plainlinks">Rydych yn gwrthdroi \'\'\'[[Media:$1|$1]]\'\'\' i\'r [fersiwn $4 fel ag yr oedd ar $3, $2].</span>',
+'filerevert-intro'          => "Rydych yn gwrthdroi '''[[Media:$1|$1]]''' i'r [fersiwn $4 fel ag yr oedd ar $3, $2].",
 'filerevert-comment'        => 'Sylw:',
 'filerevert-defaultcomment' => 'Wedi adfer fersiwn $2, $1',
 'filerevert-submit'         => 'Gwrthdroi',
-'filerevert-success'        => '<span class="plainlinks">Mae \'\'\'[[Media:$1|$1]]\'\'\' wedi cael ei wrthdroi i\'r [fersiwn $4 fel ag yr oedd ar $3, $2].</span>',
+'filerevert-success'        => "Mae '''[[Media:$1|$1]]''' wedi cael ei wrthdroi i'r [fersiwn $4 fel ag yr oedd ar $3, $2].",
 'filerevert-badversion'     => "Nid oes fersiwn lleol cynt o'r ffeil hwn gyda'r amsernod a nodwyd.",
 
 # File deletion
@@ -2054,11 +2055,11 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-shutterspeedvalue'           => 'Cyflymder y caead',
 'exif-aperturevalue'               => 'Agorfa',
 'exif-brightnessvalue'             => 'Disgleirdeb',
-'exif-exposurebiasvalue'           => 'Bias dinoethiad',
+'exif-exposurebiasvalue'           => 'Bias dinoethi',
 'exif-maxaperturevalue'            => "Maint mwyaf agorfa'r glan",
 'exif-subjectdistance'             => 'Pellter y goddrych',
 'exif-meteringmode'                => 'Modd mesur goleuni',
-'exif-lightsource'                 => 'Tarddiad golau',
+'exif-lightsource'                 => 'Ffynhonell goleuni',
 'exif-flash'                       => 'Fflach',
 'exif-focallength'                 => 'Hyd ffocal y lens',
 'exif-subjectarea'                 => 'Maint a lleoliad y goddrych',
@@ -2069,14 +2070,14 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-filesource'                  => 'Ffynhonnell y ffeil',
 'exif-scenetype'                   => 'Math o olygfa',
 'exif-cfapattern'                  => 'Patrwm CFA',
-'exif-exposuremode'                => 'Dull dinoethiad',
+'exif-exposuremode'                => 'Modd dinoethi',
 'exif-whitebalance'                => 'Cydbwysedd Gwyn',
 'exif-contrast'                    => 'Cyferbyniad',
 'exif-saturation'                  => 'Dirlawnder',
 'exif-sharpness'                   => 'Eglurder',
-'exif-gpslatituderef'              => 'Lledred Gogledd neu De',
+'exif-gpslatituderef'              => "Lledred i'r Gogledd neu i'r De",
 'exif-gpslatitude'                 => 'Lledred',
-'exif-gpslongituderef'             => 'Hydred Dwyrain neu Gorllewin',
+'exif-gpslongituderef'             => "Hydred i'r Dwyrain neu i'r Gorllewin",
 'exif-gpslongitude'                => 'Hydred',
 'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
 'exif-gpsaltitude'                 => 'Uchder',
@@ -2087,7 +2088,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-orientation-3' => 'Wedi ei droi 180°', # 0th row: bottom; 0th column: right
 
-'exif-componentsconfiguration-0' => "nid yw'n bodoli",
+'exif-componentsconfiguration-0' => "ddim i'w gael",
 
 'exif-exposureprogram-0' => 'Heb ei gosod',
 

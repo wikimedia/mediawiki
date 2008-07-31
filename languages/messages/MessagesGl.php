@@ -10,9 +10,9 @@
  * @author Xosé
  * @author Siebrand
  * @author Lameiro
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -1218,18 +1218,18 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 # File reversion
 'filerevert'                => 'Desfacer $1',
 'filerevert-legend'         => 'Reverter ficheiro',
-'filerevert-intro'          => '<span class="plainlinks">Vai volver \'\'\'[[Media:$1|$1]]\'\'\' á [$4 versión de $3, $2].</span>',
+'filerevert-intro'          => "Vai volver '''[[Media:$1|$1]]''' á [$4 versión de $3, $2].",
 'filerevert-comment'        => 'Comentario:',
 'filerevert-defaultcomment' => 'Volveuse á versión de $2, $1',
 'filerevert-submit'         => 'Reverter',
-'filerevert-success'        => '<span class="plainlinks">Reverteuse \'\'\'[[Media:$1|$1]]\'\'\' á [$4 versión de $3, $2].</span>',
+'filerevert-success'        => "Reverteuse '''[[Media:$1|$1]]''' á [$4 versión de $3, $2].",
 'filerevert-badversion'     => 'Non existe unha versión local anterior deste ficheiro coa data e hora indicadas.',
 
 # File deletion
 'filedelete'                  => 'Eliminar $1',
 'filedelete-legend'           => 'Eliminar o ficheiro',
 'filedelete-intro'            => "Vai eliminar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Vai eliminar a versión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Vai eliminar a versión de '''[[Media:$1|$1]]''' de [$4 $3, $2].",
 'filedelete-comment'          => 'Comentario:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "Eliminouse '''$1'''.",
@@ -2087,7 +2087,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galería de imaxes novas',
 'imagelisttext'         => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
-'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente',
+'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',
 'showhidebots'          => '($1 os bots)',
 'noimages'              => 'Non hai imaxes para ver.',
 'ilsubmit'              => 'Procurar',

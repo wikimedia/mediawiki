@@ -7,6 +7,7 @@
  * @author Klenje
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Helix84
  */
 

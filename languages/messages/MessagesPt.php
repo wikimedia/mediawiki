@@ -10,6 +10,7 @@
  * @author לערי ריינהארט
  * @author Lijealso
  * @author MCruz
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author Rei-artur
  * @author Waldir
@@ -1338,7 +1339,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filedelete'                  => 'Eliminar $1',
 'filedelete-legend'           => 'Eliminar ficheiro',
 'filedelete-intro'            => "Você está prestes a eliminar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Você se encontra prestes a eliminar a versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como se encontrava em [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Você se encontra prestes a eliminar a versão de '''[[Media:$1|$1]]''' tal como se encontrava em [$4 $3, $2].",
 'filedelete-comment'          => 'Motivo de eliminação:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' foi eliminado.",
@@ -2192,7 +2193,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galeria de novos ficheiros',
 'imagelisttext'         => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' ficheiro organizado|de '''$1''' ficheiros organizados}} por $2.",
-'newimages-summary'     => 'Esta página especial mostra os ficheiros mais recentemente enviados',
+'newimages-summary'     => 'Esta página especial mostra os ficheiros mais recentemente enviados.',
 'showhidebots'          => '($1 robôs)',
 'noimages'              => 'Nada para ver.',
 'ilsubmit'              => 'Procurar',

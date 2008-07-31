@@ -9,8 +9,8 @@
  * @author Siebrand
  * @author M.M.S.
  * @author לערי ריינהארט
- * @author Võrok
  * @author Jon Harald Søby
+ * @author Võrok
  */
 
 $namespaceNames = array(

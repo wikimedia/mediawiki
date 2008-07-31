@@ -11,12 +11,12 @@
  * @author ITurtle
  * @author Albamhandae
  * @author לערי ריינהארט
- * @author TheAlpha for knowledge
  * @author Kwj2772
+ * @author TheAlpha for knowledge
  * @author Ficell
- * @author Pi.C.Noizecehx
  * @author Jon Harald Søby
  * @author SPQRobin
+ * @author Pi.C.Noizecehx
  */
 
 $namespaceNames = array(
@@ -990,17 +990,17 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # File reversion
 'filerevert'                => '$1 되돌리기',
 'filerevert-legend'         => '파일 되돌리기',
-'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일을 [$4 $2 $3 버전]으로 되돌립니다.</span>',
+'filerevert-intro'          => "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌립니다.",
 'filerevert-comment'        => '내용:',
 'filerevert-defaultcomment' => '$1 $2 버전으로 되돌림',
 'filerevert-submit'         => '되돌리기',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일을 [$4 $2 $3 버전]으로 되돌렸습니다.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌렸습니다.",
 
 # File deletion
 'filedelete'                  => '$1 삭제하기',
 'filedelete-legend'           => '파일 삭제하기',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' 파일을 삭제합니다.",
-'filedelete-intro-old'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일의 [$4 $2 $3] 버전을 삭제합니다.</span>',
+'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' 파일의 [$4 $2 $3] 버전을 삭제합니다.",
 'filedelete-comment'          => '삭제 이유:',
 'filedelete-submit'           => '삭제',
 'filedelete-success'          => "'''$1''' 파일을 삭제했습니다.",

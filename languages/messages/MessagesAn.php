@@ -7,8 +7,8 @@
  * @author Juanpabl
  * @author SPQRobin
  * @author Siebrand
- * @author לערי ריינהארט
  * @author Jon Harald Søby
+ * @author לערי ריינהארט
  * @author Willtron
  */
 
@@ -1112,14 +1112,10 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos.
 Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:Imagelist|lista d'archibos cargatos]]. As cargas y borraus d'archibos tamién son rechistratos en o [[Special:Log/upload|rechistro de cargas]].
 
-Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.jpg]]</nowiki>''', '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.png|testo alternatibo]]</nowiki>''' u
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archibo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.
-
-
-To include a file in a page, use a link in the form
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
+Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas 
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.jpg]]</nowiki>''', 
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.png|testo alternatibo]]</nowiki>''' u
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archibo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.",
 'upload-permitted'            => "Tipos d'archibo premititos: $1.",
 'upload-preferred'            => "Tipos d'archibo preferitos: $1.",
 'upload-prohibited'           => "Tipos d'archibo biedatos: $1.",
@@ -1259,18 +1255,18 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 # File reversion
 'filerevert'                => 'Rebertir $1',
 'filerevert-legend'         => 'Rebertir fichero',
-'filerevert-intro'          => '<span class="plainlinks">Ye rebertindo \'\'\'[[Media:$1|$1]]\'\'\' á la [$4 bersion de $3, $2].</span>',
+'filerevert-intro'          => "Ye rebertindo '''[[Media:$1|$1]]''' á la [$4 bersion de $3, $2].",
 'filerevert-comment'        => 'Comentario:',
 'filerevert-defaultcomment' => 'Rebertito á la bersión de $2, $1',
 'filerevert-submit'         => 'Rebertir',
-'filerevert-success'        => '<span class="plainlinks">S\'ha rebertito \'\'\'[[Media:$1|$1]]\'\'\' á la [$4 bersión de $3, $2].</span>',
+'filerevert-success'        => "S'ha rebertito '''[[Media:$1|$1]]''' á la [$4 bersión de $3, $2].",
 'filerevert-badversion'     => "No bi ha garra bersión antiga d'o archibo con ixa calendata y ora.",
 
 # File deletion
 'filedelete'                  => 'Borrar $1',
 'filedelete-legend'           => 'Borrar archibo',
 'filedelete-intro'            => "Ye borrando '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Ye borrando a bersión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Ye borrando a bersión de '''[[Media:$1|$1]]''' de [$4 $3, $2].",
 'filedelete-comment'          => 'Causa:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "S'ha borrato '''$1'''.",
@@ -2111,7 +2107,7 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galería de nuebas imachens',
 'imagelisttext'         => "Contino bi ha una lista de '''$1''' {{PLURAL:$1|imachen ordenata|imachens ordenatas}} $2.",
-'newimages-summary'     => 'Ista pachina espezial amuestra os zaguers archibos cargatos',
+'newimages-summary'     => 'Ista pachina espezial amuestra os zaguers archibos cargatos.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'No bi ha cosa á beyer.',
 'ilsubmit'              => 'Mirar',

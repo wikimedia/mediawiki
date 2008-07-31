@@ -7,9 +7,9 @@
  * @author Codex Sinaiticus
  * @author Teferra
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author M.M.S.
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -940,13 +940,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'filerevert-comment'        => 'ማጠቃለያ፦',
 'filerevert-defaultcomment' => 'በ$2፣ $1 ወደ ነበረው ዕትም መለሰው',
 'filerevert-submit'         => 'ማገልበጥ',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' [በ$3፣ $2 ወደ ነበረው $4 እትም] ተመልሷል።</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' [በ$3፣ $2 ወደ ነበረው $4 እትም] ተመልሷል።",
 
 # File deletion
 'filedelete'                  => '$1 ለማጥፋት',
 'filedelete-legend'           => 'ፋይልን ለማጥፋት',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' ሊያጥፉ ነው።",
-'filedelete-intro-old'        => '<span class="plainlinks">በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ\'\'\'[[Media:$1|$1]]\'\'\' እትም ሊያጥፉ ነው።</span>',
+'filedelete-intro-old'        => "በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ'''[[Media:$1|$1]]''' እትም ሊያጥፉ ነው።",
 'filedelete-comment'          => 'የማጥፋቱ ምክንያት፦',
 'filedelete-submit'           => 'ይጥፋ',
 'filedelete-success'          => "'''$1''' ጠፍቷል።",

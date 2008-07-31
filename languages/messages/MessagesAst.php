@@ -8,6 +8,7 @@
  * @author Mikel
  * @author SPQRobin
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -1203,18 +1204,18 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 # File reversion
 'filerevert'                => 'Revertir $1',
 'filerevert-legend'         => 'Revertir archivu',
-'filerevert-intro'          => '<span class="plainlinks">Tas revirtiendo \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 versión del $3 a les $2].</span>',
+'filerevert-intro'          => "Tas revirtiendo '''[[Media:$1|$1]]''' a la [$4 versión del $3 a les $2].",
 'filerevert-comment'        => 'Comentariu:',
 'filerevert-defaultcomment' => 'Revertida a la versión del $2 a les $1',
 'filerevert-submit'         => 'Revertir',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' foi revertida a la [$4 versión del $3 a les $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' foi revertida a la [$4 versión del $3 a les $2].",
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
 'filedelete'                  => 'Borrar $1',
 'filedelete-legend'           => 'borrar archivu',
 'filedelete-intro'            => "Tas borrando '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tas borrando la versión de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a les $2].</span>',
+'filedelete-intro-old'        => "Tas borrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
 'filedelete-comment'          => 'Comentariu:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "'''$1''' foi borráu.",
@@ -2082,7 +2083,7 @@ $1",
 # Special:Newimages
 'newimages'             => "Galería d'imáxenes nueves",
 'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
-'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos',
+'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nun hai nada que ver.',
 'ilsubmit'              => 'Buscar',

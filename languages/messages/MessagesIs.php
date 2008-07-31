@@ -1884,7 +1884,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 # Special:Newimages
 'newimages'             => 'Myndasafn nýlegra skráa',
 'imagelisttext'         => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
-'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár',
+'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár.',
 'showhidebots'          => '($1 vélmenni)',
 'noimages'              => 'Ekkert að sjá.',
 'ilsubmit'              => 'Leita',

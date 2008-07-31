@@ -8,9 +8,9 @@
  * @author Knakts
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author M.M.S.
- * @author Jon Harald Søby
  * @author Niklas Laxström
  */
 
@@ -859,18 +859,18 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 # File reversion
 'filerevert'                => 'Atjaunot $1',
 'filerevert-legend'         => 'Atjaunot failu',
-'filerevert-intro'          => '<span class="plainlinks">Tu atjauno failu \'\'\'[[Media:$1|$1]]\'\'\' uz [$4 versiju kāda bija $3, $2].</span>',
+'filerevert-intro'          => "Tu atjauno failu '''[[Media:$1|$1]]''' uz [$4 versiju kāda bija $3, $2].",
 'filerevert-comment'        => 'Komentārs:',
 'filerevert-defaultcomment' => 'Atjaunots uz $2, $1 versiju',
 'filerevert-submit'         => 'Atjaunot',
-'filerevert-success'        => '<span class="plainlinks">Fails \'\'\'[[Media:$1|$1]]\'\'\' tika atjaunots uz [$4 versiju, kāda tā bija $3, $2].</span>',
+'filerevert-success'        => "Fails '''[[Media:$1|$1]]''' tika atjaunots uz [$4 versiju, kāda tā bija $3, $2].",
 'filerevert-badversion'     => 'Šajam failam nav iepriekšējās versijas, kas atbilstu norādītajam datumam un laikam.',
 
 # File deletion
 'filedelete'                  => 'Dzēst $1',
 'filedelete-legend'           => 'Dzēst failu',
 'filedelete-intro'            => "Tu taisies izdzēst '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tu tagad taisies izdzēst faila \'\'\'[[Media:$1|$1]]\'\'\' versiju, kas tika augšuplādēta [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Tu tagad taisies izdzēst faila '''[[Media:$1|$1]]''' versiju, kas tika augšuplādēta [$4 $3, $2].",
 'filedelete-comment'          => 'Dzēšanas iemesls:',
 'filedelete-submit'           => 'Izdzēst',
 'filedelete-success'          => "'''$1''' tika veiksmīgi izdzēsts.",
@@ -1451,7 +1451,7 @@ To visticamāk izraisīja ārēja saite.',
 # Special:Newimages
 'newimages'             => 'Jauno attēlu galerija',
 'imagelisttext'         => 'Šobrīd redzams $1 {{PLURAL:$1|attēla|attēlu}} uzskaitījums, kas sakārtots $2.',
-'newimages-summary'     => 'Šeit var apskatīties pēdējos šeit augšuplādētos failus',
+'newimages-summary'     => 'Šeit var apskatīties pēdējos šeit augšuplādētos failus.',
 'showhidebots'          => '($1 botus)',
 'noimages'              => 'Nav nekā ko redzēt.',
 'ilsubmit'              => 'Meklēt',

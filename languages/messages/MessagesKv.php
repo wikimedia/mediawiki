@@ -14,4 +14,7 @@ $messages = array(
 'mainpage'             => 'Медшöр лист бок',
 'mainpage-description' => 'Медшöр лист бок',
 
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main' => 'Гижöд',
+
 );

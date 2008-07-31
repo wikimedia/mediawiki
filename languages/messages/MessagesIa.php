@@ -6,6 +6,7 @@
  *
  * @author McDutchie
  * @author Malafaya
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Siebrand
  */
@@ -1265,18 +1266,18 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 # File reversion
 'filerevert'                => 'Reverter $1',
 'filerevert-legend'         => 'Reverter file',
-'filerevert-intro'          => '<span class="plainlinks">Tu reverte \'\'\'[[Media:$1|$1]]\'\'\' al [$4 version del $3 a $2].</span>',
+'filerevert-intro'          => "Tu reverte '''[[Media:$1|$1]]''' al [$4 version del $3 a $2].",
 'filerevert-comment'        => 'Commento:',
 'filerevert-defaultcomment' => 'Revertite al version del $2 a $1',
 'filerevert-submit'         => 'Reverter',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha essite revertite al [$4 version del $3 a $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ha essite revertite al [$4 version del $3 a $2].",
 'filerevert-badversion'     => 'Non existe un version local anterior de iste file con le data e hora providite.',
 
 # File deletion
 'filedelete'                  => 'Deler $1',
 'filedelete-legend'           => 'Deler file',
 'filedelete-intro'            => "Tu va deler '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tu va deler le version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a $2].</span>',
+'filedelete-intro-old'        => "Tu va deler le version de '''[[Media:$1|$1]]''' del [$4 $3 a $2].",
 'filedelete-comment'          => 'Motivo pro deletion:',
 'filedelete-submit'           => 'Deler',
 'filedelete-success'          => "'''$1''' ha essite delite.",
@@ -2207,7 +2208,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleria de nove files',
 'imagelisttext'         => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
-'newimages-summary'     => 'Iste pagina special detalia le recente files cargate',
+'newimages-summary'     => 'Iste pagina special detalia le recente files cargate.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nihil a vider.',
 'ilsubmit'              => 'Cercar',

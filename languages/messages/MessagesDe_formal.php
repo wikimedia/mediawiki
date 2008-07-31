@@ -6,8 +6,8 @@
  *
  * @author Raymond
  * @author Siebrand
- * @author Leithian
  * @author Pill
+ * @author Leithian
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
@@ -140,6 +140,7 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administra
 *Sperrgrund: $2
 *Beginn der Sperre: $8
 *Sperr-Ende: $6
+*IP-Adresse: $3
 *Sperr-ID: #$5
 </div>',
 'blockededitsource'                => "Der Quelltext '''Ihrer Änderungen''' an '''$1''':",

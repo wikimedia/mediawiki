@@ -9,8 +9,8 @@
  * @author BrokenArrow
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Omnipaedista
  * @author Jon Harald Søby
+ * @author Omnipaedista
  */
 
 $fallback = 'it';
@@ -1180,18 +1180,18 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 # File reversion
 'filerevert'                => 'Ripristina $1',
 'filerevert-legend'         => 'Ripristina file',
-'filerevert-intro'          => '<span class="plainlinks">Te stè par ripristinar el file \'\'\'[[Media:$1|$1]]\'\'\' a la [versione $4 del $2, $3].</span>',
+'filerevert-intro'          => "Te stè par ripristinar el file '''[[Media:$1|$1]]''' a la [versione $4 del $2, $3].",
 'filerevert-comment'        => 'Comento:',
 'filerevert-defaultcomment' => 'Xe stà ripristinà la version del $1, $2',
 'filerevert-submit'         => 'Ripristina',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'El file [[Media:$1|$1]]\'\'\' el xe stà ripristinà a la [$4 version del $2, $3].</span>',
+'filerevert-success'        => "'''El file [[Media:$1|$1]]''' el xe stà ripristinà a la [$4 version del $2, $3].",
 'filerevert-badversion'     => 'No esiste mìa version locali precedenti del file col timestamp richiesto.',
 
 # File deletion
 'filedelete'                  => 'Scancela $1',
 'filedelete-legend'           => 'Scancela el file',
 'filedelete-intro'            => "Te stè par scancelar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Te sì drio scancelar la version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Te sì drio scancelar la version de '''[[Media:$1|$1]]''' del [$4 $3, $2].",
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Scancela',
 'filedelete-success'          => "El file '''$1''' el xe stà scancelà.",
@@ -2018,7 +2018,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Imagini nove',
 'imagelisttext'         => "Qua ghe xe na lista de '''$1''' {{PLURAL:$1|file|files}} ordinà par $2.",
-'newimages-summary'     => 'Sta pagina speciale la mostra i file cargà piassè reçentemente',
+'newimages-summary'     => 'Sta pagina speciale la mostra i file cargà piassè reçentemente.',
 'showhidebots'          => '($1 i bot)',
 'noimages'              => 'No ghè gnente da vardare.',
 'ilsubmit'              => 'Serca',

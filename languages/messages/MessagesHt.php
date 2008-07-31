@@ -669,6 +669,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'revdelete-unsuppress'      => 'Anlve restriksyon yo sou vèsyon yo ki restore',
 'revdelete-log'             => 'Komantè pou istorik paj sa :',
 'revdelete-submit'          => 'Aplike sou vèsyon ki seleksyone a',
+'revdelete-logentry'        => 'Vizibilite pou vèsyon sa modifye pou [[$1]]',
 'revdel-restore'            => 'Modifye, chanje vizibilite a',
 'pagehist'                  => 'Istorik paj sa',
 'deletedhist'               => 'Istorik sipresyon yo',

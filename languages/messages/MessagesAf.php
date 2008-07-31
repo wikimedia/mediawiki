@@ -12,6 +12,7 @@
  * @author Anrie
  * @author Siebrand
  * @author Manie
+ * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -1870,7 +1871,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Gallery van nuwe beelde',
 'imagelisttext'         => "Hieronder is a lys van '''$1''' {{PLURAL:$1|lêer|lêers}}, $2 gesorteer.",
-'newimages-summary'     => 'Die spesiale bladsy wys die nuutste lêers wat na die wiki opgelaai is',
+'newimages-summary'     => 'Die spesiale bladsy wys die nuutste lêers wat na die wiki opgelaai is.',
 'showhidebots'          => '($1 robotte)',
 'noimages'              => 'Niks te sien nie.',
 'ilsubmit'              => 'Soek',

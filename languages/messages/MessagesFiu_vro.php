@@ -6,8 +6,8 @@
  *
  * @author Võrok
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Niklas Laxsröm
  * @author Sulev Iva (Võrok)
  */

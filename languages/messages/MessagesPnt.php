@@ -179,13 +179,14 @@ $messages = array(
 'viewtalkpage'      => 'Τέρεν καλάτσεμα',
 'otherlanguages'    => "Σ' άλλα γλώσσας",
 'redirectedfrom'    => '(Έρτεν ασό $1)',
+'redirectpagesub'   => 'Σελίδαν διπλού σύνδεσμονος',
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
 'jumptonavigation'  => 'Πορπάτεμαν',
 'jumptosearch'      => 'Αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Για το σάιτ {{SITENAME}}',
+'aboutsite'            => 'Περί {{SITENAME}}',
 'aboutpage'            => 'Project:Σχετικά',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
 'currentevents'        => 'Ατωριζνά γεγονότα',
@@ -224,7 +225,7 @@ $messages = array(
 'nstab-special'   => 'Ειδικόν',
 'nstab-project'   => 'Σχετικά με',
 'nstab-image'     => 'Εικόναν',
-'nstab-mediawiki' => 'Μένεμα',
+'nstab-mediawiki' => 'Μένεμαν',
 'nstab-template'  => 'Πρότυπον',
 'nstab-help'      => 'Σελίδα βοήθειας',
 'nstab-category'  => 'Κατηγορίαν',
@@ -356,6 +357,9 @@ $messages = array(
 Ποδεδίζουμε σας να γράφτατο σο μένεμαν εσούν.",
 'blockednoreason'        => "'Κ εγράφτεν αιτίαν",
 'newarticle'             => '(Νέον)',
+'newarticletext'         => "Έρθατεν ασ' έναν σύνδεσμον σ' έναν εύκαιρον σελίδαν. 
+Για να εφτάτε τη σελίδαν, αρχινέστε γράψιμον σο χουτίν αφκά (δεαβάστεν τη [[{{MediaWiki:Helppage}}|σελίδαν βοήθειας]] και μαθέστεν κιάλλα).
+Εάν 'κ θέλετε ν' εφτάτε αβούτεν τη σελίδαν, πατήστε το κουμπίν το λεει '''οπίς''' και δεβάτεν οπίς απ' όθεν έρθατεν.",
 'noarticletext'          => "(Αβούτεν η σελίδαν 'κ εχ' κείμενον απές ακόμαν.)",
 'previewnote'            => "<strong>Ατό πα πρώτον τέρεμαν εν και μόνον.
 Τ' αλλαγάς 'κ εκρατέθαν!</strong>",
@@ -398,7 +402,7 @@ $messages = array(
 'history-title'           => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
 'difference'              => '(Διαφορά μεταξύ τη μορφίων)',
 'lineno'                  => 'Γραμμή $1:',
-'compareselectedversions' => 'Γαρσουλαεύτε τα εκδώσεις',
+'compareselectedversions' => "Γαρσουλαεύτε τ' εκδώσεις",
 'editundo'                => 'αναίρεση',
 
 # Search results
@@ -454,22 +458,27 @@ $messages = array(
 'imagelist' => 'Λίσταν εικονίων',
 
 # Image description page
-'filehist'            => 'Ιστορικό αρχείου',
-'filehist-help'       => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
-'filehist-current'    => 'υστερινά',
-'filehist-datetime'   => 'Ώραν/Ημερομ.',
-'filehist-user'       => 'Χρήστες',
-'filehist-dimensions' => 'Διαστάσεις',
-'filehist-filesize'   => 'Μέγεθος',
-'filehist-comment'    => 'Σχόλιον',
-'imagelinks'          => 'Σύνδεσμοι',
-'linkstoimage'        => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
-'nolinkstoimage'      => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
-'noimage'             => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
-'noimage-linktext'    => "σκώσ' ατό",
+'filehist'                  => 'Ιστορικό αρχείου',
+'filehist-help'             => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
+'filehist-current'          => 'υστερινά',
+'filehist-datetime'         => 'Ώραν/Ημερομ.',
+'filehist-user'             => 'Χρήστες',
+'filehist-dimensions'       => 'Διαστάσεις',
+'filehist-filesize'         => 'Μέγεθος',
+'filehist-comment'          => 'Σχόλιον',
+'imagelinks'                => 'Σύνδεσμοι',
+'linkstoimage'              => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
+'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
+'sharedupload'              => "Αβούτον τ' αρχείον εφορτώθεν για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα.",
+'noimage'                   => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
+'noimage-linktext'          => "σκώσ' ατό",
+'uploadnewversion-linktext' => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
 
 # MIME search
 'mimesearch' => 'Αράεμαν MIME',
+
+# List redirects
+'listredirects' => 'Κατάλογον με διπλά συνδέσμ',
 
 # Unused templates
 'unusedtemplates' => "Πρότυπα ντο 'κ μεταχειρίσκουνταν",
@@ -477,8 +486,15 @@ $messages = array(
 # Random page
 'randompage' => 'Τυχαίον σελίδα',
 
+# Random redirect
+'randomredirect' => 'Τυχαία διπλά συνδέσμ',
+
 # Statistics
 'statistics' => 'Στατιστικήν',
+
+'doubleredirects' => 'Περισσά διπλά συνδέσμ',
+
+'brokenredirects' => 'Τσακωμένα διπλά συνδέσμ',
 
 'withoutinterwiki' => "Σελίδας ντο κ' έχνε συνδέσμ",
 
@@ -551,7 +567,7 @@ $messages = array(
 'removedwatchtext'     => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' τ\'εσόν τον κατάλογον.',
 'watch'                => 'Ωρίαγμαν',
 'watchthispage'        => 'Ωρίαν τη σελίδαν',
-'unwatch'              => 'Τέλος τη ωρίαγματη',
+'unwatch'              => "Τέλεμαν τ' ωριαγματί",
 'watchlist-details'    => '{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλάτσεματι.',
 'wlshowlast'           => "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων $3",
 'watchlist-hide-bots'  => "Κρύψον τ' αλλαγάς τη bots",
@@ -579,7 +595,7 @@ $messages = array(
 'protect_expiry_invalid'      => "Ο χρόνος τελεματί 'κ εν σωστόν.",
 'protect_expiry_old'          => 'Ο χρόνος τελεματί πέρνιξον.',
 'protect-unchain'             => 'Άνοιξον τα δικαιώματα ετεροχλάεματι',
-'protect-text'                => "Επορείτε να τερείτε και ν' αλλάζετε τ' επίπεδον τη προστασίας αδά για τη σελίδαν <strong><nowiki>$1</nowiki></strong>.",
+'protect-text'                => "Αδά επορείτε να τερείτε και ν' αλλάζετε τ' επίπεδον τη προστασίας για τη σελίδαν <strong><nowiki>$1</nowiki></strong>.",
 'protect-default'             => '(προεπιλεγμένον)',
 'protect-fallback'            => 'Ψαλαφίον δικαιωματίων "$1"',
 'protect-level-autoconfirmed' => 'Ασπάλιγμαν χρηστίων θίχως λογαρίαν',
@@ -617,6 +633,7 @@ $messages = array(
 'linklistsub'         => "(Κατάλογον με τοι συνδέσμ')",
 'linkshere'           => "Αβούτα τα σελίδας δεκνίζνε σο '''[[:$1]]''':",
 'nolinkshere'         => "'Κ ευρέθεν σελίδα το δεκνίζ' ση σελίδαν '''[[:$1]]'''.",
+'isredirect'          => 'σελίδαν διπλού σύνδεσμονος',
 'istemplate'          => 'ενσωμάτωση',
 'whatlinkshere-prev'  => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|υστερνή|υστερναία $1}}',
@@ -734,8 +751,10 @@ $messages = array(
 'nextdiff'     => 'Άλλον διαφορά →',
 
 # Media information
-'file-nohires'   => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
-'show-big-image' => 'Τζιπ ψηλόν ανάλυση',
+'file-info-size'       => '($1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπος: $4)',
+'file-nohires'         => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
+'show-big-image'       => 'Τζιπ τρανόν ανάλυση',
+'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
 
 # Special:Newimages
 'ilsubmit' => 'Αράεμαν',
@@ -749,6 +768,8 @@ $messages = array(
 
 # Metadata
 'metadata'          => 'Μεταδογμένα',
+'metadata-help'     => "Αβούτον τ' αρχείον εχ' κιάλλα πληροφορίας, ίσως ασόν ψηφιακόν τη κάμεραν για το σαρωτήν το μεταχειρίσκουτον για να ίνεται.
+Τ' αρχείον αν έλλαξεν μορφήν, τα στοιχεία ίσως κ' είν' σωστά πλέον.",
 'metadata-expand'   => 'Δείξον τα λεπτομέρειας',
 'metadata-collapse' => 'Κρύψον τα λεπτομέρειας',
 
@@ -774,6 +795,7 @@ $messages = array(
 'exif-primarychromaticities'       => 'Πρωτεύοντες χρωματισμοί',
 
 # External editor support
+'edit-externally'      => "Αλλαγήν τ' αρχείου με προγράμματα ασα εξ μερέα",
 'edit-externally-help' => 'Τερέστεν τα [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] και θα ευρίετε κι άλλα γνώσιας.',
 
 # 'all' in various places, this might be different for inflected languages

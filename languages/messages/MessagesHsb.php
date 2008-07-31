@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author Tlustulimu
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author M.M.S.
  * @author SPQRobin
  */
@@ -1255,18 +1256,18 @@ PICT # misc.
 # File reversion
 'filerevert'                => 'Wersiju $1 cofnyć',
 'filerevert-legend'         => 'Dataju wróćo stajeć',
-'filerevert-intro'          => '<span class="plainlinks">Stajiš dataju \'\'\'[[Media:$1|$1]]\'\'\' na [$4 wersiju wot $2, $3 hodź.] wróćo.</span>',
+'filerevert-intro'          => "Stajiš dataju '''[[Media:$1|$1]]''' na [$4 wersiju wot $2, $3 hodź.] wróćo.",
 'filerevert-comment'        => 'Přičina:',
 'filerevert-defaultcomment' => 'wróćo stajene na wersiju wot $1, $2 hodź.',
 'filerevert-submit'         => 'Cofnyć',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' bu na [$4 wersiju wot $2, $3 hodź.] wróćo stajeny.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' bu na [$4 wersiju wot $2, $3 hodź.] wróćo stajeny.",
 'filerevert-badversion'     => 'W zapodatym času žana wersija dataje njeje.',
 
 # File deletion
 'filedelete'                  => '„$1“ wušmórnyć',
 'filedelete-legend'           => 'Wušmórnju dataju',
 'filedelete-intro'            => "Wušmórnješ '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Wušmórnješ wersiju \'\'\'[[Media:$1|$1]]\'\'\' wot [$4 wot $2, $3 hodź].</span>',
+'filedelete-intro-old'        => "Wušmórnješ wersiju '''[[Media:$1|$1]]''' wot [$4 wot $2, $3 hodź].",
 'filedelete-comment'          => 'Přičina:',
 'filedelete-submit'           => 'Wušmórnyć',
 'filedelete-success'          => "Strona '''„$1“''' bu wušmórnjena.",

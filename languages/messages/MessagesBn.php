@@ -7,9 +7,9 @@
  * @author Zaheen
  * @author Bellayet
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -1008,18 +1008,18 @@ $3-এর দেয়া কারণ হল ''$2''",
 # File reversion
 'filerevert'                => '$1 পূর্বাবস্থায় ফেরত নিন',
 'filerevert-legend'         => 'ফাইল পূর্বাবস্থায় ফেরত নিন',
-'filerevert-intro'          => '<span class="plainlinks">আপনি \'\'\'[[Media:$1|$1]]\'\'\' ফাইলটিকে [$3, $2 সময়ের $4 সংস্করণে] ফিরিয়ে নিচ্ছেন।</span>',
+'filerevert-intro'          => "আপনি '''[[Media:$1|$1]]''' ফাইলটিকে [$3, $2 সময়ের $4 সংস্করণে] ফিরিয়ে নিচ্ছেন।",
 'filerevert-comment'        => 'মন্তব্য:',
 'filerevert-defaultcomment' => '$2, $1 সংস্করণে ফেরত যাওয়া হল',
 'filerevert-submit'         => 'ফেরত যাওয়া হোক',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ফাইলটি  [$3, $2-এর $4 সংস্করণে] ফেরত নেওয়া হয়েছে।</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ফাইলটি  [$3, $2-এর $4 সংস্করণে] ফেরত নেওয়া হয়েছে।",
 'filerevert-badversion'     => 'প্রদত্ত তারিখ ও সময়ের জন্য এই ফাইলটির কোন স্থানীয় সংস্করণ নেই।',
 
 # File deletion
 'filedelete'             => '$1 মুছে ফেলা হোক',
 'filedelete-legend'      => 'ফাইল মুছে ফেলা হোক',
 'filedelete-intro'       => "আপনি '''[[Media:$1|$1]]''' ফাইলটি মুছে ফেলছেন।",
-'filedelete-intro-old'   => '<span class="plainlinks">আপনি \'\'\'[[Media:$1|$1]]\'\'\' ফাইলটির [$4 $3, $2] সংস্করণটি মুছে ফেলছেন।</span>',
+'filedelete-intro-old'   => "আপনি '''[[Media:$1|$1]]''' ফাইলটির [$4 $3, $2] সংস্করণটি মুছে ফেলছেন।",
 'filedelete-comment'     => 'মন্তব্য:',
 'filedelete-submit'      => 'মুছে ফেলা হোক',
 'filedelete-success'     => "'''$1''' মুছে ফেলা হয়েছে।",

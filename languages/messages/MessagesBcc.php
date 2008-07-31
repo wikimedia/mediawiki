@@ -6,6 +6,7 @@
  *
  * @author Mostafadaneshvar
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $fallback = 'fa';
@@ -1324,18 +1325,18 @@ PICT # misc.
 # File reversion
 'filerevert'                => 'ترین $1',
 'filerevert-legend'         => 'ترینگ فایل',
-'filerevert-intro'          => '<span class="plainlinks"> شما په ترینگء \'\'\'[[Media:$1|$1]]\'\'\' په  [$4 نسخه ای په داب چه $3, $2].</span>',
+'filerevert-intro'          => " شما په ترینگء '''[[Media:$1|$1]]''' په  [$4 نسخه ای په داب چه $3, $2].",
 'filerevert-comment'        => 'نظر:',
 'filerevert-defaultcomment' => 'تررت په نسخه په داب $2, $1',
 'filerevert-submit'         => 'تررگ',
-'filerevert-success'        => '<span class="plainlinks">\'\'[[Media:$1|$1]]\'\'\'  بدل بوتت په [$4 نسخه په داب چه $3, $2].</span>',
+'filerevert-success'        => "''[[Media:$1|$1]]'''  بدل بوتت په [$4 نسخه په داب چه $3, $2].",
 'filerevert-badversion'     => 'چه ای فایل پیشگین نسخه مکلی گون داتگین وهد نیست.',
 
 # File deletion
 'filedelete'                  => 'حذف $1',
 'filedelete-legend'           => 'حذف فایل',
 'filedelete-intro'            => "شما حذف کنگت ''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks"> شما په حذف کتن نسخه ای چه \'\'\'[[Media:$1|$1]]\'\'\' په داب چه [$4 $3, $2].</span>',
+'filedelete-intro-old'        => " شما په حذف کتن نسخه ای چه '''[[Media:$1|$1]]''' په داب چه [$4 $3, $2].",
 'filedelete-comment'          => 'دلیل په حذف:',
 'filedelete-submit'           => 'حذف',
 'filedelete-success'          => "'''$1''' حذف بوت.",

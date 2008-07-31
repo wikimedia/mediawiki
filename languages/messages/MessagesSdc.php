@@ -8,8 +8,8 @@
  * @author Antofa
  * @author Cornelia
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $messages = array(
@@ -1003,18 +1003,18 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 # File reversion
 'filerevert'                => 'Turra che primma $1',
 'filerevert-legend'         => 'Ricupara file',
-'filerevert-intro'          => '<span class="plainlinks">N\'isthai pa ricuparà lu file \'\'\'[[Media:$1|$1]]\'\'\' a la [versioni $4 di lu $2, $3].</span>',
+'filerevert-intro'          => "N'isthai pa ricuparà lu file '''[[Media:$1|$1]]''' a la [versioni $4 di lu $2, $3].",
 'filerevert-comment'        => 'Oggettu:',
 'filerevert-defaultcomment' => 'Turradda che primma la versioni di lu $1, $2',
 'filerevert-submit'         => 'Turra che primma',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'Lu file [[Media:$1|$1]]\'\'\' è isthaddu ricuparaddu a la [versioni $4 di lu $2, $3].</span>',
+'filerevert-success'        => "'''Lu file [[Media:$1|$1]]''' è isthaddu ricuparaddu a la [versioni $4 di lu $2, $3].",
 'filerevert-badversion'     => "Nò isisthono versioni lucari prizzidenti di lu file cu' la marchaddura oreria disizadda.",
 
 # File deletion
 'filedelete'             => 'Canzella $1',
 'filedelete-legend'      => 'Canzella lu file',
 'filedelete-intro'       => "N'isthai canzellendi '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">N\'isthai canzillendi la versioni di \'\'\'[[Media:$1|$1]]\'\'\' di lu [$4 $2, $3].</span>',
+'filedelete-intro-old'   => "N'isthai canzillendi la versioni di '''[[Media:$1|$1]]''' di lu [$4 $2, $3].",
 'filedelete-comment'     => 'Mutibazioni:',
 'filedelete-submit'      => 'Canzella',
 'filedelete-success'     => "Lu file '''$1''' è isthaddu canzilladdu.",

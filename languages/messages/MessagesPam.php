@@ -7,6 +7,7 @@
  * @author Katimawan2005
  * @author Val2397
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author SPQRobin
  */
 
@@ -1166,18 +1167,18 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 # File reversion
 'filerevert'                => 'Isubli ya ing $1',
 'filerevert-legend'         => 'Isubli (revert) ya ing simpan',
-'filerevert-intro'          => '<span class="plainlinks">Susubli me ing \'\'\'[[Media:$1|$1]]\'\'\' king [$4 bersion aniang $3, $2].</span>',
+'filerevert-intro'          => "Susubli me ing '''[[Media:$1|$1]]''' king [$4 bersion aniang $3, $2].",
 'filerevert-comment'        => 'Komentu:',
 'filerevert-defaultcomment' => 'Misubli ya king bersion aniang $2, $1',
 'filerevert-submit'         => 'Isubli',
-'filerevert-success'        => '<span class="plainlinks">Ing \'\'\'[[Media:$1|$1]]\'\'\' misubli ya king [$4 bersion aniang $3, $2].</span>',
+'filerevert-success'        => "Ing '''[[Media:$1|$1]]''' misubli ya king [$4 bersion aniang $3, $2].",
 'filerevert-badversion'     => 'Alang sadiang/minunang lokal a bersion na niting simpan a tambing maki timestamp.',
 
 # File deletion
 'filedelete'                  => 'Buran ya ing $1',
 'filedelete-legend'           => 'Buran ya ing simpan (file)',
 'filedelete-intro'            => "Buburan me ing '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Buburan me ing bersion ning \'\'\'[[Media:$1|$1]]\'\'\' aniang [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Buburan me ing bersion ning '''[[Media:$1|$1]]''' aniang [$4 $3, $2].",
 'filedelete-comment'          => 'Sangkan king pamamura:',
 'filedelete-submit'           => 'Buran',
 'filedelete-success'          => "Mebura ne ing '''$1'''.",
@@ -2034,7 +2035,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Pirinan kareng bayung simpan (new files)',
 'imagelisttext'         => "Ing makatuki tala yang '''$1''' {{PLURAL:$1|simpan|simpan}} a misamasan $2.",
-'newimages-summary'     => 'Ining bulung a makabukud papakit no reng simpan (file) a tauling milulan',
+'newimages-summary'     => 'Ining bulung a makabukud papakit no reng simpan (file) a tauling milulan.',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Ala kang akit.',
 'ilsubmit'              => 'Manintun',

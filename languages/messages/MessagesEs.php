@@ -18,19 +18,20 @@
  * @author Jurock
  * @author Baiji
  * @author Sanbec
- * @author Cvmontuy
  * @author Alhen
+ * @author Cvmontuy
  * @author Jatrobat
  * @author Ascánder
  * @author Bengoa
- * @author Dvortygirl
+ * @author Jon Harald Søby
  * @author Orgullomoore
+ * @author Dvortygirl
  * @author Toniher
  * @author Omnipaedista
- * @author McDutchie
- * @author Mahadeva
- * @author Alpertron
  * @author Fluence
+ * @author Alpertron
+ * @author Mahadeva
+ * @author McDutchie
  * @author Better
  * @author SPQRobin
  * @author Technorum
@@ -1159,10 +1160,10 @@ archivo a esa fecha.',
 
 # File reversion
 'filerevert'            => 'Revertir $1',
-'filerevert-intro'      => '<span class="plainlinks">Estás revirtiendo \'\'\'[[Media:$1|$1]]\'\'\' a la [version $4 desde la $3, $2].</span>',
+'filerevert-intro'      => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [version $4 desde la $3, $2].",
 'filerevert-comment'    => 'Comentario:',
 'filerevert-submit'     => 'Revertir',
-'filerevert-success'    => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha sido revertido a la [version $4 desde la $3, $2].</span>',
+'filerevert-success'    => "'''[[Media:$1|$1]]''' ha sido revertido a la [version $4 desde la $3, $2].",
 'filerevert-badversion' => 'No existe version local previa de este archivo con esa marca de tiempo.',
 
 # File deletion

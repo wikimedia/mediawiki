@@ -8,10 +8,12 @@
  * @author Raymond
  * @author Red Baron
  * @author Purodha
+ * @author Spacebirdy
  * @author Omnipaedista
  * @author לערי ריינהארט
  * @author Pill
- * @author Spacebirdy
+ * @author Revolus
+ * @author MichaelFrey
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
@@ -423,6 +425,7 @@ $messages = array(
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{#special:version}}|Versionsseite]]',
 
 'ok'                      => 'OK',
+'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
 'youhavenewmessages'      => 'Du hast $2 auf deiner $1.',
 'newmessageslink'         => 'Diskussionsseite',
@@ -1275,6 +1278,20 @@ Bitte prüfe sorgfältig, ob das erneute Hochladen den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'filename-bad-prefix'         => 'Der Dateiname beginnt mit <strong>„$1“</strong>. Dies ist im allgemeinen der von einer Digitalkamera vorgegebene Dateiname und daher nicht sehr aussagekräftig.
 Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
+'filename-prefix-blacklist'   => ' #<!-- Diese Zeile darf nicht verändert werden! --> <pre>
+#  Syntax:
+#   * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar
+#   * Jede nicht-leere Zeile ist ein ist ein Anfang für einen Typischen Dateinamen der automatisch von einer Digitalkamera erzeugt wird
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # gewisse Mobiltelefone
+IMG # generisch
+JD # Jenoptik
+MGP # Pentax
+PICT # verschiedene
+ #</pre> <!-- Diese Zeile darf nicht verändert werden!-->',
 
 'upload-proto-error'      => 'Falsches Protokoll',
 'upload-proto-error-text' => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',

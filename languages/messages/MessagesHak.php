@@ -6,8 +6,8 @@
  *
  * @author Hakka
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $messages = array(

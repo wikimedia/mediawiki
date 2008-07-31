@@ -8,6 +8,7 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
  */
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
@@ -1110,11 +1111,11 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 # File reversion
 'filerevert'                => '$1-г буцаах',
 'filerevert-legend'         => 'Файлыг буцаах',
-'filerevert-intro'          => '<span class="plainlinks">Та \'\'\'[[Media:$1|$1]]\'\'\'-г [$3, $2-ий байдлаарх $4 хувилбар] руу буцааж байна.</span>',
+'filerevert-intro'          => "Та '''[[Media:$1|$1]]'''-г [$3, $2-ий байдлаарх $4 хувилбар] руу буцааж байна.",
 'filerevert-comment'        => 'Тайлбар:',
 'filerevert-defaultcomment' => '$2, $1-ий байдлаарх хувилбар руу буцаалаа',
 'filerevert-submit'         => 'Буцаах',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' нь [$3, $2-ий байдлаарх $4 хувилбар руу] буцаагдлаа.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' нь [$3, $2-ий байдлаарх $4 хувилбар руу] буцаагдлаа.",
 'filerevert-badversion'     => 'Өгөгдсөн огнооны тэмдэгтэй энэ файлын дотоод хувилбар байхгүй байна.',
 
 # File deletion
@@ -1899,7 +1900,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Шинэ файлуудын галерэй',
 'imagelisttext'         => "Доорх нь $2-р ангилсан '''$1''' файлын жагсаалт юм.",
-'newimages-summary'     => 'Энэ тусгай хуудсанд хамгийн сүүлд оруулагдсан файлуудыг үзүүлнэ',
+'newimages-summary'     => 'Энэ тусгай хуудсанд хамгийн сүүлд оруулагдсан файлуудыг үзүүлнэ.',
 'showhidebots'          => '(Роботуудыг $1)',
 'noimages'              => 'Харах юмгүй.',
 'ilsubmit'              => 'Хайлт',
