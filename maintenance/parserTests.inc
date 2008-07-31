@@ -484,6 +484,7 @@ class ParserTest {
 			throw new MWException( 'setupDatabase should be called before setupGlobals' );
 		}
 		$this->databaseSetupDone = true;
+		$this->oldTablePrefix = $wgDBprefix;
 
 		# CREATE TEMPORARY TABLE breaks if there is more than one server
 		if ( wfGetLB()->getServerCount() != 1 ) {
@@ -504,19 +505,28 @@ class ParserTest {
 				$def = '';
 			}
 			foreach ($tables as $tbl) {
+				# Clean up from previous aborted run.  So that table escaping
+				# works correctly across DB engines, we need to change the pre-
+				# fix back and forth so tableName() works right.
+				$this->changePrefix( $this->oldTablePrefix );
 				$oldTableName = $db->tableName( $tbl );
-				# Clean up from previous aborted run
-				if ( $db->tableExists( "`parsertest_$tbl`" ) ) {
-					$db->query("DROP TABLE `parsertest_$tbl`");
+				$this->changePrefix( 'parsertest_' );
+				$newTableName = $db->tableName( $tbl );
+
+				if ( $db->tableExists( $tbl ) ) {
+					$db->query("DROP TABLE $newTableName");
 				}
 				# Create new table
-				$db->query("CREATE $temporary TABLE `parsertest_$tbl` (LIKE $oldTableName $def)");
+				$db->query("CREATE $temporary TABLE $newTableName (LIKE $oldTableName $def)");
 			}
 		} else {
 			# Hack for MySQL versions < 4.1, which don't support
 			# "CREATE TABLE ... LIKE". Note that
 			# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
 			# would not create the indexes we need....
+			#
+			# Note that we don't bother changing around the prefixes here be-
+			# cause we know we're using MySQL anyway.
 			foreach ($tables as $tbl) {
 				$oldTableName = $db->tableName( $tbl );
 				$res = $db->query("SHOW CREATE TABLE $oldTableName");
@@ -532,9 +542,11 @@ class ParserTest {
 			}
 		}
 
+		$this->changePrefix( 'parsertest_' );
+
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
-		$db->insert( '`parsertest_interwiki`', array(
+		$db->insert( 'interwiki', array(
 			array( 'iw_prefix' => 'Wikipedia',
 				   'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
 				   'iw_local'  => 0 ),
@@ -556,7 +568,7 @@ class ParserTest {
 			) );
 
 		# Hack: Insert an image to work with
-		$db->insert( '`parsertest_image`', array(
+		$db->insert( 'image', array(
 			'img_name'        => 'Foobar.jpg',
 			'img_size'        => 12345,
 			'img_description' => 'Some lame file',
@@ -573,11 +585,7 @@ class ParserTest {
 			) );
 
 		# Update certain things in site_stats
-		$db->insert( '`parsertest_site_stats`', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
-
-		# Change the table prefix
-		$this->oldTablePrefix = $wgDBprefix;
-		$this->changePrefix( 'parsertest_' );
+		$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
 	}
 
 	/**
