@@ -208,8 +208,8 @@ class WatchlistEditor {
 		$sql = "SELECT wl_namespace, wl_title, page_id, page_len, page_is_redirect
 			FROM {$watchlist} LEFT JOIN {$page} ON ( wl_namespace = page_namespace
 			AND wl_title = page_title ) WHERE wl_user = {$uid}";
-		if ( ! $dbr->implicitOrderby() ) {
-			$sql .= "ORDER BY wl_title';
+		if ( !$dbr->implicitOrderby() ) {
+			$sql .= ' ORDER BY wl_title';
 		}
 		$res = $dbr->query( $sql, __METHOD__ );
 		if( $res && $dbr->numRows( $res ) > 0 ) {
