@@ -182,6 +182,7 @@ class Linker {
 		}
 
 		# If we don't know whether the page exists, let's find out.
+		wfProfileIn( __METHOD__ . '-checkPageExistence' );
 		if( !in_array( 'known', $options ) and !in_array( 'broken', $options ) ) {
 			if( $target->getNamespace() == NS_SPECIAL ) {
 				if( SpecialPage::exists( $target->getDbKey() ) ) {
@@ -194,10 +195,10 @@ class Linker {
 			or $target->exists() ) {
 				$options []= 'known';
 			} else {
-				# Either it exists
 				$options []= 'broken';
 			}
 		}
+		wfProfileOut( __METHOD__ . '-checkPageExistence' );
 
 		# Note: we want the href attribute first, for prettiness.
 		$attribs = array( 'href' => $this->linkUrl( $target, $query, $options ) );
@@ -218,16 +219,20 @@ class Linker {
 	}
 
 	private function linkUrl( $target, $query, $options ) {
+		wfProfileIn( __METHOD__ );
 		# If it's a broken link, add the appropriate query pieces, unless
 		# there's already an action specified.
 		if( in_array( 'broken', $options ) and empty( $query['action'] ) ) {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
-		return $target->getLinkUrl( $query );
+		$ret = $target->getLinkUrl( $query );
+		wfProfileOut( __METHOD__ );
+		return $ret;
 	}
 
 	private function linkAttribs( $target, $attribs, $options ) {
+		wfProfileIn( __METHOD__ );
 		global $wgUser;
 		$defaults = array();
 
@@ -276,6 +281,7 @@ class Linker {
 				$ret[$key] = $val;
 			}
 		}
+		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
 
