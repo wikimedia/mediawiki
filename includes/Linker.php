@@ -159,7 +159,9 @@ class Linker {
 	 * @param $options       mixed  String or array of strings:
 	 *     'known': Page is known to exist, so don't check if it does.
 	 *     'broken': Page is known not to exist, so don't check if it does.
-	 *     'noclasses': Don't add any classes automatically (includes "new", "stub", "mw-redirect").  Only use the class attribute provided, if any.
+	 *     'noclasses': Don't add any classes automatically (includes "new",
+	 *       "stub", "mw-redirect").  Only use the class attribute provided, if
+	 *       any.
 	 * @return string HTML <a> attribute
 	 */
 	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
@@ -218,8 +220,11 @@ class Linker {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
-
-		return $target->getLocalURL( wfArrayToCGI( $query ) );
+		$ret = $target->getLocalURL( $query );
+		if( $target->getFragment() !== '' ) {
+			$ret .= '#'.$target->getFragment();
+		}
+		return $ret;
 	}
 
 	private function linkAttribs( $target, $attribs, $options ) {
@@ -1219,7 +1224,7 @@ class Linker {
 					$sectionTitle = Title::newFromText( '#' . $section);
 				} else {
 					$sectionTitle = wfClone( $title );
-					$sectionTitle->mFragment = $section;
+					$sectionTitle->setFragment( $section );
 				}
 				$link = $this->link( $sectionTitle, wfMsgForContent( 'sectionlink' ) );
 			}
