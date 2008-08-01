@@ -588,11 +588,11 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	public function getYear() {
-		return $this->year;
+		return $this->mYear;
 	}
 
 	public function getMonth() {
-		return $this->month;
+		return $this->mMonth;
 	}
 }
 
