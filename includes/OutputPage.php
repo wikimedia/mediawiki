@@ -856,12 +856,8 @@ class OutputPage {
 			$this->addScriptFile( 'rightclickedit.js' );
 		}
 
-
 		# Buffer output; final headers may depend on later processing
 		ob_start();
-
-		# Disable temporary placeholders, so that the skin produces HTML
-		$sk->postParseLinkColour( false );
 
 		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		$wgRequest->response()->header( 'Content-language: '.$wgContLanguageCode );
