@@ -1323,6 +1323,33 @@ Broken link
 !! end
 
 !! test
+Broken link with fragment
+!! input
+[[Zigzagzogzagzig#zug]]
+!! result
+<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1#zug" class="new" title="Zigzagzogzagzig (not yet written)">Zigzagzogzagzig#zug</a>
+</p>
+!! end
+
+!! test
+Special page link with fragment
+!! input
+[[Special:Version#anchor]]
+!! result
+<p><a href="/wiki/Special:Version#anchor" title="Special:Version">Special:Version#anchor</a>
+</p>
+!! end
+
+!! test
+Nonexistent special page link with fragment
+!! input
+[[Special:ThisNameWillHopefullyNeverBeUsed#anchor]]
+!! result
+<p><a href="/wiki/Special:ThisNameWillHopefullyNeverBeUsed#anchor" class="new" title="Special:ThisNameWillHopefullyNeverBeUsed (not yet written)">Special:ThisNameWillHopefullyNeverBeUsed#anchor</a>
+</p>
+!! end
+
+!! test
 Link with prefix
 !! input
 xxx[[main Page]], xxx[[Main Page]], Xxx[[main Page]] XXX[[main Page]], XXX[[Main Page]]
@@ -7011,6 +7038,8 @@ Line two
 </div></blockquote>
 
 !! end
+
+
 #
 #
 #

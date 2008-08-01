@@ -168,18 +168,13 @@ class Linker {
 	 */
 	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
 		wfProfileIn( __METHOD__ );
-		if( !($target instanceof Title) ) {
+		if( !$target instanceof Title ) {
 			throw new MWException( 'Linker::link passed invalid target' );
 		}
 		$options = (array)$options;
 
 		# Normalize the Title if it's a special page
-		if( $target->getNamespace() == NS_SPECIAL ) {
-			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $target->getDBkey() );
-			if( $name ) {
-				$target = SpecialPage::getTitleFor( $name, $subpage );
-			}
-		}
+		$target = $this->normaliseSpecialPage( $target );
 
 		# If we don't know whether the page exists, let's find out.
 		wfProfileIn( __METHOD__ . '-checkPageExistence' );
@@ -523,6 +518,11 @@ class Linker {
 			$q = 'action=edit&redlink=1&'.$query;
 		}
 		$u = $nt->escapeLocalURL( $q );
+		if( $nt->getFragmentForURL() !== '' ) {
+			# Might seem pointless to have a fragment on a redlink, but let's
+			# be obedient.
+			$u .= $nt->getFragmentForURL();
+		}
 
 		$titleText = $nt->getPrefixedText();
 		if ( '' == $text ) {
@@ -610,7 +610,9 @@ class Linker {
 		if ( $title->getNamespace() == NS_SPECIAL ) {
 			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $title->getDBkey() );
 			if ( !$name ) return $title;
-			return SpecialPage::getTitleFor( $name, $subpage );
+			$ret = SpecialPage::getTitleFor( $name, $subpage );
+			$ret->mFragment = $title->getFragment();
+			return $ret;
 		} else {
 			return $title;
 		}
