@@ -146,7 +146,7 @@ class Linker {
 	 * @param $target        Title  Can currently only be a Title, but this may
 	 *   change to support Images, literal URLs, etc.
 	 * @param $text          string The HTML contents of the <a> element, i.e.,
-	 *   the link text.  This will be escaped.  If null,
+	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the Title; or if the Title is just a
 	 *   fragment, the contents of the fragment.
 	 * @param $query         array  The query string to append to the URL
@@ -208,7 +208,9 @@ class Linker {
 			$text = $this->linkText( $target, $options );
 		}
 
-		$ret = Xml::element( 'a', $attribs, $text, false );
+		$ret = Xml::openElement( 'a', $attribs )
+			. $text
+			. Xml::closeElement( 'a' );
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
@@ -289,9 +291,9 @@ class Linker {
 		# If the target is just a fragment, with no title, we return the frag-
 		# ment text.  Otherwise, we return the title text itself.
 		if( $target->getPrefixedText() === '' and $target->getFragment() !== '' ) {
-			return $target->getFragment();
+			return htmlspecialchars( $target->getFragment() );
 		}
-		return $target->getPrefixedText();
+		return htmlspecialchars( $target->getPrefixedText() );
 	}
 
 	/**
@@ -1046,7 +1048,7 @@ class Linker {
 		} else {
 			$page = Title::makeTitle( NS_USER, $userText );
 		}
-		return $this->link( $page, $userText );
+		return $this->link( $page, htmlspecialchars( $userText ) );
 	}
 
 	/**
