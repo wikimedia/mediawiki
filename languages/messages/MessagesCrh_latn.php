@@ -1415,8 +1415,6 @@ adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
 Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege mecbur olursıñız.",
 'movearticle'             => 'Eski ad',
-'movenologin'             => 'Oturım açmadıñız',
-'movenologintext'         => 'Saifeniñ adını deñiştirip olmaq içün [[Special:Userlogin|oturım açıñız]].',
 'movenotallowed'          => '{{SITENAME}} saytında saifeler adlarını deñiştirmege iziniñiz yoq.',
 'newtitle'                => 'Yañı ad',
 'move-watch'              => 'Bu saifeni közet',

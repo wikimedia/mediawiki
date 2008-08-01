@@ -543,7 +543,6 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',
 
 # Move page
-'movenologin'     => 'Gudaha kuma jirtid',
 'movedto'         => 'loo wareejiyey',
 'movetalk'        => "Wareejiyey bogga wadahadalka la'xiriira",
 '1movedto2'       => '[[$1]] waxaa loo wareejiyey [[$2]]',

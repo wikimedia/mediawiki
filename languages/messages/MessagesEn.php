@@ -1332,7 +1332,7 @@ Note that using the navigation links will reset this column.',
 # Search results
 'searchresults'             => 'Search results',
 'searchresulttext'          => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "You searched for '''[[:$1]]''' ([[Special:Prefixindex/$1|all pages starting with \"$1\"]] | [[Special:Whatlinkshere/$1|all pages that link to \"$1\"]])",
+'searchsubtitle'            => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:Whatlinkshere/$1|all pages that link to "$1"]])',
 'searchsubtitleinvalid'     => "You searched for '''$1'''",
 'noexactmatch'              => "'''There is no page titled \"\$1\".'''
 You can [[:\$1|create this page]].",
@@ -2466,8 +2466,6 @@ please be sure you understand the consequences of this before proceeding.",
 
 In those cases, you will have to move or merge the page manually if desired.",
 'movearticle'             => 'Move page:',
-'movenologin'             => 'Not logged in',
-'movenologintext'         => 'You must be a registered user and [[Special:Userlogin|logged in]] to move a page.',
 'movenotallowed'          => 'You do not have permission to move pages on {{SITENAME}}.',
 'newtitle'                => 'To new title:',
 'move-watch'              => 'Watch this page',

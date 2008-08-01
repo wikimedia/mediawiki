@@ -1851,8 +1851,6 @@ Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, et
 
 Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'movearticle'             => 'Siirrä sivu',
-'movenologin'             => 'Et ole kirjautunut sisään',
-'movenologintext'         => 'Sinun pitää olla rekisteröitynyt käyttäjä ja kirjautua sisään, jotta voisit siirtää sivun.',
 'movenotallowed'          => 'Sinulla ei ole oikeuksia siirtää sivuja {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'newtitle'                => 'Uusi nimi sivulle',
 'move-watch'              => 'Tarkkaile tätä sivua',

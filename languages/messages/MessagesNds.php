@@ -1906,10 +1906,6 @@ Dat bedüüdt, dat du ene jüst verschavene Siet na’n olen Titel trüchschuven
 
 In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'movearticle'             => 'Siet schuven',
-'movenologin'             => 'Du büst nich anmellt',
-'movenologintext'         => 'Du muttst en registreert Bruker un
-[[Special:Userlogin|anmellt]] ween,
-üm en Siet to schuven.',
 'movenotallowed'          => 'Du hest nich de Rechten, op {{SITENAME}} Sieden to schuven.',
 'newtitle'                => 'To ne’en Titel',
 'move-watch'              => 'Op disse Siet oppassen',

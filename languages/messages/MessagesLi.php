@@ -1762,8 +1762,6 @@ Vergaet neet de database opnuuj te [[Special:Unlockdb|deblokkere]] wens te klaor
 * es al 'n euverlikpazjena besjteit ónger de angere naam
 * es doe 't óngersjtaond vekske neet aanvinks",
 'movearticle'             => 'Verplaats pazjena',
-'movenologin'             => 'Neet aangemèld',
-'movenologintext'         => "Veur 't verplaatsje van 'n pazjena mos e zien [[Special:Userlogin|aangemèld]].",
 'movenotallowed'          => "De kèns gein pazjena's verplaatse op {{SITENAME}}.",
 'newtitle'                => 'Nao de nuje titel',
 'move-watch'              => 'Volg deze pazjena',

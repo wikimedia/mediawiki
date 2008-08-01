@@ -1793,8 +1793,6 @@ kad suprantate visas pasekmes.",
 
 Šiais atvejais jūs savo nuožiūra turite perkelti arba apjungti aptarimo puslapį.",
 'movearticle'             => 'Pervardinti puslapį:',
-'movenologin'             => 'Neprisijungęs',
-'movenologintext'         => 'Norėdami pervadinti puslapį, turite būti užsiregistravęs naudotojas ir būti  [[Special:Userlogin|prisijungęs]].',
 'movenotallowed'          => 'Jūs neturite teisių pervadinti puslapių šiame projekte.',
 'newtitle'                => 'Naujas pavadinimas:',
 'move-watch'              => 'Stebėti šį puslapį',

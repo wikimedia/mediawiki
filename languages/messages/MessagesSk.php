@@ -1950,8 +1950,6 @@ ubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojh
 
 V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť stránku ručne.",
 'movearticle'             => 'Presunúť stránku',
-'movenologin'             => 'Nie ste prihlásený',
-'movenologintext'         => 'Musíte byť registrovaný používateľ a [[Special:Userlogin|prihlásený]], aby ste mohli presunúť stránku.',
 'movenotallowed'          => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} nemáte povolenie presúvať stránky.',
 'newtitle'                => 'Na nový názov:',
 'move-watch'              => 'Sledovať túto stránku',

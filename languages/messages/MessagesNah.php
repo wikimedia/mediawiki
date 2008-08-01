@@ -770,7 +770,6 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'move-page'               => 'Ticzacāz $1',
 'move-page-legend'        => 'Ticzacāz zāzanilli',
 'movearticle'             => 'Ticzacāz tlahcuilōlli',
-'movenologin'             => 'Ahmo ōtimocalac',
 'movenotallowed'          => 'Ahmo tihuelīti tiquinzaca zāzaniltin īpan {{SITENAME}}.',
 'newtitle'                => 'Yancuīc tōcāhuīc',
 'move-watch'              => 'Tictlachiyāz inīn zāzanilli',

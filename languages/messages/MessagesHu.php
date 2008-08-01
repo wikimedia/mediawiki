@@ -2065,8 +2065,6 @@ győződj meg róla a folytatás előtt, hogy tisztában vagy-e a következmény
 
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",
 'movearticle'             => 'Lap átnevezése',
-'movenologin'             => 'Nem jelentkeztél be',
-'movenologintext'         => 'Ahhoz, hogy átnevezhess egy lapot, [[Special:Userlogin|be kell lépned]].',
 'movenotallowed'          => 'A lapok áthelyezése ebben a wikiben számodra nem engedélyezett.',
 'newtitle'                => 'Az új cím:',
 'move-watch'              => 'Figyeld a lapot',

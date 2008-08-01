@@ -716,8 +716,6 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 
 I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.",
 'movearticle'      => 'Artikel verschiebe',
-'movenologin'      => 'Du bisch nid aagmäldet',
-'movenologintext'  => 'Du muesch dich z’ersch [[Special:Userlogin|aamälde]] damit du die Syte chasch zügle.',
 'newtitle'         => 'Zum nöie Titel',
 'movepagebtn'      => 'Artikel verschiebe',
 'pagemovedsub'     => 'Verschiebig erfolgrych',

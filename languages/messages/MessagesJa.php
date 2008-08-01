@@ -1697,8 +1697,6 @@ $NEWPAGE
 
 これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
 'movearticle'             => '移動するページ',
-'movenologin'             => 'ログインしていません',
-'movenologintext'         => 'ページを移動するためには、アカウント作成の上、[[Special:Userlogin|ログイン]]している必要があります。',
 'movenotallowed'          => '{{SITENAME}}でページを移動する権限がありません。',
 'newtitle'                => '新しいページ名',
 'move-watch'              => '移動するページをウォッチ',

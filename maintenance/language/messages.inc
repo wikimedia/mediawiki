@@ -1655,8 +1655,6 @@ $wgMessageStructure = array(
 		'movepagetext',
 		'movepagetalktext',
 		'movearticle',
-		'movenologin',
-		'movenologintext',
 		'movenotallowed',
 		'newtitle',
 		'move-watch',

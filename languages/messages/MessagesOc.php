@@ -1980,9 +1980,6 @@ Asseguratz-vos de n'avoir compres las consequéncias abans de contunhar.",
 
 Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volètz.",
 'movearticle'             => "Tornar nomenar l'article",
-'movenologin'             => 'Vos sètz pas identificat(ada)',
-'movenologintext'         => "Per poder tornar nomenar un article, vos cal èsser [[Special:Userlogin|connectat(ada)]]
-en tant qu'utilizaire enregistrat.",
 'movenotallowed'          => 'Avètz pas la permission de tornar nomenar de paginas sus {{SITENAME}}.',
 'newtitle'                => 'Títol novèl',
 'move-watch'              => 'Seguir aquesta pagina',

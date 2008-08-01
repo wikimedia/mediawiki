@@ -897,7 +897,6 @@ a sa gukilize di nyanganyisize.",
 
 Teri yaki, a nyanganyisize.",
 'movearticle'      => 'Nyanganyisize petulo:',
-'movenologin'      => 'A ni sa menuhile',
 'newtitle'         => 'Di nca petulo:',
 'move-watch'       => 'Kentezi bye petulo',
 'movepagebtn'      => 'Nyanganyisize petulo',

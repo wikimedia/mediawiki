@@ -1962,8 +1962,6 @@ Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yan
 
 Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabungkan halaman secara manual.",
 'movearticle'             => 'Pindahkan halaman:',
-'movenologin'             => 'Belum masuk log',
-'movenologintext'         => 'Anda harus menjadi pengguna terdaftar dan telah [[Special:Userlogin|masuk log]] untuk dapat memindahkan suatu halaman.',
 'movenotallowed'          => 'Anda tak memiliki hak akses untuk memindahkan halaman pada wiki ini.',
 'newtitle'                => 'Ke judul baru:',
 'move-watch'              => 'Pantau halaman ini',

@@ -1646,8 +1646,6 @@ pol favol, asigurati e qu'entiendis las consecuéncias enantis d'acontinal.",
 
 En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhina manualmenti.",
 'movearticle'             => 'Movel páhina:',
-'movenologin'             => "Nu t'alcuentras rustriu",
-'movenologintext'         => 'Ebis estal rustriu i [[Special:Userlogin|entral ena tu cuenta]] pa movel una páhina.',
 'movenotallowed'          => 'Nu tiinis premisu pa mual páhinas nesti güiqui.',
 'newtitle'                => 'Nuevu entítulu:',
 'move-watch'              => 'Vehilal esta páhina',
