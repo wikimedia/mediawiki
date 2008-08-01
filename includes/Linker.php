@@ -147,7 +147,8 @@ class Linker {
 	 *   change to support Images, literal URLs, etc.
 	 * @param $text          string The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
-	 *   defaults to the page name of the Title.
+	 *   defaults to the prefixed text of the Title; or if the Title is just a
+	 *   fragment, the contents of the fragment.
 	 * @param $query         array  The query string to append to the URL
 	 *   you're linking to, in key => value array form.  Query keys and values
 	 *   will be URL-encoded.

@@ -655,7 +655,7 @@ END;
 
 			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escapenoentities' ), count( $allCats['normal'] ) );
 			$s .= '<div id="mw-normal-catlinks">' .
-				$this->makeLinkObj( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
+				$this->link( Title::newFromText( wfMsgForContent('pagecategorieslink') ), $msg )
 				. $colon . $t . '</div>';
 		}
 
@@ -710,8 +710,8 @@ END;
 				$return .= Skin::drawCategoryBrowser($parent, $skin) . ' &gt; ';
 			}
 			# add our current element to the list
-			$eltitle = Title::NewFromText($element);
-			$return .=  $skin->makeLinkObj( $eltitle, $eltitle->getText() ) ;
+			$eltitle = Title::newFromText($element);
+			$return .=  $skin->link( $eltitle, $eltitle->getText() ) ;
 		}
 		return $return;
 	}
@@ -926,50 +926,54 @@ END;
 	function nameAndLogin() {
 		global $wgUser, $wgTitle, $wgLang, $wgContLang;
 
-		$lo = $wgContLang->specialPage( 'Userlogout' );
+		$logoutPage = $wgContLang->specialPage( 'Userlogout' );
 
-		$s = '';
+		$ret = '';
 		if ( $wgUser->isAnon() ) {
 			if( $this->showIPinHeader() ) {
-				$n = wfGetIP();
+				$name = wfGetIP();
 
-				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
-				  $wgLang->getNsText( NS_TALK ) );
+				$talkLink = $this->link( $wgUser->getTalkPage(),
+					$wgLang->getNsText( NS_TALK ) );
 
-				$s .= $n . ' ('.$tl.')';
+				$ret .= "$name ($talkLink)";
 			} else {
-				$s .= wfMsg('notloggedin');
+				$ret .= wfMsg( 'notloggedin' );
 			}
 
-			$rt = $wgTitle->getPrefixedURL();
-			if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
-				$q = '';
-			} else { $q = "returnto={$rt}"; }
+			$returnTo = $wgTitle->getPrefixedDBkey();
+			$query = array();
+			if ( $logoutPage != $returnTo ) {
+				$query['returnto'] = $returnTo;
+			}
 
 			$loginlink = $wgUser->isAllowed( 'createaccount' )
 				? 'nav-login-createaccount'
 				: 'login';
-			$s .= "\n<br />" . $this->makeKnownLinkObj(
+			$ret .= "\n<br />" . $this->link(
 				SpecialPage::getTitleFor( 'Userlogin' ),
-				wfMsg( $loginlink ), $q );
+				wfMsg( $loginlink ), array(), $query
+			);
 		} else {
-			$n = $wgUser->getName();
-			$rt = $wgTitle->getPrefixedURL();
-			$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
-			  $wgLang->getNsText( NS_TALK ) );
+			$returnTo = $wgTitle->getPrefixedDBkey();
+			$talkLink = $this->link( $wgUser->getTalkPage(),
+				$wgLang->getNsText( NS_TALK ) );
 
-			$tl = " ({$tl})";
-
-			$s .= $this->makeKnownLinkObj( $wgUser->getUserPage(),
-			  $n ) . "{$tl}<br />" .
-			  $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
-			  "returnto={$rt}" ) . ' | ' .
-			  $this->specialLink( 'preferences' );
+			$ret .= $this->link( $wgUser->getUserPage(),
+				htmlspecialchars( $wgUser->getName() ) );
+			$ret .= " ($talkLink)<br />";
+			$ret .= $this->link(
+				SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
+				array(), array( 'returnto' => $returnTo )
+			);
+			$ret .= ' | ' . $this->specialLink( 'preferences' );
 		}
-		$s .= ' | ' . $this->makeKnownLink( wfMsgForContent( 'helppage' ),
-		  wfMsg( 'help' ) );
+		$ret .= ' | ' . $this->link(
+			Title::newFromText( wfMsgForContent( 'helppage' ) ),
+			wfMsg( 'help' )
+		);
 
-		return $s;
+		return $ret;
 	}
 
 	function getSearchLink() {
