@@ -1715,7 +1715,7 @@ END;
 				} else { continue; }
 			}
 		}
-		wfRunHooks('SkinBuildSidebar', array($skin, &$bar));
+		wfRunHooks('SkinBuildSidebar', array($this, &$bar));
 		if ( $wgEnableSidebarCache ) $parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		wfProfileOut( __METHOD__ );
 		return $bar;
