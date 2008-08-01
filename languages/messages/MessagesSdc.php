@@ -521,10 +521,6 @@ Si vói ciaramiddanne, pa piazeri prizzisa sempri lu nùmaru di lu broccu (ID #$
 'blockededitsource'         => "Inogghi so musthraddi li '''mudìfigghi arriggaddi''' a la pàgina '''$1''':",
 'whitelistedittitle'        => 'È nezzessàriu intrà pa mudìfiggà li pàgini',
 'whitelistedittext'         => 'Pa mudìfiggà li pàgini è nezzessàriu $1.',
-'whitelistreadtitle'        => 'È nezzessàriu intrà pa liggì li pàgini',
-'whitelistreadtext'         => 'Pa liggì li pàgini è nezzessàriu [[Special:Userlogin|intrà]].',
-'whitelistacctitle'         => "Criazioni d'una noba intradda nò cunsintidda",
-'whitelistacctext'          => "Pa assé abiritaddi a la criazioni di nobi registhrazioni in {{SITENAME}} è nezzessàriu [[Special:Userlogin|intrà]] e abenni l'autorizzazioni.",
 'confirmedittitle'          => "È nezzessàriu cunfèimmà l'indirizzu di postha erettrònica pà mudìfiggà li pàgini",
 'confirmedittext'           => "Pa assé abiritaddi a la mudìfigga di li pàgini è nezzessàriu cunfèimma lu proprio indirizzu di postha erettrònica. Pa impusthà e cunfèimmà l'indirizzu usà li [[Special:Preferences|prifirenzi]].",
 'nosuchsectiontitle'        => 'La sezzioni nò esisthi',
@@ -532,8 +528,6 @@ Si vói ciaramiddanne, pa piazeri prizzisa sempri lu nùmaru di lu broccu (ID #$
 'loginreqtitle'             => 'Pa mudìfiggà chistha pàgina è nezzessàriu intrà',
 'loginreqlink'              => 'intra',
 'loginreqpagetext'          => 'Pa vidé althri pàgini è nezzessàriu $1.',
-'accmailtitle'              => "Paràura d'órdhini inviadda.",
-'accmailtext'               => 'La paràura d\'órdhini pa "$1" è isthadda inviadda a l\'indirizzu $2.',
 'newarticle'                => '(Nóbu)',
 'newarticletext'            => "Lu cullegamentu sighiddu curripondi a'na pàgina nò ancora esisthenti.
 

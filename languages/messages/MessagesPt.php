@@ -684,10 +684,6 @@ Por favor, inclua esse dado em qualquer tentativa de esclarecimentos que for rea
 'blockededitsource'                => "O texto das '''suas edições''' em '''$1''' é mostrado abaixo:",
 'whitelistedittitle'               => 'É necessário autenticar-se para editar páginas',
 'whitelistedittext'                => 'Precisa de se $1 para poder editar páginas.',
-'whitelistreadtitle'               => 'É necessária a autentificação para poder visualizar',
-'whitelistreadtext'                => 'Precisa de se [[Special:Userlogin|autenticar]] para poder visualizar páginas.',
-'whitelistacctitle'                => 'Não lhe é permitido criar uma conta',
-'whitelistacctext'                 => 'De modo a poder criar contas de utilizador neste Wiki terá que se [[Special:Userlogin|autenticar]] e possuir as devidas permissões.',
 'confirmedittitle'                 => 'Confirmação de e-mail requerida para editar',
 'confirmedittext'                  => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de utilizador]].',
@@ -696,8 +692,6 @@ Por favor, introduza um e valide-o através das suas [[Special:Preferences|prefe
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',
-'accmailtitle'                     => 'Palavra-chave enviada.',
-'accmailtext'                      => "A palavra-chave para '$1' foi enviada para $2.",
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => "Você seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo

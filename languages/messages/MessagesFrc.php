@@ -470,10 +470,6 @@ Votre numéro de blocage est #$5.  Mettez donc cette information dans toutes vos
 'blockededitsource'         => "Le texte de '''votres changements''' à '''$1''' est montré en bas.",
 'whitelistedittitle'        => 'Il faut connecter pour faire des changements.',
 'whitelistedittext'         => 'Il faut $1 pour faire des changements.',
-'whitelistreadtitle'        => 'Il faut connecter pour lire.',
-'whitelistreadtext'         => 'Il faut [[Special:Userlogin|connecter]] pour lire.',
-'whitelistacctitle'         => 'Vous avez pas la permission de créer un compte.',
-'whitelistacctext'          => 'Pour être capable de créer des comptes dans ce wiki, il faut [[Special:Userlogin|connecter]] et avoir la permission.',
 'confirmedittitle'          => 'Il faut confirmer votre adresse e-mail pour faire des changements.',
 'confirmedittext'           => "Il faut confirmer votre adresse e-mail pour faire des changements.  Mettez et confirmez un adresse e-mail dans votre [[Special:Preferences|réglage de compte]], s'il vous plaît.",
 'nosuchsectiontitle'        => 'Aucune section pareille',
@@ -481,8 +477,6 @@ Votre numéro de blocage est #$5.  Mettez donc cette information dans toutes vos
 'loginreqtitle'             => 'Il faut connecter.',
 'loginreqlink'              => 'connecter',
 'loginreqpagetext'          => 'Il faut $1 pour voir des autres pages.',
-'accmailtitle'              => 'Mot de passe envoyé.',
-'accmailtext'               => 'Le mot de passe pour "$1" a été envoyé à $2.',
 'newarticle'                => '(Nouveau)',
 'newarticletext'            => "Vous avez suit un lien à une page qu'existe pas encore. 
 Pour créer la page, mettez des mots dans la boëte en bas (voyez la [[{{MediaWiki:Helppage}}|page d'aide]] pour plus d'information). 

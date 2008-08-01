@@ -186,7 +186,6 @@ $messages = array(
 'whitelistedittitle' => 'ပြင်​ဆင်​ခြင်း​သည်​မှတ်​ပုံ​တင်​ရန်​လို​သည်​',
 'loginreqtitle'      => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ဖို့လိုပါတယ်',
 'loginreqlink'       => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
-'accmailtitle'       => 'ဝှက်​စ​ကား​လုံးကိုပို့ပြီးပြီ',
 'newarticle'         => '(အသစ်)',
 
 # History pages

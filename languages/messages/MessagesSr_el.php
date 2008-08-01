@@ -636,18 +636,12 @@ Možete kontaktirati korisnika \$1 ili nekog drugog [[{{MediaWiki:Grouppage-syso
 'blockededitsource'         => "Tekst '''vaših izmena''' za '''$1''' je prikazan ispod:",
 'whitelistedittitle'        => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistedittext'         => 'Morate da se [[{{ns:special}}:Userlogin|prijavite]] da biste menjali članke.',
-'whitelistreadtitle'        => 'Obavezno je prijavljivanje za čitanje',
-'whitelistreadtext'         => 'Morate da se [[Special:Userlogin|prijavite]] da biste čitali članke.',
-'whitelistacctitle'         => 'Nije vam dozvoljeno da napravite nalog',
-'whitelistacctext'          => 'Da bi vam bilo dozvoljeno da pravite naloge na ovom vikiju morate da se [[Special:Userlogin|prijavite]] i imate odgovarajuća ovlašćenja.',
 'confirmedittitle'          => 'Potrebna je potvrda adrese e-pošte za uređivanje',
 'confirmedittext'           => 'Morate potvrditi vašu adresu e-pošte pre uređivanja strana.
 Molimo postavite i potvrdite adresu vaše e-pošte preko vaših [[Special:Preferences|korisničkih podešavanja]].',
 'loginreqtitle'             => 'Potrebno [[{{ns:special}}:Userlogin|prijavljivanje]]',
 'loginreqlink'              => 'prijava',
 'loginreqpagetext'          => 'Morate $1 da biste videli ostale strane.',
-'accmailtitle'              => 'Lozinka je poslata.',
-'accmailtext'               => 'Lozinka za nalog "$1" je poslata na adresu $2.',
 'newarticle'                => '(Novi)',
 'newarticletext'            => "Pratili ste vezu ka stranici koja još ne postoji.
 Da biste je napravili, počnite da kucate u polju ispod

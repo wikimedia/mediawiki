@@ -571,9 +571,6 @@ Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones u
 'blockededitsource'         => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
 'whitelistedittitle'        => 'Conventum aperiendum ut recenseas',
 'whitelistedittext'         => 'Necesse est tibi $1 priusquam paginas recenseas.',
-'whitelistreadtitle'        => 'Conventum aperiendum ut legas',
-'whitelistreadtext'         => 'Necesse est tibi [[Special:Userlogin|conventum aperire]] priusquam paginas legas.',
-'whitelistacctitle'         => 'Non licet tibi rationem creare',
 'confirmedittitle'          => 'Adfirmanda est inscriptio tua electronica prisuquam recenseas',
 'confirmedittext'           => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
 'nosuchsectiontitle'        => 'Haec pars non est',
@@ -581,8 +578,6 @@ Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones u
 'loginreqtitle'             => 'Conventum aperiendum',
 'loginreqlink'              => 'conventum aperire',
 'loginreqpagetext'          => 'Necesse est tibi $1 priusquam paginas alias legas.',
-'accmailtitle'              => 'Tessera missa est.',
-'accmailtext'               => 'Tessera usoris "$1" ad $2 missa est.',
 'newarticle'                => '(Nova)',
 'newarticletext'            => "Per nexum progressus es ad paginam quae nondum exsistit.
 Novam paginam si vis creare, in capsam infra praebitam scribe.

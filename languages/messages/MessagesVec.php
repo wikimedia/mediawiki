@@ -561,10 +561,6 @@ Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de c
 'blockededitsource'                => "El testo de le '''to modifiche''' a '''$1''' el xe mostrà qua soto:",
 'whitelistedittitle'               => 'Bisogna èssar registrà par poder modificar la pàxena.',
 'whitelistedittext'                => 'Par modificar łe pàxene ghe xè bisogno de $1.',
-'whitelistreadtitle'               => 'Bisogna èssar registrà par lèxar ła pàxena',
-'whitelistreadtext'                => 'Xe necessario effettuar el [[Special:Userlogin|login]] par lexere i articoli.',
-'whitelistacctitle'                => 'No te ghè el permesso de creare un account',
-'whitelistacctext'                 => 'To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
 'confirmedittitle'                 => 'Ghe vole ła conferma e-mail par scrivare',
 'confirmedittext'                  => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'Sta sezion no la esiste',
@@ -572,8 +568,6 @@ Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de c
 'loginreqtitle'                    => "Par modificar sta pagina bisogna prima eseguir l'acesso al sito.",
 'loginreqlink'                     => 'login',
 'loginreqpagetext'                 => 'Par védar altre pagine bisogna $1.',
-'accmailtitle'                     => 'Password spedia.',
-'accmailtext'                      => "La password par '$1' l'è sta spedia a $2.",
 'newarticle'                       => '(Novo)',
 'newarticletext'                   => "El cołegamento che te ghè 'pena seguìo el corisponde a na pàxena gnancora esistente.
 Se te desideri crear ła pàxena desso, basta che te tachi a scrìvar el testo ne ła caseła qua soto

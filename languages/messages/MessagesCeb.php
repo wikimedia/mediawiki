@@ -273,7 +273,6 @@ Palihug pagpili og lain nga ngalan.',
 'preview'                   => 'Paunang tan-aw',
 'showpreview'               => 'Paunang tan-aw',
 'showdiff'                  => 'Ipakita ang kalainan',
-'whitelistacctitle'         => 'Gidid-an ka sa paghimo og akawnt',
 'newarticle'                => '(Bag-o)',
 'userpage-userdoesnotexist' => 'Ang akawnt sa tiggamit nga "$1" wala mareshistro. Palihug tan-awa kon buot nimong himuon/usbon kini nga panid.',
 'previewnote'               => 'Usa ra kini ka paunang tan-aw;

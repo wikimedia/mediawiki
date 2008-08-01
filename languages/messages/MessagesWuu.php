@@ -309,8 +309,6 @@ $messages = array(
 'whitelistedittext'  => '侬必须$1才能编辑。',
 'loginreqtitle'      => '必须登录',
 'loginreqlink'       => '登录',
-'accmailtitle'       => '密码已发送哉。',
-'accmailtext'        => '"$1"个密码已经发送到 $2 哉。',
 'newarticle'         => '(新)',
 'newarticletext'     => "倷跟仔链接来着一个还弗勒里个页面。
 要创建该页面呢，就勒下底个框框里向开始写（[[{{MediaWiki:Helppage}}|帮助页面]]浪有更加多个信息）。

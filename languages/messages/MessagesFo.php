@@ -462,8 +462,6 @@ Tín IP-adressa verður goymd í rættisøguni fyri hesa síðuna.",
 'blockedtitle'             => 'Brúkarin er bannaður',
 'loginreqtitle'            => 'Innritan kravd',
 'loginreqlink'             => 'rita inn',
-'accmailtitle'             => 'Loyniorð sent.',
-'accmailtext'              => 'Loyniorð fyri "$1" er sent til $2.',
 'newarticle'               => '(Nýggj)',
 'newarticletext'           => "Tú ert komin eftir eini slóð til eina síðu, ið ikki er til enn. Skriva í kassan niðanfyri, um tú vilt byrja uppá hesa síðuna.
 (Sí [[{{MediaWiki:Helppage}}|hjálparsíðuna]] um tú ynskir fleiri upplýsingar).

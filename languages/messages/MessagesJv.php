@@ -530,10 +530,6 @@ ID pamblokiran panjenengan iku $5. Tulung sertakna ID iki saben ngajokaké pitak
 'blockededitsource'         => "Tèks '''suntingan panjenengan''' tumrap ing '''$1''' dituduhaké ing ngisor iki:",
 'whitelistedittitle'        => 'Prelu log mlebu kanggo nyunting',
 'whitelistedittext'         => 'Panjenengan kudu $1 supaya bisa nyunting artikel.',
-'whitelistreadtitle'        => 'Prelu log mlebu kanggo maca',
-'whitelistreadtext'         => 'Panjenengan kudu [[Special:Userlogin|log mlebu]] supaya bisa maca artikel.',
-'whitelistacctitle'         => 'Panjenengan ora pareng nggawé akun',
-'whitelistacctext'          => 'Supaya bisa mlebu dadi anggota wiki iki, panjenengan kudu [[Special:Userlogin|log mlebu]] lan kagungan idin sing cocog.',
 'confirmedittitle'          => 'Konfirmasi layang e-mail diprelokaké supaya panjenengan pareng nglakoni panyuntingan',
 'confirmedittext'           => 'Panjenengan kudu ndhedhes alamat e-mail dhisik sadurungé pareng nyunting sawijining kaca. Mangga nglebokaké lan validasi alamat e-mail panjenengan sadurungé nglakoni panyuntingan. Alamat e-mail sawisé bisa diowahi liwat [[Special:Preferences|kaca préférènsi]]',
 'nosuchsectiontitle'        => 'Subbagian iku ora bisa ditemokaké',
@@ -541,8 +537,6 @@ ID pamblokiran panjenengan iku $5. Tulung sertakna ID iki saben ngajokaké pitak
 'loginreqtitle'             => 'Mangga mlebu log',
 'loginreqlink'              => 'mlebu log',
 'loginreqpagetext'          => 'Panjenengan kudu $1 kanggo bisa mirsani kaca liyané.',
-'accmailtitle'              => 'Tembung sandhi wis dikirim.',
-'accmailtext'               => "Tembung sandhi kanggo '$1' wis dikirimaké menyang $2.",
 'newarticle'                => '(Anyar)',
 'newarticletext'            => "Katonané panjenengan ngetutaké pranala artikel sing durung ana.
 Manawa kersa manulis artikel iki, manggaa. (Mangga mirsani [[{{MediaWiki:Helppage}}|Pitulung]] kanggo informasi sabanjuré).

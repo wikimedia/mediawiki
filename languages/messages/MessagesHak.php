@@ -436,10 +436,6 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'blockededitsource'         => "Ngì tui '''$1''' chin-hàng '''phiên-siá''' ke vùn-sṳ yì-hâ:",
 'whitelistedittitle'        => 'Tên-ngi̍p heu chhòi hí-khó phiên-siá',
 'whitelistedittext'         => 'Ngì pit-sî siên $1 chhòi-nèn phiên-siá vùn-chông.',
-'whitelistreadtitle'        => 'Tên-ngi̍p heu chhòi hí-khó thu̍k vùn-chông',
-'whitelistreadtext'         => 'Ngì pit-sî siên [[Special:Userlogin|tên-ngi̍p]] chhòi hí-khó thu̍k vùn-chông.',
-'whitelistacctitle'         => 'Ngì pûn kim-chṳ́ kien-li̍p chong-ho',
-'whitelistacctext'          => 'Chhai pún Wiki chûng kien-li̍p chong-ho ngì pit-sî siên [[Special:Userlogin|tên-ngi̍p]] pin yúng-yû siong-kôan hí-khó-khièn.',
 'confirmedittitle'          => 'Email khok-ngin heu chhòi-nèn phiên-cho',
 'confirmedittext'           => 'Chhai phiên-cho chhṳ́-chông chṳ̂-chhièn pit-sî khok-ngin ngì-ke email thi-tiám. Chhiáng theu-ko [[Special:Preferences|chhâm-su sat-thin]] sat-thin pin ngiam-chṳn ngì-ke email thi-tiám.',
 'nosuchsectiontitle'        => 'Mò-yû liá-ke thon-lo̍k',
@@ -447,8 +443,6 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'loginreqtitle'             => 'Sî-yeu Tên-ngi̍p',
 'loginreqlink'              => 'tên-ngi̍p',
 'loginreqpagetext'          => 'Ngì pit-sî $1 chhòi-nèn kiám-sṳ khì-thâ vùn-chông.',
-'accmailtitle'              => 'Pi-Me̍t yí-kîn ki-chhut.',
-'accmailtext'               => "'$1' ke pi-me̍t yí-kîn ki-kî to $2.",
 'newarticle'                => '(Sîn)',
 'newarticletext'            => 'Ngì hien-chhai chin-ngi̍p yit-ke hàn-mò chhóng-kien ke vùn-chông.
 Yeu kien-chho ke vùn-chông, chhiáng chhai ha-mien ke phiên-cho-khiông chûng sû-ngi̍p nui-yùng (Chhâm-siòng [[{{MediaWiki:Helppage}}|Pông-chhu]]).

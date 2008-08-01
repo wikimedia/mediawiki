@@ -847,10 +847,6 @@ Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete 
 'blockededitsource'                => "Text '''vašich editací''' stránky '''$1''' následuje:",
 'whitelistedittitle'               => 'Pro editaci je vyžadováno přihlášení',
 'whitelistedittext'                => 'Pro editaci se musíte $1.',
-'whitelistreadtitle'               => 'Vyžadováno přihlášení',
-'whitelistreadtext'                => 'Musíte se [[Special:Userlogin|přihlásit]], abyste mohli číst stránky.',
-'whitelistacctitle'                => 'Není vám dovoleno vytvářet uživatelské účty',
-'whitelistacctext'                 => 'Abyste na {{grammar:6sg|{{SITENAME}}}} mohl(a) vytvářet uživatelské účty, musíte se [[Special:Userlogin|přihlásit]] a mít příslušná oprávnění.',
 'confirmedittitle'                 => 'Vyžadováno e-mailové potvrzení',
 'confirmedittext'                  => 'Pro editaci stránek je vyžadováno potvrzení vaší e-mailové adresy. Na stránce [[Special:Preferences|nastavení]] zadejte a nechte potvrdit svou e-mailovou adresu.',
 'nosuchsectiontitle'               => 'Neexistující sekce',
@@ -858,8 +854,6 @@ Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete 
 'loginreqtitle'                    => 'Vyžadováno přihlášení',
 'loginreqlink'                     => 'přihlásit',
 'loginreqpagetext'                 => 'K prohlížení jiných stránek se musíte $1.',
-'accmailtitle'                     => 'Heslo odesláno.',
-'accmailtext'                      => 'Heslo pro „$1“ bylo odesláno na $2.',
 'newarticle'                       => '(Nový)',
 'newarticletext'                   => "Následovali jste odkaz na stránku, která dosud neexistuje.
 Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].

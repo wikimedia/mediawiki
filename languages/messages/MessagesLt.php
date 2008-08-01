@@ -600,10 +600,6 @@ Prašome nurodyti šį ID visuose prašymuose, kuriuos darote.",
 'blockededitsource'                => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'               => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'                => 'Jūs turite $1, kad redaguotumėte puslapius.',
-'whitelistreadtitle'               => 'Norint skaityti reikia prisijungti',
-'whitelistreadtext'                => 'Jums reikia [[Special:Userlogin|prisijungti]], kad skaitytumėte puslapius.',
-'whitelistacctitle'                => 'Jums neleidžiama kurti paskyros',
-'whitelistacctext'                 => 'Norėdami leisti kurti paskyras {{SITENAME}}, jums reikia [[Special:Userlogin|prisijungti]] ir turėti atitinkamas teises.',
 'confirmedittitle'                 => 'Reikalingas el. pašto patvirtinimas, kad redaguotumėte',
 'confirmedittext'                  => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius.
 Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[Special:Preferences|naudotojo nustatymus]].',
@@ -612,8 +608,6 @@ Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[Special:
 'loginreqtitle'                    => 'Reikalingas prisijungimas',
 'loginreqlink'                     => 'prisijungti',
 'loginreqpagetext'                 => 'Jums reikia $1, kad matytumėte kitus puslapius.',
-'accmailtitle'                     => 'Slaptažodis išsiųstas.',
-'accmailtext'                      => 'Naudotojo „$1“ slaptažodis nusiųstas į $2.',
 'newarticle'                       => '(Naujas)',
 'newarticletext'                   => "Jūs patekote į dar neegzistuojantį puslapį.
 Norėdami sukurti puslapį, pradėkite rašyti žemiau esančiame įvedimo lauke

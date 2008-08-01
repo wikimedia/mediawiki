@@ -230,11 +230,6 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'showdiff'           => 'Dikh le paruvimata',
 'whitelistedittitle' => 'Trebul o autentifikaripen kashte editisares',
 'whitelistedittext'  => 'Trebul te [[Special:Userlogin|autentifikisares]] kashte editisares artikolurya.',
-'whitelistreadtitle' => 'Trebul o autentifikaripen kashte drabares',
-'whitelistreadtext'  => 'Trebul te [[Special:Userlogin|autentifikisares]] kashte drabares artikolurya.',
-'whitelistacctitle'  => 'Chi shai (nai tuke xakaya) te keres konturya',
-'accmailtitle'       => 'O nakhavipnasko lav bićhaldo.',
-'accmailtext'        => "O nakhavipnasko lav andar '$1' bićhaldo ko $2.",
 'newarticle'         => '(Nevo)',
 'newarticletext'     => 'Avilyan kai ek patrin so na si.
 Te keres la, shai te shirdes (astares) te lekhaves ando telutno moxton (dikh [[{{MediaWiki:Helppage}}|zhutipnaski patrin]] te janes buteder).

@@ -738,10 +738,6 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'blockededitsource'                => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
 'whitelistedittitle'               => 'Innskráningar er krafist til að breyta',
 'whitelistedittext'                => 'Þú þarft að $1 til að breyta síðum.',
-'whitelistreadtitle'               => 'Innskráningar er krafist til að lesa',
-'whitelistreadtext'                => 'Þú verður að [[Special:Userlogin|skrá þig inn]] til að lesa síður.',
-'whitelistacctitle'                => 'Þér er óheimilt að búa til aðgang',
-'whitelistacctext'                 => 'Til að geta búið til aðganga á {{SITENAME}} verður þú að [[Special:Userlogin|innskrá]] þig og hafa viðkomandi réttindi.',
 'confirmedittitle'                 => 'Netfang þarf að staðfesta til að breyta',
 'confirmedittext'                  => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
 'nosuchsectiontitle'               => 'Hluti ekki til',
@@ -749,8 +745,6 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'loginreqtitle'                    => 'Innskráningar krafist',
 'loginreqlink'                     => 'innskrá',
 'loginreqpagetext'                 => 'Þú þarft að $1 til að geta séð aðrar síður.',
-'accmailtitle'                     => 'Lykilorð sent.',
-'accmailtext'                      => 'Lykilorðið fyrir „$1“ hefur verið sent á $2.',
 'newarticle'                       => '(Ný)',
 'newarticletext'                   => "Þú hefur fylgt tengli á síðu sem ekki er til.
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan

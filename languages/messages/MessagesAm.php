@@ -511,10 +511,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'blockededitsource'         => "በ'''$1''' ላይ '''የእርስዎ ለውጦች''' ጽሕፈት ከዚህ ታች ይታያሉ፦",
 'whitelistedittitle'        => 'ለማዘጋጀት መግባት አስቀድሞ ያስፈልጋል',
 'whitelistedittext'         => 'ገጾችን ለማዘጋጀት $1 አስቀድሞ ያስፈልግዎታል።',
-'whitelistreadtitle'        => 'ለማንበብ መግባት አስቀድሞ ያስፈልጋል',
-'whitelistreadtext'         => 'ገጾችን ለማንበብ [[Special:Userlogin|መግባት]] አስቀድሞ ያስፈልግዎታል።',
-'whitelistacctitle'         => 'ብዕር ስም ለመፍጠር ፈቃድ የለዎም።',
-'whitelistacctext'          => 'በ{{SITENAME}} ላይ ብዕር ስም ለመፍጠር፣ አስቀድመው [[Special:Userlogin|መግባት]]ና የሚገባውን ፈቃድ እንዲኖርዎ ያስፈልጋል።',
 'confirmedittitle'          => 'ለማዘጋጀት የኢ-ሜል ማረጋገጫ ያስፈልጋል።',
 'confirmedittext'           => 'ገጽ ማዘጋጀት ሳይችሉ፣ አስቀድመው የኢ-ሜል አድራሻዎን ማረጋገጥ አለብዎት። እባክዎ፣ በ[[Special:Preferences|ምርጫዎችዎ]] በኩል ኢ-ሜል አድራሻዎን ያረጋግጡ።',
 'nosuchsectiontitle'        => 'የማይኖር ክፍል',
@@ -522,8 +518,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'loginreqtitle'             => 'መግባት ያስፈልጋል።',
 'loginreqlink'              => 'መግባት',
 'loginreqpagetext'          => 'ሌሎች ገጾች ለመመልከት $1 ያስፈልግዎታል።',
-'accmailtitle'              => 'የመግቢያ ቃል ተላከ።',
-'accmailtext'               => 'የመግቢያ ቃል ለ«$1» ወደ $2 ተልኳል።',
 'newarticle'                => '(አዲስ)',
 'newarticletext'            => 'እርስዎ የተከተሉት መያያዣ እስካሁን ወደማይኖር ገጽ የሚወስድ ነው። ገጹን አሁን ለመፍጠር፣ ከታች በሚገኘው ሳጥን ውስጥ መተየብ ይጀምሩ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:Helppage}}|የእርዳታ ገጽን]] ይመልከቱ።
 

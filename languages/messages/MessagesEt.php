@@ -489,15 +489,9 @@ Pange tähele, et Te ei saa sellele kasutajale teadet saata, kui Te pole registr
 Teie praegune IP on $3 ning blokeeringu number on #$5. Lisage vähemalt üks nendest kõigile järelpärimistele, mida kavatsete teha.",
 'whitelistedittitle'       => 'Redigeerimiseks tuleb sisse logida',
 'whitelistedittext'        => 'Lehekülgede toimetamiseks peate $1.',
-'whitelistreadtitle'       => 'Lugemiseks peate olema sisse logitud',
-'whitelistreadtext'        => 'Lehekülgede lugemiseks peate [[Special:Userlogin|sisse logima]].',
-'whitelistacctitle'        => 'Teil pole õigust kasutajakontot luua',
-'whitelistacctext'         => 'Et selles Vikis kontosid luua, peate olema [[Special:Userlogin|sisse logitud]] ja omama vastavaid õigusi.',
 'loginreqtitle'            => 'Vajalik on sisselogimine',
 'loginreqlink'             => 'sisse logima',
 'loginreqpagetext'         => 'Lehekülgede vaatamiseks peate $1.',
-'accmailtitle'             => 'Parool saadetud.',
-'accmailtext'              => "Kasutaja '$1' parool saadeti aadressile $2.",
 'newarticle'               => '(Uus)',
 'newarticletext'           => "Seda lehekülge veel ei ole.
 Lehekülje loomiseks hakake kirjutama all olevasse tekstikasti

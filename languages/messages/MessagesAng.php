@@ -248,13 +248,8 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'showpreview'            => 'Forescēawian',
 'whitelistedittitle'     => 'Inmeldunge behófod tó ádihtenne',
 'whitelistedittext'      => 'Þu scealt $1 tó ádihtenne trametas.',
-'whitelistreadtitle'     => 'Inmeldunge behōfod tō rǣdenne',
-'whitelistacctitle'      => 'Þē nis ālīefed tō settenne hordcleofan',
-'whitelistacctext'       => 'Tō bēonne gelīefed tō settenne hordcleofan in þissum Wici, þu scealt [[Special:Userlogin|inmeldian]] and habban þā gerādlican geþafunga.',
 'loginreqlink'           => 'inmeldian',
 'loginreqpagetext'       => 'Þū scealt $1 tō scēawienne view ōðre trametas.',
-'accmailtitle'           => 'Gelēafnesword gesended.',
-'accmailtext'            => "Þæt Gelēafnesword for '$1' wearþ gesend tō $2.",
 'newarticle'             => '(Nīwe)',
 'newarticletext'         => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
 Tō scieppene þone tramet, onginn þyddan in þǣre boxe under (sēo þone [[{{MediaWiki:Helppage}}|helptramet]] for mā gefrǣge).

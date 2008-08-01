@@ -681,10 +681,6 @@ El número d'identificació ID del bloqueig és #$5. Si us plau, incloeu aqueste
 'blockededitsource'                => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
 'whitelistedittitle'               => 'Cal iniciar una sessió per a poder editar',
 'whitelistedittext'                => 'Heu de $1 per editar pàgines.',
-'whitelistreadtitle'               => "Heu d'iniciar una sessió per a llegir-ho",
-'whitelistreadtext'                => "Heu d'[[Special:Userlogin|identificar-vos]] per a llegir les pàgines.",
-'whitelistacctitle'                => 'No teniu permisos per a crear un compte',
-'whitelistacctext'                 => "Per estar autoritzat a crear comptes al projecte {{SITENAME}} heu d'[[Special:Userlogin|identificar-vos]] i tenir els permisos apropiats.",
 'confirmedittitle'                 => "Cal una confirmació de l'adreça electrònica per a poder editar",
 'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder editar pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
 'nosuchsectiontitle'               => 'No hi ha cap secció',
@@ -692,8 +688,6 @@ El número d'identificació ID del bloqueig és #$5. Si us plau, incloeu aqueste
 'loginreqtitle'                    => 'Cal que inicieu una sessió',
 'loginreqlink'                     => 'inicia una sessió',
 'loginreqpagetext'                 => 'Heu de ser $1 per a visualitzar altres pàgines.',
-'accmailtitle'                     => "S'ha enviat una contrasenya.",
-'accmailtext'                      => "S'ha enviat a $2 la contrasenya per a «$1».",
 'newarticle'                       => '(Nou)',
 'newarticletext'                   => "Heu seguit un enllaç a una pàgina que encara no existeix.
 Per a crear-la, comenceu a escriure en l'espai de sota

@@ -438,15 +438,10 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'blockedoriginalsource'            => "'''$1''' -нть лисьмапрясь ало неяви:",
 'whitelistedittitle'               => 'Витнемань-петнемань кисэ эряви совамо лем',
 'whitelistedittext'                => 'Лопанть витнемс - петнемс эряви $1.',
-'whitelistreadtitle'               => 'Ловномань кисэ эряви совамо лем',
-'whitelistreadtext'                => 'Лопань ловномга сави тенть [[Special:Userlogin|совамс]].',
-'whitelistacctitle'                => 'Тонеть а мерить теемс-шкамс совамо тарка',
 'nosuchsectiontitle'               => 'Истямо явкс арась',
 'loginreqtitle'                    => 'Совамс эряви',
 'loginreqlink'                     => 'совамс',
 'loginreqpagetext'                 => 'Лия лопань ванномга, эряви $1.',
-'accmailtitle'                     => 'Салавань вал кучозь.',
-'accmailtext'                      => '"$1"-нь совамо валозо кучозь адресэнтень $2.',
 'newarticle'                       => '(Од)',
 'newarticletext'                   => "Молить налтке мельга сёрмадовксос, конась апак тее. 
 Ули мелеть теемс сёрмадовкс, сёрмадт валт ало паргос (вант [[{{MediaWiki:Helppage}}|help page]] тесэ лездамо информация). 

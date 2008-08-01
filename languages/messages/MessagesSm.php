@@ -119,14 +119,13 @@ $messages = array(
 'email'             => "'Imeli",
 
 # Edit pages
-'summary'          => "'Oto'otoga",
-'minoredit'        => "'O se teuteuga la'itiiti lenei",
-'watchthis'        => 'Matau lenei itulau',
-'savearticle'      => 'Sefe le itulau',
-'showpreview'      => "Fa'aali teuteuga",
-'showdiff'         => "Fa'aali suiga",
-'whitelistacctext' => 'To be allowed to create accounts in {{SITENAME}} you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
-'loginreqlink'     => "Fa'aola",
+'summary'      => "'Oto'otoga",
+'minoredit'    => "'O se teuteuga la'itiiti lenei",
+'watchthis'    => 'Matau lenei itulau',
+'savearticle'  => 'Sefe le itulau',
+'showpreview'  => "Fa'aali teuteuga",
+'showdiff'     => "Fa'aali suiga",
+'loginreqlink' => "Fa'aola",
 
 # Search results
 'powersearch' => "Su'e",

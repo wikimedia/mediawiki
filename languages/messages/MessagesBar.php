@@ -50,10 +50,6 @@ $messages = array(
 'watchthis'          => 'De Seitn beobachtn',
 'whitelistedittitle' => 'Zum Bearbatn miaßn Sie si oomeidn',
 'whitelistedittext'  => 'Sie miaßn si $1, um Seiten bearbatn zum kinna.',
-'whitelistreadtitle' => 'Zum Lesn is erforderlich, ogmeldt zum sei',
-'whitelistreadtext'  => 'Sie miaßn si [[Special:Userlogin|da oomeidn]], um de Seitn lesen zum kinna.',
-'whitelistacctitle'  => 'Sie san net berechtigt, a Benutzerkonto ozumlegn.',
-'accmailtitle'       => 'Passwort is vaschickt worn',
 'newarticle'         => '(Nei)',
 'yourtext'           => 'Eana Text',
 
