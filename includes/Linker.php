@@ -1557,7 +1557,7 @@ class Linker {
 		$query['token'] = $wgUser->editToken( array( $title->getPrefixedText(),
 			$rev->getUserText() ) );
 		return $this->link( $title, wfMsgHtml( 'rollbacklink' ), array(),
-			$query,	'known'	);
+			$query,	array( 'known', 'noclasses' ) );
 	}
 
 	/**
