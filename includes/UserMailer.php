@@ -314,7 +314,7 @@ class EmailNotification {
 	 */
 	function actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid=false) {
 
-		# we use $wgEmergencyContact as sender's address
+		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk, $wgShowUpdatedMarker;
 		global $wgEnotifImpersonal;
@@ -420,7 +420,7 @@ class EmailNotification {
 	 * @private
 	 */
 	function composeCommonMailtext() {
-		global $wgEmergencyContact, $wgNoReplyAddress;
+		global $wgPasswordSender, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
 		global $wgEnotifImpersonal;
 
@@ -477,7 +477,7 @@ class EmailNotification {
 		# global configuration level.
 		$editor = $this->editor;
 		$name    = $editor->getName();
-		$adminAddress = new MailAddress( $wgEmergencyContact, 'WikiAdmin' );
+		$adminAddress = new MailAddress( $wgPasswordSender, 'WikiAdmin' );
 		$editorAddress = new MailAddress( $editor );
 		if( $wgEnotifRevealEditorAddress
 		    && ( $editor->getEmail() != '' )

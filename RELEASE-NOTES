@@ -460,6 +460,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on Sqlite instead of horribly fatal error breaky one.
 * (bug 14987) Only fix double redirects on page move when the checkbox is
   checked
+* (bug 13376) Use $wgPasswordSender, not $wgEmergencyContact, as return
+  address for page update notification mails.
 
 === API changes in 1.13 ===
 
