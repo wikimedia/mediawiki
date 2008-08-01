@@ -642,6 +642,8 @@ Molimo postavite i potvrdite adresu vaše e-pošte preko vaših [[Special:Prefer
 'loginreqtitle'             => 'Potrebno [[{{ns:special}}:Userlogin|prijavljivanje]]',
 'loginreqlink'              => 'prijava',
 'loginreqpagetext'          => 'Morate $1 da biste videli ostale strane.',
+'accmailtitle'              => 'Lozinka je poslata.',
+'accmailtext'               => 'Lozinka za nalog "$1" je poslata na adresu $2.',
 'newarticle'                => '(Novi)',
 'newarticletext'            => "Pratili ste vezu ka stranici koja još ne postoji.
 Da biste je napravili, počnite da kucate u polju ispod

@@ -499,6 +499,8 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'loginreqtitle'             => 'Kucilan favesikyolt',
 'loginreqlink'              => 'dogluyara',
 'loginreqpagetext'          => '$1 tir adrafa ta da va aru bu rodisukel.',
+'accmailtitle'              => 'Stakseyen remravlem.',
+'accmailtext'               => 'Remravlem ke « $1 » al zo stakser pu $2.',
 'newarticle'                => '(Warzaf)',
 'newarticletext'            => 'Va rinaf teliz batliz geltsutel !',
 'anontalkpagetext'          => "---- ''Vous êtes sur la page de discussion d'un utilisateur anonyme qui n'a pas encore créé un compte ou qui ne l'utilise pas. Pour cette raison, nous devons utiliser l'adresse IP numérique pour l'identifier. Une adresse de ce type peut être partagée entre plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin|créer un compte ou vous connecter]] afin d'éviter toute future confusion.''",

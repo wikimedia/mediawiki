@@ -815,6 +815,8 @@ A blokkolás azonosítószáma: $5. Kérjük, hogy érdeklődés esetén ezt add
 'loginreqtitle'                    => 'Bejelentkezés szükséges',
 'loginreqlink'                     => 'Be kell jelentkezned',
 'loginreqpagetext'                 => '$1 más oldalak megtekintéséhez.',
+'accmailtitle'                     => 'A jelszót elküldtük.',
+'accmailtext'                      => '„$1” jelszavát elküldtük a(z) $2 címre.',
 'newarticle'                       => '(Új)',
 'newarticletext'                   => "Egy olyan lapra mutató hivatkozást követtél, mely még nem létezik.
 Ha létre akarod hozni, csak gépeld be a szövegét a lenti szövegdobozba. Ha kész vagy, az „Előnézet megtekintése” gombbal ellenőrizheted, hogy úgy fog-e kinézni, ahogy szeretnéd, és a „Lap mentése” gombbal tudod elmenteni.

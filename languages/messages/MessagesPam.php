@@ -546,6 +546,8 @@ Uling alang seksiyon a $1, alang lugal a pirinan ketang kekang in-edit.',
 'loginreqtitle'             => 'Kailangang Mag-login',
 'loginreqlink'              => 'mag-login',
 'loginreqpagetext'          => 'Kailangan mung $1 ba mong akit deng aliwang bulung.',
+'accmailtitle'              => 'Ing Password miparala ya.',
+'accmailtext'               => 'Ing password para keng "$1" miparala ya king $2.',
 'newarticle'                => '(Bayu)',
 'newarticletext'            => "Dela na ka ning suglung king bulung a e pa melalang.
 Ba meng lalangan ing bulung a iti, sumulat ka king kahun king lalam (lon me ing  [[{{MediaWiki:Helppage}}|help page]] para king karagdagang impormasiun).

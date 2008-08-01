@@ -169,6 +169,8 @@ Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e
 'whitelistedittitle' => 'Mester outentiká promé pa editá',
 'confirmedittitle'   => 'Konfirmashon di e-mail eksigí pa editá',
 'confirmedittext'    => 'Bo mester konfirmá bo e-mail adrès promé ku bo editá página. Por fabor duna i validá bo e-mail adrès via bo [[Special:Preferences|preferensianan]].',
+'accmailtitle'       => 'Kontraseña mandá.',
+'accmailtext'        => "E kontraseña pa '$1' tabata mandá pa $2.",
 'newarticle'         => '(Nobo)',
 'anontalkpagetext'   => "----''Esaki ta e página di diskushon pa un uzadó anonimo ku no a traha un kuenta ahinda, òf no sa uza e. Ta pa e rason aki nos tin ku uza IP adrès pa identifiká e persona. Diferente uzadó por uza e IP adrès aki. Si bo ta un uzadó anonimo i ta sinti ku komentario irelevante tabata mandá pa bo, por fabor [[Special:Userlogin|registrá un kuenta nobo òf outentiká bo mes]] pa evitá konfushon den futuro.''",
 'yourtext'           => 'Bo teksto',

@@ -331,6 +331,8 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 'blockedoriginalsource' => "Zdrój '''$1''' je niżi:",
 'blockededitsource'     => "Tekst '''Twòjëch edicëji''' do '''$1''' je niżi:",
 'whitelistedittitle'    => 'Bë editowac je nót sã wlogòwac',
+'accmailtitle'          => 'Parola wësłónô.',
+'accmailtext'           => 'Parola dlô "$1" je wësłónô do $2.',
 'newarticletext'        => "Môsz przëszłi z lënkù do starnë jaka jesz nie òbstoji.
 Bë ùsôdzëc artikel, naczni pisac w kastce niżi (òb. [[{{MediaWiki:Helppage}}|starnã pòmòcë]]
 dlô wicy wëdowiédzë).

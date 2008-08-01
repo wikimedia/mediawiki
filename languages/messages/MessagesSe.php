@@ -394,6 +394,8 @@ Du geavaheaddjidovddaldat lea dál anus.
 'loginreqtitle'            => 'Sisačállin gáibiduvvo',
 'loginreqlink'             => 'čálligoahtit sisa',
 'loginreqpagetext'         => 'Don fertet $1, ovdalgo oainnat eará siidduid.',
+'accmailtitle'             => 'Suollemassátni lea sáddejuvvon.',
+'accmailtext'              => "geavaheaddji '''$1''' suollemassátni lea sáddejuvvon čujuhussii '''$2'''.",
 'newarticle'               => '(ođđa)',
 'newarticletext'           => 'Leat boahtán muhtin liŋkka mielde siidui, mii ii vel dihtto. Sáhtat álggahit siiddu vuollái. Jus it hálit álggahit siiddu, geavat neahttabláđejeaddji máhccandoaimma.',
 'updated'                  => '(Beaividuvvon)',

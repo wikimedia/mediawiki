@@ -750,6 +750,8 @@ Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où publier vo
 'loginreqtitle'                    => 'Connexion nécessaire',
 'loginreqlink'                     => 'connecter',
 'loginreqpagetext'                 => 'Vous devez vous $1 pour voir les autres pages.',
+'accmailtitle'                     => 'Mot de passe envoyé.',
+'accmailtext'                      => 'Le mot de passe de « $1 » a été envoyé à l’adresse $2.',
 'newarticle'                       => '(Nouveau)',
 'newarticletext'                   => "Vous avez suivi un lien vers une page qui n’existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).

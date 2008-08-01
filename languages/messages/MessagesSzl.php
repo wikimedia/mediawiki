@@ -534,6 +534,8 @@ Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
 'loginreqtitle'                    => 'Muśiš śe zalůgować',
 'loginreqlink'                     => 'zalůguj śe',
 'loginreqpagetext'                 => 'Muśiš $1 coby můc přeglůndać inkše zajty.',
+'accmailtitle'                     => 'Hasuo wysuane.',
+'accmailtext'                      => 'Hasuo užytkowńika "$1" zostauo wysuane pod adres $2.',
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => 'Ńy ma sam ješče artikla uo tym tytule. W polu ńižyj možeš naškryflać jygo pjyršy fragmynt. Kej chćoužeś zrobić co inkše, naćiś ino knefel "Nazod".',
 'anontalkpagetext'                 => "---- ''To jest zajta godki lo užytkowńikůw anůnimowych - takich, keři ńy majům ješče swojigo kůnta abo ńy chcům go terozki užywać.

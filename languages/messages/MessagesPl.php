@@ -770,6 +770,8 @@ Ponieważ brak sekcji $1, nie jest możliwe zapisanie Twojej edycji.',
 'loginreqtitle'                    => 'musisz się zalogować',
 'loginreqlink'                     => 'zalogować się',
 'loginreqpagetext'                 => 'Musisz $1, żeby móc przeglądać inne strony.',
+'accmailtitle'                     => 'Hasło zostało wysłane.',
+'accmailtext'                      => 'Hasło użytkownika „$1” zostało wysłane na adres $2.',
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => "Brak strony o tym tytule.
 Jeśli chcesz ją utworzyć, wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]). 

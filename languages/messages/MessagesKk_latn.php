@@ -945,6 +945,8 @@ Mında $1 degen bölim joq eken, öñdemeñizdi saqtaw üşin orın joq.',
 'loginreqtitle'                    => 'Kirwiñiz kerek',
 'loginreqlink'                     => 'kirw',
 'loginreqpagetext'                 => 'Basqa betterdi körw üşin siz $1 bolwıñız jön.',
+'accmailtitle'                     => 'Qupïya söz jöneltildi.',
+'accmailtext'                      => '$2 jaýına «$1» qupïya sözi jöneltildi.',
 'newarticle'                       => '(Jaña)',
 'newarticletext'                   => 'Siltemege erip äli bastalmağan betke kelipsiz.
 Betti bastaw üşin, tömendegi kiristirw ornında mätiniñizdi teriñiz (köbirek aqparat üşin [[{{{{ns:mediawiki}}:helppage}}|anıqtama betin]] qarañız).

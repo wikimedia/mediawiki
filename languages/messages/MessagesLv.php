@@ -472,6 +472,8 @@ Lūdzu iekļauj šo ID visos ziņojumos, kurus sūti adminiem, apspriežot šo b
 'whitelistedittext'         => 'Tev $1 lai varētu rediģēt lapas.',
 'loginreqtitle'             => 'Nepieciešama ieiešana',
 'loginreqlink'              => 'login',
+'accmailtitle'              => 'Parole izsūtīta.',
+'accmailtext'               => '$1 parole tika nosūtīta uz $2.',
 'newarticle'                => '(Jauns raksts)',
 'newarticletext'            => "Tu šeit nonāci sekojot saitei uz, pagaidām vēl neuzrakstītu, lapu.
 Lai izveidotu lapu, sāc rakstīt teksta logā apakšā (par teksta formatēšanu un sīkākai informācija skatīt [[{{MediaWiki:Helppage}}|palīdzības lapu]]).

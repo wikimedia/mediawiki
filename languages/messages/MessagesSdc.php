@@ -528,6 +528,8 @@ Si vói ciaramiddanne, pa piazeri prizzisa sempri lu nùmaru di lu broccu (ID #$
 'loginreqtitle'             => 'Pa mudìfiggà chistha pàgina è nezzessàriu intrà',
 'loginreqlink'              => 'intra',
 'loginreqpagetext'          => 'Pa vidé althri pàgini è nezzessàriu $1.',
+'accmailtitle'              => "Paràura d'órdhini inviadda.",
+'accmailtext'               => 'La paràura d\'órdhini pa "$1" è isthadda inviadda a l\'indirizzu $2.',
 'newarticle'                => '(Nóbu)',
 'newarticletext'            => "Lu cullegamentu sighiddu curripondi a'na pàgina nò ancora esisthenti.
 

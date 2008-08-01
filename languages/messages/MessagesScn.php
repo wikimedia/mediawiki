@@ -620,6 +620,8 @@ L'ID dû bloccu è $5. Pi favuri ncludilu nte tutti li dumanni.",
 'loginreqtitle'                    => 'Login nicissariu',
 'loginreqlink'                     => "esèquiri l'accessu",
 'loginreqpagetext'                 => 'Pi vìdiri àutri pàggini è nicissariu $1.',
+'accmailtitle'                     => 'Password nviata.',
+'accmailtext'                      => 'La password pi l\'utenti "$1" fu nviata a lu ndirizzu $2.',
 'newarticle'                       => '(Novu)',
 'newarticletext'                   => "Sta pàggina ancora nun esisti. 
 Pi criari na pàggina cu stu tìtulu, accumenza a scrìviri ccassutta (talìa la [[{{MediaWiki:Helppage}}|pàggina d'aiutu]] pi aviri maiuri nfurmazzioni).

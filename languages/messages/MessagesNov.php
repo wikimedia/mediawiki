@@ -176,6 +176,8 @@ kom li sami o altri usere.',
 'blockedoriginalsource' => "Li fonte de '''$1''' bli montra subu:",
 'loginreqtitle'         => 'Ensignato Postulat',
 'loginreqlink'          => 'ensignata',
+'accmailtitle'          => 'Pasa-vorde sendat.',
+'accmailtext'           => 'Li pasa-vorde por "$1" ha bli senda a $2.',
 'yourtext'              => 'Vun texte',
 
 # History pages

@@ -554,6 +554,8 @@ Reek ju jädden in älke Anfroage oun.',
 'loginreqtitle'                    => 'Anmäldenge ärfoarderelk',
 'loginreqlink'                     => 'anmäldje',
 'loginreqpagetext'                 => 'Du moast die $1, uum uur Sieden betrachtje tou konnen.',
+'accmailtitle'                     => 'Paaswoud wuude fersoand.',
+'accmailtext'                      => 'Dät Paaswoud fon "$1" wuude an $2 soand.',
 'newarticle'                       => '(Näi)',
 'newarticletext'                   => 'Hier dän Text fon dän näie Artikkel iendreege. Jädden bloot in ganse Satse schrieuwe un neen truch dät Uurheebergjucht schutsede Texte fon uur Ljuude kopierje.',
 'anontalkpagetext'                 => "----''Dit is ju Diskussionssiede fon n uunbekoanden Benutser, die sik nit anmälded häd.

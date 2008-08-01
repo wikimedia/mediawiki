@@ -496,6 +496,8 @@ Me IDde block coccebj $5. Includam 1 jöx 2 pac querinám iti.",
 'loginreqtitle'             => 'Caápo Neces',
 'loginreqlink'              => 'caápo',
 'loginreqpagetext'          => 'Zo coccebj Neces $1 cohuatlöx jömde páhinám.',
+'accmailtitle'              => 'Iitom quimx canj.',
+'accmailtext'               => 'Quimx canj zode "$1" coccebj iitöxde $2.',
 'newarticle'                => '(Quiih)',
 'newarticletext'            => 'Meclickom linkamde páhina tazo necoccebj zo.
 Huants createnom jan páhina, startom type mii box !-cmaa iti

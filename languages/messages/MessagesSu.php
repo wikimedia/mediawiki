@@ -538,6 +538,8 @@ Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences
 'loginreqtitle'                    => 'Kudu asup log',
 'loginreqlink'                     => 'asup log',
 'loginreqpagetext'                 => 'Mun hayang muka kaca séjénna, Anjeun kudu $1.',
+'accmailtitle'                     => 'Sandi geus dikirim.',
+'accmailtext'                      => "Sandi keur '$1' geus dikirim ka $2.",
 'newarticle'                       => '(Anyar)',
 'newarticletext'                   => "Anjeun geus nuturkeun tumbu ka kaca nu can aya.
 Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap

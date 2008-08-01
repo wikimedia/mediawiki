@@ -191,7 +191,9 @@ $messages = array(
 'accountcreatedtext' => 'La kuenta de uzuario para $1 ha sido kreada.',
 
 # Edit pages
-'showdiff' => 'Amostrar trokos',
+'showdiff'     => 'Amostrar trokos',
+'accmailtitle' => 'La kontrasenya ha sido embiada.',
+'accmailtext'  => 'La kontrasenya para "$1" se ha embiado a $2.',
 
 # Preferences page
 'preferences' => 'Preferensias',

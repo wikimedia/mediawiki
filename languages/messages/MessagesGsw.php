@@ -354,6 +354,8 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'whitelistedittext'        => 'Sie müssen sich $1, um Artikel bearbeiten zu können.',
 'confirmedittitle'         => 'Zuem Ändere isch e bschtätigti E-Bost-Adräss nötig.',
 'confirmedittext'          => 'Si muen Ihri E-Bost-Adräss erscht bstätige bevor Si Syte go ändere chönne. Bitte setze Si in [[Special:Preferences|Ihre Iistellige]] Ihri E-Bost Adräss ii un löhn Si si pruefe.',
+'accmailtitle'             => 'S Bassword isch verschickt worre.',
+'accmailtext'              => 'S Basswort für "$1" isch uf $2 gschickt worde.',
 'newarticletext'           => '<div id="newarticletext">
 {{MediaWiki:Newarticletext/{{NAMESPACE}}}}
 </div>',

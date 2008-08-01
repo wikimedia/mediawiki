@@ -582,6 +582,8 @@ Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäö
 'loginreqtitle'                    => 'Aanmelje verplich',
 'loginreqlink'                     => 'inglogge',
 'loginreqpagetext'                 => 'De mos $1 om anger pazjenas te bekieke.',
+'accmailtitle'                     => 'Wachwaord versjtuurd.',
+'accmailtext'                      => "'t Wachwaord veur '$1' is nao $2 versjtuurd.",
 'newarticle'                       => '(Nuuj)',
 'newarticletext'                   => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit.
 Type in de box hiejónger óm de pazjena te beginne (zuug de [[{{MediaWiki:Helppage}}|helppazjena]] veur mier informatie).

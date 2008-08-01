@@ -454,6 +454,8 @@ Sa' tåya' na påtten $1, tåya' na lugåt para u såtba i tinilaika-mu.",
 'loginreqtitle'                    => 'Manesita login',
 'loginreqlink'                     => 'log in',
 'loginreqpagetext'                 => "Debi di un $1 para manli'e' påhina.",
+'accmailtitle'                     => "Mana'hanague ni password.",
+'accmailtext'                      => 'Mana\'hanague $2 ni password "$1".',
 'newarticle'                       => '(Nuebu)',
 'newarticletext'                   => "Tåya' na påhina trabiha ni inachetton ni un yemme'.
 Para un fa'tinas i påhina, fångge' gi sanpapa' na kahon (bisita i [[{{MediaWiki:Helppage}}|påhinan ayudo]] para mas infotmasion).

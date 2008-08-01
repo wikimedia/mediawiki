@@ -457,6 +457,8 @@ Yu IP now na $3 en a tapu pasi ID na #$5. Gi wan, noso ala tu, ini yu brifi te y
 'loginreqtitle'          => 'Yu mu kon',
 'loginreqlink'           => 'kon',
 'loginreqpagetext'       => 'Yu mu $1 tu a libi si fu trawan peprewoysi.',
+'accmailtitle'           => 'Waktiwortu ben stir.',
+'accmailtext'            => 'A waktiwortu fu "$1" ben stir na $2.',
 'newarticle'             => '(Nyun)',
 'newarticletext'         => "Yu e pruberi fu opo wan papira di no de ete. Fu meki a papira, bigin skrifi ini a boksu dyaso na ondrosey (luku ini [[{{MediaWiki:Helppage}}|yepipapira]] gi yepi).
 Kebroiki a '''back''' knopo ini yu browser, efu yu no ben wan opo a papira disi.",

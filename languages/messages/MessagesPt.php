@@ -692,6 +692,8 @@ Por favor, introduza um e valide-o através das suas [[Special:Preferences|prefe
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',
+'accmailtitle'                     => 'Palavra-chave enviada.',
+'accmailtext'                      => "A palavra-chave para '$1' foi enviada para $2.",
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => "Você seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo

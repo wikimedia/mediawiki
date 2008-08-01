@@ -559,6 +559,8 @@ Paske sistèm an pa gen seksyon $1 sa, nou pa twouve pyès lòt kote pou pibliye
 'loginreqtitle'                    => 'Koneksyon an nesesè',
 'loginreqlink'                     => 'konekete ou',
 'loginreqpagetext'                 => 'Ou dwèt $1 pou ou kapab wè lòt paj yo.',
+'accmailtitle'                     => 'Mopas an voye.',
+'accmailtext'                      => 'Mopas pou « $1 » voye nan adrès $2.',
 'newarticle'                       => '(Nouvo)',
 'newarticletext'                   => "Ou swiv yon paj ki poko egziste nan sistèm sa a.
 Pou ou kapab kreye paj sa a, komanse ap ekri nan bwat sa a ki anba (gade [[{{MediaWiki:Helppage}}|paj èd an]] pou konnen plis, pou plis enfòmasyon).

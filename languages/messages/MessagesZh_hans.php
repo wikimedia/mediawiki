@@ -605,6 +605,8 @@ $2',
 'loginreqtitle'                    => '需要登录',
 'loginreqlink'                     => '登录',
 'loginreqpagetext'                 => '您必须$1才能查看其它页面。',
+'accmailtitle'                     => '密码已寄出',
+'accmailtext'                      => "'$1'的密码已经被发送到$2。",
 'newarticle'                       => '(新)',
 'newarticletext'                   => '您进入了一个尚未创建的页面。
 要创建该页面，请在下面的编辑框中输入内容(详情参见[[Help:帮助|帮助]])。

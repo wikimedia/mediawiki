@@ -666,6 +666,8 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'loginreqtitle'                    => 'Pśizjawjenje trěbne',
 'loginreqlink'                     => 'se pśizjawiś',
 'loginreqpagetext'                 => 'Dejš se $1, aby mógł boki pšawje cytaś.',
+'accmailtitle'                     => 'Šćitne gronidło jo se wótpósłało.',
+'accmailtext'                      => 'Šćitne gronidło za wužywarja "$1" jo na adresu $2 se wótpósłało.',
 'newarticle'                       => '(Nowy nastawk)',
 'newarticletext'                   => 'Sy slědował wótkaz na bok, kótaryž hyšći njeeksistěrujo.
 Aby bok wutwórił, ga napiš do kašćika spózy.

@@ -680,6 +680,8 @@ ditunjukkan di bawah:",
 'loginreqtitle'                    => 'Log masuk diperlukan',
 'loginreqlink'                     => 'log masuk',
 'loginreqpagetext'                 => 'Anda harus $1 untuk dapat melihat laman yang lain.',
+'accmailtitle'                     => 'Kata laluan dikirim.',
+'accmailtext'                      => 'Kata laluan bagi "$1" telah dikirim kepada $2.',
 'newarticle'                       => '(Baru)',
 'newarticletext'                   => "Anda telah mengikuti pautan ke laman yang belum wujud.
 Untuk mencipta laman ini, sila taip dalam kotak di bawah

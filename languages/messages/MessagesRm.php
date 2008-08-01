@@ -256,6 +256,8 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'loginreqtitle'        => 'Annunzia necessari',
 'loginreqlink'         => "s'annunziar",
 'loginreqpagetext'     => 'Ti stos $1 per vesair autras paginas.',
+'accmailtitle'         => 'Il pled-clav è vegnì tramess.',
+'accmailtext'          => 'Il pled-clav da "$1" è vegnì tramess a $2.',
 'newarticletext'       => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
 'anontalkpagetext'     => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
 'noarticletext'        => "Quest artitgel cuntegna actualmain nagin text. Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in'autra pagina, u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina].",

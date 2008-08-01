@@ -50,6 +50,7 @@ $messages = array(
 'watchthis'          => 'De Seitn beobachtn',
 'whitelistedittitle' => 'Zum Bearbatn miaßn Sie si oomeidn',
 'whitelistedittext'  => 'Sie miaßn si $1, um Seiten bearbatn zum kinna.',
+'accmailtitle'       => 'Passwort is vaschickt worn',
 'newarticle'         => '(Nei)',
 'yourtext'           => 'Eana Text',
 

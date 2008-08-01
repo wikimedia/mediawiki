@@ -568,6 +568,8 @@ Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de c
 'loginreqtitle'                    => "Par modificar sta pagina bisogna prima eseguir l'acesso al sito.",
 'loginreqlink'                     => 'login',
 'loginreqpagetext'                 => 'Par védar altre pagine bisogna $1.',
+'accmailtitle'                     => 'Password spedia.',
+'accmailtext'                      => "La password par '$1' l'è sta spedia a $2.",
 'newarticle'                       => '(Novo)',
 'newarticletext'                   => "El cołegamento che te ghè 'pena seguìo el corisponde a na pàxena gnancora esistente.
 Se te desideri crear ła pàxena desso, basta che te tachi a scrìvar el testo ne ła caseła qua soto

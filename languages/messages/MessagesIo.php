@@ -371,6 +371,8 @@ Voluntez enirar altrafoye pos recevar ol.',
 'whitelistedittext'    => 'Vu mustas $1 por redaktar pagini.',
 'loginreqtitle'        => 'Eniro esas postulata',
 'loginreqlink'         => 'enirar',
+'accmailtitle'         => 'Kontrolajo sendita.',
+'accmailtext'          => 'La kontrolajo por "$1" sendesis a $2.',
 'newarticle'           => '(nova)',
 'newarticletext'       => "Vu sequis ligilo a pagino qua ne existas ankore.
 Por krear ica pagino, voluntez startar skribar en la infra buxo.

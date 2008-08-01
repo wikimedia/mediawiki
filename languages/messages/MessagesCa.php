@@ -688,6 +688,8 @@ El número d'identificació ID del bloqueig és #$5. Si us plau, incloeu aqueste
 'loginreqtitle'                    => 'Cal que inicieu una sessió',
 'loginreqlink'                     => 'inicia una sessió',
 'loginreqpagetext'                 => 'Heu de ser $1 per a visualitzar altres pàgines.',
+'accmailtitle'                     => "S'ha enviat una contrasenya.",
+'accmailtext'                      => "S'ha enviat a $2 la contrasenya per a «$1».",
 'newarticle'                       => '(Nou)',
 'newarticletext'                   => "Heu seguit un enllaç a una pàgina que encara no existeix.
 Per a crear-la, comenceu a escriure en l'espai de sota

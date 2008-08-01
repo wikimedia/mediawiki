@@ -178,6 +178,8 @@ $messages = array(
 'anoneditwarning'        => "'''Attenzione''': ùn sè micca un utilizatore registratu, oppuru ùn ai fattu a cunnessione.
 U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'loginreqlink'           => 'cunnessione',
+'accmailtitle'           => 'Parulla secreta inviata.',
+'accmailtext'            => 'A parulla secreta per "$1" hè stata inviata à l\'indirizzu $2.',
 'editing'                => 'Mudifica di $1',
 'editingsection'         => 'Mudifica di $1 (sezzione)',
 'editingcomment'         => 'Mudifica di $1 (cummentu)',

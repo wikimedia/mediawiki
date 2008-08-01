@@ -352,6 +352,8 @@ Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 'loginreqtitle'          => 'Mila fidirana',
 'loginreqlink'           => 'hiditra',
 'loginreqpagetext'       => 'Tokony $1 ianao raha te hijery pejy hafa.',
+'accmailtitle'           => 'Lasa ny tenimiafina.',
+'accmailtext'            => 'Lasa any amin\'i $2 ny tenimiafin\'i "$1".',
 'newarticle'             => '(Vaovao)',
 'newarticletext'         => "Mbola tsy misy ity takelaka ity koa azonao atao ny mamorona azy eto ambany. Jereo ny [[{{MediaWiki:Helppage}}|Fanoroana]] raha misy fanazavana ilainao.
 

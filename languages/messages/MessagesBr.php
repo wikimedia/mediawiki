@@ -580,6 +580,8 @@ Notennit mat ne c'hallot implijout an dibarzh \"kas ur postel d'an implijer\" ne
 'loginreqtitle'                    => 'Anv implijer rekis',
 'loginreqlink'                     => 'en em lugañ',
 'loginreqpagetext'                 => "Ret eo deoc'h $1 evit gwelet pajennoù all.",
+'accmailtitle'                     => 'Ger-tremen kaset.',
+'accmailtext'                      => 'Kaset eo bet ger-tremen « $1 » da $2.',
 'newarticle'                       => '(Nevez)',
 'newarticletext'                   => 'Skrivit amañ testenn ho pennad.',
 'anontalkpagetext'                 => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dianv n'eus ket c'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar chomlec'h IP niverel evit disklêriañ anezhañ/i. Gallout a ra ur chomlec'h a seurt-se bezañ rannet etre meur a implijer(ez). Ma'z oc'h un implijer(ez) dianv ha ma stadit ez eus bet kaset deoc'h kemennadennoù na sellont ket ouzhoc'h, gallout a rit [[Special:Userlogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc'h a gemmesk.",

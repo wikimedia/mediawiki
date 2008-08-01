@@ -537,6 +537,8 @@ ID pamblokiran panjenengan iku $5. Tulung sertakna ID iki saben ngajokaké pitak
 'loginreqtitle'             => 'Mangga mlebu log',
 'loginreqlink'              => 'mlebu log',
 'loginreqpagetext'          => 'Panjenengan kudu $1 kanggo bisa mirsani kaca liyané.',
+'accmailtitle'              => 'Tembung sandhi wis dikirim.',
+'accmailtext'               => "Tembung sandhi kanggo '$1' wis dikirimaké menyang $2.",
 'newarticle'                => '(Anyar)',
 'newarticletext'            => "Katonané panjenengan ngetutaké pranala artikel sing durung ana.
 Manawa kersa manulis artikel iki, manggaa. (Mangga mirsani [[{{MediaWiki:Helppage}}|Pitulung]] kanggo informasi sabanjuré).
