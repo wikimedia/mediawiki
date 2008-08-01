@@ -1624,7 +1624,7 @@ To include a file in a page, use a link in one of the following forms:
 'uploadlog'                   => 'upload log',
 'uploadlogpage'               => 'Upload log',
 'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.
-See the [[Special:NewImages|gallery of new files]] for a more visual overview',
+See the [[Special:NewImages|gallery of new files]] for a more visual overview.',
 'filename'                    => 'Filename',
 'filedesc'                    => 'Summary',
 'fileuploadsummary'           => 'Summary:',
