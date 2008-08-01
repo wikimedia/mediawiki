@@ -149,7 +149,7 @@ $messages = array(
 'remembermypassword'      => 'Ajj login inu deg uselkim(computer) a',
 'login'                   => 'Adeff',
 'nav-login-createaccount' => 'Adeff / egg amiḍan',
-'loginprompt'             => 'itxessa a ṭeṭfeḍ cookies bac ad tadfed ɣa {{SITENAME}}.',
+'loginprompt'             => 'itxessa a teṭfeḍ cookies uca [[Special:Userlogin|Adeff {{SITENAME}}]].',
 'userlogin'               => 'Adeff / egg amiḍan',
 'logout'                  => 'Ffeɣ',
 'userlogout'              => 'Ffeɣ',
@@ -197,6 +197,7 @@ adeff-d xmi ɣa tetfed.',
 
 # Edit pages
 'summary'                => 'Asgeber',
+'subject'                => 'Subject/headline',
 'minoredit'              => 'Ta d taẓrigt ttamẓeyant',
 'watchthis'              => 'Ẓar tasebtert a',
 'savearticle'            => 'Ḥaḍ Tasebtert',
@@ -215,22 +216,31 @@ mala qacek da s ɣalaṭ waha, tecca di tbutunt n '''deffar''' di browser inec .
 tiẓrigin εad war twaḥḍent!</strong>',
 'editing'                => 'Aẓreg di $1',
 'editingsection'         => 'Aẓrag  di $1 (tigezmi)',
+'copyrightwarning'       => 'ixssa atsned billi maṛṛa tirra di {{SITENAME}} twaḥsabent twaggent swadday i $2 (ẓer da $1).
+wala war texsed tirra inac ad twaẓregent u ad twamsebḍant, iwa ur ten-tag ca da.<br />
+Ɛawtani tjadjid-anɣ ila qa d cekk ig yuran manaya, niɣ tesneɣlet-id zi ca n uɣbal nniḍn d alelli.
+<strong>UR SADDAF CA TIRRA ɣARSENT COPYRIGHTE BLA MA DIXES BAB-INES !</strong>',
 'templatesused'          => 'Timudmiwin itwaggen di tsebtert a:',
 'templatesusedpreview'   => 'Timudmiwin igg itwasxdemen dg uzar-ascan a :',
 'template-protected'     => '(twaḥḍa)',
 'template-semiprotected' => '(tuẓgen-ẓarq)',
+'nocreatetext'           => '{{SITENAME}} war iqqim ca itejja iwdan adeggen tisebtar timaynutin.
+tzemred addewred ɣar deffar, niɣ [[Special:Userlogin|Adeff niɣ egg amiḍan]].',
 
 # History pages
-'viewpagelogs'     => 'Ẓar aɣmis n tsebtert a',
-'currentrev'       => 'Afegged n ruxa',
-'revisionasof'     => 'Affegged am $1',
-'previousrevision' => '←Affegged n zic',
-'cur'              => 'N rux',
-'last'             => 'anggaru',
-'page_first'       => 'amzwaru',
-'page_last'        => 'anggaru',
-'histfirst'        => 'Amzwaru qaε',
-'histlast'         => 'Anggaru qaε',
+'viewpagelogs'        => 'Ẓar aɣmis n tsebtert a',
+'currentrev'          => 'Afegged n ruxa',
+'revisionasof'        => 'Affegged am $1',
+'revision-info'       => 'Afegged am $1 s $2',
+'previousrevision'    => '←Affegged n zic',
+'nextrevision'        => 'Afegged d amaynu→',
+'currentrevisionlink' => 'Afegged n rux',
+'cur'                 => 'N rux',
+'last'                => 'anggaru',
+'page_first'          => 'amzwaru',
+'page_last'           => 'anggaru',
+'histfirst'           => 'Amzwaru qaε',
+'histlast'            => 'Anggaru qaε',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 ɣa $2', # user at time
@@ -344,6 +354,8 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''bold'''.",
 'withoutinterwiki'        => 'Tasebtert bla tiẓdayin n tutlayt',
 'withoutinterwiki-submit' => 'Smmrad',
 
+'fewestrevisions' => 'Tisebtar s cwayt n ifeggiden',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|atamanḍ|itamḍanen}}',
 'nlinks'                  => '$1 {{PLURAL:$1|Tazdayt|Tizdayin}}',
@@ -406,7 +418,7 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''bold'''.",
 'watchlistfor'         => "(i '''$1''')",
 'addedwatch'           => 'Temmarni ɣa Tabdart uḥṭṭu',
 'removedwatch'         => 'twakkes zi Tabdart uḥṭṭu',
-'removedwatchtext'     => 'Tasebtert "[[:$1]]" twakkes zi Tabdart uḥṭṭu inec.',
+'removedwatchtext'     => 'Tasebtert "[[:$1]]" twakkes zi [[Special:Watchlist|Tabdart uḥṭṭu inec]].',
 'watch'                => 'Ẓar',
 'watchthispage'        => 'Ẓar tasebtert a',
 'unwatch'              => 'War-twaẓer',
@@ -438,6 +450,9 @@ Xemm $2 i tikkas timaynutin.',
 'protect_expiry_invalid'      => 'Akud n usali war icni ca.',
 'protect_expiry_old'          => 'Akud usali yeεda.',
 'protect-unchain'             => 'Arzem ipirmiyen n usnaqel',
+'protect-text'                => 'tezemred ad teẓred u atbedeld aswir n uḥeṭṭu n tsebtert a da <strong><nowiki>$1</nowiki></strong>.',
+'protect-locked-access'       => 'Amiḍan inecc war ɣars pirmi bac ad ibeddel aswir n uḥeṭṭu n tsebtert .
+Aqa (settings) n tsebtert <strong>$1</strong>:',
 'protect-default'             => '(amzwar)',
 'protect-fallback'            => 'itxessat "$1"',
 'protect-level-autoconfirmed' => 'Bluka iseqdacen war ɣasen ca amiḍan',
@@ -487,12 +502,13 @@ Xemm $2 i tikkas timaynutin.',
 # Block/unblock
 'blockip'            => 'Bluka aseqdac a',
 'ipboptions'         => '2 tasεεat:2 hours,1 ass:1 day,3 ussan:3 days,1 amalass:1 week,2 imallasen:2 weeks,1 ayur:1 month,3 iyuren:3 months,6 iyuren:6 months,1 asggas:1 year,infinite:infinite', # display1:time1,display2:time2,...
-'ipblocklist'        => 'Tabdart n tansiwin IP d isemawen n iseqdacen igi tteblukan',
+'ipblocklist'        => 'Tabdart n tansiwin IP d isemawen n iseqdacen ig itwabelεen',
 'ipblocklist-submit' => 'Tarzzut',
 'blocklink'          => 'Ẓareqq',
 'unblocklink'        => 'Arzem',
 'contribslink'       => 'Tiggawin',
 'blocklogpage'       => 'Ẓareqq aɣmis',
+'blocklogentry'      => 'itwabellaε [[$1]] ar $2 $3',
 
 # Move page
 'movearticle'    => 'Snaqel tasebtert:',

@@ -7,8 +7,8 @@
  * @author Fulup
  * @author לערי ריינהארט
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $namespaceNames = array(

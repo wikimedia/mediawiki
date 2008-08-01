@@ -7,8 +7,8 @@
  * @author ZeneizeForesto
  * @author Siebrand
  * @author SPQRobin
- * @author Malafaya
  * @author Jon Harald Søby
+ * @author Malafaya
  * @author Dario vet
  * @author Dedee
  */

@@ -392,7 +392,7 @@ La ŝlosinto lasis la jenan mesaĝon:
 Ĉi tiel ofte estas kaŭzite de sekvado de malfreŝa \'\'diff\'\' aŭ historia ligilo al paĝo kiu estis forigita.
 
 Se ĉi tiel ne okazis, verŝajne vi trovis cimon en la softvaro.
-Bonvolu raporti ĉi tiun al administranto, notante la TTT-adreson.',
+Bonvolu raporti ĉi tiun al [[Special:ListUsers/sysop|administranto]], notante la TTT-adreson.',
 'missingarticle-rev'   => '(revizio#: $1)',
 'missingarticle-diff'  => '(Diferenco inter versioj: $1, $2)',
 'readonly_lag'         => 'La datumbazo estis aŭtomate ŝlosita dum la subdatumbazo atingas la ĉefan datumbazon.',
@@ -443,11 +443,13 @@ La kialo donata estis ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Elsaluti',
-'logouttext'                 => '<strong>Vi elsalutis kaj finis vian seancon.</strong><br />
-Vi rajtas daŭre vikiumi sennome, aŭ vi povas reensaluti kiel la sama aŭ kiel alia uzanto.',
+'logouttext'                 => '<strong>Vi nun estas elsalutita.</strong>
+
+Vi rajtas daŭre vikiumi sennome, aŭ vi povas [[Special:Userlogin|reensaluti]] kiel la sama aŭ kiel alia uzanto.
+Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.',
 'welcomecreation'            => '== Bonvenon, $1! ==
 Via konto estas kreita.
-Ne forgesu fari viajn {{SITENAME}}-preferojn.',
+Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'loginpagetitle'             => 'Ensaluti / enskribi',
 'yourname'                   => 'Salutnomo:',
 'yourpassword'               => 'Via pasvorto',
@@ -458,7 +460,7 @@ Ne forgesu fari viajn {{SITENAME}}-preferojn.',
 'loginproblem'               => '<b>Okazis problemo dum via ensalutado.</b><br />Bonvolu reprovi!',
 'login'                      => 'Ensaluti',
 'nav-login-createaccount'    => 'Ensalutu / Kreu novan konton',
-'loginprompt'                => 'Necesas ke via foliumilo permesu kuketojn por ensaluti en la {{SITENAME}}.',
+'loginprompt'                => 'Via foliumilo nepre permesu kuketojn por [[Special:Userlogin|ensaluti en la {{SITENAME}}]].',
 'userlogin'                  => 'Ensaluti / Krei novan konton',
 'logout'                     => 'Elsaluti',
 'userlogout'                 => 'Elsaluti',
@@ -686,7 +688,7 @@ la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'nocreate-loggedin'                => 'Vi ne rajtas krei novajn paĝojn en {{SITENAME}}.',
 'permissionserrors'                => 'Eraroj pri permesoj',
 'permissionserrorstext'            => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
-'permissionserrorstext-withaction' => 'Vi ne permesas $2, pro la {{PLURAL:$1|jena kialo|jenaj kialoj}}:',
+'permissionserrorstext-withaction' => 'Vi ne rajtas $2, pro la {{PLURAL:$1|jena kialo|jenaj kialoj}}:',
 'recreate-deleted-warn'            => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
 
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
@@ -842,7 +844,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 # Search results
 'searchresults'             => 'Serĉrezultoj',
 'searchresulttext'          => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[{{MediaWiki:Helppage}}|serĉi en {{SITENAME}}]].',
-'searchsubtitle'            => 'Serĉmendo "[[$1]]"',
+'searchsubtitle'            => 'Vi serĉis "\'\'\'[[$1]]\'\'\'" ([[Special:Prefixindex/$1|ĉiuj paĝoj komence kun "$1"]] | [[Special:Whatlinkshere/$1|ĉiuj paĝoj ligantaj al "$1"]])',
 'searchsubtitleinvalid'     => 'Serĉmendo "$1"',
 'noexactmatch'              => '<b>Ne estas paĝo titolita "$1".</b> Vi povas [[:$1|krei la paĝon]].',
 'noexactmatch-nocreate'     => "'''Estas neniu paĝo titolita \"\$1\".'''",

@@ -5,8 +5,8 @@
  * @file
  *
  * @author MacTire02
- * @author Shimmin Beg
  * @author Siebrand
+ * @author Shimmin Beg
  * @author Alison
  */
 
@@ -253,7 +253,8 @@ Cur streean er dty lettraghey, ny croo coontys noa.',
 Cur streean er dty lettraghey.',
 'nouserspecified'            => 'Shegin dhyt ennym ymmydeyr y honraghey.',
 'wrongpassword'              => 'Va fockle arrey neuchiart screeuit. Screeu eh reesht eh.',
-'wrongpasswordempty'         => "Va'n fockle arrey screeuit bane. <br>Aascreeu, my sailliu.",
+'wrongpasswordempty'         => "Va'n fockle arrey screeuit bane.
+Aascreeu, my sailliu.",
 'mailmypassword'             => "Cur dou m'ockle arrey er post-L",
 'passwordremindertitle'      => 'Fockle arrey noa shallidagh gys {{SITENAME}}',
 'acct_creation_throttle_hit' => 'Gow my leshtal, ta $1 coontysyn crooit ayd.
@@ -296,7 +297,7 @@ Cha nod oo ny smoo y chroo.',
 'showpreview'            => 'Roie-haishbynys y haishbyney',
 'showlivepreview'        => 'Roie-haishbynys bio',
 'showdiff'               => 'Caghlaaghyn y haishbyney',
-'anoneditwarning'        => "'''Raaue:''' Cha nel ou loggit stiagh.<br>
+'anoneditwarning'        => "'''Raaue:''' Cha nel ou loggit stiagh.
 Bee dt'enmys IP recortyssit ayns shennaghys reaghey yn duillag shoh.",
 'missingcommenttext'     => 'Taggloo er heese, my sailt.',
 'summary-preview'        => 'Roie-haishbynys y ghiare-choontey',

@@ -14,15 +14,15 @@
  * @author לערי ריינהארט
  * @author Sherbrooke
  * @author Siebrand
- * @author Hégésippe Cormier
  * @author Louperivois
- * @author Korg
+ * @author Hégésippe Cormier
  * @author Cedric31
- * @author Dereckson
  * @author Jon Harald Søby
- * @author JeanVoisin
- * @author Omnipaedista
+ * @author Dereckson
+ * @author Korg
  * @author McDutchie
+ * @author Omnipaedista
+ * @author JeanVoisin
  * @author SPQRobin
  * @author Горан Анђелковић
  * @author ChrisPtDe

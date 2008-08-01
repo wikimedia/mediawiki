@@ -9,7 +9,6 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author CERminator
- * @author Gangleri
  */
 
 $namespaceNames = array(

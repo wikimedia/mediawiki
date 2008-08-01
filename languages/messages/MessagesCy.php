@@ -463,8 +463,10 @@ Rhoddwyd y rheswm hwn - ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Allgofnodi'r defnyddiwr",
-'logouttext'                 => '<strong>Rydych wedi allgofnodi.</strong><br />
-Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch fewngofnodi eto wrth yr un un enw neu wrth enw arall. Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddech wedi mewngofnodi hyd nes i chi glirio celc eich porwr.',
+'logouttext'                 => '<strong>Rydych wedi allgofnodi.</strong>
+
+Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch [[Special:Userlogin|fewngofnodi eto]] wrth yr un un enw neu wrth enw arall. 
+Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddech wedi mewngofnodi hyd nes i chi glirio celc eich porwr.',
 'welcomecreation'            => "==Croeso, $1!==
 Mae eich cyfrif wedi'i greu. 
 Cofiwch osod eich dewisiadau er mwyn gwneud {{SITENAME}} yn fwy personol i chi.",
@@ -1051,10 +1053,10 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'uploadtext'                  => "Defnyddiwch y ffurflen isod i uwchlwytho ffeiliau.
 I weld a chwilio am ffeiliau sydd eisoes wedi eu huwchlwytho ewch at y [[Special:Imagelist|rhestr o'r ffeiliau sydd wedi eu huwchlwytho]]. I weld cofnodion uwchlwytho a dileu ffeiliau ewch at y [[Special:Log/upload|lòg uwchlwytho]].
 
-I osod ffeil mewn tudalen defnyddiwch gyswllt wici a fydd yn arwain yn syth at y ffeil, fel a ganlyn:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.png|testun amgen]]</nowiki>''' neu
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ffeil.ogg]]</nowiki>'''.",
+I osod ffeil mewn tudalen defnyddiwch gyswllt wici, ar un o'r ffurfiau canlynol:
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.jpg]]</nowiki><tt>''', er mwyn defnyddio fersiwn llawn y ffeil
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.png|200px|bawd|chwith|testun amgen]]</nowiki><tt>''' a wnaiff dangos llun 200 picsel o led mewn bocs ar yr ochr chwith a'r testun 'testun amgen' wrth ei odre
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ffeil.ogg]]</nowiki><tt>''' a fydd yn arwain yn syth at y ffeil heb arddangos y ffeil.",
 'upload-permitted'            => 'Mathau o ffeiliau a ganiateir: $1',
 'upload-preferred'            => 'Mathau ffeil dewisol: $1.',
 'upload-prohibited'           => 'Mathau o ffeiliau a waherddir: $1.',

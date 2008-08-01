@@ -1,8 +1,10 @@
 <?php
-/** Zhuang (壮语)
+/** Zhuang ((Cuengh))
  *
  * @ingroup Language
  * @file
+ *
+ * @author Hakka
  */
 
 $fallback = 'zh-hans';

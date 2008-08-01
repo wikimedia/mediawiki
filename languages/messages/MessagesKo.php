@@ -10,13 +10,13 @@
  * @author Siebrand
  * @author ITurtle
  * @author Albamhandae
- * @author לערי ריינהארט
- * @author Kwj2772
  * @author TheAlpha for knowledge
+ * @author Kwj2772
  * @author Ficell
+ * @author לערי ריינהארט
  * @author Jon Harald Søby
- * @author SPQRobin
  * @author Pi.C.Noizecehx
+ * @author SPQRobin
  */
 
 $namespaceNames = array(

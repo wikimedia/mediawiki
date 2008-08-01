@@ -10,8 +10,8 @@
  * @author Mssetiadi
  * @author Jon Harald Søby
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Meursault2004
+ * @author SPQRobin
  */
 
 $fallback = 'id';

@@ -490,7 +490,7 @@ Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach u
 Probéiert et w.e.g. nach eng Kéier!",
 'login'                      => 'Umellen',
 'nav-login-createaccount'    => 'Aloggen',
-'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
+'loginprompt'                => "Fir sech op [[Special:Userlogin|{{SITENAME}} umellen]] ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin'                  => 'Aloggen',
 'logout'                     => 'Ofmellen',
 'userlogout'                 => 'Ausloggen',
@@ -650,7 +650,7 @@ D\'Nummer vun ärer Spär ass $5. Gitt dës Nummer w.e.g bei allen Ufroen zu dë
 'blockednoreason'                  => 'Kee Grond uginn',
 'blockedoriginalsource'            => "De Quelltext vun '''$1''' steet hei ënnendrënner:",
 'blockededitsource'                => "Den Text vun '''ären Ännerungen''' op '''$1''' steet hei ënnendrënner:",
-'whitelistedittitle'               => 'Login noutwännesch fir ze änneren',
+'whitelistedittitle'               => "[[Special:Userlogin|Login noutwännesch]] fir z'änneren",
 'whitelistedittext'                => 'Dir musst iech $1, fir Säiten änneren ze kënnen.',
 'confirmedittitle'                 => "Konfirmatioun vun ärer E-Mailadress ass erfuederlech fir z'änneren.",
 'confirmedittext'                  => 'Dir musst är E-Mail-Adress conirméieren, ier Dir ännerunge maache kënnt.
@@ -867,7 +867,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 # Search results
 'searchresults'             => 'Resultat vun der Sich',
 'searchresulttext'          => "Fir méi Informatiounen iwwert d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchsubtitle'            => 'Dir hutt no "[[:$1|$1]]" gesicht.',
+'searchsubtitle'            => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]] | [[Special:Whatlinkshere/$1|all Sàiten déi op "$1" linken]])',
 'searchsubtitleinvalid'     => 'Dir hutt no "$1" gesicht.',
 'noexactmatch'              => "'''Et gëtt keng Säite mam Titel \"\$1\".'''
 
@@ -1135,7 +1135,8 @@ Dir sollt onbedingt bedenken, datt, genee wéi bäi normale Säiten, aner Benotz
 'upload-prohibited'           => 'Verbuede Fichiers Formater: $1.',
 'uploadlog'                   => 'Lëscht vun den eropgeluedene Fichieren',
 'uploadlogpage'               => 'Logbuch vum Eroplueden',
-'uploadlogpagetext'           => 'Dëst ass dLëscht vun de Fichieren déi eropgeluede goufen.',
+'uploadlogpagetext'           => "Dëst ass d'Lëscht vun de rezente Fichieren déi eropgeluede goufen.
+Kuckt [[Special:NewImages|d'Gallerie vun de neie Fichieren]] wann Dir méi e visuellen Iwwerbléck wëllt",
 'filename'                    => 'Numm vum Fichier',
 'filedesc'                    => 'Resumé',
 'fileuploadsummary'           => 'Resumé/Quell:',
@@ -1192,7 +1193,8 @@ Zu ärer Informatioun steett hei Läsch-Lëscht mat dem Grond vum viregte Läsch
 'upload-proto-error'      => 'Falsche Protokoll',
 'upload-proto-error-text' => "D'URL muss matt <code>http://</code> oder <code>ftp://</code> ufänken.",
 'upload-file-error'       => 'Interne Feeler',
-'upload-file-error-text'  => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt. Informéiert w.e.g. e vun de System-Administrateuren.',
+'upload-file-error-text'  => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt.
+Informéiert w.e.g. e vun den [[Special:ListUsers/sysop|Administrateuren]].',
 'upload-misc-error'       => 'Onbekannte Feeler beim Eroplueden',
 'upload-misc-error-text'  => "Beim Eroplueden ass en onbekannte Feeler geschitt. Kuckt d'URL w.e.g. no, a vergewëssert iech datt d'Säit online ass a probéiert et dann nach eng Kéier. Wann de Problem weider besteet, dann un de System-Administrateuren.",
 
@@ -1462,7 +1464,7 @@ Zousätzlech Informatiounen iwwer individuell Benotzerrechter fannt Dir [[{{Medi
 'mailnologintext' => 'Dir musst [[Special:Userlogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
 'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
-'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a sengen Astellungen uginn huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mailadress, déi dir an Ären Astellungen aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
+'emailpagetext'   => 'Wann dëse Benotzer eng valid E-Mail Adress a sengen Astellungen uginn huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mailadress, déi dir an [[Special:Preferences|Ären Astellungen]] aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech och äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',

@@ -8,8 +8,8 @@
  * @author SPQRobin
  * @author Siebrand
  * @author M.M.S.
- * @author לערי ריינהארט
  * @author Jon Harald Søby
+ * @author לערי ריינהארט
  * @author Võrok
  */
 

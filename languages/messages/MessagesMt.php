@@ -142,8 +142,8 @@ $messages = array(
 'newwindow'      => "(tinfetaħ f'window ġdida)",
 'cancel'         => 'Ikkanċella',
 'qbfind'         => 'Fittex',
-'qbbrowse'       => 'Browsja',
-'qbedit'         => 'Modifika',
+'qbbrowse'       => 'Qalleb',
+'qbedit'         => 'Immodifika',
 'qbpageoptions'  => 'Din il-paġna',
 'qbpageinfo'     => 'Kuntest',
 'qbmyoptions'    => 'Il-paġni tiegħi',
@@ -562,32 +562,35 @@ Minħabba li $1 ma teżistix, il-modifiki tiegħek ma ġewx salvati.',
 'loginreqlink'                     => 'Aċċessa',
 'loginreqpagetext'                 => "Int trid ikollhok $1 sabiex tkun tista' tara paġni oħrajn.",
 'accmailtitle'                     => 'Password ġiet postjata.',
-'accmailtext'                      => 'Il-password għal "$1" ġie postjat lil $2.',
+'accmailtext'                      => 'Il-password għal "$1" ġiet mibgħuta lil $2.',
 'newarticle'                       => '(Ġdid)',
-'newarticletext'                   => "Inti segwejt link għal paġna li qas teżisti għad.
-Sabiex toħloq il-paġna, ikteb fil-kaxxa li tinsab hawn taħt (ara [[{{MediaWiki:Helppage}}|paġna tal-għajnuna]] għal aktar informazzjoni). Jekk qiegħed hawn biż-żball, kemm agħfas il-buttuna '''lura''' fuq il-browser tiegħek.",
-'anontalkpagetext'                 => "----''Din il-paġna tad-diskussjoni hija għal utenti anonimi li għad m'għandhomx kont jew li mhux qegħdin jużawh. B'hekk aħna inkunu rridu nużaw l-indirizz tal-IP tiegħu/tagħha sabiex inkunu nistgħu nsibu l-utent.
-Indirizz tal-IP bħal dan jiġi maqsum bejn ħafna utenti differenti.
-Jekk int utent anonimmu u taħseb li qiegħed tirċievi kumment bla sens, jekk jogħġbok [[Special:Userlogin|oħloq kont ġdid jew idħol]] sabiex tevita konfużjoni fil-futur ma' utenti anonimi oħrajn.''",
+'newarticletext'                   => "Inti segwejt link għal paġna li għadha ma ġietx maħluqa.
+Sabiex toħloq il-paġna, ikteb fil-kaxxa li tinsab hawn taħt (ara [[{{MediaWiki:Helppage}}|paġna tal-għajnuna]] għal aktar informazzjoni). 
+Jekk wasalt hawn biż-żball, agħfas il-buttuna '''lura''' (''back'') fuq il-browser tiegħek.",
+'anontalkpagetext'                 => "----''Din hija l-paġna ta' diskussjoni ta' dak l-utent anonimu li għadu ma ħoloqx kont, jew inkella li ma jużahx. 
+Għaldaqstant biex nidentifikawh ikollna nużaw l-indirizz tal-IP tiegħu.
+L-istess indirizz tal-IP jista' jkun użat minn bosta utenti differenti.
+Jekk int utent anonimu u tħoss li qiegħed tirċievi kummenti irrelevanti jew li ma jagħmlux sens, jekk jogħġbok [[Special:Userlogin|oħloq kont ġdid jew idħol]] sabiex tevita li fil-futur tiġi konfuż ma' utenti anonimi oħrajn.''",
 'noarticletext'                    => "Bħalissa m'hemmx test f'din il-paġna, inti tista' [[Special:Search/{{PAGENAME}}|tfittex it-titlu ta' din il-paġna]] f'paġni oħrajn jew [{{fullurl:{{FULLPAGENAME}}|action=edit}} tista' ukoll tagħmel modifiki lil din il-paġna].",
-'userpage-userdoesnotexist'        => 'Il-Kont tal-utent "$1" mhux reġistrat. Jekk jogħġbok ara jekk ma tridx toħloq/timodifika din il-paġna.',
-'clearyourcache'                   => "'''Nota - Wara li tagħmel il-modifiki, xi drabi jkollhok bżonn tħassar ''il-cache'' sabiex tkun tista' tara dawn il-modifiki.'''  '''Mozilla / Firefox / Safari:''' żomm ''Shift'' waqt li tkun qiegħed tagħfas ''Reload,'' jew agħfas ''Ctrl-F5'' jew ''Ctrl-R'' (''Command-R'' fuq \"Macintosh\"); '''Konqueror: '''agħfas ''Reload'' jew agħfas ''F5;''  '''Opera:''' ħassar il-cache fil-''Għodda → Preferenzi;'' '''Internet Explorer:''' żomm ''Ctrl'' waqt li tagħfas ''Refresh,'' jew agħfas ''Ctrl-F5.''",
-'usercssjsyoucanpreview'           => "<strong>Avviż:</strong> Uża l-buttuna 'Uri previżjoni' sabiex titestja CSS/JS ġodda qabel ma tagħmel il-modifiki.",
+'userpage-userdoesnotexist'        => 'Il-kont tal-utent "$1" mhux reġistrat. 
+Jekk jogħġbok, ara jekk verament tridx toħloq/timodifika din il-paġna.',
+'clearyourcache'                   => "'''Nota - Wara li tagħmel il-modifiki, xi drabi jkollok bżonn tħassar ''il-cache'' sabiex tkun tista' tara t-tibdil li sar.'''  '''Mozilla / Firefox / Safari:''' żomm ''Shift'' waqt li tkun qiegħed tagħfas ''Reload,'' jew agħfas ''Ctrl-F5'' jew ''Ctrl-R'' (''Command-R'' fuq \"Macintosh\"); '''Konqueror: '''agħfas ''Reload'' jew agħfas ''F5;''  '''Opera:''' ħassar il-cache fl-''Għodda → Preferenzi;'' '''Internet Explorer:''' żomm ''Ctrl'' waqt li tagħfas ''Refresh,'' jew agħfas ''Ctrl-F5.''",
+'usercssjsyoucanpreview'           => "<strong>Avviż:</strong> Uża l-buttuna 'Uri previżjoni' sabiex tittestja s-CSS/JS il-ġodda qabel ma tagħmel il-modifiki.",
 'usercsspreview'                   => "'''Ftakar li int qiegħed tara biss previżjoni tal-utent tiegħek tal-CSS, għad trid tiġi salvata!'''",
 'userjspreview'                    => "'''Ftakar li int qiegħed tara biss previżjoni tal-utent tiegħek tal-JavaScript, għad trid tiġi salvata!'''",
-'userinvalidcssjstitle'            => "'''Twissija:''' M'hemmx skin \"\$1\".
-Ftakar li paġni .css u .js jagħmlu użu minn titlu b'ittri żgħar, e.ż.{{ns:user}}:Foo/monobook.css huwa oppost minn {{ns:user}}:Foo/Monobook.css.",
-'updated'                          => '(Informata)',
+'userinvalidcssjstitle'            => "'''Twissija:''' M'hemm l-ebda skin bl-isem \"\$1\".
+Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu żgħira, eż. {{ns:user}}:Foo/monobook.css u mhux {{ns:user}}:Foo/Monobook.css.",
+'updated'                          => '(Aġġornata)',
 'note'                             => '<strong>Nota:</strong>',
-'previewnote'                      => '<strong>Din hija previżjoni biss; il-modifiki għal paġna għadhom MHUX salvati!</strong>',
+'previewnote'                      => '<strong>Din hija previżjoni biss; il-modifiki li saru fil-paġna għadhom ma ġewx salvati!</strong>',
 'previewconflict'                  => "Din il-previżjoni turi l-kliem li jinsab fiż-żona ta' modifika superjuri u turi kif tidher kieku l-paġna kella tiġi modifikata.",
-'session_fail_preview'             => "<strong>Skuzana! Il-modifika tiegħek ma setgħatx tiġi proċessata minħabba telf ta' informazzjoni tas-sessjoni.
-Jekk jogħġbok erġa' prova. Jekk xorta ma taħdimx, prova oħroġ u erġa' itħol.</strong>",
-'session_fail_preview_html'        => "<strong>Skuzana! Il-modifika tiegħek ma setgħatx tiġi proċessata minħabba telf ta' informazzjoni tas-sessjoni.</strong>
+'session_fail_preview'             => "<strong>Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.
+Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova oħroġ u erġa' idħol.</strong>",
+'session_fail_preview_html'        => "<strong>Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.</strong>
 
-''Minħabba li {{SITENAME}} għanda l-HTML mixewla, l-previżjoni hija moħbija bħala prekawzjoni kontra l-attakki ta' JavaScript.''
+''Peress li f'{{SITENAME}} huwa possibbli l-użu ta' l-HTML mingħajr limitazzjonijiet (''raw HTML''), il-previżjoni tiġi moħbija bħala prekawzjoni kontra l-attakki tal-JavaScript.''
 
-<strong>Jekk dan huwa attentat leġittmu ta' modifika, jekk jogħġbok erġa' prova, prova oħroġ u erġa' idħol.</strong>",
+<strong>Jekk dan huwa attentat leġittmu ta' modifika, jekk jogħġbok erġa' pprova. Jekk tibqa' ma taħdimx, ipprova oħroġ u erġa' idħol.</strong>",
 'token_suffix_mismatch'            => "<strong>Il-modifika tiegħek ma ġietx aċċettata minħabba li klijent tiegħek tertaq l-karratri tal-ortografija fit-token tal-modifika.
 Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal-paġna. Dan xi kultant jiġri minħabba li qiegħed tuża servizz difettuż anonimu li huwa bbażat fuq il-web ta' prokura.</strong>",
 'editing'                          => 'Qiegħed jiġi modifikat l-artiklu $1',
@@ -1546,7 +1549,7 @@ Ara [[Special:Protectedpages|l-lista ta' paġni protetti]] għal lista ta' paġn
 'modifiedarticleprotection'   => 'modifikajt il-livell ta\' protezzjoni għal "[[$1]]"',
 'unprotectedarticle'          => 'żblokkajt "[[$1]]"',
 'protect-title'               => 'Modifika livell ta\' protezzjoni ta\' "$1"',
-'protect-legend'              => 'Konferma l-protezzjoni',
+'protect-legend'              => 'Ikkonferma l-protezzjoni',
 'protectcomment'              => 'Kumment:',
 'protectexpiry'               => 'Jiskadi:',
 'protect_expiry_invalid'      => 'Skadenza mhux valida.',

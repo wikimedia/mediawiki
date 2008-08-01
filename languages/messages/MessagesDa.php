@@ -10,8 +10,8 @@
  * @author M.M.S.
  * @author Siebrand
  * @author Peter Andersen
- * @author S.Örvarr.S
  * @author H92
+ * @author S.Örvarr.S
  * @author Boivie
  * @author Ranveig
  * @author Lars J. Helbo <lars.helbo@gmail.com>

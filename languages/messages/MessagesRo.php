@@ -11,8 +11,8 @@
  * @author Firilacroco
  * @author לערי ריינהארט
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $skinNames = array(

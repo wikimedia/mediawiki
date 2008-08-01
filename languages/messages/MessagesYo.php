@@ -9,8 +9,6 @@
  * @author Siebrand
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'            => 'Underline links:',

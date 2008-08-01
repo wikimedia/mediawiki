@@ -10,12 +10,12 @@
  * @author Siebrand
  * @author Illusion
  * @author VasilievVV
- * @author Kalan
  * @author Putnik
+ * @author Kalan
  * @author EugeneZelenko
  * @author SPQRobin
- * @author Flrn
  * @author Innv
+ * @author Flrn
  * @author AlexSm
  * @author HalanTul
  * @author Jon Harald Søby
