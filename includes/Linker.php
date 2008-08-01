@@ -1233,7 +1233,7 @@ class Linker {
 					$sectionTitle = Title::newFromText( '#' . $section );
 				} else {
 					$sectionTitle = wfClone( $title );
-					$sectionTitle->setFragment( $section );
+					$sectionTitle->mFragment = $section;
 				}
 				$link = $this->link( $sectionTitle, wfMsgForContent( 'sectionlink' ) );
 			}
