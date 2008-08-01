@@ -6,9 +6,9 @@
  *
  * @author Agurzil
  * @author Siebrand
- * @author SPQRobin
- * @author Agzennay
  * @author Jon Harald Søby
+ * @author Agzennay
+ * @author SPQRobin
  * @author Teak
  */
 
@@ -475,10 +475,6 @@ Lukan ur tefkiḍ ara email saḥih deg [[Special:Preferences|isemyifiyen n wems
 'blockededitsource'         => "Aḍris n '''ubeddel inek''' i '''$1''' hat deg ukessar:",
 'whitelistedittitle'        => 'Yessefk ad tkecmeḍ iwakken ad tbeddleḍ',
 'whitelistedittext'         => 'Yessefk ad $1 iwakken ad tbeddleḍ isebtar.',
-'whitelistreadtitle'        => 'Yessefk ad tkecmeḍ iwakken ad teqqareḍ',
-'whitelistreadtext'         => 'Yessefk ad [[Special:Userlogin|tkecmeḍ]] iwakken ad teɣriḍ isebtar.',
-'whitelistacctitle'         => 'Ur tettalaseḍ ara ad txelqeḍ isem n wemseqdac',
-'whitelistacctext'          => 'Akken ad txelqeḍ isem n wemseqdac deg wiki-yagi yessefk ad [[Special:Userlogin|tkecmeḍ]] u tesɛa izerfan usligen.',
 'confirmedittitle'          => 'Yessef ad tsentmeḍ e-mail inek iwakken ad tbeddleḍ',
 'confirmedittext'           => 'Yessefk ad tsentmeḍ tansa e-mail inek uqbel abeddel. Xtar tansa e-mail di [[Special:Preferences|isemyifiyen n wemseqdac]].',
 'nosuchsectiontitle'        => 'Amur ulac-it',
@@ -1227,9 +1223,6 @@ Yernu, tzemreḍ ad tesmimeḍ asebter ɣer isem-is aqdim ma tɣelṭeḍ.",
 
 Lukan akka, yessefk a t-tedmeḍ weḥdek.",
 'movearticle'             => 'Smimeḍ asebter',
-'movenologin'             => 'Ur tekcimeḍ ara',
-'movenologintext'         => 'Yessefk ad tesɛuḍ isem n wemseqdac u [[Special:Userlogin|tkecmeḍ]]
-iwakken ad tesmimḍeḍ asebter.',
 'newtitle'                => 'Ar azwel amaynut',
 'move-watch'              => 'Ɛass asebter-agi',
 'movepagebtn'             => 'Smimeḍ asebter',

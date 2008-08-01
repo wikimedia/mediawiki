@@ -242,6 +242,8 @@ $messages = array(
 'editing'        => 'исправлѥ́ниѥ: $1',
 
 # History pages
+'cur'          => 'нꙑ҃н',
+'last'         => 'пс҃лд',
 'historyempty' => '(поу́сто)',
 
 # Revision feed
@@ -251,6 +253,7 @@ $messages = array(
 'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
 
 # Search results
+'searchresults'            => 'иска́ниꙗ ито́гъ',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
 'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
 'searchall'                => 'вьсꙗ́',
@@ -286,6 +289,7 @@ $messages = array(
 'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
 'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'  => '$1 аѵтома́тъ',
+'diff'            => 'ра҃ꙁн',
 'hist'            => 'їс҃т',
 'hide'            => 'съкрꙑи',
 'minoreditletter' => 'м҃л',

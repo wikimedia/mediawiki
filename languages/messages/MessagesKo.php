@@ -10,13 +10,13 @@
  * @author Siebrand
  * @author ITurtle
  * @author Albamhandae
- * @author לערי ריינהארט
- * @author Kwj2772
  * @author TheAlpha for knowledge
+ * @author Kwj2772
  * @author Ficell
+ * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Pi.C.Noizecehx
  * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -542,9 +542,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'blockededitsource'                => "아래에 '''$1'''에서의 '''당신의 편집'''이 나와 있습니다:",
 'whitelistedittitle'               => '편집하려면 로그인 필요',
 'whitelistedittext'                => '문서를 편집하려면 $1해야 합니다.',
-'whitelistreadtitle'               => '문서를 보려면 로그인 필요',
-'whitelistreadtext'                => '문서를 읽기 위해서는 [[Special:Userlogin|로그인]]해야 합니다.',
-'whitelistacctitle'                => '계정을 만들도록 허용되어 있지 않습니다.',
 'confirmedittitle'                 => '편집하려면 이메일 인증 필요',
 'confirmedittext'                  => '문서를 고치려면 이메일 인증 절차가 필요합니다. [[Special:Preferences|사용자 환경 설정]]에서 이메일 주소를 입력하고 이메일 주소 인증을 해 주시기 바랍니다.',
 'nosuchsectiontitle'               => '해당 부분 없음',
@@ -990,17 +987,17 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # File reversion
 'filerevert'                => '$1 되돌리기',
 'filerevert-legend'         => '파일 되돌리기',
-'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일을 [$4 $2 $3 버전]으로 되돌립니다.</span>',
+'filerevert-intro'          => "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌립니다.",
 'filerevert-comment'        => '내용:',
 'filerevert-defaultcomment' => '$1 $2 버전으로 되돌림',
 'filerevert-submit'         => '되돌리기',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일을 [$4 $2 $3 버전]으로 되돌렸습니다.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌렸습니다.",
 
 # File deletion
 'filedelete'                  => '$1 삭제하기',
 'filedelete-legend'           => '파일 삭제하기',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' 파일을 삭제합니다.",
-'filedelete-intro-old'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일의 [$4 $2 $3] 버전을 삭제합니다.</span>',
+'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' 파일의 [$4 $2 $3] 버전을 삭제합니다.",
 'filedelete-comment'          => '삭제 이유:',
 'filedelete-submit'           => '삭제',
 'filedelete-success'          => "'''$1''' 파일을 삭제했습니다.",
@@ -1514,8 +1511,6 @@ $1',
 * 아래의 선택을 해제하는 경우
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
 'movearticle'             => '문서 이동하기',
-'movenologin'             => '로그인하지 않음',
-'movenologintext'         => '[[Special:Userlogin|로그인]]해야만 문서를 이동할 수 있습니다.',
 'movenotallowed'          => '{{SITENAME}}에서 문서를 이동할 권한이 없습니다.',
 'newtitle'                => '새 문서 이름',
 'move-watch'              => '이 문서 주시하기',

@@ -8,6 +8,7 @@
  * @author SPQRobin
  * @author Wōdenhelm
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -247,9 +248,6 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'showpreview'            => 'Forescēawian',
 'whitelistedittitle'     => 'Inmeldunge behófod tó ádihtenne',
 'whitelistedittext'      => 'Þu scealt $1 tó ádihtenne trametas.',
-'whitelistreadtitle'     => 'Inmeldunge behōfod tō rǣdenne',
-'whitelistacctitle'      => 'Þē nis ālīefed tō settenne hordcleofan',
-'whitelistacctext'       => 'Tō bēonne gelīefed tō settenne hordcleofan in þissum Wici, þu scealt [[Special:Userlogin|inmeldian]] and habban þā gerādlican geþafunga.',
 'loginreqlink'           => 'inmeldian',
 'loginreqpagetext'       => 'Þū scealt $1 tō scēawienne view ōðre trametas.',
 'accmailtitle'           => 'Gelēafnesword gesended.',

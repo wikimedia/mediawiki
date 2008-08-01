@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author Tlustulimu
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author M.M.S.
  * @author SPQRobin
  */
@@ -635,10 +636,6 @@ Prošu podaj tutón ID w kóždym naprašowanju, kotrež činiš.',
 'blockededitsource'                => 'Tekst <b>twojich změnow</b> strony <b>$1</b> so tu pokazuje:',
 'whitelistedittitle'               => 'Za wobdźěłowanje je přizjewjenje trěbne.',
 'whitelistedittext'                => 'Dyrbiš so $1, zo by strony wobdźěłować móhł.',
-'whitelistreadtitle'               => 'Za čitanje je přizjewjenje trěbne.',
-'whitelistreadtext'                => 'Dyrbiš so [[Special:Userlogin|přizjewić]], zo by strony čitać móhł.',
-'whitelistacctitle'                => 'Njesměš konto wutworić',
-'whitelistacctext'                 => 'Zo by konta we {{SITENAME}} wutworjeć směł, dyrbiš so [[Special:Userlogin|přizjewić]] a trěbne dowolnosće měć.',
 'confirmedittitle'                 => 'Twoja e-mejlowa adresa dyrbi so wobkrućić, prjedy hač móžeš strony wobdźěłować.',
 'confirmedittext'                  => 'Dyrbiš swoju e-mejlowu adresa wobkrućić, prjedy hač móžeš strony wobdźěłować. Prošu zapodaj a wobkruć swoju e-mejlowu adresu we [[Special:Preferences|wužiwarskich nastajenjach]].',
 'nosuchsectiontitle'               => 'Wotrězk njeeksistuje',
@@ -1255,18 +1252,18 @@ PICT # misc.
 # File reversion
 'filerevert'                => 'Wersiju $1 cofnyć',
 'filerevert-legend'         => 'Dataju wróćo stajeć',
-'filerevert-intro'          => '<span class="plainlinks">Stajiš dataju \'\'\'[[Media:$1|$1]]\'\'\' na [$4 wersiju wot $2, $3 hodź.] wróćo.</span>',
+'filerevert-intro'          => "Stajiš dataju '''[[Media:$1|$1]]''' na [$4 wersiju wot $2, $3 hodź.] wróćo.",
 'filerevert-comment'        => 'Přičina:',
 'filerevert-defaultcomment' => 'wróćo stajene na wersiju wot $1, $2 hodź.',
 'filerevert-submit'         => 'Cofnyć',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' bu na [$4 wersiju wot $2, $3 hodź.] wróćo stajeny.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' bu na [$4 wersiju wot $2, $3 hodź.] wróćo stajeny.",
 'filerevert-badversion'     => 'W zapodatym času žana wersija dataje njeje.',
 
 # File deletion
 'filedelete'                  => '„$1“ wušmórnyć',
 'filedelete-legend'           => 'Wušmórnju dataju',
 'filedelete-intro'            => "Wušmórnješ '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Wušmórnješ wersiju \'\'\'[[Media:$1|$1]]\'\'\' wot [$4 wot $2, $3 hodź].</span>',
+'filedelete-intro-old'        => "Wušmórnješ wersiju '''[[Media:$1|$1]]''' wot [$4 wot $2, $3 hodź].",
 'filedelete-comment'          => 'Přičina:',
 'filedelete-submit'           => 'Wušmórnyć',
 'filedelete-success'          => "Strona '''„$1“''' bu wušmórnjena.",
@@ -1832,8 +1829,6 @@ Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo 
 
 W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.',
 'movearticle'             => 'Stronu přesunyć',
-'movenologin'             => 'Njejsy přizjewjeny.',
-'movenologintext'         => 'Dyrbiš zregistrowany wužiwar a [[Special:Userlogin|přizjewjeny]] być, zo by stronu přesunyć móhł.',
 'movenotallowed'          => 'Nimaš w tutym wikiju prawo, zo by strony přesunył.',
 'newtitle'                => 'pod nowe hesło',
 'move-watch'              => 'Stronu wobkedźbować',

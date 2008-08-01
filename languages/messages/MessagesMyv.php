@@ -12,6 +12,7 @@
  * @author Tupikovs
  * @author Sura
  * @author M.M.S.
+ * @author Spacebirdy
  * @author Jon Harald Søby
  */
 
@@ -285,7 +286,9 @@ $messages = array(
 'error'                => 'Ильведькс',
 'databaseerror'        => 'Датабазань ильведькс',
 'nodb'                 => '$1 датабазась эзь кочкаво',
+'laggedslavemode'      => 'Ванок: Кизды, лопасонть материалось таштомсь.',
 'readonly'             => 'Датабазась панжома экшсэ',
+'enterlockreason'      => 'Сёрмадт мейс сёлгамс эряви, ды ёвтак, зярдо таго арьсят панжови',
 'missingarticle-rev'   => '(лиякстомтома#: $1)',
 'internalerror'        => 'Потмонь ильведькс',
 'internalerror_info'   => 'Потмонь ильведькс: $1',
@@ -435,9 +438,6 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'blockedoriginalsource'            => "'''$1''' -нть лисьмапрясь ало неяви:",
 'whitelistedittitle'               => 'Витнемань-петнемань кисэ эряви совамо лем',
 'whitelistedittext'                => 'Лопанть витнемс - петнемс эряви $1.',
-'whitelistreadtitle'               => 'Ловномань кисэ эряви совамо лем',
-'whitelistreadtext'                => 'Лопань ловномга сави тенть [[Special:Userlogin|совамс]].',
-'whitelistacctitle'                => 'Тонеть а мерить теемс-шкамс совамо тарка',
 'nosuchsectiontitle'               => 'Истямо явкс арась',
 'loginreqtitle'                    => 'Совамс эряви',
 'loginreqlink'                     => 'совамс',
@@ -525,6 +525,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'revdelete-hide-user'    => 'Кекшемс витницянть-петницянть теиця лемензэ/IP-нзэ',
 'revdelete-hide-image'   => 'Кекшемс мезе файлатнесэ',
 'revdelete-log'          => 'Логто ёвтнема:',
+'revdelete-logentry'     => '[[$1]]-нть лиякстомтоманть неявомазо полавтовсь',
 'revdel-restore'         => 'Полавтомс неявомачынзэ',
 'pagehist'               => 'Лопанть икелькс умазо',
 'deletedhist'            => 'Нардань икелькс умазо',
@@ -1101,7 +1102,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'ipbreasonotherlist'      => 'Лия тувтал',
 'ipbsubmit'               => 'Озавтомс те теицянть саймес',
 'ipbother'                => 'Лия шка:',
-'ipboptions'              => '2 hours:2 част,1 day:1 чи,3 days:3 чить,1 week:1 тарго,2 weeks:2 таргот,1 month:1 ков,3 months:3 ковт,6 months:6 ковт,1 year:1 ие,infinite:певтеме', # display1:time1,display2:time2,...
+'ipboptions'              => '2 част:2 hours,1 чи:1 day,3 чить:3 days,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'лия',
 'ipbotherreason'          => 'Лия/поладкс тувтал:',
 'badipaddress'            => 'Амаштовикс IP адрес',
@@ -1156,7 +1157,6 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 
 Зярдо истят тевтне, сави тонстеть лопатнень кучомс-сюлмамс, кедьсэ.",
 'movearticle'             => 'Одов лемдемс лопанть:',
-'movenologin'             => 'Апак сова',
 'newtitle'                => 'Од леменьтэ:',
 'move-watch'              => 'Ваномс лопанть',
 'movepagebtn'             => 'Печтевтемс лопанть',

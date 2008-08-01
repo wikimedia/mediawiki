@@ -7,9 +7,9 @@
  * @author Stretsh
  * @author Adfokati
  * @author Jordi
+ * @author Jon Harald Søby
  * @author Siebrand
  * @author Ooswesthoesbes
- * @author Jon Harald Søby
  */
 
 $fallback = 'nl';
@@ -454,9 +454,6 @@ Yu n'o man kebroiki 'e-mail a kebroikiman disi', efu yu no abi wan bun email-nen
 Yu IP now na $3 en a tapu pasi ID na #$5. Gi wan, noso ala tu, ini yu brifi te yu o skrifi fu aksi san psa.",
 'whitelistedittitle'     => 'Yu mu kon fu a kenki',
 'whitelistedittext'      => 'Yu mu $1 fu a kenki fu peprewoysi.',
-'whitelistreadtitle'     => 'Yu mu kon fu a leysi',
-'whitelistreadtext'      => 'Yu mu [[Special:Userlogin|kon]] fu a leysi fu peprewoysi.',
-'whitelistacctitle'      => 'Yu kan no masyin skopu',
 'loginreqtitle'          => 'Yu mu kon',
 'loginreqlink'           => 'kon',
 'loginreqpagetext'       => 'Yu mu $1 tu a libi si fu trawan peprewoysi.',
@@ -721,17 +718,17 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 # File reversion
 'filerevert'                => '$1 bakadray',
 'filerevert-legend'         => 'Gefre bakadray',
-'filerevert-intro'          => '<span class="plainlinks">Yu ben \'\'\'[[Media:$1|$1]]\'\'\' bakadrayn tu a [$4 si opo $2, $3]</span>.',
+'filerevert-intro'          => "Yu ben '''[[Media:$1|$1]]''' bakadrayn tu a [$4 si opo $2, $3]",
 'filerevert-comment'        => 'Opotaki:',
 'filerevert-defaultcomment' => 'E bakadray tu a si opo $1, $2',
 'filerevert-submit'         => 'Bakadray',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ben bakadray tu a [$4 si opo $2, $3]</span>.',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ben bakadray tu a [$4 si opo $2, $3]",
 
 # File deletion
 'filedelete'             => '"$1" trowe',
 'filedelete-legend'      => 'Gefre trowe',
 'filedelete-intro'       => "Yu ben '''[[Media:$1|$1]]''' trowen.",
-'filedelete-intro-old'   => '<span class="plainlinks">Yu ben a si fu \'\'\'[[Media:$1|$1]]\'\'\' fu [$4 $3, $2] trowen.</span>',
+'filedelete-intro-old'   => "Yu ben a si fu '''[[Media:$1|$1]]''' fu [$4 $3, $2] trowen.",
 'filedelete-comment'     => 'Opotaki:',
 'filedelete-submit'      => 'Trowe',
 'filedelete-success'     => "'''$1''' ben e trowe.",
@@ -995,7 +992,6 @@ Ben suri taki den folo abrasi ben pre yu disi aksi du.",
 * A takipapira ondro a nyun nen da ala ben;
 * Yu a ondroben box odu.",
 'movearticle'      => 'Dribi papira:',
-'movenologin'      => 'No kon',
 'newtitle'         => 'Na nyun papiranen:',
 'move-watch'       => 'Disi papira si',
 'movepagebtn'      => 'Dribi papira',

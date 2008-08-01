@@ -7,9 +7,10 @@
  * @author SPQRobin
  * @author Theklan
  * @author Bengoa
- * @author Siebrand
  * @author לערי ריינהארט
+ * @author Siebrand
  * @author Malafaya
+ * @author Jon Harald Søby
  * @author Kaustubh
  * @author Helix84
  */
@@ -535,10 +536,6 @@ Bandalismoa saihesteko pasahitz eskaera bat baino ezin da egin $1 orduz behin.',
 'blockededitsource'                => "Jarraian ikus daitezke '''$1'''(e)n egin dituzun aldaketak:",
 'whitelistedittitle'               => 'Saioa hastea beharrezkoa da aldaketak egiteko',
 'whitelistedittext'                => '$1 behar duzu orrialdeak aldatu ahal izateko..',
-'whitelistreadtitle'               => 'Saioa hastea beharrezkoa da irakurtzeko',
-'whitelistreadtext'                => '[[Special:Userlogin|Saioa hasi]] behar duzu orrialdeak irakurtzeko.',
-'whitelistacctitle'                => 'Ez daukazu kontu berri bat sortzeko baimenik',
-'whitelistacctext'                 => 'Wiki honetan kontu berriak sortu ahal izateko [[Special:Userlogin|saioa hasi]] eta baimena izatea beharrezko da.',
 'confirmedittitle'                 => 'E-posta egiaztatzea beharrezkoa da aldaketak egiteko',
 'confirmedittext'                  => 'Orrialdeetan aldaketak egin aurretik zure e-posta helbidea egiaztatu beharra daukazu. Mesedez, zehaztu eta egiaztatu zure e-posta helbidea [[Special:Preferences|hobespenetan]].',
 'nosuchsectiontitle'               => 'Ez da atala existitzen',
@@ -1090,7 +1087,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'filedelete'                  => '$1 ezabatu',
 'filedelete-legend'           => 'Fitxategia ezabatu',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' ezabatzen ari zara.",
-'filedelete-intro-old'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'ren bertsioa ezabatzen ari zara, [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "'''[[Media:$1|$1]]'''ren bertsioa ezabatzen ari zara, [$4 $3, $2].",
 'filedelete-comment'          => 'Iruzkina:',
 'filedelete-submit'           => 'Ezabatu',
 'filedelete-success'          => "'''$1''' ezabatu da.",
@@ -1134,15 +1131,15 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'userstats'              => 'Erabiltzaile estatistikak',
 'sitestatstext'          => "Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, birzuzenketak eta artikulu laburrak barne hartzen.
 
-Horiek baztertzen, <b>$2</b> artikulu dira datu-basean.
+Horiek baztertzen, <b>$2</b> artikulu dauzakagu datu-basean.
 
-'''$8''' files have been uploaded.
+'''$8''' irudi igo dira.
 
 Guztira '''$3''' bisitaturiko orri, eta <b>$4</b> artikulu aldaketa egon dira software-a berritu zenetik (2002.eko uztailaren 20a).
 
 Emaitza hauekin hurrengo arrazoiak atera daitezke: '''$5''' aldaketa egon dira orrialde bakoitzeko, eta '''$6''' bisita aldaketa bakoitzeko.
 
-The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.",
+Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.",
 'userstatstext'          => "'''$1''' erabiltzaile daude izen emanda, horietatik '''$2''' (edo '''$4%''') $5ek eskumenak {{PLURAL:$2|dituelarik|dituztelarik}}.",
 'statistics-mostpopular' => 'Orrialde bisitatuenak',
 
@@ -1626,8 +1623,6 @@ Artikulu oso erabilia edo asko aldatzen denaren izenburua aldatzera bazoaz, mese
 
 Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'movearticle'             => 'Orrialdea mugitu',
-'movenologin'             => 'Saioa hasi gabe',
-'movenologintext'         => 'Orrialde bat mugitzeko erregistratutako erabiltzailea izan behar duzu eta [[Special:Userlogin|saioa hasi]].',
 'movenotallowed'          => 'Ez daukazu {{SITENAME}}n orrialdeak mugitzeko baimenik.',
 'newtitle'                => 'Izenburu berria',
 'move-watch'              => 'Orrialde hau jarraitu',
@@ -2020,6 +2015,8 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-customrendered-1' => 'Prozesu pertsonalizatua',
 
 'exif-scenecapturetype-2' => 'Erretratua',
+
+'exif-gaincontrol-0' => 'Ezer',
 
 'exif-contrast-0' => 'Arrunta',
 'exif-contrast-1' => 'Leuna',

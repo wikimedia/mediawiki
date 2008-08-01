@@ -7,6 +7,7 @@
  * @author Lloffiwr
  * @author Thaf
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -419,6 +420,7 @@ $1",
 'readonlytext'         => "Mae databas Wicipedia ar glo; nid yw'n bosib cadw erthyglau newydd na gwneud unrhyw newid arall. Mae'n debygol fod hyn er mwyn cynnal a chadw'r databas -- fe fydd ar gael eto cyn bo hir.
 
 Rhoddwyd y rheswm canlynol gan y gweinyddwr a'i glodd: $1",
+'missingarticle-diff'  => '(Gwahaniaeth: $1, $2)',
 'readonly_lag'         => "Mae'r databas wedi'i gloi'n awtomatig tra bod y gwas-weinyddion yn asio gyda'r prif weinydd",
 'internalerror'        => 'Gwall mewnol',
 'internalerror_info'   => 'Gwall mewnol: $1',
@@ -444,6 +446,8 @@ Gofyniad: $2',
 'viewsource'           => 'Dangos côd y dudalen',
 'viewsourcefor'        => 'ar gyfer $1',
 'actionthrottled'      => 'Tagwyd y weithred',
+'actionthrottledtext'  => "Mae camau gwrth-sbam y wici yn cyfyngu ar ba mor aml y gall defnyddwyr ailwneud y weithred hon mewn byr amser, ac rydych chi wedi croesi'r terfyn.
+Ceisiwch eto ymhen rhai munudau.",
 'protectedpagetext'    => "Mae'r dudalen hon wedi'i diogelu rhag cael ei golygu.",
 'viewsourcetext'       => 'Cewch weld a chopïo côd y dudalen:',
 'protectedinterface'   => 'Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli.',
@@ -459,8 +463,10 @@ Rhoddwyd y rheswm hwn - ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Allgofnodi'r defnyddiwr",
-'logouttext'                 => '<strong>Rydych wedi allgofnodi.</strong><br />
-Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch fewngofnodi eto wrth yr un un enw neu wrth enw arall. Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddech wedi mewngofnodi hyd nes i chi glirio celc eich porwr.',
+'logouttext'                 => '<strong>Rydych wedi allgofnodi.</strong>
+
+Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch [[Special:Userlogin|fewngofnodi eto]] wrth yr un un enw neu wrth enw arall. 
+Sylwer y bydd rhai tudalennau yn parhau i ymddangos fel ag yr oeddent pan oeddech wedi mewngofnodi hyd nes i chi glirio celc eich porwr.',
 'welcomecreation'            => "==Croeso, $1!==
 Mae eich cyfrif wedi'i greu. 
 Cofiwch osod eich dewisiadau er mwyn gwneud {{SITENAME}} yn fwy personol i chi.",
@@ -619,13 +625,9 @@ Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Prefe
 
 Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'blockednoreason'                  => 'dim rheswm wedi ei roi',
-'blockedoriginalsource'            => "Dengosir tarddiad '''$1''' isod:",
+'blockedoriginalsource'            => "Dangosir côd '''$1''' isod:",
 'whitelistedittitle'               => 'Rhaid mewngofnodi i golygu',
 'whitelistedittext'                => 'Rhaid $1 i olygu tudalennau.',
-'whitelistreadtitle'               => 'Rhaid mewngofnodi cyn darllen',
-'whitelistreadtext'                => "Mae'n rhaid i chi [[Special:Userlogin|fewngofnodi]] er mwyn darllen tudalennau.",
-'whitelistacctitle'                => 'Ni chaniateir i chi greu cyfrif',
-'whitelistacctext'                 => "Er mwyn creu cyfrif ar {{SITENAME}}, mae'n rhaid i chi [[Special:Userlogin|fewngofnodi]] a meddu ar y galluoedd priodol.",
 'confirmedittitle'                 => 'Cadarnhad trwy e-bost cyn dechrau golygu.',
 'confirmedittext'                  => "Mae'n rhaid i chi gadarnhau eich cyfeiriad e-bost cyn y gallwch ddechrau golygu tudalennau.
 Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyddiwr]] ac yna'i gadarnhau, os gwelwch yn dda.",
@@ -710,7 +712,7 @@ Ystyriwch a fyddai'n dda o beth i barhau i olygu'r dudalen hon.
 Dyma lòg dileu'r dudalen, er gwybodaeth:",
 
 # Parser/template warnings
-'post-expand-template-inclusion-category' => 'Tudalennau lle mae maint cynnwys templed wedi ei ragori',
+'post-expand-template-inclusion-category' => "Tudalennau a phatrymlun ynddynt sy'n fwy na chyfyngiad y meddalwedd",
 
 # "Undo" feature
 'undo-success' => "Gellir dadwneud y golygiad. Byddwch gystal â gwirio'r gymhariaeth isod i sicrhau mai dyma sydd arnoch eisiau gwneud, ac yna rhowch y newidiadau ar gadw i gwblhau'r gwaith o ddadwneud y golygiad.",
@@ -762,9 +764,9 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 Tynnwyd y dudalen hon o\'r archif cyhoeddus.
 Hwyrach bod manylion pellach ar y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].</div>',
 'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
-Mae'r diwygiad hon o'r dudalen wedi cael ei ddiddymu o'r archifau cyhoeddus.
+Mae'r diwygiad hwn o'r dudalen wedi cael ei ddiddymu o'r archifau cyhoeddus.
 Fel gweinyddwr ar {{SITENAME}} gallwch ei weld;
-gall fod manylion yn y [lòg dileu {{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}].</div>",
+gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].</div>",
 'rev-delundel'                => 'dangos/cuddio',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
 'revdelete-selected'          => 'Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:',
@@ -783,6 +785,7 @@ gall fod manylion yn y [lòg dileu {{fullurl:Special:Log/delete|page={{FULLPAGEN
 'logdelete-success'           => "'''Llwyddwyd i guddio'r digwyddiad.'''",
 'revdel-restore'              => 'Newid gwelededd',
 'pagehist'                    => 'Hanes y dudalen',
+'deletedhist'                 => 'Hanes dilëedig',
 'revdelete-content'           => 'cynnwys',
 'revdelete-summary'           => 'crynodeb golygu',
 'revdelete-uname'             => 'yr enw defnyddiwr ar gyfer',
@@ -927,6 +930,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'servertime'               => 'Amser y gweinydd yw',
 'guesstimezone'            => 'Llenwi oddi wrth y porwr',
 'allowemail'               => 'Galluogi e-bost oddi wrth ddefnyddwyr eraill',
+'prefs-searchoptions'      => 'Dewisiadau chwilio',
+'prefs-namespaces'         => 'Parthau',
 'defaultns'                => 'Chwiliwch y parthau rhagosodedig isod:',
 'default'                  => 'rhagosodyn',
 'files'                    => 'Ffeiliau',
@@ -1006,7 +1011,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchanges'                     => 'Newidiadau diweddar',
 'recentchangestext'                 => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
-'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $3.",
+'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $5, $4.",
 'rcnotefrom'                        => "Isod mae pob newidiad ers '''$2''' (hyd at '''$1''' ohonynt).",
 'rclistfrom'                        => 'Dangos newidiadau newydd gan ddechrau o $1',
 'rcshowhideminor'                   => '$1 golygiadau bychain',
@@ -1048,10 +1053,10 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'uploadtext'                  => "Defnyddiwch y ffurflen isod i uwchlwytho ffeiliau.
 I weld a chwilio am ffeiliau sydd eisoes wedi eu huwchlwytho ewch at y [[Special:Imagelist|rhestr o'r ffeiliau sydd wedi eu huwchlwytho]]. I weld cofnodion uwchlwytho a dileu ffeiliau ewch at y [[Special:Log/upload|lòg uwchlwytho]].
 
-I osod ffeil mewn tudalen defnyddiwch gyswllt wici a fydd yn arwain yn syth at y ffeil, fel a ganlyn:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.png|testun amgen]]</nowiki>''' neu
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ffeil.ogg]]</nowiki>'''.",
+I osod ffeil mewn tudalen defnyddiwch gyswllt wici, ar un o'r ffurfiau canlynol:
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.jpg]]</nowiki><tt>''', er mwyn defnyddio fersiwn llawn y ffeil
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ffeil.png|200px|bawd|chwith|testun amgen]]</nowiki><tt>''' a wnaiff dangos llun 200 picsel o led mewn bocs ar yr ochr chwith a'r testun 'testun amgen' wrth ei odre
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ffeil.ogg]]</nowiki><tt>''' a fydd yn arwain yn syth at y ffeil heb arddangos y ffeil.",
 'upload-permitted'            => 'Mathau o ffeiliau a ganiateir: $1',
 'upload-preferred'            => 'Mathau ffeil dewisol: $1.',
 'upload-prohibited'           => 'Mathau o ffeiliau a waherddir: $1.',
@@ -1070,8 +1075,8 @@ I osod ffeil mewn tudalen defnyddiwch gyswllt wici a fydd yn arwain yn syth at y
 'illegalfilename'             => 'Mae\'r enw ffeil "$1" yn cynnwys nodau sydd wedi\'u gwahardd mewn teitlau tudalennau. Ail-enwch y ffeil ac uwchlwythwch hi eto os gwelwch yn dda.',
 'badfilename'                 => 'Mae enw\'r ffeil wedi\'i newid i "$1".',
 'filetype-badmime'            => "Ni chaniateir uwchlwytho ffeiliau o'r math MIME '$1'.",
-'filetype-unwanted-type'      => "Mae'r math '''\".\$1\"''' o ffeil yn anghymeradwy.  Mae'n well defnyddio ffeil o'r math \$2.",
-'filetype-banned-type'        => "Ni chaniateir ffeiliau o'r math '''\".\$1\"'''.  \$2 yw'r mathau o ffeiliau a ganiateir.",
+'filetype-unwanted-type'      => "Mae'r math '''\".\$1\"''' o ffeil yn anghymeradwy.  Mae'n well defnyddio ffeil {{PLURAL:\$3|o'r math|o'r math|o'r mathau|o'r mathau|o'r mathau|o'r mathau}} \$2.",
+'filetype-banned-type'        => "Ni chaniateir ffeiliau o'r math '''\".\$1\"'''.  \$2 yw'r {{PLURAL:\$3|math|math|mathau|mathau|mathau|mathau}} o ffeil a ganiateir.",
 'filetype-missing'            => "Nid oes gan y ffeil hon estyniad (megis '.jpg').",
 'large-file'                  => "Argymhellir na ddylai ffeil fod yn fwy na $1. Mae'r ffeil hwn yn $2 o faint.",
 'largefileserver'             => "Mae'r ffeil yn fwy na'r hyn mae'r gweinydd yn ei ganiatau.",
@@ -1172,11 +1177,11 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 # File reversion
 'filerevert'                => 'Gwrthdroi $1',
 'filerevert-legend'         => "Gwrthdroi'r ffeil",
-'filerevert-intro'          => '<span class="plainlinks">Rydych yn gwrthdroi \'\'\'[[Media:$1|$1]]\'\'\' i\'r [fersiwn $4 fel ag yr oedd ar $3, $2].</span>',
+'filerevert-intro'          => "Rydych yn gwrthdroi '''[[Media:$1|$1]]''' i'r [fersiwn $4 fel ag yr oedd ar $3, $2].",
 'filerevert-comment'        => 'Sylw:',
 'filerevert-defaultcomment' => 'Wedi adfer fersiwn $2, $1',
 'filerevert-submit'         => 'Gwrthdroi',
-'filerevert-success'        => '<span class="plainlinks">Mae \'\'\'[[Media:$1|$1]]\'\'\' wedi cael ei wrthdroi i\'r [fersiwn $4 fel ag yr oedd ar $3, $2].</span>',
+'filerevert-success'        => "Mae '''[[Media:$1|$1]]''' wedi cael ei wrthdroi i'r [fersiwn $4 fel ag yr oedd ar $3, $2].",
 'filerevert-badversion'     => "Nid oes fersiwn lleol cynt o'r ffeil hwn gyda'r amsernod a nodwyd.",
 
 # File deletion
@@ -1550,6 +1555,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'viewdeletedpage'              => "Gweld tudalennau sydd wedi'u dileu",
 'undeletepagetext'             => "Mae'r tudalennau isod wedi cael eu dileu ond mae cofnod ohonynt o hyd yn yr archif, felly mae'n bosibl eu hadfer. 
 Gall yr archif gael ei glanhau o dro i dro.",
+'undelete-fieldset-title'      => 'Dewis ac adfer diwygiadau',
 'undeleteextrahelp'            => "I adfer y dudalen gyfan, gadewch pob blwch ticio'n wag a phwyswch y botwm '''''Adfer'''''. I adfer rhai diwygiadau'n unig, ticiwch y blychau ar gyfer y diwygiadau dewisedig, a phwyswch ar '''''Adfer'''''. Os y pwyswch ar '''''Ailosod''''' bydd y blwch sylwadau a phob blwch ticio yn gwacáu.",
 'undeleterevisions'            => 'Gosodwyd $1 {{PLURAL:$1|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn|fersiwn}} yn yr archif',
 'undeletehistory'              => "Os adferwch y dudalen, fe fydd yr hanes gyfan yn cael ei atgyfodi hefyd. 
@@ -1743,8 +1749,6 @@ byddwch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
 
 Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei hun.",
 'movearticle'             => 'Symud y dudalen:',
-'movenologin'             => 'Nid ydych wedi mewngofnodi',
-'movenologintext'         => "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:Userlogin|mewngofnodi]] cyn medru symud tudalen.",
 'movenotallowed'          => 'Nid oes caniatâd gennych i symud tudalennau ar {{SITENAME}}.',
 'newtitle'                => "I'r teitl newydd:",
 'move-watch'              => 'Gwylier y dudalen hon',
@@ -2047,11 +2051,11 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-shutterspeedvalue'           => 'Cyflymder y caead',
 'exif-aperturevalue'               => 'Agorfa',
 'exif-brightnessvalue'             => 'Disgleirdeb',
-'exif-exposurebiasvalue'           => 'Bias dinoethiad',
+'exif-exposurebiasvalue'           => 'Bias dinoethi',
 'exif-maxaperturevalue'            => "Maint mwyaf agorfa'r glan",
 'exif-subjectdistance'             => 'Pellter y goddrych',
 'exif-meteringmode'                => 'Modd mesur goleuni',
-'exif-lightsource'                 => 'Tarddiad golau',
+'exif-lightsource'                 => 'Ffynhonell goleuni',
 'exif-flash'                       => 'Fflach',
 'exif-focallength'                 => 'Hyd ffocal y lens',
 'exif-subjectarea'                 => 'Maint a lleoliad y goddrych',
@@ -2062,14 +2066,14 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-filesource'                  => 'Ffynhonnell y ffeil',
 'exif-scenetype'                   => 'Math o olygfa',
 'exif-cfapattern'                  => 'Patrwm CFA',
-'exif-exposuremode'                => 'Dull dinoethiad',
+'exif-exposuremode'                => 'Modd dinoethi',
 'exif-whitebalance'                => 'Cydbwysedd Gwyn',
 'exif-contrast'                    => 'Cyferbyniad',
 'exif-saturation'                  => 'Dirlawnder',
 'exif-sharpness'                   => 'Eglurder',
-'exif-gpslatituderef'              => 'Lledred Gogledd neu De',
+'exif-gpslatituderef'              => "Lledred i'r Gogledd neu i'r De",
 'exif-gpslatitude'                 => 'Lledred',
-'exif-gpslongituderef'             => 'Hydred Dwyrain neu Gorllewin',
+'exif-gpslongituderef'             => "Hydred i'r Dwyrain neu i'r Gorllewin",
 'exif-gpslongitude'                => 'Hydred',
 'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
 'exif-gpsaltitude'                 => 'Uchder',
@@ -2080,22 +2084,25 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-orientation-3' => 'Wedi ei droi 180°', # 0th row: bottom; 0th column: right
 
-'exif-componentsconfiguration-0' => "nid yw'n bodoli",
+'exif-componentsconfiguration-0' => "ddim i'w gael",
 
-'exif-exposureprogram-0' => 'Heb ei ddiffinio',
+'exif-exposureprogram-0' => 'Heb ei gosod',
 
 'exif-subjectdistance-value' => '$1 medr',
 
 'exif-meteringmode-0'   => 'Anhysbys',
-'exif-meteringmode-1'   => 'Cyfartaledd',
-'exif-meteringmode-5'   => 'Patrwm',
+'exif-meteringmode-1'   => 'Cyfartaleddu',
+'exif-meteringmode-2'   => 'Cyfartaleddu canol-bwysedig',
+'exif-meteringmode-3'   => 'Smotyn',
+'exif-meteringmode-4'   => 'Smotiau',
+'exif-meteringmode-5'   => 'Patrymu',
 'exif-meteringmode-6'   => 'Rhannol',
 'exif-meteringmode-255' => 'Arall',
 
 'exif-lightsource-0'  => 'Anhysbys',
 'exif-lightsource-1'  => 'Golau dydd',
-'exif-lightsource-2'  => 'Fflwroleuol',
-'exif-lightsource-4'  => 'Flach',
+'exif-lightsource-2'  => 'Fflworoleuol',
+'exif-lightsource-4'  => 'Fflach',
 'exif-lightsource-9'  => 'Tywydd braf',
 'exif-lightsource-10' => 'Tywydd cymylog',
 'exif-lightsource-11' => 'Cysgod',
@@ -2106,7 +2113,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-scenecapturetype-1' => 'Tirlun',
 'exif-scenecapturetype-2' => 'Portread',
-'exif-scenecapturetype-3' => 'Golygfa nôs',
+'exif-scenecapturetype-3' => 'Golygfa nos',
 
 'exif-gaincontrol-0' => 'Dim',
 
@@ -2119,11 +2126,11 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-subjectdistancerange-0' => 'Anhysbys',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => 'Lledred gogledd',
-'exif-gpslatitude-s' => 'Lledred de',
+'exif-gpslatitude-n' => "Lledred i'r Gogledd",
+'exif-gpslatitude-s' => "Lledred i'r De",
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => 'Hydred dwyrain',
+'exif-gpslongitude-e' => "Hydred i'r Dwyrain",
 'exif-gpslongitude-w' => "Hydred i'r Gorllewin",
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
@@ -2207,9 +2214,11 @@ $1",
 'confirm_purge_button' => 'Iawn',
 
 # AJAX search
-'articletitles' => "Erthyglau'n dechrau gyda: ''$1''",
-'hideresults'   => "Cuddio'r canlyniadau",
-'useajaxsearch' => 'Chwilio gyda AJAX',
+'searchcontaining' => "Chwilio am dudalennau yn cynnwys ''$1''.",
+'searchnamed'      => "Chwilio am dudalennau a'r enw ''$1''.",
+'articletitles'    => "Erthyglau'n dechrau gyda: ''$1''",
+'hideresults'      => "Cuddio'r canlyniadau",
+'useajaxsearch'    => 'Chwilio gyda AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => "← i'r dudalen gynt",
@@ -2240,8 +2249,8 @@ $1",
 'livepreview-error'   => 'Wedi methu cysylltu: $1 "$2". Rhowch gynnig ar y rhagolwg arferol.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Hwyrach na ddangosir isod y newidiadau a ddigwyddodd o fewn y $1 eiliad ddiwethaf.',
-'lag-warn-high'   => 'Mae gweinydd y data-bas ar ei hôl hi: efallai nad ymddengys newidiadau o fewn y $1 eiliad ddiwethaf ar y rhestr.',
+'lag-warn-normal' => 'Hwyrach na ddangosir isod y newidiadau a ddigwyddodd o fewn y $1 {{PLURAL:$1|eiliad|eiliad|eiliad|eiliad|eiliad|eiliad}} ddiwethaf.',
+'lag-warn-high'   => 'Mae gweinydd y data-bas ar ei hôl hi: efallai nad ymddengys newidiadau o fewn y $1 {{PLURAL:$1|eiliad|eiliad|eiliad|eiliad|eiliad|eiliad}} ddiwethaf ar y rhestr.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Mae {{PLURAL:$1|$1 tudalen|$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 o dudalennau}} ar eich rhestr gwylio, heb gynnwys tudalennau sgwrs.',

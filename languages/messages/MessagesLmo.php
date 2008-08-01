@@ -6,8 +6,8 @@
  *
  * @author Dakrismeno
  * @author SPQRobin
- * @author SabineCretella
  * @author Malafaya
+ * @author SabineCretella
  * @author Siebrand
  * @author Kemmótar
  * @author Flavio05

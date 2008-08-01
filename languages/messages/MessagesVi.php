@@ -9,6 +9,7 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
  * @author Mxn
@@ -642,10 +643,6 @@ Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những
 'blockededitsource'                => "Các '''sửa đổi của bạn''' ở '''$1''':",
 'whitelistedittitle'               => 'Cần đăng nhập để sửa trang',
 'whitelistedittext'                => 'Bạn phải $1 để sửa trang.',
-'whitelistreadtitle'               => 'Cần đăng nhập để đọc nội dung',
-'whitelistreadtext'                => 'Bạn cần [[Special:Userlogin|đăng nhập]] để đọc nội dung.',
-'whitelistacctitle'                => 'Bạn không được phép mở tài khoản.',
-'whitelistacctext'                 => 'Bạn cần [[Special:Userlogin|đăng nhập]] để mở tài khoản và phải có quyền tương ứng tại {{SITENAME}}.',
 'confirmedittitle'                 => 'Cần xác nhận địa chỉ thư điện tử trước khi sửa đổi',
 'confirmedittext'                  => 'Bạn cần phải xác nhận địa chỉ thư điện tử trước khi được sửa đổi trang. Xin hãy đặt và xác nhận địa chỉ thư điện tử của bạn dùng trang [[Special:Preferences|tùy chọn]].',
 'nosuchsectiontitle'               => 'Không có mục nào như vậy',
@@ -1274,18 +1271,18 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
 'filerevert-legend'         => 'Lùi lại tập tin',
-'filerevert-intro'          => '<span class="plainlinks">Bạn đang lùi \'\'\'[[Media:$1|$1]]\'\'\' về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-intro'          => "Bạn đang lùi '''[[Media:$1|$1]]''' về [$4 phiên bản lúc $3, $2].",
 'filerevert-comment'        => 'Lý do:',
 'filerevert-defaultcomment' => 'Đã lùi về phiên bản lúc $2, $1',
 'filerevert-submit'         => 'Lùi lại',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' đã được lùi về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' đã được lùi về [$4 phiên bản lúc $3, $2].",
 'filerevert-badversion'     => 'Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.',
 
 # File deletion
 'filedelete'                  => 'Xóa $1',
 'filedelete-legend'           => 'Xóa tập tin',
 'filedelete-intro'            => "Bạn đang xóa '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Bạn đang xóa phiên bản của '''[[Media:$1|$1]]''' vào lúc [$4 $3, $2].",
 'filedelete-comment'          => 'Lý do:',
 'filedelete-submit'           => 'Xóa',
 'filedelete-success'          => "'''$1''' đã bị xóa.",
@@ -1345,8 +1342,10 @@ Có '''$8''' tập tin đã được tải lên.
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những tiêu bản được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Đổi hướng kép',
-'doubleredirectstext' => 'Trang này liệt kê các trang chuyển hướng đến một trang chuyển hướng khác. Mỗi hàng có chứa các liên kết đến trang chuyển hướng thứ nhất và thứ hai, cũng như mục tiêu của trang chuyển hướng thứ hai, thường chỉ tới trang đích “thực sự”, là nơi mà trang chuyển hướng đầu tiên nên trỏ đến.',
+'doubleredirects'            => 'Đổi hướng kép',
+'doubleredirectstext'        => 'Trang này liệt kê các trang chuyển hướng đến một trang chuyển hướng khác. Mỗi hàng có chứa các liên kết đến trang chuyển hướng thứ nhất và thứ hai, cũng như mục tiêu của trang chuyển hướng thứ hai, thường chỉ tới trang đích “thực sự”, là nơi mà trang chuyển hướng đầu tiên nên trỏ đến.',
+'double-redirect-fixed-move' => '[[$1]] đã được đổi tên, giờ nó là trang đổi hướng đến [[$2]]',
+'double-redirect-fixer'      => 'Người sửa trang đổi hướng',
 
 'brokenredirects'        => 'Đổi hướng sai',
 'brokenredirectstext'    => 'Các trang đổi hướng sau đây liên kết đến một trang không tồn tại.',
@@ -1878,8 +1877,6 @@ xin hãy chắc chắn rằng bạn đã nhận thức được những hệ l�
 
 Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất trang theo kiểu thủ công nếu muốn.",
 'movearticle'             => 'Di chuyển trang:',
-'movenologin'             => 'Chưa đăng nhập',
-'movenologintext'         => 'Bạn phải là thành viên đã đăng ký và [[Special:Userlogin|đăng nhập]] mới di chuyển trang được.',
 'movenotallowed'          => 'Bạn không có quyền di chuyển trang trong {{SITENAME}}.',
 'newtitle'                => 'Tên mới',
 'move-watch'              => 'Theo dõi trang này',
@@ -1915,6 +1912,7 @@ Trang với tên “[[$1]]” đã tồn tại. Bạn có muốn xóa nó để 
 'imagenocrossnamespace'   => 'Không được di chuyển tập tin ra khỏi không gian tên Tập tin',
 'imagetypemismatch'       => 'Phần mở rộng trong tên tập tin mới không hợp dạng của tập tin',
 'imageinvalidfilename'    => 'Tên tập tin đích không hợp lệ',
+'fix-double-redirects'    => 'Cập nhật tất cả các trang đổi hướng chỉ đến tựa đề cũ',
 
 # Export
 'export'            => 'Xuất các trang',

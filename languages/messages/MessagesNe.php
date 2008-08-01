@@ -221,8 +221,6 @@ $messages = array(
 'blockedoriginalsource'  => "'''$1''' को स्रोत तल देखाइएको छ:",
 'whitelistedittitle'     => 'सम्पादन गर्नको लागि प्रवेश (लग इन) आवश्यक छ',
 'whitelistedittext'      => 'पाना सम्पादन गर्न तपाँईले $1 गर्नु पर्दछ।',
-'whitelistreadtitle'     => 'यो सामाग्री पढ्नको लागि तपाइले प्रवेश गरेको हुनुपर्दछ।',
-'whitelistacctitle'      => 'तपाईंले खाता खोल्न पाउनु हुन्न',
 'confirmedittitle'       => 'सम्पादन गर्न इमेल पुष्टि गर्नु आवस्यक छ',
 'loginreqlink'           => 'प्रवेश (लग ईन)',
 'accmailtitle'           => 'पासवर्ड पठाइयो',
@@ -460,7 +458,6 @@ $messages = array(
 # Move page
 'move-page-legend'        => 'पृष्ठ सार्नुहोस्',
 'movearticle'             => 'पृष्ठ सार्नुहोस्',
-'movenologin'             => 'प्रवेश (लग ईन) नगरिएको',
 'movepagebtn'             => 'पृष्ठ सार्नुहोस्',
 'pagemovedsub'            => 'सार्ने काम सफल भयो',
 'movedto'                 => 'मा सारियो',

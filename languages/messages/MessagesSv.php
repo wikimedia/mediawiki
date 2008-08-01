@@ -18,7 +18,6 @@
  * @author SPQRobin
  * @author Skalman
  * @author Habjchen
- * @author Gangleri
  * @author Max sonnelid
  * @author Grillo
  * @author Micke
@@ -569,7 +568,7 @@ MySQL returnerade felen "$3<tt>: $4</tt>".',
 Detta fel beror oftast på en länk till en jämförelse mellan versioner (diff) eller till en gammal version av en sida som raderats.
 
 Om inte så är fallet, kan du ha hittat en bugg i mjukvaran.
-Rapportera gärna problemet till någon administratör, ange då URL:en (webbadressen).',
+Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör]], ange då URL:en (webbadressen).',
 'missingarticle-rev'   => '(version $1)',
 'missingarticle-diff'  => '(jämförelse mellan version $1 och $2)',
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
@@ -621,11 +620,11 @@ $2',
 'logouttitle'                => 'Användarutloggning',
 'logouttext'                 => '<strong>Du är nu utloggad.</strong>
 
-Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du logga in igen som samma eller som en annan användare.
+Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du [[Special:Userlogin|logga in igen]] som samma eller som en annan användare.
 Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.',
 'welcomecreation'            => '== Välkommen, $1! ==
-
-Ditt konto har skapats. Glöm inte att justera dina inställningar.',
+Ditt konto har skapats.
+Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].',
 'loginpagetitle'             => 'Användarinloggning',
 'yourname'                   => 'Användarnamn:',
 'yourpassword'               => 'Lösenord:',
@@ -636,7 +635,7 @@ Ditt konto har skapats. Glöm inte att justera dina inställningar.',
 'loginproblem'               => '<b>Det uppstod problem vid inloggningen.</b><br />Pröva igen!',
 'login'                      => 'Logga in',
 'nav-login-createaccount'    => 'Logga in/skapa konto',
-'loginprompt'                => 'Du måste tillåta cookies för att logga in på {{SITENAME}}.',
+'loginprompt'                => 'Du måste tillåta cookies för att [[Special:Userlogin|logga in på {{SITENAME}}]].',
 'userlogin'                  => 'Logga in / skapa konto',
 'logout'                     => 'Logga ut',
 'userlogout'                 => 'Logga ut',
@@ -788,12 +787,8 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'blockednoreason'                  => 'ingen motivering angavs',
 'blockedoriginalsource'            => "Källkoden för '''$1''' visas nedan:",
 'blockededitsource'                => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
-'whitelistedittitle'               => 'Redigering kräver inloggning',
+'whitelistedittitle'               => 'Du måste [[Special:Userlogin|logga in]] för att redigera',
 'whitelistedittext'                => 'Du måste $1 för att kunna redigera sidor.',
-'whitelistreadtitle'               => 'Läsning kräver inloggning',
-'whitelistreadtext'                => 'För att kunna läsa sidor, måste du [[Special:Userlogin|logga in]].',
-'whitelistacctitle'                => 'Du kan inte skapa konton',
-'whitelistacctext'                 => 'För att kunna skapa konton på {{SITENAME}} måste du vara [[Special:Userlogin|inloggad]] och ha rätt behörighet.',
 'confirmedittitle'                 => 'E-postbekräftelse krävs för redigering',
 'confirmedittext'                  => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
 'nosuchsectiontitle'               => 'Avsnittet finns inte',
@@ -805,7 +800,10 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'accmailtext'                      => "Lösenordet för '$1' har skickats till $2.",
 'newarticle'                       => '(Ny)',
 'newarticletext'                   => 'Du har klickat på en länk till en sida som inte finns ännu. Du kan själv skapa sidan genom att skriva i fältet nedan (du kan läsa mer på [[{{MediaWiki:Helppage}}|hjälpsidan]]). Om du inte vill skriva något kan du bara trycka på "tillbaka" i din webbläsare.',
-'anontalkpagetext'                 => "---- ''Detta är en diskussionssida för en användare som inte har loggat in. {{SITENAME}} måste därför använda personens numeriska IP-adress för att identifiera honom eller henne. En sådan IP-adress kan ibland användas av flera olika personer. Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
+'anontalkpagetext'                 => "---- ''Detta är en diskussionssida för en användare som inte har loggat in.
+Därför måste personens numeriska IP-adress användas för att identifiera honom eller henne.
+En sådan IP-adress kan ibland användas av flera olika personer.
+Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin/signup|skapa ett konto]] eller [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
 'noarticletext'                    => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
@@ -820,12 +818,14 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'previewconflict'                  => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
-'session_fail_preview'             => '<strong>Databasen kunde inte bearbeta redigeringen på grund av ett bortfall av sessionsdata. Försök igen; om det fortfarande inte fungerar, prova att öppna om redigeringssidan, logga ut och logga in igen eller vänta ett tag på att felet fixas.</strong>',
-'session_fail_preview_html'        => "<strong>Beklagar! Vi kunde inte databehandla din redigering på grund av att sessionens data gått förlorad.</strong>
+'session_fail_preview'             => '<strong>Tyvärr kunde inte din redigering behandlas, eftersom sessionsdata gått förlorad.
+Försök igen; om det fortfarande inte fungerar, pröva att [[Special:Userlogout|logga ut]] och logga in igen.</strong>',
+'session_fail_preview_html'        => "<strong>Tyvärr kunde inte din redigering behandlas, eftersom sessionsdata gått förlorad.</strong>
 
 ''Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd med syfte att förhindra JavaScript-attacker.''
 
-<strong>Om det är ett försök att göra en rättmätig redigering, så pröva igen. Om det fortfarande inte fungerar, pröva att logga ut och logga in igen.</strong>",
+<strong>Om det är ett försök att göra en rättmätig redigering, så försök igen.
+Om det fortfarande inte fungerar, pröva att [[Special:Userlogout|logga ut]] och logga in igen.</strong>",
 'token_suffix_mismatch'            => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
 i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
@@ -894,7 +894,7 @@ Dessa parametrar har uteslutits.',
 'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
 'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
 'undo-norev'   => 'Ändringen kan inte avlägsnas eftersom den inte finns eller har raderats.',
-'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
+'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -1025,7 +1025,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 # Search results
 'searchresults'             => 'Sökresultat',
 'searchresulttext'          => 'Se [[{{MediaWiki:Helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
-'searchsubtitle'            => 'Du sökte efter [[:$1]]',
+'searchsubtitle'            => 'Du sökte efter \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alla sidor som startar med "$1"]] | [[Special:Whatlinkshere/$1|alla sidor som länkar till "$1"]])',
 'searchsubtitleinvalid'     => 'För sökbegreppet $1',
 'noexactmatch'              => "'''Det finns ingen sida med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
 'noexactmatch-nocreate'     => "'''Det finns ingen sida med titeln \"\$1\".'''",
@@ -1156,15 +1156,15 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'group-bot'           => 'Robotar',
 'group-sysop'         => 'Administratörer',
 'group-bureaucrat'    => 'Byråkrater',
-'group-suppress'      => 'Oversightare',
+'group-suppress'      => 'Versionsraderare',
 'group-all'           => '(alla)',
 
-'group-user-member'          => 'Användare',
-'group-autoconfirmed-member' => 'Bekräftad användare',
-'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Administratör',
-'group-bureaucrat-member'    => 'Byråkrat',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'          => 'användare',
+'group-autoconfirmed-member' => 'bekräftad användare',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administratör',
+'group-bureaucrat-member'    => 'byråkrat',
+'group-suppress-member'      => 'versionsraderare',
 
 'grouppage-user'          => '{{ns:project}}:Användare',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
@@ -1283,9 +1283,9 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 För att titta på eller leta efter filer som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]].
 
 Använd en länk på något av följande format för att infoga en bild på en sida:
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alternativ text]]</nowiki>''' eller
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' om du vill länka direkt till filen.",
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' för att visa bilden i dess hela storlek
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alternativ text]]</nowiki></tt>''' för att visa en miniatyrbild med bredden 200 pixel i en ruta till vänster med bildtexten 'alternativ text'
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' om du vill länka direkt till filen utan att visa den",
 'upload-permitted'            => 'Tillåtna filtyper: $1.',
 'upload-preferred'            => 'Föredragna filtyper: $1.',
 'upload-prohibited'           => 'Förbjudna filtyper: $1.',
@@ -1369,7 +1369,7 @@ PICT # allmänt bildprefix
 'upload-misc-error'       => 'Okänt uppladdningsfel',
 'upload-misc-error-text'  => 'Ett okänt fel inträffade under uppladdningen.
 Kontrollera att URL:en giltig och försök igen.
-Om problemet kvarstår, kontakta en systemadministratör.',
+Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
@@ -1512,7 +1512,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'brokenredirects-delete' => '(radera)',
 
 'withoutinterwiki'         => 'Sidor utan språklänkar',
-'withoutinterwiki-summary' => 'Följande sidor innehåller inte några länkar till andra språkversioner:',
+'withoutinterwiki-summary' => 'Följande sidor innehåller inte några länkar till andra språkversioner.',
 'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Visa',
 
@@ -1620,7 +1620,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 # Special:Listgrouprights
 'listgrouprights'          => 'Behörigheter för användargrupper',
 'listgrouprights-summary'  => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.
-Mer information om de olika rättigheterna finns på [[{{MediaWiki:Listgrouprights-helppage}}]].',
+Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]] om de olika behörigheterna.',
 'listgrouprights-group'    => 'Grupp',
 'listgrouprights-rights'   => 'Behörigheter',
 'listgrouprights-helppage' => 'Help:Gruppbehörigheter',
@@ -1631,10 +1631,8 @@ Mer information om de olika rättigheterna finns på [[{{MediaWiki:Listgrouprigh
 'mailnologintext' => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:Userlogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
 'emailuser'       => 'Skicka e-post till den här användaren',
 'emailpage'       => 'Skicka e-post till annan användare',
-'emailpagetext'   => 'Om den här användaren har skrivit in en korrekt e-postadress i sina
-användarinställningar, kommer formuläret nedan att skicka ett meddelande.
-Den e-postadress du har angivit i dina användarinställningar kommer att skrivas
-i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
+'emailpagetext'   => 'Om den här användaren har skrivit in en giltig e-postadress i sina användarinställningar, kommer formuläret nedan att skicka ett meddelande.
+Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas i "Från"-fältet i meddelandet, så att mottagaren har möjlighet att svara.',
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post',
 'noemailtitle'    => 'Ingen e-postadress',
@@ -1662,7 +1660,7 @@ i "Från"-fältet i detta meddelande, så mottagaren har möjlighet att svara.',
 'addedwatchtext'       => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:Recentchanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
 'removedwatch'         => 'Borttagen från bevakningslista',
-'removedwatchtext'     => 'Sidan "[[:$1]]" har tagits bort från din bevakningslista.',
+'removedwatchtext'     => 'Sidan "[[:$1]]" har tagits bort från [[Special:Watchlist|din bevakningslista]].',
 'watch'                => 'bevaka',
 'watchthispage'        => 'Bevaka denna sida',
 'unwatch'              => 'avbevaka',
@@ -1760,9 +1758,9 @@ Se $2 för noteringar om de senaste raderingarna.',
 'rollbacklink'                => 'rulla tillbaka',
 'rollbackfailed'              => 'Tillbakarullning misslyckades',
 'cantrollback'                => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
-'alreadyrolled'               => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
+'alreadyrolled'               => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
-Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
+Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment'                 => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Återställde ändringar av $1 till senaste versionen av $2.',
@@ -2007,10 +2005,11 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'move-page-legend'        => 'Flytta sida',
 'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn.
 Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln;
-kontrollera därför om du skapar några dubbla eller trasiga omdirigeringar.
+Länkar till den gamla sidtitlen kommer inte att ändras;
+kontrollera därför om du skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
 Du bör också se till att länkar fortsätter att peka dit de ska.
 
-Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigiring till den gamla titeln och saknar annan versionshistorik.
+Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigering till den gamla titeln och saknar annan versionshistorik.
 Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.
 
 '''VARNING!'''
@@ -2022,8 +2021,6 @@ därför bör du vara säker på att du förstår konsekvenserna innan du forts�
 
 I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'movearticle'             => 'Flytta sidan:',
-'movenologin'             => 'Inte inloggad',
-'movenologintext'         => 'För att flytta en sida måste du vara registrerad användare och [[Special:Userlogin|inloggad]].',
 'movenotallowed'          => 'Du har inte behörighet att flytta sidor på den här wikin.',
 'newtitle'                => 'Till nya titeln:',
 'move-watch'              => 'Bevaka denna sida',
@@ -2108,7 +2105,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-interwiki-history'   => 'Kopiera hela versionshistoriken för denna sida',
 'import-interwiki-submit'    => 'Importera',
 'import-interwiki-namespace' => 'Överför sidorna till namnrymden:',
-'importtext'                 => 'Exportera filen från ursprungs-wikin genom Special:Export, spara den till din hårddisk och ladda upp den här.',
+'importtext'                 => 'Exportera filen från ursprungs-wikin genom att använda [[Special:Export|exportverktyget]], spara den till din hårddisk och ladda upp den här.',
 'importstart'                => 'Importerar sidor....',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versioner}}',
 'importnopages'              => 'Det finns inga sidor att importera.',
@@ -2258,10 +2255,11 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
 
 # Patrol log
-'patrol-log-page' => 'Patrulleringslogg',
-'patrol-log-line' => 'markerade $1 av $2 som patrullerad $3',
-'patrol-log-auto' => '(automatiskt)',
-'patrol-log-diff' => 'version $1',
+'patrol-log-page'   => 'Patrulleringslogg',
+'patrol-log-header' => 'Detta är en logg över patrullerade sidversioner.',
+'patrol-log-line'   => 'markerade $1 av $2 som patrullerad $3',
+'patrol-log-auto'   => '(automatiskt)',
+'patrol-log-diff'   => 'version $1',
 
 # Image deletion
 'deletedrevision'                 => 'Raderade gammal sidversion $1',
@@ -2293,7 +2291,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleri över nya filer',
 'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|bild|bilder}} sorterad <strong>$2</strong>.',
-'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna',
+'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna.',
 'showhidebots'          => '($1 robotar)',
 'noimages'              => 'Ingenting att se.',
 'ilsubmit'              => 'Sök',
@@ -2597,7 +2595,8 @@ Kontrollera om adressen innehåller ogiltiga tecken.
 Mailservern meddelade: $1',
 'confirmemail_invalid'     => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
 'confirmemail_needlogin'   => 'Du behöver $1 för att bekräfta din e-postadress',
-'confirmemail_success'     => 'Din e-postadress har bekräftats och du kan logga in på wikin.',
+'confirmemail_success'     => 'Din e-postadress har bekräftats. 
+Du kan nu [[Special:Userlogin|logga in]] och använda wikin.',
 'confirmemail_loggedin'    => 'Din e-postadress är nu bekräftad.',
 'confirmemail_error'       => 'Någonting gick fel när din bekräftelse skulle sparas.',
 'confirmemail_subject'     => 'Bekräftelse av e-postadress på {{SITENAME}}',
@@ -2687,8 +2686,8 @@ Pröva vanlig förhandsgranskning istället.',
 Pröva vanlig förhandsgranskning istället.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Ändringar nyare än $1 sekunder kanske inte visas i den här listan.',
-'lag-warn-high'   => 'På grund av stor fördröjning i databasen, så visas kanske inte ändringar nyare än $1 sekunder i den här listan.',
+'lag-warn-normal' => 'Ändringar under {{PLURAL:$1|den senaste sekunden|de $1 senaste sekunderna}} kanske inte visas i den här listan.',
+'lag-warn-high'   => 'På grund av stor fördröjning i databasen, så visas kanske inte ändringar nyare än $1 {{PLURAL:$1|sekund|sekunder}} i den här listan.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Din bevakningslista innehåller {{PLURAL:$1|1 sida|$1 sidor}}, utöver diskussionsidor.',

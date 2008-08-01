@@ -11,6 +11,8 @@
  * @author Jack Phoenix
  * @author M.M.S.
  * @author Str4nd
+ * @author Jon Harald Søby
+ * @author Jaakonam
  * @author לערי ריינהארט
  */
 
@@ -681,10 +683,6 @@ Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta
 'blockededitsource'                => 'Muokkauksesi sivuun ”$1”:',
 'whitelistedittitle'               => 'Sisäänkirjautuminen vaaditaan muokkaamiseen',
 'whitelistedittext'                => 'Sinun täytyy $1, jotta voisit muokata sivuja.',
-'whitelistreadtitle'               => 'Sisäänkirjautuminen vaaditaan lukemiseen',
-'whitelistreadtext'                => 'Sinun täytyy kirjautua [[Special:Userlogin|sisään]] lukeaksesi sivuja.',
-'whitelistacctitle'                => 'Sinun ei ole sallittu luoda tunnusta',
-'whitelistacctext'                 => 'Saadaksesi oikeudet luoda tunnus sinun täytyy kirjautua [[Special:Userlogin|sisään]] ja sinulla tulee olla asiaankuuluvat oikeudet.',
 'confirmedittitle'                 => 'Sähköpostin varmennus',
 'confirmedittext'                  => 'Et voi muokata sivuja, ennen kuin olet varmentanut sähköpostiosoitteesi. Voit tehdä varmennuksen [[Special:Preferences|asetussivulla]].',
 'nosuchsectiontitle'               => 'Pyydettyä osiota ei ole',
@@ -1346,8 +1344,9 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'disambiguationspage'  => 'Template:Täsmennyssivu',
 'disambiguations-text' => "Seuraavat artikkelit linkittävät ''täsmennyssivuun''. Täsmennyssivun sijaan niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan täsmennyssivuna jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Kaksinkertaiset ohjaukset',
-'doubleredirectstext' => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT- tai #OHJAUS-komennon jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.',
+'doubleredirects'            => 'Kaksinkertaiset ohjaukset',
+'doubleredirectstext'        => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT- tai #OHJAUS-komennon jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.',
+'double-redirect-fixed-move' => '[[$1]] on siirretty, se on nyt ohjaus sivulle [[$2]]',
 
 'brokenredirects'        => 'Virheelliset ohjaukset',
 'brokenredirectstext'    => 'Seuraavat ohjaukset osoittavat sivuihin, joita ei ole olemassa.',
@@ -1848,8 +1847,6 @@ Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, et
 
 Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'movearticle'             => 'Siirrä sivu',
-'movenologin'             => 'Et ole kirjautunut sisään',
-'movenologintext'         => 'Sinun pitää olla rekisteröitynyt käyttäjä ja kirjautua sisään, jotta voisit siirtää sivun.',
 'movenotallowed'          => 'Sinulla ei ole oikeuksia siirtää sivuja {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'newtitle'                => 'Uusi nimi sivulle',
 'move-watch'              => 'Tarkkaile tätä sivua',
@@ -1883,6 +1880,7 @@ $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
 'imagenocrossnamespace'   => 'Tiedostoja ei voi siirtää pois tiedostonimiavaruudesta.',
 'imagetypemismatch'       => 'Uusi tiedostopääte ei vastaa tiedoston tyyppiä',
 'imageinvalidfilename'    => 'Kohdenimi on virheellinen',
+'fix-double-redirects'    => 'Päivitä kaikki tänne viittaavat ohjaukset ohjaamaan uudelle nimelle',
 
 # Export
 'export'            => 'Sivujen vienti',
@@ -2503,8 +2501,8 @@ Yritä normaalia esikatselua.',
 Yritä normaalia esikatselua.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
-'lag-warn-high'   => 'Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 sekuntia, eivät välttämättä näy tällä sivulla.',
+'lag-warn-normal' => 'Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.',
+'lag-warn-high'   => 'Tietokannoilla on työjonoa. Muutokset, jotka ovat uudempia kuin $1 {{PLURAL:$1|sekunti|sekuntia}}, eivät välttämättä näy tällä sivulla.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}} keskustelusivuja lukuun ottamatta.',

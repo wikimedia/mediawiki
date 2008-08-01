@@ -838,10 +838,6 @@ $2',
 'blockededitsource'                => "הטקסט של '''העריכות שלך''' לדף '''$1''' מוצג למטה:",
 'whitelistedittitle'               => 'כניסה לחשבון נדרשת לעריכה',
 'whitelistedittext'                => 'עליכם $1 כדי לערוך דפים.',
-'whitelistreadtitle'               => 'כניסה לחשבון נדרשת לקריאה',
-'whitelistreadtext'                => 'עליכם [[Special:Userlogin|להיכנס לחשבון]] כדי לקרוא דפים.',
-'whitelistacctitle'                => 'אינכם מורשים ליצור חשבון',
-'whitelistacctext'                 => 'עליכם [[Special:Userlogin|להיכנס לחשבון]] שיש לו את ההרשאה ליצור חשבונות כדי ליצור חשבון.',
 'confirmedittitle'                 => 'הנכם חייבים לאמת את כתובת הדוא"ל שלכם כדי לערוך',
 'confirmedittext'                  => 'עליכם לאמת את כתובת הדוא"ל שלכם לפני שתוכלו לערוך דפים. אנא הגדירו ואמתו את כתובת הדוא"ל שלכם באמצעות [[Special:Preferences|העדפות המשתמש]] שלכם.',
 'nosuchsectiontitle'               => 'אין פסקה כזו',
@@ -2060,8 +2056,6 @@ $1',
 
 במקרים אלו, תצטרכו להעביר או לשלב את הדפים באופן ידני, אם תרצו.',
 'movearticle'             => 'העברת דף:',
-'movenologin'             => 'לא נכנסתם לאתר',
-'movenologintext'         => 'עליכם [[Special:Userlogin|להיכנס לחשבון]] כדי להעביר דפים.',
 'movenotallowed'          => 'אינכם מורשים להעביר דפים באתר זה.',
 'newtitle'                => 'לשם החדש:',
 'move-watch'              => 'מעקב אחרי דף זה',
@@ -2309,10 +2303,11 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
 # Patrol log
-'patrol-log-page' => 'יומן שינויים בדוקים',
-'patrol-log-line' => 'סימן את  $1 בדף $2 כבדוקה $3',
-'patrol-log-auto' => '(אוטומטית)',
-'patrol-log-diff' => 'גרסה $1',
+'patrol-log-page'   => 'יומן שינויים בדוקים',
+'patrol-log-header' => 'יומן זה מציג גרסאות שנבדקו.',
+'patrol-log-line'   => 'סימן את  $1 בדף $2 כבדוקה $3',
+'patrol-log-auto'   => '(אוטומטית)',
+'patrol-log-diff'   => 'גרסה $1',
 
 # Image deletion
 'deletedrevision'                 => 'מחק גרסה ישנה $1',
@@ -2737,8 +2732,8 @@ $1',
 'livepreview-error'   => 'ההתחברות נכשלה: $1 "$2". נסו להשתמש בתצוגה מקדימה רגילה.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'שינויים שבוצעו לפני פחות מ־$1 שניות אינם מוצגים ברשימה זו.',
-'lag-warn-high'   => 'בגלל עיכוב בעדכון בסיס הנתונים, שינויים שבוצעו לפני פחות מ־$1 שניות אינם מוצגים ברשימה זו.',
+'lag-warn-normal' => 'שינויים שבוצעו לפני פחות מ{{PLURAL:$1|שנייה אחת|־$1 שניות}} אינם מוצגים ברשימה זו.',
+'lag-warn-high'   => 'בגלל עיכוב בעדכון בסיס הנתונים, שינויים שבוצעו לפני פחות מ{{PLURAL:$1|שנייה אחת|־$1 שניות}} אינם מוצגים ברשימה זו.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'יש לכם {{PLURAL:$1|פריט אחד|$1 פריטים}} ברשימת המעקב, לא כולל דפי שיחה.',

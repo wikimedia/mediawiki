@@ -530,8 +530,6 @@ $1',
 'unlockdb' => 'Buksan ang kalipunan ng datos',
 
 # Move page
-'movenologin'             => 'Hindi nakalagda',
-'movenologintext'         => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
 'movenotallowed'          => 'Wala kang permisong maglipat ng pahina sa {{SITENAME}}.',
 'newtitle'                => 'Sa bagong pamagat:',
 'move-watch'              => 'Bantayan itong pahina',

@@ -352,8 +352,6 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'missingsummary'           => "'''Obacht:''' Du hesch kei Zämefassig ongebe. Wenn du erneijt uf Spacher durcksch, wird d Änderung ohni gspychert.",
 'missingcommenttext'       => 'Bitte gib dinr Kommentar unte ii.',
 'whitelistedittext'        => 'Sie müssen sich $1, um Artikel bearbeiten zu können.',
-'whitelistreadtext'        => 'Sie müssen sich [[Special:Userlogin|hier anmelden]], um Artikel lesen zu können.',
-'whitelistacctext'         => 'Um in diesem Wiki Accounts anlegen zu dürfen, müssen Sie sich [[Special:Userlogin|hier anmelden]] und die nötigen Berechtigungen haben.',
 'confirmedittitle'         => 'Zuem Ändere isch e bschtätigti E-Bost-Adräss nötig.',
 'confirmedittext'          => 'Si muen Ihri E-Bost-Adräss erscht bstätige bevor Si Syte go ändere chönne. Bitte setze Si in [[Special:Preferences|Ihre Iistellige]] Ihri E-Bost Adräss ii un löhn Si si pruefe.',
 'accmailtitle'             => 'S Bassword isch verschickt worre.',
@@ -716,8 +714,6 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 
 I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.",
 'movearticle'      => 'Artikel verschiebe',
-'movenologin'      => 'Du bisch nid aagmäldet',
-'movenologintext'  => 'Du muesch dich z’ersch [[Special:Userlogin|aamälde]] damit du die Syte chasch zügle.',
 'newtitle'         => 'Zum nöie Titel',
 'movepagebtn'      => 'Artikel verschiebe',
 'pagemovedsub'     => 'Verschiebig erfolgrych',

@@ -14,19 +14,19 @@
  * @author לערי ריינהארט
  * @author Sherbrooke
  * @author Siebrand
- * @author Hégésippe Cormier
- * @author Dereckson
- * @author Cedric31
- * @author Korg
  * @author Louperivois
+ * @author Hégésippe Cormier
+ * @author Cedric31
+ * @author Jon Harald Søby
+ * @author Dereckson
+ * @author Korg
  * @author McDutchie
  * @author Omnipaedista
  * @author JeanVoisin
  * @author SPQRobin
+ * @author Горан Анђелковић
  * @author ChrisPtDe
  * @author Esbardu
- * @author Jon Harald Søby
- * @author Горан Анђелковић
  */
 
 $skinNames = array(
@@ -742,10 +742,6 @@ Veuillez préciser cet identifiant dans toutes les requêtes que vous ferez.",
 'blockededitsource'                => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
 'whitelistedittitle'               => 'Connexion nécessaire pour modifier le contenu',
 'whitelistedittext'                => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
-'whitelistreadtitle'               => 'Connexion nécessaire pour lire le contenu',
-'whitelistreadtext'                => 'Vous devez être [[Special:Userlogin|connecté]] pour lire le contenu.',
-'whitelistacctitle'                => 'Vous n’êtes pas autorisé à créer un compte.',
-'whitelistacctext'                 => 'Pour pouvoir créer un compte sur ce Wiki, vous devez être [[Special:Userlogin|connecté]] et avoir les permissions appropriées.',
 'confirmedittitle'                 => 'Validation de l’adresse de courriel nécessaire pour modifier le contenu',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse courriel avant de modifier {{SITENAME}}. Veuillez entrer et valider votre adresse électronique à l’aide de la page [[Special:Preferences|préférences]].',
 'nosuchsectiontitle'               => 'Section manquante',
@@ -1074,7 +1070,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'userrights-groups-help'      => "Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
 * Une case non cochée signifie qu'il ne s’y trouve pas.
-* Une * indique que vous ne pouvez pas retirer ce groupe une fois que vous l'ayez ajouté et vice-versa.",
+* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l'avez ajouté et vice-versa.",
 'userrights-reason'           => 'Motif du changement :',
 'userrights-no-interwiki'     => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
 'userrights-nodatabase'       => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
@@ -1370,7 +1366,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filedelete'                  => 'Supprimer $1',
 'filedelete-legend'           => 'Supprimer le fichier',
 'filedelete-intro'            => "Vous êtes en train de supprimer '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Vous êtes en train d’effacer la version de \'\'\'[[Media:$1|$1]]\'\'\' du [$4 $2 à $3].</span>',
+'filedelete-intro-old'        => "Vous êtes en train d’effacer la version de '''[[Media:$1|$1]]''' du [$4 $2 à $3].",
 'filedelete-comment'          => 'Commentaire :',
 'filedelete-submit'           => 'Supprimer',
 'filedelete-success'          => "'''$1''' a été supprimé.",
@@ -1959,8 +1955,6 @@ Assurez-vous d’en avoir compris les conséquences avant de continuer.",
 
 Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le désirez.',
 'movearticle'             => 'Renommer l’article',
-'movenologin'             => 'Non connecté',
-'movenologintext'         => 'Pour pouvoir renommer une page, vous devez être [[Special:Userlogin|connecté]] en tant qu’utilisateur enregistré et votre compte doit avoir une ancienneté suffisante.',
 'movenotallowed'          => 'Vous n’avez pas la permission de renommer des pages sur ce wiki.',
 'newtitle'                => 'Nouveau titre',
 'move-watch'              => 'Suivre cette page',
@@ -2192,10 +2186,11 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme surveillées.',
 
 # Patrol log
-'patrol-log-page' => 'Historique des versions patrouillées',
-'patrol-log-line' => 'a marqué la version $1 de $2 comme vérifiée $3',
-'patrol-log-auto' => '(automatique)',
-'patrol-log-diff' => 'v$1',
+'patrol-log-page'   => 'Historique des versions patrouillées',
+'patrol-log-header' => 'Voici un journal des versions patrouillées.',
+'patrol-log-line'   => 'a marqué la version $1 de $2 comme vérifiée $3',
+'patrol-log-auto'   => '(automatique)',
+'patrol-log-diff'   => 'v$1',
 
 # Image deletion
 'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',
@@ -2228,7 +2223,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerie des nouveaux fichiers',
 'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
-'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés',
+'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Aucune image à afficher.',
 'ilsubmit'              => 'Chercher',
@@ -2512,7 +2507,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 # External editor support
 'edit-externally'      => 'Modifier ce fichier en utilisant une application externe',
-'edit-externally-help' => 'Voir [http://meta.wikimedia.org/wiki/Help:External_editors les instructions] pour plus d’informations.',
+'edit-externally-help' => "Consulter [http://meta.wikimedia.org/wiki/Aide:Éditeurs_externes les instructions d'installation] pour plus d’informations.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'toutes',

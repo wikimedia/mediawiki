@@ -7,10 +7,29 @@
  * @author Codex Sinaiticus
  * @author Teferra
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author M.M.S.
- * @author Jon Harald Søby
  */
+
+$namespaceNames = array(
+	'NS_MEDIA'          => 'ፋይል',
+	'NS_SPECIAL'        => 'ልዩ',
+	'NS_TALK'           => 'ውይይት',
+	'NS_USER'           => 'አባል',
+	'NS_USER_TALK'      => 'አባል_ውይይት',
+	'NS_PROJECT_TALK'   => '$1_ውይይት',
+	'NS_IMAGE'          => 'ስዕል',
+	'NS_IMAGE_TALK'     => 'ስዕል_ውይይት',
+	'NS_MEDIAWIKI'      => 'መልዕክት',
+	'NS_MEDIAWIKI_TALK' => 'መልዕክት_ውይይት',
+	'NS_TEMPLATE'       => 'መልጠፊያ',
+	'NS_TEMPLATE_TALK'  => 'መልጠፊያ_ውይይት',
+	'NS_HELP'           => 'እርዳታ',
+	'NS_HELP_TALK'      => 'እርዳታ_ውይይት',
+	'NS_CATEGORY'       => 'መደብ',
+	'NS_CATEGORY_TALK'  => 'መደብ_ውይይት',
+);
 
 $messages = array(
 # User preference toggles
@@ -492,10 +511,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'blockededitsource'         => "በ'''$1''' ላይ '''የእርስዎ ለውጦች''' ጽሕፈት ከዚህ ታች ይታያሉ፦",
 'whitelistedittitle'        => 'ለማዘጋጀት መግባት አስቀድሞ ያስፈልጋል',
 'whitelistedittext'         => 'ገጾችን ለማዘጋጀት $1 አስቀድሞ ያስፈልግዎታል።',
-'whitelistreadtitle'        => 'ለማንበብ መግባት አስቀድሞ ያስፈልጋል',
-'whitelistreadtext'         => 'ገጾችን ለማንበብ [[Special:Userlogin|መግባት]] አስቀድሞ ያስፈልግዎታል።',
-'whitelistacctitle'         => 'ብዕር ስም ለመፍጠር ፈቃድ የለዎም።',
-'whitelistacctext'          => 'በ{{SITENAME}} ላይ ብዕር ስም ለመፍጠር፣ አስቀድመው [[Special:Userlogin|መግባት]]ና የሚገባውን ፈቃድ እንዲኖርዎ ያስፈልጋል።',
 'confirmedittitle'          => 'ለማዘጋጀት የኢ-ሜል ማረጋገጫ ያስፈልጋል።',
 'confirmedittext'           => 'ገጽ ማዘጋጀት ሳይችሉ፣ አስቀድመው የኢ-ሜል አድራሻዎን ማረጋገጥ አለብዎት። እባክዎ፣ በ[[Special:Preferences|ምርጫዎችዎ]] በኩል ኢ-ሜል አድራሻዎን ያረጋግጡ።',
 'nosuchsectiontitle'        => 'የማይኖር ክፍል',
@@ -921,13 +936,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'filerevert-comment'        => 'ማጠቃለያ፦',
 'filerevert-defaultcomment' => 'በ$2፣ $1 ወደ ነበረው ዕትም መለሰው',
 'filerevert-submit'         => 'ማገልበጥ',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' [በ$3፣ $2 ወደ ነበረው $4 እትም] ተመልሷል።</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' [በ$3፣ $2 ወደ ነበረው $4 እትም] ተመልሷል።",
 
 # File deletion
 'filedelete'                  => '$1 ለማጥፋት',
 'filedelete-legend'           => 'ፋይልን ለማጥፋት',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' ሊያጥፉ ነው።",
-'filedelete-intro-old'        => '<span class="plainlinks">በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ\'\'\'[[Media:$1|$1]]\'\'\' እትም ሊያጥፉ ነው።</span>',
+'filedelete-intro-old'        => "በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ'''[[Media:$1|$1]]''' እትም ሊያጥፉ ነው።",
 'filedelete-comment'          => 'የማጥፋቱ ምክንያት፦',
 'filedelete-submit'           => 'ይጥፋ',
 'filedelete-success'          => "'''$1''' ጠፍቷል።",
@@ -1436,8 +1451,6 @@ $1',
 :
 :ከነውይይቱ ገጽ አንድላይ አይዛወሩም። የዚያን ጊዜ የውይይቱን ገጽ ለማዛወር ከወደዱ በእጅ ማድረግ ያስፈልግዎታል።",
 'movearticle'             => 'የቆየ አርእስት፡',
-'movenologin'             => 'ገና አልገቡም',
-'movenologintext'         => 'ገጽ ለማዛወር [[Special:Userlogin|በብዕር ስም መግባት]] ይኖርብዎታል።',
 'movenotallowed'          => 'በ{{SITENAME}} ላይ ገጾችን ለማዛወር ፈቃድ የለዎም።',
 'newtitle'                => 'አዲሱ አርእስት',
 'move-watch'              => 'ይህ ገጽ በተከታተሉት ገጾች ይጨመር',

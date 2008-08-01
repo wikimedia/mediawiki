@@ -571,9 +571,6 @@ Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones u
 'blockededitsource'         => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
 'whitelistedittitle'        => 'Conventum aperiendum ut recenseas',
 'whitelistedittext'         => 'Necesse est tibi $1 priusquam paginas recenseas.',
-'whitelistreadtitle'        => 'Conventum aperiendum ut legas',
-'whitelistreadtext'         => 'Necesse est tibi [[Special:Userlogin|conventum aperire]] priusquam paginas legas.',
-'whitelistacctitle'         => 'Non licet tibi rationem creare',
 'confirmedittitle'          => 'Adfirmanda est inscriptio tua electronica prisuquam recenseas',
 'confirmedittext'           => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
 'nosuchsectiontitle'        => 'Haec pars non est',
@@ -789,12 +786,13 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'group-bureaucrat' => 'Grapheocrates',
 'group-all'        => '(omnes)',
 
-'group-user-member'       => 'Usor',
-'group-bot-member'        => 'Automaton',
-'group-sysop-member'      => 'Magistratus',
-'group-bureaucrat-member' => 'Grapheocrates',
+'group-user-member'       => 'usor',
+'group-bot-member'        => 'automaton',
+'group-sysop-member'      => 'magistratus',
+'group-bureaucrat-member' => 'grapheocrates',
 
 'grouppage-user'       => '{{ns:project}}:Usores',
+'grouppage-bot'        => '{{ns:project}}:Automata',
 'grouppage-sysop'      => '{{ns:project}}:Magistratus',
 'grouppage-bureaucrat' => '{{ns:project}}:Grapheocrates',
 
@@ -855,6 +853,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'show'                              => 'monstrare',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
+'boteditletter'                     => 'a',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usor custodiens|usores custodientes}}]',
 'rc_categories_any'                 => 'Ulla',
 'newsectionsummary'                 => '/* $1 */ nova pars',
@@ -947,17 +946,17 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 
 # File reversion
 'filerevert-legend'         => 'Reverti fasciculum',
-'filerevert-intro'          => '<span class="plainlinks">Reverteris \'\'\'[[Media:$1|$1]]\'\'\' ad [emendationem $4 ex $3, $2].</span>',
+'filerevert-intro'          => "Reverteris '''[[Media:$1|$1]]''' ad [emendationem $4 ex $3, $2].",
 'filerevert-comment'        => 'Sententia:',
 'filerevert-defaultcomment' => 'Reverti ad emendationem ex $2, $1',
 'filerevert-submit'         => 'Revertere',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' reversum est ad [emendationem $4 ex $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' reversum est ad [emendationem $4 ex $3, $2].",
 
 # File deletion
 'filedelete'                  => 'Delere $1',
 'filedelete-legend'           => 'Fasciculum delere',
 'filedelete-intro'            => "Deles '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Deles fasciculi \'\'\'[[Media:$1|$1]]\'\'\' emendationem [$4 ex $3, $2].</span>',
+'filedelete-intro-old'        => "Deles fasciculi '''[[Media:$1|$1]]''' emendationem [$4 ex $3, $2].",
 'filedelete-comment'          => 'Causa deletionis:',
 'filedelete-submit'           => 'Delere',
 'filedelete-success'          => "'''$1''' deletum est.",
@@ -1015,12 +1014,12 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'double-redirect-fixer'      => 'Rectificator redirectionum',
 
 'brokenredirects'        => 'Redirectiones fractae',
-'brokenredirectstext'    => 'Hae redirectiones ad paginas inexistentes nectunt:',
+'brokenredirectstext'    => 'Hae redirectiones ad paginas inexistentes nectunt.',
 'brokenredirects-edit'   => '(recensere)',
 'brokenredirects-delete' => '(delere)',
 
 'withoutinterwiki'         => 'Paginae sine nexibus ad linguas alias',
-'withoutinterwiki-summary' => 'Paginae sequentes non ad paginas in linguis aliis nectunt:',
+'withoutinterwiki-summary' => 'Paginae sequentes non ad paginas in linguis aliis nectunt.',
 'withoutinterwiki-legend'  => 'Praefixum',
 'withoutinterwiki-submit'  => 'Monstrare',
 
@@ -1377,8 +1376,6 @@ adfirma te consequentias intellegere antequam procedis.",
 
 Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movearticle'             => 'Paginam movere:',
-'movenologin'             => 'Conventum non apertum',
-'movenologintext'         => 'Rationem usoris habere et [[Special:Userlogin|conventum aperire]] debes ad movendum paginam.',
 'newtitle'                => 'Ad titulum novum:',
 'move-watch'              => 'Hanc paginam custodire',
 'movepagebtn'             => 'Paginam movere',
@@ -1514,6 +1511,7 @@ Paginae nomen petitum "[[$1]]" iam existit. Vin tu eam delere ut pagina illic mo
 # Special:Newimages
 'newimages'     => 'Fasciculi novi',
 'imagelisttext' => "Subter est index {{PLURAL:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
+'showhidebots'  => '($1 automata)',
 'noimages'      => 'Nullum videndum.',
 'ilsubmit'      => 'Quaerere',
 'bydate'        => 'ex die',

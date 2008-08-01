@@ -9,8 +9,8 @@
  * @author Ergon
  * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -571,10 +571,6 @@ Numri idendifikues i bllokimit tuaj është $5. Ju lutemi përfshijeni këtë Nu
 'blockededitsource'                => "Më poshtë tregohet teksti i '''redaktimeve tuaja''' të '''$1''':",
 'whitelistedittitle'               => 'Duhet të hyni brënda për të redaktuar',
 'whitelistedittext'                => 'Duhet të $1 për të redaktuar artikuj.',
-'whitelistreadtitle'               => 'Duhet të hyni brënda për të lexuar',
-'whitelistreadtext'                => 'Duhet të [[Special:Userlogin|hyni brënda]] për të lexuar artikuj.',
-'whitelistacctitle'                => 'Nuk ju lejohet të hapni një llogari',
-'whitelistacctext'                 => 'Për të hapur llogari tek {{SITENAME}} duhet të [[Special:Userlogin|hyni brënda]] dhe të keni të drejta të posaçme.',
 'confirmedittitle'                 => 'Nevojitet adresë email-i e vërtetuar për të redaktuar',
 'confirmedittext'                  => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[Special:Preferences|parapëlqimet]] e juaja.',
 'nosuchsectiontitle'               => 'Asnjë seksion i tillë nuk ekziston',
@@ -1148,18 +1144,18 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 # File reversion
 'filerevert'                => 'Rikthe $1',
 'filerevert-legend'         => 'Rikthe skedën',
-'filerevert-intro'          => '<span class="plainlinks">Po ktheni \'\'\'[[Media:$1|$1]]\'\'\' tek [versioni $4 i $3, $2].</span>',
+'filerevert-intro'          => "Po ktheni '''[[Media:$1|$1]]''' tek [versioni $4 i $3, $2].",
 'filerevert-comment'        => 'Arsyeja:',
 'filerevert-defaultcomment' => 'U rikthye tek versioni i $2, $1',
 'filerevert-submit'         => 'Riktheje',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' është kthyer tek [versioni $4 i $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' është kthyer tek [versioni $4 i $3, $2].",
 'filerevert-badversion'     => 'Nuk ka version vendor tjetër të kësaj skede në kohën e dhënë.',
 
 # File deletion
 'filedelete'                  => 'Grise $1',
 'filedelete-legend'           => 'Grise skedën',
 'filedelete-intro'            => "Jeni duke grisur '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Po grisni versionin e \'\'\'[[Media:$1|$1]]\'\'\' të [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Po grisni versionin e '''[[Media:$1|$1]]''' të [$4 $3, $2].",
 'filedelete-comment'          => 'Arsyeja:',
 'filedelete-submit'           => 'Grise',
 'filedelete-success'          => "'''$1''' është grisur.",
@@ -1691,8 +1687,6 @@ Ky mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin
 
 Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi.",
 'movearticle'             => 'Zhvendose faqen',
-'movenologin'             => 'Nuk keni hyrë brenda',
-'movenologintext'         => 'Duhet të keni hapur një llogari dhe të keni [[Special:Userlogin|hyrë brenda]] për të zhvendosur një faqe.',
 'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe në {{SITENAME}}.',
 'newtitle'                => 'Tek titulli i ri',
 'move-watch'              => 'Mbikqyre këtë faqe',
@@ -1906,7 +1900,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # Special:Newimages
 'newimages'             => 'Galeria e figurave të reja',
 'imagelisttext'         => 'Më poshtë është një listë e $1 {{PLURAL:$1|skedës të renditur|skedave të renditura}} sipas $2.',
-'newimages-summary'     => 'Kjo faqe speciale tregon skedat e ngarkuara së fundmi',
+'newimages-summary'     => 'Kjo faqe speciale tregon skedat e ngarkuara së fundmi.',
 'showhidebots'          => '($1 robotët)',
 'noimages'              => "S'ka gjë për të parë.",
 'ilsubmit'              => 'Kërko',

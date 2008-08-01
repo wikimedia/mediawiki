@@ -7,8 +7,9 @@
  * @author Smeira
  * @author Malafaya
  * @author Siebrand
- * @author SPQRobin
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -605,10 +606,6 @@ Blokamanüm olik binon $5. Mäniotolös, begö! oni in peneds valik olik.",
 'blockededitsource'         => "Vödem '''redakamas olik''' pada: '''$1''' pajonon dono:",
 'whitelistedittitle'        => 'Mutol nunädön oli ad redakön',
 'whitelistedittext'         => 'Mutol $1 ad redakön padis.',
-'whitelistreadtitle'        => 'Mutol nunädön oli ad reidön',
-'whitelistreadtext'         => 'Nedol [[Special:Userlogin|nunädön oli]] ad reidön padis.',
-'whitelistacctitle'         => 'No dalol jafön kali',
-'whitelistacctext'          => 'Ad dalön jafön kalis in {{SITENAME}}, mutol [[Special:Userlogin|nunädön oli]] e mutol labön dälis zesüdik.',
 'confirmedittitle'          => 'Fümedam me pot leäktronik zesüdon ad redakön',
 'confirmedittext'           => 'Mutol fümedön ladeti leäktronik ola büä okanol redakön padis. Pladölos e lonöfükölos ladeti olik in [[Special:Preferences|buükams olik]].',
 'nosuchsectiontitle'        => 'Diläd at no dabinon',
@@ -1170,18 +1167,18 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 # File reversion
 'filerevert'                => 'Geükön padi: $1',
 'filerevert-legend'         => 'Geükön ragivi',
-'filerevert-intro'          => '<span class="plainlinks">Anu geükol padi: \'\'\'[[Media:$1|$1]]\'\'\' ad [fomam $4: $3, $2].</span>',
+'filerevert-intro'          => "Anu geükol padi: '''[[Media:$1|$1]]''' ad [fomam $4: $3, $2].",
 'filerevert-comment'        => 'Küpet:',
 'filerevert-defaultcomment' => 'Pegeükon ad fomam: $2, $1',
 'filerevert-submit'         => 'Geükön',
-'filerevert-success'        => '<span class="plainlinks">Pad: \'\'\'[[Media:$1|$1]]\'\'\' pegeükon ad [fomam $4: $3, $2].</span>',
+'filerevert-success'        => "Pad: '''[[Media:$1|$1]]''' pegeükon ad [fomam $4: $3, $2].",
 'filerevert-badversion'     => 'No dabinon fomam topik büik ragiva at labü timamäk pegevöl',
 
 # File deletion
 'filedelete'                  => 'Moükön padi: $1',
 'filedelete-legend'           => 'Moükön ragivi',
 'filedelete-intro'            => "Moükol padi: '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Anu moükol fomami pada: \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Anu moükol fomami pada: '''[[Media:$1|$1]]''' [$4 $3, $2].",
 'filedelete-comment'          => 'Küpet:',
 'filedelete-submit'           => 'Moükön',
 'filedelete-success'          => "'''$1''' pemoükon.",
@@ -1727,8 +1724,6 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 
 Ön jenets at, if vilol topätükön bespikapadi u balön oni e padi ya dabinöl, ol it omutol dunön osi.",
 'movearticle'             => 'Topätükolöd padi',
-'movenologin'             => 'No enunädon oki',
-'movenologintext'         => 'Mutol binön geban peregistaröl e [[Special:Userlogin|nunädön oli]] ad topätükön padi.',
 'movenotallowed'          => 'No dalol topätükön padis in {{SITENAME}}.',
 'newtitle'                => 'Lü tiäd nulik',
 'move-watch'              => 'Pladolöd padi at ini galädalised',

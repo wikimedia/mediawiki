@@ -10,6 +10,7 @@
  * @author Slomox
  * @author SPQRobin
  * @author Erwin85
+ * @author Jon Harald Søby
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Jens Frank
  */
@@ -765,10 +766,6 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'blockededitsource'                => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
 'whitelistedittitle'               => 'Anmelden is verplich',
 'whitelistedittext'                => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
-'whitelistreadtitle'               => 'Anmelden is verplich',
-'whitelistreadtext'                => 'Um dit artikel te kunnen lezen, mu-j [[Special:Userlogin|an-emeld]] ween.',
-'whitelistacctitle'                => 'Nieje gebrukersnaam anmaken neet toe-estaon',
-'whitelistacctext'                 => 'Nieje gebrukersprefielen op {{SITENAME}} kunnen allinnig an-emaak wonnen deur [[Special:Userlogin|an-emelde]] gebrukers mit de juuste rechten.',
 'confirmedittitle'                 => 'Berichbevestiging is neudig um te bewarken.',
 'confirmedittext'                  => "Je mutten je e-mailadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
 'nosuchsectiontitle'               => 'Disse sectie besteet neet',
@@ -779,7 +776,7 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'accmailtitle'                     => 'Wachwoord is verzunnen.',
 'accmailtext'                      => "Wachwoord veur '$1' is verzunnen naor $2.",
 'newarticle'                       => '(Niej)',
-'newarticletext'                   => '<div class=plainlinks style="border: 1px solid #ccc; padding: .2em 1em; margin-bottom: .8em; color: #000;"><div align=right style="font-size:110%; float:right; border:none; width:40%;">[[Special:Prefixindex/{{PAGENAME}}|Prefixindex]] | [[Special:Search/{{PAGENAME}}|Zeuken]]</div><div style="font-size:110%;">Je bin de pagina "{{FULLPAGENAME}}" an \'t schrieven...</div></div>',
+'newarticletext'                   => "Disse pagina besteet nog neet. Hieronder ku-j wat schrieven en naokieken of opslaon. A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um weerumme te gaon.",
 'anontalkpagetext'                 => "<hr style=\"margin-top:2em;\">
 <em>Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:Userlogin|een gebrukersnaam anmaken of anmelden]].</em>",
 'noarticletext'                    => 'Disse pagina besteet nog neet.
@@ -1375,7 +1372,7 @@ Klikken op een kelomkop veraandert de sortering.',
 # File reversion
 'filerevert'                => '$1 weerummedreien',
 'filerevert-legend'         => 'Bestand weerummezetten',
-'filerevert-intro'          => '<span class="plainlinks">Je bin \'\'\'[[Media:$1|$1]]\'\'\' an \'t weerummedreien tot de [$4 versie van $2, $3]</span>.',
+'filerevert-intro'          => "Je bin '''[[Media:$1|$1]]''' an 't weerummedreien tot de [$4 versie van $2, $3]",
 'filerevert-comment'        => 'Opmarkingen:',
 'filerevert-defaultcomment' => 'Weerummedreid tot de versie van $1, $2',
 'filerevert-submit'         => 'Weerummedreien',
@@ -1386,7 +1383,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'filedelete'                  => '$1 vortdoon',
 'filedelete-legend'           => 'Bestand vortdoon',
 'filedelete-intro'            => "Je doon '''[[Media:$1|$1]]''' noen vort.",
-'filedelete-intro-old'        => '<span class="plainlinks">Je bin de versie van \'\'\'[[Media:$1|$1]]\'\'\' van [$4 $3, $2] vort an \'t doon.</span>',
+'filedelete-intro-old'        => "Je bin de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] vort an 't doon.",
 'filedelete-comment'          => 'Opmarking:',
 'filedelete-submit'           => 'Vortdoon',
 'filedelete-success'          => "'''$1''' is vort-edaon.",
@@ -1882,8 +1879,6 @@ Mut de databanke vrie-egeven wonnen?',
 * As der al een neet-lege overlegpagina besteet onder de aandere naam
 * A-j 't onderstaonde vinkjen vorthaolen",
 'movearticle'             => 'Herneum',
-'movenologin'             => 'Neet an-emeld.',
-'movenologintext'         => 'Je mutten [[Special:Userlogin|an-emeld]] ween um de naam van een pagina te wiezigen.',
 'newtitle'                => 'Nieje naam',
 'move-watch'              => 'volg disse pagina',
 'movepagebtn'             => 'Herneum',

@@ -10,8 +10,8 @@
  * @author M.M.S.
  * @author Siebrand
  * @author Peter Andersen
- * @author S.Örvarr.S
  * @author H92
+ * @author S.Örvarr.S
  * @author Boivie
  * @author Ranveig
  * @author Lars J. Helbo <lars.helbo@gmail.com>
@@ -659,10 +659,6 @@ Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
 'blockededitsource'                => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
 'whitelistedittitle'               => 'Log på for at redigere',
 'whitelistedittext'                => 'Du skal $1 for at kunne ændre artikler.',
-'whitelistreadtitle'               => 'Log på for at læse',
-'whitelistreadtext'                => 'Du skal [[Special:Userlogin|logge på]] for at læse artikler.',
-'whitelistacctitle'                => 'Du har ikke lov til at oprette en konto',
-'whitelistacctext'                 => 'For at få lov til at lave en konto på denne wiki skal du [[Special:Userlogin|logge på]] og have passende rettigheder.',
 'confirmedittitle'                 => 'For at kunne bearbejde er bekræftelsen af E-mail-adressen nødvendig.',
 'confirmedittext'                  => 'Du skal først bekræfte E-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din E-mail-adresse i dine [[Special:Preferences|Indstillinger]].',
 'nosuchsectiontitle'               => 'Afsnit findes ikke',
@@ -1855,10 +1851,6 @@ $1',
 
 I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'movearticle'             => 'Flyt side:',
-'movenologin'             => 'Ikke logget på',
-'movenologintext'         => 'Du skal være registreret bruger og være [[Special:Userlogin|logget på]]
-
-for at flytte en side.',
 'movenotallowed'          => 'Du har ikke rettigheder til at flytte sider.',
 'newtitle'                => 'Til ny titel',
 'move-watch'              => 'Overvåg denne side',

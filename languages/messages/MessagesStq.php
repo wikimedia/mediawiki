@@ -7,8 +7,8 @@
  * @author Maartenvdbent
  * @author Pyt
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'de';
@@ -547,10 +547,6 @@ Reek ju jädden in älke Anfroage oun.',
 'blockededitsource'                => "Die Wältext '''fon dien Annerengen''' an '''$1''':",
 'whitelistedittitle'               => 'Toun Beoarbaidjen is dät nöödich, anmälded tou weesen',
 'whitelistedittext'                => 'Du moast die $1, uum Artikkele beoarbaidje tou konnen.',
-'whitelistreadtitle'               => 'Toun Leesen is dät nöödich, anmälded tou weesen',
-'whitelistreadtext'                => 'Du moast die [[Special:Userlogin|hier anmäldje]], uum Artikkele leese tou konnen.',
-'whitelistacctitle'                => 'Du hääst neen Gjucht, n Benutserkonto tou moakjen.',
-'whitelistacctext'                 => 'Uum in {{SITENAME}} Benutserkonten anlääse tou muugen, moast du die eerste [[Special:Userlogin|hier anmäldje]], un do nöödige Begjuchtigengen hääbe.',
 'confirmedittitle'                 => 'Toun Beoarbaidjen is ju E-Mail-Anärkannenge nöödich.',
 'confirmedittext'                  => 'Du moast dien E-Mail-Adresse eerste anärkanne, eer du beoarbaidje koast. Fäl dien E-Mail uut un ärkanne ju an in do [[Special:Preferences|Ienstaalengen]].',
 'nosuchsectiontitle'               => 'Oudeelenge bestoant nit',
@@ -1162,18 +1158,18 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 # File reversion
 'filerevert'                => 'Touräächsätte fon "$1"',
 'filerevert-legend'         => 'Doatäi touräächsätte',
-'filerevert-intro'          => '<span class="plainlinks">Du sätst ju Doatäi \'\'\'[[Media:$1|$1]]\'\'\' ap ju [$4 Version fon $2, $3 Uure] tourääch.</span>',
+'filerevert-intro'          => "Du sätst ju Doatäi '''[[Media:$1|$1]]''' ap ju [$4 Version fon $2, $3 Uure] tourääch.",
 'filerevert-comment'        => 'Kommentoar:',
 'filerevert-defaultcomment' => 'touräächsät ap ju Version fon $1, $2 Uure',
 'filerevert-submit'         => 'Touräächsätte',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wuud ap ju [$4 Version fon $2, $3 Uure] touräächsät.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' wuud ap ju [$4 Version fon $2, $3 Uure] touräächsät.",
 'filerevert-badversion'     => 'Et rakt neen Version fon ju Doatäi tou dän ounroate Tiedpunkt.',
 
 # File deletion
 'filedelete'                  => 'Läskje "$1"',
 'filedelete-legend'           => 'Läskje Doatäi',
 'filedelete-intro'            => "Du läskest ju Doatäi '''„[[Media:$1|$1]]“'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Du läskest fon ju Doatäi \'\'\'„[[Media:$1|$1]]“\'\'\' ju [$4 Version fon $2, $3 Uur].</span>',
+'filedelete-intro-old'        => "Du läskest fon ju Doatäi '''„[[Media:$1|$1]]“''' ju [$4 Version fon $2, $3 Uur].",
 'filedelete-comment'          => 'Gruund:',
 'filedelete-submit'           => 'Läskje',
 'filedelete-success'          => "'''\"\$1\"''' wuude läsked.",
@@ -1760,8 +1756,6 @@ wääs die deeruum sicher, dät du do Konsequenzen deerfon iensjuchst, eer du f�
 
 In disse Falle moast du ju Siede, wan wonsked, fon Hounde ferschuuwe. Jädden dän '''näie''' Tittel unner '''Siel''' iendreege, deerunner ju Uumnaamenge jädden '''begründje'''.",
 'movearticle'             => 'Siede ferschuuwe:',
-'movenologin'             => 'Du bäst nit anmälded',
-'movenologintext'         => 'Du moast n registrierden Benutser un [[Special:Userlogin|anmälded]] weese, uum ne Siede ferschuuwe tou konnen.',
 'movenotallowed'          => 'Du hääst in {{SITENAME}} neen Begjuchtigenge, Sieden tou ferschuuwen.',
 'newtitle'                => 'Tou dän näie Tittel:',
 'move-watch'              => 'Disse Siede beooboachtje',

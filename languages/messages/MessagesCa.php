@@ -11,13 +11,13 @@
  * @author Pasqual (ca)
  * @author Iradigalesc
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Jordi Roqué
  * @author Vriullop
  * @author Juanpabl
  * @author Spacebirdy
- * @author Pérez
- * @author Jon Harald Søby
  * @author McDutchie
+ * @author Pérez
  * @author SPQRobin
  * @author Smeira
  */
@@ -681,10 +681,6 @@ El número d'identificació ID del bloqueig és #$5. Si us plau, incloeu aqueste
 'blockededitsource'                => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
 'whitelistedittitle'               => 'Cal iniciar una sessió per a poder editar',
 'whitelistedittext'                => 'Heu de $1 per editar pàgines.',
-'whitelistreadtitle'               => "Heu d'iniciar una sessió per a llegir-ho",
-'whitelistreadtext'                => "Heu d'[[Special:Userlogin|identificar-vos]] per a llegir les pàgines.",
-'whitelistacctitle'                => 'No teniu permisos per a crear un compte',
-'whitelistacctext'                 => "Per estar autoritzat a crear comptes al projecte {{SITENAME}} heu d'[[Special:Userlogin|identificar-vos]] i tenir els permisos apropiats.",
 'confirmedittitle'                 => "Cal una confirmació de l'adreça electrònica per a poder editar",
 'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder editar pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
 'nosuchsectiontitle'               => 'No hi ha cap secció',
@@ -1302,18 +1298,18 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 # File reversion
 'filerevert'                => 'Reverteix $1',
 'filerevert-legend'         => 'Reverteix el fitxer',
-'filerevert-intro'          => '<span class="plainlinks">Esteu revertint \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 versió de  $3, $2].</span>',
+'filerevert-intro'          => "Esteu revertint '''[[Media:$1|$1]]''' a la [$4 versió de  $3, $2].",
 'filerevert-comment'        => 'Comentari:',
 'filerevert-defaultcomment' => "S'ha revertit a la versió com de $2, $1",
 'filerevert-submit'         => 'Reverteix',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha estat revertit a la [$4 versió de $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ha estat revertit a la [$4 versió de $3, $2].",
 'filerevert-badversion'     => "No hi ha cap versió local anterior d'aquest fitxer amb la marca horària que es proporciona.",
 
 # File deletion
 'filedelete'                  => 'Suprimeix $1',
 'filedelete-legend'           => 'Suprimeix el fitxer',
 'filedelete-intro'            => "Esteu eliminant '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Esteu eliminant la versió de \'\'\'[[Media:$1|$1]]\'\'\' com de [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Esteu eliminant la versió de '''[[Media:$1|$1]]''' com de [$4 $3, $2].",
 'filedelete-comment'          => 'Comentari:',
 'filedelete-submit'           => 'Suprimeix',
 'filedelete-success'          => "'''$1''' s'ha eliminat.",
@@ -1379,9 +1375,11 @@ La mida de la [http://www.mediawiki.org/wiki/Manual:Job_queue cua de treballs] �
 Per això, caldria que enllacessin al tema apropiat.<br />
 Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redireccions dobles',
-'doubleredirectstext' => '<b>Atenció:</b> aquesta llista pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
+'doubleredirects'            => 'Redireccions dobles',
+'doubleredirectstext'        => '<b>Atenció:</b> aquesta llista pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
 Cada fila conté enllaços a la segona i tercera redirecció, així com la primera línia de la segona redirecció, la qual cosa dóna normalment l\'article "real", al que el primer redirecció hauria d\'apuntar.',
+'double-redirect-fixed-move' => "S'ha reanomenat [[$1]], ara és una redirecció a [[$2]]",
+'double-redirect-fixer'      => 'Supressor de dobles redireccions',
 
 'brokenredirects'        => 'Redireccions rompudes',
 'brokenredirectstext'    => 'Les següents redireccions enllacen a pàgines inexistents:',
@@ -1930,9 +1928,6 @@ assegureu-vos d'entendre les conseqüències que comporta abans de seguir endava
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 'movearticle'             => 'Reanomena la pàgina',
-'movenologin'             => "No sou a dins d'una sessió",
-'movenologintext'         => "Heu de ser un usuari registrat i estar [[Special:Userlogin|dintre d'una sessió]]
-per reanomenar una pàgina.",
 'movenotallowed'          => 'No teniu permís per a moure pàgines al projecte {{SITENAME}}.',
 'newtitle'                => 'A títol nou',
 'move-watch'              => 'Vigila aquesta pàgina',
@@ -1970,6 +1965,7 @@ La pàgina de destinació, «[[$1]]», ja existeix. Voleu eliminar-la per a fer 
 'imagenocrossnamespace'   => 'No es pot moure la imatge a un espai de noms on no li correspon',
 'imagetypemismatch'       => 'La nova extensió de fitxer no coincideix amb el seu tipus',
 'imageinvalidfilename'    => 'El nom de fitxer indicat no és vàlid',
+'fix-double-redirects'    => "Actualitza també redireccions que apuntin a l'article original",
 
 # Export
 'export'            => 'Exporta les pàgines',
@@ -2164,9 +2160,10 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'markedaspatrollederror-noautopatrol' => 'No podeu marcar les vostres pròpies modificacions com a supervisades.',
 
 # Patrol log
-'patrol-log-page' => 'Registre de supervisió',
-'patrol-log-line' => "s'ha marcat la versió $1 de $2 com a supervisat $3",
-'patrol-log-auto' => '(automàtic)',
+'patrol-log-page'   => 'Registre de supervisió',
+'patrol-log-header' => 'Això és un registre de les revisions patrullades.',
+'patrol-log-line'   => "s'ha marcat la versió $1 de $2 com a supervisat $3",
+'patrol-log-auto'   => '(automàtic)',
 
 # Image deletion
 'deletedrevision'                 => "S'ha eliminat la revisió antiga $1.",
@@ -2198,12 +2195,15 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galeria de nous fitxers',
 'imagelisttext'         => "Llista {{PLURAL:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
-'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats',
+'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Res per veure.',
 'ilsubmit'              => 'Cerca',
 'bydate'                => 'per data',
 'sp-newimages-showfrom' => 'Mostra fitxers nous des del $1 a les $2',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes-abbrev' => 'min',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:
@@ -2601,8 +2601,8 @@ Proveu-ho amb la previsualització normal.',
 Proveu-ho amb la previsualització normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Els canvis més nous de $1 segons podrien no mostrar-se a la llista.',
-'lag-warn-high'   => 'A causa de la lenta resposta del servidor de base de dades, els canvis més nous de $1 segons potser no es mostren aquesta llista.',
+'lag-warn-normal' => 'Els canvis més nous de $1 {{PLURAL:$1|segon|segons}} podrien no mostrar-se a la llista.',
+'lag-warn-high'   => 'A causa de la lenta resposta del servidor de base de dades, els canvis més nous de $1 {{PLURAL:$1|segon|segons}} potser no es mostren aquesta llista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'La vostra llista de seguiment conté {{PLURAL:$1|1 títol|$1 títols}}, excloent-ne les pàgines de discussió.',

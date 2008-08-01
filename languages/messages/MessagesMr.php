@@ -8,6 +8,7 @@
  * @author Kaustubh
  * @author Siebrand
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author प्रणव कुलकर्णी
  * @author Angela
  * @author Hemanshu
@@ -670,10 +671,6 @@ $2',
 'blockededitsource'                => "'''$1'''ला '''तुमची संपादने'''चा मजकुर खाली दाखवला आहे:",
 'whitelistedittitle'               => 'संपादनासाठी सदस्य म्हणून प्रवेश आवश्यक आहे.',
 'whitelistedittext'                => 'लेखांचे संपादन करण्यासाठी आधी $1 करा.',
-'whitelistreadtitle'               => 'हा लेख वाचण्यासाठी सदस्य म्हणून प्रवेश करावा लागेल',
-'whitelistreadtext'                => 'हा लेख वाचण्यासाठी [[Special:Userlogin|सदस्य म्हणून प्रवेश करावा लागेल]].',
-'whitelistacctitle'                => 'आपणास नवीन खात्याची नोंदणी करण्यास मनाई आहे.',
-'whitelistacctext'                 => '{{SITENAME}} नवीन सदस्य नोंदणी करता, तुम्ही [[Special:Userlogin|प्रवेश]] केलेला असणे आवश्यक आहे तसेच तुम्हांला योग्य ते अधिकार असले पाहिजेत.',
 'confirmedittitle'                 => 'संपादनाकरिता विपत्राने शाबीत करणे आवश्यक',
 'confirmedittext'                  => 'तुम्ही संपादने करण्यापुर्वी तुमचा विपत्र पत्ता शाबीत करणे आवश्यक आहे.Please set and validate तुमचा विपत्र पत्ता तुमच्या[[Special:Preferences|सदस्य पसंती]]तून लिहा व सिद्ध करा.',
 'nosuchsectiontitle'               => 'असा विभाग नाही.',
@@ -1289,18 +1286,18 @@ $3ने ''$2'' कारण दिले आहे.",
 # File reversion
 'filerevert'                => '$1 पूर्वपद',
 'filerevert-legend'         => 'संचिका पूर्वपदास',
-'filerevert-intro'          => '<span class="plainlinks">तुम्ही [$3, $2 प्रमाणे आवर्तन$4 कडे] [[Media:$1|$1]]  उलटवत आहात.</span>',
+'filerevert-intro'          => 'तुम्ही [$3, $2 प्रमाणे आवर्तन$4 कडे] [[Media:$1|$1]]  उलटवत आहात.',
 'filerevert-comment'        => 'प्रतिक्रीया:',
 'filerevert-defaultcomment' => '$2, $1 च्या आवृत्तीत पूर्वपदास',
 'filerevert-submit'         => 'पूर्वपद',
-'filerevert-success'        => '<span class="plainlinks"> [$3, $2 प्रमाणे आवर्तन $4]कडे \'\'\'[[Media:$1|$1]]\'\'\' उलटवण्यात आली.</span>',
+'filerevert-success'        => "[$3, $2 प्रमाणे आवर्तन $4]कडे '''[[Media:$1|$1]]''' उलटवण्यात आली.",
 'filerevert-badversion'     => 'दिलेलेल्या वेळ मापनानुसार,या संचिकेकरिता कोणतीही पूर्वीची स्थानिक आवृत्ती नाही.',
 
 # File deletion
 'filedelete'                  => '$1 वगळा',
 'filedelete-legend'           => 'संचिका वगळा',
 'filedelete-intro'            => "तुम्ही '''[[Media:$1|$1]]''' वगळत आहात.",
-'filedelete-intro-old'        => '<span class="plainlinks">[$4 $3, $2]च्या वेळेचे \'\'\'[[Media:$1|$1]]\'\'\'चे आवर्तन तुम्ही वगळत आहात.</span>',
+'filedelete-intro-old'        => "[$4 $3, $2]च्या वेळेचे '''[[Media:$1|$1]]'''चे आवर्तन तुम्ही वगळत आहात.",
 'filedelete-comment'          => 'वगळ्ण्याची कारणे:',
 'filedelete-submit'           => 'वगळा',
 'filedelete-success'          => "'''$1'''वगळण्यात आले.",
@@ -1875,8 +1872,6 @@ $1',
 
 या बाबतीत तुम्हाला स्वतःला ही पाने एकत्र करावी लागतील.",
 'movearticle'             => 'पृष्ठाचे स्थानांतरण',
-'movenologin'             => 'प्रवेश केलेला नाही',
-'movenologintext'         => 'पान स्थानांतरित करण्यासाठी तुम्हाला [[Special:Userlogin|प्रवेश]] करावा लागेल.',
 'movenotallowed'          => '{{SITENAME}}वरील पाने स्थानांतरीत करण्याची आपल्यापाशी परवानगी नाही.',
 'newtitle'                => 'नवीन शीर्षकाकडे:',
 'move-watch'              => 'या पानावर लक्ष ठेवा',

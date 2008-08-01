@@ -9,7 +9,6 @@
  * @author Siebrand
  * @author לערי ריינהארט
  * @author CERminator
- * @author Gangleri
  */
 
 $namespaceNames = array(
@@ -483,10 +482,6 @@ Molimo Vas da se prijavite pošto je primite.',
 Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] da biste razgovarili o blokadi.",
 'whitelistedittitle'       => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistedittext'        => 'Morate da se [[Special:Userlogin|prijavite]] da bi ste uređivali stranice.',
-'whitelistreadtitle'       => 'Obavezno je prijavljivanje za čitanje',
-'whitelistreadtext'        => 'Morate da se [[Special:Userlogin|prijavite]] da bi ste čitali članke.',
-'whitelistacctitle'        => 'Nije vam dozvoljeno da napravite nalog',
-'whitelistacctext'         => 'Da bi vam bilo dozvoljeno da napravite naloge na ovom Vikiju, morate da se [[Special:Userlogin|prijavite]] i imate odgovarajuća ovlašćenja.',
 'loginreqtitle'            => 'Potrebno je prijavljivanje',
 'accmailtitle'             => 'Lozinka poslata.',
 'accmailtext'              => "Lozinka za nalog '$1' je poslata na adresu $2.",
@@ -1064,9 +1059,6 @@ drastična i neočekivana promjena za korisnike.",
 
 U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.",
 'movearticle'      => 'Premjestite stranicu',
-'movenologin'      => 'Niste prijavljeni',
-'movenologintext'  => 'Morate biti registrovani korisnik i [[Special:Userlogin|prijavljeni]]
-da biste premjestili stranicu.',
 'newtitle'         => 'Novi naslov',
 'movepagebtn'      => 'premjestite stranicu',
 'pagemovedsub'     => 'Premještanje uspjelo',

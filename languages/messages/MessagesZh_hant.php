@@ -575,10 +575,6 @@ $2',
 'blockededitsource'                => "你對'''$1'''進行'''編輯'''的文字如下:",
 'whitelistedittitle'               => '登入後才可編輯',
 'whitelistedittext'                => '您必須先$1才可編輯頁面。',
-'whitelistreadtitle'               => '登入後才可閱讀',
-'whitelistreadtext'                => '您必須先[[Special:Userlogin|登入]]才可閱讀頁面。',
-'whitelistacctitle'                => '您被禁止建立帳號',
-'whitelistacctext'                 => '在{{SITENAME}}中建立帳號您必須先[[Special:Userlogin|登入]]並擁有相關許可權。',
 'confirmedittitle'                 => '郵件確認後才可編輯',
 'confirmedittext'                  => '在編輯此頁之前您必須確認您的郵箱位址。請透過[[Special:Preferences|參數設定]]設定並驗証您的郵箱位址。',
 'nosuchsectiontitle'               => '沒有這個段落',
@@ -1196,22 +1192,22 @@ $2',
 # File reversion
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
-'filerevert-intro'          => '<span class="plainlinks">您現正在恢復\'\'\'[[Media:$1|$1]]\'\'\'到[$4 於$2 $3的版本]。</span>',
+'filerevert-intro'          => "您現正在恢復'''[[Media:$1|$1]]'''到[$4 於$2 $3的版本]。",
 'filerevert-comment'        => '註解:',
 'filerevert-defaultcomment' => '已經恢復到於$1 $2的版本',
 'filerevert-submit'         => '恢復',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已經恢復到[$4 於$2 $3的版本]。</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''已經恢復到[$4 於$2 $3的版本]。",
 'filerevert-badversion'     => '這個檔案所提供的時間截記並無先前的本地版本。',
 
 # File deletion
 'filedelete'                  => '刪除$1',
 'filedelete-legend'           => '刪除檔案',
 'filedelete-intro'            => "您現正刪除'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => '<span class="plainlinks">你現正刪除\'\'\'[[Media:$1|$1]]\'\'\'於[$4 $2 $3]的版本。</span>',
+'filedelete-intro-old'        => "你現正刪除'''[[Media:$1|$1]]'''於[$4 $2 $3]的版本。",
 'filedelete-comment'          => '刪除理由:',
 'filedelete-submit'           => '刪除',
 'filedelete-success'          => "'''$1'''已經刪除。",
-'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 的版本已經刪除。</span>',
+'filedelete-success-old'      => "'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。",
 'filedelete-nofile'           => "'''$1'''在{{SITENAME}}中不存在。",
 'filedelete-nofile-old'       => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
 'filedelete-iscurrent'        => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
@@ -1276,16 +1272,18 @@ Template:消歧義
 Template:消除歧義',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
 
-'doubleredirects'     => '雙重重定向頁面',
-'doubleredirectstext' => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
+'doubleredirects'            => '雙重重定向頁面',
+'doubleredirectstext'        => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
+'double-redirect-fixed-move' => '[[$1]]已經完成移動，它現在重新定向到[[$2]]',
+'double-redirect-fixer'      => '重新定向修正器',
 
 'brokenredirects'        => '損壞的重定向頁',
-'brokenredirectstext'    => '以下的重定向頁指向的是不存在的頁面:',
+'brokenredirectstext'    => '以下的重定向頁指向的是不存在的頁面。',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
 'withoutinterwiki'         => '未有語言鏈接的頁面',
-'withoutinterwiki-summary' => '以下的頁面是未有語言鏈接到其它語言版本:',
+'withoutinterwiki-summary' => '以下的頁面是未有語言鏈接到其它語言版本。',
 'withoutinterwiki-legend'  => '前綴',
 'withoutinterwiki-submit'  => '顯示',
 
@@ -1802,9 +1800,6 @@ $1',
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
 'movearticle'             => '移動頁面:',
-'movenologin'             => '未登入',
-'movenologintext'         => '您必須是一名登記用戶並且[[Special:Userlogin|登入]]
-後才可移動一個頁面。',
 'movenotallowed'          => '您在{{SITENAME}}中度並沒有許可權去移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '監視此頁',
@@ -1840,6 +1835,7 @@ $1',
 'imagenocrossnamespace'   => '不可以移動檔案到非檔案名字空間',
 'imagetypemismatch'       => '該新副檔名不匹配它的類型',
 'imageinvalidfilename'    => '目標檔案名稱是無效的',
+'fix-double-redirects'    => '更新指到原先標題的任何重新定向',
 
 # Export
 'export'            => '匯出頁面',
@@ -2052,9 +2048,10 @@ $1',
 'markedaspatrollederror-noautopatrol' => '您無法將你自己所作的更改標記為已檢查。',
 
 # Patrol log
-'patrol-log-page' => '巡查日誌',
-'patrol-log-line' => '$2的版本$1已被標記為已檢查的$3',
-'patrol-log-auto' => '(自動)',
+'patrol-log-page'   => '巡查日誌',
+'patrol-log-header' => '這個是已經巡查過的日誌。',
+'patrol-log-line'   => '$2的版本$1已被標記為已檢查的$3',
+'patrol-log-auto'   => '(自動)',
 
 # Image deletion
 'deletedrevision'                 => '已刪除舊版本$1',
@@ -2086,7 +2083,7 @@ $1',
 # Special:Newimages
 'newimages'             => '新建圖像畫廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''個檔案列表。",
-'newimages-summary'     => '這個特殊頁面中顯示最後已上傳的檔案',
+'newimages-summary'     => '這個特殊頁面中顯示最後已上傳的檔案。',
 'showhidebots'          => '($1機器人)',
 'noimages'              => '無可檢視圖像。',
 'ilsubmit'              => '搜尋',
@@ -2444,7 +2441,8 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => '警告: 此頁在您開始編輯之後已經被刪除﹗',
-'confirmrecreate'     => '在您編輯這個頁面後，用戶[[User:$1|$1]]([[User talk:$1|對話]])以下列原因刪除了這個頁面: $2。請在重新創建頁面前三思。',
+'confirmrecreate'     => '在您編輯這個頁面後，用戶[[User:$1|$1]]([[User talk:$1|對話]])以下列原因刪除了這個頁面: $2。
+請確認在您重新創建頁面前三思。',
 'recreate'            => '重建',
 
 # HTML dump

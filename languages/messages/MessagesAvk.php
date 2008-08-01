@@ -7,6 +7,7 @@
  * @author Wikimistusik
  * @author Sab
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author Nkosi ya Cabinda
  * @author SPQRobin
  */
@@ -491,10 +492,6 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'blockededitsource'         => "Krent ke '''rinaf betakseem''' va '''$1''' vleveon zo betar :",
 'whitelistedittitle'        => 'Kucilan login ta sutelara',
 'whitelistedittext'         => 'Ta bubetara rin gonaskil ta $1',
-'whitelistreadtitle'        => 'Kucilan login ta rupera',
-'whitelistreadtext'         => 'Ta rupera va teliz gotil [[Special:Userlogin|dogluyarakiraf]]',
-'whitelistacctitle'         => 'Ta pataredura rin me zo rictal',
-'whitelistacctext'          => 'Ta da mo bati wiki ropataredul va int [[Special:Userlogin|godogluyal]] ise gotil drutckanhayan',
 'confirmedittitle'          => 'Gruyera va e-mail eruyuna ta robetara',
 'confirmedittext'           => 'Abdi bubetara va rinafe e-mail mane gogruyel. Kan rinaf [[Special:Preferences|favesiklodamaceem]] va rinafe e-mail mane vay plekul ise tuenal !',
 'nosuchsectiontitle'        => 'Me man gabot',
@@ -1051,7 +1048,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filedelete'                  => 'Sulara va $1',
 'filedelete-legend'           => 'Sulara va iyeltak',
 'filedelete-intro'            => "Rin va '''[[Media:$1|$1]]''' sulal.",
-'filedelete-intro-old'        => '<span class="plainlinks">Rin va siatos ke \'\'\'[[Media:$1|$1]]\'\'\' wetce [$4 $3, $2] sulal.</span>',
+'filedelete-intro-old'        => "Rin va siatos ke '''[[Media:$1|$1]]''' wetce [$4 $3, $2] sulal.",
 'filedelete-comment'          => 'Sebuks :',
 'filedelete-submit'           => 'Sulara',
 'filedelete-success'          => "'''$1''' al zo sular.",
@@ -1586,8 +1583,6 @@ Il peut s'agir d'un changement radical et inattendu pour un article souvent cons
 
 Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le désirez.",
 'movearticle'             => 'Tolyoltara va teliz',
-'movenologin'             => 'Dogluyariskaf',
-'movenologintext'         => 'Ede rin va teliz co-djutolyoltal, wetce koverteyen favesik gotil [[Special:Userlogin|dogluyarakiraf]].',
 'movenotallowed'          => 'Rin me zo rictal da ko {{SITENAME}} va bu rotarrundal.',
 'newtitle'                => 'Warzaf vergumvelt',
 'move-watch'              => 'Busuzdara',
@@ -1820,7 +1815,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Warzaf ewaviyeltak yo',
 'imagelisttext'         => "Tir vexala dem '''$1''' {{PLURAL:$1|iyeltak|iyeltak}} $2 pulana.",
-'newimages-summary'     => 'Batu aptafu bu va ironokaf kalvajayan iyeltakeem nedir',
+'newimages-summary'     => 'Batu aptafu bu va ironokaf kalvajayan iyeltakeem nedir.',
 'showhidebots'          => '($1 stiernik)',
 'noimages'              => 'Mecoba rowina',
 'ilsubmit'              => 'Aneyara',

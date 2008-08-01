@@ -1,5 +1,5 @@
 <?php
-/** Chinese (Simplified) (‪中文 (简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -183,12 +183,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => '$1个分类',
+'pagecategories'                 => '个分类',
 'category_header'                => '"$1"分类中的页面',
 'subcategories'                  => '亚类',
 'category-media-header'          => '"$1"分类中的媒体',
 'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
-'hidden-categories'              => '$1个隐藏分类',
+'hidden-categories'              => '个隐藏分类',
 'hidden-category-category'       => '隐藏分类', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|这个分类中只有以下的亚类。|这个分类中有以下的$1个亚类，共有$2个附分类。}}',
 'category-subcat-count-limited'  => '这个分类中有$1个亚类。',
@@ -598,10 +598,6 @@ $2',
 'blockededitsource'                => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'               => '登录后才可编辑',
 'whitelistedittext'                => '您必须先$1才可编辑页面。',
-'whitelistreadtitle'               => '登录后才可阅读',
-'whitelistreadtext'                => '您必须先[[Special:Userlogin|登录]]才可阅读页面。',
-'whitelistacctitle'                => '您被禁止建立账户',
-'whitelistacctext'                 => '在{{SITENAME}}中建立账户您必须先[[Special:Userlogin|登录]]并拥有相关权限。',
 'confirmedittitle'                 => '邮件确认后才可编辑',
 'confirmedittext'                  => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
 'nosuchsectiontitle'               => '没有这个段落',
@@ -1219,22 +1215,22 @@ $2',
 # File reversion
 'filerevert'                => '恢复$1',
 'filerevert-legend'         => '恢复文件',
-'filerevert-intro'          => '<span class="plainlinks">您现正在恢复\'\'\'[[Media:$1|$1]]\'\'\'到[$4 于$2 $3的版本]。</span>',
+'filerevert-intro'          => "您现正在恢复'''[[Media:$1|$1]]'''到[$4 于$2 $3的版本]。",
 'filerevert-comment'        => '注解:',
 'filerevert-defaultcomment' => '已经恢复到于$1 $2的版本',
 'filerevert-submit'         => '恢复',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'已经恢复到[$4 于$2 $3的版本]。</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''已经恢复到[$4 于$2 $3的版本]。",
 'filerevert-badversion'     => '这个文件所提供的时间截记并无先前的本地版本。',
 
 # File deletion
 'filedelete'                  => '删除$1',
 'filedelete-legend'           => '删除文件',
 'filedelete-intro'            => "您现正删除'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => '<span class="plainlinks">你现正删除\'\'\'[[Media:$1|$1]]\'\'\'于[$4 $2 $3]的版本。</span>',
+'filedelete-intro-old'        => "你现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。",
 'filedelete-comment'          => '删除理由:',
 'filedelete-submit'           => '删除',
 'filedelete-success'          => "'''$1'''已经删除。",
-'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'于 $2 $3 的版本已经删除。</span>',
+'filedelete-success-old'      => "'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。",
 'filedelete-nofile'           => "'''$1'''在{{SITENAME}}中不存在。",
 'filedelete-nofile-old'       => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
 'filedelete-iscurrent'        => '您现正尝试删除这个文件的最近版本。请先将个该文件回退成较旧的版本。',
@@ -1299,16 +1295,18 @@ Template:消歧義
 Template:消除歧義',
 'disambiguations-text' => '以下的页面都有到<b>消含糊页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消含糊页如果它是链自[[MediaWiki:Disambiguationspage]]。',
 
-'doubleredirects'     => '双重重定向页面',
-'doubleredirectstext' => '这一页列出所有重定向页面重定向到另一个重定向页的页面。每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
+'doubleredirects'            => '双重重定向页面',
+'doubleredirectstext'        => '这一页列出所有重定向页面重定向到另一个重定向页的页面。每一行都包含到第一和第二个重定向页面的链接，以及第二个重定向页面的目标，通常显示的都会是"真正"的目标页面，也就是第一个重定向页面应该指向的页面。',
+'double-redirect-fixed-move' => '[[$1]]已经完成移动，它现在重定向到[[$2]]',
+'double-redirect-fixer'      => '重定向修正器',
 
 'brokenredirects'        => '损坏的重定向页',
-'brokenredirectstext'    => '以下的重定向页面指向的是不存在的页面:',
+'brokenredirectstext'    => '以下的重定向页面指向的是不存在的页面。',
 'brokenredirects-edit'   => '(编辑)',
 'brokenredirects-delete' => '(删除)',
 
 'withoutinterwiki'         => '未有语言链接的页面',
-'withoutinterwiki-summary' => '以下的页面是未有语言链接到其它语言版本:',
+'withoutinterwiki-summary' => '以下的页面是未有语言链接到其它语言版本。',
 'withoutinterwiki-legend'  => '前缀',
 'withoutinterwiki-submit'  => '显示',
 
@@ -1827,9 +1825,6 @@ $1',
 
 在这些情况下，您在必要时必须手工移动或合并页面。",
 'movearticle'             => '移动页面:',
-'movenologin'             => '未登录',
-'movenologintext'         => '您必须是一名登记用户并且[[Special:Userlogin|登录]]
-后才可移动一个页面。',
 'movenotallowed'          => '您在{{SITENAME}}中度并没有权限去移动页面。',
 'newtitle'                => '新标题:',
 'move-watch'              => '监视此页',
@@ -1865,6 +1860,7 @@ $1',
 'imagenocrossnamespace'   => '不可以移动文件到非文件名字空间',
 'imagetypemismatch'       => '该新副档名不匹配它的类型',
 'imageinvalidfilename'    => '目标文件名称是无效的',
+'fix-double-redirects'    => '更新指到原先标题的任何重定向',
 
 # Export
 'export'            => '导出页面',
@@ -2077,9 +2073,10 @@ $1',
 'markedaspatrollederror-noautopatrol' => '您无法将你自己所作的更改标记为已检查。',
 
 # Patrol log
-'patrol-log-page' => '巡查日志',
-'patrol-log-line' => '$2的版本$1已被标记为已检查的$3',
-'patrol-log-auto' => '(自动)',
+'patrol-log-page'   => '巡查日志',
+'patrol-log-header' => '这个是已经巡查过的日志。',
+'patrol-log-line'   => '$2的版本$1已被标记为已检查的$3',
+'patrol-log-auto'   => '(自动)',
 
 # Image deletion
 'deletedrevision'                 => '已删除旧版本$1',
@@ -2111,7 +2108,7 @@ $1',
 # Special:Newimages
 'newimages'             => '新建图像画廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''个文件列表。",
-'newimages-summary'     => '这个特殊页面中显示最后已上传的文件',
+'newimages-summary'     => '这个特殊页面中显示最后已上传的文件。',
 'showhidebots'          => '($1机器人)',
 'noimages'              => '无可查看图像。',
 'ilsubmit'              => '搜索',
@@ -2469,7 +2466,8 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => '警告: 此页在您开始编辑之后已经被删除！',
-'confirmrecreate'     => '在您编辑这个页面后，用户[[User:$1|$1]]([[User talk:$1|对话]])以下列原因删除了这个页面: $2。请在重新创建页面前三思。',
+'confirmrecreate'     => '在您编辑这个页面后，用户[[User:$1|$1]]([[User talk:$1|对话]])以下列原因删除了这个页面: $2。
+请确认在您重新创建页面前三思。',
 'recreate'            => '重建',
 
 # HTML dump

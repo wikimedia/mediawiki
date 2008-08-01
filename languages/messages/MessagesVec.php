@@ -9,8 +9,8 @@
  * @author BrokenArrow
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Omnipaedista
  * @author Jon Harald Søby
+ * @author Omnipaedista
  */
 
 $fallback = 'it';
@@ -561,10 +561,6 @@ Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de c
 'blockededitsource'                => "El testo de le '''to modifiche''' a '''$1''' el xe mostrà qua soto:",
 'whitelistedittitle'               => 'Bisogna èssar registrà par poder modificar la pàxena.',
 'whitelistedittext'                => 'Par modificar łe pàxene ghe xè bisogno de $1.',
-'whitelistreadtitle'               => 'Bisogna èssar registrà par lèxar ła pàxena',
-'whitelistreadtext'                => 'Xe necessario effettuar el [[Special:Userlogin|login]] par lexere i articoli.',
-'whitelistacctitle'                => 'No te ghè el permesso de creare un account',
-'whitelistacctext'                 => 'To be allowed to create accounts in this Wiki you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
 'confirmedittitle'                 => 'Ghe vole ła conferma e-mail par scrivare',
 'confirmedittext'                  => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'Sta sezion no la esiste',
@@ -1180,18 +1176,18 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 # File reversion
 'filerevert'                => 'Ripristina $1',
 'filerevert-legend'         => 'Ripristina file',
-'filerevert-intro'          => '<span class="plainlinks">Te stè par ripristinar el file \'\'\'[[Media:$1|$1]]\'\'\' a la [versione $4 del $2, $3].</span>',
+'filerevert-intro'          => "Te stè par ripristinar el file '''[[Media:$1|$1]]''' a la [versione $4 del $2, $3].",
 'filerevert-comment'        => 'Comento:',
 'filerevert-defaultcomment' => 'Xe stà ripristinà la version del $1, $2',
 'filerevert-submit'         => 'Ripristina',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'El file [[Media:$1|$1]]\'\'\' el xe stà ripristinà a la [$4 version del $2, $3].</span>',
+'filerevert-success'        => "'''El file [[Media:$1|$1]]''' el xe stà ripristinà a la [$4 version del $2, $3].",
 'filerevert-badversion'     => 'No esiste mìa version locali precedenti del file col timestamp richiesto.',
 
 # File deletion
 'filedelete'                  => 'Scancela $1',
 'filedelete-legend'           => 'Scancela el file',
 'filedelete-intro'            => "Te stè par scancelar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Te sì drio scancelar la version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Te sì drio scancelar la version de '''[[Media:$1|$1]]''' del [$4 $3, $2].",
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Scancela',
 'filedelete-success'          => "El file '''$1''' el xe stà scancelà.",
@@ -1252,8 +1248,10 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' pro
 'disambiguations-text' => "Le pagine ne la lista che segue le contien dei colegamenti a '''pagine de disanbiguazion''' e no a l'argomento a cui le dovarìà far riferimento.<br />
 Vien considerà pagine de disanbiguazion tute quele che contien i template elencà in [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redirect dopi',
-'doubleredirectstext' => '<b>Ocio:</b> Stà lista la pode talvolta contegnere dei risultati mìa giusti. Podaria magari sucédar parché ghe fusse del testo agiuntivo o dei colegamenti dopo el tag #REDIRECT.<br /> Ogni riga la contegne i colegamenti al primo ed al secondo redirect, oltre a la prima riga de testo del secondo redirect che de solito contegne el "reale" articolo de destinassion, quelo al quale anca el primo redirect dovaria puntar.',
+'doubleredirects'            => 'Redirect dopi',
+'doubleredirectstext'        => '<b>Ocio:</b> Stà lista la pode talvolta contegnere dei risultati mìa giusti. Podaria magari sucédar parché ghe fusse del testo agiuntivo o dei colegamenti dopo el tag #REDIRECT.<br /> Ogni riga la contegne i colegamenti al primo ed al secondo redirect, oltre a la prima riga de testo del secondo redirect che de solito contegne el "reale" articolo de destinassion, quelo al quale anca el primo redirect dovaria puntar.',
+'double-redirect-fixed-move' => '[[$1]] xe stà spostà, desso el xe solo un rimando a [[$2]]',
+'double-redirect-fixer'      => 'Coretòr de redirect',
 
 'brokenredirects'        => 'Redirect mìa giusti',
 'brokenredirectstext'    => 'I seguenti redirect i punta a articoli gnancora creai.',
@@ -1761,8 +1759,6 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 * In corispondenza del novo titoło ghe xe xà na pàxena de discussion (mìa voda)
 * La caseła chi soto la xè stà desełezionà.",
 'movearticle'             => 'Rinomina voçe',
-'movenologin'             => 'No te ghè efetuà el login',
-'movenologintext'         => 'Te ghè da èssar un utente registrà ed aver efetuà el [[Special:Userlogin|login]] par poder spostar na pàxena.',
 'movenotallowed'          => 'No te ghè i parmessi necessari al spostamento de le pagine su {{SITENAME}}.',
 'newtitle'                => 'Al novo titoło de:',
 'move-watch'              => "Tien d'ocio",
@@ -1797,6 +1793,7 @@ La voçe specificà come destinassion "[[$1]]" l\'esiste xà. Vóto scancełarla
 'imagenocrossnamespace'   => 'No se pol spostar na imagine verso un namespace diverso da quelo de le imagini',
 'imagetypemismatch'       => "L'estension nova del file no la corisponde mìa al tipo de file",
 'imageinvalidfilename'    => "El nome file de destinassion no'l xe mia valido",
+'fix-double-redirects'    => 'Agiorna tuti quanti i redirect che ponta al titolo originàl',
 
 # Export
 'export'            => 'Esporta pàxene',
@@ -2015,7 +2012,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Imagini nove',
 'imagelisttext'         => "Qua ghe xe na lista de '''$1''' {{PLURAL:$1|file|files}} ordinà par $2.",
-'newimages-summary'     => 'Sta pagina speciale la mostra i file cargà piassè reçentemente',
+'newimages-summary'     => 'Sta pagina speciale la mostra i file cargà piassè reçentemente.',
 'showhidebots'          => '($1 i bot)',
 'noimages'              => 'No ghè gnente da vardare.',
 'ilsubmit'              => 'Serca',

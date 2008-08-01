@@ -12,8 +12,8 @@
  * @author Siebrand
  * @author Murjarik
  * @author Tlustulimu
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Dunak
  * @author Tlustulimu Nepl1
  */
@@ -659,10 +659,6 @@ ID twójogo blokěrowanja jo $5. Pšosym pódaj ju w swójich pšašanjach.",
 'blockededitsource'                => "Žrědłowy tekst '''Twójich pśinoskow''' do '''$1''' jo:",
 'whitelistedittitle'               => 'Za wobźěłanje dejš se pśizjawiś',
 'whitelistedittext'                => 'Musyš se $1, aby mógał boki wobźěłowaś.',
-'whitelistreadtitle'               => 'Za cytanje dejš se pśizjawiś',
-'whitelistreadtext'                => 'Za cytanje bokow dejš se [[Special:Userlogin|how pśizjawiś]].',
-'whitelistacctitle'                => 'Njamaš pšawo, wužywarske konto załožyś.',
-'whitelistacctext'                 => 'Aby mógał pód {{SITENAME}} wužywarske konta załožyś, musyš [[Special:Userlogin|how se pśizjawiś]] a wótpowědujuce pšawa měś.',
 'confirmedittitle'                 => 'Za wobźěłanje jo wobkšuśenje e-mailki notne.',
 'confirmedittext'                  => 'Nježli až móžoš źěłaš, musyš swóju e-mailowu adresu wobkšuśiś. Pšosym dodaj a wobkšuś swóju e-mailowu adresu w [[Special:Preferences|nastajenjach]].',
 'nosuchsectiontitle'               => 'Wótrězk njeeksistěrujo.',
@@ -1285,18 +1281,18 @@ PICT # misc.
 # File reversion
 'filerevert'                => 'Slědk wześ $1',
 'filerevert-legend'         => 'Dataju nawrośiś',
-'filerevert-intro'          => '<span class="plainlinks">Nawrośijoš dataju \'\'\'[[Media:$1|$1]]\'\'\' na [$4 wersiju wót $2, $3 góź.].</span>',
+'filerevert-intro'          => "Nawrośijoš dataju '''[[Media:$1|$1]]''' na [$4 wersiju wót $2, $3 góź.].",
 'filerevert-comment'        => 'Komentar:',
 'filerevert-defaultcomment' => 'Nawrośona na wersiju wót $1, $2 góź.',
 'filerevert-submit'         => 'Slědk wześ',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' jo se nawrośiło na [$4 wersiju wót $2, $3 góź.].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' jo se nawrośiło na [$4 wersiju wót $2, $3 góź.].",
 'filerevert-badversion'     => 'Za pódany cas njeeksistěrujo žedna wersija dataje.',
 
 # File deletion
 'filedelete'                  => 'Wulašowaś $1',
 'filedelete-legend'           => 'Wulašowaś dataje',
 'filedelete-intro'            => "Ty wulašujoš '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Wulašujoš [$4 wersiju wót $2, $3 góź.] dataje \'\'\'„[[Media:$1|$1]]“\'\'\'.</span>',
+'filedelete-intro-old'        => "Wulašujoš [$4 wersiju wót $2, $3 góź.] dataje '''„[[Media:$1|$1]]“'''.",
 'filedelete-comment'          => 'Komentar:',
 'filedelete-submit'           => 'Wulašowaś',
 'filedelete-success'          => "'''$1''' wulašowane.",
@@ -1873,8 +1869,6 @@ pšosym zawěsć, až konsekwency rozmijoš, nježli až pókšacujoš.",
 
 W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu wjasć, jolic až to coš.",
 'movearticle'             => 'Bok pśesunuś',
-'movenologin'             => 'Njepśizjawjony(a)',
-'movenologintext'         => 'Aby mógał bok pśesunuś, dejš byś [[Special:Userlogin|pśizjawjony wužywaŕ]].',
 'movenotallowed'          => 'Njamaš pšawo pśesuwaś boki we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'newtitle'                => 'nowy nadpis:',
 'move-watch'              => 'Toś ten bok wobglědowaś',

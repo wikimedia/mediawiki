@@ -1,5 +1,5 @@
 <?php
-/** Old Chinese / Late Middle Chinese (文言)
+/** Classical Chinese (文言)
  *
  * @ingroup Language
  * @file
@@ -170,12 +170,12 @@ $messages = array(
 'dec'           => '十二月',
 
 # Categories related messages
-'pagecategories'                 => '$1類',
+'pagecategories'                 => '類',
 'category_header'                => '「$1」中之頁',
 'subcategories'                  => '次類',
 'category-media-header'          => '「$1」中之媒',
 'category-empty'                 => "''無頁或媒也。''",
-'hidden-categories'              => '$1隱類',
+'hidden-categories'              => '隱類',
 'hidden-category-category'       => '隱類', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|門有戶壹。|門有戶$1，有$2戶也。}}',
 'category-subcat-count-limited'  => '門有戶$1。',
@@ -524,10 +524,6 @@ $2',
 'blockededitsource'                => "子'''$1纂文'''如下：",
 'whitelistedittitle'               => '登簿以纂',
 'whitelistedittext'                => '$1後方可纂文。',
-'whitelistreadtitle'               => '登簿以閱',
-'whitelistreadtext'                => '[[Special:Userlogin|登簿]]後方可閱。',
-'whitelistacctitle'                => '拒增此簿',
-'whitelistacctext'                 => '欲增此簿，[[Special:Userlogin|登簿]]求允',
 'confirmedittitle'                 => '證驛以纂',
 'confirmedittext'                  => '驛證方可纂文。惠見[[Special:Preferences|簿註]]。',
 'loginreqtitle'                    => '須登簿',
@@ -1057,22 +1053,22 @@ $2',
 # File reversion
 'filerevert'                => '還$1',
 'filerevert-legend'         => '還檔',
-'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'欲還回$2$3之版$4。</span>',
+'filerevert-intro'          => "'''[[Media:$1|$1]]'''欲還回$2$3之版$4。",
 'filerevert-comment'        => '註：',
 'filerevert-defaultcomment' => '還$1$2之版矣',
 'filerevert-submit'         => '還',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'，$2$3之版$4還矣。</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''，$2$3之版$4還矣。",
 'filerevert-badversion'     => '該日無版也。',
 
 # File deletion
 'filedelete'                  => '刪$1',
 'filedelete-legend'           => '刪檔',
 'filedelete-intro'            => "欲刪'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => '<span class="plainlinks">欲刪\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版$4。</span>',
+'filedelete-intro-old'        => "欲刪'''[[Media:$1|$1]]'''$2$3之版$4。",
 'filedelete-comment'          => '刪因：',
 'filedelete-submit'           => '刪',
 'filedelete-success'          => "'''$1'''刪矣。",
-'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'$2$3之版刪矣。</span>',
+'filedelete-success-old'      => "'''[[Media:$1|$1]]'''$2$3之版刪矣。",
 'filedelete-nofile'           => "{{SITENAME}}無'''$1'''也。",
 'filedelete-nofile-old'       => "無合'''$1'''藏也。",
 'filedelete-iscurrent'        => '刪版乃新，先還舊焉。',
@@ -1121,16 +1117,18 @@ $2',
 'disambiguations'      => '釋義',
 'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',
 
-'doubleredirects'     => '窮渡',
-'doubleredirectstext' => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。',
+'doubleredirects'            => '窮渡',
+'doubleredirectstext'        => '頁下窮渡，迭列以示。首尾宿合，宜正渡之。',
+'double-redirect-fixed-move' => '[[$1]]遷畢，現渡至[[$2]]',
+'double-redirect-fixer'      => '修渡',
 
 'brokenredirects'        => '斷渡',
-'brokenredirectstext'    => '頁下斷渡：',
+'brokenredirectstext'    => '頁下斷渡。',
 'brokenredirects-edit'   => '(替)',
 'brokenredirects-delete' => '(刪)',
 
 'withoutinterwiki'         => '孤語',
-'withoutinterwiki-summary' => '頁下無鏈他語：',
+'withoutinterwiki-summary' => '頁下無鏈他語。',
 'withoutinterwiki-legend'  => '首',
 'withoutinterwiki-submit'  => '示',
 
@@ -1587,8 +1585,6 @@ $NEWPAGE
 <b>警示</b>
 膾炙遷焉，禍生不測；戒慎行之。",
 'movearticle'             => '遷文：',
-'movenologin'             => '未登簿',
-'movenologintext'         => '遷文須[[Special:Userlogin|登簿]]。',
 'movenotallowed'          => '無准遷文也。',
 'newtitle'                => '至新題：',
 'move-watch'              => '派哨',
@@ -1623,6 +1619,7 @@ $NEWPAGE
 'imagenocrossnamespace'   => '非勳檔至非檔名間',
 'imagetypemismatch'       => '其新副檔名非配其類也',
 'imageinvalidfilename'    => '標之檔名乃無效也',
+'fix-double-redirects'    => '更指原題之任渡',
 
 # Export
 'export'            => '出匯',
@@ -1820,9 +1817,10 @@ $NEWPAGE
 'markedaspatrollederror-noautopatrol' => '己易不可哨。',
 
 # Patrol log
-'patrol-log-page' => '誌哨',
-'patrol-log-line' => '令哨$2之$1$3',
-'patrol-log-auto' => '（自行）',
+'patrol-log-page'   => '誌哨',
+'patrol-log-header' => '此乃誌哨也。',
+'patrol-log-line'   => '令哨$2之$1$3',
+'patrol-log-auto'   => '（自行）',
 
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',
@@ -1850,7 +1848,7 @@ $NEWPAGE
 # Special:Newimages
 'newimages'             => '新圖之廊',
 'imagelisttext'         => "下表乃按$2排之的'''$1'''檔。",
-'newimages-summary'     => '此奇頁示最後呈上之檔也',
+'newimages-summary'     => '此奇頁示最後呈上之檔也。',
 'showhidebots'          => '（$1僕）',
 'noimages'              => '無可見。',
 'ilsubmit'              => '尋檔',
@@ -1929,7 +1927,7 @@ $1
 'deletedwhileediting' => '警：纂中見刪。',
 'confirmrecreate'     => "[[User:$1|$1]]（[[User talk:$1|議]]）刪之有由：
 ''$2''
-請審視之。",
+請爾審視之。",
 'recreate'            => '復',
 
 # HTML dump

@@ -481,10 +481,6 @@ Ti agdama nga IP addressmo ket $3, ket ti block ID ket #$5. Pangngaasim ta irama
 'blockededitsource'                => "Makita iti baba '''dagiti panangbalbaliwmo''' iti '''$1''':",
 'whitelistedittitle'               => 'Masapul a nakastrekka tapno makaeditka',
 'whitelistedittext'                => 'Nasken a $1 ka tapno makaeditka iti pampanid.',
-'whitelistreadtitle'               => 'Masapul a nakastrekka tapno makabasaka',
-'whitelistreadtext'                => 'Masapul a [[Special:Userlogin|sumrekka]] tapno makabasaka iti pampanid.',
-'whitelistacctitle'                => 'Saanka a mapalubosan a mangaramid iti account',
-'whitelistacctext'                 => 'Tapno mapalubosanka a mangaramid iti accounts iti {{SITENAME}} masapul a [[Special:Userlogin|sumrekka]] ken maaddaan kadagiti mainugot a pammalubos.',
 'confirmedittitle'                 => 'Masapul ti pammasingked ti email tapno makaedit',
 'nosuchsectiontitle'               => 'Awan ti kasta a benneg',
 'nosuchsectiontext'                => 'Pinadasmo nga editen ti maysa a benneg nga awan pay.
@@ -1347,8 +1343,6 @@ pangngaasim ta pasingkedam a maawatam ti ibunga dayoty sakbay nga agtuloyka a ma
 
 Kadagitoy a kaso, masapul nga iyakar wenno itiponmo a manual ti panid no kayatmo.",
 'movearticle'             => 'Iyakar ti panid',
-'movenologin'             => 'Saan a nakastrek',
-'movenologintext'         => 'Nasken a nakarehistroka nga agar-aramat ken [[Special:Userlogin|nakastrek]] tapno makaiyakarka iti panid.',
 'movenotallowed'          => 'Awanka iti pammalubos nga agiyakar iti pampanid iti {{SITENAME}}.',
 'newtitle'                => 'Iti baro a titulo:',
 'move-watch'              => 'Bantayan daytoy a panid',

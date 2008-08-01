@@ -5,11 +5,10 @@
  * @file
  *
  * @author Helix84
- * @author Andre Engels
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Michawiki
- * @author Jon Harald Søby
  * @author Sp5uhe
  * @author Valasek
  * @author Palica
@@ -689,10 +688,6 @@ ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach
 'blockededitsource'                => "Text '''vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
 'whitelistedittitle'               => 'Aby ste mohli upravovať stránky, musíte sa prihlásiť',
 'whitelistedittext'                => 'Aby ste mohli upravovať stránky, musíte sa $1',
-'whitelistreadtitle'               => 'Aby ste mohli čítať stránky, musíte sa prihlásiť',
-'whitelistreadtext'                => 'Aby ste mohli čítať stránky, musíte sa [[Special:Userlogin|prihlásiť]].',
-'whitelistacctitle'                => 'Nemáte dovolené vytvoriť si účet',
-'whitelistacctext'                 => 'Ak chcete na {{GRAMMAR:lokál|{{SITENAME}}}} vytvárať účty, musíte sa [[Special:Userlogin|prihlásiť]] a mať príslušné oprávnenia.',
 'confirmedittitle'                 => 'Aby ste mohli upravovať je potrebné potvrdenie e-mailu',
 'confirmedittext'                  => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
 'nosuchsectiontitle'               => 'Sekcia neexistuje',
@@ -1336,18 +1331,18 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 # File reversion
 'filerevert'                => 'Obnoviť $1',
 'filerevert-legend'         => 'Obnoviť súbor',
-'filerevert-intro'          => '<span class="plainlinks">Obnovujete \'\'\'[[Media:$1|$1]]\'\'\' na [$4 verziu z $2, $3].</span>',
+'filerevert-intro'          => "Obnovujete '''[[Media:$1|$1]]''' na [$4 verziu z $2, $3].",
 'filerevert-comment'        => 'komentár:',
 'filerevert-defaultcomment' => 'Obnovená verzia z $1, $2',
 'filerevert-submit'         => 'Obnoviť',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' bol obnovený na [$4 verziu z $2, $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' bol obnovený na [$4 verziu z $2, $3].",
 'filerevert-badversion'     => 'Neexistuje predchádzajúca lokálna verzia tohto súboru s požadovanopu časovou známkou.',
 
 # File deletion
 'filedelete'                  => 'Zmazať $1',
 'filedelete-legend'           => 'Zmazať súbor',
 'filedelete-intro'            => "Mažete '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Mažete verziu súboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Mažete verziu súboru '''[[Media:$1|$1]]''' z [$4 $3, $2].",
 'filedelete-comment'          => 'Komentár:',
 'filedelete-submit'           => 'Zmazať',
 'filedelete-success'          => "'''$1''' bol zmazaný.",
@@ -1410,8 +1405,10 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 Mali by však odkazovať priamo na príslušnú tému.<br />
 Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Dvojité presmerovania',
-'doubleredirectstext' => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.',
+'doubleredirects'            => 'Dvojité presmerovania',
+'doubleredirectstext'        => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.',
+'double-redirect-fixed-move' => 'Stránka [[$1]] bola presunutá, teraz je presmerovaním na [[$2]]',
+'double-redirect-fixer'      => 'Korektor presmerovaní',
 
 'brokenredirects'        => 'Pokazené presmerovania',
 'brokenredirectstext'    => 'Tieto presmerovania odkazujú na neexistujúcu stránku.',
@@ -1949,8 +1946,6 @@ ubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojh
 
 V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť stránku ručne.",
 'movearticle'             => 'Presunúť stránku',
-'movenologin'             => 'Nie ste prihlásený',
-'movenologintext'         => 'Musíte byť registrovaný používateľ a [[Special:Userlogin|prihlásený]], aby ste mohli presunúť stránku.',
 'movenotallowed'          => 'Na {{GRAMMAR:lokál|{{SITENAME}}}} nemáte povolenie presúvať stránky.',
 'newtitle'                => 'Na nový názov:',
 'move-watch'              => 'Sledovať túto stránku',
@@ -1990,6 +1985,7 @@ Cieľová stránka „[[$1]]“ už existuje. Chcete ho vymazať a vytvoriť tak
 'imagenocrossnamespace'   => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
 'imagetypemismatch'       => 'Nová prípona súboru nezodpovedá jeho typu',
 'imageinvalidfilename'    => 'Cieľový názov obrázka nie je platný',
+'fix-double-redirects'    => 'Aktualizovať všetky presmerovania odkazujúce na pôvodný názov',
 
 # Export
 'export'            => 'Export stránok',
@@ -2222,7 +2218,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galéria nových obrázkov',
 'imagelisttext'         => "Tu je zoznam {{PLURAL:$1|jedného súboru|'''$1''' súborov|'''$1''' súborov}} zoradený $2.",
-'newimages-summary'     => 'Táto špeciálna stránka zobrazuje posledné nahrané súbory',
+'newimages-summary'     => 'Táto špeciálna stránka zobrazuje posledné nahrané súbory.',
 'showhidebots'          => '($1 botov)',
 'noimages'              => 'Niet čo zobraziť.',
 'ilsubmit'              => 'Hľadať',
@@ -2622,8 +2618,8 @@ Skúste obyčajný náhľad.',
 Skúste obyčajný náhľad.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Zmeny novšie ako $1 sekúnd sa nemôžu v tomto zozname zobraziť.',
-'lag-warn-high'   => 'Z dôvodu dlhej odozvy databázového servera sa zmeny novšie ako $1 sekúnd nemôžu v tomto zozname zobraziť.',
+'lag-warn-normal' => 'Zmeny novšie ako $1 {{PLURAL:$1|sekunda|sekundy|sekúnd}} nemožno v tomto zozname zobraziť.',
+'lag-warn-high'   => 'Z dôvodu dlhej odozvy databázového servera zmeny novšie ako $1 {{PLURAL:$1|sekunda|sekundy|sekúnd}} nemožno v tomto zozname zobraziť.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Váš zoznam sledovaných stránok obsahuje {{PLURAL:$1|jednu stránku|$1 stránky|$1 stránok}} nepočítajúc diskusné stránky.',

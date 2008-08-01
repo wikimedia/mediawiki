@@ -7,6 +7,7 @@
  * @author Meursault2004
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author Helix84
  */
 
@@ -529,10 +530,6 @@ ID pamblokiran panjenengan iku $5. Tulung sertakna ID iki saben ngajokaké pitak
 'blockededitsource'         => "Tèks '''suntingan panjenengan''' tumrap ing '''$1''' dituduhaké ing ngisor iki:",
 'whitelistedittitle'        => 'Prelu log mlebu kanggo nyunting',
 'whitelistedittext'         => 'Panjenengan kudu $1 supaya bisa nyunting artikel.',
-'whitelistreadtitle'        => 'Prelu log mlebu kanggo maca',
-'whitelistreadtext'         => 'Panjenengan kudu [[Special:Userlogin|log mlebu]] supaya bisa maca artikel.',
-'whitelistacctitle'         => 'Panjenengan ora pareng nggawé akun',
-'whitelistacctext'          => 'Supaya bisa mlebu dadi anggota wiki iki, panjenengan kudu [[Special:Userlogin|log mlebu]] lan kagungan idin sing cocog.',
 'confirmedittitle'          => 'Konfirmasi layang e-mail diprelokaké supaya panjenengan pareng nglakoni panyuntingan',
 'confirmedittext'           => 'Panjenengan kudu ndhedhes alamat e-mail dhisik sadurungé pareng nyunting sawijining kaca. Mangga nglebokaké lan validasi alamat e-mail panjenengan sadurungé nglakoni panyuntingan. Alamat e-mail sawisé bisa diowahi liwat [[Special:Preferences|kaca préférènsi]]',
 'nosuchsectiontitle'        => 'Subbagian iku ora bisa ditemokaké',
@@ -1119,18 +1116,18 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 # File reversion
 'filerevert'                => 'Balèkna $1',
 'filerevert-legend'         => 'Balèkna berkas',
-'filerevert-intro'          => '<span class="plainlinks">Panjenengan mbalèkaké \'\'\'[[Media:$1|$1]]\'\'\' menyang [vèrsi $4 ing $3, $2].</span>',
+'filerevert-intro'          => "Panjenengan mbalèkaké '''[[Media:$1|$1]]''' menyang [vèrsi $4 ing $3, $2].",
 'filerevert-comment'        => 'Komentar:',
 'filerevert-defaultcomment' => 'Dibalèkaké menyang vèrsi ing $2, $1',
 'filerevert-submit'         => 'Balèkna',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wis dibalèkaké menyang [vèrsi $4 ing $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' wis dibalèkaké menyang [vèrsi $4 ing $3, $2].",
 'filerevert-badversion'     => 'Ora ana vèrsi lokal sadurungé saka berkas iki mawa stèmpel wektu sing dikarepaké.',
 
 # File deletion
 'filedelete'                  => 'Mbusak $1',
 'filedelete-legend'           => 'Mbusak berkas',
 'filedelete-intro'            => "Panjenengan mbusak '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Panjenengan mbusak vèrsi \'\'\'[[Media:$1|$1]]\'\'\' per [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Panjenengan mbusak vèrsi '''[[Media:$1|$1]]''' per [$4 $3, $2].",
 'filedelete-comment'          => 'Alesan mbusak:',
 'filedelete-submit'           => 'Busak',
 'filedelete-success'          => "'''$1''' wis dibusak.",
@@ -1705,8 +1702,6 @@ Gatèkna yèn kaca iki '''ora''' bakal dipindhah yèn wis ana kaca liyané sing 
 
 Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa nggabung kaca iku sacara manual.",
 'movearticle'             => 'Pindhah kaca',
-'movenologin'             => 'Durung mlebu log',
-'movenologintext'         => 'Panjenengan kudu dadi panganggo sing wis ndaftar lan wis [[Special:Userlogin|mlebu log]] kanggo mindhah kaca.',
 'movenotallowed'          => 'Panjenengan ora pareng ngalihaké kaca ing {{SITENAME}}.',
 'newtitle'                => 'Menyang irah-irahan utawa judhul anyar:',
 'move-watch'              => 'Awasna kaca iki',
@@ -1955,7 +1950,7 @@ Mbok-menawa iki disebabaké anané pranala jaba tartamtu.',
 # Special:Newimages
 'newimages'             => 'Galeri berkas anyar',
 'imagelisttext'         => "Ing ngisor iki kapacak daftar '''$1''' {{PLURAL:$1|berkas|berkas}} sing diurutaké $2.",
-'newimages-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké daftar berkas anyar dhéwé sing diunggahaké',
+'newimages-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké daftar berkas anyar dhéwé sing diunggahaké.',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Ora ana sing dideleng.',
 'ilsubmit'              => 'Golek',

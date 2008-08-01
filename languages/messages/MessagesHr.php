@@ -14,6 +14,7 @@
  * @author Treecko
  * @author לערי ריינהארט
  * @author Suradnik13
+ * @author Jon Harald Søby
  * @author Demicx
  */
 
@@ -583,10 +584,6 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'blockededitsource'                => "Tekst '''vaše izmjene''' na članku '''$1''' prikazan je ispod:",
 'whitelistedittitle'               => 'Za uređivanje stranice morate se prijaviti',
 'whitelistedittext'                => 'Za uređivanje stranice morate se $1.',
-'whitelistreadtitle'               => 'Za čitanje stranice morate se prijaviti',
-'whitelistreadtext'                => 'Za čitanje stranice morate se [[Special:Userlogin|prijaviti]].',
-'whitelistacctitle'                => 'Ne možete otvoriti suradnički račun',
-'whitelistacctext'                 => 'Da biste otvarali suradničke račune na ovom wikiju morate se [[Special:Userlogin|prijaviti]] i posjedovati odgovarajuća ovlaštenja.',
 'confirmedittitle'                 => 'Ovjera e-mail adrese nužna za uređivanje',
 'confirmedittext'                  => 'Morate ovjeriti vašu e-mail adresu prije nego što vam bude omogućeno uređivanje. Molim unesite i ovjerite vašu e-mail adresu u [[Special:Preferences|suradničkim postavkama]].',
 'nosuchsectiontitle'               => 'Odlomak ne postoji',
@@ -1205,18 +1202,18 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 # File reversion
 'filerevert'                => 'Ukloni ← $1',
 'filerevert-legend'         => 'Vrati datoteku',
-'filerevert-intro'          => '<span class="plainlinks">Vraćate \'\'\'[[Media:$1|$1]]\'\'\' na [$4 promjenu od $3, $2].</span>',
+'filerevert-intro'          => "Vraćate '''[[Media:$1|$1]]''' na [$4 promjenu od $3, $2].",
 'filerevert-comment'        => 'Komentar:',
 'filerevert-defaultcomment' => 'Vraćeno na inačicu od $2, $1',
 'filerevert-submit'         => 'Vrati',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' je vraćena na [$4 promjenu od $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' je vraćena na [$4 promjenu od $3, $2].",
 'filerevert-badversion'     => 'Nema prethodne lokalne inačice datoteke s zadanim datumom i vremenom.',
 
 # File deletion
 'filedelete'                  => 'Izbriši $1',
 'filedelete-legend'           => 'Izbriši datoteku',
 'filedelete-intro'            => "Brišete datoteku '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Brišete inačicu \'\'\'[[Media:$1|$1]]\'\'\' od [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Brišete inačicu '''[[Media:$1|$1]]''' od [$4 $3, $2].",
 'filedelete-comment'          => 'Komentar:',
 'filedelete-submit'           => 'Izbriši',
 'filedelete-success'          => "Datoteka '''$1''' je izbrisana.",
@@ -1820,8 +1817,6 @@ Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne str
 U tim slučajevima ćete morati sami premjestiti ili iskopirati stranicu za razgovor,
 ako to želite.",
 'movearticle'             => 'Premjesti stranicu',
-'movenologin'             => 'Niste prijavljeni',
-'movenologintext'         => 'Ako želite premjestiti stranicu morate biti [[Special:Userlogin|prijavljeni]].',
 'movenotallowed'          => 'Nemate pravo premještanja stranica na ovom projektu ({{SITENAME}}).',
 'newtitle'                => 'Na novi naslov',
 'move-watch'              => 'Prati ovu stranicu',
@@ -2087,7 +2082,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerija novih datoteka',
 'imagelisttext'         => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
-'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke',
+'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke.',
 'showhidebots'          => '($1 botova)',
 'noimages'              => 'Nema slika.',
 'ilsubmit'              => 'Traži',

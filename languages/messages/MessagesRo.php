@@ -11,8 +11,8 @@
  * @author Firilacroco
  * @author לערי ריינהארט
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -590,10 +590,6 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 'blockededitsource'         => "Textul '''modificărilor tale''' la  '''$1''' este redat mai jos:",
 'whitelistedittitle'        => 'Este necesară autentificarea pentru a edita',
 'whitelistedittext'         => 'Trebuie să $1 pentru a edita articole.',
-'whitelistreadtitle'        => 'Este necesară autentificarea pentru a citi',
-'whitelistreadtext'         => 'Trebuie să te [[Special:Userlogin|autentifici]] pentru a citi articole.',
-'whitelistacctitle'         => 'Nu ai dreptul de a crea conturi',
-'whitelistacctext'          => 'Pentru a putea crea conturi pe {{SITENAME}}, trebuie să te [[Special:Userlogin|autentifici]] şi să ai permisiunile corecte.',
 'confirmedittitle'          => 'Pentru a edita e necesară confirmarea adresei de e-mail',
 'confirmedittext'           => 'Trebuie să vă confirmaţi adresa de e-mail înainte de a edita pagini. Vă rugăm să vă setaţi şi să vă validaţi adresa de e-mail cu ajutorul [[Special:Preferences|preferinţelor utilizatorului]].',
 'nosuchsectiontitle'        => 'Nu există o astfel de secţiune',
@@ -666,6 +662,9 @@ Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:Userlogin|
 
 Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aici jurnalul ştergerilor:",
 
+# Parser/template warnings
+'post-expand-template-argument-category' => 'Pagini care conţin formate cu argumente omise',
+
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificaţi diferenţa de dedesupt şi apoi salvaţi pentru a termina anularea modificării.',
 'undo-summary' => 'Anularea modificării $1 făcute de [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]])',
@@ -737,7 +736,9 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'revdel-restore'              => 'Schimbă vizibilitatea',
 'pagehist'                    => 'Istoricul paginii',
 'deletedhist'                 => 'Istoric şters',
+'revdelete-content'           => 'conţinut',
 'revdelete-uname'             => 'nume de utilizator',
+'revdelete-hid'               => 'ascuns $1',
 'revdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|versiune|versiuni}}',
 'logdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|eveniment|evenimente}}',
 
@@ -1633,8 +1634,6 @@ automat odată cu aceasta '''afară de cazul că''':
 În oricare din cazurile de mai sus va trebui să muţi sau să unifici
 manual paginile de discuţii, dacă doreşti acest lucru.",
 'movearticle'             => 'Mută pagina',
-'movenologin'             => 'Nu eşti autentificat',
-'movenologintext'         => 'Trebuie să fii un utilizator înregistrat şi să te [[Special:Userlogin|autentifici]] pentru a muta o pagină.',
 'newtitle'                => 'Titlul nou',
 'move-watch'              => 'Urmăreşte această pagină',
 'movepagebtn'             => 'Mută pagina',

@@ -7,9 +7,9 @@
  * @author Skuolfi
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author Teak
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -387,9 +387,6 @@ Du geavaheaddjidovddaldat lea dál anus.
 'blockededitsource'        => 'Du rievdadusat siidui ”$1”:',
 'whitelistedittitle'       => 'Fertet čálligoahtit sisa ovdalgo sáhtat rievdadit siiddu',
 'whitelistedittext'        => 'Don fertet $1, ovdalgo sáhtat rievdadit siidduid.',
-'whitelistreadtitle'       => 'Don fertet leat čálligoahtán sisa ovdalgo sáhtat lohkat dán siiddu.',
-'whitelistreadtext'        => 'Don fertet čálligoahtit [[Special:Userlogin|sisa]] ovdalgo sáhtat lohkat siidduid.',
-'whitelistacctitle'        => 'Dus ii leat vuoigatvuohta ráhkadit dovddaldaga',
 'confirmedittitle'         => 'E-poastačujuhusa sihkarastin',
 'confirmedittext'          => 'It sáhte rievdadit siiddu ovdalgo leat sihkarastan iežat e-poastačujuhusa. Sáhtat sihkarastit [[Special:Preferences|ásahussiidduin]].',
 'nosuchsectiontitle'       => 'Diekkár oassi ii dihtto',
@@ -689,18 +686,18 @@ $1 | $2',
 # File reversion
 'filerevert'                => 'Fiilla $1 máhcaheapmi',
 'filerevert-legend'         => 'Fiilla máhcaheapmi',
-'filerevert-intro'          => '<span class="plainlinks">Leat máhcaheami fiilla \'\'\'[[Media:$1|$1]]\'\'\' [$4 veršuvdnii, mii ráhdaduvvui $2 diibmu $3].</span>',
+'filerevert-intro'          => "Leat máhcaheami fiilla '''[[Media:$1|$1]]''' [$4 veršuvdnii, mii ráhdaduvvui $2 diibmu $3].",
 'filerevert-comment'        => 'Sivva',
 'filerevert-defaultcomment' => 'Máhcahuvvui veršuvdnii, mii ráhkaduvvui $1 diibmu $2',
 'filerevert-submit'         => 'Máhcat',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' lea máhcahvvon [$4 veršuvdnii, mii ráhkaduvvui $2 diibmu $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' lea máhcahvvon [$4 veršuvdnii, mii ráhkaduvvui $2 diibmu $3].",
 'filerevert-badversion'     => 'Fiillas ii leat ráhkaduvvon veršuvdna dalle.',
 
 # File deletion
 'filedelete'           => 'Sihko $1',
 'filedelete-legend'    => 'Sihko fiilla',
 'filedelete-intro'     => "Don leat sihkomin '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old' => '<span class="plainlinks">Don leat sihkomin veršuvdna \'\'\'[[Media:$1|$1]]\'\'\'  [$4 $3, $2].</span>',
+'filedelete-intro-old' => "Don leat sihkomin veršuvdna '''[[Media:$1|$1]]'''  [$4 $3, $2].",
 'filedelete-comment'   => 'Kommeanta:',
 'filedelete-submit'    => 'Sihko',
 'filedelete-success'   => "'''$1''' lea sihkojuvvon.",
@@ -1055,7 +1052,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 # Move page
 'move-page-legend'        => 'Sirdde siiddu',
 'movearticle'             => 'Sirdde siiddu',
-'movenologin'             => 'It leat čálligoahtán sisa',
 'newtitle'                => 'Ođđa namma siidui',
 'move-watch'              => 'Čuovo dán siiddu',
 'movepagebtn'             => 'Sirdde siiddu',

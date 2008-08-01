@@ -9,6 +9,7 @@
  * @author Sarvaturi
  * @author לערי ריינהארט
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author Niklas Laxström
  */
 
@@ -612,10 +613,6 @@ L'ID dû bloccu è $5. Pi favuri ncludilu nte tutti li dumanni.",
 'blockededitsource'                => "Di sèquitu vèninu ammustrati li '''canciamenti appurtati''' â pàggina '''$1''':",
 'whitelistedittitle'               => 'Ci voli èssiri riggistrati pi putiri canciari la pàggina.',
 'whitelistedittext'                => "Hai a $1 pi canciari l'artìculi.",
-'whitelistreadtitle'               => 'Ci voli èssiri riggistrati pi putiri lèggiri la pàggina',
-'whitelistreadtext'                => "È nicissariu effittuari lu [[Special:Userlogin|login]] pi lèggiri l'artìculi.",
-'whitelistacctitle'                => 'Nun hai lu pirmissu di criari un account',
-'whitelistacctext'                 => 'Pi putiri criari cunta n sta Wiki hai a fari [[Special:Userlogin|login]] e aviri li nicissari pirmissi.',
 'confirmedittitle'                 => 'Cunferma dâ e-mail nicissaria pi lu canciamentu dî pàggini',
 'confirmedittext'                  => "P'èssiri abbilitati a lu canciamentu dî pàggini è nicissariu cunfirmari lu propiu ndirizzu e-mail. Pi mpustari e cunfirmari lu ndirizzu sirvìrisi dî [[Special:Preferences|prifirenzi]].",
 'nosuchsectiontitle'               => 'Sta sezzioni nun esisti',
@@ -1156,18 +1153,18 @@ PICT # arcuni
 # File reversion
 'filerevert'                => 'Riprìstina $1',
 'filerevert-legend'         => 'Riprìstina file',
-'filerevert-intro'          => '<span class="plainlinks">Stai pi ripristinari lu file \'\'\'[[Media:$1|$1]]\'\'\' â [virsioni $4 dô $2, $3].</span>',
+'filerevert-intro'          => "Stai pi ripristinari lu file '''[[Media:$1|$1]]''' â [virsioni $4 dô $2, $3].",
 'filerevert-comment'        => 'Oggettu:',
 'filerevert-defaultcomment' => 'Ripristinata la virsioni dô $1, $2',
 'filerevert-submit'         => 'Riprìstina',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'Lu file [[Media:$1|$1]]\'\'\' hà statu ripristinatu â [$4 virsioni dô $2, $3].</span>',
+'filerevert-success'        => "'''Lu file [[Media:$1|$1]]''' hà statu ripristinatu â [$4 virsioni dô $2, $3].",
 'filerevert-badversion'     => 'Nun esistanu virsiona locali pricidenti dô file cû timestamp richiestu.',
 
 # File deletion
 'filedelete'                  => 'Cancella $1',
 'filedelete-legend'           => 'Cancella lu file',
 'filedelete-intro'            => "Stai pi cancillari '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Stai cancillannu la virsioni di \'\'\'[[Media:$1|$1]]\'\'\' dô [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Stai cancillannu la virsioni di '''[[Media:$1|$1]]''' dô [$4 $3, $2].",
 'filedelete-comment'          => 'Mutivu:',
 'filedelete-submit'           => 'Cancella',
 'filedelete-success'          => "Lu file '''$1''' hà statu cancillatu.",
@@ -1706,8 +1703,6 @@ aviti a èssiri sicuri di capiri li cunziquenzi prima di cuntinuari.",
 
 Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discussioni.",
 'movearticle'             => 'Sposta la pàggina',
-'movenologin'             => 'Accessu nun effittuatu',
-'movenologintext'         => "Lu spustamentu dî pàggini è cunzintitu sulu a l'utenti riggistrati c'hannu esiquitu l'[[Special:Userlogin|accessu]] a lu situ.",
 'movenotallowed'          => 'Nun hai li pirmessi nicissari a lu spustamentu dê pàggini supra {{SITENAME}}.',
 'newtitle'                => 'Cu lu tìtulu novu di',
 'move-watch'              => 'Talìa sta pàggina',

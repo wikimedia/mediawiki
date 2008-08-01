@@ -6,9 +6,9 @@
  *
  * @author Bèrto 'd Sèra
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author SabineCretella
- * @author Jon Harald Søby
  * @author SPQRobin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author Teak
@@ -539,10 +539,6 @@ Sò nùmer ëd blòch a l'é \$5. Për piasì, ës nùmer-sì ch'a lo buta sempe
 'blockededitsource'         => "Ël test ëd le '''soe modìfiche''' a '''$1''' a së s-ciàira ambelessì sota:",
 'whitelistedittitle'        => 'Sòn as peul pa fesse nen rintrand ant ël sistema',
 'whitelistedittext'         => 'A venta $1 për podej fé dle modìfiche.',
-'whitelistreadtitle'        => 'Sòn as peul pa fesse nen rintrand ant ël sistema',
-'whitelistreadtext'         => "A l'ha da [[Special:Userlogin|rintré ant ël sistema]] për podej lese dle pàgine.",
-'whitelistacctitle'         => 'Che a në scusa, ma a peul nen creésse un cont.',
-'whitelistacctext'          => "Për podej creé dij cont ant sta wiki-sì a l'ha da [[Special:Userlogin|rintré ant ël sistema]] e avej ël drit da creéje.",
 'confirmedittitle'          => "Confermé l'adrëssa postal për podej fé dle modìfiche",
 'confirmedittext'           => 'A dev confermé soa adrëssa ëd pòsta eletrònica, anans che modifiché dle pàgine. Për piasì, che a convalida soa adrëssa ën dovrand la pàgina [[Special:Preferences|mè gust]].',
 'nosuchsectiontitle'        => 'Pa gnun-a session parèj',
@@ -1085,18 +1081,18 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 # File reversion
 'filerevert'                => "Buta torna $1 tanme ch'a l'era",
 'filerevert-legend'         => "Buté torna l'archivi tanme ch'a l'era",
-'filerevert-intro'          => "<span class=\"plainlinks\">A l'é dapress a buté torna l'archivi  '''[[Media:\$1|\$1]]''' com a l'era ant la [version \$4 dël \$2, \$3].</span>",
+'filerevert-intro'          => "A l'é dapress a buté torna l'archivi  '''[[Media:$1|$1]]''' com a l'era ant la [version $4 dël $2, $3].",
 'filerevert-comment'        => 'Oget:',
 'filerevert-defaultcomment' => 'Version dël $1, $2 butà torna coma corenta.',
 'filerevert-submit'         => "Buté tanme ch'a l'era",
-'filerevert-success'        => "<span class=\"plainlinks\">'''L<nowiki>'</nowiki>archivi [[Media:\$1|\$1]]''' a l'é stait torna butà com a l'era ant la [\$4 version dël \$2, \$3].</span>",
+'filerevert-success'        => "'''L<nowiki>'</nowiki>archivi [[Media:$1|$1]]''' a l'é stait torna butà com a l'era ant la [$4 version dël $2, $3].",
 'filerevert-badversion'     => "A-i é pa gnun-a version locala dl'archivi ch'a l'abia un marcatemp parej.",
 
 # File deletion
 'filedelete'                  => 'Dëscancelé $1',
 'filedelete-legend'           => "Dëscancelé l'archivi",
 'filedelete-intro'            => "A l'é an brova dë scancelé '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => "<span class=\"plainlinks\">A l'é dapress ch'a scancela l'archivi '''[[Media:\$1|\$1]]''' dël [\$4 \$3, \$2].</span>",
+'filedelete-intro-old'        => "A l'é dapress ch'a scancela l'archivi '''[[Media:$1|$1]]''' dël [$4 $3, $2].",
 'filedelete-comment'          => 'Rason:',
 'filedelete-submit'           => 'Dëscancelé',
 'filedelete-success'          => "A l'é dëscancelasse l'archivi '''$1'''.",
@@ -1666,9 +1662,6 @@ Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej."
 *a l'ha deselessionà ël quadrèt ëd conferma ambelessì sota.
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
 'movearticle'             => "Cang-je nòm a l'artìcol",
-'movenologin'             => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
-'movenologintext'         => "A venta esse n'Utent registrà e esse [[Special:Userlogin|rintrà ant ël sistema]]
-për podej tramudé na pàgina.",
 'movenotallowed'          => "A l'ha pa ij përmess dont a fa da manca për tramudé pàgine an {{SITENAME}}.",
 'newtitle'                => 'Neuv tìtol ëd',
 'move-watch'              => 'Ten sot euj sta pàgina-sì',
@@ -1928,7 +1921,7 @@ $1",
 # Special:Newimages
 'newimages'             => 'Galerìa ëd figure e son neuv',
 'imagelisttext'         => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
-'newimages-summary'     => "Sta pàgina special-sì a la smon j'ùltim archivi carià",
+'newimages-summary'     => "Sta pàgina special-sì a la smon j'ùltim archivi carià.",
 'showhidebots'          => '($1 trigomiro)',
 'noimages'              => 'Pa gnente da vëdde.',
 'ilsubmit'              => 'Sërca',

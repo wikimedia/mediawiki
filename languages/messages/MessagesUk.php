@@ -8,8 +8,9 @@
  * @author AS
  * @author Siebrand
  * @author Innv
- * @author EugeneZelenko
+ * @author Jon Harald Søby
  * @author Dubyk
+ * @author EugeneZelenko
  * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
  */
@@ -164,8 +165,8 @@ $magicWords = array(
 	'img_bottom'          => array( '1', 'bottom', 'знизу' ),
 	'img_text_bottom'     => array( '1', 'text-bottom', 'текст-знизу' ),
 	'int'                 => array( '0', 'INT:', 'ВНУТР:' ),
-	'sitename'            => array( '1', 'SITENAME', 'НАЗВА_САЙТУ' ),
-	'ns'                  => array( '0', 'NS:', 'ПІ:' ),
+	'sitename'            => array( '1', 'SITENAME', 'НАЗВА_САЙТА' ),
+	'ns'                  => array( '0', 'NS:', 'ПН:' ),
 	'localurl'            => array( '0', 'LOCALURL:', 'ЛОКАЛЬНА_АДРЕСА:' ),
 	'localurle'           => array( '0', 'LOCALURLE:', 'ЛОКАЛЬНА_АДРЕСА_2:' ),
 	'server'              => array( '0', 'SERVER', 'СЕРВЕР' ),
@@ -187,10 +188,10 @@ $magicWords = array(
 	'plural'              => array( '0', 'PLURAL:', 'МНОЖИНА:' ),
 	'fullurl'             => array( '0', 'FULLURL:', 'ПОВНА_АДРЕСА:' ),
 	'fullurle'            => array( '0', 'FULLURLE:', 'ПОВНА_АДРЕСА_2:' ),
-	'lcfirst'             => array( '0', 'LCFIRST:', 'ПЕРША_БУКВА_МАЛА:' ),
-	'ucfirst'             => array( '0', 'UCFIRST:', 'ПЕРША_БУКВА_ВЕЛИКА:' ),
-	'lc'                  => array( '0', 'LC:', 'МАЛИМИ_БУКВАМИ:' ),
-	'uc'                  => array( '0', 'UC:', 'ВЕЛИКИМИ_БУКВАМИ:' ),
+	'lcfirst'             => array( '0', 'LCFIRST:', 'НР_ПЕРША:' ),
+	'ucfirst'             => array( '0', 'UCFIRST:', 'ВР_ПЕРША:' ),
+	'lc'                  => array( '0', 'LC:', 'НР:', 'НИЖНІЙ_РЕГІСТР:' ),
+	'uc'                  => array( '0', 'UC:', 'ВР:', 'ВЕРХНІЙ_РЕГІСТР:' ),
 	'raw'                 => array( '0', 'RAW:', 'НЕОБРОБ:' ),
 	'displaytitle'        => array( '1', 'DISPLAYTITLE', 'ПОКАЗАТИ_ЗАГОЛОВОК' ),
 	'rawsuffix'           => array( '1', 'R', 'Н' ),
@@ -199,11 +200,11 @@ $magicWords = array(
 	'urlencode'           => array( '0', 'URLENCODE:', 'ЗАКОДОВАНА_АДРЕСА:' ),
 	'anchorencode'        => array( '0', 'ANCHORENCODE', 'КОДУВАТИ_МІТКУ' ),
 	'currenttimestamp'    => array( '1', 'CURRENTTIMESTAMP', 'МІТКА_ПОТОЧНОГО_ЧАСУ' ),
-	'localtimestamp'      => array( '1', 'LOCALTIMESTAMP', 'МІТКА_ЛОКОЛЬН_ЧАСУ' ),
+	'localtimestamp'      => array( '1', 'LOCALTIMESTAMP', 'МІТКА_ЛОКАЛЬН_ЧАСУ' ),
 	'directionmark'       => array( '1', 'DIRECTIONMARK', 'DIRMARK', 'НАПРЯМОК_ПИСЬМА' ),
 	'language'            => array( '0', '#LANGUAGE:', '#МОВА:' ),
 	'contentlanguage'     => array( '1', 'CONTENTLANGUAGE', 'CONTENTLANG', 'МОВА_ЗМІСТУ' ),
-	'pagesinnamespace'    => array( '1', 'PAGESINNAMESPACE:', 'PAGESINNS:', 'СТОРІНОК_У_ПРОСТОРІ_НАЗВ:' ),
+	'pagesinnamespace'    => array( '1', 'PAGESINNAMESPACE:', 'PAGESINNS:', 'СТОРІНОК_У_ПРОСТОРІ_НАЗВ:', 'СТОР_У_ПН' ),
 	'numberofadmins'      => array( '1', 'NUMBEROFADMINS', 'КІЛЬКІСТЬ_АДМІНІСТРАТОРІВ' ),
 	'formatnum'           => array( '0', 'FORMATNUM', 'ФОРМАТУВАТИ_ЧИСЛО' ),
 	'padleft'             => array( '0', 'PADLEFT', 'ЗАПОВНИТИ_ЛІВОРУЧ' ),
@@ -214,6 +215,7 @@ $magicWords = array(
 	'tag'                 => array( '0', 'tag', 'тег' ),
 	'hiddencat'           => array( '1', '__HIDDENCAT__', '__ПРИХОВ_КАТ__' ),
 	'pagesincategory'     => array( '1', 'PAGESINCATEGORY', 'PAGESINCAT', 'СТОР_В_КАТ' ),
+	'pagesize'            => array( '1', 'PAGESIZE', 'РОЗМІР' ),
 );
 
 $linkTrail = '/^([a-zабвгґдеєжзиіїйклмнопрстуфхцчшщьєюяёъы“»]+)(.*)$/sDu';
@@ -525,10 +527,10 @@ $1",
 Адміністратор, що заблокував базу, дав наступне пояснення: $1',
 'missing-article'      => 'У базі даних не знайдений запитаний текст сторінки «$1» $2.
 
-Подібна ситуація зазвичай виникає при спробі переходу по застарілому поиалнню на історію змін сторінки, яка була вилучена.
+Подібна ситуація зазвичай виникає при спробі переходу по застарілому посиланню на історію змін сторінки, яка була вилучена.
 
 Якщо справа не в цьому, то, швидше за все, ви виявили помилку у програмному забезпеченні.
-Будь ласка, повідомте про це адміністратора, заначивши URL.',
+Будь ласка, повідомте про це [[Special:ListUsers/sysop|адміністратора]], заначивши URL.',
 'missingarticle-rev'   => '(версія № $1)',
 'missingarticle-diff'  => '(Різниця: $1, $2)',
 'readonly_lag'         => 'База даних автоматично заблокована від змін, доки вторинний сервер БД не синхронізується з первинним.',
@@ -755,10 +757,6 @@ $1",
 'blockededitsource'                => "Текст '''ваших редагувань''' сторінки «$1» наведено нижче:",
 'whitelistedittitle'               => 'Для редагування необхідно ввійти в систему',
 'whitelistedittext'                => 'Ви повинні $1 щоб редагувати сторінки.',
-'whitelistreadtitle'               => 'Для перегляду необхідно ввійти в систему',
-'whitelistreadtext'                => 'Ви повинні [[Special:Userlogin|зареєструватися]] для перегляду цих сторінок.',
-'whitelistacctitle'                => 'У вас немає прав для створення облікового запису',
-'whitelistacctext'                 => 'Щоб мати можливість створення облікових записів в цій вікі, ви повинні [[Special:Userlogin|зареєструватися]] й мати відповідні права.',
 'confirmedittitle'                 => 'Для редагування необхідно підтвердити адресу ел. пошти',
 'confirmedittext'                  => 'Ви повинні підтвердити вашу адресу електронної пошти перед редагуванням сторінок.
 Будь-ласка зазначте і підтвердіть вашу електронну адресу на [[Special:Preferences|сторінці налаштувань]].',
@@ -1401,18 +1399,18 @@ $3 зазначив наступну причину: ''$2''",
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',
 'filerevert-legend'         => 'Повернути версію файлу',
-'filerevert-intro'          => '<span class="plainlinks">Ви повертаєте \'\'\'[[Media:$1|$1]]\'\'\' до [$4 версії від $3, $2].</span>',
+'filerevert-intro'          => "Ви повертаєте '''[[Media:$1|$1]]''' до [$4 версії від $3, $2].",
 'filerevert-comment'        => 'Примітка:',
 'filerevert-defaultcomment' => 'Повернення до версії від $2, $1',
 'filerevert-submit'         => 'Повернути',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' був повернутий до [$4 версії від $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' був повернутий до [$4 версії від $3, $2].",
 'filerevert-badversion'     => 'Немає локальної версії цього файлу з вказаною поміткою дати і часу.',
 
 # File deletion
 'filedelete'                  => 'Вилучення $1',
 'filedelete-legend'           => 'Вилучити файл',
 'filedelete-intro'            => "Ви вилучаєте '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Ви вилучаєте версію \'\'\'[[Media:$1|$1]]\'\'\' від [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Ви вилучаєте версію '''[[Media:$1|$1]]''' від [$4 $3, $2].",
 'filedelete-comment'          => 'Причина вилучення:',
 'filedelete-submit'           => 'Вилучити',
 'filedelete-success'          => "'''$1''' було вилучено.",
@@ -1999,8 +1997,6 @@ IP-адреси, що блокуються автоматично тут не в
 
 У цих випадках ви будете змушені перейменувати чи об'єднати сторінки вручну в разі необхідності",
 'movearticle'             => 'Перейменувати сторінку',
-'movenologin'             => 'Ви не ввійшли в систему',
-'movenologintext'         => 'Ви повинні [[Special:Userlogin|ввійти до системи]], щоб перейменувати сторінку.',
 'movenotallowed'          => 'У вас нема дозволу перейменовувати сторінки у {{GRAMMAR:genitive|{{SITENAME}}}}.',
 'newtitle'                => 'Нова назва',
 'move-watch'              => 'Спостерігати за цією сторінкою',
@@ -2280,7 +2276,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Галерея нових файлів',
 'imagelisttext'         => "Нижче подано список з '''$1''' {{PLURAL:$1|файлу|файлів|файлів}}, відсортованих $2.",
-'newimages-summary'     => 'Ця спеціальна сторінка показує останні завантажені файли',
+'newimages-summary'     => 'Ця спеціальна сторінка показує останні завантажені файли.',
 'showhidebots'          => '($1 ботів)',
 'noimages'              => 'Файли відсутні.',
 'ilsubmit'              => 'Шукати',

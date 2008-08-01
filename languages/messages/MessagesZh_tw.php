@@ -148,10 +148,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
+'pagecategories'                => '個分類',
 'category_header'               => '類別「$1」中的頁面',
 'subcategories'                 => '子分類',
 'category-media-header'         => '"$1"分類中的媒體',
 'category-empty'                => "''這個分類中尚未包含任何頁面或媒體。''",
+'hidden-categories'             => '個隱藏分類',
 'hidden-category-category'      => '隱藏分類', # Name of the category where hidden categories will be listed
 'category-subcat-count'         => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
 'category-subcat-count-limited' => '這個分類下有$1個子分類。',
@@ -530,10 +532,6 @@ $2',
 'blockededitsource'         => "你對'''$1'''進行'''編輯'''的文字如下:",
 'whitelistedittitle'        => '登入後才可編輯',
 'whitelistedittext'         => '您必須先$1才可編輯頁面。',
-'whitelistreadtitle'        => '登入後才可閱讀',
-'whitelistreadtext'         => '您必須先[[Special:Userlogin|登入]]才可閱讀頁面。',
-'whitelistacctitle'         => '您被禁止建立帳號',
-'whitelistacctext'          => '在本Wiki中建立帳號您必須先[[Special:Userlogin|登入]]並擁有相關許可權。',
 'confirmedittitle'          => '郵件確認後才可編輯',
 'confirmedittext'           => '在編輯此頁之前您必須確認您的電子郵件地址。請透過[[Special:Preferences|參數設定]]設定並驗証您的電子郵件地址。',
 'nosuchsectiontitle'        => '沒有這個段落',
@@ -1547,9 +1545,6 @@ $1',
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
 'movearticle'             => '移動頁面:',
-'movenologin'             => '未登入',
-'movenologintext'         => '您必須是一名登記使用者並且[[Special:Userlogin|登入]]
-後才可移動一個頁面。',
 'movenotallowed'          => '您在這個wiki中度並沒有許可權去移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '監視此頁',

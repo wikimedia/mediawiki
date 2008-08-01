@@ -8,6 +8,7 @@
  * @author Mikel
  * @author SPQRobin
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -577,10 +578,6 @@ El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códi
 'blockededitsource'                => "El testu de '''les tos ediciones''' en '''$1''' amuésase equí:",
 'whitelistedittitle'               => 'Ye necesario tar identificáu pa poder editar',
 'whitelistedittext'                => 'Tienes que $1 pa editar páxines.',
-'whitelistreadtitle'               => 'Necesítase identificación pa lleer',
-'whitelistreadtext'                => "Tienes que t'[[Special:Userlogin|identificar]] pa lleer páxines.",
-'whitelistacctitle'                => 'Nun tienes permisu pa crear una cuenta',
-'whitelistacctext'                 => 'Pa poder crear cuentes en {{SITENAME}} has tar [[Special:Userlogin|identificáu]] y tener los permisos afayadizos.',
 'confirmedittitle'                 => 'Requerida la confirmación de corréu electrónicu pa editar',
 'confirmedittext'                  => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
 'nosuchsectiontitle'               => 'Nun esiste tala seición',
@@ -1203,18 +1200,18 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 # File reversion
 'filerevert'                => 'Revertir $1',
 'filerevert-legend'         => 'Revertir archivu',
-'filerevert-intro'          => '<span class="plainlinks">Tas revirtiendo \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 versión del $3 a les $2].</span>',
+'filerevert-intro'          => "Tas revirtiendo '''[[Media:$1|$1]]''' a la [$4 versión del $3 a les $2].",
 'filerevert-comment'        => 'Comentariu:',
 'filerevert-defaultcomment' => 'Revertida a la versión del $2 a les $1',
 'filerevert-submit'         => 'Revertir',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' foi revertida a la [$4 versión del $3 a les $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' foi revertida a la [$4 versión del $3 a les $2].",
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
 'filedelete'                  => 'Borrar $1',
 'filedelete-legend'           => 'borrar archivu',
 'filedelete-intro'            => "Tas borrando '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tas borrando la versión de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a les $2].</span>',
+'filedelete-intro-old'        => "Tas borrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
 'filedelete-comment'          => 'Comentariu:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "'''$1''' foi borráu.",
@@ -1276,8 +1273,10 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'disambiguationspage'  => 'Template:dixebra',
 'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Redireiciones dobles',
-'doubleredirectstext' => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición. Cada filera contién enllaces a la primer y segunda redireición, asina como al oxetivu de la segunda redireición, que normalmente ye la páxina oxetivu "real", aonde la primer redireición habría empobinar.',
+'doubleredirects'            => 'Redireiciones dobles',
+'doubleredirectstext'        => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición. Cada filera contién enllaces a la primer y segunda redireición, asina como al oxetivu de la segunda redireición, que normalmente ye la páxina oxetivu "real", aonde la primer redireición habría empobinar.',
+'double-redirect-fixed-move' => '[[$1]] foi treslladáu, agora ye una redireición haza [[$2]]',
+'double-redirect-fixer'      => 'Iguador de redireiciones',
 
 'brokenredirects'        => 'Redireiciones rotes',
 'brokenredirectstext'    => 'Les siguientes redireiciones enllacien a páxines que nun esisten:',
@@ -1817,8 +1816,6 @@ por favor, asegúrate d'entender les consecuencies de lo que vas facer enantes d
 
 Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'movearticle'             => 'Treslladar la páxina:',
-'movenologin'             => 'Non identificáu',
-'movenologintext'         => 'Tienes que ser un usuariu rexistráu y tar [[Special:Userlogin|identificáu]] pa treslladar una páxina.',
 'movenotallowed'          => 'Nun tienes permisu pa mover páxines en {{SITENAME}}.',
 'newtitle'                => 'Al títulu nuevu:',
 'move-watch'              => 'Vixilar esta páxina',
@@ -1853,6 +1850,7 @@ La páxina de destín "[[$1]]" yá esiste. ¿Quies borrala pa dexar sitiu pal tr
 'imagenocrossnamespace'   => "Nun se pue treslladar una imaxe a nun espaciu de nomes que nun ye d'imáxenes",
 'imagetypemismatch'       => 'La estensión nueva del archivu nun concueya cola so mena',
 'imageinvalidfilename'    => 'El nome del archivu oxetivu nun ye válidu',
+'fix-double-redirects'    => 'Actualizar cualesquier redireición que señale al títulu orixinal',
 
 # Export
 'export'            => 'Esportar páxines',
@@ -2079,7 +2077,7 @@ $1",
 # Special:Newimages
 'newimages'             => "Galería d'imáxenes nueves",
 'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
-'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos',
+'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nun hai nada que ver.',
 'ilsubmit'              => 'Buscar',
@@ -2476,8 +2474,8 @@ $1",
 'livepreview-error'   => 'Nun se pudo coneutar: $1 "$2". Intenta la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => "Los cambeos de los caberos $1 segundos pue que nun s'amuesen nesta llista.",
-'lag-warn-high'   => "Pol mor d'un importante retrasu del servidor de la base de datos, los cambeos de los caberos $1 segundos pue que nun s'amuesen nesta llista.",
+'lag-warn-normal' => "Los cambeos más recién de $1 {{PLURAL:$|segundu|segundos}} pue que nun s'amuesen nesta llista.",
+'lag-warn-high'   => "Pol mor d'un importante retrasu del servidor de la base de datos, los cambeos más recién de $1 {{PLURAL:$1|segundu|segundos}} pue que nun s'amuesen nesta llista.",
 
 # Watchlist editor
 'watchlistedit-numitems'       => "La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines d'alderique.",

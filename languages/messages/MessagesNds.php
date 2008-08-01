@@ -685,10 +685,6 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 'blockededitsource'                => "De Text vun '''diene Ännern''' an '''$1''':",
 'whitelistedittitle'               => 'de Siet to ännern is dat nödig anmellt to wesen',
 'whitelistedittext'                => 'Du musst di $1, dat du Sieden ännern kannst.',
-'whitelistreadtitle'               => 'üm to Lesen is dat neudig anmellt to ween',
-'whitelistreadtext'                => 'Du musst di [[Special:Userlogin|hier anmellen]], dat du Sieden lesen kannst.',
-'whitelistacctitle'                => 'Du hest nich de Rechten en Konto antoleggen',
-'whitelistacctext'                 => 'Dat du op {{SITENAME}} Brukerkontos anleggen kannst, musst du di [[Special:Userlogin|hier anmellen]] un de nödigen Rechten hebben.',
 'confirmedittitle'                 => 'E-Mail-Adress mutt bestätigt wesen, dat du wat ännern kannst',
 'confirmedittext'                  => 'Du musst dien E-Mail-Adress bestätigen, dat du wat ännern kannst. Stell dien E-Mail-Adress in de [[Special:Preferences|{{int:preferences}}]] in un bestätig ehr.',
 'nosuchsectiontitle'               => 'Dissen Afsnitt gifft dat nich',
@@ -1313,18 +1309,18 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 # File reversion
 'filerevert'                => '„$1“ Trüchsetten',
 'filerevert-legend'         => 'Datei trüchsetten',
-'filerevert-intro'          => '<span class="plainlinks">Du settst de Datei \'\'\'[[Media:$1|$1]]\'\'\' op de [$4 Version vun $2, $3] trüch.</span>',
+'filerevert-intro'          => "Du settst de Datei '''[[Media:$1|$1]]''' op de [$4 Version vun $2, $3] trüch.",
 'filerevert-comment'        => 'Kommentar:',
 'filerevert-defaultcomment' => 'trüchsett op de Version vun’n $1, $2',
 'filerevert-submit'         => 'Trüchsetten',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' is op de [$4 Version vun $2, $3] trüchsett worrn.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' is op de [$4 Version vun $2, $3] trüchsett worrn.",
 'filerevert-badversion'     => 'Gifft keen vörige lokale Version vun de Datei to disse Tied.',
 
 # File deletion
 'filedelete'                  => '$1 wegsmieten',
 'filedelete-legend'           => 'Datei wegsmieten',
 'filedelete-intro'            => "Du smittst '''[[Media:$1|$1]]''' weg.",
-'filedelete-intro-old'        => '<span class="plainlinks">Du smittst vun de Datei \'\'\'„[[Media:$1|$1]]“\'\'\' de [$4 Version vun $2, $3] weg.</span>',
+'filedelete-intro-old'        => "Du smittst vun de Datei '''„[[Media:$1|$1]]“''' de [$4 Version vun $2, $3] weg.",
 'filedelete-comment'          => 'Kommentar:',
 'filedelete-submit'           => 'Wegsmieten',
 'filedelete-success'          => "'''$1''' wegsmeten.",
@@ -1906,10 +1902,6 @@ Dat bedüüdt, dat du ene jüst verschavene Siet na’n olen Titel trüchschuven
 
 In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'movearticle'             => 'Siet schuven',
-'movenologin'             => 'Du büst nich anmellt',
-'movenologintext'         => 'Du muttst en registreert Bruker un
-[[Special:Userlogin|anmellt]] ween,
-üm en Siet to schuven.',
 'movenotallowed'          => 'Du hest nich de Rechten, op {{SITENAME}} Sieden to schuven.',
 'newtitle'                => 'To ne’en Titel',
 'move-watch'              => 'Op disse Siet oppassen',
@@ -2556,8 +2548,8 @@ Versöök de normale Vörschau.',
 Versöök de normale Vörschau.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Ännern, de jünger as $1 Sekunnen sünd, warrt in de List noch nich wiest.',
-'lag-warn-high'   => 'De Datenbank is temlich dull utlast. Ännern, de jünger as $1 Sekunnen sünd, warrt in de List noch nich wiest.',
+'lag-warn-normal' => 'Ännern, de jünger as {{PLURAL:$1|ene Sekunn|$1 Sekunnen}} sünd, warrt in de List noch nich wiest.',
+'lag-warn-high'   => 'De Datenbank is temlich dull utlast. Ännern, de jünger as $1 {{PLURAL:$1|Sekunn|Sekunnen}} sünd, warrt in de List noch nich wiest.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Du hest {{PLURAL:$1|ene Siet|$1 Sieden}} op diene Oppasslist, Diskuschoonssieden nich tellt.',

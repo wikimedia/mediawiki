@@ -4,10 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author Ghaly
  * @author Ramsis1978
+ * @author Ghaly
  * @author Alnokta
  * @author Meno25
+ * @author Jon Harald Søby
  * @author Siebrand
  */
 
@@ -612,6 +613,7 @@ $2',
 'titleprotected'       => "العنوان دا محمي من الإنشاء بـ[[User:$1|$1]]. السبب هو ''$2''.",
 
 # Virus scanner
+'virus-badscanner'     => 'غلطه : ماسح فيروسات مش معروف: <i>$1</i>',
 'virus-scanfailed'     => 'المسح فشل(كود $1)',
 'virus-unknownscanner' => 'انتي فيروس مش معروف:',
 
@@ -782,10 +784,6 @@ $2',
 'blockededitsource'         => "نص '''تعديلاتك''' في '''$1''' معروض هنا:",
 'whitelistedittitle'        => 'لازم تسجل دخولك علشان تقدر تعدل',
 'whitelistedittext'         => 'لازم $1 علشان تقدر تعدل الصفحات.',
-'whitelistreadtitle'        => 'تسجيل الدخول لازم  علشان تقرا',
-'whitelistreadtext'         => 'لازم [[Special:Userlogin|تسجيل الدخول]] علشان تقرا الصفحات.',
-'whitelistacctitle'         => 'انت مش مسموح لك تفتح حساب',
-'whitelistacctext'          => 'علشان نسمح لك تفتح حسابات في {{SITENAME}} لازم [[Special:Userlogin|تسجيل الدخول]] وأن يكون عندك الصلاحية المناسبة.',
 'confirmedittitle'          => 'علشان تبتدي تعدل، لازم نتاكد من الايميل بتاعك',
 'confirmedittext'           => 'قبل ما تبتدي تعدل لازم نتأكد من الايميل بتاعك. لو سمحت تكتب وتأكد الايميل بتاعك  في[[Special:Preferences|تفضيلاتك]]',
 'nosuchsectiontitle'        => 'مافيش قسم بالاسم ده',
@@ -803,6 +801,7 @@ $2',
 'anontalkpagetext'          => "----'' صفحة النقاش دي بتاعة يوزر مجهول لسة ما فتحش لنفسه حساب أو عنده واحد بس ما بيستعملوش. علشان كدا لازم تستعمل رقم الأيبي علشان تتعرف عليه/عليها. العنوان دا ممكن اكتر من واحد يكونو بيستعملوه. لو انت يوزر مجهول و حاسس  ان في تعليقات بتتوجهلك مع انك مالكش دعوة بيها ،من فضلك [[Special:Userlogin|افتحلك حساب أو سجل الدخول]] علشان تتجنب اللخبطة اللي ممكن تحصل في المستقبل مع يوزرز مجهولين تانيين.''",
 'noarticletext'             => 'مافيش  دلوقتى اى نص فى  الصفحه دى ، ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه]] في الصفحات التانيه او [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعدل الصفحه دى].',
 'userpage-userdoesnotexist' => 'حساب اليوزر "$1" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
+'clearyourcache'            => "'''ملاحظة - بعد التسييف,  يمكن لازم تفرغ كاش متصفحك لرؤية التغييرات.''' '''موزيللا / فايرفوكس / سافارى:''' دوس على ''Shift'' أثناء ضغط ''Reload,'' أو دوس على أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''دوس على ''Reload'' أو دوس على ''F5;'' '''أوبرا:''' فرغ الكاش فى ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' دوس على ''Ctrl'' أثناء ضغط ''Refresh,'' أو دوس على ''Ctrl-F5.''",
 'usercssjsyoucanpreview'    => "<strong>ملاحظة:</strong> استعمل زرار ' عرض بروفة' علشان تجرب النمط (CSS) أو الجافا سكريبت الجديد قبل حفظ الصفحة.",
 'usercsspreview'            => "'''افتكرأنك  بتعرض  (CSS) بتاع اليوزر بس وانها لسة ماتحفظتش!'''",
 'userjspreview'             => "'''أفتكر أنك بس بتجرب/بتعرض الجافا سكريبت بتاع اليوزر بتاعك، و انها لسة ماتحفظتش!'''",
@@ -811,6 +810,14 @@ $2',
 'note'                      => '<strong>ملحوظه:</strong>',
 'previewnote'               => '<strong> دى بروفه للصفحه بس، ولسه ما تسييفتش!</strong>',
 'previewconflict'           => 'البروفة دي بتبينلك فوق إزاي ح يكون شكل النص لو انت دوست على حفظ',
+'session_fail_preview'      => '<strong>اسف! ما قدرناش  نحفظ التعديلات اللى قمت بيها نتيجة لضياع بيانات  الجلسه.
+الرجاء المحاولة مرة تانيه.
+في حال استمرار المشكلة حاول  تخرج وتدخل مرة تانيه .</strong>',
+'session_fail_preview_html' => "<strong>اسف ! ماقدرناش نعالج تعديلك بسبب ضياع بيانات الجلسة.</strong>
+
+''لأن {{SITENAME}} بها HTML هل الخام شغاله، البروفه مخفيه كاحتياط ضد هجمات الجافا سكريبت.''
+
+<strong>إذا كانت دى محاولة تعديل صادقه، من فضلك حاول مرة تانيه. إذا كانت لسه مش شغاله، حاول تسجيل الخروج و تسجيل الدخول من جديد.</strong>",
 'editing'                   => 'تعديل $1',
 'editingsection'            => 'تعديل $1 (جزء)',
 'editingcomment'            => 'تعديل $1 (تعليق)',
@@ -843,7 +850,12 @@ $2',
 سجل الحذف للصفحه دى معروض هنا:",
 
 # Parser/template warnings
-'post-expand-template-argument-category' => 'صفحات فيها مناقشات القالب المحذوفة',
+'expensive-parserfunction-warning'        => 'تحذير: الصفحه دى فيهااستدعاءات دالة محلل كثيرة مكلفة.
+
+لازم تكون أقل من $2، فيها دلوقتى $1.',
+'expensive-parserfunction-category'       => 'صفحات فيها استدعاءات دوال محلل كثيرة ومكلفة',
+'post-expand-template-inclusion-category' => 'الصفحات اللى تم تجاوز حجم تضمين القالب فيها',
+'post-expand-template-argument-category'  => 'صفحات فيها مناقشات القالب المحذوفة',
 
 # "Undo" feature
 'undo-success' => 'ممكن ترجع في التعديل. لو سمحت تشوف المقارنة اللي تحت علشان تتأكد من إن هو دا اللي إنت عايز تعمله ،وبعدين احفظ التغييرات اللي تحت علشان ترجع في التعديل.',
@@ -905,20 +917,30 @@ $2',
 'rev-delundel'                => 'عرض/إخفاء',
 'revisiondelete'              => 'امسح/الغي المسح بتاع المراجعات',
 'revdelete-nooldid-title'     => 'مراجعة هدف مش صح',
+'revdelete-selected'          => '{{PLURAL:$2|المراجعة المختارة|المراجعات المختارة}} ل[[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:',
+'revdelete-text'              => 'المراجعات والأحداث الممسوحة هاتفضل تظهر فى تاريخ الصفحة والسجلات،
+لكن أجزاء من محتواهم مش هايكون مسموح للعامة يشوفوها.
+
+الإداريون التانين في {{SITENAME}}هايفضل بإمكانهم رؤية المحتوى المخفى وممكن يسترجعوه من جديد من خلال الواجهة نفسها، الا اذا تم وضع قيود إضافية.',
 'revdelete-legend'            => 'وضع حدود رؤية',
 'revdelete-hide-text'         => 'إخفاء نص النسخة',
 'revdelete-hide-name'         => 'تخبية الإجراء والهدف منه',
 'revdelete-hide-comment'      => 'إخفاء تعليق التعديل',
 'revdelete-hide-user'         => 'خبي اسم/عنوان الاي بي بتاع اليوزر',
+'revdelete-suppress'          => 'تخبية البيانات عن السيسوبات و اليوزرز التانيين',
 'revdelete-hide-image'        => 'خبي المحتويات بتاعة الملف',
+'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
 'revdelete-log'               => 'تعليق  على السجل:',
 'revdelete-submit'            => 'طبق على النسخه المختاره',
+'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
 'revdel-restore'              => 'تغيير الرؤية',
 'pagehist'                    => 'تاريخ الصفحة',
 'deletedhist'                 => 'التاريخ الممسوح',
 'revdelete-content'           => 'محتويات',
 'revdelete-summary'           => 'ملخص التعديل',
 'revdelete-uname'             => 'اسم اليوزر',
+'revdelete-restricted'        => 'طبق التعليمات على السيسوبات',
 'revdelete-unrestricted'      => 'شيل الضوابط من على السيسوبات',
 'revdelete-hid'               => 'أخفى $1',
 'revdelete-unhid'             => 'أظهر $1',
@@ -932,11 +954,15 @@ $2',
 
 # History merging
 'mergehistory'                => 'دمج تواريخ الصفحة',
+'mergehistory-box'            => 'دمج تعديلات صفحتين:',
 'mergehistory-from'           => 'الصفحه المصدر:',
 'mergehistory-into'           => 'الصفحه الهدف:',
 'mergehistory-list'           => 'تاريخ التعديل اللي ممكن يتدمج',
 'mergehistory-go'             => 'عرض التعديلات اللي ممكن تتدمج',
 'mergehistory-submit'         => 'دمج النسخ',
+'mergehistory-empty'          => 'مافيش مراجعات ممكن دمجها.',
+'mergehistory-success'        => '$3 {{PLURAL:$3|مراجعة|مراجعة}} من [[:$1]] تم دمجها بنجاح في [[:$2]].',
+'mergehistory-no-source'      => 'الصفحة المصدر $1  مش موجودة.',
 'mergehistory-no-destination' => 'الصفحه الهدف $1 مش موجوده.',
 'mergehistory-invalid-source' => 'الصفحه المصدر لازم تكون عنوان صحيح.',
 'mergehistory-autocomment'    => 'دمج [[:$1]] في [[:$2]]',
@@ -1065,6 +1091,10 @@ $2',
 'userrights-editusergroup'    => 'تعديل مجموعات اليوزر',
 'saveusergroups'              => 'حفظ مجموعات اليوزر',
 'userrights-groupsmember'     => 'عضو في:',
+'userrights-groups-help'      => 'إنت ممكن تغير المجموعات اللي اليوزر دا عضو فيها .
+* صندوق متعلم يعني اليوزر دا عضو في المجموعة دي.
+* صندوق مش متعلم يعني  اليوزر دا مش عضو في المجموعة دي.
+* علامة * يعنى انك مش ممكن تشيل المجموعات بعد ما تضيفها و العكس بالعكس.',
 'userrights-reason'           => 'سبب التغيير:',
 'userrights-no-interwiki'     => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
 'userrights-nodatabase'       => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
@@ -1098,72 +1128,81 @@ $2',
 'grouppage-suppress'      => '{{ns:project}}:أوفرسايت',
 
 # Rights
-'right-read'             => 'قراية الصفحات',
-'right-edit'             => 'تعديل الصفحات',
-'right-createpage'       => 'إبتدي الصفحات (اللي مالهاش صفحات نقاش)',
-'right-createtalk'       => 'إبتدى صفحات النقاش',
-'right-createaccount'    => 'افتح حسابات يوزر جديده',
-'right-minoredit'        => 'التعليم على التعديلات كطفيفة',
-'right-move'             => 'انقل الصفحات',
-'right-move-subpages'    => 'انقل الصفحات مع صفحاتها الفرعيه',
-'right-upload'           => 'حمل الملفات',
-'right-reupload'         => 'الكتابة على ملف موجود',
-'right-reupload-own'     => 'الكتابة على ملف موجود اتحمل ب اليوزر نفسه',
-'right-autoconfirmed'    => 'تعديل الصفحات  النص محميه',
-'right-bot'              => 'بتتعامل كأنها عملية أوتوماتيكية',
-'right-writeapi'         => 'استخدام API الكتابة',
-'right-delete'           => 'مسح الصفحات',
-'right-bigdelete'        => 'مسح الصفحات اللي ليها تواريخ كبيرة',
-'right-deleterevision'   => 'مسح وترجيع مراجعات معينة من الصفحات',
-'right-deletedhistory'   => 'شوف مدخلات التاريخ الممسوحة، من غير النصوص اللي معاها',
-'right-browsearchive'    => 'التدوير في الصفحات الممسوحة',
-'right-undelete'         => 'استرجاع صفحة',
-'right-suppressrevision' => 'مراجعة واسترجاع المراجعات المستخبية عن الإداريين',
-'right-suppressionlog'   => 'شوف السجلات الخاصة',
-'right-block'            => 'امنع اليوزرز التانيين من التعديل',
-'right-blockemail'       => 'منع يوزر من إنه يبعت إيميل',
-'right-hideuser'         => 'منع اسم يوزر، و خبيه عن الناس',
-'right-ipblock-exempt'   => 'إتفادى عمليات منع الأيبي، المنع الأوتوماتيكي ومنع النطاق.',
-'right-proxyunbannable'  => 'إتفادى عمليات المنع الأوتوماتيكية للبروكسيهات',
-'right-protect'          => 'تغيير مستويات الحماية وتعديل الصفحات المحمية',
-'right-editprotected'    => 'تعديل الصفحات المحمية (من غير الحماية المتضمنة)',
-'right-editinterface'    => 'تعديل الواجهة بتاعة اليوزر',
-'right-editusercssjs'    => 'تعديل ملفات CSS و JS لليوزرز التانيين',
-'right-rollback'         => 'رجع بسرعه التعديلات بتاعة آخر يوزر عدل صفحة معينة',
-'right-markbotedits'     => 'التعليم على التعديلات المترجعة كتعديلات بوت',
-'right-import'           => 'استيراد الصفحات من ويكيات تانيه',
-'right-importupload'     => 'استيراد الصفحات من فايل متحمل',
-'right-unwatchedpages'   => 'بين لستة الصفحات اللي مش متراقبة',
-'right-userrights'       => 'تعديل كل الحقوق بتاعة اليوزر',
-'right-siteadmin'        => 'قفل وفتح قاعدة البيانات',
+'right-read'                 => 'قراية الصفحات',
+'right-edit'                 => 'تعديل الصفحات',
+'right-createpage'           => 'إبتدي الصفحات (اللي مالهاش صفحات نقاش)',
+'right-createtalk'           => 'إبتدى صفحات النقاش',
+'right-createaccount'        => 'افتح حسابات يوزر جديده',
+'right-minoredit'            => 'التعليم على التعديلات كطفيفة',
+'right-move'                 => 'انقل الصفحات',
+'right-move-subpages'        => 'انقل الصفحات مع صفحاتها الفرعيه',
+'right-upload'               => 'حمل الملفات',
+'right-reupload'             => 'الكتابة على ملف موجود',
+'right-reupload-own'         => 'الكتابة على ملف موجود اتحمل ب اليوزر نفسه',
+'right-upload_by_url'        => 'تحميل ملف من عنوان مسار',
+'right-autoconfirmed'        => 'تعديل الصفحات  النص محميه',
+'right-bot'                  => 'بتتعامل كأنها عملية أوتوماتيكية',
+'right-apihighlimits'        => 'استخدام حدود أعلى فى استعلامات API',
+'right-writeapi'             => 'استخدام API الكتابة',
+'right-delete'               => 'مسح الصفحات',
+'right-bigdelete'            => 'مسح الصفحات اللي ليها تواريخ كبيرة',
+'right-deleterevision'       => 'مسح وترجيع مراجعات معينة من الصفحات',
+'right-deletedhistory'       => 'شوف مدخلات التاريخ الممسوحة، من غير النصوص اللي معاها',
+'right-browsearchive'        => 'التدوير في الصفحات الممسوحة',
+'right-undelete'             => 'استرجاع صفحة',
+'right-suppressrevision'     => 'مراجعة واسترجاع المراجعات المستخبية عن الإداريين',
+'right-suppressionlog'       => 'شوف السجلات الخاصة',
+'right-block'                => 'امنع اليوزرز التانيين من التعديل',
+'right-blockemail'           => 'منع يوزر من إنه يبعت إيميل',
+'right-hideuser'             => 'منع اسم يوزر، و خبيه عن الناس',
+'right-ipblock-exempt'       => 'إتفادى عمليات منع الأيبي، المنع الأوتوماتيكي ومنع النطاق.',
+'right-proxyunbannable'      => 'إتفادى عمليات المنع الأوتوماتيكية للبروكسيهات',
+'right-protect'              => 'تغيير مستويات الحماية وتعديل الصفحات المحمية',
+'right-editprotected'        => 'تعديل الصفحات المحمية (من غير الحماية المتضمنة)',
+'right-editinterface'        => 'تعديل الواجهة بتاعة اليوزر',
+'right-editusercssjs'        => 'تعديل ملفات CSS و JS لليوزرز التانيين',
+'right-rollback'             => 'رجع بسرعه التعديلات بتاعة آخر يوزر عدل صفحة معينة',
+'right-markbotedits'         => 'التعليم على التعديلات المترجعة كتعديلات بوت',
+'right-import'               => 'استيراد الصفحات من ويكيات تانيه',
+'right-importupload'         => 'استيراد الصفحات من فايل متحمل',
+'right-patrol'               => 'علم على تعديلات اليوزرز التانيين على انها متراجعة.',
+'right-unwatchedpages'       => 'بين لستة الصفحات اللي مش متراقبة',
+'right-trackback'            => 'تنفيذ تراكباك',
+'right-mergehistory'         => 'ادمج تاريخ الصفحات',
+'right-userrights'           => 'تعديل كل الحقوق بتاعة اليوزر',
+'right-userrights-interwiki' => 'تعديل صلاحيات اليوزر لليوزرز فى مواقع الويكى التانيه',
+'right-siteadmin'            => 'قفل وفتح قاعدة البيانات',
 
 # User rights log
-'rightslog'  => 'سجل صلاحيات اليوزرز',
-'rightsnone' => '(فاضى)',
+'rightslog'      => 'سجل صلاحيات اليوزرز',
+'rightslogtext'  => 'ده سجل بالتغييرات ف صلاحيات اليوزرز .',
+'rightslogentry' => 'غير صلاحيات $1 من $2 ل $3',
+'rightsnone'     => '(فاضى)',
 
 # Recent changes
-'nchanges'                       => '{{PLURAL:$1|تعديل|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
-'recentchanges'                  => 'احدث التعديلات',
-'recentchanges-feed-description' => 'تابع احدث التعديلات للويكى ده عن طريق الفييد ده .',
-'rcnote'                         => "فيه تحت {{PLURAL:$1|'''1''' تعديل|آخر '''$1''' تعديل}} في اخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدايه من $3.",
-'rcnotefrom'                     => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
-'rclistfrom'                     => 'اظهر التعديلات بدايه من $1',
-'rcshowhideminor'                => '$1 تعديلات صغيره',
-'rcshowhidebots'                 => '$1 البوتات',
-'rcshowhideliu'                  => '$1 اليوزرز المتسجلين',
-'rcshowhideanons'                => '$1 اليوزرز المجهولين',
-'rcshowhidepatr'                 => '$1 التعديلات المتراجعه',
-'rcshowhidemine'                 => '$1 تعديلاتى',
-'rclinks'                        => 'بيين اخر $1 تعديل في اخر $2 يوم، $3',
-'diff'                           => 'التغيير',
-'hist'                           => 'تاريخ',
-'hide'                           => 'تخبيه',
-'show'                           => 'عرض',
-'minoreditletter'                => 'ص',
-'newpageletter'                  => 'ج',
-'boteditletter'                  => 'ب',
-'rc_categories_any'              => 'أى',
-'newsectionsummary'              => '/* $1 */ قسم جديد',
+'nchanges'                          => '{{PLURAL:$1|تعديل|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
+'recentchanges'                     => 'احدث التعديلات',
+'recentchanges-feed-description'    => 'تابع احدث التعديلات للويكى ده عن طريق الفييد ده .',
+'rcnote'                            => "فيه تحت {{PLURAL:$1|'''1''' تعديل|آخر '''$1''' تعديل}} في اخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدايه من $3.",
+'rcnotefrom'                        => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
+'rclistfrom'                        => 'اظهر التعديلات بدايه من $1',
+'rcshowhideminor'                   => '$1 تعديلات صغيره',
+'rcshowhidebots'                    => '$1 البوتات',
+'rcshowhideliu'                     => '$1 اليوزرز المتسجلين',
+'rcshowhideanons'                   => '$1 اليوزرز المجهولين',
+'rcshowhidepatr'                    => '$1 التعديلات المتراجعه',
+'rcshowhidemine'                    => '$1 تعديلاتى',
+'rclinks'                           => 'بيين اخر $1 تعديل في اخر $2 يوم، $3',
+'diff'                              => 'التغيير',
+'hist'                              => 'تاريخ',
+'hide'                              => 'تخبيه',
+'show'                              => 'عرض',
+'minoreditletter'                   => 'ص',
+'newpageletter'                     => 'ج',
+'boteditletter'                     => 'ب',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1| يوزر مراقب|يوزر مراقب}}]',
+'rc_categories_any'                 => 'أى',
+'newsectionsummary'                 => '/* $1 */ قسم جديد',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تعديلات  ليها علاقه',
@@ -1173,52 +1212,121 @@ $2',
 'recentchangeslinked-page'     => 'اسم الصفحه :',
 
 # Upload
-'upload'             => 'حمل',
-'uploadbtn'          => 'حمل الملف',
-'reupload'           => 'حمل مره تانيه',
-'uploaderror'        => 'غلطه فى التحميل',
-'upload-prohibited'  => 'أنواع الملفات الممنوعة: $1.',
-'uploadlog'          => 'سجل التحميل',
-'uploadlogpage'      => 'سجل التحميل',
-'uploadlogpagetext'  => 'تحت في لستة بأحدث عمليات تحميل الملفات.',
-'filename'           => 'اسم الملف',
-'filedesc'           => 'الخلاصة',
-'fileuploadsummary'  => 'الخلاصة:',
-'filestatus'         => 'حالة حقوق النسخ:',
-'filesource'         => 'مصدر:',
-'uploadedfiles'      => 'الملفات المتحملة',
-'ignorewarning'      => 'إتجاهل التحذير و احفظ الملف وخلاص',
-'ignorewarnings'     => 'اتجاهل اى تحذير',
-'minlength1'         => 'أسامي الملفات لازم تكون متكونة من حرف واحد على الأقل.',
-'successfulupload'   => 'التحميل ناجح',
-'uploadwarning'      => 'تحذير التحميل',
-'savefile'           => 'حفظ الملف',
-'uploadedimage'      => 'اتحمل "[[$1]]"',
-'overwroteimage'     => 'اتحملت  نسخة جديدة من "[[$1]]"',
-'uploaddisabled'     => 'التحميل متعطل',
-'uploaddisabledtext' => 'تحميل الملفات متعطل في {{SITENAME}}.',
-'uploadscripted'     => 'الملف دا  فيه كود HTML أو كود تاني يمكن البراوزر يفهمه غلط.',
-'uploadcorrupt'      => 'الملف دا  بايظ أو ليه امتداد غلط. لو سمحت ا تأكد من الملف و حمله مرة تانية.',
-'uploadvirus'        => 'الملف فيه فيروس! التفاصيل: $1',
-'sourcefilename'     => 'اسم الملف  بتاع المصدر:',
-'watchthisupload'    => 'حط الصفحة دي تحت المراقبة',
+'upload'                    => 'حمل',
+'uploadbtn'                 => 'حمل الملف',
+'reupload'                  => 'حمل مره تانيه',
+'uploadnologin'             => 'ما سجلتش الدخول',
+'uploaderror'               => 'غلطه فى التحميل',
+'uploadtext'                => "استخدم الاستمارة لتحميل الملفات.
+لعرض أو البحث ف الملفات المتحملة سابقا، راجع [[Special:Imagelist|قايمة الملفات المتحملة]]، عمليات التحميل والحذف موجودة في [[Special:Log/upload|سجل التحميل]].
 
-'upload-proto-error' => 'بروتوكول مش صحيح',
+علشان تحط صورة في صفحة، استخدم الوصلات في الصيغ التالية:
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''،
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|نص بديل]]</nowiki>''' أو
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' للوصل للملف مباشرة.",
+'upload-permitted'          => 'أنواع الملفات المسموحة: $1.',
+'upload-preferred'          => 'أنواع الملفات المفضلة: $1.',
+'upload-prohibited'         => 'أنواع الملفات الممنوعة: $1.',
+'uploadlog'                 => 'سجل التحميل',
+'uploadlogpage'             => 'سجل التحميل',
+'uploadlogpagetext'         => 'تحت فية لستة بأحدث عمليات تحميل الملفات.',
+'filename'                  => 'اسم الملف',
+'filedesc'                  => 'الخلاصة',
+'fileuploadsummary'         => 'الخلاصة:',
+'filestatus'                => 'حالة حقوق النسخ:',
+'filesource'                => 'مصدر:',
+'uploadedfiles'             => 'الملفات المتحملة',
+'ignorewarning'             => 'إتجاهل التحذير و احفظ الملف وخلاص',
+'ignorewarnings'            => 'اتجاهل اى تحذير',
+'minlength1'                => 'أسامي الملفات لازم تكون متكونة من حرف واحد على الأقل.',
+'filetype-missing'          => 'الملف مالوش امتدا(مثلا ".jpg").',
+'large-file'                => 'ينصح ان الملفات ماتكونش أكبر من $1؛ الملف ده حجمه $2.',
+'largefileserver'           => 'حجم الملف ده أكبر من المسموح بيه على السيرڨر ده .',
+'fileexists'                => 'فيه  ملف موجود بالاسم ده  الرجاء التأكد من الملف ده باتباع الوصلة التالية <strong><tt>$1</tt></strong> قبل ما تغيره.',
+'fileexists-thumb'          => "<center>'''الملف الموجود'''</center>",
+'file-thumbnail-no'         => 'يبدأ الملف ب <strong><tt>$1</tt></strong>. 
+يبدو أن الملف مصتغر لحجم أعلى <i>(تصغير)</i>.
+إذا كان عندك الصورة في درجة دقة كامله حملها، أو غير اسم الملف من فضلك.',
+'fileexists-forbidden'      => 'في ملف تاني بنفس الاسم موجود
+لو سمحت ترجع تاني و تحمل الملف باسم جديد. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'     => ' الملف دا تكرار  {{PLURAL:$1|للملف|للملفات}} دي:',
+'successfulupload'          => 'التحميل ناجح',
+'uploadwarning'             => 'تحذير التحميل',
+'savefile'                  => 'حفظ الملف',
+'uploadedimage'             => 'اتحمل "[[$1]]"',
+'overwroteimage'            => 'اتحملت  نسخة جديدة من "[[$1]]"',
+'uploaddisabled'            => 'التحميل متعطل',
+'uploaddisabledtext'        => 'تحميل الملفات متعطل في {{SITENAME}}.',
+'uploadscripted'            => 'الملف دا  فيه كود HTML أو كود تاني يمكن البراوزر يفهمه غلط.',
+'uploadcorrupt'             => 'الملف دا  بايظ أو ليه امتداد غلط. لو سمحت ا تأكد من الملف و حمله مرة تانية.',
+'uploadvirus'               => 'الملف فيه فيروس! التفاصيل: $1',
+'sourcefilename'            => 'اسم الملف  بتاع المصدر:',
+'destfilename'              => 'اسم الملف المستهدف:',
+'upload-maxfilesize'        => 'حجم الملف الأقصى: $1',
+'watchthisupload'           => 'حط الصفحة دي تحت المراقبة',
+'filewasdeleted'            => 'في ملف بنفس الاسم دا تحمل قبل كدا و بعدين اتمسح.
+لو سمحت تراجع $1 قبل ما تحمله كمان مرة.',
+'upload-wasdeleted'         => "'''تحذير: انت بتحمل ملف اتمسح قبل كدا.'''
 
-'license'   => 'ترخيص:',
-'nolicense' => 'مش متحدد',
+لازم تتاكد من انك عايز تستمر في تحميل الملف دا.
+سجل المسح بتاع الملف دا معروض هنا علشان تبص عليه:",
+'filename-bad-prefix'       => 'اسم الملف اللي بتحمله بيبتدي بـ<strong>"$1"</strong>، واللي هو اسم مش وصفي بيتحط غالبا من الكاميرات الديجيتال اوتوماتيكي.
+لو سمحت تختار اسم يكون بيوصف الملف بتاعك احسن من كدا.',
+'filename-prefix-blacklist' => ' #<!-- leave this line exactly as it is --> <pre>
+# الصيغة كدا: 
+#   * كل حاجة من أول علامة "#" لحد أخر السطر هي تعليق
+#   * كل سطر مش فاضي هو بريفيكس لأسماء الملفات النمطية اللي بتحطها اوتوماتيكي  الكاميرات الديجيتال
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobil phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
+
+'upload-proto-error'      => 'بروتوكول مش صحيح',
+'upload-proto-error-text' => 'االتحميل عن بعد لازمله يوأرإل بيبتدي بـ <code>http://</code> أو <code>ftp://</code>.',
+'upload-file-error'       => 'غلط داخلي',
+'upload-file-error-text'  => 'حصل غلط داخلي واحنا بنحاول نعمل ملف مؤقت على السيرفر. لو سمحت اتصل بإداري نظام.',
+'upload-misc-error'       => 'غلط مش معروف في التحميل',
+'upload-misc-error-text'  => 'حصل غلط مش معروف وإنت بتحمل. لو سمحت تتاكد أن اليوأرإل صح و ممكن تدخل عليه و بعدين حاول تاني. إذا المشكلة تنتها موجودة،اتصل بإداري نظام.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'ما قدرناش نوصل لليو أر إل',
+'upload-curl-error6-text'  => 'ما قدرناش نوصل لليوأرإل إللي انت عاوزه. لو سمحت تشيك تاني إن اليوأرإل صح و إن السايت شغال.',
+'upload-curl-error28'      => 'انتهاء مهلة التحميل',
+'upload-curl-error28-text' => 'السايت خد وقت كبير علشان يستجيب.
+لو سمحت اتأكد أن السايت شغال، واستنا شوية و بعدين حاول تاني.
+يمكن تجرب تاني في وقت مايكونش فيه زحمة.',
+
+'license'            => 'ترخيص:',
+'nolicense'          => 'مش متحدد',
+'license-nopreview'  => '(البروفه مش متوفره)',
+'upload_source_url'  => '  (اليوأرإل صحيح وممكن توصل ليه)',
+'upload_source_file' => ' (ملف على الكمبيوتر بتاعك)',
 
 # Special:Imagelist
-'imgfile'        => 'ملف',
-'imagelist'      => 'لستة الملفات',
-'imagelist_date' => 'تاريخ',
-'imagelist_name' => 'اسم',
-'imagelist_user' => 'يوزر',
+'imagelist-summary'     => 'الصفحة المخصوصة دي بتعرض كل الملفات المتحملة.
+اوتوماتيكي اخر الملفات اللي اتحملت ح تظهر في اللستة من فوق.
+لو دوست على راس العمود الترتيب ح يتغير.',
+'imagelist_search_for'  => 'دور على اسم الميديا:',
+'imgfile'               => 'ملف',
+'imagelist'             => 'لستة الملفات',
+'imagelist_date'        => 'تاريخ',
+'imagelist_name'        => 'اسم',
+'imagelist_user'        => 'يوزر',
+'imagelist_size'        => 'حجم',
+'imagelist_description' => 'وصف',
 
 # Image description page
 'filehist'                       => 'تاريخ الملف',
 'filehist-help'                  => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
+'filehist-deleteall'             => 'امسح كله',
 'filehist-deleteone'             => 'مسح',
+'filehist-revert'                => 'استرجع',
 'filehist-current'               => 'دلوقتي',
 'filehist-datetime'              => 'الساعه / التاريخ',
 'filehist-user'                  => 'يوزر',
@@ -1228,46 +1336,108 @@ $2',
 'imagelinks'                     => 'وصلات',
 'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
 'nolinkstoimage'                 => 'مافيش صفحات بتوصل للفايل ده.',
+'morelinkstoimage'               => 'عرض [[Special:Whatlinkshere/$1|لينكات اكتر]] للملف دا.',
+'redirectstofile'                => '{{PLURAL:$1| الملف|ال$1 ملف}} اللي جاي  بيحول للملف دا:',
+'duplicatesoffile'               => '{{PLURAL:$1| الملف|ال$1 ملف اللي بعده}} مكررات للملف دا:',
 'sharedupload'                   => 'الملف ده اتحمل علشان التشارك بين المشاريع وممكن استخدامه في المشاريع التانيه.',
+'shareduploadwiki'               => 'لو سمحت تشوف $1 اللي فيه معلوات زيادة.',
+'shareduploadwiki-desc'          => 'الوصف على $1 في المخزن المشترك معروض تحت.',
+'shareduploadwiki-linktext'      => 'صفحة وصف الملف',
+'shareduploadduplicate'          => 'الملف دا تكرار ل$1 من المخزن المشترك.',
 'shareduploadduplicate-linktext' => 'ملف تاني',
-'noimage'                        => ' مافيش  ملف بالاسم ده ،ممكن انك تقوم بـ$1.',
+'shareduploadconflict'           => 'الملف دا ليه نفس الاسم زي $1 من المخزن المشترك.',
+'shareduploadconflict-linktext'  => 'ملف تانى',
+'noimage'                        => 'مافيش  ملف بالاسم ده ،ممكن انك  تـ$1.',
 'noimage-linktext'               => 'تحميله',
 'uploadnewversion-linktext'      => 'حمل نسخه جديده من الملف ده',
+'imagepage-searchdupe'           => 'دور على ملفات متكررة',
+
+# File reversion
+'filerevert'                => 'استرجع $1',
+'filerevert-legend'         => 'استرجع الملف',
+'filerevert-intro'          => "أنت بترجع '''[[Media:$1|$1]]''' [$4 للنسخةاللي بتاريخ $2، $3].",
+'filerevert-comment'        => 'تعليق:',
+'filerevert-defaultcomment' => 'رجع النسخة اللي بتاريخ $1، $2',
+'filerevert-submit'         => 'استرجع',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' اترجعت [$4 للنسخةاللي بتاريخ $2، $3].",
+'filerevert-badversion'     => 'مافيش نسخة محلية قديمة  للملف دا بالتاريخ المتقدم',
 
 # File deletion
-'filedelete'         => 'امسح $1',
-'filedelete-legend'  => 'امسح الملف',
-'filedelete-comment' => 'سبب المسح:',
-'filedelete-submit'  => 'مسح',
+'filedelete'                  => 'امسح $1',
+'filedelete-legend'           => 'امسح الملف',
+'filedelete-intro'            => "أنت بتمسح '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => '<span class="plainlinks">أنت بتمسح نسخة \'\'\'[[Media:$1|$1]]\'\'\'اللي  بتاريخ [$4 $3، $2].</span>',
+'filedelete-comment'          => 'سبب المسح:',
+'filedelete-submit'           => 'مسح',
+'filedelete-success'          => "'''$1''' خلاص اتمسح.",
+'filedelete-success-old'      => '<span class="plainlinks">نسخة \'\'\'[[Media:$1|$1]]\'\'\' اللي بتاريخ $3، $2 اتمسحت.</span>',
+'filedelete-nofile'           => "'''$1''' مش موجود في {{SITENAME}}.",
+'filedelete-nofile-old'       => "مافيش نسخة في الارشيف من '''$1''' بالعناصر المتحددة.",
+'filedelete-iscurrent'        => 'أنت بتحاول تمسح أجدد نسخة من الملف دا.
+لو سمحت ترجع النسخة القديمة الاول.',
+'filedelete-otherreason'      => 'سبب زيادة/تاني:',
+'filedelete-reason-otherlist' => 'سبب تانى',
+'filedelete-reason-dropdown'  => '*أسباب المسح الشايعة
+** الاعتداء على حقوق النشر
+** ملف متكرر',
+'filedelete-edit-reasonlist'  => 'عدل أسباب المسح',
 
 # MIME search
-'mimesearch' => 'تدوير MIME',
-'download'   => 'تنزيل',
+'mimesearch'         => 'تدوير MIME',
+'mimesearch-summary' => 'الصفحة دي مهمتها فلترة الملفات على حسب نوعها.
+المدخل: نوع المحتوى/النوع الفرعي، يعني مثلا
+<tt>image/jpeg</tt>.',
+'mimetype'           => 'نوع الملف:',
+'download'           => 'تنزيل',
+
+# Unwatched pages
+'unwatchedpages' => 'صفحات مش متراقبة',
 
 # List redirects
 'listredirects' => 'عرض التحويلات',
 
 # Unused templates
-'unusedtemplates'    => 'قوالب مش مستعمله',
-'unusedtemplateswlh' => 'وصلات  تانيه',
+'unusedtemplates'     => 'قوالب مش مستعمله',
+'unusedtemplatestext' => 'الصفحة دي فيها لستة بالصفحات من نطاق قالب و اللي مش مستعملة في صفحات تانية
+افتكر قبل ما تمسحها تشوف لو في وصلات تانية للقوالب دي',
+'unusedtemplateswlh'  => 'وصلات  تانيه',
 
 # Random page
-'randompage' => 'صفحة عشوائيه',
+'randompage'         => 'صفحة عشوائيه',
+'randompage-nopages' => 'مافيش صفحات في النطاق دا.',
 
 # Random redirect
-'randomredirect' => 'تحويله عشوائيه',
+'randomredirect'         => 'تحويله عشوائيه',
+'randomredirect-nopages' => 'مافيش تحويلات فى النطاق ده.',
 
 # Statistics
 'statistics'             => 'احصائيات',
+'sitestats'              => 'إحصائيات {{SITENAME}}',
 'userstats'              => 'الاحصاءات بتاعة اليوزر',
+'sitestatstext'          => "فيه{{PLURAL:\$1|'''1''' صفحه|'''\$1''' صفحه كليه}} في قاعدة البيانات.
+ده يشمل  صفحات \"المناقشه\"، الصفحات حول {{SITENAME}}، الصغرى \"البذور\"
+صفحات، التحويلات، و غيرها اللى غالبا ما تتأهلش كصفحات محتوى.
+باستثناء اللى، فيه {{PLURAL:\$2|'''1''' صفحة| '''\$2''' صفحة}} تعتبر على الأرجح
+{{PLURAL:\$2|صفحة|صفحة}} محتوى معتبرة.
+
+'''\$8''' {{PLURAL:\$8|ملف|ملف}} تم تحميله.
+
+فيه كإجمالي '''\$3''' {{PLURAL:\$3|عرض صفحة|عرض صفحة}}، و '''\$4''' {{PLURAL:\$4|تعديل صفحة|تعديل صفحة}}
+من تنصيب {{SITENAME}}.
+ده يعني '''\$5''' تعديل متوسط لكل صفحة، و '''\$6''' عرض لكل تعديل.
+
+طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل] هو '''\$7'''.",
+'userstatstext'          => "في {{PLURAL:$1|[[Special:Listusers|يوزر]] متسجل '''واحد'''|'''$1''' [[Special:Listusers|يوزر]] متسجل}}، منهم '''$2''' (أو '''$4%''') {{PLURAL:$2|عنده|عندهم}} صلاحيات $5.",
 'statistics-mostpopular' => 'اكتر صفحات اتشافت',
 
 'disambiguations'      => 'صفحات التوضيح',
 'disambiguationspage'  => 'Template:توضيح',
 'disambiguations-text' => "الصفحات دي بتوصل لـ '''صفحة توضيح'''. المفروض على العكس انهم يوصلو ل للصفحات المناسبة. <br />أي صفحة بتتعامل على انها صفحة توضيح إذا كانت بتستعمل قالب موجود في [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'تحويلات مزدوجه',
-'doubleredirectstext' => 'الصفحة دي فيها لستة الصفحات اللي فيها تحويلة لصفحة تانية فيها تحويلة. كل سطر في اللستة دي  فيه لينك للتحويلة الأولانية والتانية و كمان للصفحة بتاعة التحويلة التانية و اللي غالبا هي الصفحة الاصلية اللي المفروض التحويلة الاولانية توصل ليها.',
+'doubleredirects'            => 'تحويلات مزدوجه',
+'doubleredirectstext'        => 'الصفحة دي فيها لستة الصفحات اللي فيها تحويلة لصفحة تانية فيها تحويلة. كل سطر في اللستة دي  فيه لينك للتحويلة الأولانية والتانية و كمان للصفحة بتاعة التحويلة التانية و اللي غالبا هي الصفحة الاصلية اللي المفروض التحويلة الاولانية توصل ليها.',
+'double-redirect-fixed-move' => '[[$1]] اتنقلت، هى دلوقتى تحويله ل [[$2]]',
+'double-redirect-fixer'      => 'مصلح التحويل',
 
 'brokenredirects'        => 'تحويلات مكسوره',
 'brokenredirectstext'    => 'التحويلات دي بتوصل لصفحات مش موجودة:',
@@ -1317,19 +1487,30 @@ $2',
 'protectedpagestext'      => 'الصفحات دي محمية من النقل أو التعديل',
 'protectedpagesempty'     => 'مافيش  صفحات محمية دلوقتي  على حسب المحددات دي.',
 'protectedtitles'         => 'عناوين محمية',
+'protectedtitlestext'     => 'العناوين دى محمية ضد الإنشاء',
+'protectedtitlesempty'    => 'مافيش عناوين محمية دلوقتي على حسب المحددات دي.',
 'listusers'               => 'لستة الأعضاء',
 'newpages'                => 'صفحات جديده',
 'newpages-username'       => 'اسم اليوزر:',
 'ancientpages'            => 'اقدم الصفحات',
 'move'                    => 'انقل',
 'movethispage'            => 'انقل الصفحه دى',
+'unusedimagestext'        => 'لو سمحت تاخد بالك إن المواقع التانية ممكن تكون بتوصل لملف عن طريق يوأرإل مباشر، و علشان كدا ممكن يكون لسة معروض هنا مع إنه.
+بيستعمل.',
+'unusedcategoriestext'    => 'التصنيفات دي موجودة مع إنها ما فيهاش اي صفحات او تصنيفات تانية.',
 'notargettitle'           => 'مافيش هدف',
+'notargettext'            => 'انت ما حددتش الصفحة أو اليوزر المستهدف لعمل العملية دي.',
 'nopagetitle'             => 'مافيش صفحة هدف بالاسم ده',
+'nopagetext'              => 'صفحة الهدف اللي انت طالبها مش موجودة.',
+'pager-newer-n'           => '{{PLURAL:$1|أجدد 1|أجدد $1}}',
+'pager-older-n'           => '{{PLURAL:$1|أقدم 1|أقدم $1}}',
 'suppress'                => 'أوفرسايت',
 
 # Book sources
-'booksources'    => 'مصادر من كتب',
-'booksources-go' => 'روح',
+'booksources'               => 'مصادر من كتب',
+'booksources-search-legend' => 'التدوير على مصادر الكتب',
+'booksources-go'            => 'روح',
+'booksources-text'          => 'في تحت لستة بوصلات لمواقع تانية بتبيع الكتب الجديدة والمستعملة، كمان ممكن تلاقي معلومات إضافية عن الكتب اللي يتدور عليها :',
 
 # Special:Log
 'specialloguserlabel'  => 'اليوزر:',
@@ -1338,6 +1519,8 @@ $2',
 'all-logs-page'        => 'كل السجلات',
 'log-search-legend'    => 'دور على سجلات',
 'log-search-submit'    => 'روح',
+'alllogstext'          => 'عرض شامل لكل السجلات الموجودة في {{SITENAME}}. 
+ممكن تخلي اللستة متحددة اكتر لو تختار نوع العملية، أو اسم اليوزر، أو الصفحات المتأثرة.',
 'logempty'             => 'مافيش  سجلات مطابقة في السجل.',
 'log-title-wildcard'   => 'التدوير على عناوين تبتدي بالنص دا',
 
@@ -1387,18 +1570,27 @@ $2',
 ف حيتبعت له رسالة واحدة بس حسب الاستمارة اللي تحت دي.
 عنوان الايميل اللي دخلته في التفضيلات بتاعتك
 ح يظهر في  على انه عنوان الاستمارة و بكدة اللي حيستقبله ح يقدر يرد على الايميل.',
+'usermailererror' => 'البريد رجع غلط:',
+'defemailsubject' => 'إيميل من {{SITENAME}}',
 'noemailtitle'    => 'مافيش  عنوان ايميل',
+'noemailtext'     => 'يا إما اليوزر دا ما كتبش االايميل بتاعه صح ، أو  انه طلب ما يستلمش ايميلات من اليوزرز التانيين.',
 'emailfrom'       => 'من',
 'emailto'         => 'لـ',
 'emailsubject'    => 'الموضوع',
+'emailmessage'    => 'الرساله',
 'emailsend'       => 'إبعت',
 'emailccme'       => 'ابعتلي نسخة من الايميل اللي بعته.',
+'emailccsubject'  => 'نسخة من رسالتك ل $1: $2',
 'emailsent'       => 'الإيميل اتبعت',
+'emailsenttext'   => 'الايميل بتاعك اتبعت خلاص.',
+'emailuserfooter' => 'الايميل دا بعته $1 لـ $2 عن طريق خاصية "مراسلة اليوزر" في {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'لستة الصفحات اللى باراقبها',
 'mywatchlist'          => 'لستة  الصفحات اللى باراقبها',
 'watchlistfor'         => "(ل '''$1''')",
+'nowatchlist'          => 'مافيش حاجة في لستة مراقبتك.',
+'watchlistanontext'    => 'لو سمحت $1 لعرض أو تعديل الصفحات في لستة مراقبتك.',
 'watchnologin'         => 'مش متسجل',
 'watchnologintext'     => 'لازم تكون [[Special:Userlogin|مسجل الدخول]] علشان تعدل لستة المراقبة بتاعتك.',
 'addedwatch'           => 'تمت الاضافه للستة الصفحات اللى بتراقبها',
@@ -1422,15 +1614,20 @@ $2',
 'watchmethod-list'     => 'التشييك في الصفحات المتراقبة على التعديلات الاخيرة',
 'watchlistcontains'    => 'لستة المراقبة بتاعتك فيها $1 {{PLURAL:$1|صفحة|صفحات}}.',
 'iteminvalidname'      => "مشكلة في '$1'، اسم مش صحيح...",
+'wlnote'               => "تحت في {{PLURAL:$1|آخر تغيير|آخر '''$1''' تغيير}} في آخر {{PLURAL:$2|ساعة|'''$2''' ساعة}}.",
 'wlshowlast'           => 'عرض اخر $1 ساعات $2 ايام $3',
+'watchlist-show-bots'  => 'عرض تعديلات البوتات',
 'watchlist-hide-bots'  => 'تخبية تعديلات البوت',
+'watchlist-show-own'   => 'عرض تعديلاتى',
 'watchlist-hide-own'   => 'اخفاء تعديلاتى',
+'watchlist-show-minor' => 'عرض التعديلات الطفيفة',
 'watchlist-hide-minor' => 'خبى التعديلات الصغيره',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'راقب...',
 'unwatching' => 'بطل مراقبه...',
 
+'enotif_mailer'                => 'نظام {{SITENAME}} البريدي للإخطارات',
 'enotif_reset'                 => 'علم على كل الصفحات كأنك خلاص زرتها',
 'enotif_newpagetext'           => 'دى صفحه جديده.',
 'enotif_impersonal_salutation' => 'يوزر {{SITENAME}}',
@@ -1440,10 +1637,35 @@ $2',
 'enotif_lastvisited'           => 'شوف $1 لمراجعة كل التغييرات اللي حصلت من أخر زيارة ليك.',
 'enotif_lastdiff'              => 'شوف $1 علشان تبص على التغيير دا.',
 'enotif_anon_editor'           => 'يوزر مش معروف $1',
+'enotif_body'                  => 'عزيزى $WATCHINGUSERNAME،
+
+صفحة $PAGETITLE فى {{SITENAME}} إتغيرت ل $CHANGEDORCREATED قبل كدا $PAGEEDITOR،  علشان تشوف النسخة الحالية من الصفحة بص: $PAGETITLE_URL.
+
+$NEWPAGE
+
+ملخص تعديل المحرر: $PAGESUMMARY $PAGEMINOREDIT
+
+اتصل بالمحرر:
+إيميل: $PAGEEDITOR_EMAIL
+صفحة اليوزر: $PAGEEDITOR_WIKI
+
+مش ح يكون في اي إخطارات تانية عن أي تغييرات ح تحصل في المستقبل إلا إذا زرت  الصفحه دى. ممكن أنك تعيد تصفير عداد الإخطارات لكل الصفحات اللى بتراقبها فى لستة مراقبتك.
+
+نظام إخطار {{SITENAME}}
+
+--
+لتغيير إعدادات قايمة مراقبتك، روح على:
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+للاقتراحات والحصول على مساعدة إضافية:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'امسح الصفحه',
 'confirm'                     => 'أكد',
+'excontent'                   => "المحتوى كان: '$1'",
+'excontentauthor'             => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'               => "المحتوى قبل التفضيه كان: '$1'",
 'exblank'                     => 'الصفحه كانت فاضيه',
 'delete-confirm'              => 'مسح"$1"',
 'delete-legend'               => 'مسح',
@@ -1453,8 +1675,11 @@ $2',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" اتمسحت.
 بص على $2 لسجل آخر عمليات المسح.',
 'deletedarticle'              => 'اتمسحت "[[$1]]"',
+'suppressedarticle'           => 'خببى "[[$1]]"',
 'dellogpage'                  => 'سجل المسح',
+'dellogpagetext'              => 'لسته بأحدث عمليات المسح.',
 'deletionlog'                 => 'سجل المسح',
+'reverted'                    => 'استرجع لنسخة أقدم',
 'deletecomment'               => 'سبب المسح:',
 'deleteotherreason'           => 'سبب تانى/اضافي:',
 'deletereasonotherlist'       => 'سبب تانى',
@@ -1463,6 +1688,11 @@ $2',
 ** التعدي على حقوق النشر
 ** التخريب',
 'delete-edit-reasonlist'      => 'عدل اسباب المسح',
+'delete-toobig'               => 'الصفحه دى  ليها تاريخ تعديل كبير، أكتر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
+مسح الصفحات اللى زى دى تم تحديده لمنع الاضطراب العرضى فى {{SITENAME}}.',
+'delete-warning-toobig'       => ' الصفحة دي ليها تاريخ تعديل كبير، أكتر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
+ممكن مسحها يعمل اضطراب  في عمليات قاعدة البيانات في {{SITENAME}}؛
+استمر بس خد بالك.',
 'rollback'                    => 'إرجع في التعديلات',
 'rollback_short'              => 'إرجع لـ ورا',
 'rollbacklink'                => 'استعاده',
@@ -1472,14 +1702,30 @@ $2',
 
 آخر واحد  عدل الصفحة دي هوه [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
 'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'                  => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => 'استرجع تعديلات $1؛
+استرجع لآخر نسخة بواسطة $2.',
+'sessionfailure'              => 'الظاهر انه في مشكلة في جلسة دخولك دي ؛
+وعلشان كدا العملية دي اتلغت كإجراء احترازي ضد الاختراق.
+لو سمحت دوس على زرار"رجوع" علشان تحمل الصفحة اللي جيت منها مرة تانية، و بعدين حاول تاني.',
 'protectlogpage'              => 'سجل الحمايه',
+'protectlogtext'              => 'تحت في لستة بالصفحات اللي اعملها حماية او اتشالت منها الحماية.
+شوف [[Special:Protectedpages|لستة الصفحات المحمية]] لستة بعمليات حماية الصفحات الشغالة دلوقتي.',
 'protectedarticle'            => 'حمى "[[$1]]"',
+'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
+'unprotectedarticle'          => 'شال حماية [[$1]]',
+'protect-title'               => 'غير مستوى الحماية ل"$1"',
+'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
 'protectexpiry'               => 'تنتهى فى:',
 'protect_expiry_invalid'      => 'وقت الانتهاء مش صحيح.',
 'protect_expiry_old'          => 'وقت انتهاء المنع قديم.',
 'protect-unchain'             => 'استعادة سماح النقل',
 'protect-text'                => 'ممكن هنا تعرض و تغير مستوى الحمايه للصفحه <strong><nowiki>$1</nowiki></strong>.',
+'protect-locked-blocked'      => 'انت مش ممكن تغير مستويات الحماية وأنت ممنوع.
+الإعدادات بتاعة الصفحة <strong>$1</strong> دلوقتي هي:',
+'protect-locked-dblock'       => 'ما ينفعش تغير مستويات الحماية بسبب قفل قاعدة البيانات دلوقتي.
+الإعدادات بتاعة الصفحة <strong>$1</strong> دلوقتي هي:',
 'protect-locked-access'       => 'حسابك ما لوش  صلاحية تغيير مستوى حماية الصفحه.
 الاعدادات الحالية للصفحه <strong>$1</strong> هى:',
 'protect-cascadeon'           => 'الصفحه دى محميه لكونها متضمنه فى {{PLURAL:$1|الصفحه|الصفحات}} دى، واللى  فيها اختيار حماية الصفحات المتضمنه شغال. ممكن تغير مستوى حماية الصفحه دى بدون التأثير على حماية الصفحات المتضمنه التانيه.',
@@ -1509,33 +1755,53 @@ $2',
 'restriction-level-all'           => 'أي مستوى',
 
 # Undelete
-'undelete'                 => 'عرض الصفحات الممسوحة',
-'undeletepage'             => 'عرض واسترجاع الصفحات المسوحة',
-'undeletepagetitle'        => "'''دا بيتكون من النسخ الممسوحة لـ[[:$1]]'''.",
-'viewdeletedpage'          => 'عرض الصفحات الممسوحة',
-'undeletepagetext'         => ' الصفحات دي إتمسحت بس لسة موجودة في الأرشيف و ممكن تترجع. الأرشيف ممكن يتنضف كل شوية..',
-'undelete-fieldset-title'  => 'رجع النسخ',
-'undeleteextrahelp'        => " علشان ترجع الصفحة كلها، سيب كل الصناديق فاضية و دوس
+'undelete'                     => 'عرض الصفحات الممسوحة',
+'undeletepage'                 => 'عرض واسترجاع الصفحات المسوحة',
+'undeletepagetitle'            => "'''دا بيتكون من النسخ الممسوحة لـ[[:$1]]'''.",
+'viewdeletedpage'              => 'عرض الصفحات الممسوحة',
+'undeletepagetext'             => ' الصفحات دي إتمسحت بس لسة موجودة في الأرشيف و ممكن تترجع. الأرشيف ممكن يتنضف كل شوية..',
+'undelete-fieldset-title'      => 'رجع النسخ',
+'undeleteextrahelp'            => " علشان ترجع الصفحة كلها، سيب كل الصناديق فاضية و دوس
  '''''ترجيع'''''. علشان ترجع جزء من الصفحة، حط علامة في الصناديق أدام التعديلات اللي عايز  ترجعهاو دوس '''''ترجيع'''''. لو دوست على  '''''إبتدي تاني'''''  التعليق ح يتمسح و كل العلامات  اللي في الصناديق ح تتحذف.",
-'undeleterevisions'        => '$1 {{PLURAL:$1|نسخة|نسخة}} اتحطت في  الارشيف',
-'undelete-nodiff'          => 'ما لقيناش نسخة قديمة.',
-'undeletebtn'              => 'استعاده',
-'undeletelink'             => 'استرجاع',
-'undeletereset'            => 'ابتدي من الأول',
-'undeletecomment'          => 'تعليق:',
-'undeletedarticle'         => 'رجع  "[[$1]]" تاني',
-'undeletedrevisions'       => 'رجعنا تاني {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 نسخة|$1 نسخة}} و {{PLURAL:$2|1 ملف|$2 ملف}} رجعو تاني',
-'undeletedfiles'           => '{{PLURAL:$1|ملف|ملفات}} $1 رجعو تاني',
-'cannotundelete'           => 'الترجيع ما نفعش :ممكن يكون في حد تاني رجع الصفحة قبل كدا.',
-'undeletedpage'            => "<big>'''اترجع $1'''</big>
+'undeleterevisions'            => '$1 {{PLURAL:$1|نسخة|نسخة}} اتحطت في  الارشيف',
+'undeletehistory'              => 'لو رجعت الصفحة، كل المراجعات ح تترجع للتاريخ دا
+لو في صفحة جديدة اتعملت بنفس الاسم بعد المسح، المراجعات المترجعة ح تبان في التاريخ اللي فات.
+كمان اعمل حسابك ان الضوابط على مراجعات الملف ح تضيع مع الترجيع',
+'undeleterevdel'               => 'الترجيع مش ح يحصل لو كان ح يسبب ان المراجعة تيجي في راس الصفحة أو ان الملف يتمسح حتة منه .
+في الحالات اللي زي كدا، لازم تبين أخر المراجعات الممسوحة.',
+'undeletehistorynoadmin'       => 'الصفحة دي اتمسحت.
+سبب المسح موجود في الملخص اللي تحت، كمان في تفاصيل اليوزرز اللي عملو تعديل على الصفحة دي قبل ما تتمسح.
+نص المراجعات الممسوحة دي متوفرة بس للاداريين.',
+'undelete-revision'            => 'المراجعة الممسوحة ل$1 (بتاريخ $2) عن طريق $3:',
+'undeleterevision-missing'     => 'مراجعة مش صحيحةأو ضايعة.
+يمكن اللينك بتاعتك بايظة،أو يمكن المراجعة اترجعت او اتشالت من الارشيف.',
+'undelete-nodiff'              => 'ما لقيناش نسخة قديمة.',
+'undeletebtn'                  => 'استعاده',
+'undeletelink'                 => 'استرجاع',
+'undeletereset'                => 'ابتدي من الأول',
+'undeletecomment'              => 'تعليق:',
+'undeletedarticle'             => 'رجع  "[[$1]]" تاني',
+'undeletedrevisions'           => 'رجعنا تاني {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 نسخة|$1 نسخة}} و {{PLURAL:$2|1 ملف|$2 ملف}} رجعو تاني',
+'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 رجعو تاني',
+'cannotundelete'               => 'الترجيع ما نفعش :ممكن يكون في حد تاني رجع الصفحة قبل كدا.',
+'undeletedpage'                => "<big>'''اترجع $1'''</big>
 
 بص على [[Special:Log/delete|سجل المسح]] علشان تشوف عمليات المسح و الترجيع الاخيرة.",
-'undelete-header'          => 'شوف الصفحات الممسوحة قريب في [[Special:Log/delete|سجل المسح]].',
-'undelete-search-box'      => 'دور في الصفحات الممسوحة',
-'undelete-search-prefix'   => 'عرض الصفحات اللي بتبتدي بـ:',
-'undelete-search-submit'   => 'دور',
-'undelete-no-results'      => 'مالقيناش صفحات مطابقة في أرشيف المسح.',
+'undelete-header'              => 'شوف الصفحات الممسوحة قريب في [[Special:Log/delete|سجل المسح]].',
+'undelete-search-box'          => 'دور في الصفحات الممسوحة',
+'undelete-search-prefix'       => 'عرض الصفحات اللي بتبتدي بـ:',
+'undelete-search-submit'       => 'دور',
+'undelete-no-results'          => 'مالقيناش صفحات مطابقة في أرشيف المسح.',
+'undelete-filename-mismatch'   => 'ماقدرناش نرجع المراجعة بتاعة الملف بتاريخ $1: اسم الملف مش مطابق',
+'undelete-bad-store-key'       => 'ما قدرناش نرجع المراجعة بتاعة الملف بتاريخ $1: الملف كان ضايع قبل المسح',
+'undelete-cleanup-error'       => 'خطأ مسح ملف أرشيف مش بيستعمل"$1".',
+'undelete-missing-filearchive' => 'مش قادرين نرجع ملف الأرشيف رقم $1 لأنه مش موجود في قاعدة البيانات.
+يمكن يكون اترجع قبل كدا.',
+'undelete-error-short'         => 'غلطة ترجيع ملف: $1',
+'undelete-error-long'          => 'حصلت غلطات و الملف بيترجع:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'النيمسبيس:',
@@ -1546,52 +1812,156 @@ $2',
 'contributions' => 'مساهمات اليوزر',
 'mycontris'     => 'تعديلاتى',
 'contribsub2'   => 'لليوزر $1 ($2)',
+'nocontribs'    => 'مالقيناش   تغييرات تطابق المحددات دي.',
 'uctop'         => '(فوق)',
 'month'         => 'من شهر (واللى قبل كده):',
 'year'          => 'من سنة (واللى قبل كده):',
 
+'sp-contributions-newbies'     => 'عرض مساهمات الحسابات الجديدة بس',
 'sp-contributions-newbies-sub' => 'للحسابات الجديده',
 'sp-contributions-blocklog'    => 'سجل المنع',
+'sp-contributions-search'      => 'دور على مساهمات',
+'sp-contributions-username'    => 'عنوان أيبي أو اسم يوزر:',
+'sp-contributions-submit'      => 'تدوير',
 
 # What links here
-'whatlinkshere'           => 'ايه بيوصل هنا',
-'whatlinkshere-title'     => 'الصفحات اللي بتودي ل $1',
-'whatlinkshere-page'      => 'الصفحة:',
-'linklistsub'             => '(لسته بالوصلات)',
-'linkshere'               => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
-'nolinkshere'             => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
-'isredirect'              => 'صفحة تحويل',
-'istemplate'              => 'متضمن',
-'isimage'                 => 'لينك صورة',
-'whatlinkshere-prev'      => '{{PLURAL:$1|اللى قبل كده|الـ $1 اللى قبل كده}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|اللى بعد كده|الـ $1 اللى بعد كده}}',
-'whatlinkshere-links'     => '← وصلات',
-'whatlinkshere-hidelinks' => '$1 لينكات',
+'whatlinkshere'            => 'ايه بيوصل هنا',
+'whatlinkshere-title'      => 'الصفحات اللي بتودي ل $1',
+'whatlinkshere-page'       => 'الصفحة:',
+'linklistsub'              => '(لسته بالوصلات)',
+'linkshere'                => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
+'nolinkshere'              => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
+'nolinkshere-ns'           => "مافيش صفحات بتوصل لـ '''[[:$1]]''' في النطاق اللي انت اختارته.",
+'isredirect'               => 'صفحة تحويل',
+'istemplate'               => 'متضمن',
+'isimage'                  => 'لينك صورة',
+'whatlinkshere-prev'       => '{{PLURAL:$1|اللى قبل كده|الـ $1 اللى قبل كده}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|اللى بعد كده|الـ $1 اللى بعد كده}}',
+'whatlinkshere-links'      => '← وصلات',
+'whatlinkshere-hideredirs' => '$1 التحويلات',
+'whatlinkshere-hidetrans'  => '$1 التضمينات',
+'whatlinkshere-hidelinks'  => '$1 لينكات',
+'whatlinkshere-hideimages' => '$1 وصلة صورة',
+'whatlinkshere-filters'    => 'فلاتر',
 
 # Block/unblock
-'blockip'                 => 'منع يوزر',
-'ipbexpiry'               => 'مدة المنع:',
-'ipbreason'               => 'السبب:',
-'ipbemailban'             => 'منع اليوزر ده من بعتان إيميل',
-'ipbother'                => 'وقت تاني:',
-'ipboptions'              => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,ثلاثة أيام:3 days,أسبوع:1 week,أسبوعان:2 weeks,شهر:1 month,ثلاثة شهور:3 months,ستة شهور:6 months,عام واحد:1 year,دائم:infinite', # display1:time1,display2:time2,...
-'ipblocklist'             => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
-'ipblocklist-submit'      => 'تدوير',
-'blocklink'               => 'منع',
-'unblocklink'             => 'رفع المنع',
-'contribslink'            => 'تعديلات',
-'blocklogpage'            => 'سجل المنع',
-'blocklogentry'           => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
-'block-log-flags-noemail' => 'الإيميل ممنوع',
-'ipb_cant_unblock'        => 'غلطه: عنوان الااى بى الممنوع  مش موجود  $1. يمكن اترفع منعه فعلا.',
-'blockme'                 => 'امنعنى',
-'proxyblocksuccess'       => 'خلاص.',
+'blockip'                         => 'منع يوزر',
+'blockip-legend'                  => 'منع اليوزر',
+'blockiptext'                     => 'استخدم الاستمارة اللي تحت لمنع عنوان أيبي أو يوزر معين من الكتابة.
+دا لازم يحصل بس علشان تمنع التخريب ،و على حسب 
+[[{{MediaWiki:Policy-url}}|السياسة]].
+اكتب سبب محدد تحت (يعنى مثلا، اكتب الصفحات المعينة اللي اتخربت بسببه)).',
+'ipaddress'                       => 'عنوان الأيبي:',
+'ipadressorusername'              => 'عنوان الأيبي أو اسم اليوزر:',
+'ipbexpiry'                       => 'مدة المنع:',
+'ipbreason'                       => 'السبب:',
+'ipbreasonotherlist'              => 'سبب تاني',
+'ipbreason-dropdown'              => '*أسباب المنع المشهورة
+** تدخيل معلومات غلط
+** مسح المحتوى من الصفحات
+** سبام لينك لمواقع خارجية
+** كتابة كلام مالوش معنى في الصفحات
+** سلوك عدواني/تحرش
+** إساءة استخدام اكتر من حسابات 
+** اسم يوزر مش مقبول',
+'ipbanononly'                     => 'امنع اليوزرز المجهولين بس',
+'ipbcreateaccount'                => 'امنع فتح الحسابات',
+'ipbemailban'                     => 'منع اليوزر ده من بعتان إيميل',
+'ipbenableautoblock'              => ' امنع آخر عنوان أيبي استخدمه اليوزر دا اوتوماتيكي، وأي عناوين أيبي تانية يحاول التحرير منها',
+'ipbsubmit'                       => 'منع اليوزر دا',
+'ipbother'                        => 'وقت تاني:',
+'ipboptions'                      => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,تلات-ت-أيام:3 days,أسبوع:1 week,أسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست-ت- شهور:6 months,سنة واحدة:1 year,على طول:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'كمان',
+'ipbotherreason'                  => 'سبب تاني:',
+'ipbhidename'                     => 'خبي اسم اليوزر من سجل المنع، لستة المنع النشطة ولستة اليوزرز',
+'ipbwatchuser'                    => 'راقب صفحات اليوزر و النقاش بتوع اليوزر دا',
+'badipaddress'                    => 'عنوان أيبي مش صحيح',
+'blockipsuccesssub'               => 'المنع حصل بنجاح',
+'blockipsuccesstext'              => 'اتمنع [[Special:Contributions/$1|$1]].<br />
+شوف [[Special:Ipblocklist|لستة منع الأيبي]] علشان تراجع حالات المنع.',
+'ipb-edit-dropdown'               => 'عدل أسباب المنع',
+'ipb-unblock-addr'                => 'رفع منع $1',
+'ipb-unblock'                     => 'رفع المنع عن يوزر أو عنوان أيبي',
+'ipb-blocklist-addr'              => 'عرض المنع الموجود ل$1',
+'ipb-blocklist'                   => 'عرض حالات المنع الموجودة دلوقتي',
+'unblockip'                       => 'رفع منع يوزر',
+'unblockiptext'                   => 'استخدم الاستمارة اللي تحت علشان ترجع حق الكتابة بتاعة عنوان أيبي أو يوزر اتسحب منه الحق دا قبل كدا.',
+'ipusubmit'                       => 'رفع منع  العنوان ده',
+'unblocked'                       => 'المنع اترفع عن [[User:$1|$1]]',
+'unblocked-id'                    => 'منع $1 اترفع',
+'ipblocklist'                     => 'لستة عناوين الااى بى واسامى اليوزر الممنوعه',
+'ipblocklist-legend'              => 'دور على مستخدم ممنوع',
+'ipblocklist-username'            => 'اسم اليوزر او عنوان ال اي بي.',
+'ipblocklist-submit'              => 'تدوير',
+'blocklistline'                   => '$1, $2 منع $3 ($4)',
+'infiniteblock'                   => 'دايم',
+'expiringblock'                   => 'ينتهى فى $1',
+'anononlyblock'                   => 'مجهول بس',
+'noautoblockblock'                => 'المنع التلقائى متعطل',
+'createaccountblock'              => ' فتح الحسابات ممنوع',
+'emailblock'                      => 'الإيميل ممنوع',
+'ipblocklist-empty'               => 'لستة المنع فاضية.',
+'ipblocklist-no-results'          => 'عنوان الأيبي أو اسم اليوزر المطلوب مش ممنوع.',
+'blocklink'                       => 'منع',
+'unblocklink'                     => 'رفع المنع',
+'contribslink'                    => 'تعديلات',
+'autoblocker'                     => 'انت اتمنعت اوتوماتيكي لأن الأيبي بتاعك استعمله"[[User:$1|$1]]" في الفترة الاخيرة. 
+السبب   اللي خلا $1 يتمنع هو: "$2"',
+'blocklogpage'                    => 'سجل المنع',
+'blocklogentry'                   => 'منع "[[$1]]" لفترةه زمنيه مدتها $2 $3',
+'blocklogtext'                    => 'دا سجل بعمليات المنع ورفع المنع.
+عناوين الأيبي اللي اتمنعت اوتوماتيكي مش معروضة.
+شوف [[Special:Ipblocklist|عناوين الأيبي الممنوعة]] علشان تشوف عمليات المنع الشغالة دلوقتي.',
+'unblocklogentry'                 => 'رفع منع $1',
+'block-log-flags-anononly'        => 'اليوزرز المجهولين  بس',
+'block-log-flags-nocreate'        => ' فتح الحسابات ممنوع',
+'block-log-flags-noautoblock'     => 'المنع التلقائى متعطل',
+'block-log-flags-noemail'         => 'الإيميل ممنوع',
+'block-log-flags-angry-autoblock' => 'المنع الاوتوماتيكي المتقدم متفعل',
+'range_block_disabled'            => 'إمكانيةالسيسوب لمنع نطاق متعطلة.',
+'ipb_expiry_invalid'              => 'تاريخ الانتهاء مش صحيح.',
+'ipb_expiry_temp'                 => 'عمليات منع أسماء اليوزرز المستخبية لازم تكون على طول.',
+'ipb_already_blocked'             => '"$1" ممنوع فعلا',
+'ipb_cant_unblock'                => 'غلطه: عنوان الااى بى الممنوع  مش موجود  $1. يمكن اترفع منعه فعلا.',
+'ipb_blocked_as_range'            => 'غلط: الأيبي $1 مش ممنوع مباشرةو مش ممكن رفع المنع عنه.
+بس هو، على الرغم من كدا،ممنوع لانه جزء من النطاق $2، و اللي ممكن رفع المنع عنه.',
+'ip_range_invalid'                => 'نطاق عناوين الأيبي مش صحيح.',
+'blockme'                         => 'امنعنى',
+'proxyblocker'                    => 'مانع البروكسي',
+'proxyblocker-disabled'           => 'الخاصية دي متعطلة.',
+'proxyblockreason'                => 'عنوان الأيبي بتاعك اتمنع لانه بروكسي مفتوح.
+لو سمحت تتصل بمزود خدمة الإنترنت بتاعك أو الدعم الفني و قولهم على المشكلة الامنية الخطيرة دي.',
+'proxyblocksuccess'               => 'خلاص.',
+'sorbs'                           => 'دي إن إس بي إل',
+'sorbsreason'                     => 'عنوان الأيبي بتاعك موجود كبروكسي مفتوح في DNSBL اللي بيستعمله{{SITENAME}}.',
+'sorbs_create_account_reason'     => 'عنوان الأيبي بتاعك موجود كبروكسي مفتوح في ال DNSBL اللي بيستعمله{{SITENAME}}. 
+ما ينفعش تفتح حساب.',
+
+# Developer tools
+'lockdb'              => 'اقفل قاعدة البيانات',
+'unlockdb'            => 'افتح قاعدة البيانات',
+'lockdbtext'          => 'قفل قاعدة البيانات ح يمنع كل اليوزرز من تحرير الصفحات وتغيير التفضيلات بتاعتهم وتعديل لستة المراقبة حاجات تانية بتحتاج تغيير قاعدة البيانات.
+لو سمحت تتأكد من  ان هو دا اللي انت عايز تعمله فعلا، ومن إنك ح تشيل القفل بعد ما تخلص الصيانة.',
+'unlockdbtext'        => 'فتح قاعدة البيانات ح يخلى كل اليوزرز يقدرو يحررو الصفحات، يغيرو  تفضيلاتهم،يعدلو لستة المراقبة  بتاعتهم، و حاجات تانية محتاجين يغيروها في قاعدة البانات.
+. لو سمحت تتاكد ان هو دا اللي انت عايز تعمله',
+'lockconfirm'         => 'أيوه، أنا فعلا عايز اقفل قاعدة البيانات.',
+'unlockconfirm'       => 'أيوه، أنا فعلا عايز افتح قاعدة البيانات.',
+'lockbtn'             => 'قفل قاعدة البيانات',
+'unlockbtn'           => 'افتح قاعدة البيانات',
+'locknoconfirm'       => 'انت ما علمتش على صندوق التأكيد.',
+'lockdbsuccesssub'    => 'نجح قفل قاعدة البيانات',
+'unlockdbsuccesssub'  => 'قفل قاعدة البيانات إتشال.',
+'lockdbsuccesstext'   => 'قاعدة البانات اتقفلت خلاص.<br />
+ماتنساش [[Special:Unlockdb|تشيل القفل]] بعد أعمال الصيانة ما تخلص .',
+'unlockdbsuccesstext' => 'قاعدة البيانات إتفتحت تانى',
+'lockfilenotwritable' => 'ملف قفل قاعدة البيانات مش ممكن يتكتب عليه.
+علشان تقفل قاعدة البيانات أو تشيل القفل لازم سيرفر الويب يسمح بالكتابة على الملف دا .',
+'databasenotlocked'   => 'قاعدة البيانات بتاعتك مش  مقفولة.',
 
 # Move page
-'move-page'        => 'انقل $1',
-'move-page-legend' => 'انقل الصفحة',
-'movepagetext'     => "
-لو استعملت النموذج ده ممكن تغير اسم الصفحه، و تنقل تاريخها للاسم الجديد.
+'move-page'               => 'انقل $1',
+'move-page-legend'        => 'انقل الصفحة',
+'movepagetext'            => "لو استعملت النموذج ده ممكن تغير اسم الصفحه، و تنقل تاريخها للاسم الجديد.
 هاتبتدى تحويله من العنوان القديم للصفحه بالعنوان الجديد.
 لكن،  الوصلات في الصفحات اللى تتصل بالصفحه دى مش ها تتغير؛ اتأكد من ان مافيش وصلات مقطوعه، أو وصلات متتاليه، للتأكد من أن المقالات تتصل مع بعضها بشكل مناسب.
 
@@ -1599,7 +1969,7 @@ $2',
 
 '''تحذير!'''
 نقل الصفحه ممكن يكون له اثار كبيرة، وتغييرات مش متوقعه بالنسبة للصفحات المشهوره. من فضلك  اتأكد من فهم عواقب نقل الصفحات قبل ما تقوم بنقل الصفحه.",
-'movepagetalktext' => '
+'movepagetalktext'        => '
 
 صفحة المناقشه بتاعة المقاله هاتتنقل برضه، لو كانت موجوده. لكن صفحة المناقشه مش هاتتنقل فى الحالات  دى:
 * نقل الصفحة عبر نطاقات  مختلفه.
@@ -1607,56 +1977,130 @@ $2',
 * لو انت شلت اختيار نقل صفحة المناقشه .
 
 وفي الحالات  دى، لو عايز  تنقل صفحة المناقشه  لازم تنقل أو تدمج محتوياتها  يدويا.',
-'movearticle'      => 'انقل الصفحه:',
-'movenologin'      => 'مش متسجل',
-'movenologintext'  => 'لازم تكون يوزر متسجل و تعمل [[Special:Userlogin|دخول]] علشان تنقل الصفحة.',
-'movenotallowed'   => 'ماعندكش الصلاحية لنقل الصفحات في {{SITENAME}}.',
-'newtitle'         => 'للعنوان الجديد:',
-'move-watch'       => 'راقب الصفحه دى',
-'movepagebtn'      => 'نقل الصفحه',
-'pagemovedsub'     => 'تم  النقل بنجاح',
-'movepage-moved'   => '<big>\'\'\'"$1" اتنقلت ل"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => '
+'movearticle'             => 'انقل الصفحه:',
+'movenotallowed'          => 'ماعندكش الصلاحية لنقل الصفحات في {{SITENAME}}.',
+'newtitle'                => 'للعنوان الجديد:',
+'move-watch'              => 'راقب الصفحه دى',
+'movepagebtn'             => 'نقل الصفحه',
+'pagemovedsub'            => 'تم  النقل بنجاح',
+'movepage-moved'          => '<big>\'\'\'"$1" اتنقلت ل"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => '
 
 يا اما فيه صفحه  بالاسم ده ،او ان الاسم اللى  تم اختياره مش صالح. لو سمحت اختار اسم تانى .',
-'talkexists'       => "'''الصفحه دى اتنقلت لصفحة بنجاح، ولكن صفحة المناقشه بتاعتها ما اتنقلتش  علشان فيه صفحة مناقشه تحت العنوان الجديد. من فضلك انقل محتويات صفحة المناقشه يدويا، وادمجها مع المحتويات اللى قبل كده.'''",
-'movedto'          => 'اتنقلت ل',
-'movetalk'         => 'انقل صفحة المناقشه.',
-'1movedto2'        => '[[$1]] اتنقلت ل [[$2]]',
-'movelogpage'      => 'سجل النقل',
-'movereason'       => 'السبب:',
-'revertmove'       => 'استعاده',
+'cantmove-titleprotected' => 'ما ينفعش تنقل صفحة للمكان دا،لأن العنوان الجديد محمي ضد الانشاء',
+'talkexists'              => "'''الصفحه دى اتنقلت لصفحة بنجاح، ولكن صفحة المناقشه بتاعتها ما اتنقلتش  علشان فيه صفحة مناقشه تحت العنوان الجديد. من فضلك انقل محتويات صفحة المناقشه يدويا، وادمجها مع المحتويات اللى قبل كده.'''",
+'movedto'                 => 'اتنقلت ل',
+'movetalk'                => 'انقل صفحة المناقشه.',
+'move-subpages'           => 'انقل كل الصفحات الفرعية، إن امكن',
+'move-talk-subpages'      => 'انقل كل الصفحات الفرعية لصفحة النقاش، لو ممكن',
+'movepage-page-exists'    => 'الصفحة $1 موجودة فعلا ومش ممكن الكتابة عليها اوتوماتيكي..',
+'movepage-page-moved'     => 'الصفحة $1 اتنقلت لـ $2.',
+'movepage-page-unmoved'   => 'ماقدرناش ننقل الصفحة $1 لـ $2.',
+'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} اتنقل. و مافيش حاجة تاني ح تتنقل اوتوماتيكي.',
+'1movedto2'               => '[[$1]] اتنقلت ل [[$2]]',
+'1movedto2_redir'         => '[[$1]] انقلت لـ[[$2]] فوق التحويلة',
+'movelogpage'             => 'سجل النقل',
+'movelogpagetext'         => 'تحت في لستة الصفحات اللي اتنقلت.',
+'movereason'              => 'السبب:',
+'revertmove'              => 'استعاده',
+'delete_and_move'         => 'مسح ونقل',
+'delete_and_move_text'    => '==المسح مطلوب==
+الصفحة الهدف "[[$1]]" موجودة فعلا.
+انت عايز تمسحها علشان تقدر تنقلها؟',
+'delete_and_move_confirm' => 'ايوة، امسح الصفحة',
+'delete_and_move_reason'  => 'اتمسحت علشان تسمح للنقل',
+'selfmove'                => 'عنوان المصدر والهدف هو نفسه؛
+مش ممكن نقل الصفحة على نفسها.',
+'immobile_namespace'      => 'عنوان المصدر أو الهدف ليه طبيعة خاصة؛
+مش ممكن تنقل الصفحات من و للنطاق دا.',
+'imagenocrossnamespace'   => 'مش ممكن تنقل الملف لنطاق غير نطاق الملفات',
+'imagetypemismatch'       => 'امتداد الملف الجديد مش ماشي مع نوعه',
+'imageinvalidfilename'    => 'اسم الملف الهدف مش صحيح',
+'fix-double-redirects'    => 'اعمل تحديث لاي تحويلات بتشاور على العنوان الاصلي',
 
 # Export
-'export'        => 'تصدير صفحات',
-'export-addcat' => 'زيادة',
+'export'            => 'تصدير صفحات',
+'exporttext'        => 'انت ممكن تصدر النص وتاريخ تعديلات صفحة معينة أو مجموعة صفحات في صيغة إكس إم إل. لو قصدكو بكدا ممكن استيرادها في ويكي تاني بيستعمل ميدياويكي عن طريق الصفحة [[Special:Import|صفحة الاستيراد]].
+
+علشان تصدر الصفحات، اكتب العناوين في الصندوق اللي تحت، عنوان واحد في كل السطر، و اختار اذا كنت عايز  النسخة الحالية بالإضافة  للنسخ القديمة كاملة أو مع معلومات تاريخ الصفحة عنها ولا بس النسخة الحالية مع معلومات عن التعديل الأخير.
+
+في الحالة التانية ممكن تستخدم لينك مباشرة، مثلا [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] للصفحة [[{{MediaWiki:Mainpage}}]].',
+'exportcuronly'     => 'ضمن المراجعة دي بس، ومش التاريخ الكامل',
+'exportnohistory'   => "----
+ملاحظة:''' التصدير الكامل لتاريخ الصفحة  بالطريقة دي مش شغال بسبب الاداء'''",
+'export-submit'     => 'تصدير',
+'export-addcattext' => 'ضيف صفحات من تصنيف:',
+'export-addcat'     => 'زيادة',
+'export-download'   => 'احفظ كملف',
+'export-templates'  => 'دخل القوالب',
 
 # Namespace 8 related
-'allmessages'        => 'رسايل النظام',
-'allmessagesname'    => 'اسم',
-'allmessagescurrent' => 'النص دلوقتى',
+'allmessages'               => 'رسايل النظام',
+'allmessagesname'           => 'اسم',
+'allmessagesdefault'        => 'النص الاوتوماتيكي',
+'allmessagescurrent'        => 'النص دلوقتى',
+'allmessagestext'           => 'دي لستة برسايل النظام المتوفرة في نطاق ميدياويكي.
+لو سمحت تزور[http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت عايز تساهم في ترجمة ميدياويكي الاصلية.',
+'allmessagesnotsupportedDB' => "الصفحة دي مش يمكن حد يستعملها علشان'''\$wgUseDatabaseMessages''' متعطل.",
+'allmessagesfilter'         => 'فلتر اسم الرسالة:',
+'allmessagesmodified'       => 'اعرض اللي اتعدل بس',
 
 # Thumbnails
-'thumbnail-more'  => 'كبر',
-'filemissing'     => 'الملف ضايع',
-'thumbnail_error' => 'غلطه فى انشاء صوره مصغره: $1',
+'thumbnail-more'           => 'كبر',
+'filemissing'              => 'الملف ضايع',
+'thumbnail_error'          => 'غلطه فى انشاء صوره مصغره: $1',
+'djvu_page_error'          => 'صفحة DjVu بره النطاق',
+'djvu_no_xml'              => 'مش ممكن تجيب XML لملف DjVu',
+'thumbnail_invalid_params' => 'محددات التصغير مش صحيحة',
+'thumbnail_dest_directory' => 'مش قادر ينشئ المجلد الهدف',
 
 # Special:Import
-'import'                  => 'استيراد صفحات',
-'import-interwiki-submit' => 'استيراد',
-'importbadinterwiki'      => 'اللينك بتاعة الانترويكي دي غلط',
-'importnotext'            => 'فاضي او مافيش نص',
+'import'                     => 'استيراد صفحات',
+'importinterwiki'            => 'استيراد ترانسويكي',
+'import-interwiki-text'      => 'اختار الويكي و عنوان الصفحة اللي عاوز تستوردها.
+تواريخ التعديلات و اسامي المحررين  ح يتحافظ عليها.
+كل عمليات الاستيراد للترانسويكي بتتسجل في [[Special:Log/import|سجل الاستيراد]].',
+'import-interwiki-history'   => 'انسخ كل نسخ التاريخ للصفحة دي',
+'import-interwiki-submit'    => 'استيراد',
+'import-interwiki-namespace' => 'انقل الصفحات للنطاق:',
+'importtext'                 => 'لو سمحت تصدّر الملف من الويكي المصدر عن طريق [[Special:Export|خاصية التصدير]]،احفظه على جهازك و بعدين حمله هنا.',
+'importstart'                => 'استيراد صفحات...',
+'import-revision-count'      => '{{PLURAL:$1|نسخة واحدة|نسخة}} $1',
+'importnopages'              => 'مافيش صفحات للاستيراد',
+'importfailed'               => 'فشل استيراد: $1',
+'importunknownsource'        => 'نوع مصدر الاستيراد مش معروف',
+'importcantopen'             => 'ماقدرناش نفتح ملف الاستيراد',
+'importbadinterwiki'         => 'اللينك بتاعة الانترويكي دي غلط',
+'importnotext'               => 'فاضي او مافيش نص',
+'importsuccess'              => 'الاستيراد خلص!',
+'importhistoryconflict'      => 'في تاريخ تعديلات متعارض مع بعضه(يمكن الصفحة دي تكون استوردت قبل كدا)',
+'importnosources'            => ' مصادر استيراد الترانسويكي ما تحددتش  و الاستيراد المباشر عن طريق التحميل مش شغال.',
+'importnofile'               => 'ملف الاستيراد ما تحملش.',
+'importuploaderrorsize'      => 'تحميل ملف الاستيراد فشل. الملف أكبر من حجم التحميل المسموح.',
+'importuploaderrorpartial'   => 'تحميل ملف الاستيراد فشل.  جزء من الملف بس اتحمل',
+'importuploaderrortemp'      => 'تحميل ملف الاستيراد فشل. في مجلد مؤقت ضايع.',
+'import-parse-failure'       => 'فشل بارس استيراد XML',
+'import-noarticle'           => 'مافيش صفحة للاستيراد!',
+'import-nonewrevisions'      => 'كل النسخ استوردت قبل كدا.',
+'xml-error-string'           => '$1 عند السطر $2، العمود $3 (بايت $4): $5',
+'import-upload'              => 'حمل بيانات إكس‌إم‌إل',
 
 # Import log
-'importlogpage'             => 'سجل الاستيراد',
-'import-logentry-interwiki' => 'استيراد ويكى $1',
+'importlogpage'                    => 'سجل الاستيراد',
+'importlogpagetext'                => 'استيرادات إدارية لصفحات ليها تاريخ تعديل من مواقع ويكي تانية.',
+'import-logentry-upload'           => 'استورد [[$1]] بواسطة تحميل ملف',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تعديل واحد|تعديل}}',
+'import-logentry-interwiki'        => 'استيراد ويكى $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|تعديل واحد|تعديل}} من $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'صفحتى الخاصه',
+'tooltip-pt-anonuserpage'         => 'صفحة اليوزر للأيبي اللي انت بتعمل منه تحرير',
 'tooltip-pt-mytalk'               => 'صفحة مناقشاتى',
+'tooltip-pt-anontalk'             => 'نقاش حوالين التعديلات من عنوان الأيبي دا',
 'tooltip-pt-preferences'          => 'تفضيلاتى',
 'tooltip-pt-watchlist'            => 'لسته بالصفحات اللى انت بتراقب التعديلات فيها',
-'tooltip-pt-mycontris'            => ' لسته بتعديلاتى',
+'tooltip-pt-mycontris'            => 'لسته بتعديلاتى',
 'tooltip-pt-login'                => 'من الافضل انك تسجل دخولك، لكن ده مش شرط',
 'tooltip-pt-anonlogin'            => 'من الأفضل انك تسجل دخولك، لكن ده مش إجبارى.',
 'tooltip-pt-logout'               => 'خروج',
@@ -1664,12 +2108,16 @@ $2',
 'tooltip-ca-edit'                 => 'ممكن تعدل  الصفحه دى، بس لو سمحت استعمل زرار البروفه قبل ما تسييفها',
 'tooltip-ca-addsection'           => 'ضيف تعليق للمناقشه دى.',
 'tooltip-ca-viewsource'           => 'الصفحه دى محميه. ممكن تشوف مصدرها.',
+'tooltip-ca-history'              => 'النسخ القديمة من الصفحة دي',
 'tooltip-ca-protect'              => 'احمى الصفحه دى',
 'tooltip-ca-delete'               => 'امسح الصفحه دى',
+'tooltip-ca-undelete'             => 'رجع التعديلات اللي حصلت على الصفحة دي قبل ما تتمسح',
 'tooltip-ca-move'                 => 'انقل الصفحه دى',
 'tooltip-ca-watch'                => 'حط الصفحة دى فى لسته الصفحات اللى باراقب التعديلات فيها',
 'tooltip-ca-unwatch'              => 'شيل الصفحه دى من لستة الصفحات اللى بتراقبها',
 'tooltip-search'                  => 'دور فى {{SITENAME}}',
+'tooltip-search-go'               => 'روح  لصفحة بنفس الاسم دا لو موجودة',
+'tooltip-search-fulltext'         => 'دور في الصفحات  على النص دا',
 'tooltip-p-logo'                  => 'الصفحه الرئيسيه',
 'tooltip-n-mainpage'              => 'زور الصفحه الرئيسيه',
 'tooltip-n-portal'                => 'عن المشروع، ممكن تعمل ايه، و فين تلاقى اللى بتدور عليه',
@@ -1678,11 +2126,18 @@ $2',
 'tooltip-n-randompage'            => 'حمل صفحة عشوائيه',
 'tooltip-n-help'                  => 'لو محتاج مساعده بص هنا',
 'tooltip-t-whatlinkshere'         => 'صفحات الويكى اللى بتوصل هنا',
+'tooltip-t-recentchangeslinked'   => 'اخر التغييرات في الصفحات الموصولة من الصفحة دي',
+'tooltip-feed-rss'                => 'تلقيم أر إس إس للصفحة دي',
+'tooltip-feed-atom'               => 'تلقيم أتوم للصفحة دي',
 'tooltip-t-contributions'         => 'عرض مساهمات اليوزر ده',
 'tooltip-t-emailuser'             => 'ابعت ايميل لليوزر ده',
 'tooltip-t-upload'                => 'حمل ملفات',
 'tooltip-t-specialpages'          => 'لسته بكل الصفحات المخصوصه',
+'tooltip-t-print'                 => 'نسخة للطباعة لصفحة دي',
+'tooltip-t-permalink'             => 'لينك دايمة للنسخة دي من الصفحة',
+'tooltip-ca-nstab-main'           => 'اعرض صفحة المحتوى',
 'tooltip-ca-nstab-user'           => 'اعرض صفحة اليوزر',
+'tooltip-ca-nstab-media'          => 'اعرض صفحة الميديا',
 'tooltip-ca-nstab-special'        => 'الصفحة دي صفحة مخصوصة ، مش ممكن تعدل الصفحة نفسها',
 'tooltip-ca-nstab-project'        => 'اعرض صفحة المشروع',
 'tooltip-ca-nstab-image'          => 'اعرض صفحة الفايل',
@@ -1696,28 +2151,98 @@ $2',
 'tooltip-diff'                    => 'اعرض التعديلات اللى انت عملتها على النص.',
 'tooltip-compareselectedversions' => 'شوف الفروق بين النسختين المختارتين للصفحه دى.',
 'tooltip-watch'                   => 'ضم الصفحه دى للستة الصفحات اللى بتراقبها',
+'tooltip-recreate'                => 'إنشيء الصفحة تاني مع انها اتمسحت قبل كدا',
 'tooltip-upload'                  => 'ابتدي التحميل',
 
+# Scripts
+'common.js'      => '/*  أي جافاسكريبت  هناح يتحمل لكل اليوزرز مع كل تحميل للصفحة. */',
+'standard.js'    => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة ستاندرد */',
+'nostalgia.js'   => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة نوستالجيا */',
+'cologneblue.js' => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة كولون بلو */',
+'monobook.js'    => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة مونوبوك */',
+'myskin.js'      => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة ماي سكين */',
+'chick.js'       => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة تشيك */',
+'simple.js'      => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة سيمبل */',
+'modern.js'      => '/* أي جافاسكريبت هنا ح تتحمل لليوزرز اللي بيستعملو واجهة مودرن */',
+
+# Metadata
+'nodublincore'      => 'Dublin Core RDF metadata متعطلة للسيرفر دا.',
+'nocreativecommons' => 'Creative Commons RDF metadata متعطلة  للسيرفر دا.',
+'notacceptable'     => 'السيرفر بتاع الويكي مش ممكن يديلك بيانات بصيغة ممكن عميلك يقراها.',
+
 # Attribution
-'others'      => 'تانيين',
-'creditspage' => 'حقوق الصفحة',
+'anonymous'        => 'يوزر مجهول ل {{SITENAME}}',
+'siteuser'         => 'يوزر {{SITENAME}} $1',
+'lastmodifiedatby' => 'آخر تعديل  للصفحة دي كان في $2، $1 عن طريق $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'بناء على عمل $1.',
+'others'           => 'تانيين',
+'siteusers'        => '{{SITENAME}} يوزر(و) $1',
+'creditspage'      => 'حقوق الصفحة',
+'nocredits'        => 'مافيش معلومات حقوق متوفرة للصفحة دي.',
 
 # Spam protection
 'spamprotectiontitle' => 'فلتر الحمايه من السبام',
+'spamprotectiontext'  => 'السبام فيلتر منعك من إنك تحفظ الصفحة دي. السبب يمكن  علشان في لينك لسايت خارجي.',
+'spamprotectionmatch' => 'النص دا هو اللي نشط السبام فيلتر بتاعنا: $1',
 'spambot_username'    => 'تنظيف سبام ميدياويكى',
+'spam_reverting'      => 'ترجيع آخر نسخة مافيهاش لينكات لـ $1',
+'spam_blanking'       => 'كل النسخ فيها لينكات ل $1، فضيها',
 
 # Info page
-'infosubtitle' => 'معلومات للصفحه',
+'infosubtitle'   => 'معلومات للصفحه',
+'numedits'       => 'عدد التعديلات (صفحة): $1',
+'numtalkedits'   => 'عدد التعديلات (صفحة نقاش): $1',
+'numwatchers'    => 'عدد المراقبين: $1',
+'numauthors'     => 'عدد المؤلفين المميزين (صفحة): $1',
+'numtalkauthors' => 'عدد المؤلفين المميزين (صحفة نقاش): $1',
+
+# Math options
+'mw_math_png'    => 'دايما اعرض PNG',
+'mw_math_simple' => 'يا إما HTML لو بسيطة قوي أو PNG',
+'mw_math_html'   => 'ياإما HTML لو ممكن أو PNG',
+'mw_math_source' => 'اعرض على هيئة TeX (للبراوزرات النصية)',
+'mw_math_modern' => 'أحسن للبراوزرات الحديثة',
+'mw_math_mathml' => 'اعرض بصيغة MathML لو ممكن (تحت التجريب)',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'علم عليها انها متراجعة',
+'markaspatrolledtext'                 => 'علم على المقاله دي إنها متراجعة',
+'markedaspatrolled'                   => 'اتعلم عليها متراجعة',
+'markedaspatrolledtext'               => 'النسخة المختارة اتعلم عيها انها متراجعة',
+'rcpatroldisabled'                    => 'مراجعة أخر التغييرات متعطلة',
+'rcpatroldisabledtext'                => 'خاصية مراجعة أحدث التغييرات متعطلة  دلوقتي',
+'markedaspatrollederror'              => 'مش ممكن تعلم علها إنها متراجعة',
+'markedaspatrollederrortext'          => 'لازم تختار النسخة اللي عاوز تعلم عليها إنها متراجعة',
+'markedaspatrollederror-noautopatrol' => 'مش مسموح ليك تعلم على تغييراتك الشخصية كأنها متراجعة.',
 
 # Patrol log
-'patrol-log-auto' => '(اوتوماتيكي)',
+'patrol-log-page'   => 'سجل المراجعة',
+'patrol-log-header' => 'دا سجل بالنسخ المتراجعة',
+'patrol-log-line'   => 'علم على $1 من $2 كأنها متراجعة $3',
+'patrol-log-auto'   => '(اوتوماتيكي)',
+'patrol-log-diff'   => 'ن$1',
+
+# Image deletion
+'deletedrevision'                 => 'مسح النسخة القديمة $1',
+'filedeleteerror-short'           => 'غلط مسح الملف: $1',
+'filedeleteerror-long'            => 'حصلت غلطات و الملف دا بيتمسح :
+
+$1',
+'filedelete-missing'              => 'الملف "$1" ما ينفعش يتمسح لأنه مش موجود.',
+'filedelete-old-unregistered'     => 'نسخة الملف المحددة "$1" مش في قاعدة البيانات.',
+'filedelete-current-unregistered' => 'الملف المحدد "$1" مش في قاعدة البيانات.',
+'filedelete-archive-read-only'    => 'مش ممكن تكتب على مجلد الأرشيف "$1" بالويب سيرفر',
 
 # Browsing diffs
 'previousdiff' => '→ الفرق اللى قبل كده',
 'nextdiff'     => 'الفرق اللى بعد كده ←',
 
 # Media information
-'thumbsize'            => 'حجم العرض المصغر:',
+'mediawarning'         => "'''تحذير''': الملف دا فيه كود خبيث، يمكن عند تشغيله يبوظ الكمبيوتر بتاعك.<hr />",
+'imagemaxsize'         => 'حدد الصور في صفحات وصف الملفات لـ:',
+'thumbsize'            => 'حجم العرض المتصغر:',
+'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',
+'file-info'            => '(حجم الملف: $1، نوع MIME: $2)',
 'file-info-size'       => '($1 × $2 بكسل حجم الفايل: $3، نوع MIME: $4)',
 'file-nohires'         => '<small>مافيش  ريزوليوشن اعلى متوفر.</small>',
 'svg-long-desc'        => '(ملف SVG، اساسا $1 × $2 بكسل، حجم الملف: $3)',
@@ -1725,10 +2250,20 @@ $2',
 'show-big-image-thumb' => '<small>حجم البروفه دى: $1 × $2 بكسل</small>',
 
 # Special:Newimages
-'newimages'    => 'جاليرى الصور الجديده',
-'showhidebots' => '($1 بوتات)',
-'ilsubmit'     => 'تدوير',
-'bydate'       => 'على حسب التاريخ',
+'newimages'             => 'جاليرى الصور الجديده',
+'imagelisttext'         => 'دي لستة بـ$1 {{PLURAL:$1|ملف|ملفات}} مترتبة $2.',
+'newimages-summary'     => 'الصفحةالمخصوصة دي بتعرض آخر الملفات المتحملة',
+'showhidebots'          => '($1 بوتات)',
+'noimages'              => 'مافيش حاجة للعرض.',
+'ilsubmit'              => 'تدوير',
+'bydate'                => 'على حسب التاريخ',
+'sp-newimages-showfrom' => 'بين الملفات الجديدة  من أول $2، $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1، $2×$3',
+'seconds-abbrev' => 'ث',
+'minutes-abbrev' => 'ق',
+'hours-abbrev'   => 'س',
 
 # Bad image list
 'bad_image_list' => 'الصيغه بالشكل ده:
@@ -1758,16 +2293,25 @@ $2',
 'exif-photometricinterpretation'   => 'تركيب البكسل',
 'exif-orientation'                 => 'التوجيه',
 'exif-samplesperpixel'             => 'عدد المكونات',
+'exif-planarconfiguration'         => 'ترتيب البيانات',
+'exif-ycbcrsubsampling'            => 'نسبة العينة الفرعية بتاعة Y لـ C',
 'exif-ycbcrpositioning'            => 'وضع Y و C',
+'exif-xresolution'                 => 'الدقة الأفقية',
+'exif-yresolution'                 => 'الدقة الرأسية',
 'exif-resolutionunit'              => 'وحدة تحليل X و Y',
 'exif-stripoffsets'                => 'موقع بيانات الصورة',
+'exif-rowsperstrip'                => 'عدد الصفوف لكل ستريب',
+'exif-stripbytecounts'             => 'بايت لكل ستريب مضغوط',
 'exif-jpeginterchangeformat'       => 'الحد ل JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'بايت من بيانات JPEG',
 'exif-transferfunction'            => 'وظيفة النقل',
-'exif-whitepoint'                  => 'ألوان النقطة البيضاء',
+'exif-whitepoint'                  => 'ألوان النقطة البيضا',
+'exif-primarychromaticities'       => 'ألوان الأساسيات',
+'exif-ycbcrcoefficients'           => 'معاملات مصفوفة تحويل فراغ اللون',
+'exif-referenceblackwhite'         => 'جوز من قيم المرجع السودا والبيضا',
 'exif-datetime'                    => 'تاريخ و وقت تغيير الملف',
 'exif-imagedescription'            => 'عنوان الصورة',
-'exif-make'                        => 'منتج آلة التصوير',
+'exif-make'                        => 'منتج الكاميرا',
 'exif-model'                       => 'موديل الكاميرا',
 'exif-software'                    => 'البرمجيات المستخدمة',
 'exif-artist'                      => 'المؤلف',
@@ -1785,10 +2329,12 @@ $2',
 'exif-datetimeoriginal'            => 'تاريخ و وقت الإنتاج',
 'exif-datetimedigitized'           => 'تاريخ و وقت التحويل الرقمى',
 'exif-subsectime'                  => 'وقت تاريخ ثوانى فرعية',
+'exif-subsectimeoriginal'          => 'وقت تاريخ أصلي ثواني فرعية',
 'exif-subsectimedigitized'         => 'وقت تاريخ رقمى ثوانى فرعية',
 'exif-exposuretime'                => 'مدة التعرض',
 'exif-exposuretime-format'         => '$1 ثانية ($2)',
 'exif-fnumber'                     => 'العدد البؤرى',
+'exif-fnumber-format'              => 'البعد البؤري/$1',
 'exif-exposureprogram'             => 'برنامج التعرض',
 'exif-spectralsensitivity'         => 'الحساسية الطيفية',
 'exif-isospeedratings'             => 'تقييم سرعة أيزو',
@@ -1800,15 +2346,17 @@ $2',
 'exif-maxaperturevalue'            => 'أقصى قافل أرضى',
 'exif-subjectdistance'             => 'مسافة من الجسم',
 'exif-meteringmode'                => 'طور القياس بالمتر',
-'exif-lightsource'                 => 'مصدر الضوء',
+'exif-lightsource'                 => 'مصدر النور',
 'exif-flash'                       => 'فلاش',
 'exif-focallength'                 => 'البعد البؤرى  للعدسة',
-'exif-subjectarea'                 => ' منطقة الجسم',
+'exif-focallength-format'          => '$1 ملم',
+'exif-subjectarea'                 => 'منطقة الجسم',
 'exif-flashenergy'                 => 'طاقة الفلاش',
+'exif-spatialfrequencyresponse'    => 'استجابة التردد الفراغي',
 'exif-focalplanexresolution'       => 'تحليل المستوى البؤرى X',
 'exif-focalplaneyresolution'       => 'تحليل المستوى البؤرى Y',
 'exif-focalplaneresolutionunit'    => 'وحدة تحليل المستوى البؤرى',
-'exif-subjectlocation'             => 'موضع الجسم',
+'exif-subjectlocation'             => 'مكان الجسم',
 'exif-exposureindex'               => 'فهرس التعرض',
 'exif-sensingmethod'               => 'وسيلة الاستشعار',
 'exif-filesource'                  => 'مصدر الملف',
@@ -2130,8 +2678,8 @@ $1',
 جرب البروفة العادية.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'التغييرات الأحدث من $1 ثانية ممكن ما تظهرش في اللستة دي.',
-'lag-warn-high'   => 'علشان في تأخير كبير في تحديث قاعدة البيانات بتاعة السيرفر، التغييرات أحدث من $1 ثانية
+'lag-warn-normal' => 'التغييرات الأحدث من $1 {{PLURAL:$1|ثانية|ثانية}} ثانية ممكن ما تظهرش في اللستة دي.',
+'lag-warn-high'   => 'علشان في تأخير كبير في تحديث قاعدة البيانات بتاعة السيرفر، التغييرات أحدث من $1 {{PLURAL:$1|ثانية|ثانية}}
 ممكن ما تظهرش في اللستة دي.',
 
 # Watchlist editor

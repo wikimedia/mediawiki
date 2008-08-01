@@ -9,12 +9,12 @@
  * @author Piolinfax
  * @author Boivie
  * @author Drini
- * @author Platonides
  * @author Lin linao
+ * @author Platonides
  * @author Siebrand
  * @author Dmcdevit
- * @author לערי ריינהארט
  * @author Spacebirdy
+ * @author לערי ריינהארט
  * @author Jurock
  * @author Baiji
  * @author Sanbec
@@ -23,14 +23,15 @@
  * @author Jatrobat
  * @author Ascánder
  * @author Bengoa
- * @author Orgullomoore
+ * @author Jon Harald Søby
  * @author Dvortygirl
+ * @author Orgullomoore
  * @author Toniher
  * @author Omnipaedista
  * @author McDutchie
- * @author Mahadeva
- * @author Alpertron
  * @author Fluence
+ * @author Alpertron
+ * @author Mahadeva
  * @author Better
  * @author SPQRobin
  * @author Technorum
@@ -588,10 +589,6 @@ Por favor, incluye este identificador en cualquier petición que hagas.',
 'blockededitsource'                => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
 'whitelistedittitle'               => 'Se requiere identificación para editar.',
 'whitelistedittext'                => 'Tienes que $1 para editar artículos.',
-'whitelistreadtitle'               => 'Se requiere identificación para leer',
-'whitelistreadtext'                => 'Tienes que [[Special:Userlogin|registrarte]] para leer artículos.',
-'whitelistacctitle'                => 'No se le permite crear una cuenta',
-'whitelistacctext'                 => 'Para poder crear cuentas en {{SITENAME}} se ha de [[Special:Userlogin|iniciar sesión]] y tener los permisos apropiados.',
 'confirmedittitle'                 => 'Se requiere confirmación de dirección electrónica para editar',
 'confirmedittext'                  => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'               => 'No existe tal sección',
@@ -1159,10 +1156,10 @@ archivo a esa fecha.',
 
 # File reversion
 'filerevert'            => 'Revertir $1',
-'filerevert-intro'      => '<span class="plainlinks">Estás revirtiendo \'\'\'[[Media:$1|$1]]\'\'\' a la [version $4 desde la $3, $2].</span>',
+'filerevert-intro'      => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [version $4 desde la $3, $2].",
 'filerevert-comment'    => 'Comentario:',
 'filerevert-submit'     => 'Revertir',
-'filerevert-success'    => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha sido revertido a la [version $4 desde la $3, $2].</span>',
+'filerevert-success'    => "'''[[Media:$1|$1]]''' ha sido revertido a la [version $4 desde la $3, $2].",
 'filerevert-badversion' => 'No existe version local previa de este archivo con esa marca de tiempo.',
 
 # File deletion
@@ -1729,8 +1726,6 @@ por favor, asegúrate de entender las consecuencias que acarreará antes de segu
 
 En estos casos, deberá trasladar manualmente el contenido de la página de discusión.",
 'movearticle'             => 'Renombrar página',
-'movenologin'             => 'No ha iniciado sesión',
-'movenologintext'         => 'Es necesario ser usuario registrado y [[Special:Userlogin|haber iniciado sesión]] para renombrar una página.',
 'movenotallowed'          => 'No tienes permiso para trasladar páginas en {{SITENAME}}.',
 'newtitle'                => 'A título nuevo',
 'move-watch'              => 'Vigilar este artículo',

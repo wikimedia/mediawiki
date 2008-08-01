@@ -12,11 +12,12 @@
  * @author Suelnur
  * @author Erkan Yilmaz
  * @author Runningfridgesrule
- * @author Siebrand
  * @author Katpatuka
+ * @author Siebrand
  * @author Mach
  * @author לערי ריינהארט
  * @author Mskyrider
+ * @author Jon Harald Søby
  * @author Myildirim2007
  */
 
@@ -571,10 +572,6 @@ Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'blockededitsource'                => "'''$1''' sayfasında '''yaptığınız değişikliğe''' ait metin aşağıdadır:",
 'whitelistedittitle'               => 'Değişiklik yapmak için oturum açmalısınız',
 'whitelistedittext'                => 'Değişiklik yapabilmek için $1.',
-'whitelistreadtitle'               => 'Okumak için oturum açmalısınız',
-'whitelistreadtext'                => 'Sayfaları okuyabilmek için [[Special:Userlogin|oturum açmalısınız]].',
-'whitelistacctitle'                => 'Hesap açma izniniz yok.',
-'whitelistacctext'                 => '{{SITENAME}} sitesinde kullanıcı hesapları oluşturabilmek için [[Special:Userlogin|giriş yapmak]] ve gerekli izinlere sahip olmak zorundasınız',
 'confirmedittitle'                 => 'Değişiklik yapmak için e-posta onaylaması gerekiyor',
 'confirmedittext'                  => 'Sayfa değiştirmeden önce e-posta adresinizi onaylamalısınız. Lütfen [[Special:Preferences|tercihler]] kısmından e-postanızı ekleyin ve onaylayın.',
 'nosuchsectiontitle'               => 'Böyle bir bölüm yok',
@@ -1558,8 +1555,6 @@ lütfen değişikliği yapmadan önce olabilecekleri göz önüne alın.",
 
 Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'movearticle'             => 'Eski isim',
-'movenologin'             => 'Sistemde değilsiniz.',
-'movenologintext'         => 'Sayfanın adını değiştirebilmek için kayıtlı ve [[Special:Userlogin|sisteme]] giriş yapmış olmanız gerekmektedir.',
 'newtitle'                => 'Yeni isim',
 'move-watch'              => 'Bu sayfayı izle',
 'movepagebtn'             => 'İsmi değiştir',
@@ -1753,7 +1748,7 @@ Lütfen başka bir isim deneyiniz.',
 # Special:Newimages
 'newimages'             => 'Yeni resimler',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş '''$1''' adet dosyayı göstermektedir.",
-'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir',
+'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir.',
 'showhidebots'          => '(botları $1)',
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',

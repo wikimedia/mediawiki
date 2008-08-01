@@ -7,8 +7,8 @@
  * @author AlimanRuna
  * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'es';
@@ -550,10 +550,6 @@ Hark'ay huchhaykiqa $5 nisqam. Mañakuspaykiqa chay huchhata willay.",
 'blockededitsource'                => "'''$1'''-pi '''llamk'apusqaykikuna''' nisqapi qillqasqaqa kaymi:",
 'whitelistedittitle'               => "Yaykuspallaykim llamk'apuyta atinki.",
 'whitelistedittext'                => "$1ta ruranaykim tiyan qillqakunata llamk'apunaykipaq.",
-'whitelistreadtitle'               => 'Yaykuspallaykim ñawiriyta atinki',
-'whitelistreadtext'                => '[[Special:Userlogin|Yaykuspallaykim]] qillqakunata ñawiriyta atinki.',
-'whitelistacctitle'                => 'Rakiqunata kichariyqa manam saqillasqachu',
-'whitelistacctext'                 => '{{SITENAME}}pi rakiqunakunata kicharinaykipaqqa sapaqta saqillasqa kaspayki [[Special:Userlogin|yaykunaykim]] tiyan.',
 'confirmedittitle'                 => "E-chaski imamaytaykita takyachiy llamk'apunaykipaq",
 'confirmedittext'                  => "P'anqakunata llamk'apunaykipaqqa e-chaski imamaytaykita takyachinaykim tiyan. Ama hina kaspa, e-chaski imamaytata kicharispa takyachiy [[Special:Preferences|allinkachinaykikunapi]].",
 'nosuchsectiontitle'               => 'Manam kanchu chay raki',
@@ -1167,18 +1163,18 @@ Tunup umanpi ñit'ispaqa allichaytam hukchanki.",
 # File reversion
 'filerevert'                => '$1-ta kutichiy',
 'filerevert-legend'         => 'Willañiqita kutichiy',
-'filerevert-intro'          => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' nisqatam [$3, $2 pachapi $4 llamk\'apusqaman] kutichichkanki.</span>',
+'filerevert-intro'          => "'''[[Media:$1|$1]]''' nisqatam [$3, $2 pachapi $4 llamk'apusqaman] kutichichkanki.",
 'filerevert-comment'        => 'Willayniyki:',
 'filerevert-defaultcomment' => '$2, $1 nisqa musuqchasqaman kutichisqa',
 'filerevert-submit'         => 'Kutichiy',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' nisqaqa [$3, $2 pachapi $4 llamk\'apusqaman] kutichisqañam.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' nisqaqa [$3, $2 pachapi $4 llamk'apusqaman] kutichisqañam.",
 'filerevert-badversion'     => "Kay willañiqimanta qusqayki pachayuq tiyaylla llamk'apusqaqa manam kanchu.",
 
 # File deletion
 'filedelete'                  => '$1-ta qulluy',
 'filedelete-legend'           => 'Willañiqita qulluy',
 'filedelete-intro'            => "'''[[Media:$1|$1]]'''-tam qulluchkanki.",
-'filedelete-intro-old'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' musuqchasqatam qulluchkanki [$4 $3, $2] nisqamanta.</span>',
+'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' musuqchasqatam qulluchkanki [$4 $3, $2] nisqamanta.",
 'filedelete-comment'          => 'Willapuy:',
 'filedelete-submit'           => 'Qulluy',
 'filedelete-success'          => "'''$1''' qullusqañam.",
@@ -1750,8 +1746,6 @@ ama hina kaspa, yuyarillay imachus kay astanaykita saqispa tukunata atinman.",
 
 Hinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
 'movearticle'             => "P'anqata astay",
-'movenologin'             => "Manam qallarisqachu llamk'apuy tiyayniyki",
-'movenologintext'         => "P'anqata astanaykipaqqa hallch'asqa ruraqmi kanayki [[Special:Userlogin|llamk'apuy tiyay qallarinaykipas]] tiyan.",
 'movenotallowed'          => "Kay wikipi p'anqata astayniykiqa manam saqillasqachu.",
 'newtitle'                => 'Kay musuq sutiman',
 'move-watch'              => "Kay p'anqata watiqay",
@@ -2015,7 +2009,7 @@ $1",
 # Special:Newimages
 'newimages'             => 'Musuq rikchakunap suyu-suyun',
 'imagelisttext'         => "Kay qatiqpiqa '''$1''' {{PLURAL:$1|rikchatam|rikchakunatam}} rikunki, $2-kama ñiqichasqa.",
-'newimages-summary'     => "Kay sapaq p'anqapiqa ñaqha churkusqa willañiqikunatam rikunki",
+'newimages-summary'     => "Kay sapaq p'anqapiqa ñaqha churkusqa willañiqikunatam rikunki.",
 'showhidebots'          => '($1 rurana antacha)',
 'noimages'              => 'Manam ima rikunallapas kanchu.',
 'ilsubmit'              => 'Maskay',

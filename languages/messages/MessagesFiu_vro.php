@@ -6,8 +6,8 @@
  *
  * @author Võrok
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Niklas Laxsröm
  * @author Sulev Iva (Võrok)
  */
@@ -529,10 +529,6 @@ Suq kinniqpidämise tunnusnummõr om $5. Olõq hää, kirodaq taa nummõr egä p
 'blockededitsource'         => "Su tett toimõndus lehe '''$1''' pääl:",
 'whitelistedittitle'        => 'Toimõndamisõs piät nimega sisse minemä',
 'whitelistedittext'         => 'Lehekülgi toimõndamisõs $1.',
-'whitelistreadtitle'        => 'Lugõmisõs piät olõma nimega sisse lännüq',
-'whitelistreadtext'         => 'Lehekülgi lugõmisõs piät [[Special:Userlogin|nimega sisse minemä]].',
-'whitelistacctitle'         => 'Sul olõ-i õigust pruukjakontot luvvaq',
-'whitelistacctext'          => '{{SITENAME}} kontodõ luumisõs piät olõma [[Special:Userlogin|nimega sisse lännüq]] ja sul piät olõma tuu jaos nõvvõtavaq õigusõq.',
 'confirmedittitle'          => 'E-posti kinnütüs',
 'confirmedittext'           => 'Sa saa-i inne lehekülgi toimõndaq, ku olõt kinnütänüq ärq uma e-postiaadrõsi. Tuud saat tetäq uma [[Special:Preferences|säädmislehe]] pääl.',
 'nosuchsectiontitle'        => 'Olõ-i säänest lõiku',
@@ -1471,8 +1467,6 @@ inne, ku midä muudat, märgiq perrä, miä tuust tullaq või.",
 
 Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arotuskülega.",
 'movearticle'             => 'Panõq artiklilehekülg tõistõ paika',
-'movenologin'             => 'Sa olõ-i nimega sisse lännüq',
-'movenologintext'         => 'Et lehekülge tõistõ paika pandaq, piät hindä pruukjas kirjä pandma ja [[Special:Userlogin|nimega sisse minemä]]',
 'movenotallowed'          => 'Sul olõ-i lupa {{SITENAME}} lehti tõistõ paika nõstaq.',
 'newtitle'                => 'Vahtsõ päälkirä ala',
 'move-watch'              => 'Kaeq taa lehe perrä',

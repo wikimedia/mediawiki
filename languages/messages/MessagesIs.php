@@ -10,8 +10,8 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Spacebirdy
- * @author Krun
  * @author Friðrik Bragi Dýrfjörð
+ * @author Krun
  * @author Cessator
  * @author SPQRobin
  * @author M.M.S.
@@ -591,7 +591,7 @@ Ekki gleyma að breyta stillingunum þínum.',
 'loginproblem'               => '<b>Það kom upp villa í innskráningunni.</b><br />Reyndu aftur!',
 'login'                      => 'Innskrá',
 'nav-login-createaccount'    => 'Innskrá / Búa til aðgang',
-'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta skráð þig inn á {{SITENAME}}.',
+'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta [[Special:Userlogin|skráð þig inn á {{SITENAME}}]].',
 'userlogin'                  => 'Innskrá / Búa til aðgang',
 'logout'                     => 'Útskráning',
 'userlogout'                 => 'Útskrá',
@@ -738,10 +738,6 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'blockededitsource'                => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
 'whitelistedittitle'               => 'Innskráningar er krafist til að breyta',
 'whitelistedittext'                => 'Þú þarft að $1 til að breyta síðum.',
-'whitelistreadtitle'               => 'Innskráningar er krafist til að lesa',
-'whitelistreadtext'                => 'Þú verður að [[Special:Userlogin|skrá þig inn]] til að lesa síður.',
-'whitelistacctitle'                => 'Þér er óheimilt að búa til aðgang',
-'whitelistacctext'                 => 'Til að geta búið til aðganga á {{SITENAME}} verður þú að [[Special:Userlogin|innskrá]] þig og hafa viðkomandi réttindi.',
 'confirmedittitle'                 => 'Netfang þarf að staðfesta til að breyta',
 'confirmedittext'                  => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
 'nosuchsectiontitle'               => 'Hluti ekki til',
@@ -1368,7 +1364,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'addedwatchtext'       => "Síðunni „[[:$1]]“ hefur verið bætt á [[Special:Watchlist|Vaktlistann]] þinn.
 Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og síðan mun vera '''feitletruð''' í [[Special:Recentchanges|Nýlegum breytingum]] svo auðveldara sé að finna hana.",
 'removedwatch'         => 'Fjarlægt af vaktlistanum',
-'removedwatchtext'     => 'Síðan „[[:$1]]“ hefur verið fjarlægð af vaktlistanum þínum.',
+'removedwatchtext'     => 'Síðan „[[:$1]]“ hefur verið fjarlægð af [[Special:Watchlist|vaktlistanum þínum]].',
 'watch'                => 'Vakta',
 'watchthispage'        => 'Vakta þessa síðu',
 'unwatch'              => 'Afvakta',
@@ -1672,8 +1668,6 @@ mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum
 * Þú veljir að færa hana ekki
 Í þeim tilfellum verður að færa hana handvirkt.',
 'movearticle'             => 'Færa síðu:',
-'movenologin'             => 'Óinnskráð(ur)',
-'movenologintext'         => 'Þú verður að vera [[Special:Userlogin|innskráð(ur)]] til að geta fært síður.',
 'movenotallowed'          => 'Þú hefur ekki leyfi til að færa síður á {{SITENAME}}.',
 'newtitle'                => 'Á nýja titilinn:',
 'move-watch'              => 'Vakta þessa síðu',
@@ -1884,7 +1878,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 # Special:Newimages
 'newimages'             => 'Myndasafn nýlegra skráa',
 'imagelisttext'         => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
-'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár',
+'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár.',
 'showhidebots'          => '($1 vélmenni)',
 'noimages'              => 'Ekkert að sjá.',
 'ilsubmit'              => 'Leita',

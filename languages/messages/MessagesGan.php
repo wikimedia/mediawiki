@@ -7,8 +7,8 @@
  * @author Symane
  * @author Vipuser
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $fallback = 'zh-hant';
@@ -493,10 +493,6 @@ $2',
 'blockededitsource'         => "底下係倷對'''$1'''嗰'''編輯'''內容:",
 'whitelistedittitle'        => '登入後才編得正',
 'whitelistedittext'         => '起先倷要$1才編得正箇頁。',
-'whitelistreadtitle'        => '登入後才眵得正',
-'whitelistreadtext'         => '起先倷要[[Special:Userlogin|登入]] 才眵得正箇頁。',
-'whitelistacctitle'         => '倷伓可以開帳戶',
-'whitelistacctext'          => '到箇隻{{SITENAME}}站點開帳戶嗰時間倷起首要[[Special:Userlogin|登入]]同到提供有關許可。',
 'confirmedittitle'          => 'email確認後才編得正',
 'confirmedittext'           => '確認嘞email才能編寫箇頁。麻煩用[[Special:Preferences|參數設置]]設置同確認倷嗰email。',
 'nosuchsectiontitle'        => '冇箇隻段落',
@@ -939,18 +935,18 @@ $2',
 # File reversion
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
-'filerevert-intro'          => '<span class="plainlinks">眼下倷在恢復\'\'\'[[Media:$1|$1]]\'\'\'到[$4 於$2 $3嗰版本]。</span>',
+'filerevert-intro'          => "眼下倷在恢復'''[[Media:$1|$1]]'''到[$4 於$2 $3嗰版本]。",
 'filerevert-comment'        => '說明:',
 'filerevert-defaultcomment' => '恢復到嘞$1, $2嗰版本',
 'filerevert-submit'         => '恢復',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'恢復到嘞[$4 於$2 $3嗰版本]。</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''恢復到嘞[$4 於$2 $3嗰版本]。",
 'filerevert-badversion'     => '箇隻檔案所提供嗰時間標記並冇早先嗰本地版本。',
 
 # File deletion
 'filedelete'                  => '刪吥 $1',
 'filedelete-legend'           => '刪吥檔案',
 'filedelete-intro'            => "倷正刪吥'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => '<span class="plainlinks">倷正刪吥\'\'\'[[Media:$1|$1]]\'\'\'到[$4 $2 $3]嗰版本。</span>',
+'filedelete-intro-old'        => "倷正刪吥'''[[Media:$1|$1]]'''到[$4 $2 $3]嗰版本。",
 'filedelete-comment'          => '說明:',
 'filedelete-submit'           => '刪吥',
 'filedelete-success'          => "'''$1'''刪吥嘞。",
@@ -1464,8 +1460,6 @@ $NEWPAGE
 *倷伓選下底嗰選擇方塊。
 噉倷就非要手工移動或合併頁面。",
 'movearticle'             => '換動頁面:',
-'movenologin'             => '冇登入',
-'movenologintext'         => '倷要係登記用戶接到[[Special:Userlogin|登入]]後才移動得正頁面。',
 'movenotallowed'          => '倷到{{SITENAME}}冇權移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '眏到箇頁',

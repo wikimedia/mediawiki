@@ -810,7 +810,7 @@ The administrator who locked it offered this explanation: $1',
 This is usually caused by following an outdated diff or history link to a page that has been deleted.
 
 If this is not the case, you may have found a bug in the software.
-Please report this to an administrator, making note of the URL.',
+Please report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.',
 'missingarticle-rev'   => '(revision#: $1)',
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
@@ -867,11 +867,11 @@ The reason given is ''$2''.",
 'logouttitle'                => 'User logout',
 'logouttext'                 => '<strong>You are now logged out.</strong>
 
-You can continue to use {{SITENAME}} anonymously, or you can log in again as the same or as a different user.
+You can continue to use {{SITENAME}} anonymously, or you can [[Special:Userlogin|log in again]] as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.',
 'welcomecreation'            => '== Welcome, $1! ==
 Your account has been created.
-Do not forget to change your {{SITENAME}} preferences.',
+Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'loginpagetitle'             => 'User login',
 'yourname'                   => 'Username:',
 'yourpassword'               => 'Password:',
@@ -882,7 +882,7 @@ Do not forget to change your {{SITENAME}} preferences.',
 'loginproblem'               => '<b>There has been a problem with your login.</b><br />Try again!',
 'login'                      => 'Log in',
 'nav-login-createaccount'    => 'Log in / create account',
-'loginprompt'                => 'You must have cookies enabled to log in to {{SITENAME}}.',
+'loginprompt'                => 'You must have cookies enabled to [[Special:Userlogin|log in to {{SITENAME}}]].',
 'userlogin'                  => 'Log in / create account',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
@@ -1064,12 +1064,8 @@ Please include this ID in any queries you make.',
 'blockednoreason'                  => 'no reason given',
 'blockedoriginalsource'            => "The source of '''$1''' is shown below:",
 'blockededitsource'                => "The text of '''your edits''' to '''$1''' is shown below:",
-'whitelistedittitle'               => 'Login required to edit',
+'whitelistedittitle'               => '[[Special:Userlogin|Login required]] to edit',
 'whitelistedittext'                => 'You have to $1 to edit pages.',
-'whitelistreadtitle'               => 'Login required to read',
-'whitelistreadtext'                => 'You have to [[Special:Userlogin|login]] to read pages.',
-'whitelistacctitle'                => 'You are not allowed to create an account',
-'whitelistacctext'                 => 'To be allowed to create accounts in {{SITENAME}} you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
 'confirmedittitle'                 => 'E-mail confirmation required to edit',
 'confirmedittext'                  => 'You must confirm your e-mail address before editing pages.
 Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
@@ -1087,10 +1083,10 @@ To create the page, start typing in the box below (see the [[{{MediaWiki:Helppag
 If you are here by mistake, click your browser's '''back''' button.",
 'newarticletextanon'               => '{{int:newarticletext}}', # do not translate or duplicate this message to other languages
 'talkpagetext'                     => '<!-- MediaWiki:talkpagetext -->', # do not translate or duplicate this message to other languages
-'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it.
+'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet, or who does not use it.
 We therefore have to use the numerical IP address to identify him/her.
 Such an IP address can be shared by several users.
-If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
+If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin/signup|create an account]] or [[Special:Userlogin|log in]] to avoid future confusion with other anonymous users.''",
 'noarticletext'                    => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
@@ -1108,13 +1104,13 @@ changes have not yet been saved!</strong>',
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again.
-If it still does not work, try logging out and logging back in.</strong>',
+If it still does not work, try [[Special:Userlogout|logging out]] and logging back in.</strong>',
 'session_fail_preview_html'        => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
 <strong>If this is a legitimate edit attempt, please try again.
-If it still does not work, try logging out and logging back in.</strong>",
+If it still does not work, try [[Special:Userlogout|logging out]] and logging back in.</strong>",
 'token_suffix_mismatch'            => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
 The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
@@ -1189,7 +1185,7 @@ These arguments have been omitted.',
 Please check the comparison below to verify that this is what you want to do, and then save the changes below to finish undoing the edit.',
 'undo-failure' => 'The edit could not be undone due to conflicting intermediate edits.',
 'undo-norev'   => 'The edit could not be undone because it does not exist or was deleted.',
-'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]])',
+'undo-summary' => 'Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle'          => 'Cannot create account',
@@ -1249,7 +1245,7 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
 'revdelete-nooldid-title'     => 'Invalid target revision',
-'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this 
+'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this
 function, the specified revision does not exist, or you are attempting to hide the current revision.',
 'revdelete-selected'          => '{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:',
 'logdelete-selected'          => '{{PLURAL:$1|Selected log event|Selected log events}}:',
@@ -1329,7 +1325,7 @@ Note that using the navigation links will reset this column.',
 # Search results
 'searchresults'             => 'Search results',
 'searchresulttext'          => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "You searched for '''[[:$1]]'''",
+'searchsubtitle'            => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:Whatlinkshere/$1|all pages that link to "$1"]])',
 'searchsubtitleinvalid'     => "You searched for '''$1'''",
 'noexactmatch'              => "'''There is no page titled \"\$1\".'''
 You can [[:\$1|create this page]].",
@@ -1459,10 +1455,10 @@ please see math/README to configure.',
 'userrights-summary'             => '', # do not translate or duplicate this message to other languages
 'userrights-lookup-user'         => 'Manage user groups',
 'userrights-user-editname'       => 'Enter a username:',
-'editusergroup'                  => 'Edit User Groups',
+'editusergroup'                  => 'Edit user groups',
 'editinguser'                    => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'       => 'Edit user groups',
-'saveusergroups'                 => 'Save User Groups',
+'saveusergroups'                 => 'Save user groups',
 'userrights-groupsmember'        => 'Member of:',
 'userrights-groups-help'         => 'You may alter the groups this user is in:
 * A checked box means the user is in that group.
@@ -1487,12 +1483,12 @@ please see math/README to configure.',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(all)',
 
-'group-user-member'          => 'User',
-'group-autoconfirmed-member' => 'Autoconfirmed user',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Sysop',
-'group-bureaucrat-member'    => 'Bureaucrat',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'          => 'user',
+'group-autoconfirmed-member' => 'autoconfirmed user',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'sysop',
+'group-bureaucrat-member'    => 'bureaucrat',
+'group-suppress-member'      => 'oversight',
 
 'grouppage-user'          => '{{ns:project}}:Users',
 'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmed users',
@@ -1614,17 +1610,18 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'uploadtext'                  => "Use the form below to upload files.
 To view or search previously uploaded files go to the [[Special:Imagelist|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
 
-To include a file in a page, use a link in the form
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' for directly linking to the file.",
+To include a file in a page, use a link in one of the following forms:
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
 'upload-permitted'            => 'Permitted file types: $1.',
 'upload-preferred'            => 'Preferred file types: $1.',
 'upload-prohibited'           => 'Prohibited file types: $1.',
 'uploadfooter'                => '-', # do not translate or duplicate this message to other languages
 'uploadlog'                   => 'upload log',
 'uploadlogpage'               => 'Upload log',
-'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.',
+'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.
+See the [[Special:NewImages|gallery of new files]] for a more visual overview.',
 'filename'                    => 'Filename',
 'filedesc'                    => 'Summary',
 'fileuploadsummary'           => 'Summary:',
@@ -1711,11 +1708,11 @@ PICT # misc.
 'upload-proto-error-text' => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
 'upload-file-error'       => 'Internal error',
 'upload-file-error-text'  => 'An internal error occurred when attempting to create a temporary file on the server.
-Please contact a system administrator.',
+Please contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error'       => 'Unknown upload error',
 'upload-misc-error-text'  => 'An unknown error occurred during the upload.
 Please verify that the URL is valid and accessible and try again.
-If the problem persists, contact a system administrator.',
+If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Could not reach URL',
@@ -1782,11 +1779,11 @@ A click on a column header changes the sorting.',
 'filerevert'                => 'Revert $1',
 'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
-'filerevert-intro'          => '<span class="plainlinks">You are reverting \'\'\'[[Media:$1|$1]]\'\'\' to the [$4 version as of $3, $2].</span>',
+'filerevert-intro'          => "You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].",
 'filerevert-comment'        => 'Comment:',
 'filerevert-defaultcomment' => 'Reverted to version as of $2, $1',
 'filerevert-submit'         => 'Revert',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' has been reverted to the [$4 version as of $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' has been reverted to the [$4 version as of $3, $2].",
 'filerevert-badversion'     => 'There is no previous local version of this file with the provided timestamp.',
 
 # File deletion
@@ -1794,7 +1791,7 @@ A click on a column header changes the sorting.',
 'filedelete-backlink'         => '← $1', # only translate this message to other languages if you have to change it
 'filedelete-legend'           => 'Delete file',
 'filedelete-intro'            => "You are deleting '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">You are deleting the version of \'\'\'[[Media:$1|$1]]\'\'\' as of [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
 'filedelete-comment'          => 'Reason for deletion:',
 'filedelete-submit'           => 'Delete',
 'filedelete-success'          => "'''$1''' has been deleted.",
@@ -1875,12 +1872,12 @@ Each row contains links to the first and second redirect, as well as the target 
 
 'brokenredirects'         => 'Broken redirects',
 'brokenredirects-summary' => '', # do not translate or duplicate this message to other languages
-'brokenredirectstext'     => 'The following redirects link to non-existent pages:',
+'brokenredirectstext'     => 'The following redirects link to non-existent pages.',
 'brokenredirects-edit'    => '(edit)',
 'brokenredirects-delete'  => '(delete)',
 
 'withoutinterwiki'         => 'Pages without language links',
-'withoutinterwiki-summary' => 'The following pages do not link to other language versions:',
+'withoutinterwiki-summary' => 'The following pages do not link to other language versions.',
 'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Show',
 
@@ -2023,7 +2020,7 @@ It may contain one or more characters which cannot be used in titles.',
 # Special:Listgrouprights
 'listgrouprights'               => 'User group rights',
 'listgrouprights-summary'       => 'The following is a list of user groups defined on this wiki, with their associated access rights.
-Additional information about individual rights can be found at [[{{MediaWiki:Listgrouprights-helppage}}]].',
+There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.',
 'listgrouprights-group'         => 'Group',
 'listgrouprights-rights'        => 'Rights',
 'listgrouprights-helppage'      => 'Help:Group rights',
@@ -2036,7 +2033,7 @@ Additional information about individual rights can be found at [[{{MediaWiki:Lis
 'emailuser'       => 'E-mail this user',
 'emailpage'       => 'E-mail user',
 'emailpagetext'   => 'If this user has entered a valid e-mail address in his or her user preferences, the form below will send a single message.
-The e-mail address you entered in your user preferences will appear as the "From" address of the mail, so the recipient will be able to reply.',
+The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply.',
 'usermailererror' => 'Mail object returned error:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'No e-mail address',
@@ -2064,7 +2061,7 @@ The e-mail address you entered in your user preferences will appear as the "From
 'addedwatchtext'       => "The page \"[[:\$1]]\" has been added to your [[Special:Watchlist|watchlist]].
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to make it easier to pick out.",
 'removedwatch'         => 'Removed from watchlist',
-'removedwatchtext'     => 'The page "[[:$1]]" has been removed from your watchlist.',
+'removedwatchtext'     => 'The page "[[:$1]]" has been removed from [[Special:Watchlist|your watchlist]].',
 'watch'                => 'Watch',
 'watchthispage'        => 'Watch this page',
 'unwatch'              => 'Unwatch',
@@ -2168,10 +2165,10 @@ proceed with caution.',
 'rollbackfailed'              => 'Rollback failed',
 'cantrollback'                => 'Cannot revert edit;
 last contributor is only author of this page.',
-'alreadyrolled'               => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]);
+'alreadyrolled'               => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 someone else has edited or rolled back the page already.
 
-Last edit was by [[User:$3|$3]] ([[User talk:$3|Talk]]).',
+The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Reverted edits by $1;
@@ -2447,7 +2444,7 @@ To lock or unlock the database, this needs to be writable by the web server.',
 'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
 Links to the old page title will not be changed;
-be sure to check for double or broken redirects.
+be sure to check for [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken redirects]].
 You are responsible for making sure that links continue to point where they are supposed to go.
 
 Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history.
@@ -2462,8 +2459,6 @@ please be sure you understand the consequences of this before proceeding.",
 
 In those cases, you will have to move or merge the page manually if desired.",
 'movearticle'             => 'Move page:',
-'movenologin'             => 'Not logged in',
-'movenologintext'         => 'You must be a registered user and [[Special:Userlogin|logged in]] to move a page.',
 'movenotallowed'          => 'You do not have permission to move pages on {{SITENAME}}.',
 'newtitle'                => 'To new title:',
 'move-watch'              => 'Watch this page',
@@ -2550,7 +2545,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'import-interwiki-history'   => 'Copy all history versions for this page',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Transfer pages into namespace:',
-'importtext'                 => 'Please export the file from the source wiki using the Special:Export utility, save it to your disk and upload it here.',
+'importtext'                 => 'Please export the file from the source wiki using the [[Special:Export|export utility]].
+Save it to your computer and upload it here.',
 'importstart'                => 'Importing pages...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|revisions}}',
 'importnopages'              => 'No pages to import.',
@@ -2782,7 +2778,7 @@ This is probably caused by a link to an external site.',
 
 # Patrol log
 'patrol-log-page'   => 'Patrol log',
-'patrol-log-header' => '', # do not translate or duplicate this message to other languages
+'patrol-log-header' => 'This is a log of patrolled revisions.',
 'patrol-log-line'   => 'marked $1 of $2 patrolled $3',
 'patrol-log-auto'   => '(automatic)',
 'patrol-log-diff'   => 'r$1', # only translate this message to other languages if you have to change it
@@ -2818,7 +2814,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Gallery of new files',
 'imagelisttext'         => "Below is a list of '''$1''' {{PLURAL:$1|file|files}} sorted $2.",
-'newimages-summary'     => 'This special page shows the last uploaded files',
+'newimages-summary'     => 'This special page shows the last uploaded files.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nothing to see.',
 'ilsubmit'              => 'Search',
@@ -3205,7 +3201,7 @@ Mailer returned: $1',
 The code may have expired.',
 'confirmemail_needlogin'   => 'You need to $1 to confirm your e-mail address.',
 'confirmemail_success'     => 'Your e-mail address has been confirmed.
-You may now log in and enjoy the wiki.',
+You may now [[Special:Userlogin|log in]] and enjoy the wiki.',
 'confirmemail_loggedin'    => 'Your e-mail address has now been confirmed.',
 'confirmemail_error'       => 'Something went wrong saving your confirmation.',
 'confirmemail_subject'     => '{{SITENAME}} e-mail address confirmation',
@@ -3245,7 +3241,7 @@ $1
 'deletedwhileediting' => 'Warning: This page has been deleted after you started editing!',
 'confirmrecreate'     => "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
 : ''$2''
-Please confirm that really want to recreate this page.",
+Please confirm that you really want to recreate this page.",
 'recreate'            => 'Recreate',
 
 'unit-pixel' => 'px', # only translate this message to other languages if you have to change it
@@ -3334,8 +3330,8 @@ $1',
 Try normal preview.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Changes newer than $1 seconds may not be shown in this list.',
-'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 seconds may not be shown in this list.',
+'lag-warn-normal' => 'Changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
+'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',

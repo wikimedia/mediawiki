@@ -6,9 +6,9 @@
  *
  * @author Better
  * @author Siebrand
+ * @author Jon Harald Søby
  * @author M.M.S.
  * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -523,10 +523,6 @@ La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 'blockededitsource'                => "Embahu se muestra el testu '''las tus eicionis''' en '''$1''':",
 'whitelistedittitle'               => 'Es mestel rustrilsi pa eital',
 'whitelistedittext'                => 'Tiinis que $1 pa eital páhinas.',
-'whitelistreadtitle'               => 'Es mestel rustrilsi pa leyel',
-'whitelistreadtext'                => 'Ebis [[Special:Userlogin|rustrilti]] pa leyel páhinas.',
-'whitelistacctitle'                => 'Nu se te premiti crial denguna cuenta',
-'whitelistacctext'                 => 'Pa que se te premita crial cuentas nesti güiqui, ebis [[Special:Userlogin|rustrilti]] i tenel los premisus correspondientis.',
 'confirmedittitle'                 => 'Es mestel confirmal el tu email pa puel eital',
 'confirmedittext'                  => 'Ebis confirmal la tu direción d´email enantis d´eital páhinas. Pol favol, escrebi i compreba el tu email pol meyu las tus [[Special:Preferences|preferéncias d´usuáriu]].',
 'nosuchsectiontitle'               => 'Nu esa seción',
@@ -1069,18 +1065,18 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 # File reversion
 'filerevert'                => 'Revertil $1',
 'filerevert-legend'         => 'Revertil archivu',
-'filerevert-intro'          => '<span class="plainlinks">Estás revirtiendu \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 velsión del $3 a las $2].</span>',
+'filerevert-intro'          => "Estás revirtiendu '''[[Media:$1|$1]]''' a la [$4 velsión del $3 a las $2].",
 'filerevert-comment'        => 'Comentáriu:',
 'filerevert-defaultcomment' => 'Revertiu a la velsión de $2, $1',
 'filerevert-submit'         => 'Revertil',
-'filerevert-success'        => '<span class="plainlinks">S\'á revertiu \'\'\'[[Media:$1|$1]]\'\'\' a [$4 velsión de $3, $2].</span>',
+'filerevert-success'        => "S'á revertiu '''[[Media:$1|$1]]''' a [$4 velsión de $3, $2].",
 'filerevert-badversion'     => "Nu desisti denguna velsión local prévia d'esti archivu cola fecha aseñalá.",
 
 # File deletion
 'filedelete'                  => 'Esborral $1',
 'filedelete-legend'           => 'Esborral archivu',
 'filedelete-intro'            => "Estás esborrandu '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Estás esborrandu la velsón de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a las $2].</span>',
+'filedelete-intro-old'        => "Estás esborrandu la velsón de '''[[Media:$1|$1]]''' del [$4 $3 a las $2].",
 'filedelete-comment'          => 'Comentáriu:',
 'filedelete-submit'           => 'Esborral',
 'filedelete-success'          => "S´á esborrau '''$1'''.",
@@ -1646,8 +1642,6 @@ pol favol, asigurati e qu'entiendis las consecuéncias enantis d'acontinal.",
 
 En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhina manualmenti.",
 'movearticle'             => 'Movel páhina:',
-'movenologin'             => "Nu t'alcuentras rustriu",
-'movenologintext'         => 'Ebis estal rustriu i [[Special:Userlogin|entral ena tu cuenta]] pa movel una páhina.',
 'movenotallowed'          => 'Nu tiinis premisu pa mual páhinas nesti güiqui.',
 'newtitle'                => 'Nuevu entítulu:',
 'move-watch'              => 'Vehilal esta páhina',

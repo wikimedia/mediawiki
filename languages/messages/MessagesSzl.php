@@ -10,8 +10,8 @@
  * @author Pimke
  * @author Siebrand
  * @author Ozi64
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Leinad
  * @author Danny B.
  */
@@ -526,10 +526,6 @@ Identyfikator Twojij blokady to $5. Zanotuj śe go apodej admińistratorowi.',
 'blockededitsource'                => "Tekst '''Twojich sprowjyń''' na '''$1''' zostou pokozany půnižyj:",
 'whitelistedittitle'               => 'Začym začńyš sprowjać ta zajta, muśiš być zalůgowany.',
 'whitelistedittext'                => 'Muśiš $1 coby můc sprowjać artikle.',
-'whitelistreadtitle'               => 'Před přečytańym muśiš śe zalůgować',
-'whitelistreadtext'                => 'Muśiš śe [[Special:Userlogin|zalůgować]], coby čytać zajty.',
-'whitelistacctitle'                => 'Ńy wolno Ći zakuodać kůnta',
-'whitelistacctext'                 => 'Zakuodańy kůnt na {{GRAMMAR:MS.lp|{{SITENAME}}}} wymogo [[Special:Userlogin|zalůgowańo]] a pośadańo uodpowjedńich uprowńyń.',
 'confirmedittitle'                 => 'Wymogane potwjyrdzyńy e-brifa, cobyś můg sam sprowjać',
 'confirmedittext'                  => 'Muśiš podać a potwjerdźić swůj e-brif, coby můc sam sprowjać.
 Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
@@ -1132,18 +1128,18 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 # File reversion
 'filerevert'                => 'Přiwracańy $1',
 'filerevert-legend'         => 'Přiwracańy poprzedńy wersje plika',
-'filerevert-intro'          => '<span class="plainlinks">Zamjeřoš přiwrůćić \'\'\'[[Media:$1|$1]]\'\'\' do wersje z [$4 $3, $2].</span>',
+'filerevert-intro'          => "Zamjeřoš přiwrůćić '''[[Media:$1|$1]]''' do wersje z [$4 $3, $2].",
 'filerevert-comment'        => 'Kůmyntorz:',
 'filerevert-defaultcomment' => 'Přiwrůcůno wersyjo z $2, $1',
 'filerevert-submit'         => 'Přiwrůć',
-'filerevert-success'        => '<span class="plainlinks">Plik \'\'\'[[Media:$1|$1]]\'\'\' zostou cofniynty do [wersyje $4 ze $3, $2].</span>',
+'filerevert-success'        => "Plik '''[[Media:$1|$1]]''' zostou cofńynty do [wersyje $4 ze $3, $2].",
 'filerevert-badversion'     => 'Ńy ma sam popředńij lokalnyj wersyji tygo plika s podanům datům.',
 
 # File deletion
 'filedelete'                  => 'Wyćepańe $1',
 'filedelete-legend'           => 'Wyćep plik',
 'filedelete-intro'            => "Wyćepuješ '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Wyćepuješ wersyja plika \'\'\'[[Media:$1|$1]]\'\'\' s datům [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Wyćepuješ wersyja plika '''[[Media:$1|$1]]''' s datům [$4 $3, $2].",
 'filedelete-comment'          => 'Čymu chceš wyćepnůńć:',
 'filedelete-submit'           => 'Wyćep',
 'filedelete-success'          => "Wyćepano plik '''$1'''.",
@@ -1733,8 +1729,6 @@ To može być drastyčno abo i ńypřewidywalno zmjano, jak přećepńyš jako p
 *ńy ma sam zajty godki o takiym mjańe
 W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z tym co juž sam jest, rynčńe. Abo možeš sie namyślić i nie přećepywać wcale ("checkbox" půnižyi).',
 'movearticle'             => 'Přećiś artikel:',
-'movenologin'             => 'Ńy jestžeś zalůgowany',
-'movenologintext'         => 'Muśyš być zarejerowanym i [[Special:Userlogin|zalůgowanym]] užytkowńikym coby můc přećepnůńć zajta.',
 'movenotallowed'          => 'Ńy moš uprownień do přećepywańo zajtůw na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'newtitle'                => 'Nowy titel:',
 'move-watch'              => 'Dej pozor',
@@ -1990,7 +1984,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerjo nowych uobrozkůw',
 'imagelisttext'         => "Půnižyj na {{PLURAL:$1||posortowanyj $2}} liśće {{PLURAL:$1|znojdowo|znojdujům|znojdowo}} śe '''$1''' {{PLURAL:$1|plik|pliki|plikůw}}.",
-'newimages-summary'     => 'Na tyi ekstra zajće prezyntowane sům uostatńo wćepńjynte pliki.',
+'newimages-summary'     => 'Na tyi ekstra zajće prezyntowane sům uostatńo wćepńynte pliki.',
 'showhidebots'          => '($1 boty)',
 'noimages'              => 'Brak plikůw do pokozańo.',
 'ilsubmit'              => 'Šnupej',

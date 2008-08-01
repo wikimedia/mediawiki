@@ -492,7 +492,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'blockedoriginalsource'  => 'Аяларах «$1» страницăн текстне куратăр.',
 'blockededitsource'      => "Аяларах эсир «$1» страницăра '''хăвсамăр тунă''' улшăнусене куратăр.",
 'whitelistedittitle'     => 'Улăштарма сирĕн авторизациленмелле',
-'whitelistreadtitle'     => 'Вулас тесен малтан сайта кĕмелле',
 'loginreqtitle'          => 'Сайта кĕмелле',
 'loginreqlink'           => 'сайта кĕр',
 'loginreqpagetext'       => 'Ытти страницăсене курмашкăн сирĕн $1.',
@@ -1004,7 +1003,6 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 # Move page
 'move-page-legend'        => 'Страницăна куçарнă',
 'movearticle'             => 'Страницăн ятне улăштар',
-'movenologin'             => 'Система сирĕн ята пĕлмест',
 'newtitle'                => 'Çĕнĕ ят',
 'move-watch'              => 'Ку страницăна сăнамаллисем шутне хуш',
 'movepagebtn'             => 'Страницăн ятне улăштар',

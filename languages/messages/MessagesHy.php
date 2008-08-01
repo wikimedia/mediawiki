@@ -8,6 +8,7 @@
  * @author Togaed
  * @author Siebrand
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  */
@@ -761,10 +762,6 @@ $2 մասնակցի նոր գաղտնաբառն է՝ <code>$3</code>։
 'blockededitsource'         => "«'''$1'''» էջի '''ձեր խմբագրումները''' հետևյալն են.",
 'whitelistedittitle'        => 'Խմբագրման համար հարկավոր է մտնել համակարգ',
 'whitelistedittext'         => 'Անհրաժեշտ է $1 էջերը խմբագրելու համար։',
-'whitelistreadtitle'        => 'Ընթերցելու համար անհրաժեշտ է մտնել համակարգ',
-'whitelistreadtext'         => 'Անհրաժեշտ է [[Special:Userlogin|մտնել համակարգ]] էջերը ընթերցելու համար։',
-'whitelistacctitle'         => 'Ձեզ չի թույլատրվում ստեղծել մասնակցային հաշիվ',
-'whitelistacctext'          => 'Այս վիքիում մասնակցային հաշիվներ ստեղծելու համար անհրաժեշտ է [[Special:Userlogin|մտնել համակարգ]] և ունենալ համապատասխան իրավունքներ։',
 'confirmedittitle'          => 'Խբագրելու համար անհրաժեշտ է էլ-հասցեի վավերացում',
 'confirmedittext'           => 'Էջերի խմբագրումից առաջ անհրաժեշտ է վավերացնել էլ-հասցեն։
 Խնդրում ենք նշել և վավերացնել ձեր էլ-փոստի հասցեն ձեր [[Special:Preferences|նախընտրությունների]] մեջ։',
@@ -1203,18 +1200,18 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 # File reversion
 'filerevert'                => 'Ետ շրջել $1',
 'filerevert-legend'         => 'Ետ շրջել ֆայլ',
-'filerevert-intro'          => '<span class="plainlinks">Դուք ետ եք շրջում \'\'\'[[Media:$1|$1]]\'\'\' ֆայլը [$4 տարբերակի՝ $3, $2 պահով]։</span>',
+'filerevert-intro'          => "Դուք ետ եք շրջում '''[[Media:$1|$1]]''' ֆայլը [$4 տարբերակի՝ $3, $2 պահով]։",
 'filerevert-comment'        => 'Մեկնաբանություն.',
 'filerevert-defaultcomment' => 'Ետ է շրջվում հին տարբերակին՝ $2, $1 պահով',
 'filerevert-submit'         => 'Ետ շրջել',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ֆայլը ետ է շրջվել [$4 տարբերակին՝ $3, $2 պահով]։</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ֆայլը ետ է շրջվել [$4 տարբերակին՝ $3, $2 պահով]։",
 'filerevert-badversion'     => 'Այս ֆայլի նախորդ տեղական տարբերակ նշված ժամդրոշմով չկա։',
 
 # File deletion
 'filedelete'             => 'Ջնջում $1',
 'filedelete-legend'      => 'Ջնջել ֆայլը',
 'filedelete-intro'       => "Դուք ջնջում եք '''[[Media:$1|$1]]'''։",
-'filedelete-intro-old'   => '<span class="plainlinks">Դուք ջնջում եք \'\'\'[[Media:$1|$1]]\'\'\' ֆայլի [$4 $3, $2 պահով] տարբերակը։</span>',
+'filedelete-intro-old'   => "Դուք ջնջում եք '''[[Media:$1|$1]]''' ֆայլի [$4 $3, $2 պահով] տարբերակը։",
 'filedelete-comment'     => 'Մեկնաբանություն.',
 'filedelete-submit'      => 'Ջնջել',
 'filedelete-success'     => "'''$1''' ֆայլը ջնջված է։",
@@ -1728,8 +1725,6 @@ $1',
 
 Այսպիսի դեպքերում հարկավոր է տեղափոխել կամ միաձուլել էջերը ձեռքով, եթե դա ցանկանաք։",
 'movearticle'             => 'Տեղափոխել էջը',
-'movenologin'             => 'Դուք չեք մտել համակարգ',
-'movenologintext'         => 'Անհրաժեշտ է [[Special:Userlogin|մտնել համակարգ]]՝ էջը տեղափոխելու համար։',
 'movenotallowed'          => 'Դուք չունեք {{SITENAME}}ում էջերի տեղափոխման իրավունք։',
 'newtitle'                => 'Նոր անվանում.',
 'move-watch'              => 'Հսկել էջը',

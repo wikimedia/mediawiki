@@ -7,8 +7,8 @@
  * @author Fulup
  * @author לערי ריינהארט
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -573,10 +573,6 @@ Notennit mat ne c'hallot implijout an dibarzh \"kas ur postel d'an implijer\" ne
 'blockededitsource'                => "Kavout a reot testenn ho '''kemmoù''' war '''$1''' a-is :",
 'whitelistedittitle'               => 'Ret eo bezañ luget evit skridaozañ',
 'whitelistedittext'                => "Ret eo deoc'h en em $1 evit gallout skridaozañ.",
-'whitelistreadtitle'               => 'Ret eo bezañ luget evit gallout lenn',
-'whitelistreadtext'                => 'Ret eo bezañ [[Special:Userlogin|luget]] evit gallout lenn ar pennadoù',
-'whitelistacctitle'                => "N'hoc'h ket aotreet da grouiñ ur gont",
-'whitelistacctext'                 => 'A-benn gallout krouiñ ur gont war ar Wiki-mañ e rankit bezañ [[Special:Userlogin|luget]] ha kaout an aotreoù rekis',
 'confirmedittitle'                 => "Ret eo kadarnaat e chomlec'h postel a-raok kemmañ pajennoù",
 'confirmedittext'                  => "Rankout a ri bezañ kadarnaet ho chomlec'h postel a-raok gellout degas kemmoù er pajennoù. Skrivit ha kadarnait ho chomlec'h postel en ho [[Special:Preferences|penndibaboù implijer]] mar plij.",
 'nosuchsectiontitle'               => "N'eus ket eus ar rann-mañ",
@@ -1162,18 +1158,18 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 # File reversion
 'filerevert'                => 'Disteuler $1',
 'filerevert-legend'         => 'Disteuler ar restr',
-'filerevert-intro'          => "<span class=\"plainlinks\">Emaoc'h o tistreiñ '''[[Media:\$1|\$1]]''' d'ar [stumm \$4 eus \$3, \$2].</span>",
+'filerevert-intro'          => "Emaoc'h o tistreiñ '''[[Media:$1|$1]]''' d'ar [stumm $4 eus $3, $2].",
 'filerevert-comment'        => 'Notenn :',
 'filerevert-defaultcomment' => 'Distroet da stumm $2, $1',
 'filerevert-submit'         => 'Disteuler',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'Distroet eo bet [[Media:$1|$1]]\'\'\' da [stumm $4 an $3, $2].</span>',
+'filerevert-success'        => "'''Distroet eo bet [[Media:$1|$1]]''' da [stumm $4 an $3, $2].",
 'filerevert-badversion'     => "N'eus stumm lec'hel kent ebet eus ar restr-mañ d'ar mare spisaet.",
 
 # File deletion
 'filedelete'                  => 'Diverkañ $1',
 'filedelete-legend'           => 'Diverkañ ar restr',
 'filedelete-intro'            => "O tiverkañ '''[[Media:$1|$1]]''' emaoc'h.",
-'filedelete-intro-old'        => '<span class="plainlinks">Emaoc\'h o tiverkañ stumm \'\'\'[[Media:$1|$1]]\'\'\' eus [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Emaoc'h o tiverkañ stumm '''[[Media:$1|$1]]''' eus [$4 $3, $2].",
 'filedelete-comment'          => 'Notenn :',
 'filedelete-submit'           => 'Diverkañ',
 'filedelete-success'          => "Diverket eo bet '''$1'''.",
@@ -1748,8 +1744,6 @@ bezit sur e komprenit mat an heuliadoù a-raok kenderc'hel ganti.",
 
 En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma karit.",
 'movearticle'             => "Dilec'hiañ ar pennad",
-'movenologin'             => 'Diluget',
-'movenologintext'         => 'Evit adenvel ur pennad e rankit bezañ [[Special:Userlogin|luget]] evel un implijer enrollet.',
 'movenotallowed'          => "N'oc'h ket aotreet da zilec'hiañ pajennoù war {{SITENAME}}.",
 'newtitle'                => 'anv nevez',
 'move-watch'              => 'Evezhiañ ar bajenn-mañ',
@@ -2003,7 +1997,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Roll ar skeudennoù nevez',
 'imagelisttext'         => 'Setu ur roll $1 skeudenn rummet $2.',
-'newimages-summary'     => 'Diskouez a ra ar bajenn zibar-mañ roll ar restroù diwezhañ bet enporzhiet',
+'newimages-summary'     => 'Diskouez a ra ar bajenn zibar-mañ roll ar restroù diwezhañ bet enporzhiet.',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Netra da welet.',
 'ilsubmit'              => 'Klask',

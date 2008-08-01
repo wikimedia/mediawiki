@@ -8,8 +8,8 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Malafaya
  * @author Ushanka
+ * @author Malafaya
  * @author sco.wikipedia.org editors
  */
 
@@ -508,10 +508,6 @@ Yer block ID is $5. Please include this ID in ony argies ye mak.',
 'blockededitsource'         => "The text o '''your edits''' tae '''$1''' is shawn ablo:",
 'whitelistedittitle'        => 'Login needit tae edit',
 'whitelistedittext'         => 'Ye hae tae $1 tae edit pages.',
-'whitelistreadtitle'        => 'Login requirit tae leuk at this',
-'whitelistreadtext'         => 'Ye hae tae [[Special:Userlogin|login]] tae leuk at pages.',
-'whitelistacctitle'         => 'Ye arnae alloued tae mak an accoont',
-'whitelistacctext'          => 'Tae be alloued tae mak accoonts in this wiki ye hae tae [[Special:Userlogin|log in]] an hae the richt leave.',
 'confirmedittitle'          => 'E-mail confirmation needit for tae edit',
 'confirmedittext'           => 'Ye maun confirm yer e-mail address afore editin pages. Please set an validate yer e-mail address throu yer [[Special:Preferences|uiser settins]].',
 'nosuchsectiontitle'        => 'There isnae a section wi that teetle',
@@ -1011,8 +1007,6 @@ This can be a drastic and unexpectit chynge for a popular page;
 please be siccar ye unnerstaun the consequences o this afore proceedin.",
 'movepagetalktext'        => "The associate Collogue page, gin onie, will be autaematically flittit alang wi it '''unless:''' *Ye'r flittin the page across namespaces, *A collogue page that isna tuim aareadies exists unner the new name, or *Ye tak the tick oot o the box ablo. In thae cases, ye maun flit or merge the page manually later gin ye hae saicont thochts.",
 'movearticle'             => 'Flit page:',
-'movenologin'             => 'No loggit in',
-'movenologintext'         => 'Ye maun be a registert uiser an [[Special:Userlogin|loggit in]] tae flit a page.',
 'newtitle'                => 'Tae new teitle',
 'movepagebtn'             => 'Flit page',
 'pagemovedsub'            => 'Flittin succeedit',

@@ -8,6 +8,7 @@
  * @author Irwangatot
  * @author Siebrand
  * @author Mssetiadi
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Meursault2004
  * @author SPQRobin
@@ -529,10 +530,6 @@ ID peungpeukan anjeun $5. Mangga sebatkeun éta ID dina pamundut-pamundut anjeun
 'blockededitsource'                => "Tulisan '''éditan anjeun''' dina '''$1''' dipidangkeun di handap ieu:",
 'whitelistedittitle'               => 'Perlu asup log sangkan bisa ngédit',
 'whitelistedittext'                => 'Anjeun kudu asup $1 sangkan bisa ngédit.',
-'whitelistreadtitle'               => 'Perlu asup log pikeun maca',
-'whitelistreadtext'                => 'Anjeun kudu asup [[Special:Userlogin|log]] sangkan bisa maca.',
-'whitelistacctitle'                => 'Anjeun teu diwenangkeun nyieun rekening',
-'whitelistacctext'                 => 'Sangkan diwenangkeun nyieun rekening na wiki ieu, anjeun kudu asup [[Special:Userlogin|log]] sarta boga kawenangan nu cukup.',
 'confirmedittitle'                 => 'Konfirmasi surélék diperlukeun pikeun ngédit.',
 'confirmedittext'                  => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun.
 Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences|préferénsi pamaké]].',
@@ -1092,18 +1089,18 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 # File reversion
 'filerevert'                => 'balikkeun $1',
 'filerevert-legend'         => 'Balikkeun gambar',
-'filerevert-intro'          => '<span class="plainlinks">Anjeun keur mulangkeun \'\'\'[[Media:$1|$1]]\'\'\' ka [vérsi $4, $3, $2].</span>',
+'filerevert-intro'          => "Anjeun keur mulangkeun '''[[Media:$1|$1]]''' ka [vérsi $4, $3, $2].",
 'filerevert-comment'        => 'Ringkesan:',
 'filerevert-defaultcomment' => 'Dipulangkeun ka vérsi $2, $1',
 'filerevert-submit'         => 'Balikkeun',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' geus dipulangkeun ka [vérsi $4, $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' geus dipulangkeun ka [vérsi $4, $3, $2].",
 'filerevert-badversion'     => 'Euweuh vérsi lokal tiheula ti koropak ieu kalawan cap waktu anu dimaksud.',
 
 # File deletion
 'filedelete'                  => 'Ngahapus $1',
 'filedelete-legend'           => 'Ngahapus gambar',
 'filedelete-intro'            => "Anjeun ngahapus '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Anjeun keur ngahapus vérsi \'\'\'[[Media:$1|$1]]\'\'\', [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Anjeun keur ngahapus vérsi '''[[Media:$1|$1]]''', [$4 $3, $2].",
 'filedelete-comment'          => 'koméntar:',
 'filedelete-submit'           => 'Hapus',
 'filedelete-success'          => "'''$1''' geus dihapus.",
@@ -1647,8 +1644,6 @@ please be sure you understand the consequences of this before proceeding.",
 
 Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagabungkeun kacana sacara manual.",
 'movearticle'             => 'Pindahkeun kaca',
-'movenologin'             => 'Can asup log',
-'movenologintext'         => 'Anjeun kudu jadi pamaké nu kadaptar tur [[Special:Userlogin|asup log]] pikeun mindahkeun kaca.',
 'movenotallowed'          => 'Anjeung teu boga kawenangan mindahkeun kaca di {{SITENAME}}.',
 'newtitle'                => 'Ka judul anyar',
 'move-watch'              => 'Awaskeuneun kaca ieu',
@@ -1882,7 +1877,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galeri gambar anyar',
 'imagelisttext'         => "Di handap ieu daptar '''$1''' {{PLURAL:$1|gambar|gambar}} nu disusun $2.",
-'newimages-summary'     => 'Ieu kaca husus ngabéréndélkeun koropak nu alanyar dimuat',
+'newimages-summary'     => 'Ieu kaca husus ngabéréndélkeun koropak nu alanyar dimuat.',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Taya nanaon.',
 'ilsubmit'              => 'Sungsi',

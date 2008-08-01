@@ -239,7 +239,6 @@ $messages = array(
 'showdiff'           => 'Dəyişiklikləri göstər',
 'blockedtitle'       => 'İstifadəçi bloklanıb',
 'whitelistedittitle' => 'Redaktə üçün daxil olmalısınız',
-'whitelistreadtitle' => 'Oxumaq üçün daxil olmalısınız',
 'accmailtitle'       => 'Parol göndərildi.',
 'accmailtext'        => '"$1" üçün parol göndərildi bu ünvana : $2.',
 'newarticle'         => '(Yeni)',

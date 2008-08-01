@@ -9,11 +9,11 @@
  * @author Jorunn
  * @author Siebrand
  * @author M.M.S.
- * @author לערי ריינהארט
  * @author Ranveig
+ * @author לערי ריינהארט
  * @author Finnrind
- * @author Dittaeva
  * @author H92
+ * @author Dittaeva
  * @author Boivie
  * @author SPQRobin
  * @author Olve Utne
@@ -745,10 +745,6 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'blockededitsource'                => "Teksten i '''endringane dine''' på '''$1''' er vist nedanfor:",
 'whitelistedittitle'               => 'Du lyt logge inn for å gjera endringar',
 'whitelistedittext'                => 'Du lyt $1 for å endre sider.',
-'whitelistreadtitle'               => 'Du lyt logge inn for å lesa',
-'whitelistreadtext'                => 'Du lyt [[Special:Userlogin|logge inn]] for å lesa sider.',
-'whitelistacctitle'                => 'Du har ikkje løyve til å laga brukarkonto',
-'whitelistacctext'                 => 'For å lage brukarkonto her på {{SITENAME}} må du [[Special:Userlogin|logge inn]] og ha rett type tilgang.',
 'confirmedittitle'                 => 'Du må stadfeste e-postadressa di før du kan endre noko',
 'confirmedittext'                  => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
 'nosuchsectiontitle'               => 'Ingen slik bolk',
@@ -1322,18 +1318,18 @@ Sletteloggen for fila finn du her:",
 # File reversion
 'filerevert'                => 'Rull attende $1',
 'filerevert-legend'         => 'Rull attende fila',
-'filerevert-intro'          => '<span class="plainlinks">Du rullar attende \'\'\'[[Media:$1|$1]]\'\'\' til [$4 versjonen frå $3, $2].</span>',
+'filerevert-intro'          => "Du rullar attende '''[[Media:$1|$1]]''' til [$4 versjonen frå $3, $2].",
 'filerevert-comment'        => 'Kommentar:',
 'filerevert-defaultcomment' => 'Rulla attende til versjonen frå $2, $1',
 'filerevert-submit'         => 'Rull attende',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' er rulla attende til [$4 versjonen frå $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' er rulla attende til [$4 versjonen frå $3, $2].",
 'filerevert-badversion'     => 'Det finst ingen tidlegare lokal versjon av denne fila frå det oppgjevne tidspunktet.',
 
 # File deletion
 'filedelete'                  => 'Slett $1',
 'filedelete-legend'           => 'Slett fil',
 'filedelete-intro'            => "Du slettar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Du slettar versjonen av \'\'\'[[Media:$1|$1]]\'\'\' frå [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Du slettar versjonen av '''[[Media:$1|$1]]''' frå [$4 $3, $2].",
 'filedelete-comment'          => 'Slettingsårsak:',
 'filedelete-submit'           => 'Slett',
 'filedelete-success'          => "'''$1''' er sletta.",
@@ -1879,8 +1875,6 @@ Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den 
 
 I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movearticle'             => 'Flytt side:',
-'movenologin'             => 'Ikkje innlogga',
-'movenologintext'         => 'Du lyt vera registrert brukar og vera [[Special:Userlogin|innlogga]] for å flytte ei side.',
 'movenotallowed'          => 'Du har ikkje tilgang til å flytte sider på {{SITENAME}}.',
 'newtitle'                => 'Til ny tittel',
 'move-watch'              => 'Overvak denne sida',

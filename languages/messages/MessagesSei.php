@@ -7,8 +7,8 @@
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Teak
  */
 
@@ -489,10 +489,6 @@ Me IDde block coccebj $5. Includam 1 jöx 2 pac querinám iti.",
 'blockededitsource'         => "Textua zode '''meticpatlöxde''' '''$1''' coccebj cohuatlöx:",
 'whitelistedittitle'        => 'Caápo Neces ticpatlöx',
 'whitelistedittext'         => 'Mecoccebj $1 ticpatlöx páhinám.',
-'whitelistreadtitle'        => 'Caápo Neces caitom',
-'whitelistreadtext'         => 'Mecoccebj [[Special:Userlogin|caápo]] caitom páhinám.',
-'whitelistacctitle'         => 'Me necoccebj permiccion de creacionde IDde caitom',
-'whitelistacctext'          => 'Coccebj permiccionde creacionde accountám coccebj [[Special:Userlogin|caápo]] ö coccebj permicción appropriatenón.',
 'confirmedittitle'          => 'Confirmacionde e-iitom coccebj Neces ticpatlöx',
 'confirmedittext'           => "Me confirmöx menadressade de e-iitom ticpatlöx 'depre. Set' ö validatenan menadressade IP [[Special:Preferences|hequáatlaác]] mii.",
 'nosuchsectiontitle'        => "Ne'dáár partam",
@@ -1017,7 +1013,6 @@ iitom e-iitomde diijömde caitóm.',
 # Move page
 'move-page-legend' => 'Yacom páhina',
 'movearticle'      => 'Yacom páhina:',
-'movenologin'      => 'Necaápo',
 'move-watch'       => 'Cáminot jan páhina',
 'movepagebtn'      => 'Yacom páhina',
 'movedto'          => 'yacomöxde',

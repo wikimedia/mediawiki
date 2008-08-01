@@ -8,8 +8,6 @@
  * @author Cbrown1023
  */
 
-
-
 $messages = array(
 # Dates
 'sunday'        => 'Tshipi',
@@ -155,7 +153,6 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 # Move page
 'move-page-legend' => 'Sutisa tsebe',
 'movearticle'      => 'Sutisa tsebe:',
-'movenologin'      => 'Ga o a ikwadisa',
 'movepagebtn'      => 'Sutisa tsebe',
 'movedto'          => 'sutela kwa',
 '1movedto2'        => '[[$1]] o sutisediwa kwa go [[$2]]',

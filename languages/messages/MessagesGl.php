@@ -10,9 +10,9 @@
  * @author Xosé
  * @author Siebrand
  * @author Lameiro
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -570,10 +570,6 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'blockededitsource'                => "O texto das '''súas edicións''' en '''$1''' móstrase a continuación:",
 'whitelistedittitle'               => 'Cómpre rexistrarse para poder editar',
 'whitelistedittext'                => 'Ten que $1 para poder editar páxinas.',
-'whitelistreadtitle'               => 'Cómpre rexistrarse para poder ler',
-'whitelistreadtext'                => 'Tense que [[Special:Userlogin|rexistrar]] para poder ler artigos.',
-'whitelistacctitle'                => 'Non se lle permite crear unha conta',
-'whitelistacctext'                 => 'Para que se lle permita crear contas en {{SITENAME}} cómpre [[Special:Userlogin|rexistrarse]] e contar cos permisos apropiados.',
 'confirmedittitle'                 => 'Requírese confirmar o enderezo electrónico para editar',
 'confirmedittext'                  => 'Debe confirmar o enderezo electrónico antes de comezar a editar. Por favor configure e valide o enderezo electrónico mediante as [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'               => 'Non existe tal sección',
@@ -1218,18 +1214,18 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 # File reversion
 'filerevert'                => 'Desfacer $1',
 'filerevert-legend'         => 'Reverter ficheiro',
-'filerevert-intro'          => '<span class="plainlinks">Vai volver \'\'\'[[Media:$1|$1]]\'\'\' á [$4 versión de $3, $2].</span>',
+'filerevert-intro'          => "Vai volver '''[[Media:$1|$1]]''' á [$4 versión de $3, $2].",
 'filerevert-comment'        => 'Comentario:',
 'filerevert-defaultcomment' => 'Volveuse á versión de $2, $1',
 'filerevert-submit'         => 'Reverter',
-'filerevert-success'        => '<span class="plainlinks">Reverteuse \'\'\'[[Media:$1|$1]]\'\'\' á [$4 versión de $3, $2].</span>',
+'filerevert-success'        => "Reverteuse '''[[Media:$1|$1]]''' á [$4 versión de $3, $2].",
 'filerevert-badversion'     => 'Non existe unha versión local anterior deste ficheiro coa data e hora indicadas.',
 
 # File deletion
 'filedelete'                  => 'Eliminar $1',
 'filedelete-legend'           => 'Eliminar o ficheiro',
 'filedelete-intro'            => "Vai eliminar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Vai eliminar a versión de \'\'\'[[Media:$1|$1]]\'\'\' de [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Vai eliminar a versión de '''[[Media:$1|$1]]''' de [$4 $3, $2].",
 'filedelete-comment'          => 'Comentario:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "Eliminouse '''$1'''.",
@@ -1818,8 +1814,6 @@ Este cambio nunha páxina popular pode ser drástico e inesperado; por favor, as
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'             => 'Mover esta páxina:',
-'movenologin'             => 'Non está dentro do sistema',
-'movenologintext'         => 'Debe ser un usuario rexistrado e estar [[Special:Userlogin|dentro do sistema]] para mover unha páxina.',
 'movenotallowed'          => 'Non ten permiso para mover páxinas en {{SITENAME}}.',
 'newtitle'                => 'Ao novo título:',
 'move-watch'              => 'Vixiar esta páxina',
@@ -2087,7 +2081,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galería de imaxes novas',
 'imagelisttext'         => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
-'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente',
+'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',
 'showhidebots'          => '($1 os bots)',
 'noimages'              => 'Non hai imaxes para ver.',
 'ilsubmit'              => 'Procurar',

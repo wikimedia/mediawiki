@@ -6,14 +6,15 @@
  *
  * @author Li-sung
  * @author Danny B.
+ * @author Mormegil
  * @author Matěj Grabovský
  * @author לערי ריינהארט
  * @author Siebrand
- * @author Mormegil
  * @author Reaperman
+ * @author Jon Harald Søby
  * @author Helix84
- * @author Michawiki
  * @author Martin Kozák
+ * @author Michawiki
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -846,10 +847,6 @@ Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete 
 'blockededitsource'                => "Text '''vašich editací''' stránky '''$1''' následuje:",
 'whitelistedittitle'               => 'Pro editaci je vyžadováno přihlášení',
 'whitelistedittext'                => 'Pro editaci se musíte $1.',
-'whitelistreadtitle'               => 'Vyžadováno přihlášení',
-'whitelistreadtext'                => 'Musíte se [[Special:Userlogin|přihlásit]], abyste mohli číst stránky.',
-'whitelistacctitle'                => 'Není vám dovoleno vytvářet uživatelské účty',
-'whitelistacctext'                 => 'Abyste na {{grammar:6sg|{{SITENAME}}}} mohl(a) vytvářet uživatelské účty, musíte se [[Special:Userlogin|přihlásit]] a mít příslušná oprávnění.',
 'confirmedittitle'                 => 'Vyžadováno e-mailové potvrzení',
 'confirmedittext'                  => 'Pro editaci stránek je vyžadováno potvrzení vaší e-mailové adresy. Na stránce [[Special:Preferences|nastavení]] zadejte a nechte potvrdit svou e-mailovou adresu.',
 'nosuchsectiontitle'               => 'Neexistující sekce',
@@ -1455,9 +1452,9 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'redirectstofile'                => '{{plural:$1|Následující soubor přesměrovává|Následující $1 soubory přesměrovávají|Následujících $1 souborů přesměrovává}} na tento soubor:',
 'duplicatesoffile'               => '{{plural:$1|Následující soubor je duplikát|Následující $1 soubory jsou duplikáty|Následujících $1 souborů jsou duplikáty}} tohoto souboru:',
 'sharedupload'                   => 'Tento soubor je sdílený a může být používán ostatními projekty.',
-'shareduploadwiki'               => 'Více informací najdete na $1.',
-'shareduploadwiki-desc'          => 'Níže je zobrazený popis, který obsahuje jeho $1 na sdíleném úložišti.',
-'shareduploadwiki-linktext'      => 'stránce s popisem',
+'shareduploadwiki'               => 'Více informací obsahuje $1.',
+'shareduploadwiki-desc'          => 'Níže je zobrazen popis, který obsahuje jeho $1 na sdíleném úložišti.',
+'shareduploadwiki-linktext'      => 'stránka s popisem souboru',
 'shareduploadduplicate'          => 'Tento soubor je duplikát souboru $1 ze sdíleného úložiště.',
 'shareduploadduplicate-linktext' => 'další soubor',
 'shareduploadconflict'           => 'Tento soubor má stejné jméno jako má $1 ze sdíleného úložiště.',
@@ -1470,18 +1467,18 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
 'filerevert-legend'         => 'Vrátit zpět soubor',
-'filerevert-intro'          => '<span class="plainlinks">Vracíte zpět \'\'\'[[Media:$1|$1]]\'\'\' na [$4 verzi z $3 $2].</span>',
+'filerevert-intro'          => "Vracíte zpět '''[[Media:$1|$1]]''' na [$4 verzi z $3 $2].",
 'filerevert-comment'        => 'Zdůvodnění:',
 'filerevert-defaultcomment' => 'Navrácena verze nahraná v $2 dne $1.',
 'filerevert-submit'         => 'Vrátit zpět',
-'filerevert-success'        => '<span class="plainlinks">Soubor \'\'\'[[Media:$1|$1]]\'\'\' byl vrácen zpět na [$4 verzi z $3 $2].</span>',
+'filerevert-success'        => "Soubor '''[[Media:$1|$1]]''' byl vrácen zpět na [$4 verzi z $3 $2].",
 'filerevert-badversion'     => 'Není dostupná předchozí verze tohoto souboru s odpovídající časovou značkou.',
 
 # File deletion
 'filedelete'                  => 'Smazání souboru $1',
 'filedelete-legend'           => 'Smazat soubor',
 'filedelete-intro'            => "Chystáte se smazat '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Chystáte se smazat verzi souboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3 $2].</span>',
+'filedelete-intro-old'        => "Chystáte se smazat verzi souboru '''[[Media:$1|$1]]''' z [$4 $3 $2].",
 'filedelete-comment'          => 'Důvod smazání:',
 'filedelete-submit'           => 'Smazat',
 'filedelete-success'          => "Soubor '''$1''' byl smazán.",
@@ -1540,8 +1537,10 @@ Aktuální délka fronty údržby je '''$7'''.",
 'disambiguationspage'  => 'Template:Rozcestník',
 'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
 
-'doubleredirects'     => 'Dvojitá přesměrování',
-'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucí na další přesměrování. Každý řádek obsahuje odkaz na první a druhé přesměrování, a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.',
+'doubleredirects'            => 'Dvojitá přesměrování',
+'doubleredirectstext'        => 'Na této stránce je seznam přesměrování vedoucí na další přesměrování. Každý řádek obsahuje odkaz na první a druhé přesměrování, a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.',
+'double-redirect-fixed-move' => 'Stránka [[$1]] byla přesunuta, nyní přesměrovává na [[$2]]',
+'double-redirect-fixer'      => 'Opravář přesměrování',
 
 'brokenredirects'        => 'Přerušená přesměrování',
 'brokenredirectstext'    => 'Tato přesměrování vedou na neexistující stránky.',
@@ -1684,6 +1683,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'emailccsubject'  => 'Kopie Vaší zprávy pro uživatele $1: $2',
 'emailsent'       => 'Zpráva odeslána',
 'emailsenttext'   => 'Váš e-mail byl odeslán.',
+'emailuserfooter' => 'Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „Poslat e-mail“; odeslal ho uživatel $1 uživateli $2',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
@@ -2037,14 +2037,12 @@ Můžete si prohlédnout [[Special:Ipblocklist|seznam zablokovaných uživatelů
 
 V těchto případech musíte přesunout nebo sloučit stránky manuálně, jestliže si to přejete.",
 'movearticle'             => 'Přesunout stránku:',
-'movenologin'             => 'Nejste přihlášen(a)!',
-'movenologintext'         => 'Pro přesouvání stránek se musíte [[Special:Userlogin|přihlásit]].',
 'movenotallowed'          => 'Nemáte oprávnění k přesunu stránek na {{grammar:6sg|{{SITENAME}}}}.',
 'newtitle'                => 'Na nový název:',
 'move-watch'              => 'Sledovat tuto stránku',
 'movepagebtn'             => 'Přesunout stránku',
 'pagemovedsub'            => 'Úspěšně přesunuto',
-'movepage-moved'          => "<big>'''„$1“ bylo přesunuto na „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'cantmove-titleprotected' => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'              => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
@@ -2073,12 +2071,15 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 'imagenocrossnamespace'   => 'Nelze přesunout mimo jmenný prostor Soubor:',
 'imagetypemismatch'       => 'Nová přípona souboru neodpovídá jeho typu',
 'imageinvalidfilename'    => 'Název cílového souboru není platný',
+'fix-double-redirects'    => 'Opravit všechna přesměrování směřující na původní název',
 
 # Export
 'export'            => 'Exportovat stránky',
-'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[Special:Import]].
+'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[{{ns:Special}}:Import]].
 
-Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.',
+Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
+
+V druhém případě můžete také používat přímý odkaz, např. pomocí [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] se vyexportuje „[[{{MediaWiki:Mainpage}}]]“.',
 'exportcuronly'     => 'Zahrnout jen současnou verzi, ne plnou historii',
 'exportnohistory'   => "----
 '''Poznámka:''' export plných historií prostřednictvím tohoto formuláře byl z výkonnostních důvodů zakázán.",
@@ -2298,7 +2299,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galerie nových obrázků',
 'imagelisttext'         => "Níže je {{PLURAL:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
-'newimages-summary'     => 'Na této speciální stránce se zobrazují poslední načtené soubory',
+'newimages-summary'     => 'Na této speciální stránce se zobrazují poslední načtené soubory.',
 'showhidebots'          => '($1 roboty)',
 'noimages'              => 'Není co zobrazit.',
 'ilsubmit'              => 'Hledat',
@@ -2696,8 +2697,8 @@ $1',
 'livepreview-error'   => 'Neúspěšné spojení: $1 "$2". Použijte normální náhled.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Změny za posledních $1 sekund nemusí být v tomto seznamu zobrazeny.',
-'lag-warn-high'   => 'Protože je databázový server právě mimořádně vytížen, nemusí být změny za posledních $1 sekund v tomto seznamu zobrazeny.',
+'lag-warn-normal' => 'Změny za {{PLURAL:$1|poslední sekundu|poslední $1 sekundy|posledních $1 sekund}} nemusí být v tomto seznamu zobrazeny.',
+'lag-warn-high'   => 'Protože je databázový server právě mimořádně vytížen, nemusí být změny za {{PLURAL:$1|poslední sekundu|poslední $1 sekundy|posledních $1 sekund}} v tomto seznamu zobrazeny.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Váš seznam sledovaných stránek obsahuje (mimo diskusních stránek) {{PLURAL:$1|1 položku|$1 položky|$1 položek}}.',

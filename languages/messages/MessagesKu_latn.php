@@ -6,6 +6,7 @@
  *
  * @author Bangin
  * @author Siebrand
+ * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -533,10 +534,6 @@ Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercih�
 'blockededitsource'         => "Nivîsarên '''guherandinên te''' di '''$1''' da tê wêşandan:",
 'whitelistedittitle'        => 'Ji bo guherandinê vê gotarê tu gireke xwe qeydbikê.',
 'whitelistedittext'         => 'Ji bo guherandina rûpelan, $1 pêwîst e.',
-'whitelistreadtitle'        => 'Ji xandinê vê gotarê tu gireke xwe qeydbikê',
-'whitelistreadtext'         => 'Ji bo xandinê vê gotarê tu gireke xwe [[Special:Userlogin|li vir]] qedybikê.',
-'whitelistacctitle'         => 'Tu nikanê xwe qeydbikê.',
-'whitelistacctext'          => "Ji bo qebûlkirina çêkirina account'an di {{SITENAME}}, tu gireke [[Special:Userlogin|têkevê]].",
 'confirmedittitle'          => 'Ji bo guherandinê, naskirina e-nameya te tê xastin.',
 'confirmedittext'           => 'Tu gireke adrêsa e-nameya xwe nasbikê berî tu rûpelan diguherînê. Xêra xwe adrêsa e-nameya ya xwe di [[Special:Preferences|tercihên xwe]] da binivisîne û nasbike.',
 'nosuchsectiontitle'        => 'Beşekî wisa tune ye',
@@ -877,7 +874,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'filedelete'                  => '$1 jêbibe',
 'filedelete-legend'           => 'Data jêbibe',
 'filedelete-intro'            => "Tu kê '''[[Media:$1|$1]]''' jêbibê.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tu niha verzyona \'\'\'[[Media:$1|$1]]\'\'\' [$4 verzyon, ji $2, saet $3] jêdibê.</span>',
+'filedelete-intro-old'        => "Tu niha verzyona '''[[Media:$1|$1]]''' [$4 verzyon, ji $2, saet $3] jêdibê.",
 'filedelete-comment'          => 'Nivîs:',
 'filedelete-submit'           => 'Jêbibe',
 'filedelete-success'          => "'''$1''' hate jêbirin.",
@@ -1318,9 +1315,6 @@ Eger ev mişkla çêbû, tu gireke vê rûpelê bi xwe bigerînê.
 
 Xêra xwe navî nuh û sedemê navgerandinê binivisîne.",
 'movearticle'             => 'Rûpelê bigerîne',
-'movenologin'             => 'Xwe qeyd nekir',
-'movenologintext'         => 'Tu dive bikarhênereke qeydkirî bî û [[Special:Userlogin|werî nav sîstemê]]
-da bikarî navê wê rûpelê biguherînî.',
 'movenotallowed'          => 'Tu nikanê navên gotarên {{SITENAME}} biguherînê.',
 'newtitle'                => 'Sernivîsa nû',
 'move-watch'              => 'Vê rûpelê bişopîne',

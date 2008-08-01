@@ -294,7 +294,6 @@ Wax e-boosto ah oo ku saabsan arrimaha soo socdo looma soo diridoono.',
 'blockededitsource'         => "Qoraalkii '''aad waxkaga bedashay''' '''$1''' waxaad ku arkikartaa hoos:",
 'whitelistedittitle'        => 'Waxaa loo baahanyahay gudagal si aad wax uga bedeshid',
 'whitelistedittext'         => 'Waa in aad $1 si aad wax uga bedeshid boggaga.',
-'whitelistacctitle'         => 'Laguuma ogola in aad sameysid gudagale',
 'loginreqtitle'             => 'Waxaa loo baahanyahay gudagalid',
 'loginreqpagetext'          => 'Waa in aad $1 si aad u fiirisid boggaga kale.',
 'accmailtitle'              => "Ereysirka waa la'diray.",
@@ -543,7 +542,6 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',
 
 # Move page
-'movenologin'     => 'Gudaha kuma jirtid',
 'movedto'         => 'loo wareejiyey',
 'movetalk'        => "Wareejiyey bogga wadahadalka la'xiriira",
 '1movedto2'       => '[[$1]] waxaa loo wareejiyey [[$2]]',

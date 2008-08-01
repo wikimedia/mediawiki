@@ -272,6 +272,7 @@ $messages = array(
 'bugreports'           => 'د ستونزو راپورونه',
 'bugreportspage'       => 'Project:د ستونزو راپور',
 'copyright'            => 'دا مېنځپانګه د $1 له مخې ستاسو لاس رسي لپاره دلته ده.',
+'copyrightpagename'    => 'د {{SITENAME}} رښتې',
 'copyrightpage'        => '{{ns:project}}:رښتې',
 'currentevents'        => 'اوسنۍ پېښې',
 'currentevents-url'    => 'Project:اوسنۍ پېښې',
@@ -385,7 +386,7 @@ $messages = array(
 'badretype'                  => 'دا پټنوم چې تاسو ليکلی د پخواني پټنوم سره ورته نه دی.',
 'userexists'                 => 'کوم کارن نوم چې تاسو ورکړی هغه بل چا کارولی. لطفاً يو بل ډول نوم وټاکۍ.',
 'youremail'                  => 'برېښليک *',
-'username'                   => 'کارن نوم:',
+'username'                   => 'کارن-نوم:',
 'uid'                        => 'د کارونکي پېژندنه:',
 'yourrealname'               => 'اصلي نوم:',
 'yourlanguage'               => 'ژبه:',
@@ -484,9 +485,6 @@ $messages = array(
 'blockedoriginalsource'    => "د '''$1''' سرچينې لاندې ښودل شوي:",
 'whitelistedittitle'       => 'که د سمادولو تکل لری نو بايد غونډال ته ورننوځۍ.',
 'whitelistedittext'        => 'ددې لپاره چې سمادول ترسره کړی تاسو بايد $1.',
-'whitelistreadtitle'       => 'د همدغې ليکنې د لوستلو لپاره بايد تاسو غونډال ته ننوځۍ.',
-'whitelistreadtext'        => 'که د پاڼو د لوستلو تکل لری نو بايد غونډال کې [[Special:Userlogin|ننوتنه]] ترسره کړۍ.',
-'whitelistacctitle'        => 'تاسو د کارن نوم جوړولو اجازه نه لرۍ',
 'loginreqtitle'            => 'غونډال کې ننوتنه پکار ده',
 'loginreqlink'             => 'ننوتل',
 'loginreqpagetext'         => 'د نورو مخونو د کتلو لپاره تاسو بايد $1 وکړۍ.',
@@ -556,7 +554,9 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 په $2', # user at time
 
 # Revision deletion
-'rev-delundel' => 'ښکاره کول/ پټول',
+'rev-delundel'    => 'ښکاره کول/ پټول',
+'pagehist'        => 'د مخ پېښليک',
+'revdelete-uname' => 'کارن-نوم',
 
 # Diffs
 'history-title'           => 'د "$1" د پېښليک مخليدنه',
@@ -575,6 +575,7 @@ $messages = array(
 'nextn'                 => 'راتلونکي $1',
 'viewprevnext'          => '($1) ($2) ($3) ښکاره کول',
 'search-suggest'        => 'آيا همدا ستاسو موخه ده: $1',
+'search-relatedarticle' => 'اړونده',
 'searchall'             => 'ټول',
 'powersearch'           => 'پرمختللې پلټنه',
 'powersearch-legend'    => 'پرمختللې پلټنه',
@@ -754,6 +755,9 @@ $messages = array(
 'filedelete-success'          => "'''$1''' ړنګ شو.",
 'filedelete-otherreason'      => 'بل/اضافه سبب:',
 'filedelete-reason-otherlist' => 'بل سبب',
+'filedelete-reason-dropdown'  => '*د ړنګولو ټولګړی سبب
+** د رښتو نه غاړه غړونه
+** کټ مټ دوه ګونې دوتنه',
 
 # MIME search
 'mimesearch' => 'MIME پلټنه',
@@ -823,7 +827,7 @@ $messages = array(
 'protectedtitles'         => 'ژغورلي سرليکونه',
 'listusers'               => 'د کارونکو لړليک',
 'newpages'                => 'نوي مخونه',
-'newpages-username'       => 'کارن نوم:',
+'newpages-username'       => 'کارن-نوم:',
 'ancientpages'            => 'تر ټولو زاړه مخونه',
 'move'                    => 'لېږدول',
 'movethispage'            => 'دا مخ ولېږدوه',
@@ -868,7 +872,8 @@ $messages = array(
 'listusers-noresult' => 'هېڅ کوم کارونکی و نه موندل شو.',
 
 # Special:Listgrouprights
-'listgrouprights-group' => 'ډله',
+'listgrouprights-group'   => 'ډله',
+'listgrouprights-members' => '(د غړو لړليک)',
 
 # E-mail user
 'mailnologin'     => 'هېڅ کومه لېږل شوې پته نشته',
@@ -976,8 +981,11 @@ $messages = array(
 
 # Undelete
 'undelete'               => 'ړنګ شوي مخونه کتل',
+'undeletepage'           => 'ړنګ شوي مخونه کتل او بېرته پرځای کول',
 'viewdeletedpage'        => 'ړنګ شوي مخونه کتل',
-'undeletebtn'            => 'بيا پرځای کول',
+'undeletebtn'            => 'بېرته پرځای کول',
+'undeletelink'           => 'بېرته پرځای کول',
+'undeletereset'          => 'بياايښودل',
 'undeletecomment'        => 'تبصره:',
 'undeletedarticle'       => '"[[$1]]" بېرته پرځای شو',
 'undelete-search-box'    => 'ړنګ شوي مخونه لټول',
@@ -1065,8 +1073,6 @@ $messages = array(
 
 نو په هغه وخت کې پکار ده چې د خبرواترو د مخ لېږدونه او د نوي مخ سره د يوځای کولو کړنه په لاسي توګه ترسره کړی.",
 'movearticle'             => 'مخ لېږدول',
-'movenologin'             => 'غونډال کې نه ياست ننوتي',
-'movenologintext'         => 'ددې لپاره چې يو مخ ولېږدوی، نو تاسو بايد يو ثبت شوی کارونکی او غونډال کې [[Special:Userlogin|ننوتي]] اوسۍ.',
 'newtitle'                => 'يو نوي سرليک ته:',
 'move-watch'              => 'همدا مخ کتل',
 'movepagebtn'             => 'مخ لېږدول',
@@ -1214,6 +1220,7 @@ $messages = array(
 
 # EXIF tags
 'exif-imagedescription' => 'د انځور سرليک',
+'exif-model'            => 'د کامرې ماډل',
 'exif-artist'           => 'ليکوال',
 'exif-usercomment'      => 'د کارونکي تبصرې',
 'exif-filesource'       => 'د دوتنې سرچينه',
@@ -1280,7 +1287,10 @@ $1',
 'hideresults'      => 'پايلې پټول',
 
 # Multipage image navigation
-'imgmultigo' => 'ورځه!',
+'imgmultipageprev' => '← پخوانی مخ',
+'imgmultipagenext' => 'راتلونکی مخ →',
+'imgmultigo'       => 'ورځه!',
+'imgmultigoto'     => 'د $1 مخ ته ورځه',
 
 # Table pager
 'ascending_abbrev'         => 'ختند',
@@ -1303,9 +1313,12 @@ $1',
 'livepreview-loading' => 'د برسېرېدلو په حال کې...',
 
 # Watchlist editor
+'watchlistedit-noitems'    => 'ستاسو په کتلي لړليک کې هېڅ کوم سرليک نشته.',
 'watchlistedit-raw-title'  => 'خام کتلی لړليک سمادول',
 'watchlistedit-raw-legend' => 'خام کتلی لړليک سمادول',
 'watchlistedit-raw-titles' => 'سرليکونه:',
+'watchlistedit-raw-submit' => 'کتلی لړليک تازه کول',
+'watchlistedit-raw-done'   => 'ستاسو کتلی لړليک تازه شو.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'اړونده بدلونونه کتل',
@@ -1329,12 +1342,14 @@ $1',
 # Special:Version
 'version'              => 'بڼه', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'ځانګړي مخونه',
+'version-other'        => 'بل',
 
 # Special:Filepath
 'filepath-page' => 'دوتنه:',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'پلټل',
+'fileduplicatesearch-filename' => 'د دوتنې نوم:',
+'fileduplicatesearch-submit'   => 'پلټل',
 
 # Special:SpecialPages
 'specialpages'                 => 'ځانګړي مخونه',

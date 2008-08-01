@@ -7,8 +7,8 @@
  * @author Filipinayzd
  * @author Steven*fung
  * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author Siebrand Mazeland
  * @author Niklas Laxström
  */
@@ -546,10 +546,6 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 'blockededitsource'         => "An teksto kan '''mga hira mo''' sa '''$1''' mahihiling sa babâ:",
 'whitelistedittitle'        => 'Kaipuhan an paglaog tangarig makahirá',
 'whitelistedittext'         => 'Kaipuhan mong $1 tangarig makahirá nin mga páhina.',
-'whitelistreadtitle'        => 'Kaipuhan maglaog tangarig makabasa',
-'whitelistreadtext'         => 'Kaipuhan an [[Special:Userlogin|entrada]] para mabasa mo ining mga páhina.',
-'whitelistacctitle'         => 'Dai ka tinotogotan na maggibo nin account',
-'whitelistacctext'          => "Tangarig togotan na maggibo nin ''account'' sa ining wiki kaipuhan mong [[Special:Userlogin|maglaog]] asin dapat igwa kang mga hustong permiso.",
 'confirmedittitle'          => 'Kaipuhan nin kompirmasyon nin e-koreo tangarig makahirá',
 'confirmedittext'           => "Kaipuhan mong kompirmaron an saimong ''e''-surat. Ipwesto tabî asin patunayan an saimong ''e''-surat sa [[Special:Preferences|mga kabôtan kan parágamit]].",
 'nosuchsectiontitle'        => 'Mayong siring na seksyón',
@@ -690,6 +686,7 @@ Pwedeng igwang mga detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE
 'revisiondelete'              => 'Paraon/bawion an mga pagpakaraháy',
 'revdelete-nooldid-title'     => 'Mayong tunggit pagpakaraháy',
 'revdelete-nooldid-text'      => 'Dai ka nagpili nin target na pagpakarhay o mga pagpakarhay tangarig magamit ini.',
+'revdelete-selected'          => "{{PLURAL:$2|Selected revision|Selected revisions}} kan '''$1:'''",
 'revdelete-text'              => "An mga pagpakarhay asin mga panyayari na pigparâ mahihiling pa sa historya asin mga historial kan páhina, pero an ibang parte kan mga laog kaini dai na ipapahiling sa publiko.
 
 An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong laog asin pwede pa nindang bawîon an pagparâ kaini sa paggamit kan parehong ''interface'', kun mayô pang mga ibang restriksyón.",
@@ -989,18 +986,18 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 # File reversion
 'filerevert'                => 'Ibalik an $1',
 'filerevert-legend'         => 'Ibalik an dokumento',
-'filerevert-intro'          => '<span class="plainlinks">Pigbabalik mo an \'\'\'[[Media:$1|$1]]\'\'\' sa [$4 version as of $3, $2].</span>',
+'filerevert-intro'          => "Pigbabalik mo an '''[[Media:$1|$1]]''' sa [$4 version as of $3, $2].",
 'filerevert-comment'        => 'Komento:',
 'filerevert-defaultcomment' => 'Pigbalik sa bersyon sa ngonyan $2, $1',
 'filerevert-submit'         => 'Ibalik',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' binalik sa [$4 version as of $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' binalik sa [$4 version as of $3, $2].",
 'filerevert-badversion'     => "Mayong dating bersyón na lokal kaining ''file'' na may taták nin oras na arog sa tinao.",
 
 # File deletion
 'filedelete'             => 'Parâon an $1',
 'filedelete-legend'      => 'Parâon an dokumento',
 'filedelete-intro'       => "Pigpaparâ mo an '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'   => '<span class="plainlinks">Pigpaparâ mo an bersyon kan \'\'\'[[Media:$1|$1]]\'\'\' sa ngonyan [$4 $3, $2].</span>',
+'filedelete-intro-old'   => "Pigpaparâ mo an bersyon kan '''[[Media:$1|$1]]''' sa ngonyan [$4 $3, $2].",
 'filedelete-comment'     => 'Komento:',
 'filedelete-submit'      => 'Parâon',
 'filedelete-success'     => "An '''$1''' pinarâ na.",
@@ -1534,8 +1531,6 @@ Pwede na dakulà asin dai seguradong pagbàgo ini kan sarong popular na pahina; 
 
 Sa mga kasong iyan, kaipuhan mong ibalyo o isalak an páhina nin mano-mano kun boot mo.",
 'movearticle'             => 'Ibalyó an pahina:',
-'movenologin'             => 'Mayô sa laog',
-'movenologintext'         => 'Kaipuhan na rehistradong parágamit ka asin si [[Special:Userlogin|nakalaog]] tangarig makabalyó ka nin páhina.',
 'movenotallowed'          => 'Mayô kang permiso na ibalyó an mga pahina sa wiki na ini.',
 'newtitle'                => 'Sa bàgong titulong:',
 'move-watch'              => 'Bantayán ining pahina',

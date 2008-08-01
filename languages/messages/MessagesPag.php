@@ -122,7 +122,6 @@ $messages = array(
 'blockededitsource'     => "Wadyad leksab so text na '''saray binalom''' anggag '''$1''':",
 'whitelistedittitle'    => 'Nakaukulan ya onloob umpian makapanbalo',
 'whitelistedittext'     => 'Nakaukulan mo ya $1 umpian nabalo o nadagdagan ray bolobolong.',
-'whitelistreadtext'     => 'Nakaukulan mon [[Special:Userlogin|onloob]] umpian basaen ramay bolong.',
 'confirmedittitle'      => 'Nakaukulan na e-mail confirmation para makapan-edit',
 'loginreqtitle'         => 'Nakaukulan kan Onloob',
 'loginreqlink'          => 'onloob',

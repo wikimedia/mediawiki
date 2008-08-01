@@ -8,9 +8,9 @@
  * @author SPQRobin
  * @author Siebrand
  * @author M.M.S.
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Võrok
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -489,10 +489,6 @@ Pange tähele, et Te ei saa sellele kasutajale teadet saata, kui Te pole registr
 Teie praegune IP on $3 ning blokeeringu number on #$5. Lisage vähemalt üks nendest kõigile järelpärimistele, mida kavatsete teha.",
 'whitelistedittitle'       => 'Redigeerimiseks tuleb sisse logida',
 'whitelistedittext'        => 'Lehekülgede toimetamiseks peate $1.',
-'whitelistreadtitle'       => 'Lugemiseks peate olema sisse logitud',
-'whitelistreadtext'        => 'Lehekülgede lugemiseks peate [[Special:Userlogin|sisse logima]].',
-'whitelistacctitle'        => 'Teil pole õigust kasutajakontot luua',
-'whitelistacctext'         => 'Et selles Vikis kontosid luua, peate olema [[Special:Userlogin|sisse logitud]] ja omama vastavaid õigusi.',
 'loginreqtitle'            => 'Vajalik on sisselogimine',
 'loginreqlink'             => 'sisse logima',
 'loginreqpagetext'         => 'Lehekülgede vaatamiseks peate $1.',
@@ -1158,9 +1154,6 @@ enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks
 
 Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
 'movearticle'             => 'Teisalda artiklilehekülg',
-'movenologin'             => 'Te ei ole sisse loginud',
-'movenologintext'         => 'Et lehekülge teisaldada, peate registreeruma
-kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'newtitle'                => 'Uue pealkirja alla',
 'move-watch'              => 'Jälgi seda lehekülge',
 'movepagebtn'             => 'Teisalda artikkel',

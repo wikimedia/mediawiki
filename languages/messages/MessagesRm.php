@@ -251,10 +251,6 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'anoneditwarning'      => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
 'blockedtitle'         => 'Utilisader è bloccà',
 'whitelistedittitle'   => "t'annunzia per editar",
-'whitelistreadtitle'   => "per leger stos ti t'annunziar",
-'whitelistreadtext'    => "Ti stos [[Special:Userlogin|t'annunziar]] per leger las paginas.",
-'whitelistacctitle'    => 'Ti na dastgas betg crear in nov conto',
-'whitelistacctext'     => "Per dastgar crear contos en questa wiki stos ti [[Special:Userlogin|t'annunziar]] ed avair ils dretgs correspundents.",
 'confirmedittitle'     => 'Per editar è la confermaziun da la adressa dad email necessaria',
 'confirmedittext'      => 'Ti stos confermar tia adressa dad email avant che editar paginas. Inditgescha e conferma per plaschair tia adressa dad email en tias [[Special:Preferences|preferenzas]].',
 'loginreqtitle'        => 'Annunzia necessari',
@@ -550,7 +546,6 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 'databasenotlocked' => 'Questa banca da datas è betg bloccada.',
 
 # Move page
-'movenologintext'         => "Ti stos [[Special:Userlogin|t'annunziar]] per spustar in artitgel.",
 'pagemovedsub'            => 'Spustà cun success',
 'articleexists'           => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',
 '1movedto2'               => 'Spustà [[$1]] tar [[$2]]',

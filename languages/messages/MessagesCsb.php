@@ -331,7 +331,6 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 'blockedoriginalsource' => "Zdrój '''$1''' je niżi:",
 'blockededitsource'     => "Tekst '''Twòjëch edicëji''' do '''$1''' je niżi:",
 'whitelistedittitle'    => 'Bë editowac je nót sã wlogòwac',
-'whitelistreadtitle'    => 'Bë czëtac je nót sã wlogòwac',
 'accmailtitle'          => 'Parola wësłónô.',
 'accmailtext'           => 'Parola dlô "$1" je wësłónô do $2.',
 'newarticletext'        => "Môsz przëszłi z lënkù do starnë jaka jesz nie òbstoji.
@@ -640,7 +639,6 @@ Biéj do [[Special:Ipblocklist|lëstë zascëgónëch adresów IP]] abë òbacz�
 # Move page
 'move-page-legend'        => 'Przeniesë starnã',
 'movearticle'             => 'Przeniesë artikel',
-'movenologin'             => 'Felënk logòwaniô',
 'movepagebtn'             => 'Przeniesë starnã',
 'pagemovedsub'            => 'Przeniesenié darzëło sã',
 'articleexists'           => 'Starna ò taczim mionie ju je abò nie je òno bezzmiłkòwé. Wëbierzë nowé miono.',

@@ -8,8 +8,8 @@
  * @author Siebrand
  * @author SF-Language
  * @author SPQRobin
- * @author M.M.S.
  * @author Jon Harald Søby
+ * @author M.M.S.
  */
 
 $fallback = 'fr';
@@ -503,10 +503,6 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'blockededitsource'         => "Ëmbitu '''say coppite''' yi nga def fii '''$1''' mooy lii ci suuf:",
 'whitelistedittitle'        => 'Laaj na nga bindu ngir man a soppi ëmbit li',
 'whitelistedittext'         => 'Faaw nga doon $1 ngir am sañ-sañu soppi ëmbit li.',
-'whitelistreadtitle'        => 'Laaj na nga bindu ngir man a jàng ëmbit li',
-'whitelistreadtext'         => 'Ngir man a jàng ëmbit li, laaj na nga [[Special:Userlogin|duggu]].',
-'whitelistacctitle'         => 'Amoo sañ-sañu bindu.',
-'whitelistacctext'          => 'Ngir nga man a sos yeneeni sàq ci bii wiki, laaj na nga [[Special:Userlogin|duggu]] te it xaar ba am sañ-sañ yi mu laaj.',
 'confirmedittitle'          => 'Laaj na nga dëggal sa m-bataaxal ngir man a soppi xët yi',
 'confirmedittext'           => 'Ngir man a soppi dara faaw nga dëggal sa m-bataaxal. Ngir kocc-koccal walla dëggal sa màkkaan demal ci say [[Special:Preferences|tànneef]].',
 'nosuchsectiontitle'        => 'Xaaj bi amul',
@@ -1046,7 +1042,6 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 # Move page
 'move-page-legend' => 'Tuddewaat aw xët',
 'movearticle'      => 'Tuddewaatal jukki bi',
-'movenologintext'  => 'Ngir man a tuddewaat aw xët, da ngaa war a [[Special:Userlogin|dugg]] ni jëfëndikookat bu bindu te saw sàq war naa am yaggaa bi mu laaj.',
 'newtitle'         => 'Koj bu bees',
 'move-watch'       => 'Topp xët wii',
 'articleexists'    => 'Am na ba noppi ab jukki gu am gii koj, walla koj gi nga tann baaxul. tannal bennen.',

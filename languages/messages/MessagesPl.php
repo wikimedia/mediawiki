@@ -13,6 +13,7 @@
  * @author Beau
  * @author Siebrand
  * @author Stv
+ * @author Jon Harald Søby
  * @author Masti
  * @author Maikking
  * @author Ymar
@@ -760,10 +761,6 @@ Zanotuj go i podaj administratorowi.",
 'blockededitsource'                => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
 'whitelistedittitle'               => 'Przed edycją musisz się zalogować',
 'whitelistedittext'                => 'Musisz $1, by edytować strony.',
-'whitelistreadtitle'               => 'Czytanie możliwe jest dopiero po zalogowaniu się',
-'whitelistreadtext'                => 'Musisz [[Special:Userlogin|zalogować się]], żeby czytać strony.',
-'whitelistacctitle'                => 'Nie masz uprawnień do założenia konta',
-'whitelistacctext'                 => 'Zakładanie kont w {{GRAMMAR:MS.lp|{{SITENAME}}}} wymaga [[Special:Userlogin|zalogowania się]] oraz posiadania odpowiednich uprawnień.',
 'confirmedittitle'                 => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail',
 'confirmedittext'                  => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e-mail.
 Podaj adres e-mail i potwierdź go w swoich [[Special:Preferences|ustawieniach użytkownika]].',
@@ -1426,18 +1423,18 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 # File reversion
 'filerevert'                => 'Przywracanie $1',
 'filerevert-legend'         => 'Przywracanie poprzedniej wersji pliku',
-'filerevert-intro'          => '<span class="plainlinks">Zamierzasz przywrócić \'\'\'[[Media:$1|$1]]\'\'\' do [wersji $4 z $3, $2].</span>',
+'filerevert-intro'          => "Zamierzasz przywrócić '''[[Media:$1|$1]]''' do [wersji $4 z $3, $2].",
 'filerevert-comment'        => 'Komentarz:',
 'filerevert-defaultcomment' => 'Przywrócono wersję z $2, $1',
 'filerevert-submit'         => 'Przywróć',
-'filerevert-success'        => '<span class="plainlinks">Plik \'\'\'[[Media:$1|$1]]\'\'\' został cofnięty do [wersji $4 z $3, $2].</span>',
+'filerevert-success'        => "Plik '''[[Media:$1|$1]]''' został cofnięty do [wersji $4 z $3, $2].",
 'filerevert-badversion'     => 'Brak poprzedniej lokalnej wersji tego pliku z podaną datą.',
 
 # File deletion
 'filedelete'                  => 'Usuń „$1”',
 'filedelete-legend'           => 'Usuń plik',
 'filedelete-intro'            => "Usuwasz '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Usuwasz wersję pliku \'\'\'[[Media:$1|$1]]\'\'\' z datą [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Usuwasz wersję pliku '''[[Media:$1|$1]]''' z datą [$4 $3, $2].",
 'filedelete-comment'          => 'Komentarz:',
 'filedelete-submit'           => 'Usuń',
 'filedelete-success'          => "Usunięto plik '''$1'''.",
@@ -1504,8 +1501,10 @@ Długość [http://www.mediawiki.org/wiki/Manual:Job_queue kolejki zadań] wynos
 a powinny odwoływać się bezpośrednio do stron treści.<br />
 Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowany przez stronę [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Podwójne przekierowania',
-'doubleredirectstext' => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony. Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.',
+'doubleredirects'            => 'Podwójne przekierowania',
+'doubleredirectstext'        => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony. Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.',
+'double-redirect-fixed-move' => 'strona [[$1]] została zastąpiona przekierowaniem, ponieważ została przeniesiona do [[$2]]',
+'double-redirect-fixer'      => 'Korektor przekierowań',
 
 'brokenredirects'        => 'Zerwane przekierowania',
 'brokenredirectstext'    => 'Poniższe przekierowania wskazują na nieistniejące strony.',
@@ -2045,8 +2044,6 @@ Upewnij się co do konsekwencji tej operacji, zanim się na nią zdecydujesz.",
 
 W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'movearticle'             => 'Przeniesienie strony',
-'movenologin'             => 'Nie jesteś zalogowany',
-'movenologintext'         => 'Przenoszenie stron jest możliwe dopiero po zarejestrowaniu się i [[Special:Userlogin|zalogowaniu]].',
 'movenotallowed'          => 'Nie masz uprawnień do przenoszenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'newtitle'                => 'Nowy tytuł',
 'move-watch'              => 'Obserwuj',
@@ -2084,6 +2081,7 @@ Nie można przenieść z lub do tej przestrzeni nazw.',
 'imagenocrossnamespace'   => 'Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik',
 'imagetypemismatch'       => 'Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość',
 'imageinvalidfilename'    => 'Nazwa pliku docelowego jest nieprawidłowa',
+'fix-double-redirects'    => 'Popraw przekierowania wskazujące na oryginalny tytuł strony',
 
 # Export
 'export'            => 'Eksport stron',
@@ -2719,8 +2717,8 @@ $1',
 'livepreview-error'   => 'Nieudane połączenie: $1 „$2” Spróbuj podglądu standardowego.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Na tej liście zmiany nowsze niż $1 sekund mogą nie być widoczne.',
-'lag-warn-high'   => 'Z powodu dużego obciążenia serwerów bazy danych, na tej liście zmiany nowsze niż $1 sekund mogą nie być widoczne.',
+'lag-warn-normal' => 'Zmiany nowsze niż $1 {{PLURAL:$1|sekunda|sekundy|sekund}} mogą nie być widoczne na tej liście.',
+'lag-warn-high'   => 'Z powodu dużego obciążenia serwerów bazy danych, zmiany nowsze niż $1 {{PLURAL:$1|sekunda|sekundy|sekund}} mogą nie być widoczne na tej liście.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Twoja lista obserwowanych zawiera {{PLURAL:$1|1 tytuł|$1 tytuły|$1 tytułów}}, nieuwzględniając stron dyskusji.',

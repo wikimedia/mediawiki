@@ -571,12 +571,12 @@ $messages = array(
 'readonly'             => 'Basis data dikunci',
 'enterlockreason'      => 'Masukkan alasan penguncian, termasuk perkiraan kapan kunci akan dibuka',
 'readonlytext'         => 'Basis data sedang dikunci terhadap masukan baru. Pengurus yang melakukan penguncian memberikan penjelasan sebagai berikut: <p>$1',
-'missing-article'      => 'Basis data tidak dapat menemukan teks dari halaman "$1" $2.
+'missing-article'      => 'Basis data tidak dapat menemukan teks dari halaman yang seharusnya ada, yaitu "$1" $2.
 
-Hal ini mungkin disebabkan oleh pranala usang ke versi terdahulu halaman yang telah dihapuskan.
+Hal ini biasanya disebabkan oleh pranala usang ke revisi terdahulu halaman yang telah dihapuskan.
 
-Jika bukan ini penyebabnya, Anda mungkin telah menemukan bug dalam perangkat lunak.
-Silakan laporkan hal ini kepada Pengurus, dengan menyebutkan alamat URL yang dituju.',
+Jika bukan ini penyebabnya, Anda mungkin telah menemukan sebuah bug dalam perangkat lunak.
+Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus]], dengan menyebutkan alamat URL yang dituju.',
 'missingarticle-rev'   => '(revisi#: $1)',
 'missingarticle-diff'  => '(Beda: $1, $2)',
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
@@ -782,10 +782,6 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'blockededitsource'                => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 'whitelistedittitle'               => 'Perlu masuk log untuk menyunting',
 'whitelistedittext'                => 'Anda harus $1 untuk dapat menyunting artikel.',
-'whitelistreadtitle'               => 'Perlu masuk log untuk membaca',
-'whitelistreadtext'                => 'Anda harus [[Special:Userlogin|masuk log]] untuk dapat membaca artikel.',
-'whitelistacctitle'                => 'Anda tidak diperbolehkan untuk membuat akun',
-'whitelistacctext'                 => 'Untuk dapat membuat akun dalam wiki ini, Anda harus [[Special:Userlogin|masuk log]] dan mempunyai izin yang tepat.',
 'confirmedittitle'                 => 'Konfirmasi surat-e diperlukan untuk melakukan penyuntingan',
 'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surat-e Anda sebelum menyunting halaman.
 Harap masukkan dan validasikan alamat surat-e Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',
@@ -798,9 +794,10 @@ Harap masukkan dan validasikan alamat surat-e Anda melalui [[Special:Preferences
 'accmailtext'                      => "Kata sandi untuk '$1' telah dikirimkan ke $2.",
 'newarticle'                       => '(Baru)',
 'newarticletext'                   => "Anda mengikuti pranala ke halaman yang belum tersedia. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [[{{MediaWiki:Helppage}}|halaman bantuan]] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
-'anontalkpagetext'                 => "----''Ini adalah halaman pembicaraan seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai alamat IP-nya untuk mengidentifikasikannya.
+'anontalkpagetext'                 => "----''Ini adalah halaman pembicaraan seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya.
+Dengan demikian, kami terpaksa harus memakai alamat IP yang bersangkutan untuk mengidentifikasikannya.
 Alamat IP seperti ini mungkin dipakai bersama oleh beberapa pengguna yang berbeda.
-Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak relevan yang ditujukan langsung kepada Anda, silakan [[Special:Userlogin|membuat akun atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain di lain waktu.''",
+Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak relevan yang ditujukan langsung kepada Anda, silakan [[Special:Userlogin/signup|membuat akun]] atau [[Special:Userlogin|masuk log]] untuk menghindari kerancuan dengan pengguna anonim lainnya di lain waktu.''",
 'noarticletext'                    => 'Saat ini tidak ada teks dalam halaman ini. Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} sunting halaman ini].',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
@@ -1253,10 +1250,10 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'uploadtext'                  => "Gunakan formulir di bawah untuk memuat berkas.
 Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuatkan, gunakan [[Special:Imagelist|daftar pemuatan berkas]], pemuatan dan penghapusan berkas juga dicatat dalam [[Special:Log/upload|log pemuatan]].
 
-Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pranala dengan format
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.png|teks alternatif]]</nowiki>''', atau
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki>''' untuk langsung menuju berkas yang dimaksud.",
+Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pranala dengan salah satu format di bawah ini:
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' untuk menampilkan berkas dalam ukuran aslinya
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.png|200px|thumb|left|teks alternatif]]</nowiki></tt>''' untuk menampilkan berkas dengan lebar 200px dalam sebuah kotak di kiri artikel dengan 'teks alternatif' sebagai keterangan gambar
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' sebagai pranala langsung ke berkas yang dimaksud tanpa menampilkan berkas tersebut melalui wiki",
 'upload-permitted'            => 'Jenis berkas yang diijinkan: $1.',
 'upload-preferred'            => 'Jenis berkas yang disarankan: $1.',
 'upload-prohibited'           => 'Jenis berkas yang dilarang: $1.',
@@ -1455,8 +1452,10 @@ Telah dimuat sejumlah '''$8''' berkas dan sedang terjadi '''$7''' [http://www.me
 Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
 Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut menggunakan templat yang terhubung ke [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Pengalihan ganda',
-'doubleredirectstext' => 'Halaman ini memuat daftar halaman yang beralih ke halaman pengalihan yang lain. Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang sebenarnya. Halaman peralihan pertama seharusnya dialihkan ke halaman target tersebut.',
+'doubleredirects'            => 'Pengalihan ganda',
+'doubleredirectstext'        => 'Halaman ini memuat daftar halaman yang beralih ke halaman pengalihan yang lain. Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang sebenarnya. Halaman peralihan pertama seharusnya dialihkan ke halaman target tersebut.',
+'double-redirect-fixed-move' => '[[$1]] telah dipindahkan, sekarang menjadi halaman peralihan ke [[$2]]',
+'double-redirect-fixer'      => 'Pengguna yang memperbaiki pengalihan',
 
 'brokenredirects'        => 'Pengalihan rusak',
 'brokenredirectstext'    => 'Halaman-halaman berikut dialihkan ke halaman yang tidak ada.',
@@ -1571,7 +1570,7 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 
 # Special:Listgrouprights
 'listgrouprights'          => 'Hak-hak grup pengguna',
-'listgrouprights-summary'  => 'Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka. Informasi lebih lanjut mengenai hak individual dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}]].',
+'listgrouprights-summary'  => 'Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka masing-masing. Informasi lebih lanjut mengenai hak masing-masing dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}|halaman bantuan hak pengguna]].',
 'listgrouprights-group'    => 'Kelompok',
 'listgrouprights-rights'   => 'Hak',
 'listgrouprights-helppage' => 'Help:Hak kelompok',
@@ -1707,10 +1706,10 @@ Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{S
 'rollbacklink'                => 'kembalikan',
 'rollbackfailed'              => 'Pengembalian gagal dilakukan',
 'cantrollback'                => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
-'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke suntingan terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]]);
-pengguna lain telah menyunting atau melakukan pengembalian terhadap artikel tersebut.
+'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+pengguna lain telah menyunting atau melakukan pengembalian terhadap revisi tersebut.
 
-Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]).',
+Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => 'Komentar penyuntingan adalah: "<em>$1</em>".', # only shown if there is an edit comment
 'revertpage'                  => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
@@ -1960,8 +1959,6 @@ Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yan
 
 Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabungkan halaman secara manual.",
 'movearticle'             => 'Pindahkan halaman:',
-'movenologin'             => 'Belum masuk log',
-'movenologintext'         => 'Anda harus menjadi pengguna terdaftar dan telah [[Special:Userlogin|masuk log]] untuk dapat memindahkan suatu halaman.',
 'movenotallowed'          => 'Anda tak memiliki hak akses untuk memindahkan halaman pada wiki ini.',
 'newtitle'                => 'Ke judul baru:',
 'move-watch'              => 'Pantau halaman ini',
@@ -1996,6 +1993,7 @@ Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapus
 'imagenocrossnamespace'   => 'Tidak dapat memindahkan berkas ke ruang nama non-berkas',
 'imagetypemismatch'       => 'Ekstensi yang diberikan tidak cocok dengan tipe berkas',
 'imageinvalidfilename'    => 'Nama berkas tujuan tidak sah',
+'fix-double-redirects'    => 'Perbaiki semua pengalihan yang merujuk ke artikel aslinya',
 
 # Export
 'export'            => 'Ekspor halaman',
@@ -2042,7 +2040,8 @@ Semua aktivitas impor transwiki akan dicatat di [[Special:Log/import|log impor]]
 'import-interwiki-history'   => 'Salin semua versi terdahulu dari halaman ini',
 'import-interwiki-submit'    => 'Impor',
 'import-interwiki-namespace' => 'Transfer halaman ke dalam ruang nama:',
-'importtext'                 => 'Silakan ekspor berkas dari wiki asal dengan menggunakan utilitas Special:Export, simpan ke disk, dan muatkan di sini.',
+'importtext'                 => 'Silakan ekspor berkas dari wiki asal dengan menggunakan [[Special:Export|fasilitas ekspor]].
+Simpan ke komputer Anda lalu muatkan di sini.',
 'importstart'                => 'Mengimpor halaman...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisi|revisi}}',
 'importnopages'              => 'Tidak ada halaman untuk diimpor.',
@@ -2192,9 +2191,10 @@ Semua aktivitas impor transwiki akan dicatat di [[Special:Log/import|log impor]]
 'markedaspatrollederror-noautopatrol' => 'Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.',
 
 # Patrol log
-'patrol-log-page' => 'Log patroli',
-'patrol-log-line' => 'menandai $1 dari $2 terpatroli $3',
-'patrol-log-auto' => '(otomatis)',
+'patrol-log-page'   => 'Log patroli',
+'patrol-log-header' => 'Ini adalah log revisi terpatroli.',
+'patrol-log-line'   => 'menandai $1 dari $2 terpatroli $3',
+'patrol-log-auto'   => '(otomatis)',
 
 # Image deletion
 'deletedrevision'                 => 'Revisi lama yang dihapus $1',

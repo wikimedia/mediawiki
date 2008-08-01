@@ -6,6 +6,7 @@
  *
  * @author McDutchie
  * @author Malafaya
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Siebrand
  */
@@ -230,8 +231,8 @@ $messages = array(
 'otherlanguages'    => 'In altere linguas',
 'redirectedfrom'    => '(Redirigite de $1)',
 'redirectpagesub'   => 'Pagina de redirection',
-'lastmodifiedat'    => 'Iste pagina esseva modificate le plus recentemente le $1 a $2.', # $1 date, $2 time
-'viewcount'         => 'Iste pagina esseva accessate {{PLURAL:$1|un vice|$1 vices}}.',
+'lastmodifiedat'    => 'Ultime modification de iste pagina: le $1 a $2.', # $1 date, $2 time
+'viewcount'         => 'Iste pagina ha essite visitate {{PLURAL:$1|un vice|$1 vices}}.',
 'protectedpage'     => 'Pagina protegite',
 'jumpto'            => 'Saltar a:',
 'jumptonavigation'  => 'navigation',
@@ -589,10 +590,6 @@ Per favor include iste ID in omne correspondentia.',
 'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
 'whitelistedittitle'               => 'Identification requirite pro modificar',
 'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
-'whitelistreadtitle'               => 'Identification requirite pro leger',
-'whitelistreadtext'                => 'Tu debe [[Special:Userlogin|aperir un session]] pro poter leger paginas.',
-'whitelistacctitle'                => 'Tu non ha le permission de crear un conto',
-'whitelistacctext'                 => 'Le permission de crear contos in {{SITENAME}} require que tu [[Special:Userlogin|aperi un session]] e que tu ha le autorisation appropriate.',
 'confirmedittitle'                 => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
 Per favor defini e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].',
@@ -1075,7 +1072,7 @@ per favor vide math/README pro configurar lo.",
 'minoreditletter'                   => 'M',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usator|usatores}} observante]',
+'number_of_watching_users_pageview' => '[observate per $1 {{PLURAL:$1|usator|usatores}}]',
 'rc_categories'                     => 'Limite a categorias (separar con "|")',
 'rc_categories_any'                 => 'Qualcunque',
 'newsectionsummary'                 => '/* $1 */ nove section',
@@ -1265,18 +1262,18 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 # File reversion
 'filerevert'                => 'Reverter $1',
 'filerevert-legend'         => 'Reverter file',
-'filerevert-intro'          => '<span class="plainlinks">Tu reverte \'\'\'[[Media:$1|$1]]\'\'\' al [$4 version del $3 a $2].</span>',
+'filerevert-intro'          => "Tu reverte '''[[Media:$1|$1]]''' al [$4 version del $3 a $2].",
 'filerevert-comment'        => 'Commento:',
 'filerevert-defaultcomment' => 'Revertite al version del $2 a $1',
 'filerevert-submit'         => 'Reverter',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ha essite revertite al [$4 version del $3 a $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ha essite revertite al [$4 version del $3 a $2].",
 'filerevert-badversion'     => 'Non existe un version local anterior de iste file con le data e hora providite.',
 
 # File deletion
 'filedelete'                  => 'Deler $1',
 'filedelete-legend'           => 'Deler file',
 'filedelete-intro'            => "Tu va deler '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tu va deler le version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a $2].</span>',
+'filedelete-intro-old'        => "Tu va deler le version de '''[[Media:$1|$1]]''' del [$4 $3 a $2].",
 'filedelete-comment'          => 'Motivo pro deletion:',
 'filedelete-submit'           => 'Deler',
 'filedelete-success'          => "'''$1''' ha essite delite.",
@@ -1345,12 +1342,14 @@ Le longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]
 Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
 Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
 
-'doubleredirects'     => 'Redirectiones duple',
-'doubleredirectstext' => '<b>Attention:</b> Iste lista pote continer items false.
+'doubleredirects'            => 'Redirectiones duple',
+'doubleredirectstext'        => '<b>Attention:</b> Iste lista pote continer items false.
 Illo generalmente significa que il ha texto additional con ligamines sub le prime #REDIRECT.<br />
 Cata linea contine ligamines al prime e secunde redirection, assi como le prime linea del
 secunde texto de redirection, generalmente exhibiente le articulo scopo "real",
 al qual le prime redirection deberea referer se.',
+'double-redirect-fixed-move' => '[[$1]] ha essite renominate, e es ora un redirection verso [[$2]]',
+'double-redirect-fixer'      => 'Corrector de redirectiones',
 
 'brokenredirects'        => 'Redirectiones van',
 'brokenredirectstext'    => 'Le redirectiones sequente se liga a articulos inexistente.',
@@ -1917,9 +1916,6 @@ ante que tu procede.",
 
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
 'movearticle'             => 'Renominar pagina:',
-'movenologin'             => 'Tu non ha aperite un session',
-'movenologintext'         => 'Tu debe esser un usator registrate e [[Special:Userlogin|aperir un session]]
-pro mover un pagina.',
 'movenotallowed'          => 'Tu non ha le permission de renominar paginas in {{SITENAME}}.',
 'newtitle'                => 'Al nove titulo:',
 'move-watch'              => 'Observar iste pagina',
@@ -1958,6 +1954,7 @@ non pote renominar paginas ex o verso iste spatio de nomines.',
 'imagenocrossnamespace'   => 'Non pote renominar file verso un spatio de nomines non-file',
 'imagetypemismatch'       => 'Le nove extension del nomine del file non corresponde al typo del file',
 'imageinvalidfilename'    => 'Le nomine del file de destination es invalide',
+'fix-double-redirects'    => 'Actualisar tote le redirectiones que puncta verso le titulo original',
 
 # Export
 'export'            => 'Exportar paginas',
@@ -2204,7 +2201,7 @@ $1',
 # Special:Newimages
 'newimages'             => 'Galleria de nove files',
 'imagelisttext'         => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
-'newimages-summary'     => 'Iste pagina special detalia le recente files cargate',
+'newimages-summary'     => 'Iste pagina special detalia le recente files cargate.',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nihil a vider.',
 'ilsubmit'              => 'Cercar',
@@ -2603,8 +2600,8 @@ $1',
 'livepreview-error'   => 'Impossibile connecter: $1 "$2". Prova le previsualisation normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Le modificationes plus nove que $1 secundas possibilemente non se revela in iste lista.',
-'lag-warn-high'   => 'A causa de un alte latentia del servitor de base de datos, le modificationes plus nove que $1 secundas possibilemente non se revela in iste lista.',
+'lag-warn-normal' => 'Le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
+'lag-warn-high'   => 'A causa de un alte latentia del servitor de base de datos, le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',

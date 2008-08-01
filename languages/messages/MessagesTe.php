@@ -11,6 +11,7 @@
  * @author Siebrand
  * @author వైజాసత్య
  * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author SPQRobin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
@@ -580,10 +581,6 @@ $2',
 'blockededitsource'                => "'''$1''' లో '''మీ దిద్దుబాట్ల''' పూర్తి పాఠాన్ని కింద ఇచ్చాం:",
 'whitelistedittitle'               => 'మార్పులు చెయ్యడానికి లాగిన్‌ అయి ఉండాలి',
 'whitelistedittext'                => 'పేజీలకి మార్పులు చెయ్యడానికి మీరు $1 అయి ఉండాలి.',
-'whitelistreadtitle'               => 'చదవడానికి లాగిన్‌ అయి వుండాలి',
-'whitelistreadtext'                => 'పేజీలు చదవడానికి [[Special:Userlogin|లాగిన్‌]] అయి ఉండాలి.',
-'whitelistacctitle'                => 'మీకు అకౌంటు సృష్టించే అనుమతి లేదు',
-'whitelistacctext'                 => '{{SITENAME}}లో అకౌంట్లను సృష్టించడానికి మీరు [[Special:Userlogin|లాగిన్‌]] అయి ఉండాలి, మరియు తగువిధమైన అనుమతులు ఉండాలి.',
 'confirmedittitle'                 => 'మార్పులు చేసేముందు ఈ-మెయిలు చిరునామా ధృవీకరణ తప్పనిసరి',
 'confirmedittext'                  => 'పేజీల్లో మార్పులు చేసేముందు మీ ఈ-మెయిలు చిరునామా ధృవీకరించాలి. [[Special:Preferences|మీ అభిరుచుల]]లో మీ ఈ-మెయిలు చిరునామా రాసి, ధృవీకరించండి.',
 'nosuchsectiontitle'               => 'అటువంటి విభాగం లేదు',
@@ -1193,18 +1190,18 @@ $3 చెప్పిన కారణం: ''$2''",
 # File reversion
 'filerevert'                => '$1 ను వెనక్కు తీసుకుపో',
 'filerevert-legend'         => 'ఫైలును వెనక్కు తీసుకుపో',
-'filerevert-intro'          => '<span class="plainlinks">మీరు \'\'\'[[Media:$1|$1]]\'\'\' ను [$3, $2 నాటి $4 కూర్పు]కు తీసుకు వెళ్తున్నారు.</span>',
+'filerevert-intro'          => "మీరు '''[[Media:$1|$1]]''' ను [$3, $2 నాటి $4 కూర్పు]కు తీసుకు వెళ్తున్నారు.",
 'filerevert-comment'        => 'వ్యాఖ్య:',
 'filerevert-defaultcomment' => '$2, $1 నాటి కూర్పుకు తీసుకువెళ్ళాం',
 'filerevert-submit'         => 'వెనక్కు తీసుకువెళ్ళు',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ను  [$3, $2 నాటి $4 కూర్పు]కు తీసుకువెళ్ళాం.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ను  [$3, $2 నాటి $4 కూర్పు]కు తీసుకువెళ్ళాం.",
 'filerevert-badversion'     => 'మీరిచ్చిన టైముస్టాంపుతో ఈ ఫైలుకు స్థానిక కూర్పేమీ లేదు.',
 
 # File deletion
 'filedelete'                  => '$1ని తొలగించు',
 'filedelete-legend'           => 'ఫైలుని తొలగించు',
 'filedelete-intro'            => "'''[[Media:$1|$1]]'''ని మీరు తొలగిస్తున్నారు.",
-'filedelete-intro-old'        => '<span class="plainlinks">మీరు \'\'\'[[Media:$1|$1]]\'\'\' యొక్క  [$4 $3, $2] నాటి కూర్పును తొలగిస్తున్నారు.</span>',
+'filedelete-intro-old'        => "మీరు '''[[Media:$1|$1]]''' యొక్క  [$4 $3, $2] నాటి కూర్పును తొలగిస్తున్నారు.",
 'filedelete-comment'          => 'వ్యాఖ్య:',
 'filedelete-submit'           => 'తొలగించు',
 'filedelete-success'          => "'''$1'''ని తొలగించాం.",
@@ -1792,8 +1789,6 @@ $NEWPAGE
 
 ఆ సందర్భాలలో, మీరు చర్చా పేజీని కూడా పనిగట్టుకుని తరలించవలసి ఉంటుంది, లేదా ఏకీకృత పరచవలసి ఉంటుంది.",
 'movearticle'             => 'పేజీని తరలించు',
-'movenologin'             => 'లాగిన్‌ అయిలేరు',
-'movenologintext'         => 'పేజీని తరలించడానికి మీరు [[Special:Userlogin|లాగిన్‌]] అయిఉండాలి.',
 'movenotallowed'          => '{{SITENAME}}లో పేజీలను తరలించడానికి మీకు అనుమతి లేదు.',
 'newtitle'                => 'కొత్త పేరుకి',
 'move-watch'              => 'ఈ పేజీని గమనించు',
