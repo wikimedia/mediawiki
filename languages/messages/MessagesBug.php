@@ -82,8 +82,6 @@ $messages = array(
 
 # Edit pages
 'preview'          => 'ᨄᨛᨑᨗᨅᨗᨐᨘ',
-'accmailtitle'     => 'Ada sandi ni riantarak.',
-'accmailtext'      => 'Ada sandi "$1" riantarak ri $2.',
 'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:Userlogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
 'editing'          => 'ᨙᨕᨉᨗᨈᨗ $1',
 

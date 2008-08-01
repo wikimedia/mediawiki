@@ -626,10 +626,6 @@ Cyfeirnod y bloc yw $5. Nodwch hwn wrth drafod y bloc.",
 'blockedoriginalsource'            => "Dangosir côd '''$1''' isod:",
 'whitelistedittitle'               => 'Rhaid mewngofnodi i golygu',
 'whitelistedittext'                => 'Rhaid $1 i olygu tudalennau.',
-'whitelistreadtitle'               => 'Rhaid mewngofnodi cyn darllen',
-'whitelistreadtext'                => "Mae'n rhaid i chi [[Special:Userlogin|fewngofnodi]] er mwyn darllen tudalennau.",
-'whitelistacctitle'                => 'Ni chaniateir i chi greu cyfrif',
-'whitelistacctext'                 => "Er mwyn creu cyfrif ar {{SITENAME}}, mae'n rhaid i chi [[Special:Userlogin|fewngofnodi]] a meddu ar y galluoedd priodol.",
 'confirmedittitle'                 => 'Cadarnhad trwy e-bost cyn dechrau golygu.',
 'confirmedittext'                  => "Mae'n rhaid i chi gadarnhau eich cyfeiriad e-bost cyn y gallwch ddechrau golygu tudalennau.
 Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyddiwr]] ac yna'i gadarnhau, os gwelwch yn dda.",
@@ -638,8 +634,6 @@ Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyd
 'loginreqtitle'                    => 'Mae angen mewngofnodi',
 'loginreqlink'                     => 'mewngofnodi',
 'loginreqpagetext'                 => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
-'accmailtitle'                     => 'Wedi danfon cyfrinair.',
-'accmailtext'                      => 'Anfonwyd cyfrinair "$1" at $2.',
 'newarticle'                       => '(Newydd)',
 'newarticletext'                   => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
 I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).

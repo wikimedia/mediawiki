@@ -590,10 +590,6 @@ Per favor include iste ID in omne correspondentia.',
 'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
 'whitelistedittitle'               => 'Identification requirite pro modificar',
 'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
-'whitelistreadtitle'               => 'Identification requirite pro leger',
-'whitelistreadtext'                => 'Tu debe [[Special:Userlogin|aperir un session]] pro poter leger paginas.',
-'whitelistacctitle'                => 'Tu non ha le permission de crear un conto',
-'whitelistacctext'                 => 'Le permission de crear contos in {{SITENAME}} require que tu [[Special:Userlogin|aperi un session]] e que tu ha le autorisation appropriate.',
 'confirmedittitle'                 => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
 Per favor defini e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].',
@@ -603,8 +599,6 @@ Viste que il non ha alcun section $1, il non ha alcun location pro publicar tu m
 'loginreqtitle'                    => 'Identification requirite',
 'loginreqlink'                     => 'aperir un session',
 'loginreqpagetext'                 => 'Tu debe $1 pro poter vider altere paginas.',
-'accmailtitle'                     => 'Contrasigno inviate.',
-'accmailtext'                      => 'Le contrasigno pro "$1" ha essite inviate a $2.',
 'newarticle'                       => '(Nove)',
 'newarticletext'                   => "Tu ha sequite un ligamine verso un pagina que non existe ancora.
 Pro crear iste pagina, comencia a scriber in le quadro infra (consulta le [[{{MediaWiki:Helppage}}|pagina de adjuta]] pro plus informationes).

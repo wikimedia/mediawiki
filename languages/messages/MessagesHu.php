@@ -808,10 +808,6 @@ A blokkolás azonosítószáma: $5. Kérjük, hogy érdeklődés esetén ezt add
 'blockededitsource'                => "'''$1''' lapon '''általad végrehajtott szerkesztések''' szövege:",
 'whitelistedittitle'               => 'A szerkesztéshez be kell jelentkezned',
 'whitelistedittext'                => 'A szócikkek szerkesztéséhez $1.',
-'whitelistreadtitle'               => 'Az olvasáshoz be kell lépned',
-'whitelistreadtext'                => 'A lapok olvasásához [[Special:Userlogin|be kell lépned]].',
-'whitelistacctitle'                => 'Nem készíthetsz új felhasználói fiókot',
-'whitelistacctext'                 => 'Felhasználói fiókok létrehozásához [[Special:Userlogin|be kell jelentkezned]] a szükséges jogosultságokkal.',
 'confirmedittitle'                 => 'Szerkesztéshez az e-mail cím megerősítése szükséges',
 'confirmedittext'                  => 'A lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|szerkesztői beállításaidban]] írd be, majd erősítsd meg az e-mail címedet.',
 'nosuchsectiontitle'               => 'Nincs ilyen szakasz',
@@ -819,8 +815,6 @@ A blokkolás azonosítószáma: $5. Kérjük, hogy érdeklődés esetén ezt add
 'loginreqtitle'                    => 'Bejelentkezés szükséges',
 'loginreqlink'                     => 'Be kell jelentkezned',
 'loginreqpagetext'                 => '$1 más oldalak megtekintéséhez.',
-'accmailtitle'                     => 'A jelszót elküldtük.',
-'accmailtext'                      => '„$1” jelszavát elküldtük a(z) $2 címre.',
 'newarticle'                       => '(Új)',
 'newarticletext'                   => "Egy olyan lapra mutató hivatkozást követtél, mely még nem létezik.
 Ha létre akarod hozni, csak gépeld be a szövegét a lenti szövegdobozba. Ha kész vagy, az „Előnézet megtekintése” gombbal ellenőrizheted, hogy úgy fog-e kinézni, ahogy szeretnéd, és a „Lap mentése” gombbal tudod elmenteni.

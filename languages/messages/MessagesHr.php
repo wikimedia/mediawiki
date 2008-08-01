@@ -584,10 +584,6 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'blockededitsource'                => "Tekst '''vaše izmjene''' na članku '''$1''' prikazan je ispod:",
 'whitelistedittitle'               => 'Za uređivanje stranice morate se prijaviti',
 'whitelistedittext'                => 'Za uređivanje stranice morate se $1.',
-'whitelistreadtitle'               => 'Za čitanje stranice morate se prijaviti',
-'whitelistreadtext'                => 'Za čitanje stranice morate se [[Special:Userlogin|prijaviti]].',
-'whitelistacctitle'                => 'Ne možete otvoriti suradnički račun',
-'whitelistacctext'                 => 'Da biste otvarali suradničke račune na ovom wikiju morate se [[Special:Userlogin|prijaviti]] i posjedovati odgovarajuća ovlaštenja.',
 'confirmedittitle'                 => 'Ovjera e-mail adrese nužna za uređivanje',
 'confirmedittext'                  => 'Morate ovjeriti vašu e-mail adresu prije nego što vam bude omogućeno uređivanje. Molim unesite i ovjerite vašu e-mail adresu u [[Special:Preferences|suradničkim postavkama]].',
 'nosuchsectiontitle'               => 'Odlomak ne postoji',
@@ -595,8 +591,6 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'loginreqtitle'                    => 'Nužna prijava',
 'loginreqlink'                     => 'prijavite se',
 'loginreqpagetext'                 => 'Morate se $1 da biste vidjeli ostale stranice.',
-'accmailtitle'                     => 'Lozinka poslana.',
-'accmailtext'                      => "Lozinka za suradnika '$1' poslana je na adresu $2.",
 'newarticle'                       => '(Novo)',
 'newarticletext'                   => 'Došli ste na stranicu koja još nema sadržaja.<br />
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.

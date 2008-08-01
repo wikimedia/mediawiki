@@ -534,10 +534,6 @@ Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercih�
 'blockededitsource'         => "Nivîsarên '''guherandinên te''' di '''$1''' da tê wêşandan:",
 'whitelistedittitle'        => 'Ji bo guherandinê vê gotarê tu gireke xwe qeydbikê.',
 'whitelistedittext'         => 'Ji bo guherandina rûpelan, $1 pêwîst e.',
-'whitelistreadtitle'        => 'Ji xandinê vê gotarê tu gireke xwe qeydbikê',
-'whitelistreadtext'         => 'Ji bo xandinê vê gotarê tu gireke xwe [[Special:Userlogin|li vir]] qedybikê.',
-'whitelistacctitle'         => 'Tu nikanê xwe qeydbikê.',
-'whitelistacctext'          => "Ji bo qebûlkirina çêkirina account'an di {{SITENAME}}, tu gireke [[Special:Userlogin|têkevê]].",
 'confirmedittitle'          => 'Ji bo guherandinê, naskirina e-nameya te tê xastin.',
 'confirmedittext'           => 'Tu gireke adrêsa e-nameya xwe nasbikê berî tu rûpelan diguherînê. Xêra xwe adrêsa e-nameya ya xwe di [[Special:Preferences|tercihên xwe]] da binivisîne û nasbike.',
 'nosuchsectiontitle'        => 'Beşekî wisa tune ye',
@@ -545,8 +541,6 @@ Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercih�
 'loginreqtitle'             => 'Têketin pêwîst e',
 'loginreqlink'              => 'têkevê',
 'loginreqpagetext'          => 'Tu gireke $1 ji bo dîtina rûpelên din.',
-'accmailtitle'              => 'Şîfre hat şandin.',
-'accmailtext'               => "Şîfreya '$1' hat şandin ji $2 re.",
 'newarticle'                => '(Nû)',
 'newarticletext'            => "Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. '''Wêrek be''', biceribîne!<br />
 Ji bo alîkarî binêre: [[{{MediaWiki:Helppage}}|Alîkarî]].<br />

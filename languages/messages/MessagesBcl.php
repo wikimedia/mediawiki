@@ -546,10 +546,6 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 'blockededitsource'         => "An teksto kan '''mga hira mo''' sa '''$1''' mahihiling sa babâ:",
 'whitelistedittitle'        => 'Kaipuhan an paglaog tangarig makahirá',
 'whitelistedittext'         => 'Kaipuhan mong $1 tangarig makahirá nin mga páhina.',
-'whitelistreadtitle'        => 'Kaipuhan maglaog tangarig makabasa',
-'whitelistreadtext'         => 'Kaipuhan an [[Special:Userlogin|entrada]] para mabasa mo ining mga páhina.',
-'whitelistacctitle'         => 'Dai ka tinotogotan na maggibo nin account',
-'whitelistacctext'          => "Tangarig togotan na maggibo nin ''account'' sa ining wiki kaipuhan mong [[Special:Userlogin|maglaog]] asin dapat igwa kang mga hustong permiso.",
 'confirmedittitle'          => 'Kaipuhan nin kompirmasyon nin e-koreo tangarig makahirá',
 'confirmedittext'           => "Kaipuhan mong kompirmaron an saimong ''e''-surat. Ipwesto tabî asin patunayan an saimong ''e''-surat sa [[Special:Preferences|mga kabôtan kan parágamit]].",
 'nosuchsectiontitle'        => 'Mayong siring na seksyón',
@@ -557,8 +553,6 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 'loginreqtitle'             => 'Kaipuhan Maglaog',
 'loginreqlink'              => 'maglaog',
 'loginreqpagetext'          => 'Kaipuhan kang $1 tangarig makahilíng nin ibang pahina.',
-'accmailtitle'              => 'Napadará na an sekretong panlaog.',
-'accmailtext'               => 'An sekretong panlaog ni "$1" naipadará na sa $2.',
 'newarticle'                => '(Bàgo)',
 'newarticletext'            => 'Sinunod mo an takod sa pahinang mayò pa man.
 Tangarig magibo an pahina, magpoon pagsurat sa kahon sa babâ

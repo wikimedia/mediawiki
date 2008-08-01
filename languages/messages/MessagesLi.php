@@ -574,10 +574,6 @@ Vermeld das esse örges euver deze blokkaasj reageers.",
 'blockededitsource'                => "Hiej onger stuit de teks van '''dien bewèrkinge''' aan '''$1''':",
 'whitelistedittitle'               => 'Geer mót óch inlogke óm te bewirke',
 'whitelistedittext'                => 'Geer mót uch $1 óm pajzená te bewirke.',
-'whitelistreadtitle'               => 'Geer mót óch inlogke óm dit te kónne laeze',
-'whitelistreadtext'                => "Geer mót óch [[Special:Userlogin|inlogke]] óm pazjena's te laeze.",
-'whitelistacctitle'                => 'Geer maag gein account aanmake',
-'whitelistacctext'                 => 'Óm accounts op {{SITENAME}} aan te make mót geer [[Special:Userlogin|ingelog]] zeen en de zjuste permissies höbbe.',
 'confirmedittitle'                 => 'E-mailbevestiging is verplich veurdets te kèns bewirke',
 'confirmedittext'                  => "De mós dien e-mailadres bevestige veurdats te kèns bewirke.
 Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäöre]].",
@@ -586,8 +582,6 @@ Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäö
 'loginreqtitle'                    => 'Aanmelje verplich',
 'loginreqlink'                     => 'inglogge',
 'loginreqpagetext'                 => 'De mos $1 om anger pazjenas te bekieke.',
-'accmailtitle'                     => 'Wachwaord versjtuurd.',
-'accmailtext'                      => "'t Wachwaord veur '$1' is nao $2 versjtuurd.",
 'newarticle'                       => '(Nuuj)',
 'newarticletext'                   => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit.
 Type in de box hiejónger óm de pazjena te beginne (zuug de [[{{MediaWiki:Helppage}}|helppazjena]] veur mier informatie).

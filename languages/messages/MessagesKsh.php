@@ -687,10 +687,6 @@ Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:Ipblocklis
 'blockededitsource'                => 'Dä Wiki Tex vun <strong>Dinge Änderunge</strong> aan dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
 'whitelistedittitle'               => 'Enlogge es nüdich för Sigge ze Ändere',
 'whitelistedittext'                => 'Do mööts ald $1, öm hee em Wiki Sigge ändere ze dürfe.',
-'whitelistreadtitle'               => 'Enlogge es nüdich för ze Lese',
-'whitelistreadtext'                => 'Do mööts ald_[[Special:Userlogin|enjelogg sin]], öm hee Sigge lese ze dürfe.',
-'whitelistacctitle'                => 'Kei Rääch för Metmaacher aanzeläje.',
-'whitelistacctext'                 => 'Do mööts ald [[Special:Userlogin|enjelogg sin]] un speziell et Rääch doför han, öm hee en däm Wiki Metmaacher enrichte un aanläje ze dürfe.',
 'confirmedittitle'                 => 'För et Sigge Ändere muss De Ding E-Mail Adress ald bestätich han.',
 'confirmedittext'                  => 'Do muss Ding E-Mail Adress ald bestätich han, ih dat De hee Sigge ändere darfs.
 Drag Ding E-Mail Adress en Ding [[Special:Preferences|ming Enstellunge]] en, un dun „Dun Ding E-Mail Adress bestätije looße“ klicke.',
@@ -701,8 +697,6 @@ Esu lang wie et dä nit jit, hätte mer keine Plaz, wo hen met Dingem Täx.',
 'loginreqtitle'                    => 'Enlogge es nüdich',
 'loginreqlink'                     => 'enjelogg sin',
 'loginreqpagetext'                 => 'Do mööts eets ens $1, öm ander Sigge aanzeluure.',
-'accmailtitle'                     => 'Passwood verscheck.',
-'accmailtext'                      => 'Dat Passwood för dä Metmaacher „$1“ es aan „$2“ jescheck woode.',
 'newarticle'                       => '(Neu)',
 'newarticletext'                   => 'Ene Link op en Sigg, wo noch nix drop steiht, weil et se noch jar nit jitt, hät Dich noh hee jebraht.
 Öm die Sigg aanzeläje, schriev hee unge en dat Feld eren, un dun dat dann avspeichere.

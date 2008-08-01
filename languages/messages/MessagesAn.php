@@ -632,10 +632,6 @@ O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos dato
 'blockededitsource'                => "Contino s'amuestra o testo d'as suyas '''edizions''' á '''$1''':",
 'whitelistedittitle'               => 'Cal enzetar una sesión ta ta fer edizions.',
 'whitelistedittext'                => 'Ha de $1 ta poder editar pachinas.',
-'whitelistreadtitle'               => "Cal que s'identifique y que enzete una sesión ta poder leyer",
-'whitelistreadtext'                => 'Ha de [[Special:Userlogin|identificar-se]] ta leyer as pachinas.',
-'whitelistacctitle'                => 'No tiene premiso ta creyar una cuenta',
-'whitelistacctext'                 => 'Ta poder creyar cuentas en {{SITENAME}} li cal [[Special:Userlogin|enzetar una sesión]] y tener os premisos apropiatos.',
 'confirmedittitle'                 => 'Cal que confirme a suya adreza de correu-e ta poder editar',
 'confirmedittext'                  => "Ha de confirmar a suya adreza de correu-e antis de poder editar pachinas. Por fabor, establa y confirme una adreza de correu-e a trabiés d'as suyas [[Special:Preferences|preferenzias d'usuario]].",
 'nosuchsectiontitle'               => 'No esiste ixa sezión',
@@ -643,8 +639,6 @@ O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos dato
 'loginreqtitle'                    => 'Cal que enzete una sesión',
 'loginreqlink'                     => 'enzetar una sesión',
 'loginreqpagetext'                 => 'Ha de $1 ta beyer atras pachinas.',
-'accmailtitle'                     => 'A palabra de paso ha estato nimbiata.',
-'accmailtext'                      => "A palabra de paso de '$1' s'ha nimbiato á $2.",
 'newarticle'                       => '(Nuebo)',
 'newarticletext'                   => "Ha siguito un binclo ta una pachina que encara no esiste.
 Ta creyar a pachina, prenzipie á escribir en a caxa d'abaxo

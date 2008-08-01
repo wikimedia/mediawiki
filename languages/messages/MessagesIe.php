@@ -194,8 +194,6 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'preview'          => 'Previder',
 'showpreview'      => 'Previder págine',
 'loginreqtitle'    => 'Apertion de session obligatori',
-'accmailtitle'     => 'Li passa-parol es inviat.',
-'accmailtext'      => "Li passa-parol por '$1' ha esset inviat a $2.",
 'newarticle'       => '(Nov)',
 'editing'          => 'modification de $1',
 'editingsection'   => 'modification de $1 (section)',

@@ -475,10 +475,6 @@ Lukan ur tefkiḍ ara email saḥih deg [[Special:Preferences|isemyifiyen n wems
 'blockededitsource'         => "Aḍris n '''ubeddel inek''' i '''$1''' hat deg ukessar:",
 'whitelistedittitle'        => 'Yessefk ad tkecmeḍ iwakken ad tbeddleḍ',
 'whitelistedittext'         => 'Yessefk ad $1 iwakken ad tbeddleḍ isebtar.',
-'whitelistreadtitle'        => 'Yessefk ad tkecmeḍ iwakken ad teqqareḍ',
-'whitelistreadtext'         => 'Yessefk ad [[Special:Userlogin|tkecmeḍ]] iwakken ad teɣriḍ isebtar.',
-'whitelistacctitle'         => 'Ur tettalaseḍ ara ad txelqeḍ isem n wemseqdac',
-'whitelistacctext'          => 'Akken ad txelqeḍ isem n wemseqdac deg wiki-yagi yessefk ad [[Special:Userlogin|tkecmeḍ]] u tesɛa izerfan usligen.',
 'confirmedittitle'          => 'Yessef ad tsentmeḍ e-mail inek iwakken ad tbeddleḍ',
 'confirmedittext'           => 'Yessefk ad tsentmeḍ tansa e-mail inek uqbel abeddel. Xtar tansa e-mail di [[Special:Preferences|isemyifiyen n wemseqdac]].',
 'nosuchsectiontitle'        => 'Amur ulac-it',
@@ -486,8 +482,6 @@ Lukan ur tefkiḍ ara email saḥih deg [[Special:Preferences|isemyifiyen n wems
 'loginreqtitle'             => 'Yessefk ad tkecmeḍ',
 'loginreqlink'              => 'Kcem',
 'loginreqpagetext'          => 'Yessefk $1 iwakken ad teẓriḍ isebtar wiyaḍ.',
-'accmailtitle'              => 'Awal n tbaḍnit yettwazen.',
-'accmailtext'               => 'Awal n tbaḍnit n "$1" yettwazen ar $2.',
 'newarticle'                => '(Amaynut)',
 'newarticletext'            => 'Tḍefreḍ azday ɣer usebter mazal ur yettwaxleq ara.
 Akken ad txelqeḍ asebter-nni, aru deg tenkult i tella deg ukessar

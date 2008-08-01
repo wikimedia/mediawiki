@@ -590,10 +590,6 @@ to'mende ko'rsetilgen:",
 'blockededitsource'         => "'''$1''' degennin' '''siz ozgertken''' teksti to'mende ko'rsetilgen:",
 'whitelistedittitle'        => "O'zgertiw ushın sistemag'a kiriwin'iz kerek",
 'whitelistedittext'         => "Betterdi o'zgertiw ushın $1 sha'rt.",
-'whitelistreadtitle'        => "Oqıw ushın sistemag'a kiriwin'iz kerek",
-'whitelistreadtext'         => "Betterdi oqıw ushın [[Special:Userlogin|kiriwin'iz]] kerek.",
-'whitelistacctitle'         => "Sizin' akkaunt jaratıwg'a ruxsatın'ız joq",
-'whitelistacctext'          => "{{SITENAME}} saytında akkaunt jaratıw ushın [[Special:Userlogin|kirwin'iz]] kerek ha'mde kerekli ruqsatların'ız bolıwı kerek.",
 'confirmedittitle'          => "O'zgertiw ushın e-mail tastıyıqlaması kerek",
 'confirmedittext'           => "Betlerge o'zgeris kiritiwin'iz ushın aldın E-pochta adresin'izdi tastıyıqlawın'ız kerek.
 E-pochta adresin'izdi [[Special:Preferences|paydalanıwshı sazlawları bo'limi]] arqalı ko'rsetin' ha'm jaramlılıg'ın tekserin'.",
@@ -603,8 +599,6 @@ $1 bo'limi joq bolg'anlıg'ı sebepli sizin' o'zgertiwin'izdi saqlawg'a orın jo
 'loginreqtitle'             => "Sistemag'a kiriw kerek",
 'loginreqlink'              => 'kiriw',
 'loginreqpagetext'          => "Basqa betlerdi ko'riw ushın sizge $1 kerek.",
-'accmailtitle'              => 'Parol jiberildi.',
-'accmailtext'               => '"$1" paroli $2 g\'a jiberildi.',
 'newarticle'                => '(Taza)',
 'newarticletext'            => "Siz ele jaratılmag'an betke siltew arqalı o'ttin'iz.
 Betti jaratıw ushın to'mendegi aynada tekstin'izdi kiritin' (qosımsha mag'lıwmat ushın [[{{MediaWiki:Helppage}}|anıqlama betin]] qaran').

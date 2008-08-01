@@ -530,10 +530,6 @@ ID peungpeukan anjeun $5. Mangga sebatkeun éta ID dina pamundut-pamundut anjeun
 'blockededitsource'                => "Tulisan '''éditan anjeun''' dina '''$1''' dipidangkeun di handap ieu:",
 'whitelistedittitle'               => 'Perlu asup log sangkan bisa ngédit',
 'whitelistedittext'                => 'Anjeun kudu asup $1 sangkan bisa ngédit.',
-'whitelistreadtitle'               => 'Perlu asup log pikeun maca',
-'whitelistreadtext'                => 'Anjeun kudu asup [[Special:Userlogin|log]] sangkan bisa maca.',
-'whitelistacctitle'                => 'Anjeun teu diwenangkeun nyieun rekening',
-'whitelistacctext'                 => 'Sangkan diwenangkeun nyieun rekening na wiki ieu, anjeun kudu asup [[Special:Userlogin|log]] sarta boga kawenangan nu cukup.',
 'confirmedittitle'                 => 'Konfirmasi surélék diperlukeun pikeun ngédit.',
 'confirmedittext'                  => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun.
 Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences|préferénsi pamaké]].',
@@ -542,8 +538,6 @@ Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences
 'loginreqtitle'                    => 'Kudu asup log',
 'loginreqlink'                     => 'asup log',
 'loginreqpagetext'                 => 'Mun hayang muka kaca séjénna, Anjeun kudu $1.',
-'accmailtitle'                     => 'Sandi geus dikirim.',
-'accmailtext'                      => "Sandi keur '$1' geus dikirim ka $2.",
 'newarticle'                       => '(Anyar)',
 'newarticletext'                   => "Anjeun geus nuturkeun tumbu ka kaca nu can aya.
 Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap

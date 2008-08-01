@@ -664,10 +664,6 @@ Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di 
 'blockededitsource'                => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
 'whitelistedittitle'               => 'Accesso necessario per la modifica delle pagine',
 'whitelistedittext'                => 'Per modificare le pagine è necessario $1.',
-'whitelistreadtitle'               => 'Accesso necessario per la lettura delle pagine',
-'whitelistreadtext'                => "Per essere abilitato alla lettura delle pagine è necessario [[Special:Userlogin|eseguire l'accesso]].",
-'whitelistacctitle'                => 'Creazione di un nuovo accesso non consentita',
-'whitelistacctext'                 => "Per essere abilitati alla creazione di nuovi accessi su questo sito è necessario [[Special:Userlogin|effettuare l'accesso]] e aver ricevuto le opportune autorizzazioni.",
 'confirmedittitle'                 => 'Conferma della e-mail necessaria per la modifica delle pagine',
 'confirmedittext'                  => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'La sezione non esiste',
@@ -675,8 +671,6 @@ Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di 
 'loginreqtitle'                    => "Per modificare questa pagina è necessario eseguire l'accesso al sito.",
 'loginreqlink'                     => "eseguire l'accesso",
 'loginreqpagetext'                 => 'Per vedere altre pagine è necessario $1.',
-'accmailtitle'                     => 'Password inviata.',
-'accmailtext'                      => 'La password per l\'utente "$1" è stata inviata all\'indirizzo $2.',
 'newarticle'                       => '(Nuovo)',
 'newarticletext'                   => "Il collegamento appena seguito corrisponde a una pagina non ancora esistente.
 Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto

@@ -551,10 +551,6 @@ Idantifyan, non ou an nan kilès ou bloke a se $5. Ou dwèt mete enfòmasyon sa 
 'blockededitsource'                => "Kontni '''modifikasyon ou yo''' nan '''$1''' ekri pli ba :",
 'whitelistedittitle'               => 'Ou dwèt konekte w pou ou kapab edite ak modifye atik sa, kontni sa',
 'whitelistedittext'                => 'Ou dwèt gen fonksyon sa $1 pou ou kapab genyen dwa pou modifye kontni sa.',
-'whitelistreadtitle'               => 'Ou dwèt konekte w si ou ta vle kontni sa',
-'whitelistreadtext'                => 'Ou dwèt [[Special:Userlogin|konekte]] pou ou kapab li kontni sa.',
-'whitelistacctitle'                => 'Ou pa otorize kreye yon kont.',
-'whitelistacctext'                 => 'Pou ou kapab kreye yon kont sou Wiki sa, ou dwèt [[Special:Userlogin|konekte]] epitou genyen pèmisyon ou dwèt genyen yo.',
 'confirmedittitle'                 => 'Adrès imèl ou an dwèt valide pou ou kapab modifye kontni sa',
 'confirmedittext'                  => 'Ou dwèt konfime adrès imèl ou an anvan ou modifye paj {{SITENAME}} sa. Antre epi valide adrès elektwonik ou an ak èd ou kapab twouve nan paj sa [[Special:Preferences|preferans]].',
 'nosuchsectiontitle'               => 'Seksyon sa pa gen anyen sou li',
@@ -563,8 +559,6 @@ Paske sistèm an pa gen seksyon $1 sa, nou pa twouve pyès lòt kote pou pibliye
 'loginreqtitle'                    => 'Koneksyon an nesesè',
 'loginreqlink'                     => 'konekete ou',
 'loginreqpagetext'                 => 'Ou dwèt $1 pou ou kapab wè lòt paj yo.',
-'accmailtitle'                     => 'Mopas an voye.',
-'accmailtext'                      => 'Mopas pou « $1 » voye nan adrès $2.',
 'newarticle'                       => '(Nouvo)',
 'newarticletext'                   => "Ou swiv yon paj ki poko egziste nan sistèm sa a.
 Pou ou kapab kreye paj sa a, komanse ap ekri nan bwat sa a ki anba (gade [[{{MediaWiki:Helppage}}|paj èd an]] pou konnen plis, pou plis enfòmasyon).

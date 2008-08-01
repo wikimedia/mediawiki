@@ -474,17 +474,11 @@ Voste adresse IP est $3. S' i vs plait racsegnoz ciste adresse IP la dins les dm
 'blockededitsource'         => "Li tecse des '''candjmints da vosse''' di '''$1''' est håyné chal pa dzo:",
 'whitelistedittitle'        => "S' elodjî po candjî",
 'whitelistedittext'         => 'I vs fåt $1 po pleur candjî les årtikes.',
-'whitelistreadtitle'        => "S' elodjî po lére",
-'whitelistreadtext'         => 'I vs fåt [[Special:Userlogin|elodjî]] po pleur lére les årtikes.',
-'whitelistacctitle'         => "Vos n' avoz nén l' permission d' ahiver on conte chal",
-'whitelistacctext'          => "Po pleur ahiver on conte so ç' Wiki chal, vos dvoz esse [[Special:Userlogin|elodjî]] ey aveur les bounès permissions.",
 'confirmedittitle'          => 'Acertiner vost emile po candjî',
 'confirmedittext'           => "I vs fåt acertiner vost emile po pleur candjî les årtikes. Dinez èn emile eyet l' acertiner dins vos [[Special:Preferences|preferinces d' uzeu]].",
 'loginreqtitle'             => 'I vs fåt esse elodjî',
 'loginreqlink'              => 'elodjî',
 'loginreqpagetext'          => 'Vos vs divoz $1 po vey des ôtès pådjes.',
-'accmailtitle'              => 'Li scret a stî evoyî.',
-'accmailtext'               => 'Li scret po «$1» a stî evoyî a $2.',
 'newarticle'                => '(Novea)',
 'newarticletext'            => "Vos avoz clitchî so on loyén viè ene pådje ki n' egzistêye nén co.
 Mins '''vos''' l' poloz askepyî! Po çoula, vos n' avoz k' a cmincî a taper vosse tecse dins l' boesse di tecse chal pa dzo (alez vey li [[{{MediaWiki:Helppage}}|pådje d' aidance]] po pus d' infôrmåcion).

@@ -314,11 +314,8 @@ Foddee oo cur fys er $1 ny [[{{MediaWiki:Grouppage-sysop}}|reireyder]] elley dy 
 Cha nod oo jannoo ymmyd jeh'n cummey 'cur post-L da'n ymmydeyr shoh' mannagh vel eh sonrit ayns dty [[Special:Preferences|choontys tosheeaghtyn]] as mannagh vel ou glasst magh.<br />
 She $3 dt'enmys IP troa, as she dt'enney ghlass ny #$5. Cur ad lesh dagh ooilley eysht.",
 'blockednoreason'        => 'cha nel fa currit',
-'whitelistacctitle'      => 'Cha nel kied ayd coontys y chroo',
 'loginreqlink'           => 'Log stiagh',
 'loginreqpagetext'       => 'Shegin dhyt $1 dys jeeagh er duillagyn elley.',
-'accmailtitle'           => 'Fockle yn arrey currit.',
-'accmailtext'            => 'Ta fockle yn arrey da "$1" currit dy $2.',
 'newarticle'             => '(Noa)',
 'note'                   => '<strong>Note:</strong>',
 'previewnote'            => '<strong>Ta shoh roie-haishbynys;

@@ -287,8 +287,6 @@ Nṳ̄ gì IP dê-cī â̤ ké̤ṳk gé diŏh ciā hiĕk-miêng siŭ-gāi lĭk-
 'loginreqtitle'            => 'Chiāng sĕng láuk-diē',
 'loginreqlink'             => 'Láuk-diē',
 'loginreqpagetext'         => 'Sĕng $1 ciáh â̤-sāi káng gì-tă hiĕk-miêng.',
-'accmailtitle'             => 'Mĭk-mā gié chók lāu.',
-'accmailtext'              => '"$1" gì mĭk-mā ī-gĭng gié ké̤ṳk $2 lāu.',
 'newarticle'               => '(Sĭng)',
 'newarticletext'           => "Nṳ̄ téng 1 ciáh lièng-giék lì gáu cī miêng gó muôi còng-câi gì hiĕk. Buóh kī-chiū piĕng-siā ciā hiĕk, chiāng diŏh â-dā̤ gì bēng-bēng diē-sié páh cê (chăng-kō̤ [[Help:Mŭk-liŏh]] liēu-gāi gáing sâ̤ séng-sék). Iŏk-sṳ̄ nṳ̄ huák-hiêng cê-gă giàng dâng gó̤, nâ dĭh áik báuk-lāng-ké (''browser'') gì \"'''duōng kó̤ sèng 1 hiĕk'''\" (''back'') cêu â̤-sāi lāu.",
 'anontalkpagetext'         => "----''Cī tiŏng tō̤-lâung-hiĕk mò̤ gó-dêng gì dióng-hô̤, nâ ô 1 ciáh IP dê-cī. Chiāng cé̤ṳ-é: Kō̤-nèng ng-nié 1 ciáh nè̤ng sāi-ê̤ṳng cī ciáh IP dê-cī. Iŏk-sṳ̄ nṳ̄ gó muôi kŭi 1 ciáh dióng-hô̤ bêng-chiā giéng-gáe̤k ciā làu-uâ sê làu ké̤ṳk nṳ̄ gì, chiāng nṳ̄ [[Special:Userlogin|kŭi 1 ciáh dióng-hô̤ hĕ̤k-ciā láuk-diē]], cêu â̤ piáh-miēng ī-hâiu gái huák-sĕng cūng-kuāng ông-dà̤.''",

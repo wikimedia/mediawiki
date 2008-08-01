@@ -542,9 +542,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'blockededitsource'                => "아래에 '''$1'''에서의 '''당신의 편집'''이 나와 있습니다:",
 'whitelistedittitle'               => '편집하려면 로그인 필요',
 'whitelistedittext'                => '문서를 편집하려면 $1해야 합니다.',
-'whitelistreadtitle'               => '문서를 보려면 로그인 필요',
-'whitelistreadtext'                => '문서를 읽기 위해서는 [[Special:Userlogin|로그인]]해야 합니다.',
-'whitelistacctitle'                => '계정을 만들도록 허용되어 있지 않습니다.',
 'confirmedittitle'                 => '편집하려면 이메일 인증 필요',
 'confirmedittext'                  => '문서를 고치려면 이메일 인증 절차가 필요합니다. [[Special:Preferences|사용자 환경 설정]]에서 이메일 주소를 입력하고 이메일 주소 인증을 해 주시기 바랍니다.',
 'nosuchsectiontitle'               => '해당 부분 없음',
@@ -552,8 +549,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'loginreqtitle'                    => '로그인 필요',
 'loginreqlink'                     => '로그인',
 'loginreqpagetext'                 => '다른 문서를 보기 위해서는 $1해야 합니다.',
-'accmailtitle'                     => '암호를 보냈습니다.',
-'accmailtext'                      => '‘$1’의 암호를 $2로 보냈습니다.',
 'newarticle'                       => '(새 문서)',
 'newarticletext'                   => "이 문서는 아직 만들어지지 않았습니다. 새 문서를 만들려면 아래의 상자에 문서 내용을 입력하면 됩니다(자세한 내용은 [[{{MediaWiki:Helppage}}|도움말]]을 읽어 주세요).
 만약 잘못 찾아온 문서라면, 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",

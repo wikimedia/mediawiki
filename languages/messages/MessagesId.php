@@ -782,10 +782,6 @@ ID pemblokiran Anda adalah $5. Tolong sertakan ID ini dalam setiap pertanyaan An
 'blockededitsource'                => "Teks '''suntingan Anda''' terhadap '''$1''' ditunjukkan berikut ini:",
 'whitelistedittitle'               => 'Perlu masuk log untuk menyunting',
 'whitelistedittext'                => 'Anda harus $1 untuk dapat menyunting artikel.',
-'whitelistreadtitle'               => 'Perlu masuk log untuk membaca',
-'whitelistreadtext'                => 'Anda harus [[Special:Userlogin|masuk log]] untuk dapat membaca artikel.',
-'whitelistacctitle'                => 'Anda tidak diperbolehkan untuk membuat akun',
-'whitelistacctext'                 => 'Untuk dapat membuat akun dalam wiki ini, Anda harus [[Special:Userlogin|masuk log]] dan mempunyai izin yang tepat.',
 'confirmedittitle'                 => 'Konfirmasi surat-e diperlukan untuk melakukan penyuntingan',
 'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surat-e Anda sebelum menyunting halaman.
 Harap masukkan dan validasikan alamat surat-e Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',
@@ -794,8 +790,6 @@ Harap masukkan dan validasikan alamat surat-e Anda melalui [[Special:Preferences
 'loginreqtitle'                    => 'Harus masuk log',
 'loginreqlink'                     => 'masuk log',
 'loginreqpagetext'                 => 'Anda harus $1 untuk dapat melihat halaman lainnya.',
-'accmailtitle'                     => 'Kata sandi telah terkirim.',
-'accmailtext'                      => "Kata sandi untuk '$1' telah dikirimkan ke $2.",
 'newarticle'                       => '(Baru)',
 'newarticletext'                   => "Anda mengikuti pranala ke halaman yang belum tersedia. Untuk membuat halaman tersebut, ketiklah isi halaman di kotak di bawah ini (lihat [[{{MediaWiki:Helppage}}|halaman bantuan]] untuk informasi lebih lanjut). Jika Anda tanpa sengaja sampai ke halaman ini, klik tombol '''back''' di penjelajah web anda.",
 'anontalkpagetext'                 => "----''Ini adalah halaman pembicaraan seorang pengguna anonim yang belum membuat akun atau tidak menggunakannya. Karena ia tidak membuat akun, kami terpaksa harus memakai alamat IP-nya untuk mengidentifikasikannya.

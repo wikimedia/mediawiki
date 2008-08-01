@@ -529,10 +529,6 @@ Suq kinniqpidämise tunnusnummõr om $5. Olõq hää, kirodaq taa nummõr egä p
 'blockededitsource'         => "Su tett toimõndus lehe '''$1''' pääl:",
 'whitelistedittitle'        => 'Toimõndamisõs piät nimega sisse minemä',
 'whitelistedittext'         => 'Lehekülgi toimõndamisõs $1.',
-'whitelistreadtitle'        => 'Lugõmisõs piät olõma nimega sisse lännüq',
-'whitelistreadtext'         => 'Lehekülgi lugõmisõs piät [[Special:Userlogin|nimega sisse minemä]].',
-'whitelistacctitle'         => 'Sul olõ-i õigust pruukjakontot luvvaq',
-'whitelistacctext'          => '{{SITENAME}} kontodõ luumisõs piät olõma [[Special:Userlogin|nimega sisse lännüq]] ja sul piät olõma tuu jaos nõvvõtavaq õigusõq.',
 'confirmedittitle'          => 'E-posti kinnütüs',
 'confirmedittext'           => 'Sa saa-i inne lehekülgi toimõndaq, ku olõt kinnütänüq ärq uma e-postiaadrõsi. Tuud saat tetäq uma [[Special:Preferences|säädmislehe]] pääl.',
 'nosuchsectiontitle'        => 'Olõ-i säänest lõiku',
@@ -540,8 +536,6 @@ Suq kinniqpidämise tunnusnummõr om $5. Olõq hää, kirodaq taa nummõr egä p
 'loginreqtitle'             => 'Piät nimega sisse minemä',
 'loginreqlink'              => 'nimega sisse minemä',
 'loginreqpagetext'          => 'Tõisi lehekülgi kaemisõs piät $1.',
-'accmailtitle'              => 'Salasõna saadõt.',
-'accmailtext'               => "Pruukja '$1' salasyna saadõti aadrõsi pääle $2.",
 'newarticle'                => '(Vahtsõnõ)',
 'newarticletext'            => "Taad lehekülge olõ-i viil.
 Leheküle luumisõs nakkaq kirotama alanolõvahe kasti.

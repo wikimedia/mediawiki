@@ -103,10 +103,8 @@ $messages = array(
 'acct_creation_throttle_hit' => 'Utoqqatterpunga, $1 kontonik pilersereersimavutit. Pilersitseqqissinnaanngilatit.',
 
 # Edit pages
-'summary'      => 'Qanoq issusersiuineq',
-'accmailtitle' => 'Password-i nassiunneqarsimavoq.',
-'accmailtext'  => 'Password-i "$1" $2-mut nassiunneqarsimavoq.',
-'newarticle'   => '(Nuutaq)',
+'summary'    => 'Qanoq issusersiuineq',
+'newarticle' => '(Nuutaq)',
 
 # Search results
 'powersearch' => 'Ujaarlerit',

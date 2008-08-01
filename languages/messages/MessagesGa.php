@@ -561,16 +561,9 @@ go leor úsáídeoirí AOL an friothálaí céanna a úsáid, agus mar sin is mi
 Dá dtarlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh ríomhphoist AOL. Bheith cinnte tagairt a dhéanamh leis an seoladh IP seo thuas.',
 'whitelistedittitle'     => 'Logáil isteach chun athrú a dhéanamh',
 'whitelistedittext'      => 'Ní mór duit $1 chun ailt a athrú.',
-'whitelistreadtitle'     => 'Logáil isteach chun ailt a léamh',
-'whitelistreadtext'      => 'Ní mór duit [[Special:Userlogin|logáil isteach]] chun ailt a léamh.',
-'whitelistacctitle'      => 'Níl cead agat cuntas a chruthú',
-'whitelistacctext'       => 'Chun cuntais nua a chruthú sa vicí seo, caithfidh tú [[Special:Userlogin|logáil
-isteach]] agus caithfidh go bhfuil an cead riachtanach agat.',
 'loginreqtitle'          => 'Tá logáil isteach de dhíth ort',
 'loginreqlink'           => 'logáil isteach',
 'loginreqpagetext'       => 'Caithfidh tú $1 chun leathanaigh a amharc.',
-'accmailtitle'           => 'Seoladh an focal faire.',
-'accmailtext'            => 'Seoladh focal faire an úsáideora "$1" chuig $2.',
 'newarticle'             => '(Nua)',
 'newarticletext'         => "Lean tú nasc chuig leathanach nach bhfuil ann fós.
 Chun an leathanach a chruthú, tosaigh ag clóscríobh sa bhosca thíos

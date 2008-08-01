@@ -30,8 +30,6 @@ $messages = array(
 
 # Edit pages
 'blockedtitle' => 'El usario es prohibido',
-'accmailtitle' => 'El contraseña imbiao ya.',
-'accmailtext'  => 'El contraseña por "$1" ya imbia ya para con $2.',
 
 # Preferences page
 'changepassword' => 'Cambia con el contraseña',

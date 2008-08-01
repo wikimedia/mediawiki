@@ -745,10 +745,6 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'blockededitsource'                => "Teksten i '''endringane dine''' på '''$1''' er vist nedanfor:",
 'whitelistedittitle'               => 'Du lyt logge inn for å gjera endringar',
 'whitelistedittext'                => 'Du lyt $1 for å endre sider.',
-'whitelistreadtitle'               => 'Du lyt logge inn for å lesa',
-'whitelistreadtext'                => 'Du lyt [[Special:Userlogin|logge inn]] for å lesa sider.',
-'whitelistacctitle'                => 'Du har ikkje løyve til å laga brukarkonto',
-'whitelistacctext'                 => 'For å lage brukarkonto her på {{SITENAME}} må du [[Special:Userlogin|logge inn]] og ha rett type tilgang.',
 'confirmedittitle'                 => 'Du må stadfeste e-postadressa di før du kan endre noko',
 'confirmedittext'                  => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
 'nosuchsectiontitle'               => 'Ingen slik bolk',
@@ -756,8 +752,6 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'loginreqtitle'                    => 'Innlogging trengst',
 'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du lyt $1 for å lesa andre sider.',
-'accmailtitle'                     => 'Passord er sendt.',
-'accmailtext'                      => 'Passordet for «$1» er vorte sendt til $2.',
 'newarticle'                       => '(Ny)',
 'newarticletext'                   => "'''{{SITENAME}} har ikkje noka side med namnet {{PAGENAME}} enno.'''
 * For å opprette ei slik side kan du skrive i boksen under og klikke på «Lagre». Endringane vil vere synlege med det same.

@@ -377,10 +377,6 @@ IP atrese ya gago ke $3, ge ID ya go thiba ele #$5. Ka kgopelo šumiša ID le IP
 'blockedoriginalsource'  => "Mothopo wa '''$1''' oa botšhwa tlase:",
 'whitelistedittitle'     => 'O swanela ke go tsena go fetola',
 'whitelistedittext'      => 'O swanela ke go $1 go fetola matlakala.',
-'whitelistreadtitle'     => 'O swanela ke go tsena bo bala',
-'whitelistreadtext'      => 'O swanela ke go  [[Special:Userlogin|tsena]] go bala matlakala.',
-'whitelistacctitle'      => 'Ga wa dumelwa go tlhola tšhupaleloko',
-'whitelistacctext'       => 'Go dumelwa go tlhola tšhupaleloko go {{SITENAME}} o swanela ke go  [[Special:Userlogin|tsena]]  gape obe le ditshwanelo tša maleba.',
 'confirmedittitle'       => 'E-mail e swanetše ke go tiišetšwa pele ge o ka fetola',
 'confirmedittext'        => 'E-mail e swanetše ke go tiišetšwa pele ge o ka fetola matlakala. Ka kgopelo, tiišetša e-mail atrese ya gago go [[Special:Preferences|dikgatlhego tša mošomiši]].',
 'nosuchsectiontitle'     => 'Gago sekgao seo',
@@ -388,8 +384,6 @@ IP atrese ya gago ke $3, ge ID ya go thiba ele #$5. Ka kgopelo šumiša ID le IP
 'loginreqtitle'          => 'Go tsena goa hlokega',
 'loginreqlink'           => 'tsena',
 'loginreqpagetext'       => 'O swanela ke go  $1 go nyakorela matlakala a mangwe.',
-'accmailtitle'           => 'Ditlhaka tša siphiri di rometšwe.',
-'accmailtext'            => 'Ditlhaka-tša-siphiri tša "$1"  di rometšwe go $2.',
 'newarticle'             => '(mpsha)',
 'newarticletext'         => "O latetše hlomaganyo go letlakala leo le sego gona ka se sebaka.
 Go tlhola letlakala, thoma go ngwalo lepokising le letelago

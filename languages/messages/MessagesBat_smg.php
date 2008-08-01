@@ -467,12 +467,7 @@ Tamstas dabartėnis IP adresos īr $3, a bluokavėma ID īr #$5. Prašuom nuruod
 'blockedoriginalsource'     => "Žemiau īr ruodoms '''$1''' torėnīs:",
 'blockededitsource'         => "''Tamstas keitimu'' teksts poslapiui '''$1''' īr ruodoms žemiau:",
 'whitelistedittitle'        => 'Nuorėnt redagoutė rēk prisėjongtė',
-'whitelistreadtitle'        => 'Norėnt skaitītė rēk prisėjongtė',
-'whitelistreadtext'         => 'Tamstā rēk [[Special:Userlogin|prisėjongtė]], ka skaitītė poslapius.',
-'whitelistacctitle'         => 'Tamstā nelēdama kortė paskīruos',
 'loginreqlink'              => 'prisėjongtė',
-'accmailtitle'              => 'Slaptažuodis ėšsiūsts īr.',
-'accmailtext'               => "Nauduotuojė '$1' slaptažuodis nusiūsts i $2 īr.",
 'newarticle'                => '(Naus)',
 'newarticletext'            => "Tamsta pakliovuot i nūnā neesoti poslapi.
 Nuoriedamė sokortė poslapi, pradiekėt rašītė žemiau esontiamė ivedima pluotė

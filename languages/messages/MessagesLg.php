@@ -245,8 +245,6 @@ Osobola okubyogerako ne $1 oba [[{{MediaWiki:Grouppage-sysop}}|omutesitesi]] omu
 Ekya 'Memba ono musindikire e-mail' toosobole okukikozesa okugyako nga mu [[Special:Preferences|nteekateeka]] ey'akawunti yo mulimu e-mail ennamu era nga yo teriko natti.
 Kakano endagiriro eya 'IP' gy'oliko eri $3, yo ennamba eya natti gyebakusibye eri #$5. Gw'ogenda okwogera naye ku natti mutegeeze ennamba oba endagiriro eyo, oba byombi.",
 'loginreqlink'           => 'Yingira',
-'accmailtitle'           => 'Ekigambo ekikuumi kisindikiddwa',
-'accmailtext'            => 'Ekigambo ekikuumi ekya "$1" kisindikiddwa ku $2.',
 'newarticle'             => '(Lupapula lupya)',
 'newarticletext'         => "Enyunzi gy'ogenzeko egguka ku lupapula olutannakolebwawo.
 Oba gwe oyagala okulukolawo, wandiika mu kabokisi wammanga.
