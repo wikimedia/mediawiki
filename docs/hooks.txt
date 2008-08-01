@@ -821,6 +821,10 @@ $magicWords: array of strings
 'MagicWordwgVariableIDs': When definig new magic words IDs. DEPRECATED: Use LanguageGetMagic hook instead
 $variableIDs: array of strings
 
+'MakeGlobalVariablesScript': called right before Skin::makeVariablesScript is executed   
+&$vars: variable (or multiple variables) to be added into the output   
+		of Skin::makeVariablesScript
+
 'MarkPatrolled': before an edit is marked patrolled
 $rcid: ID of the revision to be marked patrolled
 $user: the user (object) marking the revision as patrolled
