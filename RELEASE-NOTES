@@ -49,6 +49,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed few performance troubles of large job queue processing
 * Not setting various parameters in Foreign Repos now fails more gracefully
 * (bug 14995) Some link fragments in the interface stopped appearing
+* (bug 14997) Rollback links now work again
 
 === API changes in 1.14 ===
 

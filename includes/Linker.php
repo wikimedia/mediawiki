@@ -1547,7 +1547,10 @@ class Linker {
 	public function buildRollbackLink( $rev ) {
 		global $wgRequest, $wgUser;
 		$title = $rev->getTitle();
-		$query = array( 'action' => 'rollback' );
+		$query = array(
+			'action' => 'rollback',
+			'from' => $rev->getUserText()
+		);
 		if( $wgRequest->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
 		}
