@@ -40,6 +40,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgCleanSignatures=false
 * Extensions can use the SkinBuildSidebar hook to modify the content of the
   sidebar and add custom portlets to it
+* Added 'MakeGlobalVariablesScript' hook for extensions to be able to add variables
+  into into the output of Skin::makeVariablesScript
 
 === Bug fixes in 1.14 ===
 
