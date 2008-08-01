@@ -1057,6 +1057,11 @@ $skin: Skin object
 &$text: bottomScripts Text
 Append to $text to add additional text/scripts after the stock bottom scripts.
 
+'SkinBuildSidebar': At the end of Skin::buildSidebar()
+$skin: Skin object
+&$bar: Sidebar contents
+Modify $bar to add or modify sidebar portlets.
+
 'SkinSubPageSubtitle': At the beginning of Skin::subPageSubtitle()
 $skin: Skin object
 &$subpages: Subpage links HTML

@@ -1681,12 +1681,8 @@ END;
 				continue;
 			if (strpos($line, '**') !== 0) {
 				$line = trim($line, '* ');
-				if ( $line == 'SEARCH' || $line == 'TOOLBOX' || $line == 'LANGUAGES' ) {
-					# Special box type
-					$bar[$line] = array();
-				} else {
-					$heading = $line;
-				}
+				$heading = $line;
+				if( !array_key_exists($heading, $bar) ) $bar[$heading] = array();
 			} else {
 				if (strpos($line, '|') !== false) { // sanity check
 					$line = array_map('trim', explode( '|' , trim($line, '* '), 2 ) );
@@ -1719,6 +1715,7 @@ END;
 				} else { continue; }
 			}
 		}
+		wfRunHooks('SkinBuildSidebar', array($skin, &$bar));
 		if ( $wgEnableSidebarCache ) $parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		wfProfileOut( __METHOD__ );
 		return $bar;
