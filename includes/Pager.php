@@ -564,6 +564,8 @@ abstract class AlphabeticPager extends IndexPager {
  */
 abstract class ReverseChronologicalPager extends IndexPager {
 	public $mDefaultDirection = true;
+	public $mYear;
+	public $mMonth;
 
 	function __construct() {
 		parent::__construct();
@@ -590,6 +592,53 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " .
 			wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
 		return $this->mNavigationBar;
+	}
+	
+	function getDateCond( $year, $month ) {
+		$year = intval($year);
+		$month = intval($month);
+		// Basic validity checks
+		$this->mYear = $year > 0 ? $year : false;
+		$this->mMonth = ($month > 0 && $month < 13) ? $month : false;
+		// Given an optional year and month, we need to generate a timestamp
+		// to use as "WHERE rev_timestamp <= result"
+		// Examples: year = 2006 equals < 20070101 (+000000)
+		// year=2005, month=1    equals < 20050201
+		// year=2005, month=12   equals < 20060101
+		if ( !$this->mYear && !$this->mMonth ) {
+			return;
+		}
+		if ( $this->mYear ) {
+			$year = $this->mYear;
+		} else {
+			// If no year given, assume the current one
+			$year = gmdate( 'Y' );
+			// If this month hasn't happened yet this year, go back to last year's month
+			if( $this->mMonth > gmdate( 'n' ) ) {
+				$year--;
+			}
+		}
+		if ( $this->mMonth ) {
+			$month = $this->mMonth + 1;
+			// For December, we want January 1 of the next year
+			if ($month > 12) {
+				$month = 1;
+				$year++;
+			}
+		} else {
+			// No month implies we want up to the end of the year in question
+			$month = 1;
+			$year++;
+		}
+		// Y2K38 bug
+		if ( $year > 2032 ) {
+			$year = 2032;
+		}
+		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
+		if ( $ymd > 20320101 ) {
+			$ymd = 20320101;
+		}
+		$this->mOffset = $this->mDb->timestamp( "${ymd}000000" );
 	}
 }
 

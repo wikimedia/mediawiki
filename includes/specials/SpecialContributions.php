@@ -12,7 +12,7 @@
 class ContribsPager extends ReverseChronologicalPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;
-	var $namespace = '', $year = '', $month = '', $mDb;
+	var $namespace = '', $mDb;
 
 	function __construct( $target, $namespace = false, $year = false, $month = false ) {
 		parent::__construct();
@@ -30,8 +30,8 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
-		$query['month'] = $this->month;
-		$query['year'] = $this->year;
+		$query['month'] = $this->mMonth;
+		$query['year'] = $this->mYear;
 		return $query;
 	}
 
@@ -72,53 +72,6 @@ class ContribsPager extends ReverseChronologicalPager {
 		} else {
 			return array();
 		}
-	}
-
-	function getDateCond( $year, $month ) {
-		$year = intval($year);
-		$month = intval($month);
-		// Basic validity checks
-		$this->year = $year > 0 ? $year : false;
-		$this->month = ($month > 0 && $month < 13) ? $month : false;
-		// Given an optional year and month, we need to generate a timestamp
-		// to use as "WHERE rev_timestamp <= result"
-		// Examples: year = 2006 equals < 20070101 (+000000)
-		// year=2005, month=1    equals < 20050201
-		// year=2005, month=12   equals < 20060101
-		if ( !$this->year && !$this->month ) {
-			return;
-		}
-		if ( $this->year ) {
-			$year = $this->year;
-		} else {
-			// If no year given, assume the current one
-			$year = gmdate( 'Y' );
-			// If this month hasn't happened yet this year, go back to last year's month
-			if( $this->month > gmdate( 'n' ) ) {
-				$year--;
-			}
-		}
-		if ( $this->month ) {
-			$month = $this->month + 1;
-			// For December, we want January 1 of the next year
-			if ($month > 12) {
-				$month = 1;
-				$year++;
-			}
-		} else {
-			// No month implies we want up to the end of the year in question
-			$month = 1;
-			$year++;
-		}
-		// Y2K38 bug
-		if ( $year > 2032 ) {
-			$year = 2032;
-		}
-		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
-		if ( $ymd > 20320101 ) {
-			$ymd = 20320101;
-		}
-		$this->mOffset = $this->mDb->timestamp( "${ymd}000000" );
 	}
 
 	function getIndexField() {
