@@ -409,7 +409,7 @@ class LogEventsList {
  * @ingroup Pager
  */
 class LogPager extends ReverseChronologicalPager {
-	private $type = '', $user = '', $title = '', $pattern = '', $year = '', $month = '';
+	private $type = '', $user = '', $title = '', $pattern = '';
 	public $mLogEventsList;
 	/**
 	* constructor
