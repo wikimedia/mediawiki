@@ -221,19 +221,21 @@ class Linker {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
+		$fragment = $target->getFragmentForURL();
+		$title = $target->getPrefixedText();
 		# A couple of things to be concerned about here.  First of all,
 		# getLocalURL() ignores fragments.  Second of all, if the Title is
 		# *only* a fragment, it returns something like "/".
-		if( $target->getFragment() === '' and $target->getPrefixedText() !== '' ) {
+		if( $fragment === '' and $title !== '' ) {
 			return $target->getLocalURL( $query );
 		}
-		if( $target->getPrefixedText() === '' ) {
+		if( $title === '' ) {
 			# Just a fragment.  There had better be one, anyway, or this is a
 			# pretty silly Title.
-			return '#'.$target->getFragment();
+			return $fragment;
 		}
 		# Then we must have a fragment *and* some Title text.
-		return $target->getLocalURL( $query ).'#'.$target->getFragment();
+		return $target->getLocalURL( $query ) . $fragment;
 	}
 
 	private function linkAttribs( $target, $attribs, $options ) {
