@@ -429,14 +429,14 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitType( $type );
 		$this->limitUser( $user );
 		$this->limitTitle( $title, $pattern );
-		$this->limitDate( $y, $m );
+		$this->getDateCond( $y, $m );
 	}
 
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['type'] = $this->type;
-		$query['month'] = $this->month;
-		$query['year'] = $this->year;
+		$query['month'] = $this->mMonth;
+		$query['year'] = $this->mYear;
 		return $query;
 	}
 
@@ -524,45 +524,6 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$this->mConds['log_namespace'] = $ns;
 			$this->mConds['log_title'] = $title->getDBkey();
-		}
-	}
-
-	/**
-	 * Set the log reader to return only entries from given date.
-	 * @param int $year
-	 * @param int $month
-	 * @private
-	 */
-	function limitDate( $year, $month ) {
-		$year = intval($year);
-		$month = intval($month);
-
-		$this->year = ($year > 0 && $year < 10000) ? $year : '';
-		$this->month = ($month > 0 && $month < 13) ? $month : '';
-
-		if( $this->year || $this->month ) {
-			// Assume this year if only a month is given
-			if( $this->year ) {
-				$year_start = $this->year;
-			} else {
-				$year_start = substr( wfTimestampNow(), 0, 4 );
-				$thisMonth = gmdate( 'n' );
-				if( $this->month > $thisMonth ) {
-					// Future contributions aren't supposed to happen. :)
-					$year_start--;
-				}
-			}
-
-			if( $this->month ) {
-				$month_end = str_pad($this->month + 1, 2, '0', STR_PAD_LEFT);
-				$year_end = $year_start;
-			} else {
-				$month_end = 0;
-				$year_end = $year_start + 1;
-			}
-			$ts_end = str_pad($year_end . $month_end, 14, '0' );
-
-			$this->mOffset = $ts_end;
 		}
 	}
 
