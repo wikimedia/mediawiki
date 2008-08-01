@@ -1461,7 +1461,7 @@ $wgRCChangedSizeThreshold			= -500;
  * view for watched pages with new changes */
 $wgShowUpdatedMarker 				= true;
 
-$wgCookieExpiration = 2592000;
+$wgCookieExpiration = 30*86400;
 
 /** Clock skew or the one-second resolution of time() can occasionally cause cache
  * problems when the user requests two pages within a short period of time. This
