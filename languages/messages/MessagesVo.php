@@ -613,6 +613,8 @@ Blokamanüm olik binon $5. Mäniotolös, begö! oni in peneds valik olik.",
 'loginreqtitle'             => 'Nunädam Paflagon',
 'loginreqlink'              => 'ninädolös obi',
 'loginreqpagetext'          => 'Mutol $1 ad logön padis votik.',
+'accmailtitle'              => 'Letavöd pesedon.',
+'accmailtext'               => 'Letavöd pro "$1" pasedon lü $2.',
 'newarticle'                => '(Nulik)',
 'newarticletext'            => "Esökol yümi lü pad, kel no nog dabinon.
 Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:Helppage}}|yufapadi]] tefü nüns tefik votik).

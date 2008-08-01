@@ -677,6 +677,8 @@ Din blokkerings-ID er $5. Vennligst ta med denne ID-en i din forespørsel.",
 'loginreqtitle'                    => 'Innlogging kreves',
 'loginreqlink'                     => 'logg inn',
 'loginreqpagetext'                 => 'Du må $1 for å se andre sider.',
+'accmailtitle'                     => 'Passord sendt.',
+'accmailtext'                      => 'Passordet for «$1» ble sendt til $2.',
 'newarticle'                       => '(Ny)',
 'newarticletext'                   => "Du fulgte en lenke til en side som ikke finnes ennå. For å opprette siden, start å skrive i boksen nedenfor (se [[{{MediaWiki:Helppage}}|hjelpesiden]] for mer informasjon). Om du kom hit ved en feil, bare trykk på nettleserens '''tilbake'''-knapp.",
 'anontalkpagetext'                 => "----

@@ -484,6 +484,8 @@ Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog 
 'whitelistedittitle'       => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistedittext'        => 'Morate da se [[Special:Userlogin|prijavite]] da bi ste uređivali stranice.',
 'loginreqtitle'            => 'Potrebno je prijavljivanje',
+'accmailtitle'             => 'Lozinka poslata.',
+'accmailtext'              => "Lozinka za nalog '$1' je poslata na adresu $2.",
 'newarticle'               => '(Novi)',
 'newarticletext'           => "'''Došli ste na stranicu koja još nema sadržaja.'''<br />
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.

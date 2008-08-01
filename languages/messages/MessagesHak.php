@@ -443,6 +443,8 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'loginreqtitle'             => 'Sî-yeu Tên-ngi̍p',
 'loginreqlink'              => 'tên-ngi̍p',
 'loginreqpagetext'          => 'Ngì pit-sî $1 chhòi-nèn kiám-sṳ khì-thâ vùn-chông.',
+'accmailtitle'              => 'Pi-Me̍t yí-kîn ki-chhut.',
+'accmailtext'               => "'$1' ke pi-me̍t yí-kîn ki-kî to $2.",
 'newarticle'                => '(Sîn)',
 'newarticletext'            => 'Ngì hien-chhai chin-ngi̍p yit-ke hàn-mò chhóng-kien ke vùn-chông.
 Yeu kien-chho ke vùn-chông, chhiáng chhai ha-mien ke phiên-cho-khiông chûng sû-ngi̍p nui-yùng (Chhâm-siòng [[{{MediaWiki:Helppage}}|Pông-chhu]]).

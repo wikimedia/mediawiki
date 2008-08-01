@@ -529,6 +529,8 @@ $2',
 'loginreqtitle'                    => '須登簿',
 'loginreqlink'                     => '登簿',
 'loginreqpagetext'                 => '$1以覽它頁。',
+'accmailtitle'                     => '符節傳矣',
+'accmailtext'                      => '"$1"符節至$2矣',
 'newarticle'                       => '撰',
 'newarticletext'                   => '此頁尚缺。欲補，撰於下，有惑見[[{{ns:help}}:Contents|助]]。
 誤入者，返前即可。',

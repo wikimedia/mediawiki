@@ -671,6 +671,8 @@ Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di 
 'loginreqtitle'                    => "Per modificare questa pagina è necessario eseguire l'accesso al sito.",
 'loginreqlink'                     => "eseguire l'accesso",
 'loginreqpagetext'                 => 'Per vedere altre pagine è necessario $1.',
+'accmailtitle'                     => 'Password inviata.',
+'accmailtext'                      => 'La password per l\'utente "$1" è stata inviata all\'indirizzo $2.',
 'newarticle'                       => '(Nuovo)',
 'newarticletext'                   => "Il collegamento appena seguito corrisponde a una pagina non ancora esistente.
 Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto

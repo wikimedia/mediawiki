@@ -541,6 +541,8 @@ Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercih�
 'loginreqtitle'             => 'Têketin pêwîst e',
 'loginreqlink'              => 'têkevê',
 'loginreqpagetext'          => 'Tu gireke $1 ji bo dîtina rûpelên din.',
+'accmailtitle'              => 'Şîfre hat şandin.',
+'accmailtext'               => "Şîfreya '$1' hat şandin ji $2 re.",
 'newarticle'                => '(Nû)',
 'newarticletext'            => "Ev rûpel hîn tune. Eger tu bixwazî vê rûpelê çêkî, dest bi nivîsandinê bike û piştre qeyd bike. '''Wêrek be''', biceribîne!<br />
 Ji bo alîkarî binêre: [[{{MediaWiki:Helppage}}|Alîkarî]].<br />

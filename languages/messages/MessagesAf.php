@@ -585,6 +585,8 @@ Omdat die afdeling $1 nie bestaan nie, kan u wysigings nie gestoor word nie.",
 'loginreqtitle'                    => 'Inteken Benodig',
 'loginreqlink'                     => 'teken in',
 'loginreqpagetext'                 => 'U moet $1 om ander bladsye te bekyk.',
+'accmailtitle'                     => 'Wagwoord gestuur.',
+'accmailtext'                      => "Die wagwoord van '$1' is gestuur aan $2.",
 'newarticle'                       => '(Nuut)',
 'newarticletext'                   => "Die bladsy waarna geskakel is, bestaan nie.
 Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:Helppage}}|hulpbladsy]]

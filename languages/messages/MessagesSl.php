@@ -457,6 +457,8 @@ Vaš IP-naslov je $3. Prosimo, vključite ga v vse morebitne poizvedbe.",
 'loginreqtitle'             => 'Treba se je prijaviti',
 'loginreqlink'              => 'prijava',
 'loginreqpagetext'          => 'Za ogled drugih strani morate $1.',
+'accmailtitle'              => 'Geslo je poslano.',
+'accmailtext'               => "Geslo za '$1' je poslano na $2.",
 'newarticle'                => '(Nov)',
 'newarticletext'            => "Sledili ste povezavi na stran, ki še ne obstaja.
 Da bi stran ustvarili, vnesite v spodnji obrazec besedilo

@@ -417,6 +417,8 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 'loginreqtitle'          => 'Lääazım sessiya açmaa',
 'loginreqlink'           => 'sessiya aç',
 'loginreqpagetext'       => 'Lääzım $1 görmää übür sayfaları.',
+'accmailtitle'           => 'Parol gönderildi.',
+'accmailtext'            => "'$1' kullanıcısın parolu $2 adresine gönderildi.",
 'newarticle'             => '(Eni)',
 'newarticletext'         => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
 'noarticletext'          => 'Bu sayfa boş. Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda yaki bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} var nicä yazmaa].',

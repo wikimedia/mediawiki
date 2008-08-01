@@ -482,6 +482,8 @@ Lukan ur tefkiḍ ara email saḥih deg [[Special:Preferences|isemyifiyen n wems
 'loginreqtitle'             => 'Yessefk ad tkecmeḍ',
 'loginreqlink'              => 'Kcem',
 'loginreqpagetext'          => 'Yessefk $1 iwakken ad teẓriḍ isebtar wiyaḍ.',
+'accmailtitle'              => 'Awal n tbaḍnit yettwazen.',
+'accmailtext'               => 'Awal n tbaḍnit n "$1" yettwazen ar $2.',
 'newarticle'                => '(Amaynut)',
 'newarticletext'            => 'Tḍefreḍ azday ɣer usebter mazal ur yettwaxleq ara.
 Akken ad txelqeḍ asebter-nni, aru deg tenkult i tella deg ukessar

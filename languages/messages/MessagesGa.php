@@ -564,6 +564,8 @@ Dá dtarlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh r
 'loginreqtitle'          => 'Tá logáil isteach de dhíth ort',
 'loginreqlink'           => 'logáil isteach',
 'loginreqpagetext'       => 'Caithfidh tú $1 chun leathanaigh a amharc.',
+'accmailtitle'           => 'Seoladh an focal faire.',
+'accmailtext'            => 'Seoladh focal faire an úsáideora "$1" chuig $2.',
 'newarticle'             => '(Nua)',
 'newarticletext'         => "Lean tú nasc chuig leathanach nach bhfuil ann fós.
 Chun an leathanach a chruthú, tosaigh ag clóscríobh sa bhosca thíos

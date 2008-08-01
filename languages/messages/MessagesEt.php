@@ -492,6 +492,8 @@ Teie praegune IP on $3 ning blokeeringu number on #$5. Lisage vähemalt üks nen
 'loginreqtitle'            => 'Vajalik on sisselogimine',
 'loginreqlink'             => 'sisse logima',
 'loginreqpagetext'         => 'Lehekülgede vaatamiseks peate $1.',
+'accmailtitle'             => 'Parool saadetud.',
+'accmailtext'              => "Kasutaja '$1' parool saadeti aadressile $2.",
 'newarticle'               => '(Uus)',
 'newarticletext'           => "Seda lehekülge veel ei ole.
 Lehekülje loomiseks hakake kirjutama all olevasse tekstikasti

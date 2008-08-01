@@ -500,6 +500,8 @@ Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in
 'loginreqtitle'          => 'Si scugne jentrâ',
 'loginreqlink'           => 'jentrâ',
 'loginreqpagetext'       => 'Tu scugnis $1 par viodi lis altris pagjinis.',
+'accmailtitle'           => 'Password mandade.',
+'accmailtext'            => 'La password par "$1" e je stade mandade a $2.',
 'newarticle'             => '(Gnûf)',
 'newarticletext'         => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
 'noarticletext'          => 'Par cumò nol è nuie in cheste pagjine, tu puedis [[Special:Search/{{PAGENAME}}|cirî chest titul]] in altris pagjinis o [{{fullurl:{{FULLPAGENAME}}|action=edit}} cambiâ cheste pagjine].',

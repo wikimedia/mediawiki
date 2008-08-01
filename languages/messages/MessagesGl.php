@@ -577,6 +577,8 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'loginreqtitle'                    => 'Cómpre acceder ao sistema',
 'loginreqlink'                     => 'entrar',
 'loginreqpagetext'                 => 'Debe $1 para ver outras páxinas.',
+'accmailtitle'                     => 'O contrasinal foi enviado.',
+'accmailtext'                      => 'O contrasinal para "$1" foi enviado a $2.',
 'newarticle'                       => '(Novo)',
 'newarticletext'                   => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).

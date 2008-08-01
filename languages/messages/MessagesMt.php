@@ -561,6 +561,8 @@ Minħabba li $1 ma teżistix, il-modifiki tiegħek ma ġewx salvati.',
 'loginreqtitle'                    => "Sabiex tagħmel modifiki f'din il-paġna huwa neċessarju li tidħol bħalha utent reġistrat fuq dan is-sit.",
 'loginreqlink'                     => 'Aċċessa',
 'loginreqpagetext'                 => "Int trid ikollhok $1 sabiex tkun tista' tara paġni oħrajn.",
+'accmailtitle'                     => 'Password ġiet postjata.',
+'accmailtext'                      => 'Il-password għal "$1" ġie postjat lil $2.',
 'newarticle'                       => '(Ġdid)',
 'newarticletext'                   => "Inti segwejt link għal paġna li qas teżisti għad.
 Sabiex toħloq il-paġna, ikteb fil-kaxxa li tinsab hawn taħt (ara [[{{MediaWiki:Helppage}}|paġna tal-għajnuna]] għal aktar informazzjoni). Jekk qiegħed hawn biż-żball, kemm agħfas il-buttuna '''lura''' fuq il-browser tiegħek.",

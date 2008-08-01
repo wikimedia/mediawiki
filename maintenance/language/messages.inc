@@ -502,6 +502,8 @@ $wgMessageStructure = array(
 		'loginreqtitle',
 		'loginreqlink',
 		'loginreqpagetext',
+		'accmailtitle',
+		'accmailtext',
 		'newarticle',
 		'newarticletext',
 		'newarticletextanon',

@@ -587,6 +587,8 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'loginreqtitle'                    => 'लॉग इन आवश्यक हैं',
 'loginreqlink'                     => 'लॉग इन',
 'loginreqpagetext'                 => 'अन्य पन्ने देखने के लिये आपको $1 करना आवश्यक हैं ।',
+'accmailtitle'                     => 'पासवर्ड भेज दिया गया है।',
+'accmailtext'                      => "'$1' का पासवर्ड $2 को भेज दिया गया है।",
 'newarticle'                       => '(नया)',
 'newarticletext'                   => 'आप जो लेख चाहते हैं वह अभीतक लिखा नहीं गया हैं । यह लेख लिखनेके लिये नीचे पाठ्य लिखियें । सहाय्यताके लिये [[{{MediaWiki:Helppage}}|यहां]] क्लीक किजीयें ।
 

@@ -90,10 +90,12 @@ $messages = array(
 'mailmypassword'     => 'Nthomele password ya ka ka email',
 
 # Edit pages
-'savearticle' => 'Le boloke',
-'showpreview' => 'Mpontshe hore le tlo ba jwang',
-'showdiff'    => 'Mpontshe hore ho tlo fetoha eng',
-'note'        => '<strong>Ela hloko:</strong>',
+'savearticle'  => 'Le boloke',
+'showpreview'  => 'Mpontshe hore le tlo ba jwang',
+'showdiff'     => 'Mpontshe hore ho tlo fetoha eng',
+'accmailtitle' => 'Lepetjo le rometswe.',
+'accmailtext'  => 'Lepetjo la "$1" le se le rometswe ho $2.',
+'note'         => '<strong>Ela hloko:</strong>',
 
 # Search results
 'powersearch' => 'Fuputsa',

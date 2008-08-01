@@ -819,6 +819,8 @@ Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]]
 'loginreqtitle'                    => 'Aanmelden verplicht',
 'loginreqlink'                     => 'Aanmelden',
 'loginreqpagetext'                 => "$1 is verplicht om andere pagina's te kunnen zien.",
+'accmailtitle'                     => 'Wachtwoord verzonden.',
+'accmailtext'                      => 'Het wachtwoord voor "$1" is verzonden naar $2.',
 'newarticle'                       => '(Nieuw)',
 'newarticletext'                   => "Deze pagina bestaat niet. Typ in het onderstaande veld om de pagina aan te maken (meer informatie staat op de [[{{MediaWiki:Helppage}}|hulppagina]]).
 Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent gekomen.",

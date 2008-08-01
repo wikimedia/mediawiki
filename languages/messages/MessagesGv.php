@@ -316,6 +316,8 @@ She $3 dt'enmys IP troa, as she dt'enney ghlass ny #$5. Cur ad lesh dagh ooilley
 'blockednoreason'        => 'cha nel fa currit',
 'loginreqlink'           => 'Log stiagh',
 'loginreqpagetext'       => 'Shegin dhyt $1 dys jeeagh er duillagyn elley.',
+'accmailtitle'           => 'Fockle yn arrey currit.',
+'accmailtext'            => 'Ta fockle yn arrey da "$1" currit dy $2.',
 'newarticle'             => '(Noa)',
 'note'                   => '<strong>Note:</strong>',
 'previewnote'            => '<strong>Ta shoh roie-haishbynys;

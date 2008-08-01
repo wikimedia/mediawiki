@@ -608,6 +608,8 @@ Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[Special:
 'loginreqtitle'                    => 'Reikalingas prisijungimas',
 'loginreqlink'                     => 'prisijungti',
 'loginreqpagetext'                 => 'Jums reikia $1, kad matytumėte kitus puslapius.',
+'accmailtitle'                     => 'Slaptažodis išsiųstas.',
+'accmailtext'                      => 'Naudotojo „$1“ slaptažodis nusiųstas į $2.',
 'newarticle'                       => '(Naujas)',
 'newarticletext'                   => "Jūs patekote į dar neegzistuojantį puslapį.
 Norėdami sukurti puslapį, pradėkite rašyti žemiau esančiame įvedimo lauke

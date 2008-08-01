@@ -536,6 +536,8 @@ Suq kinniqpidämise tunnusnummõr om $5. Olõq hää, kirodaq taa nummõr egä p
 'loginreqtitle'             => 'Piät nimega sisse minemä',
 'loginreqlink'              => 'nimega sisse minemä',
 'loginreqpagetext'          => 'Tõisi lehekülgi kaemisõs piät $1.',
+'accmailtitle'              => 'Salasõna saadõt.',
+'accmailtext'               => "Pruukja '$1' salasyna saadõti aadrõsi pääle $2.",
 'newarticle'                => '(Vahtsõnõ)',
 'newarticletext'            => "Taad lehekülge olõ-i viil.
 Leheküle luumisõs nakkaq kirotama alanolõvahe kasti.

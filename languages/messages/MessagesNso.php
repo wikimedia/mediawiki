@@ -384,6 +384,8 @@ IP atrese ya gago ke $3, ge ID ya go thiba ele #$5. Ka kgopelo šumiša ID le IP
 'loginreqtitle'          => 'Go tsena goa hlokega',
 'loginreqlink'           => 'tsena',
 'loginreqpagetext'       => 'O swanela ke go  $1 go nyakorela matlakala a mangwe.',
+'accmailtitle'           => 'Ditlhaka tša siphiri di rometšwe.',
+'accmailtext'            => 'Ditlhaka-tša-siphiri tša "$1"  di rometšwe go $2.',
 'newarticle'             => '(mpsha)',
 'newarticletext'         => "O latetše hlomaganyo go letlakala leo le sego gona ka se sebaka.
 Go tlhola letlakala, thoma go ngwalo lepokising le letelago

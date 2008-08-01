@@ -553,6 +553,8 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 'loginreqtitle'             => 'Kaipuhan Maglaog',
 'loginreqlink'              => 'maglaog',
 'loginreqpagetext'          => 'Kaipuhan kang $1 tangarig makahilíng nin ibang pahina.',
+'accmailtitle'              => 'Napadará na an sekretong panlaog.',
+'accmailtext'               => 'An sekretong panlaog ni "$1" naipadará na sa $2.',
 'newarticle'                => '(Bàgo)',
 'newarticletext'            => 'Sinunod mo an takod sa pahinang mayò pa man.
 Tangarig magibo an pahina, magpoon pagsurat sa kahon sa babâ

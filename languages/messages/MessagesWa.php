@@ -479,6 +479,8 @@ Voste adresse IP est $3. S' i vs plait racsegnoz ciste adresse IP la dins les dm
 'loginreqtitle'             => 'I vs fåt esse elodjî',
 'loginreqlink'              => 'elodjî',
 'loginreqpagetext'          => 'Vos vs divoz $1 po vey des ôtès pådjes.',
+'accmailtitle'              => 'Li scret a stî evoyî.',
+'accmailtext'               => 'Li scret po «$1» a stî evoyî a $2.',
 'newarticle'                => '(Novea)',
 'newarticletext'            => "Vos avoz clitchî so on loyén viè ene pådje ki n' egzistêye nén co.
 Mins '''vos''' l' poloz askepyî! Po çoula, vos n' avoz k' a cmincî a taper vosse tecse dins l' boesse di tecse chal pa dzo (alez vey li [[{{MediaWiki:Helppage}}|pådje d' aidance]] po pus d' infôrmåcion).

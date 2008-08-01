@@ -370,6 +370,8 @@ O têu blòcco ID o l'è \$5. Pe piaxei metti 'sto ID in tûtte e domande che ti
 'whitelistedittitle'     => "Bezêugna registrâse pe modificâ 'na pagina.",
 'whitelistedittext'      => 'Pe cangia sta pagina devvi $1.',
 'loginreqtitle'          => "Besêugna registrâse primma de modificâ 'sta paggina.",
+'accmailtitle'           => 'Pòula segretta spedïa',
+'accmailtext'            => 'A pòula segretta pe-o utente "$1" a l\'è stæta spedïa a o indirisso $2.',
 'newarticle'             => '(Nêuvo)',
 'newarticletext'         => "'Sto collegamento o corisponde a 'na paggina che ancon a no l'esciste.
 

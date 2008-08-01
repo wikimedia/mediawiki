@@ -518,6 +518,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'loginreqtitle'             => 'መግባት ያስፈልጋል።',
 'loginreqlink'              => 'መግባት',
 'loginreqpagetext'          => 'ሌሎች ገጾች ለመመልከት $1 ያስፈልግዎታል።',
+'accmailtitle'              => 'የመግቢያ ቃል ተላከ።',
+'accmailtext'               => 'የመግቢያ ቃል ለ«$1» ወደ $2 ተልኳል።',
 'newarticle'                => '(አዲስ)',
 'newarticletext'            => 'እርስዎ የተከተሉት መያያዣ እስካሁን ወደማይኖር ገጽ የሚወስድ ነው። ገጹን አሁን ለመፍጠር፣ ከታች በሚገኘው ሳጥን ውስጥ መተየብ ይጀምሩ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:Helppage}}|የእርዳታ ገጽን]] ይመልከቱ።
 

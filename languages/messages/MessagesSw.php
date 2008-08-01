@@ -270,6 +270,8 @@ Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' ila anwani halisi ya baru
 [[Special:Preferences|mapendekezo ya akaunti]] yako na hujazuiwa kuitumia.
 Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",
 'loginreqtitle'          => 'Unatakiwa kuingia au kujisajili',
+'accmailtitle'           => 'Neno la siri limeshakutumia.',
+'accmailtext'            => "Neno la siri la '$1' limeshatumwa kwa $2.",
 'newarticle'             => '(Mpya)',
 'newarticletext'         => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
 'noarticletext'          => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu].',

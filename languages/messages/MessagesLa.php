@@ -578,6 +578,8 @@ Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones u
 'loginreqtitle'             => 'Conventum aperiendum',
 'loginreqlink'              => 'conventum aperire',
 'loginreqpagetext'          => 'Necesse est tibi $1 priusquam paginas alias legas.',
+'accmailtitle'              => 'Tessera missa est.',
+'accmailtext'               => 'Tessera usoris "$1" ad $2 missa est.',
 'newarticle'                => '(Nova)',
 'newarticletext'            => "Per nexum progressus es ad paginam quae nondum exsistit.
 Novam paginam si vis creare, in capsam infra praebitam scribe.

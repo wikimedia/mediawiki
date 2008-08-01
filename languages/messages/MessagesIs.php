@@ -745,6 +745,8 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 'loginreqtitle'                    => 'Innskráningar krafist',
 'loginreqlink'                     => 'innskrá',
 'loginreqpagetext'                 => 'Þú þarft að $1 til að geta séð aðrar síður.',
+'accmailtitle'                     => 'Lykilorð sent.',
+'accmailtext'                      => 'Lykilorðið fyrir „$1“ hefur verið sent á $2.',
 'newarticle'                       => '(Ný)',
 'newarticletext'                   => "Þú hefur fylgt tengli á síðu sem ekki er til.
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan

@@ -599,6 +599,8 @@ Viste que il non ha alcun section $1, il non ha alcun location pro publicar tu m
 'loginreqtitle'                    => 'Identification requirite',
 'loginreqlink'                     => 'aperir un session',
 'loginreqpagetext'                 => 'Tu debe $1 pro poter vider altere paginas.',
+'accmailtitle'                     => 'Contrasigno inviate.',
+'accmailtext'                      => 'Le contrasigno pro "$1" ha essite inviate a $2.',
 'newarticle'                       => '(Nove)',
 'newarticletext'                   => "Tu ha sequite un ligamine verso un pagina que non existe ancora.
 Pro crear iste pagina, comencia a scriber in le quadro infra (consulta le [[{{MediaWiki:Helppage}}|pagina de adjuta]] pro plus informationes).

@@ -751,6 +751,8 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'loginreqtitle'                    => 'Connexion necessària',
 'loginreqlink'                     => 'connectar',
 'loginreqpagetext'                 => 'Vos cal vos $1 per veire las autras paginas.',
+'accmailtitle'                     => 'Senhal mandat.',
+'accmailtext'                      => 'Lo senhal de « $1 » es estat mandat a $2.',
 'newarticle'                       => '(Novèl)',
 'newarticletext'                   => "Avètz seguit un ligam vèrs una pagina qu’existís pas encara o qu'es estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada].
 Per crear aquesta pagina, picatz vòstre tèxt dins la bóstia çaijós (podètz consultar [[{{MediaWiki:Helppage}}|la pagina d’ajuda]] per mai d’entresenhas).

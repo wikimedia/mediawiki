@@ -1078,6 +1078,8 @@ Since there is no section $1, there is no place to save your edit.',
 'loginreqtitle'                    => 'Login Required',
 'loginreqlink'                     => 'log in',
 'loginreqpagetext'                 => 'You must $1 to view other pages.',
+'accmailtitle'                     => 'Password sent.',
+'accmailtext'                      => 'The password for "$1" has been sent to $2.',
 'newarticle'                       => '(New)',
 'newarticletext'                   => "You have followed a link to a page that does not exist yet.
 To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).

@@ -530,6 +530,8 @@ La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 'loginreqtitle'                    => 'Es mestel rustrilsi',
 'loginreqlink'                     => 'entral',
 'loginreqpagetext'                 => 'Ebis $1 pa vel otras páhinas.',
+'accmailtitle'                     => 'Consínia enviá.',
+'accmailtext'                      => 'La consínia pa "$1" á siu enviá a $2.',
 'newarticle'                       => '(Nuevu)',
 'newarticletext'                   => "Esti artículu entovia nu desisti.
 Si quieis crial esti artículu, escribi nel cuairu d'embahu

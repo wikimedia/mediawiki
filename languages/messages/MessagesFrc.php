@@ -477,6 +477,8 @@ Votre numéro de blocage est #$5.  Mettez donc cette information dans toutes vos
 'loginreqtitle'             => 'Il faut connecter.',
 'loginreqlink'              => 'connecter',
 'loginreqpagetext'          => 'Il faut $1 pour voir des autres pages.',
+'accmailtitle'              => 'Mot de passe envoyé.',
+'accmailtext'               => 'Le mot de passe pour "$1" a été envoyé à $2.',
 'newarticle'                => '(Nouveau)',
 'newarticletext'            => "Vous avez suit un lien à une page qu'existe pas encore. 
 Pour créer la page, mettez des mots dans la boëte en bas (voyez la [[{{MediaWiki:Helppage}}|page d'aide]] pour plus d'information). 

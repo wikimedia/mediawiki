@@ -468,6 +468,8 @@ Tamstas dabartėnis IP adresos īr $3, a bluokavėma ID īr #$5. Prašuom nuruod
 'blockededitsource'         => "''Tamstas keitimu'' teksts poslapiui '''$1''' īr ruodoms žemiau:",
 'whitelistedittitle'        => 'Nuorėnt redagoutė rēk prisėjongtė',
 'loginreqlink'              => 'prisėjongtė',
+'accmailtitle'              => 'Slaptažuodis ėšsiūsts īr.',
+'accmailtext'               => "Nauduotuojė '$1' slaptažuodis nusiūsts i $2 īr.",
 'newarticle'                => '(Naus)',
 'newarticletext'            => "Tamsta pakliovuot i nūnā neesoti poslapi.
 Nuoriedamė sokortė poslapi, pradiekėt rašītė žemiau esontiamė ivedima pluotė

@@ -639,6 +639,8 @@ O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos dato
 'loginreqtitle'                    => 'Cal que enzete una sesión',
 'loginreqlink'                     => 'enzetar una sesión',
 'loginreqpagetext'                 => 'Ha de $1 ta beyer atras pachinas.',
+'accmailtitle'                     => 'A palabra de paso ha estato nimbiata.',
+'accmailtext'                      => "A palabra de paso de '$1' s'ha nimbiato á $2.",
 'newarticle'                       => '(Nuebo)',
 'newarticletext'                   => "Ha siguito un binclo ta una pachina que encara no esiste.
 Ta creyar a pachina, prenzipie á escribir en a caxa d'abaxo

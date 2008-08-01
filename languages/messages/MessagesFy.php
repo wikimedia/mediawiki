@@ -598,6 +598,8 @@ Jou beide gegevens op as jo earne oer dizze blokkade reagearje.",
 'loginreqtitle'                    => 'Oanmelden ferplichte',
 'loginreqlink'                     => 'Oanmelde',
 'loginreqpagetext'                 => '$1 is ferplichte om oare siden sjen te kinnen.',
+'accmailtitle'                     => 'Wachtwurd ferstjoerd.',
+'accmailtext'                      => 'It wachtwurd foar "$1" is ferstjoerd nei $2.',
 'newarticle'                       => '(Nij)',
 'newarticletext'                   => "Jo hawwe in keppeling folge nei in side dêr't noch gjin tekst op stiet.
 Om sels tekst te meistjsen kinne jo dy gewoan yntype in dit bewurkingsfjild

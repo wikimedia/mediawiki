@@ -664,6 +664,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'loginreqtitle'                    => '需要登入',
 'loginreqlink'                     => '登入',
 'loginreqpagetext'                 => '你一定$1去睇其它嘅頁面。',
+'accmailtitle'                     => '密碼寄咗喇。',
+'accmailtext'                      => '「$1」嘅密碼已經寄咗去 $2。',
 'newarticle'                       => '(新)',
 'newarticletext'                   => "你連連過嚟嘅頁面重未存在。
 要起版新嘅，請你喺下面嗰格度輸入。(睇睇[[{{MediaWiki:Helppage}}|自助版]]拎多啲資料。)

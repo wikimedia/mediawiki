@@ -559,6 +559,8 @@ Voer jen e-mailadres in en bevestig 't via [[Special:Preferences|je vòkeuren]].
 'loginreqtitle'             => 'Anmelden verplicht',
 'loginreqlink'              => 'anmelden',
 'loginreqpagetext'          => "$1 is verplicht om aore pagina's te kunn'n ziene.",
+'accmailtitle'              => 'Wachtwoord verstierd.',
+'accmailtext'               => "'t Wachtwoord vò $1 is nae $2 opgestierd.",
 'newarticle'                => '(Nieuw)',
 'newarticletext'            => "Deêze pagina besti nie. Typ in 't onderstaende veld om de pagina an te maeken (meêr informatie sti op de [[{{MediaWiki:Helppage}}|ulppagina]]).
 Gebruuk de knoppe '''vorige''' in je browser as je ier per ongeluk terecht bin ekomm'n.",
