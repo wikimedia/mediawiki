@@ -745,13 +745,18 @@ class Title {
 	 * Get a real URL referring to this title, with interwiki link and
 	 * fragment
 	 *
-	 * @param string $query an optional query string, not used
-	 * 	for interwiki links
+	 * @param array $query an optional query string, not used for interwiki
+	 *   links. Can be specified as an associative array as well, e.g.,
+	 *   array( 'action' => 'edit' ) (keys and values will be URL-escaped).
 	 * @param string $variant language variant of url (for sr, zh..)
 	 * @return string the URL
 	 */
 	public function getFullURL( $query = '', $variant = false ) {
 		global $wgContLang, $wgServer, $wgRequest;
+
+		if( is_array( $query ) ) {
+			$query = wfArrayToCGI( $query );
+		}
 
 		if ( '' == $this->mInterwiki ) {
 			$url = $this->getLocalUrl( $query, $variant );
@@ -784,14 +789,20 @@ class Title {
 	/**
 	 * Get a URL with no fragment or server name.  If this page is generated
 	 * with action=render, $wgServer is prepended.
-	 * @param string $query an optional query string; if not specified,
-	 * 	$wgArticlePath will be used.
+	 * @param mixed $query an optional query string; if not specified,
+	 * 	 $wgArticlePath will be used.  Can be specified as an associative array
+	 *   as well, e.g., array( 'action' => 'edit' ) (keys and values will be
+	 *   URL-escaped).
 	 * @param string $variant language variant of url (for sr, zh..)
 	 * @return string the URL
 	 */
 	public function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
 		global $wgVariantArticlePath, $wgContLang, $wgUser;
+
+		if( is_array( $query ) ) {
+			$query = wfArrayToCGI( $query );
+		}
 
 		// internal links should point to same variant as current page (only anonymous users)
 		if($variant == false && $wgContLang->hasVariants() && !$wgUser->isLoggedIn()){
