@@ -221,11 +221,19 @@ class Linker {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
-		$ret = $target->getLocalURL( $query );
-		if( $target->getFragment() !== '' ) {
-			$ret .= '#'.$target->getFragment();
+		# A couple of things to be concerned about here.  First of all,
+		# getLocalURL() ignores fragments.  Second of all, if the Title is
+		# *only* a fragment, it returns something like "/".
+		if( $target->getFragment() === '' and $target->getPrefixedText() !== '' ) {
+			return $target->getLocalURL( $query );
 		}
-		return $ret;
+		if( $target->getPrefixedText() === '' ) {
+			# Just a fragment.  There had better be one, anyway, or this is a
+			# pretty silly Title.
+			return '#'.$target->getFragment();
+		}
+		# Then we must have a fragment *and* some Title text.
+		return $target->getLocalURL( $query ).'#'.$target->getFragment();
 	}
 
 	private function linkAttribs( $target, $attribs, $options ) {
@@ -1203,7 +1211,7 @@ class Linker {
 	 *
 	 * @todo Document the $local parameter.
 	 */
-	private function formatAutocomments( $comment, $title = NULL, $local = false ) {
+	private function formatAutocomments( $comment, $title = null, $local = false ) {
 		$match = array();
 		while (preg_match('!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment,$match)) {
 			$pre=$match[1];
@@ -1222,7 +1230,7 @@ class Linker {
 				$section = str_replace( '[[', '', $section );
 				$section = str_replace( ']]', '', $section );
 				if ( $local ) {
-					$sectionTitle = Title::newFromText( '#' . $section);
+					$sectionTitle = Title::newFromText( '#' . $section );
 				} else {
 					$sectionTitle = wfClone( $title );
 					$sectionTitle->setFragment( $section );
