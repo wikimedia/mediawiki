@@ -67,12 +67,13 @@ class MovePageForm {
 		$this->reason = $wgRequest->getText( 'wpReason' );
 		if ( $wgRequest->wasPosted() ) {
 			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', false );
+			$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', false );
 		} else {
 			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
+			$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', true );
 		}
 		$this->moveSubpages = $wgRequest->getBool( 'wpMovesubpages', false );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
-		$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', true );
 		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
