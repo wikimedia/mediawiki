@@ -161,8 +161,9 @@ class Linker {
 	 *     'known': Page is known to exist, so don't check if it does.
 	 *     'broken': Page is known not to exist, so don't check if it does.
 	 *     'noclasses': Don't add any classes automatically (includes "new",
-	 *       "stub", "mw-redirect").  Only use the class attribute provided, if
-	 *       any.
+	 *       "stub", "mw-redirect", "extiw").  Only use the class attribute
+	 *       provided, if any, so you get a simple blue link with no funny i-
+	 *       cons.
 	 * @return string HTML <a> attribute
 	 */
 	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
@@ -217,27 +218,13 @@ class Linker {
 	}
 
 	private function linkUrl( $target, $query, $options ) {
-		# If it's a broken link, add the appropriate query pieces.  This over-
-		# writes the default action!
-		if( in_array( 'broken', $options ) ) {
+		# If it's a broken link, add the appropriate query pieces, unless
+		# there's already an action specified.
+		if( in_array( 'broken', $options ) and empty( $query['action'] ) ) {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
-		$fragment = $target->getFragmentForURL();
-		$title = $target->getPrefixedText();
-		# A couple of things to be concerned about here.  First of all,
-		# getLocalURL() ignores fragments.  Second of all, if the Title is
-		# *only* a fragment, it returns something like "/".
-		if( $fragment === '' and $title !== '' ) {
-			return $target->getLocalURL( $query );
-		}
-		if( $title === '' ) {
-			# Just a fragment.  There had better be one, anyway, or this is a
-			# pretty silly Title.
-			return $fragment;
-		}
-		# Then we must have a fragment *and* some Title text.
-		return $target->getLocalURL( $query ) . $fragment;
+		return $target->getLinkUrl( $query );
 	}
 
 	private function linkAttribs( $target, $attribs, $options ) {
@@ -252,20 +239,25 @@ class Linker {
 		}
 
 		if( !in_array( 'noclasses', $options ) ) {
-			# Now build the classes.  This is the bulk of what we're doing.
+			# Now build the classes.
 			$classes = array();
 
 			if( in_array( 'broken', $options ) ) {
-				$classes []= 'new';
+				$classes[] = 'new';
+			}
+
+			if( $target->isExternal() ) {
+				$classes[] = 'extiw';
 			}
 
 			# Note that redirects never count as stubs here.
 			if ( $target->isRedirect() ) {
-				$classes []= 'mw-redirect';
+				$classes[] = 'mw-redirect';
 			} elseif( $target->isContentPage() ) {
+				# Check for stub.
 				$threshold = $wgUser->getOption( 'stubthreshold' );
 				if( $threshold > 0 and $target->getLength() < $threshold ) {
-					$classes []= 'stub';
+					$classes[] = 'stub';
 				}
 			}
 			if( $classes != array() ) {
