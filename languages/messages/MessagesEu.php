@@ -10,8 +10,8 @@
  * @author לערי ריינהארט
  * @author Siebrand
  * @author Malafaya
- * @author Kaustubh
  * @author Jon Harald Søby
+ * @author Kaustubh
  * @author Helix84
  */
 

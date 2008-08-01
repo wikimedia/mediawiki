@@ -356,7 +356,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'acct_creation_throttle_hit' => 'ਅਫਸੋਸ ਹੈ, ਪਰ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ $1 ਅਕਾਊਂਟ ਬਣਾ ਚੁੱਕੇ ਹੋ। ਤੁਸੀਂ ਹੋਰ ਨਹੀਂ ਬਣਾ ਸਕਦੇ।',
 'emailauthenticated'         => 'ਤੁਹਾਡਾ ਈਮੇਲ ਐਡਰੈੱਸ $1 ਉੱਤੇ ਪਰਮਾਣਿਤ ਕੀਤਾ ਗਿਆ ਹੈ।',
 'emailnotauthenticated'      => 'ਤੁਹਾਡਾ ਈਮੇਲ ਐਡਰੈੱਸ ਹਾਲੇ ਪਰਮਾਣਿਤ ਨਹੀਂ ਹੈ। ਹੇਠ ਦਿੱਤੇ ਫੀਚਰਾਂ ਲਈ ਕੋਈ ਵੀ ਈਮੇਲ ਨਹੀਂ ਭੇਜੀ ਜਾਵੇਗੀ।',
-'noemailprefs'               => 'ਇਹ ਫੀਚਰ ਵਰਤਣ ਲ ਈ ਇੱਕ ਈਮੇਲ ਐਡਰੈੱਸ ਦਿਓ।।',
+'noemailprefs'               => 'ਇਹ ਫੀਚਰ ਵਰਤਣ ਲਈ ਇੱਕ ਈਮੇਲ ਐਡਰੈੱਸ ਦਿਓ।।',
 'emailconfirmlink'           => 'ਆਪਣਾ ਈ-ਮੇਲ ਐਡਰੈੱਸ ਕਨਫਰਮ ਕਰੋ।',
 'invalidemailaddress'        => 'ਈਮੇਲ ਐਡਰੈੱਸ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ ਕਿਉਂਕਿ ਇਹ ਠੀਕ ਫਾਰਮੈਟ ਨਹੀਂ ਜਾਪਦਾ ਹੈ। ਇੱਕ ਠੀਕ ਫਾਰਮੈਟ ਵਿੱਚ ਦਿਓ ਜਾਂ ਇਹ ਖੇਤਰ ਖਾਲੀ ਛੱਡ ਦਿਓ।',
 'accountcreated'             => 'ਅਕਾਊਂਟ ਬਣਾਇਆ',
@@ -489,6 +489,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'prevn'                 => 'ਪਿੱਛੇ $1',
 'nextn'                 => 'ਅੱਗੇ $1',
 'viewprevnext'          => 'ਵੇਖੋ ($1) ($2) ($3)',
+'searchall'             => 'ਸਭ',
 'powersearch'           => 'ਖੋਜ',
 
 # Preferences page
@@ -545,7 +546,11 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'userrights-reason'        => 'ਬਦਲਣ ਦੇ ਕਾਰਨ:',
 
 # Groups
-'group' => 'ਗਰੁੱਪ:',
+'group'      => 'ਗਰੁੱਪ:',
+'group-user' => 'ਮੈਂਬਰ',
+'group-all'  => '(ਸਭ)',
+
+'group-user-member' => 'ਮੈਂਬਰ',
 
 # User rights log
 'rightsnone' => '(ਕੋਈ ਨਹੀਂ)',
@@ -556,6 +561,8 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'hide'              => 'ਓਹਲੇ',
 'show'              => 'ਵੇਖਾਓ',
 'minoreditletter'   => 'ਮ',
+'newpageletter'     => 'ਨ',
+'boteditletter'     => 'ਬ',
 'rc_categories_any' => 'ਕੋਈ ਵੀ',
 
 # Recent changes linked
@@ -757,8 +764,9 @@ to upload files.',
 'pagesize'         => '(ਬਾਈਟ)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'ਸੋਧ',
-'restriction-move' => 'ਭੇਜੋ',
+'restriction-edit'   => 'ਸੋਧ',
+'restriction-move'   => 'ਭੇਜੋ',
+'restriction-upload' => 'ਅੱਪਲੋਡ',
 
 # Restriction levels
 'restriction-level-sysop'         => 'ਪੂਰਾ ਸੁਰੱਖਿਅਤ',
@@ -960,15 +968,18 @@ to upload files.',
 'exif-gpsspeed-m' => 'ਮੀਲ ਪ੍ਰਤੀ ਘੰਟਾ',
 
 # 'all' in various places, this might be different for inflected languages
-'namespacesall' => 'ਸਬ ਕੁਝ',
-'monthsall'     => 'ਸਬ ਕੁਝ',
+'recentchangesall' => 'ਸਭ',
+'imagelistall'     => 'ਸਭ',
+'watchlistall2'    => 'ਸਭ',
+'namespacesall'    => 'ਸਭ',
+'monthsall'        => 'ਸਭ',
 
 # E-mail address confirmation
 'confirmemail'          => 'ਈਮੇਲ ਐਡਰੈੱਸ ਪੁਸ਼ਟੀ',
 'confirmemail_send'     => 'ਇੱਕ ਪੁਸ਼ਟੀ ਕੋਡ ਭੇਜੋ',
 'confirmemail_sent'     => 'ਪੁਸ਼ਟੀ ਈਮੇਲ ਭੇਜੀ ਗਈ।',
 'confirmemail_invalid'  => 'ਗਲਤ ਪੁਸ਼ਟੀ ਕੋਡ ਹੈ। ਕੋਡ ਦੀ ਮਿਆਦ ਪੁੱਗੀ ਹੋ ਸਕਦੀ ਹੈ।',
-'confirmemail_loggedin' => 'ਹੁਣ ਤੁਹਾਡਾ ਈਮੇਮਲ ਐਡਰੈੱਸ ਚੈੱਕ (confirmed) ਹੋ ਗਿਆ ਹੈ।',
+'confirmemail_loggedin' => 'ਹੁਣ ਤੁਹਾਡਾ ਈਮੇਲ ਐਡਰੈੱਸ ਚੈੱਕ (confirmed) ਹੋ ਗਿਆ ਹੈ।',
 'confirmemail_subject'  => '{{SITENAME}} ਈਮੇਲ ਐਡਰੈੱਸ ਪੁਸ਼ਟੀ',
 
 # Scary transclusion
@@ -1021,6 +1032,7 @@ to upload files.',
 'version' => 'ਵਰਜਨ', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
-'specialpages' => 'ਖਾਸ ਪੇਜ',
+'specialpages'             => 'ਖਾਸ ਪੇਜ',
+'specialpages-group-login' => 'ਲਾਗ ਇਨ / ਅਕਾਊਂਟ ਬਣਾਓ',
 
 );

@@ -9,11 +9,11 @@
  * @author Jorunn
  * @author Siebrand
  * @author M.M.S.
- * @author לערי ריינהארט
  * @author Ranveig
+ * @author לערי ריינהארט
  * @author Finnrind
- * @author Dittaeva
  * @author H92
+ * @author Dittaeva
  * @author Boivie
  * @author SPQRobin
  * @author Olve Utne

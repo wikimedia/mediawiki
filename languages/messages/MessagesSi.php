@@ -1,14 +1,13 @@
 <?php
-/** Sinhalese (සිංහල)
+/** Sinhala (සිංහල)
  *
  * @ingroup Language
  * @file
  *
  * @author Asiri wiki
  * @author Chandana
- * @author Siebrand
  * @author Jon Harald Søby
- * @author Nike
+ * @author Siebrand
  */
 
 $namespaceNames = array(

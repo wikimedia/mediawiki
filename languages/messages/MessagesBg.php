@@ -9,8 +9,8 @@
  * @author Spiritia
  * @author Siebrand
  * @author BloodIce
- * @author לערי ריינהארט
  * @author Петър Петров
+ * @author לערי ריינהארט
  * @author Jon Harald Søby
  * @author Daggerstab
  */

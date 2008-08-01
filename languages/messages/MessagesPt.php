@@ -7,8 +7,8 @@
  * @author 555
  * @author Malafaya
  * @author Siebrand
- * @author לערי ריינהארט
  * @author Lijealso
+ * @author לערי ריינהארט
  * @author MCruz
  * @author Jon Harald Søby
  * @author SPQRobin

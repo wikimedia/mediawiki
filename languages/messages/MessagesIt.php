@@ -20,12 +20,12 @@
  * @author Xpensive
  * @author Nick1915
  * @author SPQRobin
- * @author Tonyfroio
  * @author Pietrodn
- * @author Martorell
+ * @author Tonyfroio
  * @author SabineCretella
- * @author Candalua
+ * @author Martorell
  * @author Cryptex
+ * @author Candalua
  */
 
 $namespaceNames = array(
@@ -446,7 +446,7 @@ L'amministratore di sistema che ha imposto il blocco ha fornito questa spiegazio
 Di solito ciò si verifica quando viene richiamato, a partire dalla cronologia o dal confronto tra revisioni, un collegamento a una pagina cancellata, a un confronto tra revisioni inesistenti o a un confronto tra revisioni ripulite dalla cronologia.
 
 In caso contrario, si è probabilmente scoperto un errore del software MediaWiki.
-Si prega di segnalare l\'accaduto a un amministratore specificando la URL in questione.',
+Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]] specificando la URL in questione.',
 'missingarticle-rev'   => '(numero della revisione: $1)',
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il master',
@@ -756,7 +756,7 @@ Alcuni template non verranno inclusi.',
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
 'undo-failure' => 'Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.',
 'undo-norev'   => 'La modifica non può essere annullata perché non esiste o è stata cancellata.',
-'undo-summary' => 'Annullata la modifica $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussione]])',
+'undo-summary' => 'Annullata la modifica $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussione]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impossibile registrare un utente',
@@ -1141,17 +1141,16 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti e cancellazioni di file sono registrati nel [[Special:Log/upload|log degli upload]].
 
 Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|testo alternativo]]</nowiki>'''
-usare invece
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''
-per generare un collegamento diretto al file.",
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' per usare la versione intera del file
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>''' per usare una versione larga 200 pixel inserita in un box, allineata a sinistra e con 'testo alternativo' come didascalia
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' per generare un collegamento diretto al file senza visualizzarlo",
 'upload-permitted'            => 'Tipi di file consentiti: $1.',
 'upload-preferred'            => 'Tipi di file consigliati: $1.',
 'upload-prohibited'           => 'Tipi di file non consentiti: $1.',
 'uploadlog'                   => 'File caricati',
 'uploadlogpage'               => 'File caricati',
-'uploadlogpagetext'           => 'Di seguito sono elencati gli ultimi file caricati sul server di {{SITENAME}}.',
+'uploadlogpagetext'           => "Di seguito sono elencati gli ultimi file caricati.
+Guarda la [[Special:NewImages|galleria dei nuovi file]] per una visione d'insieme",
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Dettagli',
 'fileuploadsummary'           => 'Dettagli del file:',
@@ -1476,7 +1475,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 # Special:Listgrouprights
 'listgrouprights'          => 'Diritti del gruppo utente',
 'listgrouprights-summary'  => "Di seguito sono elencati i gruppi utente definiti per questo wiki, con i diritti d'accesso loro associati.
-Ulteriori informazioni sui diritti individuali possono essere trovati in [[{{MediaWiki:Listgrouprights-helppage}}]].",
+Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni]] sui diritti individuali.",
 'listgrouprights-group'    => 'Gruppo',
 'listgrouprights-rights'   => 'Diritti',
 'listgrouprights-helppage' => 'Help:Diritti del gruppo',

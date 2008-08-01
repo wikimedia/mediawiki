@@ -8,8 +8,8 @@
  * @author Siebrand
  * @author SF-Language
  * @author SPQRobin
- * @author M.M.S.
  * @author Jon Harald Søby
+ * @author M.M.S.
  */
 
 $fallback = 'fr';

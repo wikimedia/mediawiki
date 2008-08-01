@@ -18,9 +18,9 @@
  * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Sinopeus
- * @author Demmy
  * @author SPQRobin
  * @author Flyax
+ * @author Demmy
  */
 
 /**

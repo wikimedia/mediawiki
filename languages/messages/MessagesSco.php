@@ -8,8 +8,8 @@
  * @author SPQRobin
  * @author Siebrand
  * @author לערי ריינהארט
- * @author Malafaya
  * @author Ushanka
+ * @author Malafaya
  * @author sco.wikipedia.org editors
  */
 

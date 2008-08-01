@@ -312,7 +312,7 @@ $1',
 'readonlytext'         => 'Database abhi nawaa badlao khatir band hai, saait database me mamuli kaam khatir lekin iske baad fir pahile jaise chale lagi.
 
 Jon administrator database ke band karis rahaa, ii kaaran diis hai: $1',
-'missing-article'      => 'Database, panna me likha akchhar, jiske naam "$1" $2 hai, ke nai pais.
+'missing-article'      => 'Database, panna me likha akchhar, jiske naam "$1" hai, ke nai pais $2 .
 
 Iske kaaran ii hoe sake ki aap ek purana antar nai to itihaas waala jorr ke use karaa jiske mitae dewa gais hai.
 
@@ -372,12 +372,12 @@ Iske kaaran hai ''$2''.",
 'logouttitle'                => 'Sadasya logout',
 'logouttext'                 => '<strong>Aap abhi logged out hai.</strong>
 
-Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se log in kare sakta hai.
+Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se [[Special:Userlogin|log in kare sakta hai]].
 
 Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab tak ki browser ke cache safaa nai hoe jaae.',
 'welcomecreation'            => '== Swagat, $1! ==
 Aap ke account banae dewa gais hai.
-Aapan {{SITENAME}} pasand ke badle nai bhulna.',
+Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'loginpagetitle'             => 'Sadasya login',
 'yourname'                   => 'Username:',
 'yourpassword'               => 'Password:',
@@ -388,7 +388,7 @@ Aapan {{SITENAME}} pasand ke badle nai bhulna.',
 'loginproblem'               => '<b>Aap ke login me karrbarr hai.</b><br />Fir se kosis karo!',
 'login'                      => 'Log in karo',
 'nav-login-createaccount'    => 'Log in karo/ nawaa account banao',
-'loginprompt'                => '{{SITENAME}} pe login kare ke khatir aap ke cookies ke laabu kare ke chaahi.',
+'loginprompt'                => '[[Special:Userlogin| login kare ke khatir  {{SITENAME}}]] cookies ke laabu kare ke chaahi.',
 'userlogin'                  => 'Log in karo/ nawaa account banao',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
@@ -507,10 +507,18 @@ Aap sait pahile password ke badal diya hoi nai to nawaa temporary password ke ma
 'savearticle'            => 'Save panna',
 'preview'                => 'Jhalak dekhao',
 'showpreview'            => 'Preview dekhao',
+'showlivepreview'        => 'Abhi ke jhalak',
 'showdiff'               => 'Badlao dekhao',
 'anoneditwarning'        => "'''Sawadhaan:''' Aap login nai karaa hai
 Aap ke IP address ii panna ke edit itihaas me record karaa jaai.",
+'missingsummary'         => "'''Suchna:''' Aap badlao ke sanchhit me nai likha hai.
+Agar aap Save ke fir se click karaa tab, aap ke badlao bina summary ke save kar lewa jaai.",
+'missingcommenttext'     => 'Meharbani kar ke niche aapan vichar deo.',
+'missingcommentheader'   => "'''Suchna:''' Aap ii vichar ke vishay nai likha hai.
+Agar aap Save pe click karaa tab bina vishay ke iske save kar lewa jaai.",
 'summary-preview'        => 'Sanchhep jhalak',
+'subject-preview'        => 'Suchi ke jhalak',
+'blockedtitle'           => 'Sadasya ke rok dewa gais hai',
 'blockedtext'            => "<big>'''Aapke user name yah IP address ke rok dewa gae hai.'''</big>
 
 Roke waala hai $1. Iske kaaran hai ''$2''.
