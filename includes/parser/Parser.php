@@ -1758,7 +1758,7 @@ class Parser
 				$skip = $time = false;
 				wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$nt, &$skip, &$time ) );
 				if ( $skip ) {
-					$link = $sk->makeLinkObj( $nt );
+					$link = $sk->link( $nt );
 				} else {
 					$link = $sk->makeMediaLinkObj( $nt, $text, $time );
 				}
@@ -4507,7 +4507,7 @@ class Parser
 		wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$title, &$skip, &$time, &$descQuery ) );
 
 		if ( $skip ) {
-			return $sk->makeLinkObj( $title );
+			return $sk->link( $title );
 		}
 
 		# Get parameter map
