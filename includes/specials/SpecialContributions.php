@@ -22,12 +22,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->target = $target;
 		$this->namespace = $namespace;
 
-		$year = intval($year);
-		$month = intval($month);
-
-		$this->year = $year > 0 ? $year : false;
-		$this->month = ($month > 0 && $month < 13) ? $month : false;
-		$this->getDateCond();
+		$this->getDateCond( $year, $month );
 
 		$this->mDb = wfGetDB( DB_SLAVE, 'contributions' );
 	}
@@ -79,20 +74,23 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 	}
 
-	function getDateCond() {
+	function getDateCond( $year, $month ) {
+		$year = intval($year);
+		$month = intval($month);
+		// Basic validity checks
+		$this->year = $year > 0 ? $year : false;
+		$this->month = ($month > 0 && $month < 13) ? $month : false;
 		// Given an optional year and month, we need to generate a timestamp
 		// to use as "WHERE rev_timestamp <= result"
 		// Examples: year = 2006 equals < 20070101 (+000000)
 		// year=2005, month=1    equals < 20050201
 		// year=2005, month=12   equals < 20060101
-
-		if (!$this->year && !$this->month)
+		if ( !$this->year && !$this->month ) {
 			return;
-
+		}
 		if ( $this->year ) {
 			$year = $this->year;
-		}
-		else {
+		} else {
 			// If no year given, assume the current one
 			$year = gmdate( 'Y' );
 			// If this month hasn't happened yet this year, go back to last year's month
@@ -100,7 +98,6 @@ class ContribsPager extends ReverseChronologicalPager {
 				$year--;
 			}
 		}
-
 		if ( $this->month ) {
 			$month = $this->month + 1;
 			// For December, we want January 1 of the next year
@@ -108,21 +105,19 @@ class ContribsPager extends ReverseChronologicalPager {
 				$month = 1;
 				$year++;
 			}
-		}
-		else {
+		} else {
 			// No month implies we want up to the end of the year in question
 			$month = 1;
 			$year++;
 		}
-
-		if ($year > 2032)
-			$year = 2032;
-		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
-
 		// Y2K38 bug
-		if ($ymd > 20320101)
+		if ( $year > 2032 ) {
+			$year = 2032;
+		}
+		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
+		if ( $ymd > 20320101 ) {
 			$ymd = 20320101;
-
+		}
 		$this->mOffset = $this->mDb->timestamp( "${ymd}000000" );
 	}
 
