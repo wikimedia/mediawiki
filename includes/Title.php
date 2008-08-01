@@ -868,6 +868,36 @@ class Title {
 	}
 
 	/**
+	 * Get a URL that's the simplest URL that will be valid to link, locally,
+	 * to the current Title.  It includes the fragment, but does not include
+	 * the server unless action=render is used (or the link is external).  If
+	 * there's a fragment but the prefixed text is empty, we just return a link
+	 * to the fragment.
+	 *
+	 * @param array $query An associative array of key => value pairs for the
+	 *   query string.  Keys and values will be escaped.
+	 * @param string $variant Language variant of URL (for sr, zh..).  Ignored
+	 *   for external links.  Default is "false" (same variant as current page,
+	 *   for anonymous users).
+	 * @return string the URL
+	 */
+	public function getLinkUrl( $query = array(), $variant = false ) {
+		if( !is_array( $query ) ) {
+			throw new MWException( 'Title::getLinkUrl passed a non-array for '.
+			'$query' );
+		}
+		if( $this->isExternal() ) {
+			return $this->getFullURL( $query );
+		} elseif( $this->getPrefixedText() === ''
+		and $this->getFragment() !== '' ) {
+			return $this->getFragmentForURL();
+		} else {
+			return $this->getLocalURL( $query, $variant )
+				. $this->getFragmentForURL();
+		}
+	}
+
+	/**
 	 * Get an HTML-escaped version of the URL form, suitable for
 	 * using in a link, without a server name or fragment
 	 * @param string $query an optional query string

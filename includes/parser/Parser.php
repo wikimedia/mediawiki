@@ -4291,7 +4291,7 @@ class Parser
 			$replacePairs = array();
 			foreach( $this->mInterwikiLinkHolders['texts'] as $key => $link ) {
 				$title = $this->mInterwikiLinkHolders['titles'][$key];
-				$replacePairs[$key] = $sk->makeLinkObj( $title, $link );
+				$replacePairs[$key] = $sk->link( $title, $link );
 			}
 			$replacer = new HashtableReplacer( $replacePairs, 1 );
 
