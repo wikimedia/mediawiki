@@ -1799,8 +1799,6 @@ Dan jista' jkun modifika drastika u mhux mistennija ta' paġna popolari; jekk jo
 
 F'dawn il-każi, inti trid iċaqlaq jew tagħqad il-paġna manwalment jekk dan huwa mixtieq.",
 'movearticle'             => 'Ċaqlaq il-paġna:',
-'movenologin'             => 'Aċċess mhux imwettaq',
-'movenologintext'         => "Trid [[Special:Userlogin|tidħol]] bħalha utent reġistrat sabiex tkun tista' iċaqlaq din il-paġna.",
 'movenotallowed'          => "Inti m'għandhekx il-permessi meħtieġa sabiex iċaqlaq il-paġni fuq {{SITENAME}}.",
 'newtitle'                => 'Titlu ġdid:',
 'move-watch'              => 'Osserva din il-paġna',

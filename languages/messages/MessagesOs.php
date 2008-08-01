@@ -463,7 +463,6 @@ $3',
 
 # Move page
 'movearticle' => 'Статьяйы ном баив',
-'movenologin' => 'Системæйæн дæхи нæ бацамыдтай',
 'newtitle'    => 'Ног ном',
 
 # Namespace 8 related

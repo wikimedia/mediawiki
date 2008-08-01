@@ -1319,9 +1319,6 @@ Eger ev mişkla çêbû, tu gireke vê rûpelê bi xwe bigerînê.
 
 Xêra xwe navî nuh û sedemê navgerandinê binivisîne.",
 'movearticle'             => 'Rûpelê bigerîne',
-'movenologin'             => 'Xwe qeyd nekir',
-'movenologintext'         => 'Tu dive bikarhênereke qeydkirî bî û [[Special:Userlogin|werî nav sîstemê]]
-da bikarî navê wê rûpelê biguherînî.',
 'movenotallowed'          => 'Tu nikanê navên gotarên {{SITENAME}} biguherînê.',
 'newtitle'                => 'Sernivîsa nû',
 'move-watch'              => 'Vê rûpelê bişopîne',

@@ -1046,7 +1046,6 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 # Move page
 'move-page-legend' => 'Tuddewaat aw xët',
 'movearticle'      => 'Tuddewaatal jukki bi',
-'movenologintext'  => 'Ngir man a tuddewaat aw xët, da ngaa war a [[Special:Userlogin|dugg]] ni jëfëndikookat bu bindu te saw sàq war naa am yaggaa bi mu laaj.',
 'newtitle'         => 'Koj bu bees',
 'move-watch'       => 'Topp xët wii',
 'articleexists'    => 'Am na ba noppi ab jukki gu am gii koj, walla koj gi nga tann baaxul. tannal bennen.',

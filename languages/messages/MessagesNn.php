@@ -1879,8 +1879,6 @@ Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den 
 
 I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movearticle'             => 'Flytt side:',
-'movenologin'             => 'Ikkje innlogga',
-'movenologintext'         => 'Du lyt vera registrert brukar og vera [[Special:Userlogin|innlogga]] for å flytte ei side.',
 'movenotallowed'          => 'Du har ikkje tilgang til å flytte sider på {{SITENAME}}.',
 'newtitle'                => 'Til ny tittel',
 'move-watch'              => 'Overvak denne sida',
