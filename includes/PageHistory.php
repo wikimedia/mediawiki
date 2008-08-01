@@ -68,12 +68,11 @@ class PageHistory {
 	 * @returns nothing
 	 */
 	function history() {
-		global $wgOut, $wgRequest, $wgTitle;
+		global $wgOut, $wgRequest, $wgTitle, $wgScript;
 
 		/*
 		 * Allow client caching.
 		 */
-
 		if( $wgOut->checkLastModified( $this->mArticle->getTouched() ) )
 			/* Client cache fresh and headers sent, nothing more to do. */
 			return;
@@ -124,13 +123,29 @@ class PageHistory {
 			$wgOut->redirect( $wgTitle->getLocalURL( "action=history&limit={$limit}&dir=prev" ) );
 			return;
 		}
+		
+		/**
+		 * Add date selector to quickly get to a certain time
+		 */
+		$year = $wgRequest->getInt( 'year' );
+		$month = $wgRequest->getInt( 'month' );
+		
+		$action = htmlspecialchars( $wgScript );
+		$wgOut->addHTML( 
+			"<form action=\"$action\" method=\"get\"><div>" .
+			Xml::hidden( 'title', $this->mTitle->getPrefixedDBKey() ) . "\n" .
+			Xml::hidden( 'action', 'history' ) . "\n" .
+			$this->getDateMenu( $year, $month ) . '&nbsp;' . 
+			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+			'</div><hr/></form>'
+		);
 
 		wfRunHooks( 'PageHistoryBeforeList', array( &$this->mArticle ) );
 
 		/**
 		 * Do the list
 		 */
-		$pager = new PageHistoryPager( $this );
+		$pager = new PageHistoryPager( $this, $year, $month );
 		$this->linesonpage = $pager->getNumRows();
 		$wgOut->addHTML(
 			$pager->getNavigationBar() .
@@ -140,6 +155,37 @@ class PageHistory {
 			$pager->getNavigationBar()
 		);
 		wfProfileOut( __METHOD__ );
+	}
+	
+	/**
+	 * @return string Formatted HTML
+	 * @param int $year
+	 * @param int $month
+	 */
+	private function getDateMenu( $year, $month ) {
+		# Offset overrides year/month selection
+		if( $month && $month !== -1 ) {
+			$encMonth = intval( $month );
+		} else {
+			$encMonth = '';
+		}
+		if ( $year ) {
+			$encYear = intval( $year );
+		} else if( $encMonth ) {
+			$thisMonth = intval( gmdate( 'n' ) );
+			$thisYear = intval( gmdate( 'Y' ) );
+			if( intval($encMonth) > $thisMonth ) {
+				$thisYear--;
+			}
+			$encYear = $thisYear;
+		} else {
+			$encYear = '';
+		}
+		return Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
+			Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) .
+			' '.
+			Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
+			Xml::monthSelector( $encMonth, -1 );
 	}
 
 	/**
@@ -579,9 +625,10 @@ class PageHistory {
 class PageHistoryPager extends ReverseChronologicalPager {
 	public $mLastRow = false, $mPageHistory;
 
-	function __construct( $pageHistory ) {
+	function __construct( $pageHistory, $year='', $month='' ) {
 		parent::__construct();
 		$this->mPageHistory = $pageHistory;
+		$this->getDateCond( $year, $month );
 	}
 
 	function getQueryInfo() {
