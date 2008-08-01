@@ -458,6 +458,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14907) DatabasePostgres::fieldType now defined.
 * (bug 14966) Fix SearchEngineDummy class for silently non-functional search
   on Sqlite instead of horribly fatal error breaky one.
+* (bug 14987) Only fix double redirects on page move when the checkbox is
+  checked
 
 === API changes in 1.13 ===
 
