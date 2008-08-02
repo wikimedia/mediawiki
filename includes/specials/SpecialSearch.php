@@ -278,7 +278,7 @@ class SpecialSearch {
 	function setupPage( $term ) {
 		global $wgOut;
 		if( !empty( $term ) )
-			$wgOut->setPageTitle( wfMsg( 'searchresults' ) );			
+			$searchTitle = SpecialPage::getTitleFor( 'Search' );			
 		$subtitlemsg = ( Title::newFromText( $term ) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
 		$wgOut->setSubtitle( $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) ) );
 		$wgOut->setArticleRelated( false );
@@ -597,10 +597,11 @@ class SpecialSearch {
 		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
 		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
 		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' ) ) . "\n";
-
+		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+		
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::fieldset( wfMsg( 'powersearch-legend' ),
-				Xml::hidden( 'title', SpecialPage::getTitleFor( 'Search' ) ) .
+				Xml::hidden( 'title', $searchTitle->getPrefixedText() ) .
 				"<p>" .
 				wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) .
 				"<br />" .
@@ -636,7 +637,8 @@ class SpecialSearch {
 			'method' => 'get',
 			'action' => $wgScript
 		));
-		$out .= Xml::hidden( 'title', SpecialPage::getTitleFor( 'Search' ) );
+		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() );
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . ' ';
 		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
 			if( in_array( $ns, $this->namespaces ) ) {
