@@ -52,6 +52,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Recursion loop check added to Categoryfinder class
 * Fixed few performance troubles of large job queue processing
 * Not setting various parameters in Foreign Repos now fails more gracefully
+* (bug 2333) Redirects are properly rendered when previewing an edit.
 
 === API changes in 1.14 ===
 

@@ -1522,7 +1522,8 @@ END
 	}
 
 	/**
-	 * @todo document
+	 * Get the rendered text for previewing.
+	 * @return string
 	 */
 	function getPreviewText() {
 		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgLang, $wgContLang;
@@ -1564,6 +1565,8 @@ END
 			$parserOutput = $wgParser->parse( $previewtext , $this->mTitle, $parserOptions );
 			$wgOut->addHTML( $parserOutput->mText );
 			$previewHTML = '';
+		} else if( $rt = Title::newFromRedirect( $this->textbox1 ) ) {
+			$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 		} else {
 			$toparse = $this->textbox1;
 
@@ -1630,7 +1633,7 @@ END
 		} else {
 			$previewfoot = '';
 		}
-
+		
 		wfProfileOut( $fname );
 		return $previewhead . $previewHTML . $previewfoot;
 	}
