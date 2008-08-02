@@ -859,7 +859,7 @@ class Article {
 				}
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Don't append the subtitle if this was an old revision
-				$this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() );
+				$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
 				$wgOut->addParserOutputNoText( $parseout );
 			} else if ( $pcache ) {
@@ -934,7 +934,13 @@ class Article {
 			&& !$this->mTitle->isCssJsSubpage();
 	}
 	
-	protected function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
+	/**
+	 * View redirect
+	 * @param Title $target Title of destination to redirect
+	 * @param Bool  $appendSubtitle Object[optional]
+	 * @param Bool  $forceKnown Should the image be shown as a bluelink regardless of existence?
+	 */
+	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
 		
 		# Display redirect
@@ -950,8 +956,8 @@ class Article {
 		else
 			$link = $sk->makeLinkObj( $target, htmlspecialchars( $target->getFullText() ) );
 
-		$wgOut->addHTML( '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
-			'<span class="redirectText">'.$link.'</span>' );
+		return '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
+			'<span class="redirectText">'.$link.'</span>';
 		
 	}
 
