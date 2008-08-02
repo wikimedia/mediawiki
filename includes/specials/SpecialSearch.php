@@ -600,7 +600,7 @@ class SpecialSearch {
 
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::fieldset( wfMsg( 'powersearch-legend' ),
-				Xml::hidden( 'title', 'Special:Search' ) .
+				Xml::hidden( 'title', SpecialPage::getTitleFor( 'Search' ) ) .
 				"<p>" .
 				wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) .
 				"<br />" .
@@ -636,7 +636,7 @@ class SpecialSearch {
 			'method' => 'get',
 			'action' => $wgScript
 		));
-		$out .= Xml::hidden( 'title', 'Special:Search' );
+		$out .= Xml::hidden( 'title', SpecialPage::getTitleFor( 'Search' ) );
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . ' ';
 		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
 			if( in_array( $ns, $this->namespaces ) ) {
