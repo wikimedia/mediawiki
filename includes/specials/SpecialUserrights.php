@@ -289,7 +289,7 @@ class UserrightsPage extends SpecialPage {
 
 	function makeGroupNameList( $ids ) {
 		if( empty( $ids ) ) {
-			return wfMsg( 'rightsnone' );
+			return wfMsgForContent( 'rightsnone' );
 		} else {
 			return implode( ', ', $ids );
 		}
