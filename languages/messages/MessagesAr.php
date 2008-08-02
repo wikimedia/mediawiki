@@ -8,9 +8,7 @@
  * @author Mido
  * @author Alnokta
  * @author OsamaK
- * @author Siebrand
  * @author Gharbeia
- * @author Jon Harald Søby
  * @author Khaledhosny
  * @author Agurzil
  * @author Mimouni
@@ -18,6 +16,7 @@
  * @author Tarawneh
  * @author Chaos
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Jak
  * @author عصام بايزيدي
@@ -484,7 +483,7 @@ $messages = array(
 'category-media-header'          => 'الميديا في التصنيف "$1"',
 'category-empty'                 => "''هذا التصنيف لا يحتوي حاليا على صفحات أو ميديا.''",
 'hidden-categories'              => '{{PLURAL:$1|تصنيف مخفي|تصنيفات مخفية}}',
-'hidden-category-category'       => 'تصنيفات مخفية', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'تصنيفات مخفية',
 'category-subcat-count'          => '{{PLURAL:$2|هذا التصنيف لديه فقط التصنيف الفرعي التالي.|هذا التصنيف لديه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}}، من إجمالي $2.}}',
 'category-subcat-count-limited'  => 'هذا التصنيف به {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}} كما يلي.',
 'category-article-count'         => '{{PLURAL:$2|هذا التصنيف يحتوي فقط على الصفحة التالية.|بالأسفل {{PLURAL:$1|ملف|$1 ملف}} في هذا التصنيف، من إجمالي $2.}}',
@@ -571,7 +570,7 @@ $messages = array(
 'otherlanguages'    => 'بلغات أخرى',
 'redirectedfrom'    => '(تم التحويل من $1)',
 'redirectpagesub'   => 'صفحة تحويل',
-'lastmodifiedat'    => 'آخر تعديل لهذه الصفحة كان في $2، $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'آخر تعديل لهذه الصفحة كان في $2، $1.',
 'viewcount'         => 'تم عرض هذه الصفحة {{PLURAL:$1|مرة واحدة|مرتان|$1 مرات|$1 مرة}}.',
 'protectedpage'     => 'صفحة محمية',
 'jumpto'            => 'اذهب إلى:',
@@ -1077,7 +1076,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'تاريخ التعديل',
 'history-feed-description'    => 'تاريخ التعديل لهذه الصفحة في الويكي',
-'history-feed-item-nocomment' => '$1 في $2', # user at time
+'history-feed-item-nocomment' => '$1 في $2',
 'history-feed-empty'          => 'الصفحة المطلوبة غير موجودة.
 من المحتمل أن تكون هذه الصفحة قد حذفت أو نقلت.
 حاول [[Special:Search|البحث في الويكي]] عن صفحات جديدة ذات صلة.',
@@ -1177,6 +1176,7 @@ $2',
 
 # Search results
 'searchresults'             => 'نتائج البحث',
+'searchresults-title'       => 'نتائج البحث ل$1',
 'searchresulttext'          => 'للمزيد من المعلومات حول البحث في {{SITENAME}}، انظر [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'أنت بحثت عن \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|كل الصفحات التي تبدأ ب"$1"]] | [[Special:Whatlinkshere/$1|كل الصفحات التي تصل إلى "$1"]])',
 'searchsubtitleinvalid'     => "أنت بحثت عن '''$1'''",
@@ -1286,7 +1286,7 @@ $2',
 'files'                    => 'ملفات',
 
 # User rights
-'userrights'                  => 'إدارة صلاحيات المستخدم', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'إدارة صلاحيات المستخدم',
 'userrights-lookup-user'      => 'إدارة مجموعات المستخدم',
 'userrights-user-editname'    => 'أدخل اسم مستخدم:',
 'editusergroup'               => 'تعديل مجموعات المستخدم',
@@ -1349,7 +1349,7 @@ $2',
 'right-autoconfirmed'        => 'تعديل الصفحات نصف المحمية',
 'right-bot'                  => 'تعامل كعملية أوتوماتيكية',
 'right-nominornewtalk'       => 'عدم جعل التعديلات الطفيفة لصفحات النقاش تظهر برواز الرسائل الجديدة',
-'right-apihighlimits'        => 'استخدام حدود أعلى في استعلامات API',
+'right-apihighlimits'        => 'استخدام حدود أعلى في استعلامات API (الاستعلامات البطيئة: 500 نتيجة؛ الاستعلامات السريعة: 5000 نتيجة)',
 'right-writeapi'             => 'استخدام API الكتابة',
 'right-delete'               => 'حذف الصفحات',
 'right-bigdelete'            => 'حذف الصفحات ذات التواريخ الكبيرة',
@@ -1691,12 +1691,12 @@ PICT # misc.
 'double-redirect-fixer'      => 'مصلح التحويل',
 
 'brokenredirects'        => 'تحويلات مكسورة',
-'brokenredirectstext'    => 'الوصلات التالية تشير لصفحات غير موجودة:',
+'brokenredirectstext'    => 'التحويلات التالية تصل لصفحات غير موجودة.',
 'brokenredirects-edit'   => '(عدل)',
 'brokenredirects-delete' => '(حذف)',
 
 'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
-'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
+'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى.',
 'withoutinterwiki-legend'  => 'بادئة',
 'withoutinterwiki-submit'  => 'عرض',
 
@@ -1805,13 +1805,17 @@ PICT # misc.
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'صلاحيات مجموعات المستخدمين',
-'listgrouprights-summary'  => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
+'listgrouprights'                 => 'صلاحيات مجموعات المستخدمين',
+'listgrouprights-summary'         => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
 ربما تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] حول الصلاحيات المنفردة.',
-'listgrouprights-group'    => 'المجموعة',
-'listgrouprights-rights'   => 'الصلاحيات',
-'listgrouprights-helppage' => 'Help:صلاحيات المجموعات',
-'listgrouprights-members'  => '(قائمة الأعضاء)',
+'listgrouprights-group'           => 'المجموعة',
+'listgrouprights-rights'          => 'الصلاحيات',
+'listgrouprights-helppage'        => 'Help:صلاحيات المجموعات',
+'listgrouprights-members'         => '(قائمة الأعضاء)',
+'listgrouprights-addgroup'        => 'يمكنه إضافة المجموعات: $1',
+'listgrouprights-removegroup'     => 'يمكنه إزالة المجموعات: $1',
+'listgrouprights-addgroup-all'    => 'يمكنه إضافة كل المجموعات',
+'listgrouprights-removegroup-all' => 'يمكنه إزالة كل المجموعات',
 
 # E-mail user
 'mailnologin'     => 'لا يوجد عنوان للإرسال',
@@ -1952,8 +1956,8 @@ $NEWPAGE
 شخص آخر عدل أو استرجع الصفحة بالفعل.
 
 آخر تعديل كان بواسطة [[User:$3|$3]] ([[User talk:$3|نقاش]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]]) حتى آخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".',
+'revertpage'                  => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]]) حتى آخر نسخة بواسطة [[User:$1|$1]]',
 'rollback-success'            => 'استرجع تعديلات $1؛
 استرجع حتى آخر نسخة بواسطة $2.',
 'sessionfailure'              => 'يبدو أنه هناك مشكلة في هذه جلسة الدخول الخاصة بك؛
@@ -2125,7 +2129,7 @@ $1',
 'ipbenableautoblock'              => 'تلقائيا امنع آخر عنوان أيبي تم استعماله بواسطة هذا المستخدم، وأي عناوين أيبي أخرى يحاول التحرير من خلالها',
 'ipbsubmit'                       => 'منع هذا المستخدم',
 'ipbother'                        => 'وقت آخر:',
-'ipboptions'                      => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite',
 'ipbotheroption'                  => 'غير ذلك',
 'ipbotherreason'                  => 'سبب إضافي:',
 'ipbhidename'                     => 'أخف اسم المستخدم من سجل المنع، قائمة المنع النشطة وقائمة المستخدمين',
@@ -2240,7 +2244,7 @@ $1',
 'move-watch'              => 'راقب هذه الصفحة',
 'movepagebtn'             => 'نقل الصفحة',
 'pagemovedsub'            => 'تم النقل بنجاح',
-'movepage-moved'          => '<big>\'\'\'"$1" نقلت إلى "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" نقلت إلى "$2"\'\'\'</big>',
 'articleexists'           => 'توجد صفحة بهذا الاسم، أو أن الاسم الذي تم اختياره غير صالح.
 من فضلك اختيار اسم آخر.',
 'cantmove-titleprotected' => 'لا يمكنك نقل صفحة إلى هذا الموقع، لأن العنوان الجديد تمت حمايته ضد الإنشاء',
@@ -2446,7 +2450,7 @@ $1',
 # Attribution
 'anonymous'        => 'مستخدم مجهول ل{{SITENAME}}',
 'siteuser'         => 'مستخدم {{SITENAME}} $1',
-'lastmodifiedatby' => 'آخر تعديل لهذه الصفحة كان في $2، $1 بواسطة $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'آخر تعديل لهذه الصفحة كان في $2، $1 بواسطة $3.',
 'othercontribs'    => 'بناء على العمل بواسطة $1.',
 'others'           => 'أخرى',
 'siteusers'        => '{{SITENAME}} مستخدم(و) $1',
@@ -2559,7 +2563,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'العرض',
@@ -2692,14 +2696,14 @@ $1',
 
 'exif-unknowndate' => 'تاريخ غير معروف',
 
-'exif-orientation-1' => 'عادي', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'دار عرضيا', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'دار 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'دار أفقيا', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'دار 90° CCW و انزلق رأسيا', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'دار 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'دار 90° CW و انزلق رأسيا', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'دار 90° عكس عقارب الساعة', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'عادي',
+'exif-orientation-2' => 'دار عرضيا',
+'exif-orientation-3' => 'دار 180°',
+'exif-orientation-4' => 'دار أفقيا',
+'exif-orientation-5' => 'دار 90° CCW و انزلق رأسيا',
+'exif-orientation-6' => 'دار 90° CW',
+'exif-orientation-7' => 'دار 90° CW و انزلق رأسيا',
+'exif-orientation-8' => 'دار 90° عكس عقارب الساعة',
 
 'exif-planarconfiguration-1' => 'صيغة تشنكي',
 'exif-planarconfiguration-2' => 'صيغة مستوية',
@@ -3062,7 +3066,7 @@ $1',
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',
 
 # Special:Version
-'version'                          => 'نسخة', # Not used as normal message but as header for the special page itself
+'version'                          => 'نسخة',
 'version-extensions'               => 'الامتدادات المثبتة',
 'version-specialpages'             => 'صفحات خاصة',
 'version-parserhooks'              => 'خطاطيف المحلل',
