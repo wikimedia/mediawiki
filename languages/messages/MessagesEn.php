@@ -995,10 +995,10 @@ Please include this ID in any queries you make.',
 'whitelistacctitle'         => 'You are not allowed to create an account',
 'whitelistacctext'          => 'To be allowed to create accounts in {{SITENAME}} you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
 'confirmedittitle'          => 'E-mail confirmation required to edit',
-'confirmedittext'                  => 'You must confirm your e-mail address before editing pages.
+'confirmedittext'           => 'You must confirm your e-mail address before editing pages.
 Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
 'nosuchsectiontitle'        => 'No such section',
-'nosuchsectiontext'                => 'You tried to edit a section that does not exist.
+'nosuchsectiontext'         => 'You tried to edit a section that does not exist.
 Since there is no section $1, there is no place to save your edit.',
 'loginreqtitle'             => 'Login Required',
 'loginreqlink'              => 'log in',
@@ -1006,12 +1006,12 @@ Since there is no section $1, there is no place to save your edit.',
 'accmailtitle'              => 'Password sent.',
 'accmailtext'               => 'The password for "$1" has been sent to $2.',
 'newarticle'                => '(New)',
-'newarticletext'                   => "You have followed a link to a page that does not exist yet.
+'newarticletext'            => "You have followed a link to a page that does not exist yet.
 To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
 If you are here by mistake, just click your browser's '''back''' button.",
 'newarticletextanon'        => '{{int:newarticletext}}', # don't translate or duplicate this message to other languages
 'talkpagetext'              => '<!-- MediaWiki:talkpagetext -->', # don't translate or duplicate this message to other languages
-'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her.
+'anontalkpagetext'          => "----''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her.
 Such an IP address can be shared by several users.
 If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
 'noarticletext'             => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
@@ -1021,11 +1021,11 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview'            => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
 'userjspreview'             => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
-'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
+'userinvalidcssjstitle'     => "'''Warning:''' There is no skin \"\$1\".
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Updated)',
 'note'                      => '<strong>Note:</strong>',
-'previewnote'                      => '<strong>This is only a preview;
+'previewnote'               => '<strong>This is only a preview;
 changes have not yet been saved!</strong>',
 'previewconflict'           => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'      => "<strong>Sorry! We could not process your edit due to a loss of session data.
@@ -1035,7 +1035,7 @@ Please try again. If it still doesn't work, try logging out and logging back in.
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
 <strong>If this is a legitimate edit attempt, please try again. If it still doesn't work, try logging out and logging back in.</strong>",
-'token_suffix_mismatch'            => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
+'token_suffix_mismatch'     => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
 The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
 'editing'                   => 'Editing $1',
@@ -1043,7 +1043,7 @@ This sometimes happens when you are using a buggy web-based anonymous proxy serv
 'editingsection'            => 'Editing $1 (section)',
 'editingcomment'            => 'Editing $1 (comment)',
 'editconflict'              => 'Edit conflict: $1',
-'explainconflict'                  => "Someone else has changed this page since you started editing it.
+'explainconflict'           => "Someone else has changed this page since you started editing it.
 The upper text area contains the page text as it currently exists.
 Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
@@ -1216,7 +1216,7 @@ Note that using the navigation links will reset this column.',
 'searchresulttext'      => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => "You searched for '''[[:$1]]'''",
 'searchsubtitleinvalid' => "You searched for '''$1'''",
-'noexactmatch'              => "'''There is no page titled \"\$1\".'''
+'noexactmatch'          => "'''There is no page titled \"\$1\".'''
 You can [[:\$1|create this page]].",
 'noexactmatch-nocreate' => "'''There is no page titled \"\$1\".'''",
 'toomanymatches'        => 'Too many matches were returned, please try a different query',

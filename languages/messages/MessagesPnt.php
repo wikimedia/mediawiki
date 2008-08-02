@@ -4,12 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Consta
  * @author Sinopeus
- * @author Siebrand
+ * @author Consta
  */
-
-
 
 $messages = array(
 'underline-always' => 'Πάντα',
@@ -77,6 +74,8 @@ $messages = array(
 'category-media-header' => 'Τα μέσα σην κατηγορίαν "$1" απές',
 'category-empty'        => "''Αβούτη κατηγορίαν πα 'κ εχ' νέ σελίδας νέ μέσα.''",
 
+'about'          => 'Περί',
+'newwindow'      => "(ανοίγ' σ' άλλον παραθύρ)",
 'cancel'         => 'Χάτεμαν',
 'qbfind'         => 'Εύρον',
 'qbedit'         => 'Άλλαξον',
@@ -92,6 +91,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Μεταδογμένα:',
 
+'errorpagetitle'    => 'Λάθος',
 'returnto'          => 'Επιστροφήν σο $1.',
 'tagline'           => 'Ασό {{SITENAME}}',
 'help'              => 'Βοήθειαν',
@@ -102,6 +102,7 @@ $messages = array(
 'history'           => 'Ιστορίαν τη σελίδας',
 'history_short'     => 'Ιστορίαν',
 'printableversion'  => 'Μορφή εκτύπωσης',
+'permalink'         => 'Σκιρόν σύνδεσμος',
 'print'             => 'Τύπωμαν',
 'edit'              => 'Άλλαξον',
 'editthispage'      => 'Άλλαξον τη σελίδαν ατέν',
@@ -128,12 +129,15 @@ $messages = array(
 'viewhelppage'      => 'Τέρεν σελίδαν βοήθειας',
 'viewtalkpage'      => 'Τέρεν καλάτσεμα',
 'otherlanguages'    => "Σ' άλλα γλώσσας",
+'redirectedfrom'    => '(Έρτεν ασό $1)',
+'redirectpagesub'   => 'Σελίδαν διπλού σύνδεσμονος',
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
 'jumptonavigation'  => 'Πορπάτεμαν',
 'jumptosearch'      => 'Αράεμαν',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'         => 'Περί {{SITENAME}}',
 'aboutpage'         => 'Project:Σχετικά',
 'copyrightpage'     => '{{ns:project}}:Δικαιώματα Πνευματή',
 'currentevents'     => 'Ατωριζνά γεγονότα',
@@ -147,6 +151,7 @@ $messages = array(
 'portal'            => 'Πύλην τη κοινότητας',
 'portal-url'        => 'Project:Πύλη κοινότητας',
 'privacy'           => 'Ωρίαγμαν δογμενίων',
+'privacypage'       => 'Project:Πολιτική ιδιωτικού απορρήτου',
 'sitesupport'       => 'Δωρεάς',
 
 'retrievedfrom'           => 'Ασο "$1"',
@@ -171,7 +176,7 @@ $messages = array(
 'nstab-special'   => 'Ειδικόν',
 'nstab-project'   => 'Σχετικά με',
 'nstab-image'     => 'Εικόναν',
-'nstab-mediawiki' => 'Μένεμα',
+'nstab-mediawiki' => 'Μένεμαν',
 'nstab-template'  => 'Πρότυπον',
 'nstab-help'      => 'Σελίδα βοήθειας',
 'nstab-category'  => 'Κατηγορίαν',
@@ -185,48 +190,70 @@ $messages = array(
 'readonly'          => 'Βάση δογμενίων εν ασπαλιζμένον',
 'enterlockreason'   => "Βαλέστεν λόγον για τ' ασπάλιγμαν και ους πότε θα εν ασπαλιγμένον",
 'badarticleerror'   => "Ατή η ενέργειαν 'κ επορεί να ίνεται σ'ατήν τη σελίδαν.",
+'badtitle'          => 'Άχρηστον τίτλος',
+'badtitletext'      => "Το ψαλαφεμένον ο τίτλος τη σελίδας εν άκυρον, εύκαιρον για λανθασμένον διαγλωσσικόν σύνδεσμον.
+Εν δυνατόν και να έχ' έναν για πολλά γράμματα που 'κ ίνεται να κουλανεύκουνταν απές σε τίτλον.",
 'viewsource'        => 'Τέρεν κωδικόν',
 'viewsourcefor'     => 'για $1',
 'protectedpagetext' => "Ατή η σελίδαν εν ασπαλιγμένη και 'κ αλλάζεται.",
 'viewsourcetext'    => "Μπορείτε να τερείτε και να αντιγράφετε το κείμενον τ' ατεινές τη σελίδας:",
 
 # Login and logout pages
-'yourname'            => 'Όνεμα χρήστε:',
-'yourpassword'        => 'Σημάδι:',
-'yourpasswordagain'   => "Ξαν' γράψτεν το σημάδι:",
-'login'               => 'Εμπάτε',
-'loginprompt'         => "Πρέπ' να έχετε ενεργοποιήσει τα cookies για εμπείτε σο {{SITENAME}}.",
-'userlogin'           => 'Εμπάτε / Ποίστεν λογαρίαν',
-'logout'              => 'οξουκά',
-'userlogout'          => 'Οξουκά',
-'notloggedin'         => 'Ευρίσκεζνε οξουκά ασή Βικιπαίδειαν',
-'nologin'             => "Λογαρίαν 'κ έχετε; $1.",
-'nologinlink'         => 'Ποίστεν λογαρίαν',
-'createaccount'       => 'Ποίσον λογαρίαν',
-'gotaccount'          => 'Λογαρίαν έχετε; $1.',
-'gotaccountlink'      => 'Εμπάτε',
-'badretype'           => "Τα σημάδε ντ' εγράψετεν 'κ ταιριάζνε.",
-'username'            => 'Όνεμα χρήστε:',
-'yourrealname'        => 'Πραματικόν όνεμαν:',
-'yourlanguage'        => "Τ' εσόν η γώσσαν:",
-'prefs-help-realname' => "'Κ επρέπ' να βάλετεν τεσέτερον πραματικόν τ' όνεμαν.
+'yourname'              => 'Όνεμα χρήστε:',
+'yourpassword'          => 'Σημάδι:',
+'yourpasswordagain'     => "Ξαν' γράψτεν το σημάδι:",
+'login'                 => 'Εμπάτε',
+'loginprompt'           => "Πρέπ' να έχετε ενεργοποιήσει τα cookies για εμπείτε σο {{SITENAME}}.",
+'userlogin'             => 'Εμπάτε / Ποίστεν λογαρίαν',
+'logout'                => 'οξουκά',
+'userlogout'            => 'Οξουκά',
+'notloggedin'           => 'Ευρίσκεζνε οξουκά ασή Βικιπαίδειαν',
+'nologin'               => "Λογαρίαν 'κ έχετε; $1.",
+'nologinlink'           => 'Ποίστεν λογαρίαν',
+'createaccount'         => 'Ποίσον λογαρίαν',
+'gotaccount'            => 'Λογαρίαν έχετε; $1.',
+'gotaccountlink'        => 'Εμπάτε',
+'badretype'             => "Τα σημάδε ντ' εγράψετεν 'κ ταιριάζνε.",
+'username'              => 'Όνεμα χρήστε:',
+'yourrealname'          => 'Πραματικόν όνεμαν:',
+'yourlanguage'          => "Τ' εσόν η γώσσαν:",
+'prefs-help-realname'   => "'Κ επρέπ' να βάλετεν τεσέτερον πραματικόν τ' όνεμαν.
 Άμα αν βάλετεν ατό, αμπορεί πα ν' αναγνωρίζκεται τεσέτερον η δουλείαν.",
-'loginerror'          => 'Σφάλμα εγγραφής',
-'loginsuccesstitle'   => "Έντον τ' εσέβεμαν",
-'loginsuccess'        => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
-'nosuchuser'          => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "$1".
+'loginerror'            => 'Σφάλμα εγγραφής',
+'loginsuccesstitle'     => "Έντον τ' εσέβεμαν",
+'loginsuccess'          => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
+'nosuchuser'            => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "$1".
 Το γράψιμον ωρία ή ποίσον καινούρεον λογαρίαν.',
-'nosuchusershort'     => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "<nowiki>$1</nowiki>".
+'nosuchusershort'       => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "<nowiki>$1</nowiki>".
 Το γράψιμονις ωρία.',
-'mailmypassword'      => 'Αποστολή κωδικού',
-'accountcreated'      => 'Έντον η λογαρίαν',
-'createaccount-title' => 'Δημιουργίαν λογαρίας για {{SITENAME}}',
-'loginlanguagelabel'  => 'Γλώσσαν: $1',
+'nouserspecified'       => "Πρέπ' να ψιλίζετε όνομαν.",
+'wrongpassword'         => "Το σημάδι 'κ εν σωστόν.
+Ποίστεν άλλο προσπάθειαν.",
+'wrongpasswordempty'    => 'Το σημάδι έτον εύκαιρον.
+Ποίστεν άλλο προσπάθειαν.',
+'mailmypassword'        => 'Αποστολή κωδικού',
+'passwordremindertitle' => 'Καινούρεον σημάδιν για {{SITENAME}}',
+'passwordremindertext'  => 'Κάποιος (ίσως εσείς, ασήν διεύθυνσην IP $1)
+εποίκεν ψαλαφίον να στείλκουμες έναν νέον σημάδιν για τον ιστοτόπον {{SITENAME}} ($4).
+Το σημάδιν για τον χρήστεν "$2" ατώρα εν "$3".
+Ατώρα εμπάτε σην σελίδαν και ποίστεν το σημάδινεσουν διαφορετικόν.
+
+Εάν το ψαλαφίον εποίκενατο άλλος για έχετε σο νούνεσουν αξάν το παλαιόν το σημάδινεσουν και το καινούρεον ξάι \'κ χρειάσκεται, επορείτε ν\' ανασπάλλετε το καινούρεον το σημάδιν με τ\' αβούτο το μένεμαν εντάμαν και να μεταχειρίσκεστε το παλαιόν το σημάδιν άμον ντ\' εφτάγατε ους οσήμερον.',
+'noemail'               => '\'Κ εδώθεν e-mail address τη χρήστε "$1".',
+'passwordsent'          => 'Έναν καινούρεον σημάδιν επήγεν σο e-mail τη "$1".
+Άμον ντο παίρετ\' ατό, εμπάτε ξαν.',
+'accountcreated'        => 'Έντον η λογαρίαν',
+'createaccount-title'   => 'Δημιουργίαν λογαρίας για {{SITENAME}}',
+'loginlanguagelabel'    => 'Γλώσσαν: $1',
 
 # Edit page toolbar
+'bold_sample'     => 'Σκιρόν κείμενον',
+'bold_tip'        => 'Σκιρόν κείμενον',
+'italic_sample'   => 'Ψιλόν κείμενον',
+'italic_tip'      => 'Ψιλόν κείμενον',
 'link_sample'     => 'Τίτλος σύνδεσμονος',
 'link_tip'        => 'Εσωτερικόν σύνδεσμον',
-'extlink_sample'  => 'http://www.paradeigma.com τίτλος σύνδεσμονος',
+'extlink_sample'  => 'http://www.example.com τίτλος σύνδεσμονος',
 'extlink_tip'     => 'Εξωτερικόν σύνδεσμος (να μην ανασπάλλετε το πρόθεμαν http:// )',
 'headline_sample' => 'Κείμενον τίτλονος',
 'headline_tip'    => 'Δεύτερον τίτλος (επίπεδον 2)',
@@ -237,6 +264,7 @@ $messages = array(
 'image_tip'       => 'Ενσωματωμένον εικόνα',
 'media_tip'       => 'Σύνδεσμος αρχείατι πολυμεσίων',
 'sig_tip'         => 'Η υπογραφήν εσούν με ώραν κι ημερομηνίαν',
+'hr_tip'          => "Οριζόντιον γραμμή (μη θέκ'ς ατέν πολλά)",
 
 # Edit pages
 'summary'                => 'Σύνοψη',
@@ -247,16 +275,59 @@ $messages = array(
 'preview'                => 'Πρώτον τέρεμα',
 'showpreview'            => 'Πρώτον τέρεμαν',
 'showdiff'               => 'Αλλαγάς',
+'anoneditwarning'        => "'''Ωρίασων:''' 'Κ εποίκες τ' εσέβεμαν.
+Τ' IP ις θα γράφκεται και θα ελέπν' ατό σ' ιστορικόν τη σελίδας.",
+'summary-preview'        => 'Πρώτον τέρεμαν τη σύνοψης',
+'blockedtext'            => "<big>'''Τ' όνομαν ή το IP εσούν εκλείστεν.'''</big>
+
+Τ' ασπάλιγμαν εποίκενατο ο χρήστες $1.
+Έδωκεν την αιτίαν ''$2''.
+
+* Ασπάλιγμαν αχπάσκεται: $8
+* Ασπάλιγμαν τελείται: $6
+* Θα κλείσκεται ο χρήστες: $7
+
+Για το ασπάλιγμαν εμπορείτε να συντισένετε με το χρήστεν $1 ή με τ' αλλτς τ' [[{{MediaWiki:Grouppage-sysop}}|administrator]].
+Για να γράφετε ελεκτρονικόν μένεμαν ('e-mail this user') βαλέστεν το τεσέτερον το σωστόν το e-mail address σα [[Special:Preferences|προτιμήσαι τη λογαρίας εσούν]]. Επεκεί 'κ θα είστουν ασπαλιγμένος για γράψιμον τη μενεματί.
+Τ' ατοριζνόν το IP εσούν εν $3, και το ID τη ασπαλιγματί εν #$5.
+Ποδεδίζουμε σας να γράφτε τα και τα δυο σο μένεμαν εσούν.",
+'autoblockedtext'        => "Το IP εσούν εκλείστεν αυτόματα επειδή μεταχειρίσκουτονατο άλλος χρήστες ντ' έτον ασπάλιγμένος ασόν χρήστεν $1.
+Έδωκεν την αιτίαν:
+
+:''$2''
+
+* Ασπάλιγμαν αχπάσκεται: $8
+* Ασπάλιγμαν τελείται: $6
+
+Για το ασπάλιγμαν επορείτε να συντισένετε με το χρήστεν $1 ή με τ' αλλτς τ' [[{{MediaWiki:Grouppage-sysop}}|administrators]]. Για να γράφετε ελεκτρονικόν μένεμαν ('e-mail this user') βαλέστεν το τεσέτερον το σωστόν το e-mail address σα [[Special:Preferences|προτιμήσαι τη λογαρίας εσούν]]. Εάν 'κ εν ασπαλιγμένον η χρήσηνατ, επορείτε να γράφετε μένεμαν. 
+
+Το ID τη ασπαλιγματίνεσουν εν $5.
+Ποδεδίζουμε σας να γράφτατο σο μένεμαν εσούν.",
+'blockednoreason'        => "'Κ εγράφτεν αιτίαν",
 'newarticle'             => '(Νέον)',
+'newarticletext'         => "Έρθατεν ασ' έναν σύνδεσμον σ' έναν εύκαιρον σελίδαν. 
+Για να εφτάτε τη σελίδαν, αρχινέστε γράψιμον σο χουτίν αφκά (δεαβάστεν τη [[{{MediaWiki:Helppage}}|σελίδαν βοήθειας]] και μαθέστεν κιάλλα).
+Εάν 'κ θέλετε ν' εφτάτε αβούτεν τη σελίδαν, πατήστε το κουμπίν το λεει '''οπίς''' και δεβάτεν οπίς απ' όθεν έρθατεν.",
+'noarticletext'          => "(Αβούτεν η σελίδαν 'κ εχ' κείμενον απές ακόμαν.)",
 'previewnote'            => "<strong>Ατό πα πρώτον τέρεμαν εν και μόνον.
 Τ' αλλαγάς 'κ εκρατέθαν!</strong>",
 'editing'                => 'Αλλαγήν $1',
 'editingsection'         => 'Αλλαγήν $1 (τμήμα)',
 'editingold'             => "<strong>ΩΡΙΑ: Εφτάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
 Εάν θα κρατείτε ατά, ούλ' τ' επεκεί αλλαγάς θα χάνταν.</strong>",
+'copyrightwarning'       => "Ούλαι τα γραψίματα ασο {{SITENAME}} θα μεταχειρίσκουνταν άμον ντο λεει το $2 (τερέστεν και $1).
+Εάν 'κ θέλετε ατό να ίνεται, να μην εφτάτε το αποθήκεμαν.<br />
+Καμμίαν κι ανασπάλλετε: Αδακά 'κ εν ο τόπον για να θέκουμε γράψιμον ντ' έγραψαν αλλ. Βαλέστε άρθρα όνταν κατέχετε τα δικαιώματα πνευματί μαναχόν. 
+<strong>ΚΑΜΜΙΑΝ 'Κ ΘΕΚΕΤΕ ΓΡΑΨΙΜΟΝ ΑΔΑΚΑ ΟΝΤΕΣ 'Κ ΕΧΕΤΕ ΤΑ ΔΙΚΑΙΩΜΑΤΑ ΠΝΕΥΜΑΤΙ!</strong>",
+'longpagewarning'        => "<strong>ΩΡΙΑ: Αβούτεν η σελίδαν έχ' μέγεθος $1kb. Μερικά browser 'κ επορούν ν' επεξεργάσκουνταν σελίδας ντ' έχνε 32kb κιαν. Επορείτε να λύετε το πρόβλημαν αν εφτάτεν ατέναν μικρά κομμάται.</strong>",
 'templatesused'          => "Πρότυπα το μεταχειρίσκουνταν σ' αβούτεν την σελίδαν:",
+'templatesusedpreview'   => "Πρότυπα σ' αβούτον το πρώτον τέρεμαν:",
 'template-protected'     => '(ασπαλιγμένον)',
 'template-semiprotected' => '(ημψά-ασπαλιγμένον)',
+'recreate-deleted-warn'  => "'''Ωρία: Εφτάτε αξάν μίαν σελίδαν ντο νεβζινέθεν οψεκές.'''
+
+Ίσως εν καλλίον να μην εφτάτε τη σελίδαν.
+Τερέστεν για βοήθειαν και σ' αρχείον την αιτίαν για το σβήσιμον:",
 
 # History pages
 'viewpagelogs'        => "Τέρεν πρωτόκολλα γι' αβούτεν τη σελίδαν",
@@ -264,8 +335,8 @@ $messages = array(
 'revisionasof'        => 'Μορφήν τη $1',
 'revision-info'       => 'Έκδοση σα $1 ασόν/ασήν $2',
 'previousrevision'    => '←Παλαιόν μορφήν',
-'nextrevision'        => 'Κι άλλο καινούρεον έκδοση→',
-'currentrevisionlink' => 'Ατωριζνόν έκδοση',
+'nextrevision'        => 'Κι άλλο καινούρεον μορφήν→',
+'currentrevisionlink' => 'Ατωριζνόν μορφήν',
 'cur'                 => 'τρέχουσα',
 'last'                => 'τελευταία',
 'page_first'          => 'πρώτη',
@@ -278,8 +349,9 @@ $messages = array(
 
 # Diffs
 'history-title'           => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
+'difference'              => '(Διαφορά μεταξύ τη μορφίων)',
 'lineno'                  => 'Γραμμή $1:',
-'compareselectedversions' => 'Γαρσουλαεύτε τα εκδώσεις',
+'compareselectedversions' => "Γαρσουλαεύτε τ' εκδώσεις",
 'editundo'                => 'αναίρεση',
 
 # Search results
@@ -295,13 +367,20 @@ $messages = array(
 'mypreferences' => "Τ' εμά τα προτιμήσεις",
 'retypenew'     => 'Γράψον ξαν το νέον σημάδιν:',
 
+# User rights log
+'rightslog' => 'Αρχείον δικαιωματίων',
+
 # Recent changes
 'recentchanges'                  => 'Υστερνά αλλαγάς',
 'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
+'rcnotefrom'                     => "Αφκά καικά ευρίουνταν τ' αλλαγάς ασό <b>$2</b> (εμφάνιση <b>$1</b> αλλαγίων max).",
+'rclistfrom'                     => "Καινούρεα αλλαγάς ντ' εσκαλών'νε ασά $1",
 'rcshowhideminor'                => '$1 τα μικρά αλλαγάς',
+'rcshowhidebots'                 => '$1 bots',
 'rcshowhideliu'                  => '$1 χρήστες με λογαρίαν',
-'rcshowhideanons'                => '$1 αναγνώριμοι χρήστες',
-'rcshowhidemine'                 => "$1 τ' επεξεργασίων ιμ",
+'rcshowhideanons'                => "$1 τ' αναγνώριμους τοι χρήστς",
+'rcshowhidepatr'                 => "$1 αλλαγάς ντ' ωράουνταν",
+'rcshowhidemine'                 => "$1 τ' αλλαγάς ιμ",
 'rclinks'                        => "Δείξον τα $1 υστερνά τ' αλλαγάς α σα $2 υστερνά τα ημέρας<br />$3",
 'diff'                           => 'διαφορά',
 'hist'                           => 'ιστ.',
@@ -312,29 +391,41 @@ $messages = array(
 'boteditletter'                  => 'b',
 
 # Recent changes linked
-'recentchangeslinked-title' => 'Αλλαγάς τη "$1"',
+'recentchangeslinked'          => 'Σχετικά αλλαγάς',
+'recentchangeslinked-title'    => 'Αλλαγάς τη "$1"',
+'recentchangeslinked-noresult' => "Σ' αβούτα τα σελίδας 'κ εγένταν αλλάγματα.",
 
 # Upload
 'upload'        => 'Φόρτωμα αρχείου',
 'uploadbtn'     => 'Φόρτωμα αρχείου',
+'uploadlogpage' => 'Αρχείον ανεβασματίων',
 'uploadedimage' => 'Εγέντον το φόρτωμαν τη "[[$1]]"',
 
 # Image list
-'ilsubmit'            => 'Αράεμαν',
-'bydate'              => 'ημερομηνίας',
-'filehist'            => 'Ιστορικό αρχείου',
-'filehist-current'    => 'υστερινά',
-'filehist-datetime'   => 'Ώραν/Ημερομ.',
-'filehist-user'       => 'Χρήστες',
-'filehist-dimensions' => 'Διαστάσεις',
-'filehist-filesize'   => 'Μέγεθος',
-'filehist-comment'    => 'Σχόλιον',
-'imagelinks'          => 'Σύνδεσμοι',
-'linkstoimage'        => "Ατά τα σελίδας δεκνίζ'νε σην εικόναν:",
-'nolinkstoimage'      => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
+'imagelist'                 => 'Λίσταν εικονίων',
+'ilsubmit'                  => 'Αράεμαν',
+'bydate'                    => 'ημερομηνίας',
+'filehist'                  => 'Ιστορικό αρχείου',
+'filehist-help'             => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
+'filehist-current'          => 'υστερινά',
+'filehist-datetime'         => 'Ώραν/Ημερομ.',
+'filehist-user'             => 'Χρήστες',
+'filehist-dimensions'       => 'Διαστάσεις',
+'filehist-filesize'         => 'Μέγεθος',
+'filehist-comment'          => 'Σχόλιον',
+'imagelinks'                => 'Σύνδεσμοι',
+'linkstoimage'              => "Ατά τα σελίδας δεκνίζ'νε σην εικόναν:",
+'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
+'sharedupload'              => "Αβούτον τ' αρχείον εφορτώθεν για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα.",
+'noimage'                   => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
+'noimage-linktext'          => "σκώσ' ατό",
+'uploadnewversion-linktext' => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
 
 # MIME search
 'mimesearch' => 'Αράεμαν MIME',
+
+# List redirects
+'listredirects' => 'Κατάλογον με διπλά συνδέσμ',
 
 # Unused templates
 'unusedtemplates' => "Πρότυπα ντο 'κ μεταχειρίσκουνταν",
@@ -342,12 +433,22 @@ $messages = array(
 # Random page
 'randompage' => 'Τυχαίον σελίδα',
 
+# Random redirect
+'randomredirect' => 'Τυχαία διπλά συνδέσμ',
+
 # Statistics
 'statistics' => 'Στατιστικήν',
 
+'doubleredirects' => 'Περισσά διπλά συνδέσμ',
+
+'brokenredirects' => 'Τσακωμένα διπλά συνδέσμ',
+
 'withoutinterwiki' => "Σελίδας ντο κ' έχνε συνδέσμ",
 
+'fewestrevisions' => "Σελίδας με τ' ασόλων λιγότερα αλλαγάς.",
+
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμος|συνδέσμ}}',
 'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
 'lonelypages'             => 'Ορφανά σελίδας',
@@ -359,7 +460,12 @@ $messages = array(
 'unusedimages'            => "Εικόνας ντο κ' μεταχειρίσκουνταν",
 'wantedcategories'        => 'Κατηγορίας το θέλουμε',
 'wantedpages'             => 'Σελίδας το θέλουμε',
+'mostlinked'              => "Σελίδας με τ' ασόλων πλέα σελίδας ντο δεκνίζν' εκαικά.",
+'mostlinkedcategories'    => "Κατηγορίας με τ' ασόλων πλέα σελίδας ντο δεκνίζν' εκαικά.",
+'mostlinkedtemplates'     => "Πρότυπα με τ' ασόλων πλέα σελίδας ντο δεκνίζν' εκαικά",
 'mostcategories'          => "Σελίδας με τ' ασ' όλτς πολλά κατηγορίας",
+'mostimages'              => "Αρχεία με τ' ασόλων πλέα σελίδας ντο δεκνίζν' εκαικά",
+'mostrevisions'           => "Σελίδας με τ' ασόλων πλέα αλλαγάς",
 'allpages'                => 'Όλεα τα σελίδας',
 'prefixindex'             => 'Κατάλογος κατά πρόθεμαν',
 'shortpages'              => 'Μικρά σελίδας',
@@ -374,6 +480,7 @@ $messages = array(
 'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
 
 # Book sources
+'booksources'               => 'Βιβλιογραφικά πηγάς',
 'booksources-search-legend' => 'Αράεμαν τη βιβλίων',
 'booksources-go'            => 'Δέβα',
 
@@ -384,12 +491,16 @@ $messages = array(
 # Special:Log
 'specialloguserlabel'  => 'Χρήστες:',
 'speciallogtitlelabel' => 'Τίτλος:',
+'log'                  => 'Αρχεία',
+'all-logs-page'        => "Όλεα τ' αρχεία",
 
 # Special:Allpages
 'nextpage'       => 'Επόμενον σελίδα ($1)',
 'prevpage'       => 'Προηγούμενον σελίδα ($1)',
+'allpagesfrom'   => "Τέρεμαν σελιδίων ντ' εσκαλών'νε ασό:",
 'allarticles'    => 'Όλεα τα σελίδας',
 'allpagessubmit' => 'Δέβα',
+'allpagesprefix' => 'Τέρεμαν σελιδίων με πρόθεμαν:',
 
 # E-mail user
 'emailuser' => 'Στείλον μένεμαν σον χρήστεν ατόν.',
@@ -398,11 +509,12 @@ $messages = array(
 'watchlist'            => "Σελίδας ντ' ωριάζω",
 'mywatchlist'          => "Σελίδας ντ' ωριάζω",
 'watchlistfor'         => "(για '''$1''')",
+'addedwatch'           => 'Εθέκεν σην λίσταν ωριαγματί',
 'removedwatch'         => 'Αση λίσταν επάρθεν',
 'removedwatchtext'     => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' τ\'εσόν τον κατάλογον.',
 'watch'                => 'Ωρίαγμαν',
 'watchthispage'        => 'Ωρίαν τη σελίδαν',
-'unwatch'              => 'Τέλος τη ωρίαγματη',
+'unwatch'              => "Τέλεμαν τ' ωριαγματί",
 'watchlist-details'    => '{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλάτσεματι.',
 'wlshowlast'           => "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων $3",
 'watchlist-hide-bots'  => "Κρύψον τ' αλλαγάς τη bots",
@@ -414,23 +526,33 @@ $messages = array(
 'unwatching' => "'κ ωριάζω...",
 
 # Delete/protect/revert
-'deletepage'              => 'Σβήσον τη σελίδαν',
-'actioncomplete'          => 'Η ενέργειαν ετελέθεν',
-'deletedarticle'          => 'νεβζινέθεν η "[[$1]]"',
-'dellogpage'              => "Κατάλογος με τ' ατά το νεβζίναν",
-'deletecomment'           => 'Λόγον για το σβήσιμο:',
-'deleteotherreason'       => 'Άλλον/αλλομίαν λόγον:',
-'deletereasonotherlist'   => 'Άλλον λόγον',
-'rollbacklink'            => 'φέρον ξαν σην υστερναίαν',
-'protectcomment'          => 'Σχόλιον:',
-'protect-unchain'         => 'Άνοιξον τα δικαιώματα ετεροχλάεματι',
-'protect-default'         => '(προεπιλεγμένον)',
-'protect-summary-cascade' => 'διαδοχικόν',
-'protect-expiring'        => 'λήγει στις $1 (UTC)',
-'protect-cascade'         => "Ασπάλιγμαν σελιδίων ντ' είν απές σ' αβούτεν σελίδαν (διαδοχικόν προστασίαν)",
-'protect-cantedit'        => "'Κι έχετε δικαίωμαν ν' αλλάζετε τ' επίπεδον ασπάλιγματι τ' ατεινές σελίδας.",
-'restriction-type'        => 'Δικαίωμαν:',
-'restriction-level'       => 'Επίπεδον περιορισμού:',
+'deletepage'                  => 'Σβήσον τη σελίδαν',
+'historywarning'              => "Ωρία: Η σελίδαν που θα σβήετε έχ' ιστορικόν:",
+'actioncomplete'              => 'Η ενέργειαν ετελέθεν',
+'deletedtext'                 => 'Το "<nowiki>$1</nowiki>" εσβήγανατο.
+Τερέστεν το $2 και δεαβάστεν για τα υστερνά τα σβησίματα.',
+'deletedarticle'              => 'νεβζινέθεν η "[[$1]]"',
+'dellogpage'                  => "Κατάλογος με τ' ατά ντ' εσβήγαν",
+'deletecomment'               => 'Λόγον για το σβήσιμο:',
+'deleteotherreason'           => 'Άλλον/αλλομίαν λόγον:',
+'deletereasonotherlist'       => 'Άλλον λόγον',
+'rollbacklink'                => 'φέρον ξαν σην υστερναίαν',
+'protectcomment'              => 'Σχόλιον:',
+'protectexpiry'               => 'Τελείται:',
+'protect_expiry_invalid'      => "Ο χρόνος τελεματί 'κ εν σωστόν.",
+'protect_expiry_old'          => 'Ο χρόνος τελεματί πέρνιξον.',
+'protect-unchain'             => 'Άνοιξον τα δικαιώματα ετεροχλάεματι',
+'protect-text'                => "Αδά επορείτε να τερείτε και ν' αλλάζετε τ' επίπεδον τη προστασίας για τη σελίδαν <strong><nowiki>$1</nowiki></strong>.",
+'protect-default'             => '(προεπιλεγμένον)',
+'protect-fallback'            => 'Ψαλαφίον δικαιωματίων "$1"',
+'protect-level-autoconfirmed' => 'Ασπάλιγμαν χρηστίων θίχως λογαρίαν',
+'protect-level-sysop'         => 'Sysops μαναχόν',
+'protect-summary-cascade'     => 'διαδοχικόν',
+'protect-expiring'            => 'λήγει στις $1 (UTC)',
+'protect-cascade'             => "Ασπάλιγμαν σελιδίων ντ' είν απές σ' αβούτεν σελίδαν (διαδοχικόν προστασίαν)",
+'protect-cantedit'            => "'Κι έχετε δικαίωμαν ν' αλλάζετε τ' επίπεδον ασπάλιγματι τ' ατεινές σελίδας.",
+'restriction-type'            => 'Δικαίωμαν:',
+'restriction-level'           => 'Επίπεδον περιορισμού:',
 
 # Undelete
 'undeletebtn' => 'Ποίσον ξαν',
@@ -449,6 +571,7 @@ $messages = array(
 'year'          => 'Ασή χρονίαν (και πριχού):',
 
 'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαρίας',
+'sp-contributions-blocklog'    => 'Αρχείον ασπαλιγματίων',
 
 # What links here
 'whatlinkshere'       => "Ντο δεκνίζ' αδακές",
@@ -457,37 +580,76 @@ $messages = array(
 'linklistsub'         => "(Κατάλογον με τοι συνδέσμ')",
 'linkshere'           => "Αβούτα τα σελίδας δεκνίζνε σο '''[[:$1]]''':",
 'nolinkshere'         => "'Κ ευρέθεν σελίδα το δεκνίζ' ση σελίδαν '''[[:$1]]'''.",
+'isredirect'          => 'σελίδαν διπλού σύνδεσμονος',
 'istemplate'          => 'ενσωμάτωση',
 'whatlinkshere-prev'  => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|υστερνή|υστερναία $1}}',
 'whatlinkshere-links' => '← σύνδεσμοι',
 
 # Block/unblock
-'contribslink' => "Δουλείαν ατ'",
+'blockip'       => 'Ασπάλιγμαν τη χρήστε',
+'ipboptions'    => '2 ώρας:2 hours,1 ημέρα:1 day,3 ημέρας:3 days,1 εβδομάδα:1 week,2 εβδομάδας:2 weeks,1 μήνα:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνο:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
+'ipblocklist'   => "Λίσταν με τ' ασπαλιγμένα τα IP και τα λογαρίας",
+'blocklink'     => 'Ασπάλιγμαν',
+'unblocklink'   => 'άνοιγμαν ασπαλιγματί',
+'contribslink'  => "Δουλείαν ατ'",
+'blocklogpage'  => 'Αρχείον ασπαλιγματίων',
+'blocklogentry' => 'εσπάλισεν [[$1]] για $2 $3',
 
 # Move page
-'movearticle'      => 'Ετεροχλάεμαν σελίδας:',
-'newtitle'         => 'Νέον τίτλον:',
-'move-watch'       => 'Αβούτη τη σελίδαν ωρία',
-'movepagebtn'      => 'Ποίσον ετεροχλάεμαν τη σελίδαν',
-'pagemovedsub'     => 'Ετερχλαεύτεν',
-'movedto'          => 'ετεροχλαεύτεν σο',
-'movetalk'         => 'Ετεροχλάεμαν τη σελίδας καλάτσεματι',
-'talkpagemoved'    => 'Ετερχλαεύτεν και η σελίδαν καλάτσεματι.',
-'talkpagenotmoved' => "Η σελίδαν καλάτσεματιν ατ' <strong>'κ</strong> ετερχλαεύτεν.",
-'1movedto2'        => '[[$1]] ετερχλαεύτεν σο [[$2]]',
-'movereason'       => 'Λόγον:',
-'revertmove'       => 'επαναφορά',
+'movepagetext'            => "Εάν εφτάτε το ψαλαφίον αφκά θα δίτε άλλον όνομαν σ' έναν σελίδαν και θα παίρτεν τ' ιστορικόνατς εκαικά. Το παλαιόν η σελίδαν θα μεταβάλκεται σε σύνδεσμον σην καινούραιαν.
+
+Τα συνδέσμαι που δεκνίζνε σο παλαιόν τη σελίδαν 'κ θα μεταβάλκουνταν.
+Για τ' ατό τερέστεν για διπλά για τσακωμένα συνδέσμ.
+Έχετ' ευθύνην τα παλαιά τα συνδέσμαι να δεκνίζνε σο σωστόν τη σελίδαν. 
+
+Η σελίδαν ''''κ θ' αλλάζ'''' τη θέσηνατς όντες έχ' άλλον σελίδαν με το νέον τ' όνεμαν. Εξαίρεσην εν τ' εύκαιρα τα σελίδας και τα συνδέσμαι, ντο 'κ έχνε ιστορικόν. 
+Επορείτε δηλαδή να παίρετε τη σελίδαν σ' όνομαν ντ' είχεν προτεσνά. Άμα 'κ επορείτε με το ετεροχλάεμαν να σβήετε άλλον σελίδαν. 
+
+'''ΩΡΙΑ!'''
+Αβούτεν η ενέργειαν επορεί να φέρει τρανά διαφοράς σ' έναν σελίδαν που δεβάζνε πολλοί. 
+Νουνίστενατο καλά πριχού να εφτάτε τ' άλλαγμαν τ' ονοματί.",
+'movearticle'             => 'Ετεροχλάεμαν σελίδας:',
+'newtitle'                => 'Νέον τίτλον:',
+'move-watch'              => 'Ωρίαγμαν τη σελίδας',
+'movepagebtn'             => 'Ετεροχλάεμαν σελίδας',
+'pagemovedsub'            => 'Ετερχλαεύτεν',
+'movepage-moved'          => '<big>\'\'\'"$1" επήγεν σο "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Σελίδαν με αήκον όνεμαν υπάρχει.
+Βαλέστεν άλλο όνεμαν.',
+'cantmove-titleprotected' => "'Κ επορείτε ν' εφτάτε σελίδαν με τ' αβούτον τ' όνεμαν επειδή εσπάλισανατο.",
+'talkexists'              => "'''Η σελίδαν ετερχλαεύτεν, άμα η σελίδαν καλατσεματί επέμνεν επειδή σο καινούρεον τίτλον έχ' άλλον.
+Ποίστεν τα ένα.'''",
+'movedto'                 => 'ετεροχλαεύτεν σο',
+'movetalk'                => 'Ετεροχλάεμαν τη σελίδας καλατσεματί',
+'talkpagemoved'           => 'Ετερχλαεύτεν και η σελίδαν καλάτσεματι.',
+'talkpagenotmoved'        => "Η σελίδαν καλάτσεματιν ατ' <strong>'κ</strong> ετερχλαεύτεν.",
+'1movedto2'               => '[[$1]] ετερχλαεύτεν σο [[$2]]',
+'1movedto2_redir'         => '[[$1]] ετερχλαεύτεν σο [[$2]] σε σύνδεσμον απάν',
+'movereason'              => 'Λόγον:',
+'revertmove'              => 'επαναφορά',
 
 # Export
-'export' => 'Εξαγωγήν σελίδιων',
+'export'            => 'Εξαγωγήν σελίδιων',
+'export-addcattext' => 'Βαλέστεν σελίδας ασήν κατηγορίαν:',
+'export-addcat'     => 'Βαλέστεν',
+'export-download'   => 'Αποθήκεμαν άμον αρχείον',
 
 # Namespace 8 related
-'allmessages' => 'Μενέματα σύστηματη',
+'allmessages'     => 'Μενέματα συστηματί',
+'allmessagesname' => 'Όνεμαν',
 
 # Thumbnails
 'thumbnail-more'  => 'Ποίσον κι άλλο τρανόν',
 'thumbnail_error' => 'Έντον λάθος ση δημιουργίαν τη μικρογραφίας: $1',
+
+# Special:Import
+'import'                  => 'Εισαγωγήν σελιδίων',
+'import-interwiki-submit' => 'Εισαγωγήν',
+'importstart'             => 'Εισαγωγή σελιδίων...',
+
+# Import log
+'importlogpage' => 'Αρχείον εισαγωγίων',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Τ' εμόν η σελίδαν",
@@ -510,6 +672,7 @@ $messages = array(
 'tooltip-search'                  => 'Εύρον σο {{SITENAME}}',
 'tooltip-n-mainpage'              => 'Τερέστεν το αρχικόν τη σελίδαν',
 'tooltip-n-portal'                => 'Σχετικά με το Wiκi - πώς μπορείτε να εφτάτε γιαρτήμ, πού θα ευρίετε πράγματα',
+'tooltip-n-currentevents'         => "Εύρον άλλα πληροφορίας για τ' ατά ντ' ίντανε οψεκές.",
 'tooltip-n-recentchanges'         => "Κατάλογος με τ' υστερνά αλλαγάς σο wiki.",
 'tooltip-n-randompage'            => 'Κατά τύχην εύρον σελίδαν και δείξον ατέν',
 'tooltip-n-help'                  => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
@@ -537,14 +700,25 @@ $messages = array(
 'listingcontinuesabbrev' => 'συνεχίζεται...',
 
 # Browsing diffs
-'nextdiff' => "Αϊτέστε σ' υστερναίον διαφορά →",
+'previousdiff' => '← Προτεσνόν διαφορά',
+'nextdiff'     => 'Άλλον διαφορά →',
 
 # Media information
-'file-nohires'   => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
-'show-big-image' => 'Τζιπ ψηλόν ανάλυση',
+'file-info-size'       => '($1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπος: $4)',
+'file-nohires'         => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
+'show-big-image'       => 'Τζιπ τρανόν ανάλυση',
+'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
+
+# Bad image list
+'bad_image_list' => "Η σύνταξην εν αέτς:
+
+Τα αντικείμενα τη λίστας (τα γραμμάς ντ' αχπάσκουνταν με *) και μόνον τερούμε. Ο πρώτον ο σύνδεσμος σε μιαν γραμμήν πρέπ' να δεκνίζ' σε κακόν αρχείον.
+Ήντιαν συνδέσμ' ντ' έρταν ασην ίδιαν γραμμήν οπίς θεωρούματα εξαιρέσεις, δηλαδή σελίδας όπου επορούμ' να συναντούμε την εικόναν σε σύνδεσην.",
 
 # Metadata
 'metadata'          => 'Μεταδογμένα',
+'metadata-help'     => "Αβούτον τ' αρχείον εχ' κιάλλα πληροφορίας, ίσως ασόν ψηφιακόν τη κάμεραν για το σαρωτήν το μεταχειρίσκουτον για να ίνεται.
+Τ' αρχείον αν έλλαξεν μορφήν, τα στοιχεία ίσως κ' είν' σωστά πλέον.",
 'metadata-expand'   => 'Δείξον τα λεπτομέρειας',
 'metadata-collapse' => 'Κρύψον τα λεπτομέρειας',
 
@@ -569,10 +743,16 @@ $messages = array(
 'exif-whitepoint'                  => "Χρωματικόν προσδιορισμός τ' άσπρου",
 'exif-primarychromaticities'       => 'Πρωτεύοντες χρωματισμοί',
 
+# External editor support
+'edit-externally'      => "Αλλαγήν τ' αρχείου με προγράμματα ασα εξ μερέα",
+'edit-externally-help' => 'Τερέστεν τα [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] και θα ευρίετε κι άλλα γνώσιας.',
+
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'ούλαι',
-'namespacesall' => 'όλεα',
-'monthsall'     => 'ούλαι',
+'recentchangesall' => 'ούλαι',
+'imagelistall'     => 'ούλαι',
+'watchlistall2'    => 'ούλαι',
+'namespacesall'    => 'ούλαι',
+'monthsall'        => 'ούλαι',
 
 # Multipage image navigation
 'imgmultigo' => 'Δέβα!',
@@ -581,6 +761,7 @@ $messages = array(
 'table_pager_limit_submit' => 'Δέβα',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Τερέστεν σοβαρά αλλαγάς',
 'watchlisttools-edit' => 'Τέρεν κι άλλαξον κατάλογον ωρίαγματι',
 
 );

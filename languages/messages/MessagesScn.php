@@ -5,12 +5,10 @@
  * @file
  *
  * @author Tonyfroio
- * @author Niklas Laxström
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Melos
  * @author Sarvaturi
- * @author Nike
+ * @author לערי ריינהארט
+ * @author Jon Harald Søby
  */
 
 $fallback = 'it';
@@ -280,7 +278,7 @@ $messages = array(
 'delete'            => 'elìmina',
 'deletethispage'    => 'Elìmina sta pàggina',
 'undelete_short'    => 'Ricùpira {{PLURAL:$1|na rivisioni|$1 rivisioni}}',
-'protect'           => 'pruteggi',
+'protect'           => 'Pruteggi',
 'protect_change'    => 'cancia prutizzioni',
 'protectthispage'   => 'Pruteggi sta pàggina',
 'unprotect'         => 'livari la prutizzioni',
@@ -521,7 +519,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li p
 'accountcreated'             => 'Cuntu criatu',
 'accountcreatedtext'         => "Fu criatu n'accessu pi l'utenti $1.",
 'createaccount-title'        => "Criazzioni di n'accessu a {{SITENAME}}",
-'createaccount-text'         => 'Qualcuno ($1) criau n\'accessu a {{SITENAME}} ($4) a nomu di $2, associatu cu stu ndirizzu di posta elettronica. La password pi l\'utenti "$2" è mpustata a "$3". È opportunu trasiri quantu prima e canciari la password subbutu.
+'createaccount-text'         => 'Qualcuno criau n\'accessu a {{SITENAME}} ($4) a nomu di $2, associatu cu stu ndirizzu di posta elettronica. La password pi l\'utenti "$2" è mpustata a "$3". È opportunu trasiri quantu prima e canciari la password subbutu.
 
 Si l\'accessu fu criatu pi sbagghiu, si può gnurari stu missaggiu.',
 'loginlanguagelabel'         => 'Lingua: $1',
@@ -606,7 +604,7 @@ L'ID dû bloccu è $5. Pi favuri ncludilu nte tutti li dumanni.",
 'whitelistedittitle'        => 'Ci voli èssiri riggistrati pi putiri canciari la pàggina.',
 'whitelistedittext'         => "Hai a $1 pi canciari l'artìculi.",
 'whitelistreadtitle'        => 'Ci voli èssiri riggistrati pi putiri lèggiri la pàggina',
-'whitelistreadtext'         => "&Egrave; nicissariu effittuari lu [[Special:Userlogin|login]] pi lèggiri l'artìculi.",
+'whitelistreadtext'         => "È nicissariu effittuari lu [[Special:Userlogin|login]] pi lèggiri l'artìculi.",
 'whitelistacctitle'         => 'Nun hai lu pirmissu di criari un account',
 'whitelistacctext'          => 'Pi putiri criari cunta n sta Wiki hai a fari [[Special:Userlogin|login]] e aviri li nicissari pirmissi.',
 'confirmedittitle'          => 'Cunferma dâ e-mail nicissaria pi lu canciamentu dî pàggini',
@@ -1088,22 +1086,22 @@ PICT # arcuni
 # File reversion
 'filerevert'                => 'Riprìstina $1',
 'filerevert-legend'         => 'Riprìstina file',
-'filerevert-intro'          => '<span class="plainlinks">Stai pi ripristinari lu file \'\'\'[[Media:$1|$1]]\'\'\' â [virsioni $4 dô $2, $3].</span>',
+'filerevert-intro'          => "Stai pi ripristinari lu file '''[[Media:$1|$1]]''' â [virsioni $4 dô $2, $3].",
 'filerevert-comment'        => 'Oggettu:',
 'filerevert-defaultcomment' => 'Ripristinata la virsioni dô $1, $2',
 'filerevert-submit'         => 'Riprìstina',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'Lu file [[Media:$1|$1]]\'\'\' hà statu ripristinatu â [$4 virsioni dô $2, $3].</span>',
+'filerevert-success'        => "'''Lu file [[Media:$1|$1]]''' hà statu ripristinatu â [$4 virsioni dô $2, $3].",
 'filerevert-badversion'     => 'Nun esistanu virsiona locali pricidenti dô file cû timestamp richiestu.',
 
 # File deletion
 'filedelete'                  => 'Cancella $1',
 'filedelete-legend'           => 'Cancella lu file',
 'filedelete-intro'            => "Stai pi cancillari '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Stai cancillannu la virsioni di \'\'\'[[Mèdia:$1|$1]]\'\'\' dô [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Stai cancillannu la virsioni di '''[[Media:$1|$1]]''' dô [$4 $3, $2].",
 'filedelete-comment'          => 'Mutivu:',
 'filedelete-submit'           => 'Cancella',
 'filedelete-success'          => "Lu file '''$1''' hà statu cancillatu.",
-'filedelete-success-old'      => '<span class="plainlinks">La virsioni dô $3, $2 dô file \'\'\'[[Mèdia:$1|$1]]\'\'\' hà stata cancillata.</span>',
+'filedelete-success-old'      => '<span class="plainlinks">La virsioni dô $3, $2 dô file \'\'\'[[Media:$1|$1]]\'\'\' hà stata cancillata.</span>',
 'filedelete-nofile'           => "Nta {{SITENAME}} nun c'è nuddu file $1",
 'filedelete-nofile-old'       => "'N archiviu nun ci sugnu virsioni di '''$1''' cu li carattiristichi nnicati.",
 'filedelete-iscurrent'        => 'Sta pruvannu a cancillari la virsioni cchiù ricenti di chistu file. Pi favuri, prima riturnàrilu a na virsioni pricidenti.',
@@ -1155,7 +1153,8 @@ La cuda dî prucessi a esèquiri 'n background cunteni {{PLURAL:\$7|'''1''' elem
 
 'disambiguations'      => 'Pàggini cu liami ambìgui',
 'disambiguationspage'  => 'Template:Disambigua',
-'disambiguations-text' => "Li pàggini ntâ lista ca sequi cuntèninu dî culligamenti a '''pàggini di disambiguazzioni''' e nun a l'argumentu cui avìssiru a fari rifirimentu.<br />Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li template alincati 'n [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Li pàggini ntâ lista ca sequi cuntèninu dî culligamenti a '''pàggini di disambiguazzioni''' e nun a l'argumentu cui avìssiru a fari rifirimentu.<br />
+Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li template alincati 'n [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Rinnirizzamenti duppi',
 'doubleredirectstext' => 'Chista pàggina alenca li pàggini chi rinnirìzzanu a àutri pàggini di rinnirizzamentu. Ognuna riga cunteni li culligamenti a lu primu e a lu secunnu redirect, oltri â prima riga di testu dû secunnu redirect ca di sòlitu cunteni la pàggina di distinazzioni "curretta" â quali avissi a puntari macari lu primu redirect.',
@@ -1165,9 +1164,10 @@ La cuda dî prucessi a esèquiri 'n background cunteni {{PLURAL:\$7|'''1''' elem
 'brokenredirects-edit'   => '(cancia)',
 'brokenredirects-delete' => '(cancella)',
 
-'withoutinterwiki'        => 'Pàggini senza interwiki',
-'withoutinterwiki-header' => 'Li pàggini nnicati ccà nun hànnu liami ê virsioni nta àutri lingui:',
-'withoutinterwiki-submit' => 'Ammustra',
+'withoutinterwiki'         => 'Pàggini senza interwiki',
+'withoutinterwiki-header'  => 'Li pàggini nnicati ccà nun hànnu liami ê virsioni nta àutri lingui:',
+'withoutinterwiki-summary' => 'Li pàggini nnicati ccà nun hànnu liami ê virsioni nta àutri lingui:',
+'withoutinterwiki-submit'  => 'Ammustra',
 
 'fewestrevisions' => 'Pàggini cu menu rivisioni',
 
@@ -1267,7 +1267,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 
 # E-mail user
 'mailnologin'     => 'Nuddu ndirizzu cui mannari lu missaggiu',
-'mailnologintext' => 'Hai a fari lu [[Special:Trasi|login]] e aver riggistratu na casella e-mail vàlida ntê tò [[Special:Prifirenzi|prifirenzi]] pi mannari posta alittrònica a àutri Utenti.',
+'mailnologintext' => 'Hai a fari lu [[Special:Userlogin|login]] e aver riggistratu na casella e-mail vàlida ntê tò [[Special:Preferences|prifirenzi]] pi mannari posta alittrònica a àutri Utenti.',
 'emailuser'       => "Manna n'imail a stu utenti",
 'emailpage'       => "Manna un missaggiu e-mail a l'utenti",
 'emailpagetext'   => "Si st'utenti lassau nu nnirizzu email vàlidu ntê sò prifirenzi, ci putiti mannari nu missaggiu. Lu nnirizzu email chi lassasti ntê tò prifirenzi và a cumpàriri comu mittenti di lu email, di manera chi lu distinatariu ti pò arrispùnniri.",
@@ -1388,9 +1388,9 @@ Talìa $2 pi na lista di cancillazzioni ricenti.',
 'rollbacklink'                => "canciu n'arreri",
 'rollbackfailed'              => "Canciu 'n arreri fallitu",
 'cantrollback'                => "Mpussìbbili annullari li canciamenti; l'utenti ca l'effittuau è l'ùnicu a aviri cuntribbuiutu â pàggina.",
-'alreadyrolled'               => "Nun è pussìbbili annullari li canciamenti appurtati â pàggina [[:$1]] di parti di [[User:$2|$2]] ([[User_talk:$2|discussioni]]); n'àutru utenti hà già canciatu la pàggina oppuru hà effittuatu lu rollback.
+'alreadyrolled'               => "Nun è pussìbbili annullari li canciamenti appurtati â pàggina [[:$1]] di parti di [[User:$2|$2]] ([[User talk:$2|discussioni]]); n'àutru utenti hà già canciatu la pàggina oppuru hà effittuatu lu rollback.
 
-Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User_talk:$3|discussioni]]).",
+Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User talk:$3|discussioni]]).",
 'editcomment'                 => 'Lu cummentu â mudìfica era: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) cu l'ùrtima virsioni di [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Annullati li canciamenti di $1; ritornata â virsioni pricidenti di $2.',
@@ -1545,8 +1545,8 @@ $1',
 'ipbhidename'                 => "Ammuccia lu nomu utenti dô log dî blocchi, di l'alencu dî blocchi attivi e di l'alencu utenti.",
 'badipaddress'                => 'Ndirizzu IP nun vàlidu.',
 'blockipsuccesssub'           => 'Bloccu esiquitu',
-'blockipsuccesstext'          => "[[{{ns:special}}:Contributions/$1|$1]] fu bluccatu.
-<br />Pi maggiuri nfurmazzioni, talìa la [[{{ns:special}}:Ipblocklist|lista di l'IP bluccati]] .",
+'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] fu bluccatu.<br />
+Pi maggiuri nfurmazzioni, talìa la [[Special:Ipblocklist|lista di l'IP bluccati]] .",
 'ipb-edit-dropdown'           => 'Mutivi pô bloccu',
 'ipb-unblock'                 => "Sblocca n'utenti o nu ndirizzu IP",
 'ipb-blocklist-addr'          => 'Alenca li blocchi attivi pi $1',
@@ -1569,8 +1569,10 @@ $1',
 'ipblocklist-empty'           => "L'alencu dî blocchi è vacanti.",
 'ipblocklist-no-results'      => 'Lu nnirizzu IP o nomu utenti richiestu nun è bluccatu.',
 'blocklink'                   => 'blocca',
+'unblocklink'                 => 'sblocca',
 'contribslink'                => 'cuntribbuti',
 'autoblocker'                 => 'Bluccatu automaticamenti pirchì lu ndirizzu IP è cundivisu cu l\'utenti "[[User:$1|$1]]". Lu bloccu di l\'utenti $1 fu mpostu pi lu siquenti mutivu: "\'\'\'$2\'\'\'".',
+'blocklogpage'                => 'Blocchi',
 'blocklogentry'               => 'hà bluccatu [[$1]]; scadenza $2 $3',
 'blocklogtext'                => "Chistu è l'alencu di l'azzioni di bloccu e sbloccu utenti. Li ndirizzi IP bluccati automaticamenti nun sunu alincati. Cunzurtari l'[[Special:Ipblocklist|alencu IP bluccati]] pi l'alencu dî ndirizzi e noma utenti lu cui bloccu è opirativu.",
 'unblocklogentry'             => 'hà sbluccatu "$1"',
@@ -1657,11 +1659,11 @@ La pàggina di distinazzioni "[[$1]]" asisti già. S\'addisìa cancillàrila pi 
 
 # Export
 'export'            => 'Esporta pàggini',
-'exporttext'        => "È pussìbbili espurtari lu testu e la cronoluggìa dî canciamenti di na pàggina o d'un gruppu di pàggini n furmatu XML pi mpurtàrili n àutri siti ca utilìzzanu lu software MediaWiki, attraversu la pàggina [[{{ns:special}}:Import|d'importu]].
+'exporttext'        => "È pussìbbili espurtari lu testu e la cronoluggìa dî canciamenti di na pàggina o d'un gruppu di pàggini n furmatu XML pi mpurtàrili n àutri siti ca utilìzzanu lu software MediaWiki, attraversu la pàggina [[Special:Import|d'importu]].
 
 P'espurtari li pàggini innicari li tìtuli ntâ casella di testu suttastanti, unu pi riga, e spicificari siddu s'addisìa attèniri la virsioni currenti e tutti li virsioni pricidenti, cu li dati dâ cronoluggìa dâ pàggina, oppuru surtantu l'ùrtima virsioni e li dati currispunnenti a l'ùrtimu canciamentu. 
 
-Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] p'espurtari \"[[{{Mediawiki:mainpage}}]]\".",
+Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] p'espurtari \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Ncludi sulu la rivisioni attuali, nun la ntera cronoluggìa',
 'exportnohistory'   => "---- '''Nota:''' l'espurtazzioni dâ ntera cronoluggìa dî pàggini attraversu sta nterfaccia hà stata disattivata pi mutivi ligati a li pristazzioni dû sistema.",
 'export-submit'     => 'Espurtazzioni',

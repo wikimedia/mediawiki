@@ -4,11 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Val2397
  * @author Katimawan2005
+ * @author Val2397
+ * @author Jon Harald Søby
  * @author SPQRobin
- * @author Nike
- * @author Siebrand
  */
 
 $messages = array(
@@ -200,7 +199,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'Tungkul {{SITENAME}}',
-'aboutpage'         => 'Proyektu:tungkul',
+'aboutpage'         => 'Project:tungkul',
 'bugreports'        => 'Tala da reng bug',
 'bugreportspage'    => 'Project:Ulat kareng bug',
 'copyright'         => 'Mipaintulutan ing laman na niti lalam ning $1.',
@@ -710,7 +709,7 @@ Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang lam
 'mergehistory-list'                => 'Amlat ding miyalilan a maliaring pisanib (mergeable edit history)',
 'mergehistory-merge'               => 'Maliari lang isanib king [[:$2]] deng makatuking miyalilan king [[:$1]].
 Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bayu ing mesabing oras ing misanib. Tandanan mung misubli (ma-reset) ya ining kolum nung gamitan la reng suglung a paglibut (navigational links).',
-'mergehistory-go'                  => 'Pakit la reng mibayung maliaring pisanib (mergeable edits(',
+'mergehistory-go'                  => 'Pakit la reng mibayung maliaring pisanib (mergeable edits)',
 'mergehistory-submit'              => 'Pisamut la reng meyalili',
 'mergehistory-empty'               => 'Alang mibayu/miyalilan a maliaring pisanib.',
 'mergehistory-success'             => 'Melaus ing pamisanib ning/da ring $3 {{PLURAL:$3|pamagbayu|pamagbayu}} ning [[:$1]] king [[:$2]].',
@@ -1039,18 +1038,18 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 # File reversion
 'filerevert'                => 'Isubli ya ing $1',
 'filerevert-legend'         => 'Isubli (revert) ya ing simpan',
-'filerevert-intro'          => '<span class="plainlinks">Susubli me ing \'\'\'[[Media:$1|$1]]\'\'\' king [$4 bersion aniang $3, $2].</span>',
+'filerevert-intro'          => "Susubli me ing '''[[Media:$1|$1]]''' king [$4 bersion aniang $3, $2].",
 'filerevert-comment'        => 'Komentu:',
 'filerevert-defaultcomment' => 'Misubli ya king bersion aniang $2, $1',
 'filerevert-submit'         => 'Isubli',
-'filerevert-success'        => '<span class="plainlinks">Ing \'\'\'[[Media:$1|$1]]\'\'\' misubli ya king [$4 bersion aniang $3, $2].</span>',
+'filerevert-success'        => "Ing '''[[Media:$1|$1]]''' misubli ya king [$4 bersion aniang $3, $2].",
 'filerevert-badversion'     => 'Alang sadiang/minunang lokal a bersion na niting simpan a tambing maki timestamp.',
 
 # File deletion
 'filedelete'                  => 'Buran ya ing $1',
 'filedelete-legend'           => 'Buran ya ing simpan (file)',
 'filedelete-intro'            => "Buburan me ing '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Buburan me ing bersion ning \'\'\'[[Media:$1|$1]]\'\'\' aniang [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Buburan me ing bersion ning '''[[Media:$1|$1]]''' aniang [$4 $3, $2].",
 'filedelete-comment'          => 'Sangkan king pamamura:',
 'filedelete-submit'           => 'Buran',
 'filedelete-success'          => "Mebura ne ing '''$1'''.",
@@ -1102,7 +1101,7 @@ Kayabe la kareti deng bulung \"pamisabi-sabi\", bulung tungkul king {{SITENAME}}
 Mekata'''\$3''' {{PLURAL:\$3|de linawe|de linawe}} at mekata'''\$4''' de {{PLURAL:\$4|binayu|binayu}} ing {{SITENAME}} manibat aniang melalang ya iti. 
 King kabilugan, miras ya iti king average a '''\$5''' a pamagbayu o edit balang bulung, at '''\$6''' a pamaglawe balang edit.  
 
-Ing kaba ning [http://meta.wikimedia.org/wiki/Help:Job_queue job queue]  '''\$7''' ya.",
+Ing kaba ning [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]  '''\$7''' ya.",
 'userstatstext'          => "Ating {{PLURAL:$1|'''1''' a makarehistrung [[Special:Listusers|talagamit]]|'''$1''' makarehistrung [[Special:Listusers|talagamit]]}}, at kareti '''$2''' (o '''$4%''') {{PLURAL:$2|ing|ing}} maki katuliran (rights) a $5.",
 'statistics-mostpopular' => 'Bulung a pekamaralas dang linawe',
 
@@ -1708,7 +1707,7 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 'importbadinterwiki'         => 'Maki diperensia ya ing suglung a interwiki',
 'importnotext'               => 'Ala yang laman o sulat',
 'importsuccess'              => 'Yari na ing pamaglub! (import finished)',
-'importhistoryconflict'      => 'E la mipapareu deng pamagbayu king amlat (mapaliaring milub neng sadia ing bulung a aini.',
+'importhistoryconflict'      => 'E la mipapareu deng pamagbayu king amlat (mapaliaring milub neng sadia ing bulung a aini).',
 'importnosources'            => 'Alang pikuanan a transwiki kareng pamaglub (imports)  a mituldu (defined), at makapatda ing diretsung pamaglulan kareng amlat.',
 'importnofile'               => 'Alang milulan a simpan a milub (import file).',
 'importuploaderrorsize'      => 'E melaus ing pamaglulan kareng simpan a milub (import file). Mas maragul ya ing simpan kesa ketang dagul a mipaintulutan.',

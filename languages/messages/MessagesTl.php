@@ -5,8 +5,6 @@
  * @file
  *
  * @author Sky Harbor
- * @author Gangleri
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Felipe Aira
  */

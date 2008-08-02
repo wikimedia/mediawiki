@@ -8,8 +8,6 @@
  * @author Cbrown1023
  */
 
-
-
 $messages = array(
 # Dates
 'sunday'        => 'Tshipi',

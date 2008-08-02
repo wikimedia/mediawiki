@@ -5,9 +5,17 @@
  * @file
  *
  * @author Hakka
+ * @author Hintha
  */
 
 $messages = array(
+# User preference toggles
+'tog-watchcreations' => 'ကျွန်တော်ထွင်သည့်စာမျက်နှာများကို စောင့်​ကြည့်​စာ​ရင်း​ထဲ ပေါင်းထည့်ပါ',
+
+'underline-always' => 'အမြဲ',
+
+'skinpreview' => '(နမူနာ)',
+
 # Dates
 'sunday'        => 'တ​နင်္ဂ​နွေ​',
 'monday'        => 'တ​နင်္လာ​',
@@ -16,6 +24,13 @@ $messages = array(
 'thursday'      => 'ကြာ​သာ​ပ​တေး​',
 'friday'        => 'သော​ကြာ​',
 'saturday'      => 'စ​နေ​',
+'sun'           => 'တနင်္ဂနွေ',
+'mon'           => 'တနင်္ဂလာ',
+'tue'           => 'အင်္ဂါ',
+'wed'           => 'ဗုဒ္ဓဟူး',
+'thu'           => 'ကြာသပတေး',
+'fri'           => 'သောကြာ',
+'sat'           => 'စနေ',
 'january'       => 'ဇန်​န​ဝါ​ရီ​',
 'february'      => 'ဖေ​ဖော်​ဝါ​ရီ​',
 'march'         => 'မတ်​',
@@ -42,7 +57,9 @@ $messages = array(
 'december-gen'  => 'ဒီ​ဇင်​ဘာ​',
 'may'           => 'မေ​',
 
+'about'          => 'အကြောင်း',
 'cancel'         => 'မ​လုပ်​တော့​ပါ​',
+'qbfind'         => 'ရှာပါ',
 'qbedit'         => 'ပြင်​ဆင်​ရန်​',
 'qbspecialpages' => 'အ​ထူး​စာ​မျက်​နှာ​',
 'mytalk'         => 'ကျွန်​တော့​ပြော​ရေး​ဆို​ရာ​',
@@ -56,9 +73,11 @@ $messages = array(
 'history_short'    => 'မှတ်​တမ်း​',
 'printableversion' => 'ပ​ရင်​တာ​ထုတ်​ရန်​',
 'permalink'        => 'ပုံ​သေ​လိပ်​စာ​',
+'print'            => 'ပရင့်',
 'edit'             => 'ပြင်​ဆင်​ရန်​',
 'delete'           => 'ဖျက်​ပါ​',
 'protect'          => 'ထိမ်း​သိမ်း​ပါ​',
+'newpage'          => 'စာမျက်နှာအသစ်',
 'talk'             => 'ပြော​ရေး​ဆို​ရာ​',
 'toolbox'          => 'တန်​ဆာ​ပ​လာ​',
 'otherlanguages'   => 'အ​ခြား​ဘာ​သာ​ဖြင့်​',
@@ -66,6 +85,7 @@ $messages = array(
 'jumptosearch'     => 'ရှာ​ဖွေ​ရန်​',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'         => '{{SITENAME}}အကြောင်း',
 'currentevents'     => 'လက်​ရှိ​လုပ်​ငန်း​များ​',
 'currentevents-url' => 'Project:လက်​ရှိ​လုပ်​ငန်း​များ​',
 'disclaimers'       => 'သ​တိ​ပေး​ချက်​များ​',
@@ -78,10 +98,13 @@ $messages = array(
 'youhavenewmessagesmulti' => 'သင့်​အ​တွက်​သီ​တင်း​အ​သစ်​ $1 တွင်​ရှိ​သည်​',
 'editsection'             => 'ပြင်​ဆင်​ရန်​',
 'editold'                 => 'ပြင်​ဆင်​ရန်​',
+'showtoc'                 => 'ပြ',
+'hidetoc'                 => 'ဝှက်',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'စာ​မျက်​နှာ​',
-'nstab-user' => 'မှတ်​ပုံ​တင်​အ​သုံး​ပြု​သူ​၏​စာ​မျက်​နှာ​',
+'nstab-main'  => 'စာ​မျက်​နှာ​',
+'nstab-user'  => 'မှတ်​ပုံ​တင်​အ​သုံး​ပြု​သူ​၏​စာ​မျက်​နှာ​',
+'nstab-image' => 'ဖိုင်',
 
 # General errors
 'viewsource' => 'ဆို့​ကို​ပြ​ပါ​',
@@ -97,32 +120,75 @@ $messages = array(
 'logout'             => 'ထွက်​ပါ​',
 'userlogout'         => 'ထွက်​ပါ​',
 'notloggedin'        => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'nologinlink'        => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
 'createaccount'      => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
 'gotaccountlink'     => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
 'youremail'          => 'အီ​မေး:',
 'username'           => 'မှတ်​ပုံ​တင်​အ​မည်:',
+'uid'                => 'မှတ်​ပုံ​တင်​ID:',
+'yourrealname'       => 'နာမည်ရင်း:',
+'yourlanguage'       => 'ဘာသာ:',
+'yournick'           => 'ဆိုင်း:',
 'email'              => 'အီ​မေး​',
+'loginsuccesstitle'  => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ခြင်းအောင်မြင်သည်။',
+'loginlanguagelabel' => 'ဘာသာ: $1',
+
+# Edit page toolbar
+'italic_sample' => 'စာသားဆောင်း',
+'italic_tip'    => 'စာသားဆောင်း',
+'math_sample'   => 'သည်မှာသင်္ချာပုံသေနည်းအားထည့်',
+'math_tip'      => 'သင်္ချာပုံသေနည်း (LaTeX)',
+'hr_tip'        => 'မျဉ်းလဲ',
 
 # Edit pages
 'summary'            => 'အ​ကျဉ်း​ချုပ်​',
 'minoredit'          => 'သာ​မန်​ပြင်​ဆင်​မှု​ဖြစ်​ပါ​သည်​',
 'watchthis'          => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 'savearticle'        => 'သိမ်း​ပါ​',
+'preview'            => 'နမူနာ',
 'showpreview'        => 'န​မူ​နာ​ပြ​ပါ​',
+'showlivepreview'    => 'နမူနာအရှင်',
 'showdiff'           => 'ပြင်​ဆင်​ထား​သည်​များ​ကို​ပြ​ပါ​',
+'summary-preview'    => 'အ​ကျဉ်း​ချုပ်​န​မူ​နာ',
 'whitelistedittitle' => 'ပြင်​ဆင်​ခြင်း​သည်​မှတ်​ပုံ​တင်​ရန်​လို​သည်​',
+'loginreqtitle'      => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ဖို့လိုပါတယ်',
 'loginreqlink'       => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
+'accmailtitle'       => 'ဝှက်​စ​ကား​လုံးကိုပို့ပြီးပြီ',
+'newarticle'         => '(အသစ်)',
+
+# History pages
+'page_first' => 'ပထမဆုံး',
+'page_last'  => 'အနောက်ဆုံး',
+
+# Revision deletion
+'rev-delundel' => 'ပြ/ဝှက်',
 
 # Search results
 'powersearch' => 'ရှာ​ဖွေ​ရန်​',
 
 # Preferences page
+'preferences'       => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
 'mypreferences'     => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
 'prefsnologin'      => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'changepassword'    => 'ဝှက်​စ​ကား​လုံးကိုပြောင်းပါ',
+'math'              => 'သင်္ချာ',
+'datetime'          => 'နေ့စွဲနှင့် အချိန်',
+'oldpassword'       => 'ဝှက်​စ​ကား​လုံးအဟောင်း:',
+'newpassword'       => 'ဝှက်​စ​ကား​လုံးအသစ်:',
+'retypenew'         => 'ဝှက်​စ​ကား​လုံးပအသစ်ကိုထပ်ရိုက်ပါ:',
 'searchresultshead' => 'ရှာ​ဖွေ​ရန်​',
 
+# Groups
+'group-all' => '(အားလုံး)',
+
 # Recent changes
-'recentchanges' => 'လတ်​တ​လော​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchanges'   => 'လတ်​တ​လော​အ​ပြောင်း​အ​လဲ​များ​',
+'rcshowhideminor' => 'အသေးအမွှာပြင်ဆင်ရန်$1',
+'rcshowhidebots'  => 'ဆက်ရုပ်များ$1',
+'hide'            => 'ဝှက်',
+'show'            => 'ပြ',
+'newpageletter'   => 'သစ်',
+'boteditletter'   => 'ဆ',
 
 # Recent changes linked
 'recentchangeslinked' => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
@@ -131,42 +197,89 @@ $messages = array(
 'upload'            => 'ဖိုင်​တင်​ရန်​',
 'uploadbtn'         => 'ဖိုင်​တင်​ရန်​',
 'uploadnologin'     => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'filename'          => 'ဖိုင်အမည်',
 'filedesc'          => 'အ​ကျဉ်း​ချုပ်​',
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
 'watchthisupload'   => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 
 # Image list
-'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',
+'imagelist'          => 'ဖိုင်စာရင်း',
+'ilsubmit'           => 'ရှာ​ဖွေ​ရန်​',
+'imgfile'            => 'ဖိုင်',
+'filehist'           => 'ဖိုင်မှတ်တမ်း',
+'filehist-deleteall' => 'အားလုံးဖျက်',
+'filehist-deleteone' => 'ဖျက်',
+'filehist-current'   => 'ကာလပေါ်',
+'filehist-datetime'  => 'နေ့စွဲ/အချိန်',
+'filehist-filesize'  => 'ဖိုင်ဆိုက်',
+'imagelist_date'     => 'နေ့စွဲ',
+
+# File deletion
+'filedelete'        => '$1 ကိုဖျက်ပါ',
+'filedelete-legend' => 'ဖိုင်ကိုဖျက်ပါ',
+'filedelete-submit' => 'ဖျက်',
+
+# Unused templates
+'unusedtemplateswlh' => 'အခြားလိပ်စာများ',
 
 # Random page
 'randompage' => 'ကျ​ပန်း​စာ​မျက်​နှာ​',
 
+# Statistics
+'statistics' => 'စာရင်းအင်း',
+'sitestats'  => '{{SITENAME}} စာရင်းအင်းများ',
+
 'brokenredirects-edit'   => '(ပြင်​ဆင်​ရန်)',
 'brokenredirects-delete' => '(ဖျက်​ပါ)',
 
+'withoutinterwiki-submit' => 'ပြ',
+
 # Miscellaneous special pages
+'allpages'          => 'စာမျက်နှာအားလုံး',
+'shortpages'        => 'စာမျက်နှာတို',
 'specialpages'      => 'အ​ထူး​စာ​မျက်​နှာ​',
+'newpages'          => 'စာမျက်နှာအသစ်',
 'newpages-username' => 'မှတ်​ပုံ​တင်​အ​မည်:',
+'ancientpages'      => 'အဟောင်းဆုံးစာမျက်နှာ',
 'move'              => 'ရွေ့​ပြောင်း​ပါ​',
+'movethispage'      => 'ဤစာမျက်နှာအားရွှေ့ပြောင်းပါ',
 
 # Book sources
 'booksources-go' => 'သွား​ပါ​',
+
+'data' => 'စာရင်းအင်း',
 
 # Special:Log
 'log-search-submit' => 'သွား​ပါ​',
 
 # Special:Allpages
+'allarticles'    => 'စာမျက်နှာအားလုံး',
 'allpagessubmit' => 'သွား​ပါ​',
+
+# Special:Listusers
+'listusers-submit' => 'ပြ',
+
+# E-mail user
+'emailsend' => 'ပို့',
 
 # Watchlist
 'watchlist'     => 'စောင့်​ကြည့်​စာ​ရင်း​',
 'mywatchlist'   => 'စောင့်​ကြည့်​စာ​ရင်း​',
+'watchlistfor'  => "('''$1'''အတွက်)",
 'watch'         => 'စောင့်​ကြည့်​ပါ​',
 'watchthispage' => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 
+# Delete/protect/revert
+'deletepage'       => 'စာမျက်နှာကိုဖျက်ပါ',
+'confirm'          => 'အတည်ပြု',
+'delete-confirm'   => '"$1"ကို ဖျက်ပါ',
+'delete-legend'    => 'ဖျက်',
+'restriction-type' => 'အခွင့်:',
+
 # Restrictions (nouns)
-'restriction-edit' => 'ပြင်​ဆင်​ရန်​',
-'restriction-move' => 'ရွေ့​ပြောင်း​ပါ​',
+'restriction-edit'   => 'ပြင်​ဆင်​ရန်​',
+'restriction-move'   => 'ရွေ့​ပြောင်း​ပါ​',
+'restriction-create' => 'ထွင်',
 
 # Undelete
 'undelete-search-submit' => 'ရှာ​ဖွေ​ရန်​',
@@ -174,6 +287,8 @@ $messages = array(
 # Contributions
 'contributions' => 'မှတ်​ပုံ​တင်​အ​သုံး​ပြု​သူ​:ပံ​ပိုး​မှု​များ​',
 'mycontris'     => 'ကျွန်​တော်​ပေး​သော​ပံ​ပိုး​မှု​များ​',
+'contribsub2'   => '$1အတွက် ($2)',
+'uctop'         => '(အထိပ်)',
 
 'sp-contributions-submit' => 'ရှာ​ဖွေ​ရန်​',
 
@@ -182,28 +297,76 @@ $messages = array(
 
 # Block/unblock
 'ipbreason'          => 'အ​ကြောင်း​ပြ​ချက်:',
+'ipbother'           => 'အခြားအချိန်:',
+'ipboptions'         => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'     => 'အခြား',
 'ipblocklist-submit' => 'ရှာ​ဖွေ​ရန်​',
+'expiringblock'      => '$1 ဆုံးမည်',
 
 # Move page
-'movepage'    => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
-'movearticle' => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
-'movenologin' => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
-'movepagebtn' => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
-'movedto'     => 'ရွေ့​ပြောင်း​ရန်​နေ​ရာ​',
-'1movedto2'   => '[[$1]]  မှ​ [[$2]] သို့​',
-'movereason'  => 'အ​ကြောင်း​ပြ​ချက်​',
+'movepage'     => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'movearticle'  => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'movenologin'  => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
+'movepagebtn'  => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'pagemovedsub' => 'ပြောင်းရွှေ့ခြင်းအောင်မြင်သည်',
+'movedto'      => 'ရွေ့​ပြောင်း​ရန်​နေ​ရာ​',
+'1movedto2'    => '[[$1]]  မှ​ [[$2]] သို့​',
+'movereason'   => 'အ​ကြောင်း​ပြ​ချက်​',
 
 # Namespace 8 related
-'allmessages' => 'စ​နစ်​၏​သ​တင်း​များ​',
+'allmessages'     => 'စ​နစ်​၏​သ​တင်း​များ​',
+'allmessagesname' => 'အမည်',
+
+# Thumbnails
+'thumbnail-more' => 'ချဲ့',
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => 'ထွက်​ပါ​',
-'tooltip-ca-move'   => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'tooltip-pt-userpage'    => 'ကျွန်တော့စာမျက်နှာ',
+'tooltip-pt-mytalk'      => 'ကျွန်​တော့​ပြော​ရေး​ဆို​ရာ​',
+'tooltip-pt-preferences' => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
+'tooltip-pt-logout'      => 'ထွက်​ပါ​',
+'tooltip-ca-protect'     => 'ဤစာမျက်နှာကို ထိန်းသိမ်းပါ',
+'tooltip-ca-delete'      => 'ဤစာမျက်နှာဖျက်ပါ',
+'tooltip-ca-move'        => 'ဤ​စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
+'tooltip-n-sitesupport'  => 'အားပေးပါ',
+'tooltip-t-upload'       => 'ဖိုင်တင်ပါ',
+'tooltip-save'           => 'ပြင်ဆင်ရန်သိမ်းပါ',
+
+# EXIF tags
+'exif-exposuretime-format' => '$1 စက္ကန့် ($2)',
+'exif-gpsaltitude'         => 'အမြင့်',
+
+'exif-meteringmode-255' => 'အခြား',
+
+'exif-lightsource-1' => 'နေ့အလင်း',
+
+'exif-focalplaneresolutionunit-2' => 'လက်မှတ်',
+
+'exif-scenecapturetype-3' => 'ညနေပုံ',
+
+# 'all' in various places, this might be different for inflected languages
+'recentchangesall' => 'အားလုံး',
+'imagelistall'     => 'အားလုံး',
+'watchlistall2'    => 'အားလုံး',
+'namespacesall'    => 'အားလုံး',
+'monthsall'        => 'အားလုံး',
+
+# E-mail address confirmation
+'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
 
 # Multipage image navigation
 'imgmultigo' => 'သွား​ပါ!',
 
 # Table pager
 'table_pager_limit_submit' => 'သွား​ပါ​',
+
+# Auto-summaries
+'autosumm-new' => 'စာမျက်နှာအသစ်: $1',
+
+# Special:Version
+'version-other' => 'အခြား',
+
+# Special:Filepath
+'filepath-page' => 'ဖိုင်:',
 
 );

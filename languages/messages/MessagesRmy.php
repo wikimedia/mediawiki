@@ -4,12 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Niklas Laxström
- * @author G - ג
- * @author Desiphral
- * @author Siebrand
- * @author Nike
  * @author לערי ריינהארט
+ * @author Desiphral
  * @author Jon Harald Søby
  */
 
@@ -118,7 +114,7 @@ $messages = array(
 'viewtalkpage'     => 'Dikh i diskucia',
 'otherlanguages'   => 'Avre ćhibande',
 'lastmodifiedat'   => 'O palutno paruvipen $2, $1.', # $1 date, $2 time
-'viewcount'        => 'Kadaya patrin dikhlilyas {{plural:$1|one time|$1var}}.',
+'viewcount'        => 'Kadaya patrin dikhlilyas {{PLURAL:$1|one time|$1var}}.',
 'jumpto'           => 'Ja kai:',
 'jumptonavigation' => 'phiripen',
 'jumptosearch'     => 'rodipen',
@@ -231,7 +227,7 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'showpreview'        => 'Dikh sar avelas i patrin',
 'showlivepreview'    => 'Jivutno angledikhipen',
 'showdiff'           => 'Dikh le paruvimata',
-'whitelistedittitle' => 'Trebul o [[Special:Userlogin|autentifikaripen]] kashte editisares',
+'whitelistedittitle' => 'Trebul o autentifikaripen kashte editisares',
 'whitelistedittext'  => 'Trebul te [[Special:Userlogin|autentifikisares]] kashte editisares artikolurya.',
 'whitelistreadtitle' => 'Trebul o autentifikaripen kashte drabares',
 'whitelistreadtext'  => 'Trebul te [[Special:Userlogin|autentifikisares]] kashte drabares artikolurya.',

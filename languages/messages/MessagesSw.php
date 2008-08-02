@@ -4,16 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
- * @author Siebrand
- * @author Robert Ullmann
  * @author Malangali
- * @author Nike
+ * @author לערי ריינהארט
  * @author SPQRobin
  * @author Marcos
+ * @author Robert Ullmann
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -185,7 +181,7 @@ $messages = array(
 'remembermypassword'    => 'Nikumbuke katika tarakilishi hii',
 'loginproblem'          => '<b>Tatizo limetokea wakati ulipojaribu kuingia.</b><br />Jaribu tena!',
 'login'                 => 'Ingia',
-'loginprompt'           => 'Lazima kompyuta yako ipokee [[kuki]] ili uweze kuingia kwenye {{SITENAME}}.',
+'loginprompt'           => 'Lazima kompyuta yako ipokee kuki ili uweze kuingia kwenye {{SITENAME}}.',
 'userlogin'             => 'Ingia/ sajili akaunti',
 'logout'                => 'Toka',
 'userlogout'            => 'Toka',
@@ -201,7 +197,9 @@ $messages = array(
 'prefs-help-realname'   => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
 'loginerror'            => 'Kosa la kuingia',
 'nocookiesnew'          => "Umesajiliwa, lakini bado hujaingizwa. {{SITENAME}} inatumia ''kuki'' ili watumiaji waingizwe. Kompyuta yako inazuia ''kuki''. Tafadhali, ondoa kizuizi hicho uingie kwa kutumia jina mpya na neno la siri.",
-'nocookieslogin'        => '{{SITENAME}} inatumia [[kuki]] ili watumiaji waweze kuingia. Kompyuta yako inakataa kupokea kuki. Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
+'nocookieslogin'        => '{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.
+Kompyuta yako inakataa kupokea kuki.
+Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
 'loginsuccesstitle'     => 'Umefaulu kuingia',
 'loginsuccess'          => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
 'nosuchuser'            => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya, au sajili akaunti mpya.',
@@ -234,7 +232,7 @@ kuthibitisha kwamba wewe ndiyo ni mwenye akaunti.',
 'italic_tip'      => 'Matini ya italiki',
 'link_sample'     => 'Jina la kiungo',
 'link_tip'        => 'Kiungo cha ndani',
-'extlink_sample'  => 'http://www.mfano.com jina la kiungo',
+'extlink_sample'  => 'http://www.example.com jina la kiungo',
 'extlink_tip'     => 'Kiungo cha nje (kumbuka kuanza na http:// )',
 'headline_sample' => 'Matini ya kichwa cha habari',
 'headline_tip'    => 'Kichwa cha habari, saizi 2',

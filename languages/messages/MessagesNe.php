@@ -4,9 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author ne.wikipedia.org sysops
  * @author SPQRobin
- * @author Nike
+ * @author ne.wikipedia.org sysops
  */
 
 $digitTransformTable = array(
@@ -333,7 +332,8 @@ $messages = array(
 'brokenredirects'     => 'टुटेका रिडाइरेक्टहरू',
 'brokenredirectstext' => 'तलका लिङ्कहरु ले हुदै नभएका पृष्ठहरुलाइ जोड्न खोज्छन्:',
 
-'withoutinterwiki-header' => 'यी पानाहरूले अन्य भाषाका संस्करणहरूमा संबन्ध राखेका छैनन्:',
+'withoutinterwiki-header'  => 'यी पानाहरूले अन्य भाषाका संस्करणहरूमा संबन्ध राखेका छैनन्:',
+'withoutinterwiki-summary' => 'यी पानाहरूले अन्य भाषाका संस्करणहरूमा संबन्ध राखेका छैनन्:',
 
 # Miscellaneous special pages
 'specialpage-empty' => 'यो पृष्ठ खाली छ।',
@@ -379,8 +379,7 @@ $messages = array(
 'listusers-submit' => 'देखाउनुहोस्',
 
 # E-mail user
-'mailnologin'     => 'ईमेल पठाउने ठेगाना नै भएन । 
-<br>No send address',
+'mailnologin'     => 'ईमेल पठाउने ठेगाना नै भएन ।',
 'mailnologintext' => 'तपाईले अरु प्रयोगकर्ताहरुलाई ईमेल पठाउनको लागी आफु पहिले [[Special:Userlogin|प्रवेश(लगइन)गरेको]] हुनुपर्छ र [[Special:Preferences|आफ्नो रोजाइहरुमा]] यौटा वैध ईमेल ठेगाना भएको हुनुपर्छ।',
 'emailuser'       => 'यो प्रयोगकर्तालाई ई-मेल पठाउनुहोस्',
 'emailpage'       => 'प्रयोगकर्तालाई इमेल गर्नुहोस्',

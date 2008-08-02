@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author לערי ריינהארט
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  */
@@ -1243,6 +1244,20 @@ $2',
 אנא שיקלו האם יהיה זה נכון להמשיך בהעלאת הקובץ.
 יומן המחיקות של הקובץ מוצג להלן:",
 'filename-bad-prefix'         => 'שם הקובץ שאתם מעלים מתחיל עם <strong>"$1"</strong>, שהוא שם שאינו מתאר את הקובץ ובדרך כלל מוכנס אוטומטית על־ידי מצלמות דיגיטליות. אנא בחרו שם מתאים יותר לקובץ, שיתאר את תכניו.',
+'filename-prefix-blacklist'   => ' #<!-- נא להשאיר שורה זו בדיוק כפי שהיא --> <pre>
+# התחביר הוא כדלקמן:
+#   * כל דבר מתו "#" לסוף השורה הוא הערה
+#   * כל שורה לא ריקה היא קידומת לשמות קבצים טיפוסיים שמצלמות דיגיטליות נותנות אוטומטית
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # מספר טלפונים סלולריים
+IMG # כללי
+JD # Jenoptik
+MGP # Pentax
+PICT # שונות
+ #</pre> <!-- נא להשאיר שורה זו בדיוק כפי שהיא -->',
 
 'upload-proto-error'      => 'פרוטוקול שגוי',
 'upload-proto-error-text' => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
@@ -1265,6 +1280,7 @@ $2',
 
 # Image list
 'imagelist'                 => 'רשימת תמונות',
+'imagelist-summary'         => 'דף זה מציג את כל הקבצים שהועלו. כברירת מחדל מוצגים הקבצים האחרונים שהועלו בראש הרשימה. לחיצה על כותרת של עמודה משנה את המיון.',
 'imagelisttext'             => 'להלן רשימה של {{plural:$1|תמונה אחת|$1 תמונות}}, ממוינות $2:',
 'getimagelist'              => 'מושך את רשימת התמונות',
 'ilsubmit'                  => 'חיפוש',
@@ -1387,9 +1403,10 @@ $2',
 'brokenredirects-edit'   => '(עריכה)',
 'brokenredirects-delete' => '(מחיקה)',
 
-'withoutinterwiki'        => 'דפים ללא קישורי שפה',
-'withoutinterwiki-header' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
-'withoutinterwiki-submit' => 'הצגה',
+'withoutinterwiki'         => 'דפים ללא קישורי שפה',
+'withoutinterwiki-header'  => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
+'withoutinterwiki-summary' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
+'withoutinterwiki-submit'  => 'הצגה',
 
 'fewestrevisions' => 'הדפים בעלי מספר העריכות הנמוך ביותר',
 

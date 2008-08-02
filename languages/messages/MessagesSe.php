@@ -5,15 +5,11 @@
  * @file
  *
  * @author Skuolfi
- * @author G - ג
- * @author Siebrand
- * @author Teak
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
+ * @author Teak
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -274,7 +270,8 @@ $messages = array(
 'logouttitle'                => 'Olggosčállin',
 'logouttext'                 => 'Leat dál čálligoahtán olggos {{GRAMMAR:elative|{{SITENAME}}}}. Sáhtat joatkit {{GRAMMAR:genitive|{{SITENAME}}}} geavaheami anonyman, dahje čálligoahtit ođđasit sisa.',
 'welcomecreation'            => '== Bures boahtin, $1! ==
-Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Preferences|{{GRAMMAR:genitive|{{SITENAME}}}} iežat ásahusaid]].',
+Du geavaheaddjidovddaldat lea dál anus.
+Ále vajáldahte rievdadit {{GRAMMAR:genitive|{{SITENAME}}}} iežat ásahusaid.',
 'loginpagetitle'             => 'Sisačállin',
 'yourname'                   => 'Geavaheaddjidovddaldat',
 'yourpassword'               => 'Suollemassátni:',
@@ -354,7 +351,7 @@ Du geavaheaddjidovddaldat lea dál anus. Ále vajáldahte rievdadit [[Special:Pr
 'italic_tip'      => 'Vitnju teaksta',
 'link_sample'     => 'liŋka',
 'link_tip'        => 'Siskaldas liŋka',
-'extlink_sample'  => 'http://www.ovdamearka.com liŋkka bájilčála',
+'extlink_sample'  => 'http://www.example.com liŋkka bájilčála',
 'extlink_tip'     => 'Wiki olggobeal liŋka (muite http:// ovddas)',
 'headline_sample' => 'Bájilčálateaksta',
 'headline_tip'    => 'Bajilčála',
@@ -663,7 +660,7 @@ $1 | $2',
 
 # Image list
 'imagelist'                 => 'Fiilalogahallan',
-'imagelisttext'             => 'Vuolábealde lea <strong>$1</strong> fiilla ordnejuvvon <strong>$2</strong>.',
+'imagelisttext'             => "Vuolábealde lea '''$1''' fiilla ordnejuvvon $2.",
 'getimagelist'              => 'fiilalogahallan viččojuvvo',
 'ilsubmit'                  => 'Oza',
 'showlast'                  => 'Čájet maŋimus $1 fiilla $2.',
@@ -703,18 +700,18 @@ $1 | $2',
 # File reversion
 'filerevert'                => 'Fiilla $1 máhcaheapmi',
 'filerevert-legend'         => 'Fiilla máhcaheapmi',
-'filerevert-intro'          => '<span class="plainlinks">Leat máhcaheami fiilla \'\'\'[[Media:$1|$1]]\'\'\' [$4 veršuvdnii, mii ráhdaduvvui $2 diibmu $3].</span>',
+'filerevert-intro'          => "Leat máhcaheami fiilla '''[[Media:$1|$1]]''' [$4 veršuvdnii, mii ráhdaduvvui $2 diibmu $3].",
 'filerevert-comment'        => 'Sivva',
 'filerevert-defaultcomment' => 'Máhcahuvvui veršuvdnii, mii ráhkaduvvui $1 diibmu $2',
 'filerevert-submit'         => 'Máhcat',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' lea máhcahvvon [$4 veršuvdnii, mii ráhkaduvvui $2 diibmu $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' lea máhcahvvon [$4 veršuvdnii, mii ráhkaduvvui $2 diibmu $3].",
 'filerevert-badversion'     => 'Fiillas ii leat ráhkaduvvon veršuvdna dalle.',
 
 # File deletion
 'filedelete'           => 'Sihko $1',
 'filedelete-legend'    => 'Sihko fiilla',
 'filedelete-intro'     => "Don leat sihkomin '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old' => '<span class="plainlinks">Don leat sihkomin veršuvdna \'\'\'[[Media:$1|$1]]\'\'\'  [$4 $3, $2].</span>',
+'filedelete-intro-old' => "Don leat sihkomin veršuvdna '''[[Media:$1|$1]]'''  [$4 $3, $2].",
 'filedelete-comment'   => 'Kommeanta:',
 'filedelete-submit'    => 'Sihko',
 'filedelete-success'   => "'''$1''' lea sihkojuvvon.",
@@ -760,8 +757,9 @@ $1 | $2',
 'brokenredirects-edit'   => '(rievdat)',
 'brokenredirects-delete' => '(sihko)',
 
-'withoutinterwiki'        => 'Siiddut, main eai leat giellaliŋkkat',
-'withoutinterwiki-header' => 'Čuovvovaš siiddut eai čujut eará gielat veršuvnnaidda:',
+'withoutinterwiki'         => 'Siiddut, main eai leat giellaliŋkkat',
+'withoutinterwiki-header'  => 'Čuovvovaš siiddut eai čujut eará gielat veršuvnnaidda:',
+'withoutinterwiki-summary' => 'Čuovvovaš siiddut eai čujut eará gielat veršuvnnaidda:',
 
 'fewestrevisions' => 'Siiddut, mat leat rievdáduvvon hárvet',
 
@@ -928,7 +926,8 @@ $1 | $2',
 'historywarning'              => 'Siiddu, man aiggot sihkut, lea rievdaduvvon dávjit go oktii:',
 'confirmdeletetext'           => 'Leat sihkumin siiddu dahje fiilla ja buot dan historjjá. Ádde dagu váikkuhsaid ja sihko {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|geavahaid]] mielde.',
 'actioncomplete'              => 'Doaibma lea dahkkon',
-'deletedtext'                 => "'''[[Special:Undelete/$1|$1]]''' lea sihkojuvvon. Siiddus $2 lea listu maŋimus sihkomiin.",
+'deletedtext'                 => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
+Siiddus $2 lea listu maŋimus sihkomiin.',
 'deletedarticle'              => 'sihkoi siiddu $1',
 'dellogpage'                  => 'Sihkkunlogga',
 'dellogpagetext'              => 'Vuolábealde lea logga maŋimus sihkkumiin.',
@@ -940,7 +939,7 @@ $1 | $2',
 'rollbacklink'                => 'máhcat',
 'rollbackfailed'              => 'Máhccan ii lihkosmuvvan',
 'cantrollback'                => 'Máhcaheapmi ovddit veršuvdnii ii leat vejolaš, daningo maŋimuš čálli lea siiddu aidna dahkki.',
-'alreadyrolled'               => 'Rievdadusat, maid geavaheaddji [[User:$2|$2]] ([[User_talk:$2|ságastallan]]) lea dahkan, siidui $1 ii sáhte sihkkut, daningo geavaheaddji [[User:$3|$3]] ([[User_talk:$3|ságastallan]]) lea dahkan ođđa rievdadusaid.',
+'alreadyrolled'               => 'Rievdadusat, maid geavaheaddji [[User:$2|$2]] ([[User talk:$2|ságastallan]]) lea dahkan, siidui $1 ii sáhte sihkkut, daningo geavaheaddji [[User:$3|$3]] ([[User talk:$3|ságastallan]]) lea dahkan ođđa rievdadusaid.',
 'editcomment'                 => 'Rievdadusa čoahkkáigeassu lei: <i>$1</i>.', # only shown if there is an edit comment
 'revertpage'                  => 'Geavaheaddji [[Special:Contributions/$2|$2]] ([[User_talk:$2|ságastallan]]) rievdadusat sihkkojuvvui ja siidu máhcahuvvui veršuvdnii, man geavaheaddji [[User:$1|$1]] lei dahkan.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Rievdadusat, maid geavaheaddji ”$1” lei dahkan, sihkojuvvui ja artihkal máhcaduvvui veršuvdnii, man geavaheaddji $2 lei dahkan.',

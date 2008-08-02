@@ -5,12 +5,11 @@
  * @file
  *
  * @author Esbardu
- * @author Helix84
  * @author Mikel
  * @author SPQRobin
+ * @author Jon Harald Søby
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Nike
+ * @author Helix84
  */
 
 $namespaceNames = array(
@@ -78,8 +77,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Amosar el mio corréu electrónicu nos correos de notificación',
 'tog-shownumberswatching'     => "Amosar el númberu d'usuarios que la tán vixilando",
 'tog-fancysig'                => 'Firma ensin enllaz automáticu',
-'tog-externaleditor'          => 'Usar un editor esternu por defeutu',
-'tog-externaldiff'            => "Usar ''diff'' esternu por defeutu",
+'tog-externaleditor'          => 'Usar un editor esternu por defeutu (namái pa espertos, necesita configuraciones especiales nel to ordenador)',
+'tog-externaldiff'            => "Usar ''diff'' esternu por defeutu (namái pa espertos, necesita configuraciones especiales nel to ordenador)",
 'tog-showjumplinks'           => 'Activar los enllaces d\'accesibilidá "saltar a"',
 'tog-uselivepreview'          => 'Usar vista previa en direutu (JavaScript) (en pruebes)',
 'tog-forceeditsummary'        => "Avisame cuando grabe col resume d'edición en blanco",
@@ -424,7 +423,7 @@ La to cuenta ta creada. Nun t'escaezas d'escoyer les tos preferencies de {{SITEN
 'yourrealname'               => 'Nome real:',
 'yourlanguage'               => 'Idioma de los menús:',
 'yourvariant'                => 'Variante llingüística:',
-'yournick'                   => 'Nomatu:',
+'yournick'                   => 'Firma:',
 'badsig'                     => 'Firma cruda non válida; comprueba les etiquetes HTML.',
 'badsiglength'               => 'Nomatu demasiao llargu; ha tener menos de $1 carauteres.',
 'email'                      => 'Corréu',
@@ -847,7 +846,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'contextchars'             => 'Carauteres de testu per llinia:',
 'stub-threshold'           => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'recentchangesdays'        => "Díes qu'amosar nos cambeos recientes:",
-'recentchangescount'       => "Númberu d'ediciones amosaes en cambeos recientes:",
+'recentchangescount'       => "Númberu d'ediciones amosaes nes páxines de cambeos recientes, historial y rexistru:",
 'savedprefs'               => 'Les tos preferencies quedaron grabaes.',
 'timezonelegend'           => 'Zona horaria',
 'timezonetext'             => 'Diferencia horaria ente la UTC y la to hora llocal.',
@@ -1044,11 +1043,12 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'bydate'                    => 'por fecha',
 'bysize'                    => 'por tamañu',
 'imgdelete'                 => 'borr',
+'imgdesc'                   => 'desc',
 'imgfile'                   => 'archivu',
 'filehist'                  => 'Historial del archivu',
 'filehist-help'             => "Calca nuna fecha/hora pa ver l'archivu como taba daquélla.",
 'filehist-deleteall'        => 'borrar too',
-'filehist-deleteone'        => 'borrar esti',
+'filehist-deleteone'        => 'borrar',
 'filehist-revert'           => 'revertir',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Fecha/Hora',
@@ -1061,7 +1061,7 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'nolinkstoimage'            => "Nun hai páxines qu'enllacien a esti archivu.",
 'sharedupload'              => "L'archivu ye una xubida compartida y pue tar siendo usáu por otros proyeutos.",
 'shareduploadwiki'          => 'Por favor mira la $1 pa más información.',
-'shareduploadwiki-desc'     => "La descripción del so $1 ye l'amosada embaxo.",
+'shareduploadwiki-desc'     => "La descripción de la so $1 nel direutoriu compartíu ye l'amosada embaxo.",
 'shareduploadwiki-linktext' => 'páxina de descripción del archivu',
 'noimage'                   => 'Nun esiste archivu dalu con esi nome, pues $1.',
 'noimage-linktext'          => 'xubilu',
@@ -1076,18 +1076,18 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 # File reversion
 'filerevert'                => 'Revertir $1',
 'filerevert-legend'         => 'Revertir archivu',
-'filerevert-intro'          => '<span class="plainlinks">Tas revirtiendo \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 versión del $3 a les $2].</span>',
+'filerevert-intro'          => "Tas revirtiendo '''[[Media:$1|$1]]''' a la [$4 versión del $3 a les $2].",
 'filerevert-comment'        => 'Comentariu:',
 'filerevert-defaultcomment' => 'Revertida a la versión del $2 a les $1',
 'filerevert-submit'         => 'Revertir',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' foi revertida a la [$4 versión del $3 a les $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' foi revertida a la [$4 versión del $3 a les $2].",
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
 'filedelete'                  => 'Borrar $1',
 'filedelete-legend'           => 'borrar archivu',
 'filedelete-intro'            => "Tas borrando '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Tas borrando la versión de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a les $2].</span>',
+'filedelete-intro-old'        => "Tas borrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
 'filedelete-comment'          => 'Comentariu:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "'''$1''' foi borráu.",
@@ -1139,7 +1139,7 @@ Hai {{PLURAL:\$8|xubida '''una''' imaxe|xubíes '''\$8''' imáxenes}}.
 Hebo un total {{PLURAL:\$3|d''''una''' páxina visitada|de '''\$3''' páxines visitaes}}, y {{PLURAL:\$4|'''una''' edición|'''\$4''' ediciones}} dende qu'entamó {{SITENAME}}.
 Esto fai una media de '''\$5''' ediciones per páxina, y '''\$6''' visites per edición.
 
-La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''.",
+La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7'''.",
 'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuariu]] rexistráu, del|'''$1''' [[Special:Listusers|usuarios]] rexistraos, de los}} que
 '''$2''' (el '''$4%''') {{PLURAL:$2|tien|tienen}} privilexos de $5.",
 'statistics-mostpopular' => 'Páxines más vistes',
@@ -1156,9 +1156,10 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue cola de xeres] ye de '''\$7'''
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
-'withoutinterwiki'        => 'Páxines ensin interwikis',
-'withoutinterwiki-header' => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",
-'withoutinterwiki-submit' => 'Amosar',
+'withoutinterwiki'         => 'Páxines ensin interwikis',
+'withoutinterwiki-header'  => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",
+'withoutinterwiki-summary' => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",
+'withoutinterwiki-submit'  => 'Amosar',
 
 'fewestrevisions' => "Páxines col menor númberu d'ediciones",
 
@@ -1395,7 +1396,7 @@ fecha por [[User:$2|$2]] ([[User talk:$2|alderique]]); daquién más yá editó 
 
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]]).',
 'editcomment'                 => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la versión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 'sessionfailure'              => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del

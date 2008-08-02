@@ -4,14 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Ooswesthoesbes
  * @author SF-Language
  * @author Litingatinga Silozi
- * @author Ooswesthoesbes
- * @author Siebrand
  * @author Jon Harald Søby
  */
-
-
 
 $messages = array(
 # User preference toggles

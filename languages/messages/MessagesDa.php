@@ -4,18 +4,16 @@
  * @ingroup Language
  * @file
  *
- * @author Lars J. Helbo <lars.helbo@gmail.com>
- * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author Morten LJ
- * @author Max sonnelid
  * @author Jon Harald Søby
  * @author M.M.S.
- * @author Morten
- * @author Siebrand
- * @author Peter Andersen
- * @author H92
  * @author Jan Friberg
+ * @author Peter Andersen
  * @author S.Örvarr.S
+ * @author H92
+ * @author Lars J. Helbo <lars.helbo@gmail.com>
+ * @author Anders Wegge Jakobsen <awegge@gmail.com>
+ * @author Max sonnelid
  * @author Ranveig
  */
 
@@ -421,8 +419,11 @@ En liste over gyldige specialsider kan findes på [[Special:Specialpages|{{int:s
 # General errors
 'error'                => 'Fejl',
 'databaseerror'        => 'Databasefejl',
-'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel. Dette kan være på grund af en ugyldig forespørgsel (se $5), eller det kan betyde en fejl i softwaren. 
-Den seneste forsøgte databaseforespørgsel var: <blockquote><tt>$1</tt></blockquote> fra funktionen "<tt>$2</tt>". 
+'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
+Dette kan betyde en fejl i softwaren.
+Den seneste forsøgte databaseforespørgsel var:
+<blockquote><tt>$1</tt></blockquote>
+fra funktionen "<tt>$2</tt>".
 MySQL returnerede fejlen "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel. 
 Den seneste forsøgte databaseforespørgsel var: "$1" fra funktionen "$2". 
@@ -563,8 +564,8 @@ Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, ska
 'accountcreated'             => 'Brugerkonto oprettet',
 'accountcreatedtext'         => 'Brugerkontoen $1 er oprettet.',
 'createaccount-title'        => 'Opret brugerkonto på {{SITENAME}}',
-'createaccount-text'         => 'En bruger ($1) har oprettet en konto for $2 på {{SITENAME}}
-($4). Password for "$2" er "$3". Du opfordres til at logge ind, og ændre kodeordet omgående.
+'createaccount-text'         => 'En bruger har oprettet en konto for $2 på {{SITENAME}} ($4). Password for "$2" er "$3".
+Du opfordres til at logge ind, og ændre kodeordet omgående.
 
 Denne besked kan ignoreres, hvis denne konto er oprettet som følge af en fejl.',
 'loginlanguagelabel'         => 'Sprog: $1',
@@ -734,7 +735,7 @@ denne side er vist nedenfor:",
 # "Undo" feature
 'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
 'undo-failure' => '<span class="error">Ændringen kunne ikke annulleres, da det pågældende afsnit i mellemtiden er ændret.</span>',
-'undo-summary' => 'Ændring af $1 [[Special:Contributions/$2|$2]] ([[User_talk:$2|Diskussion]]) blev annulleret.',
+'undo-summary' => 'Ændring af $1 [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) blev annulleret.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Brugerkontoen kan ikke oprettes.',
@@ -846,7 +847,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'lineno'                  => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte versioner',
 'editundo'                => 'annuller',
-'diff-multi'              => "<span style='font-size: smaller'>(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)</span>",
+'diff-multi'              => '(Versionssammenligningen medtager {{PLURAL:$1|en mellemliggende version|$1 mellemliggende versioner}}.)',
 
 # Search results
 'searchresults'         => 'Søgeresultater',
@@ -1246,9 +1247,10 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 'brokenredirects-edit'    => '(redigér)',
 'brokenredirects-delete'  => '(slet)',
 
-'withoutinterwiki'        => 'Sider uden henvisninger til andre sprog',
-'withoutinterwiki-header' => 'De følgende sider henviser ikke til andre sprogversioner:',
-'withoutinterwiki-submit' => 'Vis',
+'withoutinterwiki'         => 'Sider uden henvisninger til andre sprog',
+'withoutinterwiki-header'  => 'De følgende sider henviser ikke til andre sprogversioner:',
+'withoutinterwiki-summary' => 'De følgende sider henviser ikke til andre sprogversioner:',
+'withoutinterwiki-submit'  => 'Vis',
 
 'fewestrevisions'         => 'Sider med de færreste versioner',
 'fewestrevisions-summary' => 'Denne specialside viser en liste med sider med de færreste ændringer.',
@@ -1355,7 +1357,7 @@ deraf har '''$2''' (=$4%) $5-rettigheder.",
 # Special:Allpages
 'nextpage'          => 'Næste side ($1)',
 'prevpage'          => 'Forrige side ($1)',
-'allpagesfrom'      => 'Vis sider startende fra: $1',
+'allpagesfrom'      => 'Vis sider startende fra:',
 'allarticles'       => 'Alle artikler',
 'allinnamespace'    => 'Alle sider (i $1 navnerummet)',
 'allnotinnamespace' => 'Alle sider (ikke i $1 navnerummet)',
@@ -1577,7 +1579,7 @@ Den aktuelle tekst for den slettede side er kun tilgængelig for administratorer
 'undeletedpage'                => "'''$1''' blev gendannet.
 
 I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt slettede og gendannede sider.",
-'undelete-header'              => 'Se [[{{ns:special}}:Log/delete|slette-loggen]] for nyligt slettede og gendannede sider.',
+'undelete-header'              => 'Se [[Special:Log/delete|slette-loggen]] for nyligt slettede og gendannede sider.',
 'undelete-search-box'          => 'Søge efter slettede sider',
 'undelete-search-prefix'       => 'Søgebegreb (odets start uden wildcards):',
 'undelete-search-submit'       => 'Søg',
@@ -1749,7 +1751,7 @@ for at flytte en side.',
 'move-watch'              => 'Overvåg denne side',
 'movepagebtn'             => 'Flyt side',
 'pagemovedsub'            => 'Flytning gennemført',
-'movepage-moved'          => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" er blevet flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'En side med det navn eksisterer allerede, eller det
 navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'cantmove-titleprotected' => 'Du kan ikke omdøbe en side til dette navn. Det nye navn er beskyttet mod oprettelse.',
@@ -2335,8 +2337,8 @@ $1
 'deletedwhileediting' => '<span class="error">Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den! 
 Kig i [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} slette-loggen], 
 hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.</span>',
-'confirmrecreate'     => "Bruger [[User:$1|$1]] ([[User_talk:$1|Diskussion]]) har slettet denne side, efter at du begyndte at ændre den. Begrundelsen lyder:
-''$2''
+'confirmrecreate'     => "Bruger [[User:$1|$1]] ([[User talk:$1|Diskussion]]) har slettet denne side, efter at du begyndte at ændre den. Begrundelsen lyder:
+: ''$2''
 Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'recreate'            => 'Opret igen',
 
@@ -2392,7 +2394,9 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlistedit-noitems'        => 'Din overvågningsliste er tom.',
 'watchlistedit-normal-title'   => 'Rediger overvågningsliste',
 'watchlistedit-normal-legend'  => 'Slet sider fra overvågningslisten',
-'watchlistedit-normal-explain' => 'Din overvågningsliste er vist nedenfor. Du kan fjerne sider fra den ved at markere den og trykke på Fjern valgte. Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]], eller [[Special:Watchlist/clear|rydde listen]].',
+'watchlistedit-normal-explain' => 'Din overvågningsliste er vist nedenfor.
+Du kan fjerne sider fra den ved at markere den og trykke på Fjern valgte.
+Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].',
 'watchlistedit-normal-submit'  => 'Fjern valgte',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',

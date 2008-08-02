@@ -5,7 +5,6 @@
  * @file
  *
  * @author MF-Warburg
- * @author Siebrand
  * @author SPQRobin
  */
 
@@ -383,7 +382,7 @@ $messages = array(
 # Image list
 'ilsubmit'           => 'Buka',
 'filehist-deleteall' => 'halakon hotu',
-'filehist-deleteone' => "halakon ne'e",
+'filehist-deleteone' => 'halakon',
 'filehist-current'   => 'atuál',
 'filehist-datetime'  => 'Loron/Tempu',
 'filehist-user'      => "Uza-na'in",
@@ -406,15 +405,15 @@ $messages = array(
 # Statistics
 'statistics'    => 'Estátistika',
 'sitestats'     => '{{SITENAME}} estátistika',
-'userstatstext' => "Iha ne'e registrar tiha ona '''$1''' [[Special:Listusers|uza-na'in]], '''$2''' (ka '''$4%''') $5.",
+'userstatstext' => "Iha ne'e registrar tiha ona '''$1''' {{PLURAL:$1|[[Special:Listusers|uza-na'in]]|[[Special:Listusers|uza-na'in]]}}, '''$2''' (ka '''$4%''') $5.",
 
 'brokenredirects-edit'   => '(edita)',
 'brokenredirects-delete' => '(halakon)',
 
 # Miscellaneous special pages
 'nlinks'            => '$1 ligasaun',
-'nmembers'          => '$1 membru',
-'nrevisions'        => '$1 versaun',
+'nmembers'          => '$1 {{PLURAL:$1|membru|membru}}',
+'nrevisions'        => '$1 {{PLURAL:$1|versaun|versaun}}',
 'allpages'          => 'Pájina hotu',
 'shortpages'        => 'Pájina badak',
 'longpages'         => 'Pájina naruk',
@@ -506,7 +505,7 @@ $messages = array(
 'undeletelink'           => 'restaurar',
 'undeletecomment'        => 'Komentáriu:',
 'undeletedarticle'       => 'restaurar "[[$1]]"',
-'undeletedrevisions'     => 'restaurar $1 versaun',
+'undeletedrevisions'     => 'restaurar $1 {{PLURAL:$1|versaun|versaun}}',
 'undelete-search-submit' => 'Buka',
 
 # Namespace form on various pages
@@ -569,7 +568,7 @@ $messages = array(
 'allmessagescurrent' => 'Testu atuál',
 
 # Import log
-'import-logentry-interwiki-detail' => '$1 versaun husi $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versaun|versaun}} husi $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'      => "Ha'u-nia pájina uza-na'in",

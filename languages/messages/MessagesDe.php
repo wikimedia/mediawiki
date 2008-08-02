@@ -4,6 +4,15 @@
  * @ingroup Language
  * @file
  *
+ * @author Raymond
+ * @author Red Baron
+ * @author Purodha
+ * @author Pill
+ * @author Omnipaedista
+ * @author Spacebirdy
+ * @author לערי ריינהארט
+ * @author Revolus
+ * @author MichaelFrey
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
@@ -240,10 +249,14 @@ $messages = array(
 'january'       => 'Januar',
 'february'      => 'Februar',
 'march'         => 'März',
+'april'         => 'April',
 'may_long'      => 'Mai',
 'june'          => 'Juni',
 'july'          => 'Juli',
+'august'        => 'August',
+'september'     => 'September',
 'october'       => 'Oktober',
+'november'      => 'November',
 'december'      => 'Dezember',
 'january-gen'   => 'Januars',
 'february-gen'  => 'Februars',
@@ -302,6 +315,7 @@ $messages = array(
 'mypage'         => 'Eigene Seite',
 'mytalk'         => 'Eigene Diskussion',
 'anontalk'       => 'Diskussionsseite dieser IP',
+'navigation'     => 'Navigation',
 'and'            => 'und',
 
 # Metadata in edit box
@@ -318,6 +332,7 @@ $messages = array(
 'history'           => 'Versionen',
 'history_short'     => 'Versionen/Autoren',
 'updatedmarker'     => '(geändert)',
+'info_short'        => 'Information',
 'printableversion'  => 'Druckversion',
 'permalink'         => 'Permanentlink',
 'print'             => 'Drucken',
@@ -373,6 +388,8 @@ $messages = array(
 'disclaimerpage'    => 'Project:Impressum',
 'edithelp'          => 'Bearbeitungshilfe',
 'edithelppage'      => 'Help:Bearbeitungshilfe',
+'faq'               => 'FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:Hilfe',
 'mainpage'          => 'Hauptseite',
 'policy-url'        => 'Project:Leitlinien',
@@ -393,6 +410,7 @@ $messages = array(
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[{{ns:special}}:Version|Versionsseite]]',
 
 'ok'                      => 'OK',
+'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
 'youhavenewmessages'      => 'Du hast $2 auf deiner $1.',
 'newmessageslink'         => 'Diskussionsseite',
@@ -407,7 +425,9 @@ $messages = array(
 'thisisdeleted'           => '$1 ansehen oder wiederherstellen?',
 'viewdeleted'             => '$1 anzeigen?',
 'restorelink'             => '$1 {{PLURAL:$1|gelöschte Version|gelöschte Versionen}}',
+'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ungültiger Abonnement-Typ.',
+'feed-unavailable'        => 'Für {{SITENAME}} stehen keine Feeds zur Verfügung.',
 'site-rss-feed'           => 'RSS-Feed für $1',
 'site-atom-feed'          => 'Atom-Feed für $1',
 'page-rss-feed'           => 'RSS-Feed für „$1“',
@@ -497,8 +517,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
-'logouttext'                 => 'Du bist nun abgemeldet.
-Du kannst {{SITENAME}} jetzt anonym weiterbenutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen anmelden.',
+'logouttext'                 => '<strong>Du bist nun abgemeldet.</strong>
+
+Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:Userlogin|anmelden]].',
 'welcomecreation'            => '== Willkommen, $1! ==
 
 Dein Benutzerkonto wurde eingerichtet. Vergiss nicht, deine Einstellungen anzupassen.',
@@ -511,7 +532,7 @@ Dein Benutzerkonto wurde eingerichtet. Vergiss nicht, deine Einstellungen anzupa
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
 'loginproblem'               => "'''Es gab ein Problem mit deiner Anmeldung.'''<br />Bitte versuche es nochmal!",
 'login'                      => 'Anmelden',
-'loginprompt'                => 'Um sich bei {{SITENAME}} anmelden zu können, müssen Cookies aktiviert sein.',
+'loginprompt'                => 'Um sich bei {{SITENAME}} [[Special:Userlogin|anmelden]] zu können, müssen Cookies aktiviert sein.',
 'userlogin'                  => 'Anmelden',
 'logout'                     => 'Abmelden',
 'userlogout'                 => 'Abmelden',
@@ -673,7 +694,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'blockednoreason'           => 'keine Begründung angegeben',
 'blockedoriginalsource'     => "Der Quelltext von '''$1''' wird hier angezeigt:",
 'blockededitsource'         => "Der Quelltext '''deiner Änderungen''' an '''$1''':",
-'whitelistedittitle'        => 'Zum Bearbeiten ist es erforderlich, angemeldet zu sein',
+'whitelistedittitle'        => 'Zum Bearbeiten ist es erforderlich, [[Special:Userlogin|angemeldet]] zu sein',
 'whitelistedittext'         => 'Du musst dich $1, um Seiten bearbeiten zu können.',
 'whitelistreadtitle'        => 'Zum Lesen ist es erforderlich, angemeldet zu sein',
 'whitelistreadtext'         => 'Du musst dich [[Special:Userlogin|hier anmelden]], um Seiten lesen zu können.',
@@ -690,10 +711,10 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'accmailtext'               => 'Das Passwort für „$1“ wurde an $2 geschickt.',
 'newarticle'                => '(Neu)',
 'newarticletext'            => 'Hier den Text der neuen Seite eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
-'anontalkpagetext'          => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren.''",
+'anontalkpagetext'          => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzerm gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:Userlogin/signup|Benutzerkonto erstellen]] oder dich  [[Special:Userlogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzer zu vermeiden.''",
 'noarticletext'             => '(Diese Seite enthält momentan noch keinen Text)',
 'userpage-userdoesnotexist' => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
-'clearyourcache'            => "'''Hinweis:''' Leere nach dem Speichern den Browser-Cache, um die Änderungen zu sehen: '''Mozilla/Firefox:''' ''Shift-Strg-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''⌘-R'', '''Konqueror:''' ''Strg-R''.",
+'clearyourcache'            => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
 'usercssjsyoucanpreview'    => '<strong>Tipp:</strong> Benutze den Vorschau-Button, um dein neues CSS/JS vor dem Speichern zu testen.',
 'usercsspreview'            => "== Vorschau Deines Benutzer-CSS ==
 '''Beachte:''' Nach dem Speichern musst du deinen Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -711,7 +732,7 @@ Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong
 
 ''Da in {{SITENAME}} das Speichern von reinem HTML aktiviert ist, wurde die Vorschau ausgeblendet, um JavaScript-Attacken vorzubeugen.''
 
-<strong>Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst. Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong>",
+<strong>Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst. Sollte das Problem bestehen bleiben, [[Special:Userlogout|melde dich ab]] und danach wieder an.</strong>",
 'token_suffix_mismatch'     => '<strong>Deine Bearbeitung wurde zurückgewiesen, da dein Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
 'editing'                   => 'Bearbeiten von $1',
@@ -765,7 +786,7 @@ Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorh
 # "Undo" feature
 'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
 'undo-failure' => '<span class="error">Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
-'undo-summary' => 'Änderung $1 von [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|Diskussion]]) wurde rückgängig gemacht.',
+'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) wurde rückgängig gemacht.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kann nicht erstellt werden',
@@ -884,7 +905,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikel historisch korrekt ist.
 # Search results
 'searchresults'         => 'Suchergebnisse',
 'searchresulttext'      => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]].',
-'searchsubtitle'        => 'Deine Suchanfrage: „[[:$1|$1]]“.',
+'searchsubtitle'        => 'Deine Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]] | [[Special:Whatlinkshere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid' => 'Deine Suchanfrage: „$1“.',
 'noexactmatch'          => "'''Es existiert keine Seite mit dem Titel „$1“.'''
 
@@ -901,7 +922,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'nextn'                 => 'nächste $1',
 'viewprevnext'          => 'Zeige ($1) ($2) ($3)',
 'showingresults'        => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
-'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2'''.",
+'showingresultsnum'     => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$3''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 'nonefound'             => '<strong>Hinweis</strong>: Erfolglose Suchanfragen werden häufig dadurch verursacht, dass mehr als ein Suchbegriff angegeben wurde. Nur Seiten die alle Suchbegriffe enthalten werden hier angezeigt. Versuche in diesem Fall die Anzahl der Suchbegriffe zu verringern.',
 'powersearch'           => 'Suche',
 'powersearchtext'       => 'Suche in Namensräumen:<br />$1<br />$2 Weiterleitungen anzeigen<br />Suche nach: $3 $9',
@@ -922,6 +943,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'qbsettings-floatingleft'  => 'Links, schwebend',
 'qbsettings-floatingright' => 'Rechts, schwebend',
 'changepassword'           => 'Passwort ändern',
+'skin'                     => 'Skin',
 'math'                     => 'TeX',
 'dateformat'               => 'Datumsformat',
 'datedefault'              => 'Standard',
@@ -992,15 +1014,18 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 # Groups
 'group'               => 'Gruppe:',
 'group-autoconfirmed' => 'Bestätigte Benutzer',
+'group-bot'           => 'Bots',
 'group-sysop'         => 'Administratoren',
 'group-bureaucrat'    => 'Bürokraten',
 'group-all'           => '(alle)',
 
 'group-autoconfirmed-member' => 'Bestätigter Benutzer',
+'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bürokrat',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Bestätigte Benutzer',
+'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administratoren',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',
 
@@ -1030,6 +1055,7 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'hide'                              => 'ausblenden',
 'show'                              => 'einblenden',
 'minoreditletter'                   => 'K',
+'newpageletter'                     => 'N',
 'boteditletter'                     => 'B',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|beobachtender|beobachtende}} Benutzer]',
 'rc_categories'                     => 'Nur Seiten aus den Kategorien (getrennt mit „|“):',
@@ -1052,9 +1078,11 @@ Wenn du dich mit dem Thema auskennen, kannst du selbst die Seite „[[$1]]“ ve
 'uploadnologintext'           => 'Du musst [[Special:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
 'upload_directory_read_only'  => 'Der Webserver hat keine Schreibrechte für das Upload-Verzeichnis ($1).',
 'uploaderror'                 => 'Fehler beim Hochladen',
-'uploadtext'                  => "Gehe zu der [[{{#special:Imagelist}}|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen.
+'uploadtext'                  => "Benutze dieses Formular, um neue Dateien hochzuladen. 
 
-Benutze dieses Formular, um neue Dateien hochzuladen. Klicke auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
+Gehe zu der [[Special:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-Logbuch]].
+
+Klicke auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld '''„Quelldatei“''' angezeigt.
 Bestätige dann die Lizenz-Vereinbarung und klicke anschließend auf '''„Datei hochladen“'''.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
@@ -1073,7 +1101,7 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 'upload-prohibited'           => 'Nicht erlaubte Dateitypen: $1.',
 'uploadlog'                   => 'Datei-Logbuch',
 'uploadlogpage'               => 'Datei-Logbuch',
-'uploadlogpagetext'           => 'Dies ist das Logbuch der hochgeladenen Dateien, siehe auch [[{{ns:special}}:Newimages]].',
+'uploadlogpagetext'           => 'Dies ist das Logbuch der hochgeladenen Dateien, siehe auch die [[Special:NewImages|Galerie neuer Dateien]] für einen visuellen Überblick.',
 'filename'                    => 'Dateiname',
 'filedesc'                    => 'Beschreibung',
 'fileuploadsummary'           => 'Beschreibung/Quelle:',
@@ -1125,13 +1153,30 @@ Bitte prüfe sorgfältig, ob das erneute Hochladen den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'filename-bad-prefix'         => 'Der Dateiname beginnt mit <strong>„$1“</strong>. Dies ist im allgemeinen der von einer Digitalkamera vorgegebene Dateiname und daher nicht sehr aussagekräftig.
 Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
+'filename-prefix-blacklist'   => ' #<!-- Diese Zeile darf nicht verändert werden! --> <pre>
+#  Syntax:
+#   * Alles von einem #-Zeichen bis zum Ende der Zeile ist ein Kommentar
+#   * Jede nicht-leere Zeile ist ein ist ein Anfang für einen Typischen Dateinamen der automatisch von einer Digitalkamera erzeugt wird
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # gewisse Mobiltelefone
+IMG # generisch
+JD # Jenoptik
+MGP # Pentax
+PICT # verschiedene
+ #</pre> <!-- Diese Zeile darf nicht verändert werden!-->',
 
 'upload-proto-error'      => 'Falsches Protokoll',
 'upload-proto-error-text' => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
 'upload-file-error'       => 'Interner Fehler',
-'upload-file-error-text'  => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten. Bitte informiere einen System-Administrator.',
+'upload-file-error-text'  => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.
+Bitte informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
 'upload-misc-error'       => 'Unbekannter Fehler beim Hochladen',
-'upload-misc-error-text'  => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten. Prüfe die URL auf Fehler, den Online-Status der Seite und versuche es erneut. Wenn das Problem weiter besteht, informiere einen System-Administrator.',
+'upload-misc-error-text'  => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten.
+Prüfe die URL auf Fehler, den Online-Status der Seite und versuche es erneut.
+Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',
@@ -1180,6 +1225,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 'noimage-linktext'          => 'hochladen',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',
 'imagelist_date'            => 'Datum',
+'imagelist_name'            => 'Name',
 'imagelist_user'            => 'Benutzer',
 'imagelist_size'            => 'Größe',
 'imagelist_description'     => 'Beschreibung',
@@ -1188,24 +1234,24 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 # File reversion
 'filerevert'                => 'Zurücksetzen von „$1“',
 'filerevert-legend'         => 'Datei zurücksetzen',
-'filerevert-intro'          => '<span class="plainlinks">Du setzt die Datei \'\'\'[[Media:$1|$1]]\'\'\' auf die [$4 Version vom $2, $3 Uhr] zurück.</span>',
+'filerevert-intro'          => "Du setzt die Datei '''[[Media:$1|$1]]''' auf die [$4 Version vom $2, $3 Uhr] zurück.",
 'filerevert-comment'        => 'Grund:',
 'filerevert-defaultcomment' => 'zurückgesetzt auf die Version vom $1, $2 Uhr',
 'filerevert-submit'         => 'Zurücksetzen',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' wurde auf die [$4 Version vom $2, $3 Uhr] zurückgesetzt.</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' wurde auf die [$4 Version vom $2, $3 Uhr] zurückgesetzt.",
 'filerevert-badversion'     => 'Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.',
 
 # File deletion
 'filedelete'                  => 'Lösche „$1“',
 'filedelete-legend'           => 'Lösche Datei',
 'filedelete-intro'            => "Du löschst die Datei '''„[[Media:$1|$1]]“'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Du löschst von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' die [$4 Version vom $2, $3 Uhr].</span>',
+'filedelete-intro-old'        => "Du löschst von der Datei '''„[[Media:$1|$1]]“''' die [$4 Version vom $2, $3 Uhr].",
 'filedelete-comment'          => 'Grund:',
 'filedelete-submit'           => 'Löschen',
 'filedelete-success'          => "'''„$1“''' wurde gelöscht.",
 'filedelete-success-old'      => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version $2, $3 Uhr gelöscht.</span>',
 'filedelete-nofile'           => "'''„$1“''' ist auf {{SITENAME}} nicht vorhanden.",
-'filedelete-nofile-old'       => "Es gibt von '''„$1“''' keine Version vom $2, $3 Uhr.",
+'filedelete-nofile-old'       => "Es gibt von '''„$1“''' keine archivierte Version mit den angegebenen Attributen.",
 'filedelete-iscurrent'        => 'Du versuchst die aktuelle Version dieser Datei zu löschen. Bitte setze diese vorher auf eine ältere Version zurück.',
 'filedelete-otherreason'      => 'Anderer/ergänzender Grund:',
 'filedelete-reason-otherlist' => 'Anderer Grund',
@@ -1231,7 +1277,7 @@ Bitte gib der Datei einen Namen, der den Inhalt besser beschreibt.',
 # Unused templates
 'unusedtemplates'         => 'Nicht benutzte Vorlagen',
 'unusedtemplates-summary' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfe andere Links zu den Vorlagen, bevor du diese löscht.',
-'unusedtemplatestext'     => '',
+'unusedtemplatestext'     => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfe andere Links zu den Vorlagen, bevor du diese löscht.',
 'unusedtemplateswlh'      => 'Andere Links',
 
 # Random page
@@ -1270,17 +1316,19 @@ Davon {{PLURAL:$2|hat|haben}} '''$2''' Benutzer (=$4 %) $5-Rechte.",
 'doubleredirects-summary' => 'Diese Liste enthält Weiterleitungen, die auf eine weitere Weiterleitungen verlinken.
 Jede Zeile enthält Links zu der ersten und zweiten Weiterleitungs sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist,
 auf die bereits die erste Weiterleitung zeigen sollte.',
-'doubleredirectstext'     => '',
+'doubleredirectstext'     => 'Diese Liste enthält Weiterleitungen, die auf eine weitere Weiterleitungen verlinken.
+Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.',
 
 'brokenredirects'         => 'Kaputte Weiterleitungen',
 'brokenredirects-summary' => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
-'brokenredirectstext'     => '',
+'brokenredirectstext'     => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
 'brokenredirects-edit'    => '(bearbeiten)',
 'brokenredirects-delete'  => '(löschen)',
 
-'withoutinterwiki'        => 'Seiten ohne Links zu anderen Sprachen',
-'withoutinterwiki-header' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen.',
-'withoutinterwiki-submit' => 'Zeige',
+'withoutinterwiki'         => 'Seiten ohne Links zu anderen Sprachen',
+'withoutinterwiki-header'  => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen.',
+'withoutinterwiki-summary' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen.',
+'withoutinterwiki-submit'  => 'Zeige',
 
 'fewestrevisions'         => 'Seiten mit den wenigsten Versionen',
 'fewestrevisions-summary' => 'Diese Spezialseite zeigt eine Liste von Seiten mit den wenigsten Bearbeitungen.',
@@ -1336,11 +1384,11 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'deadendpagestext'                => '',
 'protectedpages'                  => 'Geschützte Seiten',
 'protectedpages-summary'          => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
-'protectedpagestext'              => '',
+'protectedpagestext'              => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
 'protectedpagesempty'             => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
 'protectedtitles'                 => 'Gesperrte Titel',
 'protectedtitles-summary'         => 'Die folgenden Titel wurden zur Neuerstellung gesperrt.',
-'protectedtitlestext'             => '',
+'protectedtitlestext'             => 'Die folgenden Titel wurden zur Neuerstellung gesperrt.',
 'protectedtitlesempty'            => 'Zur Zeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'                       => 'Benutzerverzeichnis',
 'listusers-summary'               => "Diese Spezialseite listet alle registrierten Benutzer auf; die Gesamtzahl kann [[Special:Statistics|hier]] eingesehen werden. Über das Auswahlfeld ''Gruppe'' lässt sich die Abfrage auf bestimmte Benutzergruppen einschränken.",
@@ -1353,6 +1401,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'newpages-username'               => 'Benutzername:',
 'ancientpages'                    => 'Seit längerem unbearbeitete Seiten',
 'ancientpages-summary'            => 'Diese Spezialseite zeigt eine Liste von Seiten, die am längsten nicht mehr geändert worden sind.',
+'intl'                            => 'Interlanguage-Links',
 'move'                            => 'Verschieben',
 'movethispage'                    => 'Seite verschieben',
 'unusedimagestext'                => '<p>Bitte beachte, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.</p>',
@@ -1374,6 +1423,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'userrights'         => 'Benutzerrechteverwaltung',
 'groups'             => 'Benutzergruppen',
 'alphaindexline'     => '$1 bis $2',
+'version'            => 'Version',
 
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',
@@ -1410,7 +1460,7 @@ auf die bereits die erste Weiterleitung zeigen sollte.',
 'mailnologintext' => 'Du musst [[{{ns:special}}:Userlogin|angemeldet sein]] und eine [[{{ns:special}}:Confirmemail|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser'       => 'E-Mail an diesen Benutzer',
 'emailpage'       => 'E-Mail an Benutzer',
-'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, kannst du ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus deinen Einstellungen eingetragen, damit der Benutzer dir antworten kann.',
+'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, kannst du ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
 'usermailererror' => 'Das E-Mail-Objekt gab einen Fehler zurück:',
 'defemailsubject' => '{{SITENAME}}-E-Mail',
 'noemailtitle'    => 'Keine E-Mail-Adresse',
@@ -1441,7 +1491,7 @@ in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschri
 
 Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klicke auf der jeweiligen Seite auf „nicht mehr beobachten“.',
 'removedwatch'         => 'Von der Beobachtungsliste entfernt',
-'removedwatchtext'     => 'Die Seite „<nowiki>$1</nowiki>“ wurde von deiner Beobachtungsliste entfernt.',
+'removedwatchtext'     => 'Die Seite „[[:$1]]“ wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch'                => 'Beobachten',
 'watchthispage'        => 'Seite beobachten',
 'unwatch'              => 'nicht mehr beobachten',
@@ -1532,8 +1582,9 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'rollbacklink'                => 'Zurücksetzen',
 'rollbackfailed'              => 'Zurücksetzen gescheitert',
 'cantrollback'                => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[{{ns:user}}:$2|$2]] <span style='font-size: smaller'>([[{{ns:user talk}}:$2|Diskussion]], [[{{#special:Contributions}}/$2|Beiträge]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer 
-Änderungen an dieser Seite vorgenommen hat.<br />Die letzte Änderung stammt von [[{{ns:user}}:$3|$3]] <span style='font-size: smaller'>([[{{ns:user talk}}:$3|Diskussion]])</span>.",
+'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer Änderungen an dieser Seite vorgenommen hat.
+
+Die letzte Änderung stammt von [[User:$3|$3]] <span style='font-size: smaller'>([[User talk:$3|{{int:contribslink}}]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'                  => 'Änderungen von [[User:$2|$2]] ([[{{ns:special}}:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von $1 wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
@@ -1616,7 +1667,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletedpage'                => "'''$1''' wurde wiederhergestellt.
 
 Im [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelöschten und wiederhergestellten Seiten.",
-'undelete-header'              => 'Siehe das [[{{ns:special}}:Log/delete|Lösch-Logbuch]] für kürzlich gelöschte Seiten.',
+'undelete-header'              => 'Siehe im [[{{ns:special}}:Log/delete|Lösch-Logbuch]] nach kürzlich gelöschten Seiten.',
 'undelete-search-box'          => 'Suche nach gelöschten Seiten',
 'undelete-search-prefix'       => 'Suchbegriff (Wortanfang ohne Wildcards):',
 'undelete-search-submit'       => 'Suchen',
@@ -1733,7 +1784,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'blocklink'                   => 'Sperren',
 'unblocklink'                 => 'Freigeben',
 'contribslink'                => 'Beiträge',
-'autoblocker'                 => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[Benutzer:$1]] benutzt. Grund: „$2“.',
+'autoblocker'                 => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[User:$1|Benutzer:$1]] benutzt. Grund: „$2“.',
 'blocklogpage'                => 'Benutzersperr-Logbuch',
 'blocklogentry'               => 'sperrte „[[$1]]“ für den Zeitraum: $2 $3',
 'blocklogtext'                => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen. Automatisch gesperrte IP-Adressen werden nicht erfasst. Siehe die [[{{ns:special}}:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Sperren.',
@@ -1749,6 +1800,7 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 'ipb_blocked_as_range'        => 'Fehler: Die IP-Adresse $1 wurde als Teil der Bereichssperre $2 indirekt gesperrt. Eine Entsperrung von $1 alleine ist nicht möglich.',
 'ip_range_invalid'            => 'Ungültiger IP-Adressbereich.',
 'blockme'                     => 'Sperre mich',
+'proxyblocker'                => 'Proxy blocker',
 'proxyblocker-disabled'       => 'Diese Funktion ist deaktiviert.',
 'proxyblockreason'            => 'Deine IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktiere deinen Internet-Provider oder deine Systemadministratoren und informiere sie über dieses mögliche Sicherheitsproblem.',
 'proxyblocksuccess'           => 'Fertig.',
@@ -1774,7 +1826,13 @@ Zur Aufhebung der Sperre siehe die [[{{ns:special}}:Ipblocklist|Liste aller akti
 
 # Move page
 'movepage'                => 'Seite verschieben',
-'movepagetext'            => 'Mit diesem Formular kannst du eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Links auf den alten Titel werden nicht geändert.',
+'movepagetext'            => "Mit diesem Formular kannst du eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Links auf den alten Titel werden nicht geändert; prüfe auf [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|defekte Weiterleitungen]].
+
+Die Seite wird '''nicht''' verschoben, wenn es bereits eine Seite mit demselben Namen gibt, sofern diese nicht leer oder eine Weiterleitung ohne Versionsgeschichte ist. Dies bedeutet, dass du die Seite zurück verschieben kannst, wenn du einen Fehler gemacht hast. Du kannst hingegen keine Seite überschreiben.
+
+'''Warnung'''
+Die Verschiebung kann weitreichende und unerwartete Folgen für beliebte Seiten haben.
+Du solltest daher die Konsequenzen verstanden haben, bevor du fortfährst.",
 'movepagetalktext'        => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
 *du wählst die unten stehende Option ab.
@@ -1832,6 +1890,7 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 
 # Namespace 8 related
 'allmessages'               => 'MediaWiki-Systemtexte',
+'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktueller Text',
 'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.',
@@ -1855,8 +1914,9 @@ Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:specia
 Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
+'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
-'importtext'                 => 'Auf dieser Spezialseite können über [[{{ns:special}}:Export]] exportierte Seiten in dieses Wiki importiert werden.',
+'importtext'                 => 'Auf dieser Spezialseite können über die [[Special:Export|Exportfunktion]] im Quellwiki exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seite …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versionen}}',
 'importnopages'              => 'Keine Seite zum Importieren vorhanden.',
@@ -1948,7 +2008,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-upload'                  => 'Hochladen starten',
 
 # Stylesheets
-'common.css'      => '/* CSS an dieser Stelle wirkt sich auf alle Skins aus */',
+'common.css'   => '/* CSS an dieser Stelle wirkt sich auf alle Skins aus */',
 'standard.css'    => '/* CSS an dieser Stelle wirkt sich auf den Klassik-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
 'nostalgia.css'   => '/* CSS an dieser Stelle wirkt sich auf den Nostalgie-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
 'cologneblue.css' => '/* CSS an dieser Stelle wirkt sich auf den Kölnisch Blau-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */', # only translate this message to other languages if you have to change it
@@ -1970,7 +2030,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'standard.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Klassik-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
 'nostalgia.js'   => '/* Das folgende JavaScript wird für Benutzer geladen, die den Nostalgie-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
 'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer geladen, die den Kölnisch Blau-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
-'monobook.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Monobook-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
+'monobook.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Monobook-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'myskin.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Myskin-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
 'chick.js'       => '/* Das folgende JavaScript wird für Benutzer geladen, die den KükenSkin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
 'simple.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Einfach-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */', # only translate this message to other languages if you have to change it
@@ -2211,7 +2271,8 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 
-'exif-orientation-2' => 'Horizontal gedreht', # 0th row: top; 0th column: right
+'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Horizontal gespiegelt', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Um 180° gedreht', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gedreht', # 0th row: bottom; 0th column: left
 'exif-orientation-5' => 'Entgegen dem Uhrzeigersinn um 90° gedreht und vertikal gewendet', # 0th row: left; 0th column: top
@@ -2283,18 +2344,26 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-whitebalance-0' => 'Automatisch',
 'exif-whitebalance-1' => 'Manuell',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landschaft',
+'exif-scenecapturetype-2' => 'Portrait',
 'exif-scenecapturetype-3' => 'Nachtszene',
 
 'exif-gaincontrol-0' => 'Keine',
 'exif-gaincontrol-1' => 'Gering',
+'exif-gaincontrol-2' => 'High gain up',
+'exif-gaincontrol-3' => 'Low gain down',
+'exif-gaincontrol-4' => 'High gain down',
 
+'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Schwach',
 'exif-contrast-2' => 'Stark',
 
+'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Gering',
 'exif-saturation-2' => 'Hoch',
 
+'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Gering',
 'exif-sharpness-2' => 'Stark',
 
@@ -2312,6 +2381,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpslongitude-w' => 'westl. Länge',
 
 'exif-gpsstatus-a' => 'Messung läuft',
+'exif-gpsstatus-v' => 'Interoperabilität von Messungen',
 
 'exif-gpsmeasuremode-2' => '2-dimensionale Messung',
 'exif-gpsmeasuremode-3' => '3-dimensionale Messung',
@@ -2381,14 +2451,15 @@ Trackbacks für diese Seite:<br />
 $1
 </div>',
 'trackbackremove'   => '([$1 löschen])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback wurde erfolgreich gelöscht.',
 
 # Delete conflict
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast, sie zu bearbeiten! 
 Siehe im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach, 
 warum die Seite gelöscht wurde. Wenn du die Seite speicherst, wird sie neu angelegt.</span>',
-'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User_talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem du angefangen hast, sie zu bearbeiten. Die Begründung lautete:
-''$2''
+'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem du angefangen hast, sie zu bearbeiten. Die Begründung lautete:
+:''$2''
 Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'recreate'            => 'Erneut anlegen',
 
@@ -2396,7 +2467,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'redirectingto' => 'Weitergeleitet nach [[$1]]',
 
 # action=purge
-'confirm_purge' => 'Diese Seite aus dem Server-Cache löschen? $1',
+'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
+'confirm_purge_button' => 'OK',
 
 # AJAX search
 'searchcontaining' => "Suche nach Seiten, in denen ''$1'' vorkommt.",
@@ -2483,9 +2555,11 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'version-skin-extension-functions' => 'Skin-Erweiterungs-Funktionen',
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
+'version-version'                  => 'Version',
 'version-license'                  => 'Lizenz',
 'version-software'                 => 'Installierte Software',
 'version-software-product'         => 'Produkt',
+'version-software-version'         => 'Version',
 
 # Special:Filepath
 'filepath'         => 'Dateipfad',

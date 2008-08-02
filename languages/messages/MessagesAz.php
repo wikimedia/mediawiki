@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -207,6 +208,7 @@ $messages = array(
 'noemail'                    => '"$1" adlı istifadəçi e-məktub ünvanı qeyd edmemişdir.',
 'acct_creation_throttle_hit' => 'Siz artıq $1 hesab açmısınız. Daha çox hesab açabilmərsiniz.',
 'emailauthenticated'         => 'E-məktub ünvanınız $1 tarixində təsdiq edilib.',
+'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated. No e-mail will be sent for any of the following features.',
 'emailconfirmlink'           => 'E-məktubunu təsdiq et',
 'invalidemailaddress'        => 'E-məktub ünvanını qeyri düzgün formatda olduğu üçün qəbul edə bilmirik. Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.',
 
@@ -286,6 +288,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'prefs-rc'           => 'Son dəyişikliklər',
 'prefs-misc'         => 'Digər tərcihlər',
 'saveprefs'          => 'Qeyd et',
+'resetprefs'         => 'Reset',
 'oldpassword'        => 'Köhne parol:',
 'newpassword'        => 'Yeni parol:',
 'retypenew'          => 'Yeni parolu təkrar yazın:',
@@ -325,6 +328,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'upload'            => 'Qarşıya yüklə',
 'uploadbtn'         => 'Sənəd yüklə',
 'reupload'          => 'Təkrar yüklə',
+'reuploaddesc'      => 'Return to the upload form.',
 'uploaderror'       => 'Yükləyiş xətası',
 'uploadlog'         => 'yükleme kaydı',
 'filename'          => 'Fayl adı',
@@ -362,7 +366,7 @@ There have been a total of '''$3''' page views, and '''$4''' page edits
 since the wiki was setup.
 That comes to '''$5''' average edits per page, and '''$6''' views per edit.
 
-Hal-hazırda [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] sayı: '''$7'''.",
+Hal-hazırda [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] sayı: '''$7'''.",
 'userstatstext' => "Hal-hazırda '''$1''' istifadəçi, '''2''' (və ya '''4%''') tanesi idarəçi. (baxınız $3).",
 
 'doubleredirects' => 'İkiqat istiqamətləndirmələr',
@@ -443,7 +447,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'watchmethod-recent'   => 'yeni dəyişikliklər izlənilən səhifələr üçün yoxlanılır',
 'watchmethod-list'     => 'izlənilən səhifələr yeni dəyişikliklər üçün yoxlanılır',
 'watchlistcontains'    => 'İzləmə siyahınızda $1 səhifə var.',
-'wlnote'               => 'Aşağıdakılar son <b>$2</b> saatdakı son $1 dəyişiklikdir.',
+'wlnote'               => "Aşağıdakılar son '''$2''' saatdakı son $1 dəyişiklikdir.",
 'wlshowlast'           => 'Bunları göstər: son $1 saatı $2 günü $3',
 
 # Delete/protect/revert

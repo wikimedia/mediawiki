@@ -6,8 +6,6 @@
  *
  * @author Ælsån
  * @author Huslåke
- * @author Siebrand
- * @author Nike
  * @author M.M.S.
  */
 
@@ -277,8 +275,12 @@ $messages = array(
 # General errors
 'error'                => 'Fejl',
 'databaseerror'        => 'Databasefejl',
-'dberrortext'          => 'Der er åpstået en syntaksfejl i en databaseførespørgsel. Dette ken være på grund åf en ugyldeg førespørgsel (sæg $5), æller det ken betyde en fejl i\'n softwær. 
-Den seneste førsøĝte databaseførespørgsel var: <blockquote><tt>$1</tt></blockquote> frå\'n funksje "<tt>$2</tt>". 
+'dberrortext'          => 'Der er åpstået en syntaksfejl i en databaseførespørgsel.
+Dette ken være på grund åf en ugyldeg førespørgsel,
+æller det ken betyde en fejl i\'n softwær. 
+Den seneste førsøĝte databaseførespørgsel var:
+<blockquote><tt>$1</tt></blockquote>
+frå\'n funksje "<tt>$2</tt>". 
 MySQL æ returnerede fejl "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Der er åpstået en syntaksfejl i en databaseførespørgsel. 
 Den seneste førsøĝte databaseførespørgsel var: "$1" frå\'n funksje "$2". 
@@ -366,7 +368,7 @@ Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, s
 'italic_tip'      => 'Skyn skrevselenger',
 'link_sample'     => 'Henvesnenge',
 'link_tip'        => 'Ensende henvesnenge',
-'extlink_sample'  => 'http://www.bibillet.jut Skrevselenger på henvesnenge',
+'extlink_sample'  => 'http://www.example.com Skrevselenger på henvesnenge',
 'extlink_tip'     => 'Utsende henvesnenge (husk http:// førgøret)',
 'headline_sample' => 'Skrevselenger til åverskreft',
 'headline_tip'    => 'Skå 2 åverskreft',
@@ -452,7 +454,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'lineno'                  => 'Lenje $1:',
 'compareselectedversions' => 'Sammenlign valgte hersenenger',
 'editundo'                => 'baĝgøt',
-'diff-multi'              => "<span style='font-size: smaller'>(Æ hersenengssammenlegnenge vetåger {{plural:$1|en mellemleggende hersenenge|$1 mellemleggende hersenenger}}.)</span>",
+'diff-multi'              => '(Æ hersenengssammenlegnenge vetåger {{PLURAL:$1|en mellemleggende hersenenge|$1 mellemleggende hersenenger}}.)',
 
 # Search results
 'noexactmatch' => "'''{{SITENAME}} har engen ertikel ve dette nav.''' Du ken [[:$1|åprette en ertikel ve dette nav]].",
@@ -598,7 +600,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Special:Allpages
 'nextpage'       => 'Næste side ($1)',
 'prevpage'       => 'Førge side ($1)',
-'allpagesfrom'   => 'Ves sider startende frå: $1',
+'allpagesfrom'   => 'Ves sider startende frå:',
 'allarticles'    => 'Åle ertikler',
 'allpagessubmit' => 'Ves',
 'allpagesprefix' => 'Ves sider ve førgøret:',

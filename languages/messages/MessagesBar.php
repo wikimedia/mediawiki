@@ -5,7 +5,6 @@
  * @file
  *
  * @author SPQRobin
- * @author Siebrand
  * @author Malafaya
  */
 

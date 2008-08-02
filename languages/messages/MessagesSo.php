@@ -5,8 +5,6 @@
  * @file
  *
  * @author Mimursal
- * @author Nike
- * @author Siebrand
  * @author Yariiska
  * @author Jon Harald Søby
  */
@@ -404,7 +402,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'watchthisupload' => 'Boggaan waardiyey',
 
 # Image list
-'imagelisttext'    => "Hoos waxaa yaala liiska '''$1''' {{plural:$1|file|faylalka}} oo u kala soocan $2.",
+'imagelisttext'    => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",
 'byname'           => 'hab magaceed',
 'bydate'           => 'hab taariikheed',
 'bysize'           => 'hab kala weynaan',

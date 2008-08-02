@@ -1,16 +1,12 @@
 <?php
-/** Southern Sami (Åarjelsaemien gïele)
+/** Southern Sami (Åarjelsaemien)
  *
  * @ingroup Language
  * @file
  *
- * @author Max sonnelid
- * @author Siebrand
- * @author Nike
  * @author M.M.S.
+ * @author Max sonnelid
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -119,7 +115,7 @@ $messages = array(
 'protectthispage'  => 'Vaarjelidh dïhte bielie',
 'newpage'          => 'Orre bielie',
 'talkpage'         => 'Dïjveldidh dïhte bielie',
-'talkpagelinktext' => 'Dïjveldeme',
+'talkpagelinktext' => 'Digkiedimmie',
 'specialpage'      => 'Joekoelaakan Bielie',
 'personaltools'    => 'Persjovne dïrregeh',
 'articlepage'      => 'Vuesehte artihkle bielie',
@@ -142,7 +138,7 @@ $messages = array(
 'jumptosearch'     => 'ohtsedh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => '{{SITENAME}} bïjre',
+'aboutsite'         => '{{SITENAME}}en bïjre',
 'aboutpage'         => 'Project:Bïjre',
 'bugreports'        => 'Bug reektehtse',
 'bugreportspage'    => 'Project:Bug reektehtse',
@@ -168,7 +164,7 @@ $messages = array(
 'youhavenewmessages'  => 'Datne åtna $1 ($2).',
 'newmessageslink'     => 'orre bïjre',
 'newmessagesdifflink' => 'minngemes värrhtoedimmie',
-'editsection'         => 'sjiehtedh',
+'editsection'         => 'sjïehtedh',
 'editold'             => 'värrhtoedimmie',
 'editsectionhint'     => 'Sektiovne sjiehtedh: $1',
 'toc'                 => 'Sisvege',
@@ -253,7 +249,7 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 'italic_tip'      => 'Kursiive tjaalege',
 'link_sample'     => 'Lïenghke tiitele',
 'link_tip'        => 'Sjisjnjie lïenghke',
-'extlink_sample'  => 'http://www.vuesiehtimmie.com lïenghke tiitele',
+'extlink_sample'  => 'http://www.example.com lïenghke tiitele',
 'extlink_tip'     => 'Ehkstäärne lïenghke (måjhtajidh http:// prefihkse)',
 'headline_sample' => 'Rubriike tjaalege',
 'headline_tip'    => 'Daltese 2 rubriike',
@@ -339,7 +335,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 
 # Search results
 'searchresults'    => 'Ohtsedh resultaateh',
-'searchresulttext' => 'Ihke jeenjebe bïevnesh bïjre ohtsedh {{SITENAME}}, vuejnedh [[{{Mediawiki:Helppage}}|{{int:help}}]].',
+'searchresulttext' => 'Ihke jeenjebe bïevnesh bïjre ohtsedh {{SITENAME}}, vuejnedh [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'   => "Dov ohtsedh ihke '''[[:$1]]'''",
 'noexactmatch'     => "'''Dïhte gååvnese ijje bielie meatan nommej \"\$1\".''' Dov dorje [[:\$1|skaepede dïhte bielie]].",
 'prevn'            => 'övtebe $1',
@@ -520,7 +516,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 
 'data'           => 'Daata',
 'groups'         => 'Nuhtjien tjïerteh',
-'alphaindexline' => '$1 gåajkoe $2',
+'alphaindexline' => '$1 ... $2',
 'version'        => 'Låhkoe',
 
 # Special:Log

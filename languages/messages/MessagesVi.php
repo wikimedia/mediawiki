@@ -4,9 +4,13 @@
  * @ingroup Language
  * @file
  *
+ * @author Vinhtantran
+ * @author Minh Nguyen
+ * @author לערי ריינהארט
+ * @author SPQRobin
+ * @author Jon Harald Søby
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
- * @author SPQRobin
  * @author Mxn
  * @author Apple
  * @author Arisa
@@ -16,12 +20,7 @@
  * @author Tmct
  * @author Tttrung
  * @author Vietbio
- * @author Vinhtantran
  * @author Vương Ngân Hà
- * @author לערי ריינהארט
- * @author Nike
- * @author Siebrand
- * @author Minh Nguyen
  */
 
 $namespaceNames = array(
@@ -159,8 +158,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Hiện địa chỉ thư điện tử của tôi trong thư thông báo',
 'tog-shownumberswatching'     => 'Hiển thị số người đang xem',
 'tog-fancysig'                => 'Chữ ký không dùng liên kết tự động',
-'tog-externaleditor'          => 'Mặc định dùng trình soạn thảo bên ngoài',
-'tog-externaldiff'            => 'Mặc định dùng trình so sánh bên ngoài',
+'tog-externaleditor'          => 'Mặc định dùng trình soạn thảo bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
+'tog-externaldiff'            => 'Mặc định dùng trình so sánh bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
 'tog-showjumplinks'           => 'Bật liên kết “bước tới” trên đầu trang cho bộ trình duyệt thuần văn bản hay âm thanh',
 'tog-uselivepreview'          => 'Sử dụng xem thử trực tiếp (JavaScript) (thử nghiệm)',
 'tog-forceeditsummary'        => 'Nhắc tôi khi tôi quên tóm lược sửa đổi',
@@ -612,7 +611,7 @@ Lý do được cung cấp là:
 Bạn có thể liên lạc với $1 hoặc một trong số các
 [[{{MediaWiki:Grouppage-sysop}}|quản lý]] khác để thảo luận về việc cấm.
 
-Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử đúng trong [[{{ns:Special}}:Preferences|tùy chọn]] và chức năng đó không bị cấm.
+Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử đúng trong [[Special:Preferences|tùy chọn]] và chức năng đó không bị cấm.
 
 Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những yêu cầu của bạn.",
 'blockednoreason'           => 'không đưa ra lý do',
@@ -638,7 +637,7 @@ Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những
 'anontalkpagetext'          => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có nhưng không đăng nhập. Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta. Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung. Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:Userlogin|tạo tài khoản hoặc đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
 'noarticletext'             => 'Trang này hiện chưa có gì, bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang]] tại các trang khác hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này].',
 'userpage-userdoesnotexist' => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
-'clearyourcache'            => "'''Ghi chú:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi. '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-Shift-R'' (''Cmd-Shift-R'' trên Mac); '''IE:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''; '''Konqueror:''': chỉ cần nhấn nút ''Reload'', hoặc nhấn ''F5''; người dùng '''Opera''' có thể cần phải xóa hoàn toàn bộ nhớ đệm trong ''Tools→Preferences''.",
+'clearyourcache'            => "'''Ghi chú - Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (''Command-R'' trên Macintosh); '''Konqueror:''': nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
 'usercssjsyoucanpreview'    => '<strong>Mẹo:</strong> Sử dụng nút “Xem thử” để kiểm thử trang CSS/JS của bạn trước khi lưu trang.',
 'usercsspreview'            => "'''Nhớ rằng bạn chỉ đang xem thử trang CSS, nó chưa được lưu!'''",
 'userjspreview'             => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript, nó chưa được lưu!'''",
@@ -763,7 +762,7 @@ có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPA
 'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
 'revdelete-nooldid-title'     => 'Chưa chọn phiên bản',
 'revdelete-nooldid-text'      => 'Chưa chọn phiên bản để thực hiện thao tác.',
-'revdelete-selected'          => '{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[$1:]]:',
+'revdelete-selected'          => '{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:',
 'logdelete-selected'          => "{{PLURAL:$2|Nhật trình đã chọn|Các nhật trình đã chọn}} của '''$1:'''",
 'revdelete-text'              => 'Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.
 
@@ -842,7 +841,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'viewprevnext'          => 'Xem ($1) ($2) ($3).',
 'showingresults'        => "Dưới đây là {{PLURAL:$1|'''1'''|'''$1'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'     => "Dưới đây là {{PLURAL:$3|'''1'''|'''$3'''}} kết quả bắt đầu từ #'''$2'''.",
-'nonefound'             => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (như [[:en:Main Page|tiếng Anh]], ví dụ, Tiêu bản là ''Template:'', Thể loại là ''Category:''...).",
+'nonefound'             => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (ví dụ ''Thảo luận:'', ''Tiêu bản:'', ''Thể loại:''…).",
 'powersearch'           => 'Tìm kiếm nâng cao',
 'powersearchtext'       => 'Tìm trong không gian tên:<br />$1<br />$2 gồm cả trang đổi hướng<br />Tìm $3 $9',
 'searchdisabled'        => 'Chức năng tìm kiếm tại {{SITENAME}} đã bị tắt. Bạn có tìm kiếm bằng Google trong thời gian này. Chú ý rằng các chỉ mục từ {{SITENAME}} của chúng có thể đã lỗi thời.',
@@ -895,7 +894,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'contextchars'             => 'Số chữ trong một hàng kết quả:',
 'stub-threshold'           => 'Định dạng <a href="#" class="stub">liên kết đến sơ khai</a> cho các trang ngắn hơn (byte):',
 'recentchangesdays'        => 'Số ngày hiển thị trong thay đổi gần đây:',
-'recentchangescount'       => 'Số sửa đổi hiển thị trong thay đổi gần đây:',
+'recentchangescount'       => 'Số sửa đổi hiển thị trong trang thay đổi gần đây, lịch sử và nhật trình:',
 'savedprefs'               => 'Đã lưu các tùy chọn cá nhân.',
 'timezonelegend'           => 'Múi giờ',
 'timezonetext'             => 'Số giờ chênh lệch giữa giờ địa phương của bạn với giờ máy chủ (UTC)',
@@ -960,7 +959,7 @@ Xin hãy bảo đảm tính liên tục của lịch sử trang.
 'recentchanges-feed-description'    => 'Theo dõi các thay đổi gần đây nhất của wiki dùng feed này.',
 'rcnote'                            => "Dưới đây là {{PLURAL:$1|'''1''' thay đổi|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $3.",
 'rcnotefrom'                        => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
-'rclistfrom'                        => 'Xem thay đổi từ $1.',
+'rclistfrom'                        => 'Hiển thị các thay đổi từ $1.',
 'rcshowhideminor'                   => '$1 sửa đổi nhỏ',
 'rcshowhidebots'                    => '$1 sửa đổi bot',
 'rcshowhideliu'                     => '$1 sửa đổi thành viên',
@@ -1138,22 +1137,22 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
 'filerevert-legend'         => 'Lùi lại tập tin',
-'filerevert-intro'          => '<span class="plainlinks">Bạn đang lùi \'\'\'[[Media:$1|$1]]\'\'\' về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-intro'          => "Bạn đang lùi '''[[Media:$1|$1]]''' về [$4 phiên bản lúc $3, $2].",
 'filerevert-comment'        => 'Lý do:',
 'filerevert-defaultcomment' => 'Đã lùi về phiên bản lúc $2, $1',
 'filerevert-submit'         => 'Lùi lại',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' đã được lùi về [$4 phiên bản lúc $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' đã được lùi về [$4 phiên bản lúc $3, $2].",
 'filerevert-badversion'     => 'Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.',
 
 # File deletion
 'filedelete'                  => 'Xóa $1',
 'filedelete-legend'           => 'Xóa tập tin',
 'filedelete-intro'            => "Bạn đang xóa '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Bạn đang xóa phiên bản của \'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' vào lúc [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Bạn đang xóa phiên bản của '''[[Media:$1|$1]]''' vào lúc [$4 $3, $2].",
 'filedelete-comment'          => 'Lý do:',
 'filedelete-submit'           => 'Xóa',
 'filedelete-success'          => "'''$1''' đã bị xóa.",
-'filedelete-success-old'      => '<span class="plainlinks">Phiên bản của \'\'\'[[{{ns:Media}}:$1|$1]]\'\'\' vào lúc $3, $2 đã bị xóa.</span>',
+'filedelete-success-old'      => '<span class="plainlinks">Phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc $3, $2 đã bị xóa.</span>',
 'filedelete-nofile'           => "'''$1''' không tồn tại trên {{SITENAME}}.",
 'filedelete-nofile-old'       => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
 'filedelete-iscurrent'        => 'Bạn đang cố xóa phiên bản mới nhất của tập tin này. Xin hãy lui tập tin về một phiên bản cũ hơn đã.',
@@ -1200,7 +1199,7 @@ Có '''$8''' tập tin đã được tải lên.
 
 Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
 
-Độ dài của [http://meta.wikimedia.org/wiki/Help:Job_queue hàng đợi việc] là '''$7'''.",
+Độ dài của [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc] là '''$7'''.",
 'userstatstext'          => "Có '''$1''' [[Special:Listusers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.",
 'statistics-mostpopular' => 'Các trang được xem nhiều nhất',
 
@@ -1216,9 +1215,10 @@ Có '''$8''' tập tin đã được tải lên.
 'brokenredirects-edit'   => '(sửa)',
 'brokenredirects-delete' => '(xóa)',
 
-'withoutinterwiki'        => 'Trang chưa có liên kết ngoại ngữ',
-'withoutinterwiki-header' => 'Các trang sau đây không có liên kết đến các phiên bản ngoại ngữ khác:',
-'withoutinterwiki-submit' => 'Xem',
+'withoutinterwiki'         => 'Trang chưa có liên kết ngoại ngữ',
+'withoutinterwiki-header'  => 'Các trang sau đây không có liên kết đến các phiên bản ngoại ngữ khác:',
+'withoutinterwiki-summary' => 'Các trang sau đây không có liên kết đến các phiên bản ngoại ngữ khác:',
+'withoutinterwiki-submit'  => 'Xem',
 
 'fewestrevisions' => 'Trang có ít sửa đổi nhất',
 
@@ -1349,7 +1349,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'watchnologin'         => 'Chưa đăng nhập',
 'watchnologintext'     => 'Bạn phải [[Special:Userlogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addedwatch'           => 'Đã thêm vào danh sách theo dõi',
-'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[{{ns:Special}}:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[{{ns:Special}}:Recentchanges|danh sách các thay đổi mới]].
+'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[Special:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:Recentchanges|danh sách các thay đổi mới]].
 
 Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
 'removedwatch'         => 'Đã ra khỏi danh sách theo dõi',
@@ -1418,7 +1418,7 @@ Phản hồi và cần sự hỗ trợ:
 'deletepage'                  => 'Xóa trang',
 'confirm'                     => 'Xác nhận',
 'excontent'                   => 'nội dung cũ: “$1”',
-'excontentauthor'             => 'nội dung cũ: “$1” (người viết duy nhất “[[{{ns:Special}}:Contributions/$2|$2]]”)',
+'excontentauthor'             => 'nội dung cũ: “$1” (người viết duy nhất “[[Special:Contributions/$2|$2]]”)',
 'exbeforeblank'               => 'nội dung trước khi tẩy trống: “$1”',
 'exblank'                     => 'trang trắng',
 'delete-confirm'              => '
@@ -1453,7 +1453,7 @@ Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy c�
 
 Sửa đổi lần cuối bởi [[User:$3|$3]] ([[User talk:$3|Thảo luận]]).',
 'editcomment'                 => 'Tóm lược sửa đổi: “<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]); quay về phiên bản trước của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Đã lùi sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) đến phiên bản của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Đã hủy sửa đổi của $1; quay về phiên bản trước của $2.',
 'sessionfailure'              => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
 'protectlogpage'              => 'Nhật trình khóa',
@@ -1533,7 +1533,7 @@ một người nào khác đã phục hồi trang này rồi.',
 'undeletedpage'                => "<big>'''$1 đã được khôi phục'''</big>
 
 Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:Log/delete|nhật trình xóa]].",
-'undelete-header'              => 'Xem các trang bị xóa gần đây tại [[{{ns:Special}}:Log/delete|nhật trình xóa]].',
+'undelete-header'              => 'Xem các trang bị xóa gần đây tại [[Special:Log/delete|nhật trình xóa]].',
 'undelete-search-box'          => 'Tìm kiếm trang đã bị xóa',
 'undelete-search-prefix'       => 'Hiển thị trang có tiền tố:',
 'undelete-search-submit'       => 'Tìm kiếm',
@@ -1637,7 +1637,7 @@ $1',
 'ipblocklist-username'        => 'Tên thành viên hoặc địa chỉ IP:',
 'ipblocklist-summary'         => 'Xem [http://tools.wikimedia.de/~krimpet/rbhelper.php?db=viwiki_p công cụ này] để tìm tất cả các nhật trình khóa dải IP đối với một IP cụ thể nào đó.',
 'ipblocklist-submit'          => 'Tìm kiếm',
-'blocklistline'               => '$1, $2 đã cấm $3 (thời hạn $4)',
+'blocklistline'               => '$1, $2 đã cấm $3 (hết hạn $4)',
 'infiniteblock'               => 'vô hạn',
 'expiringblock'               => 'hết hạn lúc $1',
 'anononlyblock'               => 'chỉ cấm vô danh',
@@ -1651,7 +1651,7 @@ $1',
 'contribslink'                => 'đóng góp',
 'autoblocker'                 => 'Bạn bị tự động cấm vì địa chỉ IP của bạn vừa rồi đã được “$1” sử dụng. Lý do đưa ra cho việc cấm $1 là: ”$2”',
 'blocklogpage'                => 'Nhật trình cấm',
-'blocklogentry'               => 'đã cấm [[$1]] với thời hạn của $2 $3',
+'blocklogentry'               => 'đã cấm [[$1]] với thời hạn là $2 $3',
 'blocklogtext'                => 'Đây là nhật trình ghi lại những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê ở đây. Xem thêm [[Special:Ipblocklist|danh sách cấm]] để có danh sách cấm và cấm hẳn hiện tại.',
 'unblocklogentry'             => 'đã bỏ cấm “$1”',
 'block-log-flags-anononly'    => 'chỉ cấm thành viên vô danh',
@@ -1720,7 +1720,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'move-watch'              => 'Theo dõi trang này',
 'movepagebtn'             => 'Di chuyển trang',
 'pagemovedsub'            => 'Di chuyển thành công',
-'movepage-moved'          => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''“.$1” đã được di chuyển đến “.$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
 'cantmove-titleprotected' => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
@@ -1746,11 +1746,12 @@ Trang với tên “[[$1]]” đã tồn tại. Bạn có muốn xóa nó để 
 
 # Export
 'export'            => 'Xuất các trang',
-'exporttext'        => 'Bạn có thể xuất nội dung và lịch sử sửa đổi của một trang hoặc tập hợp trang vào tập tin XML. Những tập tin này cũng có thể được nhập vào wiki khác có sử dụng MediaWiki thông qua [[{{ns:Special}}:Import|nhập trang]].
+'exporttext'        => 'Bạn có thể xuất nội dung và lịch sử sửa đổi của một trang hoặc tập hợp trang vào tập tin XML.
+Những tập tin này cũng có thể được nhập vào wiki khác có sử dụng MediaWiki thông qua [[Special:Import|nhập trang]].
 
 Để xuất các trang, nhập vào tên trang trong hộp soạn thảo ở dưới, mỗi dòng một tên, và lựa chọn bạn muốn phiên bản hiện tại cũng như tất cả phiên bản cũ, với các dòng lịch sử trang, hay chỉ là phiên bản hiện tại với thông tin về lần sửa đổi cuối.
 
-Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví dụ [[{{ns:Special}}:Export/{{MediaWiki:Mainpage}}]] để biểu thị trang “[[{{MediaWiki:Mainpage}}]]”.',
+Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví dụ [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] để biểu thị trang “[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Chỉ xuất phiên bản hiện hành, không xuất tất cả lịch sử trang',
 'exportnohistory'   => "----
 '''Chú ý:''' Chức năng xuất lịch sử trang đầy đủ bằng mẫu này bị tắt do vấn đề hiệu suất.",
@@ -1783,7 +1784,9 @@ Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa Medi
 # Special:Import
 'import'                     => 'Nhập các trang',
 'importinterwiki'            => 'Nhập giữa các wiki',
-'import-interwiki-text'      => 'Chọn tên trang và wiki để nhập trang vào. Ngày của phiên bản và tên người viết trang sẽ được giữ nguyên. Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[{{ns:Special}}:Log/import|nhật trình nhập trang]].',
+'import-interwiki-text'      => 'Chọn tên trang và wiki để nhập trang vào.
+Ngày của phiên bản và tên người viết trang sẽ được giữ nguyên.
+Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[Special:Log/import|nhật trình nhập trang]].',
 'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
 'import-interwiki-submit'    => 'Nhập trang',
 'import-interwiki-namespace' => 'Chuyển các trang vào không gian tên:',
@@ -1884,7 +1887,7 @@ Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa Medi
 
 # Scripts
 'common.js'   => '/* Bất kỳ mã JavaScript ở đây sẽ được tải cho tất cả các thành viên khi tải một trang nào đó lên. */',
-'monobook.js' => '/* Đã không còn sử dụng; hãy dùng [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Những người dùng hình dạng MonoBook tải mã JavaScript ở đây */',
 
 # Metadata
 'nodublincore'      => 'Máy chủ không hỗ trợ siêu dữ liệu Dublin Core RDF.',
@@ -2022,14 +2025,14 @@ Những thông tin khác mặc định sẽ bị giấu.
 'exif-primarychromaticities'       => 'Sắc độ của màu cơ bản',
 'exif-ycbcrcoefficients'           => 'Hệ số ma trận biến đổi không gian màu',
 'exif-referenceblackwhite'         => 'Giá trị tham chiếu cặp trắng đen',
-'exif-datetime'                    => 'Ngày tháng sửa',
+'exif-datetime'                    => 'Ngày giờ sửa tập tin',
 'exif-imagedescription'            => 'Tiêu đề của hình',
 'exif-make'                        => 'Hãng máy ảnh',
 'exif-model'                       => 'Kiểu máy ảnh',
 'exif-software'                    => 'Phần mềm đã dùng',
 'exif-artist'                      => 'Tác giả',
 'exif-copyright'                   => 'Bản quyền',
-'exif-exifversion'                 => 'Phiên bản exif',
+'exif-exifversion'                 => 'Phiên bản Exif',
 'exif-flashpixversion'             => 'Phiên bản Flashpix được hỗ trợ',
 'exif-colorspace'                  => 'Không gian màu',
 'exif-componentsconfiguration'     => 'Ý nghĩa thành phần',
@@ -2371,12 +2374,14 @@ $1',
 'watchlistedit-noitems'        => 'Danh sách các trang bạn theo dõi hiện không có gì.',
 'watchlistedit-normal-title'   => 'Sửa các trang tôi theo dõi',
 'watchlistedit-normal-legend'  => 'Bỏ các trang đang theo dõi ra khỏi danh sách',
-'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, chọn vào hộp kiểm bên cạnh nó, rồi nhấn “Bỏ trang đã chọn”. Bạn cũng có thể [[{{ns:Special}}:Watchlist/raw|sửa danh sách theo dạng thô]].',
+'watchlistedit-normal-explain' => 'Tên các trang bạn theo dõi được hiển thị dưới đây. Để xóa một tên trang, chọn vào hộp kiểm bên cạnh nó, rồi nhấn “Bỏ trang đã chọn”. Bạn cũng có thể [[Special:Watchlist/raw|sửa danh sách theo dạng thô]].',
 'watchlistedit-normal-submit'  => 'Bỏ trang đã chọn',
 'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|tựa đề|tựa đề}} đã được xóa khỏi danh sách các trang theo dõi:',
 'watchlistedit-raw-title'      => 'Sửa danh sách theo dõi dạng thô',
 'watchlistedit-raw-legend'     => 'Sửa danh sách theo dõi dạng thô',
-'watchlistedit-raw-explain'    => 'Tên các trang bạn theo dõi đuọc hiển thị dưới đây, và có thể được sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng. Khi xong, nhấn nút ”Cập nhật Trang tôi theo dõi”. Bạn cũng có thể [[{{ns:Special}}:Watchlist/edit|dùng trình soạn thảo chuẩn]] để sửa danh sách này.',
+'watchlistedit-raw-explain'    => 'Tên các trang bạn theo dõi đuọc hiển thị dưới đây, và có thể được sửa chữa bằng cách thêm vào hoặc bỏ ra khỏi danh sách; mỗi trang một hàng.
+Khi xong, nhấn nút ”Cập nhật Trang tôi theo dõi”.
+Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩn]] để sửa danh sách này.',
 'watchlistedit-raw-titles'     => 'Tên các trang:',
 'watchlistedit-raw-submit'     => 'Cập nhật Trang tôi theo dõi',
 'watchlistedit-raw-done'       => 'Danh sách các trang bạn theo dõi đã được cập nhật.',

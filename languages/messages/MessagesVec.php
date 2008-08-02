@@ -4,13 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Candalua
  * @author Nick1915
  * @author BrokenArrow
  * @author לערי ריינהארט
- * @author Nike
  * @author Jon Harald Søby
- * @author Siebrand
- * @author Candalua
  */
 
 $fallback = 'it';
@@ -66,8 +64,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Rivela el me indirizo e-mail nei messagi de aviso',
 'tog-shownumberswatching'     => "Mostra el nùmaro de utenti che tien d'ocio la pagina",
 'tog-fancysig'                => 'No modificar mìa el markup de la firma (da doparar par firme mìa standard)',
-'tog-externaleditor'          => 'Dòpara par default un editor de testi esterno',
-'tog-externaldiff'            => 'Dòpara par default un programa de diff esterno',
+'tog-externaleditor'          => 'Dòpara par default un editor de testi esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
+'tog-externaldiff'            => 'Dòpara par default un programa de diff esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
 'tog-showjumplinks'           => "Ativa i colegamenti acessibili 'và a'",
 'tog-uselivepreview'          => "Ativa la funzion ''Live preview'' (ghe vol JavaScript; sperimental)",
 'tog-forceeditsummary'        => "Domanda conferma se l'ogeto de la modifica el xe vodo",
@@ -136,7 +134,7 @@ $messages = array(
 'dec'           => 'Diç',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Categoria|Categorie}}',
+'categories'            => 'Categorie',
 'pagecategories'        => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header'       => 'Voçi n\'te ła categoria "$1"',
 'subcategories'         => 'Sotocategorie',
@@ -244,7 +242,7 @@ I seguenti colegamenti i xe in lengua inglese:
 'faq'               => 'Domande frequenti',
 'faqpage'           => 'Project:Domande frequenti',
 'helppage'          => 'Help:Ajuto',
-'mainpage'          => 'Pàxena prinçipałe',
+'mainpage'          => 'Pàxena prinsipałe',
 'policy-url'        => 'Project:Policy',
 'portal'            => 'Portal comunità',
 'portal-url'        => 'Project:Portałe Comunità',
@@ -454,7 +452,8 @@ Par piaser, fà subito un login \'pena che la te riva.',
 'accountcreated'             => 'Acesso creà',
 'accountcreatedtext'         => "Xè stà creà un acesso par l'utente $1.",
 'createaccount-title'        => 'Creazion de un acesso a {{SITENAME}}',
-'createaccount-text'         => 'Qualcheduni ($1) gà creà un acesso a {{SITENAME}} ($4) a nome de $2, associà a sto indirizo de posta eletronica. La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
+'createaccount-text'         => 'Qualcheduni gà creà un acesso a {{SITENAME}} ($4) a nome de $2, associà a sto indirizo de posta eletronica.
+La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
 
 Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'loginlanguagelabel'         => 'Lengua: $1',
@@ -476,7 +475,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'italic_tip'      => 'Corsivo',
 'link_sample'     => 'Nome del colegamento',
 'link_tip'        => 'Colegamento interno',
-'extlink_sample'  => 'http://www.titolochetevoliti.com titolo del colegamento',
+'extlink_sample'  => 'http://www.example.com titolo del colegamento',
 'extlink_tip'     => 'Colegamento esterno (ricòrdete el prefisso http:// )',
 'headline_sample' => 'Intestazión',
 'headline_tip'    => 'Sotointestazion',
@@ -499,7 +498,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'showpreview'               => 'Mostra anteprima',
 'showlivepreview'           => "Funzion ''Live preview''",
 'showdiff'                  => 'Mostra canbiamenti',
-'anoneditwarning'           => "'''Ocio:''' Acesso mìa efetuà. Ne ła cronołogia de ła pàxena vegnarà registrà l'indirizo IP.",
+'anoneditwarning'           => "'''Ocio:''' Acesso mìa efetuà. Ne ła cronołogia de ła pàxena vegnarà registrà el to indirizo IP.",
 'missingsummary'            => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
 'missingcommenttext'        => 'Inserissi un comento qua soto.',
 'missingcommentheader'      => "'''Ocio:''' No te ghè specificà l'intestazion de sto commento. Macando de novo '''Salva la pagina''' la modifica la vegnarà salvà senza intestazion.",
@@ -516,7 +515,7 @@ El bloco el xe stà messo da $1. La motivazion del bloco la xe sta qua: ''$2''
 
 Se te vol, te pol contatar $1 o n'altro [[{{MediaWiki:Grouppage-sysop}}|aministrador]] par discùtar del bloco.
 
-Nota che la funzion 'Scrivi a l'utente' no la xe mìa ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[{{ns:special}}:Preferences|preferenze]].
+Nota che la funzion 'Scrivi a l'utente' no la xe mìa ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[Special:Preferences|preferenze]].
 
 Se prega de specificare l'indirizo IP atuale ($3) o el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
 'autoblockedtext'           => "Sto indirizo IP el xe stà blocà automaticamente parché condiviso con n'altro utente, a so volta blocà da $1.
@@ -555,16 +554,13 @@ Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de c
 Se te desideri crear ła pàxena desso, basta che te tachi a scrìvar el testo ne ła caseła qua soto
 (fà riferimento a łe [[{{MediaWiki:Helppage}}|pàxene de ajuto]] par majori informassion).
 Se te si rivà qua par sbaglio, basta che te machi el boton '''Indrio''' sul to browser.",
-'anontalkpagetext'          => "----
-
-
-
-
-
----- ''Sta quà l'è la pàxena de discussion de un utente anonimo che no'l se gà gnancora registrà o che no l'efetua el login. De conseguenza xè necessario identificarlo tramite l'[[Indirizo IP|indirizo IP]] numerico. Sto indirizo el pode èssar condivixo da diversi utenti. Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te podi [[Special:Userlogin|registrarte o efetuar el login]] par evitar confuxion con altri utenti in futuro.''",
+'anontalkpagetext'          => "----''Sta quà l'è la pàxena de discussion de un utente anonimo che no'l se gà gnancora registrà o che no l'efetua el login.
+De conseguenza xè necessario identificarlo tramite l'indirizo IP numerico.
+Sto indirizo el pode èssar condivixo da diversi utenti.
+Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te podi [[Special:Userlogin|registrarte o efetuar el login]] par evitar confuxion con altri utenti in futuro.''",
 'noarticletext'             => 'In sto momento ła pàxena richiesta la xè voda. Se pol [[Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre pàxene del sito opure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła pàxena desso].',
 'userpage-userdoesnotexist' => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
-'clearyourcache'            => "'''Nota:''' dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti: '''Mozilla:''' schiza su ''reload'' (opure ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'clearyourcache'            => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
 'usercssjsyoucanpreview'    => "<strong>Sugerimento:</strong> se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
 'usercsspreview'            => "'''Sta qua la xe solo n'anteprima del proprio CSS personal; le modifiche no le xe gnancora stà salvà!'''",
 'userjspreview'             => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
@@ -656,7 +652,7 @@ Verifica l'URL che te doparà par açedere a sta pàxena.",
 'orig'                => 'orig',
 'page_first'          => 'prima',
 'page_last'           => 'ultima',
-'histlegend'          => 'Legenda: (corr) = difarense con la versión corente,
+'histlegend'          => 'Legenda: (cor) = difarense con la versión corente,
 (prec) = difarense con la versión precedente, m = modifica minore',
 'deletedrev'          => '[scancełà]',
 'histfirst'           => 'Prima',
@@ -734,7 +730,7 @@ I altri aministradori del sito i podarà accédar istesso ai contenuti sconti e 
 'lineno'                  => 'Riga $1:',
 'compareselectedversions' => 'Confronta łe version selezionà',
 'editundo'                => 'annulla',
-'diff-multi'              => '({{plural:$1|Una revision intermedia non mostrà|$1 revision intermedie non mostrà}}.)',
+'diff-multi'              => '({{PLURAL:$1|Una revision intermedia non mostrà|$1 revision intermedie non mostrà}}.)',
 
 # Search results
 'searchresults'         => 'Risultato de la riçerca',
@@ -809,7 +805,7 @@ par poder personalixare le to preferense.',
 'contextchars'             => 'Caratteri par linea:',
 'stub-threshold'           => 'Valor minimo par i <a href="#" class="stub">colegamenti ai stub</a>:',
 'recentchangesdays'        => 'Nùmaro de giòrni da mostrar ne le ultime modifiche:',
-'recentchangescount'       => 'Nùmaro titołi in "modifeghe reçenti"',
+'recentchangescount'       => 'Nùmaro de modìfeghe da mostrar in modìfeghe reçenti, cronologia e pagine de registro:',
 'savedprefs'               => 'Le to preferense łe xè stà salvae.',
 'timezonelegend'           => 'Fuso orario',
 'timezonetext'             => 'Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).',
@@ -1032,18 +1028,18 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 # File reversion
 'filerevert'                => 'Ripristina $1',
 'filerevert-legend'         => 'Ripristina file',
-'filerevert-intro'          => '<span class="plainlinks">Te stè par ripristinar el file \'\'\'[[Media:$1|$1]]\'\'\' a la [versione $4 del $2, $3].</span>',
+'filerevert-intro'          => "Te stè par ripristinar el file '''[[Media:$1|$1]]''' a la [versione $4 del $2, $3].",
 'filerevert-comment'        => 'Comento:',
 'filerevert-defaultcomment' => 'Xe stà ripristinà la version del $1, $2',
 'filerevert-submit'         => 'Ripristina',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'El file [[Media:$1|$1]]\'\'\' el xe stà ripristinà a la [$4 version del $2, $3].</span>',
+'filerevert-success'        => "'''El file [[Media:$1|$1]]''' el xe stà ripristinà a la [$4 version del $2, $3].",
 'filerevert-badversion'     => 'No esiste mìa version locali precedenti del file col timestamp richiesto.',
 
 # File deletion
 'filedelete'                  => 'Scancela $1',
 'filedelete-legend'           => 'Scancela el file',
 'filedelete-intro'            => "Te stè par scancelar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Te sì drio scancelar la version de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Te sì drio scancelar la version de '''[[Media:$1|$1]]''' del [$4 $3, $2].",
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Scancela',
 'filedelete-success'          => "El file '''$1''' el xe stà scancelà.",
@@ -1094,13 +1090,14 @@ Xe stà inoltre caricà '''\$8''' file.
 
 Da l'instalazion del sito fin a sto momento, xe stà visità '''\$3''' pagine ed eseguìe '''\$4''' modifeghe, pari a na media de '''\$5''' modifeghe par pàxena e '''\$6''' richieste de letura par ciascuna modifega.
 
-La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' proçessi.",
+La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' proçessi.",
 'userstatstext'          => "Ghe xe {{PLURAL:$1|'''1''' [[Special:Listusers|utente]]|'''$1''' [[Special:Listusers|utenti]]}} registrà, de cui '''$2''' (pari al '''$4%''') {{PLURAL:$2|el|i}} gà i diriti de $5.",
 'statistics-mostpopular' => 'Pagine piassè visità',
 
 'disambiguations'      => 'Pàxene de disanbiguazion',
 'disambiguationspage'  => 'Template:Disambigua',
-'disambiguations-text' => "Le pagine ne la lista che segue le contien dei colegamenti a '''pagine de disanbiguazion''' e no a l'argomento a cui le dovarìà far riferimento.<br />Vien considerà pagine de disanbiguazion tute quele che contien i template elencà in [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Le pagine ne la lista che segue le contien dei colegamenti a '''pagine de disanbiguazion''' e no a l'argomento a cui le dovarìà far riferimento.<br />
+Vien considerà pagine de disanbiguazion tute quele che contien i template elencà in [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Redirect dopi',
 'doubleredirectstext' => '<b>Ocio:</b> Stà lista la pode talvolta contegnere dei risultati mìa giusti. Podaria magari sucédar parché ghe fusse del testo agiuntivo o dei colegamenti dopo el tag #REDIRECT.<br /> Ogni riga la contegne i colegamenti al primo ed al secondo redirect, oltre a la prima riga de testo del secondo redirect che de solito contegne el "reale" articolo de destinassion, quelo al quale anca el primo redirect dovaria puntar.',
@@ -1110,9 +1107,10 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'brokenredirects-edit'   => '(modifica)',
 'brokenredirects-delete' => '(scancela)',
 
-'withoutinterwiki'        => 'Pagine che no gà interwiki',
-'withoutinterwiki-header' => 'Le pagine indicà de seguito no le gà colegamenti a le version in altre lengue:',
-'withoutinterwiki-submit' => 'Mostra',
+'withoutinterwiki'         => 'Pagine che no gà interwiki',
+'withoutinterwiki-header'  => 'Le pagine indicà de seguito no le gà colegamenti a le version in altre lengue:',
+'withoutinterwiki-summary' => 'Le pagine indicà de seguito no le gà colegamenti a le version in altre lengue:',
+'withoutinterwiki-submit'  => 'Mostra',
 
 'fewestrevisions' => 'Voçi con manco revision',
 
@@ -1232,7 +1230,7 @@ La [http://meta.wikimedia.org/wiki/Help:Job_queue coa] la contien '''\$7''' pro�
 'emailsenttext'   => 'La to e-mail la xè stà invià.',
 
 # Watchlist
-'watchlist'            => 'Osservati speciali',
+'watchlist'            => "Pagine tegnùe d'ocio",
 'mywatchlist'          => 'osservati speciali',
 'watchlistfor'         => "(par '''$1''')",
 'nowatchlist'          => "No te ghè indicà pagine da tegner d'ocio.",

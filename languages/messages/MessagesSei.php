@@ -6,13 +6,10 @@
  *
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
- * @author Teak
- * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SPQRobin
+ * @author Teak
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -319,7 +316,8 @@ Reportom jande sysop ö xuniim URL zo.',
 'badarticleerror'      => 'Jan accion neperformon jan páhina iti.',
 'cannotdelete'         => 'Nedelatom páhina zo jöx ciúchan zo fillöx. (Jömdectam coccebj delatom jan pos-poop.)',
 'badtitle'             => 'Ahisharliit',
-'badtitletext'         => 'Zo páhina coccebj [[ahisharliit]] zo. Jan pos-coccebj plusöxde 1 jöx 1 characterám jan nepos-coccebj usadas titlenám iti.',
+'badtitletext'         => 'Zo páhina coccebj ahisharliit zo.
+Jan pos-coccebj plusöxde 1 jöx 1 characterám jan nepos-coccebj usadas titlenám iti.',
 'perfdisabled'         => 'Sorry! Jan part coccebj disablenöxde temp. Zo minöxde cáipyde database ponit zo iti nectám pos-usadad wiki zo.',
 'perfcached'           => 'Jan data coccebj cache ö necoccebj updatenom.',
 'perfcachedts'         => "Jan data coccebj cache ö coccebjöx updatenom $1 'de.",

@@ -5,11 +5,10 @@
  * @file
  *
  * @author Agurzil
- * @author Nike
- * @author Teak
- * @author SPQRobin
- * @author Siebrand
  * @author Jon Harald Søby
+ * @author Agzennay
+ * @author SPQRobin
+ * @author Teak
  */
 
 $namespaceNames = array(
@@ -211,7 +210,7 @@ $messages = array(
 'redirectedfrom'    => '(Yettusmimeḍ seg $1)',
 'redirectpagesub'   => 'Asebter usemmimeḍ',
 'lastmodifiedat'    => 'Tikkelt taneggarut i yettubeddel asebter-agi $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Asebter-agi yettwakcem {{plural:$1|yiwet tikelt|$1 tikwal}}.',
+'viewcount'         => 'Asebter-agi yettwakcem {{PLURAL:$1|yiwet tikelt|$1 tikwal}}.',
 'protectedpage'     => 'Asebter yettwaḥerzen',
 'jumpto'            => 'Neggez ar:',
 'jumptonavigation'  => 'ẓer isebtar',
@@ -440,13 +439,13 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'italic_tip'      => 'Aḍris aṭalyani',
 'link_sample'     => 'Azwel n uzday',
 'link_tip'        => 'Azday zdaxel',
-'extlink_sample'  => 'http://www.amedya.com azwel n uzday',
+'extlink_sample'  => 'http://www.example.com azwel n uzday',
 'extlink_tip'     => 'Azday aberrani (cfu belli yessefk at tebduḍ s http://)',
 'headline_sample' => 'Aḍris n uzwel azellum',
 'headline_tip'    => 'Aswir 2 n uzwel azellum',
 'math_sample'     => 'Ssekcem tasemselt dagi',
 'math_tip'        => 'Tasemselt tusnakt (LaTeX)',
-'nowiki_sample'   => 'Ssekcem aḍris mebla taseddast n wiki dagi',
+'nowiki_sample'   => 'Sideff da tirra bla taseddast(formatting) n wiki',
 'nowiki_tip'      => 'Ttu taseddast n wiki',
 'image_sample'    => 'Amedya.jpg',
 'image_tip'       => 'Tugna yettussekcmen',
@@ -639,7 +638,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'revdelete-submit'            => 'Eg-it i tasiwelt tettwafren',
 'revdelete-logentry'          => 'asekkud n tasiwelt tettubeddel i  [[$1]]',
 'logdelete-logentry'          => 'asekkud n tamirt tettubeddel i [[$1]]',
-'revdelete-logaction'         => '$1 {{plural:$1|tasiwelt tettuxdem|tisiwal ttuxedment}} i anaw $2',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|tasiwelt tettuxdem|tisiwal ttuxedment}} i anaw $2',
 'logdelete-logaction'         => '$1 {{plural:$1|tamirt|isallen}} n [[$3]] {{plural:$1|tettuxdem|ttuxedmen}} i anaw $2',
 'revdelete-success'           => "'''Asekkud n tasiwelt yettuxdem.'''",
 'logdelete-success'           => "'''Asekkud n tamirt yettuxdem.'''",
@@ -653,7 +652,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'lineno'                  => 'Ajerriḍ $1:',
 'compareselectedversions' => 'Ẓer imgerraden ger tisiwal i textareḍ',
 'editundo'                => 'ssefsu',
-'diff-multi'              => '({{plural:$1|Yiwen tasiwelt tabusarit|$1 n tisiwal tibusarin}} ur ttumlalent ara.)',
+'diff-multi'              => '({{PLURAL:$1|Yiwen tasiwelt tabusarit|$1 n tisiwal tibusarin}} ur ttumlalent ara.)',
 
 # Search results
 'searchresults'         => 'Igmad n unadi',
@@ -871,7 +870,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 
 # Image list
 'imagelist'                 => 'Umuɣ n tugniwin',
-'imagelisttext'             => "Deg ukessar yella wumuɣ n '''$1''' {{plural:$1|ufaylu|yifayluwen}} $2.",
+'imagelisttext'             => "Deg ukessar yella wumuɣ n '''$1''' {{PLURAL:$1|ufaylu|yifayluwen}} $2.",
 'getimagelist'              => 'Yeddem umuɣ n tugniwin',
 'ilsubmit'                  => 'Nadi',
 'showlast'                  => 'Ssken $1 n yifayluwen ineggura $2.',
@@ -881,6 +880,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'imgdelete'                 => 'mḥu',
 'imgdesc'                   => 'aglam',
 'imgfile'                   => 'afaylu',
+'filehist-current'          => 'Lux a',
 'filehist-user'             => 'Amseqdac',
 'imagelinks'                => 'Izdayen',
 'linkstoimage'              => 'isebtar-agi sɛan azday ar afaylu-agi',
@@ -935,7 +935,7 @@ Asmi ttwakksen wigini, {{PLURAL:\$2|yella '''yiwen''' usebter|llan '''\$2''' n i
 {{PLURAL:\$3|tella|llant}} '''\$3''' n {{PLURAL:\$3|timeẓriwt|timeẓriwin}}, '''\$4''' n {{PLURAL:\$4|ubeddel|yibeddlen}} n usebtar segmi {{SITENAME}} yettwaxleq.
 Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mkul asebter, d '''\$6''' timeẓriwin i mkul abeddel.
 
-Ṭul n [http://meta.wikimedia.org/wiki/Help:Job_queue umuti n wexdam] '''\$7'''.",
+Ṭul n [http://www.mediawiki.org/wiki/Manual:Job_queue umuti n wexdam] '''\$7'''.",
 'userstatstext'          => "{{PLURAL:$1|Yella '''yiwen''' wemseqdac|Llan '''$1''' n yimseqdacen}}, seg-sen
 '''$2''' (neɣ '''$4%''') {{PLURAL:$2|yesɛa|sɛan}} izerfan n $5.",
 'statistics-mostpopular' => 'isebtar mmeẓren aṭṭas',
@@ -952,8 +952,9 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'brokenredirects-edit'   => '(beddel)',
 'brokenredirects-delete' => '(mḥu)',
 
-'withoutinterwiki'        => 'isebtar mebla izdayen ar isebtar n wikipedia s tutlayin tiyaḍ',
-'withoutinterwiki-header' => 'isebtar-agi ur sɛan ara izdayen ar isebtar n wikipedia s tutlayin tiyaḍ:',
+'withoutinterwiki'         => 'isebtar mebla izdayen ar isebtar n wikipedia s tutlayin tiyaḍ',
+'withoutinterwiki-header'  => 'isebtar-agi ur sɛan ara izdayen ar isebtar n wikipedia s tutlayin tiyaḍ:',
+'withoutinterwiki-summary' => 'isebtar-agi ur sɛan ara izdayen ar isebtar n wikipedia s tutlayin tiyaḍ:',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte/octet|bytes/octets}}',

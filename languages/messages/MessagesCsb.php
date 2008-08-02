@@ -5,11 +5,9 @@
  * @file
  *
  * @author Warszk
- * @author Siebrand
- * @author SPQRobin
  * @author לערי ריינהארט
- * @author Nike
  * @author Jon Harald Søby
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -197,7 +195,7 @@ $messages = array(
 'otherlanguages'   => 'W jinëch jãzëkach',
 'redirectedfrom'   => '(Przeczerowóné z $1)',
 'lastmodifiedat'   => 'Na starna bëła slédno editowónô ò $2, $1;', # $1 date, $2 time
-'viewcount'        => 'Na starna je òbzéranô ju {{plural:$1|jeden rôz|$1 razy}}',
+'viewcount'        => 'Na starna je òbzéranô ju {{PLURAL:$1|jeden rôz|$1 razy}}',
 'protectedpage'    => 'Starna je zazychrowónô',
 'jumpto'           => 'Skòczë do:',
 'jumptonavigation' => 'nawigacëji',
@@ -340,7 +338,9 @@ Twòjô adresa IP to $3. Proszã dodôj nã adresã we wszëtczich pëtaniach.",
 Bë ùsôdzëc artikel, naczni pisac w kastce niżi (òb. [[{{MediaWiki:Helppage}}|starnã pòmòcë]]
 dlô wicy wëdowiédzë).
 Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '''nazôd'''.",
-'anontalkpagetext'      => "----''To je starna dyskùsëji anonimòwiégò brëkòwnika, chtëren nie zrobił jesz kònta dlô se, abò gò nie brëkùje. Takô adresa IP, mòże bëc brëkòwónô òb wiele lëdzy. Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[{{ns:special}}:Userlogin|zrobi sobie nowé kònto]] abò zalogùje sã, bë niechac zmiłczi z jinëma anonimòwima brëkòwnikama.''",
+'anontalkpagetext'      => "----''To je starna dyskùsëji anonimòwiégò brëkòwnika, chtëren nie zrobił jesz kònta dlô se, abò gò nie brëkùje.
+Takô adresa IP, mòże bëc brëkòwónô òb wiele lëdzy.
+Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:Userlogin|zrobi sobie nowé kònto]] abò zalogùje sã, bë niechac zmiłczi z jinëma anonimòwima brëkòwnikama.''",
 'clearyourcache'        => "'''Bôczë:''' Pò zapisanim, mòże bãdzesz mùszôł òminąc pamiãc przezérnika bë òbaczëc zmianë. '''Mozilla / Firefox / Safari:''' przëtrzëmôj ''Shift'' òbczas klëkaniô na ''Reload'', abò wcësni ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na kòmpùtrach Mac); '''IE:''' przëtrzëmôj ''Ctrl'' òbczas klëkaniô na ''Refresh'', abò wcësni ''Ctrl-F5''; '''Konqueror''': prosto klëkni na knąpã ''Reload'', abò wcësni ''F5''; brëkòwnicë '''Operë''' bãdą mést mùszële wëczëszczëc pamiãc w ''Tools→Preferences''.",
 'previewnote'           => '<strong>To je blós pòdzérk - artikel jesz nie je zapisóny!</strong>',
 'editing'               => 'Edicëjô $1',
@@ -489,7 +489,7 @@ Bez nëch to prôwdëjuwerno da '''$2''' starn artiklów.
 
 Bëło w sëmie '''$3''' òdwiôdënów ë '''$4''' edicëji òd sztótu, czej miôł plac upgrade soft-wôrë. Dôwó to strzédno $5 edicëji na jedną starnã ë $6 òdwiôdënów na jedną edicëjã.
 
-Długòta [http://meta.wikimedia.org/wiki/Help:Job_queue rédżi robòtë] je '''$7'''.",
+Długòta [http://www.mediawiki.org/wiki/Manual:Job_queue rédżi robòtë] je '''$7'''.",
 
 'disambiguationspage' => 'Template:Starnë_ùjednoznacznieniô',
 
@@ -593,9 +593,10 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'rollback'           => 'Copnij edicëjã',
 'rollbacklink'       => 'copnij',
 'rollbackfailed'     => 'Nie szło copnąc zmianë',
-'alreadyrolled'      => 'Nie jidze copnąc slédnej zmianë starnë [[$1]], chtërnej ùsôdzcą je [[User:$2|$2]] ([[User_talk:$2|Diskùsëjô]]). Chtos jiny ju editowôł starnã abò copnął zmianë.
+'alreadyrolled'      => 'Nie jidze copnąc slédnej zmianë starnë [[:$1]], chtërnej ùsôdzcą je [[User:$2|$2]] ([[User talk:$2|Diskùsëjô]]).
+Chtos jiny ju editowôł starnã abò copnął zmianë.
 
-Ùsôdzcą slédnej zmianë je terô [[User:$3|$3]] ([[User_talk:$3|Diskùsëjô]]).',
+Ùsôdzcą slédnej zmianë je terô [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]).',
 'protectedarticle'   => 'zazychrowónô [[$1]]',
 'unprotectedarticle' => 'òdzychrowóny [[$1]]',
 'confirmprotect'     => 'Pòcwierdzë zazychrowanié',
@@ -634,7 +635,8 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'ipbreason'          => 'Przëczëna',
 'badipaddress'       => 'IP-adresa nie je richtich pòdónô.',
 'blockipsuccesssub'  => 'Zascëgónié dało sã',
-'blockipsuccesstext' => 'Brëkòwnik [[{{ns:special}}:Contributions/$1|$1]] òstał zascëgóny. <br />Biéj do [[{{ns:special}}:Ipblocklist|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
+'blockipsuccesstext' => 'Brëkòwnik [[Special:Contributions/$1|$1]] òstał zascëgóny.<br />
+Biéj do [[Special:Ipblocklist|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
 'blocklistline'      => '$1, $2 zascëgôł $3 ($4)',
 'blocklink'          => 'zascëgôj',
 'contribslink'       => 'wkłôd',

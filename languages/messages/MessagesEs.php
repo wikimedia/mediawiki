@@ -5,29 +5,31 @@
  * @file
  *
  * @author Icvav
- * @author Platonides
- * @author Sanbec
- * @author Lin linao
- * @author Alhen
- * @author Spacebirdy
- * @author Orgullomoore
- * @author Mahadeva
- * @author Alpertron
- * @author Better
- * @author Nike
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Piolinfax
- * @author Dmcdevit
- * @author Toniher
+ * @author Lin linao
+ * @author Platonides
  * @author Drini
+ * @author Dmcdevit
+ * @author לערי ריינהארט
+ * @author Boivie
+ * @author Spacebirdy
+ * @author Sanbec
  * @author Baiji
+ * @author Alhen
  * @author Jurock
  * @author Cvmontuy
+ * @author Jatrobat
  * @author Bengoa
  * @author Ascánder
+ * @author Jon Harald Søby
+ * @author Orgullomoore
+ * @author Toniher
+ * @author Fluence
+ * @author Alpertron
  * @author Dvortygirl
- * @author Jatrobat
+ * @author McDutchie
+ * @author Mahadeva
+ * @author Better
  */
 
 $skinNames = array(
@@ -386,7 +388,8 @@ Consulta: $2',
 'actionthrottledtext'  => "Como una medida contra el ''spam'', hay un límite para las veces que puedes en un corto periodo de tiempo y lo has sobrepasado. Por favor, inténtalo de nuevo en unos minutos.",
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
-'protectedinterface'   => 'Esta página provee texto del interfaz del software. Está protegida para evitar vandalismos. Si cree que debería cambiarse el texto, hable con un [[{{MediaWiki:Grouppage-sysop}}|Administrador]].',
+'protectedinterface'   => 'Esta página provee texto del interfaz del software.
+Está protegida para evitar vandalismos.',
 'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto a la interfaz de {{SITENAME}}. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios.",
 'sqlhidden'            => '(Consulta SQL oculta)',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con las opción de "cascada":
@@ -604,7 +607,7 @@ Por favor, incluye este identificador en cualquier petición que hagas.',
 Se rechazó la edición para evitar que el texto de la página se corrompa
 Esto sucede en ocasiones cuando se usa un servicio de proxy anónimo defectuoso.</strong>',
 'editing'                   => 'Editando $1',
-'editinguser'               => "Cambiando los derechos del usuario '''[[User:$1|$1]]''' ([[Usuario_Discusión:$1|{{int:talkpagelinktext}}]] | [[Especial:Contribuciones/$1|{{int:contribslink}}]])",
+'editinguser'               => "Cambiando los derechos del usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editando $1 (sección)',
 'editingcomment'            => 'Editando $1 (comentario)',
 'editconflict'              => 'Conflicto de edición: $1',
@@ -768,7 +771,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'lineno'                  => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',
 'editundo'                => 'deshacer',
-'diff-multi'              => '({{plural:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
+'diff-multi'              => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 
 # Search results
 'searchresults'         => 'Resultados de la búsqueda',
@@ -870,7 +873,10 @@ $2 Listar redirecciones   Buscar $3 $9',
 Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla CTRL',
 'userrights-reason'          => 'Motivo para el cambio:',
 'userrights-available-none'  => 'No puedes alterar la pertenencia al grupo.',
+'userrights-no-interwiki'    => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase'      => 'La base de datos $1 no existe o no es local.',
+'userrights-nologin'         => 'Debes [[Special:Userlogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
+'userrights-notallowed'      => 'No tienes permiso para realizar cambios de grupos a usuarios.',
 
 # Groups
 'group'               => 'Grupo:',
@@ -885,9 +891,10 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'group-sysop-member'         => 'Administrador',
 'group-bureaucrat-member'    => 'Burócrata',
 
-'grouppage-bot'        => '{{ns:project}}:Bot',
-'grouppage-sysop'      => '{{ns:project}}:Administradores',
-'grouppage-bureaucrat' => '{{ns:project}}:Burócratas',
+'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Administradores',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burócratas',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -912,7 +919,7 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'rclinks'                           => 'Ver los últimos $1 cambios en los últimos $2 días.<br />$3',
 'diff'                              => 'dif',
 'hist'                              => 'hist',
-'hide'                              => 'ocultar',
+'hide'                              => 'Ocultar',
 'show'                              => 'mostrar',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
@@ -945,6 +952,9 @@ Para incluir un archivo en una página, utilice en el formulario los enlaces
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''', o
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''', para vincular directamente el archivo.",
+'upload-permitted'            => 'Tipos de archivo permitidos: $1.',
+'upload-preferred'            => 'Tipos de archivo preferidos: $1.',
+'upload-prohibited'           => 'Tipos de archivo prohibidos: $1.',
 'uploadlog'                   => 'registro de subidas',
 'uploadlogpage'               => 'Subidas de archivos',
 'uploadlogpagetext'           => 'Abajo hay una lista de los últimos archivos subidos. Todas las horas son del servidor.',
@@ -961,7 +971,7 @@ Para incluir un archivo en una página, utilice en el formulario los enlaces
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a "$1".',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
 'filetype-missing'            => 'El archivo no tiene extensión (como ".jpg").',
-'large-file'                  => 'Se recomienda que los archivos no sean mayores de de $1; este archivo ocupa $2.',
+'large-file'                  => 'Se recomienda que los archivos no sean mayores de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
 'fileexists'                  => 'Ya existe un archivo con este nombre. Por favor compruebe el existente <strong><tt>$1</tt></strong> si no está seguro de querer reemplazarlo.',
@@ -1015,6 +1025,9 @@ A continuación se muestra el registro de borrado de este archivo:",
 
 # Image list
 'imagelist'                 => 'Lista de imágenes',
+'imagelist-summary'         => 'Esta página muestra todos los archivos subidos.
+Por defecto, el último subido se muestra al principio de la lista.
+Un click sobre el encabezamiento de la columna cambia el orden.',
 'imagelisttext'             => "Debajo hay una lista de '''$1''' {{PLURAL:$1|imagen|imágenes}} ordenadas $2.",
 'getimagelist'              => ' obteniendo la lista de imágenes',
 'ilsubmit'                  => 'Búsqueda',
@@ -1053,9 +1066,12 @@ archivo a esa fecha.',
 'imagelist_search_for'      => 'Buscar por nombre de imagen:',
 
 # File reversion
-'filerevert'         => 'Revertir $1',
-'filerevert-comment' => 'Comentario:',
-'filerevert-submit'  => 'Revertir',
+'filerevert'            => 'Revertir $1',
+'filerevert-intro'      => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [version $4 desde la $3, $2].",
+'filerevert-comment'    => 'Comentario:',
+'filerevert-submit'     => 'Revertir',
+'filerevert-success'    => "'''[[Media:$1|$1]]''' ha sido revertido a la [version $4 desde la $3, $2].",
+'filerevert-badversion' => 'No existe version local previa de este archivo con esa marca de tiempo.',
 
 # File deletion
 'filedelete'                  => 'Borrar $1',
@@ -1104,14 +1120,16 @@ Hay '''$8''' {{PLURAL:$8|archivo almacenado|archivos almacenados}} en el servido
 Desde la instalación del wiki ha habido un total de '''$3''' {{PLURAL:$3|visita|visitas}} y '''$4''' {{PLURAL:$4|edición de página|ediciones de páginas}}.
 Esto resulta en un promedio de '''$5''' {{PLURAL:$5|edición|ediciones}} por página y '''$6''' {{PLURAL:$6|visita|visitas}} por edición.
 
-La longitud de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola de tareas] es de '''$7'''",
+La longitud de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola de tareas] es de '''$7'''",
 'userstatstext'          => "Hay {{PLURAL:$1|'''1''' usuario registrado|'''$1''' usuarios registrados}},
 de los cuales '''$2''' (el '''$4%''') tienen privilegios de $5.",
 'statistics-mostpopular' => 'Páginas más vistas',
 
 'disambiguations'      => 'Páginas de desambiguación',
 'disambiguationspage'  => 'Template:Desambiguación',
-'disambiguations-text' => "Las siguientes páginas enlazan con una '''página de desambiguación'''. En lugar de ello deberían enlazar con  el tema apropiado.<br />Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "Las siguientes páginas enlazan con una '''página de desambiguación'''.
+En lugar de ello deberían enlazar con  el tema apropiado.<br />
+Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Redirecciones dobles',
 'doubleredirectstext' => '<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br />
@@ -1122,9 +1140,10 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
-'withoutinterwiki'        => 'Páginas sin interwikis',
-'withoutinterwiki-header' => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',
-'withoutinterwiki-submit' => 'Mostrar',
+'withoutinterwiki'         => 'Páginas sin interwikis',
+'withoutinterwiki-header'  => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',
+'withoutinterwiki-summary' => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',
+'withoutinterwiki-submit'  => 'Mostrar',
 
 'fewestrevisions' => 'Artículos con menos ediciones',
 
@@ -1164,6 +1183,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'protectedpagesempty'     => 'Actualmente no hay ninguna página protegida con esos parámetros.',
 'protectedtitles'         => 'Títulos protegidos',
 'protectedtitlestext'     => 'Los siguientes títulos están protegidos, por lo que no se pueden crear',
+'protectedtitlesempty'    => 'Actualmente no existen entradas protegidas con esos parámetros.',
 'listusers'               => 'Lista de usuarios',
 'specialpages'            => 'Páginas especiales',
 'spheading'               => 'Páginas especiales',
@@ -1178,6 +1198,8 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'unusedcategoriestext'    => 'Las siguientes categorías han sido creadas, pero ningún artículo o categoría las utiliza.',
 'notargettitle'           => 'No hay página objetivo',
 'notargettext'            => 'Especifique sobre qué página desea llevar a cabo esta acción.',
+'pager-newer-n'           => '{{PLURAL:$1|1 siguiente|$1 siguientes}}',
+'pager-older-n'           => '{{PLURAL:$1|1 anterior|$1 anteriores}}',
 
 # Book sources
 'booksources'               => 'Fuentes de libros',
@@ -1216,6 +1238,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagessubmit'    => 'Mostrar',
 'allpagesprefix'    => 'Mostrar páginas con el prefijo:',
 'allpagesbadtitle'  => 'El título dado era inválido o tenía un prefijo de enlace inter-idioma o inter-wiki. Puede contener uno o más caracteres que no se pueden usar en títulos.',
+'allpages-bad-ns'   => '{{SITENAME}} no tiene un espacio de nombres llamado "$1".',
 
 # Special:Listusers
 'listusersfrom'      => 'Mostrar usuarios que empiecen por:',
@@ -1352,7 +1375,7 @@ Véase $2 para un registro de los borrados recientes.',
 'cantrollback'                => 'No se pueden revertir las ediciones; el último colaborador es el único autor de este artículo.',
 'alreadyrolled'               => 'No se puede revertir la última edición de [[$1]] por [[User:$2|$2]] ([[User talk:$2|discusión]]); alguien más ya ha editado o revertido esa página. La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
 'editcomment'                 => 'El resumen de la edición es: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertidas las ediciones realizadas por [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); a la última edición de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'              => 'Parece que hay un problema con tu sesión;
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
@@ -1422,7 +1445,7 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletedarticle'         => 'restauró "$1"',
 'undeletedrevisions'       => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|ediciones restauradas y $2 archivo restaurado|ediciones y $2 archivos restaurados}}',
-'undeletedfiles'           => '$1 {{plural:$1|archivo restaurado|archivos restaurados}}',
+'undeletedfiles'           => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
 'cannotundelete'           => 'Ha fallado el deshacer el borrado; alguien más puede haber deshecho el borrado antes.',
 'undeletedpage'            => "<big>'''Se ha restaurado $1'''</big>
 
@@ -1432,6 +1455,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'undelete-search-prefix'   => 'Mostrar páginas que empiecen por:',
 'undelete-search-submit'   => 'Buscar',
 'undelete-no-results'      => 'No se encontraron páginas borradas para ese criterio de búsqueda.',
+'undelete-cleanup-error'   => 'Error al borrar el archivo no utilizado "$1".',
 'undelete-error-short'     => 'Error restaurando archivo: $1',
 'undelete-error-long'      => 'Se encontraron errores mientras se restauraba el archivo:
 
@@ -1605,7 +1629,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-watch'              => 'Vigilar este artículo',
 'movepagebtn'             => 'Renombrar página',
 'pagemovedsub'            => 'Renombrado realizado con éxito',
-'movepage-moved'          => "<big>'''«$1» ha sido trasladado a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'cantmove-titleprotected' => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
 'talkexists'              => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
@@ -1634,7 +1658,7 @@ La página de destino ("[[$1]]") ya existe. ¿Quiere borrarla para permitir al t
 
 Para exportar páginas, escribe los títulos en la caja de texto de abajo, un título por línea, y selecciona si quieres la versión actual junto a las versiones anteriores, con las líneas del historial, o sólo la versión actual con la información sobre la última edición.
 
-En el último caso también puedes usar un enlace, por ejemplo [[Special:Export/{{Mediawiki:Mainpage}}]] para la página {{Mediawiki:Mainpage}}.',
+En el último caso también puedes usar un enlace, por ejemplo [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para la página "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluye sólo la revisión actual, no el historial de revisiones al completo.',
 'exportnohistory'   => "----
 '''Nota:''' Exportar el historial completo de páginas a través de este formulario ha sido deshabilitado debido a problemas de rendimiento del servidor.",
@@ -1822,8 +1846,9 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'patrol-log-auto' => '(automático)',
 
 # Image deletion
-'deletedrevision'    => 'Borrada revisión antigua $1',
-'filedelete-missing' => 'No se pudo borrar el archivo "$1" porque no existe.',
+'deletedrevision'       => 'Borrada revisión antigua $1',
+'filedeleteerror-short' => 'Se produjo un error al borrar el archivo: $1',
+'filedelete-missing'    => 'No se pudo borrar el archivo "$1" porque no existe.',
 
 # Browsing diffs
 'previousdiff' => '← Ir a diferencias anteriores',
@@ -2184,6 +2209,7 @@ $1',
 'searchnamed'      => "Buscar artículos con este nombre ''$1''.",
 'articletitles'    => "Artículos que comienzan por ''$1''",
 'hideresults'      => 'Ocultar resultados',
+'useajaxsearch'    => 'Buscar usando AJAX',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
@@ -2223,12 +2249,17 @@ Intenta la previsualización normal.',
 'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
 'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
-'watchlistedit-normal-explain' => "Las páginas de tu lista de seguimiento se muestran debajo. Para eliminar una página, marca la casilla junto a la página, y haz clic en ''Borrar páginas''. También puedes [[Special:Watchlist/raw|editar la lista en crudo]] o [[Special:Watchlist/clear|borrarlo todo]].",
+'watchlistedit-normal-explain' => "Las páginas de tu lista de seguimiento se muestran debajo.
+Para eliminar una página, marca la casilla junto a la página, y haz clic en ''Borrar páginas''.
+También puedes [[Special:Watchlist/raw|editar la lista en crudo]].",
 'watchlistedit-normal-submit'  => 'Borrar páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
 'watchlistedit-raw-title'      => 'Editar lista de seguimiento en crudo',
 'watchlistedit-raw-legend'     => 'Editar tu lista de seguimiento en modo texto',
-'watchlistedit-raw-explain'    => 'Las páginas de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista; una página por línea. Cuando acabes, haz clic en Actualizar lista de seguimiento. También puedes utilizar el [[Especial:Watchlist/edit|editor estándar]].',
+'watchlistedit-raw-explain'    => 'Las páginas de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
+una página por línea.
+Cuando acabes, haz clic en Actualizar lista de seguimiento.
+También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar lista de seguimiento',
 'watchlistedit-raw-done'       => 'Tu lista de seguimiento se ha actualizado.',
@@ -2241,6 +2272,7 @@ Intenta la previsualización normal.',
 'watchlisttools-raw'  => 'Editar lista de seguimiento en crudo',
 
 # Special:Version
+'version-extensions'       => 'Extensiones instaladas',
 'version-specialpages'     => 'Páginas especiales',
 'version-parserhooks'      => "Lligams de l'analitzador",
 'version-version'          => 'Versión',
@@ -2248,8 +2280,12 @@ Intenta la previsualización normal.',
 'version-software-version' => 'Versión',
 
 # Special:Filepath
-'filepath'        => 'Ruta de archivo',
-'filepath-page'   => 'Archivo:',
-'filepath-submit' => 'Ruta',
+'filepath'         => 'Ruta de archivo',
+'filepath-page'    => 'Archivo:',
+'filepath-submit'  => 'Ruta',
+'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
+Las imágenes se muestran en resolución máxima, otros tipos de archivo arrancan directamente con su programa asociado.
+
+Ingrese el nombre del archivo sin su prefijo "{{ns:image}}:".',
 
 );

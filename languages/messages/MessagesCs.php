@@ -4,16 +4,15 @@
  * @ingroup Language
  * @file
  *
- * @author Mormegil
  * @author Li-sung
- * @author Helix84
  * @author Danny B.
- * @author Martin Kozák
- * @author Michawiki
- * @author Nike
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Matěj Grabovský
+ * @author Mormegil
+ * @author Jon Harald Søby
+ * @author Helix84
+ * @author Martin Kozák
+ * @author Michawiki
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -622,7 +621,8 @@ $2',
 'logouttext'                 => 'Nyní jste odhlášeni.<br />
 Tento počítač může být používán k prohlížení a editaci {{grammar:2sg|{{SITENAME}}}} bez uživatelského jména, nebo pro přihlášení jiného uživatele. Upozorňujeme, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni. Tento jev potrvá do smazání cache vašeho prohlížeče.',
 'welcomecreation'            => '== Vítejte, $1! ==
-Váš účet byl vytvořen. Nezapomeňte si upravit své [[Special:Preferences|nastavení]]!',
+Váš účet byl vytvořen.
+Nezapomeňte si upravit své nastavení!',
 'loginpagetitle'             => 'Přihlaste se',
 'yourname'                   => 'Uživatelské jméno:',
 'yourpassword'               => 'Vaše heslo',
@@ -687,7 +687,7 @@ v e-mailu, abyste potvrdili, že tato adresa skutečně patří vám.',
 'throttled-mailpassword'     => 'Heslo již bylo jednou zasláno během uplynulých $1 hodin.
 Heslo může být zasláno jen jednou za $1 {{plural:$1|hodinu|hodiny|hodin}}.',
 'mailerror'                  => 'Chyba při zasílání e-mailu: $1',
-'acct_creation_throttle_hit' => 'Omlouváme se, ale už jste vytvořil(a) $1 {{plural:$1|účet|účty|účtů}}. Žádný další už nemůžete vytvořit.',
+'acct_creation_throttle_hit' => 'Omlouváme se, ale už jste vytvořil(a) $1 {{PLURAL:$1|účet|účty|účtů}}. Žádný další už nemůžete vytvořit.',
 'emailauthenticated'         => 'Vaše e-mailová adresa byla ověřena $1.',
 'emailnotauthenticated'      => 'Vaše e-mailová adresa dosud nebyla ověřena a e-mailové funkce do té doby nejsou dostupné.',
 'noemailprefs'               => 'Pro zprovoznění následujících možností musíte zadat svou e-mailovou adresu.',
@@ -930,7 +930,7 @@ podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page=
 'revisiondelete'              => 'Smazat/obnovit revize',
 'revdelete-nooldid-title'     => 'Nezadána revize',
 'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
-'revdelete-selected'          => "{{plural:$2|Vybrána $1 revize|Vybrány $1 revize|Vybráno $1 revizí}} stránky '''[[:$1]]:'''",
+'revdelete-selected'          => "{{PLURAL:$2|Vybrána $1 revize|Vybrány $1 revize|Vybráno $1 revizí}} stránky '''[[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Vybraná protokolovaná událost|Vybrané protokolované události|Vybrané protokolované události}} pro '''$1:'''",
 'revdelete-text'              => 'Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.
 
@@ -1066,7 +1066,7 @@ $2 Vypsat přesměrování &nbsp; Hledat $3 $9',
 'contextchars'             => 'Počet znaků kontextu na každé řádce',
 'stub-threshold'           => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'recentchangesdays'        => 'Počet dní zobrazených v posledních změnách:',
-'recentchangescount'       => 'Počet zobrazených záznamů v posledních změnách',
+'recentchangescount'       => 'Počet zobrazených záznamů v posledních změnách, historii a knihách záznamů:',
 'savedprefs'               => 'Vaše nastavení bylo uloženo.',
 'timezonelegend'           => 'Časové pásmo',
 'timezonetext'             => 'Označte, o kolik se vaše časové pásmo liší od serveru (UTC). Například pro středoevropské časové pásmo (SEČ) vyplňte „01:00“ v zimě, „02:00“ v období platnosti letního času.',
@@ -1139,7 +1139,7 @@ Nezvolené skupiny nebudou změněny. Skupinu můžete vyřadit z vybraných pom
 'rcshowhideanons'                   => '$1 anonymní uživatele',
 'rcshowhidepatr'                    => '$1 prověřené editace',
 'rcshowhidemine'                    => '$1 moje editace',
-'rclinks'                           => 'Ukázat $1 posledních změn během {{plural:$2|posledního dne|posledních $2 dnů|posledních $2 dnů}}<br />
+'rclinks'                           => 'Ukázat $1 posledních změn během {{PLURAL:$2|posledního dne|posledních $2 dnů|posledních $2 dnů}}<br />
 $3',
 'diff'                              => 'rozdíl',
 'hist'                              => 'historie',
@@ -1168,31 +1168,23 @@ $3',
 'uploadnologintext'           => 'Pro načtení souboru se musíte [[Special:Userlogin|přihlásit]].',
 'upload_directory_read_only'  => 'Do adresáře pro načítané soubory ($1) nemá webserver právo zápisu.',
 'uploaderror'                 => 'Při načítání došlo k chybě',
-'uploadtext'                  => 'Pro prohlížení a hledání již dříve nahraných souborů se podívejte
-na [[Special:Imagelist|seznam načtených souborů]], popř.
-[[Special:Newimages|galerii nových obrázků]]. Všechna načtení
-a smazání jsou zaznamenány v [[Special:Log|protokolovacích záznamech]].
+'uploadtext'                  => 'Pro prohlížení a hledání již dříve nahraných souborů se podívejte na [[Special:Imagelist|seznam načtených souborů]].
+Všechna načtení a smazání jsou zaznamenány v [[Special:Log|protokolovacích záznamech]].
 
-Pomocí níže uvedeného formuláře můžete na wiki nahrát obrázky a jiné
-soubory, které poté budete moci použít v článcích. Ve většině prohlížečů
-je zobrazeno tlačítko „Procházet…“, pomocí kterého budete moci
-vybrat soubor k načtení, jehož jméno se poté objeví v políčku
-vedle tlačítka. Poté stiskněte tlačítko „Načíst soubor“ k
-dokončení načtení. Buďte trpěliví, nahrávání může chvíli trvat.
+Pomocí níže uvedeného formuláře můžete na wiki nahrát obrázky a jiné soubory, které poté budete moci použít v článcích.
+Ve většině prohlížečů je zobrazeno tlačítko „Procházet…“, pomocí kterého budete moci vybrat soubor k načtení, jehož jméno se poté objeví v políčku vedle tlačítka.
+Poté stiskněte tlačítko „Načíst soubor“ k dokončení načtení. Buďte trpěliví, nahrávání může chvíli trvat.
 
-Preferované formáty jsou JPEG pro fotografie, PNG pro schémata
-a OGG pro zvuky. Používejte laskavě smysluplná jména souborů,
-soubor po načtení nelze přejmenovat.
+Preferované formáty jsou JPEG pro fotografie, PNG pro schémata a OGG pro zvuky. Používejte laskavě smysluplná jména souborů, soubor po načtení nelze přejmenovat.
 
 Pro vložení obrázku do stránky použijte syntaxi
 <code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:soubor.jpg]]</nowiki></code> nebo
 <code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:soubor.png|popisek]]</nowiki></code>, popř.
 <code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:soubor.ogg]]</nowiki></code> pro zvuky.
 
-Uvědomte si laskavě, že stejně jako u ostatních wikistránek mohou
-ostatní uživatelé vámi nahraný soubor smazat či upravit, pokud to
-uznají za vhodné; pokud budete tuto funkci zneužívat, může být
-váš uživatelský účet zablokován.',
+Uvědomte si laskavě, že stejně jako u ostatních wikistránek mohou ostatní uživatelé vámi nahraný soubor smazat či upravit, pokud to
+uznají za vhodné;
+pokud budete tuto funkci zneužívat, může být váš uživatelský účet zablokován.',
 'upload-permitted'            => 'Povolené formáty souborů: $1.',
 'upload-preferred'            => 'Upřednostňované formáty souborů: $1.',
 'upload-prohibited'           => 'Zakázané formáty souborů: $1.',
@@ -1229,8 +1221,8 @@ Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvláš�
 'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>.
 Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
-'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[{{ns:image}}:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Načtení úspěšně provedeno!',
 'uploadwarning'               => 'Varování',
 'savefile'                    => 'Uložit soubor',
@@ -1275,7 +1267,7 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'imagelist-summary'         => 'Tato speciální stránka zobrazuje všechny načtené soubory.
 Ve výchozím stavu je poslední načtený soubor nahoře.
 Kliknutím na hlavičku sloupce můžete změnit řazení.',
-'imagelisttext'             => "Níže je {{plural:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
+'imagelisttext'             => "Níže je {{PLURAL:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
 'getimagelist'              => 'načítám seznam obrázků',
 'ilsubmit'                  => 'Hledat',
 'showlast'                  => 'Ukázat posledních $1 obrázků řazených $2.',
@@ -1300,9 +1292,9 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'linkstoimage'              => 'Na soubor odkazují tyto stránky:',
 'nolinkstoimage'            => 'Na tento soubor neodkazuje žádná stránka.',
 'sharedupload'              => 'Tento soubor je sdílený a může být používán ostatními projekty.',
-'shareduploadwiki'          => 'Více informací najdete na $1.',
-'shareduploadwiki-desc'     => 'Níže je zobrazený popis, který obsahuje jeho $1 na sdíleném úložišti.',
-'shareduploadwiki-linktext' => 'stránce s popisem',
+'shareduploadwiki'          => 'Více informací obsahuje $1.',
+'shareduploadwiki-desc'     => 'Níže je zobrazen popis, který obsahuje jeho $1 na sdíleném úložišti.',
+'shareduploadwiki-linktext' => 'stránka s popisem souboru',
 'noimage'                   => 'Soubor s tímto jménem neexistuje, můžete ho $1',
 'noimage-linktext'          => 'načíst',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
@@ -1316,18 +1308,18 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
 'filerevert-legend'         => 'Vrátit zpět soubor',
-'filerevert-intro'          => '<span class="plainlinks">Vracíte zpět \'\'\'[[Media:$1|$1]]\'\'\' na [$4 verzi z $3 $2].</span>',
+'filerevert-intro'          => "Vracíte zpět '''[[Media:$1|$1]]''' na [$4 verzi z $3 $2].",
 'filerevert-comment'        => 'Zdůvodnění:',
 'filerevert-defaultcomment' => 'Navrácena verze nahraná v $2 dne $1.',
 'filerevert-submit'         => 'Vrátit zpět',
-'filerevert-success'        => '<span class="plainlinks">Soubor \'\'\'[[Media:$1|$1]]\'\'\' byl vrácen zpět na [$4 verzi z $3 $2].</span>',
+'filerevert-success'        => "Soubor '''[[Media:$1|$1]]''' byl vrácen zpět na [$4 verzi z $3 $2].",
 'filerevert-badversion'     => 'Není dostupná předchozí verze tohoto souboru s odpovídající časovou značkou.',
 
 # File deletion
 'filedelete'                  => 'Smazání souboru $1',
 'filedelete-legend'           => 'Smazat soubor',
 'filedelete-intro'            => "Chystáte se smazat '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Chystáte se smazat verzi souboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3 $2].</span>',
+'filedelete-intro-old'        => "Chystáte se smazat verzi souboru '''[[Media:$1|$1]]''' z [$4 $3 $2].",
 'filedelete-comment'          => 'Důvod smazání:',
 'filedelete-submit'           => 'Smazat',
 'filedelete-success'          => "Soubor '''$1''' byl smazán.",
@@ -1371,19 +1363,19 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'statistics'             => 'Statistika',
 'sitestats'              => 'Statistika {{grammar:2sg|{{SITENAME}}}}',
 'userstats'              => 'O uživatelích',
-'sitestatstext'          => "V databázi je celkem '''$1''' {{plural:$1|stránka|stránky|stránek}}. Toto číslo zahrnuje diskusní stránky, stránky o {{grammar:6sg|{{SITENAME}}}}, pahýly, přesměrování a další, které pravděpodobně nelze hodnotit jako obsahové stránky. Kromě nich zbývá '''$2''' pravděpodobně {{plural:$2|skutečná obsahová stránka|skutečné obsahové stránky|skutečných obsahových stránek}}.
+'sitestatstext'          => "V databázi je celkem '''$1''' {{PLURAL:$1|stránka|stránky|stránek}}. Toto číslo zahrnuje diskusní stránky, stránky o {{grammar:6sg|{{SITENAME}}}}, pahýly, přesměrování a další, které pravděpodobně nelze hodnotit jako obsahové stránky. Kromě nich zbývá '''$2''' pravděpodobně {{PLURAL:$2|skutečná obsahová stránka|skutečné obsahové stránky|skutečných obsahových stránek}}.
 
-{{plural:$8|Byl načten|Byly načteny|Bylo načteno}} '''$8''' {{plural:$8|obrázek|obrázky|obrázků}}.
+{{PLURAL:$8|Byl načten|Byly načteny|Bylo načteno}} '''$8''' {{PLURAL:$8|obrázek|obrázky|obrázků}}.
 
 Od založení wiki bylo navštíveno celkem '''$3''' stránek a editováno '''$4'''krát. To činí v průměru '''$5''' editací na stránku a '''$6''' návštěv na editaci.
 
 Aktuální délka fronty údržby je '''$7'''.",
-'userstatstext'          => "{{plural:$1|Je|Jsou|Je}} zde '''$1''' {{plural:$1|registrovaný [[Special:Listusers|uživatel]]|registrovaní [[Special:Listusers|uživatelé]]|registrovaných [[Special:Listusers|uživatelů]]}}, z&nbsp;toho '''$2''' (což je '''$4&nbsp;%''') {{plural:$2|má|mají|má}} práva $5.",
+'userstatstext'          => "{{PLURAL:$1|Je|Jsou|Je}} zde '''$1''' {{PLURAL:$1|registrovaný [[Special:Listusers|uživatel]]|registrovaní [[Special:Listusers|uživatelé]]|registrovaných [[Special:Listusers|uživatelů]]}}, z&nbsp;toho '''$2''' (což je '''$4&nbsp;%''') {{PLURAL:$2|má|mají|má}} práva $5.",
 'statistics-mostpopular' => 'Nejčtenější stránky',
 
 'disambiguations'      => 'Stránky odkazující na rozcestníky',
 'disambiguationspage'  => 'Template:Rozcestník',
-'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]).',
+'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
 
 'doubleredirects'     => 'Dvojitá přesměrování',
 'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucí na další přesměrování. Každý řádek obsahuje odkaz na první a druhé přesměrování, a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.',
@@ -1393,9 +1385,10 @@ Aktuální délka fronty údržby je '''$7'''.",
 'brokenredirects-edit'   => '(editovat)',
 'brokenredirects-delete' => '(smazat)',
 
-'withoutinterwiki'        => 'Stránky bez mezijazykových odkazů (interwiki)',
-'withoutinterwiki-header' => 'Tyto stránky neobsahují žádný mezijazykový odkaz:',
-'withoutinterwiki-submit' => 'Zobrazit',
+'withoutinterwiki'         => 'Stránky bez mezijazykových odkazů (interwiki)',
+'withoutinterwiki-header'  => 'Tyto stránky neobsahují žádný mezijazykový odkaz:',
+'withoutinterwiki-summary' => 'Tyto stránky neobsahují žádný mezijazykový odkaz:',
+'withoutinterwiki-submit'  => 'Zobrazit',
 
 'fewestrevisions' => 'Stránky s nejméně verzemi',
 
@@ -1403,9 +1396,9 @@ Aktuální délka fronty údržby je '''$7'''.",
 'nbytes'                  => '$1 {{plural:$1|bajt|bajty|bajtů}}',
 'ncategories'             => '$1 {{plural:$1|kategorie|kategorie|kategorií}}',
 'nlinks'                  => '$1 {{plural:$1|odkaz|odkazy|odkazů}}',
-'nmembers'                => '$1 {{plural:$1|stránka|stránky|stránek}}',
+'nmembers'                => '$1 {{PLURAL:$1|stránka|stránky|stránek}}',
 'nrevisions'              => '$1 {{plural:$1|revize|revize|revizí}}',
-'nviews'                  => '$1 {{plural:$1|návšteva|návštevy|návštev}}',
+'nviews'                  => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí stránky',
 'lonelypagestext'         => 'Na následující stránky na {{grammar:6sg|{{SITENAME}}}} neodkazuje žádná jiná stránka.',
@@ -1592,7 +1585,7 @@ Rady a kontakt:
 'deletepage'                  => 'Smazat stránku',
 'confirm'                     => 'Potvrdit',
 'excontent'                   => 'obsah byl: „$1“',
-'excontentauthor'             => 'obsah byl: „$1“ (a jediným přispěvatelem byl „[[Speciální:Contributions/$2|$2]]“)',
+'excontentauthor'             => 'obsah byl: „$1“ (a jediným přispěvatelem byl „[[Special:Contributions/$2|$2]]“)',
 'exbeforeblank'               => 'obsah před vyprázdněním byl: „$1“',
 'exblank'                     => 'stránka byla prázdná',
 'delete-confirm'              => 'Smazání stránky „$1“',
@@ -1690,8 +1683,8 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'undeletecomment'              => 'Komentář:',
 'undeletedarticle'             => 'obnovuje „[[$1]]“',
 'undeletedrevisions'           => '{{plural:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
-'undeletedrevisions-files'     => '{{plural:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{plural:$2|soubor|soubory|souborů}}.',
-'undeletedfiles'               => '{{plural:$1|obnoven $1 soubor|obnoveny $1 soubory|obnoveno $1 souborů}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{PLURAL:$2|soubor|soubory|souborů}}.',
+'undeletedfiles'               => '{{PLURAL:$1|obnoven $1 soubor|obnoveny $1 soubory|obnoveno $1 souborů}}',
 'cannotundelete'               => 'Obnovení se nepovedlo; někdo jiný pravděpodobně obnovil stránku dřív než Vy.',
 'undeletedpage'                => "<big>'''$1 byla obnovena'''</big>
 
@@ -1751,7 +1744,9 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Zablokovat uživatele',
-'blockiptext'                 => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména. Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]]. Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny). Pro odblokování se podívejte na [[Special:Ipblocklist|seznam blokovaných IP adres]].',
+'blockiptext'                 => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.
+Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].
+Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny).',
 'ipaddress'                   => 'IP adresa',
 'ipadressorusername'          => 'IP adresa nebo uživatelské jméno',
 'ipbexpiry'                   => 'Čas vypršení',
@@ -1777,7 +1772,8 @@ $1',
 'ipbhidename'                 => 'Skrýt uživatelské jméno v&nbsp;knize zablokování, seznamu probíhajících bloků a&nbsp;seznamu uživatelů',
 'badipaddress'                => 'Neplatná IP adresa',
 'blockipsuccesssub'           => 'Zablokování uspělo',
-'blockipsuccesstext'          => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován. <br />Podívejte se na [[Special:Ipblocklist|seznam zablokovaných]], [[Special:Log/block|kniha zablokování]] zaznamenává všechny podobné úkony.',
+'blockipsuccesstext'          => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
+Můžete si prohlédnout [[Special:Ipblocklist|seznam zablokovaných uživatelů]].',
 'ipb-edit-dropdown'           => 'Editace seznamu důvodů zablokování',
 'ipb-unblock-addr'            => 'Odblokovat uživatele nebo IP $1',
 'ipb-unblock'                 => 'Odblokovat uživatele nebo IP adresu',
@@ -1861,7 +1857,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-watch'              => 'Sledovat tuto stránku',
 'movepagebtn'             => 'Přesunout stránku',
 'pagemovedsub'            => 'Úspěšně přesunuto',
-'movepage-moved'          => "<big>'''Stránka „$1“ byla přesunuta na „$2“.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'cantmove-titleprotected' => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'              => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
@@ -1886,9 +1882,11 @@ Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolněn
 
 # Export
 'export'            => 'Exportovat stránky',
-'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[{{ns:special}}:Import]].
+'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[{{ns:Special}}:Import]].
 
-Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.',
+Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
+
+V druhém případě můžete také používat přímý odkaz, např. pomocí [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] se vyexportuje „[[{{MediaWiki:Mainpage}}]]“.',
 'exportcuronly'     => 'Zahrnout jen současnou verzi, ne plnou historii',
 'exportnohistory'   => "----
 '''Poznámka:''' export plných historií prostřednictvím tohoto formuláře byl z výkonnostních důvodů zakázán.",
@@ -2021,7 +2019,7 @@ Do níže uvedeného editačního pole zadejte názvy stránek, které chcete ex
 
 # Scripts
 'common.js'   => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',
-'monobook.js' => '/* Zastaralé; použijte [[MediaWiki:common.js]] */',
+'monobook.js' => '/* JavaScript pro uživatele používající vzhled MonoBook */',
 
 # Metadata
 'nodublincore'      => 'Na tomto serveru je vypnuto generování metadat Dublin Core RDF.',
@@ -2519,7 +2517,7 @@ $1',
 'watchlistedit-raw-submit'     => 'Aktualizovat seznam',
 'watchlistedit-raw-done'       => 'Seznam vašich sledovaných stránek byl aktualizován.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Byla přidána 1 položka|Byly přidány $1 položky|Bylo přidáno $1 položek}}:',
-'watchlistedit-raw-removed'    => '{{plural:$1|Byla odstraněna položka|Byly odstraněny $1 položky|Bylo odstraněno $1 položek}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Byla odstraněna položka|Byly odstraněny $1 položky|Bylo odstraněno $1 položek}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Zobrazit změny sledovaných stránek',

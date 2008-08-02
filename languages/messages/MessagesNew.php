@@ -4,9 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
  * @author Eukesh
+ * @author SPQRobin
  * @author Jon Harald Søby
  */
 

@@ -5,11 +5,10 @@
  * @file
  *
  * @author Smeira
- * @author Nike
  * @author Malafaya
- * @author Siebrand
- * @author לערי ריינהארט
+ * @author Jon Harald Søby
  * @author SPQRobin
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -529,7 +528,7 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 'italic_tip'      => 'Korsiv',
 'link_sample'     => 'Yümatiäd',
 'link_tip'        => 'Yüm ninik',
-'extlink_sample'  => 'http://www.sam.com yümatiäd',
+'extlink_sample'  => 'http://www.example.com yümatiäd',
 'extlink_tip'     => 'Yüm plödik (memolös foyümoti: http://)',
 'headline_sample' => 'Tiädavödem',
 'headline_tip'    => 'Tiäd nivoda 2id',
@@ -640,7 +639,7 @@ Ad dälön ole ad redakön padis, malats no-ASCII opubons in redakamabog as kots
 Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u se fon libik sümik.<br />
 <strong>NO PLADOLÖD ISIO NEN DÄL LAUTANA VÖDEMIS LABÜ KOPIEDAGITÄT!</strong>',
 'copyrightwarning2'         => 'Demolös, das keblünots valik lü {{SITENAME}} padasumons ma el $2 (logolöd eli $1 tefü notets). If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös onis isio.<br />
-Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u se fon libik sümik.<br />
+Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u se fon libik sümik.
 <strong>NO PLADOLÖD ISIO NEN DÄL LAUTANA VÖDEMIS LABÜ KOPIEDAGITÄT!</strong>',
 'longpagewarning'           => '<strong>NUNED: Pad at labon lunoti miljölätas $1; bevüresodatävöms anik ba no fägons ad redakön nendsäkädo padis lunotü miljölats plu 32. Betikolös dilami pada at ad pads smalikum.</strong>',
 'longpageerror'             => '<strong>PÖL: Vödem fa ol pesedöl labon lunoti miljölätas $1, kelos pluon leigodü völad muik pedälöl miljölätas $2. No kanon padakipön.</strong>',
@@ -662,7 +661,7 @@ Kanol redakön padi dabinöl, u [[Special:Userlogin|nunädön oli u jafön kali]
 'permissionserrorstext'     => 'No dalol dunön atosi sekü {{PLURAL:$1|kod|kods}} sököl:',
 'recreate-deleted-warn'     => "'''NUNED: Dönujafol padi pemoüköl.'''
 
-Vätälolös, va binos pötik ad lairedakön padi at.<br>
+Vätälolös, va binos pötik ad lairedakön padi at.
 Jenotalised moükama pada at pajonon is as yuf.",
 
 # "Undo" feature
@@ -1082,18 +1081,18 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 # File reversion
 'filerevert'                => 'Geükön padi: $1',
 'filerevert-legend'         => 'Geükön ragivi',
-'filerevert-intro'          => '<span class="plainlinks">Anu geükol padi: \'\'\'[[Media:$1|$1]]\'\'\' ad [fomam $4: $3, $2].</span>',
+'filerevert-intro'          => "Anu geükol padi: '''[[Media:$1|$1]]''' ad [fomam $4: $3, $2].",
 'filerevert-comment'        => 'Küpet:',
 'filerevert-defaultcomment' => 'Pegeükon ad fomam: $2, $1',
 'filerevert-submit'         => 'Geükön',
-'filerevert-success'        => '<span class="plainlinks">Pad: \'\'\'[[Media:$1|$1]]\'\'\' pegeükon ad [fomam $4: $3, $2].</span>',
+'filerevert-success'        => "Pad: '''[[Media:$1|$1]]''' pegeükon ad [fomam $4: $3, $2].",
 'filerevert-badversion'     => 'No dabinon fomam topik büik ragiva at labü timamäk pegevöl',
 
 # File deletion
 'filedelete'                  => 'Moükön padi: $1',
 'filedelete-legend'           => 'Moükön ragivi',
 'filedelete-intro'            => "Moükol padi: '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Anu moükol fomami pada: \'\'\'[[Media:$1|$1]]\'\'\' [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Anu moükol fomami pada: '''[[Media:$1|$1]]''' [$4 $3, $2].",
 'filedelete-comment'          => 'Küpet:',
 'filedelete-submit'           => 'Moükön',
 'filedelete-success'          => "'''$1''' pemoükon.",
@@ -1144,13 +1143,15 @@ Atis fakipölo, retons nog {{PLURAL:\$2|pad '''1''', kel luveratiko binon legiko
 Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL:\$4|padiredakam '''1'''|padiredakams '''\$4'''}}, sisä vük at pästiton.
 Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
 
-Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$7'''.",
+Lunot [http://www.mediawiki.org/wiki/Manual:Job_queue vobodapoodkeda] binon '''\$7'''.",
 'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:Listusers|geban]] peregistaröl '''1'''|s [[Special:Listusers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5.",
 'statistics-mostpopular' => 'Pads suvüno palogöls:',
 
 'disambiguations'      => 'Telplänovapads',
 'disambiguationspage'  => 'Template:Telplänov',
-'disambiguations-text' => "Pads sököl payümons ad '''telplanövapad'''. Sötons plao payümon lü yeged pötik.<br />Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWiki:disambiguationspage]].",
+'disambiguations-text' => "Pads sököl payümons ad '''telplanövapad'''.
+Sötons plao payümon lü yeged pötik.<br />
+Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Lüodüköms telik',
 'doubleredirectstext' => 'Kedet alik labon yümis lü lüodüköm balid e telid, ed i kedeti balid vödema lüodüköma telid, kel nomiko ninädon padi, ko kel lüodüköm balid söton payümön.',
@@ -1160,9 +1161,10 @@ Lunot [http://meta.wikimedia.org/wiki/Help:Job_queue vobodapoodkeda] binon '''\$
 'brokenredirects-edit'   => '(redakön)',
 'brokenredirects-delete' => '(moükön)',
 
-'withoutinterwiki'        => 'Pads nen yüms bevüpükik',
-'withoutinterwiki-header' => 'Pads sököl no yumons lü fomams in püks votik.',
-'withoutinterwiki-submit' => 'Jonolöd',
+'withoutinterwiki'         => 'Pads nen yüms bevüpükik',
+'withoutinterwiki-header'  => 'Pads sököl no yumons lü fomams in püks votik.',
+'withoutinterwiki-summary' => 'Pads sököl no yumons lü fomams in püks votik.',
+'withoutinterwiki-submit'  => 'Jonolöd',
 
 'fewestrevisions' => 'Yegeds labü revids nemödikün',
 
@@ -1661,7 +1663,7 @@ Yeged nulik "[[$1]]" ya dabinon. Vilol-li moükön oni ad jafön spadi pro topä
 
 Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e välolös, va vilol fomami anuik kobü fomams büik valik, ko kedets padajenotema, u te fomami anuik kobü nüns dö redakam lätikün.
 
-Ön jenet lätik, kanol i gebön yümi, a.s.: [[{{ns:special}}:Export/{{int:mainpage}}]] pro pad {{int:mainpage}}.',
+Ön jenet lätik, kanol i gebön yümi, a.s.: [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pro pad "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Ninükolöd te revidi anuik, no jenotemi valik',
 'exportnohistory'   => "----
 '''Noet:''' Seveig padajenotema lölik medü fomet at penemögükon ad gudükumön duinafägi.",

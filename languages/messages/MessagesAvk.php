@@ -6,13 +6,10 @@
  *
  * @author Wikimistusik
  * @author Sab
- * @author Siebrand
- * @author SPQRobin
- * @author Nike
  * @author Nkosi ya Cabinda
+ * @author Jon Harald Søby
+ * @author SPQRobin
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -44,8 +41,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Divnedira va jinaf email mane koe staksara',
 'tog-shownumberswatching'     => 'Va ota va rupes favesik nedir !',
 'tog-fancysig'                => 'Rilaf sugdaks (a mivaskafi gluyasiki)',
-'tog-externaleditor'          => 'Omavafa favera va divefi betasiki',
-'tog-externaldiff'            => 'Omavafa favera va divefa "diff" xeka',
+'tog-externaleditor'          => 'Favera va divefi betasiki (anton gan aptacik, moe vusiko va yona aptafa vertara olegar)',
+'tog-externaldiff'            => 'Omavafa favera va divefa "diff" xeka (anton gan aptacik, moe vusiko va yona aptafa vertara olegar)',
 'tog-showjumplinks'           => 'Tutegirara va "grablera" vansarafi gluyasiki',
 'tog-uselivepreview'          => 'Favera va abdiwira (JavaScript) (bagalon)',
 'tog-forceeditsummary'        => 'Zo walzé viele betaravildeks tir vlardaf !',
@@ -765,9 +762,9 @@ contenant tous les termes apparaissent dans les résultats).",
 'group-bureaucrat-member'    => 'Stujesik',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Miv gruyeyen favesik yo',
-'grouppage-bot'           => '{{ns:project}} : Stiernikeem',
-'grouppage-sysop'         => '{{ns:project}} : Ristusikeem',
-'grouppage-bureaucrat'    => '{{ns:project}} : Stujesikeem',
+'grouppage-bot'           => '{{ns:project}}:Stiernikeem',
+'grouppage-sysop'         => '{{ns:project}}:Ristusikeem',
+'grouppage-bureaucrat'    => '{{ns:project}}:Stujesikeem',
 
 # User rights log
 'rightslog'     => '"Log" bu va favesikrokeem',
@@ -906,7 +903,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filehist'                  => 'Iyeltakizvot',
 'filehist-help'             => 'Ta da va iyeltak wil dum in batoulon awir va evla/bartiv vulegal !',
 'filehist-deleteall'        => 'Sulara va kotcoba',
-'filehist-deleteone'        => 'sulara va batcoba',
+'filehist-deleteone'        => 'Sulara',
 'filehist-revert'           => 'dimplekura',
 'filehist-current'          => 'noeltaf',
 'filehist-datetime'         => 'Evla/Bartiv',
@@ -942,7 +939,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filedelete'                  => 'Sulara va $1',
 'filedelete-legend'           => 'Sulara va iyeltak',
 'filedelete-intro'            => "Rin va '''[[Media:$1|$1]]''' sulal.",
-'filedelete-intro-old'        => '<span class="plainlinks">Rin va siatos ke \'\'\'[[Media:$1|$1]]\'\'\' wetce [$4 $3, $2] sulal.</span>',
+'filedelete-intro-old'        => "Rin va siatos ke '''[[Media:$1|$1]]''' wetce [$4 $3, $2] sulal.",
 'filedelete-comment'          => 'Sebuks :',
 'filedelete-submit'           => 'Sulara',
 'filedelete-success'          => "'''$1''' al zo sular.",
@@ -984,13 +981,14 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 'statistics'             => 'Enkopaca yo',
 'sitestats'              => 'Enkopaca yo va xo',
 'userstats'              => 'Enkopaca yo va favesik',
-'sitestatstext'          => 'Origak va <b>$1</b> bu noelon ruldar. Bata ota va se "prilarabu" is bu icde {{SITENAME}} is yupbu is graskarabu is aru metelizkorafu bu ruldar. Divlapuson va batu bu se, <b>$2</b> lanon telizkorafu bu zavzad. <br />
+'sitestatstext'          => "Origak va '''\$1''' bu noelon ruldar.
+Bata ota va se \"prilarabu\" is bu icde {{SITENAME}} is yupbu is graskarabu is aru metelizkorafu bu ruldar. Divlapuson va batu bu se, '''\$2''' lanon telizkorafu bu zavzad.
 
-\'\'\'$8\'\'\' iyeltak tid kalvajayan. <br />
+'''\$8''' iyeltak tid kalvajayan.
 
-<b>$3</b> bu zo rupeyed ise <b>$4</b> zo betayad. Va mialuk va <b>$5</b> betara fuxe bu is <b>$6</b> rupera fuxe betara batcoba tadler. <br />
+'''\$3''' bu zo rupeyed ise '''\$4''' zo betayad. Va mialuk va '''\$5''' betara fuxe bu is '''\$6''' rupera fuxe betara batcoba tadler.
 
-Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\'\'$7\'\'\'.',
+Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir '''\$7'''.",
 'userstatstext'          => "{{PLURAL:$1|Tir '''1''' vertokayan [[Special:Listusers|favesik]]|Tid '''$1''' vertokayan [[Special:Listusers|favesik]]}}. Vanmiaeon '''$2''' (ok '''$4%''') va $5 roka {{PLURAL:$2|digir|digid}}.",
 'statistics-mostpopular' => 'Tel lorupen bueem',
 
@@ -1005,9 +1003,10 @@ Abrotcuca ke [http://meta.wikimedia.org/wiki/Help:Job_queue "job queue"] tir \'\
 'brokenredirects-edit'   => '(betara)',
 'brokenredirects-delete' => '(sulara)',
 
-'withoutinterwiki'        => 'Avagluyasikiiskaf bueem',
-'withoutinterwiki-header' => 'Batu bu se va aravaf siatos me skedad :',
-'withoutinterwiki-submit' => 'Nedira',
+'withoutinterwiki'         => 'Avagluyasikiiskaf bueem',
+'withoutinterwiki-header'  => 'Batu bu se va aravaf siatos me skedad :',
+'withoutinterwiki-summary' => 'Batu bu se va aravaf siatos me skedad :',
+'withoutinterwiki-submit'  => 'Nedira',
 
 'fewestrevisions' => 'Tel lebetayan bueem',
 
@@ -1243,7 +1242,7 @@ Bazen bartiv tir tel ke (UTC) zanisiko.',
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'editcomment'                 => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos gan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
 'protectlogpage'              => 'Izvot va nendareem',
 'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:Protectedpages|nendan bueem]] wil.',
@@ -1466,7 +1465,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'              => 'Busuzdara',
 'movepagebtn'             => 'Tolyoltara va teliz',
 'pagemovedsub'            => 'Tolyoltanhara',
-'movepage-moved'          => '<big>\'\'\'"$1" bu kal "$2"\'\'\' tir arrundanafu</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" zo arrundayar kal "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Milvergumveltaf teliz ixam krulder, oke kiblayan vergumvelt tir meenaf. Va ar kiblal !',
 'cantmove-titleprotected' => 'Va bu me milinde rotarrundal kire warzaf vergumvelt icde redura zo nendar',
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",

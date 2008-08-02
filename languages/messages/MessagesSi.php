@@ -1,17 +1,13 @@
 <?php
-/** Sinhalese (සිංහල)
+/** Sinhala (සිංහල)
  *
  * @ingroup Language
  * @file
  *
  * @author Asiri wiki
- * @author Nike
  * @author Chandana
- * @author Siebrand
  * @author Jon Harald Søby
  */
-
-
 
 $messages = array(
 # User preference toggles

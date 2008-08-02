@@ -5,13 +5,9 @@
  * @file
  *
  * @author Cgboeree
- * @author Nike
- * @author SPQRobin
- * @author Siebrand
  * @author Malafaya
+ * @author SPQRobin
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -305,7 +301,7 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'italic_tip'      => 'Testo en leteras italica',
 'link_sample'     => 'Titulo de lia',
 'link_tip'        => 'Lia interna',
-'extlink_sample'  => 'http://www.esemplo.com titulo de lia',
+'extlink_sample'  => 'http://www.example.com titulo de lia',
 'extlink_tip'     => 'Lia esterna (recorda la prefis http://)',
 'headline_sample' => 'Testo de titulo',
 'headline_tip'    => 'Titulo de nivel 2',

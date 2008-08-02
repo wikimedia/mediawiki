@@ -4,14 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author ka.wikipedia.org sysops
  * @author Alsandro
- * @author Nike
- * @author לערי ריינהארט
  * @author Malafaya
- * @author Siebrand
- * @author SPQRobin
+ * @author לערי ריינהארט
  * @author Sopho
+ * @author ka.wikipedia.org sysops
+ * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -145,7 +143,7 @@ $messages = array(
 'dec'           => 'დეკ',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
+'categories'            => 'კატეგორიები',
 'pagecategories'        => '{{PLURAL:$1|კატეგორია|კატეგორიები}}',
 'category_header'       => 'სტატიები კატეგორიაში "$1"',
 'subcategories'         => 'ქვეკატეგორიები',
@@ -230,7 +228,7 @@ $messages = array(
 'redirectedfrom'    => '(გადმომისამართდა $1-დან)',
 'redirectpagesub'   => 'გადამისამართება გვერდზე',
 'lastmodifiedat'    => 'ეს გვერდი ბოლოს განახლდა $2, $1.', # $1 date, $2 time
-'viewcount'         => 'ეს გვერდი შემოწმდა {{plural:$1|ერთხელ|$1-ჯერ}}.',
+'viewcount'         => 'ეს გვერდი შემოწმდა {{PLURAL:$1|ერთხელ|$1-ჯერ}}.',
 'protectedpage'     => 'დაბლოკილი გვერდი',
 'jumpto'            => 'გადასვლა:',
 'jumptonavigation'  => 'ნავიგაცია',
@@ -552,7 +550,7 @@ $1 საათში.',
 'newarticle'                => '(ახალი)',
 'newarticletext'            => 'ბმულის მეშვებით თქვენ მოხვდით გვერდზე, რომელიც ჯერ არ არსებობს.
 გვერდის შესაქმნელად შეიყვანეთ ინფორმაცია ქვემო ფანჯარაში
-(იხ. [[{{ns:help}}:Contents|დახმარების გვერდი]] დამატებითი ინფორმაციისთვის).
+(იხ. [[{{MediaWiki:Helppage}}|დახმარების გვერდი]] დამატებითი ინფორმაციისთვის).
 თუ ამ გვერდზე შეცდომით მოხვდით, დაბრუნდით უკან თქვენი ბრაუზერის მეშვეობით.',
 'anontalkpagetext'          => "----''ეს არის ანონიმური მომხმარებლის განხილვის გვერდი, რომელსაც ანგარიში ჯერ არ შეუქმნია ან არ იყენებს მას. შესაბამისად, ჩვენ მისი ციფრული IP მისამართი უნდა გამოვიყენოთ მისი იდენტიფიცირებისთვის. ამგვარი მისამართი შეიძლება რამდენიმე მომხმარებელმა გამოიყენოს. თუ თქვენ ანონიმური მომხმარებელი ხართ და თვლით, რომ სხვისთვის გამიზნული მითითება მიიღეთ, გთხოვთ [[Special:Userlogin|შექმენით ანგარიში ან დარეგისტრირდით]] მომავალში გაუგებრობის თავიდან ასაცილებლად.''",
 'noarticletext'             => 'ამჟამად ამ გვერდზე ტექსტი არ არსებობს, თქვენ შგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ამ გვერდის სათაური]] სხვა გვერდებზე ან [{{fullurl:{{FULLPAGENAME}}|action=edit}} დაიწყოთ ამ გვერდის რედაქტირება].',
@@ -834,7 +832,7 @@ $1 საათში.',
 'uploaderror'                 => 'ატვირთვის შეცდომა',
 'uploadtext'                  => "<div style=\"border: 1px solid grey; background: #ddf; padding: 10px 30px; margin: 0 auto;\">
 <big>'''შენიშვნა''': თქვენი ფაილი <span style=\"color: red; font-weight: bold\">წაიშლება</span> თუ არ მიუთითებთ დეტალურ ინფორმაციას:</big>
-#ფაილის '''წყაროს''' შესახებ: 
+#ფაილის '''წყაროს''' შესახებ:
 #*ახსენეთ თუ თქვენი პირადი ნამუშევარია.
 #*თუ ფაილი ინტერნეტში არსებობს, მიუთითეთ '''ბმული'''.
 #საავტორო უფლებების მფლობელსა და ფაილის '''ლიცენზიაზე''', რომელიც მოიცავს:
@@ -994,19 +992,12 @@ $1 საათში.',
 
 ვიკის დაარსებიდან დღემდე გვერდები დათვალიერებულ იქნა '''$3'''-ჯერ, ხოლო რედაქტირება განხორციელდა '''$4'''-ჯერ. ეს ნიშნავს, რომ ყოველ გვერდზე საშუალოდ მოდის '''$6''' დათვალიერება და '''$5''' რედაქტირება.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue დავალებათა რიგის] სიგრძეა '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue დავალებათა რიგის] სიგრძეა '''$7'''.",
 'userstatstext'          => "არსებობენ '''$1''' რეგისტრირებული მომხმარებელი, რომელთა შორის '''$2''' (ან '''$4%''') ადმინისტრატორია. (იხილეთ $3).",
 'statistics-mostpopular' => 'ყველზე ხშირად ხილვადი გვერდები',
 
 'disambiguations'     => 'მრავალმნიშვნელოვანი გვერდები',
-'disambiguationspage' => "Admins, please maintain this page by including links to all disambiguation templates and any redirects to them.
-
-The list is used by [[Special:Disambiguations]] to show any pages linking to disambiguation articles. The list will also be used by various bots.
-
-<small>Note: This page may be translated and reformatted. Any links to '''<nowiki>[[template:...]]</nowiki>''' will be treated as links to disambiguation templates.</small>
-
-* [[თარგი:მრავალმნიშვნელოვანი]]
-* [[თარგი:მრავმნიშ]]",
+'disambiguationspage' => 'Template:მრავალმნიშვნელოვანი',
 
 'doubleredirects'     => 'ორმაგი გადამისამართება',
 'doubleredirectstext' => 'ყოველი მწკრივი შეიცავს ბმულებს პირველ და მეორე გადამისამართებაზე, აგრეთვე მეორე გადამისამართების ტექსტის პირველ სტრიქონს, რომელშიც ჩვეულებრივ მითითებულია რეალური “სამიზნე” გვერდის სათაური. საჭიროა, რომ პირველი გადამისამართებაც უთითებდეს ამ გვერდზე.',
@@ -1016,9 +1007,10 @@ The list is used by [[Special:Disambiguations]] to show any pages linking to dis
 'brokenredirects-edit'   => '(რედაქტირება)',
 'brokenredirects-delete' => '(წაშლა)',
 
-'withoutinterwiki'        => 'გვერდები ენის ბმულების გარეშე',
-'withoutinterwiki-header' => 'შემდეგ გვერდებს სხვა ენების ვერსიებზე არ აქვთ ბმულები:',
-'withoutinterwiki-submit' => 'ჩვენება',
+'withoutinterwiki'         => 'გვერდები ენის ბმულების გარეშე',
+'withoutinterwiki-header'  => 'შემდეგ გვერდებს სხვა ენების ვერსიებზე არ აქვთ ბმულები:',
+'withoutinterwiki-summary' => 'შემდეგ გვერდებს სხვა ენების ვერსიებზე არ აქვთ ბმულები:',
+'withoutinterwiki-submit'  => 'ჩვენება',
 
 'fewestrevisions' => 'ყველაზე ნაკლებად რედაქტირებული სტატიები',
 
@@ -1361,8 +1353,8 @@ $NEWPAGE
 'ipbotherreason'           => 'სხვა/დამატებითი მიზეზი:',
 'badipaddress'             => 'არასწორი IP მისამართი',
 'blockipsuccesssub'        => 'ბლოკირება შესრულებულია',
-'blockipsuccesstext'       => '[[{{ns:special}}:Contributions/$1|$1]] ბლოკირებულ იქნა.
-<br />იხილეთ [[{{ns:special}}:Ipblocklist|ბლოკირებული IP მისამართების სია]].',
+'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] ბლოკირებულ იქნა.<br />
+იხილეთ [[Special:Ipblocklist|ბლოკირებული IP მისამართების სია]].',
 'ipb-edit-dropdown'        => 'დაბლოკვის მიზეზების რედაქტირება',
 'ipb-unblock-addr'         => 'ბლოკის მოხსნა $1',
 'ipb-unblock'              => 'მომხმარებლის სახელზე ან IP მისამართზე ბლოკის მოხსნა',

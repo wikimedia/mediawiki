@@ -1,18 +1,16 @@
 <?php
-/** Piemontèis (Piemontèis)
+/** Piedmontese (Piemontèis)
  *
  * @ingroup Language
  * @file
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author Bèrto 'd Sèra
- * @author Nike
- * @author SabineCretella
- * @author Teak
- * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
+ * @author SabineCretella
+ * @author SPQRobin
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
+ * @author Teak
  */
 
 $fallback = 'it';
@@ -140,7 +138,7 @@ dj'artìcol ancó pa scrit",
 'dec'           => 'Dze',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Categorìa|Categorìe}}',
+'categories'            => 'Categorìe',
 'pagecategories'        => '{{PLURAL:$1|Categorìa|Categorìe}}',
 'category_header'       => 'Artìcoj ant la categorìa "$1"',
 'subcategories'         => 'Sotacategorìe',
@@ -148,13 +146,13 @@ dj'artìcol ancó pa scrit",
 'category-empty'        => "''Al dì d'ancheuj la categorìa a l'ha pa andrinta nì 'd pàgine, nì d'archivi multimojen.''",
 
 'mainpagetext'      => "<big>'''MediaWiki a l'é staita anstalà a la perfession.'''</big>",
-'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] ([[belavans]] për adess a-i é mach n'anglèis) për avej dj'anformassion suplementar ant sël coma dovré ël programa dla wiki.
+'mainpagedocfooter' => "Che a varda la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] (belavans për adess a-i é mach n'anglèis) për avej dj'anformassion suplementar ant sël coma dovré ël programa dla wiki.
 
 == Për anandiesse a travajé ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'A propòsit ëd',
 'article'        => 'Pàgina ëd contnù',
@@ -224,7 +222,7 @@ dj'artìcol ancó pa scrit",
 'redirectedfrom'    => '(Ridiression da $1)',
 'redirectpagesub'   => 'Pàgina ëd ridiression',
 'lastmodifiedat'    => "Modificà l'ùltima vira al $2, $1.", # $1 date, $2 time
-'viewcount'         => "St'artìcol-sì a l'é stait lesù {{plural:$1|na vira|$1 vire}}.",
+'viewcount'         => "St'artìcol-sì a l'é stait lesù {{PLURAL:$1|na vira|$1 vire}}.",
 'protectedpage'     => 'Pàgina proteta',
 'jumpto'            => 'Va a:',
 'jumptonavigation'  => 'navigassion',
@@ -751,7 +749,7 @@ Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.
 'lineno'                  => 'Riga $1:',
 'compareselectedversions' => 'Paragon-a le version selessionà',
 'editundo'                => "buta 'me ch'a l'era",
-'diff-multi'              => '({{plural:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
+'diff-multi'              => '({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
 
 # Search results
 'searchresults'         => "Arsultà dl'arserca",
@@ -923,12 +921,12 @@ Le partìe nen selessionà a saran nen tocà. Për deselessioné na partìa a ve
 'uploadbtn'                   => 'Carié',
 'reupload'                    => 'Caria torna',
 'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
-'uploadnologin'               => "A dev [[Special:Userlogin|rintré ant ël sistema]] për podej fé st'operassion-sì",
+'uploadnologin'               => "A dev rintré ant ël sistema për podej fé st'operassion-sì",
 'uploadnologintext'           => "A dev [[Special:Userlogin|rintré ant ël sistema]]
 për podej carié dj'archivi.",
 'upload_directory_read_only'  => 'Ël programa webserver a-i la fa nen a scrive ansima a la diretriss ëd càrich ($1).',
 'uploaderror'                 => 'Eror dëmentré che as cariava',
-'uploadtext'                  => "'''DOSMAN!''' Anans che carié dla ròba ansima a {{SITENAME}}, che a sia motobin sigur d'avej bin lesù e capì 
+'uploadtext'                  => "'''DOSMAN!''' Anans che carié dla ròba ansima a {{SITENAME}}, che a sia motobin sigur d'avej bin lesù e capì
 [[{{MediaWiki:Policy-url}}|ël regolament ëd {{SITENAME}} ansima al dovré dle figure]].
 
 Për vardé ò pura sërché figure già carià ant sla {{SITENAME}}, che a vada ant sla [[Special:Imagelist|lista dle figure]].
@@ -1092,18 +1090,18 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 # File reversion
 'filerevert'                => "Buta torna $1 tanme ch'a l'era",
 'filerevert-legend'         => "Buté torna l'archivi tanme ch'a l'era",
-'filerevert-intro'          => "<span class=\"plainlinks\">A l'é dapress a buté torna l'archivi  '''[[Media:\$1|\$1]]''' com a l'era ant la [version \$4 dël \$2, \$3].</span>",
+'filerevert-intro'          => "A l'é dapress a buté torna l'archivi  '''[[Media:$1|$1]]''' com a l'era ant la [version $4 dël $2, $3].",
 'filerevert-comment'        => 'Oget:',
 'filerevert-defaultcomment' => 'Version dël $1, $2 butà torna coma corenta.',
 'filerevert-submit'         => "Buté tanme ch'a l'era",
-'filerevert-success'        => "<span class=\"plainlinks\">'''L<nowiki>'</nowiki>archivi [[Media:\$1|\$1]]''' a l'é stait torna butà com a l'era ant la [\$4 version dël \$2, \$3].</span>",
+'filerevert-success'        => "'''L<nowiki>'</nowiki>archivi [[Media:$1|$1]]''' a l'é stait torna butà com a l'era ant la [$4 version dël $2, $3].",
 'filerevert-badversion'     => "A-i é pa gnun-a version locala dl'archivi ch'a l'abia un marcatemp parej.",
 
 # File deletion
 'filedelete'                  => 'Dëscancelé $1',
 'filedelete-legend'           => "Dëscancelé l'archivi",
 'filedelete-intro'            => "A l'é an brova dë scancelé '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => "<span class=\"plainlinks\">A l'é dapress ch'a scancela l'archivi '''[[Media:\$1|\$1]]''' dël [\$4 \$3, \$2].</span>",
+'filedelete-intro-old'        => "A l'é dapress ch'a scancela l'archivi '''[[Media:$1|$1]]''' dël [$4 $3, $2].",
 'filedelete-comment'          => 'Rason:',
 'filedelete-submit'           => 'Dëscancelé',
 'filedelete-success'          => "A l'é dëscancelasse l'archivi '''$1'''.",
@@ -1156,14 +1154,15 @@ Gavà coste, a {{PLURAL:\$2|resta na pàgina ch'a l'ha|resto '''\$2''' pàgine c
 Da che la wiki a l'é duvèrta, i l'oma avù 'n total {{PLURAL:\$3|d'un-a pàgina|ëd '''\$3''' pàgine}} consultà e ëd {{PLURAL:\$4|na modìfica|'''\$4''' modìfiche}} a j'artìcoj.
 Coma valor mojen i l'oma <b>\$5</b> modìfiche për artìcol, e minca artìcol a l'é stait lesù <b>\$6</b> vire për modìfica.
 
-Ant la [http://meta.wikimedia.org/wiki/Help:Job_queue coa] a-i {{PLURAL:\$7|é|son}} '''\$7''' process.",
+Ant la [http://www.mediawiki.org/wiki/Manual:Job_queue coa] a-i {{PLURAL:\$7|é|son}} '''\$7''' process.",
 'userstatstext'          => "A-i {{PLURAL:$1|é '''1''' |son '''$1'''}} utent registrà, dont
 '''$2''' (visadì ël '''$4%''') a l'{{PLURAL:$2|ha|han}} la qualìfica da $5.",
 'statistics-mostpopular' => "Pàgine ch'a 'ncontro dë pì",
 
 'disambiguations'      => 'Pàgine për la gestion dij sinònim',
 'disambiguationspage'  => 'Template:Gestion dij sinònim',
-'disambiguations-text' => "Ste pàgine-sì a men-o a në '''pàgina ëd gestion dij sinònim''', mach che a dovrìo ëmné bele drit a n'artìcol.<br />Na pàgina as trata coma \"pàgina ëd gestion dij sinònim\" se a dòvra në stamp dont anliura as treuva ant ël [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Ste pàgine-sì a men-o a në '''pàgina ëd gestion dij sinònim''', mach che a dovrìo ëmné bele drit a n'artìcol.<br />
+Na pàgina as trata coma \"pàgina ëd gestion dij sinònim\" se a dòvra në stamp dont anliura as treuva ant ël [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Ridiression dobie',
 'doubleredirectstext' => "<b>Pieve varda:</b> costa lista-sì dle vire a peul avej andrinta dj'arsultà nen giust. Sòn a peul rivé miraco përchè a-i sio dj'anliure ò pura dël test giontà dapress a l'istrussion #REDIRECT.<br />
@@ -1174,9 +1173,10 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'brokenredirects-edit'   => '(modìfica)',
 'brokenredirects-delete' => '(scancela)',
 
-'withoutinterwiki'        => "Pàgine ch'a l'han gnun-a anliura interwiki",
-'withoutinterwiki-header' => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",
-'withoutinterwiki-submit' => 'Smon',
+'withoutinterwiki'         => "Pàgine ch'a l'han gnun-a anliura interwiki",
+'withoutinterwiki-header'  => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",
+'withoutinterwiki-summary' => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",
+'withoutinterwiki-submit'  => 'Smon',
 
 'fewestrevisions' => 'Artìcoj con manch ëd modìfiche',
 
@@ -1570,7 +1570,7 @@ Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà
 'ipbanononly'                 => "Blòca mach j'utent anònim",
 'ipbcreateaccount'            => 'Lassa pa pi creé dij cont neuv',
 'ipbemailban'                 => "Nen lassé che l'utent a peula mandé ëd messagi ëd pòsta eletrònica",
-'ipbenableautoblock'          => "Blòca an automàtich la [[dariera]] adrëssa IP dovrà da l'utent e tute cole dont peuj cheidun as preuva a fé dle modìfiche",
+'ipbenableautoblock'          => "Blòca an automàtich la dariera adrëssa IP dovrà da l'utent e tute cole dont peuj cheidun as preuva a fé dle modìfiche",
 'ipbsubmit'                   => "Bloca st'adrëssa IP-sì",
 'ipbother'                    => "N'àutra durà",
 'ipboptions'                  => "2 ore:2 ore,1 dì:1 dì,3 dì:3 dì,na sman-a:na sman-a,2 sman-e:2 sman-e,1 mèis:1 mèis,3 mèis:3 mèis,6 mèis:6 mèis,n'ann:n'ann,për sempe:për sempe", # display1:time1,display2:time2,...
@@ -1657,15 +1657,19 @@ Për piasì, che an conferma che sòn a l'é da bon lòn che chiel (chila) a veu
 'movepage'                => 'Tramudé na pàgina',
 'movepagetext'            => "Con ël mòdulo ëd domanda ambelessì sota a peul cangeje nòm a na pàgina, tramudand-je dapress ëdcò tuta soa cronologìa anvers al nòm neuv.
 Ël vej tìtol a resterà trasformà ant na ridiression che a men-a al tìtol neuv.
-J'anliure a la veja pàgina a saran NEN agiornà (e donca a men-eran la gent a la ridiression); che a fasa atension dë
-[[Special:Manutenzioni|controlé con cura]] che as creo pa dle ridiression dobie ò dle ridiression che men-o da gnun-a part.
+J'anliure a la veja pàgina a saran NEN agiornà (e donca a men-eran la gent a la ridiression);
+che a fasa atension dë
+controlé con cura che as creo pa dle ridiression dobie ò dle ridiression che men-o da gnun-a part.
 A resta soa responsabilità cola dë esse sigur che j'anliure a men-o la gent andoa che a devo mnela.
 
 Noté bin: la pàgina a sarà '''nen''' tramudà se a-i fussa già mai n'articol che a l'ha ël nòm neuv, gavà col cas che a sia na pàgina veujda ò pura na ridiression, sempre che bele che essend mach parej a l'abia già nen na soa cronologìa.
 Sòn a veul dì che, se a l'avèissa mai da fé n'operassion nen giusta, a podrìa sempe torné a rinominé la pàgina col nòm vej, ma ant gnun cas a podrìa coerté na pàgina che a-i é già.
 
-<b>ATENSION!</b>
-Un cambiament dràstich parej a podrìa dé dle gran-e che un a së speta pa gnanca. Sòn dzortut se a fussa fait dzora a na pàgina motobin visità. Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima che fé che fé. Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej.",
+'''ATENSION!'''
+Un cambiament dràstich parej a podrìa dé dle gran-e che un a së speta pa gnanca.
+Sòn dzortut se a fussa fait dzora a na pàgina motobin visità.
+Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima che fé che fé.
+Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej.",
 'movepagetalktext'        => "La pàgina ëd discussion tacà a costa pàgina d'articol, se a-i é, a sarà tramudà n'automatich ansema a l'artìcol, '''gavà costi cas-sì''':
 *quand as tramuda la pàgina tra diferent spassi nominal,
 *quand na pàgina ëd discussion nen veujda a-i é già për ël nòm neuv, ò pura
@@ -1707,14 +1711,14 @@ L\'artìcol ëd destinassion "[[$1]]" a-i é già. Veul-lo scancelelo për avej 
 # Export
 'export'            => 'Esporté dle pàgine',
 'exporttext'        => "A peul esporté ël test e modifiché la stòria ëd na pàgina ò pura
-ëd n'ansema ëd pàgine gropa ant n'archivi XML. Sòn a peul peuj amportesse 
+ëd n'ansema ëd pàgine gropa ant n'archivi XML. Sòn a peul peuj amportesse
 ant n'àutra wiki ën dovrand la funsion Special:Ampòrta pàgina.
 
 Për esporté le pàgine, che a së scriva ij tìtoj ant ël quàder ambelessì sota, butand-ji un tìtol për riga,
 e che as serna se a veul la version corenta ansema a cole veje, con le righe che conto la stòria dla pàgina,
 ò pura mach l'anformassion ant sël quand che a sia staje l'ùltima modìfica.
 
-Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré n'anliura, pr'esempi [[Special:Export/{{Mediawiki:Mainpage}}]] për la pàgina {{Mediawiki:Mainpage}}.",
+Se costa ùltima possibilità a fussa lòn che a-j serv, a podrìa ëdcò dovré n'anliura, pr'esempi [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] për la pàgina \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Ciapa sù mach la version corenta, pa tuta la stòria',
 'exportnohistory'   => "----
 '''Nòta:''' la possibilità d'esporté la stòria completa dle pàgine a l'é staita gavà për dle question corelà a le prestassion dël sistema.",
@@ -2244,8 +2248,8 @@ Andrinta al messagi a-i sara n'anliura (URL) con andrinta un còdes.
 Che a deurba st'anliura andrinta a sò programa ëd navigassion (browser)
 për confermé che soa adrëssa a l'é pròpe cola.",
 'confirmemail_pending'    => '<div class="error">
-I l\'oma già mandaje sò còdes ëd conferma; se a l\'ha pen-a creasse sò cont, miraco a venta che a speta dontre minute che a-j riva ant la pòsta, [[nopà]] che ciamene un neuv.
-</div>',
+I l\'oma già mandaje sò còdes ëd conferma;
+se a l\'ha pen-a creasse sò cont, miraco a venta che a speta dontre minute che a-j riva ant la pòsta, nopà che ciamene un neuv.</div>',
 'confirmemail_send'       => 'Manda un còdes ëd conferma për pòsta eletrònica',
 'confirmemail_sent'       => "Ël messagi ëd conferma a l'é stait mandà.",
 'confirmemail_oncreate'   => "Un còdes ëd conferma a l'é stait mandà a soa adrëssa ëd pòsta eletrònica.

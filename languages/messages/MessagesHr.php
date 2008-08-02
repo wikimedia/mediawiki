@@ -4,19 +4,18 @@
  * @ingroup Language
  * @file
  *
+ * @author SpeedyGonsales
  * @author MayaSimFan
  * @author Roberta F.
- * @author SpeedyGonsales
- * @author Treecko
- * @author Luka Krstulovic
- * @author Nike
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Dnik
- * @author Suradnik13
- * @author SPQRobin
  * @author Dalibor Bosits
+ * @author Luka Krstulovic
+ * @author Treecko
+ * @author לערי ריינהארט
+ * @author Jon Harald Søby
+ * @author Suradnik13
  * @author Demicx
+ * @author SPQRobin
  */
 
 $skinNames = array(
@@ -166,7 +165,7 @@ $messages = array(
 'dec'           => 'pro',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategorija|Kategorije}}',
+'categories'            => 'Kategorije',
 'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header'       => 'Članci u kategoriji "$1"',
 'subcategories'         => 'Potkategorije',
@@ -593,8 +592,7 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 'noarticletext'             => 'Na ovoj stranici trenutačno nema sadržaja, možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] u drugim stranicama ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu].',
 'userpage-userdoesnotexist' => 'Suradničko ime "$1" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
 'clearyourcache'            => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
-'''Mozilla / Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Apple Macu);
-'''IE:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; korisnici '''Opere''' možda će morati u potpunosti isprazniti međuspremnik u ''Tools&rarr;Preferences''.",
+'''Mozilla / Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''Cmd-R'' na Apple Macu); '''Konqueror:''' samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; '''Opera:''' očistiti cache u ''Tools → Preferences;'' '''Internet Explorer:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5.''",
 'usercssjsyoucanpreview'    => "<strong>Savjet:</strong> Koristite dugme 'Pokaži kako će izgledati' za testiranje svog CSS/JS prije snimanja.",
 'usercsspreview'            => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS, i da još nije snimljen!'''",
 'userjspreview'             => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''",
@@ -785,7 +783,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'lineno'                  => 'Redak $1:',
 'compareselectedversions' => 'Usporedi odabrane inačice',
 'editundo'                => 'ukloni ovu izmjenu',
-'diff-multi'              => '({{plural:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
+'diff-multi'              => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
 
 # Search results
 'searchresults'         => 'Rezultati pretrage',
@@ -898,20 +896,20 @@ Neoznačene skupine neće se promijeniti. Skupinu možete deselektirati istovrem
 
 # Groups
 'group'               => 'Grupa:',
-'group-autoconfirmed' => 'Suradnici prijavljeni duže od 4 dana',
+'group-autoconfirmed' => 'Automatski potvrđeni suradnici',
 'group-bot'           => 'Botovi',
 'group-sysop'         => 'Administratori',
 'group-bureaucrat'    => 'Birokrati',
 'group-all'           => '(svi)',
 
-'group-autoconfirmed-member' => 'Suradnik prijavljen duže od 4 dana',
+'group-autoconfirmed-member' => 'Automatski potvrđen suradnik',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Birokrat',
 
-'grouppage-autoconfirmed' => '{{ns:project}}:Suradnici prijavljeni duže od 4 dana',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automatski potvrđeni suradnici',
 'grouppage-bot'           => '{{ns:project}}:Botovi',
-'grouppage-sysop'         => '{{ns:project}}:Administrators',
+'grouppage-sysop'         => '{{ns:project}}:Administratori',
 'grouppage-bureaucrat'    => '{{ns:project}}:Birokrati',
 
 # User rights log
@@ -1095,18 +1093,18 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 # File reversion
 'filerevert'                => 'Ukloni ← $1',
 'filerevert-legend'         => 'Vrati datoteku',
-'filerevert-intro'          => '<span class="plainlinks">Vraćate \'\'\'[[Media:$1|$1]]\'\'\' na [$4 promjenu od $3, $2].</span>',
+'filerevert-intro'          => "Vraćate '''[[Media:$1|$1]]''' na [$4 promjenu od $3, $2].",
 'filerevert-comment'        => 'Komentar:',
 'filerevert-defaultcomment' => 'Vraćeno na inačicu od $2, $1',
 'filerevert-submit'         => 'Vrati',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' je vraćena na [$4 promjenu od $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' je vraćena na [$4 promjenu od $3, $2].",
 'filerevert-badversion'     => 'Nema prethodne lokalne inačice datoteke s zadanim datumom i vremenom.',
 
 # File deletion
 'filedelete'                  => 'Izbriši $1',
 'filedelete-legend'           => 'Izbriši datoteku',
 'filedelete-intro'            => "Brišete datoteku '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Brišete inačicu \'\'\'[[Media:$1|$1]]\'\'\' od [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Brišete inačicu '''[[Media:$1|$1]]''' od [$4 $3, $2].",
 'filedelete-comment'          => 'Komentar:',
 'filedelete-submit'           => 'Izbriši',
 'filedelete-success'          => "Datoteka '''$1''' je izbrisana.",
@@ -1162,13 +1160,15 @@ Snimljeno je '''$8''' datoteka.
 Ukupno je '''$3''' pregleda stranica, i '''$4''' uređivanja članaka od pokretanja projekta {{SITENAME}}.
 U prosjeku to iznosi '''$5''' uređivanja po stranici, i '''$6''' pregleda po uređivanju.
 
-Duljina [http://meta.wikimedia.org/wiki/Help:Job_queue zadataka za izvršavanje] je '''$7'''.",
+Duljina [http://www.mediawiki.org/wiki/Manual:Job_queue zadataka za izvršavanje] je '''$7'''.",
 'userstatstext'          => "Broj prijavljenih [[Special:Listusers|suradnika]] je '''$1'''. Od toga {{PLURAL:$2|je '''$2''' (ili '''$4%''') administrator|su '''$2''' (ili '''$4%''') administratora|su '''$2''' (ili '''$4%''') administratori}}, tj. imaju $5 prava.",
 'statistics-mostpopular' => 'Najposjećenije stranice',
 
 'disambiguations'      => 'Razdvojbene stranice',
 'disambiguationspage'  => 'Template:Razdvojba',
-'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''. Umjesto toga bi trebale povezivati na prikladnu temu. <br />Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''.
+Umjesto toga bi trebale povezivati na prikladnu temu.<br />
+Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Dvostruka preusmjeravanja',
 'doubleredirectstext' => 'Ovo je popis preusmjeravanja na stranice za preusmjeravanje.
@@ -1180,9 +1180,10 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'brokenredirects-edit'   => '(uredi)',
 'brokenredirects-delete' => '(obriši)',
 
-'withoutinterwiki'        => 'Stranice bez međuwiki poveznica',
-'withoutinterwiki-header' => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
-'withoutinterwiki-submit' => 'Prikaži',
+'withoutinterwiki'         => 'Stranice bez međuwiki poveznica',
+'withoutinterwiki-header'  => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
+'withoutinterwiki-summary' => 'Sljedeće stranice nemaju poveznice na projekte na drugim jezicima:',
+'withoutinterwiki-submit'  => 'Prikaži',
 
 'fewestrevisions' => 'Članci s najmanje izmjena',
 
@@ -1446,8 +1447,7 @@ Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutačno 
 'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',
 'unprotectsub'                => '(Uklanjam zaštitu stranice "$1")',
 'protect-unchain'             => 'Otključaj ovlaštenja za premještanje',
-'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.
-Pripazite da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
+'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-blocked'      => 'Ne možete mijenjati nivo zaštite dok ste blokirani.
 Slijede postavke stranice <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Razina zaštite ne može biti promijenjena jer je baza zaključana.
@@ -1594,8 +1594,8 @@ vandalizirane).',
 'ipbhidename'                 => 'Sakrij suradničko ime iz evidencije blokiranja, popisa blokiranja i popisa suradnika',
 'badipaddress'                => 'Nevaljana IP adresa.',
 'blockipsuccesssub'           => 'Uspješno blokirano',
-'blockipsuccesstext'          => 'Suradnik [[{{ns:special}}:Contributions/$1|$1]] je blokiran.
-<br />Pogledaj [[{{ns:special}}:Ipblocklist|popis blokiranih IP adresa]] za pregled.',
+'blockipsuccesstext'          => 'Suradnik [[Special:Contributions/$1|$1]] je blokiran.<br />
+Pogledaj [[Special:Ipblocklist|popis blokiranih IP adresa]] za pregled.',
 'ipb-edit-dropdown'           => 'Uredi razloge blokiranja',
 'ipb-unblock-addr'            => 'Odblokiraj $1',
 'ipb-unblock'                 => 'Odblokiraj suradničko ime ili IP adresu',
@@ -1604,7 +1604,7 @@ vandalizirane).',
 'unblockip'                   => 'Deblokiraj suradnika',
 'unblockiptext'               => 'Ovaj se obrazac koristi za vraćanje prava na pisanje prethodno blokiranoj IP adresi.',
 'ipusubmit'                   => 'Deblokiraj ovu adresu',
-'unblocked'                   => '[[Suradnik:$1|$1]] je deblokiran',
+'unblocked'                   => '[[User:$1|$1]] je deblokiran',
 'unblocked-id'                => 'Blok $1 je uklonjen',
 'ipblocklist'                 => 'Popis blokiranih IP adresa',
 'ipblocklist-legend'          => 'Pronađi blokiranog suradnika',
@@ -1667,22 +1667,16 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 
 # Move page
 'movepage'                => 'Premjesti stranicu',
-'movepagetext'            => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene
-na novo ime.
+'movepagetext'            => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
 Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.
-Poveznice na stari naslov ostat će iste; bilo bi dobro da
-[[Special:Maintenance|provjerite]] je li preusmjeravanje ispravno.
-Na vama je da se pobrinete da poveznice i dalje vode tamo
-gdje bi trebale.
+Poveznice na stari naslov ostat će iste; bilo bi dobro da provjerite je li preusmjeravanje ispravno.
+Na vama je da se pobrinete da poveznice i dalje vode tamo gdje bi trebale.
 
-Stranica se '''neće''' premjestiti ako već postoji stranica s novim naslovom,
-osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema
-nikakvih starih izmjena. To znači: 1. ako pogriješite, možete opet preimenovati
-stranicu na stari naslov, 2. ne može vam se dogoditi da izbrišete neku postojeću stranicu.
+Stranica se '''neće''' premjestiti ako već postoji stranica s novim naslovom, osim u slučaju prazne stranice ili stranice za preusmjeravanje koja nema nikakvih starih izmjena.
+To znači: 1. ako pogriješite, možete opet preimenovati stranicu na stari naslov, 2. ne može vam se dogoditi da izbrišete neku postojeću stranicu.
 
-<b>OPREZ!</b>
-Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice,
-i zato dobro razmislite prije nego što preimenujete stranicu.",
+'''OPREZ!'''
+Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice, i zato dobro razmislite prije nego što preimenujete stranicu.",
 'movepagetalktext'        => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
 *premještate stranicu iz jednog prostora u drugi,
 *pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili

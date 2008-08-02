@@ -6,8 +6,6 @@
  *
  * @author Alessandro
  * @author AlefZet
- * @author Siebrand
- * @author Nike
  */
 
 $fallback8bitEncoding = 'windows-1254';
@@ -317,8 +315,8 @@ $messages = array(
 'helppage'          => 'Help:Münderice',
 'mainpage'          => 'Baş Saife',
 'policy-url'        => 'Project:Qaideler',
-'portal'            => 'Toplulıq portalı',
-'portal-url'        => 'Project:Toplulıq portalı',
+'portal'            => 'Cemaat portalı',
+'portal-url'        => 'Project:Cemaat portalı',
 'privacy'           => 'Gizlilik esası',
 'privacypage'       => 'Project:Gizlilik esası',
 'sitesupport'       => 'Bağışlar',
@@ -396,7 +394,7 @@ MySQL "$3: $4" hatasını bildirdi.',
 'laggedslavemode'      => 'Diqqat! Bu saifede soñki yañaruv olmay bile.',
 'readonly'             => 'Malümat bazası kilitlendi',
 'enterlockreason'      => 'Blok etüvniñ sebebini ve tarihını belgileñiz.',
-'readonlytext'         => 'Plan işlemelerinden sebep malümat bazası vaqtınca blok etildi. İşlemeler tamamlanğan soñ normalge dönecektir.
+'readonlytext'         => 'Plan işlemelerinden sebep malümat bazası vaqtınca blok etildi. İşlemeler tamamlanğan soñ normalge dönecek.
 
 Malümat bazasını kilitlegen administratornıñ açıqlaması: $1',
 'missingarticle'       => 'Malümat bazası "$1" adınen tapmaq kerek olğan saifesiniñ metnini tapıp olamadı.
@@ -423,7 +421,7 @@ Lütfen, URL belgilep bundan administratorğa haber beriñiz.',
 'perfdisabled'         => 'Afu etiñiz! Bu hususiyet, malümat bazasını qullanılamaycaq derecede yavaşlatqanı içün, muvaqqat qullanımdan çıqarıldı.',
 'perfcached'           => 'Malümatlar daa evelceden azırlanğan ola bilir. Bu sebepten eskirgen ola bilir!',
 'perfcachedts'         => 'Aşağıda keşte saqlanğan malümat buluna, soñki yañaruv zamanı: $1.',
-'querypage-no-updates' => 'Bu saifeni deñiştirmege şimdi izin yoq. Bu malümat aman yañartılmaycaqtır.',
+'querypage-no-updates' => 'Bu saifeni deñiştirmege şimdi izin yoq. Bu malümat aman yañartılmaycaq.',
 'wrong_wfQuery_params' => 'wrong_wfQuery_params - wfQuery() funktsiyası içün izinsiz parametrler<br />
 Funktsiya: $1<br />
 İstintaq: $2',
@@ -434,7 +432,7 @@ Funktsiya: $1<br />
 'protectedpagetext'    => 'Bu saifeni kimse deñiştirmesin dep o blok etildi.',
 'viewsourcetext'       => 'Saifeniñ kodunı közden keçirip kopirley bilesiñiz:',
 'protectedinterface'   => 'Bu saifede sistema interfeysiniñ metini bulunğanı içün mında hata çıqmasın dep deñişiklik yapmaq yasaq.',
-'editinginterface'     => "'''Tenbi''': MediaWiki sistema beyanatılı bir saifeni deñiştirmektesiñiz. Bu saifedeki deñişiklikler qullanıcı interfeys körünişini diger qullanıcılar içün de deñiştirecektir. Lütfen, tercimeler içün [http://translatewiki.net/wiki/Main_Page?setlang=crh Betawiki] saytını (MediaWiki resmiy lokalizatsiya proyekti) qullanıñız.",
+'editinginterface'     => "'''Tenbi''': MediaWiki sistema beyanatılı bir saifeni deñiştirmektesiñiz. Bu saifedeki deñişiklikler qullanıcı interfeys körünişini diger qullanıcılar içün de deñiştirecek. Lütfen, tercimeler içün [http://translatewiki.net/wiki/Main_Page?setlang=crh Betawiki] saytını (MediaWiki resmiy lokalizatsiya proyekti) qullanıñız.",
 'sqlhidden'            => '(SQL istintağı saqlı)',
 'cascadeprotected'     => 'Bu saifeni deñiştirip olamazsıñız, çünki kaskad qorçalav altında bulunğan {{PLURAL:$1|saifege|saifelerge}} mensüptir:
 $2',
@@ -450,7 +448,7 @@ Sebep: ''$2''.",
 Şimdi anonim olaraq {{SITENAME}} saytını qullanmağa devam etip olasıñız, ya da yañıdan oturım açıp olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.',
 'welcomecreation'            => '== Hoş keldiñiz, $1! ==
 Esabıñız açıldı.
-Bu saytnıñ ayarlarını şahsıñızğa köre [[{{ns:special}}:Preferences|deñiştirmege]] unutmañız.',
+Bu saytnıñ ayarlarını şahsıñızğa köre deñiştirmege unutmañız.',
 'loginpagetitle'             => 'Oturım aç',
 'yourname'                   => 'Qullanıcı adıñız',
 'yourpassword'               => 'Paroliñiz',
@@ -479,11 +477,11 @@ Bu saytnıñ ayarlarını şahsıñızğa köre [[{{ns:special}}:Preferences|de�
 'yourrealname'               => 'Kerçek adıñız:',
 'yourlanguage'               => 'İnterfeys tili:',
 'yourvariant'                => 'Til saylavı:',
-'yournick'                   => 'Siziñ lağabıñız (imzalarda kösterilecektir):',
+'yournick'                   => 'Siziñ lağabıñız (imzalarda kösterilecek):',
 'badsig'                     => 'Yañlış imza. HTML tegleriniñ doğrulığını baqıñız.',
 'badsiglength'               => 'Qarardan ziyade uzun lağaptır, $1-den ziyade simvoldan ibaret olması mümkün degil.',
 'email'                      => 'E-mail',
-'prefs-help-realname'        => 'Adıñız (mecburiy degildir): Eger belgileseñiz, saifelerdeki deñişikliklerin kimniñ yapqanını köstermek içün qullanılacaqtır.',
+'prefs-help-realname'        => 'Adıñız (mecburiy degildir): Eger belgileseñiz, saifelerdeki deñişikliklerini kimniñ yapqanını köstermek içün qullanılacaq.',
 'loginerror'                 => 'Oturım açma hatası',
 'prefs-help-email'           => '*E-mail (mecburiy degildir) başqa qullanıcılarnıñ siznen bağ tutmalarını mümkün qıla. E-mail adresiñiz başqa qullanıcılarğa kösterilmeycek.',
 'prefs-help-email-required'  => 'E-mail adresi lâzim.',
@@ -512,8 +510,8 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'mailerror'                  => 'Poçta yiberilgende bir hata meydanğa keldi: $1',
 'acct_creation_throttle_hit' => '$1 dane qullanıcı esapnı açtırğan aldasıñız. Daa ziyade açtıramazsıñız.',
 'emailauthenticated'         => 'E-mail adresiñiz $1-nen teñeştirildi.',
-'emailnotauthenticated'      => 'E-mail adresiñiz tasdıqlanmadı, vikiniñ e-mail ile bağlı funktsiyaları çalışmaycaqtır',
-'noemailprefs'               => 'E-mail adresiñizni belgilemegeniñiz içün, vikiniñ e-mail ile bağlı funktsiyaları çalışmaycaqtır.',
+'emailnotauthenticated'      => 'E-mail adresiñiz tasdıqlanmadı, vikiniñ e-mail ile bağlı funktsiyaları çalışmaycaq.',
+'noemailprefs'               => 'E-mail adresiñizni belgilemegeniñiz içün, vikiniñ e-mail ile bağlı funktsiyaları çalışmaycaq.',
 'emailconfirmlink'           => 'E-mail adresiñizni tasdıqlañız',
 'invalidemailaddress'        => 'Yazğan adresiñiz e-mail standartlarında olmağanı içün qabul etilmedi. Doğru adresni yazıñız ya da qutunı boş qaldırıñız.',
 'accountcreated'             => 'Esap açıldı',
@@ -585,7 +583,7 @@ Blok $1 administrator tarafından etildi. Sebebi: \'\'"$2"\'\'.
 
 Blok etüvni muzakere etmek içün $1 qullanıcığa ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|administratorğa]] mektüp yollap olasıñız.
 
-Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[{{ns:special}}:Preferences|şahsiy ayarlarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
+Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[Special:Preferences|şahsiy ayarlarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
 
 IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administratorlarğa mektüpleriñizde bu malümatnı belgileñiz.',
 'autoblockedtext'           => 'IP adresiñiz evelde blok etilgen qullanıcılardan biri tarafından qullanılğanı içün avtomatik olaraq blok etildi. Onı blok etken administrator ($1) böyle sebepni belgiledi:
@@ -597,7 +595,7 @@ IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administrator
 
 Blok etüvni muzakere etmek içün $1 qullanıcığa ya da başqa er angi [[{{MediaWiki:Grouppage-sysop}}|administratorğa]] mektüp yollap olasıñız.
 
-Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[{{ns:special}}:Preferences|şahsiy ayarlarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
+Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[Special:Preferences|şahsiy ayarlarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, administratorğa mektüp yollap olamazsıñız.
 
 Siziñ blok identifikatorıñız — #$5. Lütfen, administratorlarğa mektüpleriñizde onı belgileñiz.',
 'blockednoreason'           => 'sebep belgilenmedi',
@@ -647,12 +645,12 @@ Bunıñ kibi problemalar anonimizirlegen hatalı web-proksiler qullanuvdan çıq
 'explainconflict'           => "Siz saifeni deñiştirgen vaqıtta başqa biri de deñişiklik yaptı.
 Yuqarıdaki yazı saifeniñ şimdiki alını köstere.
 Siziñ deñişiklikleriñiz altqa kösterildi. Soñki deñişikleriñizni yazınıñ içine eklemek kerek olacaqsıñız.
-\"Saifeni saqla\"ğa basqanda '''tek''' yuqarıdaki yazı saqlanacaqtır.",
+\"Saifeni saqla\"ğa basqanda '''tek''' yuqarıdaki yazı saqlanacaq.",
 'yourtext'                  => 'Siziñ metniñiz',
 'storedversion'             => 'Saqlanğan metin',
 'nonunicodebrowser'         => '<strong>TENBİ: Brauzeriñizde Unicode ködirovkası tanılmaz. Saifeler deñiştirgende bütün ASCII olmağan simvollarnıñ yerine olarnıñ onaltılıq kodu yazılır.</strong>',
 'editingold'                => '<strong>DİQQAT: Saifeniñ eski bir versiyasında deñişiklik yapmaqtasıñız.
-Saqlağanıñızda bu tarihlı versiyadan künümizge qadar olğan deñişiklikler yoq olacaqtır.</strong>',
+Saqlağanıñızda bu tarihlı versiyadan künümizge qadar olğan deñişiklikler yoq olacaq.</strong>',
 'yourdiff'                  => 'Qarşılaştırma',
 'copyrightwarning'          => '<strong>Lütfen, diqqat:</strong> {{SITENAME}} saytına qoşulğan bütün isseler <i>$2</i> muqavelesi dairesindedir (tafsilât içün $1 saifesine baqıñız).
 Qoşqan isseñizniñ başqa insanlar tarafından acımasızca deñiştirilmesini ya da azat tarzda ve sıñırsızca başqa yerlerge dağıtılmasını istemeseñiz, isse qoşmañız.<br />
@@ -675,7 +673,7 @@ Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, 
 'template-semiprotected'    => '(qısmen qorçalav altında)',
 'nocreatetitle'             => 'Saife yaratuv sıñırlıdır',
 'nocreatetext'              => '{{SITENAME}} saytında yañı saife yaratuv sıñırlıdır.
-Keri qaytıp mevcüt olğan saifeni deñiştire, [[{{ns:special}}:Userlogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
+Keri qaytıp mevcüt olğan saifeni deñiştire, [[Special:Userlogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
 'nocreate-loggedin'         => '{{SITENAME}} saytında yañı saifeler yaratmağa iziniñiz yoqtır.',
 'permissionserrors'         => 'İrişim aqlarınıñ hataları',
 'permissionserrorstext'     => 'Bunı yapmağa iziniñiz yoqtır. {{PLURAL:$1|Sebep|Sebepler}}:',
@@ -686,7 +684,7 @@ Bu saifeni kerçekten de yañıdan yaratmağa isteysiñizmi? Aşağıda yoq etil
 # "Undo" feature
 'undo-success' => 'Deñişiklik lâğu etile bile. Lütfen, aynı bu deñişiklikler meni meraqlandıra dep emin olmaq içün versiyalar teñeştirilüvini közden keçirip deñişikliklerni tamamen yapmaq içün "Saifeni saqla" dögmesine basıñız.',
 'undo-failure' => 'Aradaki deñişiklikler biri-birine kelişikli olmağanı içün deñişiklik lâğu etilip olamay.',
-'undo-summary' => '[[Special:Contributions/$2|$2]] qullanıcısınıñ $1 nomeralı deñişikligini lâğu etüv, ([[User_talk:$2|muzakere]])',
+'undo-summary' => '[[Special:Contributions/$2|$2]] qullanıcısınıñ $1 nomeralı deñişikligini lâğu etüv, ([[User talk:$2|muzakere]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Esap yaratmaqnıñ iç çaresi yoq.',
@@ -726,7 +724,7 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 'history-feed-item-nocomment' => '$2 üstünde $1', # user at time
 'history-feed-empty'          => 'İstenilgen saife mevcüt degil.
 O yoq eilgen ya da adı deñiştirilgen ola bile.
-Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]].',
+Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 
 # Revision deletion
 'rev-deleted-comment'       => '(tefsir yoq etildi)',
@@ -847,7 +845,7 @@ Vikide bu saifege oşağan saifelerni [[{{ns:special}}:Search|tapıp baqıñız]
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|deñişiklik|deñişiklik}}',
 'recentchanges'                     => 'Soñki deñişiklikler',
-'recentchangestext'                 => 'Yapılğan eñ soñki deñişikliklerni bu saifeden közetiñiz.',
+'recentchangestext'                 => 'Yapılğan eñ soñki deñişikliklerni bu saife körip olasıñız.',
 'recentchanges-feed-description'    => 'Bu lenta vastasınen vikide soñki deñişikliklerni közet.',
 'rcnote'                            => "$3 (UTC) tarihında soñki {{PLURAL:$2|künde|'''$2''' künde}} yapılğan '''{{PLURAL:$1|1|$1}}''' deñişiklik:",
 'rcnotefrom'                        => "'''$2''' tarihından itibaren yapılğan deñişiklikler aşağıdadır (eñ fazla '''$1''' dane saife kösterile).",
@@ -1050,13 +1048,15 @@ Sayt qurulğanından bu künge qadar toplam '''\$4''' saife deñişikligi ve sai
 
 Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme sayısı '''\$6''' oldı.
 
-Şimdiki [http://meta.wikimedia.org/wiki/Help:Job_queue iş sırası] sayısı '''\$7'''.",
+Şimdiki [http://www.mediawiki.org/wiki/Manual:Job_queue iş sırası] sayısı '''\$7'''.",
 'userstatstext'          => "Al-azırda '''{{PLURAL:$1|1|$1}}''' qaydlı qullanıcımız bar. Bulardan '''{{PLURAL:$2|1|$2}}''' (ya da '''$4%''') danesi - $5.",
 'statistics-mostpopular' => 'Eñ sıq baqılğan saifeler',
 
 'disambiguations'      => 'Çoq manalı terminler saifeleri',
 'disambiguationspage'  => '{{ns:template}}:disambig',
-'disambiguations-text' => "Aşağıdıki saifeler '''çoq manalı saifeler'''ge bağlantı ola. Belki de olar bir konkret saifege bağlantı olmalı.<br /> Eger saifede, [[MediaWiki:disambiguationspage]] saifesinde adı keçken şablon yerleştirilgen olsa, o saife çoq manalıdır.",
+'disambiguations-text' => "Aşağıdıki saifeler '''çoq manalı saifeler'''ge bağlantı ola.
+Belki de olar bir konkret saifege bağlantı olmalı.<br />
+Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon yerleştirilgen olsa, o saife çoq manalıdır.",
 
 'doubleredirects'     => 'Yollamağa olğan yollamalar',
 'doubleredirectstext' => 'Er satırda, ekinci yollama metniniñ ilk satırınıñ (umumen ekinci yollamanıñ da işaret etmek kerek olğanı "asıl" maqsatnıñ) yanında ilk ve ekinci yollamağa bağlantılar bar.',
@@ -1066,8 +1066,9 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'brokenredirects-edit'   => '(deñiştir)',
 'brokenredirects-delete' => '(yoq et)',
 
-'withoutinterwiki'        => 'Diger tillerdeki versiyalarğa bağlantıları olmağan saifeler',
-'withoutinterwiki-header' => 'Bu saifelerde diger tillerdeki versiyalarğa bağlantılar yoq:',
+'withoutinterwiki'         => 'Diger tillerdeki versiyalarğa bağlantıları olmağan saifeler',
+'withoutinterwiki-header'  => 'Bu saifelerde diger tillerdeki versiyalarğa bağlantılar yoq:',
+'withoutinterwiki-summary' => 'Bu saifelerde diger tillerdeki versiyalarğa bağlantılar yoq:',
 
 'fewestrevisions' => 'Eñ az deñiştirme yapılğan saifeler',
 
@@ -1187,8 +1188,7 @@ Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme say
 'watchnologin'         => 'Oturım açmaq kerek',
 'watchnologintext'     => 'Öz közetüv cedveliñizni deñiştirmek içün [[Special:Userlogin|oturım açıñız]]',
 'addedwatch'           => 'Közetüv cedveline kirsetmek',
-'addedwatchtext'       => '"[[:$1]]" saifesi [[{{ns:special}}:Watchlist|kozetüv cevdeliñizge]] kirsetildi. Bu saifedeki ve onıñnen bağlı saifelerdeki olacaq deñişiklikler bu cedvelde belgilenecek, em de olar közge çarpması içün [[{{ns:special}}:Recentchanges|yañı deñişiklik cedveli]] bulunğan saifede qalın olaraq kösterilir.
-
+'addedwatchtext'       => '"[[:$1]]" saifesi [[Special:Watchlist|kozetüv cevdeliñizge]] kirsetildi. Bu saifedeki ve onıñnen bağlı saifelerdeki olacaq deñişiklikler bu cedvelde belgilenecek, em de olar közge çarpması içün [[Special:Recentchanges|yañı deñişiklik cedveli]] bulunğan saifede qalın olaraq kösterilir.
 Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz de, saifeniñ yuqarısındaki sol tarafta "közetme" dögmesine basıñız.',
 'removedwatch'         => 'Közetüv cedvelinden yoq et',
 'removedwatchtext'     => '"[[:$1]]" saifesi közetüv cedveliñizden yoq etildi.',
@@ -1240,7 +1240,7 @@ Saifeni deñiştirgen qullanıcınıñ irişim malümatı:
 e-mail: $PAGEEDITOR_EMAIL
 Viki: $PAGEEDITOR_WIKI
 
-Bahsı keçken saifeni siz ziyaret etmegen müddet içinde saifenen bağlı başqa deñişiklik tenbisi yollanmaycaqtır. Tenbi ayarlarını közetüv cedveliñizdeki bütün saifeler içün deñiştirip olursıñız.
+Bahsı keçken saifeni siz ziyaret etmegen müddet içinde saifenen bağlı başqa deñişiklik tenbisi yollanmaycaq. Tenbi ayarlarını közetüv cedveliñizdeki bütün saifeler içün deñiştirip olursıñız.
 
 {{SITENAME}} tenbi sisteması.
 
@@ -1278,10 +1278,10 @@ yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'rollbackfailed'              => 'keri aluv işlemi muvafaqiyetsiz',
 'cantrollback'                => 'Deñişiklikler keri alınamay, soñki deñiştirgen kişi saifeniñ tek bir müellifidir',
 'editcomment'                 => 'Deñiştirme izaatı: "<i>$1</i>" edi.', # only shown if there is an edit comment
-'revertpage'                  => '[[User:$2|$2]] tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Qorçalav jurnalı',
 'protectlogtext'              => 'Qorçalavğa aluv/çıqaruv ile bağlı deñişiklikler jurnalını körmektesiñiz.
-Qorçalav altına alınğan saifeler tam cedveli [[{{ns:special}}:Protectedpages|bu saifede]] körip olasıñız.',
+Qorçalav altına alınğan saifeler tam cedveli [[Special:Protectedpages|bu saifede]] körip olasıñız.',
 'protectedarticle'            => '"[[$1]]" qorçalav altına alındı',
 'unprotectedarticle'          => 'qorçalav çıqarlıdı: "[[$1]]"',
 'confirmprotect'              => 'Qorçalavnı tasdıqla',
@@ -1394,7 +1394,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'autoblocker'             => 'Avtomatik olaraq ban ettiñiz çünki yaqın zamanda IP adresiñiz "[[User:$1|$1]]" qullanıcısı tarafından qullanıldı. $1 adlı qullanıcınıñ ban etilüvi içün berilgen sebep: "\'\'\'$2\'\'\'"',
 'blocklogpage'            => 'İrişim ban etüv jurnalı',
 'blocklogentry'           => '"[[$1]]" irişimi $2 $3 toqtatıldı. Sebep',
-'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ya da ban etüv çıqaruv jurnalı cedvellene. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Al-azırda irişimi toqtatılğan qullanıcılarnı [[Special:Ipblocklist|IP ban etüv cedveli]] saifesinden körip olasıñız.',
+'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ve ban çıqaruv jurnalı cedvellene. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Al-azırda irişimi toqtatılğan qullanıcılarnı [[Special:Ipblocklist|IP ban etüv cedveli]] saifesinden körip olasıñız.',
 'unblocklogentry'         => '$1 qullanıcınıñ ban etüvi çıqarıldı',
 'block-log-flags-noemail' => 'e-mail blok etildi',
 'ipb_expiry_invalid'      => 'Keçersiz bitiş zamanı.',
@@ -1410,10 +1410,10 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirirsiñiz.
 Bunıñnen beraber deñişiklik jurnalını da yañı adğa avuştırırsıñız.
 Eski ad yañı adğa yollama olur.
-Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yollamalar mevcüt olğanını teşkeriñiz).
+Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, çift ve keçersiz yollamalar mevcüt olğanını teşkeriñiz).
 Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
 
-Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaqtır.
+Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaq.
 Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
 
 '''TENBİ!'''
@@ -1709,7 +1709,7 @@ Er satır * simvolınen başlamalı. Satırnıñ birinci bağlantısı eklemege 
 
 # E-mail address confirmation
 'confirmemail'            => 'E-mail adresini tasdıqla',
-'confirmemail_noemail'    => '[[{{ns:special}}:Preferences|Qullanıcı ayarlarıñızda]] keçerli bir e-mail adresiñiz yoq.',
+'confirmemail_noemail'    => '[[Special:Preferences|Qullanıcı ayarlarıñızda]] keçerli bir e-mail adresiñiz yoq.',
 'confirmemail_text'       => '{{SITENAME}} saytınıñ e-mail funktsiyalarını qullanmazdan evel e-mail adresiñizniñ tasdıqlanması kerek. Adresiñizge tasdıq e-mail mektübini yollamaq içün aşağıdaki dögmeni basıñız. Yollanacaq beyanatta adresiñizni tasdıqlamaq içün brauzeriñiznen irişip olacaq, tasdıq kodu olğan bir bağlantı olacaq.',
 'confirmemail_pending'    => '<div class="error">
 Tasdıq kodu endi sizge yollandı.

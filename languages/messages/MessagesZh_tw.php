@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author לערי ריינהארט
  * @author BobChao
  */
 
@@ -145,7 +146,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '頁面分類',
-'pagecategories'        => '$1個分類',
+'pagecategories'        => '個分類',
 'category_header'       => '類別「$1」中的頁面',
 'subcategories'         => '子分類',
 'category-media-header' => '"$1"分類中的媒體',
@@ -447,7 +448,7 @@ $2',
 'accountcreated'             => '已建立帳號',
 'accountcreatedtext'         => '$1的帳號已經被建立。',
 'createaccount-title'        => '在{{SITENAME}}中建立新帳號',
-'createaccount-text'         => '有人 ($1) 在{{SITENAME}}中為 $2 建立了一個新帳號($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
+'createaccount-text'         => '有人 在{{SITENAME}}中為 $2 建立了一個新帳號($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
 
 如果該帳號建立錯誤的話，您可以忽略此信息。',
 'loginlanguagelabel'         => '語言: $1',
@@ -895,9 +896,9 @@ $2',
 上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
 
 要在頁面中加入圖片，使用以下形式的連接:
-'''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''，
-'''<nowiki>[[{{ns:image}}:file.png|替換文字]]</nowiki>''' 或
-'''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
+'''<nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki>'''，
+'''<nowiki>[[</nowiki>{{ns:image}}:file.png|替換文字<nowiki>]]</nowiki>''' 或
+'''<nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki>'''。",
 'uploadlog'                   => '上載紀錄',
 'uploadlogpage'               => '上載紀錄',
 'uploadlogpagetext'           => '以下是最近上載的檔案的一覽表。',
@@ -1081,7 +1082,9 @@ Template:消歧义
 Template:消除歧义
 Template:消歧義
 Template:消除歧義',
-'disambiguations-text' => '以下的頁面都有到<b>消歧義頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:disambiguationspage]]。',
+'disambiguations-text' => '以下的頁面都有到<b>消歧義頁</b>的鏈接,
+但它們應該是連到適當的標題。<br />
+個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
 
 'doubleredirects'     => '雙重重定向頁面',
 'doubleredirectstext' => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的鏈接，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。',
@@ -1091,8 +1094,9 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
-'withoutinterwiki'        => '未有語言鏈接的頁面',
-'withoutinterwiki-header' => '以下的頁面是未有語言鏈接到其它語言版本:',
+'withoutinterwiki'         => '未有語言鏈接的頁面',
+'withoutinterwiki-header'  => '以下的頁面是未有語言鏈接到其它語言版本:',
+'withoutinterwiki-summary' => '以下的頁面是未有語言鏈接到其它語言版本:',
 
 'fewestrevisions' => '最少修訂的頁面',
 
@@ -1614,7 +1618,7 @@ $1',
 並選擇你是否需要匯出帶有修訂記錄的以前的版本，
 或是只選擇匯出帶有最後一次編輯訊息的當前版本。
 
-此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]匯出"[[{{int:mainpage}}]]"頁面。',
+此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
 'exportcuronly'     => '僅包含當前的修訂，而不是全部的歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",
@@ -1818,7 +1822,7 @@ $1',
 'nextdiff'     => '下一個→',
 
 # Media information
-'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr>",
+'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr />",
 'imagemaxsize'         => '在圖片描述頁對圖片大小限制為:',
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',

@@ -4,7 +4,7 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
+
  */
 
 $skinNames = array(
@@ -240,7 +240,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '類',
-'pagecategories'        => '屬於$1類',
+'pagecategories'        => '屬於類',
 'category_header'       => '"$1" 類中嘅版',
 'subcategories'         => '分類',
 'category-media-header' => ' "$1" 類嘅媒體',
@@ -342,6 +342,8 @@ $messages = array(
 'disclaimerpage'    => 'Project:一般免責聲明',
 'edithelp'          => '編輯協助',
 'edithelppage'      => 'Help:編輯',
+'faq'               => 'FAQ',
+'faqpage'           => 'Project:FAQ',
 'helppage'          => 'Help:目錄',
 'mainpage'          => '頭版',
 'policy-url'        => 'Project:政策',
@@ -361,6 +363,7 @@ $messages = array(
 'versionrequired'     => '係需要用 $1 版嘅 MediaWiki',
 'versionrequiredtext' => '要用呢一頁，要用MediaWiki版本 $1 。睇睇[[Special:Version|版本頁]]。',
 
+'ok'                      => 'OK',
 'retrievedfrom'           => '由 "$1" 收',
 'youhavenewmessages'      => '你有$1（$2）。',
 'newmessageslink'         => '新信息',
@@ -375,7 +378,9 @@ $messages = array(
 'thisisdeleted'           => '睇下定係還原 $1 ？',
 'viewdeleted'             => '去睇$1？',
 'restorelink'             => '$1 次已刪除嘅編輯',
+'feedlinks'               => 'Feed:',
 'feed-invalid'            => '唔啱嘅 feed 類型。',
+'feed-unavailable'        => '聯合 feeds 並唔係響{{SITENAME}}度提供',
 'site-rss-feed'           => '$1嘅RSS Feed',
 'site-atom-feed'          => '$1嘅Atom Feed',
 'page-rss-feed'           => '"$1"嘅RSS Feed',
@@ -983,6 +988,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'hist'                              => '歷史',
 'hide'                              => '隱藏',
 'show'                              => '顯示',
+'minoreditletter'                   => 'm',
+'newpageletter'                     => 'N',
+'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1位用戶監視]',
 'rc_categories'                     => '限定到分類（以"|"作分隔）',
 'rc_categories_any'                 => '任何',
@@ -1088,6 +1096,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Image list
 'imagelist'                 => '檔案清單',
+'imagelist-summary'         => '呢個特別版顯示全部上載過嘅檔案。
+響預設最後上載嘅檔案會顯示響呢個表嘅最頂。
+撳一欄嘅標題去改個排列。',
 'imagelisttext'             => "以下係'''$1'''個檔案'''$2'''排序嘅清單。",
 'getimagelist'              => '獲取檔案清單中',
 'ilsubmit'                  => '搵嘢',
@@ -1209,13 +1220,15 @@ Template:搞清楚',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
-'withoutinterwiki'        => '無語言連結嘅頁',
-'withoutinterwiki-header' => '以下嘅頁面係重未有連結到其它嘅語言版本：',
-'withoutinterwiki-submit' => '顯示',
+'withoutinterwiki'         => '無語言連結嘅頁',
+'withoutinterwiki-header'  => '以下嘅頁面係重未有連結到其它嘅語言版本：',
+'withoutinterwiki-summary' => '以下嘅頁面係重未有連結到其它嘅語言版本。',
+'withoutinterwiki-submit'  => '顯示',
 
 'fewestrevisions' => '有最少修改嘅版',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 個分類',
 'nlinks'                  => '$1 條連結',
 'nmembers'                => '$1 位成員',
@@ -1478,6 +1491,7 @@ wiki: $PAGEEDITOR_WIKI
 'restriction-level'           => '限制等級:',
 'minimum-size'                => '最小大細',
 'maximum-size'                => '最大大細',
+'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => '編輯',
@@ -1598,8 +1612,8 @@ $1',
 'ipbhidename'                 => '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名／IP',
 'badipaddress'                => '無效嘅IP地址',
 'blockipsuccesssub'           => '封鎖成功',
-'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]]已經封鎖。<br />
-去[[{{ns:special}}:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]已經封鎖。<br />
+去[[Special:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
 'ipb-edit-dropdown'           => '改封鎖原因',
 'ipb-unblock-addr'            => '解封$1',
 'ipb-unblock'                 => '解封一個用戶名或IP地址',
@@ -1988,6 +2002,7 @@ Variants for Chinese language
 'variantname-ku'      => '無變換',
 
 # Metadata
+'metadata'          => 'Metadata',
 'metadata-help'     => '呢個檔案有額外嘅資料。佢應該係數碼相機或者掃描器整出來嘅。如果佢整咗之後畀人改過，裏面嘅資料未必同改過之後相符。',
 'metadata-expand'   => '打開詳細資料',
 'metadata-collapse' => '收埋詳細資料',

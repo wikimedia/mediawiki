@@ -5,7 +5,6 @@
  * @file
  *
  * @author Рустам Нурыев
- * @author Siebrand
  */
 
 $fallback = 'ru';

@@ -7,14 +7,31 @@
  * @author Ggajendra
  * @author SPQRobin
  * @author GerardM
- * @author Siebrand
  */
 
 $fallback = 'hi';
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'लिंककेँ रेखांकित करू:',
+'tog-underline'           => 'लिंककेँ रेखांकित करू:',
+'tog-highlightbroken'     => 'टूटल श्रृंखला <a href="" class="new">एना देखाऊ</a> (आकि फेर: एना देखाऊ<a href="" class="internal">?</a>).',
+'tog-justify'             => 'सुगढ़ बनाऊ',
+'tog-hideminor'           => 'सन्निकट परिवर्त्तनमे छोट परिवर्त्तन नुकाऊ',
+'tog-usenewrc'            => 'बढ़ल सन्निकट परिवर्त्तन (जावास्क्रीप्ट)',
+'tog-numberheadings'      => 'शीर्षक स्वयं-क्रमांकित करू',
+'tog-showtoolbar'         => 'संपादन ओजारपेटी देखाऊ (जावास्क्रीप्ट)',
+'tog-editondblclick'      => 'दू बेर क्लीक कए पन्ना संपादित करू (जावास्क्रीप्ट)',
+'tog-editsection'         => '[संपादित करू] श्रृंखला द्वारा विभाग संपादनक आज्ञा दिअ',
+'tog-showtoc'             => 'अनुक्रम देखाऊ (जाहि पृष्ठ पर तीनसँ बेशी विभाग होए)',
+'tog-editwidth'           => 'सँपादन पेटी पूर्ण चौरस देखाऊ',
+'tog-watchdefault'        => 'हमर संपादित पृष्ठ हमर साकांक्ष सूचीमे देखाऊ',
+'tog-watchdeletion'       => 'हमरा द्वारा हटाओल पृष्ठ हमर साकांक्ष सूचीमे राखू',
+'tog-previewontop'        => 'संपादन पेटीक ऊपर दृश्य देखाऊ',
+'tog-nocache'             => 'पन्ना प्रतीक्षा गह्वरमे नहि राखू',
+'tog-enotifusertalkpages' => 'हमर सदस्य वार्ता पृष्ठ पर भेल परिवर्त्तनक हेतु हमरा ई-मेल करथि',
+'tog-enotifminoredits'    => 'छोट परिवर्त्तनक हेतु सेहो हमरा ई-मेल पठाऊ',
+'tog-fancysig'            => 'अपरिपक्व हस्ताक्षर (स्वचालित श्रृंखलाक बिना)',
+'tog-externaldiff'        => 'पुरान संस्करणमे अंतर देखेबाक हेतु बाहरक प्रणालीक प्रयोग करू',
 
 # Dates
 'sun'           => 'रवि',
@@ -119,7 +136,7 @@ $messages = array(
 'italic_tip'      => 'क़टि लेखन',
 'link_sample'     => 'लिंक उपाधि',
 'link_tip'        => 'अंतरंग इशारा',
-'extlink_sample'  => 'http://www.उदाहरण.com लिंक उपाधि',
+'extlink_sample'  => 'http://www.example.com लिंक उपाधि',
 'extlink_tip'     => 'बहरी लिंक (यादि राखू http:// उपसर्ग)',
 'headline_sample' => 'मुख्यपंक्ति लेखन',
 'headline_tip'    => 'स्तर 2 मुख्यपंक्ति',

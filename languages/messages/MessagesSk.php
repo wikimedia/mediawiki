@@ -4,21 +4,17 @@
  * @ingroup Language
  * @file
  *
+ * @author Helix84
+ * @author Jon Harald Søby
+ * @author לערי ריינהארט
+ * @author Michawiki
  * @author Valasek
  * @author helix84
  * @author Palica
  * @author Liso
  * @author Maros
- * @author Helix84
- * @author Robbot
- * @author Nike
  * @author SPQRobin
- * @author Michawiki
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Sp5uhe
- * @author Jon Harald Søby
- * @author Kandy Talbot
  */
 
 $datePreferences = array(
@@ -186,8 +182,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Zobraziť moju emailovú adresu v emailoch s upozorneniami',
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
 'tog-fancysig'                => 'Nespracovávať podpisy (bez automatických odkazov)',
-'tog-externaleditor'          => 'Používať štandardne externý editor',
-'tog-externaldiff'            => 'Používať štandardne externý diff',
+'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
+'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
 'tog-showjumplinks'           => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
 'tog-uselivepreview'          => 'Používať živý náhľad (JavaScript) (experimentálna funkcia)',
 'tog-forceeditsummary'        => 'Upozoriť ma, keď nevyplním zhrnutie úprav',
@@ -257,7 +253,7 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
+'categories'            => 'Kategórie',
 'pagecategories'        => '{{PLURAL:$1|Kategória|Kategórie|Kategórie}}',
 'category_header'       => 'Stránky v kategórii „$1“',
 'subcategories'         => 'Podkategórie',
@@ -631,7 +627,8 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'showpreview'               => 'Zobraziť náhľad',
 'showlivepreview'           => 'Živý náhľad',
 'showdiff'                  => 'Zobraziť rozdiely',
-'anoneditwarning'           => 'Nie ste [[Special:Userlogin|prihlásený]]. Vaša IP adresa bude zaznamenaná v <span class="plainlinks"> [{{fullurl:{{FULLPAGENAME}}|action=history}} histórii úprav]</span> tejto stránky.',
+'anoneditwarning'           => "'''Upozornenie:''' Nie ste prihlásený.
+Vaša IP adresa bude zaznamenaná v histórii úprav tejto stránky.",
 'missingsummary'            => "'''Pripomienka:''' Neposkytli ste zhrnutie úprav. Ak kliknete znova na Uložiť, vaše úpravy sa uložia bez zhrnutia úprav.",
 'missingcommenttext'        => 'Prosím, dolu napíšte komentár.',
 'missingcommentheader'      => "'''Pripomienka:''' Neposkytli ste predmet/hlavičku tohto komentára. Ak znova kliknete na tlačidlo Uložiť, vaša úprava sa uloží bez nej.",
@@ -690,14 +687,16 @@ Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom
 'anontalkpagetext'          => "----''Toto je diskusná stránka anonymného používateľa, ktorý nemá vytvorené svoje konto alebo ho nepoužíva. Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, že takúto IP adresu používajú viacerí používatelia. Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevantné diskusné príspevky, vytvorte si konto alebo sa prihláste ([[Special:Userlogin|Vytvorenie konta alebo prihlásenie]]), aby sa zamedzilo budúcim zámenám s inými anonymnými používateľmi''",
 'noarticletext'             => 'Na tejto stránke sa momentálne nenachádza žiadny text. Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
 'userpage-userdoesnotexist' => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
-'clearyourcache'            => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača: '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kiknite na ''Reload'' alebo stlačte ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Apple Mac); '''IE:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''; '''Konqueror:''': jednoducho kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; Používatelia '''Opery''' možno budú musieť úplne vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''.",
+'clearyourcache'            => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
+'''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Macintosh); '''Konqueror:''': kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; '''Opera''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''; '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5'';",
 'usercssjsyoucanpreview'    => '<strong>Tip:</strong> Váš nový CSS/JS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.',
 'usercsspreview'            => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
 'userjspreview'             => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
 'userinvalidcssjstitle'     => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Aktualizovaný)',
 'note'                      => '<strong>Poznámka: </strong>',
-'previewnote'               => '<strong>Nezabudnite, toto je iba náhľad stránky, ktorú upravujete. Zmeny ešte nie sú uložené!</strong>',
+'previewnote'               => '<strong>Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
+Zmeny ešte nie sú uložené!</strong>',
 'previewconflict'           => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
 'session_fail_preview'      => '<strong>Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie. Skúste to prosím ešte raz. Ak to nebude fungovať, skúste sa odhlásiť a znovu prihlásiť.</strong>',
 'session_fail_preview_html' => "<strong>Prepáčte! Nemohli sme spracovať vašu úpravu kvôli strate údajov relácie.</strong>
@@ -845,7 +844,7 @@ nie sú stanovené ďalšie obmedzenia.',
 'revdelete-submit'            => 'Použiť na zvolenú revíziu',
 'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
-'revdelete-logaction'         => '$1 {{plural:$1|revízia|revízie|revízií}} nastavených do režimu $2',
+'revdelete-logaction'         => '$1 {{PLURAL:$1|revízia|revízie|revízií}} nastavených do režimu $2',
 'logdelete-logaction'         => '$1 {{plural:$1|udalosť|udalosti|udalostí}} [[$3]] nastavených do režimu $2',
 'revdelete-success'           => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
 'logdelete-success'           => "'''Viditeľnosť záznamu bola úspešne nastavená.'''",
@@ -888,11 +887,11 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.
 'lineno'                  => 'Riadok $1:',
 'compareselectedversions' => 'Porovnať označené verzie',
 'editundo'                => 'vrátiť',
-'diff-multi'              => '{{plural:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
+'diff-multi'              => '{{PLURAL:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
 
 # Search results
 'searchresults'         => 'Výsledky vyhľadávania',
-'searchresulttext'      => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} je uvedených na $1.',
+'searchresulttext'      => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} nájdete na stránke [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Na vyhľadávaciu požiadavku „[[:$1]]“',
 'searchsubtitleinvalid' => 'Na vyhľadávaciu požiadavku „$1“',
 'noexactmatch'          => "'''Neexistuje stránka nazvaná „$1“'''. Chcete '''[[:$1|vytvoriť novú stránku]]''' s týmto názvom?",
@@ -1050,7 +1049,7 @@ odobrať používateľa. Neoznačené skupiny nebudú zmenené. Odobrať skupinu
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
-'recentchangeslinked-title'    => 'Zmeny týkajúce sa "$1"',
+'recentchangeslinked-title'    => 'Zmeny týkajúce sa „$1”',
 'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
 'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav na odkazovaných stránkach. Stránky, ktoré sa nachádzajú vo vašom zozname sledovaných sú vyznačené '''hrubo'''.",
 
@@ -1207,18 +1206,18 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 # File reversion
 'filerevert'                => 'Obnoviť $1',
 'filerevert-legend'         => 'Obnoviť súbor',
-'filerevert-intro'          => '<span class="plainlinks">Obnovujete \'\'\'[[Media:$1|$1]]\'\'\' na [$4 verziu z $2, $3].</span>',
+'filerevert-intro'          => "Obnovujete '''[[Media:$1|$1]]''' na [$4 verziu z $2, $3].",
 'filerevert-comment'        => 'komentár:',
 'filerevert-defaultcomment' => 'Obnovená verzia z $1, $2',
 'filerevert-submit'         => 'Obnoviť',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' bol obnovený na [$4 verziu z $2, $3].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' bol obnovený na [$4 verziu z $2, $3].",
 'filerevert-badversion'     => 'Neexistuje predchádzajúca lokálna verzia tohto súboru s požadovanopu časovou známkou.',
 
 # File deletion
 'filedelete'                  => 'Zmazať $1',
 'filedelete-legend'           => 'Zmazať súbor',
 'filedelete-intro'            => "Mažete '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Mažete verziu súboru \'\'\'[[Media:$1|$1]]\'\'\' z [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Mažete verziu súboru '''[[Media:$1|$1]]''' z [$4 $3, $2].",
 'filedelete-comment'          => 'Komentár:',
 'filedelete-submit'           => 'Zmazať',
 'filedelete-success'          => "'''$1''' bol zmazaný.",
@@ -1269,14 +1268,16 @@ Celkovo {{PLURAL:$8|bol nahraný jeden súbor|boli nahrané '''$8''' súbory|bol
 
 Celkovo boli stránky navštívené '''$3'''-krát a upravené '''$4'''-krát. To znamená, že pripadá priemerne '''$5''' úprav na každú stránku a '''$6''' návštev na každú úpravu.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Dĺžka frontu úloh] je momentálne '''$7'''.",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Dĺžka frontu úloh] je momentálne '''$7'''.",
 'userstatstext'          => "Celkovo {{PLURAL:$1|je jeden zaregistrovaný používateľ|sú '''$1''' zaregistrovaní používatelia|je '''$1''' zaregistrovaných používateľov}},
 z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (pozri $5).",
 'statistics-mostpopular' => 'Najčastejšie prezerané stránky',
 
 'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
 'disambiguationspage'  => 'Template:Rozlišovacia stránka',
-'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''. Mali by však odkazovať priamo na príslušnú tému.<br />Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:disambiguationspage]]",
+'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''.
+Mali by však odkazovať priamo na príslušnú tému.<br />
+Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Dvojité presmerovania',
 'doubleredirectstext' => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.',
@@ -1286,9 +1287,10 @@ z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (p
 'brokenredirects-edit'   => '(upraviť)',
 'brokenredirects-delete' => '(zmazať)',
 
-'withoutinterwiki'        => 'Stránky bez jazykových odkazov',
-'withoutinterwiki-header' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
-'withoutinterwiki-submit' => 'Zobraziť',
+'withoutinterwiki'         => 'Stránky bez jazykových odkazov',
+'withoutinterwiki-header'  => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
+'withoutinterwiki-summary' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',
+'withoutinterwiki-submit'  => 'Zobraziť',
 
 'fewestrevisions' => 'Stránky s najmenším počtom revízií',
 
@@ -1525,7 +1527,7 @@ Na $2 nájdete zoznam posledných zmazaní.',
 
 Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]]).',
 'editcomment'                 => 'Komentár k úprave bol: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User_talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
 'sessionfailure'              => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
 táto akcia bola zrušená ako prevencia proti zneužitiu relácie (session).
@@ -1801,7 +1803,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'move-watch'              => 'Sledovať túto stránku',
 'movepagebtn'             => 'Presunúť stránku',
 'pagemovedsub'            => 'Presun bol úspešný',
-'movepage-moved'          => '<big>\'\'\'"$1" bolo presunuté na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''„$1” bolo presunuté na „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.
 Prosím vyberte si iný názov.',
@@ -1837,7 +1839,7 @@ wiki používajúceho MediaWiki softvér pomocou stránky Special:Import.
 
 Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvoľte, či chcete iba súčasnú verziu s informáciou o poslednej úprave alebo aj všetky staršie verzie s históriou úprav.
 
-V druhom prípade môžete tiež použiť odkaz, napr. [[{{ns:special}}:Export/{{Mediawiki:Mainpage}}]] pre stránku {{Mediawiki:Mainpage}}.',
+V druhom prípade môžete tiež použiť odkaz, napr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pre stránku [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
 'exportnohistory'   => "----
 '''Poznámka:''' Exportovanie plnej histórie stránok pomocou tohto formulára bolo vypnuté z dôvodov výkonnosti.",

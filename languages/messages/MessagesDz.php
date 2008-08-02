@@ -4,11 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Tenzin
- * @author Siebrand
- * @author Nike
+ * @author CFynn
  * @author Jon Harald Søby
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
 $digitTransformTable = array(
@@ -26,6 +25,13 @@ $digitTransformTable = array(
 
 $messages = array(
 # Dates
+'sunday'        => 'འབྲུག་གཟའ་ཟླཝ་',
+'monday'        => 'འབྲུག་གཟའ་མིག་དམར་',
+'tuesday'       => 'འབྲུག་གཟའ་ལྷགཔ་',
+'wednesday'     => 'འབྲུག་གཟའ་ཕུརཔ་',
+'thursday'      => 'འབྲུག་གཟའ་པ་སངས་',
+'friday'        => 'འབྲུག་གཟའ་སྤེནཔ་',
+'saturday'      => 'འབྲུག་གཟའ་ཉིམ་',
 'sun'           => 'ཟླཝ།',
 'mon'           => 'མིགམ།',
 'tue'           => 'ལྷགཔ།',

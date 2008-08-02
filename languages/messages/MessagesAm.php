@@ -5,17 +5,12 @@
  * @file
  *
  * @author Codex Sinaiticus
- * @author Siebrand
- * @author Nike
- * @author G - ג
- * @author SPQRobin
  * @author Teferra
- * @author לערי ריינהארט
  * @author Jon Harald Søby
+ * @author SPQRobin
  * @author M.M.S.
+ * @author לערי ריינהארט
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -351,7 +346,7 @@ $2",
 በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦',
 'welcomecreation'            => '== ሰላምታ፣ $1! ==
 
-የብዕር ስምዎ ተፈጥሯል። [[Special:Preferences|ምርጫዎችዎን]] ለማስተካከል ይችላሉ።',
+የብዕር ስምዎ ተፈጥሯል። ምርጫዎችዎን ለማስተካከል ይችላሉ።',
 'loginpagetitle'             => 'የአባል መግቢያ',
 'yourname'                   => 'Username / የብዕር ስም:',
 'yourpassword'               => 'Password / መግቢያ ቃል',
@@ -441,7 +436,7 @@ $2",
 'italic_tip'      => 'ያመለከቱትን ቃላት ባንጋደደ (ኢታሊክ) ለማድረግ',
 'link_sample'     => 'የመያያዣ ስም',
 'link_tip'        => 'ባመለከቱት ቃላት ላይ የዊኪ-ማያያዣ ለማድረግ',
-'extlink_sample'  => 'http://www.lemisale.com የውጭ መያያዣ',
+'extlink_sample'  => 'http://www.example.com የውጭ መያያዣ',
 'extlink_tip'     => "የውጭ መያያዣ ለመፍጠር (በ'http://' የሚቀደም)",
 'headline_sample' => 'ንዑስ ክፍል',
 'headline_tip'    => 'የንዑስ-ክፍል አርዕስት ለመፍጠር',
@@ -648,7 +643,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'lineno'                  => 'መስመር፡ $1፦',
 'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
 'editundo'                => 'ለውጡ ይገለበጥ',
-'diff-multi'              => '(ከነዚህ 2 እትሞች መካከል {{plural:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
+'diff-multi'              => '(ከነዚህ 2 እትሞች መካከል {{PLURAL:$1|አንድ ለውጥ ነበር|$1 ለውጦች ነበሩ}}።)',
 
 # Search results
 'searchresults'         => 'የፍለጋ ውጤቶች',
@@ -929,13 +924,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'filerevert-comment'        => 'ማጠቃለያ፦',
 'filerevert-defaultcomment' => 'በ$2፣ $1 ወደ ነበረው ዕትም መለሰው',
 'filerevert-submit'         => 'ማገልበጥ',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' [በ$3፣ $2 ወደ ነበረው $4 እትም] ተመልሷል።</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' [በ$3፣ $2 ወደ ነበረው $4 እትም] ተመልሷል።",
 
 # File deletion
 'filedelete'                  => '$1 ለማጥፋት',
 'filedelete-legend'           => 'ፋይልን ለማጥፋት',
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' ሊያጥፉ ነው።",
-'filedelete-intro-old'        => '<span class="plainlinks">በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ\'\'\'[[Media:$1|$1]]\'\'\' እትም ሊያጥፉ ነው።</span>',
+'filedelete-intro-old'        => "በ[$4 $3፣ $2] እ.ኤ.አ. የነበረው የ'''[[Media:$1|$1]]''' እትም ሊያጥፉ ነው።",
 'filedelete-comment'          => 'የማጥፋቱ ምክንያት፦',
 'filedelete-submit'           => 'ይጥፋ',
 'filedelete-success'          => "'''$1''' ጠፍቷል።",
@@ -983,7 +978,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 'disambiguations'      => 'ወደ መንታ መንገድ የሚያያይዝ',
 'disambiguationspage'  => 'Template:መንታ',
-'disambiguations-text' => "የሚከተሉት ጽሑፎች ወደ '''መንታ መንገድ''' እየተያያዙ ነውና ብዙ ጊዜ እንዲህ ሳይሆን ወደሚገባው ርዕስ ቢወስዱ ይሻላል። <br />መንታ መንገድ ማለት የመንታ መልጠፊያ ([[MediaWiki:disambiguationspage]]) ሲኖርበት ነው።",
+'disambiguations-text' => "የሚከተሉት ጽሑፎች ወደ '''መንታ መንገድ''' እየተያያዙ ነውና ብዙ ጊዜ እንዲህ ሳይሆን ወደሚገባው ርዕስ ቢወስዱ ይሻላል። <br />
+መንታ መንገድ ማለት የመንታ መልጠፊያ ([[MediaWiki:Disambiguationspage]]) ሲኖርበት ነው።",
 
 'doubleredirects'     => 'ድርብ መምሪያ መንገዶች',
 'doubleredirectstext' => 'ይህ ድርብ መምሪያ መንገዶች ይዘርዘራል።
@@ -995,9 +991,10 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'brokenredirects-edit'   => '(ለማስተካከል)',
 'brokenredirects-delete' => '(ለማጥፋት)',
 
-'withoutinterwiki'        => 'በሌሎች ቋንቋዎች ያልተያያዙ',
-'withoutinterwiki-header' => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',
-'withoutinterwiki-submit' => 'ይታዩ',
+'withoutinterwiki'         => 'በሌሎች ቋንቋዎች ያልተያያዙ',
+'withoutinterwiki-header'  => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',
+'withoutinterwiki-summary' => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',
+'withoutinterwiki-submit'  => 'ይታዩ',
 
 'fewestrevisions' => 'ለውጦች ያነሱላቸው መጣጥፎች',
 
@@ -1895,7 +1892,7 @@ $1',
 'confirmemail_text'       => 'አሁን በ{{SITENAME}} በኩል «ኢ-ሜል» ለመላክም ሆነ ለመቀበል አድራሻዎን ማረጋገጥ ግዴታ ሆኗል። እታች ያለውን በተጫኑ ጊዜ አንድ የማረጋገጫ መልእክት ቀድሞ ወደ ሰጡት ኢሜል አድራሻ በቀጥታ ይላካል። በዚህ መልእክት ልዩ ኮድ ያለበት መያያዣ ይገኝበታል፣ ይህንን መያያዣ ከዚያ ቢጎብኙ ኢ-ሜል አድራሻዎ የዛኔ ይረጋግጣል።',
 'confirmemail_pending'    => '<div class="error">ማረጋገጫ ኮድ ከዚህ በፊት ገና ተልኮልዎታል። ብዕር ስምዎን ያወጡ በቅርብ ጊዜ ከሆነ፣ አዲስ ኮድን ከመጠይቅ በፊት ምናልባት የተላከው እስከሚደርስ ድረስ ጥቂት ደቂቃ መቆየት ይሻላል።</div>',
 'confirmemail_send'       => 'የማረጋገጫ ኮድ ወደኔ ኢ-ሜል ይላክልኝ',
-'confirmemail_sent'       => 'የማረጋገጫ ኢ-ሜል ቅድም ወደ ሰጡት አድራሻ አሁን ተልኳል! (ሁለተኛ መጫን የለብዎትም፣ ወደ [[{{MediaWiki:Mainpage}}|ዋናው ገጽ]] ይመልሱ።)',
+'confirmemail_sent'       => 'የማረጋገጫ ኢ-ሜል ቅድም ወደ ሰጡት አድራሻ አሁን ተልኳል!',
 'confirmemail_oncreate'   => 'ማረጋገጫ ኮድ ወደ ኢ-ሜል አድራሻዎ ተልኳል። ይኸው ኮድ ለመግባት አያስፈልግም፤ ነገር ግን የዊኪው ኢ-ሜል ተግባር እንዲሠራ ለማድረግ ያስፈልጋል።',
 'confirmemail_sendfailed' => 'ወደሰጡት ኢሜል አድራሻ መላክ አልተቻለም። እባክዎ፣ ወደ [[Special:Preferences|«ምርጫዎች»]] ተመልሰው የጻፉትን አድራሻ ደንበኛነት ይመለከቱ።',
 'confirmemail_invalid'    => 'ይህ ኮድ አልተከናወነም። (ምናልባት ጊዜው አልፏል።) እንደገና ይሞክሩ!',

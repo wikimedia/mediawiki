@@ -5,14 +5,10 @@
  * @file
  *
  * @author Better
- * @author Nike
- * @author Siebrand
- * @author SPQRobin
- * @author M.M.S.
  * @author Jon Harald Søby
+ * @author M.M.S.
+ * @author SPQRobin
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -434,8 +430,8 @@ pol ca $1 oras.",
 'accountcreated'             => 'Cuenta criá',
 'accountcreatedtext'         => "La cuenta d'usuáriu pa $1 á siu criá.",
 'createaccount-title'        => 'Criaeru e cuentas de {{SITENAME}}',
-'createaccount-text'         => 'Alguien ($1) á criau una cuenta pa $2 en {{SITENAME}}
-($4). La consínia pa "$2" es "$3". Eberias entral ena tu cuenta i chambal la tu consínia.
+'createaccount-text'         => 'Alguien á criau una cuenta pa $2 en {{SITENAME}} ($4). La consínia pa "$2" es "$3".
+Eberias entral ena tu cuenta i chambal la tu consínia.
 
 Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'loginlanguagelabel'         => 'Palra: $1',
@@ -458,7 +454,7 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'italic_tip'      => 'Testu en letra "Itálica"',
 'link_sample'     => 'Atihal entítulu',
 'link_tip'        => 'Atihu entelnu',
-'extlink_sample'  => 'http://www.sabulugal.com Entítulu el atihu',
+'extlink_sample'  => 'http://www.example.com Entítulu el atihu',
 'extlink_tip'     => 'Atihu esternu (alcuerdati el prefihu http://)',
 'headline_sample' => 'Entítulu',
 'headline_tip'    => 'Entítulu e nivel 2',
@@ -1021,18 +1017,18 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 # File reversion
 'filerevert'                => 'Revertil $1',
 'filerevert-legend'         => 'Revertil archivu',
-'filerevert-intro'          => '<span class="plainlinks">Estás revirtiendu \'\'\'[[Media:$1|$1]]\'\'\' a la [$4 velsión del $3 a las $2].</span>',
+'filerevert-intro'          => "Estás revirtiendu '''[[Media:$1|$1]]''' a la [$4 velsión del $3 a las $2].",
 'filerevert-comment'        => 'Comentáriu:',
 'filerevert-defaultcomment' => 'Revertiu a la velsión de $2, $1',
 'filerevert-submit'         => 'Revertil',
-'filerevert-success'        => '<span class="plainlinks">S\'á revertiu \'\'\'[[Media:$1|$1]]\'\'\' a [$4 velsión de $3, $2].</span>',
+'filerevert-success'        => "S'á revertiu '''[[Media:$1|$1]]''' a [$4 velsión de $3, $2].",
 'filerevert-badversion'     => "Nu desisti denguna velsión local prévia d'esti archivu cola fecha aseñalá.",
 
 # File deletion
 'filedelete'                  => 'Esborral $1',
 'filedelete-legend'           => 'Esborral archivu',
 'filedelete-intro'            => "Estás esborrandu '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Estás esborrandu la velsón de \'\'\'[[Media:$1|$1]]\'\'\' del [$4 $3 a las $2].</span>',
+'filedelete-intro-old'        => "Estás esborrandu la velsón de '''[[Media:$1|$1]]''' del [$4 $3 a las $2].",
 'filedelete-comment'          => 'Comentáriu:',
 'filedelete-submit'           => 'Esborral',
 'filedelete-success'          => "S´á esborrau '''$1'''.",
@@ -1085,7 +1081,7 @@ La güiqui á tiniu '''\$3''' {{PLURAL:\$3|vesita|vesitas}} i '''\$4''' {{PLURAL
 endi que {{SITENAME}} prencipió a huncional.
 Estu resurta un promeyu e '''\$5''' eicionis pol páhina, i '''\$6''' vesitas pol eición.
 
-El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es de '''\$7'''.",
+El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] es de '''\$7'''.",
 'userstatstext'          => "Ai {{PLURAL:$1|un [[Special:Listusers|usuáriu]] rustriu|'''$1''' [[Special:Listusers|usuárius]] rustrius}}, de los cualis,
 '''$2''' (un '''$4%''') {{PLURAL:$2|es|son}} $5.",
 'statistics-mostpopular' => 'Páhinas mas visoreás',
@@ -1101,9 +1097,10 @@ El longol de la [http://meta.wikimedia.org/wiki/Help:Job_queue cola e tareas] es
 'brokenredirects-edit'   => '(eital)',
 'brokenredirects-delete' => '(esborral)',
 
-'withoutinterwiki'        => 'Páhinas sin atihus "EntelGüiqui"',
-'withoutinterwiki-header' => 'Las siguientis páhinas nu atihan a velsionis en otras palras:',
-'withoutinterwiki-submit' => 'Muestral',
+'withoutinterwiki'         => 'Páhinas sin atihus "EntelGüiqui"',
+'withoutinterwiki-header'  => 'Las siguientis páhinas nu atihan a velsionis en otras palras:',
+'withoutinterwiki-summary' => 'Las siguientis páhinas nu atihan a velsionis en otras palras:',
+'withoutinterwiki-submit'  => 'Muestral',
 
 'fewestrevisions' => 'Páhinas con menus revisionis',
 

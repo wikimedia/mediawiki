@@ -6,7 +6,6 @@
  *
  * @author Harvzsf
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Jon Harald Søby
  */
 
@@ -78,7 +77,7 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
+'categories'            => 'Mga Kategorya',
 'pagecategories'        => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
 'category_header'       => 'Mga pakli ha kategorya "$1"',
 'subcategories'         => 'Mga ilarom nga kategorya',

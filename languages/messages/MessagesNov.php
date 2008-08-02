@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author nov.wikipedia.org sysops
  * @author Malafaya
  * @author SPQRobin
+ * @author nov.wikipedia.org sysops
  */
 
 $messages = array(

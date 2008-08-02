@@ -1,10 +1,11 @@
 <?php
-/** Old Chinese / Late Middle Chinese (文言)
+/** Classical Chinese (文言)
  *
  * @ingroup Language
  * @file
  *
  * Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
+ * @author Itsmine
  */
 
 $skinNames = array(
@@ -167,7 +168,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '類',
-'pagecategories'        => '$1',
+'pagecategories'        => '類',
 'category_header'       => '"$1"',
 'subcategories'         => '次類',
 'category-media-header' => '"$1"',
@@ -303,6 +304,7 @@ $messages = array(
 'thisisdeleted'           => '還$1或閱之？',
 'viewdeleted'             => '閱$1之？',
 'restorelink'             => '$1已刪',
+'feed-unavailable'        => '聯合源於{{SITENAME}}無視也',
 'site-rss-feed'           => '$1之RSS源',
 'site-atom-feed'          => '$1之Atom源',
 'page-rss-feed'           => '「$1」之RSS源',
@@ -387,7 +389,7 @@ $2',
 'logouttext'                 => '<strong>子去簿矣</strong><br />
 子可匿名還覽{{SITENAME}}，或復登同簿、異簿。未清謄本，覽器文舊，且慎之。',
 'welcomecreation'            => '== $1大駕光臨! ==
-子簿增矣，敬更[[Special:Preferences|簿註]]。',
+子簿增矣，敬更簿註。',
 'loginpagetitle'             => '合符節',
 'yourname'                   => '名',
 'yourpassword'               => '符節',
@@ -439,6 +441,7 @@ $2',
 子若罔須或省更之，如舊即可。',
 'noemail'                    => '"$1"無存郵也。',
 'passwordsent'               => '新節已遣$1"，惠鑒復登之。',
+'blocked-mailpassword'       => '爾之IP已錮，密復無用之，以之濫也。',
 'eauthentsent'               => '核文遣矣。惠循核之，簿方活也。',
 'mailerror'                  => '信失遣如下：$1',
 'acct_creation_throttle_hit' => '歉哉，$1存矣，不可復增也。',
@@ -551,6 +554,8 @@ $2',
 'protectedpagewarning'      => '<strong>警示：庫藏鎖矣，惟有秩纂之。</strong>',
 'semiprotectedpagewarning'  => "'''註記'''庫藏鎖矣，惟登簿纂之。",
 'templatesused'             => '此文用模：',
+'template-protected'        => '(錮)',
+'template-semiprotected'    => '(半錮)',
 'nocreatetitle'             => '新題謝焉',
 'nocreatetext'              => '舊題可修，新題謝焉。[[Special:Userlogin|登簿、增簿]]以逮權也。',
 'nocreate-loggedin'         => '子權未逮，新頁謝焉。',
@@ -558,6 +563,11 @@ $2',
 'permissionserrorstext'     => '子權未逮，有{{PLURAL:$1|因|因}}如下：',
 'recreate-deleted-warn'     => "'''留意：刪文復造，惠慎纂。'''
 誌刪如下：",
+
+# "Undo" feature
+'undo-success' => '此審可返也。查確然完之。',
+'undo-failure' => '中審之異，此審無返也。',
+'undo-summary' => '返[[Special:Contributions/$2|$2]]（[[User talk:$2|書]]）之審$1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '新簿謝焉',
@@ -597,6 +607,7 @@ $2',
 # Revision deletion
 'rev-deleted-comment'         => '（此註刪矣）',
 'rev-deleted-user'            => '（此簿刪矣）',
+'rev-deleted-event'           => '（此誌刪矣）',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 此審刪矣，詳見[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}}誌刪]。
 </div>',
@@ -613,8 +624,15 @@ $2',
 'revdelete-hide-text'         => '藏審文',
 'revdelete-hide-comment'      => '藏贊',
 'revdelete-hide-user'         => '簿、IP以藏',
+'revdelete-suppress'          => '廢有秩與簿之事',
+'revdelete-hide-image'        => '藏檔',
+'revdelete-unsuppress'        => '復審解限',
 'revdelete-log'               => '誌贊：',
 'revdelete-submit'            => '擇審使之',
+'revdelete-logentry'          => '[[$1]]之見審動矣',
+'logdelete-logentry'          => '[[$1]]之事見動矣',
+'revdelete-success'           => "'''見審已設也。'''",
+'logdelete-success'           => "'''見事已設也。'''",
 
 # Oversight log
 'oversightlog'    => '誌督',
@@ -671,7 +689,9 @@ $2',
 'viewprevnext'          => '見（$1）（$2）（$3）',
 'showingresults'        => '見<b>$1</b>尋，自<b>$2</b>始：',
 'showingresultsnum'     => '見<b>$3</b>尋，自<b>$2</b>始：',
+'nonefound'             => "'''注'''：部名冊預尋也。。試''all:''尋全名刪之頁（含議模等），或可用要之名冊為前綴也。",
 'powersearch'           => '尋',
+'searchdisabled'        => '{{SITENAME}}因性能而停用之。可Gooogle查之，乃之過時也。',
 
 # Preferences page
 'preferences'           => '簿註',
@@ -718,6 +738,7 @@ $2',
 'servertime'            => '伺服器時',
 'guesstimezone'         => '瀏覽器填之',
 'allowemail'            => '予收信',
+'defaultns'             => '定尋之名集：',
 'default'               => '予定',
 'files'                 => '檔',
 
@@ -835,6 +856,8 @@ $2',
 'filepageexists'             => '<strong><tt>$1</tt></strong>（非檔）存矣，欲蓋之則再也。',
 'fileexists-thumb'           => "<center>'''現存之檔'''</center>",
 'successfulupload'           => '檔案安矣',
+'uploadwarning'              => '慎焉！',
+'savefile'                   => '存之',
 'overwroteimage'             => '新置「[[$1]]」矣',
 'sourcefilename'             => '源名',
 'destfilename'               => '欲置檔名',
@@ -846,6 +869,10 @@ $2',
 'license-nopreview' => '（謝草覽）',
 
 # Image list
+'imagelist-summary'         => '此奇頁示檔之全呈也。
+設最後之檔呈示於表頂。
+點題改其列之。',
+'imagelisttext'             => "下表乃按$2排之的'''$1'''檔。",
 'ilsubmit'                  => '尋檔',
 'byname'                    => '名序',
 'bydate'                    => '時序',
@@ -865,6 +892,8 @@ $2',
 'filehist-filesize'         => '檔幅',
 'filehist-comment'          => '註',
 'imagelinks'                => '圖鏈',
+'nolinkstoimage'            => '無頁連本檔也。',
+'sharedupload'              => '此檔為共傳，可另項用也。',
 'shareduploadwiki'          => '詳閱$1。',
 'shareduploadwiki-desc'     => '$1上之示。',
 'shareduploadwiki-linktext' => '檔述',
@@ -949,9 +978,10 @@ $2',
 'brokenredirects-edit'   => '(替)',
 'brokenredirects-delete' => '(刪)',
 
-'withoutinterwiki'        => '孤語',
-'withoutinterwiki-header' => '頁下無鏈他語：',
-'withoutinterwiki-submit' => '示',
+'withoutinterwiki'         => '孤語',
+'withoutinterwiki-header'  => '頁下無鏈他語：',
+'withoutinterwiki-summary' => '頁下無鏈他語。',
+'withoutinterwiki-submit'  => '示',
 
 'fewestrevisions' => '鮮察',
 
@@ -982,6 +1012,7 @@ $2',
 'allpages'                => '全典',
 'shortpages'              => '短篇',
 'longpages'               => '長言',
+'protectedpages'          => '頁錮',
 'listusers'               => '點簿',
 'specialpages'            => '特查',
 'spheading'               => '民處',
@@ -1063,6 +1094,7 @@ $2',
 
 # Watchlist
 'watchlist'            => '哨站',
+'mywatchlist'          => '哨站',
 'watchlistfor'         => "（'''$1'''之哨）",
 'nowatchlist'          => '無哨',
 'watchlistanontext'    => '$1以治哨',
@@ -1195,8 +1227,9 @@ $NEWPAGE
 'pagesize'                    => '（位元組）',
 
 # Restrictions (nouns)
-'restriction-edit' => '纂',
-'restriction-move' => '遷',
+'restriction-edit'   => '纂',
+'restriction-move'   => '遷',
+'restriction-create' => '建',
 
 # Restriction levels
 'restriction-level-sysop'         => '全封',
@@ -1306,7 +1339,7 @@ $NEWPAGE
 'ipbhidename'                 => '簿名、IP址隱乎誌禁、表禁、點簿。',
 'badipaddress'                => 'IP不格',
 'blockipsuccesssub'           => '禁焉',
-'blockipsuccesstext'          => '[[{{ns:special}}:Contributions/$1|$1]]禁焉。表禁<br />見[[{{ns:special}}:Ipblocklist|此]]。',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]禁焉。表禁<br />見[[Special:Ipblocklist|此]]。',
 'ipb-edit-dropdown'           => '改證',
 'ipb-unblock-addr'            => '赦$1',
 'ipb-unblock'                 => '赦簿、址',
@@ -1410,7 +1443,7 @@ $NEWPAGE
 
 # Export
 'export'            => '出匯',
-'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:special}}:Export/{{MediaWiki:mainpage}}]]匯"[[{{MediaWiki:mainpage}}]]"。',
+'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]匯"[[{{MediaWiki:Mainpage}}]]"。',
 'exportcuronly'     => '獨匯今審',
 'exportnohistory'   => "----
 '''囑記，'''封匯全誌，因累甚也。",
@@ -1534,6 +1567,14 @@ $NEWPAGE
 'tooltip-watch'                   => '哨此報',
 'tooltip-recreate'                => '昔棄鄙，重起灶',
 'tooltip-upload'                  => '獻品備，伐步跑',
+
+# Stylesheets
+'common.css'   => '/* 此之 CSS 用於全面也 */',
+'monobook.css' => '/* 此之 CSS 用於單書面之簿也 */',
+
+# Scripts
+'common.js'   => '/* 此之JavaScript將載於全簿之頁。 */',
+'monobook.js' => '/* 此之JavaScript將載於用單書面之簿 */',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}無簿者',

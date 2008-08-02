@@ -5,8 +5,6 @@
  * @file
  *
  * @author Cuman
- * @author Nike
- * @author Siebrand
  */
 
 $fallback = 'tr';
@@ -111,7 +109,7 @@ $messages = array(
 'dec'           => 'Dek',
 
 # Bits of text used by many pages
-'categories'            => '{{PLURAL:$1|Kategoriya|Kategoriyalar}}',
+'categories'            => 'Kategoriyalar',
 'pagecategories'        => 'Sayfa {{PLURAL:$1|kategoriyası|kategoriyaları}}',
 'category_header'       => '"$1" kategoriyasındaki sayfalar',
 'subcategories'         => 'Alt kategoriyalar',
@@ -374,7 +372,7 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'italic_tip'      => 'İtalik tekst',
 'link_sample'     => 'Sayfanın adı',
 'link_tip'        => 'İç baalantı',
-'extlink_sample'  => '{{SERVER}} adres adı',
+'extlink_sample'  => 'http://www.example.com adres adı',
 'extlink_tip'     => 'Dış baalantı (Unutmayın adresin önüne http:// koymaa)',
 'headline_sample' => 'Başlık teksti',
 'headline_tip'    => '2. düzey başlık',
@@ -762,7 +760,7 @@ Burada bitki seçimner <strong>$1</strong> yazı diiştirmää deyni:',
 'movepagetext'     => "Aşaadaki formayı kullanılarak var nicä sayfanın adın diiştirin, onnan bilä hepsi diiştirmää jurnalı eni ada aktarılacêk.
 Eski ad eni ada yönnendirmäk olacêk.
 Eski başlaa baalantılar diişmeycek;
-[[Special:DoubleRedirects|çift]] yaki [[Special:BrokenRedirects|yannış]] yönnendirmäkleri.
+çift yaki yannış yönnendirmäkleri.
 Läazım inanmaa ani baalantılar genä dä gösterer orayı nerä läazım göstersin.
 
 Herliim ilerdän eni adda sayfa vardı, ad diişmää '''yapılmaycêk'''.

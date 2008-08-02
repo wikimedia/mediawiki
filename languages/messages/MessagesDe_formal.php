@@ -4,6 +4,8 @@
  * @ingroup Language
  * @file
  *
+ * @author Raymond
+ * @author Pill
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
@@ -13,6 +15,8 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
+'tog-underline'        => 'Links unterstreichen:',
+'tog-nocache'          => 'Seitencache deaktivieren',
 'tog-enotifrevealaddr' => 'Ihre E-Mail-Adresse wird in Benachrichtigungs-E-Mails angezeigt.',
 
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
@@ -43,8 +47,9 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 'customcssjsprotected' => 'Sie sind nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 
 # Login and logout pages
-'logouttext'                 => 'Sie sind nun abgemeldet.
-Sie können {{SITENAME}} jetzt anonym weiterbenutzen, oder sich erneut unter dem selben oder einem anderen Benutzernamen anmelden.',
+'logouttext'                 => '<strong>Sie sind nun abgemeldet.</strong>
+
+Sie können {{SITENAME}} jetzt anonym weiter benutzen, oder sich erneut unter dem selben oder einem anderen Benutzernamen [[Special:Userlogin|anmelden]].',
 'welcomecreation'            => '== Willkommen, $1! ==
 
 Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen anzupassen.',
@@ -122,7 +127,7 @@ Als Grund wurde angegeben:
 
 :\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
-<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b> 
+<p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b>
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
 Sollte diese Nachricht angezeigt werden, obwohl nur lesend zugriffen wurde, sind Sie einem (roten) Link auf eine noch nicht existente Seite gefolgt.</p>
 
@@ -145,9 +150,9 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administra
 'confirmedittext'           => 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie Bearbeitungen vornehmen können. Bitte ergänzen und bestätigen Sie Ihre E-Mail in den [[Special:Preferences|Einstellungen]].',
 'nosuchsectiontext'         => 'Sie versuchen den nicht vorhandenen Abschnitt $1 zu bearbeiten. Es können jedoch nur bereits vorhandene Abschnitte bearbeitet werden.',
 'loginreqpagetext'          => 'Sie müssen sich $1, um Seiten lesen zu können.',
-'anontalkpagetext'          => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können sie ignorieren.''",
+'anontalkpagetext'          => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzerm gemeinsam verwendet werden. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können  sie ignorieren. Sie können sich auch ein [[Special:Userlogin/signup|Benutzerkonto erstellen]] oder sich [[Special:Userlogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzer zu vermeiden.''",
 'userpage-userdoesnotexist' => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfen Sie, ob Sie diese Seite wirklich erstellen/bearbeiten möchten.',
-'clearyourcache'            => "'''Hinweis:''' Leeren Sie nach dem Speichern den Browser-Cache, um die Änderungen zu sehen: '''Mozilla/Firefox:''' ''Shift-Strg-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''⌘-R'', '''Konqueror:''' ''Strg-R''.",
+'clearyourcache'            => "'''Hinweis - Leeren Sie nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei auf ''Aktualisieren'' klicken.",
 'usercssjsyoucanpreview'    => '<strong>Tipp:</strong> Benutzen Sie den Vorschau-Button, um Ihr neues CSS/JS vor dem Speichern zu testen.',
 'usercsspreview'            => "== Vorschau Ihres Benutzer-CSS ==
 '''Hinweis:''' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -162,7 +167,7 @@ Sollte das Problem bestehen bleiben, melden Sie sich ab und danach wieder an.</s
 
 ''Da in {{SITENAME}} das Speichern von reinem HTML aktiviert ist, wurde die Vorschau ausgeblendet, um JavaScript-Attacken vorzubeugen.''
 
-<strong>Bitte versuchen Sie es erneut, indem Sie unter der folgenden Textvorschau nochmals auf „Seite speichern“ klicken. Sollte das Problem bestehen bleiben, melden Sie sich ab und danach wieder an.</strong>",
+<strong>Bitte versuchen Sie es erneut, indem Sie unter der folgenden Textvorschau nochmals auf „Seite speichern“ klicken. Sollte das Problem bestehen bleiben, [[Special:Userlogout|melden Sie sich ab]] und danach wieder an.</strong>",
 'token_suffix_mismatch'     => '<strong>Ihre Bearbeitung wurde zurückgewiesen, da Ihr Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
 'explainconflict'           => 'Jemand anders hat diese Seite geändert, nachdem Sie angefangen haben diese zu bearbeiten.
@@ -211,7 +216,7 @@ Stellen Sie sicher, dass die Versionsgeschichte eines Artikel historisch korrekt
 'mergehistory-fail'   => 'Versionsvereinigung nicht möglich, bitte prüfen Sie die Seite und die Zeitangaben.',
 
 # Search results
-'searchsubtitle'        => 'Ihre Suchanfrage: „[[:$1|$1]]“.',
+'searchsubtitle'        => 'Ihre Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]] | [[Special:Whatlinkshere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid' => 'Ihre Suchanfrage: „$1“.',
 'noexactmatch'          => "'''Es existiert keine Seite mit dem Titel „$1“.'''
 
@@ -219,6 +224,7 @@ Alternativ können Sie auch den [[Special:Allpages|alphabetischen Index]] nach �
 
 Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“ verfassen.",
 'toomanymatches'        => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuchen Sie eine andere Abfrage.',
+'nonefound'             => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setzen Sie ''all:'' vor Ihren Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'searchdisabled'        => 'Die {{SITENAME}}-Suche ist deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
@@ -245,9 +251,11 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit '''Str
 
 # Upload
 'uploadnologintext'           => 'Sie müssen [[Special:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
-'uploadtext'                  => "In der [[{{#special:Imagelist}}|Liste hochgeladener Dateien]] können Sie vorhandene Dateien suchen und sich anzeigen lassen.
+'uploadtext'                  => "Benutzen Sie dieses Formular, um neue Dateien hochzuladen. 
 
-Benutzen Sie dieses Formular, um neue Dateien hochzuladen. Klicken Sie auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
+Gehen Sie zu der [[Special:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-Logbuch]].
+
+Klicken Sie auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld '''„Quelldatei“''' angezeigt.
 Bestätigen Sie dann die Lizenz-Vereinbarung und klicken Sie anschließend auf '''„Datei hochladen“'''.
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
@@ -285,8 +293,11 @@ Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhe
 'filename-bad-prefix'         => 'Der Dateiname beginnt mit <strong>„$1“</strong>. Dies ist im allgemeinen der von einer Digitalkamera vorgegebene Dateiname und daher nicht sehr aussagekräftig.
 Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 
-'upload-file-error-text' => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten. Bitte informieren Sie einen System-Administrator.',
-'upload-misc-error-text' => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten. Prüfen Sie die URL auf Fehler, den Online-Status der Seite und versuchen Sie es erneut. Wenn das Problem weiter besteht, informieren Sie einen System-Administrator.',
+'upload-file-error-text' => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.
+Bitte informieren Sie einen [[Special:ListUsers/sysop|System-Administrator]].',
+'upload-misc-error-text' => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten.
+Prüfen Sie die URL auf Fehler, den Online-Status der Seite und versuchem Sie erneut.
+Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop|System-Administrator]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6-text'  => 'Die angegebene URL ist nicht erreichbar. Prüfen Sie sowohl die URL auf Fehler als auch den Online-Status der Seite.',
@@ -297,15 +308,16 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'noimage'       => 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 
 # File reversion
-'filerevert-intro' => '<span class="plainlinks">Sie setzen die Datei \'\'\'[[Media:$1|$1]]\'\'\' auf die [$4 Version vom $2, $3 Uhr] zurück.</span>',
+'filerevert-intro' => "Sie setzen die Datei '''[[Media:$1|$1]]''' auf die [$4 Version vom $2, $3 Uhr] zurück.",
 
 # File deletion
 'filedelete-intro'     => "Sie löschen die Datei '''„[[Media:$1|$1]]“'''.",
-'filedelete-intro-old' => '<span class="plainlinks">Sie löschen von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' die [$4 Version vom $2, $3 Uhr].</span>',
+'filedelete-intro-old' => "Sie löschen von der Datei '''„[[Media:$1|$1]]“''' die [$4 Version vom $2, $3 Uhr].",
 'filedelete-iscurrent' => 'Sie versuchen die aktuelle Version dieser Datei zu löschen. Bitte setzen Sie diese vorher auf eine ältere Version zurück.',
 
 # Unused templates
 'unusedtemplates-summary' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+'unusedtemplatestext'     => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 
 # Miscellaneous special pages
 'unusedimagestext' => '<p>Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.</p>',
@@ -315,8 +327,8 @@ Bitte geben Sie der Datei einen Namen, der den Inhalt besser beschreibt.',
 'booksources-summary' => 'Auf dieser Spezialseite können Sie eine ISBN eingeben und erhalten dann eine Liste mit Onlinekatalogen und Bezugsmöglichkeiten zur gesuchten ISBN. Bindestriche oder Leerzeichen zwischen den Ziffern spielen für die Suche keine Rolle.',
 
 # E-mail user
-'mailnologintext' => 'Sie müssen [[{{ns:special}}:Userlogin|angemeldet sein]] und eine [[{{ns:special}}:Confirmemail|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
-'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren Einstellungen eingetragen, damit der Benutzer Ihnen antworten kann.',
+'mailnologintext' => 'Sie müssen [[Special:Userlogin|angemeldet sein]] und eine [[Special:Confirmemail|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
+'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer Ihnen antworten kann.',
 'emailccsubject'  => 'Kopie Ihrer Nachricht an $1: $2',
 'emailsenttext'   => 'Ihre E-Mail wurde verschickt.',
 
@@ -331,7 +343,7 @@ Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite wer
 in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt. 
 
 Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicken Sie auf der jeweiligen Seite auf „nicht mehr beobachten“.',
-'removedwatchtext'  => 'Die Seite „<nowiki>$1</nowiki>“ wurde von Ihrer Beobachtungsliste entfernt.',
+'removedwatchtext'  => 'Die Seite „[[:$1]]“ wurde von Ihrer [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watchnochange'     => 'Keine der von Ihnen beobachteten Seiten wurde während des angezeigten Zeitraums bearbeitet.',
 'watchlist-details' => 'Sie beobachten {{PLURAL:$1|1 Seite|$1 Seiten}}.',
 'watchlistcontains' => 'Ihre Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seiten}}.',
@@ -389,7 +401,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der gelösch
 Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]].
 Bitte geben Sie den Grund für die Sperre an.',
 'unblockiptext'    => 'Mit diesem Formular können Sie eine IP-Adresse oder einen Benutzer freigeben.',
-'autoblocker'      => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit [[Benutzer:$1]] benutzen. Grund: „$2“.',
+'autoblocker'      => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit [[User:$1|Benutzer:$1]] benutzen. Grund: „$2“.',
 'proxyblockreason' => 'Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Internet-Provider oder Ihre Systemadministratoren und informieren Sie sie über dieses mögliche Sicherheitsproblem.',
 
 # Developer tools
@@ -397,7 +409,13 @@ Bitte geben Sie den Grund für die Sperre an.',
 'lockdbsuccesstext' => 'Die {{SITENAME}}-Datenbank wurde gesperrt.<br />Bitte geben Sie die Datenbank [[Special:Unlockdb|wieder frei]], sobald die Wartung abgeschlossen ist.',
 
 # Move page
-'movepagetext'         => 'Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Links auf den alten Titel werden nicht geändert.',
+'movepagetext'         => "Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Links auf den alten Titel werden nicht geändert; prüfen Sie auf [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|defekte Weiterleitungen]].
+
+Die Seite wird '''nicht''' verschoben, wenn es bereits eine Seite mit demselben Namen gibt, sofern diese nicht leer oder eine Weiterleitung ohne Versionsgeschichte ist. Dies bedeutet, dass Sie die Seite zurück verschieben können, wenn Sie einen Fehler gemacht haben. Sie können hingegen keine Seite überschreiben.
+
+'''Warnung'''
+Die Verschiebung kann weitreichende und unerwartete Folgen für beliebte Seiten haben.
+Sie sollten daher die Konsequenzen verstanden haben, bevor Sie fortfahren.",
 'movepagetalktext'     => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
 *Sie wählen die unten stehende Option ab.
@@ -469,8 +487,8 @@ Wenn diese E-Mail-Adresse nicht zu dem genannten Benutzerkonto gehört, folgen S
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten! 
 Sehen Sie im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach, 
 warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu angelegt.</span>',
-'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User_talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
-''$2''
+'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
+: ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 
 # Watchlist editor

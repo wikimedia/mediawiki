@@ -5,12 +5,11 @@
  * @file
  *
  * @author 80686
- * @author Helix84
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author Spacebirdy
+ * @author Jon Harald Søby
+ * @author Helix84
+ * @author SPQRobin
  */
 
 $fallback = 'de';
@@ -253,11 +252,9 @@ Abfrog: $2',
 <b>Du bisch jitz abgmäldet!</b>
 </div><br />
 We du jitz öppis uf der {{SITENAME}} änderisch, de wird dyni IP-Adrässen als Urhäber regischtriert u nid dy Benutzername. Du chasch di mit em glychen oder emnen andere Benutzername nöi aamälde.',
-'welcomecreation'            => '<h2>Willkomme, $1!</h2>
-
-Dys Benutzerkonto isch aagleit worde
-
-Vergis nid, dyni [[Special:Preferences|Ystelligen]] aazpasse.',
+'welcomecreation'            => '==Willkomme, $1!==
+Dys Benutzerkonto isch aagleit worde.
+Vergis nid, dyni Ystelligen aazpasse.',
 'loginpagetitle'             => 'Benutzer-Aamelde',
 'yourname'                   => 'Dii Benutzername',
 'yourpassword'               => 'Basswort',
@@ -718,7 +715,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'blocklogpage'    => 'Sperrigs-Protokoll',
 'blocklogentry'   => 'sperrt [[$1]] für d Ziit vo: $2 $3',
 'blocklogtext'    => 'Des ischs Logbuech yber Sperrunge un Entsperrunge vun Bnutzer. Automatisch blockti IP-Adresse werre nit erfasst. Lueg au [[Special:Ipblocklist|IP-Block Lischt]] fyr ä Lischt vun gsperrti Bnutzer.',
-'unblocklogentry' => 'Blockade von [[User:$1]] aufgehoben',
+'unblocklogentry' => 'Blockade von $1 aufgehoben',
 
 # Move page
 'movepage'         => 'Artikel verschiebe',

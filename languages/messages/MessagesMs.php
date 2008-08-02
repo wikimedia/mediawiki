@@ -5,11 +5,11 @@
  * @file
  *
  * @comment This localisation is based on a file kindly donated by the folks at MIMOS - http://www.asiaosc.org/enwiki/page/Knowledgebase_Home.html
- * @author Rewritten by the folks at ms.wikipedia.org
  * @author Aviator
  * @author Aurora
  * @author לערי ריינהארט
- * @author Siebrand
+ * @author Jon Harald Søby
+ * @author Rewritten by the folks at ms.wikipedia.org
  */
 
 # Uncomment line below to use space charecter as thousands separator
@@ -239,7 +239,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Kategori',
-'pagecategories'        => 'Kategori',
+'pagecategories'        => '{{PLURAL:$1|Kategori|Kategori}}',
 'category_header'       => 'Laman-laman dalam kategori "$1"',
 'subcategories'         => 'Subkategori',
 'category-media-header' => 'Media-media dalam kategori "$1"',
@@ -302,14 +302,14 @@ $messages = array(
 'unprotectthispage' => 'Nyahlindung laman ini',
 'newpage'           => 'Laman baru',
 'talkpage'          => 'Bincangkan laman ini',
-'talkpagelinktext'  => 'bincang',
+'talkpagelinktext'  => 'Perbincangan',
 'specialpage'       => 'Laman Khas',
 'personaltools'     => 'Alatan peribadi',
 'postcomment'       => 'Kirim komen',
 'articlepage'       => 'Lihat laman kandungan',
 'talk'              => 'Perbincangan',
 'views'             => 'Pandangan',
-'toolbox'           => 'Kotak alatan',
+'toolbox'           => 'Alatan',
 'userpage'          => 'Lihat laman pengguna',
 'projectpage'       => 'Lihat laman projek',
 'imagepage'         => 'Lihat laman imej',
@@ -320,7 +320,7 @@ $messages = array(
 'viewtalkpage'      => 'Lihat perbincangan',
 'otherlanguages'    => 'Bahasa lain',
 'redirectedfrom'    => '(Dilencongkan dari $1)',
-'redirectpagesub'   => 'Laman pelencongan',
+'redirectpagesub'   => 'Laman lencongan',
 'lastmodifiedat'    => 'Laman ini diubah buat kali terakhir pada $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Laman ini telah dilihat {{PLURAL:$1|sekali|sebanyak $1 kali}}.',
 'protectedpage'     => 'Laman dilindungi',
@@ -333,7 +333,7 @@ $messages = array(
 'aboutpage'         => 'Project:Perihal',
 'bugreports'        => 'Laporan pepijat',
 'bugreportspage'    => 'Project:Laporan pepijat',
-'copyright'         => 'Semua kandungan dikeluarkan di bawah $1.',
+'copyright'         => 'Kandungan disediakan dengan $1.',
 'copyrightpagename' => 'Hak cipta {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:Hak cipta',
 'currentevents'     => 'Peristiwa semasa',
@@ -373,8 +373,8 @@ $messages = array(
 'editold'                 => 'sunting',
 'editsectionhint'         => 'Sunting bahagian: $1',
 'toc'                     => 'Senarai kandungan',
-'showtoc'                 => 'buka',
-'hidetoc'                 => 'tutup',
+'showtoc'                 => 'bentang',
+'hidetoc'                 => 'lipat',
 'thisisdeleted'           => 'Lihat atau pulihkan $1?',
 'viewdeleted'             => 'Lihat $1?',
 'restorelink'             => '{{PLURAL:$1|satu|$1}} suntingan dihapuskan',
@@ -476,7 +476,7 @@ Pertanyaan: $2',
 'logouttitle'                => 'Log keluar',
 'logouttext'                 => "<strong>Anda telah log keluar.</strong>
 
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh log masuk sekali lagi sebagai pengguna lain. Sila ambil perhatian bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk. Anda boleh menyelesaikan masalah ini dengan mengosongkan data simpanan (''cache'') pelayar anda.",
+Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:Userlogin|log masuk sekali lagi]] sebagai pengguna lain. Sila ambil perhatian bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk. Anda boleh menyelesaikan masalah tersebut dengan hanya mengosongkan data simpanan (''cache'') pelayar anda.",
 'welcomecreation'            => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.',
@@ -554,7 +554,7 @@ Sila masukkan alamat e-mel yang betul atau kosongkan sahaja ruangan tersebut.',
 'accountcreated'             => 'Akaun dibuka',
 'accountcreatedtext'         => 'Akaun pengguna bagi $1 telah dibuka.',
 'createaccount-title'        => 'Pembukaan akaun {{SITENAME}}',
-'createaccount-text'         => 'Seseorang ($1) telah membuka akaun untuk
+'createaccount-text'         => 'Seseorang telah membuka akaun untuk
 alamat e-mel anda di {{SITENAME}} ($4) dengan nama "$2" dan kata laluan "$3".
 Anda boleh log masuk dan tukar kata laluan anda sekarang.
 
@@ -582,7 +582,7 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'extlink_tip'     => 'Pautan luar (ingat awalan http://)',
 'headline_sample' => 'Teks tajuk',
 'headline_tip'    => 'Tajuk peringkat 2',
-'math_sample'     => 'Masukkan formula di sini',
+'math_sample'     => 'Masukkan rumus di sini',
 'math_tip'        => 'Formula matematik (LaTeX)',
 'nowiki_sample'   => 'Masukkan teks tak berformat di sini',
 'nowiki_tip'      => 'Abaikan pemformatan wiki',
@@ -780,7 +780,7 @@ Petunjuk: (kini) = perbezaan dengan versi terkini,
 'history-feed-item-nocomment' => '$1 pada $2', # user at time
 'history-feed-empty'          => 'Laman yang diminta tidak wujud.
 Mungkin ia telah dihapuskan atau namanya telah ditukar.
-Cuba [[Special:Gelintar|cari]] laman lain yang mungkin berkaitan.',
+Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(komen dibuang)',
@@ -879,8 +879,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'prevn'                 => '$1 sebelumnya',
 'nextn'                 => '$1 berikutnya',
 'viewprevnext'          => 'Lihat ($1) ($2) ($3)',
-'showingresults'        => 'Terpapar di bawah adalah hasil pencarian dari <b>$1</b> hingga <b>$2</b>.',
-'showingresultsnum'     => 'Terpapar di bawah <b>$3</b> adalah hasil pencarian yang bermula dengan #<b>$2</b>.',
+'showingresults'        => "Berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
+'showingresultsnum'     => "Berikut ialah '''$3''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 'nonefound'             => "'''Catatan''': Kegagalan pencarian biasanya
 disebabkan oleh pencarian perkataan-perkataan yang terlalu umum, seperti \"ada\"
 dan \"dari\" yang tidak diindekskan, atau disebabkan oleh pencarian lebih
@@ -1151,7 +1151,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'nolinkstoimage'            => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'sharedupload'              => 'Fail ini adalah fail muat naik kongsi dan boleh digunakan oleh projek lain.',
 'shareduploadwiki'          => 'Sila lihat $1 untuk maklumat lanjut.',
-'shareduploadwiki-desc'     => 'Berikut ialah keterangannya dalam $1 di sana.',
+'shareduploadwiki-desc'     => 'Berikut ialah keterangan bagi $1nya di gedung kongsi.',
 'shareduploadwiki-linktext' => 'laman huraian fail',
 'noimage'                   => 'Tiada fail dengan nama ini. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
@@ -1202,7 +1202,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'unwatchedpages' => 'Laman tidak dipantau',
 
 # List redirects
-'listredirects' => 'Senarai pelencongan',
+'listredirects' => 'Senarai lencongan',
 
 # Unused templates
 'unusedtemplates'     => 'Templat tidak digunakan',
@@ -1214,21 +1214,21 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'randompage-nopages' => 'Tiada laman dalam ruang nama ini.',
 
 # Random redirect
-'randomredirect'         => 'Pelencongan rawak',
-'randomredirect-nopages' => 'Tiada pelencongan dalam ruang nama ini.',
+'randomredirect'         => 'Lencongan rawak',
+'randomredirect-nopages' => 'Tiada lencongan dalam ruang nama ini.',
 
 # Statistics
 'statistics'             => 'Statistik',
 'sitestats'              => 'Statistik {{SITENAME}}',
 'userstats'              => 'Statistik pengguna',
 'sitestatstext'          => "Terdapat sejumlah '''\$1''' laman dalam pangkalan data kami. Jumlah ini termasuklah laman \"perbincangan\", laman mengenai {{SITENAME}}, laman ringkas,
-pelencongan, dan lain-lain yang tidak layak menjadi laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
+lencongan, dan lain-lain yang tidak dikira sebagai laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
 
 '''\$8''' buah fail telah dimuat naik.
 
-Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dimulakan. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
+Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dibuka. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
 
-Jumlah [http://meta.wikimedia.org/wiki/Help:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
+Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
 'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
@@ -1236,17 +1236,18 @@ Jumlah [http://meta.wikimedia.org/wiki/Help:Job_queue tugas yang tertunggak] ial
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Pelencongan berganda',
-'doubleredirectstext' => 'Laman ini menyenaraikan laman yang melencong ke laman pelencongan yang lain. Setiap baris mengandungi pautan ke laman pelencongan pertama dan kedua, serta baris pertama bagi teks pelencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh pelencongan pertama.',
+'doubleredirects'     => 'Lencongan berganda',
+'doubleredirectstext' => 'Berikut ialah sebarai laman yang melencong ke laman lencongan yang lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.',
 
-'brokenredirects'        => 'Pelencongan rosak',
-'brokenredirectstext'    => 'Pelencongan-pelencongan berikut memaut ke laman yang tidak wujud:',
+'brokenredirects'        => 'Lencongan rosak',
+'brokenredirectstext'    => 'Lencongan-lencongan berikut menuju ke laman yang tidak wujud:',
 'brokenredirects-edit'   => '(sunting)',
 'brokenredirects-delete' => '(hapus)',
 
-'withoutinterwiki'        => 'Laman tanpa pautan bahasa',
-'withoutinterwiki-header' => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',
-'withoutinterwiki-submit' => 'Tunjuk',
+'withoutinterwiki'         => 'Laman tanpa pautan bahasa',
+'withoutinterwiki-header'  => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',
+'withoutinterwiki-summary' => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',
+'withoutinterwiki-submit'  => 'Tunjuk',
 
 'fewestrevisions' => 'Laman dengan semakan tersedikit',
 
@@ -1314,6 +1315,7 @@ menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
 serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 
 'categoriespagetext' => 'Kategori-kategori berikut wujud dalam wiki ini.',
+'data'               => 'Data',
 'userrights'         => 'Pengurusan hak pengguna',
 'groups'             => 'Kumpulan pengguna',
 'alphaindexline'     => '$1 hingga $2',
@@ -1619,7 +1621,7 @@ $1',
 'sp-contributions-username'    => 'Alamat IP atau nama pengguna:',
 'sp-contributions-submit'      => 'Cari',
 
-'sp-newimages-showfrom' => 'Tunjukkan imej-imej baru bermula daripada $1',
+'sp-newimages-showfrom' => 'Tunjukkan imej baru bermula daripada $2, $1',
 
 # What links here
 'whatlinkshere'       => 'Pautan ke laman ini',
@@ -1629,7 +1631,7 @@ $1',
 'linkshere'           => "Laman-laman berikut mengandungi pautan ke '''[[:$1]]''':",
 'nolinkshere'         => "Tiada laman yang mengandungi pautan ke '''[[:$1]]'''.",
 'nolinkshere-ns'      => "Tiada laman yang mengandungi pautan ke '''[[:$1]]''' dalam ruang nama yang dinyatakan.",
-'isredirect'          => 'laman pelencongan',
+'isredirect'          => 'laman lencongan',
 'istemplate'          => 'penyertaan',
 'whatlinkshere-prev'  => '{{PLURAL:$1|sebelumnya|$1 sebelumnya}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|berikutnya|$1 berikutnya}}',
@@ -1749,24 +1751,13 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 
 # Move page
 'movepage'                => 'Pindah laman',
-'movepagetext'            => "Gunakan borang di bawah untuk mengubah nama laman dan 
-memindahkan semua maklumat sejarahnya kepada nama baru.
-Tajuk yang lama akan dijadikan pelencongan ke tajuk yang baru.
-Pautan ke tajuk yang lama tidak akan diubah; pastikan anda menyemak
-sekiranya terdapat pelencongan berganda atau pelencongan rosak.
-Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang
-sepatutnya.
+'movepagetext'            => "Gunakan borang di bawah untuk menukar nama laman dan memindahkan semua maklumat sejarahnya ke nama baru. Tajuk yang lama akan dijadikan lencongan ke tajuk yang baru. Pautan ke tajuk yang lama tidak akan diubah, oleh itu sila semak sekiranya terdapat [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|lencongan rosak]]. Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang sepatutnya.
 
-Sila ambil perhatian bahawa laman tersebut '''tidak''' akan dipindahkan
-seandainya sudah wujud laman dengan tajuk yang baru tadi, melainkan apabila
-laman tersebut kosong atau merupakan laman pelencongan dan tidak mempunyai
-sejarah suntingan. Ini bermakna anda boleh menukar semula nama sesebuah
-laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menindan laman yang sudah ada.
+Sila ambil perhatian bahawa laman tersebut '''tidak''' akan dipindahkan sekiranya laman dengan tajuk yang baru tadi telah wujud, melainkan apabila
+laman tersebut kosong atau merupakan laman lencongan dan tidak mempunyai sejarah penyuntingan. Ini bermakna anda boleh menukar semula nama sesebuah
+laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menulis ganti laman yang telah wujud.
 
-<b>AMARAN!</b>
-Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik
-bagi laman popular; sila pastikan anda faham akibat yang mungkin timbul
-sebelum menyambung.",
+'''AMARAN!''' Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular; sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
 'movepagetalktext'        => "Laman perbincangan yang berkaitan, jika ada, akan dipindahkan bersama-sama laman ini secara automatik '''kecuali''':
 * Sebuah laman perbincangan dengan nama baru telah pun wujud, atau
 * Anda membuang tanda kotak di bawah.
@@ -1808,14 +1799,11 @@ Laman destinasi "[[$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supay
 # Export
 'export'            => 'Eksport laman',
 'exporttext'        => 'Anda boleh mengeksport teks dan sejarah suntingan untuk laman-laman tertentu yang ke dalam fail XML.
-Fail ini boleh diimport ke dalam wiki lain yang menggunakan perisian MediaWiki
-melalui [[Special:Import|laman import]].
+Fail ini boleh diimport ke dalam wiki lain yang menggunakan perisian MediaWiki melalui [[Special:Import|laman import]].
 
-Untuk mengeksport laman, masukkan tajuk dalam kotak teks di bawah (satu tajuk
-bagi setiap baris) dan pilih sama ada anda mahukan semua versi dan catatan
-sejarah atau hanya versi semasa berserta maklumat mengenai suntingan terakhir.
+Untuk mengeksport laman, masukkan tajuk dalam kotak teks di bawah (satu tajuk bagi setiap baris) dan pilih sama ada anda mahukan semua versi dan catatan sejarah atau hanya versi semasa berserta maklumat mengenai suntingan terakhir.
 
-Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:special}}:Eksport/{{MediaWiki:Mainpage}}]] untuk laman "[[{{MediaWiki:Mainpage}}]]".',
+Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] untuk laman "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Hanya eksport semakan semasa, bukan keseluruhan sejarah.',
 'exportnohistory'   => "----
 '''Catatan:''' Ciri eksport sejarah penuh laman melalui borang ini telah dimatikan atas sebab-sebab prestasi.",
@@ -1830,8 +1818,8 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{ns:s
 'allmessagesname'           => 'Nama',
 'allmessagesdefault'        => 'Teks lalai',
 'allmessagescurrent'        => 'Teks semasa',
-'allmessagestext'           => 'Ini ialah senarai pesanan sistem yang tersedia dalam ruang nama MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.
+Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [http://translatewiki.net Betawiki] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''\$wgUseDatabaseMessages''' dipadamkan.",
 'allmessagesfilter'         => 'Tapis nama mesej:',
 'allmessagesmodified'       => 'Hanya tunjukkan yang telah diubah',
@@ -1915,7 +1903,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'tooltip-n-recentchanges'         => 'Senarai perubahan terkini dalam wiki ini.',
 'tooltip-n-randompage'            => 'Buka laman rawak',
 'tooltip-n-help'                  => 'Tempat mencari jawapan.',
-'tooltip-n-sitesupport'           => 'Bantu kami',
+'tooltip-n-sitesupport'           => 'Derma',
 'tooltip-t-whatlinkshere'         => 'Senarai laman wiki yang mengandungi pautan ke laman ini',
 'tooltip-t-recentchangeslinked'   => 'Perubahan terkini bagi semua laman yang dipaut dari laman ini',
 'tooltip-feed-rss'                => 'Suapan RSS bagi laman ini',
@@ -2474,7 +2462,7 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'version-hook-subscribedby'        => 'Dilanggan oleh',
 'version-version'                  => 'Versi',
 'version-license'                  => 'Lesen',
-'version-software'                 => 'Perisian dipasang',
+'version-software'                 => 'Perisian yang dipasang',
 'version-software-product'         => 'Produk',
 'version-software-version'         => 'Versi',
 

@@ -4,16 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author sco.wikipedia.org editors
- * @author SPQRobin
- * @author Nike
  * @author OchAyeTheNoo
+ * @author SPQRobin
  * @author לערי ריינהארט
- * @author Siebrand
+ * @author sco.wikipedia.org editors
  * @author Malafaya
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -728,7 +724,14 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'uploadnologin'               => 'Nae loggit in',
 'uploadnologintext'           => 'Ye maun be [[Special:Userlogin|loggit in]] til uplaid files.',
 'uploaderror'                 => 'Uplaid error',
-'uploadtext'                  => "Uise the form ablo tae uplaid new files; tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imagelist|leet o uplaidit files]]; uplaids an deletions is recordit in the [[Special:Log|project log]]. Ye maun forbye tick the kist affirmin that ye arna brakkin onie copyrichts bi uplaidin the file. Dab the \"Uplaid\" button tae feinish the uplaid. Tae pit the eimage intae a page, uise an airtin i the form '''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>''', '''<nowiki>[[{{ns:image}}:file.png|alt text]]</nowiki>''' or '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>''' for pyntin strecht tae the file",
+'uploadtext'                  => "Uise the form ablo tae uplaid new files;
+tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imagelist|leet o uplaidit files]];
+uplaids an deletions is recordit in the [[Special:Log|project log]].
+
+Tae pit the eimage intae a page, uise an airtin i the form
+'''<nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}:file.png|alt text<nowiki>]]</nowiki>''' or
+'''<nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki>''' for pyntin strecht tae the file",
 'uploadlog'                   => 'uplaid log',
 'uploadlogpage'               => 'Uplaid log',
 'uploadlogpagetext'           => 'Ablo is a leet o the maist recent file uplaids.',
@@ -793,7 +796,7 @@ Thare haes been a total o '''\$3''' {{PLURAL:\$3|page view|page views}}, an '''\
 syne {{SITENAME}} wis set up.
 That comes tae '''\$5''' average edits per page, and '''\$6''' views per edit.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
 'userstatstext' => "{{PLURAL:$1|There is '''1''' registert [[Special:Listusers|uiser]]|The'r '''$1''' registert [[Special:Listusers|uisers]]}}.
 '''$2''' (or '''$4%''') o thaim {{PLURAL:$2|has|have}} $5 rights.",
 
@@ -976,6 +979,7 @@ tae an afore-blockit IP address or uisername.',
 'blocklistline'               => '$1, $2 blockit $3 (expires $4)',
 'anononlyblock'               => 'anon. juist',
 'createaccountblock'          => 'accoont-makkin blockit',
+'contribslink'                => 'contreibs',
 'autoblocker'                 => 'Autaematically blockit syne yer IP address haes been uised recently bi "[[User:$1|$1]]". The raeson gien for $1\'s block is "\'\'$2\'\'"',
 'blocklogentry'               => 'blockit [[$1]] wi an expiry time o $2 $3',
 'blocklogtext'                => 'This is a log o uiser blockin an unblockin actions. Autaematically blockit IP addresses isna leetit. See the [[Special:Ipblocklist|IP block leet]] for the leet o bans and blocks on the gae the nou.',
@@ -1001,7 +1005,18 @@ tae an afore-blockit IP address or uisername.',
 
 # Move page
 'movepage'                => 'Flit page',
-'movepagetext'            => "Uisin the form ablo will rename a page, flittin aa its history tae the new name. The auld teitle will become a reguidal page tae the new teitle. Airtins tae the auld page teitle willna be chynged; be siccar tae [[Special:Maintenance|check]] for dooble or brucken reguidals. You ar responsible for makkin siccar that airtins continues tae pynt whaur thay ar supposed tae gang. Mynd that the page '''willna''' be flittit gin the'r aareadies a page at the new teitle, unless it is tuim or a reguidal and haes nae past edit history. This means that ye can rename a page back tae whaur it wis juist renamed frae gin ye mak a mistak, an ye canna owerwrite an existin page. <b>WARNIN!</b> This can be a drastic and unexpectit chynge for a popular page; please be siccar ye unnerstaun the consequences o this afore proceedin.",
+'movepagetext'            => "Uisin the form ablo will rename a page, flittin aa its history tae the new name.
+The auld teitle will become a reguidal page tae the new teitle.
+Airtins tae the auld page teitle willna be chynged;
+be siccar tae check for dooble or brucken reguidals.
+You ar responsible for makkin siccar that airtins continues tae pynt whaur thay ar supposed tae gang.
+
+Mynd that the page '''willna''' be flittit gin the'r aareadies a page at the new teitle, unless it is tuim or a reguidal and haes nae past edit history.
+This means that ye can rename a page back tae whaur it wis juist renamed frae gin ye mak a mistak, an ye canna owerwrite an existin page
+
+'''WARNIN!'''
+This can be a drastic and unexpectit chynge for a popular page;
+please be siccar ye unnerstaun the consequences o this afore proceedin.",
 'movepagetalktext'        => "The associate Collogue page, gin onie, will be autaematically flittit alang wi it '''unless:''' *Ye'r flittin the page across namespaces, *A collogue page that isna tuim aareadies exists unner the new name, or *Ye tak the tick oot o the box ablo. In thae cases, ye maun flit or merge the page manually later gin ye hae saicont thochts.",
 'movearticle'             => 'Flit page:',
 'movenologin'             => 'No loggit in',
@@ -1059,6 +1074,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'tooltip-pt-preferences'          => 'Ma preferences',
 'tooltip-pt-login'                => "It's a guid idea tae log i, but ye dinna hae tae.",
 'tooltip-search'                  => 'Rake {{SITENAME}}',
+'tooltip-n-mainpage'              => 'Gae tae the Main Page',
 'tooltip-t-contributions'         => "View this uiser's contreibutions",
 'tooltip-minoredit'               => 'Mairk this as a smaa edit',
 'tooltip-save'                    => 'Hain yer chynges',
@@ -1116,8 +1132,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'nextdiff'     => 'Gang tae neist diff →',
 
 # Media information
-'mediawarning' => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.
-<hr>",
+'mediawarning' => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.<hr />",
 'imagemaxsize' => 'Limit eimages on eimage description pages tae:',
 
 # Special:Newimages

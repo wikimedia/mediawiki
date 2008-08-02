@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+
  */
 
 $fallback = 'zh-hans';
@@ -163,7 +164,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '頁面分類',
-'pagecategories'        => '$1個分類',
+'pagecategories'        => '個分類',
 'category_header'       => '類別「$1」中的頁面',
 'subcategories'         => '附分類',
 'category-media-header' => '"$1"分類中的媒體',
@@ -287,6 +288,7 @@ $messages = array(
 'versionrequired'     => '需要MediaWiki $1 版',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
+'ok'                      => '確定',
 'retrievedfrom'           => '取自"$1"',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新訊息',
@@ -303,6 +305,7 @@ $messages = array(
 'restorelink'             => '$1個被刪除的版本',
 'feedlinks'               => '訂閱:',
 'feed-invalid'            => '無效的訂閱類型。',
+'feed-unavailable'        => '聯合訂閱並無於{{SITENAME}}上提供',
 'site-rss-feed'           => '$1的RSS訂閱',
 'site-atom-feed'          => '$1的Atom訂閱',
 'page-rss-feed'           => '「$1」的RSS訂閱',
@@ -1014,6 +1017,9 @@ $2',
 
 # Image list
 'imagelist'                 => '檔案列表',
+'imagelist-summary'         => '這個特殊頁面顯示所有上傳過的檔案。
+預設中最後上傳的檔案會顯示在這個列表中的最頂處。
+點擊一欄的標題去改變這個排列。',
 'imagelisttext'             => '以下是按$2排列的$1個檔案列表。',
 'getimagelist'              => '正在獲取檔案列表',
 'ilsubmit'                  => '搜尋',
@@ -1142,9 +1148,10 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(編輯)',
 'brokenredirects-delete' => '(刪除)',
 
-'withoutinterwiki'        => '未有語言鏈接的頁面',
-'withoutinterwiki-header' => '以下的頁面是未有語言鏈接到其它語言版本:',
-'withoutinterwiki-submit' => '顯示',
+'withoutinterwiki'         => '未有語言鏈接的頁面',
+'withoutinterwiki-header'  => '以下的頁面是未有語言鏈接到其它語言版本:',
+'withoutinterwiki-summary' => '以下的頁面是未有語言鏈接到其它語言版本。',
+'withoutinterwiki-submit'  => '顯示',
 
 'fewestrevisions' => '最少修訂的頁面',
 
@@ -1675,7 +1682,7 @@ $1',
 並選擇你是否需要匯出帶有頁面歷史的以前的版本，
 或是只選擇匯出帶有最後一次編輯訊息的當前版本。
 
-此外你還可以利用連結匯出檔案，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]匯出"[[{{int:mainpage}}]]"頁面。',
+此外你還可以利用連結匯出檔案，例如你可以使用[[{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
 'exportcuronly'     => '僅包含當前的修訂，而不是全部的歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",
@@ -1887,7 +1894,7 @@ $1',
 'nextdiff'     => '下一個→',
 
 # Media information
-'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr>",
+'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr />",
 'imagemaxsize'         => '在圖像描述頁對檔案大小限制為:',
 'thumbsize'            => '略圖大小:',
 'widthheightpage'      => '$1×$2, $3頁',

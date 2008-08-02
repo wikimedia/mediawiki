@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Shinjiman
  * @author O
+ * @author Shinjiman
  */
 
 $namespaceNames = array(
@@ -183,7 +183,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => '页面分类',
-'pagecategories'        => '$1个分类',
+'pagecategories'        => '个分类',
 'category_header'       => '"$1"分类中的页面',
 'subcategories'         => '亚类',
 'category-media-header' => '"$1"分类中的媒体',
@@ -324,6 +324,7 @@ $messages = array(
 'restorelink'             => '$1个被删除的版本',
 'feedlinks'               => '订阅:',
 'feed-invalid'            => '无效的订阅类型。',
+'feed-unavailable'        => '联合订阅并无于{{SITENAME}}上提供',
 'site-rss-feed'           => '$1的RSS订阅',
 'site-atom-feed'          => '$1的Atom订阅',
 'page-rss-feed'           => '“$1”的RSS订阅',
@@ -953,15 +954,15 @@ $2',
 'uploadnologintext'           => '您必须先[[Special:Userlogin|登录]]才能上传文件。',
 'upload_directory_read_only'  => '上传目录($1)不存在或无写权限。',
 'uploaderror'                 => '上载错误',
-'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。 
+'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。
 要查看或搜索以前上传的文件
 可以进入[[Special:Imagelist|文件上传列表]]，
 上传和删除将在[[Special:Log/upload|上传日志]]中记录。
 
 要在页面中加入文件，使用以下形式的连接:
-'''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''，
-'''<nowiki>[[{{ns:image}}:file.png|替换文字]]</nowiki>''' 或
-'''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
+'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.jpg]]</nowiki>'''，
+'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.png|替换文字]]</nowiki>''' 或
+'''<nowiki>[[</nowiki>{{ns:media}}</nowiki>:file.ogg]]</nowiki>'''。",
 'upload-permitted'            => '准许的文件类型: $1。',
 'upload-preferred'            => '建议的文件类型: $1。',
 'upload-prohibited'           => '禁止的文件类型: $1。',
@@ -1040,6 +1041,9 @@ $2',
 
 # Image list
 'imagelist'                 => '文件列表',
+'imagelist-summary'         => '这个特殊页面显示所有上传过的文件。
+预设中最后上传的文件会显示在这个列表中的最顶处。
+点击一栏的标题去改变这个排列。',
 'imagelisttext'             => '以下是按$2排列的$1个文件列表。',
 'getimagelist'              => '正在获取文件列表',
 'ilsubmit'                  => '搜索',
@@ -1168,9 +1172,10 @@ Template:消除歧義',
 'brokenredirects-edit'   => '(编辑)',
 'brokenredirects-delete' => '(删除)',
 
-'withoutinterwiki'        => '未有语言链接的页面',
-'withoutinterwiki-header' => '以下的页面是未有语言链接到其它语言版本:',
-'withoutinterwiki-submit' => '显示',
+'withoutinterwiki'         => '未有语言链接的页面',
+'withoutinterwiki-header'  => '以下的页面是未有语言链接到其它语言版本:',
+'withoutinterwiki-summary' => '以下的页面是未有语言链接到其它语言版本。',
+'withoutinterwiki-submit'  => '显示',
 
 'fewestrevisions' => '最少修订的页面',
 
@@ -1703,7 +1708,7 @@ $1',
 并选择你是否需要导出带有页面历史的以前的版本，
 或是只选择导出带有最后一次编辑信息的当前版本。
 
-此外你还可以利用链接导出文件，例如你可以使用[[{{ns:special}}:Export/{{int:mainpage}}]]导出"[[{{int:mainpage}}]]"页面。',
+此外你还可以利用链接导出文件，例如你可以使用[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]导出"[[{{MediaWiki:Mainpage}}]]"页面。',
 'exportcuronly'     => '仅包含当前的修订，而不是全部的历史。',
 'exportnohistory'   => "----
 '''注意:''' 由于性能原因，从此表单导出页面的全部历史已被禁用。",
@@ -1915,7 +1920,7 @@ $1',
 'nextdiff'     => '下一个→',
 
 # Media information
-'mediawarning'         => "'''警告''': 该文件可能包含恶意代码，运行它可能对您的系统带来危险。<hr>",
+'mediawarning'         => "'''警告''': 该文件可能包含恶意代码，运行它可能对您的系统带来危险。<hr />",
 'imagemaxsize'         => '在文件描述页对图像大小限制为:',
 'thumbsize'            => '缩略图大小:',
 'widthheightpage'      => '$1×$2, $3页',

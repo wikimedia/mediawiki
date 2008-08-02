@@ -5,13 +5,11 @@
  * @file
  *
  * @author SPQRobin
- * @author לערי ריינהארט
  * @author Tauʻolunga
+ * @author Jon Harald Søby
  * @author Cbrown1023
- * @author Siebrand
+ * @author לערי ריינהארט
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -588,11 +586,11 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 # File reversion
 'filerevert'                => 'Toe foki $1 ki hono tuʻunga muʻa',
 'filerevert-legend'         => 'Toe foki ʻa e faile ki hono tuʻunga muʻa',
-'filerevert-intro'          => '<span class="plainlinks">ʻOku ke toe foki ʻa e \'\'\'[[Media:$1|$1]]\'\'\' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.</span>',
+'filerevert-intro'          => "ʻOku ke toe foki ʻa e '''[[Media:$1|$1]]''' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.",
 'filerevert-comment'        => 'Fakamatala:',
 'filerevert-defaultcomment' => 'Kuo toe foki $1 ki hono tuʻunga muʻa ʻo e $2',
 'filerevert-submit'         => 'Toe foki ki hono tuʻunga muʻa',
-'filerevert-success'        => '<span class="plainlinks">Kuo toe foki ʻa e \'\'\'[[Media:$1|$1]]\'\'\' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.</span>',
+'filerevert-success'        => "Kuo toe foki ʻa e '''[[Media:$1|$1]]''' ki hono tuʻunga muʻa, paaki $4 ʻo e $2 $3.",
 
 # MIME search
 'mimesearch' => 'Kumi fakaMIME',
@@ -633,8 +631,9 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'brokenredirects'     => 'Ngaahi leʻei maumau',
 'brokenredirectstext' => 'ʻOku leʻei ʻa e ngaahi fehokotakí ni ki he peesi taʻetuʻu:',
 
-'withoutinterwiki'        => 'Ngaahi kupu taʻefehokotaki fakalea',
-'withoutinterwiki-header' => 'Ko e ngaahi peesi ʻoku ʻasi ʻi lalo ʻoku ʻikai ʻi ai haʻanau fehokotaki fakalea:',
+'withoutinterwiki'         => 'Ngaahi kupu taʻefehokotaki fakalea',
+'withoutinterwiki-header'  => 'Ko e ngaahi peesi ʻoku ʻasi ʻi lalo ʻoku ʻikai ʻi ai haʻanau fehokotaki fakalea:',
+'withoutinterwiki-summary' => 'Ko e ngaahi peesi ʻoku ʻasi ʻi lalo ʻoku ʻikai ʻi ai haʻanau fehokotaki fakalea:',
 
 'fewestrevisions' => 'Kupu mo e ngaahi paaki siʻi taha',
 

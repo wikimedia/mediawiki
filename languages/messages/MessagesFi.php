@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Crt
  * @author Nike
- * @author Cimon Avaro
- * @author לערי ריינהארט
- * @author Siebrand
+ * @author Crt
  * @author Jack Phoenix
+ * @author Jon Harald Søby
+ * @author לערי ריינהארט
+ * @author Cimon Avaro
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -505,7 +505,8 @@ $2',
 'logouttitle'                => 'Uloskirjautuminen',
 'logouttext'                 => 'Olet nyt kirjautunut ulos {{GRAMMAR:elative|{{SITENAME}}}}. Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai kirjautua uudelleen sisään.',
 'welcomecreation'            => '== Tervetuloa $1! ==
-Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{GRAMMAR:genitive|{{SITENAME}}}} asetuksiasi]].',
+Käyttäjätunnuksesi on luotu.
+Älä unohda virittää {{GRAMMAR:genitive|{{SITENAME}}}} asetuksiasi.',
 'loginpagetitle'             => 'Sisäänkirjautuminen',
 'yourname'                   => 'Käyttäjätunnus',
 'yourpassword'               => 'Salasana',
@@ -571,8 +572,8 @@ Käyttäjätunnuksesi on luotu. Älä unohda virittää [[Special:Preferences|{{
 'accountcreated'             => 'Käyttäjätunnus luotiin',
 'accountcreatedtext'         => 'Käyttäjän $1 käyttäjätunnus luotiin.',
 'createaccount-title'        => 'Tunnuksen luominen {{GRAMMAR:illative|{{SITENAME}}}}',
-'createaccount-text'         => 'Joku ($1) on luonut tunnuksen $2 {{GRAMMAR:genitive|{{SITENAME}}}}
-($4). Tunnuksen $2 salasana on » $3 ». Kirjaudu sisään ja vaihda salasanasi.
+'createaccount-text'         => 'Joku on luonut tunnuksen $2 {{GRAMMAR:illative|{{SITENAME}}}} ($4).
+Tunnuksen $2 salasana on » $3 ». Kirjaudu sisään ja vaihda salasanasi.
 
 Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.',
 'loginlanguagelabel'         => 'Kieli: $1',
@@ -782,7 +783,7 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'revdelete-text'              => 'Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.
 
 Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
-'revdelete-legend'            => 'Version rajoitukset:',
+'revdelete-legend'            => 'Version rajoitukset',
 'revdelete-hide-text'         => 'Piilota version sisältö',
 'revdelete-hide-name'         => 'Piilota toiminto ja kohde',
 'revdelete-hide-comment'      => 'Piilota yhteenveto',
@@ -791,7 +792,7 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.',
 'revdelete-suppress'          => 'Piilota myös ylläpitäjiltä',
 'revdelete-hide-image'        => 'Piilota tiedoston sisältö',
 'revdelete-unsuppress'        => 'Poista rajoitukset palautetuilta versiolta',
-'revdelete-log'               => 'Lokimerkintä:',
+'revdelete-log'               => 'Lokimerkintä',
 'revdelete-submit'            => 'Toteuta',
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
 'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
@@ -930,7 +931,7 @@ $1 | $2',
 'editusergroup'                    => 'Muokkaa käyttäjän ryhmiä',
 'userrights-editusergroup'         => 'Käyttäjän ryhmät',
 'saveusergroups'                   => 'Tallenna',
-'userrights-groupsmember'          => 'Jäsenenä ryhmissä',
+'userrights-groupsmember'          => 'Käyttäjä on jäsenenä ryhmissä',
 'userrights-groupsremovable'       => 'Poistettavat ryhmät',
 'userrights-groupsavailable'       => 'Saatavilla olevat ryhmät',
 'userrights-groupshelp'            => 'Valitse ryhmät, jotka haluat poistaa tai lisätä. Valitsemattomia ryhmiä ei muuteta. Voit poistaa valinnan pitämällä Ctrl-näppäintä pohjassa napsautuksen aikana.',
@@ -1212,9 +1213,10 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'brokenredirects-edit'   => '(muokkaa)',
 'brokenredirects-delete' => '(poista)',
 
-'withoutinterwiki'        => 'Sivut, joilla ei ole kielilinkkejä',
-'withoutinterwiki-header' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
-'withoutinterwiki-submit' => 'Näytä',
+'withoutinterwiki'         => 'Sivut, joilla ei ole kielilinkkejä',
+'withoutinterwiki-header'  => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
+'withoutinterwiki-summary' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',
+'withoutinterwiki-submit'  => 'Näytä',
 
 'fewestrevisions' => 'Sivut, joilla on vähiten muutoksia',
 
@@ -1418,7 +1420,8 @@ Palaute ja lisäapu osoitteessa:
 'historywarning'              => 'Sivua, jonka aiot poistaa on muokattu useammin kuin kerran:',
 'confirmdeletetext'           => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'actioncomplete'              => 'Toiminto suoritettu',
-'deletedtext'                 => "'''[[Special:Undelete/$1|$1]]''' on poistettu. Sivulla $2 on lista viimeaikaisista poistoista.",
+'deletedtext'                 => '”<nowiki>$1</nowiki>” on poistettu.
+Sivulla $2 on lista viimeaikaisista poistoista.',
 'deletedarticle'              => 'poisti sivun $1',
 'dellogpage'                  => 'Poistoloki',
 'dellogpagetext'              => 'Alla on loki viimeisimmistä poistoista.',
@@ -1438,9 +1441,11 @@ Palaute ja lisäapu osoitteessa:
 'rollbacklink'                => 'palauta',
 'rollbackfailed'              => 'Palautus epäonnistui',
 'cantrollback'                => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
-'alreadyrolled'               => 'Käyttäjän [[User:$2|$2]] ([[User_talk:$2|keskustelu]]) tekemiä muutoksia sivuun $1 ei voi kumota, koska käyttäjä [[User:$3|$3]] ([[User_talk:$3|keskustelu]]) on tehnyt uudempia muutoksia.',
+'alreadyrolled'               => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
+
+Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|keskustelu]]).',
 'editcomment'                 => 'Muokkauksen yhteenveto oli: <i>$1</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User_talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
 'sessionfailure'              => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
 'protectlogpage'              => 'Suojausloki',
@@ -1684,7 +1689,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-watch'              => 'Tarkkaile tätä sivua',
 'movepagebtn'             => 'Siirrä sivu',
 'pagemovedsub'            => 'Siirto onnistui',
-'movepage-moved'          => "Sivu '''$1''' siirrettiin nimelle '''$2'''.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''$1 on siirretty nimelle $2'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
 'cantmove-titleprotected' => 'Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.',
 'talkexists'              => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
@@ -1707,7 +1712,13 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 
 # Export
 'export'            => 'Sivujen vienti',
-'exporttext'        => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa. Tämä tieto voidaan tuoda johonkin toiseen wikiin, jossa käytetään MediaWiki-ohjelmistoa.<br />Syötä sivujen otsikoita riveittäin alla olevaan laatikkoon. Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.<br />Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun {{Mediawiki:mainpage}} saa vietyä linkistä [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]].',
+'exporttext'        => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa.
+Tämä tieto voidaan tuoda toiseen MediaWikiin käyttämällä [[Special:Import|tuontisivua]].
+
+Syötä sivujen otsikoita jokainen omalle rivilleen alla olevaan laatikkoon.
+Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.
+
+Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun [[{{MediaWiki:Mainpage}}]] saa vietyä linkistä [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Liitä mukaan ainoastaan uusin versio – ei koko historiaa.',
 'exportnohistory'   => '----
 Sivujen koko historian vienti on estetty suorituskykysyistä.',
@@ -1804,7 +1815,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'tooltip-n-recentchanges'         => 'Lista tuoreista muutoksista',
 'tooltip-n-randompage'            => 'Avaa satunnainen sivu',
 'tooltip-n-help'                  => 'Ohjeita',
-'tooltip-n-sitesupport'           => 'Tue sivuston toimintaa',
+'tooltip-n-sitesupport'           => 'Tue meitä',
 'tooltip-t-whatlinkshere'         => 'Lista sivuista, jotka viittaavat tänne',
 'tooltip-t-recentchangeslinked'   => 'Viimeisimmät muokkaukset sivuissa, joille viitataan tältä sivulta',
 'tooltip-feed-rss'                => 'RSS-syöte tälle sivulle',
@@ -1840,7 +1851,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 
 # Scripts
 'common.js'   => '/* Tämän sivun koodi liitetään jokaiseen sivulataukseen */',
-'monobook.js' => '/* Poistumassa käytöstä; käytä [[MediaWiki:common.js]]:ää. */',
+'monobook.js' => '/* Tämän sivun JavaScript-koodi liitetään MonoBook-tyyliin */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metatieto on poissa käytöstä tällä palvelimella.',
@@ -2251,9 +2262,9 @@ Jos tämä tunnus ei ole sinun, ÄLÄ seuraa linkkiä. Varmennuskoodi vanhenee $
 
 # Delete conflict
 'deletedwhileediting' => "<center>'''Varoitus''': Tämä sivu on poistettu sen jälkeen, kun aloitit sen muokkaamisen!</center>",
-'confirmrecreate'     => "Käyttäjä '''[[User:$1|$1]]''' ([[User_talk:$1|keskustelu]]) poisti sivun sen jälkeen, kun aloit muokata sitä. Syy oli:
+'confirmrecreate'     => "Käyttäjä '''[[User:$1|$1]]''' ([[User talk:$1|keskustelu]]) on poistanut sivun sen jälkeen, kun aloit muokata sitä. Syy oli:
 : ''$2''
-Ole hyvä ja varmista, että haluat luoda sivun uudelleen.",
+Varmista, että haluat luoda sivun uudelleen.",
 'recreate'            => 'Luo uudelleen',
 
 'unit-pixel' => ' px',

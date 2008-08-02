@@ -4,20 +4,19 @@
  * @ingroup Language
  * @file
  *
+ * @author Eirik
+ * @author Jon Harald Søby
+ * @author Jorunn
+ * @author לערי ריינהארט
+ * @author Ranveig
+ * @author M.M.S.
+ * @author H92
+ * @author Dittaeva
+ * @author SPQRobin
  * @author Olve Utne
  * @author Guttorm Flatabø
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Shauni
- * @author Eirik
  * @author Max sonnelid
- * @author Jon Harald Søby
- * @author SPQRobin
- * @author Dittaeva
- * @author M.M.S.
- * @author Jorunn
- * @author H92
- * @author Ranveig
  */
 
 /**
@@ -580,9 +579,9 @@ Grunnen som er gjeven er: ''$2''.",
 'logouttitle'                => 'Logg ut',
 'logouttext'                 => '<strong>Du er no utlogga.</strong><br />
 Avhengig av innstillingane på tenaren kan nettlesaren no brukast anonymt på {{SITENAME}}, du kan logge inn att med same kontoen eller ein annan brukar kan logge inn. Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.',
-'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, [[user:$1|$1]]! ==
-
-Brukarkontoen din har vorte oppretta. Det er tilrådd at du skriv litt om deg sjølv på [[user:$1|brukarsida di]] og ser gjennom [[special:preferences|brukarinnstillingane dine]].',
+'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
+Brukarkontoen din har vorte oppretta.
+Det er tilrådd at du skriv litt om ser gjennom brukarinnstillingane dine.',
 'loginpagetitle'             => 'Logg inn',
 'yourname'                   => 'Brukarnamn:',
 'yourpassword'               => 'Passord:',
@@ -719,7 +718,7 @@ Blokkeringa vart gjort av $1. Denne grunnen vart gjeven: ''$2''.
 * Blokkeringa utgår: $6
 * Blokkeringa var meint på: $7
 
-Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. IP-adressa di er $3, og blokkeringsnummeret er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
+Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post. IP-adressa di er $3, og blokkeringsnummeret er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
 'autoblockedtext'           => "IP-adressa di er automatisk blokkert frå endring fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
@@ -753,7 +752,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'anontalkpagetext'          => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext'             => "Det er ikkje noko tekst på denne sida. Du kan [[Special:Search/{{PAGENAME}}|søke etter henne]] i andre sider, eller klikke på '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} endre]''' for å opprette sida.",
 'userpage-userdoesnotexist' => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
-'clearyourcache'            => "'''Merk:''' Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'clearyourcache'            => "'''Merk: Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.''' '''Firefox og Safari:''' Hald ''Shift'' nede medan du trykkjer anten ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac). '''Konqueror:''' Trykk ''Oppdater'' eller på ''F5''. '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''. '''Internet Explorer:''' Hald nede ''Ctrl'' medan du trykkjer ''Oppdater'', eler trykk ''Ctrl-F5.''",
 'usercssjsyoucanpreview'    => '<strong>Tips:</strong> Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.',
 'usercsspreview'            => "'''Hugs at du berre testar ditt eige CSS, det har ikkje vorte lagra enno!'''",
 'userjspreview'             => "'''Hugs at du berre testar ditt eige JavaScript, det har ikkje vorte lagra enno!!'''",
@@ -777,7 +776,8 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 'explainconflict'           => 'Nokon annan har endra teksten sidan du byrja å skrive. Den øvste boksen inneheld den noverande teksten. Skilnaden mellom den lagra versjonen og din endra versjon er viste under. Versjonen som du har endra er i den nedste boksen. Du lyt flette endringane dine saman med den noverande teksten. <strong>Berre</strong> teksten i den øvste tekstboksen vil bli lagra når du klikkar på «Lagre».<br />',
 'yourtext'                  => 'Teksten din',
 'storedversion'             => 'Den lagra versjonen',
-'nonunicodebrowser'         => '<strong>ÅTVARING: Nettlesaren din støttar ikkje «Unicode». For å omgå problemet blir teikn utanfor ASCII-standarden viste som heksadesimale kodar. Det vil vera ein fordel om du byter nettlesar. Sjå [[hjelp:unicode]] for meir informasjon.</strong><br />',
+'nonunicodebrowser'         => '<strong>ÅTVARING: Nettlesaren din støttar ikkje «Unicode».
+For å omgå problemet blir teikn utanfor ASCII-standarden viste som heksadesimale kodar.</strong><br />',
 'editingold'                => '<strong>ÅTVARING: Du endrar ein gammal versjon av denne sida. Om du lagrar ho, vil alle endringar gjorde etter denne versjonen bli overskrivne.</strong> (Men dei kan hentast fram att frå historikken.)<br />',
 'yourdiff'                  => 'Skilnader',
 'copyrightwarning'          => 'Merk deg at alle bidrag til {{SITENAME}} er å rekne som utgjevne under $2 (sjå $1 for detaljar). Om du ikkje vil ha teksten endra og kopiert under desse vilkåra, kan du ikkje leggje han her.<br />
@@ -928,7 +928,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 
 # Search results
 'searchresults'         => 'Søkjeresultat',
-'searchresulttext'      => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[Help:Søk|Hjelp]].',
+'searchresulttext'      => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[{{MediaWiki:Helppage}}|Hjelp]].',
 'searchsubtitle'        => 'Du søkte etter «[[:$1]]»',
 'searchsubtitleinvalid' => 'Du søkte etter «$1»',
 'noexactmatch'          => "* '''{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].'''
@@ -1227,18 +1227,18 @@ Sletteloggen for fila finn du her:",
 # File reversion
 'filerevert'                => 'Rull attende $1',
 'filerevert-legend'         => 'Rull attende fila',
-'filerevert-intro'          => '<span class="plainlinks">Du rullar attende \'\'\'[[Media:$1|$1]]\'\'\' til [$4 versjonen frå $3, $2].</span>',
+'filerevert-intro'          => "Du rullar attende '''[[Media:$1|$1]]''' til [$4 versjonen frå $3, $2].",
 'filerevert-comment'        => 'Kommentar:',
 'filerevert-defaultcomment' => 'Rulla attende til versjonen frå $2, $1',
 'filerevert-submit'         => 'Rull attende',
-'filerevert-success'        => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' er rulla attende til [$4 versjonen frå $3, $2].</span>',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' er rulla attende til [$4 versjonen frå $3, $2].",
 'filerevert-badversion'     => 'Det finst ingen tidlegare lokal versjon av denne fila frå det oppgjevne tidspunktet.',
 
 # File deletion
 'filedelete'                  => 'Slett $1',
 'filedelete-legend'           => 'Slett fil',
 'filedelete-intro'            => "Du slettar '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => '<span class="plainlinks">Du slettar versjonen av \'\'\'[[Media:$1|$1]]\'\'\' frå [$4 $3, $2].</span>',
+'filedelete-intro-old'        => "Du slettar versjonen av '''[[Media:$1|$1]]''' frå [$4 $3, $2].",
 'filedelete-comment'          => 'Slettingsårsak:',
 'filedelete-submit'           => 'Slett',
 'filedelete-success'          => "'''$1''' er sletta.",
@@ -1288,8 +1288,8 @@ omdirigeringssider, og andre som truleg ikkje kan kallast innhaldssider. Om ein 
 
 Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og endra {{PLURAL:$4|'''éin''' gong|'''$4''' gonger}} sidan programvaren vart installert. Det vil seie at kvar side gjennomsnittleg har vorte endra {{PLURAL:$5|'''éin''' gong|'''$5''' gonger}}, og vist {{PLURAL:$6|'''éin''' gong|'''$6''' gonger}} per endring.
 
-[http://meta.wikimedia.org/wiki/Help:Job_queue Jobbkøen] er '''$7'''.",
-'userstatstext'          => "{{SITENAME}} har {{PLURAL:$1|'''éin''' registrert brukar|'''$1''' registrerte brukarar}}. '''$2''' (eller '''$4%''') av desse har $5rettar (sjå $3).",
+[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkøen] er '''$7'''.",
+'userstatstext'          => "{{SITENAME}} har {{PLURAL:$1|'''éin''' registrert brukar|'''$1''' registrerte brukarar}}. '''$2''' (eller '''$4%''') av desse har $5rettar.",
 'statistics-mostpopular' => 'Mest viste sider',
 
 'disambiguations'      => 'Fleirtydingssider',
@@ -1304,9 +1304,10 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'brokenredirects-edit'   => '(endre)',
 'brokenredirects-delete' => '(slett)',
 
-'withoutinterwiki'        => 'Sider utan lenkjer til andre språk',
-'withoutinterwiki-header' => 'Desse sidene manglar lenkjer til sider på andre språk:',
-'withoutinterwiki-submit' => 'Vis',
+'withoutinterwiki'         => 'Sider utan lenkjer til andre språk',
+'withoutinterwiki-header'  => 'Desse sidene manglar lenkjer til sider på andre språk:',
+'withoutinterwiki-summary' => 'Desse sidene manglar lenkjer til sider på andre språk:',
+'withoutinterwiki-submit'  => 'Vis',
 
 'fewestrevisions' => 'Sidene med færrast endringar',
 
@@ -1371,6 +1372,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'booksources-text'          => 'Nedanfor finn du ei liste over lenkjer til andre nettstader som sel nye og brukte bøker, og desse kan ha meir informasjon om bøker du leitar etter:',
 
 'categoriespagetext' => 'Wikien har følgjande kategoriar.',
+'data'               => 'Data',
 'userrights'         => 'Administrering av brukartilgang',
 'groups'             => 'Brukargrupper',
 'alphaindexline'     => '$1 til $2',
@@ -1535,7 +1537,7 @@ For hjelp og meir informasjon:
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]).',
 'editcomment'                 => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Attenderulla endring gjort av [[User:$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
@@ -1588,7 +1590,9 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 'undeletepagetext'             => 'Dei følgjande sidene er sletta, men dei finst enno i arkivet og kan attopprettast. Arkivet blir periodevis sletta.',
 'undeleterevisions'            => '{{PLURAL:$1|Éin versjon arkivert|$1 versjonar arkiverte}}',
 'undeletehistory'              => 'Om du attopprettar sida, vil alle versjonane i historikken også bli attoppretta. Dersom ei ny side med same namnet er oppretta sidan den gamle sida vart sletta, vil dei attoppretta versjonane dukke opp i historikken, og den nyaste versjonen vil bli verande som han er.',
-'undeletehistorynoadmin'       => 'Ein eller fleire versjonar av denne sida har blitt sletta. Grunnlaget for sletting er oppgjeve under, saman med informasjon om kven som sletta og når versjonane vart sletta. Innhaldet i dei sletta versjonane er berre tilgjengeleg for [[special:listusers/sysop|administratorar]].',
+'undeletehistorynoadmin'       => 'Ein eller fleire versjonar av denne sida har blitt sletta.
+Grunnlaget for sletting er oppgjeve under, saman med informasjon om kven som sletta og når versjonane vart sletta.
+Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
 'undelete-revision'            => 'Sletta versjon av $1 av $3 (frå $2):',
 'undeleterevision-missing'     => 'Ugyldig eller manglande versjon. Lenkja kan vere feil, eller han kan vere fjerna frå arkivet.',
 'undelete-nodiff'              => 'Fann ingen eldre versjonar.',
@@ -1683,7 +1687,8 @@ $1',
 'ipbhidename'                 => 'Gøym brukarnamnet frå blokkeringsloggen, lista over aktive blokkeringar og brukarlista',
 'badipaddress'                => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
 'blockipsuccesssub'           => 'Blokkering utført',
-'blockipsuccesstext'          => '«[[User:$1|$1]]» er blokkert.<br />Sjå [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringar.',
+'blockipsuccesstext'          => '«[[Special:Contributions/$1|$1]]» er blokkert.<br />
+Sjå [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringar.',
 'ipb-edit-dropdown'           => 'Endre grunnane for blokkering',
 'ipb-unblock-addr'            => 'Opphev blokkeringa av $1',
 'ipb-unblock'                 => 'Opphev blokkeringa av eit brukarnamn eller ei IP-adresse',
@@ -1794,10 +1799,15 @@ Målsida «[[$1]]» finst allereie. Vil du slette ho for å gje rom for flytting
 
 # Export
 'export'            => 'Eksporter sider',
-'exporttext'        => 'Du kan eksportere teksten og endringshistorikken til ei bestemt side eller ei gruppe sider, pakka inn i litt XML. Dette kan så importerast til ein annan wiki som brukar MediaWiki-programvaren gjennom [[Special:Import|import-sida]].
+'exporttext'        => 'Du kan eksportere teksten og endringshistorikken til ei bestemt side eller ei gruppe sider, pakka inn i litt XML.
+Dette kan så importerast til ein annan wiki som brukar MediaWiki-programvaren gjennom [[Special:Import|import-sida]].
 
-For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per linje, og velg om du vil ha berre noverande versjon, eller alle versjonar i historikken. Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til dømes [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for sida «[[{{Mediawiki:Mainpage}}]]».',
+For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per linje, og velg om du vil ha berre noverande versjon, eller alle versjonar i historikken.
+
+Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til dømes [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for sida «[[{{MediaWiki:Mainpage}}]]».',
 'exportcuronly'     => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
+'exportnohistory'   => "----
+'''Merk:''' Å eksportere heile sidehistorikkar gjennom dette skjemaet er slått av grunna problem med ytinga.",
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Legg til sider frå kategori:',
 'export-addcat'     => 'Legg til',
@@ -1811,6 +1821,7 @@ For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per li
 'allmessagescurrent'        => 'Noverande tekst',
 'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.',
 'allmessagesnotsupportedDB' => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
+'allmessagesmodified'       => 'Vis berre endra',
 
 # Thumbnails
 'thumbnail-more'  => 'Forstørr',
@@ -1836,6 +1847,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'importsuccess'              => 'Importeringa er ferdig!',
 'importhistoryconflict'      => 'Det kan vera at det er konflikt i historikken (kanskje sida vart importert før)',
 'importnosources'            => 'Ingen kjelder for transwikiimport er oppgjevne og funksjonen for opplasting av historikk er deaktivert.',
+'importnofile'               => 'Inga importfil er lasta opp.',
 'import-parse-failure'       => 'Feil i tolking av XML-import',
 'import-noarticle'           => 'Ingen sider å importere!',
 
@@ -1960,6 +1972,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 'markedaspatrolledtext'               => 'Den valde versjonen er vorten merkt som patruljert.',
 'rcpatroldisabled'                    => 'Siste-endringar-patruljering er deaktivert',
 'rcpatroldisabledtext'                => 'Patruljeringsfunksjonen er deaktivert.',
+'markedaspatrollederror'              => 'Kan ikkje merke sida som patruljert',
 'markedaspatrollederror-noautopatrol' => 'Ein har ikkje høve til å merkje sine eigne endringar som godkjende.',
 
 # Patrol log
@@ -2389,7 +2402,9 @@ $1',
 'watchlistedit-noitems'        => 'Overvakingslista di er tom.',
 'watchlistedit-normal-title'   => 'Endre overvakingslista',
 'watchlistedit-normal-legend'  => 'Fjern sider frå overvakingslista',
-'watchlistedit-normal-explain' => 'Sidene på overvakingslista di er viste nedanfor. For å fjerne ei side, kryss av boksen ved sidan av sida du vil fjerne og klikk på «Fjern side». Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]], eller [[Special:Watchlist/clear|fjerne alle sidene]].',
+'watchlistedit-normal-explain' => 'Sidene på overvakingslista di er viste nedanfor.
+For å fjerne ei side, kryss av boksen ved sidan av sida du vil fjerne og klikk på «Fjern side».
+Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]].',
 'watchlistedit-normal-submit'  => 'Fjern sider',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Éi side|$1 sider}} vart fjerna frå overvakingslista di:',
 'watchlistedit-raw-title'      => 'Endre på overvakingslista i råformat',
@@ -2423,7 +2438,7 @@ $1',
 'version-skin-extension-functions' => 'Draktutvidingsfunksjonar',
 'version-hook-name'                => 'Namn på tillegg',
 'version-hook-subscribedby'        => 'Brukt av',
-'version-version'                  => 'Versjon',
+'version-version'                  => 'versjon',
 'version-license'                  => 'Lisens',
 'version-software'                 => 'Installert programvare',
 'version-software-product'         => 'Produkt',

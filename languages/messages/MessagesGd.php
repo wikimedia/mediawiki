@@ -6,10 +6,9 @@
  *
  * @author SPQRobin
  * @author לערי ריינהארט
- * @author Helix84
- * @author Nike
  * @author Sionnach
  * @author Raymond
+ * @author Helix84
  */
 
 $messages = array(
@@ -176,8 +175,8 @@ $1",
 'prevn'             => '$1 mu dheireadh',
 'nextn'             => 'an ath $1',
 'viewprevnext'      => 'Seall ($1) ($2) ($3).',
-'showingresults'    => "A'nochdadh <b>$1</b> toraidhean gu h-ìosal a'tòiseachadh le #<b>$2</b>.",
-'showingresultsnum' => "A'nochdadh <b>$3</b> toraidhean gu h-ìosal a'tòiseachadh le #<b>$2</b>.",
+'showingresults'    => "A'nochdadh '''$1''' toraidhean gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'showingresultsnum' => "A'nochdadh '''$3''' toraidhean gu h-ìosal a'tòiseachadh le #'''$2'''.",
 'powersearch'       => 'Rannsaich',
 
 # Preferences page
@@ -243,7 +242,7 @@ $1",
 
 Tha na duilleagan air an sealladh '''\$3''' uairean, agus air an deasaicheadh '''\$4''' uairean o'n deach an wiki a shuidheachadh. Thig sin ri '''\$5''' deasaicheidhean anns a'mheadhan gach duilleag, agus '''\$6''' seallaidhean gach duilleag.
 
-The [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] length is '''\$7'''.",
+The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
 
 'doubleredirects' => 'Ath-stiùreidhean dùbailte',
 

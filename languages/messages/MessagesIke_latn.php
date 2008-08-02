@@ -5,7 +5,6 @@
  * @file
  *
  * @author SPQRobin
- * @author Siebrand
  */
 
 $messages = array(
@@ -104,6 +103,10 @@ $messages = array(
 'editsection'         => 'suqusiqpaa',
 'editold'             => 'suqusiqpaa',
 'editsectionhint'     => 'suqusiqpaa ilangiutititsiguti: $1',
+'site-rss-feed'       => '$1 ᕐᔅᔅ ᒥᐊᓂᕆᕚ',
+'site-atom-feed'      => '$1 ᐊᑐᒻ ᒥᐊᓂᕆᕚ',
+'page-rss-feed'       => '"$1" ᕐᔅᔅ ᒥᐊᓂᕆᕚ',
+'page-atom-feed'      => '"$1" ᐊᑐᒻ ᒥᐊᓂᕆᕚ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'mappitaq',

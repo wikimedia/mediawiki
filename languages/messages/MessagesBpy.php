@@ -4,9 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Uttam Singha, Dec 2006
  * @author Usingha
- * @author Siebrand
+ * @author Uttam Singha, Dec 2006
  */
 
 $digitTransformTable = array(
