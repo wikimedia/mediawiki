@@ -1496,7 +1496,7 @@ class Linker {
 	 * Create a headline for content
 	 *
 	 * @param int    $level   The level of the headline (1-6)
-	 * @param string $attribs Any attrimbutes for the headline, starting with a space and ending with '>'
+	 * @param string $attribs Any attributes for the headline, starting with a space and ending with '>'
 	 *                        This *must* be at least '>' for no attribs
 	 * @param string $anchor  The anchor to give the headline (the bit after the #)
 	 * @param string $text    The text of the header
@@ -1505,7 +1505,7 @@ class Linker {
 	 * @return string HTML headline
 	 */
 	public function makeHeadline( $level, $attribs, $anchor, $text, $link ) {
-		return "<h$level id=\"$anchor\"$attribs$link <span class=\"mw-headline\">$text</span></h$level>";
+		return "<a name=\"$anchor\"></a><h$level$attribs$link <span class=\"mw-headline\">$text</span></h$level>";
 	}
 
 	/**
