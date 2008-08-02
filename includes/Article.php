@@ -1829,7 +1829,6 @@ class Article {
 
 		# If nothing's changed, do nothing
 		if( $changed ) {
-			global $wgGroupPermissions;
 			if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
 
 				$dbw = wfGetDB( DB_MASTER );
