@@ -24,7 +24,8 @@ class SpecialListGroupRights extends SpecialPage {
 	 * Show the special page
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgGroupPermissions, $wgImplicitGroups, $wgMessageCache;
+		global $wgOut, $wgImplicitGroups, $wgMessageCache;
+		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups;
 		$wgMessageCache->loadAllMessages();
 
 		$this->setHeaders();
@@ -69,13 +70,16 @@ class SpecialListGroupRights extends SpecialPage {
 				$grouplink = '';
 			}
 
+			$addgroups = isset( $wgAddGroups[$group] ) ? $wgAddGroups[$group] : array();
+			$removegroups = isset( $wgRemoveGroups[$group] ) ? $wgRemoveGroups[$group] : array();
+
 			$wgOut->addHTML(
 				'<tr>
 					<td>' .
 						$grouppage . $grouplink .
 					'</td>
 					<td>' .
-						self::formatPermissions( $permissions ) .
+						self::formatPermissions( $permissions, $addgroups, $removegroups ) .
 					'</td>
 				</tr>'
 			);
@@ -91,7 +95,8 @@ class SpecialListGroupRights extends SpecialPage {
 	 * @param $permissions Array of permission => bool (from $wgGroupPermissions items)
 	 * @return string List of all granted permissions, separated by comma separator
 	 */
-	 private static function formatPermissions( $permissions ) {
+	 private static function formatPermissions( $permissions, $add, $remove ) {
+	 	global $wgLang;
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
 			if ( $granted ) {
@@ -103,6 +108,12 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 		}
 		sort( $r );
+		if( $add ) {
+			$r[] = wfMsgHTML( 'listgrouprights-addgroup', $wgLang->listToText( $add ) );
+		}
+		if( $remove ) {
+			$r[] = wfMsgHTML( 'listgrouprights-removegroup', $wgLang->listToText( $remove ) );
+		}
 		if( empty( $r ) ) {
 			return '';
 		} else {
