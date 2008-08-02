@@ -1327,6 +1327,7 @@ Note that using the navigation links will reset this column.',
 
 # Search results
 'searchresults'             => 'Search results',
+'searchresults-title'       => 'Search results for $1',
 'searchresulttext'          => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:Whatlinkshere/$1|all pages that link to "$1"]])',
 'searchsubtitleinvalid'     => "You searched for '''$1'''",

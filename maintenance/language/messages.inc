@@ -692,6 +692,7 @@ $wgMessageStructure = array(
 	),
 	'search' => array(
 		'searchresults',
+		'searchresults-title',
 		'searchresulttext',
 		'searchsubtitle',
 		'searchsubtitleinvalid',
