@@ -278,7 +278,7 @@ class SpecialSearch {
 	function setupPage( $term ) {
 		global $wgOut;
 		if( !empty( $term ) )
-			$searchTitle = SpecialPage::getTitleFor( 'Search' );			
+			$wgOut->setPageTitle( wfMsg( 'searchresults' ) );			
 		$subtitlemsg = ( Title::newFromText( $term ) ? 'searchsubtitle' : 'searchsubtitleinvalid' );
 		$wgOut->setSubtitle( $wgOut->parse( wfMsg( $subtitlemsg, wfEscapeWikiText($term) ) ) );
 		$wgOut->setArticleRelated( false );
