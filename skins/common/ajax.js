@@ -154,3 +154,14 @@ function sajax_do_call(func_name, args, target) {
 
 	return true;
 }
+
+/**
+ * @return boolean whether the browser supports XMLHttpRequest
+ */
+function wfSupportsAjax() {
+	var request = sajax_init_object();
+	var supportsAjax = request ? true : false;
+	delete request;
+	return supportsAjax;
+}
+
