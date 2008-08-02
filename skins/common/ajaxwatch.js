@@ -146,13 +146,3 @@ wgAjaxWatch.onLoad = function() {
 };
 
 hookEvent("load", wgAjaxWatch.onLoad);
-
-/**
- * @return boolean whether the browser supports XMLHttpRequest
- */
-function wfSupportsAjax() {
-	var request = sajax_init_object();
-	var supportsAjax = request ? true : false;
-	delete request;
-	return supportsAjax;
-}
