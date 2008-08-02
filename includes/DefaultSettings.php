@@ -1301,8 +1301,8 @@ $wgAutopromote = array(
  * // Sysops can disable other sysops in an emergency, and disable bots
  * $wgRemoveGroups['sysop'] = array( 'sysop', 'bot' );
  */
-$wgAddGroups = $wgRemoveGroups = array();
-
+$wgAddGroups = array();
+$wgRemoveGroups = array();
 
 /**
  * A list of available rights, in addition to the ones defined by the core.

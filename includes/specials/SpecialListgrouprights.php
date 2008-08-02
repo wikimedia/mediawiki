@@ -108,10 +108,14 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 		}
 		sort( $r );
-		if( $add ) {
+		if( $add === true ){
+			$r[] = wfMsgHTML( 'listgrouprights-addgroup-all' );
+		} else if( is_array( $add ) && count( $add ) ) {
 			$r[] = wfMsgHTML( 'listgrouprights-addgroup', $wgLang->listToText( $add ) );
 		}
-		if( $remove ) {
+		if( $remove === true ){
+			$r[] = wfMsgHTML( 'listgrouprights-removegroup-all' );
+		} else if( is_array( $remove ) && count( $remove ) ) {
 			$r[] = wfMsgHTML( 'listgrouprights-removegroup', $wgLang->listToText( $remove ) );
 		}
 		if( empty( $r ) ) {
