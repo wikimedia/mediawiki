@@ -11,6 +11,8 @@
  * @author Siebrand
  */
 
+$separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
+
 $skinNames = array(
 	'cologneblue' => 'Blau Colonia',
 );
@@ -35,7 +37,6 @@ $namespaceNames = array(
 	NS_CATEGORY       => 'Categoria',
 	NS_CATEGORY_TALK  => 'Discussion_Categoria'
 );
-$linkTrail = "/^([a-z]+)(.*)\$/sD";
 
 $messages = array(
 # User preference toggles
