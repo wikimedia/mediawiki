@@ -42,6 +42,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   sidebar and add custom portlets to it
 * Added 'MakeGlobalVariablesScript' hook for extensions to be able to add variables
   into into the output of Skin::makeVariablesScript
+* Added $wgAddGroups and $wgRemoveGroups display on Special:ListGroupRights
 
 === Bug fixes in 1.14 ===
 
