@@ -507,7 +507,7 @@ class WebRequest {
 		unset( $newquery['title'] );
 		$newquery = array_merge( $newquery, $array );
 		$query = wfArrayToCGI( $newquery );
-		return $onlyquery ? $query : $wgTitle->getLocalURL( $basequery );
+		return $onlyquery ? $query : $wgTitle->getLocalURL( $query );
 	}
 
 	/**
