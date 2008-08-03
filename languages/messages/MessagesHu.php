@@ -5,7 +5,6 @@
  * @file
  *
  * @author Dani
- * @author Siebrand
  * @author Tgr
  * @author Bdamokos
  * @author Samat
@@ -1047,6 +1046,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Search results
 'searchresults'             => 'A keresés eredménye',
+'searchresults-title'       => 'Keresési eredmények: „$1”',
 'searchresulttext'          => 'A keresésről a [[{{MediaWiki:Helppage}}|{{int:help}}]] lapon találhatsz további információkat.',
 'searchsubtitle'            => 'A keresett kifejezés: „[[:$1]]” ([[Special:Prefixindex/$1|minden, „$1” előtaggal kezdődő lap]] | [[Special:Whatlinkshere/$1|a(z) „$1” lapra hivatkozó lapok]])',
 'searchsubtitleinvalid'     => "A keresett kulcsszó: „'''$1'''”",
@@ -1215,7 +1215,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'right-autoconfirmed'        => 'félig védett lapok szerkesztése',
 'right-bot'                  => 'automatikus folyamatként való kezelés',
 'right-nominornewtalk'       => 'felhasználói lapok nem apró szerkesztésével megjelenik az új üzenet szöveg',
-'right-apihighlimits'        => 'nagyobb mennyiségű lekérdezés az API-n keresztül',
+'right-apihighlimits'        => 'nagyobb mennyiségű lekérdezés az API-n keresztül (lassú lekérések: 500 találat; gyors lekérdezések: 5000 találat)',
 'right-writeapi'             => 'a szerkesztő-API használata',
 'right-delete'               => 'lapok törlése',
 'right-bigdelete'            => 'nagy történettel rendelkező képek törlése',
@@ -1649,13 +1649,17 @@ Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy a
 'listusers-noresult' => 'Nem található szerkesztő.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Szerkesztői csoportok jogai',
-'listgrouprights-summary'  => 'Lenn láthatóak a wikiben létező szerkesztői csoportok, valamint az azokhoz tartozó jogok.
+'listgrouprights'                 => 'Szerkesztői csoportok jogai',
+'listgrouprights-summary'         => 'Lenn láthatóak a wikiben létező szerkesztői csoportok, valamint az azokhoz tartozó jogok.
 Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-helppage}}|itt]] találhatsz.',
-'listgrouprights-group'    => 'Csoport',
-'listgrouprights-rights'   => 'Jogok',
-'listgrouprights-helppage' => 'Help:Csoportok jogai',
-'listgrouprights-members'  => '(tagok listája)',
+'listgrouprights-group'           => 'Csoport',
+'listgrouprights-rights'          => 'Jogok',
+'listgrouprights-helppage'        => 'Help:Csoportok jogai',
+'listgrouprights-members'         => '(tagok listája)',
+'listgrouprights-addgroup'        => 'ezekhez a csoportokhoz adhat szerkesztőket: $1',
+'listgrouprights-removegroup'     => 'ezekből a csoportokból távolíthat el szerkesztőket: $1',
+'listgrouprights-addgroup-all'    => 'bármelyik csoporthoz adhat szerkesztőket',
+'listgrouprights-removegroup-all' => 'bármelyik csoportból távolíthat el szerkesztőket',
 
 # E-mail user
 'mailnologin'     => 'Nincs feladó',

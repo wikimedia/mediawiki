@@ -6,8 +6,6 @@
  *
  * @author Mahitgar
  * @author Kaustubh
- * @author Siebrand
- * @author SPQRobin
  * @author Jon Harald Søby
  * @author प्रणव कुलकर्णी
  * @author Angela

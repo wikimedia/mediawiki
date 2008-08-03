@@ -5,10 +5,8 @@
  * @file
  *
  * @author Servien
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Slomox
- * @author SPQRobin
  * @author Erwin85
  * @author Jon Harald Søby
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>

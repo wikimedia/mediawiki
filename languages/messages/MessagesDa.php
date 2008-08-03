@@ -8,11 +8,11 @@
  * @author Morten
  * @author Jon Harald Søby
  * @author M.M.S.
- * @author Siebrand
  * @author Peter Andersen
- * @author H92
  * @author S.Örvarr.S
+ * @author H92
  * @author Boivie
+ * @author Kaare
  * @author Ranveig
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
@@ -741,9 +741,9 @@ Overvej om det er passende at genoprette siden. De slettede versioner for
 denne side er vist nedenfor:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Advarsel: Denne side indeholder ligeledes mange bekostelig analysere funktion opringninger.
+'expensive-parserfunction-warning'        => 'Advarsel: Denne side indeholder for mange kald af ressourcekrævende parserfunktioner.
 
-Det burde være mindre end $2, der er nu $1.',
+Antallet af kald burde være færre end $2, der er nu $1.',
 'expensive-parserfunction-category'       => 'Sider med for mange bekostelige analysere funktion opringninger',
 'post-expand-template-inclusion-warning'  => 'Advarsel: Denne siden indeholder for mange skabeloner.
 Nogle af skabelonerne vil ikke blive inkluderet.',

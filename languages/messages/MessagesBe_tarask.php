@@ -2230,6 +2230,9 @@ $1',
 'spamprotectiontext'  => 'Старонка, якую Вы жадаеце захаваць, была заблякаваная спам-фільтрам.
 Верагодна яна ўтрымлівае спасылку на вонкавы сайт.',
 'spamprotectionmatch' => 'Спам-фільтар даслаў наступнае паведамленьне: $1',
+'spambot_username'    => 'Чыстка спаму MediaWiki',
+'spam_reverting'      => 'Адкат да апошняй вэрсіі без спасылак на $1',
+'spam_blanking'       => 'Усе вэрсіі ўтрымліваюць спасылкі на $1, чыстка',
 
 # Info page
 'infosubtitle'   => 'Інфармацыя пра старонку',
@@ -2326,8 +2329,10 @@ $1',
 'exif-lightsource'                 => 'Крыніца сьвятла',
 'exif-flash'                       => 'Успышка',
 'exif-focallength-format'          => '$1 мм',
+'exif-saturation'                  => 'Насычанасьць',
 'exif-gpslatitude'                 => 'Шырата',
 'exif-gpslongitude'                => 'Даўгата',
+'exif-gpsaltitude'                 => 'Вышыня',
 
 'exif-lightsource-0' => 'Невядомая',
 'exif-lightsource-4' => 'Успышка',

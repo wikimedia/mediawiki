@@ -6,9 +6,7 @@
  *
  * @author Vinhtantran
  * @author Minh Nguyen
- * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Jon Harald Søby
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang

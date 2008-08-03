@@ -6,12 +6,10 @@
  *
  * @author Dundak
  * @author Michawiki
- * @author Siebrand
  * @author Tlustulimu
  * @author לערי ריינהארט
  * @author Jon Harald Søby
  * @author M.M.S.
- * @author SPQRobin
  */
 
 $fallback = 'de';

@@ -5,7 +5,6 @@
  * @file
  *
  * @author Aviator
- * @author Siebrand
  * @author Aurora
  * @author לערי ריינהארט
  * @author Jon Harald Søby
@@ -916,6 +915,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 
 # Search results
 'searchresults'             => 'Keputusan carian',
+'searchresults-title'       => 'Keputusan carian $1',
 'searchresulttext'          => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Anda mencari "[[$1]]"',
 'searchsubtitleinvalid'     => 'Untuk pertanyaan "$1"',
@@ -1085,7 +1085,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'right-autoconfirmed'        => 'Menyunting laman yang dilindungi separa',
 'right-bot'                  => 'Dianggap melakukan tugas-tugas automatik',
 'right-nominornewtalk'       => 'Suntingan kecil pada laman perbincangan seseorang pengguna tidak menghidupkan isyarat pesanan baru untuk pengguna itu',
-'right-apihighlimits'        => 'Meninggikan had dalam pertanyaan API',
+'right-apihighlimits'        => 'Meninggikan had dalam pertanyaan API (pertanyaan lambat: 500 hasil, pertanyaan laju: 5000 hasil)',
 'right-writeapi'             => 'Menggunakan API tulis',
 'right-delete'               => 'Menghapuskan laman',
 'right-bigdelete'            => 'Menghapuskan laman bersejarah',
@@ -1493,13 +1493,17 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 'listusers-noresult' => 'Tiada pengguna dijumpai.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Hak kumpulan pengguna',
-'listgrouprights-summary'  => 'Berikut ialah senarai kumpulan pengguna yang ditubuhkan di wiki ini dengan hak-hak masing-masing.
+'listgrouprights'                 => 'Hak kumpulan pengguna',
+'listgrouprights-summary'         => 'Berikut ialah senarai kumpulan pengguna yang ditubuhkan di wiki ini dengan hak-hak masing-masing.
 Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan]] mengenai setiap hak.',
-'listgrouprights-group'    => 'Kumpulan',
-'listgrouprights-rights'   => 'Hak',
-'listgrouprights-helppage' => 'Help:Hak kumpulan',
-'listgrouprights-members'  => '(senarai ahli)',
+'listgrouprights-group'           => 'Kumpulan',
+'listgrouprights-rights'          => 'Hak',
+'listgrouprights-helppage'        => 'Help:Hak kumpulan',
+'listgrouprights-members'         => '(senarai ahli)',
+'listgrouprights-addgroup'        => 'Boleh menambah kumpulan: $1',
+'listgrouprights-removegroup'     => 'Boleh membuang kumpulan: $1',
+'listgrouprights-addgroup-all'    => 'Boleh menambah semua kumpulan',
+'listgrouprights-removegroup-all' => 'Boleh membuang semua kumpulan',
 
 # E-mail user
 'mailnologin'     => 'Tiada alamat e-mel',

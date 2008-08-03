@@ -8,7 +8,6 @@
  * @author Marine-Blue
  * @author JtFuruhata
  * @author Broad-Sky
- * @author Siebrand
  * @author Kahusi
  * @author Emk
  * @author Mzm5zbC3
@@ -417,7 +416,7 @@ $2',
 <p>※いくつかのページはブラウザのキャッシュをクリアするまでログインしているかのように表示されることがあります。</p>',
 'welcomecreation'            => '== $1 さん、ようこそ！ ==
 あなたのアカウントができました。
-お好みに合わせてオプションを変更することができます。',
+お好みに合わせて[[Special:Preferences|オプション（{{SITENAME}}）]]を変更することができます。',
 'loginpagetitle'             => 'ログイン',
 'yourname'                   => '利用者名',
 'yourpassword'               => 'パスワード',
@@ -664,7 +663,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # "Undo" feature
 'undo-success' => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
 'undo-failure' => '中間の版での編集と競合したため、自動取り消しできませんでした。',
-'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) の $1 版の編集を取り消し',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) による $1 版の編集を取り消し',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
@@ -777,7 +776,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # Search results
 'searchresults'            => '検索結果',
 'searchresulttext'         => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:Helppage}}|{{int:help}}]]をご覧ください。',
-'searchsubtitle'           => "検索語: '''[[:$1]]'''",
+'searchsubtitle'           => '検索語: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" から始まるページ]] | [[Special:Whatlinkshere/$1|"$1" のリンク元]])',
 'searchsubtitleinvalid'    => "検索語: '''$1'''",
 'noexactmatch'             => '"$1" というタイトルのページは存在しませんでした。[[:$1|新規作成する]]。',
 'noexactmatch-nocreate'    => "''\"\$1\"'' というタイトルのページは存在しませんでした。",

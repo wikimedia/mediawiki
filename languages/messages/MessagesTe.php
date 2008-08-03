@@ -8,11 +8,9 @@
  * @author Mpradeep
  * @author Chaduvari
  * @author Sunil Mohan
- * @author Siebrand
  * @author వైజాసత్య
  * @author לערי ריינהארט
  * @author Jon Harald Søby
- * @author SPQRobin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 

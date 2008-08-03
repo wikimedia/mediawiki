@@ -6,9 +6,7 @@
  *
  * @author Katimawan2005
  * @author Val2397
- * @author Siebrand
  * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $messages = array(

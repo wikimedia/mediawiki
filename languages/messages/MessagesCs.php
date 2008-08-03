@@ -9,7 +9,6 @@
  * @author Mormegil
  * @author Matěj Grabovský
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Reaperman
  * @author Jon Harald Søby
  * @author Helix84

@@ -10,7 +10,6 @@
  * @author Spacebirdy
  * @author Adriaan
  * @author Anrie
- * @author Siebrand
  * @author Manie
  * @author Jon Harald Søby
  */
@@ -420,7 +419,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'loginproblem'               => '<b>Daar was probleme met jou intekening.</b><br />Probeer weer.',
 'login'                      => 'Teken in',
 'nav-login-createaccount'    => 'Teken in',
-'loginprompt'                => 'U blaaier moet koekies toelaat om by {{SITENAME}} te kan aanteken.',
+'loginprompt'                => 'U blaaier moet koekies toelaat om by [[Special:Userlog|{{SITENAME}} te kan aanteken]].',
 'userlogin'                  => 'Teken in',
 'logout'                     => 'Teken uit',
 'userlogout'                 => 'Teken uit',
@@ -575,7 +574,7 @@ Vermeld asseblief die bovermelde bloknommer as u die saak rapporteer,",
 'blockednoreason'                  => 'geen rede gegeef nie',
 'blockedoriginalsource'            => "Die bronteks van '''$1''' word onder gewys:",
 'blockededitsource'                => "Die teks van '''jou wysigings''' aan '''$1''' word hieronder vertoon:",
-'whitelistedittitle'               => 'Inteken benodig om te redigeer',
+'whitelistedittitle'               => 'U moet [[Special:Userlogin|aanteken]] wees om te kan redigeer.',
 'whitelistedittext'                => 'U moet $1 om bladsye te wysig.',
 'confirmedittitle'                 => 'E-pos-bevestiging nodig om te redigeer',
 'confirmedittext'                  => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
@@ -1470,6 +1469,7 @@ Hier is die huidige verstellings vir bladsy <strong>$1</strong>:",
 'restriction-edit'   => 'Wysig',
 'restriction-move'   => 'Skuif',
 'restriction-create' => 'Skep',
+'restriction-upload' => 'Oplaai',
 
 # Restriction levels
 'restriction-level-sysop'         => 'volledig beveilig',
@@ -1536,6 +1536,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 'nolinkshere-ns'           => "Geen bladsye skakel na '''[[:$1]]''' in die verkose naamruimte nie.",
 'isredirect'               => 'Stuur bladsy aan',
 'istemplate'               => 'insluiting',
+'isimage'                  => 'lêerskakel',
 'whatlinkshere-prev'       => '{{PLURAL:$1|vorige|vorige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links'      => '← skakels',
@@ -1576,6 +1577,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'blockipsuccesssub'        => 'Blokkering het geslaag',
 'blockipsuccesstext'       => 'Die IP-adres "$1" is geblokkeer.
 <br />Sien die [[Special:Ipblocklist|IP-bloklys]] vir \'n oorsig van blokkerings.',
+'ipb-edit-dropdown'        => 'Werk lys van redes by',
 'ipb-unblock-addr'         => 'Deblokkeer $1',
 'ipb-unblock'              => "Deblokkeer 'n gebruiker of IP-adres",
 'ipb-blocklist-addr'       => 'Wys bestaande blokkades vir $1',
@@ -1592,6 +1594,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'blocklistline'            => '$1, $2 het $3 geblok ($4)',
 'infiniteblock'            => 'oneindig',
 'expiringblock'            => 'verval op $1',
+'anononlyblock'            => 'anoniem-alleen',
 'createaccountblock'       => 'skep van gebruikersrekeninge is geblokkeer',
 'emailblock'               => 'e-pos versper',
 'ipblocklist-empty'        => 'Die blokkeerlys is leeg.',
@@ -1606,6 +1609,7 @@ Sien die [[Special:Ipblocklist|IP-bloklys]] vir geblokkeerde adresse.",
 'unblocklogentry'          => 'blokkade van $1 is opgehef:',
 'block-log-flags-anononly' => 'anonieme gebruikers alleenlik',
 'block-log-flags-noemail'  => 'e-pos versper',
+'ipb_expiry_invalid'       => 'Ongeldige duur.',
 'ipb_already_blocked'      => '"$1" is reeds geblok',
 'ip_range_invalid'         => 'Ongeldige IP waardegebied.',
 'blockme'                  => 'Versper my',
@@ -1923,7 +1927,10 @@ Ander velde sal versteek wees.
 'exif-flashenergy'         => 'Flitssterkte',
 'exif-exposureindex'       => 'Beligtingsindeks',
 'exif-filesource'          => 'Lêerbron',
+'exif-scenetype'           => 'Soort toneel',
 'exif-whitebalance'        => 'Witbalans',
+'exif-scenecapturetype'    => 'Soort opname',
+'exif-gaincontrol'         => 'Toneelbeheer',
 'exif-contrast'            => 'Kontras',
 'exif-saturation'          => 'Versadiging',
 'exif-sharpness'           => 'Skerpte',
@@ -2003,6 +2010,7 @@ Ander velde sal versteek wees.
 'exif-scenecapturetype-0' => 'Standaard',
 'exif-scenecapturetype-1' => 'Landskap',
 'exif-scenecapturetype-2' => 'Portret',
+'exif-scenecapturetype-3' => 'Nagtoneel',
 
 'exif-gaincontrol-0' => 'Geen',
 
@@ -2147,7 +2155,7 @@ Probeer normale voorskou.',
 Probeer normale voorskou.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Veranderinge nuwer as $1 sekondes mag moontlik nie gewys word nie.',
+'lag-warn-normal' => 'Veranderinge nuwer as $1 {{PLURAL:$1|sekonde|sekondes}} mag moontlik nie gewys word nie.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'U dophoulys bevat {{PLURAL:$1|1 bladsy|$1 bladsye}}, besprekingsbladsye uitgesluit.',

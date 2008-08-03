@@ -9,7 +9,6 @@
  * @author Darth Kule
  * @author Cruccone
  * @author Melos
- * @author Siebrand
  * @author Gianfranco
  * @author Felis
  * @author לערי ריינהארט
@@ -19,7 +18,6 @@
  * @author S.Örvarr.S
  * @author Xpensive
  * @author Nick1915
- * @author SPQRobin
  * @author Pietrodn
  * @author Tonyfroio
  * @author SabineCretella
@@ -887,6 +885,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 
 # Search results
 'searchresults'             => 'Risultati della ricerca',
+'searchresults-title'       => 'Risultati della ricerca di $1',
 'searchresulttext'          => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Ricerca di '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Ricerca di '''$1'''",
@@ -1053,7 +1052,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'right-autoconfirmed'        => 'Modifica le pagine semiprotette',
 'right-bot'                  => 'Da trattare come processo automatico',
 'right-nominornewtalk'       => "Fa sì che le modifiche minori alle pagine di discussione non facciano comparire l'avviso di nuovo messaggio",
-'right-apihighlimits'        => 'Usa limiti più alti per le interrogazioni API',
+'right-apihighlimits'        => 'Usa limiti più alti per le interrogazioni API (Query lente: 500 risultati; Query veloci: 5000 risultati)',
 'right-writeapi'             => "Usa l'API per modificare il wiki",
 'right-delete'               => 'Cancella pagine',
 'right-bigdelete'            => 'Cancella pagine con cronologie lunghe',
@@ -1473,13 +1472,17 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'listusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Diritti del gruppo utente',
-'listgrouprights-summary'  => "Di seguito sono elencati i gruppi utente definiti per questo wiki, con i diritti d'accesso loro associati.
+'listgrouprights'                 => 'Diritti del gruppo utente',
+'listgrouprights-summary'         => "Di seguito sono elencati i gruppi utente definiti per questo wiki, con i diritti d'accesso loro associati.
 Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni]] sui diritti individuali.",
-'listgrouprights-group'    => 'Gruppo',
-'listgrouprights-rights'   => 'Diritti',
-'listgrouprights-helppage' => 'Help:Diritti del gruppo',
-'listgrouprights-members'  => '(Elenco dei membri)',
+'listgrouprights-group'           => 'Gruppo',
+'listgrouprights-rights'          => 'Diritti',
+'listgrouprights-helppage'        => 'Help:Diritti del gruppo',
+'listgrouprights-members'         => '(Elenco dei membri)',
+'listgrouprights-addgroup'        => 'Può aggiungere gruppi: $1',
+'listgrouprights-removegroup'     => 'Può rimuovere gruppi: $1',
+'listgrouprights-addgroup-all'    => 'Può aggiungere tutti i gruppi',
+'listgrouprights-removegroup-all' => 'Può rimuovere tutti i gruppi',
 
 # E-mail user
 'mailnologin'     => 'Nessun indirizzo cui inviare il messaggio',

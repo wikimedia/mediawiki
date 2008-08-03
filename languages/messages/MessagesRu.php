@@ -7,17 +7,15 @@
  * @author Александр Сигачёв
  * @author לערי ריינהארט
  * @author Ahonc
- * @author Siebrand
  * @author Illusion
  * @author VasilievVV
  * @author Putnik
  * @author Kalan
  * @author EugeneZelenko
- * @author SPQRobin
  * @author Innv
  * @author Flrn
- * @author AlexSm
  * @author HalanTul
+ * @author AlexSm
  * @author Jon Harald Søby
  * @author MaxSem
  * @author Kaganer
@@ -958,7 +956,7 @@ $3 указал следующую причину: ''$2''",
 
 # Suppression log
 'suppressionlog'     => 'Журнал сокрытий',
-'suppressionlogtext' => 'Ниже представлен список недавних удалений и блокировок, включающих скрытые от админисраторов материалы.
+'suppressionlogtext' => 'Ниже представлен список недавних удалений и блокировок, включающих скрытые от администраторов материалы.
 См. [[Special:Ipblocklist|список IP-блокировок]], чтобы просмотреть список текущих блокировок.',
 
 # History merging

@@ -8,11 +8,9 @@
  * @author Toliño
  * @author Prevert
  * @author Xosé
- * @author Siebrand
  * @author Lameiro
  * @author Jon Harald Søby
  * @author לערי ריינהארט
- * @author SPQRobin
  */
 
 $namespaceNames = array(

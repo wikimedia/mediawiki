@@ -8,7 +8,6 @@
  * @author Malafaya
  * @author Jon Harald Søby
  * @author לערי ריינהארט
- * @author Siebrand
  */
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );

@@ -6,9 +6,7 @@
  *
  * @author Abastillas
  * @author Jordz
- * @author SPQRobin
  * @author Palang hernan
- * @author Siebrand
  * @author לערי ריינהארט
  */
 
@@ -75,7 +73,10 @@ $messages = array(
 'october-gen'   => 'Oktubre',
 'november-gen'  => 'Nobyembre',
 'december-gen'  => 'Disyembre',
+'jan'           => 'Ene',
 'may'           => 'Mayo',
+'jun'           => 'Hun',
+'dec'           => 'Dis',
 
 # Categories related messages
 'pagecategories'                => '{{PLURAL:$1|Kategoriya|Mga kategoriya}}',
@@ -265,6 +266,15 @@ Palihug pagpili og lain nga ngalan.',
 'loginsuccesstitle'       => 'Malamposong pagsulod',
 'loginlanguagelabel'      => 'Pinulongan: $1',
 
+# Edit page toolbar
+'bold_tip'      => 'Gilugom nga teksto',
+'italic_sample' => 'Gitakilid nga teksto',
+'italic_tip'    => 'Gitakilid nga teksto',
+'nowiki_sample' => 'Dinhi ang dili-pormaton nga teksto',
+'nowiki_tip'    => 'Dili i-wikipormat',
+'sig_tip'       => 'Ang imong pirma uban ang takna',
+'hr_tip'        => 'Pahigda nga linya (palihog usahay ra gamita)',
+
 # Edit pages
 'summary'                   => 'Mubong sugid',
 'minoredit'                 => 'Ginagmay lang nga kausaban',
@@ -273,6 +283,8 @@ Palihug pagpili og lain nga ngalan.',
 'preview'                   => 'Paunang tan-aw',
 'showpreview'               => 'Paunang tan-aw',
 'showdiff'                  => 'Ipakita ang kalainan',
+'anoneditwarning'           => "'''Pahibalo:''' Wala ikaw maka-login.
+Ang imong ''IP address'' maoy itala sa kaagi niini nga panid.",
 'newarticle'                => '(Bag-o)',
 'userpage-userdoesnotexist' => 'Ang akawnt sa tiggamit nga "$1" wala mareshistro. Palihug tan-awa kon buot nimong himuon/usbon kini nga panid.',
 'previewnote'               => 'Usa ra kini ka paunang tan-aw;
@@ -286,13 +298,18 @@ wala pa matipigi ang mga pag-usab!</strong>',
 Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan sa usa ka publikong rekursos.
 <strong>AYAW PAGBUTANG DINHI OG MGA SINULAT NGA MAY NANAG-IYA SA KATUNGOD SA PAGPATIK!</strong>',
 'templatesused'             => 'Ang mga plantilyang gigamit niini nga panid:',
+'template-protected'        => '(giprotektahan)',
 
 # History pages
 'previousrevision' => '←Daang pag-usab',
+'last'             => 'kataposan',
 'histfirst'        => 'Kinaunahan',
 
 # Search results
-'powersearch' => 'Abansadong pagpangita',
+'noexactmatch' => "'''Walay panid nga ginganla'g \"\$1\".'''
+Mahimo mong [[:\$1|isulat kini nga panid]].",
+'viewprevnext' => 'Tan-awa sa ($1) ($2) ($3)',
+'powersearch'  => 'Abansadong pagpangita',
 
 # Preferences page
 'mypreferences' => 'Akong preperensiya',
@@ -303,18 +320,27 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan s
 'recentchanges' => 'Mga bag-ong giusab',
 'diff'          => 'kalainan',
 'hist'          => 'kaagi',
+'hide'          => 'Tagoi',
 
 # Recent changes linked
-'recentchangeslinked' => 'Mga may kalabotang kausaban',
+'recentchangeslinked'       => 'Mga may kalabotang kausaban',
+'recentchangeslinked-title' => 'Mga pag-usab nga may kalabotan sa "$1"',
 
 # Upload
 'upload' => 'Pagsumiter og payl',
 
+# Image description page
+'filehist-datetime' => 'Petsa/Takna',
+
 # Random page
 'randompage' => 'Bisan unsang panid',
 
+# Miscellaneous special pages
+'move' => 'Ibalhin',
+
 # Special:Allpages
 'alphaindexline' => '$1 hangtod $2',
+'allpagessubmit' => 'Sige',
 
 # Special:Categories
 'categories'                  => 'Mga kategoriya',
@@ -337,9 +363,14 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan s
 'contribslink' => 'mga tampo',
 
 # Tooltip help for the actions
+'tooltip-pt-mytalk'       => 'Akong hisgot',
+'tooltip-pt-preferences'  => 'Akong mga preperensiya',
+'tooltip-pt-mycontris'    => 'Akong mga tampo',
 'tooltip-pt-login'        => "Gihangyo ka namo sa pag-''log-in'', apan wala kini kinahanglana aron makausab ka sa mga panid.",
+'tooltip-pt-logout'       => 'Biya',
 'tooltip-ca-talk'         => 'Panaghisgot kabahin sa panid',
 'tooltip-ca-edit'         => "Mahimo mo kining usbon ang maong panid. Palihog gamita ang ''preview'' nga tuplokanan sa dili mo pa tipigan ang panid.",
+'tooltip-ca-move'         => 'Ibalhin kini nga panid',
 'tooltip-n-mainpage'      => 'Dalikyati ang Unang Panid',
 'tooltip-n-portal'        => 'Kabahin sa proyekto, unsay imong mahimo, asa mangita sa mga impormasyon',
 'tooltip-n-currentevents' => 'Pangita og nahaunang impormasyon sa mga bag-ong panghitabo',
@@ -349,6 +380,9 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gisuno nimo kini gikan s
 'tooltip-t-whatlinkshere' => 'Talaan sa mga wiki nga panid nga misumpay dinhi',
 'tooltip-t-upload'        => 'Pagsumiter og mga payl',
 'tooltip-t-specialpages'  => 'Talaan sa mga espesyal nga panid',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'tanan',
 
 # Special:SpecialPages
 'specialpages' => 'Espesyal nga mga panid',

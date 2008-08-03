@@ -8,9 +8,7 @@
  * @author Tibor
  * @author Matthias
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Cicero
- * @author SPQRobin
  * @author Jon Harald Søby
  */
 

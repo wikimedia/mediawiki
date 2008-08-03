@@ -6,10 +6,8 @@
  *
  * @author Yyy
  * @author Knakts
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Jon Harald Søby
- * @author SPQRobin
  * @author M.M.S.
  * @author Niklas Laxström
  */
@@ -98,11 +96,11 @@ $messages = array(
 'friday'        => 'piektdiena',
 'saturday'      => 'sestdiena',
 'sun'           => 'Sv',
-'mon'           => 'Pi',
+'mon'           => 'Pr',
 'tue'           => 'Ot',
 'wed'           => 'Tr',
 'thu'           => 'Ce',
-'fri'           => 'Pie',
+'fri'           => 'Pk',
 'sat'           => 'Se',
 'january'       => 'janvārī',
 'february'      => 'februārī',

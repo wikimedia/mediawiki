@@ -9,7 +9,6 @@
  * @author MayaSimFan
  * @author Roberta F.
  * @author Dnik
- * @author Siebrand
  * @author Luka Krstulovic
  * @author Treecko
  * @author לערי ריינהארט
