@@ -1067,7 +1067,7 @@ Please include this ID in any queries you make.',
 'blockednoreason'                  => 'no reason given',
 'blockedoriginalsource'            => "The source of '''$1''' is shown below:",
 'blockededitsource'                => "The text of '''your edits''' to '''$1''' is shown below:",
-'whitelistedittitle'               => '[[Special:Userlogin|Login required]] to edit',
+'whitelistedittitle'               => 'Login required to edit',
 'whitelistedittext'                => 'You have to $1 to edit pages.',
 'confirmedittitle'                 => 'E-mail confirmation required to edit',
 'confirmedittext'                  => 'You must confirm your e-mail address before editing pages.
