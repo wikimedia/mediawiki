@@ -1060,6 +1060,7 @@ $2',
 
 # Search results
 'searchresults'             => 'תוצאות החיפוש',
+'searchresults-title'       => 'תוצאות החיפוש של $1',
 'searchresulttext'          => 'למידע נוסף על חיפוש ב{{grammar:תחילית|{{SITENAME}}}}, עיינו ב[[Project:עזרה|דפי העזרה]].',
 'searchsubtitle'            => 'לחיפוש המונח \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|לכל הדפים המתחילים ב"$1"]] | [[Special:Whatlinkshere/$1|לכל הדפים המקשרים ל"$1"]])',
 'searchsubtitleinvalid'     => "לחיפוש המונח '''$1'''",
@@ -1226,7 +1227,7 @@ $2',
 'right-autoconfirmed'        => 'עריכת דפים מוגנים חלקית',
 'right-bot'                  => 'טיפול בעריכות כאוטומטיות',
 'right-nominornewtalk'       => 'ביטול הודעת ההודעות החדשות בעת עריכה משנית בדפי שיחה',
-'right-apihighlimits'        => 'שימוש ב־API עם פחות הגבלות',
+'right-apihighlimits'        => 'שימוש ב־API עם פחות הגבלות (לשאילתות איטיות: 500 תוצאות; לשאילתות מהירות: 5000 תוצאות)',
 'right-writeapi'             => 'שימוש ב־API לשינוי דפים',
 'right-delete'               => 'מחיקת דפים',
 'right-bigdelete'            => 'מחיקת דפים עם היסטוריית דף ארוכה',
@@ -1656,13 +1657,17 @@ PICT # שונות
 'listusers-noresult' => 'לא נמצאו משתמשים.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'רשימת הרשאות לקבוצה',
-'listgrouprights-summary'  => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.
+'listgrouprights'                 => 'רשימת הרשאות לקבוצה',
+'listgrouprights-summary'         => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.
 מידע נוסף על ההרשאות ניתן למצוא [[{{MediaWiki:Listgrouprights-helppage}}|כאן]].',
-'listgrouprights-group'    => 'קבוצה',
-'listgrouprights-rights'   => 'הרשאות',
-'listgrouprights-helppage' => 'Help:הרשאות',
-'listgrouprights-members'  => '(רשימת חברים)',
+'listgrouprights-group'           => 'קבוצה',
+'listgrouprights-rights'          => 'הרשאות',
+'listgrouprights-helppage'        => 'Help:הרשאות',
+'listgrouprights-members'         => '(רשימת חברים)',
+'listgrouprights-addgroup'        => 'הרשאה להוספת הקבוצות: $1',
+'listgrouprights-removegroup'     => 'הרשאה להסרת הקבוצות: $1',
+'listgrouprights-addgroup-all'    => 'הרשאה להוספת כל הקבוצות',
+'listgrouprights-removegroup-all' => 'הרשאה להסרת כל הקבוצות',
 
 # E-mail user
 'mailnologin'     => 'אין כתובת לשליחה',
