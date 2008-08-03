@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  */
@@ -1280,7 +1279,6 @@ PICT # שונות
 
 # Image list
 'imagelist'                 => 'רשימת תמונות',
-'imagelist-summary'         => 'דף זה מציג את כל הקבצים שהועלו. כברירת מחדל מוצגים הקבצים האחרונים שהועלו בראש הרשימה. לחיצה על כותרת של עמודה משנה את המיון.',
 'imagelisttext'             => 'להלן רשימה של {{plural:$1|תמונה אחת|$1 תמונות}}, ממוינות $2:',
 'getimagelist'              => 'מושך את רשימת התמונות',
 'ilsubmit'                  => 'חיפוש',
@@ -1405,7 +1403,6 @@ PICT # שונות
 
 'withoutinterwiki'         => 'דפים ללא קישורי שפה',
 'withoutinterwiki-header'  => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
-'withoutinterwiki-summary' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',
 'withoutinterwiki-submit'  => 'הצגה',
 
 'fewestrevisions' => 'הדפים בעלי מספר העריכות הנמוך ביותר',
