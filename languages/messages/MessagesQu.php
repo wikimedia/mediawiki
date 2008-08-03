@@ -5,10 +5,8 @@
  * @file
  *
  * @author AlimanRuna
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $fallback = 'es';

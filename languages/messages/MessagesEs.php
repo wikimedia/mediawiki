@@ -11,7 +11,6 @@
  * @author Drini
  * @author Lin linao
  * @author Platonides
- * @author Siebrand
  * @author Dmcdevit
  * @author Spacebirdy
  * @author לערי ריינהארט
@@ -33,7 +32,6 @@
  * @author Alpertron
  * @author Mahadeva
  * @author Better
- * @author SPQRobin
  * @author Technorum
  */
 

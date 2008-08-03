@@ -80,7 +80,7 @@ $messages = array(
 'history'          => 'Amzruy n tsebtert',
 'history_short'    => 'Amzruy',
 'printableversion' => 'Talqemt n usiggez',
-'permalink'        => 'Tazdayt d tamɣlalt',
+'permalink'        => 'Tazdayt war tbeddil',
 'edit'             => 'Ẓreg',
 'editthispage'     => 'Ẓreg Tasebtert a',
 'delete'           => 'Kkes',
@@ -100,12 +100,12 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Xeff {{SITENAME}}',
-'aboutpage'            => 'Project:Xeff',
+'aboutpage'            => 'Asenfar:Xeff',
 'copyrightpage'        => '{{ns:project}}:izrefan ussenɣel',
 'currentevents'        => 'Mayn itemsaren rux',
 'currentevents-url'    => 'Project:mayn itmesaren rux',
 'disclaimers'          => 'Unnuten',
-'disclaimerpage'       => 'Project:unnuten n umatu',
+'disclaimerpage'       => 'Asenfar:unnuten n umatu',
 'edithelp'             => 'Tallalt deg uẓareg',
 'edithelppage'         => 'Help:Aẓareg',
 'helppage'             => 'Help:igburen(Contents)',
@@ -113,8 +113,8 @@ $messages = array(
 'mainpage-description' => 'Tasebtert Tamzwarut',
 'portal'               => 'Tawwart n timetti(Community)',
 'portal-url'           => 'Project:tawwart n timetti(Community)',
-'privacy'              => 'tasligt',
-'privacypage'          => 'Project:tasligt',
+'privacy'              => 'Tasrtit n tusligt',
+'privacypage'          => 'Project:Tasrtit n tusligt',
 
 'retrievedfrom'       => 'itwar-d zi "$1"',
 'youhavenewmessages'  => 'ɣak $1 ($2).',
@@ -216,10 +216,10 @@ mala qacek da s ɣalaṭ waha, tecca di tbutunt n '''deffar''' di browser inec .
 tiẓrigin εad war twaḥḍent!</strong>',
 'editing'                => 'Aẓreg di $1',
 'editingsection'         => 'Aẓrag  di $1 (tigezmi)',
-'copyrightwarning'       => 'ixssa atsned billi maṛṛa tirra di {{SITENAME}} twaḥsabent twaggent swadday i $2 (ẓer da $1).
-wala war texsed tirra inac ad twaẓregent u ad twamsebḍant, iwa ur ten-tag ca da.<br />
-Ɛawtani tjadjid-anɣ ila qa d cekk ig yuran manaya, niɣ tesneɣlet-id zi ca n uɣbal nniḍn d alelli.
-<strong>UR SADDAF CA TIRRA ɣARSENT COPYRIGHTE BLA MA DIXES BAB-INES !</strong>',
+'copyrightwarning'       => 'Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
+If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
+You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
+<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
 'templatesused'          => 'Timudmiwin itwaggen di tsebtert a:',
 'templatesusedpreview'   => 'Timudmiwin igg itwasxdemen dg uzar-ascan a :',
 'template-protected'     => '(twaḥḍa)',
@@ -600,11 +600,11 @@ snaqlitent s ufus.'''",
 'ilsubmit'  => 'Tarzzut',
 
 # Bad image list
-'bad_image_list' => 'Tameslayt amya :
+'bad_image_list' => 'The format is as follows:
 
-imagraden n tebdart (ɣasent * g umzwaru) ig iteten waha.
-Tazdayt tamzwarut di tebrit ixessa atzdi ɣa afaylu war icni  .
-kur tazdayt tdeffad a tmekkas .',
+Only list items (lines starting with *) are considered.
+The first link on a line must be a link to a bad file.
+Any subsequent links on the same line are considered to be exceptions, i.e. pages where the file may occur inline.',
 
 # Metadata
 'metadata'          => 'adfer-sefku',

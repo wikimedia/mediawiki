@@ -5,13 +5,11 @@
  * @file
  *
  * @author Cedric31
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Jon Harald Søby
  * @author ChrisPtDe
  * @author Spacebirdy
  * @author Горан Анђелковић
- * @author SPQRobin
  */
 
 $skinNames = array(

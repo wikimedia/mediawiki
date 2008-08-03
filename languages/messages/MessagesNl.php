@@ -1057,6 +1057,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 
 # Search results
 'searchresults'             => 'Zoekresultaten',
+'searchresults-title'       => 'Zoekresultaten voor $1',
 'searchresulttext'          => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'U zocht naar \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginnen met "$1"]] | [[Special:Whatlinkshere/$1|pagina\'s die verwijzen naar "$1"]])',
 'searchsubtitleinvalid'     => 'Voor zoekopdracht "$1"',
@@ -1194,9 +1195,9 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 
 'group-user-member'          => 'Gebruiker',
 'group-autoconfirmed-member' => 'Geregistreerde gebruiker',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Beheerder',
-'group-bureaucrat-member'    => 'Bureaucraat',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'beheerder',
+'group-bureaucrat-member'    => 'bureaucraat',
 'group-suppress-member'      => 'Toezichthouder',
 
 'grouppage-user'          => '{{ns:project}}:Gebruikers',
@@ -1225,7 +1226,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'right-autoconfirmed'        => 'Behandeld worden als een geregistreerde gebruiker',
 'right-bot'                  => 'Behandeld worden als een geautomatiseerd proces',
 'right-nominornewtalk'       => "Kleine bewerkingen aan een overlegpagina leiden niet tot een melding 'nieuwe berichten'",
-'right-apihighlimits'        => 'Hogere limieten in API-zoekopdrachten gebruiken',
+'right-apihighlimits'        => 'Hogere limieten in API-zoekopdrachten gebruiken (langzame zoekopdrachten: 500 resultaten, snelle zoekopdrachten: 5000 resultaten)',
 'right-writeapi'             => 'Bewerken via de API',
 'right-delete'               => "Pagina's verwijderen",
 'right-bigdelete'            => "Pagina's met een grote geschiedenis verwijderen",
@@ -1671,12 +1672,16 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'listusers-noresult' => 'Geen gebruiker(s) gevonden.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Rechten van gebruikersgroepen',
-'listgrouprights-summary'  => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten. Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individuele rechten aanwezig zijn.',
-'listgrouprights-group'    => 'Groep',
-'listgrouprights-rights'   => 'Rechten',
-'listgrouprights-helppage' => 'Help:Gebruikersrechten',
-'listgrouprights-members'  => '(ledenlijst)',
+'listgrouprights'                 => 'Rechten van gebruikersgroepen',
+'listgrouprights-summary'         => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten. Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individuele rechten aanwezig zijn.',
+'listgrouprights-group'           => 'Groep',
+'listgrouprights-rights'          => 'Rechten',
+'listgrouprights-helppage'        => 'Help:Gebruikersrechten',
+'listgrouprights-members'         => '(ledenlijst)',
+'listgrouprights-addgroup'        => 'Kan deze groepen toevoegen aan gebruikers: $1',
+'listgrouprights-removegroup'     => 'Kan gebruikers uit deze groepen verwijderen: $1',
+'listgrouprights-addgroup-all'    => 'Kan alle groepen toevoegen aan gebruikers',
+'listgrouprights-removegroup-all' => 'Kan gebruikers uit alle groepen verwijderen',
 
 # E-mail user
 'mailnologin'     => 'Geen verzendadres beschikbaar',

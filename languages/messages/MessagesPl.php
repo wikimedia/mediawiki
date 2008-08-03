@@ -11,7 +11,6 @@
  * @author Wpedzich
  * @author Leinad
  * @author Beau
- * @author Siebrand
  * @author Stv
  * @author Jon Harald Søby
  * @author Masti

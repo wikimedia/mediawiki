@@ -6,10 +6,8 @@
  *
  * @author Wikimistusik
  * @author Sab
- * @author Siebrand
  * @author Jon Harald Søby
  * @author Nkosi ya Cabinda
- * @author SPQRobin
  */
 
 $messages = array(

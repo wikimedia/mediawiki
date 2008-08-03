@@ -7,9 +7,7 @@
  * @author Kranch
  * @author Numulunj pilgae
  * @author Khazar II
- * @author Siebrand
  * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $fallbak = 'ru';

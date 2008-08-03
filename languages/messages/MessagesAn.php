@@ -5,8 +5,6 @@
  * @file
  *
  * @author Juanpabl
- * @author SPQRobin
- * @author Siebrand
  * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Willtron

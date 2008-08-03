@@ -6,7 +6,6 @@
  *
  * @author Giangian15
  * @author Roderick Mallia
- * @author Siebrand
  * @author Jon Harald Søby
  * @author Chrisportelli
  */
@@ -230,8 +229,8 @@ $messages = array(
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Kontenut',
-'mainpage'             => 'Paġna prinċipali',
-'mainpage-description' => 'Paġna prinċipali',
+'mainpage'             => 'Il-Paġna prinċipali',
+'mainpage-description' => 'Il-Paġna prinċipali',
 'policy-url'           => 'Project:Politika',
 'portal'               => 'Portal tal-komunità',
 'portal-url'           => 'Project:Portal tal-komunità',
@@ -1938,7 +1937,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'tooltip-search'                  => 'Fittex fil-{{SITENAME}}',
 'tooltip-search-go'               => 'Mur fil-paġna bit-titlu indikat, jekk teżisti',
 'tooltip-search-fulltext'         => 'Fittex it-test indikat fil-paġni',
-'tooltip-p-logo'                  => 'Paġna prinċipali',
+'tooltip-p-logo'                  => 'Il-Paġna prinċipali',
 'tooltip-n-mainpage'              => 'Żur il-paġna prinċipali',
 'tooltip-n-portal'                => "Dwar il-proġett, x'tista' tagħmel, fejn tista' ssib l-affarijiet",
 'tooltip-n-currentevents'         => 'Sib aktar informazzjoni dwar avveniment kurrenti',

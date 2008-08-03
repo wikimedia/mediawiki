@@ -3,6 +3,8 @@
  *
  * @ingroup Language
  * @file
+ *
+ * @author Kiharoa
  */
 
 $messages = array(
@@ -46,12 +48,15 @@ $messages = array(
 'toolbox'          => 'Pouaka utauta',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Mo {{SITENAME}}',
 'currentevents'        => 'Kōrero',
 'currentevents-url'    => 'Project:Kōrero',
 'mainpage'             => 'Hau Kāinga',
 'mainpage-description' => 'Hau Kāinga',
 'portal'               => 'Tomokanga hapori',
 'portal-url'           => 'Project:Tomokanga hapori',
+'privacy'              => 'Tikanga tūmataiti',
+'privacypage'          => 'Project:Tikanga tūmataiti',
 
 'toc'     => 'Rārangi kōrero',
 'showtoc' => 'whakakite',

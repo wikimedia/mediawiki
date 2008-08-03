@@ -6,13 +6,11 @@
  *
  * @author Jon Harald Søby
  * @author Kph
- * @author Siebrand
  * @author Stigmj
  * @author לערי ריינהארט
  * @author H92
  * @author M.M.S.
  * @author Eirik
- * @author SPQRobin
  * @author Jóna Þórunn
  * @author EivindJ
  * @author Finnrind
@@ -462,7 +460,7 @@ Administratoren som låste databasen ga forklaringen: $1',
 De vanligste grunnene til denne feilen er en lenke til en diff mellom forskjellige versjoner eller lenker til en gammel versjon av en side som har blitt slettet.
 
 Om det ikke er tilfellet kan du ha funnet en feil i programvaren.
-Rapporter gjerne problemet til en [[Special:Listusers/sysop|administrator|administrator]], angi da adressen til siden.',
+Rapporter gjerne problemet til en [[Special:Listusers/sysop|administrator]], angi da adressen til siden.',
 'missingarticle-rev'   => '(versjon $1)',
 'missingarticle-diff'  => '(diff: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk skrivebeskyttet så slavetjenerne kan ta igjen mestertjeneren',
@@ -894,6 +892,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 
 # Search results
 'searchresults'             => 'Søkeresultater',
+'searchresults-title'       => 'Søkeresultater for $1',
 'searchresulttext'          => 'For mer informasjon om søking i {{SITENAME}}, se [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Du søkte på '''[[:$1]]''' ([[Special:Prefixindex/$1|alle sider som begynner med «$1»]] | [[Special:Whatlinkshere/$1|alle sider som lenker til «$1»]])",
 'searchsubtitleinvalid'     => 'For forespørsel "$1"',
@@ -1061,7 +1060,7 @@ se math/README for oppsett.',
 'right-autoconfirmed'        => 'Redigere halvlåste sider',
 'right-bot'                  => 'Bli behandlet som en automatisk prosess',
 'right-nominornewtalk'       => 'Får ikke «Du har nye meldinger»-beskjeden ved mindre endringer på diskusjonsside',
-'right-apihighlimits'        => 'Bruke API med høyere grenser',
+'right-apihighlimits'        => 'Bruke API med høyere grenser (trege spørringer: 500&nbsp;resultater; raske spørringer: 5000&nbsp;resultater)',
 'right-writeapi'             => 'Redigere via API',
 'right-delete'               => 'Slette sider',
 'right-bigdelete'            => 'Slette sider med stor historikk',
@@ -1484,13 +1483,17 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'listusers-noresult' => 'Ingen bruker funnet.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Rettigheter for brukergrupper',
-'listgrouprights-summary'  => 'Følgende er en liste over brukergrupper som er definert på denne wikien, og hvilke rettigheter de har.
+'listgrouprights'                 => 'Rettigheter for brukergrupper',
+'listgrouprights-summary'         => 'Følgende er en liste over brukergrupper som er definert på denne wikien, og hvilke rettigheter de har.
 Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
-'listgrouprights-group'    => 'Gruppe',
-'listgrouprights-rights'   => 'Rettigheter',
-'listgrouprights-helppage' => 'Help:Grupperettigheter',
-'listgrouprights-members'  => '(liste over medlemmer)',
+'listgrouprights-group'           => 'Gruppe',
+'listgrouprights-rights'          => 'Rettigheter',
+'listgrouprights-helppage'        => 'Help:Grupperettigheter',
+'listgrouprights-members'         => '(liste over medlemmer)',
+'listgrouprights-addgroup'        => 'Kan legge til gruppene: $1',
+'listgrouprights-removegroup'     => 'Kan fjerne gruppene: $1',
+'listgrouprights-addgroup-all'    => 'Kan legge til alle grupper',
+'listgrouprights-removegroup-all' => 'Kan fjerne alle grupper',
 
 # E-mail user
 'mailnologin'     => 'Ingen avsenderadresse',

@@ -5,7 +5,6 @@
  * @file
  *
  * @author Slomox
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Jon Harald Søby
  */

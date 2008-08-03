@@ -10,12 +10,10 @@
  * @author M.M.S.
  * @author Habj
  * @author Jon Harald Søby
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Lokal Profil
  * @author Leo Johannes
  * @author Steinninn
- * @author SPQRobin
  * @author Skalman
  * @author Habjchen
  * @author Max sonnelid
@@ -1024,6 +1022,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 
 # Search results
 'searchresults'             => 'Sökresultat',
+'searchresults-title'       => 'Sökresultat för $1',
 'searchresulttext'          => 'Se [[{{MediaWiki:Helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
 'searchsubtitle'            => 'Du sökte efter \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alla sidor som startar med "$1"]] | [[Special:Whatlinkshere/$1|alla sidor som länkar till "$1"]])',
 'searchsubtitleinvalid'     => 'För sökbegreppet $1',
@@ -1192,7 +1191,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-autoconfirmed'        => 'Redigera halvlåsta sidor',
 'right-bot'                  => 'Bli behandlad som en automatisk process',
 'right-nominornewtalk'       => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
-'right-apihighlimits'        => 'Använda högre gränser i API-frågor',
+'right-apihighlimits'        => 'Använda högre gränser i API-frågor (Långsamma frågor: 500 resultat; Snabba frågor: 5000 resultat)',
 'right-writeapi'             => 'Redigera via API:t',
 'right-delete'               => 'Radera sidor',
 'right-bigdelete'            => 'Radera sidor med stor historik',
@@ -1234,7 +1233,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ändring|ändringar}}',
-'recentchanges'                     => 'Senaste ändringar',
+'recentchanges'                     => 'Senaste ändringarna',
 'recentchangestext'                 => 'Följ de senaste ändringarna i wikin på denna sida.',
 'recentchanges-feed-description'    => 'Följ de senaste ändringarna i wikin genom den här matningen.',
 'rcnote'                            => "Nedan visas {{PLURAL:$1|'''1''' ändring|de senaste '''$1''' ändringarna}} från {{PLURAL:$2|den senaste dagen|de senaste '''$2''' dagarna}}, per $4, kl. $5.",
@@ -1291,7 +1290,8 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'upload-prohibited'           => 'Förbjudna filtyper: $1.',
 'uploadlog'                   => 'Uppladdningar',
 'uploadlogpage'               => 'Uppladdningslogg',
-'uploadlogpagetext'           => 'Nedan följer en lista med de senaste uppladdade filerna.',
+'uploadlogpagetext'           => 'Det här är en logg över de senast uppladdade filerna.
+Se [[Special:NewImages|galleriet över nya filer]] för en mer visuell översikt.',
 'filename'                    => 'Filnamn',
 'filedesc'                    => 'Beskrivning',
 'fileuploadsummary'           => 'Beskrivning<br />och licens:',
@@ -1618,13 +1618,17 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'listusers-noresult' => 'Ingen användare hittades.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Behörigheter för användargrupper',
-'listgrouprights-summary'  => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.
+'listgrouprights'                 => 'Behörigheter för användargrupper',
+'listgrouprights-summary'         => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.
 Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]] om de olika behörigheterna.',
-'listgrouprights-group'    => 'Grupp',
-'listgrouprights-rights'   => 'Behörigheter',
-'listgrouprights-helppage' => 'Help:Gruppbehörigheter',
-'listgrouprights-members'  => '(lista över medlemmar)',
+'listgrouprights-group'           => 'Grupp',
+'listgrouprights-rights'          => 'Behörigheter',
+'listgrouprights-helppage'        => 'Help:Gruppbehörigheter',
+'listgrouprights-members'         => '(lista över medlemmar)',
+'listgrouprights-addgroup'        => 'Kan lägga till grupperna: $1',
+'listgrouprights-removegroup'     => 'Kan ta bort grupperna: $1',
+'listgrouprights-addgroup-all'    => 'Kan lägga till alla användargrupper',
+'listgrouprights-removegroup-all' => 'Kan ta bort alla användargrupper',
 
 # E-mail user
 'mailnologin'     => 'Ingen adress att skicka till',
@@ -2004,13 +2008,13 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'move-page'               => 'Flytta $1',
 'move-page-legend'        => 'Flytta sida',
 'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn.
-Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln;
-Länkar till den gamla sidtitlen kommer inte att ändras;
+Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln.
+Länkar till den gamla sidtiteln kommer inte att ändras;
 kontrollera därför om du skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
 Du bör också se till att länkar fortsätter att peka dit de ska.
 
 Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigering till den gamla titeln och saknar annan versionshistorik.
-Det innebär att du kan flytta tillbaks en sida du just flyttat om du råkar göra fel.
+Det innebär att du kan flytta tillbaks en sida om du råkar göra fel, och att du inte kan skriva över existerande sidor.
 
 '''VARNING!'''
 Att flytta en populär sida kan vara en drastisk och oväntad ändring;

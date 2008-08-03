@@ -5,7 +5,6 @@
  * @file
  *
  * @author Raymond
- * @author Siebrand
  * @author Red Baron
  * @author Purodha
  * @author Omnipaedista
@@ -945,6 +944,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 
 # Search results
 'searchresults'             => 'Suchergebnisse',
+'searchresults-title'       => 'Suchergebnisse für $1',
 'searchresulttext'          => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]].',
 'searchsubtitle'            => 'Deine Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]] | [[Special:Whatlinkshere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid'     => 'Deine Suchanfrage: „$1“.',
@@ -1553,13 +1553,17 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'listusers-noresult' => 'Keinen Benutzer gefunden.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Benutzergruppen-Rechte',
-'listgrouprights-summary'  => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.
+'listgrouprights'                 => 'Benutzergruppen-Rechte',
+'listgrouprights-summary'         => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.
 Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgrouprights-helppage}}|hier]] gefunden werden.',
-'listgrouprights-group'    => 'Gruppe',
-'listgrouprights-rights'   => 'Rechte',
-'listgrouprights-helppage' => 'Help:Gruppenrechte',
-'listgrouprights-members'  => '(Mitgliederliste)',
+'listgrouprights-group'           => 'Gruppe',
+'listgrouprights-rights'          => 'Rechte',
+'listgrouprights-helppage'        => 'Help:Gruppenrechte',
+'listgrouprights-members'         => '(Mitgliederliste)',
+'listgrouprights-addgroup'        => 'Kann Benutzer zu diesen Gruppen hinzufügen: $1',
+'listgrouprights-removegroup'     => 'Kann Benutzer aus diesen Gruppen entfernen: $1',
+'listgrouprights-addgroup-all'    => 'Kann Benutzer zu allen Gruppen hinzufügen',
+'listgrouprights-removegroup-all' => 'Kann Benutzer aus allen Gruppen entfernen',
 
 # E-mail user
 'mailnologin'     => 'Fehler beim E-Mail-Versand',
@@ -1634,7 +1638,7 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'created'                      => 'erzeugt',
 'enotif_subject'               => '[{{SITENAME}}] Die Seite "$PAGETITLE" wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Alle Änderungen auf einen Blick: $1',
-'enotif_lastdiff'              => 'Siehe $1 für diese Änderung.',
+'enotif_lastdiff'              => 'Siehe $1 nach dieser Änderung.',
 'enotif_anon_editor'           => 'Anonymer Benutzer $1',
 'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
 

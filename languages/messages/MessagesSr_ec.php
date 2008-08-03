@@ -7,7 +7,6 @@
  * @author Sasa Stefanovic
  * @author Millosh
  * @author Red Baron
- * @author Siebrand
  * @author Kale
  * @author לערי ריינהארט
  * @author Jon Harald Søby

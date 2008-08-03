@@ -7,7 +7,6 @@
  * @author Kaustubh
  * @author לערי ריינהארט
  * @author Shyam
- * @author Siebrand
  * @author Sunil Mohan
  * @author Jon Harald Søby
  * @author Aksi great

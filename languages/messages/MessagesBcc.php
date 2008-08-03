@@ -5,7 +5,6 @@
  * @file
  *
  * @author Mostafadaneshvar
- * @author Siebrand
  * @author Jon Harald Søby
  */
 
@@ -899,6 +898,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 
 # Search results
 'searchresults'             => 'نتایج گردگ',
+'searchresults-title'       => 'نتایج گردگ په $1',
 'searchresulttext'          => 'په گیشترین اطلاعات گردگ باره {{SITENAME}}، بچار [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'شما گردگیت په \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|کل صفحات شروع بنت گون "$1"]] | [[Special:Whatlinkshere/$1|کل صفحات که لینک انت په "$1"]])',
 'searchsubtitleinvalid'     => "شما گردگیت په '''$1'''",
@@ -1070,7 +1070,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'right-autoconfirmed'        => 'اصلاح کن صفحات نیم محافظتی آ',
 'right-bot'                  => 'په داب یک پروسه اتوماتیکی زانگ بین',
 'right-nominornewtalk'       => 'نداشتن هوردین اصلاح ته صفحات بحث یک نوکین کوله یانی پیش داریت',
-'right-apihighlimits'        => 'استفاده کن چه بالاترین محدویتان ته جوستان API',
+'right-apihighlimits'        => 'استفاده کن چه بالاترین محدویتان ته جوستان API(شلین جوست:۵۰۰ نتیجه، سریع جوست:۵۰۰۰ نتیجه)',
 'right-writeapi'             => 'استفاده چه نوشتن API',
 'right-delete'               => 'حذف صفحات',
 'right-bigdelete'            => 'حذف صفحات گون درازین تاریح',
@@ -1518,13 +1518,17 @@ PICT # misc.
 'listusers-noresult' => 'هچ کابری در گیزگ نه بوت.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'حقوق گروه کاربر',
-'listgrouprights-summary'  => 'جهلیگین یک لیستی چه گروهان کاربری تعریف بوتگین ته ای ویکی انت گون آیانی حق دسترسی آن همراهنت.
+'listgrouprights'                 => 'حقوق گروه کاربر',
+'listgrouprights-summary'         => 'جهلیگین یک لیستی چه گروهان کاربری تعریف بوتگین ته ای ویکی انت گون آیانی حق دسترسی آن همراهنت.
  درباره هر حقی ته صفحه [[{{MediaWiki:Listgrouprights-helppage}}|گیشترین اطلاعات]] هستن.',
-'listgrouprights-group'    => 'گروه',
-'listgrouprights-rights'   => 'حقوق',
-'listgrouprights-helppage' => 'Help: حقوق گروه',
-'listgrouprights-members'  => '(لیست اعضا)',
+'listgrouprights-group'           => 'گروه',
+'listgrouprights-rights'          => 'حقوق',
+'listgrouprights-helppage'        => 'Help: حقوق گروه',
+'listgrouprights-members'         => '(لیست اعضا)',
+'listgrouprights-addgroup'        => 'تونیت گروهان اضافه کنت: $1',
+'listgrouprights-removegroup'     => 'تونیت گروهانء بزوریت: $1',
+'listgrouprights-addgroup-all'    => 'تونیت کل گروهان اضافه کنت',
+'listgrouprights-removegroup-all' => 'تونیت کل گروهانء بزوریت',
 
 # E-mail user
 'mailnologin'     => 'هچ آدرس دیم دهگ',

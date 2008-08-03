@@ -7,7 +7,7 @@
  * @author Nike
  * @author Crt
  * @author Cimon Avaro
- * @author Siebrand
+ * @author Agony
  * @author Jack Phoenix
  * @author M.M.S.
  * @author Str4nd
@@ -894,6 +894,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 # Search results
 'searchresults'             => 'Hakutulokset',
+'searchresults-title'       => 'Haun tulokset hakusanalle $1',
 'searchresulttext'          => 'Lisätietoa {{GRAMMAR:genitive|{{SITENAME}}}} hakutoiminnoista on [[{{MediaWiki:Helppage}}|ohjesivulla]].',
 'searchsubtitle'            => 'Haku termeillä [[:$1]]',
 'searchsubtitleinvalid'     => 'Haku termeillä $1',
@@ -1461,13 +1462,17 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Käyttäjäryhmien oikeudet',
-'listgrouprights-summary'  => 'Tässä on lista {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjäryhmistä ja niiden oikeudet.
+'listgrouprights'                 => 'Käyttäjäryhmien oikeudet',
+'listgrouprights-summary'         => 'Tässä on lista {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjäryhmistä ja niiden oikeudet.
 Lisätietoa yksittäisistä käyttäjäoikeuksista on [[{{MediaWiki:Listgrouprights-helppage}}|ohjesivulla]].',
-'listgrouprights-group'    => 'Ryhmä',
-'listgrouprights-rights'   => 'Oikeudet',
-'listgrouprights-helppage' => 'Help:Käyttöoikeudet',
-'listgrouprights-members'  => '(jäsenlista)',
+'listgrouprights-group'           => 'Ryhmä',
+'listgrouprights-rights'          => 'Oikeudet',
+'listgrouprights-helppage'        => 'Help:Käyttöoikeudet',
+'listgrouprights-members'         => '(jäsenlista)',
+'listgrouprights-addgroup'        => 'Voi lisätä ryhmät: $1',
+'listgrouprights-removegroup'     => 'Voi poistaa ryhmistä: $1',
+'listgrouprights-addgroup-all'    => 'Voi lisätä kaikkiin ryhmiin',
+'listgrouprights-removegroup-all' => 'Voi poistaa kaikista ryhmistä',
 
 # E-mail user
 'mailnologin'     => 'Lähettäjän osoite puuttuu',
@@ -2076,9 +2081,10 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'markedaspatrollederror-noautopatrol' => 'Et voi merkitä omia muutoksiasi tarkastetuiksi.',
 
 # Patrol log
-'patrol-log-page' => 'Muutostentarkastusloki',
-'patrol-log-line' => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
-'patrol-log-auto' => '(automaattinen)',
+'patrol-log-page'   => 'Muutostentarkastusloki',
+'patrol-log-header' => 'Tämä on loki tarkistetuista muutoksista.',
+'patrol-log-line'   => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
+'patrol-log-auto'   => '(automaattinen)',
 
 # Image deletion
 'deletedrevision'                 => 'Poistettiin vanha versio $1',

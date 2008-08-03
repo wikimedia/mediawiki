@@ -5,7 +5,6 @@
  * @file
  *
  * @author Meursault2004
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Jon Harald Søby
  * @author Helix84

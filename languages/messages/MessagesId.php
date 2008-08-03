@@ -6,12 +6,10 @@
  *
  * @author Rex
  * @author Borgx
- * @author Siebrand
- * @author Irwangatot
  * @author Meursault2004
+ * @author Irwangatot
  * @author לערי ריינהארט
  * @author IvanLanin
- * @author SPQRobin
  */
 
 /**
@@ -2611,8 +2609,8 @@ Coba dengan pratayang normal.',
 Coba dengan pratayang normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Perubahan yang lebih baru dari $1 detik mungkin tidak muncul di daftar ini.',
-'lag-warn-high'   => 'Karenanya besarnya lag basis data server, perubahan yang lebih baru dari $1 detik mungkin tidak muncul di daftar ini.',
+'lag-warn-normal' => 'Perubahan yang lebih baru dari $1 {{PLURAL:$1|detik|detik}} mungkin tidak muncul di daftar ini.',
+'lag-warn-high'   => 'Karenanya besarnya keterlambatan basis data server, perubahan yang lebih baru dari $1 {{PLURAL:$1|detik|detik}} mungkin tidak muncul di daftar ini.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Daftar pantauan Anda berisi {{PLURAL:$1|1 judul|$1 judul}},tidak termasuk halaman pembicaraan.',

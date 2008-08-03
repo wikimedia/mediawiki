@@ -6,12 +6,10 @@
  *
  * @author 555
  * @author Malafaya
- * @author Siebrand
  * @author Lijealso
  * @author לערי ריינהארט
  * @author MCruz
  * @author Jon Harald Søby
- * @author SPQRobin
  * @author Rei-artur
  * @author Waldir
  * @author Villate

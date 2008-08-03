@@ -9,11 +9,9 @@
  * @author Pe7er
  * @author Qualia
  * @author Dundak
- * @author Siebrand
  * @author Murjarik
  * @author Tlustulimu
  * @author Jon Harald Søby
- * @author SPQRobin
  * @author Dunak
  * @author Tlustulimu Nepl1
  */

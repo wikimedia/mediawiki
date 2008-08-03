@@ -8,10 +8,8 @@
  * @author Timpul
  * @author Herr Kriss
  * @author Pimke
- * @author Siebrand
  * @author Ozi64
  * @author Jon Harald Søby
- * @author SPQRobin
  * @author Leinad
  * @author Danny B.
  */

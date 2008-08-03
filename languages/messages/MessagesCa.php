@@ -7,7 +7,6 @@
  * @author Toniher
  * @author SMP
  * @author Martorell
- * @author Siebrand
  * @author Pasqual (ca)
  * @author Iradigalesc
  * @author לערי ריינהארט
@@ -18,7 +17,6 @@
  * @author Spacebirdy
  * @author McDutchie
  * @author Pérez
- * @author SPQRobin
  * @author Smeira
  */
 

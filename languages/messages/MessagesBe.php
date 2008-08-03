@@ -6,7 +6,6 @@
  *
  * @author Yury Tarasievich
  * @author Mienski
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Jon Harald Søby
  */

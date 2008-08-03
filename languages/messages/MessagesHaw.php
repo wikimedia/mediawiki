@@ -6,9 +6,7 @@
  *
  * @author Singularity
  * @author Kalani
- * @author SPQRobin
  * @author Node ue
- * @author Siebrand
  */
 
 $messages = array(
@@ -530,7 +528,7 @@ hō‘ike ‘ia i lalo:",
 'tooltip-n-recentchanges'  => 'Nā loli hou ma ka wiki.',
 'tooltip-n-randompage'     => 'Ho‘ouka i he akikala kaulele',
 'tooltip-n-help'           => 'Ka wahi e kōkua ai iā‘oe.',
-'tooltip-t-whatlinkshere'  => 'Ka papa o nā ‘ao‘ao āpau e loulou mai.',
+'tooltip-t-whatlinkshere'  => 'Ka papa o nā ‘ao‘ao āpau e loulou mai',
 'tooltip-t-upload'         => 'Ho‘ouka i nā waihona',
 'tooltip-t-specialpages'   => 'Helu o nā papa nui apau',
 'tooltip-ca-nstab-project' => 'Nānā i ka ‘ao‘ao papahana',

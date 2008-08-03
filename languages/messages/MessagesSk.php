@@ -5,7 +5,6 @@
  * @file
  *
  * @author Helix84
- * @author Siebrand
  * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Michawiki
@@ -14,7 +13,6 @@
  * @author Palica
  * @author Liso
  * @author Maros
- * @author SPQRobin
  */
 
 $datePreferences = array(
