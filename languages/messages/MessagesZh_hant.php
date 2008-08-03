@@ -373,7 +373,7 @@ MySQL返回錯誤「$3: $4」。',
 <p>通常這是由於修訂歷史頁上過時的連結到已經被刪除的頁面所導致的。</p>
 
 <p>如果情況不是這樣，您可能找到了軟體內的一個臭蟲。
-請記錄下URL地址，並向管理員報告。</p>',
+請記錄下URL地址，並向[[Special:ListUsers/sysop|管理員]]報告。</p>',
 'missingarticle-rev'   => '(修訂#: $1)',
 'missingarticle-diff'  => '(差異: $1, $2)',
 'readonly_lag'         => '附屬資料庫伺服器正在將快取更新到主伺服器，資料庫已被自動鎖定',
@@ -420,8 +420,8 @@ $2',
 # Login and logout pages
 'logouttitle'                => '用戶退出',
 'logouttext'                 => '您現在已經退出。
-您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同用戶身份登入。',
-'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置{{SITENAME}}個人參數。</p>',
+您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同用戶身份[[Special:Userlogin|登入]]。',
+'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置[[Special:Preferences|{{SITENAME}}個人參數]]。</p>',
 'loginpagetitle'             => '用戶登入',
 'yourname'                   => '您的用戶名:',
 'yourpassword'               => '您的密碼:',
@@ -588,7 +588,7 @@ $2',
 'newarticletext'                   => '您進入了一個尚未創建的頁面。
 要創建該頁面，請在下面的編輯框中輸入內容(詳情參見[[Help:幫助|幫助]])。
 如果您是不小心來到此頁面，直接點擊您瀏覽器中的"返回"按鈕返回。',
-'anontalkpagetext'                 => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:Userlogin|創建新帳號或登入]]以避免在未來於其他匿名用戶混淆。''",
+'anontalkpagetext'                 => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:Userlogin/signup|創建新帳號]]或[[Special:Userlogin|登入]]以避免在未來於其他匿名用戶混淆。''",
 'noarticletext'                    => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
 'userpage-userdoesnotexist'        => '用戶帳號「$1」未曾創建。請在創建／編輯這個頁面前先檢查一下。',
 'clearyourcache'                   => "'''注意 - 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。''' '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；'''Konqueror:''' 只需點擊 ''重新整理''或按下''F5''；'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的快取；'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
@@ -600,12 +600,12 @@ $2',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>請記住這只是預覽，內容還未保存！</strong>',
 'previewconflict'                  => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'             => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。</strong>',
+'session_fail_preview'             => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:Userlogout|登出]]後重新登入。</strong>',
 'session_fail_preview_html'        => "<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
-<strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>",
+<strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請[[Special:Userlogout|登出]]後再重新登入一次。</strong>",
 'token_suffix_mismatch'            => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                          => '正在編輯$1',
@@ -673,7 +673,7 @@ $2',
 'undo-success' => '該編輯可以被撤銷。請檢查以下對比以核實這正是您想做的，然後儲存以下更改以完成撤銷編輯。',
 'undo-failure' => '由於中途的編輯不一致，此編輯不能撤銷。',
 'undo-norev'   => '由於其修訂版本不存在或已刪除，此編輯不能撤銷。',
-'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])所作出的修訂 $1',
+'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])所作出的修訂 $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '無法創建帳戶',
@@ -803,8 +803,9 @@ $2',
 
 # Search results
 'searchresults'             => '搜索結果',
+'searchresults-title'       => '對$1的搜索結果',
 'searchresulttext'          => '有關搜索{{SITENAME}}的更多詳情,參見[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'            => '查詢"[[:$1]]"',
+'searchsubtitle'            => '查詢\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 開頭的頁面]] | [[Special:Whatlinkshere/$1|所有鏈接到 "$1" 的頁面]])',
 'searchsubtitleinvalid'     => '查詢"$1"',
 'noexactmatch'              => "'''沒找到標題為\"\$1\"的頁面。''' 您可以[[:\$1|創建此頁面]]。",
 'noexactmatch-nocreate'     => "'''沒找到標題為\"\$1\"的頁面。'''",
@@ -969,7 +970,7 @@ $2',
 'right-autoconfirmed'        => '編輯半保護頁面',
 'right-bot'                  => '視為一個自動程序',
 'right-nominornewtalk'       => '小編輯不引發新信息提示',
-'right-apihighlimits'        => '在API查詢中使用更高的上限',
+'right-apihighlimits'        => '在API查詢中使用更高的上限 (慢查詢: 500項結果; 快查詢: 5000項結果)',
 'right-writeapi'             => '使用編寫的API',
 'right-delete'               => '刪除頁面',
 'right-bigdelete'            => '刪除大量歷史之頁面',
@@ -1061,16 +1062,17 @@ $2',
 可以進入[[Special:Imagelist|檔案上傳清單]]，
 上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
 
-要在頁面中加入檔案，使用以下形式的連接:
-'''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>'''，
-'''<nowiki>[[{{ns:image}}:file.png|替換文字]]</nowiki>''' 或
-'''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''。",
+要在頁面中加入檔案，使用以下其中一種形式的連接:
+* '''<tt><nowiki>[[{{ns:image}}:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
+* '''<tt><nowiki>[[{{ns:image}}:file.png|200px|thumb|left|替換文字]]</nowiki></tt>'''去用一個200像素寬，左面盒上有'替換文字'的描述
+* '''<tt><nowiki>[[{{ns:media}}:file.ogg]]</nowiki></tt>'''去直接連接到檔案而不顯示檔案",
 'upload-permitted'            => '准許的檔案類型: $1。',
 'upload-preferred'            => '建議的檔案類型: $1。',
 'upload-prohibited'           => '禁止的檔案類型: $1。',
 'uploadlog'                   => '上載紀錄',
 'uploadlogpage'               => '上載紀錄',
-'uploadlogpagetext'           => '以下是最近上載的檔案的一覽表。',
+'uploadlogpagetext'           => '以下是最近上載的檔案的一覽表。
+查看[[Special:NewImages|新檔案畫廊]]去看更富圖像的總覽。',
 'filename'                    => '檔案名',
 'filedesc'                    => '檔案描述',
 'fileuploadsummary'           => '檔案描述:',
@@ -1129,9 +1131,9 @@ $2',
 'upload-proto-error'      => '協議錯誤',
 'upload-proto-error-text' => '遠程上傳要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 開頭。',
 'upload-file-error'       => '內部錯誤',
-'upload-file-error-text'  => '當試圖在伺服器上創建臨時檔案時發生內部錯誤。請與系統管理員聯繫。',
+'upload-file-error-text'  => '當試圖在伺服器上創建臨時檔案時發生內部錯誤。請與[[Special:ListUsers/sysop|管理員]]聯繫。',
 'upload-misc-error'       => '未知的上傳錯誤',
-'upload-misc-error-text'  => '在上傳時發生未知的錯誤. 請驗証使用了正確並可訪問的 URL，然後進行重試。如果問題仍然存在，請與系統管理員聯繫。',
+'upload-misc-error-text'  => '在上傳時發生未知的錯誤. 請驗証使用了正確並可訪問的 URL，然後進行重試。如果問題仍然存在，請與[[Special:ListUsers/sysop|管理員]]聯繫。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '無法訪問 URL',
@@ -1392,10 +1394,14 @@ Template:消除歧義',
 'listgrouprights'          => '用戶群組權限',
 'listgrouprights-summary'  => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。
 更多有關個別權限的細節可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裏]]找到。',
-'listgrouprights-group'    => '群組',
-'listgrouprights-rights'   => '權限',
-'listgrouprights-helppage' => 'Help:群組權限',
-'listgrouprights-members'  => '(成員清單)',
+'listgrouprights-group'           => '群組',
+'listgrouprights-rights'          => '權限',
+'listgrouprights-helppage'        => 'Help:群組權限',
+'listgrouprights-members'         => '(成員清單)',
+'listgrouprights-addgroup'        => '可以加入的群組: $1',
+'listgrouprights-removegroup'     => '可以移除的群組: $1',
+'listgrouprights-addgroup-all'    => '可以加入所有群組',
+'listgrouprights-removegroup-all' => '可以移除所有群組',
 
 # E-mail user
 'mailnologin'     => '無電郵地址',
@@ -1404,7 +1410,7 @@ Template:消除歧義',
 中有一個有效的e-mail地址才可以電郵其他用戶。',
 'emailuser'       => 'E-mail該用戶',
 'emailpage'       => 'E-mail用戶',
-'emailpagetext'   => '如果該用戶已經在他或她的參數設置頁中輸入了有效的e-mail地址，以下的表格將寄一個訊息給該用戶。您在您參數設置中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
+'emailpagetext'   => '如果該用戶已經在他或她的參數設置頁中輸入了有效的e-mail地址，以下的表格將寄一個訊息給該用戶。您在[[Special:Preferences|您參數設置]]中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
 'usermailererror' => '目標郵件地址返回錯誤：',
 'defemailsubject' => '{{SITENAME}}電子郵件',
 'noemailtitle'    => '無e-mail地址',
@@ -1436,7 +1442,7 @@ Template:消除歧義',
 而且還會在[[Special:Recentchanges|最近更改]]中
 以'''粗體'''形式列出以使起更容易識別。",
 'removedwatch'         => '已停止監視',
-'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從您的監視頁面中移除。',
+'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從[[Special:Watchlist|您的監視頁面]]中移除。',
 'watch'                => '監視',
 'watchthispage'        => '監視本頁',
 'unwatch'              => '取消監視',
@@ -1535,10 +1541,10 @@ $NEWPAGE
 'rollbacklink'                => '恢復',
 'rollbackfailed'              => '無法恢復',
 'cantrollback'                => '無法恢復編輯；最後的貢獻者是本文的唯一作者。',
-'alreadyrolled'               => '無法恢復由[[User:$2|$2]] ([[User talk:$2|討論]])進行的[[$1]]的最後編輯；
+'alreadyrolled'               => '無法恢復由[[User:$2|$2]] ([[User talk:$2|討論]]  | [[Special:Contributions/$2|{{int:contribslink}}]])進行的[[$1]]的最後編輯；
 其他人已經編輯或是恢復了該頁。
 
-最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
+最後對頁面編輯的編輯者: [[User:$3|$3]] ([[User talk:$3|討論]] | [[Special:Contributions/$3|{{int:contribslink}}]])。',
 'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
 'revertpage'                  => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯至[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '恢復由$1的編輯；更改回$2的最後一個版本。',
@@ -1781,8 +1787,8 @@ $1',
 'move-page-legend'        => '移動頁面',
 'movepagetext'            => "用下面的表單來重新命名一個頁面，並將其修訂歷史同時移動到新頁面。
 老的頁面將成為新頁面的重定向頁。
-連結到老頁面的連結並不會自動更改；
-請檢查雙重或損壞重定向連結。
+您可以自動地更新指到原標題的重定向。
+如果您選擇不去做的話，請檢查[[Special:DoubleRedirects|雙重]]或[[Special:BrokenRedirects|損壞重定向]]連結。
 您應當負責確定所有連結依然會連到指定的頁面。
 
 注意如果新頁面已經有內容的話，頁面將'''不會'''被移動，
@@ -1884,7 +1890,8 @@ $1',
 'import-interwiki-history'   => '複製此頁的所有歷史版本',
 'import-interwiki-submit'    => '匯入',
 'import-interwiki-namespace' => '將頁面轉移到名字空間:',
-'importtext'                 => '請使用 Special:Export 功能從源 wiki 匯出檔案，儲存到您的磁片並上傳到這裡。',
+'importtext'                 => '請使用[[Special:Export|匯出功能]]從源 wiki 匯出檔案，
+儲存到您的磁片並上傳到這裡。',
 'importstart'                => '正在匯入頁面...',
 'import-revision-count'      => '$1個修訂',
 'importnopages'              => '沒有匯入的頁面。',
@@ -2406,7 +2413,7 @@ Variants for Chinese language
 郵件傳送員回應: $1',
 'confirmemail_invalid'     => '無效的確認碼，該代碼可能已經過期。',
 'confirmemail_needlogin'   => '您需要$1以確認您的郵箱位址。',
-'confirmemail_success'     => '您的郵箱已經被確認。您現下可以登錄並使用此網站了。',
+'confirmemail_success'     => '您的郵箱已經被確認。您現在可以[[Special:Userlogin|登錄]]並使用此網站了。',
 'confirmemail_loggedin'    => '您的郵箱位址現下已被確認。',
 'confirmemail_error'       => '你的確認過程發生錯誤。',
 'confirmemail_subject'     => '{{SITENAME}}郵箱位址確認',

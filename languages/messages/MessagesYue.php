@@ -445,7 +445,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 通常係因為修訂歷史頁上面，由過時嘅連結去到刪除咗嘅版所引起嘅。
 
 如果唔係，你可能係搵到軟件裏面嘅臭蟲。
-請記低 URL 地址，向管理員報告。',
+請記低 URL 地址，向[[Special:Listusers/sysop|管理員]]報告。',
 'missingarticle-rev'   => '(修訂#: $1)',
 'missingarticle-diff'  => '(差異: $1, $2)',
 'readonly_lag'         => '當從伺服器追緊主伺服器時，資料庫會自動被鎖',
@@ -494,10 +494,10 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'logouttitle'                => '用戶登出',
 'logouttext'                 => "'''你而家已經登出咗。'''
 
-你仍然可以用匿名身份用{{SITENAME}}，又或者重新登入。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。",
+你仍然可以用匿名身份用{{SITENAME}}，又或者[[Special:Userlogin|重新登入]]。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。",
 'welcomecreation'            => '== 歡迎， $1！ ==
 
-你個戶口已經起好。唔好唔記得去改改你嘅{{SITENAME}}喜好設定喎。',
+你個戶口已經起好。唔好唔記得去改改你嘅[[Special:Preferences|{{SITENAME}}喜好設定]]喎。',
 'loginpagetitle'             => '用戶登入',
 'yourname'                   => '用戶名:',
 'yourpassword'               => '密碼:',
@@ -670,7 +670,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'newarticletext'                   => "你連連過嚟嘅頁面重未存在。
 要起版新嘅，請你喺下面嗰格度輸入。(睇睇[[{{MediaWiki:Helppage}}|自助版]]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
-'anontalkpagetext'                 => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin|開一個新戶口或登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
+'anontalkpagetext'                 => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin/signup|開一個新戶口]]或[[Special:Userlogin|登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
 'noarticletext'                    => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
 'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
 'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。''' '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取； '''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
@@ -683,12 +683,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'previewnote'                      => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'previewconflict'                  => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
 'session_fail_preview'             => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
-請再試過喇。如果仍然唔得嘅話，試下登出，然後重新登入。'''",
+請再試過喇。如果仍然唔得嘅話，試下[[Special:Userlogout|登出]]，然後重新登入。'''",
 'session_fail_preview_html'        => "'''對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
 
 ''由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
 
-'''如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先登出然後再登入。'''",
+'''如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先[[Special:Userlogout|登出]]然後再登入。'''",
 'token_suffix_mismatch'            => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。
 當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。'''",
 'editing'                          => '而家喺度編輯$1',
@@ -756,7 +756,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'undo-success' => '呢個編輯可以取消。請檢查一下個差異去確認呢個係你要去做嘅，跟住儲存下面嘅更改去完成編輯。',
 'undo-failure' => '呢個編輯唔能夠取消，由於同途中嘅編輯有衝突。',
 'undo-norev'   => '呢個編輯唔能夠取消，由於佢唔存在或者刪除咗。',
-'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])所做嘅修訂 $1',
+'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])所做嘅修訂 $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '唔可以開新戶口',
@@ -888,8 +888,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 
 # Search results
 'searchresults'             => '搵嘢結果',
+'searchresults-title'       => '對$1嘅搵嘢結果',
 'searchresulttext'          => '有關搵{{SITENAME}}嘅更多資料請參考[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'            => "你利用'''[[:$1]]'''搵",
+'searchsubtitle'            => "你利用'''[[:$1]]'''搵  ([[Special:Prefixindex/$1|全部由 \"$1\" 開始嘅頁]] | [[Special:Whatlinkshere/$1|全部連去 \"$1\" 嘅頁]])",
 'searchsubtitleinvalid'     => "你利用'''$1'''搵",
 'noexactmatch'              => "'''搵唔到到標題為\"\$1\"嘅頁面。''' 你可以而家[[:\$1|開呢個新頁]]。",
 'noexactmatch-nocreate'     => "'''搵唔到到標題為\"\$1\"嘅頁面。'''",
@@ -1054,7 +1055,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'right-autoconfirmed'        => '編輯半保護版',
 'right-bot'                  => '視為一個自動程序',
 'right-nominornewtalk'       => '小編輯唔引發新信息提示',
-'right-apihighlimits'        => '響API查詢度用更高嘅上限',
+'right-apihighlimits'        => '響API查詢度用更高嘅上限 (慢查詢: 500個結果; 快查詢: 5000 個結果)',
 'right-writeapi'             => '使用編寫嘅API',
 'right-delete'               => '刪版',
 'right-bigdelete'            => '刪大量歷史嘅版',
@@ -1143,16 +1144,17 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'uploadtext'                  => "用下面嘅表格嚟上載檔案。
 要睇或者搵嘢之前上載嘅圖像請去[[Special:Imagelist|已上載檔案一覽]]，上載同刪除嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟。
 
-如果要喺頁面度引入呢張圖像，可以使用以下方式嘅連結：
-'''<nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki>'''，
-'''<nowiki>[[</nowiki>{{ns:image}}:file.png|替代文字<nowiki>]]</nowiki>''' 或者用
-'''<nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki>''' 直接連結到檔案。",
+如果要喺頁面度引入呢張圖像，可以使用以下其中一種方式嘅連結：
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki></tt>'''去用檔案嘅完整版
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:file.png|200px|thumb|left|替代文字<nowiki>]]</nowiki></tt>'''去用200像素比例闊，靠左邊加盒，響描述度加'替代文字'
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki></tt>''' 直接連結到檔案而唔顯示個檔案。",
 'upload-permitted'            => '准許嘅檔案類型: $1。',
 'upload-preferred'            => '建議嘅檔案類型: $1。',
 'upload-prohibited'           => '禁止嘅檔案類型: $1。',
 'uploadlog'                   => '上載日誌',
 'uploadlogpage'               => '上載日誌',
-'uploadlogpagetext'           => '以下係最近檔案上載嘅一覽表。',
+'uploadlogpagetext'           => '以下係最近檔案上載嘅一覽表。
+睇[[Special:NewImages|新圖像畫廊]]去睇更詳細嘅總覽。',
 'filename'                    => '檔名',
 'filedesc'                    => '摘要',
 'fileuploadsummary'           => '摘要：',
@@ -1215,9 +1217,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'upload-proto-error'      => '唔正確嘅協議',
 'upload-proto-error-text' => '遙遠上載需要一個以 <code>http://</code> 或者 <code>ftp://</code> 作為開頭嘅URL。',
 'upload-file-error'       => '內部錯誤',
-'upload-file-error-text'  => '當響伺服器度建立一個暫存檔時發生咗一個內部錯誤。請聯絡一位系統管理員。',
+'upload-file-error-text'  => '當響伺服器度建立一個暫存檔時發生咗一個內部錯誤。請聯絡一位[[Special:ListUsers/sysop|管理員]]。',
 'upload-misc-error'       => '未知嘅上載錯誤',
-'upload-misc-error-text'  => '響上載時發生咗未知嘅錯誤。請確認輸入咗嘅URL係可以訪問嘅，之後再試多一次。如果重有問題嘅話，請聯絡一位系統管理員。',
+'upload-misc-error-text'  => '響上載時發生咗未知嘅錯誤。請確認輸入咗嘅URL係可以訪問嘅，之後再試多一次。如果重有問題嘅話，請聯絡一位[[Special:ListUsers/sysop|管理員]]。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '唔可以到嗰個URL',
@@ -1468,20 +1470,24 @@ Template:搞清楚',
 'listusers-noresult' => '搵唔到用戶。',
 
 # Special:Listgrouprights
-'listgrouprights'          => '用戶組權限',
-'listgrouprights-summary'  => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。
-更多有關個別權限嘅細節可以響[[{{MediaWiki:Listgrouprights-helppage}}|呢度]]搵到。',
-'listgrouprights-group'    => '組',
-'listgrouprights-rights'   => '權',
-'listgrouprights-helppage' => 'Help:組權限',
-'listgrouprights-members'  => '(成員名單)',
+'listgrouprights'                 => '用戶組權限',
+'listgrouprights-summary'         => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。
+更多有關個別權限嘅[[{{MediaWiki:Listgrouprights-helppage}}|更多細節]]可以響嗰度搵到。',
+'listgrouprights-group'           => '組',
+'listgrouprights-rights'          => '權',
+'listgrouprights-helppage'        => 'Help:組權限',
+'listgrouprights-members'         => '(成員名單)',
+'listgrouprights-addgroup'        => '可以加入嘅組: $1',
+'listgrouprights-removegroup'     => '可以拎走嘅組: $1',
+'listgrouprights-addgroup-all'    => '可以加入全部組',
+'listgrouprights-removegroup-all' => '可以拎走全部組',
 
 # E-mail user
 'mailnologin'     => '冇傳送地址',
 'mailnologintext' => '你一定要[[Special:Userlogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
 'emailuser'       => '發電郵畀呢位用戶',
 'emailpage'       => '發電郵畀用戶',
-'emailpagetext'   => '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個合法嘅電郵地址，以下表格會發送單單一條信息。你喺你嘅用戶喜好設定入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
+'emailpagetext'   => '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個有效嘅電郵地址，以下表格會發送單單一條信息。你喺[[Special:Preferences|你嘅用戶喜好設定]]入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
 'usermailererror' => '目標郵件地址返回錯誤：',
 'defemailsubject' => '{{SITENAME}} 電郵',
 'noemailtitle'    => '無電郵地址',
@@ -1509,7 +1515,7 @@ Template:搞清楚',
 'addedwatchtext'       => "頁面「[[:$1]]」已加入到你嘅[[Special:Watchlist|監視清單]]度。
 呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，佢喺[[Special:Recentchanges|最近更改清單]]度會以'''粗體'''顯示，等你可以容易啲睇到佢。",
 'removedwatch'         => '已經由監視清單中刪除',
-'removedwatchtext'     => '頁面「[[:$1]]」已經喺你嘅監視清單中刪除。',
+'removedwatchtext'     => '頁面「[[:$1]]」已經喺[[Special:Watchlist|你嘅監視清單]]度刪除。',
 'watch'                => '監視',
 'watchthispage'        => '監視呢頁',
 'unwatch'              => '唔使監視',
@@ -1607,9 +1613,9 @@ wiki: $PAGEEDITOR_WIKI
 'rollbacklink'                => '反轉',
 'rollbackfailed'              => '反轉唔到',
 'cantrollback'                => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
-'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
+'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]] | [[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
-上次編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]）做嘅。',
+上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]] | [[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
 'editcomment'                 => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
 'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
@@ -1852,7 +1858,8 @@ $1',
 'move-page-legend'        => '搬頁',
 'movepagetext'            => "使用以下表格會將頁面改名，兼且連同搬埋佢嘅歷史過去。
 舊標題會變成指去新標題嘅跳轉頁。
-指去舊標題嘅連結唔會修改到；請務必要檢查吓有冇雙重跳轉或者死跳轉（嘅情況發生）。
+你可以自動噉更新指到原先標題嘅跳轉。
+如果你揀咗唔去做嘅話，請務必要檢查吓有冇[[Special:Doubledirects|雙重跳轉]]或者[[Special:BrokenRedirects|死跳轉]]（嘅情況發生）。
 你有責任確保啲連結依然指去佢哋應該指去嘅地方。
 
 注意如果已經有一個同個新名同名嘅頁面，噉呢個頁面係搬'''唔到'''嘅，除非嗰個同名嘅頁面係空嘅或者佢係一個跳轉頁，兼且要之前冇編輯過（冇編輯歷史）先得。噉即係講萬一你搞錯咗，你可以將呢個頁面改返去佢改之前噉，你唔可以覆蓋一個現有嘅頁面。
@@ -1946,7 +1953,8 @@ $1',
 'import-interwiki-history'   => '複製呢一頁所有嘅歷史版本',
 'import-interwiki-submit'    => '倒入',
 'import-interwiki-namespace' => '轉移頁面到空間名：',
-'importtext'                 => '請由原 wiki 嘅 Special:Export 工具匯出成檔案，儲存喺你個磁碟度，然後再上載到呢度。',
+'importtext'                 => '請由原 wiki 嘅[[Special:Export|匯出工具]]匯出成檔案。
+儲存喺你個磁碟度，然後再上載到呢度。',
 'importstart'                => '倒入緊...',
 'import-revision-count'      => '$1次修訂',
 'importnopages'              => '冇頁面去倒入。',
@@ -2477,7 +2485,7 @@ Variants for Chinese language
 郵件遞送員回應咗：$1',
 'confirmemail_invalid'     => '無效嘅確認碼。個代碼可能已經過咗期。',
 'confirmemail_needlogin'   => '你需要先$1去確認你嘅電郵地址。',
-'confirmemail_success'     => '你嘅電郵地址已經得到確認。你而家可以登入同盡情享受wiki啦。',
+'confirmemail_success'     => '你嘅電郵地址已經得到確認。你而家可以[[Special:Userlogin|登入]]同盡情享受wiki啦。',
 'confirmemail_loggedin'    => '你嘅電郵地址現已得到確認。',
 'confirmemail_error'       => '儲存你嘅確認資料嘅時候有小小嘢發生咗意外。',
 'confirmemail_subject'     => '{{SITENAME}}電郵地址確認',

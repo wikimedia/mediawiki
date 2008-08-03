@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -183,12 +183,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => '个分类',
+'pagecategories'                 => '$1个分类',
 'category_header'                => '"$1"分类中的页面',
 'subcategories'                  => '亚类',
 'category-media-header'          => '"$1"分类中的媒体',
 'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
-'hidden-categories'              => '个隐藏分类',
+'hidden-categories'              => '$1个隐藏分类',
 'hidden-category-category'       => '隐藏分类', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|这个分类中只有以下的亚类。|这个分类中有以下的$1个亚类，共有$2个附分类。}}',
 'category-subcat-count-limited'  => '这个分类中有$1个亚类。',
@@ -391,7 +391,7 @@ MySQL返回错误“$3: $4”。',
 通常这是由于修订历史页上过时的链接到已经被删除的页面所导致的。
 
 如果情况不是这样，您可能找到了软件内的一个错误。
-请记录下 URL 地址，并向管理员报告。',
+请记录下 URL 地址，并向[[Special:ListUsers/sysop|管理员]]报告。',
 'missingarticle-rev'   => '(修订#: $1)',
 'missingarticle-diff'  => '(差异: $1, $2)',
 'readonly_lag'         => '附属数据库服务器正在将缓存更新到主服务器，数据库已被自动锁定',
@@ -440,11 +440,11 @@ $2',
 # Login and logout pages
 'logouttitle'                => '退出',
 'logouttext'                 => '<strong>您现在已经退出。</strong><br />
-您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份登录。
+您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:Userlogin|登录]]。
 请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。',
 'welcomecreation'            => '== 欢迎, $1! ==
 
- 您的账户已经建立，不要忘记设置{{SITENAME}}的个人参数。',
+ 您的账户已经建立，不要忘记设置[[Special:Preferences|{{SITENAME}}的个人参数]]。',
 'loginpagetitle'             => '用户登录',
 'yourname'                   => '用户名:',
 'yourpassword'               => '密码:',
@@ -611,7 +611,7 @@ $2',
 'newarticletext'                   => '您进入了一个尚未创建的页面。
 要创建该页面，请在下面的编辑框中输入内容(详情参见[[Help:帮助|帮助]])。
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
-'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:Userlogin|创建新账户或登录]]以避免在未来与其他匿名用户混淆。''",
+'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:Userlogin/signup|创建新账户]]或[[Special:Userlogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
 'clearyourcache'                   => "'''注意 - 在保存以後, 您必須清除瀏覽器的緩存才能看到所作出的改變。''' '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''刷新''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；'''Konqueror:''' 只需點擊 ''刷新''或按下''F5''；'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的緩存；'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''刷新''，或按下 ''Ctrl-F5''。",
@@ -623,12 +623,12 @@ $2',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>请记住这只是预览，内容还未保存！</strong>',
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请登出后重新登陆。</strong>',
+'session_fail_preview'             => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:Userlogout|登出]]后重新登陆。</strong>',
 'session_fail_preview_html'        => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
-<strong>如果这是一次合法的编辑，请重新进行尝试。如果还不行，请退出并重新登录。</strong>",
+<strong>如果这是一次合法的编辑，请重新进行尝试。如果还不行，请[[Special:Userlogout|退出]]并重新登录。</strong>",
 'token_suffix_mismatch'            => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。</strong>',
 'editing'                          => '正在编辑$1',
@@ -697,7 +697,7 @@ $2',
 'undo-success' => '此编辑可以被撤销。请检查以下对比以核实这正是您想做的，然后保存以下更改以完成撤销编辑。',
 'undo-failure' => '由于中途不一致的编辑，此编辑不能撤销。',
 'undo-norev'   => '由于其修订版本不存在或已删除，此编辑不能撤销。',
-'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])所作出的修订 $1',
+'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])所作出的修订 $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '无法创建账户',
@@ -827,8 +827,9 @@ $2',
 
 # Search results
 'searchresults'             => '搜索结果',
+'searchresults-title'       => '对$1的搜索结果',
 'searchresulttext'          => '有关搜索{{SITENAME}}的更多详情,参见[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'            => "搜索'''[[:$1]]'''",
+'searchsubtitle'            => '搜索\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 开头的页面]] | [[Special:Whatlinkshere/$1|所有链接到 "$1" 的页面]])',
 'searchsubtitleinvalid'     => "搜索'''$1'''",
 'noexactmatch'              => "'''没找到标题为\"\$1\"的页面。''' 您可以[[:\$1|创建此页面]]。",
 'noexactmatch-nocreate'     => "'''没找到标题为\"\$1\"的页面。'''",
@@ -1084,16 +1085,17 @@ $2',
 可以进入[[Special:Imagelist|文件上传列表]]，
 上传和删除将在[[Special:Log/upload|上传日志]]中记录。
 
-要在页面中加入文件，使用以下形式的连接:
-'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.jpg]]</nowiki>'''，
-'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.png|替换文字]]</nowiki>''' 或
-'''<nowiki>[[</nowiki>{{ns:media}}</nowiki>:file.ogg]]</nowiki>'''。",
+要在页面中加入文件，使用以下其中一种形式的连接:
+* '''<tt><nowiki>[[{{ns:image}}:file.jpg]]</nowiki></tt>'''去用文件的完整版本
+* '''<tt><nowiki>[[{{ns:image}}:file.png|200px|thumb|left|替换文字]]</nowiki></tt>'''去用一个200像素宽，左面盒上有'替换文字'的描述
+* '''<tt><nowiki>[[{{ns:media}}:file.ogg]]</nowiki></tt>'''去直接连接到文件而不显示文件",
 'upload-permitted'            => '准许的文件类型: $1。',
 'upload-preferred'            => '建议的文件类型: $1。',
 'upload-prohibited'           => '禁止的文件类型: $1。',
 'uploadlog'                   => '上传日志',
 'uploadlogpage'               => '上传日志',
-'uploadlogpagetext'           => '以下是一个最近上传文件的列表。',
+'uploadlogpagetext'           => '以下是一个最近上传文件的列表。
+查看[[Special:NewImages|新文件画廊]]去看更富图像的总览。',
 'filename'                    => '文件名',
 'filedesc'                    => '文件描述',
 'fileuploadsummary'           => '文件描述:',
@@ -1152,9 +1154,9 @@ $2',
 'upload-proto-error'      => '协议错误',
 'upload-proto-error-text' => '远程上传要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 开头。',
 'upload-file-error'       => '内部错误',
-'upload-file-error-text'  => '当试图在服务器上创建临时文件时发生内部错误。请与系统管理员联系。',
+'upload-file-error-text'  => '当试图在服务器上创建临时文件时发生内部错误。请与[[Special:ListUsers/sysop|管理员]]联系。',
 'upload-misc-error'       => '未知的上传错误',
-'upload-misc-error-text'  => '在上传时发生未知的错误. 请验证使用了正确并可访问的 URL，然后进行重试。如果问题仍然存在，请与系统管理员联系。',
+'upload-misc-error-text'  => '在上传时发生未知的错误. 请验证使用了正确并可访问的 URL，然后进行重试。如果问题仍然存在，请与[[Speical:ListUsers/sysop|管理员]]联系。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问 URL',
@@ -1413,13 +1415,18 @@ Template:消除歧義',
 'listusers-noresult' => '找不到用户。',
 
 # Special:Listgrouprights
-'listgrouprights'          => '用户群组权限',
-'listgrouprights-summary'  => '以下面是一个在这个wiki中定义出来的用户权限列表，以及它们的访问权。
+'listgrouprights'                 => '用户群组权限',
+'listgrouprights-summary'         => '以下面是一个在这个wiki中定义出来的用户权限列表，以及它们的访问权。
 更多有关个别权限的细节可以在[[{{MediaWiki:Listgrouprights-helppage}}|这里]]找到。',
-'listgrouprights-group'    => '群组',
-'listgrouprights-rights'   => '权限',
-'listgrouprights-helppage' => 'Help:群组权限',
-'listgrouprights-members'  => '(成员列表)',
+'listgrouprights-group'           => '群组',
+'listgrouprights-rights'          => '权限',
+'listgrouprights-helppage'        => 'Help:群组权限',
+'listgrouprights-members'         => '(成员列表)',
+'listgrouprights-addgroup'        => '可以加入的群组: $1',
+'listgrouprights-removegroup'     => '可以移除的群组: $1',
+'listgrouprights-addgroup-all'    => '可以加入所有群组',
+'listgrouprights-removegroup-all' => '可以移除所有群组',
+
 
 # E-mail user
 'mailnologin'     => '无电邮地址',
@@ -1428,7 +1435,7 @@ Template:消除歧義',
 中有一个有效的电子邮箱地址才可以向其他用户发邮件。',
 'emailuser'       => '向该用户发邮件',
 'emailpage'       => '向用户发邮件',
-'emailpagetext'   => '如果该用户已经在他或她的参数设置页中输入了有效的电子邮箱地址，以下的表单将寄一个信息给该用户。您在您参数设置中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
+'emailpagetext'   => '如果该用户已经在他或她的参数设置页中输入了有效的电子邮箱地址，以下的表单将寄一个信息给该用户。您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror' => 'Mail 对象返回错误:',
 'defemailsubject' => '{{SITENAME}}电子邮件',
 'noemailtitle'    => '无电子邮件地址',
@@ -1459,7 +1466,7 @@ Template:消除歧義',
 而且还会在[[Special:Recentchanges|最近更改]]中
 以'''粗体'''形式列出以使起更容易识别。",
 'removedwatch'         => '已停止监视',
-'removedwatchtext'     => '页面"<nowiki>$1</nowiki>"已经从您的监视页面中移除。',
+'removedwatchtext'     => '页面"<nowiki>$1</nowiki>"已经从[[Special:Watchlist|您的监视页面]]中移除。',
 'watch'                => '监视',
 'watchthispage'        => '监视此页',
 'unwatch'              => '取消监视',
@@ -1558,10 +1565,10 @@ $NEWPAGE
 'rollbacklink'                => '恢复',
 'rollbackfailed'              => '恢复失败',
 'cantrollback'                => '无法恢复编辑；最后的贡献者是本文的唯一作者。',
-'alreadyrolled'               => '无法恢复由[[User:$2|$2]] ([[User talk:$2|讨论]])进行的[[$1]]的最后编辑；
+'alreadyrolled'               => '无法恢复由[[User:$2|$2]] ([[User talk:$2|讨论]]  | [[Special:Contributions/$2|{{int:contribslink}}]])进行的[[$1]]的最后编辑；
 其他人已经编辑或是恢复了该页。
 
-最后编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]])。',
+最后对页面编辑的编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]] | [[Special:Contributions/$3|{{int:contribslink}}]])。',
 'editcomment'                 => '编辑说明: "<i>$1</i>"。', # only shown if there is an edit comment
 'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '恢复由$1的编辑；更改回$2的最后一个版本。',
@@ -1807,8 +1814,8 @@ $1',
 'move-page-legend'        => '移动页面',
 'movepagetext'            => "用下面的表单来重命名一个页面，并将其修订历史同时移动到新页面。
 老的页面将成为新页面的重定向页。
-链接到老页面的链接并不会自动更改；
-请检查双重或损坏重定向链接。
+您可以自动地更新指到原标题的重定向。
+如果您选择不去做的话，请检查[[Special:DoubleRedirects|双重]]或[[Special:BrokenRedirects|损坏重定向]]连结。
 您应当负责确定所有链接依然会链到指定的页面。
 
 注意如果新页面已经有内容的话，页面将'''不会'''被移动，
@@ -1909,7 +1916,8 @@ $1',
 'import-interwiki-history'   => '复制此页的所有历史版本',
 'import-interwiki-submit'    => '导入',
 'import-interwiki-namespace' => '将页面转移到名字空间:',
-'importtext'                 => '请使用 Special:Export 功能从源 wiki 导出文件，保存到您的磁盘并上传到这里。',
+'importtext'                 => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
+保存到您的磁盘并上传到这里。',
 'importstart'                => '正在导入页面...',
 'import-revision-count'      => '$1个修订',
 'importnopages'              => '没有导入的页面。',
@@ -2431,7 +2439,7 @@ Variants for Chinese language
 邮件传送员回应: $1',
 'confirmemail_invalid'     => '无效的确认码，该代码可能已经过期。',
 'confirmemail_needlogin'   => '您需要$1以确认您的邮箱地址。',
-'confirmemail_success'     => '您的邮箱已经被确认。您现在可以登录并使用此网站了。',
+'confirmemail_success'     => '您的邮箱已经被确认。您现在可以[[Special:Userlogin|登录]]并使用此网站了。',
 'confirmemail_loggedin'    => '您的邮箱地址现在已被确认。',
 'confirmemail_error'       => '你的确认过程发生错误。',
 'confirmemail_subject'     => '{{SITENAME}}邮箱地址确认',

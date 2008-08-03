@@ -148,12 +148,10 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                => '個分類',
 'category_header'               => '類別「$1」中的頁面',
 'subcategories'                 => '子分類',
 'category-media-header'         => '"$1"分類中的媒體',
 'category-empty'                => "''這個分類中尚未包含任何頁面或媒體。''",
-'hidden-categories'             => '個隱藏分類',
 'hidden-category-category'      => '隱藏分類', # Name of the category where hidden categories will be listed
 'category-subcat-count'         => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
 'category-subcat-count-limited' => '這個分類下有$1個子分類。',
@@ -836,7 +834,6 @@ $2',
 'recentchanges'                     => '近期變動',
 'recentchangestext'                 => '跟蹤這個wiki上的最新更改。',
 'recentchanges-feed-description'    => '跟蹤此訂閱在 wiki 上的近期變動。',
-'rcnote'                            => "以下是在$3，最近'''$2'''天內的'''$1'''次近期變動記錄:",
 'rcnotefrom'                        => '下面是自<b>$2</b>(最多顯示<b>$1</b>):',
 'rclistfrom'                        => '顯示自$1以來的新更改',
 'rcshowhideminor'                   => '$1細微修改',
@@ -976,7 +973,6 @@ $2',
 'filehist-filesize'         => '檔案大小',
 'filehist-comment'          => '註解',
 'imagelinks'                => '連結',
-'linkstoimage'              => '以下頁面連接到本檔案:',
 'nolinkstoimage'            => '沒有頁面連接到本檔案。',
 'sharedupload'              => '該檔案是一個共享上傳，它可能在其它項目中被應用。',
 'shareduploadwiki'          => '請參閱$1以了解其相關資訊。',
@@ -1796,7 +1792,6 @@ $1',
 'noimages'              => '無可檢視圖片。',
 'ilsubmit'              => '搜尋',
 'bydate'                => '按日期',
-'sp-newimages-showfrom' => '從$1開始顯示新圖片',
 
 # Bad image list
 'bad_image_list' => '請根據以下的格式去編寫:
@@ -2116,14 +2111,6 @@ Variants for Chinese language
 'confirmemail_loggedin'   => '您的電子郵件地址現下已被確認。',
 'confirmemail_error'      => '你的確認過程發生錯誤。',
 'confirmemail_subject'    => '{{SITENAME}}電子郵件地址確認',
-'confirmemail_body'       => '擁有IP位址$1的使用者(可能是您)在{{SITENAME}}建立了帳號"$2"，並提交了您的電子電子郵件地址。
-
-請確認這個帳號是屬於您的，並同時啟用在{{SITENAME}}上的
-電子郵件功能。請在瀏覽器中打開下面的連結:
-
-$3
-
-如果您*沒有*提出這個請求，請不要點擊此連結。確認碼會在$4過期。',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨wiki轉換代碼不可用]',
