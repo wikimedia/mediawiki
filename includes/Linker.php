@@ -1238,7 +1238,9 @@ class Linker {
 					$sectionTitle = wfClone( $title );
 					$sectionTitle->mFragment = $section;
 				}
-				$link = $this->link( $sectionTitle, wfMsgForContent( 'sectionlink' ) );
+				$link = $this->link( $sectionTitle,
+					wfMsgForContent( 'sectionlink' ), array(), array(),
+					'noclasses' );
 			}
 			$auto = $link . $auto;
 			if( $pre ) {
