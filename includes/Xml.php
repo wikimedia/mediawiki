@@ -55,6 +55,31 @@ class Xml {
 	}
 
 	/**
+	 * Given a string of attributes for an element, return an array of key =>
+	 * value pairs.  Can be used for backward compatibility with old functions
+	 * that accept attributes as strings instead of arrays.  Does not validate
+	 * the string, so watch out for GIGO.
+	 *
+	 * @param $attribs string
+	 * @return array
+	 */
+	public static function explodeAttributes( $attribs ) {
+		$matches = array();
+		preg_match_all( '/([^\s=\'"]+)\s*=\s*(?:\'([^\']*)\'|"([^"]*)")/',
+			$attribs, $matches );
+		$ret = array();
+		for( $i = 0; $i < count( $matches[0] ); ++$i ) {
+			if( $matches[2][$i] !== '' ) {
+				$val = $matches[2][$i];
+			} else {
+				$val = $matches[3][$i];
+			}
+			$ret[$matches[1][$i]] = html_entity_decode( $val );
+		}
+		return $ret;
+	}
+
+	/**
 	 * Format an XML element as with self::element(), but run text through the
 	 * UtfNormal::cleanUp() validator first to ensure that no invalid UTF-8
 	 * is passed.
