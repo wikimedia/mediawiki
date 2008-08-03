@@ -1,8 +1,13 @@
 <?php
 /** Danish (Dansk)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
+ * @author Jan Friberg
+ * @author Jon Harald Søby
+ * @author Peter Andersen
+ * @author H92
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author Morten LJ
