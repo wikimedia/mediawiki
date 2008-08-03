@@ -1235,7 +1235,7 @@ class Linker {
 				if ( $local ) {
 					$sectionTitle = Title::newFromText( '#' . $section );
 				} else {
-					$sectionTitle = wfClone( $title );
+					$sectionTitle = clone( $title );
 					$sectionTitle->mFragment = $section;
 				}
 				$link = $this->link( $sectionTitle,
