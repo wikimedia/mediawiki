@@ -235,7 +235,7 @@ class Linker {
 
 		if( !in_array( 'noclasses', $options ) ) {
 			wfProfileIn( __METHOD__ . '-getClasses' );
-			# Now build the classes.
+			# Build the classes.
 			$classes = array();
 
 			if( in_array( 'broken', $options ) ) {
@@ -401,17 +401,58 @@ class Linker {
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
-		$query = wfCgiToArray( $query );
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		if( $text === '' ) {
-			$text = $this->linkText( $nt );
+		if ( $nt->isExternal() ) {
+			$u = $nt->getFullURL();
+			$link = $nt->getPrefixedURL();
+			if ( '' == $text ) { $text = $nt->getPrefixedText(); }
+			$style = $this->getInterwikiLinkAttributes( $link, $text, 'extiw' );
+
+			$inside = '';
+			if ( '' != $trail ) {
+				$m = array();
+				if ( preg_match( '/^([a-z]+)(.*)$$/sD', $trail, $m ) ) {
+					$inside = $m[1];
+					$trail = $m[2];
+				}
+			}
+			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
+
+			wfProfileOut( __METHOD__ );
+			return $t;
+		} elseif ( $nt->isAlwaysKnown() ) {
+			# Image links, special page links and self-links with fragments are always known.
+			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+		} else {
+			wfProfileIn( __METHOD__.'-immediate' );
+
+			# Handles links to special pages which do not exist in the database:
+			if( $nt->getNamespace() == NS_SPECIAL ) {
+				if( SpecialPage::exists( $nt->getDBkey() ) ) {
+					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
+				} else {
+					$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
+				}
+				wfProfileOut( __METHOD__.'-immediate' );
+				wfProfileOut( __METHOD__ );
+				return $retVal;
+			}
+
+			# Work out link colour immediately
+			$aid = $nt->getArticleID() ;
+			if ( 0 == $aid ) {
+				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
+			} else {
+				$colour = '';
+				if ( $nt->isContentPage() ) {
+					$threshold = $wgUser->getOption('stubthreshold');
+					$colour = $this->getLinkColour( $nt, $threshold );
+				}
+				$retVal = $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
+			}
+			wfProfileOut( __METHOD__.'-immediate' );
 		}
-
-		$ret = $this->link( $nt, "$prefix$text$inside", array(), $query,
-			'noclasses' ) . $trail;
-
 		wfProfileOut( __METHOD__ );
-		return $ret;
+		return $retVal;
 	}
 
 	/**
@@ -431,21 +472,31 @@ class Linker {
 	function makeKnownLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
 		wfProfileIn( __METHOD__ );
 
-		if ( $text == '' ) {
-			$text = $this->linkText( $title );
+		$nt = $this->normaliseSpecialPage( $title );
+
+		$u = $nt->escapeLocalURL( $query );
+		if ( $nt->getFragment() != '' ) {
+			if( $nt->getPrefixedDbkey() == '' ) {
+				$u = '';
+				if ( '' == $text ) {
+					$text = htmlspecialchars( $nt->getFragment() );
+				}
+			}
+			$u .= $nt->getFragmentForURL();
 		}
-		$attribs = Sanitizer::mergeAttributes(
-			Xml::explodeAttributes( $aprops ),
-			Xml::explodeAttributes( $style )
-		);
-		$query = wfCgiToArray( $query );
+		if ( $text == '' ) {
+			$text = htmlspecialchars( $nt->getPrefixedText() );
+		}
+		if ( $style == '' ) {
+			$style = $this->getInternalLinkAttributesObj( $nt, $text );
+		}
+
+		if ( $aprops !== '' ) $aprops = " $aprops";
+
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
-
-		$ret = $this->link( $title, "$prefix$text$inside", $attribs, $query,
-			array( 'known', 'noclasses' ) ) . $trail;
-
+		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
 		wfProfileOut( __METHOD__ );
-		return $ret;
+		return $r;
 	}
 
 	/**
@@ -461,15 +512,32 @@ class Linker {
 	function makeBrokenLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfProfileIn( __METHOD__ );
 
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		if( $text === '' ) {
-			$text = $this->linkText( $title );
-		}
 		$nt = $this->normaliseSpecialPage( $title );
 
+		if( $nt->getNamespace() == NS_SPECIAL ) {
+			$q = $query;
+		} else if ( '' == $query ) {
+			$q = 'action=edit&redlink=1';
+		} else {
+			$q = 'action=edit&redlink=1&'.$query;
+		}
+		$u = $nt->escapeLocalURL( $q );
+		if( $nt->getFragmentForURL() !== '' ) {
+			# Might seem pointless to have a fragment on a redlink, but let's
+			# be obedient.
+			$u .= $nt->getFragmentForURL();
+		}
+
+		$titleText = $nt->getPrefixedText();
+		if ( '' == $text ) {
+			$text = htmlspecialchars( $titleText );
+		}
+		$titleAttr = wfMsg( 'red-link-title', $titleText );
+		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'new', $titleAttr );
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+
 		wfRunHooks( 'BrokenLink', array( &$this, $nt, $query, &$u, &$style, &$prefix, &$text, &$inside, &$trail ) );
-		$s = $this->link( $title, "$prefix$text$inside", array(),
-			wfCgiToArray( $query ), array( 'broken', 'noclasses' ) ) . $trail;
+		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
 
 		wfProfileOut( __METHOD__ );
 		return $s;
