@@ -101,6 +101,11 @@ wgAjaxWatch.processResult = function(request) {
 	if(wgAjaxWatch.timeoutID) {
 		window.clearTimeout(wgAjaxWatch.timeoutID);
 	}
+	// Bug 12395 - avoid some watch link confusion on edit
+	var watchthis = document.getElementById("wpWatchthis");
+	if( watchthis && response.match(/^<[uw]#>/) ) {
+		watchthis.checked = response.match(/^<w#>/) ? "checked" : "";
+	}
 	return;
 };
 
