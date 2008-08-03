@@ -1056,34 +1056,6 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 }
 
 /**
- * This is the logical opposite of wfArrayToCGI(): it accepts a query string as
- * its argument and returns the same string in array form.  This allows compa-
- * tibility with legacy functions that accept raw query strings instead of nice
- * arrays.  Of course, keys and values are urldecode()d.  Don't try passing in-
- * valid query strings, or it will explode.
- *
- * @param $query string Query string
- * @return array Array version of input
- */
-function wfCgiToArray( $query ) {
-	if( isset( $query[0] ) and $query[0] == '?' ) {
-		$query = substr( $query, 1 );
-	}
-	$bits = explode( '&', $query );
-	$ret = array();
-	foreach( $bits as $bit ) {
-		if( $bit === '' ) {
-			continue;
-		}
-		list( $key, $value ) = explode( '=', $bit );
-		$key = urldecode( $key );
-		$value = urldecode( $value );
-		$ret[$key] = $value;
-	}
-	return $ret;
-}
-
-/**
  * Append a query string to an existing URL, which may or may not already
  * have query string parameters already. If so, they will be combined.
  *
