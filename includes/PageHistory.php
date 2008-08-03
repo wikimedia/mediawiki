@@ -131,13 +131,14 @@ class PageHistory {
 		$month = $wgRequest->getInt( 'month' );
 		
 		$action = htmlspecialchars( $wgScript );
-		$wgOut->addHTML( 
+		$wgOut->addHTML(
+			Xml::fieldset( wfMsg( 'history-search' ) ) .
 			"<form action=\"$action\" method=\"get\"><div>" .
 			Xml::hidden( 'title', $this->mTitle->getPrefixedDBKey() ) . "\n" .
 			Xml::hidden( 'action', 'history' ) . "\n" .
 			$this->getDateMenu( $year, $month ) . '&nbsp;' . 
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
-			'</div><hr/></form>'
+			'</div></form></fieldset>'
 		);
 
 		wfRunHooks( 'PageHistoryBeforeList', array( &$this->mArticle ) );
