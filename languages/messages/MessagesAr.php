@@ -365,6 +365,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'دمج_التاريخ' ),
 	'Filepath'                  => array( 'مسار_ملف' ),
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكتروني' ),
+	'Blankpage'                 => array( 'صفحة_فارغة' ),
 );
 
 $imageFiles = array(
