@@ -86,7 +86,7 @@ class SkinTemplate extends Skin {
 	 * will actually fill the template.
 	 */
 	var $template;
-	
+
 	/**
 	 * An array of stylesheet filenames (relative from skins path), with options
 	 * for CSS media, IE conditions, and RTL/LTR direction.
@@ -108,7 +108,7 @@ class SkinTemplate extends Skin {
 		$this->skinname  = 'monobook';
 		$this->stylename = 'monobook';
 		$this->template  = 'QuickTemplate';
-		
+
 		$this->addStyle( 'common/shared.css', 'screen' );
 		$this->addStyle( 'common/commonPrint.css', 'print' );
 	}
@@ -964,7 +964,7 @@ class SkinTemplate extends Skin {
 	 */
 	function setupUserCss() {
 		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
-		
+
 		wfProfileIn( __METHOD__ );
 
 		$siteargs = array(
@@ -1004,7 +1004,7 @@ class SkinTemplate extends Skin {
 			# if we're previewing the CSS page, use it
 			if( $this->mTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
 				$previewCss = $wgRequest->getText('wpTextbox1');
-				
+
 				/// @fixme properly escape the cdata!
 				$this->usercss = "/*<![CDATA[*/\n" .
 					$previewCss .
@@ -1014,7 +1014,7 @@ class SkinTemplate extends Skin {
 								 'action=raw&ctype=text/css'), 'screen' );
 			}
 		}
-		
+
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -1094,7 +1094,7 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
-	
+
 	/**
 	 * Add a local or specified stylesheet, with the given media options.
 	 * Meant primarily for internal use...
@@ -1119,25 +1119,26 @@ class SkinTemplate extends Skin {
 	 * These will be applied to various media & IE conditionals.
 	 */
 	protected function buildCssLinks() {
+		$links = array();
 		foreach( $this->styles as $file => $options ) {
 			$link = $this->styleLink( $file, $options );
 			if( $link )
 				$links[] = $link;
 		}
-		
+
 		return implode( "\n\t\t", $links );
 	}
-	
+
 	protected function styleLink( $style, $options ) {
 		global $wgRequest;
-		
+
 		if( isset( $options['dir'] ) ) {
 			global $wgContLang;
 			$siteDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 			if( $siteDir != $options['dir'] )
 				return '';
 		}
-		
+
 		if( isset( $options['media'] ) ) {
 			$media = $this->transformCssMedia( $options['media'] );
 			if( is_null( $media ) ) {
@@ -1146,7 +1147,7 @@ class SkinTemplate extends Skin {
 		} else {
 			$media = '';
 		}
-		
+
 		if( substr( $style, 0, 1 ) == '/' ||
 			substr( $style, 0, 5 ) == 'http:' ||
 			substr( $style, 0, 6 ) == 'https:' ) {
@@ -1155,7 +1156,7 @@ class SkinTemplate extends Skin {
 			global $wgStylePath, $wgStyleVersion;
 			$url = $wgStylePath . '/' . $style . '?' . $wgStyleVersion;
 		}
-		
+
 		$attribs = array(
 			'rel' => 'stylesheet',
 			'href' => $url,
@@ -1172,10 +1173,10 @@ class SkinTemplate extends Skin {
 		}
 		return $link;
 	}
-	
+
 	function transformCssMedia( $media ) {
 		global $wgRequest, $wgHandheldForIPhone;
-		
+
 		// Switch in on-screen display for media testing
 		$switches = array(
 			'printable' => 'print',
@@ -1190,19 +1191,19 @@ class SkinTemplate extends Skin {
 				}
 			}
 		}
-		
+
 		// Expand longer media queries as iPhone doesn't grok 'handheld'
 		if( $wgHandheldForIPhone ) {
 			$mediaAliases = array(
 				'screen' => 'screen and (min-device-width: 481px)',
 				'handheld' => 'handheld, only screen and (max-device-width: 480px)',
 			);
-		
+
 			if( isset( $mediaAliases[$media] ) ) {
 				$media = $mediaAliases[$media];
 			}
 		}
-		
+
 		return $media;
 	}
 
