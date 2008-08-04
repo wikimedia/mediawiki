@@ -814,9 +814,14 @@ class PreferencesForm {
 
 		# Skin
 		#
-		$wgOut->addHTML( "<fieldset>\n<legend>\n" . wfMsg('skin') . "</legend>\n" );
+		$wgOut->addHTML(
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'skin' ) ) . "\n" .
+			wfMsg( 'skin-header' ) . "<br /><br />"
+		);
+
 		$mptitle = Title::newMainPage();
-		$previewtext = wfMsg('skinpreview');
+		$previewtext = wfMsg('skin-preview');
 		# Only show members of Skin::getSkinNames() rather than
 		# $skinNames (skins is all skin names from Language.php)
 		$validSkinNames = Skin::getSkinNames();
@@ -832,15 +837,20 @@ class PreferencesForm {
 			if ( in_array( $skinkey, $wgSkipSkins ) ) {
 				continue;
 			}
+			$pageCSS = Title::makeTitle( NS_USER, $wgUser->getName() . '/' . $skinkey . '.css' );
+			$pageJS = Title::makeTitle( NS_USER, $wgUser->getName() . '/' . $skinkey . '.js' );
+			$linkToCSS = $sk->link( $pageCSS, wfMsg( 'skin-link-to-css' ) );
+			$linkToJS = $sk->link( $pageJS, wfMsg( 'skin-link-to-js' ) );
 			$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
 
 			$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
-			$previewlink = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
-			if( $skinkey == $wgDefaultSkin )
+			$linkLine = " (<a target='_blank' href=\"$mplink\">$previewtext</a> | " . $linkToCSS . " | " . $linkToJS . ')';
+			if( $skinkey == $wgDefaultSkin ) {
 				$sn .= ' (' . wfMsg( 'default' ) . ')';
-			$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> <label for=\"wpSkin$skinkey\">{$sn}</label> $previewlink<br />\n" );
+			}
+			$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> <label for=\"wpSkin$skinkey\">{$sn}</label>$linkLine<br />\n" );
 		}
-		$wgOut->addHTML( "</fieldset>\n\n" );
+		$wgOut->addHTML( Xml::closeElement( 'fieldset' ) );
 
 		# Math
 		#
