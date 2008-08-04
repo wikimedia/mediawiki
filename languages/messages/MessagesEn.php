@@ -537,8 +537,6 @@ XHTML id names.
 'underline-never'   => 'Never',
 'underline-default' => 'Browser default',
 
-'skinpreview' => '(Preview)',
-
 # Dates
 'sunday'        => 'Sunday',
 'monday'        => 'Monday',
@@ -1405,6 +1403,10 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'qbsettings-floatingright' => 'Floating right',
 'changepassword'           => 'Change password',
 'skin'                     => 'Skin',
+'skin-header'              => 'Available skins. You can customize each skin with the associated cascading style sheet (CSS) and JavaScript pages.',
+'skin-preview'             => 'Preview',
+'skin-link-to-css'         => 'associated CSS',
+'skin-link-to-js'          => 'associated JS',
 'math'                     => 'Math',
 'dateformat'               => 'Date format',
 'datedefault'              => 'No preference',
