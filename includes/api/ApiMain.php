@@ -99,6 +99,19 @@ class ApiMain extends ApiBase {
 		'dbg' => 'ApiFormatDbg',
 		'dbgfm' => 'ApiFormatDbg'
 	);
+	
+	/**
+	 * List of user roles that are specifically relevant to the API.
+	 * array( 'right' => array ( 'msg'    => 'Some message with a $1',
+	 *                           'params' => array ( $someVarToSubst ) ),
+	 *                          );
+	 */
+	private static $mRights = array( 'writeapi'		=> array(	'msg' => 'Use of the write API' , 
+																'params' => array() ),
+									'apihighlimits'	=> array(	'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results)',
+																'params' => array ( ApiMain :: LIMIT_SML2, ApiMain :: LIMIT_BIG2 ) ),
+									);
+
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
 	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
@@ -523,6 +536,14 @@ class ApiMain extends ApiBase {
 			if ($msg2 !== false)
 				$msg .= $msg2;
 			$msg .= "\n";
+		}
+
+		$msg .= "\n$astriks Permissions $astriks\n\n";
+		foreach ( self :: $mRights as $right => $rightMsg ) {
+			$groups = User::getGroupsWithPermission( $right );
+			$msg .= "* " . $right . " *\n  " . wfMsgReplaceArgs( $rightMsg[ 'msg' ], $rightMsg[ 'params' ] ) . 
+						"\nGranted to:\n  " . str_replace( "*", "all", implode( ", ", $groups ) ) . "\n";
+
 		}
 
 		$msg .= "\n$astriks Formats  $astriks\n\n";
