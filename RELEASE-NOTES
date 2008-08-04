@@ -67,6 +67,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   This means you can use API search on Wikipedia without explicitly adding
   &srwhat=text to the query.
 * Added iiprop=bitdepth to imageinfo and aiprop=bitdepth to allimages
+* API-specific permissions (such as 'writeapi' and 'apihighlimits' are now
+  listed on action=help
 
 
 === Languages updated in 1.14 ===
