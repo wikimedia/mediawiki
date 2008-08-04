@@ -108,7 +108,7 @@ class ApiMain extends ApiBase {
 	 */
 	private static $mRights = array( 'writeapi'		=> array(	'msg' => 'Use of the write API' , 
 																'params' => array() ),
-									'apihighlimits'	=> array(	'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results)',
+									'apihighlimits'	=> array(	'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results). These limits also apply to multivalue parameters.',
 																'params' => array ( ApiMain :: LIMIT_SML2, ApiMain :: LIMIT_BIG2 ) ),
 									);
 
@@ -510,6 +510,7 @@ class ApiMain extends ApiBase {
 			'API developers:',
 			'    Roan Kattouw <Firstname>.<Lastname>@home.nl (lead developer Sep 2007-present)',
 			'    Victor Vasiliev - vasilvv at gee mail dot com',
+			'    Bryan Tongh Minh - bryan dot tonghminh at gee mail dot com',
 			'    Yuri Astrakhan <Firstname><Lastname>@gmail.com (creator, lead developer Sep 2006-Sep 2007)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
