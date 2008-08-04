@@ -752,6 +752,8 @@ $wgMessageStructure = array(
 		'changepassword',
 		'skin',
 		'skin-header',
+		'skin-header-css',
+		'skin-header-js'
 		'skin-preview',
 		'skin-link-to-css',
 		'skin-link-to-js',

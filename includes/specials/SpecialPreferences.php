@@ -814,11 +814,17 @@ class PreferencesForm {
 
 		# Skin
 		#
+		global $wgAllowUserCss, $wgAllowUserJs;
 		$wgOut->addHTML(
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'skin' ) ) . "\n" .
-			wfMsg( 'skin-header' ) . "<br /><br />"
+			Xml::element( 'legend', null, wfMsg( 'skin' ) ) . "\n"
 		);
+		$wgOut->addWikiMsg( 'skin-header' );
+		if ( $wgAllowUserCss )
+			$wgOut->addWikiMsg( 'skin-header-css' );
+
+		if ( $wgAllowUserJs )
+			$wgOut->addWikiMsg( 'skin-header-js' );
 
 		$mptitle = Title::newMainPage();
 		$previewtext = wfMsg('skin-preview');
@@ -837,14 +843,21 @@ class PreferencesForm {
 			if ( in_array( $skinkey, $wgSkipSkins ) ) {
 				continue;
 			}
-			$pageCSS = Title::makeTitle( NS_USER, $wgUser->getName() . '/' . $skinkey . '.css' );
-			$pageJS = Title::makeTitle( NS_USER, $wgUser->getName() . '/' . $skinkey . '.js' );
-			$linkToCSS = $sk->link( $pageCSS, wfMsg( 'skin-link-to-css' ) );
-			$linkToJS = $sk->link( $pageJS, wfMsg( 'skin-link-to-js' ) );
+
+			$linkToCSS = $linkToJS = '';
+			if ( $wgAllowUserCss ) {
+				$pageCSS = Title::makeTitle( NS_USER, $wgUser->getName() . '/' . $skinkey . '.css' );
+				$linkToCSS = ' | ' . $sk->link( $pageCSS, wfMsg( 'skin-link-to-css' ) );
+			}
+			if ( $wgAllowUserJs ) {
+				$pageJS = Title::makeTitle( NS_USER, $wgUser->getName() . '/' . $skinkey . '.js' );
+				$linkToJS = ' | ' . $sk->link( $pageJS, wfMsg( 'skin-link-to-js' ) );
+			}
+
 			$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
 
 			$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
-			$linkLine = " (<a target='_blank' href=\"$mplink\">$previewtext</a> | " . $linkToCSS . " | " . $linkToJS . ')';
+			$linkLine = " (<a target='_blank' href=\"$mplink\">$previewtext</a>" . $linkToCSS . $linkToJS . ')';
 			if( $skinkey == $wgDefaultSkin ) {
 				$sn .= ' (' . wfMsg( 'default' ) . ')';
 			}
