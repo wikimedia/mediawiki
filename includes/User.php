@@ -2767,6 +2767,23 @@ class User {
 		}
 		return $rights;
 	}
+	
+	/**
+	 * Get all the groups who have a given permission
+	 * 
+	 * @param $role String: Role to check
+	 * @return array list of groups with the given permission
+	 */
+	static function getGroupsWithPermission( $role ) {
+		global $wgGroupPermissions;
+		$allowedGroups = array();
+		foreach ( $wgGroupPermissions as $group => $rights ) {
+			if ( $rights[$role] === true ) {
+				$allowedGroups[] = $group;
+			}
+		}
+		return $allowedGroups;
+	}
 
 	/**
 	 * @param $group String: key name
