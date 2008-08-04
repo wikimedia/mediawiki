@@ -522,11 +522,6 @@ class Linker {
 			$q = 'action=edit&redlink=1&'.$query;
 		}
 		$u = $nt->escapeLocalURL( $q );
-		if( $nt->getFragmentForURL() !== '' ) {
-			# Might seem pointless to have a fragment on a redlink, but let's
-			# be obedient.
-			$u .= $nt->getFragmentForURL();
-		}
 
 		$titleText = $nt->getPrefixedText();
 		if ( '' == $text ) {
