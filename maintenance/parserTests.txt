@@ -1327,7 +1327,7 @@ Broken link with fragment
 !! input
 [[Zigzagzogzagzig#zug]]
 !! result
-<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1#zug" class="new" title="Zigzagzogzagzig (not yet written)">Zigzagzogzagzig#zug</a>
+<p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (not yet written)">Zigzagzogzagzig#zug</a>
 </p>
 !! end
 
