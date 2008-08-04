@@ -627,6 +627,7 @@ $2',
 'page_last'           => '末',
 'histlegend'          => '辨異：擇二孔後，按Enter、或點下鈕以辨之。<br />
 釋義：（辨今）與今審辨；（前省）與前審辨；校，校文',
+'history-search'      => '尋誌',
 'deletedrev'          => '刪矣',
 'histfirst'           => '初',
 'histlast'            => '末',
