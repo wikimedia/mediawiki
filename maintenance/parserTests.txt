@@ -1345,7 +1345,7 @@ Nonexistent special page link with fragment
 !! input
 [[Special:ThisNameWillHopefullyNeverBeUsed#anchor]]
 !! result
-<p><a href="/wiki/Special:ThisNameWillHopefullyNeverBeUsed#anchor" class="new" title="Special:ThisNameWillHopefullyNeverBeUsed (not yet written)">Special:ThisNameWillHopefullyNeverBeUsed#anchor</a>
+<p><a href="/wiki/Special:ThisNameWillHopefullyNeverBeUsed" class="new" title="Special:ThisNameWillHopefullyNeverBeUsed (not yet written)">Special:ThisNameWillHopefullyNeverBeUsed#anchor</a>
 </p>
 !! end
 
