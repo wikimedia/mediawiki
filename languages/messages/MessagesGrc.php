@@ -11,7 +11,6 @@
  * @author Nychus
  * @author Neachili
  * @author SPQRobin
- * @author Siebrand
  * @author ZaDiak
  * @author Yannos
  */
@@ -75,8 +74,6 @@ $messages = array(
 'underline-always'  => 'Ἀεὶ',
 'underline-never'   => 'Οὔποτε',
 'underline-default' => 'Πλοηγὸς ὡς προκαθωρισμένως',
-
-'skinpreview' => '(Προεπισκοπεῖν)',
 
 # Dates
 'sunday'        => 'Κυριακή',
@@ -571,6 +568,7 @@ $1',
 'qbsettings-floatingright' => 'Πλανώμενα δεξιώς',
 'changepassword'           => 'Ἀλλάττειν σύνθημα',
 'skin'                     => 'Ἐμφάνισις',
+'skin-preview'             => 'Προεπισκοπεῖν',
 'math'                     => 'Τὰ μαθηματικά',
 'dateformat'               => 'Μορφοποιία χρονολογίας',
 'datedefault'              => 'Οὐδεμία προτίμησις',

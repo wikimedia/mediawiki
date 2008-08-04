@@ -6,8 +6,6 @@
  *
  * @author RoyAlcatraz
  * @author JeanVoisin
- * @author Siebrand
- * @author SPQRobin
  */
 
 $messages = array(
@@ -55,8 +53,6 @@ $messages = array(
 'underline-always'  => 'Tout le temps',
 'underline-never'   => 'Jamais',
 'underline-default' => "D'après le réglage du navigateur",
-
-'skinpreview' => "(Vue d'avance)",
 
 # Dates
 'sunday'        => 'dimanche',
@@ -624,6 +620,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # Preferences page
 'preferences'   => 'Réglage',
 'mypreferences' => 'Mon réglage',
+'skin-preview'  => "Vue d'avance",
 
 # User rights
 'editinguser' => "Changement de '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",

@@ -7,9 +7,8 @@
  * @author Ahonc
  * @author AS
  * @author Innv
- * @author Jon Harald Søby
- * @author Dubyk
  * @author EugeneZelenko
+ * @author Dubyk
  * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
  */
@@ -265,8 +264,6 @@ $messages = array(
 'underline-always'  => 'Завжди',
 'underline-never'   => 'Ніколи',
 'underline-default' => 'Використати налаштування браузера',
-
-'skinpreview' => '(Попередній перегляд)',
 
 # Dates
 'sunday'        => 'неділя',
@@ -1054,6 +1051,7 @@ $3 зазначив наступну причину: ''$2''",
 'qbsettings-floatingright' => 'Плаваюча праворуч',
 'changepassword'           => 'Змінити пароль',
 'skin'                     => 'Оформлення',
+'skin-preview'             => 'Попередній перегляд',
 'math'                     => 'Відображення формул',
 'dateformat'               => 'Формат дати',
 'datedefault'              => 'Стандартний',

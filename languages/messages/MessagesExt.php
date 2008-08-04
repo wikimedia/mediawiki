@@ -5,10 +5,7 @@
  * @file
  *
  * @author Better
- * @author Siebrand
- * @author Jon Harald Søby
  * @author M.M.S.
- * @author SPQRobin
  */
 
 $messages = array(
@@ -57,8 +54,6 @@ $messages = array(
 'underline-always'  => 'Sempri',
 'underline-never'   => 'Nunca',
 'underline-default' => 'Sigún esté nel esproraol',
-
-'skinpreview' => '(Previsoreal)',
 
 # Dates
 'sunday'        => 'Domingu',
@@ -786,6 +781,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'qbsettings-floatingright' => 'Frotanti ena derecha',
 'changepassword'           => 'Chambal consínia',
 'skin'                     => 'Aparéncia',
+'skin-preview'             => 'Previsoreal',
 'math'                     => 'Hórmulas',
 'dateformat'               => 'Hormatu e fecha',
 'datedefault'              => 'Sin preferéncias',

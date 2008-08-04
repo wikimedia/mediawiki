@@ -7,8 +7,6 @@
  * @author Dsvyas
  * @author לערי ריינהארט
  * @author Aksi great
- * @author Siebrand
- * @author SPQRobin
  */
 
 $digitTransformTable = array(
@@ -50,8 +48,6 @@ $messages = array(
 
 'underline-always' => 'હંમેશાં',
 'underline-never'  => 'કદી નહિ',
-
-'skinpreview' => '(ફેરફાર બતાવો)',
 
 # Dates
 'sunday'        => 'રવિવાર',
@@ -367,6 +363,7 @@ $messages = array(
 # Preferences page
 'preferences'       => 'પસંદ',
 'mypreferences'     => 'મારી પસંદ',
+'skin-preview'      => 'ફેરફાર બતાવો',
 'datetime'          => 'તારીખ અને સમય',
 'prefs-watchlist'   => 'ધ્યાનસૂચી',
 'retypenew'         => 'નવી ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો:',

@@ -8,14 +8,11 @@
  * @author Steinninn
  * @author Jóna Þórunn
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Spacebirdy
  * @author Friðrik Bragi Dýrfjörð
  * @author Krun
  * @author Cessator
- * @author SPQRobin
  * @author M.M.S.
- * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -270,8 +267,6 @@ $messages = array(
 'underline-always'  => 'Alltaf',
 'underline-never'   => 'Aldrei',
 'underline-default' => 'skv. vafrastillingu',
-
-'skinpreview' => '(Forskoða)',
 
 # Dates
 'sunday'        => 'sunnudagur',
@@ -928,6 +923,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'qbsettings-floatingleft' => 'Fljótandi til vinstri',
 'changepassword'          => 'Breyta lykilorði',
 'skin'                    => 'Þema',
+'skin-preview'            => 'Forskoða',
 'math'                    => 'Stærðfræðiformúlur',
 'dateformat'              => 'Tímasnið',
 'datedefault'             => 'Sjálfgefið',

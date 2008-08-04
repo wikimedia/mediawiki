@@ -9,7 +9,6 @@
  * @author Matthias
  * @author לערי ריינהארט
  * @author Cicero
- * @author Jon Harald Søby
  */
 
 $fallback = 'nl';
@@ -108,8 +107,6 @@ $messages = array(
 'underline-always'  => 'Altiejd',
 'underline-never'   => 'Nooits',
 'underline-default' => 'Standaard vanne browser',
-
-'skinpreview' => '(Veurbesjouwing)',
 
 # Dates
 'sunday'        => 'zondig',
@@ -851,6 +848,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'qbsettings-floatingright' => 'Rechs zjwevend',
 'changepassword'           => 'Wachwaord verangere',
 'skin'                     => '{{SITENAME}}-uterlik',
+'skin-preview'             => 'Veurbesjouwing',
 'math'                     => 'Mattemetik rendere',
 'dateformat'               => 'Datumformaat',
 'datedefault'              => 'Gein veurkäör',

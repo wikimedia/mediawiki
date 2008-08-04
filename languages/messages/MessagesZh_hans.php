@@ -128,8 +128,6 @@ $messages = array(
 'underline-never'   => '从不使用',
 'underline-default' => '浏览器默认',
 
-'skinpreview' => '(预览)',
-
 # Dates
 'sunday'        => '星期日',
 'monday'        => '星期一',
@@ -883,6 +881,7 @@ $2',
 'qbsettings-floatingright' => '右侧漂移',
 'changepassword'           => '更改密码',
 'skin'                     => '皮肤',
+'skin-preview'             => '预览',
 'math'                     => '数学公式',
 'dateformat'               => '日期格式',
 'datedefault'              => '默认值',
@@ -1427,7 +1426,6 @@ Template:消除歧義',
 'listgrouprights-removegroup'     => '可以移除的群组: $1',
 'listgrouprights-addgroup-all'    => '可以加入所有群组',
 'listgrouprights-removegroup-all' => '可以移除所有群组',
-
 
 # E-mail user
 'mailnologin'     => '无电邮地址',

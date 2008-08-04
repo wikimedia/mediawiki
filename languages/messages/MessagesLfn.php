@@ -6,8 +6,6 @@
  *
  * @author Cgboeree
  * @author Malafaya
- * @author Siebrand
- * @author SPQRobin
  */
 
 $messages = array(
@@ -50,8 +48,6 @@ $messages = array(
 'underline-always'  => 'A tota tempo',
 'underline-never'   => 'A no tempo',
 'underline-default' => 'Surfador costumal',
-
-'skinpreview' => '(Previde)',
 
 # Dates
 'sunday'        => 'soldi',
@@ -418,6 +414,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 # Preferences page
 'preferences'       => 'Preferis',
 'mypreferences'     => 'Me preferis',
+'skin-preview'      => 'Previde',
 'math'              => 'Matematica',
 'saveprefs'         => 'Fisa',
 'retypenew'         => 'Re-entra tu sinia secreta nova:',

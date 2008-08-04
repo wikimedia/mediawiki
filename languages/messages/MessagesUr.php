@@ -6,7 +6,6 @@
  *
  * @author לערי ריינהארט
  * @author Wisesabre
- * @author Siebrand
  * @author Chris H
  */
 

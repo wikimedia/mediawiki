@@ -1,90 +1,89 @@
 <?php
-/** Gothic (í €í¼²í €í¼¿í €í½„í €í¼¹í €í½ƒí €í¼º)
+/** Gothic (ðŒ²ðŒ¿ð„ðŒ¹ðƒðŒº)
  *
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  */
 
 $messages = array(
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|í €í¼ºí €í¼¿í €í¼½í €í¼¾í €í¼°|í €í¼ºí €í¼¿í €í¼½í €í¼¾í €í½‰í €í½ƒ}}',
+'pagecategories' => '{{PLURAL:$1|ðŒºðŒ¿ðŒ½ðŒ¾ðŒ°|ðŒºðŒ¿ðŒ½ðŒ¾ð‰ðƒ}}',
 
-'qbspecialpages' => 'í €í¼¿í €í½ƒí €í½ƒí €í¼¹í €í¼½í €í¼³í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰í €í½ƒ',
-'mypage'         => 'í €í¼¼í €í¼´í €í¼¹í €í¼½ í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
-'mytalk'         => 'í €í¼¼í €í¼´í €í¼¹í €í¼½í €í¼° í €í¼¼í €í¼°í €í¼¸í €í¼»í €í¼´í €í¼¹',
+'qbspecialpages' => 'ðŒ¿ðƒðƒðŒ¹ðŒ½ðŒ³ðƒðŒ´ðŒ¹ðŒ³ð‰ðƒ',
+'mypage'         => 'ðŒ¼ðŒ´ðŒ¹ðŒ½ ðƒðŒ´ðŒ¹ðŒ³ð‰',
+'mytalk'         => 'ðŒ¼ðŒ´ðŒ¹ðŒ½ðŒ° ðŒ¼ðŒ°ðŒ¸ðŒ»ðŒ´ðŒ¹',
 'and'            => 'jah',
 
-'search'         => 'í €í½ƒí €í½‰í €í¼ºí €í¼´í €í¼¹í €í¼¸',
-'searchbutton'   => 'í €í½ƒí €í½‰í €í¼ºí €í¼´í €í¼¹í €í¼¸',
-'searcharticle'  => 'í €í¼°í €í½†í €í¼²í €í¼°í €í¼²í €í¼²í €í¼°í €í¼½',
-'talkpage'       => 'í €í¼¼í €í¼°í €í¼¸í €í¼»í €í¼´í €í¼¹í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
-'talk'           => 'í €í¼²í €í¼°í €í½…í €í¼°í €í¼¿í €í½‚í €í¼³í €í¼¾í €í¼°',
-'toolbox'        => 'í €í½„í €í¼°í €í¼¿í €í¼¹ í €í¼°í €í½‚í €í¼ºí €í¼°',
-'otherlanguages' => 'í €í¼°í €í¼½í €í¼¸í €í¼°í €í½‚ í €í½‚í €í¼°í €í¼¶í €í¼³í €í½‰í €í½ƒ',
+'search'         => 'ðƒð‰ðŒºðŒ´ðŒ¹ðŒ¸',
+'searchbutton'   => 'ðƒð‰ðŒºðŒ´ðŒ¹ðŒ¸',
+'searcharticle'  => 'ðŒ°ð†ðŒ²ðŒ°ðŒ²ðŒ²ðŒ°ðŒ½',
+'talkpage'       => 'ðŒ¼ðŒ°ðŒ¸ðŒ»ðŒ´ðŒ¹ðƒðŒ´ðŒ¹ðŒ³ð‰',
+'talk'           => 'ðŒ²ðŒ°ð…ðŒ°ðŒ¿ð‚ðŒ³ðŒ¾ðŒ°',
+'toolbox'        => 'ð„ðŒ°ðŒ¿ðŒ¹ ðŒ°ð‚ðŒºðŒ°',
+'otherlanguages' => 'ðŒ°ðŒ½ðŒ¸ðŒ°ð‚ ð‚ðŒ°ðŒ¶ðŒ³ð‰ðƒ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutpage'  => 'Project:Iubair',
-'bugreports' => 'í €í¼°í €í¼¹í €í½‚í €í¼¶í €í¼¹í €í¼¸í €í¼°í €í¼·í €í¼°í €í¼¿í €í½ƒí €í¼´í €í¼¹í €í¼½í €í¼´í €í¼¹í €í½ƒ',
-'portal'     => 'í €í¼±í €í¼°í €í¼¿í €í½‚í €í¼²í €í½ƒ í €í¼²í €í¼°í €í½…í €í¼¹',
-'portal-url' => 'Project:í €í¼±í €í¼°í €í¼¿í €í½‚í €í¼²í €í½ƒ í €í¼²í €í¼°í €í½…í €í¼¹',
+'bugreports' => 'ðŒ°ðŒ¹ð‚ðŒ¶ðŒ¹ðŒ¸ðŒ°ðŒ·ðŒ°ðŒ¿ðƒðŒ´ðŒ¹ðŒ½ðŒ´ðŒ¹ðƒ',
+'portal'     => 'ðŒ±ðŒ°ðŒ¿ð‚ðŒ²ðƒ ðŒ²ðŒ°ð…ðŒ¹',
+'portal-url' => 'Project:ðŒ±ðŒ°ðŒ¿ð‚ðŒ²ðƒ ðŒ²ðŒ°ð…ðŒ¹',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
-'nstab-user'     => 'í €í¼½í €í¼¹í €í¼¿í €í½„í €í¼°í €í¼½í €í¼³í €í¼¹í €í½ƒí €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
-'nstab-special'  => 'í €í¼¿í €í½ƒí €í½ƒí €í¼¹í €í¼½í €í¼³í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
+'nstab-main'     => 'ðƒðŒ´ðŒ¹ðŒ³ð‰',
+'nstab-user'     => 'ðŒ½ðŒ¹ðŒ¿ð„ðŒ°ðŒ½ðŒ³ðŒ¹ðƒðƒðŒ´ðŒ¹ðŒ³ð‰',
+'nstab-special'  => 'ðŒ¿ðƒðƒðŒ¹ðŒ½ðŒ³ðƒðŒ´ðŒ¹ðŒ³ð‰',
 'nstab-image'    => 'Manleika',
-'nstab-template' => 'í €í¼¼í €í¼°í €í½‚í €í¼ºí €í¼°',
-'nstab-help'     => 'í €í¼·í €í¼¹í €í¼»í €í½€í €í¼°',
+'nstab-template' => 'ðŒ¼ðŒ°ð‚ðŒºðŒ°',
+'nstab-help'     => 'ðŒ·ðŒ¹ðŒ»ð€ðŒ°',
 'nstab-category' => 'Kunja',
 
 # General errors
-'viewsource' => 'í €í½ƒí €í¼°í €í¼¹í €í½ˆí €í¼° í €í¼¹í €í¼½í €í¼½í €í¼°í €í¼½í €í¼°',
+'viewsource' => 'ðƒðŒ°ðŒ¹ðˆðŒ° ðŒ¹ðŒ½ðŒ½ðŒ°ðŒ½ðŒ°',
 
 # Login and logout pages
-'userlogout' => 'í €í¼»í €í¼´í €í¼¹í €í¼¸í €í¼°í €í¼½',
+'userlogout' => 'ðŒ»ðŒ´ðŒ¹ðŒ¸ðŒ°ðŒ½',
 
 # Edit pages
-'watchthis' => 'í €í½…í €í¼°í €í½‚í €í¼°í €í¼½ í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
+'watchthis' => 'ð…ðŒ°ð‚ðŒ°ðŒ½ ðƒðŒ´ðŒ¹ðŒ³ð‰',
 
 # Preferences page
 'preferences'   => 'Meinos brukjamaideineis',
-'mypreferences' => 'í €í¼¼í €í¼´í €í¼¹í €í¼½í €í½‰í €í½ƒ í €í¼±í €í½‚í €í¼¿í €í¼ºí €í¼¾í €í¼°',
+'mypreferences' => 'ðŒ¼ðŒ´ðŒ¹ðŒ½ð‰ðƒ ðŒ±ð‚ðŒ¿ðŒºðŒ¾ðŒ°',
 
 # Recent changes
-'recentchanges' => 'í €í¼°í €í½†í €í½„í €í¼¿í €í¼¼í €í¼¹í €í½ƒí €í½„í €í½‰í €í½ƒ í €í¼¼í €í¼°í €í¼¹í €í¼³í €í¼´í €í¼¹í €í¼½í €í¼´í €í¼¹í €í½ƒ',
+'recentchanges' => 'ðŒ°ð†ð„ðŒ¿ðŒ¼ðŒ¹ðƒð„ð‰ðƒ ðŒ¼ðŒ°ðŒ¹ðŒ³ðŒ´ðŒ¹ðŒ½ðŒ´ðŒ¹ðƒ',
 
 # Upload
-'upload' => 'í €í¼¿í €í½ƒí €í¼·í €í¼»í €í¼°í €í¼¸í €í¼°í €í¼¹í €í¼¸ í €í½†í €í¼´í €í¼¹í €í¼»í €í¼°í €í¼½í €í½ƒ',
+'upload' => 'ðŒ¿ðƒðŒ·ðŒ»ðŒ°ðŒ¸ðŒ°ðŒ¹ðŒ¸ ð†ðŒ´ðŒ¹ðŒ»ðŒ°ðŒ½ðƒ',
 
 # Random page
-'randompage' => 'í €í½ƒí €í¼»í €í¼¿í €í¼¼í €í½€í €í¼¼í €í¼°í €í½ƒí €í½ƒí €í¼¹í €í¼² í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
+'randompage' => 'ðƒðŒ»ðŒ¿ðŒ¼ð€ðŒ¼ðŒ°ðƒðƒðŒ¹ðŒ² ðƒðŒ´ðŒ¹ðŒ³ð‰',
 
 # Statistics
 'statistics' => 'Seidostatistik',
 
 # Miscellaneous special pages
-'ncategories' => '$1 {{PLURAL:$1|í €í¼ºí €í¼¿í €í¼½í €í¼¾í €í¼°|í €í¼ºí €í¼¿í €í¼½í €í¼¾í €í½‰í €í½ƒ}}',
-'move'        => 'í €í¼½í €í¼°í €í¼¼í €í¼¾í €í¼°í €í¼½ í €í¼°í €í½†í €í½„í €í½‚í €í¼°',
+'ncategories' => '$1 {{PLURAL:$1|ðŒºðŒ¿ðŒ½ðŒ¾ðŒ°|ðŒºðŒ¿ðŒ½ðŒ¾ð‰ðƒ}}',
+'move'        => 'ðŒ½ðŒ°ðŒ¼ðŒ¾ðŒ°ðŒ½ ðŒ°ð†ð„ð‚ðŒ°',
 
 # Special:Categories
-'categories' => 'í €í¼ºí €í¼¿í €í¼½í €í¼¾í €í½‰í €í½ƒ',
+'categories' => 'ðŒºðŒ¿ðŒ½ðŒ¾ð‰ðƒ',
 
 # Watchlist
-'watchlist'     => 'í €í¼¼í €í¼´í €í¼¹í €í¼½í €í½‰í €í½ƒ í €í½…í €í¼¹í €í½„í €í¼°í €í¼½í €í¼³í €í½ƒí €í¼»í €í¼´í €í¼¹í €í½ƒí €í½„í €í¼°',
-'mywatchlist'   => 'í €í¼¼í €í¼´í €í¼¹í €í¼½í €í½‰í €í½ƒ í €í½…í €í¼¹í €í½„í €í¼°í €í¼½í €í¼³í €í½ƒí €í¼»í €í¼´í €í¼¹í €í½ƒí €í½„í €í¼°',
-'watch'         => 'í €í½…í €í¼°í €í½‚í €í¼°í €í¼½',
-'watchthispage' => 'í €í½…í €í¼°í €í½‚í €í¼°í €í¼½ í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰',
-'unwatch'       => 'í €í¼½í €í¼¹í €í½…í €í¼°í €í½‚í €í¼°í €í¼½',
+'watchlist'     => 'ðŒ¼ðŒ´ðŒ¹ðŒ½ð‰ðƒ ð…ðŒ¹ð„ðŒ°ðŒ½ðŒ³ðƒðŒ»ðŒ´ðŒ¹ðƒð„ðŒ°',
+'mywatchlist'   => 'ðŒ¼ðŒ´ðŒ¹ðŒ½ð‰ðƒ ð…ðŒ¹ð„ðŒ°ðŒ½ðŒ³ðƒðŒ»ðŒ´ðŒ¹ðƒð„ðŒ°',
+'watch'         => 'ð…ðŒ°ð‚ðŒ°ðŒ½',
+'watchthispage' => 'ð…ðŒ°ð‚ðŒ°ðŒ½ ðƒðŒ´ðŒ¹ðŒ³ð‰',
+'unwatch'       => 'ðŒ½ðŒ¹ð…ðŒ°ð‚ðŒ°ðŒ½',
 
 # Contributions
-'mycontris' => 'í €í¼¼í €í¼´í €í¼¹í €í¼½í €í½‰í €í½ƒ í €í¼°í €í¼¹í €í½…í €í¼»í €í¼°í €í¼²í €í¼¹í €í½‰í €í½ƒ',
+'mycontris' => 'ðŒ¼ðŒ´ðŒ¹ðŒ½ð‰ðƒ ðŒ°ðŒ¹ð…ðŒ»ðŒ°ðŒ²ðŒ¹ð‰ðƒ',
 
 # What links here
-'whatlinkshere' => 'í €í½ˆí €í¼°í €í½‚í €í¼¾í €í¼¹í €í½ƒ í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰í €í¼½í €í¼° í €í¼·í €í¼»í €í¼°í €í¼²í €í¼ºí €í¼¾í €í¼°í €í¼½í €í¼³ í €í¼·í €í¼¹í €í¼³í €í½‚í €í¼´',
+'whatlinkshere' => 'ðˆðŒ°ð‚ðŒ¾ðŒ¹ðƒ ðƒðŒ´ðŒ¹ðŒ³ð‰ðŒ½ðŒ° ðŒ·ðŒ»ðŒ°ðŒ²ðŒºðŒ¾ðŒ°ðŒ½ðŒ³ ðŒ·ðŒ¹ðŒ³ð‚ðŒ´',
 
 # Special:SpecialPages
-'specialpages' => 'í €í¼¿í €í½ƒí €í½ƒí €í¼¹í €í¼½í €í¼³í €í½ƒí €í¼´í €í¼¹í €í¼³í €í½‰í €í½ƒ',
+'specialpages' => 'ðŒ¿ðƒðƒðŒ¹ðŒ½ðŒ³ðƒðŒ´ðŒ¹ðŒ³ð‰ðƒ',
 
 );

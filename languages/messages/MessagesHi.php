@@ -8,7 +8,6 @@
  * @author לערי ריינהארט
  * @author Shyam
  * @author Sunil Mohan
- * @author Jon Harald Søby
  * @author Aksi great
  */
 
@@ -91,8 +90,6 @@ $messages = array(
 'underline-always'  => 'हमेशा',
 'underline-never'   => 'कभीभी नहीं',
 'underline-default' => 'ब्राउज़र डिफ़ॉल्ट',
-
-'skinpreview' => '(झलक)',
 
 # Dates
 'sunday'        => 'रविवार',
@@ -876,6 +873,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'qbsettings-floatingright' => 'अस्थिर दाहिनी तरफ़',
 'changepassword'           => 'कूटशब्द बदलें',
 'skin'                     => 'त्वचा',
+'skin-preview'             => 'झलक',
 'math'                     => 'गणित',
 'dateformat'               => 'दिनांक प्रारूप',
 'datedefault'              => 'खा़स पसंद नहीं',

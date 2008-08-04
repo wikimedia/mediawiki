@@ -6,7 +6,6 @@
  *
  * @author Esbardu
  * @author Mikel
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -91,8 +90,6 @@ $messages = array(
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
 'underline-default' => 'Valor por defeutu del navegador',
-
-'skinpreview' => '(Previsualizar)',
 
 # Dates
 'sunday'        => 'domingu',
@@ -443,7 +440,8 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'yourvariant'                => 'Variante llingüística:',
 'yournick'                   => 'Firma:',
 'badsig'                     => 'Firma cruda non válida; comprueba les etiquetes HTML.',
-'badsiglength'               => 'Nomatu demasiao llargu; ha tener menos de $1 carauteres.',
+'badsiglength'               => 'El nomatu ye demasiao llargu.
+Ha tener menos de $1 {{PLURAL:$1|caráuter|carauteres}}.',
 'email'                      => 'Corréu',
 'prefs-help-realname'        => "El nome real ye opcional y si decides conseñalu va ser usáu p'atribuyite'l to trabayu.",
 'loginerror'                 => "Error d'identificación",
@@ -706,6 +704,7 @@ El motivu dau por $3 ye ''$2''",
 'histlegend'          => "Seleición de diferencies: marca los botones de les versiones que quies comparar y da-y al <i>enter</i> o al botón d'abaxo.<br />
 Lleenda: '''(act)''' = diferencies cola versión actual,
 '''(cab)''' = diferencies cola versión anterior, '''m''' = edición menor.",
+'history-search'      => 'Buscar nel historial',
 'deletedrev'          => '[borráu]',
 'histfirst'           => 'Primera',
 'histlast'            => 'Cabera',
@@ -869,6 +868,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'qbsettings-floatingright' => 'Flotante a mandrecha',
 'changepassword'           => 'Camudar clave',
 'skin'                     => 'Apariencia',
+'skin-preview'             => 'Previsualizar',
 'math'                     => 'Fórmules matemátiques',
 'dateformat'               => 'Formatu de fecha',
 'datedefault'              => 'Ensin preferencia',
@@ -981,7 +981,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'right-autoconfirmed'        => 'Editar páxines semi-protexíes',
 'right-bot'                  => 'Tratar como un procesu automatizáu',
 'right-nominornewtalk'       => "Nun amosar l'avisu de nuevos mensaxes cuando se faen ediciones menores en páxines d'alderique",
-'right-apihighlimits'        => 'Usar los llímites superiores nes consultes API (Consultes lentes: 500 resultaos; Consultes rápides: 5000 resultaos)',
+'right-apihighlimits'        => 'Usar los llímites superiores nes consultes API',
 'right-writeapi'             => "Usar l'API d'escritura",
 'right-delete'               => 'Borrar páxines',
 'right-bigdelete'            => 'Borrar páxines con historiales grandes',
@@ -1401,7 +1401,7 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 'listgrouprights-rights'          => 'Drechos',
 'listgrouprights-helppage'        => 'Help:Drechos de grupu',
 'listgrouprights-members'         => '(llista de miembros)',
-'listgrouprights-addgroup'        => 'pue añader grupos: $1',
+'listgrouprights-addgroup'        => 'Pue añader grupos: $1',
 'listgrouprights-removegroup'     => 'Pue quitar grupos: $1',
 'listgrouprights-addgroup-all'    => 'Pue añader tolos grupos',
 'listgrouprights-removegroup-all' => 'Pue quitar tolos grupos',
@@ -1808,8 +1808,8 @@ na base de datos. Por favor confirma que ye lo quies facer.',
 'move-page-legend'        => 'Treslladar páxina',
 'movepagetext'            => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l so historial al nuevu nome.
 El nome vieyu va convertise nuna redireición al nuevu.
-Los enllaces qu'hubiera al nome vieyu nun van camudase;
-asegúrate de que nun dexes [[Special:DoubleRedirects|redireiciones dobles]] o [[Special:BrokenRedirects|rotes]].
+Pues actualizar redireiciones qu'enllacien al títulu orixinal automáticamente.
+Si prefieres nun lo facer, asegúrate de que nun dexes [[Special:DoubleRedirects|redireiciones dobles]] o [[Special:BrokenRedirects|rotes]].
 Tu yes el responsable de facer que los enllaces queden apuntando aonde se supón qu'han apuntar.
 
 Recuerda que la páxina '''nun''' va movese si yá hai una páxina col nuevu títulu, a nun ser que tea vacia o seya una redireición que nun tenga historial.

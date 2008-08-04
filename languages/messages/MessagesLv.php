@@ -7,9 +7,6 @@
  * @author Yyy
  * @author Knakts
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author M.M.S.
- * @author Niklas Laxström
  */
 
 /*
@@ -84,8 +81,6 @@ $messages = array(
 'underline-always'  => 'vienmēr',
 'underline-never'   => 'nekad',
 'underline-default' => 'Kā pārlūkā',
-
-'skinpreview' => '(Priekšskats)',
 
 # Dates
 'sunday'        => 'svētdiena',
@@ -607,6 +602,7 @@ m = maznozīmīgs labojums.',
 'qbsettings'            => 'Rīku joslas stāvoklis',
 'changepassword'        => 'Mainīt paroli',
 'skin'                  => 'Apdare',
+'skin-preview'          => 'Priekšskats',
 'math'                  => 'Formulas',
 'dateformat'            => 'Datuma formāts',
 'datedefault'           => 'Vienalga',

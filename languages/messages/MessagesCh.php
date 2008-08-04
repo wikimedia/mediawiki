@@ -6,7 +6,6 @@
  *
  * @author Gadao01
  * @author Jatrobat
- * @author Siebrand
  * @author Magalahi
  */
 
@@ -43,8 +42,6 @@ $messages = array(
 'underline-always'  => 'Kada biahi',
 'underline-never'   => "Ni ngai'an",
 'underline-default' => 'Plantan orihinat ni Browser',
-
-'skinpreview' => "(Na'annok)",
 
 # Dates
 'sunday'        => 'Damenggo',
@@ -695,6 +692,7 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'qbsettings-floatingright' => "Mamå'ya gi agapa'",
 'changepassword'           => 'Tulaika password',
 'skin'                     => 'Låssas',
+'skin-preview'             => "Na'annok",
 'math'                     => 'Math',
 'dateformat'               => 'Plantiyas fecha',
 'datedefault'              => "Tåya' prifirensia",

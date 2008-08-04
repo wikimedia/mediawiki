@@ -6,11 +6,6 @@
  *
  * @author Filipinayzd
  * @author Steven*fung
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
- * @author Siebrand Mazeland
- * @author Niklas Laxström
  */
 
 $skinNames = array(
@@ -91,8 +86,6 @@ $messages = array(
 'underline-always'  => 'Pirmi',
 'underline-never'   => 'Nungka',
 'underline-default' => 'Browser na normal',
-
-'skinpreview' => '(Tânawon)',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -752,6 +745,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'qbsettings-floatingright' => 'Naglálatáw sa tûo',
 'changepassword'           => 'Ribayan an sekretong panlaog',
 'skin'                     => "''Skin''",
+'skin-preview'             => 'Tânawon',
 'math'                     => 'Mat',
 'dateformat'               => "''Format'' kan petsa",
 'datedefault'              => 'Mayong kabôtan',

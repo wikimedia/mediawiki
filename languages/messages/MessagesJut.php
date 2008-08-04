@@ -6,7 +6,6 @@
  *
  * @author Ælsån
  * @author Huslåke
- * @author Siebrand
  * @author M.M.S.
  */
 
@@ -57,8 +56,6 @@ $messages = array(
 'underline-always'  => 'åltid',
 'underline-never'   => 'åldreg',
 'underline-default' => 'æfter brovserendstellenge',
-
-'skinpreview' => '(Førhåndsvesnenge)',
 
 # Dates
 'sunday'        => 'søndåg',
@@ -469,6 +466,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Preferences page
 'preferences'   => 'Endstellenger',
 'mypreferences' => 'Endstellenger',
+'skin-preview'  => 'Førhåndsvesnenge',
 'retypenew'     => 'Gentag ny adgangskode',
 
 'grouppage-sysop' => '{{ns:project}}:Administråtorer',

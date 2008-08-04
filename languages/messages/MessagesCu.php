@@ -6,8 +6,6 @@
  *
  * @author ОйЛ
  * @author Svetko
- * @author SPQRobin
- * @author Siebrand
  * @author Wolliger Mensch
  */
 

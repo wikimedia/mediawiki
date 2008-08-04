@@ -5,7 +5,6 @@
  * @file
  *
  * @author Srhat
- * @author SPQRobin
  * @author Uğur Başak
  * @author Dbl2010
  * @author Karduelis
@@ -13,11 +12,9 @@
  * @author Erkan Yilmaz
  * @author Runningfridgesrule
  * @author Katpatuka
- * @author Siebrand
  * @author Mach
  * @author לערי ריינהארט
  * @author Mskyrider
- * @author Jon Harald Søby
  * @author Myildirim2007
  */
 
@@ -90,8 +87,6 @@ $messages = array(
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
 'underline-default' => 'Tarayıcı karar versin',
-
-'skinpreview' => '(Önizleme)',
 
 # Dates
 'sunday'        => 'Pazar',
@@ -802,6 +797,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'qbsettings-floatingright' => 'Sağa yaslanıyor',
 'changepassword'           => 'Şifre değiştir',
 'skin'                     => 'Tema',
+'skin-preview'             => 'Önizleme',
 'math'                     => 'Matematiksel semboller',
 'dateformat'               => 'Tarih gösterimi',
 'datedefault'              => 'Tercih yok',

@@ -6,8 +6,6 @@
  *
  * @author Tuinui
  * @author Passawuth
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -77,8 +75,6 @@ $messages = array(
 
 'underline-always' => 'ທຸກຄັ້ງ',
 'underline-never'  => 'ບໍ່ຂີດ',
-
-'skinpreview' => '(ລອງເບິ່ງ)',
 
 # Dates
 'sun'           => 'ອາທິດ',
@@ -419,6 +415,7 @@ $messages = array(
 'prefs-edits'           => 'ຈຳນວນການດັດແກ້:',
 'changepassword'        => 'ປ່ຽນລະຫັດຜ່ານ',
 'skin'                  => 'ລວດລາຍ',
+'skin-preview'          => 'ລອງເບິ່ງ',
 'math'                  => 'ຄະນິດສາດ',
 'dateformat'            => 'ແບບວັນເດືອນປີ',
 'datedefault'           => 'ແນວໃດກໍ່ໄດ້',

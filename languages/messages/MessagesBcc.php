@@ -5,7 +5,6 @@
  * @file
  *
  * @author Mostafadaneshvar
- * @author Jon Harald Søby
  */
 
 $fallback = 'fa';
@@ -153,8 +152,6 @@ $messages = array(
 'underline-always'  => 'یکسره',
 'underline-never'   => 'هچ وهد',
 'underline-default' => 'پیشفرضین بروزر',
-
-'skinpreview' => '(بازین)',
 
 # Dates
 'sunday'        => 'یک شنبه',
@@ -791,6 +788,7 @@ $2',
 'histlegend'          => 'بخش تفاوت: په مقایسه کتن نسخه یان گزینه انتخاب کنیت اینتر یا دکمه بجن.<br />
 Legend: (cur) = تفاوتان گون هنوکین نسخه,
 (last) = تفاوت گون بعدی نسخه, M = هوردین  اصلاح.',
+'history-search'      => 'گردگ ته تاریح',
 'deletedrev'          => '[حذف]',
 'histfirst'           => 'اولین',
 'histlast'            => 'اهرین',
@@ -956,6 +954,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'qbsettings-floatingright' => 'راست شناور',
 'changepassword'           => 'کلمه رمز عوض کن',
 'skin'                     => 'پوست',
+'skin-preview'             => 'بازین',
 'math'                     => 'ریاضی',
 'dateformat'               => 'فرم تاریح',
 'datedefault'              => 'هچ ترجیح',
@@ -1070,7 +1069,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'right-autoconfirmed'        => 'اصلاح کن صفحات نیم محافظتی آ',
 'right-bot'                  => 'په داب یک پروسه اتوماتیکی زانگ بین',
 'right-nominornewtalk'       => 'نداشتن هوردین اصلاح ته صفحات بحث یک نوکین کوله یانی پیش داریت',
-'right-apihighlimits'        => 'استفاده کن چه بالاترین محدویتان ته جوستان API(شلین جوست:۵۰۰ نتیجه، سریع جوست:۵۰۰۰ نتیجه)',
+'right-apihighlimits'        => 'استفاده کن چه بالاترین محدویتان ته جوستان API',
 'right-writeapi'             => 'استفاده چه نوشتن API',
 'right-delete'               => 'حذف صفحات',
 'right-bigdelete'            => 'حذف صفحات گون درازین تاریح',

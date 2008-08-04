@@ -5,11 +5,8 @@
  * @file
  *
  * @author Bèrto 'd Sèra
- * @author Siebrand
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author SabineCretella
- * @author SPQRobin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author Teak
  */
@@ -84,8 +81,6 @@ dj'artìcol ancó pa scrit",
 'underline-always'  => 'Sempe',
 'underline-never'   => 'Mai',
 'underline-default' => 'Dòvra lë stàndard dël programma ëd navigassion (browser)',
-
-'skinpreview' => '(Preuva)',
 
 # Dates
 'sunday'        => 'Dumìnica',
@@ -795,6 +790,7 @@ për podej specifiché ij sò gust.',
 'qbsettings-floatingright' => 'Flotant a la man drita',
 'changepassword'           => 'Cambia ciav',
 'skin'                     => 'Facia',
+'skin-preview'             => 'Preuva',
 'math'                     => 'Fòrmule ëd matemàtica',
 'dateformat'               => 'Forma dla data',
 'datedefault'              => "franch l'istess",

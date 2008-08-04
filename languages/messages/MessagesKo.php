@@ -7,16 +7,13 @@
  * @author Klutzy
  * @author ToePeu
  * @author PuzzletChung
- * @author Siebrand
  * @author ITurtle
  * @author Albamhandae
  * @author TheAlpha for knowledge
  * @author Kwj2772
  * @author Ficell
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Pi.C.Noizecehx
- * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -104,8 +101,6 @@ $messages = array(
 'underline-always'  => '항상',
 'underline-never'   => '치지 않음',
 'underline-default' => '브라우저 설정을 따르기',
-
-'skinpreview' => '(미리 보기)',
 
 # Dates
 'sunday'        => '일요일',
@@ -648,6 +643,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'page_first'          => '처음',
 'page_last'           => '마지막',
 'histlegend'          => '비교하려는 버전들을 선택한 다음 버튼을 누르세요.<br />설명: (현재) = 현재 버전과의 차이, (이전) = 바로 이전 버전과의 차이, 잔글 = 사소한 편집',
+'history-search'      => '문서의 변경 내력 찾기',
 'deletedrev'          => '[삭제됨]',
 'histfirst'           => '처음',
 'histlast'            => '마지막',
@@ -679,6 +675,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Search results
 'searchresults'            => '검색 결과',
+'searchresults-title'      => '$1에 대한 검색 결과',
 'searchresulttext'         => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
 'searchsubtitle'           => "검색 단어 '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "검색 단어 '''$1'''",
@@ -698,7 +695,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'showingresultsnum'        => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
 'nonefound'                => "'''참고''': 몇개의 이름공간만 기본 검색 범위입니다. 토론이나 틀 등의 모든 자료를 검색하기 위해서는 접두어로 '''all:''' 어떤 이름공간을 위해서는 접두어로 그 이름공간을 쓸 수 있습니다.",
 'powersearch'              => '찾기',
-'powersearch-legend'       => '더 찾아보기',
+'powersearch-legend'       => '고급 검색',
+'powersearch-ns'           => '다음의 이름공간에서 찾기:',
+'powersearch-field'        => '검색',
 'searchdisabled'           => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
 # Preferences page
@@ -716,6 +715,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'qbsettings-floatingright' => '오른쪽 유동',
 'changepassword'           => '암호 바꾸기',
 'skin'                     => '스킨',
+'skin-preview'             => '미리 보기',
 'math'                     => '수식',
 'dateformat'               => '날짜 형식',
 'datedefault'              => '기본값',
@@ -758,7 +758,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'servertime'               => '서버 시각',
 'guesstimezone'            => '웹 브라우저 설정에서 가져오기',
 'allowemail'               => '다른 사용자로부터의 이메일 허용',
-'defaultns'                => '기본으로 다음의 네임스페이스에서 찾기:',
+'defaultns'                => '기본으로 다음의 이름공간에서 찾기:',
 'default'                  => '기본값',
 'files'                    => '파일',
 
@@ -1365,7 +1365,7 @@ $NEWPAGE
 $1',
 
 # Namespace form on various pages
-'namespace'      => '이름 공간:',
+'namespace'      => '이름공간:',
 'invert'         => '선택 반전',
 'blanknamespace' => '(일반)',
 

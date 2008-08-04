@@ -5,7 +5,6 @@
  * @file
  *
  * @author Alessandro
- * @author Siebrand
  * @author AlefZet
  */
 
@@ -154,8 +153,6 @@ $messages = array(
 'underline-always'  => 'Даима',
 'underline-never'   => 'Асла',
 'underline-default' => 'Браузер къарар берсин',
-
-'skinpreview' => '(Ог бакъув)',
 
 # Dates
 'sunday'        => 'Базар',
@@ -778,6 +775,7 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'qbsettings'            => 'Вызлы иришим сутун аярлары',
 'changepassword'        => 'Пароль денъиштир',
 'skin'                  => 'Ресимлеме',
+'skin-preview'          => 'Ог бакъув',
 'math'                  => 'Риязий (математик) символлар',
 'dateformat'            => 'Тарих косьтерими',
 'datedefault'           => 'Стандарт',

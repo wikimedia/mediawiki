@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
- * @author SPQRobin
  */
 
 $messages = array(

@@ -6,7 +6,6 @@
  *
  * @author Rajuonline
  * @author Psneog
- * @author Siebrand
  * @author Priyankoo
  */
 
@@ -67,8 +66,6 @@ $messages = array(
 'underline-always'  => 'সদায়',
 'underline-never'   => 'কেতিয়াও নহয়',
 'underline-default' => 'ব্রাউজাৰ ডিফল্ট',
-
-'skinpreview' => '(খচৰা)',
 
 # Dates
 'sunday'        => 'দেওবাৰ',
@@ -601,6 +598,7 @@ $1',
 # Preferences page
 'preferences'   => 'ৰুচি',
 'mypreferences' => 'মোৰ পচন্দ',
+'skin-preview'  => 'খচৰা',
 'retypenew'     => 'নতুন গুপ্তশব্দ আকৌ টাইপ কৰক',
 
 'grouppage-sysop' => '{{ns:project}}:প্রবন্ধক',

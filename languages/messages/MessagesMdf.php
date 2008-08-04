@@ -7,7 +7,6 @@
  * @author Kranch
  * @author Numulunj pilgae
  * @author Khazar II
- * @author Jon Harald Søby
  */
 
 $fallbak = 'ru';
@@ -57,8 +56,6 @@ $messages = array(
 'underline-always'  => 'Фалу',
 'underline-never'   => 'Мъзярдонга',
 'underline-default' => 'Интернет поладксть кадомс апак полафтт',
-
-'skinpreview' => '(Васень няфтема)',
 
 # Dates
 'sunday'        => 'Таргжи (Недляши)',
@@ -817,6 +814,7 @@ $3 макссь туфталсь - ''$2''",
 'qbsettings-floatingright' => 'Виде ширеса уенди',
 'changepassword'           => 'Сувама валть полафтомс',
 'skin'                     => 'Ванфонь латцема',
+'skin-preview'             => 'Васень няфтема',
 'math'                     => 'Няфтемс формулат',
 'dateformat'               => 'Шинь форматоц',
 'datedefault'              => 'Апак полафтт',

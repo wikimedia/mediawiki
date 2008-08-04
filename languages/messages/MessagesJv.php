@@ -6,7 +6,6 @@
  *
  * @author Meursault2004
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Helix84
  */
 
@@ -87,8 +86,6 @@ $messages = array(
 'underline-always'  => 'Tansah',
 'underline-never'   => 'Ora',
 'underline-default' => 'Miturut konfigurasi panjlajah wèb',
-
-'skinpreview' => '(Pratayang)',
 
 # Dates
 'sunday'        => 'Minggu',

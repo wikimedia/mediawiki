@@ -11,7 +11,6 @@
  * @author Cerasus
  * @author Dorgan
  * @author Balasyum
- * @author Jon Harald Søby
  * @author Bennó
  */
 
@@ -322,8 +321,6 @@ $messages = array(
 'underline-always'  => 'Mindig',
 'underline-never'   => 'Soha',
 'underline-default' => 'A böngésző alapértelmezése szerint',
-
-'skinpreview' => '(előnézet)',
 
 # Dates
 'sunday'        => 'vasárnap',
@@ -941,6 +938,7 @@ Néhány sablon nem fog megjelenni.',
 'page_last'           => 'utolsó',
 'histlegend'          => 'Eltérések kijelölése: jelöld ki az összehasonlítandó változatokat, majd nyomd meg az Enter billentyűt, vagy az alul lévő gombot.<br />
 Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltérés az előző változattól, A = Apró változtatás',
+'history-search'      => 'Keresés a laptörténetben',
 'deletedrev'          => '[törölve]',
 'histfirst'           => 'legelső',
 'histlast'            => 'legutolsó',
@@ -1104,6 +1102,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'qbsettings-floatingright' => 'Lebegő jobboldali',
 'changepassword'           => 'Jelszócsere',
 'skin'                     => 'Felület',
+'skin-preview'             => 'előnézet',
 'math'                     => 'Képletek',
 'dateformat'               => 'Dátum formátuma',
 'datedefault'              => 'Nincs beállítás',
@@ -1215,7 +1214,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 'right-autoconfirmed'        => 'félig védett lapok szerkesztése',
 'right-bot'                  => 'automatikus folyamatként való kezelés',
 'right-nominornewtalk'       => 'felhasználói lapok nem apró szerkesztésével megjelenik az új üzenet szöveg',
-'right-apihighlimits'        => 'nagyobb mennyiségű lekérdezés az API-n keresztül (lassú lekérések: 500 találat; gyors lekérdezések: 5000 találat)',
+'right-apihighlimits'        => 'nagyobb mennyiségű lekérdezés az API-n keresztül',
 'right-writeapi'             => 'a szerkesztő-API használata',
 'right-delete'               => 'lapok törlése',
 'right-bigdelete'            => 'nagy történettel rendelkező képek törlése',
@@ -1531,7 +1530,7 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 'doubleredirects'            => 'Dupla átirányítások',
 'doubleredirectstext'        => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy a #REDIRECT alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
 'double-redirect-fixed-move' => '[[$1]] átnevezve, a továbbiakban átirányításként működik a(z) [[$2]] lapra',
-'double-redirect-fixer'      => 'Átirányítás-javító',
+'double-redirect-fixer'      => 'Átirányításjavító',
 
 'brokenredirects'        => 'Nem létező lapra mutató átirányítások',
 'brokenredirectstext'    => 'Az alábbi átirányítások nem létező lapokra mutatnak.',
@@ -2056,8 +2055,8 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 'move-page-legend'        => 'Lap átnevezése',
 'movepagetext'            => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át teljes laptörténetét az új nevére.
 A régi cím az új címre való átirányítás lesz.
-A régi lapcímre mutató hivatkozások változatlanok maradnak;
-ellenőrízd a [[Special:DoubleRedirects|dupla]] vagy  [[Special:BrokenRedirects|hibás átirányításokat]].
+Frissítheted az átirányításokat úgy, hogy azok automatikusan a megfelelő címre mutassanak;
+ha nem teszed, ellenőrízd a [[Special:DoubleRedirects|dupla]]- vagy [[Special:BrokenRedirects|hibás átirányításokat]].
 Neked kell biztosítani azt, hogy a linkek továbbra is oda mutassanak, ahová mutatniuk kell.
 
 A lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak nem üres vagy átirányítás, és nincs laptörténete.

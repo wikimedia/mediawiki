@@ -38,8 +38,6 @@ $messages = array(
 'underline-never'   => 'Indi gid',
 'underline-default' => 'Onay nga browser',
 
-'skinpreview' => '(Bilid)',
-
 # Dates
 'sunday'        => 'Domingo',
 'monday'        => 'Lones',
@@ -206,6 +204,7 @@ $messages = array(
 'preview' => 'Bilid',
 
 # Preferences page
+'skin-preview'      => 'Bilid',
 'searchresultshead' => 'Sagap',
 
 # Recent changes

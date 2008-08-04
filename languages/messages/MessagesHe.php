@@ -350,8 +350,6 @@ $messages = array(
 'underline-never'   => 'אף פעם',
 'underline-default' => 'ברירת מחדל של הדפדפן',
 
-'skinpreview' => '(תצוגה מקדימה)',
-
 # Dates
 'sunday'        => 'ראשון',
 'monday'        => 'שני',
@@ -1116,6 +1114,7 @@ $2',
 'qbsettings-floatingright' => 'צף מימין',
 'changepassword'           => 'שינוי סיסמה',
 'skin'                     => 'רקע',
+'skin-preview'             => 'תצוגה מקדימה',
 'math'                     => 'נוסחאות מתמטיות',
 'dateformat'               => 'מבנה תאריך',
 'datedefault'              => 'ברירת המחדל',

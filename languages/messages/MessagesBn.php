@@ -6,9 +6,6 @@
  *
  * @author Zaheen
  * @author Bellayet
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author לערי ריינהארט
  */
 
@@ -84,8 +81,6 @@ $messages = array(
 'underline-always'  => 'সব সময়',
 'underline-never'   => 'কখনো নয়',
 'underline-default' => 'ব্রাউজারে যেমনভাবে নির্দিষ্ট করা আছে',
-
-'skinpreview' => '(প্রাকদর্শন)',
 
 # Dates
 'sunday'        => 'রবিবার',
@@ -763,6 +758,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'qbsettings-floatingright' => 'ভাসমান ডান',
 'changepassword'           => 'শব্দচাবি (password) পরিবর্তন',
 'skin'                     => 'আবরণ (Skin)',
+'skin-preview'             => 'প্রাকদর্শন',
 'math'                     => 'গণিত',
 'dateformat'               => 'তারিখের ফরম্যাট',
 'datedefault'              => 'কোন পছন্দ নেই',

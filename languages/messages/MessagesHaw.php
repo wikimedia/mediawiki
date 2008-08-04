@@ -40,8 +40,6 @@ $messages = array(
 'underline-always' => 'Mau',
 'underline-never'  => '‘A‘ole loa',
 
-'skinpreview' => '(Nāmua)',
-
 # Dates
 'sunday'        => 'Lāpule',
 'monday'        => 'Pō‘akahi',
@@ -343,6 +341,7 @@ hō‘ike ‘ia i lalo:",
 'preferences'       => "Ka'u makemake",
 'mypreferences'     => 'Ka‘u makemake',
 'changepassword'    => 'E loli i ka palapala hua‘ōlelo',
+'skin-preview'      => 'Nāmua',
 'prefs-rc'          => 'Nā loli hou',
 'searchresultshead' => 'Huli',
 'savedprefs'        => 'Ua mālama ‘ia kāu makemake',

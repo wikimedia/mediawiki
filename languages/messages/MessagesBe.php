@@ -7,7 +7,6 @@
  * @author Yury Tarasievich
  * @author Mienski
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -109,8 +108,6 @@ $messages = array(
 'underline-always'  => 'Заўсёды',
 'underline-never'   => 'Ніколі',
 'underline-default' => 'Як у браўзеры',
-
-'skinpreview' => '(перадпаказ)',
 
 # Dates
 'sunday'        => 'Нядзеля',
@@ -870,6 +867,7 @@ $2',
 'qbsettings-floatingright' => 'Плавае справа',
 'changepassword'           => 'Пароль',
 'skin'                     => 'Вокладка',
+'skin-preview'             => 'перадпаказ',
 'math'                     => 'Матэматыка',
 'dateformat'               => 'Фармат даты',
 'datedefault'              => 'Не вызначана',

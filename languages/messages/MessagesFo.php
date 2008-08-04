@@ -9,10 +9,7 @@
  * @author M.M.S.
  * @author Krun
  * @author S.Örvarr.S
- * @author Siebrand
  * @author Quackor
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $skinNames = array(
@@ -144,8 +141,6 @@ $messages = array(
 'underline-always'  => 'Altíð',
 'underline-never'   => 'Ongantíð',
 'underline-default' => 'Kagarastandard',
-
-'skinpreview' => '(Forskoðan)',
 
 # Dates
 'sunday'        => 'sunnudagur',
@@ -554,6 +549,7 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'qbsettings-floatingleft' => 'Flótandi vinstru',
 'changepassword'          => 'Broyt loyniorð',
 'skin'                    => 'Hamur',
+'skin-preview'            => 'Forskoðan',
 'math'                    => 'Støddfrøðiligir formlar',
 'dateformat'              => 'Dato forsnið',
 'datetime'                => 'Dato og tíð',

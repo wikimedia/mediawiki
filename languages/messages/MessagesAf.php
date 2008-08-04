@@ -11,7 +11,6 @@
  * @author Adriaan
  * @author Anrie
  * @author Manie
- * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -92,8 +91,6 @@ $messages = array(
 'underline-always'  => 'Altyd',
 'underline-never'   => 'Nooit',
 'underline-default' => 'Blaaierverstek',
-
-'skinpreview' => '(Voorskou)',
 
 # Dates
 'sunday'        => 'Sondag',
@@ -827,6 +824,7 @@ om voorkeure te spesifiseer.',
 'qbsettings-floatingright' => 'Dryf regs.',
 'changepassword'           => 'Verander wagwoord',
 'skin'                     => 'Omslag',
+'skin-preview'             => 'Voorskou',
 'math'                     => 'Wiskunde',
 'dateformat'               => 'Datumformaat',
 'datedefault'              => 'Geen voorkeur',

@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
  * @author Roc michael
  * @author לערי ריינהארט
  * @author BobChao
@@ -92,8 +91,6 @@ $messages = array(
 'underline-always'  => '總是使用',
 'underline-never'   => '從不使用',
 'underline-default' => '瀏覽器預設',
-
-'skinpreview' => '(預覽)',
 
 # Dates
 'sunday'        => '星期日',
@@ -748,6 +745,7 @@ $2',
 'qbsettings-floatingright' => '右側漂移',
 'changepassword'           => '更改密碼',
 'skin'                     => '面板',
+'skin-preview'             => '預覽',
 'math'                     => '數學公式',
 'dateformat'               => '日期格式',
 'datedefault'              => '預設值',
@@ -1786,12 +1784,12 @@ $1',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
 # Special:Newimages
-'newimages'             => '新建圖片畫廊',
-'imagelisttext'         => '以下是按$2排列的$1個檔案列表。',
-'showhidebots'          => '($1機器人)',
-'noimages'              => '無可檢視圖片。',
-'ilsubmit'              => '搜尋',
-'bydate'                => '按日期',
+'newimages'     => '新建圖片畫廊',
+'imagelisttext' => '以下是按$2排列的$1個檔案列表。',
+'showhidebots'  => '($1機器人)',
+'noimages'      => '無可檢視圖片。',
+'ilsubmit'      => '搜尋',
+'bydate'        => '按日期',
 
 # Bad image list
 'bad_image_list' => '請根據以下的格式去編寫:

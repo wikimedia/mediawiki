@@ -7,6 +7,7 @@
  * @author Jan Friberg
  * @author Jon Harald Søby
  * @author Peter Andersen
+ * @author EPO
  * @author H92
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
@@ -201,8 +202,6 @@ $messages = array(
 'underline-always'  => 'altid',
 'underline-never'   => 'aldrig',
 'underline-default' => 'efter browserindstilling',
-
-'skinpreview' => '(Forhåndsvisning)',
 
 # Dates
 'sunday'        => 'søndag',
@@ -946,6 +945,8 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'qbsettings-floatingright' => 'Flydende højre',
 'changepassword'           => 'Skift adgangskode',
 'skin'                     => 'Udseende',
+'skin-header'              => 'Tilgængelige udseender. Du kan tilpasse det enkelte udseende med Cascading Style Sheet (CSS), samt JavaScript.',
+'skin-preview'             => 'Forhåndsvisning',
 'math'                     => 'Matematiske formler',
 'dateformat'               => 'Datoformat',
 'datedefault'              => 'Standard',

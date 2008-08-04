@@ -18,13 +18,12 @@
  * @author Korg
  * @author Cedric31
  * @author Dereckson
- * @author Jon Harald Søby
  * @author JeanVoisin
  * @author Omnipaedista
  * @author McDutchie
+ * @author Горан Анђелковић
  * @author ChrisPtDe
  * @author Esbardu
- * @author Горан Анђелковић
  */
 
 $skinNames = array(
@@ -270,8 +269,6 @@ $messages = array(
 'underline-always'  => 'Toujours',
 'underline-never'   => 'Jamais',
 'underline-default' => 'Selon le navigateur',
-
-'skinpreview' => '(Prévisualiser)',
 
 # Dates
 'sunday'        => 'dimanche',
@@ -856,6 +853,7 @@ La raison donnée par $3 était ''$2''.",
 'page_first'          => 'première',
 'page_last'           => 'dernier',
 'histlegend'          => 'Légende : ({{MediaWiki:Cur}}) = différence avec la version actuelle, ({{MediaWiki:Last}}) = différence avec la version précédente, <b>m</b> = modification mineure',
+'history-search'      => "Rechercher dans l'historique",
 'deletedrev'          => '[supprimé]',
 'histfirst'           => 'toute première',
 'histlast'            => 'toute dernière',
@@ -954,6 +952,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 
 # Search results
 'searchresults'             => 'Résultats de la recherche',
+'searchresults-title'       => 'Résultats de la recherche pour $1',
 'searchresulttext'          => 'Pour plus d’informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Vous avez recherché « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes les pages commençant par « $1 »]] | [[Special:Whatlinkshere/$1|toutes les pages qui ont un lien vers « $1 »]])",
 'searchsubtitleinvalid'     => 'Vous avez recherché « $1 »',
@@ -1008,6 +1007,12 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'qbsettings-floatingright' => 'Flottante à droite',
 'changepassword'           => 'Modification du mot de passe',
 'skin'                     => 'Habillage',
+'skin-header'              => 'Habillages disponibles. Vous pouvez personnaliser chaque habillage avec les pages de feuilles de styles en cascade (CSS) et JavaScript associées.',
+'skin-header-css'          => '* Avec la feuille de style en cascade (CSS) associée, vous pouvez personnaliser chaque habillage.',
+'skin-header-js'           => '* Avec la page JavaScript (JS) associée, vous pouvez ajouter vos propres scripts dans chaque habillage.',
+'skin-preview'             => 'Prévisualiser',
+'skin-link-to-css'         => 'CSS associé',
+'skin-link-to-js'          => 'JavaScript associé',
 'math'                     => 'Rendu des maths',
 'dateformat'               => 'Format de date',
 'datedefault'              => 'Aucune préférence',
@@ -1121,7 +1126,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'right-autoconfirmed'        => 'Modifier les pages semi-protégées',
 'right-bot'                  => 'Être traité comme un processus automatisé',
 'right-nominornewtalk'       => 'Ne pas déclencher bandeau "Vous avez de nouveaux messages" lors d\'une modification mineure sur une page de discussion d\'un utilisateur',
-'right-apihighlimits'        => 'Utiliser les limites supérieures dans les requêtes API',
+'right-apihighlimits'        => 'Utiliser des limites plus élevées dans les requêtes API',
 'right-writeapi'             => 'Utilisation de l’API de modification du wiki',
 'right-delete'               => 'Supprimer des pages',
 'right-bigdelete'            => 'Supprimer des pages avec des grands historiques',
@@ -1948,10 +1953,10 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 L’ancien titre deviendra une page de redirection vers le nouveau titre.
 Les liens vers le titre de l’ancienne page ne seront pas changés ;
 veuillez vérifier que ce déplacement n’a pas créé de [[Special:DoubleRedirects|double redirection]] ou de [[Special:BrokenRedirects|redirection cassée]].
-Vous devez vous assurer que les liens continuent de pointer vers leur destination supposée.
+Vous avez la responsabilité de vous assurer que les liens continuent de pointer vers leur destination supposée.
 
 Une page ne sera pas déplacée si la page du nouveau titre existe déjà, à moins que cette dernière soit vide ou en redirection, et qu’elle n’ait pas d’historique.
-Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez effacer une page déjà existante par ce procédé.
+Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez écraser une page déjà existante par ce procédé.
 
 '''ATTENTION !'''
 Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée.

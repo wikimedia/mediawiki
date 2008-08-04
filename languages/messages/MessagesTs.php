@@ -8,8 +8,6 @@
  */
 
 $messages = array(
-'skinpreview' => '(Ndzinganiso)',
-
 # Dates
 'sunday'    => 'Sonto',
 'mon'       => 'Musombhunuko',
@@ -249,6 +247,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 # Preferences page
 'mypreferences'   => 'Minhlawulo ya mina',
 'prefs-edits'     => 'Ntsengo wa mindzulamiso:',
+'skin-preview'    => 'Ndzinganiso',
 'datetime'        => 'Siku na nkarhi',
 'prefs-watchlist' => 'Nxaxamelo wa Leswivoniwaka',
 'saveprefs'       => 'Hlayisa',

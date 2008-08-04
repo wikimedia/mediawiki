@@ -6,7 +6,6 @@
  *
  * @author Slomox
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -219,8 +218,6 @@ $messages = array(
 'underline-always'  => 'Jümmer',
 'underline-never'   => 'Nienich',
 'underline-default' => 'so as in’n Nettkieker instellt',
-
-'skinpreview' => '(Vörschau)',
 
 # Dates
 'sunday'        => 'Sünndag',
@@ -524,10 +521,13 @@ As Grund is angeven: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Bruker-Afmellen',
-'logouttext'                 => 'Du büst nu afmellt. Du kannst {{SITENAME}} nu anonym wiederbruken oder di ünner en annern Brukernaam wedder anmellen.',
-'welcomecreation'            => '== Willkomen, $1! ==
+'logouttext'                 => '<strong>Du büst nu afmellt.</strong>
+
+Du kannst {{SITENAME}} nu anonym wiederbruken oder di ünner dissen oder en annern Brukernaam wedder [[Special:Userlogin|anmellen]].
+Denk dor an, dat welk Sieden ünner Ümstänn noch jümmer so wiest warrn köönt, as wenn du anmellt weerst. Dat ännert sik, wenn du den Cache vun dien Browser leddig maakst.',
+'welcomecreation'            => '== Willkamen, $1! ==
 Dien Brukerkonto is nu inricht.
-Vergeet nich, dien Instellen antopassen.',
+Vergeet nich, de Sied för di persönlich [[Special:Preferences|intostellen]].',
 'loginpagetitle'             => 'Bruker-Anmellen',
 'yourname'                   => 'Dien Brukernaam',
 'yourpassword'               => 'Dien Passwoort',
@@ -538,7 +538,7 @@ Vergeet nich, dien Instellen antopassen.',
 'loginproblem'               => '<b>Dor weer en Problem mit dien Anmellen.</b><br />Versöök dat noch eenmal!',
 'login'                      => 'Anmellen',
 'nav-login-createaccount'    => 'Nee Konto anleggen oder anmellen',
-'loginprompt'                => 'Üm di bi {{SITENAME}} antomellen, musst du Cookies anstellt hebben.',
+'loginprompt'                => 'Dat du di bi {{SITENAME}} anmellen kannst, musst du Cookies anstellt hebben.',
 'userlogin'                  => 'Nee Konto anleggen oder anmellen',
 'logout'                     => 'Afmellen',
 'userlogout'                 => 'Afmellen',
@@ -682,7 +682,7 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 'blockednoreason'                  => 'keen Grund angeven',
 'blockedoriginalsource'            => "De Borntext vun '''$1''' warrt hier wiest:",
 'blockededitsource'                => "De Text vun '''diene Ännern''' an '''$1''':",
-'whitelistedittitle'               => 'de Siet to ännern is dat nödig anmellt to wesen',
+'whitelistedittitle'               => 'de Sied to ännern is dat nödig, anmellt to wesen',
 'whitelistedittext'                => 'Du musst di $1, dat du Sieden ännern kannst.',
 'confirmedittitle'                 => 'E-Mail-Adress mutt bestätigt wesen, dat du wat ännern kannst',
 'confirmedittext'                  => 'Du musst dien E-Mail-Adress bestätigen, dat du wat ännern kannst. Stell dien E-Mail-Adress in de [[Special:Preferences|{{int:preferences}}]] in un bestätig ehr.',
@@ -978,6 +978,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'qbsettings-floatingright' => 'Rechts, sweven',
 'changepassword'           => 'Passwoort ännern',
 'skin'                     => 'Utsehn vun de Steed',
+'skin-preview'             => 'Vörschau',
 'math'                     => 'TeX',
 'dateformat'               => 'Datumsformat',
 'datedefault'              => 'Standard',
@@ -1089,7 +1090,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'right-autoconfirmed'        => 'Halfschuulte Sieden ännern',
 'right-bot'                  => 'Lieks as en automaatschen Prozess behannelt warrn',
 'right-nominornewtalk'       => 'Lüttje Ännern an Diskuschoonssieden wiest keen „Ne’e Narichten“',
-'right-apihighlimits'        => 'Högere Limits in API-Affragen',
+'right-apihighlimits'        => 'Bruuk högere Limits in API-Affragen',
 'right-writeapi'             => 'Ännern över de Schriev-API',
 'right-delete'               => 'Sieden wegsmieten',
 'right-bigdelete'            => 'Sieden mit grote Versionsgeschichten wegsmieten',
@@ -1187,7 +1188,8 @@ Dat du hoochladene Datein söken un ankieken kannst, gah na de [[Special:Imageli
 'upload-prohibited'           => 'Verbadene Dateitypen: $1.',
 'uploadlog'                   => 'Hoochlade-Logbook',
 'uploadlogpage'               => 'Hoochlade-Logbook',
-'uploadlogpagetext'           => 'Ünnen steiht de List vun de ne’esten hoochladenen Datein.',
+'uploadlogpagetext'           => 'Ünnen steiht de List vun de ne’esten hoochladenen Datein.
+Kiek bi de [[Special:NewImages|Galerie vun ne’e Datein]] för en Översicht mit Duumnagel-Biller.',
 'filename'                    => 'Dateinaam',
 'filedesc'                    => 'Beschrieven',
 'fileuploadsummary'           => 'Tosamenfaten:',
@@ -1888,12 +1890,15 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 'move-page-legend'        => 'Siet schuven',
 'movepagetext'            => "Mit dit Formular kannst du en Siet en ne’en Naam geven, tohoop mit all Versionen.
 De ole Titel wiest denn achterna na den ne’en.
-Verwiesen op den olen Titel warrt nich ännert.
-Kiek also na, wat dor kene dubbelten un kaputten Redirects nablifft.
+Verwiesen op den olen Titel köönt automaatsch ännert warrn.
+Wenn du dat automaatsche Utbetern vun de Redirects nich utwählst, denn kiek na, wat dor kene [[Special:DoubleRedirects|dubbelten]] un [[Special:BrokenRedirects|kaputten Redirects]] nablifft.
 Dat is dien Opgaav, optopassen, dat de Lenken all dorhen wiest, wo se hen wiesen schöölt.
 
 De Siet warrt '''nich''' schaven, wenn dat al en Siet mit’n ne’en Naam gifft. Utnahmen vun disse Regel sünd blot leddige Sieden un Redirects, wenn disse Sieden kene öllern Versionen hebbt.
-Dat bedüüdt, dat du ene jüst verschavene Siet na’n olen Titel trüchschuven kannst, wenn du en Fehler maakt hest, un dat du kene vörhannenen Sieden överschrieven kannst.",
+Dat bedüüdt, dat du ene jüst verschavene Siet na’n olen Titel trüchschuven kannst, wenn du en Fehler maakt hest, un dat du kene vörhannenen Sieden överschrieven kannst.
+
+'''WOHRSCHAU!'''
+Dit kann sik temlich dull utwarken bi veel bruukte Sieden. Stell seker, dat du weetst, wie sik dat utwarkt, ehrdat du wiedermaakst.",
 'movepagetalktext'        => "De tohören Diskuschoonssiet warrt, wenn een dor is, mitverschaven, ''mit disse Utnahmen:''
 * Du schuffst de Siet in en annern Naamruum oder
 * dat gifft al en Diskuschoonssiet mit dissen Naam, oder

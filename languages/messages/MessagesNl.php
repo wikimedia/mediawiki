@@ -323,8 +323,6 @@ $messages = array(
 'underline-never'   => 'Nooit',
 'underline-default' => 'Webbrowser-standaard',
 
-'skinpreview' => '(Voorvertoning)',
-
 # Dates
 'sunday'        => 'zondag',
 'monday'        => 'maandag',
@@ -655,7 +653,7 @@ Uw gebruiker is geregistreerd. Vergeet niet uw [[Special:Preferences|voorkeuren 
 Probeer het alstublieft opnieuw.',
 'login'                      => 'Aanmelden',
 'nav-login-createaccount'    => 'Aanmelden / registreren',
-'loginprompt'                => 'U moet cookies ingeschakeld hebben om u te kunnen [[Special:Userlogin|aanmelden bij {{SITENAME}}]].',
+'loginprompt'                => 'U moet cookies ingeschakeld hebben om u te kunnen aanmelden bij {{SITENAME}}.',
 'userlogin'                  => 'Aanmelden / registreren',
 'logout'                     => 'Afmelden',
 'userlogout'                 => 'Afmelden',
@@ -810,7 +808,7 @@ Vermeld beide gegevens als u ergens over deze blokkade reageert.",
 'blockednoreason'                  => 'geen reden opgegeven',
 'blockedoriginalsource'            => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'                => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
-'whitelistedittitle'               => 'Voor bewerken is [[Special:Userlogin|aanmelden]] verplicht',
+'whitelistedittitle'               => 'Voor bewerken is aanmelden verplicht',
 'whitelistedittext'                => "U moet $1 om pagina's te bewerken.",
 'confirmedittitle'                 => 'E-mailbevestiging is verplicht voordat u kunt bewerken',
 'confirmedittext'                  => 'U moet uw e-mailadres bevestigen voor u kunt bewerken.
@@ -951,6 +949,7 @@ Controleer alstublieft de URL die u gebruikte om naar deze pagina te gaan.',
 'page_last'           => 'laatste',
 'histlegend'          => 'Selectie voor verschillen: selecteer de te vergelijken versies en toets ENTER of de knop onderaan.<br />
 Verklaring afkortingen: (huidig) = verschil met huidige versie, (vorige) = verschil met voorgaande versie, k = kleine wijziging',
+'history-search'      => 'Zoeken in geschiedenis',
 'deletedrev'          => '[verwijderd]',
 'histfirst'           => 'Oudste',
 'histlast'            => 'Nieuwste',
@@ -1114,6 +1113,12 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'qbsettings-floatingright' => 'Rechts zwevend',
 'changepassword'           => 'Wachtwoord wijzigen',
 'skin'                     => 'Vormgeving',
+'skin-header'              => 'Dit zijn de beschikbare vormgevingen.',
+'skin-header-css'          => '* Met de bijhorende CSS-pagina (Cascading Style Sheets) kunt u elke vormgeving aanpassen.',
+'skin-header-js'           => '* Met de bijhorende JS-pagina (JavaScript) kunt u eigen scripts toevoegen aan elke vormgeving.',
+'skin-preview'             => 'Voorvertoning',
+'skin-link-to-css'         => 'bijhorende CSS',
+'skin-link-to-js'          => 'bijhorende JS',
 'math'                     => 'Formules',
 'dateformat'               => 'Datumopmaak',
 'datedefault'              => 'Geen voorkeur',
@@ -1226,7 +1231,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'right-autoconfirmed'        => 'Behandeld worden als een geregistreerde gebruiker',
 'right-bot'                  => 'Behandeld worden als een geautomatiseerd proces',
 'right-nominornewtalk'       => "Kleine bewerkingen aan een overlegpagina leiden niet tot een melding 'nieuwe berichten'",
-'right-apihighlimits'        => 'Hogere limieten in API-zoekopdrachten gebruiken (langzame zoekopdrachten: 500 resultaten, snelle zoekopdrachten: 5000 resultaten)',
+'right-apihighlimits'        => 'Hogere limieten in API-zoekopdrachten gebruiken',
 'right-writeapi'             => 'Bewerken via de API',
 'right-delete'               => "Pagina's verwijderen",
 'right-bigdelete'            => "Pagina's met een grote geschiedenis verwijderen",
@@ -2066,14 +2071,11 @@ Vergeet niet de [[Special:Unlockdb|database vrij te geven]] zodra u klaar bent m
 'move-page-legend'        => 'Pagina hernoemen',
 'movepagetext'            => "Door middel van het onderstaande formulier kunt u een pagina hernoemen.
 De geschiedenis gaat mee naar de nieuwe pagina.
-De oude naam wordt automatisch een doorverwijzing naar de nieuwe pagina.
-Verwijzingen naar de oude pagina worden niet aangepast.
-Controleer na het hernoemen of er geen [[Special:DoubleRedirects|dubbele]] of [[Special:BrokenRedirects|onjuiste doorverwijzingen]] zijn onstaan.
-U bent verantwoordelijk voor de doorverwijzingen.
+* De oude naam wordt automatisch een doorverwijzing naar de nieuwe pagina.
+* Verwijzingen naar de oude pagina worden niet aangepast.
+* De pagina's die doorverwijzen naar de oorspronkelijke titel worden automatisch bijgewerkt. Als u dit niet wenst, controleer dan of er geen [[Special:DoubleRedirects|dubbele]] of [[Special:BrokenRedirects|onjuiste doorverwijzingen]] zijn ontstaan.
 
-Een pagina kan '''alleen''' hernoemd worden als de nieuwe paginanaam:
-* niet bestaat, of
-* een doorverwijspagina zonder verdere geschiedenis is.
+Een pagina kan '''alleen''' hernoemd worden als de nieuwe paginanaam niet bestaat of een doorverwijspagina zonder verdere geschiedenis is.
 
 '''WAARSCHUWING!'''
 Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben.
@@ -2654,7 +2656,7 @@ Alle volgende verwijzingen die op dezelfde regel staan, worden behandeld als uit
 
 # External editor support
 'edit-externally'      => 'Dit bestand in een extern programma bewerken',
-'edit-externally-help' => 'In de [http://meta.wikimedia.org/wiki/Help:External_editors handleiding voor instellingen] staat meer informatie.',
+'edit-externally-help' => 'In de [http://www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] staat meer informatie.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alles',

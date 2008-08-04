@@ -6,8 +6,6 @@
  *
  * @author Cradel
  * @author Dardan
- * @author Siebrand
- * @author M.M.S.
  */
 
 $fallback = 'sq';
@@ -57,8 +55,6 @@ $messages = array(
 'underline-always'  => 'gjithmonë',
 'underline-never'   => 'kurrë',
 'underline-default' => 'sipas shfletuesit',
-
-'skinpreview' => '(Parapamje)',
 
 # Dates
 'sunday'        => 'E diel',
@@ -431,6 +427,7 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 
 # Preferences page
 'mypreferences' => 'Parapëlqimet',
+'skin-preview'  => 'Parapamje',
 
 # Recent changes
 'recentchanges'   => 'Ndryshimet e fundit',

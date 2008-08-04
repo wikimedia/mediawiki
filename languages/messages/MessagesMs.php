@@ -7,7 +7,6 @@
  * @author Aviator
  * @author Aurora
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Putera Luqman Tunku Andre
  * @author Kurniasan
  */
@@ -193,8 +192,6 @@ $messages = array(
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
 'underline-default' => 'Ikut tetapan pelayar',
-
-'skinpreview' => '(Pratonton)',
 
 # Dates
 'sunday'        => 'Ahad',
@@ -805,6 +802,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'histlegend'          => "Pemilihan perbezaan: tandakan butang radio bagi versi-versi yang ingin dibandingkan dan tekan butang ''enter'' atau butang di bawah.<br />
 Petunjuk: (kini) = perbezaan dengan versi terkini,
 (akhir) = perbezaan dengan versi sebelumnya, K = suntingan kecil.",
+'history-search'      => 'Cari dalam sejarah',
 'deletedrev'          => '[dihapuskan]',
 'histfirst'           => 'Terawal',
 'histlast'            => 'Terkini',
@@ -973,6 +971,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'qbsettings-floatingright' => 'Berubah-ubah sebelah kanan',
 'changepassword'           => 'Tukar kata laluan',
 'skin'                     => 'Rupa',
+'skin-preview'             => 'Pratonton',
 'math'                     => 'Matematik',
 'dateformat'               => 'Format tarikh',
 'datedefault'              => 'Tiada keutamaan',
@@ -1085,7 +1084,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'right-autoconfirmed'        => 'Menyunting laman yang dilindungi separa',
 'right-bot'                  => 'Dianggap melakukan tugas-tugas automatik',
 'right-nominornewtalk'       => 'Suntingan kecil pada laman perbincangan seseorang pengguna tidak menghidupkan isyarat pesanan baru untuk pengguna itu',
-'right-apihighlimits'        => 'Meninggikan had dalam pertanyaan API (pertanyaan lambat: 500 hasil, pertanyaan laju: 5000 hasil)',
+'right-apihighlimits'        => 'Meninggikan had dalam pertanyaan API',
 'right-writeapi'             => 'Menggunakan API tulis',
 'right-delete'               => 'Menghapuskan laman',
 'right-bigdelete'            => 'Menghapuskan laman bersejarah',
@@ -1917,13 +1916,13 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 # Move page
 'move-page'               => 'Pindah $1',
 'move-page-legend'        => 'Pindah laman',
-'movepagetext'            => "Gunakan borang di bawah untuk menukar nama laman dan memindahkan semua maklumat sejarahnya ke nama baru. Tajuk yang lama akan dijadikan lencongan ke tajuk yang baru. Pautan ke tajuk yang lama tidak akan diubah, oleh itu sila semak sekiranya terdapat [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|lencongan rosak]]. Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang sepatutnya.
+'movepagetext'            => "Gunakan borang di bawah untuk menukar nama laman dan memindahkan semua maklumat sejarahnya ke nama baru. Tajuk yang lama akan dijadikan lencongan ke tajuk yang baru. Anda juga boleh mengemaskinikan semua lencongan yang menuju ke tajuk asal supaya menuju ke tajuk baru. Sebaliknya, anda boleh menyemak sekiranya terdapat [[Special:DoubleRedirects|lencongan berganda]] atau [[Special:BrokenRedirects|lencongan rosak]]. Anda bertanggungjawab memastikan semua pautan bersambung ke laman yang sepatutnya.
 
 Sila ambil perhatian bahawa laman tersebut '''tidak''' akan dipindahkan sekiranya laman dengan tajuk yang baru tadi telah wujud, melainkan apabila
 laman tersebut kosong atau merupakan laman lencongan dan tidak mempunyai sejarah penyuntingan. Ini bermakna anda boleh menukar semula nama sesebuah
 laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak boleh menulis ganti laman yang telah wujud.
 
-'''AMARAN!''' Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular; sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
+'''AMARAN!''' Tindakan ini boleh menjadi perubahan yang tidak dijangka dan drastik bagi laman popular. Oleh itu, sila pastikan anda faham akibat yang mungkin timbul sebelum meneruskannya.",
 'movepagetalktext'        => "Laman perbincangan yang berkaitan, jika ada, akan dipindahkan bersama-sama laman ini secara automatik '''kecuali''':
 * Sebuah laman perbincangan dengan nama baru telah pun wujud, atau
 * Anda membuang tanda kotak di bawah.

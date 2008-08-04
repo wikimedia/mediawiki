@@ -7,10 +7,7 @@
  * @author Dori
  * @author Cradel
  * @author Ergon
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $skinNames = array(
@@ -103,8 +100,6 @@ $messages = array(
 'underline-always'  => 'gjithmonë',
 'underline-never'   => 'asnjëherë',
 'underline-default' => 'sipas shfletuesit',
-
-'skinpreview' => '(Parapamje)',
 
 # Dates
 'sunday'        => 'E diel',
@@ -856,6 +851,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'qbsettings-floatingright' => 'Pezull djathtas',
 'changepassword'           => 'Ndërroni fjalëkalimin',
 'skin'                     => 'Pamja',
+'skin-preview'             => 'Parapamje',
 'math'                     => 'Formula',
 'dateformat'               => 'Data',
 'datedefault'              => 'Parazgjedhje',

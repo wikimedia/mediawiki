@@ -6,7 +6,6 @@
  *
  * @author AlimanRuna
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  */
 
 $fallback = 'es';
@@ -78,8 +77,6 @@ $messages = array(
 'underline-always'  => "Hayk'appas",
 'underline-never'   => "Mana hayk'appas",
 'underline-default' => "Wamp'unap kikinmanta chanin",
-
-'skinpreview' => '(Ñawpaqta qhaway)',
 
 # Dates
 'sunday'        => 'Intichaw',
@@ -828,6 +825,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'qbsettings-floatingright' => 'Pañaman tuytuy',
 'changepassword'           => 'Yaykuna rimata hukchay',
 'skin'                     => 'Qara',
+'skin-preview'             => 'Ñawpaqta qhaway',
 'math'                     => 'Minuywa',
 'dateformat'               => "P'unchaw pacha chanta",
 'datedefault'              => 'Kikinmanta allinkachina',

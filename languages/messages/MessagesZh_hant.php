@@ -110,8 +110,6 @@ $messages = array(
 'underline-never'   => '從不使用',
 'underline-default' => '瀏覽器預設',
 
-'skinpreview' => '(預覽)',
-
 # Dates
 'sunday'        => '星期日',
 'monday'        => '星期一',
@@ -859,6 +857,7 @@ $2',
 'qbsettings-floatingright' => '右側漂移',
 'changepassword'           => '更改密碼',
 'skin'                     => '面板',
+'skin-preview'             => '預覽',
 'math'                     => '數學公式',
 'dateformat'               => '日期格式',
 'datedefault'              => '預設值',
@@ -1392,8 +1391,8 @@ Template:消除歧義',
 'listusers-noresult' => '找不到用戶。',
 
 # Special:Listgrouprights
-'listgrouprights'          => '用戶群組權限',
-'listgrouprights-summary'  => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。
+'listgrouprights'                 => '用戶群組權限',
+'listgrouprights-summary'         => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。
 更多有關個別權限的細節可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裏]]找到。',
 'listgrouprights-group'           => '群組',
 'listgrouprights-rights'          => '權限',

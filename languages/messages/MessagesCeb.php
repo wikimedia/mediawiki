@@ -39,8 +39,6 @@ $messages = array(
 'underline-always' => 'Kanunay',
 'underline-never'  => 'Ayaw',
 
-'skinpreview' => '(Paunang tan-aw)',
-
 # Dates
 'sunday'        => 'Dominggo',
 'monday'        => 'Lunes',
@@ -314,6 +312,7 @@ Mahimo mong [[:\$1|isulat kini nga panid]].",
 # Preferences page
 'mypreferences' => 'Akong preperensiya',
 'prefs-edits'   => 'Gidaghanon sa nausab:',
+'skin-preview'  => 'Paunang tan-aw',
 'saveprefs'     => 'Tipigi',
 
 # Recent changes

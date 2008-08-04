@@ -5,7 +5,6 @@
  * @file
  *
  * @author PCode
- * @author Siebrand
  * @author Chavash
  */
 
@@ -81,8 +80,6 @@ $messages = array(
 'underline-always'  => 'Яланах',
 'underline-never'   => 'Нихăçан та',
 'underline-default' => 'Браузер ĕнерлевĕсене усă курмалла',
-
-'skinpreview' => '(Малтанхи курăну)',
 
 # Dates
 'sunday'        => 'вырсарникун',
@@ -601,6 +598,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'qbsettings'         => 'Навигаци хăми',
 'changepassword'     => 'Пароле улăштар',
 'skin'               => 'Ерешленӳ',
+'skin-preview'       => 'Малтанхи курăну',
 'dateformat'         => 'Дата формачĕ',
 'datedefault'        => 'Палăртман чухнехи',
 'math_syntax_error'  => 'синтаксис йăнăшĕ',

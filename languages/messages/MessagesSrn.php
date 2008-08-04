@@ -7,8 +7,6 @@
  * @author Stretsh
  * @author Adfokati
  * @author Jordi
- * @author Jon Harald Søby
- * @author Siebrand
  * @author Ooswesthoesbes
  */
 
@@ -58,8 +56,6 @@ $messages = array(
 'underline-always'  => 'Ala ten',
 'underline-never'   => 'Noiti',
 'underline-default' => 'Di fu a browser',
-
-'skinpreview' => '(Si-na-fesi)',
 
 # Dates
 'sunday'        => 'sonde',
@@ -563,6 +559,7 @@ Yu kan [[:\$1|meki a papira disi]].",
 'qbsettings-floatingright' => 'Han na pe',
 'changepassword'           => 'Kenki yu waktiwortu',
 'skin'                     => 'Buba',
+'skin-preview'             => 'Si-na-fesi',
 'math'                     => 'Fomula',
 'dateformat'               => 'Datumopomeki',
 'datedefault'              => 'No wana',

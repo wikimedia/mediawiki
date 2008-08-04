@@ -6,10 +6,7 @@
  *
  * @author Yidel
  * @author פוילישער
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author Jiddisch
  * @author Teak
  */
@@ -171,8 +168,6 @@ $messages = array(
 'underline-always'  => 'אייביג',
 'underline-never'   => 'קיינמאל',
 'underline-default' => 'בלעטערער גרונטשטעלונג',
-
-'skinpreview' => '(פארויסדיגע ווייזונג)',
 
 # Dates
 'sunday'        => 'זונטאג',
@@ -841,6 +836,7 @@ $2',
 'qbsettings-fixedright' => 'קבוע רעכטס',
 'changepassword'        => 'ענדערט פעסווארד',
 'skin'                  => 'סקין',
+'skin-preview'          => 'פארויסדיגע ווייזונג',
 'math'                  => 'פאָרמאַל',
 'dateformat'            => 'דאטום פארמאט',
 'datedefault'           => 'נישטא קיין פרעפערענץ',

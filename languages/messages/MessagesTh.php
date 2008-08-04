@@ -8,10 +8,7 @@
  * @author Ans
  * @author Octahedron80
  * @author Manop
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author วรากร อึ้งวิเชียร (Varakorn Ungvichian)
  * @author จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae
  * @author LMNOP at Thai Wikipedia (manop@itshee.com) since July 2007
@@ -127,8 +124,6 @@ $messages = array(
 'underline-always'  => 'เสมอ',
 'underline-never'   => 'ไม่เคย',
 'underline-default' => 'ค่าปริยายตามเว็บเบราว์เซอร์',
-
-'skinpreview' => '(แสดงตัวอย่าง)',
 
 # Dates
 'sunday'        => 'วันอาทิตย์',
@@ -863,6 +858,7 @@ $1 เป็นผู้ดำเนินการระงับการใ�
 'qbsettings-floatingright' => 'ด้านขวา',
 'changepassword'           => 'เปลี่ยนรหัสผ่าน',
 'skin'                     => 'หน้าตา',
+'skin-preview'             => 'แสดงตัวอย่าง',
 'math'                     => 'คณิตศาสตร์',
 'dateformat'               => 'รูปแบบวันที่',
 'datedefault'              => 'ค่าตั้งต้น',

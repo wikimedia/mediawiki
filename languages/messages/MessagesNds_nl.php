@@ -8,7 +8,6 @@
  * @author לערי ריינהארט
  * @author Slomox
  * @author Erwin85
- * @author Jon Harald Søby
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Jens Frank
  */
@@ -300,8 +299,6 @@ $messages = array(
 'underline-always'  => 'Altied',
 'underline-never'   => 'Nooit',
 'underline-default' => 'Standardinstelling',
-
-'skinpreview' => '(bekieken)',
 
 # Dates
 'sunday'        => 'zundag',
@@ -1038,6 +1035,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'qbsettings-floatingright' => 'Rechs, zweven',
 'changepassword'           => 'Wachwoord wiezigen',
 'skin'                     => '{{SITENAME}}-uterlijk',
+'skin-preview'             => 'bekieken',
 'math'                     => 'Wiskundige formules',
 'dateformat'               => 'Daotumweergave',
 'datedefault'              => 'Gien veurkeur',

@@ -6,7 +6,6 @@
  *
  * @author Lloffiwr
  * @author Thaf
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -161,8 +160,6 @@ $messages = array(
 'underline-always'  => 'Bob amser',
 'underline-never'   => 'Byth',
 'underline-default' => 'Rhagosodyn y porwr',
-
-'skinpreview' => '(Rhagolwg)',
 
 # Dates
 'sunday'        => 'Dydd Sul',
@@ -889,6 +886,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'qbsettings-floatingright' => 'Yn arnofio ar y dde',
 'changepassword'           => 'Newid y cyfrinair',
 'skin'                     => 'Croen',
+'skin-preview'             => 'Rhagolwg',
 'math'                     => 'Mathemateg',
 'dateformat'               => 'Fformat dyddiad',
 'datedefault'              => 'Dim dewisiad',

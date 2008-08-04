@@ -5,7 +5,6 @@
  * @file
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @author Jon Harald Søby
  */
 
 $digitTransformTable = array(

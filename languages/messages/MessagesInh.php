@@ -5,7 +5,6 @@
  * @file
  *
  * @author Tagir
- * @author Siebrand
  */
 
 $fallback = 'ru';
@@ -54,8 +53,6 @@ $messages = array(
 'underline-always'  => 'Массаза',
 'underline-never'   => 'ЦIаккха',
 'underline-default' => 'Браузер настройкаш хьаэца',
-
-'skinpreview' => '(Хьажа)',
 
 # Dates
 'sunday'        => 'КIиранди',
@@ -216,6 +213,9 @@ $messages = array(
 'versionrequiredtext' => '$1 MediaWiki верси йиза ер оагIув хьажа. [[Special:Version|version page]] хьажа.',
 
 'ok' => 'ОК',
+
+# Preferences page
+'skin-preview' => 'Хьажа',
 
 # Special:Categories
 'categories' => 'Категореш',

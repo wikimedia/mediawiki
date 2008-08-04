@@ -6,9 +6,6 @@
  *
  * @author Symane
  * @author Vipuser
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $fallback = 'zh-hant';
@@ -59,8 +56,6 @@ $messages = array(
 'underline-always'  => '總歸要用',
 'underline-never'   => '絕伓使用',
 'underline-default' => '瀏覽器預設',
-
-'skinpreview' => '（預覽）',
 
 # Dates
 'sunday'        => '禮拜天',
@@ -700,6 +695,7 @@ $2',
 'qbsettings-floatingright' => '左首漂移',
 'changepassword'           => '改過密碼',
 'skin'                     => '皮',
+'skin-preview'             => '（預覽）',
 'math'                     => '數學公式',
 'dateformat'               => '日期格式',
 'datedefault'              => '默認項目',

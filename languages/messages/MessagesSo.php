@@ -6,8 +6,6 @@
  *
  * @author Mimursal
  * @author Yariiska
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -49,8 +47,6 @@ $messages = array(
 
 'underline-always' => 'Marwalba',
 'underline-never'  => 'Marnaba',
-
-'skinpreview' => '(Horfiirin)',
 
 # Dates
 'sunday'        => 'Axad',
@@ -352,6 +348,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'prefsnologin'         => 'Gudaha kuma jirtid',
 'prefsnologintext'     => 'Waa in aad [[Special:Userlogin|Gudaha ku jirtaa]] si aad dooqyadaada u dalbatid.',
 'prefsreset'           => 'Dooqyada waxaa laga keenay keydka.',
+'skin-preview'         => 'Horfiirin',
 'math'                 => 'Xisaab',
 'datedefault'          => "Ma'jiro dooq",
 'datetime'             => 'Taariikhda iyo saacada',

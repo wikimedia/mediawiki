@@ -7,7 +7,6 @@
  * @author ILVI
  * @author Taichi
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Runningfridgesrule
  */
 

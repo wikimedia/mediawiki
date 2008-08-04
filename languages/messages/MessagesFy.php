@@ -6,11 +6,8 @@
  *
  * @author Pyt
  * @author Snakesteuben
- * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
  * @author Maartenvdbent
- * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -113,8 +110,6 @@ $messages = array(
 'underline-always'  => 'Altyd',
 'underline-never'   => 'Nea',
 'underline-default' => 'Webblêder-standert',
-
-'skinpreview' => '(Proefbyld)',
 
 # Dates
 'sunday'        => 'snein',
@@ -797,6 +792,7 @@ mooglik. Foar now kinne jo sykje fia Google:</p>",
 'qbsettings-floatingright' => 'Rjochts sweevjend',
 'changepassword'           => 'Wachtwurd feroarje',
 'skin'                     => 'Side-oansjen',
+'skin-preview'             => 'Proefbyld',
 'math'                     => 'Formules',
 'dateformat'               => 'Datum',
 'datedefault'              => 'Gjin foarkar',

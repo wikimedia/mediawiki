@@ -8,13 +8,13 @@
  * @author SMP
  * @author Martorell
  * @author Pasqual (ca)
+ * @author Paucabot
  * @author Iradigalesc
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Jordi Roqué
  * @author Vriullop
- * @author Juanpabl
  * @author Spacebirdy
+ * @author Juanpabl
  * @author McDutchie
  * @author Pérez
  * @author Smeira
@@ -199,8 +199,6 @@ $messages = array(
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Mai',
 'underline-default' => 'Configuració per defecte del navegador',
-
-'skinpreview' => '(prova)',
 
 # Dates
 'sunday'        => 'diumenge',
@@ -964,6 +962,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'qbsettings-floatingright' => 'Surant a la dreta',
 'changepassword'           => 'Canvia la contrasenya',
 'skin'                     => 'Aparença',
+'skin-preview'             => 'prova',
 'math'                     => 'Com es mostren les fórmules',
 'dateformat'               => 'Format de la data',
 'datedefault'              => 'Cap preferència',

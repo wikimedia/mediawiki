@@ -5,10 +5,7 @@
  * @file
  *
  * @author WikedKentaur
- * @author SPQRobin
- * @author Siebrand
  * @author M.M.S.
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Võrok
  */
@@ -128,8 +125,6 @@ $messages = array(
 'underline-always'  => 'Alati',
 'underline-never'   => 'Mitte kunagi',
 'underline-default' => 'Brauseri vaikeväärtus',
-
-'skinpreview' => '(Eelvaade)',
 
 # Dates
 'sunday'        => 'pühapäev',
@@ -618,6 +613,7 @@ sisse logida.',
 'qbsettings-floatingleft' => 'Ujuvalt vasakul',
 'changepassword'          => 'Muuda parool',
 'skin'                    => 'Kujundus',
+'skin-preview'            => 'Eelvaade',
 'math'                    => 'Valemite näitamine',
 'dateformat'              => 'Kuupäeva formaat',
 'datedefault'             => 'Eelistus puudub',

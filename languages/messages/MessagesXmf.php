@@ -7,8 +7,6 @@
  * @author Dato deutschland
  * @author Alsandro
  * @author Malafaya
- * @author Siebrand
- * @author M.M.S.
  */
 
 $fallback = 'ka';

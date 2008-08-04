@@ -6,8 +6,6 @@
  *
  * @author NJ
  * @author SPQRobin
- * @author Siebrand
- * @author Jon Harald Søby
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach
  * @author Troefkaart
@@ -86,8 +84,6 @@ $messages = array(
 'underline-always'  => 'Aoltied',
 'underline-never'   => 'Nooit',
 'underline-default' => 'Webbrowser-standard',
-
-'skinpreview' => '(Voevertoônienge)',
 
 # Dates
 'sunday'        => 'zundag',
@@ -835,6 +831,7 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'qbsettings-floatingright' => 'Rechs zwevend',
 'changepassword'           => 'Wachtwoôrd wiezigen',
 'skin'                     => 'Vurmhevieng',
+'skin-preview'             => 'Voevertoônienge',
 'math'                     => 'Formules',
 'dateformat'               => 'Datumopmaek',
 'datedefault'              => 'Hin vòkeur',

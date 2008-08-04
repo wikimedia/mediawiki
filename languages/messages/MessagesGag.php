@@ -5,7 +5,6 @@
  * @file
  *
  * @author Cuman
- * @author Siebrand
  */
 
 $fallback = 'tr';
@@ -54,8 +53,6 @@ $messages = array(
 'underline-always'  => 'Dayma',
 'underline-never'   => 'Hiç bir zaman',
 'underline-default' => 'Brauzer karar kabletsin',
-
-'skinpreview' => '(Ön siir)',
 
 # Dates
 'sunday'        => 'Pazar',
@@ -507,6 +504,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 # Preferences page
 'preferences'   => 'Seçimner',
 'mypreferences' => 'Seçimnerim',
+'skin-preview'  => 'Ön siir',
 'retypenew'     => 'Eni parolu tekrar girin',
 
 # User rights

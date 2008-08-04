@@ -5,8 +5,6 @@
  * @file
  *
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
- * @author SPQRobin
- * @author Siebrand
  */
 
 $specialPageAliases = array(
@@ -125,8 +123,6 @@ $messages = array(
 
 'underline-always' => 'تل',
 'underline-never'  => 'هېڅکله',
-
-'skinpreview' => '(مخکتنه)',
 
 # Dates
 'sunday'        => 'اتوار',
@@ -589,6 +585,7 @@ $messages = array(
 'qbsettings-none'       => 'هېڅ',
 'changepassword'        => 'پټنوم بدلول',
 'skin'                  => 'بڼه',
+'skin-preview'          => 'مخکتنه',
 'math'                  => 'شمېرپوهنه',
 'dateformat'            => 'د نېټې بڼه',
 'datedefault'           => 'هېڅ نه ټاکل',

@@ -6,7 +6,6 @@
  *
  * @author Sinopeus
  * @author Consta
- * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -51,8 +50,6 @@ $messages = array(
 
 'underline-always' => 'Πάντα',
 'underline-never'  => 'Καμίαν',
-
-'skinpreview' => '(Πρώτον τέρεμα)',
 
 # Dates
 'sunday'        => 'Κερεκήν',
@@ -188,6 +185,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Περί {{SITENAME}}',
 'aboutpage'            => 'Project:Σχετικά',
+'bugreports'           => 'Αναφοράντας λαθίων',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
 'currentevents'        => 'Ατωριζνά γεγονότα',
 'currentevents-url'    => 'Project:Ατωριζνά γεγονότα',
@@ -251,9 +249,10 @@ $messages = array(
 'yourname'                => 'Όνεμα χρήστε:',
 'yourpassword'            => 'Σημάδι:',
 'yourpasswordagain'       => "Ξαν' γράψτεν το σημάδι:",
+'remembermypassword'      => "Αποθήκεμαν τη σημαδίμ σ' αβούτον τον υπολογιστήν",
 'login'                   => 'Εμπάτε',
 'nav-login-createaccount' => 'Εμπάτε / Ποίστεν λογαρίαν',
-'loginprompt'             => "Πρέπ' να έχετε ενεργοποιήσει τα cookies για εμπείτε σο {{SITENAME}}.",
+'loginprompt'             => "Πρέπ' ν' άφτετε τα cookies για εμπείτε σο {{SITENAME}}.",
 'userlogin'               => 'Εμπάτε / Ποίστεν λογαρίαν',
 'logout'                  => 'οξουκά',
 'userlogout'              => 'Οξουκά',
@@ -389,12 +388,17 @@ $messages = array(
 'previousrevision'    => '←Παλαιόν μορφήν',
 'nextrevision'        => 'Κι άλλο καινούρεον μορφήν→',
 'currentrevisionlink' => 'Ατωριζνόν μορφήν',
-'cur'                 => 'τρέχουσα',
-'last'                => 'τελευταία',
-'page_first'          => 'πρώτη',
-'page_last'           => 'τελευταία',
+'cur'                 => 'ατωριζνόν',
+'next'                => 'επόμενον',
+'last'                => 'υστερνόν',
+'page_first'          => 'πρώτον',
+'page_last'           => 'υστερνόν',
+'histlegend'          => 'Σύγκριμα διαφορίων: βαλέστεν τα μορφάς το θέλετε και τερέστεν τα διαφοράσατουν. Για να τερείτε τα διαφοράς, ποίστεν έναν κλικ σο πεδίον το λεει "Γαρσουλαεύτε...". <br />
+Πληροφορία: (ατωριζνόν) = διαφοράς με τ\' ατωριζνόν τη μορφήν,
+(υστερνόν) = διαφοράς με τ\' υστερνόν τη μορφήν, μ = μικρά διαφοράς.',
 'histfirst'           => "Ασ' όλεα παλαιόν",
 'histlast'            => "Ασ' όλεα καινούρ'",
+'historyempty'        => '(εύκαιρον)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
@@ -403,26 +407,31 @@ $messages = array(
 'history-title'           => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
 'difference'              => '(Διαφορά μεταξύ τη μορφίων)',
 'lineno'                  => 'Γραμμή $1:',
-'compareselectedversions' => "Γαρσουλαεύτε τ' εκδώσεις",
+'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo'                => 'αναίρεση',
 
 # Search results
-'noexactmatch' => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
-Εμπορείτε να [[:\$1|εφτάτε ατέν]].",
-'prevn'        => '$1 προηγουμένων',
-'nextn'        => '$1 επομένων',
-'viewprevnext' => 'Τέρεν ($1) ($2) ($3)',
-'powersearch'  => 'Αναλυτικόν αράεμαν',
+'noexactmatch'          => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
+Εμπορείτε να [[:\$1|εφτάτε ατέναν]].",
+'prevn'                 => '$1 προηγουμένων',
+'nextn'                 => '$1 επομένων',
+'viewprevnext'          => 'Τέρεν ($1) ($2) ($3)',
+'search-suggest'        => 'Γιαμ αραεύετε: $1',
+'search-interwiki-more' => '(πλέα)',
+'searchall'             => 'ούλαι',
+'powersearch'           => 'Αναλυτικόν αράεμαν',
 
 # Preferences page
-'preferences'   => 'Προτιμήσεις',
-'mypreferences' => "Τ' εμά τα προτιμήσεις",
+'preferences'   => 'Προτιμήσαι',
+'mypreferences' => "Τ' εμά τα προτιμήσαι",
+'skin-preview'  => 'Πρώτον τέρεμα',
 'retypenew'     => 'Γράψον ξαν το νέον σημάδιν:',
 
 # User rights log
 'rightslog' => 'Αρχείον δικαιωματίων',
 
 # Recent changes
+'nchanges'                       => '$1 {{PLURAL:$1|αλλαγή|αλλαγάς}}',
 'recentchanges'                  => 'Υστερνά αλλαγάς',
 'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
 'rcnote'                         => "Αφκά {{PLURAL:$1|έχ' '''1''' αλλαγήν|έχ' τα '''$1''' τελευταία αλλαγάς}} τη {{PLURAL:$2|τελευταίας ημέρας|τελευταίων '''$2''' ημερίων}}, σα $5, $4.",
@@ -493,6 +502,8 @@ $messages = array(
 
 # Statistics
 'statistics' => 'Στατιστικήν',
+
+'disambiguations' => 'Σελίδας εξηγησίων',
 
 'doubleredirects' => 'Περισσά διπλά συνδέσμ',
 
@@ -566,7 +577,7 @@ $messages = array(
 'watchlistfor'         => "(για '''$1''')",
 'addedwatch'           => 'Εθέκεν σην λίσταν ωριαγματί',
 'removedwatch'         => 'Αση λίσταν επάρθεν',
-'removedwatchtext'     => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' τ\'εσόν τον κατάλογον.',
+'removedwatchtext'     => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' [[Special:Watchlist|τ\'εσόν τον κατάλογον]].',
 'watch'                => 'Ωρίαγμαν',
 'watchthispage'        => 'Ωρίαν τη σελίδαν',
 'unwatch'              => "Τέλεμαν τ' ωριαγματί",
@@ -592,6 +603,7 @@ $messages = array(
 'deleteotherreason'           => 'Άλλον/αλλομίαν λόγον:',
 'deletereasonotherlist'       => 'Άλλον λόγον',
 'rollbacklink'                => 'φέρον ξαν σην υστερναίαν',
+'protectlogpage'              => 'Αρχείον ασπαλιγματίων',
 'protectcomment'              => 'Σχόλιον:',
 'protectexpiry'               => 'Τελείται:',
 'protect_expiry_invalid'      => "Ο χρόνος τελεματί 'κ εν σωστόν.",
@@ -654,8 +666,8 @@ $messages = array(
 # Move page
 'movepagetext'            => "Εάν εφτάτε το ψαλαφίον αφκά θα δίτε άλλον όνομαν σ' έναν σελίδαν και θα παίρτεν τ' ιστορικόνατς εκαικά. Το παλαιόν η σελίδαν θα μεταβάλκεται σε σύνδεσμον σην καινούραιαν.
 
-Τα συνδέσμαι που δεκνίζνε σο παλαιόν τη σελίδαν 'κ θα μεταβάλκουνταν.
-Για τ' ατό τερέστεν για διπλά για τσακωμένα συνδέσμ.
+Επορείτε να μεταβάλκετε τα συνδέσμαι που δεκνίζνε σο παλαιόν τη σελίδαν αυτόματα. Εάν 'κ φτάτε αέτς,
+ευρέστεν [[Special:DoubleRedirects|διπλά]] για [[Special:BrokenRedirects|τσακωμένα συνδέσμ]].
 Έχετ' ευθύνην τα παλαιά τα συνδέσμαι να δεκνίζνε σο σωστόν τη σελίδαν. 
 
 Η σελίδαν ''''κ θ' αλλάζ'''' τη θέσηνατς όντες έχ' άλλον σελίδαν με το νέον τ' όνεμαν. Εξαίρεσην εν τ' εύκαιρα τα σελίδας και τα συνδέσμαι, ντο 'κ έχνε ιστορικόν. 
@@ -679,6 +691,7 @@ $messages = array(
 'movetalk'                => 'Ετεροχλάεμαν τη σελίδας καλατσεματί',
 '1movedto2'               => '[[$1]] ετερχλαεύτεν σο [[$2]]',
 '1movedto2_redir'         => '[[$1]] ετερχλαεύτεν σο [[$2]] σε σύνδεσμον απάν',
+'movelogpage'             => 'Αρχείον ετεροχλαεματί',
 'movereason'              => 'Λόγον:',
 'revertmove'              => 'επαναφορά',
 
@@ -755,6 +768,7 @@ $messages = array(
 # Media information
 'file-info-size'       => '($1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπος: $4)',
 'file-nohires'         => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
+'svg-long-desc'        => "(Αρχείον SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχεί: $3)",
 'show-big-image'       => 'Τζιπ τρανόν ανάλυση',
 'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
 
@@ -774,6 +788,15 @@ $messages = array(
 Τ' αρχείον αν έλλαξεν μορφήν, τα στοιχεία ίσως κ' είν' σωστά πλέον.",
 'metadata-expand'   => 'Δείξον τα λεπτομέρειας',
 'metadata-collapse' => 'Κρύψον τα λεπτομέρειας',
+'metadata-fields'   => "Τα πεδία μεταδογμενίων EXIF τ' έχ' σ' αβούτον το μένεμαν θ'
+ευρίεται σην σελίδαν εμφάνισης εικόνας όντες ο πίνακας μεταδογμενίων
+θα κρύφκεται. Τ' άλλα τα πεδία θα είναι κρυμμένα εξόν ντο κανονίσκουνταν αλλέτερα.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -816,6 +839,7 @@ $messages = array(
 # Watchlist editing tools
 'watchlisttools-view' => 'Τερέστεν σοβαρά αλλαγάς',
 'watchlisttools-edit' => 'Τέρεν κι άλλαξον κατάλογον ωρίαγματι',
+'watchlisttools-raw'  => 'Επεξεργαστείτε την πρωτογενή τη λίσταν ωριαγματί',
 
 # Special:Version
 'version' => 'Έκδοση', # Not used as normal message but as header for the special page itself

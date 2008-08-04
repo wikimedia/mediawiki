@@ -7,8 +7,6 @@
  * @author Ooswesthoesbes
  * @author SF-Language
  * @author Litingatinga Silozi
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -48,8 +46,6 @@ $messages = array(
 'underline-always'  => 'Xet',
 'underline-never'   => 'Yexet',
 'underline-default' => 'Pokuhe',
-
-'skinpreview' => '(PendiBe)',
 
 # Dates
 'sunday'        => 'La Pumulo',
@@ -501,6 +497,7 @@ Informasi: (bye) = petuho a nca selt,
 'prefsnologin'      => 'Ni menuhile',
 'qbsettings-none'   => 'Ni',
 'skin'              => 'PendiBe',
+'skin-preview'      => 'PendiBe',
 'math'              => 'Mat',
 'dateformat'        => 'Data apukisize',
 'datedefault'       => 'Ni di petohoni di sebelu',

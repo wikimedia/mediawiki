@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
  * @author Itsmine
  * @comment Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */
@@ -114,8 +113,6 @@ $messages = array(
 'underline-always'  => '恆',
 'underline-never'   => '絕',
 'underline-default' => '慣',
-
-'skinpreview' => '（草覽）',
 
 # Dates
 'sunday'        => '週日',
@@ -776,6 +773,7 @@ $2',
 'prefsreset'            => '簿註歸白',
 'changepassword'        => '易符節',
 'skin'                  => '面版',
+'skin-preview'          => '（草覽）',
 'math'                  => '數學',
 'dateformat'            => '日期格式',
 'datedefault'           => '原註',

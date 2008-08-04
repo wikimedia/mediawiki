@@ -5,13 +5,7 @@
  * @file
  *
  * @author Wantok
- * @author Niklas Laxström
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Wytukaze
- * @author Wantok
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Wytukaze
  */
 
@@ -46,8 +40,6 @@ $messages = array(
 'tog-watchlisthideown'        => 'Haitim ol senis mi wokim long lukautbuk bilong mi',
 'tog-watchlisthidebots'       => 'Haitim ol senis ol bot i wokim long lukautbuk bilong mi',
 'tog-watchlisthideminor'      => 'Haitim ol liklik senis long lukautbuk bilong mi',
-
-'skinpreview' => '(pes mi senisim, pastaim long raitim)',
 
 # Dates
 'sunday'    => 'Sande',
@@ -139,6 +131,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 # Preferences page
 'mypreferences'   => 'Ol laik bilong mi',
 'prefs-edits'     => 'Hamas senis:',
+'skin-preview'    => 'pes mi senisim, pastaim long raitim',
 'prefs-rc'        => 'Nupela senis',
 'prefs-watchlist' => 'Lukautbuk',
 

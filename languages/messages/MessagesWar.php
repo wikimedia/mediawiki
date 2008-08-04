@@ -6,8 +6,6 @@
  *
  * @author Harvzsf
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $messages = array(

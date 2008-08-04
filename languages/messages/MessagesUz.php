@@ -5,7 +5,6 @@
  * @file
  *
  * @author Abdulla
- * @author Siebrand
  * @author Behzod Saidov <behzodsaidov@gmail.com>
  */
 

@@ -9,7 +9,6 @@
  * @author Rafaelgarcia
  * @author לערי ריינהארט
  * @author Omnipaedista
- * @author Siebrand
  * @author LeighvsOptimvsMaximvs
  */
 
@@ -185,8 +184,6 @@ $messages = array(
 'underline-always'  => 'Semper',
 'underline-never'   => 'Numquam',
 'underline-default' => 'Defalta navigatri interretialis',
-
-'skinpreview' => '(Praevisum)',
 
 # Dates
 'sunday'        => 'dies Solis',
@@ -730,6 +727,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'qbsettings-floatingright' => 'Innens a dextra',
 'changepassword'           => 'Mutare tesseram',
 'skin'                     => 'Aspectum',
+'skin-preview'             => 'Praevisum',
 'math'                     => 'Interpretatio artis mathematicae',
 'dateformat'               => 'Forma diei',
 'datedefault'              => 'Nullum praeferentiae',

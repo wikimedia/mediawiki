@@ -4,10 +4,7 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
  * @author Tauʻolunga
- * @author Jon Harald Søby
  * @author Cbrown1023
  * @author לערי ריינהארט
  */
@@ -29,8 +26,6 @@ $messages = array(
 'underline-always'  => 'Taimi kotoa',
 'underline-never'   => 'ʻIkai teitei',
 'underline-default' => 'Palausa tuʻunga',
-
-'skinpreview' => '(Vakai pē)',
 
 # Dates
 'sunday'        => 'Sāpate',
@@ -437,6 +432,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'prefsnologin'          => 'ʻOku ʻikai kau ki ai',
 'changepassword'        => 'Liliu hoʻo leatapu',
 'skin'                  => 'Kili',
+'skin-preview'          => 'Vakai pē',
 'math'                  => 'Matematika',
 'dateformat'            => 'Ngaohi ʻo e ʻaho',
 'datedefault'           => 'ʻIkai ha faʻiteliha',

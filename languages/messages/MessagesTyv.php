@@ -5,7 +5,6 @@
  * @file
  *
  * @author Sborsody
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Krice from Tyvanet.com
  * @author friends at tyvawiki.org
@@ -64,8 +63,6 @@ $messages = array(
 'underline-always'  => 'Кезээде',
 'underline-never'   => 'Кажан-даа',
 'underline-default' => 'Веб-браузерниң ниити үнези',
-
-'skinpreview' => '(Чижеглей көөр)',
 
 # Dates
 'sunday'        => 'Улуг хүн',
@@ -360,6 +357,7 @@ $1',
 'preferences'        => 'Дээре деп санаарылар',
 'changepassword'     => 'Чажыт сөстү өскертир',
 'skin'               => 'Кеш',
+'skin-preview'       => 'Чижеглей көөр',
 'math_unknown_error' => 'билбес алдаг',
 'prefs-personal'     => 'Ажыглакчының медээлери',
 'prefs-rc'           => 'Дээм чаагы өскерлиишкиннер',

@@ -4,10 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Red Baron
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -247,8 +245,6 @@ $messages = array(
 'underline-always'  => 'Uvek',
 'underline-never'   => 'Nikad',
 'underline-default' => 'Po podešavanjima brauzera',
-
-'skinpreview' => '(Pregled)',
 
 # Dates
 'sunday'        => 'nedelja',
@@ -810,6 +806,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'qbsettings-floatingright' => 'Plutajuća desno',
 'changepassword'           => 'Promeni lozinku',
 'skin'                     => 'Koža',
+'skin-preview'             => 'Pregled',
 'math'                     => 'Matematike',
 'dateformat'               => 'Format datuma',
 'datedefault'              => 'Nije bitno',

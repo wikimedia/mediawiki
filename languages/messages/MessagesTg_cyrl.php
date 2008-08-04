@@ -6,12 +6,9 @@
  *
  * @author Ibrahim
  * @author FrancisTyers
- * @author SPQRobin
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Farrukh
  * @author Soroush
- * @author Jon Harald Søby
  * @author Cbrown1023
  */
 
@@ -113,8 +110,6 @@ $messages = array(
 'underline-always'  => 'Доимо',
 'underline-never'   => 'Ҳеҷгоҳ',
 'underline-default' => 'Пешфарзи мурургар',
-
-'skinpreview' => '(Пешнамоиш)',
 
 # Dates
 'sunday'        => 'Якшанбе',
@@ -830,6 +825,7 @@ $1',
 'qbsettings-floatingright' => 'Шиновар рост',
 'changepassword'           => 'Иваз намудани калимаи убур',
 'skin'                     => 'Пӯст',
+'skin-preview'             => 'Пешнамоиш',
 'math'                     => 'Риёзиёт',
 'dateformat'               => 'Қолаби сана',
 'datedefault'              => 'Бе тарҷиҳ',

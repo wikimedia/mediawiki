@@ -5,7 +5,6 @@
  * @file
  *
  * @author Malafaya
- * @author SPQRobin
  * @author nov.wikipedia.org sysops
  */
 

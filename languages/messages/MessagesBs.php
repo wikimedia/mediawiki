@@ -6,7 +6,6 @@
  *
  * @author Demicx
  * @author Kal-El
- * @author Siebrand
  * @author לערי ריינהארט
  * @author CERminator
  */
@@ -131,8 +130,6 @@ $messages = array(
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
 'underline-default' => 'Po podešavanjima brauzera',
-
-'skinpreview' => '(Pregled)',
 
 # Dates
 'sunday'        => 'nedelja',
@@ -607,6 +604,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'qbsettings-floatingleft' => 'Plutajuća lijevo',
 'changepassword'          => 'Promjeni lozinku',
 'skin'                    => 'Koža',
+'skin-preview'            => 'Pregled',
 'math'                    => 'Prikazivanje matematike',
 'dateformat'              => 'Format datuma',
 'datedefault'             => 'Nije bitno',

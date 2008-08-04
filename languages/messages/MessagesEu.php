@@ -4,13 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Theklan
  * @author Bengoa
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Malafaya
- * @author Jon Harald Søby
  * @author Kaustubh
  * @author Helix84
  */
@@ -88,8 +85,6 @@ $messages = array(
 'underline-always'  => 'Beti',
 'underline-never'   => 'Inoiz ez',
 'underline-default' => 'Nabigatzailearen lehenetsitako balioa',
-
-'skinpreview' => '(Aurrebista)',
 
 # Dates
 'sunday'        => 'Igandea',
@@ -783,6 +778,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'qbsettings-floatingright' => 'Eskubian flotatzen',
 'changepassword'           => 'Pasahitza aldatu',
 'skin'                     => 'Itxura',
+'skin-preview'             => 'Aurrebista',
 'math'                     => 'Formulak',
 'dateformat'               => 'Data formatua',
 'datedefault'              => 'Hobespenik ez',

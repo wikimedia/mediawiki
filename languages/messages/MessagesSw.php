@@ -6,8 +6,6 @@
  *
  * @author Malangali
  * @author לערי ריינהארט
- * @author Siebrand
- * @author SPQRobin
  * @author Marcos
  * @author Robert Ullmann
  */

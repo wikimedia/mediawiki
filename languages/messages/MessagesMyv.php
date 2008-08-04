@@ -7,13 +7,11 @@
  * @author Botuzhaleny-sodamo
  * @author Erzianj jurnalist
  * @author Amdf
- * @author Siebrand
  * @author MF-Warburg
  * @author Tupikovs
  * @author Sura
  * @author M.M.S.
  * @author Spacebirdy
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -62,8 +60,6 @@ $messages = array(
 'underline-always'  => 'Свал',
 'underline-never'   => 'Зярдояк',
 'underline-default' => 'Васнянь браузер',
-
-'skinpreview' => '(Васнянь невтевкс)',
 
 # Dates
 'sunday'        => 'Таргочи',
@@ -603,6 +599,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'qbsettings-floatingright' => 'Вить ёнга уи',
 'changepassword'           => 'Салавань валонь полавтома',
 'skin'                     => 'Неемань ладсема',
+'skin-preview'             => 'Васнянь невтевкс',
 'math'                     => 'Математика',
 'dateformat'               => 'Чынь формат',
 'datedefault'              => 'Икелькс вешема арась',

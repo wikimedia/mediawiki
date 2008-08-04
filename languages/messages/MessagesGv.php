@@ -5,7 +5,6 @@
  * @file
  *
  * @author MacTire02
- * @author Siebrand
  * @author Shimmin Beg
  * @author Alison
  */
@@ -26,8 +25,6 @@ $messages = array(
 
 'underline-always' => 'Rieau',
 'underline-never'  => 'Dy bragh',
-
-'skinpreview' => '(Roie-haishbynys)',
 
 # Dates
 'sunday'        => 'Jedoonee',
@@ -415,6 +412,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'qbsettings-none'      => 'Veg',
 'changepassword'       => 'Fockle yn arrey y cheaghley',
 'skin'                 => 'Crackan',
+'skin-preview'         => 'Roie-haishbynys',
 'dateformat'           => 'Kiaddey yn date',
 'datetime'             => 'Date as am',
 'math_syntax_error'    => 'Co-ordrail marranagh',

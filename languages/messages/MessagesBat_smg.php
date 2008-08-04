@@ -6,7 +6,6 @@
  *
  * @author Hugo.arg
  * @author Zordsdavini
- * @author Siebrand
  * @author לערי ריינהארט
  */
 
@@ -100,8 +99,6 @@ $messages = array(
 'underline-always'  => 'Visumet',
 'underline-never'   => 'Nikumet',
 'underline-default' => 'Palē naršīklės nostatīmos',
-
-'skinpreview' => '(Parveiza)',
 
 # Dates
 'sunday'        => 'sekma dėina',
@@ -597,6 +594,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'qbsettings-none'       => 'Neruodītė',
 'changepassword'        => 'Pakeistė slaptažuodė',
 'skin'                  => 'Ėšruoda',
+'skin-preview'          => 'Parveiza',
 'math'                  => 'Matematėka',
 'dateformat'            => 'Datuos fuormats',
 'datetime'              => 'Data ė čiesos',

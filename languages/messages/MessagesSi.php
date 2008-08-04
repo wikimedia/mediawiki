@@ -6,8 +6,6 @@
  *
  * @author Asiri wiki
  * @author Chandana
- * @author Jon Harald Søby
- * @author Siebrand
  */
 
 $namespaceNames = array(
@@ -101,8 +99,6 @@ $messages = array(
 'tog-highlightbroken' => ' කැඩුණු සන්ධිය ආකෘතිය <a href="" වර්ගය="අලුත">මේ සමාන ලෙස </a> (විකල්ප: මේ සමාන ලෙස<a href="" වර්ගය="අභ්‍යනතර">?</a>).',
 'tog-justify'         => 'ඡේදය පේළි ගසන්න',
 'tog-hideminor'       => 'අලුත් වෙනසහි සුළු සංස්කරණය හැංගිම',
-
-'skinpreview' => '(පෙරදසුන)',
 
 # Dates
 'sunday'        => 'ඉරිදා',
@@ -291,6 +287,7 @@ $messages = array(
 # Preferences page
 'mypreferences'  => 'මගේ අභිරුචි',
 'changepassword' => 'මුරපදය වෙනස් කරන්න',
+'skin-preview'   => 'පෙරදසුන',
 'datetime'       => 'දිනය සහ වේලාව',
 'prefs-rc'       => 'නව වෙනස්වීම්',
 'prefs-misc'     => 'විවිධ',

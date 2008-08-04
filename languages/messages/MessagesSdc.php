@@ -7,9 +7,6 @@
  * @author Felis
  * @author Antofa
  * @author Cornelia
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $messages = array(
@@ -58,8 +55,6 @@ $messages = array(
 'underline-always'  => 'Sempri',
 'underline-never'   => 'Mai',
 'underline-default' => "Manteni l'impusthazioni di lu nabiggadori",
-
-'skinpreview' => '(antiprimma)',
 
 # Dates
 'sunday'        => 'Dumènigu',
@@ -750,6 +745,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'qbsettings-floatingright' => 'Galliggianti a drestha',
 'changepassword'           => "Ciamba paràura d'órdhini",
 'skin'                     => 'Aipettu gràficu',
+'skin-preview'             => 'antiprimma',
 'math'                     => 'Fòimmuri matemàtigghi',
 'dateformat'               => 'Fuimmaddu di la data',
 'datedefault'              => 'Nisciuna prifirènzia',

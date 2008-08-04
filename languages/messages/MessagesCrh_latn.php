@@ -5,7 +5,6 @@
  * @file
  *
  * @author Alessandro
- * @author Siebrand
  * @author AlefZet
  */
 
@@ -152,8 +151,6 @@ $messages = array(
 'underline-always'  => 'Daima',
 'underline-never'   => 'Asla',
 'underline-default' => 'Brauzer qarar bersin',
-
-'skinpreview' => '(Ög baquv)',
 
 # Dates
 'sunday'        => 'Bazar',
@@ -778,6 +775,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'qbsettings'            => 'Vızlı irişim sutun ayarları',
 'changepassword'        => 'Parol deñiştir',
 'skin'                  => 'Resimleme',
+'skin-preview'          => 'Ög baquv',
 'math'                  => 'Riyaziy (matematik) simvollar',
 'dateformat'            => 'Tarih kösterimi',
 'datedefault'           => 'Standart',

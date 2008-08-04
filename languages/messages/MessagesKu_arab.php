@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
  * @author Aras Noori
  */
 
@@ -73,8 +72,6 @@ $messages = array(
 'underline-always'  => 'هه‌میشه‌',
 'underline-never'   => 'هیچ كات',
 'underline-default' => 'نمایشكه‌ری پێوانه‌یی',
-
-'skinpreview' => '(پێش بینین)',
 
 # Dates
 'sunday'        => 'یه‌كشه‌ممه‌',
@@ -332,6 +329,9 @@ $messages = array(
 'showpreview'     => 'په‌ڕه‌ی پێشبینین',
 'showlivepreview' => 'پێشبینینی ڕاسته‌وخۆ',
 'showdiff'        => 'گۆڕانكارییه‌كان نیشانبده‌',
+
+# Preferences page
+'skin-preview' => 'پێش بینین',
 
 # Special:Categories
 'categories' => 'هاوپۆله‌كان',

@@ -5,9 +5,6 @@
  * @file
  *
  * @author Hakka
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $messages = array(
@@ -55,8 +52,6 @@ $messages = array(
 'underline-always'  => 'Chúng-he sṳ́-yung',
 'underline-never'   => 'Chhiùng put sṳ́-yung',
 'underline-default' => 'Hi-khí yi-thin',
-
-'skinpreview' => '(Yi-ko)',
 
 # Dates
 'sunday'        => 'Lî-pai-ngit',
@@ -604,6 +599,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'qbsettings-floatingright' => 'Phêu-yì chhai yu',
 'changepassword'           => 'Kiên-kói me̍t-me̍t',
 'skin'                     => 'Mien-pán',
+'skin-preview'             => 'Yi-ko',
 'math'                     => 'Sṳ-ho̍k kûng-sṳt',
 'dateformat'               => 'Ngit-khì kak-sṳt',
 'datedefault'              => 'Yi-sat-chhṳ̍t',

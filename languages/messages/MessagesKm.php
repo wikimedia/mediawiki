@@ -10,9 +10,6 @@
  * @author T-Rithy
  * @author Bunly
  * @author តឹក ប៊ុនលី
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -333,8 +330,6 @@ $messages = array(
 'underline-always'  => 'ជានិច្ច',
 'underline-never'   => 'មិនដែលសោះ',
 'underline-default' => 'តាមលំនាំដើម',
-
-'skinpreview' => '(មើលជាមុន)',
 
 # Dates
 'sunday'        => 'ថ្ងៃអាទិត្យ',
@@ -1036,6 +1031,7 @@ $2',
 'qbsettings-floatingright' => 'អណ្តែតស្តាំ',
 'changepassword'           => 'ប្តូរពាក្យសំងាត់',
 'skin'                     => 'សំបក',
+'skin-preview'             => 'មើលជាមុន',
 'math'                     => 'គណិត',
 'dateformat'               => 'ទំរង់កាលបរិច្ឆេទ',
 'datedefault'              => 'គ្មានចំនូលចិត្ត',

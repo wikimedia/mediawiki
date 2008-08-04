@@ -6,7 +6,6 @@
  *
  * @author Wikimistusik
  * @author Sab
- * @author Jon Harald Søby
  * @author Nkosi ya Cabinda
  */
 
@@ -55,8 +54,6 @@ $messages = array(
 'underline-always'  => 'Kotviele',
 'underline-never'   => 'Meviele',
 'underline-default' => 'Omavafi exulesiki',
-
-'skinpreview' => '(Abdinedira)',
 
 # Dates
 'sunday'        => 'taneaviel',

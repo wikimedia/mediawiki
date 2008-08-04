@@ -5,10 +5,7 @@
  * @file
  *
  * @author JJohnson
- * @author SPQRobin
  * @author Wōdenhelm
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -27,8 +24,6 @@ $messages = array(
 
 'underline-always' => 'Ǣfre',
 'underline-never'  => 'Nǣfre',
-
-'skinpreview' => '(Forescēawian)',
 
 # Dates
 'sunday'        => 'Sunnandæġ',
@@ -311,6 +306,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'mypreferences'      => 'Mīna foreberunga',
 'prefsnologin'       => 'Ne ingemeldod',
 'skin'               => 'Scynn',
+'skin-preview'       => 'Forescēawian',
 'dateformat'         => 'Tælmearcwīse',
 'datetime'           => 'Tælmearc and tīd',
 'math_unknown_error' => 'ungewiss gemearr',

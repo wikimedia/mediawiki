@@ -9,10 +9,8 @@
  * @author Praveenp
  * @author Sadik Khalid
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Anoopan
  * @author Jyothis
- * @author Jon Harald Søby
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Sadik Khalid <sadik.khalid@gmail.com>
  * @author Manjith Joseph <manjithkaini@gmail.com>
@@ -219,8 +217,6 @@ $messages = array(
 'underline-always'  => 'എല്ലായ്പ്പോഴും',
 'underline-never'   => 'ഒരിക്കലും അരുത്',
 'underline-default' => 'ബ്രൗസറിലേതു പോലെ',
-
-'skinpreview' => '(പ്രിവ്യൂ)',
 
 # Dates
 'sunday'        => 'ഞായര്‍',
@@ -897,6 +893,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'qbsettings-fixedright' => 'സ്ഥിരമായ വലത്',
 'changepassword'        => 'രഹസ്യവാക്ക് മാറ്റുക',
 'skin'                  => 'രൂപം',
+'skin-preview'          => 'പ്രിവ്യൂ',
 'math'                  => 'സമവാക്യം',
 'dateformat'            => 'തീയതി പ്രദര്‍ശിപ്പിക്കുന്ന രീതി',
 'datedefault'           => 'ക്രമീകരണങ്ങള്‍ വേണ്ട',

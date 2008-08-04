@@ -10,7 +10,6 @@
  * @author Sunil Mohan
  * @author వైజాసత్య
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -103,8 +102,6 @@ $messages = array(
 'underline-always'  => 'ఎల్లప్పుడూ',
 'underline-never'   => 'ఎప్పటికీ వద్దు',
 'underline-default' => 'బ్రవుజరు నుండి తీసుకో',
-
-'skinpreview' => '(మునుజూపు/సరిచూడు)',
 
 # Dates
 'sunday'        => 'ఆదివారము',
@@ -854,6 +851,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'qbsettings-floatingright' => 'కుడికి ఒదిగి',
 'changepassword'           => 'సంకేతపదం మార్చండి',
 'skin'                     => 'తొడుగు',
+'skin-preview'             => 'మునుజూపు/సరిచూడు',
 'math'                     => 'గణితం',
 'dateformat'               => 'తేదీ ఆకృతి',
 'datedefault'              => 'ఏదైనా పరవాలేదు',

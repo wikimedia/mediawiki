@@ -6,10 +6,7 @@
  *
  * @author Teak
  * @author Togaed
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  */
 
@@ -322,8 +319,6 @@ $messages = array(
 'underline-always'  => 'Միշտ',
 'underline-never'   => 'Երբեք',
 'underline-default' => 'Օգտագործել բրաուզերի նախընտրությունները',
-
-'skinpreview' => '(նախադիտել)',
 
 # Dates
 'sunday'        => 'Կիրակի',
@@ -964,6 +959,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'qbsettings-floatingright' => 'Աջից լողացող',
 'changepassword'           => 'Փոխել գաղտնաբառը',
 'skin'                     => 'Տեսք',
+'skin-preview'             => 'նախադիտել',
 'math'                     => 'Մաթ',
 'dateformat'               => 'Օր ու ժամվա ձևը',
 'datedefault'              => 'Առանց նախընտրության',

@@ -6,10 +6,7 @@
  *
  * @author Malafaya
  * @author Lakaoso
- * @author SPQRobin
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Jon Harald Søby
  * @author Albonio
  * @author Artomo
  */
@@ -51,8 +48,6 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never'  => 'Nulatempe',
-
-'skinpreview' => '(Pre-videz)',
 
 # Dates
 'sunday'        => 'sundio',
@@ -476,6 +471,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'qbsettings-none'    => 'Nula',
 'changepassword'     => 'Chanjar pasovorto',
 'skin'               => 'Pelo',
+'skin-preview'       => 'Pre-videz',
 'math'               => 'Quale montrar la formuli',
 'dateformat'         => 'Formo di dato',
 'datedefault'        => 'Sen prefero',

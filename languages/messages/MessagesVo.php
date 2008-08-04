@@ -6,10 +6,7 @@
  *
  * @author Smeira
  * @author Malafaya
- * @author Siebrand
- * @author Jon Harald Søby
  * @author לערי ריינהארט
- * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -146,8 +143,6 @@ $messages = array(
 'underline-always'  => 'Pö jenets valik',
 'underline-never'   => 'Neföro',
 'underline-default' => 'Ma bevüresodatävöm',
-
-'skinpreview' => '(Büologed)',
 
 # Dates
 'sunday'        => 'sudel',
@@ -869,6 +864,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'qbsettings-floatingright' => 'deto (vebölo)',
 'changepassword'           => 'Votükön letavödi',
 'skin'                     => 'Fomät',
+'skin-preview'             => 'Büologed',
 'math'                     => 'Logot formülas',
 'dateformat'               => 'Dätafomät',
 'datedefault'              => 'Buükam nonik',

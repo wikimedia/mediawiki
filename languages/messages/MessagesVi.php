@@ -7,7 +7,6 @@
  * @author Vinhtantran
  * @author Minh Nguyen
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Trần Thế Trung
  * @author Nguyễn Thanh Quang
  * @author Mxn
@@ -173,8 +172,6 @@ $messages = array(
 'underline-always'  => 'Luôn luôn',
 'underline-never'   => 'Không bao giờ',
 'underline-default' => 'Mặc định của trình duyệt',
-
-'skinpreview' => '(Xem thử)',
 
 # Dates
 'sunday'        => 'Chủ nhật',
@@ -923,6 +920,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'qbsettings-floatingright' => 'Nổi bên phải',
 'changepassword'           => 'Đổi mật khẩu',
 'skin'                     => 'Hình dạng',
+'skin-preview'             => 'Xem thử',
 'math'                     => 'Công thức toán',
 'dateformat'               => 'Kiểu ngày tháng',
 'datedefault'              => 'Không lựa chọn',
