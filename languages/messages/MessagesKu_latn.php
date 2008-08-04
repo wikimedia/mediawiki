@@ -5,8 +5,6 @@
  * @file
  *
  * @author Bangin
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -76,8 +74,6 @@ $messages = array(
 'underline-always'  => 'Tim',
 'underline-never'   => 'Ne carekê',
 'underline-default' => "Tercihên browser'ê da",
-
-'skinpreview' => '(Pêşdîtin)',
 
 # Dates
 'sunday'        => 'yekşem',
@@ -683,6 +679,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'qbsettings-none'    => 'Tune',
 'changepassword'     => 'Şîfre biguherîne',
 'skin'               => 'Pêste',
+'skin-preview'       => 'Pêşdîtin',
 'math'               => 'TeX',
 'dateformat'         => 'Formata rojê',
 'datedefault'        => 'Tercih tune ne',

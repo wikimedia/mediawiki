@@ -4,7 +4,7 @@
  * @ingroup Language
  * @file
  *
- * @author Ramsis1978
+ * @author Ramsis II
  * @author Ghaly
  * @author Alnokta
  * @author Meno25
