@@ -157,7 +157,7 @@ class Skin extends Linker {
 	}
 
 	function initPage( &$out ) {
-		global $wgFavicon, $wgAppleTouchIcon, $wgScriptPath, $wgScriptExtension;
+		global $wgFavicon, $wgAppleTouchIcon;
 
 		wfProfileIn( __METHOD__ );
 
@@ -173,7 +173,7 @@ class Skin extends Linker {
 		$out->addLink( array(
 			'rel' => 'search',
 			'type' => 'application/opensearchdescription+xml',
-			'href' => "$wgScriptPath/opensearch_desc{$wgScriptExtension}",
+			'href' => wfScript( 'opensearch_desc' ),
 			'title' => wfMsgForContent( 'opensearch-desc' ),
 		));
 
