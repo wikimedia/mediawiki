@@ -187,16 +187,20 @@ function wfAjaxWatch($pagename = "", $watch = "") {
 		if(!$watching) {
 			$dbw = wfGetDB(DB_MASTER);
 			$dbw->begin();
-			$article->doWatch();
+			$ok = $article->doWatch();
 			$dbw->commit();
 		}
 	} else {
 		if($watching) {
 			$dbw = wfGetDB(DB_MASTER);
 			$dbw->begin();
-			$article->doUnwatch();
+			$ok = $article->doUnwatch();
 			$dbw->commit();
 		}
+	}
+	// Something stopped the change
+	if( isset($ok) && !$ok ) {
+		return '<err#>';
 	}
 	if( $watch ) {
 		return '<w#>'.wfMsgExt( 'addedwatchtext', array( 'parse' ), $title->getPrefixedText() );
